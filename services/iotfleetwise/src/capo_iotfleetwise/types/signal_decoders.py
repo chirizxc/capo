@@ -23,6 +23,8 @@ def deserialize_aws_json_1_0(data: list) -> SignalDecoders:
 
     out: SignalDecoders = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_iotfleetwise.types.signal_decoder.deserialize_aws_json_1_0(item)
         )

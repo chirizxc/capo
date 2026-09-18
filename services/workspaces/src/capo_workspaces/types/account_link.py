@@ -45,9 +45,9 @@ def serialize_aws_json_1_1(value: AccountLink) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AccountLink:
     out: AccountLink = {}  # type: ignore[typeddict-item]
-    if "AccountLinkId" in data:
+    if data.get("AccountLinkId") is not None:
         out["account_link_id"] = data["AccountLinkId"]
-    if "AccountLinkStatus" in data:
+    if data.get("AccountLinkStatus") is not None:
         import capo_workspaces.types.account_link_status_enum
 
         out["account_link_status"] = (
@@ -55,8 +55,8 @@ def deserialize_aws_json_1_1(data: dict) -> AccountLink:
                 data["AccountLinkStatus"]
             )
         )
-    if "SourceAccountId" in data:
+    if data.get("SourceAccountId") is not None:
         out["source_account_id"] = data["SourceAccountId"]
-    if "TargetAccountId" in data:
+    if data.get("TargetAccountId") is not None:
         out["target_account_id"] = data["TargetAccountId"]
     return out

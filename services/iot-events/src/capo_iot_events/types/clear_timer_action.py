@@ -24,7 +24,7 @@ def serialize_json(value: ClearTimerAction) -> dict:
 
 def deserialize_json(data: dict) -> ClearTimerAction:
     out: ClearTimerAction = {}  # type: ignore[typeddict-item]
-    if "timerName" in data:
+    if data.get("timerName") is not None:
         out["timer_name"] = data["timerName"]
     else:
         raise DeserializationError("ClearTimerAction.timer_name required")

@@ -41,10 +41,10 @@ def deserialize_json(
     data: dict,
 ) -> AwsAutoScalingAutoScalingGroupLaunchTemplateLaunchTemplateSpecification:
     out: AwsAutoScalingAutoScalingGroupLaunchTemplateLaunchTemplateSpecification = {}  # type: ignore[typeddict-item]
-    if "LaunchTemplateId" in data:
+    if data.get("LaunchTemplateId") is not None:
         out["launch_template_id"] = data["LaunchTemplateId"]
-    if "LaunchTemplateName" in data:
+    if data.get("LaunchTemplateName") is not None:
         out["launch_template_name"] = data["LaunchTemplateName"]
-    if "Version" in data:
+    if data.get("Version") is not None:
         out["version"] = data["Version"]
     return out

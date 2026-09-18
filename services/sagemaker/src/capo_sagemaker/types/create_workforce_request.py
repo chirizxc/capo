@@ -90,7 +90,7 @@ def serialize_aws_json_1_1(value: CreateWorkforceRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateWorkforceRequest:
     out: CreateWorkforceRequest = {}  # type: ignore[typeddict-item]
-    if "CognitoConfig" in data:
+    if data.get("CognitoConfig") is not None:
         import capo_sagemaker.types.cognito_config
 
         out["cognito_config"] = (
@@ -98,13 +98,13 @@ def deserialize_aws_json_1_1(data: dict) -> CreateWorkforceRequest:
                 data["CognitoConfig"]
             )
         )
-    if "OidcConfig" in data:
+    if data.get("OidcConfig") is not None:
         import capo_sagemaker.types.oidc_config
 
         out["oidc_config"] = capo_sagemaker.types.oidc_config.deserialize_aws_json_1_1(
             data["OidcConfig"]
         )
-    if "SourceIpConfig" in data:
+    if data.get("SourceIpConfig") is not None:
         import capo_sagemaker.types.source_ip_config
 
         out["source_ip_config"] = (
@@ -112,15 +112,15 @@ def deserialize_aws_json_1_1(data: dict) -> CreateWorkforceRequest:
                 data["SourceIpConfig"]
             )
         )
-    if "WorkforceName" in data:
+    if data.get("WorkforceName") is not None:
         out["workforce_name"] = data["WorkforceName"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_sagemaker.types.tag_list
 
         out["tags"] = capo_sagemaker.types.tag_list.deserialize_aws_json_1_1(
             data["Tags"]
         )
-    if "WorkforceVpcConfig" in data:
+    if data.get("WorkforceVpcConfig") is not None:
         import capo_sagemaker.types.workforce_vpc_config_request
 
         out["workforce_vpc_config"] = (
@@ -128,7 +128,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateWorkforceRequest:
                 data["WorkforceVpcConfig"]
             )
         )
-    if "IpAddressType" in data:
+    if data.get("IpAddressType") is not None:
         import capo_sagemaker.types.workforce_ip_address_type
 
         out["ip_address_type"] = (

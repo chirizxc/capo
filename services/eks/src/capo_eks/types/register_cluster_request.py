@@ -44,11 +44,11 @@ def serialize_json(value: RegisterClusterRequest) -> dict:
 
 def deserialize_json(data: dict) -> RegisterClusterRequest:
     out: RegisterClusterRequest = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("RegisterClusterRequest.name required")
-    if "connectorConfig" in data:
+    if data.get("connectorConfig") is not None:
         import capo_eks.types.connector_config_request
 
         out["connector_config"] = (
@@ -58,9 +58,9 @@ def deserialize_json(data: dict) -> RegisterClusterRequest:
         )
     else:
         raise DeserializationError("RegisterClusterRequest.connector_config required")
-    if "clientRequestToken" in data:
+    if data.get("clientRequestToken") is not None:
         out["client_request_token"] = data["clientRequestToken"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_eks.types.tag_map
 
         out["tags"] = capo_eks.types.tag_map.deserialize_json(data["tags"])

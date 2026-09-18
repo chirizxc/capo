@@ -32,9 +32,9 @@ def serialize_json(value: DatasourcePackageUsageInfo) -> dict:
 
 def deserialize_json(data: dict) -> DatasourcePackageUsageInfo:
     out: DatasourcePackageUsageInfo = {}  # type: ignore[typeddict-item]
-    if "VolumeUsageInBytes" in data:
+    if data.get("VolumeUsageInBytes") is not None:
         out["volume_usage_in_bytes"] = data["VolumeUsageInBytes"]
-    if "VolumeUsageUpdateTime" in data:
+    if data.get("VolumeUsageUpdateTime") is not None:
         import capo_detective.types.timestamp
 
         out["volume_usage_update_time"] = (

@@ -25,5 +25,7 @@ def deserialize_aws_json_1_1(data: list) -> IntegrationErrorList:
 
     out: IntegrationErrorList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_glue.types.integration_error.deserialize_aws_json_1_1(item))
     return out

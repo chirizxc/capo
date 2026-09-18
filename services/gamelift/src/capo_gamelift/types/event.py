@@ -65,26 +65,26 @@ def serialize_aws_json_1_1(value: Event) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Event:
     out: Event = {}  # type: ignore[typeddict-item]
-    if "EventId" in data:
+    if data.get("EventId") is not None:
         out["event_id"] = data["EventId"]
-    if "ResourceId" in data:
+    if data.get("ResourceId") is not None:
         out["resource_id"] = data["ResourceId"]
-    if "EventCode" in data:
+    if data.get("EventCode") is not None:
         import capo_gamelift.types.event_code
 
         out["event_code"] = capo_gamelift.types.event_code.deserialize_aws_json_1_1(
             data["EventCode"]
         )
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
-    if "EventTime" in data:
+    if data.get("EventTime") is not None:
         import capo_gamelift.types.timestamp
 
         out["event_time"] = capo_gamelift.types.timestamp.deserialize_aws_json_1_1(
             data["EventTime"]
         )
-    if "PreSignedLogUrl" in data:
+    if data.get("PreSignedLogUrl") is not None:
         out["pre_signed_log_url"] = data["PreSignedLogUrl"]
-    if "Count" in data:
+    if data.get("Count") is not None:
         out["count"] = data["Count"]
     return out

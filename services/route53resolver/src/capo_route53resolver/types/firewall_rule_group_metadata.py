@@ -56,17 +56,17 @@ def serialize_aws_json_1_1(value: FirewallRuleGroupMetadata) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> FirewallRuleGroupMetadata:
     out: FirewallRuleGroupMetadata = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "OwnerId" in data:
+    if data.get("OwnerId") is not None:
         out["owner_id"] = data["OwnerId"]
-    if "CreatorRequestId" in data:
+    if data.get("CreatorRequestId") is not None:
         out["creator_request_id"] = data["CreatorRequestId"]
-    if "ShareStatus" in data:
+    if data.get("ShareStatus") is not None:
         import capo_route53resolver.types.share_status
 
         out["share_status"] = (

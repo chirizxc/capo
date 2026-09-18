@@ -31,12 +31,12 @@ def serialize_json(value: WeightedTargetGroup) -> dict:
 
 def deserialize_json(data: dict) -> WeightedTargetGroup:
     out: WeightedTargetGroup = {}  # type: ignore[typeddict-item]
-    if "targetGroupIdentifier" in data:
+    if data.get("targetGroupIdentifier") is not None:
         out["target_group_identifier"] = data["targetGroupIdentifier"]
     else:
         raise DeserializationError(
             "WeightedTargetGroup.target_group_identifier required"
         )
-    if "weight" in data:
+    if data.get("weight") is not None:
         out["weight"] = data["weight"]
     return out

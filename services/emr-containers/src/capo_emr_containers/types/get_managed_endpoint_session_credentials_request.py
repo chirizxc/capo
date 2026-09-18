@@ -50,22 +50,22 @@ def serialize_json(value: GetManagedEndpointSessionCredentialsRequest) -> dict:
 
 def deserialize_json(data: dict) -> GetManagedEndpointSessionCredentialsRequest:
     out: GetManagedEndpointSessionCredentialsRequest = {}  # type: ignore[typeddict-item]
-    if "executionRoleArn" in data:
+    if data.get("executionRoleArn") is not None:
         out["execution_role_arn"] = data["executionRoleArn"]
     else:
         raise DeserializationError(
             "GetManagedEndpointSessionCredentialsRequest.execution_role_arn required"
         )
-    if "credentialType" in data:
+    if data.get("credentialType") is not None:
         out["credential_type"] = data["credentialType"]
     else:
         raise DeserializationError(
             "GetManagedEndpointSessionCredentialsRequest.credential_type required"
         )
-    if "durationInSeconds" in data:
+    if data.get("durationInSeconds") is not None:
         out["duration_in_seconds"] = data["durationInSeconds"]
-    if "logContext" in data:
+    if data.get("logContext") is not None:
         out["log_context"] = data["logContext"]
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     return out

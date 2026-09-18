@@ -57,7 +57,7 @@ def serialize_json(value: AssociationSetDetails) -> dict:
 
 def deserialize_json(data: dict) -> AssociationSetDetails:
     out: AssociationSetDetails = {}  # type: ignore[typeddict-item]
-    if "AssociationState" in data:
+    if data.get("AssociationState") is not None:
         import capo_securityhub.types.association_state_details
 
         out["association_state"] = (
@@ -65,14 +65,14 @@ def deserialize_json(data: dict) -> AssociationSetDetails:
                 data["AssociationState"]
             )
         )
-    if "GatewayId" in data:
+    if data.get("GatewayId") is not None:
         out["gateway_id"] = data["GatewayId"]
-    if "Main" in data:
+    if data.get("Main") is not None:
         out["main"] = data["Main"]
-    if "RouteTableAssociationId" in data:
+    if data.get("RouteTableAssociationId") is not None:
         out["route_table_association_id"] = data["RouteTableAssociationId"]
-    if "RouteTableId" in data:
+    if data.get("RouteTableId") is not None:
         out["route_table_id"] = data["RouteTableId"]
-    if "SubnetId" in data:
+    if data.get("SubnetId") is not None:
         out["subnet_id"] = data["SubnetId"]
     return out

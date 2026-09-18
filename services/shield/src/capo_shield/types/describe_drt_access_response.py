@@ -32,9 +32,9 @@ def serialize_aws_json_1_1(value: DescribeDRTAccessResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeDRTAccessResponse:
     out: DescribeDRTAccessResponse = {}  # type: ignore[typeddict-item]
-    if "RoleArn" in data:
+    if data.get("RoleArn") is not None:
         out["role_arn"] = data["RoleArn"]
-    if "LogBucketList" in data:
+    if data.get("LogBucketList") is not None:
         import capo_shield.types.log_bucket_list
 
         out["log_bucket_list"] = (

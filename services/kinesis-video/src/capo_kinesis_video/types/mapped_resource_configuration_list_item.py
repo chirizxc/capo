@@ -28,8 +28,8 @@ def serialize_json(value: MappedResourceConfigurationListItem) -> dict:
 
 def deserialize_json(data: dict) -> MappedResourceConfigurationListItem:
     out: MappedResourceConfigurationListItem = {}  # type: ignore[typeddict-item]
-    if "Type" in data:
+    if data.get("Type") is not None:
         out["type"] = data["Type"]
-    if "ARN" in data:
+    if data.get("ARN") is not None:
         out["arn"] = data["ARN"]
     return out

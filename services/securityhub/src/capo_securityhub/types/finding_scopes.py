@@ -31,7 +31,7 @@ def serialize_json(value: FindingScopes) -> dict:
 
 def deserialize_json(data: dict) -> FindingScopes:
     out: FindingScopes = {}  # type: ignore[typeddict-item]
-    if "AwsOrganizations" in data:
+    if data.get("AwsOrganizations") is not None:
         import capo_securityhub.types.aws_organization_scope_list
 
         out["aws_organizations"] = (

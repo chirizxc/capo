@@ -35,10 +35,10 @@ def serialize_aws_json_1_1(value: ExecutionDetails) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ExecutionDetails:
     out: ExecutionDetails = {}  # type: ignore[typeddict-item]
-    if "summary" in data:
+    if data.get("summary") is not None:
         out["summary"] = data["summary"]
-    if "externalExecutionId" in data:
+    if data.get("externalExecutionId") is not None:
         out["external_execution_id"] = data["externalExecutionId"]
-    if "percentComplete" in data:
+    if data.get("percentComplete") is not None:
         out["percent_complete"] = data["percentComplete"]
     return out

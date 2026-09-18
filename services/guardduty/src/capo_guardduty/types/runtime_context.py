@@ -167,7 +167,7 @@ def serialize_json(value: RuntimeContext) -> dict:
 
 def deserialize_json(data: dict) -> RuntimeContext:
     out: RuntimeContext = {}  # type: ignore[typeddict-item]
-    if "modifyingProcess" in data:
+    if data.get("modifyingProcess") is not None:
         import capo_guardduty.types.process_details
 
         out["modifying_process"] = (
@@ -175,53 +175,53 @@ def deserialize_json(data: dict) -> RuntimeContext:
                 data["modifyingProcess"]
             )
         )
-    if "modifiedAt" in data:
+    if data.get("modifiedAt") is not None:
         import capo_guardduty.types.timestamp
 
         out["modified_at"] = capo_guardduty.types.timestamp.deserialize_json(
             data["modifiedAt"]
         )
-    if "scriptPath" in data:
+    if data.get("scriptPath") is not None:
         out["script_path"] = data["scriptPath"]
-    if "libraryPath" in data:
+    if data.get("libraryPath") is not None:
         out["library_path"] = data["libraryPath"]
-    if "ldPreloadValue" in data:
+    if data.get("ldPreloadValue") is not None:
         out["ld_preload_value"] = data["ldPreloadValue"]
-    if "socketPath" in data:
+    if data.get("socketPath") is not None:
         out["socket_path"] = data["socketPath"]
-    if "runcBinaryPath" in data:
+    if data.get("runcBinaryPath") is not None:
         out["runc_binary_path"] = data["runcBinaryPath"]
-    if "releaseAgentPath" in data:
+    if data.get("releaseAgentPath") is not None:
         out["release_agent_path"] = data["releaseAgentPath"]
-    if "mountSource" in data:
+    if data.get("mountSource") is not None:
         out["mount_source"] = data["mountSource"]
-    if "mountTarget" in data:
+    if data.get("mountTarget") is not None:
         out["mount_target"] = data["mountTarget"]
-    if "fileSystemType" in data:
+    if data.get("fileSystemType") is not None:
         out["file_system_type"] = data["fileSystemType"]
-    if "flags" in data:
+    if data.get("flags") is not None:
         import capo_guardduty.types.flags_list
 
         out["flags"] = capo_guardduty.types.flags_list.deserialize_json(data["flags"])
-    if "moduleName" in data:
+    if data.get("moduleName") is not None:
         out["module_name"] = data["moduleName"]
-    if "moduleFilePath" in data:
+    if data.get("moduleFilePath") is not None:
         out["module_file_path"] = data["moduleFilePath"]
-    if "moduleSha256" in data:
+    if data.get("moduleSha256") is not None:
         out["module_sha256"] = data["moduleSha256"]
-    if "shellHistoryFilePath" in data:
+    if data.get("shellHistoryFilePath") is not None:
         out["shell_history_file_path"] = data["shellHistoryFilePath"]
-    if "targetProcess" in data:
+    if data.get("targetProcess") is not None:
         import capo_guardduty.types.process_details
 
         out["target_process"] = capo_guardduty.types.process_details.deserialize_json(
             data["targetProcess"]
         )
-    if "addressFamily" in data:
+    if data.get("addressFamily") is not None:
         out["address_family"] = data["addressFamily"]
-    if "ianaProtocolNumber" in data:
+    if data.get("ianaProtocolNumber") is not None:
         out["iana_protocol_number"] = data["ianaProtocolNumber"]
-    if "memoryRegions" in data:
+    if data.get("memoryRegions") is not None:
         import capo_guardduty.types.memory_regions_list
 
         out["memory_regions"] = (
@@ -229,21 +229,21 @@ def deserialize_json(data: dict) -> RuntimeContext:
                 data["memoryRegions"]
             )
         )
-    if "toolName" in data:
+    if data.get("toolName") is not None:
         out["tool_name"] = data["toolName"]
-    if "toolCategory" in data:
+    if data.get("toolCategory") is not None:
         out["tool_category"] = data["toolCategory"]
-    if "serviceName" in data:
+    if data.get("serviceName") is not None:
         out["service_name"] = data["serviceName"]
-    if "commandLineExample" in data:
+    if data.get("commandLineExample") is not None:
         out["command_line_example"] = data["commandLineExample"]
-    if "threatFilePath" in data:
+    if data.get("threatFilePath") is not None:
         out["threat_file_path"] = data["threatFilePath"]
-    if "fileOperation" in data:
+    if data.get("fileOperation") is not None:
         out["file_operation"] = data["fileOperation"]
-    if "filePath" in data:
+    if data.get("filePath") is not None:
         out["file_path"] = data["filePath"]
-    if "relatedFilePaths" in data:
+    if data.get("relatedFilePaths") is not None:
         import capo_guardduty.types.related_file_paths_list
 
         out["related_file_paths"] = (

@@ -27,7 +27,7 @@ def serialize_aws_json_1_0(value: CapacityUsageSummary) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CapacityUsageSummary:
     out: CapacityUsageSummary = {}  # type: ignore[typeddict-item]
-    if "CIDRs" in data:
+    if data.get("CIDRs") is not None:
         import capo_network_firewall.types.cidr_summary
 
         out["cid_rs"] = (

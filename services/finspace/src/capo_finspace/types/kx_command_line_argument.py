@@ -32,8 +32,8 @@ def serialize_json(value: KxCommandLineArgument) -> dict:
 
 def deserialize_json(data: dict) -> KxCommandLineArgument:
     out: KxCommandLineArgument = {}  # type: ignore[typeddict-item]
-    if "key" in data:
+    if data.get("key") is not None:
         out["key"] = data["key"]
-    if "value" in data:
+    if data.get("value") is not None:
         out["value"] = data["value"]
     return out

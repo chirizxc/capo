@@ -44,7 +44,7 @@ def serialize_aws_json_1_1(value: GetBlockPublicAccessConfigurationOutput) -> di
 
 def deserialize_aws_json_1_1(data: dict) -> GetBlockPublicAccessConfigurationOutput:
     out: GetBlockPublicAccessConfigurationOutput = {}  # type: ignore[typeddict-item]
-    if "BlockPublicAccessConfiguration" in data:
+    if data.get("BlockPublicAccessConfiguration") is not None:
         import capo_emr.types.block_public_access_configuration
 
         out["block_public_access_configuration"] = (
@@ -52,7 +52,7 @@ def deserialize_aws_json_1_1(data: dict) -> GetBlockPublicAccessConfigurationOut
                 data["BlockPublicAccessConfiguration"]
             )
         )
-    if "BlockPublicAccessConfigurationMetadata" in data:
+    if data.get("BlockPublicAccessConfigurationMetadata") is not None:
         import capo_emr.types.block_public_access_configuration_metadata
 
         out["block_public_access_configuration_metadata"] = (

@@ -60,19 +60,19 @@ def serialize_json(value: CreateChimeWebhookConfigurationRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateChimeWebhookConfigurationRequest:
     out: CreateChimeWebhookConfigurationRequest = {}  # type: ignore[typeddict-item]
-    if "WebhookDescription" in data:
+    if data.get("WebhookDescription") is not None:
         out["webhook_description"] = data["WebhookDescription"]
     else:
         raise DeserializationError(
             "CreateChimeWebhookConfigurationRequest.webhook_description required"
         )
-    if "WebhookUrl" in data:
+    if data.get("WebhookUrl") is not None:
         out["webhook_url"] = data["WebhookUrl"]
     else:
         raise DeserializationError(
             "CreateChimeWebhookConfigurationRequest.webhook_url required"
         )
-    if "SnsTopicArns" in data:
+    if data.get("SnsTopicArns") is not None:
         import capo_chatbot.types.sns_topic_arn_list
 
         out["sns_topic_arns"] = capo_chatbot.types.sns_topic_arn_list.deserialize_json(
@@ -82,21 +82,21 @@ def deserialize_json(data: dict) -> CreateChimeWebhookConfigurationRequest:
         raise DeserializationError(
             "CreateChimeWebhookConfigurationRequest.sns_topic_arns required"
         )
-    if "IamRoleArn" in data:
+    if data.get("IamRoleArn") is not None:
         out["iam_role_arn"] = data["IamRoleArn"]
     else:
         raise DeserializationError(
             "CreateChimeWebhookConfigurationRequest.iam_role_arn required"
         )
-    if "ConfigurationName" in data:
+    if data.get("ConfigurationName") is not None:
         out["configuration_name"] = data["ConfigurationName"]
     else:
         raise DeserializationError(
             "CreateChimeWebhookConfigurationRequest.configuration_name required"
         )
-    if "LoggingLevel" in data:
+    if data.get("LoggingLevel") is not None:
         out["logging_level"] = data["LoggingLevel"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_chatbot.types.tags
 
         out["tags"] = capo_chatbot.types.tags.deserialize_json(data["Tags"])

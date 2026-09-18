@@ -13,10 +13,25 @@ from capo_iottwinmaker import AsyncIoTTwinMakerClient
 
 
 async def main():
-    async with AsyncIoTTwinMakerClient() as s3:
+    async with AsyncIoTTwinMakerClient() as io_t_twin_maker:
         # Example: call the batch_put_property_values operation
-        response = await s3.batch_put_property_values()
+        response = await io_t_twin_maker.batch_put_property_values()
         print(response["error_entries"])
+```
+
+## Pagination
+
+Some operations in this SDK support pagination. If the operation supports pagination it will have an `iter_` prefixed method that returns an async iterator.
+
+```python
+from capo_iottwinmaker import AsyncIoTTwinMakerClient
+
+
+async def main():
+    async with AsyncIoTTwinMakerClient() as io_t_twin_maker:
+        # Example: paginate over execute_query
+        async for item in io_t_twin_maker.iter_execute_query():
+            print(item)
 ```
 
 ## Error Handling
@@ -29,9 +44,9 @@ from capo_iottwinmaker.error import InternalServerException
 
 
 async def main():
-    async with AsyncIoTTwinMakerClient() as s3:
+    async with AsyncIoTTwinMakerClient() as io_t_twin_maker:
         try:
-            await s3.batch_put_property_values()
+            await io_t_twin_maker.batch_put_property_values()
         except InternalServerException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -48,13 +63,13 @@ from capo_iottwinmaker import AsyncIoTTwinMakerClient
 
 
 async def main():
-    async with AsyncIoTTwinMakerClient() as s3:
+    async with AsyncIoTTwinMakerClient() as io_t_twin_maker:
         # Default: 3 attempts for every operation
-        response = await s3.batch_put_property_values()
+        response = await io_t_twin_maker.batch_put_property_values()
 
         # Override per operation
-        response = await s3.batch_put_property_values(config_overrides={"retry_max_attempts": 5})
+        response = await io_t_twin_maker.batch_put_property_values(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.batch_put_property_values(config_overrides={"retry_max_attempts": 1})
+        response = await io_t_twin_maker.batch_put_property_values(config_overrides={"retry_max_attempts": 1})
 ```

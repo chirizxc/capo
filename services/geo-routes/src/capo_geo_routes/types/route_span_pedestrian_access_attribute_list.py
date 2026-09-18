@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> RouteSpanPedestrianAccessAttributeList:
 
     out: RouteSpanPedestrianAccessAttributeList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_geo_routes.types.route_span_pedestrian_access_attribute.deserialize_json(
                 item

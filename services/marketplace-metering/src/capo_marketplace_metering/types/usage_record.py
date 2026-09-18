@@ -70,7 +70,7 @@ def serialize_aws_json_1_1(value: UsageRecord) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UsageRecord:
     out: UsageRecord = {}  # type: ignore[typeddict-item]
-    if "Timestamp" in data:
+    if data.get("Timestamp") is not None:
         import capo_marketplace_metering.types.timestamp
 
         out["timestamp"] = (
@@ -80,17 +80,17 @@ def deserialize_aws_json_1_1(data: dict) -> UsageRecord:
         )
     else:
         raise DeserializationError("UsageRecord.timestamp required")
-    if "CustomerIdentifier" in data:
+    if data.get("CustomerIdentifier") is not None:
         out["customer_identifier"] = data["CustomerIdentifier"]
     else:
         out["customer_identifier"] = ""
-    if "Dimension" in data:
+    if data.get("Dimension") is not None:
         out["dimension"] = data["Dimension"]
     else:
         raise DeserializationError("UsageRecord.dimension required")
-    if "Quantity" in data:
+    if data.get("Quantity") is not None:
         out["quantity"] = data["Quantity"]
-    if "UsageAllocations" in data:
+    if data.get("UsageAllocations") is not None:
         import capo_marketplace_metering.types.usage_allocations
 
         out["usage_allocations"] = (
@@ -98,8 +98,8 @@ def deserialize_aws_json_1_1(data: dict) -> UsageRecord:
                 data["UsageAllocations"]
             )
         )
-    if "CustomerAWSAccountId" in data:
+    if data.get("CustomerAWSAccountId") is not None:
         out["customer_aws_account_id"] = data["CustomerAWSAccountId"]
-    if "LicenseArn" in data:
+    if data.get("LicenseArn") is not None:
         out["license_arn"] = data["LicenseArn"]
     return out

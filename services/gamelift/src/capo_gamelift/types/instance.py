@@ -90,17 +90,17 @@ def serialize_aws_json_1_1(value: Instance) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Instance:
     out: Instance = {}  # type: ignore[typeddict-item]
-    if "FleetId" in data:
+    if data.get("FleetId") is not None:
         out["fleet_id"] = data["FleetId"]
-    if "FleetArn" in data:
+    if data.get("FleetArn") is not None:
         out["fleet_arn"] = data["FleetArn"]
-    if "InstanceId" in data:
+    if data.get("InstanceId") is not None:
         out["instance_id"] = data["InstanceId"]
-    if "IpAddress" in data:
+    if data.get("IpAddress") is not None:
         out["ip_address"] = data["IpAddress"]
-    if "DnsName" in data:
+    if data.get("DnsName") is not None:
         out["dns_name"] = data["DnsName"]
-    if "OperatingSystem" in data:
+    if data.get("OperatingSystem") is not None:
         import capo_gamelift.types.operating_system
 
         out["operating_system"] = (
@@ -108,24 +108,24 @@ def deserialize_aws_json_1_1(data: dict) -> Instance:
                 data["OperatingSystem"]
             )
         )
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_gamelift.types.ec2_instance_type
 
         out["type"] = capo_gamelift.types.ec2_instance_type.deserialize_aws_json_1_1(
             data["Type"]
         )
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_gamelift.types.instance_status
 
         out["status"] = capo_gamelift.types.instance_status.deserialize_aws_json_1_1(
             data["Status"]
         )
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_gamelift.types.timestamp
 
         out["creation_time"] = capo_gamelift.types.timestamp.deserialize_aws_json_1_1(
             data["CreationTime"]
         )
-    if "Location" in data:
+    if data.get("Location") is not None:
         out["location"] = data["Location"]
     return out

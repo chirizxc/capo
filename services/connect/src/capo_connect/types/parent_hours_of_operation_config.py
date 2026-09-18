@@ -25,6 +25,6 @@ def serialize_json(value: ParentHoursOfOperationConfig) -> dict:
 
 def deserialize_json(data: dict) -> ParentHoursOfOperationConfig:
     out: ParentHoursOfOperationConfig = {}  # type: ignore[typeddict-item]
-    if "HoursOfOperationId" in data:
+    if data.get("HoursOfOperationId") is not None:
         out["hours_of_operation_id"] = data["HoursOfOperationId"]
     return out

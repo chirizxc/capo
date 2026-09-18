@@ -28,7 +28,7 @@ def serialize_aws_json_1_1(value: AddAttributesToFindingsResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AddAttributesToFindingsResponse:
     out: AddAttributesToFindingsResponse = {}  # type: ignore[typeddict-item]
-    if "failedItems" in data:
+    if data.get("failedItems") is not None:
         import capo_inspector.types.failed_items
 
         out["failed_items"] = (

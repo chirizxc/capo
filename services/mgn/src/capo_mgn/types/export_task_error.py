@@ -34,9 +34,9 @@ def serialize_json(value: ExportTaskError) -> dict:
 
 def deserialize_json(data: dict) -> ExportTaskError:
     out: ExportTaskError = {}  # type: ignore[typeddict-item]
-    if "errorDateTime" in data:
+    if data.get("errorDateTime") is not None:
         out["error_date_time"] = data["errorDateTime"]
-    if "errorData" in data:
+    if data.get("errorData") is not None:
         import capo_mgn.types.export_error_data
 
         out["error_data"] = capo_mgn.types.export_error_data.deserialize_json(

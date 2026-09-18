@@ -69,7 +69,7 @@ def serialize_json(value: ListOrganizationInsightsRequest) -> dict:
 
 def deserialize_json(data: dict) -> ListOrganizationInsightsRequest:
     out: ListOrganizationInsightsRequest = {}  # type: ignore[typeddict-item]
-    if "StatusFilter" in data:
+    if data.get("StatusFilter") is not None:
         import capo_devops_guru.types.list_insights_status_filter
 
         out["status_filter"] = (
@@ -81,9 +81,9 @@ def deserialize_json(data: dict) -> ListOrganizationInsightsRequest:
         raise DeserializationError(
             "ListOrganizationInsightsRequest.status_filter required"
         )
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "AccountIds" in data:
+    if data.get("AccountIds") is not None:
         import capo_devops_guru.types.list_insights_account_id_list
 
         out["account_ids"] = (
@@ -91,7 +91,7 @@ def deserialize_json(data: dict) -> ListOrganizationInsightsRequest:
                 data["AccountIds"]
             )
         )
-    if "OrganizationalUnitIds" in data:
+    if data.get("OrganizationalUnitIds") is not None:
         import capo_devops_guru.types.list_insights_organizational_unit_id_list
 
         out["organizational_unit_ids"] = (
@@ -99,6 +99,6 @@ def deserialize_json(data: dict) -> ListOrganizationInsightsRequest:
                 data["OrganizationalUnitIds"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

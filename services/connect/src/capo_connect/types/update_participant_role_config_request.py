@@ -36,7 +36,7 @@ def serialize_json(value: UpdateParticipantRoleConfigRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateParticipantRoleConfigRequest:
     out: UpdateParticipantRoleConfigRequest = {}  # type: ignore[typeddict-item]
-    if "ChannelConfiguration" in data:
+    if data.get("ChannelConfiguration") is not None:
         import capo_connect.types.update_participant_role_config_channel_info
 
         out["channel_configuration"] = (

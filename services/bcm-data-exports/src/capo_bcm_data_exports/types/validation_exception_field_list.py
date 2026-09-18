@@ -29,6 +29,8 @@ def deserialize_aws_json_1_1(data: list) -> ValidationExceptionFieldList:
 
     out: ValidationExceptionFieldList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_bcm_data_exports.types.validation_exception_field.deserialize_aws_json_1_1(
                 item

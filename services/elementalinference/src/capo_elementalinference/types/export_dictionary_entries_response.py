@@ -25,6 +25,6 @@ def serialize_json(value: ExportDictionaryEntriesResponse) -> dict:
 
 def deserialize_json(data: dict) -> ExportDictionaryEntriesResponse:
     out: ExportDictionaryEntriesResponse = {}  # type: ignore[typeddict-item]
-    if "entries" in data:
+    if data.get("entries") is not None:
         out["entries"] = data["entries"]
     return out

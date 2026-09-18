@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> DomainList:
 
     out: DomainList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_simspaceweaver.types.domain.deserialize_json(item))
     return out

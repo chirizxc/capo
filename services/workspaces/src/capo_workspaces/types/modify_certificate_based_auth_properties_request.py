@@ -50,13 +50,13 @@ def serialize_aws_json_1_1(value: ModifyCertificateBasedAuthPropertiesRequest) -
 
 def deserialize_aws_json_1_1(data: dict) -> ModifyCertificateBasedAuthPropertiesRequest:
     out: ModifyCertificateBasedAuthPropertiesRequest = {}  # type: ignore[typeddict-item]
-    if "ResourceId" in data:
+    if data.get("ResourceId") is not None:
         out["resource_id"] = data["ResourceId"]
     else:
         raise DeserializationError(
             "ModifyCertificateBasedAuthPropertiesRequest.resource_id required"
         )
-    if "CertificateBasedAuthProperties" in data:
+    if data.get("CertificateBasedAuthProperties") is not None:
         import capo_workspaces.types.certificate_based_auth_properties
 
         out["certificate_based_auth_properties"] = (
@@ -64,7 +64,7 @@ def deserialize_aws_json_1_1(data: dict) -> ModifyCertificateBasedAuthProperties
                 data["CertificateBasedAuthProperties"]
             )
         )
-    if "PropertiesToDelete" in data:
+    if data.get("PropertiesToDelete") is not None:
         import capo_workspaces.types.deletable_certificate_based_auth_properties_list
 
         out["properties_to_delete"] = (

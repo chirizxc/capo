@@ -127,39 +127,39 @@ def serialize_json(value: Scan) -> dict:
 
 def deserialize_json(data: dict) -> Scan:
     out: Scan = {}  # type: ignore[typeddict-item]
-    if "detectorId" in data:
+    if data.get("detectorId") is not None:
         out["detector_id"] = data["detectorId"]
-    if "adminDetectorId" in data:
+    if data.get("adminDetectorId") is not None:
         out["admin_detector_id"] = data["adminDetectorId"]
-    if "scanId" in data:
+    if data.get("scanId") is not None:
         out["scan_id"] = data["scanId"]
-    if "scanStatus" in data:
+    if data.get("scanStatus") is not None:
         import capo_guardduty.types.scan_status
 
         out["scan_status"] = capo_guardduty.types.scan_status.deserialize_json(
             data["scanStatus"]
         )
-    if "failureReason" in data:
+    if data.get("failureReason") is not None:
         out["failure_reason"] = data["failureReason"]
-    if "scanStartTime" in data:
+    if data.get("scanStartTime") is not None:
         import capo_guardduty.types.timestamp
 
         out["scan_start_time"] = capo_guardduty.types.timestamp.deserialize_json(
             data["scanStartTime"]
         )
-    if "scanEndTime" in data:
+    if data.get("scanEndTime") is not None:
         import capo_guardduty.types.timestamp
 
         out["scan_end_time"] = capo_guardduty.types.timestamp.deserialize_json(
             data["scanEndTime"]
         )
-    if "triggerDetails" in data:
+    if data.get("triggerDetails") is not None:
         import capo_guardduty.types.trigger_details
 
         out["trigger_details"] = capo_guardduty.types.trigger_details.deserialize_json(
             data["triggerDetails"]
         )
-    if "resourceDetails" in data:
+    if data.get("resourceDetails") is not None:
         import capo_guardduty.types.resource_details
 
         out["resource_details"] = (
@@ -167,7 +167,7 @@ def deserialize_json(data: dict) -> Scan:
                 data["resourceDetails"]
             )
         )
-    if "scanResultDetails" in data:
+    if data.get("scanResultDetails") is not None:
         import capo_guardduty.types.scan_result_details
 
         out["scan_result_details"] = (
@@ -175,19 +175,19 @@ def deserialize_json(data: dict) -> Scan:
                 data["scanResultDetails"]
             )
         )
-    if "accountId" in data:
+    if data.get("accountId") is not None:
         out["account_id"] = data["accountId"]
-    if "totalBytes" in data:
+    if data.get("totalBytes") is not None:
         out["total_bytes"] = data["totalBytes"]
-    if "fileCount" in data:
+    if data.get("fileCount") is not None:
         out["file_count"] = data["fileCount"]
-    if "attachedVolumes" in data:
+    if data.get("attachedVolumes") is not None:
         import capo_guardduty.types.volume_details
 
         out["attached_volumes"] = capo_guardduty.types.volume_details.deserialize_json(
             data["attachedVolumes"]
         )
-    if "scanType" in data:
+    if data.get("scanType") is not None:
         import capo_guardduty.types.scan_type
 
         out["scan_type"] = capo_guardduty.types.scan_type.deserialize_json(

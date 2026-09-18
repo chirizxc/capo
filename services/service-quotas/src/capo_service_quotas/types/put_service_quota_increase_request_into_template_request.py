@@ -32,7 +32,15 @@ def serialize_aws_json_1_1(
     out["QuotaCode"] = value["quota_code"]
     out["ServiceCode"] = value["service_code"]
     out["AwsRegion"] = value["aws_region"]
-    out["DesiredValue"] = value["desired_value"]
+    out["DesiredValue"] = (
+        "NaN"
+        if value["desired_value"] != value["desired_value"]
+        else "Infinity"
+        if value["desired_value"] == float("inf")
+        else "-Infinity"
+        if value["desired_value"] == float("-inf")
+        else value["desired_value"]
+    )
     return out
 
 
@@ -40,26 +48,26 @@ def deserialize_aws_json_1_1(
     data: dict,
 ) -> PutServiceQuotaIncreaseRequestIntoTemplateRequest:
     out: PutServiceQuotaIncreaseRequestIntoTemplateRequest = {}  # type: ignore[typeddict-item]
-    if "QuotaCode" in data:
+    if data.get("QuotaCode") is not None:
         out["quota_code"] = data["QuotaCode"]
     else:
         raise DeserializationError(
             "PutServiceQuotaIncreaseRequestIntoTemplateRequest.quota_code required"
         )
-    if "ServiceCode" in data:
+    if data.get("ServiceCode") is not None:
         out["service_code"] = data["ServiceCode"]
     else:
         raise DeserializationError(
             "PutServiceQuotaIncreaseRequestIntoTemplateRequest.service_code required"
         )
-    if "AwsRegion" in data:
+    if data.get("AwsRegion") is not None:
         out["aws_region"] = data["AwsRegion"]
     else:
         raise DeserializationError(
             "PutServiceQuotaIncreaseRequestIntoTemplateRequest.aws_region required"
         )
-    if "DesiredValue" in data:
-        out["desired_value"] = data["DesiredValue"]
+    if data.get("DesiredValue") is not None:
+        out["desired_value"] = float(data["DesiredValue"])
     else:
         raise DeserializationError(
             "PutServiceQuotaIncreaseRequestIntoTemplateRequest.desired_value required"

@@ -132,7 +132,7 @@ def serialize_json(value: UpdateOriginEndpointRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateOriginEndpointRequest:
     out: UpdateOriginEndpointRequest = {}  # type: ignore[typeddict-item]
-    if "ContainerType" in data:
+    if data.get("ContainerType") is not None:
         import capo_mediapackagev2.types.container_type
 
         out["container_type"] = (
@@ -144,17 +144,17 @@ def deserialize_json(data: dict) -> UpdateOriginEndpointRequest:
         raise DeserializationError(
             "UpdateOriginEndpointRequest.container_type required"
         )
-    if "Segment" in data:
+    if data.get("Segment") is not None:
         import capo_mediapackagev2.types.segment
 
         out["segment"] = capo_mediapackagev2.types.segment.deserialize_json(
             data["Segment"]
         )
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "StartoverWindowSeconds" in data:
+    if data.get("StartoverWindowSeconds") is not None:
         out["startover_window_seconds"] = data["StartoverWindowSeconds"]
-    if "HlsManifests" in data:
+    if data.get("HlsManifests") is not None:
         import capo_mediapackagev2.types.create_hls_manifests
 
         out["hls_manifests"] = (
@@ -162,7 +162,7 @@ def deserialize_json(data: dict) -> UpdateOriginEndpointRequest:
                 data["HlsManifests"]
             )
         )
-    if "LowLatencyHlsManifests" in data:
+    if data.get("LowLatencyHlsManifests") is not None:
         import capo_mediapackagev2.types.create_low_latency_hls_manifests
 
         out["low_latency_hls_manifests"] = (
@@ -170,7 +170,7 @@ def deserialize_json(data: dict) -> UpdateOriginEndpointRequest:
                 data["LowLatencyHlsManifests"]
             )
         )
-    if "DashManifests" in data:
+    if data.get("DashManifests") is not None:
         import capo_mediapackagev2.types.create_dash_manifests
 
         out["dash_manifests"] = (
@@ -178,7 +178,7 @@ def deserialize_json(data: dict) -> UpdateOriginEndpointRequest:
                 data["DashManifests"]
             )
         )
-    if "MssManifests" in data:
+    if data.get("MssManifests") is not None:
         import capo_mediapackagev2.types.create_mss_manifests
 
         out["mss_manifests"] = (
@@ -186,7 +186,7 @@ def deserialize_json(data: dict) -> UpdateOriginEndpointRequest:
                 data["MssManifests"]
             )
         )
-    if "ForceEndpointErrorConfiguration" in data:
+    if data.get("ForceEndpointErrorConfiguration") is not None:
         import capo_mediapackagev2.types.force_endpoint_error_configuration
 
         out["force_endpoint_error_configuration"] = (
@@ -194,7 +194,7 @@ def deserialize_json(data: dict) -> UpdateOriginEndpointRequest:
                 data["ForceEndpointErrorConfiguration"]
             )
         )
-    if "UriSeparator" in data:
+    if data.get("UriSeparator") is not None:
         import capo_mediapackagev2.types.uri_separator
 
         out["uri_separator"] = capo_mediapackagev2.types.uri_separator.deserialize_json(

@@ -44,18 +44,18 @@ def serialize_aws_json_1_1(value: TimeAlignmentBoundary) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> TimeAlignmentBoundary:
     out: TimeAlignmentBoundary = {}  # type: ignore[typeddict-item]
-    if "Month" in data:
+    if data.get("Month") is not None:
         import capo_forecast.types.month
 
         out["month"] = capo_forecast.types.month.deserialize_aws_json_1_1(data["Month"])
-    if "DayOfMonth" in data:
+    if data.get("DayOfMonth") is not None:
         out["day_of_month"] = data["DayOfMonth"]
-    if "DayOfWeek" in data:
+    if data.get("DayOfWeek") is not None:
         import capo_forecast.types.day_of_week
 
         out["day_of_week"] = capo_forecast.types.day_of_week.deserialize_aws_json_1_1(
             data["DayOfWeek"]
         )
-    if "Hour" in data:
+    if data.get("Hour") is not None:
         out["hour"] = data["Hour"]
     return out

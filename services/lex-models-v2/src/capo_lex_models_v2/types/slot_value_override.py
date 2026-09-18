@@ -45,19 +45,19 @@ def serialize_json(value: SlotValueOverride) -> dict:
 
 def deserialize_json(data: dict) -> SlotValueOverride:
     out: SlotValueOverride = {}  # type: ignore[typeddict-item]
-    if "shape" in data:
+    if data.get("shape") is not None:
         import capo_lex_models_v2.types.slot_shape
 
         out["shape"] = capo_lex_models_v2.types.slot_shape.deserialize_json(
             data["shape"]
         )
-    if "value" in data:
+    if data.get("value") is not None:
         import capo_lex_models_v2.types.slot_value
 
         out["value"] = capo_lex_models_v2.types.slot_value.deserialize_json(
             data["value"]
         )
-    if "values" in data:
+    if data.get("values") is not None:
         import capo_lex_models_v2.types.slot_values
 
         out["values"] = capo_lex_models_v2.types.slot_values.deserialize_json(

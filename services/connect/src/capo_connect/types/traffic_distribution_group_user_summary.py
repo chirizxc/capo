@@ -23,6 +23,6 @@ def serialize_json(value: TrafficDistributionGroupUserSummary) -> dict:
 
 def deserialize_json(data: dict) -> TrafficDistributionGroupUserSummary:
     out: TrafficDistributionGroupUserSummary = {}  # type: ignore[typeddict-item]
-    if "UserId" in data:
+    if data.get("UserId") is not None:
         out["user_id"] = data["UserId"]
     return out

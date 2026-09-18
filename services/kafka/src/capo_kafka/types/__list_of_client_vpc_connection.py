@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> __listOfClientVpcConnection:
 
     out: __listOfClientVpcConnection = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_kafka.types.client_vpc_connection.deserialize_json(item))
     return out

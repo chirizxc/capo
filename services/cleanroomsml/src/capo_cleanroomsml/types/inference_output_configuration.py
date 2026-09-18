@@ -33,11 +33,11 @@ def serialize_json(value: InferenceOutputConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> InferenceOutputConfiguration:
     out: InferenceOutputConfiguration = {}  # type: ignore[typeddict-item]
-    if "accept" in data:
+    if data.get("accept") is not None:
         out["accept"] = data["accept"]
     else:
         out["accept"] = "application/json"
-    if "members" in data:
+    if data.get("members") is not None:
         import capo_cleanroomsml.types.inference_receiver_members
 
         out["members"] = (

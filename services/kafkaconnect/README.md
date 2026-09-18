@@ -13,9 +13,9 @@ from capo_kafkaconnect import AsyncKafkaConnectClient
 
 
 async def main():
-    async with AsyncKafkaConnectClient() as s3:
+    async with AsyncKafkaConnectClient() as kafka_connect:
         # Example: call the create_connector operation
-        response = await s3.create_connector()
+        response = await kafka_connect.create_connector()
         print(response["connector_arn"])
 ```
 
@@ -28,9 +28,9 @@ from capo_kafkaconnect import AsyncKafkaConnectClient
 
 
 async def main():
-    async with AsyncKafkaConnectClient() as s3:
+    async with AsyncKafkaConnectClient() as kafka_connect:
         # Example: paginate over list_connector_operations
-        async for item in s3.iter_list_connector_operations():
+        async for item in kafka_connect.iter_list_connector_operations():
             print(item)
 ```
 
@@ -44,9 +44,9 @@ from capo_kafkaconnect.error import BadRequestException
 
 
 async def main():
-    async with AsyncKafkaConnectClient() as s3:
+    async with AsyncKafkaConnectClient() as kafka_connect:
         try:
-            await s3.create_connector()
+            await kafka_connect.create_connector()
         except BadRequestException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -63,13 +63,13 @@ from capo_kafkaconnect import AsyncKafkaConnectClient
 
 
 async def main():
-    async with AsyncKafkaConnectClient() as s3:
+    async with AsyncKafkaConnectClient() as kafka_connect:
         # Default: 3 attempts for every operation
-        response = await s3.create_connector()
+        response = await kafka_connect.create_connector()
 
         # Override per operation
-        response = await s3.create_connector(config_overrides={"retry_max_attempts": 5})
+        response = await kafka_connect.create_connector(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.create_connector(config_overrides={"retry_max_attempts": 1})
+        response = await kafka_connect.create_connector(config_overrides={"retry_max_attempts": 1})
 ```

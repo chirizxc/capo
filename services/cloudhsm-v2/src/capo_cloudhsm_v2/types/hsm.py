@@ -73,30 +73,30 @@ def serialize_aws_json_1_1(value: Hsm) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Hsm:
     out: Hsm = {}  # type: ignore[typeddict-item]
-    if "AvailabilityZone" in data:
+    if data.get("AvailabilityZone") is not None:
         out["availability_zone"] = data["AvailabilityZone"]
-    if "ClusterId" in data:
+    if data.get("ClusterId") is not None:
         out["cluster_id"] = data["ClusterId"]
-    if "SubnetId" in data:
+    if data.get("SubnetId") is not None:
         out["subnet_id"] = data["SubnetId"]
-    if "EniId" in data:
+    if data.get("EniId") is not None:
         out["eni_id"] = data["EniId"]
-    if "EniIp" in data:
+    if data.get("EniIp") is not None:
         out["eni_ip"] = data["EniIp"]
-    if "EniIpV6" in data:
+    if data.get("EniIpV6") is not None:
         out["eni_ip_v6"] = data["EniIpV6"]
-    if "HsmId" in data:
+    if data.get("HsmId") is not None:
         out["hsm_id"] = data["HsmId"]
     else:
         raise DeserializationError("Hsm.hsm_id required")
-    if "HsmType" in data:
+    if data.get("HsmType") is not None:
         out["hsm_type"] = data["HsmType"]
-    if "State" in data:
+    if data.get("State") is not None:
         import capo_cloudhsm_v2.types.hsm_state
 
         out["state"] = capo_cloudhsm_v2.types.hsm_state.deserialize_aws_json_1_1(
             data["State"]
         )
-    if "StateMessage" in data:
+    if data.get("StateMessage") is not None:
         out["state_message"] = data["StateMessage"]
     return out

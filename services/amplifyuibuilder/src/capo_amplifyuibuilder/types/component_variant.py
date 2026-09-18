@@ -44,7 +44,7 @@ def serialize_json(value: ComponentVariant) -> dict:
 
 def deserialize_json(data: dict) -> ComponentVariant:
     out: ComponentVariant = {}  # type: ignore[typeddict-item]
-    if "variantValues" in data:
+    if data.get("variantValues") is not None:
         import capo_amplifyuibuilder.types.component_variant_values
 
         out["variant_values"] = (
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> ComponentVariant:
                 data["variantValues"]
             )
         )
-    if "overrides" in data:
+    if data.get("overrides") is not None:
         import capo_amplifyuibuilder.types.component_overrides
 
         out["overrides"] = (

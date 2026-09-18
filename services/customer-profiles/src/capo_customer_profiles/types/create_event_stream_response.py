@@ -31,13 +31,13 @@ def serialize_json(value: CreateEventStreamResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateEventStreamResponse:
     out: CreateEventStreamResponse = {}  # type: ignore[typeddict-item]
-    if "EventStreamArn" in data:
+    if data.get("EventStreamArn") is not None:
         out["event_stream_arn"] = data["EventStreamArn"]
     else:
         raise DeserializationError(
             "CreateEventStreamResponse.event_stream_arn required"
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_customer_profiles.types.tag_map
 
         out["tags"] = capo_customer_profiles.types.tag_map.deserialize_json(

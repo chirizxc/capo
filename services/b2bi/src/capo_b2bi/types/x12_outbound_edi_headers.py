@@ -83,7 +83,7 @@ def serialize_aws_json_1_0(value: X12OutboundEdiHeaders) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> X12OutboundEdiHeaders:
     out: X12OutboundEdiHeaders = {}  # type: ignore[typeddict-item]
-    if "interchangeControlHeaders" in data:
+    if data.get("interchangeControlHeaders") is not None:
         import capo_b2bi.types.x12_interchange_control_headers
 
         out["interchange_control_headers"] = (
@@ -91,7 +91,7 @@ def deserialize_aws_json_1_0(data: dict) -> X12OutboundEdiHeaders:
                 data["interchangeControlHeaders"]
             )
         )
-    if "functionalGroupHeaders" in data:
+    if data.get("functionalGroupHeaders") is not None:
         import capo_b2bi.types.x12_functional_group_headers
 
         out["functional_group_headers"] = (
@@ -99,15 +99,15 @@ def deserialize_aws_json_1_0(data: dict) -> X12OutboundEdiHeaders:
                 data["functionalGroupHeaders"]
             )
         )
-    if "delimiters" in data:
+    if data.get("delimiters") is not None:
         import capo_b2bi.types.x12_delimiters
 
         out["delimiters"] = capo_b2bi.types.x12_delimiters.deserialize_aws_json_1_0(
             data["delimiters"]
         )
-    if "validateEdi" in data:
+    if data.get("validateEdi") is not None:
         out["validate_edi"] = data["validateEdi"]
-    if "controlNumbers" in data:
+    if data.get("controlNumbers") is not None:
         import capo_b2bi.types.x12_control_numbers
 
         out["control_numbers"] = (
@@ -115,7 +115,7 @@ def deserialize_aws_json_1_0(data: dict) -> X12OutboundEdiHeaders:
                 data["controlNumbers"]
             )
         )
-    if "gs05TimeFormat" in data:
+    if data.get("gs05TimeFormat") is not None:
         import capo_b2bi.types.x12_gs05_time_format
 
         out["gs05_time_format"] = (

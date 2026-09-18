@@ -25,6 +25,7 @@ class RotateTunnelAccessTokenRequest(TypedDict, closed=True):
 # --- awsJson1_1 ser/de ---
 def serialize_aws_json_1_1(value: RotateTunnelAccessTokenRequest) -> dict:
     out: dict = {}
+    out["tunnelId"] = value["tunnel_id"]
     import capo_iotsecuretunneling.types.client_mode
 
     out["clientMode"] = (
@@ -45,7 +46,11 @@ def serialize_aws_json_1_1(value: RotateTunnelAccessTokenRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RotateTunnelAccessTokenRequest:
     out: RotateTunnelAccessTokenRequest = {}  # type: ignore[typeddict-item]
-    if "clientMode" in data:
+    if data.get("tunnelId") is not None:
+        out["tunnel_id"] = data["tunnelId"]
+    else:
+        raise DeserializationError("RotateTunnelAccessTokenRequest.tunnel_id required")
+    if data.get("clientMode") is not None:
         import capo_iotsecuretunneling.types.client_mode
 
         out["client_mode"] = (
@@ -57,7 +62,7 @@ def deserialize_aws_json_1_1(data: dict) -> RotateTunnelAccessTokenRequest:
         raise DeserializationError(
             "RotateTunnelAccessTokenRequest.client_mode required"
         )
-    if "destinationConfig" in data:
+    if data.get("destinationConfig") is not None:
         import capo_iotsecuretunneling.types.destination_config
 
         out["destination_config"] = (

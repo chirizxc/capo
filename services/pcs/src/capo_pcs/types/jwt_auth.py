@@ -25,7 +25,7 @@ def serialize_aws_json_1_0(value: JwtAuth) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> JwtAuth:
     out: JwtAuth = {}  # type: ignore[typeddict-item]
-    if "jwtKey" in data:
+    if data.get("jwtKey") is not None:
         import capo_pcs.types.jwt_key
 
         out["jwt_key"] = capo_pcs.types.jwt_key.deserialize_aws_json_1_0(data["jwtKey"])

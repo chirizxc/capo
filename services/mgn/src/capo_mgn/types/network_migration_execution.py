@@ -74,29 +74,29 @@ def serialize_json(value: NetworkMigrationExecution) -> dict:
 
 def deserialize_json(data: dict) -> NetworkMigrationExecution:
     out: NetworkMigrationExecution = {}  # type: ignore[typeddict-item]
-    if "networkMigrationDefinitionID" in data:
+    if data.get("networkMigrationDefinitionID") is not None:
         out["network_migration_definition_id"] = data["networkMigrationDefinitionID"]
-    if "networkMigrationExecutionID" in data:
+    if data.get("networkMigrationExecutionID") is not None:
         out["network_migration_execution_id"] = data["networkMigrationExecutionID"]
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
-    if "stage" in data:
+    if data.get("stage") is not None:
         out["stage"] = data["stage"]
-    if "activity" in data:
+    if data.get("activity") is not None:
         out["activity"] = data["activity"]
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_mgn.types._prelude.timestamp
 
         out["created_at"] = capo_mgn.types._prelude.timestamp.deserialize_json(
             data["createdAt"]
         )
-    if "updatedAt" in data:
+    if data.get("updatedAt") is not None:
         import capo_mgn.types._prelude.timestamp
 
         out["updated_at"] = capo_mgn.types._prelude.timestamp.deserialize_json(
             data["updatedAt"]
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_mgn.types.tags_map
 
         out["tags"] = capo_mgn.types.tags_map.deserialize_json(data["tags"])

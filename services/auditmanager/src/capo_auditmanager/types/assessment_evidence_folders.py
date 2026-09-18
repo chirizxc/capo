@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> AssessmentEvidenceFolders:
 
     out: AssessmentEvidenceFolders = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_auditmanager.types.assessment_evidence_folder.deserialize_json(item)
         )

@@ -25,6 +25,8 @@ def deserialize_json(data: list) -> SalesforceDataTransferApiList:
 
     out: SalesforceDataTransferApiList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_appflow.types.salesforce_data_transfer_api.deserialize_json(item)
         )

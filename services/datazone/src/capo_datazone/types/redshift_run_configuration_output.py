@@ -61,13 +61,13 @@ def serialize_json(value: RedshiftRunConfigurationOutput) -> dict:
 
 def deserialize_json(data: dict) -> RedshiftRunConfigurationOutput:
     out: RedshiftRunConfigurationOutput = {}  # type: ignore[typeddict-item]
-    if "accountId" in data:
+    if data.get("accountId") is not None:
         out["account_id"] = data["accountId"]
-    if "region" in data:
+    if data.get("region") is not None:
         out["region"] = data["region"]
-    if "dataAccessRole" in data:
+    if data.get("dataAccessRole") is not None:
         out["data_access_role"] = data["dataAccessRole"]
-    if "relationalFilterConfigurations" in data:
+    if data.get("relationalFilterConfigurations") is not None:
         import capo_datazone.types.relational_filter_configurations
 
         out["relational_filter_configurations"] = (
@@ -79,7 +79,7 @@ def deserialize_json(data: dict) -> RedshiftRunConfigurationOutput:
         raise DeserializationError(
             "RedshiftRunConfigurationOutput.relational_filter_configurations required"
         )
-    if "redshiftCredentialConfiguration" in data:
+    if data.get("redshiftCredentialConfiguration") is not None:
         import capo_datazone.types.redshift_credential_configuration
 
         out["redshift_credential_configuration"] = (
@@ -87,7 +87,7 @@ def deserialize_json(data: dict) -> RedshiftRunConfigurationOutput:
                 data["redshiftCredentialConfiguration"]
             )
         )
-    if "redshiftStorage" in data:
+    if data.get("redshiftStorage") is not None:
         import capo_datazone.types.redshift_storage
 
         out["redshift_storage"] = capo_datazone.types.redshift_storage.deserialize_json(

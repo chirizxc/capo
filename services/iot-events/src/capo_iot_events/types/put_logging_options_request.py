@@ -28,7 +28,7 @@ def serialize_json(value: PutLoggingOptionsRequest) -> dict:
 
 def deserialize_json(data: dict) -> PutLoggingOptionsRequest:
     out: PutLoggingOptionsRequest = {}  # type: ignore[typeddict-item]
-    if "loggingOptions" in data:
+    if data.get("loggingOptions") is not None:
         import capo_iot_events.types.logging_options
 
         out["logging_options"] = capo_iot_events.types.logging_options.deserialize_json(

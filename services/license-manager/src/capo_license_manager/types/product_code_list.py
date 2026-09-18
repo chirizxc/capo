@@ -29,6 +29,8 @@ def deserialize_aws_json_1_1(data: list) -> ProductCodeList:
 
     out: ProductCodeList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_license_manager.types.product_code_list_item.deserialize_aws_json_1_1(
                 item

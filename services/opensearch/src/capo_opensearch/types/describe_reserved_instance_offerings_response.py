@@ -36,9 +36,9 @@ def serialize_json(value: DescribeReservedInstanceOfferingsResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribeReservedInstanceOfferingsResponse:
     out: DescribeReservedInstanceOfferingsResponse = {}  # type: ignore[typeddict-item]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "ReservedInstanceOfferings" in data:
+    if data.get("ReservedInstanceOfferings") is not None:
         import capo_opensearch.types.reserved_instance_offering_list
 
         out["reserved_instance_offerings"] = (

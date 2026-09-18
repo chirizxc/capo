@@ -28,11 +28,11 @@ def serialize_aws_json_1_0(value: LicenseInfo) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> LicenseInfo:
     out: LicenseInfo = {}  # type: ignore[typeddict-item]
-    if "solutionKey" in data:
+    if data.get("solutionKey") is not None:
         out["solution_key"] = data["solutionKey"]
     else:
         raise DeserializationError("LicenseInfo.solution_key required")
-    if "vsanKey" in data:
+    if data.get("vsanKey") is not None:
         out["vsan_key"] = data["vsanKey"]
     else:
         raise DeserializationError("LicenseInfo.vsan_key required")

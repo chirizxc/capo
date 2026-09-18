@@ -46,13 +46,13 @@ def serialize_json(value: AdConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> AdConfiguration:
     out: AdConfiguration = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("AdConfiguration.arn required")
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "mediaTailorPlaybackConfigurations" in data:
+    if data.get("mediaTailorPlaybackConfigurations") is not None:
         import capo_ivs.types.media_tailor_playback_configurations_list
 
         out["media_tailor_playback_configurations"] = (
@@ -64,7 +64,7 @@ def deserialize_json(data: dict) -> AdConfiguration:
         raise DeserializationError(
             "AdConfiguration.media_tailor_playback_configurations required"
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_ivs.types.tags
 
         out["tags"] = capo_ivs.types.tags.deserialize_json(data["tags"])

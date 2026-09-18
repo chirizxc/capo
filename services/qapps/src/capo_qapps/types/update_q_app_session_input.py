@@ -34,11 +34,11 @@ def serialize_json(value: UpdateQAppSessionInput) -> dict:
 
 def deserialize_json(data: dict) -> UpdateQAppSessionInput:
     out: UpdateQAppSessionInput = {}  # type: ignore[typeddict-item]
-    if "sessionId" in data:
+    if data.get("sessionId") is not None:
         out["session_id"] = data["sessionId"]
     else:
         raise DeserializationError("UpdateQAppSessionInput.session_id required")
-    if "values" in data:
+    if data.get("values") is not None:
         import capo_qapps.types.card_value_list
 
         out["values"] = capo_qapps.types.card_value_list.deserialize_json(

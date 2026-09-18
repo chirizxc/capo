@@ -32,10 +32,10 @@ def serialize_aws_json_1_1(value: CreateCollectionResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateCollectionResponse:
     out: CreateCollectionResponse = {}  # type: ignore[typeddict-item]
-    if "StatusCode" in data:
+    if data.get("StatusCode") is not None:
         out["status_code"] = data["StatusCode"]
-    if "CollectionArn" in data:
+    if data.get("CollectionArn") is not None:
         out["collection_arn"] = data["CollectionArn"]
-    if "FaceModelVersion" in data:
+    if data.get("FaceModelVersion") is not None:
         out["face_model_version"] = data["FaceModelVersion"]
     return out

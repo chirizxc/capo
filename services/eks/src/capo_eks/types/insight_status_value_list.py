@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> InsightStatusValueList:
 
     out: InsightStatusValueList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_eks.types.insight_status_value.deserialize_json(item))
     return out

@@ -74,11 +74,11 @@ def serialize_aws_json_1_1(value: S3CatalogTarget) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> S3CatalogTarget:
     out: S3CatalogTarget = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("S3CatalogTarget.name required")
-    if "Inputs" in data:
+    if data.get("Inputs") is not None:
         import capo_glue.types.one_input
 
         out["inputs"] = capo_glue.types.one_input.deserialize_aws_json_1_1(
@@ -86,7 +86,7 @@ def deserialize_aws_json_1_1(data: dict) -> S3CatalogTarget:
         )
     else:
         raise DeserializationError("S3CatalogTarget.inputs required")
-    if "PartitionKeys" in data:
+    if data.get("PartitionKeys") is not None:
         import capo_glue.types.glue_studio_path_list
 
         out["partition_keys"] = (
@@ -94,15 +94,15 @@ def deserialize_aws_json_1_1(data: dict) -> S3CatalogTarget:
                 data["PartitionKeys"]
             )
         )
-    if "Table" in data:
+    if data.get("Table") is not None:
         out["table"] = data["Table"]
     else:
         raise DeserializationError("S3CatalogTarget.table required")
-    if "Database" in data:
+    if data.get("Database") is not None:
         out["database"] = data["Database"]
     else:
         raise DeserializationError("S3CatalogTarget.database required")
-    if "SchemaChangePolicy" in data:
+    if data.get("SchemaChangePolicy") is not None:
         import capo_glue.types.catalog_schema_change_policy
 
         out["schema_change_policy"] = (
@@ -110,7 +110,7 @@ def deserialize_aws_json_1_1(data: dict) -> S3CatalogTarget:
                 data["SchemaChangePolicy"]
             )
         )
-    if "AutoDataQuality" in data:
+    if data.get("AutoDataQuality") is not None:
         import capo_glue.types.auto_data_quality
 
         out["auto_data_quality"] = (

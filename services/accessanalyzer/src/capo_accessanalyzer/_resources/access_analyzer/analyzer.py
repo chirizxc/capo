@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import uuid
 from typing import TYPE_CHECKING, Optional
 
 import capo_accessanalyzer._auth._signers
@@ -94,15 +95,17 @@ class Analyzer:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_accessanalyzer.types.create_analyzer_request.CreateAnalyzerRequest = {}  # type: ignore[typeddict-item]
-        input_["analyzer_name"] = analyzer_name
-        input_["type"] = type
+        input_: capo_accessanalyzer.types.create_analyzer_request.CreateAnalyzerRequest = {
+            "analyzer_name": analyzer_name,
+            "type": type,
+        }
         if archive_rules is not None:
             input_["archive_rules"] = archive_rules
         if tags is not None:
             input_["tags"] = tags
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if configuration is not None:
             input_["configuration"] = configuration
 
@@ -111,6 +114,7 @@ class Analyzer:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -148,14 +152,16 @@ class Analyzer:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_accessanalyzer.types.get_analyzer_request.GetAnalyzerRequest = {}  # type: ignore[typeddict-item]
-        input_["analyzer_name"] = analyzer_name
+        input_: capo_accessanalyzer.types.get_analyzer_request.GetAnalyzerRequest = {
+            "analyzer_name": analyzer_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update(
@@ -197,8 +203,9 @@ class Analyzer:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_accessanalyzer.types.update_analyzer_request.UpdateAnalyzerRequest = {}  # type: ignore[typeddict-item]
-        input_["analyzer_name"] = analyzer_name
+        input_: capo_accessanalyzer.types.update_analyzer_request.UpdateAnalyzerRequest = {
+            "analyzer_name": analyzer_name
+        }
         if configuration is not None:
             input_["configuration"] = configuration
 
@@ -207,6 +214,7 @@ class Analyzer:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -244,16 +252,19 @@ class Analyzer:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_accessanalyzer.types.delete_analyzer_request.DeleteAnalyzerRequest = {}  # type: ignore[typeddict-item]
-        input_["analyzer_name"] = analyzer_name
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_accessanalyzer.types.delete_analyzer_request.DeleteAnalyzerRequest = {
+            "analyzer_name": analyzer_name
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -294,7 +305,7 @@ class Analyzer:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_accessanalyzer.types.list_analyzers_request.ListAnalyzersRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_accessanalyzer.types.list_analyzers_request.ListAnalyzersRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -307,6 +318,7 @@ class Analyzer:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_service_linked_analyzer(
@@ -345,16 +357,19 @@ class Analyzer:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_accessanalyzer.types.delete_service_linked_analyzer_request.DeleteServiceLinkedAnalyzerRequest = {}  # type: ignore[typeddict-item]
-        input_["analyzer_name"] = analyzer_name
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_accessanalyzer.types.delete_service_linked_analyzer_request.DeleteServiceLinkedAnalyzerRequest = {
+            "analyzer_name": analyzer_name
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -413,15 +428,17 @@ class AsyncAnalyzer:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_accessanalyzer.types.create_analyzer_request.CreateAnalyzerRequest = {}  # type: ignore[typeddict-item]
-        input_["analyzer_name"] = analyzer_name
-        input_["type"] = type
+        input_: capo_accessanalyzer.types.create_analyzer_request.CreateAnalyzerRequest = {
+            "analyzer_name": analyzer_name,
+            "type": type,
+        }
         if archive_rules is not None:
             input_["archive_rules"] = archive_rules
         if tags is not None:
             input_["tags"] = tags
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if configuration is not None:
             input_["configuration"] = configuration
 
@@ -430,6 +447,7 @@ class AsyncAnalyzer:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -468,14 +486,16 @@ class AsyncAnalyzer:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_accessanalyzer.types.get_analyzer_request.GetAnalyzerRequest = {}  # type: ignore[typeddict-item]
-        input_["analyzer_name"] = analyzer_name
+        input_: capo_accessanalyzer.types.get_analyzer_request.GetAnalyzerRequest = {
+            "analyzer_name": analyzer_name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update(
@@ -518,8 +538,9 @@ class AsyncAnalyzer:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_accessanalyzer.types.update_analyzer_request.UpdateAnalyzerRequest = {}  # type: ignore[typeddict-item]
-        input_["analyzer_name"] = analyzer_name
+        input_: capo_accessanalyzer.types.update_analyzer_request.UpdateAnalyzerRequest = {
+            "analyzer_name": analyzer_name
+        }
         if configuration is not None:
             input_["configuration"] = configuration
 
@@ -528,6 +549,7 @@ class AsyncAnalyzer:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -566,16 +588,19 @@ class AsyncAnalyzer:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_accessanalyzer.types.delete_analyzer_request.DeleteAnalyzerRequest = {}  # type: ignore[typeddict-item]
-        input_["analyzer_name"] = analyzer_name
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_accessanalyzer.types.delete_analyzer_request.DeleteAnalyzerRequest = {
+            "analyzer_name": analyzer_name
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -617,7 +642,7 @@ class AsyncAnalyzer:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_accessanalyzer.types.list_analyzers_request.ListAnalyzersRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_accessanalyzer.types.list_analyzers_request.ListAnalyzersRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -630,6 +655,7 @@ class AsyncAnalyzer:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_service_linked_analyzer(
@@ -669,14 +695,17 @@ class AsyncAnalyzer:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_accessanalyzer.types.delete_service_linked_analyzer_request.DeleteServiceLinkedAnalyzerRequest = {}  # type: ignore[typeddict-item]
-        input_["analyzer_name"] = analyzer_name
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_accessanalyzer.types.delete_service_linked_analyzer_request.DeleteServiceLinkedAnalyzerRequest = {
+            "analyzer_name": analyzer_name
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

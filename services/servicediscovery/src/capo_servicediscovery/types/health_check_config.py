@@ -40,7 +40,7 @@ def serialize_aws_json_1_1(value: HealthCheckConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> HealthCheckConfig:
     out: HealthCheckConfig = {}  # type: ignore[typeddict-item]
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_servicediscovery.types.health_check_type
 
         out["type"] = (
@@ -50,8 +50,8 @@ def deserialize_aws_json_1_1(data: dict) -> HealthCheckConfig:
         )
     else:
         raise DeserializationError("HealthCheckConfig.type required")
-    if "ResourcePath" in data:
+    if data.get("ResourcePath") is not None:
         out["resource_path"] = data["ResourcePath"]
-    if "FailureThreshold" in data:
+    if data.get("FailureThreshold") is not None:
         out["failure_threshold"] = data["FailureThreshold"]
     return out

@@ -44,7 +44,7 @@ def serialize_json(value: UserJourneyChanges) -> dict:
 
 def deserialize_json(data: dict) -> UserJourneyChanges:
     out: UserJourneyChanges = {}  # type: ignore[typeddict-item]
-    if "journeyDescription" in data:
+    if data.get("journeyDescription") is not None:
         import capo_resiliencehubv2.types.string_change
 
         out["journey_description"] = (
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> UserJourneyChanges:
                 data["journeyDescription"]
             )
         )
-    if "associatedServices" in data:
+    if data.get("associatedServices") is not None:
         import capo_resiliencehubv2.types.service_reference_changes
 
         out["associated_services"] = (

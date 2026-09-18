@@ -50,7 +50,7 @@ def serialize_json(value: CreateMediaPipelineKinesisVideoStreamPoolRequest) -> d
 
 def deserialize_json(data: dict) -> CreateMediaPipelineKinesisVideoStreamPoolRequest:
     out: CreateMediaPipelineKinesisVideoStreamPoolRequest = {}  # type: ignore[typeddict-item]
-    if "StreamConfiguration" in data:
+    if data.get("StreamConfiguration") is not None:
         import capo_chime_sdk_media_pipelines.types.kinesis_video_stream_configuration
 
         out["stream_configuration"] = (
@@ -62,15 +62,15 @@ def deserialize_json(data: dict) -> CreateMediaPipelineKinesisVideoStreamPoolReq
         raise DeserializationError(
             "CreateMediaPipelineKinesisVideoStreamPoolRequest.stream_configuration required"
         )
-    if "PoolName" in data:
+    if data.get("PoolName") is not None:
         out["pool_name"] = data["PoolName"]
     else:
         raise DeserializationError(
             "CreateMediaPipelineKinesisVideoStreamPoolRequest.pool_name required"
         )
-    if "ClientRequestToken" in data:
+    if data.get("ClientRequestToken") is not None:
         out["client_request_token"] = data["ClientRequestToken"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_chime_sdk_media_pipelines.types.tag_list
 
         out["tags"] = capo_chime_sdk_media_pipelines.types.tag_list.deserialize_json(

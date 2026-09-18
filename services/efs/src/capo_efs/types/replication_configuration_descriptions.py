@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> ReplicationConfigurationDescriptions:
 
     out: ReplicationConfigurationDescriptions = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_efs.types.replication_configuration_description.deserialize_json(item)
         )

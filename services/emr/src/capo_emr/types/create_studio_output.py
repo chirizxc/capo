@@ -28,8 +28,8 @@ def serialize_aws_json_1_1(value: CreateStudioOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateStudioOutput:
     out: CreateStudioOutput = {}  # type: ignore[typeddict-item]
-    if "StudioId" in data:
+    if data.get("StudioId") is not None:
         out["studio_id"] = data["StudioId"]
-    if "Url" in data:
+    if data.get("Url") is not None:
         out["url"] = data["Url"]
     return out

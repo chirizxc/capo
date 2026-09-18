@@ -27,7 +27,7 @@ def serialize_json(value: StartNextPendingJobExecutionResponse) -> dict:
 
 def deserialize_json(data: dict) -> StartNextPendingJobExecutionResponse:
     out: StartNextPendingJobExecutionResponse = {}  # type: ignore[typeddict-item]
-    if "execution" in data:
+    if data.get("execution") is not None:
         import capo_iot_jobs_data_plane.types.job_execution
 
         out["execution"] = (

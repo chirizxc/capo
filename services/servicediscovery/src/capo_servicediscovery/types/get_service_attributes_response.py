@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: GetServiceAttributesResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetServiceAttributesResponse:
     out: GetServiceAttributesResponse = {}  # type: ignore[typeddict-item]
-    if "ServiceAttributes" in data:
+    if data.get("ServiceAttributes") is not None:
         import capo_servicediscovery.types.service_attributes
 
         out["service_attributes"] = (

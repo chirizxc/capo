@@ -44,7 +44,7 @@ def serialize_json(value: MasterCardAttributes) -> dict:
 
 def deserialize_json(data: dict) -> MasterCardAttributes:
     out: MasterCardAttributes = {}  # type: ignore[typeddict-item]
-    if "MajorKeyDerivationMode" in data:
+    if data.get("MajorKeyDerivationMode") is not None:
         import capo_payment_cryptography_data.types.major_key_derivation_mode
 
         out["major_key_derivation_mode"] = (
@@ -56,17 +56,17 @@ def deserialize_json(data: dict) -> MasterCardAttributes:
         raise DeserializationError(
             "MasterCardAttributes.major_key_derivation_mode required"
         )
-    if "PrimaryAccountNumber" in data:
+    if data.get("PrimaryAccountNumber") is not None:
         out["primary_account_number"] = data["PrimaryAccountNumber"]
     else:
         raise DeserializationError(
             "MasterCardAttributes.primary_account_number required"
         )
-    if "PanSequenceNumber" in data:
+    if data.get("PanSequenceNumber") is not None:
         out["pan_sequence_number"] = data["PanSequenceNumber"]
     else:
         raise DeserializationError("MasterCardAttributes.pan_sequence_number required")
-    if "ApplicationCryptogram" in data:
+    if data.get("ApplicationCryptogram") is not None:
         out["application_cryptogram"] = data["ApplicationCryptogram"]
     else:
         raise DeserializationError(

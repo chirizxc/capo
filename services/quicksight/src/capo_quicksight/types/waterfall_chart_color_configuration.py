@@ -31,7 +31,7 @@ def serialize_json(value: WaterfallChartColorConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> WaterfallChartColorConfiguration:
     out: WaterfallChartColorConfiguration = {}  # type: ignore[typeddict-item]
-    if "GroupColorConfiguration" in data:
+    if data.get("GroupColorConfiguration") is not None:
         import capo_quicksight.types.waterfall_chart_group_color_configuration
 
         out["group_color_configuration"] = (

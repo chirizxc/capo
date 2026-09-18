@@ -48,16 +48,16 @@ def serialize_json(value: CreateDynamicThingGroupResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateDynamicThingGroupResponse:
     out: CreateDynamicThingGroupResponse = {}  # type: ignore[typeddict-item]
-    if "thingGroupName" in data:
+    if data.get("thingGroupName") is not None:
         out["thing_group_name"] = data["thingGroupName"]
-    if "thingGroupArn" in data:
+    if data.get("thingGroupArn") is not None:
         out["thing_group_arn"] = data["thingGroupArn"]
-    if "thingGroupId" in data:
+    if data.get("thingGroupId") is not None:
         out["thing_group_id"] = data["thingGroupId"]
-    if "indexName" in data:
+    if data.get("indexName") is not None:
         out["index_name"] = data["indexName"]
-    if "queryString" in data:
+    if data.get("queryString") is not None:
         out["query_string"] = data["queryString"]
-    if "queryVersion" in data:
+    if data.get("queryVersion") is not None:
         out["query_version"] = data["queryVersion"]
     return out

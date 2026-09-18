@@ -33,10 +33,10 @@ def serialize_json(value: EgressEndpoint) -> dict:
 
 def deserialize_json(data: dict) -> EgressEndpoint:
     out: EgressEndpoint = {}  # type: ignore[typeddict-item]
-    if "packagingConfigurationId" in data:
+    if data.get("packagingConfigurationId") is not None:
         out["packaging_configuration_id"] = data["packagingConfigurationId"]
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
-    if "url" in data:
+    if data.get("url") is not None:
         out["url"] = data["url"]
     return out

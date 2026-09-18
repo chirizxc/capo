@@ -37,7 +37,7 @@ def serialize_json(value: ListDICOMImportJobsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListDICOMImportJobsResponse:
     out: ListDICOMImportJobsResponse = {}  # type: ignore[typeddict-item]
-    if "jobSummaries" in data:
+    if data.get("jobSummaries") is not None:
         import capo_medical_imaging.types.dicom_import_job_summaries
 
         out["job_summaries"] = (
@@ -47,6 +47,6 @@ def deserialize_json(data: dict) -> ListDICOMImportJobsResponse:
         )
     else:
         raise DeserializationError("ListDICOMImportJobsResponse.job_summaries required")
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

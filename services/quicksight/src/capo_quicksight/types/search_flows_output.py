@@ -39,7 +39,7 @@ def serialize_json(value: SearchFlowsOutput) -> dict:
 
 def deserialize_json(data: dict) -> SearchFlowsOutput:
     out: SearchFlowsOutput = {}  # type: ignore[typeddict-item]
-    if "FlowSummaryList" in data:
+    if data.get("FlowSummaryList") is not None:
         import capo_quicksight.types.flow_summary_list
 
         out["flow_summary_list"] = (
@@ -49,8 +49,8 @@ def deserialize_json(data: dict) -> SearchFlowsOutput:
         )
     else:
         raise DeserializationError("SearchFlowsOutput.flow_summary_list required")
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "RequestId" in data:
+    if data.get("RequestId") is not None:
         out["request_id"] = data["RequestId"]
     return out

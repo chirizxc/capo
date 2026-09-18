@@ -122,53 +122,53 @@ def serialize_json(value: ComputeEnvironmentDetail) -> dict:
 
 def deserialize_json(data: dict) -> ComputeEnvironmentDetail:
     out: ComputeEnvironmentDetail = {}  # type: ignore[typeddict-item]
-    if "computeEnvironmentName" in data:
+    if data.get("computeEnvironmentName") is not None:
         out["compute_environment_name"] = data["computeEnvironmentName"]
-    if "computeEnvironmentArn" in data:
+    if data.get("computeEnvironmentArn") is not None:
         out["compute_environment_arn"] = data["computeEnvironmentArn"]
-    if "unmanagedvCpus" in data:
+    if data.get("unmanagedvCpus") is not None:
         out["unmanagedv_cpus"] = data["unmanagedvCpus"]
-    if "ecsClusterArn" in data:
+    if data.get("ecsClusterArn") is not None:
         out["ecs_cluster_arn"] = data["ecsClusterArn"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_batch.types.tagris_tags_map
 
         out["tags"] = capo_batch.types.tagris_tags_map.deserialize_json(data["tags"])
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_batch.types.ce_type
 
         out["type"] = capo_batch.types.ce_type.deserialize_json(data["type"])
-    if "state" in data:
+    if data.get("state") is not None:
         import capo_batch.types.ce_state
 
         out["state"] = capo_batch.types.ce_state.deserialize_json(data["state"])
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_batch.types.ce_status
 
         out["status"] = capo_batch.types.ce_status.deserialize_json(data["status"])
-    if "statusReason" in data:
+    if data.get("statusReason") is not None:
         out["status_reason"] = data["statusReason"]
-    if "computeResources" in data:
+    if data.get("computeResources") is not None:
         import capo_batch.types.compute_resource
 
         out["compute_resources"] = capo_batch.types.compute_resource.deserialize_json(
             data["computeResources"]
         )
-    if "serviceRole" in data:
+    if data.get("serviceRole") is not None:
         out["service_role"] = data["serviceRole"]
-    if "updatePolicy" in data:
+    if data.get("updatePolicy") is not None:
         import capo_batch.types.update_policy
 
         out["update_policy"] = capo_batch.types.update_policy.deserialize_json(
             data["updatePolicy"]
         )
-    if "eksConfiguration" in data:
+    if data.get("eksConfiguration") is not None:
         import capo_batch.types.eks_configuration
 
         out["eks_configuration"] = capo_batch.types.eks_configuration.deserialize_json(
             data["eksConfiguration"]
         )
-    if "containerOrchestrationType" in data:
+    if data.get("containerOrchestrationType") is not None:
         import capo_batch.types.orchestration_type
 
         out["container_orchestration_type"] = (
@@ -176,8 +176,8 @@ def deserialize_json(data: dict) -> ComputeEnvironmentDetail:
                 data["containerOrchestrationType"]
             )
         )
-    if "uuid" in data:
+    if data.get("uuid") is not None:
         out["uuid"] = data["uuid"]
-    if "context" in data:
+    if data.get("context") is not None:
         out["context"] = data["context"]
     return out

@@ -39,14 +39,14 @@ def serialize_aws_json_1_0(value: ListFHIRDatastoresRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ListFHIRDatastoresRequest:
     out: ListFHIRDatastoresRequest = {}  # type: ignore[typeddict-item]
-    if "Filter" in data:
+    if data.get("Filter") is not None:
         import capo_healthlake.types.datastore_filter
 
         out["filter"] = capo_healthlake.types.datastore_filter.deserialize_aws_json_1_0(
             data["Filter"]
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
     return out

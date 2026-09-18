@@ -51,15 +51,15 @@ def serialize_json(value: IdentityProvider) -> dict:
 
 def deserialize_json(data: dict) -> IdentityProvider:
     out: IdentityProvider = {}  # type: ignore[typeddict-item]
-    if "identityProviderArn" in data:
+    if data.get("identityProviderArn") is not None:
         out["identity_provider_arn"] = data["identityProviderArn"]
     else:
         raise DeserializationError("IdentityProvider.identity_provider_arn required")
-    if "identityProviderName" in data:
+    if data.get("identityProviderName") is not None:
         out["identity_provider_name"] = data["identityProviderName"]
-    if "identityProviderType" in data:
+    if data.get("identityProviderType") is not None:
         out["identity_provider_type"] = data["identityProviderType"]
-    if "identityProviderDetails" in data:
+    if data.get("identityProviderDetails") is not None:
         import capo_workspaces_web.types.identity_provider_details
 
         out["identity_provider_details"] = (

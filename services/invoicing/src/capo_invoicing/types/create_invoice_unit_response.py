@@ -25,6 +25,6 @@ def serialize_aws_json_1_0(value: CreateInvoiceUnitResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CreateInvoiceUnitResponse:
     out: CreateInvoiceUnitResponse = {}  # type: ignore[typeddict-item]
-    if "InvoiceUnitArn" in data:
+    if data.get("InvoiceUnitArn") is not None:
         out["invoice_unit_arn"] = data["InvoiceUnitArn"]
     return out

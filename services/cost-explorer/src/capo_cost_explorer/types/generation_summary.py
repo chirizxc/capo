@@ -57,9 +57,9 @@ def serialize_aws_json_1_1(value: GenerationSummary) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GenerationSummary:
     out: GenerationSummary = {}  # type: ignore[typeddict-item]
-    if "RecommendationId" in data:
+    if data.get("RecommendationId") is not None:
         out["recommendation_id"] = data["RecommendationId"]
-    if "GenerationStatus" in data:
+    if data.get("GenerationStatus") is not None:
         import capo_cost_explorer.types.generation_status
 
         out["generation_status"] = (
@@ -67,10 +67,10 @@ def deserialize_aws_json_1_1(data: dict) -> GenerationSummary:
                 data["GenerationStatus"]
             )
         )
-    if "GenerationStartedTime" in data:
+    if data.get("GenerationStartedTime") is not None:
         out["generation_started_time"] = data["GenerationStartedTime"]
-    if "GenerationCompletionTime" in data:
+    if data.get("GenerationCompletionTime") is not None:
         out["generation_completion_time"] = data["GenerationCompletionTime"]
-    if "EstimatedCompletionTime" in data:
+    if data.get("EstimatedCompletionTime") is not None:
         out["estimated_completion_time"] = data["EstimatedCompletionTime"]
     return out

@@ -34,7 +34,7 @@ def serialize_json(value: ListSearchJobBackupsOutput) -> dict:
 
 def deserialize_json(data: dict) -> ListSearchJobBackupsOutput:
     out: ListSearchJobBackupsOutput = {}  # type: ignore[typeddict-item]
-    if "Results" in data:
+    if data.get("Results") is not None:
         import capo_backupsearch.types.search_job_backups_results
 
         out["results"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> ListSearchJobBackupsOutput:
         )
     else:
         raise DeserializationError("ListSearchJobBackupsOutput.results required")
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> ListJobsByConsumableResourceSummaryList:
 
     out: ListJobsByConsumableResourceSummaryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_batch.types.list_jobs_by_consumable_resource_summary.deserialize_json(
                 item

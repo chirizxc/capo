@@ -62,7 +62,7 @@ def serialize_json(value: ProgramTrackSettings) -> dict:
 
 
 def deserialize_json(data: dict) -> ProgramTrackSettings:
-    if "azEl" in data:
+    if data.get("azEl") is not None:
         import capo_groundstation.types.az_el_program_track_settings
 
         return {
@@ -70,7 +70,7 @@ def deserialize_json(data: dict) -> ProgramTrackSettings:
                 data["azEl"]
             )
         }
-    elif "oem" in data:
+    elif data.get("oem") is not None:
         import capo_groundstation.types.oem_program_track_settings
 
         return {
@@ -78,7 +78,7 @@ def deserialize_json(data: dict) -> ProgramTrackSettings:
                 data["oem"]
             )
         }
-    elif "tle" in data:
+    elif data.get("tle") is not None:
         import capo_groundstation.types.tle_program_track_settings
 
         return {

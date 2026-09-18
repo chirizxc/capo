@@ -114,7 +114,7 @@ def serialize_json(value: CompositeFilter) -> dict:
 
 def deserialize_json(data: dict) -> CompositeFilter:
     out: CompositeFilter = {}  # type: ignore[typeddict-item]
-    if "StringFilters" in data:
+    if data.get("StringFilters") is not None:
         import capo_securityhub.types.ocsf_string_filter_list
 
         out["string_filters"] = (
@@ -122,7 +122,7 @@ def deserialize_json(data: dict) -> CompositeFilter:
                 data["StringFilters"]
             )
         )
-    if "DateFilters" in data:
+    if data.get("DateFilters") is not None:
         import capo_securityhub.types.ocsf_date_filter_list
 
         out["date_filters"] = (
@@ -130,7 +130,7 @@ def deserialize_json(data: dict) -> CompositeFilter:
                 data["DateFilters"]
             )
         )
-    if "BooleanFilters" in data:
+    if data.get("BooleanFilters") is not None:
         import capo_securityhub.types.ocsf_boolean_filter_list
 
         out["boolean_filters"] = (
@@ -138,7 +138,7 @@ def deserialize_json(data: dict) -> CompositeFilter:
                 data["BooleanFilters"]
             )
         )
-    if "NumberFilters" in data:
+    if data.get("NumberFilters") is not None:
         import capo_securityhub.types.ocsf_number_filter_list
 
         out["number_filters"] = (
@@ -146,7 +146,7 @@ def deserialize_json(data: dict) -> CompositeFilter:
                 data["NumberFilters"]
             )
         )
-    if "MapFilters" in data:
+    if data.get("MapFilters") is not None:
         import capo_securityhub.types.ocsf_map_filter_list
 
         out["map_filters"] = (
@@ -154,13 +154,13 @@ def deserialize_json(data: dict) -> CompositeFilter:
                 data["MapFilters"]
             )
         )
-    if "IpFilters" in data:
+    if data.get("IpFilters") is not None:
         import capo_securityhub.types.ocsf_ip_filter_list
 
         out["ip_filters"] = capo_securityhub.types.ocsf_ip_filter_list.deserialize_json(
             data["IpFilters"]
         )
-    if "NestedCompositeFilters" in data:
+    if data.get("NestedCompositeFilters") is not None:
         import capo_securityhub.types.composite_filter_list
 
         out["nested_composite_filters"] = (
@@ -168,7 +168,7 @@ def deserialize_json(data: dict) -> CompositeFilter:
                 data["NestedCompositeFilters"]
             )
         )
-    if "Operator" in data:
+    if data.get("Operator") is not None:
         import capo_securityhub.types.allowed_operators
 
         out["operator"] = capo_securityhub.types.allowed_operators.deserialize_json(

@@ -28,7 +28,7 @@ def serialize_json(value: GetClusterSnapshotOutput) -> dict:
 
 def deserialize_json(data: dict) -> GetClusterSnapshotOutput:
     out: GetClusterSnapshotOutput = {}  # type: ignore[typeddict-item]
-    if "snapshot" in data:
+    if data.get("snapshot") is not None:
         import capo_docdb_elastic.types.cluster_snapshot
 
         out["snapshot"] = capo_docdb_elastic.types.cluster_snapshot.deserialize_json(

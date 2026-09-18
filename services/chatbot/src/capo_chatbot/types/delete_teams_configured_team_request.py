@@ -24,7 +24,7 @@ def serialize_json(value: DeleteTeamsConfiguredTeamRequest) -> dict:
 
 def deserialize_json(data: dict) -> DeleteTeamsConfiguredTeamRequest:
     out: DeleteTeamsConfiguredTeamRequest = {}  # type: ignore[typeddict-item]
-    if "TeamId" in data:
+    if data.get("TeamId") is not None:
         out["team_id"] = data["TeamId"]
     else:
         raise DeserializationError("DeleteTeamsConfiguredTeamRequest.team_id required")

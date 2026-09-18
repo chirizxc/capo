@@ -31,10 +31,10 @@ def serialize_json(value: ETag) -> dict:
 
 def deserialize_json(data: dict) -> ETag:
     out: ETag = {}  # type: ignore[typeddict-item]
-    if "algorithm" in data:
+    if data.get("algorithm") is not None:
         out["algorithm"] = data["algorithm"]
-    if "source1" in data:
+    if data.get("source1") is not None:
         out["source1"] = data["source1"]
-    if "source2" in data:
+    if data.get("source2") is not None:
         out["source2"] = data["source2"]
     return out

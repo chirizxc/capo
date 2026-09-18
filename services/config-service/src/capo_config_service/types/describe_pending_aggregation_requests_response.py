@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: DescribePendingAggregationRequestsResponse) ->
 
 def deserialize_aws_json_1_1(data: dict) -> DescribePendingAggregationRequestsResponse:
     out: DescribePendingAggregationRequestsResponse = {}  # type: ignore[typeddict-item]
-    if "PendingAggregationRequests" in data:
+    if data.get("PendingAggregationRequests") is not None:
         import capo_config_service.types.pending_aggregation_request_list
 
         out["pending_aggregation_requests"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_1(data: dict) -> DescribePendingAggregationRequestsRe
                 data["PendingAggregationRequests"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

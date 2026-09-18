@@ -35,9 +35,9 @@ def serialize_json(value: ServiceNowConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> ServiceNowConfiguration:
     out: ServiceNowConfiguration = {}  # type: ignore[typeddict-item]
-    if "instanceId" in data:
+    if data.get("instanceId") is not None:
         out["instance_id"] = data["instanceId"]
-    if "authScopes" in data:
+    if data.get("authScopes") is not None:
         import capo_devops_agent.types.service_now_authentication_scope_list
 
         out["auth_scopes"] = (

@@ -40,7 +40,7 @@ def serialize_json(value: UpdateClusterKafkaVersionRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateClusterKafkaVersionRequest:
     out: UpdateClusterKafkaVersionRequest = {}  # type: ignore[typeddict-item]
-    if "configurationInfo" in data:
+    if data.get("configurationInfo") is not None:
         import capo_kafka.types.configuration_info
 
         out["configuration_info"] = (
@@ -48,8 +48,8 @@ def deserialize_json(data: dict) -> UpdateClusterKafkaVersionRequest:
                 data["configurationInfo"]
             )
         )
-    if "currentVersion" in data:
+    if data.get("currentVersion") is not None:
         out["current_version"] = data["currentVersion"]
-    if "targetKafkaVersion" in data:
+    if data.get("targetKafkaVersion") is not None:
         out["target_kafka_version"] = data["targetKafkaVersion"]
     return out

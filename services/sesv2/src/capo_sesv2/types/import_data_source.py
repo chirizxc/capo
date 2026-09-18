@@ -32,11 +32,11 @@ def serialize_json(value: ImportDataSource) -> dict:
 
 def deserialize_json(data: dict) -> ImportDataSource:
     out: ImportDataSource = {}  # type: ignore[typeddict-item]
-    if "S3Url" in data:
+    if data.get("S3Url") is not None:
         out["s3_url"] = data["S3Url"]
     else:
         raise DeserializationError("ImportDataSource.s3_url required")
-    if "DataFormat" in data:
+    if data.get("DataFormat") is not None:
         import capo_sesv2.types.data_format
 
         out["data_format"] = capo_sesv2.types.data_format.deserialize_json(

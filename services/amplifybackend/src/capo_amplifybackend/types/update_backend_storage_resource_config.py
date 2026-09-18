@@ -40,7 +40,7 @@ def serialize_json(value: UpdateBackendStorageResourceConfig) -> dict:
 
 def deserialize_json(data: dict) -> UpdateBackendStorageResourceConfig:
     out: UpdateBackendStorageResourceConfig = {}  # type: ignore[typeddict-item]
-    if "permissions" in data:
+    if data.get("permissions") is not None:
         import capo_amplifybackend.types.backend_storage_permissions
 
         out["permissions"] = (
@@ -48,7 +48,7 @@ def deserialize_json(data: dict) -> UpdateBackendStorageResourceConfig:
                 data["permissions"]
             )
         )
-    if "serviceName" in data:
+    if data.get("serviceName") is not None:
         import capo_amplifybackend.types.service_name
 
         out["service_name"] = capo_amplifybackend.types.service_name.deserialize_json(

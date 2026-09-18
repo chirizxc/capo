@@ -32,9 +32,9 @@ def serialize_json(value: AddonPodIdentityConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> AddonPodIdentityConfiguration:
     out: AddonPodIdentityConfiguration = {}  # type: ignore[typeddict-item]
-    if "serviceAccount" in data:
+    if data.get("serviceAccount") is not None:
         out["service_account"] = data["serviceAccount"]
-    if "recommendedManagedPolicies" in data:
+    if data.get("recommendedManagedPolicies") is not None:
         import capo_eks.types.string_list
 
         out["recommended_managed_policies"] = (

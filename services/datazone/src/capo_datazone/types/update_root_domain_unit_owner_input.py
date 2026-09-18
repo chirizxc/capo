@@ -35,16 +35,16 @@ def serialize_json(value: UpdateRootDomainUnitOwnerInput) -> dict:
 
 def deserialize_json(data: dict) -> UpdateRootDomainUnitOwnerInput:
     out: UpdateRootDomainUnitOwnerInput = {}  # type: ignore[typeddict-item]
-    if "currentOwner" in data:
+    if data.get("currentOwner") is not None:
         out["current_owner"] = data["currentOwner"]
     else:
         raise DeserializationError(
             "UpdateRootDomainUnitOwnerInput.current_owner required"
         )
-    if "newOwner" in data:
+    if data.get("newOwner") is not None:
         out["new_owner"] = data["newOwner"]
     else:
         raise DeserializationError("UpdateRootDomainUnitOwnerInput.new_owner required")
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     return out

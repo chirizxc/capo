@@ -31,7 +31,7 @@ def serialize_json(value: VisibleRangeOptions) -> dict:
 
 def deserialize_json(data: dict) -> VisibleRangeOptions:
     out: VisibleRangeOptions = {}  # type: ignore[typeddict-item]
-    if "PercentRange" in data:
+    if data.get("PercentRange") is not None:
         import capo_quicksight.types.percent_visible_range
 
         out["percent_range"] = (

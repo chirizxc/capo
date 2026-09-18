@@ -54,19 +54,19 @@ def serialize_json(value: SyncResourceSummary) -> dict:
 
 def deserialize_json(data: dict) -> SyncResourceSummary:
     out: SyncResourceSummary = {}  # type: ignore[typeddict-item]
-    if "resourceType" in data:
+    if data.get("resourceType") is not None:
         out["resource_type"] = data["resourceType"]
-    if "externalId" in data:
+    if data.get("externalId") is not None:
         out["external_id"] = data["externalId"]
-    if "resourceId" in data:
+    if data.get("resourceId") is not None:
         out["resource_id"] = data["resourceId"]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_iottwinmaker.types.sync_resource_status
 
         out["status"] = capo_iottwinmaker.types.sync_resource_status.deserialize_json(
             data["status"]
         )
-    if "updateDateTime" in data:
+    if data.get("updateDateTime") is not None:
         import capo_iottwinmaker.types.timestamp
 
         out["update_date_time"] = capo_iottwinmaker.types.timestamp.deserialize_json(

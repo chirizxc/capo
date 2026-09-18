@@ -41,16 +41,16 @@ def serialize_aws_json_1_1(value: IncreaseStreamRetentionPeriodInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> IncreaseStreamRetentionPeriodInput:
     out: IncreaseStreamRetentionPeriodInput = {}  # type: ignore[typeddict-item]
-    if "StreamName" in data:
+    if data.get("StreamName") is not None:
         out["stream_name"] = data["StreamName"]
-    if "RetentionPeriodHours" in data:
+    if data.get("RetentionPeriodHours") is not None:
         out["retention_period_hours"] = data["RetentionPeriodHours"]
     else:
         raise DeserializationError(
             "IncreaseStreamRetentionPeriodInput.retention_period_hours required"
         )
-    if "StreamARN" in data:
+    if data.get("StreamARN") is not None:
         out["stream_arn"] = data["StreamARN"]
-    if "StreamId" in data:
+    if data.get("StreamId") is not None:
         out["stream_id"] = data["StreamId"]
     return out

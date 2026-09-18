@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: ModifyRecommendationDetail) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ModifyRecommendationDetail:
     out: ModifyRecommendationDetail = {}  # type: ignore[typeddict-item]
-    if "TargetInstances" in data:
+    if data.get("TargetInstances") is not None:
         import capo_cost_explorer.types.target_instances_list
 
         out["target_instances"] = (

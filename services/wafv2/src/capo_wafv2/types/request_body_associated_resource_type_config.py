@@ -32,7 +32,7 @@ def serialize_aws_json_1_1(value: RequestBodyAssociatedResourceTypeConfig) -> di
 
 def deserialize_aws_json_1_1(data: dict) -> RequestBodyAssociatedResourceTypeConfig:
     out: RequestBodyAssociatedResourceTypeConfig = {}  # type: ignore[typeddict-item]
-    if "DefaultSizeInspectionLimit" in data:
+    if data.get("DefaultSizeInspectionLimit") is not None:
         import capo_wafv2.types.size_inspection_limit
 
         out["default_size_inspection_limit"] = (

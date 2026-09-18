@@ -34,11 +34,11 @@ def serialize_json(value: AssignedSessionAction) -> dict:
 
 def deserialize_json(data: dict) -> AssignedSessionAction:
     out: AssignedSessionAction = {}  # type: ignore[typeddict-item]
-    if "sessionActionId" in data:
+    if data.get("sessionActionId") is not None:
         out["session_action_id"] = data["sessionActionId"]
     else:
         raise DeserializationError("AssignedSessionAction.session_action_id required")
-    if "definition" in data:
+    if data.get("definition") is not None:
         import capo_deadline.types.assigned_session_action_definition
 
         out["definition"] = (

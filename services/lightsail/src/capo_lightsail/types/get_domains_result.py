@@ -32,12 +32,12 @@ def serialize_aws_json_1_1(value: GetDomainsResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetDomainsResult:
     out: GetDomainsResult = {}  # type: ignore[typeddict-item]
-    if "domains" in data:
+    if data.get("domains") is not None:
         import capo_lightsail.types.domain_list
 
         out["domains"] = capo_lightsail.types.domain_list.deserialize_aws_json_1_1(
             data["domains"]
         )
-    if "nextPageToken" in data:
+    if data.get("nextPageToken") is not None:
         out["next_page_token"] = data["nextPageToken"]
     return out

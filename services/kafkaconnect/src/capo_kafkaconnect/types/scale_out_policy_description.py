@@ -22,7 +22,7 @@ def serialize_json(value: ScaleOutPolicyDescription) -> dict:
 
 def deserialize_json(data: dict) -> ScaleOutPolicyDescription:
     out: ScaleOutPolicyDescription = {}  # type: ignore[typeddict-item]
-    if "cpuUtilizationPercentage" in data:
+    if data.get("cpuUtilizationPercentage") is not None:
         out["cpu_utilization_percentage"] = data["cpuUtilizationPercentage"]
     else:
         out["cpu_utilization_percentage"] = 0

@@ -46,11 +46,11 @@ def serialize_json(value: CreateUploadJobRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateUploadJobRequest:
     out: CreateUploadJobRequest = {}  # type: ignore[typeddict-item]
-    if "DisplayName" in data:
+    if data.get("DisplayName") is not None:
         out["display_name"] = data["DisplayName"]
     else:
         raise DeserializationError("CreateUploadJobRequest.display_name required")
-    if "Fields" in data:
+    if data.get("Fields") is not None:
         import capo_customer_profiles.types.field_map
 
         out["fields"] = capo_customer_profiles.types.field_map.deserialize_json(
@@ -58,10 +58,10 @@ def deserialize_json(data: dict) -> CreateUploadJobRequest:
         )
     else:
         raise DeserializationError("CreateUploadJobRequest.fields required")
-    if "UniqueKey" in data:
+    if data.get("UniqueKey") is not None:
         out["unique_key"] = data["UniqueKey"]
     else:
         raise DeserializationError("CreateUploadJobRequest.unique_key required")
-    if "DataExpiry" in data:
+    if data.get("DataExpiry") is not None:
         out["data_expiry"] = data["DataExpiry"]
     return out

@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> AuthModes:
 
     out: AuthModes = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_appsync.types.auth_mode.deserialize_json(item))
     return out

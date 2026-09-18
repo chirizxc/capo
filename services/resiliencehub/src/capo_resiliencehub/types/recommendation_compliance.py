@@ -31,6 +31,9 @@ def deserialize_json(data: dict) -> RecommendationCompliance:
     out: RecommendationCompliance = {}
     for key, value in data.items():
         import capo_resiliencehub.types.disruption_type
+
+        if value is None:
+            continue
         import capo_resiliencehub.types.recommendation_disruption_compliance
 
         out[capo_resiliencehub.types.disruption_type.deserialize_json(key)] = (

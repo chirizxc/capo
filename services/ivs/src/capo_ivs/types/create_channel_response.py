@@ -32,11 +32,11 @@ def serialize_json(value: CreateChannelResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateChannelResponse:
     out: CreateChannelResponse = {}  # type: ignore[typeddict-item]
-    if "channel" in data:
+    if data.get("channel") is not None:
         import capo_ivs.types.channel
 
         out["channel"] = capo_ivs.types.channel.deserialize_json(data["channel"])
-    if "streamKey" in data:
+    if data.get("streamKey") is not None:
         import capo_ivs.types.stream_key
 
         out["stream_key"] = capo_ivs.types.stream_key.deserialize_json(

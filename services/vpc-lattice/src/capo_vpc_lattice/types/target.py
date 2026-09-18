@@ -28,10 +28,10 @@ def serialize_json(value: Target) -> dict:
 
 def deserialize_json(data: dict) -> Target:
     out: Target = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("Target.id required")
-    if "port" in data:
+    if data.get("port") is not None:
         out["port"] = data["port"]
     return out

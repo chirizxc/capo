@@ -25,6 +25,8 @@ def deserialize_aws_json_1_1(data: list) -> CustomFileSystems:
 
     out: CustomFileSystems = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_sagemaker.types.custom_file_system.deserialize_aws_json_1_1(item)
         )

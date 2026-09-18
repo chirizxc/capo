@@ -33,11 +33,11 @@ def serialize_aws_json_1_1(value: CelebrityRecognition) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CelebrityRecognition:
     out: CelebrityRecognition = {}  # type: ignore[typeddict-item]
-    if "Timestamp" in data:
+    if data.get("Timestamp") is not None:
         out["timestamp"] = data["Timestamp"]
     else:
         out["timestamp"] = 0
-    if "Celebrity" in data:
+    if data.get("Celebrity") is not None:
         import capo_rekognition.types.celebrity_detail
 
         out["celebrity"] = (

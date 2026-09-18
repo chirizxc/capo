@@ -61,13 +61,13 @@ def serialize_aws_json_1_1(value: Protection) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Protection:
     out: Protection = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "ResourceArn" in data:
+    if data.get("ResourceArn") is not None:
         out["resource_arn"] = data["ResourceArn"]
-    if "HealthCheckIds" in data:
+    if data.get("HealthCheckIds") is not None:
         import capo_shield.types.health_check_ids
 
         out["health_check_ids"] = (
@@ -75,9 +75,9 @@ def deserialize_aws_json_1_1(data: dict) -> Protection:
                 data["HealthCheckIds"]
             )
         )
-    if "ProtectionArn" in data:
+    if data.get("ProtectionArn") is not None:
         out["protection_arn"] = data["ProtectionArn"]
-    if "ApplicationLayerAutomaticResponseConfiguration" in data:
+    if data.get("ApplicationLayerAutomaticResponseConfiguration") is not None:
         import capo_shield.types.application_layer_automatic_response_configuration
 
         out["application_layer_automatic_response_configuration"] = (

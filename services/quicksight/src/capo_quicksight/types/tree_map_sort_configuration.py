@@ -44,7 +44,7 @@ def serialize_json(value: TreeMapSortConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> TreeMapSortConfiguration:
     out: TreeMapSortConfiguration = {}  # type: ignore[typeddict-item]
-    if "TreeMapSort" in data:
+    if data.get("TreeMapSort") is not None:
         import capo_quicksight.types.field_sort_options_list
 
         out["tree_map_sort"] = (
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> TreeMapSortConfiguration:
                 data["TreeMapSort"]
             )
         )
-    if "TreeMapGroupItemsLimitConfiguration" in data:
+    if data.get("TreeMapGroupItemsLimitConfiguration") is not None:
         import capo_quicksight.types.items_limit_configuration
 
         out["tree_map_group_items_limit_configuration"] = (

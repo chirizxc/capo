@@ -35,11 +35,11 @@ def serialize_aws_json_1_1(value: Nameserver) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Nameserver:
     out: Nameserver = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("Nameserver.name required")
-    if "GlueIps" in data:
+    if data.get("GlueIps") is not None:
         import capo_route_53_domains.types.glue_ip_list
 
         out["glue_ips"] = (

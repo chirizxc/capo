@@ -32,7 +32,7 @@ def serialize_json(value: StartFuotaTaskRequest) -> dict:
 
 def deserialize_json(data: dict) -> StartFuotaTaskRequest:
     out: StartFuotaTaskRequest = {}  # type: ignore[typeddict-item]
-    if "LoRaWAN" in data:
+    if data.get("LoRaWAN") is not None:
         import capo_iot_wireless.types.lo_ra_wan_start_fuota_task
 
         out["lo_ra_wan"] = (

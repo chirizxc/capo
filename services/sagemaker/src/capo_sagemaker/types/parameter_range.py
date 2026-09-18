@@ -57,7 +57,7 @@ def serialize_aws_json_1_1(value: ParameterRange) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ParameterRange:
     out: ParameterRange = {}  # type: ignore[typeddict-item]
-    if "IntegerParameterRangeSpecification" in data:
+    if data.get("IntegerParameterRangeSpecification") is not None:
         import capo_sagemaker.types.integer_parameter_range_specification
 
         out["integer_parameter_range_specification"] = (
@@ -65,7 +65,7 @@ def deserialize_aws_json_1_1(data: dict) -> ParameterRange:
                 data["IntegerParameterRangeSpecification"]
             )
         )
-    if "ContinuousParameterRangeSpecification" in data:
+    if data.get("ContinuousParameterRangeSpecification") is not None:
         import capo_sagemaker.types.continuous_parameter_range_specification
 
         out["continuous_parameter_range_specification"] = (
@@ -73,7 +73,7 @@ def deserialize_aws_json_1_1(data: dict) -> ParameterRange:
                 data["ContinuousParameterRangeSpecification"]
             )
         )
-    if "CategoricalParameterRangeSpecification" in data:
+    if data.get("CategoricalParameterRangeSpecification") is not None:
         import capo_sagemaker.types.categorical_parameter_range_specification
 
         out["categorical_parameter_range_specification"] = (

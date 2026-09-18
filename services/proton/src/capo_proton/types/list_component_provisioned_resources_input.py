@@ -29,12 +29,12 @@ def serialize_aws_json_1_0(value: ListComponentProvisionedResourcesInput) -> dic
 
 def deserialize_aws_json_1_0(data: dict) -> ListComponentProvisionedResourcesInput:
     out: ListComponentProvisionedResourcesInput = {}  # type: ignore[typeddict-item]
-    if "componentName" in data:
+    if data.get("componentName") is not None:
         out["component_name"] = data["componentName"]
     else:
         raise DeserializationError(
             "ListComponentProvisionedResourcesInput.component_name required"
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

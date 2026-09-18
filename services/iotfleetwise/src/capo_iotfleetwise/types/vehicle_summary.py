@@ -62,23 +62,23 @@ def serialize_aws_json_1_0(value: VehicleSummary) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> VehicleSummary:
     out: VehicleSummary = {}  # type: ignore[typeddict-item]
-    if "vehicleName" in data:
+    if data.get("vehicleName") is not None:
         out["vehicle_name"] = data["vehicleName"]
     else:
         raise DeserializationError("VehicleSummary.vehicle_name required")
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("VehicleSummary.arn required")
-    if "modelManifestArn" in data:
+    if data.get("modelManifestArn") is not None:
         out["model_manifest_arn"] = data["modelManifestArn"]
     else:
         raise DeserializationError("VehicleSummary.model_manifest_arn required")
-    if "decoderManifestArn" in data:
+    if data.get("decoderManifestArn") is not None:
         out["decoder_manifest_arn"] = data["decoderManifestArn"]
     else:
         raise DeserializationError("VehicleSummary.decoder_manifest_arn required")
-    if "creationTime" in data:
+    if data.get("creationTime") is not None:
         import capo_iotfleetwise.types.timestamp
 
         out["creation_time"] = (
@@ -88,7 +88,7 @@ def deserialize_aws_json_1_0(data: dict) -> VehicleSummary:
         )
     else:
         raise DeserializationError("VehicleSummary.creation_time required")
-    if "lastModificationTime" in data:
+    if data.get("lastModificationTime") is not None:
         import capo_iotfleetwise.types.timestamp
 
         out["last_modification_time"] = (
@@ -98,7 +98,7 @@ def deserialize_aws_json_1_0(data: dict) -> VehicleSummary:
         )
     else:
         raise DeserializationError("VehicleSummary.last_modification_time required")
-    if "attributes" in data:
+    if data.get("attributes") is not None:
         import capo_iotfleetwise.types.attributes_map
 
         out["attributes"] = (

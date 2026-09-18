@@ -28,19 +28,19 @@ def serialize_json(value: ScanJobCreator) -> dict:
 
 def deserialize_json(data: dict) -> ScanJobCreator:
     out: ScanJobCreator = {}  # type: ignore[typeddict-item]
-    if "BackupPlanArn" in data:
+    if data.get("BackupPlanArn") is not None:
         out["backup_plan_arn"] = data["BackupPlanArn"]
     else:
         raise DeserializationError("ScanJobCreator.backup_plan_arn required")
-    if "BackupPlanId" in data:
+    if data.get("BackupPlanId") is not None:
         out["backup_plan_id"] = data["BackupPlanId"]
     else:
         raise DeserializationError("ScanJobCreator.backup_plan_id required")
-    if "BackupPlanVersion" in data:
+    if data.get("BackupPlanVersion") is not None:
         out["backup_plan_version"] = data["BackupPlanVersion"]
     else:
         raise DeserializationError("ScanJobCreator.backup_plan_version required")
-    if "BackupRuleId" in data:
+    if data.get("BackupRuleId") is not None:
         out["backup_rule_id"] = data["BackupRuleId"]
     else:
         raise DeserializationError("ScanJobCreator.backup_rule_id required")

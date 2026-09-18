@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> QueryResultsList:
 
     out: QueryResultsList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_qconnect.types.result_data.deserialize_json(item))
     return out

@@ -40,11 +40,11 @@ def serialize_aws_json_1_1(value: FillMissingValues) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> FillMissingValues:
     out: FillMissingValues = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("FillMissingValues.name required")
-    if "Inputs" in data:
+    if data.get("Inputs") is not None:
         import capo_glue.types.one_input
 
         out["inputs"] = capo_glue.types.one_input.deserialize_aws_json_1_1(
@@ -52,10 +52,10 @@ def deserialize_aws_json_1_1(data: dict) -> FillMissingValues:
         )
     else:
         raise DeserializationError("FillMissingValues.inputs required")
-    if "ImputedPath" in data:
+    if data.get("ImputedPath") is not None:
         out["imputed_path"] = data["ImputedPath"]
     else:
         raise DeserializationError("FillMissingValues.imputed_path required")
-    if "FilledPath" in data:
+    if data.get("FilledPath") is not None:
         out["filled_path"] = data["FilledPath"]
     return out

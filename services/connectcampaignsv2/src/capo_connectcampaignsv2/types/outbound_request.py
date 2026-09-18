@@ -39,11 +39,11 @@ def serialize_json(value: OutboundRequest) -> dict:
 
 def deserialize_json(data: dict) -> OutboundRequest:
     out: OutboundRequest = {}  # type: ignore[typeddict-item]
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     else:
         raise DeserializationError("OutboundRequest.client_token required")
-    if "expirationTime" in data:
+    if data.get("expirationTime") is not None:
         import capo_connectcampaignsv2.types.time_stamp
 
         out["expiration_time"] = (
@@ -53,7 +53,7 @@ def deserialize_json(data: dict) -> OutboundRequest:
         )
     else:
         raise DeserializationError("OutboundRequest.expiration_time required")
-    if "channelSubtypeParameters" in data:
+    if data.get("channelSubtypeParameters") is not None:
         import capo_connectcampaignsv2.types.channel_subtype_parameters
 
         out["channel_subtype_parameters"] = (

@@ -44,7 +44,7 @@ def serialize_aws_json_1_1(value: ChallengeResponseType) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ChallengeResponseType:
     out: ChallengeResponseType = {}  # type: ignore[typeddict-item]
-    if "ChallengeName" in data:
+    if data.get("ChallengeName") is not None:
         import capo_cognito_identity_provider.types.challenge_name
 
         out["challenge_name"] = (
@@ -52,7 +52,7 @@ def deserialize_aws_json_1_1(data: dict) -> ChallengeResponseType:
                 data["ChallengeName"]
             )
         )
-    if "ChallengeResponse" in data:
+    if data.get("ChallengeResponse") is not None:
         import capo_cognito_identity_provider.types.challenge_response
 
         out["challenge_response"] = (

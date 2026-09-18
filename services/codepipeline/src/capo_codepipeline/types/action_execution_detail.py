@@ -112,23 +112,23 @@ def serialize_aws_json_1_1(value: ActionExecutionDetail) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ActionExecutionDetail:
     out: ActionExecutionDetail = {}  # type: ignore[typeddict-item]
-    if "pipelineExecutionId" in data:
+    if data.get("pipelineExecutionId") is not None:
         out["pipeline_execution_id"] = data["pipelineExecutionId"]
-    if "actionExecutionId" in data:
+    if data.get("actionExecutionId") is not None:
         out["action_execution_id"] = data["actionExecutionId"]
-    if "pipelineVersion" in data:
+    if data.get("pipelineVersion") is not None:
         out["pipeline_version"] = data["pipelineVersion"]
-    if "stageName" in data:
+    if data.get("stageName") is not None:
         out["stage_name"] = data["stageName"]
-    if "actionName" in data:
+    if data.get("actionName") is not None:
         out["action_name"] = data["actionName"]
-    if "startTime" in data:
+    if data.get("startTime") is not None:
         import capo_codepipeline.types.timestamp
 
         out["start_time"] = capo_codepipeline.types.timestamp.deserialize_aws_json_1_1(
             data["startTime"]
         )
-    if "lastUpdateTime" in data:
+    if data.get("lastUpdateTime") is not None:
         import capo_codepipeline.types.timestamp
 
         out["last_update_time"] = (
@@ -136,9 +136,9 @@ def deserialize_aws_json_1_1(data: dict) -> ActionExecutionDetail:
                 data["lastUpdateTime"]
             )
         )
-    if "updatedBy" in data:
+    if data.get("updatedBy") is not None:
         out["updated_by"] = data["updatedBy"]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_codepipeline.types.action_execution_status
 
         out["status"] = (
@@ -146,7 +146,7 @@ def deserialize_aws_json_1_1(data: dict) -> ActionExecutionDetail:
                 data["status"]
             )
         )
-    if "input" in data:
+    if data.get("input") is not None:
         import capo_codepipeline.types.action_execution_input
 
         out["input"] = (
@@ -154,7 +154,7 @@ def deserialize_aws_json_1_1(data: dict) -> ActionExecutionDetail:
                 data["input"]
             )
         )
-    if "output" in data:
+    if data.get("output") is not None:
         import capo_codepipeline.types.action_execution_output
 
         out["output"] = (

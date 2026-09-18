@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: DescribeEndpointResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeEndpointResponse:
     out: DescribeEndpointResponse = {}  # type: ignore[typeddict-item]
-    if "EndpointProperties" in data:
+    if data.get("EndpointProperties") is not None:
         import capo_comprehend.types.endpoint_properties
 
         out["endpoint_properties"] = (

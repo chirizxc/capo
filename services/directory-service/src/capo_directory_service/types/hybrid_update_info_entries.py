@@ -29,6 +29,8 @@ def deserialize_aws_json_1_1(data: list) -> HybridUpdateInfoEntries:
 
     out: HybridUpdateInfoEntries = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_directory_service.types.hybrid_update_info_entry.deserialize_aws_json_1_1(
                 item

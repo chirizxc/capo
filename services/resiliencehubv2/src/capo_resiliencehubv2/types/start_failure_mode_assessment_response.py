@@ -50,11 +50,11 @@ def serialize_json(value: StartFailureModeAssessmentResponse) -> dict:
 
 def deserialize_json(data: dict) -> StartFailureModeAssessmentResponse:
     out: StartFailureModeAssessmentResponse = {}  # type: ignore[typeddict-item]
-    if "assessmentId" in data:
+    if data.get("assessmentId") is not None:
         out["assessment_id"] = data["assessmentId"]
-    if "serviceArn" in data:
+    if data.get("serviceArn") is not None:
         out["service_arn"] = data["serviceArn"]
-    if "assessmentStatus" in data:
+    if data.get("assessmentStatus") is not None:
         import capo_resiliencehubv2.types.assessment_status
 
         out["assessment_status"] = (
@@ -62,7 +62,7 @@ def deserialize_json(data: dict) -> StartFailureModeAssessmentResponse:
                 data["assessmentStatus"]
             )
         )
-    if "startedAt" in data:
+    if data.get("startedAt") is not None:
         import capo_resiliencehubv2.types._prelude.timestamp
 
         out["started_at"] = (

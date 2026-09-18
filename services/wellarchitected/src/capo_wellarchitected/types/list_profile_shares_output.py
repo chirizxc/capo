@@ -35,7 +35,7 @@ def serialize_json(value: ListProfileSharesOutput) -> dict:
 
 def deserialize_json(data: dict) -> ListProfileSharesOutput:
     out: ListProfileSharesOutput = {}  # type: ignore[typeddict-item]
-    if "ProfileShareSummaries" in data:
+    if data.get("ProfileShareSummaries") is not None:
         import capo_wellarchitected.types.profile_share_summaries
 
         out["profile_share_summaries"] = (
@@ -43,6 +43,6 @@ def deserialize_json(data: dict) -> ListProfileSharesOutput:
                 data["ProfileShareSummaries"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

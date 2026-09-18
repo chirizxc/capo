@@ -47,7 +47,7 @@ def serialize_aws_json_1_0(value: DisplayConfig) -> dict:
 
 
 def deserialize_aws_json_1_0(data: dict) -> DisplayConfig:
-    if "graph" in data:
+    if data.get("graph") is not None:
         import capo_bcm_dashboards.types.graph_display_config_map
 
         return {
@@ -55,7 +55,7 @@ def deserialize_aws_json_1_0(data: dict) -> DisplayConfig:
                 data["graph"]
             )
         }
-    elif "table" in data:
+    elif data.get("table") is not None:
         import capo_bcm_dashboards.types.table_display_config_struct
 
         return {

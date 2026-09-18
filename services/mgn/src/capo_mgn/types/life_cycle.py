@@ -69,26 +69,26 @@ def serialize_json(value: LifeCycle) -> dict:
 
 def deserialize_json(data: dict) -> LifeCycle:
     out: LifeCycle = {}  # type: ignore[typeddict-item]
-    if "addedToServiceDateTime" in data:
+    if data.get("addedToServiceDateTime") is not None:
         out["added_to_service_date_time"] = data["addedToServiceDateTime"]
-    if "firstByteDateTime" in data:
+    if data.get("firstByteDateTime") is not None:
         out["first_byte_date_time"] = data["firstByteDateTime"]
-    if "elapsedReplicationDuration" in data:
+    if data.get("elapsedReplicationDuration") is not None:
         out["elapsed_replication_duration"] = data["elapsedReplicationDuration"]
-    if "lastSeenByServiceDateTime" in data:
+    if data.get("lastSeenByServiceDateTime") is not None:
         out["last_seen_by_service_date_time"] = data["lastSeenByServiceDateTime"]
-    if "lastTest" in data:
+    if data.get("lastTest") is not None:
         import capo_mgn.types.life_cycle_last_test
 
         out["last_test"] = capo_mgn.types.life_cycle_last_test.deserialize_json(
             data["lastTest"]
         )
-    if "lastCutover" in data:
+    if data.get("lastCutover") is not None:
         import capo_mgn.types.life_cycle_last_cutover
 
         out["last_cutover"] = capo_mgn.types.life_cycle_last_cutover.deserialize_json(
             data["lastCutover"]
         )
-    if "state" in data:
+    if data.get("state") is not None:
         out["state"] = data["state"]
     return out

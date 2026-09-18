@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> __listOfDeploymentMode:
 
     out: __listOfDeploymentMode = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_mq.types.deployment_mode.deserialize_json(item))
     return out

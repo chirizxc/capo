@@ -27,7 +27,7 @@ def serialize_json(value: DisassociateChannelRequest) -> dict:
 
 def deserialize_json(data: dict) -> DisassociateChannelRequest:
     out: DisassociateChannelRequest = {}  # type: ignore[typeddict-item]
-    if "notificationConfigurationArn" in data:
+    if data.get("notificationConfigurationArn") is not None:
         out["notification_configuration_arn"] = data["notificationConfigurationArn"]
     else:
         raise DeserializationError(

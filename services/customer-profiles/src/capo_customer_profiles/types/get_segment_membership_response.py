@@ -50,21 +50,21 @@ def serialize_json(value: GetSegmentMembershipResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetSegmentMembershipResponse:
     out: GetSegmentMembershipResponse = {}  # type: ignore[typeddict-item]
-    if "SegmentDefinitionName" in data:
+    if data.get("SegmentDefinitionName") is not None:
         out["segment_definition_name"] = data["SegmentDefinitionName"]
-    if "Profiles" in data:
+    if data.get("Profiles") is not None:
         import capo_customer_profiles.types.profiles
 
         out["profiles"] = capo_customer_profiles.types.profiles.deserialize_json(
             data["Profiles"]
         )
-    if "Failures" in data:
+    if data.get("Failures") is not None:
         import capo_customer_profiles.types.failures
 
         out["failures"] = capo_customer_profiles.types.failures.deserialize_json(
             data["Failures"]
         )
-    if "LastComputedAt" in data:
+    if data.get("LastComputedAt") is not None:
         import capo_customer_profiles.types.timestamp
 
         out["last_computed_at"] = (

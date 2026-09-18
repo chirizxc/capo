@@ -43,11 +43,11 @@ def serialize_json(value: RumEvent) -> dict:
 
 def deserialize_json(data: dict) -> RumEvent:
     out: RumEvent = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("RumEvent.id required")
-    if "timestamp" in data:
+    if data.get("timestamp") is not None:
         import capo_rum.types._prelude.timestamp
 
         out["timestamp"] = capo_rum.types._prelude.timestamp.deserialize_json(
@@ -55,13 +55,13 @@ def deserialize_json(data: dict) -> RumEvent:
         )
     else:
         raise DeserializationError("RumEvent.timestamp required")
-    if "type" in data:
+    if data.get("type") is not None:
         out["type"] = data["type"]
     else:
         raise DeserializationError("RumEvent.type required")
-    if "metadata" in data:
+    if data.get("metadata") is not None:
         out["metadata"] = data["metadata"]
-    if "details" in data:
+    if data.get("details") is not None:
         out["details"] = data["details"]
     else:
         raise DeserializationError("RumEvent.details required")

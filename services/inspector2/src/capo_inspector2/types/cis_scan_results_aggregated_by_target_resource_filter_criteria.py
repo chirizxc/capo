@@ -139,7 +139,7 @@ def deserialize_json(
     data: dict,
 ) -> CisScanResultsAggregatedByTargetResourceFilterCriteria:
     out: CisScanResultsAggregatedByTargetResourceFilterCriteria = {}  # type: ignore[typeddict-item]
-    if "accountIdFilters" in data:
+    if data.get("accountIdFilters") is not None:
         import capo_inspector2.types.account_id_filter_list
 
         out["account_id_filters"] = (
@@ -147,7 +147,7 @@ def deserialize_json(
                 data["accountIdFilters"]
             )
         )
-    if "statusFilters" in data:
+    if data.get("statusFilters") is not None:
         import capo_inspector2.types.cis_result_status_filter_list
 
         out["status_filters"] = (
@@ -155,7 +155,7 @@ def deserialize_json(
                 data["statusFilters"]
             )
         )
-    if "checkIdFilters" in data:
+    if data.get("checkIdFilters") is not None:
         import capo_inspector2.types.check_id_filter_list
 
         out["check_id_filters"] = (
@@ -163,7 +163,7 @@ def deserialize_json(
                 data["checkIdFilters"]
             )
         )
-    if "targetResourceIdFilters" in data:
+    if data.get("targetResourceIdFilters") is not None:
         import capo_inspector2.types.resource_id_filter_list
 
         out["target_resource_id_filters"] = (
@@ -171,7 +171,7 @@ def deserialize_json(
                 data["targetResourceIdFilters"]
             )
         )
-    if "targetResourceTagFilters" in data:
+    if data.get("targetResourceTagFilters") is not None:
         import capo_inspector2.types.resource_tag_filter_list
 
         out["target_resource_tag_filters"] = (
@@ -179,7 +179,7 @@ def deserialize_json(
                 data["targetResourceTagFilters"]
             )
         )
-    if "platformFilters" in data:
+    if data.get("platformFilters") is not None:
         import capo_inspector2.types.platform_filter_list
 
         out["platform_filters"] = (
@@ -187,7 +187,7 @@ def deserialize_json(
                 data["platformFilters"]
             )
         )
-    if "targetStatusFilters" in data:
+    if data.get("targetStatusFilters") is not None:
         import capo_inspector2.types.target_status_filter_list
 
         out["target_status_filters"] = (
@@ -195,7 +195,7 @@ def deserialize_json(
                 data["targetStatusFilters"]
             )
         )
-    if "targetStatusReasonFilters" in data:
+    if data.get("targetStatusReasonFilters") is not None:
         import capo_inspector2.types.target_status_reason_filter_list
 
         out["target_status_reason_filters"] = (
@@ -203,7 +203,7 @@ def deserialize_json(
                 data["targetStatusReasonFilters"]
             )
         )
-    if "failedChecksFilters" in data:
+    if data.get("failedChecksFilters") is not None:
         import capo_inspector2.types.cis_number_filter_list
 
         out["failed_checks_filters"] = (

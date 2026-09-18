@@ -29,13 +29,13 @@ def serialize_json(value: BatchDeleteDevicePositionHistoryError) -> dict:
 
 def deserialize_json(data: dict) -> BatchDeleteDevicePositionHistoryError:
     out: BatchDeleteDevicePositionHistoryError = {}  # type: ignore[typeddict-item]
-    if "DeviceId" in data:
+    if data.get("DeviceId") is not None:
         out["device_id"] = data["DeviceId"]
     else:
         raise DeserializationError(
             "BatchDeleteDevicePositionHistoryError.device_id required"
         )
-    if "Error" in data:
+    if data.get("Error") is not None:
         import capo_location.types.batch_item_error
 
         out["error"] = capo_location.types.batch_item_error.deserialize_json(

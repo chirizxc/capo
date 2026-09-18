@@ -53,13 +53,13 @@ def serialize_json(value: ManagedNotificationEventSummary) -> dict:
 
 def deserialize_json(data: dict) -> ManagedNotificationEventSummary:
     out: ManagedNotificationEventSummary = {}  # type: ignore[typeddict-item]
-    if "schemaVersion" in data:
+    if data.get("schemaVersion") is not None:
         out["schema_version"] = data["schemaVersion"]
     else:
         raise DeserializationError(
             "ManagedNotificationEventSummary.schema_version required"
         )
-    if "sourceEventMetadata" in data:
+    if data.get("sourceEventMetadata") is not None:
         import capo_notifications.types.managed_source_event_metadata_summary
 
         out["source_event_metadata"] = (
@@ -71,7 +71,7 @@ def deserialize_json(data: dict) -> ManagedNotificationEventSummary:
         raise DeserializationError(
             "ManagedNotificationEventSummary.source_event_metadata required"
         )
-    if "messageComponents" in data:
+    if data.get("messageComponents") is not None:
         import capo_notifications.types.message_components_summary
 
         out["message_components"] = (
@@ -83,13 +83,13 @@ def deserialize_json(data: dict) -> ManagedNotificationEventSummary:
         raise DeserializationError(
             "ManagedNotificationEventSummary.message_components required"
         )
-    if "eventStatus" in data:
+    if data.get("eventStatus") is not None:
         out["event_status"] = data["eventStatus"]
     else:
         raise DeserializationError(
             "ManagedNotificationEventSummary.event_status required"
         )
-    if "notificationType" in data:
+    if data.get("notificationType") is not None:
         out["notification_type"] = data["notificationType"]
     else:
         raise DeserializationError(

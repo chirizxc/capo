@@ -38,11 +38,11 @@ def serialize_json(value: Device) -> dict:
 
 def deserialize_json(data: dict) -> Device:
     out: Device = {}  # type: ignore[typeddict-item]
-    if "hostPath" in data:
+    if data.get("hostPath") is not None:
         out["host_path"] = data["hostPath"]
-    if "containerPath" in data:
+    if data.get("containerPath") is not None:
         out["container_path"] = data["containerPath"]
-    if "permissions" in data:
+    if data.get("permissions") is not None:
         import capo_batch.types.device_cgroup_permissions
 
         out["permissions"] = (

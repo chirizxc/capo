@@ -42,6 +42,7 @@ class CreateDecoderManifestRequest(TypedDict, closed=True):
 # --- awsJson1_0 ser/de ---
 def serialize_aws_json_1_0(value: CreateDecoderManifestRequest) -> dict:
     out: dict = {}
+    out["name"] = value["name"]
     if "description" in value:
         out["description"] = value["description"]
     out["modelManifestArn"] = value["model_manifest_arn"]
@@ -80,15 +81,19 @@ def serialize_aws_json_1_0(value: CreateDecoderManifestRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CreateDecoderManifestRequest:
     out: CreateDecoderManifestRequest = {}  # type: ignore[typeddict-item]
-    if "description" in data:
+    if data.get("name") is not None:
+        out["name"] = data["name"]
+    else:
+        raise DeserializationError("CreateDecoderManifestRequest.name required")
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "modelManifestArn" in data:
+    if data.get("modelManifestArn") is not None:
         out["model_manifest_arn"] = data["modelManifestArn"]
     else:
         raise DeserializationError(
             "CreateDecoderManifestRequest.model_manifest_arn required"
         )
-    if "signalDecoders" in data:
+    if data.get("signalDecoders") is not None:
         import capo_iotfleetwise.types.signal_decoders
 
         out["signal_decoders"] = (
@@ -96,7 +101,7 @@ def deserialize_aws_json_1_0(data: dict) -> CreateDecoderManifestRequest:
                 data["signalDecoders"]
             )
         )
-    if "networkInterfaces" in data:
+    if data.get("networkInterfaces") is not None:
         import capo_iotfleetwise.types.network_interfaces
 
         out["network_interfaces"] = (
@@ -104,7 +109,7 @@ def deserialize_aws_json_1_0(data: dict) -> CreateDecoderManifestRequest:
                 data["networkInterfaces"]
             )
         )
-    if "defaultForUnmappedSignals" in data:
+    if data.get("defaultForUnmappedSignals") is not None:
         import capo_iotfleetwise.types.default_for_unmapped_signals_type
 
         out["default_for_unmapped_signals"] = (
@@ -112,7 +117,7 @@ def deserialize_aws_json_1_0(data: dict) -> CreateDecoderManifestRequest:
                 data["defaultForUnmappedSignals"]
             )
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_iotfleetwise.types.tag_list
 
         out["tags"] = capo_iotfleetwise.types.tag_list.deserialize_aws_json_1_0(

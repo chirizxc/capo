@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: TemplatesNotAvailableInRegionException_) -> di
 
 def deserialize_aws_json_1_1(data: dict) -> TemplatesNotAvailableInRegionException_:
     out: TemplatesNotAvailableInRegionException_ = {}  # type: ignore[typeddict-item]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     return out
 
@@ -34,15 +34,20 @@ class TemplatesNotAvailableInRegionException(ServiceError):
 
     code: str | None = "TemplatesNotAvailableInRegionException"
 
-    def __init__(self, data: TemplatesNotAvailableInRegionException_):
+    def __init__(
+        self, data: TemplatesNotAvailableInRegionException_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="TemplatesNotAvailableInRegionException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "TemplatesNotAvailableInRegionException":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "TemplatesNotAvailableInRegionException":
+        return cls(deserialize_aws_json_1_1(data), message)

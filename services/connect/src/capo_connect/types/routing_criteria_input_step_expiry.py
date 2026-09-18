@@ -25,6 +25,6 @@ def serialize_json(value: RoutingCriteriaInputStepExpiry) -> dict:
 
 def deserialize_json(data: dict) -> RoutingCriteriaInputStepExpiry:
     out: RoutingCriteriaInputStepExpiry = {}  # type: ignore[typeddict-item]
-    if "DurationInSeconds" in data:
+    if data.get("DurationInSeconds") is not None:
         out["duration_in_seconds"] = data["DurationInSeconds"]
     return out

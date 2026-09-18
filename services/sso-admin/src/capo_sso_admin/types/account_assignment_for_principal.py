@@ -46,13 +46,13 @@ def serialize_aws_json_1_1(value: AccountAssignmentForPrincipal) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AccountAssignmentForPrincipal:
     out: AccountAssignmentForPrincipal = {}  # type: ignore[typeddict-item]
-    if "AccountId" in data:
+    if data.get("AccountId") is not None:
         out["account_id"] = data["AccountId"]
-    if "PermissionSetArn" in data:
+    if data.get("PermissionSetArn") is not None:
         out["permission_set_arn"] = data["PermissionSetArn"]
-    if "PrincipalId" in data:
+    if data.get("PrincipalId") is not None:
         out["principal_id"] = data["PrincipalId"]
-    if "PrincipalType" in data:
+    if data.get("PrincipalType") is not None:
         import capo_sso_admin.types.principal_type
 
         out["principal_type"] = (

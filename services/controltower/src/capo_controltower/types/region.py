@@ -23,6 +23,6 @@ def serialize_json(value: Region) -> dict:
 
 def deserialize_json(data: dict) -> Region:
     out: Region = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     return out

@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> BatchGetRouterInputErrorList:
 
     out: BatchGetRouterInputErrorList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_mediaconnect.types.batch_get_router_input_error.deserialize_json(item)
         )

@@ -39,17 +39,17 @@ def serialize_json(value: Filter) -> dict:
 
 def deserialize_json(data: dict) -> Filter:
     out: Filter = {}  # type: ignore[typeddict-item]
-    if "attribute" in data:
+    if data.get("attribute") is not None:
         out["attribute"] = data["attribute"]
     else:
         raise DeserializationError("Filter.attribute required")
-    if "value" in data:
+    if data.get("value") is not None:
         out["value"] = data["value"]
     else:
         out["value"] = ""
-    if "intValue" in data:
+    if data.get("intValue") is not None:
         out["int_value"] = data["intValue"]
-    if "operator" in data:
+    if data.get("operator") is not None:
         import capo_datazone.types.filter_operator
 
         out["operator"] = capo_datazone.types.filter_operator.deserialize_json(

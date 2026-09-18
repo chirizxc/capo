@@ -39,40 +39,96 @@ def serialize_json(value: Statistics) -> dict:
     out: dict = {}
     out["count"] = value.get("count", 0)
     if "average" in value:
-        out["average"] = value["average"]
+        out["average"] = (
+            "NaN"
+            if value["average"] != value["average"]
+            else "Infinity"
+            if value["average"] == float("inf")
+            else "-Infinity"
+            if value["average"] == float("-inf")
+            else value["average"]
+        )
     if "sum" in value:
-        out["sum"] = value["sum"]
+        out["sum"] = (
+            "NaN"
+            if value["sum"] != value["sum"]
+            else "Infinity"
+            if value["sum"] == float("inf")
+            else "-Infinity"
+            if value["sum"] == float("-inf")
+            else value["sum"]
+        )
     if "minimum" in value:
-        out["minimum"] = value["minimum"]
+        out["minimum"] = (
+            "NaN"
+            if value["minimum"] != value["minimum"]
+            else "Infinity"
+            if value["minimum"] == float("inf")
+            else "-Infinity"
+            if value["minimum"] == float("-inf")
+            else value["minimum"]
+        )
     if "maximum" in value:
-        out["maximum"] = value["maximum"]
+        out["maximum"] = (
+            "NaN"
+            if value["maximum"] != value["maximum"]
+            else "Infinity"
+            if value["maximum"] == float("inf")
+            else "-Infinity"
+            if value["maximum"] == float("-inf")
+            else value["maximum"]
+        )
     if "sum_of_squares" in value:
-        out["sumOfSquares"] = value["sum_of_squares"]
+        out["sumOfSquares"] = (
+            "NaN"
+            if value["sum_of_squares"] != value["sum_of_squares"]
+            else "Infinity"
+            if value["sum_of_squares"] == float("inf")
+            else "-Infinity"
+            if value["sum_of_squares"] == float("-inf")
+            else value["sum_of_squares"]
+        )
     if "variance" in value:
-        out["variance"] = value["variance"]
+        out["variance"] = (
+            "NaN"
+            if value["variance"] != value["variance"]
+            else "Infinity"
+            if value["variance"] == float("inf")
+            else "-Infinity"
+            if value["variance"] == float("-inf")
+            else value["variance"]
+        )
     if "std_deviation" in value:
-        out["stdDeviation"] = value["std_deviation"]
+        out["stdDeviation"] = (
+            "NaN"
+            if value["std_deviation"] != value["std_deviation"]
+            else "Infinity"
+            if value["std_deviation"] == float("inf")
+            else "-Infinity"
+            if value["std_deviation"] == float("-inf")
+            else value["std_deviation"]
+        )
     return out
 
 
 def deserialize_json(data: dict) -> Statistics:
     out: Statistics = {}  # type: ignore[typeddict-item]
-    if "count" in data:
+    if data.get("count") is not None:
         out["count"] = data["count"]
     else:
         out["count"] = 0
-    if "average" in data:
-        out["average"] = data["average"]
-    if "sum" in data:
-        out["sum"] = data["sum"]
-    if "minimum" in data:
-        out["minimum"] = data["minimum"]
-    if "maximum" in data:
-        out["maximum"] = data["maximum"]
-    if "sumOfSquares" in data:
-        out["sum_of_squares"] = data["sumOfSquares"]
-    if "variance" in data:
-        out["variance"] = data["variance"]
-    if "stdDeviation" in data:
-        out["std_deviation"] = data["stdDeviation"]
+    if data.get("average") is not None:
+        out["average"] = float(data["average"])
+    if data.get("sum") is not None:
+        out["sum"] = float(data["sum"])
+    if data.get("minimum") is not None:
+        out["minimum"] = float(data["minimum"])
+    if data.get("maximum") is not None:
+        out["maximum"] = float(data["maximum"])
+    if data.get("sumOfSquares") is not None:
+        out["sum_of_squares"] = float(data["sumOfSquares"])
+    if data.get("variance") is not None:
+        out["variance"] = float(data["variance"])
+    if data.get("stdDeviation") is not None:
+        out["std_deviation"] = float(data["stdDeviation"])
     return out

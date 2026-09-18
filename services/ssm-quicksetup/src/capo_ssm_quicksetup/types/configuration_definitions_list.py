@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> ConfigurationDefinitionsList:
 
     out: ConfigurationDefinitionsList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_ssm_quicksetup.types.configuration_definition.deserialize_json(item)
         )

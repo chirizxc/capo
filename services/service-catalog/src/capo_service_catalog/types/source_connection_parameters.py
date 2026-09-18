@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: SourceConnectionParameters) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SourceConnectionParameters:
     out: SourceConnectionParameters = {}  # type: ignore[typeddict-item]
-    if "CodeStar" in data:
+    if data.get("CodeStar") is not None:
         import capo_service_catalog.types.code_star_parameters
 
         out["code_star"] = (

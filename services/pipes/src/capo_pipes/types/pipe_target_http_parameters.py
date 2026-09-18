@@ -55,7 +55,7 @@ def serialize_json(value: PipeTargetHttpParameters) -> dict:
 
 def deserialize_json(data: dict) -> PipeTargetHttpParameters:
     out: PipeTargetHttpParameters = {}  # type: ignore[typeddict-item]
-    if "PathParameterValues" in data:
+    if data.get("PathParameterValues") is not None:
         import capo_pipes.types.path_parameter_list
 
         out["path_parameter_values"] = (
@@ -63,7 +63,7 @@ def deserialize_json(data: dict) -> PipeTargetHttpParameters:
                 data["PathParameterValues"]
             )
         )
-    if "HeaderParameters" in data:
+    if data.get("HeaderParameters") is not None:
         import capo_pipes.types.header_parameters_map
 
         out["header_parameters"] = (
@@ -71,7 +71,7 @@ def deserialize_json(data: dict) -> PipeTargetHttpParameters:
                 data["HeaderParameters"]
             )
         )
-    if "QueryStringParameters" in data:
+    if data.get("QueryStringParameters") is not None:
         import capo_pipes.types.query_string_parameters_map
 
         out["query_string_parameters"] = (

@@ -37,11 +37,11 @@ def serialize_aws_json_1_1(value: OracleSQLCatalogTarget) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> OracleSQLCatalogTarget:
     out: OracleSQLCatalogTarget = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("OracleSQLCatalogTarget.name required")
-    if "Inputs" in data:
+    if data.get("Inputs") is not None:
         import capo_glue.types.one_input
 
         out["inputs"] = capo_glue.types.one_input.deserialize_aws_json_1_1(
@@ -49,11 +49,11 @@ def deserialize_aws_json_1_1(data: dict) -> OracleSQLCatalogTarget:
         )
     else:
         raise DeserializationError("OracleSQLCatalogTarget.inputs required")
-    if "Database" in data:
+    if data.get("Database") is not None:
         out["database"] = data["Database"]
     else:
         raise DeserializationError("OracleSQLCatalogTarget.database required")
-    if "Table" in data:
+    if data.get("Table") is not None:
         out["table"] = data["Table"]
     else:
         raise DeserializationError("OracleSQLCatalogTarget.table required")

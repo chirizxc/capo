@@ -27,7 +27,7 @@ def serialize_aws_json_1_1(value: PartitionSpec) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PartitionSpec:
     out: PartitionSpec = {}  # type: ignore[typeddict-item]
-    if "Identity" in data:
+    if data.get("Identity") is not None:
         import capo_firehose.types.partition_fields
 
         out["identity"] = capo_firehose.types.partition_fields.deserialize_aws_json_1_1(

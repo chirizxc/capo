@@ -27,7 +27,7 @@ def serialize_aws_json_1_1(value: WorkerAccessConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> WorkerAccessConfiguration:
     out: WorkerAccessConfiguration = {}  # type: ignore[typeddict-item]
-    if "S3Presign" in data:
+    if data.get("S3Presign") is not None:
         import capo_sagemaker.types.s3_presign
 
         out["s3_presign"] = capo_sagemaker.types.s3_presign.deserialize_aws_json_1_1(

@@ -39,11 +39,11 @@ def serialize_aws_json_1_1(value: GetDashboardUrlRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetDashboardUrlRequest:
     out: GetDashboardUrlRequest = {}  # type: ignore[typeddict-item]
-    if "ResourceId" in data:
+    if data.get("ResourceId") is not None:
         out["resource_id"] = data["ResourceId"]
     else:
         raise DeserializationError("GetDashboardUrlRequest.resource_id required")
-    if "ResourceType" in data:
+    if data.get("ResourceType") is not None:
         import capo_glue.types.glue_resource_type
 
         out["resource_type"] = (
@@ -53,6 +53,6 @@ def deserialize_aws_json_1_1(data: dict) -> GetDashboardUrlRequest:
         )
     else:
         raise DeserializationError("GetDashboardUrlRequest.resource_type required")
-    if "RequestOrigin" in data:
+    if data.get("RequestOrigin") is not None:
         out["request_origin"] = data["RequestOrigin"]
     return out

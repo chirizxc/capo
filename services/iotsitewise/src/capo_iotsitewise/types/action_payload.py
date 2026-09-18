@@ -24,7 +24,7 @@ def serialize_json(value: ActionPayload) -> dict:
 
 def deserialize_json(data: dict) -> ActionPayload:
     out: ActionPayload = {}  # type: ignore[typeddict-item]
-    if "stringValue" in data:
+    if data.get("stringValue") is not None:
         out["string_value"] = data["stringValue"]
     else:
         raise DeserializationError("ActionPayload.string_value required")

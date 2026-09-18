@@ -47,11 +47,11 @@ def serialize_json(value: BatchGetChannelResponse) -> dict:
 
 def deserialize_json(data: dict) -> BatchGetChannelResponse:
     out: BatchGetChannelResponse = {}  # type: ignore[typeddict-item]
-    if "channels" in data:
+    if data.get("channels") is not None:
         import capo_ivs.types.channels
 
         out["channels"] = capo_ivs.types.channels.deserialize_json(data["channels"])
-    if "errors" in data:
+    if data.get("errors") is not None:
         import capo_ivs.types.batch_errors
 
         out["errors"] = capo_ivs.types.batch_errors.deserialize_json(data["errors"])

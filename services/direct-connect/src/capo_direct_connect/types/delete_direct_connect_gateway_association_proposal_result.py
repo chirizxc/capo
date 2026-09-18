@@ -35,7 +35,7 @@ def deserialize_aws_json_1_1(
     data: dict,
 ) -> DeleteDirectConnectGatewayAssociationProposalResult:
     out: DeleteDirectConnectGatewayAssociationProposalResult = {}  # type: ignore[typeddict-item]
-    if "directConnectGatewayAssociationProposal" in data:
+    if data.get("directConnectGatewayAssociationProposal") is not None:
         import capo_direct_connect.types.direct_connect_gateway_association_proposal
 
         out["direct_connect_gateway_association_proposal"] = (

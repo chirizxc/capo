@@ -30,8 +30,8 @@ def serialize_aws_json_1_1(value: RegistryId) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RegistryId:
     out: RegistryId = {}  # type: ignore[typeddict-item]
-    if "RegistryName" in data:
+    if data.get("RegistryName") is not None:
         out["registry_name"] = data["RegistryName"]
-    if "RegistryArn" in data:
+    if data.get("RegistryArn") is not None:
         out["registry_arn"] = data["RegistryArn"]
     return out

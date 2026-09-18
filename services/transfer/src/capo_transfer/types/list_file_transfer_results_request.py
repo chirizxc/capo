@@ -38,20 +38,20 @@ def serialize_aws_json_1_1(value: ListFileTransferResultsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListFileTransferResultsRequest:
     out: ListFileTransferResultsRequest = {}  # type: ignore[typeddict-item]
-    if "ConnectorId" in data:
+    if data.get("ConnectorId") is not None:
         out["connector_id"] = data["ConnectorId"]
     else:
         raise DeserializationError(
             "ListFileTransferResultsRequest.connector_id required"
         )
-    if "TransferId" in data:
+    if data.get("TransferId") is not None:
         out["transfer_id"] = data["TransferId"]
     else:
         raise DeserializationError(
             "ListFileTransferResultsRequest.transfer_id required"
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
     return out

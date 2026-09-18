@@ -30,7 +30,15 @@ def serialize_json(value: Video) -> dict:
     if "height" in value:
         out["height"] = value["height"]
     if "framerate" in value:
-        out["framerate"] = value["framerate"]
+        out["framerate"] = (
+            "NaN"
+            if value["framerate"] != value["framerate"]
+            else "Infinity"
+            if value["framerate"] == float("inf")
+            else "-Infinity"
+            if value["framerate"] == float("-inf")
+            else value["framerate"]
+        )
     if "bitrate" in value:
         out["bitrate"] = value["bitrate"]
     return out
@@ -38,12 +46,12 @@ def serialize_json(value: Video) -> dict:
 
 def deserialize_json(data: dict) -> Video:
     out: Video = {}  # type: ignore[typeddict-item]
-    if "width" in data:
+    if data.get("width") is not None:
         out["width"] = data["width"]
-    if "height" in data:
+    if data.get("height") is not None:
         out["height"] = data["height"]
-    if "framerate" in data:
-        out["framerate"] = data["framerate"]
-    if "bitrate" in data:
+    if data.get("framerate") is not None:
+        out["framerate"] = float(data["framerate"])
+    if data.get("bitrate") is not None:
         out["bitrate"] = data["bitrate"]
     return out

@@ -78,7 +78,7 @@ def serialize_aws_json_1_1(value: IssueCertificateRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> IssueCertificateRequest:
     out: IssueCertificateRequest = {}  # type: ignore[typeddict-item]
-    if "ApiPassthrough" in data:
+    if data.get("ApiPassthrough") is not None:
         import capo_acm_pca.types.api_passthrough
 
         out["api_passthrough"] = (
@@ -86,19 +86,19 @@ def deserialize_aws_json_1_1(data: dict) -> IssueCertificateRequest:
                 data["ApiPassthrough"]
             )
         )
-    if "CertificateAuthorityArn" in data:
+    if data.get("CertificateAuthorityArn") is not None:
         out["certificate_authority_arn"] = data["CertificateAuthorityArn"]
     else:
         raise DeserializationError(
             "IssueCertificateRequest.certificate_authority_arn required"
         )
-    if "Csr" in data:
+    if data.get("Csr") is not None:
         import capo_acm_pca.types.csr_blob
 
         out["csr"] = capo_acm_pca.types.csr_blob.deserialize_aws_json_1_1(data["Csr"])
     else:
         raise DeserializationError("IssueCertificateRequest.csr required")
-    if "SigningAlgorithm" in data:
+    if data.get("SigningAlgorithm") is not None:
         import capo_acm_pca.types.signing_algorithm
 
         out["signing_algorithm"] = (
@@ -108,9 +108,9 @@ def deserialize_aws_json_1_1(data: dict) -> IssueCertificateRequest:
         )
     else:
         raise DeserializationError("IssueCertificateRequest.signing_algorithm required")
-    if "TemplateArn" in data:
+    if data.get("TemplateArn") is not None:
         out["template_arn"] = data["TemplateArn"]
-    if "Validity" in data:
+    if data.get("Validity") is not None:
         import capo_acm_pca.types.validity
 
         out["validity"] = capo_acm_pca.types.validity.deserialize_aws_json_1_1(
@@ -118,7 +118,7 @@ def deserialize_aws_json_1_1(data: dict) -> IssueCertificateRequest:
         )
     else:
         raise DeserializationError("IssueCertificateRequest.validity required")
-    if "ValidityNotBefore" in data:
+    if data.get("ValidityNotBefore") is not None:
         import capo_acm_pca.types.validity
 
         out["validity_not_before"] = (
@@ -126,6 +126,6 @@ def deserialize_aws_json_1_1(data: dict) -> IssueCertificateRequest:
                 data["ValidityNotBefore"]
             )
         )
-    if "IdempotencyToken" in data:
+    if data.get("IdempotencyToken") is not None:
         out["idempotency_token"] = data["IdempotencyToken"]
     return out

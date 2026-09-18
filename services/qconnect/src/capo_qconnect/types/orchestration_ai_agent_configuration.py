@@ -55,15 +55,15 @@ def serialize_json(value: OrchestrationAIAgentConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> OrchestrationAIAgentConfiguration:
     out: OrchestrationAIAgentConfiguration = {}  # type: ignore[typeddict-item]
-    if "orchestrationAIPromptId" in data:
+    if data.get("orchestrationAIPromptId") is not None:
         out["orchestration_ai_prompt_id"] = data["orchestrationAIPromptId"]
     else:
         raise DeserializationError(
             "OrchestrationAIAgentConfiguration.orchestration_ai_prompt_id required"
         )
-    if "orchestrationAIGuardrailId" in data:
+    if data.get("orchestrationAIGuardrailId") is not None:
         out["orchestration_ai_guardrail_id"] = data["orchestrationAIGuardrailId"]
-    if "toolConfigurations" in data:
+    if data.get("toolConfigurations") is not None:
         import capo_qconnect.types.tool_configuration_list
 
         out["tool_configurations"] = (
@@ -71,8 +71,8 @@ def deserialize_json(data: dict) -> OrchestrationAIAgentConfiguration:
                 data["toolConfigurations"]
             )
         )
-    if "connectInstanceArn" in data:
+    if data.get("connectInstanceArn") is not None:
         out["connect_instance_arn"] = data["connectInstanceArn"]
-    if "locale" in data:
+    if data.get("locale") is not None:
         out["locale"] = data["locale"]
     return out

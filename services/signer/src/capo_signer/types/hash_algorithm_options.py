@@ -36,7 +36,7 @@ def serialize_json(value: HashAlgorithmOptions) -> dict:
 
 def deserialize_json(data: dict) -> HashAlgorithmOptions:
     out: HashAlgorithmOptions = {}  # type: ignore[typeddict-item]
-    if "allowedValues" in data:
+    if data.get("allowedValues") is not None:
         import capo_signer.types.hash_algorithms
 
         out["allowed_values"] = capo_signer.types.hash_algorithms.deserialize_json(
@@ -44,7 +44,7 @@ def deserialize_json(data: dict) -> HashAlgorithmOptions:
         )
     else:
         raise DeserializationError("HashAlgorithmOptions.allowed_values required")
-    if "defaultValue" in data:
+    if data.get("defaultValue") is not None:
         import capo_signer.types.hash_algorithm
 
         out["default_value"] = capo_signer.types.hash_algorithm.deserialize_json(

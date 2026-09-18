@@ -38,7 +38,7 @@ def serialize_aws_json_1_1(value: DescribeAccountAttributesResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeAccountAttributesResponse:
     out: DescribeAccountAttributesResponse = {}  # type: ignore[typeddict-item]
-    if "AccountQuotas" in data:
+    if data.get("AccountQuotas") is not None:
         import capo_database_migration_service.types.account_quota_list
 
         out["account_quotas"] = (
@@ -46,6 +46,6 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeAccountAttributesResponse:
                 data["AccountQuotas"]
             )
         )
-    if "UniqueAccountIdentifier" in data:
+    if data.get("UniqueAccountIdentifier") is not None:
         out["unique_account_identifier"] = data["UniqueAccountIdentifier"]
     return out

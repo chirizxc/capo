@@ -58,11 +58,11 @@ def serialize_json(value: ItemSource) -> dict:
 
 def deserialize_json(data: dict) -> ItemSource:
     out: ItemSource = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
     else:
         raise DeserializationError("ItemSource.id required")
-    if "Geometry" in data:
+    if data.get("Geometry") is not None:
         import capo_sagemaker_geospatial.types.geometry
 
         out["geometry"] = capo_sagemaker_geospatial.types.geometry.deserialize_json(
@@ -70,13 +70,13 @@ def deserialize_json(data: dict) -> ItemSource:
         )
     else:
         raise DeserializationError("ItemSource.geometry required")
-    if "Assets" in data:
+    if data.get("Assets") is not None:
         import capo_sagemaker_geospatial.types.assets_map
 
         out["assets"] = capo_sagemaker_geospatial.types.assets_map.deserialize_json(
             data["Assets"]
         )
-    if "DateTime" in data:
+    if data.get("DateTime") is not None:
         import capo_sagemaker_geospatial.types._prelude.timestamp
 
         out["date_time"] = (
@@ -86,7 +86,7 @@ def deserialize_json(data: dict) -> ItemSource:
         )
     else:
         raise DeserializationError("ItemSource.date_time required")
-    if "Properties" in data:
+    if data.get("Properties") is not None:
         import capo_sagemaker_geospatial.types.properties
 
         out["properties"] = capo_sagemaker_geospatial.types.properties.deserialize_json(

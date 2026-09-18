@@ -30,8 +30,8 @@ def serialize_aws_json_1_1(value: BlueprintDetails) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> BlueprintDetails:
     out: BlueprintDetails = {}  # type: ignore[typeddict-item]
-    if "BlueprintName" in data:
+    if data.get("BlueprintName") is not None:
         out["blueprint_name"] = data["BlueprintName"]
-    if "RunId" in data:
+    if data.get("RunId") is not None:
         out["run_id"] = data["RunId"]
     return out

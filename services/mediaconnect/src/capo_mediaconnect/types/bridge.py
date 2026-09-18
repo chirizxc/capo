@@ -113,9 +113,9 @@ def serialize_json(value: Bridge) -> dict:
 
 def deserialize_json(data: dict) -> Bridge:
     out: Bridge = {}  # type: ignore[typeddict-item]
-    if "bridgeArn" in data:
+    if data.get("bridgeArn") is not None:
         out["bridge_arn"] = data["bridgeArn"]
-    if "bridgeMessages" in data:
+    if data.get("bridgeMessages") is not None:
         import capo_mediaconnect.types.__list_of_message_detail
 
         out["bridge_messages"] = (
@@ -123,13 +123,13 @@ def deserialize_json(data: dict) -> Bridge:
                 data["bridgeMessages"]
             )
         )
-    if "bridgeState" in data:
+    if data.get("bridgeState") is not None:
         import capo_mediaconnect.types.bridge_state
 
         out["bridge_state"] = capo_mediaconnect.types.bridge_state.deserialize_json(
             data["bridgeState"]
         )
-    if "egressGatewayBridge" in data:
+    if data.get("egressGatewayBridge") is not None:
         import capo_mediaconnect.types.egress_gateway_bridge
 
         out["egress_gateway_bridge"] = (
@@ -137,7 +137,7 @@ def deserialize_json(data: dict) -> Bridge:
                 data["egressGatewayBridge"]
             )
         )
-    if "ingressGatewayBridge" in data:
+    if data.get("ingressGatewayBridge") is not None:
         import capo_mediaconnect.types.ingress_gateway_bridge
 
         out["ingress_gateway_bridge"] = (
@@ -145,9 +145,9 @@ def deserialize_json(data: dict) -> Bridge:
                 data["ingressGatewayBridge"]
             )
         )
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "outputs" in data:
+    if data.get("outputs") is not None:
         import capo_mediaconnect.types.__list_of_bridge_output
 
         out["outputs"] = (
@@ -155,9 +155,9 @@ def deserialize_json(data: dict) -> Bridge:
                 data["outputs"]
             )
         )
-    if "placementArn" in data:
+    if data.get("placementArn") is not None:
         out["placement_arn"] = data["placementArn"]
-    if "sourceFailoverConfig" in data:
+    if data.get("sourceFailoverConfig") is not None:
         import capo_mediaconnect.types.failover_config
 
         out["source_failover_config"] = (
@@ -165,7 +165,7 @@ def deserialize_json(data: dict) -> Bridge:
                 data["sourceFailoverConfig"]
             )
         )
-    if "sources" in data:
+    if data.get("sources") is not None:
         import capo_mediaconnect.types.__list_of_bridge_source
 
         out["sources"] = (

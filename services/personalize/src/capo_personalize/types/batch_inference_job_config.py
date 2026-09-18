@@ -44,7 +44,7 @@ def serialize_aws_json_1_1(value: BatchInferenceJobConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> BatchInferenceJobConfig:
     out: BatchInferenceJobConfig = {}  # type: ignore[typeddict-item]
-    if "itemExplorationConfig" in data:
+    if data.get("itemExplorationConfig") is not None:
         import capo_personalize.types.hyper_parameters
 
         out["item_exploration_config"] = (
@@ -52,7 +52,7 @@ def deserialize_aws_json_1_1(data: dict) -> BatchInferenceJobConfig:
                 data["itemExplorationConfig"]
             )
         )
-    if "rankingInfluence" in data:
+    if data.get("rankingInfluence") is not None:
         import capo_personalize.types.ranking_influence
 
         out["ranking_influence"] = (

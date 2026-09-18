@@ -159,8 +159,12 @@ class DbClusterResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_timestream_influxdb.types.create_db_cluster_input.CreateDbClusterInput = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_timestream_influxdb.types.create_db_cluster_input.CreateDbClusterInput = {
+            "name": name,
+            "db_instance_type": db_instance_type,
+            "vpc_subnet_ids": vpc_subnet_ids,
+            "vpc_security_group_ids": vpc_security_group_ids,
+        }
         if username is not None:
             input_["username"] = username
         if password is not None:
@@ -173,7 +177,6 @@ class DbClusterResource:
             input_["port"] = port
         if db_parameter_group_identifier is not None:
             input_["db_parameter_group_identifier"] = db_parameter_group_identifier
-        input_["db_instance_type"] = db_instance_type
         if db_storage_type is not None:
             input_["db_storage_type"] = db_storage_type
         if allocated_storage is not None:
@@ -182,8 +185,6 @@ class DbClusterResource:
             input_["network_type"] = network_type
         if publicly_accessible is not None:
             input_["publicly_accessible"] = publicly_accessible
-        input_["vpc_subnet_ids"] = vpc_subnet_ids
-        input_["vpc_security_group_ids"] = vpc_security_group_ids
         if deployment_type is not None:
             input_["deployment_type"] = deployment_type
         if failover_mode is not None:
@@ -200,6 +201,7 @@ class DbClusterResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -237,14 +239,16 @@ class DbClusterResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_timestream_influxdb.types.get_db_cluster_input.GetDbClusterInput = {}  # type: ignore[typeddict-item]
-        input_["db_cluster_id"] = db_cluster_id
+        input_: capo_timestream_influxdb.types.get_db_cluster_input.GetDbClusterInput = {
+            "db_cluster_id": db_cluster_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update(
@@ -307,8 +311,9 @@ class DbClusterResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_timestream_influxdb.types.update_db_cluster_input.UpdateDbClusterInput = {}  # type: ignore[typeddict-item]
-        input_["db_cluster_id"] = db_cluster_id
+        input_: capo_timestream_influxdb.types.update_db_cluster_input.UpdateDbClusterInput = {
+            "db_cluster_id": db_cluster_id
+        }
         if log_delivery_configuration is not None:
             input_["log_delivery_configuration"] = log_delivery_configuration
         if db_parameter_group_identifier is not None:
@@ -327,6 +332,7 @@ class DbClusterResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -367,14 +373,16 @@ class DbClusterResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_timestream_influxdb.types.delete_db_cluster_input.DeleteDbClusterInput = {}  # type: ignore[typeddict-item]
-        input_["db_cluster_id"] = db_cluster_id
+        input_: capo_timestream_influxdb.types.delete_db_cluster_input.DeleteDbClusterInput = {
+            "db_cluster_id": db_cluster_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -418,7 +426,7 @@ class DbClusterResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_timestream_influxdb.types.list_db_clusters_input.ListDbClustersInput = {}  # type: ignore[typeddict-item]
+        input_: capo_timestream_influxdb.types.list_db_clusters_input.ListDbClustersInput = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -429,6 +437,7 @@ class DbClusterResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_db_instances_for_cluster(
@@ -474,8 +483,9 @@ class DbClusterResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_timestream_influxdb.types.list_db_instances_for_cluster_input.ListDbInstancesForClusterInput = {}  # type: ignore[typeddict-item]
-        input_["db_cluster_id"] = db_cluster_id
+        input_: capo_timestream_influxdb.types.list_db_instances_for_cluster_input.ListDbInstancesForClusterInput = {
+            "db_cluster_id": db_cluster_id
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -486,6 +496,7 @@ class DbClusterResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def reboot_db_cluster(
@@ -530,8 +541,9 @@ class DbClusterResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_timestream_influxdb.types.reboot_db_cluster_input.RebootDbClusterInput = {}  # type: ignore[typeddict-item]
-        input_["db_cluster_id"] = db_cluster_id
+        input_: capo_timestream_influxdb.types.reboot_db_cluster_input.RebootDbClusterInput = {
+            "db_cluster_id": db_cluster_id
+        }
         if instance_ids is not None:
             input_["instance_ids"] = instance_ids
 
@@ -540,6 +552,7 @@ class DbClusterResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -643,8 +656,12 @@ class AsyncDbClusterResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_timestream_influxdb.types.create_db_cluster_input.CreateDbClusterInput = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_timestream_influxdb.types.create_db_cluster_input.CreateDbClusterInput = {
+            "name": name,
+            "db_instance_type": db_instance_type,
+            "vpc_subnet_ids": vpc_subnet_ids,
+            "vpc_security_group_ids": vpc_security_group_ids,
+        }
         if username is not None:
             input_["username"] = username
         if password is not None:
@@ -657,7 +674,6 @@ class AsyncDbClusterResource:
             input_["port"] = port
         if db_parameter_group_identifier is not None:
             input_["db_parameter_group_identifier"] = db_parameter_group_identifier
-        input_["db_instance_type"] = db_instance_type
         if db_storage_type is not None:
             input_["db_storage_type"] = db_storage_type
         if allocated_storage is not None:
@@ -666,8 +682,6 @@ class AsyncDbClusterResource:
             input_["network_type"] = network_type
         if publicly_accessible is not None:
             input_["publicly_accessible"] = publicly_accessible
-        input_["vpc_subnet_ids"] = vpc_subnet_ids
-        input_["vpc_security_group_ids"] = vpc_security_group_ids
         if deployment_type is not None:
             input_["deployment_type"] = deployment_type
         if failover_mode is not None:
@@ -684,6 +698,7 @@ class AsyncDbClusterResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -722,14 +737,16 @@ class AsyncDbClusterResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_timestream_influxdb.types.get_db_cluster_input.GetDbClusterInput = {}  # type: ignore[typeddict-item]
-        input_["db_cluster_id"] = db_cluster_id
+        input_: capo_timestream_influxdb.types.get_db_cluster_input.GetDbClusterInput = {
+            "db_cluster_id": db_cluster_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update(
@@ -793,8 +810,9 @@ class AsyncDbClusterResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_timestream_influxdb.types.update_db_cluster_input.UpdateDbClusterInput = {}  # type: ignore[typeddict-item]
-        input_["db_cluster_id"] = db_cluster_id
+        input_: capo_timestream_influxdb.types.update_db_cluster_input.UpdateDbClusterInput = {
+            "db_cluster_id": db_cluster_id
+        }
         if log_delivery_configuration is not None:
             input_["log_delivery_configuration"] = log_delivery_configuration
         if db_parameter_group_identifier is not None:
@@ -813,6 +831,7 @@ class AsyncDbClusterResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -854,14 +873,16 @@ class AsyncDbClusterResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_timestream_influxdb.types.delete_db_cluster_input.DeleteDbClusterInput = {}  # type: ignore[typeddict-item]
-        input_["db_cluster_id"] = db_cluster_id
+        input_: capo_timestream_influxdb.types.delete_db_cluster_input.DeleteDbClusterInput = {
+            "db_cluster_id": db_cluster_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -906,7 +927,7 @@ class AsyncDbClusterResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_timestream_influxdb.types.list_db_clusters_input.ListDbClustersInput = {}  # type: ignore[typeddict-item]
+        input_: capo_timestream_influxdb.types.list_db_clusters_input.ListDbClustersInput = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -917,6 +938,7 @@ class AsyncDbClusterResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_db_instances_for_cluster(
@@ -963,8 +985,9 @@ class AsyncDbClusterResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_timestream_influxdb.types.list_db_instances_for_cluster_input.ListDbInstancesForClusterInput = {}  # type: ignore[typeddict-item]
-        input_["db_cluster_id"] = db_cluster_id
+        input_: capo_timestream_influxdb.types.list_db_instances_for_cluster_input.ListDbInstancesForClusterInput = {
+            "db_cluster_id": db_cluster_id
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -975,6 +998,7 @@ class AsyncDbClusterResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def reboot_db_cluster(
@@ -1020,8 +1044,9 @@ class AsyncDbClusterResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_timestream_influxdb.types.reboot_db_cluster_input.RebootDbClusterInput = {}  # type: ignore[typeddict-item]
-        input_["db_cluster_id"] = db_cluster_id
+        input_: capo_timestream_influxdb.types.reboot_db_cluster_input.RebootDbClusterInput = {
+            "db_cluster_id": db_cluster_id
+        }
         if instance_ids is not None:
             input_["instance_ids"] = instance_ids
 
@@ -1030,4 +1055,5 @@ class AsyncDbClusterResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

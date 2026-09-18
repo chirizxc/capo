@@ -29,6 +29,8 @@ def deserialize_aws_json_1_1(data: list) -> TopicsDetectionJobPropertiesList:
 
     out: TopicsDetectionJobPropertiesList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_comprehend.types.topics_detection_job_properties.deserialize_aws_json_1_1(
                 item

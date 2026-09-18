@@ -174,19 +174,19 @@ def serialize_aws_json_1_1(value: LoadBalancer) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> LoadBalancer:
     out: LoadBalancer = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "supportCode" in data:
+    if data.get("supportCode") is not None:
         out["support_code"] = data["supportCode"]
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_lightsail.types.iso_date
 
         out["created_at"] = capo_lightsail.types.iso_date.deserialize_aws_json_1_1(
             data["createdAt"]
         )
-    if "location" in data:
+    if data.get("location") is not None:
         import capo_lightsail.types.resource_location
 
         out["location"] = (
@@ -194,7 +194,7 @@ def deserialize_aws_json_1_1(data: dict) -> LoadBalancer:
                 data["location"]
             )
         )
-    if "resourceType" in data:
+    if data.get("resourceType") is not None:
         import capo_lightsail.types.resource_type
 
         out["resource_type"] = (
@@ -202,15 +202,15 @@ def deserialize_aws_json_1_1(data: dict) -> LoadBalancer:
                 data["resourceType"]
             )
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_lightsail.types.tag_list
 
         out["tags"] = capo_lightsail.types.tag_list.deserialize_aws_json_1_1(
             data["tags"]
         )
-    if "dnsName" in data:
+    if data.get("dnsName") is not None:
         out["dns_name"] = data["dnsName"]
-    if "state" in data:
+    if data.get("state") is not None:
         import capo_lightsail.types.load_balancer_state
 
         out["state"] = (
@@ -218,7 +218,7 @@ def deserialize_aws_json_1_1(data: dict) -> LoadBalancer:
                 data["state"]
             )
         )
-    if "protocol" in data:
+    if data.get("protocol") is not None:
         import capo_lightsail.types.load_balancer_protocol
 
         out["protocol"] = (
@@ -226,17 +226,17 @@ def deserialize_aws_json_1_1(data: dict) -> LoadBalancer:
                 data["protocol"]
             )
         )
-    if "publicPorts" in data:
+    if data.get("publicPorts") is not None:
         import capo_lightsail.types.port_list
 
         out["public_ports"] = capo_lightsail.types.port_list.deserialize_aws_json_1_1(
             data["publicPorts"]
         )
-    if "healthCheckPath" in data:
+    if data.get("healthCheckPath") is not None:
         out["health_check_path"] = data["healthCheckPath"]
-    if "instancePort" in data:
+    if data.get("instancePort") is not None:
         out["instance_port"] = data["instancePort"]
-    if "instanceHealthSummary" in data:
+    if data.get("instanceHealthSummary") is not None:
         import capo_lightsail.types.instance_health_summary_list
 
         out["instance_health_summary"] = (
@@ -244,7 +244,7 @@ def deserialize_aws_json_1_1(data: dict) -> LoadBalancer:
                 data["instanceHealthSummary"]
             )
         )
-    if "tlsCertificateSummaries" in data:
+    if data.get("tlsCertificateSummaries") is not None:
         import capo_lightsail.types.load_balancer_tls_certificate_summary_list
 
         out["tls_certificate_summaries"] = (
@@ -252,7 +252,7 @@ def deserialize_aws_json_1_1(data: dict) -> LoadBalancer:
                 data["tlsCertificateSummaries"]
             )
         )
-    if "configurationOptions" in data:
+    if data.get("configurationOptions") is not None:
         import capo_lightsail.types.load_balancer_configuration_options
 
         out["configuration_options"] = (
@@ -260,7 +260,7 @@ def deserialize_aws_json_1_1(data: dict) -> LoadBalancer:
                 data["configurationOptions"]
             )
         )
-    if "ipAddressType" in data:
+    if data.get("ipAddressType") is not None:
         import capo_lightsail.types.ip_address_type
 
         out["ip_address_type"] = (
@@ -268,8 +268,8 @@ def deserialize_aws_json_1_1(data: dict) -> LoadBalancer:
                 data["ipAddressType"]
             )
         )
-    if "httpsRedirectionEnabled" in data:
+    if data.get("httpsRedirectionEnabled") is not None:
         out["https_redirection_enabled"] = data["httpsRedirectionEnabled"]
-    if "tlsPolicyName" in data:
+    if data.get("tlsPolicyName") is not None:
         out["tls_policy_name"] = data["tlsPolicyName"]
     return out

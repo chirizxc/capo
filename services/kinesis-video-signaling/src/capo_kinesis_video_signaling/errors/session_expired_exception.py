@@ -26,7 +26,7 @@ def serialize_json(value: SessionExpiredException_) -> dict:
 
 def deserialize_json(data: dict) -> SessionExpiredException_:
     out: SessionExpiredException_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     return out
 
@@ -36,15 +36,18 @@ class SessionExpiredException(ServiceError):
 
     code: str | None = "SessionExpiredException"
 
-    def __init__(self, data: SessionExpiredException_):
+    def __init__(self, data: SessionExpiredException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="SessionExpiredException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "SessionExpiredException":
-        return cls(deserialize_json(data))
+    def from_json(
+        cls, data: dict, message: str | None = None
+    ) -> "SessionExpiredException":
+        return cls(deserialize_json(data), message)

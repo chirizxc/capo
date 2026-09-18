@@ -72,13 +72,13 @@ def serialize_aws_json_1_1(value: SetRiskConfigurationRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SetRiskConfigurationRequest:
     out: SetRiskConfigurationRequest = {}  # type: ignore[typeddict-item]
-    if "UserPoolId" in data:
+    if data.get("UserPoolId") is not None:
         out["user_pool_id"] = data["UserPoolId"]
     else:
         raise DeserializationError("SetRiskConfigurationRequest.user_pool_id required")
-    if "ClientId" in data:
+    if data.get("ClientId") is not None:
         out["client_id"] = data["ClientId"]
-    if "CompromisedCredentialsRiskConfiguration" in data:
+    if data.get("CompromisedCredentialsRiskConfiguration") is not None:
         import capo_cognito_identity_provider.types.compromised_credentials_risk_configuration_type
 
         out["compromised_credentials_risk_configuration"] = (
@@ -86,7 +86,7 @@ def deserialize_aws_json_1_1(data: dict) -> SetRiskConfigurationRequest:
                 data["CompromisedCredentialsRiskConfiguration"]
             )
         )
-    if "AccountTakeoverRiskConfiguration" in data:
+    if data.get("AccountTakeoverRiskConfiguration") is not None:
         import capo_cognito_identity_provider.types.account_takeover_risk_configuration_type
 
         out["account_takeover_risk_configuration"] = (
@@ -94,7 +94,7 @@ def deserialize_aws_json_1_1(data: dict) -> SetRiskConfigurationRequest:
                 data["AccountTakeoverRiskConfiguration"]
             )
         )
-    if "RiskExceptionConfiguration" in data:
+    if data.get("RiskExceptionConfiguration") is not None:
         import capo_cognito_identity_provider.types.risk_exception_configuration_type
 
         out["risk_exception_configuration"] = (

@@ -58,11 +58,11 @@ def serialize_aws_json_1_1(value: EmailConfigurationType) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> EmailConfigurationType:
     out: EmailConfigurationType = {}  # type: ignore[typeddict-item]
-    if "SourceArn" in data:
+    if data.get("SourceArn") is not None:
         out["source_arn"] = data["SourceArn"]
-    if "ReplyToEmailAddress" in data:
+    if data.get("ReplyToEmailAddress") is not None:
         out["reply_to_email_address"] = data["ReplyToEmailAddress"]
-    if "EmailSendingAccount" in data:
+    if data.get("EmailSendingAccount") is not None:
         import capo_cognito_identity_provider.types.email_sending_account_type
 
         out["email_sending_account"] = (
@@ -70,8 +70,8 @@ def deserialize_aws_json_1_1(data: dict) -> EmailConfigurationType:
                 data["EmailSendingAccount"]
             )
         )
-    if "From" in data:
+    if data.get("From") is not None:
         out["from"] = data["From"]
-    if "ConfigurationSet" in data:
+    if data.get("ConfigurationSet") is not None:
         out["configuration_set"] = data["ConfigurationSet"]
     return out

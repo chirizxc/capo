@@ -43,7 +43,7 @@ def serialize_json(value: VoiceAnalyticsProcessorConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> VoiceAnalyticsProcessorConfiguration:
     out: VoiceAnalyticsProcessorConfiguration = {}  # type: ignore[typeddict-item]
-    if "SpeakerSearchStatus" in data:
+    if data.get("SpeakerSearchStatus") is not None:
         import capo_chime_sdk_media_pipelines.types.voice_analytics_configuration_status
 
         out["speaker_search_status"] = (
@@ -51,7 +51,7 @@ def deserialize_json(data: dict) -> VoiceAnalyticsProcessorConfiguration:
                 data["SpeakerSearchStatus"]
             )
         )
-    if "VoiceToneAnalysisStatus" in data:
+    if data.get("VoiceToneAnalysisStatus") is not None:
         import capo_chime_sdk_media_pipelines.types.voice_analytics_configuration_status
 
         out["voice_tone_analysis_status"] = (

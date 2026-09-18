@@ -32,9 +32,9 @@ def serialize_aws_json_1_1(value: ResourceLocation) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ResourceLocation:
     out: ResourceLocation = {}  # type: ignore[typeddict-item]
-    if "availabilityZone" in data:
+    if data.get("availabilityZone") is not None:
         out["availability_zone"] = data["availabilityZone"]
-    if "regionName" in data:
+    if data.get("regionName") is not None:
         import capo_lightsail.types.region_name
 
         out["region_name"] = capo_lightsail.types.region_name.deserialize_aws_json_1_1(

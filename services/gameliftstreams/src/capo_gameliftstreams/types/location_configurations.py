@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> LocationConfigurations:
 
     out: LocationConfigurations = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_gameliftstreams.types.location_configuration.deserialize_json(item)
         )

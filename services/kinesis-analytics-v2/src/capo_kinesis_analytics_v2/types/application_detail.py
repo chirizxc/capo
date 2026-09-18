@@ -188,17 +188,17 @@ def serialize_aws_json_1_1(value: ApplicationDetail) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ApplicationDetail:
     out: ApplicationDetail = {}  # type: ignore[typeddict-item]
-    if "ApplicationARN" in data:
+    if data.get("ApplicationARN") is not None:
         out["application_arn"] = data["ApplicationARN"]
     else:
         raise DeserializationError("ApplicationDetail.application_arn required")
-    if "ApplicationDescription" in data:
+    if data.get("ApplicationDescription") is not None:
         out["application_description"] = data["ApplicationDescription"]
-    if "ApplicationName" in data:
+    if data.get("ApplicationName") is not None:
         out["application_name"] = data["ApplicationName"]
     else:
         raise DeserializationError("ApplicationDetail.application_name required")
-    if "RuntimeEnvironment" in data:
+    if data.get("RuntimeEnvironment") is not None:
         import capo_kinesis_analytics_v2.types.runtime_environment
 
         out["runtime_environment"] = (
@@ -208,9 +208,9 @@ def deserialize_aws_json_1_1(data: dict) -> ApplicationDetail:
         )
     else:
         raise DeserializationError("ApplicationDetail.runtime_environment required")
-    if "ServiceExecutionRole" in data:
+    if data.get("ServiceExecutionRole") is not None:
         out["service_execution_role"] = data["ServiceExecutionRole"]
-    if "ApplicationStatus" in data:
+    if data.get("ApplicationStatus") is not None:
         import capo_kinesis_analytics_v2.types.application_status
 
         out["application_status"] = (
@@ -220,11 +220,11 @@ def deserialize_aws_json_1_1(data: dict) -> ApplicationDetail:
         )
     else:
         raise DeserializationError("ApplicationDetail.application_status required")
-    if "ApplicationVersionId" in data:
+    if data.get("ApplicationVersionId") is not None:
         out["application_version_id"] = data["ApplicationVersionId"]
     else:
         raise DeserializationError("ApplicationDetail.application_version_id required")
-    if "CreateTimestamp" in data:
+    if data.get("CreateTimestamp") is not None:
         import capo_kinesis_analytics_v2.types.timestamp
 
         out["create_timestamp"] = (
@@ -232,7 +232,7 @@ def deserialize_aws_json_1_1(data: dict) -> ApplicationDetail:
                 data["CreateTimestamp"]
             )
         )
-    if "LastUpdateTimestamp" in data:
+    if data.get("LastUpdateTimestamp") is not None:
         import capo_kinesis_analytics_v2.types.timestamp
 
         out["last_update_timestamp"] = (
@@ -240,7 +240,7 @@ def deserialize_aws_json_1_1(data: dict) -> ApplicationDetail:
                 data["LastUpdateTimestamp"]
             )
         )
-    if "ApplicationConfigurationDescription" in data:
+    if data.get("ApplicationConfigurationDescription") is not None:
         import capo_kinesis_analytics_v2.types.application_configuration_description
 
         out["application_configuration_description"] = (
@@ -248,7 +248,7 @@ def deserialize_aws_json_1_1(data: dict) -> ApplicationDetail:
                 data["ApplicationConfigurationDescription"]
             )
         )
-    if "CloudWatchLoggingOptionDescriptions" in data:
+    if data.get("CloudWatchLoggingOptionDescriptions") is not None:
         import capo_kinesis_analytics_v2.types.cloud_watch_logging_option_descriptions
 
         out["cloud_watch_logging_option_descriptions"] = (
@@ -256,7 +256,7 @@ def deserialize_aws_json_1_1(data: dict) -> ApplicationDetail:
                 data["CloudWatchLoggingOptionDescriptions"]
             )
         )
-    if "ApplicationMaintenanceConfigurationDescription" in data:
+    if data.get("ApplicationMaintenanceConfigurationDescription") is not None:
         import capo_kinesis_analytics_v2.types.application_maintenance_configuration_description
 
         out["application_maintenance_configuration_description"] = (
@@ -264,13 +264,13 @@ def deserialize_aws_json_1_1(data: dict) -> ApplicationDetail:
                 data["ApplicationMaintenanceConfigurationDescription"]
             )
         )
-    if "ApplicationVersionUpdatedFrom" in data:
+    if data.get("ApplicationVersionUpdatedFrom") is not None:
         out["application_version_updated_from"] = data["ApplicationVersionUpdatedFrom"]
-    if "ApplicationVersionRolledBackFrom" in data:
+    if data.get("ApplicationVersionRolledBackFrom") is not None:
         out["application_version_rolled_back_from"] = data[
             "ApplicationVersionRolledBackFrom"
         ]
-    if "ApplicationVersionCreateTimestamp" in data:
+    if data.get("ApplicationVersionCreateTimestamp") is not None:
         import capo_kinesis_analytics_v2.types.timestamp
 
         out["application_version_create_timestamp"] = (
@@ -278,13 +278,13 @@ def deserialize_aws_json_1_1(data: dict) -> ApplicationDetail:
                 data["ApplicationVersionCreateTimestamp"]
             )
         )
-    if "ConditionalToken" in data:
+    if data.get("ConditionalToken") is not None:
         out["conditional_token"] = data["ConditionalToken"]
-    if "ApplicationVersionRolledBackTo" in data:
+    if data.get("ApplicationVersionRolledBackTo") is not None:
         out["application_version_rolled_back_to"] = data[
             "ApplicationVersionRolledBackTo"
         ]
-    if "ApplicationMode" in data:
+    if data.get("ApplicationMode") is not None:
         import capo_kinesis_analytics_v2.types.application_mode
 
         out["application_mode"] = (

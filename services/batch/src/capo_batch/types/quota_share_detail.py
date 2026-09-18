@@ -86,13 +86,13 @@ def serialize_json(value: QuotaShareDetail) -> dict:
 
 def deserialize_json(data: dict) -> QuotaShareDetail:
     out: QuotaShareDetail = {}  # type: ignore[typeddict-item]
-    if "quotaShareName" in data:
+    if data.get("quotaShareName") is not None:
         out["quota_share_name"] = data["quotaShareName"]
-    if "quotaShareArn" in data:
+    if data.get("quotaShareArn") is not None:
         out["quota_share_arn"] = data["quotaShareArn"]
-    if "jobQueueArn" in data:
+    if data.get("jobQueueArn") is not None:
         out["job_queue_arn"] = data["jobQueueArn"]
-    if "capacityLimits" in data:
+    if data.get("capacityLimits") is not None:
         import capo_batch.types.quota_share_capacity_limits
 
         out["capacity_limits"] = (
@@ -100,7 +100,7 @@ def deserialize_json(data: dict) -> QuotaShareDetail:
                 data["capacityLimits"]
             )
         )
-    if "resourceSharingConfiguration" in data:
+    if data.get("resourceSharingConfiguration") is not None:
         import capo_batch.types.quota_share_resource_sharing_configuration
 
         out["resource_sharing_configuration"] = (
@@ -108,7 +108,7 @@ def deserialize_json(data: dict) -> QuotaShareDetail:
                 data["resourceSharingConfiguration"]
             )
         )
-    if "preemptionConfiguration" in data:
+    if data.get("preemptionConfiguration") is not None:
         import capo_batch.types.quota_share_preemption_configuration
 
         out["preemption_configuration"] = (
@@ -116,13 +116,13 @@ def deserialize_json(data: dict) -> QuotaShareDetail:
                 data["preemptionConfiguration"]
             )
         )
-    if "state" in data:
+    if data.get("state") is not None:
         import capo_batch.types.quota_share_state
 
         out["state"] = capo_batch.types.quota_share_state.deserialize_json(
             data["state"]
         )
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_batch.types.quota_share_status
 
         out["status"] = capo_batch.types.quota_share_status.deserialize_json(

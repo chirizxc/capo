@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> FindingHistoryUpdatesList:
 
     out: FindingHistoryUpdatesList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_securityhub.types.finding_history_update.deserialize_json(item))
     return out

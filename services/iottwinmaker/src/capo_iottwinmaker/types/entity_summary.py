@@ -70,31 +70,31 @@ def serialize_json(value: EntitySummary) -> dict:
 
 def deserialize_json(data: dict) -> EntitySummary:
     out: EntitySummary = {}  # type: ignore[typeddict-item]
-    if "entityId" in data:
+    if data.get("entityId") is not None:
         out["entity_id"] = data["entityId"]
     else:
         raise DeserializationError("EntitySummary.entity_id required")
-    if "entityName" in data:
+    if data.get("entityName") is not None:
         out["entity_name"] = data["entityName"]
     else:
         raise DeserializationError("EntitySummary.entity_name required")
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("EntitySummary.arn required")
-    if "parentEntityId" in data:
+    if data.get("parentEntityId") is not None:
         out["parent_entity_id"] = data["parentEntityId"]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_iottwinmaker.types.status
 
         out["status"] = capo_iottwinmaker.types.status.deserialize_json(data["status"])
     else:
         raise DeserializationError("EntitySummary.status required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "hasChildEntities" in data:
+    if data.get("hasChildEntities") is not None:
         out["has_child_entities"] = data["hasChildEntities"]
-    if "creationDateTime" in data:
+    if data.get("creationDateTime") is not None:
         import capo_iottwinmaker.types.timestamp
 
         out["creation_date_time"] = capo_iottwinmaker.types.timestamp.deserialize_json(
@@ -102,7 +102,7 @@ def deserialize_json(data: dict) -> EntitySummary:
         )
     else:
         raise DeserializationError("EntitySummary.creation_date_time required")
-    if "updateDateTime" in data:
+    if data.get("updateDateTime") is not None:
         import capo_iottwinmaker.types.timestamp
 
         out["update_date_time"] = capo_iottwinmaker.types.timestamp.deserialize_json(

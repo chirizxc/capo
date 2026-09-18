@@ -43,16 +43,16 @@ def serialize_json(value: PodIdentityAssociationSummary) -> dict:
 
 def deserialize_json(data: dict) -> PodIdentityAssociationSummary:
     out: PodIdentityAssociationSummary = {}  # type: ignore[typeddict-item]
-    if "clusterName" in data:
+    if data.get("clusterName") is not None:
         out["cluster_name"] = data["clusterName"]
-    if "namespace" in data:
+    if data.get("namespace") is not None:
         out["namespace"] = data["namespace"]
-    if "serviceAccount" in data:
+    if data.get("serviceAccount") is not None:
         out["service_account"] = data["serviceAccount"]
-    if "associationArn" in data:
+    if data.get("associationArn") is not None:
         out["association_arn"] = data["associationArn"]
-    if "associationId" in data:
+    if data.get("associationId") is not None:
         out["association_id"] = data["associationId"]
-    if "ownerArn" in data:
+    if data.get("ownerArn") is not None:
         out["owner_arn"] = data["ownerArn"]
     return out

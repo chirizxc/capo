@@ -36,7 +36,7 @@ def serialize_json(value: MembershipProtectedQueryOutputConfiguration) -> dict:
 
 
 def deserialize_json(data: dict) -> MembershipProtectedQueryOutputConfiguration:
-    if "s3" in data:
+    if data.get("s3") is not None:
         import capo_cleanrooms.types.protected_query_s3_output_configuration
 
         return {

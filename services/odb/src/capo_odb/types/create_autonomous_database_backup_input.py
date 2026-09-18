@@ -49,19 +49,19 @@ def serialize_aws_json_1_0(value: CreateAutonomousDatabaseBackupInput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CreateAutonomousDatabaseBackupInput:
     out: CreateAutonomousDatabaseBackupInput = {}  # type: ignore[typeddict-item]
-    if "autonomousDatabaseId" in data:
+    if data.get("autonomousDatabaseId") is not None:
         out["autonomous_database_id"] = data["autonomousDatabaseId"]
     else:
         raise DeserializationError(
             "CreateAutonomousDatabaseBackupInput.autonomous_database_id required"
         )
-    if "displayName" in data:
+    if data.get("displayName") is not None:
         out["display_name"] = data["displayName"]
-    if "retentionPeriodInDays" in data:
+    if data.get("retentionPeriodInDays") is not None:
         out["retention_period_in_days"] = data["retentionPeriodInDays"]
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_odb.types.request_tag_map
 
         out["tags"] = capo_odb.types.request_tag_map.deserialize_aws_json_1_0(

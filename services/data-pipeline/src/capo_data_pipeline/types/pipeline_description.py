@@ -49,15 +49,15 @@ def serialize_aws_json_1_1(value: PipelineDescription) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PipelineDescription:
     out: PipelineDescription = {}  # type: ignore[typeddict-item]
-    if "pipelineId" in data:
+    if data.get("pipelineId") is not None:
         out["pipeline_id"] = data["pipelineId"]
     else:
         raise DeserializationError("PipelineDescription.pipeline_id required")
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("PipelineDescription.name required")
-    if "fields" in data:
+    if data.get("fields") is not None:
         import capo_data_pipeline.types.field_list
 
         out["fields"] = capo_data_pipeline.types.field_list.deserialize_aws_json_1_1(
@@ -65,9 +65,9 @@ def deserialize_aws_json_1_1(data: dict) -> PipelineDescription:
         )
     else:
         raise DeserializationError("PipelineDescription.fields required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_data_pipeline.types.tag_list
 
         out["tags"] = capo_data_pipeline.types.tag_list.deserialize_aws_json_1_1(

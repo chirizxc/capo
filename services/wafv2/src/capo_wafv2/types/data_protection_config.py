@@ -28,7 +28,7 @@ def serialize_aws_json_1_1(value: DataProtectionConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DataProtectionConfig:
     out: DataProtectionConfig = {}  # type: ignore[typeddict-item]
-    if "DataProtections" in data:
+    if data.get("DataProtections") is not None:
         import capo_wafv2.types.data_protections
 
         out["data_protections"] = (

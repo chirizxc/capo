@@ -49,14 +49,14 @@ def serialize_aws_json_1_1(value: RegisterGameServerInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RegisterGameServerInput:
     out: RegisterGameServerInput = {}  # type: ignore[typeddict-item]
-    if "GameServerGroupName" in data:
+    if data.get("GameServerGroupName") is not None:
         out["game_server_group_name"] = data["GameServerGroupName"]
-    if "GameServerId" in data:
+    if data.get("GameServerId") is not None:
         out["game_server_id"] = data["GameServerId"]
-    if "InstanceId" in data:
+    if data.get("InstanceId") is not None:
         out["instance_id"] = data["InstanceId"]
-    if "ConnectionInfo" in data:
+    if data.get("ConnectionInfo") is not None:
         out["connection_info"] = data["ConnectionInfo"]
-    if "GameServerData" in data:
+    if data.get("GameServerData") is not None:
         out["game_server_data"] = data["GameServerData"]
     return out

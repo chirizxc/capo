@@ -31,12 +31,12 @@ def serialize_json(value: DeepgramSpeechModelConfig) -> dict:
 
 def deserialize_json(data: dict) -> DeepgramSpeechModelConfig:
     out: DeepgramSpeechModelConfig = {}  # type: ignore[typeddict-item]
-    if "apiTokenSecretArn" in data:
+    if data.get("apiTokenSecretArn") is not None:
         out["api_token_secret_arn"] = data["apiTokenSecretArn"]
     else:
         raise DeserializationError(
             "DeepgramSpeechModelConfig.api_token_secret_arn required"
         )
-    if "modelId" in data:
+    if data.get("modelId") is not None:
         out["model_id"] = data["modelId"]
     return out

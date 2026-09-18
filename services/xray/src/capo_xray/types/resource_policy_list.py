@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> ResourcePolicyList:
 
     out: ResourcePolicyList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_xray.types.resource_policy.deserialize_json(item))
     return out

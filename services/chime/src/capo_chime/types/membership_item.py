@@ -32,9 +32,9 @@ def serialize_json(value: MembershipItem) -> dict:
 
 def deserialize_json(data: dict) -> MembershipItem:
     out: MembershipItem = {}  # type: ignore[typeddict-item]
-    if "MemberId" in data:
+    if data.get("MemberId") is not None:
         out["member_id"] = data["MemberId"]
-    if "Role" in data:
+    if data.get("Role") is not None:
         import capo_chime.types.room_membership_role
 
         out["role"] = capo_chime.types.room_membership_role.deserialize_json(

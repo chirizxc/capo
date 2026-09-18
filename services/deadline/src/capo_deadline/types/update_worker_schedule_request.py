@@ -40,7 +40,7 @@ def serialize_json(value: UpdateWorkerScheduleRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateWorkerScheduleRequest:
     out: UpdateWorkerScheduleRequest = {}  # type: ignore[typeddict-item]
-    if "updatedSessionActions" in data:
+    if data.get("updatedSessionActions") is not None:
         import capo_deadline.types.updated_session_actions
 
         out["updated_session_actions"] = (

@@ -44,7 +44,7 @@ def serialize_aws_json_1_1(value: AIRecommendationComputeSpec) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AIRecommendationComputeSpec:
     out: AIRecommendationComputeSpec = {}  # type: ignore[typeddict-item]
-    if "InstanceTypes" in data:
+    if data.get("InstanceTypes") is not None:
         import capo_sagemaker.types.ai_recommendation_instance_type_list
 
         out["instance_types"] = (
@@ -52,7 +52,7 @@ def deserialize_aws_json_1_1(data: dict) -> AIRecommendationComputeSpec:
                 data["InstanceTypes"]
             )
         )
-    if "CapacityReservationConfig" in data:
+    if data.get("CapacityReservationConfig") is not None:
         import capo_sagemaker.types.ai_capacity_reservation_config
 
         out["capacity_reservation_config"] = (

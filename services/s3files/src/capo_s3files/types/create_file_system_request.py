@@ -53,24 +53,24 @@ def serialize_json(value: CreateFileSystemRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateFileSystemRequest:
     out: CreateFileSystemRequest = {}  # type: ignore[typeddict-item]
-    if "bucket" in data:
+    if data.get("bucket") is not None:
         out["bucket"] = data["bucket"]
     else:
         raise DeserializationError("CreateFileSystemRequest.bucket required")
-    if "prefix" in data:
+    if data.get("prefix") is not None:
         out["prefix"] = data["prefix"]
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
-    if "kmsKeyId" in data:
+    if data.get("kmsKeyId") is not None:
         out["kms_key_id"] = data["kmsKeyId"]
-    if "roleArn" in data:
+    if data.get("roleArn") is not None:
         out["role_arn"] = data["roleArn"]
     else:
         raise DeserializationError("CreateFileSystemRequest.role_arn required")
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_s3files.types.tag_list
 
         out["tags"] = capo_s3files.types.tag_list.deserialize_json(data["tags"])
-    if "acceptBucketWarning" in data:
+    if data.get("acceptBucketWarning") is not None:
         out["accept_bucket_warning"] = data["acceptBucketWarning"]
     return out

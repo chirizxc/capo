@@ -38,7 +38,7 @@ def serialize_json(value: UpdateVirtualRouterInput) -> dict:
 
 def deserialize_json(data: dict) -> UpdateVirtualRouterInput:
     out: UpdateVirtualRouterInput = {}  # type: ignore[typeddict-item]
-    if "spec" in data:
+    if data.get("spec") is not None:
         import capo_app_mesh.types.virtual_router_spec
 
         out["spec"] = capo_app_mesh.types.virtual_router_spec.deserialize_json(
@@ -46,6 +46,6 @@ def deserialize_json(data: dict) -> UpdateVirtualRouterInput:
         )
     else:
         raise DeserializationError("UpdateVirtualRouterInput.spec required")
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     return out

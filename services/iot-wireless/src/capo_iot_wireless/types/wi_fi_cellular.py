@@ -22,7 +22,7 @@ def serialize_json(value: WiFiCellular) -> dict:
 
 def deserialize_json(data: dict) -> WiFiCellular:
     out: WiFiCellular = {}  # type: ignore[typeddict-item]
-    if "ConfidencePercent" in data:
+    if data.get("ConfidencePercent") is not None:
         out["confidence_percent"] = data["ConfidencePercent"]
     else:
         out["confidence_percent"] = 68

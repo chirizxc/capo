@@ -13,9 +13,9 @@ from capo_connect import AsyncConnectClient
 
 
 async def main():
-    async with AsyncConnectClient() as s3:
+    async with AsyncConnectClient() as connect:
         # Example: call the activate_evaluation_form operation
-        response = await s3.activate_evaluation_form()
+        response = await connect.activate_evaluation_form()
         print(response["evaluation_form_id"])
 ```
 
@@ -28,9 +28,9 @@ from capo_connect import AsyncConnectClient
 
 
 async def main():
-    async with AsyncConnectClient() as s3:
-        # Example: paginate over list_agent_statuses
-        async for item in s3.iter_list_agent_statuses():
+    async with AsyncConnectClient() as connect:
+        # Example: paginate over evaluate_data_table_values
+        async for item in connect.iter_evaluate_data_table_values():
             print(item)
 ```
 
@@ -44,9 +44,9 @@ from capo_connect.error import InternalServiceException
 
 
 async def main():
-    async with AsyncConnectClient() as s3:
+    async with AsyncConnectClient() as connect:
         try:
-            await s3.activate_evaluation_form()
+            await connect.activate_evaluation_form()
         except InternalServiceException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -63,13 +63,13 @@ from capo_connect import AsyncConnectClient
 
 
 async def main():
-    async with AsyncConnectClient() as s3:
+    async with AsyncConnectClient() as connect:
         # Default: 3 attempts for every operation
-        response = await s3.activate_evaluation_form()
+        response = await connect.activate_evaluation_form()
 
         # Override per operation
-        response = await s3.activate_evaluation_form(config_overrides={"retry_max_attempts": 5})
+        response = await connect.activate_evaluation_form(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.activate_evaluation_form(config_overrides={"retry_max_attempts": 1})
+        response = await connect.activate_evaluation_form(config_overrides={"retry_max_attempts": 1})
 ```

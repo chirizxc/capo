@@ -69,14 +69,16 @@ class Session:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mpa.types.get_session_request.GetSessionRequest = {}  # type: ignore[typeddict-item]
-        input_["session_arn"] = session_arn
+        input_: capo_mpa.types.get_session_request.GetSessionRequest = {
+            "session_arn": session_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update(
@@ -115,14 +117,16 @@ class Session:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mpa.types.cancel_session_request.CancelSessionRequest = {}  # type: ignore[typeddict-item]
-        input_["session_arn"] = session_arn
+        input_: capo_mpa.types.cancel_session_request.CancelSessionRequest = {
+            "session_arn": session_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -166,8 +170,9 @@ class Session:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mpa.types.list_sessions_request.ListSessionsRequest = {}  # type: ignore[typeddict-item]
-        input_["approval_team_arn"] = approval_team_arn
+        input_: capo_mpa.types.list_sessions_request.ListSessionsRequest = {
+            "approval_team_arn": approval_team_arn
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -180,6 +185,7 @@ class Session:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -223,14 +229,16 @@ class AsyncSession:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mpa.types.get_session_request.GetSessionRequest = {}  # type: ignore[typeddict-item]
-        input_["session_arn"] = session_arn
+        input_: capo_mpa.types.get_session_request.GetSessionRequest = {
+            "session_arn": session_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update(
@@ -270,14 +278,16 @@ class AsyncSession:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mpa.types.cancel_session_request.CancelSessionRequest = {}  # type: ignore[typeddict-item]
-        input_["session_arn"] = session_arn
+        input_: capo_mpa.types.cancel_session_request.CancelSessionRequest = {
+            "session_arn": session_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -322,8 +332,9 @@ class AsyncSession:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mpa.types.list_sessions_request.ListSessionsRequest = {}  # type: ignore[typeddict-item]
-        input_["approval_team_arn"] = approval_team_arn
+        input_: capo_mpa.types.list_sessions_request.ListSessionsRequest = {
+            "approval_team_arn": approval_team_arn
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -336,4 +347,5 @@ class AsyncSession:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

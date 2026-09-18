@@ -29,9 +29,9 @@ def serialize_json(value: LocalizedString) -> dict:
 
 def deserialize_json(data: dict) -> LocalizedString:
     out: LocalizedString = {}  # type: ignore[typeddict-item]
-    if "Language" in data:
+    if data.get("Language") is not None:
         out["language"] = data["Language"]
-    if "Value" in data:
+    if data.get("Value") is not None:
         out["value"] = data["Value"]
     else:
         raise DeserializationError("LocalizedString.value required")

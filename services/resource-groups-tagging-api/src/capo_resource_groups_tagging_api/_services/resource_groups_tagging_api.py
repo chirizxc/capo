@@ -193,13 +193,14 @@ class ResourceGroupsTaggingAPIClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_resource_groups_tagging_api.types.describe_report_creation_input.DescribeReportCreationInput = {}  # type: ignore[typeddict-item]
+        input_: capo_resource_groups_tagging_api.types.describe_report_creation_input.DescribeReportCreationInput = {}
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_compliance_summary(
@@ -262,7 +263,7 @@ class ResourceGroupsTaggingAPIClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_resource_groups_tagging_api.types.get_compliance_summary_input.GetComplianceSummaryInput = {}  # type: ignore[typeddict-item]
+        input_: capo_resource_groups_tagging_api.types.get_compliance_summary_input.GetComplianceSummaryInput = {}
         if target_id_filters is not None:
             input_["target_id_filters"] = target_id_filters
         if region_filters is not None:
@@ -283,6 +284,7 @@ class ResourceGroupsTaggingAPIClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_get_compliance_summary(
@@ -396,7 +398,7 @@ class ResourceGroupsTaggingAPIClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_resource_groups_tagging_api.types.get_resources_input.GetResourcesInput = {}  # type: ignore[typeddict-item]
+        input_: capo_resource_groups_tagging_api.types.get_resources_input.GetResourcesInput = {}
         if pagination_token is not None:
             input_["pagination_token"] = pagination_token
         if tag_filters is not None:
@@ -419,6 +421,7 @@ class ResourceGroupsTaggingAPIClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_get_resources(
@@ -506,7 +509,7 @@ class ResourceGroupsTaggingAPIClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_resource_groups_tagging_api.types.get_tag_keys_input.GetTagKeysInput = {}  # type: ignore[typeddict-item]
+        input_: capo_resource_groups_tagging_api.types.get_tag_keys_input.GetTagKeysInput = {}
         if pagination_token is not None:
             input_["pagination_token"] = pagination_token
 
@@ -515,6 +518,7 @@ class ResourceGroupsTaggingAPIClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_get_tag_keys(
@@ -576,16 +580,18 @@ class ResourceGroupsTaggingAPIClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_resource_groups_tagging_api.types.get_tag_values_input.GetTagValuesInput = {}  # type: ignore[typeddict-item]
+        input_: capo_resource_groups_tagging_api.types.get_tag_values_input.GetTagValuesInput = {
+            "key": key
+        }
         if pagination_token is not None:
             input_["pagination_token"] = pagination_token
-        input_["key"] = key
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_get_tag_values(
@@ -651,7 +657,7 @@ class ResourceGroupsTaggingAPIClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_resource_groups_tagging_api.types.list_required_tags_input.ListRequiredTagsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_resource_groups_tagging_api.types.list_required_tags_input.ListRequiredTagsInput = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -662,6 +668,7 @@ class ResourceGroupsTaggingAPIClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_required_tags(
@@ -724,14 +731,16 @@ class ResourceGroupsTaggingAPIClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_resource_groups_tagging_api.types.start_report_creation_input.StartReportCreationInput = {}  # type: ignore[typeddict-item]
-        input_["s3_bucket"] = s3_bucket
+        input_: capo_resource_groups_tagging_api.types.start_report_creation_input.StartReportCreationInput = {
+            "s3_bucket": s3_bucket
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def tag_resources(
@@ -771,15 +780,17 @@ class ResourceGroupsTaggingAPIClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_resource_groups_tagging_api.types.tag_resources_input.TagResourcesInput = {}  # type: ignore[typeddict-item]
-        input_["resource_arn_list"] = resource_arn_list
-        input_["tags"] = tags
+        input_: capo_resource_groups_tagging_api.types.tag_resources_input.TagResourcesInput = {
+            "resource_arn_list": resource_arn_list,
+            "tags": tags,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def untag_resources(
@@ -817,15 +828,17 @@ class ResourceGroupsTaggingAPIClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_resource_groups_tagging_api.types.untag_resources_input.UntagResourcesInput = {}  # type: ignore[typeddict-item]
-        input_["resource_arn_list"] = resource_arn_list
-        input_["tag_keys"] = tag_keys
+        input_: capo_resource_groups_tagging_api.types.untag_resources_input.UntagResourcesInput = {
+            "resource_arn_list": resource_arn_list,
+            "tag_keys": tag_keys,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def __enter__(self) -> Self:

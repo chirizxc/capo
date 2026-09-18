@@ -197,7 +197,7 @@ def serialize_json(value: ServiceDetails) -> dict:
 
 
 def deserialize_json(data: dict) -> ServiceDetails:
-    if "dynatrace" in data:
+    if data.get("dynatrace") is not None:
         import capo_devops_agent.types.dynatrace_service_details
 
         return {
@@ -205,7 +205,7 @@ def deserialize_json(data: dict) -> ServiceDetails:
                 data["dynatrace"]
             )
         }
-    elif "servicenow" in data:
+    elif data.get("servicenow") is not None:
         import capo_devops_agent.types.service_now_service_details
 
         return {
@@ -213,7 +213,7 @@ def deserialize_json(data: dict) -> ServiceDetails:
                 data["servicenow"]
             )
         }
-    elif "mcpserverdatadog" in data:
+    elif data.get("mcpserverdatadog") is not None:
         import capo_devops_agent.types.datadog_service_details
 
         return {
@@ -221,7 +221,7 @@ def deserialize_json(data: dict) -> ServiceDetails:
                 data["mcpserverdatadog"]
             )
         }
-    elif "mcpserver" in data:
+    elif data.get("mcpserver") is not None:
         import capo_devops_agent.types.mcp_server_details
 
         return {
@@ -229,7 +229,7 @@ def deserialize_json(data: dict) -> ServiceDetails:
                 data["mcpserver"]
             )
         }
-    elif "gitlab" in data:
+    elif data.get("gitlab") is not None:
         import capo_devops_agent.types.git_lab_details
 
         return {
@@ -237,7 +237,7 @@ def deserialize_json(data: dict) -> ServiceDetails:
                 data["gitlab"]
             )
         }
-    elif "mcpserversplunk" in data:
+    elif data.get("mcpserversplunk") is not None:
         import capo_devops_agent.types.mcp_server_details
 
         return {
@@ -245,7 +245,7 @@ def deserialize_json(data: dict) -> ServiceDetails:
                 data["mcpserversplunk"]
             )
         }
-    elif "mcpservernewrelic" in data:
+    elif data.get("mcpservernewrelic") is not None:
         import capo_devops_agent.types.new_relic_service_details
 
         return {
@@ -253,7 +253,7 @@ def deserialize_json(data: dict) -> ServiceDetails:
                 data["mcpservernewrelic"]
             )
         }
-    elif "eventChannel" in data:
+    elif data.get("eventChannel") is not None:
         import capo_devops_agent.types.event_channel_details
 
         return {
@@ -261,7 +261,7 @@ def deserialize_json(data: dict) -> ServiceDetails:
                 data["eventChannel"]
             )
         }
-    elif "mcpservergrafana" in data:
+    elif data.get("mcpservergrafana") is not None:
         import capo_devops_agent.types.grafana_service_details
 
         return {
@@ -269,7 +269,7 @@ def deserialize_json(data: dict) -> ServiceDetails:
                 data["mcpservergrafana"]
             )
         }
-    elif "pagerduty" in data:
+    elif data.get("pagerduty") is not None:
         import capo_devops_agent.types.pager_duty_details
 
         return {
@@ -277,7 +277,7 @@ def deserialize_json(data: dict) -> ServiceDetails:
                 data["pagerduty"]
             )
         }
-    elif "azureidentity" in data:
+    elif data.get("azureidentity") is not None:
         import capo_devops_agent.types.registered_azure_identity_details
 
         return {
@@ -285,7 +285,7 @@ def deserialize_json(data: dict) -> ServiceDetails:
                 data["azureidentity"]
             )
         }
-    elif "mcpserversigv4" in data:
+    elif data.get("mcpserversigv4") is not None:
         import capo_devops_agent.types.mcp_server_sig_v4_service_details
 
         return {

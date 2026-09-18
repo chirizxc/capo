@@ -27,11 +27,11 @@ def serialize_aws_json_1_0(value: AwsProductOptimization) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> AwsProductOptimization:
     out: AwsProductOptimization = {}  # type: ignore[typeddict-item]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
     else:
         raise DeserializationError("AwsProductOptimization.description required")
-    if "SavingsAmount" in data:
+    if data.get("SavingsAmount") is not None:
         out["savings_amount"] = data["SavingsAmount"]
     else:
         raise DeserializationError("AwsProductOptimization.savings_amount required")

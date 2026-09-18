@@ -23,6 +23,8 @@ def serialize_json(input_to_serialize: SectionalElementMap) -> dict:
 def deserialize_json(data: dict) -> SectionalElementMap:
     out: SectionalElementMap = {}
     for key, value in data.items():
+        if value is None:
+            continue
         import capo_amplifyuibuilder.types.sectional_element
 
         out[key] = capo_amplifyuibuilder.types.sectional_element.deserialize_json(value)

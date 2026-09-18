@@ -47,9 +47,9 @@ def serialize_json(value: AvailableNumberSummary) -> dict:
 
 def deserialize_json(data: dict) -> AvailableNumberSummary:
     out: AvailableNumberSummary = {}  # type: ignore[typeddict-item]
-    if "PhoneNumber" in data:
+    if data.get("PhoneNumber") is not None:
         out["phone_number"] = data["PhoneNumber"]
-    if "PhoneNumberCountryCode" in data:
+    if data.get("PhoneNumberCountryCode") is not None:
         import capo_connect.types.phone_number_country_code
 
         out["phone_number_country_code"] = (
@@ -57,7 +57,7 @@ def deserialize_json(data: dict) -> AvailableNumberSummary:
                 data["PhoneNumberCountryCode"]
             )
         )
-    if "PhoneNumberType" in data:
+    if data.get("PhoneNumberType") is not None:
         import capo_connect.types.phone_number_type
 
         out["phone_number_type"] = (

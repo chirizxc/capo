@@ -27,8 +27,8 @@ def serialize_json(value: MultiplexProgramSummary) -> dict:
 
 def deserialize_json(data: dict) -> MultiplexProgramSummary:
     out: MultiplexProgramSummary = {}  # type: ignore[typeddict-item]
-    if "channelId" in data:
+    if data.get("channelId") is not None:
         out["channel_id"] = data["channelId"]
-    if "programName" in data:
+    if data.get("programName") is not None:
         out["program_name"] = data["programName"]
     return out

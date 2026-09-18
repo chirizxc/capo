@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> AssetTargetNames:
 
     out: AssetTargetNames = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_datazone.types.asset_target_name_map.deserialize_json(item))
     return out

@@ -36,13 +36,13 @@ def serialize_aws_json_1_1(value: AdminAccountSummary) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AdminAccountSummary:
     out: AdminAccountSummary = {}  # type: ignore[typeddict-item]
-    if "AdminAccount" in data:
+    if data.get("AdminAccount") is not None:
         out["admin_account"] = data["AdminAccount"]
-    if "DefaultAdmin" in data:
+    if data.get("DefaultAdmin") is not None:
         out["default_admin"] = data["DefaultAdmin"]
     else:
         out["default_admin"] = False
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_fms.types.organization_status
 
         out["status"] = capo_fms.types.organization_status.deserialize_aws_json_1_1(

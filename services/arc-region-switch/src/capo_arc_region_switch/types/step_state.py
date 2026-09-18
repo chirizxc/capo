@@ -65,9 +65,9 @@ def serialize_aws_json_1_0(value: StepState) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> StepState:
     out: StepState = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_arc_region_switch.types.step_status
 
         out["status"] = (
@@ -75,7 +75,7 @@ def deserialize_aws_json_1_0(data: dict) -> StepState:
                 data["status"]
             )
         )
-    if "startTime" in data:
+    if data.get("startTime") is not None:
         import capo_arc_region_switch.types._prelude.timestamp
 
         out["start_time"] = (
@@ -83,7 +83,7 @@ def deserialize_aws_json_1_0(data: dict) -> StepState:
                 data["startTime"]
             )
         )
-    if "endTime" in data:
+    if data.get("endTime") is not None:
         import capo_arc_region_switch.types._prelude.timestamp
 
         out["end_time"] = (
@@ -91,7 +91,7 @@ def deserialize_aws_json_1_0(data: dict) -> StepState:
                 data["endTime"]
             )
         )
-    if "stepMode" in data:
+    if data.get("stepMode") is not None:
         import capo_arc_region_switch.types.execution_mode
 
         out["step_mode"] = (

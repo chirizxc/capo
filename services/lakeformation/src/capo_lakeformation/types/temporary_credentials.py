@@ -52,13 +52,13 @@ def serialize_json(value: TemporaryCredentials) -> dict:
 
 def deserialize_json(data: dict) -> TemporaryCredentials:
     out: TemporaryCredentials = {}  # type: ignore[typeddict-item]
-    if "AccessKeyId" in data:
+    if data.get("AccessKeyId") is not None:
         out["access_key_id"] = data["AccessKeyId"]
-    if "SecretAccessKey" in data:
+    if data.get("SecretAccessKey") is not None:
         out["secret_access_key"] = data["SecretAccessKey"]
-    if "SessionToken" in data:
+    if data.get("SessionToken") is not None:
         out["session_token"] = data["SessionToken"]
-    if "Expiration" in data:
+    if data.get("Expiration") is not None:
         import capo_lakeformation.types.expiration_timestamp
 
         out["expiration"] = (

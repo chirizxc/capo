@@ -49,15 +49,15 @@ def serialize_json(value: CreateScanResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateScanResponse:
     out: CreateScanResponse = {}  # type: ignore[typeddict-item]
-    if "scanName" in data:
+    if data.get("scanName") is not None:
         out["scan_name"] = data["scanName"]
     else:
         raise DeserializationError("CreateScanResponse.scan_name required")
-    if "runId" in data:
+    if data.get("runId") is not None:
         out["run_id"] = data["runId"]
     else:
         raise DeserializationError("CreateScanResponse.run_id required")
-    if "resourceId" in data:
+    if data.get("resourceId") is not None:
         import capo_codeguru_security.types.resource_id
 
         out["resource_id"] = capo_codeguru_security.types.resource_id.deserialize_json(
@@ -65,7 +65,7 @@ def deserialize_json(data: dict) -> CreateScanResponse:
         )
     else:
         raise DeserializationError("CreateScanResponse.resource_id required")
-    if "scanState" in data:
+    if data.get("scanState") is not None:
         import capo_codeguru_security.types.scan_state
 
         out["scan_state"] = capo_codeguru_security.types.scan_state.deserialize_json(
@@ -73,6 +73,6 @@ def deserialize_json(data: dict) -> CreateScanResponse:
         )
     else:
         raise DeserializationError("CreateScanResponse.scan_state required")
-    if "scanNameArn" in data:
+    if data.get("scanNameArn") is not None:
         out["scan_name_arn"] = data["scanNameArn"]
     return out

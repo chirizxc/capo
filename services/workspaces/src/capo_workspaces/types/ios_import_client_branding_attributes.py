@@ -70,31 +70,31 @@ def serialize_aws_json_1_1(value: IosImportClientBrandingAttributes) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> IosImportClientBrandingAttributes:
     out: IosImportClientBrandingAttributes = {}  # type: ignore[typeddict-item]
-    if "Logo" in data:
+    if data.get("Logo") is not None:
         import capo_workspaces.types.ios_logo
 
         out["logo"] = capo_workspaces.types.ios_logo.deserialize_aws_json_1_1(
             data["Logo"]
         )
-    if "Logo2x" in data:
+    if data.get("Logo2x") is not None:
         import capo_workspaces.types.ios2_x_logo
 
         out["logo2x"] = capo_workspaces.types.ios2_x_logo.deserialize_aws_json_1_1(
             data["Logo2x"]
         )
-    if "Logo3x" in data:
+    if data.get("Logo3x") is not None:
         import capo_workspaces.types.ios3_x_logo
 
         out["logo3x"] = capo_workspaces.types.ios3_x_logo.deserialize_aws_json_1_1(
             data["Logo3x"]
         )
-    if "SupportEmail" in data:
+    if data.get("SupportEmail") is not None:
         out["support_email"] = data["SupportEmail"]
-    if "SupportLink" in data:
+    if data.get("SupportLink") is not None:
         out["support_link"] = data["SupportLink"]
-    if "ForgotPasswordLink" in data:
+    if data.get("ForgotPasswordLink") is not None:
         out["forgot_password_link"] = data["ForgotPasswordLink"]
-    if "LoginMessage" in data:
+    if data.get("LoginMessage") is not None:
         import capo_workspaces.types.login_message
 
         out["login_message"] = (

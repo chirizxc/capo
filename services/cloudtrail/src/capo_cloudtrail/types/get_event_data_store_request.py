@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: GetEventDataStoreRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetEventDataStoreRequest:
     out: GetEventDataStoreRequest = {}  # type: ignore[typeddict-item]
-    if "EventDataStore" in data:
+    if data.get("EventDataStore") is not None:
         out["event_data_store"] = data["EventDataStore"]
     else:
         raise DeserializationError("GetEventDataStoreRequest.event_data_store required")

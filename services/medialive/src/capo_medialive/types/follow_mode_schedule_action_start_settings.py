@@ -32,12 +32,12 @@ def serialize_json(value: FollowModeScheduleActionStartSettings) -> dict:
 
 def deserialize_json(data: dict) -> FollowModeScheduleActionStartSettings:
     out: FollowModeScheduleActionStartSettings = {}  # type: ignore[typeddict-item]
-    if "followPoint" in data:
+    if data.get("followPoint") is not None:
         import capo_medialive.types.follow_point
 
         out["follow_point"] = capo_medialive.types.follow_point.deserialize_json(
             data["followPoint"]
         )
-    if "referenceActionName" in data:
+    if data.get("referenceActionName") is not None:
         out["reference_action_name"] = data["referenceActionName"]
     return out

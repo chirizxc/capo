@@ -33,7 +33,7 @@ def serialize_json(value: UpdateApplicationSettingsRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateApplicationSettingsRequest:
     out: UpdateApplicationSettingsRequest = {}  # type: ignore[typeddict-item]
-    if "WriteApplicationSettingsRequest" in data:
+    if data.get("WriteApplicationSettingsRequest") is not None:
         import capo_pinpoint.types.write_application_settings_request
 
         out["write_application_settings_request"] = (

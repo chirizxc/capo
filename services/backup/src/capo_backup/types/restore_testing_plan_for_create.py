@@ -44,7 +44,7 @@ def serialize_json(value: RestoreTestingPlanForCreate) -> dict:
 
 def deserialize_json(data: dict) -> RestoreTestingPlanForCreate:
     out: RestoreTestingPlanForCreate = {}  # type: ignore[typeddict-item]
-    if "RecoveryPointSelection" in data:
+    if data.get("RecoveryPointSelection") is not None:
         import capo_backup.types.restore_testing_recovery_point_selection
 
         out["recovery_point_selection"] = (
@@ -56,21 +56,21 @@ def deserialize_json(data: dict) -> RestoreTestingPlanForCreate:
         raise DeserializationError(
             "RestoreTestingPlanForCreate.recovery_point_selection required"
         )
-    if "RestoreTestingPlanName" in data:
+    if data.get("RestoreTestingPlanName") is not None:
         out["restore_testing_plan_name"] = data["RestoreTestingPlanName"]
     else:
         raise DeserializationError(
             "RestoreTestingPlanForCreate.restore_testing_plan_name required"
         )
-    if "ScheduleExpression" in data:
+    if data.get("ScheduleExpression") is not None:
         out["schedule_expression"] = data["ScheduleExpression"]
     else:
         raise DeserializationError(
             "RestoreTestingPlanForCreate.schedule_expression required"
         )
-    if "ScheduleExpressionTimezone" in data:
+    if data.get("ScheduleExpressionTimezone") is not None:
         out["schedule_expression_timezone"] = data["ScheduleExpressionTimezone"]
-    if "StartWindowHours" in data:
+    if data.get("StartWindowHours") is not None:
         out["start_window_hours"] = data["StartWindowHours"]
     else:
         out["start_window_hours"] = 0

@@ -32,12 +32,12 @@ def serialize_aws_json_1_1(value: ExperienceEndpoint) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ExperienceEndpoint:
     out: ExperienceEndpoint = {}  # type: ignore[typeddict-item]
-    if "EndpointType" in data:
+    if data.get("EndpointType") is not None:
         import capo_kendra.types.endpoint_type
 
         out["endpoint_type"] = capo_kendra.types.endpoint_type.deserialize_aws_json_1_1(
             data["EndpointType"]
         )
-    if "Endpoint" in data:
+    if data.get("Endpoint") is not None:
         out["endpoint"] = data["Endpoint"]
     return out

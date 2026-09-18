@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> AttributeFilters:
 
     out: AttributeFilters = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_qapps.types.attribute_filter.deserialize_json(item))
     return out

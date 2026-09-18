@@ -42,11 +42,11 @@ def serialize_json(value: AddDataSourceRequest) -> dict:
 
 def deserialize_json(data: dict) -> AddDataSourceRequest:
     out: AddDataSourceRequest = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("AddDataSourceRequest.name required")
-    if "DataSourceType" in data:
+    if data.get("DataSourceType") is not None:
         import capo_opensearch.types.data_source_type
 
         out["data_source_type"] = (
@@ -56,6 +56,6 @@ def deserialize_json(data: dict) -> AddDataSourceRequest:
         )
     else:
         raise DeserializationError("AddDataSourceRequest.data_source_type required")
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
     return out

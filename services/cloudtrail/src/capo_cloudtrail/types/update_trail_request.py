@@ -65,28 +65,28 @@ def serialize_aws_json_1_1(value: UpdateTrailRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateTrailRequest:
     out: UpdateTrailRequest = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("UpdateTrailRequest.name required")
-    if "S3BucketName" in data:
+    if data.get("S3BucketName") is not None:
         out["s3_bucket_name"] = data["S3BucketName"]
-    if "S3KeyPrefix" in data:
+    if data.get("S3KeyPrefix") is not None:
         out["s3_key_prefix"] = data["S3KeyPrefix"]
-    if "SnsTopicName" in data:
+    if data.get("SnsTopicName") is not None:
         out["sns_topic_name"] = data["SnsTopicName"]
-    if "IncludeGlobalServiceEvents" in data:
+    if data.get("IncludeGlobalServiceEvents") is not None:
         out["include_global_service_events"] = data["IncludeGlobalServiceEvents"]
-    if "IsMultiRegionTrail" in data:
+    if data.get("IsMultiRegionTrail") is not None:
         out["is_multi_region_trail"] = data["IsMultiRegionTrail"]
-    if "EnableLogFileValidation" in data:
+    if data.get("EnableLogFileValidation") is not None:
         out["enable_log_file_validation"] = data["EnableLogFileValidation"]
-    if "CloudWatchLogsLogGroupArn" in data:
+    if data.get("CloudWatchLogsLogGroupArn") is not None:
         out["cloud_watch_logs_log_group_arn"] = data["CloudWatchLogsLogGroupArn"]
-    if "CloudWatchLogsRoleArn" in data:
+    if data.get("CloudWatchLogsRoleArn") is not None:
         out["cloud_watch_logs_role_arn"] = data["CloudWatchLogsRoleArn"]
-    if "KmsKeyId" in data:
+    if data.get("KmsKeyId") is not None:
         out["kms_key_id"] = data["KmsKeyId"]
-    if "IsOrganizationTrail" in data:
+    if data.get("IsOrganizationTrail") is not None:
         out["is_organization_trail"] = data["IsOrganizationTrail"]
     return out

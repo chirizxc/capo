@@ -78,11 +78,11 @@ def serialize_json(value: ServiceEnvironmentDetail) -> dict:
 
 def deserialize_json(data: dict) -> ServiceEnvironmentDetail:
     out: ServiceEnvironmentDetail = {}  # type: ignore[typeddict-item]
-    if "serviceEnvironmentName" in data:
+    if data.get("serviceEnvironmentName") is not None:
         out["service_environment_name"] = data["serviceEnvironmentName"]
-    if "serviceEnvironmentArn" in data:
+    if data.get("serviceEnvironmentArn") is not None:
         out["service_environment_arn"] = data["serviceEnvironmentArn"]
-    if "serviceEnvironmentType" in data:
+    if data.get("serviceEnvironmentType") is not None:
         import capo_batch.types.service_environment_type
 
         out["service_environment_type"] = (
@@ -90,25 +90,25 @@ def deserialize_json(data: dict) -> ServiceEnvironmentDetail:
                 data["serviceEnvironmentType"]
             )
         )
-    if "state" in data:
+    if data.get("state") is not None:
         import capo_batch.types.service_environment_state
 
         out["state"] = capo_batch.types.service_environment_state.deserialize_json(
             data["state"]
         )
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_batch.types.service_environment_status
 
         out["status"] = capo_batch.types.service_environment_status.deserialize_json(
             data["status"]
         )
-    if "capacityLimits" in data:
+    if data.get("capacityLimits") is not None:
         import capo_batch.types.capacity_limits
 
         out["capacity_limits"] = capo_batch.types.capacity_limits.deserialize_json(
             data["capacityLimits"]
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_batch.types.tagris_tags_map
 
         out["tags"] = capo_batch.types.tagris_tags_map.deserialize_json(data["tags"])

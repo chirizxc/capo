@@ -40,7 +40,7 @@ def serialize_json(value: TestSetDiscrepancyErrors) -> dict:
 
 def deserialize_json(data: dict) -> TestSetDiscrepancyErrors:
     out: TestSetDiscrepancyErrors = {}  # type: ignore[typeddict-item]
-    if "intentDiscrepancies" in data:
+    if data.get("intentDiscrepancies") is not None:
         import capo_lex_models_v2.types.test_set_intent_discrepancy_list
 
         out["intent_discrepancies"] = (
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> TestSetDiscrepancyErrors:
         raise DeserializationError(
             "TestSetDiscrepancyErrors.intent_discrepancies required"
         )
-    if "slotDiscrepancies" in data:
+    if data.get("slotDiscrepancies") is not None:
         import capo_lex_models_v2.types.test_set_slot_discrepancy_list
 
         out["slot_discrepancies"] = (

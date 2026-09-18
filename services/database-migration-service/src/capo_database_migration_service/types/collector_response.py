@@ -104,13 +104,13 @@ def serialize_aws_json_1_1(value: CollectorResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CollectorResponse:
     out: CollectorResponse = {}  # type: ignore[typeddict-item]
-    if "CollectorReferencedId" in data:
+    if data.get("CollectorReferencedId") is not None:
         out["collector_referenced_id"] = data["CollectorReferencedId"]
-    if "CollectorName" in data:
+    if data.get("CollectorName") is not None:
         out["collector_name"] = data["CollectorName"]
-    if "CollectorVersion" in data:
+    if data.get("CollectorVersion") is not None:
         out["collector_version"] = data["CollectorVersion"]
-    if "VersionStatus" in data:
+    if data.get("VersionStatus") is not None:
         import capo_database_migration_service.types.version_status
 
         out["version_status"] = (
@@ -118,13 +118,13 @@ def deserialize_aws_json_1_1(data: dict) -> CollectorResponse:
                 data["VersionStatus"]
             )
         )
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "S3BucketName" in data:
+    if data.get("S3BucketName") is not None:
         out["s3_bucket_name"] = data["S3BucketName"]
-    if "ServiceAccessRoleArn" in data:
+    if data.get("ServiceAccessRoleArn") is not None:
         out["service_access_role_arn"] = data["ServiceAccessRoleArn"]
-    if "CollectorHealthCheck" in data:
+    if data.get("CollectorHealthCheck") is not None:
         import capo_database_migration_service.types.collector_health_check
 
         out["collector_health_check"] = (
@@ -132,15 +132,15 @@ def deserialize_aws_json_1_1(data: dict) -> CollectorResponse:
                 data["CollectorHealthCheck"]
             )
         )
-    if "LastDataReceived" in data:
+    if data.get("LastDataReceived") is not None:
         out["last_data_received"] = data["LastDataReceived"]
-    if "RegisteredDate" in data:
+    if data.get("RegisteredDate") is not None:
         out["registered_date"] = data["RegisteredDate"]
-    if "CreatedDate" in data:
+    if data.get("CreatedDate") is not None:
         out["created_date"] = data["CreatedDate"]
-    if "ModifiedDate" in data:
+    if data.get("ModifiedDate") is not None:
         out["modified_date"] = data["ModifiedDate"]
-    if "InventoryData" in data:
+    if data.get("InventoryData") is not None:
         import capo_database_migration_service.types.inventory_data
 
         out["inventory_data"] = (

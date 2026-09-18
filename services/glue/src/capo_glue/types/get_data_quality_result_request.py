@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: GetDataQualityResultRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetDataQualityResultRequest:
     out: GetDataQualityResultRequest = {}  # type: ignore[typeddict-item]
-    if "ResultId" in data:
+    if data.get("ResultId") is not None:
         out["result_id"] = data["ResultId"]
     else:
         raise DeserializationError("GetDataQualityResultRequest.result_id required")

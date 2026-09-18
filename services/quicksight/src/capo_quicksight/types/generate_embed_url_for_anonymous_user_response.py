@@ -35,19 +35,19 @@ def serialize_json(value: GenerateEmbedUrlForAnonymousUserResponse) -> dict:
 
 def deserialize_json(data: dict) -> GenerateEmbedUrlForAnonymousUserResponse:
     out: GenerateEmbedUrlForAnonymousUserResponse = {}  # type: ignore[typeddict-item]
-    if "EmbedUrl" in data:
+    if data.get("EmbedUrl") is not None:
         out["embed_url"] = data["EmbedUrl"]
     else:
         raise DeserializationError(
             "GenerateEmbedUrlForAnonymousUserResponse.embed_url required"
         )
-    if "RequestId" in data:
+    if data.get("RequestId") is not None:
         out["request_id"] = data["RequestId"]
     else:
         raise DeserializationError(
             "GenerateEmbedUrlForAnonymousUserResponse.request_id required"
         )
-    if "AnonymousUserArn" in data:
+    if data.get("AnonymousUserArn") is not None:
         out["anonymous_user_arn"] = data["AnonymousUserArn"]
     else:
         raise DeserializationError(

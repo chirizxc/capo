@@ -38,13 +38,13 @@ def serialize_json(value: SingleSelectQuestionRuleCategoryAutomation) -> dict:
 
 def deserialize_json(data: dict) -> SingleSelectQuestionRuleCategoryAutomation:
     out: SingleSelectQuestionRuleCategoryAutomation = {}  # type: ignore[typeddict-item]
-    if "Category" in data:
+    if data.get("Category") is not None:
         out["category"] = data["Category"]
     else:
         raise DeserializationError(
             "SingleSelectQuestionRuleCategoryAutomation.category required"
         )
-    if "Condition" in data:
+    if data.get("Condition") is not None:
         import capo_connect.types.single_select_question_rule_category_automation_condition
 
         out["condition"] = (
@@ -56,7 +56,7 @@ def deserialize_json(data: dict) -> SingleSelectQuestionRuleCategoryAutomation:
         raise DeserializationError(
             "SingleSelectQuestionRuleCategoryAutomation.condition required"
         )
-    if "OptionRefId" in data:
+    if data.get("OptionRefId") is not None:
         out["option_ref_id"] = data["OptionRefId"]
     else:
         raise DeserializationError(

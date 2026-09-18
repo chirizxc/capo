@@ -20,19 +20,35 @@ class Location(TypedDict, closed=True):
 # --- awsJson1_1 ser/de ---
 def serialize_aws_json_1_1(value: Location) -> dict:
     out: dict = {}
-    out["latitude"] = value["latitude"]
-    out["longitude"] = value["longitude"]
+    out["latitude"] = (
+        "NaN"
+        if value["latitude"] != value["latitude"]
+        else "Infinity"
+        if value["latitude"] == float("inf")
+        else "-Infinity"
+        if value["latitude"] == float("-inf")
+        else value["latitude"]
+    )
+    out["longitude"] = (
+        "NaN"
+        if value["longitude"] != value["longitude"]
+        else "Infinity"
+        if value["longitude"] == float("inf")
+        else "-Infinity"
+        if value["longitude"] == float("-inf")
+        else value["longitude"]
+    )
     return out
 
 
 def deserialize_aws_json_1_1(data: dict) -> Location:
     out: Location = {}  # type: ignore[typeddict-item]
-    if "latitude" in data:
-        out["latitude"] = data["latitude"]
+    if data.get("latitude") is not None:
+        out["latitude"] = float(data["latitude"])
     else:
         raise DeserializationError("Location.latitude required")
-    if "longitude" in data:
-        out["longitude"] = data["longitude"]
+    if data.get("longitude") is not None:
+        out["longitude"] = float(data["longitude"])
     else:
         raise DeserializationError("Location.longitude required")
     return out

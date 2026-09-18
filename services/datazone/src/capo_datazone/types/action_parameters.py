@@ -34,7 +34,7 @@ def serialize_json(value: ActionParameters) -> dict:
 
 
 def deserialize_json(data: dict) -> ActionParameters:
-    if "awsConsoleLink" in data:
+    if data.get("awsConsoleLink") is not None:
         import capo_datazone.types.aws_console_link_parameters
 
         return {

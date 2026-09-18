@@ -41,15 +41,15 @@ def serialize_json(value: IamIdentityCenterOptions) -> dict:
 
 def deserialize_json(data: dict) -> IamIdentityCenterOptions:
     out: IamIdentityCenterOptions = {}  # type: ignore[typeddict-item]
-    if "enabled" in data:
+    if data.get("enabled") is not None:
         out["enabled"] = data["enabled"]
-    if "iamIdentityCenterInstanceArn" in data:
+    if data.get("iamIdentityCenterInstanceArn") is not None:
         out["iam_identity_center_instance_arn"] = data["iamIdentityCenterInstanceArn"]
-    if "iamRoleForIdentityCenterApplicationArn" in data:
+    if data.get("iamRoleForIdentityCenterApplicationArn") is not None:
         out["iam_role_for_identity_center_application_arn"] = data[
             "iamRoleForIdentityCenterApplicationArn"
         ]
-    if "iamIdentityCenterApplicationArn" in data:
+    if data.get("iamIdentityCenterApplicationArn") is not None:
         out["iam_identity_center_application_arn"] = data[
             "iamIdentityCenterApplicationArn"
         ]

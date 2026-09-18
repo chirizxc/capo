@@ -30,7 +30,7 @@ def serialize_json(value: DescribeElasticsearchDomainResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribeElasticsearchDomainResponse:
     out: DescribeElasticsearchDomainResponse = {}  # type: ignore[typeddict-item]
-    if "DomainStatus" in data:
+    if data.get("DomainStatus") is not None:
         import capo_elasticsearch_service.types.elasticsearch_domain_status
 
         out["domain_status"] = (

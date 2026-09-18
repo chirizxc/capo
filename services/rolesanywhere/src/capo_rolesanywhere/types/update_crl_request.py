@@ -34,9 +34,9 @@ def serialize_json(value: UpdateCrlRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateCrlRequest:
     out: UpdateCrlRequest = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "crlData" in data:
+    if data.get("crlData") is not None:
         import capo_rolesanywhere.types._prelude.blob
 
         out["crl_data"] = capo_rolesanywhere.types._prelude.blob.deserialize_json(

@@ -20,18 +20,26 @@ class ThrottleSettings(TypedDict, closed=True):
 def serialize_json(value: ThrottleSettings) -> dict:
     out: dict = {}
     out["burstLimit"] = value.get("burst_limit", 0)
-    out["rateLimit"] = value.get("rate_limit", 0)
+    out["rateLimit"] = (
+        "NaN"
+        if value.get("rate_limit", 0) != value.get("rate_limit", 0)
+        else "Infinity"
+        if value.get("rate_limit", 0) == float("inf")
+        else "-Infinity"
+        if value.get("rate_limit", 0) == float("-inf")
+        else value.get("rate_limit", 0)
+    )
     return out
 
 
 def deserialize_json(data: dict) -> ThrottleSettings:
     out: ThrottleSettings = {}  # type: ignore[typeddict-item]
-    if "burstLimit" in data:
+    if data.get("burstLimit") is not None:
         out["burst_limit"] = data["burstLimit"]
     else:
         out["burst_limit"] = 0
-    if "rateLimit" in data:
-        out["rate_limit"] = data["rateLimit"]
+    if data.get("rateLimit") is not None:
+        out["rate_limit"] = float(data["rateLimit"])
     else:
         out["rate_limit"] = 0
     return out

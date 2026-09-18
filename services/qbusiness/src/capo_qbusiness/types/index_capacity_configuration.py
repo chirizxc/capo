@@ -25,6 +25,6 @@ def serialize_json(value: IndexCapacityConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> IndexCapacityConfiguration:
     out: IndexCapacityConfiguration = {}  # type: ignore[typeddict-item]
-    if "units" in data:
+    if data.get("units") is not None:
         out["units"] = data["units"]
     return out

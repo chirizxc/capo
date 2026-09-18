@@ -47,17 +47,17 @@ def serialize_aws_json_1_1(value: UpdateWorkloadRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateWorkloadRequest:
     out: UpdateWorkloadRequest = {}  # type: ignore[typeddict-item]
-    if "ResourceGroupName" in data:
+    if data.get("ResourceGroupName") is not None:
         out["resource_group_name"] = data["ResourceGroupName"]
     else:
         raise DeserializationError("UpdateWorkloadRequest.resource_group_name required")
-    if "ComponentName" in data:
+    if data.get("ComponentName") is not None:
         out["component_name"] = data["ComponentName"]
     else:
         raise DeserializationError("UpdateWorkloadRequest.component_name required")
-    if "WorkloadId" in data:
+    if data.get("WorkloadId") is not None:
         out["workload_id"] = data["WorkloadId"]
-    if "WorkloadConfiguration" in data:
+    if data.get("WorkloadConfiguration") is not None:
         import capo_application_insights.types.workload_configuration
 
         out["workload_configuration"] = (

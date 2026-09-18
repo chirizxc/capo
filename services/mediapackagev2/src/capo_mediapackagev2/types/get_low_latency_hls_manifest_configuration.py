@@ -84,31 +84,31 @@ def serialize_json(value: GetLowLatencyHlsManifestConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> GetLowLatencyHlsManifestConfiguration:
     out: GetLowLatencyHlsManifestConfiguration = {}  # type: ignore[typeddict-item]
-    if "ManifestName" in data:
+    if data.get("ManifestName") is not None:
         out["manifest_name"] = data["ManifestName"]
     else:
         raise DeserializationError(
             "GetLowLatencyHlsManifestConfiguration.manifest_name required"
         )
-    if "Url" in data:
+    if data.get("Url") is not None:
         out["url"] = data["Url"]
     else:
         raise DeserializationError("GetLowLatencyHlsManifestConfiguration.url required")
-    if "ChildManifestName" in data:
+    if data.get("ChildManifestName") is not None:
         out["child_manifest_name"] = data["ChildManifestName"]
-    if "ManifestWindowSeconds" in data:
+    if data.get("ManifestWindowSeconds") is not None:
         out["manifest_window_seconds"] = data["ManifestWindowSeconds"]
-    if "ProgramDateTimeIntervalSeconds" in data:
+    if data.get("ProgramDateTimeIntervalSeconds") is not None:
         out["program_date_time_interval_seconds"] = data[
             "ProgramDateTimeIntervalSeconds"
         ]
-    if "ScteHls" in data:
+    if data.get("ScteHls") is not None:
         import capo_mediapackagev2.types.scte_hls
 
         out["scte_hls"] = capo_mediapackagev2.types.scte_hls.deserialize_json(
             data["ScteHls"]
         )
-    if "FilterConfiguration" in data:
+    if data.get("FilterConfiguration") is not None:
         import capo_mediapackagev2.types.filter_configuration
 
         out["filter_configuration"] = (
@@ -116,15 +116,15 @@ def deserialize_json(data: dict) -> GetLowLatencyHlsManifestConfiguration:
                 data["FilterConfiguration"]
             )
         )
-    if "StartTag" in data:
+    if data.get("StartTag") is not None:
         import capo_mediapackagev2.types.start_tag
 
         out["start_tag"] = capo_mediapackagev2.types.start_tag.deserialize_json(
             data["StartTag"]
         )
-    if "UrlEncodeChildManifest" in data:
+    if data.get("UrlEncodeChildManifest") is not None:
         out["url_encode_child_manifest"] = data["UrlEncodeChildManifest"]
-    if "UriPathType" in data:
+    if data.get("UriPathType") is not None:
         import capo_mediapackagev2.types.uri_path_type
 
         out["uri_path_type"] = capo_mediapackagev2.types.uri_path_type.deserialize_json(

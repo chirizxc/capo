@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> ChoiceAnswers:
 
     out: ChoiceAnswers = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_wellarchitected.types.choice_answer.deserialize_json(item))
     return out

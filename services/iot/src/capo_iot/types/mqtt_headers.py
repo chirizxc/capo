@@ -54,17 +54,17 @@ def serialize_json(value: MqttHeaders) -> dict:
 
 def deserialize_json(data: dict) -> MqttHeaders:
     out: MqttHeaders = {}  # type: ignore[typeddict-item]
-    if "payloadFormatIndicator" in data:
+    if data.get("payloadFormatIndicator") is not None:
         out["payload_format_indicator"] = data["payloadFormatIndicator"]
-    if "contentType" in data:
+    if data.get("contentType") is not None:
         out["content_type"] = data["contentType"]
-    if "responseTopic" in data:
+    if data.get("responseTopic") is not None:
         out["response_topic"] = data["responseTopic"]
-    if "correlationData" in data:
+    if data.get("correlationData") is not None:
         out["correlation_data"] = data["correlationData"]
-    if "messageExpiry" in data:
+    if data.get("messageExpiry") is not None:
         out["message_expiry"] = data["messageExpiry"]
-    if "userProperties" in data:
+    if data.get("userProperties") is not None:
         import capo_iot.types.user_properties
 
         out["user_properties"] = capo_iot.types.user_properties.deserialize_json(

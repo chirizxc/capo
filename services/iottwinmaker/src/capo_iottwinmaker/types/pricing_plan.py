@@ -61,9 +61,9 @@ def serialize_json(value: PricingPlan) -> dict:
 
 def deserialize_json(data: dict) -> PricingPlan:
     out: PricingPlan = {}  # type: ignore[typeddict-item]
-    if "billableEntityCount" in data:
+    if data.get("billableEntityCount") is not None:
         out["billable_entity_count"] = data["billableEntityCount"]
-    if "bundleInformation" in data:
+    if data.get("bundleInformation") is not None:
         import capo_iottwinmaker.types.bundle_information
 
         out["bundle_information"] = (
@@ -71,7 +71,7 @@ def deserialize_json(data: dict) -> PricingPlan:
                 data["bundleInformation"]
             )
         )
-    if "effectiveDateTime" in data:
+    if data.get("effectiveDateTime") is not None:
         import capo_iottwinmaker.types.timestamp
 
         out["effective_date_time"] = capo_iottwinmaker.types.timestamp.deserialize_json(
@@ -79,11 +79,11 @@ def deserialize_json(data: dict) -> PricingPlan:
         )
     else:
         raise DeserializationError("PricingPlan.effective_date_time required")
-    if "pricingMode" in data:
+    if data.get("pricingMode") is not None:
         out["pricing_mode"] = data["pricingMode"]
     else:
         raise DeserializationError("PricingPlan.pricing_mode required")
-    if "updateDateTime" in data:
+    if data.get("updateDateTime") is not None:
         import capo_iottwinmaker.types.timestamp
 
         out["update_date_time"] = capo_iottwinmaker.types.timestamp.deserialize_json(
@@ -91,7 +91,7 @@ def deserialize_json(data: dict) -> PricingPlan:
         )
     else:
         raise DeserializationError("PricingPlan.update_date_time required")
-    if "updateReason" in data:
+    if data.get("updateReason") is not None:
         out["update_reason"] = data["updateReason"]
     else:
         raise DeserializationError("PricingPlan.update_reason required")

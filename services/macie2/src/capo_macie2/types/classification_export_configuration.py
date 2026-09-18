@@ -27,7 +27,7 @@ def serialize_json(value: ClassificationExportConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> ClassificationExportConfiguration:
     out: ClassificationExportConfiguration = {}  # type: ignore[typeddict-item]
-    if "s3Destination" in data:
+    if data.get("s3Destination") is not None:
         import capo_macie2.types.s3_destination
 
         out["s3_destination"] = capo_macie2.types.s3_destination.deserialize_json(

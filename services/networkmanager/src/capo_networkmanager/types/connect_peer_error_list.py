@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> ConnectPeerErrorList:
 
     out: ConnectPeerErrorList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_networkmanager.types.connect_peer_error.deserialize_json(item))
     return out

@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: DuplicateHandshakeException_) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DuplicateHandshakeException_:
     out: DuplicateHandshakeException_ = {}  # type: ignore[typeddict-item]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     return out
 
@@ -34,15 +34,18 @@ class DuplicateHandshakeException(ServiceError):
 
     code: str | None = "DuplicateHandshakeException"
 
-    def __init__(self, data: DuplicateHandshakeException_):
+    def __init__(self, data: DuplicateHandshakeException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="DuplicateHandshakeException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "DuplicateHandshakeException":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "DuplicateHandshakeException":
+        return cls(deserialize_aws_json_1_1(data), message)

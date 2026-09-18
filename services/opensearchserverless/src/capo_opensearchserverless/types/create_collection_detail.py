@@ -94,25 +94,25 @@ def serialize_aws_json_1_0(value: CreateCollectionDetail) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CreateCollectionDetail:
     out: CreateCollectionDetail = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
-    if "type" in data:
+    if data.get("type") is not None:
         out["type"] = data["type"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "kmsKeyArn" in data:
+    if data.get("kmsKeyArn") is not None:
         out["kms_key_arn"] = data["kmsKeyArn"]
-    if "standbyReplicas" in data:
+    if data.get("standbyReplicas") is not None:
         out["standby_replicas"] = data["standbyReplicas"]
-    if "deletionProtection" in data:
+    if data.get("deletionProtection") is not None:
         out["deletion_protection"] = data["deletionProtection"]
-    if "vectorOptions" in data:
+    if data.get("vectorOptions") is not None:
         import capo_opensearchserverless.types.vector_options
 
         out["vector_options"] = (
@@ -120,10 +120,10 @@ def deserialize_aws_json_1_0(data: dict) -> CreateCollectionDetail:
                 data["vectorOptions"]
             )
         )
-    if "createdDate" in data:
+    if data.get("createdDate") is not None:
         out["created_date"] = data["createdDate"]
-    if "lastModifiedDate" in data:
+    if data.get("lastModifiedDate") is not None:
         out["last_modified_date"] = data["lastModifiedDate"]
-    if "collectionGroupName" in data:
+    if data.get("collectionGroupName") is not None:
         out["collection_group_name"] = data["collectionGroupName"]
     return out

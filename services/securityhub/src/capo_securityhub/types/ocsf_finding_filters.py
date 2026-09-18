@@ -44,7 +44,7 @@ def serialize_json(value: OcsfFindingFilters) -> dict:
 
 def deserialize_json(data: dict) -> OcsfFindingFilters:
     out: OcsfFindingFilters = {}  # type: ignore[typeddict-item]
-    if "CompositeFilters" in data:
+    if data.get("CompositeFilters") is not None:
         import capo_securityhub.types.composite_filter_list
 
         out["composite_filters"] = (
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> OcsfFindingFilters:
                 data["CompositeFilters"]
             )
         )
-    if "CompositeOperator" in data:
+    if data.get("CompositeOperator") is not None:
         import capo_securityhub.types.allowed_operators
 
         out["composite_operator"] = (

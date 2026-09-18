@@ -28,13 +28,13 @@ def serialize_aws_json_1_1(value: ActivateContactChannelRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ActivateContactChannelRequest:
     out: ActivateContactChannelRequest = {}  # type: ignore[typeddict-item]
-    if "ContactChannelId" in data:
+    if data.get("ContactChannelId") is not None:
         out["contact_channel_id"] = data["ContactChannelId"]
     else:
         raise DeserializationError(
             "ActivateContactChannelRequest.contact_channel_id required"
         )
-    if "ActivationCode" in data:
+    if data.get("ActivationCode") is not None:
         out["activation_code"] = data["ActivationCode"]
     else:
         raise DeserializationError(

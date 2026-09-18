@@ -119,17 +119,17 @@ def serialize_aws_json_1_0(value: GetResourceSnapshotJobResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> GetResourceSnapshotJobResponse:
     out: GetResourceSnapshotJobResponse = {}  # type: ignore[typeddict-item]
-    if "Catalog" in data:
+    if data.get("Catalog") is not None:
         out["catalog"] = data["Catalog"]
     else:
         raise DeserializationError("GetResourceSnapshotJobResponse.catalog required")
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "EngagementId" in data:
+    if data.get("EngagementId") is not None:
         out["engagement_id"] = data["EngagementId"]
-    if "ResourceType" in data:
+    if data.get("ResourceType") is not None:
         import capo_partnercentral_selling.types.resource_type
 
         out["resource_type"] = (
@@ -137,13 +137,13 @@ def deserialize_aws_json_1_0(data: dict) -> GetResourceSnapshotJobResponse:
                 data["ResourceType"]
             )
         )
-    if "ResourceId" in data:
+    if data.get("ResourceId") is not None:
         out["resource_id"] = data["ResourceId"]
-    if "ResourceArn" in data:
+    if data.get("ResourceArn") is not None:
         out["resource_arn"] = data["ResourceArn"]
-    if "ResourceSnapshotTemplateName" in data:
+    if data.get("ResourceSnapshotTemplateName") is not None:
         out["resource_snapshot_template_name"] = data["ResourceSnapshotTemplateName"]
-    if "CreatedAt" in data:
+    if data.get("CreatedAt") is not None:
         import capo_partnercentral_selling.types.date_time
 
         out["created_at"] = (
@@ -151,7 +151,7 @@ def deserialize_aws_json_1_0(data: dict) -> GetResourceSnapshotJobResponse:
                 data["CreatedAt"]
             )
         )
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_partnercentral_selling.types.resource_snapshot_job_status
 
         out["status"] = (
@@ -159,7 +159,7 @@ def deserialize_aws_json_1_0(data: dict) -> GetResourceSnapshotJobResponse:
                 data["Status"]
             )
         )
-    if "LastSuccessfulExecutionDate" in data:
+    if data.get("LastSuccessfulExecutionDate") is not None:
         import capo_partnercentral_selling.types.date_time
 
         out["last_successful_execution_date"] = (
@@ -167,6 +167,6 @@ def deserialize_aws_json_1_0(data: dict) -> GetResourceSnapshotJobResponse:
                 data["LastSuccessfulExecutionDate"]
             )
         )
-    if "LastFailure" in data:
+    if data.get("LastFailure") is not None:
         out["last_failure"] = data["LastFailure"]
     return out

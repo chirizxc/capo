@@ -71,11 +71,11 @@ def serialize_aws_json_1_1(value: ApplicationOperationInfoDetails) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ApplicationOperationInfoDetails:
     out: ApplicationOperationInfoDetails = {}  # type: ignore[typeddict-item]
-    if "Operation" in data:
+    if data.get("Operation") is not None:
         out["operation"] = data["Operation"]
     else:
         raise DeserializationError("ApplicationOperationInfoDetails.operation required")
-    if "StartTime" in data:
+    if data.get("StartTime") is not None:
         import capo_kinesis_analytics_v2.types.timestamp
 
         out["start_time"] = (
@@ -87,7 +87,7 @@ def deserialize_aws_json_1_1(data: dict) -> ApplicationOperationInfoDetails:
         raise DeserializationError(
             "ApplicationOperationInfoDetails.start_time required"
         )
-    if "EndTime" in data:
+    if data.get("EndTime") is not None:
         import capo_kinesis_analytics_v2.types.timestamp
 
         out["end_time"] = (
@@ -97,7 +97,7 @@ def deserialize_aws_json_1_1(data: dict) -> ApplicationOperationInfoDetails:
         )
     else:
         raise DeserializationError("ApplicationOperationInfoDetails.end_time required")
-    if "OperationStatus" in data:
+    if data.get("OperationStatus") is not None:
         import capo_kinesis_analytics_v2.types.operation_status
 
         out["operation_status"] = (
@@ -109,7 +109,7 @@ def deserialize_aws_json_1_1(data: dict) -> ApplicationOperationInfoDetails:
         raise DeserializationError(
             "ApplicationOperationInfoDetails.operation_status required"
         )
-    if "ApplicationVersionChangeDetails" in data:
+    if data.get("ApplicationVersionChangeDetails") is not None:
         import capo_kinesis_analytics_v2.types.application_version_change_details
 
         out["application_version_change_details"] = (
@@ -117,7 +117,7 @@ def deserialize_aws_json_1_1(data: dict) -> ApplicationOperationInfoDetails:
                 data["ApplicationVersionChangeDetails"]
             )
         )
-    if "OperationFailureDetails" in data:
+    if data.get("OperationFailureDetails") is not None:
         import capo_kinesis_analytics_v2.types.operation_failure_details
 
         out["operation_failure_details"] = (

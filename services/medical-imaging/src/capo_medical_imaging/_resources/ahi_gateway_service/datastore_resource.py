@@ -101,10 +101,11 @@ class DatastoreResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_medical_imaging.types.create_datastore_request.CreateDatastoreRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_medical_imaging.types.create_datastore_request.CreateDatastoreRequest = {
+            "client_token": client_token
+        }
         if datastore_name is not None:
             input_["datastore_name"] = datastore_name
-        input_["client_token"] = client_token
         if tags is not None:
             input_["tags"] = tags
         if kms_key_arn is not None:
@@ -119,6 +120,7 @@ class DatastoreResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -156,14 +158,16 @@ class DatastoreResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_medical_imaging.types.get_datastore_request.GetDatastoreRequest = {}  # type: ignore[typeddict-item]
-        input_["datastore_id"] = datastore_id
+        input_: capo_medical_imaging.types.get_datastore_request.GetDatastoreRequest = {
+            "datastore_id": datastore_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -202,14 +206,16 @@ class DatastoreResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_medical_imaging.types.delete_datastore_request.DeleteDatastoreRequest = {}  # type: ignore[typeddict-item]
-        input_["datastore_id"] = datastore_id
+        input_: capo_medical_imaging.types.delete_datastore_request.DeleteDatastoreRequest = {
+            "datastore_id": datastore_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -252,7 +258,7 @@ class DatastoreResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_medical_imaging.types.list_datastores_request.ListDatastoresRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_medical_imaging.types.list_datastores_request.ListDatastoresRequest = {}
         if datastore_status is not None:
             input_["datastore_status"] = datastore_status
         if next_token is not None:
@@ -265,6 +271,7 @@ class DatastoreResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -328,10 +335,11 @@ class AsyncDatastoreResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_medical_imaging.types.create_datastore_request.CreateDatastoreRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_medical_imaging.types.create_datastore_request.CreateDatastoreRequest = {
+            "client_token": client_token
+        }
         if datastore_name is not None:
             input_["datastore_name"] = datastore_name
-        input_["client_token"] = client_token
         if tags is not None:
             input_["tags"] = tags
         if kms_key_arn is not None:
@@ -346,6 +354,7 @@ class AsyncDatastoreResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -384,14 +393,16 @@ class AsyncDatastoreResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_medical_imaging.types.get_datastore_request.GetDatastoreRequest = {}  # type: ignore[typeddict-item]
-        input_["datastore_id"] = datastore_id
+        input_: capo_medical_imaging.types.get_datastore_request.GetDatastoreRequest = {
+            "datastore_id": datastore_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -431,14 +442,16 @@ class AsyncDatastoreResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_medical_imaging.types.delete_datastore_request.DeleteDatastoreRequest = {}  # type: ignore[typeddict-item]
-        input_["datastore_id"] = datastore_id
+        input_: capo_medical_imaging.types.delete_datastore_request.DeleteDatastoreRequest = {
+            "datastore_id": datastore_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -482,7 +495,7 @@ class AsyncDatastoreResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_medical_imaging.types.list_datastores_request.ListDatastoresRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_medical_imaging.types.list_datastores_request.ListDatastoresRequest = {}
         if datastore_status is not None:
             input_["datastore_status"] = datastore_status
         if next_token is not None:
@@ -495,4 +508,5 @@ class AsyncDatastoreResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

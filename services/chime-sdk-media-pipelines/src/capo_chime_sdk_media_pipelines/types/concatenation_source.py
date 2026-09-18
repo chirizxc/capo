@@ -40,7 +40,7 @@ def serialize_json(value: ConcatenationSource) -> dict:
 
 def deserialize_json(data: dict) -> ConcatenationSource:
     out: ConcatenationSource = {}  # type: ignore[typeddict-item]
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_chime_sdk_media_pipelines.types.concatenation_source_type
 
         out["type"] = (
@@ -50,7 +50,7 @@ def deserialize_json(data: dict) -> ConcatenationSource:
         )
     else:
         raise DeserializationError("ConcatenationSource.type required")
-    if "MediaCapturePipelineSourceConfiguration" in data:
+    if data.get("MediaCapturePipelineSourceConfiguration") is not None:
         import capo_chime_sdk_media_pipelines.types.media_capture_pipeline_source_configuration
 
         out["media_capture_pipeline_source_configuration"] = (

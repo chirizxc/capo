@@ -36,7 +36,7 @@ def serialize_json(value: UpdateWorkflowRunRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateWorkflowRunRequest:
     out: UpdateWorkflowRunRequest = {}  # type: ignore[typeddict-item]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_nova_act.types.workflow_run_status
 
         out["status"] = capo_nova_act.types.workflow_run_status.deserialize_json(

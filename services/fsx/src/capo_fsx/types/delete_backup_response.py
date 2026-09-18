@@ -32,9 +32,9 @@ def serialize_aws_json_1_1(value: DeleteBackupResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteBackupResponse:
     out: DeleteBackupResponse = {}  # type: ignore[typeddict-item]
-    if "BackupId" in data:
+    if data.get("BackupId") is not None:
         out["backup_id"] = data["BackupId"]
-    if "Lifecycle" in data:
+    if data.get("Lifecycle") is not None:
         import capo_fsx.types.backup_lifecycle
 
         out["lifecycle"] = capo_fsx.types.backup_lifecycle.deserialize_aws_json_1_1(

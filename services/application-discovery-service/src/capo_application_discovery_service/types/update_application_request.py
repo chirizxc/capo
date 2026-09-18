@@ -47,14 +47,14 @@ def serialize_aws_json_1_1(value: UpdateApplicationRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateApplicationRequest:
     out: UpdateApplicationRequest = {}  # type: ignore[typeddict-item]
-    if "configurationId" in data:
+    if data.get("configurationId") is not None:
         out["configuration_id"] = data["configurationId"]
     else:
         raise DeserializationError("UpdateApplicationRequest.configuration_id required")
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "wave" in data:
+    if data.get("wave") is not None:
         out["wave"] = data["wave"]
     return out

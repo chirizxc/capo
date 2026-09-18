@@ -23,6 +23,6 @@ def serialize_json(value: KubernetesAuditLogsConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> KubernetesAuditLogsConfiguration:
     out: KubernetesAuditLogsConfiguration = {}  # type: ignore[typeddict-item]
-    if "enable" in data:
+    if data.get("enable") is not None:
         out["enable"] = data["enable"]
     return out

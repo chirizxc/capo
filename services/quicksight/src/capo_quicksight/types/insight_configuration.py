@@ -53,13 +53,13 @@ def serialize_json(value: InsightConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> InsightConfiguration:
     out: InsightConfiguration = {}  # type: ignore[typeddict-item]
-    if "Computations" in data:
+    if data.get("Computations") is not None:
         import capo_quicksight.types.computation_list
 
         out["computations"] = capo_quicksight.types.computation_list.deserialize_json(
             data["Computations"]
         )
-    if "CustomNarrative" in data:
+    if data.get("CustomNarrative") is not None:
         import capo_quicksight.types.custom_narrative_options
 
         out["custom_narrative"] = (
@@ -67,7 +67,7 @@ def deserialize_json(data: dict) -> InsightConfiguration:
                 data["CustomNarrative"]
             )
         )
-    if "Interactions" in data:
+    if data.get("Interactions") is not None:
         import capo_quicksight.types.visual_interaction_options
 
         out["interactions"] = (

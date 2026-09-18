@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: AddTagsToOnPremisesInstancesInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AddTagsToOnPremisesInstancesInput:
     out: AddTagsToOnPremisesInstancesInput = {}  # type: ignore[typeddict-item]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_codedeploy.types.tag_list
 
         out["tags"] = capo_codedeploy.types.tag_list.deserialize_aws_json_1_1(
@@ -44,7 +44,7 @@ def deserialize_aws_json_1_1(data: dict) -> AddTagsToOnPremisesInstancesInput:
         )
     else:
         raise DeserializationError("AddTagsToOnPremisesInstancesInput.tags required")
-    if "instanceNames" in data:
+    if data.get("instanceNames") is not None:
         import capo_codedeploy.types.instance_name_list
 
         out["instance_names"] = (

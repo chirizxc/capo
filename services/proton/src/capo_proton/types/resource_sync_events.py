@@ -25,5 +25,7 @@ def deserialize_aws_json_1_0(data: list) -> ResourceSyncEvents:
 
     out: ResourceSyncEvents = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_proton.types.resource_sync_event.deserialize_aws_json_1_0(item))
     return out

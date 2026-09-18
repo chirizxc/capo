@@ -79,11 +79,35 @@ def serialize_json(value: FieldInputConfig) -> dict:
     if "name" in value:
         out["name"] = value["name"]
     if "min_value" in value:
-        out["minValue"] = value["min_value"]
+        out["minValue"] = (
+            "NaN"
+            if value["min_value"] != value["min_value"]
+            else "Infinity"
+            if value["min_value"] == float("inf")
+            else "-Infinity"
+            if value["min_value"] == float("-inf")
+            else value["min_value"]
+        )
     if "max_value" in value:
-        out["maxValue"] = value["max_value"]
+        out["maxValue"] = (
+            "NaN"
+            if value["max_value"] != value["max_value"]
+            else "Infinity"
+            if value["max_value"] == float("inf")
+            else "-Infinity"
+            if value["max_value"] == float("-inf")
+            else value["max_value"]
+        )
     if "step" in value:
-        out["step"] = value["step"]
+        out["step"] = (
+            "NaN"
+            if value["step"] != value["step"]
+            else "Infinity"
+            if value["step"] == float("inf")
+            else "-Infinity"
+            if value["step"] == float("-inf")
+            else value["step"]
+        )
     if "value" in value:
         out["value"] = value["value"]
     if "is_array" in value:
@@ -101,25 +125,25 @@ def serialize_json(value: FieldInputConfig) -> dict:
 
 def deserialize_json(data: dict) -> FieldInputConfig:
     out: FieldInputConfig = {}  # type: ignore[typeddict-item]
-    if "type" in data:
+    if data.get("type") is not None:
         out["type"] = data["type"]
     else:
         raise DeserializationError("FieldInputConfig.type required")
-    if "required" in data:
+    if data.get("required") is not None:
         out["required"] = data["required"]
-    if "readOnly" in data:
+    if data.get("readOnly") is not None:
         out["read_only"] = data["readOnly"]
-    if "placeholder" in data:
+    if data.get("placeholder") is not None:
         out["placeholder"] = data["placeholder"]
-    if "defaultValue" in data:
+    if data.get("defaultValue") is not None:
         out["default_value"] = data["defaultValue"]
-    if "descriptiveText" in data:
+    if data.get("descriptiveText") is not None:
         out["descriptive_text"] = data["descriptiveText"]
-    if "defaultChecked" in data:
+    if data.get("defaultChecked") is not None:
         out["default_checked"] = data["defaultChecked"]
-    if "defaultCountryCode" in data:
+    if data.get("defaultCountryCode") is not None:
         out["default_country_code"] = data["defaultCountryCode"]
-    if "valueMappings" in data:
+    if data.get("valueMappings") is not None:
         import capo_amplifyuibuilder.types.value_mappings
 
         out["value_mappings"] = (
@@ -127,19 +151,19 @@ def deserialize_json(data: dict) -> FieldInputConfig:
                 data["valueMappings"]
             )
         )
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "minValue" in data:
-        out["min_value"] = data["minValue"]
-    if "maxValue" in data:
-        out["max_value"] = data["maxValue"]
-    if "step" in data:
-        out["step"] = data["step"]
-    if "value" in data:
+    if data.get("minValue") is not None:
+        out["min_value"] = float(data["minValue"])
+    if data.get("maxValue") is not None:
+        out["max_value"] = float(data["maxValue"])
+    if data.get("step") is not None:
+        out["step"] = float(data["step"])
+    if data.get("value") is not None:
         out["value"] = data["value"]
-    if "isArray" in data:
+    if data.get("isArray") is not None:
         out["is_array"] = data["isArray"]
-    if "fileUploaderConfig" in data:
+    if data.get("fileUploaderConfig") is not None:
         import capo_amplifyuibuilder.types.file_uploader_field_config
 
         out["file_uploader_config"] = (

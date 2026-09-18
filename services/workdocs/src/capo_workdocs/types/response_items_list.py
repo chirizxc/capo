@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> ResponseItemsList:
 
     out: ResponseItemsList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_workdocs.types.response_item.deserialize_json(item))
     return out

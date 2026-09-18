@@ -26,7 +26,7 @@ def serialize_aws_json_1_1(value: InputParallelismUpdate) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> InputParallelismUpdate:
     out: InputParallelismUpdate = {}  # type: ignore[typeddict-item]
-    if "CountUpdate" in data:
+    if data.get("CountUpdate") is not None:
         out["count_update"] = data["CountUpdate"]
     else:
         raise DeserializationError("InputParallelismUpdate.count_update required")

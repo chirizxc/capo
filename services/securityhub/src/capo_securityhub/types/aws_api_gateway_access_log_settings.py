@@ -29,8 +29,8 @@ def serialize_json(value: AwsApiGatewayAccessLogSettings) -> dict:
 
 def deserialize_json(data: dict) -> AwsApiGatewayAccessLogSettings:
     out: AwsApiGatewayAccessLogSettings = {}  # type: ignore[typeddict-item]
-    if "Format" in data:
+    if data.get("Format") is not None:
         out["format"] = data["Format"]
-    if "DestinationArn" in data:
+    if data.get("DestinationArn") is not None:
         out["destination_arn"] = data["DestinationArn"]
     return out

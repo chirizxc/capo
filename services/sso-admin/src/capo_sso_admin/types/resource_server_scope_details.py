@@ -27,8 +27,8 @@ def serialize_aws_json_1_1(value: ResourceServerScopeDetails) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ResourceServerScopeDetails:
     out: ResourceServerScopeDetails = {}  # type: ignore[typeddict-item]
-    if "LongDescription" in data:
+    if data.get("LongDescription") is not None:
         out["long_description"] = data["LongDescription"]
-    if "DetailedTitle" in data:
+    if data.get("DetailedTitle") is not None:
         out["detailed_title"] = data["DetailedTitle"]
     return out

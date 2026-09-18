@@ -78,17 +78,17 @@ def serialize_json(value: UpdateJobQueueRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateJobQueueRequest:
     out: UpdateJobQueueRequest = {}  # type: ignore[typeddict-item]
-    if "jobQueue" in data:
+    if data.get("jobQueue") is not None:
         out["job_queue"] = data["jobQueue"]
-    if "state" in data:
+    if data.get("state") is not None:
         import capo_batch.types.jq_state
 
         out["state"] = capo_batch.types.jq_state.deserialize_json(data["state"])
-    if "schedulingPolicyArn" in data:
+    if data.get("schedulingPolicyArn") is not None:
         out["scheduling_policy_arn"] = data["schedulingPolicyArn"]
-    if "priority" in data:
+    if data.get("priority") is not None:
         out["priority"] = data["priority"]
-    if "computeEnvironmentOrder" in data:
+    if data.get("computeEnvironmentOrder") is not None:
         import capo_batch.types.compute_environment_orders
 
         out["compute_environment_order"] = (
@@ -96,7 +96,7 @@ def deserialize_json(data: dict) -> UpdateJobQueueRequest:
                 data["computeEnvironmentOrder"]
             )
         )
-    if "serviceEnvironmentOrder" in data:
+    if data.get("serviceEnvironmentOrder") is not None:
         import capo_batch.types.service_environment_orders
 
         out["service_environment_order"] = (
@@ -104,7 +104,7 @@ def deserialize_json(data: dict) -> UpdateJobQueueRequest:
                 data["serviceEnvironmentOrder"]
             )
         )
-    if "jobStateTimeLimitActions" in data:
+    if data.get("jobStateTimeLimitActions") is not None:
         import capo_batch.types.job_state_time_limit_actions
 
         out["job_state_time_limit_actions"] = (

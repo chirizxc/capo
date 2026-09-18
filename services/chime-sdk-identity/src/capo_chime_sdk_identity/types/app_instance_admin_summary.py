@@ -27,7 +27,7 @@ def serialize_json(value: AppInstanceAdminSummary) -> dict:
 
 def deserialize_json(data: dict) -> AppInstanceAdminSummary:
     out: AppInstanceAdminSummary = {}  # type: ignore[typeddict-item]
-    if "Admin" in data:
+    if data.get("Admin") is not None:
         import capo_chime_sdk_identity.types.identity
 
         out["admin"] = capo_chime_sdk_identity.types.identity.deserialize_json(

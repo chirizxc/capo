@@ -32,9 +32,9 @@ def serialize_json(value: OutputDetail) -> dict:
 
 def deserialize_json(data: dict) -> OutputDetail:
     out: OutputDetail = {}  # type: ignore[typeddict-item]
-    if "durationInMs" in data:
+    if data.get("durationInMs") is not None:
         out["duration_in_ms"] = data["durationInMs"]
-    if "videoDetails" in data:
+    if data.get("videoDetails") is not None:
         import capo_mediaconvert.types.video_detail
 
         out["video_details"] = capo_mediaconvert.types.video_detail.deserialize_json(

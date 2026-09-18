@@ -38,9 +38,9 @@ def serialize_json(value: DatabasePreferences) -> dict:
 
 def deserialize_json(data: dict) -> DatabasePreferences:
     out: DatabasePreferences = {}  # type: ignore[typeddict-item]
-    if "databaseManagementPreference" in data:
+    if data.get("databaseManagementPreference") is not None:
         out["database_management_preference"] = data["databaseManagementPreference"]
-    if "databaseMigrationPreference" in data:
+    if data.get("databaseMigrationPreference") is not None:
         import capo_migrationhubstrategy.types.database_migration_preference
 
         out["database_migration_preference"] = (

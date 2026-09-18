@@ -33,6 +33,8 @@ def deserialize_json(
 
     out: AwsCodeBuildProjectEnvironmentEnvironmentVariablesList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_securityhub.types.aws_code_build_project_environment_environment_variables_details.deserialize_json(
                 item

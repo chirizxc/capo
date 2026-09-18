@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> DashDvbErrorMetrics:
 
     out: DashDvbErrorMetrics = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_mediapackagev2.types.dash_dvb_metrics_reporting.deserialize_json(item)
         )

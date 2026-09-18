@@ -30,7 +30,7 @@ def serialize_json(value: BatchGetStepRequest) -> dict:
 
 def deserialize_json(data: dict) -> BatchGetStepRequest:
     out: BatchGetStepRequest = {}  # type: ignore[typeddict-item]
-    if "identifiers" in data:
+    if data.get("identifiers") is not None:
         import capo_deadline.types.batch_get_step_identifiers
 
         out["identifiers"] = (

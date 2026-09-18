@@ -40,7 +40,7 @@ def serialize_aws_json_1_1(value: ManagedCapacityConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ManagedCapacityConfiguration:
     out: ManagedCapacityConfiguration = {}  # type: ignore[typeddict-item]
-    if "ZeroCapacityStrategy" in data:
+    if data.get("ZeroCapacityStrategy") is not None:
         import capo_gamelift.types.zero_capacity_strategy
 
         out["zero_capacity_strategy"] = (
@@ -48,6 +48,6 @@ def deserialize_aws_json_1_1(data: dict) -> ManagedCapacityConfiguration:
                 data["ZeroCapacityStrategy"]
             )
         )
-    if "ScaleInAfterInactivityMinutes" in data:
+    if data.get("ScaleInAfterInactivityMinutes") is not None:
         out["scale_in_after_inactivity_minutes"] = data["ScaleInAfterInactivityMinutes"]
     return out

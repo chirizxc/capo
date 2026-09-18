@@ -38,12 +38,10 @@ class ExportEarthObservationJobOutput(TypedDict, closed=True):
 def serialize_json(value: ExportEarthObservationJobOutput) -> dict:
     out: dict = {}
     out["Arn"] = value["arn"]
-    import capo_sagemaker_geospatial.types._prelude.timestamp
+    import capo_sagemaker_geospatial._protocol.serialize
 
-    out["CreationTime"] = (
-        capo_sagemaker_geospatial.types._prelude.timestamp.serialize_json(
-            value["creation_time"]
-        )
+    out["CreationTime"] = capo_sagemaker_geospatial._protocol.serialize.fmt_date_time(
+        value["creation_time"]
     )
     out["ExportStatus"] = value["export_status"]
     out["ExecutionRoleArn"] = value["execution_role_arn"]
@@ -61,35 +59,33 @@ def serialize_json(value: ExportEarthObservationJobOutput) -> dict:
 
 def deserialize_json(data: dict) -> ExportEarthObservationJobOutput:
     out: ExportEarthObservationJobOutput = {}  # type: ignore[typeddict-item]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
     else:
         raise DeserializationError("ExportEarthObservationJobOutput.arn required")
-    if "CreationTime" in data:
-        import capo_sagemaker_geospatial.types._prelude.timestamp
+    if data.get("CreationTime") is not None:
+        import datetime
 
-        out["creation_time"] = (
-            capo_sagemaker_geospatial.types._prelude.timestamp.deserialize_json(
-                data["CreationTime"]
-            )
+        out["creation_time"] = datetime.datetime.fromisoformat(
+            data["CreationTime"].replace("Z", "+00:00")
         )
     else:
         raise DeserializationError(
             "ExportEarthObservationJobOutput.creation_time required"
         )
-    if "ExportStatus" in data:
+    if data.get("ExportStatus") is not None:
         out["export_status"] = data["ExportStatus"]
     else:
         raise DeserializationError(
             "ExportEarthObservationJobOutput.export_status required"
         )
-    if "ExecutionRoleArn" in data:
+    if data.get("ExecutionRoleArn") is not None:
         out["execution_role_arn"] = data["ExecutionRoleArn"]
     else:
         raise DeserializationError(
             "ExportEarthObservationJobOutput.execution_role_arn required"
         )
-    if "OutputConfig" in data:
+    if data.get("OutputConfig") is not None:
         import capo_sagemaker_geospatial.types.output_config_input
 
         out["output_config"] = (
@@ -101,6 +97,6 @@ def deserialize_json(data: dict) -> ExportEarthObservationJobOutput:
         raise DeserializationError(
             "ExportEarthObservationJobOutput.output_config required"
         )
-    if "ExportSourceImages" in data:
+    if data.get("ExportSourceImages") is not None:
         out["export_source_images"] = data["ExportSourceImages"]
     return out

@@ -44,7 +44,7 @@ def serialize_aws_json_1_0(value: TrustedCertificatePublicKey) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> TrustedCertificatePublicKey:
     out: TrustedCertificatePublicKey = {}  # type: ignore[typeddict-item]
-    if "KeyAttributes" in data:
+    if data.get("KeyAttributes") is not None:
         import capo_payment_cryptography.types.key_attributes
 
         out["key_attributes"] = (
@@ -56,13 +56,13 @@ def deserialize_aws_json_1_0(data: dict) -> TrustedCertificatePublicKey:
         raise DeserializationError(
             "TrustedCertificatePublicKey.key_attributes required"
         )
-    if "PublicKeyCertificate" in data:
+    if data.get("PublicKeyCertificate") is not None:
         out["public_key_certificate"] = data["PublicKeyCertificate"]
     else:
         raise DeserializationError(
             "TrustedCertificatePublicKey.public_key_certificate required"
         )
-    if "CertificateAuthorityPublicKeyIdentifier" in data:
+    if data.get("CertificateAuthorityPublicKeyIdentifier") is not None:
         out["certificate_authority_public_key_identifier"] = data[
             "CertificateAuthorityPublicKeyIdentifier"
         ]

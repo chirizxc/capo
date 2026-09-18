@@ -36,14 +36,14 @@ def serialize_json(value: ListOutputVector) -> dict:
 
 def deserialize_json(data: dict) -> ListOutputVector:
     out: ListOutputVector = {}  # type: ignore[typeddict-item]
-    if "key" in data:
+    if data.get("key") is not None:
         out["key"] = data["key"]
     else:
         raise DeserializationError("ListOutputVector.key required")
-    if "data" in data:
+    if data.get("data") is not None:
         import capo_s3vectors.types.vector_data
 
         out["data"] = capo_s3vectors.types.vector_data.deserialize_json(data["data"])
-    if "metadata" in data:
+    if data.get("metadata") is not None:
         out["metadata"] = data["metadata"]
     return out

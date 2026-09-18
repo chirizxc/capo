@@ -108,12 +108,13 @@ class ChannelResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mediatailor.types.create_channel_request.CreateChannelRequest = {}  # type: ignore[typeddict-item]
-        input_["channel_name"] = channel_name
+        input_: capo_mediatailor.types.create_channel_request.CreateChannelRequest = {
+            "channel_name": channel_name,
+            "outputs": outputs,
+            "playback_mode": playback_mode,
+        }
         if filler_slate is not None:
             input_["filler_slate"] = filler_slate
-        input_["outputs"] = outputs
-        input_["playback_mode"] = playback_mode
         if tags is not None:
             input_["tags"] = tags
         if tier is not None:
@@ -128,6 +129,7 @@ class ChannelResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -160,14 +162,16 @@ class ChannelResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mediatailor.types.describe_channel_request.DescribeChannelRequest = {}  # type: ignore[typeddict-item]
-        input_["channel_name"] = channel_name
+        input_: capo_mediatailor.types.describe_channel_request.DescribeChannelRequest = {
+            "channel_name": channel_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update(
@@ -212,11 +216,12 @@ class ChannelResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mediatailor.types.update_channel_request.UpdateChannelRequest = {}  # type: ignore[typeddict-item]
-        input_["channel_name"] = channel_name
+        input_: capo_mediatailor.types.update_channel_request.UpdateChannelRequest = {
+            "channel_name": channel_name,
+            "outputs": outputs,
+        }
         if filler_slate is not None:
             input_["filler_slate"] = filler_slate
-        input_["outputs"] = outputs
         if time_shift_configuration is not None:
             input_["time_shift_configuration"] = time_shift_configuration
         if audiences is not None:
@@ -227,6 +232,7 @@ class ChannelResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -259,14 +265,16 @@ class ChannelResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mediatailor.types.delete_channel_request.DeleteChannelRequest = {}  # type: ignore[typeddict-item]
-        input_["channel_name"] = channel_name
+        input_: capo_mediatailor.types.delete_channel_request.DeleteChannelRequest = {
+            "channel_name": channel_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -301,7 +309,7 @@ class ChannelResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mediatailor.types.list_channels_request.ListChannelsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_mediatailor.types.list_channels_request.ListChannelsRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -312,6 +320,7 @@ class ChannelResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def configure_logs_for_channel(
@@ -346,15 +355,17 @@ class ChannelResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mediatailor.types.configure_logs_for_channel_request.ConfigureLogsForChannelRequest = {}  # type: ignore[typeddict-item]
-        input_["channel_name"] = channel_name
-        input_["log_types"] = log_types
+        input_: capo_mediatailor.types.configure_logs_for_channel_request.ConfigureLogsForChannelRequest = {
+            "channel_name": channel_name,
+            "log_types": log_types,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_channel(
@@ -407,12 +418,13 @@ class ChannelResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mediatailor.types.create_channel_request.CreateChannelRequest = {}  # type: ignore[typeddict-item]
-        input_["channel_name"] = channel_name
+        input_: capo_mediatailor.types.create_channel_request.CreateChannelRequest = {
+            "channel_name": channel_name,
+            "outputs": outputs,
+            "playback_mode": playback_mode,
+        }
         if filler_slate is not None:
             input_["filler_slate"] = filler_slate
-        input_["outputs"] = outputs
-        input_["playback_mode"] = playback_mode
         if tags is not None:
             input_["tags"] = tags
         if tier is not None:
@@ -427,6 +439,7 @@ class ChannelResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_channel_schedule(
@@ -467,8 +480,9 @@ class ChannelResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mediatailor.types.get_channel_schedule_request.GetChannelScheduleRequest = {}  # type: ignore[typeddict-item]
-        input_["channel_name"] = channel_name
+        input_: capo_mediatailor.types.get_channel_schedule_request.GetChannelScheduleRequest = {
+            "channel_name": channel_name
+        }
         if duration_minutes is not None:
             input_["duration_minutes"] = duration_minutes
         if max_results is not None:
@@ -483,6 +497,7 @@ class ChannelResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def start_channel(
@@ -515,14 +530,16 @@ class ChannelResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mediatailor.types.start_channel_request.StartChannelRequest = {}  # type: ignore[typeddict-item]
-        input_["channel_name"] = channel_name
+        input_: capo_mediatailor.types.start_channel_request.StartChannelRequest = {
+            "channel_name": channel_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def stop_channel(
@@ -555,14 +572,16 @@ class ChannelResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mediatailor.types.stop_channel_request.StopChannelRequest = {}  # type: ignore[typeddict-item]
-        input_["channel_name"] = channel_name
+        input_: capo_mediatailor.types.stop_channel_request.StopChannelRequest = {
+            "channel_name": channel_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -621,12 +640,13 @@ class AsyncChannelResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mediatailor.types.create_channel_request.CreateChannelRequest = {}  # type: ignore[typeddict-item]
-        input_["channel_name"] = channel_name
+        input_: capo_mediatailor.types.create_channel_request.CreateChannelRequest = {
+            "channel_name": channel_name,
+            "outputs": outputs,
+            "playback_mode": playback_mode,
+        }
         if filler_slate is not None:
             input_["filler_slate"] = filler_slate
-        input_["outputs"] = outputs
-        input_["playback_mode"] = playback_mode
         if tags is not None:
             input_["tags"] = tags
         if tier is not None:
@@ -641,6 +661,7 @@ class AsyncChannelResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -674,14 +695,16 @@ class AsyncChannelResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mediatailor.types.describe_channel_request.DescribeChannelRequest = {}  # type: ignore[typeddict-item]
-        input_["channel_name"] = channel_name
+        input_: capo_mediatailor.types.describe_channel_request.DescribeChannelRequest = {
+            "channel_name": channel_name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update(
@@ -727,11 +750,12 @@ class AsyncChannelResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mediatailor.types.update_channel_request.UpdateChannelRequest = {}  # type: ignore[typeddict-item]
-        input_["channel_name"] = channel_name
+        input_: capo_mediatailor.types.update_channel_request.UpdateChannelRequest = {
+            "channel_name": channel_name,
+            "outputs": outputs,
+        }
         if filler_slate is not None:
             input_["filler_slate"] = filler_slate
-        input_["outputs"] = outputs
         if time_shift_configuration is not None:
             input_["time_shift_configuration"] = time_shift_configuration
         if audiences is not None:
@@ -742,6 +766,7 @@ class AsyncChannelResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -775,14 +800,16 @@ class AsyncChannelResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mediatailor.types.delete_channel_request.DeleteChannelRequest = {}  # type: ignore[typeddict-item]
-        input_["channel_name"] = channel_name
+        input_: capo_mediatailor.types.delete_channel_request.DeleteChannelRequest = {
+            "channel_name": channel_name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -818,7 +845,7 @@ class AsyncChannelResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mediatailor.types.list_channels_request.ListChannelsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_mediatailor.types.list_channels_request.ListChannelsRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -829,6 +856,7 @@ class AsyncChannelResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def configure_logs_for_channel(
@@ -864,15 +892,17 @@ class AsyncChannelResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mediatailor.types.configure_logs_for_channel_request.ConfigureLogsForChannelRequest = {}  # type: ignore[typeddict-item]
-        input_["channel_name"] = channel_name
-        input_["log_types"] = log_types
+        input_: capo_mediatailor.types.configure_logs_for_channel_request.ConfigureLogsForChannelRequest = {
+            "channel_name": channel_name,
+            "log_types": log_types,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_channel(
@@ -926,12 +956,13 @@ class AsyncChannelResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mediatailor.types.create_channel_request.CreateChannelRequest = {}  # type: ignore[typeddict-item]
-        input_["channel_name"] = channel_name
+        input_: capo_mediatailor.types.create_channel_request.CreateChannelRequest = {
+            "channel_name": channel_name,
+            "outputs": outputs,
+            "playback_mode": playback_mode,
+        }
         if filler_slate is not None:
             input_["filler_slate"] = filler_slate
-        input_["outputs"] = outputs
-        input_["playback_mode"] = playback_mode
         if tags is not None:
             input_["tags"] = tags
         if tier is not None:
@@ -946,6 +977,7 @@ class AsyncChannelResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_channel_schedule(
@@ -987,8 +1019,9 @@ class AsyncChannelResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mediatailor.types.get_channel_schedule_request.GetChannelScheduleRequest = {}  # type: ignore[typeddict-item]
-        input_["channel_name"] = channel_name
+        input_: capo_mediatailor.types.get_channel_schedule_request.GetChannelScheduleRequest = {
+            "channel_name": channel_name
+        }
         if duration_minutes is not None:
             input_["duration_minutes"] = duration_minutes
         if max_results is not None:
@@ -1003,6 +1036,7 @@ class AsyncChannelResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def start_channel(
@@ -1036,14 +1070,16 @@ class AsyncChannelResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mediatailor.types.start_channel_request.StartChannelRequest = {}  # type: ignore[typeddict-item]
-        input_["channel_name"] = channel_name
+        input_: capo_mediatailor.types.start_channel_request.StartChannelRequest = {
+            "channel_name": channel_name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def stop_channel(
@@ -1077,12 +1113,14 @@ class AsyncChannelResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mediatailor.types.stop_channel_request.StopChannelRequest = {}  # type: ignore[typeddict-item]
-        input_["channel_name"] = channel_name
+        input_: capo_mediatailor.types.stop_channel_request.StopChannelRequest = {
+            "channel_name": channel_name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

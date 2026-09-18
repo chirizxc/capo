@@ -39,11 +39,11 @@ def serialize_aws_json_1_1(value: CancelQueryResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CancelQueryResponse:
     out: CancelQueryResponse = {}  # type: ignore[typeddict-item]
-    if "QueryId" in data:
+    if data.get("QueryId") is not None:
         out["query_id"] = data["QueryId"]
     else:
         raise DeserializationError("CancelQueryResponse.query_id required")
-    if "QueryStatus" in data:
+    if data.get("QueryStatus") is not None:
         import capo_cloudtrail.types.query_status
 
         out["query_status"] = (
@@ -53,6 +53,6 @@ def deserialize_aws_json_1_1(data: dict) -> CancelQueryResponse:
         )
     else:
         raise DeserializationError("CancelQueryResponse.query_status required")
-    if "EventDataStoreOwnerAccountId" in data:
+    if data.get("EventDataStoreOwnerAccountId") is not None:
         out["event_data_store_owner_account_id"] = data["EventDataStoreOwnerAccountId"]
     return out

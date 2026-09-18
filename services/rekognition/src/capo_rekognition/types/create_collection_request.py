@@ -33,11 +33,11 @@ def serialize_aws_json_1_1(value: CreateCollectionRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateCollectionRequest:
     out: CreateCollectionRequest = {}  # type: ignore[typeddict-item]
-    if "CollectionId" in data:
+    if data.get("CollectionId") is not None:
         out["collection_id"] = data["CollectionId"]
     else:
         raise DeserializationError("CreateCollectionRequest.collection_id required")
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_rekognition.types.tag_map
 
         out["tags"] = capo_rekognition.types.tag_map.deserialize_aws_json_1_1(

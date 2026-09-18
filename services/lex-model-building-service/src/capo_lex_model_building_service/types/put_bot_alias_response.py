@@ -92,15 +92,15 @@ def serialize_json(value: PutBotAliasResponse) -> dict:
 
 def deserialize_json(data: dict) -> PutBotAliasResponse:
     out: PutBotAliasResponse = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "botVersion" in data:
+    if data.get("botVersion") is not None:
         out["bot_version"] = data["botVersion"]
-    if "botName" in data:
+    if data.get("botName") is not None:
         out["bot_name"] = data["botName"]
-    if "lastUpdatedDate" in data:
+    if data.get("lastUpdatedDate") is not None:
         import capo_lex_model_building_service.types.timestamp
 
         out["last_updated_date"] = (
@@ -108,7 +108,7 @@ def deserialize_json(data: dict) -> PutBotAliasResponse:
                 data["lastUpdatedDate"]
             )
         )
-    if "createdDate" in data:
+    if data.get("createdDate") is not None:
         import capo_lex_model_building_service.types.timestamp
 
         out["created_date"] = (
@@ -116,9 +116,9 @@ def deserialize_json(data: dict) -> PutBotAliasResponse:
                 data["createdDate"]
             )
         )
-    if "checksum" in data:
+    if data.get("checksum") is not None:
         out["checksum"] = data["checksum"]
-    if "conversationLogs" in data:
+    if data.get("conversationLogs") is not None:
         import capo_lex_model_building_service.types.conversation_logs_response
 
         out["conversation_logs"] = (
@@ -126,7 +126,7 @@ def deserialize_json(data: dict) -> PutBotAliasResponse:
                 data["conversationLogs"]
             )
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_lex_model_building_service.types.tag_list
 
         out["tags"] = capo_lex_model_building_service.types.tag_list.deserialize_json(

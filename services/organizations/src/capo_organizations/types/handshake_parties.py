@@ -27,6 +27,8 @@ def deserialize_aws_json_1_1(data: list) -> HandshakeParties:
 
     out: HandshakeParties = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_organizations.types.handshake_party.deserialize_aws_json_1_1(item)
         )

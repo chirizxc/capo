@@ -37,12 +37,12 @@ def serialize_aws_json_1_1(value: DescribeEntitlementsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeEntitlementsRequest:
     out: DescribeEntitlementsRequest = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "StackName" in data:
+    if data.get("StackName") is not None:
         out["stack_name"] = data["StackName"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
     return out

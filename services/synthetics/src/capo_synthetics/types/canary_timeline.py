@@ -51,25 +51,25 @@ def serialize_json(value: CanaryTimeline) -> dict:
 
 def deserialize_json(data: dict) -> CanaryTimeline:
     out: CanaryTimeline = {}  # type: ignore[typeddict-item]
-    if "Created" in data:
+    if data.get("Created") is not None:
         import capo_synthetics.types.timestamp
 
         out["created"] = capo_synthetics.types.timestamp.deserialize_json(
             data["Created"]
         )
-    if "LastModified" in data:
+    if data.get("LastModified") is not None:
         import capo_synthetics.types.timestamp
 
         out["last_modified"] = capo_synthetics.types.timestamp.deserialize_json(
             data["LastModified"]
         )
-    if "LastStarted" in data:
+    if data.get("LastStarted") is not None:
         import capo_synthetics.types.timestamp
 
         out["last_started"] = capo_synthetics.types.timestamp.deserialize_json(
             data["LastStarted"]
         )
-    if "LastStopped" in data:
+    if data.get("LastStopped") is not None:
         import capo_synthetics.types.timestamp
 
         out["last_stopped"] = capo_synthetics.types.timestamp.deserialize_json(

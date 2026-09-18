@@ -50,19 +50,19 @@ def serialize_json(value: ScanResultThreat) -> dict:
 
 def deserialize_json(data: dict) -> ScanResultThreat:
     out: ScanResultThreat = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "source" in data:
+    if data.get("source") is not None:
         import capo_guardduty.types.detection_source
 
         out["source"] = capo_guardduty.types.detection_source.deserialize_json(
             data["source"]
         )
-    if "count" in data:
+    if data.get("count") is not None:
         out["count"] = data["count"]
-    if "hash" in data:
+    if data.get("hash") is not None:
         out["hash"] = data["hash"]
-    if "itemDetails" in data:
+    if data.get("itemDetails") is not None:
         import capo_guardduty.types.item_details_list
 
         out["item_details"] = capo_guardduty.types.item_details_list.deserialize_json(

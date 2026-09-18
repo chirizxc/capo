@@ -41,9 +41,9 @@ def serialize_json(value: ResourceNotFoundException_) -> dict:
 
 def deserialize_json(data: dict) -> ResourceNotFoundException_:
     out: ResourceNotFoundException_ = {}  # type: ignore[typeddict-item]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
-    if "ResourceType" in data:
+    if data.get("ResourceType") is not None:
         import capo_quicksight.types.exception_resource_type
 
         out["resource_type"] = (
@@ -51,7 +51,7 @@ def deserialize_json(data: dict) -> ResourceNotFoundException_:
                 data["ResourceType"]
             )
         )
-    if "RequestId" in data:
+    if data.get("RequestId") is not None:
         out["request_id"] = data["RequestId"]
     return out
 
@@ -61,15 +61,18 @@ class ResourceNotFoundException(ServiceError):
 
     code: str | None = "ResourceNotFoundException"
 
-    def __init__(self, data: ResourceNotFoundException_):
+    def __init__(self, data: ResourceNotFoundException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="ResourceNotFoundException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "ResourceNotFoundException":
-        return cls(deserialize_json(data))
+    def from_json(
+        cls, data: dict, message: str | None = None
+    ) -> "ResourceNotFoundException":
+        return cls(deserialize_json(data), message)

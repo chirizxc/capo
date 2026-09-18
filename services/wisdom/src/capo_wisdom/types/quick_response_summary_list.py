@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> QuickResponseSummaryList:
 
     out: QuickResponseSummaryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_wisdom.types.quick_response_summary.deserialize_json(item))
     return out

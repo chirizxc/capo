@@ -35,7 +35,7 @@ def serialize_aws_json_1_0(value: ListObservabilityConfigurationsResponse) -> di
 
 def deserialize_aws_json_1_0(data: dict) -> ListObservabilityConfigurationsResponse:
     out: ListObservabilityConfigurationsResponse = {}  # type: ignore[typeddict-item]
-    if "ObservabilityConfigurationSummaryList" in data:
+    if data.get("ObservabilityConfigurationSummaryList") is not None:
         import capo_apprunner.types.observability_configuration_summary_list
 
         out["observability_configuration_summary_list"] = (
@@ -47,6 +47,6 @@ def deserialize_aws_json_1_0(data: dict) -> ListObservabilityConfigurationsRespo
         raise DeserializationError(
             "ListObservabilityConfigurationsResponse.observability_configuration_summary_list required"
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> VirtualClusters:
 
     out: VirtualClusters = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_emr_containers.types.virtual_cluster.deserialize_json(item))
     return out

@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> ResourceTypes:
 
     out: ResourceTypes = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_observabilityadmin.types.resource_type.deserialize_json(item))
     return out

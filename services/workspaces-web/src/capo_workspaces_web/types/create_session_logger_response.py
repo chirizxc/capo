@@ -24,7 +24,7 @@ def serialize_json(value: CreateSessionLoggerResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateSessionLoggerResponse:
     out: CreateSessionLoggerResponse = {}  # type: ignore[typeddict-item]
-    if "sessionLoggerArn" in data:
+    if data.get("sessionLoggerArn") is not None:
         out["session_logger_arn"] = data["sessionLoggerArn"]
     else:
         raise DeserializationError(

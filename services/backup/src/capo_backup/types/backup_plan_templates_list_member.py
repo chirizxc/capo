@@ -27,8 +27,8 @@ def serialize_json(value: BackupPlanTemplatesListMember) -> dict:
 
 def deserialize_json(data: dict) -> BackupPlanTemplatesListMember:
     out: BackupPlanTemplatesListMember = {}  # type: ignore[typeddict-item]
-    if "BackupPlanTemplateId" in data:
+    if data.get("BackupPlanTemplateId") is not None:
         out["backup_plan_template_id"] = data["BackupPlanTemplateId"]
-    if "BackupPlanTemplateName" in data:
+    if data.get("BackupPlanTemplateName") is not None:
         out["backup_plan_template_name"] = data["BackupPlanTemplateName"]
     return out

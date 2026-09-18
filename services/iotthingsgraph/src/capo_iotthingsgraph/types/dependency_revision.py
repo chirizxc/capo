@@ -28,8 +28,8 @@ def serialize_aws_json_1_1(value: DependencyRevision) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DependencyRevision:
     out: DependencyRevision = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "revisionNumber" in data:
+    if data.get("revisionNumber") is not None:
         out["revision_number"] = data["revisionNumber"]
     return out

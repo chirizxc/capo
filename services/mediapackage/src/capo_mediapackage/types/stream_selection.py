@@ -40,11 +40,11 @@ def serialize_json(value: StreamSelection) -> dict:
 
 def deserialize_json(data: dict) -> StreamSelection:
     out: StreamSelection = {}  # type: ignore[typeddict-item]
-    if "maxVideoBitsPerSecond" in data:
+    if data.get("maxVideoBitsPerSecond") is not None:
         out["max_video_bits_per_second"] = data["maxVideoBitsPerSecond"]
-    if "minVideoBitsPerSecond" in data:
+    if data.get("minVideoBitsPerSecond") is not None:
         out["min_video_bits_per_second"] = data["minVideoBitsPerSecond"]
-    if "streamOrder" in data:
+    if data.get("streamOrder") is not None:
         import capo_mediapackage.types.stream_order
 
         out["stream_order"] = capo_mediapackage.types.stream_order.deserialize_json(

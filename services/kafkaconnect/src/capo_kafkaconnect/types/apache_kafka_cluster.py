@@ -30,11 +30,11 @@ def serialize_json(value: ApacheKafkaCluster) -> dict:
 
 def deserialize_json(data: dict) -> ApacheKafkaCluster:
     out: ApacheKafkaCluster = {}  # type: ignore[typeddict-item]
-    if "bootstrapServers" in data:
+    if data.get("bootstrapServers") is not None:
         out["bootstrap_servers"] = data["bootstrapServers"]
     else:
         raise DeserializationError("ApacheKafkaCluster.bootstrap_servers required")
-    if "vpc" in data:
+    if data.get("vpc") is not None:
         import capo_kafkaconnect.types.vpc
 
         out["vpc"] = capo_kafkaconnect.types.vpc.deserialize_json(data["vpc"])

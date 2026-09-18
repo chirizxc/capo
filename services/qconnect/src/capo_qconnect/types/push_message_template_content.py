@@ -70,7 +70,7 @@ def serialize_json(value: PushMessageTemplateContent) -> dict:
 
 def deserialize_json(data: dict) -> PushMessageTemplateContent:
     out: PushMessageTemplateContent = {}  # type: ignore[typeddict-item]
-    if "adm" in data:
+    if data.get("adm") is not None:
         import capo_qconnect.types.push_adm_message_template_content
 
         out["adm"] = (
@@ -78,7 +78,7 @@ def deserialize_json(data: dict) -> PushMessageTemplateContent:
                 data["adm"]
             )
         )
-    if "apns" in data:
+    if data.get("apns") is not None:
         import capo_qconnect.types.push_apns_message_template_content
 
         out["apns"] = (
@@ -86,7 +86,7 @@ def deserialize_json(data: dict) -> PushMessageTemplateContent:
                 data["apns"]
             )
         )
-    if "fcm" in data:
+    if data.get("fcm") is not None:
         import capo_qconnect.types.push_fcm_message_template_content
 
         out["fcm"] = (
@@ -94,7 +94,7 @@ def deserialize_json(data: dict) -> PushMessageTemplateContent:
                 data["fcm"]
             )
         )
-    if "baidu" in data:
+    if data.get("baidu") is not None:
         import capo_qconnect.types.push_baidu_message_template_content
 
         out["baidu"] = (

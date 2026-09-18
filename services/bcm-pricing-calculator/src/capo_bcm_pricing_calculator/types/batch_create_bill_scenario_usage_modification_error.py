@@ -44,11 +44,11 @@ def deserialize_aws_json_1_0(
     data: dict,
 ) -> BatchCreateBillScenarioUsageModificationError:
     out: BatchCreateBillScenarioUsageModificationError = {}  # type: ignore[typeddict-item]
-    if "key" in data:
+    if data.get("key") is not None:
         out["key"] = data["key"]
-    if "errorMessage" in data:
+    if data.get("errorMessage") is not None:
         out["error_message"] = data["errorMessage"]
-    if "errorCode" in data:
+    if data.get("errorCode") is not None:
         import capo_bcm_pricing_calculator.types.batch_create_bill_scenario_usage_modification_error_code
 
         out["error_code"] = (

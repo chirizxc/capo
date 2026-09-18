@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> AccountAssociationsList:
 
     out: AccountAssociationsList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_billingconductor.types.account_associations_list_element.deserialize_json(
                 item

@@ -54,7 +54,7 @@ def serialize_json(value: OutputLockingSettings) -> dict:
 
 def deserialize_json(data: dict) -> OutputLockingSettings:
     out: OutputLockingSettings = {}  # type: ignore[typeddict-item]
-    if "epochLockingSettings" in data:
+    if data.get("epochLockingSettings") is not None:
         import capo_medialive.types.epoch_locking_settings
 
         out["epoch_locking_settings"] = (
@@ -62,7 +62,7 @@ def deserialize_json(data: dict) -> OutputLockingSettings:
                 data["epochLockingSettings"]
             )
         )
-    if "pipelineLockingSettings" in data:
+    if data.get("pipelineLockingSettings") is not None:
         import capo_medialive.types.pipeline_locking_settings
 
         out["pipeline_locking_settings"] = (
@@ -70,7 +70,7 @@ def deserialize_json(data: dict) -> OutputLockingSettings:
                 data["pipelineLockingSettings"]
             )
         )
-    if "disabledLockingSettings" in data:
+    if data.get("disabledLockingSettings") is not None:
         import capo_medialive.types.disabled_locking_settings
 
         out["disabled_locking_settings"] = (

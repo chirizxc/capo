@@ -66,32 +66,32 @@ def serialize_aws_json_1_0(value: CreateComponentInput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CreateComponentInput:
     out: CreateComponentInput = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("CreateComponentInput.name required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "serviceName" in data:
+    if data.get("serviceName") is not None:
         out["service_name"] = data["serviceName"]
-    if "serviceInstanceName" in data:
+    if data.get("serviceInstanceName") is not None:
         out["service_instance_name"] = data["serviceInstanceName"]
-    if "environmentName" in data:
+    if data.get("environmentName") is not None:
         out["environment_name"] = data["environmentName"]
-    if "templateFile" in data:
+    if data.get("templateFile") is not None:
         out["template_file"] = data["templateFile"]
     else:
         raise DeserializationError("CreateComponentInput.template_file required")
-    if "manifest" in data:
+    if data.get("manifest") is not None:
         out["manifest"] = data["manifest"]
     else:
         raise DeserializationError("CreateComponentInput.manifest required")
-    if "serviceSpec" in data:
+    if data.get("serviceSpec") is not None:
         out["service_spec"] = data["serviceSpec"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_proton.types.tag_list
 
         out["tags"] = capo_proton.types.tag_list.deserialize_aws_json_1_0(data["tags"])
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     return out

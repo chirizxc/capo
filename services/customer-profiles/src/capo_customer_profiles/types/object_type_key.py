@@ -42,7 +42,7 @@ def serialize_json(value: ObjectTypeKey) -> dict:
 
 def deserialize_json(data: dict) -> ObjectTypeKey:
     out: ObjectTypeKey = {}  # type: ignore[typeddict-item]
-    if "StandardIdentifiers" in data:
+    if data.get("StandardIdentifiers") is not None:
         import capo_customer_profiles.types.standard_identifier_list
 
         out["standard_identifiers"] = (
@@ -50,7 +50,7 @@ def deserialize_json(data: dict) -> ObjectTypeKey:
                 data["StandardIdentifiers"]
             )
         )
-    if "FieldNames" in data:
+    if data.get("FieldNames") is not None:
         import capo_customer_profiles.types.field_name_list
 
         out["field_names"] = (

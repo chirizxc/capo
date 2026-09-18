@@ -35,7 +35,7 @@ def serialize_json(value: ListPropertiesResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListPropertiesResponse:
     out: ListPropertiesResponse = {}  # type: ignore[typeddict-item]
-    if "propertySummaries" in data:
+    if data.get("propertySummaries") is not None:
         import capo_iottwinmaker.types.property_summaries
 
         out["property_summaries"] = (
@@ -45,6 +45,6 @@ def deserialize_json(data: dict) -> ListPropertiesResponse:
         )
     else:
         raise DeserializationError("ListPropertiesResponse.property_summaries required")
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

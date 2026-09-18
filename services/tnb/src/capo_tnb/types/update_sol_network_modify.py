@@ -27,11 +27,11 @@ def serialize_json(value: UpdateSolNetworkModify) -> dict:
 
 def deserialize_json(data: dict) -> UpdateSolNetworkModify:
     out: UpdateSolNetworkModify = {}  # type: ignore[typeddict-item]
-    if "vnfInstanceId" in data:
+    if data.get("vnfInstanceId") is not None:
         out["vnf_instance_id"] = data["vnfInstanceId"]
     else:
         raise DeserializationError("UpdateSolNetworkModify.vnf_instance_id required")
-    if "vnfConfigurableProperties" in data:
+    if data.get("vnfConfigurableProperties") is not None:
         out["vnf_configurable_properties"] = data["vnfConfigurableProperties"]
     else:
         raise DeserializationError(

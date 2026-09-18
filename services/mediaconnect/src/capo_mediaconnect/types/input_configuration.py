@@ -35,11 +35,11 @@ def serialize_json(value: InputConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> InputConfiguration:
     out: InputConfiguration = {}  # type: ignore[typeddict-item]
-    if "inputIp" in data:
+    if data.get("inputIp") is not None:
         out["input_ip"] = data["inputIp"]
-    if "inputPort" in data:
+    if data.get("inputPort") is not None:
         out["input_port"] = data["inputPort"]
-    if "interface" in data:
+    if data.get("interface") is not None:
         import capo_mediaconnect.types.interface
 
         out["interface"] = capo_mediaconnect.types.interface.deserialize_json(

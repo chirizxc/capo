@@ -30,8 +30,8 @@ def serialize_json(value: PipeTargetSqsQueueParameters) -> dict:
 
 def deserialize_json(data: dict) -> PipeTargetSqsQueueParameters:
     out: PipeTargetSqsQueueParameters = {}  # type: ignore[typeddict-item]
-    if "MessageGroupId" in data:
+    if data.get("MessageGroupId") is not None:
         out["message_group_id"] = data["MessageGroupId"]
-    if "MessageDeduplicationId" in data:
+    if data.get("MessageDeduplicationId") is not None:
         out["message_deduplication_id"] = data["MessageDeduplicationId"]
     return out

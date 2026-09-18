@@ -25,7 +25,7 @@ def serialize_json(value: GetCanaryResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetCanaryResponse:
     out: GetCanaryResponse = {}  # type: ignore[typeddict-item]
-    if "Canary" in data:
+    if data.get("Canary") is not None:
         import capo_synthetics.types.canary
 
         out["canary"] = capo_synthetics.types.canary.deserialize_json(data["Canary"])

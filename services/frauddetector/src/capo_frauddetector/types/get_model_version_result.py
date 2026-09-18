@@ -103,9 +103,9 @@ def serialize_aws_json_1_1(value: GetModelVersionResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetModelVersionResult:
     out: GetModelVersionResult = {}  # type: ignore[typeddict-item]
-    if "modelId" in data:
+    if data.get("modelId") is not None:
         out["model_id"] = data["modelId"]
-    if "modelType" in data:
+    if data.get("modelType") is not None:
         import capo_frauddetector.types.model_type_enum
 
         out["model_type"] = (
@@ -113,9 +113,9 @@ def deserialize_aws_json_1_1(data: dict) -> GetModelVersionResult:
                 data["modelType"]
             )
         )
-    if "modelVersionNumber" in data:
+    if data.get("modelVersionNumber") is not None:
         out["model_version_number"] = data["modelVersionNumber"]
-    if "trainingDataSource" in data:
+    if data.get("trainingDataSource") is not None:
         import capo_frauddetector.types.training_data_source_enum
 
         out["training_data_source"] = (
@@ -123,7 +123,7 @@ def deserialize_aws_json_1_1(data: dict) -> GetModelVersionResult:
                 data["trainingDataSource"]
             )
         )
-    if "trainingDataSchema" in data:
+    if data.get("trainingDataSchema") is not None:
         import capo_frauddetector.types.training_data_schema
 
         out["training_data_schema"] = (
@@ -131,7 +131,7 @@ def deserialize_aws_json_1_1(data: dict) -> GetModelVersionResult:
                 data["trainingDataSchema"]
             )
         )
-    if "externalEventsDetail" in data:
+    if data.get("externalEventsDetail") is not None:
         import capo_frauddetector.types.external_events_detail
 
         out["external_events_detail"] = (
@@ -139,7 +139,7 @@ def deserialize_aws_json_1_1(data: dict) -> GetModelVersionResult:
                 data["externalEventsDetail"]
             )
         )
-    if "ingestedEventsDetail" in data:
+    if data.get("ingestedEventsDetail") is not None:
         import capo_frauddetector.types.ingested_events_detail
 
         out["ingested_events_detail"] = (
@@ -147,8 +147,8 @@ def deserialize_aws_json_1_1(data: dict) -> GetModelVersionResult:
                 data["ingestedEventsDetail"]
             )
         )
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     return out

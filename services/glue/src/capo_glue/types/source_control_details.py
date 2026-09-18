@@ -75,7 +75,7 @@ def serialize_aws_json_1_1(value: SourceControlDetails) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SourceControlDetails:
     out: SourceControlDetails = {}  # type: ignore[typeddict-item]
-    if "Provider" in data:
+    if data.get("Provider") is not None:
         import capo_glue.types.source_control_provider
 
         out["provider"] = (
@@ -83,17 +83,17 @@ def deserialize_aws_json_1_1(data: dict) -> SourceControlDetails:
                 data["Provider"]
             )
         )
-    if "Repository" in data:
+    if data.get("Repository") is not None:
         out["repository"] = data["Repository"]
-    if "Owner" in data:
+    if data.get("Owner") is not None:
         out["owner"] = data["Owner"]
-    if "Branch" in data:
+    if data.get("Branch") is not None:
         out["branch"] = data["Branch"]
-    if "Folder" in data:
+    if data.get("Folder") is not None:
         out["folder"] = data["Folder"]
-    if "LastCommitId" in data:
+    if data.get("LastCommitId") is not None:
         out["last_commit_id"] = data["LastCommitId"]
-    if "AuthStrategy" in data:
+    if data.get("AuthStrategy") is not None:
         import capo_glue.types.source_control_auth_strategy
 
         out["auth_strategy"] = (
@@ -101,6 +101,6 @@ def deserialize_aws_json_1_1(data: dict) -> SourceControlDetails:
                 data["AuthStrategy"]
             )
         )
-    if "AuthToken" in data:
+    if data.get("AuthToken") is not None:
         out["auth_token"] = data["AuthToken"]
     return out

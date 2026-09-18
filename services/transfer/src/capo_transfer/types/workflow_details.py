@@ -44,7 +44,7 @@ def serialize_aws_json_1_1(value: WorkflowDetails) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> WorkflowDetails:
     out: WorkflowDetails = {}  # type: ignore[typeddict-item]
-    if "OnUpload" in data:
+    if data.get("OnUpload") is not None:
         import capo_transfer.types.on_upload_workflow_details
 
         out["on_upload"] = (
@@ -52,7 +52,7 @@ def deserialize_aws_json_1_1(data: dict) -> WorkflowDetails:
                 data["OnUpload"]
             )
         )
-    if "OnPartialUpload" in data:
+    if data.get("OnPartialUpload") is not None:
         import capo_transfer.types.on_partial_upload_workflow_details
 
         out["on_partial_upload"] = (

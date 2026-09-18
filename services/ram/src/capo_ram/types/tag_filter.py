@@ -32,9 +32,9 @@ def serialize_json(value: TagFilter) -> dict:
 
 def deserialize_json(data: dict) -> TagFilter:
     out: TagFilter = {}  # type: ignore[typeddict-item]
-    if "tagKey" in data:
+    if data.get("tagKey") is not None:
         out["tag_key"] = data["tagKey"]
-    if "tagValues" in data:
+    if data.get("tagValues") is not None:
         import capo_ram.types.tag_value_list
 
         out["tag_values"] = capo_ram.types.tag_value_list.deserialize_json(

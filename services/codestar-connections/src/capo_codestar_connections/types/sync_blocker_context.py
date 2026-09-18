@@ -30,11 +30,11 @@ def serialize_aws_json_1_0(value: SyncBlockerContext) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> SyncBlockerContext:
     out: SyncBlockerContext = {}  # type: ignore[typeddict-item]
-    if "Key" in data:
+    if data.get("Key") is not None:
         out["key"] = data["Key"]
     else:
         raise DeserializationError("SyncBlockerContext.key required")
-    if "Value" in data:
+    if data.get("Value") is not None:
         out["value"] = data["Value"]
     else:
         raise DeserializationError("SyncBlockerContext.value required")

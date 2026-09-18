@@ -41,13 +41,13 @@ def serialize_json(value: StorageConfiguration) -> dict:
 
 
 def deserialize_json(data: dict) -> StorageConfiguration:
-    if "efs" in data:
+    if data.get("efs") is not None:
         import capo_m2.types.efs_storage_configuration
 
         return {
             "efs": capo_m2.types.efs_storage_configuration.deserialize_json(data["efs"])
         }
-    elif "fsx" in data:
+    elif data.get("fsx") is not None:
         import capo_m2.types.fsx_storage_configuration
 
         return {

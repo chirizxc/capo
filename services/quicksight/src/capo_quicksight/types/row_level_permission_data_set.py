@@ -61,13 +61,13 @@ def serialize_json(value: RowLevelPermissionDataSet) -> dict:
 
 def deserialize_json(data: dict) -> RowLevelPermissionDataSet:
     out: RowLevelPermissionDataSet = {}  # type: ignore[typeddict-item]
-    if "Namespace" in data:
+    if data.get("Namespace") is not None:
         out["namespace"] = data["Namespace"]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
     else:
         raise DeserializationError("RowLevelPermissionDataSet.arn required")
-    if "PermissionPolicy" in data:
+    if data.get("PermissionPolicy") is not None:
         import capo_quicksight.types.row_level_permission_policy
 
         out["permission_policy"] = (
@@ -79,7 +79,7 @@ def deserialize_json(data: dict) -> RowLevelPermissionDataSet:
         raise DeserializationError(
             "RowLevelPermissionDataSet.permission_policy required"
         )
-    if "FormatVersion" in data:
+    if data.get("FormatVersion") is not None:
         import capo_quicksight.types.row_level_permission_format_version
 
         out["format_version"] = (
@@ -87,7 +87,7 @@ def deserialize_json(data: dict) -> RowLevelPermissionDataSet:
                 data["FormatVersion"]
             )
         )
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_quicksight.types.status
 
         out["status"] = capo_quicksight.types.status.deserialize_json(data["Status"])

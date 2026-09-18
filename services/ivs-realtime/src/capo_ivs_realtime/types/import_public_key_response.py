@@ -27,7 +27,7 @@ def serialize_json(value: ImportPublicKeyResponse) -> dict:
 
 def deserialize_json(data: dict) -> ImportPublicKeyResponse:
     out: ImportPublicKeyResponse = {}  # type: ignore[typeddict-item]
-    if "publicKey" in data:
+    if data.get("publicKey") is not None:
         import capo_ivs_realtime.types.public_key
 
         out["public_key"] = capo_ivs_realtime.types.public_key.deserialize_json(

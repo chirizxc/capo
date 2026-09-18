@@ -25,5 +25,7 @@ def deserialize_aws_json_1_1(data: list) -> WorkspaceImageList:
 
     out: WorkspaceImageList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_workspaces.types.workspace_image.deserialize_aws_json_1_1(item))
     return out

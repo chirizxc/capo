@@ -32,11 +32,11 @@ def serialize_json(value: TagPropagationConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> TagPropagationConfiguration:
     out: TagPropagationConfiguration = {}  # type: ignore[typeddict-item]
-    if "resourceType" in data:
+    if data.get("resourceType") is not None:
         out["resource_type"] = data["resourceType"]
     else:
         raise DeserializationError("TagPropagationConfiguration.resource_type required")
-    if "tagMap" in data:
+    if data.get("tagMap") is not None:
         import capo_connectcases.types.mutable_tags
 
         out["tag_map"] = capo_connectcases.types.mutable_tags.deserialize_json(

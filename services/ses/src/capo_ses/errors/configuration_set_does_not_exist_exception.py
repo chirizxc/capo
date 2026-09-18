@@ -51,15 +51,20 @@ class ConfigurationSetDoesNotExistException(ServiceError):
 
     code: str | None = "ConfigurationSetDoesNotExistException"
 
-    def __init__(self, data: ConfigurationSetDoesNotExistException_):
+    def __init__(
+        self, data: ConfigurationSetDoesNotExistException_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="ConfigurationSetDoesNotExistException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_query(cls, el: Element) -> "ConfigurationSetDoesNotExistException":
-        return cls(deserialize_query(el))
+    def from_query(
+        cls, el: Element, message: str | None = None
+    ) -> "ConfigurationSetDoesNotExistException":
+        return cls(deserialize_query(el), message)

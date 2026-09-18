@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> AcquiredLimits:
 
     out: AcquiredLimits = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_deadline.types.acquired_limit.deserialize_json(item))
     return out

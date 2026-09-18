@@ -38,7 +38,7 @@ def deserialize_json(
     data: dict,
 ) -> ListAssessmentControlInsightsByControlDomainResponse:
     out: ListAssessmentControlInsightsByControlDomainResponse = {}  # type: ignore[typeddict-item]
-    if "controlInsightsByAssessment" in data:
+    if data.get("controlInsightsByAssessment") is not None:
         import capo_auditmanager.types.control_insights_metadata_by_assessment
 
         out["control_insights_by_assessment"] = (
@@ -46,6 +46,6 @@ def deserialize_json(
                 data["controlInsightsByAssessment"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

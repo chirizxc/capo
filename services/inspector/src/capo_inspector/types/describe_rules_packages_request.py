@@ -41,7 +41,7 @@ def serialize_aws_json_1_1(value: DescribeRulesPackagesRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeRulesPackagesRequest:
     out: DescribeRulesPackagesRequest = {}  # type: ignore[typeddict-item]
-    if "rulesPackageArns" in data:
+    if data.get("rulesPackageArns") is not None:
         import capo_inspector.types.batch_describe_arn_list
 
         out["rules_package_arns"] = (
@@ -53,7 +53,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeRulesPackagesRequest:
         raise DeserializationError(
             "DescribeRulesPackagesRequest.rules_package_arns required"
         )
-    if "locale" in data:
+    if data.get("locale") is not None:
         import capo_inspector.types.locale
 
         out["locale"] = capo_inspector.types.locale.deserialize_aws_json_1_1(

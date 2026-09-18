@@ -72,13 +72,13 @@ def serialize_json(value: CreateResiliencyPolicyRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateResiliencyPolicyRequest:
     out: CreateResiliencyPolicyRequest = {}  # type: ignore[typeddict-item]
-    if "policyName" in data:
+    if data.get("policyName") is not None:
         out["policy_name"] = data["policyName"]
     else:
         raise DeserializationError("CreateResiliencyPolicyRequest.policy_name required")
-    if "policyDescription" in data:
+    if data.get("policyDescription") is not None:
         out["policy_description"] = data["policyDescription"]
-    if "dataLocationConstraint" in data:
+    if data.get("dataLocationConstraint") is not None:
         import capo_resiliencehub.types.data_location_constraint
 
         out["data_location_constraint"] = (
@@ -86,7 +86,7 @@ def deserialize_json(data: dict) -> CreateResiliencyPolicyRequest:
                 data["dataLocationConstraint"]
             )
         )
-    if "tier" in data:
+    if data.get("tier") is not None:
         import capo_resiliencehub.types.resiliency_policy_tier
 
         out["tier"] = capo_resiliencehub.types.resiliency_policy_tier.deserialize_json(
@@ -94,7 +94,7 @@ def deserialize_json(data: dict) -> CreateResiliencyPolicyRequest:
         )
     else:
         raise DeserializationError("CreateResiliencyPolicyRequest.tier required")
-    if "policy" in data:
+    if data.get("policy") is not None:
         import capo_resiliencehub.types.disruption_policy
 
         out["policy"] = capo_resiliencehub.types.disruption_policy.deserialize_json(
@@ -102,9 +102,9 @@ def deserialize_json(data: dict) -> CreateResiliencyPolicyRequest:
         )
     else:
         raise DeserializationError("CreateResiliencyPolicyRequest.policy required")
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_resiliencehub.types.tag_map
 
         out["tags"] = capo_resiliencehub.types.tag_map.deserialize_json(data["tags"])

@@ -98,13 +98,13 @@ def serialize_aws_json_1_1(value: Comment) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Comment:
     out: Comment = {}  # type: ignore[typeddict-item]
-    if "commentId" in data:
+    if data.get("commentId") is not None:
         out["comment_id"] = data["commentId"]
-    if "content" in data:
+    if data.get("content") is not None:
         out["content"] = data["content"]
-    if "inReplyTo" in data:
+    if data.get("inReplyTo") is not None:
         out["in_reply_to"] = data["inReplyTo"]
-    if "creationDate" in data:
+    if data.get("creationDate") is not None:
         import capo_codecommit.types.creation_date
 
         out["creation_date"] = (
@@ -112,7 +112,7 @@ def deserialize_aws_json_1_1(data: dict) -> Comment:
                 data["creationDate"]
             )
         )
-    if "lastModifiedDate" in data:
+    if data.get("lastModifiedDate") is not None:
         import capo_codecommit.types.last_modified_date
 
         out["last_modified_date"] = (
@@ -120,15 +120,15 @@ def deserialize_aws_json_1_1(data: dict) -> Comment:
                 data["lastModifiedDate"]
             )
         )
-    if "authorArn" in data:
+    if data.get("authorArn") is not None:
         out["author_arn"] = data["authorArn"]
-    if "deleted" in data:
+    if data.get("deleted") is not None:
         out["deleted"] = data["deleted"]
     else:
         out["deleted"] = False
-    if "clientRequestToken" in data:
+    if data.get("clientRequestToken") is not None:
         out["client_request_token"] = data["clientRequestToken"]
-    if "callerReactions" in data:
+    if data.get("callerReactions") is not None:
         import capo_codecommit.types.caller_reactions
 
         out["caller_reactions"] = (
@@ -136,7 +136,7 @@ def deserialize_aws_json_1_1(data: dict) -> Comment:
                 data["callerReactions"]
             )
         )
-    if "reactionCounts" in data:
+    if data.get("reactionCounts") is not None:
         import capo_codecommit.types.reaction_counts_map
 
         out["reaction_counts"] = (

@@ -44,7 +44,7 @@ def serialize_aws_json_1_1(value: HyperParameterTuningJobWarmStartConfig) -> dic
 
 def deserialize_aws_json_1_1(data: dict) -> HyperParameterTuningJobWarmStartConfig:
     out: HyperParameterTuningJobWarmStartConfig = {}  # type: ignore[typeddict-item]
-    if "ParentHyperParameterTuningJobs" in data:
+    if data.get("ParentHyperParameterTuningJobs") is not None:
         import capo_sagemaker.types.parent_hyper_parameter_tuning_jobs
 
         out["parent_hyper_parameter_tuning_jobs"] = (
@@ -52,7 +52,7 @@ def deserialize_aws_json_1_1(data: dict) -> HyperParameterTuningJobWarmStartConf
                 data["ParentHyperParameterTuningJobs"]
             )
         )
-    if "WarmStartType" in data:
+    if data.get("WarmStartType") is not None:
         import capo_sagemaker.types.hyper_parameter_tuning_job_warm_start_type
 
         out["warm_start_type"] = (

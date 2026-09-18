@@ -38,7 +38,7 @@ def serialize_json(value: UpdatePushTemplateRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdatePushTemplateRequest:
     out: UpdatePushTemplateRequest = {}  # type: ignore[typeddict-item]
-    if "PushNotificationTemplateRequest" in data:
+    if data.get("PushNotificationTemplateRequest") is not None:
         import capo_pinpoint.types.push_notification_template_request
 
         out["push_notification_template_request"] = (

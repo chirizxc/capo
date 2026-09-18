@@ -33,8 +33,8 @@ def serialize_json(value: UpdateBackendJobRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateBackendJobRequest:
     out: UpdateBackendJobRequest = {}  # type: ignore[typeddict-item]
-    if "operation" in data:
+    if data.get("operation") is not None:
         out["operation"] = data["operation"]
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
     return out

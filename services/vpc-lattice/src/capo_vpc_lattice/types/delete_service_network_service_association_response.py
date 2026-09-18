@@ -39,10 +39,10 @@ def serialize_json(value: DeleteServiceNetworkServiceAssociationResponse) -> dic
 
 def deserialize_json(data: dict) -> DeleteServiceNetworkServiceAssociationResponse:
     out: DeleteServiceNetworkServiceAssociationResponse = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     return out

@@ -44,7 +44,7 @@ def serialize_json(value: BarSeriesItem) -> dict:
 
 def deserialize_json(data: dict) -> BarSeriesItem:
     out: BarSeriesItem = {}  # type: ignore[typeddict-item]
-    if "FieldBarSeriesItem" in data:
+    if data.get("FieldBarSeriesItem") is not None:
         import capo_quicksight.types.field_bar_series_item
 
         out["field_bar_series_item"] = (
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> BarSeriesItem:
                 data["FieldBarSeriesItem"]
             )
         )
-    if "DataFieldBarSeriesItem" in data:
+    if data.get("DataFieldBarSeriesItem") is not None:
         import capo_quicksight.types.data_field_bar_series_item
 
         out["data_field_bar_series_item"] = (

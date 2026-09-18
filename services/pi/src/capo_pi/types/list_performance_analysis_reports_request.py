@@ -47,7 +47,7 @@ def serialize_aws_json_1_1(value: ListPerformanceAnalysisReportsRequest) -> dict
 
 def deserialize_aws_json_1_1(data: dict) -> ListPerformanceAnalysisReportsRequest:
     out: ListPerformanceAnalysisReportsRequest = {}  # type: ignore[typeddict-item]
-    if "ServiceType" in data:
+    if data.get("ServiceType") is not None:
         import capo_pi.types.service_type
 
         out["service_type"] = capo_pi.types.service_type.deserialize_aws_json_1_1(
@@ -57,16 +57,16 @@ def deserialize_aws_json_1_1(data: dict) -> ListPerformanceAnalysisReportsReques
         raise DeserializationError(
             "ListPerformanceAnalysisReportsRequest.service_type required"
         )
-    if "Identifier" in data:
+    if data.get("Identifier") is not None:
         out["identifier"] = data["Identifier"]
     else:
         raise DeserializationError(
             "ListPerformanceAnalysisReportsRequest.identifier required"
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "ListTags" in data:
+    if data.get("ListTags") is not None:
         out["list_tags"] = data["ListTags"]
     return out

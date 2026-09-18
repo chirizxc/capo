@@ -13,9 +13,9 @@ from capo_eks import AsyncEKSClient
 
 
 async def main():
-    async with AsyncEKSClient() as s3:
+    async with AsyncEKSClient() as eks:
         # Example: call the associate_access_policy operation
-        response = await s3.associate_access_policy()
+        response = await eks.associate_access_policy()
         print(response["cluster_name"])
 ```
 
@@ -28,9 +28,9 @@ from capo_eks import AsyncEKSClient
 
 
 async def main():
-    async with AsyncEKSClient() as s3:
+    async with AsyncEKSClient() as eks:
         # Example: paginate over describe_addon_versions
-        async for item in s3.iter_describe_addon_versions():
+        async for item in eks.iter_describe_addon_versions():
             print(item)
 ```
 
@@ -44,9 +44,9 @@ from capo_eks.error import InvalidParameterException
 
 
 async def main():
-    async with AsyncEKSClient() as s3:
+    async with AsyncEKSClient() as eks:
         try:
-            await s3.associate_access_policy()
+            await eks.associate_access_policy()
         except InvalidParameterException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -63,13 +63,13 @@ from capo_eks import AsyncEKSClient
 
 
 async def main():
-    async with AsyncEKSClient() as s3:
+    async with AsyncEKSClient() as eks:
         # Default: 3 attempts for every operation
-        response = await s3.associate_access_policy()
+        response = await eks.associate_access_policy()
 
         # Override per operation
-        response = await s3.associate_access_policy(config_overrides={"retry_max_attempts": 5})
+        response = await eks.associate_access_policy(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.associate_access_policy(config_overrides={"retry_max_attempts": 1})
+        response = await eks.associate_access_policy(config_overrides={"retry_max_attempts": 1})
 ```

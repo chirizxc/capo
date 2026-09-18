@@ -31,7 +31,7 @@ def serialize_json(value: TranscriptSourceSetting) -> dict:
 
 def deserialize_json(data: dict) -> TranscriptSourceSetting:
     out: TranscriptSourceSetting = {}  # type: ignore[typeddict-item]
-    if "s3BucketTranscriptSource" in data:
+    if data.get("s3BucketTranscriptSource") is not None:
         import capo_lex_models_v2.types.s3_bucket_transcript_source
 
         out["s3_bucket_transcript_source"] = (

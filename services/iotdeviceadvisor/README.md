@@ -13,10 +13,25 @@ from capo_iotdeviceadvisor import AsyncIotDeviceAdvisorClient
 
 
 async def main():
-    async with AsyncIotDeviceAdvisorClient() as s3:
+    async with AsyncIotDeviceAdvisorClient() as iot_device_advisor:
         # Example: call the create_suite_definition operation
-        response = await s3.create_suite_definition()
+        response = await iot_device_advisor.create_suite_definition()
         print(response["suite_definition_id"])
+```
+
+## Pagination
+
+Some operations in this SDK support pagination. If the operation supports pagination it will have an `iter_` prefixed method that returns an async iterator.
+
+```python
+from capo_iotdeviceadvisor import AsyncIotDeviceAdvisorClient
+
+
+async def main():
+    async with AsyncIotDeviceAdvisorClient() as iot_device_advisor:
+        # Example: paginate over list_suite_definitions
+        async for item in iot_device_advisor.iter_list_suite_definitions():
+            print(item)
 ```
 
 ## Error Handling
@@ -29,9 +44,9 @@ from capo_iotdeviceadvisor.error import InternalServerException
 
 
 async def main():
-    async with AsyncIotDeviceAdvisorClient() as s3:
+    async with AsyncIotDeviceAdvisorClient() as iot_device_advisor:
         try:
-            await s3.create_suite_definition()
+            await iot_device_advisor.create_suite_definition()
         except InternalServerException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -48,13 +63,13 @@ from capo_iotdeviceadvisor import AsyncIotDeviceAdvisorClient
 
 
 async def main():
-    async with AsyncIotDeviceAdvisorClient() as s3:
+    async with AsyncIotDeviceAdvisorClient() as iot_device_advisor:
         # Default: 3 attempts for every operation
-        response = await s3.create_suite_definition()
+        response = await iot_device_advisor.create_suite_definition()
 
         # Override per operation
-        response = await s3.create_suite_definition(config_overrides={"retry_max_attempts": 5})
+        response = await iot_device_advisor.create_suite_definition(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.create_suite_definition(config_overrides={"retry_max_attempts": 1})
+        response = await iot_device_advisor.create_suite_definition(config_overrides={"retry_max_attempts": 1})
 ```

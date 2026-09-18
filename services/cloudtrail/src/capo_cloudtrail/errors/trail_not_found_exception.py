@@ -25,7 +25,7 @@ def serialize_aws_json_1_1(value: TrailNotFoundException_) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> TrailNotFoundException_:
     out: TrailNotFoundException_ = {}  # type: ignore[typeddict-item]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     return out
 
@@ -35,15 +35,18 @@ class TrailNotFoundException(ServiceError):
 
     code: str | None = "TrailNotFoundException"
 
-    def __init__(self, data: TrailNotFoundException_):
+    def __init__(self, data: TrailNotFoundException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="TrailNotFoundException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "TrailNotFoundException":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "TrailNotFoundException":
+        return cls(deserialize_aws_json_1_1(data), message)

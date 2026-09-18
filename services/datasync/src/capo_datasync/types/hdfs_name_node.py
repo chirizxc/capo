@@ -28,11 +28,11 @@ def serialize_aws_json_1_1(value: HdfsNameNode) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> HdfsNameNode:
     out: HdfsNameNode = {}  # type: ignore[typeddict-item]
-    if "Hostname" in data:
+    if data.get("Hostname") is not None:
         out["hostname"] = data["Hostname"]
     else:
         raise DeserializationError("HdfsNameNode.hostname required")
-    if "Port" in data:
+    if data.get("Port") is not None:
         out["port"] = data["Port"]
     else:
         raise DeserializationError("HdfsNameNode.port required")

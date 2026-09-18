@@ -27,6 +27,8 @@ def deserialize_aws_json_1_1(data: list) -> OperationStatusList:
 
     out: OperationStatusList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_route_53_domains.types.operation_status.deserialize_aws_json_1_1(item)
         )

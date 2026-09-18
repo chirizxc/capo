@@ -48,15 +48,15 @@ def serialize_json(value: UpdateDataRetentionInput) -> dict:
 
 def deserialize_json(data: dict) -> UpdateDataRetentionInput:
     out: UpdateDataRetentionInput = {}  # type: ignore[typeddict-item]
-    if "StreamName" in data:
+    if data.get("StreamName") is not None:
         out["stream_name"] = data["StreamName"]
-    if "StreamARN" in data:
+    if data.get("StreamARN") is not None:
         out["stream_arn"] = data["StreamARN"]
-    if "CurrentVersion" in data:
+    if data.get("CurrentVersion") is not None:
         out["current_version"] = data["CurrentVersion"]
     else:
         raise DeserializationError("UpdateDataRetentionInput.current_version required")
-    if "Operation" in data:
+    if data.get("Operation") is not None:
         import capo_kinesis_video.types.update_data_retention_operation
 
         out["operation"] = (
@@ -66,7 +66,7 @@ def deserialize_json(data: dict) -> UpdateDataRetentionInput:
         )
     else:
         raise DeserializationError("UpdateDataRetentionInput.operation required")
-    if "DataRetentionChangeInHours" in data:
+    if data.get("DataRetentionChangeInHours") is not None:
         out["data_retention_change_in_hours"] = data["DataRetentionChangeInHours"]
     else:
         raise DeserializationError(

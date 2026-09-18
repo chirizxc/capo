@@ -54,7 +54,7 @@ def serialize_aws_json_1_1(value: DockerSettings) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DockerSettings:
     out: DockerSettings = {}  # type: ignore[typeddict-item]
-    if "EnableDockerAccess" in data:
+    if data.get("EnableDockerAccess") is not None:
         import capo_sagemaker.types.feature_status
 
         out["enable_docker_access"] = (
@@ -62,7 +62,7 @@ def deserialize_aws_json_1_1(data: dict) -> DockerSettings:
                 data["EnableDockerAccess"]
             )
         )
-    if "VpcOnlyTrustedAccounts" in data:
+    if data.get("VpcOnlyTrustedAccounts") is not None:
         import capo_sagemaker.types.vpc_only_trusted_accounts
 
         out["vpc_only_trusted_accounts"] = (
@@ -70,7 +70,7 @@ def deserialize_aws_json_1_1(data: dict) -> DockerSettings:
                 data["VpcOnlyTrustedAccounts"]
             )
         )
-    if "RootlessDocker" in data:
+    if data.get("RootlessDocker") is not None:
         import capo_sagemaker.types.feature_status
 
         out["rootless_docker"] = (

@@ -52,11 +52,11 @@ def serialize_aws_json_1_1(value: DropNullFields) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DropNullFields:
     out: DropNullFields = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("DropNullFields.name required")
-    if "Inputs" in data:
+    if data.get("Inputs") is not None:
         import capo_glue.types.one_input
 
         out["inputs"] = capo_glue.types.one_input.deserialize_aws_json_1_1(
@@ -64,7 +64,7 @@ def deserialize_aws_json_1_1(data: dict) -> DropNullFields:
         )
     else:
         raise DeserializationError("DropNullFields.inputs required")
-    if "NullCheckBoxList" in data:
+    if data.get("NullCheckBoxList") is not None:
         import capo_glue.types.null_check_box_list
 
         out["null_check_box_list"] = (
@@ -72,7 +72,7 @@ def deserialize_aws_json_1_1(data: dict) -> DropNullFields:
                 data["NullCheckBoxList"]
             )
         )
-    if "NullTextList" in data:
+    if data.get("NullTextList") is not None:
         import capo_glue.types.null_value_fields
 
         out["null_text_list"] = (

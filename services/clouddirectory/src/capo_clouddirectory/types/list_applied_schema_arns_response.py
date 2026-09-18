@@ -32,12 +32,12 @@ def serialize_json(value: ListAppliedSchemaArnsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListAppliedSchemaArnsResponse:
     out: ListAppliedSchemaArnsResponse = {}  # type: ignore[typeddict-item]
-    if "SchemaArns" in data:
+    if data.get("SchemaArns") is not None:
         import capo_clouddirectory.types.arns
 
         out["schema_arns"] = capo_clouddirectory.types.arns.deserialize_json(
             data["SchemaArns"]
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

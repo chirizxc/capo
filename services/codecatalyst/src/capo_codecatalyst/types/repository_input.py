@@ -31,10 +31,10 @@ def serialize_json(value: RepositoryInput) -> dict:
 
 def deserialize_json(data: dict) -> RepositoryInput:
     out: RepositoryInput = {}  # type: ignore[typeddict-item]
-    if "repositoryName" in data:
+    if data.get("repositoryName") is not None:
         out["repository_name"] = data["repositoryName"]
     else:
         raise DeserializationError("RepositoryInput.repository_name required")
-    if "branchName" in data:
+    if data.get("branchName") is not None:
         out["branch_name"] = data["branchName"]
     return out

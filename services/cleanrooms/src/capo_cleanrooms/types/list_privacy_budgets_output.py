@@ -37,7 +37,7 @@ def serialize_json(value: ListPrivacyBudgetsOutput) -> dict:
 
 def deserialize_json(data: dict) -> ListPrivacyBudgetsOutput:
     out: ListPrivacyBudgetsOutput = {}  # type: ignore[typeddict-item]
-    if "privacyBudgetSummaries" in data:
+    if data.get("privacyBudgetSummaries") is not None:
         import capo_cleanrooms.types.privacy_budget_summary_list
 
         out["privacy_budget_summaries"] = (
@@ -49,6 +49,6 @@ def deserialize_json(data: dict) -> ListPrivacyBudgetsOutput:
         raise DeserializationError(
             "ListPrivacyBudgetsOutput.privacy_budget_summaries required"
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

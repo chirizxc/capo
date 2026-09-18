@@ -40,13 +40,13 @@ def serialize_json(value: PricingOption) -> dict:
 
 def deserialize_json(data: dict) -> PricingOption:
     out: PricingOption = {}  # type: ignore[typeddict-item]
-    if "PricingType" in data:
+    if data.get("PricingType") is not None:
         import capo_outposts.types.quote_pricing_type
 
         out["pricing_type"] = capo_outposts.types.quote_pricing_type.deserialize_json(
             data["PricingType"]
         )
-    if "SubscriptionPricingDetails" in data:
+    if data.get("SubscriptionPricingDetails") is not None:
         import capo_outposts.types.subscription_pricing_details
 
         out["subscription_pricing_details"] = (

@@ -112,17 +112,17 @@ def serialize_aws_json_1_1(value: InstanceFleet) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> InstanceFleet:
     out: InstanceFleet = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_emr.types.instance_fleet_status
 
         out["status"] = capo_emr.types.instance_fleet_status.deserialize_aws_json_1_1(
             data["Status"]
         )
-    if "InstanceFleetType" in data:
+    if data.get("InstanceFleetType") is not None:
         import capo_emr.types.instance_fleet_type
 
         out["instance_fleet_type"] = (
@@ -130,15 +130,15 @@ def deserialize_aws_json_1_1(data: dict) -> InstanceFleet:
                 data["InstanceFleetType"]
             )
         )
-    if "TargetOnDemandCapacity" in data:
+    if data.get("TargetOnDemandCapacity") is not None:
         out["target_on_demand_capacity"] = data["TargetOnDemandCapacity"]
-    if "TargetSpotCapacity" in data:
+    if data.get("TargetSpotCapacity") is not None:
         out["target_spot_capacity"] = data["TargetSpotCapacity"]
-    if "ProvisionedOnDemandCapacity" in data:
+    if data.get("ProvisionedOnDemandCapacity") is not None:
         out["provisioned_on_demand_capacity"] = data["ProvisionedOnDemandCapacity"]
-    if "ProvisionedSpotCapacity" in data:
+    if data.get("ProvisionedSpotCapacity") is not None:
         out["provisioned_spot_capacity"] = data["ProvisionedSpotCapacity"]
-    if "InstanceTypeSpecifications" in data:
+    if data.get("InstanceTypeSpecifications") is not None:
         import capo_emr.types.instance_type_specification_list
 
         out["instance_type_specifications"] = (
@@ -146,7 +146,7 @@ def deserialize_aws_json_1_1(data: dict) -> InstanceFleet:
                 data["InstanceTypeSpecifications"]
             )
         )
-    if "LaunchSpecifications" in data:
+    if data.get("LaunchSpecifications") is not None:
         import capo_emr.types.instance_fleet_provisioning_specifications
 
         out["launch_specifications"] = (
@@ -154,7 +154,7 @@ def deserialize_aws_json_1_1(data: dict) -> InstanceFleet:
                 data["LaunchSpecifications"]
             )
         )
-    if "ResizeSpecifications" in data:
+    if data.get("ResizeSpecifications") is not None:
         import capo_emr.types.instance_fleet_resizing_specifications
 
         out["resize_specifications"] = (
@@ -162,6 +162,6 @@ def deserialize_aws_json_1_1(data: dict) -> InstanceFleet:
                 data["ResizeSpecifications"]
             )
         )
-    if "Context" in data:
+    if data.get("Context") is not None:
         out["context"] = data["Context"]
     return out

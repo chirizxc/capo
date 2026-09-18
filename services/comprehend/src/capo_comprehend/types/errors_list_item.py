@@ -41,9 +41,9 @@ def serialize_aws_json_1_1(value: ErrorsListItem) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ErrorsListItem:
     out: ErrorsListItem = {}  # type: ignore[typeddict-item]
-    if "Page" in data:
+    if data.get("Page") is not None:
         out["page"] = data["Page"]
-    if "ErrorCode" in data:
+    if data.get("ErrorCode") is not None:
         import capo_comprehend.types.page_based_error_code
 
         out["error_code"] = (
@@ -51,6 +51,6 @@ def deserialize_aws_json_1_1(data: dict) -> ErrorsListItem:
                 data["ErrorCode"]
             )
         )
-    if "ErrorMessage" in data:
+    if data.get("ErrorMessage") is not None:
         out["error_message"] = data["ErrorMessage"]
     return out

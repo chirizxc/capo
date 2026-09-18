@@ -27,8 +27,8 @@ def serialize_json(value: ColumnSelector) -> dict:
 
 def deserialize_json(data: dict) -> ColumnSelector:
     out: ColumnSelector = {}  # type: ignore[typeddict-item]
-    if "Regex" in data:
+    if data.get("Regex") is not None:
         out["regex"] = data["Regex"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     return out

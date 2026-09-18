@@ -22,8 +22,8 @@ def serialize_json(value: EmailAddress) -> dict:
 
 def deserialize_json(data: dict) -> EmailAddress:
     out: EmailAddress = {}  # type: ignore[typeddict-item]
-    if "email" in data:
+    if data.get("email") is not None:
         out["email"] = data["email"]
-    if "verified" in data:
+    if data.get("verified") is not None:
         out["verified"] = data["verified"]
     return out

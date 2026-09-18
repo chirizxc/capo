@@ -57,7 +57,7 @@ def serialize_json(value: GetFindingHistoryRequest) -> dict:
 
 def deserialize_json(data: dict) -> GetFindingHistoryRequest:
     out: GetFindingHistoryRequest = {}  # type: ignore[typeddict-item]
-    if "FindingIdentifier" in data:
+    if data.get("FindingIdentifier") is not None:
         import capo_securityhub.types.aws_security_finding_identifier
 
         out["finding_identifier"] = (
@@ -65,20 +65,20 @@ def deserialize_json(data: dict) -> GetFindingHistoryRequest:
                 data["FindingIdentifier"]
             )
         )
-    if "StartTime" in data:
+    if data.get("StartTime") is not None:
         import capo_securityhub.types.timestamp
 
         out["start_time"] = capo_securityhub.types.timestamp.deserialize_json(
             data["StartTime"]
         )
-    if "EndTime" in data:
+    if data.get("EndTime") is not None:
         import capo_securityhub.types.timestamp
 
         out["end_time"] = capo_securityhub.types.timestamp.deserialize_json(
             data["EndTime"]
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
     return out

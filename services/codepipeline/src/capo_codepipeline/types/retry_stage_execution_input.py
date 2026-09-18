@@ -42,21 +42,21 @@ def serialize_aws_json_1_1(value: RetryStageExecutionInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RetryStageExecutionInput:
     out: RetryStageExecutionInput = {}  # type: ignore[typeddict-item]
-    if "pipelineName" in data:
+    if data.get("pipelineName") is not None:
         out["pipeline_name"] = data["pipelineName"]
     else:
         raise DeserializationError("RetryStageExecutionInput.pipeline_name required")
-    if "stageName" in data:
+    if data.get("stageName") is not None:
         out["stage_name"] = data["stageName"]
     else:
         raise DeserializationError("RetryStageExecutionInput.stage_name required")
-    if "pipelineExecutionId" in data:
+    if data.get("pipelineExecutionId") is not None:
         out["pipeline_execution_id"] = data["pipelineExecutionId"]
     else:
         raise DeserializationError(
             "RetryStageExecutionInput.pipeline_execution_id required"
         )
-    if "retryMode" in data:
+    if data.get("retryMode") is not None:
         import capo_codepipeline.types.stage_retry_mode
 
         out["retry_mode"] = (

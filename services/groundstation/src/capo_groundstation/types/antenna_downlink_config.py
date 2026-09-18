@@ -28,7 +28,7 @@ def serialize_json(value: AntennaDownlinkConfig) -> dict:
 
 def deserialize_json(data: dict) -> AntennaDownlinkConfig:
     out: AntennaDownlinkConfig = {}  # type: ignore[typeddict-item]
-    if "spectrumConfig" in data:
+    if data.get("spectrumConfig") is not None:
         import capo_groundstation.types.spectrum_config
 
         out["spectrum_config"] = (

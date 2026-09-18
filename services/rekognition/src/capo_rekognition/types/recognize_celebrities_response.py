@@ -55,7 +55,7 @@ def serialize_aws_json_1_1(value: RecognizeCelebritiesResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RecognizeCelebritiesResponse:
     out: RecognizeCelebritiesResponse = {}  # type: ignore[typeddict-item]
-    if "CelebrityFaces" in data:
+    if data.get("CelebrityFaces") is not None:
         import capo_rekognition.types.celebrity_list
 
         out["celebrity_faces"] = (
@@ -63,7 +63,7 @@ def deserialize_aws_json_1_1(data: dict) -> RecognizeCelebritiesResponse:
                 data["CelebrityFaces"]
             )
         )
-    if "UnrecognizedFaces" in data:
+    if data.get("UnrecognizedFaces") is not None:
         import capo_rekognition.types.compared_face_list
 
         out["unrecognized_faces"] = (
@@ -71,7 +71,7 @@ def deserialize_aws_json_1_1(data: dict) -> RecognizeCelebritiesResponse:
                 data["UnrecognizedFaces"]
             )
         )
-    if "OrientationCorrection" in data:
+    if data.get("OrientationCorrection") is not None:
         import capo_rekognition.types.orientation_correction
 
         out["orientation_correction"] = (

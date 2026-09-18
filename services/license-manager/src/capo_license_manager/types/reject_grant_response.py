@@ -37,9 +37,9 @@ def serialize_aws_json_1_1(value: RejectGrantResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RejectGrantResponse:
     out: RejectGrantResponse = {}  # type: ignore[typeddict-item]
-    if "GrantArn" in data:
+    if data.get("GrantArn") is not None:
         out["grant_arn"] = data["GrantArn"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_license_manager.types.grant_status
 
         out["status"] = (
@@ -47,6 +47,6 @@ def deserialize_aws_json_1_1(data: dict) -> RejectGrantResponse:
                 data["Status"]
             )
         )
-    if "Version" in data:
+    if data.get("Version") is not None:
         out["version"] = data["Version"]
     return out

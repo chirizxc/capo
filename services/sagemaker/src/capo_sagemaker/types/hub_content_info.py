@@ -136,15 +136,15 @@ def serialize_aws_json_1_1(value: HubContentInfo) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> HubContentInfo:
     out: HubContentInfo = {}  # type: ignore[typeddict-item]
-    if "HubContentName" in data:
+    if data.get("HubContentName") is not None:
         out["hub_content_name"] = data["HubContentName"]
-    if "HubContentArn" in data:
+    if data.get("HubContentArn") is not None:
         out["hub_content_arn"] = data["HubContentArn"]
-    if "SageMakerPublicHubContentArn" in data:
+    if data.get("SageMakerPublicHubContentArn") is not None:
         out["sage_maker_public_hub_content_arn"] = data["SageMakerPublicHubContentArn"]
-    if "HubContentVersion" in data:
+    if data.get("HubContentVersion") is not None:
         out["hub_content_version"] = data["HubContentVersion"]
-    if "HubContentType" in data:
+    if data.get("HubContentType") is not None:
         import capo_sagemaker.types.hub_content_type
 
         out["hub_content_type"] = (
@@ -152,13 +152,13 @@ def deserialize_aws_json_1_1(data: dict) -> HubContentInfo:
                 data["HubContentType"]
             )
         )
-    if "DocumentSchemaVersion" in data:
+    if data.get("DocumentSchemaVersion") is not None:
         out["document_schema_version"] = data["DocumentSchemaVersion"]
-    if "HubContentDisplayName" in data:
+    if data.get("HubContentDisplayName") is not None:
         out["hub_content_display_name"] = data["HubContentDisplayName"]
-    if "HubContentDescription" in data:
+    if data.get("HubContentDescription") is not None:
         out["hub_content_description"] = data["HubContentDescription"]
-    if "SupportStatus" in data:
+    if data.get("SupportStatus") is not None:
         import capo_sagemaker.types.hub_content_support_status
 
         out["support_status"] = (
@@ -166,7 +166,7 @@ def deserialize_aws_json_1_1(data: dict) -> HubContentInfo:
                 data["SupportStatus"]
             )
         )
-    if "HubContentSearchKeywords" in data:
+    if data.get("HubContentSearchKeywords") is not None:
         import capo_sagemaker.types.hub_content_search_keyword_list
 
         out["hub_content_search_keywords"] = (
@@ -174,7 +174,7 @@ def deserialize_aws_json_1_1(data: dict) -> HubContentInfo:
                 data["HubContentSearchKeywords"]
             )
         )
-    if "HubContentStatus" in data:
+    if data.get("HubContentStatus") is not None:
         import capo_sagemaker.types.hub_content_status
 
         out["hub_content_status"] = (
@@ -182,13 +182,13 @@ def deserialize_aws_json_1_1(data: dict) -> HubContentInfo:
                 data["HubContentStatus"]
             )
         )
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_sagemaker.types.timestamp
 
         out["creation_time"] = capo_sagemaker.types.timestamp.deserialize_aws_json_1_1(
             data["CreationTime"]
         )
-    if "OriginalCreationTime" in data:
+    if data.get("OriginalCreationTime") is not None:
         import capo_sagemaker.types.timestamp
 
         out["original_creation_time"] = (

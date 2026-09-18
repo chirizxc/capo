@@ -108,22 +108,21 @@ class ReplicationConfigurationTemplateResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mgn.types.create_replication_configuration_template_request.CreateReplicationConfigurationTemplateRequest = {}  # type: ignore[typeddict-item]
-        input_["staging_area_subnet_id"] = staging_area_subnet_id
-        input_["associate_default_security_group"] = associate_default_security_group
-        input_["replication_servers_security_groups_i_ds"] = (
-            replication_servers_security_groups_i_ds
-        )
-        input_["replication_server_instance_type"] = replication_server_instance_type
-        input_["use_dedicated_replication_server"] = use_dedicated_replication_server
-        input_["default_large_staging_disk_type"] = default_large_staging_disk_type
-        input_["ebs_encryption"] = ebs_encryption
+        input_: capo_mgn.types.create_replication_configuration_template_request.CreateReplicationConfigurationTemplateRequest = {
+            "staging_area_subnet_id": staging_area_subnet_id,
+            "associate_default_security_group": associate_default_security_group,
+            "replication_servers_security_groups_i_ds": replication_servers_security_groups_i_ds,
+            "replication_server_instance_type": replication_server_instance_type,
+            "use_dedicated_replication_server": use_dedicated_replication_server,
+            "default_large_staging_disk_type": default_large_staging_disk_type,
+            "ebs_encryption": ebs_encryption,
+            "bandwidth_throttling": bandwidth_throttling,
+            "data_plane_routing": data_plane_routing,
+            "create_public_ip": create_public_ip,
+            "staging_area_tags": staging_area_tags,
+        }
         if ebs_encryption_key_arn is not None:
             input_["ebs_encryption_key_arn"] = ebs_encryption_key_arn
-        input_["bandwidth_throttling"] = bandwidth_throttling
-        input_["data_plane_routing"] = data_plane_routing
-        input_["create_public_ip"] = create_public_ip
-        input_["staging_area_tags"] = staging_area_tags
         if use_fips_endpoint is not None:
             input_["use_fips_endpoint"] = use_fips_endpoint
         if tags is not None:
@@ -138,6 +137,7 @@ class ReplicationConfigurationTemplateResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update(
@@ -220,10 +220,9 @@ class ReplicationConfigurationTemplateResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mgn.types.update_replication_configuration_template_request.UpdateReplicationConfigurationTemplateRequest = {}  # type: ignore[typeddict-item]
-        input_["replication_configuration_template_id"] = (
-            replication_configuration_template_id
-        )
+        input_: capo_mgn.types.update_replication_configuration_template_request.UpdateReplicationConfigurationTemplateRequest = {
+            "replication_configuration_template_id": replication_configuration_template_id
+        }
         if arn is not None:
             input_["arn"] = arn
         if staging_area_subnet_id is not None:
@@ -270,6 +269,7 @@ class ReplicationConfigurationTemplateResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -305,16 +305,16 @@ class ReplicationConfigurationTemplateResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mgn.types.delete_replication_configuration_template_request.DeleteReplicationConfigurationTemplateRequest = {}  # type: ignore[typeddict-item]
-        input_["replication_configuration_template_id"] = (
-            replication_configuration_template_id
-        )
+        input_: capo_mgn.types.delete_replication_configuration_template_request.DeleteReplicationConfigurationTemplateRequest = {
+            "replication_configuration_template_id": replication_configuration_template_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -356,7 +356,7 @@ class ReplicationConfigurationTemplateResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mgn.types.describe_replication_configuration_templates_request.DescribeReplicationConfigurationTemplatesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_mgn.types.describe_replication_configuration_templates_request.DescribeReplicationConfigurationTemplatesRequest = {}
         if replication_configuration_template_i_ds is not None:
             input_["replication_configuration_template_i_ds"] = (
                 replication_configuration_template_i_ds
@@ -371,6 +371,7 @@ class ReplicationConfigurationTemplateResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -444,22 +445,21 @@ class AsyncReplicationConfigurationTemplateResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mgn.types.create_replication_configuration_template_request.CreateReplicationConfigurationTemplateRequest = {}  # type: ignore[typeddict-item]
-        input_["staging_area_subnet_id"] = staging_area_subnet_id
-        input_["associate_default_security_group"] = associate_default_security_group
-        input_["replication_servers_security_groups_i_ds"] = (
-            replication_servers_security_groups_i_ds
-        )
-        input_["replication_server_instance_type"] = replication_server_instance_type
-        input_["use_dedicated_replication_server"] = use_dedicated_replication_server
-        input_["default_large_staging_disk_type"] = default_large_staging_disk_type
-        input_["ebs_encryption"] = ebs_encryption
+        input_: capo_mgn.types.create_replication_configuration_template_request.CreateReplicationConfigurationTemplateRequest = {
+            "staging_area_subnet_id": staging_area_subnet_id,
+            "associate_default_security_group": associate_default_security_group,
+            "replication_servers_security_groups_i_ds": replication_servers_security_groups_i_ds,
+            "replication_server_instance_type": replication_server_instance_type,
+            "use_dedicated_replication_server": use_dedicated_replication_server,
+            "default_large_staging_disk_type": default_large_staging_disk_type,
+            "ebs_encryption": ebs_encryption,
+            "bandwidth_throttling": bandwidth_throttling,
+            "data_plane_routing": data_plane_routing,
+            "create_public_ip": create_public_ip,
+            "staging_area_tags": staging_area_tags,
+        }
         if ebs_encryption_key_arn is not None:
             input_["ebs_encryption_key_arn"] = ebs_encryption_key_arn
-        input_["bandwidth_throttling"] = bandwidth_throttling
-        input_["data_plane_routing"] = data_plane_routing
-        input_["create_public_ip"] = create_public_ip
-        input_["staging_area_tags"] = staging_area_tags
         if use_fips_endpoint is not None:
             input_["use_fips_endpoint"] = use_fips_endpoint
         if tags is not None:
@@ -474,6 +474,7 @@ class AsyncReplicationConfigurationTemplateResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update(
@@ -557,10 +558,9 @@ class AsyncReplicationConfigurationTemplateResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mgn.types.update_replication_configuration_template_request.UpdateReplicationConfigurationTemplateRequest = {}  # type: ignore[typeddict-item]
-        input_["replication_configuration_template_id"] = (
-            replication_configuration_template_id
-        )
+        input_: capo_mgn.types.update_replication_configuration_template_request.UpdateReplicationConfigurationTemplateRequest = {
+            "replication_configuration_template_id": replication_configuration_template_id
+        }
         if arn is not None:
             input_["arn"] = arn
         if staging_area_subnet_id is not None:
@@ -607,6 +607,7 @@ class AsyncReplicationConfigurationTemplateResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -643,16 +644,16 @@ class AsyncReplicationConfigurationTemplateResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mgn.types.delete_replication_configuration_template_request.DeleteReplicationConfigurationTemplateRequest = {}  # type: ignore[typeddict-item]
-        input_["replication_configuration_template_id"] = (
-            replication_configuration_template_id
-        )
+        input_: capo_mgn.types.delete_replication_configuration_template_request.DeleteReplicationConfigurationTemplateRequest = {
+            "replication_configuration_template_id": replication_configuration_template_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -695,7 +696,7 @@ class AsyncReplicationConfigurationTemplateResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mgn.types.describe_replication_configuration_templates_request.DescribeReplicationConfigurationTemplatesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_mgn.types.describe_replication_configuration_templates_request.DescribeReplicationConfigurationTemplatesRequest = {}
         if replication_configuration_template_i_ds is not None:
             input_["replication_configuration_template_i_ds"] = (
                 replication_configuration_template_i_ds
@@ -710,4 +711,5 @@ class AsyncReplicationConfigurationTemplateResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

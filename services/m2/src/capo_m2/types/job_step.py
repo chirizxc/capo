@@ -58,29 +58,29 @@ def serialize_json(value: JobStep) -> dict:
 
 def deserialize_json(data: dict) -> JobStep:
     out: JobStep = {}  # type: ignore[typeddict-item]
-    if "stepNumber" in data:
+    if data.get("stepNumber") is not None:
         out["step_number"] = data["stepNumber"]
     else:
         out["step_number"] = 0
-    if "stepName" in data:
+    if data.get("stepName") is not None:
         out["step_name"] = data["stepName"]
-    if "procStepNumber" in data:
+    if data.get("procStepNumber") is not None:
         out["proc_step_number"] = data["procStepNumber"]
     else:
         out["proc_step_number"] = 0
-    if "procStepName" in data:
+    if data.get("procStepName") is not None:
         out["proc_step_name"] = data["procStepName"]
-    if "stepCondCode" in data:
+    if data.get("stepCondCode") is not None:
         out["step_cond_code"] = data["stepCondCode"]
-    if "stepRestartable" in data:
+    if data.get("stepRestartable") is not None:
         out["step_restartable"] = data["stepRestartable"]
     else:
         out["step_restartable"] = False
-    if "stepCheckpoint" in data:
+    if data.get("stepCheckpoint") is not None:
         out["step_checkpoint"] = data["stepCheckpoint"]
-    if "stepCheckpointStatus" in data:
+    if data.get("stepCheckpointStatus") is not None:
         out["step_checkpoint_status"] = data["stepCheckpointStatus"]
-    if "stepCheckpointTime" in data:
+    if data.get("stepCheckpointTime") is not None:
         import capo_m2.types.timestamp
 
         out["step_checkpoint_time"] = capo_m2.types.timestamp.deserialize_json(

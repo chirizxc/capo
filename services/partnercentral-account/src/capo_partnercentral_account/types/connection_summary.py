@@ -58,25 +58,25 @@ def serialize_aws_json_1_0(value: ConnectionSummary) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ConnectionSummary:
     out: ConnectionSummary = {}  # type: ignore[typeddict-item]
-    if "Catalog" in data:
+    if data.get("Catalog") is not None:
         out["catalog"] = data["Catalog"]
     else:
         raise DeserializationError("ConnectionSummary.catalog required")
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
     else:
         raise DeserializationError("ConnectionSummary.id required")
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
     else:
         raise DeserializationError("ConnectionSummary.arn required")
-    if "OtherParticipantAccountId" in data:
+    if data.get("OtherParticipantAccountId") is not None:
         out["other_participant_account_id"] = data["OtherParticipantAccountId"]
     else:
         raise DeserializationError(
             "ConnectionSummary.other_participant_account_id required"
         )
-    if "UpdatedAt" in data:
+    if data.get("UpdatedAt") is not None:
         import capo_partnercentral_account.types.date_time
 
         out["updated_at"] = (
@@ -86,7 +86,7 @@ def deserialize_aws_json_1_0(data: dict) -> ConnectionSummary:
         )
     else:
         raise DeserializationError("ConnectionSummary.updated_at required")
-    if "ConnectionTypes" in data:
+    if data.get("ConnectionTypes") is not None:
         import capo_partnercentral_account.types.connection_type_summary_map
 
         out["connection_types"] = (

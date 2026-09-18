@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> EksAddOnOperatingSystemList:
 
     out: EksAddOnOperatingSystemList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_marketplace_discovery.types.eks_add_on_operating_system.deserialize_json(
                 item

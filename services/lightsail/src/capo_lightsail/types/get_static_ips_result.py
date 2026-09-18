@@ -32,7 +32,7 @@ def serialize_aws_json_1_1(value: GetStaticIpsResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetStaticIpsResult:
     out: GetStaticIpsResult = {}  # type: ignore[typeddict-item]
-    if "staticIps" in data:
+    if data.get("staticIps") is not None:
         import capo_lightsail.types.static_ip_list
 
         out["static_ips"] = (
@@ -40,6 +40,6 @@ def deserialize_aws_json_1_1(data: dict) -> GetStaticIpsResult:
                 data["staticIps"]
             )
         )
-    if "nextPageToken" in data:
+    if data.get("nextPageToken") is not None:
         out["next_page_token"] = data["nextPageToken"]
     return out

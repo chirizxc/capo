@@ -24,7 +24,7 @@ def serialize_json(value: VirtualGatewayListenerTlsAcmCertificate) -> dict:
 
 def deserialize_json(data: dict) -> VirtualGatewayListenerTlsAcmCertificate:
     out: VirtualGatewayListenerTlsAcmCertificate = {}  # type: ignore[typeddict-item]
-    if "certificateArn" in data:
+    if data.get("certificateArn") is not None:
         out["certificate_arn"] = data["certificateArn"]
     else:
         raise DeserializationError(

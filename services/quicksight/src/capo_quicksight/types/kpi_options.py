@@ -128,7 +128,7 @@ def serialize_json(value: KPIOptions) -> dict:
 
 def deserialize_json(data: dict) -> KPIOptions:
     out: KPIOptions = {}  # type: ignore[typeddict-item]
-    if "ProgressBar" in data:
+    if data.get("ProgressBar") is not None:
         import capo_quicksight.types.progress_bar_options
 
         out["progress_bar"] = (
@@ -136,7 +136,7 @@ def deserialize_json(data: dict) -> KPIOptions:
                 data["ProgressBar"]
             )
         )
-    if "TrendArrows" in data:
+    if data.get("TrendArrows") is not None:
         import capo_quicksight.types.trend_arrow_options
 
         out["trend_arrows"] = (
@@ -144,7 +144,7 @@ def deserialize_json(data: dict) -> KPIOptions:
                 data["TrendArrows"]
             )
         )
-    if "SecondaryValue" in data:
+    if data.get("SecondaryValue") is not None:
         import capo_quicksight.types.secondary_value_options
 
         out["secondary_value"] = (
@@ -152,7 +152,7 @@ def deserialize_json(data: dict) -> KPIOptions:
                 data["SecondaryValue"]
             )
         )
-    if "Comparison" in data:
+    if data.get("Comparison") is not None:
         import capo_quicksight.types.comparison_configuration
 
         out["comparison"] = (
@@ -160,7 +160,7 @@ def deserialize_json(data: dict) -> KPIOptions:
                 data["Comparison"]
             )
         )
-    if "PrimaryValueDisplayType" in data:
+    if data.get("PrimaryValueDisplayType") is not None:
         import capo_quicksight.types.primary_value_display_type
 
         out["primary_value_display_type"] = (
@@ -168,7 +168,7 @@ def deserialize_json(data: dict) -> KPIOptions:
                 data["PrimaryValueDisplayType"]
             )
         )
-    if "PrimaryValueFontConfiguration" in data:
+    if data.get("PrimaryValueFontConfiguration") is not None:
         import capo_quicksight.types.font_configuration
 
         out["primary_value_font_configuration"] = (
@@ -176,7 +176,7 @@ def deserialize_json(data: dict) -> KPIOptions:
                 data["PrimaryValueFontConfiguration"]
             )
         )
-    if "SecondaryValueFontConfiguration" in data:
+    if data.get("SecondaryValueFontConfiguration") is not None:
         import capo_quicksight.types.font_configuration
 
         out["secondary_value_font_configuration"] = (
@@ -184,13 +184,13 @@ def deserialize_json(data: dict) -> KPIOptions:
                 data["SecondaryValueFontConfiguration"]
             )
         )
-    if "Sparkline" in data:
+    if data.get("Sparkline") is not None:
         import capo_quicksight.types.kpi_sparkline_options
 
         out["sparkline"] = capo_quicksight.types.kpi_sparkline_options.deserialize_json(
             data["Sparkline"]
         )
-    if "VisualLayoutOptions" in data:
+    if data.get("VisualLayoutOptions") is not None:
         import capo_quicksight.types.kpi_visual_layout_options
 
         out["visual_layout_options"] = (

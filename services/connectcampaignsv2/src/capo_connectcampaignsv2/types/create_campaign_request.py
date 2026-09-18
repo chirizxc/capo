@@ -108,15 +108,15 @@ def serialize_json(value: CreateCampaignRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateCampaignRequest:
     out: CreateCampaignRequest = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("CreateCampaignRequest.name required")
-    if "connectInstanceId" in data:
+    if data.get("connectInstanceId") is not None:
         out["connect_instance_id"] = data["connectInstanceId"]
     else:
         raise DeserializationError("CreateCampaignRequest.connect_instance_id required")
-    if "channelSubtypeConfig" in data:
+    if data.get("channelSubtypeConfig") is not None:
         import capo_connectcampaignsv2.types.channel_subtype_config
 
         out["channel_subtype_config"] = (
@@ -124,23 +124,23 @@ def deserialize_json(data: dict) -> CreateCampaignRequest:
                 data["channelSubtypeConfig"]
             )
         )
-    if "type" in data:
+    if data.get("type") is not None:
         out["type"] = data["type"]
-    if "source" in data:
+    if data.get("source") is not None:
         import capo_connectcampaignsv2.types.source
 
         out["source"] = capo_connectcampaignsv2.types.source.deserialize_json(
             data["source"]
         )
-    if "connectCampaignFlowArn" in data:
+    if data.get("connectCampaignFlowArn") is not None:
         out["connect_campaign_flow_arn"] = data["connectCampaignFlowArn"]
-    if "schedule" in data:
+    if data.get("schedule") is not None:
         import capo_connectcampaignsv2.types.schedule
 
         out["schedule"] = capo_connectcampaignsv2.types.schedule.deserialize_json(
             data["schedule"]
         )
-    if "entryLimitsConfig" in data:
+    if data.get("entryLimitsConfig") is not None:
         import capo_connectcampaignsv2.types.entry_limits_config
 
         out["entry_limits_config"] = (
@@ -148,7 +148,7 @@ def deserialize_json(data: dict) -> CreateCampaignRequest:
                 data["entryLimitsConfig"]
             )
         )
-    if "communicationTimeConfig" in data:
+    if data.get("communicationTimeConfig") is not None:
         import capo_connectcampaignsv2.types.communication_time_config
 
         out["communication_time_config"] = (
@@ -156,7 +156,7 @@ def deserialize_json(data: dict) -> CreateCampaignRequest:
                 data["communicationTimeConfig"]
             )
         )
-    if "communicationLimitsOverride" in data:
+    if data.get("communicationLimitsOverride") is not None:
         import capo_connectcampaignsv2.types.communication_limits_config
 
         out["communication_limits_override"] = (
@@ -164,7 +164,7 @@ def deserialize_json(data: dict) -> CreateCampaignRequest:
                 data["communicationLimitsOverride"]
             )
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_connectcampaignsv2.types.tag_map
 
         out["tags"] = capo_connectcampaignsv2.types.tag_map.deserialize_json(

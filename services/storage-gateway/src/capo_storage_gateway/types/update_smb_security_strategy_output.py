@@ -22,6 +22,6 @@ def serialize_aws_json_1_1(value: UpdateSMBSecurityStrategyOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateSMBSecurityStrategyOutput:
     out: UpdateSMBSecurityStrategyOutput = {}  # type: ignore[typeddict-item]
-    if "GatewayARN" in data:
+    if data.get("GatewayARN") is not None:
         out["gateway_arn"] = data["GatewayARN"]
     return out

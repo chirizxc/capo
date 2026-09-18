@@ -183,15 +183,15 @@ def serialize_json(value: PutIntentRequest) -> dict:
 
 def deserialize_json(data: dict) -> PutIntentRequest:
     out: PutIntentRequest = {}  # type: ignore[typeddict-item]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "slots" in data:
+    if data.get("slots") is not None:
         import capo_lex_model_building_service.types.slot_list
 
         out["slots"] = capo_lex_model_building_service.types.slot_list.deserialize_json(
             data["slots"]
         )
-    if "sampleUtterances" in data:
+    if data.get("sampleUtterances") is not None:
         import capo_lex_model_building_service.types.intent_utterance_list
 
         out["sample_utterances"] = (
@@ -199,7 +199,7 @@ def deserialize_json(data: dict) -> PutIntentRequest:
                 data["sampleUtterances"]
             )
         )
-    if "confirmationPrompt" in data:
+    if data.get("confirmationPrompt") is not None:
         import capo_lex_model_building_service.types.prompt
 
         out["confirmation_prompt"] = (
@@ -207,7 +207,7 @@ def deserialize_json(data: dict) -> PutIntentRequest:
                 data["confirmationPrompt"]
             )
         )
-    if "rejectionStatement" in data:
+    if data.get("rejectionStatement") is not None:
         import capo_lex_model_building_service.types.statement
 
         out["rejection_statement"] = (
@@ -215,7 +215,7 @@ def deserialize_json(data: dict) -> PutIntentRequest:
                 data["rejectionStatement"]
             )
         )
-    if "followUpPrompt" in data:
+    if data.get("followUpPrompt") is not None:
         import capo_lex_model_building_service.types.follow_up_prompt
 
         out["follow_up_prompt"] = (
@@ -223,7 +223,7 @@ def deserialize_json(data: dict) -> PutIntentRequest:
                 data["followUpPrompt"]
             )
         )
-    if "conclusionStatement" in data:
+    if data.get("conclusionStatement") is not None:
         import capo_lex_model_building_service.types.statement
 
         out["conclusion_statement"] = (
@@ -231,7 +231,7 @@ def deserialize_json(data: dict) -> PutIntentRequest:
                 data["conclusionStatement"]
             )
         )
-    if "dialogCodeHook" in data:
+    if data.get("dialogCodeHook") is not None:
         import capo_lex_model_building_service.types.code_hook
 
         out["dialog_code_hook"] = (
@@ -239,7 +239,7 @@ def deserialize_json(data: dict) -> PutIntentRequest:
                 data["dialogCodeHook"]
             )
         )
-    if "fulfillmentActivity" in data:
+    if data.get("fulfillmentActivity") is not None:
         import capo_lex_model_building_service.types.fulfillment_activity
 
         out["fulfillment_activity"] = (
@@ -247,13 +247,13 @@ def deserialize_json(data: dict) -> PutIntentRequest:
                 data["fulfillmentActivity"]
             )
         )
-    if "parentIntentSignature" in data:
+    if data.get("parentIntentSignature") is not None:
         out["parent_intent_signature"] = data["parentIntentSignature"]
-    if "checksum" in data:
+    if data.get("checksum") is not None:
         out["checksum"] = data["checksum"]
-    if "createVersion" in data:
+    if data.get("createVersion") is not None:
         out["create_version"] = data["createVersion"]
-    if "kendraConfiguration" in data:
+    if data.get("kendraConfiguration") is not None:
         import capo_lex_model_building_service.types.kendra_configuration
 
         out["kendra_configuration"] = (
@@ -261,7 +261,7 @@ def deserialize_json(data: dict) -> PutIntentRequest:
                 data["kendraConfiguration"]
             )
         )
-    if "inputContexts" in data:
+    if data.get("inputContexts") is not None:
         import capo_lex_model_building_service.types.input_context_list
 
         out["input_contexts"] = (
@@ -269,7 +269,7 @@ def deserialize_json(data: dict) -> PutIntentRequest:
                 data["inputContexts"]
             )
         )
-    if "outputContexts" in data:
+    if data.get("outputContexts") is not None:
         import capo_lex_model_building_service.types.output_context_list
 
         out["output_contexts"] = (

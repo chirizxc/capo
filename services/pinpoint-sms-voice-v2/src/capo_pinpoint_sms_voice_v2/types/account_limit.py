@@ -30,15 +30,15 @@ def serialize_aws_json_1_0(value: AccountLimit) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> AccountLimit:
     out: AccountLimit = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("AccountLimit.name required")
-    if "Used" in data:
+    if data.get("Used") is not None:
         out["used"] = data["Used"]
     else:
         out["used"] = 0
-    if "Max" in data:
+    if data.get("Max") is not None:
         out["max"] = data["Max"]
     else:
         out["max"] = 0

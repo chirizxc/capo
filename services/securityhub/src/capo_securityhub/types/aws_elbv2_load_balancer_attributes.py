@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> AwsElbv2LoadBalancerAttributes:
 
     out: AwsElbv2LoadBalancerAttributes = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_securityhub.types.aws_elbv2_load_balancer_attribute.deserialize_json(
                 item

@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: S3Presign) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> S3Presign:
     out: S3Presign = {}  # type: ignore[typeddict-item]
-    if "IamPolicyConstraints" in data:
+    if data.get("IamPolicyConstraints") is not None:
         import capo_sagemaker.types.iam_policy_constraints
 
         out["iam_policy_constraints"] = (

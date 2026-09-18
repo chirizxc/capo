@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> TypeList:
 
     out: TypeList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_appsync.types.type.deserialize_json(item))
     return out

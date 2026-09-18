@@ -31,7 +31,7 @@ def serialize_aws_json_1_0(value: RebootDbClusterOutput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> RebootDbClusterOutput:
     out: RebootDbClusterOutput = {}  # type: ignore[typeddict-item]
-    if "dbClusterStatus" in data:
+    if data.get("dbClusterStatus") is not None:
         import capo_timestream_influxdb.types.cluster_status
 
         out["db_cluster_status"] = (

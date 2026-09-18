@@ -59,11 +59,11 @@ def serialize_json(value: ListGeofenceResponseEntry) -> dict:
 
 def deserialize_json(data: dict) -> ListGeofenceResponseEntry:
     out: ListGeofenceResponseEntry = {}  # type: ignore[typeddict-item]
-    if "GeofenceId" in data:
+    if data.get("GeofenceId") is not None:
         out["geofence_id"] = data["GeofenceId"]
     else:
         raise DeserializationError("ListGeofenceResponseEntry.geofence_id required")
-    if "Geometry" in data:
+    if data.get("Geometry") is not None:
         import capo_location.types.geofence_geometry
 
         out["geometry"] = capo_location.types.geofence_geometry.deserialize_json(
@@ -71,11 +71,11 @@ def deserialize_json(data: dict) -> ListGeofenceResponseEntry:
         )
     else:
         raise DeserializationError("ListGeofenceResponseEntry.geometry required")
-    if "Status" in data:
+    if data.get("Status") is not None:
         out["status"] = data["Status"]
     else:
         raise DeserializationError("ListGeofenceResponseEntry.status required")
-    if "CreateTime" in data:
+    if data.get("CreateTime") is not None:
         import capo_location.types.timestamp
 
         out["create_time"] = capo_location.types.timestamp.deserialize_json(
@@ -83,7 +83,7 @@ def deserialize_json(data: dict) -> ListGeofenceResponseEntry:
         )
     else:
         raise DeserializationError("ListGeofenceResponseEntry.create_time required")
-    if "UpdateTime" in data:
+    if data.get("UpdateTime") is not None:
         import capo_location.types.timestamp
 
         out["update_time"] = capo_location.types.timestamp.deserialize_json(
@@ -91,7 +91,7 @@ def deserialize_json(data: dict) -> ListGeofenceResponseEntry:
         )
     else:
         raise DeserializationError("ListGeofenceResponseEntry.update_time required")
-    if "GeofenceProperties" in data:
+    if data.get("GeofenceProperties") is not None:
         import capo_location.types.property_map
 
         out["geofence_properties"] = capo_location.types.property_map.deserialize_json(

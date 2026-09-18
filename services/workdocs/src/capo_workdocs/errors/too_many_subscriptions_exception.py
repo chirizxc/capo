@@ -24,7 +24,7 @@ def serialize_json(value: TooManySubscriptionsException_) -> dict:
 
 def deserialize_json(data: dict) -> TooManySubscriptionsException_:
     out: TooManySubscriptionsException_ = {}  # type: ignore[typeddict-item]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     return out
 
@@ -34,15 +34,20 @@ class TooManySubscriptionsException(ServiceError):
 
     code: str | None = "TooManySubscriptionsException"
 
-    def __init__(self, data: TooManySubscriptionsException_):
+    def __init__(
+        self, data: TooManySubscriptionsException_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="TooManySubscriptionsException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "TooManySubscriptionsException":
-        return cls(deserialize_json(data))
+    def from_json(
+        cls, data: dict, message: str | None = None
+    ) -> "TooManySubscriptionsException":
+        return cls(deserialize_json(data), message)

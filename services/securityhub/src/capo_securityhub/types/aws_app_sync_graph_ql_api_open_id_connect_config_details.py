@@ -36,12 +36,12 @@ def serialize_json(value: AwsAppSyncGraphQlApiOpenIdConnectConfigDetails) -> dic
 
 def deserialize_json(data: dict) -> AwsAppSyncGraphQlApiOpenIdConnectConfigDetails:
     out: AwsAppSyncGraphQlApiOpenIdConnectConfigDetails = {}  # type: ignore[typeddict-item]
-    if "AuthTtL" in data:
+    if data.get("AuthTtL") is not None:
         out["auth_tt_l"] = data["AuthTtL"]
-    if "ClientId" in data:
+    if data.get("ClientId") is not None:
         out["client_id"] = data["ClientId"]
-    if "IatTtL" in data:
+    if data.get("IatTtL") is not None:
         out["iat_tt_l"] = data["IatTtL"]
-    if "Issuer" in data:
+    if data.get("Issuer") is not None:
         out["issuer"] = data["Issuer"]
     return out

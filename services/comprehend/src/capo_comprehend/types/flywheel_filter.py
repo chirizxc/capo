@@ -48,13 +48,13 @@ def serialize_aws_json_1_1(value: FlywheelFilter) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> FlywheelFilter:
     out: FlywheelFilter = {}  # type: ignore[typeddict-item]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_comprehend.types.flywheel_status
 
         out["status"] = capo_comprehend.types.flywheel_status.deserialize_aws_json_1_1(
             data["Status"]
         )
-    if "CreationTimeAfter" in data:
+    if data.get("CreationTimeAfter") is not None:
         import capo_comprehend.types.timestamp
 
         out["creation_time_after"] = (
@@ -62,7 +62,7 @@ def deserialize_aws_json_1_1(data: dict) -> FlywheelFilter:
                 data["CreationTimeAfter"]
             )
         )
-    if "CreationTimeBefore" in data:
+    if data.get("CreationTimeBefore") is not None:
         import capo_comprehend.types.timestamp
 
         out["creation_time_before"] = (

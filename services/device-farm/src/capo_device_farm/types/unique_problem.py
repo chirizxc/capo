@@ -32,9 +32,9 @@ def serialize_aws_json_1_1(value: UniqueProblem) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UniqueProblem:
     out: UniqueProblem = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
-    if "problems" in data:
+    if data.get("problems") is not None:
         import capo_device_farm.types.problems
 
         out["problems"] = capo_device_farm.types.problems.deserialize_aws_json_1_1(

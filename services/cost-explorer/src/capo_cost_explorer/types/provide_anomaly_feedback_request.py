@@ -34,11 +34,11 @@ def serialize_aws_json_1_1(value: ProvideAnomalyFeedbackRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ProvideAnomalyFeedbackRequest:
     out: ProvideAnomalyFeedbackRequest = {}  # type: ignore[typeddict-item]
-    if "AnomalyId" in data:
+    if data.get("AnomalyId") is not None:
         out["anomaly_id"] = data["AnomalyId"]
     else:
         raise DeserializationError("ProvideAnomalyFeedbackRequest.anomaly_id required")
-    if "Feedback" in data:
+    if data.get("Feedback") is not None:
         import capo_cost_explorer.types.anomaly_feedback_type
 
         out["feedback"] = (

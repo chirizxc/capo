@@ -29,6 +29,8 @@ def deserialize_aws_json_1_1(data: list) -> MonitoringJobDefinitionSummaryList:
 
     out: MonitoringJobDefinitionSummaryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_sagemaker.types.monitoring_job_definition_summary.deserialize_aws_json_1_1(
                 item

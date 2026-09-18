@@ -49,15 +49,15 @@ def serialize_json(value: VirtualRouterData) -> dict:
 
 def deserialize_json(data: dict) -> VirtualRouterData:
     out: VirtualRouterData = {}  # type: ignore[typeddict-item]
-    if "meshName" in data:
+    if data.get("meshName") is not None:
         out["mesh_name"] = data["meshName"]
     else:
         raise DeserializationError("VirtualRouterData.mesh_name required")
-    if "virtualRouterName" in data:
+    if data.get("virtualRouterName") is not None:
         out["virtual_router_name"] = data["virtualRouterName"]
     else:
         raise DeserializationError("VirtualRouterData.virtual_router_name required")
-    if "spec" in data:
+    if data.get("spec") is not None:
         import capo_app_mesh.types.virtual_router_spec
 
         out["spec"] = capo_app_mesh.types.virtual_router_spec.deserialize_json(
@@ -65,7 +65,7 @@ def deserialize_json(data: dict) -> VirtualRouterData:
         )
     else:
         raise DeserializationError("VirtualRouterData.spec required")
-    if "metadata" in data:
+    if data.get("metadata") is not None:
         import capo_app_mesh.types.resource_metadata
 
         out["metadata"] = capo_app_mesh.types.resource_metadata.deserialize_json(
@@ -73,7 +73,7 @@ def deserialize_json(data: dict) -> VirtualRouterData:
         )
     else:
         raise DeserializationError("VirtualRouterData.metadata required")
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_app_mesh.types.virtual_router_status
 
         out["status"] = capo_app_mesh.types.virtual_router_status.deserialize_json(

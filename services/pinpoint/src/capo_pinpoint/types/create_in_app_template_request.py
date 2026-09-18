@@ -33,7 +33,7 @@ def serialize_json(value: CreateInAppTemplateRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateInAppTemplateRequest:
     out: CreateInAppTemplateRequest = {}  # type: ignore[typeddict-item]
-    if "InAppTemplateRequest" in data:
+    if data.get("InAppTemplateRequest") is not None:
         import capo_pinpoint.types.in_app_template_request
 
         out["in_app_template_request"] = (

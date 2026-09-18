@@ -94,13 +94,13 @@ def serialize_aws_json_1_1(value: SearchRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SearchRequest:
     out: SearchRequest = {}  # type: ignore[typeddict-item]
-    if "Resource" in data:
+    if data.get("Resource") is not None:
         import capo_sagemaker.types.resource_type
 
         out["resource"] = capo_sagemaker.types.resource_type.deserialize_aws_json_1_1(
             data["Resource"]
         )
-    if "SearchExpression" in data:
+    if data.get("SearchExpression") is not None:
         import capo_sagemaker.types.search_expression
 
         out["search_expression"] = (
@@ -108,9 +108,9 @@ def deserialize_aws_json_1_1(data: dict) -> SearchRequest:
                 data["SearchExpression"]
             )
         )
-    if "SortBy" in data:
+    if data.get("SortBy") is not None:
         out["sort_by"] = data["SortBy"]
-    if "SortOrder" in data:
+    if data.get("SortOrder") is not None:
         import capo_sagemaker.types.search_sort_order
 
         out["sort_order"] = (
@@ -118,11 +118,11 @@ def deserialize_aws_json_1_1(data: dict) -> SearchRequest:
                 data["SortOrder"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "CrossAccountFilterOption" in data:
+    if data.get("CrossAccountFilterOption") is not None:
         import capo_sagemaker.types.cross_account_filter_option
 
         out["cross_account_filter_option"] = (
@@ -130,7 +130,7 @@ def deserialize_aws_json_1_1(data: dict) -> SearchRequest:
                 data["CrossAccountFilterOption"]
             )
         )
-    if "VisibilityConditions" in data:
+    if data.get("VisibilityConditions") is not None:
         import capo_sagemaker.types.visibility_conditions_list
 
         out["visibility_conditions"] = (

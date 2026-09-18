@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> AfterContactWorkConfigs:
 
     out: AfterContactWorkConfigs = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_connect.types.after_contact_work_config_per_channel.deserialize_json(
                 item

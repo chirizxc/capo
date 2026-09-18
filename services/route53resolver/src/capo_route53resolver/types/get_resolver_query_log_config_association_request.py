@@ -28,7 +28,7 @@ def serialize_aws_json_1_1(value: GetResolverQueryLogConfigAssociationRequest) -
 
 def deserialize_aws_json_1_1(data: dict) -> GetResolverQueryLogConfigAssociationRequest:
     out: GetResolverQueryLogConfigAssociationRequest = {}  # type: ignore[typeddict-item]
-    if "ResolverQueryLogConfigAssociationId" in data:
+    if data.get("ResolverQueryLogConfigAssociationId") is not None:
         out["resolver_query_log_config_association_id"] = data[
             "ResolverQueryLogConfigAssociationId"
         ]

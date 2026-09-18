@@ -31,9 +31,9 @@ def serialize_json(value: SubjectStructure) -> dict:
 
 def deserialize_json(data: dict) -> SubjectStructure:
     out: SubjectStructure = {}  # type: ignore[typeddict-item]
-    if "count" in data:
+    if data.get("count") is not None:
         out["count"] = data["count"]
-    if "predicates" in data:
+    if data.get("predicates") is not None:
         import capo_neptunedata.types.predicates
 
         out["predicates"] = capo_neptunedata.types.predicates.deserialize_json(

@@ -70,7 +70,7 @@ def serialize_json(value: RenderMessageTemplateResponse) -> dict:
 
 def deserialize_json(data: dict) -> RenderMessageTemplateResponse:
     out: RenderMessageTemplateResponse = {}  # type: ignore[typeddict-item]
-    if "content" in data:
+    if data.get("content") is not None:
         import capo_qconnect.types.message_template_content_provider
 
         out["content"] = (
@@ -78,7 +78,7 @@ def deserialize_json(data: dict) -> RenderMessageTemplateResponse:
                 data["content"]
             )
         )
-    if "sourceConfigurationSummary" in data:
+    if data.get("sourceConfigurationSummary") is not None:
         import capo_qconnect.types.message_template_source_configuration_summary
 
         out["source_configuration_summary"] = (
@@ -86,7 +86,7 @@ def deserialize_json(data: dict) -> RenderMessageTemplateResponse:
                 data["sourceConfigurationSummary"]
             )
         )
-    if "attributesNotInterpolated" in data:
+    if data.get("attributesNotInterpolated") is not None:
         import capo_qconnect.types.message_template_attribute_key_list
 
         out["attributes_not_interpolated"] = (
@@ -94,7 +94,7 @@ def deserialize_json(data: dict) -> RenderMessageTemplateResponse:
                 data["attributesNotInterpolated"]
             )
         )
-    if "attachments" in data:
+    if data.get("attachments") is not None:
         import capo_qconnect.types.message_template_attachment_list
 
         out["attachments"] = (

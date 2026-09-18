@@ -37,15 +37,31 @@ def serialize_json(value: DifferentialPrivacySensitivityParameters) -> dict:
     out["aggregationExpression"] = value["aggregation_expression"]
     out["userContributionLimit"] = value["user_contribution_limit"]
     if "min_column_value" in value:
-        out["minColumnValue"] = value["min_column_value"]
+        out["minColumnValue"] = (
+            "NaN"
+            if value["min_column_value"] != value["min_column_value"]
+            else "Infinity"
+            if value["min_column_value"] == float("inf")
+            else "-Infinity"
+            if value["min_column_value"] == float("-inf")
+            else value["min_column_value"]
+        )
     if "max_column_value" in value:
-        out["maxColumnValue"] = value["max_column_value"]
+        out["maxColumnValue"] = (
+            "NaN"
+            if value["max_column_value"] != value["max_column_value"]
+            else "Infinity"
+            if value["max_column_value"] == float("inf")
+            else "-Infinity"
+            if value["max_column_value"] == float("-inf")
+            else value["max_column_value"]
+        )
     return out
 
 
 def deserialize_json(data: dict) -> DifferentialPrivacySensitivityParameters:
     out: DifferentialPrivacySensitivityParameters = {}  # type: ignore[typeddict-item]
-    if "aggregationType" in data:
+    if data.get("aggregationType") is not None:
         import capo_cleanrooms.types.differential_privacy_aggregation_type
 
         out["aggregation_type"] = (
@@ -57,20 +73,20 @@ def deserialize_json(data: dict) -> DifferentialPrivacySensitivityParameters:
         raise DeserializationError(
             "DifferentialPrivacySensitivityParameters.aggregation_type required"
         )
-    if "aggregationExpression" in data:
+    if data.get("aggregationExpression") is not None:
         out["aggregation_expression"] = data["aggregationExpression"]
     else:
         raise DeserializationError(
             "DifferentialPrivacySensitivityParameters.aggregation_expression required"
         )
-    if "userContributionLimit" in data:
+    if data.get("userContributionLimit") is not None:
         out["user_contribution_limit"] = data["userContributionLimit"]
     else:
         raise DeserializationError(
             "DifferentialPrivacySensitivityParameters.user_contribution_limit required"
         )
-    if "minColumnValue" in data:
-        out["min_column_value"] = data["minColumnValue"]
-    if "maxColumnValue" in data:
-        out["max_column_value"] = data["maxColumnValue"]
+    if data.get("minColumnValue") is not None:
+        out["min_column_value"] = float(data["minColumnValue"])
+    if data.get("maxColumnValue") is not None:
+        out["max_column_value"] = float(data["maxColumnValue"])
     return out

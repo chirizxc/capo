@@ -82,23 +82,23 @@ def serialize_json(value: OrderSummary) -> dict:
 
 def deserialize_json(data: dict) -> OrderSummary:
     out: OrderSummary = {}  # type: ignore[typeddict-item]
-    if "OutpostId" in data:
+    if data.get("OutpostId") is not None:
         out["outpost_id"] = data["OutpostId"]
-    if "OrderId" in data:
+    if data.get("OrderId") is not None:
         out["order_id"] = data["OrderId"]
-    if "OrderType" in data:
+    if data.get("OrderType") is not None:
         import capo_outposts.types.order_type
 
         out["order_type"] = capo_outposts.types.order_type.deserialize_json(
             data["OrderType"]
         )
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_outposts.types.order_status
 
         out["status"] = capo_outposts.types.order_status.deserialize_json(
             data["Status"]
         )
-    if "LineItemCountsByStatus" in data:
+    if data.get("LineItemCountsByStatus") is not None:
         import capo_outposts.types.line_item_status_counts
 
         out["line_item_counts_by_status"] = (
@@ -106,7 +106,7 @@ def deserialize_json(data: dict) -> OrderSummary:
                 data["LineItemCountsByStatus"]
             )
         )
-    if "OrderSubmissionDate" in data:
+    if data.get("OrderSubmissionDate") is not None:
         import capo_outposts.types.iso8601_timestamp
 
         out["order_submission_date"] = (
@@ -114,7 +114,7 @@ def deserialize_json(data: dict) -> OrderSummary:
                 data["OrderSubmissionDate"]
             )
         )
-    if "OrderFulfilledDate" in data:
+    if data.get("OrderFulfilledDate") is not None:
         import capo_outposts.types.iso8601_timestamp
 
         out["order_fulfilled_date"] = (

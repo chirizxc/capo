@@ -41,14 +41,14 @@ def serialize_aws_json_1_1(value: SubscribedWorkteam) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SubscribedWorkteam:
     out: SubscribedWorkteam = {}  # type: ignore[typeddict-item]
-    if "WorkteamArn" in data:
+    if data.get("WorkteamArn") is not None:
         out["workteam_arn"] = data["WorkteamArn"]
-    if "MarketplaceTitle" in data:
+    if data.get("MarketplaceTitle") is not None:
         out["marketplace_title"] = data["MarketplaceTitle"]
-    if "SellerName" in data:
+    if data.get("SellerName") is not None:
         out["seller_name"] = data["SellerName"]
-    if "MarketplaceDescription" in data:
+    if data.get("MarketplaceDescription") is not None:
         out["marketplace_description"] = data["MarketplaceDescription"]
-    if "ListingId" in data:
+    if data.get("ListingId") is not None:
         out["listing_id"] = data["ListingId"]
     return out

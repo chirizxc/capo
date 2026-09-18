@@ -24,7 +24,7 @@ def serialize_json(value: ValidateAssessmentReportIntegrityRequest) -> dict:
 
 def deserialize_json(data: dict) -> ValidateAssessmentReportIntegrityRequest:
     out: ValidateAssessmentReportIntegrityRequest = {}  # type: ignore[typeddict-item]
-    if "s3RelativePath" in data:
+    if data.get("s3RelativePath") is not None:
         out["s3_relative_path"] = data["s3RelativePath"]
     else:
         raise DeserializationError(

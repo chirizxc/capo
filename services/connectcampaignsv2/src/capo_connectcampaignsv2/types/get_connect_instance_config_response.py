@@ -30,7 +30,7 @@ def serialize_json(value: GetConnectInstanceConfigResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetConnectInstanceConfigResponse:
     out: GetConnectInstanceConfigResponse = {}  # type: ignore[typeddict-item]
-    if "connectInstanceConfig" in data:
+    if data.get("connectInstanceConfig") is not None:
         import capo_connectcampaignsv2.types.instance_config
 
         out["connect_instance_config"] = (

@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> NetworkInterfaceList:
 
     out: NetworkInterfaceList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_quicksight.types.network_interface.deserialize_json(item))
     return out

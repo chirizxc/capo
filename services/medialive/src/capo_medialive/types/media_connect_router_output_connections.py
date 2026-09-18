@@ -29,6 +29,8 @@ def serialize_json(input_to_serialize: MediaConnectRouterOutputConnections) -> d
 def deserialize_json(data: dict) -> MediaConnectRouterOutputConnections:
     out: MediaConnectRouterOutputConnections = {}
     for key, value in data.items():
+        if value is None:
+            continue
         import capo_medialive.types.media_connect_router_output_connection
 
         out[key] = (

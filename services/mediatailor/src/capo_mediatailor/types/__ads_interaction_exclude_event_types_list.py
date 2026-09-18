@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> __adsInteractionExcludeEventTypesList:
 
     out: __adsInteractionExcludeEventTypesList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_mediatailor.types.ads_interaction_exclude_event_type.deserialize_json(
                 item

@@ -65,13 +65,13 @@ def serialize_aws_json_1_0(value: UpdateVpcEndpointDetail) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> UpdateVpcEndpointDetail:
     out: UpdateVpcEndpointDetail = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
-    if "subnetIds" in data:
+    if data.get("subnetIds") is not None:
         import capo_opensearchserverless.types.subnet_ids
 
         out["subnet_ids"] = (
@@ -79,7 +79,7 @@ def deserialize_aws_json_1_0(data: dict) -> UpdateVpcEndpointDetail:
                 data["subnetIds"]
             )
         )
-    if "securityGroupIds" in data:
+    if data.get("securityGroupIds") is not None:
         import capo_opensearchserverless.types.security_group_ids
 
         out["security_group_ids"] = (
@@ -87,6 +87,6 @@ def deserialize_aws_json_1_0(data: dict) -> UpdateVpcEndpointDetail:
                 data["securityGroupIds"]
             )
         )
-    if "lastModifiedDate" in data:
+    if data.get("lastModifiedDate") is not None:
         out["last_modified_date"] = data["lastModifiedDate"]
     return out

@@ -53,21 +53,21 @@ def serialize_json(value: SendProjectSessionActionRequest) -> dict:
 
 def deserialize_json(data: dict) -> SendProjectSessionActionRequest:
     out: SendProjectSessionActionRequest = {}  # type: ignore[typeddict-item]
-    if "Preview" in data:
+    if data.get("Preview") is not None:
         out["preview"] = data["Preview"]
     else:
         out["preview"] = False
-    if "RecipeStep" in data:
+    if data.get("RecipeStep") is not None:
         import capo_databrew.types.recipe_step
 
         out["recipe_step"] = capo_databrew.types.recipe_step.deserialize_json(
             data["RecipeStep"]
         )
-    if "StepIndex" in data:
+    if data.get("StepIndex") is not None:
         out["step_index"] = data["StepIndex"]
-    if "ClientSessionId" in data:
+    if data.get("ClientSessionId") is not None:
         out["client_session_id"] = data["ClientSessionId"]
-    if "ViewFrame" in data:
+    if data.get("ViewFrame") is not None:
         import capo_databrew.types.view_frame
 
         out["view_frame"] = capo_databrew.types.view_frame.deserialize_json(

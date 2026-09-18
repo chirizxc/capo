@@ -81,7 +81,7 @@ def serialize_aws_json_1_1(value: CreateInstancesRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateInstancesRequest:
     out: CreateInstancesRequest = {}  # type: ignore[typeddict-item]
-    if "instanceNames" in data:
+    if data.get("instanceNames") is not None:
         import capo_lightsail.types.string_list
 
         out["instance_names"] = (
@@ -91,31 +91,31 @@ def deserialize_aws_json_1_1(data: dict) -> CreateInstancesRequest:
         )
     else:
         raise DeserializationError("CreateInstancesRequest.instance_names required")
-    if "availabilityZone" in data:
+    if data.get("availabilityZone") is not None:
         out["availability_zone"] = data["availabilityZone"]
     else:
         raise DeserializationError("CreateInstancesRequest.availability_zone required")
-    if "customImageName" in data:
+    if data.get("customImageName") is not None:
         out["custom_image_name"] = data["customImageName"]
-    if "blueprintId" in data:
+    if data.get("blueprintId") is not None:
         out["blueprint_id"] = data["blueprintId"]
     else:
         raise DeserializationError("CreateInstancesRequest.blueprint_id required")
-    if "bundleId" in data:
+    if data.get("bundleId") is not None:
         out["bundle_id"] = data["bundleId"]
     else:
         raise DeserializationError("CreateInstancesRequest.bundle_id required")
-    if "userData" in data:
+    if data.get("userData") is not None:
         out["user_data"] = data["userData"]
-    if "keyPairName" in data:
+    if data.get("keyPairName") is not None:
         out["key_pair_name"] = data["keyPairName"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_lightsail.types.tag_list
 
         out["tags"] = capo_lightsail.types.tag_list.deserialize_aws_json_1_1(
             data["tags"]
         )
-    if "addOns" in data:
+    if data.get("addOns") is not None:
         import capo_lightsail.types.add_on_request_list
 
         out["add_ons"] = (
@@ -123,7 +123,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateInstancesRequest:
                 data["addOns"]
             )
         )
-    if "ipAddressType" in data:
+    if data.get("ipAddressType") is not None:
         import capo_lightsail.types.ip_address_type
 
         out["ip_address_type"] = (

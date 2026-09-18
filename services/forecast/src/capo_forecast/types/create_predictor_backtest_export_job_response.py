@@ -25,6 +25,6 @@ def serialize_aws_json_1_1(value: CreatePredictorBacktestExportJobResponse) -> d
 
 def deserialize_aws_json_1_1(data: dict) -> CreatePredictorBacktestExportJobResponse:
     out: CreatePredictorBacktestExportJobResponse = {}  # type: ignore[typeddict-item]
-    if "PredictorBacktestExportJobArn" in data:
+    if data.get("PredictorBacktestExportJobArn") is not None:
         out["predictor_backtest_export_job_arn"] = data["PredictorBacktestExportJobArn"]
     return out

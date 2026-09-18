@@ -55,44 +55,44 @@ def serialize_aws_json_1_0(value: CreateRegistrationAssociationResult) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CreateRegistrationAssociationResult:
     out: CreateRegistrationAssociationResult = {}  # type: ignore[typeddict-item]
-    if "RegistrationArn" in data:
+    if data.get("RegistrationArn") is not None:
         out["registration_arn"] = data["RegistrationArn"]
     else:
         raise DeserializationError(
             "CreateRegistrationAssociationResult.registration_arn required"
         )
-    if "RegistrationId" in data:
+    if data.get("RegistrationId") is not None:
         out["registration_id"] = data["RegistrationId"]
     else:
         raise DeserializationError(
             "CreateRegistrationAssociationResult.registration_id required"
         )
-    if "RegistrationType" in data:
+    if data.get("RegistrationType") is not None:
         out["registration_type"] = data["RegistrationType"]
     else:
         raise DeserializationError(
             "CreateRegistrationAssociationResult.registration_type required"
         )
-    if "ResourceArn" in data:
+    if data.get("ResourceArn") is not None:
         out["resource_arn"] = data["ResourceArn"]
     else:
         raise DeserializationError(
             "CreateRegistrationAssociationResult.resource_arn required"
         )
-    if "ResourceId" in data:
+    if data.get("ResourceId") is not None:
         out["resource_id"] = data["ResourceId"]
     else:
         raise DeserializationError(
             "CreateRegistrationAssociationResult.resource_id required"
         )
-    if "ResourceType" in data:
+    if data.get("ResourceType") is not None:
         out["resource_type"] = data["ResourceType"]
     else:
         raise DeserializationError(
             "CreateRegistrationAssociationResult.resource_type required"
         )
-    if "IsoCountryCode" in data:
+    if data.get("IsoCountryCode") is not None:
         out["iso_country_code"] = data["IsoCountryCode"]
-    if "PhoneNumber" in data:
+    if data.get("PhoneNumber") is not None:
         out["phone_number"] = data["PhoneNumber"]
     return out

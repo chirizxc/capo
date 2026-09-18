@@ -47,30 +47,30 @@ def serialize_json(value: CreatePresignedUrlInput) -> dict:
 
 def deserialize_json(data: dict) -> CreatePresignedUrlInput:
     out: CreatePresignedUrlInput = {}  # type: ignore[typeddict-item]
-    if "cardId" in data:
+    if data.get("cardId") is not None:
         out["card_id"] = data["cardId"]
     else:
         raise DeserializationError("CreatePresignedUrlInput.card_id required")
-    if "appId" in data:
+    if data.get("appId") is not None:
         out["app_id"] = data["appId"]
     else:
         raise DeserializationError("CreatePresignedUrlInput.app_id required")
-    if "fileContentsSha256" in data:
+    if data.get("fileContentsSha256") is not None:
         out["file_contents_sha256"] = data["fileContentsSha256"]
     else:
         raise DeserializationError(
             "CreatePresignedUrlInput.file_contents_sha256 required"
         )
-    if "fileName" in data:
+    if data.get("fileName") is not None:
         out["file_name"] = data["fileName"]
     else:
         raise DeserializationError("CreatePresignedUrlInput.file_name required")
-    if "scope" in data:
+    if data.get("scope") is not None:
         import capo_qapps.types.document_scope
 
         out["scope"] = capo_qapps.types.document_scope.deserialize_json(data["scope"])
     else:
         raise DeserializationError("CreatePresignedUrlInput.scope required")
-    if "sessionId" in data:
+    if data.get("sessionId") is not None:
         out["session_id"] = data["sessionId"]
     return out

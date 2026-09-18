@@ -44,7 +44,7 @@ def serialize_json(value: BatchUpdateFindingsResponse) -> dict:
 
 def deserialize_json(data: dict) -> BatchUpdateFindingsResponse:
     out: BatchUpdateFindingsResponse = {}  # type: ignore[typeddict-item]
-    if "ProcessedFindings" in data:
+    if data.get("ProcessedFindings") is not None:
         import capo_securityhub.types.aws_security_finding_identifier_list
 
         out["processed_findings"] = (
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> BatchUpdateFindingsResponse:
                 data["ProcessedFindings"]
             )
         )
-    if "UnprocessedFindings" in data:
+    if data.get("UnprocessedFindings") is not None:
         import capo_securityhub.types.batch_update_findings_unprocessed_findings_list
 
         out["unprocessed_findings"] = (

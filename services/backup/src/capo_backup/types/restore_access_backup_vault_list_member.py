@@ -62,27 +62,27 @@ def serialize_json(value: RestoreAccessBackupVaultListMember) -> dict:
 
 def deserialize_json(data: dict) -> RestoreAccessBackupVaultListMember:
     out: RestoreAccessBackupVaultListMember = {}  # type: ignore[typeddict-item]
-    if "RestoreAccessBackupVaultArn" in data:
+    if data.get("RestoreAccessBackupVaultArn") is not None:
         out["restore_access_backup_vault_arn"] = data["RestoreAccessBackupVaultArn"]
-    if "CreationDate" in data:
+    if data.get("CreationDate") is not None:
         import capo_backup.types.timestamp
 
         out["creation_date"] = capo_backup.types.timestamp.deserialize_json(
             data["CreationDate"]
         )
-    if "ApprovalDate" in data:
+    if data.get("ApprovalDate") is not None:
         import capo_backup.types.timestamp
 
         out["approval_date"] = capo_backup.types.timestamp.deserialize_json(
             data["ApprovalDate"]
         )
-    if "VaultState" in data:
+    if data.get("VaultState") is not None:
         import capo_backup.types.vault_state
 
         out["vault_state"] = capo_backup.types.vault_state.deserialize_json(
             data["VaultState"]
         )
-    if "LatestRevokeRequest" in data:
+    if data.get("LatestRevokeRequest") is not None:
         import capo_backup.types.latest_revoke_request
 
         out["latest_revoke_request"] = (

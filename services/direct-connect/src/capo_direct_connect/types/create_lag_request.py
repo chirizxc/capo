@@ -72,31 +72,31 @@ def serialize_aws_json_1_1(value: CreateLagRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateLagRequest:
     out: CreateLagRequest = {}  # type: ignore[typeddict-item]
-    if "numberOfConnections" in data:
+    if data.get("numberOfConnections") is not None:
         out["number_of_connections"] = data["numberOfConnections"]
     else:
         out["number_of_connections"] = 0
-    if "location" in data:
+    if data.get("location") is not None:
         out["location"] = data["location"]
     else:
         raise DeserializationError("CreateLagRequest.location required")
-    if "connectionsBandwidth" in data:
+    if data.get("connectionsBandwidth") is not None:
         out["connections_bandwidth"] = data["connectionsBandwidth"]
     else:
         raise DeserializationError("CreateLagRequest.connections_bandwidth required")
-    if "lagName" in data:
+    if data.get("lagName") is not None:
         out["lag_name"] = data["lagName"]
     else:
         raise DeserializationError("CreateLagRequest.lag_name required")
-    if "connectionId" in data:
+    if data.get("connectionId") is not None:
         out["connection_id"] = data["connectionId"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_direct_connect.types.tag_list
 
         out["tags"] = capo_direct_connect.types.tag_list.deserialize_aws_json_1_1(
             data["tags"]
         )
-    if "childConnectionTags" in data:
+    if data.get("childConnectionTags") is not None:
         import capo_direct_connect.types.tag_list
 
         out["child_connection_tags"] = (
@@ -104,8 +104,8 @@ def deserialize_aws_json_1_1(data: dict) -> CreateLagRequest:
                 data["childConnectionTags"]
             )
         )
-    if "providerName" in data:
+    if data.get("providerName") is not None:
         out["provider_name"] = data["providerName"]
-    if "requestMACSec" in data:
+    if data.get("requestMACSec") is not None:
         out["request_mac_sec"] = data["requestMACSec"]
     return out

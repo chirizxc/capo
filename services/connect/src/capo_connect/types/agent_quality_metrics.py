@@ -29,7 +29,7 @@ def serialize_json(value: AgentQualityMetrics) -> dict:
 
 def deserialize_json(data: dict) -> AgentQualityMetrics:
     out: AgentQualityMetrics = {}  # type: ignore[typeddict-item]
-    if "Audio" in data:
+    if data.get("Audio") is not None:
         import capo_connect.types.audio_quality_metrics_info
 
         out["audio"] = capo_connect.types.audio_quality_metrics_info.deserialize_json(

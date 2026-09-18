@@ -95,11 +95,12 @@ class Engagement:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_partnercentral_selling.types.create_engagement_request.CreateEngagementRequest = {}  # type: ignore[typeddict-item]
-        input_["catalog"] = catalog
-        input_["client_token"] = client_token
-        input_["title"] = title
-        input_["description"] = description
+        input_: capo_partnercentral_selling.types.create_engagement_request.CreateEngagementRequest = {
+            "catalog": catalog,
+            "client_token": client_token,
+            "title": title,
+            "description": description,
+        }
         if contexts is not None:
             input_["contexts"] = contexts
 
@@ -108,6 +109,7 @@ class Engagement:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -147,15 +149,17 @@ class Engagement:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_partnercentral_selling.types.get_engagement_request.GetEngagementRequest = {}  # type: ignore[typeddict-item]
-        input_["catalog"] = catalog
-        input_["identifier"] = identifier
+        input_: capo_partnercentral_selling.types.get_engagement_request.GetEngagementRequest = {
+            "catalog": catalog,
+            "identifier": identifier,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -222,8 +226,9 @@ class Engagement:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_partnercentral_selling.types.list_engagements_request.ListEngagementsRequest = {}  # type: ignore[typeddict-item]
-        input_["catalog"] = catalog
+        input_: capo_partnercentral_selling.types.list_engagements_request.ListEngagementsRequest = {
+            "catalog": catalog
+        }
         if created_by is not None:
             input_["created_by"] = created_by
         if exclude_created_by is not None:
@@ -246,6 +251,7 @@ class Engagement:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_engagement_members(
@@ -291,9 +297,10 @@ class Engagement:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_partnercentral_selling.types.list_engagement_members_request.ListEngagementMembersRequest = {}  # type: ignore[typeddict-item]
-        input_["catalog"] = catalog
-        input_["identifier"] = identifier
+        input_: capo_partnercentral_selling.types.list_engagement_members_request.ListEngagementMembersRequest = {
+            "catalog": catalog,
+            "identifier": identifier,
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -304,6 +311,7 @@ class Engagement:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -359,11 +367,12 @@ class AsyncEngagement:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_partnercentral_selling.types.create_engagement_request.CreateEngagementRequest = {}  # type: ignore[typeddict-item]
-        input_["catalog"] = catalog
-        input_["client_token"] = client_token
-        input_["title"] = title
-        input_["description"] = description
+        input_: capo_partnercentral_selling.types.create_engagement_request.CreateEngagementRequest = {
+            "catalog": catalog,
+            "client_token": client_token,
+            "title": title,
+            "description": description,
+        }
         if contexts is not None:
             input_["contexts"] = contexts
 
@@ -372,6 +381,7 @@ class AsyncEngagement:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -412,15 +422,17 @@ class AsyncEngagement:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_partnercentral_selling.types.get_engagement_request.GetEngagementRequest = {}  # type: ignore[typeddict-item]
-        input_["catalog"] = catalog
-        input_["identifier"] = identifier
+        input_: capo_partnercentral_selling.types.get_engagement_request.GetEngagementRequest = {
+            "catalog": catalog,
+            "identifier": identifier,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -488,8 +500,9 @@ class AsyncEngagement:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_partnercentral_selling.types.list_engagements_request.ListEngagementsRequest = {}  # type: ignore[typeddict-item]
-        input_["catalog"] = catalog
+        input_: capo_partnercentral_selling.types.list_engagements_request.ListEngagementsRequest = {
+            "catalog": catalog
+        }
         if created_by is not None:
             input_["created_by"] = created_by
         if exclude_created_by is not None:
@@ -512,6 +525,7 @@ class AsyncEngagement:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_engagement_members(
@@ -558,9 +572,10 @@ class AsyncEngagement:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_partnercentral_selling.types.list_engagement_members_request.ListEngagementMembersRequest = {}  # type: ignore[typeddict-item]
-        input_["catalog"] = catalog
-        input_["identifier"] = identifier
+        input_: capo_partnercentral_selling.types.list_engagement_members_request.ListEngagementMembersRequest = {
+            "catalog": catalog,
+            "identifier": identifier,
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -571,4 +586,5 @@ class AsyncEngagement:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

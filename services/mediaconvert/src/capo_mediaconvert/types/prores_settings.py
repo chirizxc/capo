@@ -163,7 +163,7 @@ def serialize_json(value: ProresSettings) -> dict:
 
 def deserialize_json(data: dict) -> ProresSettings:
     out: ProresSettings = {}  # type: ignore[typeddict-item]
-    if "chromaSampling" in data:
+    if data.get("chromaSampling") is not None:
         import capo_mediaconvert.types.prores_chroma_sampling
 
         out["chroma_sampling"] = (
@@ -171,7 +171,7 @@ def deserialize_json(data: dict) -> ProresSettings:
                 data["chromaSampling"]
             )
         )
-    if "codecProfile" in data:
+    if data.get("codecProfile") is not None:
         import capo_mediaconvert.types.prores_codec_profile
 
         out["codec_profile"] = (
@@ -179,7 +179,7 @@ def deserialize_json(data: dict) -> ProresSettings:
                 data["codecProfile"]
             )
         )
-    if "framerateControl" in data:
+    if data.get("framerateControl") is not None:
         import capo_mediaconvert.types.prores_framerate_control
 
         out["framerate_control"] = (
@@ -187,7 +187,7 @@ def deserialize_json(data: dict) -> ProresSettings:
                 data["framerateControl"]
             )
         )
-    if "framerateConversionAlgorithm" in data:
+    if data.get("framerateConversionAlgorithm") is not None:
         import capo_mediaconvert.types.prores_framerate_conversion_algorithm
 
         out["framerate_conversion_algorithm"] = (
@@ -195,11 +195,11 @@ def deserialize_json(data: dict) -> ProresSettings:
                 data["framerateConversionAlgorithm"]
             )
         )
-    if "framerateDenominator" in data:
+    if data.get("framerateDenominator") is not None:
         out["framerate_denominator"] = data["framerateDenominator"]
-    if "framerateNumerator" in data:
+    if data.get("framerateNumerator") is not None:
         out["framerate_numerator"] = data["framerateNumerator"]
-    if "interlaceMode" in data:
+    if data.get("interlaceMode") is not None:
         import capo_mediaconvert.types.prores_interlace_mode
 
         out["interlace_mode"] = (
@@ -207,7 +207,7 @@ def deserialize_json(data: dict) -> ProresSettings:
                 data["interlaceMode"]
             )
         )
-    if "parControl" in data:
+    if data.get("parControl") is not None:
         import capo_mediaconvert.types.prores_par_control
 
         out["par_control"] = (
@@ -215,11 +215,11 @@ def deserialize_json(data: dict) -> ProresSettings:
                 data["parControl"]
             )
         )
-    if "parDenominator" in data:
+    if data.get("parDenominator") is not None:
         out["par_denominator"] = data["parDenominator"]
-    if "parNumerator" in data:
+    if data.get("parNumerator") is not None:
         out["par_numerator"] = data["parNumerator"]
-    if "perFrameMetrics" in data:
+    if data.get("perFrameMetrics") is not None:
         import capo_mediaconvert.types.__list_of_frame_metric_type
 
         out["per_frame_metrics"] = (
@@ -227,7 +227,7 @@ def deserialize_json(data: dict) -> ProresSettings:
                 data["perFrameMetrics"]
             )
         )
-    if "scanTypeConversionMode" in data:
+    if data.get("scanTypeConversionMode") is not None:
         import capo_mediaconvert.types.prores_scan_type_conversion_mode
 
         out["scan_type_conversion_mode"] = (
@@ -235,13 +235,13 @@ def deserialize_json(data: dict) -> ProresSettings:
                 data["scanTypeConversionMode"]
             )
         )
-    if "slowPal" in data:
+    if data.get("slowPal") is not None:
         import capo_mediaconvert.types.prores_slow_pal
 
         out["slow_pal"] = capo_mediaconvert.types.prores_slow_pal.deserialize_json(
             data["slowPal"]
         )
-    if "telecine" in data:
+    if data.get("telecine") is not None:
         import capo_mediaconvert.types.prores_telecine
 
         out["telecine"] = capo_mediaconvert.types.prores_telecine.deserialize_json(

@@ -57,7 +57,7 @@ def serialize_aws_json_1_1(value: GetEventPredictionResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetEventPredictionResult:
     out: GetEventPredictionResult = {}  # type: ignore[typeddict-item]
-    if "modelScores" in data:
+    if data.get("modelScores") is not None:
         import capo_frauddetector.types.list_of_model_scores
 
         out["model_scores"] = (
@@ -65,7 +65,7 @@ def deserialize_aws_json_1_1(data: dict) -> GetEventPredictionResult:
                 data["modelScores"]
             )
         )
-    if "ruleResults" in data:
+    if data.get("ruleResults") is not None:
         import capo_frauddetector.types.list_of_rule_results
 
         out["rule_results"] = (
@@ -73,7 +73,7 @@ def deserialize_aws_json_1_1(data: dict) -> GetEventPredictionResult:
                 data["ruleResults"]
             )
         )
-    if "externalModelOutputs" in data:
+    if data.get("externalModelOutputs") is not None:
         import capo_frauddetector.types.list_of_external_model_outputs
 
         out["external_model_outputs"] = (

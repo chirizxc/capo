@@ -40,11 +40,11 @@ def serialize_aws_json_1_1(value: ListFileSharesOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListFileSharesOutput:
     out: ListFileSharesOutput = {}  # type: ignore[typeddict-item]
-    if "Marker" in data:
+    if data.get("Marker") is not None:
         out["marker"] = data["Marker"]
-    if "NextMarker" in data:
+    if data.get("NextMarker") is not None:
         out["next_marker"] = data["NextMarker"]
-    if "FileShareInfoList" in data:
+    if data.get("FileShareInfoList") is not None:
         import capo_storage_gateway.types.file_share_info_list
 
         out["file_share_info_list"] = (

@@ -36,15 +36,15 @@ def serialize_aws_json_1_1(value: CreateSubnetGroupRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateSubnetGroupRequest:
     out: CreateSubnetGroupRequest = {}  # type: ignore[typeddict-item]
-    if "SubnetGroupName" in data:
+    if data.get("SubnetGroupName") is not None:
         out["subnet_group_name"] = data["SubnetGroupName"]
     else:
         raise DeserializationError(
             "CreateSubnetGroupRequest.subnet_group_name required"
         )
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "SubnetIds" in data:
+    if data.get("SubnetIds") is not None:
         import capo_dax.types.subnet_identifier_list
 
         out["subnet_ids"] = (

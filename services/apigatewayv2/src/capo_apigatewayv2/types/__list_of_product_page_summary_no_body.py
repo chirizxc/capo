@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> __listOfProductPageSummaryNoBody:
 
     out: __listOfProductPageSummaryNoBody = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_apigatewayv2.types.product_page_summary_no_body.deserialize_json(item)
         )

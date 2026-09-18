@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> Transcript:
 
     out: Transcript = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_connectparticipant.types.item.deserialize_json(item))
     return out

@@ -32,7 +32,7 @@ def serialize_json(value: ConnectionDetails) -> dict:
 
 def deserialize_json(data: dict) -> ConnectionDetails:
     out: ConnectionDetails = {}  # type: ignore[typeddict-item]
-    if "socketAddress" in data:
+    if data.get("socketAddress") is not None:
         import capo_groundstation.types.socket_address
 
         out["socket_address"] = (
@@ -42,6 +42,6 @@ def deserialize_json(data: dict) -> ConnectionDetails:
         )
     else:
         raise DeserializationError("ConnectionDetails.socket_address required")
-    if "mtu" in data:
+    if data.get("mtu") is not None:
         out["mtu"] = data["mtu"]
     return out

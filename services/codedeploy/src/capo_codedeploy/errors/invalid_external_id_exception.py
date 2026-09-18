@@ -25,7 +25,7 @@ def serialize_aws_json_1_1(value: InvalidExternalIdException_) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> InvalidExternalIdException_:
     out: InvalidExternalIdException_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     return out
 
@@ -35,15 +35,18 @@ class InvalidExternalIdException(ServiceError):
 
     code: str | None = "InvalidExternalIdException"
 
-    def __init__(self, data: InvalidExternalIdException_):
+    def __init__(self, data: InvalidExternalIdException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="InvalidExternalIdException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "InvalidExternalIdException":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "InvalidExternalIdException":
+        return cls(deserialize_aws_json_1_1(data), message)

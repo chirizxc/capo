@@ -32,15 +32,15 @@ def serialize_aws_json_1_1(value: AWSSessionCredentials) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AWSSessionCredentials:
     out: AWSSessionCredentials = {}  # type: ignore[typeddict-item]
-    if "accessKeyId" in data:
+    if data.get("accessKeyId") is not None:
         out["access_key_id"] = data["accessKeyId"]
     else:
         raise DeserializationError("AWSSessionCredentials.access_key_id required")
-    if "secretAccessKey" in data:
+    if data.get("secretAccessKey") is not None:
         out["secret_access_key"] = data["secretAccessKey"]
     else:
         raise DeserializationError("AWSSessionCredentials.secret_access_key required")
-    if "sessionToken" in data:
+    if data.get("sessionToken") is not None:
         out["session_token"] = data["sessionToken"]
     else:
         raise DeserializationError("AWSSessionCredentials.session_token required")

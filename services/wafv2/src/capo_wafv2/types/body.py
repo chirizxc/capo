@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: Body) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Body:
     out: Body = {}  # type: ignore[typeddict-item]
-    if "OversizeHandling" in data:
+    if data.get("OversizeHandling") is not None:
         import capo_wafv2.types.oversize_handling
 
         out["oversize_handling"] = (

@@ -57,25 +57,25 @@ def serialize_json(value: QQueryCardInput) -> dict:
 
 def deserialize_json(data: dict) -> QQueryCardInput:
     out: QQueryCardInput = {}  # type: ignore[typeddict-item]
-    if "title" in data:
+    if data.get("title") is not None:
         out["title"] = data["title"]
     else:
         raise DeserializationError("QQueryCardInput.title required")
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("QQueryCardInput.id required")
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_qapps.types.card_type
 
         out["type"] = capo_qapps.types.card_type.deserialize_json(data["type"])
     else:
         out["type"] = "q-query"
-    if "prompt" in data:
+    if data.get("prompt") is not None:
         out["prompt"] = data["prompt"]
     else:
         raise DeserializationError("QQueryCardInput.prompt required")
-    if "outputSource" in data:
+    if data.get("outputSource") is not None:
         import capo_qapps.types.card_output_source
 
         out["output_source"] = capo_qapps.types.card_output_source.deserialize_json(
@@ -83,7 +83,7 @@ def deserialize_json(data: dict) -> QQueryCardInput:
         )
     else:
         out["output_source"] = "approved-sources"
-    if "attributeFilter" in data:
+    if data.get("attributeFilter") is not None:
         import capo_qapps.types.attribute_filter
 
         out["attribute_filter"] = capo_qapps.types.attribute_filter.deserialize_json(

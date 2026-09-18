@@ -37,15 +37,18 @@ class UserGroupQuotaExceededFault(ServiceError):
 
     code: str | None = "UserGroupQuotaExceededFault"
 
-    def __init__(self, data: UserGroupQuotaExceededFault_):
+    def __init__(self, data: UserGroupQuotaExceededFault_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="UserGroupQuotaExceededFault",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_query(cls, el: Element) -> "UserGroupQuotaExceededFault":
-        return cls(deserialize_query(el))
+    def from_query(
+        cls, el: Element, message: str | None = None
+    ) -> "UserGroupQuotaExceededFault":
+        return cls(deserialize_query(el), message)

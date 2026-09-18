@@ -53,7 +53,7 @@ def serialize_json(value: MetricsDataSource) -> dict:
 
 def deserialize_json(data: dict) -> MetricsDataSource:
     out: MetricsDataSource = {}  # type: ignore[typeddict-item]
-    if "Dimensions" in data:
+    if data.get("Dimensions") is not None:
         import capo_sesv2.types.export_dimensions
 
         out["dimensions"] = capo_sesv2.types.export_dimensions.deserialize_json(
@@ -61,7 +61,7 @@ def deserialize_json(data: dict) -> MetricsDataSource:
         )
     else:
         raise DeserializationError("MetricsDataSource.dimensions required")
-    if "Namespace" in data:
+    if data.get("Namespace") is not None:
         import capo_sesv2.types.metric_namespace
 
         out["namespace"] = capo_sesv2.types.metric_namespace.deserialize_json(
@@ -69,7 +69,7 @@ def deserialize_json(data: dict) -> MetricsDataSource:
         )
     else:
         raise DeserializationError("MetricsDataSource.namespace required")
-    if "Metrics" in data:
+    if data.get("Metrics") is not None:
         import capo_sesv2.types.export_metrics
 
         out["metrics"] = capo_sesv2.types.export_metrics.deserialize_json(
@@ -77,7 +77,7 @@ def deserialize_json(data: dict) -> MetricsDataSource:
         )
     else:
         raise DeserializationError("MetricsDataSource.metrics required")
-    if "StartDate" in data:
+    if data.get("StartDate") is not None:
         import capo_sesv2.types.timestamp
 
         out["start_date"] = capo_sesv2.types.timestamp.deserialize_json(
@@ -85,7 +85,7 @@ def deserialize_json(data: dict) -> MetricsDataSource:
         )
     else:
         raise DeserializationError("MetricsDataSource.start_date required")
-    if "EndDate" in data:
+    if data.get("EndDate") is not None:
         import capo_sesv2.types.timestamp
 
         out["end_date"] = capo_sesv2.types.timestamp.deserialize_json(data["EndDate"])

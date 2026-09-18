@@ -42,7 +42,7 @@ def serialize_json(value: BatchGetCodeSnippetResponse) -> dict:
 
 def deserialize_json(data: dict) -> BatchGetCodeSnippetResponse:
     out: BatchGetCodeSnippetResponse = {}  # type: ignore[typeddict-item]
-    if "codeSnippetResults" in data:
+    if data.get("codeSnippetResults") is not None:
         import capo_inspector2.types.code_snippet_result_list
 
         out["code_snippet_results"] = (
@@ -50,7 +50,7 @@ def deserialize_json(data: dict) -> BatchGetCodeSnippetResponse:
                 data["codeSnippetResults"]
             )
         )
-    if "errors" in data:
+    if data.get("errors") is not None:
         import capo_inspector2.types.code_snippet_error_list
 
         out["errors"] = capo_inspector2.types.code_snippet_error_list.deserialize_json(

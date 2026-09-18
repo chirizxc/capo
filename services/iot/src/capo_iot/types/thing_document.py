@@ -71,13 +71,13 @@ def serialize_json(value: ThingDocument) -> dict:
 
 def deserialize_json(data: dict) -> ThingDocument:
     out: ThingDocument = {}  # type: ignore[typeddict-item]
-    if "thingName" in data:
+    if data.get("thingName") is not None:
         out["thing_name"] = data["thingName"]
-    if "thingId" in data:
+    if data.get("thingId") is not None:
         out["thing_id"] = data["thingId"]
-    if "thingTypeName" in data:
+    if data.get("thingTypeName") is not None:
         out["thing_type_name"] = data["thingTypeName"]
-    if "thingGroupNames" in data:
+    if data.get("thingGroupNames") is not None:
         import capo_iot.types.thing_group_name_list
 
         out["thing_group_names"] = (
@@ -85,17 +85,17 @@ def deserialize_json(data: dict) -> ThingDocument:
                 data["thingGroupNames"]
             )
         )
-    if "attributes" in data:
+    if data.get("attributes") is not None:
         import capo_iot.types.attributes
 
         out["attributes"] = capo_iot.types.attributes.deserialize_json(
             data["attributes"]
         )
-    if "shadow" in data:
+    if data.get("shadow") is not None:
         out["shadow"] = data["shadow"]
-    if "deviceDefender" in data:
+    if data.get("deviceDefender") is not None:
         out["device_defender"] = data["deviceDefender"]
-    if "connectivity" in data:
+    if data.get("connectivity") is not None:
         import capo_iot.types.thing_connectivity
 
         out["connectivity"] = capo_iot.types.thing_connectivity.deserialize_json(

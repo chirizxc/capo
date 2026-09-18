@@ -32,9 +32,9 @@ def serialize_aws_json_1_0(value: ListSystemVersionsOutput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ListSystemVersionsOutput:
     out: ListSystemVersionsOutput = {}  # type: ignore[typeddict-item]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "systemVersions" in data:
+    if data.get("systemVersions") is not None:
         import capo_odb.types.system_version_list
 
         out["system_versions"] = (

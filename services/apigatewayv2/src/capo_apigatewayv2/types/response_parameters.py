@@ -25,6 +25,8 @@ def serialize_json(input_to_serialize: ResponseParameters) -> dict:
 def deserialize_json(data: dict) -> ResponseParameters:
     out: ResponseParameters = {}
     for key, value in data.items():
+        if value is None:
+            continue
         import capo_apigatewayv2.types.integration_parameters
 
         out[key] = capo_apigatewayv2.types.integration_parameters.deserialize_json(

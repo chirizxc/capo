@@ -29,7 +29,7 @@ def serialize_aws_json_1_1(value: DeleteEndpointResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteEndpointResponse:
     out: DeleteEndpointResponse = {}  # type: ignore[typeddict-item]
-    if "Endpoint" in data:
+    if data.get("Endpoint") is not None:
         import capo_database_migration_service.types.endpoint
 
         out["endpoint"] = (

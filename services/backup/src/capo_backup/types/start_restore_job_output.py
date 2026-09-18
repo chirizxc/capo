@@ -23,6 +23,6 @@ def serialize_json(value: StartRestoreJobOutput) -> dict:
 
 def deserialize_json(data: dict) -> StartRestoreJobOutput:
     out: StartRestoreJobOutput = {}  # type: ignore[typeddict-item]
-    if "RestoreJobId" in data:
+    if data.get("RestoreJobId") is not None:
         out["restore_job_id"] = data["RestoreJobId"]
     return out

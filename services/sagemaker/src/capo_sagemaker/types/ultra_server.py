@@ -107,13 +107,13 @@ def serialize_aws_json_1_1(value: UltraServer) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UltraServer:
     out: UltraServer = {}  # type: ignore[typeddict-item]
-    if "UltraServerId" in data:
+    if data.get("UltraServerId") is not None:
         out["ultra_server_id"] = data["UltraServerId"]
-    if "UltraServerType" in data:
+    if data.get("UltraServerType") is not None:
         out["ultra_server_type"] = data["UltraServerType"]
-    if "AvailabilityZone" in data:
+    if data.get("AvailabilityZone") is not None:
         out["availability_zone"] = data["AvailabilityZone"]
-    if "InstanceType" in data:
+    if data.get("InstanceType") is not None:
         import capo_sagemaker.types.reserved_capacity_instance_type
 
         out["instance_type"] = (
@@ -121,19 +121,19 @@ def deserialize_aws_json_1_1(data: dict) -> UltraServer:
                 data["InstanceType"]
             )
         )
-    if "TotalInstanceCount" in data:
+    if data.get("TotalInstanceCount") is not None:
         out["total_instance_count"] = data["TotalInstanceCount"]
-    if "ConfiguredSpareInstanceCount" in data:
+    if data.get("ConfiguredSpareInstanceCount") is not None:
         out["configured_spare_instance_count"] = data["ConfiguredSpareInstanceCount"]
-    if "AvailableInstanceCount" in data:
+    if data.get("AvailableInstanceCount") is not None:
         out["available_instance_count"] = data["AvailableInstanceCount"]
-    if "InUseInstanceCount" in data:
+    if data.get("InUseInstanceCount") is not None:
         out["in_use_instance_count"] = data["InUseInstanceCount"]
-    if "AvailableSpareInstanceCount" in data:
+    if data.get("AvailableSpareInstanceCount") is not None:
         out["available_spare_instance_count"] = data["AvailableSpareInstanceCount"]
-    if "UnhealthyInstanceCount" in data:
+    if data.get("UnhealthyInstanceCount") is not None:
         out["unhealthy_instance_count"] = data["UnhealthyInstanceCount"]
-    if "HealthStatus" in data:
+    if data.get("HealthStatus") is not None:
         import capo_sagemaker.types.ultra_server_health_status
 
         out["health_status"] = (

@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> ImageCustomActionOperationList:
 
     out: ImageCustomActionOperationList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_quicksight.types.image_custom_action_operation.deserialize_json(item)
         )

@@ -28,7 +28,7 @@ def serialize_aws_json_1_1(value: ActionCondition) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ActionCondition:
     out: ActionCondition = {}  # type: ignore[typeddict-item]
-    if "Action" in data:
+    if data.get("Action") is not None:
         import capo_wafv2.types.action_value
 
         out["action"] = capo_wafv2.types.action_value.deserialize_aws_json_1_1(

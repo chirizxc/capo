@@ -1,5 +1,6 @@
 """Generated from Smithy shape ``com.amazonaws.cloudcontrol#CloudApiService``."""
 
+import uuid
 import warnings
 from collections.abc import AsyncIterator
 from typing import TYPE_CHECKING, Any, Iterable, Optional
@@ -187,14 +188,16 @@ class AsyncCloudControlClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudcontrol.types.cancel_resource_request_input.CancelResourceRequestInput = {}  # type: ignore[typeddict-item]
-        input_["request_token"] = request_token
+        input_: capo_cloudcontrol.types.cancel_resource_request_input.CancelResourceRequestInput = {
+            "request_token": request_token
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_resource(
@@ -259,21 +262,24 @@ class AsyncCloudControlClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudcontrol.types.create_resource_input.CreateResourceInput = {}  # type: ignore[typeddict-item]
-        input_["type_name"] = type_name
+        input_: capo_cloudcontrol.types.create_resource_input.CreateResourceInput = {
+            "type_name": type_name,
+            "desired_state": desired_state,
+        }
         if type_version_id is not None:
             input_["type_version_id"] = type_version_id
         if role_arn is not None:
             input_["role_arn"] = role_arn
-        if client_token is not None:
-            input_["client_token"] = client_token
-        input_["desired_state"] = desired_state
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_resource(
@@ -338,21 +344,24 @@ class AsyncCloudControlClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudcontrol.types.delete_resource_input.DeleteResourceInput = {}  # type: ignore[typeddict-item]
-        input_["type_name"] = type_name
+        input_: capo_cloudcontrol.types.delete_resource_input.DeleteResourceInput = {
+            "type_name": type_name,
+            "identifier": identifier,
+        }
         if type_version_id is not None:
             input_["type_version_id"] = type_version_id
         if role_arn is not None:
             input_["role_arn"] = role_arn
-        if client_token is not None:
-            input_["client_token"] = client_token
-        input_["identifier"] = identifier
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_resource(
@@ -411,19 +420,21 @@ class AsyncCloudControlClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudcontrol.types.get_resource_input.GetResourceInput = {}  # type: ignore[typeddict-item]
-        input_["type_name"] = type_name
+        input_: capo_cloudcontrol.types.get_resource_input.GetResourceInput = {
+            "type_name": type_name,
+            "identifier": identifier,
+        }
         if type_version_id is not None:
             input_["type_version_id"] = type_version_id
         if role_arn is not None:
             input_["role_arn"] = role_arn
-        input_["identifier"] = identifier
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_resource_request_status(
@@ -458,14 +469,16 @@ class AsyncCloudControlClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudcontrol.types.get_resource_request_status_input.GetResourceRequestStatusInput = {}  # type: ignore[typeddict-item]
-        input_["request_token"] = request_token
+        input_: capo_cloudcontrol.types.get_resource_request_status_input.GetResourceRequestStatusInput = {
+            "request_token": request_token
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_resource_requests(
@@ -505,7 +518,7 @@ class AsyncCloudControlClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudcontrol.types.list_resource_requests_input.ListResourceRequestsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_cloudcontrol.types.list_resource_requests_input.ListResourceRequestsInput = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -518,6 +531,7 @@ class AsyncCloudControlClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_resource_requests(
@@ -609,8 +623,9 @@ class AsyncCloudControlClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudcontrol.types.list_resources_input.ListResourcesInput = {}  # type: ignore[typeddict-item]
-        input_["type_name"] = type_name
+        input_: capo_cloudcontrol.types.list_resources_input.ListResourcesInput = {
+            "type_name": type_name
+        }
         if type_version_id is not None:
             input_["type_version_id"] = type_version_id
         if role_arn is not None:
@@ -627,6 +642,7 @@ class AsyncCloudControlClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_resources(
@@ -728,22 +744,25 @@ class AsyncCloudControlClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudcontrol.types.update_resource_input.UpdateResourceInput = {}  # type: ignore[typeddict-item]
-        input_["type_name"] = type_name
+        input_: capo_cloudcontrol.types.update_resource_input.UpdateResourceInput = {
+            "type_name": type_name,
+            "identifier": identifier,
+            "patch_document": patch_document,
+        }
         if type_version_id is not None:
             input_["type_version_id"] = type_version_id
         if role_arn is not None:
             input_["role_arn"] = role_arn
-        if client_token is not None:
-            input_["client_token"] = client_token
-        input_["identifier"] = identifier
-        input_["patch_document"] = patch_document
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def __aenter__(self) -> Self:

@@ -36,9 +36,9 @@ def serialize_json(value: AutomatedDiscoveryAccount) -> dict:
 
 def deserialize_json(data: dict) -> AutomatedDiscoveryAccount:
     out: AutomatedDiscoveryAccount = {}  # type: ignore[typeddict-item]
-    if "accountId" in data:
+    if data.get("accountId") is not None:
         out["account_id"] = data["accountId"]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_macie2.types.automated_discovery_account_status
 
         out["status"] = (

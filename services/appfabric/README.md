@@ -13,9 +13,9 @@ from capo_appfabric import AsyncAppFabricClient
 
 
 async def main():
-    async with AsyncAppFabricClient() as s3:
+    async with AsyncAppFabricClient() as app_fabric:
         # Example: call the batch_get_user_access_tasks operation
-        response = await s3.batch_get_user_access_tasks()
+        response = await app_fabric.batch_get_user_access_tasks()
         print(response["user_access_results_list"])
 ```
 
@@ -28,9 +28,9 @@ from capo_appfabric import AsyncAppFabricClient
 
 
 async def main():
-    async with AsyncAppFabricClient() as s3:
+    async with AsyncAppFabricClient() as app_fabric:
         # Example: paginate over list_app_authorizations
-        async for item in s3.iter_list_app_authorizations():
+        async for item in app_fabric.iter_list_app_authorizations():
             print(item)
 ```
 
@@ -44,9 +44,9 @@ from capo_appfabric.error import AccessDeniedException
 
 
 async def main():
-    async with AsyncAppFabricClient() as s3:
+    async with AsyncAppFabricClient() as app_fabric:
         try:
-            await s3.batch_get_user_access_tasks()
+            await app_fabric.batch_get_user_access_tasks()
         except AccessDeniedException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -63,13 +63,13 @@ from capo_appfabric import AsyncAppFabricClient
 
 
 async def main():
-    async with AsyncAppFabricClient() as s3:
+    async with AsyncAppFabricClient() as app_fabric:
         # Default: 3 attempts for every operation
-        response = await s3.batch_get_user_access_tasks()
+        response = await app_fabric.batch_get_user_access_tasks()
 
         # Override per operation
-        response = await s3.batch_get_user_access_tasks(config_overrides={"retry_max_attempts": 5})
+        response = await app_fabric.batch_get_user_access_tasks(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.batch_get_user_access_tasks(config_overrides={"retry_max_attempts": 1})
+        response = await app_fabric.batch_get_user_access_tasks(config_overrides={"retry_max_attempts": 1})
 ```

@@ -30,10 +30,10 @@ def serialize_json(value: FlowModule) -> dict:
 
 def deserialize_json(data: dict) -> FlowModule:
     out: FlowModule = {}  # type: ignore[typeddict-item]
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_connect.types.flow_module_type
 
         out["type"] = capo_connect.types.flow_module_type.deserialize_json(data["Type"])
-    if "FlowModuleId" in data:
+    if data.get("FlowModuleId") is not None:
         out["flow_module_id"] = data["FlowModuleId"]
     return out

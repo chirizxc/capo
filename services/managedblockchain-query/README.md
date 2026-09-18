@@ -13,9 +13,9 @@ from capo_managedblockchain_query import AsyncManagedBlockchainQueryClient
 
 
 async def main():
-    async with AsyncManagedBlockchainQueryClient() as s3:
+    async with AsyncManagedBlockchainQueryClient() as managed_blockchain_query:
         # Example: call the batch_get_token_balance operation
-        response = await s3.batch_get_token_balance()
+        response = await managed_blockchain_query.batch_get_token_balance()
         print(response["token_balances"])
 ```
 
@@ -28,9 +28,9 @@ from capo_managedblockchain_query import AsyncManagedBlockchainQueryClient
 
 
 async def main():
-    async with AsyncManagedBlockchainQueryClient() as s3:
+    async with AsyncManagedBlockchainQueryClient() as managed_blockchain_query:
         # Example: paginate over list_asset_contracts
-        async for item in s3.iter_list_asset_contracts():
+        async for item in managed_blockchain_query.iter_list_asset_contracts():
             print(item)
 ```
 
@@ -44,9 +44,9 @@ from capo_managedblockchain_query.error import AccessDeniedException
 
 
 async def main():
-    async with AsyncManagedBlockchainQueryClient() as s3:
+    async with AsyncManagedBlockchainQueryClient() as managed_blockchain_query:
         try:
-            await s3.batch_get_token_balance()
+            await managed_blockchain_query.batch_get_token_balance()
         except AccessDeniedException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -63,13 +63,13 @@ from capo_managedblockchain_query import AsyncManagedBlockchainQueryClient
 
 
 async def main():
-    async with AsyncManagedBlockchainQueryClient() as s3:
+    async with AsyncManagedBlockchainQueryClient() as managed_blockchain_query:
         # Default: 3 attempts for every operation
-        response = await s3.batch_get_token_balance()
+        response = await managed_blockchain_query.batch_get_token_balance()
 
         # Override per operation
-        response = await s3.batch_get_token_balance(config_overrides={"retry_max_attempts": 5})
+        response = await managed_blockchain_query.batch_get_token_balance(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.batch_get_token_balance(config_overrides={"retry_max_attempts": 1})
+        response = await managed_blockchain_query.batch_get_token_balance(config_overrides={"retry_max_attempts": 1})
 ```

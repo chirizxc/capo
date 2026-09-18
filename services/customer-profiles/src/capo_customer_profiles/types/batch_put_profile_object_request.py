@@ -37,13 +37,13 @@ def serialize_json(value: BatchPutProfileObjectRequest) -> dict:
 
 def deserialize_json(data: dict) -> BatchPutProfileObjectRequest:
     out: BatchPutProfileObjectRequest = {}  # type: ignore[typeddict-item]
-    if "ObjectTypeName" in data:
+    if data.get("ObjectTypeName") is not None:
         out["object_type_name"] = data["ObjectTypeName"]
     else:
         raise DeserializationError(
             "BatchPutProfileObjectRequest.object_type_name required"
         )
-    if "Items" in data:
+    if data.get("Items") is not None:
         import capo_customer_profiles.types.batch_put_profile_object_request_item_list
 
         out["items"] = (

@@ -37,7 +37,7 @@ def serialize_json(value: AuthorizationConfig) -> dict:
 
 def deserialize_json(data: dict) -> AuthorizationConfig:
     out: AuthorizationConfig = {}  # type: ignore[typeddict-item]
-    if "authorizationType" in data:
+    if data.get("authorizationType") is not None:
         import capo_appsync.types.authorization_type
 
         out["authorization_type"] = (
@@ -47,7 +47,7 @@ def deserialize_json(data: dict) -> AuthorizationConfig:
         )
     else:
         raise DeserializationError("AuthorizationConfig.authorization_type required")
-    if "awsIamConfig" in data:
+    if data.get("awsIamConfig") is not None:
         import capo_appsync.types.aws_iam_config
 
         out["aws_iam_config"] = capo_appsync.types.aws_iam_config.deserialize_json(

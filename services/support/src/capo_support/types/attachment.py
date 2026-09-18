@@ -30,9 +30,9 @@ def serialize_aws_json_1_1(value: Attachment) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Attachment:
     out: Attachment = {}  # type: ignore[typeddict-item]
-    if "fileName" in data:
+    if data.get("fileName") is not None:
         out["file_name"] = data["fileName"]
-    if "data" in data:
+    if data.get("data") is not None:
         import capo_support.types.data
 
         out["data"] = capo_support.types.data.deserialize_aws_json_1_1(data["data"])

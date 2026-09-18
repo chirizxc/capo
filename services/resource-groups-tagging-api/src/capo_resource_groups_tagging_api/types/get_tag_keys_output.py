@@ -38,9 +38,9 @@ def serialize_aws_json_1_1(value: GetTagKeysOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetTagKeysOutput:
     out: GetTagKeysOutput = {}  # type: ignore[typeddict-item]
-    if "PaginationToken" in data:
+    if data.get("PaginationToken") is not None:
         out["pagination_token"] = data["PaginationToken"]
-    if "TagKeys" in data:
+    if data.get("TagKeys") is not None:
         import capo_resource_groups_tagging_api.types.tag_key_list
 
         out["tag_keys"] = (

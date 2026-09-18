@@ -53,24 +53,24 @@ def serialize_json(value: CreateEnvironmentRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateEnvironmentRequest:
     out: CreateEnvironmentRequest = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("CreateEnvironmentRequest.name required")
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "NetworkFabricType" in data:
+    if data.get("NetworkFabricType") is not None:
         out["network_fabric_type"] = data["NetworkFabricType"]
     else:
         raise DeserializationError(
             "CreateEnvironmentRequest.network_fabric_type required"
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_migration_hub_refactor_spaces.types.tag_map
 
         out["tags"] = capo_migration_hub_refactor_spaces.types.tag_map.deserialize_json(
             data["Tags"]
         )
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
     return out

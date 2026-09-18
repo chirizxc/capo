@@ -36,7 +36,7 @@ def serialize_json(value: Origination) -> dict:
 
 def deserialize_json(data: dict) -> Origination:
     out: Origination = {}  # type: ignore[typeddict-item]
-    if "Routes" in data:
+    if data.get("Routes") is not None:
         import capo_chime_sdk_voice.types.origination_route_list
 
         out["routes"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> Origination:
                 data["Routes"]
             )
         )
-    if "Disabled" in data:
+    if data.get("Disabled") is not None:
         out["disabled"] = data["Disabled"]
     return out

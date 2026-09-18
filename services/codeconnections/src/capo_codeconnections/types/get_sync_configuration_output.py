@@ -32,7 +32,7 @@ def serialize_aws_json_1_0(value: GetSyncConfigurationOutput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> GetSyncConfigurationOutput:
     out: GetSyncConfigurationOutput = {}  # type: ignore[typeddict-item]
-    if "SyncConfiguration" in data:
+    if data.get("SyncConfiguration") is not None:
         import capo_codeconnections.types.sync_configuration
 
         out["sync_configuration"] = (

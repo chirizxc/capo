@@ -19,7 +19,16 @@ class RecurringCharge(TypedDict, closed=True):
 # --- awsJson1_1 ser/de ---
 def serialize_aws_json_1_1(value: RecurringCharge) -> dict:
     out: dict = {}
-    out["RecurringChargeAmount"] = value.get("recurring_charge_amount", 0)
+    out["RecurringChargeAmount"] = (
+        "NaN"
+        if value.get("recurring_charge_amount", 0)
+        != value.get("recurring_charge_amount", 0)
+        else "Infinity"
+        if value.get("recurring_charge_amount", 0) == float("inf")
+        else "-Infinity"
+        if value.get("recurring_charge_amount", 0) == float("-inf")
+        else value.get("recurring_charge_amount", 0)
+    )
     if "recurring_charge_frequency" in value:
         out["RecurringChargeFrequency"] = value["recurring_charge_frequency"]
     return out
@@ -27,10 +36,10 @@ def serialize_aws_json_1_1(value: RecurringCharge) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RecurringCharge:
     out: RecurringCharge = {}  # type: ignore[typeddict-item]
-    if "RecurringChargeAmount" in data:
-        out["recurring_charge_amount"] = data["RecurringChargeAmount"]
+    if data.get("RecurringChargeAmount") is not None:
+        out["recurring_charge_amount"] = float(data["RecurringChargeAmount"])
     else:
         out["recurring_charge_amount"] = 0
-    if "RecurringChargeFrequency" in data:
+    if data.get("RecurringChargeFrequency") is not None:
         out["recurring_charge_frequency"] = data["RecurringChargeFrequency"]
     return out

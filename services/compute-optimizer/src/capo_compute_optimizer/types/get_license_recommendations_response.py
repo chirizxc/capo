@@ -49,9 +49,9 @@ def serialize_aws_json_1_0(value: GetLicenseRecommendationsResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> GetLicenseRecommendationsResponse:
     out: GetLicenseRecommendationsResponse = {}  # type: ignore[typeddict-item]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "licenseRecommendations" in data:
+    if data.get("licenseRecommendations") is not None:
         import capo_compute_optimizer.types.license_recommendations
 
         out["license_recommendations"] = (
@@ -59,7 +59,7 @@ def deserialize_aws_json_1_0(data: dict) -> GetLicenseRecommendationsResponse:
                 data["licenseRecommendations"]
             )
         )
-    if "errors" in data:
+    if data.get("errors") is not None:
         import capo_compute_optimizer.types.get_recommendation_errors
 
         out["errors"] = (

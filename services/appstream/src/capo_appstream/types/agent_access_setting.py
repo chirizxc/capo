@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: AgentAccessSetting) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AgentAccessSetting:
     out: AgentAccessSetting = {}  # type: ignore[typeddict-item]
-    if "AgentAction" in data:
+    if data.get("AgentAction") is not None:
         import capo_appstream.types.agent_action
 
         out["agent_action"] = (
@@ -44,7 +44,7 @@ def deserialize_aws_json_1_1(data: dict) -> AgentAccessSetting:
                 data["AgentAction"]
             )
         )
-    if "Permission" in data:
+    if data.get("Permission") is not None:
         import capo_appstream.types.permission
 
         out["permission"] = capo_appstream.types.permission.deserialize_aws_json_1_1(

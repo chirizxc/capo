@@ -24,7 +24,7 @@ def serialize_aws_json_1_0(value: PrivateNetworkConfiguration) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> PrivateNetworkConfiguration:
     out: PrivateNetworkConfiguration = {}  # type: ignore[typeddict-item]
-    if "VpcEndpointId" in data:
+    if data.get("VpcEndpointId") is not None:
         out["vpc_endpoint_id"] = data["VpcEndpointId"]
     else:
         raise DeserializationError(

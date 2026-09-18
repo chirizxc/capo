@@ -130,13 +130,13 @@ def serialize_aws_json_1_1(value: UpdateFleetInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateFleetInput:
     out: UpdateFleetInput = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("UpdateFleetInput.arn required")
-    if "baseCapacity" in data:
+    if data.get("baseCapacity") is not None:
         out["base_capacity"] = data["baseCapacity"]
-    if "environmentType" in data:
+    if data.get("environmentType") is not None:
         import capo_codebuild.types.environment_type
 
         out["environment_type"] = (
@@ -144,7 +144,7 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateFleetInput:
                 data["environmentType"]
             )
         )
-    if "computeType" in data:
+    if data.get("computeType") is not None:
         import capo_codebuild.types.compute_type
 
         out["compute_type"] = (
@@ -152,7 +152,7 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateFleetInput:
                 data["computeType"]
             )
         )
-    if "computeConfiguration" in data:
+    if data.get("computeConfiguration") is not None:
         import capo_codebuild.types.compute_configuration
 
         out["compute_configuration"] = (
@@ -160,7 +160,7 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateFleetInput:
                 data["computeConfiguration"]
             )
         )
-    if "scalingConfiguration" in data:
+    if data.get("scalingConfiguration") is not None:
         import capo_codebuild.types.scaling_configuration_input
 
         out["scaling_configuration"] = (
@@ -168,7 +168,7 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateFleetInput:
                 data["scalingConfiguration"]
             )
         )
-    if "overflowBehavior" in data:
+    if data.get("overflowBehavior") is not None:
         import capo_codebuild.types.fleet_overflow_behavior
 
         out["overflow_behavior"] = (
@@ -176,13 +176,13 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateFleetInput:
                 data["overflowBehavior"]
             )
         )
-    if "vpcConfig" in data:
+    if data.get("vpcConfig") is not None:
         import capo_codebuild.types.vpc_config
 
         out["vpc_config"] = capo_codebuild.types.vpc_config.deserialize_aws_json_1_1(
             data["vpcConfig"]
         )
-    if "proxyConfiguration" in data:
+    if data.get("proxyConfiguration") is not None:
         import capo_codebuild.types.proxy_configuration
 
         out["proxy_configuration"] = (
@@ -190,11 +190,11 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateFleetInput:
                 data["proxyConfiguration"]
             )
         )
-    if "imageId" in data:
+    if data.get("imageId") is not None:
         out["image_id"] = data["imageId"]
-    if "fleetServiceRole" in data:
+    if data.get("fleetServiceRole") is not None:
         out["fleet_service_role"] = data["fleetServiceRole"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_codebuild.types.tag_list
 
         out["tags"] = capo_codebuild.types.tag_list.deserialize_aws_json_1_1(

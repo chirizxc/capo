@@ -48,13 +48,13 @@ def serialize_aws_json_1_1(value: DescribeDataRepositoryTasksRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeDataRepositoryTasksRequest:
     out: DescribeDataRepositoryTasksRequest = {}  # type: ignore[typeddict-item]
-    if "TaskIds" in data:
+    if data.get("TaskIds") is not None:
         import capo_fsx.types.task_ids
 
         out["task_ids"] = capo_fsx.types.task_ids.deserialize_aws_json_1_1(
             data["TaskIds"]
         )
-    if "Filters" in data:
+    if data.get("Filters") is not None:
         import capo_fsx.types.data_repository_task_filters
 
         out["filters"] = (
@@ -62,8 +62,8 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeDataRepositoryTasksRequest:
                 data["Filters"]
             )
         )
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

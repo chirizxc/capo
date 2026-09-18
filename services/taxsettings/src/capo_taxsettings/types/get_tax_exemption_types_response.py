@@ -31,7 +31,7 @@ def serialize_json(value: GetTaxExemptionTypesResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetTaxExemptionTypesResponse:
     out: GetTaxExemptionTypesResponse = {}  # type: ignore[typeddict-item]
-    if "taxExemptionTypes" in data:
+    if data.get("taxExemptionTypes") is not None:
         import capo_taxsettings.types.tax_exemption_types
 
         out["tax_exemption_types"] = (

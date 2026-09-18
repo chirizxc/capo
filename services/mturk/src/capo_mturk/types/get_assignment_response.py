@@ -34,13 +34,13 @@ def serialize_aws_json_1_1(value: GetAssignmentResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetAssignmentResponse:
     out: GetAssignmentResponse = {}  # type: ignore[typeddict-item]
-    if "Assignment" in data:
+    if data.get("Assignment") is not None:
         import capo_mturk.types.assignment
 
         out["assignment"] = capo_mturk.types.assignment.deserialize_aws_json_1_1(
             data["Assignment"]
         )
-    if "HIT" in data:
+    if data.get("HIT") is not None:
         import capo_mturk.types.hit
 
         out["hit"] = capo_mturk.types.hit.deserialize_aws_json_1_1(data["HIT"])

@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> SamplingRuleRecordList:
 
     out: SamplingRuleRecordList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_xray.types.sampling_rule_record.deserialize_json(item))
     return out

@@ -33,6 +33,6 @@ def serialize_json(value: CreateSourceRepositoryBranchRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateSourceRepositoryBranchRequest:
     out: CreateSourceRepositoryBranchRequest = {}  # type: ignore[typeddict-item]
-    if "headCommitId" in data:
+    if data.get("headCommitId") is not None:
         out["head_commit_id"] = data["headCommitId"]
     return out

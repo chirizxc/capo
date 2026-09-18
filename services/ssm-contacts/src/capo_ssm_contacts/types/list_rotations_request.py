@@ -35,10 +35,10 @@ def serialize_aws_json_1_1(value: ListRotationsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListRotationsRequest:
     out: ListRotationsRequest = {}  # type: ignore[typeddict-item]
-    if "RotationNamePrefix" in data:
+    if data.get("RotationNamePrefix") is not None:
         out["rotation_name_prefix"] = data["RotationNamePrefix"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
     return out

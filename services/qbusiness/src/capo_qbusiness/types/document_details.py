@@ -56,25 +56,25 @@ def serialize_json(value: DocumentDetails) -> dict:
 
 def deserialize_json(data: dict) -> DocumentDetails:
     out: DocumentDetails = {}  # type: ignore[typeddict-item]
-    if "documentId" in data:
+    if data.get("documentId") is not None:
         out["document_id"] = data["documentId"]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_qbusiness.types.document_status
 
         out["status"] = capo_qbusiness.types.document_status.deserialize_json(
             data["status"]
         )
-    if "error" in data:
+    if data.get("error") is not None:
         import capo_qbusiness.types.error_detail
 
         out["error"] = capo_qbusiness.types.error_detail.deserialize_json(data["error"])
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_qbusiness.types.timestamp
 
         out["created_at"] = capo_qbusiness.types.timestamp.deserialize_json(
             data["createdAt"]
         )
-    if "updatedAt" in data:
+    if data.get("updatedAt") is not None:
         import capo_qbusiness.types.timestamp
 
         out["updated_at"] = capo_qbusiness.types.timestamp.deserialize_json(

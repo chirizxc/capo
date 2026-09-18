@@ -25,6 +25,8 @@ def deserialize_aws_json_1_1(data: list) -> QueryResultRows:
 
     out: QueryResultRows = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_cloudtrail.types.query_result_row.deserialize_aws_json_1_1(item)
         )

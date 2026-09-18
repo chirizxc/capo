@@ -36,9 +36,9 @@ def serialize_aws_json_1_0(value: RollbackAutomationEventResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> RollbackAutomationEventResponse:
     out: RollbackAutomationEventResponse = {}  # type: ignore[typeddict-item]
-    if "eventId" in data:
+    if data.get("eventId") is not None:
         out["event_id"] = data["eventId"]
-    if "eventStatus" in data:
+    if data.get("eventStatus") is not None:
         import capo_compute_optimizer_automation.types.event_status
 
         out["event_status"] = (

@@ -38,9 +38,9 @@ def serialize_aws_json_1_1(value: LicenseConversionContext) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> LicenseConversionContext:
     out: LicenseConversionContext = {}  # type: ignore[typeddict-item]
-    if "UsageOperation" in data:
+    if data.get("UsageOperation") is not None:
         out["usage_operation"] = data["UsageOperation"]
-    if "ProductCodes" in data:
+    if data.get("ProductCodes") is not None:
         import capo_license_manager.types.product_code_list
 
         out["product_codes"] = (

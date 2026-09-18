@@ -37,7 +37,7 @@ def serialize_json(value: ListQueueEnvironmentsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListQueueEnvironmentsResponse:
     out: ListQueueEnvironmentsResponse = {}  # type: ignore[typeddict-item]
-    if "environments" in data:
+    if data.get("environments") is not None:
         import capo_deadline.types.queue_environment_summaries
 
         out["environments"] = (
@@ -49,6 +49,6 @@ def deserialize_json(data: dict) -> ListQueueEnvironmentsResponse:
         raise DeserializationError(
             "ListQueueEnvironmentsResponse.environments required"
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

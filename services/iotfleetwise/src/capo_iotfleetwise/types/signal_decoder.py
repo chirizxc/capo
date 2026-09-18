@@ -80,11 +80,11 @@ def serialize_aws_json_1_0(value: SignalDecoder) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> SignalDecoder:
     out: SignalDecoder = {}  # type: ignore[typeddict-item]
-    if "fullyQualifiedName" in data:
+    if data.get("fullyQualifiedName") is not None:
         out["fully_qualified_name"] = data["fullyQualifiedName"]
     else:
         raise DeserializationError("SignalDecoder.fully_qualified_name required")
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_iotfleetwise.types.signal_decoder_type
 
         out["type"] = (
@@ -94,23 +94,23 @@ def deserialize_aws_json_1_0(data: dict) -> SignalDecoder:
         )
     else:
         raise DeserializationError("SignalDecoder.type required")
-    if "interfaceId" in data:
+    if data.get("interfaceId") is not None:
         out["interface_id"] = data["interfaceId"]
     else:
         raise DeserializationError("SignalDecoder.interface_id required")
-    if "canSignal" in data:
+    if data.get("canSignal") is not None:
         import capo_iotfleetwise.types.can_signal
 
         out["can_signal"] = capo_iotfleetwise.types.can_signal.deserialize_aws_json_1_0(
             data["canSignal"]
         )
-    if "obdSignal" in data:
+    if data.get("obdSignal") is not None:
         import capo_iotfleetwise.types.obd_signal
 
         out["obd_signal"] = capo_iotfleetwise.types.obd_signal.deserialize_aws_json_1_0(
             data["obdSignal"]
         )
-    if "messageSignal" in data:
+    if data.get("messageSignal") is not None:
         import capo_iotfleetwise.types.message_signal
 
         out["message_signal"] = (
@@ -118,7 +118,7 @@ def deserialize_aws_json_1_0(data: dict) -> SignalDecoder:
                 data["messageSignal"]
             )
         )
-    if "customDecodingSignal" in data:
+    if data.get("customDecodingSignal") is not None:
         import capo_iotfleetwise.types.custom_decoding_signal
 
         out["custom_decoding_signal"] = (

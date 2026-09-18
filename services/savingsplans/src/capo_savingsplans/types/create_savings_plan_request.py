@@ -55,27 +55,27 @@ def serialize_json(value: CreateSavingsPlanRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateSavingsPlanRequest:
     out: CreateSavingsPlanRequest = {}  # type: ignore[typeddict-item]
-    if "savingsPlanOfferingId" in data:
+    if data.get("savingsPlanOfferingId") is not None:
         out["savings_plan_offering_id"] = data["savingsPlanOfferingId"]
     else:
         raise DeserializationError(
             "CreateSavingsPlanRequest.savings_plan_offering_id required"
         )
-    if "commitment" in data:
+    if data.get("commitment") is not None:
         out["commitment"] = data["commitment"]
     else:
         raise DeserializationError("CreateSavingsPlanRequest.commitment required")
-    if "upfrontPaymentAmount" in data:
+    if data.get("upfrontPaymentAmount") is not None:
         out["upfront_payment_amount"] = data["upfrontPaymentAmount"]
-    if "purchaseTime" in data:
+    if data.get("purchaseTime") is not None:
         import capo_savingsplans.types.date_time
 
         out["purchase_time"] = capo_savingsplans.types.date_time.deserialize_json(
             data["purchaseTime"]
         )
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_savingsplans.types.tag_map
 
         out["tags"] = capo_savingsplans.types.tag_map.deserialize_json(data["tags"])

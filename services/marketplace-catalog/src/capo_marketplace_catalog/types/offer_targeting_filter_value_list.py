@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> OfferTargetingFilterValueList:
 
     out: OfferTargetingFilterValueList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_marketplace_catalog.types.offer_targeting_string.deserialize_json(item)
         )

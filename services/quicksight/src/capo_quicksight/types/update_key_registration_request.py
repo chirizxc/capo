@@ -31,7 +31,7 @@ def serialize_json(value: UpdateKeyRegistrationRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateKeyRegistrationRequest:
     out: UpdateKeyRegistrationRequest = {}  # type: ignore[typeddict-item]
-    if "KeyRegistration" in data:
+    if data.get("KeyRegistration") is not None:
         import capo_quicksight.types.key_registration
 
         out["key_registration"] = (

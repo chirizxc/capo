@@ -60,24 +60,24 @@ def serialize_json(value: MasteringDisplayColorVolume) -> dict:
 
 def deserialize_json(data: dict) -> MasteringDisplayColorVolume:
     out: MasteringDisplayColorVolume = {}  # type: ignore[typeddict-item]
-    if "bluePrimaryX" in data:
+    if data.get("bluePrimaryX") is not None:
         out["blue_primary_x"] = data["bluePrimaryX"]
-    if "bluePrimaryY" in data:
+    if data.get("bluePrimaryY") is not None:
         out["blue_primary_y"] = data["bluePrimaryY"]
-    if "greenPrimaryX" in data:
+    if data.get("greenPrimaryX") is not None:
         out["green_primary_x"] = data["greenPrimaryX"]
-    if "greenPrimaryY" in data:
+    if data.get("greenPrimaryY") is not None:
         out["green_primary_y"] = data["greenPrimaryY"]
-    if "maxLuminance" in data:
+    if data.get("maxLuminance") is not None:
         out["max_luminance"] = data["maxLuminance"]
-    if "minLuminance" in data:
+    if data.get("minLuminance") is not None:
         out["min_luminance"] = data["minLuminance"]
-    if "redPrimaryX" in data:
+    if data.get("redPrimaryX") is not None:
         out["red_primary_x"] = data["redPrimaryX"]
-    if "redPrimaryY" in data:
+    if data.get("redPrimaryY") is not None:
         out["red_primary_y"] = data["redPrimaryY"]
-    if "whitePointX" in data:
+    if data.get("whitePointX") is not None:
         out["white_point_x"] = data["whitePointX"]
-    if "whitePointY" in data:
+    if data.get("whitePointY") is not None:
         out["white_point_y"] = data["whitePointY"]
     return out

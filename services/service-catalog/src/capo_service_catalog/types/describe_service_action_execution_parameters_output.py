@@ -35,7 +35,7 @@ def deserialize_aws_json_1_1(
     data: dict,
 ) -> DescribeServiceActionExecutionParametersOutput:
     out: DescribeServiceActionExecutionParametersOutput = {}  # type: ignore[typeddict-item]
-    if "ServiceActionParameters" in data:
+    if data.get("ServiceActionParameters") is not None:
         import capo_service_catalog.types.execution_parameters
 
         out["service_action_parameters"] = (

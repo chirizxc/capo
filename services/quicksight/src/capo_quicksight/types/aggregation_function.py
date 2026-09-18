@@ -70,7 +70,7 @@ def serialize_json(value: AggregationFunction) -> dict:
 
 def deserialize_json(data: dict) -> AggregationFunction:
     out: AggregationFunction = {}  # type: ignore[typeddict-item]
-    if "NumericalAggregationFunction" in data:
+    if data.get("NumericalAggregationFunction") is not None:
         import capo_quicksight.types.numerical_aggregation_function
 
         out["numerical_aggregation_function"] = (
@@ -78,7 +78,7 @@ def deserialize_json(data: dict) -> AggregationFunction:
                 data["NumericalAggregationFunction"]
             )
         )
-    if "CategoricalAggregationFunction" in data:
+    if data.get("CategoricalAggregationFunction") is not None:
         import capo_quicksight.types.categorical_aggregation_function
 
         out["categorical_aggregation_function"] = (
@@ -86,7 +86,7 @@ def deserialize_json(data: dict) -> AggregationFunction:
                 data["CategoricalAggregationFunction"]
             )
         )
-    if "DateAggregationFunction" in data:
+    if data.get("DateAggregationFunction") is not None:
         import capo_quicksight.types.date_aggregation_function
 
         out["date_aggregation_function"] = (
@@ -94,7 +94,7 @@ def deserialize_json(data: dict) -> AggregationFunction:
                 data["DateAggregationFunction"]
             )
         )
-    if "AttributeAggregationFunction" in data:
+    if data.get("AttributeAggregationFunction") is not None:
         import capo_quicksight.types.attribute_aggregation_function
 
         out["attribute_aggregation_function"] = (

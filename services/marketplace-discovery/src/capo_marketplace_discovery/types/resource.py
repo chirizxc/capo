@@ -51,7 +51,7 @@ def serialize_json(value: Resource) -> dict:
 
 def deserialize_json(data: dict) -> Resource:
     out: Resource = {}  # type: ignore[typeddict-item]
-    if "resourceType" in data:
+    if data.get("resourceType") is not None:
         import capo_marketplace_discovery.types.resource_type
 
         out["resource_type"] = (
@@ -61,7 +61,7 @@ def deserialize_json(data: dict) -> Resource:
         )
     else:
         raise DeserializationError("Resource.resource_type required")
-    if "contentType" in data:
+    if data.get("contentType") is not None:
         import capo_marketplace_discovery.types.resource_content_type
 
         out["content_type"] = (
@@ -71,10 +71,10 @@ def deserialize_json(data: dict) -> Resource:
         )
     else:
         raise DeserializationError("Resource.content_type required")
-    if "value" in data:
+    if data.get("value") is not None:
         out["value"] = data["value"]
     else:
         raise DeserializationError("Resource.value required")
-    if "displayName" in data:
+    if data.get("displayName") is not None:
         out["display_name"] = data["displayName"]
     return out

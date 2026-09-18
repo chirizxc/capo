@@ -41,13 +41,13 @@ def serialize_json(value: ItemDetails) -> dict:
 
 def deserialize_json(data: dict) -> ItemDetails:
     out: ItemDetails = {}  # type: ignore[typeddict-item]
-    if "resourceArn" in data:
+    if data.get("resourceArn") is not None:
         out["resource_arn"] = data["resourceArn"]
-    if "itemPath" in data:
+    if data.get("itemPath") is not None:
         out["item_path"] = data["itemPath"]
-    if "hash" in data:
+    if data.get("hash") is not None:
         out["hash"] = data["hash"]
-    if "additionalInfo" in data:
+    if data.get("additionalInfo") is not None:
         import capo_guardduty.types.additional_info
 
         out["additional_info"] = capo_guardduty.types.additional_info.deserialize_json(

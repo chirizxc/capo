@@ -41,11 +41,11 @@ def serialize_json(value: ServiceNowConnectorProfileCredentials) -> dict:
 
 def deserialize_json(data: dict) -> ServiceNowConnectorProfileCredentials:
     out: ServiceNowConnectorProfileCredentials = {}  # type: ignore[typeddict-item]
-    if "username" in data:
+    if data.get("username") is not None:
         out["username"] = data["username"]
-    if "password" in data:
+    if data.get("password") is not None:
         out["password"] = data["password"]
-    if "oAuth2Credentials" in data:
+    if data.get("oAuth2Credentials") is not None:
         import capo_appflow.types.o_auth2_credentials
 
         out["o_auth2_credentials"] = (

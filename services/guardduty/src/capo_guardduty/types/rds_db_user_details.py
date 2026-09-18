@@ -39,14 +39,14 @@ def serialize_json(value: RdsDbUserDetails) -> dict:
 
 def deserialize_json(data: dict) -> RdsDbUserDetails:
     out: RdsDbUserDetails = {}  # type: ignore[typeddict-item]
-    if "user" in data:
+    if data.get("user") is not None:
         out["user"] = data["user"]
-    if "application" in data:
+    if data.get("application") is not None:
         out["application"] = data["application"]
-    if "database" in data:
+    if data.get("database") is not None:
         out["database"] = data["database"]
-    if "ssl" in data:
+    if data.get("ssl") is not None:
         out["ssl"] = data["ssl"]
-    if "authMethod" in data:
+    if data.get("authMethod") is not None:
         out["auth_method"] = data["authMethod"]
     return out

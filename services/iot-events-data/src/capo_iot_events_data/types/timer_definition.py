@@ -28,11 +28,11 @@ def serialize_json(value: TimerDefinition) -> dict:
 
 def deserialize_json(data: dict) -> TimerDefinition:
     out: TimerDefinition = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("TimerDefinition.name required")
-    if "seconds" in data:
+    if data.get("seconds") is not None:
         out["seconds"] = data["seconds"]
     else:
         raise DeserializationError("TimerDefinition.seconds required")

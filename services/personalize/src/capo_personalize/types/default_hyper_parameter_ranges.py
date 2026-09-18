@@ -57,7 +57,7 @@ def serialize_aws_json_1_1(value: DefaultHyperParameterRanges) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DefaultHyperParameterRanges:
     out: DefaultHyperParameterRanges = {}  # type: ignore[typeddict-item]
-    if "integerHyperParameterRanges" in data:
+    if data.get("integerHyperParameterRanges") is not None:
         import capo_personalize.types.default_integer_hyper_parameter_ranges
 
         out["integer_hyper_parameter_ranges"] = (
@@ -65,7 +65,7 @@ def deserialize_aws_json_1_1(data: dict) -> DefaultHyperParameterRanges:
                 data["integerHyperParameterRanges"]
             )
         )
-    if "continuousHyperParameterRanges" in data:
+    if data.get("continuousHyperParameterRanges") is not None:
         import capo_personalize.types.default_continuous_hyper_parameter_ranges
 
         out["continuous_hyper_parameter_ranges"] = (
@@ -73,7 +73,7 @@ def deserialize_aws_json_1_1(data: dict) -> DefaultHyperParameterRanges:
                 data["continuousHyperParameterRanges"]
             )
         )
-    if "categoricalHyperParameterRanges" in data:
+    if data.get("categoricalHyperParameterRanges") is not None:
         import capo_personalize.types.default_categorical_hyper_parameter_ranges
 
         out["categorical_hyper_parameter_ranges"] = (

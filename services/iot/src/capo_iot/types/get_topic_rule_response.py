@@ -30,9 +30,9 @@ def serialize_json(value: GetTopicRuleResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetTopicRuleResponse:
     out: GetTopicRuleResponse = {}  # type: ignore[typeddict-item]
-    if "ruleArn" in data:
+    if data.get("ruleArn") is not None:
         out["rule_arn"] = data["ruleArn"]
-    if "rule" in data:
+    if data.get("rule") is not None:
         import capo_iot.types.topic_rule
 
         out["rule"] = capo_iot.types.topic_rule.deserialize_json(data["rule"])

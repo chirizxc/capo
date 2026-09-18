@@ -25,7 +25,7 @@ def serialize_json(value: ListWorkspaceMediaResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListWorkspaceMediaResponse:
     out: ListWorkspaceMediaResponse = {}  # type: ignore[typeddict-item]
-    if "Media" in data:
+    if data.get("Media") is not None:
         import capo_connect.types.media_list
 
         out["media"] = capo_connect.types.media_list.deserialize_json(data["Media"])

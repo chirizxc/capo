@@ -74,7 +74,15 @@ def serialize_aws_json_1_1(value: ICD10CMEntity) -> dict:
             )
         )
     if "score" in value:
-        out["Score"] = value["score"]
+        out["Score"] = (
+            "NaN"
+            if value["score"] != value["score"]
+            else "Infinity"
+            if value["score"] == float("inf")
+            else "-Infinity"
+            if value["score"] == float("-inf")
+            else value["score"]
+        )
     if "begin_offset" in value:
         out["BeginOffset"] = value["begin_offset"]
     if "end_offset" in value:
@@ -108,11 +116,11 @@ def serialize_aws_json_1_1(value: ICD10CMEntity) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ICD10CMEntity:
     out: ICD10CMEntity = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "Text" in data:
+    if data.get("Text") is not None:
         out["text"] = data["Text"]
-    if "Category" in data:
+    if data.get("Category") is not None:
         import capo_comprehendmedical.types.icd10_cm_entity_category
 
         out["category"] = (
@@ -120,7 +128,7 @@ def deserialize_aws_json_1_1(data: dict) -> ICD10CMEntity:
                 data["Category"]
             )
         )
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_comprehendmedical.types.icd10_cm_entity_type
 
         out["type"] = (
@@ -128,13 +136,13 @@ def deserialize_aws_json_1_1(data: dict) -> ICD10CMEntity:
                 data["Type"]
             )
         )
-    if "Score" in data:
-        out["score"] = data["Score"]
-    if "BeginOffset" in data:
+    if data.get("Score") is not None:
+        out["score"] = float(data["Score"])
+    if data.get("BeginOffset") is not None:
         out["begin_offset"] = data["BeginOffset"]
-    if "EndOffset" in data:
+    if data.get("EndOffset") is not None:
         out["end_offset"] = data["EndOffset"]
-    if "Attributes" in data:
+    if data.get("Attributes") is not None:
         import capo_comprehendmedical.types.icd10_cm_attribute_list
 
         out["attributes"] = (
@@ -142,7 +150,7 @@ def deserialize_aws_json_1_1(data: dict) -> ICD10CMEntity:
                 data["Attributes"]
             )
         )
-    if "Traits" in data:
+    if data.get("Traits") is not None:
         import capo_comprehendmedical.types.icd10_cm_trait_list
 
         out["traits"] = (
@@ -150,7 +158,7 @@ def deserialize_aws_json_1_1(data: dict) -> ICD10CMEntity:
                 data["Traits"]
             )
         )
-    if "ICD10CMConcepts" in data:
+    if data.get("ICD10CMConcepts") is not None:
         import capo_comprehendmedical.types.icd10_cm_concept_list
 
         out["icd10_cm_concepts"] = (

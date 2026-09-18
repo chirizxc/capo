@@ -41,11 +41,11 @@ def serialize_aws_json_1_1(value: PullRequestMergedStateChangedEventMetadata) ->
 
 def deserialize_aws_json_1_1(data: dict) -> PullRequestMergedStateChangedEventMetadata:
     out: PullRequestMergedStateChangedEventMetadata = {}  # type: ignore[typeddict-item]
-    if "repositoryName" in data:
+    if data.get("repositoryName") is not None:
         out["repository_name"] = data["repositoryName"]
-    if "destinationReference" in data:
+    if data.get("destinationReference") is not None:
         out["destination_reference"] = data["destinationReference"]
-    if "mergeMetadata" in data:
+    if data.get("mergeMetadata") is not None:
         import capo_codecommit.types.merge_metadata
 
         out["merge_metadata"] = (

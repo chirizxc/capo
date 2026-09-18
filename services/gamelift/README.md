@@ -13,9 +13,9 @@ from capo_gamelift import AsyncGameLiftClient
 
 
 async def main():
-    async with AsyncGameLiftClient() as s3:
+    async with AsyncGameLiftClient() as game_lift:
         # Example: call the accept_match operation
-        response = await s3.accept_match()
+        response = await game_lift.accept_match()
         print(response)
 ```
 
@@ -28,9 +28,9 @@ from capo_gamelift import AsyncGameLiftClient
 
 
 async def main():
-    async with AsyncGameLiftClient() as s3:
+    async with AsyncGameLiftClient() as game_lift:
         # Example: paginate over describe_fleet_attributes
-        async for item in s3.iter_describe_fleet_attributes():
+        async for item in game_lift.iter_describe_fleet_attributes():
             print(item)
 ```
 
@@ -44,9 +44,9 @@ from capo_gamelift.error import InternalServiceException
 
 
 async def main():
-    async with AsyncGameLiftClient() as s3:
+    async with AsyncGameLiftClient() as game_lift:
         try:
-            await s3.accept_match()
+            await game_lift.accept_match()
         except InternalServiceException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -63,13 +63,13 @@ from capo_gamelift import AsyncGameLiftClient
 
 
 async def main():
-    async with AsyncGameLiftClient() as s3:
+    async with AsyncGameLiftClient() as game_lift:
         # Default: 3 attempts for every operation
-        response = await s3.accept_match()
+        response = await game_lift.accept_match()
 
         # Override per operation
-        response = await s3.accept_match(config_overrides={"retry_max_attempts": 5})
+        response = await game_lift.accept_match(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.accept_match(config_overrides={"retry_max_attempts": 1})
+        response = await game_lift.accept_match(config_overrides={"retry_max_attempts": 1})
 ```

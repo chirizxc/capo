@@ -74,13 +74,13 @@ def serialize_json(value: EvaluationSuggestedAnswer) -> dict:
 
 def deserialize_json(data: dict) -> EvaluationSuggestedAnswer:
     out: EvaluationSuggestedAnswer = {}  # type: ignore[typeddict-item]
-    if "Value" in data:
+    if data.get("Value") is not None:
         import capo_connect.types.evaluation_answer_data
 
         out["value"] = capo_connect.types.evaluation_answer_data.deserialize_json(
             data["Value"]
         )
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_connect.types.evaluation_suggested_answer_status
 
         out["status"] = (
@@ -90,7 +90,7 @@ def deserialize_json(data: dict) -> EvaluationSuggestedAnswer:
         )
     else:
         raise DeserializationError("EvaluationSuggestedAnswer.status required")
-    if "Input" in data:
+    if data.get("Input") is not None:
         import capo_connect.types.evaluation_question_input_details
 
         out["input"] = (
@@ -98,7 +98,7 @@ def deserialize_json(data: dict) -> EvaluationSuggestedAnswer:
                 data["Input"]
             )
         )
-    if "AnalysisType" in data:
+    if data.get("AnalysisType") is not None:
         import capo_connect.types.evaluation_question_answer_analysis_type
 
         out["analysis_type"] = (
@@ -108,7 +108,7 @@ def deserialize_json(data: dict) -> EvaluationSuggestedAnswer:
         )
     else:
         raise DeserializationError("EvaluationSuggestedAnswer.analysis_type required")
-    if "AnalysisDetails" in data:
+    if data.get("AnalysisDetails") is not None:
         import capo_connect.types.evaluation_question_answer_analysis_details
 
         out["analysis_details"] = (

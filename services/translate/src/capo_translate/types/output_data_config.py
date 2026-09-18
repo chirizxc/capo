@@ -34,11 +34,11 @@ def serialize_aws_json_1_1(value: OutputDataConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> OutputDataConfig:
     out: OutputDataConfig = {}  # type: ignore[typeddict-item]
-    if "S3Uri" in data:
+    if data.get("S3Uri") is not None:
         out["s3_uri"] = data["S3Uri"]
     else:
         raise DeserializationError("OutputDataConfig.s3_uri required")
-    if "EncryptionKey" in data:
+    if data.get("EncryptionKey") is not None:
         import capo_translate.types.encryption_key
 
         out["encryption_key"] = (

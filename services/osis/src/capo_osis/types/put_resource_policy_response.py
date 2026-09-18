@@ -28,8 +28,8 @@ def serialize_json(value: PutResourcePolicyResponse) -> dict:
 
 def deserialize_json(data: dict) -> PutResourcePolicyResponse:
     out: PutResourcePolicyResponse = {}  # type: ignore[typeddict-item]
-    if "ResourceArn" in data:
+    if data.get("ResourceArn") is not None:
         out["resource_arn"] = data["ResourceArn"]
-    if "Policy" in data:
+    if data.get("Policy") is not None:
         out["policy"] = data["Policy"]
     return out

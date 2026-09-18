@@ -65,25 +65,25 @@ def serialize_json(value: CreateGlossaryInput) -> dict:
 
 def deserialize_json(data: dict) -> CreateGlossaryInput:
     out: CreateGlossaryInput = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("CreateGlossaryInput.name required")
-    if "owningProjectIdentifier" in data:
+    if data.get("owningProjectIdentifier") is not None:
         out["owning_project_identifier"] = data["owningProjectIdentifier"]
     else:
         raise DeserializationError(
             "CreateGlossaryInput.owning_project_identifier required"
         )
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_datazone.types.glossary_status
 
         out["status"] = capo_datazone.types.glossary_status.deserialize_json(
             data["status"]
         )
-    if "usageRestrictions" in data:
+    if data.get("usageRestrictions") is not None:
         import capo_datazone.types.glossary_usage_restrictions
 
         out["usage_restrictions"] = (
@@ -91,6 +91,6 @@ def deserialize_json(data: dict) -> CreateGlossaryInput:
                 data["usageRestrictions"]
             )
         )
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     return out

@@ -34,7 +34,7 @@ def serialize_json(value: UpdatePartnerAccountRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdatePartnerAccountRequest:
     out: UpdatePartnerAccountRequest = {}  # type: ignore[typeddict-item]
-    if "Sidewalk" in data:
+    if data.get("Sidewalk") is not None:
         import capo_iot_wireless.types.sidewalk_update_account
 
         out["sidewalk"] = (

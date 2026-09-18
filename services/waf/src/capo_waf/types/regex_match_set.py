@@ -41,11 +41,11 @@ def serialize_aws_json_1_1(value: RegexMatchSet) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RegexMatchSet:
     out: RegexMatchSet = {}  # type: ignore[typeddict-item]
-    if "RegexMatchSetId" in data:
+    if data.get("RegexMatchSetId") is not None:
         out["regex_match_set_id"] = data["RegexMatchSetId"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "RegexMatchTuples" in data:
+    if data.get("RegexMatchTuples") is not None:
         import capo_waf.types.regex_match_tuples
 
         out["regex_match_tuples"] = (

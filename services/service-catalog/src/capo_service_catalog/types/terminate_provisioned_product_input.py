@@ -53,23 +53,23 @@ def serialize_aws_json_1_1(value: TerminateProvisionedProductInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> TerminateProvisionedProductInput:
     out: TerminateProvisionedProductInput = {}  # type: ignore[typeddict-item]
-    if "ProvisionedProductName" in data:
+    if data.get("ProvisionedProductName") is not None:
         out["provisioned_product_name"] = data["ProvisionedProductName"]
-    if "ProvisionedProductId" in data:
+    if data.get("ProvisionedProductId") is not None:
         out["provisioned_product_id"] = data["ProvisionedProductId"]
-    if "TerminateToken" in data:
+    if data.get("TerminateToken") is not None:
         out["terminate_token"] = data["TerminateToken"]
     else:
         raise DeserializationError(
             "TerminateProvisionedProductInput.terminate_token required"
         )
-    if "IgnoreErrors" in data:
+    if data.get("IgnoreErrors") is not None:
         out["ignore_errors"] = data["IgnoreErrors"]
     else:
         out["ignore_errors"] = False
-    if "AcceptLanguage" in data:
+    if data.get("AcceptLanguage") is not None:
         out["accept_language"] = data["AcceptLanguage"]
-    if "RetainPhysicalResources" in data:
+    if data.get("RetainPhysicalResources") is not None:
         out["retain_physical_resources"] = data["RetainPhysicalResources"]
     else:
         out["retain_physical_resources"] = False

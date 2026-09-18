@@ -53,7 +53,7 @@ def serialize_json(value: AnalysisTemplateValidationStatusDetail) -> dict:
 
 def deserialize_json(data: dict) -> AnalysisTemplateValidationStatusDetail:
     out: AnalysisTemplateValidationStatusDetail = {}  # type: ignore[typeddict-item]
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_cleanrooms.types.analysis_template_validation_type
 
         out["type"] = (
@@ -65,7 +65,7 @@ def deserialize_json(data: dict) -> AnalysisTemplateValidationStatusDetail:
         raise DeserializationError(
             "AnalysisTemplateValidationStatusDetail.type required"
         )
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_cleanrooms.types.analysis_template_validation_status
 
         out["status"] = (
@@ -77,7 +77,7 @@ def deserialize_json(data: dict) -> AnalysisTemplateValidationStatusDetail:
         raise DeserializationError(
             "AnalysisTemplateValidationStatusDetail.status required"
         )
-    if "reasons" in data:
+    if data.get("reasons") is not None:
         import capo_cleanrooms.types.analysis_template_validation_status_reason_list
 
         out["reasons"] = (

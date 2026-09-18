@@ -39,10 +39,10 @@ def serialize_aws_json_1_1(value: ServerProcess) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ServerProcess:
     out: ServerProcess = {}  # type: ignore[typeddict-item]
-    if "LaunchPath" in data:
+    if data.get("LaunchPath") is not None:
         out["launch_path"] = data["LaunchPath"]
-    if "Parameters" in data:
+    if data.get("Parameters") is not None:
         out["parameters"] = data["Parameters"]
-    if "ConcurrentExecutions" in data:
+    if data.get("ConcurrentExecutions") is not None:
         out["concurrent_executions"] = data["ConcurrentExecutions"]
     return out

@@ -23,6 +23,6 @@ def serialize_json(value: BeginTransactionResponse) -> dict:
 
 def deserialize_json(data: dict) -> BeginTransactionResponse:
     out: BeginTransactionResponse = {}  # type: ignore[typeddict-item]
-    if "transactionId" in data:
+    if data.get("transactionId") is not None:
         out["transaction_id"] = data["transactionId"]
     return out

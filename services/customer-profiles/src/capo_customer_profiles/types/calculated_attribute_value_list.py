@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> CalculatedAttributeValueList:
 
     out: CalculatedAttributeValueList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_customer_profiles.types.calculated_attribute_value.deserialize_json(
                 item

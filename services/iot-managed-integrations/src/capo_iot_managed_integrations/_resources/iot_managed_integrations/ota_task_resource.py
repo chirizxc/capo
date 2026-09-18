@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import uuid
 from typing import TYPE_CHECKING, Optional
 
 import capo_iot_managed_integrations._auth._signers
@@ -128,10 +129,12 @@ class OtaTaskResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_iot_managed_integrations.types.create_ota_task_request.CreateOtaTaskRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_iot_managed_integrations.types.create_ota_task_request.CreateOtaTaskRequest = {
+            "s3_url": s3_url,
+            "ota_type": ota_type,
+        }
         if description is not None:
             input_["description"] = description
-        input_["s3_url"] = s3_url
         if protocol is not None:
             input_["protocol"] = protocol
         if target is not None:
@@ -140,11 +143,11 @@ class OtaTaskResource:
             input_["task_configuration_id"] = task_configuration_id
         if ota_mechanism is not None:
             input_["ota_mechanism"] = ota_mechanism
-        input_["ota_type"] = ota_type
         if ota_target_query_string is not None:
             input_["ota_target_query_string"] = ota_target_query_string
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if ota_scheduling_config is not None:
             input_["ota_scheduling_config"] = ota_scheduling_config
         if ota_task_execution_retry_config is not None:
@@ -157,6 +160,7 @@ class OtaTaskResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -194,14 +198,16 @@ class OtaTaskResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_iot_managed_integrations.types.get_ota_task_request.GetOtaTaskRequest = {}  # type: ignore[typeddict-item]
-        input_["identifier"] = identifier
+        input_: capo_iot_managed_integrations.types.get_ota_task_request.GetOtaTaskRequest = {
+            "identifier": identifier
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update(
@@ -245,8 +251,9 @@ class OtaTaskResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_iot_managed_integrations.types.update_ota_task_request.UpdateOtaTaskRequest = {}  # type: ignore[typeddict-item]
-        input_["identifier"] = identifier
+        input_: capo_iot_managed_integrations.types.update_ota_task_request.UpdateOtaTaskRequest = {
+            "identifier": identifier
+        }
         if description is not None:
             input_["description"] = description
         if task_configuration_id is not None:
@@ -257,6 +264,7 @@ class OtaTaskResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -293,14 +301,16 @@ class OtaTaskResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_iot_managed_integrations.types.delete_ota_task_request.DeleteOtaTaskRequest = {}  # type: ignore[typeddict-item]
-        input_["identifier"] = identifier
+        input_: capo_iot_managed_integrations.types.delete_ota_task_request.DeleteOtaTaskRequest = {
+            "identifier": identifier
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -344,7 +354,7 @@ class OtaTaskResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_iot_managed_integrations.types.list_ota_tasks_request.ListOtaTasksRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_iot_managed_integrations.types.list_ota_tasks_request.ListOtaTasksRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -355,6 +365,7 @@ class OtaTaskResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_ota_task_executions(
@@ -400,8 +411,9 @@ class OtaTaskResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_iot_managed_integrations.types.list_ota_task_executions_request.ListOtaTaskExecutionsRequest = {}  # type: ignore[typeddict-item]
-        input_["identifier"] = identifier
+        input_: capo_iot_managed_integrations.types.list_ota_task_executions_request.ListOtaTaskExecutionsRequest = {
+            "identifier": identifier
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -412,6 +424,7 @@ class OtaTaskResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -493,10 +506,12 @@ class AsyncOtaTaskResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_iot_managed_integrations.types.create_ota_task_request.CreateOtaTaskRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_iot_managed_integrations.types.create_ota_task_request.CreateOtaTaskRequest = {
+            "s3_url": s3_url,
+            "ota_type": ota_type,
+        }
         if description is not None:
             input_["description"] = description
-        input_["s3_url"] = s3_url
         if protocol is not None:
             input_["protocol"] = protocol
         if target is not None:
@@ -505,11 +520,11 @@ class AsyncOtaTaskResource:
             input_["task_configuration_id"] = task_configuration_id
         if ota_mechanism is not None:
             input_["ota_mechanism"] = ota_mechanism
-        input_["ota_type"] = ota_type
         if ota_target_query_string is not None:
             input_["ota_target_query_string"] = ota_target_query_string
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if ota_scheduling_config is not None:
             input_["ota_scheduling_config"] = ota_scheduling_config
         if ota_task_execution_retry_config is not None:
@@ -522,6 +537,7 @@ class AsyncOtaTaskResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -560,14 +576,16 @@ class AsyncOtaTaskResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_iot_managed_integrations.types.get_ota_task_request.GetOtaTaskRequest = {}  # type: ignore[typeddict-item]
-        input_["identifier"] = identifier
+        input_: capo_iot_managed_integrations.types.get_ota_task_request.GetOtaTaskRequest = {
+            "identifier": identifier
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update(
@@ -612,8 +630,9 @@ class AsyncOtaTaskResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_iot_managed_integrations.types.update_ota_task_request.UpdateOtaTaskRequest = {}  # type: ignore[typeddict-item]
-        input_["identifier"] = identifier
+        input_: capo_iot_managed_integrations.types.update_ota_task_request.UpdateOtaTaskRequest = {
+            "identifier": identifier
+        }
         if description is not None:
             input_["description"] = description
         if task_configuration_id is not None:
@@ -624,6 +643,7 @@ class AsyncOtaTaskResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -661,14 +681,16 @@ class AsyncOtaTaskResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_iot_managed_integrations.types.delete_ota_task_request.DeleteOtaTaskRequest = {}  # type: ignore[typeddict-item]
-        input_["identifier"] = identifier
+        input_: capo_iot_managed_integrations.types.delete_ota_task_request.DeleteOtaTaskRequest = {
+            "identifier": identifier
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -713,7 +735,7 @@ class AsyncOtaTaskResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_iot_managed_integrations.types.list_ota_tasks_request.ListOtaTasksRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_iot_managed_integrations.types.list_ota_tasks_request.ListOtaTasksRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -724,6 +746,7 @@ class AsyncOtaTaskResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_ota_task_executions(
@@ -770,8 +793,9 @@ class AsyncOtaTaskResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_iot_managed_integrations.types.list_ota_task_executions_request.ListOtaTaskExecutionsRequest = {}  # type: ignore[typeddict-item]
-        input_["identifier"] = identifier
+        input_: capo_iot_managed_integrations.types.list_ota_task_executions_request.ListOtaTaskExecutionsRequest = {
+            "identifier": identifier
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -782,4 +806,5 @@ class AsyncOtaTaskResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

@@ -72,7 +72,7 @@ def serialize_json(value: CreateIntegrationResponseResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateIntegrationResponseResponse:
     out: CreateIntegrationResponseResponse = {}  # type: ignore[typeddict-item]
-    if "contentHandlingStrategy" in data:
+    if data.get("contentHandlingStrategy") is not None:
         import capo_apigatewayv2.types.content_handling_strategy
 
         out["content_handling_strategy"] = (
@@ -80,11 +80,11 @@ def deserialize_json(data: dict) -> CreateIntegrationResponseResponse:
                 data["contentHandlingStrategy"]
             )
         )
-    if "integrationResponseId" in data:
+    if data.get("integrationResponseId") is not None:
         out["integration_response_id"] = data["integrationResponseId"]
-    if "integrationResponseKey" in data:
+    if data.get("integrationResponseKey") is not None:
         out["integration_response_key"] = data["integrationResponseKey"]
-    if "responseParameters" in data:
+    if data.get("responseParameters") is not None:
         import capo_apigatewayv2.types.integration_parameters
 
         out["response_parameters"] = (
@@ -92,7 +92,7 @@ def deserialize_json(data: dict) -> CreateIntegrationResponseResponse:
                 data["responseParameters"]
             )
         )
-    if "responseTemplates" in data:
+    if data.get("responseTemplates") is not None:
         import capo_apigatewayv2.types.template_map
 
         out["response_templates"] = (
@@ -100,6 +100,6 @@ def deserialize_json(data: dict) -> CreateIntegrationResponseResponse:
                 data["responseTemplates"]
             )
         )
-    if "templateSelectionExpression" in data:
+    if data.get("templateSelectionExpression") is not None:
         out["template_selection_expression"] = data["templateSelectionExpression"]
     return out

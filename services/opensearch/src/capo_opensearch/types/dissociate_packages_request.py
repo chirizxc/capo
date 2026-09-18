@@ -31,7 +31,7 @@ def serialize_json(value: DissociatePackagesRequest) -> dict:
 
 def deserialize_json(data: dict) -> DissociatePackagesRequest:
     out: DissociatePackagesRequest = {}  # type: ignore[typeddict-item]
-    if "PackageList" in data:
+    if data.get("PackageList") is not None:
         import capo_opensearch.types.package_id_list
 
         out["package_list"] = capo_opensearch.types.package_id_list.deserialize_json(
@@ -39,7 +39,7 @@ def deserialize_json(data: dict) -> DissociatePackagesRequest:
         )
     else:
         raise DeserializationError("DissociatePackagesRequest.package_list required")
-    if "DomainName" in data:
+    if data.get("DomainName") is not None:
         out["domain_name"] = data["DomainName"]
     else:
         raise DeserializationError("DissociatePackagesRequest.domain_name required")

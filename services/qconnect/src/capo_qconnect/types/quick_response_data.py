@@ -79,16 +79,8 @@ def serialize_json(value: QuickResponseData) -> dict:
     out["name"] = value["name"]
     out["contentType"] = value["content_type"]
     out["status"] = value["status"]
-    import capo_qconnect.types._prelude.timestamp
-
-    out["createdTime"] = capo_qconnect.types._prelude.timestamp.serialize_json(
-        value["created_time"]
-    )
-    import capo_qconnect.types._prelude.timestamp
-
-    out["lastModifiedTime"] = capo_qconnect.types._prelude.timestamp.serialize_json(
-        value["last_modified_time"]
-    )
+    out["createdTime"] = value["created_time"].timestamp()
+    out["lastModifiedTime"] = value["last_modified_time"].timestamp()
     if "contents" in value:
         import capo_qconnect.types.quick_response_contents
 
@@ -126,61 +118,59 @@ def serialize_json(value: QuickResponseData) -> dict:
 
 def deserialize_json(data: dict) -> QuickResponseData:
     out: QuickResponseData = {}  # type: ignore[typeddict-item]
-    if "quickResponseArn" in data:
+    if data.get("quickResponseArn") is not None:
         out["quick_response_arn"] = data["quickResponseArn"]
     else:
         raise DeserializationError("QuickResponseData.quick_response_arn required")
-    if "quickResponseId" in data:
+    if data.get("quickResponseId") is not None:
         out["quick_response_id"] = data["quickResponseId"]
     else:
         raise DeserializationError("QuickResponseData.quick_response_id required")
-    if "knowledgeBaseArn" in data:
+    if data.get("knowledgeBaseArn") is not None:
         out["knowledge_base_arn"] = data["knowledgeBaseArn"]
     else:
         raise DeserializationError("QuickResponseData.knowledge_base_arn required")
-    if "knowledgeBaseId" in data:
+    if data.get("knowledgeBaseId") is not None:
         out["knowledge_base_id"] = data["knowledgeBaseId"]
     else:
         raise DeserializationError("QuickResponseData.knowledge_base_id required")
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("QuickResponseData.name required")
-    if "contentType" in data:
+    if data.get("contentType") is not None:
         out["content_type"] = data["contentType"]
     else:
         raise DeserializationError("QuickResponseData.content_type required")
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
     else:
         raise DeserializationError("QuickResponseData.status required")
-    if "createdTime" in data:
-        import capo_qconnect.types._prelude.timestamp
+    if data.get("createdTime") is not None:
+        import datetime
 
-        out["created_time"] = capo_qconnect.types._prelude.timestamp.deserialize_json(
-            data["createdTime"]
+        out["created_time"] = datetime.datetime.fromtimestamp(
+            float(data["createdTime"]), tz=datetime.timezone.utc
         )
     else:
         raise DeserializationError("QuickResponseData.created_time required")
-    if "lastModifiedTime" in data:
-        import capo_qconnect.types._prelude.timestamp
+    if data.get("lastModifiedTime") is not None:
+        import datetime
 
-        out["last_modified_time"] = (
-            capo_qconnect.types._prelude.timestamp.deserialize_json(
-                data["lastModifiedTime"]
-            )
+        out["last_modified_time"] = datetime.datetime.fromtimestamp(
+            float(data["lastModifiedTime"]), tz=datetime.timezone.utc
         )
     else:
         raise DeserializationError("QuickResponseData.last_modified_time required")
-    if "contents" in data:
+    if data.get("contents") is not None:
         import capo_qconnect.types.quick_response_contents
 
         out["contents"] = capo_qconnect.types.quick_response_contents.deserialize_json(
             data["contents"]
         )
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "groupingConfiguration" in data:
+    if data.get("groupingConfiguration") is not None:
         import capo_qconnect.types.grouping_configuration
 
         out["grouping_configuration"] = (
@@ -188,21 +178,21 @@ def deserialize_json(data: dict) -> QuickResponseData:
                 data["groupingConfiguration"]
             )
         )
-    if "shortcutKey" in data:
+    if data.get("shortcutKey") is not None:
         out["shortcut_key"] = data["shortcutKey"]
-    if "lastModifiedBy" in data:
+    if data.get("lastModifiedBy") is not None:
         out["last_modified_by"] = data["lastModifiedBy"]
-    if "isActive" in data:
+    if data.get("isActive") is not None:
         out["is_active"] = data["isActive"]
-    if "channels" in data:
+    if data.get("channels") is not None:
         import capo_qconnect.types.channels
 
         out["channels"] = capo_qconnect.types.channels.deserialize_json(
             data["channels"]
         )
-    if "language" in data:
+    if data.get("language") is not None:
         out["language"] = data["language"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_qconnect.types.tags
 
         out["tags"] = capo_qconnect.types.tags.deserialize_json(data["tags"])

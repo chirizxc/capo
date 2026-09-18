@@ -85,13 +85,13 @@ def serialize_aws_json_1_1(value: CreateTriggerRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateTriggerRequest:
     out: CreateTriggerRequest = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("CreateTriggerRequest.name required")
-    if "WorkflowName" in data:
+    if data.get("WorkflowName") is not None:
         out["workflow_name"] = data["WorkflowName"]
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_glue.types.trigger_type
 
         out["type"] = capo_glue.types.trigger_type.deserialize_aws_json_1_1(
@@ -99,15 +99,15 @@ def deserialize_aws_json_1_1(data: dict) -> CreateTriggerRequest:
         )
     else:
         raise DeserializationError("CreateTriggerRequest.type required")
-    if "Schedule" in data:
+    if data.get("Schedule") is not None:
         out["schedule"] = data["Schedule"]
-    if "Predicate" in data:
+    if data.get("Predicate") is not None:
         import capo_glue.types.predicate
 
         out["predicate"] = capo_glue.types.predicate.deserialize_aws_json_1_1(
             data["Predicate"]
         )
-    if "Actions" in data:
+    if data.get("Actions") is not None:
         import capo_glue.types.action_list
 
         out["actions"] = capo_glue.types.action_list.deserialize_aws_json_1_1(
@@ -115,17 +115,17 @@ def deserialize_aws_json_1_1(data: dict) -> CreateTriggerRequest:
         )
     else:
         raise DeserializationError("CreateTriggerRequest.actions required")
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "StartOnCreation" in data:
+    if data.get("StartOnCreation") is not None:
         out["start_on_creation"] = data["StartOnCreation"]
     else:
         out["start_on_creation"] = False
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_glue.types.tags_map
 
         out["tags"] = capo_glue.types.tags_map.deserialize_aws_json_1_1(data["Tags"])
-    if "EventBatchingCondition" in data:
+    if data.get("EventBatchingCondition") is not None:
         import capo_glue.types.event_batching_condition
 
         out["event_batching_condition"] = (

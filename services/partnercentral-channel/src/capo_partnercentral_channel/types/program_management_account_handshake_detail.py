@@ -29,7 +29,7 @@ def serialize_aws_json_1_0(value: ProgramManagementAccountHandshakeDetail) -> di
 
 def deserialize_aws_json_1_0(data: dict) -> ProgramManagementAccountHandshakeDetail:
     out: ProgramManagementAccountHandshakeDetail = {}  # type: ignore[typeddict-item]
-    if "program" in data:
+    if data.get("program") is not None:
         import capo_partnercentral_channel.types.program
 
         out["program"] = (

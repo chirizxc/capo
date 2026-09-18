@@ -27,7 +27,7 @@ def serialize_json(value: StartReplicationResponse) -> dict:
 
 def deserialize_json(data: dict) -> StartReplicationResponse:
     out: StartReplicationResponse = {}  # type: ignore[typeddict-item]
-    if "sourceServer" in data:
+    if data.get("sourceServer") is not None:
         import capo_drs.types.source_server
 
         out["source_server"] = capo_drs.types.source_server.deserialize_json(

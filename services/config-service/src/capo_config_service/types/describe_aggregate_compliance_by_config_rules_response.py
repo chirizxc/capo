@@ -40,7 +40,7 @@ def deserialize_aws_json_1_1(
     data: dict,
 ) -> DescribeAggregateComplianceByConfigRulesResponse:
     out: DescribeAggregateComplianceByConfigRulesResponse = {}  # type: ignore[typeddict-item]
-    if "AggregateComplianceByConfigRules" in data:
+    if data.get("AggregateComplianceByConfigRules") is not None:
         import capo_config_service.types.aggregate_compliance_by_config_rule_list
 
         out["aggregate_compliance_by_config_rules"] = (
@@ -48,6 +48,6 @@ def deserialize_aws_json_1_1(
                 data["AggregateComplianceByConfigRules"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

@@ -25,6 +25,8 @@ def deserialize_json(data: list) -> SuppressedDestinationSummaries:
 
     out: SuppressedDestinationSummaries = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_sesv2.types.suppressed_destination_summary.deserialize_json(item)
         )

@@ -41,7 +41,7 @@ def serialize_json(value: UserContext) -> dict:
 
 def deserialize_json(data: dict) -> UserContext:
     out: UserContext = {}  # type: ignore[typeddict-item]
-    if "role" in data:
+    if data.get("role") is not None:
         import capo_connecthealth.types.provider_role
 
         out["role"] = capo_connecthealth.types.provider_role.deserialize_json(
@@ -49,11 +49,11 @@ def deserialize_json(data: dict) -> UserContext:
         )
     else:
         raise DeserializationError("UserContext.role required")
-    if "userId" in data:
+    if data.get("userId") is not None:
         out["user_id"] = data["userId"]
     else:
         raise DeserializationError("UserContext.user_id required")
-    if "specialty" in data:
+    if data.get("specialty") is not None:
         import capo_connecthealth.types.specialty
 
         out["specialty"] = capo_connecthealth.types.specialty.deserialize_json(

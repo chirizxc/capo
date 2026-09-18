@@ -27,5 +27,7 @@ def deserialize_json(data: dict) -> QuestionCounts:
     for key, value in data.items():
         import capo_wellarchitected.types.question
 
+        if value is None:
+            continue
         out[capo_wellarchitected.types.question.deserialize_json(key)] = value
     return out

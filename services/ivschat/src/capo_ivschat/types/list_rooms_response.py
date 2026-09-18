@@ -31,12 +31,12 @@ def serialize_json(value: ListRoomsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListRoomsResponse:
     out: ListRoomsResponse = {}  # type: ignore[typeddict-item]
-    if "rooms" in data:
+    if data.get("rooms") is not None:
         import capo_ivschat.types.room_list
 
         out["rooms"] = capo_ivschat.types.room_list.deserialize_json(data["rooms"])
     else:
         raise DeserializationError("ListRoomsResponse.rooms required")
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

@@ -62,7 +62,7 @@ def serialize_json(value: CreateObjectRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateObjectRequest:
     out: CreateObjectRequest = {}  # type: ignore[typeddict-item]
-    if "SchemaFacets" in data:
+    if data.get("SchemaFacets") is not None:
         import capo_clouddirectory.types.schema_facet_list
 
         out["schema_facets"] = (
@@ -72,7 +72,7 @@ def deserialize_json(data: dict) -> CreateObjectRequest:
         )
     else:
         raise DeserializationError("CreateObjectRequest.schema_facets required")
-    if "ObjectAttributeList" in data:
+    if data.get("ObjectAttributeList") is not None:
         import capo_clouddirectory.types.attribute_key_and_value_list
 
         out["object_attribute_list"] = (
@@ -80,7 +80,7 @@ def deserialize_json(data: dict) -> CreateObjectRequest:
                 data["ObjectAttributeList"]
             )
         )
-    if "ParentReference" in data:
+    if data.get("ParentReference") is not None:
         import capo_clouddirectory.types.object_reference
 
         out["parent_reference"] = (
@@ -88,6 +88,6 @@ def deserialize_json(data: dict) -> CreateObjectRequest:
                 data["ParentReference"]
             )
         )
-    if "LinkName" in data:
+    if data.get("LinkName") is not None:
         out["link_name"] = data["LinkName"]
     return out

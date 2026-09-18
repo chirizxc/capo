@@ -51,9 +51,9 @@ def serialize_aws_json_1_1(value: FacetResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> FacetResult:
     out: FacetResult = {}  # type: ignore[typeddict-item]
-    if "DocumentAttributeKey" in data:
+    if data.get("DocumentAttributeKey") is not None:
         out["document_attribute_key"] = data["DocumentAttributeKey"]
-    if "DocumentAttributeValueType" in data:
+    if data.get("DocumentAttributeValueType") is not None:
         import capo_kendra.types.document_attribute_value_type
 
         out["document_attribute_value_type"] = (
@@ -61,7 +61,7 @@ def deserialize_aws_json_1_1(data: dict) -> FacetResult:
                 data["DocumentAttributeValueType"]
             )
         )
-    if "DocumentAttributeValueCountPairs" in data:
+    if data.get("DocumentAttributeValueCountPairs") is not None:
         import capo_kendra.types.document_attribute_value_count_pair_list
 
         out["document_attribute_value_count_pairs"] = (

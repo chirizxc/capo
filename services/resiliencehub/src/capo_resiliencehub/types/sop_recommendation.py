@@ -79,7 +79,7 @@ def serialize_json(value: SopRecommendation) -> dict:
 
 def deserialize_json(data: dict) -> SopRecommendation:
     out: SopRecommendation = {}  # type: ignore[typeddict-item]
-    if "serviceType" in data:
+    if data.get("serviceType") is not None:
         import capo_resiliencehub.types.sop_service_type
 
         out["service_type"] = (
@@ -89,17 +89,17 @@ def deserialize_json(data: dict) -> SopRecommendation:
         )
     else:
         raise DeserializationError("SopRecommendation.service_type required")
-    if "appComponentName" in data:
+    if data.get("appComponentName") is not None:
         out["app_component_name"] = data["appComponentName"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "recommendationId" in data:
+    if data.get("recommendationId") is not None:
         out["recommendation_id"] = data["recommendationId"]
     else:
         raise DeserializationError("SopRecommendation.recommendation_id required")
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "items" in data:
+    if data.get("items") is not None:
         import capo_resiliencehub.types.recommendation_item_list
 
         out["items"] = (
@@ -107,13 +107,13 @@ def deserialize_json(data: dict) -> SopRecommendation:
                 data["items"]
             )
         )
-    if "referenceId" in data:
+    if data.get("referenceId") is not None:
         out["reference_id"] = data["referenceId"]
     else:
         raise DeserializationError("SopRecommendation.reference_id required")
-    if "prerequisite" in data:
+    if data.get("prerequisite") is not None:
         out["prerequisite"] = data["prerequisite"]
-    if "recommendationStatus" in data:
+    if data.get("recommendationStatus") is not None:
         import capo_resiliencehub.types.recommendation_status
 
         out["recommendation_status"] = (

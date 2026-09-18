@@ -32,15 +32,15 @@ def serialize_json(value: PivotedLabel) -> dict:
 
 def deserialize_json(data: dict) -> PivotedLabel:
     out: PivotedLabel = {}  # type: ignore[typeddict-item]
-    if "LabelName" in data:
+    if data.get("LabelName") is not None:
         out["label_name"] = data["LabelName"]
     else:
         raise DeserializationError("PivotedLabel.label_name required")
-    if "NewColumnName" in data:
+    if data.get("NewColumnName") is not None:
         out["new_column_name"] = data["NewColumnName"]
     else:
         raise DeserializationError("PivotedLabel.new_column_name required")
-    if "NewColumnId" in data:
+    if data.get("NewColumnId") is not None:
         out["new_column_id"] = data["NewColumnId"]
     else:
         raise DeserializationError("PivotedLabel.new_column_id required")

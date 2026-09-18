@@ -119,37 +119,37 @@ def serialize_json(value: ControlSummary) -> dict:
 
 def deserialize_json(data: dict) -> ControlSummary:
     out: ControlSummary = {}  # type: ignore[typeddict-item]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
     else:
         raise DeserializationError("ControlSummary.arn required")
-    if "Aliases" in data:
+    if data.get("Aliases") is not None:
         import capo_controlcatalog.types.control_aliases
 
         out["aliases"] = capo_controlcatalog.types.control_aliases.deserialize_json(
             data["Aliases"]
         )
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("ControlSummary.name required")
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
     else:
         raise DeserializationError("ControlSummary.description required")
-    if "Behavior" in data:
+    if data.get("Behavior") is not None:
         import capo_controlcatalog.types.control_behavior
 
         out["behavior"] = capo_controlcatalog.types.control_behavior.deserialize_json(
             data["Behavior"]
         )
-    if "Severity" in data:
+    if data.get("Severity") is not None:
         import capo_controlcatalog.types.control_severity
 
         out["severity"] = capo_controlcatalog.types.control_severity.deserialize_json(
             data["Severity"]
         )
-    if "ParameterRequirementSummary" in data:
+    if data.get("ParameterRequirementSummary") is not None:
         import capo_controlcatalog.types.parameter_requirement_summary
 
         out["parameter_requirement_summary"] = (
@@ -157,7 +157,7 @@ def deserialize_json(data: dict) -> ControlSummary:
                 data["ParameterRequirementSummary"]
             )
         )
-    if "Implementation" in data:
+    if data.get("Implementation") is not None:
         import capo_controlcatalog.types.implementation_summary
 
         out["implementation"] = (
@@ -165,7 +165,7 @@ def deserialize_json(data: dict) -> ControlSummary:
                 data["Implementation"]
             )
         )
-    if "CreateTime" in data:
+    if data.get("CreateTime") is not None:
         import capo_controlcatalog.types._prelude.timestamp
 
         out["create_time"] = (
@@ -173,7 +173,7 @@ def deserialize_json(data: dict) -> ControlSummary:
                 data["CreateTime"]
             )
         )
-    if "GovernedResources" in data:
+    if data.get("GovernedResources") is not None:
         import capo_controlcatalog.types.governed_resources
 
         out["governed_resources"] = (
@@ -181,7 +181,7 @@ def deserialize_json(data: dict) -> ControlSummary:
                 data["GovernedResources"]
             )
         )
-    if "GovernedProviders" in data:
+    if data.get("GovernedProviders") is not None:
         import capo_controlcatalog.types.governed_providers
 
         out["governed_providers"] = (

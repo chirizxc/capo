@@ -64,15 +64,15 @@ def serialize_json(value: DateTimePickerControlDisplayOptions) -> dict:
 
 def deserialize_json(data: dict) -> DateTimePickerControlDisplayOptions:
     out: DateTimePickerControlDisplayOptions = {}  # type: ignore[typeddict-item]
-    if "TitleOptions" in data:
+    if data.get("TitleOptions") is not None:
         import capo_quicksight.types.label_options
 
         out["title_options"] = capo_quicksight.types.label_options.deserialize_json(
             data["TitleOptions"]
         )
-    if "DateTimeFormat" in data:
+    if data.get("DateTimeFormat") is not None:
         out["date_time_format"] = data["DateTimeFormat"]
-    if "InfoIconLabelOptions" in data:
+    if data.get("InfoIconLabelOptions") is not None:
         import capo_quicksight.types.sheet_control_info_icon_label_options
 
         out["info_icon_label_options"] = (
@@ -80,7 +80,7 @@ def deserialize_json(data: dict) -> DateTimePickerControlDisplayOptions:
                 data["InfoIconLabelOptions"]
             )
         )
-    if "HelperTextVisibility" in data:
+    if data.get("HelperTextVisibility") is not None:
         import capo_quicksight.types.visibility
 
         out["helper_text_visibility"] = (
@@ -88,7 +88,7 @@ def deserialize_json(data: dict) -> DateTimePickerControlDisplayOptions:
                 data["HelperTextVisibility"]
             )
         )
-    if "DateIconVisibility" in data:
+    if data.get("DateIconVisibility") is not None:
         import capo_quicksight.types.visibility
 
         out["date_icon_visibility"] = capo_quicksight.types.visibility.deserialize_json(

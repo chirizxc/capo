@@ -60,19 +60,19 @@ def serialize_aws_json_1_1(value: AttachClusterNodeVolumeResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AttachClusterNodeVolumeResponse:
     out: AttachClusterNodeVolumeResponse = {}  # type: ignore[typeddict-item]
-    if "ClusterArn" in data:
+    if data.get("ClusterArn") is not None:
         out["cluster_arn"] = data["ClusterArn"]
-    if "NodeId" in data:
+    if data.get("NodeId") is not None:
         out["node_id"] = data["NodeId"]
-    if "VolumeId" in data:
+    if data.get("VolumeId") is not None:
         out["volume_id"] = data["VolumeId"]
-    if "AttachTime" in data:
+    if data.get("AttachTime") is not None:
         import capo_sagemaker.types.timestamp
 
         out["attach_time"] = capo_sagemaker.types.timestamp.deserialize_aws_json_1_1(
             data["AttachTime"]
         )
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_sagemaker.types.volume_attachment_status
 
         out["status"] = (
@@ -80,6 +80,6 @@ def deserialize_aws_json_1_1(data: dict) -> AttachClusterNodeVolumeResponse:
                 data["Status"]
             )
         )
-    if "DeviceName" in data:
+    if data.get("DeviceName") is not None:
         out["device_name"] = data["DeviceName"]
     return out

@@ -25,6 +25,8 @@ def serialize_aws_json_1_1(input_to_serialize: ArtifactStoreMap) -> dict:
 def deserialize_aws_json_1_1(data: dict) -> ArtifactStoreMap:
     out: ArtifactStoreMap = {}
     for key, value in data.items():
+        if value is None:
+            continue
         import capo_codepipeline.types.artifact_store
 
         out[key] = capo_codepipeline.types.artifact_store.deserialize_aws_json_1_1(

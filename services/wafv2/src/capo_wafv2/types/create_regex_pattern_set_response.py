@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: CreateRegexPatternSetResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateRegexPatternSetResponse:
     out: CreateRegexPatternSetResponse = {}  # type: ignore[typeddict-item]
-    if "Summary" in data:
+    if data.get("Summary") is not None:
         import capo_wafv2.types.regex_pattern_set_summary
 
         out["summary"] = (

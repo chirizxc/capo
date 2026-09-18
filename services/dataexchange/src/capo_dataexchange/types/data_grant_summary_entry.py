@@ -83,51 +83,51 @@ def serialize_json(value: DataGrantSummaryEntry) -> dict:
 
 def deserialize_json(data: dict) -> DataGrantSummaryEntry:
     out: DataGrantSummaryEntry = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("DataGrantSummaryEntry.name required")
-    if "SenderPrincipal" in data:
+    if data.get("SenderPrincipal") is not None:
         out["sender_principal"] = data["SenderPrincipal"]
     else:
         raise DeserializationError("DataGrantSummaryEntry.sender_principal required")
-    if "ReceiverPrincipal" in data:
+    if data.get("ReceiverPrincipal") is not None:
         out["receiver_principal"] = data["ReceiverPrincipal"]
     else:
         raise DeserializationError("DataGrantSummaryEntry.receiver_principal required")
-    if "AcceptanceState" in data:
+    if data.get("AcceptanceState") is not None:
         out["acceptance_state"] = data["AcceptanceState"]
     else:
         raise DeserializationError("DataGrantSummaryEntry.acceptance_state required")
-    if "AcceptedAt" in data:
+    if data.get("AcceptedAt") is not None:
         import capo_dataexchange.types.timestamp
 
         out["accepted_at"] = capo_dataexchange.types.timestamp.deserialize_json(
             data["AcceptedAt"]
         )
-    if "EndsAt" in data:
+    if data.get("EndsAt") is not None:
         import capo_dataexchange.types.timestamp
 
         out["ends_at"] = capo_dataexchange.types.timestamp.deserialize_json(
             data["EndsAt"]
         )
-    if "DataSetId" in data:
+    if data.get("DataSetId") is not None:
         out["data_set_id"] = data["DataSetId"]
     else:
         raise DeserializationError("DataGrantSummaryEntry.data_set_id required")
-    if "SourceDataSetId" in data:
+    if data.get("SourceDataSetId") is not None:
         out["source_data_set_id"] = data["SourceDataSetId"]
     else:
         raise DeserializationError("DataGrantSummaryEntry.source_data_set_id required")
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
     else:
         raise DeserializationError("DataGrantSummaryEntry.id required")
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
     else:
         raise DeserializationError("DataGrantSummaryEntry.arn required")
-    if "CreatedAt" in data:
+    if data.get("CreatedAt") is not None:
         import capo_dataexchange.types.timestamp
 
         out["created_at"] = capo_dataexchange.types.timestamp.deserialize_json(
@@ -135,7 +135,7 @@ def deserialize_json(data: dict) -> DataGrantSummaryEntry:
         )
     else:
         raise DeserializationError("DataGrantSummaryEntry.created_at required")
-    if "UpdatedAt" in data:
+    if data.get("UpdatedAt") is not None:
         import capo_dataexchange.types.timestamp
 
         out["updated_at"] = capo_dataexchange.types.timestamp.deserialize_json(

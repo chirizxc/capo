@@ -37,11 +37,11 @@ def serialize_json(value: ListAttachedLinksItem) -> dict:
 
 def deserialize_json(data: dict) -> ListAttachedLinksItem:
     out: ListAttachedLinksItem = {}  # type: ignore[typeddict-item]
-    if "Label" in data:
+    if data.get("Label") is not None:
         out["label"] = data["Label"]
-    if "LinkArn" in data:
+    if data.get("LinkArn") is not None:
         out["link_arn"] = data["LinkArn"]
-    if "ResourceTypes" in data:
+    if data.get("ResourceTypes") is not None:
         import capo_oam.types.resource_types_output
 
         out["resource_types"] = capo_oam.types.resource_types_output.deserialize_json(

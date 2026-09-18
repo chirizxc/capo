@@ -31,7 +31,7 @@ def serialize_aws_json_1_0(value: UpdateSecurityConfigResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> UpdateSecurityConfigResponse:
     out: UpdateSecurityConfigResponse = {}  # type: ignore[typeddict-item]
-    if "securityConfigDetail" in data:
+    if data.get("securityConfigDetail") is not None:
         import capo_opensearchserverless.types.security_config_detail
 
         out["security_config_detail"] = (

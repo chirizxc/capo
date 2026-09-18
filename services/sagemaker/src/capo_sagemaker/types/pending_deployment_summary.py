@@ -59,9 +59,9 @@ def serialize_aws_json_1_1(value: PendingDeploymentSummary) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PendingDeploymentSummary:
     out: PendingDeploymentSummary = {}  # type: ignore[typeddict-item]
-    if "EndpointConfigName" in data:
+    if data.get("EndpointConfigName") is not None:
         out["endpoint_config_name"] = data["EndpointConfigName"]
-    if "ProductionVariants" in data:
+    if data.get("ProductionVariants") is not None:
         import capo_sagemaker.types.pending_production_variant_summary_list
 
         out["production_variants"] = (
@@ -69,13 +69,13 @@ def deserialize_aws_json_1_1(data: dict) -> PendingDeploymentSummary:
                 data["ProductionVariants"]
             )
         )
-    if "StartTime" in data:
+    if data.get("StartTime") is not None:
         import capo_sagemaker.types.timestamp
 
         out["start_time"] = capo_sagemaker.types.timestamp.deserialize_aws_json_1_1(
             data["StartTime"]
         )
-    if "ShadowProductionVariants" in data:
+    if data.get("ShadowProductionVariants") is not None:
         import capo_sagemaker.types.pending_production_variant_summary_list
 
         out["shadow_production_variants"] = (

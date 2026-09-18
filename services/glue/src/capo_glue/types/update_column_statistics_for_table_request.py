@@ -44,21 +44,21 @@ def serialize_aws_json_1_1(value: UpdateColumnStatisticsForTableRequest) -> dict
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateColumnStatisticsForTableRequest:
     out: UpdateColumnStatisticsForTableRequest = {}  # type: ignore[typeddict-item]
-    if "CatalogId" in data:
+    if data.get("CatalogId") is not None:
         out["catalog_id"] = data["CatalogId"]
-    if "DatabaseName" in data:
+    if data.get("DatabaseName") is not None:
         out["database_name"] = data["DatabaseName"]
     else:
         raise DeserializationError(
             "UpdateColumnStatisticsForTableRequest.database_name required"
         )
-    if "TableName" in data:
+    if data.get("TableName") is not None:
         out["table_name"] = data["TableName"]
     else:
         raise DeserializationError(
             "UpdateColumnStatisticsForTableRequest.table_name required"
         )
-    if "ColumnStatisticsList" in data:
+    if data.get("ColumnStatisticsList") is not None:
         import capo_glue.types.update_column_statistics_list
 
         out["column_statistics_list"] = (

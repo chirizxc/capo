@@ -32,7 +32,7 @@ def serialize_json(value: ImageExtractionConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> ImageExtractionConfiguration:
     out: ImageExtractionConfiguration = {}  # type: ignore[typeddict-item]
-    if "imageExtractionStatus" in data:
+    if data.get("imageExtractionStatus") is not None:
         import capo_qbusiness.types.image_extraction_status
 
         out["image_extraction_status"] = (

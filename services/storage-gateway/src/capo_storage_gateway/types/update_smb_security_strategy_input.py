@@ -35,13 +35,13 @@ def serialize_aws_json_1_1(value: UpdateSMBSecurityStrategyInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateSMBSecurityStrategyInput:
     out: UpdateSMBSecurityStrategyInput = {}  # type: ignore[typeddict-item]
-    if "GatewayARN" in data:
+    if data.get("GatewayARN") is not None:
         out["gateway_arn"] = data["GatewayARN"]
     else:
         raise DeserializationError(
             "UpdateSMBSecurityStrategyInput.gateway_arn required"
         )
-    if "SMBSecurityStrategy" in data:
+    if data.get("SMBSecurityStrategy") is not None:
         import capo_storage_gateway.types.smb_security_strategy
 
         out["smb_security_strategy"] = (

@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> VpcInfoIpv6CidrBlockSetList:
 
     out: VpcInfoIpv6CidrBlockSetList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_securityhub.types.vpc_info_ipv6_cidr_block_set_details.deserialize_json(
                 item

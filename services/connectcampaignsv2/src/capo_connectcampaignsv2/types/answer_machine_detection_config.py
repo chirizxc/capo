@@ -23,12 +23,12 @@ def serialize_json(value: AnswerMachineDetectionConfig) -> dict:
 
 def deserialize_json(data: dict) -> AnswerMachineDetectionConfig:
     out: AnswerMachineDetectionConfig = {}  # type: ignore[typeddict-item]
-    if "enableAnswerMachineDetection" in data:
+    if data.get("enableAnswerMachineDetection") is not None:
         out["enable_answer_machine_detection"] = data["enableAnswerMachineDetection"]
     else:
         raise DeserializationError(
             "AnswerMachineDetectionConfig.enable_answer_machine_detection required"
         )
-    if "awaitAnswerMachinePrompt" in data:
+    if data.get("awaitAnswerMachinePrompt") is not None:
         out["await_answer_machine_prompt"] = data["awaitAnswerMachinePrompt"]
     return out

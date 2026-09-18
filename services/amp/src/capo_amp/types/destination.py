@@ -32,7 +32,7 @@ def serialize_json(value: Destination) -> dict:
 
 
 def deserialize_json(data: dict) -> Destination:
-    if "ampConfiguration" in data:
+    if data.get("ampConfiguration") is not None:
         import capo_amp.types.amp_configuration
 
         return {

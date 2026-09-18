@@ -11,4 +11,4 @@ def serialize_aws_json_1_0(value: EsxVersionList) -> list:
 
 
 def deserialize_aws_json_1_0(data: list) -> EsxVersionList:
-    return list(data)
+    return [item for item in data if item is not None]

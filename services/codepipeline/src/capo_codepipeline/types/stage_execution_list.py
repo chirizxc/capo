@@ -25,6 +25,8 @@ def deserialize_aws_json_1_1(data: list) -> StageExecutionList:
 
     out: StageExecutionList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_codepipeline.types.stage_execution.deserialize_aws_json_1_1(item)
         )

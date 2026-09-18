@@ -32,7 +32,7 @@ def serialize_json(value: UpdateConfiguredTableAssociationOutput) -> dict:
 
 def deserialize_json(data: dict) -> UpdateConfiguredTableAssociationOutput:
     out: UpdateConfiguredTableAssociationOutput = {}  # type: ignore[typeddict-item]
-    if "configuredTableAssociation" in data:
+    if data.get("configuredTableAssociation") is not None:
         import capo_cleanrooms.types.configured_table_association
 
         out["configured_table_association"] = (

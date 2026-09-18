@@ -33,6 +33,8 @@ def deserialize_json(
 
     out: AwsEcsTaskDefinitionProxyConfigurationProxyConfigurationPropertiesList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_securityhub.types.aws_ecs_task_definition_proxy_configuration_proxy_configuration_properties_details.deserialize_json(
                 item

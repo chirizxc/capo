@@ -88,9 +88,9 @@ def serialize_aws_json_1_1(value: ModelQualityAppSpecification) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ModelQualityAppSpecification:
     out: ModelQualityAppSpecification = {}  # type: ignore[typeddict-item]
-    if "ImageUri" in data:
+    if data.get("ImageUri") is not None:
         out["image_uri"] = data["ImageUri"]
-    if "ContainerEntrypoint" in data:
+    if data.get("ContainerEntrypoint") is not None:
         import capo_sagemaker.types.container_entrypoint
 
         out["container_entrypoint"] = (
@@ -98,7 +98,7 @@ def deserialize_aws_json_1_1(data: dict) -> ModelQualityAppSpecification:
                 data["ContainerEntrypoint"]
             )
         )
-    if "ContainerArguments" in data:
+    if data.get("ContainerArguments") is not None:
         import capo_sagemaker.types.monitoring_container_arguments
 
         out["container_arguments"] = (
@@ -106,13 +106,13 @@ def deserialize_aws_json_1_1(data: dict) -> ModelQualityAppSpecification:
                 data["ContainerArguments"]
             )
         )
-    if "RecordPreprocessorSourceUri" in data:
+    if data.get("RecordPreprocessorSourceUri") is not None:
         out["record_preprocessor_source_uri"] = data["RecordPreprocessorSourceUri"]
-    if "PostAnalyticsProcessorSourceUri" in data:
+    if data.get("PostAnalyticsProcessorSourceUri") is not None:
         out["post_analytics_processor_source_uri"] = data[
             "PostAnalyticsProcessorSourceUri"
         ]
-    if "ProblemType" in data:
+    if data.get("ProblemType") is not None:
         import capo_sagemaker.types.monitoring_problem_type
 
         out["problem_type"] = (
@@ -120,7 +120,7 @@ def deserialize_aws_json_1_1(data: dict) -> ModelQualityAppSpecification:
                 data["ProblemType"]
             )
         )
-    if "Environment" in data:
+    if data.get("Environment") is not None:
         import capo_sagemaker.types.monitoring_environment_map
 
         out["environment"] = (

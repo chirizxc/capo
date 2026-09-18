@@ -26,7 +26,7 @@ def serialize_aws_json_1_0(value: SchemaDefinition) -> dict:
 
 
 def deserialize_aws_json_1_0(data: dict) -> SchemaDefinition:
-    if "cedarJson" in data:
+    if data.get("cedarJson") is not None:
         return {"cedarJson": data["cedarJson"]}
     else:
         raise DeserializationError("SchemaDefinition: no recognized variant key")

@@ -91,17 +91,17 @@ def serialize_json(value: UpdateNetworkMigrationDefinitionRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateNetworkMigrationDefinitionRequest:
     out: UpdateNetworkMigrationDefinitionRequest = {}  # type: ignore[typeddict-item]
-    if "networkMigrationDefinitionID" in data:
+    if data.get("networkMigrationDefinitionID") is not None:
         out["network_migration_definition_id"] = data["networkMigrationDefinitionID"]
     else:
         raise DeserializationError(
             "UpdateNetworkMigrationDefinitionRequest.network_migration_definition_id required"
         )
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "sourceConfigurations" in data:
+    if data.get("sourceConfigurations") is not None:
         import capo_mgn.types.source_configuration_list
 
         out["source_configurations"] = (
@@ -109,7 +109,7 @@ def deserialize_json(data: dict) -> UpdateNetworkMigrationDefinitionRequest:
                 data["sourceConfigurations"]
             )
         )
-    if "targetS3Configuration" in data:
+    if data.get("targetS3Configuration") is not None:
         import capo_mgn.types.target_s3_configuration_update
 
         out["target_s3_configuration"] = (
@@ -117,15 +117,15 @@ def deserialize_json(data: dict) -> UpdateNetworkMigrationDefinitionRequest:
                 data["targetS3Configuration"]
             )
         )
-    if "targetNetwork" in data:
+    if data.get("targetNetwork") is not None:
         import capo_mgn.types.target_network_update
 
         out["target_network"] = capo_mgn.types.target_network_update.deserialize_json(
             data["targetNetwork"]
         )
-    if "targetDeployment" in data:
+    if data.get("targetDeployment") is not None:
         out["target_deployment"] = data["targetDeployment"]
-    if "scopeTags" in data:
+    if data.get("scopeTags") is not None:
         import capo_mgn.types.scope_tags_map
 
         out["scope_tags"] = capo_mgn.types.scope_tags_map.deserialize_json(

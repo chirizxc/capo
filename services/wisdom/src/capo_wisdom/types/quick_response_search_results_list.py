@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> QuickResponseSearchResultsList:
 
     out: QuickResponseSearchResultsList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_wisdom.types.quick_response_search_result_data.deserialize_json(item)
         )

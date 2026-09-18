@@ -40,13 +40,13 @@ def serialize_json(value: JourneyRunResponse) -> dict:
 
 def deserialize_json(data: dict) -> JourneyRunResponse:
     out: JourneyRunResponse = {}  # type: ignore[typeddict-item]
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         out["creation_time"] = data["CreationTime"]
-    if "LastUpdateTime" in data:
+    if data.get("LastUpdateTime") is not None:
         out["last_update_time"] = data["LastUpdateTime"]
-    if "RunId" in data:
+    if data.get("RunId") is not None:
         out["run_id"] = data["RunId"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_pinpoint.types.journey_run_status
 
         out["status"] = capo_pinpoint.types.journey_run_status.deserialize_json(

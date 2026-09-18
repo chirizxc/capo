@@ -30,13 +30,13 @@ def serialize_aws_json_1_1(value: UpdateApprovalRuleTemplateDescriptionInput) ->
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateApprovalRuleTemplateDescriptionInput:
     out: UpdateApprovalRuleTemplateDescriptionInput = {}  # type: ignore[typeddict-item]
-    if "approvalRuleTemplateName" in data:
+    if data.get("approvalRuleTemplateName") is not None:
         out["approval_rule_template_name"] = data["approvalRuleTemplateName"]
     else:
         raise DeserializationError(
             "UpdateApprovalRuleTemplateDescriptionInput.approval_rule_template_name required"
         )
-    if "approvalRuleTemplateDescription" in data:
+    if data.get("approvalRuleTemplateDescription") is not None:
         out["approval_rule_template_description"] = data[
             "approvalRuleTemplateDescription"
         ]

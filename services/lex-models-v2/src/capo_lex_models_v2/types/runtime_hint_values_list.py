@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> RuntimeHintValuesList:
 
     out: RuntimeHintValuesList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_lex_models_v2.types.runtime_hint_value.deserialize_json(item))
     return out

@@ -32,11 +32,11 @@ def serialize_aws_json_1_1(value: DescribeUserResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeUserResponse:
     out: DescribeUserResponse = {}  # type: ignore[typeddict-item]
-    if "ServerId" in data:
+    if data.get("ServerId") is not None:
         out["server_id"] = data["ServerId"]
     else:
         raise DeserializationError("DescribeUserResponse.server_id required")
-    if "User" in data:
+    if data.get("User") is not None:
         import capo_transfer.types.described_user
 
         out["user"] = capo_transfer.types.described_user.deserialize_aws_json_1_1(

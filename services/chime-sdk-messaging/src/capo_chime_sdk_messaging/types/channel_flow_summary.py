@@ -43,11 +43,11 @@ def serialize_json(value: ChannelFlowSummary) -> dict:
 
 def deserialize_json(data: dict) -> ChannelFlowSummary:
     out: ChannelFlowSummary = {}  # type: ignore[typeddict-item]
-    if "ChannelFlowArn" in data:
+    if data.get("ChannelFlowArn") is not None:
         out["channel_flow_arn"] = data["ChannelFlowArn"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Processors" in data:
+    if data.get("Processors") is not None:
         import capo_chime_sdk_messaging.types.processor_list
 
         out["processors"] = (

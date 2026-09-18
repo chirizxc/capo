@@ -43,7 +43,7 @@ def serialize_json(value: VirtualGatewayTlsValidationContext) -> dict:
 
 def deserialize_json(data: dict) -> VirtualGatewayTlsValidationContext:
     out: VirtualGatewayTlsValidationContext = {}  # type: ignore[typeddict-item]
-    if "trust" in data:
+    if data.get("trust") is not None:
         import capo_app_mesh.types.virtual_gateway_tls_validation_context_trust
 
         out["trust"] = (
@@ -53,7 +53,7 @@ def deserialize_json(data: dict) -> VirtualGatewayTlsValidationContext:
         )
     else:
         raise DeserializationError("VirtualGatewayTlsValidationContext.trust required")
-    if "subjectAlternativeNames" in data:
+    if data.get("subjectAlternativeNames") is not None:
         import capo_app_mesh.types.subject_alternative_names
 
         out["subject_alternative_names"] = (

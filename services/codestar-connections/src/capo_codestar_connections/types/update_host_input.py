@@ -42,13 +42,13 @@ def serialize_aws_json_1_0(value: UpdateHostInput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> UpdateHostInput:
     out: UpdateHostInput = {}  # type: ignore[typeddict-item]
-    if "HostArn" in data:
+    if data.get("HostArn") is not None:
         out["host_arn"] = data["HostArn"]
     else:
         raise DeserializationError("UpdateHostInput.host_arn required")
-    if "ProviderEndpoint" in data:
+    if data.get("ProviderEndpoint") is not None:
         out["provider_endpoint"] = data["ProviderEndpoint"]
-    if "VpcConfiguration" in data:
+    if data.get("VpcConfiguration") is not None:
         import capo_codestar_connections.types.vpc_configuration
 
         out["vpc_configuration"] = (

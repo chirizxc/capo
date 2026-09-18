@@ -45,7 +45,7 @@ def serialize_aws_json_1_1(value: RecordFormat) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RecordFormat:
     out: RecordFormat = {}  # type: ignore[typeddict-item]
-    if "RecordFormatType" in data:
+    if data.get("RecordFormatType") is not None:
         import capo_kinesis_analytics_v2.types.record_format_type
 
         out["record_format_type"] = (
@@ -55,7 +55,7 @@ def deserialize_aws_json_1_1(data: dict) -> RecordFormat:
         )
     else:
         raise DeserializationError("RecordFormat.record_format_type required")
-    if "MappingParameters" in data:
+    if data.get("MappingParameters") is not None:
         import capo_kinesis_analytics_v2.types.mapping_parameters
 
         out["mapping_parameters"] = (

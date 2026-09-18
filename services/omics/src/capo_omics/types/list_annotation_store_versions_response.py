@@ -35,7 +35,7 @@ def serialize_json(value: ListAnnotationStoreVersionsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListAnnotationStoreVersionsResponse:
     out: ListAnnotationStoreVersionsResponse = {}  # type: ignore[typeddict-item]
-    if "annotationStoreVersions" in data:
+    if data.get("annotationStoreVersions") is not None:
         import capo_omics.types.annotation_store_version_items
 
         out["annotation_store_versions"] = (
@@ -43,6 +43,6 @@ def deserialize_json(data: dict) -> ListAnnotationStoreVersionsResponse:
                 data["annotationStoreVersions"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

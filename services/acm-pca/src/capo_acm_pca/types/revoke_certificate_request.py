@@ -38,19 +38,19 @@ def serialize_aws_json_1_1(value: RevokeCertificateRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RevokeCertificateRequest:
     out: RevokeCertificateRequest = {}  # type: ignore[typeddict-item]
-    if "CertificateAuthorityArn" in data:
+    if data.get("CertificateAuthorityArn") is not None:
         out["certificate_authority_arn"] = data["CertificateAuthorityArn"]
     else:
         raise DeserializationError(
             "RevokeCertificateRequest.certificate_authority_arn required"
         )
-    if "CertificateSerial" in data:
+    if data.get("CertificateSerial") is not None:
         out["certificate_serial"] = data["CertificateSerial"]
     else:
         raise DeserializationError(
             "RevokeCertificateRequest.certificate_serial required"
         )
-    if "RevocationReason" in data:
+    if data.get("RevocationReason") is not None:
         import capo_acm_pca.types.revocation_reason
 
         out["revocation_reason"] = (

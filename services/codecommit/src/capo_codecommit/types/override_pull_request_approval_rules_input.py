@@ -38,19 +38,19 @@ def serialize_aws_json_1_1(value: OverridePullRequestApprovalRulesInput) -> dict
 
 def deserialize_aws_json_1_1(data: dict) -> OverridePullRequestApprovalRulesInput:
     out: OverridePullRequestApprovalRulesInput = {}  # type: ignore[typeddict-item]
-    if "pullRequestId" in data:
+    if data.get("pullRequestId") is not None:
         out["pull_request_id"] = data["pullRequestId"]
     else:
         raise DeserializationError(
             "OverridePullRequestApprovalRulesInput.pull_request_id required"
         )
-    if "revisionId" in data:
+    if data.get("revisionId") is not None:
         out["revision_id"] = data["revisionId"]
     else:
         raise DeserializationError(
             "OverridePullRequestApprovalRulesInput.revision_id required"
         )
-    if "overrideStatus" in data:
+    if data.get("overrideStatus") is not None:
         import capo_codecommit.types.override_status
 
         out["override_status"] = (

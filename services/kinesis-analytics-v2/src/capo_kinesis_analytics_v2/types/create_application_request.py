@@ -95,13 +95,13 @@ def serialize_aws_json_1_1(value: CreateApplicationRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateApplicationRequest:
     out: CreateApplicationRequest = {}  # type: ignore[typeddict-item]
-    if "ApplicationName" in data:
+    if data.get("ApplicationName") is not None:
         out["application_name"] = data["ApplicationName"]
     else:
         raise DeserializationError("CreateApplicationRequest.application_name required")
-    if "ApplicationDescription" in data:
+    if data.get("ApplicationDescription") is not None:
         out["application_description"] = data["ApplicationDescription"]
-    if "RuntimeEnvironment" in data:
+    if data.get("RuntimeEnvironment") is not None:
         import capo_kinesis_analytics_v2.types.runtime_environment
 
         out["runtime_environment"] = (
@@ -113,13 +113,13 @@ def deserialize_aws_json_1_1(data: dict) -> CreateApplicationRequest:
         raise DeserializationError(
             "CreateApplicationRequest.runtime_environment required"
         )
-    if "ServiceExecutionRole" in data:
+    if data.get("ServiceExecutionRole") is not None:
         out["service_execution_role"] = data["ServiceExecutionRole"]
     else:
         raise DeserializationError(
             "CreateApplicationRequest.service_execution_role required"
         )
-    if "ApplicationConfiguration" in data:
+    if data.get("ApplicationConfiguration") is not None:
         import capo_kinesis_analytics_v2.types.application_configuration
 
         out["application_configuration"] = (
@@ -127,7 +127,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateApplicationRequest:
                 data["ApplicationConfiguration"]
             )
         )
-    if "CloudWatchLoggingOptions" in data:
+    if data.get("CloudWatchLoggingOptions") is not None:
         import capo_kinesis_analytics_v2.types.cloud_watch_logging_options
 
         out["cloud_watch_logging_options"] = (
@@ -135,13 +135,13 @@ def deserialize_aws_json_1_1(data: dict) -> CreateApplicationRequest:
                 data["CloudWatchLoggingOptions"]
             )
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_kinesis_analytics_v2.types.tags
 
         out["tags"] = capo_kinesis_analytics_v2.types.tags.deserialize_aws_json_1_1(
             data["Tags"]
         )
-    if "ApplicationMode" in data:
+    if data.get("ApplicationMode") is not None:
         import capo_kinesis_analytics_v2.types.application_mode
 
         out["application_mode"] = (

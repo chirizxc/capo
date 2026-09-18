@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: DescribeSecurityPolicyRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeSecurityPolicyRequest:
     out: DescribeSecurityPolicyRequest = {}  # type: ignore[typeddict-item]
-    if "SecurityPolicyName" in data:
+    if data.get("SecurityPolicyName") is not None:
         out["security_policy_name"] = data["SecurityPolicyName"]
     else:
         raise DeserializationError(

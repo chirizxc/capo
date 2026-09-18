@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> ComputationModelResolveToResourceSummaries:
 
     out: ComputationModelResolveToResourceSummaries = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_iotsitewise.types.computation_model_resolve_to_resource_summary.deserialize_json(
                 item

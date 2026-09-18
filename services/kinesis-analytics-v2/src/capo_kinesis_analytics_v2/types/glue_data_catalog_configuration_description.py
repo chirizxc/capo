@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: GlueDataCatalogConfigurationDescription) -> di
 
 def deserialize_aws_json_1_1(data: dict) -> GlueDataCatalogConfigurationDescription:
     out: GlueDataCatalogConfigurationDescription = {}  # type: ignore[typeddict-item]
-    if "DatabaseARN" in data:
+    if data.get("DatabaseARN") is not None:
         out["database_arn"] = data["DatabaseARN"]
     else:
         raise DeserializationError(

@@ -32,11 +32,11 @@ def serialize_aws_json_1_1(value: RemoveTagsInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RemoveTagsInput:
     out: RemoveTagsInput = {}  # type: ignore[typeddict-item]
-    if "pipelineId" in data:
+    if data.get("pipelineId") is not None:
         out["pipeline_id"] = data["pipelineId"]
     else:
         raise DeserializationError("RemoveTagsInput.pipeline_id required")
-    if "tagKeys" in data:
+    if data.get("tagKeys") is not None:
         import capo_data_pipeline.types.string_list
 
         out["tag_keys"] = capo_data_pipeline.types.string_list.deserialize_aws_json_1_1(

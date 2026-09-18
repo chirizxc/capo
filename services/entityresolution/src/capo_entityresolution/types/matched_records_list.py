@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> MatchedRecordsList:
 
     out: MatchedRecordsList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_entityresolution.types.matched_record.deserialize_json(item))
     return out

@@ -29,6 +29,8 @@ def deserialize_aws_json_1_0(data: list) -> ProcurementPortalPreferenceSummaries
 
     out: ProcurementPortalPreferenceSummaries = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_invoicing.types.procurement_portal_preference_summary.deserialize_aws_json_1_0(
                 item

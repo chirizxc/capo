@@ -46,25 +46,25 @@ def serialize_aws_json_1_1(value: AdminUpdateAuthEventFeedbackRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AdminUpdateAuthEventFeedbackRequest:
     out: AdminUpdateAuthEventFeedbackRequest = {}  # type: ignore[typeddict-item]
-    if "UserPoolId" in data:
+    if data.get("UserPoolId") is not None:
         out["user_pool_id"] = data["UserPoolId"]
     else:
         raise DeserializationError(
             "AdminUpdateAuthEventFeedbackRequest.user_pool_id required"
         )
-    if "Username" in data:
+    if data.get("Username") is not None:
         out["username"] = data["Username"]
     else:
         raise DeserializationError(
             "AdminUpdateAuthEventFeedbackRequest.username required"
         )
-    if "EventId" in data:
+    if data.get("EventId") is not None:
         out["event_id"] = data["EventId"]
     else:
         raise DeserializationError(
             "AdminUpdateAuthEventFeedbackRequest.event_id required"
         )
-    if "FeedbackValue" in data:
+    if data.get("FeedbackValue") is not None:
         import capo_cognito_identity_provider.types.feedback_value_type
 
         out["feedback_value"] = (

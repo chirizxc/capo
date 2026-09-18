@@ -23,7 +23,7 @@ def serialize_json(value: KmsDisabledException_) -> dict:
 
 def deserialize_json(data: dict) -> KmsDisabledException_:
     out: KmsDisabledException_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     else:
         raise DeserializationError("KmsDisabledException_.message required")
@@ -35,15 +35,18 @@ class KmsDisabledException(ServiceError):
 
     code: str | None = "KmsDisabledException"
 
-    def __init__(self, data: KmsDisabledException_):
+    def __init__(self, data: KmsDisabledException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="KmsDisabledException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "KmsDisabledException":
-        return cls(deserialize_json(data))
+    def from_json(
+        cls, data: dict, message: str | None = None
+    ) -> "KmsDisabledException":
+        return cls(deserialize_json(data), message)

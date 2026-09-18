@@ -28,7 +28,7 @@ def serialize_json(value: UpdateScraperLoggingConfigurationResponse) -> dict:
 
 def deserialize_json(data: dict) -> UpdateScraperLoggingConfigurationResponse:
     out: UpdateScraperLoggingConfigurationResponse = {}  # type: ignore[typeddict-item]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_amp.types.scraper_logging_configuration_status
 
         out["status"] = (

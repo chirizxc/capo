@@ -31,8 +31,8 @@ def serialize_aws_json_1_1(value: UpdateApplicationInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateApplicationInput:
     out: UpdateApplicationInput = {}  # type: ignore[typeddict-item]
-    if "applicationName" in data:
+    if data.get("applicationName") is not None:
         out["application_name"] = data["applicationName"]
-    if "newApplicationName" in data:
+    if data.get("newApplicationName") is not None:
         out["new_application_name"] = data["newApplicationName"]
     return out

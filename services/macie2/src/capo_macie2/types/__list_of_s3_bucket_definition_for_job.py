@@ -25,6 +25,8 @@ def deserialize_json(data: list) -> __listOfS3BucketDefinitionForJob:
 
     out: __listOfS3BucketDefinitionForJob = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_macie2.types.s3_bucket_definition_for_job.deserialize_json(item)
         )

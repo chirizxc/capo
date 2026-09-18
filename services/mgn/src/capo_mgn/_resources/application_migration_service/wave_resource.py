@@ -81,8 +81,7 @@ class WaveResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mgn.types.create_wave_request.CreateWaveRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_mgn.types.create_wave_request.CreateWaveRequest = {"name": name}
         if description is not None:
             input_["description"] = description
         if tags is not None:
@@ -95,6 +94,7 @@ class WaveResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -132,8 +132,9 @@ class WaveResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mgn.types.delete_wave_request.DeleteWaveRequest = {}  # type: ignore[typeddict-item]
-        input_["wave_id"] = wave_id
+        input_: capo_mgn.types.delete_wave_request.DeleteWaveRequest = {
+            "wave_id": wave_id
+        }
         if account_id is not None:
             input_["account_id"] = account_id
 
@@ -142,6 +143,7 @@ class WaveResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -181,7 +183,7 @@ class WaveResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mgn.types.list_waves_request.ListWavesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_mgn.types.list_waves_request.ListWavesRequest = {}
         if filters is not None:
             input_["filters"] = filters
         if max_results is not None:
@@ -196,6 +198,7 @@ class WaveResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def archive_wave(
@@ -232,8 +235,9 @@ class WaveResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mgn.types.archive_wave_request.ArchiveWaveRequest = {}  # type: ignore[typeddict-item]
-        input_["wave_id"] = wave_id
+        input_: capo_mgn.types.archive_wave_request.ArchiveWaveRequest = {
+            "wave_id": wave_id
+        }
         if account_id is not None:
             input_["account_id"] = account_id
 
@@ -242,6 +246,7 @@ class WaveResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def associate_applications(
@@ -282,9 +287,10 @@ class WaveResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mgn.types.associate_applications_request.AssociateApplicationsRequest = {}  # type: ignore[typeddict-item]
-        input_["wave_id"] = wave_id
-        input_["application_i_ds"] = application_i_ds
+        input_: capo_mgn.types.associate_applications_request.AssociateApplicationsRequest = {
+            "wave_id": wave_id,
+            "application_i_ds": application_i_ds,
+        }
         if account_id is not None:
             input_["account_id"] = account_id
 
@@ -293,6 +299,7 @@ class WaveResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def disassociate_applications(
@@ -332,9 +339,10 @@ class WaveResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mgn.types.disassociate_applications_request.DisassociateApplicationsRequest = {}  # type: ignore[typeddict-item]
-        input_["wave_id"] = wave_id
-        input_["application_i_ds"] = application_i_ds
+        input_: capo_mgn.types.disassociate_applications_request.DisassociateApplicationsRequest = {
+            "wave_id": wave_id,
+            "application_i_ds": application_i_ds,
+        }
         if account_id is not None:
             input_["account_id"] = account_id
 
@@ -343,6 +351,7 @@ class WaveResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def unarchive_wave(
@@ -378,8 +387,9 @@ class WaveResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mgn.types.unarchive_wave_request.UnarchiveWaveRequest = {}  # type: ignore[typeddict-item]
-        input_["wave_id"] = wave_id
+        input_: capo_mgn.types.unarchive_wave_request.UnarchiveWaveRequest = {
+            "wave_id": wave_id
+        }
         if account_id is not None:
             input_["account_id"] = account_id
 
@@ -388,6 +398,7 @@ class WaveResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_wave(
@@ -427,8 +438,9 @@ class WaveResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mgn.types.update_wave_request.UpdateWaveRequest = {}  # type: ignore[typeddict-item]
-        input_["wave_id"] = wave_id
+        input_: capo_mgn.types.update_wave_request.UpdateWaveRequest = {
+            "wave_id": wave_id
+        }
         if name is not None:
             input_["name"] = name
         if description is not None:
@@ -441,6 +453,7 @@ class WaveResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -486,8 +499,7 @@ class AsyncWaveResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mgn.types.create_wave_request.CreateWaveRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_mgn.types.create_wave_request.CreateWaveRequest = {"name": name}
         if description is not None:
             input_["description"] = description
         if tags is not None:
@@ -500,6 +512,7 @@ class AsyncWaveResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -538,8 +551,9 @@ class AsyncWaveResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mgn.types.delete_wave_request.DeleteWaveRequest = {}  # type: ignore[typeddict-item]
-        input_["wave_id"] = wave_id
+        input_: capo_mgn.types.delete_wave_request.DeleteWaveRequest = {
+            "wave_id": wave_id
+        }
         if account_id is not None:
             input_["account_id"] = account_id
 
@@ -548,6 +562,7 @@ class AsyncWaveResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -590,7 +605,7 @@ class AsyncWaveResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mgn.types.list_waves_request.ListWavesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_mgn.types.list_waves_request.ListWavesRequest = {}
         if filters is not None:
             input_["filters"] = filters
         if max_results is not None:
@@ -605,6 +620,7 @@ class AsyncWaveResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def archive_wave(
@@ -642,8 +658,9 @@ class AsyncWaveResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mgn.types.archive_wave_request.ArchiveWaveRequest = {}  # type: ignore[typeddict-item]
-        input_["wave_id"] = wave_id
+        input_: capo_mgn.types.archive_wave_request.ArchiveWaveRequest = {
+            "wave_id": wave_id
+        }
         if account_id is not None:
             input_["account_id"] = account_id
 
@@ -652,6 +669,7 @@ class AsyncWaveResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def associate_applications(
@@ -693,9 +711,10 @@ class AsyncWaveResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mgn.types.associate_applications_request.AssociateApplicationsRequest = {}  # type: ignore[typeddict-item]
-        input_["wave_id"] = wave_id
-        input_["application_i_ds"] = application_i_ds
+        input_: capo_mgn.types.associate_applications_request.AssociateApplicationsRequest = {
+            "wave_id": wave_id,
+            "application_i_ds": application_i_ds,
+        }
         if account_id is not None:
             input_["account_id"] = account_id
 
@@ -704,6 +723,7 @@ class AsyncWaveResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def disassociate_applications(
@@ -744,9 +764,10 @@ class AsyncWaveResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mgn.types.disassociate_applications_request.DisassociateApplicationsRequest = {}  # type: ignore[typeddict-item]
-        input_["wave_id"] = wave_id
-        input_["application_i_ds"] = application_i_ds
+        input_: capo_mgn.types.disassociate_applications_request.DisassociateApplicationsRequest = {
+            "wave_id": wave_id,
+            "application_i_ds": application_i_ds,
+        }
         if account_id is not None:
             input_["account_id"] = account_id
 
@@ -755,6 +776,7 @@ class AsyncWaveResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def unarchive_wave(
@@ -791,8 +813,9 @@ class AsyncWaveResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mgn.types.unarchive_wave_request.UnarchiveWaveRequest = {}  # type: ignore[typeddict-item]
-        input_["wave_id"] = wave_id
+        input_: capo_mgn.types.unarchive_wave_request.UnarchiveWaveRequest = {
+            "wave_id": wave_id
+        }
         if account_id is not None:
             input_["account_id"] = account_id
 
@@ -801,6 +824,7 @@ class AsyncWaveResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_wave(
@@ -841,8 +865,9 @@ class AsyncWaveResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mgn.types.update_wave_request.UpdateWaveRequest = {}  # type: ignore[typeddict-item]
-        input_["wave_id"] = wave_id
+        input_: capo_mgn.types.update_wave_request.UpdateWaveRequest = {
+            "wave_id": wave_id
+        }
         if name is not None:
             input_["name"] = name
         if description is not None:
@@ -855,4 +880,5 @@ class AsyncWaveResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

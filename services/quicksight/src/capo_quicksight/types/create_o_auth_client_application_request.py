@@ -103,17 +103,17 @@ def serialize_json(value: CreateOAuthClientApplicationRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateOAuthClientApplicationRequest:
     out: CreateOAuthClientApplicationRequest = {}  # type: ignore[typeddict-item]
-    if "OAuthClientApplicationId" in data:
+    if data.get("OAuthClientApplicationId") is not None:
         out["o_auth_client_application_id"] = data["OAuthClientApplicationId"]
     else:
         raise DeserializationError(
             "CreateOAuthClientApplicationRequest.o_auth_client_application_id required"
         )
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("CreateOAuthClientApplicationRequest.name required")
-    if "OAuthClientAuthenticationType" in data:
+    if data.get("OAuthClientAuthenticationType") is not None:
         import capo_quicksight.types.o_auth_client_authentication_type
 
         out["o_auth_client_authentication_type"] = (
@@ -125,29 +125,29 @@ def deserialize_json(data: dict) -> CreateOAuthClientApplicationRequest:
         raise DeserializationError(
             "CreateOAuthClientApplicationRequest.o_auth_client_authentication_type required"
         )
-    if "ClientId" in data:
+    if data.get("ClientId") is not None:
         out["client_id"] = data["ClientId"]
     else:
         raise DeserializationError(
             "CreateOAuthClientApplicationRequest.client_id required"
         )
-    if "ClientSecret" in data:
+    if data.get("ClientSecret") is not None:
         out["client_secret"] = data["ClientSecret"]
     else:
         raise DeserializationError(
             "CreateOAuthClientApplicationRequest.client_secret required"
         )
-    if "OAuthTokenEndpointUrl" in data:
+    if data.get("OAuthTokenEndpointUrl") is not None:
         out["o_auth_token_endpoint_url"] = data["OAuthTokenEndpointUrl"]
     else:
         raise DeserializationError(
             "CreateOAuthClientApplicationRequest.o_auth_token_endpoint_url required"
         )
-    if "OAuthAuthorizationEndpointUrl" in data:
+    if data.get("OAuthAuthorizationEndpointUrl") is not None:
         out["o_auth_authorization_endpoint_url"] = data["OAuthAuthorizationEndpointUrl"]
-    if "OAuthScopes" in data:
+    if data.get("OAuthScopes") is not None:
         out["o_auth_scopes"] = data["OAuthScopes"]
-    if "DataSourceType" in data:
+    if data.get("DataSourceType") is not None:
         import capo_quicksight.types.data_source_type
 
         out["data_source_type"] = (
@@ -155,7 +155,7 @@ def deserialize_json(data: dict) -> CreateOAuthClientApplicationRequest:
                 data["DataSourceType"]
             )
         )
-    if "IdentityProviderVpcConnectionProperties" in data:
+    if data.get("IdentityProviderVpcConnectionProperties") is not None:
         import capo_quicksight.types.vpc_connection_properties
 
         out["identity_provider_vpc_connection_properties"] = (
@@ -163,7 +163,7 @@ def deserialize_json(data: dict) -> CreateOAuthClientApplicationRequest:
                 data["IdentityProviderVpcConnectionProperties"]
             )
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_quicksight.types.tag_list
 
         out["tags"] = capo_quicksight.types.tag_list.deserialize_json(data["Tags"])

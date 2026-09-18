@@ -23,6 +23,6 @@ def serialize_json(value: RestoreJobCreator) -> dict:
 
 def deserialize_json(data: dict) -> RestoreJobCreator:
     out: RestoreJobCreator = {}  # type: ignore[typeddict-item]
-    if "RestoreTestingPlanArn" in data:
+    if data.get("RestoreTestingPlanArn") is not None:
         out["restore_testing_plan_arn"] = data["RestoreTestingPlanArn"]
     return out

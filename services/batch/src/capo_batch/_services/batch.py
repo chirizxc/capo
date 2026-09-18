@@ -1,5 +1,6 @@
 """Generated from Smithy shape ``com.amazonaws.batch#AWSBatchV20160810``."""
 
+import uuid
 import warnings
 from collections.abc import Iterator
 from typing import TYPE_CHECKING, Any, Iterable, Optional
@@ -317,7 +318,7 @@ class BatchClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_batch.types.cancel_job_request.CancelJobRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_batch.types.cancel_job_request.CancelJobRequest = {}
         if job_id is not None:
             input_["job_id"] = job_id
         if reason is not None:
@@ -328,6 +329,7 @@ class BatchClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_compute_environment(
@@ -392,7 +394,7 @@ class BatchClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_batch.types.create_compute_environment_request.CreateComputeEnvironmentRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_batch.types.create_compute_environment_request.CreateComputeEnvironmentRequest = {}
         if compute_environment_name is not None:
             input_["compute_environment_name"] = compute_environment_name
         if type is not None:
@@ -417,6 +419,7 @@ class BatchClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_consumable_resource(
@@ -463,7 +466,7 @@ class BatchClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_batch.types.create_consumable_resource_request.CreateConsumableResourceRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_batch.types.create_consumable_resource_request.CreateConsumableResourceRequest = {}
         if consumable_resource_name is not None:
             input_["consumable_resource_name"] = consumable_resource_name
         if total_quantity is not None:
@@ -478,6 +481,7 @@ class BatchClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_job_queue(
@@ -544,7 +548,7 @@ class BatchClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_batch.types.create_job_queue_request.CreateJobQueueRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_batch.types.create_job_queue_request.CreateJobQueueRequest = {}
         if job_queue_name is not None:
             input_["job_queue_name"] = job_queue_name
         if state is not None:
@@ -569,6 +573,7 @@ class BatchClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_quota_share(
@@ -621,7 +626,7 @@ class BatchClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_batch.types.create_quota_share_request.CreateQuotaShareRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_batch.types.create_quota_share_request.CreateQuotaShareRequest = {}
         if quota_share_name is not None:
             input_["quota_share_name"] = quota_share_name
         if job_queue is not None:
@@ -642,6 +647,7 @@ class BatchClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_scheduling_policy(
@@ -686,7 +692,7 @@ class BatchClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_batch.types.create_scheduling_policy_request.CreateSchedulingPolicyRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_batch.types.create_scheduling_policy_request.CreateSchedulingPolicyRequest = {}
         if name is not None:
             input_["name"] = name
         if quota_share_policy is not None:
@@ -701,6 +707,7 @@ class BatchClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_service_environment(
@@ -749,7 +756,7 @@ class BatchClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_batch.types.create_service_environment_request.CreateServiceEnvironmentRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_batch.types.create_service_environment_request.CreateServiceEnvironmentRequest = {}
         if service_environment_name is not None:
             input_["service_environment_name"] = service_environment_name
         if service_environment_type is not None:
@@ -766,6 +773,7 @@ class BatchClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_compute_environment(
@@ -806,7 +814,7 @@ class BatchClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_batch.types.delete_compute_environment_request.DeleteComputeEnvironmentRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_batch.types.delete_compute_environment_request.DeleteComputeEnvironmentRequest = {}
         if compute_environment is not None:
             input_["compute_environment"] = compute_environment
 
@@ -815,6 +823,7 @@ class BatchClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_consumable_resource(
@@ -855,7 +864,7 @@ class BatchClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_batch.types.delete_consumable_resource_request.DeleteConsumableResourceRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_batch.types.delete_consumable_resource_request.DeleteConsumableResourceRequest = {}
         if consumable_resource is not None:
             input_["consumable_resource"] = consumable_resource
 
@@ -864,6 +873,7 @@ class BatchClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_job_queue(
@@ -904,7 +914,7 @@ class BatchClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_batch.types.delete_job_queue_request.DeleteJobQueueRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_batch.types.delete_job_queue_request.DeleteJobQueueRequest = {}
         if job_queue is not None:
             input_["job_queue"] = job_queue
 
@@ -913,6 +923,7 @@ class BatchClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_quota_share(
@@ -947,7 +958,7 @@ class BatchClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_batch.types.delete_quota_share_request.DeleteQuotaShareRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_batch.types.delete_quota_share_request.DeleteQuotaShareRequest = {}
         if quota_share_arn is not None:
             input_["quota_share_arn"] = quota_share_arn
 
@@ -956,6 +967,7 @@ class BatchClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_scheduling_policy(
@@ -990,7 +1002,7 @@ class BatchClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_batch.types.delete_scheduling_policy_request.DeleteSchedulingPolicyRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_batch.types.delete_scheduling_policy_request.DeleteSchedulingPolicyRequest = {}
         if arn is not None:
             input_["arn"] = arn
 
@@ -999,6 +1011,7 @@ class BatchClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_service_environment(
@@ -1033,7 +1046,7 @@ class BatchClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_batch.types.delete_service_environment_request.DeleteServiceEnvironmentRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_batch.types.delete_service_environment_request.DeleteServiceEnvironmentRequest = {}
         if service_environment is not None:
             input_["service_environment"] = service_environment
 
@@ -1042,6 +1055,7 @@ class BatchClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def deregister_job_definition(
@@ -1082,7 +1096,7 @@ class BatchClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_batch.types.deregister_job_definition_request.DeregisterJobDefinitionRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_batch.types.deregister_job_definition_request.DeregisterJobDefinitionRequest = {}
         if job_definition is not None:
             input_["job_definition"] = job_definition
 
@@ -1091,6 +1105,7 @@ class BatchClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_compute_environments(
@@ -1137,7 +1152,7 @@ class BatchClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_batch.types.describe_compute_environments_request.DescribeComputeEnvironmentsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_batch.types.describe_compute_environments_request.DescribeComputeEnvironmentsRequest = {}
         if compute_environments is not None:
             input_["compute_environments"] = compute_environments
         if max_results is not None:
@@ -1150,6 +1165,7 @@ class BatchClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_describe_compute_environments(
@@ -1217,7 +1233,7 @@ class BatchClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_batch.types.describe_consumable_resource_request.DescribeConsumableResourceRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_batch.types.describe_consumable_resource_request.DescribeConsumableResourceRequest = {}
         if consumable_resource is not None:
             input_["consumable_resource"] = consumable_resource
 
@@ -1226,6 +1242,7 @@ class BatchClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_job_definitions(
@@ -1274,7 +1291,7 @@ class BatchClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_batch.types.describe_job_definitions_request.DescribeJobDefinitionsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_batch.types.describe_job_definitions_request.DescribeJobDefinitionsRequest = {}
         if job_definitions is not None:
             input_["job_definitions"] = job_definitions
         if max_results is not None:
@@ -1291,6 +1308,7 @@ class BatchClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_describe_job_definitions(
@@ -1362,7 +1380,7 @@ class BatchClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_batch.types.describe_job_queues_request.DescribeJobQueuesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_batch.types.describe_job_queues_request.DescribeJobQueuesRequest = {}
         if job_queues is not None:
             input_["job_queues"] = job_queues
         if max_results is not None:
@@ -1375,6 +1393,7 @@ class BatchClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_describe_job_queues(
@@ -1438,7 +1457,7 @@ class BatchClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_batch.types.describe_jobs_request.DescribeJobsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_batch.types.describe_jobs_request.DescribeJobsRequest = {}
         if jobs is not None:
             input_["jobs"] = jobs
 
@@ -1447,6 +1466,7 @@ class BatchClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_quota_share(
@@ -1481,7 +1501,7 @@ class BatchClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_batch.types.describe_quota_share_request.DescribeQuotaShareRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_batch.types.describe_quota_share_request.DescribeQuotaShareRequest = {}
         if quota_share_arn is not None:
             input_["quota_share_arn"] = quota_share_arn
 
@@ -1490,6 +1510,7 @@ class BatchClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_scheduling_policies(
@@ -1524,7 +1545,7 @@ class BatchClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_batch.types.describe_scheduling_policies_request.DescribeSchedulingPoliciesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_batch.types.describe_scheduling_policies_request.DescribeSchedulingPoliciesRequest = {}
         if arns is not None:
             input_["arns"] = arns
 
@@ -1533,6 +1554,7 @@ class BatchClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_service_environments(
@@ -1573,7 +1595,7 @@ class BatchClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_batch.types.describe_service_environments_request.DescribeServiceEnvironmentsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_batch.types.describe_service_environments_request.DescribeServiceEnvironmentsRequest = {}
         if service_environments is not None:
             input_["service_environments"] = service_environments
         if max_results is not None:
@@ -1586,6 +1608,7 @@ class BatchClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_describe_service_environments(
@@ -1647,7 +1670,7 @@ class BatchClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_batch.types.describe_service_job_request.DescribeServiceJobRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_batch.types.describe_service_job_request.DescribeServiceJobRequest = {}
         if job_id is not None:
             input_["job_id"] = job_id
 
@@ -1656,6 +1679,7 @@ class BatchClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_job_queue_snapshot(
@@ -1690,7 +1714,7 @@ class BatchClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_batch.types.get_job_queue_snapshot_request.GetJobQueueSnapshotRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_batch.types.get_job_queue_snapshot_request.GetJobQueueSnapshotRequest = {}
         if job_queue is not None:
             input_["job_queue"] = job_queue
 
@@ -1699,6 +1723,7 @@ class BatchClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_consumable_resources(
@@ -1745,7 +1770,7 @@ class BatchClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_batch.types.list_consumable_resources_request.ListConsumableResourcesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_batch.types.list_consumable_resources_request.ListConsumableResourcesRequest = {}
         if filters is not None:
             input_["filters"] = filters
         if max_results is not None:
@@ -1758,6 +1783,7 @@ class BatchClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_consumable_resources(
@@ -1839,7 +1865,7 @@ class BatchClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_batch.types.list_jobs_request.ListJobsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_batch.types.list_jobs_request.ListJobsRequest = {}
         if job_queue is not None:
             input_["job_queue"] = job_queue
         if array_job_id is not None:
@@ -1860,6 +1886,7 @@ class BatchClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_jobs(
@@ -1941,7 +1968,7 @@ class BatchClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_batch.types.list_jobs_by_consumable_resource_request.ListJobsByConsumableResourceRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_batch.types.list_jobs_by_consumable_resource_request.ListJobsByConsumableResourceRequest = {}
         if consumable_resource is not None:
             input_["consumable_resource"] = consumable_resource
         if filters is not None:
@@ -1956,6 +1983,7 @@ class BatchClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_jobs_by_consumable_resource(
@@ -2021,7 +2049,7 @@ class BatchClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_batch.types.list_quota_shares_request.ListQuotaSharesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_batch.types.list_quota_shares_request.ListQuotaSharesRequest = {}
         if job_queue is not None:
             input_["job_queue"] = job_queue
         if max_results is not None:
@@ -2034,6 +2062,7 @@ class BatchClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_quota_shares(
@@ -2093,7 +2122,7 @@ class BatchClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_batch.types.list_scheduling_policies_request.ListSchedulingPoliciesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_batch.types.list_scheduling_policies_request.ListSchedulingPoliciesRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -2104,6 +2133,7 @@ class BatchClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_scheduling_policies(
@@ -2171,7 +2201,7 @@ class BatchClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_batch.types.list_service_jobs_request.ListServiceJobsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_batch.types.list_service_jobs_request.ListServiceJobsRequest = {}
         if job_queue is not None:
             input_["job_queue"] = job_queue
         if job_status is not None:
@@ -2188,6 +2218,7 @@ class BatchClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_service_jobs(
@@ -2259,14 +2290,16 @@ class BatchClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_batch.types.list_tags_for_resource_request.ListTagsForResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_batch.types.list_tags_for_resource_request.ListTagsForResourceRequest = {
+            "resource_arn": resource_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def register_job_definition(
@@ -2351,7 +2384,7 @@ class BatchClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_batch.types.register_job_definition_request.RegisterJobDefinitionRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_batch.types.register_job_definition_request.RegisterJobDefinitionRequest = {}
         if job_definition_name is not None:
             input_["job_definition_name"] = job_definition_name
         if type is not None:
@@ -2386,6 +2419,7 @@ class BatchClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def submit_job(
@@ -2476,7 +2510,7 @@ class BatchClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_batch.types.submit_job_request.SubmitJobRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_batch.types.submit_job_request.SubmitJobRequest = {}
         if job_name is not None:
             input_["job_name"] = job_name
         if job_queue is not None:
@@ -2519,6 +2553,7 @@ class BatchClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def submit_service_job(
@@ -2585,7 +2620,7 @@ class BatchClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_batch.types.submit_service_job_request.SubmitServiceJobRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_batch.types.submit_service_job_request.SubmitServiceJobRequest = {}
         if job_name is not None:
             input_["job_name"] = job_name
         if job_queue is not None:
@@ -2608,14 +2643,16 @@ class BatchClient:
             input_["timeout_config"] = timeout_config
         if tags is not None:
             input_["tags"] = tags
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def tag_resource(
@@ -2658,8 +2695,9 @@ class BatchClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_batch.types.tag_resource_request.TagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_batch.types.tag_resource_request.TagResourceRequest = {
+            "resource_arn": resource_arn
+        }
         if tags is not None:
             input_["tags"] = tags
 
@@ -2668,6 +2706,7 @@ class BatchClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def terminate_job(
@@ -2710,7 +2749,7 @@ class BatchClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_batch.types.terminate_job_request.TerminateJobRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_batch.types.terminate_job_request.TerminateJobRequest = {}
         if job_id is not None:
             input_["job_id"] = job_id
         if reason is not None:
@@ -2721,6 +2760,7 @@ class BatchClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def terminate_service_job(
@@ -2757,7 +2797,7 @@ class BatchClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_batch.types.terminate_service_job_request.TerminateServiceJobRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_batch.types.terminate_service_job_request.TerminateServiceJobRequest = {}
         if job_id is not None:
             input_["job_id"] = job_id
         if reason is not None:
@@ -2768,6 +2808,7 @@ class BatchClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def untag_resource(
@@ -2810,8 +2851,9 @@ class BatchClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_batch.types.untag_resource_request.UntagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_batch.types.untag_resource_request.UntagResourceRequest = {
+            "resource_arn": resource_arn
+        }
         if tag_keys is not None:
             input_["tag_keys"] = tag_keys
 
@@ -2820,6 +2862,7 @@ class BatchClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_compute_environment(
@@ -2874,7 +2917,7 @@ class BatchClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_batch.types.update_compute_environment_request.UpdateComputeEnvironmentRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_batch.types.update_compute_environment_request.UpdateComputeEnvironmentRequest = {}
         if compute_environment is not None:
             input_["compute_environment"] = compute_environment
         if state is not None:
@@ -2895,6 +2938,7 @@ class BatchClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_consumable_resource(
@@ -2943,21 +2987,23 @@ class BatchClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_batch.types.update_consumable_resource_request.UpdateConsumableResourceRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_batch.types.update_consumable_resource_request.UpdateConsumableResourceRequest = {}
         if consumable_resource is not None:
             input_["consumable_resource"] = consumable_resource
         if operation is not None:
             input_["operation"] = operation
         if quantity is not None:
             input_["quantity"] = quantity
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_job_queue(
@@ -3016,7 +3062,7 @@ class BatchClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_batch.types.update_job_queue_request.UpdateJobQueueRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_batch.types.update_job_queue_request.UpdateJobQueueRequest = {}
         if job_queue is not None:
             input_["job_queue"] = job_queue
         if state is not None:
@@ -3037,6 +3083,7 @@ class BatchClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_quota_share(
@@ -3085,7 +3132,7 @@ class BatchClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_batch.types.update_quota_share_request.UpdateQuotaShareRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_batch.types.update_quota_share_request.UpdateQuotaShareRequest = {}
         if quota_share_arn is not None:
             input_["quota_share_arn"] = quota_share_arn
         if capacity_limits is not None:
@@ -3102,6 +3149,7 @@ class BatchClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_scheduling_policy(
@@ -3144,7 +3192,7 @@ class BatchClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_batch.types.update_scheduling_policy_request.UpdateSchedulingPolicyRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_batch.types.update_scheduling_policy_request.UpdateSchedulingPolicyRequest = {}
         if arn is not None:
             input_["arn"] = arn
         if quota_share_policy is not None:
@@ -3157,6 +3205,7 @@ class BatchClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_service_environment(
@@ -3199,7 +3248,7 @@ class BatchClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_batch.types.update_service_environment_request.UpdateServiceEnvironmentRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_batch.types.update_service_environment_request.UpdateServiceEnvironmentRequest = {}
         if service_environment is not None:
             input_["service_environment"] = service_environment
         if state is not None:
@@ -3212,6 +3261,7 @@ class BatchClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_service_job(
@@ -3248,7 +3298,7 @@ class BatchClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_batch.types.update_service_job_request.UpdateServiceJobRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_batch.types.update_service_job_request.UpdateServiceJobRequest = {}
         if job_id is not None:
             input_["job_id"] = job_id
         if scheduling_priority is not None:
@@ -3259,6 +3309,7 @@ class BatchClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def __enter__(self) -> Self:

@@ -25,6 +25,8 @@ def serialize_json(input_to_serialize: SlotHintsIntentMap) -> dict:
 def deserialize_json(data: dict) -> SlotHintsIntentMap:
     out: SlotHintsIntentMap = {}
     for key, value in data.items():
+        if value is None:
+            continue
         import capo_lex_models_v2.types.slot_hints_slot_map
 
         out[key] = capo_lex_models_v2.types.slot_hints_slot_map.deserialize_json(value)

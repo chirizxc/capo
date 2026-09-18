@@ -91,15 +91,15 @@ def serialize_aws_json_1_1(value: Rule) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Rule:
     out: Rule = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("Rule.name required")
-    if "Priority" in data:
+    if data.get("Priority") is not None:
         out["priority"] = data["Priority"]
     else:
         out["priority"] = 0
-    if "Statement" in data:
+    if data.get("Statement") is not None:
         import capo_wafv2.types.statement
 
         out["statement"] = capo_wafv2.types.statement.deserialize_aws_json_1_1(
@@ -107,13 +107,13 @@ def deserialize_aws_json_1_1(data: dict) -> Rule:
         )
     else:
         raise DeserializationError("Rule.statement required")
-    if "Action" in data:
+    if data.get("Action") is not None:
         import capo_wafv2.types.rule_action
 
         out["action"] = capo_wafv2.types.rule_action.deserialize_aws_json_1_1(
             data["Action"]
         )
-    if "OverrideAction" in data:
+    if data.get("OverrideAction") is not None:
         import capo_wafv2.types.override_action
 
         out["override_action"] = (
@@ -121,13 +121,13 @@ def deserialize_aws_json_1_1(data: dict) -> Rule:
                 data["OverrideAction"]
             )
         )
-    if "RuleLabels" in data:
+    if data.get("RuleLabels") is not None:
         import capo_wafv2.types.labels
 
         out["rule_labels"] = capo_wafv2.types.labels.deserialize_aws_json_1_1(
             data["RuleLabels"]
         )
-    if "VisibilityConfig" in data:
+    if data.get("VisibilityConfig") is not None:
         import capo_wafv2.types.visibility_config
 
         out["visibility_config"] = (
@@ -137,7 +137,7 @@ def deserialize_aws_json_1_1(data: dict) -> Rule:
         )
     else:
         raise DeserializationError("Rule.visibility_config required")
-    if "CaptchaConfig" in data:
+    if data.get("CaptchaConfig") is not None:
         import capo_wafv2.types.captcha_config
 
         out["captcha_config"] = (
@@ -145,7 +145,7 @@ def deserialize_aws_json_1_1(data: dict) -> Rule:
                 data["CaptchaConfig"]
             )
         )
-    if "ChallengeConfig" in data:
+    if data.get("ChallengeConfig") is not None:
         import capo_wafv2.types.challenge_config
 
         out["challenge_config"] = (

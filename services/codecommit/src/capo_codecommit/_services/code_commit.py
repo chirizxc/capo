@@ -1,5 +1,6 @@
 """Generated from Smithy shape ``com.amazonaws.codecommit#CodeCommit_20150413``."""
 
+import uuid
 import warnings
 from collections.abc import Iterator
 from typing import TYPE_CHECKING, Any, Iterable, Optional
@@ -368,15 +369,17 @@ class CodeCommitClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codecommit.types.associate_approval_rule_template_with_repository_input.AssociateApprovalRuleTemplateWithRepositoryInput = {}  # type: ignore[typeddict-item]
-        input_["approval_rule_template_name"] = approval_rule_template_name
-        input_["repository_name"] = repository_name
+        input_: capo_codecommit.types.associate_approval_rule_template_with_repository_input.AssociateApprovalRuleTemplateWithRepositoryInput = {
+            "approval_rule_template_name": approval_rule_template_name,
+            "repository_name": repository_name,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def batch_associate_approval_rule_template_with_repositories(
@@ -421,15 +424,17 @@ class CodeCommitClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codecommit.types.batch_associate_approval_rule_template_with_repositories_input.BatchAssociateApprovalRuleTemplateWithRepositoriesInput = {}  # type: ignore[typeddict-item]
-        input_["approval_rule_template_name"] = approval_rule_template_name
-        input_["repository_names"] = repository_names
+        input_: capo_codecommit.types.batch_associate_approval_rule_template_with_repositories_input.BatchAssociateApprovalRuleTemplateWithRepositoriesInput = {
+            "approval_rule_template_name": approval_rule_template_name,
+            "repository_names": repository_names,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def batch_describe_merge_conflicts(
@@ -509,11 +514,12 @@ class CodeCommitClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codecommit.types.batch_describe_merge_conflicts_input.BatchDescribeMergeConflictsInput = {}  # type: ignore[typeddict-item]
-        input_["repository_name"] = repository_name
-        input_["destination_commit_specifier"] = destination_commit_specifier
-        input_["source_commit_specifier"] = source_commit_specifier
-        input_["merge_option"] = merge_option
+        input_: capo_codecommit.types.batch_describe_merge_conflicts_input.BatchDescribeMergeConflictsInput = {
+            "repository_name": repository_name,
+            "destination_commit_specifier": destination_commit_specifier,
+            "source_commit_specifier": source_commit_specifier,
+            "merge_option": merge_option,
+        }
         if max_merge_hunks is not None:
             input_["max_merge_hunks"] = max_merge_hunks
         if max_conflict_files is not None:
@@ -532,6 +538,7 @@ class CodeCommitClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def batch_disassociate_approval_rule_template_from_repositories(
@@ -576,15 +583,17 @@ class CodeCommitClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codecommit.types.batch_disassociate_approval_rule_template_from_repositories_input.BatchDisassociateApprovalRuleTemplateFromRepositoriesInput = {}  # type: ignore[typeddict-item]
-        input_["approval_rule_template_name"] = approval_rule_template_name
-        input_["repository_names"] = repository_names
+        input_: capo_codecommit.types.batch_disassociate_approval_rule_template_from_repositories_input.BatchDisassociateApprovalRuleTemplateFromRepositoriesInput = {
+            "approval_rule_template_name": approval_rule_template_name,
+            "repository_names": repository_names,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def batch_get_commits(
@@ -629,15 +638,17 @@ class CodeCommitClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codecommit.types.batch_get_commits_input.BatchGetCommitsInput = {}  # type: ignore[typeddict-item]
-        input_["commit_ids"] = commit_ids
-        input_["repository_name"] = repository_name
+        input_: capo_codecommit.types.batch_get_commits_input.BatchGetCommitsInput = {
+            "commit_ids": commit_ids,
+            "repository_name": repository_name,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def batch_get_repositories(
@@ -680,14 +691,16 @@ class CodeCommitClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codecommit.types.batch_get_repositories_input.BatchGetRepositoriesInput = {}  # type: ignore[typeddict-item]
-        input_["repository_names"] = repository_names
+        input_: capo_codecommit.types.batch_get_repositories_input.BatchGetRepositoriesInput = {
+            "repository_names": repository_names
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_approval_rule_template(
@@ -733,9 +746,10 @@ class CodeCommitClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codecommit.types.create_approval_rule_template_input.CreateApprovalRuleTemplateInput = {}  # type: ignore[typeddict-item]
-        input_["approval_rule_template_name"] = approval_rule_template_name
-        input_["approval_rule_template_content"] = approval_rule_template_content
+        input_: capo_codecommit.types.create_approval_rule_template_input.CreateApprovalRuleTemplateInput = {
+            "approval_rule_template_name": approval_rule_template_name,
+            "approval_rule_template_content": approval_rule_template_content,
+        }
         if approval_rule_template_description is not None:
             input_["approval_rule_template_description"] = (
                 approval_rule_template_description
@@ -746,6 +760,7 @@ class CodeCommitClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_branch(
@@ -794,16 +809,18 @@ class CodeCommitClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codecommit.types.create_branch_input.CreateBranchInput = {}  # type: ignore[typeddict-item]
-        input_["repository_name"] = repository_name
-        input_["branch_name"] = branch_name
-        input_["commit_id"] = commit_id
+        input_: capo_codecommit.types.create_branch_input.CreateBranchInput = {
+            "repository_name": repository_name,
+            "branch_name": branch_name,
+            "commit_id": commit_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_commit(
@@ -900,9 +917,10 @@ class CodeCommitClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codecommit.types.create_commit_input.CreateCommitInput = {}  # type: ignore[typeddict-item]
-        input_["repository_name"] = repository_name
-        input_["branch_name"] = branch_name
+        input_: capo_codecommit.types.create_commit_input.CreateCommitInput = {
+            "repository_name": repository_name,
+            "branch_name": branch_name,
+        }
         if parent_commit_id is not None:
             input_["parent_commit_id"] = parent_commit_id
         if author_name is not None:
@@ -925,6 +943,7 @@ class CodeCommitClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_pull_request(
@@ -990,19 +1009,22 @@ class CodeCommitClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codecommit.types.create_pull_request_input.CreatePullRequestInput = {}  # type: ignore[typeddict-item]
-        input_["title"] = title
+        input_: capo_codecommit.types.create_pull_request_input.CreatePullRequestInput = {
+            "title": title,
+            "targets": targets,
+        }
         if description is not None:
             input_["description"] = description
-        input_["targets"] = targets
-        if client_request_token is not None:
-            input_["client_request_token"] = client_request_token
+        if client_request_token is None:
+            client_request_token = str(uuid.uuid4())
+        input_["client_request_token"] = client_request_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_pull_request_approval_rule(
@@ -1054,16 +1076,18 @@ class CodeCommitClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codecommit.types.create_pull_request_approval_rule_input.CreatePullRequestApprovalRuleInput = {}  # type: ignore[typeddict-item]
-        input_["pull_request_id"] = pull_request_id
-        input_["approval_rule_name"] = approval_rule_name
-        input_["approval_rule_content"] = approval_rule_content
+        input_: capo_codecommit.types.create_pull_request_approval_rule_input.CreatePullRequestApprovalRuleInput = {
+            "pull_request_id": pull_request_id,
+            "approval_rule_name": approval_rule_name,
+            "approval_rule_content": approval_rule_content,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_repository(
@@ -1121,8 +1145,9 @@ class CodeCommitClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codecommit.types.create_repository_input.CreateRepositoryInput = {}  # type: ignore[typeddict-item]
-        input_["repository_name"] = repository_name
+        input_: capo_codecommit.types.create_repository_input.CreateRepositoryInput = {
+            "repository_name": repository_name
+        }
         if repository_description is not None:
             input_["repository_description"] = repository_description
         if tags is not None:
@@ -1135,6 +1160,7 @@ class CodeCommitClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_unreferenced_merge_commit(
@@ -1231,11 +1257,12 @@ class CodeCommitClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codecommit.types.create_unreferenced_merge_commit_input.CreateUnreferencedMergeCommitInput = {}  # type: ignore[typeddict-item]
-        input_["repository_name"] = repository_name
-        input_["source_commit_specifier"] = source_commit_specifier
-        input_["destination_commit_specifier"] = destination_commit_specifier
-        input_["merge_option"] = merge_option
+        input_: capo_codecommit.types.create_unreferenced_merge_commit_input.CreateUnreferencedMergeCommitInput = {
+            "repository_name": repository_name,
+            "source_commit_specifier": source_commit_specifier,
+            "destination_commit_specifier": destination_commit_specifier,
+            "merge_option": merge_option,
+        }
         if conflict_detail_level is not None:
             input_["conflict_detail_level"] = conflict_detail_level
         if conflict_resolution_strategy is not None:
@@ -1256,6 +1283,7 @@ class CodeCommitClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_approval_rule_template(
@@ -1291,14 +1319,16 @@ class CodeCommitClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codecommit.types.delete_approval_rule_template_input.DeleteApprovalRuleTemplateInput = {}  # type: ignore[typeddict-item]
-        input_["approval_rule_template_name"] = approval_rule_template_name
+        input_: capo_codecommit.types.delete_approval_rule_template_input.DeleteApprovalRuleTemplateInput = {
+            "approval_rule_template_name": approval_rule_template_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_branch(
@@ -1344,15 +1374,17 @@ class CodeCommitClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codecommit.types.delete_branch_input.DeleteBranchInput = {}  # type: ignore[typeddict-item]
-        input_["repository_name"] = repository_name
-        input_["branch_name"] = branch_name
+        input_: capo_codecommit.types.delete_branch_input.DeleteBranchInput = {
+            "repository_name": repository_name,
+            "branch_name": branch_name,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_comment_content(
@@ -1391,14 +1423,16 @@ class CodeCommitClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codecommit.types.delete_comment_content_input.DeleteCommentContentInput = {}  # type: ignore[typeddict-item]
-        input_["comment_id"] = comment_id
+        input_: capo_codecommit.types.delete_comment_content_input.DeleteCommentContentInput = {
+            "comment_id": comment_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_file(
@@ -1469,11 +1503,12 @@ class CodeCommitClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codecommit.types.delete_file_input.DeleteFileInput = {}  # type: ignore[typeddict-item]
-        input_["repository_name"] = repository_name
-        input_["branch_name"] = branch_name
-        input_["file_path"] = file_path
-        input_["parent_commit_id"] = parent_commit_id
+        input_: capo_codecommit.types.delete_file_input.DeleteFileInput = {
+            "repository_name": repository_name,
+            "branch_name": branch_name,
+            "file_path": file_path,
+            "parent_commit_id": parent_commit_id,
+        }
         if keep_empty_folders is not None:
             input_["keep_empty_folders"] = keep_empty_folders
         if commit_message is not None:
@@ -1488,6 +1523,7 @@ class CodeCommitClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_pull_request_approval_rule(
@@ -1534,15 +1570,17 @@ class CodeCommitClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codecommit.types.delete_pull_request_approval_rule_input.DeletePullRequestApprovalRuleInput = {}  # type: ignore[typeddict-item]
-        input_["pull_request_id"] = pull_request_id
-        input_["approval_rule_name"] = approval_rule_name
+        input_: capo_codecommit.types.delete_pull_request_approval_rule_input.DeletePullRequestApprovalRuleInput = {
+            "pull_request_id": pull_request_id,
+            "approval_rule_name": approval_rule_name,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_repository(
@@ -1582,14 +1620,16 @@ class CodeCommitClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codecommit.types.delete_repository_input.DeleteRepositoryInput = {}  # type: ignore[typeddict-item]
-        input_["repository_name"] = repository_name
+        input_: capo_codecommit.types.delete_repository_input.DeleteRepositoryInput = {
+            "repository_name": repository_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_merge_conflicts(
@@ -1667,14 +1707,15 @@ class CodeCommitClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codecommit.types.describe_merge_conflicts_input.DescribeMergeConflictsInput = {}  # type: ignore[typeddict-item]
-        input_["repository_name"] = repository_name
-        input_["destination_commit_specifier"] = destination_commit_specifier
-        input_["source_commit_specifier"] = source_commit_specifier
-        input_["merge_option"] = merge_option
+        input_: capo_codecommit.types.describe_merge_conflicts_input.DescribeMergeConflictsInput = {
+            "repository_name": repository_name,
+            "destination_commit_specifier": destination_commit_specifier,
+            "source_commit_specifier": source_commit_specifier,
+            "merge_option": merge_option,
+            "file_path": file_path,
+        }
         if max_merge_hunks is not None:
             input_["max_merge_hunks"] = max_merge_hunks
-        input_["file_path"] = file_path
         if conflict_detail_level is not None:
             input_["conflict_detail_level"] = conflict_detail_level
         if conflict_resolution_strategy is not None:
@@ -1687,7 +1728,47 @@ class CodeCommitClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_describe_merge_conflicts(
+        self,
+        repository_name: "capo_codecommit.types.repository_name.RepositoryName",
+        destination_commit_specifier: "capo_codecommit.types.commit_name.CommitName",
+        source_commit_specifier: "capo_codecommit.types.commit_name.CommitName",
+        merge_option: "capo_codecommit.types.merge_option_type_enum.MergeOptionTypeEnum",
+        file_path: "capo_codecommit.types.path.Path",
+        *,
+        config_overrides: Optional[CodeCommitClientConfig] = None,
+        max_merge_hunks: Optional[
+            "capo_codecommit.types.max_results.MaxResults"
+        ] = None,
+        conflict_detail_level: Optional[
+            "capo_codecommit.types.conflict_detail_level_type_enum.ConflictDetailLevelTypeEnum"
+        ] = None,
+        conflict_resolution_strategy: Optional[
+            "capo_codecommit.types.conflict_resolution_strategy_type_enum.ConflictResolutionStrategyTypeEnum"
+        ] = None,
+        next_token: Optional["capo_codecommit.types.next_token.NextToken"] = None,
+    ) -> "Iterator[capo_codecommit.types.describe_merge_conflicts_output.DescribeMergeConflictsOutput]":
+        _token = next_token
+        while True:
+            _response = self.describe_merge_conflicts(
+                repository_name,
+                destination_commit_specifier,
+                source_commit_specifier,
+                merge_option,
+                file_path,
+                config_overrides=config_overrides,
+                max_merge_hunks=max_merge_hunks,
+                conflict_detail_level=conflict_detail_level,
+                conflict_resolution_strategy=conflict_resolution_strategy,
+                next_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def describe_pull_request_events(
         self,
@@ -1742,8 +1823,9 @@ class CodeCommitClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codecommit.types.describe_pull_request_events_input.DescribePullRequestEventsInput = {}  # type: ignore[typeddict-item]
-        input_["pull_request_id"] = pull_request_id
+        input_: capo_codecommit.types.describe_pull_request_events_input.DescribePullRequestEventsInput = {
+            "pull_request_id": pull_request_id
+        }
         if pull_request_event_type is not None:
             input_["pull_request_event_type"] = pull_request_event_type
         if actor_arn is not None:
@@ -1758,7 +1840,35 @@ class CodeCommitClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_describe_pull_request_events(
+        self,
+        pull_request_id: "capo_codecommit.types.pull_request_id.PullRequestId",
+        *,
+        config_overrides: Optional[CodeCommitClientConfig] = None,
+        pull_request_event_type: Optional[
+            "capo_codecommit.types.pull_request_event_type.PullRequestEventType"
+        ] = None,
+        actor_arn: Optional["capo_codecommit.types.arn.Arn"] = None,
+        next_token: Optional["capo_codecommit.types.next_token.NextToken"] = None,
+        max_results: Optional["capo_codecommit.types.max_results.MaxResults"] = None,
+    ) -> "Iterator[capo_codecommit.types.describe_pull_request_events_output.DescribePullRequestEventsOutput]":
+        _token = next_token
+        while True:
+            _response = self.describe_pull_request_events(
+                pull_request_id,
+                config_overrides=config_overrides,
+                pull_request_event_type=pull_request_event_type,
+                actor_arn=actor_arn,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def disassociate_approval_rule_template_from_repository(
         self,
@@ -1801,15 +1911,17 @@ class CodeCommitClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codecommit.types.disassociate_approval_rule_template_from_repository_input.DisassociateApprovalRuleTemplateFromRepositoryInput = {}  # type: ignore[typeddict-item]
-        input_["approval_rule_template_name"] = approval_rule_template_name
-        input_["repository_name"] = repository_name
+        input_: capo_codecommit.types.disassociate_approval_rule_template_from_repository_input.DisassociateApprovalRuleTemplateFromRepositoryInput = {
+            "approval_rule_template_name": approval_rule_template_name,
+            "repository_name": repository_name,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def evaluate_pull_request_approval_rules(
@@ -1855,15 +1967,17 @@ class CodeCommitClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codecommit.types.evaluate_pull_request_approval_rules_input.EvaluatePullRequestApprovalRulesInput = {}  # type: ignore[typeddict-item]
-        input_["pull_request_id"] = pull_request_id
-        input_["revision_id"] = revision_id
+        input_: capo_codecommit.types.evaluate_pull_request_approval_rules_input.EvaluatePullRequestApprovalRulesInput = {
+            "pull_request_id": pull_request_id,
+            "revision_id": revision_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_approval_rule_template(
@@ -1899,14 +2013,16 @@ class CodeCommitClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codecommit.types.get_approval_rule_template_input.GetApprovalRuleTemplateInput = {}  # type: ignore[typeddict-item]
-        input_["approval_rule_template_name"] = approval_rule_template_name
+        input_: capo_codecommit.types.get_approval_rule_template_input.GetApprovalRuleTemplateInput = {
+            "approval_rule_template_name": approval_rule_template_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_blob(
@@ -1951,15 +2067,17 @@ class CodeCommitClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codecommit.types.get_blob_input.GetBlobInput = {}  # type: ignore[typeddict-item]
-        input_["repository_name"] = repository_name
-        input_["blob_id"] = blob_id
+        input_: capo_codecommit.types.get_blob_input.GetBlobInput = {
+            "repository_name": repository_name,
+            "blob_id": blob_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_branch(
@@ -2007,7 +2125,7 @@ class CodeCommitClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codecommit.types.get_branch_input.GetBranchInput = {}  # type: ignore[typeddict-item]
+        input_: capo_codecommit.types.get_branch_input.GetBranchInput = {}
         if repository_name is not None:
             input_["repository_name"] = repository_name
         if branch_name is not None:
@@ -2018,6 +2136,7 @@ class CodeCommitClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_comment(
@@ -2059,14 +2178,16 @@ class CodeCommitClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codecommit.types.get_comment_input.GetCommentInput = {}  # type: ignore[typeddict-item]
-        input_["comment_id"] = comment_id
+        input_: capo_codecommit.types.get_comment_input.GetCommentInput = {
+            "comment_id": comment_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_comment_reactions(
@@ -2112,8 +2233,9 @@ class CodeCommitClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codecommit.types.get_comment_reactions_input.GetCommentReactionsInput = {}  # type: ignore[typeddict-item]
-        input_["comment_id"] = comment_id
+        input_: capo_codecommit.types.get_comment_reactions_input.GetCommentReactionsInput = {
+            "comment_id": comment_id
+        }
         if reaction_user_arn is not None:
             input_["reaction_user_arn"] = reaction_user_arn
         if next_token is not None:
@@ -2126,7 +2248,31 @@ class CodeCommitClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_get_comment_reactions(
+        self,
+        comment_id: "capo_codecommit.types.comment_id.CommentId",
+        *,
+        config_overrides: Optional[CodeCommitClientConfig] = None,
+        reaction_user_arn: Optional["capo_codecommit.types.arn.Arn"] = None,
+        next_token: Optional["capo_codecommit.types.next_token.NextToken"] = None,
+        max_results: Optional["capo_codecommit.types.max_results.MaxResults"] = None,
+    ) -> "Iterator[capo_codecommit.types.get_comment_reactions_output.GetCommentReactionsOutput]":
+        _token = next_token
+        while True:
+            _response = self.get_comment_reactions(
+                comment_id,
+                config_overrides=config_overrides,
+                reaction_user_arn=reaction_user_arn,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def get_comments_for_compared_commit(
         self,
@@ -2179,11 +2325,12 @@ class CodeCommitClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codecommit.types.get_comments_for_compared_commit_input.GetCommentsForComparedCommitInput = {}  # type: ignore[typeddict-item]
-        input_["repository_name"] = repository_name
+        input_: capo_codecommit.types.get_comments_for_compared_commit_input.GetCommentsForComparedCommitInput = {
+            "repository_name": repository_name,
+            "after_commit_id": after_commit_id,
+        }
         if before_commit_id is not None:
             input_["before_commit_id"] = before_commit_id
-        input_["after_commit_id"] = after_commit_id
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -2194,7 +2341,33 @@ class CodeCommitClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_get_comments_for_compared_commit(
+        self,
+        repository_name: "capo_codecommit.types.repository_name.RepositoryName",
+        after_commit_id: "capo_codecommit.types.commit_id.CommitId",
+        *,
+        config_overrides: Optional[CodeCommitClientConfig] = None,
+        before_commit_id: Optional["capo_codecommit.types.commit_id.CommitId"] = None,
+        next_token: Optional["capo_codecommit.types.next_token.NextToken"] = None,
+        max_results: Optional["capo_codecommit.types.max_results.MaxResults"] = None,
+    ) -> "Iterator[capo_codecommit.types.get_comments_for_compared_commit_output.GetCommentsForComparedCommitOutput]":
+        _token = next_token
+        while True:
+            _response = self.get_comments_for_compared_commit(
+                repository_name,
+                after_commit_id,
+                config_overrides=config_overrides,
+                before_commit_id=before_commit_id,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def get_comments_for_pull_request(
         self,
@@ -2255,8 +2428,9 @@ class CodeCommitClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codecommit.types.get_comments_for_pull_request_input.GetCommentsForPullRequestInput = {}  # type: ignore[typeddict-item]
-        input_["pull_request_id"] = pull_request_id
+        input_: capo_codecommit.types.get_comments_for_pull_request_input.GetCommentsForPullRequestInput = {
+            "pull_request_id": pull_request_id
+        }
         if repository_name is not None:
             input_["repository_name"] = repository_name
         if before_commit_id is not None:
@@ -2273,7 +2447,37 @@ class CodeCommitClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_get_comments_for_pull_request(
+        self,
+        pull_request_id: "capo_codecommit.types.pull_request_id.PullRequestId",
+        *,
+        config_overrides: Optional[CodeCommitClientConfig] = None,
+        repository_name: Optional[
+            "capo_codecommit.types.repository_name.RepositoryName"
+        ] = None,
+        before_commit_id: Optional["capo_codecommit.types.commit_id.CommitId"] = None,
+        after_commit_id: Optional["capo_codecommit.types.commit_id.CommitId"] = None,
+        next_token: Optional["capo_codecommit.types.next_token.NextToken"] = None,
+        max_results: Optional["capo_codecommit.types.max_results.MaxResults"] = None,
+    ) -> "Iterator[capo_codecommit.types.get_comments_for_pull_request_output.GetCommentsForPullRequestOutput]":
+        _token = next_token
+        while True:
+            _response = self.get_comments_for_pull_request(
+                pull_request_id,
+                config_overrides=config_overrides,
+                repository_name=repository_name,
+                before_commit_id=before_commit_id,
+                after_commit_id=after_commit_id,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def get_commit(
         self,
@@ -2318,15 +2522,17 @@ class CodeCommitClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codecommit.types.get_commit_input.GetCommitInput = {}  # type: ignore[typeddict-item]
-        input_["repository_name"] = repository_name
-        input_["commit_id"] = commit_id
+        input_: capo_codecommit.types.get_commit_input.GetCommitInput = {
+            "repository_name": repository_name,
+            "commit_id": commit_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_differences(
@@ -2389,11 +2595,12 @@ class CodeCommitClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codecommit.types.get_differences_input.GetDifferencesInput = {}  # type: ignore[typeddict-item]
-        input_["repository_name"] = repository_name
+        input_: capo_codecommit.types.get_differences_input.GetDifferencesInput = {
+            "repository_name": repository_name,
+            "after_commit_specifier": after_commit_specifier,
+        }
         if before_commit_specifier is not None:
             input_["before_commit_specifier"] = before_commit_specifier
-        input_["after_commit_specifier"] = after_commit_specifier
         if before_path is not None:
             input_["before_path"] = before_path
         if after_path is not None:
@@ -2408,7 +2615,39 @@ class CodeCommitClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_get_differences(
+        self,
+        repository_name: "capo_codecommit.types.repository_name.RepositoryName",
+        after_commit_specifier: "capo_codecommit.types.commit_name.CommitName",
+        *,
+        config_overrides: Optional[CodeCommitClientConfig] = None,
+        before_commit_specifier: Optional[
+            "capo_codecommit.types.commit_name.CommitName"
+        ] = None,
+        before_path: Optional["capo_codecommit.types.path.Path"] = None,
+        after_path: Optional["capo_codecommit.types.path.Path"] = None,
+        max_results: Optional["capo_codecommit.types.limit.Limit"] = None,
+        next_token: Optional["capo_codecommit.types.next_token.NextToken"] = None,
+    ) -> "Iterator[capo_codecommit.types.get_differences_output.GetDifferencesOutput]":
+        _token = next_token
+        while True:
+            _response = self.get_differences(
+                repository_name,
+                after_commit_specifier,
+                config_overrides=config_overrides,
+                before_commit_specifier=before_commit_specifier,
+                before_path=before_path,
+                after_path=after_path,
+                max_results=max_results,
+                next_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def get_file(
         self,
@@ -2458,17 +2697,19 @@ class CodeCommitClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codecommit.types.get_file_input.GetFileInput = {}  # type: ignore[typeddict-item]
-        input_["repository_name"] = repository_name
+        input_: capo_codecommit.types.get_file_input.GetFileInput = {
+            "repository_name": repository_name,
+            "file_path": file_path,
+        }
         if commit_specifier is not None:
             input_["commit_specifier"] = commit_specifier
-        input_["file_path"] = file_path
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_folder(
@@ -2520,17 +2761,19 @@ class CodeCommitClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codecommit.types.get_folder_input.GetFolderInput = {}  # type: ignore[typeddict-item]
-        input_["repository_name"] = repository_name
+        input_: capo_codecommit.types.get_folder_input.GetFolderInput = {
+            "repository_name": repository_name,
+            "folder_path": folder_path,
+        }
         if commit_specifier is not None:
             input_["commit_specifier"] = commit_specifier
-        input_["folder_path"] = folder_path
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_merge_commit(
@@ -2588,10 +2831,11 @@ class CodeCommitClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codecommit.types.get_merge_commit_input.GetMergeCommitInput = {}  # type: ignore[typeddict-item]
-        input_["repository_name"] = repository_name
-        input_["source_commit_specifier"] = source_commit_specifier
-        input_["destination_commit_specifier"] = destination_commit_specifier
+        input_: capo_codecommit.types.get_merge_commit_input.GetMergeCommitInput = {
+            "repository_name": repository_name,
+            "source_commit_specifier": source_commit_specifier,
+            "destination_commit_specifier": destination_commit_specifier,
+        }
         if conflict_detail_level is not None:
             input_["conflict_detail_level"] = conflict_detail_level
         if conflict_resolution_strategy is not None:
@@ -2602,6 +2846,7 @@ class CodeCommitClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_merge_conflicts(
@@ -2676,11 +2921,12 @@ class CodeCommitClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codecommit.types.get_merge_conflicts_input.GetMergeConflictsInput = {}  # type: ignore[typeddict-item]
-        input_["repository_name"] = repository_name
-        input_["destination_commit_specifier"] = destination_commit_specifier
-        input_["source_commit_specifier"] = source_commit_specifier
-        input_["merge_option"] = merge_option
+        input_: capo_codecommit.types.get_merge_conflicts_input.GetMergeConflictsInput = {
+            "repository_name": repository_name,
+            "destination_commit_specifier": destination_commit_specifier,
+            "source_commit_specifier": source_commit_specifier,
+            "merge_option": merge_option,
+        }
         if conflict_detail_level is not None:
             input_["conflict_detail_level"] = conflict_detail_level
         if max_conflict_files is not None:
@@ -2695,7 +2941,45 @@ class CodeCommitClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_get_merge_conflicts(
+        self,
+        repository_name: "capo_codecommit.types.repository_name.RepositoryName",
+        destination_commit_specifier: "capo_codecommit.types.commit_name.CommitName",
+        source_commit_specifier: "capo_codecommit.types.commit_name.CommitName",
+        merge_option: "capo_codecommit.types.merge_option_type_enum.MergeOptionTypeEnum",
+        *,
+        config_overrides: Optional[CodeCommitClientConfig] = None,
+        conflict_detail_level: Optional[
+            "capo_codecommit.types.conflict_detail_level_type_enum.ConflictDetailLevelTypeEnum"
+        ] = None,
+        max_conflict_files: Optional[
+            "capo_codecommit.types.max_results.MaxResults"
+        ] = None,
+        conflict_resolution_strategy: Optional[
+            "capo_codecommit.types.conflict_resolution_strategy_type_enum.ConflictResolutionStrategyTypeEnum"
+        ] = None,
+        next_token: Optional["capo_codecommit.types.next_token.NextToken"] = None,
+    ) -> "Iterator[capo_codecommit.types.get_merge_conflicts_output.GetMergeConflictsOutput]":
+        _token = next_token
+        while True:
+            _response = self.get_merge_conflicts(
+                repository_name,
+                destination_commit_specifier,
+                source_commit_specifier,
+                merge_option,
+                config_overrides=config_overrides,
+                conflict_detail_level=conflict_detail_level,
+                max_conflict_files=max_conflict_files,
+                conflict_resolution_strategy=conflict_resolution_strategy,
+                next_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def get_merge_options(
         self,
@@ -2755,10 +3039,11 @@ class CodeCommitClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codecommit.types.get_merge_options_input.GetMergeOptionsInput = {}  # type: ignore[typeddict-item]
-        input_["repository_name"] = repository_name
-        input_["source_commit_specifier"] = source_commit_specifier
-        input_["destination_commit_specifier"] = destination_commit_specifier
+        input_: capo_codecommit.types.get_merge_options_input.GetMergeOptionsInput = {
+            "repository_name": repository_name,
+            "source_commit_specifier": source_commit_specifier,
+            "destination_commit_specifier": destination_commit_specifier,
+        }
         if conflict_detail_level is not None:
             input_["conflict_detail_level"] = conflict_detail_level
         if conflict_resolution_strategy is not None:
@@ -2769,6 +3054,7 @@ class CodeCommitClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_pull_request(
@@ -2809,14 +3095,16 @@ class CodeCommitClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codecommit.types.get_pull_request_input.GetPullRequestInput = {}  # type: ignore[typeddict-item]
-        input_["pull_request_id"] = pull_request_id
+        input_: capo_codecommit.types.get_pull_request_input.GetPullRequestInput = {
+            "pull_request_id": pull_request_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_pull_request_approval_states(
@@ -2861,15 +3149,17 @@ class CodeCommitClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codecommit.types.get_pull_request_approval_states_input.GetPullRequestApprovalStatesInput = {}  # type: ignore[typeddict-item]
-        input_["pull_request_id"] = pull_request_id
-        input_["revision_id"] = revision_id
+        input_: capo_codecommit.types.get_pull_request_approval_states_input.GetPullRequestApprovalStatesInput = {
+            "pull_request_id": pull_request_id,
+            "revision_id": revision_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_pull_request_override_state(
@@ -2914,15 +3204,17 @@ class CodeCommitClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codecommit.types.get_pull_request_override_state_input.GetPullRequestOverrideStateInput = {}  # type: ignore[typeddict-item]
-        input_["pull_request_id"] = pull_request_id
-        input_["revision_id"] = revision_id
+        input_: capo_codecommit.types.get_pull_request_override_state_input.GetPullRequestOverrideStateInput = {
+            "pull_request_id": pull_request_id,
+            "revision_id": revision_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_repository(
@@ -2963,14 +3255,16 @@ class CodeCommitClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codecommit.types.get_repository_input.GetRepositoryInput = {}  # type: ignore[typeddict-item]
-        input_["repository_name"] = repository_name
+        input_: capo_codecommit.types.get_repository_input.GetRepositoryInput = {
+            "repository_name": repository_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_repository_triggers(
@@ -3011,14 +3305,16 @@ class CodeCommitClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codecommit.types.get_repository_triggers_input.GetRepositoryTriggersInput = {}  # type: ignore[typeddict-item]
-        input_["repository_name"] = repository_name
+        input_: capo_codecommit.types.get_repository_triggers_input.GetRepositoryTriggersInput = {
+            "repository_name": repository_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_approval_rule_templates(
@@ -3055,7 +3351,7 @@ class CodeCommitClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codecommit.types.list_approval_rule_templates_input.ListApprovalRuleTemplatesInput = {}  # type: ignore[typeddict-item]
+        input_: capo_codecommit.types.list_approval_rule_templates_input.ListApprovalRuleTemplatesInput = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -3066,7 +3362,27 @@ class CodeCommitClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_approval_rule_templates(
+        self,
+        *,
+        config_overrides: Optional[CodeCommitClientConfig] = None,
+        next_token: Optional["capo_codecommit.types.next_token.NextToken"] = None,
+        max_results: Optional["capo_codecommit.types.max_results.MaxResults"] = None,
+    ) -> "Iterator[capo_codecommit.types.list_approval_rule_templates_output.ListApprovalRuleTemplatesOutput]":
+        _token = next_token
+        while True:
+            _response = self.list_approval_rule_templates(
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def list_associated_approval_rule_templates_for_repository(
         self,
@@ -3112,8 +3428,9 @@ class CodeCommitClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codecommit.types.list_associated_approval_rule_templates_for_repository_input.ListAssociatedApprovalRuleTemplatesForRepositoryInput = {}  # type: ignore[typeddict-item]
-        input_["repository_name"] = repository_name
+        input_: capo_codecommit.types.list_associated_approval_rule_templates_for_repository_input.ListAssociatedApprovalRuleTemplatesForRepositoryInput = {
+            "repository_name": repository_name
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -3124,7 +3441,29 @@ class CodeCommitClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_associated_approval_rule_templates_for_repository(
+        self,
+        repository_name: "capo_codecommit.types.repository_name.RepositoryName",
+        *,
+        config_overrides: Optional[CodeCommitClientConfig] = None,
+        next_token: Optional["capo_codecommit.types.next_token.NextToken"] = None,
+        max_results: Optional["capo_codecommit.types.max_results.MaxResults"] = None,
+    ) -> "Iterator[capo_codecommit.types.list_associated_approval_rule_templates_for_repository_output.ListAssociatedApprovalRuleTemplatesForRepositoryOutput]":
+        _token = next_token
+        while True:
+            _response = self.list_associated_approval_rule_templates_for_repository(
+                repository_name,
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def list_branches(
         self,
@@ -3167,8 +3506,9 @@ class CodeCommitClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codecommit.types.list_branches_input.ListBranchesInput = {}  # type: ignore[typeddict-item]
-        input_["repository_name"] = repository_name
+        input_: capo_codecommit.types.list_branches_input.ListBranchesInput = {
+            "repository_name": repository_name
+        }
         if next_token is not None:
             input_["next_token"] = next_token
 
@@ -3177,6 +3517,7 @@ class CodeCommitClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_branches(
@@ -3254,11 +3595,12 @@ class CodeCommitClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codecommit.types.list_file_commit_history_request.ListFileCommitHistoryRequest = {}  # type: ignore[typeddict-item]
-        input_["repository_name"] = repository_name
+        input_: capo_codecommit.types.list_file_commit_history_request.ListFileCommitHistoryRequest = {
+            "repository_name": repository_name,
+            "file_path": file_path,
+        }
         if commit_specifier is not None:
             input_["commit_specifier"] = commit_specifier
-        input_["file_path"] = file_path
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -3269,7 +3611,35 @@ class CodeCommitClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_file_commit_history(
+        self,
+        repository_name: "capo_codecommit.types.repository_name.RepositoryName",
+        file_path: "capo_codecommit.types.path.Path",
+        *,
+        config_overrides: Optional[CodeCommitClientConfig] = None,
+        commit_specifier: Optional[
+            "capo_codecommit.types.commit_name.CommitName"
+        ] = None,
+        max_results: Optional["capo_codecommit.types.limit.Limit"] = None,
+        next_token: Optional["capo_codecommit.types.next_token.NextToken"] = None,
+    ) -> "Iterator[capo_codecommit.types.list_file_commit_history_response.ListFileCommitHistoryResponse]":
+        _token = next_token
+        while True:
+            _response = self.list_file_commit_history(
+                repository_name,
+                file_path,
+                config_overrides=config_overrides,
+                commit_specifier=commit_specifier,
+                max_results=max_results,
+                next_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def list_pull_requests(
         self,
@@ -3324,8 +3694,9 @@ class CodeCommitClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codecommit.types.list_pull_requests_input.ListPullRequestsInput = {}  # type: ignore[typeddict-item]
-        input_["repository_name"] = repository_name
+        input_: capo_codecommit.types.list_pull_requests_input.ListPullRequestsInput = {
+            "repository_name": repository_name
+        }
         if author_arn is not None:
             input_["author_arn"] = author_arn
         if pull_request_status is not None:
@@ -3340,7 +3711,35 @@ class CodeCommitClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_pull_requests(
+        self,
+        repository_name: "capo_codecommit.types.repository_name.RepositoryName",
+        *,
+        config_overrides: Optional[CodeCommitClientConfig] = None,
+        author_arn: Optional["capo_codecommit.types.arn.Arn"] = None,
+        pull_request_status: Optional[
+            "capo_codecommit.types.pull_request_status_enum.PullRequestStatusEnum"
+        ] = None,
+        next_token: Optional["capo_codecommit.types.next_token.NextToken"] = None,
+        max_results: Optional["capo_codecommit.types.max_results.MaxResults"] = None,
+    ) -> "Iterator[capo_codecommit.types.list_pull_requests_output.ListPullRequestsOutput]":
+        _token = next_token
+        while True:
+            _response = self.list_pull_requests(
+                repository_name,
+                config_overrides=config_overrides,
+                author_arn=author_arn,
+                pull_request_status=pull_request_status,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def list_repositories(
         self,
@@ -3379,7 +3778,7 @@ class CodeCommitClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codecommit.types.list_repositories_input.ListRepositoriesInput = {}  # type: ignore[typeddict-item]
+        input_: capo_codecommit.types.list_repositories_input.ListRepositoriesInput = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if sort_by is not None:
@@ -3392,6 +3791,7 @@ class CodeCommitClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_repositories(
@@ -3461,8 +3861,9 @@ class CodeCommitClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codecommit.types.list_repositories_for_approval_rule_template_input.ListRepositoriesForApprovalRuleTemplateInput = {}  # type: ignore[typeddict-item]
-        input_["approval_rule_template_name"] = approval_rule_template_name
+        input_: capo_codecommit.types.list_repositories_for_approval_rule_template_input.ListRepositoriesForApprovalRuleTemplateInput = {
+            "approval_rule_template_name": approval_rule_template_name
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -3473,7 +3874,29 @@ class CodeCommitClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_repositories_for_approval_rule_template(
+        self,
+        approval_rule_template_name: "capo_codecommit.types.approval_rule_template_name.ApprovalRuleTemplateName",
+        *,
+        config_overrides: Optional[CodeCommitClientConfig] = None,
+        next_token: Optional["capo_codecommit.types.next_token.NextToken"] = None,
+        max_results: Optional["capo_codecommit.types.max_results.MaxResults"] = None,
+    ) -> "Iterator[capo_codecommit.types.list_repositories_for_approval_rule_template_output.ListRepositoriesForApprovalRuleTemplateOutput]":
+        _token = next_token
+        while True:
+            _response = self.list_repositories_for_approval_rule_template(
+                approval_rule_template_name,
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def list_tags_for_resource(
         self,
@@ -3513,8 +3936,9 @@ class CodeCommitClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codecommit.types.list_tags_for_resource_input.ListTagsForResourceInput = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_codecommit.types.list_tags_for_resource_input.ListTagsForResourceInput = {
+            "resource_arn": resource_arn
+        }
         if next_token is not None:
             input_["next_token"] = next_token
 
@@ -3523,6 +3947,7 @@ class CodeCommitClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def merge_branches_by_fast_forward(
@@ -3580,10 +4005,11 @@ class CodeCommitClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codecommit.types.merge_branches_by_fast_forward_input.MergeBranchesByFastForwardInput = {}  # type: ignore[typeddict-item]
-        input_["repository_name"] = repository_name
-        input_["source_commit_specifier"] = source_commit_specifier
-        input_["destination_commit_specifier"] = destination_commit_specifier
+        input_: capo_codecommit.types.merge_branches_by_fast_forward_input.MergeBranchesByFastForwardInput = {
+            "repository_name": repository_name,
+            "source_commit_specifier": source_commit_specifier,
+            "destination_commit_specifier": destination_commit_specifier,
+        }
         if target_branch is not None:
             input_["target_branch"] = target_branch
 
@@ -3592,6 +4018,7 @@ class CodeCommitClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def merge_branches_by_squash(
@@ -3691,10 +4118,11 @@ class CodeCommitClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codecommit.types.merge_branches_by_squash_input.MergeBranchesBySquashInput = {}  # type: ignore[typeddict-item]
-        input_["repository_name"] = repository_name
-        input_["source_commit_specifier"] = source_commit_specifier
-        input_["destination_commit_specifier"] = destination_commit_specifier
+        input_: capo_codecommit.types.merge_branches_by_squash_input.MergeBranchesBySquashInput = {
+            "repository_name": repository_name,
+            "source_commit_specifier": source_commit_specifier,
+            "destination_commit_specifier": destination_commit_specifier,
+        }
         if target_branch is not None:
             input_["target_branch"] = target_branch
         if conflict_detail_level is not None:
@@ -3717,6 +4145,7 @@ class CodeCommitClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def merge_branches_by_three_way(
@@ -3816,10 +4245,11 @@ class CodeCommitClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codecommit.types.merge_branches_by_three_way_input.MergeBranchesByThreeWayInput = {}  # type: ignore[typeddict-item]
-        input_["repository_name"] = repository_name
-        input_["source_commit_specifier"] = source_commit_specifier
-        input_["destination_commit_specifier"] = destination_commit_specifier
+        input_: capo_codecommit.types.merge_branches_by_three_way_input.MergeBranchesByThreeWayInput = {
+            "repository_name": repository_name,
+            "source_commit_specifier": source_commit_specifier,
+            "destination_commit_specifier": destination_commit_specifier,
+        }
         if target_branch is not None:
             input_["target_branch"] = target_branch
         if conflict_detail_level is not None:
@@ -3842,6 +4272,7 @@ class CodeCommitClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def merge_pull_request_by_fast_forward(
@@ -3897,9 +4328,10 @@ class CodeCommitClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codecommit.types.merge_pull_request_by_fast_forward_input.MergePullRequestByFastForwardInput = {}  # type: ignore[typeddict-item]
-        input_["pull_request_id"] = pull_request_id
-        input_["repository_name"] = repository_name
+        input_: capo_codecommit.types.merge_pull_request_by_fast_forward_input.MergePullRequestByFastForwardInput = {
+            "pull_request_id": pull_request_id,
+            "repository_name": repository_name,
+        }
         if source_commit_id is not None:
             input_["source_commit_id"] = source_commit_id
 
@@ -3908,6 +4340,7 @@ class CodeCommitClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def merge_pull_request_by_squash(
@@ -4004,9 +4437,10 @@ class CodeCommitClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codecommit.types.merge_pull_request_by_squash_input.MergePullRequestBySquashInput = {}  # type: ignore[typeddict-item]
-        input_["pull_request_id"] = pull_request_id
-        input_["repository_name"] = repository_name
+        input_: capo_codecommit.types.merge_pull_request_by_squash_input.MergePullRequestBySquashInput = {
+            "pull_request_id": pull_request_id,
+            "repository_name": repository_name,
+        }
         if source_commit_id is not None:
             input_["source_commit_id"] = source_commit_id
         if conflict_detail_level is not None:
@@ -4029,6 +4463,7 @@ class CodeCommitClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def merge_pull_request_by_three_way(
@@ -4125,9 +4560,10 @@ class CodeCommitClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codecommit.types.merge_pull_request_by_three_way_input.MergePullRequestByThreeWayInput = {}  # type: ignore[typeddict-item]
-        input_["pull_request_id"] = pull_request_id
-        input_["repository_name"] = repository_name
+        input_: capo_codecommit.types.merge_pull_request_by_three_way_input.MergePullRequestByThreeWayInput = {
+            "pull_request_id": pull_request_id,
+            "repository_name": repository_name,
+        }
         if source_commit_id is not None:
             input_["source_commit_id"] = source_commit_id
         if conflict_detail_level is not None:
@@ -4150,6 +4586,7 @@ class CodeCommitClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def override_pull_request_approval_rules(
@@ -4199,16 +4636,18 @@ class CodeCommitClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codecommit.types.override_pull_request_approval_rules_input.OverridePullRequestApprovalRulesInput = {}  # type: ignore[typeddict-item]
-        input_["pull_request_id"] = pull_request_id
-        input_["revision_id"] = revision_id
-        input_["override_status"] = override_status
+        input_: capo_codecommit.types.override_pull_request_approval_rules_input.OverridePullRequestApprovalRulesInput = {
+            "pull_request_id": pull_request_id,
+            "revision_id": revision_id,
+            "override_status": override_status,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def post_comment_for_compared_commit(
@@ -4276,22 +4715,25 @@ class CodeCommitClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codecommit.types.post_comment_for_compared_commit_input.PostCommentForComparedCommitInput = {}  # type: ignore[typeddict-item]
-        input_["repository_name"] = repository_name
+        input_: capo_codecommit.types.post_comment_for_compared_commit_input.PostCommentForComparedCommitInput = {
+            "repository_name": repository_name,
+            "after_commit_id": after_commit_id,
+            "content": content,
+        }
         if before_commit_id is not None:
             input_["before_commit_id"] = before_commit_id
-        input_["after_commit_id"] = after_commit_id
         if location is not None:
             input_["location"] = location
-        input_["content"] = content
-        if client_request_token is not None:
-            input_["client_request_token"] = client_request_token
+        if client_request_token is None:
+            client_request_token = str(uuid.uuid4())
+        input_["client_request_token"] = client_request_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def post_comment_for_pull_request(
@@ -4365,22 +4807,25 @@ class CodeCommitClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codecommit.types.post_comment_for_pull_request_input.PostCommentForPullRequestInput = {}  # type: ignore[typeddict-item]
-        input_["pull_request_id"] = pull_request_id
-        input_["repository_name"] = repository_name
-        input_["before_commit_id"] = before_commit_id
-        input_["after_commit_id"] = after_commit_id
+        input_: capo_codecommit.types.post_comment_for_pull_request_input.PostCommentForPullRequestInput = {
+            "pull_request_id": pull_request_id,
+            "repository_name": repository_name,
+            "before_commit_id": before_commit_id,
+            "after_commit_id": after_commit_id,
+            "content": content,
+        }
         if location is not None:
             input_["location"] = location
-        input_["content"] = content
-        if client_request_token is not None:
-            input_["client_request_token"] = client_request_token
+        if client_request_token is None:
+            client_request_token = str(uuid.uuid4())
+        input_["client_request_token"] = client_request_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def post_comment_reply(
@@ -4427,17 +4872,20 @@ class CodeCommitClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codecommit.types.post_comment_reply_input.PostCommentReplyInput = {}  # type: ignore[typeddict-item]
-        input_["in_reply_to"] = in_reply_to
-        if client_request_token is not None:
-            input_["client_request_token"] = client_request_token
-        input_["content"] = content
+        input_: capo_codecommit.types.post_comment_reply_input.PostCommentReplyInput = {
+            "in_reply_to": in_reply_to,
+            "content": content,
+        }
+        if client_request_token is None:
+            client_request_token = str(uuid.uuid4())
+        input_["client_request_token"] = client_request_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def put_comment_reaction(
@@ -4477,15 +4925,17 @@ class CodeCommitClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codecommit.types.put_comment_reaction_input.PutCommentReactionInput = {}  # type: ignore[typeddict-item]
-        input_["comment_id"] = comment_id
-        input_["reaction_value"] = reaction_value
+        input_: capo_codecommit.types.put_comment_reaction_input.PutCommentReactionInput = {
+            "comment_id": comment_id,
+            "reaction_value": reaction_value,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def put_file(
@@ -4564,11 +5014,12 @@ class CodeCommitClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codecommit.types.put_file_input.PutFileInput = {}  # type: ignore[typeddict-item]
-        input_["repository_name"] = repository_name
-        input_["branch_name"] = branch_name
-        input_["file_content"] = file_content
-        input_["file_path"] = file_path
+        input_: capo_codecommit.types.put_file_input.PutFileInput = {
+            "repository_name": repository_name,
+            "branch_name": branch_name,
+            "file_content": file_content,
+            "file_path": file_path,
+        }
         if file_mode is not None:
             input_["file_mode"] = file_mode
         if parent_commit_id is not None:
@@ -4585,6 +5036,7 @@ class CodeCommitClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def put_repository_triggers(
@@ -4640,15 +5092,17 @@ class CodeCommitClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codecommit.types.put_repository_triggers_input.PutRepositoryTriggersInput = {}  # type: ignore[typeddict-item]
-        input_["repository_name"] = repository_name
-        input_["triggers"] = triggers
+        input_: capo_codecommit.types.put_repository_triggers_input.PutRepositoryTriggersInput = {
+            "repository_name": repository_name,
+            "triggers": triggers,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def tag_resource(
@@ -4690,15 +5144,17 @@ class CodeCommitClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codecommit.types.tag_resource_input.TagResourceInput = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tags"] = tags
+        input_: capo_codecommit.types.tag_resource_input.TagResourceInput = {
+            "resource_arn": resource_arn,
+            "tags": tags,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def test_repository_triggers(
@@ -4754,15 +5210,17 @@ class CodeCommitClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codecommit.types.test_repository_triggers_input.TestRepositoryTriggersInput = {}  # type: ignore[typeddict-item]
-        input_["repository_name"] = repository_name
-        input_["triggers"] = triggers
+        input_: capo_codecommit.types.test_repository_triggers_input.TestRepositoryTriggersInput = {
+            "repository_name": repository_name,
+            "triggers": triggers,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def untag_resource(
@@ -4804,15 +5262,17 @@ class CodeCommitClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codecommit.types.untag_resource_input.UntagResourceInput = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tag_keys"] = tag_keys
+        input_: capo_codecommit.types.untag_resource_input.UntagResourceInput = {
+            "resource_arn": resource_arn,
+            "tag_keys": tag_keys,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_approval_rule_template_content(
@@ -4857,9 +5317,10 @@ class CodeCommitClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codecommit.types.update_approval_rule_template_content_input.UpdateApprovalRuleTemplateContentInput = {}  # type: ignore[typeddict-item]
-        input_["approval_rule_template_name"] = approval_rule_template_name
-        input_["new_rule_content"] = new_rule_content
+        input_: capo_codecommit.types.update_approval_rule_template_content_input.UpdateApprovalRuleTemplateContentInput = {
+            "approval_rule_template_name": approval_rule_template_name,
+            "new_rule_content": new_rule_content,
+        }
         if existing_rule_content_sha256 is not None:
             input_["existing_rule_content_sha256"] = existing_rule_content_sha256
 
@@ -4868,6 +5329,7 @@ class CodeCommitClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_approval_rule_template_description(
@@ -4906,17 +5368,17 @@ class CodeCommitClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codecommit.types.update_approval_rule_template_description_input.UpdateApprovalRuleTemplateDescriptionInput = {}  # type: ignore[typeddict-item]
-        input_["approval_rule_template_name"] = approval_rule_template_name
-        input_["approval_rule_template_description"] = (
-            approval_rule_template_description
-        )
+        input_: capo_codecommit.types.update_approval_rule_template_description_input.UpdateApprovalRuleTemplateDescriptionInput = {
+            "approval_rule_template_name": approval_rule_template_name,
+            "approval_rule_template_description": approval_rule_template_description,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_approval_rule_template_name(
@@ -4955,15 +5417,17 @@ class CodeCommitClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codecommit.types.update_approval_rule_template_name_input.UpdateApprovalRuleTemplateNameInput = {}  # type: ignore[typeddict-item]
-        input_["old_approval_rule_template_name"] = old_approval_rule_template_name
-        input_["new_approval_rule_template_name"] = new_approval_rule_template_name
+        input_: capo_codecommit.types.update_approval_rule_template_name_input.UpdateApprovalRuleTemplateNameInput = {
+            "old_approval_rule_template_name": old_approval_rule_template_name,
+            "new_approval_rule_template_name": new_approval_rule_template_name,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_comment(
@@ -5005,15 +5469,17 @@ class CodeCommitClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codecommit.types.update_comment_input.UpdateCommentInput = {}  # type: ignore[typeddict-item]
-        input_["comment_id"] = comment_id
-        input_["content"] = content
+        input_: capo_codecommit.types.update_comment_input.UpdateCommentInput = {
+            "comment_id": comment_id,
+            "content": content,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_default_branch(
@@ -5057,15 +5523,17 @@ class CodeCommitClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codecommit.types.update_default_branch_input.UpdateDefaultBranchInput = {}  # type: ignore[typeddict-item]
-        input_["repository_name"] = repository_name
-        input_["default_branch_name"] = default_branch_name
+        input_: capo_codecommit.types.update_default_branch_input.UpdateDefaultBranchInput = {
+            "repository_name": repository_name,
+            "default_branch_name": default_branch_name,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_pull_request_approval_rule_content(
@@ -5122,18 +5590,20 @@ class CodeCommitClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codecommit.types.update_pull_request_approval_rule_content_input.UpdatePullRequestApprovalRuleContentInput = {}  # type: ignore[typeddict-item]
-        input_["pull_request_id"] = pull_request_id
-        input_["approval_rule_name"] = approval_rule_name
+        input_: capo_codecommit.types.update_pull_request_approval_rule_content_input.UpdatePullRequestApprovalRuleContentInput = {
+            "pull_request_id": pull_request_id,
+            "approval_rule_name": approval_rule_name,
+            "new_rule_content": new_rule_content,
+        }
         if existing_rule_content_sha256 is not None:
             input_["existing_rule_content_sha256"] = existing_rule_content_sha256
-        input_["new_rule_content"] = new_rule_content
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_pull_request_approval_state(
@@ -5184,16 +5654,18 @@ class CodeCommitClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codecommit.types.update_pull_request_approval_state_input.UpdatePullRequestApprovalStateInput = {}  # type: ignore[typeddict-item]
-        input_["pull_request_id"] = pull_request_id
-        input_["revision_id"] = revision_id
-        input_["approval_state"] = approval_state
+        input_: capo_codecommit.types.update_pull_request_approval_state_input.UpdatePullRequestApprovalStateInput = {
+            "pull_request_id": pull_request_id,
+            "revision_id": revision_id,
+            "approval_state": approval_state,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_pull_request_description(
@@ -5233,15 +5705,17 @@ class CodeCommitClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codecommit.types.update_pull_request_description_input.UpdatePullRequestDescriptionInput = {}  # type: ignore[typeddict-item]
-        input_["pull_request_id"] = pull_request_id
-        input_["description"] = description
+        input_: capo_codecommit.types.update_pull_request_description_input.UpdatePullRequestDescriptionInput = {
+            "pull_request_id": pull_request_id,
+            "description": description,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_pull_request_status(
@@ -5287,15 +5761,17 @@ class CodeCommitClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codecommit.types.update_pull_request_status_input.UpdatePullRequestStatusInput = {}  # type: ignore[typeddict-item]
-        input_["pull_request_id"] = pull_request_id
-        input_["pull_request_status"] = pull_request_status
+        input_: capo_codecommit.types.update_pull_request_status_input.UpdatePullRequestStatusInput = {
+            "pull_request_id": pull_request_id,
+            "pull_request_status": pull_request_status,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_pull_request_title(
@@ -5336,15 +5812,17 @@ class CodeCommitClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codecommit.types.update_pull_request_title_input.UpdatePullRequestTitleInput = {}  # type: ignore[typeddict-item]
-        input_["pull_request_id"] = pull_request_id
-        input_["title"] = title
+        input_: capo_codecommit.types.update_pull_request_title_input.UpdatePullRequestTitleInput = {
+            "pull_request_id": pull_request_id,
+            "title": title,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_repository_description(
@@ -5388,8 +5866,9 @@ class CodeCommitClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codecommit.types.update_repository_description_input.UpdateRepositoryDescriptionInput = {}  # type: ignore[typeddict-item]
-        input_["repository_name"] = repository_name
+        input_: capo_codecommit.types.update_repository_description_input.UpdateRepositoryDescriptionInput = {
+            "repository_name": repository_name
+        }
         if repository_description is not None:
             input_["repository_description"] = repository_description
 
@@ -5398,6 +5877,7 @@ class CodeCommitClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_repository_encryption_key(
@@ -5443,15 +5923,17 @@ class CodeCommitClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codecommit.types.update_repository_encryption_key_input.UpdateRepositoryEncryptionKeyInput = {}  # type: ignore[typeddict-item]
-        input_["repository_name"] = repository_name
-        input_["kms_key_id"] = kms_key_id
+        input_: capo_codecommit.types.update_repository_encryption_key_input.UpdateRepositoryEncryptionKeyInput = {
+            "repository_name": repository_name,
+            "kms_key_id": kms_key_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_repository_name(
@@ -5488,15 +5970,17 @@ class CodeCommitClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codecommit.types.update_repository_name_input.UpdateRepositoryNameInput = {}  # type: ignore[typeddict-item]
-        input_["old_name"] = old_name
-        input_["new_name"] = new_name
+        input_: capo_codecommit.types.update_repository_name_input.UpdateRepositoryNameInput = {
+            "old_name": old_name,
+            "new_name": new_name,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def __enter__(self) -> Self:

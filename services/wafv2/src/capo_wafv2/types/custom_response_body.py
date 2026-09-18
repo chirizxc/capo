@@ -32,7 +32,7 @@ def serialize_aws_json_1_1(value: CustomResponseBody) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CustomResponseBody:
     out: CustomResponseBody = {}  # type: ignore[typeddict-item]
-    if "ContentType" in data:
+    if data.get("ContentType") is not None:
         import capo_wafv2.types.response_content_type
 
         out["content_type"] = (
@@ -42,7 +42,7 @@ def deserialize_aws_json_1_1(data: dict) -> CustomResponseBody:
         )
     else:
         raise DeserializationError("CustomResponseBody.content_type required")
-    if "Content" in data:
+    if data.get("Content") is not None:
         out["content"] = data["Content"]
     else:
         raise DeserializationError("CustomResponseBody.content required")

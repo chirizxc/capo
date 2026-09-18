@@ -26,7 +26,7 @@ def serialize_aws_json_1_0(value: DescribeVpcIngressConnectionRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> DescribeVpcIngressConnectionRequest:
     out: DescribeVpcIngressConnectionRequest = {}  # type: ignore[typeddict-item]
-    if "VpcIngressConnectionArn" in data:
+    if data.get("VpcIngressConnectionArn") is not None:
         out["vpc_ingress_connection_arn"] = data["VpcIngressConnectionArn"]
     else:
         raise DeserializationError(

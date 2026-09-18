@@ -31,9 +31,9 @@ def serialize_json(value: ResourceSpecification) -> dict:
 
 def deserialize_json(data: dict) -> ResourceSpecification:
     out: ResourceSpecification = {}  # type: ignore[typeddict-item]
-    if "reservedBitrate" in data:
+    if data.get("reservedBitrate") is not None:
         out["reserved_bitrate"] = data["reservedBitrate"]
-    if "resourceType" in data:
+    if data.get("resourceType") is not None:
         import capo_mediaconnect.types.resource_type
 
         out["resource_type"] = capo_mediaconnect.types.resource_type.deserialize_json(

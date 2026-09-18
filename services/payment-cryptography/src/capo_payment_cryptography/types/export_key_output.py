@@ -29,7 +29,7 @@ def serialize_aws_json_1_0(value: ExportKeyOutput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ExportKeyOutput:
     out: ExportKeyOutput = {}  # type: ignore[typeddict-item]
-    if "WrappedKey" in data:
+    if data.get("WrappedKey") is not None:
         import capo_payment_cryptography.types.wrapped_key
 
         out["wrapped_key"] = (

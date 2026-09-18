@@ -33,10 +33,10 @@ def serialize_json(value: ListTagsForResourceResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListTagsForResourceResponse:
     out: ListTagsForResourceResponse = {}  # type: ignore[typeddict-item]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_quicksight.types.tag_list
 
         out["tags"] = capo_quicksight.types.tag_list.deserialize_json(data["Tags"])
-    if "RequestId" in data:
+    if data.get("RequestId") is not None:
         out["request_id"] = data["RequestId"]
     return out

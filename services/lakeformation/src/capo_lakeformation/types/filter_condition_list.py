@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> FilterConditionList:
 
     out: FilterConditionList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_lakeformation.types.filter_condition.deserialize_json(item))
     return out

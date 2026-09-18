@@ -31,14 +31,12 @@ def serialize_json(value: ListSolNetworkOperationsMetadata) -> dict:
         out["nsdInfoId"] = value["nsd_info_id"]
     if "vnf_instance_id" in value:
         out["vnfInstanceId"] = value["vnf_instance_id"]
-    import capo_tnb.types._prelude.timestamp
+    import capo_tnb._protocol.serialize
 
-    out["createdAt"] = capo_tnb.types._prelude.timestamp.serialize_json(
-        value["created_at"]
-    )
-    import capo_tnb.types._prelude.timestamp
+    out["createdAt"] = capo_tnb._protocol.serialize.fmt_date_time(value["created_at"])
+    import capo_tnb._protocol.serialize
 
-    out["lastModified"] = capo_tnb.types._prelude.timestamp.serialize_json(
+    out["lastModified"] = capo_tnb._protocol.serialize.fmt_date_time(
         value["last_modified"]
     )
     return out
@@ -46,25 +44,25 @@ def serialize_json(value: ListSolNetworkOperationsMetadata) -> dict:
 
 def deserialize_json(data: dict) -> ListSolNetworkOperationsMetadata:
     out: ListSolNetworkOperationsMetadata = {}  # type: ignore[typeddict-item]
-    if "nsdInfoId" in data:
+    if data.get("nsdInfoId") is not None:
         out["nsd_info_id"] = data["nsdInfoId"]
-    if "vnfInstanceId" in data:
+    if data.get("vnfInstanceId") is not None:
         out["vnf_instance_id"] = data["vnfInstanceId"]
-    if "createdAt" in data:
-        import capo_tnb.types._prelude.timestamp
+    if data.get("createdAt") is not None:
+        import datetime
 
-        out["created_at"] = capo_tnb.types._prelude.timestamp.deserialize_json(
-            data["createdAt"]
+        out["created_at"] = datetime.datetime.fromisoformat(
+            data["createdAt"].replace("Z", "+00:00")
         )
     else:
         raise DeserializationError(
             "ListSolNetworkOperationsMetadata.created_at required"
         )
-    if "lastModified" in data:
-        import capo_tnb.types._prelude.timestamp
+    if data.get("lastModified") is not None:
+        import datetime
 
-        out["last_modified"] = capo_tnb.types._prelude.timestamp.deserialize_json(
-            data["lastModified"]
+        out["last_modified"] = datetime.datetime.fromisoformat(
+            data["lastModified"].replace("Z", "+00:00")
         )
     else:
         raise DeserializationError(

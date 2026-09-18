@@ -107,13 +107,13 @@ def serialize_json(value: ConfigRecommendation) -> dict:
 
 def deserialize_json(data: dict) -> ConfigRecommendation:
     out: ConfigRecommendation = {}  # type: ignore[typeddict-item]
-    if "cost" in data:
+    if data.get("cost") is not None:
         import capo_resiliencehub.types.cost
 
         out["cost"] = capo_resiliencehub.types.cost.deserialize_json(data["cost"])
-    if "appComponentName" in data:
+    if data.get("appComponentName") is not None:
         out["app_component_name"] = data["appComponentName"]
-    if "compliance" in data:
+    if data.get("compliance") is not None:
         import capo_resiliencehub.types.assessment_compliance
 
         out["compliance"] = (
@@ -121,7 +121,7 @@ def deserialize_json(data: dict) -> ConfigRecommendation:
                 data["compliance"]
             )
         )
-    if "recommendationCompliance" in data:
+    if data.get("recommendationCompliance") is not None:
         import capo_resiliencehub.types.recommendation_compliance
 
         out["recommendation_compliance"] = (
@@ -129,7 +129,7 @@ def deserialize_json(data: dict) -> ConfigRecommendation:
                 data["recommendationCompliance"]
             )
         )
-    if "optimizationType" in data:
+    if data.get("optimizationType") is not None:
         import capo_resiliencehub.types.config_recommendation_optimization_type
 
         out["optimization_type"] = (
@@ -139,13 +139,13 @@ def deserialize_json(data: dict) -> ConfigRecommendation:
         )
     else:
         raise DeserializationError("ConfigRecommendation.optimization_type required")
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("ConfigRecommendation.name required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "suggestedChanges" in data:
+    if data.get("suggestedChanges") is not None:
         import capo_resiliencehub.types.suggested_changes_list
 
         out["suggested_changes"] = (
@@ -153,7 +153,7 @@ def deserialize_json(data: dict) -> ConfigRecommendation:
                 data["suggestedChanges"]
             )
         )
-    if "haArchitecture" in data:
+    if data.get("haArchitecture") is not None:
         import capo_resiliencehub.types.ha_architecture
 
         out["ha_architecture"] = (
@@ -161,7 +161,7 @@ def deserialize_json(data: dict) -> ConfigRecommendation:
                 data["haArchitecture"]
             )
         )
-    if "referenceId" in data:
+    if data.get("referenceId") is not None:
         out["reference_id"] = data["referenceId"]
     else:
         raise DeserializationError("ConfigRecommendation.reference_id required")

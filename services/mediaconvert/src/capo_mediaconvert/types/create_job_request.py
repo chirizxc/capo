@@ -139,7 +139,7 @@ def serialize_json(value: CreateJobRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateJobRequest:
     out: CreateJobRequest = {}  # type: ignore[typeddict-item]
-    if "accelerationSettings" in data:
+    if data.get("accelerationSettings") is not None:
         import capo_mediaconvert.types.acceleration_settings
 
         out["acceleration_settings"] = (
@@ -147,7 +147,7 @@ def deserialize_json(data: dict) -> CreateJobRequest:
                 data["accelerationSettings"]
             )
         )
-    if "billingTagsSource" in data:
+    if data.get("billingTagsSource") is not None:
         import capo_mediaconvert.types.billing_tags_source
 
         out["billing_tags_source"] = (
@@ -155,9 +155,9 @@ def deserialize_json(data: dict) -> CreateJobRequest:
                 data["billingTagsSource"]
             )
         )
-    if "clientRequestToken" in data:
+    if data.get("clientRequestToken") is not None:
         out["client_request_token"] = data["clientRequestToken"]
-    if "hopDestinations" in data:
+    if data.get("hopDestinations") is not None:
         import capo_mediaconvert.types.__list_of_hop_destination
 
         out["hop_destinations"] = (
@@ -165,23 +165,23 @@ def deserialize_json(data: dict) -> CreateJobRequest:
                 data["hopDestinations"]
             )
         )
-    if "jobEngineVersion" in data:
+    if data.get("jobEngineVersion") is not None:
         out["job_engine_version"] = data["jobEngineVersion"]
-    if "jobTemplate" in data:
+    if data.get("jobTemplate") is not None:
         out["job_template"] = data["jobTemplate"]
-    if "priority" in data:
+    if data.get("priority") is not None:
         out["priority"] = data["priority"]
-    if "queue" in data:
+    if data.get("queue") is not None:
         out["queue"] = data["queue"]
-    if "role" in data:
+    if data.get("role") is not None:
         out["role"] = data["role"]
-    if "settings" in data:
+    if data.get("settings") is not None:
         import capo_mediaconvert.types.job_settings
 
         out["settings"] = capo_mediaconvert.types.job_settings.deserialize_json(
             data["settings"]
         )
-    if "simulateReservedQueue" in data:
+    if data.get("simulateReservedQueue") is not None:
         import capo_mediaconvert.types.simulate_reserved_queue
 
         out["simulate_reserved_queue"] = (
@@ -189,7 +189,7 @@ def deserialize_json(data: dict) -> CreateJobRequest:
                 data["simulateReservedQueue"]
             )
         )
-    if "statusUpdateInterval" in data:
+    if data.get("statusUpdateInterval") is not None:
         import capo_mediaconvert.types.status_update_interval
 
         out["status_update_interval"] = (
@@ -197,13 +197,13 @@ def deserialize_json(data: dict) -> CreateJobRequest:
                 data["statusUpdateInterval"]
             )
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_mediaconvert.types.__map_of__string
 
         out["tags"] = capo_mediaconvert.types.__map_of__string.deserialize_json(
             data["tags"]
         )
-    if "userMetadata" in data:
+    if data.get("userMetadata") is not None:
         import capo_mediaconvert.types.__map_of__string
 
         out["user_metadata"] = (

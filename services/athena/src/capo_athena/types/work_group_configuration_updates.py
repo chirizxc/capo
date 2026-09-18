@@ -163,9 +163,9 @@ def serialize_aws_json_1_1(value: WorkGroupConfigurationUpdates) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> WorkGroupConfigurationUpdates:
     out: WorkGroupConfigurationUpdates = {}  # type: ignore[typeddict-item]
-    if "EnforceWorkGroupConfiguration" in data:
+    if data.get("EnforceWorkGroupConfiguration") is not None:
         out["enforce_work_group_configuration"] = data["EnforceWorkGroupConfiguration"]
-    if "ResultConfigurationUpdates" in data:
+    if data.get("ResultConfigurationUpdates") is not None:
         import capo_athena.types.result_configuration_updates
 
         out["result_configuration_updates"] = (
@@ -173,7 +173,7 @@ def deserialize_aws_json_1_1(data: dict) -> WorkGroupConfigurationUpdates:
                 data["ResultConfigurationUpdates"]
             )
         )
-    if "ManagedQueryResultsConfigurationUpdates" in data:
+    if data.get("ManagedQueryResultsConfigurationUpdates") is not None:
         import capo_athena.types.managed_query_results_configuration_updates
 
         out["managed_query_results_configuration_updates"] = (
@@ -181,19 +181,19 @@ def deserialize_aws_json_1_1(data: dict) -> WorkGroupConfigurationUpdates:
                 data["ManagedQueryResultsConfigurationUpdates"]
             )
         )
-    if "PublishCloudWatchMetricsEnabled" in data:
+    if data.get("PublishCloudWatchMetricsEnabled") is not None:
         out["publish_cloud_watch_metrics_enabled"] = data[
             "PublishCloudWatchMetricsEnabled"
         ]
-    if "BytesScannedCutoffPerQuery" in data:
+    if data.get("BytesScannedCutoffPerQuery") is not None:
         out["bytes_scanned_cutoff_per_query"] = data["BytesScannedCutoffPerQuery"]
-    if "RemoveBytesScannedCutoffPerQuery" in data:
+    if data.get("RemoveBytesScannedCutoffPerQuery") is not None:
         out["remove_bytes_scanned_cutoff_per_query"] = data[
             "RemoveBytesScannedCutoffPerQuery"
         ]
-    if "RequesterPaysEnabled" in data:
+    if data.get("RequesterPaysEnabled") is not None:
         out["requester_pays_enabled"] = data["RequesterPaysEnabled"]
-    if "EngineVersion" in data:
+    if data.get("EngineVersion") is not None:
         import capo_athena.types.engine_version
 
         out["engine_version"] = (
@@ -201,15 +201,15 @@ def deserialize_aws_json_1_1(data: dict) -> WorkGroupConfigurationUpdates:
                 data["EngineVersion"]
             )
         )
-    if "RemoveCustomerContentEncryptionConfiguration" in data:
+    if data.get("RemoveCustomerContentEncryptionConfiguration") is not None:
         out["remove_customer_content_encryption_configuration"] = data[
             "RemoveCustomerContentEncryptionConfiguration"
         ]
-    if "AdditionalConfiguration" in data:
+    if data.get("AdditionalConfiguration") is not None:
         out["additional_configuration"] = data["AdditionalConfiguration"]
-    if "ExecutionRole" in data:
+    if data.get("ExecutionRole") is not None:
         out["execution_role"] = data["ExecutionRole"]
-    if "CustomerContentEncryptionConfiguration" in data:
+    if data.get("CustomerContentEncryptionConfiguration") is not None:
         import capo_athena.types.customer_content_encryption_configuration
 
         out["customer_content_encryption_configuration"] = (
@@ -217,11 +217,11 @@ def deserialize_aws_json_1_1(data: dict) -> WorkGroupConfigurationUpdates:
                 data["CustomerContentEncryptionConfiguration"]
             )
         )
-    if "EnableMinimumEncryptionConfiguration" in data:
+    if data.get("EnableMinimumEncryptionConfiguration") is not None:
         out["enable_minimum_encryption_configuration"] = data[
             "EnableMinimumEncryptionConfiguration"
         ]
-    if "QueryResultsS3AccessGrantsConfiguration" in data:
+    if data.get("QueryResultsS3AccessGrantsConfiguration") is not None:
         import capo_athena.types.query_results_s3_access_grants_configuration
 
         out["query_results_s3_access_grants_configuration"] = (
@@ -229,7 +229,7 @@ def deserialize_aws_json_1_1(data: dict) -> WorkGroupConfigurationUpdates:
                 data["QueryResultsS3AccessGrantsConfiguration"]
             )
         )
-    if "MonitoringConfiguration" in data:
+    if data.get("MonitoringConfiguration") is not None:
         import capo_athena.types.monitoring_configuration
 
         out["monitoring_configuration"] = (
@@ -237,7 +237,7 @@ def deserialize_aws_json_1_1(data: dict) -> WorkGroupConfigurationUpdates:
                 data["MonitoringConfiguration"]
             )
         )
-    if "EngineConfiguration" in data:
+    if data.get("EngineConfiguration") is not None:
         import capo_athena.types.engine_configuration
 
         out["engine_configuration"] = (

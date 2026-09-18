@@ -25,6 +25,8 @@ def deserialize_json(data: list) -> AssetVersionMetadataList:
 
     out: AssetVersionMetadataList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_devops_agent.types.asset_version_metadata.deserialize_json(item)
         )

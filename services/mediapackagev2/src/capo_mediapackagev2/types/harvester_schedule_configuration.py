@@ -35,7 +35,7 @@ def serialize_json(value: HarvesterScheduleConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> HarvesterScheduleConfiguration:
     out: HarvesterScheduleConfiguration = {}  # type: ignore[typeddict-item]
-    if "StartTime" in data:
+    if data.get("StartTime") is not None:
         import capo_mediapackagev2.types._prelude.timestamp
 
         out["start_time"] = (
@@ -45,7 +45,7 @@ def deserialize_json(data: dict) -> HarvesterScheduleConfiguration:
         )
     else:
         raise DeserializationError("HarvesterScheduleConfiguration.start_time required")
-    if "EndTime" in data:
+    if data.get("EndTime") is not None:
         import capo_mediapackagev2.types._prelude.timestamp
 
         out["end_time"] = capo_mediapackagev2.types._prelude.timestamp.deserialize_json(

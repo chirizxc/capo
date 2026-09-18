@@ -42,20 +42,20 @@ def serialize_aws_json_1_1(value: CreateBucketRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateBucketRequest:
     out: CreateBucketRequest = {}  # type: ignore[typeddict-item]
-    if "bucketName" in data:
+    if data.get("bucketName") is not None:
         out["bucket_name"] = data["bucketName"]
     else:
         raise DeserializationError("CreateBucketRequest.bucket_name required")
-    if "bundleId" in data:
+    if data.get("bundleId") is not None:
         out["bundle_id"] = data["bundleId"]
     else:
         raise DeserializationError("CreateBucketRequest.bundle_id required")
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_lightsail.types.tag_list
 
         out["tags"] = capo_lightsail.types.tag_list.deserialize_aws_json_1_1(
             data["tags"]
         )
-    if "enableObjectVersioning" in data:
+    if data.get("enableObjectVersioning") is not None:
         out["enable_object_versioning"] = data["enableObjectVersioning"]
     return out

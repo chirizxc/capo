@@ -44,7 +44,7 @@ def serialize_json(value: ConditionalFormattingColor) -> dict:
 
 def deserialize_json(data: dict) -> ConditionalFormattingColor:
     out: ConditionalFormattingColor = {}  # type: ignore[typeddict-item]
-    if "Solid" in data:
+    if data.get("Solid") is not None:
         import capo_quicksight.types.conditional_formatting_solid_color
 
         out["solid"] = (
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> ConditionalFormattingColor:
                 data["Solid"]
             )
         )
-    if "Gradient" in data:
+    if data.get("Gradient") is not None:
         import capo_quicksight.types.conditional_formatting_gradient_color
 
         out["gradient"] = (

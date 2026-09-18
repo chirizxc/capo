@@ -46,7 +46,7 @@ def serialize_json(value: PermissionModel) -> dict:
 
 def deserialize_json(data: dict) -> PermissionModel:
     out: PermissionModel = {}  # type: ignore[typeddict-item]
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_resiliencehub.types.permission_model_type
 
         out["type"] = capo_resiliencehub.types.permission_model_type.deserialize_json(
@@ -54,9 +54,9 @@ def deserialize_json(data: dict) -> PermissionModel:
         )
     else:
         raise DeserializationError("PermissionModel.type required")
-    if "invokerRoleName" in data:
+    if data.get("invokerRoleName") is not None:
         out["invoker_role_name"] = data["invokerRoleName"]
-    if "crossAccountRoleArns" in data:
+    if data.get("crossAccountRoleArns") is not None:
         import capo_resiliencehub.types.iam_role_arn_list
 
         out["cross_account_role_arns"] = (

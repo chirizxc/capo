@@ -1,6 +1,7 @@
 """Generated from Smithy shape ``com.amazonaws.connectcontactlens#AmazonConnectContactLens``."""
 
 import warnings
+from collections.abc import Iterator
 from typing import TYPE_CHECKING, Any, Iterable, Optional
 
 from typing_extensions import Self, TypedDict
@@ -16,6 +17,7 @@ from capo_connect_contact_lens._auth._providers import (
     default_aws_credentials_chain,
 )
 from capo_connect_contact_lens._auth._zapros_handler import AuthMiddleware
+from capo_connect_contact_lens._pagination import resolve_path as _resolve_path
 from capo_connect_contact_lens._services._aws_config import aws_config
 from capo_connect_contact_lens._services._pipeline import (
     Interceptor,
@@ -177,7 +179,7 @@ class ConnectContactLensClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connect_contact_lens.types.list_realtime_contact_analysis_segments_request.ListRealtimeContactAnalysisSegmentsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_connect_contact_lens.types.list_realtime_contact_analysis_segments_request.ListRealtimeContactAnalysisSegmentsRequest = {}
         if instance_id is not None:
             input_["instance_id"] = instance_id
         if contact_id is not None:
@@ -192,7 +194,39 @@ class ConnectContactLensClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_realtime_contact_analysis_segments(
+        self,
+        *,
+        config_overrides: Optional[ConnectContactLensClientConfig] = None,
+        instance_id: Optional[
+            "capo_connect_contact_lens.types.instance_id.InstanceId"
+        ] = None,
+        contact_id: Optional[
+            "capo_connect_contact_lens.types.contact_id.ContactId"
+        ] = None,
+        max_results: Optional[
+            "capo_connect_contact_lens.types.max_results.MaxResults"
+        ] = None,
+        next_token: Optional[
+            "capo_connect_contact_lens.types.next_token.NextToken"
+        ] = None,
+    ) -> "Iterator[capo_connect_contact_lens.types.list_realtime_contact_analysis_segments_response.ListRealtimeContactAnalysisSegmentsResponse]":
+        _token = next_token
+        while True:
+            _response = self.list_realtime_contact_analysis_segments(
+                config_overrides=config_overrides,
+                instance_id=instance_id,
+                contact_id=contact_id,
+                max_results=max_results,
+                next_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def __enter__(self) -> Self:
         return self

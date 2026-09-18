@@ -71,7 +71,7 @@ def serialize_json(value: VideoOverlayInput) -> dict:
 
 def deserialize_json(data: dict) -> VideoOverlayInput:
     out: VideoOverlayInput = {}  # type: ignore[typeddict-item]
-    if "audioSelectors" in data:
+    if data.get("audioSelectors") is not None:
         import capo_mediaconvert.types.__map_of_audio_selector
 
         out["audio_selectors"] = (
@@ -79,9 +79,9 @@ def deserialize_json(data: dict) -> VideoOverlayInput:
                 data["audioSelectors"]
             )
         )
-    if "fileInput" in data:
+    if data.get("fileInput") is not None:
         out["file_input"] = data["fileInput"]
-    if "inputClippings" in data:
+    if data.get("inputClippings") is not None:
         import capo_mediaconvert.types.__list_of_video_overlay_input_clipping
 
         out["input_clippings"] = (
@@ -89,7 +89,7 @@ def deserialize_json(data: dict) -> VideoOverlayInput:
                 data["inputClippings"]
             )
         )
-    if "timecodeSource" in data:
+    if data.get("timecodeSource") is not None:
         import capo_mediaconvert.types.input_timecode_source
 
         out["timecode_source"] = (
@@ -97,6 +97,6 @@ def deserialize_json(data: dict) -> VideoOverlayInput:
                 data["timecodeSource"]
             )
         )
-    if "timecodeStart" in data:
+    if data.get("timecodeStart") is not None:
         out["timecode_start"] = data["timecodeStart"]
     return out

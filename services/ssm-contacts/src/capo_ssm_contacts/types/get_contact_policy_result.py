@@ -28,8 +28,8 @@ def serialize_aws_json_1_1(value: GetContactPolicyResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetContactPolicyResult:
     out: GetContactPolicyResult = {}  # type: ignore[typeddict-item]
-    if "ContactArn" in data:
+    if data.get("ContactArn") is not None:
         out["contact_arn"] = data["ContactArn"]
-    if "Policy" in data:
+    if data.get("Policy") is not None:
         out["policy"] = data["Policy"]
     return out

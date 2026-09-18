@@ -57,25 +57,25 @@ def serialize_aws_json_1_1(value: DescribeJobFlowsInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeJobFlowsInput:
     out: DescribeJobFlowsInput = {}  # type: ignore[typeddict-item]
-    if "CreatedAfter" in data:
+    if data.get("CreatedAfter") is not None:
         import capo_emr.types.date
 
         out["created_after"] = capo_emr.types.date.deserialize_aws_json_1_1(
             data["CreatedAfter"]
         )
-    if "CreatedBefore" in data:
+    if data.get("CreatedBefore") is not None:
         import capo_emr.types.date
 
         out["created_before"] = capo_emr.types.date.deserialize_aws_json_1_1(
             data["CreatedBefore"]
         )
-    if "JobFlowIds" in data:
+    if data.get("JobFlowIds") is not None:
         import capo_emr.types.xml_string_list
 
         out["job_flow_ids"] = capo_emr.types.xml_string_list.deserialize_aws_json_1_1(
             data["JobFlowIds"]
         )
-    if "JobFlowStates" in data:
+    if data.get("JobFlowStates") is not None:
         import capo_emr.types.job_flow_execution_state_list
 
         out["job_flow_states"] = (

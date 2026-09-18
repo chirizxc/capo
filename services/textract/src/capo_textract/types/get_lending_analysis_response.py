@@ -72,7 +72,7 @@ def serialize_aws_json_1_1(value: GetLendingAnalysisResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetLendingAnalysisResponse:
     out: GetLendingAnalysisResponse = {}  # type: ignore[typeddict-item]
-    if "DocumentMetadata" in data:
+    if data.get("DocumentMetadata") is not None:
         import capo_textract.types.document_metadata
 
         out["document_metadata"] = (
@@ -80,15 +80,15 @@ def deserialize_aws_json_1_1(data: dict) -> GetLendingAnalysisResponse:
                 data["DocumentMetadata"]
             )
         )
-    if "JobStatus" in data:
+    if data.get("JobStatus") is not None:
         import capo_textract.types.job_status
 
         out["job_status"] = capo_textract.types.job_status.deserialize_aws_json_1_1(
             data["JobStatus"]
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "Results" in data:
+    if data.get("Results") is not None:
         import capo_textract.types.lending_result_list
 
         out["results"] = (
@@ -96,14 +96,14 @@ def deserialize_aws_json_1_1(data: dict) -> GetLendingAnalysisResponse:
                 data["Results"]
             )
         )
-    if "Warnings" in data:
+    if data.get("Warnings") is not None:
         import capo_textract.types.warnings
 
         out["warnings"] = capo_textract.types.warnings.deserialize_aws_json_1_1(
             data["Warnings"]
         )
-    if "StatusMessage" in data:
+    if data.get("StatusMessage") is not None:
         out["status_message"] = data["StatusMessage"]
-    if "AnalyzeLendingModelVersion" in data:
+    if data.get("AnalyzeLendingModelVersion") is not None:
         out["analyze_lending_model_version"] = data["AnalyzeLendingModelVersion"]
     return out

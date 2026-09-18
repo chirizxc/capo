@@ -27,8 +27,8 @@ def serialize_json(value: KinesisFirehoseDestination) -> dict:
 
 def deserialize_json(data: dict) -> KinesisFirehoseDestination:
     out: KinesisFirehoseDestination = {}  # type: ignore[typeddict-item]
-    if "DeliveryStreamArn" in data:
+    if data.get("DeliveryStreamArn") is not None:
         out["delivery_stream_arn"] = data["DeliveryStreamArn"]
-    if "IamRoleArn" in data:
+    if data.get("IamRoleArn") is not None:
         out["iam_role_arn"] = data["IamRoleArn"]
     return out

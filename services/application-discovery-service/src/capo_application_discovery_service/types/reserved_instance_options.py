@@ -54,7 +54,7 @@ def serialize_aws_json_1_1(value: ReservedInstanceOptions) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ReservedInstanceOptions:
     out: ReservedInstanceOptions = {}  # type: ignore[typeddict-item]
-    if "purchasingOption" in data:
+    if data.get("purchasingOption") is not None:
         import capo_application_discovery_service.types.purchasing_option
 
         out["purchasing_option"] = (
@@ -64,7 +64,7 @@ def deserialize_aws_json_1_1(data: dict) -> ReservedInstanceOptions:
         )
     else:
         raise DeserializationError("ReservedInstanceOptions.purchasing_option required")
-    if "offeringClass" in data:
+    if data.get("offeringClass") is not None:
         import capo_application_discovery_service.types.offering_class
 
         out["offering_class"] = (
@@ -74,7 +74,7 @@ def deserialize_aws_json_1_1(data: dict) -> ReservedInstanceOptions:
         )
     else:
         raise DeserializationError("ReservedInstanceOptions.offering_class required")
-    if "termLength" in data:
+    if data.get("termLength") is not None:
         import capo_application_discovery_service.types.term_length
 
         out["term_length"] = (

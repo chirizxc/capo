@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> AwsRoute53HostedZoneVpcsList:
 
     out: AwsRoute53HostedZoneVpcsList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_securityhub.types.aws_route53_hosted_zone_vpc_details.deserialize_json(
                 item

@@ -13,9 +13,9 @@ from capo_docdb_elastic import AsyncDocDBElasticClient
 
 
 async def main():
-    async with AsyncDocDBElasticClient() as s3:
+    async with AsyncDocDBElasticClient() as doc_db_elastic:
         # Example: call the apply_pending_maintenance_action operation
-        response = await s3.apply_pending_maintenance_action()
+        response = await doc_db_elastic.apply_pending_maintenance_action()
         print(response["resource_pending_maintenance_action"])
 ```
 
@@ -28,9 +28,9 @@ from capo_docdb_elastic import AsyncDocDBElasticClient
 
 
 async def main():
-    async with AsyncDocDBElasticClient() as s3:
+    async with AsyncDocDBElasticClient() as doc_db_elastic:
         # Example: paginate over list_clusters
-        async for item in s3.iter_list_clusters():
+        async for item in doc_db_elastic.iter_list_clusters():
             print(item)
 ```
 
@@ -44,9 +44,9 @@ from capo_docdb_elastic.error import AccessDeniedException
 
 
 async def main():
-    async with AsyncDocDBElasticClient() as s3:
+    async with AsyncDocDBElasticClient() as doc_db_elastic:
         try:
-            await s3.apply_pending_maintenance_action()
+            await doc_db_elastic.apply_pending_maintenance_action()
         except AccessDeniedException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -63,13 +63,13 @@ from capo_docdb_elastic import AsyncDocDBElasticClient
 
 
 async def main():
-    async with AsyncDocDBElasticClient() as s3:
+    async with AsyncDocDBElasticClient() as doc_db_elastic:
         # Default: 3 attempts for every operation
-        response = await s3.apply_pending_maintenance_action()
+        response = await doc_db_elastic.apply_pending_maintenance_action()
 
         # Override per operation
-        response = await s3.apply_pending_maintenance_action(config_overrides={"retry_max_attempts": 5})
+        response = await doc_db_elastic.apply_pending_maintenance_action(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.apply_pending_maintenance_action(config_overrides={"retry_max_attempts": 1})
+        response = await doc_db_elastic.apply_pending_maintenance_action(config_overrides={"retry_max_attempts": 1})
 ```

@@ -36,15 +36,15 @@ def serialize_json(value: StartDomainExportResponse) -> dict:
 
 def deserialize_json(data: dict) -> StartDomainExportResponse:
     out: StartDomainExportResponse = {}  # type: ignore[typeddict-item]
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     else:
         raise DeserializationError("StartDomainExportResponse.client_token required")
-    if "exportArn" in data:
+    if data.get("exportArn") is not None:
         out["export_arn"] = data["exportArn"]
     else:
         raise DeserializationError("StartDomainExportResponse.export_arn required")
-    if "requestedAt" in data:
+    if data.get("requestedAt") is not None:
         import capo_simpledbv2.types.requested_at
 
         out["requested_at"] = capo_simpledbv2.types.requested_at.deserialize_json(

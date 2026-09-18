@@ -12,6 +12,9 @@ Causes: TypeAlias = list["capo_elastic_beanstalk.types.cause.Cause"]
 
 # --- awsQuery ser/de ---
 def serialize_query(value: Causes, pairs: list[tuple[str, str]], prefix: str) -> None:
+    if not value:
+        pairs.append((prefix, ""))
+        return
     for n, item in enumerate(value, 1):
         pairs.append((f"{prefix}.member.{n}", str(item)))
 
@@ -26,6 +29,9 @@ def deserialize_query(el: Element) -> Causes:
 def serialize_query_flat(
     value: Causes, pairs: list[tuple[str, str]], prefix: str
 ) -> None:
+    if not value:
+        pairs.append((prefix, ""))
+        return
     for n, item in enumerate(value, 1):
         pairs.append((f"{prefix}.{n}", str(item)))
 

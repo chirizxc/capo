@@ -35,10 +35,10 @@ def serialize_aws_json_1_1(value: CreateApplicationResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateApplicationResponse:
     out: CreateApplicationResponse = {}  # type: ignore[typeddict-item]
-    if "ApplicationArn" in data:
+    if data.get("ApplicationArn") is not None:
         out["application_arn"] = data["ApplicationArn"]
-    if "InstanceArn" in data:
+    if data.get("InstanceArn") is not None:
         out["instance_arn"] = data["InstanceArn"]
-    if "IdentityStoreArn" in data:
+    if data.get("IdentityStoreArn") is not None:
         out["identity_store_arn"] = data["IdentityStoreArn"]
     return out

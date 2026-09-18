@@ -41,13 +41,13 @@ def serialize_aws_json_1_1(value: GetReportGroupTrendInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetReportGroupTrendInput:
     out: GetReportGroupTrendInput = {}  # type: ignore[typeddict-item]
-    if "reportGroupArn" in data:
+    if data.get("reportGroupArn") is not None:
         out["report_group_arn"] = data["reportGroupArn"]
     else:
         raise DeserializationError("GetReportGroupTrendInput.report_group_arn required")
-    if "numOfReports" in data:
+    if data.get("numOfReports") is not None:
         out["num_of_reports"] = data["numOfReports"]
-    if "trendField" in data:
+    if data.get("trendField") is not None:
         import capo_codebuild.types.report_group_trend_field_type
 
         out["trend_field"] = (

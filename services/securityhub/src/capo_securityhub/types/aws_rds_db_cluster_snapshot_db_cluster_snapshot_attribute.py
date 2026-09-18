@@ -38,9 +38,9 @@ def serialize_json(value: AwsRdsDbClusterSnapshotDbClusterSnapshotAttribute) -> 
 
 def deserialize_json(data: dict) -> AwsRdsDbClusterSnapshotDbClusterSnapshotAttribute:
     out: AwsRdsDbClusterSnapshotDbClusterSnapshotAttribute = {}  # type: ignore[typeddict-item]
-    if "AttributeName" in data:
+    if data.get("AttributeName") is not None:
         out["attribute_name"] = data["AttributeName"]
-    if "AttributeValues" in data:
+    if data.get("AttributeValues") is not None:
         import capo_securityhub.types.non_empty_string_list
 
         out["attribute_values"] = (

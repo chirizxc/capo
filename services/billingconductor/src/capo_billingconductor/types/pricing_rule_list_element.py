@@ -81,7 +81,15 @@ def serialize_json(value: PricingRuleListElement) -> dict:
             value["type"]
         )
     if "modifier_percentage" in value:
-        out["ModifierPercentage"] = value["modifier_percentage"]
+        out["ModifierPercentage"] = (
+            "NaN"
+            if value["modifier_percentage"] != value["modifier_percentage"]
+            else "Infinity"
+            if value["modifier_percentage"] == float("inf")
+            else "-Infinity"
+            if value["modifier_percentage"] == float("-inf")
+            else value["modifier_percentage"]
+        )
     if "service" in value:
         out["Service"] = value["service"]
     out["AssociatedPricingPlanCount"] = value.get("associated_pricing_plan_count", 0)
@@ -104,50 +112,50 @@ def serialize_json(value: PricingRuleListElement) -> dict:
 
 def deserialize_json(data: dict) -> PricingRuleListElement:
     out: PricingRuleListElement = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Scope" in data:
+    if data.get("Scope") is not None:
         import capo_billingconductor.types.pricing_rule_scope
 
         out["scope"] = capo_billingconductor.types.pricing_rule_scope.deserialize_json(
             data["Scope"]
         )
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_billingconductor.types.pricing_rule_type
 
         out["type"] = capo_billingconductor.types.pricing_rule_type.deserialize_json(
             data["Type"]
         )
-    if "ModifierPercentage" in data:
-        out["modifier_percentage"] = data["ModifierPercentage"]
-    if "Service" in data:
+    if data.get("ModifierPercentage") is not None:
+        out["modifier_percentage"] = float(data["ModifierPercentage"])
+    if data.get("Service") is not None:
         out["service"] = data["Service"]
-    if "AssociatedPricingPlanCount" in data:
+    if data.get("AssociatedPricingPlanCount") is not None:
         out["associated_pricing_plan_count"] = data["AssociatedPricingPlanCount"]
     else:
         out["associated_pricing_plan_count"] = 0
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         out["creation_time"] = data["CreationTime"]
     else:
         out["creation_time"] = 0
-    if "LastModifiedTime" in data:
+    if data.get("LastModifiedTime") is not None:
         out["last_modified_time"] = data["LastModifiedTime"]
     else:
         out["last_modified_time"] = 0
-    if "BillingEntity" in data:
+    if data.get("BillingEntity") is not None:
         out["billing_entity"] = data["BillingEntity"]
-    if "Tiering" in data:
+    if data.get("Tiering") is not None:
         import capo_billingconductor.types.tiering
 
         out["tiering"] = capo_billingconductor.types.tiering.deserialize_json(
             data["Tiering"]
         )
-    if "UsageType" in data:
+    if data.get("UsageType") is not None:
         out["usage_type"] = data["UsageType"]
-    if "Operation" in data:
+    if data.get("Operation") is not None:
         out["operation"] = data["Operation"]
     return out

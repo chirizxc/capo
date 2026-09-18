@@ -25,6 +25,8 @@ def deserialize_json(data: list) -> ReactiveInsights:
 
     out: ReactiveInsights = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_devops_guru.types.reactive_insight_summary.deserialize_json(item)
         )

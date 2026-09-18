@@ -63,9 +63,9 @@ def serialize_json(value: CreateDeviceProfileRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateDeviceProfileRequest:
     out: CreateDeviceProfileRequest = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "LoRaWAN" in data:
+    if data.get("LoRaWAN") is not None:
         import capo_iot_wireless.types.lo_ra_wan_device_profile
 
         out["lo_ra_wan"] = (
@@ -73,13 +73,13 @@ def deserialize_json(data: dict) -> CreateDeviceProfileRequest:
                 data["LoRaWAN"]
             )
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_iot_wireless.types.tag_list
 
         out["tags"] = capo_iot_wireless.types.tag_list.deserialize_json(data["Tags"])
-    if "ClientRequestToken" in data:
+    if data.get("ClientRequestToken") is not None:
         out["client_request_token"] = data["ClientRequestToken"]
-    if "Sidewalk" in data:
+    if data.get("Sidewalk") is not None:
         import capo_iot_wireless.types.sidewalk_create_device_profile
 
         out["sidewalk"] = (

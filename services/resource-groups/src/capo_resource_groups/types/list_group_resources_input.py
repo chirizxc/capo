@@ -49,11 +49,11 @@ def serialize_json(value: ListGroupResourcesInput) -> dict:
 
 def deserialize_json(data: dict) -> ListGroupResourcesInput:
     out: ListGroupResourcesInput = {}  # type: ignore[typeddict-item]
-    if "GroupName" in data:
+    if data.get("GroupName") is not None:
         out["group_name"] = data["GroupName"]
-    if "Group" in data:
+    if data.get("Group") is not None:
         out["group"] = data["Group"]
-    if "Filters" in data:
+    if data.get("Filters") is not None:
         import capo_resource_groups.types.resource_filter_list
 
         out["filters"] = (
@@ -61,8 +61,8 @@ def deserialize_json(data: dict) -> ListGroupResourcesInput:
                 data["Filters"]
             )
         )
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

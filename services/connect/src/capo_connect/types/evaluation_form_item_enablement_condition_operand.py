@@ -50,7 +50,7 @@ def serialize_json(value: EvaluationFormItemEnablementConditionOperand) -> dict:
 
 
 def deserialize_json(data: dict) -> EvaluationFormItemEnablementConditionOperand:
-    if "Expression" in data:
+    if data.get("Expression") is not None:
         import capo_connect.types.evaluation_form_item_enablement_expression
 
         return {
@@ -58,7 +58,7 @@ def deserialize_json(data: dict) -> EvaluationFormItemEnablementConditionOperand
                 data["Expression"]
             )
         }
-    elif "Condition" in data:
+    elif data.get("Condition") is not None:
         import capo_connect.types.evaluation_form_item_enablement_condition
 
         return {

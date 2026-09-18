@@ -40,11 +40,11 @@ def serialize_json(value: NodeProperties) -> dict:
 
 def deserialize_json(data: dict) -> NodeProperties:
     out: NodeProperties = {}  # type: ignore[typeddict-item]
-    if "numNodes" in data:
+    if data.get("numNodes") is not None:
         out["num_nodes"] = data["numNodes"]
-    if "mainNode" in data:
+    if data.get("mainNode") is not None:
         out["main_node"] = data["mainNode"]
-    if "nodeRangeProperties" in data:
+    if data.get("nodeRangeProperties") is not None:
         import capo_batch.types.node_range_properties
 
         out["node_range_properties"] = (

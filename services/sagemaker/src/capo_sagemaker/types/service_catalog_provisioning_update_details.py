@@ -38,9 +38,9 @@ def serialize_aws_json_1_1(value: ServiceCatalogProvisioningUpdateDetails) -> di
 
 def deserialize_aws_json_1_1(data: dict) -> ServiceCatalogProvisioningUpdateDetails:
     out: ServiceCatalogProvisioningUpdateDetails = {}  # type: ignore[typeddict-item]
-    if "ProvisioningArtifactId" in data:
+    if data.get("ProvisioningArtifactId") is not None:
         out["provisioning_artifact_id"] = data["ProvisioningArtifactId"]
-    if "ProvisioningParameters" in data:
+    if data.get("ProvisioningParameters") is not None:
         import capo_sagemaker.types.provisioning_parameters
 
         out["provisioning_parameters"] = (

@@ -29,12 +29,12 @@ def serialize_json(value: EnableDelegatedAdminAccountRequest) -> dict:
 
 def deserialize_json(data: dict) -> EnableDelegatedAdminAccountRequest:
     out: EnableDelegatedAdminAccountRequest = {}  # type: ignore[typeddict-item]
-    if "delegatedAdminAccountId" in data:
+    if data.get("delegatedAdminAccountId") is not None:
         out["delegated_admin_account_id"] = data["delegatedAdminAccountId"]
     else:
         raise DeserializationError(
             "EnableDelegatedAdminAccountRequest.delegated_admin_account_id required"
         )
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     return out

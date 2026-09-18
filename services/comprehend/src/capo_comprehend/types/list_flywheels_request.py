@@ -39,14 +39,14 @@ def serialize_aws_json_1_1(value: ListFlywheelsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListFlywheelsRequest:
     out: ListFlywheelsRequest = {}  # type: ignore[typeddict-item]
-    if "Filter" in data:
+    if data.get("Filter") is not None:
         import capo_comprehend.types.flywheel_filter
 
         out["filter"] = capo_comprehend.types.flywheel_filter.deserialize_aws_json_1_1(
             data["Filter"]
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
     return out

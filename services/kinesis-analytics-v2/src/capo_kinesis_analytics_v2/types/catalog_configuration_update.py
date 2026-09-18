@@ -30,7 +30,7 @@ def serialize_aws_json_1_1(value: CatalogConfigurationUpdate) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CatalogConfigurationUpdate:
     out: CatalogConfigurationUpdate = {}  # type: ignore[typeddict-item]
-    if "GlueDataCatalogConfigurationUpdate" in data:
+    if data.get("GlueDataCatalogConfigurationUpdate") is not None:
         import capo_kinesis_analytics_v2.types.glue_data_catalog_configuration_update
 
         out["glue_data_catalog_configuration_update"] = (

@@ -13,9 +13,9 @@ from capo_kinesis_video_archived_media import AsyncKinesisVideoArchivedMediaClie
 
 
 async def main():
-    async with AsyncKinesisVideoArchivedMediaClient() as s3:
+    async with AsyncKinesisVideoArchivedMediaClient() as kinesis_video_archived_media:
         # Example: call the get_clip operation
-        response = await s3.get_clip()
+        response = await kinesis_video_archived_media.get_clip()
         print(response["content_type"])
 ```
 
@@ -28,9 +28,9 @@ from capo_kinesis_video_archived_media import AsyncKinesisVideoArchivedMediaClie
 
 
 async def main():
-    async with AsyncKinesisVideoArchivedMediaClient() as s3:
+    async with AsyncKinesisVideoArchivedMediaClient() as kinesis_video_archived_media:
         # Example: paginate over get_images
-        async for item in s3.iter_get_images():
+        async for item in kinesis_video_archived_media.iter_get_images():
             print(item)
 ```
 
@@ -43,9 +43,9 @@ from capo_kinesis_video_archived_media import AsyncKinesisVideoArchivedMediaClie
 
 
 async def main():
-    async with AsyncKinesisVideoArchivedMediaClient() as s3:
+    async with AsyncKinesisVideoArchivedMediaClient() as kinesis_video_archived_media:
         # Example: call get_clip and read the streaming response
-        async with s3.get_clip() as response:
+        async with kinesis_video_archived_media.get_clip() as response:
             async for chunk in response["payload"]:
                 print(chunk)
 ```
@@ -60,9 +60,9 @@ from capo_kinesis_video_archived_media.error import ClientLimitExceededException
 
 
 async def main():
-    async with AsyncKinesisVideoArchivedMediaClient() as s3:
+    async with AsyncKinesisVideoArchivedMediaClient() as kinesis_video_archived_media:
         try:
-            await s3.get_clip()
+            await kinesis_video_archived_media.get_clip()
         except ClientLimitExceededException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -79,13 +79,13 @@ from capo_kinesis_video_archived_media import AsyncKinesisVideoArchivedMediaClie
 
 
 async def main():
-    async with AsyncKinesisVideoArchivedMediaClient() as s3:
+    async with AsyncKinesisVideoArchivedMediaClient() as kinesis_video_archived_media:
         # Default: 3 attempts for every operation
-        response = await s3.get_clip()
+        response = await kinesis_video_archived_media.get_clip()
 
         # Override per operation
-        response = await s3.get_clip(config_overrides={"retry_max_attempts": 5})
+        response = await kinesis_video_archived_media.get_clip(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.get_clip(config_overrides={"retry_max_attempts": 1})
+        response = await kinesis_video_archived_media.get_clip(config_overrides={"retry_max_attempts": 1})
 ```

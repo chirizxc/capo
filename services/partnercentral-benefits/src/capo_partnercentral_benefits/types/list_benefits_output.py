@@ -35,7 +35,7 @@ def serialize_aws_json_1_0(value: ListBenefitsOutput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ListBenefitsOutput:
     out: ListBenefitsOutput = {}  # type: ignore[typeddict-item]
-    if "BenefitSummaries" in data:
+    if data.get("BenefitSummaries") is not None:
         import capo_partnercentral_benefits.types.benefit_summaries
 
         out["benefit_summaries"] = (
@@ -43,6 +43,6 @@ def deserialize_aws_json_1_0(data: dict) -> ListBenefitsOutput:
                 data["BenefitSummaries"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

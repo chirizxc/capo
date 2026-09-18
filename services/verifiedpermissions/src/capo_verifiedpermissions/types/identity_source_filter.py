@@ -25,6 +25,6 @@ def serialize_aws_json_1_0(value: IdentitySourceFilter) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> IdentitySourceFilter:
     out: IdentitySourceFilter = {}  # type: ignore[typeddict-item]
-    if "principalEntityType" in data:
+    if data.get("principalEntityType") is not None:
         out["principal_entity_type"] = data["principalEntityType"]
     return out

@@ -59,17 +59,17 @@ def serialize_json(value: SearchHoursOfOperationOverridesRequest) -> dict:
 
 def deserialize_json(data: dict) -> SearchHoursOfOperationOverridesRequest:
     out: SearchHoursOfOperationOverridesRequest = {}  # type: ignore[typeddict-item]
-    if "InstanceId" in data:
+    if data.get("InstanceId") is not None:
         out["instance_id"] = data["InstanceId"]
     else:
         raise DeserializationError(
             "SearchHoursOfOperationOverridesRequest.instance_id required"
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "SearchFilter" in data:
+    if data.get("SearchFilter") is not None:
         import capo_connect.types.hours_of_operation_search_filter
 
         out["search_filter"] = (
@@ -77,7 +77,7 @@ def deserialize_json(data: dict) -> SearchHoursOfOperationOverridesRequest:
                 data["SearchFilter"]
             )
         )
-    if "SearchCriteria" in data:
+    if data.get("SearchCriteria") is not None:
         import capo_connect.types.hours_of_operation_override_search_criteria
 
         out["search_criteria"] = (

@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: ListRecordHistoryOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListRecordHistoryOutput:
     out: ListRecordHistoryOutput = {}  # type: ignore[typeddict-item]
-    if "RecordDetails" in data:
+    if data.get("RecordDetails") is not None:
         import capo_service_catalog.types.record_details
 
         out["record_details"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_1(data: dict) -> ListRecordHistoryOutput:
                 data["RecordDetails"]
             )
         )
-    if "NextPageToken" in data:
+    if data.get("NextPageToken") is not None:
         out["next_page_token"] = data["NextPageToken"]
     return out

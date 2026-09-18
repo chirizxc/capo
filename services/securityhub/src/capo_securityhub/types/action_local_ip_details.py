@@ -23,6 +23,6 @@ def serialize_json(value: ActionLocalIpDetails) -> dict:
 
 def deserialize_json(data: dict) -> ActionLocalIpDetails:
     out: ActionLocalIpDetails = {}  # type: ignore[typeddict-item]
-    if "IpAddressV4" in data:
+    if data.get("IpAddressV4") is not None:
         out["ip_address_v4"] = data["IpAddressV4"]
     return out

@@ -31,11 +31,11 @@ def serialize_json(value: LongCondition) -> dict:
 
 def deserialize_json(data: dict) -> LongCondition:
     out: LongCondition = {}  # type: ignore[typeddict-item]
-    if "Value" in data:
+    if data.get("Value") is not None:
         out["value"] = data["Value"]
     else:
         raise DeserializationError("LongCondition.value required")
-    if "Operator" in data:
+    if data.get("Operator") is not None:
         import capo_backupsearch.types.long_condition_operator
 
         out["operator"] = (

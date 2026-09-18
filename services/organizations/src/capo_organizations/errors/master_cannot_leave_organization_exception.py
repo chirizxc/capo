@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: MasterCannotLeaveOrganizationException_) -> di
 
 def deserialize_aws_json_1_1(data: dict) -> MasterCannotLeaveOrganizationException_:
     out: MasterCannotLeaveOrganizationException_ = {}  # type: ignore[typeddict-item]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     return out
 
@@ -34,15 +34,20 @@ class MasterCannotLeaveOrganizationException(ServiceError):
 
     code: str | None = "MasterCannotLeaveOrganizationException"
 
-    def __init__(self, data: MasterCannotLeaveOrganizationException_):
+    def __init__(
+        self, data: MasterCannotLeaveOrganizationException_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="MasterCannotLeaveOrganizationException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "MasterCannotLeaveOrganizationException":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "MasterCannotLeaveOrganizationException":
+        return cls(deserialize_aws_json_1_1(data), message)

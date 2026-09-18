@@ -23,6 +23,6 @@ def serialize_aws_json_1_1(value: StartDashboardRefreshResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> StartDashboardRefreshResponse:
     out: StartDashboardRefreshResponse = {}  # type: ignore[typeddict-item]
-    if "RefreshId" in data:
+    if data.get("RefreshId") is not None:
         out["refresh_id"] = data["RefreshId"]
     return out

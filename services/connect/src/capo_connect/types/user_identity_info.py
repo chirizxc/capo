@@ -42,14 +42,14 @@ def serialize_json(value: UserIdentityInfo) -> dict:
 
 def deserialize_json(data: dict) -> UserIdentityInfo:
     out: UserIdentityInfo = {}  # type: ignore[typeddict-item]
-    if "FirstName" in data:
+    if data.get("FirstName") is not None:
         out["first_name"] = data["FirstName"]
-    if "LastName" in data:
+    if data.get("LastName") is not None:
         out["last_name"] = data["LastName"]
-    if "Email" in data:
+    if data.get("Email") is not None:
         out["email"] = data["Email"]
-    if "SecondaryEmail" in data:
+    if data.get("SecondaryEmail") is not None:
         out["secondary_email"] = data["SecondaryEmail"]
-    if "Mobile" in data:
+    if data.get("Mobile") is not None:
         out["mobile"] = data["Mobile"]
     return out

@@ -33,10 +33,10 @@ def serialize_aws_json_1_1(value: ListedConnector) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListedConnector:
     out: ListedConnector = {}  # type: ignore[typeddict-item]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "ConnectorId" in data:
+    if data.get("ConnectorId") is not None:
         out["connector_id"] = data["ConnectorId"]
-    if "Url" in data:
+    if data.get("Url") is not None:
         out["url"] = data["Url"]
     return out

@@ -26,11 +26,11 @@ def serialize_aws_json_1_1(value: HandOffTime) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> HandOffTime:
     out: HandOffTime = {}  # type: ignore[typeddict-item]
-    if "HourOfDay" in data:
+    if data.get("HourOfDay") is not None:
         out["hour_of_day"] = data["HourOfDay"]
     else:
         out["hour_of_day"] = 0
-    if "MinuteOfHour" in data:
+    if data.get("MinuteOfHour") is not None:
         out["minute_of_hour"] = data["MinuteOfHour"]
     else:
         out["minute_of_hour"] = 0

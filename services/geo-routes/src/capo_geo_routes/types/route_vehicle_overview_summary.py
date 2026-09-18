@@ -32,19 +32,19 @@ def serialize_json(value: RouteVehicleOverviewSummary) -> dict:
 
 def deserialize_json(data: dict) -> RouteVehicleOverviewSummary:
     out: RouteVehicleOverviewSummary = {}  # type: ignore[typeddict-item]
-    if "BestCaseDuration" in data:
+    if data.get("BestCaseDuration") is not None:
         out["best_case_duration"] = data["BestCaseDuration"]
     else:
         out["best_case_duration"] = 0
-    if "Distance" in data:
+    if data.get("Distance") is not None:
         out["distance"] = data["Distance"]
     else:
         out["distance"] = 0
-    if "Duration" in data:
+    if data.get("Duration") is not None:
         out["duration"] = data["Duration"]
     else:
         out["duration"] = 0
-    if "TypicalDuration" in data:
+    if data.get("TypicalDuration") is not None:
         out["typical_duration"] = data["TypicalDuration"]
     else:
         out["typical_duration"] = 0

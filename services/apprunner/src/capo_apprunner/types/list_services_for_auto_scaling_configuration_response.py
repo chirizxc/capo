@@ -39,7 +39,7 @@ def deserialize_aws_json_1_0(
     data: dict,
 ) -> ListServicesForAutoScalingConfigurationResponse:
     out: ListServicesForAutoScalingConfigurationResponse = {}  # type: ignore[typeddict-item]
-    if "ServiceArnList" in data:
+    if data.get("ServiceArnList") is not None:
         import capo_apprunner.types.service_arn_list
 
         out["service_arn_list"] = (
@@ -51,6 +51,6 @@ def deserialize_aws_json_1_0(
         raise DeserializationError(
             "ListServicesForAutoScalingConfigurationResponse.service_arn_list required"
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

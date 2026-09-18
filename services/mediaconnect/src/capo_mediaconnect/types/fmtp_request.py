@@ -62,29 +62,29 @@ def serialize_json(value: FmtpRequest) -> dict:
 
 def deserialize_json(data: dict) -> FmtpRequest:
     out: FmtpRequest = {}  # type: ignore[typeddict-item]
-    if "channelOrder" in data:
+    if data.get("channelOrder") is not None:
         out["channel_order"] = data["channelOrder"]
-    if "colorimetry" in data:
+    if data.get("colorimetry") is not None:
         import capo_mediaconnect.types.colorimetry
 
         out["colorimetry"] = capo_mediaconnect.types.colorimetry.deserialize_json(
             data["colorimetry"]
         )
-    if "exactFramerate" in data:
+    if data.get("exactFramerate") is not None:
         out["exact_framerate"] = data["exactFramerate"]
-    if "par" in data:
+    if data.get("par") is not None:
         out["par"] = data["par"]
-    if "range" in data:
+    if data.get("range") is not None:
         import capo_mediaconnect.types.range
 
         out["range"] = capo_mediaconnect.types.range.deserialize_json(data["range"])
-    if "scanMode" in data:
+    if data.get("scanMode") is not None:
         import capo_mediaconnect.types.scan_mode
 
         out["scan_mode"] = capo_mediaconnect.types.scan_mode.deserialize_json(
             data["scanMode"]
         )
-    if "tcs" in data:
+    if data.get("tcs") is not None:
         import capo_mediaconnect.types.tcs
 
         out["tcs"] = capo_mediaconnect.types.tcs.deserialize_json(data["tcs"])

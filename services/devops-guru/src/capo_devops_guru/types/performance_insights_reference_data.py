@@ -38,9 +38,9 @@ def serialize_json(value: PerformanceInsightsReferenceData) -> dict:
 
 def deserialize_json(data: dict) -> PerformanceInsightsReferenceData:
     out: PerformanceInsightsReferenceData = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "ComparisonValues" in data:
+    if data.get("ComparisonValues") is not None:
         import capo_devops_guru.types.performance_insights_reference_comparison_values
 
         out["comparison_values"] = (

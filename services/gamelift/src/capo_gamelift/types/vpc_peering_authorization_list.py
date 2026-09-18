@@ -27,6 +27,8 @@ def deserialize_aws_json_1_1(data: list) -> VpcPeeringAuthorizationList:
 
     out: VpcPeeringAuthorizationList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_gamelift.types.vpc_peering_authorization.deserialize_aws_json_1_1(item)
         )

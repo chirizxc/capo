@@ -38,7 +38,7 @@ def serialize_json(value: BotVersionSortBy) -> dict:
 
 def deserialize_json(data: dict) -> BotVersionSortBy:
     out: BotVersionSortBy = {}  # type: ignore[typeddict-item]
-    if "attribute" in data:
+    if data.get("attribute") is not None:
         import capo_lex_models_v2.types.bot_version_sort_attribute
 
         out["attribute"] = (
@@ -48,7 +48,7 @@ def deserialize_json(data: dict) -> BotVersionSortBy:
         )
     else:
         raise DeserializationError("BotVersionSortBy.attribute required")
-    if "order" in data:
+    if data.get("order") is not None:
         import capo_lex_models_v2.types.sort_order
 
         out["order"] = capo_lex_models_v2.types.sort_order.deserialize_json(

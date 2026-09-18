@@ -23,6 +23,6 @@ def serialize_json(value: AddDirectQueryDataSourceResponse) -> dict:
 
 def deserialize_json(data: dict) -> AddDirectQueryDataSourceResponse:
     out: AddDirectQueryDataSourceResponse = {}  # type: ignore[typeddict-item]
-    if "DataSourceArn" in data:
+    if data.get("DataSourceArn") is not None:
         out["data_source_arn"] = data["DataSourceArn"]
     return out

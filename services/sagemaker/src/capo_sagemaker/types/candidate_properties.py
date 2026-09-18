@@ -44,7 +44,7 @@ def serialize_aws_json_1_1(value: CandidateProperties) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CandidateProperties:
     out: CandidateProperties = {}  # type: ignore[typeddict-item]
-    if "CandidateArtifactLocations" in data:
+    if data.get("CandidateArtifactLocations") is not None:
         import capo_sagemaker.types.candidate_artifact_locations
 
         out["candidate_artifact_locations"] = (
@@ -52,7 +52,7 @@ def deserialize_aws_json_1_1(data: dict) -> CandidateProperties:
                 data["CandidateArtifactLocations"]
             )
         )
-    if "CandidateMetrics" in data:
+    if data.get("CandidateMetrics") is not None:
         import capo_sagemaker.types.metric_data_list
 
         out["candidate_metrics"] = (

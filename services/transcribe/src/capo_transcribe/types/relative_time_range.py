@@ -35,12 +35,12 @@ def serialize_aws_json_1_1(value: RelativeTimeRange) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RelativeTimeRange:
     out: RelativeTimeRange = {}  # type: ignore[typeddict-item]
-    if "StartPercentage" in data:
+    if data.get("StartPercentage") is not None:
         out["start_percentage"] = data["StartPercentage"]
-    if "EndPercentage" in data:
+    if data.get("EndPercentage") is not None:
         out["end_percentage"] = data["EndPercentage"]
-    if "First" in data:
+    if data.get("First") is not None:
         out["first"] = data["First"]
-    if "Last" in data:
+    if data.get("Last") is not None:
         out["last"] = data["Last"]
     return out

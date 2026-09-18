@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> AccessPreviewsList:
 
     out: AccessPreviewsList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_accessanalyzer.types.access_preview_summary.deserialize_json(item)
         )

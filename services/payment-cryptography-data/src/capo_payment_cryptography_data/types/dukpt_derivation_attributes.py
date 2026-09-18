@@ -50,13 +50,13 @@ def serialize_json(value: DukptDerivationAttributes) -> dict:
 
 def deserialize_json(data: dict) -> DukptDerivationAttributes:
     out: DukptDerivationAttributes = {}  # type: ignore[typeddict-item]
-    if "KeySerialNumber" in data:
+    if data.get("KeySerialNumber") is not None:
         out["key_serial_number"] = data["KeySerialNumber"]
     else:
         raise DeserializationError(
             "DukptDerivationAttributes.key_serial_number required"
         )
-    if "DukptKeyDerivationType" in data:
+    if data.get("DukptKeyDerivationType") is not None:
         import capo_payment_cryptography_data.types.dukpt_derivation_type
 
         out["dukpt_key_derivation_type"] = (
@@ -64,7 +64,7 @@ def deserialize_json(data: dict) -> DukptDerivationAttributes:
                 data["DukptKeyDerivationType"]
             )
         )
-    if "DukptKeyVariant" in data:
+    if data.get("DukptKeyVariant") is not None:
         import capo_payment_cryptography_data.types.dukpt_key_variant
 
         out["dukpt_key_variant"] = (

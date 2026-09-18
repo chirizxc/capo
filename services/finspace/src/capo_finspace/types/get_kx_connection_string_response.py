@@ -25,6 +25,6 @@ def serialize_json(value: GetKxConnectionStringResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetKxConnectionStringResponse:
     out: GetKxConnectionStringResponse = {}  # type: ignore[typeddict-item]
-    if "signedConnectionString" in data:
+    if data.get("signedConnectionString") is not None:
         out["signed_connection_string"] = data["signedConnectionString"]
     return out

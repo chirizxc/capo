@@ -96,9 +96,9 @@ def serialize_aws_json_1_1(value: TrainingPlanOffering) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> TrainingPlanOffering:
     out: TrainingPlanOffering = {}  # type: ignore[typeddict-item]
-    if "TrainingPlanOfferingId" in data:
+    if data.get("TrainingPlanOfferingId") is not None:
         out["training_plan_offering_id"] = data["TrainingPlanOfferingId"]
-    if "TargetResources" in data:
+    if data.get("TargetResources") is not None:
         import capo_sagemaker.types.sage_maker_resource_names
 
         out["target_resources"] = (
@@ -106,7 +106,7 @@ def deserialize_aws_json_1_1(data: dict) -> TrainingPlanOffering:
                 data["TargetResources"]
             )
         )
-    if "RequestedStartTimeAfter" in data:
+    if data.get("RequestedStartTimeAfter") is not None:
         import capo_sagemaker.types.timestamp
 
         out["requested_start_time_after"] = (
@@ -114,7 +114,7 @@ def deserialize_aws_json_1_1(data: dict) -> TrainingPlanOffering:
                 data["RequestedStartTimeAfter"]
             )
         )
-    if "RequestedEndTimeBefore" in data:
+    if data.get("RequestedEndTimeBefore") is not None:
         import capo_sagemaker.types.timestamp
 
         out["requested_end_time_before"] = (
@@ -122,15 +122,15 @@ def deserialize_aws_json_1_1(data: dict) -> TrainingPlanOffering:
                 data["RequestedEndTimeBefore"]
             )
         )
-    if "DurationHours" in data:
+    if data.get("DurationHours") is not None:
         out["duration_hours"] = data["DurationHours"]
-    if "DurationMinutes" in data:
+    if data.get("DurationMinutes") is not None:
         out["duration_minutes"] = data["DurationMinutes"]
-    if "UpfrontFee" in data:
+    if data.get("UpfrontFee") is not None:
         out["upfront_fee"] = data["UpfrontFee"]
-    if "CurrencyCode" in data:
+    if data.get("CurrencyCode") is not None:
         out["currency_code"] = data["CurrencyCode"]
-    if "ReservedCapacityOfferings" in data:
+    if data.get("ReservedCapacityOfferings") is not None:
         import capo_sagemaker.types.reserved_capacity_offerings
 
         out["reserved_capacity_offerings"] = (

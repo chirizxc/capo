@@ -46,11 +46,11 @@ def serialize_aws_json_1_1(value: SetTaskStatusInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SetTaskStatusInput:
     out: SetTaskStatusInput = {}  # type: ignore[typeddict-item]
-    if "taskId" in data:
+    if data.get("taskId") is not None:
         out["task_id"] = data["taskId"]
     else:
         raise DeserializationError("SetTaskStatusInput.task_id required")
-    if "taskStatus" in data:
+    if data.get("taskStatus") is not None:
         import capo_data_pipeline.types.task_status
 
         out["task_status"] = (
@@ -60,10 +60,10 @@ def deserialize_aws_json_1_1(data: dict) -> SetTaskStatusInput:
         )
     else:
         raise DeserializationError("SetTaskStatusInput.task_status required")
-    if "errorId" in data:
+    if data.get("errorId") is not None:
         out["error_id"] = data["errorId"]
-    if "errorMessage" in data:
+    if data.get("errorMessage") is not None:
         out["error_message"] = data["errorMessage"]
-    if "errorStackTrace" in data:
+    if data.get("errorStackTrace") is not None:
         out["error_stack_trace"] = data["errorStackTrace"]
     return out

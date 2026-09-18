@@ -58,23 +58,23 @@ def serialize_json(value: NamedEntityDefinition) -> dict:
 
 def deserialize_json(data: dict) -> NamedEntityDefinition:
     out: NamedEntityDefinition = {}  # type: ignore[typeddict-item]
-    if "FieldName" in data:
+    if data.get("FieldName") is not None:
         out["field_name"] = data["FieldName"]
-    if "PropertyName" in data:
+    if data.get("PropertyName") is not None:
         out["property_name"] = data["PropertyName"]
-    if "PropertyRole" in data:
+    if data.get("PropertyRole") is not None:
         import capo_quicksight.types.property_role
 
         out["property_role"] = capo_quicksight.types.property_role.deserialize_json(
             data["PropertyRole"]
         )
-    if "PropertyUsage" in data:
+    if data.get("PropertyUsage") is not None:
         import capo_quicksight.types.property_usage
 
         out["property_usage"] = capo_quicksight.types.property_usage.deserialize_json(
             data["PropertyUsage"]
         )
-    if "Metric" in data:
+    if data.get("Metric") is not None:
         import capo_quicksight.types.named_entity_definition_metric
 
         out["metric"] = (

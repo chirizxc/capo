@@ -25,6 +25,8 @@ def serialize_aws_json_1_0(input_to_serialize: RecordAttribute) -> dict:
 def deserialize_aws_json_1_0(data: dict) -> RecordAttribute:
     out: RecordAttribute = {}
     for key, value in data.items():
+        if value is None:
+            continue
         import capo_verifiedpermissions.types.attribute_value
 
         out[key] = (

@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: RequestLimitExceeded_) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RequestLimitExceeded_:
     out: RequestLimitExceeded_ = {}  # type: ignore[typeddict-item]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     return out
 
@@ -34,15 +34,18 @@ class RequestLimitExceeded(ServiceError):
 
     code: str | None = "RequestLimitExceeded"
 
-    def __init__(self, data: RequestLimitExceeded_):
+    def __init__(self, data: RequestLimitExceeded_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="RequestLimitExceeded",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "RequestLimitExceeded":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "RequestLimitExceeded":
+        return cls(deserialize_aws_json_1_1(data), message)

@@ -28,7 +28,7 @@ def serialize_json(value: AssistantAssociationInputData) -> dict:
 
 
 def deserialize_json(data: dict) -> AssistantAssociationInputData:
-    if "knowledgeBaseId" in data:
+    if data.get("knowledgeBaseId") is not None:
         return {"knowledgeBaseId": data["knowledgeBaseId"]}
     else:
         raise DeserializationError(

@@ -31,7 +31,7 @@ def serialize_json(value: FilterV2StringCondition) -> dict:
 
 def deserialize_json(data: dict) -> FilterV2StringCondition:
     out: FilterV2StringCondition = {}  # type: ignore[typeddict-item]
-    if "Comparison" in data:
+    if data.get("Comparison") is not None:
         import capo_connect.types.filter_v2_string_condition_comparison_operator
 
         out["comparison"] = (

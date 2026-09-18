@@ -68,9 +68,9 @@ def serialize_json(value: CreateScraperRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateScraperRequest:
     out: CreateScraperRequest = {}  # type: ignore[typeddict-item]
-    if "alias" in data:
+    if data.get("alias") is not None:
         out["alias"] = data["alias"]
-    if "scrapeConfiguration" in data:
+    if data.get("scrapeConfiguration") is not None:
         import capo_amp.types.scrape_configuration
 
         out["scrape_configuration"] = (
@@ -80,13 +80,13 @@ def deserialize_json(data: dict) -> CreateScraperRequest:
         )
     else:
         raise DeserializationError("CreateScraperRequest.scrape_configuration required")
-    if "source" in data:
+    if data.get("source") is not None:
         import capo_amp.types.source
 
         out["source"] = capo_amp.types.source.deserialize_json(data["source"])
     else:
         raise DeserializationError("CreateScraperRequest.source required")
-    if "destination" in data:
+    if data.get("destination") is not None:
         import capo_amp.types.destination
 
         out["destination"] = capo_amp.types.destination.deserialize_json(
@@ -94,15 +94,15 @@ def deserialize_json(data: dict) -> CreateScraperRequest:
         )
     else:
         raise DeserializationError("CreateScraperRequest.destination required")
-    if "roleConfiguration" in data:
+    if data.get("roleConfiguration") is not None:
         import capo_amp.types.role_configuration
 
         out["role_configuration"] = capo_amp.types.role_configuration.deserialize_json(
             data["roleConfiguration"]
         )
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_amp.types.tag_map
 
         out["tags"] = capo_amp.types.tag_map.deserialize_json(data["tags"])

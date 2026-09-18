@@ -1,6 +1,7 @@
 """Generated from Smithy shape ``com.amazonaws.lexmodelbuildingservice#AWSDeepSenseModelBuildingService``."""
 
 import warnings
+from collections.abc import Iterator
 from typing import TYPE_CHECKING, Any, Iterable, Optional
 
 from typing_extensions import Self, TypedDict
@@ -16,6 +17,7 @@ from capo_lex_model_building_service._auth._providers import (
     default_aws_credentials_chain,
 )
 from capo_lex_model_building_service._auth._zapros_handler import AuthMiddleware
+from capo_lex_model_building_service._pagination import resolve_path as _resolve_path
 from capo_lex_model_building_service._services._aws_config import aws_config
 from capo_lex_model_building_service._services._pipeline import (
     Interceptor,
@@ -289,8 +291,9 @@ class LexModelBuildingServiceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lex_model_building_service.types.create_bot_version_request.CreateBotVersionRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_lex_model_building_service.types.create_bot_version_request.CreateBotVersionRequest = {
+            "name": name
+        }
         if checksum is not None:
             input_["checksum"] = checksum
 
@@ -299,6 +302,7 @@ class LexModelBuildingServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_intent_version(
@@ -341,8 +345,9 @@ class LexModelBuildingServiceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lex_model_building_service.types.create_intent_version_request.CreateIntentVersionRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_lex_model_building_service.types.create_intent_version_request.CreateIntentVersionRequest = {
+            "name": name
+        }
         if checksum is not None:
             input_["checksum"] = checksum
 
@@ -351,6 +356,7 @@ class LexModelBuildingServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_slot_type_version(
@@ -393,8 +399,9 @@ class LexModelBuildingServiceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lex_model_building_service.types.create_slot_type_version_request.CreateSlotTypeVersionRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_lex_model_building_service.types.create_slot_type_version_request.CreateSlotTypeVersionRequest = {
+            "name": name
+        }
         if checksum is not None:
             input_["checksum"] = checksum
 
@@ -403,6 +410,7 @@ class LexModelBuildingServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_bot(
@@ -439,14 +447,16 @@ class LexModelBuildingServiceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lex_model_building_service.types.delete_bot_request.DeleteBotRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_lex_model_building_service.types.delete_bot_request.DeleteBotRequest = {
+            "name": name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_bot_alias(
@@ -485,15 +495,17 @@ class LexModelBuildingServiceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lex_model_building_service.types.delete_bot_alias_request.DeleteBotAliasRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        input_["bot_name"] = bot_name
+        input_: capo_lex_model_building_service.types.delete_bot_alias_request.DeleteBotAliasRequest = {
+            "name": name,
+            "bot_name": bot_name,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_bot_channel_association(
@@ -533,16 +545,18 @@ class LexModelBuildingServiceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lex_model_building_service.types.delete_bot_channel_association_request.DeleteBotChannelAssociationRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        input_["bot_name"] = bot_name
-        input_["bot_alias"] = bot_alias
+        input_: capo_lex_model_building_service.types.delete_bot_channel_association_request.DeleteBotChannelAssociationRequest = {
+            "name": name,
+            "bot_name": bot_name,
+            "bot_alias": bot_alias,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_bot_version(
@@ -581,15 +595,17 @@ class LexModelBuildingServiceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lex_model_building_service.types.delete_bot_version_request.DeleteBotVersionRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        input_["version"] = version
+        input_: capo_lex_model_building_service.types.delete_bot_version_request.DeleteBotVersionRequest = {
+            "name": name,
+            "version": version,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_intent(
@@ -626,14 +642,16 @@ class LexModelBuildingServiceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lex_model_building_service.types.delete_intent_request.DeleteIntentRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_lex_model_building_service.types.delete_intent_request.DeleteIntentRequest = {
+            "name": name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_intent_version(
@@ -672,15 +690,17 @@ class LexModelBuildingServiceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lex_model_building_service.types.delete_intent_version_request.DeleteIntentVersionRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        input_["version"] = version
+        input_: capo_lex_model_building_service.types.delete_intent_version_request.DeleteIntentVersionRequest = {
+            "name": name,
+            "version": version,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_slot_type(
@@ -717,14 +737,16 @@ class LexModelBuildingServiceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lex_model_building_service.types.delete_slot_type_request.DeleteSlotTypeRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_lex_model_building_service.types.delete_slot_type_request.DeleteSlotTypeRequest = {
+            "name": name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_slot_type_version(
@@ -763,15 +785,17 @@ class LexModelBuildingServiceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lex_model_building_service.types.delete_slot_type_version_request.DeleteSlotTypeVersionRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        input_["version"] = version
+        input_: capo_lex_model_building_service.types.delete_slot_type_version_request.DeleteSlotTypeVersionRequest = {
+            "name": name,
+            "version": version,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_utterances(
@@ -808,15 +832,17 @@ class LexModelBuildingServiceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lex_model_building_service.types.delete_utterances_request.DeleteUtterancesRequest = {}  # type: ignore[typeddict-item]
-        input_["bot_name"] = bot_name
-        input_["user_id"] = user_id
+        input_: capo_lex_model_building_service.types.delete_utterances_request.DeleteUtterancesRequest = {
+            "bot_name": bot_name,
+            "user_id": user_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_bot(
@@ -861,15 +887,17 @@ class LexModelBuildingServiceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lex_model_building_service.types.get_bot_request.GetBotRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        input_["version_or_alias"] = version_or_alias
+        input_: capo_lex_model_building_service.types.get_bot_request.GetBotRequest = {
+            "name": name,
+            "version_or_alias": version_or_alias,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_bot_alias(
@@ -908,15 +936,17 @@ class LexModelBuildingServiceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lex_model_building_service.types.get_bot_alias_request.GetBotAliasRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        input_["bot_name"] = bot_name
+        input_: capo_lex_model_building_service.types.get_bot_alias_request.GetBotAliasRequest = {
+            "name": name,
+            "bot_name": bot_name,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_bot_aliases(
@@ -964,8 +994,9 @@ class LexModelBuildingServiceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lex_model_building_service.types.get_bot_aliases_request.GetBotAliasesRequest = {}  # type: ignore[typeddict-item]
-        input_["bot_name"] = bot_name
+        input_: capo_lex_model_building_service.types.get_bot_aliases_request.GetBotAliasesRequest = {
+            "bot_name": bot_name
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -978,7 +1009,37 @@ class LexModelBuildingServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_get_bot_aliases(
+        self,
+        bot_name: "capo_lex_model_building_service.types.bot_name.BotName",
+        *,
+        config_overrides: Optional[LexModelBuildingServiceClientConfig] = None,
+        next_token: Optional[
+            "capo_lex_model_building_service.types.next_token.NextToken"
+        ] = None,
+        max_results: Optional[
+            "capo_lex_model_building_service.types.max_results.MaxResults"
+        ] = None,
+        name_contains: Optional[
+            "capo_lex_model_building_service.types.alias_name.AliasName"
+        ] = None,
+    ) -> "Iterator[capo_lex_model_building_service.types.get_bot_aliases_response.GetBotAliasesResponse]":
+        _token = next_token
+        while True:
+            _response = self.get_bot_aliases(
+                bot_name,
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+                name_contains=name_contains,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def get_bot_channel_association(
         self,
@@ -1018,16 +1079,18 @@ class LexModelBuildingServiceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lex_model_building_service.types.get_bot_channel_association_request.GetBotChannelAssociationRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        input_["bot_name"] = bot_name
-        input_["bot_alias"] = bot_alias
+        input_: capo_lex_model_building_service.types.get_bot_channel_association_request.GetBotChannelAssociationRequest = {
+            "name": name,
+            "bot_name": bot_name,
+            "bot_alias": bot_alias,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_bot_channel_associations(
@@ -1077,9 +1140,10 @@ class LexModelBuildingServiceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lex_model_building_service.types.get_bot_channel_associations_request.GetBotChannelAssociationsRequest = {}  # type: ignore[typeddict-item]
-        input_["bot_name"] = bot_name
-        input_["bot_alias"] = bot_alias
+        input_: capo_lex_model_building_service.types.get_bot_channel_associations_request.GetBotChannelAssociationsRequest = {
+            "bot_name": bot_name,
+            "bot_alias": bot_alias,
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -1092,7 +1156,39 @@ class LexModelBuildingServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_get_bot_channel_associations(
+        self,
+        bot_name: "capo_lex_model_building_service.types.bot_name.BotName",
+        bot_alias: "capo_lex_model_building_service.types.alias_name_or_list_all.AliasNameOrListAll",
+        *,
+        config_overrides: Optional[LexModelBuildingServiceClientConfig] = None,
+        next_token: Optional[
+            "capo_lex_model_building_service.types.next_token.NextToken"
+        ] = None,
+        max_results: Optional[
+            "capo_lex_model_building_service.types.max_results.MaxResults"
+        ] = None,
+        name_contains: Optional[
+            "capo_lex_model_building_service.types.bot_channel_name.BotChannelName"
+        ] = None,
+    ) -> "Iterator[capo_lex_model_building_service.types.get_bot_channel_associations_response.GetBotChannelAssociationsResponse]":
+        _token = next_token
+        while True:
+            _response = self.get_bot_channel_associations(
+                bot_name,
+                bot_alias,
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+                name_contains=name_contains,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def get_bots(
         self,
@@ -1144,7 +1240,7 @@ class LexModelBuildingServiceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lex_model_building_service.types.get_bots_request.GetBotsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_lex_model_building_service.types.get_bots_request.GetBotsRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -1157,7 +1253,35 @@ class LexModelBuildingServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_get_bots(
+        self,
+        *,
+        config_overrides: Optional[LexModelBuildingServiceClientConfig] = None,
+        next_token: Optional[
+            "capo_lex_model_building_service.types.next_token.NextToken"
+        ] = None,
+        max_results: Optional[
+            "capo_lex_model_building_service.types.max_results.MaxResults"
+        ] = None,
+        name_contains: Optional[
+            "capo_lex_model_building_service.types.bot_name.BotName"
+        ] = None,
+    ) -> "Iterator[capo_lex_model_building_service.types.get_bots_response.GetBotsResponse]":
+        _token = next_token
+        while True:
+            _response = self.get_bots(
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+                name_contains=name_contains,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def get_bot_versions(
         self,
@@ -1201,8 +1325,9 @@ class LexModelBuildingServiceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lex_model_building_service.types.get_bot_versions_request.GetBotVersionsRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_lex_model_building_service.types.get_bot_versions_request.GetBotVersionsRequest = {
+            "name": name
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -1213,7 +1338,33 @@ class LexModelBuildingServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_get_bot_versions(
+        self,
+        name: "capo_lex_model_building_service.types.bot_name.BotName",
+        *,
+        config_overrides: Optional[LexModelBuildingServiceClientConfig] = None,
+        next_token: Optional[
+            "capo_lex_model_building_service.types.next_token.NextToken"
+        ] = None,
+        max_results: Optional[
+            "capo_lex_model_building_service.types.max_results.MaxResults"
+        ] = None,
+    ) -> "Iterator[capo_lex_model_building_service.types.get_bot_versions_response.GetBotVersionsResponse]":
+        _token = next_token
+        while True:
+            _response = self.get_bot_versions(
+                name,
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def get_builtin_intent(
         self,
@@ -1249,14 +1400,16 @@ class LexModelBuildingServiceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lex_model_building_service.types.get_builtin_intent_request.GetBuiltinIntentRequest = {}  # type: ignore[typeddict-item]
-        input_["signature"] = signature
+        input_: capo_lex_model_building_service.types.get_builtin_intent_request.GetBuiltinIntentRequest = {
+            "signature": signature
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_builtin_intents(
@@ -1304,7 +1457,7 @@ class LexModelBuildingServiceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lex_model_building_service.types.get_builtin_intents_request.GetBuiltinIntentsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_lex_model_building_service.types.get_builtin_intents_request.GetBuiltinIntentsRequest = {}
         if locale is not None:
             input_["locale"] = locale
         if signature_contains is not None:
@@ -1319,7 +1472,37 @@ class LexModelBuildingServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_get_builtin_intents(
+        self,
+        *,
+        config_overrides: Optional[LexModelBuildingServiceClientConfig] = None,
+        locale: Optional["capo_lex_model_building_service.types.locale.Locale"] = None,
+        signature_contains: Optional[
+            "capo_lex_model_building_service.types.string.String"
+        ] = None,
+        next_token: Optional[
+            "capo_lex_model_building_service.types.next_token.NextToken"
+        ] = None,
+        max_results: Optional[
+            "capo_lex_model_building_service.types.max_results.MaxResults"
+        ] = None,
+    ) -> "Iterator[capo_lex_model_building_service.types.get_builtin_intents_response.GetBuiltinIntentsResponse]":
+        _token = next_token
+        while True:
+            _response = self.get_builtin_intents(
+                config_overrides=config_overrides,
+                locale=locale,
+                signature_contains=signature_contains,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def get_builtin_slot_types(
         self,
@@ -1366,7 +1549,7 @@ class LexModelBuildingServiceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lex_model_building_service.types.get_builtin_slot_types_request.GetBuiltinSlotTypesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_lex_model_building_service.types.get_builtin_slot_types_request.GetBuiltinSlotTypesRequest = {}
         if locale is not None:
             input_["locale"] = locale
         if signature_contains is not None:
@@ -1381,7 +1564,37 @@ class LexModelBuildingServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_get_builtin_slot_types(
+        self,
+        *,
+        config_overrides: Optional[LexModelBuildingServiceClientConfig] = None,
+        locale: Optional["capo_lex_model_building_service.types.locale.Locale"] = None,
+        signature_contains: Optional[
+            "capo_lex_model_building_service.types.string.String"
+        ] = None,
+        next_token: Optional[
+            "capo_lex_model_building_service.types.next_token.NextToken"
+        ] = None,
+        max_results: Optional[
+            "capo_lex_model_building_service.types.max_results.MaxResults"
+        ] = None,
+    ) -> "Iterator[capo_lex_model_building_service.types.get_builtin_slot_types_response.GetBuiltinSlotTypesResponse]":
+        _token = next_token
+        while True:
+            _response = self.get_builtin_slot_types(
+                config_overrides=config_overrides,
+                locale=locale,
+                signature_contains=signature_contains,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def get_export(
         self,
@@ -1423,17 +1636,19 @@ class LexModelBuildingServiceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lex_model_building_service.types.get_export_request.GetExportRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        input_["version"] = version
-        input_["resource_type"] = resource_type
-        input_["export_type"] = export_type
+        input_: capo_lex_model_building_service.types.get_export_request.GetExportRequest = {
+            "name": name,
+            "version": version,
+            "resource_type": resource_type,
+            "export_type": export_type,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_import(
@@ -1470,14 +1685,16 @@ class LexModelBuildingServiceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lex_model_building_service.types.get_import_request.GetImportRequest = {}  # type: ignore[typeddict-item]
-        input_["import_id"] = import_id
+        input_: capo_lex_model_building_service.types.get_import_request.GetImportRequest = {
+            "import_id": import_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_intent(
@@ -1522,15 +1739,17 @@ class LexModelBuildingServiceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lex_model_building_service.types.get_intent_request.GetIntentRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        input_["version"] = version
+        input_: capo_lex_model_building_service.types.get_intent_request.GetIntentRequest = {
+            "name": name,
+            "version": version,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_intents(
@@ -1585,7 +1804,7 @@ class LexModelBuildingServiceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lex_model_building_service.types.get_intents_request.GetIntentsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_lex_model_building_service.types.get_intents_request.GetIntentsRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -1598,7 +1817,35 @@ class LexModelBuildingServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_get_intents(
+        self,
+        *,
+        config_overrides: Optional[LexModelBuildingServiceClientConfig] = None,
+        next_token: Optional[
+            "capo_lex_model_building_service.types.next_token.NextToken"
+        ] = None,
+        max_results: Optional[
+            "capo_lex_model_building_service.types.max_results.MaxResults"
+        ] = None,
+        name_contains: Optional[
+            "capo_lex_model_building_service.types.intent_name.IntentName"
+        ] = None,
+    ) -> "Iterator[capo_lex_model_building_service.types.get_intents_response.GetIntentsResponse]":
+        _token = next_token
+        while True:
+            _response = self.get_intents(
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+                name_contains=name_contains,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def get_intent_versions(
         self,
@@ -1642,8 +1889,9 @@ class LexModelBuildingServiceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lex_model_building_service.types.get_intent_versions_request.GetIntentVersionsRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_lex_model_building_service.types.get_intent_versions_request.GetIntentVersionsRequest = {
+            "name": name
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -1654,7 +1902,33 @@ class LexModelBuildingServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_get_intent_versions(
+        self,
+        name: "capo_lex_model_building_service.types.intent_name.IntentName",
+        *,
+        config_overrides: Optional[LexModelBuildingServiceClientConfig] = None,
+        next_token: Optional[
+            "capo_lex_model_building_service.types.next_token.NextToken"
+        ] = None,
+        max_results: Optional[
+            "capo_lex_model_building_service.types.max_results.MaxResults"
+        ] = None,
+    ) -> "Iterator[capo_lex_model_building_service.types.get_intent_versions_response.GetIntentVersionsResponse]":
+        _token = next_token
+        while True:
+            _response = self.get_intent_versions(
+                name,
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def get_migration(
         self,
@@ -1690,14 +1964,16 @@ class LexModelBuildingServiceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lex_model_building_service.types.get_migration_request.GetMigrationRequest = {}  # type: ignore[typeddict-item]
-        input_["migration_id"] = migration_id
+        input_: capo_lex_model_building_service.types.get_migration_request.GetMigrationRequest = {
+            "migration_id": migration_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_migrations(
@@ -1755,7 +2031,7 @@ class LexModelBuildingServiceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lex_model_building_service.types.get_migrations_request.GetMigrationsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_lex_model_building_service.types.get_migrations_request.GetMigrationsRequest = {}
         if sort_by_attribute is not None:
             input_["sort_by_attribute"] = sort_by_attribute
         if sort_by_order is not None:
@@ -1774,7 +2050,47 @@ class LexModelBuildingServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_get_migrations(
+        self,
+        *,
+        config_overrides: Optional[LexModelBuildingServiceClientConfig] = None,
+        sort_by_attribute: Optional[
+            "capo_lex_model_building_service.types.migration_sort_attribute.MigrationSortAttribute"
+        ] = None,
+        sort_by_order: Optional[
+            "capo_lex_model_building_service.types.sort_order.SortOrder"
+        ] = None,
+        v1_bot_name_contains: Optional[
+            "capo_lex_model_building_service.types.bot_name.BotName"
+        ] = None,
+        migration_status_equals: Optional[
+            "capo_lex_model_building_service.types.migration_status.MigrationStatus"
+        ] = None,
+        max_results: Optional[
+            "capo_lex_model_building_service.types.max_results.MaxResults"
+        ] = None,
+        next_token: Optional[
+            "capo_lex_model_building_service.types.next_token.NextToken"
+        ] = None,
+    ) -> "Iterator[capo_lex_model_building_service.types.get_migrations_response.GetMigrationsResponse]":
+        _token = next_token
+        while True:
+            _response = self.get_migrations(
+                config_overrides=config_overrides,
+                sort_by_attribute=sort_by_attribute,
+                sort_by_order=sort_by_order,
+                v1_bot_name_contains=v1_bot_name_contains,
+                migration_status_equals=migration_status_equals,
+                max_results=max_results,
+                next_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def get_slot_type(
         self,
@@ -1818,15 +2134,17 @@ class LexModelBuildingServiceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lex_model_building_service.types.get_slot_type_request.GetSlotTypeRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        input_["version"] = version
+        input_: capo_lex_model_building_service.types.get_slot_type_request.GetSlotTypeRequest = {
+            "name": name,
+            "version": version,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_slot_types(
@@ -1879,7 +2197,7 @@ class LexModelBuildingServiceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lex_model_building_service.types.get_slot_types_request.GetSlotTypesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_lex_model_building_service.types.get_slot_types_request.GetSlotTypesRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -1892,7 +2210,35 @@ class LexModelBuildingServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_get_slot_types(
+        self,
+        *,
+        config_overrides: Optional[LexModelBuildingServiceClientConfig] = None,
+        next_token: Optional[
+            "capo_lex_model_building_service.types.next_token.NextToken"
+        ] = None,
+        max_results: Optional[
+            "capo_lex_model_building_service.types.max_results.MaxResults"
+        ] = None,
+        name_contains: Optional[
+            "capo_lex_model_building_service.types.slot_type_name.SlotTypeName"
+        ] = None,
+    ) -> "Iterator[capo_lex_model_building_service.types.get_slot_types_response.GetSlotTypesResponse]":
+        _token = next_token
+        while True:
+            _response = self.get_slot_types(
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+                name_contains=name_contains,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def get_slot_type_versions(
         self,
@@ -1936,8 +2282,9 @@ class LexModelBuildingServiceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lex_model_building_service.types.get_slot_type_versions_request.GetSlotTypeVersionsRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_lex_model_building_service.types.get_slot_type_versions_request.GetSlotTypeVersionsRequest = {
+            "name": name
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -1948,7 +2295,33 @@ class LexModelBuildingServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_get_slot_type_versions(
+        self,
+        name: "capo_lex_model_building_service.types.slot_type_name.SlotTypeName",
+        *,
+        config_overrides: Optional[LexModelBuildingServiceClientConfig] = None,
+        next_token: Optional[
+            "capo_lex_model_building_service.types.next_token.NextToken"
+        ] = None,
+        max_results: Optional[
+            "capo_lex_model_building_service.types.max_results.MaxResults"
+        ] = None,
+    ) -> "Iterator[capo_lex_model_building_service.types.get_slot_type_versions_response.GetSlotTypeVersionsResponse]":
+        _token = next_token
+        while True:
+            _response = self.get_slot_type_versions(
+                name,
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def get_utterances_view(
         self,
@@ -1987,16 +2360,18 @@ class LexModelBuildingServiceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lex_model_building_service.types.get_utterances_view_request.GetUtterancesViewRequest = {}  # type: ignore[typeddict-item]
-        input_["bot_name"] = bot_name
-        input_["bot_versions"] = bot_versions
-        input_["status_type"] = status_type
+        input_: capo_lex_model_building_service.types.get_utterances_view_request.GetUtterancesViewRequest = {
+            "bot_name": bot_name,
+            "bot_versions": bot_versions,
+            "status_type": status_type,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_tags_for_resource(
@@ -2033,14 +2408,16 @@ class LexModelBuildingServiceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lex_model_building_service.types.list_tags_for_resource_request.ListTagsForResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_lex_model_building_service.types.list_tags_for_resource_request.ListTagsForResourceRequest = {
+            "resource_arn": resource_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def put_bot(
@@ -2138,8 +2515,11 @@ class LexModelBuildingServiceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lex_model_building_service.types.put_bot_request.PutBotRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_lex_model_building_service.types.put_bot_request.PutBotRequest = {
+            "name": name,
+            "locale": locale,
+            "child_directed": child_directed,
+        }
         if description is not None:
             input_["description"] = description
         if intents is not None:
@@ -2160,8 +2540,6 @@ class LexModelBuildingServiceClient:
             input_["checksum"] = checksum
         if process_behavior is not None:
             input_["process_behavior"] = process_behavior
-        input_["locale"] = locale
-        input_["child_directed"] = child_directed
         if detect_sentiment is not None:
             input_["detect_sentiment"] = detect_sentiment
         if create_version is not None:
@@ -2174,6 +2552,7 @@ class LexModelBuildingServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def put_bot_alias(
@@ -2229,12 +2608,13 @@ class LexModelBuildingServiceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lex_model_building_service.types.put_bot_alias_request.PutBotAliasRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_lex_model_building_service.types.put_bot_alias_request.PutBotAliasRequest = {
+            "name": name,
+            "bot_version": bot_version,
+            "bot_name": bot_name,
+        }
         if description is not None:
             input_["description"] = description
-        input_["bot_version"] = bot_version
-        input_["bot_name"] = bot_name
         if checksum is not None:
             input_["checksum"] = checksum
         if conversation_logs is not None:
@@ -2247,6 +2627,7 @@ class LexModelBuildingServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def put_intent(
@@ -2350,8 +2731,9 @@ class LexModelBuildingServiceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lex_model_building_service.types.put_intent_request.PutIntentRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_lex_model_building_service.types.put_intent_request.PutIntentRequest = {
+            "name": name
+        }
         if description is not None:
             input_["description"] = description
         if slots is not None:
@@ -2388,6 +2770,7 @@ class LexModelBuildingServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def put_slot_type(
@@ -2459,8 +2842,9 @@ class LexModelBuildingServiceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lex_model_building_service.types.put_slot_type_request.PutSlotTypeRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_lex_model_building_service.types.put_slot_type_request.PutSlotTypeRequest = {
+            "name": name
+        }
         if description is not None:
             input_["description"] = description
         if enumeration_values is not None:
@@ -2481,6 +2865,7 @@ class LexModelBuildingServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def start_import(
@@ -2522,10 +2907,11 @@ class LexModelBuildingServiceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lex_model_building_service.types.start_import_request.StartImportRequest = {}  # type: ignore[typeddict-item]
-        input_["payload"] = payload
-        input_["resource_type"] = resource_type
-        input_["merge_strategy"] = merge_strategy
+        input_: capo_lex_model_building_service.types.start_import_request.StartImportRequest = {
+            "payload": payload,
+            "resource_type": resource_type,
+            "merge_strategy": merge_strategy,
+        }
         if tags is not None:
             input_["tags"] = tags
 
@@ -2534,6 +2920,7 @@ class LexModelBuildingServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def start_migration(
@@ -2579,18 +2966,20 @@ class LexModelBuildingServiceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lex_model_building_service.types.start_migration_request.StartMigrationRequest = {}  # type: ignore[typeddict-item]
-        input_["v1_bot_name"] = v1_bot_name
-        input_["v1_bot_version"] = v1_bot_version
-        input_["v2_bot_name"] = v2_bot_name
-        input_["v2_bot_role"] = v2_bot_role
-        input_["migration_strategy"] = migration_strategy
+        input_: capo_lex_model_building_service.types.start_migration_request.StartMigrationRequest = {
+            "v1_bot_name": v1_bot_name,
+            "v1_bot_version": v1_bot_version,
+            "v2_bot_name": v2_bot_name,
+            "v2_bot_role": v2_bot_role,
+            "migration_strategy": migration_strategy,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def tag_resource(
@@ -2630,15 +3019,17 @@ class LexModelBuildingServiceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lex_model_building_service.types.tag_resource_request.TagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tags"] = tags
+        input_: capo_lex_model_building_service.types.tag_resource_request.TagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tags": tags,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def untag_resource(
@@ -2678,15 +3069,17 @@ class LexModelBuildingServiceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lex_model_building_service.types.untag_resource_request.UntagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tag_keys"] = tag_keys
+        input_: capo_lex_model_building_service.types.untag_resource_request.UntagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tag_keys": tag_keys,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def __enter__(self) -> Self:

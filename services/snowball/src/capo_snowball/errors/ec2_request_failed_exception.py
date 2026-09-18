@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: Ec2RequestFailedException_) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Ec2RequestFailedException_:
     out: Ec2RequestFailedException_ = {}  # type: ignore[typeddict-item]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     return out
 
@@ -34,15 +34,18 @@ class Ec2RequestFailedException(ServiceError):
 
     code: str | None = "Ec2RequestFailedException"
 
-    def __init__(self, data: Ec2RequestFailedException_):
+    def __init__(self, data: Ec2RequestFailedException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="Ec2RequestFailedException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "Ec2RequestFailedException":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "Ec2RequestFailedException":
+        return cls(deserialize_aws_json_1_1(data), message)

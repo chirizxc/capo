@@ -121,29 +121,29 @@ def serialize_json(value: GetEnvironmentResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetEnvironmentResponse:
     out: GetEnvironmentResponse = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "EnvironmentId" in data:
+    if data.get("EnvironmentId") is not None:
         out["environment_id"] = data["EnvironmentId"]
-    if "NetworkFabricType" in data:
+    if data.get("NetworkFabricType") is not None:
         out["network_fabric_type"] = data["NetworkFabricType"]
-    if "OwnerAccountId" in data:
+    if data.get("OwnerAccountId") is not None:
         out["owner_account_id"] = data["OwnerAccountId"]
-    if "TransitGatewayId" in data:
+    if data.get("TransitGatewayId") is not None:
         out["transit_gateway_id"] = data["TransitGatewayId"]
-    if "State" in data:
+    if data.get("State") is not None:
         out["state"] = data["State"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_migration_hub_refactor_spaces.types.tag_map
 
         out["tags"] = capo_migration_hub_refactor_spaces.types.tag_map.deserialize_json(
             data["Tags"]
         )
-    if "Error" in data:
+    if data.get("Error") is not None:
         import capo_migration_hub_refactor_spaces.types.error_response
 
         out["error"] = (
@@ -151,7 +151,7 @@ def deserialize_json(data: dict) -> GetEnvironmentResponse:
                 data["Error"]
             )
         )
-    if "LastUpdatedTime" in data:
+    if data.get("LastUpdatedTime") is not None:
         import capo_migration_hub_refactor_spaces.types.timestamp
 
         out["last_updated_time"] = (
@@ -159,7 +159,7 @@ def deserialize_json(data: dict) -> GetEnvironmentResponse:
                 data["LastUpdatedTime"]
             )
         )
-    if "CreatedTime" in data:
+    if data.get("CreatedTime") is not None:
         import capo_migration_hub_refactor_spaces.types.timestamp
 
         out["created_time"] = (

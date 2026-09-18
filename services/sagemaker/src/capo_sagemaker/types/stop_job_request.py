@@ -32,9 +32,9 @@ def serialize_aws_json_1_1(value: StopJobRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> StopJobRequest:
     out: StopJobRequest = {}  # type: ignore[typeddict-item]
-    if "JobName" in data:
+    if data.get("JobName") is not None:
         out["job_name"] = data["JobName"]
-    if "JobCategory" in data:
+    if data.get("JobCategory") is not None:
         import capo_sagemaker.types.job_category
 
         out["job_category"] = (

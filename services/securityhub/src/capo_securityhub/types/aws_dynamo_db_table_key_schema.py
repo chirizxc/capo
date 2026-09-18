@@ -29,8 +29,8 @@ def serialize_json(value: AwsDynamoDbTableKeySchema) -> dict:
 
 def deserialize_json(data: dict) -> AwsDynamoDbTableKeySchema:
     out: AwsDynamoDbTableKeySchema = {}  # type: ignore[typeddict-item]
-    if "AttributeName" in data:
+    if data.get("AttributeName") is not None:
         out["attribute_name"] = data["AttributeName"]
-    if "KeyType" in data:
+    if data.get("KeyType") is not None:
         out["key_type"] = data["KeyType"]
     return out

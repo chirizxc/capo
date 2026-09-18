@@ -49,17 +49,17 @@ def serialize_json(value: CreateTestSetDiscrepancyReportResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateTestSetDiscrepancyReportResponse:
     out: CreateTestSetDiscrepancyReportResponse = {}  # type: ignore[typeddict-item]
-    if "testSetDiscrepancyReportId" in data:
+    if data.get("testSetDiscrepancyReportId") is not None:
         out["test_set_discrepancy_report_id"] = data["testSetDiscrepancyReportId"]
-    if "creationDateTime" in data:
+    if data.get("creationDateTime") is not None:
         import capo_lex_models_v2.types.timestamp
 
         out["creation_date_time"] = capo_lex_models_v2.types.timestamp.deserialize_json(
             data["creationDateTime"]
         )
-    if "testSetId" in data:
+    if data.get("testSetId") is not None:
         out["test_set_id"] = data["testSetId"]
-    if "target" in data:
+    if data.get("target") is not None:
         import capo_lex_models_v2.types.test_set_discrepancy_report_resource_target
 
         out["target"] = (

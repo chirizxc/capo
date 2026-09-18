@@ -25,7 +25,7 @@ def serialize_aws_json_1_1(value: ApprovalRuleTemplateInUseException_) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ApprovalRuleTemplateInUseException_:
     out: ApprovalRuleTemplateInUseException_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     return out
 
@@ -35,15 +35,20 @@ class ApprovalRuleTemplateInUseException(ServiceError):
 
     code: str | None = "ApprovalRuleTemplateInUseException"
 
-    def __init__(self, data: ApprovalRuleTemplateInUseException_):
+    def __init__(
+        self, data: ApprovalRuleTemplateInUseException_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="ApprovalRuleTemplateInUseException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "ApprovalRuleTemplateInUseException":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "ApprovalRuleTemplateInUseException":
+        return cls(deserialize_aws_json_1_1(data), message)

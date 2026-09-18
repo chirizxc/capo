@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> Recordings:
 
     out: Recordings = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_connect.types.recording_info.deserialize_json(item))
     return out

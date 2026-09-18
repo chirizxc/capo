@@ -37,15 +37,18 @@ class UnsupportedOperationFault(ServiceError):
 
     code: str | None = "UnsupportedOperationFault"
 
-    def __init__(self, data: UnsupportedOperationFault_):
+    def __init__(self, data: UnsupportedOperationFault_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="UnsupportedOperationFault",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_query(cls, el: Element) -> "UnsupportedOperationFault":
-        return cls(deserialize_query(el))
+    def from_query(
+        cls, el: Element, message: str | None = None
+    ) -> "UnsupportedOperationFault":
+        return cls(deserialize_query(el), message)

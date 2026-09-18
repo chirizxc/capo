@@ -80,15 +80,15 @@ def serialize_aws_json_1_1(value: DescribePredictorBacktestExportJobResponse) ->
 
 def deserialize_aws_json_1_1(data: dict) -> DescribePredictorBacktestExportJobResponse:
     out: DescribePredictorBacktestExportJobResponse = {}  # type: ignore[typeddict-item]
-    if "PredictorBacktestExportJobArn" in data:
+    if data.get("PredictorBacktestExportJobArn") is not None:
         out["predictor_backtest_export_job_arn"] = data["PredictorBacktestExportJobArn"]
-    if "PredictorBacktestExportJobName" in data:
+    if data.get("PredictorBacktestExportJobName") is not None:
         out["predictor_backtest_export_job_name"] = data[
             "PredictorBacktestExportJobName"
         ]
-    if "PredictorArn" in data:
+    if data.get("PredictorArn") is not None:
         out["predictor_arn"] = data["PredictorArn"]
-    if "Destination" in data:
+    if data.get("Destination") is not None:
         import capo_forecast.types.data_destination
 
         out["destination"] = (
@@ -96,17 +96,17 @@ def deserialize_aws_json_1_1(data: dict) -> DescribePredictorBacktestExportJobRe
                 data["Destination"]
             )
         )
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         out["status"] = data["Status"]
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_forecast.types.timestamp
 
         out["creation_time"] = capo_forecast.types.timestamp.deserialize_aws_json_1_1(
             data["CreationTime"]
         )
-    if "LastModificationTime" in data:
+    if data.get("LastModificationTime") is not None:
         import capo_forecast.types.timestamp
 
         out["last_modification_time"] = (
@@ -114,6 +114,6 @@ def deserialize_aws_json_1_1(data: dict) -> DescribePredictorBacktestExportJobRe
                 data["LastModificationTime"]
             )
         )
-    if "Format" in data:
+    if data.get("Format") is not None:
         out["format"] = data["Format"]
     return out

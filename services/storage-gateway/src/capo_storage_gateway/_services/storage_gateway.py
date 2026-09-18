@@ -480,11 +480,12 @@ class StorageGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_storage_gateway.types.activate_gateway_input.ActivateGatewayInput = {}  # type: ignore[typeddict-item]
-        input_["activation_key"] = activation_key
-        input_["gateway_name"] = gateway_name
-        input_["gateway_timezone"] = gateway_timezone
-        input_["gateway_region"] = gateway_region
+        input_: capo_storage_gateway.types.activate_gateway_input.ActivateGatewayInput = {
+            "activation_key": activation_key,
+            "gateway_name": gateway_name,
+            "gateway_timezone": gateway_timezone,
+            "gateway_region": gateway_region,
+        }
         if gateway_type is not None:
             input_["gateway_type"] = gateway_type
         if tape_drive_type is not None:
@@ -499,6 +500,7 @@ class StorageGatewayClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def add_cache(
@@ -540,15 +542,17 @@ class StorageGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_storage_gateway.types.add_cache_input.AddCacheInput = {}  # type: ignore[typeddict-item]
-        input_["gateway_arn"] = gateway_arn
-        input_["disk_ids"] = disk_ids
+        input_: capo_storage_gateway.types.add_cache_input.AddCacheInput = {
+            "gateway_arn": gateway_arn,
+            "disk_ids": disk_ids,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def add_tags_to_resource(
@@ -593,15 +597,17 @@ class StorageGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_storage_gateway.types.add_tags_to_resource_input.AddTagsToResourceInput = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tags"] = tags
+        input_: capo_storage_gateway.types.add_tags_to_resource_input.AddTagsToResourceInput = {
+            "resource_arn": resource_arn,
+            "tags": tags,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def add_upload_buffer(
@@ -643,15 +649,17 @@ class StorageGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_storage_gateway.types.add_upload_buffer_input.AddUploadBufferInput = {}  # type: ignore[typeddict-item]
-        input_["gateway_arn"] = gateway_arn
-        input_["disk_ids"] = disk_ids
+        input_: capo_storage_gateway.types.add_upload_buffer_input.AddUploadBufferInput = {
+            "gateway_arn": gateway_arn,
+            "disk_ids": disk_ids,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def add_working_storage(
@@ -695,15 +703,17 @@ class StorageGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_storage_gateway.types.add_working_storage_input.AddWorkingStorageInput = {}  # type: ignore[typeddict-item]
-        input_["gateway_arn"] = gateway_arn
-        input_["disk_ids"] = disk_ids
+        input_: capo_storage_gateway.types.add_working_storage_input.AddWorkingStorageInput = {
+            "gateway_arn": gateway_arn,
+            "disk_ids": disk_ids,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def assign_tape_pool(
@@ -744,9 +754,10 @@ class StorageGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_storage_gateway.types.assign_tape_pool_input.AssignTapePoolInput = {}  # type: ignore[typeddict-item]
-        input_["tape_arn"] = tape_arn
-        input_["pool_id"] = pool_id
+        input_: capo_storage_gateway.types.assign_tape_pool_input.AssignTapePoolInput = {
+            "tape_arn": tape_arn,
+            "pool_id": pool_id,
+        }
         if bypass_governance_retention is not None:
             input_["bypass_governance_retention"] = bypass_governance_retention
 
@@ -755,6 +766,7 @@ class StorageGatewayClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def associate_file_system(
@@ -809,12 +821,13 @@ class StorageGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_storage_gateway.types.associate_file_system_input.AssociateFileSystemInput = {}  # type: ignore[typeddict-item]
-        input_["user_name"] = user_name
-        input_["password"] = password
-        input_["client_token"] = client_token
-        input_["gateway_arn"] = gateway_arn
-        input_["location_arn"] = location_arn
+        input_: capo_storage_gateway.types.associate_file_system_input.AssociateFileSystemInput = {
+            "user_name": user_name,
+            "password": password,
+            "client_token": client_token,
+            "gateway_arn": gateway_arn,
+            "location_arn": location_arn,
+        }
         if tags is not None:
             input_["tags"] = tags
         if audit_destination_arn is not None:
@@ -829,6 +842,7 @@ class StorageGatewayClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def attach_volume(
@@ -873,12 +887,13 @@ class StorageGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_storage_gateway.types.attach_volume_input.AttachVolumeInput = {}  # type: ignore[typeddict-item]
-        input_["gateway_arn"] = gateway_arn
+        input_: capo_storage_gateway.types.attach_volume_input.AttachVolumeInput = {
+            "gateway_arn": gateway_arn,
+            "volume_arn": volume_arn,
+            "network_interface_id": network_interface_id,
+        }
         if target_name is not None:
             input_["target_name"] = target_name
-        input_["volume_arn"] = volume_arn
-        input_["network_interface_id"] = network_interface_id
         if disk_id is not None:
             input_["disk_id"] = disk_id
 
@@ -887,6 +902,7 @@ class StorageGatewayClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def cancel_archival(
@@ -928,15 +944,17 @@ class StorageGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_storage_gateway.types.cancel_archival_input.CancelArchivalInput = {}  # type: ignore[typeddict-item]
-        input_["gateway_arn"] = gateway_arn
-        input_["tape_arn"] = tape_arn
+        input_: capo_storage_gateway.types.cancel_archival_input.CancelArchivalInput = {
+            "gateway_arn": gateway_arn,
+            "tape_arn": tape_arn,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def cancel_cache_report(
@@ -973,14 +991,16 @@ class StorageGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_storage_gateway.types.cancel_cache_report_input.CancelCacheReportInput = {}  # type: ignore[typeddict-item]
-        input_["cache_report_arn"] = cache_report_arn
+        input_: capo_storage_gateway.types.cancel_cache_report_input.CancelCacheReportInput = {
+            "cache_report_arn": cache_report_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def cancel_retrieval(
@@ -1022,15 +1042,17 @@ class StorageGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_storage_gateway.types.cancel_retrieval_input.CancelRetrievalInput = {}  # type: ignore[typeddict-item]
-        input_["gateway_arn"] = gateway_arn
-        input_["tape_arn"] = tape_arn
+        input_: capo_storage_gateway.types.cancel_retrieval_input.CancelRetrievalInput = {
+            "gateway_arn": gateway_arn,
+            "tape_arn": tape_arn,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_cachedi_scsi_volume(
@@ -1092,16 +1114,17 @@ class StorageGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_storage_gateway.types.create_cachedi_scsi_volume_input.CreateCachediSCSIVolumeInput = {}  # type: ignore[typeddict-item]
-        input_["gateway_arn"] = gateway_arn
-        input_["volume_size_in_bytes"] = volume_size_in_bytes
+        input_: capo_storage_gateway.types.create_cachedi_scsi_volume_input.CreateCachediSCSIVolumeInput = {
+            "gateway_arn": gateway_arn,
+            "volume_size_in_bytes": volume_size_in_bytes,
+            "target_name": target_name,
+            "network_interface_id": network_interface_id,
+            "client_token": client_token,
+        }
         if snapshot_id is not None:
             input_["snapshot_id"] = snapshot_id
-        input_["target_name"] = target_name
         if source_volume_arn is not None:
             input_["source_volume_arn"] = source_volume_arn
-        input_["network_interface_id"] = network_interface_id
-        input_["client_token"] = client_token
         if kms_encrypted is not None:
             input_["kms_encrypted"] = kms_encrypted
         if kms_key is not None:
@@ -1114,6 +1137,7 @@ class StorageGatewayClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_nfs_file_share(
@@ -1210,19 +1234,20 @@ class StorageGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_storage_gateway.types.create_nfs_file_share_input.CreateNFSFileShareInput = {}  # type: ignore[typeddict-item]
-        input_["client_token"] = client_token
+        input_: capo_storage_gateway.types.create_nfs_file_share_input.CreateNFSFileShareInput = {
+            "client_token": client_token,
+            "gateway_arn": gateway_arn,
+            "role": role,
+            "location_arn": location_arn,
+        }
         if nfs_file_share_defaults is not None:
             input_["nfs_file_share_defaults"] = nfs_file_share_defaults
-        input_["gateway_arn"] = gateway_arn
         if encryption_type is not None:
             input_["encryption_type"] = encryption_type
         if kms_encrypted is not None:
             input_["kms_encrypted"] = kms_encrypted
         if kms_key is not None:
             input_["kms_key"] = kms_key
-        input_["role"] = role
-        input_["location_arn"] = location_arn
         if default_storage_class is not None:
             input_["default_storage_class"] = default_storage_class
         if object_acl is not None:
@@ -1257,6 +1282,7 @@ class StorageGatewayClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_smb_file_share(
@@ -1371,17 +1397,18 @@ class StorageGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_storage_gateway.types.create_smb_file_share_input.CreateSMBFileShareInput = {}  # type: ignore[typeddict-item]
-        input_["client_token"] = client_token
-        input_["gateway_arn"] = gateway_arn
+        input_: capo_storage_gateway.types.create_smb_file_share_input.CreateSMBFileShareInput = {
+            "client_token": client_token,
+            "gateway_arn": gateway_arn,
+            "role": role,
+            "location_arn": location_arn,
+        }
         if encryption_type is not None:
             input_["encryption_type"] = encryption_type
         if kms_encrypted is not None:
             input_["kms_encrypted"] = kms_encrypted
         if kms_key is not None:
             input_["kms_key"] = kms_key
-        input_["role"] = role
-        input_["location_arn"] = location_arn
         if default_storage_class is not None:
             input_["default_storage_class"] = default_storage_class
         if object_acl is not None:
@@ -1428,6 +1455,7 @@ class StorageGatewayClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_snapshot(
@@ -1473,9 +1501,10 @@ class StorageGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_storage_gateway.types.create_snapshot_input.CreateSnapshotInput = {}  # type: ignore[typeddict-item]
-        input_["volume_arn"] = volume_arn
-        input_["snapshot_description"] = snapshot_description
+        input_: capo_storage_gateway.types.create_snapshot_input.CreateSnapshotInput = {
+            "volume_arn": volume_arn,
+            "snapshot_description": snapshot_description,
+        }
         if tags is not None:
             input_["tags"] = tags
 
@@ -1484,6 +1513,7 @@ class StorageGatewayClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_snapshot_from_volume_recovery_point(
@@ -1529,9 +1559,10 @@ class StorageGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_storage_gateway.types.create_snapshot_from_volume_recovery_point_input.CreateSnapshotFromVolumeRecoveryPointInput = {}  # type: ignore[typeddict-item]
-        input_["volume_arn"] = volume_arn
-        input_["snapshot_description"] = snapshot_description
+        input_: capo_storage_gateway.types.create_snapshot_from_volume_recovery_point_input.CreateSnapshotFromVolumeRecoveryPointInput = {
+            "volume_arn": volume_arn,
+            "snapshot_description": snapshot_description,
+        }
         if tags is not None:
             input_["tags"] = tags
 
@@ -1540,6 +1571,7 @@ class StorageGatewayClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_storedi_scsi_volume(
@@ -1597,14 +1629,15 @@ class StorageGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_storage_gateway.types.create_storedi_scsi_volume_input.CreateStorediSCSIVolumeInput = {}  # type: ignore[typeddict-item]
-        input_["gateway_arn"] = gateway_arn
-        input_["disk_id"] = disk_id
+        input_: capo_storage_gateway.types.create_storedi_scsi_volume_input.CreateStorediSCSIVolumeInput = {
+            "gateway_arn": gateway_arn,
+            "disk_id": disk_id,
+            "preserve_existing_data": preserve_existing_data,
+            "target_name": target_name,
+            "network_interface_id": network_interface_id,
+        }
         if snapshot_id is not None:
             input_["snapshot_id"] = snapshot_id
-        input_["preserve_existing_data"] = preserve_existing_data
-        input_["target_name"] = target_name
-        input_["network_interface_id"] = network_interface_id
         if kms_encrypted is not None:
             input_["kms_encrypted"] = kms_encrypted
         if kms_key is not None:
@@ -1617,6 +1650,7 @@ class StorageGatewayClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_tape_pool(
@@ -1663,9 +1697,10 @@ class StorageGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_storage_gateway.types.create_tape_pool_input.CreateTapePoolInput = {}  # type: ignore[typeddict-item]
-        input_["pool_name"] = pool_name
-        input_["storage_class"] = storage_class
+        input_: capo_storage_gateway.types.create_tape_pool_input.CreateTapePoolInput = {
+            "pool_name": pool_name,
+            "storage_class": storage_class,
+        }
         if retention_lock_type is not None:
             input_["retention_lock_type"] = retention_lock_type
         if retention_lock_time_in_days is not None:
@@ -1678,6 +1713,7 @@ class StorageGatewayClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_tapes(
@@ -1736,12 +1772,13 @@ class StorageGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_storage_gateway.types.create_tapes_input.CreateTapesInput = {}  # type: ignore[typeddict-item]
-        input_["gateway_arn"] = gateway_arn
-        input_["tape_size_in_bytes"] = tape_size_in_bytes
-        input_["client_token"] = client_token
-        input_["num_tapes_to_create"] = num_tapes_to_create
-        input_["tape_barcode_prefix"] = tape_barcode_prefix
+        input_: capo_storage_gateway.types.create_tapes_input.CreateTapesInput = {
+            "gateway_arn": gateway_arn,
+            "tape_size_in_bytes": tape_size_in_bytes,
+            "client_token": client_token,
+            "num_tapes_to_create": num_tapes_to_create,
+            "tape_barcode_prefix": tape_barcode_prefix,
+        }
         if kms_encrypted is not None:
             input_["kms_encrypted"] = kms_encrypted
         if kms_key is not None:
@@ -1758,6 +1795,7 @@ class StorageGatewayClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_tape_with_barcode(
@@ -1812,10 +1850,11 @@ class StorageGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_storage_gateway.types.create_tape_with_barcode_input.CreateTapeWithBarcodeInput = {}  # type: ignore[typeddict-item]
-        input_["gateway_arn"] = gateway_arn
-        input_["tape_size_in_bytes"] = tape_size_in_bytes
-        input_["tape_barcode"] = tape_barcode
+        input_: capo_storage_gateway.types.create_tape_with_barcode_input.CreateTapeWithBarcodeInput = {
+            "gateway_arn": gateway_arn,
+            "tape_size_in_bytes": tape_size_in_bytes,
+            "tape_barcode": tape_barcode,
+        }
         if kms_encrypted is not None:
             input_["kms_encrypted"] = kms_encrypted
         if kms_key is not None:
@@ -1832,6 +1871,7 @@ class StorageGatewayClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_automatic_tape_creation_policy(
@@ -1863,14 +1903,16 @@ class StorageGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_storage_gateway.types.delete_automatic_tape_creation_policy_input.DeleteAutomaticTapeCreationPolicyInput = {}  # type: ignore[typeddict-item]
-        input_["gateway_arn"] = gateway_arn
+        input_: capo_storage_gateway.types.delete_automatic_tape_creation_policy_input.DeleteAutomaticTapeCreationPolicyInput = {
+            "gateway_arn": gateway_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_bandwidth_rate_limit(
@@ -1912,15 +1954,17 @@ class StorageGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_storage_gateway.types.delete_bandwidth_rate_limit_input.DeleteBandwidthRateLimitInput = {}  # type: ignore[typeddict-item]
-        input_["gateway_arn"] = gateway_arn
-        input_["bandwidth_type"] = bandwidth_type
+        input_: capo_storage_gateway.types.delete_bandwidth_rate_limit_input.DeleteBandwidthRateLimitInput = {
+            "gateway_arn": gateway_arn,
+            "bandwidth_type": bandwidth_type,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_cache_report(
@@ -1957,14 +2001,16 @@ class StorageGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_storage_gateway.types.delete_cache_report_input.DeleteCacheReportInput = {}  # type: ignore[typeddict-item]
-        input_["cache_report_arn"] = cache_report_arn
+        input_: capo_storage_gateway.types.delete_cache_report_input.DeleteCacheReportInput = {
+            "cache_report_arn": cache_report_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_chap_credentials(
@@ -2007,15 +2053,17 @@ class StorageGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_storage_gateway.types.delete_chap_credentials_input.DeleteChapCredentialsInput = {}  # type: ignore[typeddict-item]
-        input_["target_arn"] = target_arn
-        input_["initiator_name"] = initiator_name
+        input_: capo_storage_gateway.types.delete_chap_credentials_input.DeleteChapCredentialsInput = {
+            "target_arn": target_arn,
+            "initiator_name": initiator_name,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_file_share(
@@ -2052,8 +2100,9 @@ class StorageGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_storage_gateway.types.delete_file_share_input.DeleteFileShareInput = {}  # type: ignore[typeddict-item]
-        input_["file_share_arn"] = file_share_arn
+        input_: capo_storage_gateway.types.delete_file_share_input.DeleteFileShareInput = {
+            "file_share_arn": file_share_arn
+        }
         if force_delete is not None:
             input_["force_delete"] = force_delete
 
@@ -2062,6 +2111,7 @@ class StorageGatewayClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_gateway(
@@ -2099,14 +2149,16 @@ class StorageGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_storage_gateway.types.delete_gateway_input.DeleteGatewayInput = {}  # type: ignore[typeddict-item]
-        input_["gateway_arn"] = gateway_arn
+        input_: capo_storage_gateway.types.delete_gateway_input.DeleteGatewayInput = {
+            "gateway_arn": gateway_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_snapshot_schedule(
@@ -2147,14 +2199,16 @@ class StorageGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_storage_gateway.types.delete_snapshot_schedule_input.DeleteSnapshotScheduleInput = {}  # type: ignore[typeddict-item]
-        input_["volume_arn"] = volume_arn
+        input_: capo_storage_gateway.types.delete_snapshot_schedule_input.DeleteSnapshotScheduleInput = {
+            "volume_arn": volume_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_tape(
@@ -2201,9 +2255,10 @@ class StorageGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_storage_gateway.types.delete_tape_input.DeleteTapeInput = {}  # type: ignore[typeddict-item]
-        input_["gateway_arn"] = gateway_arn
-        input_["tape_arn"] = tape_arn
+        input_: capo_storage_gateway.types.delete_tape_input.DeleteTapeInput = {
+            "gateway_arn": gateway_arn,
+            "tape_arn": tape_arn,
+        }
         if bypass_governance_retention is not None:
             input_["bypass_governance_retention"] = bypass_governance_retention
 
@@ -2212,6 +2267,7 @@ class StorageGatewayClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_tape_archive(
@@ -2258,8 +2314,9 @@ class StorageGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_storage_gateway.types.delete_tape_archive_input.DeleteTapeArchiveInput = {}  # type: ignore[typeddict-item]
-        input_["tape_arn"] = tape_arn
+        input_: capo_storage_gateway.types.delete_tape_archive_input.DeleteTapeArchiveInput = {
+            "tape_arn": tape_arn
+        }
         if bypass_governance_retention is not None:
             input_["bypass_governance_retention"] = bypass_governance_retention
 
@@ -2268,6 +2325,7 @@ class StorageGatewayClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_tape_pool(
@@ -2302,14 +2360,16 @@ class StorageGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_storage_gateway.types.delete_tape_pool_input.DeleteTapePoolInput = {}  # type: ignore[typeddict-item]
-        input_["pool_arn"] = pool_arn
+        input_: capo_storage_gateway.types.delete_tape_pool_input.DeleteTapePoolInput = {
+            "pool_arn": pool_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_volume(
@@ -2350,14 +2410,16 @@ class StorageGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_storage_gateway.types.delete_volume_input.DeleteVolumeInput = {}  # type: ignore[typeddict-item]
-        input_["volume_arn"] = volume_arn
+        input_: capo_storage_gateway.types.delete_volume_input.DeleteVolumeInput = {
+            "volume_arn": volume_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_availability_monitor_test(
@@ -2389,14 +2451,16 @@ class StorageGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_storage_gateway.types.describe_availability_monitor_test_input.DescribeAvailabilityMonitorTestInput = {}  # type: ignore[typeddict-item]
-        input_["gateway_arn"] = gateway_arn
+        input_: capo_storage_gateway.types.describe_availability_monitor_test_input.DescribeAvailabilityMonitorTestInput = {
+            "gateway_arn": gateway_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_bandwidth_rate_limit(
@@ -2434,14 +2498,16 @@ class StorageGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_storage_gateway.types.describe_bandwidth_rate_limit_input.DescribeBandwidthRateLimitInput = {}  # type: ignore[typeddict-item]
-        input_["gateway_arn"] = gateway_arn
+        input_: capo_storage_gateway.types.describe_bandwidth_rate_limit_input.DescribeBandwidthRateLimitInput = {
+            "gateway_arn": gateway_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_bandwidth_rate_limit_schedule(
@@ -2473,14 +2539,16 @@ class StorageGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_storage_gateway.types.describe_bandwidth_rate_limit_schedule_input.DescribeBandwidthRateLimitScheduleInput = {}  # type: ignore[typeddict-item]
-        input_["gateway_arn"] = gateway_arn
+        input_: capo_storage_gateway.types.describe_bandwidth_rate_limit_schedule_input.DescribeBandwidthRateLimitScheduleInput = {
+            "gateway_arn": gateway_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_cache(
@@ -2518,14 +2586,16 @@ class StorageGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_storage_gateway.types.describe_cache_input.DescribeCacheInput = {}  # type: ignore[typeddict-item]
-        input_["gateway_arn"] = gateway_arn
+        input_: capo_storage_gateway.types.describe_cache_input.DescribeCacheInput = {
+            "gateway_arn": gateway_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_cachedi_scsi_volumes(
@@ -2566,14 +2636,16 @@ class StorageGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_storage_gateway.types.describe_cachedi_scsi_volumes_input.DescribeCachediSCSIVolumesInput = {}  # type: ignore[typeddict-item]
-        input_["volume_ar_ns"] = volume_ar_ns
+        input_: capo_storage_gateway.types.describe_cachedi_scsi_volumes_input.DescribeCachediSCSIVolumesInput = {
+            "volume_ar_ns": volume_ar_ns
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_cache_report(
@@ -2608,14 +2680,16 @@ class StorageGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_storage_gateway.types.describe_cache_report_input.DescribeCacheReportInput = {}  # type: ignore[typeddict-item]
-        input_["cache_report_arn"] = cache_report_arn
+        input_: capo_storage_gateway.types.describe_cache_report_input.DescribeCacheReportInput = {
+            "cache_report_arn": cache_report_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_chap_credentials(
@@ -2656,14 +2730,16 @@ class StorageGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_storage_gateway.types.describe_chap_credentials_input.DescribeChapCredentialsInput = {}  # type: ignore[typeddict-item]
-        input_["target_arn"] = target_arn
+        input_: capo_storage_gateway.types.describe_chap_credentials_input.DescribeChapCredentialsInput = {
+            "target_arn": target_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_file_system_associations(
@@ -2698,14 +2774,16 @@ class StorageGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_storage_gateway.types.describe_file_system_associations_input.DescribeFileSystemAssociationsInput = {}  # type: ignore[typeddict-item]
-        input_["file_system_association_arn_list"] = file_system_association_arn_list
+        input_: capo_storage_gateway.types.describe_file_system_associations_input.DescribeFileSystemAssociationsInput = {
+            "file_system_association_arn_list": file_system_association_arn_list
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_gateway_information(
@@ -2743,14 +2821,16 @@ class StorageGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_storage_gateway.types.describe_gateway_information_input.DescribeGatewayInformationInput = {}  # type: ignore[typeddict-item]
-        input_["gateway_arn"] = gateway_arn
+        input_: capo_storage_gateway.types.describe_gateway_information_input.DescribeGatewayInformationInput = {
+            "gateway_arn": gateway_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_maintenance_start_time(
@@ -2788,14 +2868,16 @@ class StorageGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_storage_gateway.types.describe_maintenance_start_time_input.DescribeMaintenanceStartTimeInput = {}  # type: ignore[typeddict-item]
-        input_["gateway_arn"] = gateway_arn
+        input_: capo_storage_gateway.types.describe_maintenance_start_time_input.DescribeMaintenanceStartTimeInput = {
+            "gateway_arn": gateway_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_nfs_file_shares(
@@ -2830,14 +2912,16 @@ class StorageGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_storage_gateway.types.describe_nfs_file_shares_input.DescribeNFSFileSharesInput = {}  # type: ignore[typeddict-item]
-        input_["file_share_arn_list"] = file_share_arn_list
+        input_: capo_storage_gateway.types.describe_nfs_file_shares_input.DescribeNFSFileSharesInput = {
+            "file_share_arn_list": file_share_arn_list
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_smb_file_shares(
@@ -2872,14 +2956,16 @@ class StorageGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_storage_gateway.types.describe_smb_file_shares_input.DescribeSMBFileSharesInput = {}  # type: ignore[typeddict-item]
-        input_["file_share_arn_list"] = file_share_arn_list
+        input_: capo_storage_gateway.types.describe_smb_file_shares_input.DescribeSMBFileSharesInput = {
+            "file_share_arn_list": file_share_arn_list
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_smb_settings(
@@ -2911,14 +2997,16 @@ class StorageGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_storage_gateway.types.describe_smb_settings_input.DescribeSMBSettingsInput = {}  # type: ignore[typeddict-item]
-        input_["gateway_arn"] = gateway_arn
+        input_: capo_storage_gateway.types.describe_smb_settings_input.DescribeSMBSettingsInput = {
+            "gateway_arn": gateway_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_snapshot_schedule(
@@ -2959,14 +3047,16 @@ class StorageGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_storage_gateway.types.describe_snapshot_schedule_input.DescribeSnapshotScheduleInput = {}  # type: ignore[typeddict-item]
-        input_["volume_arn"] = volume_arn
+        input_: capo_storage_gateway.types.describe_snapshot_schedule_input.DescribeSnapshotScheduleInput = {
+            "volume_arn": volume_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_storedi_scsi_volumes(
@@ -3007,14 +3097,16 @@ class StorageGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_storage_gateway.types.describe_storedi_scsi_volumes_input.DescribeStorediSCSIVolumesInput = {}  # type: ignore[typeddict-item]
-        input_["volume_ar_ns"] = volume_ar_ns
+        input_: capo_storage_gateway.types.describe_storedi_scsi_volumes_input.DescribeStorediSCSIVolumesInput = {
+            "volume_ar_ns": volume_ar_ns
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_tape_archives(
@@ -3055,7 +3147,7 @@ class StorageGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_storage_gateway.types.describe_tape_archives_input.DescribeTapeArchivesInput = {}  # type: ignore[typeddict-item]
+        input_: capo_storage_gateway.types.describe_tape_archives_input.DescribeTapeArchivesInput = {}
         if tape_ar_ns is not None:
             input_["tape_ar_ns"] = tape_ar_ns
         if marker is not None:
@@ -3068,6 +3160,7 @@ class StorageGatewayClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_describe_tape_archives(
@@ -3132,8 +3225,9 @@ class StorageGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_storage_gateway.types.describe_tape_recovery_points_input.DescribeTapeRecoveryPointsInput = {}  # type: ignore[typeddict-item]
-        input_["gateway_arn"] = gateway_arn
+        input_: capo_storage_gateway.types.describe_tape_recovery_points_input.DescribeTapeRecoveryPointsInput = {
+            "gateway_arn": gateway_arn
+        }
         if marker is not None:
             input_["marker"] = marker
         if limit is not None:
@@ -3144,6 +3238,7 @@ class StorageGatewayClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_describe_tape_recovery_points(
@@ -3216,8 +3311,9 @@ class StorageGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_storage_gateway.types.describe_tapes_input.DescribeTapesInput = {}  # type: ignore[typeddict-item]
-        input_["gateway_arn"] = gateway_arn
+        input_: capo_storage_gateway.types.describe_tapes_input.DescribeTapesInput = {
+            "gateway_arn": gateway_arn
+        }
         if tape_ar_ns is not None:
             input_["tape_ar_ns"] = tape_ar_ns
         if marker is not None:
@@ -3230,6 +3326,7 @@ class StorageGatewayClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_describe_tapes(
@@ -3298,14 +3395,16 @@ class StorageGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_storage_gateway.types.describe_upload_buffer_input.DescribeUploadBufferInput = {}  # type: ignore[typeddict-item]
-        input_["gateway_arn"] = gateway_arn
+        input_: capo_storage_gateway.types.describe_upload_buffer_input.DescribeUploadBufferInput = {
+            "gateway_arn": gateway_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_vtl_devices(
@@ -3355,8 +3454,9 @@ class StorageGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_storage_gateway.types.describe_vtl_devices_input.DescribeVTLDevicesInput = {}  # type: ignore[typeddict-item]
-        input_["gateway_arn"] = gateway_arn
+        input_: capo_storage_gateway.types.describe_vtl_devices_input.DescribeVTLDevicesInput = {
+            "gateway_arn": gateway_arn
+        }
         if vtl_device_ar_ns is not None:
             input_["vtl_device_ar_ns"] = vtl_device_ar_ns
         if marker is not None:
@@ -3369,6 +3469,7 @@ class StorageGatewayClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_describe_vtl_devices(
@@ -3435,14 +3536,16 @@ class StorageGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_storage_gateway.types.describe_working_storage_input.DescribeWorkingStorageInput = {}  # type: ignore[typeddict-item]
-        input_["gateway_arn"] = gateway_arn
+        input_: capo_storage_gateway.types.describe_working_storage_input.DescribeWorkingStorageInput = {
+            "gateway_arn": gateway_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def detach_volume(
@@ -3479,8 +3582,9 @@ class StorageGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_storage_gateway.types.detach_volume_input.DetachVolumeInput = {}  # type: ignore[typeddict-item]
-        input_["volume_arn"] = volume_arn
+        input_: capo_storage_gateway.types.detach_volume_input.DetachVolumeInput = {
+            "volume_arn": volume_arn
+        }
         if force_detach is not None:
             input_["force_detach"] = force_detach
 
@@ -3489,6 +3593,7 @@ class StorageGatewayClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def disable_gateway(
@@ -3526,14 +3631,16 @@ class StorageGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_storage_gateway.types.disable_gateway_input.DisableGatewayInput = {}  # type: ignore[typeddict-item]
-        input_["gateway_arn"] = gateway_arn
+        input_: capo_storage_gateway.types.disable_gateway_input.DisableGatewayInput = {
+            "gateway_arn": gateway_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def disassociate_file_system(
@@ -3570,8 +3677,9 @@ class StorageGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_storage_gateway.types.disassociate_file_system_input.DisassociateFileSystemInput = {}  # type: ignore[typeddict-item]
-        input_["file_system_association_arn"] = file_system_association_arn
+        input_: capo_storage_gateway.types.disassociate_file_system_input.DisassociateFileSystemInput = {
+            "file_system_association_arn": file_system_association_arn
+        }
         if force_delete is not None:
             input_["force_delete"] = force_delete
 
@@ -3580,6 +3688,7 @@ class StorageGatewayClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def evict_files_failing_upload(
@@ -3616,8 +3725,9 @@ class StorageGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_storage_gateway.types.evict_files_failing_upload_input.EvictFilesFailingUploadInput = {}  # type: ignore[typeddict-item]
-        input_["file_share_arn"] = file_share_arn
+        input_: capo_storage_gateway.types.evict_files_failing_upload_input.EvictFilesFailingUploadInput = {
+            "file_share_arn": file_share_arn
+        }
         if force_remove is not None:
             input_["force_remove"] = force_remove
 
@@ -3626,6 +3736,7 @@ class StorageGatewayClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def join_domain(
@@ -3676,23 +3787,25 @@ class StorageGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_storage_gateway.types.join_domain_input.JoinDomainInput = {}  # type: ignore[typeddict-item]
-        input_["gateway_arn"] = gateway_arn
-        input_["domain_name"] = domain_name
+        input_: capo_storage_gateway.types.join_domain_input.JoinDomainInput = {
+            "gateway_arn": gateway_arn,
+            "domain_name": domain_name,
+            "user_name": user_name,
+            "password": password,
+        }
         if organizational_unit is not None:
             input_["organizational_unit"] = organizational_unit
         if domain_controllers is not None:
             input_["domain_controllers"] = domain_controllers
         if timeout_in_seconds is not None:
             input_["timeout_in_seconds"] = timeout_in_seconds
-        input_["user_name"] = user_name
-        input_["password"] = password
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_automatic_tape_creation_policies(
@@ -3726,7 +3839,7 @@ class StorageGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_storage_gateway.types.list_automatic_tape_creation_policies_input.ListAutomaticTapeCreationPoliciesInput = {}  # type: ignore[typeddict-item]
+        input_: capo_storage_gateway.types.list_automatic_tape_creation_policies_input.ListAutomaticTapeCreationPoliciesInput = {}
         if gateway_arn is not None:
             input_["gateway_arn"] = gateway_arn
 
@@ -3735,6 +3848,7 @@ class StorageGatewayClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_cache_reports(
@@ -3769,7 +3883,7 @@ class StorageGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_storage_gateway.types.list_cache_reports_input.ListCacheReportsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_storage_gateway.types.list_cache_reports_input.ListCacheReportsInput = {}
         if marker is not None:
             input_["marker"] = marker
 
@@ -3778,6 +3892,7 @@ class StorageGatewayClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_cache_reports(
@@ -3839,7 +3954,7 @@ class StorageGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_storage_gateway.types.list_file_shares_input.ListFileSharesInput = {}  # type: ignore[typeddict-item]
+        input_: capo_storage_gateway.types.list_file_shares_input.ListFileSharesInput = {}
         if gateway_arn is not None:
             input_["gateway_arn"] = gateway_arn
         if limit is not None:
@@ -3852,6 +3967,7 @@ class StorageGatewayClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_file_shares(
@@ -3920,7 +4036,7 @@ class StorageGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_storage_gateway.types.list_file_system_associations_input.ListFileSystemAssociationsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_storage_gateway.types.list_file_system_associations_input.ListFileSystemAssociationsInput = {}
         if gateway_arn is not None:
             input_["gateway_arn"] = gateway_arn
         if limit is not None:
@@ -3933,6 +4049,7 @@ class StorageGatewayClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_file_system_associations(
@@ -4004,7 +4121,7 @@ class StorageGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_storage_gateway.types.list_gateways_input.ListGatewaysInput = {}  # type: ignore[typeddict-item]
+        input_: capo_storage_gateway.types.list_gateways_input.ListGatewaysInput = {}
         if marker is not None:
             input_["marker"] = marker
         if limit is not None:
@@ -4015,6 +4132,7 @@ class StorageGatewayClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_gateways(
@@ -4075,14 +4193,16 @@ class StorageGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_storage_gateway.types.list_local_disks_input.ListLocalDisksInput = {}  # type: ignore[typeddict-item]
-        input_["gateway_arn"] = gateway_arn
+        input_: capo_storage_gateway.types.list_local_disks_input.ListLocalDisksInput = {
+            "gateway_arn": gateway_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_tags_for_resource(
@@ -4129,8 +4249,9 @@ class StorageGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_storage_gateway.types.list_tags_for_resource_input.ListTagsForResourceInput = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_storage_gateway.types.list_tags_for_resource_input.ListTagsForResourceInput = {
+            "resource_arn": resource_arn
+        }
         if marker is not None:
             input_["marker"] = marker
         if limit is not None:
@@ -4141,6 +4262,7 @@ class StorageGatewayClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_tags_for_resource(
@@ -4206,7 +4328,7 @@ class StorageGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_storage_gateway.types.list_tape_pools_input.ListTapePoolsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_storage_gateway.types.list_tape_pools_input.ListTapePoolsInput = {}
         if pool_ar_ns is not None:
             input_["pool_ar_ns"] = pool_ar_ns
         if marker is not None:
@@ -4219,6 +4341,7 @@ class StorageGatewayClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_tape_pools(
@@ -4283,7 +4406,7 @@ class StorageGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_storage_gateway.types.list_tapes_input.ListTapesInput = {}  # type: ignore[typeddict-item]
+        input_: capo_storage_gateway.types.list_tapes_input.ListTapesInput = {}
         if tape_ar_ns is not None:
             input_["tape_ar_ns"] = tape_ar_ns
         if marker is not None:
@@ -4296,6 +4419,7 @@ class StorageGatewayClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_tapes(
@@ -4355,14 +4479,16 @@ class StorageGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_storage_gateway.types.list_volume_initiators_input.ListVolumeInitiatorsInput = {}  # type: ignore[typeddict-item]
-        input_["volume_arn"] = volume_arn
+        input_: capo_storage_gateway.types.list_volume_initiators_input.ListVolumeInitiatorsInput = {
+            "volume_arn": volume_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_volume_recovery_points(
@@ -4400,14 +4526,16 @@ class StorageGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_storage_gateway.types.list_volume_recovery_points_input.ListVolumeRecoveryPointsInput = {}  # type: ignore[typeddict-item]
-        input_["gateway_arn"] = gateway_arn
+        input_: capo_storage_gateway.types.list_volume_recovery_points_input.ListVolumeRecoveryPointsInput = {
+            "gateway_arn": gateway_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_volumes(
@@ -4455,7 +4583,7 @@ class StorageGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_storage_gateway.types.list_volumes_input.ListVolumesInput = {}  # type: ignore[typeddict-item]
+        input_: capo_storage_gateway.types.list_volumes_input.ListVolumesInput = {}
         if gateway_arn is not None:
             input_["gateway_arn"] = gateway_arn
         if marker is not None:
@@ -4468,6 +4596,7 @@ class StorageGatewayClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_volumes(
@@ -4526,14 +4655,16 @@ class StorageGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_storage_gateway.types.notify_when_uploaded_input.NotifyWhenUploadedInput = {}  # type: ignore[typeddict-item]
-        input_["file_share_arn"] = file_share_arn
+        input_: capo_storage_gateway.types.notify_when_uploaded_input.NotifyWhenUploadedInput = {
+            "file_share_arn": file_share_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def refresh_cache(
@@ -4574,8 +4705,9 @@ class StorageGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_storage_gateway.types.refresh_cache_input.RefreshCacheInput = {}  # type: ignore[typeddict-item]
-        input_["file_share_arn"] = file_share_arn
+        input_: capo_storage_gateway.types.refresh_cache_input.RefreshCacheInput = {
+            "file_share_arn": file_share_arn
+        }
         if folder_list is not None:
             input_["folder_list"] = folder_list
         if recursive is not None:
@@ -4586,6 +4718,7 @@ class StorageGatewayClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def remove_tags_from_resource(
@@ -4628,15 +4761,17 @@ class StorageGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_storage_gateway.types.remove_tags_from_resource_input.RemoveTagsFromResourceInput = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tag_keys"] = tag_keys
+        input_: capo_storage_gateway.types.remove_tags_from_resource_input.RemoveTagsFromResourceInput = {
+            "resource_arn": resource_arn,
+            "tag_keys": tag_keys,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def reset_cache(
@@ -4674,14 +4809,16 @@ class StorageGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_storage_gateway.types.reset_cache_input.ResetCacheInput = {}  # type: ignore[typeddict-item]
-        input_["gateway_arn"] = gateway_arn
+        input_: capo_storage_gateway.types.reset_cache_input.ResetCacheInput = {
+            "gateway_arn": gateway_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def retrieve_tape_archive(
@@ -4724,15 +4861,17 @@ class StorageGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_storage_gateway.types.retrieve_tape_archive_input.RetrieveTapeArchiveInput = {}  # type: ignore[typeddict-item]
-        input_["tape_arn"] = tape_arn
-        input_["gateway_arn"] = gateway_arn
+        input_: capo_storage_gateway.types.retrieve_tape_archive_input.RetrieveTapeArchiveInput = {
+            "tape_arn": tape_arn,
+            "gateway_arn": gateway_arn,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def retrieve_tape_recovery_point(
@@ -4774,15 +4913,17 @@ class StorageGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_storage_gateway.types.retrieve_tape_recovery_point_input.RetrieveTapeRecoveryPointInput = {}  # type: ignore[typeddict-item]
-        input_["tape_arn"] = tape_arn
-        input_["gateway_arn"] = gateway_arn
+        input_: capo_storage_gateway.types.retrieve_tape_recovery_point_input.RetrieveTapeRecoveryPointInput = {
+            "tape_arn": tape_arn,
+            "gateway_arn": gateway_arn,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def set_local_console_password(
@@ -4824,15 +4965,17 @@ class StorageGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_storage_gateway.types.set_local_console_password_input.SetLocalConsolePasswordInput = {}  # type: ignore[typeddict-item]
-        input_["gateway_arn"] = gateway_arn
-        input_["local_console_password"] = local_console_password
+        input_: capo_storage_gateway.types.set_local_console_password_input.SetLocalConsolePasswordInput = {
+            "gateway_arn": gateway_arn,
+            "local_console_password": local_console_password,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def set_smb_guest_password(
@@ -4869,15 +5012,17 @@ class StorageGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_storage_gateway.types.set_smb_guest_password_input.SetSMBGuestPasswordInput = {}  # type: ignore[typeddict-item]
-        input_["gateway_arn"] = gateway_arn
-        input_["password"] = password
+        input_: capo_storage_gateway.types.set_smb_guest_password_input.SetSMBGuestPasswordInput = {
+            "gateway_arn": gateway_arn,
+            "password": password,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def shutdown_gateway(
@@ -4915,14 +5060,16 @@ class StorageGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_storage_gateway.types.shutdown_gateway_input.ShutdownGatewayInput = {}  # type: ignore[typeddict-item]
-        input_["gateway_arn"] = gateway_arn
+        input_: capo_storage_gateway.types.shutdown_gateway_input.ShutdownGatewayInput = {
+            "gateway_arn": gateway_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def start_availability_monitor_test(
@@ -4954,14 +5101,16 @@ class StorageGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_storage_gateway.types.start_availability_monitor_test_input.StartAvailabilityMonitorTestInput = {}  # type: ignore[typeddict-item]
-        input_["gateway_arn"] = gateway_arn
+        input_: capo_storage_gateway.types.start_availability_monitor_test_input.StartAvailabilityMonitorTestInput = {
+            "gateway_arn": gateway_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def start_cache_report(
@@ -5017,18 +5166,19 @@ class StorageGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_storage_gateway.types.start_cache_report_input.StartCacheReportInput = {}  # type: ignore[typeddict-item]
-        input_["file_share_arn"] = file_share_arn
-        input_["role"] = role
-        input_["location_arn"] = location_arn
-        input_["bucket_region"] = bucket_region
+        input_: capo_storage_gateway.types.start_cache_report_input.StartCacheReportInput = {
+            "file_share_arn": file_share_arn,
+            "role": role,
+            "location_arn": location_arn,
+            "bucket_region": bucket_region,
+            "client_token": client_token,
+        }
         if vpc_endpoint_dns_name is not None:
             input_["vpc_endpoint_dns_name"] = vpc_endpoint_dns_name
         if inclusion_filters is not None:
             input_["inclusion_filters"] = inclusion_filters
         if exclusion_filters is not None:
             input_["exclusion_filters"] = exclusion_filters
-        input_["client_token"] = client_token
         if tags is not None:
             input_["tags"] = tags
 
@@ -5037,6 +5187,7 @@ class StorageGatewayClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def start_gateway(
@@ -5074,14 +5225,16 @@ class StorageGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_storage_gateway.types.start_gateway_input.StartGatewayInput = {}  # type: ignore[typeddict-item]
-        input_["gateway_arn"] = gateway_arn
+        input_: capo_storage_gateway.types.start_gateway_input.StartGatewayInput = {
+            "gateway_arn": gateway_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_automatic_tape_creation_policy(
@@ -5117,15 +5270,17 @@ class StorageGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_storage_gateway.types.update_automatic_tape_creation_policy_input.UpdateAutomaticTapeCreationPolicyInput = {}  # type: ignore[typeddict-item]
-        input_["automatic_tape_creation_rules"] = automatic_tape_creation_rules
-        input_["gateway_arn"] = gateway_arn
+        input_: capo_storage_gateway.types.update_automatic_tape_creation_policy_input.UpdateAutomaticTapeCreationPolicyInput = {
+            "automatic_tape_creation_rules": automatic_tape_creation_rules,
+            "gateway_arn": gateway_arn,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_bandwidth_rate_limit(
@@ -5173,8 +5328,9 @@ class StorageGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_storage_gateway.types.update_bandwidth_rate_limit_input.UpdateBandwidthRateLimitInput = {}  # type: ignore[typeddict-item]
-        input_["gateway_arn"] = gateway_arn
+        input_: capo_storage_gateway.types.update_bandwidth_rate_limit_input.UpdateBandwidthRateLimitInput = {
+            "gateway_arn": gateway_arn
+        }
         if average_upload_rate_limit_in_bits_per_sec is not None:
             input_["average_upload_rate_limit_in_bits_per_sec"] = (
                 average_upload_rate_limit_in_bits_per_sec
@@ -5189,6 +5345,7 @@ class StorageGatewayClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_bandwidth_rate_limit_schedule(
@@ -5224,15 +5381,17 @@ class StorageGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_storage_gateway.types.update_bandwidth_rate_limit_schedule_input.UpdateBandwidthRateLimitScheduleInput = {}  # type: ignore[typeddict-item]
-        input_["gateway_arn"] = gateway_arn
-        input_["bandwidth_rate_limit_intervals"] = bandwidth_rate_limit_intervals
+        input_: capo_storage_gateway.types.update_bandwidth_rate_limit_schedule_input.UpdateBandwidthRateLimitScheduleInput = {
+            "gateway_arn": gateway_arn,
+            "bandwidth_rate_limit_intervals": bandwidth_rate_limit_intervals,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_chap_credentials(
@@ -5281,10 +5440,11 @@ class StorageGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_storage_gateway.types.update_chap_credentials_input.UpdateChapCredentialsInput = {}  # type: ignore[typeddict-item]
-        input_["target_arn"] = target_arn
-        input_["secret_to_authenticate_initiator"] = secret_to_authenticate_initiator
-        input_["initiator_name"] = initiator_name
+        input_: capo_storage_gateway.types.update_chap_credentials_input.UpdateChapCredentialsInput = {
+            "target_arn": target_arn,
+            "secret_to_authenticate_initiator": secret_to_authenticate_initiator,
+            "initiator_name": initiator_name,
+        }
         if secret_to_authenticate_target is not None:
             input_["secret_to_authenticate_target"] = secret_to_authenticate_target
 
@@ -5293,6 +5453,7 @@ class StorageGatewayClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_file_system_association(
@@ -5342,8 +5503,9 @@ class StorageGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_storage_gateway.types.update_file_system_association_input.UpdateFileSystemAssociationInput = {}  # type: ignore[typeddict-item]
-        input_["file_system_association_arn"] = file_system_association_arn
+        input_: capo_storage_gateway.types.update_file_system_association_input.UpdateFileSystemAssociationInput = {
+            "file_system_association_arn": file_system_association_arn
+        }
         if user_name is not None:
             input_["user_name"] = user_name
         if password is not None:
@@ -5358,6 +5520,7 @@ class StorageGatewayClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_gateway_information(
@@ -5412,8 +5575,9 @@ class StorageGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_storage_gateway.types.update_gateway_information_input.UpdateGatewayInformationInput = {}  # type: ignore[typeddict-item]
-        input_["gateway_arn"] = gateway_arn
+        input_: capo_storage_gateway.types.update_gateway_information_input.UpdateGatewayInformationInput = {
+            "gateway_arn": gateway_arn
+        }
         if gateway_name is not None:
             input_["gateway_name"] = gateway_name
         if gateway_timezone is not None:
@@ -5428,6 +5592,7 @@ class StorageGatewayClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_gateway_software_now(
@@ -5465,14 +5630,16 @@ class StorageGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_storage_gateway.types.update_gateway_software_now_input.UpdateGatewaySoftwareNowInput = {}  # type: ignore[typeddict-item]
-        input_["gateway_arn"] = gateway_arn
+        input_: capo_storage_gateway.types.update_gateway_software_now_input.UpdateGatewaySoftwareNowInput = {
+            "gateway_arn": gateway_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_maintenance_start_time(
@@ -5532,8 +5699,9 @@ class StorageGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_storage_gateway.types.update_maintenance_start_time_input.UpdateMaintenanceStartTimeInput = {}  # type: ignore[typeddict-item]
-        input_["gateway_arn"] = gateway_arn
+        input_: capo_storage_gateway.types.update_maintenance_start_time_input.UpdateMaintenanceStartTimeInput = {
+            "gateway_arn": gateway_arn
+        }
         if hour_of_day is not None:
             input_["hour_of_day"] = hour_of_day
         if minute_of_hour is not None:
@@ -5550,6 +5718,7 @@ class StorageGatewayClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_nfs_file_share(
@@ -5632,8 +5801,9 @@ class StorageGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_storage_gateway.types.update_nfs_file_share_input.UpdateNFSFileShareInput = {}  # type: ignore[typeddict-item]
-        input_["file_share_arn"] = file_share_arn
+        input_: capo_storage_gateway.types.update_nfs_file_share_input.UpdateNFSFileShareInput = {
+            "file_share_arn": file_share_arn
+        }
         if encryption_type is not None:
             input_["encryption_type"] = encryption_type
         if kms_encrypted is not None:
@@ -5670,6 +5840,7 @@ class StorageGatewayClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_smb_file_share(
@@ -5766,8 +5937,9 @@ class StorageGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_storage_gateway.types.update_smb_file_share_input.UpdateSMBFileShareInput = {}  # type: ignore[typeddict-item]
-        input_["file_share_arn"] = file_share_arn
+        input_: capo_storage_gateway.types.update_smb_file_share_input.UpdateSMBFileShareInput = {
+            "file_share_arn": file_share_arn
+        }
         if encryption_type is not None:
             input_["encryption_type"] = encryption_type
         if kms_encrypted is not None:
@@ -5812,6 +5984,7 @@ class StorageGatewayClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_smb_file_share_visibility(
@@ -5847,15 +6020,17 @@ class StorageGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_storage_gateway.types.update_smb_file_share_visibility_input.UpdateSMBFileShareVisibilityInput = {}  # type: ignore[typeddict-item]
-        input_["gateway_arn"] = gateway_arn
-        input_["file_shares_visible"] = file_shares_visible
+        input_: capo_storage_gateway.types.update_smb_file_share_visibility_input.UpdateSMBFileShareVisibilityInput = {
+            "gateway_arn": gateway_arn,
+            "file_shares_visible": file_shares_visible,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_smb_local_groups(
@@ -5891,15 +6066,17 @@ class StorageGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_storage_gateway.types.update_smb_local_groups_input.UpdateSMBLocalGroupsInput = {}  # type: ignore[typeddict-item]
-        input_["gateway_arn"] = gateway_arn
-        input_["smb_local_groups"] = smb_local_groups
+        input_: capo_storage_gateway.types.update_smb_local_groups_input.UpdateSMBLocalGroupsInput = {
+            "gateway_arn": gateway_arn,
+            "smb_local_groups": smb_local_groups,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_smb_security_strategy(
@@ -5935,15 +6112,17 @@ class StorageGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_storage_gateway.types.update_smb_security_strategy_input.UpdateSMBSecurityStrategyInput = {}  # type: ignore[typeddict-item]
-        input_["gateway_arn"] = gateway_arn
-        input_["smb_security_strategy"] = smb_security_strategy
+        input_: capo_storage_gateway.types.update_smb_security_strategy_input.UpdateSMBSecurityStrategyInput = {
+            "gateway_arn": gateway_arn,
+            "smb_security_strategy": smb_security_strategy,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_snapshot_schedule(
@@ -5994,10 +6173,11 @@ class StorageGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_storage_gateway.types.update_snapshot_schedule_input.UpdateSnapshotScheduleInput = {}  # type: ignore[typeddict-item]
-        input_["volume_arn"] = volume_arn
-        input_["start_at"] = start_at
-        input_["recurrence_in_hours"] = recurrence_in_hours
+        input_: capo_storage_gateway.types.update_snapshot_schedule_input.UpdateSnapshotScheduleInput = {
+            "volume_arn": volume_arn,
+            "start_at": start_at,
+            "recurrence_in_hours": recurrence_in_hours,
+        }
         if description is not None:
             input_["description"] = description
         if tags is not None:
@@ -6008,6 +6188,7 @@ class StorageGatewayClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_vtl_device_type(
@@ -6050,15 +6231,17 @@ class StorageGatewayClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_storage_gateway.types.update_vtl_device_type_input.UpdateVTLDeviceTypeInput = {}  # type: ignore[typeddict-item]
-        input_["vtl_device_arn"] = vtl_device_arn
-        input_["device_type"] = device_type
+        input_: capo_storage_gateway.types.update_vtl_device_type_input.UpdateVTLDeviceTypeInput = {
+            "vtl_device_arn": vtl_device_arn,
+            "device_type": device_type,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def __enter__(self) -> Self:

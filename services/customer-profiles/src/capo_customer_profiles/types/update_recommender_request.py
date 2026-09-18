@@ -43,9 +43,9 @@ def serialize_json(value: UpdateRecommenderRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateRecommenderRequest:
     out: UpdateRecommenderRequest = {}  # type: ignore[typeddict-item]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "RecommenderConfig" in data:
+    if data.get("RecommenderConfig") is not None:
         import capo_customer_profiles.types.recommender_config
 
         out["recommender_config"] = (

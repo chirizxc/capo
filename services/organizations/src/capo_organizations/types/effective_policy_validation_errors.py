@@ -29,6 +29,8 @@ def deserialize_aws_json_1_1(data: list) -> EffectivePolicyValidationErrors:
 
     out: EffectivePolicyValidationErrors = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_organizations.types.effective_policy_validation_error.deserialize_aws_json_1_1(
                 item

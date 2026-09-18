@@ -36,9 +36,9 @@ def serialize_json(value: JobExecutionsRolloutConfig) -> dict:
 
 def deserialize_json(data: dict) -> JobExecutionsRolloutConfig:
     out: JobExecutionsRolloutConfig = {}  # type: ignore[typeddict-item]
-    if "maximumPerMinute" in data:
+    if data.get("maximumPerMinute") is not None:
         out["maximum_per_minute"] = data["maximumPerMinute"]
-    if "exponentialRate" in data:
+    if data.get("exponentialRate") is not None:
         import capo_iot.types.exponential_rollout_rate
 
         out["exponential_rate"] = (

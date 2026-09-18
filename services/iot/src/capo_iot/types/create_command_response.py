@@ -28,8 +28,8 @@ def serialize_json(value: CreateCommandResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateCommandResponse:
     out: CreateCommandResponse = {}  # type: ignore[typeddict-item]
-    if "commandId" in data:
+    if data.get("commandId") is not None:
         out["command_id"] = data["commandId"]
-    if "commandArn" in data:
+    if data.get("commandArn") is not None:
         out["command_arn"] = data["commandArn"]
     return out

@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import uuid
 from typing import TYPE_CHECKING, Optional
 
 import capo_grafana._auth._signers
@@ -155,13 +156,16 @@ class Workspace:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_grafana.types.create_workspace_request.CreateWorkspaceRequest = {}  # type: ignore[typeddict-item]
-        input_["account_access_type"] = account_access_type
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_grafana.types.create_workspace_request.CreateWorkspaceRequest = {
+            "account_access_type": account_access_type,
+            "permission_type": permission_type,
+            "authentication_providers": authentication_providers,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if organization_role_name is not None:
             input_["organization_role_name"] = organization_role_name
-        input_["permission_type"] = permission_type
         if stack_set_name is not None:
             input_["stack_set_name"] = stack_set_name
         if workspace_data_sources is not None:
@@ -178,7 +182,6 @@ class Workspace:
             input_["workspace_organizational_units"] = workspace_organizational_units
         if workspace_role_arn is not None:
             input_["workspace_role_arn"] = workspace_role_arn
-        input_["authentication_providers"] = authentication_providers
         if tags is not None:
             input_["tags"] = tags
         if vpc_configuration is not None:
@@ -199,6 +202,7 @@ class Workspace:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -236,14 +240,16 @@ class Workspace:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_grafana.types.describe_workspace_request.DescribeWorkspaceRequest = {}  # type: ignore[typeddict-item]
-        input_["workspace_id"] = workspace_id
+        input_: capo_grafana.types.describe_workspace_request.DescribeWorkspaceRequest = {
+            "workspace_id": workspace_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update(
@@ -338,7 +344,9 @@ class Workspace:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_grafana.types.update_workspace_request.UpdateWorkspaceRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_grafana.types.update_workspace_request.UpdateWorkspaceRequest = {
+            "workspace_id": workspace_id
+        }
         if account_access_type is not None:
             input_["account_access_type"] = account_access_type
         if organization_role_name is not None:
@@ -351,7 +359,6 @@ class Workspace:
             input_["workspace_data_sources"] = workspace_data_sources
         if workspace_description is not None:
             input_["workspace_description"] = workspace_description
-        input_["workspace_id"] = workspace_id
         if workspace_name is not None:
             input_["workspace_name"] = workspace_name
         if workspace_notification_destinations is not None:
@@ -380,6 +387,7 @@ class Workspace:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -418,14 +426,16 @@ class Workspace:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_grafana.types.delete_workspace_request.DeleteWorkspaceRequest = {}  # type: ignore[typeddict-item]
-        input_["workspace_id"] = workspace_id
+        input_: capo_grafana.types.delete_workspace_request.DeleteWorkspaceRequest = {
+            "workspace_id": workspace_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -465,7 +475,7 @@ class Workspace:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_grafana.types.list_workspaces_request.ListWorkspacesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_grafana.types.list_workspaces_request.ListWorkspacesRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -476,6 +486,7 @@ class Workspace:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -582,13 +593,16 @@ class AsyncWorkspace:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_grafana.types.create_workspace_request.CreateWorkspaceRequest = {}  # type: ignore[typeddict-item]
-        input_["account_access_type"] = account_access_type
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_grafana.types.create_workspace_request.CreateWorkspaceRequest = {
+            "account_access_type": account_access_type,
+            "permission_type": permission_type,
+            "authentication_providers": authentication_providers,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if organization_role_name is not None:
             input_["organization_role_name"] = organization_role_name
-        input_["permission_type"] = permission_type
         if stack_set_name is not None:
             input_["stack_set_name"] = stack_set_name
         if workspace_data_sources is not None:
@@ -605,7 +619,6 @@ class AsyncWorkspace:
             input_["workspace_organizational_units"] = workspace_organizational_units
         if workspace_role_arn is not None:
             input_["workspace_role_arn"] = workspace_role_arn
-        input_["authentication_providers"] = authentication_providers
         if tags is not None:
             input_["tags"] = tags
         if vpc_configuration is not None:
@@ -626,6 +639,7 @@ class AsyncWorkspace:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -664,14 +678,16 @@ class AsyncWorkspace:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_grafana.types.describe_workspace_request.DescribeWorkspaceRequest = {}  # type: ignore[typeddict-item]
-        input_["workspace_id"] = workspace_id
+        input_: capo_grafana.types.describe_workspace_request.DescribeWorkspaceRequest = {
+            "workspace_id": workspace_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update(
@@ -767,7 +783,9 @@ class AsyncWorkspace:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_grafana.types.update_workspace_request.UpdateWorkspaceRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_grafana.types.update_workspace_request.UpdateWorkspaceRequest = {
+            "workspace_id": workspace_id
+        }
         if account_access_type is not None:
             input_["account_access_type"] = account_access_type
         if organization_role_name is not None:
@@ -780,7 +798,6 @@ class AsyncWorkspace:
             input_["workspace_data_sources"] = workspace_data_sources
         if workspace_description is not None:
             input_["workspace_description"] = workspace_description
-        input_["workspace_id"] = workspace_id
         if workspace_name is not None:
             input_["workspace_name"] = workspace_name
         if workspace_notification_destinations is not None:
@@ -809,6 +826,7 @@ class AsyncWorkspace:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -848,14 +866,16 @@ class AsyncWorkspace:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_grafana.types.delete_workspace_request.DeleteWorkspaceRequest = {}  # type: ignore[typeddict-item]
-        input_["workspace_id"] = workspace_id
+        input_: capo_grafana.types.delete_workspace_request.DeleteWorkspaceRequest = {
+            "workspace_id": workspace_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -896,7 +916,7 @@ class AsyncWorkspace:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_grafana.types.list_workspaces_request.ListWorkspacesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_grafana.types.list_workspaces_request.ListWorkspacesRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -907,4 +927,5 @@ class AsyncWorkspace:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

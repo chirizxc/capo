@@ -41,15 +41,15 @@ def serialize_json(value: AudioResponseEvent) -> dict:
 
 def deserialize_json(data: dict) -> AudioResponseEvent:
     out: AudioResponseEvent = {}  # type: ignore[typeddict-item]
-    if "audioChunk" in data:
+    if data.get("audioChunk") is not None:
         import capo_lex_runtime_v2.types.audio_chunk
 
         out["audio_chunk"] = capo_lex_runtime_v2.types.audio_chunk.deserialize_json(
             data["audioChunk"]
         )
-    if "contentType" in data:
+    if data.get("contentType") is not None:
         out["content_type"] = data["contentType"]
-    if "eventId" in data:
+    if data.get("eventId") is not None:
         out["event_id"] = data["eventId"]
     return out
 

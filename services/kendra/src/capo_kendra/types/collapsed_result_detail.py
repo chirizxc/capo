@@ -43,7 +43,7 @@ def serialize_aws_json_1_1(value: CollapsedResultDetail) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CollapsedResultDetail:
     out: CollapsedResultDetail = {}  # type: ignore[typeddict-item]
-    if "DocumentAttribute" in data:
+    if data.get("DocumentAttribute") is not None:
         import capo_kendra.types.document_attribute
 
         out["document_attribute"] = (
@@ -53,7 +53,7 @@ def deserialize_aws_json_1_1(data: dict) -> CollapsedResultDetail:
         )
     else:
         raise DeserializationError("CollapsedResultDetail.document_attribute required")
-    if "ExpandedResults" in data:
+    if data.get("ExpandedResults") is not None:
         import capo_kendra.types.expanded_result_list
 
         out["expanded_results"] = (

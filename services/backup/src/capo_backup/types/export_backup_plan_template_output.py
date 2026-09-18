@@ -23,6 +23,6 @@ def serialize_json(value: ExportBackupPlanTemplateOutput) -> dict:
 
 def deserialize_json(data: dict) -> ExportBackupPlanTemplateOutput:
     out: ExportBackupPlanTemplateOutput = {}  # type: ignore[typeddict-item]
-    if "BackupPlanTemplateJson" in data:
+    if data.get("BackupPlanTemplateJson") is not None:
         out["backup_plan_template_json"] = data["BackupPlanTemplateJson"]
     return out

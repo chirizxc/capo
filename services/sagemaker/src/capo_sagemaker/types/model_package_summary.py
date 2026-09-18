@@ -108,17 +108,17 @@ def serialize_aws_json_1_1(value: ModelPackageSummary) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ModelPackageSummary:
     out: ModelPackageSummary = {}  # type: ignore[typeddict-item]
-    if "ModelPackageName" in data:
+    if data.get("ModelPackageName") is not None:
         out["model_package_name"] = data["ModelPackageName"]
-    if "ModelPackageGroupName" in data:
+    if data.get("ModelPackageGroupName") is not None:
         out["model_package_group_name"] = data["ModelPackageGroupName"]
-    if "ModelPackageVersion" in data:
+    if data.get("ModelPackageVersion") is not None:
         out["model_package_version"] = data["ModelPackageVersion"]
-    if "ModelPackageArn" in data:
+    if data.get("ModelPackageArn") is not None:
         out["model_package_arn"] = data["ModelPackageArn"]
-    if "ModelPackageDescription" in data:
+    if data.get("ModelPackageDescription") is not None:
         out["model_package_description"] = data["ModelPackageDescription"]
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_sagemaker.types.creation_time
 
         out["creation_time"] = (
@@ -126,7 +126,7 @@ def deserialize_aws_json_1_1(data: dict) -> ModelPackageSummary:
                 data["CreationTime"]
             )
         )
-    if "ModelPackageStatus" in data:
+    if data.get("ModelPackageStatus") is not None:
         import capo_sagemaker.types.model_package_status
 
         out["model_package_status"] = (
@@ -134,7 +134,7 @@ def deserialize_aws_json_1_1(data: dict) -> ModelPackageSummary:
                 data["ModelPackageStatus"]
             )
         )
-    if "ModelApprovalStatus" in data:
+    if data.get("ModelApprovalStatus") is not None:
         import capo_sagemaker.types.model_approval_status
 
         out["model_approval_status"] = (
@@ -142,7 +142,7 @@ def deserialize_aws_json_1_1(data: dict) -> ModelPackageSummary:
                 data["ModelApprovalStatus"]
             )
         )
-    if "ModelLifeCycle" in data:
+    if data.get("ModelLifeCycle") is not None:
         import capo_sagemaker.types.model_life_cycle
 
         out["model_life_cycle"] = (
@@ -150,7 +150,7 @@ def deserialize_aws_json_1_1(data: dict) -> ModelPackageSummary:
                 data["ModelLifeCycle"]
             )
         )
-    if "ModelPackageRegistrationType" in data:
+    if data.get("ModelPackageRegistrationType") is not None:
         import capo_sagemaker.types.model_package_registration_type
 
         out["model_package_registration_type"] = (

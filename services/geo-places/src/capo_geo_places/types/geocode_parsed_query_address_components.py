@@ -174,7 +174,7 @@ def serialize_json(value: GeocodeParsedQueryAddressComponents) -> dict:
 
 def deserialize_json(data: dict) -> GeocodeParsedQueryAddressComponents:
     out: GeocodeParsedQueryAddressComponents = {}  # type: ignore[typeddict-item]
-    if "Country" in data:
+    if data.get("Country") is not None:
         import capo_geo_places.types.parsed_query_component_list
 
         out["country"] = (
@@ -182,7 +182,7 @@ def deserialize_json(data: dict) -> GeocodeParsedQueryAddressComponents:
                 data["Country"]
             )
         )
-    if "Region" in data:
+    if data.get("Region") is not None:
         import capo_geo_places.types.parsed_query_component_list
 
         out["region"] = (
@@ -190,7 +190,7 @@ def deserialize_json(data: dict) -> GeocodeParsedQueryAddressComponents:
                 data["Region"]
             )
         )
-    if "SubRegion" in data:
+    if data.get("SubRegion") is not None:
         import capo_geo_places.types.parsed_query_component_list
 
         out["sub_region"] = (
@@ -198,7 +198,7 @@ def deserialize_json(data: dict) -> GeocodeParsedQueryAddressComponents:
                 data["SubRegion"]
             )
         )
-    if "Locality" in data:
+    if data.get("Locality") is not None:
         import capo_geo_places.types.parsed_query_component_list
 
         out["locality"] = (
@@ -206,7 +206,7 @@ def deserialize_json(data: dict) -> GeocodeParsedQueryAddressComponents:
                 data["Locality"]
             )
         )
-    if "District" in data:
+    if data.get("District") is not None:
         import capo_geo_places.types.parsed_query_component_list
 
         out["district"] = (
@@ -214,7 +214,7 @@ def deserialize_json(data: dict) -> GeocodeParsedQueryAddressComponents:
                 data["District"]
             )
         )
-    if "SubDistrict" in data:
+    if data.get("SubDistrict") is not None:
         import capo_geo_places.types.parsed_query_component_list
 
         out["sub_district"] = (
@@ -222,7 +222,7 @@ def deserialize_json(data: dict) -> GeocodeParsedQueryAddressComponents:
                 data["SubDistrict"]
             )
         )
-    if "PostalCode" in data:
+    if data.get("PostalCode") is not None:
         import capo_geo_places.types.parsed_query_component_list
 
         out["postal_code"] = (
@@ -230,7 +230,7 @@ def deserialize_json(data: dict) -> GeocodeParsedQueryAddressComponents:
                 data["PostalCode"]
             )
         )
-    if "Block" in data:
+    if data.get("Block") is not None:
         import capo_geo_places.types.parsed_query_component_list
 
         out["block"] = (
@@ -238,7 +238,7 @@ def deserialize_json(data: dict) -> GeocodeParsedQueryAddressComponents:
                 data["Block"]
             )
         )
-    if "SubBlock" in data:
+    if data.get("SubBlock") is not None:
         import capo_geo_places.types.parsed_query_component_list
 
         out["sub_block"] = (
@@ -246,7 +246,7 @@ def deserialize_json(data: dict) -> GeocodeParsedQueryAddressComponents:
                 data["SubBlock"]
             )
         )
-    if "Street" in data:
+    if data.get("Street") is not None:
         import capo_geo_places.types.parsed_query_component_list
 
         out["street"] = (
@@ -254,7 +254,7 @@ def deserialize_json(data: dict) -> GeocodeParsedQueryAddressComponents:
                 data["Street"]
             )
         )
-    if "AddressNumber" in data:
+    if data.get("AddressNumber") is not None:
         import capo_geo_places.types.parsed_query_component_list
 
         out["address_number"] = (
@@ -262,7 +262,7 @@ def deserialize_json(data: dict) -> GeocodeParsedQueryAddressComponents:
                 data["AddressNumber"]
             )
         )
-    if "Building" in data:
+    if data.get("Building") is not None:
         import capo_geo_places.types.parsed_query_component_list
 
         out["building"] = (
@@ -270,7 +270,7 @@ def deserialize_json(data: dict) -> GeocodeParsedQueryAddressComponents:
                 data["Building"]
             )
         )
-    if "SecondaryAddressComponents" in data:
+    if data.get("SecondaryAddressComponents") is not None:
         import capo_geo_places.types.parsed_query_secondary_address_component_list
 
         out["secondary_address_components"] = (

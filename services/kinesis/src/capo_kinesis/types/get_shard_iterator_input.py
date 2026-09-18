@@ -65,13 +65,13 @@ def serialize_aws_json_1_1(value: GetShardIteratorInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetShardIteratorInput:
     out: GetShardIteratorInput = {}  # type: ignore[typeddict-item]
-    if "StreamName" in data:
+    if data.get("StreamName") is not None:
         out["stream_name"] = data["StreamName"]
-    if "ShardId" in data:
+    if data.get("ShardId") is not None:
         out["shard_id"] = data["ShardId"]
     else:
         raise DeserializationError("GetShardIteratorInput.shard_id required")
-    if "ShardIteratorType" in data:
+    if data.get("ShardIteratorType") is not None:
         import capo_kinesis.types.shard_iterator_type
 
         out["shard_iterator_type"] = (
@@ -81,16 +81,16 @@ def deserialize_aws_json_1_1(data: dict) -> GetShardIteratorInput:
         )
     else:
         raise DeserializationError("GetShardIteratorInput.shard_iterator_type required")
-    if "StartingSequenceNumber" in data:
+    if data.get("StartingSequenceNumber") is not None:
         out["starting_sequence_number"] = data["StartingSequenceNumber"]
-    if "Timestamp" in data:
+    if data.get("Timestamp") is not None:
         import capo_kinesis.types.timestamp
 
         out["timestamp"] = capo_kinesis.types.timestamp.deserialize_aws_json_1_1(
             data["Timestamp"]
         )
-    if "StreamARN" in data:
+    if data.get("StreamARN") is not None:
         out["stream_arn"] = data["StreamARN"]
-    if "StreamId" in data:
+    if data.get("StreamId") is not None:
         out["stream_id"] = data["StreamId"]
     return out

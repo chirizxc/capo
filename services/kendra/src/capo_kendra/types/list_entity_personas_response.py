@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: ListEntityPersonasResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListEntityPersonasResponse:
     out: ListEntityPersonasResponse = {}  # type: ignore[typeddict-item]
-    if "SummaryItems" in data:
+    if data.get("SummaryItems") is not None:
         import capo_kendra.types.personas_summary_list
 
         out["summary_items"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_1(data: dict) -> ListEntityPersonasResponse:
                 data["SummaryItems"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

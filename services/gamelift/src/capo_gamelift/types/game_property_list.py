@@ -23,5 +23,7 @@ def deserialize_aws_json_1_1(data: list) -> GamePropertyList:
 
     out: GamePropertyList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_gamelift.types.game_property.deserialize_aws_json_1_1(item))
     return out

@@ -25,6 +25,8 @@ def serialize_json(input_to_serialize: TransformStepMap) -> dict:
 def deserialize_json(data: dict) -> TransformStepMap:
     out: TransformStepMap = {}
     for key, value in data.items():
+        if value is None:
+            continue
         import capo_quicksight.types.transform_step
 
         out[key] = capo_quicksight.types.transform_step.deserialize_json(value)

@@ -33,7 +33,7 @@ def serialize_aws_json_1_0(value: GetFreeTierUsageResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> GetFreeTierUsageResponse:
     out: GetFreeTierUsageResponse = {}  # type: ignore[typeddict-item]
-    if "freeTierUsages" in data:
+    if data.get("freeTierUsages") is not None:
         import capo_freetier.types.free_tier_usages
 
         out["free_tier_usages"] = (
@@ -43,6 +43,6 @@ def deserialize_aws_json_1_0(data: dict) -> GetFreeTierUsageResponse:
         )
     else:
         raise DeserializationError("GetFreeTierUsageResponse.free_tier_usages required")
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

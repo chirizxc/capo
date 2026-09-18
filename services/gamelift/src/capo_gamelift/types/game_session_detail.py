@@ -40,13 +40,13 @@ def serialize_aws_json_1_1(value: GameSessionDetail) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GameSessionDetail:
     out: GameSessionDetail = {}  # type: ignore[typeddict-item]
-    if "GameSession" in data:
+    if data.get("GameSession") is not None:
         import capo_gamelift.types.game_session
 
         out["game_session"] = capo_gamelift.types.game_session.deserialize_aws_json_1_1(
             data["GameSession"]
         )
-    if "ProtectionPolicy" in data:
+    if data.get("ProtectionPolicy") is not None:
         import capo_gamelift.types.protection_policy
 
         out["protection_policy"] = (

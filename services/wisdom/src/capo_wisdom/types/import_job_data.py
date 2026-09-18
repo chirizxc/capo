@@ -61,21 +61,9 @@ def serialize_json(value: ImportJobData) -> dict:
     out["url"] = value["url"]
     if "failed_record_report" in value:
         out["failedRecordReport"] = value["failed_record_report"]
-    import capo_wisdom.types._prelude.timestamp
-
-    out["urlExpiry"] = capo_wisdom.types._prelude.timestamp.serialize_json(
-        value["url_expiry"]
-    )
-    import capo_wisdom.types._prelude.timestamp
-
-    out["createdTime"] = capo_wisdom.types._prelude.timestamp.serialize_json(
-        value["created_time"]
-    )
-    import capo_wisdom.types._prelude.timestamp
-
-    out["lastModifiedTime"] = capo_wisdom.types._prelude.timestamp.serialize_json(
-        value["last_modified_time"]
-    )
+    out["urlExpiry"] = value["url_expiry"].timestamp()
+    out["createdTime"] = value["created_time"].timestamp()
+    out["lastModifiedTime"] = value["last_modified_time"].timestamp()
     if "metadata" in value:
         import capo_wisdom.types.content_metadata
 
@@ -95,69 +83,67 @@ def serialize_json(value: ImportJobData) -> dict:
 
 def deserialize_json(data: dict) -> ImportJobData:
     out: ImportJobData = {}  # type: ignore[typeddict-item]
-    if "importJobId" in data:
+    if data.get("importJobId") is not None:
         out["import_job_id"] = data["importJobId"]
     else:
         raise DeserializationError("ImportJobData.import_job_id required")
-    if "knowledgeBaseId" in data:
+    if data.get("knowledgeBaseId") is not None:
         out["knowledge_base_id"] = data["knowledgeBaseId"]
     else:
         raise DeserializationError("ImportJobData.knowledge_base_id required")
-    if "uploadId" in data:
+    if data.get("uploadId") is not None:
         out["upload_id"] = data["uploadId"]
     else:
         raise DeserializationError("ImportJobData.upload_id required")
-    if "knowledgeBaseArn" in data:
+    if data.get("knowledgeBaseArn") is not None:
         out["knowledge_base_arn"] = data["knowledgeBaseArn"]
     else:
         raise DeserializationError("ImportJobData.knowledge_base_arn required")
-    if "importJobType" in data:
+    if data.get("importJobType") is not None:
         out["import_job_type"] = data["importJobType"]
     else:
         raise DeserializationError("ImportJobData.import_job_type required")
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
     else:
         raise DeserializationError("ImportJobData.status required")
-    if "url" in data:
+    if data.get("url") is not None:
         out["url"] = data["url"]
     else:
         raise DeserializationError("ImportJobData.url required")
-    if "failedRecordReport" in data:
+    if data.get("failedRecordReport") is not None:
         out["failed_record_report"] = data["failedRecordReport"]
-    if "urlExpiry" in data:
-        import capo_wisdom.types._prelude.timestamp
+    if data.get("urlExpiry") is not None:
+        import datetime
 
-        out["url_expiry"] = capo_wisdom.types._prelude.timestamp.deserialize_json(
-            data["urlExpiry"]
+        out["url_expiry"] = datetime.datetime.fromtimestamp(
+            float(data["urlExpiry"]), tz=datetime.timezone.utc
         )
     else:
         raise DeserializationError("ImportJobData.url_expiry required")
-    if "createdTime" in data:
-        import capo_wisdom.types._prelude.timestamp
+    if data.get("createdTime") is not None:
+        import datetime
 
-        out["created_time"] = capo_wisdom.types._prelude.timestamp.deserialize_json(
-            data["createdTime"]
+        out["created_time"] = datetime.datetime.fromtimestamp(
+            float(data["createdTime"]), tz=datetime.timezone.utc
         )
     else:
         raise DeserializationError("ImportJobData.created_time required")
-    if "lastModifiedTime" in data:
-        import capo_wisdom.types._prelude.timestamp
+    if data.get("lastModifiedTime") is not None:
+        import datetime
 
-        out["last_modified_time"] = (
-            capo_wisdom.types._prelude.timestamp.deserialize_json(
-                data["lastModifiedTime"]
-            )
+        out["last_modified_time"] = datetime.datetime.fromtimestamp(
+            float(data["lastModifiedTime"]), tz=datetime.timezone.utc
         )
     else:
         raise DeserializationError("ImportJobData.last_modified_time required")
-    if "metadata" in data:
+    if data.get("metadata") is not None:
         import capo_wisdom.types.content_metadata
 
         out["metadata"] = capo_wisdom.types.content_metadata.deserialize_json(
             data["metadata"]
         )
-    if "externalSourceConfiguration" in data:
+    if data.get("externalSourceConfiguration") is not None:
         import capo_wisdom.types.external_source_configuration
 
         out["external_source_configuration"] = (

@@ -51,15 +51,15 @@ def serialize_aws_json_1_0(value: IngressPoint) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> IngressPoint:
     out: IngressPoint = {}  # type: ignore[typeddict-item]
-    if "IngressPointName" in data:
+    if data.get("IngressPointName") is not None:
         out["ingress_point_name"] = data["IngressPointName"]
     else:
         raise DeserializationError("IngressPoint.ingress_point_name required")
-    if "IngressPointId" in data:
+    if data.get("IngressPointId") is not None:
         out["ingress_point_id"] = data["IngressPointId"]
     else:
         raise DeserializationError("IngressPoint.ingress_point_id required")
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_mailmanager.types.ingress_point_status
 
         out["status"] = (
@@ -69,7 +69,7 @@ def deserialize_aws_json_1_0(data: dict) -> IngressPoint:
         )
     else:
         raise DeserializationError("IngressPoint.status required")
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_mailmanager.types.ingress_point_type
 
         out["type"] = (
@@ -79,6 +79,6 @@ def deserialize_aws_json_1_0(data: dict) -> IngressPoint:
         )
     else:
         raise DeserializationError("IngressPoint.type required")
-    if "ARecord" in data:
+    if data.get("ARecord") is not None:
         out["a_record"] = data["ARecord"]
     return out

@@ -25,6 +25,6 @@ def serialize_json(value: NotesDataDetails) -> dict:
 
 def deserialize_json(data: dict) -> NotesDataDetails:
     out: NotesDataDetails = {}  # type: ignore[typeddict-item]
-    if "completion" in data:
+    if data.get("completion") is not None:
         out["completion"] = data["completion"]
     return out

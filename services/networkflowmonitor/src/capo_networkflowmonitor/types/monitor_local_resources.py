@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> MonitorLocalResources:
 
     out: MonitorLocalResources = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_networkflowmonitor.types.monitor_local_resource.deserialize_json(item)
         )

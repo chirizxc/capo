@@ -25,7 +25,7 @@ def serialize_aws_json_1_1(value: TitleRequiredException_) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> TitleRequiredException_:
     out: TitleRequiredException_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     return out
 
@@ -35,15 +35,18 @@ class TitleRequiredException(ServiceError):
 
     code: str | None = "TitleRequiredException"
 
-    def __init__(self, data: TitleRequiredException_):
+    def __init__(self, data: TitleRequiredException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="TitleRequiredException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "TitleRequiredException":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "TitleRequiredException":
+        return cls(deserialize_aws_json_1_1(data), message)

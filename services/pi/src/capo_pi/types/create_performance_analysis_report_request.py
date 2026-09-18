@@ -55,7 +55,7 @@ def serialize_aws_json_1_1(value: CreatePerformanceAnalysisReportRequest) -> dic
 
 def deserialize_aws_json_1_1(data: dict) -> CreatePerformanceAnalysisReportRequest:
     out: CreatePerformanceAnalysisReportRequest = {}  # type: ignore[typeddict-item]
-    if "ServiceType" in data:
+    if data.get("ServiceType") is not None:
         import capo_pi.types.service_type
 
         out["service_type"] = capo_pi.types.service_type.deserialize_aws_json_1_1(
@@ -65,13 +65,13 @@ def deserialize_aws_json_1_1(data: dict) -> CreatePerformanceAnalysisReportReque
         raise DeserializationError(
             "CreatePerformanceAnalysisReportRequest.service_type required"
         )
-    if "Identifier" in data:
+    if data.get("Identifier") is not None:
         out["identifier"] = data["Identifier"]
     else:
         raise DeserializationError(
             "CreatePerformanceAnalysisReportRequest.identifier required"
         )
-    if "StartTime" in data:
+    if data.get("StartTime") is not None:
         import capo_pi.types.iso_timestamp
 
         out["start_time"] = capo_pi.types.iso_timestamp.deserialize_aws_json_1_1(
@@ -81,13 +81,13 @@ def deserialize_aws_json_1_1(data: dict) -> CreatePerformanceAnalysisReportReque
         raise DeserializationError(
             "CreatePerformanceAnalysisReportRequest.start_time required"
         )
-    if "EndTime" in data:
+    if data.get("EndTime") is not None:
         import capo_pi.types.iso_timestamp
 
         out["end_time"] = capo_pi.types.iso_timestamp.deserialize_aws_json_1_1(
             data["EndTime"]
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_pi.types.tag_list
 
         out["tags"] = capo_pi.types.tag_list.deserialize_aws_json_1_1(data["Tags"])

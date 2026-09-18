@@ -49,11 +49,11 @@ def serialize_aws_json_1_1(value: PartitionIndexDescriptor) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PartitionIndexDescriptor:
     out: PartitionIndexDescriptor = {}  # type: ignore[typeddict-item]
-    if "IndexName" in data:
+    if data.get("IndexName") is not None:
         out["index_name"] = data["IndexName"]
     else:
         raise DeserializationError("PartitionIndexDescriptor.index_name required")
-    if "Keys" in data:
+    if data.get("Keys") is not None:
         import capo_glue.types.key_schema_element_list
 
         out["keys"] = capo_glue.types.key_schema_element_list.deserialize_aws_json_1_1(
@@ -61,7 +61,7 @@ def deserialize_aws_json_1_1(data: dict) -> PartitionIndexDescriptor:
         )
     else:
         raise DeserializationError("PartitionIndexDescriptor.keys required")
-    if "IndexStatus" in data:
+    if data.get("IndexStatus") is not None:
         import capo_glue.types.partition_index_status
 
         out["index_status"] = (
@@ -71,7 +71,7 @@ def deserialize_aws_json_1_1(data: dict) -> PartitionIndexDescriptor:
         )
     else:
         raise DeserializationError("PartitionIndexDescriptor.index_status required")
-    if "BackfillErrors" in data:
+    if data.get("BackfillErrors") is not None:
         import capo_glue.types.backfill_errors
 
         out["backfill_errors"] = (

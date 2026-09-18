@@ -46,9 +46,9 @@ def serialize_json(value: CreateLoggingConfigurationRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateLoggingConfigurationRequest:
     out: CreateLoggingConfigurationRequest = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "destinationConfiguration" in data:
+    if data.get("destinationConfiguration") is not None:
         import capo_ivschat.types.destination_configuration
 
         out["destination_configuration"] = (
@@ -60,7 +60,7 @@ def deserialize_json(data: dict) -> CreateLoggingConfigurationRequest:
         raise DeserializationError(
             "CreateLoggingConfigurationRequest.destination_configuration required"
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_ivschat.types.tags
 
         out["tags"] = capo_ivschat.types.tags.deserialize_json(data["tags"])

@@ -27,11 +27,11 @@ def serialize_json(value: RecommendationResourceExclusion) -> dict:
 
 def deserialize_json(data: dict) -> RecommendationResourceExclusion:
     out: RecommendationResourceExclusion = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("RecommendationResourceExclusion.arn required")
-    if "isExcluded" in data:
+    if data.get("isExcluded") is not None:
         out["is_excluded"] = data["isExcluded"]
     else:
         raise DeserializationError(

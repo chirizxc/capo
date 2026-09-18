@@ -43,18 +43,18 @@ def serialize_json(value: GetUserDetailsResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetUserDetailsResponse:
     out: GetUserDetailsResponse = {}  # type: ignore[typeddict-item]
-    if "userId" in data:
+    if data.get("userId") is not None:
         out["user_id"] = data["userId"]
-    if "userName" in data:
+    if data.get("userName") is not None:
         out["user_name"] = data["userName"]
-    if "displayName" in data:
+    if data.get("displayName") is not None:
         out["display_name"] = data["displayName"]
-    if "primaryEmail" in data:
+    if data.get("primaryEmail") is not None:
         import capo_codecatalyst.types.email_address
 
         out["primary_email"] = capo_codecatalyst.types.email_address.deserialize_json(
             data["primaryEmail"]
         )
-    if "version" in data:
+    if data.get("version") is not None:
         out["version"] = data["version"]
     return out

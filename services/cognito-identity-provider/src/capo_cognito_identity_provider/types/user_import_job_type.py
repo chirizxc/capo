@@ -118,15 +118,15 @@ def serialize_aws_json_1_1(value: UserImportJobType) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UserImportJobType:
     out: UserImportJobType = {}  # type: ignore[typeddict-item]
-    if "JobName" in data:
+    if data.get("JobName") is not None:
         out["job_name"] = data["JobName"]
-    if "JobId" in data:
+    if data.get("JobId") is not None:
         out["job_id"] = data["JobId"]
-    if "UserPoolId" in data:
+    if data.get("UserPoolId") is not None:
         out["user_pool_id"] = data["UserPoolId"]
-    if "PreSignedUrl" in data:
+    if data.get("PreSignedUrl") is not None:
         out["pre_signed_url"] = data["PreSignedUrl"]
-    if "CreationDate" in data:
+    if data.get("CreationDate") is not None:
         import capo_cognito_identity_provider.types.date_type
 
         out["creation_date"] = (
@@ -134,7 +134,7 @@ def deserialize_aws_json_1_1(data: dict) -> UserImportJobType:
                 data["CreationDate"]
             )
         )
-    if "StartDate" in data:
+    if data.get("StartDate") is not None:
         import capo_cognito_identity_provider.types.date_type
 
         out["start_date"] = (
@@ -142,7 +142,7 @@ def deserialize_aws_json_1_1(data: dict) -> UserImportJobType:
                 data["StartDate"]
             )
         )
-    if "CompletionDate" in data:
+    if data.get("CompletionDate") is not None:
         import capo_cognito_identity_provider.types.date_type
 
         out["completion_date"] = (
@@ -150,7 +150,7 @@ def deserialize_aws_json_1_1(data: dict) -> UserImportJobType:
                 data["CompletionDate"]
             )
         )
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_cognito_identity_provider.types.user_import_job_status_type
 
         out["status"] = (
@@ -158,20 +158,20 @@ def deserialize_aws_json_1_1(data: dict) -> UserImportJobType:
                 data["Status"]
             )
         )
-    if "CloudWatchLogsRoleArn" in data:
+    if data.get("CloudWatchLogsRoleArn") is not None:
         out["cloud_watch_logs_role_arn"] = data["CloudWatchLogsRoleArn"]
-    if "ImportedUsers" in data:
+    if data.get("ImportedUsers") is not None:
         out["imported_users"] = data["ImportedUsers"]
     else:
         out["imported_users"] = 0
-    if "SkippedUsers" in data:
+    if data.get("SkippedUsers") is not None:
         out["skipped_users"] = data["SkippedUsers"]
     else:
         out["skipped_users"] = 0
-    if "FailedUsers" in data:
+    if data.get("FailedUsers") is not None:
         out["failed_users"] = data["FailedUsers"]
     else:
         out["failed_users"] = 0
-    if "CompletionMessage" in data:
+    if data.get("CompletionMessage") is not None:
         out["completion_message"] = data["CompletionMessage"]
     return out

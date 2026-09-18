@@ -29,8 +29,8 @@ def serialize_aws_json_1_1(value: PerformanceTarget) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PerformanceTarget:
     out: PerformanceTarget = {}  # type: ignore[typeddict-item]
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
-    if "level" in data:
+    if data.get("level") is not None:
         out["level"] = data["level"]
     return out

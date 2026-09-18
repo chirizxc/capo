@@ -23,6 +23,6 @@ def serialize_json(value: AddPolicyGrantOutput) -> dict:
 
 def deserialize_json(data: dict) -> AddPolicyGrantOutput:
     out: AddPolicyGrantOutput = {}  # type: ignore[typeddict-item]
-    if "grantId" in data:
+    if data.get("grantId") is not None:
         out["grant_id"] = data["grantId"]
     return out

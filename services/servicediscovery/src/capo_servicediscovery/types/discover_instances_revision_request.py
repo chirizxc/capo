@@ -35,18 +35,18 @@ def serialize_aws_json_1_1(value: DiscoverInstancesRevisionRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DiscoverInstancesRevisionRequest:
     out: DiscoverInstancesRevisionRequest = {}  # type: ignore[typeddict-item]
-    if "NamespaceName" in data:
+    if data.get("NamespaceName") is not None:
         out["namespace_name"] = data["NamespaceName"]
     else:
         raise DeserializationError(
             "DiscoverInstancesRevisionRequest.namespace_name required"
         )
-    if "ServiceName" in data:
+    if data.get("ServiceName") is not None:
         out["service_name"] = data["ServiceName"]
     else:
         raise DeserializationError(
             "DiscoverInstancesRevisionRequest.service_name required"
         )
-    if "OwnerAccount" in data:
+    if data.get("OwnerAccount") is not None:
         out["owner_account"] = data["OwnerAccount"]
     return out

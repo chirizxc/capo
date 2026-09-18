@@ -184,13 +184,14 @@ class AsyncCostOptimizationHubClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cost_optimization_hub.types.get_preferences_request.GetPreferencesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_cost_optimization_hub.types.get_preferences_request.GetPreferencesRequest = {}
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_recommendation(
@@ -229,14 +230,16 @@ class AsyncCostOptimizationHubClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cost_optimization_hub.types.get_recommendation_request.GetRecommendationRequest = {}  # type: ignore[typeddict-item]
-        input_["recommendation_id"] = recommendation_id
+        input_: capo_cost_optimization_hub.types.get_recommendation_request.GetRecommendationRequest = {
+            "recommendation_id": recommendation_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_efficiency_metrics(
@@ -286,11 +289,12 @@ class AsyncCostOptimizationHubClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cost_optimization_hub.types.list_efficiency_metrics_request.ListEfficiencyMetricsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_cost_optimization_hub.types.list_efficiency_metrics_request.ListEfficiencyMetricsRequest = {
+            "granularity": granularity,
+            "time_period": time_period,
+        }
         if group_by is not None:
             input_["group_by"] = group_by
-        input_["granularity"] = granularity
-        input_["time_period"] = time_period
         if max_results is not None:
             input_["max_results"] = max_results
         if order_by is not None:
@@ -303,6 +307,7 @@ class AsyncCostOptimizationHubClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_efficiency_metrics(
@@ -381,7 +386,7 @@ class AsyncCostOptimizationHubClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cost_optimization_hub.types.list_enrollment_statuses_request.ListEnrollmentStatusesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_cost_optimization_hub.types.list_enrollment_statuses_request.ListEnrollmentStatusesRequest = {}
         if include_organization_info is not None:
             input_["include_organization_info"] = include_organization_info
         if account_id is not None:
@@ -396,6 +401,7 @@ class AsyncCostOptimizationHubClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_enrollment_statuses(
@@ -472,7 +478,7 @@ class AsyncCostOptimizationHubClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cost_optimization_hub.types.list_recommendations_request.ListRecommendationsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_cost_optimization_hub.types.list_recommendations_request.ListRecommendationsRequest = {}
         if filter is not None:
             input_["filter"] = filter
         if order_by is not None:
@@ -489,6 +495,7 @@ class AsyncCostOptimizationHubClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_recommendations(
@@ -568,10 +575,11 @@ class AsyncCostOptimizationHubClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cost_optimization_hub.types.list_recommendation_summaries_request.ListRecommendationSummariesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_cost_optimization_hub.types.list_recommendation_summaries_request.ListRecommendationSummariesRequest = {
+            "group_by": group_by
+        }
         if filter is not None:
             input_["filter"] = filter
-        input_["group_by"] = group_by
         if max_results is not None:
             input_["max_results"] = max_results
         if metrics is not None:
@@ -584,6 +592,7 @@ class AsyncCostOptimizationHubClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_recommendation_summaries(
@@ -654,8 +663,9 @@ class AsyncCostOptimizationHubClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cost_optimization_hub.types.update_enrollment_status_request.UpdateEnrollmentStatusRequest = {}  # type: ignore[typeddict-item]
-        input_["status"] = status
+        input_: capo_cost_optimization_hub.types.update_enrollment_status_request.UpdateEnrollmentStatusRequest = {
+            "status": status
+        }
         if include_member_accounts is not None:
             input_["include_member_accounts"] = include_member_accounts
 
@@ -664,6 +674,7 @@ class AsyncCostOptimizationHubClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_preferences(
@@ -711,7 +722,7 @@ class AsyncCostOptimizationHubClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cost_optimization_hub.types.update_preferences_request.UpdatePreferencesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_cost_optimization_hub.types.update_preferences_request.UpdatePreferencesRequest = {}
         if savings_estimation_mode is not None:
             input_["savings_estimation_mode"] = savings_estimation_mode
         if member_account_discount_visibility is not None:
@@ -726,6 +737,7 @@ class AsyncCostOptimizationHubClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def __aenter__(self) -> Self:

@@ -35,10 +35,10 @@ def serialize_aws_json_1_0(value: ListDatasetsRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ListDatasetsRequest:
     out: ListDatasetsRequest = {}  # type: ignore[typeddict-item]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "DatasetNameBeginsWith" in data:
+    if data.get("DatasetNameBeginsWith") is not None:
         out["dataset_name_begins_with"] = data["DatasetNameBeginsWith"]
     return out

@@ -33,7 +33,7 @@ def serialize_aws_json_1_1(value: DescribeEventDetailsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeEventDetailsRequest:
     out: DescribeEventDetailsRequest = {}  # type: ignore[typeddict-item]
-    if "eventArns" in data:
+    if data.get("eventArns") is not None:
         import capo_health.types.event_arn_list
 
         out["event_arns"] = capo_health.types.event_arn_list.deserialize_aws_json_1_1(
@@ -41,6 +41,6 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeEventDetailsRequest:
         )
     else:
         raise DeserializationError("DescribeEventDetailsRequest.event_arns required")
-    if "locale" in data:
+    if data.get("locale") is not None:
         out["locale"] = data["locale"]
     return out

@@ -40,13 +40,13 @@ def serialize_aws_json_1_1(value: GetCalculationExecutionStatusResponse) -> dict
 
 def deserialize_aws_json_1_1(data: dict) -> GetCalculationExecutionStatusResponse:
     out: GetCalculationExecutionStatusResponse = {}  # type: ignore[typeddict-item]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_athena.types.calculation_status
 
         out["status"] = capo_athena.types.calculation_status.deserialize_aws_json_1_1(
             data["Status"]
         )
-    if "Statistics" in data:
+    if data.get("Statistics") is not None:
         import capo_athena.types.calculation_statistics
 
         out["statistics"] = (

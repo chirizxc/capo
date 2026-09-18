@@ -110,7 +110,7 @@ def serialize_json(value: CreateBackendAuthUserPoolConfig) -> dict:
 
 def deserialize_json(data: dict) -> CreateBackendAuthUserPoolConfig:
     out: CreateBackendAuthUserPoolConfig = {}  # type: ignore[typeddict-item]
-    if "forgotPassword" in data:
+    if data.get("forgotPassword") is not None:
         import capo_amplifybackend.types.create_backend_auth_forgot_password_config
 
         out["forgot_password"] = (
@@ -118,7 +118,7 @@ def deserialize_json(data: dict) -> CreateBackendAuthUserPoolConfig:
                 data["forgotPassword"]
             )
         )
-    if "mfa" in data:
+    if data.get("mfa") is not None:
         import capo_amplifybackend.types.create_backend_auth_mfa_config
 
         out["mfa"] = (
@@ -126,7 +126,7 @@ def deserialize_json(data: dict) -> CreateBackendAuthUserPoolConfig:
                 data["mfa"]
             )
         )
-    if "oAuth" in data:
+    if data.get("oAuth") is not None:
         import capo_amplifybackend.types.create_backend_auth_o_auth_config
 
         out["o_auth"] = (
@@ -134,7 +134,7 @@ def deserialize_json(data: dict) -> CreateBackendAuthUserPoolConfig:
                 data["oAuth"]
             )
         )
-    if "passwordPolicy" in data:
+    if data.get("passwordPolicy") is not None:
         import capo_amplifybackend.types.create_backend_auth_password_policy_config
 
         out["password_policy"] = (
@@ -142,7 +142,7 @@ def deserialize_json(data: dict) -> CreateBackendAuthUserPoolConfig:
                 data["passwordPolicy"]
             )
         )
-    if "requiredSignUpAttributes" in data:
+    if data.get("requiredSignUpAttributes") is not None:
         import capo_amplifybackend.types.list_of_required_sign_up_attributes_element
 
         out["required_sign_up_attributes"] = (
@@ -150,7 +150,7 @@ def deserialize_json(data: dict) -> CreateBackendAuthUserPoolConfig:
                 data["requiredSignUpAttributes"]
             )
         )
-    if "signInMethod" in data:
+    if data.get("signInMethod") is not None:
         import capo_amplifybackend.types.sign_in_method
 
         out["sign_in_method"] = (
@@ -158,9 +158,9 @@ def deserialize_json(data: dict) -> CreateBackendAuthUserPoolConfig:
                 data["signInMethod"]
             )
         )
-    if "userPoolName" in data:
+    if data.get("userPoolName") is not None:
         out["user_pool_name"] = data["userPoolName"]
-    if "verificationMessage" in data:
+    if data.get("verificationMessage") is not None:
         import capo_amplifybackend.types.create_backend_auth_verification_message_config
 
         out["verification_message"] = (

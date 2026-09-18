@@ -38,7 +38,7 @@ def serialize_json(value: DynatraceServiceAuthorizationConfig) -> dict:
 
 
 def deserialize_json(data: dict) -> DynatraceServiceAuthorizationConfig:
-    if "oAuthClientCredentials" in data:
+    if data.get("oAuthClientCredentials") is not None:
         import capo_devops_agent.types.dynatrace_o_auth_client_credentials_config
 
         return {

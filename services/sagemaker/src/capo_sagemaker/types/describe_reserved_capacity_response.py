@@ -136,9 +136,9 @@ def serialize_aws_json_1_1(value: DescribeReservedCapacityResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeReservedCapacityResponse:
     out: DescribeReservedCapacityResponse = {}  # type: ignore[typeddict-item]
-    if "ReservedCapacityArn" in data:
+    if data.get("ReservedCapacityArn") is not None:
         out["reserved_capacity_arn"] = data["ReservedCapacityArn"]
-    if "ReservedCapacityType" in data:
+    if data.get("ReservedCapacityType") is not None:
         import capo_sagemaker.types.reserved_capacity_type
 
         out["reserved_capacity_type"] = (
@@ -146,7 +146,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeReservedCapacityResponse:
                 data["ReservedCapacityType"]
             )
         )
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_sagemaker.types.reserved_capacity_status
 
         out["status"] = (
@@ -154,25 +154,25 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeReservedCapacityResponse:
                 data["Status"]
             )
         )
-    if "AvailabilityZone" in data:
+    if data.get("AvailabilityZone") is not None:
         out["availability_zone"] = data["AvailabilityZone"]
-    if "DurationHours" in data:
+    if data.get("DurationHours") is not None:
         out["duration_hours"] = data["DurationHours"]
-    if "DurationMinutes" in data:
+    if data.get("DurationMinutes") is not None:
         out["duration_minutes"] = data["DurationMinutes"]
-    if "StartTime" in data:
+    if data.get("StartTime") is not None:
         import capo_sagemaker.types.timestamp
 
         out["start_time"] = capo_sagemaker.types.timestamp.deserialize_aws_json_1_1(
             data["StartTime"]
         )
-    if "EndTime" in data:
+    if data.get("EndTime") is not None:
         import capo_sagemaker.types.timestamp
 
         out["end_time"] = capo_sagemaker.types.timestamp.deserialize_aws_json_1_1(
             data["EndTime"]
         )
-    if "InstanceType" in data:
+    if data.get("InstanceType") is not None:
         import capo_sagemaker.types.reserved_capacity_instance_type
 
         out["instance_type"] = (
@@ -180,13 +180,13 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeReservedCapacityResponse:
                 data["InstanceType"]
             )
         )
-    if "TotalInstanceCount" in data:
+    if data.get("TotalInstanceCount") is not None:
         out["total_instance_count"] = data["TotalInstanceCount"]
-    if "AvailableInstanceCount" in data:
+    if data.get("AvailableInstanceCount") is not None:
         out["available_instance_count"] = data["AvailableInstanceCount"]
-    if "InUseInstanceCount" in data:
+    if data.get("InUseInstanceCount") is not None:
         out["in_use_instance_count"] = data["InUseInstanceCount"]
-    if "UltraServerSummary" in data:
+    if data.get("UltraServerSummary") is not None:
         import capo_sagemaker.types.ultra_server_summary
 
         out["ultra_server_summary"] = (

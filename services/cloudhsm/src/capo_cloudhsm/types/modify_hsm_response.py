@@ -23,6 +23,6 @@ def serialize_aws_json_1_1(value: ModifyHsmResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ModifyHsmResponse:
     out: ModifyHsmResponse = {}  # type: ignore[typeddict-item]
-    if "HsmArn" in data:
+    if data.get("HsmArn") is not None:
         out["hsm_arn"] = data["HsmArn"]
     return out

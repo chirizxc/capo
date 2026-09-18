@@ -76,23 +76,23 @@ def serialize_aws_json_1_1(value: DescribeImageResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeImageResponse:
     out: DescribeImageResponse = {}  # type: ignore[typeddict-item]
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_sagemaker.types.timestamp
 
         out["creation_time"] = capo_sagemaker.types.timestamp.deserialize_aws_json_1_1(
             data["CreationTime"]
         )
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "DisplayName" in data:
+    if data.get("DisplayName") is not None:
         out["display_name"] = data["DisplayName"]
-    if "FailureReason" in data:
+    if data.get("FailureReason") is not None:
         out["failure_reason"] = data["FailureReason"]
-    if "ImageArn" in data:
+    if data.get("ImageArn") is not None:
         out["image_arn"] = data["ImageArn"]
-    if "ImageName" in data:
+    if data.get("ImageName") is not None:
         out["image_name"] = data["ImageName"]
-    if "ImageStatus" in data:
+    if data.get("ImageStatus") is not None:
         import capo_sagemaker.types.image_status
 
         out["image_status"] = (
@@ -100,7 +100,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeImageResponse:
                 data["ImageStatus"]
             )
         )
-    if "LastModifiedTime" in data:
+    if data.get("LastModifiedTime") is not None:
         import capo_sagemaker.types.timestamp
 
         out["last_modified_time"] = (
@@ -108,6 +108,6 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeImageResponse:
                 data["LastModifiedTime"]
             )
         )
-    if "RoleArn" in data:
+    if data.get("RoleArn") is not None:
         out["role_arn"] = data["RoleArn"]
     return out

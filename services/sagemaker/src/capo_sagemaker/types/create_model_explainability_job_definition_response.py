@@ -29,6 +29,6 @@ def deserialize_aws_json_1_1(
     data: dict,
 ) -> CreateModelExplainabilityJobDefinitionResponse:
     out: CreateModelExplainabilityJobDefinitionResponse = {}  # type: ignore[typeddict-item]
-    if "JobDefinitionArn" in data:
+    if data.get("JobDefinitionArn") is not None:
         out["job_definition_arn"] = data["JobDefinitionArn"]
     return out

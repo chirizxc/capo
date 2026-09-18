@@ -36,11 +36,11 @@ def serialize_json(value: CoreNetworkPolicyException_) -> dict:
 
 def deserialize_json(data: dict) -> CoreNetworkPolicyException_:
     out: CoreNetworkPolicyException_ = {}  # type: ignore[typeddict-item]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     else:
         raise DeserializationError("CoreNetworkPolicyException_.message required")
-    if "Errors" in data:
+    if data.get("Errors") is not None:
         import capo_networkmanager.types.core_network_policy_error_list
 
         out["errors"] = (
@@ -56,15 +56,18 @@ class CoreNetworkPolicyException(ServiceError):
 
     code: str | None = "CoreNetworkPolicyException"
 
-    def __init__(self, data: CoreNetworkPolicyException_):
+    def __init__(self, data: CoreNetworkPolicyException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="CoreNetworkPolicyException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "CoreNetworkPolicyException":
-        return cls(deserialize_json(data))
+    def from_json(
+        cls, data: dict, message: str | None = None
+    ) -> "CoreNetworkPolicyException":
+        return cls(deserialize_json(data), message)

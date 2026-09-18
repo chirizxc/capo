@@ -26,7 +26,7 @@ def serialize_aws_json_1_0(value: ExportDukptInitialKey) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ExportDukptInitialKey:
     out: ExportDukptInitialKey = {}  # type: ignore[typeddict-item]
-    if "KeySerialNumber" in data:
+    if data.get("KeySerialNumber") is not None:
         out["key_serial_number"] = data["KeySerialNumber"]
     else:
         raise DeserializationError("ExportDukptInitialKey.key_serial_number required")

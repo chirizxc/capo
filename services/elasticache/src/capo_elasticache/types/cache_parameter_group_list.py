@@ -18,6 +18,9 @@ def serialize_query(
 ) -> None:
     import capo_elasticache.types.cache_parameter_group
 
+    if not value:
+        pairs.append((prefix, ""))
+        return
     for n, item in enumerate(value, 1):
         capo_elasticache.types.cache_parameter_group.serialize_query(
             item, pairs, f"{prefix}.CacheParameterGroup.{n}"
@@ -40,6 +43,9 @@ def serialize_query_flat(
 ) -> None:
     import capo_elasticache.types.cache_parameter_group
 
+    if not value:
+        pairs.append((prefix, ""))
+        return
     for n, item in enumerate(value, 1):
         capo_elasticache.types.cache_parameter_group.serialize_query(
             item, pairs, f"{prefix}.{n}"

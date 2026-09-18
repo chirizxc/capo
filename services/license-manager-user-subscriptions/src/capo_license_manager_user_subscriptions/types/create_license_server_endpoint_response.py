@@ -31,8 +31,8 @@ def serialize_json(value: CreateLicenseServerEndpointResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateLicenseServerEndpointResponse:
     out: CreateLicenseServerEndpointResponse = {}  # type: ignore[typeddict-item]
-    if "IdentityProviderArn" in data:
+    if data.get("IdentityProviderArn") is not None:
         out["identity_provider_arn"] = data["IdentityProviderArn"]
-    if "LicenseServerEndpointArn" in data:
+    if data.get("LicenseServerEndpointArn") is not None:
         out["license_server_endpoint_arn"] = data["LicenseServerEndpointArn"]
     return out

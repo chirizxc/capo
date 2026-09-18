@@ -59,19 +59,19 @@ def serialize_json(value: HeaderMatchMethod) -> dict:
 
 
 def deserialize_json(data: dict) -> HeaderMatchMethod:
-    if "exact" in data:
+    if data.get("exact") is not None:
         return {"exact": data["exact"]}
-    elif "regex" in data:
+    elif data.get("regex") is not None:
         return {"regex": data["regex"]}
-    elif "range" in data:
+    elif data.get("range") is not None:
         import capo_app_mesh.types.match_range
 
         return {
             "range": capo_app_mesh.types.match_range.deserialize_json(data["range"])
         }
-    elif "prefix" in data:
+    elif data.get("prefix") is not None:
         return {"prefix": data["prefix"]}
-    elif "suffix" in data:
+    elif data.get("suffix") is not None:
         return {"suffix": data["suffix"]}
     else:
         raise DeserializationError("HeaderMatchMethod: no recognized variant key")

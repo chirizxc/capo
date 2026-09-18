@@ -92,7 +92,15 @@ def serialize_json(value: RouteMatrixTruckOptions) -> dict:
             )
         )
     if "max_speed" in value:
-        out["MaxSpeed"] = value["max_speed"]
+        out["MaxSpeed"] = (
+            "NaN"
+            if value["max_speed"] != value["max_speed"]
+            else "Infinity"
+            if value["max_speed"] == float("inf")
+            else "-Infinity"
+            if value["max_speed"] == float("-inf")
+            else value["max_speed"]
+        )
     if "occupancy" in value:
         out["Occupancy"] = value["occupancy"]
     out["PayloadCapacity"] = value.get("payload_capacity", 0)
@@ -127,13 +135,13 @@ def serialize_json(value: RouteMatrixTruckOptions) -> dict:
 
 def deserialize_json(data: dict) -> RouteMatrixTruckOptions:
     out: RouteMatrixTruckOptions = {}  # type: ignore[typeddict-item]
-    if "AxleCount" in data:
+    if data.get("AxleCount") is not None:
         out["axle_count"] = data["AxleCount"]
-    if "GrossWeight" in data:
+    if data.get("GrossWeight") is not None:
         out["gross_weight"] = data["GrossWeight"]
     else:
         out["gross_weight"] = 0
-    if "HazardousCargos" in data:
+    if data.get("HazardousCargos") is not None:
         import capo_geo_routes.types.route_matrix_hazardous_cargo_type_list
 
         out["hazardous_cargos"] = (
@@ -141,19 +149,19 @@ def deserialize_json(data: dict) -> RouteMatrixTruckOptions:
                 data["HazardousCargos"]
             )
         )
-    if "Height" in data:
+    if data.get("Height") is not None:
         out["height"] = data["Height"]
     else:
         out["height"] = 0
-    if "KpraLength" in data:
+    if data.get("KpraLength") is not None:
         out["kpra_length"] = data["KpraLength"]
     else:
         out["kpra_length"] = 0
-    if "Length" in data:
+    if data.get("Length") is not None:
         out["length"] = data["Length"]
     else:
         out["length"] = 0
-    if "LicensePlate" in data:
+    if data.get("LicensePlate") is not None:
         import capo_geo_routes.types.route_matrix_vehicle_license_plate
 
         out["license_plate"] = (
@@ -161,15 +169,15 @@ def deserialize_json(data: dict) -> RouteMatrixTruckOptions:
                 data["LicensePlate"]
             )
         )
-    if "MaxSpeed" in data:
-        out["max_speed"] = data["MaxSpeed"]
-    if "Occupancy" in data:
+    if data.get("MaxSpeed") is not None:
+        out["max_speed"] = float(data["MaxSpeed"])
+    if data.get("Occupancy") is not None:
         out["occupancy"] = data["Occupancy"]
-    if "PayloadCapacity" in data:
+    if data.get("PayloadCapacity") is not None:
         out["payload_capacity"] = data["PayloadCapacity"]
     else:
         out["payload_capacity"] = 0
-    if "Trailer" in data:
+    if data.get("Trailer") is not None:
         import capo_geo_routes.types.route_matrix_trailer_options
 
         out["trailer"] = (
@@ -177,7 +185,7 @@ def deserialize_json(data: dict) -> RouteMatrixTruckOptions:
                 data["Trailer"]
             )
         )
-    if "TruckType" in data:
+    if data.get("TruckType") is not None:
         import capo_geo_routes.types.route_matrix_truck_type
 
         out["truck_type"] = (
@@ -185,13 +193,13 @@ def deserialize_json(data: dict) -> RouteMatrixTruckOptions:
                 data["TruckType"]
             )
         )
-    if "TunnelRestrictionCode" in data:
+    if data.get("TunnelRestrictionCode") is not None:
         out["tunnel_restriction_code"] = data["TunnelRestrictionCode"]
-    if "WeightPerAxle" in data:
+    if data.get("WeightPerAxle") is not None:
         out["weight_per_axle"] = data["WeightPerAxle"]
     else:
         out["weight_per_axle"] = 0
-    if "WeightPerAxleGroup" in data:
+    if data.get("WeightPerAxleGroup") is not None:
         import capo_geo_routes.types.weight_per_axle_group
 
         out["weight_per_axle_group"] = (
@@ -199,7 +207,7 @@ def deserialize_json(data: dict) -> RouteMatrixTruckOptions:
                 data["WeightPerAxleGroup"]
             )
         )
-    if "Width" in data:
+    if data.get("Width") is not None:
         out["width"] = data["Width"]
     else:
         out["width"] = 0

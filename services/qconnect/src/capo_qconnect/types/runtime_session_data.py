@@ -32,11 +32,11 @@ def serialize_json(value: RuntimeSessionData) -> dict:
 
 def deserialize_json(data: dict) -> RuntimeSessionData:
     out: RuntimeSessionData = {}  # type: ignore[typeddict-item]
-    if "key" in data:
+    if data.get("key") is not None:
         out["key"] = data["key"]
     else:
         raise DeserializationError("RuntimeSessionData.key required")
-    if "value" in data:
+    if data.get("value") is not None:
         import capo_qconnect.types.runtime_session_data_value
 
         out["value"] = capo_qconnect.types.runtime_session_data_value.deserialize_json(

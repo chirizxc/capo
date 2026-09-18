@@ -85,25 +85,25 @@ def serialize_json(value: PackageGroupDescription) -> dict:
 
 def deserialize_json(data: dict) -> PackageGroupDescription:
     out: PackageGroupDescription = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "pattern" in data:
+    if data.get("pattern") is not None:
         out["pattern"] = data["pattern"]
-    if "domainName" in data:
+    if data.get("domainName") is not None:
         out["domain_name"] = data["domainName"]
-    if "domainOwner" in data:
+    if data.get("domainOwner") is not None:
         out["domain_owner"] = data["domainOwner"]
-    if "createdTime" in data:
+    if data.get("createdTime") is not None:
         import capo_codeartifact.types.timestamp
 
         out["created_time"] = capo_codeartifact.types.timestamp.deserialize_json(
             data["createdTime"]
         )
-    if "contactInfo" in data:
+    if data.get("contactInfo") is not None:
         out["contact_info"] = data["contactInfo"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "originConfiguration" in data:
+    if data.get("originConfiguration") is not None:
         import capo_codeartifact.types.package_group_origin_configuration
 
         out["origin_configuration"] = (
@@ -111,7 +111,7 @@ def deserialize_json(data: dict) -> PackageGroupDescription:
                 data["originConfiguration"]
             )
         )
-    if "parent" in data:
+    if data.get("parent") is not None:
         import capo_codeartifact.types.package_group_reference
 
         out["parent"] = (

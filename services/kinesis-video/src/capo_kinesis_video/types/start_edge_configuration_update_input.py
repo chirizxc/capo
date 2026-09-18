@@ -38,11 +38,11 @@ def serialize_json(value: StartEdgeConfigurationUpdateInput) -> dict:
 
 def deserialize_json(data: dict) -> StartEdgeConfigurationUpdateInput:
     out: StartEdgeConfigurationUpdateInput = {}  # type: ignore[typeddict-item]
-    if "StreamName" in data:
+    if data.get("StreamName") is not None:
         out["stream_name"] = data["StreamName"]
-    if "StreamARN" in data:
+    if data.get("StreamARN") is not None:
         out["stream_arn"] = data["StreamARN"]
-    if "EdgeConfig" in data:
+    if data.get("EdgeConfig") is not None:
         import capo_kinesis_video.types.edge_config
 
         out["edge_config"] = capo_kinesis_video.types.edge_config.deserialize_json(

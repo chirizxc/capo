@@ -8,6 +8,11 @@ ISO8601Timestamp: TypeAlias = datetime.datetime
 
 # --- restJson1 ser/de ---
 def serialize_json(value: ISO8601Timestamp) -> float:
+    value = (
+        value.astimezone(datetime.timezone.utc)
+        if value.tzinfo
+        else value.replace(tzinfo=datetime.timezone.utc)
+    )
     return value.timestamp()
 
 

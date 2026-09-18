@@ -30,7 +30,7 @@ def serialize_aws_json_1_1(value: Asset) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Asset:
     out: Asset = {}  # type: ignore[typeddict-item]
-    if "GroundTruthManifest" in data:
+    if data.get("GroundTruthManifest") is not None:
         import capo_rekognition.types.ground_truth_manifest
 
         out["ground_truth_manifest"] = (

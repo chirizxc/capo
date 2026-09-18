@@ -37,8 +37,24 @@ def serialize_aws_json_1_1(value: ReservationOffering) -> dict:
     if "offering_id" in value:
         out["offeringId"] = value["offering_id"]
     out["duration"] = value.get("duration", 0)
-    out["upfrontCharge"] = value.get("upfront_charge", 0)
-    out["hourlyCharge"] = value.get("hourly_charge", 0)
+    out["upfrontCharge"] = (
+        "NaN"
+        if value.get("upfront_charge", 0) != value.get("upfront_charge", 0)
+        else "Infinity"
+        if value.get("upfront_charge", 0) == float("inf")
+        else "-Infinity"
+        if value.get("upfront_charge", 0) == float("-inf")
+        else value.get("upfront_charge", 0)
+    )
+    out["hourlyCharge"] = (
+        "NaN"
+        if value.get("hourly_charge", 0) != value.get("hourly_charge", 0)
+        else "Infinity"
+        if value.get("hourly_charge", 0) == float("inf")
+        else "-Infinity"
+        if value.get("hourly_charge", 0) == float("-inf")
+        else value.get("hourly_charge", 0)
+    )
     if "currency_code" in value:
         out["currencyCode"] = value["currency_code"]
     if "offering_type" in value:
@@ -48,22 +64,22 @@ def serialize_aws_json_1_1(value: ReservationOffering) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ReservationOffering:
     out: ReservationOffering = {}  # type: ignore[typeddict-item]
-    if "offeringId" in data:
+    if data.get("offeringId") is not None:
         out["offering_id"] = data["offeringId"]
-    if "duration" in data:
+    if data.get("duration") is not None:
         out["duration"] = data["duration"]
     else:
         out["duration"] = 0
-    if "upfrontCharge" in data:
-        out["upfront_charge"] = data["upfrontCharge"]
+    if data.get("upfrontCharge") is not None:
+        out["upfront_charge"] = float(data["upfrontCharge"])
     else:
         out["upfront_charge"] = 0
-    if "hourlyCharge" in data:
-        out["hourly_charge"] = data["hourlyCharge"]
+    if data.get("hourlyCharge") is not None:
+        out["hourly_charge"] = float(data["hourlyCharge"])
     else:
         out["hourly_charge"] = 0
-    if "currencyCode" in data:
+    if data.get("currencyCode") is not None:
         out["currency_code"] = data["currencyCode"]
-    if "offeringType" in data:
+    if data.get("offeringType") is not None:
         out["offering_type"] = data["offeringType"]
     return out

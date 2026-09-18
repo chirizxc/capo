@@ -29,6 +29,8 @@ def serialize_json(input_to_serialize: DocumentAttributeBoostingOverrideMap) -> 
 def deserialize_json(data: dict) -> DocumentAttributeBoostingOverrideMap:
     out: DocumentAttributeBoostingOverrideMap = {}
     for key, value in data.items():
+        if value is None:
+            continue
         import capo_qbusiness.types.document_attribute_boosting_configuration
 
         out[key] = (

@@ -45,11 +45,11 @@ def serialize_json(value: GetCisScanReportRequest) -> dict:
 
 def deserialize_json(data: dict) -> GetCisScanReportRequest:
     out: GetCisScanReportRequest = {}  # type: ignore[typeddict-item]
-    if "scanArn" in data:
+    if data.get("scanArn") is not None:
         out["scan_arn"] = data["scanArn"]
     else:
         raise DeserializationError("GetCisScanReportRequest.scan_arn required")
-    if "targetAccounts" in data:
+    if data.get("targetAccounts") is not None:
         import capo_inspector2.types.report_target_accounts
 
         out["target_accounts"] = (
@@ -57,7 +57,7 @@ def deserialize_json(data: dict) -> GetCisScanReportRequest:
                 data["targetAccounts"]
             )
         )
-    if "reportFormat" in data:
+    if data.get("reportFormat") is not None:
         import capo_inspector2.types.cis_report_format
 
         out["report_format"] = capo_inspector2.types.cis_report_format.deserialize_json(

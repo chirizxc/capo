@@ -20,14 +20,14 @@ class ISO8601TimeRange(TypedDict, closed=True):
 # --- restJson1 ser/de ---
 def serialize_json(value: ISO8601TimeRange) -> dict:
     out: dict = {}
-    import capo_groundstation.types._prelude.timestamp
+    import capo_groundstation._protocol.serialize
 
-    out["startTime"] = capo_groundstation.types._prelude.timestamp.serialize_json(
+    out["startTime"] = capo_groundstation._protocol.serialize.fmt_date_time(
         value["start_time"]
     )
-    import capo_groundstation.types._prelude.timestamp
+    import capo_groundstation._protocol.serialize
 
-    out["endTime"] = capo_groundstation.types._prelude.timestamp.serialize_json(
+    out["endTime"] = capo_groundstation._protocol.serialize.fmt_date_time(
         value["end_time"]
     )
     return out
@@ -35,21 +35,19 @@ def serialize_json(value: ISO8601TimeRange) -> dict:
 
 def deserialize_json(data: dict) -> ISO8601TimeRange:
     out: ISO8601TimeRange = {}  # type: ignore[typeddict-item]
-    if "startTime" in data:
-        import capo_groundstation.types._prelude.timestamp
+    if data.get("startTime") is not None:
+        import datetime
 
-        out["start_time"] = (
-            capo_groundstation.types._prelude.timestamp.deserialize_json(
-                data["startTime"]
-            )
+        out["start_time"] = datetime.datetime.fromisoformat(
+            data["startTime"].replace("Z", "+00:00")
         )
     else:
         raise DeserializationError("ISO8601TimeRange.start_time required")
-    if "endTime" in data:
-        import capo_groundstation.types._prelude.timestamp
+    if data.get("endTime") is not None:
+        import datetime
 
-        out["end_time"] = capo_groundstation.types._prelude.timestamp.deserialize_json(
-            data["endTime"]
+        out["end_time"] = datetime.datetime.fromisoformat(
+            data["endTime"].replace("Z", "+00:00")
         )
     else:
         raise DeserializationError("ISO8601TimeRange.end_time required")

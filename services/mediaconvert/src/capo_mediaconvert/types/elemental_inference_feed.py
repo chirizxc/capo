@@ -36,9 +36,9 @@ def serialize_json(value: ElementalInferenceFeed) -> dict:
 
 def deserialize_json(data: dict) -> ElementalInferenceFeed:
     out: ElementalInferenceFeed = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "feedManagementState" in data:
+    if data.get("feedManagementState") is not None:
         import capo_mediaconvert.types.elemental_inference_feed_management_state
 
         out["feed_management_state"] = (

@@ -26,7 +26,7 @@ def serialize_aws_json_1_1(value: CreateScalingPlanResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateScalingPlanResponse:
     out: CreateScalingPlanResponse = {}  # type: ignore[typeddict-item]
-    if "ScalingPlanVersion" in data:
+    if data.get("ScalingPlanVersion") is not None:
         out["scaling_plan_version"] = data["ScalingPlanVersion"]
     else:
         raise DeserializationError(

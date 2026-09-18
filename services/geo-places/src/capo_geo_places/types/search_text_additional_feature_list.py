@@ -16,4 +16,4 @@ def serialize_json(value: SearchTextAdditionalFeatureList) -> list:
 
 
 def deserialize_json(data: list) -> SearchTextAdditionalFeatureList:
-    return list(data)
+    return [item for item in data if item is not None]

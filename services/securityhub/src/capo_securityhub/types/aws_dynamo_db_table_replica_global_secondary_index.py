@@ -36,9 +36,9 @@ def serialize_json(value: AwsDynamoDbTableReplicaGlobalSecondaryIndex) -> dict:
 
 def deserialize_json(data: dict) -> AwsDynamoDbTableReplicaGlobalSecondaryIndex:
     out: AwsDynamoDbTableReplicaGlobalSecondaryIndex = {}  # type: ignore[typeddict-item]
-    if "IndexName" in data:
+    if data.get("IndexName") is not None:
         out["index_name"] = data["IndexName"]
-    if "ProvisionedThroughputOverride" in data:
+    if data.get("ProvisionedThroughputOverride") is not None:
         import capo_securityhub.types.aws_dynamo_db_table_provisioned_throughput_override
 
         out["provisioned_throughput_override"] = (

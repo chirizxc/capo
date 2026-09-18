@@ -50,13 +50,13 @@ def serialize_json(value: LineChartMarkerStyleSettings) -> dict:
 
 def deserialize_json(data: dict) -> LineChartMarkerStyleSettings:
     out: LineChartMarkerStyleSettings = {}  # type: ignore[typeddict-item]
-    if "MarkerVisibility" in data:
+    if data.get("MarkerVisibility") is not None:
         import capo_quicksight.types.visibility
 
         out["marker_visibility"] = capo_quicksight.types.visibility.deserialize_json(
             data["MarkerVisibility"]
         )
-    if "MarkerShape" in data:
+    if data.get("MarkerShape") is not None:
         import capo_quicksight.types.line_chart_marker_shape
 
         out["marker_shape"] = (
@@ -64,8 +64,8 @@ def deserialize_json(data: dict) -> LineChartMarkerStyleSettings:
                 data["MarkerShape"]
             )
         )
-    if "MarkerSize" in data:
+    if data.get("MarkerSize") is not None:
         out["marker_size"] = data["MarkerSize"]
-    if "MarkerColor" in data:
+    if data.get("MarkerColor") is not None:
         out["marker_color"] = data["MarkerColor"]
     return out

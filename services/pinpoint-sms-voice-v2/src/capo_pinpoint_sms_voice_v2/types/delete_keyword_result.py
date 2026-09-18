@@ -45,14 +45,14 @@ def serialize_aws_json_1_0(value: DeleteKeywordResult) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> DeleteKeywordResult:
     out: DeleteKeywordResult = {}  # type: ignore[typeddict-item]
-    if "OriginationIdentityArn" in data:
+    if data.get("OriginationIdentityArn") is not None:
         out["origination_identity_arn"] = data["OriginationIdentityArn"]
-    if "OriginationIdentity" in data:
+    if data.get("OriginationIdentity") is not None:
         out["origination_identity"] = data["OriginationIdentity"]
-    if "Keyword" in data:
+    if data.get("Keyword") is not None:
         out["keyword"] = data["Keyword"]
-    if "KeywordMessage" in data:
+    if data.get("KeywordMessage") is not None:
         out["keyword_message"] = data["KeywordMessage"]
-    if "KeywordAction" in data:
+    if data.get("KeywordAction") is not None:
         out["keyword_action"] = data["KeywordAction"]
     return out

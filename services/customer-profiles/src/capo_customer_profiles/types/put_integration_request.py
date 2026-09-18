@@ -89,11 +89,11 @@ def serialize_json(value: PutIntegrationRequest) -> dict:
 
 def deserialize_json(data: dict) -> PutIntegrationRequest:
     out: PutIntegrationRequest = {}  # type: ignore[typeddict-item]
-    if "Uri" in data:
+    if data.get("Uri") is not None:
         out["uri"] = data["Uri"]
-    if "ObjectTypeName" in data:
+    if data.get("ObjectTypeName") is not None:
         out["object_type_name"] = data["ObjectTypeName"]
-    if "ObjectTypeNames" in data:
+    if data.get("ObjectTypeNames") is not None:
         import capo_customer_profiles.types.object_type_names
 
         out["object_type_names"] = (
@@ -101,13 +101,13 @@ def deserialize_json(data: dict) -> PutIntegrationRequest:
                 data["ObjectTypeNames"]
             )
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_customer_profiles.types.tag_map
 
         out["tags"] = capo_customer_profiles.types.tag_map.deserialize_json(
             data["Tags"]
         )
-    if "FlowDefinition" in data:
+    if data.get("FlowDefinition") is not None:
         import capo_customer_profiles.types.flow_definition
 
         out["flow_definition"] = (
@@ -115,9 +115,9 @@ def deserialize_json(data: dict) -> PutIntegrationRequest:
                 data["FlowDefinition"]
             )
         )
-    if "RoleArn" in data:
+    if data.get("RoleArn") is not None:
         out["role_arn"] = data["RoleArn"]
-    if "EventTriggerNames" in data:
+    if data.get("EventTriggerNames") is not None:
         import capo_customer_profiles.types.event_trigger_names
 
         out["event_trigger_names"] = (
@@ -125,7 +125,7 @@ def deserialize_json(data: dict) -> PutIntegrationRequest:
                 data["EventTriggerNames"]
             )
         )
-    if "Scope" in data:
+    if data.get("Scope") is not None:
         import capo_customer_profiles.types.scope
 
         out["scope"] = capo_customer_profiles.types.scope.deserialize_json(

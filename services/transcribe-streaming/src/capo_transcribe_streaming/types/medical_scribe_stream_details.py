@@ -181,9 +181,9 @@ def serialize_json(value: MedicalScribeStreamDetails) -> dict:
 
 def deserialize_json(data: dict) -> MedicalScribeStreamDetails:
     out: MedicalScribeStreamDetails = {}  # type: ignore[typeddict-item]
-    if "SessionId" in data:
+    if data.get("SessionId") is not None:
         out["session_id"] = data["SessionId"]
-    if "StreamCreatedAt" in data:
+    if data.get("StreamCreatedAt") is not None:
         import capo_transcribe_streaming.types.date_time
 
         out["stream_created_at"] = (
@@ -191,7 +191,7 @@ def deserialize_json(data: dict) -> MedicalScribeStreamDetails:
                 data["StreamCreatedAt"]
             )
         )
-    if "StreamEndedAt" in data:
+    if data.get("StreamEndedAt") is not None:
         import capo_transcribe_streaming.types.date_time
 
         out["stream_ended_at"] = (
@@ -199,7 +199,7 @@ def deserialize_json(data: dict) -> MedicalScribeStreamDetails:
                 data["StreamEndedAt"]
             )
         )
-    if "LanguageCode" in data:
+    if data.get("LanguageCode") is not None:
         import capo_transcribe_streaming.types.medical_scribe_language_code
 
         out["language_code"] = (
@@ -207,9 +207,9 @@ def deserialize_json(data: dict) -> MedicalScribeStreamDetails:
                 data["LanguageCode"]
             )
         )
-    if "MediaSampleRateHertz" in data:
+    if data.get("MediaSampleRateHertz") is not None:
         out["media_sample_rate_hertz"] = data["MediaSampleRateHertz"]
-    if "MediaEncoding" in data:
+    if data.get("MediaEncoding") is not None:
         import capo_transcribe_streaming.types.medical_scribe_media_encoding
 
         out["media_encoding"] = (
@@ -217,11 +217,11 @@ def deserialize_json(data: dict) -> MedicalScribeStreamDetails:
                 data["MediaEncoding"]
             )
         )
-    if "VocabularyName" in data:
+    if data.get("VocabularyName") is not None:
         out["vocabulary_name"] = data["VocabularyName"]
-    if "VocabularyFilterName" in data:
+    if data.get("VocabularyFilterName") is not None:
         out["vocabulary_filter_name"] = data["VocabularyFilterName"]
-    if "VocabularyFilterMethod" in data:
+    if data.get("VocabularyFilterMethod") is not None:
         import capo_transcribe_streaming.types.medical_scribe_vocabulary_filter_method
 
         out["vocabulary_filter_method"] = (
@@ -229,9 +229,9 @@ def deserialize_json(data: dict) -> MedicalScribeStreamDetails:
                 data["VocabularyFilterMethod"]
             )
         )
-    if "ResourceAccessRoleArn" in data:
+    if data.get("ResourceAccessRoleArn") is not None:
         out["resource_access_role_arn"] = data["ResourceAccessRoleArn"]
-    if "ChannelDefinitions" in data:
+    if data.get("ChannelDefinitions") is not None:
         import capo_transcribe_streaming.types.medical_scribe_channel_definitions
 
         out["channel_definitions"] = (
@@ -239,7 +239,7 @@ def deserialize_json(data: dict) -> MedicalScribeStreamDetails:
                 data["ChannelDefinitions"]
             )
         )
-    if "EncryptionSettings" in data:
+    if data.get("EncryptionSettings") is not None:
         import capo_transcribe_streaming.types.medical_scribe_encryption_settings
 
         out["encryption_settings"] = (
@@ -247,7 +247,7 @@ def deserialize_json(data: dict) -> MedicalScribeStreamDetails:
                 data["EncryptionSettings"]
             )
         )
-    if "StreamStatus" in data:
+    if data.get("StreamStatus") is not None:
         import capo_transcribe_streaming.types.medical_scribe_stream_status
 
         out["stream_status"] = (
@@ -255,7 +255,7 @@ def deserialize_json(data: dict) -> MedicalScribeStreamDetails:
                 data["StreamStatus"]
             )
         )
-    if "PostStreamAnalyticsSettings" in data:
+    if data.get("PostStreamAnalyticsSettings") is not None:
         import capo_transcribe_streaming.types.medical_scribe_post_stream_analytics_settings
 
         out["post_stream_analytics_settings"] = (
@@ -263,7 +263,7 @@ def deserialize_json(data: dict) -> MedicalScribeStreamDetails:
                 data["PostStreamAnalyticsSettings"]
             )
         )
-    if "PostStreamAnalyticsResult" in data:
+    if data.get("PostStreamAnalyticsResult") is not None:
         import capo_transcribe_streaming.types.medical_scribe_post_stream_analytics_result
 
         out["post_stream_analytics_result"] = (
@@ -271,6 +271,6 @@ def deserialize_json(data: dict) -> MedicalScribeStreamDetails:
                 data["PostStreamAnalyticsResult"]
             )
         )
-    if "MedicalScribeContextProvided" in data:
+    if data.get("MedicalScribeContextProvided") is not None:
         out["medical_scribe_context_provided"] = data["MedicalScribeContextProvided"]
     return out

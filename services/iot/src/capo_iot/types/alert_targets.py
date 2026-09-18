@@ -28,8 +28,11 @@ def serialize_json(input_to_serialize: AlertTargets) -> dict:
 def deserialize_json(data: dict) -> AlertTargets:
     out: AlertTargets = {}
     for key, value in data.items():
-        import capo_iot.types.alert_target
         import capo_iot.types.alert_target_type
+
+        if value is None:
+            continue
+        import capo_iot.types.alert_target
 
         out[capo_iot.types.alert_target_type.deserialize_json(key)] = (
             capo_iot.types.alert_target.deserialize_json(value)

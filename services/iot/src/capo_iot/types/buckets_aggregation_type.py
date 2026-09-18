@@ -27,7 +27,7 @@ def serialize_json(value: BucketsAggregationType) -> dict:
 
 def deserialize_json(data: dict) -> BucketsAggregationType:
     out: BucketsAggregationType = {}  # type: ignore[typeddict-item]
-    if "termsAggregation" in data:
+    if data.get("termsAggregation") is not None:
         import capo_iot.types.terms_aggregation
 
         out["terms_aggregation"] = capo_iot.types.terms_aggregation.deserialize_json(

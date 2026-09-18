@@ -68,17 +68,17 @@ def serialize_json(value: CreateHoursOfOperationRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateHoursOfOperationRequest:
     out: CreateHoursOfOperationRequest = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("CreateHoursOfOperationRequest.name required")
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "TimeZone" in data:
+    if data.get("TimeZone") is not None:
         out["time_zone"] = data["TimeZone"]
     else:
         raise DeserializationError("CreateHoursOfOperationRequest.time_zone required")
-    if "Config" in data:
+    if data.get("Config") is not None:
         import capo_connect.types.hours_of_operation_config_list
 
         out["config"] = (
@@ -88,7 +88,7 @@ def deserialize_json(data: dict) -> CreateHoursOfOperationRequest:
         )
     else:
         raise DeserializationError("CreateHoursOfOperationRequest.config required")
-    if "ParentHoursOfOperationConfigs" in data:
+    if data.get("ParentHoursOfOperationConfigs") is not None:
         import capo_connect.types.parent_hours_of_operation_config_list
 
         out["parent_hours_of_operation_configs"] = (
@@ -96,7 +96,7 @@ def deserialize_json(data: dict) -> CreateHoursOfOperationRequest:
                 data["ParentHoursOfOperationConfigs"]
             )
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_connect.types.tag_map
 
         out["tags"] = capo_connect.types.tag_map.deserialize_json(data["Tags"])

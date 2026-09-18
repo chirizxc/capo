@@ -43,15 +43,15 @@ def serialize_json(value: PrimaryAttributeValue) -> dict:
 
 def deserialize_json(data: dict) -> PrimaryAttributeValue:
     out: PrimaryAttributeValue = {}  # type: ignore[typeddict-item]
-    if "AccessType" in data:
+    if data.get("AccessType") is not None:
         import capo_connect.types.access_type
 
         out["access_type"] = capo_connect.types.access_type.deserialize_json(
             data["AccessType"]
         )
-    if "AttributeName" in data:
+    if data.get("AttributeName") is not None:
         out["attribute_name"] = data["AttributeName"]
-    if "Values" in data:
+    if data.get("Values") is not None:
         import capo_connect.types.primary_value_list
 
         out["values"] = capo_connect.types.primary_value_list.deserialize_json(

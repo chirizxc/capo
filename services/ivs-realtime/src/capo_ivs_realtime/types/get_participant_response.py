@@ -27,7 +27,7 @@ def serialize_json(value: GetParticipantResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetParticipantResponse:
     out: GetParticipantResponse = {}  # type: ignore[typeddict-item]
-    if "participant" in data:
+    if data.get("participant") is not None:
         import capo_ivs_realtime.types.participant
 
         out["participant"] = capo_ivs_realtime.types.participant.deserialize_json(

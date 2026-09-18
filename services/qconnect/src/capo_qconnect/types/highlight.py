@@ -25,11 +25,11 @@ def serialize_json(value: Highlight) -> dict:
 
 def deserialize_json(data: dict) -> Highlight:
     out: Highlight = {}  # type: ignore[typeddict-item]
-    if "beginOffsetInclusive" in data:
+    if data.get("beginOffsetInclusive") is not None:
         out["begin_offset_inclusive"] = data["beginOffsetInclusive"]
     else:
         out["begin_offset_inclusive"] = 0
-    if "endOffsetExclusive" in data:
+    if data.get("endOffsetExclusive") is not None:
         out["end_offset_exclusive"] = data["endOffsetExclusive"]
     else:
         out["end_offset_exclusive"] = 0

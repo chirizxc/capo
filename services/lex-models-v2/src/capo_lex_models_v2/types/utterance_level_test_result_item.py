@@ -39,15 +39,15 @@ def serialize_json(value: UtteranceLevelTestResultItem) -> dict:
 
 def deserialize_json(data: dict) -> UtteranceLevelTestResultItem:
     out: UtteranceLevelTestResultItem = {}  # type: ignore[typeddict-item]
-    if "recordNumber" in data:
+    if data.get("recordNumber") is not None:
         out["record_number"] = data["recordNumber"]
     else:
         raise DeserializationError(
             "UtteranceLevelTestResultItem.record_number required"
         )
-    if "conversationId" in data:
+    if data.get("conversationId") is not None:
         out["conversation_id"] = data["conversationId"]
-    if "turnResult" in data:
+    if data.get("turnResult") is not None:
         import capo_lex_models_v2.types.test_set_turn_result
 
         out["turn_result"] = (

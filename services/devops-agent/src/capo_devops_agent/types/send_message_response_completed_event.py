@@ -39,15 +39,15 @@ def serialize_json(value: SendMessageResponseCompletedEvent) -> dict:
 
 def deserialize_json(data: dict) -> SendMessageResponseCompletedEvent:
     out: SendMessageResponseCompletedEvent = {}  # type: ignore[typeddict-item]
-    if "responseId" in data:
+    if data.get("responseId") is not None:
         out["response_id"] = data["responseId"]
-    if "usage" in data:
+    if data.get("usage") is not None:
         import capo_devops_agent.types.send_message_usage_info
 
         out["usage"] = capo_devops_agent.types.send_message_usage_info.deserialize_json(
             data["usage"]
         )
-    if "sequenceNumber" in data:
+    if data.get("sequenceNumber") is not None:
         out["sequence_number"] = data["sequenceNumber"]
     return out
 

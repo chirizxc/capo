@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: ListAggregateDiscoveredResourcesResponse) -> d
 
 def deserialize_aws_json_1_1(data: dict) -> ListAggregateDiscoveredResourcesResponse:
     out: ListAggregateDiscoveredResourcesResponse = {}  # type: ignore[typeddict-item]
-    if "ResourceIdentifiers" in data:
+    if data.get("ResourceIdentifiers") is not None:
         import capo_config_service.types.discovered_resource_identifier_list
 
         out["resource_identifiers"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_1(data: dict) -> ListAggregateDiscoveredResourcesResp
                 data["ResourceIdentifiers"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

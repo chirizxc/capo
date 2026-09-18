@@ -49,7 +49,7 @@ def serialize_json(value: ReservationDetails) -> dict:
 
 
 def deserialize_json(data: dict) -> ReservationDetails:
-    if "maintenance" in data:
+    if data.get("maintenance") is not None:
         import capo_groundstation.types.maintenance_reservation_details
 
         return {
@@ -57,7 +57,7 @@ def deserialize_json(data: dict) -> ReservationDetails:
                 data["maintenance"]
             )
         }
-    elif "contact" in data:
+    elif data.get("contact") is not None:
         import capo_groundstation.types.contact_reservation_details
 
         return {

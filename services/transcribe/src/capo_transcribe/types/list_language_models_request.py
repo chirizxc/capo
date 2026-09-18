@@ -25,9 +25,35 @@ class ListLanguageModelsRequest(TypedDict, closed=True):
 # --- awsJson1_1 ser/de ---
 def serialize_aws_json_1_1(value: ListLanguageModelsRequest) -> dict:
     out: dict = {}
+    if "status_equals" in value:
+        import capo_transcribe.types.model_status
+
+        out["StatusEquals"] = capo_transcribe.types.model_status.serialize_aws_json_1_1(
+            value["status_equals"]
+        )
+    if "name_contains" in value:
+        out["NameContains"] = value["name_contains"]
+    if "next_token" in value:
+        out["NextToken"] = value["next_token"]
+    if "max_results" in value:
+        out["MaxResults"] = value["max_results"]
     return out
 
 
 def deserialize_aws_json_1_1(data: dict) -> ListLanguageModelsRequest:
     out: ListLanguageModelsRequest = {}  # type: ignore[typeddict-item]
+    if data.get("StatusEquals") is not None:
+        import capo_transcribe.types.model_status
+
+        out["status_equals"] = (
+            capo_transcribe.types.model_status.deserialize_aws_json_1_1(
+                data["StatusEquals"]
+            )
+        )
+    if data.get("NameContains") is not None:
+        out["name_contains"] = data["NameContains"]
+    if data.get("NextToken") is not None:
+        out["next_token"] = data["NextToken"]
+    if data.get("MaxResults") is not None:
+        out["max_results"] = data["MaxResults"]
     return out

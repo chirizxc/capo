@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> EvaluationFormSearchConditionList:
 
     out: EvaluationFormSearchConditionList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_connect.types.evaluation_form_search_criteria.deserialize_json(item)
         )

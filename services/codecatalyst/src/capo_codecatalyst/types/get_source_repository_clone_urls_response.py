@@ -19,7 +19,7 @@ def serialize_json(value: GetSourceRepositoryCloneUrlsResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetSourceRepositoryCloneUrlsResponse:
     out: GetSourceRepositoryCloneUrlsResponse = {}  # type: ignore[typeddict-item]
-    if "https" in data:
+    if data.get("https") is not None:
         out["https"] = data["https"]
     else:
         raise DeserializationError(

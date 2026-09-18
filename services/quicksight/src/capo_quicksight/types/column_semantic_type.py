@@ -31,7 +31,7 @@ def serialize_json(value: ColumnSemanticType) -> dict:
 
 def deserialize_json(data: dict) -> ColumnSemanticType:
     out: ColumnSemanticType = {}  # type: ignore[typeddict-item]
-    if "GeographicalRole" in data:
+    if data.get("GeographicalRole") is not None:
         import capo_quicksight.types.geo_spatial_data_role
 
         out["geographical_role"] = (

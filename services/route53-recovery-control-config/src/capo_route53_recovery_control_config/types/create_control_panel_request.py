@@ -51,13 +51,13 @@ def serialize_json(value: CreateControlPanelRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateControlPanelRequest:
     out: CreateControlPanelRequest = {}  # type: ignore[typeddict-item]
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
-    if "ClusterArn" in data:
+    if data.get("ClusterArn") is not None:
         out["cluster_arn"] = data["ClusterArn"]
-    if "ControlPanelName" in data:
+    if data.get("ControlPanelName") is not None:
         out["control_panel_name"] = data["ControlPanelName"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_route53_recovery_control_config.types.__map_of__string_min0_max256_pattern_s
 
         out["tags"] = (

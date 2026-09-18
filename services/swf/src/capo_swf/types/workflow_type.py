@@ -28,11 +28,11 @@ def serialize_aws_json_1_0(value: WorkflowType) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> WorkflowType:
     out: WorkflowType = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("WorkflowType.name required")
-    if "version" in data:
+    if data.get("version") is not None:
         out["version"] = data["version"]
     else:
         raise DeserializationError("WorkflowType.version required")

@@ -20,7 +20,15 @@ class TruckWeight(TypedDict, closed=True):
 def serialize_json(value: TruckWeight) -> dict:
     out: dict = {}
     if "total" in value:
-        out["Total"] = value["total"]
+        out["Total"] = (
+            "NaN"
+            if value["total"] != value["total"]
+            else "Infinity"
+            if value["total"] == float("inf")
+            else "-Infinity"
+            if value["total"] == float("-inf")
+            else value["total"]
+        )
     if "unit" in value:
         out["Unit"] = value["unit"]
     return out
@@ -28,8 +36,8 @@ def serialize_json(value: TruckWeight) -> dict:
 
 def deserialize_json(data: dict) -> TruckWeight:
     out: TruckWeight = {}  # type: ignore[typeddict-item]
-    if "Total" in data:
-        out["total"] = data["Total"]
-    if "Unit" in data:
+    if data.get("Total") is not None:
+        out["total"] = float(data["Total"])
+    if data.get("Unit") is not None:
         out["unit"] = data["Unit"]
     return out

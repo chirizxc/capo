@@ -32,12 +32,12 @@ def serialize_json(value: EncryptionInTransit) -> dict:
 
 def deserialize_json(data: dict) -> EncryptionInTransit:
     out: EncryptionInTransit = {}  # type: ignore[typeddict-item]
-    if "clientBroker" in data:
+    if data.get("clientBroker") is not None:
         import capo_kafka.types.client_broker
 
         out["client_broker"] = capo_kafka.types.client_broker.deserialize_json(
             data["clientBroker"]
         )
-    if "inCluster" in data:
+    if data.get("inCluster") is not None:
         out["in_cluster"] = data["inCluster"]
     return out

@@ -25,6 +25,8 @@ def deserialize_json(data: list) -> ReadSetUploadPartList:
 
     out: ReadSetUploadPartList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_omics.types.read_set_upload_part_list_item.deserialize_json(item)
         )

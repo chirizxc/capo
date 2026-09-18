@@ -24,7 +24,7 @@ def serialize_json(value: InvalidTaskIdException_) -> dict:
 
 def deserialize_json(data: dict) -> InvalidTaskIdException_:
     out: InvalidTaskIdException_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     return out
 
@@ -34,15 +34,18 @@ class InvalidTaskIdException(ServiceError):
 
     code: str | None = "InvalidTaskIdException"
 
-    def __init__(self, data: InvalidTaskIdException_):
+    def __init__(self, data: InvalidTaskIdException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="InvalidTaskIdException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "InvalidTaskIdException":
-        return cls(deserialize_json(data))
+    def from_json(
+        cls, data: dict, message: str | None = None
+    ) -> "InvalidTaskIdException":
+        return cls(deserialize_json(data), message)

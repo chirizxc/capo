@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: UpdateQualificationTypeResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateQualificationTypeResponse:
     out: UpdateQualificationTypeResponse = {}  # type: ignore[typeddict-item]
-    if "QualificationType" in data:
+    if data.get("QualificationType") is not None:
         import capo_mturk.types.qualification_type
 
         out["qualification_type"] = (

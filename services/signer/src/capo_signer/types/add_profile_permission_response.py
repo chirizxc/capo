@@ -23,6 +23,6 @@ def serialize_json(value: AddProfilePermissionResponse) -> dict:
 
 def deserialize_json(data: dict) -> AddProfilePermissionResponse:
     out: AddProfilePermissionResponse = {}  # type: ignore[typeddict-item]
-    if "revisionId" in data:
+    if data.get("revisionId") is not None:
         out["revision_id"] = data["revisionId"]
     return out

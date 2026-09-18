@@ -36,9 +36,9 @@ def serialize_aws_json_1_1(value: PossibleRemediationActions) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PossibleRemediationActions:
     out: PossibleRemediationActions = {}  # type: ignore[typeddict-item]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Actions" in data:
+    if data.get("Actions") is not None:
         import capo_fms.types.possible_remediation_action_list
 
         out["actions"] = (

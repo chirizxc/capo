@@ -89,13 +89,13 @@ def deserialize_json(
     data: dict,
 ) -> DescribeLakeFormationIdentityCenterConfigurationResponse:
     out: DescribeLakeFormationIdentityCenterConfigurationResponse = {}  # type: ignore[typeddict-item]
-    if "CatalogId" in data:
+    if data.get("CatalogId") is not None:
         out["catalog_id"] = data["CatalogId"]
-    if "InstanceArn" in data:
+    if data.get("InstanceArn") is not None:
         out["instance_arn"] = data["InstanceArn"]
-    if "ApplicationArn" in data:
+    if data.get("ApplicationArn") is not None:
         out["application_arn"] = data["ApplicationArn"]
-    if "ExternalFiltering" in data:
+    if data.get("ExternalFiltering") is not None:
         import capo_lakeformation.types.external_filtering_configuration
 
         out["external_filtering"] = (
@@ -103,7 +103,7 @@ def deserialize_json(
                 data["ExternalFiltering"]
             )
         )
-    if "ShareRecipients" in data:
+    if data.get("ShareRecipients") is not None:
         import capo_lakeformation.types.data_lake_principal_list
 
         out["share_recipients"] = (
@@ -111,7 +111,7 @@ def deserialize_json(
                 data["ShareRecipients"]
             )
         )
-    if "ServiceIntegrations" in data:
+    if data.get("ServiceIntegrations") is not None:
         import capo_lakeformation.types.service_integration_list
 
         out["service_integrations"] = (
@@ -119,6 +119,6 @@ def deserialize_json(
                 data["ServiceIntegrations"]
             )
         )
-    if "ResourceShare" in data:
+    if data.get("ResourceShare") is not None:
         out["resource_share"] = data["ResourceShare"]
     return out

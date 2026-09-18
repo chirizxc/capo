@@ -31,7 +31,7 @@ def serialize_json(value: TableSemanticMetadata) -> dict:
 
 def deserialize_json(data: dict) -> TableSemanticMetadata:
     out: TableSemanticMetadata = {}  # type: ignore[typeddict-item]
-    if "ColumnMetadata" in data:
+    if data.get("ColumnMetadata") is not None:
         import capo_quicksight.types.shared_column_semantic_metadata_list
 
         out["column_metadata"] = (

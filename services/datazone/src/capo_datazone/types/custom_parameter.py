@@ -47,22 +47,22 @@ def serialize_json(value: CustomParameter) -> dict:
 
 def deserialize_json(data: dict) -> CustomParameter:
     out: CustomParameter = {}  # type: ignore[typeddict-item]
-    if "keyName" in data:
+    if data.get("keyName") is not None:
         out["key_name"] = data["keyName"]
     else:
         raise DeserializationError("CustomParameter.key_name required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "fieldType" in data:
+    if data.get("fieldType") is not None:
         out["field_type"] = data["fieldType"]
     else:
         raise DeserializationError("CustomParameter.field_type required")
-    if "defaultValue" in data:
+    if data.get("defaultValue") is not None:
         out["default_value"] = data["defaultValue"]
-    if "isEditable" in data:
+    if data.get("isEditable") is not None:
         out["is_editable"] = data["isEditable"]
-    if "isOptional" in data:
+    if data.get("isOptional") is not None:
         out["is_optional"] = data["isOptional"]
-    if "isUpdateSupported" in data:
+    if data.get("isUpdateSupported") is not None:
         out["is_update_supported"] = data["isUpdateSupported"]
     return out

@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> SoftwarePackageList:
 
     out: SoftwarePackageList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_securityhub.types.software_package.deserialize_json(item))
     return out

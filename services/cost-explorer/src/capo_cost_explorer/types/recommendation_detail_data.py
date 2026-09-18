@@ -224,7 +224,7 @@ def serialize_aws_json_1_1(value: RecommendationDetailData) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RecommendationDetailData:
     out: RecommendationDetailData = {}  # type: ignore[typeddict-item]
-    if "AccountScope" in data:
+    if data.get("AccountScope") is not None:
         import capo_cost_explorer.types.account_scope
 
         out["account_scope"] = (
@@ -232,7 +232,7 @@ def deserialize_aws_json_1_1(data: dict) -> RecommendationDetailData:
                 data["AccountScope"]
             )
         )
-    if "LookbackPeriodInDays" in data:
+    if data.get("LookbackPeriodInDays") is not None:
         import capo_cost_explorer.types.lookback_period_in_days
 
         out["lookback_period_in_days"] = (
@@ -240,7 +240,7 @@ def deserialize_aws_json_1_1(data: dict) -> RecommendationDetailData:
                 data["LookbackPeriodInDays"]
             )
         )
-    if "SavingsPlansType" in data:
+    if data.get("SavingsPlansType") is not None:
         import capo_cost_explorer.types.supported_savings_plans_type
 
         out["savings_plans_type"] = (
@@ -248,7 +248,7 @@ def deserialize_aws_json_1_1(data: dict) -> RecommendationDetailData:
                 data["SavingsPlansType"]
             )
         )
-    if "TermInYears" in data:
+    if data.get("TermInYears") is not None:
         import capo_cost_explorer.types.term_in_years
 
         out["term_in_years"] = (
@@ -256,7 +256,7 @@ def deserialize_aws_json_1_1(data: dict) -> RecommendationDetailData:
                 data["TermInYears"]
             )
         )
-    if "PaymentOption" in data:
+    if data.get("PaymentOption") is not None:
         import capo_cost_explorer.types.payment_option
 
         out["payment_option"] = (
@@ -264,61 +264,61 @@ def deserialize_aws_json_1_1(data: dict) -> RecommendationDetailData:
                 data["PaymentOption"]
             )
         )
-    if "AccountId" in data:
+    if data.get("AccountId") is not None:
         out["account_id"] = data["AccountId"]
-    if "CurrencyCode" in data:
+    if data.get("CurrencyCode") is not None:
         out["currency_code"] = data["CurrencyCode"]
-    if "InstanceFamily" in data:
+    if data.get("InstanceFamily") is not None:
         out["instance_family"] = data["InstanceFamily"]
-    if "Region" in data:
+    if data.get("Region") is not None:
         out["region"] = data["Region"]
-    if "OfferingId" in data:
+    if data.get("OfferingId") is not None:
         out["offering_id"] = data["OfferingId"]
-    if "GenerationTimestamp" in data:
+    if data.get("GenerationTimestamp") is not None:
         out["generation_timestamp"] = data["GenerationTimestamp"]
-    if "LatestUsageTimestamp" in data:
+    if data.get("LatestUsageTimestamp") is not None:
         out["latest_usage_timestamp"] = data["LatestUsageTimestamp"]
-    if "CurrentAverageHourlyOnDemandSpend" in data:
+    if data.get("CurrentAverageHourlyOnDemandSpend") is not None:
         out["current_average_hourly_on_demand_spend"] = data[
             "CurrentAverageHourlyOnDemandSpend"
         ]
-    if "CurrentMaximumHourlyOnDemandSpend" in data:
+    if data.get("CurrentMaximumHourlyOnDemandSpend") is not None:
         out["current_maximum_hourly_on_demand_spend"] = data[
             "CurrentMaximumHourlyOnDemandSpend"
         ]
-    if "CurrentMinimumHourlyOnDemandSpend" in data:
+    if data.get("CurrentMinimumHourlyOnDemandSpend") is not None:
         out["current_minimum_hourly_on_demand_spend"] = data[
             "CurrentMinimumHourlyOnDemandSpend"
         ]
-    if "EstimatedAverageUtilization" in data:
+    if data.get("EstimatedAverageUtilization") is not None:
         out["estimated_average_utilization"] = data["EstimatedAverageUtilization"]
-    if "EstimatedMonthlySavingsAmount" in data:
+    if data.get("EstimatedMonthlySavingsAmount") is not None:
         out["estimated_monthly_savings_amount"] = data["EstimatedMonthlySavingsAmount"]
-    if "EstimatedOnDemandCost" in data:
+    if data.get("EstimatedOnDemandCost") is not None:
         out["estimated_on_demand_cost"] = data["EstimatedOnDemandCost"]
-    if "EstimatedOnDemandCostWithCurrentCommitment" in data:
+    if data.get("EstimatedOnDemandCostWithCurrentCommitment") is not None:
         out["estimated_on_demand_cost_with_current_commitment"] = data[
             "EstimatedOnDemandCostWithCurrentCommitment"
         ]
-    if "EstimatedROI" in data:
+    if data.get("EstimatedROI") is not None:
         out["estimated_roi"] = data["EstimatedROI"]
-    if "EstimatedSPCost" in data:
+    if data.get("EstimatedSPCost") is not None:
         out["estimated_sp_cost"] = data["EstimatedSPCost"]
-    if "EstimatedSavingsAmount" in data:
+    if data.get("EstimatedSavingsAmount") is not None:
         out["estimated_savings_amount"] = data["EstimatedSavingsAmount"]
-    if "EstimatedSavingsPercentage" in data:
+    if data.get("EstimatedSavingsPercentage") is not None:
         out["estimated_savings_percentage"] = data["EstimatedSavingsPercentage"]
-    if "ExistingHourlyCommitment" in data:
+    if data.get("ExistingHourlyCommitment") is not None:
         out["existing_hourly_commitment"] = data["ExistingHourlyCommitment"]
-    if "HourlyCommitmentToPurchase" in data:
+    if data.get("HourlyCommitmentToPurchase") is not None:
         out["hourly_commitment_to_purchase"] = data["HourlyCommitmentToPurchase"]
-    if "UpfrontCost" in data:
+    if data.get("UpfrontCost") is not None:
         out["upfront_cost"] = data["UpfrontCost"]
-    if "CurrentAverageCoverage" in data:
+    if data.get("CurrentAverageCoverage") is not None:
         out["current_average_coverage"] = data["CurrentAverageCoverage"]
-    if "EstimatedAverageCoverage" in data:
+    if data.get("EstimatedAverageCoverage") is not None:
         out["estimated_average_coverage"] = data["EstimatedAverageCoverage"]
-    if "MetricsOverLookbackPeriod" in data:
+    if data.get("MetricsOverLookbackPeriod") is not None:
         import capo_cost_explorer.types.metrics_over_lookback_period
 
         out["metrics_over_lookback_period"] = (

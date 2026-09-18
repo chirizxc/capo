@@ -89,7 +89,7 @@ def serialize_aws_json_1_1(value: ListOperationsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListOperationsRequest:
     out: ListOperationsRequest = {}  # type: ignore[typeddict-item]
-    if "SubmittedSince" in data:
+    if data.get("SubmittedSince") is not None:
         import capo_route_53_domains.types.timestamp
 
         out["submitted_since"] = (
@@ -97,11 +97,11 @@ def deserialize_aws_json_1_1(data: dict) -> ListOperationsRequest:
                 data["SubmittedSince"]
             )
         )
-    if "Marker" in data:
+    if data.get("Marker") is not None:
         out["marker"] = data["Marker"]
-    if "MaxItems" in data:
+    if data.get("MaxItems") is not None:
         out["max_items"] = data["MaxItems"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_route_53_domains.types.operation_status_list
 
         out["status"] = (
@@ -109,7 +109,7 @@ def deserialize_aws_json_1_1(data: dict) -> ListOperationsRequest:
                 data["Status"]
             )
         )
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_route_53_domains.types.operation_type_list
 
         out["type"] = (
@@ -117,7 +117,7 @@ def deserialize_aws_json_1_1(data: dict) -> ListOperationsRequest:
                 data["Type"]
             )
         )
-    if "SortBy" in data:
+    if data.get("SortBy") is not None:
         import capo_route_53_domains.types.list_operations_sort_attribute_name
 
         out["sort_by"] = (
@@ -125,7 +125,7 @@ def deserialize_aws_json_1_1(data: dict) -> ListOperationsRequest:
                 data["SortBy"]
             )
         )
-    if "SortOrder" in data:
+    if data.get("SortOrder") is not None:
         import capo_route_53_domains.types.sort_order
 
         out["sort_order"] = (

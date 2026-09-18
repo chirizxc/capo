@@ -43,7 +43,15 @@ def serialize_aws_json_1_1(value: CelebrityDetail) -> dict:
     if "id" in value:
         out["Id"] = value["id"]
     if "confidence" in value:
-        out["Confidence"] = value["confidence"]
+        out["Confidence"] = (
+            "NaN"
+            if value["confidence"] != value["confidence"]
+            else "Infinity"
+            if value["confidence"] == float("inf")
+            else "-Infinity"
+            if value["confidence"] == float("-inf")
+            else value["confidence"]
+        )
     if "bounding_box" in value:
         import capo_rekognition.types.bounding_box
 
@@ -67,17 +75,17 @@ def serialize_aws_json_1_1(value: CelebrityDetail) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CelebrityDetail:
     out: CelebrityDetail = {}  # type: ignore[typeddict-item]
-    if "Urls" in data:
+    if data.get("Urls") is not None:
         import capo_rekognition.types.urls
 
         out["urls"] = capo_rekognition.types.urls.deserialize_aws_json_1_1(data["Urls"])
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "Confidence" in data:
-        out["confidence"] = data["Confidence"]
-    if "BoundingBox" in data:
+    if data.get("Confidence") is not None:
+        out["confidence"] = float(data["Confidence"])
+    if data.get("BoundingBox") is not None:
         import capo_rekognition.types.bounding_box
 
         out["bounding_box"] = (
@@ -85,13 +93,13 @@ def deserialize_aws_json_1_1(data: dict) -> CelebrityDetail:
                 data["BoundingBox"]
             )
         )
-    if "Face" in data:
+    if data.get("Face") is not None:
         import capo_rekognition.types.face_detail
 
         out["face"] = capo_rekognition.types.face_detail.deserialize_aws_json_1_1(
             data["Face"]
         )
-    if "KnownGender" in data:
+    if data.get("KnownGender") is not None:
         import capo_rekognition.types.known_gender
 
         out["known_gender"] = (

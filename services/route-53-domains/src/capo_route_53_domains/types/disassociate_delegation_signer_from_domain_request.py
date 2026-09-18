@@ -32,13 +32,13 @@ def deserialize_aws_json_1_1(
     data: dict,
 ) -> DisassociateDelegationSignerFromDomainRequest:
     out: DisassociateDelegationSignerFromDomainRequest = {}  # type: ignore[typeddict-item]
-    if "DomainName" in data:
+    if data.get("DomainName") is not None:
         out["domain_name"] = data["DomainName"]
     else:
         raise DeserializationError(
             "DisassociateDelegationSignerFromDomainRequest.domain_name required"
         )
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
     else:
         raise DeserializationError(

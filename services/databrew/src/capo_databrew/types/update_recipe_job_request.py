@@ -101,35 +101,35 @@ def serialize_json(value: UpdateRecipeJobRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateRecipeJobRequest:
     out: UpdateRecipeJobRequest = {}  # type: ignore[typeddict-item]
-    if "EncryptionKeyArn" in data:
+    if data.get("EncryptionKeyArn") is not None:
         out["encryption_key_arn"] = data["EncryptionKeyArn"]
-    if "EncryptionMode" in data:
+    if data.get("EncryptionMode") is not None:
         import capo_databrew.types.encryption_mode
 
         out["encryption_mode"] = capo_databrew.types.encryption_mode.deserialize_json(
             data["EncryptionMode"]
         )
-    if "LogSubscription" in data:
+    if data.get("LogSubscription") is not None:
         import capo_databrew.types.log_subscription
 
         out["log_subscription"] = capo_databrew.types.log_subscription.deserialize_json(
             data["LogSubscription"]
         )
-    if "MaxCapacity" in data:
+    if data.get("MaxCapacity") is not None:
         out["max_capacity"] = data["MaxCapacity"]
     else:
         out["max_capacity"] = 0
-    if "MaxRetries" in data:
+    if data.get("MaxRetries") is not None:
         out["max_retries"] = data["MaxRetries"]
     else:
         out["max_retries"] = 0
-    if "Outputs" in data:
+    if data.get("Outputs") is not None:
         import capo_databrew.types.output_list
 
         out["outputs"] = capo_databrew.types.output_list.deserialize_json(
             data["Outputs"]
         )
-    if "DataCatalogOutputs" in data:
+    if data.get("DataCatalogOutputs") is not None:
         import capo_databrew.types.data_catalog_output_list
 
         out["data_catalog_outputs"] = (
@@ -137,7 +137,7 @@ def deserialize_json(data: dict) -> UpdateRecipeJobRequest:
                 data["DataCatalogOutputs"]
             )
         )
-    if "DatabaseOutputs" in data:
+    if data.get("DatabaseOutputs") is not None:
         import capo_databrew.types.database_output_list
 
         out["database_outputs"] = (
@@ -145,11 +145,11 @@ def deserialize_json(data: dict) -> UpdateRecipeJobRequest:
                 data["DatabaseOutputs"]
             )
         )
-    if "RoleArn" in data:
+    if data.get("RoleArn") is not None:
         out["role_arn"] = data["RoleArn"]
     else:
         raise DeserializationError("UpdateRecipeJobRequest.role_arn required")
-    if "Timeout" in data:
+    if data.get("Timeout") is not None:
         out["timeout"] = data["Timeout"]
     else:
         out["timeout"] = 0

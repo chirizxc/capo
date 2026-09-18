@@ -14,6 +14,9 @@ Tags: TypeAlias = list["capo_auto_scaling.types.tag.Tag"]
 def serialize_query(value: Tags, pairs: list[tuple[str, str]], prefix: str) -> None:
     import capo_auto_scaling.types.tag
 
+    if not value:
+        pairs.append((prefix, ""))
+        return
     for n, item in enumerate(value, 1):
         capo_auto_scaling.types.tag.serialize_query(item, pairs, f"{prefix}.member.{n}")
 
@@ -32,6 +35,9 @@ def serialize_query_flat(
 ) -> None:
     import capo_auto_scaling.types.tag
 
+    if not value:
+        pairs.append((prefix, ""))
+        return
     for n, item in enumerate(value, 1):
         capo_auto_scaling.types.tag.serialize_query(item, pairs, f"{prefix}.{n}")
 

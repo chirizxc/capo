@@ -37,7 +37,7 @@ def serialize_aws_json_1_1(value: DescribeClustersRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeClustersRequest:
     out: DescribeClustersRequest = {}  # type: ignore[typeddict-item]
-    if "ClusterNames" in data:
+    if data.get("ClusterNames") is not None:
         import capo_dax.types.cluster_name_list
 
         out["cluster_names"] = (
@@ -45,8 +45,8 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeClustersRequest:
                 data["ClusterNames"]
             )
         )
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

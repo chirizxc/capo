@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> HarvestedHlsManifestsList:
 
     out: HarvestedHlsManifestsList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_mediapackagev2.types.harvested_hls_manifest.deserialize_json(item)
         )

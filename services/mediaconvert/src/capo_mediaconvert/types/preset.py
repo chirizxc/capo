@@ -70,33 +70,33 @@ def serialize_json(value: Preset) -> dict:
 
 def deserialize_json(data: dict) -> Preset:
     out: Preset = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "category" in data:
+    if data.get("category") is not None:
         out["category"] = data["category"]
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_mediaconvert.types.__timestamp_unix
 
         out["created_at"] = capo_mediaconvert.types.__timestamp_unix.deserialize_json(
             data["createdAt"]
         )
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "lastUpdated" in data:
+    if data.get("lastUpdated") is not None:
         import capo_mediaconvert.types.__timestamp_unix
 
         out["last_updated"] = capo_mediaconvert.types.__timestamp_unix.deserialize_json(
             data["lastUpdated"]
         )
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "settings" in data:
+    if data.get("settings") is not None:
         import capo_mediaconvert.types.preset_settings
 
         out["settings"] = capo_mediaconvert.types.preset_settings.deserialize_json(
             data["settings"]
         )
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_mediaconvert.types.type
 
         out["type"] = capo_mediaconvert.types.type.deserialize_json(data["type"])

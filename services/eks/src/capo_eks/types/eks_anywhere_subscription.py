@@ -109,31 +109,31 @@ def serialize_json(value: EksAnywhereSubscription) -> dict:
 
 def deserialize_json(data: dict) -> EksAnywhereSubscription:
     out: EksAnywhereSubscription = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_eks.types.timestamp
 
         out["created_at"] = capo_eks.types.timestamp.deserialize_json(data["createdAt"])
-    if "effectiveDate" in data:
+    if data.get("effectiveDate") is not None:
         import capo_eks.types.timestamp
 
         out["effective_date"] = capo_eks.types.timestamp.deserialize_json(
             data["effectiveDate"]
         )
-    if "expirationDate" in data:
+    if data.get("expirationDate") is not None:
         import capo_eks.types.timestamp
 
         out["expiration_date"] = capo_eks.types.timestamp.deserialize_json(
             data["expirationDate"]
         )
-    if "licenseQuantity" in data:
+    if data.get("licenseQuantity") is not None:
         out["license_quantity"] = data["licenseQuantity"]
     else:
         out["license_quantity"] = 0
-    if "licenseType" in data:
+    if data.get("licenseType") is not None:
         import capo_eks.types.eks_anywhere_subscription_license_type
 
         out["license_type"] = (
@@ -141,29 +141,29 @@ def deserialize_json(data: dict) -> EksAnywhereSubscription:
                 data["licenseType"]
             )
         )
-    if "term" in data:
+    if data.get("term") is not None:
         import capo_eks.types.eks_anywhere_subscription_term
 
         out["term"] = capo_eks.types.eks_anywhere_subscription_term.deserialize_json(
             data["term"]
         )
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
-    if "autoRenew" in data:
+    if data.get("autoRenew") is not None:
         out["auto_renew"] = data["autoRenew"]
     else:
         out["auto_renew"] = False
-    if "licenseArns" in data:
+    if data.get("licenseArns") is not None:
         import capo_eks.types.string_list
 
         out["license_arns"] = capo_eks.types.string_list.deserialize_json(
             data["licenseArns"]
         )
-    if "licenses" in data:
+    if data.get("licenses") is not None:
         import capo_eks.types.license_list
 
         out["licenses"] = capo_eks.types.license_list.deserialize_json(data["licenses"])
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_eks.types.tag_map
 
         out["tags"] = capo_eks.types.tag_map.deserialize_json(data["tags"])

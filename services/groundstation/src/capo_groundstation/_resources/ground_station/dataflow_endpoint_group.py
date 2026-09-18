@@ -85,8 +85,9 @@ class DataflowEndpointGroup:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_groundstation.types.create_dataflow_endpoint_group_request.CreateDataflowEndpointGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["endpoint_details"] = endpoint_details
+        input_: capo_groundstation.types.create_dataflow_endpoint_group_request.CreateDataflowEndpointGroupRequest = {
+            "endpoint_details": endpoint_details
+        }
         if tags is not None:
             input_["tags"] = tags
         if contact_pre_pass_duration_seconds is not None:
@@ -103,6 +104,7 @@ class DataflowEndpointGroup:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -138,14 +140,16 @@ class DataflowEndpointGroup:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_groundstation.types.get_dataflow_endpoint_group_request.GetDataflowEndpointGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["dataflow_endpoint_group_id"] = dataflow_endpoint_group_id
+        input_: capo_groundstation.types.get_dataflow_endpoint_group_request.GetDataflowEndpointGroupRequest = {
+            "dataflow_endpoint_group_id": dataflow_endpoint_group_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -181,14 +185,16 @@ class DataflowEndpointGroup:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_groundstation.types.delete_dataflow_endpoint_group_request.DeleteDataflowEndpointGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["dataflow_endpoint_group_id"] = dataflow_endpoint_group_id
+        input_: capo_groundstation.types.delete_dataflow_endpoint_group_request.DeleteDataflowEndpointGroupRequest = {
+            "dataflow_endpoint_group_id": dataflow_endpoint_group_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -230,7 +236,7 @@ class DataflowEndpointGroup:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_groundstation.types.list_dataflow_endpoint_groups_request.ListDataflowEndpointGroupsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_groundstation.types.list_dataflow_endpoint_groups_request.ListDataflowEndpointGroupsRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -241,6 +247,7 @@ class DataflowEndpointGroup:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -292,8 +299,9 @@ class AsyncDataflowEndpointGroup:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_groundstation.types.create_dataflow_endpoint_group_request.CreateDataflowEndpointGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["endpoint_details"] = endpoint_details
+        input_: capo_groundstation.types.create_dataflow_endpoint_group_request.CreateDataflowEndpointGroupRequest = {
+            "endpoint_details": endpoint_details
+        }
         if tags is not None:
             input_["tags"] = tags
         if contact_pre_pass_duration_seconds is not None:
@@ -310,6 +318,7 @@ class AsyncDataflowEndpointGroup:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -346,14 +355,16 @@ class AsyncDataflowEndpointGroup:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_groundstation.types.get_dataflow_endpoint_group_request.GetDataflowEndpointGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["dataflow_endpoint_group_id"] = dataflow_endpoint_group_id
+        input_: capo_groundstation.types.get_dataflow_endpoint_group_request.GetDataflowEndpointGroupRequest = {
+            "dataflow_endpoint_group_id": dataflow_endpoint_group_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -390,14 +401,16 @@ class AsyncDataflowEndpointGroup:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_groundstation.types.delete_dataflow_endpoint_group_request.DeleteDataflowEndpointGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["dataflow_endpoint_group_id"] = dataflow_endpoint_group_id
+        input_: capo_groundstation.types.delete_dataflow_endpoint_group_request.DeleteDataflowEndpointGroupRequest = {
+            "dataflow_endpoint_group_id": dataflow_endpoint_group_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -440,7 +453,7 @@ class AsyncDataflowEndpointGroup:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_groundstation.types.list_dataflow_endpoint_groups_request.ListDataflowEndpointGroupsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_groundstation.types.list_dataflow_endpoint_groups_request.ListDataflowEndpointGroupsRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -451,4 +464,5 @@ class AsyncDataflowEndpointGroup:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

@@ -46,14 +46,14 @@ class GetTrainingDatasetResponse(TypedDict, closed=True):
 # --- restJson1 ser/de ---
 def serialize_json(value: GetTrainingDatasetResponse) -> dict:
     out: dict = {}
-    import capo_cleanroomsml.types._prelude.timestamp
+    import capo_cleanroomsml._protocol.serialize
 
-    out["createTime"] = capo_cleanroomsml.types._prelude.timestamp.serialize_json(
+    out["createTime"] = capo_cleanroomsml._protocol.serialize.fmt_date_time(
         value["create_time"]
     )
-    import capo_cleanroomsml.types._prelude.timestamp
+    import capo_cleanroomsml._protocol.serialize
 
-    out["updateTime"] = capo_cleanroomsml.types._prelude.timestamp.serialize_json(
+    out["updateTime"] = capo_cleanroomsml._protocol.serialize.fmt_date_time(
         value["update_time"]
     )
     out["trainingDatasetArn"] = value["training_dataset_arn"]
@@ -80,37 +80,33 @@ def serialize_json(value: GetTrainingDatasetResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetTrainingDatasetResponse:
     out: GetTrainingDatasetResponse = {}  # type: ignore[typeddict-item]
-    if "createTime" in data:
-        import capo_cleanroomsml.types._prelude.timestamp
+    if data.get("createTime") is not None:
+        import datetime
 
-        out["create_time"] = (
-            capo_cleanroomsml.types._prelude.timestamp.deserialize_json(
-                data["createTime"]
-            )
+        out["create_time"] = datetime.datetime.fromisoformat(
+            data["createTime"].replace("Z", "+00:00")
         )
     else:
         raise DeserializationError("GetTrainingDatasetResponse.create_time required")
-    if "updateTime" in data:
-        import capo_cleanroomsml.types._prelude.timestamp
+    if data.get("updateTime") is not None:
+        import datetime
 
-        out["update_time"] = (
-            capo_cleanroomsml.types._prelude.timestamp.deserialize_json(
-                data["updateTime"]
-            )
+        out["update_time"] = datetime.datetime.fromisoformat(
+            data["updateTime"].replace("Z", "+00:00")
         )
     else:
         raise DeserializationError("GetTrainingDatasetResponse.update_time required")
-    if "trainingDatasetArn" in data:
+    if data.get("trainingDatasetArn") is not None:
         out["training_dataset_arn"] = data["trainingDatasetArn"]
     else:
         raise DeserializationError(
             "GetTrainingDatasetResponse.training_dataset_arn required"
         )
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("GetTrainingDatasetResponse.name required")
-    if "trainingData" in data:
+    if data.get("trainingData") is not None:
         import capo_cleanroomsml.types.dataset_list
 
         out["training_data"] = capo_cleanroomsml.types.dataset_list.deserialize_json(
@@ -118,7 +114,7 @@ def deserialize_json(data: dict) -> GetTrainingDatasetResponse:
         )
     else:
         raise DeserializationError("GetTrainingDatasetResponse.training_data required")
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_cleanroomsml.types.training_dataset_status
 
         out["status"] = (
@@ -128,14 +124,14 @@ def deserialize_json(data: dict) -> GetTrainingDatasetResponse:
         )
     else:
         raise DeserializationError("GetTrainingDatasetResponse.status required")
-    if "roleArn" in data:
+    if data.get("roleArn") is not None:
         out["role_arn"] = data["roleArn"]
     else:
         raise DeserializationError("GetTrainingDatasetResponse.role_arn required")
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_cleanroomsml.types.tag_map
 
         out["tags"] = capo_cleanroomsml.types.tag_map.deserialize_json(data["tags"])
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
     return out

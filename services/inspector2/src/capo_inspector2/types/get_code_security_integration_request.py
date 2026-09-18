@@ -33,13 +33,13 @@ def serialize_json(value: GetCodeSecurityIntegrationRequest) -> dict:
 
 def deserialize_json(data: dict) -> GetCodeSecurityIntegrationRequest:
     out: GetCodeSecurityIntegrationRequest = {}  # type: ignore[typeddict-item]
-    if "integrationArn" in data:
+    if data.get("integrationArn") is not None:
         out["integration_arn"] = data["integrationArn"]
     else:
         raise DeserializationError(
             "GetCodeSecurityIntegrationRequest.integration_arn required"
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_inspector2.types.tag_map
 
         out["tags"] = capo_inspector2.types.tag_map.deserialize_json(data["tags"])

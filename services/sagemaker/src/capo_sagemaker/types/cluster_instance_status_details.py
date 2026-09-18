@@ -35,7 +35,7 @@ def serialize_aws_json_1_1(value: ClusterInstanceStatusDetails) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ClusterInstanceStatusDetails:
     out: ClusterInstanceStatusDetails = {}  # type: ignore[typeddict-item]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_sagemaker.types.cluster_instance_status
 
         out["status"] = (
@@ -43,6 +43,6 @@ def deserialize_aws_json_1_1(data: dict) -> ClusterInstanceStatusDetails:
                 data["Status"]
             )
         )
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     return out

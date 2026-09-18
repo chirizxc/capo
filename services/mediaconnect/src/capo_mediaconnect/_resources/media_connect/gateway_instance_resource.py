@@ -77,14 +77,16 @@ class GatewayInstanceResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mediaconnect.types.describe_gateway_instance_request.DescribeGatewayInstanceRequest = {}  # type: ignore[typeddict-item]
-        input_["gateway_instance_arn"] = gateway_instance_arn
+        input_: capo_mediaconnect.types.describe_gateway_instance_request.DescribeGatewayInstanceRequest = {
+            "gateway_instance_arn": gateway_instance_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update(
@@ -128,16 +130,18 @@ class GatewayInstanceResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mediaconnect.types.update_gateway_instance_request.UpdateGatewayInstanceRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_mediaconnect.types.update_gateway_instance_request.UpdateGatewayInstanceRequest = {
+            "gateway_instance_arn": gateway_instance_arn
+        }
         if bridge_placement is not None:
             input_["bridge_placement"] = bridge_placement
-        input_["gateway_instance_arn"] = gateway_instance_arn
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -179,16 +183,18 @@ class GatewayInstanceResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mediaconnect.types.deregister_gateway_instance_request.DeregisterGatewayInstanceRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_mediaconnect.types.deregister_gateway_instance_request.DeregisterGatewayInstanceRequest = {
+            "gateway_instance_arn": gateway_instance_arn
+        }
         if force is not None:
             input_["force"] = force
-        input_["gateway_instance_arn"] = gateway_instance_arn
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -230,7 +236,7 @@ class GatewayInstanceResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mediaconnect.types.list_gateway_instances_request.ListGatewayInstancesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_mediaconnect.types.list_gateway_instances_request.ListGatewayInstancesRequest = {}
         if filter_arn is not None:
             input_["filter_arn"] = filter_arn
         if max_results is not None:
@@ -243,6 +249,7 @@ class GatewayInstanceResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -288,14 +295,16 @@ class AsyncGatewayInstanceResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mediaconnect.types.describe_gateway_instance_request.DescribeGatewayInstanceRequest = {}  # type: ignore[typeddict-item]
-        input_["gateway_instance_arn"] = gateway_instance_arn
+        input_: capo_mediaconnect.types.describe_gateway_instance_request.DescribeGatewayInstanceRequest = {
+            "gateway_instance_arn": gateway_instance_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update(
@@ -340,16 +349,18 @@ class AsyncGatewayInstanceResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mediaconnect.types.update_gateway_instance_request.UpdateGatewayInstanceRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_mediaconnect.types.update_gateway_instance_request.UpdateGatewayInstanceRequest = {
+            "gateway_instance_arn": gateway_instance_arn
+        }
         if bridge_placement is not None:
             input_["bridge_placement"] = bridge_placement
-        input_["gateway_instance_arn"] = gateway_instance_arn
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -392,16 +403,18 @@ class AsyncGatewayInstanceResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mediaconnect.types.deregister_gateway_instance_request.DeregisterGatewayInstanceRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_mediaconnect.types.deregister_gateway_instance_request.DeregisterGatewayInstanceRequest = {
+            "gateway_instance_arn": gateway_instance_arn
+        }
         if force is not None:
             input_["force"] = force
-        input_["gateway_instance_arn"] = gateway_instance_arn
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -444,7 +457,7 @@ class AsyncGatewayInstanceResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mediaconnect.types.list_gateway_instances_request.ListGatewayInstancesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_mediaconnect.types.list_gateway_instances_request.ListGatewayInstancesRequest = {}
         if filter_arn is not None:
             input_["filter_arn"] = filter_arn
         if max_results is not None:
@@ -457,4 +470,5 @@ class AsyncGatewayInstanceResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

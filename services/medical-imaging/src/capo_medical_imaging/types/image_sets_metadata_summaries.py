@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> ImageSetsMetadataSummaries:
 
     out: ImageSetsMetadataSummaries = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_medical_imaging.types.image_sets_metadata_summary.deserialize_json(
                 item

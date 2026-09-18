@@ -25,6 +25,6 @@ def serialize_json(value: LaunchIntoInstanceProperties) -> dict:
 
 def deserialize_json(data: dict) -> LaunchIntoInstanceProperties:
     out: LaunchIntoInstanceProperties = {}  # type: ignore[typeddict-item]
-    if "launchIntoEC2InstanceID" in data:
+    if data.get("launchIntoEC2InstanceID") is not None:
         out["launch_into_ec2_instance_id"] = data["launchIntoEC2InstanceID"]
     return out

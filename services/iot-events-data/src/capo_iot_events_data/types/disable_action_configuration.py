@@ -23,6 +23,6 @@ def serialize_json(value: DisableActionConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> DisableActionConfiguration:
     out: DisableActionConfiguration = {}  # type: ignore[typeddict-item]
-    if "note" in data:
+    if data.get("note") is not None:
         out["note"] = data["note"]
     return out

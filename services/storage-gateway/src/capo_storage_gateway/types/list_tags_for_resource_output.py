@@ -37,11 +37,11 @@ def serialize_aws_json_1_1(value: ListTagsForResourceOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListTagsForResourceOutput:
     out: ListTagsForResourceOutput = {}  # type: ignore[typeddict-item]
-    if "ResourceARN" in data:
+    if data.get("ResourceARN") is not None:
         out["resource_arn"] = data["ResourceARN"]
-    if "Marker" in data:
+    if data.get("Marker") is not None:
         out["marker"] = data["Marker"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_storage_gateway.types.tags
 
         out["tags"] = capo_storage_gateway.types.tags.deserialize_aws_json_1_1(

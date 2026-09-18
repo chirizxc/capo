@@ -43,7 +43,15 @@ def serialize_json(value: Variant) -> dict:
     if "integer_value" in value:
         out["integerValue"] = value["integer_value"]
     if "double_value" in value:
-        out["doubleValue"] = value["double_value"]
+        out["doubleValue"] = (
+            "NaN"
+            if value["double_value"] != value["double_value"]
+            else "Infinity"
+            if value["double_value"] == float("inf")
+            else "-Infinity"
+            if value["double_value"] == float("-inf")
+            else value["double_value"]
+        )
     if "boolean_value" in value:
         out["booleanValue"] = value["boolean_value"]
     if "null_value" in value:
@@ -59,15 +67,15 @@ def serialize_json(value: Variant) -> dict:
 
 def deserialize_json(data: dict) -> Variant:
     out: Variant = {}  # type: ignore[typeddict-item]
-    if "stringValue" in data:
+    if data.get("stringValue") is not None:
         out["string_value"] = data["stringValue"]
-    if "integerValue" in data:
+    if data.get("integerValue") is not None:
         out["integer_value"] = data["integerValue"]
-    if "doubleValue" in data:
-        out["double_value"] = data["doubleValue"]
-    if "booleanValue" in data:
+    if data.get("doubleValue") is not None:
+        out["double_value"] = float(data["doubleValue"])
+    if data.get("booleanValue") is not None:
         out["boolean_value"] = data["booleanValue"]
-    if "nullValue" in data:
+    if data.get("nullValue") is not None:
         import capo_iotsitewise.types.property_value_null_value
 
         out["null_value"] = (

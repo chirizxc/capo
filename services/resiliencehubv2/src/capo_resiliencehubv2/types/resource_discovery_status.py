@@ -58,7 +58,7 @@ def serialize_json(value: ResourceDiscoveryStatus) -> dict:
 
 def deserialize_json(data: dict) -> ResourceDiscoveryStatus:
     out: ResourceDiscoveryStatus = {}  # type: ignore[typeddict-item]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_resiliencehubv2.types.resource_discovery_run_status
 
         out["status"] = (
@@ -66,7 +66,7 @@ def deserialize_json(data: dict) -> ResourceDiscoveryStatus:
                 data["status"]
             )
         )
-    if "lastRunAt" in data:
+    if data.get("lastRunAt") is not None:
         import capo_resiliencehubv2.types._prelude.timestamp
 
         out["last_run_at"] = (
@@ -74,7 +74,7 @@ def deserialize_json(data: dict) -> ResourceDiscoveryStatus:
                 data["lastRunAt"]
             )
         )
-    if "errorCode" in data:
+    if data.get("errorCode") is not None:
         import capo_resiliencehubv2.types.resource_discovery_error_code
 
         out["error_code"] = (
@@ -82,6 +82,6 @@ def deserialize_json(data: dict) -> ResourceDiscoveryStatus:
                 data["errorCode"]
             )
         )
-    if "errorMessage" in data:
+    if data.get("errorMessage") is not None:
         out["error_message"] = data["errorMessage"]
     return out

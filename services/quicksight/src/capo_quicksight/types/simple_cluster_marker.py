@@ -23,6 +23,6 @@ def serialize_json(value: SimpleClusterMarker) -> dict:
 
 def deserialize_json(data: dict) -> SimpleClusterMarker:
     out: SimpleClusterMarker = {}  # type: ignore[typeddict-item]
-    if "Color" in data:
+    if data.get("Color") is not None:
         out["color"] = data["Color"]
     return out

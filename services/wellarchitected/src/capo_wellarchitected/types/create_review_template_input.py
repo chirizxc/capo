@@ -60,11 +60,11 @@ def serialize_json(value: CreateReviewTemplateInput) -> dict:
 
 def deserialize_json(data: dict) -> CreateReviewTemplateInput:
     out: CreateReviewTemplateInput = {}  # type: ignore[typeddict-item]
-    if "TemplateName" in data:
+    if data.get("TemplateName") is not None:
         out["template_name"] = data["TemplateName"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Lenses" in data:
+    if data.get("Lenses") is not None:
         import capo_wellarchitected.types.review_template_lenses
 
         out["lenses"] = (
@@ -72,12 +72,12 @@ def deserialize_json(data: dict) -> CreateReviewTemplateInput:
                 data["Lenses"]
             )
         )
-    if "Notes" in data:
+    if data.get("Notes") is not None:
         out["notes"] = data["Notes"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_wellarchitected.types.tag_map
 
         out["tags"] = capo_wellarchitected.types.tag_map.deserialize_json(data["Tags"])
-    if "ClientRequestToken" in data:
+    if data.get("ClientRequestToken") is not None:
         out["client_request_token"] = data["ClientRequestToken"]
     return out

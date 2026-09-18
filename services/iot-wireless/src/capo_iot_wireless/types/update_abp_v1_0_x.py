@@ -23,6 +23,6 @@ def serialize_json(value: UpdateAbpV1_0_x) -> dict:
 
 def deserialize_json(data: dict) -> UpdateAbpV1_0_x:
     out: UpdateAbpV1_0_x = {}  # type: ignore[typeddict-item]
-    if "FCntStart" in data:
+    if data.get("FCntStart") is not None:
         out["f_cnt_start"] = data["FCntStart"]
     return out

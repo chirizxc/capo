@@ -24,7 +24,7 @@ def serialize_json(value: GetRegisteredSubscriptionProviderRequest) -> dict:
 
 def deserialize_json(data: dict) -> GetRegisteredSubscriptionProviderRequest:
     out: GetRegisteredSubscriptionProviderRequest = {}  # type: ignore[typeddict-item]
-    if "SubscriptionProviderArn" in data:
+    if data.get("SubscriptionProviderArn") is not None:
         out["subscription_provider_arn"] = data["SubscriptionProviderArn"]
     else:
         raise DeserializationError(

@@ -44,7 +44,7 @@ def serialize_json(value: BatchUpdateRuleResponse) -> dict:
 
 def deserialize_json(data: dict) -> BatchUpdateRuleResponse:
     out: BatchUpdateRuleResponse = {}  # type: ignore[typeddict-item]
-    if "successful" in data:
+    if data.get("successful") is not None:
         import capo_vpc_lattice.types.rule_update_success_list
 
         out["successful"] = (
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> BatchUpdateRuleResponse:
                 data["successful"]
             )
         )
-    if "unsuccessful" in data:
+    if data.get("unsuccessful") is not None:
         import capo_vpc_lattice.types.rule_update_failure_list
 
         out["unsuccessful"] = (

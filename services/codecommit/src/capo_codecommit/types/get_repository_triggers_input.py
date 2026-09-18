@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: GetRepositoryTriggersInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetRepositoryTriggersInput:
     out: GetRepositoryTriggersInput = {}  # type: ignore[typeddict-item]
-    if "repositoryName" in data:
+    if data.get("repositoryName") is not None:
         out["repository_name"] = data["repositoryName"]
     else:
         raise DeserializationError(

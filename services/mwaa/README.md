@@ -13,9 +13,9 @@ from capo_mwaa import AsyncMWAAClient
 
 
 async def main():
-    async with AsyncMWAAClient() as s3:
+    async with AsyncMWAAClient() as mwaa:
         # Example: call the create_cli_token operation
-        response = await s3.create_cli_token()
+        response = await mwaa.create_cli_token()
         print(response["cli_token"])
 ```
 
@@ -28,9 +28,9 @@ from capo_mwaa import AsyncMWAAClient
 
 
 async def main():
-    async with AsyncMWAAClient() as s3:
+    async with AsyncMWAAClient() as mwaa:
         # Example: paginate over list_environments
-        async for item in s3.iter_list_environments():
+        async for item in mwaa.iter_list_environments():
             print(item)
 ```
 
@@ -44,9 +44,9 @@ from capo_mwaa.error import ResourceNotFoundException
 
 
 async def main():
-    async with AsyncMWAAClient() as s3:
+    async with AsyncMWAAClient() as mwaa:
         try:
-            await s3.create_cli_token()
+            await mwaa.create_cli_token()
         except ResourceNotFoundException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -63,13 +63,13 @@ from capo_mwaa import AsyncMWAAClient
 
 
 async def main():
-    async with AsyncMWAAClient() as s3:
+    async with AsyncMWAAClient() as mwaa:
         # Default: 3 attempts for every operation
-        response = await s3.create_cli_token()
+        response = await mwaa.create_cli_token()
 
         # Override per operation
-        response = await s3.create_cli_token(config_overrides={"retry_max_attempts": 5})
+        response = await mwaa.create_cli_token(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.create_cli_token(config_overrides={"retry_max_attempts": 1})
+        response = await mwaa.create_cli_token(config_overrides={"retry_max_attempts": 1})
 ```

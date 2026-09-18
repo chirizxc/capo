@@ -67,23 +67,23 @@ def serialize_json(value: IncidentRecordSummary) -> dict:
 
 def deserialize_json(data: dict) -> IncidentRecordSummary:
     out: IncidentRecordSummary = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("IncidentRecordSummary.arn required")
-    if "title" in data:
+    if data.get("title") is not None:
         out["title"] = data["title"]
     else:
         raise DeserializationError("IncidentRecordSummary.title required")
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
     else:
         raise DeserializationError("IncidentRecordSummary.status required")
-    if "impact" in data:
+    if data.get("impact") is not None:
         out["impact"] = data["impact"]
     else:
         raise DeserializationError("IncidentRecordSummary.impact required")
-    if "creationTime" in data:
+    if data.get("creationTime") is not None:
         import capo_ssm_incidents.types._prelude.timestamp
 
         out["creation_time"] = (
@@ -93,7 +93,7 @@ def deserialize_json(data: dict) -> IncidentRecordSummary:
         )
     else:
         raise DeserializationError("IncidentRecordSummary.creation_time required")
-    if "resolvedTime" in data:
+    if data.get("resolvedTime") is not None:
         import capo_ssm_incidents.types._prelude.timestamp
 
         out["resolved_time"] = (
@@ -101,7 +101,7 @@ def deserialize_json(data: dict) -> IncidentRecordSummary:
                 data["resolvedTime"]
             )
         )
-    if "incidentRecordSource" in data:
+    if data.get("incidentRecordSource") is not None:
         import capo_ssm_incidents.types.incident_record_source
 
         out["incident_record_source"] = (

@@ -40,23 +40,23 @@ def serialize_aws_json_1_1(value: UnlinkDeveloperIdentityInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UnlinkDeveloperIdentityInput:
     out: UnlinkDeveloperIdentityInput = {}  # type: ignore[typeddict-item]
-    if "IdentityId" in data:
+    if data.get("IdentityId") is not None:
         out["identity_id"] = data["IdentityId"]
     else:
         raise DeserializationError("UnlinkDeveloperIdentityInput.identity_id required")
-    if "IdentityPoolId" in data:
+    if data.get("IdentityPoolId") is not None:
         out["identity_pool_id"] = data["IdentityPoolId"]
     else:
         raise DeserializationError(
             "UnlinkDeveloperIdentityInput.identity_pool_id required"
         )
-    if "DeveloperProviderName" in data:
+    if data.get("DeveloperProviderName") is not None:
         out["developer_provider_name"] = data["DeveloperProviderName"]
     else:
         raise DeserializationError(
             "UnlinkDeveloperIdentityInput.developer_provider_name required"
         )
-    if "DeveloperUserIdentifier" in data:
+    if data.get("DeveloperUserIdentifier") is not None:
         out["developer_user_identifier"] = data["DeveloperUserIdentifier"]
     else:
         raise DeserializationError(

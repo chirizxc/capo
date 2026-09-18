@@ -40,7 +40,7 @@ def serialize_aws_json_1_1(value: GetDiscoveredResourceCountsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetDiscoveredResourceCountsRequest:
     out: GetDiscoveredResourceCountsRequest = {}  # type: ignore[typeddict-item]
-    if "resourceTypes" in data:
+    if data.get("resourceTypes") is not None:
         import capo_config_service.types.resource_types
 
         out["resource_types"] = (
@@ -48,10 +48,10 @@ def deserialize_aws_json_1_1(data: dict) -> GetDiscoveredResourceCountsRequest:
                 data["resourceTypes"]
             )
         )
-    if "limit" in data:
+    if data.get("limit") is not None:
         out["limit"] = data["limit"]
     else:
         out["limit"] = 0
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

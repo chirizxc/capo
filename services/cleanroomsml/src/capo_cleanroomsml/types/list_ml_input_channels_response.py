@@ -37,9 +37,9 @@ def serialize_json(value: ListMLInputChannelsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListMLInputChannelsResponse:
     out: ListMLInputChannelsResponse = {}  # type: ignore[typeddict-item]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "mlInputChannelsList" in data:
+    if data.get("mlInputChannelsList") is not None:
         import capo_cleanroomsml.types.ml_input_channels_list
 
         out["ml_input_channels_list"] = (

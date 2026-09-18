@@ -32,9 +32,9 @@ def serialize_json(value: Source) -> dict:
 
 def deserialize_json(data: dict) -> Source:
     out: Source = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "location" in data:
+    if data.get("location") is not None:
         import capo_iotsitewise.types.location
 
         out["location"] = capo_iotsitewise.types.location.deserialize_json(

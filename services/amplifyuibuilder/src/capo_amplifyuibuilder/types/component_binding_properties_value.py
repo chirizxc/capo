@@ -39,9 +39,9 @@ def serialize_json(value: ComponentBindingPropertiesValue) -> dict:
 
 def deserialize_json(data: dict) -> ComponentBindingPropertiesValue:
     out: ComponentBindingPropertiesValue = {}  # type: ignore[typeddict-item]
-    if "type" in data:
+    if data.get("type") is not None:
         out["type"] = data["type"]
-    if "bindingProperties" in data:
+    if data.get("bindingProperties") is not None:
         import capo_amplifyuibuilder.types.component_binding_properties_value_properties
 
         out["binding_properties"] = (
@@ -49,6 +49,6 @@ def deserialize_json(data: dict) -> ComponentBindingPropertiesValue:
                 data["bindingProperties"]
             )
         )
-    if "defaultValue" in data:
+    if data.get("defaultValue") is not None:
         out["default_value"] = data["defaultValue"]
     return out

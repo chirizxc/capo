@@ -38,18 +38,18 @@ def serialize_json(value: ListRetrievedTracesRequest) -> dict:
 
 def deserialize_json(data: dict) -> ListRetrievedTracesRequest:
     out: ListRetrievedTracesRequest = {}  # type: ignore[typeddict-item]
-    if "RetrievalToken" in data:
+    if data.get("RetrievalToken") is not None:
         out["retrieval_token"] = data["RetrievalToken"]
     else:
         raise DeserializationError(
             "ListRetrievedTracesRequest.retrieval_token required"
         )
-    if "TraceFormat" in data:
+    if data.get("TraceFormat") is not None:
         import capo_xray.types.trace_format_type
 
         out["trace_format"] = capo_xray.types.trace_format_type.deserialize_json(
             data["TraceFormat"]
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

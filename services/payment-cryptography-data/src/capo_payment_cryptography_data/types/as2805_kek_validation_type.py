@@ -51,7 +51,7 @@ def serialize_json(value: As2805KekValidationType) -> dict:
 
 
 def deserialize_json(data: dict) -> As2805KekValidationType:
-    if "KekValidationRequest" in data:
+    if data.get("KekValidationRequest") is not None:
         import capo_payment_cryptography_data.types.kek_validation_request
 
         return {
@@ -59,7 +59,7 @@ def deserialize_json(data: dict) -> As2805KekValidationType:
                 data["KekValidationRequest"]
             )
         }
-    elif "KekValidationResponse" in data:
+    elif data.get("KekValidationResponse") is not None:
         import capo_payment_cryptography_data.types.kek_validation_response
 
         return {

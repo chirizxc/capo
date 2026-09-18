@@ -216,18 +216,18 @@ def serialize_aws_json_1_0(value: DeleteDbInstanceOutput) -> dict:
             )
         )
     if "last_maintenance_time" in value:
-        import capo_timestream_influxdb.types._prelude.timestamp
+        import capo_timestream_influxdb._protocol.serialize
 
         out["lastMaintenanceTime"] = (
-            capo_timestream_influxdb.types._prelude.timestamp.serialize_aws_json_1_0(
+            capo_timestream_influxdb._protocol.serialize.fmt_date_time(
                 value["last_maintenance_time"]
             )
         )
     if "next_maintenance_time" in value:
-        import capo_timestream_influxdb.types._prelude.timestamp
+        import capo_timestream_influxdb._protocol.serialize
 
         out["nextMaintenanceTime"] = (
-            capo_timestream_influxdb.types._prelude.timestamp.serialize_aws_json_1_0(
+            capo_timestream_influxdb._protocol.serialize.fmt_date_time(
                 value["next_maintenance_time"]
             )
         )
@@ -236,29 +236,29 @@ def serialize_aws_json_1_0(value: DeleteDbInstanceOutput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> DeleteDbInstanceOutput:
     out: DeleteDbInstanceOutput = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("DeleteDbInstanceOutput.id required")
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("DeleteDbInstanceOutput.name required")
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("DeleteDbInstanceOutput.arn required")
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_timestream_influxdb.types.status
 
         out["status"] = capo_timestream_influxdb.types.status.deserialize_aws_json_1_0(
             data["status"]
         )
-    if "endpoint" in data:
+    if data.get("endpoint") is not None:
         out["endpoint"] = data["endpoint"]
-    if "port" in data:
+    if data.get("port") is not None:
         out["port"] = data["port"]
-    if "networkType" in data:
+    if data.get("networkType") is not None:
         import capo_timestream_influxdb.types.network_type
 
         out["network_type"] = (
@@ -266,7 +266,7 @@ def deserialize_aws_json_1_0(data: dict) -> DeleteDbInstanceOutput:
                 data["networkType"]
             )
         )
-    if "dbInstanceType" in data:
+    if data.get("dbInstanceType") is not None:
         import capo_timestream_influxdb.types.db_instance_type
 
         out["db_instance_type"] = (
@@ -274,7 +274,7 @@ def deserialize_aws_json_1_0(data: dict) -> DeleteDbInstanceOutput:
                 data["dbInstanceType"]
             )
         )
-    if "dbStorageType" in data:
+    if data.get("dbStorageType") is not None:
         import capo_timestream_influxdb.types.db_storage_type
 
         out["db_storage_type"] = (
@@ -282,9 +282,9 @@ def deserialize_aws_json_1_0(data: dict) -> DeleteDbInstanceOutput:
                 data["dbStorageType"]
             )
         )
-    if "allocatedStorage" in data:
+    if data.get("allocatedStorage") is not None:
         out["allocated_storage"] = data["allocatedStorage"]
-    if "deploymentType" in data:
+    if data.get("deploymentType") is not None:
         import capo_timestream_influxdb.types.deployment_type
 
         out["deployment_type"] = (
@@ -292,7 +292,7 @@ def deserialize_aws_json_1_0(data: dict) -> DeleteDbInstanceOutput:
                 data["deploymentType"]
             )
         )
-    if "vpcSubnetIds" in data:
+    if data.get("vpcSubnetIds") is not None:
         import capo_timestream_influxdb.types.vpc_subnet_id_list
 
         out["vpc_subnet_ids"] = (
@@ -302,9 +302,9 @@ def deserialize_aws_json_1_0(data: dict) -> DeleteDbInstanceOutput:
         )
     else:
         raise DeserializationError("DeleteDbInstanceOutput.vpc_subnet_ids required")
-    if "publiclyAccessible" in data:
+    if data.get("publiclyAccessible") is not None:
         out["publicly_accessible"] = data["publiclyAccessible"]
-    if "vpcSecurityGroupIds" in data:
+    if data.get("vpcSecurityGroupIds") is not None:
         import capo_timestream_influxdb.types.vpc_security_group_id_list
 
         out["vpc_security_group_ids"] = (
@@ -312,13 +312,13 @@ def deserialize_aws_json_1_0(data: dict) -> DeleteDbInstanceOutput:
                 data["vpcSecurityGroupIds"]
             )
         )
-    if "dbParameterGroupIdentifier" in data:
+    if data.get("dbParameterGroupIdentifier") is not None:
         out["db_parameter_group_identifier"] = data["dbParameterGroupIdentifier"]
-    if "availabilityZone" in data:
+    if data.get("availabilityZone") is not None:
         out["availability_zone"] = data["availabilityZone"]
-    if "secondaryAvailabilityZone" in data:
+    if data.get("secondaryAvailabilityZone") is not None:
         out["secondary_availability_zone"] = data["secondaryAvailabilityZone"]
-    if "logDeliveryConfiguration" in data:
+    if data.get("logDeliveryConfiguration") is not None:
         import capo_timestream_influxdb.types.log_delivery_configuration
 
         out["log_delivery_configuration"] = (
@@ -326,11 +326,11 @@ def deserialize_aws_json_1_0(data: dict) -> DeleteDbInstanceOutput:
                 data["logDeliveryConfiguration"]
             )
         )
-    if "influxAuthParametersSecretArn" in data:
+    if data.get("influxAuthParametersSecretArn") is not None:
         out["influx_auth_parameters_secret_arn"] = data["influxAuthParametersSecretArn"]
-    if "dbClusterId" in data:
+    if data.get("dbClusterId") is not None:
         out["db_cluster_id"] = data["dbClusterId"]
-    if "instanceMode" in data:
+    if data.get("instanceMode") is not None:
         import capo_timestream_influxdb.types.instance_mode
 
         out["instance_mode"] = (
@@ -338,7 +338,7 @@ def deserialize_aws_json_1_0(data: dict) -> DeleteDbInstanceOutput:
                 data["instanceMode"]
             )
         )
-    if "instanceModes" in data:
+    if data.get("instanceModes") is not None:
         import capo_timestream_influxdb.types.instance_mode_list
 
         out["instance_modes"] = (
@@ -346,7 +346,7 @@ def deserialize_aws_json_1_0(data: dict) -> DeleteDbInstanceOutput:
                 data["instanceModes"]
             )
         )
-    if "maintenanceSchedule" in data:
+    if data.get("maintenanceSchedule") is not None:
         import capo_timestream_influxdb.types.maintenance_schedule
 
         out["maintenance_schedule"] = (
@@ -354,20 +354,16 @@ def deserialize_aws_json_1_0(data: dict) -> DeleteDbInstanceOutput:
                 data["maintenanceSchedule"]
             )
         )
-    if "lastMaintenanceTime" in data:
-        import capo_timestream_influxdb.types._prelude.timestamp
+    if data.get("lastMaintenanceTime") is not None:
+        import datetime
 
-        out["last_maintenance_time"] = (
-            capo_timestream_influxdb.types._prelude.timestamp.deserialize_aws_json_1_0(
-                data["lastMaintenanceTime"]
-            )
+        out["last_maintenance_time"] = datetime.datetime.fromisoformat(
+            data["lastMaintenanceTime"].replace("Z", "+00:00")
         )
-    if "nextMaintenanceTime" in data:
-        import capo_timestream_influxdb.types._prelude.timestamp
+    if data.get("nextMaintenanceTime") is not None:
+        import datetime
 
-        out["next_maintenance_time"] = (
-            capo_timestream_influxdb.types._prelude.timestamp.deserialize_aws_json_1_0(
-                data["nextMaintenanceTime"]
-            )
+        out["next_maintenance_time"] = datetime.datetime.fromisoformat(
+            data["nextMaintenanceTime"].replace("Z", "+00:00")
         )
     return out

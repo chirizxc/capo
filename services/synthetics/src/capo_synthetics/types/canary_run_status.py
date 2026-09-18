@@ -56,15 +56,15 @@ def serialize_json(value: CanaryRunStatus) -> dict:
 
 def deserialize_json(data: dict) -> CanaryRunStatus:
     out: CanaryRunStatus = {}  # type: ignore[typeddict-item]
-    if "State" in data:
+    if data.get("State") is not None:
         import capo_synthetics.types.canary_run_state
 
         out["state"] = capo_synthetics.types.canary_run_state.deserialize_json(
             data["State"]
         )
-    if "StateReason" in data:
+    if data.get("StateReason") is not None:
         out["state_reason"] = data["StateReason"]
-    if "StateReasonCode" in data:
+    if data.get("StateReasonCode") is not None:
         import capo_synthetics.types.canary_run_state_reason_code
 
         out["state_reason_code"] = (
@@ -72,7 +72,7 @@ def deserialize_json(data: dict) -> CanaryRunStatus:
                 data["StateReasonCode"]
             )
         )
-    if "TestResult" in data:
+    if data.get("TestResult") is not None:
         import capo_synthetics.types.canary_run_test_result
 
         out["test_result"] = (

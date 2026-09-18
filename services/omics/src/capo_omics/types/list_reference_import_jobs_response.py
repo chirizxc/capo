@@ -34,9 +34,9 @@ def serialize_json(value: ListReferenceImportJobsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListReferenceImportJobsResponse:
     out: ListReferenceImportJobsResponse = {}  # type: ignore[typeddict-item]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "importJobs" in data:
+    if data.get("importJobs") is not None:
         import capo_omics.types.import_reference_job_list
 
         out["import_jobs"] = (

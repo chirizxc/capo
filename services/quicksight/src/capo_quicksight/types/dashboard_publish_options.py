@@ -213,7 +213,7 @@ def serialize_json(value: DashboardPublishOptions) -> dict:
 
 def deserialize_json(data: dict) -> DashboardPublishOptions:
     out: DashboardPublishOptions = {}  # type: ignore[typeddict-item]
-    if "AdHocFilteringOption" in data:
+    if data.get("AdHocFilteringOption") is not None:
         import capo_quicksight.types.ad_hoc_filtering_option
 
         out["ad_hoc_filtering_option"] = (
@@ -221,7 +221,7 @@ def deserialize_json(data: dict) -> DashboardPublishOptions:
                 data["AdHocFilteringOption"]
             )
         )
-    if "ExportToCSVOption" in data:
+    if data.get("ExportToCSVOption") is not None:
         import capo_quicksight.types.export_to_csv_option
 
         out["export_to_csv_option"] = (
@@ -229,7 +229,7 @@ def deserialize_json(data: dict) -> DashboardPublishOptions:
                 data["ExportToCSVOption"]
             )
         )
-    if "SheetControlsOption" in data:
+    if data.get("SheetControlsOption") is not None:
         import capo_quicksight.types.sheet_controls_option
 
         out["sheet_controls_option"] = (
@@ -237,7 +237,7 @@ def deserialize_json(data: dict) -> DashboardPublishOptions:
                 data["SheetControlsOption"]
             )
         )
-    if "VisualPublishOptions" in data:
+    if data.get("VisualPublishOptions") is not None:
         import capo_quicksight.types.dashboard_visual_publish_options
 
         out["visual_publish_options"] = (
@@ -245,7 +245,7 @@ def deserialize_json(data: dict) -> DashboardPublishOptions:
                 data["VisualPublishOptions"]
             )
         )
-    if "SheetLayoutElementMaximizationOption" in data:
+    if data.get("SheetLayoutElementMaximizationOption") is not None:
         import capo_quicksight.types.sheet_layout_element_maximization_option
 
         out["sheet_layout_element_maximization_option"] = (
@@ -253,7 +253,7 @@ def deserialize_json(data: dict) -> DashboardPublishOptions:
                 data["SheetLayoutElementMaximizationOption"]
             )
         )
-    if "VisualMenuOption" in data:
+    if data.get("VisualMenuOption") is not None:
         import capo_quicksight.types.visual_menu_option
 
         out["visual_menu_option"] = (
@@ -261,7 +261,7 @@ def deserialize_json(data: dict) -> DashboardPublishOptions:
                 data["VisualMenuOption"]
             )
         )
-    if "VisualAxisSortOption" in data:
+    if data.get("VisualAxisSortOption") is not None:
         import capo_quicksight.types.visual_axis_sort_option
 
         out["visual_axis_sort_option"] = (
@@ -269,7 +269,7 @@ def deserialize_json(data: dict) -> DashboardPublishOptions:
                 data["VisualAxisSortOption"]
             )
         )
-    if "ExportWithHiddenFieldsOption" in data:
+    if data.get("ExportWithHiddenFieldsOption") is not None:
         import capo_quicksight.types.export_with_hidden_fields_option
 
         out["export_with_hidden_fields_option"] = (
@@ -277,7 +277,7 @@ def deserialize_json(data: dict) -> DashboardPublishOptions:
                 data["ExportWithHiddenFieldsOption"]
             )
         )
-    if "DataPointDrillUpDownOption" in data:
+    if data.get("DataPointDrillUpDownOption") is not None:
         import capo_quicksight.types.data_point_drill_up_down_option
 
         out["data_point_drill_up_down_option"] = (
@@ -285,7 +285,7 @@ def deserialize_json(data: dict) -> DashboardPublishOptions:
                 data["DataPointDrillUpDownOption"]
             )
         )
-    if "DataPointMenuLabelOption" in data:
+    if data.get("DataPointMenuLabelOption") is not None:
         import capo_quicksight.types.data_point_menu_label_option
 
         out["data_point_menu_label_option"] = (
@@ -293,7 +293,7 @@ def deserialize_json(data: dict) -> DashboardPublishOptions:
                 data["DataPointMenuLabelOption"]
             )
         )
-    if "DataPointTooltipOption" in data:
+    if data.get("DataPointTooltipOption") is not None:
         import capo_quicksight.types.data_point_tooltip_option
 
         out["data_point_tooltip_option"] = (
@@ -301,7 +301,7 @@ def deserialize_json(data: dict) -> DashboardPublishOptions:
                 data["DataPointTooltipOption"]
             )
         )
-    if "DataQAEnabledOption" in data:
+    if data.get("DataQAEnabledOption") is not None:
         import capo_quicksight.types.data_qa_enabled_option
 
         out["data_qa_enabled_option"] = (
@@ -309,7 +309,7 @@ def deserialize_json(data: dict) -> DashboardPublishOptions:
                 data["DataQAEnabledOption"]
             )
         )
-    if "QuickSuiteActionsOption" in data:
+    if data.get("QuickSuiteActionsOption") is not None:
         import capo_quicksight.types.quick_suite_actions_option
 
         out["quick_suite_actions_option"] = (
@@ -317,7 +317,7 @@ def deserialize_json(data: dict) -> DashboardPublishOptions:
                 data["QuickSuiteActionsOption"]
             )
         )
-    if "ExecutiveSummaryOption" in data:
+    if data.get("ExecutiveSummaryOption") is not None:
         import capo_quicksight.types.executive_summary_option
 
         out["executive_summary_option"] = (
@@ -325,7 +325,7 @@ def deserialize_json(data: dict) -> DashboardPublishOptions:
                 data["ExecutiveSummaryOption"]
             )
         )
-    if "DataStoriesSharingOption" in data:
+    if data.get("DataStoriesSharingOption") is not None:
         import capo_quicksight.types.data_stories_sharing_option
 
         out["data_stories_sharing_option"] = (

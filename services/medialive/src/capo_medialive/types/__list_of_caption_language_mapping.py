@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> __listOfCaptionLanguageMapping:
 
     out: __listOfCaptionLanguageMapping = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_medialive.types.caption_language_mapping.deserialize_json(item))
     return out

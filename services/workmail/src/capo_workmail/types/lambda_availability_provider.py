@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: LambdaAvailabilityProvider) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> LambdaAvailabilityProvider:
     out: LambdaAvailabilityProvider = {}  # type: ignore[typeddict-item]
-    if "LambdaArn" in data:
+    if data.get("LambdaArn") is not None:
         out["lambda_arn"] = data["LambdaArn"]
     else:
         raise DeserializationError("LambdaAvailabilityProvider.lambda_arn required")

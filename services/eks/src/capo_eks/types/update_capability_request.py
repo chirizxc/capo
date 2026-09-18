@@ -57,9 +57,9 @@ def serialize_json(value: UpdateCapabilityRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateCapabilityRequest:
     out: UpdateCapabilityRequest = {}  # type: ignore[typeddict-item]
-    if "roleArn" in data:
+    if data.get("roleArn") is not None:
         out["role_arn"] = data["roleArn"]
-    if "configuration" in data:
+    if data.get("configuration") is not None:
         import capo_eks.types.update_capability_configuration
 
         out["configuration"] = (
@@ -67,9 +67,9 @@ def deserialize_json(data: dict) -> UpdateCapabilityRequest:
                 data["configuration"]
             )
         )
-    if "clientRequestToken" in data:
+    if data.get("clientRequestToken") is not None:
         out["client_request_token"] = data["clientRequestToken"]
-    if "deletePropagationPolicy" in data:
+    if data.get("deletePropagationPolicy") is not None:
         import capo_eks.types.capability_delete_propagation_policy
 
         out["delete_propagation_policy"] = (

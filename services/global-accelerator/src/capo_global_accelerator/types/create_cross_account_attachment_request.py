@@ -61,11 +61,11 @@ def serialize_aws_json_1_1(value: CreateCrossAccountAttachmentRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateCrossAccountAttachmentRequest:
     out: CreateCrossAccountAttachmentRequest = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("CreateCrossAccountAttachmentRequest.name required")
-    if "Principals" in data:
+    if data.get("Principals") is not None:
         import capo_global_accelerator.types.principals
 
         out["principals"] = (
@@ -73,7 +73,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateCrossAccountAttachmentRequest:
                 data["Principals"]
             )
         )
-    if "Resources" in data:
+    if data.get("Resources") is not None:
         import capo_global_accelerator.types.resources
 
         out["resources"] = (
@@ -81,13 +81,13 @@ def deserialize_aws_json_1_1(data: dict) -> CreateCrossAccountAttachmentRequest:
                 data["Resources"]
             )
         )
-    if "IdempotencyToken" in data:
+    if data.get("IdempotencyToken") is not None:
         out["idempotency_token"] = data["IdempotencyToken"]
     else:
         raise DeserializationError(
             "CreateCrossAccountAttachmentRequest.idempotency_token required"
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_global_accelerator.types.tags
 
         out["tags"] = capo_global_accelerator.types.tags.deserialize_aws_json_1_1(

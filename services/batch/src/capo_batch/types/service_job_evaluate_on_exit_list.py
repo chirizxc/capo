@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> ServiceJobEvaluateOnExitList:
 
     out: ServiceJobEvaluateOnExitList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_batch.types.service_job_evaluate_on_exit.deserialize_json(item))
     return out

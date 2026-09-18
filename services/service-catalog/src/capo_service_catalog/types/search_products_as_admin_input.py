@@ -87,11 +87,11 @@ def serialize_aws_json_1_1(value: SearchProductsAsAdminInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SearchProductsAsAdminInput:
     out: SearchProductsAsAdminInput = {}  # type: ignore[typeddict-item]
-    if "AcceptLanguage" in data:
+    if data.get("AcceptLanguage") is not None:
         out["accept_language"] = data["AcceptLanguage"]
-    if "PortfolioId" in data:
+    if data.get("PortfolioId") is not None:
         out["portfolio_id"] = data["PortfolioId"]
-    if "Filters" in data:
+    if data.get("Filters") is not None:
         import capo_service_catalog.types.product_view_filters
 
         out["filters"] = (
@@ -99,7 +99,7 @@ def deserialize_aws_json_1_1(data: dict) -> SearchProductsAsAdminInput:
                 data["Filters"]
             )
         )
-    if "SortBy" in data:
+    if data.get("SortBy") is not None:
         import capo_service_catalog.types.product_view_sort_by
 
         out["sort_by"] = (
@@ -107,7 +107,7 @@ def deserialize_aws_json_1_1(data: dict) -> SearchProductsAsAdminInput:
                 data["SortBy"]
             )
         )
-    if "SortOrder" in data:
+    if data.get("SortOrder") is not None:
         import capo_service_catalog.types.sort_order
 
         out["sort_order"] = (
@@ -115,13 +115,13 @@ def deserialize_aws_json_1_1(data: dict) -> SearchProductsAsAdminInput:
                 data["SortOrder"]
             )
         )
-    if "PageToken" in data:
+    if data.get("PageToken") is not None:
         out["page_token"] = data["PageToken"]
-    if "PageSize" in data:
+    if data.get("PageSize") is not None:
         out["page_size"] = data["PageSize"]
     else:
         out["page_size"] = 0
-    if "ProductSource" in data:
+    if data.get("ProductSource") is not None:
         import capo_service_catalog.types.product_source
 
         out["product_source"] = (

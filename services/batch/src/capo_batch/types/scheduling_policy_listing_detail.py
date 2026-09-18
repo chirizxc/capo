@@ -23,6 +23,6 @@ def serialize_json(value: SchedulingPolicyListingDetail) -> dict:
 
 def deserialize_json(data: dict) -> SchedulingPolicyListingDetail:
     out: SchedulingPolicyListingDetail = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     return out

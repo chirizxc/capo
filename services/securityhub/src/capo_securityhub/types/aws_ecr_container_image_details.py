@@ -54,15 +54,15 @@ def serialize_json(value: AwsEcrContainerImageDetails) -> dict:
 
 def deserialize_json(data: dict) -> AwsEcrContainerImageDetails:
     out: AwsEcrContainerImageDetails = {}  # type: ignore[typeddict-item]
-    if "RegistryId" in data:
+    if data.get("RegistryId") is not None:
         out["registry_id"] = data["RegistryId"]
-    if "RepositoryName" in data:
+    if data.get("RepositoryName") is not None:
         out["repository_name"] = data["RepositoryName"]
-    if "Architecture" in data:
+    if data.get("Architecture") is not None:
         out["architecture"] = data["Architecture"]
-    if "ImageDigest" in data:
+    if data.get("ImageDigest") is not None:
         out["image_digest"] = data["ImageDigest"]
-    if "ImageTags" in data:
+    if data.get("ImageTags") is not None:
         import capo_securityhub.types.non_empty_string_list
 
         out["image_tags"] = (
@@ -70,6 +70,6 @@ def deserialize_json(data: dict) -> AwsEcrContainerImageDetails:
                 data["ImageTags"]
             )
         )
-    if "ImagePublishedAt" in data:
+    if data.get("ImagePublishedAt") is not None:
         out["image_published_at"] = data["ImagePublishedAt"]
     return out

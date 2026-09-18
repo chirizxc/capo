@@ -24,7 +24,7 @@ def serialize_aws_json_1_0(value: RestoreTableResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> RestoreTableResponse:
     out: RestoreTableResponse = {}  # type: ignore[typeddict-item]
-    if "restoredTableARN" in data:
+    if data.get("restoredTableARN") is not None:
         out["restored_table_arn"] = data["restoredTableARN"]
     else:
         raise DeserializationError("RestoreTableResponse.restored_table_arn required")

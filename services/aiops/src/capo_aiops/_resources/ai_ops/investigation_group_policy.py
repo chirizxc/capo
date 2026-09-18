@@ -72,15 +72,17 @@ class InvestigationGroupPolicy:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_aiops.types.put_investigation_group_policy_request.PutInvestigationGroupPolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["identifier"] = identifier
-        input_["policy"] = policy
+        input_: capo_aiops.types.put_investigation_group_policy_request.PutInvestigationGroupPolicyRequest = {
+            "identifier": identifier,
+            "policy": policy,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -120,14 +122,16 @@ class InvestigationGroupPolicy:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_aiops.types.get_investigation_group_policy_request.GetInvestigationGroupPolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["identifier"] = identifier
+        input_: capo_aiops.types.get_investigation_group_policy_request.GetInvestigationGroupPolicyRequest = {
+            "identifier": identifier
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -167,14 +171,16 @@ class InvestigationGroupPolicy:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_aiops.types.delete_investigation_group_policy_request.DeleteInvestigationGroupPolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["identifier"] = identifier
+        input_: capo_aiops.types.delete_investigation_group_policy_request.DeleteInvestigationGroupPolicyRequest = {
+            "identifier": identifier
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -222,15 +228,17 @@ class AsyncInvestigationGroupPolicy:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_aiops.types.put_investigation_group_policy_request.PutInvestigationGroupPolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["identifier"] = identifier
-        input_["policy"] = policy
+        input_: capo_aiops.types.put_investigation_group_policy_request.PutInvestigationGroupPolicyRequest = {
+            "identifier": identifier,
+            "policy": policy,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -271,14 +279,16 @@ class AsyncInvestigationGroupPolicy:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_aiops.types.get_investigation_group_policy_request.GetInvestigationGroupPolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["identifier"] = identifier
+        input_: capo_aiops.types.get_investigation_group_policy_request.GetInvestigationGroupPolicyRequest = {
+            "identifier": identifier
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -319,12 +329,14 @@ class AsyncInvestigationGroupPolicy:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_aiops.types.delete_investigation_group_policy_request.DeleteInvestigationGroupPolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["identifier"] = identifier
+        input_: capo_aiops.types.delete_investigation_group_policy_request.DeleteInvestigationGroupPolicyRequest = {
+            "identifier": identifier
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

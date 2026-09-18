@@ -23,6 +23,6 @@ def serialize_json(value: CreateSourceNetworkResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateSourceNetworkResponse:
     out: CreateSourceNetworkResponse = {}  # type: ignore[typeddict-item]
-    if "sourceNetworkID" in data:
+    if data.get("sourceNetworkID") is not None:
         out["source_network_id"] = data["sourceNetworkID"]
     return out

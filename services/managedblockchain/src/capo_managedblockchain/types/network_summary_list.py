@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> NetworkSummaryList:
 
     out: NetworkSummaryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_managedblockchain.types.network_summary.deserialize_json(item))
     return out

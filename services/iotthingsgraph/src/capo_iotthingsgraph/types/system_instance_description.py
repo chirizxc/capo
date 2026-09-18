@@ -85,7 +85,7 @@ def serialize_aws_json_1_1(value: SystemInstanceDescription) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SystemInstanceDescription:
     out: SystemInstanceDescription = {}  # type: ignore[typeddict-item]
-    if "summary" in data:
+    if data.get("summary") is not None:
         import capo_iotthingsgraph.types.system_instance_summary
 
         out["summary"] = (
@@ -93,7 +93,7 @@ def deserialize_aws_json_1_1(data: dict) -> SystemInstanceDescription:
                 data["summary"]
             )
         )
-    if "definition" in data:
+    if data.get("definition") is not None:
         import capo_iotthingsgraph.types.definition_document
 
         out["definition"] = (
@@ -101,9 +101,9 @@ def deserialize_aws_json_1_1(data: dict) -> SystemInstanceDescription:
                 data["definition"]
             )
         )
-    if "s3BucketName" in data:
+    if data.get("s3BucketName") is not None:
         out["s3_bucket_name"] = data["s3BucketName"]
-    if "metricsConfiguration" in data:
+    if data.get("metricsConfiguration") is not None:
         import capo_iotthingsgraph.types.metrics_configuration
 
         out["metrics_configuration"] = (
@@ -111,9 +111,9 @@ def deserialize_aws_json_1_1(data: dict) -> SystemInstanceDescription:
                 data["metricsConfiguration"]
             )
         )
-    if "validatedNamespaceVersion" in data:
+    if data.get("validatedNamespaceVersion") is not None:
         out["validated_namespace_version"] = data["validatedNamespaceVersion"]
-    if "validatedDependencyRevisions" in data:
+    if data.get("validatedDependencyRevisions") is not None:
         import capo_iotthingsgraph.types.dependency_revisions
 
         out["validated_dependency_revisions"] = (
@@ -121,6 +121,6 @@ def deserialize_aws_json_1_1(data: dict) -> SystemInstanceDescription:
                 data["validatedDependencyRevisions"]
             )
         )
-    if "flowActionsRoleArn" in data:
+    if data.get("flowActionsRoleArn") is not None:
         out["flow_actions_role_arn"] = data["flowActionsRoleArn"]
     return out

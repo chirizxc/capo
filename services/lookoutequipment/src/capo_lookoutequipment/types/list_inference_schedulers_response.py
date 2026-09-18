@@ -36,9 +36,9 @@ def serialize_aws_json_1_0(value: ListInferenceSchedulersResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ListInferenceSchedulersResponse:
     out: ListInferenceSchedulersResponse = {}  # type: ignore[typeddict-item]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "InferenceSchedulerSummaries" in data:
+    if data.get("InferenceSchedulerSummaries") is not None:
         import capo_lookoutequipment.types.inference_scheduler_summaries
 
         out["inference_scheduler_summaries"] = (

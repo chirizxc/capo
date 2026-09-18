@@ -27,7 +27,7 @@ def serialize_json(value: GetOTAUpdateResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetOTAUpdateResponse:
     out: GetOTAUpdateResponse = {}  # type: ignore[typeddict-item]
-    if "otaUpdateInfo" in data:
+    if data.get("otaUpdateInfo") is not None:
         import capo_iot.types.ota_update_info
 
         out["ota_update_info"] = capo_iot.types.ota_update_info.deserialize_json(

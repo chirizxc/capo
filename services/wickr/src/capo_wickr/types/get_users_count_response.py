@@ -31,23 +31,23 @@ def serialize_json(value: GetUsersCountResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetUsersCountResponse:
     out: GetUsersCountResponse = {}  # type: ignore[typeddict-item]
-    if "pending" in data:
+    if data.get("pending") is not None:
         out["pending"] = data["pending"]
     else:
         raise DeserializationError("GetUsersCountResponse.pending required")
-    if "active" in data:
+    if data.get("active") is not None:
         out["active"] = data["active"]
     else:
         raise DeserializationError("GetUsersCountResponse.active required")
-    if "rejected" in data:
+    if data.get("rejected") is not None:
         out["rejected"] = data["rejected"]
     else:
         raise DeserializationError("GetUsersCountResponse.rejected required")
-    if "remaining" in data:
+    if data.get("remaining") is not None:
         out["remaining"] = data["remaining"]
     else:
         raise DeserializationError("GetUsersCountResponse.remaining required")
-    if "total" in data:
+    if data.get("total") is not None:
         out["total"] = data["total"]
     else:
         raise DeserializationError("GetUsersCountResponse.total required")

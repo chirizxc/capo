@@ -22,6 +22,6 @@ def serialize_json(value: LoRaWANMulticastMetadata) -> dict:
 
 def deserialize_json(data: dict) -> LoRaWANMulticastMetadata:
     out: LoRaWANMulticastMetadata = {}  # type: ignore[typeddict-item]
-    if "FPort" in data:
+    if data.get("FPort") is not None:
         out["f_port"] = data["FPort"]
     return out

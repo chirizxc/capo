@@ -34,13 +34,13 @@ def serialize_json(value: VpcConnectivitySasl) -> dict:
 
 def deserialize_json(data: dict) -> VpcConnectivitySasl:
     out: VpcConnectivitySasl = {}  # type: ignore[typeddict-item]
-    if "scram" in data:
+    if data.get("scram") is not None:
         import capo_kafka.types.vpc_connectivity_scram
 
         out["scram"] = capo_kafka.types.vpc_connectivity_scram.deserialize_json(
             data["scram"]
         )
-    if "iam" in data:
+    if data.get("iam") is not None:
         import capo_kafka.types.vpc_connectivity_iam
 
         out["iam"] = capo_kafka.types.vpc_connectivity_iam.deserialize_json(data["iam"])

@@ -32,15 +32,15 @@ def serialize_aws_json_1_0(value: TableSummary) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> TableSummary:
     out: TableSummary = {}  # type: ignore[typeddict-item]
-    if "keyspaceName" in data:
+    if data.get("keyspaceName") is not None:
         out["keyspace_name"] = data["keyspaceName"]
     else:
         raise DeserializationError("TableSummary.keyspace_name required")
-    if "tableName" in data:
+    if data.get("tableName") is not None:
         out["table_name"] = data["tableName"]
     else:
         raise DeserializationError("TableSummary.table_name required")
-    if "resourceArn" in data:
+    if data.get("resourceArn") is not None:
         out["resource_arn"] = data["resourceArn"]
     else:
         raise DeserializationError("TableSummary.resource_arn required")

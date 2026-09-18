@@ -38,7 +38,7 @@ def serialize_json(value: TtlDuration) -> dict:
 
 def deserialize_json(data: dict) -> TtlDuration:
     out: TtlDuration = {}  # type: ignore[typeddict-item]
-    if "Unit" in data:
+    if data.get("Unit") is not None:
         import capo_sagemaker_featurestore_runtime.types.ttl_duration_unit
 
         out["unit"] = (
@@ -46,6 +46,6 @@ def deserialize_json(data: dict) -> TtlDuration:
                 data["Unit"]
             )
         )
-    if "Value" in data:
+    if data.get("Value") is not None:
         out["value"] = data["Value"]
     return out

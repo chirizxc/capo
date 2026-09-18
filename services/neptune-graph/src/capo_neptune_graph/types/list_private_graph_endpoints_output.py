@@ -35,7 +35,7 @@ def serialize_json(value: ListPrivateGraphEndpointsOutput) -> dict:
 
 def deserialize_json(data: dict) -> ListPrivateGraphEndpointsOutput:
     out: ListPrivateGraphEndpointsOutput = {}  # type: ignore[typeddict-item]
-    if "privateGraphEndpoints" in data:
+    if data.get("privateGraphEndpoints") is not None:
         import capo_neptune_graph.types.private_graph_endpoint_summary_list
 
         out["private_graph_endpoints"] = (
@@ -47,6 +47,6 @@ def deserialize_json(data: dict) -> ListPrivateGraphEndpointsOutput:
         raise DeserializationError(
             "ListPrivateGraphEndpointsOutput.private_graph_endpoints required"
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

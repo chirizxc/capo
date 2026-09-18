@@ -54,13 +54,13 @@ def serialize_json(value: CreateNodeInput) -> dict:
 
 def deserialize_json(data: dict) -> CreateNodeInput:
     out: CreateNodeInput = {}  # type: ignore[typeddict-item]
-    if "ClientRequestToken" in data:
+    if data.get("ClientRequestToken") is not None:
         out["client_request_token"] = data["ClientRequestToken"]
     else:
         raise DeserializationError("CreateNodeInput.client_request_token required")
-    if "MemberId" in data:
+    if data.get("MemberId") is not None:
         out["member_id"] = data["MemberId"]
-    if "NodeConfiguration" in data:
+    if data.get("NodeConfiguration") is not None:
         import capo_managedblockchain.types.node_configuration
 
         out["node_configuration"] = (
@@ -70,7 +70,7 @@ def deserialize_json(data: dict) -> CreateNodeInput:
         )
     else:
         raise DeserializationError("CreateNodeInput.node_configuration required")
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_managedblockchain.types.input_tag_map
 
         out["tags"] = capo_managedblockchain.types.input_tag_map.deserialize_json(

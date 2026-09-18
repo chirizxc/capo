@@ -57,15 +57,15 @@ def serialize_json(value: CreateChatTokenRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateChatTokenRequest:
     out: CreateChatTokenRequest = {}  # type: ignore[typeddict-item]
-    if "roomIdentifier" in data:
+    if data.get("roomIdentifier") is not None:
         out["room_identifier"] = data["roomIdentifier"]
     else:
         raise DeserializationError("CreateChatTokenRequest.room_identifier required")
-    if "userId" in data:
+    if data.get("userId") is not None:
         out["user_id"] = data["userId"]
     else:
         raise DeserializationError("CreateChatTokenRequest.user_id required")
-    if "capabilities" in data:
+    if data.get("capabilities") is not None:
         import capo_ivschat.types.chat_token_capabilities
 
         out["capabilities"] = (
@@ -73,9 +73,9 @@ def deserialize_json(data: dict) -> CreateChatTokenRequest:
                 data["capabilities"]
             )
         )
-    if "sessionDurationInMinutes" in data:
+    if data.get("sessionDurationInMinutes") is not None:
         out["session_duration_in_minutes"] = data["sessionDurationInMinutes"]
-    if "attributes" in data:
+    if data.get("attributes") is not None:
         import capo_ivschat.types.chat_token_attributes
 
         out["attributes"] = capo_ivschat.types.chat_token_attributes.deserialize_json(

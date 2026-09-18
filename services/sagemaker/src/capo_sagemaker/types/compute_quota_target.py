@@ -32,8 +32,8 @@ def serialize_aws_json_1_1(value: ComputeQuotaTarget) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ComputeQuotaTarget:
     out: ComputeQuotaTarget = {}  # type: ignore[typeddict-item]
-    if "TeamName" in data:
+    if data.get("TeamName") is not None:
         out["team_name"] = data["TeamName"]
-    if "FairShareWeight" in data:
+    if data.get("FairShareWeight") is not None:
         out["fair_share_weight"] = data["FairShareWeight"]
     return out

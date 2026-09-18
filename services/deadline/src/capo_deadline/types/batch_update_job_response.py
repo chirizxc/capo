@@ -28,7 +28,7 @@ def serialize_json(value: BatchUpdateJobResponse) -> dict:
 
 def deserialize_json(data: dict) -> BatchUpdateJobResponse:
     out: BatchUpdateJobResponse = {}  # type: ignore[typeddict-item]
-    if "errors" in data:
+    if data.get("errors") is not None:
         import capo_deadline.types.batch_update_job_errors
 
         out["errors"] = capo_deadline.types.batch_update_job_errors.deserialize_json(

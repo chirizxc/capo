@@ -40,18 +40,18 @@ def serialize_json(value: ListProfilePermissionsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListProfilePermissionsResponse:
     out: ListProfilePermissionsResponse = {}  # type: ignore[typeddict-item]
-    if "revisionId" in data:
+    if data.get("revisionId") is not None:
         out["revision_id"] = data["revisionId"]
-    if "policySizeBytes" in data:
+    if data.get("policySizeBytes") is not None:
         out["policy_size_bytes"] = data["policySizeBytes"]
     else:
         out["policy_size_bytes"] = 0
-    if "permissions" in data:
+    if data.get("permissions") is not None:
         import capo_signer.types.permissions
 
         out["permissions"] = capo_signer.types.permissions.deserialize_json(
             data["permissions"]
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

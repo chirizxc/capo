@@ -67,9 +67,9 @@ def deserialize_json(
     data: dict,
 ) -> AwsCertificateManagerCertificateDomainValidationOption:
     out: AwsCertificateManagerCertificateDomainValidationOption = {}  # type: ignore[typeddict-item]
-    if "DomainName" in data:
+    if data.get("DomainName") is not None:
         out["domain_name"] = data["DomainName"]
-    if "ResourceRecord" in data:
+    if data.get("ResourceRecord") is not None:
         import capo_securityhub.types.aws_certificate_manager_certificate_resource_record
 
         out["resource_record"] = (
@@ -77,16 +77,16 @@ def deserialize_json(
                 data["ResourceRecord"]
             )
         )
-    if "ValidationDomain" in data:
+    if data.get("ValidationDomain") is not None:
         out["validation_domain"] = data["ValidationDomain"]
-    if "ValidationEmails" in data:
+    if data.get("ValidationEmails") is not None:
         import capo_securityhub.types.string_list
 
         out["validation_emails"] = capo_securityhub.types.string_list.deserialize_json(
             data["ValidationEmails"]
         )
-    if "ValidationMethod" in data:
+    if data.get("ValidationMethod") is not None:
         out["validation_method"] = data["ValidationMethod"]
-    if "ValidationStatus" in data:
+    if data.get("ValidationStatus") is not None:
         out["validation_status"] = data["ValidationStatus"]
     return out

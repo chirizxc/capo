@@ -24,7 +24,7 @@ def serialize_json(value: IotEventsInputIdentifier) -> dict:
 
 def deserialize_json(data: dict) -> IotEventsInputIdentifier:
     out: IotEventsInputIdentifier = {}  # type: ignore[typeddict-item]
-    if "inputName" in data:
+    if data.get("inputName") is not None:
         out["input_name"] = data["inputName"]
     else:
         raise DeserializationError("IotEventsInputIdentifier.input_name required")

@@ -68,15 +68,15 @@ def serialize_json(value: ResourceMapping) -> dict:
 
 def deserialize_json(data: dict) -> ResourceMapping:
     out: ResourceMapping = {}  # type: ignore[typeddict-item]
-    if "resourceName" in data:
+    if data.get("resourceName") is not None:
         out["resource_name"] = data["resourceName"]
-    if "logicalStackName" in data:
+    if data.get("logicalStackName") is not None:
         out["logical_stack_name"] = data["logicalStackName"]
-    if "appRegistryAppName" in data:
+    if data.get("appRegistryAppName") is not None:
         out["app_registry_app_name"] = data["appRegistryAppName"]
-    if "resourceGroupName" in data:
+    if data.get("resourceGroupName") is not None:
         out["resource_group_name"] = data["resourceGroupName"]
-    if "mappingType" in data:
+    if data.get("mappingType") is not None:
         import capo_resiliencehub.types.resource_mapping_type
 
         out["mapping_type"] = (
@@ -86,7 +86,7 @@ def deserialize_json(data: dict) -> ResourceMapping:
         )
     else:
         raise DeserializationError("ResourceMapping.mapping_type required")
-    if "physicalResourceId" in data:
+    if data.get("physicalResourceId") is not None:
         import capo_resiliencehub.types.physical_resource_id
 
         out["physical_resource_id"] = (
@@ -96,8 +96,8 @@ def deserialize_json(data: dict) -> ResourceMapping:
         )
     else:
         raise DeserializationError("ResourceMapping.physical_resource_id required")
-    if "terraformSourceName" in data:
+    if data.get("terraformSourceName") is not None:
         out["terraform_source_name"] = data["terraformSourceName"]
-    if "eksSourceName" in data:
+    if data.get("eksSourceName") is not None:
         out["eks_source_name"] = data["eksSourceName"]
     return out

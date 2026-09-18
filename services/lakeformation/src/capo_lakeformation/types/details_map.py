@@ -31,7 +31,7 @@ def serialize_json(value: DetailsMap) -> dict:
 
 def deserialize_json(data: dict) -> DetailsMap:
     out: DetailsMap = {}  # type: ignore[typeddict-item]
-    if "ResourceShare" in data:
+    if data.get("ResourceShare") is not None:
         import capo_lakeformation.types.resource_share_list
 
         out["resource_share"] = (

@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> TransitGatewayRegistrationList:
 
     out: TransitGatewayRegistrationList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_networkmanager.types.transit_gateway_registration.deserialize_json(
                 item

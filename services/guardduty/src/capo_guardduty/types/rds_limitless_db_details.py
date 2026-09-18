@@ -50,19 +50,19 @@ def serialize_json(value: RdsLimitlessDbDetails) -> dict:
 
 def deserialize_json(data: dict) -> RdsLimitlessDbDetails:
     out: RdsLimitlessDbDetails = {}  # type: ignore[typeddict-item]
-    if "dbShardGroupIdentifier" in data:
+    if data.get("dbShardGroupIdentifier") is not None:
         out["db_shard_group_identifier"] = data["dbShardGroupIdentifier"]
-    if "dbShardGroupResourceId" in data:
+    if data.get("dbShardGroupResourceId") is not None:
         out["db_shard_group_resource_id"] = data["dbShardGroupResourceId"]
-    if "dbShardGroupArn" in data:
+    if data.get("dbShardGroupArn") is not None:
         out["db_shard_group_arn"] = data["dbShardGroupArn"]
-    if "engine" in data:
+    if data.get("engine") is not None:
         out["engine"] = data["engine"]
-    if "engineVersion" in data:
+    if data.get("engineVersion") is not None:
         out["engine_version"] = data["engineVersion"]
-    if "dbClusterIdentifier" in data:
+    if data.get("dbClusterIdentifier") is not None:
         out["db_cluster_identifier"] = data["dbClusterIdentifier"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_guardduty.types.tags
 
         out["tags"] = capo_guardduty.types.tags.deserialize_json(data["tags"])

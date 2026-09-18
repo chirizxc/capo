@@ -41,16 +41,16 @@ def serialize_aws_json_1_0(value: ListEnvironmentTemplateVersionsInput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ListEnvironmentTemplateVersionsInput:
     out: ListEnvironmentTemplateVersionsInput = {}  # type: ignore[typeddict-item]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
-    if "templateName" in data:
+    if data.get("templateName") is not None:
         out["template_name"] = data["templateName"]
     else:
         raise DeserializationError(
             "ListEnvironmentTemplateVersionsInput.template_name required"
         )
-    if "majorVersion" in data:
+    if data.get("majorVersion") is not None:
         out["major_version"] = data["majorVersion"]
     return out

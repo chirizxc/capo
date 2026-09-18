@@ -63,13 +63,13 @@ def deserialize_aws_json_1_1(
     data: dict,
 ) -> GetAggregateConfigRuleComplianceSummaryRequest:
     out: GetAggregateConfigRuleComplianceSummaryRequest = {}  # type: ignore[typeddict-item]
-    if "ConfigurationAggregatorName" in data:
+    if data.get("ConfigurationAggregatorName") is not None:
         out["configuration_aggregator_name"] = data["ConfigurationAggregatorName"]
     else:
         raise DeserializationError(
             "GetAggregateConfigRuleComplianceSummaryRequest.configuration_aggregator_name required"
         )
-    if "Filters" in data:
+    if data.get("Filters") is not None:
         import capo_config_service.types.config_rule_compliance_summary_filters
 
         out["filters"] = (
@@ -77,7 +77,7 @@ def deserialize_aws_json_1_1(
                 data["Filters"]
             )
         )
-    if "GroupByKey" in data:
+    if data.get("GroupByKey") is not None:
         import capo_config_service.types.config_rule_compliance_summary_group_key
 
         out["group_by_key"] = (
@@ -85,10 +85,10 @@ def deserialize_aws_json_1_1(
                 data["GroupByKey"]
             )
         )
-    if "Limit" in data:
+    if data.get("Limit") is not None:
         out["limit"] = data["Limit"]
     else:
         out["limit"] = 0
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

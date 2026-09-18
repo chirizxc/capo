@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import uuid
 from typing import TYPE_CHECKING, Optional
 
 from capo_odb._services._pipeline import (
@@ -116,21 +117,23 @@ class OdbNetworkResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_odb.types.create_odb_network_input.CreateOdbNetworkInput = {}  # type: ignore[typeddict-item]
-        input_["display_name"] = display_name
+        input_: capo_odb.types.create_odb_network_input.CreateOdbNetworkInput = {
+            "display_name": display_name,
+            "client_subnet_cidr": client_subnet_cidr,
+        }
         if availability_zone is not None:
             input_["availability_zone"] = availability_zone
         if availability_zone_id is not None:
             input_["availability_zone_id"] = availability_zone_id
-        input_["client_subnet_cidr"] = client_subnet_cidr
         if backup_subnet_cidr is not None:
             input_["backup_subnet_cidr"] = backup_subnet_cidr
         if custom_domain_name is not None:
             input_["custom_domain_name"] = custom_domain_name
         if default_dns_prefix is not None:
             input_["default_dns_prefix"] = default_dns_prefix
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if s3_access is not None:
             input_["s3_access"] = s3_access
         if zero_etl_access is not None:
@@ -157,6 +160,7 @@ class OdbNetworkResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -194,14 +198,16 @@ class OdbNetworkResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_odb.types.get_odb_network_input.GetOdbNetworkInput = {}  # type: ignore[typeddict-item]
-        input_["odb_network_id"] = odb_network_id
+        input_: capo_odb.types.get_odb_network_input.GetOdbNetworkInput = {
+            "odb_network_id": odb_network_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update(
@@ -280,8 +286,9 @@ class OdbNetworkResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_odb.types.update_odb_network_input.UpdateOdbNetworkInput = {}  # type: ignore[typeddict-item]
-        input_["odb_network_id"] = odb_network_id
+        input_: capo_odb.types.update_odb_network_input.UpdateOdbNetworkInput = {
+            "odb_network_id": odb_network_id
+        }
         if display_name is not None:
             input_["display_name"] = display_name
         if peered_cidrs_to_be_added is not None:
@@ -316,6 +323,7 @@ class OdbNetworkResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -355,15 +363,17 @@ class OdbNetworkResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_odb.types.delete_odb_network_input.DeleteOdbNetworkInput = {}  # type: ignore[typeddict-item]
-        input_["odb_network_id"] = odb_network_id
-        input_["delete_associated_resources"] = delete_associated_resources
+        input_: capo_odb.types.delete_odb_network_input.DeleteOdbNetworkInput = {
+            "odb_network_id": odb_network_id,
+            "delete_associated_resources": delete_associated_resources,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -402,7 +412,7 @@ class OdbNetworkResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_odb.types.list_odb_networks_input.ListOdbNetworksInput = {}  # type: ignore[typeddict-item]
+        input_: capo_odb.types.list_odb_networks_input.ListOdbNetworksInput = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -413,6 +423,7 @@ class OdbNetworkResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -499,21 +510,23 @@ class AsyncOdbNetworkResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_odb.types.create_odb_network_input.CreateOdbNetworkInput = {}  # type: ignore[typeddict-item]
-        input_["display_name"] = display_name
+        input_: capo_odb.types.create_odb_network_input.CreateOdbNetworkInput = {
+            "display_name": display_name,
+            "client_subnet_cidr": client_subnet_cidr,
+        }
         if availability_zone is not None:
             input_["availability_zone"] = availability_zone
         if availability_zone_id is not None:
             input_["availability_zone_id"] = availability_zone_id
-        input_["client_subnet_cidr"] = client_subnet_cidr
         if backup_subnet_cidr is not None:
             input_["backup_subnet_cidr"] = backup_subnet_cidr
         if custom_domain_name is not None:
             input_["custom_domain_name"] = custom_domain_name
         if default_dns_prefix is not None:
             input_["default_dns_prefix"] = default_dns_prefix
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if s3_access is not None:
             input_["s3_access"] = s3_access
         if zero_etl_access is not None:
@@ -540,6 +553,7 @@ class AsyncOdbNetworkResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -578,14 +592,16 @@ class AsyncOdbNetworkResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_odb.types.get_odb_network_input.GetOdbNetworkInput = {}  # type: ignore[typeddict-item]
-        input_["odb_network_id"] = odb_network_id
+        input_: capo_odb.types.get_odb_network_input.GetOdbNetworkInput = {
+            "odb_network_id": odb_network_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update(
@@ -665,8 +681,9 @@ class AsyncOdbNetworkResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_odb.types.update_odb_network_input.UpdateOdbNetworkInput = {}  # type: ignore[typeddict-item]
-        input_["odb_network_id"] = odb_network_id
+        input_: capo_odb.types.update_odb_network_input.UpdateOdbNetworkInput = {
+            "odb_network_id": odb_network_id
+        }
         if display_name is not None:
             input_["display_name"] = display_name
         if peered_cidrs_to_be_added is not None:
@@ -701,6 +718,7 @@ class AsyncOdbNetworkResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -741,15 +759,17 @@ class AsyncOdbNetworkResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_odb.types.delete_odb_network_input.DeleteOdbNetworkInput = {}  # type: ignore[typeddict-item]
-        input_["odb_network_id"] = odb_network_id
-        input_["delete_associated_resources"] = delete_associated_resources
+        input_: capo_odb.types.delete_odb_network_input.DeleteOdbNetworkInput = {
+            "odb_network_id": odb_network_id,
+            "delete_associated_resources": delete_associated_resources,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -789,7 +809,7 @@ class AsyncOdbNetworkResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_odb.types.list_odb_networks_input.ListOdbNetworksInput = {}  # type: ignore[typeddict-item]
+        input_: capo_odb.types.list_odb_networks_input.ListOdbNetworksInput = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -800,4 +820,5 @@ class AsyncOdbNetworkResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

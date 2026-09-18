@@ -31,12 +31,12 @@ def serialize_json(value: GetVpcEndpointServiceNameOutput) -> dict:
 
 def deserialize_json(data: dict) -> GetVpcEndpointServiceNameOutput:
     out: GetVpcEndpointServiceNameOutput = {}  # type: ignore[typeddict-item]
-    if "serviceName" in data:
+    if data.get("serviceName") is not None:
         out["service_name"] = data["serviceName"]
     else:
         raise DeserializationError(
             "GetVpcEndpointServiceNameOutput.service_name required"
         )
-    if "clusterVpcEndpoint" in data:
+    if data.get("clusterVpcEndpoint") is not None:
         out["cluster_vpc_endpoint"] = data["clusterVpcEndpoint"]
     return out

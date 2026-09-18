@@ -31,10 +31,10 @@ def serialize_json(value: ScannedItemCount) -> dict:
 
 def deserialize_json(data: dict) -> ScannedItemCount:
     out: ScannedItemCount = {}  # type: ignore[typeddict-item]
-    if "totalGb" in data:
+    if data.get("totalGb") is not None:
         out["total_gb"] = data["totalGb"]
-    if "files" in data:
+    if data.get("files") is not None:
         out["files"] = data["files"]
-    if "volumes" in data:
+    if data.get("volumes") is not None:
         out["volumes"] = data["volumes"]
     return out

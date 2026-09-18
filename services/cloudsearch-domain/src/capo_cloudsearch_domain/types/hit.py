@@ -50,21 +50,21 @@ def serialize_json(value: Hit) -> dict:
 
 def deserialize_json(data: dict) -> Hit:
     out: Hit = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "fields" in data:
+    if data.get("fields") is not None:
         import capo_cloudsearch_domain.types.fields
 
         out["fields"] = capo_cloudsearch_domain.types.fields.deserialize_json(
             data["fields"]
         )
-    if "exprs" in data:
+    if data.get("exprs") is not None:
         import capo_cloudsearch_domain.types.exprs
 
         out["exprs"] = capo_cloudsearch_domain.types.exprs.deserialize_json(
             data["exprs"]
         )
-    if "highlights" in data:
+    if data.get("highlights") is not None:
         import capo_cloudsearch_domain.types.highlights
 
         out["highlights"] = capo_cloudsearch_domain.types.highlights.deserialize_json(

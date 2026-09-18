@@ -28,13 +28,13 @@ def serialize_aws_json_1_1(value: AssociateBudgetWithResourceInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AssociateBudgetWithResourceInput:
     out: AssociateBudgetWithResourceInput = {}  # type: ignore[typeddict-item]
-    if "BudgetName" in data:
+    if data.get("BudgetName") is not None:
         out["budget_name"] = data["BudgetName"]
     else:
         raise DeserializationError(
             "AssociateBudgetWithResourceInput.budget_name required"
         )
-    if "ResourceId" in data:
+    if data.get("ResourceId") is not None:
         out["resource_id"] = data["ResourceId"]
     else:
         raise DeserializationError(

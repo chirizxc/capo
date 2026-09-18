@@ -28,7 +28,7 @@ def serialize_json(value: PropertyValueNullValue) -> dict:
 
 def deserialize_json(data: dict) -> PropertyValueNullValue:
     out: PropertyValueNullValue = {}  # type: ignore[typeddict-item]
-    if "valueType" in data:
+    if data.get("valueType") is not None:
         import capo_iotsitewise.types.raw_value_type
 
         out["value_type"] = capo_iotsitewise.types.raw_value_type.deserialize_json(

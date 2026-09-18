@@ -47,9 +47,9 @@ def serialize_json(value: RecommenderPromotionalFilter) -> dict:
 
 def deserialize_json(data: dict) -> RecommenderPromotionalFilter:
     out: RecommenderPromotionalFilter = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Values" in data:
+    if data.get("Values") is not None:
         import capo_customer_profiles.types.recommender_filter_values
 
         out["values"] = (
@@ -57,8 +57,8 @@ def deserialize_json(data: dict) -> RecommenderPromotionalFilter:
                 data["Values"]
             )
         )
-    if "PromotionName" in data:
+    if data.get("PromotionName") is not None:
         out["promotion_name"] = data["PromotionName"]
-    if "PercentPromotedItems" in data:
+    if data.get("PercentPromotedItems") is not None:
         out["percent_promoted_items"] = data["PercentPromotedItems"]
     return out

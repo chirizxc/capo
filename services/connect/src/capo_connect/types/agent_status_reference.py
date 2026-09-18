@@ -37,14 +37,14 @@ def serialize_json(value: AgentStatusReference) -> dict:
 
 def deserialize_json(data: dict) -> AgentStatusReference:
     out: AgentStatusReference = {}  # type: ignore[typeddict-item]
-    if "StatusStartTimestamp" in data:
+    if data.get("StatusStartTimestamp") is not None:
         import capo_connect.types.timestamp
 
         out["status_start_timestamp"] = capo_connect.types.timestamp.deserialize_json(
             data["StatusStartTimestamp"]
         )
-    if "StatusArn" in data:
+    if data.get("StatusArn") is not None:
         out["status_arn"] = data["StatusArn"]
-    if "StatusName" in data:
+    if data.get("StatusName") is not None:
         out["status_name"] = data["StatusName"]
     return out

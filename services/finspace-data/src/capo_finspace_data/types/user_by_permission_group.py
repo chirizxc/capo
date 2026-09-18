@@ -81,33 +81,33 @@ def serialize_json(value: UserByPermissionGroup) -> dict:
 
 def deserialize_json(data: dict) -> UserByPermissionGroup:
     out: UserByPermissionGroup = {}  # type: ignore[typeddict-item]
-    if "userId" in data:
+    if data.get("userId") is not None:
         out["user_id"] = data["userId"]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_finspace_data.types.user_status
 
         out["status"] = capo_finspace_data.types.user_status.deserialize_json(
             data["status"]
         )
-    if "firstName" in data:
+    if data.get("firstName") is not None:
         out["first_name"] = data["firstName"]
-    if "lastName" in data:
+    if data.get("lastName") is not None:
         out["last_name"] = data["lastName"]
-    if "emailAddress" in data:
+    if data.get("emailAddress") is not None:
         out["email_address"] = data["emailAddress"]
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_finspace_data.types.user_type
 
         out["type"] = capo_finspace_data.types.user_type.deserialize_json(data["type"])
-    if "apiAccess" in data:
+    if data.get("apiAccess") is not None:
         import capo_finspace_data.types.api_access
 
         out["api_access"] = capo_finspace_data.types.api_access.deserialize_json(
             data["apiAccess"]
         )
-    if "apiAccessPrincipalArn" in data:
+    if data.get("apiAccessPrincipalArn") is not None:
         out["api_access_principal_arn"] = data["apiAccessPrincipalArn"]
-    if "membershipStatus" in data:
+    if data.get("membershipStatus") is not None:
         import capo_finspace_data.types.permission_group_membership_status
 
         out["membership_status"] = (

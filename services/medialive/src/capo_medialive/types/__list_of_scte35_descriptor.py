@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> __listOfScte35Descriptor:
 
     out: __listOfScte35Descriptor = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_medialive.types.scte35_descriptor.deserialize_json(item))
     return out

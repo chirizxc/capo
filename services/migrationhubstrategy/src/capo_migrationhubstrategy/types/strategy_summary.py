@@ -28,8 +28,8 @@ def serialize_json(value: StrategySummary) -> dict:
 
 def deserialize_json(data: dict) -> StrategySummary:
     out: StrategySummary = {}  # type: ignore[typeddict-item]
-    if "strategy" in data:
+    if data.get("strategy") is not None:
         out["strategy"] = data["strategy"]
-    if "count" in data:
+    if data.get("count") is not None:
         out["count"] = data["count"]
     return out

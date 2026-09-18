@@ -43,7 +43,7 @@ def serialize_json(value: StartBotAnalyzerRequest) -> dict:
 
 def deserialize_json(data: dict) -> StartBotAnalyzerRequest:
     out: StartBotAnalyzerRequest = {}  # type: ignore[typeddict-item]
-    if "analysisScope" in data:
+    if data.get("analysisScope") is not None:
         import capo_lex_models_v2.types.analysis_scope
 
         out["analysis_scope"] = (
@@ -53,8 +53,8 @@ def deserialize_json(data: dict) -> StartBotAnalyzerRequest:
         )
     else:
         raise DeserializationError("StartBotAnalyzerRequest.analysis_scope required")
-    if "localeId" in data:
+    if data.get("localeId") is not None:
         out["locale_id"] = data["localeId"]
-    if "botVersion" in data:
+    if data.get("botVersion") is not None:
         out["bot_version"] = data["botVersion"]
     return out

@@ -114,15 +114,15 @@ def serialize_aws_json_1_1(value: ScheduledAction) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ScheduledAction:
     out: ScheduledAction = {}  # type: ignore[typeddict-item]
-    if "ScheduledActionName" in data:
+    if data.get("ScheduledActionName") is not None:
         out["scheduled_action_name"] = data["ScheduledActionName"]
     else:
         raise DeserializationError("ScheduledAction.scheduled_action_name required")
-    if "ScheduledActionARN" in data:
+    if data.get("ScheduledActionARN") is not None:
         out["scheduled_action_arn"] = data["ScheduledActionARN"]
     else:
         raise DeserializationError("ScheduledAction.scheduled_action_arn required")
-    if "ServiceNamespace" in data:
+    if data.get("ServiceNamespace") is not None:
         import capo_application_auto_scaling.types.service_namespace
 
         out["service_namespace"] = (
@@ -132,17 +132,17 @@ def deserialize_aws_json_1_1(data: dict) -> ScheduledAction:
         )
     else:
         raise DeserializationError("ScheduledAction.service_namespace required")
-    if "Schedule" in data:
+    if data.get("Schedule") is not None:
         out["schedule"] = data["Schedule"]
     else:
         raise DeserializationError("ScheduledAction.schedule required")
-    if "Timezone" in data:
+    if data.get("Timezone") is not None:
         out["timezone"] = data["Timezone"]
-    if "ResourceId" in data:
+    if data.get("ResourceId") is not None:
         out["resource_id"] = data["ResourceId"]
     else:
         raise DeserializationError("ScheduledAction.resource_id required")
-    if "ScalableDimension" in data:
+    if data.get("ScalableDimension") is not None:
         import capo_application_auto_scaling.types.scalable_dimension
 
         out["scalable_dimension"] = (
@@ -150,7 +150,7 @@ def deserialize_aws_json_1_1(data: dict) -> ScheduledAction:
                 data["ScalableDimension"]
             )
         )
-    if "StartTime" in data:
+    if data.get("StartTime") is not None:
         import capo_application_auto_scaling.types.timestamp_type
 
         out["start_time"] = (
@@ -158,7 +158,7 @@ def deserialize_aws_json_1_1(data: dict) -> ScheduledAction:
                 data["StartTime"]
             )
         )
-    if "EndTime" in data:
+    if data.get("EndTime") is not None:
         import capo_application_auto_scaling.types.timestamp_type
 
         out["end_time"] = (
@@ -166,7 +166,7 @@ def deserialize_aws_json_1_1(data: dict) -> ScheduledAction:
                 data["EndTime"]
             )
         )
-    if "ScalableTargetAction" in data:
+    if data.get("ScalableTargetAction") is not None:
         import capo_application_auto_scaling.types.scalable_target_action
 
         out["scalable_target_action"] = (
@@ -174,7 +174,7 @@ def deserialize_aws_json_1_1(data: dict) -> ScheduledAction:
                 data["ScalableTargetAction"]
             )
         )
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_application_auto_scaling.types.timestamp_type
 
         out["creation_time"] = (

@@ -34,15 +34,15 @@ def serialize_json(value: RangeOverride) -> dict:
 
 def deserialize_json(data: dict) -> RangeOverride:
     out: RangeOverride = {}  # type: ignore[typeddict-item]
-    if "Start" in data:
+    if data.get("Start") is not None:
         out["start"] = data["Start"]
     else:
         out["start"] = 366
-    if "End" in data:
+    if data.get("End") is not None:
         out["end"] = data["End"]
     else:
         out["end"] = 0
-    if "Unit" in data:
+    if data.get("Unit") is not None:
         import capo_customer_profiles.types.range_unit
 
         out["unit"] = capo_customer_profiles.types.range_unit.deserialize_json(

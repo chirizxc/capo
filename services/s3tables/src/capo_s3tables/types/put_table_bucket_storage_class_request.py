@@ -35,7 +35,7 @@ def serialize_json(value: PutTableBucketStorageClassRequest) -> dict:
 
 def deserialize_json(data: dict) -> PutTableBucketStorageClassRequest:
     out: PutTableBucketStorageClassRequest = {}  # type: ignore[typeddict-item]
-    if "storageClassConfiguration" in data:
+    if data.get("storageClassConfiguration") is not None:
         import capo_s3tables.types.storage_class_configuration
 
         out["storage_class_configuration"] = (

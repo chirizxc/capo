@@ -73,11 +73,11 @@ def serialize_json(value: BatchPermissionsRequestEntry) -> dict:
 
 def deserialize_json(data: dict) -> BatchPermissionsRequestEntry:
     out: BatchPermissionsRequestEntry = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
     else:
         raise DeserializationError("BatchPermissionsRequestEntry.id required")
-    if "Principal" in data:
+    if data.get("Principal") is not None:
         import capo_lakeformation.types.data_lake_principal
 
         out["principal"] = (
@@ -85,25 +85,25 @@ def deserialize_json(data: dict) -> BatchPermissionsRequestEntry:
                 data["Principal"]
             )
         )
-    if "Resource" in data:
+    if data.get("Resource") is not None:
         import capo_lakeformation.types.resource
 
         out["resource"] = capo_lakeformation.types.resource.deserialize_json(
             data["Resource"]
         )
-    if "Permissions" in data:
+    if data.get("Permissions") is not None:
         import capo_lakeformation.types.permission_list
 
         out["permissions"] = capo_lakeformation.types.permission_list.deserialize_json(
             data["Permissions"]
         )
-    if "Condition" in data:
+    if data.get("Condition") is not None:
         import capo_lakeformation.types.condition
 
         out["condition"] = capo_lakeformation.types.condition.deserialize_json(
             data["Condition"]
         )
-    if "PermissionsWithGrantOption" in data:
+    if data.get("PermissionsWithGrantOption") is not None:
         import capo_lakeformation.types.permission_list
 
         out["permissions_with_grant_option"] = (

@@ -95,12 +95,13 @@ class PrivacyBudgetTemplateResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanrooms.types.create_privacy_budget_template_input.CreatePrivacyBudgetTemplateInput = {}  # type: ignore[typeddict-item]
-        input_["membership_identifier"] = membership_identifier
+        input_: capo_cleanrooms.types.create_privacy_budget_template_input.CreatePrivacyBudgetTemplateInput = {
+            "membership_identifier": membership_identifier,
+            "privacy_budget_type": privacy_budget_type,
+            "parameters": parameters,
+        }
         if auto_refresh is not None:
             input_["auto_refresh"] = auto_refresh
-        input_["privacy_budget_type"] = privacy_budget_type
-        input_["parameters"] = parameters
         if tags is not None:
             input_["tags"] = tags
 
@@ -109,6 +110,7 @@ class PrivacyBudgetTemplateResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -148,17 +150,17 @@ class PrivacyBudgetTemplateResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanrooms.types.get_privacy_budget_template_input.GetPrivacyBudgetTemplateInput = {}  # type: ignore[typeddict-item]
-        input_["membership_identifier"] = membership_identifier
-        input_["privacy_budget_template_identifier"] = (
-            privacy_budget_template_identifier
-        )
+        input_: capo_cleanrooms.types.get_privacy_budget_template_input.GetPrivacyBudgetTemplateInput = {
+            "membership_identifier": membership_identifier,
+            "privacy_budget_template_identifier": privacy_budget_template_identifier,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update(
@@ -205,12 +207,11 @@ class PrivacyBudgetTemplateResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanrooms.types.update_privacy_budget_template_input.UpdatePrivacyBudgetTemplateInput = {}  # type: ignore[typeddict-item]
-        input_["membership_identifier"] = membership_identifier
-        input_["privacy_budget_template_identifier"] = (
-            privacy_budget_template_identifier
-        )
-        input_["privacy_budget_type"] = privacy_budget_type
+        input_: capo_cleanrooms.types.update_privacy_budget_template_input.UpdatePrivacyBudgetTemplateInput = {
+            "membership_identifier": membership_identifier,
+            "privacy_budget_template_identifier": privacy_budget_template_identifier,
+            "privacy_budget_type": privacy_budget_type,
+        }
         if parameters is not None:
             input_["parameters"] = parameters
 
@@ -219,6 +220,7 @@ class PrivacyBudgetTemplateResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -258,17 +260,17 @@ class PrivacyBudgetTemplateResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanrooms.types.delete_privacy_budget_template_input.DeletePrivacyBudgetTemplateInput = {}  # type: ignore[typeddict-item]
-        input_["membership_identifier"] = membership_identifier
-        input_["privacy_budget_template_identifier"] = (
-            privacy_budget_template_identifier
-        )
+        input_: capo_cleanrooms.types.delete_privacy_budget_template_input.DeletePrivacyBudgetTemplateInput = {
+            "membership_identifier": membership_identifier,
+            "privacy_budget_template_identifier": privacy_budget_template_identifier,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -312,8 +314,9 @@ class PrivacyBudgetTemplateResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanrooms.types.list_privacy_budget_templates_input.ListPrivacyBudgetTemplatesInput = {}  # type: ignore[typeddict-item]
-        input_["membership_identifier"] = membership_identifier
+        input_: capo_cleanrooms.types.list_privacy_budget_templates_input.ListPrivacyBudgetTemplatesInput = {
+            "membership_identifier": membership_identifier
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -324,6 +327,7 @@ class PrivacyBudgetTemplateResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -379,12 +383,13 @@ class AsyncPrivacyBudgetTemplateResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanrooms.types.create_privacy_budget_template_input.CreatePrivacyBudgetTemplateInput = {}  # type: ignore[typeddict-item]
-        input_["membership_identifier"] = membership_identifier
+        input_: capo_cleanrooms.types.create_privacy_budget_template_input.CreatePrivacyBudgetTemplateInput = {
+            "membership_identifier": membership_identifier,
+            "privacy_budget_type": privacy_budget_type,
+            "parameters": parameters,
+        }
         if auto_refresh is not None:
             input_["auto_refresh"] = auto_refresh
-        input_["privacy_budget_type"] = privacy_budget_type
-        input_["parameters"] = parameters
         if tags is not None:
             input_["tags"] = tags
 
@@ -393,6 +398,7 @@ class AsyncPrivacyBudgetTemplateResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -433,17 +439,17 @@ class AsyncPrivacyBudgetTemplateResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanrooms.types.get_privacy_budget_template_input.GetPrivacyBudgetTemplateInput = {}  # type: ignore[typeddict-item]
-        input_["membership_identifier"] = membership_identifier
-        input_["privacy_budget_template_identifier"] = (
-            privacy_budget_template_identifier
-        )
+        input_: capo_cleanrooms.types.get_privacy_budget_template_input.GetPrivacyBudgetTemplateInput = {
+            "membership_identifier": membership_identifier,
+            "privacy_budget_template_identifier": privacy_budget_template_identifier,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update(
@@ -491,12 +497,11 @@ class AsyncPrivacyBudgetTemplateResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanrooms.types.update_privacy_budget_template_input.UpdatePrivacyBudgetTemplateInput = {}  # type: ignore[typeddict-item]
-        input_["membership_identifier"] = membership_identifier
-        input_["privacy_budget_template_identifier"] = (
-            privacy_budget_template_identifier
-        )
-        input_["privacy_budget_type"] = privacy_budget_type
+        input_: capo_cleanrooms.types.update_privacy_budget_template_input.UpdatePrivacyBudgetTemplateInput = {
+            "membership_identifier": membership_identifier,
+            "privacy_budget_template_identifier": privacy_budget_template_identifier,
+            "privacy_budget_type": privacy_budget_type,
+        }
         if parameters is not None:
             input_["parameters"] = parameters
 
@@ -505,6 +510,7 @@ class AsyncPrivacyBudgetTemplateResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -545,17 +551,17 @@ class AsyncPrivacyBudgetTemplateResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanrooms.types.delete_privacy_budget_template_input.DeletePrivacyBudgetTemplateInput = {}  # type: ignore[typeddict-item]
-        input_["membership_identifier"] = membership_identifier
-        input_["privacy_budget_template_identifier"] = (
-            privacy_budget_template_identifier
-        )
+        input_: capo_cleanrooms.types.delete_privacy_budget_template_input.DeletePrivacyBudgetTemplateInput = {
+            "membership_identifier": membership_identifier,
+            "privacy_budget_template_identifier": privacy_budget_template_identifier,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -600,8 +606,9 @@ class AsyncPrivacyBudgetTemplateResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanrooms.types.list_privacy_budget_templates_input.ListPrivacyBudgetTemplatesInput = {}  # type: ignore[typeddict-item]
-        input_["membership_identifier"] = membership_identifier
+        input_: capo_cleanrooms.types.list_privacy_budget_templates_input.ListPrivacyBudgetTemplatesInput = {
+            "membership_identifier": membership_identifier
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -612,4 +619,5 @@ class AsyncPrivacyBudgetTemplateResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

@@ -23,6 +23,6 @@ def serialize_aws_json_1_1(value: DescribeImageRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeImageRequest:
     out: DescribeImageRequest = {}  # type: ignore[typeddict-item]
-    if "ImageName" in data:
+    if data.get("ImageName") is not None:
         out["image_name"] = data["ImageName"]
     return out

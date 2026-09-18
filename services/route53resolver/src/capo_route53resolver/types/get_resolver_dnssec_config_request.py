@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: GetResolverDnssecConfigRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetResolverDnssecConfigRequest:
     out: GetResolverDnssecConfigRequest = {}  # type: ignore[typeddict-item]
-    if "ResourceId" in data:
+    if data.get("ResourceId") is not None:
         out["resource_id"] = data["ResourceId"]
     else:
         raise DeserializationError(

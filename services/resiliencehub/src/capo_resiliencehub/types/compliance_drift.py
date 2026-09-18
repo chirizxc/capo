@@ -86,23 +86,23 @@ def serialize_json(value: ComplianceDrift) -> dict:
 
 def deserialize_json(data: dict) -> ComplianceDrift:
     out: ComplianceDrift = {}  # type: ignore[typeddict-item]
-    if "entityId" in data:
+    if data.get("entityId") is not None:
         out["entity_id"] = data["entityId"]
-    if "entityType" in data:
+    if data.get("entityType") is not None:
         out["entity_type"] = data["entityType"]
-    if "driftType" in data:
+    if data.get("driftType") is not None:
         import capo_resiliencehub.types.drift_type
 
         out["drift_type"] = capo_resiliencehub.types.drift_type.deserialize_json(
             data["driftType"]
         )
-    if "appId" in data:
+    if data.get("appId") is not None:
         out["app_id"] = data["appId"]
-    if "appVersion" in data:
+    if data.get("appVersion") is not None:
         out["app_version"] = data["appVersion"]
-    if "expectedReferenceId" in data:
+    if data.get("expectedReferenceId") is not None:
         out["expected_reference_id"] = data["expectedReferenceId"]
-    if "expectedValue" in data:
+    if data.get("expectedValue") is not None:
         import capo_resiliencehub.types.assessment_compliance
 
         out["expected_value"] = (
@@ -110,9 +110,9 @@ def deserialize_json(data: dict) -> ComplianceDrift:
                 data["expectedValue"]
             )
         )
-    if "actualReferenceId" in data:
+    if data.get("actualReferenceId") is not None:
         out["actual_reference_id"] = data["actualReferenceId"]
-    if "actualValue" in data:
+    if data.get("actualValue") is not None:
         import capo_resiliencehub.types.assessment_compliance
 
         out["actual_value"] = (
@@ -120,7 +120,7 @@ def deserialize_json(data: dict) -> ComplianceDrift:
                 data["actualValue"]
             )
         )
-    if "diffType" in data:
+    if data.get("diffType") is not None:
         import capo_resiliencehub.types.difference_type
 
         out["diff_type"] = capo_resiliencehub.types.difference_type.deserialize_json(

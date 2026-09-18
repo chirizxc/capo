@@ -70,21 +70,21 @@ def serialize_json(value: StartAttachedFileUploadRequest) -> dict:
 
 def deserialize_json(data: dict) -> StartAttachedFileUploadRequest:
     out: StartAttachedFileUploadRequest = {}  # type: ignore[typeddict-item]
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
-    if "FileName" in data:
+    if data.get("FileName") is not None:
         out["file_name"] = data["FileName"]
     else:
         raise DeserializationError("StartAttachedFileUploadRequest.file_name required")
-    if "FileSizeInBytes" in data:
+    if data.get("FileSizeInBytes") is not None:
         out["file_size_in_bytes"] = data["FileSizeInBytes"]
     else:
         raise DeserializationError(
             "StartAttachedFileUploadRequest.file_size_in_bytes required"
         )
-    if "UrlExpiryInSeconds" in data:
+    if data.get("UrlExpiryInSeconds") is not None:
         out["url_expiry_in_seconds"] = data["UrlExpiryInSeconds"]
-    if "FileUseCaseType" in data:
+    if data.get("FileUseCaseType") is not None:
         import capo_connect.types.file_use_case_type
 
         out["file_use_case_type"] = (
@@ -96,13 +96,13 @@ def deserialize_json(data: dict) -> StartAttachedFileUploadRequest:
         raise DeserializationError(
             "StartAttachedFileUploadRequest.file_use_case_type required"
         )
-    if "CreatedBy" in data:
+    if data.get("CreatedBy") is not None:
         import capo_connect.types.created_by_info
 
         out["created_by"] = capo_connect.types.created_by_info.deserialize_json(
             data["CreatedBy"]
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_connect.types.tag_map
 
         out["tags"] = capo_connect.types.tag_map.deserialize_json(data["Tags"])

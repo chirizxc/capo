@@ -49,9 +49,9 @@ def serialize_aws_json_1_1(value: InstanceHealthSummary) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> InstanceHealthSummary:
     out: InstanceHealthSummary = {}  # type: ignore[typeddict-item]
-    if "instanceName" in data:
+    if data.get("instanceName") is not None:
         out["instance_name"] = data["instanceName"]
-    if "instanceHealth" in data:
+    if data.get("instanceHealth") is not None:
         import capo_lightsail.types.instance_health_state
 
         out["instance_health"] = (
@@ -59,7 +59,7 @@ def deserialize_aws_json_1_1(data: dict) -> InstanceHealthSummary:
                 data["instanceHealth"]
             )
         )
-    if "instanceHealthReason" in data:
+    if data.get("instanceHealthReason") is not None:
         import capo_lightsail.types.instance_health_reason
 
         out["instance_health_reason"] = (

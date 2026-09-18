@@ -23,6 +23,6 @@ def serialize_json(value: ClaimDeviceRequest) -> dict:
 
 def deserialize_json(data: dict) -> ClaimDeviceRequest:
     out: ClaimDeviceRequest = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     return out

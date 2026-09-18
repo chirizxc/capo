@@ -23,5 +23,7 @@ def deserialize_aws_json_1_1(data: list) -> NamedQueryList:
 
     out: NamedQueryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_athena.types.named_query.deserialize_aws_json_1_1(item))
     return out

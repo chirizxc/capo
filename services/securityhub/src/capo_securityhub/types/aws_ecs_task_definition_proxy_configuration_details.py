@@ -42,9 +42,9 @@ def serialize_json(value: AwsEcsTaskDefinitionProxyConfigurationDetails) -> dict
 
 def deserialize_json(data: dict) -> AwsEcsTaskDefinitionProxyConfigurationDetails:
     out: AwsEcsTaskDefinitionProxyConfigurationDetails = {}  # type: ignore[typeddict-item]
-    if "ContainerName" in data:
+    if data.get("ContainerName") is not None:
         out["container_name"] = data["ContainerName"]
-    if "ProxyConfigurationProperties" in data:
+    if data.get("ProxyConfigurationProperties") is not None:
         import capo_securityhub.types.aws_ecs_task_definition_proxy_configuration_proxy_configuration_properties_list
 
         out["proxy_configuration_properties"] = (
@@ -52,6 +52,6 @@ def deserialize_json(data: dict) -> AwsEcsTaskDefinitionProxyConfigurationDetail
                 data["ProxyConfigurationProperties"]
             )
         )
-    if "Type" in data:
+    if data.get("Type") is not None:
         out["type"] = data["Type"]
     return out

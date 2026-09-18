@@ -73,9 +73,9 @@ def serialize_json(value: Cors) -> dict:
 
 def deserialize_json(data: dict) -> Cors:
     out: Cors = {}  # type: ignore[typeddict-item]
-    if "allowCredentials" in data:
+    if data.get("allowCredentials") is not None:
         out["allow_credentials"] = data["allowCredentials"]
-    if "allowHeaders" in data:
+    if data.get("allowHeaders") is not None:
         import capo_apigatewayv2.types.cors_header_list
 
         out["allow_headers"] = (
@@ -83,7 +83,7 @@ def deserialize_json(data: dict) -> Cors:
                 data["allowHeaders"]
             )
         )
-    if "allowMethods" in data:
+    if data.get("allowMethods") is not None:
         import capo_apigatewayv2.types.cors_method_list
 
         out["allow_methods"] = (
@@ -91,7 +91,7 @@ def deserialize_json(data: dict) -> Cors:
                 data["allowMethods"]
             )
         )
-    if "allowOrigins" in data:
+    if data.get("allowOrigins") is not None:
         import capo_apigatewayv2.types.cors_origin_list
 
         out["allow_origins"] = (
@@ -99,7 +99,7 @@ def deserialize_json(data: dict) -> Cors:
                 data["allowOrigins"]
             )
         )
-    if "exposeHeaders" in data:
+    if data.get("exposeHeaders") is not None:
         import capo_apigatewayv2.types.cors_header_list
 
         out["expose_headers"] = (
@@ -107,6 +107,6 @@ def deserialize_json(data: dict) -> Cors:
                 data["exposeHeaders"]
             )
         )
-    if "maxAge" in data:
+    if data.get("maxAge") is not None:
         out["max_age"] = data["maxAge"]
     return out

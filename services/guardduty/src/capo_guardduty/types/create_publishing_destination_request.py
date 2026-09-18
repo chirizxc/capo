@@ -57,7 +57,7 @@ def serialize_json(value: CreatePublishingDestinationRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreatePublishingDestinationRequest:
     out: CreatePublishingDestinationRequest = {}  # type: ignore[typeddict-item]
-    if "destinationType" in data:
+    if data.get("destinationType") is not None:
         import capo_guardduty.types.destination_type
 
         out["destination_type"] = (
@@ -65,7 +65,7 @@ def deserialize_json(data: dict) -> CreatePublishingDestinationRequest:
                 data["destinationType"]
             )
         )
-    if "destinationProperties" in data:
+    if data.get("destinationProperties") is not None:
         import capo_guardduty.types.destination_properties
 
         out["destination_properties"] = (
@@ -73,9 +73,9 @@ def deserialize_json(data: dict) -> CreatePublishingDestinationRequest:
                 data["destinationProperties"]
             )
         )
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_guardduty.types.tag_map
 
         out["tags"] = capo_guardduty.types.tag_map.deserialize_json(data["tags"])

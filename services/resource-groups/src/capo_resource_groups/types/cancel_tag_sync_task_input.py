@@ -24,7 +24,7 @@ def serialize_json(value: CancelTagSyncTaskInput) -> dict:
 
 def deserialize_json(data: dict) -> CancelTagSyncTaskInput:
     out: CancelTagSyncTaskInput = {}  # type: ignore[typeddict-item]
-    if "TaskArn" in data:
+    if data.get("TaskArn") is not None:
         out["task_arn"] = data["TaskArn"]
     else:
         raise DeserializationError("CancelTagSyncTaskInput.task_arn required")

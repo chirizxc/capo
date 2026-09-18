@@ -36,7 +36,7 @@ def serialize_json(value: KafkaClusterEncryptionInTransit) -> dict:
 
 def deserialize_json(data: dict) -> KafkaClusterEncryptionInTransit:
     out: KafkaClusterEncryptionInTransit = {}  # type: ignore[typeddict-item]
-    if "encryptionType" in data:
+    if data.get("encryptionType") is not None:
         import capo_kafka.types.kafka_cluster_encryption_in_transit_type
 
         out["encryption_type"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> KafkaClusterEncryptionInTransit:
                 data["encryptionType"]
             )
         )
-    if "rootCaCertificate" in data:
+    if data.get("rootCaCertificate") is not None:
         out["root_ca_certificate"] = data["rootCaCertificate"]
     return out

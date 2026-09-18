@@ -61,11 +61,11 @@ def serialize_aws_json_1_1(value: RefreshSchemasStatus) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RefreshSchemasStatus:
     out: RefreshSchemasStatus = {}  # type: ignore[typeddict-item]
-    if "EndpointArn" in data:
+    if data.get("EndpointArn") is not None:
         out["endpoint_arn"] = data["EndpointArn"]
-    if "ReplicationInstanceArn" in data:
+    if data.get("ReplicationInstanceArn") is not None:
         out["replication_instance_arn"] = data["ReplicationInstanceArn"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_database_migration_service.types.refresh_schemas_status_type_value
 
         out["status"] = (
@@ -73,7 +73,7 @@ def deserialize_aws_json_1_1(data: dict) -> RefreshSchemasStatus:
                 data["Status"]
             )
         )
-    if "LastRefreshDate" in data:
+    if data.get("LastRefreshDate") is not None:
         import capo_database_migration_service.types.t_stamp
 
         out["last_refresh_date"] = (
@@ -81,6 +81,6 @@ def deserialize_aws_json_1_1(data: dict) -> RefreshSchemasStatus:
                 data["LastRefreshDate"]
             )
         )
-    if "LastFailureMessage" in data:
+    if data.get("LastFailureMessage") is not None:
         out["last_failure_message"] = data["LastFailureMessage"]
     return out

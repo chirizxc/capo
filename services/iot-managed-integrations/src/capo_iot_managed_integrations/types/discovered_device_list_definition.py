@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> DiscoveredDeviceListDefinition:
 
     out: DiscoveredDeviceListDefinition = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_iot_managed_integrations.types.discovered_device_summary.deserialize_json(
                 item

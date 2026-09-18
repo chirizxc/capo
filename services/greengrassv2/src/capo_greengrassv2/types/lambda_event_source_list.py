@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> LambdaEventSourceList:
 
     out: LambdaEventSourceList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_greengrassv2.types.lambda_event_source.deserialize_json(item))
     return out

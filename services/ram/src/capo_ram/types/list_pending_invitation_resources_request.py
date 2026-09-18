@@ -46,17 +46,17 @@ def serialize_json(value: ListPendingInvitationResourcesRequest) -> dict:
 
 def deserialize_json(data: dict) -> ListPendingInvitationResourcesRequest:
     out: ListPendingInvitationResourcesRequest = {}  # type: ignore[typeddict-item]
-    if "resourceShareInvitationArn" in data:
+    if data.get("resourceShareInvitationArn") is not None:
         out["resource_share_invitation_arn"] = data["resourceShareInvitationArn"]
     else:
         raise DeserializationError(
             "ListPendingInvitationResourcesRequest.resource_share_invitation_arn required"
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
-    if "resourceRegionScope" in data:
+    if data.get("resourceRegionScope") is not None:
         import capo_ram.types.resource_region_scope_filter
 
         out["resource_region_scope"] = (

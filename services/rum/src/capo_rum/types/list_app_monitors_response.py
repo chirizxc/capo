@@ -35,9 +35,9 @@ def serialize_json(value: ListAppMonitorsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListAppMonitorsResponse:
     out: ListAppMonitorsResponse = {}  # type: ignore[typeddict-item]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "AppMonitorSummaries" in data:
+    if data.get("AppMonitorSummaries") is not None:
         import capo_rum.types.app_monitor_summary_list
 
         out["app_monitor_summaries"] = (

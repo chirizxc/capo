@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> UserIndexCapacityFilters:
 
     out: UserIndexCapacityFilters = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_quicksight.types.user_index_capacity_filter.deserialize_json(item)
         )

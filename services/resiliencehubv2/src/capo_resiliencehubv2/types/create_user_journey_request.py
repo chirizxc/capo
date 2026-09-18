@@ -39,18 +39,18 @@ def serialize_json(value: CreateUserJourneyRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateUserJourneyRequest:
     out: CreateUserJourneyRequest = {}  # type: ignore[typeddict-item]
-    if "systemArn" in data:
+    if data.get("systemArn") is not None:
         out["system_arn"] = data["systemArn"]
     else:
         raise DeserializationError("CreateUserJourneyRequest.system_arn required")
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("CreateUserJourneyRequest.name required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "policyArn" in data:
+    if data.get("policyArn") is not None:
         out["policy_arn"] = data["policyArn"]
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     return out

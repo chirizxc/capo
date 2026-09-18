@@ -43,16 +43,16 @@ def serialize_json(value: AddGroupMemberRequest) -> dict:
 
 def deserialize_json(data: dict) -> AddGroupMemberRequest:
     out: AddGroupMemberRequest = {}  # type: ignore[typeddict-item]
-    if "GroupName" in data:
+    if data.get("GroupName") is not None:
         out["group_name"] = data["GroupName"]
     else:
         raise DeserializationError("AddGroupMemberRequest.group_name required")
-    if "MemberName" in data:
+    if data.get("MemberName") is not None:
         out["member_name"] = data["MemberName"]
     else:
         raise DeserializationError("AddGroupMemberRequest.member_name required")
-    if "MemberRealm" in data:
+    if data.get("MemberRealm") is not None:
         out["member_realm"] = data["MemberRealm"]
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
     return out

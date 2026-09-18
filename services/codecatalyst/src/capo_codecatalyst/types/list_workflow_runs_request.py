@@ -43,7 +43,7 @@ def serialize_json(value: ListWorkflowRunsRequest) -> dict:
 
 def deserialize_json(data: dict) -> ListWorkflowRunsRequest:
     out: ListWorkflowRunsRequest = {}  # type: ignore[typeddict-item]
-    if "sortBy" in data:
+    if data.get("sortBy") is not None:
         import capo_codecatalyst.types.workflow_run_sort_criteria_list
 
         out["sort_by"] = (

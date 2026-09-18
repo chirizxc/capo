@@ -57,7 +57,7 @@ def serialize_json(value: ListCisScanConfigurationsFilterCriteria) -> dict:
 
 def deserialize_json(data: dict) -> ListCisScanConfigurationsFilterCriteria:
     out: ListCisScanConfigurationsFilterCriteria = {}  # type: ignore[typeddict-item]
-    if "scanNameFilters" in data:
+    if data.get("scanNameFilters") is not None:
         import capo_inspector2.types.cis_scan_name_filter_list
 
         out["scan_name_filters"] = (
@@ -65,7 +65,7 @@ def deserialize_json(data: dict) -> ListCisScanConfigurationsFilterCriteria:
                 data["scanNameFilters"]
             )
         )
-    if "targetResourceTagFilters" in data:
+    if data.get("targetResourceTagFilters") is not None:
         import capo_inspector2.types.resource_tag_filter_list
 
         out["target_resource_tag_filters"] = (
@@ -73,7 +73,7 @@ def deserialize_json(data: dict) -> ListCisScanConfigurationsFilterCriteria:
                 data["targetResourceTagFilters"]
             )
         )
-    if "scanConfigurationArnFilters" in data:
+    if data.get("scanConfigurationArnFilters") is not None:
         import capo_inspector2.types.cis_scan_configuration_arn_filter_list
 
         out["scan_configuration_arn_filters"] = (

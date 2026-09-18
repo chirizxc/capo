@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: GetContainerAPIMetadataResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetContainerAPIMetadataResult:
     out: GetContainerAPIMetadataResult = {}  # type: ignore[typeddict-item]
-    if "metadata" in data:
+    if data.get("metadata") is not None:
         import capo_lightsail.types.container_service_metadata_entry_list
 
         out["metadata"] = (

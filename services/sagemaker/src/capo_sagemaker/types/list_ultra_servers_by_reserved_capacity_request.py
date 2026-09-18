@@ -35,10 +35,10 @@ def serialize_aws_json_1_1(value: ListUltraServersByReservedCapacityRequest) -> 
 
 def deserialize_aws_json_1_1(data: dict) -> ListUltraServersByReservedCapacityRequest:
     out: ListUltraServersByReservedCapacityRequest = {}  # type: ignore[typeddict-item]
-    if "ReservedCapacityArn" in data:
+    if data.get("ReservedCapacityArn") is not None:
         out["reserved_capacity_arn"] = data["ReservedCapacityArn"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

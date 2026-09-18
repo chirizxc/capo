@@ -39,11 +39,11 @@ def serialize_json(value: MultiRegionTargets) -> dict:
 
 def deserialize_json(data: dict) -> MultiRegionTargets:
     out: MultiRegionTargets = {}  # type: ignore[typeddict-item]
-    if "rtoInMinutes" in data:
+    if data.get("rtoInMinutes") is not None:
         out["rto_in_minutes"] = data["rtoInMinutes"]
-    if "rpoInMinutes" in data:
+    if data.get("rpoInMinutes") is not None:
         out["rpo_in_minutes"] = data["rpoInMinutes"]
-    if "disasterRecoveryApproach" in data:
+    if data.get("disasterRecoveryApproach") is not None:
         import capo_resiliencehubv2.types.multi_region_disaster_recovery_approach
 
         out["disaster_recovery_approach"] = (

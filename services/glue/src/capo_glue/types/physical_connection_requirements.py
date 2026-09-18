@@ -40,9 +40,9 @@ def serialize_aws_json_1_1(value: PhysicalConnectionRequirements) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PhysicalConnectionRequirements:
     out: PhysicalConnectionRequirements = {}  # type: ignore[typeddict-item]
-    if "SubnetId" in data:
+    if data.get("SubnetId") is not None:
         out["subnet_id"] = data["SubnetId"]
-    if "SecurityGroupIdList" in data:
+    if data.get("SecurityGroupIdList") is not None:
         import capo_glue.types.security_group_id_list
 
         out["security_group_id_list"] = (
@@ -50,6 +50,6 @@ def deserialize_aws_json_1_1(data: dict) -> PhysicalConnectionRequirements:
                 data["SecurityGroupIdList"]
             )
         )
-    if "AvailabilityZone" in data:
+    if data.get("AvailabilityZone") is not None:
         out["availability_zone"] = data["AvailabilityZone"]
     return out

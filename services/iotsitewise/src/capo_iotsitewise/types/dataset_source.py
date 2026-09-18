@@ -45,7 +45,7 @@ def serialize_json(value: DatasetSource) -> dict:
 
 def deserialize_json(data: dict) -> DatasetSource:
     out: DatasetSource = {}  # type: ignore[typeddict-item]
-    if "sourceType" in data:
+    if data.get("sourceType") is not None:
         import capo_iotsitewise.types.dataset_source_type
 
         out["source_type"] = (
@@ -55,7 +55,7 @@ def deserialize_json(data: dict) -> DatasetSource:
         )
     else:
         raise DeserializationError("DatasetSource.source_type required")
-    if "sourceFormat" in data:
+    if data.get("sourceFormat") is not None:
         import capo_iotsitewise.types.dataset_source_format
 
         out["source_format"] = (
@@ -65,7 +65,7 @@ def deserialize_json(data: dict) -> DatasetSource:
         )
     else:
         raise DeserializationError("DatasetSource.source_format required")
-    if "sourceDetail" in data:
+    if data.get("sourceDetail") is not None:
         import capo_iotsitewise.types.source_detail
 
         out["source_detail"] = capo_iotsitewise.types.source_detail.deserialize_json(

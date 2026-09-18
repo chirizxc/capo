@@ -36,10 +36,10 @@ def serialize_json(value: AggregationOutputItem) -> dict:
 
 def deserialize_json(data: dict) -> AggregationOutputItem:
     out: AggregationOutputItem = {}  # type: ignore[typeddict-item]
-    if "value" in data:
+    if data.get("value") is not None:
         out["value"] = data["value"]
-    if "count" in data:
+    if data.get("count") is not None:
         out["count"] = data["count"]
-    if "displayValue" in data:
+    if data.get("displayValue") is not None:
         out["display_value"] = data["displayValue"]
     return out

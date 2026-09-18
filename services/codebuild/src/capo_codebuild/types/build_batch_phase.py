@@ -71,7 +71,7 @@ def serialize_aws_json_1_1(value: BuildBatchPhase) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> BuildBatchPhase:
     out: BuildBatchPhase = {}  # type: ignore[typeddict-item]
-    if "phaseType" in data:
+    if data.get("phaseType") is not None:
         import capo_codebuild.types.build_batch_phase_type
 
         out["phase_type"] = (
@@ -79,27 +79,27 @@ def deserialize_aws_json_1_1(data: dict) -> BuildBatchPhase:
                 data["phaseType"]
             )
         )
-    if "phaseStatus" in data:
+    if data.get("phaseStatus") is not None:
         import capo_codebuild.types.status_type
 
         out["phase_status"] = capo_codebuild.types.status_type.deserialize_aws_json_1_1(
             data["phaseStatus"]
         )
-    if "startTime" in data:
+    if data.get("startTime") is not None:
         import capo_codebuild.types.timestamp
 
         out["start_time"] = capo_codebuild.types.timestamp.deserialize_aws_json_1_1(
             data["startTime"]
         )
-    if "endTime" in data:
+    if data.get("endTime") is not None:
         import capo_codebuild.types.timestamp
 
         out["end_time"] = capo_codebuild.types.timestamp.deserialize_aws_json_1_1(
             data["endTime"]
         )
-    if "durationInSeconds" in data:
+    if data.get("durationInSeconds") is not None:
         out["duration_in_seconds"] = data["durationInSeconds"]
-    if "contexts" in data:
+    if data.get("contexts") is not None:
         import capo_codebuild.types.phase_contexts
 
         out["contexts"] = capo_codebuild.types.phase_contexts.deserialize_aws_json_1_1(

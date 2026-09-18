@@ -82,17 +82,17 @@ def serialize_aws_json_1_0(value: PartnershipSummary) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> PartnershipSummary:
     out: PartnershipSummary = {}  # type: ignore[typeddict-item]
-    if "profileId" in data:
+    if data.get("profileId") is not None:
         out["profile_id"] = data["profileId"]
     else:
         raise DeserializationError("PartnershipSummary.profile_id required")
-    if "partnershipId" in data:
+    if data.get("partnershipId") is not None:
         out["partnership_id"] = data["partnershipId"]
     else:
         raise DeserializationError("PartnershipSummary.partnership_id required")
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "capabilities" in data:
+    if data.get("capabilities") is not None:
         import capo_b2bi.types.partnership_capabilities
 
         out["capabilities"] = (
@@ -100,7 +100,7 @@ def deserialize_aws_json_1_0(data: dict) -> PartnershipSummary:
                 data["capabilities"]
             )
         )
-    if "capabilityOptions" in data:
+    if data.get("capabilityOptions") is not None:
         import capo_b2bi.types.capability_options
 
         out["capability_options"] = (
@@ -108,9 +108,9 @@ def deserialize_aws_json_1_0(data: dict) -> PartnershipSummary:
                 data["capabilityOptions"]
             )
         )
-    if "tradingPartnerId" in data:
+    if data.get("tradingPartnerId") is not None:
         out["trading_partner_id"] = data["tradingPartnerId"]
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_b2bi.types.created_date
 
         out["created_at"] = capo_b2bi.types.created_date.deserialize_aws_json_1_0(
@@ -118,7 +118,7 @@ def deserialize_aws_json_1_0(data: dict) -> PartnershipSummary:
         )
     else:
         raise DeserializationError("PartnershipSummary.created_at required")
-    if "modifiedAt" in data:
+    if data.get("modifiedAt") is not None:
         import capo_b2bi.types.modified_date
 
         out["modified_at"] = capo_b2bi.types.modified_date.deserialize_aws_json_1_0(

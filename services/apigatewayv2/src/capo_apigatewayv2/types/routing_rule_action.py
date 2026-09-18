@@ -30,7 +30,7 @@ def serialize_json(value: RoutingRuleAction) -> dict:
 
 def deserialize_json(data: dict) -> RoutingRuleAction:
     out: RoutingRuleAction = {}  # type: ignore[typeddict-item]
-    if "invokeApi" in data:
+    if data.get("invokeApi") is not None:
         import capo_apigatewayv2.types.routing_rule_action_invoke_api
 
         out["invoke_api"] = (

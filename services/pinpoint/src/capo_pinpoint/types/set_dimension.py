@@ -36,13 +36,13 @@ def serialize_json(value: SetDimension) -> dict:
 
 def deserialize_json(data: dict) -> SetDimension:
     out: SetDimension = {}  # type: ignore[typeddict-item]
-    if "DimensionType" in data:
+    if data.get("DimensionType") is not None:
         import capo_pinpoint.types.dimension_type
 
         out["dimension_type"] = capo_pinpoint.types.dimension_type.deserialize_json(
             data["DimensionType"]
         )
-    if "Values" in data:
+    if data.get("Values") is not None:
         import capo_pinpoint.types.list_of__string
 
         out["values"] = capo_pinpoint.types.list_of__string.deserialize_json(

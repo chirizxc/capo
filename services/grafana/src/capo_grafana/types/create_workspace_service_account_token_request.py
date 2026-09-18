@@ -32,13 +32,13 @@ def serialize_json(value: CreateWorkspaceServiceAccountTokenRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateWorkspaceServiceAccountTokenRequest:
     out: CreateWorkspaceServiceAccountTokenRequest = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError(
             "CreateWorkspaceServiceAccountTokenRequest.name required"
         )
-    if "secondsToLive" in data:
+    if data.get("secondsToLive") is not None:
         out["seconds_to_live"] = data["secondsToLive"]
     else:
         raise DeserializationError(

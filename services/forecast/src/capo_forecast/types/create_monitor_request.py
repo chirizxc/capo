@@ -35,15 +35,15 @@ def serialize_aws_json_1_1(value: CreateMonitorRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateMonitorRequest:
     out: CreateMonitorRequest = {}  # type: ignore[typeddict-item]
-    if "MonitorName" in data:
+    if data.get("MonitorName") is not None:
         out["monitor_name"] = data["MonitorName"]
     else:
         raise DeserializationError("CreateMonitorRequest.monitor_name required")
-    if "ResourceArn" in data:
+    if data.get("ResourceArn") is not None:
         out["resource_arn"] = data["ResourceArn"]
     else:
         raise DeserializationError("CreateMonitorRequest.resource_arn required")
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_forecast.types.tags
 
         out["tags"] = capo_forecast.types.tags.deserialize_aws_json_1_1(data["Tags"])

@@ -23,6 +23,6 @@ def serialize_json(value: AmazonMskCluster) -> dict:
 
 def deserialize_json(data: dict) -> AmazonMskCluster:
     out: AmazonMskCluster = {}  # type: ignore[typeddict-item]
-    if "mskClusterArn" in data:
+    if data.get("mskClusterArn") is not None:
         out["msk_cluster_arn"] = data["mskClusterArn"]
     return out

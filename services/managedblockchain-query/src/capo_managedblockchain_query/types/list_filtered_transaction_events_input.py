@@ -93,13 +93,13 @@ def serialize_json(value: ListFilteredTransactionEventsInput) -> dict:
 
 def deserialize_json(data: dict) -> ListFilteredTransactionEventsInput:
     out: ListFilteredTransactionEventsInput = {}  # type: ignore[typeddict-item]
-    if "network" in data:
+    if data.get("network") is not None:
         out["network"] = data["network"]
     else:
         raise DeserializationError(
             "ListFilteredTransactionEventsInput.network required"
         )
-    if "addressIdentifierFilter" in data:
+    if data.get("addressIdentifierFilter") is not None:
         import capo_managedblockchain_query.types.address_identifier_filter
 
         out["address_identifier_filter"] = (
@@ -111,7 +111,7 @@ def deserialize_json(data: dict) -> ListFilteredTransactionEventsInput:
         raise DeserializationError(
             "ListFilteredTransactionEventsInput.address_identifier_filter required"
         )
-    if "timeFilter" in data:
+    if data.get("timeFilter") is not None:
         import capo_managedblockchain_query.types.time_filter
 
         out["time_filter"] = (
@@ -119,7 +119,7 @@ def deserialize_json(data: dict) -> ListFilteredTransactionEventsInput:
                 data["timeFilter"]
             )
         )
-    if "voutFilter" in data:
+    if data.get("voutFilter") is not None:
         import capo_managedblockchain_query.types.vout_filter
 
         out["vout_filter"] = (
@@ -127,7 +127,7 @@ def deserialize_json(data: dict) -> ListFilteredTransactionEventsInput:
                 data["voutFilter"]
             )
         )
-    if "confirmationStatusFilter" in data:
+    if data.get("confirmationStatusFilter") is not None:
         import capo_managedblockchain_query.types.confirmation_status_filter
 
         out["confirmation_status_filter"] = (
@@ -135,7 +135,7 @@ def deserialize_json(data: dict) -> ListFilteredTransactionEventsInput:
                 data["confirmationStatusFilter"]
             )
         )
-    if "sort" in data:
+    if data.get("sort") is not None:
         import capo_managedblockchain_query.types.list_filtered_transaction_events_sort
 
         out["sort"] = (
@@ -143,8 +143,8 @@ def deserialize_json(data: dict) -> ListFilteredTransactionEventsInput:
                 data["sort"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
     return out

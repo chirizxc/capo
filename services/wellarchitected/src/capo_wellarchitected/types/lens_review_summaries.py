@@ -25,6 +25,8 @@ def deserialize_json(data: list) -> LensReviewSummaries:
 
     out: LensReviewSummaries = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_wellarchitected.types.lens_review_summary.deserialize_json(item)
         )

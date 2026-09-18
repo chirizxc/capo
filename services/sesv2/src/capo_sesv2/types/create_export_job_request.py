@@ -36,7 +36,7 @@ def serialize_json(value: CreateExportJobRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateExportJobRequest:
     out: CreateExportJobRequest = {}  # type: ignore[typeddict-item]
-    if "ExportDataSource" in data:
+    if data.get("ExportDataSource") is not None:
         import capo_sesv2.types.export_data_source
 
         out["export_data_source"] = (
@@ -46,7 +46,7 @@ def deserialize_json(data: dict) -> CreateExportJobRequest:
         )
     else:
         raise DeserializationError("CreateExportJobRequest.export_data_source required")
-    if "ExportDestination" in data:
+    if data.get("ExportDestination") is not None:
         import capo_sesv2.types.export_destination
 
         out["export_destination"] = (

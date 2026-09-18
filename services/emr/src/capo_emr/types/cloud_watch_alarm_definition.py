@@ -63,7 +63,15 @@ def serialize_aws_json_1_1(value: CloudWatchAlarmDefinition) -> dict:
             value["statistic"]
         )
     if "threshold" in value:
-        out["Threshold"] = value["threshold"]
+        out["Threshold"] = (
+            "NaN"
+            if value["threshold"] != value["threshold"]
+            else "Infinity"
+            if value["threshold"] == float("inf")
+            else "-Infinity"
+            if value["threshold"] == float("-inf")
+            else value["threshold"]
+        )
     if "unit" in value:
         import capo_emr.types.unit
 
@@ -79,7 +87,7 @@ def serialize_aws_json_1_1(value: CloudWatchAlarmDefinition) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CloudWatchAlarmDefinition:
     out: CloudWatchAlarmDefinition = {}  # type: ignore[typeddict-item]
-    if "ComparisonOperator" in data:
+    if data.get("ComparisonOperator") is not None:
         import capo_emr.types.comparison_operator
 
         out["comparison_operator"] = (
@@ -87,27 +95,27 @@ def deserialize_aws_json_1_1(data: dict) -> CloudWatchAlarmDefinition:
                 data["ComparisonOperator"]
             )
         )
-    if "EvaluationPeriods" in data:
+    if data.get("EvaluationPeriods") is not None:
         out["evaluation_periods"] = data["EvaluationPeriods"]
-    if "MetricName" in data:
+    if data.get("MetricName") is not None:
         out["metric_name"] = data["MetricName"]
-    if "Namespace" in data:
+    if data.get("Namespace") is not None:
         out["namespace"] = data["Namespace"]
-    if "Period" in data:
+    if data.get("Period") is not None:
         out["period"] = data["Period"]
-    if "Statistic" in data:
+    if data.get("Statistic") is not None:
         import capo_emr.types.statistic
 
         out["statistic"] = capo_emr.types.statistic.deserialize_aws_json_1_1(
             data["Statistic"]
         )
-    if "Threshold" in data:
-        out["threshold"] = data["Threshold"]
-    if "Unit" in data:
+    if data.get("Threshold") is not None:
+        out["threshold"] = float(data["Threshold"])
+    if data.get("Unit") is not None:
         import capo_emr.types.unit
 
         out["unit"] = capo_emr.types.unit.deserialize_aws_json_1_1(data["Unit"])
-    if "Dimensions" in data:
+    if data.get("Dimensions") is not None:
         import capo_emr.types.metric_dimension_list
 
         out["dimensions"] = (

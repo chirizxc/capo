@@ -28,6 +28,6 @@ def serialize_json(value: PutPortalProductSharingPolicyRequest) -> dict:
 
 def deserialize_json(data: dict) -> PutPortalProductSharingPolicyRequest:
     out: PutPortalProductSharingPolicyRequest = {}  # type: ignore[typeddict-item]
-    if "policyDocument" in data:
+    if data.get("policyDocument") is not None:
         out["policy_document"] = data["policyDocument"]
     return out

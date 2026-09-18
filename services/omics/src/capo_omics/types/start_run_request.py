@@ -131,56 +131,56 @@ def serialize_json(value: StartRunRequest) -> dict:
 
 def deserialize_json(data: dict) -> StartRunRequest:
     out: StartRunRequest = {}  # type: ignore[typeddict-item]
-    if "workflowId" in data:
+    if data.get("workflowId") is not None:
         out["workflow_id"] = data["workflowId"]
-    if "workflowType" in data:
+    if data.get("workflowType") is not None:
         out["workflow_type"] = data["workflowType"]
-    if "runId" in data:
+    if data.get("runId") is not None:
         out["run_id"] = data["runId"]
-    if "roleArn" in data:
+    if data.get("roleArn") is not None:
         out["role_arn"] = data["roleArn"]
     else:
         raise DeserializationError("StartRunRequest.role_arn required")
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "cacheId" in data:
+    if data.get("cacheId") is not None:
         out["cache_id"] = data["cacheId"]
-    if "cacheBehavior" in data:
+    if data.get("cacheBehavior") is not None:
         out["cache_behavior"] = data["cacheBehavior"]
-    if "runGroupId" in data:
+    if data.get("runGroupId") is not None:
         out["run_group_id"] = data["runGroupId"]
-    if "priority" in data:
+    if data.get("priority") is not None:
         out["priority"] = data["priority"]
-    if "parameters" in data:
+    if data.get("parameters") is not None:
         out["parameters"] = data["parameters"]
-    if "storageCapacity" in data:
+    if data.get("storageCapacity") is not None:
         out["storage_capacity"] = data["storageCapacity"]
-    if "outputUri" in data:
+    if data.get("outputUri") is not None:
         out["output_uri"] = data["outputUri"]
     else:
         raise DeserializationError("StartRunRequest.output_uri required")
-    if "logLevel" in data:
+    if data.get("logLevel") is not None:
         out["log_level"] = data["logLevel"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_omics.types.tag_map
 
         out["tags"] = capo_omics.types.tag_map.deserialize_json(data["tags"])
-    if "requestId" in data:
+    if data.get("requestId") is not None:
         out["request_id"] = data["requestId"]
     else:
         raise DeserializationError("StartRunRequest.request_id required")
-    if "retentionMode" in data:
+    if data.get("retentionMode") is not None:
         out["retention_mode"] = data["retentionMode"]
-    if "storageType" in data:
+    if data.get("storageType") is not None:
         out["storage_type"] = data["storageType"]
-    if "workflowOwnerId" in data:
+    if data.get("workflowOwnerId") is not None:
         out["workflow_owner_id"] = data["workflowOwnerId"]
-    if "workflowVersionName" in data:
+    if data.get("workflowVersionName") is not None:
         out["workflow_version_name"] = data["workflowVersionName"]
-    if "networkingMode" in data:
+    if data.get("networkingMode") is not None:
         out["networking_mode"] = data["networkingMode"]
-    if "configurationName" in data:
+    if data.get("configurationName") is not None:
         out["configuration_name"] = data["configurationName"]
-    if "engineSettings" in data:
+    if data.get("engineSettings") is not None:
         out["engine_settings"] = data["engineSettings"]
     return out

@@ -45,14 +45,14 @@ def serialize_json(value: CustomPromptInputParameters) -> dict:
 
 def deserialize_json(data: dict) -> CustomPromptInputParameters:
     out: CustomPromptInputParameters = {}  # type: ignore[typeddict-item]
-    if "ResponseLength" in data:
+    if data.get("ResponseLength") is not None:
         out["response_length"] = data["ResponseLength"]
-    if "OutputStyle" in data:
+    if data.get("OutputStyle") is not None:
         out["output_style"] = data["OutputStyle"]
-    if "Identity" in data:
+    if data.get("Identity") is not None:
         out["identity"] = data["Identity"]
-    if "Tone" in data:
+    if data.get("Tone") is not None:
         out["tone"] = data["Tone"]
-    if "CustomInstructions" in data:
+    if data.get("CustomInstructions") is not None:
         out["custom_instructions"] = data["CustomInstructions"]
     return out

@@ -38,16 +38,16 @@ def serialize_json(value: Page) -> dict:
 
 def deserialize_json(data: dict) -> Page:
     out: Page = {}  # type: ignore[typeddict-item]
-    if "lineRange" in data:
+    if data.get("lineRange") is not None:
         import capo_macie2.types.range
 
         out["line_range"] = capo_macie2.types.range.deserialize_json(data["lineRange"])
-    if "offsetRange" in data:
+    if data.get("offsetRange") is not None:
         import capo_macie2.types.range
 
         out["offset_range"] = capo_macie2.types.range.deserialize_json(
             data["offsetRange"]
         )
-    if "pageNumber" in data:
+    if data.get("pageNumber") is not None:
         out["page_number"] = data["pageNumber"]
     return out

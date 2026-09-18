@@ -27,6 +27,8 @@ def deserialize_aws_json_1_1(data: list) -> GroupMemberships:
 
     out: GroupMemberships = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_identitystore.types.group_membership.deserialize_aws_json_1_1(item)
         )

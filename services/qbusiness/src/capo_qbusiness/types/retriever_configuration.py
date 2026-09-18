@@ -52,7 +52,7 @@ def serialize_json(value: RetrieverConfiguration) -> dict:
 
 
 def deserialize_json(data: dict) -> RetrieverConfiguration:
-    if "nativeIndexConfiguration" in data:
+    if data.get("nativeIndexConfiguration") is not None:
         import capo_qbusiness.types.native_index_configuration
 
         return {
@@ -60,7 +60,7 @@ def deserialize_json(data: dict) -> RetrieverConfiguration:
                 data["nativeIndexConfiguration"]
             )
         }
-    elif "kendraIndexConfiguration" in data:
+    elif data.get("kendraIndexConfiguration") is not None:
         import capo_qbusiness.types.kendra_index_configuration
 
         return {

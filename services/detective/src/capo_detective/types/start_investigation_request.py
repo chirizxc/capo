@@ -43,15 +43,15 @@ def serialize_json(value: StartInvestigationRequest) -> dict:
 
 def deserialize_json(data: dict) -> StartInvestigationRequest:
     out: StartInvestigationRequest = {}  # type: ignore[typeddict-item]
-    if "GraphArn" in data:
+    if data.get("GraphArn") is not None:
         out["graph_arn"] = data["GraphArn"]
     else:
         raise DeserializationError("StartInvestigationRequest.graph_arn required")
-    if "EntityArn" in data:
+    if data.get("EntityArn") is not None:
         out["entity_arn"] = data["EntityArn"]
     else:
         raise DeserializationError("StartInvestigationRequest.entity_arn required")
-    if "ScopeStartTime" in data:
+    if data.get("ScopeStartTime") is not None:
         import capo_detective.types.timestamp
 
         out["scope_start_time"] = capo_detective.types.timestamp.deserialize_json(
@@ -61,7 +61,7 @@ def deserialize_json(data: dict) -> StartInvestigationRequest:
         raise DeserializationError(
             "StartInvestigationRequest.scope_start_time required"
         )
-    if "ScopeEndTime" in data:
+    if data.get("ScopeEndTime") is not None:
         import capo_detective.types.timestamp
 
         out["scope_end_time"] = capo_detective.types.timestamp.deserialize_json(

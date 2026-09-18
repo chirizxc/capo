@@ -87,11 +87,12 @@ class OpportunityFromEngagementTask:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_partnercentral_selling.types.start_opportunity_from_engagement_task_request.StartOpportunityFromEngagementTaskRequest = {}  # type: ignore[typeddict-item]
-        input_["catalog"] = catalog
-        input_["client_token"] = client_token
-        input_["identifier"] = identifier
-        input_["context_identifier"] = context_identifier
+        input_: capo_partnercentral_selling.types.start_opportunity_from_engagement_task_request.StartOpportunityFromEngagementTaskRequest = {
+            "catalog": catalog,
+            "client_token": client_token,
+            "identifier": identifier,
+            "context_identifier": context_identifier,
+        }
         if tags is not None:
             input_["tags"] = tags
 
@@ -100,6 +101,7 @@ class OpportunityFromEngagementTask:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -164,14 +166,15 @@ class OpportunityFromEngagementTask:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_partnercentral_selling.types.list_opportunity_from_engagement_tasks_request.ListOpportunityFromEngagementTasksRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_partnercentral_selling.types.list_opportunity_from_engagement_tasks_request.ListOpportunityFromEngagementTasksRequest = {
+            "catalog": catalog
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
             input_["next_token"] = next_token
         if sort is not None:
             input_["sort"] = sort
-        input_["catalog"] = catalog
         if task_status is not None:
             input_["task_status"] = task_status
         if task_identifier is not None:
@@ -188,6 +191,7 @@ class OpportunityFromEngagementTask:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -241,11 +245,12 @@ class AsyncOpportunityFromEngagementTask:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_partnercentral_selling.types.start_opportunity_from_engagement_task_request.StartOpportunityFromEngagementTaskRequest = {}  # type: ignore[typeddict-item]
-        input_["catalog"] = catalog
-        input_["client_token"] = client_token
-        input_["identifier"] = identifier
-        input_["context_identifier"] = context_identifier
+        input_: capo_partnercentral_selling.types.start_opportunity_from_engagement_task_request.StartOpportunityFromEngagementTaskRequest = {
+            "catalog": catalog,
+            "client_token": client_token,
+            "identifier": identifier,
+            "context_identifier": context_identifier,
+        }
         if tags is not None:
             input_["tags"] = tags
 
@@ -254,6 +259,7 @@ class AsyncOpportunityFromEngagementTask:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -319,14 +325,15 @@ class AsyncOpportunityFromEngagementTask:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_partnercentral_selling.types.list_opportunity_from_engagement_tasks_request.ListOpportunityFromEngagementTasksRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_partnercentral_selling.types.list_opportunity_from_engagement_tasks_request.ListOpportunityFromEngagementTasksRequest = {
+            "catalog": catalog
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
             input_["next_token"] = next_token
         if sort is not None:
             input_["sort"] = sort
-        input_["catalog"] = catalog
         if task_status is not None:
             input_["task_status"] = task_status
         if task_identifier is not None:
@@ -343,4 +350,5 @@ class AsyncOpportunityFromEngagementTask:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

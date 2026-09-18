@@ -77,47 +77,47 @@ def serialize_aws_json_1_0(value: PoolInformation) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> PoolInformation:
     out: PoolInformation = {}  # type: ignore[typeddict-item]
-    if "PoolArn" in data:
+    if data.get("PoolArn") is not None:
         out["pool_arn"] = data["PoolArn"]
     else:
         raise DeserializationError("PoolInformation.pool_arn required")
-    if "PoolId" in data:
+    if data.get("PoolId") is not None:
         out["pool_id"] = data["PoolId"]
     else:
         raise DeserializationError("PoolInformation.pool_id required")
-    if "Status" in data:
+    if data.get("Status") is not None:
         out["status"] = data["Status"]
     else:
         raise DeserializationError("PoolInformation.status required")
-    if "MessageType" in data:
+    if data.get("MessageType") is not None:
         out["message_type"] = data["MessageType"]
     else:
         raise DeserializationError("PoolInformation.message_type required")
-    if "TwoWayEnabled" in data:
+    if data.get("TwoWayEnabled") is not None:
         out["two_way_enabled"] = data["TwoWayEnabled"]
     else:
         out["two_way_enabled"] = False
-    if "TwoWayChannelArn" in data:
+    if data.get("TwoWayChannelArn") is not None:
         out["two_way_channel_arn"] = data["TwoWayChannelArn"]
-    if "TwoWayChannelRole" in data:
+    if data.get("TwoWayChannelRole") is not None:
         out["two_way_channel_role"] = data["TwoWayChannelRole"]
-    if "SelfManagedOptOutsEnabled" in data:
+    if data.get("SelfManagedOptOutsEnabled") is not None:
         out["self_managed_opt_outs_enabled"] = data["SelfManagedOptOutsEnabled"]
     else:
         out["self_managed_opt_outs_enabled"] = False
-    if "OptOutListName" in data:
+    if data.get("OptOutListName") is not None:
         out["opt_out_list_name"] = data["OptOutListName"]
     else:
         raise DeserializationError("PoolInformation.opt_out_list_name required")
-    if "SharedRoutesEnabled" in data:
+    if data.get("SharedRoutesEnabled") is not None:
         out["shared_routes_enabled"] = data["SharedRoutesEnabled"]
     else:
         out["shared_routes_enabled"] = False
-    if "DeletionProtectionEnabled" in data:
+    if data.get("DeletionProtectionEnabled") is not None:
         out["deletion_protection_enabled"] = data["DeletionProtectionEnabled"]
     else:
         out["deletion_protection_enabled"] = False
-    if "CreatedTimestamp" in data:
+    if data.get("CreatedTimestamp") is not None:
         import capo_pinpoint_sms_voice_v2.types._prelude.timestamp
 
         out["created_timestamp"] = (

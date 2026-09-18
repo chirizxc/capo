@@ -38,7 +38,7 @@ def serialize_aws_json_1_1(value: DescribeFleetCapacityOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeFleetCapacityOutput:
     out: DescribeFleetCapacityOutput = {}  # type: ignore[typeddict-item]
-    if "FleetCapacity" in data:
+    if data.get("FleetCapacity") is not None:
         import capo_gamelift.types.fleet_capacity_list
 
         out["fleet_capacity"] = (
@@ -46,6 +46,6 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeFleetCapacityOutput:
                 data["FleetCapacity"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

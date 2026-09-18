@@ -36,13 +36,13 @@ def serialize_json(value: FieldSortOptions) -> dict:
 
 def deserialize_json(data: dict) -> FieldSortOptions:
     out: FieldSortOptions = {}  # type: ignore[typeddict-item]
-    if "FieldSort" in data:
+    if data.get("FieldSort") is not None:
         import capo_quicksight.types.field_sort
 
         out["field_sort"] = capo_quicksight.types.field_sort.deserialize_json(
             data["FieldSort"]
         )
-    if "ColumnSort" in data:
+    if data.get("ColumnSort") is not None:
         import capo_quicksight.types.column_sort
 
         out["column_sort"] = capo_quicksight.types.column_sort.deserialize_json(

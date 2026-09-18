@@ -32,7 +32,7 @@ def serialize_json(value: GlueSelfGrantStatusOutput) -> dict:
 
 def deserialize_json(data: dict) -> GlueSelfGrantStatusOutput:
     out: GlueSelfGrantStatusOutput = {}  # type: ignore[typeddict-item]
-    if "selfGrantStatusDetails" in data:
+    if data.get("selfGrantStatusDetails") is not None:
         import capo_datazone.types.self_grant_status_details
 
         out["self_grant_status_details"] = (

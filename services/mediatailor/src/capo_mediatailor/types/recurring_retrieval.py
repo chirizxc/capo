@@ -77,7 +77,7 @@ def serialize_json(value: RecurringRetrieval) -> dict:
 
 def deserialize_json(data: dict) -> RecurringRetrieval:
     out: RecurringRetrieval = {}  # type: ignore[typeddict-item]
-    if "DynamicVariables" in data:
+    if data.get("DynamicVariables") is not None:
         import capo_mediatailor.types.__map_of__string
 
         out["dynamic_variables"] = (
@@ -85,9 +85,9 @@ def deserialize_json(data: dict) -> RecurringRetrieval:
                 data["DynamicVariables"]
             )
         )
-    if "DelayAfterAvailEndSeconds" in data:
+    if data.get("DelayAfterAvailEndSeconds") is not None:
         out["delay_after_avail_end_seconds"] = data["DelayAfterAvailEndSeconds"]
-    if "TrafficShapingType" in data:
+    if data.get("TrafficShapingType") is not None:
         import capo_mediatailor.types.traffic_shaping_type
 
         out["traffic_shaping_type"] = (
@@ -95,7 +95,7 @@ def deserialize_json(data: dict) -> RecurringRetrieval:
                 data["TrafficShapingType"]
             )
         )
-    if "TrafficShapingRetrievalWindow" in data:
+    if data.get("TrafficShapingRetrievalWindow") is not None:
         import capo_mediatailor.types.traffic_shaping_retrieval_window
 
         out["traffic_shaping_retrieval_window"] = (
@@ -103,7 +103,7 @@ def deserialize_json(data: dict) -> RecurringRetrieval:
                 data["TrafficShapingRetrievalWindow"]
             )
         )
-    if "TrafficShapingTpsConfiguration" in data:
+    if data.get("TrafficShapingTpsConfiguration") is not None:
         import capo_mediatailor.types.traffic_shaping_tps_configuration
 
         out["traffic_shaping_tps_configuration"] = (

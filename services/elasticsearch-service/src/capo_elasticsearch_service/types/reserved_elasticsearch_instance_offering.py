@@ -58,9 +58,25 @@ def serialize_json(value: ReservedElasticsearchInstanceOffering) -> dict:
         )
     out["Duration"] = value.get("duration", 0)
     if "fixed_price" in value:
-        out["FixedPrice"] = value["fixed_price"]
+        out["FixedPrice"] = (
+            "NaN"
+            if value["fixed_price"] != value["fixed_price"]
+            else "Infinity"
+            if value["fixed_price"] == float("inf")
+            else "-Infinity"
+            if value["fixed_price"] == float("-inf")
+            else value["fixed_price"]
+        )
     if "usage_price" in value:
-        out["UsagePrice"] = value["usage_price"]
+        out["UsagePrice"] = (
+            "NaN"
+            if value["usage_price"] != value["usage_price"]
+            else "Infinity"
+            if value["usage_price"] == float("inf")
+            else "-Infinity"
+            if value["usage_price"] == float("-inf")
+            else value["usage_price"]
+        )
     if "currency_code" in value:
         out["CurrencyCode"] = value["currency_code"]
     if "payment_option" in value:
@@ -84,11 +100,11 @@ def serialize_json(value: ReservedElasticsearchInstanceOffering) -> dict:
 
 def deserialize_json(data: dict) -> ReservedElasticsearchInstanceOffering:
     out: ReservedElasticsearchInstanceOffering = {}  # type: ignore[typeddict-item]
-    if "ReservedElasticsearchInstanceOfferingId" in data:
+    if data.get("ReservedElasticsearchInstanceOfferingId") is not None:
         out["reserved_elasticsearch_instance_offering_id"] = data[
             "ReservedElasticsearchInstanceOfferingId"
         ]
-    if "ElasticsearchInstanceType" in data:
+    if data.get("ElasticsearchInstanceType") is not None:
         import capo_elasticsearch_service.types.es_partition_instance_type
 
         out["elasticsearch_instance_type"] = (
@@ -96,17 +112,17 @@ def deserialize_json(data: dict) -> ReservedElasticsearchInstanceOffering:
                 data["ElasticsearchInstanceType"]
             )
         )
-    if "Duration" in data:
+    if data.get("Duration") is not None:
         out["duration"] = data["Duration"]
     else:
         out["duration"] = 0
-    if "FixedPrice" in data:
-        out["fixed_price"] = data["FixedPrice"]
-    if "UsagePrice" in data:
-        out["usage_price"] = data["UsagePrice"]
-    if "CurrencyCode" in data:
+    if data.get("FixedPrice") is not None:
+        out["fixed_price"] = float(data["FixedPrice"])
+    if data.get("UsagePrice") is not None:
+        out["usage_price"] = float(data["UsagePrice"])
+    if data.get("CurrencyCode") is not None:
         out["currency_code"] = data["CurrencyCode"]
-    if "PaymentOption" in data:
+    if data.get("PaymentOption") is not None:
         import capo_elasticsearch_service.types.reserved_elasticsearch_instance_payment_option
 
         out["payment_option"] = (
@@ -114,7 +130,7 @@ def deserialize_json(data: dict) -> ReservedElasticsearchInstanceOffering:
                 data["PaymentOption"]
             )
         )
-    if "RecurringCharges" in data:
+    if data.get("RecurringCharges") is not None:
         import capo_elasticsearch_service.types.recurring_charge_list
 
         out["recurring_charges"] = (

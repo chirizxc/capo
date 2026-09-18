@@ -32,19 +32,19 @@ def serialize_aws_json_1_1(value: PutInlinePolicyToPermissionSetRequest) -> dict
 
 def deserialize_aws_json_1_1(data: dict) -> PutInlinePolicyToPermissionSetRequest:
     out: PutInlinePolicyToPermissionSetRequest = {}  # type: ignore[typeddict-item]
-    if "InstanceArn" in data:
+    if data.get("InstanceArn") is not None:
         out["instance_arn"] = data["InstanceArn"]
     else:
         raise DeserializationError(
             "PutInlinePolicyToPermissionSetRequest.instance_arn required"
         )
-    if "PermissionSetArn" in data:
+    if data.get("PermissionSetArn") is not None:
         out["permission_set_arn"] = data["PermissionSetArn"]
     else:
         raise DeserializationError(
             "PutInlinePolicyToPermissionSetRequest.permission_set_arn required"
         )
-    if "InlinePolicy" in data:
+    if data.get("InlinePolicy") is not None:
         out["inline_policy"] = data["InlinePolicy"]
     else:
         raise DeserializationError(

@@ -20,18 +20,26 @@ class UserDefined(TypedDict, closed=True):
 # --- restJson1 ser/de ---
 def serialize_json(value: UserDefined) -> dict:
     out: dict = {}
-    out["Value"] = value["value"]
+    out["Value"] = (
+        "NaN"
+        if value["value"] != value["value"]
+        else "Infinity"
+        if value["value"] == float("inf")
+        else "-Infinity"
+        if value["value"] == float("-inf")
+        else value["value"]
+    )
     out["Unit"] = value["unit"]
     return out
 
 
 def deserialize_json(data: dict) -> UserDefined:
     out: UserDefined = {}  # type: ignore[typeddict-item]
-    if "Value" in data:
-        out["value"] = data["Value"]
+    if data.get("Value") is not None:
+        out["value"] = float(data["Value"])
     else:
         raise DeserializationError("UserDefined.value required")
-    if "Unit" in data:
+    if data.get("Unit") is not None:
         out["unit"] = data["Unit"]
     else:
         raise DeserializationError("UserDefined.unit required")

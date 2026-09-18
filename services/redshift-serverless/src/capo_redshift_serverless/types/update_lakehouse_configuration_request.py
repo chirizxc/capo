@@ -53,20 +53,20 @@ def serialize_aws_json_1_1(value: UpdateLakehouseConfigurationRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateLakehouseConfigurationRequest:
     out: UpdateLakehouseConfigurationRequest = {}  # type: ignore[typeddict-item]
-    if "namespaceName" in data:
+    if data.get("namespaceName") is not None:
         out["namespace_name"] = data["namespaceName"]
     else:
         raise DeserializationError(
             "UpdateLakehouseConfigurationRequest.namespace_name required"
         )
-    if "lakehouseRegistration" in data:
+    if data.get("lakehouseRegistration") is not None:
         out["lakehouse_registration"] = data["lakehouseRegistration"]
-    if "catalogName" in data:
+    if data.get("catalogName") is not None:
         out["catalog_name"] = data["catalogName"]
-    if "lakehouseIdcRegistration" in data:
+    if data.get("lakehouseIdcRegistration") is not None:
         out["lakehouse_idc_registration"] = data["lakehouseIdcRegistration"]
-    if "lakehouseIdcApplicationArn" in data:
+    if data.get("lakehouseIdcApplicationArn") is not None:
         out["lakehouse_idc_application_arn"] = data["lakehouseIdcApplicationArn"]
-    if "dryRun" in data:
+    if data.get("dryRun") is not None:
         out["dry_run"] = data["dryRun"]
     return out

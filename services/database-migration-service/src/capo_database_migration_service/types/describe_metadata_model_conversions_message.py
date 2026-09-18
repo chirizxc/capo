@@ -47,13 +47,13 @@ def serialize_aws_json_1_1(value: DescribeMetadataModelConversionsMessage) -> di
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeMetadataModelConversionsMessage:
     out: DescribeMetadataModelConversionsMessage = {}  # type: ignore[typeddict-item]
-    if "MigrationProjectIdentifier" in data:
+    if data.get("MigrationProjectIdentifier") is not None:
         out["migration_project_identifier"] = data["MigrationProjectIdentifier"]
     else:
         raise DeserializationError(
             "DescribeMetadataModelConversionsMessage.migration_project_identifier required"
         )
-    if "Filters" in data:
+    if data.get("Filters") is not None:
         import capo_database_migration_service.types.filter_list
 
         out["filters"] = (
@@ -61,8 +61,8 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeMetadataModelConversionsMess
                 data["Filters"]
             )
         )
-    if "Marker" in data:
+    if data.get("Marker") is not None:
         out["marker"] = data["Marker"]
-    if "MaxRecords" in data:
+    if data.get("MaxRecords") is not None:
         out["max_records"] = data["MaxRecords"]
     return out

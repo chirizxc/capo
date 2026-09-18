@@ -36,15 +36,15 @@ def serialize_json(value: DeleteDictionaryResponse) -> dict:
 
 def deserialize_json(data: dict) -> DeleteDictionaryResponse:
     out: DeleteDictionaryResponse = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("DeleteDictionaryResponse.arn required")
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("DeleteDictionaryResponse.id required")
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_elementalinference.types.dictionary_status
 
         out["status"] = (

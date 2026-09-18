@@ -32,7 +32,7 @@ def serialize_json(value: MatchRationaleItem) -> dict:
 
 
 def deserialize_json(data: dict) -> MatchRationaleItem:
-    if "textMatches" in data:
+    if data.get("textMatches") is not None:
         import capo_datazone.types.text_matches
 
         return {

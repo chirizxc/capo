@@ -39,13 +39,13 @@ def serialize_json(value: BrokerCountUpdateInfo) -> dict:
 
 def deserialize_json(data: dict) -> BrokerCountUpdateInfo:
     out: BrokerCountUpdateInfo = {}  # type: ignore[typeddict-item]
-    if "createdBrokerIds" in data:
+    if data.get("createdBrokerIds") is not None:
         import capo_kafka.types.__list_of__double
 
         out["created_broker_ids"] = capo_kafka.types.__list_of__double.deserialize_json(
             data["createdBrokerIds"]
         )
-    if "deletedBrokerIds" in data:
+    if data.get("deletedBrokerIds") is not None:
         import capo_kafka.types.__list_of__double
 
         out["deleted_broker_ids"] = capo_kafka.types.__list_of__double.deserialize_json(

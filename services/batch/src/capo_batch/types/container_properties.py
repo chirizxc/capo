@@ -201,49 +201,49 @@ def serialize_json(value: ContainerProperties) -> dict:
 
 def deserialize_json(data: dict) -> ContainerProperties:
     out: ContainerProperties = {}  # type: ignore[typeddict-item]
-    if "image" in data:
+    if data.get("image") is not None:
         out["image"] = data["image"]
-    if "vcpus" in data:
+    if data.get("vcpus") is not None:
         out["vcpus"] = data["vcpus"]
-    if "memory" in data:
+    if data.get("memory") is not None:
         out["memory"] = data["memory"]
-    if "command" in data:
+    if data.get("command") is not None:
         import capo_batch.types.string_list
 
         out["command"] = capo_batch.types.string_list.deserialize_json(data["command"])
-    if "jobRoleArn" in data:
+    if data.get("jobRoleArn") is not None:
         out["job_role_arn"] = data["jobRoleArn"]
-    if "executionRoleArn" in data:
+    if data.get("executionRoleArn") is not None:
         out["execution_role_arn"] = data["executionRoleArn"]
-    if "volumes" in data:
+    if data.get("volumes") is not None:
         import capo_batch.types.volumes
 
         out["volumes"] = capo_batch.types.volumes.deserialize_json(data["volumes"])
-    if "environment" in data:
+    if data.get("environment") is not None:
         import capo_batch.types.environment_variables
 
         out["environment"] = capo_batch.types.environment_variables.deserialize_json(
             data["environment"]
         )
-    if "mountPoints" in data:
+    if data.get("mountPoints") is not None:
         import capo_batch.types.mount_points
 
         out["mount_points"] = capo_batch.types.mount_points.deserialize_json(
             data["mountPoints"]
         )
-    if "readonlyRootFilesystem" in data:
+    if data.get("readonlyRootFilesystem") is not None:
         out["readonly_root_filesystem"] = data["readonlyRootFilesystem"]
-    if "privileged" in data:
+    if data.get("privileged") is not None:
         out["privileged"] = data["privileged"]
-    if "ulimits" in data:
+    if data.get("ulimits") is not None:
         import capo_batch.types.ulimits
 
         out["ulimits"] = capo_batch.types.ulimits.deserialize_json(data["ulimits"])
-    if "user" in data:
+    if data.get("user") is not None:
         out["user"] = data["user"]
-    if "instanceType" in data:
+    if data.get("instanceType") is not None:
         out["instance_type"] = data["instanceType"]
-    if "resourceRequirements" in data:
+    if data.get("resourceRequirements") is not None:
         import capo_batch.types.resource_requirements
 
         out["resource_requirements"] = (
@@ -251,23 +251,23 @@ def deserialize_json(data: dict) -> ContainerProperties:
                 data["resourceRequirements"]
             )
         )
-    if "linuxParameters" in data:
+    if data.get("linuxParameters") is not None:
         import capo_batch.types.linux_parameters
 
         out["linux_parameters"] = capo_batch.types.linux_parameters.deserialize_json(
             data["linuxParameters"]
         )
-    if "logConfiguration" in data:
+    if data.get("logConfiguration") is not None:
         import capo_batch.types.log_configuration
 
         out["log_configuration"] = capo_batch.types.log_configuration.deserialize_json(
             data["logConfiguration"]
         )
-    if "secrets" in data:
+    if data.get("secrets") is not None:
         import capo_batch.types.secret_list
 
         out["secrets"] = capo_batch.types.secret_list.deserialize_json(data["secrets"])
-    if "networkConfiguration" in data:
+    if data.get("networkConfiguration") is not None:
         import capo_batch.types.network_configuration
 
         out["network_configuration"] = (
@@ -275,7 +275,7 @@ def deserialize_json(data: dict) -> ContainerProperties:
                 data["networkConfiguration"]
             )
         )
-    if "fargatePlatformConfiguration" in data:
+    if data.get("fargatePlatformConfiguration") is not None:
         import capo_batch.types.fargate_platform_configuration
 
         out["fargate_platform_configuration"] = (
@@ -283,21 +283,21 @@ def deserialize_json(data: dict) -> ContainerProperties:
                 data["fargatePlatformConfiguration"]
             )
         )
-    if "enableExecuteCommand" in data:
+    if data.get("enableExecuteCommand") is not None:
         out["enable_execute_command"] = data["enableExecuteCommand"]
-    if "ephemeralStorage" in data:
+    if data.get("ephemeralStorage") is not None:
         import capo_batch.types.ephemeral_storage
 
         out["ephemeral_storage"] = capo_batch.types.ephemeral_storage.deserialize_json(
             data["ephemeralStorage"]
         )
-    if "runtimePlatform" in data:
+    if data.get("runtimePlatform") is not None:
         import capo_batch.types.runtime_platform
 
         out["runtime_platform"] = capo_batch.types.runtime_platform.deserialize_json(
             data["runtimePlatform"]
         )
-    if "repositoryCredentials" in data:
+    if data.get("repositoryCredentials") is not None:
         import capo_batch.types.repository_credentials
 
         out["repository_credentials"] = (

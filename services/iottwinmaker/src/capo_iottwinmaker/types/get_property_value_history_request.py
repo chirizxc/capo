@@ -124,15 +124,15 @@ def serialize_json(value: GetPropertyValueHistoryRequest) -> dict:
 
 def deserialize_json(data: dict) -> GetPropertyValueHistoryRequest:
     out: GetPropertyValueHistoryRequest = {}  # type: ignore[typeddict-item]
-    if "entityId" in data:
+    if data.get("entityId") is not None:
         out["entity_id"] = data["entityId"]
-    if "componentName" in data:
+    if data.get("componentName") is not None:
         out["component_name"] = data["componentName"]
-    if "componentPath" in data:
+    if data.get("componentPath") is not None:
         out["component_path"] = data["componentPath"]
-    if "componentTypeId" in data:
+    if data.get("componentTypeId") is not None:
         out["component_type_id"] = data["componentTypeId"]
-    if "selectedProperties" in data:
+    if data.get("selectedProperties") is not None:
         import capo_iottwinmaker.types.selected_property_list
 
         out["selected_properties"] = (
@@ -144,7 +144,7 @@ def deserialize_json(data: dict) -> GetPropertyValueHistoryRequest:
         raise DeserializationError(
             "GetPropertyValueHistoryRequest.selected_properties required"
         )
-    if "propertyFilters" in data:
+    if data.get("propertyFilters") is not None:
         import capo_iottwinmaker.types.property_filters
 
         out["property_filters"] = (
@@ -152,19 +152,19 @@ def deserialize_json(data: dict) -> GetPropertyValueHistoryRequest:
                 data["propertyFilters"]
             )
         )
-    if "startDateTime" in data:
+    if data.get("startDateTime") is not None:
         import capo_iottwinmaker.types.timestamp
 
         out["start_date_time"] = capo_iottwinmaker.types.timestamp.deserialize_json(
             data["startDateTime"]
         )
-    if "endDateTime" in data:
+    if data.get("endDateTime") is not None:
         import capo_iottwinmaker.types.timestamp
 
         out["end_date_time"] = capo_iottwinmaker.types.timestamp.deserialize_json(
             data["endDateTime"]
         )
-    if "interpolation" in data:
+    if data.get("interpolation") is not None:
         import capo_iottwinmaker.types.interpolation_parameters
 
         out["interpolation"] = (
@@ -172,14 +172,14 @@ def deserialize_json(data: dict) -> GetPropertyValueHistoryRequest:
                 data["interpolation"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
-    if "orderByTime" in data:
+    if data.get("orderByTime") is not None:
         out["order_by_time"] = data["orderByTime"]
-    if "startTime" in data:
+    if data.get("startTime") is not None:
         out["start_time"] = data["startTime"]
-    if "endTime" in data:
+    if data.get("endTime") is not None:
         out["end_time"] = data["endTime"]
     return out

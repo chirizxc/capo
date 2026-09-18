@@ -126,35 +126,35 @@ def serialize_json(value: DocumentVersionMetadata) -> dict:
 
 def deserialize_json(data: dict) -> DocumentVersionMetadata:
     out: DocumentVersionMetadata = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "ContentType" in data:
+    if data.get("ContentType") is not None:
         out["content_type"] = data["ContentType"]
-    if "Size" in data:
+    if data.get("Size") is not None:
         out["size"] = data["Size"]
-    if "Signature" in data:
+    if data.get("Signature") is not None:
         out["signature"] = data["Signature"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_workdocs.types.document_status_type
 
         out["status"] = capo_workdocs.types.document_status_type.deserialize_json(
             data["Status"]
         )
-    if "CreatedTimestamp" in data:
+    if data.get("CreatedTimestamp") is not None:
         import capo_workdocs.types.timestamp_type
 
         out["created_timestamp"] = capo_workdocs.types.timestamp_type.deserialize_json(
             data["CreatedTimestamp"]
         )
-    if "ModifiedTimestamp" in data:
+    if data.get("ModifiedTimestamp") is not None:
         import capo_workdocs.types.timestamp_type
 
         out["modified_timestamp"] = capo_workdocs.types.timestamp_type.deserialize_json(
             data["ModifiedTimestamp"]
         )
-    if "ContentCreatedTimestamp" in data:
+    if data.get("ContentCreatedTimestamp") is not None:
         import capo_workdocs.types.timestamp_type
 
         out["content_created_timestamp"] = (
@@ -162,7 +162,7 @@ def deserialize_json(data: dict) -> DocumentVersionMetadata:
                 data["ContentCreatedTimestamp"]
             )
         )
-    if "ContentModifiedTimestamp" in data:
+    if data.get("ContentModifiedTimestamp") is not None:
         import capo_workdocs.types.timestamp_type
 
         out["content_modified_timestamp"] = (
@@ -170,9 +170,9 @@ def deserialize_json(data: dict) -> DocumentVersionMetadata:
                 data["ContentModifiedTimestamp"]
             )
         )
-    if "CreatorId" in data:
+    if data.get("CreatorId") is not None:
         out["creator_id"] = data["CreatorId"]
-    if "Thumbnail" in data:
+    if data.get("Thumbnail") is not None:
         import capo_workdocs.types.document_thumbnail_url_map
 
         out["thumbnail"] = (
@@ -180,7 +180,7 @@ def deserialize_json(data: dict) -> DocumentVersionMetadata:
                 data["Thumbnail"]
             )
         )
-    if "Source" in data:
+    if data.get("Source") is not None:
         import capo_workdocs.types.document_source_url_map
 
         out["source"] = capo_workdocs.types.document_source_url_map.deserialize_json(

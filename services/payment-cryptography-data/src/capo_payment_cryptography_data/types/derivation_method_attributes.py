@@ -95,7 +95,7 @@ def serialize_json(value: DerivationMethodAttributes) -> dict:
 
 
 def deserialize_json(data: dict) -> DerivationMethodAttributes:
-    if "EmvCommon" in data:
+    if data.get("EmvCommon") is not None:
         import capo_payment_cryptography_data.types.emv_common_attributes
 
         return {
@@ -103,7 +103,7 @@ def deserialize_json(data: dict) -> DerivationMethodAttributes:
                 data["EmvCommon"]
             )
         }
-    elif "Amex" in data:
+    elif data.get("Amex") is not None:
         import capo_payment_cryptography_data.types.amex_attributes
 
         return {
@@ -111,7 +111,7 @@ def deserialize_json(data: dict) -> DerivationMethodAttributes:
                 data["Amex"]
             )
         }
-    elif "Visa" in data:
+    elif data.get("Visa") is not None:
         import capo_payment_cryptography_data.types.visa_attributes
 
         return {
@@ -119,7 +119,7 @@ def deserialize_json(data: dict) -> DerivationMethodAttributes:
                 data["Visa"]
             )
         }
-    elif "Emv2000" in data:
+    elif data.get("Emv2000") is not None:
         import capo_payment_cryptography_data.types.emv2000_attributes
 
         return {
@@ -127,7 +127,7 @@ def deserialize_json(data: dict) -> DerivationMethodAttributes:
                 data["Emv2000"]
             )
         }
-    elif "Mastercard" in data:
+    elif data.get("Mastercard") is not None:
         import capo_payment_cryptography_data.types.master_card_attributes
 
         return {

@@ -24,7 +24,7 @@ def serialize_json(value: KinesisFirehoseConfig) -> dict:
 
 def deserialize_json(data: dict) -> KinesisFirehoseConfig:
     out: KinesisFirehoseConfig = {}  # type: ignore[typeddict-item]
-    if "FirehoseArn" in data:
+    if data.get("FirehoseArn") is not None:
         out["firehose_arn"] = data["FirehoseArn"]
     else:
         raise DeserializationError("KinesisFirehoseConfig.firehose_arn required")

@@ -28,11 +28,11 @@ def serialize_json(value: IdcAuthConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> IdcAuthConfiguration:
     out: IdcAuthConfiguration = {}  # type: ignore[typeddict-item]
-    if "idcApplicationArn" in data:
+    if data.get("idcApplicationArn") is not None:
         out["idc_application_arn"] = data["idcApplicationArn"]
     else:
         raise DeserializationError("IdcAuthConfiguration.idc_application_arn required")
-    if "roleArn" in data:
+    if data.get("roleArn") is not None:
         out["role_arn"] = data["roleArn"]
     else:
         raise DeserializationError("IdcAuthConfiguration.role_arn required")

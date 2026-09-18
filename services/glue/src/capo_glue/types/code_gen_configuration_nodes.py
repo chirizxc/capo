@@ -27,6 +27,8 @@ def serialize_aws_json_1_1(input_to_serialize: CodeGenConfigurationNodes) -> dic
 def deserialize_aws_json_1_1(data: dict) -> CodeGenConfigurationNodes:
     out: CodeGenConfigurationNodes = {}
     for key, value in data.items():
+        if value is None:
+            continue
         import capo_glue.types.code_gen_configuration_node
 
         out[key] = capo_glue.types.code_gen_configuration_node.deserialize_aws_json_1_1(

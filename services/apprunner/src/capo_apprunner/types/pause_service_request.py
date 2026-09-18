@@ -24,7 +24,7 @@ def serialize_aws_json_1_0(value: PauseServiceRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> PauseServiceRequest:
     out: PauseServiceRequest = {}  # type: ignore[typeddict-item]
-    if "ServiceArn" in data:
+    if data.get("ServiceArn") is not None:
         out["service_arn"] = data["ServiceArn"]
     else:
         raise DeserializationError("PauseServiceRequest.service_arn required")

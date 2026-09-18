@@ -56,7 +56,7 @@ def serialize_json(value: GetResourcesTrendsV2Request) -> dict:
 
 def deserialize_json(data: dict) -> GetResourcesTrendsV2Request:
     out: GetResourcesTrendsV2Request = {}  # type: ignore[typeddict-item]
-    if "Filters" in data:
+    if data.get("Filters") is not None:
         import capo_securityhub.types.resources_trends_filters
 
         out["filters"] = (
@@ -64,20 +64,20 @@ def deserialize_json(data: dict) -> GetResourcesTrendsV2Request:
                 data["Filters"]
             )
         )
-    if "StartTime" in data:
+    if data.get("StartTime") is not None:
         import capo_securityhub.types.timestamp
 
         out["start_time"] = capo_securityhub.types.timestamp.deserialize_json(
             data["StartTime"]
         )
-    if "EndTime" in data:
+    if data.get("EndTime") is not None:
         import capo_securityhub.types.timestamp
 
         out["end_time"] = capo_securityhub.types.timestamp.deserialize_json(
             data["EndTime"]
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
     return out

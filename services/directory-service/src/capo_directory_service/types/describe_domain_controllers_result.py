@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: DescribeDomainControllersResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeDomainControllersResult:
     out: DescribeDomainControllersResult = {}  # type: ignore[typeddict-item]
-    if "DomainControllers" in data:
+    if data.get("DomainControllers") is not None:
         import capo_directory_service.types.domain_controllers
 
         out["domain_controllers"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeDomainControllersResult:
                 data["DomainControllers"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

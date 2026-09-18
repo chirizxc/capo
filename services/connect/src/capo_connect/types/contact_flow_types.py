@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> ContactFlowTypes:
 
     out: ContactFlowTypes = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_connect.types.contact_flow_type.deserialize_json(item))
     return out

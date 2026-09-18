@@ -25,6 +25,6 @@ def serialize_aws_json_1_0(value: SetVoiceMessageSpendLimitOverrideResult) -> di
 
 def deserialize_aws_json_1_0(data: dict) -> SetVoiceMessageSpendLimitOverrideResult:
     out: SetVoiceMessageSpendLimitOverrideResult = {}  # type: ignore[typeddict-item]
-    if "MonthlyLimit" in data:
+    if data.get("MonthlyLimit") is not None:
         out["monthly_limit"] = data["MonthlyLimit"]
     return out

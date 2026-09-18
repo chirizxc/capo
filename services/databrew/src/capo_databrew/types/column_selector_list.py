@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> ColumnSelectorList:
 
     out: ColumnSelectorList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_databrew.types.column_selector.deserialize_json(item))
     return out

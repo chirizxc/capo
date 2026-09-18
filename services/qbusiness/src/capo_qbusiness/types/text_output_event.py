@@ -52,7 +52,7 @@ def serialize_json(value: TextOutputEvent) -> dict:
 
 def deserialize_json(data: dict) -> TextOutputEvent:
     out: TextOutputEvent = {}  # type: ignore[typeddict-item]
-    if "systemMessageType" in data:
+    if data.get("systemMessageType") is not None:
         import capo_qbusiness.types.system_message_type
 
         out["system_message_type"] = (
@@ -60,13 +60,13 @@ def deserialize_json(data: dict) -> TextOutputEvent:
                 data["systemMessageType"]
             )
         )
-    if "conversationId" in data:
+    if data.get("conversationId") is not None:
         out["conversation_id"] = data["conversationId"]
-    if "userMessageId" in data:
+    if data.get("userMessageId") is not None:
         out["user_message_id"] = data["userMessageId"]
-    if "systemMessageId" in data:
+    if data.get("systemMessageId") is not None:
         out["system_message_id"] = data["systemMessageId"]
-    if "systemMessage" in data:
+    if data.get("systemMessage") is not None:
         out["system_message"] = data["systemMessage"]
     return out
 

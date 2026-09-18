@@ -27,8 +27,8 @@ def serialize_aws_json_1_1(value: DeployTargetEventContext) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeployTargetEventContext:
     out: DeployTargetEventContext = {}  # type: ignore[typeddict-item]
-    if "ssmCommandId" in data:
+    if data.get("ssmCommandId") is not None:
         out["ssm_command_id"] = data["ssmCommandId"]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     return out

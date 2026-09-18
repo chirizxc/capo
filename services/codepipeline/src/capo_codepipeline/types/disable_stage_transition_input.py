@@ -42,15 +42,15 @@ def serialize_aws_json_1_1(value: DisableStageTransitionInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DisableStageTransitionInput:
     out: DisableStageTransitionInput = {}  # type: ignore[typeddict-item]
-    if "pipelineName" in data:
+    if data.get("pipelineName") is not None:
         out["pipeline_name"] = data["pipelineName"]
     else:
         raise DeserializationError("DisableStageTransitionInput.pipeline_name required")
-    if "stageName" in data:
+    if data.get("stageName") is not None:
         out["stage_name"] = data["stageName"]
     else:
         raise DeserializationError("DisableStageTransitionInput.stage_name required")
-    if "transitionType" in data:
+    if data.get("transitionType") is not None:
         import capo_codepipeline.types.stage_transition_type
 
         out["transition_type"] = (
@@ -62,7 +62,7 @@ def deserialize_aws_json_1_1(data: dict) -> DisableStageTransitionInput:
         raise DeserializationError(
             "DisableStageTransitionInput.transition_type required"
         )
-    if "reason" in data:
+    if data.get("reason") is not None:
         out["reason"] = data["reason"]
     else:
         raise DeserializationError("DisableStageTransitionInput.reason required")

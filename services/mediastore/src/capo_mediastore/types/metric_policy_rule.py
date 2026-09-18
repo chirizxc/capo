@@ -28,11 +28,11 @@ def serialize_aws_json_1_1(value: MetricPolicyRule) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> MetricPolicyRule:
     out: MetricPolicyRule = {}  # type: ignore[typeddict-item]
-    if "ObjectGroup" in data:
+    if data.get("ObjectGroup") is not None:
         out["object_group"] = data["ObjectGroup"]
     else:
         raise DeserializationError("MetricPolicyRule.object_group required")
-    if "ObjectGroupName" in data:
+    if data.get("ObjectGroupName") is not None:
         out["object_group_name"] = data["ObjectGroupName"]
     else:
         raise DeserializationError("MetricPolicyRule.object_group_name required")

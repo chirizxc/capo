@@ -33,6 +33,8 @@ def deserialize_json(
 
     out: RuleGroupSourceStatelessRuleMatchAttributesSourcesList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_securityhub.types.rule_group_source_stateless_rule_match_attributes_sources.deserialize_json(
                 item

@@ -28,13 +28,13 @@ def serialize_json(value: CreateEvaluationFormResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateEvaluationFormResponse:
     out: CreateEvaluationFormResponse = {}  # type: ignore[typeddict-item]
-    if "EvaluationFormId" in data:
+    if data.get("EvaluationFormId") is not None:
         out["evaluation_form_id"] = data["EvaluationFormId"]
     else:
         raise DeserializationError(
             "CreateEvaluationFormResponse.evaluation_form_id required"
         )
-    if "EvaluationFormArn" in data:
+    if data.get("EvaluationFormArn") is not None:
         out["evaluation_form_arn"] = data["EvaluationFormArn"]
     else:
         raise DeserializationError(

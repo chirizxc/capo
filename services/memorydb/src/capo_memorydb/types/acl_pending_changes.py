@@ -39,7 +39,7 @@ def serialize_aws_json_1_1(value: ACLPendingChanges) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ACLPendingChanges:
     out: ACLPendingChanges = {}  # type: ignore[typeddict-item]
-    if "UserNamesToRemove" in data:
+    if data.get("UserNamesToRemove") is not None:
         import capo_memorydb.types.user_name_list
 
         out["user_names_to_remove"] = (
@@ -47,7 +47,7 @@ def deserialize_aws_json_1_1(data: dict) -> ACLPendingChanges:
                 data["UserNamesToRemove"]
             )
         )
-    if "UserNamesToAdd" in data:
+    if data.get("UserNamesToAdd") is not None:
         import capo_memorydb.types.user_name_list
 
         out["user_names_to_add"] = (

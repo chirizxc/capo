@@ -14,4 +14,4 @@ def serialize_json(value: UrlPatternList) -> list:
 
 
 def deserialize_json(data: list) -> UrlPatternList:
-    return list(data)
+    return [item for item in data if item is not None]

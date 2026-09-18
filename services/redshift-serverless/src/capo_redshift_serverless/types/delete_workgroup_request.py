@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: DeleteWorkgroupRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteWorkgroupRequest:
     out: DeleteWorkgroupRequest = {}  # type: ignore[typeddict-item]
-    if "workgroupName" in data:
+    if data.get("workgroupName") is not None:
         out["workgroup_name"] = data["workgroupName"]
     else:
         raise DeserializationError("DeleteWorkgroupRequest.workgroup_name required")

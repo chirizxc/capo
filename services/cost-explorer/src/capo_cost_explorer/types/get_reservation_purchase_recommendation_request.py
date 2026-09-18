@@ -108,21 +108,21 @@ def serialize_aws_json_1_1(value: GetReservationPurchaseRecommendationRequest) -
 
 def deserialize_aws_json_1_1(data: dict) -> GetReservationPurchaseRecommendationRequest:
     out: GetReservationPurchaseRecommendationRequest = {}  # type: ignore[typeddict-item]
-    if "AccountId" in data:
+    if data.get("AccountId") is not None:
         out["account_id"] = data["AccountId"]
-    if "Service" in data:
+    if data.get("Service") is not None:
         out["service"] = data["Service"]
     else:
         raise DeserializationError(
             "GetReservationPurchaseRecommendationRequest.service required"
         )
-    if "Filter" in data:
+    if data.get("Filter") is not None:
         import capo_cost_explorer.types.expression
 
         out["filter"] = capo_cost_explorer.types.expression.deserialize_aws_json_1_1(
             data["Filter"]
         )
-    if "AccountScope" in data:
+    if data.get("AccountScope") is not None:
         import capo_cost_explorer.types.account_scope
 
         out["account_scope"] = (
@@ -130,7 +130,7 @@ def deserialize_aws_json_1_1(data: dict) -> GetReservationPurchaseRecommendation
                 data["AccountScope"]
             )
         )
-    if "LookbackPeriodInDays" in data:
+    if data.get("LookbackPeriodInDays") is not None:
         import capo_cost_explorer.types.lookback_period_in_days
 
         out["lookback_period_in_days"] = (
@@ -138,7 +138,7 @@ def deserialize_aws_json_1_1(data: dict) -> GetReservationPurchaseRecommendation
                 data["LookbackPeriodInDays"]
             )
         )
-    if "TermInYears" in data:
+    if data.get("TermInYears") is not None:
         import capo_cost_explorer.types.term_in_years
 
         out["term_in_years"] = (
@@ -146,7 +146,7 @@ def deserialize_aws_json_1_1(data: dict) -> GetReservationPurchaseRecommendation
                 data["TermInYears"]
             )
         )
-    if "PaymentOption" in data:
+    if data.get("PaymentOption") is not None:
         import capo_cost_explorer.types.payment_option
 
         out["payment_option"] = (
@@ -154,7 +154,7 @@ def deserialize_aws_json_1_1(data: dict) -> GetReservationPurchaseRecommendation
                 data["PaymentOption"]
             )
         )
-    if "ServiceSpecification" in data:
+    if data.get("ServiceSpecification") is not None:
         import capo_cost_explorer.types.service_specification
 
         out["service_specification"] = (
@@ -162,10 +162,10 @@ def deserialize_aws_json_1_1(data: dict) -> GetReservationPurchaseRecommendation
                 data["ServiceSpecification"]
             )
         )
-    if "PageSize" in data:
+    if data.get("PageSize") is not None:
         out["page_size"] = data["PageSize"]
     else:
         out["page_size"] = 0
-    if "NextPageToken" in data:
+    if data.get("NextPageToken") is not None:
         out["next_page_token"] = data["NextPageToken"]
     return out

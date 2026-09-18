@@ -32,7 +32,7 @@ def serialize_aws_json_1_0(value: ConnectivityInfo) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ConnectivityInfo:
     out: ConnectivityInfo = {}  # type: ignore[typeddict-item]
-    if "privateRouteServerPeerings" in data:
+    if data.get("privateRouteServerPeerings") is not None:
         import capo_evs.types.route_server_peering_list
 
         out["private_route_server_peerings"] = (

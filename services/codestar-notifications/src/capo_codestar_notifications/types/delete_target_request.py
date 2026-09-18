@@ -30,11 +30,11 @@ def serialize_json(value: DeleteTargetRequest) -> dict:
 
 def deserialize_json(data: dict) -> DeleteTargetRequest:
     out: DeleteTargetRequest = {}  # type: ignore[typeddict-item]
-    if "TargetAddress" in data:
+    if data.get("TargetAddress") is not None:
         out["target_address"] = data["TargetAddress"]
     else:
         raise DeserializationError("DeleteTargetRequest.target_address required")
-    if "ForceUnsubscribeAll" in data:
+    if data.get("ForceUnsubscribeAll") is not None:
         out["force_unsubscribe_all"] = data["ForceUnsubscribeAll"]
     else:
         out["force_unsubscribe_all"] = False

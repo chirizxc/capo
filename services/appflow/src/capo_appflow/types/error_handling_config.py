@@ -34,12 +34,12 @@ def serialize_json(value: ErrorHandlingConfig) -> dict:
 
 def deserialize_json(data: dict) -> ErrorHandlingConfig:
     out: ErrorHandlingConfig = {}  # type: ignore[typeddict-item]
-    if "failOnFirstDestinationError" in data:
+    if data.get("failOnFirstDestinationError") is not None:
         out["fail_on_first_destination_error"] = data["failOnFirstDestinationError"]
     else:
         out["fail_on_first_destination_error"] = False
-    if "bucketPrefix" in data:
+    if data.get("bucketPrefix") is not None:
         out["bucket_prefix"] = data["bucketPrefix"]
-    if "bucketName" in data:
+    if data.get("bucketName") is not None:
         out["bucket_name"] = data["bucketName"]
     return out

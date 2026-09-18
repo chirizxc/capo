@@ -44,7 +44,7 @@ def serialize_json(value: VisualInteractionOptions) -> dict:
 
 def deserialize_json(data: dict) -> VisualInteractionOptions:
     out: VisualInteractionOptions = {}  # type: ignore[typeddict-item]
-    if "VisualMenuOption" in data:
+    if data.get("VisualMenuOption") is not None:
         import capo_quicksight.types.visual_menu_option
 
         out["visual_menu_option"] = (
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> VisualInteractionOptions:
                 data["VisualMenuOption"]
             )
         )
-    if "ContextMenuOption" in data:
+    if data.get("ContextMenuOption") is not None:
         import capo_quicksight.types.context_menu_option
 
         out["context_menu_option"] = (

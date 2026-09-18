@@ -49,11 +49,11 @@ def serialize_aws_json_1_0(value: ImageRepository) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ImageRepository:
     out: ImageRepository = {}  # type: ignore[typeddict-item]
-    if "ImageIdentifier" in data:
+    if data.get("ImageIdentifier") is not None:
         out["image_identifier"] = data["ImageIdentifier"]
     else:
         raise DeserializationError("ImageRepository.image_identifier required")
-    if "ImageConfiguration" in data:
+    if data.get("ImageConfiguration") is not None:
         import capo_apprunner.types.image_configuration
 
         out["image_configuration"] = (
@@ -61,7 +61,7 @@ def deserialize_aws_json_1_0(data: dict) -> ImageRepository:
                 data["ImageConfiguration"]
             )
         )
-    if "ImageRepositoryType" in data:
+    if data.get("ImageRepositoryType") is not None:
         import capo_apprunner.types.image_repository_type
 
         out["image_repository_type"] = (

@@ -23,6 +23,6 @@ def serialize_aws_json_1_1(value: CreateApplicationOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateApplicationOutput:
     out: CreateApplicationOutput = {}  # type: ignore[typeddict-item]
-    if "applicationId" in data:
+    if data.get("applicationId") is not None:
         out["application_id"] = data["applicationId"]
     return out

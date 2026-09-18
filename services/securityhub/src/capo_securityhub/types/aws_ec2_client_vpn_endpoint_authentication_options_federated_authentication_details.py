@@ -37,8 +37,8 @@ def deserialize_json(
     data: dict,
 ) -> AwsEc2ClientVpnEndpointAuthenticationOptionsFederatedAuthenticationDetails:
     out: AwsEc2ClientVpnEndpointAuthenticationOptionsFederatedAuthenticationDetails = {}  # type: ignore[typeddict-item]
-    if "SamlProviderArn" in data:
+    if data.get("SamlProviderArn") is not None:
         out["saml_provider_arn"] = data["SamlProviderArn"]
-    if "SelfServiceSamlProviderArn" in data:
+    if data.get("SelfServiceSamlProviderArn") is not None:
         out["self_service_saml_provider_arn"] = data["SelfServiceSamlProviderArn"]
     return out

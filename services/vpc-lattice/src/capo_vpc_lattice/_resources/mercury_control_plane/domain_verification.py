@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import uuid
 from typing import TYPE_CHECKING, Optional
 
 import capo_vpc_lattice._auth._signers
@@ -85,10 +86,12 @@ class DomainVerification:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_vpc_lattice.types.start_domain_verification_request.StartDomainVerificationRequest = {}  # type: ignore[typeddict-item]
-        if client_token is not None:
-            input_["client_token"] = client_token
-        input_["domain_name"] = domain_name
+        input_: capo_vpc_lattice.types.start_domain_verification_request.StartDomainVerificationRequest = {
+            "domain_name": domain_name
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if tags is not None:
             input_["tags"] = tags
 
@@ -97,6 +100,7 @@ class DomainVerification:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -134,14 +138,16 @@ class DomainVerification:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_vpc_lattice.types.get_domain_verification_request.GetDomainVerificationRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_verification_identifier"] = domain_verification_identifier
+        input_: capo_vpc_lattice.types.get_domain_verification_request.GetDomainVerificationRequest = {
+            "domain_verification_identifier": domain_verification_identifier
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -179,14 +185,16 @@ class DomainVerification:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_vpc_lattice.types.delete_domain_verification_request.DeleteDomainVerificationRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_verification_identifier"] = domain_verification_identifier
+        input_: capo_vpc_lattice.types.delete_domain_verification_request.DeleteDomainVerificationRequest = {
+            "domain_verification_identifier": domain_verification_identifier
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -226,7 +234,7 @@ class DomainVerification:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_vpc_lattice.types.list_domain_verifications_request.ListDomainVerificationsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_vpc_lattice.types.list_domain_verifications_request.ListDomainVerificationsRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -237,6 +245,7 @@ class DomainVerification:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -287,10 +296,12 @@ class AsyncDomainVerification:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_vpc_lattice.types.start_domain_verification_request.StartDomainVerificationRequest = {}  # type: ignore[typeddict-item]
-        if client_token is not None:
-            input_["client_token"] = client_token
-        input_["domain_name"] = domain_name
+        input_: capo_vpc_lattice.types.start_domain_verification_request.StartDomainVerificationRequest = {
+            "domain_name": domain_name
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if tags is not None:
             input_["tags"] = tags
 
@@ -299,6 +310,7 @@ class AsyncDomainVerification:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -337,14 +349,16 @@ class AsyncDomainVerification:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_vpc_lattice.types.get_domain_verification_request.GetDomainVerificationRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_verification_identifier"] = domain_verification_identifier
+        input_: capo_vpc_lattice.types.get_domain_verification_request.GetDomainVerificationRequest = {
+            "domain_verification_identifier": domain_verification_identifier
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -383,14 +397,16 @@ class AsyncDomainVerification:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_vpc_lattice.types.delete_domain_verification_request.DeleteDomainVerificationRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_verification_identifier"] = domain_verification_identifier
+        input_: capo_vpc_lattice.types.delete_domain_verification_request.DeleteDomainVerificationRequest = {
+            "domain_verification_identifier": domain_verification_identifier
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -431,7 +447,7 @@ class AsyncDomainVerification:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_vpc_lattice.types.list_domain_verifications_request.ListDomainVerificationsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_vpc_lattice.types.list_domain_verifications_request.ListDomainVerificationsRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -442,4 +458,5 @@ class AsyncDomainVerification:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

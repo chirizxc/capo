@@ -36,13 +36,13 @@ def serialize_json(value: UpdateScheduleRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateScheduleRequest:
     out: UpdateScheduleRequest = {}  # type: ignore[typeddict-item]
-    if "JobNames" in data:
+    if data.get("JobNames") is not None:
         import capo_databrew.types.job_name_list
 
         out["job_names"] = capo_databrew.types.job_name_list.deserialize_json(
             data["JobNames"]
         )
-    if "CronExpression" in data:
+    if data.get("CronExpression") is not None:
         out["cron_expression"] = data["CronExpression"]
     else:
         raise DeserializationError("UpdateScheduleRequest.cron_expression required")

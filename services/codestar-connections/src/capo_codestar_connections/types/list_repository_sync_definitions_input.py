@@ -38,13 +38,13 @@ def serialize_aws_json_1_0(value: ListRepositorySyncDefinitionsInput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ListRepositorySyncDefinitionsInput:
     out: ListRepositorySyncDefinitionsInput = {}  # type: ignore[typeddict-item]
-    if "RepositoryLinkId" in data:
+    if data.get("RepositoryLinkId") is not None:
         out["repository_link_id"] = data["RepositoryLinkId"]
     else:
         raise DeserializationError(
             "ListRepositorySyncDefinitionsInput.repository_link_id required"
         )
-    if "SyncType" in data:
+    if data.get("SyncType") is not None:
         import capo_codestar_connections.types.sync_configuration_type
 
         out["sync_type"] = (

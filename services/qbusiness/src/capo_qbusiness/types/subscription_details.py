@@ -27,7 +27,7 @@ def serialize_json(value: SubscriptionDetails) -> dict:
 
 def deserialize_json(data: dict) -> SubscriptionDetails:
     out: SubscriptionDetails = {}  # type: ignore[typeddict-item]
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_qbusiness.types.subscription_type
 
         out["type"] = capo_qbusiness.types.subscription_type.deserialize_json(

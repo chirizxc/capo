@@ -44,7 +44,7 @@ def serialize_json(value: WebvttDestinationSettings) -> dict:
 
 def deserialize_json(data: dict) -> WebvttDestinationSettings:
     out: WebvttDestinationSettings = {}  # type: ignore[typeddict-item]
-    if "accessibility" in data:
+    if data.get("accessibility") is not None:
         import capo_mediaconvert.types.webvtt_accessibility_subs
 
         out["accessibility"] = (
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> WebvttDestinationSettings:
                 data["accessibility"]
             )
         )
-    if "stylePassthrough" in data:
+    if data.get("stylePassthrough") is not None:
         import capo_mediaconvert.types.webvtt_style_passthrough
 
         out["style_passthrough"] = (

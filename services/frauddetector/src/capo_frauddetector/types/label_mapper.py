@@ -27,6 +27,8 @@ def serialize_aws_json_1_1(input_to_serialize: labelMapper) -> dict:
 def deserialize_aws_json_1_1(data: dict) -> labelMapper:
     out: labelMapper = {}
     for key, value in data.items():
+        if value is None:
+            continue
         import capo_frauddetector.types.list_of_strings
 
         out[key] = capo_frauddetector.types.list_of_strings.deserialize_aws_json_1_1(

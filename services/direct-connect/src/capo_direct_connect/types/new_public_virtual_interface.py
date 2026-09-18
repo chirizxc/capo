@@ -93,29 +93,29 @@ def serialize_aws_json_1_1(value: NewPublicVirtualInterface) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> NewPublicVirtualInterface:
     out: NewPublicVirtualInterface = {}  # type: ignore[typeddict-item]
-    if "virtualInterfaceName" in data:
+    if data.get("virtualInterfaceName") is not None:
         out["virtual_interface_name"] = data["virtualInterfaceName"]
     else:
         raise DeserializationError(
             "NewPublicVirtualInterface.virtual_interface_name required"
         )
-    if "vlan" in data:
+    if data.get("vlan") is not None:
         out["vlan"] = data["vlan"]
     else:
         out["vlan"] = 0
-    if "asn" in data:
+    if data.get("asn") is not None:
         out["asn"] = data["asn"]
     else:
         out["asn"] = 0
-    if "asnLong" in data:
+    if data.get("asnLong") is not None:
         out["asn_long"] = data["asnLong"]
-    if "authKey" in data:
+    if data.get("authKey") is not None:
         out["auth_key"] = data["authKey"]
-    if "amazonAddress" in data:
+    if data.get("amazonAddress") is not None:
         out["amazon_address"] = data["amazonAddress"]
-    if "customerAddress" in data:
+    if data.get("customerAddress") is not None:
         out["customer_address"] = data["customerAddress"]
-    if "addressFamily" in data:
+    if data.get("addressFamily") is not None:
         import capo_direct_connect.types.address_family
 
         out["address_family"] = (
@@ -123,7 +123,7 @@ def deserialize_aws_json_1_1(data: dict) -> NewPublicVirtualInterface:
                 data["addressFamily"]
             )
         )
-    if "routeFilterPrefixes" in data:
+    if data.get("routeFilterPrefixes") is not None:
         import capo_direct_connect.types.route_filter_prefix_list
 
         out["route_filter_prefixes"] = (
@@ -131,7 +131,7 @@ def deserialize_aws_json_1_1(data: dict) -> NewPublicVirtualInterface:
                 data["routeFilterPrefixes"]
             )
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_direct_connect.types.tag_list
 
         out["tags"] = capo_direct_connect.types.tag_list.deserialize_aws_json_1_1(

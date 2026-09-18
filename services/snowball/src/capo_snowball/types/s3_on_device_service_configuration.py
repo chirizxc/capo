@@ -28,7 +28,15 @@ class S3OnDeviceServiceConfiguration(TypedDict, closed=True):
 def serialize_aws_json_1_1(value: S3OnDeviceServiceConfiguration) -> dict:
     out: dict = {}
     if "storage_limit" in value:
-        out["StorageLimit"] = value["storage_limit"]
+        out["StorageLimit"] = (
+            "NaN"
+            if value["storage_limit"] != value["storage_limit"]
+            else "Infinity"
+            if value["storage_limit"] == float("inf")
+            else "-Infinity"
+            if value["storage_limit"] == float("-inf")
+            else value["storage_limit"]
+        )
     if "storage_unit" in value:
         import capo_snowball.types.storage_unit
 
@@ -44,16 +52,16 @@ def serialize_aws_json_1_1(value: S3OnDeviceServiceConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> S3OnDeviceServiceConfiguration:
     out: S3OnDeviceServiceConfiguration = {}  # type: ignore[typeddict-item]
-    if "StorageLimit" in data:
-        out["storage_limit"] = data["StorageLimit"]
-    if "StorageUnit" in data:
+    if data.get("StorageLimit") is not None:
+        out["storage_limit"] = float(data["StorageLimit"])
+    if data.get("StorageUnit") is not None:
         import capo_snowball.types.storage_unit
 
         out["storage_unit"] = capo_snowball.types.storage_unit.deserialize_aws_json_1_1(
             data["StorageUnit"]
         )
-    if "ServiceSize" in data:
+    if data.get("ServiceSize") is not None:
         out["service_size"] = data["ServiceSize"]
-    if "FaultTolerance" in data:
+    if data.get("FaultTolerance") is not None:
         out["fault_tolerance"] = data["FaultTolerance"]
     return out

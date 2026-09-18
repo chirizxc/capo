@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> MemberErrorList:
 
     out: MemberErrorList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_chime.types.member_error.deserialize_json(item))
     return out

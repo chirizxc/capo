@@ -25,15 +25,37 @@ class PerformanceMeasurement(TypedDict, closed=True):
 def serialize_json(value: PerformanceMeasurement) -> dict:
     out: dict = {}
     if "experience_score" in value:
-        out["ExperienceScore"] = value["experience_score"]
+        out["ExperienceScore"] = (
+            "NaN"
+            if value["experience_score"] != value["experience_score"]
+            else "Infinity"
+            if value["experience_score"] == float("inf")
+            else "-Infinity"
+            if value["experience_score"] == float("-inf")
+            else value["experience_score"]
+        )
     if "percent_of_total_traffic_impacted" in value:
-        out["PercentOfTotalTrafficImpacted"] = value[
-            "percent_of_total_traffic_impacted"
-        ]
+        out["PercentOfTotalTrafficImpacted"] = (
+            "NaN"
+            if value["percent_of_total_traffic_impacted"]
+            != value["percent_of_total_traffic_impacted"]
+            else "Infinity"
+            if value["percent_of_total_traffic_impacted"] == float("inf")
+            else "-Infinity"
+            if value["percent_of_total_traffic_impacted"] == float("-inf")
+            else value["percent_of_total_traffic_impacted"]
+        )
     if "percent_of_client_location_impacted" in value:
-        out["PercentOfClientLocationImpacted"] = value[
-            "percent_of_client_location_impacted"
-        ]
+        out["PercentOfClientLocationImpacted"] = (
+            "NaN"
+            if value["percent_of_client_location_impacted"]
+            != value["percent_of_client_location_impacted"]
+            else "Infinity"
+            if value["percent_of_client_location_impacted"] == float("inf")
+            else "-Infinity"
+            if value["percent_of_client_location_impacted"] == float("-inf")
+            else value["percent_of_client_location_impacted"]
+        )
     if "round_trip_time" in value:
         import capo_internetmonitor.types.round_trip_time
 
@@ -47,15 +69,17 @@ def serialize_json(value: PerformanceMeasurement) -> dict:
 
 def deserialize_json(data: dict) -> PerformanceMeasurement:
     out: PerformanceMeasurement = {}  # type: ignore[typeddict-item]
-    if "ExperienceScore" in data:
-        out["experience_score"] = data["ExperienceScore"]
-    if "PercentOfTotalTrafficImpacted" in data:
-        out["percent_of_total_traffic_impacted"] = data["PercentOfTotalTrafficImpacted"]
-    if "PercentOfClientLocationImpacted" in data:
-        out["percent_of_client_location_impacted"] = data[
-            "PercentOfClientLocationImpacted"
-        ]
-    if "RoundTripTime" in data:
+    if data.get("ExperienceScore") is not None:
+        out["experience_score"] = float(data["ExperienceScore"])
+    if data.get("PercentOfTotalTrafficImpacted") is not None:
+        out["percent_of_total_traffic_impacted"] = float(
+            data["PercentOfTotalTrafficImpacted"]
+        )
+    if data.get("PercentOfClientLocationImpacted") is not None:
+        out["percent_of_client_location_impacted"] = float(
+            data["PercentOfClientLocationImpacted"]
+        )
+    if data.get("RoundTripTime") is not None:
         import capo_internetmonitor.types.round_trip_time
 
         out["round_trip_time"] = (

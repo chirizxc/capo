@@ -31,7 +31,7 @@ def serialize_json(value: UpdateAccountSettingsInput) -> dict:
 
 def deserialize_json(data: dict) -> UpdateAccountSettingsInput:
     out: UpdateAccountSettingsInput = {}  # type: ignore[typeddict-item]
-    if "GroupLifecycleEventsDesiredStatus" in data:
+    if data.get("GroupLifecycleEventsDesiredStatus") is not None:
         import capo_resource_groups.types.group_lifecycle_events_desired_status
 
         out["group_lifecycle_events_desired_status"] = (

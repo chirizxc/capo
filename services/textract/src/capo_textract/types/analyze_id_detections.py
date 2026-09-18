@@ -36,17 +36,25 @@ def serialize_aws_json_1_1(value: AnalyzeIDDetections) -> dict:
             )
         )
     if "confidence" in value:
-        out["Confidence"] = value["confidence"]
+        out["Confidence"] = (
+            "NaN"
+            if value["confidence"] != value["confidence"]
+            else "Infinity"
+            if value["confidence"] == float("inf")
+            else "-Infinity"
+            if value["confidence"] == float("-inf")
+            else value["confidence"]
+        )
     return out
 
 
 def deserialize_aws_json_1_1(data: dict) -> AnalyzeIDDetections:
     out: AnalyzeIDDetections = {}  # type: ignore[typeddict-item]
-    if "Text" in data:
+    if data.get("Text") is not None:
         out["text"] = data["Text"]
     else:
         raise DeserializationError("AnalyzeIDDetections.text required")
-    if "NormalizedValue" in data:
+    if data.get("NormalizedValue") is not None:
         import capo_textract.types.normalized_value
 
         out["normalized_value"] = (
@@ -54,6 +62,6 @@ def deserialize_aws_json_1_1(data: dict) -> AnalyzeIDDetections:
                 data["NormalizedValue"]
             )
         )
-    if "Confidence" in data:
-        out["confidence"] = data["Confidence"]
+    if data.get("Confidence") is not None:
+        out["confidence"] = float(data["Confidence"])
     return out

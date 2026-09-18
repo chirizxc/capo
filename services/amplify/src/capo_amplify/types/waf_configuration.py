@@ -37,14 +37,14 @@ def serialize_json(value: WafConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> WafConfiguration:
     out: WafConfiguration = {}  # type: ignore[typeddict-item]
-    if "webAclArn" in data:
+    if data.get("webAclArn") is not None:
         out["web_acl_arn"] = data["webAclArn"]
-    if "wafStatus" in data:
+    if data.get("wafStatus") is not None:
         import capo_amplify.types.waf_status
 
         out["waf_status"] = capo_amplify.types.waf_status.deserialize_json(
             data["wafStatus"]
         )
-    if "statusReason" in data:
+    if data.get("statusReason") is not None:
         out["status_reason"] = data["statusReason"]
     return out

@@ -30,7 +30,7 @@ def serialize_aws_json_1_0(value: BatchGetLifecyclePolicyRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> BatchGetLifecyclePolicyRequest:
     out: BatchGetLifecyclePolicyRequest = {}  # type: ignore[typeddict-item]
-    if "identifiers" in data:
+    if data.get("identifiers") is not None:
         import capo_opensearchserverless.types.lifecycle_policy_identifiers
 
         out["identifiers"] = (

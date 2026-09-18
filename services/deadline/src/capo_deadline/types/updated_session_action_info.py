@@ -56,23 +56,33 @@ def serialize_json(value: UpdatedSessionActionInfo) -> dict:
     if "progress_message" in value:
         out["progressMessage"] = value["progress_message"]
     if "started_at" in value:
-        import capo_deadline.types.timestamp
+        import capo_deadline._protocol.serialize
 
-        out["startedAt"] = capo_deadline.types.timestamp.serialize_json(
+        out["startedAt"] = capo_deadline._protocol.serialize.fmt_date_time(
             value["started_at"]
         )
     if "ended_at" in value:
-        import capo_deadline.types.timestamp
+        import capo_deadline._protocol.serialize
 
-        out["endedAt"] = capo_deadline.types.timestamp.serialize_json(value["ended_at"])
+        out["endedAt"] = capo_deadline._protocol.serialize.fmt_date_time(
+            value["ended_at"]
+        )
     if "updated_at" in value:
-        import capo_deadline.types.timestamp
+        import capo_deadline._protocol.serialize
 
-        out["updatedAt"] = capo_deadline.types.timestamp.serialize_json(
+        out["updatedAt"] = capo_deadline._protocol.serialize.fmt_date_time(
             value["updated_at"]
         )
     if "progress_percent" in value:
-        out["progressPercent"] = value["progress_percent"]
+        out["progressPercent"] = (
+            "NaN"
+            if value["progress_percent"] != value["progress_percent"]
+            else "Infinity"
+            if value["progress_percent"] == float("inf")
+            else "-Infinity"
+            if value["progress_percent"] == float("-inf")
+            else value["progress_percent"]
+        )
     if "manifests" in value:
         import capo_deadline.types.task_run_manifest_properties_list_request
 
@@ -86,37 +96,37 @@ def serialize_json(value: UpdatedSessionActionInfo) -> dict:
 
 def deserialize_json(data: dict) -> UpdatedSessionActionInfo:
     out: UpdatedSessionActionInfo = {}  # type: ignore[typeddict-item]
-    if "completedStatus" in data:
+    if data.get("completedStatus") is not None:
         import capo_deadline.types.completed_status
 
         out["completed_status"] = capo_deadline.types.completed_status.deserialize_json(
             data["completedStatus"]
         )
-    if "processExitCode" in data:
+    if data.get("processExitCode") is not None:
         out["process_exit_code"] = data["processExitCode"]
-    if "progressMessage" in data:
+    if data.get("progressMessage") is not None:
         out["progress_message"] = data["progressMessage"]
-    if "startedAt" in data:
-        import capo_deadline.types.timestamp
+    if data.get("startedAt") is not None:
+        import datetime
 
-        out["started_at"] = capo_deadline.types.timestamp.deserialize_json(
-            data["startedAt"]
+        out["started_at"] = datetime.datetime.fromisoformat(
+            data["startedAt"].replace("Z", "+00:00")
         )
-    if "endedAt" in data:
-        import capo_deadline.types.timestamp
+    if data.get("endedAt") is not None:
+        import datetime
 
-        out["ended_at"] = capo_deadline.types.timestamp.deserialize_json(
-            data["endedAt"]
+        out["ended_at"] = datetime.datetime.fromisoformat(
+            data["endedAt"].replace("Z", "+00:00")
         )
-    if "updatedAt" in data:
-        import capo_deadline.types.timestamp
+    if data.get("updatedAt") is not None:
+        import datetime
 
-        out["updated_at"] = capo_deadline.types.timestamp.deserialize_json(
-            data["updatedAt"]
+        out["updated_at"] = datetime.datetime.fromisoformat(
+            data["updatedAt"].replace("Z", "+00:00")
         )
-    if "progressPercent" in data:
-        out["progress_percent"] = data["progressPercent"]
-    if "manifests" in data:
+    if data.get("progressPercent") is not None:
+        out["progress_percent"] = float(data["progressPercent"])
+    if data.get("manifests") is not None:
         import capo_deadline.types.task_run_manifest_properties_list_request
 
         out["manifests"] = (

@@ -35,12 +35,12 @@ def serialize_json(value: DataTableLockVersion) -> dict:
 
 def deserialize_json(data: dict) -> DataTableLockVersion:
     out: DataTableLockVersion = {}  # type: ignore[typeddict-item]
-    if "DataTable" in data:
+    if data.get("DataTable") is not None:
         out["data_table"] = data["DataTable"]
-    if "Attribute" in data:
+    if data.get("Attribute") is not None:
         out["attribute"] = data["Attribute"]
-    if "PrimaryValues" in data:
+    if data.get("PrimaryValues") is not None:
         out["primary_values"] = data["PrimaryValues"]
-    if "Value" in data:
+    if data.get("Value") is not None:
         out["value"] = data["Value"]
     return out

@@ -23,6 +23,6 @@ def serialize_json(value: CreateGraphResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateGraphResponse:
     out: CreateGraphResponse = {}  # type: ignore[typeddict-item]
-    if "GraphArn" in data:
+    if data.get("GraphArn") is not None:
         out["graph_arn"] = data["GraphArn"]
     return out

@@ -32,7 +32,7 @@ def serialize_json(value: ClinicalNoteGenerationSettings) -> dict:
 
 def deserialize_json(data: dict) -> ClinicalNoteGenerationSettings:
     out: ClinicalNoteGenerationSettings = {}  # type: ignore[typeddict-item]
-    if "noteTemplateSettings" in data:
+    if data.get("noteTemplateSettings") is not None:
         import capo_connecthealth.types.note_template_settings
 
         out["note_template_settings"] = (

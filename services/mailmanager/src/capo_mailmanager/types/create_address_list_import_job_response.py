@@ -28,11 +28,11 @@ def serialize_aws_json_1_0(value: CreateAddressListImportJobResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CreateAddressListImportJobResponse:
     out: CreateAddressListImportJobResponse = {}  # type: ignore[typeddict-item]
-    if "JobId" in data:
+    if data.get("JobId") is not None:
         out["job_id"] = data["JobId"]
     else:
         raise DeserializationError("CreateAddressListImportJobResponse.job_id required")
-    if "PreSignedUrl" in data:
+    if data.get("PreSignedUrl") is not None:
         out["pre_signed_url"] = data["PreSignedUrl"]
     else:
         raise DeserializationError(

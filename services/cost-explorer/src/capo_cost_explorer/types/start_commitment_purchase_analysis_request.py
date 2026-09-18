@@ -30,7 +30,7 @@ def serialize_aws_json_1_1(value: StartCommitmentPurchaseAnalysisRequest) -> dic
 
 def deserialize_aws_json_1_1(data: dict) -> StartCommitmentPurchaseAnalysisRequest:
     out: StartCommitmentPurchaseAnalysisRequest = {}  # type: ignore[typeddict-item]
-    if "CommitmentPurchaseAnalysisConfiguration" in data:
+    if data.get("CommitmentPurchaseAnalysisConfiguration") is not None:
         import capo_cost_explorer.types.commitment_purchase_analysis_configuration
 
         out["commitment_purchase_analysis_configuration"] = (

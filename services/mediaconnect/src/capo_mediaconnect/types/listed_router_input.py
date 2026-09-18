@@ -84,14 +84,14 @@ def serialize_json(value: ListedRouterInput) -> dict:
     out["routingScope"] = capo_mediaconnect.types.routing_scope.serialize_json(
         value["routing_scope"]
     )
-    import capo_mediaconnect.types._prelude.timestamp
+    import capo_mediaconnect._protocol.serialize
 
-    out["createdAt"] = capo_mediaconnect.types._prelude.timestamp.serialize_json(
+    out["createdAt"] = capo_mediaconnect._protocol.serialize.fmt_date_time(
         value["created_at"]
     )
-    import capo_mediaconnect.types._prelude.timestamp
+    import capo_mediaconnect._protocol.serialize
 
-    out["updatedAt"] = capo_mediaconnect.types._prelude.timestamp.serialize_json(
+    out["updatedAt"] = capo_mediaconnect._protocol.serialize.fmt_date_time(
         value["updated_at"]
     )
     out["messageCount"] = value["message_count"]
@@ -118,19 +118,19 @@ def serialize_json(value: ListedRouterInput) -> dict:
 
 def deserialize_json(data: dict) -> ListedRouterInput:
     out: ListedRouterInput = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("ListedRouterInput.name required")
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("ListedRouterInput.arn required")
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("ListedRouterInput.id required")
-    if "inputType" in data:
+    if data.get("inputType") is not None:
         import capo_mediaconnect.types.router_input_type
 
         out["input_type"] = capo_mediaconnect.types.router_input_type.deserialize_json(
@@ -138,7 +138,7 @@ def deserialize_json(data: dict) -> ListedRouterInput:
         )
     else:
         raise DeserializationError("ListedRouterInput.input_type required")
-    if "state" in data:
+    if data.get("state") is not None:
         import capo_mediaconnect.types.router_input_state
 
         out["state"] = capo_mediaconnect.types.router_input_state.deserialize_json(
@@ -146,23 +146,23 @@ def deserialize_json(data: dict) -> ListedRouterInput:
         )
     else:
         raise DeserializationError("ListedRouterInput.state required")
-    if "routedOutputs" in data:
+    if data.get("routedOutputs") is not None:
         out["routed_outputs"] = data["routedOutputs"]
     else:
         raise DeserializationError("ListedRouterInput.routed_outputs required")
-    if "regionName" in data:
+    if data.get("regionName") is not None:
         out["region_name"] = data["regionName"]
     else:
         raise DeserializationError("ListedRouterInput.region_name required")
-    if "availabilityZone" in data:
+    if data.get("availabilityZone") is not None:
         out["availability_zone"] = data["availabilityZone"]
     else:
         raise DeserializationError("ListedRouterInput.availability_zone required")
-    if "maximumBitrate" in data:
+    if data.get("maximumBitrate") is not None:
         out["maximum_bitrate"] = data["maximumBitrate"]
     else:
         raise DeserializationError("ListedRouterInput.maximum_bitrate required")
-    if "routingScope" in data:
+    if data.get("routingScope") is not None:
         import capo_mediaconnect.types.routing_scope
 
         out["routing_scope"] = capo_mediaconnect.types.routing_scope.deserialize_json(
@@ -170,29 +170,29 @@ def deserialize_json(data: dict) -> ListedRouterInput:
         )
     else:
         raise DeserializationError("ListedRouterInput.routing_scope required")
-    if "createdAt" in data:
-        import capo_mediaconnect.types._prelude.timestamp
+    if data.get("createdAt") is not None:
+        import datetime
 
-        out["created_at"] = capo_mediaconnect.types._prelude.timestamp.deserialize_json(
-            data["createdAt"]
+        out["created_at"] = datetime.datetime.fromisoformat(
+            data["createdAt"].replace("Z", "+00:00")
         )
     else:
         raise DeserializationError("ListedRouterInput.created_at required")
-    if "updatedAt" in data:
-        import capo_mediaconnect.types._prelude.timestamp
+    if data.get("updatedAt") is not None:
+        import datetime
 
-        out["updated_at"] = capo_mediaconnect.types._prelude.timestamp.deserialize_json(
-            data["updatedAt"]
+        out["updated_at"] = datetime.datetime.fromisoformat(
+            data["updatedAt"].replace("Z", "+00:00")
         )
     else:
         raise DeserializationError("ListedRouterInput.updated_at required")
-    if "messageCount" in data:
+    if data.get("messageCount") is not None:
         out["message_count"] = data["messageCount"]
     else:
         raise DeserializationError("ListedRouterInput.message_count required")
-    if "networkInterfaceArn" in data:
+    if data.get("networkInterfaceArn") is not None:
         out["network_interface_arn"] = data["networkInterfaceArn"]
-    if "maintenanceScheduleType" in data:
+    if data.get("maintenanceScheduleType") is not None:
         import capo_mediaconnect.types.maintenance_schedule_type
 
         out["maintenance_schedule_type"] = (
@@ -200,7 +200,7 @@ def deserialize_json(data: dict) -> ListedRouterInput:
                 data["maintenanceScheduleType"]
             )
         )
-    if "maintenanceSchedule" in data:
+    if data.get("maintenanceSchedule") is not None:
         import capo_mediaconnect.types.maintenance_schedule
 
         out["maintenance_schedule"] = (

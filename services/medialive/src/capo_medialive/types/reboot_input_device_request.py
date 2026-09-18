@@ -32,7 +32,7 @@ def serialize_json(value: RebootInputDeviceRequest) -> dict:
 
 def deserialize_json(data: dict) -> RebootInputDeviceRequest:
     out: RebootInputDeviceRequest = {}  # type: ignore[typeddict-item]
-    if "force" in data:
+    if data.get("force") is not None:
         import capo_medialive.types.reboot_input_device_force
 
         out["force"] = capo_medialive.types.reboot_input_device_force.deserialize_json(

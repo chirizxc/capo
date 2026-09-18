@@ -32,12 +32,12 @@ def serialize_json(value: ListInstanceAttributesResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListInstanceAttributesResponse:
     out: ListInstanceAttributesResponse = {}  # type: ignore[typeddict-item]
-    if "Attributes" in data:
+    if data.get("Attributes") is not None:
         import capo_connect.types.attributes_list
 
         out["attributes"] = capo_connect.types.attributes_list.deserialize_json(
             data["Attributes"]
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

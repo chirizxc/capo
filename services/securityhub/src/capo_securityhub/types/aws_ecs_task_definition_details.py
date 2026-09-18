@@ -135,7 +135,7 @@ def serialize_json(value: AwsEcsTaskDefinitionDetails) -> dict:
 
 def deserialize_json(data: dict) -> AwsEcsTaskDefinitionDetails:
     out: AwsEcsTaskDefinitionDetails = {}  # type: ignore[typeddict-item]
-    if "ContainerDefinitions" in data:
+    if data.get("ContainerDefinitions") is not None:
         import capo_securityhub.types.aws_ecs_task_definition_container_definitions_list
 
         out["container_definitions"] = (
@@ -143,13 +143,13 @@ def deserialize_json(data: dict) -> AwsEcsTaskDefinitionDetails:
                 data["ContainerDefinitions"]
             )
         )
-    if "Cpu" in data:
+    if data.get("Cpu") is not None:
         out["cpu"] = data["Cpu"]
-    if "ExecutionRoleArn" in data:
+    if data.get("ExecutionRoleArn") is not None:
         out["execution_role_arn"] = data["ExecutionRoleArn"]
-    if "Family" in data:
+    if data.get("Family") is not None:
         out["family"] = data["Family"]
-    if "InferenceAccelerators" in data:
+    if data.get("InferenceAccelerators") is not None:
         import capo_securityhub.types.aws_ecs_task_definition_inference_accelerators_list
 
         out["inference_accelerators"] = (
@@ -157,15 +157,15 @@ def deserialize_json(data: dict) -> AwsEcsTaskDefinitionDetails:
                 data["InferenceAccelerators"]
             )
         )
-    if "IpcMode" in data:
+    if data.get("IpcMode") is not None:
         out["ipc_mode"] = data["IpcMode"]
-    if "Memory" in data:
+    if data.get("Memory") is not None:
         out["memory"] = data["Memory"]
-    if "NetworkMode" in data:
+    if data.get("NetworkMode") is not None:
         out["network_mode"] = data["NetworkMode"]
-    if "PidMode" in data:
+    if data.get("PidMode") is not None:
         out["pid_mode"] = data["PidMode"]
-    if "PlacementConstraints" in data:
+    if data.get("PlacementConstraints") is not None:
         import capo_securityhub.types.aws_ecs_task_definition_placement_constraints_list
 
         out["placement_constraints"] = (
@@ -173,7 +173,7 @@ def deserialize_json(data: dict) -> AwsEcsTaskDefinitionDetails:
                 data["PlacementConstraints"]
             )
         )
-    if "ProxyConfiguration" in data:
+    if data.get("ProxyConfiguration") is not None:
         import capo_securityhub.types.aws_ecs_task_definition_proxy_configuration_details
 
         out["proxy_configuration"] = (
@@ -181,7 +181,7 @@ def deserialize_json(data: dict) -> AwsEcsTaskDefinitionDetails:
                 data["ProxyConfiguration"]
             )
         )
-    if "RequiresCompatibilities" in data:
+    if data.get("RequiresCompatibilities") is not None:
         import capo_securityhub.types.non_empty_string_list
 
         out["requires_compatibilities"] = (
@@ -189,9 +189,9 @@ def deserialize_json(data: dict) -> AwsEcsTaskDefinitionDetails:
                 data["RequiresCompatibilities"]
             )
         )
-    if "TaskRoleArn" in data:
+    if data.get("TaskRoleArn") is not None:
         out["task_role_arn"] = data["TaskRoleArn"]
-    if "Volumes" in data:
+    if data.get("Volumes") is not None:
         import capo_securityhub.types.aws_ecs_task_definition_volumes_list
 
         out["volumes"] = (
@@ -199,6 +199,6 @@ def deserialize_json(data: dict) -> AwsEcsTaskDefinitionDetails:
                 data["Volumes"]
             )
         )
-    if "Status" in data:
+    if data.get("Status") is not None:
         out["status"] = data["Status"]
     return out

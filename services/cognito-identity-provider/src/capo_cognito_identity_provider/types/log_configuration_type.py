@@ -81,7 +81,7 @@ def serialize_aws_json_1_1(value: LogConfigurationType) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> LogConfigurationType:
     out: LogConfigurationType = {}  # type: ignore[typeddict-item]
-    if "LogLevel" in data:
+    if data.get("LogLevel") is not None:
         import capo_cognito_identity_provider.types.log_level
 
         out["log_level"] = (
@@ -91,7 +91,7 @@ def deserialize_aws_json_1_1(data: dict) -> LogConfigurationType:
         )
     else:
         raise DeserializationError("LogConfigurationType.log_level required")
-    if "EventSource" in data:
+    if data.get("EventSource") is not None:
         import capo_cognito_identity_provider.types.event_source_name
 
         out["event_source"] = (
@@ -101,7 +101,7 @@ def deserialize_aws_json_1_1(data: dict) -> LogConfigurationType:
         )
     else:
         raise DeserializationError("LogConfigurationType.event_source required")
-    if "CloudWatchLogsConfiguration" in data:
+    if data.get("CloudWatchLogsConfiguration") is not None:
         import capo_cognito_identity_provider.types.cloud_watch_logs_configuration_type
 
         out["cloud_watch_logs_configuration"] = (
@@ -109,7 +109,7 @@ def deserialize_aws_json_1_1(data: dict) -> LogConfigurationType:
                 data["CloudWatchLogsConfiguration"]
             )
         )
-    if "S3Configuration" in data:
+    if data.get("S3Configuration") is not None:
         import capo_cognito_identity_provider.types.s3_configuration_type
 
         out["s3_configuration"] = (
@@ -117,7 +117,7 @@ def deserialize_aws_json_1_1(data: dict) -> LogConfigurationType:
                 data["S3Configuration"]
             )
         )
-    if "FirehoseConfiguration" in data:
+    if data.get("FirehoseConfiguration") is not None:
         import capo_cognito_identity_provider.types.firehose_configuration_type
 
         out["firehose_configuration"] = (

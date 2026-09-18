@@ -56,34 +56,34 @@ def serialize_json(value: CreatePodIdentityAssociationRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreatePodIdentityAssociationRequest:
     out: CreatePodIdentityAssociationRequest = {}  # type: ignore[typeddict-item]
-    if "namespace" in data:
+    if data.get("namespace") is not None:
         out["namespace"] = data["namespace"]
     else:
         raise DeserializationError(
             "CreatePodIdentityAssociationRequest.namespace required"
         )
-    if "serviceAccount" in data:
+    if data.get("serviceAccount") is not None:
         out["service_account"] = data["serviceAccount"]
     else:
         raise DeserializationError(
             "CreatePodIdentityAssociationRequest.service_account required"
         )
-    if "roleArn" in data:
+    if data.get("roleArn") is not None:
         out["role_arn"] = data["roleArn"]
     else:
         raise DeserializationError(
             "CreatePodIdentityAssociationRequest.role_arn required"
         )
-    if "clientRequestToken" in data:
+    if data.get("clientRequestToken") is not None:
         out["client_request_token"] = data["clientRequestToken"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_eks.types.tag_map
 
         out["tags"] = capo_eks.types.tag_map.deserialize_json(data["tags"])
-    if "disableSessionTags" in data:
+    if data.get("disableSessionTags") is not None:
         out["disable_session_tags"] = data["disableSessionTags"]
-    if "targetRoleArn" in data:
+    if data.get("targetRoleArn") is not None:
         out["target_role_arn"] = data["targetRoleArn"]
-    if "policy" in data:
+    if data.get("policy") is not None:
         out["policy"] = data["policy"]
     return out

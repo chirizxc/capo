@@ -55,7 +55,7 @@ def serialize_aws_json_1_1(value: Extraction) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Extraction:
     out: Extraction = {}  # type: ignore[typeddict-item]
-    if "LendingDocument" in data:
+    if data.get("LendingDocument") is not None:
         import capo_textract.types.lending_document
 
         out["lending_document"] = (
@@ -63,7 +63,7 @@ def deserialize_aws_json_1_1(data: dict) -> Extraction:
                 data["LendingDocument"]
             )
         )
-    if "ExpenseDocument" in data:
+    if data.get("ExpenseDocument") is not None:
         import capo_textract.types.expense_document
 
         out["expense_document"] = (
@@ -71,7 +71,7 @@ def deserialize_aws_json_1_1(data: dict) -> Extraction:
                 data["ExpenseDocument"]
             )
         )
-    if "IdentityDocument" in data:
+    if data.get("IdentityDocument") is not None:
         import capo_textract.types.identity_document
 
         out["identity_document"] = (

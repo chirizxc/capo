@@ -35,7 +35,7 @@ def serialize_aws_json_1_0(value: ListConnectionInvitationsResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ListConnectionInvitationsResponse:
     out: ListConnectionInvitationsResponse = {}  # type: ignore[typeddict-item]
-    if "ConnectionInvitationSummaries" in data:
+    if data.get("ConnectionInvitationSummaries") is not None:
         import capo_partnercentral_account.types.connection_invitation_summary_list
 
         out["connection_invitation_summaries"] = (
@@ -47,6 +47,6 @@ def deserialize_aws_json_1_0(data: dict) -> ListConnectionInvitationsResponse:
         raise DeserializationError(
             "ListConnectionInvitationsResponse.connection_invitation_summaries required"
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

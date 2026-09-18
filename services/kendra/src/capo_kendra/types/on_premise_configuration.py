@@ -36,15 +36,15 @@ def serialize_aws_json_1_1(value: OnPremiseConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> OnPremiseConfiguration:
     out: OnPremiseConfiguration = {}  # type: ignore[typeddict-item]
-    if "HostUrl" in data:
+    if data.get("HostUrl") is not None:
         out["host_url"] = data["HostUrl"]
     else:
         raise DeserializationError("OnPremiseConfiguration.host_url required")
-    if "OrganizationName" in data:
+    if data.get("OrganizationName") is not None:
         out["organization_name"] = data["OrganizationName"]
     else:
         raise DeserializationError("OnPremiseConfiguration.organization_name required")
-    if "SslCertificateS3Path" in data:
+    if data.get("SslCertificateS3Path") is not None:
         import capo_kendra.types.s3_path
 
         out["ssl_certificate_s3_path"] = (

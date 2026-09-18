@@ -44,7 +44,7 @@ def serialize_aws_json_1_1(value: HybridSettingsDescription) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> HybridSettingsDescription:
     out: HybridSettingsDescription = {}  # type: ignore[typeddict-item]
-    if "SelfManagedDnsIpAddrs" in data:
+    if data.get("SelfManagedDnsIpAddrs") is not None:
         import capo_directory_service.types.ip_addrs
 
         out["self_managed_dns_ip_addrs"] = (
@@ -52,7 +52,7 @@ def deserialize_aws_json_1_1(data: dict) -> HybridSettingsDescription:
                 data["SelfManagedDnsIpAddrs"]
             )
         )
-    if "SelfManagedInstanceIds" in data:
+    if data.get("SelfManagedInstanceIds") is not None:
         import capo_directory_service.types.assessment_instance_ids
 
         out["self_managed_instance_ids"] = (

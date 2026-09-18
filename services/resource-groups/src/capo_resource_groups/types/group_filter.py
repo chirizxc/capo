@@ -36,7 +36,7 @@ def serialize_json(value: GroupFilter) -> dict:
 
 def deserialize_json(data: dict) -> GroupFilter:
     out: GroupFilter = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         import capo_resource_groups.types.group_filter_name
 
         out["name"] = capo_resource_groups.types.group_filter_name.deserialize_json(
@@ -44,7 +44,7 @@ def deserialize_json(data: dict) -> GroupFilter:
         )
     else:
         raise DeserializationError("GroupFilter.name required")
-    if "Values" in data:
+    if data.get("Values") is not None:
         import capo_resource_groups.types.group_filter_values
 
         out["values"] = capo_resource_groups.types.group_filter_values.deserialize_json(

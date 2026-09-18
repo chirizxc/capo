@@ -66,27 +66,27 @@ def serialize_json(value: TaskTemplateMetadata) -> dict:
 
 def deserialize_json(data: dict) -> TaskTemplateMetadata:
     out: TaskTemplateMetadata = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_connect.types.task_template_status
 
         out["status"] = capo_connect.types.task_template_status.deserialize_json(
             data["Status"]
         )
-    if "LastModifiedTime" in data:
+    if data.get("LastModifiedTime") is not None:
         import capo_connect.types.timestamp
 
         out["last_modified_time"] = capo_connect.types.timestamp.deserialize_json(
             data["LastModifiedTime"]
         )
-    if "CreatedTime" in data:
+    if data.get("CreatedTime") is not None:
         import capo_connect.types.timestamp
 
         out["created_time"] = capo_connect.types.timestamp.deserialize_json(

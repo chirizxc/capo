@@ -28,11 +28,11 @@ def serialize_aws_json_1_1(value: ImportKeyPairRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ImportKeyPairRequest:
     out: ImportKeyPairRequest = {}  # type: ignore[typeddict-item]
-    if "keyPairName" in data:
+    if data.get("keyPairName") is not None:
         out["key_pair_name"] = data["keyPairName"]
     else:
         raise DeserializationError("ImportKeyPairRequest.key_pair_name required")
-    if "publicKeyBase64" in data:
+    if data.get("publicKeyBase64") is not None:
         out["public_key_base64"] = data["publicKeyBase64"]
     else:
         raise DeserializationError("ImportKeyPairRequest.public_key_base64 required")

@@ -50,9 +50,9 @@ def serialize_aws_json_1_1(value: DescribeGameServerInstancesInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeGameServerInstancesInput:
     out: DescribeGameServerInstancesInput = {}  # type: ignore[typeddict-item]
-    if "GameServerGroupName" in data:
+    if data.get("GameServerGroupName") is not None:
         out["game_server_group_name"] = data["GameServerGroupName"]
-    if "InstanceIds" in data:
+    if data.get("InstanceIds") is not None:
         import capo_gamelift.types.game_server_instance_ids
 
         out["instance_ids"] = (
@@ -60,8 +60,8 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeGameServerInstancesInput:
                 data["InstanceIds"]
             )
         )
-    if "Limit" in data:
+    if data.get("Limit") is not None:
         out["limit"] = data["Limit"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

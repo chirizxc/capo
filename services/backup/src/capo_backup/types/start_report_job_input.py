@@ -26,6 +26,6 @@ def serialize_json(value: StartReportJobInput) -> dict:
 
 def deserialize_json(data: dict) -> StartReportJobInput:
     out: StartReportJobInput = {}  # type: ignore[typeddict-item]
-    if "IdempotencyToken" in data:
+    if data.get("IdempotencyToken") is not None:
         out["idempotency_token"] = data["IdempotencyToken"]
     return out

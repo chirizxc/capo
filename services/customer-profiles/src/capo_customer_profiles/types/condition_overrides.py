@@ -27,7 +27,7 @@ def serialize_json(value: ConditionOverrides) -> dict:
 
 def deserialize_json(data: dict) -> ConditionOverrides:
     out: ConditionOverrides = {}  # type: ignore[typeddict-item]
-    if "Range" in data:
+    if data.get("Range") is not None:
         import capo_customer_profiles.types.range_override
 
         out["range"] = capo_customer_profiles.types.range_override.deserialize_json(

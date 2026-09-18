@@ -54,18 +54,18 @@ def serialize_json(value: CreateInstanceRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateInstanceRequest:
     out: CreateInstanceRequest = {}  # type: ignore[typeddict-item]
-    if "instanceName" in data:
+    if data.get("instanceName") is not None:
         out["instance_name"] = data["instanceName"]
-    if "instanceDescription" in data:
+    if data.get("instanceDescription") is not None:
         out["instance_description"] = data["instanceDescription"]
-    if "kmsKeyArn" in data:
+    if data.get("kmsKeyArn") is not None:
         out["kms_key_arn"] = data["kmsKeyArn"]
-    if "webAppDnsDomain" in data:
+    if data.get("webAppDnsDomain") is not None:
         out["web_app_dns_domain"] = data["webAppDnsDomain"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_supplychain.types.tag_map
 
         out["tags"] = capo_supplychain.types.tag_map.deserialize_json(data["tags"])
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     return out

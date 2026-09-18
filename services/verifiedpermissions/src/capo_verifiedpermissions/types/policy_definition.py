@@ -49,7 +49,7 @@ def serialize_aws_json_1_0(value: PolicyDefinition) -> dict:
 
 
 def deserialize_aws_json_1_0(data: dict) -> PolicyDefinition:
-    if "static" in data:
+    if data.get("static") is not None:
         import capo_verifiedpermissions.types.static_policy_definition
 
         return {
@@ -57,7 +57,7 @@ def deserialize_aws_json_1_0(data: dict) -> PolicyDefinition:
                 data["static"]
             )
         }
-    elif "templateLinked" in data:
+    elif data.get("templateLinked") is not None:
         import capo_verifiedpermissions.types.template_linked_policy_definition
 
         return {

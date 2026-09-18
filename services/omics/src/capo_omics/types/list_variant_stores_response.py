@@ -33,12 +33,12 @@ def serialize_json(value: ListVariantStoresResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListVariantStoresResponse:
     out: ListVariantStoresResponse = {}  # type: ignore[typeddict-item]
-    if "variantStores" in data:
+    if data.get("variantStores") is not None:
         import capo_omics.types.variant_store_items
 
         out["variant_stores"] = capo_omics.types.variant_store_items.deserialize_json(
             data["variantStores"]
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

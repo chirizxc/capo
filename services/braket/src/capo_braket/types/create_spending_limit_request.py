@@ -47,25 +47,25 @@ def serialize_json(value: CreateSpendingLimitRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateSpendingLimitRequest:
     out: CreateSpendingLimitRequest = {}  # type: ignore[typeddict-item]
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     else:
         raise DeserializationError("CreateSpendingLimitRequest.client_token required")
-    if "deviceArn" in data:
+    if data.get("deviceArn") is not None:
         out["device_arn"] = data["deviceArn"]
     else:
         raise DeserializationError("CreateSpendingLimitRequest.device_arn required")
-    if "spendingLimit" in data:
+    if data.get("spendingLimit") is not None:
         out["spending_limit"] = data["spendingLimit"]
     else:
         raise DeserializationError("CreateSpendingLimitRequest.spending_limit required")
-    if "timePeriod" in data:
+    if data.get("timePeriod") is not None:
         import capo_braket.types.time_period
 
         out["time_period"] = capo_braket.types.time_period.deserialize_json(
             data["timePeriod"]
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_braket.types.tags_map
 
         out["tags"] = capo_braket.types.tags_map.deserialize_json(data["tags"])

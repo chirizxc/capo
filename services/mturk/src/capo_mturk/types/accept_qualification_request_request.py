@@ -29,12 +29,12 @@ def serialize_aws_json_1_1(value: AcceptQualificationRequestRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AcceptQualificationRequestRequest:
     out: AcceptQualificationRequestRequest = {}  # type: ignore[typeddict-item]
-    if "QualificationRequestId" in data:
+    if data.get("QualificationRequestId") is not None:
         out["qualification_request_id"] = data["QualificationRequestId"]
     else:
         raise DeserializationError(
             "AcceptQualificationRequestRequest.qualification_request_id required"
         )
-    if "IntegerValue" in data:
+    if data.get("IntegerValue") is not None:
         out["integer_value"] = data["IntegerValue"]
     return out

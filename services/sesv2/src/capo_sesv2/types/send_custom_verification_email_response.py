@@ -23,6 +23,6 @@ def serialize_json(value: SendCustomVerificationEmailResponse) -> dict:
 
 def deserialize_json(data: dict) -> SendCustomVerificationEmailResponse:
     out: SendCustomVerificationEmailResponse = {}  # type: ignore[typeddict-item]
-    if "MessageId" in data:
+    if data.get("MessageId") is not None:
         out["message_id"] = data["MessageId"]
     return out

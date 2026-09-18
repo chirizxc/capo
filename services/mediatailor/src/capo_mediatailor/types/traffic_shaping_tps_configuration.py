@@ -27,8 +27,8 @@ def serialize_json(value: TrafficShapingTpsConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> TrafficShapingTpsConfiguration:
     out: TrafficShapingTpsConfiguration = {}  # type: ignore[typeddict-item]
-    if "PeakTps" in data:
+    if data.get("PeakTps") is not None:
         out["peak_tps"] = data["PeakTps"]
-    if "PeakConcurrentUsers" in data:
+    if data.get("PeakConcurrentUsers") is not None:
         out["peak_concurrent_users"] = data["PeakConcurrentUsers"]
     return out

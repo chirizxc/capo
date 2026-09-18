@@ -28,8 +28,11 @@ def serialize_aws_json_1_1(input_to_serialize: CustomerPolicyScopeMap) -> dict:
 def deserialize_aws_json_1_1(data: dict) -> CustomerPolicyScopeMap:
     out: CustomerPolicyScopeMap = {}
     for key, value in data.items():
-        import capo_fms.types.customer_policy_scope_id_list
         import capo_fms.types.customer_policy_scope_id_type
+
+        if value is None:
+            continue
+        import capo_fms.types.customer_policy_scope_id_list
 
         out[
             capo_fms.types.customer_policy_scope_id_type.deserialize_aws_json_1_1(key)

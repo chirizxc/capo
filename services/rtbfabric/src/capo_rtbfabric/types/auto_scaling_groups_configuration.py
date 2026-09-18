@@ -48,7 +48,7 @@ def serialize_json(value: AutoScalingGroupsConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> AutoScalingGroupsConfiguration:
     out: AutoScalingGroupsConfiguration = {}  # type: ignore[typeddict-item]
-    if "autoScalingGroupNames" in data:
+    if data.get("autoScalingGroupNames") is not None:
         import capo_rtbfabric.types.auto_scaling_group_name_list
 
         out["auto_scaling_group_names"] = (
@@ -60,11 +60,11 @@ def deserialize_json(data: dict) -> AutoScalingGroupsConfiguration:
         raise DeserializationError(
             "AutoScalingGroupsConfiguration.auto_scaling_group_names required"
         )
-    if "roleArn" in data:
+    if data.get("roleArn") is not None:
         out["role_arn"] = data["roleArn"]
     else:
         raise DeserializationError("AutoScalingGroupsConfiguration.role_arn required")
-    if "healthCheckConfig" in data:
+    if data.get("healthCheckConfig") is not None:
         import capo_rtbfabric.types.health_check_config
 
         out["health_check_config"] = (

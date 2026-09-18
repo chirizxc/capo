@@ -64,11 +64,11 @@ def serialize_json(value: UpdateDashboardPermissionsResponse) -> dict:
 
 def deserialize_json(data: dict) -> UpdateDashboardPermissionsResponse:
     out: UpdateDashboardPermissionsResponse = {}  # type: ignore[typeddict-item]
-    if "DashboardArn" in data:
+    if data.get("DashboardArn") is not None:
         out["dashboard_arn"] = data["DashboardArn"]
-    if "DashboardId" in data:
+    if data.get("DashboardId") is not None:
         out["dashboard_id"] = data["DashboardId"]
-    if "Permissions" in data:
+    if data.get("Permissions") is not None:
         import capo_quicksight.types.update_resource_permission_list
 
         out["permissions"] = (
@@ -76,9 +76,9 @@ def deserialize_json(data: dict) -> UpdateDashboardPermissionsResponse:
                 data["Permissions"]
             )
         )
-    if "RequestId" in data:
+    if data.get("RequestId") is not None:
         out["request_id"] = data["RequestId"]
-    if "LinkSharingConfiguration" in data:
+    if data.get("LinkSharingConfiguration") is not None:
         import capo_quicksight.types.link_sharing_configuration
 
         out["link_sharing_configuration"] = (

@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> SearchQueryScopeTypeList:
 
     out: SearchQueryScopeTypeList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_workdocs.types.search_query_scope_type.deserialize_json(item))
     return out

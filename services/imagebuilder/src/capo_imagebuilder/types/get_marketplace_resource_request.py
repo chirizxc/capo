@@ -43,7 +43,7 @@ def serialize_json(value: GetMarketplaceResourceRequest) -> dict:
 
 def deserialize_json(data: dict) -> GetMarketplaceResourceRequest:
     out: GetMarketplaceResourceRequest = {}  # type: ignore[typeddict-item]
-    if "resourceType" in data:
+    if data.get("resourceType") is not None:
         import capo_imagebuilder.types.marketplace_resource_type
 
         out["resource_type"] = (
@@ -55,12 +55,12 @@ def deserialize_json(data: dict) -> GetMarketplaceResourceRequest:
         raise DeserializationError(
             "GetMarketplaceResourceRequest.resource_type required"
         )
-    if "resourceArn" in data:
+    if data.get("resourceArn") is not None:
         out["resource_arn"] = data["resourceArn"]
     else:
         raise DeserializationError(
             "GetMarketplaceResourceRequest.resource_arn required"
         )
-    if "resourceLocation" in data:
+    if data.get("resourceLocation") is not None:
         out["resource_location"] = data["resourceLocation"]
     return out

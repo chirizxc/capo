@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: FilterLimitExceededException_) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> FilterLimitExceededException_:
     out: FilterLimitExceededException_ = {}  # type: ignore[typeddict-item]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     return out
 
@@ -34,15 +34,18 @@ class FilterLimitExceededException(ServiceError):
 
     code: str | None = "FilterLimitExceededException"
 
-    def __init__(self, data: FilterLimitExceededException_):
+    def __init__(self, data: FilterLimitExceededException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="FilterLimitExceededException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "FilterLimitExceededException":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "FilterLimitExceededException":
+        return cls(deserialize_aws_json_1_1(data), message)

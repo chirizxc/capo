@@ -31,11 +31,11 @@ def serialize_json(value: AssociateLinkRequest) -> dict:
 
 def deserialize_json(data: dict) -> AssociateLinkRequest:
     out: AssociateLinkRequest = {}  # type: ignore[typeddict-item]
-    if "DeviceId" in data:
+    if data.get("DeviceId") is not None:
         out["device_id"] = data["DeviceId"]
     else:
         raise DeserializationError("AssociateLinkRequest.device_id required")
-    if "LinkId" in data:
+    if data.get("LinkId") is not None:
         out["link_id"] = data["LinkId"]
     else:
         raise DeserializationError("AssociateLinkRequest.link_id required")

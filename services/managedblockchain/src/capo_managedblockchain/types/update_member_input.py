@@ -36,7 +36,7 @@ def serialize_json(value: UpdateMemberInput) -> dict:
 
 def deserialize_json(data: dict) -> UpdateMemberInput:
     out: UpdateMemberInput = {}  # type: ignore[typeddict-item]
-    if "LogPublishingConfiguration" in data:
+    if data.get("LogPublishingConfiguration") is not None:
         import capo_managedblockchain.types.member_log_publishing_configuration
 
         out["log_publishing_configuration"] = (

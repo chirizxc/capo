@@ -46,17 +46,17 @@ def serialize_json(value: DeprecationDetail) -> dict:
 
 def deserialize_json(data: dict) -> DeprecationDetail:
     out: DeprecationDetail = {}  # type: ignore[typeddict-item]
-    if "usage" in data:
+    if data.get("usage") is not None:
         out["usage"] = data["usage"]
-    if "replacedWith" in data:
+    if data.get("replacedWith") is not None:
         out["replaced_with"] = data["replacedWith"]
-    if "stopServingVersion" in data:
+    if data.get("stopServingVersion") is not None:
         out["stop_serving_version"] = data["stopServingVersion"]
-    if "startServingReplacementVersion" in data:
+    if data.get("startServingReplacementVersion") is not None:
         out["start_serving_replacement_version"] = data[
             "startServingReplacementVersion"
         ]
-    if "clientStats" in data:
+    if data.get("clientStats") is not None:
         import capo_eks.types.client_stats
 
         out["client_stats"] = capo_eks.types.client_stats.deserialize_json(

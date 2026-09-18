@@ -24,7 +24,7 @@ def serialize_json(value: QuickSightConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> QuickSightConfiguration:
     out: QuickSightConfiguration = {}  # type: ignore[typeddict-item]
-    if "clientNamespace" in data:
+    if data.get("clientNamespace") is not None:
         out["client_namespace"] = data["clientNamespace"]
     else:
         raise DeserializationError("QuickSightConfiguration.client_namespace required")

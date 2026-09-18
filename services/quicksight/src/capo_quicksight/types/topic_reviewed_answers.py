@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> TopicReviewedAnswers:
 
     out: TopicReviewedAnswers = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_quicksight.types.topic_reviewed_answer.deserialize_json(item))
     return out

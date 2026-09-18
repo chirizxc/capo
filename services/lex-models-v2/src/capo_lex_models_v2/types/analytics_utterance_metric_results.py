@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> AnalyticsUtteranceMetricResults:
 
     out: AnalyticsUtteranceMetricResults = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_lex_models_v2.types.analytics_utterance_metric_result.deserialize_json(
                 item

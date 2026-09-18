@@ -42,9 +42,9 @@ def deserialize_aws_json_1_1(
     data: dict,
 ) -> SalesforceStandardObjectAttachmentConfiguration:
     out: SalesforceStandardObjectAttachmentConfiguration = {}  # type: ignore[typeddict-item]
-    if "DocumentTitleFieldName" in data:
+    if data.get("DocumentTitleFieldName") is not None:
         out["document_title_field_name"] = data["DocumentTitleFieldName"]
-    if "FieldMappings" in data:
+    if data.get("FieldMappings") is not None:
         import capo_kendra.types.data_source_to_index_field_mapping_list
 
         out["field_mappings"] = (

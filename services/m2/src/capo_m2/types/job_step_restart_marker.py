@@ -45,18 +45,18 @@ def serialize_json(value: JobStepRestartMarker) -> dict:
 
 def deserialize_json(data: dict) -> JobStepRestartMarker:
     out: JobStepRestartMarker = {}  # type: ignore[typeddict-item]
-    if "fromStep" in data:
+    if data.get("fromStep") is not None:
         out["from_step"] = data["fromStep"]
     else:
         raise DeserializationError("JobStepRestartMarker.from_step required")
-    if "fromProcStep" in data:
+    if data.get("fromProcStep") is not None:
         out["from_proc_step"] = data["fromProcStep"]
-    if "toStep" in data:
+    if data.get("toStep") is not None:
         out["to_step"] = data["toStep"]
-    if "toProcStep" in data:
+    if data.get("toProcStep") is not None:
         out["to_proc_step"] = data["toProcStep"]
-    if "stepCheckpoint" in data:
+    if data.get("stepCheckpoint") is not None:
         out["step_checkpoint"] = data["stepCheckpoint"]
-    if "skip" in data:
+    if data.get("skip") is not None:
         out["skip"] = data["skip"]
     return out

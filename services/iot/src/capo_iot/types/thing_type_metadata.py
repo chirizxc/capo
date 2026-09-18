@@ -40,17 +40,17 @@ def serialize_json(value: ThingTypeMetadata) -> dict:
 
 def deserialize_json(data: dict) -> ThingTypeMetadata:
     out: ThingTypeMetadata = {}  # type: ignore[typeddict-item]
-    if "deprecated" in data:
+    if data.get("deprecated") is not None:
         out["deprecated"] = data["deprecated"]
     else:
         out["deprecated"] = False
-    if "deprecationDate" in data:
+    if data.get("deprecationDate") is not None:
         import capo_iot.types.deprecation_date
 
         out["deprecation_date"] = capo_iot.types.deprecation_date.deserialize_json(
             data["deprecationDate"]
         )
-    if "creationDate" in data:
+    if data.get("creationDate") is not None:
         import capo_iot.types.creation_date
 
         out["creation_date"] = capo_iot.types.creation_date.deserialize_json(

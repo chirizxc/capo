@@ -72,27 +72,27 @@ def serialize_json(value: DeleteClusterResponse) -> dict:
 
 def deserialize_json(data: dict) -> DeleteClusterResponse:
     out: DeleteClusterResponse = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "channelIds" in data:
+    if data.get("channelIds") is not None:
         import capo_medialive.types.__list_of__string
 
         out["channel_ids"] = capo_medialive.types.__list_of__string.deserialize_json(
             data["channelIds"]
         )
-    if "clusterType" in data:
+    if data.get("clusterType") is not None:
         import capo_medialive.types.cluster_type
 
         out["cluster_type"] = capo_medialive.types.cluster_type.deserialize_json(
             data["clusterType"]
         )
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "instanceRoleArn" in data:
+    if data.get("instanceRoleArn") is not None:
         out["instance_role_arn"] = data["instanceRoleArn"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "networkSettings" in data:
+    if data.get("networkSettings") is not None:
         import capo_medialive.types.cluster_network_settings
 
         out["network_settings"] = (
@@ -100,7 +100,7 @@ def deserialize_json(data: dict) -> DeleteClusterResponse:
                 data["networkSettings"]
             )
         )
-    if "state" in data:
+    if data.get("state") is not None:
         import capo_medialive.types.cluster_state
 
         out["state"] = capo_medialive.types.cluster_state.deserialize_json(

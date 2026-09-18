@@ -18,7 +18,7 @@ def serialize_aws_json_1_1(value: DryRunException_) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DryRunException_:
     out: DryRunException_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     else:
         raise DeserializationError("DryRunException_.message required")
@@ -30,15 +30,18 @@ class DryRunException(ServiceError):
 
     code: str | None = "DryRunException"
 
-    def __init__(self, data: DryRunException_):
+    def __init__(self, data: DryRunException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="DryRunException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "DryRunException":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "DryRunException":
+        return cls(deserialize_aws_json_1_1(data), message)

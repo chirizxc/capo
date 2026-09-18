@@ -31,7 +31,7 @@ def serialize_json(value: EnvironmentInfo) -> dict:
 
 def deserialize_json(data: dict) -> EnvironmentInfo:
     out: EnvironmentInfo = {}  # type: ignore[typeddict-item]
-    if "AvailabilityZoneInformation" in data:
+    if data.get("AvailabilityZoneInformation") is not None:
         import capo_opensearch.types.availability_zone_info_list
 
         out["availability_zone_information"] = (

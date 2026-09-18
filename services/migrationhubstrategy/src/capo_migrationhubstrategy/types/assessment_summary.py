@@ -150,7 +150,7 @@ def serialize_json(value: AssessmentSummary) -> dict:
 
 def deserialize_json(data: dict) -> AssessmentSummary:
     out: AssessmentSummary = {}  # type: ignore[typeddict-item]
-    if "listServerStrategySummary" in data:
+    if data.get("listServerStrategySummary") is not None:
         import capo_migrationhubstrategy.types.list_strategy_summary
 
         out["list_server_strategy_summary"] = (
@@ -158,7 +158,7 @@ def deserialize_json(data: dict) -> AssessmentSummary:
                 data["listServerStrategySummary"]
             )
         )
-    if "listApplicationComponentStrategySummary" in data:
+    if data.get("listApplicationComponentStrategySummary") is not None:
         import capo_migrationhubstrategy.types.list_strategy_summary
 
         out["list_application_component_strategy_summary"] = (
@@ -166,7 +166,7 @@ def deserialize_json(data: dict) -> AssessmentSummary:
                 data["listApplicationComponentStrategySummary"]
             )
         )
-    if "listAntipatternSeveritySummary" in data:
+    if data.get("listAntipatternSeveritySummary") is not None:
         import capo_migrationhubstrategy.types.list_antipattern_severity_summary
 
         out["list_antipattern_severity_summary"] = (
@@ -174,7 +174,7 @@ def deserialize_json(data: dict) -> AssessmentSummary:
                 data["listAntipatternSeveritySummary"]
             )
         )
-    if "listApplicationComponentSummary" in data:
+    if data.get("listApplicationComponentSummary") is not None:
         import capo_migrationhubstrategy.types.list_application_component_summary
 
         out["list_application_component_summary"] = (
@@ -182,7 +182,7 @@ def deserialize_json(data: dict) -> AssessmentSummary:
                 data["listApplicationComponentSummary"]
             )
         )
-    if "listServerSummary" in data:
+    if data.get("listServerSummary") is not None:
         import capo_migrationhubstrategy.types.list_server_summary
 
         out["list_server_summary"] = (
@@ -190,7 +190,7 @@ def deserialize_json(data: dict) -> AssessmentSummary:
                 data["listServerSummary"]
             )
         )
-    if "antipatternReportS3Object" in data:
+    if data.get("antipatternReportS3Object") is not None:
         import capo_migrationhubstrategy.types.s3_object
 
         out["antipattern_report_s3_object"] = (
@@ -198,13 +198,13 @@ def deserialize_json(data: dict) -> AssessmentSummary:
                 data["antipatternReportS3Object"]
             )
         )
-    if "antipatternReportStatus" in data:
+    if data.get("antipatternReportStatus") is not None:
         out["antipattern_report_status"] = data["antipatternReportStatus"]
-    if "antipatternReportStatusMessage" in data:
+    if data.get("antipatternReportStatusMessage") is not None:
         out["antipattern_report_status_message"] = data[
             "antipatternReportStatusMessage"
         ]
-    if "lastAnalyzedTimestamp" in data:
+    if data.get("lastAnalyzedTimestamp") is not None:
         import capo_migrationhubstrategy.types.time_stamp
 
         out["last_analyzed_timestamp"] = (
@@ -212,7 +212,7 @@ def deserialize_json(data: dict) -> AssessmentSummary:
                 data["lastAnalyzedTimestamp"]
             )
         )
-    if "listApplicationComponentStatusSummary" in data:
+    if data.get("listApplicationComponentStatusSummary") is not None:
         import capo_migrationhubstrategy.types.list_application_component_status_summary
 
         out["list_application_component_status_summary"] = (
@@ -220,7 +220,7 @@ def deserialize_json(data: dict) -> AssessmentSummary:
                 data["listApplicationComponentStatusSummary"]
             )
         )
-    if "listServerStatusSummary" in data:
+    if data.get("listServerStatusSummary") is not None:
         import capo_migrationhubstrategy.types.list_server_status_summary
 
         out["list_server_status_summary"] = (

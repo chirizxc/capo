@@ -64,19 +64,19 @@ def serialize_aws_json_1_1(value: DescribedHostKey) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribedHostKey:
     out: DescribedHostKey = {}  # type: ignore[typeddict-item]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
     else:
         raise DeserializationError("DescribedHostKey.arn required")
-    if "HostKeyId" in data:
+    if data.get("HostKeyId") is not None:
         out["host_key_id"] = data["HostKeyId"]
-    if "HostKeyFingerprint" in data:
+    if data.get("HostKeyFingerprint") is not None:
         out["host_key_fingerprint"] = data["HostKeyFingerprint"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Type" in data:
+    if data.get("Type") is not None:
         out["type"] = data["Type"]
-    if "DateImported" in data:
+    if data.get("DateImported") is not None:
         import capo_transfer.types.date_imported
 
         out["date_imported"] = (
@@ -84,7 +84,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribedHostKey:
                 data["DateImported"]
             )
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_transfer.types.tags
 
         out["tags"] = capo_transfer.types.tags.deserialize_aws_json_1_1(data["Tags"])

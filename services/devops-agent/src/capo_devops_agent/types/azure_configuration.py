@@ -19,7 +19,7 @@ def serialize_json(value: AzureConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> AzureConfiguration:
     out: AzureConfiguration = {}  # type: ignore[typeddict-item]
-    if "subscriptionId" in data:
+    if data.get("subscriptionId") is not None:
         out["subscription_id"] = data["subscriptionId"]
     else:
         raise DeserializationError("AzureConfiguration.subscription_id required")

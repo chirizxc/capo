@@ -62,9 +62,9 @@ def serialize_json(value: AccountDetails) -> dict:
 
 def deserialize_json(data: dict) -> AccountDetails:
     out: AccountDetails = {}  # type: ignore[typeddict-item]
-    if "accountId" in data:
+    if data.get("accountId") is not None:
         out["account_id"] = data["accountId"]
-    if "taxRegistration" in data:
+    if data.get("taxRegistration") is not None:
         import capo_taxsettings.types.tax_registration_with_jurisdiction
 
         out["tax_registration"] = (
@@ -72,7 +72,7 @@ def deserialize_json(data: dict) -> AccountDetails:
                 data["taxRegistration"]
             )
         )
-    if "taxInheritanceDetails" in data:
+    if data.get("taxInheritanceDetails") is not None:
         import capo_taxsettings.types.tax_inheritance_details
 
         out["tax_inheritance_details"] = (
@@ -80,7 +80,7 @@ def deserialize_json(data: dict) -> AccountDetails:
                 data["taxInheritanceDetails"]
             )
         )
-    if "accountMetaData" in data:
+    if data.get("accountMetaData") is not None:
         import capo_taxsettings.types.account_meta_data
 
         out["account_meta_data"] = (

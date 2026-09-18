@@ -36,13 +36,13 @@ def serialize_json(value: GetOidcInfoResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetOidcInfoResponse:
     out: GetOidcInfoResponse = {}  # type: ignore[typeddict-item]
-    if "openidConnectInfo" in data:
+    if data.get("openidConnectInfo") is not None:
         import capo_wickr.types.oidc_config_info
 
         out["openid_connect_info"] = capo_wickr.types.oidc_config_info.deserialize_json(
             data["openidConnectInfo"]
         )
-    if "tokenInfo" in data:
+    if data.get("tokenInfo") is not None:
         import capo_wickr.types.oidc_token_info
 
         out["token_info"] = capo_wickr.types.oidc_token_info.deserialize_json(

@@ -37,15 +37,15 @@ def serialize_aws_json_1_1(value: StartCommandExecutionInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> StartCommandExecutionInput:
     out: StartCommandExecutionInput = {}  # type: ignore[typeddict-item]
-    if "sandboxId" in data:
+    if data.get("sandboxId") is not None:
         out["sandbox_id"] = data["sandboxId"]
     else:
         raise DeserializationError("StartCommandExecutionInput.sandbox_id required")
-    if "command" in data:
+    if data.get("command") is not None:
         out["command"] = data["command"]
     else:
         raise DeserializationError("StartCommandExecutionInput.command required")
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_codebuild.types.command_type
 
         out["type"] = capo_codebuild.types.command_type.deserialize_aws_json_1_1(

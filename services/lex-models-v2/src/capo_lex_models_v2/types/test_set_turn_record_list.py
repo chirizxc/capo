@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> TestSetTurnRecordList:
 
     out: TestSetTurnRecordList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_lex_models_v2.types.test_set_turn_record.deserialize_json(item))
     return out

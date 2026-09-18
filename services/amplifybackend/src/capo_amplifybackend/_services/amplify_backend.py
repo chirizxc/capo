@@ -235,9 +235,10 @@ class AmplifyBackendClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_amplifybackend.types.clone_backend_request.CloneBackendRequest = {}  # type: ignore[typeddict-item]
-        input_["app_id"] = app_id
-        input_["backend_environment_name"] = backend_environment_name
+        input_: capo_amplifybackend.types.clone_backend_request.CloneBackendRequest = {
+            "app_id": app_id,
+            "backend_environment_name": backend_environment_name,
+        }
         if target_environment_name is not None:
             input_["target_environment_name"] = target_environment_name
 
@@ -246,6 +247,7 @@ class AmplifyBackendClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_backend(
@@ -294,7 +296,7 @@ class AmplifyBackendClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_amplifybackend.types.create_backend_request.CreateBackendRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_amplifybackend.types.create_backend_request.CreateBackendRequest = {}
         if app_id is not None:
             input_["app_id"] = app_id
         if app_name is not None:
@@ -311,6 +313,7 @@ class AmplifyBackendClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_backend_api(
@@ -359,8 +362,9 @@ class AmplifyBackendClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_amplifybackend.types.create_backend_api_request.CreateBackendAPIRequest = {}  # type: ignore[typeddict-item]
-        input_["app_id"] = app_id
+        input_: capo_amplifybackend.types.create_backend_api_request.CreateBackendAPIRequest = {
+            "app_id": app_id
+        }
         if backend_environment_name is not None:
             input_["backend_environment_name"] = backend_environment_name
         if resource_config is not None:
@@ -373,6 +377,7 @@ class AmplifyBackendClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_backend_auth(
@@ -419,8 +424,9 @@ class AmplifyBackendClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_amplifybackend.types.create_backend_auth_request.CreateBackendAuthRequest = {}  # type: ignore[typeddict-item]
-        input_["app_id"] = app_id
+        input_: capo_amplifybackend.types.create_backend_auth_request.CreateBackendAuthRequest = {
+            "app_id": app_id
+        }
         if backend_environment_name is not None:
             input_["backend_environment_name"] = backend_environment_name
         if resource_config is not None:
@@ -433,6 +439,7 @@ class AmplifyBackendClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_backend_config(
@@ -473,8 +480,9 @@ class AmplifyBackendClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_amplifybackend.types.create_backend_config_request.CreateBackendConfigRequest = {}  # type: ignore[typeddict-item]
-        input_["app_id"] = app_id
+        input_: capo_amplifybackend.types.create_backend_config_request.CreateBackendConfigRequest = {
+            "app_id": app_id
+        }
         if backend_manager_app_id is not None:
             input_["backend_manager_app_id"] = backend_manager_app_id
 
@@ -483,6 +491,7 @@ class AmplifyBackendClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_backend_storage(
@@ -529,8 +538,9 @@ class AmplifyBackendClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_amplifybackend.types.create_backend_storage_request.CreateBackendStorageRequest = {}  # type: ignore[typeddict-item]
-        input_["app_id"] = app_id
+        input_: capo_amplifybackend.types.create_backend_storage_request.CreateBackendStorageRequest = {
+            "app_id": app_id
+        }
         if backend_environment_name is not None:
             input_["backend_environment_name"] = backend_environment_name
         if resource_config is not None:
@@ -543,6 +553,7 @@ class AmplifyBackendClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_token(
@@ -579,14 +590,16 @@ class AmplifyBackendClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_amplifybackend.types.create_token_request.CreateTokenRequest = {}  # type: ignore[typeddict-item]
-        input_["app_id"] = app_id
+        input_: capo_amplifybackend.types.create_token_request.CreateTokenRequest = {
+            "app_id": app_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_backend(
@@ -625,15 +638,17 @@ class AmplifyBackendClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_amplifybackend.types.delete_backend_request.DeleteBackendRequest = {}  # type: ignore[typeddict-item]
-        input_["app_id"] = app_id
-        input_["backend_environment_name"] = backend_environment_name
+        input_: capo_amplifybackend.types.delete_backend_request.DeleteBackendRequest = {
+            "app_id": app_id,
+            "backend_environment_name": backend_environment_name,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_backend_api(
@@ -680,9 +695,10 @@ class AmplifyBackendClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_amplifybackend.types.delete_backend_api_request.DeleteBackendAPIRequest = {}  # type: ignore[typeddict-item]
-        input_["app_id"] = app_id
-        input_["backend_environment_name"] = backend_environment_name
+        input_: capo_amplifybackend.types.delete_backend_api_request.DeleteBackendAPIRequest = {
+            "app_id": app_id,
+            "backend_environment_name": backend_environment_name,
+        }
         if resource_config is not None:
             input_["resource_config"] = resource_config
         if resource_name is not None:
@@ -693,6 +709,7 @@ class AmplifyBackendClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_backend_auth(
@@ -733,9 +750,10 @@ class AmplifyBackendClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_amplifybackend.types.delete_backend_auth_request.DeleteBackendAuthRequest = {}  # type: ignore[typeddict-item]
-        input_["app_id"] = app_id
-        input_["backend_environment_name"] = backend_environment_name
+        input_: capo_amplifybackend.types.delete_backend_auth_request.DeleteBackendAuthRequest = {
+            "app_id": app_id,
+            "backend_environment_name": backend_environment_name,
+        }
         if resource_name is not None:
             input_["resource_name"] = resource_name
 
@@ -744,6 +762,7 @@ class AmplifyBackendClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_backend_storage(
@@ -788,9 +807,10 @@ class AmplifyBackendClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_amplifybackend.types.delete_backend_storage_request.DeleteBackendStorageRequest = {}  # type: ignore[typeddict-item]
-        input_["app_id"] = app_id
-        input_["backend_environment_name"] = backend_environment_name
+        input_: capo_amplifybackend.types.delete_backend_storage_request.DeleteBackendStorageRequest = {
+            "app_id": app_id,
+            "backend_environment_name": backend_environment_name,
+        }
         if resource_name is not None:
             input_["resource_name"] = resource_name
         if service_name is not None:
@@ -801,6 +821,7 @@ class AmplifyBackendClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_token(
@@ -839,15 +860,17 @@ class AmplifyBackendClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_amplifybackend.types.delete_token_request.DeleteTokenRequest = {}  # type: ignore[typeddict-item]
-        input_["app_id"] = app_id
-        input_["session_id"] = session_id
+        input_: capo_amplifybackend.types.delete_token_request.DeleteTokenRequest = {
+            "app_id": app_id,
+            "session_id": session_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def generate_backend_api_models(
@@ -888,9 +911,10 @@ class AmplifyBackendClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_amplifybackend.types.generate_backend_api_models_request.GenerateBackendAPIModelsRequest = {}  # type: ignore[typeddict-item]
-        input_["app_id"] = app_id
-        input_["backend_environment_name"] = backend_environment_name
+        input_: capo_amplifybackend.types.generate_backend_api_models_request.GenerateBackendAPIModelsRequest = {
+            "app_id": app_id,
+            "backend_environment_name": backend_environment_name,
+        }
         if resource_name is not None:
             input_["resource_name"] = resource_name
 
@@ -899,6 +923,7 @@ class AmplifyBackendClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_backend(
@@ -939,8 +964,9 @@ class AmplifyBackendClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_amplifybackend.types.get_backend_request.GetBackendRequest = {}  # type: ignore[typeddict-item]
-        input_["app_id"] = app_id
+        input_: capo_amplifybackend.types.get_backend_request.GetBackendRequest = {
+            "app_id": app_id
+        }
         if backend_environment_name is not None:
             input_["backend_environment_name"] = backend_environment_name
 
@@ -949,6 +975,7 @@ class AmplifyBackendClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_backend_api(
@@ -993,9 +1020,10 @@ class AmplifyBackendClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_amplifybackend.types.get_backend_api_request.GetBackendAPIRequest = {}  # type: ignore[typeddict-item]
-        input_["app_id"] = app_id
-        input_["backend_environment_name"] = backend_environment_name
+        input_: capo_amplifybackend.types.get_backend_api_request.GetBackendAPIRequest = {
+            "app_id": app_id,
+            "backend_environment_name": backend_environment_name,
+        }
         if resource_config is not None:
             input_["resource_config"] = resource_config
         if resource_name is not None:
@@ -1006,6 +1034,7 @@ class AmplifyBackendClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_backend_api_models(
@@ -1046,9 +1075,10 @@ class AmplifyBackendClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_amplifybackend.types.get_backend_api_models_request.GetBackendAPIModelsRequest = {}  # type: ignore[typeddict-item]
-        input_["app_id"] = app_id
-        input_["backend_environment_name"] = backend_environment_name
+        input_: capo_amplifybackend.types.get_backend_api_models_request.GetBackendAPIModelsRequest = {
+            "app_id": app_id,
+            "backend_environment_name": backend_environment_name,
+        }
         if resource_name is not None:
             input_["resource_name"] = resource_name
 
@@ -1057,6 +1087,7 @@ class AmplifyBackendClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_backend_auth(
@@ -1097,9 +1128,10 @@ class AmplifyBackendClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_amplifybackend.types.get_backend_auth_request.GetBackendAuthRequest = {}  # type: ignore[typeddict-item]
-        input_["app_id"] = app_id
-        input_["backend_environment_name"] = backend_environment_name
+        input_: capo_amplifybackend.types.get_backend_auth_request.GetBackendAuthRequest = {
+            "app_id": app_id,
+            "backend_environment_name": backend_environment_name,
+        }
         if resource_name is not None:
             input_["resource_name"] = resource_name
 
@@ -1108,6 +1140,7 @@ class AmplifyBackendClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_backend_job(
@@ -1148,16 +1181,18 @@ class AmplifyBackendClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_amplifybackend.types.get_backend_job_request.GetBackendJobRequest = {}  # type: ignore[typeddict-item]
-        input_["app_id"] = app_id
-        input_["backend_environment_name"] = backend_environment_name
-        input_["job_id"] = job_id
+        input_: capo_amplifybackend.types.get_backend_job_request.GetBackendJobRequest = {
+            "app_id": app_id,
+            "backend_environment_name": backend_environment_name,
+            "job_id": job_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_backend_storage(
@@ -1198,9 +1233,10 @@ class AmplifyBackendClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_amplifybackend.types.get_backend_storage_request.GetBackendStorageRequest = {}  # type: ignore[typeddict-item]
-        input_["app_id"] = app_id
-        input_["backend_environment_name"] = backend_environment_name
+        input_: capo_amplifybackend.types.get_backend_storage_request.GetBackendStorageRequest = {
+            "app_id": app_id,
+            "backend_environment_name": backend_environment_name,
+        }
         if resource_name is not None:
             input_["resource_name"] = resource_name
 
@@ -1209,6 +1245,7 @@ class AmplifyBackendClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_token(
@@ -1247,15 +1284,17 @@ class AmplifyBackendClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_amplifybackend.types.get_token_request.GetTokenRequest = {}  # type: ignore[typeddict-item]
-        input_["app_id"] = app_id
-        input_["session_id"] = session_id
+        input_: capo_amplifybackend.types.get_token_request.GetTokenRequest = {
+            "app_id": app_id,
+            "session_id": session_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def import_backend_auth(
@@ -1306,9 +1345,10 @@ class AmplifyBackendClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_amplifybackend.types.import_backend_auth_request.ImportBackendAuthRequest = {}  # type: ignore[typeddict-item]
-        input_["app_id"] = app_id
-        input_["backend_environment_name"] = backend_environment_name
+        input_: capo_amplifybackend.types.import_backend_auth_request.ImportBackendAuthRequest = {
+            "app_id": app_id,
+            "backend_environment_name": backend_environment_name,
+        }
         if identity_pool_id is not None:
             input_["identity_pool_id"] = identity_pool_id
         if native_client_id is not None:
@@ -1323,6 +1363,7 @@ class AmplifyBackendClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def import_backend_storage(
@@ -1367,9 +1408,10 @@ class AmplifyBackendClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_amplifybackend.types.import_backend_storage_request.ImportBackendStorageRequest = {}  # type: ignore[typeddict-item]
-        input_["app_id"] = app_id
-        input_["backend_environment_name"] = backend_environment_name
+        input_: capo_amplifybackend.types.import_backend_storage_request.ImportBackendStorageRequest = {
+            "app_id": app_id,
+            "backend_environment_name": backend_environment_name,
+        }
         if bucket_name is not None:
             input_["bucket_name"] = bucket_name
         if service_name is not None:
@@ -1380,6 +1422,7 @@ class AmplifyBackendClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_backend_jobs(
@@ -1430,9 +1473,10 @@ class AmplifyBackendClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_amplifybackend.types.list_backend_jobs_request.ListBackendJobsRequest = {}  # type: ignore[typeddict-item]
-        input_["app_id"] = app_id
-        input_["backend_environment_name"] = backend_environment_name
+        input_: capo_amplifybackend.types.list_backend_jobs_request.ListBackendJobsRequest = {
+            "app_id": app_id,
+            "backend_environment_name": backend_environment_name,
+        }
         if job_id is not None:
             input_["job_id"] = job_id
         if max_results is not None:
@@ -1449,6 +1493,7 @@ class AmplifyBackendClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_s3_buckets(
@@ -1485,7 +1530,7 @@ class AmplifyBackendClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_amplifybackend.types.list_s3_buckets_request.ListS3BucketsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_amplifybackend.types.list_s3_buckets_request.ListS3BucketsRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
 
@@ -1494,6 +1539,7 @@ class AmplifyBackendClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def remove_all_backends(
@@ -1534,8 +1580,9 @@ class AmplifyBackendClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_amplifybackend.types.remove_all_backends_request.RemoveAllBackendsRequest = {}  # type: ignore[typeddict-item]
-        input_["app_id"] = app_id
+        input_: capo_amplifybackend.types.remove_all_backends_request.RemoveAllBackendsRequest = {
+            "app_id": app_id
+        }
         if clean_amplify_app is not None:
             input_["clean_amplify_app"] = clean_amplify_app
 
@@ -1544,6 +1591,7 @@ class AmplifyBackendClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def remove_backend_config(
@@ -1580,14 +1628,16 @@ class AmplifyBackendClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_amplifybackend.types.remove_backend_config_request.RemoveBackendConfigRequest = {}  # type: ignore[typeddict-item]
-        input_["app_id"] = app_id
+        input_: capo_amplifybackend.types.remove_backend_config_request.RemoveBackendConfigRequest = {
+            "app_id": app_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_backend_api(
@@ -1634,9 +1684,10 @@ class AmplifyBackendClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_amplifybackend.types.update_backend_api_request.UpdateBackendAPIRequest = {}  # type: ignore[typeddict-item]
-        input_["app_id"] = app_id
-        input_["backend_environment_name"] = backend_environment_name
+        input_: capo_amplifybackend.types.update_backend_api_request.UpdateBackendAPIRequest = {
+            "app_id": app_id,
+            "backend_environment_name": backend_environment_name,
+        }
         if resource_config is not None:
             input_["resource_config"] = resource_config
         if resource_name is not None:
@@ -1647,6 +1698,7 @@ class AmplifyBackendClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_backend_auth(
@@ -1691,9 +1743,10 @@ class AmplifyBackendClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_amplifybackend.types.update_backend_auth_request.UpdateBackendAuthRequest = {}  # type: ignore[typeddict-item]
-        input_["app_id"] = app_id
-        input_["backend_environment_name"] = backend_environment_name
+        input_: capo_amplifybackend.types.update_backend_auth_request.UpdateBackendAuthRequest = {
+            "app_id": app_id,
+            "backend_environment_name": backend_environment_name,
+        }
         if resource_config is not None:
             input_["resource_config"] = resource_config
         if resource_name is not None:
@@ -1704,6 +1757,7 @@ class AmplifyBackendClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_backend_config(
@@ -1744,8 +1798,9 @@ class AmplifyBackendClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_amplifybackend.types.update_backend_config_request.UpdateBackendConfigRequest = {}  # type: ignore[typeddict-item]
-        input_["app_id"] = app_id
+        input_: capo_amplifybackend.types.update_backend_config_request.UpdateBackendConfigRequest = {
+            "app_id": app_id
+        }
         if login_auth_config is not None:
             input_["login_auth_config"] = login_auth_config
 
@@ -1754,6 +1809,7 @@ class AmplifyBackendClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_backend_job(
@@ -1800,10 +1856,11 @@ class AmplifyBackendClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_amplifybackend.types.update_backend_job_request.UpdateBackendJobRequest = {}  # type: ignore[typeddict-item]
-        input_["app_id"] = app_id
-        input_["backend_environment_name"] = backend_environment_name
-        input_["job_id"] = job_id
+        input_: capo_amplifybackend.types.update_backend_job_request.UpdateBackendJobRequest = {
+            "app_id": app_id,
+            "backend_environment_name": backend_environment_name,
+            "job_id": job_id,
+        }
         if operation is not None:
             input_["operation"] = operation
         if status is not None:
@@ -1814,6 +1871,7 @@ class AmplifyBackendClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_backend_storage(
@@ -1858,9 +1916,10 @@ class AmplifyBackendClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_amplifybackend.types.update_backend_storage_request.UpdateBackendStorageRequest = {}  # type: ignore[typeddict-item]
-        input_["app_id"] = app_id
-        input_["backend_environment_name"] = backend_environment_name
+        input_: capo_amplifybackend.types.update_backend_storage_request.UpdateBackendStorageRequest = {
+            "app_id": app_id,
+            "backend_environment_name": backend_environment_name,
+        }
         if resource_config is not None:
             input_["resource_config"] = resource_config
         if resource_name is not None:
@@ -1871,6 +1930,7 @@ class AmplifyBackendClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def __enter__(self) -> Self:

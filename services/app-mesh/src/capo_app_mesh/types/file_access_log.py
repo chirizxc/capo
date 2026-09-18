@@ -33,11 +33,11 @@ def serialize_json(value: FileAccessLog) -> dict:
 
 def deserialize_json(data: dict) -> FileAccessLog:
     out: FileAccessLog = {}  # type: ignore[typeddict-item]
-    if "path" in data:
+    if data.get("path") is not None:
         out["path"] = data["path"]
     else:
         raise DeserializationError("FileAccessLog.path required")
-    if "format" in data:
+    if data.get("format") is not None:
         import capo_app_mesh.types.logging_format
 
         out["format"] = capo_app_mesh.types.logging_format.deserialize_json(

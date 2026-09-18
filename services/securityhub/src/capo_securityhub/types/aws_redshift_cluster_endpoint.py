@@ -28,8 +28,8 @@ def serialize_json(value: AwsRedshiftClusterEndpoint) -> dict:
 
 def deserialize_json(data: dict) -> AwsRedshiftClusterEndpoint:
     out: AwsRedshiftClusterEndpoint = {}  # type: ignore[typeddict-item]
-    if "Address" in data:
+    if data.get("Address") is not None:
         out["address"] = data["Address"]
-    if "Port" in data:
+    if data.get("Port") is not None:
         out["port"] = data["Port"]
     return out

@@ -26,7 +26,7 @@ def serialize_aws_json_1_1(value: DeleteTrustedTokenIssuerRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteTrustedTokenIssuerRequest:
     out: DeleteTrustedTokenIssuerRequest = {}  # type: ignore[typeddict-item]
-    if "TrustedTokenIssuerArn" in data:
+    if data.get("TrustedTokenIssuerArn") is not None:
         out["trusted_token_issuer_arn"] = data["TrustedTokenIssuerArn"]
     else:
         raise DeserializationError(

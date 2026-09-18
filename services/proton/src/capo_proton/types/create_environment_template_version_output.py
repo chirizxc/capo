@@ -32,7 +32,7 @@ def serialize_aws_json_1_0(value: CreateEnvironmentTemplateVersionOutput) -> dic
 
 def deserialize_aws_json_1_0(data: dict) -> CreateEnvironmentTemplateVersionOutput:
     out: CreateEnvironmentTemplateVersionOutput = {}  # type: ignore[typeddict-item]
-    if "environmentTemplateVersion" in data:
+    if data.get("environmentTemplateVersion") is not None:
         import capo_proton.types.environment_template_version
 
         out["environment_template_version"] = (

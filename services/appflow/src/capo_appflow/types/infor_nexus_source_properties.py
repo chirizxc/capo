@@ -24,7 +24,7 @@ def serialize_json(value: InforNexusSourceProperties) -> dict:
 
 def deserialize_json(data: dict) -> InforNexusSourceProperties:
     out: InforNexusSourceProperties = {}  # type: ignore[typeddict-item]
-    if "object" in data:
+    if data.get("object") is not None:
         out["object"] = data["object"]
     else:
         raise DeserializationError("InforNexusSourceProperties.object required")

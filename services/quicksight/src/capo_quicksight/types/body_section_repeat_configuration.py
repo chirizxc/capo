@@ -57,7 +57,7 @@ def serialize_json(value: BodySectionRepeatConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> BodySectionRepeatConfiguration:
     out: BodySectionRepeatConfiguration = {}  # type: ignore[typeddict-item]
-    if "DimensionConfigurations" in data:
+    if data.get("DimensionConfigurations") is not None:
         import capo_quicksight.types.body_section_repeat_dimension_configuration_list
 
         out["dimension_configurations"] = (
@@ -65,7 +65,7 @@ def deserialize_json(data: dict) -> BodySectionRepeatConfiguration:
                 data["DimensionConfigurations"]
             )
         )
-    if "PageBreakConfiguration" in data:
+    if data.get("PageBreakConfiguration") is not None:
         import capo_quicksight.types.body_section_repeat_page_break_configuration
 
         out["page_break_configuration"] = (
@@ -73,7 +73,7 @@ def deserialize_json(data: dict) -> BodySectionRepeatConfiguration:
                 data["PageBreakConfiguration"]
             )
         )
-    if "NonRepeatingVisuals" in data:
+    if data.get("NonRepeatingVisuals") is not None:
         import capo_quicksight.types.non_repeating_visuals_list
 
         out["non_repeating_visuals"] = (

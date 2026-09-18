@@ -22,7 +22,7 @@ def serialize_json(value: AssetBundleImportJobOverrideValidationStrategy) -> dic
 
 def deserialize_json(data: dict) -> AssetBundleImportJobOverrideValidationStrategy:
     out: AssetBundleImportJobOverrideValidationStrategy = {}  # type: ignore[typeddict-item]
-    if "StrictModeForAllResources" in data:
+    if data.get("StrictModeForAllResources") is not None:
         out["strict_mode_for_all_resources"] = data["StrictModeForAllResources"]
     else:
         out["strict_mode_for_all_resources"] = False

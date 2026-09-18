@@ -27,8 +27,8 @@ def serialize_json(value: RollbackTrigger) -> dict:
 
 def deserialize_json(data: dict) -> RollbackTrigger:
     out: RollbackTrigger = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "type" in data:
+    if data.get("type") is not None:
         out["type"] = data["type"]
     return out

@@ -24,7 +24,7 @@ def serialize_json(value: ZendeskConnectorProfileProperties) -> dict:
 
 def deserialize_json(data: dict) -> ZendeskConnectorProfileProperties:
     out: ZendeskConnectorProfileProperties = {}  # type: ignore[typeddict-item]
-    if "instanceUrl" in data:
+    if data.get("instanceUrl") is not None:
         out["instance_url"] = data["instanceUrl"]
     else:
         raise DeserializationError(

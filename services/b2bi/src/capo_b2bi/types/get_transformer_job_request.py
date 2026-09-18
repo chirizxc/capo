@@ -4,6 +4,8 @@ from typing import TYPE_CHECKING
 
 from typing_extensions import TypedDict
 
+from capo_b2bi.errors import DeserializationError
+
 if TYPE_CHECKING:
     import capo_b2bi.types.transformer_id
     import capo_b2bi.types.transformer_job_id
@@ -19,9 +21,21 @@ class GetTransformerJobRequest(TypedDict, closed=True):
 # --- awsJson1_0 ser/de ---
 def serialize_aws_json_1_0(value: GetTransformerJobRequest) -> dict:
     out: dict = {}
+    out["transformerJobId"] = value["transformer_job_id"]
+    out["transformerId"] = value["transformer_id"]
     return out
 
 
 def deserialize_aws_json_1_0(data: dict) -> GetTransformerJobRequest:
     out: GetTransformerJobRequest = {}  # type: ignore[typeddict-item]
+    if data.get("transformerJobId") is not None:
+        out["transformer_job_id"] = data["transformerJobId"]
+    else:
+        raise DeserializationError(
+            "GetTransformerJobRequest.transformer_job_id required"
+        )
+    if data.get("transformerId") is not None:
+        out["transformer_id"] = data["transformerId"]
+    else:
+        raise DeserializationError("GetTransformerJobRequest.transformer_id required")
     return out

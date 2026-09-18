@@ -42,27 +42,27 @@ def serialize_json(value: ParticipantReplica) -> dict:
 
 def deserialize_json(data: dict) -> ParticipantReplica:
     out: ParticipantReplica = {}  # type: ignore[typeddict-item]
-    if "sourceStageArn" in data:
+    if data.get("sourceStageArn") is not None:
         out["source_stage_arn"] = data["sourceStageArn"]
     else:
         raise DeserializationError("ParticipantReplica.source_stage_arn required")
-    if "participantId" in data:
+    if data.get("participantId") is not None:
         out["participant_id"] = data["participantId"]
     else:
         raise DeserializationError("ParticipantReplica.participant_id required")
-    if "sourceSessionId" in data:
+    if data.get("sourceSessionId") is not None:
         out["source_session_id"] = data["sourceSessionId"]
     else:
         raise DeserializationError("ParticipantReplica.source_session_id required")
-    if "destinationStageArn" in data:
+    if data.get("destinationStageArn") is not None:
         out["destination_stage_arn"] = data["destinationStageArn"]
     else:
         raise DeserializationError("ParticipantReplica.destination_stage_arn required")
-    if "destinationSessionId" in data:
+    if data.get("destinationSessionId") is not None:
         out["destination_session_id"] = data["destinationSessionId"]
     else:
         raise DeserializationError("ParticipantReplica.destination_session_id required")
-    if "replicationState" in data:
+    if data.get("replicationState") is not None:
         out["replication_state"] = data["replicationState"]
     else:
         raise DeserializationError("ParticipantReplica.replication_state required")

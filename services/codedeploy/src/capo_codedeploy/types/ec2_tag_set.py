@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: EC2TagSet) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> EC2TagSet:
     out: EC2TagSet = {}  # type: ignore[typeddict-item]
-    if "ec2TagSetList" in data:
+    if data.get("ec2TagSetList") is not None:
         import capo_codedeploy.types.ec2_tag_set_list
 
         out["ec2_tag_set_list"] = (

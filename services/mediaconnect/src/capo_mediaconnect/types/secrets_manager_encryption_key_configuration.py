@@ -28,13 +28,13 @@ def serialize_json(value: SecretsManagerEncryptionKeyConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> SecretsManagerEncryptionKeyConfiguration:
     out: SecretsManagerEncryptionKeyConfiguration = {}  # type: ignore[typeddict-item]
-    if "secretArn" in data:
+    if data.get("secretArn") is not None:
         out["secret_arn"] = data["secretArn"]
     else:
         raise DeserializationError(
             "SecretsManagerEncryptionKeyConfiguration.secret_arn required"
         )
-    if "roleArn" in data:
+    if data.get("roleArn") is not None:
         out["role_arn"] = data["roleArn"]
     else:
         raise DeserializationError(

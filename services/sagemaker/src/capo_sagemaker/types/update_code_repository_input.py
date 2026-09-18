@@ -36,9 +36,9 @@ def serialize_aws_json_1_1(value: UpdateCodeRepositoryInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateCodeRepositoryInput:
     out: UpdateCodeRepositoryInput = {}  # type: ignore[typeddict-item]
-    if "CodeRepositoryName" in data:
+    if data.get("CodeRepositoryName") is not None:
         out["code_repository_name"] = data["CodeRepositoryName"]
-    if "GitConfig" in data:
+    if data.get("GitConfig") is not None:
         import capo_sagemaker.types.git_config_for_update
 
         out["git_config"] = (

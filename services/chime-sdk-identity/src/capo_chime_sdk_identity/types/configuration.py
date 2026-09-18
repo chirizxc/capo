@@ -28,7 +28,7 @@ def serialize_json(value: Configuration) -> dict:
 
 def deserialize_json(data: dict) -> Configuration:
     out: Configuration = {}  # type: ignore[typeddict-item]
-    if "Lex" in data:
+    if data.get("Lex") is not None:
         import capo_chime_sdk_identity.types.lex_configuration
 
         out["lex"] = capo_chime_sdk_identity.types.lex_configuration.deserialize_json(

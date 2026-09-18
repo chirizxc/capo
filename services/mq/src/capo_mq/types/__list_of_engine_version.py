@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> __listOfEngineVersion:
 
     out: __listOfEngineVersion = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_mq.types.engine_version.deserialize_json(item))
     return out

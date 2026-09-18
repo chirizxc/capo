@@ -25,6 +25,8 @@ def serialize_json(input_to_serialize: ChannelRoles) -> dict:
 def deserialize_json(data: dict) -> ChannelRoles:
     out: ChannelRoles = {}
     for key, value in data.items():
+        if value is None:
+            continue
         import capo_repostspace.types.channel_role_list
 
         out[key] = capo_repostspace.types.channel_role_list.deserialize_json(value)

@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> LensShareSummaries:
 
     out: LensShareSummaries = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_wellarchitected.types.lens_share_summary.deserialize_json(item))
     return out

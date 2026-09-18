@@ -57,7 +57,7 @@ def serialize_json(value: MembershipMLPaymentConfig) -> dict:
 
 def deserialize_json(data: dict) -> MembershipMLPaymentConfig:
     out: MembershipMLPaymentConfig = {}  # type: ignore[typeddict-item]
-    if "modelTraining" in data:
+    if data.get("modelTraining") is not None:
         import capo_cleanrooms.types.membership_model_training_payment_config
 
         out["model_training"] = (
@@ -65,7 +65,7 @@ def deserialize_json(data: dict) -> MembershipMLPaymentConfig:
                 data["modelTraining"]
             )
         )
-    if "modelInference" in data:
+    if data.get("modelInference") is not None:
         import capo_cleanrooms.types.membership_model_inference_payment_config
 
         out["model_inference"] = (
@@ -73,7 +73,7 @@ def deserialize_json(data: dict) -> MembershipMLPaymentConfig:
                 data["modelInference"]
             )
         )
-    if "syntheticDataGeneration" in data:
+    if data.get("syntheticDataGeneration") is not None:
         import capo_cleanrooms.types.membership_synthetic_data_generation_payment_config
 
         out["synthetic_data_generation"] = (

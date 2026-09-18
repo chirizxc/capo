@@ -40,9 +40,9 @@ def deserialize_aws_json_1_0(
     data: dict,
 ) -> ExportAutoScalingGroupRecommendationsResponse:
     out: ExportAutoScalingGroupRecommendationsResponse = {}  # type: ignore[typeddict-item]
-    if "jobId" in data:
+    if data.get("jobId") is not None:
         out["job_id"] = data["jobId"]
-    if "s3Destination" in data:
+    if data.get("s3Destination") is not None:
         import capo_compute_optimizer.types.s3_destination
 
         out["s3_destination"] = (

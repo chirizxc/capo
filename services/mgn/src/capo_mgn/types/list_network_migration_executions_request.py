@@ -49,13 +49,13 @@ def serialize_json(value: ListNetworkMigrationExecutionsRequest) -> dict:
 
 def deserialize_json(data: dict) -> ListNetworkMigrationExecutionsRequest:
     out: ListNetworkMigrationExecutionsRequest = {}  # type: ignore[typeddict-item]
-    if "networkMigrationDefinitionID" in data:
+    if data.get("networkMigrationDefinitionID") is not None:
         out["network_migration_definition_id"] = data["networkMigrationDefinitionID"]
     else:
         raise DeserializationError(
             "ListNetworkMigrationExecutionsRequest.network_migration_definition_id required"
         )
-    if "filters" in data:
+    if data.get("filters") is not None:
         import capo_mgn.types.list_network_migration_execution_request_filters
 
         out["filters"] = (
@@ -63,8 +63,8 @@ def deserialize_json(data: dict) -> ListNetworkMigrationExecutionsRequest:
                 data["filters"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
     return out

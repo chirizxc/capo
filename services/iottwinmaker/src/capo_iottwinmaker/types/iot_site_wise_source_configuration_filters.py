@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> IotSiteWiseSourceConfigurationFilters:
 
     out: IotSiteWiseSourceConfigurationFilters = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_iottwinmaker.types.iot_site_wise_source_configuration_filter.deserialize_json(
                 item

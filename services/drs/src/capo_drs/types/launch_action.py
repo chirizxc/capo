@@ -74,30 +74,30 @@ def serialize_json(value: LaunchAction) -> dict:
 
 def deserialize_json(data: dict) -> LaunchAction:
     out: LaunchAction = {}  # type: ignore[typeddict-item]
-    if "actionId" in data:
+    if data.get("actionId") is not None:
         out["action_id"] = data["actionId"]
-    if "actionCode" in data:
+    if data.get("actionCode") is not None:
         out["action_code"] = data["actionCode"]
-    if "type" in data:
+    if data.get("type") is not None:
         out["type"] = data["type"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "active" in data:
+    if data.get("active") is not None:
         out["active"] = data["active"]
-    if "order" in data:
+    if data.get("order") is not None:
         out["order"] = data["order"]
-    if "actionVersion" in data:
+    if data.get("actionVersion") is not None:
         out["action_version"] = data["actionVersion"]
-    if "optional" in data:
+    if data.get("optional") is not None:
         out["optional"] = data["optional"]
-    if "parameters" in data:
+    if data.get("parameters") is not None:
         import capo_drs.types.launch_action_parameters
 
         out["parameters"] = capo_drs.types.launch_action_parameters.deserialize_json(
             data["parameters"]
         )
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "category" in data:
+    if data.get("category") is not None:
         out["category"] = data["category"]
     return out

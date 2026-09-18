@@ -45,16 +45,16 @@ def serialize_aws_json_1_1(value: EdgeModelStat) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> EdgeModelStat:
     out: EdgeModelStat = {}  # type: ignore[typeddict-item]
-    if "ModelName" in data:
+    if data.get("ModelName") is not None:
         out["model_name"] = data["ModelName"]
-    if "ModelVersion" in data:
+    if data.get("ModelVersion") is not None:
         out["model_version"] = data["ModelVersion"]
-    if "OfflineDeviceCount" in data:
+    if data.get("OfflineDeviceCount") is not None:
         out["offline_device_count"] = data["OfflineDeviceCount"]
-    if "ConnectedDeviceCount" in data:
+    if data.get("ConnectedDeviceCount") is not None:
         out["connected_device_count"] = data["ConnectedDeviceCount"]
-    if "ActiveDeviceCount" in data:
+    if data.get("ActiveDeviceCount") is not None:
         out["active_device_count"] = data["ActiveDeviceCount"]
-    if "SamplingDeviceCount" in data:
+    if data.get("SamplingDeviceCount") is not None:
         out["sampling_device_count"] = data["SamplingDeviceCount"]
     return out

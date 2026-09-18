@@ -29,8 +29,8 @@ def serialize_json(value: EcrRepositoryMetadata) -> dict:
 
 def deserialize_json(data: dict) -> EcrRepositoryMetadata:
     out: EcrRepositoryMetadata = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "scanFrequency" in data:
+    if data.get("scanFrequency") is not None:
         out["scan_frequency"] = data["scanFrequency"]
     return out

@@ -23,5 +23,7 @@ def deserialize_aws_json_1_1(data: list) -> S3Tags:
 
     out: S3Tags = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_transfer.types.s3_tag.deserialize_aws_json_1_1(item))
     return out

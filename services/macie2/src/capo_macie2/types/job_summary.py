@@ -102,7 +102,7 @@ def serialize_json(value: JobSummary) -> dict:
 
 def deserialize_json(data: dict) -> JobSummary:
     out: JobSummary = {}  # type: ignore[typeddict-item]
-    if "bucketCriteria" in data:
+    if data.get("bucketCriteria") is not None:
         import capo_macie2.types.s3_bucket_criteria_for_job
 
         out["bucket_criteria"] = (
@@ -110,7 +110,7 @@ def deserialize_json(data: dict) -> JobSummary:
                 data["bucketCriteria"]
             )
         )
-    if "bucketDefinitions" in data:
+    if data.get("bucketDefinitions") is not None:
         import capo_macie2.types.__list_of_s3_bucket_definition_for_job
 
         out["bucket_definitions"] = (
@@ -118,25 +118,25 @@ def deserialize_json(data: dict) -> JobSummary:
                 data["bucketDefinitions"]
             )
         )
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_macie2.types.__timestamp_iso8601
 
         out["created_at"] = capo_macie2.types.__timestamp_iso8601.deserialize_json(
             data["createdAt"]
         )
-    if "jobId" in data:
+    if data.get("jobId") is not None:
         out["job_id"] = data["jobId"]
-    if "jobStatus" in data:
+    if data.get("jobStatus") is not None:
         import capo_macie2.types.job_status
 
         out["job_status"] = capo_macie2.types.job_status.deserialize_json(
             data["jobStatus"]
         )
-    if "jobType" in data:
+    if data.get("jobType") is not None:
         import capo_macie2.types.job_type
 
         out["job_type"] = capo_macie2.types.job_type.deserialize_json(data["jobType"])
-    if "lastRunErrorStatus" in data:
+    if data.get("lastRunErrorStatus") is not None:
         import capo_macie2.types.last_run_error_status
 
         out["last_run_error_status"] = (
@@ -144,9 +144,9 @@ def deserialize_json(data: dict) -> JobSummary:
                 data["lastRunErrorStatus"]
             )
         )
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "userPausedDetails" in data:
+    if data.get("userPausedDetails") is not None:
         import capo_macie2.types.user_paused_details
 
         out["user_paused_details"] = (

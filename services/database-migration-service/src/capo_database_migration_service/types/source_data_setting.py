@@ -54,9 +54,9 @@ def serialize_aws_json_1_1(value: SourceDataSetting) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SourceDataSetting:
     out: SourceDataSetting = {}  # type: ignore[typeddict-item]
-    if "CDCStartPosition" in data:
+    if data.get("CDCStartPosition") is not None:
         out["cdc_start_position"] = data["CDCStartPosition"]
-    if "CDCStartTime" in data:
+    if data.get("CDCStartTime") is not None:
         import capo_database_migration_service.types.iso8601_date_time
 
         out["cdc_start_time"] = (
@@ -64,7 +64,7 @@ def deserialize_aws_json_1_1(data: dict) -> SourceDataSetting:
                 data["CDCStartTime"]
             )
         )
-    if "CDCStopTime" in data:
+    if data.get("CDCStopTime") is not None:
         import capo_database_migration_service.types.iso8601_date_time
 
         out["cdc_stop_time"] = (
@@ -72,6 +72,6 @@ def deserialize_aws_json_1_1(data: dict) -> SourceDataSetting:
                 data["CDCStopTime"]
             )
         )
-    if "SlotName" in data:
+    if data.get("SlotName") is not None:
         out["slot_name"] = data["SlotName"]
     return out

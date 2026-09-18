@@ -69,23 +69,23 @@ def serialize_json(value: GetSbomExportResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetSbomExportResponse:
     out: GetSbomExportResponse = {}  # type: ignore[typeddict-item]
-    if "reportId" in data:
+    if data.get("reportId") is not None:
         out["report_id"] = data["reportId"]
-    if "format" in data:
+    if data.get("format") is not None:
         out["format"] = data["format"]
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
-    if "errorCode" in data:
+    if data.get("errorCode") is not None:
         out["error_code"] = data["errorCode"]
-    if "errorMessage" in data:
+    if data.get("errorMessage") is not None:
         out["error_message"] = data["errorMessage"]
-    if "s3Destination" in data:
+    if data.get("s3Destination") is not None:
         import capo_inspector2.types.destination
 
         out["s3_destination"] = capo_inspector2.types.destination.deserialize_json(
             data["s3Destination"]
         )
-    if "filterCriteria" in data:
+    if data.get("filterCriteria") is not None:
         import capo_inspector2.types.resource_filter_criteria
 
         out["filter_criteria"] = (

@@ -35,7 +35,7 @@ def serialize_json(value: AggregationType) -> dict:
 
 def deserialize_json(data: dict) -> AggregationType:
     out: AggregationType = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         import capo_iot.types.aggregation_type_name
 
         out["name"] = capo_iot.types.aggregation_type_name.deserialize_json(
@@ -43,7 +43,7 @@ def deserialize_json(data: dict) -> AggregationType:
         )
     else:
         raise DeserializationError("AggregationType.name required")
-    if "values" in data:
+    if data.get("values") is not None:
         import capo_iot.types.aggregation_type_values
 
         out["values"] = capo_iot.types.aggregation_type_values.deserialize_json(

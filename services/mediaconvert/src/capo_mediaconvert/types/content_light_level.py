@@ -29,8 +29,8 @@ def serialize_json(value: ContentLightLevel) -> dict:
 
 def deserialize_json(data: dict) -> ContentLightLevel:
     out: ContentLightLevel = {}  # type: ignore[typeddict-item]
-    if "maxContentLightLevel" in data:
+    if data.get("maxContentLightLevel") is not None:
         out["max_content_light_level"] = data["maxContentLightLevel"]
-    if "maxFrameAverageLightLevel" in data:
+    if data.get("maxFrameAverageLightLevel") is not None:
         out["max_frame_average_light_level"] = data["maxFrameAverageLightLevel"]
     return out

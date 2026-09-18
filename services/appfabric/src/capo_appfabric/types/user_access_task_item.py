@@ -40,17 +40,17 @@ def serialize_json(value: UserAccessTaskItem) -> dict:
 
 def deserialize_json(data: dict) -> UserAccessTaskItem:
     out: UserAccessTaskItem = {}  # type: ignore[typeddict-item]
-    if "app" in data:
+    if data.get("app") is not None:
         out["app"] = data["app"]
     else:
         raise DeserializationError("UserAccessTaskItem.app required")
-    if "tenantId" in data:
+    if data.get("tenantId") is not None:
         out["tenant_id"] = data["tenantId"]
     else:
         raise DeserializationError("UserAccessTaskItem.tenant_id required")
-    if "taskId" in data:
+    if data.get("taskId") is not None:
         out["task_id"] = data["taskId"]
-    if "error" in data:
+    if data.get("error") is not None:
         import capo_appfabric.types.task_error
 
         out["error"] = capo_appfabric.types.task_error.deserialize_json(data["error"])

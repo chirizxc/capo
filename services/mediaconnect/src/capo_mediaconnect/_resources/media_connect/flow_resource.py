@@ -192,7 +192,7 @@ class FlowResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mediaconnect.types.create_flow_request.CreateFlowRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_mediaconnect.types.create_flow_request.CreateFlowRequest = {}
         if availability_zone is not None:
             input_["availability_zone"] = availability_zone
         if entitlements is not None:
@@ -229,6 +229,7 @@ class FlowResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -267,14 +268,16 @@ class FlowResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mediaconnect.types.describe_flow_request.DescribeFlowRequest = {}  # type: ignore[typeddict-item]
-        input_["flow_arn"] = flow_arn
+        input_: capo_mediaconnect.types.describe_flow_request.DescribeFlowRequest = {
+            "flow_arn": flow_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update(
@@ -332,8 +335,9 @@ class FlowResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mediaconnect.types.update_flow_request.UpdateFlowRequest = {}  # type: ignore[typeddict-item]
-        input_["flow_arn"] = flow_arn
+        input_: capo_mediaconnect.types.update_flow_request.UpdateFlowRequest = {
+            "flow_arn": flow_arn
+        }
         if source_failover_config is not None:
             input_["source_failover_config"] = source_failover_config
         if maintenance is not None:
@@ -352,6 +356,7 @@ class FlowResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -390,14 +395,16 @@ class FlowResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mediaconnect.types.delete_flow_request.DeleteFlowRequest = {}  # type: ignore[typeddict-item]
-        input_["flow_arn"] = flow_arn
+        input_: capo_mediaconnect.types.delete_flow_request.DeleteFlowRequest = {
+            "flow_arn": flow_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -436,7 +443,7 @@ class FlowResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mediaconnect.types.list_flows_request.ListFlowsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_mediaconnect.types.list_flows_request.ListFlowsRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -447,6 +454,7 @@ class FlowResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def add_flow_media_streams(
@@ -489,8 +497,9 @@ class FlowResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mediaconnect.types.add_flow_media_streams_request.AddFlowMediaStreamsRequest = {}  # type: ignore[typeddict-item]
-        input_["flow_arn"] = flow_arn
+        input_: capo_mediaconnect.types.add_flow_media_streams_request.AddFlowMediaStreamsRequest = {
+            "flow_arn": flow_arn
+        }
         if media_streams is not None:
             input_["media_streams"] = media_streams
 
@@ -499,6 +508,7 @@ class FlowResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def add_flow_outputs(
@@ -542,8 +552,9 @@ class FlowResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mediaconnect.types.add_flow_outputs_request.AddFlowOutputsRequest = {}  # type: ignore[typeddict-item]
-        input_["flow_arn"] = flow_arn
+        input_: capo_mediaconnect.types.add_flow_outputs_request.AddFlowOutputsRequest = {
+            "flow_arn": flow_arn
+        }
         if outputs is not None:
             input_["outputs"] = outputs
 
@@ -552,6 +563,7 @@ class FlowResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def add_flow_sources(
@@ -594,8 +606,9 @@ class FlowResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mediaconnect.types.add_flow_sources_request.AddFlowSourcesRequest = {}  # type: ignore[typeddict-item]
-        input_["flow_arn"] = flow_arn
+        input_: capo_mediaconnect.types.add_flow_sources_request.AddFlowSourcesRequest = {
+            "flow_arn": flow_arn
+        }
         if sources is not None:
             input_["sources"] = sources
 
@@ -604,6 +617,7 @@ class FlowResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def add_flow_vpc_interfaces(
@@ -646,8 +660,9 @@ class FlowResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mediaconnect.types.add_flow_vpc_interfaces_request.AddFlowVpcInterfacesRequest = {}  # type: ignore[typeddict-item]
-        input_["flow_arn"] = flow_arn
+        input_: capo_mediaconnect.types.add_flow_vpc_interfaces_request.AddFlowVpcInterfacesRequest = {
+            "flow_arn": flow_arn
+        }
         if vpc_interfaces is not None:
             input_["vpc_interfaces"] = vpc_interfaces
 
@@ -656,6 +671,7 @@ class FlowResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_flow_source_metadata(
@@ -694,14 +710,16 @@ class FlowResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mediaconnect.types.describe_flow_source_metadata_request.DescribeFlowSourceMetadataRequest = {}  # type: ignore[typeddict-item]
-        input_["flow_arn"] = flow_arn
+        input_: capo_mediaconnect.types.describe_flow_source_metadata_request.DescribeFlowSourceMetadataRequest = {
+            "flow_arn": flow_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_flow_source_thumbnail(
@@ -740,14 +758,16 @@ class FlowResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mediaconnect.types.describe_flow_source_thumbnail_request.DescribeFlowSourceThumbnailRequest = {}  # type: ignore[typeddict-item]
-        input_["flow_arn"] = flow_arn
+        input_: capo_mediaconnect.types.describe_flow_source_thumbnail_request.DescribeFlowSourceThumbnailRequest = {
+            "flow_arn": flow_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def grant_flow_entitlements(
@@ -791,16 +811,18 @@ class FlowResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mediaconnect.types.grant_flow_entitlements_request.GrantFlowEntitlementsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_mediaconnect.types.grant_flow_entitlements_request.GrantFlowEntitlementsRequest = {
+            "flow_arn": flow_arn
+        }
         if entitlements is not None:
             input_["entitlements"] = entitlements
-        input_["flow_arn"] = flow_arn
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def remove_flow_media_stream(
@@ -841,15 +863,17 @@ class FlowResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mediaconnect.types.remove_flow_media_stream_request.RemoveFlowMediaStreamRequest = {}  # type: ignore[typeddict-item]
-        input_["flow_arn"] = flow_arn
-        input_["media_stream_name"] = media_stream_name
+        input_: capo_mediaconnect.types.remove_flow_media_stream_request.RemoveFlowMediaStreamRequest = {
+            "flow_arn": flow_arn,
+            "media_stream_name": media_stream_name,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def remove_flow_output(
@@ -890,15 +914,17 @@ class FlowResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mediaconnect.types.remove_flow_output_request.RemoveFlowOutputRequest = {}  # type: ignore[typeddict-item]
-        input_["flow_arn"] = flow_arn
-        input_["output_arn"] = output_arn
+        input_: capo_mediaconnect.types.remove_flow_output_request.RemoveFlowOutputRequest = {
+            "flow_arn": flow_arn,
+            "output_arn": output_arn,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def remove_flow_source(
@@ -939,15 +965,17 @@ class FlowResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mediaconnect.types.remove_flow_source_request.RemoveFlowSourceRequest = {}  # type: ignore[typeddict-item]
-        input_["flow_arn"] = flow_arn
-        input_["source_arn"] = source_arn
+        input_: capo_mediaconnect.types.remove_flow_source_request.RemoveFlowSourceRequest = {
+            "flow_arn": flow_arn,
+            "source_arn": source_arn,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def remove_flow_vpc_interface(
@@ -988,15 +1016,17 @@ class FlowResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mediaconnect.types.remove_flow_vpc_interface_request.RemoveFlowVpcInterfaceRequest = {}  # type: ignore[typeddict-item]
-        input_["flow_arn"] = flow_arn
-        input_["vpc_interface_name"] = vpc_interface_name
+        input_: capo_mediaconnect.types.remove_flow_vpc_interface_request.RemoveFlowVpcInterfaceRequest = {
+            "flow_arn": flow_arn,
+            "vpc_interface_name": vpc_interface_name,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def revoke_flow_entitlement(
@@ -1037,15 +1067,17 @@ class FlowResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mediaconnect.types.revoke_flow_entitlement_request.RevokeFlowEntitlementRequest = {}  # type: ignore[typeddict-item]
-        input_["entitlement_arn"] = entitlement_arn
-        input_["flow_arn"] = flow_arn
+        input_: capo_mediaconnect.types.revoke_flow_entitlement_request.RevokeFlowEntitlementRequest = {
+            "entitlement_arn": entitlement_arn,
+            "flow_arn": flow_arn,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def start_flow(
@@ -1084,14 +1116,16 @@ class FlowResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mediaconnect.types.start_flow_request.StartFlowRequest = {}  # type: ignore[typeddict-item]
-        input_["flow_arn"] = flow_arn
+        input_: capo_mediaconnect.types.start_flow_request.StartFlowRequest = {
+            "flow_arn": flow_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def stop_flow(
@@ -1130,14 +1164,16 @@ class FlowResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mediaconnect.types.stop_flow_request.StopFlowRequest = {}  # type: ignore[typeddict-item]
-        input_["flow_arn"] = flow_arn
+        input_: capo_mediaconnect.types.stop_flow_request.StopFlowRequest = {
+            "flow_arn": flow_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_flow_entitlement(
@@ -1192,15 +1228,16 @@ class FlowResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mediaconnect.types.update_flow_entitlement_request.UpdateFlowEntitlementRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_mediaconnect.types.update_flow_entitlement_request.UpdateFlowEntitlementRequest = {
+            "entitlement_arn": entitlement_arn,
+            "flow_arn": flow_arn,
+        }
         if description is not None:
             input_["description"] = description
         if encryption is not None:
             input_["encryption"] = encryption
-        input_["entitlement_arn"] = entitlement_arn
         if entitlement_status is not None:
             input_["entitlement_status"] = entitlement_status
-        input_["flow_arn"] = flow_arn
         if subscribers is not None:
             input_["subscribers"] = subscribers
 
@@ -1209,6 +1246,7 @@ class FlowResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_flow_media_stream(
@@ -1263,15 +1301,16 @@ class FlowResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mediaconnect.types.update_flow_media_stream_request.UpdateFlowMediaStreamRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_mediaconnect.types.update_flow_media_stream_request.UpdateFlowMediaStreamRequest = {
+            "flow_arn": flow_arn,
+            "media_stream_name": media_stream_name,
+        }
         if attributes is not None:
             input_["attributes"] = attributes
         if clock_rate is not None:
             input_["clock_rate"] = clock_rate
         if description is not None:
             input_["description"] = description
-        input_["flow_arn"] = flow_arn
-        input_["media_stream_name"] = media_stream_name
         if media_stream_type is not None:
             input_["media_stream_type"] = media_stream_type
         if video_format is not None:
@@ -1282,6 +1321,7 @@ class FlowResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_flow_output(
@@ -1379,7 +1419,10 @@ class FlowResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mediaconnect.types.update_flow_output_request.UpdateFlowOutputRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_mediaconnect.types.update_flow_output_request.UpdateFlowOutputRequest = {
+            "flow_arn": flow_arn,
+            "output_arn": output_arn,
+        }
         if cidr_allow_list is not None:
             input_["cidr_allow_list"] = cidr_allow_list
         if description is not None:
@@ -1388,7 +1431,6 @@ class FlowResource:
             input_["destination"] = destination
         if encryption is not None:
             input_["encryption"] = encryption
-        input_["flow_arn"] = flow_arn
         if max_latency is not None:
             input_["max_latency"] = max_latency
         if media_stream_output_configurations is not None:
@@ -1397,7 +1439,6 @@ class FlowResource:
             )
         if min_latency is not None:
             input_["min_latency"] = min_latency
-        input_["output_arn"] = output_arn
         if port is not None:
             input_["port"] = port
         if protocol is not None:
@@ -1434,6 +1475,7 @@ class FlowResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_flow_source(
@@ -1528,14 +1570,16 @@ class FlowResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mediaconnect.types.update_flow_source_request.UpdateFlowSourceRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_mediaconnect.types.update_flow_source_request.UpdateFlowSourceRequest = {
+            "flow_arn": flow_arn,
+            "source_arn": source_arn,
+        }
         if decryption is not None:
             input_["decryption"] = decryption
         if description is not None:
             input_["description"] = description
         if entitlement_arn is not None:
             input_["entitlement_arn"] = entitlement_arn
-        input_["flow_arn"] = flow_arn
         if ingest_port is not None:
             input_["ingest_port"] = ingest_port
         if max_bitrate is not None:
@@ -1556,7 +1600,6 @@ class FlowResource:
             input_["sender_control_port"] = sender_control_port
         if sender_ip_address is not None:
             input_["sender_ip_address"] = sender_ip_address
-        input_["source_arn"] = source_arn
         if source_listener_address is not None:
             input_["source_listener_address"] = source_listener_address
         if source_listener_port is not None:
@@ -1583,6 +1626,7 @@ class FlowResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -1676,7 +1720,7 @@ class AsyncFlowResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mediaconnect.types.create_flow_request.CreateFlowRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_mediaconnect.types.create_flow_request.CreateFlowRequest = {}
         if availability_zone is not None:
             input_["availability_zone"] = availability_zone
         if entitlements is not None:
@@ -1713,6 +1757,7 @@ class AsyncFlowResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -1752,14 +1797,16 @@ class AsyncFlowResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mediaconnect.types.describe_flow_request.DescribeFlowRequest = {}  # type: ignore[typeddict-item]
-        input_["flow_arn"] = flow_arn
+        input_: capo_mediaconnect.types.describe_flow_request.DescribeFlowRequest = {
+            "flow_arn": flow_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update(
@@ -1818,8 +1865,9 @@ class AsyncFlowResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mediaconnect.types.update_flow_request.UpdateFlowRequest = {}  # type: ignore[typeddict-item]
-        input_["flow_arn"] = flow_arn
+        input_: capo_mediaconnect.types.update_flow_request.UpdateFlowRequest = {
+            "flow_arn": flow_arn
+        }
         if source_failover_config is not None:
             input_["source_failover_config"] = source_failover_config
         if maintenance is not None:
@@ -1838,6 +1886,7 @@ class AsyncFlowResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -1877,14 +1926,16 @@ class AsyncFlowResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mediaconnect.types.delete_flow_request.DeleteFlowRequest = {}  # type: ignore[typeddict-item]
-        input_["flow_arn"] = flow_arn
+        input_: capo_mediaconnect.types.delete_flow_request.DeleteFlowRequest = {
+            "flow_arn": flow_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -1924,7 +1975,7 @@ class AsyncFlowResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mediaconnect.types.list_flows_request.ListFlowsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_mediaconnect.types.list_flows_request.ListFlowsRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -1935,6 +1986,7 @@ class AsyncFlowResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def add_flow_media_streams(
@@ -1978,8 +2030,9 @@ class AsyncFlowResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mediaconnect.types.add_flow_media_streams_request.AddFlowMediaStreamsRequest = {}  # type: ignore[typeddict-item]
-        input_["flow_arn"] = flow_arn
+        input_: capo_mediaconnect.types.add_flow_media_streams_request.AddFlowMediaStreamsRequest = {
+            "flow_arn": flow_arn
+        }
         if media_streams is not None:
             input_["media_streams"] = media_streams
 
@@ -1988,6 +2041,7 @@ class AsyncFlowResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def add_flow_outputs(
@@ -2032,8 +2086,9 @@ class AsyncFlowResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mediaconnect.types.add_flow_outputs_request.AddFlowOutputsRequest = {}  # type: ignore[typeddict-item]
-        input_["flow_arn"] = flow_arn
+        input_: capo_mediaconnect.types.add_flow_outputs_request.AddFlowOutputsRequest = {
+            "flow_arn": flow_arn
+        }
         if outputs is not None:
             input_["outputs"] = outputs
 
@@ -2042,6 +2097,7 @@ class AsyncFlowResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def add_flow_sources(
@@ -2085,8 +2141,9 @@ class AsyncFlowResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mediaconnect.types.add_flow_sources_request.AddFlowSourcesRequest = {}  # type: ignore[typeddict-item]
-        input_["flow_arn"] = flow_arn
+        input_: capo_mediaconnect.types.add_flow_sources_request.AddFlowSourcesRequest = {
+            "flow_arn": flow_arn
+        }
         if sources is not None:
             input_["sources"] = sources
 
@@ -2095,6 +2152,7 @@ class AsyncFlowResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def add_flow_vpc_interfaces(
@@ -2138,8 +2196,9 @@ class AsyncFlowResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mediaconnect.types.add_flow_vpc_interfaces_request.AddFlowVpcInterfacesRequest = {}  # type: ignore[typeddict-item]
-        input_["flow_arn"] = flow_arn
+        input_: capo_mediaconnect.types.add_flow_vpc_interfaces_request.AddFlowVpcInterfacesRequest = {
+            "flow_arn": flow_arn
+        }
         if vpc_interfaces is not None:
             input_["vpc_interfaces"] = vpc_interfaces
 
@@ -2148,6 +2207,7 @@ class AsyncFlowResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_flow_source_metadata(
@@ -2187,14 +2247,16 @@ class AsyncFlowResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mediaconnect.types.describe_flow_source_metadata_request.DescribeFlowSourceMetadataRequest = {}  # type: ignore[typeddict-item]
-        input_["flow_arn"] = flow_arn
+        input_: capo_mediaconnect.types.describe_flow_source_metadata_request.DescribeFlowSourceMetadataRequest = {
+            "flow_arn": flow_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_flow_source_thumbnail(
@@ -2234,14 +2296,16 @@ class AsyncFlowResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mediaconnect.types.describe_flow_source_thumbnail_request.DescribeFlowSourceThumbnailRequest = {}  # type: ignore[typeddict-item]
-        input_["flow_arn"] = flow_arn
+        input_: capo_mediaconnect.types.describe_flow_source_thumbnail_request.DescribeFlowSourceThumbnailRequest = {
+            "flow_arn": flow_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def grant_flow_entitlements(
@@ -2286,16 +2350,18 @@ class AsyncFlowResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mediaconnect.types.grant_flow_entitlements_request.GrantFlowEntitlementsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_mediaconnect.types.grant_flow_entitlements_request.GrantFlowEntitlementsRequest = {
+            "flow_arn": flow_arn
+        }
         if entitlements is not None:
             input_["entitlements"] = entitlements
-        input_["flow_arn"] = flow_arn
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def remove_flow_media_stream(
@@ -2337,15 +2403,17 @@ class AsyncFlowResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mediaconnect.types.remove_flow_media_stream_request.RemoveFlowMediaStreamRequest = {}  # type: ignore[typeddict-item]
-        input_["flow_arn"] = flow_arn
-        input_["media_stream_name"] = media_stream_name
+        input_: capo_mediaconnect.types.remove_flow_media_stream_request.RemoveFlowMediaStreamRequest = {
+            "flow_arn": flow_arn,
+            "media_stream_name": media_stream_name,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def remove_flow_output(
@@ -2387,15 +2455,17 @@ class AsyncFlowResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mediaconnect.types.remove_flow_output_request.RemoveFlowOutputRequest = {}  # type: ignore[typeddict-item]
-        input_["flow_arn"] = flow_arn
-        input_["output_arn"] = output_arn
+        input_: capo_mediaconnect.types.remove_flow_output_request.RemoveFlowOutputRequest = {
+            "flow_arn": flow_arn,
+            "output_arn": output_arn,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def remove_flow_source(
@@ -2437,15 +2507,17 @@ class AsyncFlowResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mediaconnect.types.remove_flow_source_request.RemoveFlowSourceRequest = {}  # type: ignore[typeddict-item]
-        input_["flow_arn"] = flow_arn
-        input_["source_arn"] = source_arn
+        input_: capo_mediaconnect.types.remove_flow_source_request.RemoveFlowSourceRequest = {
+            "flow_arn": flow_arn,
+            "source_arn": source_arn,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def remove_flow_vpc_interface(
@@ -2487,15 +2559,17 @@ class AsyncFlowResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mediaconnect.types.remove_flow_vpc_interface_request.RemoveFlowVpcInterfaceRequest = {}  # type: ignore[typeddict-item]
-        input_["flow_arn"] = flow_arn
-        input_["vpc_interface_name"] = vpc_interface_name
+        input_: capo_mediaconnect.types.remove_flow_vpc_interface_request.RemoveFlowVpcInterfaceRequest = {
+            "flow_arn": flow_arn,
+            "vpc_interface_name": vpc_interface_name,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def revoke_flow_entitlement(
@@ -2537,15 +2611,17 @@ class AsyncFlowResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mediaconnect.types.revoke_flow_entitlement_request.RevokeFlowEntitlementRequest = {}  # type: ignore[typeddict-item]
-        input_["entitlement_arn"] = entitlement_arn
-        input_["flow_arn"] = flow_arn
+        input_: capo_mediaconnect.types.revoke_flow_entitlement_request.RevokeFlowEntitlementRequest = {
+            "entitlement_arn": entitlement_arn,
+            "flow_arn": flow_arn,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def start_flow(
@@ -2585,14 +2661,16 @@ class AsyncFlowResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mediaconnect.types.start_flow_request.StartFlowRequest = {}  # type: ignore[typeddict-item]
-        input_["flow_arn"] = flow_arn
+        input_: capo_mediaconnect.types.start_flow_request.StartFlowRequest = {
+            "flow_arn": flow_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def stop_flow(
@@ -2632,14 +2710,16 @@ class AsyncFlowResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mediaconnect.types.stop_flow_request.StopFlowRequest = {}  # type: ignore[typeddict-item]
-        input_["flow_arn"] = flow_arn
+        input_: capo_mediaconnect.types.stop_flow_request.StopFlowRequest = {
+            "flow_arn": flow_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_flow_entitlement(
@@ -2695,15 +2775,16 @@ class AsyncFlowResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mediaconnect.types.update_flow_entitlement_request.UpdateFlowEntitlementRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_mediaconnect.types.update_flow_entitlement_request.UpdateFlowEntitlementRequest = {
+            "entitlement_arn": entitlement_arn,
+            "flow_arn": flow_arn,
+        }
         if description is not None:
             input_["description"] = description
         if encryption is not None:
             input_["encryption"] = encryption
-        input_["entitlement_arn"] = entitlement_arn
         if entitlement_status is not None:
             input_["entitlement_status"] = entitlement_status
-        input_["flow_arn"] = flow_arn
         if subscribers is not None:
             input_["subscribers"] = subscribers
 
@@ -2712,6 +2793,7 @@ class AsyncFlowResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_flow_media_stream(
@@ -2767,15 +2849,16 @@ class AsyncFlowResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mediaconnect.types.update_flow_media_stream_request.UpdateFlowMediaStreamRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_mediaconnect.types.update_flow_media_stream_request.UpdateFlowMediaStreamRequest = {
+            "flow_arn": flow_arn,
+            "media_stream_name": media_stream_name,
+        }
         if attributes is not None:
             input_["attributes"] = attributes
         if clock_rate is not None:
             input_["clock_rate"] = clock_rate
         if description is not None:
             input_["description"] = description
-        input_["flow_arn"] = flow_arn
-        input_["media_stream_name"] = media_stream_name
         if media_stream_type is not None:
             input_["media_stream_type"] = media_stream_type
         if video_format is not None:
@@ -2786,6 +2869,7 @@ class AsyncFlowResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_flow_output(
@@ -2884,7 +2968,10 @@ class AsyncFlowResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mediaconnect.types.update_flow_output_request.UpdateFlowOutputRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_mediaconnect.types.update_flow_output_request.UpdateFlowOutputRequest = {
+            "flow_arn": flow_arn,
+            "output_arn": output_arn,
+        }
         if cidr_allow_list is not None:
             input_["cidr_allow_list"] = cidr_allow_list
         if description is not None:
@@ -2893,7 +2980,6 @@ class AsyncFlowResource:
             input_["destination"] = destination
         if encryption is not None:
             input_["encryption"] = encryption
-        input_["flow_arn"] = flow_arn
         if max_latency is not None:
             input_["max_latency"] = max_latency
         if media_stream_output_configurations is not None:
@@ -2902,7 +2988,6 @@ class AsyncFlowResource:
             )
         if min_latency is not None:
             input_["min_latency"] = min_latency
-        input_["output_arn"] = output_arn
         if port is not None:
             input_["port"] = port
         if protocol is not None:
@@ -2939,6 +3024,7 @@ class AsyncFlowResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_flow_source(
@@ -3034,14 +3120,16 @@ class AsyncFlowResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mediaconnect.types.update_flow_source_request.UpdateFlowSourceRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_mediaconnect.types.update_flow_source_request.UpdateFlowSourceRequest = {
+            "flow_arn": flow_arn,
+            "source_arn": source_arn,
+        }
         if decryption is not None:
             input_["decryption"] = decryption
         if description is not None:
             input_["description"] = description
         if entitlement_arn is not None:
             input_["entitlement_arn"] = entitlement_arn
-        input_["flow_arn"] = flow_arn
         if ingest_port is not None:
             input_["ingest_port"] = ingest_port
         if max_bitrate is not None:
@@ -3062,7 +3150,6 @@ class AsyncFlowResource:
             input_["sender_control_port"] = sender_control_port
         if sender_ip_address is not None:
             input_["sender_ip_address"] = sender_ip_address
-        input_["source_arn"] = source_arn
         if source_listener_address is not None:
             input_["source_listener_address"] = source_listener_address
         if source_listener_port is not None:
@@ -3089,4 +3176,5 @@ class AsyncFlowResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

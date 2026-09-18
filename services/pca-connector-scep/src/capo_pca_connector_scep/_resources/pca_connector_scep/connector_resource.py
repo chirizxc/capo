@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import uuid
 from typing import TYPE_CHECKING, Optional
 
 import capo_pca_connector_scep._auth._signers
@@ -95,14 +96,16 @@ class ConnectorResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_pca_connector_scep.types.create_connector_request.CreateConnectorRequest = {}  # type: ignore[typeddict-item]
-        input_["certificate_authority_arn"] = certificate_authority_arn
+        input_: capo_pca_connector_scep.types.create_connector_request.CreateConnectorRequest = {
+            "certificate_authority_arn": certificate_authority_arn
+        }
         if mobile_device_management is not None:
             input_["mobile_device_management"] = mobile_device_management
         if vpc_endpoint_id is not None:
             input_["vpc_endpoint_id"] = vpc_endpoint_id
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if tags is not None:
             input_["tags"] = tags
 
@@ -111,6 +114,7 @@ class ConnectorResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -148,14 +152,16 @@ class ConnectorResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_pca_connector_scep.types.get_connector_request.GetConnectorRequest = {}  # type: ignore[typeddict-item]
-        input_["connector_arn"] = connector_arn
+        input_: capo_pca_connector_scep.types.get_connector_request.GetConnectorRequest = {
+            "connector_arn": connector_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -192,14 +198,16 @@ class ConnectorResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_pca_connector_scep.types.delete_connector_request.DeleteConnectorRequest = {}  # type: ignore[typeddict-item]
-        input_["connector_arn"] = connector_arn
+        input_: capo_pca_connector_scep.types.delete_connector_request.DeleteConnectorRequest = {
+            "connector_arn": connector_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -244,7 +252,7 @@ class ConnectorResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_pca_connector_scep.types.list_connectors_request.ListConnectorsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_pca_connector_scep.types.list_connectors_request.ListConnectorsRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -255,6 +263,7 @@ class ConnectorResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -314,14 +323,16 @@ class AsyncConnectorResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_pca_connector_scep.types.create_connector_request.CreateConnectorRequest = {}  # type: ignore[typeddict-item]
-        input_["certificate_authority_arn"] = certificate_authority_arn
+        input_: capo_pca_connector_scep.types.create_connector_request.CreateConnectorRequest = {
+            "certificate_authority_arn": certificate_authority_arn
+        }
         if mobile_device_management is not None:
             input_["mobile_device_management"] = mobile_device_management
         if vpc_endpoint_id is not None:
             input_["vpc_endpoint_id"] = vpc_endpoint_id
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if tags is not None:
             input_["tags"] = tags
 
@@ -330,6 +341,7 @@ class AsyncConnectorResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -368,14 +380,16 @@ class AsyncConnectorResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_pca_connector_scep.types.get_connector_request.GetConnectorRequest = {}  # type: ignore[typeddict-item]
-        input_["connector_arn"] = connector_arn
+        input_: capo_pca_connector_scep.types.get_connector_request.GetConnectorRequest = {
+            "connector_arn": connector_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -413,14 +427,16 @@ class AsyncConnectorResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_pca_connector_scep.types.delete_connector_request.DeleteConnectorRequest = {}  # type: ignore[typeddict-item]
-        input_["connector_arn"] = connector_arn
+        input_: capo_pca_connector_scep.types.delete_connector_request.DeleteConnectorRequest = {
+            "connector_arn": connector_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -466,7 +482,7 @@ class AsyncConnectorResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_pca_connector_scep.types.list_connectors_request.ListConnectorsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_pca_connector_scep.types.list_connectors_request.ListConnectorsRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -477,4 +493,5 @@ class AsyncConnectorResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

@@ -35,14 +35,14 @@ def serialize_json(value: SignupResponse) -> dict:
 
 def deserialize_json(data: dict) -> SignupResponse:
     out: SignupResponse = {}  # type: ignore[typeddict-item]
-    if "IAMUser" in data:
+    if data.get("IAMUser") is not None:
         out["iam_user"] = data["IAMUser"]
     else:
         out["iam_user"] = False
-    if "userLoginName" in data:
+    if data.get("userLoginName") is not None:
         out["user_login_name"] = data["userLoginName"]
-    if "accountName" in data:
+    if data.get("accountName") is not None:
         out["account_name"] = data["accountName"]
-    if "directoryType" in data:
+    if data.get("directoryType") is not None:
         out["directory_type"] = data["directoryType"]
     return out

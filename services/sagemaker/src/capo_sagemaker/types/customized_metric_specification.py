@@ -36,11 +36,11 @@ def serialize_aws_json_1_1(value: CustomizedMetricSpecification) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CustomizedMetricSpecification:
     out: CustomizedMetricSpecification = {}  # type: ignore[typeddict-item]
-    if "MetricName" in data:
+    if data.get("MetricName") is not None:
         out["metric_name"] = data["MetricName"]
-    if "Namespace" in data:
+    if data.get("Namespace") is not None:
         out["namespace"] = data["Namespace"]
-    if "Statistic" in data:
+    if data.get("Statistic") is not None:
         import capo_sagemaker.types.statistic
 
         out["statistic"] = capo_sagemaker.types.statistic.deserialize_aws_json_1_1(

@@ -23,6 +23,6 @@ def serialize_aws_json_1_0(value: Run) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> Run:
     out: Run = {}  # type: ignore[typeddict-item]
-    if "runId" in data:
+    if data.get("runId") is not None:
         out["run_id"] = data["runId"]
     return out

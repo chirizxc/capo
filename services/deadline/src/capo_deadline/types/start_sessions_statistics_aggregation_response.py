@@ -24,7 +24,7 @@ def serialize_json(value: StartSessionsStatisticsAggregationResponse) -> dict:
 
 def deserialize_json(data: dict) -> StartSessionsStatisticsAggregationResponse:
     out: StartSessionsStatisticsAggregationResponse = {}  # type: ignore[typeddict-item]
-    if "aggregationId" in data:
+    if data.get("aggregationId") is not None:
         out["aggregation_id"] = data["aggregationId"]
     else:
         raise DeserializationError(

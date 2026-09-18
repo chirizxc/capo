@@ -25,6 +25,6 @@ def serialize_aws_json_1_1(value: InfraCheckConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> InfraCheckConfig:
     out: InfraCheckConfig = {}  # type: ignore[typeddict-item]
-    if "EnableInfraCheck" in data:
+    if data.get("EnableInfraCheck") is not None:
         out["enable_infra_check"] = data["EnableInfraCheck"]
     return out

@@ -34,17 +34,17 @@ def serialize_json(value: StartPracticeRunRequest) -> dict:
 
 def deserialize_json(data: dict) -> StartPracticeRunRequest:
     out: StartPracticeRunRequest = {}  # type: ignore[typeddict-item]
-    if "resourceIdentifier" in data:
+    if data.get("resourceIdentifier") is not None:
         out["resource_identifier"] = data["resourceIdentifier"]
     else:
         raise DeserializationError(
             "StartPracticeRunRequest.resource_identifier required"
         )
-    if "awayFrom" in data:
+    if data.get("awayFrom") is not None:
         out["away_from"] = data["awayFrom"]
     else:
         raise DeserializationError("StartPracticeRunRequest.away_from required")
-    if "comment" in data:
+    if data.get("comment") is not None:
         out["comment"] = data["comment"]
     else:
         raise DeserializationError("StartPracticeRunRequest.comment required")

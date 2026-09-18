@@ -39,11 +39,11 @@ def serialize_json(value: ContactSearchSummaryAiAgentInfo) -> dict:
 
 def deserialize_json(data: dict) -> ContactSearchSummaryAiAgentInfo:
     out: ContactSearchSummaryAiAgentInfo = {}  # type: ignore[typeddict-item]
-    if "AiAgentVersionId" in data:
+    if data.get("AiAgentVersionId") is not None:
         out["ai_agent_version_id"] = data["AiAgentVersionId"]
-    if "AiAgentEscalated" in data:
+    if data.get("AiAgentEscalated") is not None:
         out["ai_agent_escalated"] = data["AiAgentEscalated"]
-    if "AiUseCase" in data:
+    if data.get("AiUseCase") is not None:
         import capo_connect.types.ai_use_case
 
         out["ai_use_case"] = capo_connect.types.ai_use_case.deserialize_json(

@@ -33,7 +33,7 @@ def serialize_json(value: PutAppInstanceRetentionSettingsRequest) -> dict:
 
 def deserialize_json(data: dict) -> PutAppInstanceRetentionSettingsRequest:
     out: PutAppInstanceRetentionSettingsRequest = {}  # type: ignore[typeddict-item]
-    if "AppInstanceRetentionSettings" in data:
+    if data.get("AppInstanceRetentionSettings") is not None:
         import capo_chime_sdk_identity.types.app_instance_retention_settings
 
         out["app_instance_retention_settings"] = (

@@ -143,9 +143,9 @@ def serialize_json(value: AwsElasticsearchDomainDetails) -> dict:
 
 def deserialize_json(data: dict) -> AwsElasticsearchDomainDetails:
     out: AwsElasticsearchDomainDetails = {}  # type: ignore[typeddict-item]
-    if "AccessPolicies" in data:
+    if data.get("AccessPolicies") is not None:
         out["access_policies"] = data["AccessPolicies"]
-    if "DomainEndpointOptions" in data:
+    if data.get("DomainEndpointOptions") is not None:
         import capo_securityhub.types.aws_elasticsearch_domain_domain_endpoint_options
 
         out["domain_endpoint_options"] = (
@@ -153,21 +153,21 @@ def deserialize_json(data: dict) -> AwsElasticsearchDomainDetails:
                 data["DomainEndpointOptions"]
             )
         )
-    if "DomainId" in data:
+    if data.get("DomainId") is not None:
         out["domain_id"] = data["DomainId"]
-    if "DomainName" in data:
+    if data.get("DomainName") is not None:
         out["domain_name"] = data["DomainName"]
-    if "Endpoint" in data:
+    if data.get("Endpoint") is not None:
         out["endpoint"] = data["Endpoint"]
-    if "Endpoints" in data:
+    if data.get("Endpoints") is not None:
         import capo_securityhub.types.field_map
 
         out["endpoints"] = capo_securityhub.types.field_map.deserialize_json(
             data["Endpoints"]
         )
-    if "ElasticsearchVersion" in data:
+    if data.get("ElasticsearchVersion") is not None:
         out["elasticsearch_version"] = data["ElasticsearchVersion"]
-    if "ElasticsearchClusterConfig" in data:
+    if data.get("ElasticsearchClusterConfig") is not None:
         import capo_securityhub.types.aws_elasticsearch_domain_elasticsearch_cluster_config_details
 
         out["elasticsearch_cluster_config"] = (
@@ -175,7 +175,7 @@ def deserialize_json(data: dict) -> AwsElasticsearchDomainDetails:
                 data["ElasticsearchClusterConfig"]
             )
         )
-    if "EncryptionAtRestOptions" in data:
+    if data.get("EncryptionAtRestOptions") is not None:
         import capo_securityhub.types.aws_elasticsearch_domain_encryption_at_rest_options
 
         out["encryption_at_rest_options"] = (
@@ -183,7 +183,7 @@ def deserialize_json(data: dict) -> AwsElasticsearchDomainDetails:
                 data["EncryptionAtRestOptions"]
             )
         )
-    if "LogPublishingOptions" in data:
+    if data.get("LogPublishingOptions") is not None:
         import capo_securityhub.types.aws_elasticsearch_domain_log_publishing_options
 
         out["log_publishing_options"] = (
@@ -191,7 +191,7 @@ def deserialize_json(data: dict) -> AwsElasticsearchDomainDetails:
                 data["LogPublishingOptions"]
             )
         )
-    if "NodeToNodeEncryptionOptions" in data:
+    if data.get("NodeToNodeEncryptionOptions") is not None:
         import capo_securityhub.types.aws_elasticsearch_domain_node_to_node_encryption_options
 
         out["node_to_node_encryption_options"] = (
@@ -199,7 +199,7 @@ def deserialize_json(data: dict) -> AwsElasticsearchDomainDetails:
                 data["NodeToNodeEncryptionOptions"]
             )
         )
-    if "ServiceSoftwareOptions" in data:
+    if data.get("ServiceSoftwareOptions") is not None:
         import capo_securityhub.types.aws_elasticsearch_domain_service_software_options
 
         out["service_software_options"] = (
@@ -207,7 +207,7 @@ def deserialize_json(data: dict) -> AwsElasticsearchDomainDetails:
                 data["ServiceSoftwareOptions"]
             )
         )
-    if "VPCOptions" in data:
+    if data.get("VPCOptions") is not None:
         import capo_securityhub.types.aws_elasticsearch_domain_vpc_options
 
         out["vpc_options"] = (

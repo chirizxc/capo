@@ -26,7 +26,7 @@ def serialize_json(value: DeleteEventStreamResponse) -> dict:
 
 def deserialize_json(data: dict) -> DeleteEventStreamResponse:
     out: DeleteEventStreamResponse = {}  # type: ignore[typeddict-item]
-    if "EventStream" in data:
+    if data.get("EventStream") is not None:
         import capo_pinpoint.types.event_stream
 
         out["event_stream"] = capo_pinpoint.types.event_stream.deserialize_json(

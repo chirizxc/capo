@@ -41,7 +41,7 @@ def serialize_json(value: ResourceGroup) -> dict:
 
 def deserialize_json(data: dict) -> ResourceGroup:
     out: ResourceGroup = {}  # type: ignore[typeddict-item]
-    if "state" in data:
+    if data.get("state") is not None:
         import capo_service_catalog_appregistry.types.resource_group_state
 
         out["state"] = (
@@ -49,8 +49,8 @@ def deserialize_json(data: dict) -> ResourceGroup:
                 data["state"]
             )
         )
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "errorMessage" in data:
+    if data.get("errorMessage") is not None:
         out["error_message"] = data["errorMessage"]
     return out

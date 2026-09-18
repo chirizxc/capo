@@ -35,10 +35,10 @@ def serialize_aws_json_1_0(value: DeleteProxyResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> DeleteProxyResponse:
     out: DeleteProxyResponse = {}  # type: ignore[typeddict-item]
-    if "NatGatewayId" in data:
+    if data.get("NatGatewayId") is not None:
         out["nat_gateway_id"] = data["NatGatewayId"]
-    if "ProxyName" in data:
+    if data.get("ProxyName") is not None:
         out["proxy_name"] = data["ProxyName"]
-    if "ProxyArn" in data:
+    if data.get("ProxyArn") is not None:
         out["proxy_arn"] = data["ProxyArn"]
     return out

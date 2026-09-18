@@ -29,10 +29,10 @@ def serialize_json(value: Subscription) -> dict:
 
 def deserialize_json(data: dict) -> Subscription:
     out: Subscription = {}  # type: ignore[typeddict-item]
-    if "Event" in data:
+    if data.get("Event") is not None:
         out["event"] = data["Event"]
     else:
         raise DeserializationError("Subscription.event required")
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
     return out

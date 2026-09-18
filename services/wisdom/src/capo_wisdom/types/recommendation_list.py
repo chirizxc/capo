@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> RecommendationList:
 
     out: RecommendationList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_wisdom.types.recommendation_data.deserialize_json(item))
     return out

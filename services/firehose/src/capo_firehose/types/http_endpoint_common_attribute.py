@@ -32,13 +32,13 @@ def serialize_aws_json_1_1(value: HttpEndpointCommonAttribute) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> HttpEndpointCommonAttribute:
     out: HttpEndpointCommonAttribute = {}  # type: ignore[typeddict-item]
-    if "AttributeName" in data:
+    if data.get("AttributeName") is not None:
         out["attribute_name"] = data["AttributeName"]
     else:
         raise DeserializationError(
             "HttpEndpointCommonAttribute.attribute_name required"
         )
-    if "AttributeValue" in data:
+    if data.get("AttributeValue") is not None:
         out["attribute_value"] = data["AttributeValue"]
     else:
         raise DeserializationError(

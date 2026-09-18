@@ -44,17 +44,17 @@ def serialize_json(value: AuditorResult) -> dict:
 
 def deserialize_json(data: dict) -> AuditorResult:
     out: AuditorResult = {}  # type: ignore[typeddict-item]
-    if "Auditor" in data:
+    if data.get("Auditor") is not None:
         out["auditor"] = data["Auditor"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Data" in data:
+    if data.get("Data") is not None:
         import capo_application_signals.types.data_map
 
         out["data"] = capo_application_signals.types.data_map.deserialize_json(
             data["Data"]
         )
-    if "Severity" in data:
+    if data.get("Severity") is not None:
         import capo_application_signals.types.severity
 
         out["severity"] = capo_application_signals.types.severity.deserialize_json(

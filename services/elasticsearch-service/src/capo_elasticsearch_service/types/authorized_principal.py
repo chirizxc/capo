@@ -36,7 +36,7 @@ def serialize_json(value: AuthorizedPrincipal) -> dict:
 
 def deserialize_json(data: dict) -> AuthorizedPrincipal:
     out: AuthorizedPrincipal = {}  # type: ignore[typeddict-item]
-    if "PrincipalType" in data:
+    if data.get("PrincipalType") is not None:
         import capo_elasticsearch_service.types.principal_type
 
         out["principal_type"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> AuthorizedPrincipal:
                 data["PrincipalType"]
             )
         )
-    if "Principal" in data:
+    if data.get("Principal") is not None:
         out["principal"] = data["Principal"]
     return out

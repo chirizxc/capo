@@ -35,10 +35,10 @@ def serialize_json(value: OAuthClientCredentials) -> dict:
 
 def deserialize_json(data: dict) -> OAuthClientCredentials:
     out: OAuthClientCredentials = {}  # type: ignore[typeddict-item]
-    if "ClientId" in data:
+    if data.get("ClientId") is not None:
         out["client_id"] = data["ClientId"]
-    if "ClientSecret" in data:
+    if data.get("ClientSecret") is not None:
         out["client_secret"] = data["ClientSecret"]
-    if "Username" in data:
+    if data.get("Username") is not None:
         out["username"] = data["Username"]
     return out

@@ -34,9 +34,9 @@ def serialize_json(value: Source) -> dict:
 
 def deserialize_json(data: dict) -> Source:
     out: Source = {}  # type: ignore[typeddict-item]
-    if "sourceType" in data:
+    if data.get("sourceType") is not None:
         out["source_type"] = data["sourceType"]
-    if "sourceData" in data:
+    if data.get("sourceData") is not None:
         import capo_rolesanywhere.types.source_data
 
         out["source_data"] = capo_rolesanywhere.types.source_data.deserialize_json(

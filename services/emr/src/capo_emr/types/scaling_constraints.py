@@ -27,8 +27,8 @@ def serialize_aws_json_1_1(value: ScalingConstraints) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ScalingConstraints:
     out: ScalingConstraints = {}  # type: ignore[typeddict-item]
-    if "MinCapacity" in data:
+    if data.get("MinCapacity") is not None:
         out["min_capacity"] = data["MinCapacity"]
-    if "MaxCapacity" in data:
+    if data.get("MaxCapacity") is not None:
         out["max_capacity"] = data["MaxCapacity"]
     return out

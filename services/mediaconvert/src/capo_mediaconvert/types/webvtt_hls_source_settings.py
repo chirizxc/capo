@@ -40,9 +40,9 @@ def serialize_json(value: WebvttHlsSourceSettings) -> dict:
 
 def deserialize_json(data: dict) -> WebvttHlsSourceSettings:
     out: WebvttHlsSourceSettings = {}  # type: ignore[typeddict-item]
-    if "renditionGroupId" in data:
+    if data.get("renditionGroupId") is not None:
         out["rendition_group_id"] = data["renditionGroupId"]
-    if "renditionLanguageCode" in data:
+    if data.get("renditionLanguageCode") is not None:
         import capo_mediaconvert.types.language_code
 
         out["rendition_language_code"] = (
@@ -50,6 +50,6 @@ def deserialize_json(data: dict) -> WebvttHlsSourceSettings:
                 data["renditionLanguageCode"]
             )
         )
-    if "renditionName" in data:
+    if data.get("renditionName") is not None:
         out["rendition_name"] = data["renditionName"]
     return out

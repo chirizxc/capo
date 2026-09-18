@@ -166,41 +166,41 @@ def serialize_json(value: Session) -> dict:
 
 def deserialize_json(data: dict) -> Session:
     out: Session = {}  # type: ignore[typeddict-item]
-    if "applicationId" in data:
+    if data.get("applicationId") is not None:
         out["application_id"] = data["applicationId"]
     else:
         raise DeserializationError("Session.application_id required")
-    if "sessionId" in data:
+    if data.get("sessionId") is not None:
         out["session_id"] = data["sessionId"]
     else:
         raise DeserializationError("Session.session_id required")
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("Session.arn required")
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "state" in data:
+    if data.get("state") is not None:
         out["state"] = data["state"]
     else:
         raise DeserializationError("Session.state required")
-    if "stateDetails" in data:
+    if data.get("stateDetails") is not None:
         out["state_details"] = data["stateDetails"]
     else:
         raise DeserializationError("Session.state_details required")
-    if "releaseLabel" in data:
+    if data.get("releaseLabel") is not None:
         out["release_label"] = data["releaseLabel"]
     else:
         raise DeserializationError("Session.release_label required")
-    if "executionRoleArn" in data:
+    if data.get("executionRoleArn") is not None:
         out["execution_role_arn"] = data["executionRoleArn"]
     else:
         raise DeserializationError("Session.execution_role_arn required")
-    if "createdBy" in data:
+    if data.get("createdBy") is not None:
         out["created_by"] = data["createdBy"]
     else:
         raise DeserializationError("Session.created_by required")
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_emr_serverless.types.date
 
         out["created_at"] = capo_emr_serverless.types.date.deserialize_json(
@@ -208,7 +208,7 @@ def deserialize_json(data: dict) -> Session:
         )
     else:
         raise DeserializationError("Session.created_at required")
-    if "updatedAt" in data:
+    if data.get("updatedAt") is not None:
         import capo_emr_serverless.types.date
 
         out["updated_at"] = capo_emr_serverless.types.date.deserialize_json(
@@ -216,25 +216,25 @@ def deserialize_json(data: dict) -> Session:
         )
     else:
         raise DeserializationError("Session.updated_at required")
-    if "startedAt" in data:
+    if data.get("startedAt") is not None:
         import capo_emr_serverless.types.date
 
         out["started_at"] = capo_emr_serverless.types.date.deserialize_json(
             data["startedAt"]
         )
-    if "endedAt" in data:
+    if data.get("endedAt") is not None:
         import capo_emr_serverless.types.date
 
         out["ended_at"] = capo_emr_serverless.types.date.deserialize_json(
             data["endedAt"]
         )
-    if "idleSince" in data:
+    if data.get("idleSince") is not None:
         import capo_emr_serverless.types.date
 
         out["idle_since"] = capo_emr_serverless.types.date.deserialize_json(
             data["idleSince"]
         )
-    if "configurationOverrides" in data:
+    if data.get("configurationOverrides") is not None:
         import capo_emr_serverless.types.session_configuration_overrides
 
         out["configuration_overrides"] = (
@@ -242,7 +242,7 @@ def deserialize_json(data: dict) -> Session:
                 data["configurationOverrides"]
             )
         )
-    if "networkConfiguration" in data:
+    if data.get("networkConfiguration") is not None:
         import capo_emr_serverless.types.network_configuration
 
         out["network_configuration"] = (
@@ -250,13 +250,13 @@ def deserialize_json(data: dict) -> Session:
                 data["networkConfiguration"]
             )
         )
-    if "idleTimeoutMinutes" in data:
+    if data.get("idleTimeoutMinutes") is not None:
         out["idle_timeout_minutes"] = data["idleTimeoutMinutes"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_emr_serverless.types.tag_map
 
         out["tags"] = capo_emr_serverless.types.tag_map.deserialize_json(data["tags"])
-    if "totalResourceUtilization" in data:
+    if data.get("totalResourceUtilization") is not None:
         import capo_emr_serverless.types.total_resource_utilization
 
         out["total_resource_utilization"] = (
@@ -264,7 +264,7 @@ def deserialize_json(data: dict) -> Session:
                 data["totalResourceUtilization"]
             )
         )
-    if "billedResourceUtilization" in data:
+    if data.get("billedResourceUtilization") is not None:
         import capo_emr_serverless.types.resource_utilization
 
         out["billed_resource_utilization"] = (
@@ -272,6 +272,6 @@ def deserialize_json(data: dict) -> Session:
                 data["billedResourceUtilization"]
             )
         )
-    if "totalExecutionDurationSeconds" in data:
+    if data.get("totalExecutionDurationSeconds") is not None:
         out["total_execution_duration_seconds"] = data["totalExecutionDurationSeconds"]
     return out

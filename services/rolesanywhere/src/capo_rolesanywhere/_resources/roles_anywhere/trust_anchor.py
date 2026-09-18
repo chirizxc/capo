@@ -82,9 +82,10 @@ class TrustAnchor:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_rolesanywhere.types.create_trust_anchor_request.CreateTrustAnchorRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        input_["source"] = source
+        input_: capo_rolesanywhere.types.create_trust_anchor_request.CreateTrustAnchorRequest = {
+            "name": name,
+            "source": source,
+        }
         if enabled is not None:
             input_["enabled"] = enabled
         if tags is not None:
@@ -97,6 +98,7 @@ class TrustAnchor:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -132,14 +134,16 @@ class TrustAnchor:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_rolesanywhere.types.scalar_trust_anchor_request.ScalarTrustAnchorRequest = {}  # type: ignore[typeddict-item]
-        input_["trust_anchor_id"] = trust_anchor_id
+        input_: capo_rolesanywhere.types.scalar_trust_anchor_request.ScalarTrustAnchorRequest = {
+            "trust_anchor_id": trust_anchor_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update(
@@ -179,8 +183,9 @@ class TrustAnchor:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_rolesanywhere.types.update_trust_anchor_request.UpdateTrustAnchorRequest = {}  # type: ignore[typeddict-item]
-        input_["trust_anchor_id"] = trust_anchor_id
+        input_: capo_rolesanywhere.types.update_trust_anchor_request.UpdateTrustAnchorRequest = {
+            "trust_anchor_id": trust_anchor_id
+        }
         if name is not None:
             input_["name"] = name
         if source is not None:
@@ -191,6 +196,7 @@ class TrustAnchor:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -225,14 +231,16 @@ class TrustAnchor:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_rolesanywhere.types.scalar_trust_anchor_request.ScalarTrustAnchorRequest = {}  # type: ignore[typeddict-item]
-        input_["trust_anchor_id"] = trust_anchor_id
+        input_: capo_rolesanywhere.types.scalar_trust_anchor_request.ScalarTrustAnchorRequest = {
+            "trust_anchor_id": trust_anchor_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -271,7 +279,7 @@ class TrustAnchor:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_rolesanywhere.types.list_request.ListRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_rolesanywhere.types.list_request.ListRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if page_size is not None:
@@ -282,6 +290,7 @@ class TrustAnchor:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def disable_trust_anchor(
@@ -316,14 +325,16 @@ class TrustAnchor:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_rolesanywhere.types.scalar_trust_anchor_request.ScalarTrustAnchorRequest = {}  # type: ignore[typeddict-item]
-        input_["trust_anchor_id"] = trust_anchor_id
+        input_: capo_rolesanywhere.types.scalar_trust_anchor_request.ScalarTrustAnchorRequest = {
+            "trust_anchor_id": trust_anchor_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def enable_trust_anchor(
@@ -358,14 +369,16 @@ class TrustAnchor:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_rolesanywhere.types.scalar_trust_anchor_request.ScalarTrustAnchorRequest = {}  # type: ignore[typeddict-item]
-        input_["trust_anchor_id"] = trust_anchor_id
+        input_: capo_rolesanywhere.types.scalar_trust_anchor_request.ScalarTrustAnchorRequest = {
+            "trust_anchor_id": trust_anchor_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -416,9 +429,10 @@ class AsyncTrustAnchor:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_rolesanywhere.types.create_trust_anchor_request.CreateTrustAnchorRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        input_["source"] = source
+        input_: capo_rolesanywhere.types.create_trust_anchor_request.CreateTrustAnchorRequest = {
+            "name": name,
+            "source": source,
+        }
         if enabled is not None:
             input_["enabled"] = enabled
         if tags is not None:
@@ -431,6 +445,7 @@ class AsyncTrustAnchor:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -467,14 +482,16 @@ class AsyncTrustAnchor:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_rolesanywhere.types.scalar_trust_anchor_request.ScalarTrustAnchorRequest = {}  # type: ignore[typeddict-item]
-        input_["trust_anchor_id"] = trust_anchor_id
+        input_: capo_rolesanywhere.types.scalar_trust_anchor_request.ScalarTrustAnchorRequest = {
+            "trust_anchor_id": trust_anchor_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update(
@@ -515,8 +532,9 @@ class AsyncTrustAnchor:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_rolesanywhere.types.update_trust_anchor_request.UpdateTrustAnchorRequest = {}  # type: ignore[typeddict-item]
-        input_["trust_anchor_id"] = trust_anchor_id
+        input_: capo_rolesanywhere.types.update_trust_anchor_request.UpdateTrustAnchorRequest = {
+            "trust_anchor_id": trust_anchor_id
+        }
         if name is not None:
             input_["name"] = name
         if source is not None:
@@ -527,6 +545,7 @@ class AsyncTrustAnchor:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -562,14 +581,16 @@ class AsyncTrustAnchor:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_rolesanywhere.types.scalar_trust_anchor_request.ScalarTrustAnchorRequest = {}  # type: ignore[typeddict-item]
-        input_["trust_anchor_id"] = trust_anchor_id
+        input_: capo_rolesanywhere.types.scalar_trust_anchor_request.ScalarTrustAnchorRequest = {
+            "trust_anchor_id": trust_anchor_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -609,7 +630,7 @@ class AsyncTrustAnchor:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_rolesanywhere.types.list_request.ListRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_rolesanywhere.types.list_request.ListRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if page_size is not None:
@@ -620,6 +641,7 @@ class AsyncTrustAnchor:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def disable_trust_anchor(
@@ -655,14 +677,16 @@ class AsyncTrustAnchor:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_rolesanywhere.types.scalar_trust_anchor_request.ScalarTrustAnchorRequest = {}  # type: ignore[typeddict-item]
-        input_["trust_anchor_id"] = trust_anchor_id
+        input_: capo_rolesanywhere.types.scalar_trust_anchor_request.ScalarTrustAnchorRequest = {
+            "trust_anchor_id": trust_anchor_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def enable_trust_anchor(
@@ -698,12 +722,14 @@ class AsyncTrustAnchor:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_rolesanywhere.types.scalar_trust_anchor_request.ScalarTrustAnchorRequest = {}  # type: ignore[typeddict-item]
-        input_["trust_anchor_id"] = trust_anchor_id
+        input_: capo_rolesanywhere.types.scalar_trust_anchor_request.ScalarTrustAnchorRequest = {
+            "trust_anchor_id": trust_anchor_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

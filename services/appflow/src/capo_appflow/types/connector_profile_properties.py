@@ -264,7 +264,7 @@ def serialize_json(value: ConnectorProfileProperties) -> dict:
 
 def deserialize_json(data: dict) -> ConnectorProfileProperties:
     out: ConnectorProfileProperties = {}  # type: ignore[typeddict-item]
-    if "Amplitude" in data:
+    if data.get("Amplitude") is not None:
         import capo_appflow.types.amplitude_connector_profile_properties
 
         out["amplitude"] = (
@@ -272,7 +272,7 @@ def deserialize_json(data: dict) -> ConnectorProfileProperties:
                 data["Amplitude"]
             )
         )
-    if "Datadog" in data:
+    if data.get("Datadog") is not None:
         import capo_appflow.types.datadog_connector_profile_properties
 
         out["datadog"] = (
@@ -280,7 +280,7 @@ def deserialize_json(data: dict) -> ConnectorProfileProperties:
                 data["Datadog"]
             )
         )
-    if "Dynatrace" in data:
+    if data.get("Dynatrace") is not None:
         import capo_appflow.types.dynatrace_connector_profile_properties
 
         out["dynatrace"] = (
@@ -288,7 +288,7 @@ def deserialize_json(data: dict) -> ConnectorProfileProperties:
                 data["Dynatrace"]
             )
         )
-    if "GoogleAnalytics" in data:
+    if data.get("GoogleAnalytics") is not None:
         import capo_appflow.types.google_analytics_connector_profile_properties
 
         out["google_analytics"] = (
@@ -296,7 +296,7 @@ def deserialize_json(data: dict) -> ConnectorProfileProperties:
                 data["GoogleAnalytics"]
             )
         )
-    if "Honeycode" in data:
+    if data.get("Honeycode") is not None:
         import capo_appflow.types.honeycode_connector_profile_properties
 
         out["honeycode"] = (
@@ -304,7 +304,7 @@ def deserialize_json(data: dict) -> ConnectorProfileProperties:
                 data["Honeycode"]
             )
         )
-    if "InforNexus" in data:
+    if data.get("InforNexus") is not None:
         import capo_appflow.types.infor_nexus_connector_profile_properties
 
         out["infor_nexus"] = (
@@ -312,7 +312,7 @@ def deserialize_json(data: dict) -> ConnectorProfileProperties:
                 data["InforNexus"]
             )
         )
-    if "Marketo" in data:
+    if data.get("Marketo") is not None:
         import capo_appflow.types.marketo_connector_profile_properties
 
         out["marketo"] = (
@@ -320,7 +320,7 @@ def deserialize_json(data: dict) -> ConnectorProfileProperties:
                 data["Marketo"]
             )
         )
-    if "Redshift" in data:
+    if data.get("Redshift") is not None:
         import capo_appflow.types.redshift_connector_profile_properties
 
         out["redshift"] = (
@@ -328,7 +328,7 @@ def deserialize_json(data: dict) -> ConnectorProfileProperties:
                 data["Redshift"]
             )
         )
-    if "Salesforce" in data:
+    if data.get("Salesforce") is not None:
         import capo_appflow.types.salesforce_connector_profile_properties
 
         out["salesforce"] = (
@@ -336,7 +336,7 @@ def deserialize_json(data: dict) -> ConnectorProfileProperties:
                 data["Salesforce"]
             )
         )
-    if "ServiceNow" in data:
+    if data.get("ServiceNow") is not None:
         import capo_appflow.types.service_now_connector_profile_properties
 
         out["service_now"] = (
@@ -344,7 +344,7 @@ def deserialize_json(data: dict) -> ConnectorProfileProperties:
                 data["ServiceNow"]
             )
         )
-    if "Singular" in data:
+    if data.get("Singular") is not None:
         import capo_appflow.types.singular_connector_profile_properties
 
         out["singular"] = (
@@ -352,7 +352,7 @@ def deserialize_json(data: dict) -> ConnectorProfileProperties:
                 data["Singular"]
             )
         )
-    if "Slack" in data:
+    if data.get("Slack") is not None:
         import capo_appflow.types.slack_connector_profile_properties
 
         out["slack"] = (
@@ -360,7 +360,7 @@ def deserialize_json(data: dict) -> ConnectorProfileProperties:
                 data["Slack"]
             )
         )
-    if "Snowflake" in data:
+    if data.get("Snowflake") is not None:
         import capo_appflow.types.snowflake_connector_profile_properties
 
         out["snowflake"] = (
@@ -368,7 +368,7 @@ def deserialize_json(data: dict) -> ConnectorProfileProperties:
                 data["Snowflake"]
             )
         )
-    if "Trendmicro" in data:
+    if data.get("Trendmicro") is not None:
         import capo_appflow.types.trendmicro_connector_profile_properties
 
         out["trendmicro"] = (
@@ -376,7 +376,7 @@ def deserialize_json(data: dict) -> ConnectorProfileProperties:
                 data["Trendmicro"]
             )
         )
-    if "Veeva" in data:
+    if data.get("Veeva") is not None:
         import capo_appflow.types.veeva_connector_profile_properties
 
         out["veeva"] = (
@@ -384,7 +384,7 @@ def deserialize_json(data: dict) -> ConnectorProfileProperties:
                 data["Veeva"]
             )
         )
-    if "Zendesk" in data:
+    if data.get("Zendesk") is not None:
         import capo_appflow.types.zendesk_connector_profile_properties
 
         out["zendesk"] = (
@@ -392,7 +392,7 @@ def deserialize_json(data: dict) -> ConnectorProfileProperties:
                 data["Zendesk"]
             )
         )
-    if "SAPOData" in data:
+    if data.get("SAPOData") is not None:
         import capo_appflow.types.sapo_data_connector_profile_properties
 
         out["sapo_data"] = (
@@ -400,7 +400,7 @@ def deserialize_json(data: dict) -> ConnectorProfileProperties:
                 data["SAPOData"]
             )
         )
-    if "CustomConnector" in data:
+    if data.get("CustomConnector") is not None:
         import capo_appflow.types.custom_connector_profile_properties
 
         out["custom_connector"] = (
@@ -408,7 +408,7 @@ def deserialize_json(data: dict) -> ConnectorProfileProperties:
                 data["CustomConnector"]
             )
         )
-    if "Pardot" in data:
+    if data.get("Pardot") is not None:
         import capo_appflow.types.pardot_connector_profile_properties
 
         out["pardot"] = (

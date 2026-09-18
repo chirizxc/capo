@@ -81,7 +81,7 @@ def serialize_aws_json_1_0(value: GetVerificationResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> GetVerificationResponse:
     out: GetVerificationResponse = {}  # type: ignore[typeddict-item]
-    if "VerificationType" in data:
+    if data.get("VerificationType") is not None:
         import capo_partnercentral_account.types.verification_type
 
         out["verification_type"] = (
@@ -91,7 +91,7 @@ def deserialize_aws_json_1_0(data: dict) -> GetVerificationResponse:
         )
     else:
         raise DeserializationError("GetVerificationResponse.verification_type required")
-    if "VerificationStatus" in data:
+    if data.get("VerificationStatus") is not None:
         import capo_partnercentral_account.types.verification_status
 
         out["verification_status"] = (
@@ -103,9 +103,9 @@ def deserialize_aws_json_1_0(data: dict) -> GetVerificationResponse:
         raise DeserializationError(
             "GetVerificationResponse.verification_status required"
         )
-    if "VerificationStatusReason" in data:
+    if data.get("VerificationStatusReason") is not None:
         out["verification_status_reason"] = data["VerificationStatusReason"]
-    if "VerificationResponseDetails" in data:
+    if data.get("VerificationResponseDetails") is not None:
         import capo_partnercentral_account.types.verification_response_details
 
         out["verification_response_details"] = (
@@ -117,7 +117,7 @@ def deserialize_aws_json_1_0(data: dict) -> GetVerificationResponse:
         raise DeserializationError(
             "GetVerificationResponse.verification_response_details required"
         )
-    if "StartedAt" in data:
+    if data.get("StartedAt") is not None:
         import capo_partnercentral_account.types.date_time
 
         out["started_at"] = (
@@ -127,7 +127,7 @@ def deserialize_aws_json_1_0(data: dict) -> GetVerificationResponse:
         )
     else:
         raise DeserializationError("GetVerificationResponse.started_at required")
-    if "CompletedAt" in data:
+    if data.get("CompletedAt") is not None:
         import capo_partnercentral_account.types.date_time
 
         out["completed_at"] = (

@@ -38,9 +38,9 @@ def serialize_aws_json_1_0(value: CreateDbClusterOutput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CreateDbClusterOutput:
     out: CreateDbClusterOutput = {}  # type: ignore[typeddict-item]
-    if "dbClusterId" in data:
+    if data.get("dbClusterId") is not None:
         out["db_cluster_id"] = data["dbClusterId"]
-    if "dbClusterStatus" in data:
+    if data.get("dbClusterStatus") is not None:
         import capo_timestream_influxdb.types.cluster_status
 
         out["db_cluster_status"] = (

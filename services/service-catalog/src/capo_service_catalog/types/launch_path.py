@@ -28,8 +28,8 @@ def serialize_aws_json_1_1(value: LaunchPath) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> LaunchPath:
     out: LaunchPath = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     return out

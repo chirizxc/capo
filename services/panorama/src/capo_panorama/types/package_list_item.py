@@ -49,19 +49,19 @@ def serialize_json(value: PackageListItem) -> dict:
 
 def deserialize_json(data: dict) -> PackageListItem:
     out: PackageListItem = {}  # type: ignore[typeddict-item]
-    if "PackageId" in data:
+    if data.get("PackageId") is not None:
         out["package_id"] = data["PackageId"]
-    if "PackageName" in data:
+    if data.get("PackageName") is not None:
         out["package_name"] = data["PackageName"]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "CreatedTime" in data:
+    if data.get("CreatedTime") is not None:
         import capo_panorama.types.time_stamp
 
         out["created_time"] = capo_panorama.types.time_stamp.deserialize_json(
             data["CreatedTime"]
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_panorama.types.tag_map
 
         out["tags"] = capo_panorama.types.tag_map.deserialize_json(data["Tags"])

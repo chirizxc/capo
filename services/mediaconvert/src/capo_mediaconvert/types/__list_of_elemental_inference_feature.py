@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> __listOfElementalInferenceFeature:
 
     out: __listOfElementalInferenceFeature = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_mediaconvert.types.elemental_inference_feature.deserialize_json(item)
         )

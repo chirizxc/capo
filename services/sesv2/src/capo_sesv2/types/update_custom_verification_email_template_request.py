@@ -47,31 +47,31 @@ def serialize_json(value: UpdateCustomVerificationEmailTemplateRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateCustomVerificationEmailTemplateRequest:
     out: UpdateCustomVerificationEmailTemplateRequest = {}  # type: ignore[typeddict-item]
-    if "FromEmailAddress" in data:
+    if data.get("FromEmailAddress") is not None:
         out["from_email_address"] = data["FromEmailAddress"]
     else:
         raise DeserializationError(
             "UpdateCustomVerificationEmailTemplateRequest.from_email_address required"
         )
-    if "TemplateSubject" in data:
+    if data.get("TemplateSubject") is not None:
         out["template_subject"] = data["TemplateSubject"]
     else:
         raise DeserializationError(
             "UpdateCustomVerificationEmailTemplateRequest.template_subject required"
         )
-    if "TemplateContent" in data:
+    if data.get("TemplateContent") is not None:
         out["template_content"] = data["TemplateContent"]
     else:
         raise DeserializationError(
             "UpdateCustomVerificationEmailTemplateRequest.template_content required"
         )
-    if "SuccessRedirectionURL" in data:
+    if data.get("SuccessRedirectionURL") is not None:
         out["success_redirection_url"] = data["SuccessRedirectionURL"]
     else:
         raise DeserializationError(
             "UpdateCustomVerificationEmailTemplateRequest.success_redirection_url required"
         )
-    if "FailureRedirectionURL" in data:
+    if data.get("FailureRedirectionURL") is not None:
         out["failure_redirection_url"] = data["FailureRedirectionURL"]
     else:
         raise DeserializationError(

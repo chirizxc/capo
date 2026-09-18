@@ -55,19 +55,19 @@ def serialize_json(value: QuickConnectContactData) -> dict:
 
 def deserialize_json(data: dict) -> QuickConnectContactData:
     out: QuickConnectContactData = {}  # type: ignore[typeddict-item]
-    if "ContactId" in data:
+    if data.get("ContactId") is not None:
         out["contact_id"] = data["ContactId"]
-    if "InitiationTimestamp" in data:
+    if data.get("InitiationTimestamp") is not None:
         import capo_connect.types.timestamp
 
         out["initiation_timestamp"] = capo_connect.types.timestamp.deserialize_json(
             data["InitiationTimestamp"]
         )
-    if "QuickConnectId" in data:
+    if data.get("QuickConnectId") is not None:
         out["quick_connect_id"] = data["QuickConnectId"]
-    if "QuickConnectName" in data:
+    if data.get("QuickConnectName") is not None:
         out["quick_connect_name"] = data["QuickConnectName"]
-    if "QuickConnectType" in data:
+    if data.get("QuickConnectType") is not None:
         import capo_connect.types.quick_connect_type
 
         out["quick_connect_type"] = (

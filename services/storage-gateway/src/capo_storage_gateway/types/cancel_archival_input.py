@@ -27,11 +27,11 @@ def serialize_aws_json_1_1(value: CancelArchivalInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CancelArchivalInput:
     out: CancelArchivalInput = {}  # type: ignore[typeddict-item]
-    if "GatewayARN" in data:
+    if data.get("GatewayARN") is not None:
         out["gateway_arn"] = data["GatewayARN"]
     else:
         raise DeserializationError("CancelArchivalInput.gateway_arn required")
-    if "TapeARN" in data:
+    if data.get("TapeARN") is not None:
         out["tape_arn"] = data["TapeARN"]
     else:
         raise DeserializationError("CancelArchivalInput.tape_arn required")

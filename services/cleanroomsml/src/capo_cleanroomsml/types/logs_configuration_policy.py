@@ -53,7 +53,7 @@ def serialize_json(value: LogsConfigurationPolicy) -> dict:
 
 def deserialize_json(data: dict) -> LogsConfigurationPolicy:
     out: LogsConfigurationPolicy = {}  # type: ignore[typeddict-item]
-    if "allowedAccountIds" in data:
+    if data.get("allowedAccountIds") is not None:
         import capo_cleanroomsml.types.account_id_list
 
         out["allowed_account_ids"] = (
@@ -65,9 +65,9 @@ def deserialize_json(data: dict) -> LogsConfigurationPolicy:
         raise DeserializationError(
             "LogsConfigurationPolicy.allowed_account_ids required"
         )
-    if "filterPattern" in data:
+    if data.get("filterPattern") is not None:
         out["filter_pattern"] = data["filterPattern"]
-    if "logType" in data:
+    if data.get("logType") is not None:
         import capo_cleanroomsml.types.log_type
 
         out["log_type"] = capo_cleanroomsml.types.log_type.deserialize_json(
@@ -75,7 +75,7 @@ def deserialize_json(data: dict) -> LogsConfigurationPolicy:
         )
     else:
         out["log_type"] = "ALL"
-    if "logRedactionConfiguration" in data:
+    if data.get("logRedactionConfiguration") is not None:
         import capo_cleanroomsml.types.log_redaction_configuration
 
         out["log_redaction_configuration"] = (

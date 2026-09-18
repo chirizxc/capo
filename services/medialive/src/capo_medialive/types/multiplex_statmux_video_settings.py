@@ -38,10 +38,10 @@ def serialize_json(value: MultiplexStatmuxVideoSettings) -> dict:
 
 def deserialize_json(data: dict) -> MultiplexStatmuxVideoSettings:
     out: MultiplexStatmuxVideoSettings = {}  # type: ignore[typeddict-item]
-    if "maximumBitrate" in data:
+    if data.get("maximumBitrate") is not None:
         out["maximum_bitrate"] = data["maximumBitrate"]
-    if "minimumBitrate" in data:
+    if data.get("minimumBitrate") is not None:
         out["minimum_bitrate"] = data["minimumBitrate"]
-    if "priority" in data:
+    if data.get("priority") is not None:
         out["priority"] = data["priority"]
     return out

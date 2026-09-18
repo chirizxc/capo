@@ -31,7 +31,7 @@ def serialize_json(value: UpdateEventLogConfigurationRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateEventLogConfigurationRequest:
     out: UpdateEventLogConfigurationRequest = {}  # type: ignore[typeddict-item]
-    if "EventLogLevel" in data:
+    if data.get("EventLogLevel") is not None:
         import capo_iot_managed_integrations.types.log_level
 
         out["event_log_level"] = (

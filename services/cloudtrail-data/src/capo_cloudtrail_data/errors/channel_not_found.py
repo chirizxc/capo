@@ -19,7 +19,7 @@ def serialize_json(value: ChannelNotFound_) -> dict:
 
 def deserialize_json(data: dict) -> ChannelNotFound_:
     out: ChannelNotFound_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     return out
 
@@ -29,15 +29,16 @@ class ChannelNotFound(ServiceError):
 
     code: str | None = "ChannelNotFound"
 
-    def __init__(self, data: ChannelNotFound_):
+    def __init__(self, data: ChannelNotFound_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="ChannelNotFound",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "ChannelNotFound":
-        return cls(deserialize_json(data))
+    def from_json(cls, data: dict, message: str | None = None) -> "ChannelNotFound":
+        return cls(deserialize_json(data), message)

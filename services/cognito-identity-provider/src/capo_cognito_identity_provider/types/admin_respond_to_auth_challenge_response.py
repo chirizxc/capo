@@ -64,7 +64,7 @@ def serialize_aws_json_1_1(value: AdminRespondToAuthChallengeResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AdminRespondToAuthChallengeResponse:
     out: AdminRespondToAuthChallengeResponse = {}  # type: ignore[typeddict-item]
-    if "ChallengeName" in data:
+    if data.get("ChallengeName") is not None:
         import capo_cognito_identity_provider.types.challenge_name_type
 
         out["challenge_name"] = (
@@ -72,9 +72,9 @@ def deserialize_aws_json_1_1(data: dict) -> AdminRespondToAuthChallengeResponse:
                 data["ChallengeName"]
             )
         )
-    if "Session" in data:
+    if data.get("Session") is not None:
         out["session"] = data["Session"]
-    if "ChallengeParameters" in data:
+    if data.get("ChallengeParameters") is not None:
         import capo_cognito_identity_provider.types.challenge_parameters_type
 
         out["challenge_parameters"] = (
@@ -82,7 +82,7 @@ def deserialize_aws_json_1_1(data: dict) -> AdminRespondToAuthChallengeResponse:
                 data["ChallengeParameters"]
             )
         )
-    if "AuthenticationResult" in data:
+    if data.get("AuthenticationResult") is not None:
         import capo_cognito_identity_provider.types.authentication_result_type
 
         out["authentication_result"] = (

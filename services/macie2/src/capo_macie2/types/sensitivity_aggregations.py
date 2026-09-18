@@ -35,12 +35,12 @@ def serialize_json(value: SensitivityAggregations) -> dict:
 
 def deserialize_json(data: dict) -> SensitivityAggregations:
     out: SensitivityAggregations = {}  # type: ignore[typeddict-item]
-    if "classifiableSizeInBytes" in data:
+    if data.get("classifiableSizeInBytes") is not None:
         out["classifiable_size_in_bytes"] = data["classifiableSizeInBytes"]
-    if "publiclyAccessibleCount" in data:
+    if data.get("publiclyAccessibleCount") is not None:
         out["publicly_accessible_count"] = data["publiclyAccessibleCount"]
-    if "totalCount" in data:
+    if data.get("totalCount") is not None:
         out["total_count"] = data["totalCount"]
-    if "totalSizeInBytes" in data:
+    if data.get("totalSizeInBytes") is not None:
         out["total_size_in_bytes"] = data["totalSizeInBytes"]
     return out

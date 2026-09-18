@@ -13,9 +13,9 @@ from capo_devops_agent import AsyncDevOpsAgentClient
 
 
 async def main():
-    async with AsyncDevOpsAgentClient() as s3:
+    async with AsyncDevOpsAgentClient() as dev_ops_agent:
         # Example: call the create_asset operation
-        response = await s3.create_asset()
+        response = await dev_ops_agent.create_asset()
         print(response["asset"])
 ```
 
@@ -28,9 +28,9 @@ from capo_devops_agent import AsyncDevOpsAgentClient
 
 
 async def main():
-    async with AsyncDevOpsAgentClient() as s3:
+    async with AsyncDevOpsAgentClient() as dev_ops_agent:
         # Example: paginate over list_asset_files
-        async for item in s3.iter_list_asset_files():
+        async for item in dev_ops_agent.iter_list_asset_files():
             print(item)
 ```
 
@@ -44,9 +44,9 @@ from capo_devops_agent.error import AccessDeniedException
 
 
 async def main():
-    async with AsyncDevOpsAgentClient() as s3:
+    async with AsyncDevOpsAgentClient() as dev_ops_agent:
         try:
-            await s3.create_asset()
+            await dev_ops_agent.create_asset()
         except AccessDeniedException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -63,13 +63,13 @@ from capo_devops_agent import AsyncDevOpsAgentClient
 
 
 async def main():
-    async with AsyncDevOpsAgentClient() as s3:
+    async with AsyncDevOpsAgentClient() as dev_ops_agent:
         # Default: 3 attempts for every operation
-        response = await s3.create_asset()
+        response = await dev_ops_agent.create_asset()
 
         # Override per operation
-        response = await s3.create_asset(config_overrides={"retry_max_attempts": 5})
+        response = await dev_ops_agent.create_asset(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.create_asset(config_overrides={"retry_max_attempts": 1})
+        response = await dev_ops_agent.create_asset(config_overrides={"retry_max_attempts": 1})
 ```

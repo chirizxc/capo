@@ -27,7 +27,7 @@ def serialize_json(value: AdDecisionServerConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> AdDecisionServerConfiguration:
     out: AdDecisionServerConfiguration = {}  # type: ignore[typeddict-item]
-    if "HttpRequest" in data:
+    if data.get("HttpRequest") is not None:
         import capo_mediatailor.types.http_request
 
         out["http_request"] = capo_mediatailor.types.http_request.deserialize_json(

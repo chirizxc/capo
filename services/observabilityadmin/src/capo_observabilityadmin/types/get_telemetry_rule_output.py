@@ -74,15 +74,15 @@ def serialize_json(value: GetTelemetryRuleOutput) -> dict:
 
 def deserialize_json(data: dict) -> GetTelemetryRuleOutput:
     out: GetTelemetryRuleOutput = {}  # type: ignore[typeddict-item]
-    if "RuleName" in data:
+    if data.get("RuleName") is not None:
         out["rule_name"] = data["RuleName"]
-    if "RuleArn" in data:
+    if data.get("RuleArn") is not None:
         out["rule_arn"] = data["RuleArn"]
-    if "CreatedTimeStamp" in data:
+    if data.get("CreatedTimeStamp") is not None:
         out["created_time_stamp"] = data["CreatedTimeStamp"]
-    if "LastUpdateTimeStamp" in data:
+    if data.get("LastUpdateTimeStamp") is not None:
         out["last_update_time_stamp"] = data["LastUpdateTimeStamp"]
-    if "TelemetryRule" in data:
+    if data.get("TelemetryRule") is not None:
         import capo_observabilityadmin.types.telemetry_rule
 
         out["telemetry_rule"] = (
@@ -90,11 +90,11 @@ def deserialize_json(data: dict) -> GetTelemetryRuleOutput:
                 data["TelemetryRule"]
             )
         )
-    if "HomeRegion" in data:
+    if data.get("HomeRegion") is not None:
         out["home_region"] = data["HomeRegion"]
-    if "IsReplicated" in data:
+    if data.get("IsReplicated") is not None:
         out["is_replicated"] = data["IsReplicated"]
-    if "RegionStatuses" in data:
+    if data.get("RegionStatuses") is not None:
         import capo_observabilityadmin.types.region_statuses
 
         out["region_statuses"] = (

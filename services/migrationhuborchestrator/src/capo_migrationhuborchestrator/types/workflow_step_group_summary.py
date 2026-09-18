@@ -57,15 +57,15 @@ def serialize_json(value: WorkflowStepGroupSummary) -> dict:
 
 def deserialize_json(data: dict) -> WorkflowStepGroupSummary:
     out: WorkflowStepGroupSummary = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "owner" in data:
+    if data.get("owner") is not None:
         out["owner"] = data["owner"]
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
-    if "previous" in data:
+    if data.get("previous") is not None:
         import capo_migrationhuborchestrator.types.string_list
 
         out["previous"] = (
@@ -73,7 +73,7 @@ def deserialize_json(data: dict) -> WorkflowStepGroupSummary:
                 data["previous"]
             )
         )
-    if "next" in data:
+    if data.get("next") is not None:
         import capo_migrationhuborchestrator.types.string_list
 
         out["next"] = capo_migrationhuborchestrator.types.string_list.deserialize_json(

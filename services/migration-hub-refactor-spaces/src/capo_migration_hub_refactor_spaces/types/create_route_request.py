@@ -80,15 +80,15 @@ def serialize_json(value: CreateRouteRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateRouteRequest:
     out: CreateRouteRequest = {}  # type: ignore[typeddict-item]
-    if "ServiceIdentifier" in data:
+    if data.get("ServiceIdentifier") is not None:
         out["service_identifier"] = data["ServiceIdentifier"]
     else:
         raise DeserializationError("CreateRouteRequest.service_identifier required")
-    if "RouteType" in data:
+    if data.get("RouteType") is not None:
         out["route_type"] = data["RouteType"]
     else:
         raise DeserializationError("CreateRouteRequest.route_type required")
-    if "DefaultRoute" in data:
+    if data.get("DefaultRoute") is not None:
         import capo_migration_hub_refactor_spaces.types.default_route_input
 
         out["default_route"] = (
@@ -96,7 +96,7 @@ def deserialize_json(data: dict) -> CreateRouteRequest:
                 data["DefaultRoute"]
             )
         )
-    if "UriPathRoute" in data:
+    if data.get("UriPathRoute") is not None:
         import capo_migration_hub_refactor_spaces.types.uri_path_route_input
 
         out["uri_path_route"] = (
@@ -104,12 +104,12 @@ def deserialize_json(data: dict) -> CreateRouteRequest:
                 data["UriPathRoute"]
             )
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_migration_hub_refactor_spaces.types.tag_map
 
         out["tags"] = capo_migration_hub_refactor_spaces.types.tag_map.deserialize_json(
             data["Tags"]
         )
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
     return out

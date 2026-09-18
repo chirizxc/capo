@@ -29,8 +29,8 @@ def serialize_json(value: DataLakeLifecycleTransition) -> dict:
 
 def deserialize_json(data: dict) -> DataLakeLifecycleTransition:
     out: DataLakeLifecycleTransition = {}  # type: ignore[typeddict-item]
-    if "storageClass" in data:
+    if data.get("storageClass") is not None:
         out["storage_class"] = data["storageClass"]
-    if "days" in data:
+    if data.get("days") is not None:
         out["days"] = data["days"]
     return out

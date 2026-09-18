@@ -59,23 +59,23 @@ def serialize_json(value: LoRaWANUpdateDevice) -> dict:
 
 def deserialize_json(data: dict) -> LoRaWANUpdateDevice:
     out: LoRaWANUpdateDevice = {}  # type: ignore[typeddict-item]
-    if "DeviceProfileId" in data:
+    if data.get("DeviceProfileId") is not None:
         out["device_profile_id"] = data["DeviceProfileId"]
-    if "ServiceProfileId" in data:
+    if data.get("ServiceProfileId") is not None:
         out["service_profile_id"] = data["ServiceProfileId"]
-    if "AbpV1_1" in data:
+    if data.get("AbpV1_1") is not None:
         import capo_iot_wireless.types.update_abp_v1_1
 
         out["abp_v1_1"] = capo_iot_wireless.types.update_abp_v1_1.deserialize_json(
             data["AbpV1_1"]
         )
-    if "AbpV1_0_x" in data:
+    if data.get("AbpV1_0_x") is not None:
         import capo_iot_wireless.types.update_abp_v1_0_x
 
         out["abp_v1_0_x"] = capo_iot_wireless.types.update_abp_v1_0_x.deserialize_json(
             data["AbpV1_0_x"]
         )
-    if "FPorts" in data:
+    if data.get("FPorts") is not None:
         import capo_iot_wireless.types.update_f_ports
 
         out["f_ports"] = capo_iot_wireless.types.update_f_ports.deserialize_json(

@@ -78,17 +78,17 @@ def serialize_aws_json_1_1(value: AssessmentValidation) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AssessmentValidation:
     out: AssessmentValidation = {}  # type: ignore[typeddict-item]
-    if "Category" in data:
+    if data.get("Category") is not None:
         out["category"] = data["Category"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         out["status"] = data["Status"]
-    if "StatusCode" in data:
+    if data.get("StatusCode") is not None:
         out["status_code"] = data["StatusCode"]
-    if "StatusReason" in data:
+    if data.get("StatusReason") is not None:
         out["status_reason"] = data["StatusReason"]
-    if "StartTime" in data:
+    if data.get("StartTime") is not None:
         import capo_directory_service.types.assessment_validation_time_stamp
 
         out["start_time"] = (
@@ -96,7 +96,7 @@ def deserialize_aws_json_1_1(data: dict) -> AssessmentValidation:
                 data["StartTime"]
             )
         )
-    if "LastUpdateDateTime" in data:
+    if data.get("LastUpdateDateTime") is not None:
         import capo_directory_service.types.assessment_validation_time_stamp
 
         out["last_update_date_time"] = (

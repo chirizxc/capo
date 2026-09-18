@@ -37,7 +37,7 @@ def serialize_json(value: NotifyRecommendationsReceivedRequest) -> dict:
 
 def deserialize_json(data: dict) -> NotifyRecommendationsReceivedRequest:
     out: NotifyRecommendationsReceivedRequest = {}  # type: ignore[typeddict-item]
-    if "recommendationIds" in data:
+    if data.get("recommendationIds") is not None:
         import capo_qconnect.types.recommendation_id_list
 
         out["recommendation_ids"] = (

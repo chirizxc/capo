@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> BatchCreateAttendeeErrorList:
 
     out: BatchCreateAttendeeErrorList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_chime_sdk_meetings.types.create_attendee_error.deserialize_json(item)
         )

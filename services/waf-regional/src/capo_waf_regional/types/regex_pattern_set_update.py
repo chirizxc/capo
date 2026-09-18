@@ -34,7 +34,7 @@ def serialize_aws_json_1_1(value: RegexPatternSetUpdate) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RegexPatternSetUpdate:
     out: RegexPatternSetUpdate = {}  # type: ignore[typeddict-item]
-    if "Action" in data:
+    if data.get("Action") is not None:
         import capo_waf_regional.types.change_action
 
         out["action"] = capo_waf_regional.types.change_action.deserialize_aws_json_1_1(
@@ -42,7 +42,7 @@ def deserialize_aws_json_1_1(data: dict) -> RegexPatternSetUpdate:
         )
     else:
         raise DeserializationError("RegexPatternSetUpdate.action required")
-    if "RegexPatternString" in data:
+    if data.get("RegexPatternString") is not None:
         out["regex_pattern_string"] = data["RegexPatternString"]
     else:
         raise DeserializationError(

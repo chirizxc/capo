@@ -70,11 +70,11 @@ def serialize_aws_json_1_1(value: ParquetSerDe) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ParquetSerDe:
     out: ParquetSerDe = {}  # type: ignore[typeddict-item]
-    if "BlockSizeBytes" in data:
+    if data.get("BlockSizeBytes") is not None:
         out["block_size_bytes"] = data["BlockSizeBytes"]
-    if "PageSizeBytes" in data:
+    if data.get("PageSizeBytes") is not None:
         out["page_size_bytes"] = data["PageSizeBytes"]
-    if "Compression" in data:
+    if data.get("Compression") is not None:
         import capo_firehose.types.parquet_compression
 
         out["compression"] = (
@@ -82,11 +82,11 @@ def deserialize_aws_json_1_1(data: dict) -> ParquetSerDe:
                 data["Compression"]
             )
         )
-    if "EnableDictionaryCompression" in data:
+    if data.get("EnableDictionaryCompression") is not None:
         out["enable_dictionary_compression"] = data["EnableDictionaryCompression"]
-    if "MaxPaddingBytes" in data:
+    if data.get("MaxPaddingBytes") is not None:
         out["max_padding_bytes"] = data["MaxPaddingBytes"]
-    if "WriterVersion" in data:
+    if data.get("WriterVersion") is not None:
         import capo_firehose.types.parquet_writer_version
 
         out["writer_version"] = (

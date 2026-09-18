@@ -35,17 +35,17 @@ def serialize_aws_json_1_1(value: CreateEventTrackerRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateEventTrackerRequest:
     out: CreateEventTrackerRequest = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("CreateEventTrackerRequest.name required")
-    if "datasetGroupArn" in data:
+    if data.get("datasetGroupArn") is not None:
         out["dataset_group_arn"] = data["datasetGroupArn"]
     else:
         raise DeserializationError(
             "CreateEventTrackerRequest.dataset_group_arn required"
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_personalize.types.tags
 
         out["tags"] = capo_personalize.types.tags.deserialize_aws_json_1_1(data["tags"])

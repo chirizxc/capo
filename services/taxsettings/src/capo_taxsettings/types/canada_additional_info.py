@@ -43,12 +43,12 @@ def serialize_json(value: CanadaAdditionalInfo) -> dict:
 
 def deserialize_json(data: dict) -> CanadaAdditionalInfo:
     out: CanadaAdditionalInfo = {}  # type: ignore[typeddict-item]
-    if "provincialSalesTaxId" in data:
+    if data.get("provincialSalesTaxId") is not None:
         out["provincial_sales_tax_id"] = data["provincialSalesTaxId"]
-    if "canadaQuebecSalesTaxNumber" in data:
+    if data.get("canadaQuebecSalesTaxNumber") is not None:
         out["canada_quebec_sales_tax_number"] = data["canadaQuebecSalesTaxNumber"]
-    if "canadaRetailSalesTaxNumber" in data:
+    if data.get("canadaRetailSalesTaxNumber") is not None:
         out["canada_retail_sales_tax_number"] = data["canadaRetailSalesTaxNumber"]
-    if "isResellerAccount" in data:
+    if data.get("isResellerAccount") is not None:
         out["is_reseller_account"] = data["isResellerAccount"]
     return out

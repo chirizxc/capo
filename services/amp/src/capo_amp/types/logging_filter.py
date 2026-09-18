@@ -19,7 +19,7 @@ def serialize_json(value: LoggingFilter) -> dict:
 
 def deserialize_json(data: dict) -> LoggingFilter:
     out: LoggingFilter = {}  # type: ignore[typeddict-item]
-    if "qspThreshold" in data:
+    if data.get("qspThreshold") is not None:
         out["qsp_threshold"] = data["qspThreshold"]
     else:
         raise DeserializationError("LoggingFilter.qsp_threshold required")

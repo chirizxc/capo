@@ -35,7 +35,7 @@ def serialize_json(value: ListSupportedResourceTypesOutput) -> dict:
 
 def deserialize_json(data: dict) -> ListSupportedResourceTypesOutput:
     out: ListSupportedResourceTypesOutput = {}  # type: ignore[typeddict-item]
-    if "ResourceTypes" in data:
+    if data.get("ResourceTypes") is not None:
         import capo_resource_explorer_2.types.resource_type_list
 
         out["resource_types"] = (
@@ -43,6 +43,6 @@ def deserialize_json(data: dict) -> ListSupportedResourceTypesOutput:
                 data["ResourceTypes"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

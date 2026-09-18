@@ -38,13 +38,13 @@ def serialize_json(value: NextContactEntry) -> dict:
 
 def deserialize_json(data: dict) -> NextContactEntry:
     out: NextContactEntry = {}  # type: ignore[typeddict-item]
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_connect.types.next_contact_type
 
         out["type"] = capo_connect.types.next_contact_type.deserialize_json(
             data["Type"]
         )
-    if "NextContactMetadata" in data:
+    if data.get("NextContactMetadata") is not None:
         import capo_connect.types.next_contact_metadata
 
         out["next_contact_metadata"] = (

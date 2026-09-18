@@ -122,7 +122,7 @@ def serialize_json(value: GlueConnectionInput) -> dict:
 
 def deserialize_json(data: dict) -> GlueConnectionInput:
     out: GlueConnectionInput = {}  # type: ignore[typeddict-item]
-    if "connectionProperties" in data:
+    if data.get("connectionProperties") is not None:
         import capo_datazone.types.connection_properties
 
         out["connection_properties"] = (
@@ -130,7 +130,7 @@ def deserialize_json(data: dict) -> GlueConnectionInput:
                 data["connectionProperties"]
             )
         )
-    if "physicalConnectionRequirements" in data:
+    if data.get("physicalConnectionRequirements") is not None:
         import capo_datazone.types.physical_connection_requirements
 
         out["physical_connection_requirements"] = (
@@ -138,11 +138,11 @@ def deserialize_json(data: dict) -> GlueConnectionInput:
                 data["physicalConnectionRequirements"]
             )
         )
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "connectionType" in data:
+    if data.get("connectionType") is not None:
         import capo_datazone.types.glue_connection_type
 
         out["connection_type"] = (
@@ -150,11 +150,11 @@ def deserialize_json(data: dict) -> GlueConnectionInput:
                 data["connectionType"]
             )
         )
-    if "matchCriteria" in data:
+    if data.get("matchCriteria") is not None:
         out["match_criteria"] = data["matchCriteria"]
-    if "validateCredentials" in data:
+    if data.get("validateCredentials") is not None:
         out["validate_credentials"] = data["validateCredentials"]
-    if "validateForComputeEnvironments" in data:
+    if data.get("validateForComputeEnvironments") is not None:
         import capo_datazone.types.compute_environments_list
 
         out["validate_for_compute_environments"] = (
@@ -162,25 +162,25 @@ def deserialize_json(data: dict) -> GlueConnectionInput:
                 data["validateForComputeEnvironments"]
             )
         )
-    if "sparkProperties" in data:
+    if data.get("sparkProperties") is not None:
         import capo_datazone.types.property_map
 
         out["spark_properties"] = capo_datazone.types.property_map.deserialize_json(
             data["sparkProperties"]
         )
-    if "athenaProperties" in data:
+    if data.get("athenaProperties") is not None:
         import capo_datazone.types.property_map
 
         out["athena_properties"] = capo_datazone.types.property_map.deserialize_json(
             data["athenaProperties"]
         )
-    if "pythonProperties" in data:
+    if data.get("pythonProperties") is not None:
         import capo_datazone.types.property_map
 
         out["python_properties"] = capo_datazone.types.property_map.deserialize_json(
             data["pythonProperties"]
         )
-    if "authenticationConfiguration" in data:
+    if data.get("authenticationConfiguration") is not None:
         import capo_datazone.types.authentication_configuration_input
 
         out["authentication_configuration"] = (

@@ -198,9 +198,9 @@ def serialize_aws_json_1_1(value: ProjectVersionDescription) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ProjectVersionDescription:
     out: ProjectVersionDescription = {}  # type: ignore[typeddict-item]
-    if "ProjectVersionArn" in data:
+    if data.get("ProjectVersionArn") is not None:
         out["project_version_arn"] = data["ProjectVersionArn"]
-    if "CreationTimestamp" in data:
+    if data.get("CreationTimestamp") is not None:
         import capo_rekognition.types.date_time
 
         out["creation_timestamp"] = (
@@ -208,9 +208,9 @@ def deserialize_aws_json_1_1(data: dict) -> ProjectVersionDescription:
                 data["CreationTimestamp"]
             )
         )
-    if "MinInferenceUnits" in data:
+    if data.get("MinInferenceUnits") is not None:
         out["min_inference_units"] = data["MinInferenceUnits"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_rekognition.types.project_version_status
 
         out["status"] = (
@@ -218,11 +218,11 @@ def deserialize_aws_json_1_1(data: dict) -> ProjectVersionDescription:
                 data["Status"]
             )
         )
-    if "StatusMessage" in data:
+    if data.get("StatusMessage") is not None:
         out["status_message"] = data["StatusMessage"]
-    if "BillableTrainingTimeInSeconds" in data:
+    if data.get("BillableTrainingTimeInSeconds") is not None:
         out["billable_training_time_in_seconds"] = data["BillableTrainingTimeInSeconds"]
-    if "TrainingEndTimestamp" in data:
+    if data.get("TrainingEndTimestamp") is not None:
         import capo_rekognition.types.date_time
 
         out["training_end_timestamp"] = (
@@ -230,7 +230,7 @@ def deserialize_aws_json_1_1(data: dict) -> ProjectVersionDescription:
                 data["TrainingEndTimestamp"]
             )
         )
-    if "OutputConfig" in data:
+    if data.get("OutputConfig") is not None:
         import capo_rekognition.types.output_config
 
         out["output_config"] = (
@@ -238,7 +238,7 @@ def deserialize_aws_json_1_1(data: dict) -> ProjectVersionDescription:
                 data["OutputConfig"]
             )
         )
-    if "TrainingDataResult" in data:
+    if data.get("TrainingDataResult") is not None:
         import capo_rekognition.types.training_data_result
 
         out["training_data_result"] = (
@@ -246,7 +246,7 @@ def deserialize_aws_json_1_1(data: dict) -> ProjectVersionDescription:
                 data["TrainingDataResult"]
             )
         )
-    if "TestingDataResult" in data:
+    if data.get("TestingDataResult") is not None:
         import capo_rekognition.types.testing_data_result
 
         out["testing_data_result"] = (
@@ -254,7 +254,7 @@ def deserialize_aws_json_1_1(data: dict) -> ProjectVersionDescription:
                 data["TestingDataResult"]
             )
         )
-    if "EvaluationResult" in data:
+    if data.get("EvaluationResult") is not None:
         import capo_rekognition.types.evaluation_result
 
         out["evaluation_result"] = (
@@ -262,7 +262,7 @@ def deserialize_aws_json_1_1(data: dict) -> ProjectVersionDescription:
                 data["EvaluationResult"]
             )
         )
-    if "ManifestSummary" in data:
+    if data.get("ManifestSummary") is not None:
         import capo_rekognition.types.ground_truth_manifest
 
         out["manifest_summary"] = (
@@ -270,15 +270,15 @@ def deserialize_aws_json_1_1(data: dict) -> ProjectVersionDescription:
                 data["ManifestSummary"]
             )
         )
-    if "KmsKeyId" in data:
+    if data.get("KmsKeyId") is not None:
         out["kms_key_id"] = data["KmsKeyId"]
-    if "MaxInferenceUnits" in data:
+    if data.get("MaxInferenceUnits") is not None:
         out["max_inference_units"] = data["MaxInferenceUnits"]
-    if "SourceProjectVersionArn" in data:
+    if data.get("SourceProjectVersionArn") is not None:
         out["source_project_version_arn"] = data["SourceProjectVersionArn"]
-    if "VersionDescription" in data:
+    if data.get("VersionDescription") is not None:
         out["version_description"] = data["VersionDescription"]
-    if "Feature" in data:
+    if data.get("Feature") is not None:
         import capo_rekognition.types.customization_feature
 
         out["feature"] = (
@@ -286,9 +286,9 @@ def deserialize_aws_json_1_1(data: dict) -> ProjectVersionDescription:
                 data["Feature"]
             )
         )
-    if "BaseModelVersion" in data:
+    if data.get("BaseModelVersion") is not None:
         out["base_model_version"] = data["BaseModelVersion"]
-    if "FeatureConfig" in data:
+    if data.get("FeatureConfig") is not None:
         import capo_rekognition.types.customization_feature_config
 
         out["feature_config"] = (

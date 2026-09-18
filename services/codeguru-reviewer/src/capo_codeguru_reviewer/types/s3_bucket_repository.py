@@ -37,11 +37,11 @@ def serialize_json(value: S3BucketRepository) -> dict:
 
 def deserialize_json(data: dict) -> S3BucketRepository:
     out: S3BucketRepository = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("S3BucketRepository.name required")
-    if "Details" in data:
+    if data.get("Details") is not None:
         import capo_codeguru_reviewer.types.s3_repository_details
 
         out["details"] = (

@@ -89,10 +89,11 @@ class IntegrationResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_securityagent.types.create_integration_input.CreateIntegrationInput = {}  # type: ignore[typeddict-item]
-        input_["provider"] = provider
-        input_["input"] = input
-        input_["integration_display_name"] = integration_display_name
+        input_: capo_securityagent.types.create_integration_input.CreateIntegrationInput = {
+            "provider": provider,
+            "input": input,
+            "integration_display_name": integration_display_name,
+        }
         if kms_key_id is not None:
             input_["kms_key_id"] = kms_key_id
         if tags is not None:
@@ -103,6 +104,7 @@ class IntegrationResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -140,14 +142,16 @@ class IntegrationResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_securityagent.types.get_integration_input.GetIntegrationInput = {}  # type: ignore[typeddict-item]
-        input_["integration_id"] = integration_id
+        input_: capo_securityagent.types.get_integration_input.GetIntegrationInput = {
+            "integration_id": integration_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -186,14 +190,16 @@ class IntegrationResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_securityagent.types.delete_integration_input.DeleteIntegrationInput = {}  # type: ignore[typeddict-item]
-        input_["integration_id"] = integration_id
+        input_: capo_securityagent.types.delete_integration_input.DeleteIntegrationInput = {
+            "integration_id": integration_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -237,7 +243,7 @@ class IntegrationResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_securityagent.types.list_integrations_input.ListIntegrationsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_securityagent.types.list_integrations_input.ListIntegrationsInput = {}
         if filter is not None:
             input_["filter"] = filter
         if next_token is not None:
@@ -250,6 +256,7 @@ class IntegrationResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -302,10 +309,11 @@ class AsyncIntegrationResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_securityagent.types.create_integration_input.CreateIntegrationInput = {}  # type: ignore[typeddict-item]
-        input_["provider"] = provider
-        input_["input"] = input
-        input_["integration_display_name"] = integration_display_name
+        input_: capo_securityagent.types.create_integration_input.CreateIntegrationInput = {
+            "provider": provider,
+            "input": input,
+            "integration_display_name": integration_display_name,
+        }
         if kms_key_id is not None:
             input_["kms_key_id"] = kms_key_id
         if tags is not None:
@@ -316,6 +324,7 @@ class AsyncIntegrationResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -354,14 +363,16 @@ class AsyncIntegrationResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_securityagent.types.get_integration_input.GetIntegrationInput = {}  # type: ignore[typeddict-item]
-        input_["integration_id"] = integration_id
+        input_: capo_securityagent.types.get_integration_input.GetIntegrationInput = {
+            "integration_id": integration_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -401,14 +412,16 @@ class AsyncIntegrationResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_securityagent.types.delete_integration_input.DeleteIntegrationInput = {}  # type: ignore[typeddict-item]
-        input_["integration_id"] = integration_id
+        input_: capo_securityagent.types.delete_integration_input.DeleteIntegrationInput = {
+            "integration_id": integration_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -453,7 +466,7 @@ class AsyncIntegrationResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_securityagent.types.list_integrations_input.ListIntegrationsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_securityagent.types.list_integrations_input.ListIntegrationsInput = {}
         if filter is not None:
             input_["filter"] = filter
         if next_token is not None:
@@ -466,4 +479,5 @@ class AsyncIntegrationResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

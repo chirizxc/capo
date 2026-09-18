@@ -34,12 +34,12 @@ def serialize_json(value: SafetyLeverState) -> dict:
 
 def deserialize_json(data: dict) -> SafetyLeverState:
     out: SafetyLeverState = {}  # type: ignore[typeddict-item]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_fis.types.safety_lever_status
 
         out["status"] = capo_fis.types.safety_lever_status.deserialize_json(
             data["status"]
         )
-    if "reason" in data:
+    if data.get("reason") is not None:
         out["reason"] = data["reason"]
     return out

@@ -26,6 +26,6 @@ def serialize_json(value: UpdateDomainNameRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateDomainNameRequest:
     out: UpdateDomainNameRequest = {}  # type: ignore[typeddict-item]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
     return out

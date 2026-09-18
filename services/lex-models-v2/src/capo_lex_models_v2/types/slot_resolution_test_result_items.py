@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> SlotResolutionTestResultItems:
 
     out: SlotResolutionTestResultItems = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_lex_models_v2.types.slot_resolution_test_result_item.deserialize_json(
                 item

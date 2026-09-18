@@ -62,13 +62,13 @@ def serialize_aws_json_1_1(value: CreateAdapterVersionRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateAdapterVersionRequest:
     out: CreateAdapterVersionRequest = {}  # type: ignore[typeddict-item]
-    if "AdapterId" in data:
+    if data.get("AdapterId") is not None:
         out["adapter_id"] = data["AdapterId"]
     else:
         raise DeserializationError("CreateAdapterVersionRequest.adapter_id required")
-    if "ClientRequestToken" in data:
+    if data.get("ClientRequestToken") is not None:
         out["client_request_token"] = data["ClientRequestToken"]
-    if "DatasetConfig" in data:
+    if data.get("DatasetConfig") is not None:
         import capo_textract.types.adapter_version_dataset_config
 
         out["dataset_config"] = (
@@ -80,9 +80,9 @@ def deserialize_aws_json_1_1(data: dict) -> CreateAdapterVersionRequest:
         raise DeserializationError(
             "CreateAdapterVersionRequest.dataset_config required"
         )
-    if "KMSKeyId" in data:
+    if data.get("KMSKeyId") is not None:
         out["kms_key_id"] = data["KMSKeyId"]
-    if "OutputConfig" in data:
+    if data.get("OutputConfig") is not None:
         import capo_textract.types.output_config
 
         out["output_config"] = (
@@ -92,7 +92,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateAdapterVersionRequest:
         )
     else:
         raise DeserializationError("CreateAdapterVersionRequest.output_config required")
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_textract.types.tag_map
 
         out["tags"] = capo_textract.types.tag_map.deserialize_aws_json_1_1(data["Tags"])

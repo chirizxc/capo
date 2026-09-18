@@ -45,15 +45,15 @@ def serialize_aws_json_1_0(value: CancelConnectionRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CancelConnectionRequest:
     out: CancelConnectionRequest = {}  # type: ignore[typeddict-item]
-    if "Catalog" in data:
+    if data.get("Catalog") is not None:
         out["catalog"] = data["Catalog"]
     else:
         raise DeserializationError("CancelConnectionRequest.catalog required")
-    if "Identifier" in data:
+    if data.get("Identifier") is not None:
         out["identifier"] = data["Identifier"]
     else:
         raise DeserializationError("CancelConnectionRequest.identifier required")
-    if "ConnectionType" in data:
+    if data.get("ConnectionType") is not None:
         import capo_partnercentral_account.types.connection_type
 
         out["connection_type"] = (
@@ -63,11 +63,11 @@ def deserialize_aws_json_1_0(data: dict) -> CancelConnectionRequest:
         )
     else:
         raise DeserializationError("CancelConnectionRequest.connection_type required")
-    if "Reason" in data:
+    if data.get("Reason") is not None:
         out["reason"] = data["Reason"]
     else:
         raise DeserializationError("CancelConnectionRequest.reason required")
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
     else:
         raise DeserializationError("CancelConnectionRequest.client_token required")

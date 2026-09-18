@@ -47,18 +47,18 @@ def serialize_json(value: TopicRuleListItem) -> dict:
 
 def deserialize_json(data: dict) -> TopicRuleListItem:
     out: TopicRuleListItem = {}  # type: ignore[typeddict-item]
-    if "ruleArn" in data:
+    if data.get("ruleArn") is not None:
         out["rule_arn"] = data["ruleArn"]
-    if "ruleName" in data:
+    if data.get("ruleName") is not None:
         out["rule_name"] = data["ruleName"]
-    if "topicPattern" in data:
+    if data.get("topicPattern") is not None:
         out["topic_pattern"] = data["topicPattern"]
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_iot.types.created_at_date
 
         out["created_at"] = capo_iot.types.created_at_date.deserialize_json(
             data["createdAt"]
         )
-    if "ruleDisabled" in data:
+    if data.get("ruleDisabled") is not None:
         out["rule_disabled"] = data["ruleDisabled"]
     return out

@@ -72,23 +72,23 @@ def serialize_json(value: StartJobRequest) -> dict:
 
 def deserialize_json(data: dict) -> StartJobRequest:
     out: StartJobRequest = {}  # type: ignore[typeddict-item]
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
-    if "Action" in data:
+    if data.get("Action") is not None:
         out["action"] = data["Action"]
     else:
         raise DeserializationError("StartJobRequest.action required")
-    if "ActionOptions" in data:
+    if data.get("ActionOptions") is not None:
         import capo_location.types.job_action_options
 
         out["action_options"] = capo_location.types.job_action_options.deserialize_json(
             data["ActionOptions"]
         )
-    if "ExecutionRoleArn" in data:
+    if data.get("ExecutionRoleArn") is not None:
         out["execution_role_arn"] = data["ExecutionRoleArn"]
     else:
         raise DeserializationError("StartJobRequest.execution_role_arn required")
-    if "InputOptions" in data:
+    if data.get("InputOptions") is not None:
         import capo_location.types.job_input_options
 
         out["input_options"] = capo_location.types.job_input_options.deserialize_json(
@@ -96,9 +96,9 @@ def deserialize_json(data: dict) -> StartJobRequest:
         )
     else:
         raise DeserializationError("StartJobRequest.input_options required")
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "OutputOptions" in data:
+    if data.get("OutputOptions") is not None:
         import capo_location.types.job_output_options
 
         out["output_options"] = capo_location.types.job_output_options.deserialize_json(
@@ -106,7 +106,7 @@ def deserialize_json(data: dict) -> StartJobRequest:
         )
     else:
         raise DeserializationError("StartJobRequest.output_options required")
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_location.types.tag_map
 
         out["tags"] = capo_location.types.tag_map.deserialize_json(data["Tags"])

@@ -25,15 +25,20 @@ class ComputeNotCompatibleException(ServiceError):
 
     code: str | None = "ComputeNotCompatibleException"
 
-    def __init__(self, data: ComputeNotCompatibleException_):
+    def __init__(
+        self, data: ComputeNotCompatibleException_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="ComputeNotCompatibleException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "ComputeNotCompatibleException":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "ComputeNotCompatibleException":
+        return cls(deserialize_aws_json_1_1(data), message)

@@ -70,7 +70,7 @@ def serialize_json(value: UpdateSourceLocationRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateSourceLocationRequest:
     out: UpdateSourceLocationRequest = {}  # type: ignore[typeddict-item]
-    if "AccessConfiguration" in data:
+    if data.get("AccessConfiguration") is not None:
         import capo_mediatailor.types.access_configuration
 
         out["access_configuration"] = (
@@ -78,7 +78,7 @@ def deserialize_json(data: dict) -> UpdateSourceLocationRequest:
                 data["AccessConfiguration"]
             )
         )
-    if "DefaultSegmentDeliveryConfiguration" in data:
+    if data.get("DefaultSegmentDeliveryConfiguration") is not None:
         import capo_mediatailor.types.default_segment_delivery_configuration
 
         out["default_segment_delivery_configuration"] = (
@@ -86,7 +86,7 @@ def deserialize_json(data: dict) -> UpdateSourceLocationRequest:
                 data["DefaultSegmentDeliveryConfiguration"]
             )
         )
-    if "HttpConfiguration" in data:
+    if data.get("HttpConfiguration") is not None:
         import capo_mediatailor.types.http_configuration
 
         out["http_configuration"] = (
@@ -98,7 +98,7 @@ def deserialize_json(data: dict) -> UpdateSourceLocationRequest:
         raise DeserializationError(
             "UpdateSourceLocationRequest.http_configuration required"
         )
-    if "SegmentDeliveryConfigurations" in data:
+    if data.get("SegmentDeliveryConfigurations") is not None:
         import capo_mediatailor.types.__list_of_segment_delivery_configuration
 
         out["segment_delivery_configurations"] = (

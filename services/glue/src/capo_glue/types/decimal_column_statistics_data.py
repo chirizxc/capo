@@ -42,23 +42,23 @@ def serialize_aws_json_1_1(value: DecimalColumnStatisticsData) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DecimalColumnStatisticsData:
     out: DecimalColumnStatisticsData = {}  # type: ignore[typeddict-item]
-    if "MinimumValue" in data:
+    if data.get("MinimumValue") is not None:
         import capo_glue.types.decimal_number
 
         out["minimum_value"] = capo_glue.types.decimal_number.deserialize_aws_json_1_1(
             data["MinimumValue"]
         )
-    if "MaximumValue" in data:
+    if data.get("MaximumValue") is not None:
         import capo_glue.types.decimal_number
 
         out["maximum_value"] = capo_glue.types.decimal_number.deserialize_aws_json_1_1(
             data["MaximumValue"]
         )
-    if "NumberOfNulls" in data:
+    if data.get("NumberOfNulls") is not None:
         out["number_of_nulls"] = data["NumberOfNulls"]
     else:
         out["number_of_nulls"] = 0
-    if "NumberOfDistinctValues" in data:
+    if data.get("NumberOfDistinctValues") is not None:
         out["number_of_distinct_values"] = data["NumberOfDistinctValues"]
     else:
         out["number_of_distinct_values"] = 0

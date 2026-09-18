@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> CoveredResources:
 
     out: CoveredResources = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_inspector2.types.covered_resource.deserialize_json(item))
     return out

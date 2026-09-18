@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> ListCommentsItems:
 
     out: ListCommentsItems = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_security_ir.types.list_comments_item.deserialize_json(item))
     return out

@@ -29,11 +29,11 @@ def serialize_json(value: BatchResourceRequirement) -> dict:
 
 def deserialize_json(data: dict) -> BatchResourceRequirement:
     out: BatchResourceRequirement = {}  # type: ignore[typeddict-item]
-    if "Type" in data:
+    if data.get("Type") is not None:
         out["type"] = data["Type"]
     else:
         raise DeserializationError("BatchResourceRequirement.type required")
-    if "Value" in data:
+    if data.get("Value") is not None:
         out["value"] = data["Value"]
     else:
         raise DeserializationError("BatchResourceRequirement.value required")

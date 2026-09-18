@@ -31,12 +31,12 @@ def serialize_json(value: ListEventsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListEventsResponse:
     out: ListEventsResponse = {}  # type: ignore[typeddict-item]
-    if "Events" in data:
+    if data.get("Events") is not None:
         import capo_devops_guru.types.events
 
         out["events"] = capo_devops_guru.types.events.deserialize_json(data["Events"])
     else:
         raise DeserializationError("ListEventsResponse.events required")
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

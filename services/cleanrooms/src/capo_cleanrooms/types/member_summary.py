@@ -89,19 +89,19 @@ def serialize_json(value: MemberSummary) -> dict:
 
 def deserialize_json(data: dict) -> MemberSummary:
     out: MemberSummary = {}  # type: ignore[typeddict-item]
-    if "accountId" in data:
+    if data.get("accountId") is not None:
         out["account_id"] = data["accountId"]
     else:
         raise DeserializationError("MemberSummary.account_id required")
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
     else:
         raise DeserializationError("MemberSummary.status required")
-    if "displayName" in data:
+    if data.get("displayName") is not None:
         out["display_name"] = data["displayName"]
     else:
         raise DeserializationError("MemberSummary.display_name required")
-    if "abilities" in data:
+    if data.get("abilities") is not None:
         import capo_cleanrooms.types.member_abilities
 
         out["abilities"] = capo_cleanrooms.types.member_abilities.deserialize_json(
@@ -109,7 +109,7 @@ def deserialize_json(data: dict) -> MemberSummary:
         )
     else:
         raise DeserializationError("MemberSummary.abilities required")
-    if "mlAbilities" in data:
+    if data.get("mlAbilities") is not None:
         import capo_cleanrooms.types.ml_member_abilities
 
         out["ml_abilities"] = (
@@ -117,7 +117,7 @@ def deserialize_json(data: dict) -> MemberSummary:
                 data["mlAbilities"]
             )
         )
-    if "createTime" in data:
+    if data.get("createTime") is not None:
         import capo_cleanrooms.types._prelude.timestamp
 
         out["create_time"] = capo_cleanrooms.types._prelude.timestamp.deserialize_json(
@@ -125,7 +125,7 @@ def deserialize_json(data: dict) -> MemberSummary:
         )
     else:
         raise DeserializationError("MemberSummary.create_time required")
-    if "updateTime" in data:
+    if data.get("updateTime") is not None:
         import capo_cleanrooms.types._prelude.timestamp
 
         out["update_time"] = capo_cleanrooms.types._prelude.timestamp.deserialize_json(
@@ -133,11 +133,11 @@ def deserialize_json(data: dict) -> MemberSummary:
         )
     else:
         raise DeserializationError("MemberSummary.update_time required")
-    if "membershipId" in data:
+    if data.get("membershipId") is not None:
         out["membership_id"] = data["membershipId"]
-    if "membershipArn" in data:
+    if data.get("membershipArn") is not None:
         out["membership_arn"] = data["membershipArn"]
-    if "paymentConfiguration" in data:
+    if data.get("paymentConfiguration") is not None:
         import capo_cleanrooms.types.payment_configuration
 
         out["payment_configuration"] = (

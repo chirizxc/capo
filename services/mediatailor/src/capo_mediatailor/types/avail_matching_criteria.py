@@ -30,11 +30,11 @@ def serialize_json(value: AvailMatchingCriteria) -> dict:
 
 def deserialize_json(data: dict) -> AvailMatchingCriteria:
     out: AvailMatchingCriteria = {}  # type: ignore[typeddict-item]
-    if "DynamicVariable" in data:
+    if data.get("DynamicVariable") is not None:
         out["dynamic_variable"] = data["DynamicVariable"]
     else:
         raise DeserializationError("AvailMatchingCriteria.dynamic_variable required")
-    if "Operator" in data:
+    if data.get("Operator") is not None:
         import capo_mediatailor.types.operator
 
         out["operator"] = capo_mediatailor.types.operator.deserialize_json(

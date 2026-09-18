@@ -30,8 +30,8 @@ def serialize_aws_json_1_1(value: SessionCommand) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SessionCommand:
     out: SessionCommand = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "PythonVersion" in data:
+    if data.get("PythonVersion") is not None:
         out["python_version"] = data["PythonVersion"]
     return out

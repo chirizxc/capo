@@ -35,11 +35,11 @@ def serialize_json(value: InitialCapacityConfig) -> dict:
 
 def deserialize_json(data: dict) -> InitialCapacityConfig:
     out: InitialCapacityConfig = {}  # type: ignore[typeddict-item]
-    if "workerCount" in data:
+    if data.get("workerCount") is not None:
         out["worker_count"] = data["workerCount"]
     else:
         out["worker_count"] = 0
-    if "workerConfiguration" in data:
+    if data.get("workerConfiguration") is not None:
         import capo_emr_serverless.types.worker_resource_config
 
         out["worker_configuration"] = (

@@ -40,7 +40,7 @@ def serialize_json(value: BatchUpdateDataTableValueResponse) -> dict:
 
 def deserialize_json(data: dict) -> BatchUpdateDataTableValueResponse:
     out: BatchUpdateDataTableValueResponse = {}  # type: ignore[typeddict-item]
-    if "Successful" in data:
+    if data.get("Successful") is not None:
         import capo_connect.types.batch_update_data_table_value_success_result_list
 
         out["successful"] = (
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> BatchUpdateDataTableValueResponse:
         raise DeserializationError(
             "BatchUpdateDataTableValueResponse.successful required"
         )
-    if "Failed" in data:
+    if data.get("Failed") is not None:
         import capo_connect.types.batch_update_data_table_value_failure_result_list
 
         out["failed"] = (

@@ -37,7 +37,7 @@ def serialize_aws_json_1_1(value: ListWebAuthnCredentialsResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListWebAuthnCredentialsResponse:
     out: ListWebAuthnCredentialsResponse = {}  # type: ignore[typeddict-item]
-    if "Credentials" in data:
+    if data.get("Credentials") is not None:
         import capo_cognito_identity_provider.types.web_authn_credential_description_list_type
 
         out["credentials"] = (
@@ -49,6 +49,6 @@ def deserialize_aws_json_1_1(data: dict) -> ListWebAuthnCredentialsResponse:
         raise DeserializationError(
             "ListWebAuthnCredentialsResponse.credentials required"
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

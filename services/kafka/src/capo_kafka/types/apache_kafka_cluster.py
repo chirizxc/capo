@@ -27,8 +27,8 @@ def serialize_json(value: ApacheKafkaCluster) -> dict:
 
 def deserialize_json(data: dict) -> ApacheKafkaCluster:
     out: ApacheKafkaCluster = {}  # type: ignore[typeddict-item]
-    if "apacheKafkaClusterId" in data:
+    if data.get("apacheKafkaClusterId") is not None:
         out["apache_kafka_cluster_id"] = data["apacheKafkaClusterId"]
-    if "bootstrapBrokerString" in data:
+    if data.get("bootstrapBrokerString") is not None:
         out["bootstrap_broker_string"] = data["bootstrapBrokerString"]
     return out

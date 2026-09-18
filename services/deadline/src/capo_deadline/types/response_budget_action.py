@@ -27,7 +27,15 @@ def serialize_json(value: ResponseBudgetAction) -> dict:
     import capo_deadline.types.budget_action_type
 
     out["type"] = capo_deadline.types.budget_action_type.serialize_json(value["type"])
-    out["thresholdPercentage"] = value["threshold_percentage"]
+    out["thresholdPercentage"] = (
+        "NaN"
+        if value["threshold_percentage"] != value["threshold_percentage"]
+        else "Infinity"
+        if value["threshold_percentage"] == float("inf")
+        else "-Infinity"
+        if value["threshold_percentage"] == float("-inf")
+        else value["threshold_percentage"]
+    )
     if "description" in value:
         out["description"] = value["description"]
     return out
@@ -35,7 +43,7 @@ def serialize_json(value: ResponseBudgetAction) -> dict:
 
 def deserialize_json(data: dict) -> ResponseBudgetAction:
     out: ResponseBudgetAction = {}  # type: ignore[typeddict-item]
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_deadline.types.budget_action_type
 
         out["type"] = capo_deadline.types.budget_action_type.deserialize_json(
@@ -43,10 +51,10 @@ def deserialize_json(data: dict) -> ResponseBudgetAction:
         )
     else:
         raise DeserializationError("ResponseBudgetAction.type required")
-    if "thresholdPercentage" in data:
-        out["threshold_percentage"] = data["thresholdPercentage"]
+    if data.get("thresholdPercentage") is not None:
+        out["threshold_percentage"] = float(data["thresholdPercentage"])
     else:
         raise DeserializationError("ResponseBudgetAction.threshold_percentage required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
     return out

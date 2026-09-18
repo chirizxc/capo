@@ -43,7 +43,7 @@ def serialize_json(value: SearchDataSetsResponse) -> dict:
 
 def deserialize_json(data: dict) -> SearchDataSetsResponse:
     out: SearchDataSetsResponse = {}  # type: ignore[typeddict-item]
-    if "DataSetSummaries" in data:
+    if data.get("DataSetSummaries") is not None:
         import capo_quicksight.types.data_set_summary_list
 
         out["data_set_summaries"] = (
@@ -51,8 +51,8 @@ def deserialize_json(data: dict) -> SearchDataSetsResponse:
                 data["DataSetSummaries"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "RequestId" in data:
+    if data.get("RequestId") is not None:
         out["request_id"] = data["RequestId"]
     return out

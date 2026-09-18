@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> FindingsReportSummaries:
 
     out: FindingsReportSummaries = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_codeguruprofiler.types.findings_report_summary.deserialize_json(item)
         )

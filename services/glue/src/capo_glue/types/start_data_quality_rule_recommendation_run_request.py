@@ -62,7 +62,7 @@ def deserialize_aws_json_1_1(
     data: dict,
 ) -> StartDataQualityRuleRecommendationRunRequest:
     out: StartDataQualityRuleRecommendationRunRequest = {}  # type: ignore[typeddict-item]
-    if "DataSource" in data:
+    if data.get("DataSource") is not None:
         import capo_glue.types.data_source
 
         out["data_source"] = capo_glue.types.data_source.deserialize_aws_json_1_1(
@@ -72,22 +72,22 @@ def deserialize_aws_json_1_1(
         raise DeserializationError(
             "StartDataQualityRuleRecommendationRunRequest.data_source required"
         )
-    if "Role" in data:
+    if data.get("Role") is not None:
         out["role"] = data["Role"]
     else:
         raise DeserializationError(
             "StartDataQualityRuleRecommendationRunRequest.role required"
         )
-    if "NumberOfWorkers" in data:
+    if data.get("NumberOfWorkers") is not None:
         out["number_of_workers"] = data["NumberOfWorkers"]
-    if "Timeout" in data:
+    if data.get("Timeout") is not None:
         out["timeout"] = data["Timeout"]
-    if "CreatedRulesetName" in data:
+    if data.get("CreatedRulesetName") is not None:
         out["created_ruleset_name"] = data["CreatedRulesetName"]
-    if "DataQualitySecurityConfiguration" in data:
+    if data.get("DataQualitySecurityConfiguration") is not None:
         out["data_quality_security_configuration"] = data[
             "DataQualitySecurityConfiguration"
         ]
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
     return out

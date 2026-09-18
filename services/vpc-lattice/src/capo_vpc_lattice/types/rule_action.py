@@ -45,7 +45,7 @@ def serialize_json(value: RuleAction) -> dict:
 
 
 def deserialize_json(data: dict) -> RuleAction:
-    if "forward" in data:
+    if data.get("forward") is not None:
         import capo_vpc_lattice.types.forward_action
 
         return {
@@ -53,7 +53,7 @@ def deserialize_json(data: dict) -> RuleAction:
                 data["forward"]
             )
         }
-    elif "fixedResponse" in data:
+    elif data.get("fixedResponse") is not None:
         import capo_vpc_lattice.types.fixed_response_action
 
         return {

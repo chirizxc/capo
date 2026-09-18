@@ -63,22 +63,22 @@ def serialize_json(value: WorkloadInsightsTopContributorsRow) -> dict:
 
 def deserialize_json(data: dict) -> WorkloadInsightsTopContributorsRow:
     out: WorkloadInsightsTopContributorsRow = {}  # type: ignore[typeddict-item]
-    if "accountId" in data:
+    if data.get("accountId") is not None:
         out["account_id"] = data["accountId"]
-    if "localSubnetId" in data:
+    if data.get("localSubnetId") is not None:
         out["local_subnet_id"] = data["localSubnetId"]
-    if "localAz" in data:
+    if data.get("localAz") is not None:
         out["local_az"] = data["localAz"]
-    if "localVpcId" in data:
+    if data.get("localVpcId") is not None:
         out["local_vpc_id"] = data["localVpcId"]
-    if "localRegion" in data:
+    if data.get("localRegion") is not None:
         out["local_region"] = data["localRegion"]
-    if "remoteIdentifier" in data:
+    if data.get("remoteIdentifier") is not None:
         out["remote_identifier"] = data["remoteIdentifier"]
-    if "value" in data:
+    if data.get("value") is not None:
         out["value"] = data["value"]
-    if "localSubnetArn" in data:
+    if data.get("localSubnetArn") is not None:
         out["local_subnet_arn"] = data["localSubnetArn"]
-    if "localVpcArn" in data:
+    if data.get("localVpcArn") is not None:
         out["local_vpc_arn"] = data["localVpcArn"]
     return out

@@ -23,6 +23,8 @@ def serialize_json(input_to_serialize: ComponentEvents) -> dict:
 def deserialize_json(data: dict) -> ComponentEvents:
     out: ComponentEvents = {}
     for key, value in data.items():
+        if value is None:
+            continue
         import capo_amplifyuibuilder.types.component_event
 
         out[key] = capo_amplifyuibuilder.types.component_event.deserialize_json(value)

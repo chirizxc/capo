@@ -30,7 +30,7 @@ def serialize_aws_json_1_0(value: EnableDefaultKeyReplicationRegionsOutput) -> d
 
 def deserialize_aws_json_1_0(data: dict) -> EnableDefaultKeyReplicationRegionsOutput:
     out: EnableDefaultKeyReplicationRegionsOutput = {}  # type: ignore[typeddict-item]
-    if "EnabledReplicationRegions" in data:
+    if data.get("EnabledReplicationRegions") is not None:
         import capo_payment_cryptography.types.regions
 
         out["enabled_replication_regions"] = (

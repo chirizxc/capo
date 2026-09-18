@@ -41,7 +41,7 @@ def serialize_aws_json_1_1(value: ListAssessmentTargetsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListAssessmentTargetsRequest:
     out: ListAssessmentTargetsRequest = {}  # type: ignore[typeddict-item]
-    if "filter" in data:
+    if data.get("filter") is not None:
         import capo_inspector.types.assessment_target_filter
 
         out["filter"] = (
@@ -49,8 +49,8 @@ def deserialize_aws_json_1_1(data: dict) -> ListAssessmentTargetsRequest:
                 data["filter"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
     return out

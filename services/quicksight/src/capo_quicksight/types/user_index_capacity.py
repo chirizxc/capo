@@ -58,22 +58,22 @@ def serialize_json(value: UserIndexCapacity) -> dict:
 
 def deserialize_json(data: dict) -> UserIndexCapacity:
     out: UserIndexCapacity = {}  # type: ignore[typeddict-item]
-    if "userArn" in data:
+    if data.get("userArn") is not None:
         out["user_arn"] = data["userArn"]
-    if "userName" in data:
+    if data.get("userName") is not None:
         out["user_name"] = data["userName"]
-    if "email" in data:
+    if data.get("email") is not None:
         out["email"] = data["email"]
-    if "role" in data:
+    if data.get("role") is not None:
         out["role"] = data["role"]
-    if "totalCapacityBytes" in data:
+    if data.get("totalCapacityBytes") is not None:
         out["total_capacity_bytes"] = data["totalCapacityBytes"]
-    if "totalKBCapacityBytes" in data:
+    if data.get("totalKBCapacityBytes") is not None:
         out["total_kb_capacity_bytes"] = data["totalKBCapacityBytes"]
-    if "totalSpaceCapacityBytes" in data:
+    if data.get("totalSpaceCapacityBytes") is not None:
         out["total_space_capacity_bytes"] = data["totalSpaceCapacityBytes"]
-    if "kbCount" in data:
+    if data.get("kbCount") is not None:
         out["kb_count"] = data["kbCount"]
-    if "spaceCount" in data:
+    if data.get("spaceCount") is not None:
         out["space_count"] = data["spaceCount"]
     return out

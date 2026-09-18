@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> UpdatePhoneNumberRequestItemList:
 
     out: UpdatePhoneNumberRequestItemList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_chime_sdk_voice.types.update_phone_number_request_item.deserialize_json(
                 item

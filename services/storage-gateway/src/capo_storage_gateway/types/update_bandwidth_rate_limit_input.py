@@ -41,15 +41,15 @@ def serialize_aws_json_1_1(value: UpdateBandwidthRateLimitInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateBandwidthRateLimitInput:
     out: UpdateBandwidthRateLimitInput = {}  # type: ignore[typeddict-item]
-    if "GatewayARN" in data:
+    if data.get("GatewayARN") is not None:
         out["gateway_arn"] = data["GatewayARN"]
     else:
         raise DeserializationError("UpdateBandwidthRateLimitInput.gateway_arn required")
-    if "AverageUploadRateLimitInBitsPerSec" in data:
+    if data.get("AverageUploadRateLimitInBitsPerSec") is not None:
         out["average_upload_rate_limit_in_bits_per_sec"] = data[
             "AverageUploadRateLimitInBitsPerSec"
         ]
-    if "AverageDownloadRateLimitInBitsPerSec" in data:
+    if data.get("AverageDownloadRateLimitInBitsPerSec") is not None:
         out["average_download_rate_limit_in_bits_per_sec"] = data[
             "AverageDownloadRateLimitInBitsPerSec"
         ]

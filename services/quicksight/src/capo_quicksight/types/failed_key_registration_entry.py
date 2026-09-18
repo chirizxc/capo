@@ -37,17 +37,17 @@ def serialize_json(value: FailedKeyRegistrationEntry) -> dict:
 
 def deserialize_json(data: dict) -> FailedKeyRegistrationEntry:
     out: FailedKeyRegistrationEntry = {}  # type: ignore[typeddict-item]
-    if "KeyArn" in data:
+    if data.get("KeyArn") is not None:
         out["key_arn"] = data["KeyArn"]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     else:
         raise DeserializationError("FailedKeyRegistrationEntry.message required")
-    if "StatusCode" in data:
+    if data.get("StatusCode") is not None:
         out["status_code"] = data["StatusCode"]
     else:
         out["status_code"] = 0
-    if "SenderFault" in data:
+    if data.get("SenderFault") is not None:
         out["sender_fault"] = data["SenderFault"]
     else:
         out["sender_fault"] = False

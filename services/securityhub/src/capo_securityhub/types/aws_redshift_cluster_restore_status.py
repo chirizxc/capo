@@ -33,9 +33,16 @@ class AwsRedshiftClusterRestoreStatus(TypedDict, closed=True):
 def serialize_json(value: AwsRedshiftClusterRestoreStatus) -> dict:
     out: dict = {}
     if "current_restore_rate_in_mega_bytes_per_second" in value:
-        out["CurrentRestoreRateInMegaBytesPerSecond"] = value[
-            "current_restore_rate_in_mega_bytes_per_second"
-        ]
+        out["CurrentRestoreRateInMegaBytesPerSecond"] = (
+            "NaN"
+            if value["current_restore_rate_in_mega_bytes_per_second"]
+            != value["current_restore_rate_in_mega_bytes_per_second"]
+            else "Infinity"
+            if value["current_restore_rate_in_mega_bytes_per_second"] == float("inf")
+            else "-Infinity"
+            if value["current_restore_rate_in_mega_bytes_per_second"] == float("-inf")
+            else value["current_restore_rate_in_mega_bytes_per_second"]
+        )
     if "elapsed_time_in_seconds" in value:
         out["ElapsedTimeInSeconds"] = value["elapsed_time_in_seconds"]
     if "estimated_time_to_completion_in_seconds" in value:
@@ -53,20 +60,20 @@ def serialize_json(value: AwsRedshiftClusterRestoreStatus) -> dict:
 
 def deserialize_json(data: dict) -> AwsRedshiftClusterRestoreStatus:
     out: AwsRedshiftClusterRestoreStatus = {}  # type: ignore[typeddict-item]
-    if "CurrentRestoreRateInMegaBytesPerSecond" in data:
-        out["current_restore_rate_in_mega_bytes_per_second"] = data[
-            "CurrentRestoreRateInMegaBytesPerSecond"
-        ]
-    if "ElapsedTimeInSeconds" in data:
+    if data.get("CurrentRestoreRateInMegaBytesPerSecond") is not None:
+        out["current_restore_rate_in_mega_bytes_per_second"] = float(
+            data["CurrentRestoreRateInMegaBytesPerSecond"]
+        )
+    if data.get("ElapsedTimeInSeconds") is not None:
         out["elapsed_time_in_seconds"] = data["ElapsedTimeInSeconds"]
-    if "EstimatedTimeToCompletionInSeconds" in data:
+    if data.get("EstimatedTimeToCompletionInSeconds") is not None:
         out["estimated_time_to_completion_in_seconds"] = data[
             "EstimatedTimeToCompletionInSeconds"
         ]
-    if "ProgressInMegaBytes" in data:
+    if data.get("ProgressInMegaBytes") is not None:
         out["progress_in_mega_bytes"] = data["ProgressInMegaBytes"]
-    if "SnapshotSizeInMegaBytes" in data:
+    if data.get("SnapshotSizeInMegaBytes") is not None:
         out["snapshot_size_in_mega_bytes"] = data["SnapshotSizeInMegaBytes"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         out["status"] = data["Status"]
     return out

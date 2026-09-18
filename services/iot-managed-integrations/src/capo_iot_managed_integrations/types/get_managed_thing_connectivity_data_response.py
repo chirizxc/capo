@@ -58,11 +58,11 @@ def serialize_json(value: GetManagedThingConnectivityDataResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetManagedThingConnectivityDataResponse:
     out: GetManagedThingConnectivityDataResponse = {}  # type: ignore[typeddict-item]
-    if "ManagedThingId" in data:
+    if data.get("ManagedThingId") is not None:
         out["managed_thing_id"] = data["ManagedThingId"]
-    if "Connected" in data:
+    if data.get("Connected") is not None:
         out["connected"] = data["Connected"]
-    if "Timestamp" in data:
+    if data.get("Timestamp") is not None:
         import capo_iot_managed_integrations.types.connectivity_timestamp
 
         out["timestamp"] = (
@@ -70,7 +70,7 @@ def deserialize_json(data: dict) -> GetManagedThingConnectivityDataResponse:
                 data["Timestamp"]
             )
         )
-    if "DisconnectReason" in data:
+    if data.get("DisconnectReason") is not None:
         import capo_iot_managed_integrations.types.disconnect_reason_value
 
         out["disconnect_reason"] = (

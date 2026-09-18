@@ -42,29 +42,29 @@ def serialize_aws_json_1_1(value: AutomaticTapeCreationRule) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AutomaticTapeCreationRule:
     out: AutomaticTapeCreationRule = {}  # type: ignore[typeddict-item]
-    if "TapeBarcodePrefix" in data:
+    if data.get("TapeBarcodePrefix") is not None:
         out["tape_barcode_prefix"] = data["TapeBarcodePrefix"]
     else:
         raise DeserializationError(
             "AutomaticTapeCreationRule.tape_barcode_prefix required"
         )
-    if "PoolId" in data:
+    if data.get("PoolId") is not None:
         out["pool_id"] = data["PoolId"]
     else:
         raise DeserializationError("AutomaticTapeCreationRule.pool_id required")
-    if "TapeSizeInBytes" in data:
+    if data.get("TapeSizeInBytes") is not None:
         out["tape_size_in_bytes"] = data["TapeSizeInBytes"]
     else:
         raise DeserializationError(
             "AutomaticTapeCreationRule.tape_size_in_bytes required"
         )
-    if "MinimumNumTapes" in data:
+    if data.get("MinimumNumTapes") is not None:
         out["minimum_num_tapes"] = data["MinimumNumTapes"]
     else:
         raise DeserializationError(
             "AutomaticTapeCreationRule.minimum_num_tapes required"
         )
-    if "Worm" in data:
+    if data.get("Worm") is not None:
         out["worm"] = data["Worm"]
     else:
         out["worm"] = False

@@ -68,11 +68,11 @@ def serialize_aws_json_1_0(value: RetrainingSchedulerSummary) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> RetrainingSchedulerSummary:
     out: RetrainingSchedulerSummary = {}  # type: ignore[typeddict-item]
-    if "ModelName" in data:
+    if data.get("ModelName") is not None:
         out["model_name"] = data["ModelName"]
-    if "ModelArn" in data:
+    if data.get("ModelArn") is not None:
         out["model_arn"] = data["ModelArn"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_lookoutequipment.types.retraining_scheduler_status
 
         out["status"] = (
@@ -80,7 +80,7 @@ def deserialize_aws_json_1_0(data: dict) -> RetrainingSchedulerSummary:
                 data["Status"]
             )
         )
-    if "RetrainingStartDate" in data:
+    if data.get("RetrainingStartDate") is not None:
         import capo_lookoutequipment.types.timestamp
 
         out["retraining_start_date"] = (
@@ -88,8 +88,8 @@ def deserialize_aws_json_1_0(data: dict) -> RetrainingSchedulerSummary:
                 data["RetrainingStartDate"]
             )
         )
-    if "RetrainingFrequency" in data:
+    if data.get("RetrainingFrequency") is not None:
         out["retraining_frequency"] = data["RetrainingFrequency"]
-    if "LookbackWindow" in data:
+    if data.get("LookbackWindow") is not None:
         out["lookback_window"] = data["LookbackWindow"]
     return out

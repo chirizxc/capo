@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: ListLogSubscriptionsResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListLogSubscriptionsResult:
     out: ListLogSubscriptionsResult = {}  # type: ignore[typeddict-item]
-    if "LogSubscriptions" in data:
+    if data.get("LogSubscriptions") is not None:
         import capo_directory_service.types.log_subscriptions
 
         out["log_subscriptions"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_1(data: dict) -> ListLogSubscriptionsResult:
                 data["LogSubscriptions"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

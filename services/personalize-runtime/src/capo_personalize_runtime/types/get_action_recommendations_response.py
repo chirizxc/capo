@@ -34,7 +34,7 @@ def serialize_json(value: GetActionRecommendationsResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetActionRecommendationsResponse:
     out: GetActionRecommendationsResponse = {}  # type: ignore[typeddict-item]
-    if "actionList" in data:
+    if data.get("actionList") is not None:
         import capo_personalize_runtime.types.action_list
 
         out["action_list"] = (
@@ -42,6 +42,6 @@ def deserialize_json(data: dict) -> GetActionRecommendationsResponse:
                 data["actionList"]
             )
         )
-    if "recommendationId" in data:
+    if data.get("recommendationId") is not None:
         out["recommendation_id"] = data["recommendationId"]
     return out

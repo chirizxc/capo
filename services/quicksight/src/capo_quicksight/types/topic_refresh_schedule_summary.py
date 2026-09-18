@@ -45,13 +45,13 @@ def serialize_json(value: TopicRefreshScheduleSummary) -> dict:
 
 def deserialize_json(data: dict) -> TopicRefreshScheduleSummary:
     out: TopicRefreshScheduleSummary = {}  # type: ignore[typeddict-item]
-    if "DatasetId" in data:
+    if data.get("DatasetId") is not None:
         out["dataset_id"] = data["DatasetId"]
-    if "DatasetArn" in data:
+    if data.get("DatasetArn") is not None:
         out["dataset_arn"] = data["DatasetArn"]
-    if "DatasetName" in data:
+    if data.get("DatasetName") is not None:
         out["dataset_name"] = data["DatasetName"]
-    if "RefreshSchedule" in data:
+    if data.get("RefreshSchedule") is not None:
         import capo_quicksight.types.topic_refresh_schedule
 
         out["refresh_schedule"] = (

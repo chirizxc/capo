@@ -13,9 +13,9 @@ from capo_sagemaker_edge import AsyncSagemakerEdgeClient
 
 
 async def main():
-    async with AsyncSagemakerEdgeClient() as s3:
+    async with AsyncSagemakerEdgeClient() as sagemaker_edge:
         # Example: call the get_deployments operation
-        response = await s3.get_deployments()
+        response = await sagemaker_edge.get_deployments()
         print(response["deployments"])
 ```
 
@@ -29,9 +29,9 @@ from capo_sagemaker_edge.error import InternalServiceException
 
 
 async def main():
-    async with AsyncSagemakerEdgeClient() as s3:
+    async with AsyncSagemakerEdgeClient() as sagemaker_edge:
         try:
-            await s3.get_deployments()
+            await sagemaker_edge.get_deployments()
         except InternalServiceException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -48,13 +48,13 @@ from capo_sagemaker_edge import AsyncSagemakerEdgeClient
 
 
 async def main():
-    async with AsyncSagemakerEdgeClient() as s3:
+    async with AsyncSagemakerEdgeClient() as sagemaker_edge:
         # Default: 3 attempts for every operation
-        response = await s3.get_deployments()
+        response = await sagemaker_edge.get_deployments()
 
         # Override per operation
-        response = await s3.get_deployments(config_overrides={"retry_max_attempts": 5})
+        response = await sagemaker_edge.get_deployments(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.get_deployments(config_overrides={"retry_max_attempts": 1})
+        response = await sagemaker_edge.get_deployments(config_overrides={"retry_max_attempts": 1})
 ```

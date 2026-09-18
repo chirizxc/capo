@@ -25,6 +25,8 @@ def deserialize_json(data: list) -> PhonePreferenceList:
 
     out: PhonePreferenceList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_customer_profiles.types.contact_preference.deserialize_json(item)
         )

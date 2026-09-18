@@ -39,10 +39,10 @@ def serialize_aws_json_1_1(value: ListContainerGroupDefinitionVersionsInput) -> 
 
 def deserialize_aws_json_1_1(data: dict) -> ListContainerGroupDefinitionVersionsInput:
     out: ListContainerGroupDefinitionVersionsInput = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Limit" in data:
+    if data.get("Limit") is not None:
         out["limit"] = data["Limit"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

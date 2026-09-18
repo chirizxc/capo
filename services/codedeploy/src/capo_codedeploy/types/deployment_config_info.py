@@ -89,11 +89,11 @@ def serialize_aws_json_1_1(value: DeploymentConfigInfo) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeploymentConfigInfo:
     out: DeploymentConfigInfo = {}  # type: ignore[typeddict-item]
-    if "deploymentConfigId" in data:
+    if data.get("deploymentConfigId") is not None:
         out["deployment_config_id"] = data["deploymentConfigId"]
-    if "deploymentConfigName" in data:
+    if data.get("deploymentConfigName") is not None:
         out["deployment_config_name"] = data["deploymentConfigName"]
-    if "minimumHealthyHosts" in data:
+    if data.get("minimumHealthyHosts") is not None:
         import capo_codedeploy.types.minimum_healthy_hosts
 
         out["minimum_healthy_hosts"] = (
@@ -101,13 +101,13 @@ def deserialize_aws_json_1_1(data: dict) -> DeploymentConfigInfo:
                 data["minimumHealthyHosts"]
             )
         )
-    if "createTime" in data:
+    if data.get("createTime") is not None:
         import capo_codedeploy.types.timestamp
 
         out["create_time"] = capo_codedeploy.types.timestamp.deserialize_aws_json_1_1(
             data["createTime"]
         )
-    if "computePlatform" in data:
+    if data.get("computePlatform") is not None:
         import capo_codedeploy.types.compute_platform
 
         out["compute_platform"] = (
@@ -115,7 +115,7 @@ def deserialize_aws_json_1_1(data: dict) -> DeploymentConfigInfo:
                 data["computePlatform"]
             )
         )
-    if "trafficRoutingConfig" in data:
+    if data.get("trafficRoutingConfig") is not None:
         import capo_codedeploy.types.traffic_routing_config
 
         out["traffic_routing_config"] = (
@@ -123,7 +123,7 @@ def deserialize_aws_json_1_1(data: dict) -> DeploymentConfigInfo:
                 data["trafficRoutingConfig"]
             )
         )
-    if "zonalConfig" in data:
+    if data.get("zonalConfig") is not None:
         import capo_codedeploy.types.zonal_config
 
         out["zonal_config"] = (

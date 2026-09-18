@@ -56,7 +56,7 @@ def serialize_json(value: ProfilingStatus) -> dict:
 
 def deserialize_json(data: dict) -> ProfilingStatus:
     out: ProfilingStatus = {}  # type: ignore[typeddict-item]
-    if "latestAgentProfileReportedAt" in data:
+    if data.get("latestAgentProfileReportedAt") is not None:
         import capo_codeguruprofiler.types.timestamp
 
         out["latest_agent_profile_reported_at"] = (
@@ -64,7 +64,7 @@ def deserialize_json(data: dict) -> ProfilingStatus:
                 data["latestAgentProfileReportedAt"]
             )
         )
-    if "latestAggregatedProfile" in data:
+    if data.get("latestAggregatedProfile") is not None:
         import capo_codeguruprofiler.types.aggregated_profile_time
 
         out["latest_aggregated_profile"] = (
@@ -72,7 +72,7 @@ def deserialize_json(data: dict) -> ProfilingStatus:
                 data["latestAggregatedProfile"]
             )
         )
-    if "latestAgentOrchestratedAt" in data:
+    if data.get("latestAgentOrchestratedAt") is not None:
         import capo_codeguruprofiler.types.timestamp
 
         out["latest_agent_orchestrated_at"] = (

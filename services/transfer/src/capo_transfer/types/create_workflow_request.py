@@ -52,9 +52,9 @@ def serialize_aws_json_1_1(value: CreateWorkflowRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateWorkflowRequest:
     out: CreateWorkflowRequest = {}  # type: ignore[typeddict-item]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Steps" in data:
+    if data.get("Steps") is not None:
         import capo_transfer.types.workflow_steps
 
         out["steps"] = capo_transfer.types.workflow_steps.deserialize_aws_json_1_1(
@@ -62,7 +62,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateWorkflowRequest:
         )
     else:
         raise DeserializationError("CreateWorkflowRequest.steps required")
-    if "OnExceptionSteps" in data:
+    if data.get("OnExceptionSteps") is not None:
         import capo_transfer.types.workflow_steps
 
         out["on_exception_steps"] = (
@@ -70,7 +70,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateWorkflowRequest:
                 data["OnExceptionSteps"]
             )
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_transfer.types.tags
 
         out["tags"] = capo_transfer.types.tags.deserialize_aws_json_1_1(data["Tags"])

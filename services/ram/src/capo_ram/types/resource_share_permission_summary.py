@@ -92,45 +92,45 @@ def serialize_json(value: ResourceSharePermissionSummary) -> dict:
 
 def deserialize_json(data: dict) -> ResourceSharePermissionSummary:
     out: ResourceSharePermissionSummary = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "version" in data:
+    if data.get("version") is not None:
         out["version"] = data["version"]
-    if "defaultVersion" in data:
+    if data.get("defaultVersion") is not None:
         out["default_version"] = data["defaultVersion"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "resourceType" in data:
+    if data.get("resourceType") is not None:
         out["resource_type"] = data["resourceType"]
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
-    if "creationTime" in data:
+    if data.get("creationTime") is not None:
         import capo_ram.types.date_time
 
         out["creation_time"] = capo_ram.types.date_time.deserialize_json(
             data["creationTime"]
         )
-    if "lastUpdatedTime" in data:
+    if data.get("lastUpdatedTime") is not None:
         import capo_ram.types.date_time
 
         out["last_updated_time"] = capo_ram.types.date_time.deserialize_json(
             data["lastUpdatedTime"]
         )
-    if "isResourceTypeDefault" in data:
+    if data.get("isResourceTypeDefault") is not None:
         out["is_resource_type_default"] = data["isResourceTypeDefault"]
-    if "permissionType" in data:
+    if data.get("permissionType") is not None:
         import capo_ram.types.permission_type
 
         out["permission_type"] = capo_ram.types.permission_type.deserialize_json(
             data["permissionType"]
         )
-    if "featureSet" in data:
+    if data.get("featureSet") is not None:
         import capo_ram.types.permission_feature_set
 
         out["feature_set"] = capo_ram.types.permission_feature_set.deserialize_json(
             data["featureSet"]
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_ram.types.tag_list
 
         out["tags"] = capo_ram.types.tag_list.deserialize_json(data["tags"])

@@ -41,17 +41,17 @@ def serialize_json(value: S3Source) -> dict:
 
 def deserialize_json(data: dict) -> S3Source:
     out: S3Source = {}  # type: ignore[typeddict-item]
-    if "DataSourceArn" in data:
+    if data.get("DataSourceArn") is not None:
         out["data_source_arn"] = data["DataSourceArn"]
     else:
         raise DeserializationError("S3Source.data_source_arn required")
-    if "UploadSettings" in data:
+    if data.get("UploadSettings") is not None:
         import capo_quicksight.types.upload_settings
 
         out["upload_settings"] = capo_quicksight.types.upload_settings.deserialize_json(
             data["UploadSettings"]
         )
-    if "InputColumns" in data:
+    if data.get("InputColumns") is not None:
         import capo_quicksight.types.input_column_list
 
         out["input_columns"] = capo_quicksight.types.input_column_list.deserialize_json(

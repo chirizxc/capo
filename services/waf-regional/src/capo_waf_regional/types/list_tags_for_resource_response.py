@@ -36,9 +36,9 @@ def serialize_aws_json_1_1(value: ListTagsForResourceResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListTagsForResourceResponse:
     out: ListTagsForResourceResponse = {}  # type: ignore[typeddict-item]
-    if "NextMarker" in data:
+    if data.get("NextMarker") is not None:
         out["next_marker"] = data["NextMarker"]
-    if "TagInfoForResource" in data:
+    if data.get("TagInfoForResource") is not None:
         import capo_waf_regional.types.tag_info_for_resource
 
         out["tag_info_for_resource"] = (

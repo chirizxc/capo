@@ -44,21 +44,21 @@ def serialize_json(value: HttpsNotificationConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> HttpsNotificationConfiguration:
     out: HttpsNotificationConfiguration = {}  # type: ignore[typeddict-item]
-    if "endpoint" in data:
+    if data.get("endpoint") is not None:
         out["endpoint"] = data["endpoint"]
     else:
         raise DeserializationError("HttpsNotificationConfiguration.endpoint required")
-    if "authorizationApiKeyName" in data:
+    if data.get("authorizationApiKeyName") is not None:
         out["authorization_api_key_name"] = data["authorizationApiKeyName"]
-    if "authorizationApiKeyValue" in data:
+    if data.get("authorizationApiKeyValue") is not None:
         out["authorization_api_key_value"] = data["authorizationApiKeyValue"]
-    if "httpMethod" in data:
+    if data.get("httpMethod") is not None:
         import capo_securitylake.types.http_method
 
         out["http_method"] = capo_securitylake.types.http_method.deserialize_json(
             data["httpMethod"]
         )
-    if "targetRoleArn" in data:
+    if data.get("targetRoleArn") is not None:
         out["target_role_arn"] = data["targetRoleArn"]
     else:
         raise DeserializationError(

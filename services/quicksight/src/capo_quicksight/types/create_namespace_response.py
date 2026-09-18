@@ -60,13 +60,13 @@ def serialize_json(value: CreateNamespaceResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateNamespaceResponse:
     out: CreateNamespaceResponse = {}  # type: ignore[typeddict-item]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "CapacityRegion" in data:
+    if data.get("CapacityRegion") is not None:
         out["capacity_region"] = data["CapacityRegion"]
-    if "CreationStatus" in data:
+    if data.get("CreationStatus") is not None:
         import capo_quicksight.types.namespace_status
 
         out["creation_status"] = (
@@ -74,12 +74,12 @@ def deserialize_json(data: dict) -> CreateNamespaceResponse:
                 data["CreationStatus"]
             )
         )
-    if "IdentityStore" in data:
+    if data.get("IdentityStore") is not None:
         import capo_quicksight.types.identity_store
 
         out["identity_store"] = capo_quicksight.types.identity_store.deserialize_json(
             data["IdentityStore"]
         )
-    if "RequestId" in data:
+    if data.get("RequestId") is not None:
         out["request_id"] = data["RequestId"]
     return out

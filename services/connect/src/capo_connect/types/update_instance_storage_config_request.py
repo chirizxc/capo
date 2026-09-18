@@ -43,7 +43,7 @@ def serialize_json(value: UpdateInstanceStorageConfigRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateInstanceStorageConfigRequest:
     out: UpdateInstanceStorageConfigRequest = {}  # type: ignore[typeddict-item]
-    if "StorageConfig" in data:
+    if data.get("StorageConfig") is not None:
         import capo_connect.types.instance_storage_config
 
         out["storage_config"] = (
@@ -55,6 +55,6 @@ def deserialize_json(data: dict) -> UpdateInstanceStorageConfigRequest:
         raise DeserializationError(
             "UpdateInstanceStorageConfigRequest.storage_config required"
         )
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
     return out

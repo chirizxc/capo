@@ -31,7 +31,7 @@ def serialize_json(value: FailoverCondition) -> dict:
 
 def deserialize_json(data: dict) -> FailoverCondition:
     out: FailoverCondition = {}  # type: ignore[typeddict-item]
-    if "failoverConditionSettings" in data:
+    if data.get("failoverConditionSettings") is not None:
         import capo_medialive.types.failover_condition_settings
 
         out["failover_condition_settings"] = (

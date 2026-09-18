@@ -38,7 +38,7 @@ def deserialize_json(
     data: dict,
 ) -> OrganizationFeatureStatisticsAdditionalConfiguration:
     out: OrganizationFeatureStatisticsAdditionalConfiguration = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         import capo_guardduty.types.org_feature_additional_configuration
 
         out["name"] = (
@@ -46,6 +46,6 @@ def deserialize_json(
                 data["name"]
             )
         )
-    if "enabledAccountsCount" in data:
+    if data.get("enabledAccountsCount") is not None:
         out["enabled_accounts_count"] = data["enabledAccountsCount"]
     return out

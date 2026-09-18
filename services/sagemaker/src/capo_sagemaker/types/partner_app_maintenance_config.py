@@ -25,6 +25,6 @@ def serialize_aws_json_1_1(value: PartnerAppMaintenanceConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PartnerAppMaintenanceConfig:
     out: PartnerAppMaintenanceConfig = {}  # type: ignore[typeddict-item]
-    if "MaintenanceWindowStart" in data:
+    if data.get("MaintenanceWindowStart") is not None:
         out["maintenance_window_start"] = data["MaintenanceWindowStart"]
     return out

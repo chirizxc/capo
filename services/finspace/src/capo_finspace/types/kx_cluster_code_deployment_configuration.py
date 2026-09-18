@@ -30,7 +30,7 @@ def serialize_json(value: KxClusterCodeDeploymentConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> KxClusterCodeDeploymentConfiguration:
     out: KxClusterCodeDeploymentConfiguration = {}  # type: ignore[typeddict-item]
-    if "deploymentStrategy" in data:
+    if data.get("deploymentStrategy") is not None:
         import capo_finspace.types.kx_cluster_code_deployment_strategy
 
         out["deployment_strategy"] = (

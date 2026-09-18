@@ -40,9 +40,9 @@ def serialize_json(value: ConfigIdResponse) -> dict:
 
 def deserialize_json(data: dict) -> ConfigIdResponse:
     out: ConfigIdResponse = {}  # type: ignore[typeddict-item]
-    if "configId" in data:
+    if data.get("configId") is not None:
         out["config_id"] = data["configId"]
-    if "configType" in data:
+    if data.get("configType") is not None:
         import capo_groundstation.types.config_capability_type
 
         out["config_type"] = (
@@ -50,6 +50,6 @@ def deserialize_json(data: dict) -> ConfigIdResponse:
                 data["configType"]
             )
         )
-    if "configArn" in data:
+    if data.get("configArn") is not None:
         out["config_arn"] = data["configArn"]
     return out

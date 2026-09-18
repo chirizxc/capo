@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: DeleteHomeRegionControlRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteHomeRegionControlRequest:
     out: DeleteHomeRegionControlRequest = {}  # type: ignore[typeddict-item]
-    if "ControlId" in data:
+    if data.get("ControlId") is not None:
         out["control_id"] = data["ControlId"]
     else:
         raise DeserializationError("DeleteHomeRegionControlRequest.control_id required")

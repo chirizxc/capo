@@ -29,9 +29,9 @@ def serialize_json(value: StartSearchResultExportJobOutput) -> dict:
 
 def deserialize_json(data: dict) -> StartSearchResultExportJobOutput:
     out: StartSearchResultExportJobOutput = {}  # type: ignore[typeddict-item]
-    if "ExportJobArn" in data:
+    if data.get("ExportJobArn") is not None:
         out["export_job_arn"] = data["ExportJobArn"]
-    if "ExportJobIdentifier" in data:
+    if data.get("ExportJobIdentifier") is not None:
         out["export_job_identifier"] = data["ExportJobIdentifier"]
     else:
         raise DeserializationError(

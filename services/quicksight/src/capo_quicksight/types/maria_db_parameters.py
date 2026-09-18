@@ -32,15 +32,15 @@ def serialize_json(value: MariaDbParameters) -> dict:
 
 def deserialize_json(data: dict) -> MariaDbParameters:
     out: MariaDbParameters = {}  # type: ignore[typeddict-item]
-    if "Host" in data:
+    if data.get("Host") is not None:
         out["host"] = data["Host"]
     else:
         raise DeserializationError("MariaDbParameters.host required")
-    if "Port" in data:
+    if data.get("Port") is not None:
         out["port"] = data["Port"]
     else:
         raise DeserializationError("MariaDbParameters.port required")
-    if "Database" in data:
+    if data.get("Database") is not None:
         out["database"] = data["Database"]
     else:
         raise DeserializationError("MariaDbParameters.database required")

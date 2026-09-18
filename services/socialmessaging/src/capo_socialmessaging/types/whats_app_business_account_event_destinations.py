@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> WhatsAppBusinessAccountEventDestinations:
 
     out: WhatsAppBusinessAccountEventDestinations = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_socialmessaging.types.whats_app_business_account_event_destination.deserialize_json(
                 item

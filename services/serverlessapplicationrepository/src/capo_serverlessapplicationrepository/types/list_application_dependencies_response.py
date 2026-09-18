@@ -38,7 +38,7 @@ def serialize_json(value: ListApplicationDependenciesResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListApplicationDependenciesResponse:
     out: ListApplicationDependenciesResponse = {}  # type: ignore[typeddict-item]
-    if "dependencies" in data:
+    if data.get("dependencies") is not None:
         import capo_serverlessapplicationrepository.types.__list_of_application_dependency_summary
 
         out["dependencies"] = (
@@ -46,6 +46,6 @@ def deserialize_json(data: dict) -> ListApplicationDependenciesResponse:
                 data["dependencies"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

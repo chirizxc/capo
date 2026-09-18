@@ -47,7 +47,15 @@ def serialize_aws_json_1_0(value: BatchCreateWorkloadEstimateUsageEntry) -> dict
     if "group" in value:
         out["group"] = value["group"]
     out["usageAccountId"] = value["usage_account_id"]
-    out["amount"] = value["amount"]
+    out["amount"] = (
+        "NaN"
+        if value["amount"] != value["amount"]
+        else "Infinity"
+        if value["amount"] == float("inf")
+        else "-Infinity"
+        if value["amount"] == float("-inf")
+        else value["amount"]
+    )
     if "historical_usage" in value:
         import capo_bcm_pricing_calculator.types.historical_usage_entity
 
@@ -61,43 +69,43 @@ def serialize_aws_json_1_0(value: BatchCreateWorkloadEstimateUsageEntry) -> dict
 
 def deserialize_aws_json_1_0(data: dict) -> BatchCreateWorkloadEstimateUsageEntry:
     out: BatchCreateWorkloadEstimateUsageEntry = {}  # type: ignore[typeddict-item]
-    if "serviceCode" in data:
+    if data.get("serviceCode") is not None:
         out["service_code"] = data["serviceCode"]
     else:
         raise DeserializationError(
             "BatchCreateWorkloadEstimateUsageEntry.service_code required"
         )
-    if "usageType" in data:
+    if data.get("usageType") is not None:
         out["usage_type"] = data["usageType"]
     else:
         raise DeserializationError(
             "BatchCreateWorkloadEstimateUsageEntry.usage_type required"
         )
-    if "operation" in data:
+    if data.get("operation") is not None:
         out["operation"] = data["operation"]
     else:
         raise DeserializationError(
             "BatchCreateWorkloadEstimateUsageEntry.operation required"
         )
-    if "key" in data:
+    if data.get("key") is not None:
         out["key"] = data["key"]
     else:
         raise DeserializationError("BatchCreateWorkloadEstimateUsageEntry.key required")
-    if "group" in data:
+    if data.get("group") is not None:
         out["group"] = data["group"]
-    if "usageAccountId" in data:
+    if data.get("usageAccountId") is not None:
         out["usage_account_id"] = data["usageAccountId"]
     else:
         raise DeserializationError(
             "BatchCreateWorkloadEstimateUsageEntry.usage_account_id required"
         )
-    if "amount" in data:
-        out["amount"] = data["amount"]
+    if data.get("amount") is not None:
+        out["amount"] = float(data["amount"])
     else:
         raise DeserializationError(
             "BatchCreateWorkloadEstimateUsageEntry.amount required"
         )
-    if "historicalUsage" in data:
+    if data.get("historicalUsage") is not None:
         import capo_bcm_pricing_calculator.types.historical_usage_entity
 
         out["historical_usage"] = (

@@ -48,9 +48,9 @@ def serialize_aws_json_1_1(value: DnsConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DnsConfig:
     out: DnsConfig = {}  # type: ignore[typeddict-item]
-    if "NamespaceId" in data:
+    if data.get("NamespaceId") is not None:
         out["namespace_id"] = data["NamespaceId"]
-    if "RoutingPolicy" in data:
+    if data.get("RoutingPolicy") is not None:
         import capo_servicediscovery.types.routing_policy
 
         out["routing_policy"] = (
@@ -58,7 +58,7 @@ def deserialize_aws_json_1_1(data: dict) -> DnsConfig:
                 data["RoutingPolicy"]
             )
         )
-    if "DnsRecords" in data:
+    if data.get("DnsRecords") is not None:
         import capo_servicediscovery.types.dns_record_list
 
         out["dns_records"] = (

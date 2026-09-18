@@ -28,11 +28,11 @@ def serialize_json(value: FrameworkMappingDetails) -> dict:
 
 def deserialize_json(data: dict) -> FrameworkMappingDetails:
     out: FrameworkMappingDetails = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("FrameworkMappingDetails.name required")
-    if "Item" in data:
+    if data.get("Item") is not None:
         out["item"] = data["Item"]
     else:
         raise DeserializationError("FrameworkMappingDetails.item required")

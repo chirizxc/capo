@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: DeleteCollectionRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteCollectionRequest:
     out: DeleteCollectionRequest = {}  # type: ignore[typeddict-item]
-    if "CollectionId" in data:
+    if data.get("CollectionId") is not None:
         out["collection_id"] = data["CollectionId"]
     else:
         raise DeserializationError("DeleteCollectionRequest.collection_id required")

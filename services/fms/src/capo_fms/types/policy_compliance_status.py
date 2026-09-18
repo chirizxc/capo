@@ -68,15 +68,15 @@ def serialize_aws_json_1_1(value: PolicyComplianceStatus) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PolicyComplianceStatus:
     out: PolicyComplianceStatus = {}  # type: ignore[typeddict-item]
-    if "PolicyOwner" in data:
+    if data.get("PolicyOwner") is not None:
         out["policy_owner"] = data["PolicyOwner"]
-    if "PolicyId" in data:
+    if data.get("PolicyId") is not None:
         out["policy_id"] = data["PolicyId"]
-    if "PolicyName" in data:
+    if data.get("PolicyName") is not None:
         out["policy_name"] = data["PolicyName"]
-    if "MemberAccount" in data:
+    if data.get("MemberAccount") is not None:
         out["member_account"] = data["MemberAccount"]
-    if "EvaluationResults" in data:
+    if data.get("EvaluationResults") is not None:
         import capo_fms.types.evaluation_results
 
         out["evaluation_results"] = (
@@ -84,13 +84,13 @@ def deserialize_aws_json_1_1(data: dict) -> PolicyComplianceStatus:
                 data["EvaluationResults"]
             )
         )
-    if "LastUpdated" in data:
+    if data.get("LastUpdated") is not None:
         import capo_fms.types.time_stamp
 
         out["last_updated"] = capo_fms.types.time_stamp.deserialize_aws_json_1_1(
             data["LastUpdated"]
         )
-    if "IssueInfoMap" in data:
+    if data.get("IssueInfoMap") is not None:
         import capo_fms.types.issue_info_map
 
         out["issue_info_map"] = capo_fms.types.issue_info_map.deserialize_aws_json_1_1(

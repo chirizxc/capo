@@ -35,7 +35,7 @@ def serialize_aws_json_1_1(value: EndpointPerformance) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> EndpointPerformance:
     out: EndpointPerformance = {}  # type: ignore[typeddict-item]
-    if "Metrics" in data:
+    if data.get("Metrics") is not None:
         import capo_sagemaker.types.inference_metrics
 
         out["metrics"] = (
@@ -43,7 +43,7 @@ def deserialize_aws_json_1_1(data: dict) -> EndpointPerformance:
                 data["Metrics"]
             )
         )
-    if "EndpointInfo" in data:
+    if data.get("EndpointInfo") is not None:
         import capo_sagemaker.types.endpoint_info
 
         out["endpoint_info"] = (

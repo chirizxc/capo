@@ -28,11 +28,11 @@ def serialize_json(value: MetricsExportConfig) -> dict:
 
 def deserialize_json(data: dict) -> MetricsExportConfig:
     out: MetricsExportConfig = {}  # type: ignore[typeddict-item]
-    if "mqttTopic" in data:
+    if data.get("mqttTopic") is not None:
         out["mqtt_topic"] = data["mqttTopic"]
     else:
         raise DeserializationError("MetricsExportConfig.mqtt_topic required")
-    if "roleArn" in data:
+    if data.get("roleArn") is not None:
         out["role_arn"] = data["roleArn"]
     else:
         raise DeserializationError("MetricsExportConfig.role_arn required")

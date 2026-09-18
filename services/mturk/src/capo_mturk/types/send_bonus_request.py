@@ -43,22 +43,22 @@ def serialize_aws_json_1_1(value: SendBonusRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SendBonusRequest:
     out: SendBonusRequest = {}  # type: ignore[typeddict-item]
-    if "WorkerId" in data:
+    if data.get("WorkerId") is not None:
         out["worker_id"] = data["WorkerId"]
     else:
         raise DeserializationError("SendBonusRequest.worker_id required")
-    if "BonusAmount" in data:
+    if data.get("BonusAmount") is not None:
         out["bonus_amount"] = data["BonusAmount"]
     else:
         raise DeserializationError("SendBonusRequest.bonus_amount required")
-    if "AssignmentId" in data:
+    if data.get("AssignmentId") is not None:
         out["assignment_id"] = data["AssignmentId"]
     else:
         raise DeserializationError("SendBonusRequest.assignment_id required")
-    if "Reason" in data:
+    if data.get("Reason") is not None:
         out["reason"] = data["Reason"]
     else:
         raise DeserializationError("SendBonusRequest.reason required")
-    if "UniqueRequestToken" in data:
+    if data.get("UniqueRequestToken") is not None:
         out["unique_request_token"] = data["UniqueRequestToken"]
     return out

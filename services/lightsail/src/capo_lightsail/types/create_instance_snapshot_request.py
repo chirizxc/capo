@@ -36,19 +36,19 @@ def serialize_aws_json_1_1(value: CreateInstanceSnapshotRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateInstanceSnapshotRequest:
     out: CreateInstanceSnapshotRequest = {}  # type: ignore[typeddict-item]
-    if "instanceSnapshotName" in data:
+    if data.get("instanceSnapshotName") is not None:
         out["instance_snapshot_name"] = data["instanceSnapshotName"]
     else:
         raise DeserializationError(
             "CreateInstanceSnapshotRequest.instance_snapshot_name required"
         )
-    if "instanceName" in data:
+    if data.get("instanceName") is not None:
         out["instance_name"] = data["instanceName"]
     else:
         raise DeserializationError(
             "CreateInstanceSnapshotRequest.instance_name required"
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_lightsail.types.tag_list
 
         out["tags"] = capo_lightsail.types.tag_list.deserialize_aws_json_1_1(

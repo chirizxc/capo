@@ -28,7 +28,7 @@ def serialize_aws_json_1_1(value: DescribeStorediSCSIVolumesInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeStorediSCSIVolumesInput:
     out: DescribeStorediSCSIVolumesInput = {}  # type: ignore[typeddict-item]
-    if "VolumeARNs" in data:
+    if data.get("VolumeARNs") is not None:
         import capo_storage_gateway.types.volume_ar_ns
 
         out["volume_ar_ns"] = (

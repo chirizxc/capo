@@ -22,8 +22,8 @@ def serialize_json(value: ScanNameWithFindingNum) -> dict:
 
 def deserialize_json(data: dict) -> ScanNameWithFindingNum:
     out: ScanNameWithFindingNum = {}  # type: ignore[typeddict-item]
-    if "scanName" in data:
+    if data.get("scanName") is not None:
         out["scan_name"] = data["scanName"]
-    if "findingNumber" in data:
+    if data.get("findingNumber") is not None:
         out["finding_number"] = data["findingNumber"]
     return out

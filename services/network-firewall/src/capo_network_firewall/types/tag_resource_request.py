@@ -32,11 +32,11 @@ def serialize_aws_json_1_0(value: TagResourceRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> TagResourceRequest:
     out: TagResourceRequest = {}  # type: ignore[typeddict-item]
-    if "ResourceArn" in data:
+    if data.get("ResourceArn") is not None:
         out["resource_arn"] = data["ResourceArn"]
     else:
         raise DeserializationError("TagResourceRequest.resource_arn required")
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_network_firewall.types.tag_list
 
         out["tags"] = capo_network_firewall.types.tag_list.deserialize_aws_json_1_0(

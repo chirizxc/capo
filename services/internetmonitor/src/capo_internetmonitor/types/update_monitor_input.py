@@ -93,7 +93,7 @@ def serialize_json(value: UpdateMonitorInput) -> dict:
 
 def deserialize_json(data: dict) -> UpdateMonitorInput:
     out: UpdateMonitorInput = {}  # type: ignore[typeddict-item]
-    if "ResourcesToAdd" in data:
+    if data.get("ResourcesToAdd") is not None:
         import capo_internetmonitor.types.set_of_ar_ns
 
         out["resources_to_add"] = (
@@ -101,7 +101,7 @@ def deserialize_json(data: dict) -> UpdateMonitorInput:
                 data["ResourcesToAdd"]
             )
         )
-    if "ResourcesToRemove" in data:
+    if data.get("ResourcesToRemove") is not None:
         import capo_internetmonitor.types.set_of_ar_ns
 
         out["resources_to_remove"] = (
@@ -109,13 +109,13 @@ def deserialize_json(data: dict) -> UpdateMonitorInput:
                 data["ResourcesToRemove"]
             )
         )
-    if "Status" in data:
+    if data.get("Status") is not None:
         out["status"] = data["Status"]
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
-    if "MaxCityNetworksToMonitor" in data:
+    if data.get("MaxCityNetworksToMonitor") is not None:
         out["max_city_networks_to_monitor"] = data["MaxCityNetworksToMonitor"]
-    if "InternetMeasurementsLogDelivery" in data:
+    if data.get("InternetMeasurementsLogDelivery") is not None:
         import capo_internetmonitor.types.internet_measurements_log_delivery
 
         out["internet_measurements_log_delivery"] = (
@@ -123,9 +123,9 @@ def deserialize_json(data: dict) -> UpdateMonitorInput:
                 data["InternetMeasurementsLogDelivery"]
             )
         )
-    if "TrafficPercentageToMonitor" in data:
+    if data.get("TrafficPercentageToMonitor") is not None:
         out["traffic_percentage_to_monitor"] = data["TrafficPercentageToMonitor"]
-    if "HealthEventsConfig" in data:
+    if data.get("HealthEventsConfig") is not None:
         import capo_internetmonitor.types.health_events_config
 
         out["health_events_config"] = (

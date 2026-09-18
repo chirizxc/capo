@@ -24,10 +24,10 @@ def serialize_json(value: SearchScopeSummary) -> dict:
 
 def deserialize_json(data: dict) -> SearchScopeSummary:
     out: SearchScopeSummary = {}  # type: ignore[typeddict-item]
-    if "TotalRecoveryPointsToScanCount" in data:
+    if data.get("TotalRecoveryPointsToScanCount") is not None:
         out["total_recovery_points_to_scan_count"] = data[
             "TotalRecoveryPointsToScanCount"
         ]
-    if "TotalItemsToScanCount" in data:
+    if data.get("TotalItemsToScanCount") is not None:
         out["total_items_to_scan_count"] = data["TotalItemsToScanCount"]
     return out

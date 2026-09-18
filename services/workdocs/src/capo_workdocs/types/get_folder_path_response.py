@@ -25,7 +25,7 @@ def serialize_json(value: GetFolderPathResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetFolderPathResponse:
     out: GetFolderPathResponse = {}  # type: ignore[typeddict-item]
-    if "Path" in data:
+    if data.get("Path") is not None:
         import capo_workdocs.types.resource_path
 
         out["path"] = capo_workdocs.types.resource_path.deserialize_json(data["Path"])

@@ -62,17 +62,17 @@ def serialize_json(value: ListRecommendationsRequest) -> dict:
 
 def deserialize_json(data: dict) -> ListRecommendationsRequest:
     out: ListRecommendationsRequest = {}  # type: ignore[typeddict-item]
-    if "taskId" in data:
+    if data.get("taskId") is not None:
         out["task_id"] = data["taskId"]
-    if "goalId" in data:
+    if data.get("goalId") is not None:
         out["goal_id"] = data["goalId"]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_devops_agent.types.recommendation_status
 
         out["status"] = capo_devops_agent.types.recommendation_status.deserialize_json(
             data["status"]
         )
-    if "priority" in data:
+    if data.get("priority") is not None:
         import capo_devops_agent.types.recommendation_priority
 
         out["priority"] = (
@@ -80,10 +80,10 @@ def deserialize_json(data: dict) -> ListRecommendationsRequest:
                 data["priority"]
             )
         )
-    if "limit" in data:
+    if data.get("limit") is not None:
         out["limit"] = data["limit"]
     else:
         out["limit"] = 50
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

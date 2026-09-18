@@ -23,6 +23,6 @@ def serialize_aws_json_1_1(value: StopAutoMLJobRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> StopAutoMLJobRequest:
     out: StopAutoMLJobRequest = {}  # type: ignore[typeddict-item]
-    if "AutoMLJobName" in data:
+    if data.get("AutoMLJobName") is not None:
         out["auto_ml_job_name"] = data["AutoMLJobName"]
     return out

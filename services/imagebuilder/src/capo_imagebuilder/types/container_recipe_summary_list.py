@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> ContainerRecipeSummaryList:
 
     out: ContainerRecipeSummaryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_imagebuilder.types.container_recipe_summary.deserialize_json(item)
         )

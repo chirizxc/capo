@@ -40,7 +40,7 @@ def serialize_json(value: DialogAction) -> dict:
 
 def deserialize_json(data: dict) -> DialogAction:
     out: DialogAction = {}  # type: ignore[typeddict-item]
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_lex_models_v2.types.dialog_action_type
 
         out["type"] = capo_lex_models_v2.types.dialog_action_type.deserialize_json(
@@ -48,8 +48,8 @@ def deserialize_json(data: dict) -> DialogAction:
         )
     else:
         raise DeserializationError("DialogAction.type required")
-    if "slotToElicit" in data:
+    if data.get("slotToElicit") is not None:
         out["slot_to_elicit"] = data["slotToElicit"]
-    if "suppressNextMessage" in data:
+    if data.get("suppressNextMessage") is not None:
         out["suppress_next_message"] = data["suppressNextMessage"]
     return out

@@ -71,14 +71,16 @@ class LandingZoneOperationResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_controltower.types.get_landing_zone_operation_input.GetLandingZoneOperationInput = {}  # type: ignore[typeddict-item]
-        input_["operation_identifier"] = operation_identifier
+        input_: capo_controltower.types.get_landing_zone_operation_input.GetLandingZoneOperationInput = {
+            "operation_identifier": operation_identifier
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -123,7 +125,7 @@ class LandingZoneOperationResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_controltower.types.list_landing_zone_operations_input.ListLandingZoneOperationsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_controltower.types.list_landing_zone_operations_input.ListLandingZoneOperationsInput = {}
         if filter is not None:
             input_["filter"] = filter
         if next_token is not None:
@@ -136,6 +138,7 @@ class LandingZoneOperationResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -179,14 +182,16 @@ class AsyncLandingZoneOperationResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_controltower.types.get_landing_zone_operation_input.GetLandingZoneOperationInput = {}  # type: ignore[typeddict-item]
-        input_["operation_identifier"] = operation_identifier
+        input_: capo_controltower.types.get_landing_zone_operation_input.GetLandingZoneOperationInput = {
+            "operation_identifier": operation_identifier
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -232,7 +237,7 @@ class AsyncLandingZoneOperationResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_controltower.types.list_landing_zone_operations_input.ListLandingZoneOperationsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_controltower.types.list_landing_zone_operations_input.ListLandingZoneOperationsInput = {}
         if filter is not None:
             input_["filter"] = filter
         if next_token is not None:
@@ -245,4 +250,5 @@ class AsyncLandingZoneOperationResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

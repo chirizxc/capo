@@ -65,19 +65,19 @@ def serialize_json(value: LocationConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> LocationConfiguration:
     out: LocationConfiguration = {}  # type: ignore[typeddict-item]
-    if "LocationName" in data:
+    if data.get("LocationName") is not None:
         out["location_name"] = data["LocationName"]
     else:
         raise DeserializationError("LocationConfiguration.location_name required")
-    if "AlwaysOnCapacity" in data:
+    if data.get("AlwaysOnCapacity") is not None:
         out["always_on_capacity"] = data["AlwaysOnCapacity"]
-    if "OnDemandCapacity" in data:
+    if data.get("OnDemandCapacity") is not None:
         out["on_demand_capacity"] = data["OnDemandCapacity"]
-    if "TargetIdleCapacity" in data:
+    if data.get("TargetIdleCapacity") is not None:
         out["target_idle_capacity"] = data["TargetIdleCapacity"]
-    if "MaximumCapacity" in data:
+    if data.get("MaximumCapacity") is not None:
         out["maximum_capacity"] = data["MaximumCapacity"]
-    if "VpcTransitConfiguration" in data:
+    if data.get("VpcTransitConfiguration") is not None:
         import capo_gameliftstreams.types.vpc_transit_configuration
 
         out["vpc_transit_configuration"] = (

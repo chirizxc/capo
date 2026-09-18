@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> StandardsSubscriptionRequests:
 
     out: StandardsSubscriptionRequests = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_securityhub.types.standards_subscription_request.deserialize_json(item)
         )

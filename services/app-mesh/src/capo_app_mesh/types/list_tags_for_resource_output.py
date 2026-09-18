@@ -30,12 +30,12 @@ def serialize_json(value: ListTagsForResourceOutput) -> dict:
 
 def deserialize_json(data: dict) -> ListTagsForResourceOutput:
     out: ListTagsForResourceOutput = {}  # type: ignore[typeddict-item]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_app_mesh.types.tag_list
 
         out["tags"] = capo_app_mesh.types.tag_list.deserialize_json(data["tags"])
     else:
         raise DeserializationError("ListTagsForResourceOutput.tags required")
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

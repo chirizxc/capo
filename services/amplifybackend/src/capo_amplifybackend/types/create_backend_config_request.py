@@ -25,6 +25,6 @@ def serialize_json(value: CreateBackendConfigRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateBackendConfigRequest:
     out: CreateBackendConfigRequest = {}  # type: ignore[typeddict-item]
-    if "backendManagerAppId" in data:
+    if data.get("backendManagerAppId") is not None:
         out["backend_manager_app_id"] = data["backendManagerAppId"]
     return out

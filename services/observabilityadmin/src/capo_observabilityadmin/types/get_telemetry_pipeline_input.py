@@ -24,7 +24,7 @@ def serialize_json(value: GetTelemetryPipelineInput) -> dict:
 
 def deserialize_json(data: dict) -> GetTelemetryPipelineInput:
     out: GetTelemetryPipelineInput = {}  # type: ignore[typeddict-item]
-    if "PipelineIdentifier" in data:
+    if data.get("PipelineIdentifier") is not None:
         out["pipeline_identifier"] = data["PipelineIdentifier"]
     else:
         raise DeserializationError(

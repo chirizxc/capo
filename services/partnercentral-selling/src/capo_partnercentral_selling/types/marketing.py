@@ -70,9 +70,9 @@ def serialize_aws_json_1_0(value: Marketing) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> Marketing:
     out: Marketing = {}  # type: ignore[typeddict-item]
-    if "CampaignName" in data:
+    if data.get("CampaignName") is not None:
         out["campaign_name"] = data["CampaignName"]
-    if "Source" in data:
+    if data.get("Source") is not None:
         import capo_partnercentral_selling.types.marketing_source
 
         out["source"] = (
@@ -80,7 +80,7 @@ def deserialize_aws_json_1_0(data: dict) -> Marketing:
                 data["Source"]
             )
         )
-    if "UseCases" in data:
+    if data.get("UseCases") is not None:
         import capo_partnercentral_selling.types.use_cases
 
         out["use_cases"] = (
@@ -88,7 +88,7 @@ def deserialize_aws_json_1_0(data: dict) -> Marketing:
                 data["UseCases"]
             )
         )
-    if "Channels" in data:
+    if data.get("Channels") is not None:
         import capo_partnercentral_selling.types.channels
 
         out["channels"] = (
@@ -96,7 +96,7 @@ def deserialize_aws_json_1_0(data: dict) -> Marketing:
                 data["Channels"]
             )
         )
-    if "AwsFundingUsed" in data:
+    if data.get("AwsFundingUsed") is not None:
         import capo_partnercentral_selling.types.aws_funding_used
 
         out["aws_funding_used"] = (

@@ -45,7 +45,7 @@ def serialize_json(value: VideoExtractionConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> VideoExtractionConfiguration:
     out: VideoExtractionConfiguration = {}  # type: ignore[typeddict-item]
-    if "videoExtractionStatus" in data:
+    if data.get("videoExtractionStatus") is not None:
         import capo_quicksight.types.video_extraction_status
 
         out["video_extraction_status"] = (
@@ -57,7 +57,7 @@ def deserialize_json(data: dict) -> VideoExtractionConfiguration:
         raise DeserializationError(
             "VideoExtractionConfiguration.video_extraction_status required"
         )
-    if "videoExtractionType" in data:
+    if data.get("videoExtractionType") is not None:
         import capo_quicksight.types.video_extraction_type
 
         out["video_extraction_type"] = (

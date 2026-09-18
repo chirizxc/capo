@@ -37,11 +37,11 @@ def serialize_json(value: UpdateReportPlanOutput) -> dict:
 
 def deserialize_json(data: dict) -> UpdateReportPlanOutput:
     out: UpdateReportPlanOutput = {}  # type: ignore[typeddict-item]
-    if "ReportPlanName" in data:
+    if data.get("ReportPlanName") is not None:
         out["report_plan_name"] = data["ReportPlanName"]
-    if "ReportPlanArn" in data:
+    if data.get("ReportPlanArn") is not None:
         out["report_plan_arn"] = data["ReportPlanArn"]
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_backup.types.timestamp
 
         out["creation_time"] = capo_backup.types.timestamp.deserialize_json(

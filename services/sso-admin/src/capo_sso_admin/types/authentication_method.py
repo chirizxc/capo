@@ -32,7 +32,7 @@ def serialize_aws_json_1_1(value: AuthenticationMethod) -> dict:
 
 
 def deserialize_aws_json_1_1(data: dict) -> AuthenticationMethod:
-    if "Iam" in data:
+    if data.get("Iam") is not None:
         import capo_sso_admin.types.iam_authentication_method
 
         return {

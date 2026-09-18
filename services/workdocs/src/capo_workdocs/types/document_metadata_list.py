@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> DocumentMetadataList:
 
     out: DocumentMetadataList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_workdocs.types.document_metadata.deserialize_json(item))
     return out

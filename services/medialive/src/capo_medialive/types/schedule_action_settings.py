@@ -239,7 +239,7 @@ def serialize_json(value: ScheduleActionSettings) -> dict:
 
 def deserialize_json(data: dict) -> ScheduleActionSettings:
     out: ScheduleActionSettings = {}  # type: ignore[typeddict-item]
-    if "hlsId3SegmentTaggingSettings" in data:
+    if data.get("hlsId3SegmentTaggingSettings") is not None:
         import capo_medialive.types.hls_id3_segment_tagging_schedule_action_settings
 
         out["hls_id3_segment_tagging_settings"] = (
@@ -247,7 +247,7 @@ def deserialize_json(data: dict) -> ScheduleActionSettings:
                 data["hlsId3SegmentTaggingSettings"]
             )
         )
-    if "hlsTimedMetadataSettings" in data:
+    if data.get("hlsTimedMetadataSettings") is not None:
         import capo_medialive.types.hls_timed_metadata_schedule_action_settings
 
         out["hls_timed_metadata_settings"] = (
@@ -255,7 +255,7 @@ def deserialize_json(data: dict) -> ScheduleActionSettings:
                 data["hlsTimedMetadataSettings"]
             )
         )
-    if "inputPrepareSettings" in data:
+    if data.get("inputPrepareSettings") is not None:
         import capo_medialive.types.input_prepare_schedule_action_settings
 
         out["input_prepare_settings"] = (
@@ -263,7 +263,7 @@ def deserialize_json(data: dict) -> ScheduleActionSettings:
                 data["inputPrepareSettings"]
             )
         )
-    if "inputSwitchSettings" in data:
+    if data.get("inputSwitchSettings") is not None:
         import capo_medialive.types.input_switch_schedule_action_settings
 
         out["input_switch_settings"] = (
@@ -271,7 +271,7 @@ def deserialize_json(data: dict) -> ScheduleActionSettings:
                 data["inputSwitchSettings"]
             )
         )
-    if "motionGraphicsImageActivateSettings" in data:
+    if data.get("motionGraphicsImageActivateSettings") is not None:
         import capo_medialive.types.motion_graphics_activate_schedule_action_settings
 
         out["motion_graphics_image_activate_settings"] = (
@@ -279,7 +279,7 @@ def deserialize_json(data: dict) -> ScheduleActionSettings:
                 data["motionGraphicsImageActivateSettings"]
             )
         )
-    if "motionGraphicsImageDeactivateSettings" in data:
+    if data.get("motionGraphicsImageDeactivateSettings") is not None:
         import capo_medialive.types.motion_graphics_deactivate_schedule_action_settings
 
         out["motion_graphics_image_deactivate_settings"] = (
@@ -287,7 +287,7 @@ def deserialize_json(data: dict) -> ScheduleActionSettings:
                 data["motionGraphicsImageDeactivateSettings"]
             )
         )
-    if "pauseStateSettings" in data:
+    if data.get("pauseStateSettings") is not None:
         import capo_medialive.types.pause_state_schedule_action_settings
 
         out["pause_state_settings"] = (
@@ -295,7 +295,7 @@ def deserialize_json(data: dict) -> ScheduleActionSettings:
                 data["pauseStateSettings"]
             )
         )
-    if "scte35InputSettings" in data:
+    if data.get("scte35InputSettings") is not None:
         import capo_medialive.types.scte35_input_schedule_action_settings
 
         out["scte35_input_settings"] = (
@@ -303,7 +303,7 @@ def deserialize_json(data: dict) -> ScheduleActionSettings:
                 data["scte35InputSettings"]
             )
         )
-    if "scte35ReturnToNetworkSettings" in data:
+    if data.get("scte35ReturnToNetworkSettings") is not None:
         import capo_medialive.types.scte35_return_to_network_schedule_action_settings
 
         out["scte35_return_to_network_settings"] = (
@@ -311,7 +311,7 @@ def deserialize_json(data: dict) -> ScheduleActionSettings:
                 data["scte35ReturnToNetworkSettings"]
             )
         )
-    if "scte35SpliceInsertSettings" in data:
+    if data.get("scte35SpliceInsertSettings") is not None:
         import capo_medialive.types.scte35_splice_insert_schedule_action_settings
 
         out["scte35_splice_insert_settings"] = (
@@ -319,7 +319,7 @@ def deserialize_json(data: dict) -> ScheduleActionSettings:
                 data["scte35SpliceInsertSettings"]
             )
         )
-    if "scte35TimeSignalSettings" in data:
+    if data.get("scte35TimeSignalSettings") is not None:
         import capo_medialive.types.scte35_time_signal_schedule_action_settings
 
         out["scte35_time_signal_settings"] = (
@@ -327,7 +327,7 @@ def deserialize_json(data: dict) -> ScheduleActionSettings:
                 data["scte35TimeSignalSettings"]
             )
         )
-    if "staticImageActivateSettings" in data:
+    if data.get("staticImageActivateSettings") is not None:
         import capo_medialive.types.static_image_activate_schedule_action_settings
 
         out["static_image_activate_settings"] = (
@@ -335,7 +335,7 @@ def deserialize_json(data: dict) -> ScheduleActionSettings:
                 data["staticImageActivateSettings"]
             )
         )
-    if "staticImageDeactivateSettings" in data:
+    if data.get("staticImageDeactivateSettings") is not None:
         import capo_medialive.types.static_image_deactivate_schedule_action_settings
 
         out["static_image_deactivate_settings"] = (
@@ -343,7 +343,7 @@ def deserialize_json(data: dict) -> ScheduleActionSettings:
                 data["staticImageDeactivateSettings"]
             )
         )
-    if "staticImageOutputActivateSettings" in data:
+    if data.get("staticImageOutputActivateSettings") is not None:
         import capo_medialive.types.static_image_output_activate_schedule_action_settings
 
         out["static_image_output_activate_settings"] = (
@@ -351,7 +351,7 @@ def deserialize_json(data: dict) -> ScheduleActionSettings:
                 data["staticImageOutputActivateSettings"]
             )
         )
-    if "staticImageOutputDeactivateSettings" in data:
+    if data.get("staticImageOutputDeactivateSettings") is not None:
         import capo_medialive.types.static_image_output_deactivate_schedule_action_settings
 
         out["static_image_output_deactivate_settings"] = (
@@ -359,7 +359,7 @@ def deserialize_json(data: dict) -> ScheduleActionSettings:
                 data["staticImageOutputDeactivateSettings"]
             )
         )
-    if "id3SegmentTaggingSettings" in data:
+    if data.get("id3SegmentTaggingSettings") is not None:
         import capo_medialive.types.id3_segment_tagging_schedule_action_settings
 
         out["id3_segment_tagging_settings"] = (
@@ -367,7 +367,7 @@ def deserialize_json(data: dict) -> ScheduleActionSettings:
                 data["id3SegmentTaggingSettings"]
             )
         )
-    if "timedMetadataSettings" in data:
+    if data.get("timedMetadataSettings") is not None:
         import capo_medialive.types.timed_metadata_schedule_action_settings
 
         out["timed_metadata_settings"] = (

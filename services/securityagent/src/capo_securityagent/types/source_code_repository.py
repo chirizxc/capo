@@ -18,6 +18,6 @@ def serialize_json(value: SourceCodeRepository) -> dict:
 
 def deserialize_json(data: dict) -> SourceCodeRepository:
     out: SourceCodeRepository = {}  # type: ignore[typeddict-item]
-    if "s3Location" in data:
+    if data.get("s3Location") is not None:
         out["s3_location"] = data["s3Location"]
     return out

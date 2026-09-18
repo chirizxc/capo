@@ -53,7 +53,7 @@ def serialize_aws_json_1_1(value: OnDemandCapacityReservationOptions) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> OnDemandCapacityReservationOptions:
     out: OnDemandCapacityReservationOptions = {}  # type: ignore[typeddict-item]
-    if "UsageStrategy" in data:
+    if data.get("UsageStrategy") is not None:
         import capo_emr.types.on_demand_capacity_reservation_usage_strategy
 
         out["usage_strategy"] = (
@@ -61,7 +61,7 @@ def deserialize_aws_json_1_1(data: dict) -> OnDemandCapacityReservationOptions:
                 data["UsageStrategy"]
             )
         )
-    if "CapacityReservationPreference" in data:
+    if data.get("CapacityReservationPreference") is not None:
         import capo_emr.types.on_demand_capacity_reservation_preference
 
         out["capacity_reservation_preference"] = (
@@ -69,7 +69,7 @@ def deserialize_aws_json_1_1(data: dict) -> OnDemandCapacityReservationOptions:
                 data["CapacityReservationPreference"]
             )
         )
-    if "CapacityReservationResourceGroupArn" in data:
+    if data.get("CapacityReservationResourceGroupArn") is not None:
         out["capacity_reservation_resource_group_arn"] = data[
             "CapacityReservationResourceGroupArn"
         ]

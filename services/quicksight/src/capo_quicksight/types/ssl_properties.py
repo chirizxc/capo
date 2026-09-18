@@ -22,7 +22,7 @@ def serialize_json(value: SslProperties) -> dict:
 
 def deserialize_json(data: dict) -> SslProperties:
     out: SslProperties = {}  # type: ignore[typeddict-item]
-    if "DisableSsl" in data:
+    if data.get("DisableSsl") is not None:
         out["disable_ssl"] = data["DisableSsl"]
     else:
         out["disable_ssl"] = False

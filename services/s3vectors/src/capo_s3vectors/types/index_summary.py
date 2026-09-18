@@ -41,19 +41,19 @@ def serialize_json(value: IndexSummary) -> dict:
 
 def deserialize_json(data: dict) -> IndexSummary:
     out: IndexSummary = {}  # type: ignore[typeddict-item]
-    if "vectorBucketName" in data:
+    if data.get("vectorBucketName") is not None:
         out["vector_bucket_name"] = data["vectorBucketName"]
     else:
         raise DeserializationError("IndexSummary.vector_bucket_name required")
-    if "indexName" in data:
+    if data.get("indexName") is not None:
         out["index_name"] = data["indexName"]
     else:
         raise DeserializationError("IndexSummary.index_name required")
-    if "indexArn" in data:
+    if data.get("indexArn") is not None:
         out["index_arn"] = data["indexArn"]
     else:
         raise DeserializationError("IndexSummary.index_arn required")
-    if "creationTime" in data:
+    if data.get("creationTime") is not None:
         import capo_s3vectors.types._prelude.timestamp
 
         out["creation_time"] = capo_s3vectors.types._prelude.timestamp.deserialize_json(

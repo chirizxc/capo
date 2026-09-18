@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> PivotTableConditionalFormattingScopeList:
 
     out: PivotTableConditionalFormattingScopeList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_quicksight.types.pivot_table_conditional_formatting_scope.deserialize_json(
                 item

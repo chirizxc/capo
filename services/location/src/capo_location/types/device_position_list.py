@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> DevicePositionList:
 
     out: DevicePositionList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_location.types.device_position.deserialize_json(item))
     return out

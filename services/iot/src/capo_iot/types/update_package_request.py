@@ -41,10 +41,10 @@ def serialize_json(value: UpdatePackageRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdatePackageRequest:
     out: UpdatePackageRequest = {}  # type: ignore[typeddict-item]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "defaultVersionName" in data:
+    if data.get("defaultVersionName") is not None:
         out["default_version_name"] = data["defaultVersionName"]
-    if "unsetDefaultVersion" in data:
+    if data.get("unsetDefaultVersion") is not None:
         out["unset_default_version"] = data["unsetDefaultVersion"]
     return out

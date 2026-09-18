@@ -40,7 +40,7 @@ def serialize_json(value: CustomTemplate) -> dict:
 
 def deserialize_json(data: dict) -> CustomTemplate:
     out: CustomTemplate = {}  # type: ignore[typeddict-item]
-    if "templateType" in data:
+    if data.get("templateType") is not None:
         import capo_connecthealth.types.custom_template_base
 
         out["template_type"] = (
@@ -50,7 +50,7 @@ def deserialize_json(data: dict) -> CustomTemplate:
         )
     else:
         raise DeserializationError("CustomTemplate.template_type required")
-    if "templateInstructions" in data:
+    if data.get("templateInstructions") is not None:
         import capo_connecthealth.types.template_instructions
 
         out["template_instructions"] = (

@@ -24,7 +24,7 @@ def serialize_json(value: FacetInUseException_) -> dict:
 
 def deserialize_json(data: dict) -> FacetInUseException_:
     out: FacetInUseException_ = {}  # type: ignore[typeddict-item]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     return out
 
@@ -34,15 +34,16 @@ class FacetInUseException(ServiceError):
 
     code: str | None = "FacetInUseException"
 
-    def __init__(self, data: FacetInUseException_):
+    def __init__(self, data: FacetInUseException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="FacetInUseException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "FacetInUseException":
-        return cls(deserialize_json(data))
+    def from_json(cls, data: dict, message: str | None = None) -> "FacetInUseException":
+        return cls(deserialize_json(data), message)

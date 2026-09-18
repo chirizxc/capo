@@ -35,12 +35,12 @@ def serialize_aws_json_1_1(value: Radios) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Radios:
     out: Radios = {}  # type: ignore[typeddict-item]
-    if "wifi" in data:
+    if data.get("wifi") is not None:
         out["wifi"] = data["wifi"]
-    if "bluetooth" in data:
+    if data.get("bluetooth") is not None:
         out["bluetooth"] = data["bluetooth"]
-    if "nfc" in data:
+    if data.get("nfc") is not None:
         out["nfc"] = data["nfc"]
-    if "gps" in data:
+    if data.get("gps") is not None:
         out["gps"] = data["gps"]
     return out

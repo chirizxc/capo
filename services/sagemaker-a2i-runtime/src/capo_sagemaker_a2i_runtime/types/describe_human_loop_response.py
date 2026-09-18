@@ -83,7 +83,7 @@ def serialize_json(value: DescribeHumanLoopResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribeHumanLoopResponse:
     out: DescribeHumanLoopResponse = {}  # type: ignore[typeddict-item]
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_sagemaker_a2i_runtime.types.timestamp
 
         out["creation_time"] = (
@@ -91,11 +91,11 @@ def deserialize_json(data: dict) -> DescribeHumanLoopResponse:
                 data["CreationTime"]
             )
         )
-    if "FailureReason" in data:
+    if data.get("FailureReason") is not None:
         out["failure_reason"] = data["FailureReason"]
-    if "FailureCode" in data:
+    if data.get("FailureCode") is not None:
         out["failure_code"] = data["FailureCode"]
-    if "HumanLoopStatus" in data:
+    if data.get("HumanLoopStatus") is not None:
         import capo_sagemaker_a2i_runtime.types.human_loop_status
 
         out["human_loop_status"] = (
@@ -103,13 +103,13 @@ def deserialize_json(data: dict) -> DescribeHumanLoopResponse:
                 data["HumanLoopStatus"]
             )
         )
-    if "HumanLoopName" in data:
+    if data.get("HumanLoopName") is not None:
         out["human_loop_name"] = data["HumanLoopName"]
-    if "HumanLoopArn" in data:
+    if data.get("HumanLoopArn") is not None:
         out["human_loop_arn"] = data["HumanLoopArn"]
-    if "FlowDefinitionArn" in data:
+    if data.get("FlowDefinitionArn") is not None:
         out["flow_definition_arn"] = data["FlowDefinitionArn"]
-    if "HumanLoopOutput" in data:
+    if data.get("HumanLoopOutput") is not None:
         import capo_sagemaker_a2i_runtime.types.human_loop_output
 
         out["human_loop_output"] = (

@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> GatewayCapabilitySummaries:
 
     out: GatewayCapabilitySummaries = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_iotsitewise.types.gateway_capability_summary.deserialize_json(item)
         )

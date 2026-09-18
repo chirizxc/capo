@@ -33,19 +33,19 @@ def serialize_aws_json_1_0(value: RepositorySyncDefinition) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> RepositorySyncDefinition:
     out: RepositorySyncDefinition = {}  # type: ignore[typeddict-item]
-    if "target" in data:
+    if data.get("target") is not None:
         out["target"] = data["target"]
     else:
         raise DeserializationError("RepositorySyncDefinition.target required")
-    if "parent" in data:
+    if data.get("parent") is not None:
         out["parent"] = data["parent"]
     else:
         raise DeserializationError("RepositorySyncDefinition.parent required")
-    if "branch" in data:
+    if data.get("branch") is not None:
         out["branch"] = data["branch"]
     else:
         raise DeserializationError("RepositorySyncDefinition.branch required")
-    if "directory" in data:
+    if data.get("directory") is not None:
         out["directory"] = data["directory"]
     else:
         raise DeserializationError("RepositorySyncDefinition.directory required")

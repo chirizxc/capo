@@ -95,15 +95,15 @@ def serialize_json(value: ListEntitiesRequest) -> dict:
 
 def deserialize_json(data: dict) -> ListEntitiesRequest:
     out: ListEntitiesRequest = {}  # type: ignore[typeddict-item]
-    if "Catalog" in data:
+    if data.get("Catalog") is not None:
         out["catalog"] = data["Catalog"]
     else:
         raise DeserializationError("ListEntitiesRequest.catalog required")
-    if "EntityType" in data:
+    if data.get("EntityType") is not None:
         out["entity_type"] = data["EntityType"]
     else:
         raise DeserializationError("ListEntitiesRequest.entity_type required")
-    if "FilterList" in data:
+    if data.get("FilterList") is not None:
         import capo_marketplace_catalog.types.filter_list
 
         out["filter_list"] = (
@@ -111,15 +111,15 @@ def deserialize_json(data: dict) -> ListEntitiesRequest:
                 data["FilterList"]
             )
         )
-    if "Sort" in data:
+    if data.get("Sort") is not None:
         import capo_marketplace_catalog.types.sort
 
         out["sort"] = capo_marketplace_catalog.types.sort.deserialize_json(data["Sort"])
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "OwnershipType" in data:
+    if data.get("OwnershipType") is not None:
         import capo_marketplace_catalog.types.ownership_type
 
         out["ownership_type"] = (
@@ -127,7 +127,7 @@ def deserialize_json(data: dict) -> ListEntitiesRequest:
                 data["OwnershipType"]
             )
         )
-    if "EntityTypeFilters" in data:
+    if data.get("EntityTypeFilters") is not None:
         import capo_marketplace_catalog.types.entity_type_filters
 
         out["entity_type_filters"] = (
@@ -135,7 +135,7 @@ def deserialize_json(data: dict) -> ListEntitiesRequest:
                 data["EntityTypeFilters"]
             )
         )
-    if "EntityTypeSort" in data:
+    if data.get("EntityTypeSort") is not None:
         import capo_marketplace_catalog.types.entity_type_sort
 
         out["entity_type_sort"] = (

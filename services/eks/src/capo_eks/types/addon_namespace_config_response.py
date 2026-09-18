@@ -23,6 +23,6 @@ def serialize_json(value: AddonNamespaceConfigResponse) -> dict:
 
 def deserialize_json(data: dict) -> AddonNamespaceConfigResponse:
     out: AddonNamespaceConfigResponse = {}  # type: ignore[typeddict-item]
-    if "namespace" in data:
+    if data.get("namespace") is not None:
         out["namespace"] = data["namespace"]
     return out

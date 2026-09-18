@@ -53,7 +53,7 @@ def serialize_json(value: UpdateOrganizationRecommendationLifecycleRequest) -> d
 
 def deserialize_json(data: dict) -> UpdateOrganizationRecommendationLifecycleRequest:
     out: UpdateOrganizationRecommendationLifecycleRequest = {}  # type: ignore[typeddict-item]
-    if "lifecycleStage" in data:
+    if data.get("lifecycleStage") is not None:
         import capo_trustedadvisor.types.update_recommendation_lifecycle_stage
 
         out["lifecycle_stage"] = (
@@ -65,9 +65,9 @@ def deserialize_json(data: dict) -> UpdateOrganizationRecommendationLifecycleReq
         raise DeserializationError(
             "UpdateOrganizationRecommendationLifecycleRequest.lifecycle_stage required"
         )
-    if "updateReason" in data:
+    if data.get("updateReason") is not None:
         out["update_reason"] = data["updateReason"]
-    if "updateReasonCode" in data:
+    if data.get("updateReasonCode") is not None:
         import capo_trustedadvisor.types.update_recommendation_lifecycle_stage_reason_code
 
         out["update_reason_code"] = (

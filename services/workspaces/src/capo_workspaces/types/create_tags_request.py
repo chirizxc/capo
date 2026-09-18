@@ -30,11 +30,11 @@ def serialize_aws_json_1_1(value: CreateTagsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateTagsRequest:
     out: CreateTagsRequest = {}  # type: ignore[typeddict-item]
-    if "ResourceId" in data:
+    if data.get("ResourceId") is not None:
         out["resource_id"] = data["ResourceId"]
     else:
         raise DeserializationError("CreateTagsRequest.resource_id required")
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_workspaces.types.tag_list
 
         out["tags"] = capo_workspaces.types.tag_list.deserialize_aws_json_1_1(

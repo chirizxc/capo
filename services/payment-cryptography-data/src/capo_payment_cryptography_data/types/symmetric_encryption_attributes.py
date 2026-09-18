@@ -48,7 +48,7 @@ def serialize_json(value: SymmetricEncryptionAttributes) -> dict:
 
 def deserialize_json(data: dict) -> SymmetricEncryptionAttributes:
     out: SymmetricEncryptionAttributes = {}  # type: ignore[typeddict-item]
-    if "Mode" in data:
+    if data.get("Mode") is not None:
         import capo_payment_cryptography_data.types.encryption_mode
 
         out["mode"] = (
@@ -58,9 +58,9 @@ def deserialize_json(data: dict) -> SymmetricEncryptionAttributes:
         )
     else:
         raise DeserializationError("SymmetricEncryptionAttributes.mode required")
-    if "InitializationVector" in data:
+    if data.get("InitializationVector") is not None:
         out["initialization_vector"] = data["InitializationVector"]
-    if "PaddingType" in data:
+    if data.get("PaddingType") is not None:
         import capo_payment_cryptography_data.types.padding_type
 
         out["padding_type"] = (

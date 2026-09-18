@@ -102,27 +102,27 @@ def serialize_json(value: ConnectPeer) -> dict:
 
 def deserialize_json(data: dict) -> ConnectPeer:
     out: ConnectPeer = {}  # type: ignore[typeddict-item]
-    if "CoreNetworkId" in data:
+    if data.get("CoreNetworkId") is not None:
         out["core_network_id"] = data["CoreNetworkId"]
-    if "ConnectAttachmentId" in data:
+    if data.get("ConnectAttachmentId") is not None:
         out["connect_attachment_id"] = data["ConnectAttachmentId"]
-    if "ConnectPeerId" in data:
+    if data.get("ConnectPeerId") is not None:
         out["connect_peer_id"] = data["ConnectPeerId"]
-    if "EdgeLocation" in data:
+    if data.get("EdgeLocation") is not None:
         out["edge_location"] = data["EdgeLocation"]
-    if "State" in data:
+    if data.get("State") is not None:
         import capo_networkmanager.types.connect_peer_state
 
         out["state"] = capo_networkmanager.types.connect_peer_state.deserialize_json(
             data["State"]
         )
-    if "CreatedAt" in data:
+    if data.get("CreatedAt") is not None:
         import capo_networkmanager.types.date_time
 
         out["created_at"] = capo_networkmanager.types.date_time.deserialize_json(
             data["CreatedAt"]
         )
-    if "Configuration" in data:
+    if data.get("Configuration") is not None:
         import capo_networkmanager.types.connect_peer_configuration
 
         out["configuration"] = (
@@ -130,13 +130,13 @@ def deserialize_json(data: dict) -> ConnectPeer:
                 data["Configuration"]
             )
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_networkmanager.types.tag_list
 
         out["tags"] = capo_networkmanager.types.tag_list.deserialize_json(data["Tags"])
-    if "SubnetArn" in data:
+    if data.get("SubnetArn") is not None:
         out["subnet_arn"] = data["SubnetArn"]
-    if "LastModificationErrors" in data:
+    if data.get("LastModificationErrors") is not None:
         import capo_networkmanager.types.connect_peer_error_list
 
         out["last_modification_errors"] = (

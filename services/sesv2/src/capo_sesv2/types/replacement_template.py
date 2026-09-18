@@ -25,6 +25,6 @@ def serialize_json(value: ReplacementTemplate) -> dict:
 
 def deserialize_json(data: dict) -> ReplacementTemplate:
     out: ReplacementTemplate = {}  # type: ignore[typeddict-item]
-    if "ReplacementTemplateData" in data:
+    if data.get("ReplacementTemplateData") is not None:
         out["replacement_template_data"] = data["ReplacementTemplateData"]
     return out

@@ -46,15 +46,15 @@ def serialize_aws_json_1_1(value: ListAssignmentsForHITRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListAssignmentsForHITRequest:
     out: ListAssignmentsForHITRequest = {}  # type: ignore[typeddict-item]
-    if "HITId" in data:
+    if data.get("HITId") is not None:
         out["hit_id"] = data["HITId"]
     else:
         raise DeserializationError("ListAssignmentsForHITRequest.hit_id required")
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "AssignmentStatuses" in data:
+    if data.get("AssignmentStatuses") is not None:
         import capo_mturk.types.assignment_status_list
 
         out["assignment_statuses"] = (

@@ -49,13 +49,13 @@ def serialize_aws_json_1_0(value: CognitoUserPoolConfigurationItem) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CognitoUserPoolConfigurationItem:
     out: CognitoUserPoolConfigurationItem = {}  # type: ignore[typeddict-item]
-    if "userPoolArn" in data:
+    if data.get("userPoolArn") is not None:
         out["user_pool_arn"] = data["userPoolArn"]
     else:
         raise DeserializationError(
             "CognitoUserPoolConfigurationItem.user_pool_arn required"
         )
-    if "clientIds" in data:
+    if data.get("clientIds") is not None:
         import capo_verifiedpermissions.types.client_ids
 
         out["client_ids"] = (
@@ -67,11 +67,11 @@ def deserialize_aws_json_1_0(data: dict) -> CognitoUserPoolConfigurationItem:
         raise DeserializationError(
             "CognitoUserPoolConfigurationItem.client_ids required"
         )
-    if "issuer" in data:
+    if data.get("issuer") is not None:
         out["issuer"] = data["issuer"]
     else:
         raise DeserializationError("CognitoUserPoolConfigurationItem.issuer required")
-    if "groupConfiguration" in data:
+    if data.get("groupConfiguration") is not None:
         import capo_verifiedpermissions.types.cognito_group_configuration_item
 
         out["group_configuration"] = (

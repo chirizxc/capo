@@ -31,6 +31,8 @@ def serialize_aws_json_1_1(
 def deserialize_aws_json_1_1(data: dict) -> BatchDescribeModelPackageErrorMap:
     out: BatchDescribeModelPackageErrorMap = {}
     for key, value in data.items():
+        if value is None:
+            continue
         import capo_sagemaker.types.batch_describe_model_package_error
 
         out[key] = (

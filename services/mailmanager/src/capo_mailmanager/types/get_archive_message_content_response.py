@@ -27,7 +27,7 @@ def serialize_aws_json_1_0(value: GetArchiveMessageContentResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> GetArchiveMessageContentResponse:
     out: GetArchiveMessageContentResponse = {}  # type: ignore[typeddict-item]
-    if "Body" in data:
+    if data.get("Body") is not None:
         import capo_mailmanager.types.message_body
 
         out["body"] = capo_mailmanager.types.message_body.deserialize_aws_json_1_0(

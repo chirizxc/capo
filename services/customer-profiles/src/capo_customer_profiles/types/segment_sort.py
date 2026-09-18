@@ -28,7 +28,7 @@ def serialize_json(value: SegmentSort) -> dict:
 
 def deserialize_json(data: dict) -> SegmentSort:
     out: SegmentSort = {}  # type: ignore[typeddict-item]
-    if "Attributes" in data:
+    if data.get("Attributes") is not None:
         import capo_customer_profiles.types.sort_attribute_list
 
         out["attributes"] = (

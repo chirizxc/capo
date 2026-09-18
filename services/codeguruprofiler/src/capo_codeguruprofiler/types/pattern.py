@@ -44,7 +44,15 @@ def serialize_json(value: Pattern) -> dict:
         out["targetFrames"] = capo_codeguruprofiler.types.target_frames.serialize_json(
             value["target_frames"]
         )
-    out["thresholdPercent"] = value.get("threshold_percent", 0)
+    out["thresholdPercent"] = (
+        "NaN"
+        if value.get("threshold_percent", 0) != value.get("threshold_percent", 0)
+        else "Infinity"
+        if value.get("threshold_percent", 0) == float("inf")
+        else "-Infinity"
+        if value.get("threshold_percent", 0) == float("-inf")
+        else value.get("threshold_percent", 0)
+    )
     if "counters_to_aggregate" in value:
         import capo_codeguruprofiler.types.strings
 
@@ -56,15 +64,15 @@ def serialize_json(value: Pattern) -> dict:
 
 def deserialize_json(data: dict) -> Pattern:
     out: Pattern = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "resolutionSteps" in data:
+    if data.get("resolutionSteps") is not None:
         out["resolution_steps"] = data["resolutionSteps"]
-    if "targetFrames" in data:
+    if data.get("targetFrames") is not None:
         import capo_codeguruprofiler.types.target_frames
 
         out["target_frames"] = (
@@ -72,11 +80,11 @@ def deserialize_json(data: dict) -> Pattern:
                 data["targetFrames"]
             )
         )
-    if "thresholdPercent" in data:
-        out["threshold_percent"] = data["thresholdPercent"]
+    if data.get("thresholdPercent") is not None:
+        out["threshold_percent"] = float(data["thresholdPercent"])
     else:
         out["threshold_percent"] = 0
-    if "countersToAggregate" in data:
+    if data.get("countersToAggregate") is not None:
         import capo_codeguruprofiler.types.strings
 
         out["counters_to_aggregate"] = (

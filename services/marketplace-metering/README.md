@@ -13,9 +13,9 @@ from capo_marketplace_metering import AsyncMarketplaceMeteringClient
 
 
 async def main():
-    async with AsyncMarketplaceMeteringClient() as s3:
+    async with AsyncMarketplaceMeteringClient() as marketplace_metering:
         # Example: call the batch_meter_usage operation
-        response = await s3.batch_meter_usage()
+        response = await marketplace_metering.batch_meter_usage()
         print(response["results"])
 ```
 
@@ -29,9 +29,9 @@ from capo_marketplace_metering.error import DisabledApiException
 
 
 async def main():
-    async with AsyncMarketplaceMeteringClient() as s3:
+    async with AsyncMarketplaceMeteringClient() as marketplace_metering:
         try:
-            await s3.batch_meter_usage()
+            await marketplace_metering.batch_meter_usage()
         except DisabledApiException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -48,13 +48,13 @@ from capo_marketplace_metering import AsyncMarketplaceMeteringClient
 
 
 async def main():
-    async with AsyncMarketplaceMeteringClient() as s3:
+    async with AsyncMarketplaceMeteringClient() as marketplace_metering:
         # Default: 3 attempts for every operation
-        response = await s3.batch_meter_usage()
+        response = await marketplace_metering.batch_meter_usage()
 
         # Override per operation
-        response = await s3.batch_meter_usage(config_overrides={"retry_max_attempts": 5})
+        response = await marketplace_metering.batch_meter_usage(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.batch_meter_usage(config_overrides={"retry_max_attempts": 1})
+        response = await marketplace_metering.batch_meter_usage(config_overrides={"retry_max_attempts": 1})
 ```

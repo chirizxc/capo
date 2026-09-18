@@ -44,7 +44,7 @@ def serialize_aws_json_1_1(value: Target) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Target:
     out: Target = {}  # type: ignore[typeddict-item]
-    if "ChannelTargetInfo" in data:
+    if data.get("ChannelTargetInfo") is not None:
         import capo_ssm_contacts.types.channel_target_info
 
         out["channel_target_info"] = (
@@ -52,7 +52,7 @@ def deserialize_aws_json_1_1(data: dict) -> Target:
                 data["ChannelTargetInfo"]
             )
         )
-    if "ContactTargetInfo" in data:
+    if data.get("ContactTargetInfo") is not None:
         import capo_ssm_contacts.types.contact_target_info
 
         out["contact_target_info"] = (

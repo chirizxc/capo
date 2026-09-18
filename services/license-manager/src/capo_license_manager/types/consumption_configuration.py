@@ -53,7 +53,7 @@ def serialize_aws_json_1_1(value: ConsumptionConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ConsumptionConfiguration:
     out: ConsumptionConfiguration = {}  # type: ignore[typeddict-item]
-    if "RenewType" in data:
+    if data.get("RenewType") is not None:
         import capo_license_manager.types.renew_type
 
         out["renew_type"] = (
@@ -61,7 +61,7 @@ def deserialize_aws_json_1_1(data: dict) -> ConsumptionConfiguration:
                 data["RenewType"]
             )
         )
-    if "ProvisionalConfiguration" in data:
+    if data.get("ProvisionalConfiguration") is not None:
         import capo_license_manager.types.provisional_configuration
 
         out["provisional_configuration"] = (
@@ -69,7 +69,7 @@ def deserialize_aws_json_1_1(data: dict) -> ConsumptionConfiguration:
                 data["ProvisionalConfiguration"]
             )
         )
-    if "BorrowConfiguration" in data:
+    if data.get("BorrowConfiguration") is not None:
         import capo_license_manager.types.borrow_configuration
 
         out["borrow_configuration"] = (

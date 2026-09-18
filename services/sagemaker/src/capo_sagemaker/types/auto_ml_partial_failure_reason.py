@@ -25,6 +25,6 @@ def serialize_aws_json_1_1(value: AutoMLPartialFailureReason) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AutoMLPartialFailureReason:
     out: AutoMLPartialFailureReason = {}  # type: ignore[typeddict-item]
-    if "PartialFailureMessage" in data:
+    if data.get("PartialFailureMessage") is not None:
         out["partial_failure_message"] = data["PartialFailureMessage"]
     return out

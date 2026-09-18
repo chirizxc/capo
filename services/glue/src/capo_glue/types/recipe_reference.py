@@ -28,11 +28,11 @@ def serialize_aws_json_1_1(value: RecipeReference) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RecipeReference:
     out: RecipeReference = {}  # type: ignore[typeddict-item]
-    if "RecipeArn" in data:
+    if data.get("RecipeArn") is not None:
         out["recipe_arn"] = data["RecipeArn"]
     else:
         raise DeserializationError("RecipeReference.recipe_arn required")
-    if "RecipeVersion" in data:
+    if data.get("RecipeVersion") is not None:
         out["recipe_version"] = data["RecipeVersion"]
     else:
         raise DeserializationError("RecipeReference.recipe_version required")

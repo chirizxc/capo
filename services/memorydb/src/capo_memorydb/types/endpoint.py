@@ -27,9 +27,9 @@ def serialize_aws_json_1_1(value: Endpoint) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Endpoint:
     out: Endpoint = {}  # type: ignore[typeddict-item]
-    if "Address" in data:
+    if data.get("Address") is not None:
         out["address"] = data["Address"]
-    if "Port" in data:
+    if data.get("Port") is not None:
         out["port"] = data["Port"]
     else:
         out["port"] = 0

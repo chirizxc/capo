@@ -23,5 +23,7 @@ def deserialize_aws_json_1_1(data: list) -> ConditionList:
 
     out: ConditionList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_codepipeline.types.condition.deserialize_aws_json_1_1(item))
     return out

@@ -39,15 +39,15 @@ def serialize_json(value: Conditions) -> dict:
 
 def deserialize_json(data: dict) -> Conditions:
     out: Conditions = {}  # type: ignore[typeddict-item]
-    if "Range" in data:
+    if data.get("Range") is not None:
         import capo_customer_profiles.types.range
 
         out["range"] = capo_customer_profiles.types.range.deserialize_json(
             data["Range"]
         )
-    if "ObjectCount" in data:
+    if data.get("ObjectCount") is not None:
         out["object_count"] = data["ObjectCount"]
-    if "Threshold" in data:
+    if data.get("Threshold") is not None:
         import capo_customer_profiles.types.threshold
 
         out["threshold"] = capo_customer_profiles.types.threshold.deserialize_json(

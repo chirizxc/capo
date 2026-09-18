@@ -44,7 +44,7 @@ def serialize_aws_json_1_0(value: RedshiftReservedInstances) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> RedshiftReservedInstances:
     out: RedshiftReservedInstances = {}  # type: ignore[typeddict-item]
-    if "configuration" in data:
+    if data.get("configuration") is not None:
         import capo_cost_optimization_hub.types.redshift_reserved_instances_configuration
 
         out["configuration"] = (
@@ -52,7 +52,7 @@ def deserialize_aws_json_1_0(data: dict) -> RedshiftReservedInstances:
                 data["configuration"]
             )
         )
-    if "costCalculation" in data:
+    if data.get("costCalculation") is not None:
         import capo_cost_optimization_hub.types.reserved_instances_cost_calculation
 
         out["cost_calculation"] = (

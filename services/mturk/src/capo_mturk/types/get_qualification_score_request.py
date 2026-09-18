@@ -28,13 +28,13 @@ def serialize_aws_json_1_1(value: GetQualificationScoreRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetQualificationScoreRequest:
     out: GetQualificationScoreRequest = {}  # type: ignore[typeddict-item]
-    if "QualificationTypeId" in data:
+    if data.get("QualificationTypeId") is not None:
         out["qualification_type_id"] = data["QualificationTypeId"]
     else:
         raise DeserializationError(
             "GetQualificationScoreRequest.qualification_type_id required"
         )
-    if "WorkerId" in data:
+    if data.get("WorkerId") is not None:
         out["worker_id"] = data["WorkerId"]
     else:
         raise DeserializationError("GetQualificationScoreRequest.worker_id required")

@@ -74,13 +74,13 @@ def serialize_aws_json_1_1(value: ListApplicationRevisionsInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListApplicationRevisionsInput:
     out: ListApplicationRevisionsInput = {}  # type: ignore[typeddict-item]
-    if "applicationName" in data:
+    if data.get("applicationName") is not None:
         out["application_name"] = data["applicationName"]
     else:
         raise DeserializationError(
             "ListApplicationRevisionsInput.application_name required"
         )
-    if "sortBy" in data:
+    if data.get("sortBy") is not None:
         import capo_codedeploy.types.application_revision_sort_by
 
         out["sort_by"] = (
@@ -88,17 +88,17 @@ def deserialize_aws_json_1_1(data: dict) -> ListApplicationRevisionsInput:
                 data["sortBy"]
             )
         )
-    if "sortOrder" in data:
+    if data.get("sortOrder") is not None:
         import capo_codedeploy.types.sort_order
 
         out["sort_order"] = capo_codedeploy.types.sort_order.deserialize_aws_json_1_1(
             data["sortOrder"]
         )
-    if "s3Bucket" in data:
+    if data.get("s3Bucket") is not None:
         out["s3_bucket"] = data["s3Bucket"]
-    if "s3KeyPrefix" in data:
+    if data.get("s3KeyPrefix") is not None:
         out["s3_key_prefix"] = data["s3KeyPrefix"]
-    if "deployed" in data:
+    if data.get("deployed") is not None:
         import capo_codedeploy.types.list_state_filter_action
 
         out["deployed"] = (
@@ -106,6 +106,6 @@ def deserialize_aws_json_1_1(data: dict) -> ListApplicationRevisionsInput:
                 data["deployed"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> AnalyticsIntentStageGroupByKeys:
 
     out: AnalyticsIntentStageGroupByKeys = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_lex_models_v2.types.analytics_intent_stage_group_by_key.deserialize_json(
                 item

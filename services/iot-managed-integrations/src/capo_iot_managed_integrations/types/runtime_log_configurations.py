@@ -83,7 +83,7 @@ def serialize_json(value: RuntimeLogConfigurations) -> dict:
 
 def deserialize_json(data: dict) -> RuntimeLogConfigurations:
     out: RuntimeLogConfigurations = {}  # type: ignore[typeddict-item]
-    if "LogLevel" in data:
+    if data.get("LogLevel") is not None:
         import capo_iot_managed_integrations.types.log_level
 
         out["log_level"] = (
@@ -91,7 +91,7 @@ def deserialize_json(data: dict) -> RuntimeLogConfigurations:
                 data["LogLevel"]
             )
         )
-    if "LogFlushLevel" in data:
+    if data.get("LogFlushLevel") is not None:
         import capo_iot_managed_integrations.types.log_level
 
         out["log_flush_level"] = (
@@ -99,20 +99,20 @@ def deserialize_json(data: dict) -> RuntimeLogConfigurations:
                 data["LogFlushLevel"]
             )
         )
-    if "LocalStoreLocation" in data:
+    if data.get("LocalStoreLocation") is not None:
         out["local_store_location"] = data["LocalStoreLocation"]
-    if "LocalStoreFileRotationMaxFiles" in data:
+    if data.get("LocalStoreFileRotationMaxFiles") is not None:
         out["local_store_file_rotation_max_files"] = data[
             "LocalStoreFileRotationMaxFiles"
         ]
-    if "LocalStoreFileRotationMaxBytes" in data:
+    if data.get("LocalStoreFileRotationMaxBytes") is not None:
         out["local_store_file_rotation_max_bytes"] = data[
             "LocalStoreFileRotationMaxBytes"
         ]
-    if "UploadLog" in data:
+    if data.get("UploadLog") is not None:
         out["upload_log"] = data["UploadLog"]
-    if "UploadPeriodMinutes" in data:
+    if data.get("UploadPeriodMinutes") is not None:
         out["upload_period_minutes"] = data["UploadPeriodMinutes"]
-    if "DeleteLocalStoreAfterUpload" in data:
+    if data.get("DeleteLocalStoreAfterUpload") is not None:
         out["delete_local_store_after_upload"] = data["DeleteLocalStoreAfterUpload"]
     return out

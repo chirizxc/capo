@@ -27,7 +27,7 @@ def serialize_aws_json_1_1(value: DescribeTunnelResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeTunnelResponse:
     out: DescribeTunnelResponse = {}  # type: ignore[typeddict-item]
-    if "tunnel" in data:
+    if data.get("tunnel") is not None:
         import capo_iotsecuretunneling.types.tunnel
 
         out["tunnel"] = capo_iotsecuretunneling.types.tunnel.deserialize_aws_json_1_1(

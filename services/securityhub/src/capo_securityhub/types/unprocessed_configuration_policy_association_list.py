@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> UnprocessedConfigurationPolicyAssociationLis
 
     out: UnprocessedConfigurationPolicyAssociationList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_securityhub.types.unprocessed_configuration_policy_association.deserialize_json(
                 item

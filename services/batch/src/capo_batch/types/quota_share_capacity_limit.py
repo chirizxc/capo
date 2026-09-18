@@ -28,8 +28,8 @@ def serialize_json(value: QuotaShareCapacityLimit) -> dict:
 
 def deserialize_json(data: dict) -> QuotaShareCapacityLimit:
     out: QuotaShareCapacityLimit = {}  # type: ignore[typeddict-item]
-    if "maxCapacity" in data:
+    if data.get("maxCapacity") is not None:
         out["max_capacity"] = data["maxCapacity"]
-    if "capacityUnit" in data:
+    if data.get("capacityUnit") is not None:
         out["capacity_unit"] = data["capacityUnit"]
     return out

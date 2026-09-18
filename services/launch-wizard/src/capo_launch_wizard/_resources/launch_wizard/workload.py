@@ -74,14 +74,16 @@ class Workload:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_launch_wizard.types.get_workload_input.GetWorkloadInput = {}  # type: ignore[typeddict-item]
-        input_["workload_name"] = workload_name
+        input_: capo_launch_wizard.types.get_workload_input.GetWorkloadInput = {
+            "workload_name": workload_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -125,7 +127,7 @@ class Workload:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_launch_wizard.types.list_workloads_input.ListWorkloadsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_launch_wizard.types.list_workloads_input.ListWorkloadsInput = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -136,6 +138,7 @@ class Workload:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -182,14 +185,16 @@ class AsyncWorkload:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_launch_wizard.types.get_workload_input.GetWorkloadInput = {}  # type: ignore[typeddict-item]
-        input_["workload_name"] = workload_name
+        input_: capo_launch_wizard.types.get_workload_input.GetWorkloadInput = {
+            "workload_name": workload_name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -234,7 +239,7 @@ class AsyncWorkload:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_launch_wizard.types.list_workloads_input.ListWorkloadsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_launch_wizard.types.list_workloads_input.ListWorkloadsInput = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -245,4 +250,5 @@ class AsyncWorkload:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

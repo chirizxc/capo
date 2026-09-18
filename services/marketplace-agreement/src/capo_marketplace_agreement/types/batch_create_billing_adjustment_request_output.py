@@ -40,7 +40,7 @@ def serialize_aws_json_1_0(value: BatchCreateBillingAdjustmentRequestOutput) -> 
 
 def deserialize_aws_json_1_0(data: dict) -> BatchCreateBillingAdjustmentRequestOutput:
     out: BatchCreateBillingAdjustmentRequestOutput = {}  # type: ignore[typeddict-item]
-    if "items" in data:
+    if data.get("items") is not None:
         import capo_marketplace_agreement.types.batch_create_billing_adjustment_item_list
 
         out["items"] = (
@@ -52,7 +52,7 @@ def deserialize_aws_json_1_0(data: dict) -> BatchCreateBillingAdjustmentRequestO
         raise DeserializationError(
             "BatchCreateBillingAdjustmentRequestOutput.items required"
         )
-    if "errors" in data:
+    if data.get("errors") is not None:
         import capo_marketplace_agreement.types.batch_create_billing_adjustment_error_list
 
         out["errors"] = (

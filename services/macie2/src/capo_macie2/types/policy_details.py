@@ -32,13 +32,13 @@ def serialize_json(value: PolicyDetails) -> dict:
 
 def deserialize_json(data: dict) -> PolicyDetails:
     out: PolicyDetails = {}  # type: ignore[typeddict-item]
-    if "action" in data:
+    if data.get("action") is not None:
         import capo_macie2.types.finding_action
 
         out["action"] = capo_macie2.types.finding_action.deserialize_json(
             data["action"]
         )
-    if "actor" in data:
+    if data.get("actor") is not None:
         import capo_macie2.types.finding_actor
 
         out["actor"] = capo_macie2.types.finding_actor.deserialize_json(data["actor"])

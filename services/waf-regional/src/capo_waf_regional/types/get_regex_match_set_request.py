@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: GetRegexMatchSetRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetRegexMatchSetRequest:
     out: GetRegexMatchSetRequest = {}  # type: ignore[typeddict-item]
-    if "RegexMatchSetId" in data:
+    if data.get("RegexMatchSetId") is not None:
         out["regex_match_set_id"] = data["RegexMatchSetId"]
     else:
         raise DeserializationError(

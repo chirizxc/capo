@@ -24,7 +24,7 @@ def serialize_json(value: GetListingInput) -> dict:
 
 def deserialize_json(data: dict) -> GetListingInput:
     out: GetListingInput = {}  # type: ignore[typeddict-item]
-    if "listingId" in data:
+    if data.get("listingId") is not None:
         out["listing_id"] = data["listingId"]
     else:
         raise DeserializationError("GetListingInput.listing_id required")

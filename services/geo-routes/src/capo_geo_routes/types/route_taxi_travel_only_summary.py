@@ -24,7 +24,7 @@ def serialize_json(value: RouteTaxiTravelOnlySummary) -> dict:
 
 def deserialize_json(data: dict) -> RouteTaxiTravelOnlySummary:
     out: RouteTaxiTravelOnlySummary = {}  # type: ignore[typeddict-item]
-    if "Duration" in data:
+    if data.get("Duration") is not None:
         out["duration"] = data["Duration"]
     else:
         raise DeserializationError("RouteTaxiTravelOnlySummary.duration required")

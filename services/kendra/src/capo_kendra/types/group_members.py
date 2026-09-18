@@ -45,19 +45,19 @@ def serialize_aws_json_1_1(value: GroupMembers) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GroupMembers:
     out: GroupMembers = {}  # type: ignore[typeddict-item]
-    if "MemberGroups" in data:
+    if data.get("MemberGroups") is not None:
         import capo_kendra.types.member_groups
 
         out["member_groups"] = capo_kendra.types.member_groups.deserialize_aws_json_1_1(
             data["MemberGroups"]
         )
-    if "MemberUsers" in data:
+    if data.get("MemberUsers") is not None:
         import capo_kendra.types.member_users
 
         out["member_users"] = capo_kendra.types.member_users.deserialize_aws_json_1_1(
             data["MemberUsers"]
         )
-    if "S3PathforGroupMembers" in data:
+    if data.get("S3PathforGroupMembers") is not None:
         import capo_kendra.types.s3_path
 
         out["s3_pathfor_group_members"] = (

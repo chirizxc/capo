@@ -32,13 +32,13 @@ def serialize_json(value: PersistentConnectionConfig) -> dict:
 
 def deserialize_json(data: dict) -> PersistentConnectionConfig:
     out: PersistentConnectionConfig = {}  # type: ignore[typeddict-item]
-    if "Channel" in data:
+    if data.get("Channel") is not None:
         import capo_connect.types.channel
 
         out["channel"] = capo_connect.types.channel.deserialize_json(data["Channel"])
     else:
         raise DeserializationError("PersistentConnectionConfig.channel required")
-    if "PersistentConnection" in data:
+    if data.get("PersistentConnection") is not None:
         out["persistent_connection"] = data["PersistentConnection"]
     else:
         raise DeserializationError(

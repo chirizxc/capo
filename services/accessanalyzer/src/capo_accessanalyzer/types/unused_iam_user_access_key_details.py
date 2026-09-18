@@ -32,13 +32,13 @@ def serialize_json(value: UnusedIamUserAccessKeyDetails) -> dict:
 
 def deserialize_json(data: dict) -> UnusedIamUserAccessKeyDetails:
     out: UnusedIamUserAccessKeyDetails = {}  # type: ignore[typeddict-item]
-    if "accessKeyId" in data:
+    if data.get("accessKeyId") is not None:
         out["access_key_id"] = data["accessKeyId"]
     else:
         raise DeserializationError(
             "UnusedIamUserAccessKeyDetails.access_key_id required"
         )
-    if "lastAccessed" in data:
+    if data.get("lastAccessed") is not None:
         import capo_accessanalyzer.types.timestamp
 
         out["last_accessed"] = capo_accessanalyzer.types.timestamp.deserialize_json(

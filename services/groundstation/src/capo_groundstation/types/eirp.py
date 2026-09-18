@@ -20,7 +20,15 @@ class Eirp(TypedDict, closed=True):
 # --- restJson1 ser/de ---
 def serialize_json(value: Eirp) -> dict:
     out: dict = {}
-    out["value"] = value["value"]
+    out["value"] = (
+        "NaN"
+        if value["value"] != value["value"]
+        else "Infinity"
+        if value["value"] == float("inf")
+        else "-Infinity"
+        if value["value"] == float("-inf")
+        else value["value"]
+    )
     import capo_groundstation.types.eirp_units
 
     out["units"] = capo_groundstation.types.eirp_units.serialize_json(value["units"])
@@ -29,11 +37,11 @@ def serialize_json(value: Eirp) -> dict:
 
 def deserialize_json(data: dict) -> Eirp:
     out: Eirp = {}  # type: ignore[typeddict-item]
-    if "value" in data:
-        out["value"] = data["value"]
+    if data.get("value") is not None:
+        out["value"] = float(data["value"])
     else:
         raise DeserializationError("Eirp.value required")
-    if "units" in data:
+    if data.get("units") is not None:
         import capo_groundstation.types.eirp_units
 
         out["units"] = capo_groundstation.types.eirp_units.deserialize_json(

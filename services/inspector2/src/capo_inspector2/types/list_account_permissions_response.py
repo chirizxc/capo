@@ -33,7 +33,7 @@ def serialize_json(value: ListAccountPermissionsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListAccountPermissionsResponse:
     out: ListAccountPermissionsResponse = {}  # type: ignore[typeddict-item]
-    if "permissions" in data:
+    if data.get("permissions") is not None:
         import capo_inspector2.types.permissions
 
         out["permissions"] = capo_inspector2.types.permissions.deserialize_json(
@@ -43,6 +43,6 @@ def deserialize_json(data: dict) -> ListAccountPermissionsResponse:
         raise DeserializationError(
             "ListAccountPermissionsResponse.permissions required"
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

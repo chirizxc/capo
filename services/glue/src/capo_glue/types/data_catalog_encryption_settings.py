@@ -44,7 +44,7 @@ def serialize_aws_json_1_1(value: DataCatalogEncryptionSettings) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DataCatalogEncryptionSettings:
     out: DataCatalogEncryptionSettings = {}  # type: ignore[typeddict-item]
-    if "EncryptionAtRest" in data:
+    if data.get("EncryptionAtRest") is not None:
         import capo_glue.types.encryption_at_rest
 
         out["encryption_at_rest"] = (
@@ -52,7 +52,7 @@ def deserialize_aws_json_1_1(data: dict) -> DataCatalogEncryptionSettings:
                 data["EncryptionAtRest"]
             )
         )
-    if "ConnectionPasswordEncryption" in data:
+    if data.get("ConnectionPasswordEncryption") is not None:
         import capo_glue.types.connection_password_encryption
 
         out["connection_password_encryption"] = (

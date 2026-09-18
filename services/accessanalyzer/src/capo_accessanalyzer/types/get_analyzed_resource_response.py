@@ -29,7 +29,7 @@ def serialize_json(value: GetAnalyzedResourceResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetAnalyzedResourceResponse:
     out: GetAnalyzedResourceResponse = {}  # type: ignore[typeddict-item]
-    if "resource" in data:
+    if data.get("resource") is not None:
         import capo_accessanalyzer.types.analyzed_resource
 
         out["resource"] = capo_accessanalyzer.types.analyzed_resource.deserialize_json(

@@ -27,7 +27,7 @@ def serialize_json(value: InternetMeasurementsLogDelivery) -> dict:
 
 def deserialize_json(data: dict) -> InternetMeasurementsLogDelivery:
     out: InternetMeasurementsLogDelivery = {}  # type: ignore[typeddict-item]
-    if "S3Config" in data:
+    if data.get("S3Config") is not None:
         import capo_internetmonitor.types.s3_config
 
         out["s3_config"] = capo_internetmonitor.types.s3_config.deserialize_json(

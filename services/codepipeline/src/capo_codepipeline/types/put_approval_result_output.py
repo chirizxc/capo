@@ -27,7 +27,7 @@ def serialize_aws_json_1_1(value: PutApprovalResultOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PutApprovalResultOutput:
     out: PutApprovalResultOutput = {}  # type: ignore[typeddict-item]
-    if "approvedAt" in data:
+    if data.get("approvedAt") is not None:
         import capo_codepipeline.types.timestamp
 
         out["approved_at"] = capo_codepipeline.types.timestamp.deserialize_aws_json_1_1(

@@ -43,7 +43,7 @@ def serialize_aws_json_1_0(value: GeneratedReport) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> GeneratedReport:
     out: GeneratedReport = {}  # type: ignore[typeddict-item]
-    if "reportGenerationTime" in data:
+    if data.get("reportGenerationTime") is not None:
         import capo_arc_region_switch.types._prelude.timestamp
 
         out["report_generation_time"] = (
@@ -51,7 +51,7 @@ def deserialize_aws_json_1_0(data: dict) -> GeneratedReport:
                 data["reportGenerationTime"]
             )
         )
-    if "reportOutput" in data:
+    if data.get("reportOutput") is not None:
         import capo_arc_region_switch.types.report_output
 
         out["report_output"] = (

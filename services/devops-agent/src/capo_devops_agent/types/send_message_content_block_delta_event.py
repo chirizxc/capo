@@ -41,9 +41,9 @@ def serialize_json(value: SendMessageContentBlockDeltaEvent) -> dict:
 
 def deserialize_json(data: dict) -> SendMessageContentBlockDeltaEvent:
     out: SendMessageContentBlockDeltaEvent = {}  # type: ignore[typeddict-item]
-    if "index" in data:
+    if data.get("index") is not None:
         out["index"] = data["index"]
-    if "delta" in data:
+    if data.get("delta") is not None:
         import capo_devops_agent.types.send_message_content_block_delta
 
         out["delta"] = (
@@ -51,7 +51,7 @@ def deserialize_json(data: dict) -> SendMessageContentBlockDeltaEvent:
                 data["delta"]
             )
         )
-    if "sequenceNumber" in data:
+    if data.get("sequenceNumber") is not None:
         out["sequence_number"] = data["sequenceNumber"]
     return out
 

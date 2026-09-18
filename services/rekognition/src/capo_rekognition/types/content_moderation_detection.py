@@ -59,11 +59,11 @@ def serialize_aws_json_1_1(value: ContentModerationDetection) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ContentModerationDetection:
     out: ContentModerationDetection = {}  # type: ignore[typeddict-item]
-    if "Timestamp" in data:
+    if data.get("Timestamp") is not None:
         out["timestamp"] = data["Timestamp"]
     else:
         out["timestamp"] = 0
-    if "ModerationLabel" in data:
+    if data.get("ModerationLabel") is not None:
         import capo_rekognition.types.moderation_label
 
         out["moderation_label"] = (
@@ -71,13 +71,13 @@ def deserialize_aws_json_1_1(data: dict) -> ContentModerationDetection:
                 data["ModerationLabel"]
             )
         )
-    if "StartTimestampMillis" in data:
+    if data.get("StartTimestampMillis") is not None:
         out["start_timestamp_millis"] = data["StartTimestampMillis"]
-    if "EndTimestampMillis" in data:
+    if data.get("EndTimestampMillis") is not None:
         out["end_timestamp_millis"] = data["EndTimestampMillis"]
-    if "DurationMillis" in data:
+    if data.get("DurationMillis") is not None:
         out["duration_millis"] = data["DurationMillis"]
-    if "ContentTypes" in data:
+    if data.get("ContentTypes") is not None:
         import capo_rekognition.types.content_types
 
         out["content_types"] = (

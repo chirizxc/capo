@@ -77,7 +77,7 @@ def serialize_json(value: GaugeChartOptions) -> dict:
 
 def deserialize_json(data: dict) -> GaugeChartOptions:
     out: GaugeChartOptions = {}  # type: ignore[typeddict-item]
-    if "PrimaryValueDisplayType" in data:
+    if data.get("PrimaryValueDisplayType") is not None:
         import capo_quicksight.types.primary_value_display_type
 
         out["primary_value_display_type"] = (
@@ -85,7 +85,7 @@ def deserialize_json(data: dict) -> GaugeChartOptions:
                 data["PrimaryValueDisplayType"]
             )
         )
-    if "Comparison" in data:
+    if data.get("Comparison") is not None:
         import capo_quicksight.types.comparison_configuration
 
         out["comparison"] = (
@@ -93,19 +93,19 @@ def deserialize_json(data: dict) -> GaugeChartOptions:
                 data["Comparison"]
             )
         )
-    if "ArcAxis" in data:
+    if data.get("ArcAxis") is not None:
         import capo_quicksight.types.arc_axis_configuration
 
         out["arc_axis"] = capo_quicksight.types.arc_axis_configuration.deserialize_json(
             data["ArcAxis"]
         )
-    if "Arc" in data:
+    if data.get("Arc") is not None:
         import capo_quicksight.types.arc_configuration
 
         out["arc"] = capo_quicksight.types.arc_configuration.deserialize_json(
             data["Arc"]
         )
-    if "PrimaryValueFontConfiguration" in data:
+    if data.get("PrimaryValueFontConfiguration") is not None:
         import capo_quicksight.types.font_configuration
 
         out["primary_value_font_configuration"] = (

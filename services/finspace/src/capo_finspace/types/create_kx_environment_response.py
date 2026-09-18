@@ -61,23 +61,23 @@ def serialize_json(value: CreateKxEnvironmentResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateKxEnvironmentResponse:
     out: CreateKxEnvironmentResponse = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_finspace.types.environment_status
 
         out["status"] = capo_finspace.types.environment_status.deserialize_json(
             data["status"]
         )
-    if "environmentId" in data:
+    if data.get("environmentId") is not None:
         out["environment_id"] = data["environmentId"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "environmentArn" in data:
+    if data.get("environmentArn") is not None:
         out["environment_arn"] = data["environmentArn"]
-    if "kmsKeyId" in data:
+    if data.get("kmsKeyId") is not None:
         out["kms_key_id"] = data["kmsKeyId"]
-    if "creationTimestamp" in data:
+    if data.get("creationTimestamp") is not None:
         import capo_finspace.types.timestamp
 
         out["creation_timestamp"] = capo_finspace.types.timestamp.deserialize_json(

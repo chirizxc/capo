@@ -33,11 +33,11 @@ def serialize_aws_json_1_0(value: GetAccountActivityRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> GetAccountActivityRequest:
     out: GetAccountActivityRequest = {}  # type: ignore[typeddict-item]
-    if "activityId" in data:
+    if data.get("activityId") is not None:
         out["activity_id"] = data["activityId"]
     else:
         raise DeserializationError("GetAccountActivityRequest.activity_id required")
-    if "languageCode" in data:
+    if data.get("languageCode") is not None:
         import capo_freetier.types.language_code
 
         out["language_code"] = (

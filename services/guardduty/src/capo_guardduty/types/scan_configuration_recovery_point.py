@@ -38,9 +38,9 @@ def serialize_json(value: ScanConfigurationRecoveryPoint) -> dict:
 
 def deserialize_json(data: dict) -> ScanConfigurationRecoveryPoint:
     out: ScanConfigurationRecoveryPoint = {}  # type: ignore[typeddict-item]
-    if "backupVaultName" in data:
+    if data.get("backupVaultName") is not None:
         out["backup_vault_name"] = data["backupVaultName"]
-    if "continuousScanDetails" in data:
+    if data.get("continuousScanDetails") is not None:
         import capo_guardduty.types.scan_configuration_continuous_scan_details
 
         out["continuous_scan_details"] = (

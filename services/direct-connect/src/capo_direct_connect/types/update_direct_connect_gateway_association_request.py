@@ -52,9 +52,9 @@ def deserialize_aws_json_1_1(
     data: dict,
 ) -> UpdateDirectConnectGatewayAssociationRequest:
     out: UpdateDirectConnectGatewayAssociationRequest = {}  # type: ignore[typeddict-item]
-    if "associationId" in data:
+    if data.get("associationId") is not None:
         out["association_id"] = data["associationId"]
-    if "addAllowedPrefixesToDirectConnectGateway" in data:
+    if data.get("addAllowedPrefixesToDirectConnectGateway") is not None:
         import capo_direct_connect.types.route_filter_prefix_list
 
         out["add_allowed_prefixes_to_direct_connect_gateway"] = (
@@ -62,7 +62,7 @@ def deserialize_aws_json_1_1(
                 data["addAllowedPrefixesToDirectConnectGateway"]
             )
         )
-    if "removeAllowedPrefixesToDirectConnectGateway" in data:
+    if data.get("removeAllowedPrefixesToDirectConnectGateway") is not None:
         import capo_direct_connect.types.route_filter_prefix_list
 
         out["remove_allowed_prefixes_to_direct_connect_gateway"] = (

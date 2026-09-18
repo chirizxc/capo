@@ -27,7 +27,7 @@ def serialize_aws_json_1_1(value: GetStaticIpResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetStaticIpResult:
     out: GetStaticIpResult = {}  # type: ignore[typeddict-item]
-    if "staticIp" in data:
+    if data.get("staticIp") is not None:
         import capo_lightsail.types.static_ip
 
         out["static_ip"] = capo_lightsail.types.static_ip.deserialize_aws_json_1_1(

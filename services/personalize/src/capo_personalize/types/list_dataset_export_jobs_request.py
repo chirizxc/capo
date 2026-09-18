@@ -33,10 +33,10 @@ def serialize_aws_json_1_1(value: ListDatasetExportJobsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListDatasetExportJobsRequest:
     out: ListDatasetExportJobsRequest = {}  # type: ignore[typeddict-item]
-    if "datasetArn" in data:
+    if data.get("datasetArn") is not None:
         out["dataset_arn"] = data["datasetArn"]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
     return out

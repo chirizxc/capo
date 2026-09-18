@@ -36,17 +36,17 @@ def serialize_aws_json_1_1(value: GetGroupMembershipIdRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetGroupMembershipIdRequest:
     out: GetGroupMembershipIdRequest = {}  # type: ignore[typeddict-item]
-    if "IdentityStoreId" in data:
+    if data.get("IdentityStoreId") is not None:
         out["identity_store_id"] = data["IdentityStoreId"]
     else:
         raise DeserializationError(
             "GetGroupMembershipIdRequest.identity_store_id required"
         )
-    if "GroupId" in data:
+    if data.get("GroupId") is not None:
         out["group_id"] = data["GroupId"]
     else:
         raise DeserializationError("GetGroupMembershipIdRequest.group_id required")
-    if "MemberId" in data:
+    if data.get("MemberId") is not None:
         import capo_identitystore.types.member_id
 
         out["member_id"] = capo_identitystore.types.member_id.deserialize_aws_json_1_1(

@@ -29,9 +29,9 @@ def serialize_aws_json_1_1(value: AccessPointAlreadyOwnedByYou_) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AccessPointAlreadyOwnedByYou_:
     out: AccessPointAlreadyOwnedByYou_ = {}  # type: ignore[typeddict-item]
-    if "ErrorCode" in data:
+    if data.get("ErrorCode") is not None:
         out["error_code"] = data["ErrorCode"]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     return out
 
@@ -41,15 +41,18 @@ class AccessPointAlreadyOwnedByYou(ServiceError):
 
     code: str | None = "AccessPointAlreadyOwnedByYou"
 
-    def __init__(self, data: AccessPointAlreadyOwnedByYou_):
+    def __init__(self, data: AccessPointAlreadyOwnedByYou_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="AccessPointAlreadyOwnedByYou",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "AccessPointAlreadyOwnedByYou":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "AccessPointAlreadyOwnedByYou":
+        return cls(deserialize_aws_json_1_1(data), message)

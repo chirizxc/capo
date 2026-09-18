@@ -44,7 +44,7 @@ def serialize_aws_json_1_1(value: ServiceActionDetail) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ServiceActionDetail:
     out: ServiceActionDetail = {}  # type: ignore[typeddict-item]
-    if "ServiceActionSummary" in data:
+    if data.get("ServiceActionSummary") is not None:
         import capo_service_catalog.types.service_action_summary
 
         out["service_action_summary"] = (
@@ -52,7 +52,7 @@ def deserialize_aws_json_1_1(data: dict) -> ServiceActionDetail:
                 data["ServiceActionSummary"]
             )
         )
-    if "Definition" in data:
+    if data.get("Definition") is not None:
         import capo_service_catalog.types.service_action_definition_map
 
         out["definition"] = (

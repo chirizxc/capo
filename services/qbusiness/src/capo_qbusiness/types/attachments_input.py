@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> AttachmentsInput:
 
     out: AttachmentsInput = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_qbusiness.types.attachment_input.deserialize_json(item))
     return out

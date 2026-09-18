@@ -83,7 +83,7 @@ def serialize_aws_json_1_0(value: ExportEBSVolumeRecommendationsRequest) -> dict
 
 def deserialize_aws_json_1_0(data: dict) -> ExportEBSVolumeRecommendationsRequest:
     out: ExportEBSVolumeRecommendationsRequest = {}  # type: ignore[typeddict-item]
-    if "accountIds" in data:
+    if data.get("accountIds") is not None:
         import capo_compute_optimizer.types.account_ids
 
         out["account_ids"] = (
@@ -91,7 +91,7 @@ def deserialize_aws_json_1_0(data: dict) -> ExportEBSVolumeRecommendationsReques
                 data["accountIds"]
             )
         )
-    if "filters" in data:
+    if data.get("filters") is not None:
         import capo_compute_optimizer.types.ebs_filters
 
         out["filters"] = (
@@ -99,7 +99,7 @@ def deserialize_aws_json_1_0(data: dict) -> ExportEBSVolumeRecommendationsReques
                 data["filters"]
             )
         )
-    if "fieldsToExport" in data:
+    if data.get("fieldsToExport") is not None:
         import capo_compute_optimizer.types.exportable_volume_fields
 
         out["fields_to_export"] = (
@@ -107,7 +107,7 @@ def deserialize_aws_json_1_0(data: dict) -> ExportEBSVolumeRecommendationsReques
                 data["fieldsToExport"]
             )
         )
-    if "s3DestinationConfig" in data:
+    if data.get("s3DestinationConfig") is not None:
         import capo_compute_optimizer.types.s3_destination_config
 
         out["s3_destination_config"] = (
@@ -119,7 +119,7 @@ def deserialize_aws_json_1_0(data: dict) -> ExportEBSVolumeRecommendationsReques
         raise DeserializationError(
             "ExportEBSVolumeRecommendationsRequest.s3_destination_config required"
         )
-    if "fileFormat" in data:
+    if data.get("fileFormat") is not None:
         import capo_compute_optimizer.types.file_format
 
         out["file_format"] = (
@@ -127,7 +127,7 @@ def deserialize_aws_json_1_0(data: dict) -> ExportEBSVolumeRecommendationsReques
                 data["fileFormat"]
             )
         )
-    if "includeMemberAccounts" in data:
+    if data.get("includeMemberAccounts") is not None:
         out["include_member_accounts"] = data["includeMemberAccounts"]
     else:
         out["include_member_accounts"] = False

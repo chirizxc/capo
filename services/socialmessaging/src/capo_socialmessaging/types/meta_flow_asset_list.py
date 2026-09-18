@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> MetaFlowAssetList:
 
     out: MetaFlowAssetList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_socialmessaging.types.meta_flow_asset.deserialize_json(item))
     return out

@@ -18,6 +18,6 @@ def serialize_json(value: MlflowPropertiesOutput) -> dict:
 
 def deserialize_json(data: dict) -> MlflowPropertiesOutput:
     out: MlflowPropertiesOutput = {}  # type: ignore[typeddict-item]
-    if "trackingServerArn" in data:
+    if data.get("trackingServerArn") is not None:
         out["tracking_server_arn"] = data["trackingServerArn"]
     return out

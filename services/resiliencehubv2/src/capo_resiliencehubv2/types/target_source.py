@@ -37,11 +37,11 @@ def serialize_json(value: TargetSource) -> dict:
 
 def deserialize_json(data: dict) -> TargetSource:
     out: TargetSource = {}  # type: ignore[typeddict-item]
-    if "value" in data:
+    if data.get("value") is not None:
         out["value"] = data["value"]
-    if "policyName" in data:
+    if data.get("policyName") is not None:
         out["policy_name"] = data["policyName"]
-    if "source" in data:
+    if data.get("source") is not None:
         import capo_resiliencehubv2.types.policy_value_source
 
         out["source"] = capo_resiliencehubv2.types.policy_value_source.deserialize_json(

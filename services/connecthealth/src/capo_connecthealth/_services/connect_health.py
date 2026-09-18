@@ -1,5 +1,6 @@
 """Generated from Smithy shape ``com.amazonaws.connecthealth#ConnectHealth``."""
 
+import uuid
 import warnings
 from collections.abc import Generator, Iterator
 from contextlib import contextmanager
@@ -208,15 +209,17 @@ class ConnectHealthClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connecthealth.types.activate_subscription_input.ActivateSubscriptionInput = {}  # type: ignore[typeddict-item]
-        input_["domain_id"] = domain_id
-        input_["subscription_id"] = subscription_id
+        input_: capo_connecthealth.types.activate_subscription_input.ActivateSubscriptionInput = {
+            "domain_id": domain_id,
+            "subscription_id": subscription_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_domain(
@@ -258,8 +261,9 @@ class ConnectHealthClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connecthealth.types.create_domain_input.CreateDomainInput = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_connecthealth.types.create_domain_input.CreateDomainInput = {
+            "name": name
+        }
         if kms_key_arn is not None:
             input_["kms_key_arn"] = kms_key_arn
         if web_app_setup_configuration is not None:
@@ -272,6 +276,7 @@ class ConnectHealthClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_subscription(
@@ -309,14 +314,16 @@ class ConnectHealthClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connecthealth.types.create_subscription_input.CreateSubscriptionInput = {}  # type: ignore[typeddict-item]
-        input_["domain_id"] = domain_id
+        input_: capo_connecthealth.types.create_subscription_input.CreateSubscriptionInput = {
+            "domain_id": domain_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def deactivate_subscription(
@@ -355,15 +362,17 @@ class ConnectHealthClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connecthealth.types.deactivate_subscription_input.DeactivateSubscriptionInput = {}  # type: ignore[typeddict-item]
-        input_["domain_id"] = domain_id
-        input_["subscription_id"] = subscription_id
+        input_: capo_connecthealth.types.deactivate_subscription_input.DeactivateSubscriptionInput = {
+            "domain_id": domain_id,
+            "subscription_id": subscription_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_domain(
@@ -397,14 +406,16 @@ class ConnectHealthClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connecthealth.types.delete_domain_input.DeleteDomainInput = {}  # type: ignore[typeddict-item]
-        input_["domain_id"] = domain_id
+        input_: capo_connecthealth.types.delete_domain_input.DeleteDomainInput = {
+            "domain_id": domain_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_domain(
@@ -438,14 +449,16 @@ class ConnectHealthClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connecthealth.types.get_domain_input.GetDomainInput = {}  # type: ignore[typeddict-item]
-        input_["domain_id"] = domain_id
+        input_: capo_connecthealth.types.get_domain_input.GetDomainInput = {
+            "domain_id": domain_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_medical_scribe_listening_session(
@@ -487,16 +500,18 @@ class ConnectHealthClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connecthealth.types.get_medical_scribe_listening_session_input.GetMedicalScribeListeningSessionInput = {}  # type: ignore[typeddict-item]
-        input_["session_id"] = session_id
-        input_["domain_id"] = domain_id
-        input_["subscription_id"] = subscription_id
+        input_: capo_connecthealth.types.get_medical_scribe_listening_session_input.GetMedicalScribeListeningSessionInput = {
+            "session_id": session_id,
+            "domain_id": domain_id,
+            "subscription_id": subscription_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_patient_insights_job(
@@ -536,15 +551,17 @@ class ConnectHealthClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connecthealth.types.get_patient_insights_job_request.GetPatientInsightsJobRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_id"] = domain_id
-        input_["job_id"] = job_id
+        input_: capo_connecthealth.types.get_patient_insights_job_request.GetPatientInsightsJobRequest = {
+            "domain_id": domain_id,
+            "job_id": job_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_subscription(
@@ -583,15 +600,17 @@ class ConnectHealthClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connecthealth.types.get_subscription_input.GetSubscriptionInput = {}  # type: ignore[typeddict-item]
-        input_["domain_id"] = domain_id
-        input_["subscription_id"] = subscription_id
+        input_: capo_connecthealth.types.get_subscription_input.GetSubscriptionInput = {
+            "domain_id": domain_id,
+            "subscription_id": subscription_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_domains(
@@ -628,7 +647,7 @@ class ConnectHealthClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connecthealth.types.list_domains_input.ListDomainsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_connecthealth.types.list_domains_input.ListDomainsInput = {}
         if status is not None:
             input_["status"] = status
         if max_results is not None:
@@ -641,6 +660,7 @@ class ConnectHealthClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_domains(
@@ -704,8 +724,9 @@ class ConnectHealthClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connecthealth.types.list_subscriptions_input.ListSubscriptionsInput = {}  # type: ignore[typeddict-item]
-        input_["domain_id"] = domain_id
+        input_: capo_connecthealth.types.list_subscriptions_input.ListSubscriptionsInput = {
+            "domain_id": domain_id
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -716,6 +737,7 @@ class ConnectHealthClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_subscriptions(
@@ -771,14 +793,16 @@ class ConnectHealthClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connecthealth.types.list_tags_for_resource_input.ListTagsForResourceInput = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_connecthealth.types.list_tags_for_resource_input.ListTagsForResourceInput = {
+            "resource_arn": resource_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     @contextmanager
@@ -832,13 +856,14 @@ class ConnectHealthClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connecthealth.types.start_medical_scribe_listening_session_input.StartMedicalScribeListeningSessionInput = {}  # type: ignore[typeddict-item]
-        input_["session_id"] = session_id
-        input_["domain_id"] = domain_id
-        input_["subscription_id"] = subscription_id
-        input_["language_code"] = language_code
-        input_["media_sample_rate_hertz"] = media_sample_rate_hertz
-        input_["media_encoding"] = media_encoding
+        input_: capo_connecthealth.types.start_medical_scribe_listening_session_input.StartMedicalScribeListeningSessionInput = {
+            "session_id": session_id,
+            "domain_id": domain_id,
+            "subscription_id": subscription_id,
+            "language_code": language_code,
+            "media_sample_rate_hertz": media_sample_rate_hertz,
+            "media_encoding": media_encoding,
+        }
         if input_stream is not None:
             input_["input_stream"] = ensure_sync_iterator(input_stream)
 
@@ -847,7 +872,10 @@ class ConnectHealthClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
-        yield response.output
+        try:
+            yield response.output
+        finally:
+            response.response.close()
 
     def start_patient_insights_job(
         self,
@@ -901,22 +929,25 @@ class ConnectHealthClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connecthealth.types.start_patient_insights_job_request.StartPatientInsightsJobRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_id"] = domain_id
-        input_["patient_context"] = patient_context
-        input_["insights_context"] = insights_context
-        input_["encounter_context"] = encounter_context
-        input_["user_context"] = user_context
-        input_["input_data_config"] = input_data_config
-        input_["output_data_config"] = output_data_config
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_connecthealth.types.start_patient_insights_job_request.StartPatientInsightsJobRequest = {
+            "domain_id": domain_id,
+            "patient_context": patient_context,
+            "insights_context": insights_context,
+            "encounter_context": encounter_context,
+            "user_context": user_context,
+            "input_data_config": input_data_config,
+            "output_data_config": output_data_config,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def tag_resource(
@@ -949,15 +980,17 @@ class ConnectHealthClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connecthealth.types.tag_resource_input.TagResourceInput = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tags"] = tags
+        input_: capo_connecthealth.types.tag_resource_input.TagResourceInput = {
+            "resource_arn": resource_arn,
+            "tags": tags,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def untag_resource(
@@ -990,15 +1023,17 @@ class ConnectHealthClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_connecthealth.types.untag_resource_input.UntagResourceInput = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tag_keys"] = tag_keys
+        input_: capo_connecthealth.types.untag_resource_input.UntagResourceInput = {
+            "resource_arn": resource_arn,
+            "tag_keys": tag_keys,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def __enter__(self) -> Self:

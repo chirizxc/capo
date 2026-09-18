@@ -35,7 +35,7 @@ def serialize_json(value: TimeRange) -> dict:
 
 def deserialize_json(data: dict) -> TimeRange:
     out: TimeRange = {}  # type: ignore[typeddict-item]
-    if "startTime" in data:
+    if data.get("startTime") is not None:
         import capo_groundstation.types._prelude.timestamp
 
         out["start_time"] = (
@@ -45,7 +45,7 @@ def deserialize_json(data: dict) -> TimeRange:
         )
     else:
         raise DeserializationError("TimeRange.start_time required")
-    if "endTime" in data:
+    if data.get("endTime") is not None:
         import capo_groundstation.types._prelude.timestamp
 
         out["end_time"] = capo_groundstation.types._prelude.timestamp.deserialize_json(

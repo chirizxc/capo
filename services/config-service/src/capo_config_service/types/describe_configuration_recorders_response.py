@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: DescribeConfigurationRecordersResponse) -> dic
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeConfigurationRecordersResponse:
     out: DescribeConfigurationRecordersResponse = {}  # type: ignore[typeddict-item]
-    if "ConfigurationRecorders" in data:
+    if data.get("ConfigurationRecorders") is not None:
         import capo_config_service.types.configuration_recorder_list
 
         out["configuration_recorders"] = (

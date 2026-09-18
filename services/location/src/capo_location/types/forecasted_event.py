@@ -40,7 +40,15 @@ def serialize_json(value: ForecastedEvent) -> dict:
     out["EventId"] = value["event_id"]
     out["GeofenceId"] = value["geofence_id"]
     out["IsDeviceInGeofence"] = value["is_device_in_geofence"]
-    out["NearestDistance"] = value.get("nearest_distance", 0)
+    out["NearestDistance"] = (
+        "NaN"
+        if value.get("nearest_distance", 0) != value.get("nearest_distance", 0)
+        else "Infinity"
+        if value.get("nearest_distance", 0) == float("inf")
+        else "-Infinity"
+        if value.get("nearest_distance", 0) == float("-inf")
+        else value.get("nearest_distance", 0)
+    )
     out["EventType"] = value["event_type"]
     if "forecasted_breach_time" in value:
         import capo_location.types.timestamp
@@ -59,33 +67,33 @@ def serialize_json(value: ForecastedEvent) -> dict:
 
 def deserialize_json(data: dict) -> ForecastedEvent:
     out: ForecastedEvent = {}  # type: ignore[typeddict-item]
-    if "EventId" in data:
+    if data.get("EventId") is not None:
         out["event_id"] = data["EventId"]
     else:
         raise DeserializationError("ForecastedEvent.event_id required")
-    if "GeofenceId" in data:
+    if data.get("GeofenceId") is not None:
         out["geofence_id"] = data["GeofenceId"]
     else:
         raise DeserializationError("ForecastedEvent.geofence_id required")
-    if "IsDeviceInGeofence" in data:
+    if data.get("IsDeviceInGeofence") is not None:
         out["is_device_in_geofence"] = data["IsDeviceInGeofence"]
     else:
         raise DeserializationError("ForecastedEvent.is_device_in_geofence required")
-    if "NearestDistance" in data:
-        out["nearest_distance"] = data["NearestDistance"]
+    if data.get("NearestDistance") is not None:
+        out["nearest_distance"] = float(data["NearestDistance"])
     else:
         out["nearest_distance"] = 0
-    if "EventType" in data:
+    if data.get("EventType") is not None:
         out["event_type"] = data["EventType"]
     else:
         raise DeserializationError("ForecastedEvent.event_type required")
-    if "ForecastedBreachTime" in data:
+    if data.get("ForecastedBreachTime") is not None:
         import capo_location.types.timestamp
 
         out["forecasted_breach_time"] = capo_location.types.timestamp.deserialize_json(
             data["ForecastedBreachTime"]
         )
-    if "GeofenceProperties" in data:
+    if data.get("GeofenceProperties") is not None:
         import capo_location.types.property_map
 
         out["geofence_properties"] = capo_location.types.property_map.deserialize_json(

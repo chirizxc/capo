@@ -35,18 +35,18 @@ def serialize_aws_json_1_1(value: CreateIdentityCenterApplicationRequest) -> dic
 
 def deserialize_aws_json_1_1(data: dict) -> CreateIdentityCenterApplicationRequest:
     out: CreateIdentityCenterApplicationRequest = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError(
             "CreateIdentityCenterApplicationRequest.name required"
         )
-    if "InstanceArn" in data:
+    if data.get("InstanceArn") is not None:
         out["instance_arn"] = data["InstanceArn"]
     else:
         raise DeserializationError(
             "CreateIdentityCenterApplicationRequest.instance_arn required"
         )
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
     return out

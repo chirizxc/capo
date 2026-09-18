@@ -37,14 +37,14 @@ def serialize_aws_json_1_1(value: RebootReplicationInstanceMessage) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RebootReplicationInstanceMessage:
     out: RebootReplicationInstanceMessage = {}  # type: ignore[typeddict-item]
-    if "ReplicationInstanceArn" in data:
+    if data.get("ReplicationInstanceArn") is not None:
         out["replication_instance_arn"] = data["ReplicationInstanceArn"]
     else:
         raise DeserializationError(
             "RebootReplicationInstanceMessage.replication_instance_arn required"
         )
-    if "ForceFailover" in data:
+    if data.get("ForceFailover") is not None:
         out["force_failover"] = data["ForceFailover"]
-    if "ForcePlannedFailover" in data:
+    if data.get("ForcePlannedFailover") is not None:
         out["force_planned_failover"] = data["ForcePlannedFailover"]
     return out

@@ -88,11 +88,11 @@ def serialize_aws_json_1_1(value: SystemInstanceSummary) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SystemInstanceSummary:
     out: SystemInstanceSummary = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_iotthingsgraph.types.system_instance_deployment_status
 
         out["status"] = (
@@ -100,7 +100,7 @@ def deserialize_aws_json_1_1(data: dict) -> SystemInstanceSummary:
                 data["status"]
             )
         )
-    if "target" in data:
+    if data.get("target") is not None:
         import capo_iotthingsgraph.types.deployment_target
 
         out["target"] = (
@@ -108,9 +108,9 @@ def deserialize_aws_json_1_1(data: dict) -> SystemInstanceSummary:
                 data["target"]
             )
         )
-    if "greengrassGroupName" in data:
+    if data.get("greengrassGroupName") is not None:
         out["greengrass_group_name"] = data["greengrassGroupName"]
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_iotthingsgraph.types.timestamp
 
         out["created_at"] = (
@@ -118,7 +118,7 @@ def deserialize_aws_json_1_1(data: dict) -> SystemInstanceSummary:
                 data["createdAt"]
             )
         )
-    if "updatedAt" in data:
+    if data.get("updatedAt") is not None:
         import capo_iotthingsgraph.types.timestamp
 
         out["updated_at"] = (
@@ -126,8 +126,8 @@ def deserialize_aws_json_1_1(data: dict) -> SystemInstanceSummary:
                 data["updatedAt"]
             )
         )
-    if "greengrassGroupId" in data:
+    if data.get("greengrassGroupId") is not None:
         out["greengrass_group_id"] = data["greengrassGroupId"]
-    if "greengrassGroupVersionId" in data:
+    if data.get("greengrassGroupVersionId") is not None:
         out["greengrass_group_version_id"] = data["greengrassGroupVersionId"]
     return out

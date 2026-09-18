@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> ListOfEndpointBatchItem:
 
     out: ListOfEndpointBatchItem = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_pinpoint.types.endpoint_batch_item.deserialize_json(item))
     return out

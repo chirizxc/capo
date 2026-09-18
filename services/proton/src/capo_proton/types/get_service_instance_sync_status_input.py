@@ -27,13 +27,13 @@ def serialize_aws_json_1_0(value: GetServiceInstanceSyncStatusInput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> GetServiceInstanceSyncStatusInput:
     out: GetServiceInstanceSyncStatusInput = {}  # type: ignore[typeddict-item]
-    if "serviceName" in data:
+    if data.get("serviceName") is not None:
         out["service_name"] = data["serviceName"]
     else:
         raise DeserializationError(
             "GetServiceInstanceSyncStatusInput.service_name required"
         )
-    if "serviceInstanceName" in data:
+    if data.get("serviceInstanceName") is not None:
         out["service_instance_name"] = data["serviceInstanceName"]
     else:
         raise DeserializationError(

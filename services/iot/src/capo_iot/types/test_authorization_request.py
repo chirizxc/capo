@@ -58,11 +58,11 @@ def serialize_json(value: TestAuthorizationRequest) -> dict:
 
 def deserialize_json(data: dict) -> TestAuthorizationRequest:
     out: TestAuthorizationRequest = {}  # type: ignore[typeddict-item]
-    if "principal" in data:
+    if data.get("principal") is not None:
         out["principal"] = data["principal"]
-    if "cognitoIdentityPoolId" in data:
+    if data.get("cognitoIdentityPoolId") is not None:
         out["cognito_identity_pool_id"] = data["cognitoIdentityPoolId"]
-    if "authInfos" in data:
+    if data.get("authInfos") is not None:
         import capo_iot.types.auth_infos
 
         out["auth_infos"] = capo_iot.types.auth_infos.deserialize_json(
@@ -70,13 +70,13 @@ def deserialize_json(data: dict) -> TestAuthorizationRequest:
         )
     else:
         raise DeserializationError("TestAuthorizationRequest.auth_infos required")
-    if "policyNamesToAdd" in data:
+    if data.get("policyNamesToAdd") is not None:
         import capo_iot.types.policy_names
 
         out["policy_names_to_add"] = capo_iot.types.policy_names.deserialize_json(
             data["policyNamesToAdd"]
         )
-    if "policyNamesToSkip" in data:
+    if data.get("policyNamesToSkip") is not None:
         import capo_iot.types.policy_names
 
         out["policy_names_to_skip"] = capo_iot.types.policy_names.deserialize_json(

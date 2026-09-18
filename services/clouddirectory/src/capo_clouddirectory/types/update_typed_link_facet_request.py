@@ -49,11 +49,11 @@ def serialize_json(value: UpdateTypedLinkFacetRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateTypedLinkFacetRequest:
     out: UpdateTypedLinkFacetRequest = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("UpdateTypedLinkFacetRequest.name required")
-    if "AttributeUpdates" in data:
+    if data.get("AttributeUpdates") is not None:
         import capo_clouddirectory.types.typed_link_facet_attribute_update_list
 
         out["attribute_updates"] = (
@@ -65,7 +65,7 @@ def deserialize_json(data: dict) -> UpdateTypedLinkFacetRequest:
         raise DeserializationError(
             "UpdateTypedLinkFacetRequest.attribute_updates required"
         )
-    if "IdentityAttributeOrder" in data:
+    if data.get("IdentityAttributeOrder") is not None:
         import capo_clouddirectory.types.attribute_name_list
 
         out["identity_attribute_order"] = (

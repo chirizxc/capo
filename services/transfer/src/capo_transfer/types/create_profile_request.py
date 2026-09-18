@@ -50,11 +50,11 @@ def serialize_aws_json_1_1(value: CreateProfileRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateProfileRequest:
     out: CreateProfileRequest = {}  # type: ignore[typeddict-item]
-    if "As2Id" in data:
+    if data.get("As2Id") is not None:
         out["as2_id"] = data["As2Id"]
     else:
         raise DeserializationError("CreateProfileRequest.as2_id required")
-    if "ProfileType" in data:
+    if data.get("ProfileType") is not None:
         import capo_transfer.types.profile_type
 
         out["profile_type"] = capo_transfer.types.profile_type.deserialize_aws_json_1_1(
@@ -62,7 +62,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateProfileRequest:
         )
     else:
         raise DeserializationError("CreateProfileRequest.profile_type required")
-    if "CertificateIds" in data:
+    if data.get("CertificateIds") is not None:
         import capo_transfer.types.certificate_ids
 
         out["certificate_ids"] = (
@@ -70,7 +70,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateProfileRequest:
                 data["CertificateIds"]
             )
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_transfer.types.tags
 
         out["tags"] = capo_transfer.types.tags.deserialize_aws_json_1_1(data["Tags"])

@@ -24,7 +24,7 @@ def serialize_json(value: CancelTraceRetrievalRequest) -> dict:
 
 def deserialize_json(data: dict) -> CancelTraceRetrievalRequest:
     out: CancelTraceRetrievalRequest = {}  # type: ignore[typeddict-item]
-    if "RetrievalToken" in data:
+    if data.get("RetrievalToken") is not None:
         out["retrieval_token"] = data["RetrievalToken"]
     else:
         raise DeserializationError(

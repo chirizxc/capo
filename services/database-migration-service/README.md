@@ -13,9 +13,9 @@ from capo_database_migration_service import AsyncDatabaseMigrationServiceClient
 
 
 async def main():
-    async with AsyncDatabaseMigrationServiceClient() as s3:
+    async with AsyncDatabaseMigrationServiceClient() as database_migration_service:
         # Example: call the add_tags_to_resource operation
-        response = await s3.add_tags_to_resource()
+        response = await database_migration_service.add_tags_to_resource()
         print(response)
 ```
 
@@ -28,9 +28,9 @@ from capo_database_migration_service import AsyncDatabaseMigrationServiceClient
 
 
 async def main():
-    async with AsyncDatabaseMigrationServiceClient() as s3:
-        # Example: paginate over describe_data_migrations
-        async for item in s3.iter_describe_data_migrations():
+    async with AsyncDatabaseMigrationServiceClient() as database_migration_service:
+        # Example: paginate over describe_applicable_individual_assessments
+        async for item in database_migration_service.iter_describe_applicable_individual_assessments():
             print(item)
 ```
 
@@ -44,9 +44,9 @@ from capo_database_migration_service.error import InvalidResourceStateFault
 
 
 async def main():
-    async with AsyncDatabaseMigrationServiceClient() as s3:
+    async with AsyncDatabaseMigrationServiceClient() as database_migration_service:
         try:
-            await s3.add_tags_to_resource()
+            await database_migration_service.add_tags_to_resource()
         except InvalidResourceStateFault as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -63,13 +63,13 @@ from capo_database_migration_service import AsyncDatabaseMigrationServiceClient
 
 
 async def main():
-    async with AsyncDatabaseMigrationServiceClient() as s3:
+    async with AsyncDatabaseMigrationServiceClient() as database_migration_service:
         # Default: 3 attempts for every operation
-        response = await s3.add_tags_to_resource()
+        response = await database_migration_service.add_tags_to_resource()
 
         # Override per operation
-        response = await s3.add_tags_to_resource(config_overrides={"retry_max_attempts": 5})
+        response = await database_migration_service.add_tags_to_resource(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.add_tags_to_resource(config_overrides={"retry_max_attempts": 1})
+        response = await database_migration_service.add_tags_to_resource(config_overrides={"retry_max_attempts": 1})
 ```

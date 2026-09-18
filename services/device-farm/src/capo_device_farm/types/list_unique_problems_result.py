@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: ListUniqueProblemsResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListUniqueProblemsResult:
     out: ListUniqueProblemsResult = {}  # type: ignore[typeddict-item]
-    if "uniqueProblems" in data:
+    if data.get("uniqueProblems") is not None:
         import capo_device_farm.types.unique_problems_by_execution_result_map
 
         out["unique_problems"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_1(data: dict) -> ListUniqueProblemsResult:
                 data["uniqueProblems"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

@@ -36,9 +36,9 @@ def serialize_aws_json_1_1(value: RegionsInfo) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RegionsInfo:
     out: RegionsInfo = {}  # type: ignore[typeddict-item]
-    if "PrimaryRegion" in data:
+    if data.get("PrimaryRegion") is not None:
         out["primary_region"] = data["PrimaryRegion"]
-    if "AdditionalRegions" in data:
+    if data.get("AdditionalRegions") is not None:
         import capo_directory_service.types.additional_regions
 
         out["additional_regions"] = (

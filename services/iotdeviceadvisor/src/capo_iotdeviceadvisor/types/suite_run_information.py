@@ -88,40 +88,40 @@ def serialize_json(value: SuiteRunInformation) -> dict:
 
 def deserialize_json(data: dict) -> SuiteRunInformation:
     out: SuiteRunInformation = {}  # type: ignore[typeddict-item]
-    if "suiteDefinitionId" in data:
+    if data.get("suiteDefinitionId") is not None:
         out["suite_definition_id"] = data["suiteDefinitionId"]
-    if "suiteDefinitionVersion" in data:
+    if data.get("suiteDefinitionVersion") is not None:
         out["suite_definition_version"] = data["suiteDefinitionVersion"]
-    if "suiteDefinitionName" in data:
+    if data.get("suiteDefinitionName") is not None:
         out["suite_definition_name"] = data["suiteDefinitionName"]
-    if "suiteRunId" in data:
+    if data.get("suiteRunId") is not None:
         out["suite_run_id"] = data["suiteRunId"]
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_iotdeviceadvisor.types.timestamp
 
         out["created_at"] = capo_iotdeviceadvisor.types.timestamp.deserialize_json(
             data["createdAt"]
         )
-    if "startedAt" in data:
+    if data.get("startedAt") is not None:
         import capo_iotdeviceadvisor.types.timestamp
 
         out["started_at"] = capo_iotdeviceadvisor.types.timestamp.deserialize_json(
             data["startedAt"]
         )
-    if "endAt" in data:
+    if data.get("endAt") is not None:
         import capo_iotdeviceadvisor.types.timestamp
 
         out["end_at"] = capo_iotdeviceadvisor.types.timestamp.deserialize_json(
             data["endAt"]
         )
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_iotdeviceadvisor.types.suite_run_status
 
         out["status"] = capo_iotdeviceadvisor.types.suite_run_status.deserialize_json(
             data["status"]
         )
-    if "passed" in data:
+    if data.get("passed") is not None:
         out["passed"] = data["passed"]
-    if "failed" in data:
+    if data.get("failed") is not None:
         out["failed"] = data["failed"]
     return out

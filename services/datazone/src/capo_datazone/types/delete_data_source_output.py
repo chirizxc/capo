@@ -194,37 +194,37 @@ def serialize_json(value: DeleteDataSourceOutput) -> dict:
 
 def deserialize_json(data: dict) -> DeleteDataSourceOutput:
     out: DeleteDataSourceOutput = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("DeleteDataSourceOutput.id required")
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_datazone.types.data_source_status
 
         out["status"] = capo_datazone.types.data_source_status.deserialize_json(
             data["status"]
         )
-    if "type" in data:
+    if data.get("type") is not None:
         out["type"] = data["type"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("DeleteDataSourceOutput.name required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "domainId" in data:
+    if data.get("domainId") is not None:
         out["domain_id"] = data["domainId"]
     else:
         raise DeserializationError("DeleteDataSourceOutput.domain_id required")
-    if "projectId" in data:
+    if data.get("projectId") is not None:
         out["project_id"] = data["projectId"]
     else:
         raise DeserializationError("DeleteDataSourceOutput.project_id required")
-    if "environmentId" in data:
+    if data.get("environmentId") is not None:
         out["environment_id"] = data["environmentId"]
-    if "connectionId" in data:
+    if data.get("connectionId") is not None:
         out["connection_id"] = data["connectionId"]
-    if "configuration" in data:
+    if data.get("configuration") is not None:
         import capo_datazone.types.data_source_configuration_output
 
         out["configuration"] = (
@@ -232,15 +232,15 @@ def deserialize_json(data: dict) -> DeleteDataSourceOutput:
                 data["configuration"]
             )
         )
-    if "enableSetting" in data:
+    if data.get("enableSetting") is not None:
         import capo_datazone.types.enable_setting
 
         out["enable_setting"] = capo_datazone.types.enable_setting.deserialize_json(
             data["enableSetting"]
         )
-    if "publishOnImport" in data:
+    if data.get("publishOnImport") is not None:
         out["publish_on_import"] = data["publishOnImport"]
-    if "assetFormsOutput" in data:
+    if data.get("assetFormsOutput") is not None:
         import capo_datazone.types.form_output_list
 
         out["asset_forms_output"] = (
@@ -248,13 +248,13 @@ def deserialize_json(data: dict) -> DeleteDataSourceOutput:
                 data["assetFormsOutput"]
             )
         )
-    if "schedule" in data:
+    if data.get("schedule") is not None:
         import capo_datazone.types.schedule_configuration
 
         out["schedule"] = capo_datazone.types.schedule_configuration.deserialize_json(
             data["schedule"]
         )
-    if "lastRunStatus" in data:
+    if data.get("lastRunStatus") is not None:
         import capo_datazone.types.data_source_run_status
 
         out["last_run_status"] = (
@@ -262,13 +262,13 @@ def deserialize_json(data: dict) -> DeleteDataSourceOutput:
                 data["lastRunStatus"]
             )
         )
-    if "lastRunAt" in data:
+    if data.get("lastRunAt") is not None:
         import capo_datazone.types.date_time
 
         out["last_run_at"] = capo_datazone.types.date_time.deserialize_json(
             data["lastRunAt"]
         )
-    if "lastRunErrorMessage" in data:
+    if data.get("lastRunErrorMessage") is not None:
         import capo_datazone.types.data_source_error_message
 
         out["last_run_error_message"] = (
@@ -276,7 +276,7 @@ def deserialize_json(data: dict) -> DeleteDataSourceOutput:
                 data["lastRunErrorMessage"]
             )
         )
-    if "errorMessage" in data:
+    if data.get("errorMessage") is not None:
         import capo_datazone.types.data_source_error_message
 
         out["error_message"] = (
@@ -284,19 +284,19 @@ def deserialize_json(data: dict) -> DeleteDataSourceOutput:
                 data["errorMessage"]
             )
         )
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_datazone.types.date_time
 
         out["created_at"] = capo_datazone.types.date_time.deserialize_json(
             data["createdAt"]
         )
-    if "updatedAt" in data:
+    if data.get("updatedAt") is not None:
         import capo_datazone.types.date_time
 
         out["updated_at"] = capo_datazone.types.date_time.deserialize_json(
             data["updatedAt"]
         )
-    if "selfGrantStatus" in data:
+    if data.get("selfGrantStatus") is not None:
         import capo_datazone.types.self_grant_status_output
 
         out["self_grant_status"] = (
@@ -304,7 +304,7 @@ def deserialize_json(data: dict) -> DeleteDataSourceOutput:
                 data["selfGrantStatus"]
             )
         )
-    if "retainPermissionsOnRevokeFailure" in data:
+    if data.get("retainPermissionsOnRevokeFailure") is not None:
         out["retain_permissions_on_revoke_failure"] = data[
             "retainPermissionsOnRevokeFailure"
         ]

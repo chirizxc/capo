@@ -91,7 +91,7 @@ def serialize_json(value: CalculateRouteMatrixRequest) -> dict:
 
 def deserialize_json(data: dict) -> CalculateRouteMatrixRequest:
     out: CalculateRouteMatrixRequest = {}  # type: ignore[typeddict-item]
-    if "DeparturePositions" in data:
+    if data.get("DeparturePositions") is not None:
         import capo_location.types.position_list
 
         out["departure_positions"] = capo_location.types.position_list.deserialize_json(
@@ -101,7 +101,7 @@ def deserialize_json(data: dict) -> CalculateRouteMatrixRequest:
         raise DeserializationError(
             "CalculateRouteMatrixRequest.departure_positions required"
         )
-    if "DestinationPositions" in data:
+    if data.get("DestinationPositions") is not None:
         import capo_location.types.position_list
 
         out["destination_positions"] = (
@@ -113,19 +113,19 @@ def deserialize_json(data: dict) -> CalculateRouteMatrixRequest:
         raise DeserializationError(
             "CalculateRouteMatrixRequest.destination_positions required"
         )
-    if "TravelMode" in data:
+    if data.get("TravelMode") is not None:
         out["travel_mode"] = data["TravelMode"]
-    if "DepartureTime" in data:
+    if data.get("DepartureTime") is not None:
         import capo_location.types.timestamp
 
         out["departure_time"] = capo_location.types.timestamp.deserialize_json(
             data["DepartureTime"]
         )
-    if "DepartNow" in data:
+    if data.get("DepartNow") is not None:
         out["depart_now"] = data["DepartNow"]
-    if "DistanceUnit" in data:
+    if data.get("DistanceUnit") is not None:
         out["distance_unit"] = data["DistanceUnit"]
-    if "CarModeOptions" in data:
+    if data.get("CarModeOptions") is not None:
         import capo_location.types.calculate_route_car_mode_options
 
         out["car_mode_options"] = (
@@ -133,7 +133,7 @@ def deserialize_json(data: dict) -> CalculateRouteMatrixRequest:
                 data["CarModeOptions"]
             )
         )
-    if "TruckModeOptions" in data:
+    if data.get("TruckModeOptions") is not None:
         import capo_location.types.calculate_route_truck_mode_options
 
         out["truck_mode_options"] = (

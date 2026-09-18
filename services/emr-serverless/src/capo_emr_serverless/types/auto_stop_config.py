@@ -22,8 +22,8 @@ def serialize_json(value: AutoStopConfig) -> dict:
 
 def deserialize_json(data: dict) -> AutoStopConfig:
     out: AutoStopConfig = {}  # type: ignore[typeddict-item]
-    if "enabled" in data:
+    if data.get("enabled") is not None:
         out["enabled"] = data["enabled"]
-    if "idleTimeoutMinutes" in data:
+    if data.get("idleTimeoutMinutes") is not None:
         out["idle_timeout_minutes"] = data["idleTimeoutMinutes"]
     return out

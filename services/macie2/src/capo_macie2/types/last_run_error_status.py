@@ -29,7 +29,7 @@ def serialize_json(value: LastRunErrorStatus) -> dict:
 
 def deserialize_json(data: dict) -> LastRunErrorStatus:
     out: LastRunErrorStatus = {}  # type: ignore[typeddict-item]
-    if "code" in data:
+    if data.get("code") is not None:
         import capo_macie2.types.last_run_error_status_code
 
         out["code"] = capo_macie2.types.last_run_error_status_code.deserialize_json(

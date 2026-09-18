@@ -29,9 +29,9 @@ def serialize_json(value: ReassignmentInProgressException_) -> dict:
 
 def deserialize_json(data: dict) -> ReassignmentInProgressException_:
     out: ReassignmentInProgressException_ = {}  # type: ignore[typeddict-item]
-    if "invalidParameter" in data:
+    if data.get("invalidParameter") is not None:
         out["invalid_parameter"] = data["invalidParameter"]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     return out
 
@@ -41,15 +41,20 @@ class ReassignmentInProgressException(ServiceError):
 
     code: str | None = "ReassignmentInProgressException"
 
-    def __init__(self, data: ReassignmentInProgressException_):
+    def __init__(
+        self, data: ReassignmentInProgressException_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="ReassignmentInProgressException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "ReassignmentInProgressException":
-        return cls(deserialize_json(data))
+    def from_json(
+        cls, data: dict, message: str | None = None
+    ) -> "ReassignmentInProgressException":
+        return cls(deserialize_json(data), message)

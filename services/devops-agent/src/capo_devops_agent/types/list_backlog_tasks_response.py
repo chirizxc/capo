@@ -30,12 +30,12 @@ def serialize_json(value: ListBacklogTasksResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListBacklogTasksResponse:
     out: ListBacklogTasksResponse = {}  # type: ignore[typeddict-item]
-    if "tasks" in data:
+    if data.get("tasks") is not None:
         import capo_devops_agent.types.task_list
 
         out["tasks"] = capo_devops_agent.types.task_list.deserialize_json(data["tasks"])
     else:
         raise DeserializationError("ListBacklogTasksResponse.tasks required")
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

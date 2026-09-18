@@ -32,7 +32,7 @@ def serialize_json(value: PersonalizationConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> PersonalizationConfiguration:
     out: PersonalizationConfiguration = {}  # type: ignore[typeddict-item]
-    if "personalizationControlMode" in data:
+    if data.get("personalizationControlMode") is not None:
         import capo_qbusiness.types.personalization_control_mode
 
         out["personalization_control_mode"] = (

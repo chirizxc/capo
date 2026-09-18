@@ -26,7 +26,7 @@ def serialize_json(value: LocalNavigationConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> LocalNavigationConfiguration:
     out: LocalNavigationConfiguration = {}  # type: ignore[typeddict-item]
-    if "TargetSheetId" in data:
+    if data.get("TargetSheetId") is not None:
         out["target_sheet_id"] = data["TargetSheetId"]
     else:
         raise DeserializationError(

@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> KeyValueList:
 
     out: KeyValueList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_backup.types.key_value.deserialize_json(item))
     return out

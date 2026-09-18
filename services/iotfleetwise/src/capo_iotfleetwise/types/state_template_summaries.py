@@ -27,6 +27,8 @@ def deserialize_aws_json_1_0(data: list) -> StateTemplateSummaries:
 
     out: StateTemplateSummaries = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_iotfleetwise.types.state_template_summary.deserialize_aws_json_1_0(
                 item

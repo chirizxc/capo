@@ -35,9 +35,9 @@ def serialize_aws_json_1_1(value: OperationFailureDetails) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> OperationFailureDetails:
     out: OperationFailureDetails = {}  # type: ignore[typeddict-item]
-    if "RollbackOperationId" in data:
+    if data.get("RollbackOperationId") is not None:
         out["rollback_operation_id"] = data["RollbackOperationId"]
-    if "ErrorInfo" in data:
+    if data.get("ErrorInfo") is not None:
         import capo_kinesis_analytics_v2.types.error_info
 
         out["error_info"] = (

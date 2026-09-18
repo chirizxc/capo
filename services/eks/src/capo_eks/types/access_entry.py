@@ -70,34 +70,34 @@ def serialize_json(value: AccessEntry) -> dict:
 
 def deserialize_json(data: dict) -> AccessEntry:
     out: AccessEntry = {}  # type: ignore[typeddict-item]
-    if "clusterName" in data:
+    if data.get("clusterName") is not None:
         out["cluster_name"] = data["clusterName"]
-    if "principalArn" in data:
+    if data.get("principalArn") is not None:
         out["principal_arn"] = data["principalArn"]
-    if "kubernetesGroups" in data:
+    if data.get("kubernetesGroups") is not None:
         import capo_eks.types.string_list
 
         out["kubernetes_groups"] = capo_eks.types.string_list.deserialize_json(
             data["kubernetesGroups"]
         )
-    if "accessEntryArn" in data:
+    if data.get("accessEntryArn") is not None:
         out["access_entry_arn"] = data["accessEntryArn"]
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_eks.types.timestamp
 
         out["created_at"] = capo_eks.types.timestamp.deserialize_json(data["createdAt"])
-    if "modifiedAt" in data:
+    if data.get("modifiedAt") is not None:
         import capo_eks.types.timestamp
 
         out["modified_at"] = capo_eks.types.timestamp.deserialize_json(
             data["modifiedAt"]
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_eks.types.tag_map
 
         out["tags"] = capo_eks.types.tag_map.deserialize_json(data["tags"])
-    if "username" in data:
+    if data.get("username") is not None:
         out["username"] = data["username"]
-    if "type" in data:
+    if data.get("type") is not None:
         out["type"] = data["type"]
     return out

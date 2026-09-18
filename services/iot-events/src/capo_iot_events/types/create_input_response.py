@@ -31,7 +31,7 @@ def serialize_json(value: CreateInputResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateInputResponse:
     out: CreateInputResponse = {}  # type: ignore[typeddict-item]
-    if "inputConfiguration" in data:
+    if data.get("inputConfiguration") is not None:
         import capo_iot_events.types.input_configuration
 
         out["input_configuration"] = (

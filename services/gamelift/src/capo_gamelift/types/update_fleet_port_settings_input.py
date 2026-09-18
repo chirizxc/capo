@@ -48,9 +48,9 @@ def serialize_aws_json_1_1(value: UpdateFleetPortSettingsInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateFleetPortSettingsInput:
     out: UpdateFleetPortSettingsInput = {}  # type: ignore[typeddict-item]
-    if "FleetId" in data:
+    if data.get("FleetId") is not None:
         out["fleet_id"] = data["FleetId"]
-    if "InboundPermissionAuthorizations" in data:
+    if data.get("InboundPermissionAuthorizations") is not None:
         import capo_gamelift.types.ip_permissions_list
 
         out["inbound_permission_authorizations"] = (
@@ -58,7 +58,7 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateFleetPortSettingsInput:
                 data["InboundPermissionAuthorizations"]
             )
         )
-    if "InboundPermissionRevocations" in data:
+    if data.get("InboundPermissionRevocations") is not None:
         import capo_gamelift.types.ip_permissions_list
 
         out["inbound_permission_revocations"] = (

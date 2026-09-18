@@ -99,7 +99,7 @@ def serialize_json(value: FieldFilter) -> dict:
 
 
 def deserialize_json(data: dict) -> FieldFilter:
-    if "equalTo" in data:
+    if data.get("equalTo") is not None:
         import capo_connectcases.types.field_value
 
         return {
@@ -107,7 +107,7 @@ def deserialize_json(data: dict) -> FieldFilter:
                 data["equalTo"]
             )
         }
-    elif "contains" in data:
+    elif data.get("contains") is not None:
         import capo_connectcases.types.field_value
 
         return {
@@ -115,7 +115,7 @@ def deserialize_json(data: dict) -> FieldFilter:
                 data["contains"]
             )
         }
-    elif "greaterThan" in data:
+    elif data.get("greaterThan") is not None:
         import capo_connectcases.types.field_value
 
         return {
@@ -123,7 +123,7 @@ def deserialize_json(data: dict) -> FieldFilter:
                 data["greaterThan"]
             )
         }
-    elif "greaterThanOrEqualTo" in data:
+    elif data.get("greaterThanOrEqualTo") is not None:
         import capo_connectcases.types.field_value
 
         return {
@@ -131,7 +131,7 @@ def deserialize_json(data: dict) -> FieldFilter:
                 data["greaterThanOrEqualTo"]
             )
         }
-    elif "lessThan" in data:
+    elif data.get("lessThan") is not None:
         import capo_connectcases.types.field_value
 
         return {
@@ -139,7 +139,7 @@ def deserialize_json(data: dict) -> FieldFilter:
                 data["lessThan"]
             )
         }
-    elif "lessThanOrEqualTo" in data:
+    elif data.get("lessThanOrEqualTo") is not None:
         import capo_connectcases.types.field_value
 
         return {

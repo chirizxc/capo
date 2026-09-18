@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: MonitoringOutputConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> MonitoringOutputConfig:
     out: MonitoringOutputConfig = {}  # type: ignore[typeddict-item]
-    if "MonitoringOutputs" in data:
+    if data.get("MonitoringOutputs") is not None:
         import capo_sagemaker.types.monitoring_outputs
 
         out["monitoring_outputs"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_1(data: dict) -> MonitoringOutputConfig:
                 data["MonitoringOutputs"]
             )
         )
-    if "KmsKeyId" in data:
+    if data.get("KmsKeyId") is not None:
         out["kms_key_id"] = data["KmsKeyId"]
     return out

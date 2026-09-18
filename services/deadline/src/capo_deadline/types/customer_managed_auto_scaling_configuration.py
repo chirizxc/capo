@@ -37,12 +37,12 @@ def serialize_json(value: CustomerManagedAutoScalingConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> CustomerManagedAutoScalingConfiguration:
     out: CustomerManagedAutoScalingConfiguration = {}  # type: ignore[typeddict-item]
-    if "standbyWorkerCount" in data:
+    if data.get("standbyWorkerCount") is not None:
         out["standby_worker_count"] = data["standbyWorkerCount"]
-    if "workerIdleDurationSeconds" in data:
+    if data.get("workerIdleDurationSeconds") is not None:
         out["worker_idle_duration_seconds"] = data["workerIdleDurationSeconds"]
     else:
         out["worker_idle_duration_seconds"] = 300
-    if "scaleOutWorkersPerMinute" in data:
+    if data.get("scaleOutWorkersPerMinute") is not None:
         out["scale_out_workers_per_minute"] = data["scaleOutWorkersPerMinute"]
     return out

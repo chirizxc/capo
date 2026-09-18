@@ -64,31 +64,31 @@ def serialize_aws_json_1_1(value: Page) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Page:
     out: Page = {}  # type: ignore[typeddict-item]
-    if "PageArn" in data:
+    if data.get("PageArn") is not None:
         out["page_arn"] = data["PageArn"]
     else:
         raise DeserializationError("Page.page_arn required")
-    if "EngagementArn" in data:
+    if data.get("EngagementArn") is not None:
         out["engagement_arn"] = data["EngagementArn"]
     else:
         raise DeserializationError("Page.engagement_arn required")
-    if "ContactArn" in data:
+    if data.get("ContactArn") is not None:
         out["contact_arn"] = data["ContactArn"]
     else:
         raise DeserializationError("Page.contact_arn required")
-    if "Sender" in data:
+    if data.get("Sender") is not None:
         out["sender"] = data["Sender"]
     else:
         raise DeserializationError("Page.sender required")
-    if "IncidentId" in data:
+    if data.get("IncidentId") is not None:
         out["incident_id"] = data["IncidentId"]
-    if "SentTime" in data:
+    if data.get("SentTime") is not None:
         import capo_ssm_contacts.types.date_time
 
         out["sent_time"] = capo_ssm_contacts.types.date_time.deserialize_aws_json_1_1(
             data["SentTime"]
         )
-    if "DeliveryTime" in data:
+    if data.get("DeliveryTime") is not None:
         import capo_ssm_contacts.types.date_time
 
         out["delivery_time"] = (
@@ -96,7 +96,7 @@ def deserialize_aws_json_1_1(data: dict) -> Page:
                 data["DeliveryTime"]
             )
         )
-    if "ReadTime" in data:
+    if data.get("ReadTime") is not None:
         import capo_ssm_contacts.types.date_time
 
         out["read_time"] = capo_ssm_contacts.types.date_time.deserialize_aws_json_1_1(

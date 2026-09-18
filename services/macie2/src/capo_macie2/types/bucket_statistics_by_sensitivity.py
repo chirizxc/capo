@@ -63,7 +63,7 @@ def serialize_json(value: BucketStatisticsBySensitivity) -> dict:
 
 def deserialize_json(data: dict) -> BucketStatisticsBySensitivity:
     out: BucketStatisticsBySensitivity = {}  # type: ignore[typeddict-item]
-    if "classificationError" in data:
+    if data.get("classificationError") is not None:
         import capo_macie2.types.sensitivity_aggregations
 
         out["classification_error"] = (
@@ -71,7 +71,7 @@ def deserialize_json(data: dict) -> BucketStatisticsBySensitivity:
                 data["classificationError"]
             )
         )
-    if "notClassified" in data:
+    if data.get("notClassified") is not None:
         import capo_macie2.types.sensitivity_aggregations
 
         out["not_classified"] = (
@@ -79,7 +79,7 @@ def deserialize_json(data: dict) -> BucketStatisticsBySensitivity:
                 data["notClassified"]
             )
         )
-    if "notSensitive" in data:
+    if data.get("notSensitive") is not None:
         import capo_macie2.types.sensitivity_aggregations
 
         out["not_sensitive"] = (
@@ -87,7 +87,7 @@ def deserialize_json(data: dict) -> BucketStatisticsBySensitivity:
                 data["notSensitive"]
             )
         )
-    if "sensitive" in data:
+    if data.get("sensitive") is not None:
         import capo_macie2.types.sensitivity_aggregations
 
         out["sensitive"] = capo_macie2.types.sensitivity_aggregations.deserialize_json(

@@ -28,7 +28,7 @@ def serialize_json(value: IncrementalRefresh) -> dict:
 
 def deserialize_json(data: dict) -> IncrementalRefresh:
     out: IncrementalRefresh = {}  # type: ignore[typeddict-item]
-    if "LookbackWindow" in data:
+    if data.get("LookbackWindow") is not None:
         import capo_quicksight.types.lookback_window
 
         out["lookback_window"] = capo_quicksight.types.lookback_window.deserialize_json(

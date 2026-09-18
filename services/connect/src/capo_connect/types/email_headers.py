@@ -27,5 +27,7 @@ def deserialize_json(data: dict) -> EmailHeaders:
     for key, value in data.items():
         import capo_connect.types.email_header_type
 
+        if value is None:
+            continue
         out[capo_connect.types.email_header_type.deserialize_json(key)] = value
     return out

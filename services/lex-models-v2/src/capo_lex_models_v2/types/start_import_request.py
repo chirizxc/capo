@@ -49,11 +49,11 @@ def serialize_json(value: StartImportRequest) -> dict:
 
 def deserialize_json(data: dict) -> StartImportRequest:
     out: StartImportRequest = {}  # type: ignore[typeddict-item]
-    if "importId" in data:
+    if data.get("importId") is not None:
         out["import_id"] = data["importId"]
     else:
         raise DeserializationError("StartImportRequest.import_id required")
-    if "resourceSpecification" in data:
+    if data.get("resourceSpecification") is not None:
         import capo_lex_models_v2.types.import_resource_specification
 
         out["resource_specification"] = (
@@ -63,7 +63,7 @@ def deserialize_json(data: dict) -> StartImportRequest:
         )
     else:
         raise DeserializationError("StartImportRequest.resource_specification required")
-    if "mergeStrategy" in data:
+    if data.get("mergeStrategy") is not None:
         import capo_lex_models_v2.types.merge_strategy
 
         out["merge_strategy"] = (
@@ -73,6 +73,6 @@ def deserialize_json(data: dict) -> StartImportRequest:
         )
     else:
         raise DeserializationError("StartImportRequest.merge_strategy required")
-    if "filePassword" in data:
+    if data.get("filePassword") is not None:
         out["file_password"] = data["filePassword"]
     return out

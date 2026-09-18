@@ -28,26 +28,58 @@ def serialize_aws_json_1_1(value: ErrorMetric) -> dict:
     if "forecast_type" in value:
         out["ForecastType"] = value["forecast_type"]
     if "wape" in value:
-        out["WAPE"] = value["wape"]
+        out["WAPE"] = (
+            "NaN"
+            if value["wape"] != value["wape"]
+            else "Infinity"
+            if value["wape"] == float("inf")
+            else "-Infinity"
+            if value["wape"] == float("-inf")
+            else value["wape"]
+        )
     if "rmse" in value:
-        out["RMSE"] = value["rmse"]
+        out["RMSE"] = (
+            "NaN"
+            if value["rmse"] != value["rmse"]
+            else "Infinity"
+            if value["rmse"] == float("inf")
+            else "-Infinity"
+            if value["rmse"] == float("-inf")
+            else value["rmse"]
+        )
     if "mase" in value:
-        out["MASE"] = value["mase"]
+        out["MASE"] = (
+            "NaN"
+            if value["mase"] != value["mase"]
+            else "Infinity"
+            if value["mase"] == float("inf")
+            else "-Infinity"
+            if value["mase"] == float("-inf")
+            else value["mase"]
+        )
     if "mape" in value:
-        out["MAPE"] = value["mape"]
+        out["MAPE"] = (
+            "NaN"
+            if value["mape"] != value["mape"]
+            else "Infinity"
+            if value["mape"] == float("inf")
+            else "-Infinity"
+            if value["mape"] == float("-inf")
+            else value["mape"]
+        )
     return out
 
 
 def deserialize_aws_json_1_1(data: dict) -> ErrorMetric:
     out: ErrorMetric = {}  # type: ignore[typeddict-item]
-    if "ForecastType" in data:
+    if data.get("ForecastType") is not None:
         out["forecast_type"] = data["ForecastType"]
-    if "WAPE" in data:
-        out["wape"] = data["WAPE"]
-    if "RMSE" in data:
-        out["rmse"] = data["RMSE"]
-    if "MASE" in data:
-        out["mase"] = data["MASE"]
-    if "MAPE" in data:
-        out["mape"] = data["MAPE"]
+    if data.get("WAPE") is not None:
+        out["wape"] = float(data["WAPE"])
+    if data.get("RMSE") is not None:
+        out["rmse"] = float(data["RMSE"])
+    if data.get("MASE") is not None:
+        out["mase"] = float(data["MASE"])
+    if data.get("MAPE") is not None:
+        out["mape"] = float(data["MAPE"])
     return out

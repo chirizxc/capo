@@ -44,7 +44,7 @@ def serialize_json(value: KmsKeyConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> KmsKeyConfiguration:
     out: KmsKeyConfiguration = {}  # type: ignore[typeddict-item]
-    if "keyPolicies" in data:
+    if data.get("keyPolicies") is not None:
         import capo_accessanalyzer.types.kms_key_policies_map
 
         out["key_policies"] = (
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> KmsKeyConfiguration:
                 data["keyPolicies"]
             )
         )
-    if "grants" in data:
+    if data.get("grants") is not None:
         import capo_accessanalyzer.types.kms_grant_configurations_list
 
         out["grants"] = (

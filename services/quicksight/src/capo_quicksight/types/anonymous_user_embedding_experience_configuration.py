@@ -70,7 +70,7 @@ def serialize_json(value: AnonymousUserEmbeddingExperienceConfiguration) -> dict
 
 def deserialize_json(data: dict) -> AnonymousUserEmbeddingExperienceConfiguration:
     out: AnonymousUserEmbeddingExperienceConfiguration = {}  # type: ignore[typeddict-item]
-    if "Dashboard" in data:
+    if data.get("Dashboard") is not None:
         import capo_quicksight.types.anonymous_user_dashboard_embedding_configuration
 
         out["dashboard"] = (
@@ -78,7 +78,7 @@ def deserialize_json(data: dict) -> AnonymousUserEmbeddingExperienceConfiguratio
                 data["Dashboard"]
             )
         )
-    if "DashboardVisual" in data:
+    if data.get("DashboardVisual") is not None:
         import capo_quicksight.types.anonymous_user_dashboard_visual_embedding_configuration
 
         out["dashboard_visual"] = (
@@ -86,7 +86,7 @@ def deserialize_json(data: dict) -> AnonymousUserEmbeddingExperienceConfiguratio
                 data["DashboardVisual"]
             )
         )
-    if "QSearchBar" in data:
+    if data.get("QSearchBar") is not None:
         import capo_quicksight.types.anonymous_user_q_search_bar_embedding_configuration
 
         out["q_search_bar"] = (
@@ -94,7 +94,7 @@ def deserialize_json(data: dict) -> AnonymousUserEmbeddingExperienceConfiguratio
                 data["QSearchBar"]
             )
         )
-    if "GenerativeQnA" in data:
+    if data.get("GenerativeQnA") is not None:
         import capo_quicksight.types.anonymous_user_generative_qn_a_embedding_configuration
 
         out["generative_qn_a"] = (

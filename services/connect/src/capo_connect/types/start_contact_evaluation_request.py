@@ -56,17 +56,17 @@ def serialize_json(value: StartContactEvaluationRequest) -> dict:
 
 def deserialize_json(data: dict) -> StartContactEvaluationRequest:
     out: StartContactEvaluationRequest = {}  # type: ignore[typeddict-item]
-    if "ContactId" in data:
+    if data.get("ContactId") is not None:
         out["contact_id"] = data["ContactId"]
     else:
         raise DeserializationError("StartContactEvaluationRequest.contact_id required")
-    if "EvaluationFormId" in data:
+    if data.get("EvaluationFormId") is not None:
         out["evaluation_form_id"] = data["EvaluationFormId"]
     else:
         raise DeserializationError(
             "StartContactEvaluationRequest.evaluation_form_id required"
         )
-    if "AutoEvaluationConfiguration" in data:
+    if data.get("AutoEvaluationConfiguration") is not None:
         import capo_connect.types.auto_evaluation_configuration
 
         out["auto_evaluation_configuration"] = (
@@ -74,9 +74,9 @@ def deserialize_json(data: dict) -> StartContactEvaluationRequest:
                 data["AutoEvaluationConfiguration"]
             )
         )
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_connect.types.tag_map
 
         out["tags"] = capo_connect.types.tag_map.deserialize_json(data["Tags"])

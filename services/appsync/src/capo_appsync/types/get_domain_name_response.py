@@ -29,7 +29,7 @@ def serialize_json(value: GetDomainNameResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetDomainNameResponse:
     out: GetDomainNameResponse = {}  # type: ignore[typeddict-item]
-    if "domainNameConfig" in data:
+    if data.get("domainNameConfig") is not None:
         import capo_appsync.types.domain_name_config
 
         out["domain_name_config"] = (

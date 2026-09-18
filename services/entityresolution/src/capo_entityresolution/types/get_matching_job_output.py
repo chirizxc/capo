@@ -80,11 +80,11 @@ def serialize_json(value: GetMatchingJobOutput) -> dict:
 
 def deserialize_json(data: dict) -> GetMatchingJobOutput:
     out: GetMatchingJobOutput = {}  # type: ignore[typeddict-item]
-    if "jobId" in data:
+    if data.get("jobId") is not None:
         out["job_id"] = data["jobId"]
     else:
         raise DeserializationError("GetMatchingJobOutput.job_id required")
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_entityresolution.types.job_status
 
         out["status"] = capo_entityresolution.types.job_status.deserialize_json(
@@ -92,7 +92,7 @@ def deserialize_json(data: dict) -> GetMatchingJobOutput:
         )
     else:
         raise DeserializationError("GetMatchingJobOutput.status required")
-    if "startTime" in data:
+    if data.get("startTime") is not None:
         import capo_entityresolution.types._prelude.timestamp
 
         out["start_time"] = (
@@ -102,7 +102,7 @@ def deserialize_json(data: dict) -> GetMatchingJobOutput:
         )
     else:
         raise DeserializationError("GetMatchingJobOutput.start_time required")
-    if "endTime" in data:
+    if data.get("endTime") is not None:
         import capo_entityresolution.types._prelude.timestamp
 
         out["end_time"] = (
@@ -110,13 +110,13 @@ def deserialize_json(data: dict) -> GetMatchingJobOutput:
                 data["endTime"]
             )
         )
-    if "metrics" in data:
+    if data.get("metrics") is not None:
         import capo_entityresolution.types.job_metrics
 
         out["metrics"] = capo_entityresolution.types.job_metrics.deserialize_json(
             data["metrics"]
         )
-    if "errorDetails" in data:
+    if data.get("errorDetails") is not None:
         import capo_entityresolution.types.error_details
 
         out["error_details"] = (
@@ -124,7 +124,7 @@ def deserialize_json(data: dict) -> GetMatchingJobOutput:
                 data["errorDetails"]
             )
         )
-    if "outputSourceConfig" in data:
+    if data.get("outputSourceConfig") is not None:
         import capo_entityresolution.types.job_output_source_config
 
         out["output_source_config"] = (

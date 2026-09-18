@@ -48,9 +48,9 @@ def serialize_aws_json_1_0(value: ListRetrainingSchedulersRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ListRetrainingSchedulersRequest:
     out: ListRetrainingSchedulersRequest = {}  # type: ignore[typeddict-item]
-    if "ModelNameBeginsWith" in data:
+    if data.get("ModelNameBeginsWith") is not None:
         out["model_name_begins_with"] = data["ModelNameBeginsWith"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_lookoutequipment.types.retraining_scheduler_status
 
         out["status"] = (
@@ -58,8 +58,8 @@ def deserialize_aws_json_1_0(data: dict) -> ListRetrainingSchedulersRequest:
                 data["Status"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
     return out

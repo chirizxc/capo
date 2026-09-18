@@ -33,10 +33,10 @@ def serialize_json(value: Country) -> dict:
 
 def deserialize_json(data: dict) -> Country:
     out: Country = {}  # type: ignore[typeddict-item]
-    if "Code2" in data:
+    if data.get("Code2") is not None:
         out["code2"] = data["Code2"]
-    if "Code3" in data:
+    if data.get("Code3") is not None:
         out["code3"] = data["Code3"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     return out

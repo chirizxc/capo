@@ -61,13 +61,13 @@ def serialize_json(value: TooltipOptions) -> dict:
 
 def deserialize_json(data: dict) -> TooltipOptions:
     out: TooltipOptions = {}  # type: ignore[typeddict-item]
-    if "TooltipVisibility" in data:
+    if data.get("TooltipVisibility") is not None:
         import capo_quicksight.types.visibility
 
         out["tooltip_visibility"] = capo_quicksight.types.visibility.deserialize_json(
             data["TooltipVisibility"]
         )
-    if "SelectedTooltipType" in data:
+    if data.get("SelectedTooltipType") is not None:
         import capo_quicksight.types.selected_tooltip_type
 
         out["selected_tooltip_type"] = (
@@ -75,7 +75,7 @@ def deserialize_json(data: dict) -> TooltipOptions:
                 data["SelectedTooltipType"]
             )
         )
-    if "FieldBasedTooltip" in data:
+    if data.get("FieldBasedTooltip") is not None:
         import capo_quicksight.types.field_based_tooltip
 
         out["field_based_tooltip"] = (
@@ -83,7 +83,7 @@ def deserialize_json(data: dict) -> TooltipOptions:
                 data["FieldBasedTooltip"]
             )
         )
-    if "SheetTooltip" in data:
+    if data.get("SheetTooltip") is not None:
         import capo_quicksight.types.sheet_tooltip
 
         out["sheet_tooltip"] = capo_quicksight.types.sheet_tooltip.deserialize_json(

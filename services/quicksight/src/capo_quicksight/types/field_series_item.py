@@ -45,11 +45,11 @@ def serialize_json(value: FieldSeriesItem) -> dict:
 
 def deserialize_json(data: dict) -> FieldSeriesItem:
     out: FieldSeriesItem = {}  # type: ignore[typeddict-item]
-    if "FieldId" in data:
+    if data.get("FieldId") is not None:
         out["field_id"] = data["FieldId"]
     else:
         raise DeserializationError("FieldSeriesItem.field_id required")
-    if "AxisBinding" in data:
+    if data.get("AxisBinding") is not None:
         import capo_quicksight.types.axis_binding
 
         out["axis_binding"] = capo_quicksight.types.axis_binding.deserialize_json(
@@ -57,7 +57,7 @@ def deserialize_json(data: dict) -> FieldSeriesItem:
         )
     else:
         raise DeserializationError("FieldSeriesItem.axis_binding required")
-    if "Settings" in data:
+    if data.get("Settings") is not None:
         import capo_quicksight.types.line_chart_series_settings
 
         out["settings"] = (

@@ -47,9 +47,9 @@ def serialize_aws_json_1_1(value: DescribePendingMaintenanceActionsMessage) -> d
 
 def deserialize_aws_json_1_1(data: dict) -> DescribePendingMaintenanceActionsMessage:
     out: DescribePendingMaintenanceActionsMessage = {}  # type: ignore[typeddict-item]
-    if "ReplicationInstanceArn" in data:
+    if data.get("ReplicationInstanceArn") is not None:
         out["replication_instance_arn"] = data["ReplicationInstanceArn"]
-    if "Filters" in data:
+    if data.get("Filters") is not None:
         import capo_database_migration_service.types.filter_list
 
         out["filters"] = (
@@ -57,8 +57,8 @@ def deserialize_aws_json_1_1(data: dict) -> DescribePendingMaintenanceActionsMes
                 data["Filters"]
             )
         )
-    if "Marker" in data:
+    if data.get("Marker") is not None:
         out["marker"] = data["Marker"]
-    if "MaxRecords" in data:
+    if data.get("MaxRecords") is not None:
         out["max_records"] = data["MaxRecords"]
     return out

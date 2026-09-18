@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: StopProjectVersionRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> StopProjectVersionRequest:
     out: StopProjectVersionRequest = {}  # type: ignore[typeddict-item]
-    if "ProjectVersionArn" in data:
+    if data.get("ProjectVersionArn") is not None:
         out["project_version_arn"] = data["ProjectVersionArn"]
     else:
         raise DeserializationError(

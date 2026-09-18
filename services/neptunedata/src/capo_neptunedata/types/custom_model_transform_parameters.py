@@ -23,12 +23,12 @@ def serialize_json(value: CustomModelTransformParameters) -> dict:
 
 def deserialize_json(data: dict) -> CustomModelTransformParameters:
     out: CustomModelTransformParameters = {}  # type: ignore[typeddict-item]
-    if "sourceS3DirectoryPath" in data:
+    if data.get("sourceS3DirectoryPath") is not None:
         out["source_s3_directory_path"] = data["sourceS3DirectoryPath"]
     else:
         raise DeserializationError(
             "CustomModelTransformParameters.source_s3_directory_path required"
         )
-    if "transformEntryPointScript" in data:
+    if data.get("transformEntryPointScript") is not None:
         out["transform_entry_point_script"] = data["transformEntryPointScript"]
     return out

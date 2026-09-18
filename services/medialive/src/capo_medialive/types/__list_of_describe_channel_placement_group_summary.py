@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> __listOfDescribeChannelPlacementGroupSummary
 
     out: __listOfDescribeChannelPlacementGroupSummary = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_medialive.types.describe_channel_placement_group_summary.deserialize_json(
                 item

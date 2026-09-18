@@ -13,9 +13,9 @@ from capo_cost_explorer import AsyncCostExplorerClient
 
 
 async def main():
-    async with AsyncCostExplorerClient() as s3:
+    async with AsyncCostExplorerClient() as cost_explorer:
         # Example: call the create_anomaly_monitor operation
-        response = await s3.create_anomaly_monitor()
+        response = await cost_explorer.create_anomaly_monitor()
         print(response["monitor_arn"])
 ```
 
@@ -28,9 +28,9 @@ from capo_cost_explorer import AsyncCostExplorerClient
 
 
 async def main():
-    async with AsyncCostExplorerClient() as s3:
+    async with AsyncCostExplorerClient() as cost_explorer:
         # Example: paginate over get_anomalies
-        async for item in s3.iter_get_anomalies():
+        async for item in cost_explorer.iter_get_anomalies():
             print(item)
 ```
 
@@ -44,9 +44,9 @@ from capo_cost_explorer.error import LimitExceededException
 
 
 async def main():
-    async with AsyncCostExplorerClient() as s3:
+    async with AsyncCostExplorerClient() as cost_explorer:
         try:
-            await s3.create_anomaly_monitor()
+            await cost_explorer.create_anomaly_monitor()
         except LimitExceededException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -63,13 +63,13 @@ from capo_cost_explorer import AsyncCostExplorerClient
 
 
 async def main():
-    async with AsyncCostExplorerClient() as s3:
+    async with AsyncCostExplorerClient() as cost_explorer:
         # Default: 3 attempts for every operation
-        response = await s3.create_anomaly_monitor()
+        response = await cost_explorer.create_anomaly_monitor()
 
         # Override per operation
-        response = await s3.create_anomaly_monitor(config_overrides={"retry_max_attempts": 5})
+        response = await cost_explorer.create_anomaly_monitor(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.create_anomaly_monitor(config_overrides={"retry_max_attempts": 1})
+        response = await cost_explorer.create_anomaly_monitor(config_overrides={"retry_max_attempts": 1})
 ```

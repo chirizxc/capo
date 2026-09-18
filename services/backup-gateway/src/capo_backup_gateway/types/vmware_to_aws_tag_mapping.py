@@ -36,19 +36,19 @@ def serialize_aws_json_1_0(value: VmwareToAwsTagMapping) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> VmwareToAwsTagMapping:
     out: VmwareToAwsTagMapping = {}  # type: ignore[typeddict-item]
-    if "VmwareCategory" in data:
+    if data.get("VmwareCategory") is not None:
         out["vmware_category"] = data["VmwareCategory"]
     else:
         raise DeserializationError("VmwareToAwsTagMapping.vmware_category required")
-    if "VmwareTagName" in data:
+    if data.get("VmwareTagName") is not None:
         out["vmware_tag_name"] = data["VmwareTagName"]
     else:
         raise DeserializationError("VmwareToAwsTagMapping.vmware_tag_name required")
-    if "AwsTagKey" in data:
+    if data.get("AwsTagKey") is not None:
         out["aws_tag_key"] = data["AwsTagKey"]
     else:
         raise DeserializationError("VmwareToAwsTagMapping.aws_tag_key required")
-    if "AwsTagValue" in data:
+    if data.get("AwsTagValue") is not None:
         out["aws_tag_value"] = data["AwsTagValue"]
     else:
         raise DeserializationError("VmwareToAwsTagMapping.aws_tag_value required")

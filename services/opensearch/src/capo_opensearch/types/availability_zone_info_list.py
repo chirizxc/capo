@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> AvailabilityZoneInfoList:
 
     out: AvailabilityZoneInfoList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_opensearch.types.availability_zone_info.deserialize_json(item))
     return out

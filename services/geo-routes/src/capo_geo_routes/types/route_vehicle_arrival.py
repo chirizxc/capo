@@ -35,7 +35,7 @@ def serialize_json(value: RouteVehicleArrival) -> dict:
 
 def deserialize_json(data: dict) -> RouteVehicleArrival:
     out: RouteVehicleArrival = {}  # type: ignore[typeddict-item]
-    if "Place" in data:
+    if data.get("Place") is not None:
         import capo_geo_routes.types.route_vehicle_place
 
         out["place"] = capo_geo_routes.types.route_vehicle_place.deserialize_json(
@@ -43,6 +43,6 @@ def deserialize_json(data: dict) -> RouteVehicleArrival:
         )
     else:
         raise DeserializationError("RouteVehicleArrival.place required")
-    if "Time" in data:
+    if data.get("Time") is not None:
         out["time"] = data["Time"]
     return out

@@ -71,21 +71,21 @@ def serialize_aws_json_1_1(value: Expression) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Expression:
     out: Expression = {}  # type: ignore[typeddict-item]
-    if "Or" in data:
+    if data.get("Or") is not None:
         import capo_budgets.types.expressions
 
         out["or"] = capo_budgets.types.expressions.deserialize_aws_json_1_1(data["Or"])
-    if "And" in data:
+    if data.get("And") is not None:
         import capo_budgets.types.expressions
 
         out["and"] = capo_budgets.types.expressions.deserialize_aws_json_1_1(
             data["And"]
         )
-    if "Not" in data:
+    if data.get("Not") is not None:
         import capo_budgets.types.expression
 
         out["not"] = capo_budgets.types.expression.deserialize_aws_json_1_1(data["Not"])
-    if "Dimensions" in data:
+    if data.get("Dimensions") is not None:
         import capo_budgets.types.expression_dimension_values
 
         out["dimensions"] = (
@@ -93,13 +93,13 @@ def deserialize_aws_json_1_1(data: dict) -> Expression:
                 data["Dimensions"]
             )
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_budgets.types.tag_values
 
         out["tags"] = capo_budgets.types.tag_values.deserialize_aws_json_1_1(
             data["Tags"]
         )
-    if "CostCategories" in data:
+    if data.get("CostCategories") is not None:
         import capo_budgets.types.cost_category_values
 
         out["cost_categories"] = (

@@ -13,10 +13,25 @@ from capo_appflow import AsyncAppflowClient
 
 
 async def main():
-    async with AsyncAppflowClient() as s3:
+    async with AsyncAppflowClient() as appflow:
         # Example: call the cancel_flow_executions operation
-        response = await s3.cancel_flow_executions()
+        response = await appflow.cancel_flow_executions()
         print(response["invalid_executions"])
+```
+
+## Pagination
+
+Some operations in this SDK support pagination. If the operation supports pagination it will have an `iter_` prefixed method that returns an async iterator.
+
+```python
+from capo_appflow import AsyncAppflowClient
+
+
+async def main():
+    async with AsyncAppflowClient() as appflow:
+        # Example: paginate over describe_connector_profiles
+        async for item in appflow.iter_describe_connector_profiles():
+            print(item)
 ```
 
 ## Error Handling
@@ -29,9 +44,9 @@ from capo_appflow.error import AccessDeniedException
 
 
 async def main():
-    async with AsyncAppflowClient() as s3:
+    async with AsyncAppflowClient() as appflow:
         try:
-            await s3.cancel_flow_executions()
+            await appflow.cancel_flow_executions()
         except AccessDeniedException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -48,13 +63,13 @@ from capo_appflow import AsyncAppflowClient
 
 
 async def main():
-    async with AsyncAppflowClient() as s3:
+    async with AsyncAppflowClient() as appflow:
         # Default: 3 attempts for every operation
-        response = await s3.cancel_flow_executions()
+        response = await appflow.cancel_flow_executions()
 
         # Override per operation
-        response = await s3.cancel_flow_executions(config_overrides={"retry_max_attempts": 5})
+        response = await appflow.cancel_flow_executions(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.cancel_flow_executions(config_overrides={"retry_max_attempts": 1})
+        response = await appflow.cancel_flow_executions(config_overrides={"retry_max_attempts": 1})
 ```

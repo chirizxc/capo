@@ -205,8 +205,9 @@ class HealthClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_health.types.describe_affected_accounts_for_organization_request.DescribeAffectedAccountsForOrganizationRequest = {}  # type: ignore[typeddict-item]
-        input_["event_arn"] = event_arn
+        input_: capo_health.types.describe_affected_accounts_for_organization_request.DescribeAffectedAccountsForOrganizationRequest = {
+            "event_arn": event_arn
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -217,6 +218,7 @@ class HealthClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_describe_affected_accounts_for_organization(
@@ -282,8 +284,9 @@ class HealthClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_health.types.describe_affected_entities_request.DescribeAffectedEntitiesRequest = {}  # type: ignore[typeddict-item]
-        input_["filter"] = filter
+        input_: capo_health.types.describe_affected_entities_request.DescribeAffectedEntitiesRequest = {
+            "filter": filter
+        }
         if locale is not None:
             input_["locale"] = locale
         if next_token is not None:
@@ -296,6 +299,7 @@ class HealthClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_describe_affected_entities(
@@ -371,7 +375,7 @@ class HealthClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_health.types.describe_affected_entities_for_organization_request.DescribeAffectedEntitiesForOrganizationRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_health.types.describe_affected_entities_for_organization_request.DescribeAffectedEntitiesForOrganizationRequest = {}
         if organization_entity_filters is not None:
             input_["organization_entity_filters"] = organization_entity_filters
         if locale is not None:
@@ -390,6 +394,7 @@ class HealthClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_describe_affected_entities_for_organization(
@@ -455,7 +460,7 @@ class HealthClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_health.types.describe_entity_aggregates_request.DescribeEntityAggregatesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_health.types.describe_entity_aggregates_request.DescribeEntityAggregatesRequest = {}
         if event_arns is not None:
             input_["event_arns"] = event_arns
 
@@ -464,6 +469,7 @@ class HealthClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_entity_aggregates_for_organization(
@@ -500,8 +506,9 @@ class HealthClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_health.types.describe_entity_aggregates_for_organization_request.DescribeEntityAggregatesForOrganizationRequest = {}  # type: ignore[typeddict-item]
-        input_["event_arns"] = event_arns
+        input_: capo_health.types.describe_entity_aggregates_for_organization_request.DescribeEntityAggregatesForOrganizationRequest = {
+            "event_arns": event_arns
+        }
         if aws_account_ids is not None:
             input_["aws_account_ids"] = aws_account_ids
 
@@ -510,6 +517,7 @@ class HealthClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_event_aggregates(
@@ -549,10 +557,11 @@ class HealthClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_health.types.describe_event_aggregates_request.DescribeEventAggregatesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_health.types.describe_event_aggregates_request.DescribeEventAggregatesRequest = {
+            "aggregate_field": aggregate_field
+        }
         if filter is not None:
             input_["filter"] = filter
-        input_["aggregate_field"] = aggregate_field
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -563,6 +572,7 @@ class HealthClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_describe_event_aggregates(
@@ -625,8 +635,9 @@ class HealthClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_health.types.describe_event_details_request.DescribeEventDetailsRequest = {}  # type: ignore[typeddict-item]
-        input_["event_arns"] = event_arns
+        input_: capo_health.types.describe_event_details_request.DescribeEventDetailsRequest = {
+            "event_arns": event_arns
+        }
         if locale is not None:
             input_["locale"] = locale
 
@@ -635,6 +646,7 @@ class HealthClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_event_details_for_organization(
@@ -670,8 +682,9 @@ class HealthClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_health.types.describe_event_details_for_organization_request.DescribeEventDetailsForOrganizationRequest = {}  # type: ignore[typeddict-item]
-        input_["organization_event_detail_filters"] = organization_event_detail_filters
+        input_: capo_health.types.describe_event_details_for_organization_request.DescribeEventDetailsForOrganizationRequest = {
+            "organization_event_detail_filters": organization_event_detail_filters
+        }
         if locale is not None:
             input_["locale"] = locale
 
@@ -680,6 +693,7 @@ class HealthClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_events(
@@ -722,7 +736,7 @@ class HealthClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_health.types.describe_events_request.DescribeEventsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_health.types.describe_events_request.DescribeEventsRequest = {}
         if filter is not None:
             input_["filter"] = filter
         if next_token is not None:
@@ -737,6 +751,7 @@ class HealthClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_describe_events(
@@ -808,7 +823,7 @@ class HealthClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_health.types.describe_events_for_organization_request.DescribeEventsForOrganizationRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_health.types.describe_events_for_organization_request.DescribeEventsForOrganizationRequest = {}
         if filter is not None:
             input_["filter"] = filter
         if next_token is not None:
@@ -823,6 +838,7 @@ class HealthClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_describe_events_for_organization(
@@ -892,7 +908,7 @@ class HealthClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_health.types.describe_event_types_request.DescribeEventTypesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_health.types.describe_event_types_request.DescribeEventTypesRequest = {}
         if filter is not None:
             input_["filter"] = filter
         if locale is not None:
@@ -907,6 +923,7 @@ class HealthClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_describe_event_types(
@@ -964,6 +981,7 @@ class HealthClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def disable_health_service_access_for_organization(
@@ -993,6 +1011,7 @@ class HealthClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def enable_health_service_access_for_organization(
@@ -1022,6 +1041,7 @@ class HealthClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def __enter__(self) -> Self:

@@ -66,29 +66,29 @@ def serialize_json(value: WriteApplicationSettingsRequest) -> dict:
 
 def deserialize_json(data: dict) -> WriteApplicationSettingsRequest:
     out: WriteApplicationSettingsRequest = {}  # type: ignore[typeddict-item]
-    if "CampaignHook" in data:
+    if data.get("CampaignHook") is not None:
         import capo_pinpoint.types.campaign_hook
 
         out["campaign_hook"] = capo_pinpoint.types.campaign_hook.deserialize_json(
             data["CampaignHook"]
         )
-    if "CloudWatchMetricsEnabled" in data:
+    if data.get("CloudWatchMetricsEnabled") is not None:
         out["cloud_watch_metrics_enabled"] = data["CloudWatchMetricsEnabled"]
-    if "EventTaggingEnabled" in data:
+    if data.get("EventTaggingEnabled") is not None:
         out["event_tagging_enabled"] = data["EventTaggingEnabled"]
-    if "Limits" in data:
+    if data.get("Limits") is not None:
         import capo_pinpoint.types.campaign_limits
 
         out["limits"] = capo_pinpoint.types.campaign_limits.deserialize_json(
             data["Limits"]
         )
-    if "QuietTime" in data:
+    if data.get("QuietTime") is not None:
         import capo_pinpoint.types.quiet_time
 
         out["quiet_time"] = capo_pinpoint.types.quiet_time.deserialize_json(
             data["QuietTime"]
         )
-    if "JourneyLimits" in data:
+    if data.get("JourneyLimits") is not None:
         import capo_pinpoint.types.application_settings_journey_limits
 
         out["journey_limits"] = (

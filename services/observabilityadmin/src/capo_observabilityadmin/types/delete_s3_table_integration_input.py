@@ -24,7 +24,7 @@ def serialize_json(value: DeleteS3TableIntegrationInput) -> dict:
 
 def deserialize_json(data: dict) -> DeleteS3TableIntegrationInput:
     out: DeleteS3TableIntegrationInput = {}  # type: ignore[typeddict-item]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
     else:
         raise DeserializationError("DeleteS3TableIntegrationInput.arn required")

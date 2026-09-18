@@ -101,37 +101,37 @@ def serialize_json(value: ServiceNetworkVpcAssociationSummary) -> dict:
 
 def deserialize_json(data: dict) -> ServiceNetworkVpcAssociationSummary:
     out: ServiceNetworkVpcAssociationSummary = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
-    if "createdBy" in data:
+    if data.get("createdBy") is not None:
         out["created_by"] = data["createdBy"]
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_vpc_lattice.types.timestamp
 
         out["created_at"] = capo_vpc_lattice.types.timestamp.deserialize_json(
             data["createdAt"]
         )
-    if "serviceNetworkId" in data:
+    if data.get("serviceNetworkId") is not None:
         out["service_network_id"] = data["serviceNetworkId"]
-    if "serviceNetworkName" in data:
+    if data.get("serviceNetworkName") is not None:
         out["service_network_name"] = data["serviceNetworkName"]
-    if "serviceNetworkArn" in data:
+    if data.get("serviceNetworkArn") is not None:
         out["service_network_arn"] = data["serviceNetworkArn"]
-    if "privateDnsEnabled" in data:
+    if data.get("privateDnsEnabled") is not None:
         out["private_dns_enabled"] = data["privateDnsEnabled"]
-    if "dnsOptions" in data:
+    if data.get("dnsOptions") is not None:
         import capo_vpc_lattice.types.dns_options
 
         out["dns_options"] = capo_vpc_lattice.types.dns_options.deserialize_json(
             data["dnsOptions"]
         )
-    if "vpcId" in data:
+    if data.get("vpcId") is not None:
         out["vpc_id"] = data["vpcId"]
-    if "lastUpdatedAt" in data:
+    if data.get("lastUpdatedAt") is not None:
         import capo_vpc_lattice.types.timestamp
 
         out["last_updated_at"] = capo_vpc_lattice.types.timestamp.deserialize_json(

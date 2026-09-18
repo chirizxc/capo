@@ -38,9 +38,9 @@ def serialize_json(value: ComponentConfigurationUpdate) -> dict:
 
 def deserialize_json(data: dict) -> ComponentConfigurationUpdate:
     out: ComponentConfigurationUpdate = {}  # type: ignore[typeddict-item]
-    if "merge" in data:
+    if data.get("merge") is not None:
         out["merge"] = data["merge"]
-    if "reset" in data:
+    if data.get("reset") is not None:
         import capo_greengrassv2.types.component_configuration_path_list
 
         out["reset"] = (

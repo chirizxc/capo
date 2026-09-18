@@ -59,7 +59,7 @@ def serialize_aws_json_1_1(value: GetSchemaVersionsDiffInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetSchemaVersionsDiffInput:
     out: GetSchemaVersionsDiffInput = {}  # type: ignore[typeddict-item]
-    if "SchemaId" in data:
+    if data.get("SchemaId") is not None:
         import capo_glue.types.schema_id
 
         out["schema_id"] = capo_glue.types.schema_id.deserialize_aws_json_1_1(
@@ -67,7 +67,7 @@ def deserialize_aws_json_1_1(data: dict) -> GetSchemaVersionsDiffInput:
         )
     else:
         raise DeserializationError("GetSchemaVersionsDiffInput.schema_id required")
-    if "FirstSchemaVersionNumber" in data:
+    if data.get("FirstSchemaVersionNumber") is not None:
         import capo_glue.types.schema_version_number
 
         out["first_schema_version_number"] = (
@@ -79,7 +79,7 @@ def deserialize_aws_json_1_1(data: dict) -> GetSchemaVersionsDiffInput:
         raise DeserializationError(
             "GetSchemaVersionsDiffInput.first_schema_version_number required"
         )
-    if "SecondSchemaVersionNumber" in data:
+    if data.get("SecondSchemaVersionNumber") is not None:
         import capo_glue.types.schema_version_number
 
         out["second_schema_version_number"] = (
@@ -91,7 +91,7 @@ def deserialize_aws_json_1_1(data: dict) -> GetSchemaVersionsDiffInput:
         raise DeserializationError(
             "GetSchemaVersionsDiffInput.second_schema_version_number required"
         )
-    if "SchemaDiffType" in data:
+    if data.get("SchemaDiffType") is not None:
         import capo_glue.types.schema_diff_type
 
         out["schema_diff_type"] = (

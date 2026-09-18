@@ -25,6 +25,8 @@ def deserialize_json(data: list) -> CustomFleetAttributeCapabilities:
 
     out: CustomFleetAttributeCapabilities = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_deadline.types.fleet_attribute_capability.deserialize_json(item)
         )

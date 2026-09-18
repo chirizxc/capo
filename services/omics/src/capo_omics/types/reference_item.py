@@ -26,7 +26,7 @@ def serialize_json(value: ReferenceItem) -> dict:
 
 
 def deserialize_json(data: dict) -> ReferenceItem:
-    if "referenceArn" in data:
+    if data.get("referenceArn") is not None:
         return {"referenceArn": data["referenceArn"]}
     else:
         raise DeserializationError("ReferenceItem: no recognized variant key")

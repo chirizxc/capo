@@ -19,7 +19,7 @@ def serialize_json(value: HyperPodPropertiesInput) -> dict:
 
 def deserialize_json(data: dict) -> HyperPodPropertiesInput:
     out: HyperPodPropertiesInput = {}  # type: ignore[typeddict-item]
-    if "clusterName" in data:
+    if data.get("clusterName") is not None:
         out["cluster_name"] = data["clusterName"]
     else:
         raise DeserializationError("HyperPodPropertiesInput.cluster_name required")

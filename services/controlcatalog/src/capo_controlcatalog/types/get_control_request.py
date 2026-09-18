@@ -24,7 +24,7 @@ def serialize_json(value: GetControlRequest) -> dict:
 
 def deserialize_json(data: dict) -> GetControlRequest:
     out: GetControlRequest = {}  # type: ignore[typeddict-item]
-    if "ControlArn" in data:
+    if data.get("ControlArn") is not None:
         out["control_arn"] = data["ControlArn"]
     else:
         raise DeserializationError("GetControlRequest.control_arn required")

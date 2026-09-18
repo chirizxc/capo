@@ -70,13 +70,13 @@ def serialize_json(value: GetTemporaryGluePartitionCredentialsRequest) -> dict:
 
 def deserialize_json(data: dict) -> GetTemporaryGluePartitionCredentialsRequest:
     out: GetTemporaryGluePartitionCredentialsRequest = {}  # type: ignore[typeddict-item]
-    if "TableArn" in data:
+    if data.get("TableArn") is not None:
         out["table_arn"] = data["TableArn"]
     else:
         raise DeserializationError(
             "GetTemporaryGluePartitionCredentialsRequest.table_arn required"
         )
-    if "Partition" in data:
+    if data.get("Partition") is not None:
         import capo_lakeformation.types.partition_value_list
 
         out["partition"] = (
@@ -88,21 +88,21 @@ def deserialize_json(data: dict) -> GetTemporaryGluePartitionCredentialsRequest:
         raise DeserializationError(
             "GetTemporaryGluePartitionCredentialsRequest.partition required"
         )
-    if "Permissions" in data:
+    if data.get("Permissions") is not None:
         import capo_lakeformation.types.permission_list
 
         out["permissions"] = capo_lakeformation.types.permission_list.deserialize_json(
             data["Permissions"]
         )
-    if "DurationSeconds" in data:
+    if data.get("DurationSeconds") is not None:
         out["duration_seconds"] = data["DurationSeconds"]
-    if "AuditContext" in data:
+    if data.get("AuditContext") is not None:
         import capo_lakeformation.types.audit_context
 
         out["audit_context"] = capo_lakeformation.types.audit_context.deserialize_json(
             data["AuditContext"]
         )
-    if "SupportedPermissionTypes" in data:
+    if data.get("SupportedPermissionTypes") is not None:
         import capo_lakeformation.types.permission_type_list
 
         out["supported_permission_types"] = (

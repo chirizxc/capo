@@ -29,10 +29,10 @@ def serialize_aws_json_1_1(value: EventAccountFilter) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> EventAccountFilter:
     out: EventAccountFilter = {}  # type: ignore[typeddict-item]
-    if "eventArn" in data:
+    if data.get("eventArn") is not None:
         out["event_arn"] = data["eventArn"]
     else:
         raise DeserializationError("EventAccountFilter.event_arn required")
-    if "awsAccountId" in data:
+    if data.get("awsAccountId") is not None:
         out["aws_account_id"] = data["awsAccountId"]
     return out

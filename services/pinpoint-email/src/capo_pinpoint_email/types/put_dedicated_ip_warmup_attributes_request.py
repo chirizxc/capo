@@ -29,7 +29,7 @@ def serialize_json(value: PutDedicatedIpWarmupAttributesRequest) -> dict:
 
 def deserialize_json(data: dict) -> PutDedicatedIpWarmupAttributesRequest:
     out: PutDedicatedIpWarmupAttributesRequest = {}  # type: ignore[typeddict-item]
-    if "WarmupPercentage" in data:
+    if data.get("WarmupPercentage") is not None:
         out["warmup_percentage"] = data["WarmupPercentage"]
     else:
         raise DeserializationError(

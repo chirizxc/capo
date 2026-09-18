@@ -32,15 +32,15 @@ def serialize_json(value: BasicAuthConnectionMetadata) -> dict:
 
 def deserialize_json(data: dict) -> BasicAuthConnectionMetadata:
     out: BasicAuthConnectionMetadata = {}  # type: ignore[typeddict-item]
-    if "BaseEndpoint" in data:
+    if data.get("BaseEndpoint") is not None:
         out["base_endpoint"] = data["BaseEndpoint"]
     else:
         raise DeserializationError("BasicAuthConnectionMetadata.base_endpoint required")
-    if "Username" in data:
+    if data.get("Username") is not None:
         out["username"] = data["Username"]
     else:
         raise DeserializationError("BasicAuthConnectionMetadata.username required")
-    if "Password" in data:
+    if data.get("Password") is not None:
         out["password"] = data["Password"]
     else:
         raise DeserializationError("BasicAuthConnectionMetadata.password required")

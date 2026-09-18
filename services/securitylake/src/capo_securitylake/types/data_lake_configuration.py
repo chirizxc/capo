@@ -63,11 +63,11 @@ def serialize_json(value: DataLakeConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> DataLakeConfiguration:
     out: DataLakeConfiguration = {}  # type: ignore[typeddict-item]
-    if "region" in data:
+    if data.get("region") is not None:
         out["region"] = data["region"]
     else:
         raise DeserializationError("DataLakeConfiguration.region required")
-    if "encryptionConfiguration" in data:
+    if data.get("encryptionConfiguration") is not None:
         import capo_securitylake.types.data_lake_encryption_configuration
 
         out["encryption_configuration"] = (
@@ -75,7 +75,7 @@ def deserialize_json(data: dict) -> DataLakeConfiguration:
                 data["encryptionConfiguration"]
             )
         )
-    if "lifecycleConfiguration" in data:
+    if data.get("lifecycleConfiguration") is not None:
         import capo_securitylake.types.data_lake_lifecycle_configuration
 
         out["lifecycle_configuration"] = (
@@ -83,7 +83,7 @@ def deserialize_json(data: dict) -> DataLakeConfiguration:
                 data["lifecycleConfiguration"]
             )
         )
-    if "replicationConfiguration" in data:
+    if data.get("replicationConfiguration") is not None:
         import capo_securitylake.types.data_lake_replication_configuration
 
         out["replication_configuration"] = (

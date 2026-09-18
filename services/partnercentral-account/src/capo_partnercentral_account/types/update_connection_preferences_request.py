@@ -51,19 +51,19 @@ def serialize_aws_json_1_0(value: UpdateConnectionPreferencesRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> UpdateConnectionPreferencesRequest:
     out: UpdateConnectionPreferencesRequest = {}  # type: ignore[typeddict-item]
-    if "Catalog" in data:
+    if data.get("Catalog") is not None:
         out["catalog"] = data["Catalog"]
     else:
         raise DeserializationError(
             "UpdateConnectionPreferencesRequest.catalog required"
         )
-    if "Revision" in data:
+    if data.get("Revision") is not None:
         out["revision"] = data["Revision"]
     else:
         raise DeserializationError(
             "UpdateConnectionPreferencesRequest.revision required"
         )
-    if "AccessType" in data:
+    if data.get("AccessType") is not None:
         import capo_partnercentral_account.types.access_type
 
         out["access_type"] = (
@@ -75,7 +75,7 @@ def deserialize_aws_json_1_0(data: dict) -> UpdateConnectionPreferencesRequest:
         raise DeserializationError(
             "UpdateConnectionPreferencesRequest.access_type required"
         )
-    if "ExcludedParticipantIdentifiers" in data:
+    if data.get("ExcludedParticipantIdentifiers") is not None:
         import capo_partnercentral_account.types.participant_identifier_list
 
         out["excluded_participant_identifiers"] = (

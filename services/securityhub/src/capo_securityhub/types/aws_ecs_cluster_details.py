@@ -100,11 +100,11 @@ def serialize_json(value: AwsEcsClusterDetails) -> dict:
 
 def deserialize_json(data: dict) -> AwsEcsClusterDetails:
     out: AwsEcsClusterDetails = {}  # type: ignore[typeddict-item]
-    if "ClusterArn" in data:
+    if data.get("ClusterArn") is not None:
         out["cluster_arn"] = data["ClusterArn"]
-    if "ActiveServicesCount" in data:
+    if data.get("ActiveServicesCount") is not None:
         out["active_services_count"] = data["ActiveServicesCount"]
-    if "CapacityProviders" in data:
+    if data.get("CapacityProviders") is not None:
         import capo_securityhub.types.non_empty_string_list
 
         out["capacity_providers"] = (
@@ -112,7 +112,7 @@ def deserialize_json(data: dict) -> AwsEcsClusterDetails:
                 data["CapacityProviders"]
             )
         )
-    if "ClusterSettings" in data:
+    if data.get("ClusterSettings") is not None:
         import capo_securityhub.types.aws_ecs_cluster_cluster_settings_list
 
         out["cluster_settings"] = (
@@ -120,7 +120,7 @@ def deserialize_json(data: dict) -> AwsEcsClusterDetails:
                 data["ClusterSettings"]
             )
         )
-    if "Configuration" in data:
+    if data.get("Configuration") is not None:
         import capo_securityhub.types.aws_ecs_cluster_configuration_details
 
         out["configuration"] = (
@@ -128,7 +128,7 @@ def deserialize_json(data: dict) -> AwsEcsClusterDetails:
                 data["Configuration"]
             )
         )
-    if "DefaultCapacityProviderStrategy" in data:
+    if data.get("DefaultCapacityProviderStrategy") is not None:
         import capo_securityhub.types.aws_ecs_cluster_default_capacity_provider_strategy_list
 
         out["default_capacity_provider_strategy"] = (
@@ -136,14 +136,14 @@ def deserialize_json(data: dict) -> AwsEcsClusterDetails:
                 data["DefaultCapacityProviderStrategy"]
             )
         )
-    if "ClusterName" in data:
+    if data.get("ClusterName") is not None:
         out["cluster_name"] = data["ClusterName"]
-    if "RegisteredContainerInstancesCount" in data:
+    if data.get("RegisteredContainerInstancesCount") is not None:
         out["registered_container_instances_count"] = data[
             "RegisteredContainerInstancesCount"
         ]
-    if "RunningTasksCount" in data:
+    if data.get("RunningTasksCount") is not None:
         out["running_tasks_count"] = data["RunningTasksCount"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         out["status"] = data["Status"]
     return out

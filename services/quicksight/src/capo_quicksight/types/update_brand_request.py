@@ -37,7 +37,7 @@ def serialize_json(value: UpdateBrandRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateBrandRequest:
     out: UpdateBrandRequest = {}  # type: ignore[typeddict-item]
-    if "BrandDefinition" in data:
+    if data.get("BrandDefinition") is not None:
         import capo_quicksight.types.brand_definition
 
         out["brand_definition"] = (

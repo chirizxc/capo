@@ -38,12 +38,12 @@ def serialize_json(value: MotionGraphicsActivateScheduleActionSettings) -> dict:
 
 def deserialize_json(data: dict) -> MotionGraphicsActivateScheduleActionSettings:
     out: MotionGraphicsActivateScheduleActionSettings = {}  # type: ignore[typeddict-item]
-    if "duration" in data:
+    if data.get("duration") is not None:
         out["duration"] = data["duration"]
-    if "passwordParam" in data:
+    if data.get("passwordParam") is not None:
         out["password_param"] = data["passwordParam"]
-    if "url" in data:
+    if data.get("url") is not None:
         out["url"] = data["url"]
-    if "username" in data:
+    if data.get("username") is not None:
         out["username"] = data["username"]
     return out

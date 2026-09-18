@@ -23,7 +23,7 @@ def serialize_json(value: ResourceShareInvitationAlreadyAcceptedException_) -> d
 
 def deserialize_json(data: dict) -> ResourceShareInvitationAlreadyAcceptedException_:
     out: ResourceShareInvitationAlreadyAcceptedException_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     else:
         raise DeserializationError(
@@ -37,15 +37,22 @@ class ResourceShareInvitationAlreadyAcceptedException(ServiceError):
 
     code: str | None = "ResourceShareInvitationAlreadyAcceptedException"
 
-    def __init__(self, data: ResourceShareInvitationAlreadyAcceptedException_):
+    def __init__(
+        self,
+        data: ResourceShareInvitationAlreadyAcceptedException_,
+        message: str | None = None,
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="ResourceShareInvitationAlreadyAcceptedException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "ResourceShareInvitationAlreadyAcceptedException":
-        return cls(deserialize_json(data))
+    def from_json(
+        cls, data: dict, message: str | None = None
+    ) -> "ResourceShareInvitationAlreadyAcceptedException":
+        return cls(deserialize_json(data), message)

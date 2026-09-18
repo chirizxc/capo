@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> ViewList:
 
     out: ViewList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_resource_explorer_2.types.view.deserialize_json(item))
     return out

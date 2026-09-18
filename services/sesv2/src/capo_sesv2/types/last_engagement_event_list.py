@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> LastEngagementEventList:
 
     out: LastEngagementEventList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_sesv2.types.engagement_event_type.deserialize_json(item))
     return out

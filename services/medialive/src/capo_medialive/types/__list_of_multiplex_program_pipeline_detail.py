@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> __listOfMultiplexProgramPipelineDetail:
 
     out: __listOfMultiplexProgramPipelineDetail = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_medialive.types.multiplex_program_pipeline_detail.deserialize_json(
                 item

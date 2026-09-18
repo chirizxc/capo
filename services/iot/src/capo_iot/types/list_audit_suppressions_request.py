@@ -46,9 +46,9 @@ def serialize_json(value: ListAuditSuppressionsRequest) -> dict:
 
 def deserialize_json(data: dict) -> ListAuditSuppressionsRequest:
     out: ListAuditSuppressionsRequest = {}  # type: ignore[typeddict-item]
-    if "checkName" in data:
+    if data.get("checkName") is not None:
         out["check_name"] = data["checkName"]
-    if "resourceIdentifier" in data:
+    if data.get("resourceIdentifier") is not None:
         import capo_iot.types.resource_identifier
 
         out["resource_identifier"] = (
@@ -56,12 +56,12 @@ def deserialize_json(data: dict) -> ListAuditSuppressionsRequest:
                 data["resourceIdentifier"]
             )
         )
-    if "ascendingOrder" in data:
+    if data.get("ascendingOrder") is not None:
         out["ascending_order"] = data["ascendingOrder"]
     else:
         out["ascending_order"] = False
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
     return out

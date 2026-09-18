@@ -59,25 +59,25 @@ def serialize_json(value: GetMultiRegionEndpointResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetMultiRegionEndpointResponse:
     out: GetMultiRegionEndpointResponse = {}  # type: ignore[typeddict-item]
-    if "EndpointName" in data:
+    if data.get("EndpointName") is not None:
         out["endpoint_name"] = data["EndpointName"]
-    if "EndpointId" in data:
+    if data.get("EndpointId") is not None:
         out["endpoint_id"] = data["EndpointId"]
-    if "Routes" in data:
+    if data.get("Routes") is not None:
         import capo_sesv2.types.routes
 
         out["routes"] = capo_sesv2.types.routes.deserialize_json(data["Routes"])
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_sesv2.types.status
 
         out["status"] = capo_sesv2.types.status.deserialize_json(data["Status"])
-    if "CreatedTimestamp" in data:
+    if data.get("CreatedTimestamp") is not None:
         import capo_sesv2.types.timestamp
 
         out["created_timestamp"] = capo_sesv2.types.timestamp.deserialize_json(
             data["CreatedTimestamp"]
         )
-    if "LastUpdatedTimestamp" in data:
+    if data.get("LastUpdatedTimestamp") is not None:
         import capo_sesv2.types.timestamp
 
         out["last_updated_timestamp"] = capo_sesv2.types.timestamp.deserialize_json(

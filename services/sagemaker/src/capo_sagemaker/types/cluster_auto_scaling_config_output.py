@@ -55,7 +55,7 @@ def serialize_aws_json_1_1(value: ClusterAutoScalingConfigOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ClusterAutoScalingConfigOutput:
     out: ClusterAutoScalingConfigOutput = {}  # type: ignore[typeddict-item]
-    if "Mode" in data:
+    if data.get("Mode") is not None:
         import capo_sagemaker.types.cluster_auto_scaling_mode
 
         out["mode"] = (
@@ -65,7 +65,7 @@ def deserialize_aws_json_1_1(data: dict) -> ClusterAutoScalingConfigOutput:
         )
     else:
         raise DeserializationError("ClusterAutoScalingConfigOutput.mode required")
-    if "AutoScalerType" in data:
+    if data.get("AutoScalerType") is not None:
         import capo_sagemaker.types.cluster_auto_scaler_type
 
         out["auto_scaler_type"] = (
@@ -73,7 +73,7 @@ def deserialize_aws_json_1_1(data: dict) -> ClusterAutoScalingConfigOutput:
                 data["AutoScalerType"]
             )
         )
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_sagemaker.types.cluster_auto_scaling_status
 
         out["status"] = (
@@ -83,6 +83,6 @@ def deserialize_aws_json_1_1(data: dict) -> ClusterAutoScalingConfigOutput:
         )
     else:
         raise DeserializationError("ClusterAutoScalingConfigOutput.status required")
-    if "FailureMessage" in data:
+    if data.get("FailureMessage") is not None:
         out["failure_message"] = data["FailureMessage"]
     return out

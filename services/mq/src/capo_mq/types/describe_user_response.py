@@ -52,22 +52,22 @@ def serialize_json(value: DescribeUserResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribeUserResponse:
     out: DescribeUserResponse = {}  # type: ignore[typeddict-item]
-    if "brokerId" in data:
+    if data.get("brokerId") is not None:
         out["broker_id"] = data["brokerId"]
-    if "consoleAccess" in data:
+    if data.get("consoleAccess") is not None:
         out["console_access"] = data["consoleAccess"]
-    if "groups" in data:
+    if data.get("groups") is not None:
         import capo_mq.types.__list_of__string
 
         out["groups"] = capo_mq.types.__list_of__string.deserialize_json(data["groups"])
-    if "pending" in data:
+    if data.get("pending") is not None:
         import capo_mq.types.user_pending_changes
 
         out["pending"] = capo_mq.types.user_pending_changes.deserialize_json(
             data["pending"]
         )
-    if "username" in data:
+    if data.get("username") is not None:
         out["username"] = data["username"]
-    if "replicationUser" in data:
+    if data.get("replicationUser") is not None:
         out["replication_user"] = data["replicationUser"]
     return out

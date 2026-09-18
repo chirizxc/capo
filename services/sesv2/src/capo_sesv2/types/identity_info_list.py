@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> IdentityInfoList:
 
     out: IdentityInfoList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_sesv2.types.identity_info.deserialize_json(item))
     return out

@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> Results:
 
     out: Results = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_backupsearch.types.result_item.deserialize_json(item))
     return out

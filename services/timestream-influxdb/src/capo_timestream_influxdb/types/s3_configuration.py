@@ -22,11 +22,11 @@ def serialize_aws_json_1_0(value: S3Configuration) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> S3Configuration:
     out: S3Configuration = {}  # type: ignore[typeddict-item]
-    if "bucketName" in data:
+    if data.get("bucketName") is not None:
         out["bucket_name"] = data["bucketName"]
     else:
         raise DeserializationError("S3Configuration.bucket_name required")
-    if "enabled" in data:
+    if data.get("enabled") is not None:
         out["enabled"] = data["enabled"]
     else:
         raise DeserializationError("S3Configuration.enabled required")

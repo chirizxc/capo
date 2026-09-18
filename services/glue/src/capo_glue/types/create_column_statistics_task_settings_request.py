@@ -49,7 +49,15 @@ def serialize_aws_json_1_1(value: CreateColumnStatisticsTaskSettingsRequest) -> 
         out["ColumnNameList"] = capo_glue.types.column_name_list.serialize_aws_json_1_1(
             value["column_name_list"]
         )
-    out["SampleSize"] = value.get("sample_size", 0)
+    out["SampleSize"] = (
+        "NaN"
+        if value.get("sample_size", 0) != value.get("sample_size", 0)
+        else "Infinity"
+        if value.get("sample_size", 0) == float("inf")
+        else "-Infinity"
+        if value.get("sample_size", 0) == float("-inf")
+        else value.get("sample_size", 0)
+    )
     if "catalog_id" in value:
         out["CatalogID"] = value["catalog_id"]
     if "security_configuration" in value:
@@ -63,27 +71,27 @@ def serialize_aws_json_1_1(value: CreateColumnStatisticsTaskSettingsRequest) -> 
 
 def deserialize_aws_json_1_1(data: dict) -> CreateColumnStatisticsTaskSettingsRequest:
     out: CreateColumnStatisticsTaskSettingsRequest = {}  # type: ignore[typeddict-item]
-    if "DatabaseName" in data:
+    if data.get("DatabaseName") is not None:
         out["database_name"] = data["DatabaseName"]
     else:
         raise DeserializationError(
             "CreateColumnStatisticsTaskSettingsRequest.database_name required"
         )
-    if "TableName" in data:
+    if data.get("TableName") is not None:
         out["table_name"] = data["TableName"]
     else:
         raise DeserializationError(
             "CreateColumnStatisticsTaskSettingsRequest.table_name required"
         )
-    if "Role" in data:
+    if data.get("Role") is not None:
         out["role"] = data["Role"]
     else:
         raise DeserializationError(
             "CreateColumnStatisticsTaskSettingsRequest.role required"
         )
-    if "Schedule" in data:
+    if data.get("Schedule") is not None:
         out["schedule"] = data["Schedule"]
-    if "ColumnNameList" in data:
+    if data.get("ColumnNameList") is not None:
         import capo_glue.types.column_name_list
 
         out["column_name_list"] = (
@@ -91,15 +99,15 @@ def deserialize_aws_json_1_1(data: dict) -> CreateColumnStatisticsTaskSettingsRe
                 data["ColumnNameList"]
             )
         )
-    if "SampleSize" in data:
-        out["sample_size"] = data["SampleSize"]
+    if data.get("SampleSize") is not None:
+        out["sample_size"] = float(data["SampleSize"])
     else:
         out["sample_size"] = 0
-    if "CatalogID" in data:
+    if data.get("CatalogID") is not None:
         out["catalog_id"] = data["CatalogID"]
-    if "SecurityConfiguration" in data:
+    if data.get("SecurityConfiguration") is not None:
         out["security_configuration"] = data["SecurityConfiguration"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_glue.types.tags_map
 
         out["tags"] = capo_glue.types.tags_map.deserialize_aws_json_1_1(data["Tags"])

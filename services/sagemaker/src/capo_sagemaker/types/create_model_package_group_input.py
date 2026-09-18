@@ -52,17 +52,17 @@ def serialize_aws_json_1_1(value: CreateModelPackageGroupInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateModelPackageGroupInput:
     out: CreateModelPackageGroupInput = {}  # type: ignore[typeddict-item]
-    if "ModelPackageGroupName" in data:
+    if data.get("ModelPackageGroupName") is not None:
         out["model_package_group_name"] = data["ModelPackageGroupName"]
-    if "ModelPackageGroupDescription" in data:
+    if data.get("ModelPackageGroupDescription") is not None:
         out["model_package_group_description"] = data["ModelPackageGroupDescription"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_sagemaker.types.tag_list
 
         out["tags"] = capo_sagemaker.types.tag_list.deserialize_aws_json_1_1(
             data["Tags"]
         )
-    if "ManagedConfiguration" in data:
+    if data.get("ManagedConfiguration") is not None:
         import capo_sagemaker.types.managed_configuration
 
         out["managed_configuration"] = (

@@ -23,6 +23,6 @@ def serialize_aws_json_1_1(value: LicenseAssetGroupConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> LicenseAssetGroupConfiguration:
     out: LicenseAssetGroupConfiguration = {}  # type: ignore[typeddict-item]
-    if "UsageDimension" in data:
+    if data.get("UsageDimension") is not None:
         out["usage_dimension"] = data["UsageDimension"]
     return out

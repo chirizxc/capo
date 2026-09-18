@@ -28,8 +28,11 @@ def serialize_json(input_to_serialize: LogPublishingOptions) -> dict:
 def deserialize_json(data: dict) -> LogPublishingOptions:
     out: LogPublishingOptions = {}
     for key, value in data.items():
-        import capo_elasticsearch_service.types.log_publishing_option
         import capo_elasticsearch_service.types.log_type
+
+        if value is None:
+            continue
+        import capo_elasticsearch_service.types.log_publishing_option
 
         out[capo_elasticsearch_service.types.log_type.deserialize_json(key)] = (
             capo_elasticsearch_service.types.log_publishing_option.deserialize_json(

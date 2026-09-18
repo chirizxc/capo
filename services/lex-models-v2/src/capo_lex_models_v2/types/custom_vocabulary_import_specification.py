@@ -32,19 +32,19 @@ def serialize_json(value: CustomVocabularyImportSpecification) -> dict:
 
 def deserialize_json(data: dict) -> CustomVocabularyImportSpecification:
     out: CustomVocabularyImportSpecification = {}  # type: ignore[typeddict-item]
-    if "botId" in data:
+    if data.get("botId") is not None:
         out["bot_id"] = data["botId"]
     else:
         raise DeserializationError(
             "CustomVocabularyImportSpecification.bot_id required"
         )
-    if "botVersion" in data:
+    if data.get("botVersion") is not None:
         out["bot_version"] = data["botVersion"]
     else:
         raise DeserializationError(
             "CustomVocabularyImportSpecification.bot_version required"
         )
-    if "localeId" in data:
+    if data.get("localeId") is not None:
         out["locale_id"] = data["localeId"]
     else:
         raise DeserializationError(

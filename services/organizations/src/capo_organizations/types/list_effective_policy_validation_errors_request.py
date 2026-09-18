@@ -44,13 +44,13 @@ def serialize_aws_json_1_1(value: ListEffectivePolicyValidationErrorsRequest) ->
 
 def deserialize_aws_json_1_1(data: dict) -> ListEffectivePolicyValidationErrorsRequest:
     out: ListEffectivePolicyValidationErrorsRequest = {}  # type: ignore[typeddict-item]
-    if "AccountId" in data:
+    if data.get("AccountId") is not None:
         out["account_id"] = data["AccountId"]
     else:
         raise DeserializationError(
             "ListEffectivePolicyValidationErrorsRequest.account_id required"
         )
-    if "PolicyType" in data:
+    if data.get("PolicyType") is not None:
         import capo_organizations.types.effective_policy_type
 
         out["policy_type"] = (
@@ -62,8 +62,8 @@ def deserialize_aws_json_1_1(data: dict) -> ListEffectivePolicyValidationErrorsR
         raise DeserializationError(
             "ListEffectivePolicyValidationErrorsRequest.policy_type required"
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
     return out

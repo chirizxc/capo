@@ -42,7 +42,7 @@ def serialize_json(value: WorkerComputeConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> WorkerComputeConfiguration:
     out: WorkerComputeConfiguration = {}  # type: ignore[typeddict-item]
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_cleanrooms.types.worker_compute_type
 
         out["type"] = capo_cleanrooms.types.worker_compute_type.deserialize_json(
@@ -50,11 +50,11 @@ def deserialize_json(data: dict) -> WorkerComputeConfiguration:
         )
     else:
         out["type"] = "CR.1X"
-    if "number" in data:
+    if data.get("number") is not None:
         out["number"] = data["number"]
     else:
         out["number"] = 16
-    if "properties" in data:
+    if data.get("properties") is not None:
         import capo_cleanrooms.types.worker_compute_configuration_properties
 
         out["properties"] = (

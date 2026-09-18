@@ -34,9 +34,9 @@ def serialize_aws_json_1_1(value: NestedFilters) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> NestedFilters:
     out: NestedFilters = {}  # type: ignore[typeddict-item]
-    if "NestedPropertyName" in data:
+    if data.get("NestedPropertyName") is not None:
         out["nested_property_name"] = data["NestedPropertyName"]
-    if "Filters" in data:
+    if data.get("Filters") is not None:
         import capo_sagemaker.types.filter_list
 
         out["filters"] = capo_sagemaker.types.filter_list.deserialize_aws_json_1_1(

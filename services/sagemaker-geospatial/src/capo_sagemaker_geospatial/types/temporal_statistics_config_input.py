@@ -48,9 +48,9 @@ def serialize_json(value: TemporalStatisticsConfigInput) -> dict:
 
 def deserialize_json(data: dict) -> TemporalStatisticsConfigInput:
     out: TemporalStatisticsConfigInput = {}  # type: ignore[typeddict-item]
-    if "GroupBy" in data:
+    if data.get("GroupBy") is not None:
         out["group_by"] = data["GroupBy"]
-    if "Statistics" in data:
+    if data.get("Statistics") is not None:
         import capo_sagemaker_geospatial.types.temporal_statistics_list_input
 
         out["statistics"] = (
@@ -60,7 +60,7 @@ def deserialize_json(data: dict) -> TemporalStatisticsConfigInput:
         )
     else:
         raise DeserializationError("TemporalStatisticsConfigInput.statistics required")
-    if "TargetBands" in data:
+    if data.get("TargetBands") is not None:
         import capo_sagemaker_geospatial.types.string_list_input
 
         out["target_bands"] = (

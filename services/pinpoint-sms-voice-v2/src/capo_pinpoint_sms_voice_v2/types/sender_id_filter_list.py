@@ -29,6 +29,8 @@ def deserialize_aws_json_1_0(data: list) -> SenderIdFilterList:
 
     out: SenderIdFilterList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_pinpoint_sms_voice_v2.types.sender_id_filter.deserialize_aws_json_1_0(
                 item

@@ -30,8 +30,8 @@ def serialize_json(value: PutComponentPolicyResponse) -> dict:
 
 def deserialize_json(data: dict) -> PutComponentPolicyResponse:
     out: PutComponentPolicyResponse = {}  # type: ignore[typeddict-item]
-    if "requestId" in data:
+    if data.get("requestId") is not None:
         out["request_id"] = data["requestId"]
-    if "componentArn" in data:
+    if data.get("componentArn") is not None:
         out["component_arn"] = data["componentArn"]
     return out

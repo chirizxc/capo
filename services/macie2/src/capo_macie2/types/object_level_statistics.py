@@ -31,10 +31,10 @@ def serialize_json(value: ObjectLevelStatistics) -> dict:
 
 def deserialize_json(data: dict) -> ObjectLevelStatistics:
     out: ObjectLevelStatistics = {}  # type: ignore[typeddict-item]
-    if "fileType" in data:
+    if data.get("fileType") is not None:
         out["file_type"] = data["fileType"]
-    if "storageClass" in data:
+    if data.get("storageClass") is not None:
         out["storage_class"] = data["storageClass"]
-    if "total" in data:
+    if data.get("total") is not None:
         out["total"] = data["total"]
     return out

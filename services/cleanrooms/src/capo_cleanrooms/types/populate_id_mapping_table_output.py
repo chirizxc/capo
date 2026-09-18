@@ -24,7 +24,7 @@ def serialize_json(value: PopulateIdMappingTableOutput) -> dict:
 
 def deserialize_json(data: dict) -> PopulateIdMappingTableOutput:
     out: PopulateIdMappingTableOutput = {}  # type: ignore[typeddict-item]
-    if "idMappingJobId" in data:
+    if data.get("idMappingJobId") is not None:
         out["id_mapping_job_id"] = data["idMappingJobId"]
     else:
         raise DeserializationError(

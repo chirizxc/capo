@@ -177,14 +177,14 @@ def serialize_json(value: GetTrainedModelResponse) -> dict:
         out["mlModelTrainingPayerAccountId"] = value[
             "ml_model_training_payer_account_id"
         ]
-    import capo_cleanroomsml.types._prelude.timestamp
+    import capo_cleanroomsml._protocol.serialize
 
-    out["createTime"] = capo_cleanroomsml.types._prelude.timestamp.serialize_json(
+    out["createTime"] = capo_cleanroomsml._protocol.serialize.fmt_date_time(
         value["create_time"]
     )
-    import capo_cleanroomsml.types._prelude.timestamp
+    import capo_cleanroomsml._protocol.serialize
 
-    out["updateTime"] = capo_cleanroomsml.types._prelude.timestamp.serialize_json(
+    out["updateTime"] = capo_cleanroomsml._protocol.serialize.fmt_date_time(
         value["update_time"]
     )
     if "hyperparameters" in value:
@@ -219,25 +219,25 @@ def serialize_json(value: GetTrainedModelResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetTrainedModelResponse:
     out: GetTrainedModelResponse = {}  # type: ignore[typeddict-item]
-    if "membershipIdentifier" in data:
+    if data.get("membershipIdentifier") is not None:
         out["membership_identifier"] = data["membershipIdentifier"]
     else:
         raise DeserializationError(
             "GetTrainedModelResponse.membership_identifier required"
         )
-    if "collaborationIdentifier" in data:
+    if data.get("collaborationIdentifier") is not None:
         out["collaboration_identifier"] = data["collaborationIdentifier"]
     else:
         raise DeserializationError(
             "GetTrainedModelResponse.collaboration_identifier required"
         )
-    if "trainedModelArn" in data:
+    if data.get("trainedModelArn") is not None:
         out["trained_model_arn"] = data["trainedModelArn"]
     else:
         raise DeserializationError("GetTrainedModelResponse.trained_model_arn required")
-    if "versionIdentifier" in data:
+    if data.get("versionIdentifier") is not None:
         out["version_identifier"] = data["versionIdentifier"]
-    if "incrementalTrainingDataChannels" in data:
+    if data.get("incrementalTrainingDataChannels") is not None:
         import capo_cleanroomsml.types.incremental_training_data_channels_output
 
         out["incremental_training_data_channels"] = (
@@ -245,13 +245,13 @@ def deserialize_json(data: dict) -> GetTrainedModelResponse:
                 data["incrementalTrainingDataChannels"]
             )
         )
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("GetTrainedModelResponse.name required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_cleanroomsml.types.trained_model_status
 
         out["status"] = capo_cleanroomsml.types.trained_model_status.deserialize_json(
@@ -259,13 +259,13 @@ def deserialize_json(data: dict) -> GetTrainedModelResponse:
         )
     else:
         raise DeserializationError("GetTrainedModelResponse.status required")
-    if "statusDetails" in data:
+    if data.get("statusDetails") is not None:
         import capo_cleanroomsml.types.status_details
 
         out["status_details"] = capo_cleanroomsml.types.status_details.deserialize_json(
             data["statusDetails"]
         )
-    if "configuredModelAlgorithmAssociationArn" in data:
+    if data.get("configuredModelAlgorithmAssociationArn") is not None:
         out["configured_model_algorithm_association_arn"] = data[
             "configuredModelAlgorithmAssociationArn"
         ]
@@ -273,7 +273,7 @@ def deserialize_json(data: dict) -> GetTrainedModelResponse:
         raise DeserializationError(
             "GetTrainedModelResponse.configured_model_algorithm_association_arn required"
         )
-    if "resourceConfig" in data:
+    if data.get("resourceConfig") is not None:
         import capo_cleanroomsml.types.resource_config
 
         out["resource_config"] = (
@@ -281,7 +281,7 @@ def deserialize_json(data: dict) -> GetTrainedModelResponse:
                 data["resourceConfig"]
             )
         )
-    if "trainingInputMode" in data:
+    if data.get("trainingInputMode") is not None:
         import capo_cleanroomsml.types.training_input_mode
 
         out["training_input_mode"] = (
@@ -289,7 +289,7 @@ def deserialize_json(data: dict) -> GetTrainedModelResponse:
                 data["trainingInputMode"]
             )
         )
-    if "stoppingCondition" in data:
+    if data.get("stoppingCondition") is not None:
         import capo_cleanroomsml.types.stopping_condition
 
         out["stopping_condition"] = (
@@ -297,49 +297,45 @@ def deserialize_json(data: dict) -> GetTrainedModelResponse:
                 data["stoppingCondition"]
             )
         )
-    if "metricsStatus" in data:
+    if data.get("metricsStatus") is not None:
         import capo_cleanroomsml.types.metrics_status
 
         out["metrics_status"] = capo_cleanroomsml.types.metrics_status.deserialize_json(
             data["metricsStatus"]
         )
-    if "metricsStatusDetails" in data:
+    if data.get("metricsStatusDetails") is not None:
         out["metrics_status_details"] = data["metricsStatusDetails"]
-    if "logsStatus" in data:
+    if data.get("logsStatus") is not None:
         import capo_cleanroomsml.types.logs_status
 
         out["logs_status"] = capo_cleanroomsml.types.logs_status.deserialize_json(
             data["logsStatus"]
         )
-    if "logsStatusDetails" in data:
+    if data.get("logsStatusDetails") is not None:
         out["logs_status_details"] = data["logsStatusDetails"]
-    if "trainingContainerImageDigest" in data:
+    if data.get("trainingContainerImageDigest") is not None:
         out["training_container_image_digest"] = data["trainingContainerImageDigest"]
-    if "mlModelTrainingPayerAccountId" in data:
+    if data.get("mlModelTrainingPayerAccountId") is not None:
         out["ml_model_training_payer_account_id"] = data[
             "mlModelTrainingPayerAccountId"
         ]
-    if "createTime" in data:
-        import capo_cleanroomsml.types._prelude.timestamp
+    if data.get("createTime") is not None:
+        import datetime
 
-        out["create_time"] = (
-            capo_cleanroomsml.types._prelude.timestamp.deserialize_json(
-                data["createTime"]
-            )
+        out["create_time"] = datetime.datetime.fromisoformat(
+            data["createTime"].replace("Z", "+00:00")
         )
     else:
         raise DeserializationError("GetTrainedModelResponse.create_time required")
-    if "updateTime" in data:
-        import capo_cleanroomsml.types._prelude.timestamp
+    if data.get("updateTime") is not None:
+        import datetime
 
-        out["update_time"] = (
-            capo_cleanroomsml.types._prelude.timestamp.deserialize_json(
-                data["updateTime"]
-            )
+        out["update_time"] = datetime.datetime.fromisoformat(
+            data["updateTime"].replace("Z", "+00:00")
         )
     else:
         raise DeserializationError("GetTrainedModelResponse.update_time required")
-    if "hyperparameters" in data:
+    if data.get("hyperparameters") is not None:
         import capo_cleanroomsml.types.hyper_parameters
 
         out["hyperparameters"] = (
@@ -347,19 +343,19 @@ def deserialize_json(data: dict) -> GetTrainedModelResponse:
                 data["hyperparameters"]
             )
         )
-    if "environment" in data:
+    if data.get("environment") is not None:
         import capo_cleanroomsml.types.environment
 
         out["environment"] = capo_cleanroomsml.types.environment.deserialize_json(
             data["environment"]
         )
-    if "kmsKeyArn" in data:
+    if data.get("kmsKeyArn") is not None:
         out["kms_key_arn"] = data["kmsKeyArn"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_cleanroomsml.types.tag_map
 
         out["tags"] = capo_cleanroomsml.types.tag_map.deserialize_json(data["tags"])
-    if "dataChannels" in data:
+    if data.get("dataChannels") is not None:
         import capo_cleanroomsml.types.model_training_data_channels
 
         out["data_channels"] = (

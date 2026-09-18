@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> MetricQueryResultList:
 
     out: MetricQueryResultList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_sagemaker_metrics.types.metric_query_result.deserialize_json(item)
         )

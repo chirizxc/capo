@@ -25,6 +25,8 @@ def deserialize_json(data: list) -> ScheduleList:
 
     out: ScheduleList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_marketplace_discovery.types.schedule_item.deserialize_json(item)
         )

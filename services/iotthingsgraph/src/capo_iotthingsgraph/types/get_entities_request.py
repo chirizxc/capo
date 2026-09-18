@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: GetEntitiesRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetEntitiesRequest:
     out: GetEntitiesRequest = {}  # type: ignore[typeddict-item]
-    if "ids" in data:
+    if data.get("ids") is not None:
         import capo_iotthingsgraph.types.urns
 
         out["ids"] = capo_iotthingsgraph.types.urns.deserialize_aws_json_1_1(
@@ -39,6 +39,6 @@ def deserialize_aws_json_1_1(data: dict) -> GetEntitiesRequest:
         )
     else:
         raise DeserializationError("GetEntitiesRequest.ids required")
-    if "namespaceVersion" in data:
+    if data.get("namespaceVersion") is not None:
         out["namespace_version"] = data["namespaceVersion"]
     return out

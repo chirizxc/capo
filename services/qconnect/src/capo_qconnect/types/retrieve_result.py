@@ -35,19 +35,19 @@ def serialize_json(value: RetrieveResult) -> dict:
 
 def deserialize_json(data: dict) -> RetrieveResult:
     out: RetrieveResult = {}  # type: ignore[typeddict-item]
-    if "associationId" in data:
+    if data.get("associationId") is not None:
         out["association_id"] = data["associationId"]
     else:
         raise DeserializationError("RetrieveResult.association_id required")
-    if "sourceId" in data:
+    if data.get("sourceId") is not None:
         out["source_id"] = data["sourceId"]
     else:
         raise DeserializationError("RetrieveResult.source_id required")
-    if "referenceType" in data:
+    if data.get("referenceType") is not None:
         out["reference_type"] = data["referenceType"]
     else:
         raise DeserializationError("RetrieveResult.reference_type required")
-    if "contentText" in data:
+    if data.get("contentText") is not None:
         out["content_text"] = data["contentText"]
     else:
         raise DeserializationError("RetrieveResult.content_text required")

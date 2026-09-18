@@ -42,12 +42,12 @@ def serialize_json(value: AwsSqsQueueDetails) -> dict:
 
 def deserialize_json(data: dict) -> AwsSqsQueueDetails:
     out: AwsSqsQueueDetails = {}  # type: ignore[typeddict-item]
-    if "KmsDataKeyReusePeriodSeconds" in data:
+    if data.get("KmsDataKeyReusePeriodSeconds") is not None:
         out["kms_data_key_reuse_period_seconds"] = data["KmsDataKeyReusePeriodSeconds"]
-    if "KmsMasterKeyId" in data:
+    if data.get("KmsMasterKeyId") is not None:
         out["kms_master_key_id"] = data["KmsMasterKeyId"]
-    if "QueueName" in data:
+    if data.get("QueueName") is not None:
         out["queue_name"] = data["QueueName"]
-    if "DeadLetterTargetArn" in data:
+    if data.get("DeadLetterTargetArn") is not None:
         out["dead_letter_target_arn"] = data["DeadLetterTargetArn"]
     return out

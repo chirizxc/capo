@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> TaskSearchSummaries:
 
     out: TaskSearchSummaries = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_deadline.types.task_search_summary.deserialize_json(item))
     return out

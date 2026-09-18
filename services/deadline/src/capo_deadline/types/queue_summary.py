@@ -87,19 +87,19 @@ def serialize_json(value: QueueSummary) -> dict:
 
 def deserialize_json(data: dict) -> QueueSummary:
     out: QueueSummary = {}  # type: ignore[typeddict-item]
-    if "farmId" in data:
+    if data.get("farmId") is not None:
         out["farm_id"] = data["farmId"]
     else:
         raise DeserializationError("QueueSummary.farm_id required")
-    if "queueId" in data:
+    if data.get("queueId") is not None:
         out["queue_id"] = data["queueId"]
     else:
         raise DeserializationError("QueueSummary.queue_id required")
-    if "displayName" in data:
+    if data.get("displayName") is not None:
         out["display_name"] = data["displayName"]
     else:
         raise DeserializationError("QueueSummary.display_name required")
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_deadline.types.queue_status
 
         out["status"] = capo_deadline.types.queue_status.deserialize_json(
@@ -107,7 +107,7 @@ def deserialize_json(data: dict) -> QueueSummary:
         )
     else:
         raise DeserializationError("QueueSummary.status required")
-    if "defaultBudgetAction" in data:
+    if data.get("defaultBudgetAction") is not None:
         import capo_deadline.types.default_queue_budget_action
 
         out["default_budget_action"] = (
@@ -117,7 +117,7 @@ def deserialize_json(data: dict) -> QueueSummary:
         )
     else:
         raise DeserializationError("QueueSummary.default_budget_action required")
-    if "blockedReason" in data:
+    if data.get("blockedReason") is not None:
         import capo_deadline.types.queue_blocked_reason
 
         out["blocked_reason"] = (
@@ -125,7 +125,7 @@ def deserialize_json(data: dict) -> QueueSummary:
                 data["blockedReason"]
             )
         )
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_deadline.types.created_at
 
         out["created_at"] = capo_deadline.types.created_at.deserialize_json(
@@ -133,16 +133,16 @@ def deserialize_json(data: dict) -> QueueSummary:
         )
     else:
         raise DeserializationError("QueueSummary.created_at required")
-    if "createdBy" in data:
+    if data.get("createdBy") is not None:
         out["created_by"] = data["createdBy"]
     else:
         raise DeserializationError("QueueSummary.created_by required")
-    if "updatedAt" in data:
+    if data.get("updatedAt") is not None:
         import capo_deadline.types.updated_at
 
         out["updated_at"] = capo_deadline.types.updated_at.deserialize_json(
             data["updatedAt"]
         )
-    if "updatedBy" in data:
+    if data.get("updatedBy") is not None:
         out["updated_by"] = data["updatedBy"]
     return out

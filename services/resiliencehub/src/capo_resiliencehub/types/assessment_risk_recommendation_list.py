@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> AssessmentRiskRecommendationList:
 
     out: AssessmentRiskRecommendationList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_resiliencehub.types.assessment_risk_recommendation.deserialize_json(
                 item

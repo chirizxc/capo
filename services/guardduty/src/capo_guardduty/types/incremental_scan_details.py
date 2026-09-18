@@ -25,6 +25,6 @@ def serialize_json(value: IncrementalScanDetails) -> dict:
 
 def deserialize_json(data: dict) -> IncrementalScanDetails:
     out: IncrementalScanDetails = {}  # type: ignore[typeddict-item]
-    if "baselineResourceArn" in data:
+    if data.get("baselineResourceArn") is not None:
         out["baseline_resource_arn"] = data["baselineResourceArn"]
     return out

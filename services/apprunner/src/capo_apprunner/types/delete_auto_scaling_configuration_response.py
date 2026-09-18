@@ -32,7 +32,7 @@ def serialize_aws_json_1_0(value: DeleteAutoScalingConfigurationResponse) -> dic
 
 def deserialize_aws_json_1_0(data: dict) -> DeleteAutoScalingConfigurationResponse:
     out: DeleteAutoScalingConfigurationResponse = {}  # type: ignore[typeddict-item]
-    if "AutoScalingConfiguration" in data:
+    if data.get("AutoScalingConfiguration") is not None:
         import capo_apprunner.types.auto_scaling_configuration
 
         out["auto_scaling_configuration"] = (

@@ -42,16 +42,16 @@ def serialize_aws_json_1_0(value: ListEnvironmentsRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ListEnvironmentsRequest:
     out: ListEnvironmentsRequest = {}  # type: ignore[typeddict-item]
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "provider" in data:
+    if data.get("provider") is not None:
         import capo_interconnect.types.provider
 
         out["provider"] = capo_interconnect.types.provider.deserialize_aws_json_1_0(
             data["provider"]
         )
-    if "location" in data:
+    if data.get("location") is not None:
         out["location"] = data["location"]
     return out

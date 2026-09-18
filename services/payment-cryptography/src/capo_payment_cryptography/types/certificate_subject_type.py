@@ -43,20 +43,20 @@ def serialize_aws_json_1_0(value: CertificateSubjectType) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CertificateSubjectType:
     out: CertificateSubjectType = {}  # type: ignore[typeddict-item]
-    if "CommonName" in data:
+    if data.get("CommonName") is not None:
         out["common_name"] = data["CommonName"]
     else:
         raise DeserializationError("CertificateSubjectType.common_name required")
-    if "OrganizationUnit" in data:
+    if data.get("OrganizationUnit") is not None:
         out["organization_unit"] = data["OrganizationUnit"]
-    if "Organization" in data:
+    if data.get("Organization") is not None:
         out["organization"] = data["Organization"]
-    if "City" in data:
+    if data.get("City") is not None:
         out["city"] = data["City"]
-    if "Country" in data:
+    if data.get("Country") is not None:
         out["country"] = data["Country"]
-    if "StateOrProvince" in data:
+    if data.get("StateOrProvince") is not None:
         out["state_or_province"] = data["StateOrProvince"]
-    if "EmailAddress" in data:
+    if data.get("EmailAddress") is not None:
         out["email_address"] = data["EmailAddress"]
     return out

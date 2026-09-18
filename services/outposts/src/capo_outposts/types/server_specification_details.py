@@ -37,15 +37,55 @@ class ServerSpecificationDetails(TypedDict, closed=True):
 def serialize_json(value: ServerSpecificationDetails) -> dict:
     out: dict = {}
     if "server_power_draw_kva" in value:
-        out["ServerPowerDrawKva"] = value["server_power_draw_kva"]
+        out["ServerPowerDrawKva"] = (
+            "NaN"
+            if value["server_power_draw_kva"] != value["server_power_draw_kva"]
+            else "Infinity"
+            if value["server_power_draw_kva"] == float("inf")
+            else "-Infinity"
+            if value["server_power_draw_kva"] == float("-inf")
+            else value["server_power_draw_kva"]
+        )
     if "server_weight_lbs" in value:
-        out["ServerWeightLbs"] = value["server_weight_lbs"]
+        out["ServerWeightLbs"] = (
+            "NaN"
+            if value["server_weight_lbs"] != value["server_weight_lbs"]
+            else "Infinity"
+            if value["server_weight_lbs"] == float("inf")
+            else "-Infinity"
+            if value["server_weight_lbs"] == float("-inf")
+            else value["server_weight_lbs"]
+        )
     if "server_height_inches" in value:
-        out["ServerHeightInches"] = value["server_height_inches"]
+        out["ServerHeightInches"] = (
+            "NaN"
+            if value["server_height_inches"] != value["server_height_inches"]
+            else "Infinity"
+            if value["server_height_inches"] == float("inf")
+            else "-Infinity"
+            if value["server_height_inches"] == float("-inf")
+            else value["server_height_inches"]
+        )
     if "server_width_inches" in value:
-        out["ServerWidthInches"] = value["server_width_inches"]
+        out["ServerWidthInches"] = (
+            "NaN"
+            if value["server_width_inches"] != value["server_width_inches"]
+            else "Infinity"
+            if value["server_width_inches"] == float("inf")
+            else "-Infinity"
+            if value["server_width_inches"] == float("-inf")
+            else value["server_width_inches"]
+        )
     if "server_depth_inches" in value:
-        out["ServerDepthInches"] = value["server_depth_inches"]
+        out["ServerDepthInches"] = (
+            "NaN"
+            if value["server_depth_inches"] != value["server_depth_inches"]
+            else "Infinity"
+            if value["server_depth_inches"] == float("inf")
+            else "-Infinity"
+            if value["server_depth_inches"] == float("-inf")
+            else value["server_depth_inches"]
+        )
     if "rack_unit_height" in value:
         import capo_outposts.types.rack_unit_height
 
@@ -65,23 +105,23 @@ def serialize_json(value: ServerSpecificationDetails) -> dict:
 
 def deserialize_json(data: dict) -> ServerSpecificationDetails:
     out: ServerSpecificationDetails = {}  # type: ignore[typeddict-item]
-    if "ServerPowerDrawKva" in data:
-        out["server_power_draw_kva"] = data["ServerPowerDrawKva"]
-    if "ServerWeightLbs" in data:
-        out["server_weight_lbs"] = data["ServerWeightLbs"]
-    if "ServerHeightInches" in data:
-        out["server_height_inches"] = data["ServerHeightInches"]
-    if "ServerWidthInches" in data:
-        out["server_width_inches"] = data["ServerWidthInches"]
-    if "ServerDepthInches" in data:
-        out["server_depth_inches"] = data["ServerDepthInches"]
-    if "RackUnitHeight" in data:
+    if data.get("ServerPowerDrawKva") is not None:
+        out["server_power_draw_kva"] = float(data["ServerPowerDrawKva"])
+    if data.get("ServerWeightLbs") is not None:
+        out["server_weight_lbs"] = float(data["ServerWeightLbs"])
+    if data.get("ServerHeightInches") is not None:
+        out["server_height_inches"] = float(data["ServerHeightInches"])
+    if data.get("ServerWidthInches") is not None:
+        out["server_width_inches"] = float(data["ServerWidthInches"])
+    if data.get("ServerDepthInches") is not None:
+        out["server_depth_inches"] = float(data["ServerDepthInches"])
+    if data.get("RackUnitHeight") is not None:
         import capo_outposts.types.rack_unit_height
 
         out["rack_unit_height"] = capo_outposts.types.rack_unit_height.deserialize_json(
             data["RackUnitHeight"]
         )
-    if "EC2Capacities" in data:
+    if data.get("EC2Capacities") is not None:
         import capo_outposts.types.ec2_capacity_list_definition
 
         out["ec2_capacities"] = (

@@ -41,16 +41,16 @@ def serialize_json(value: GetRecoveryPointRestoreMetadataOutput) -> dict:
 
 def deserialize_json(data: dict) -> GetRecoveryPointRestoreMetadataOutput:
     out: GetRecoveryPointRestoreMetadataOutput = {}  # type: ignore[typeddict-item]
-    if "BackupVaultArn" in data:
+    if data.get("BackupVaultArn") is not None:
         out["backup_vault_arn"] = data["BackupVaultArn"]
-    if "RecoveryPointArn" in data:
+    if data.get("RecoveryPointArn") is not None:
         out["recovery_point_arn"] = data["RecoveryPointArn"]
-    if "RestoreMetadata" in data:
+    if data.get("RestoreMetadata") is not None:
         import capo_backup.types.metadata
 
         out["restore_metadata"] = capo_backup.types.metadata.deserialize_json(
             data["RestoreMetadata"]
         )
-    if "ResourceType" in data:
+    if data.get("ResourceType") is not None:
         out["resource_type"] = data["ResourceType"]
     return out

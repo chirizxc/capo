@@ -64,11 +64,11 @@ def serialize_json(value: Template) -> dict:
 
 def deserialize_json(data: dict) -> Template:
     out: Template = {}  # type: ignore[typeddict-item]
-    if "TemplateName" in data:
+    if data.get("TemplateName") is not None:
         out["template_name"] = data["TemplateName"]
-    if "TemplateArn" in data:
+    if data.get("TemplateArn") is not None:
         out["template_arn"] = data["TemplateArn"]
-    if "TemplateContent" in data:
+    if data.get("TemplateContent") is not None:
         import capo_sesv2.types.email_template_content
 
         out["template_content"] = (
@@ -76,15 +76,15 @@ def deserialize_json(data: dict) -> Template:
                 data["TemplateContent"]
             )
         )
-    if "TemplateData" in data:
+    if data.get("TemplateData") is not None:
         out["template_data"] = data["TemplateData"]
-    if "Headers" in data:
+    if data.get("Headers") is not None:
         import capo_sesv2.types.message_header_list
 
         out["headers"] = capo_sesv2.types.message_header_list.deserialize_json(
             data["Headers"]
         )
-    if "Attachments" in data:
+    if data.get("Attachments") is not None:
         import capo_sesv2.types.attachment_list
 
         out["attachments"] = capo_sesv2.types.attachment_list.deserialize_json(

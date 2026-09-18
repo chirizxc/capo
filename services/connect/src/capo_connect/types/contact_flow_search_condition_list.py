@@ -25,6 +25,8 @@ def deserialize_json(data: list) -> ContactFlowSearchConditionList:
 
     out: ContactFlowSearchConditionList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_connect.types.contact_flow_search_criteria.deserialize_json(item)
         )

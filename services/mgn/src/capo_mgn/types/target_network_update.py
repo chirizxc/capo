@@ -38,12 +38,12 @@ def serialize_json(value: TargetNetworkUpdate) -> dict:
 
 def deserialize_json(data: dict) -> TargetNetworkUpdate:
     out: TargetNetworkUpdate = {}  # type: ignore[typeddict-item]
-    if "topology" in data:
+    if data.get("topology") is not None:
         out["topology"] = data["topology"]
-    if "inboundCidr" in data:
+    if data.get("inboundCidr") is not None:
         out["inbound_cidr"] = data["inboundCidr"]
-    if "outboundCidr" in data:
+    if data.get("outboundCidr") is not None:
         out["outbound_cidr"] = data["outboundCidr"]
-    if "inspectionCidr" in data:
+    if data.get("inspectionCidr") is not None:
         out["inspection_cidr"] = data["inspectionCidr"]
     return out

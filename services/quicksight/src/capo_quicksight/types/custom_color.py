@@ -38,13 +38,13 @@ def serialize_json(value: CustomColor) -> dict:
 
 def deserialize_json(data: dict) -> CustomColor:
     out: CustomColor = {}  # type: ignore[typeddict-item]
-    if "FieldValue" in data:
+    if data.get("FieldValue") is not None:
         out["field_value"] = data["FieldValue"]
-    if "Color" in data:
+    if data.get("Color") is not None:
         out["color"] = data["Color"]
     else:
         raise DeserializationError("CustomColor.color required")
-    if "SpecialValue" in data:
+    if data.get("SpecialValue") is not None:
         import capo_quicksight.types.special_value
 
         out["special_value"] = capo_quicksight.types.special_value.deserialize_json(

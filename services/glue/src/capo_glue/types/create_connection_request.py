@@ -40,9 +40,9 @@ def serialize_aws_json_1_1(value: CreateConnectionRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateConnectionRequest:
     out: CreateConnectionRequest = {}  # type: ignore[typeddict-item]
-    if "CatalogId" in data:
+    if data.get("CatalogId") is not None:
         out["catalog_id"] = data["CatalogId"]
-    if "ConnectionInput" in data:
+    if data.get("ConnectionInput") is not None:
         import capo_glue.types.connection_input
 
         out["connection_input"] = (
@@ -52,7 +52,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateConnectionRequest:
         )
     else:
         raise DeserializationError("CreateConnectionRequest.connection_input required")
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_glue.types.tags_map
 
         out["tags"] = capo_glue.types.tags_map.deserialize_aws_json_1_1(data["Tags"])

@@ -32,7 +32,7 @@ def serialize_aws_json_1_0(value: ListInvoiceUnitsResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ListInvoiceUnitsResponse:
     out: ListInvoiceUnitsResponse = {}  # type: ignore[typeddict-item]
-    if "InvoiceUnits" in data:
+    if data.get("InvoiceUnits") is not None:
         import capo_invoicing.types.invoice_units
 
         out["invoice_units"] = (
@@ -40,6 +40,6 @@ def deserialize_aws_json_1_0(data: dict) -> ListInvoiceUnitsResponse:
                 data["InvoiceUnits"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

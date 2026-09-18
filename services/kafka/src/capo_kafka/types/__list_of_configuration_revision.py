@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> __listOfConfigurationRevision:
 
     out: __listOfConfigurationRevision = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_kafka.types.configuration_revision.deserialize_json(item))
     return out

@@ -81,7 +81,7 @@ def serialize_json(value: BehaviorCriteria) -> dict:
 
 def deserialize_json(data: dict) -> BehaviorCriteria:
     out: BehaviorCriteria = {}  # type: ignore[typeddict-item]
-    if "comparisonOperator" in data:
+    if data.get("comparisonOperator") is not None:
         import capo_iot.types.comparison_operator
 
         out["comparison_operator"] = (
@@ -89,17 +89,17 @@ def deserialize_json(data: dict) -> BehaviorCriteria:
                 data["comparisonOperator"]
             )
         )
-    if "value" in data:
+    if data.get("value") is not None:
         import capo_iot.types.metric_value
 
         out["value"] = capo_iot.types.metric_value.deserialize_json(data["value"])
-    if "durationSeconds" in data:
+    if data.get("durationSeconds") is not None:
         out["duration_seconds"] = data["durationSeconds"]
-    if "consecutiveDatapointsToAlarm" in data:
+    if data.get("consecutiveDatapointsToAlarm") is not None:
         out["consecutive_datapoints_to_alarm"] = data["consecutiveDatapointsToAlarm"]
-    if "consecutiveDatapointsToClear" in data:
+    if data.get("consecutiveDatapointsToClear") is not None:
         out["consecutive_datapoints_to_clear"] = data["consecutiveDatapointsToClear"]
-    if "statisticalThreshold" in data:
+    if data.get("statisticalThreshold") is not None:
         import capo_iot.types.statistical_threshold
 
         out["statistical_threshold"] = (
@@ -107,7 +107,7 @@ def deserialize_json(data: dict) -> BehaviorCriteria:
                 data["statisticalThreshold"]
             )
         )
-    if "mlDetectionConfig" in data:
+    if data.get("mlDetectionConfig") is not None:
         import capo_iot.types.machine_learning_detection_config
 
         out["ml_detection_config"] = (

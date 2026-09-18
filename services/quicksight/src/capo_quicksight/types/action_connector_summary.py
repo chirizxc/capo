@@ -79,17 +79,17 @@ def serialize_json(value: ActionConnectorSummary) -> dict:
 
 def deserialize_json(data: dict) -> ActionConnectorSummary:
     out: ActionConnectorSummary = {}  # type: ignore[typeddict-item]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
     else:
         raise DeserializationError("ActionConnectorSummary.arn required")
-    if "ActionConnectorId" in data:
+    if data.get("ActionConnectorId") is not None:
         out["action_connector_id"] = data["ActionConnectorId"]
     else:
         raise DeserializationError(
             "ActionConnectorSummary.action_connector_id required"
         )
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_quicksight.types.action_connector_type
 
         out["type"] = capo_quicksight.types.action_connector_type.deserialize_json(
@@ -97,17 +97,17 @@ def deserialize_json(data: dict) -> ActionConnectorSummary:
         )
     else:
         raise DeserializationError("ActionConnectorSummary.type required")
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("ActionConnectorSummary.name required")
-    if "CreatedTime" in data:
+    if data.get("CreatedTime") is not None:
         import capo_quicksight.types._prelude.timestamp
 
         out["created_time"] = capo_quicksight.types._prelude.timestamp.deserialize_json(
             data["CreatedTime"]
         )
-    if "LastUpdatedTime" in data:
+    if data.get("LastUpdatedTime") is not None:
         import capo_quicksight.types._prelude.timestamp
 
         out["last_updated_time"] = (
@@ -117,13 +117,13 @@ def deserialize_json(data: dict) -> ActionConnectorSummary:
         )
     else:
         raise DeserializationError("ActionConnectorSummary.last_updated_time required")
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_quicksight.types.resource_status
 
         out["status"] = capo_quicksight.types.resource_status.deserialize_json(
             data["Status"]
         )
-    if "Error" in data:
+    if data.get("Error") is not None:
         import capo_quicksight.types.action_connector_error
 
         out["error"] = capo_quicksight.types.action_connector_error.deserialize_json(

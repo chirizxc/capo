@@ -46,9 +46,9 @@ def serialize_aws_json_1_1(value: GetModelsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetModelsRequest:
     out: GetModelsRequest = {}  # type: ignore[typeddict-item]
-    if "modelId" in data:
+    if data.get("modelId") is not None:
         out["model_id"] = data["modelId"]
-    if "modelType" in data:
+    if data.get("modelType") is not None:
         import capo_frauddetector.types.model_type_enum
 
         out["model_type"] = (
@@ -56,8 +56,8 @@ def deserialize_aws_json_1_1(data: dict) -> GetModelsRequest:
                 data["modelType"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
     return out

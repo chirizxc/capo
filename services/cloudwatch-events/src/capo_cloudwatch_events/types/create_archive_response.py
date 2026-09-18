@@ -52,9 +52,9 @@ def serialize_aws_json_1_1(value: CreateArchiveResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateArchiveResponse:
     out: CreateArchiveResponse = {}  # type: ignore[typeddict-item]
-    if "ArchiveArn" in data:
+    if data.get("ArchiveArn") is not None:
         out["archive_arn"] = data["ArchiveArn"]
-    if "State" in data:
+    if data.get("State") is not None:
         import capo_cloudwatch_events.types.archive_state
 
         out["state"] = (
@@ -62,9 +62,9 @@ def deserialize_aws_json_1_1(data: dict) -> CreateArchiveResponse:
                 data["State"]
             )
         )
-    if "StateReason" in data:
+    if data.get("StateReason") is not None:
         out["state_reason"] = data["StateReason"]
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_cloudwatch_events.types.timestamp
 
         out["creation_time"] = (

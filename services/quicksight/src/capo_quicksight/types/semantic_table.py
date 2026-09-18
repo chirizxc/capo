@@ -56,15 +56,15 @@ def serialize_json(value: SemanticTable) -> dict:
 
 def deserialize_json(data: dict) -> SemanticTable:
     out: SemanticTable = {}  # type: ignore[typeddict-item]
-    if "Alias" in data:
+    if data.get("Alias") is not None:
         out["alias"] = data["Alias"]
     else:
         raise DeserializationError("SemanticTable.alias required")
-    if "DestinationTableId" in data:
+    if data.get("DestinationTableId") is not None:
         out["destination_table_id"] = data["DestinationTableId"]
     else:
         raise DeserializationError("SemanticTable.destination_table_id required")
-    if "RowLevelPermissionConfiguration" in data:
+    if data.get("RowLevelPermissionConfiguration") is not None:
         import capo_quicksight.types.row_level_permission_configuration
 
         out["row_level_permission_configuration"] = (
@@ -72,7 +72,7 @@ def deserialize_json(data: dict) -> SemanticTable:
                 data["RowLevelPermissionConfiguration"]
             )
         )
-    if "SemanticMetadata" in data:
+    if data.get("SemanticMetadata") is not None:
         import capo_quicksight.types.table_semantic_metadata
 
         out["semantic_metadata"] = (

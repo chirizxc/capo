@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> ComputationList:
 
     out: ComputationList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_quicksight.types.computation.deserialize_json(item))
     return out

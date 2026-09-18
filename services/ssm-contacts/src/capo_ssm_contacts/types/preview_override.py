@@ -48,7 +48,7 @@ def serialize_aws_json_1_1(value: PreviewOverride) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PreviewOverride:
     out: PreviewOverride = {}  # type: ignore[typeddict-item]
-    if "NewMembers" in data:
+    if data.get("NewMembers") is not None:
         import capo_ssm_contacts.types.rotation_override_preview_member_list
 
         out["new_members"] = (
@@ -56,13 +56,13 @@ def deserialize_aws_json_1_1(data: dict) -> PreviewOverride:
                 data["NewMembers"]
             )
         )
-    if "StartTime" in data:
+    if data.get("StartTime") is not None:
         import capo_ssm_contacts.types.date_time
 
         out["start_time"] = capo_ssm_contacts.types.date_time.deserialize_aws_json_1_1(
             data["StartTime"]
         )
-    if "EndTime" in data:
+    if data.get("EndTime") is not None:
         import capo_ssm_contacts.types.date_time
 
         out["end_time"] = capo_ssm_contacts.types.date_time.deserialize_aws_json_1_1(

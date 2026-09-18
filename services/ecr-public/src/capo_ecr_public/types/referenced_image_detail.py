@@ -50,11 +50,11 @@ def serialize_aws_json_1_1(value: ReferencedImageDetail) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ReferencedImageDetail:
     out: ReferencedImageDetail = {}  # type: ignore[typeddict-item]
-    if "imageDigest" in data:
+    if data.get("imageDigest") is not None:
         out["image_digest"] = data["imageDigest"]
-    if "imageSizeInBytes" in data:
+    if data.get("imageSizeInBytes") is not None:
         out["image_size_in_bytes"] = data["imageSizeInBytes"]
-    if "imagePushedAt" in data:
+    if data.get("imagePushedAt") is not None:
         import capo_ecr_public.types.push_timestamp
 
         out["image_pushed_at"] = (
@@ -62,8 +62,8 @@ def deserialize_aws_json_1_1(data: dict) -> ReferencedImageDetail:
                 data["imagePushedAt"]
             )
         )
-    if "imageManifestMediaType" in data:
+    if data.get("imageManifestMediaType") is not None:
         out["image_manifest_media_type"] = data["imageManifestMediaType"]
-    if "artifactMediaType" in data:
+    if data.get("artifactMediaType") is not None:
         out["artifact_media_type"] = data["artifactMediaType"]
     return out

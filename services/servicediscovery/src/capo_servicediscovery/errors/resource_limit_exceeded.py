@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: ResourceLimitExceeded_) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ResourceLimitExceeded_:
     out: ResourceLimitExceeded_ = {}  # type: ignore[typeddict-item]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     return out
 
@@ -34,15 +34,18 @@ class ResourceLimitExceeded(ServiceError):
 
     code: str | None = "ResourceLimitExceeded"
 
-    def __init__(self, data: ResourceLimitExceeded_):
+    def __init__(self, data: ResourceLimitExceeded_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="ResourceLimitExceeded",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "ResourceLimitExceeded":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "ResourceLimitExceeded":
+        return cls(deserialize_aws_json_1_1(data), message)

@@ -36,9 +36,9 @@ def serialize_json(value: ListPredefinedAttributesResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListPredefinedAttributesResponse:
     out: ListPredefinedAttributesResponse = {}  # type: ignore[typeddict-item]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "PredefinedAttributeSummaryList" in data:
+    if data.get("PredefinedAttributeSummaryList") is not None:
         import capo_connect.types.predefined_attribute_summary_list
 
         out["predefined_attribute_summary_list"] = (

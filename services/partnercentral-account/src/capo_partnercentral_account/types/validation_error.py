@@ -49,7 +49,7 @@ def serialize_aws_json_1_0(value: ValidationError) -> dict:
 
 
 def deserialize_aws_json_1_0(data: dict) -> ValidationError:
-    if "FieldValidationError" in data:
+    if data.get("FieldValidationError") is not None:
         import capo_partnercentral_account.types.field_validation_error
 
         return {
@@ -57,7 +57,7 @@ def deserialize_aws_json_1_0(data: dict) -> ValidationError:
                 data["FieldValidationError"]
             )
         }
-    elif "BusinessValidationError" in data:
+    elif data.get("BusinessValidationError") is not None:
         import capo_partnercentral_account.types.business_validation_error
 
         return {

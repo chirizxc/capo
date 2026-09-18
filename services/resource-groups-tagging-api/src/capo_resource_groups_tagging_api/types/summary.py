@@ -59,11 +59,11 @@ def serialize_aws_json_1_1(value: Summary) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Summary:
     out: Summary = {}  # type: ignore[typeddict-item]
-    if "LastUpdated" in data:
+    if data.get("LastUpdated") is not None:
         out["last_updated"] = data["LastUpdated"]
-    if "TargetId" in data:
+    if data.get("TargetId") is not None:
         out["target_id"] = data["TargetId"]
-    if "TargetIdType" in data:
+    if data.get("TargetIdType") is not None:
         import capo_resource_groups_tagging_api.types.target_id_type
 
         out["target_id_type"] = (
@@ -71,11 +71,11 @@ def deserialize_aws_json_1_1(data: dict) -> Summary:
                 data["TargetIdType"]
             )
         )
-    if "Region" in data:
+    if data.get("Region") is not None:
         out["region"] = data["Region"]
-    if "ResourceType" in data:
+    if data.get("ResourceType") is not None:
         out["resource_type"] = data["ResourceType"]
-    if "NonCompliantResources" in data:
+    if data.get("NonCompliantResources") is not None:
         out["non_compliant_resources"] = data["NonCompliantResources"]
     else:
         out["non_compliant_resources"] = 0

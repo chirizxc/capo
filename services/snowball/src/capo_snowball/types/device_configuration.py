@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: DeviceConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeviceConfiguration:
     out: DeviceConfiguration = {}  # type: ignore[typeddict-item]
-    if "SnowconeDeviceConfiguration" in data:
+    if data.get("SnowconeDeviceConfiguration") is not None:
         import capo_snowball.types.snowcone_device_configuration
 
         out["snowcone_device_configuration"] = (

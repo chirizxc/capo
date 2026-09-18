@@ -28,11 +28,11 @@ def serialize_json(value: SAMLIdp) -> dict:
 
 def deserialize_json(data: dict) -> SAMLIdp:
     out: SAMLIdp = {}  # type: ignore[typeddict-item]
-    if "MetadataContent" in data:
+    if data.get("MetadataContent") is not None:
         out["metadata_content"] = data["MetadataContent"]
     else:
         raise DeserializationError("SAMLIdp.metadata_content required")
-    if "EntityId" in data:
+    if data.get("EntityId") is not None:
         out["entity_id"] = data["EntityId"]
     else:
         raise DeserializationError("SAMLIdp.entity_id required")

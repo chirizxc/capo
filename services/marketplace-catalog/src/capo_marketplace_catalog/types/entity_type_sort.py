@@ -134,7 +134,7 @@ def serialize_json(value: EntityTypeSort) -> dict:
 
 
 def deserialize_json(data: dict) -> EntityTypeSort:
-    if "DataProductSort" in data:
+    if data.get("DataProductSort") is not None:
         import capo_marketplace_catalog.types.data_product_sort
 
         return {
@@ -142,7 +142,7 @@ def deserialize_json(data: dict) -> EntityTypeSort:
                 data["DataProductSort"]
             )
         }
-    elif "SaaSProductSort" in data:
+    elif data.get("SaaSProductSort") is not None:
         import capo_marketplace_catalog.types.saa_s_product_sort
 
         return {
@@ -150,7 +150,7 @@ def deserialize_json(data: dict) -> EntityTypeSort:
                 data["SaaSProductSort"]
             )
         }
-    elif "AmiProductSort" in data:
+    elif data.get("AmiProductSort") is not None:
         import capo_marketplace_catalog.types.ami_product_sort
 
         return {
@@ -158,7 +158,7 @@ def deserialize_json(data: dict) -> EntityTypeSort:
                 data["AmiProductSort"]
             )
         }
-    elif "OfferSort" in data:
+    elif data.get("OfferSort") is not None:
         import capo_marketplace_catalog.types.offer_sort
 
         return {
@@ -166,7 +166,7 @@ def deserialize_json(data: dict) -> EntityTypeSort:
                 data["OfferSort"]
             )
         }
-    elif "ContainerProductSort" in data:
+    elif data.get("ContainerProductSort") is not None:
         import capo_marketplace_catalog.types.container_product_sort
 
         return {
@@ -174,7 +174,7 @@ def deserialize_json(data: dict) -> EntityTypeSort:
                 data["ContainerProductSort"]
             )
         }
-    elif "ResaleAuthorizationSort" in data:
+    elif data.get("ResaleAuthorizationSort") is not None:
         import capo_marketplace_catalog.types.resale_authorization_sort
 
         return {
@@ -182,7 +182,7 @@ def deserialize_json(data: dict) -> EntityTypeSort:
                 data["ResaleAuthorizationSort"]
             )
         }
-    elif "MachineLearningProductSort" in data:
+    elif data.get("MachineLearningProductSort") is not None:
         import capo_marketplace_catalog.types.machine_learning_product_sort
 
         return {
@@ -190,7 +190,7 @@ def deserialize_json(data: dict) -> EntityTypeSort:
                 data["MachineLearningProductSort"]
             )
         }
-    elif "OfferSetSort" in data:
+    elif data.get("OfferSetSort") is not None:
         import capo_marketplace_catalog.types.offer_set_sort
 
         return {

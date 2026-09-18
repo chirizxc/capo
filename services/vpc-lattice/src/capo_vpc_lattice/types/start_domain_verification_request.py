@@ -36,15 +36,15 @@ def serialize_json(value: StartDomainVerificationRequest) -> dict:
 
 def deserialize_json(data: dict) -> StartDomainVerificationRequest:
     out: StartDomainVerificationRequest = {}  # type: ignore[typeddict-item]
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
-    if "domainName" in data:
+    if data.get("domainName") is not None:
         out["domain_name"] = data["domainName"]
     else:
         raise DeserializationError(
             "StartDomainVerificationRequest.domain_name required"
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_vpc_lattice.types.tag_map
 
         out["tags"] = capo_vpc_lattice.types.tag_map.deserialize_json(data["tags"])

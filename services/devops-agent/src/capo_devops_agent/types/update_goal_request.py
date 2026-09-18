@@ -40,7 +40,7 @@ def serialize_json(value: UpdateGoalRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateGoalRequest:
     out: UpdateGoalRequest = {}  # type: ignore[typeddict-item]
-    if "evaluationSchedule" in data:
+    if data.get("evaluationSchedule") is not None:
         import capo_devops_agent.types.goal_schedule_input
 
         out["evaluation_schedule"] = (
@@ -48,6 +48,6 @@ def deserialize_json(data: dict) -> UpdateGoalRequest:
                 data["evaluationSchedule"]
             )
         )
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     return out

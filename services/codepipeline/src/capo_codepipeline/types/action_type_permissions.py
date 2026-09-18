@@ -30,7 +30,7 @@ def serialize_aws_json_1_1(value: ActionTypePermissions) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ActionTypePermissions:
     out: ActionTypePermissions = {}  # type: ignore[typeddict-item]
-    if "allowedAccounts" in data:
+    if data.get("allowedAccounts") is not None:
         import capo_codepipeline.types.allowed_accounts
 
         out["allowed_accounts"] = (

@@ -25,6 +25,6 @@ def serialize_aws_json_1_1(value: GetResolverQueryLogConfigPolicyResponse) -> di
 
 def deserialize_aws_json_1_1(data: dict) -> GetResolverQueryLogConfigPolicyResponse:
     out: GetResolverQueryLogConfigPolicyResponse = {}  # type: ignore[typeddict-item]
-    if "ResolverQueryLogConfigPolicy" in data:
+    if data.get("ResolverQueryLogConfigPolicy") is not None:
         out["resolver_query_log_config_policy"] = data["ResolverQueryLogConfigPolicy"]
     return out

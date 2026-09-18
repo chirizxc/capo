@@ -25,6 +25,6 @@ def serialize_json(value: VpcInfoIpv6CidrBlockSetDetails) -> dict:
 
 def deserialize_json(data: dict) -> VpcInfoIpv6CidrBlockSetDetails:
     out: VpcInfoIpv6CidrBlockSetDetails = {}  # type: ignore[typeddict-item]
-    if "Ipv6CidrBlock" in data:
+    if data.get("Ipv6CidrBlock") is not None:
         out["ipv6_cidr_block"] = data["Ipv6CidrBlock"]
     return out

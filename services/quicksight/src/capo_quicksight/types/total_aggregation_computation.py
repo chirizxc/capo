@@ -40,15 +40,15 @@ def serialize_json(value: TotalAggregationComputation) -> dict:
 
 def deserialize_json(data: dict) -> TotalAggregationComputation:
     out: TotalAggregationComputation = {}  # type: ignore[typeddict-item]
-    if "ComputationId" in data:
+    if data.get("ComputationId") is not None:
         out["computation_id"] = data["ComputationId"]
     else:
         raise DeserializationError(
             "TotalAggregationComputation.computation_id required"
         )
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Value" in data:
+    if data.get("Value") is not None:
         import capo_quicksight.types.measure_field
 
         out["value"] = capo_quicksight.types.measure_field.deserialize_json(

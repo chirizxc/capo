@@ -44,13 +44,13 @@ def serialize_aws_json_1_1(value: Root) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Root:
     out: Root = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "PolicyTypes" in data:
+    if data.get("PolicyTypes") is not None:
         import capo_organizations.types.policy_types
 
         out["policy_types"] = (

@@ -80,7 +80,7 @@ def serialize_aws_json_1_0(value: DataQualitySummary) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> DataQualitySummary:
     out: DataQualitySummary = {}  # type: ignore[typeddict-item]
-    if "InsufficientSensorData" in data:
+    if data.get("InsufficientSensorData") is not None:
         import capo_lookoutequipment.types.insufficient_sensor_data
 
         out["insufficient_sensor_data"] = (
@@ -92,7 +92,7 @@ def deserialize_aws_json_1_0(data: dict) -> DataQualitySummary:
         raise DeserializationError(
             "DataQualitySummary.insufficient_sensor_data required"
         )
-    if "MissingSensorData" in data:
+    if data.get("MissingSensorData") is not None:
         import capo_lookoutequipment.types.missing_sensor_data
 
         out["missing_sensor_data"] = (
@@ -102,7 +102,7 @@ def deserialize_aws_json_1_0(data: dict) -> DataQualitySummary:
         )
     else:
         raise DeserializationError("DataQualitySummary.missing_sensor_data required")
-    if "InvalidSensorData" in data:
+    if data.get("InvalidSensorData") is not None:
         import capo_lookoutequipment.types.invalid_sensor_data
 
         out["invalid_sensor_data"] = (
@@ -112,7 +112,7 @@ def deserialize_aws_json_1_0(data: dict) -> DataQualitySummary:
         )
     else:
         raise DeserializationError("DataQualitySummary.invalid_sensor_data required")
-    if "UnsupportedTimestamps" in data:
+    if data.get("UnsupportedTimestamps") is not None:
         import capo_lookoutequipment.types.unsupported_timestamps
 
         out["unsupported_timestamps"] = (
@@ -122,7 +122,7 @@ def deserialize_aws_json_1_0(data: dict) -> DataQualitySummary:
         )
     else:
         raise DeserializationError("DataQualitySummary.unsupported_timestamps required")
-    if "DuplicateTimestamps" in data:
+    if data.get("DuplicateTimestamps") is not None:
         import capo_lookoutequipment.types.duplicate_timestamps
 
         out["duplicate_timestamps"] = (

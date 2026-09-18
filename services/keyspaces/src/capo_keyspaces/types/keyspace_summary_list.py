@@ -25,5 +25,7 @@ def deserialize_aws_json_1_0(data: list) -> KeyspaceSummaryList:
 
     out: KeyspaceSummaryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_keyspaces.types.keyspace_summary.deserialize_aws_json_1_0(item))
     return out

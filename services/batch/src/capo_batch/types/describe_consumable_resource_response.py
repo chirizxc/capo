@@ -55,21 +55,21 @@ def serialize_json(value: DescribeConsumableResourceResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribeConsumableResourceResponse:
     out: DescribeConsumableResourceResponse = {}  # type: ignore[typeddict-item]
-    if "consumableResourceName" in data:
+    if data.get("consumableResourceName") is not None:
         out["consumable_resource_name"] = data["consumableResourceName"]
-    if "consumableResourceArn" in data:
+    if data.get("consumableResourceArn") is not None:
         out["consumable_resource_arn"] = data["consumableResourceArn"]
-    if "totalQuantity" in data:
+    if data.get("totalQuantity") is not None:
         out["total_quantity"] = data["totalQuantity"]
-    if "inUseQuantity" in data:
+    if data.get("inUseQuantity") is not None:
         out["in_use_quantity"] = data["inUseQuantity"]
-    if "availableQuantity" in data:
+    if data.get("availableQuantity") is not None:
         out["available_quantity"] = data["availableQuantity"]
-    if "resourceType" in data:
+    if data.get("resourceType") is not None:
         out["resource_type"] = data["resourceType"]
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         out["created_at"] = data["createdAt"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_batch.types.tagris_tags_map
 
         out["tags"] = capo_batch.types.tagris_tags_map.deserialize_json(data["tags"])

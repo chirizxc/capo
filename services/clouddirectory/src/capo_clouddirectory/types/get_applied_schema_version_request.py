@@ -24,7 +24,7 @@ def serialize_json(value: GetAppliedSchemaVersionRequest) -> dict:
 
 def deserialize_json(data: dict) -> GetAppliedSchemaVersionRequest:
     out: GetAppliedSchemaVersionRequest = {}  # type: ignore[typeddict-item]
-    if "SchemaArn" in data:
+    if data.get("SchemaArn") is not None:
         out["schema_arn"] = data["SchemaArn"]
     else:
         raise DeserializationError("GetAppliedSchemaVersionRequest.schema_arn required")

@@ -31,7 +31,7 @@ def serialize_json(value: OutboundAdditionalRecipients) -> dict:
 
 def deserialize_json(data: dict) -> OutboundAdditionalRecipients:
     out: OutboundAdditionalRecipients = {}  # type: ignore[typeddict-item]
-    if "CcEmailAddresses" in data:
+    if data.get("CcEmailAddresses") is not None:
         import capo_connect.types.email_address_recipient_list
 
         out["cc_email_addresses"] = (

@@ -79,15 +79,15 @@ def serialize_aws_json_1_0(value: ListSolutionsRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ListSolutionsRequest:
     out: ListSolutionsRequest = {}  # type: ignore[typeddict-item]
-    if "Catalog" in data:
+    if data.get("Catalog") is not None:
         out["catalog"] = data["Catalog"]
     else:
         raise DeserializationError("ListSolutionsRequest.catalog required")
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "Sort" in data:
+    if data.get("Sort") is not None:
         import capo_partnercentral_selling.types.solution_sort
 
         out["sort"] = (
@@ -95,7 +95,7 @@ def deserialize_aws_json_1_0(data: dict) -> ListSolutionsRequest:
                 data["Sort"]
             )
         )
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_partnercentral_selling.types.filter_status
 
         out["status"] = (
@@ -103,7 +103,7 @@ def deserialize_aws_json_1_0(data: dict) -> ListSolutionsRequest:
                 data["Status"]
             )
         )
-    if "Identifier" in data:
+    if data.get("Identifier") is not None:
         import capo_partnercentral_selling.types.solution_identifiers
 
         out["identifier"] = (
@@ -111,7 +111,7 @@ def deserialize_aws_json_1_0(data: dict) -> ListSolutionsRequest:
                 data["Identifier"]
             )
         )
-    if "Category" in data:
+    if data.get("Category") is not None:
         import capo_partnercentral_selling.types.string_list
 
         out["category"] = (

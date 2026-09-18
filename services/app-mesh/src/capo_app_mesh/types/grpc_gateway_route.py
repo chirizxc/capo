@@ -36,7 +36,7 @@ def serialize_json(value: GrpcGatewayRoute) -> dict:
 
 def deserialize_json(data: dict) -> GrpcGatewayRoute:
     out: GrpcGatewayRoute = {}  # type: ignore[typeddict-item]
-    if "match" in data:
+    if data.get("match") is not None:
         import capo_app_mesh.types.grpc_gateway_route_match
 
         out["match"] = capo_app_mesh.types.grpc_gateway_route_match.deserialize_json(
@@ -44,7 +44,7 @@ def deserialize_json(data: dict) -> GrpcGatewayRoute:
         )
     else:
         raise DeserializationError("GrpcGatewayRoute.match required")
-    if "action" in data:
+    if data.get("action") is not None:
         import capo_app_mesh.types.grpc_gateway_route_action
 
         out["action"] = capo_app_mesh.types.grpc_gateway_route_action.deserialize_json(

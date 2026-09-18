@@ -78,19 +78,19 @@ def serialize_json(value: CreateFeedResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateFeedResponse:
     out: CreateFeedResponse = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("CreateFeedResponse.arn required")
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("CreateFeedResponse.name required")
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("CreateFeedResponse.id required")
-    if "dataEndpoints" in data:
+    if data.get("dataEndpoints") is not None:
         import capo_elementalinference.types.string_list
 
         out["data_endpoints"] = (
@@ -100,7 +100,7 @@ def deserialize_json(data: dict) -> CreateFeedResponse:
         )
     else:
         raise DeserializationError("CreateFeedResponse.data_endpoints required")
-    if "outputs" in data:
+    if data.get("outputs") is not None:
         import capo_elementalinference.types.get_output_list
 
         out["outputs"] = capo_elementalinference.types.get_output_list.deserialize_json(
@@ -108,7 +108,7 @@ def deserialize_json(data: dict) -> CreateFeedResponse:
         )
     else:
         raise DeserializationError("CreateFeedResponse.outputs required")
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_elementalinference.types.feed_status
 
         out["status"] = capo_elementalinference.types.feed_status.deserialize_json(
@@ -116,7 +116,7 @@ def deserialize_json(data: dict) -> CreateFeedResponse:
         )
     else:
         raise DeserializationError("CreateFeedResponse.status required")
-    if "association" in data:
+    if data.get("association") is not None:
         import capo_elementalinference.types.feed_association
 
         out["association"] = (
@@ -124,7 +124,7 @@ def deserialize_json(data: dict) -> CreateFeedResponse:
                 data["association"]
             )
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_elementalinference.types.tag_map
 
         out["tags"] = capo_elementalinference.types.tag_map.deserialize_json(

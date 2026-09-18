@@ -49,17 +49,17 @@ def serialize_json(value: InvalidRequestException_) -> dict:
 
 def deserialize_json(data: dict) -> InvalidRequestException_:
     out: InvalidRequestException_ = {}  # type: ignore[typeddict-item]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
-    if "Code" in data:
+    if data.get("Code") is not None:
         out["code"] = data["Code"]
-    if "RequiredParameters" in data:
+    if data.get("RequiredParameters") is not None:
         import capo_dlm.types.parameter_list
 
         out["required_parameters"] = capo_dlm.types.parameter_list.deserialize_json(
             data["RequiredParameters"]
         )
-    if "MutuallyExclusiveParameters" in data:
+    if data.get("MutuallyExclusiveParameters") is not None:
         import capo_dlm.types.parameter_list
 
         out["mutually_exclusive_parameters"] = (
@@ -75,15 +75,18 @@ class InvalidRequestException(ServiceError):
 
     code: str | None = "InvalidRequestException"
 
-    def __init__(self, data: InvalidRequestException_):
+    def __init__(self, data: InvalidRequestException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="InvalidRequestException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "InvalidRequestException":
-        return cls(deserialize_json(data))
+    def from_json(
+        cls, data: dict, message: str | None = None
+    ) -> "InvalidRequestException":
+        return cls(deserialize_json(data), message)

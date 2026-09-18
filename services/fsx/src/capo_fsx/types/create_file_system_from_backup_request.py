@@ -130,17 +130,17 @@ def serialize_aws_json_1_1(value: CreateFileSystemFromBackupRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateFileSystemFromBackupRequest:
     out: CreateFileSystemFromBackupRequest = {}  # type: ignore[typeddict-item]
-    if "BackupId" in data:
+    if data.get("BackupId") is not None:
         out["backup_id"] = data["BackupId"]
-    if "ClientRequestToken" in data:
+    if data.get("ClientRequestToken") is not None:
         out["client_request_token"] = data["ClientRequestToken"]
-    if "SubnetIds" in data:
+    if data.get("SubnetIds") is not None:
         import capo_fsx.types.subnet_ids
 
         out["subnet_ids"] = capo_fsx.types.subnet_ids.deserialize_aws_json_1_1(
             data["SubnetIds"]
         )
-    if "SecurityGroupIds" in data:
+    if data.get("SecurityGroupIds") is not None:
         import capo_fsx.types.security_group_ids
 
         out["security_group_ids"] = (
@@ -148,11 +148,11 @@ def deserialize_aws_json_1_1(data: dict) -> CreateFileSystemFromBackupRequest:
                 data["SecurityGroupIds"]
             )
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_fsx.types.tags
 
         out["tags"] = capo_fsx.types.tags.deserialize_aws_json_1_1(data["Tags"])
-    if "WindowsConfiguration" in data:
+    if data.get("WindowsConfiguration") is not None:
         import capo_fsx.types.create_file_system_windows_configuration
 
         out["windows_configuration"] = (
@@ -160,7 +160,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateFileSystemFromBackupRequest:
                 data["WindowsConfiguration"]
             )
         )
-    if "LustreConfiguration" in data:
+    if data.get("LustreConfiguration") is not None:
         import capo_fsx.types.create_file_system_lustre_configuration
 
         out["lustre_configuration"] = (
@@ -168,17 +168,17 @@ def deserialize_aws_json_1_1(data: dict) -> CreateFileSystemFromBackupRequest:
                 data["LustreConfiguration"]
             )
         )
-    if "StorageType" in data:
+    if data.get("StorageType") is not None:
         import capo_fsx.types.storage_type
 
         out["storage_type"] = capo_fsx.types.storage_type.deserialize_aws_json_1_1(
             data["StorageType"]
         )
-    if "KmsKeyId" in data:
+    if data.get("KmsKeyId") is not None:
         out["kms_key_id"] = data["KmsKeyId"]
-    if "FileSystemTypeVersion" in data:
+    if data.get("FileSystemTypeVersion") is not None:
         out["file_system_type_version"] = data["FileSystemTypeVersion"]
-    if "OpenZFSConfiguration" in data:
+    if data.get("OpenZFSConfiguration") is not None:
         import capo_fsx.types.create_file_system_open_zfs_configuration
 
         out["open_zfs_configuration"] = (
@@ -186,9 +186,9 @@ def deserialize_aws_json_1_1(data: dict) -> CreateFileSystemFromBackupRequest:
                 data["OpenZFSConfiguration"]
             )
         )
-    if "StorageCapacity" in data:
+    if data.get("StorageCapacity") is not None:
         out["storage_capacity"] = data["StorageCapacity"]
-    if "NetworkType" in data:
+    if data.get("NetworkType") is not None:
         import capo_fsx.types.network_type
 
         out["network_type"] = capo_fsx.types.network_type.deserialize_aws_json_1_1(

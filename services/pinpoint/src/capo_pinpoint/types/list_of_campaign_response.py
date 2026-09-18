@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> ListOfCampaignResponse:
 
     out: ListOfCampaignResponse = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_pinpoint.types.campaign_response.deserialize_json(item))
     return out

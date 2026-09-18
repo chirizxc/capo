@@ -25,6 +25,8 @@ def serialize_json(input_to_serialize: ConnectorEntityMap) -> dict:
 def deserialize_json(data: dict) -> ConnectorEntityMap:
     out: ConnectorEntityMap = {}
     for key, value in data.items():
+        if value is None:
+            continue
         import capo_appflow.types.connector_entity_list
 
         out[key] = capo_appflow.types.connector_entity_list.deserialize_json(value)

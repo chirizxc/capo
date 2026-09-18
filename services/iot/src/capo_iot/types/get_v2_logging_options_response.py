@@ -49,19 +49,19 @@ def serialize_json(value: GetV2LoggingOptionsResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetV2LoggingOptionsResponse:
     out: GetV2LoggingOptionsResponse = {}  # type: ignore[typeddict-item]
-    if "roleArn" in data:
+    if data.get("roleArn") is not None:
         out["role_arn"] = data["roleArn"]
-    if "defaultLogLevel" in data:
+    if data.get("defaultLogLevel") is not None:
         import capo_iot.types.log_level
 
         out["default_log_level"] = capo_iot.types.log_level.deserialize_json(
             data["defaultLogLevel"]
         )
-    if "disableAllLogs" in data:
+    if data.get("disableAllLogs") is not None:
         out["disable_all_logs"] = data["disableAllLogs"]
     else:
         out["disable_all_logs"] = False
-    if "eventConfigurations" in data:
+    if data.get("eventConfigurations") is not None:
         import capo_iot.types.log_event_configurations
 
         out["event_configurations"] = (

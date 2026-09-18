@@ -23,6 +23,6 @@ def serialize_json(value: GetInvitationsCountResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetInvitationsCountResponse:
     out: GetInvitationsCountResponse = {}  # type: ignore[typeddict-item]
-    if "invitationsCount" in data:
+    if data.get("invitationsCount") is not None:
         out["invitations_count"] = data["invitationsCount"]
     return out

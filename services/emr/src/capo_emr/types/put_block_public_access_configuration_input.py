@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: PutBlockPublicAccessConfigurationInput) -> dic
 
 def deserialize_aws_json_1_1(data: dict) -> PutBlockPublicAccessConfigurationInput:
     out: PutBlockPublicAccessConfigurationInput = {}  # type: ignore[typeddict-item]
-    if "BlockPublicAccessConfiguration" in data:
+    if data.get("BlockPublicAccessConfiguration") is not None:
         import capo_emr.types.block_public_access_configuration
 
         out["block_public_access_configuration"] = (

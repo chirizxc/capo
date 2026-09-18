@@ -44,14 +44,14 @@ def serialize_json(value: UpdatePodIdentityAssociationRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdatePodIdentityAssociationRequest:
     out: UpdatePodIdentityAssociationRequest = {}  # type: ignore[typeddict-item]
-    if "roleArn" in data:
+    if data.get("roleArn") is not None:
         out["role_arn"] = data["roleArn"]
-    if "clientRequestToken" in data:
+    if data.get("clientRequestToken") is not None:
         out["client_request_token"] = data["clientRequestToken"]
-    if "disableSessionTags" in data:
+    if data.get("disableSessionTags") is not None:
         out["disable_session_tags"] = data["disableSessionTags"]
-    if "targetRoleArn" in data:
+    if data.get("targetRoleArn") is not None:
         out["target_role_arn"] = data["targetRoleArn"]
-    if "policy" in data:
+    if data.get("policy") is not None:
         out["policy"] = data["policy"]
     return out

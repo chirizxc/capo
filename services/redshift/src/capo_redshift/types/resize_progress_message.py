@@ -116,7 +116,17 @@ def serialize_query(
         pairs.append(
             (
                 f"{key_prefix}AvgResizeRateInMegaBytesPerSecond",
-                str(value["avg_resize_rate_in_mega_bytes_per_second"]),
+                (
+                    "NaN"
+                    if value["avg_resize_rate_in_mega_bytes_per_second"]
+                    != value["avg_resize_rate_in_mega_bytes_per_second"]
+                    else "Infinity"
+                    if value["avg_resize_rate_in_mega_bytes_per_second"] == float("inf")
+                    else "-Infinity"
+                    if value["avg_resize_rate_in_mega_bytes_per_second"]
+                    == float("-inf")
+                    else str(value["avg_resize_rate_in_mega_bytes_per_second"])
+                ),
             )
         )
     if "total_resize_data_in_mega_bytes" in value:
@@ -153,7 +163,16 @@ def serialize_query(
         pairs.append(
             (
                 f"{key_prefix}DataTransferProgressPercent",
-                str(value["data_transfer_progress_percent"]),
+                (
+                    "NaN"
+                    if value["data_transfer_progress_percent"]
+                    != value["data_transfer_progress_percent"]
+                    else "Infinity"
+                    if value["data_transfer_progress_percent"] == float("inf")
+                    else "-Infinity"
+                    if value["data_transfer_progress_percent"] == float("-inf")
+                    else str(value["data_transfer_progress_percent"])
+                ),
             )
         )
 

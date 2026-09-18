@@ -24,7 +24,7 @@ def serialize_json(value: GetMapStyleDescriptorResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetMapStyleDescriptorResponse:
     out: GetMapStyleDescriptorResponse = {}  # type: ignore[typeddict-item]
-    if "Blob" in data:
+    if data.get("Blob") is not None:
         import capo_location.types._prelude.blob
 
         out["blob"] = capo_location.types._prelude.blob.deserialize_json(data["Blob"])

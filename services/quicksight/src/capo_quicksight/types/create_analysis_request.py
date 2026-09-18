@@ -112,17 +112,17 @@ def serialize_json(value: CreateAnalysisRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateAnalysisRequest:
     out: CreateAnalysisRequest = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("CreateAnalysisRequest.name required")
-    if "Parameters" in data:
+    if data.get("Parameters") is not None:
         import capo_quicksight.types.parameters
 
         out["parameters"] = capo_quicksight.types.parameters.deserialize_json(
             data["Parameters"]
         )
-    if "Permissions" in data:
+    if data.get("Permissions") is not None:
         import capo_quicksight.types.resource_permission_list
 
         out["permissions"] = (
@@ -130,7 +130,7 @@ def deserialize_json(data: dict) -> CreateAnalysisRequest:
                 data["Permissions"]
             )
         )
-    if "SourceEntity" in data:
+    if data.get("SourceEntity") is not None:
         import capo_quicksight.types.analysis_source_entity
 
         out["source_entity"] = (
@@ -138,19 +138,19 @@ def deserialize_json(data: dict) -> CreateAnalysisRequest:
                 data["SourceEntity"]
             )
         )
-    if "ThemeArn" in data:
+    if data.get("ThemeArn") is not None:
         out["theme_arn"] = data["ThemeArn"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_quicksight.types.tag_list
 
         out["tags"] = capo_quicksight.types.tag_list.deserialize_json(data["Tags"])
-    if "Definition" in data:
+    if data.get("Definition") is not None:
         import capo_quicksight.types.analysis_definition
 
         out["definition"] = capo_quicksight.types.analysis_definition.deserialize_json(
             data["Definition"]
         )
-    if "ValidationStrategy" in data:
+    if data.get("ValidationStrategy") is not None:
         import capo_quicksight.types.validation_strategy
 
         out["validation_strategy"] = (
@@ -158,7 +158,7 @@ def deserialize_json(data: dict) -> CreateAnalysisRequest:
                 data["ValidationStrategy"]
             )
         )
-    if "FolderArns" in data:
+    if data.get("FolderArns") is not None:
         import capo_quicksight.types.folder_arn_list
 
         out["folder_arns"] = capo_quicksight.types.folder_arn_list.deserialize_json(

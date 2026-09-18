@@ -34,7 +34,7 @@ def serialize_json(value: BatchAssociateProjectAssetsRequest) -> dict:
 
 def deserialize_json(data: dict) -> BatchAssociateProjectAssetsRequest:
     out: BatchAssociateProjectAssetsRequest = {}  # type: ignore[typeddict-item]
-    if "assetIds" in data:
+    if data.get("assetIds") is not None:
         import capo_iotsitewise.types.i_ds
 
         out["asset_ids"] = capo_iotsitewise.types.i_ds.deserialize_json(
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> BatchAssociateProjectAssetsRequest:
         raise DeserializationError(
             "BatchAssociateProjectAssetsRequest.asset_ids required"
         )
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     return out

@@ -41,19 +41,19 @@ def serialize_json(value: TransitGatewayConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> TransitGatewayConfiguration:
     out: TransitGatewayConfiguration = {}  # type: ignore[typeddict-item]
-    if "transitGatewayID" in data:
+    if data.get("transitGatewayID") is not None:
         out["transit_gateway_id"] = data["transitGatewayID"]
     else:
         raise DeserializationError(
             "TransitGatewayConfiguration.transit_gateway_id required"
         )
-    if "routableCIDRSpace" in data:
+    if data.get("routableCIDRSpace") is not None:
         out["routable_cidr_space"] = data["routableCIDRSpace"]
     else:
         raise DeserializationError(
             "TransitGatewayConfiguration.routable_cidr_space required"
         )
-    if "attachmentNetworkAclConfiguration" in data:
+    if data.get("attachmentNetworkAclConfiguration") is not None:
         import capo_finspace.types.network_acl_configuration
 
         out["attachment_network_acl_configuration"] = (

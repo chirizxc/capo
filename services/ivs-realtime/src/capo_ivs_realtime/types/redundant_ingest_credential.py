@@ -28,8 +28,8 @@ def serialize_json(value: RedundantIngestCredential) -> dict:
 
 def deserialize_json(data: dict) -> RedundantIngestCredential:
     out: RedundantIngestCredential = {}  # type: ignore[typeddict-item]
-    if "participantId" in data:
+    if data.get("participantId") is not None:
         out["participant_id"] = data["participantId"]
-    if "streamKey" in data:
+    if data.get("streamKey") is not None:
         out["stream_key"] = data["streamKey"]
     return out

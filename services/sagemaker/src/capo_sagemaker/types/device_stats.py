@@ -27,8 +27,8 @@ def serialize_aws_json_1_1(value: DeviceStats) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeviceStats:
     out: DeviceStats = {}  # type: ignore[typeddict-item]
-    if "ConnectedDeviceCount" in data:
+    if data.get("ConnectedDeviceCount") is not None:
         out["connected_device_count"] = data["ConnectedDeviceCount"]
-    if "RegisteredDeviceCount" in data:
+    if data.get("RegisteredDeviceCount") is not None:
         out["registered_device_count"] = data["RegisteredDeviceCount"]
     return out

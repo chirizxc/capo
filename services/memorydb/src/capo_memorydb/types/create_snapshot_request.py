@@ -38,17 +38,17 @@ def serialize_aws_json_1_1(value: CreateSnapshotRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateSnapshotRequest:
     out: CreateSnapshotRequest = {}  # type: ignore[typeddict-item]
-    if "ClusterName" in data:
+    if data.get("ClusterName") is not None:
         out["cluster_name"] = data["ClusterName"]
     else:
         raise DeserializationError("CreateSnapshotRequest.cluster_name required")
-    if "SnapshotName" in data:
+    if data.get("SnapshotName") is not None:
         out["snapshot_name"] = data["SnapshotName"]
     else:
         raise DeserializationError("CreateSnapshotRequest.snapshot_name required")
-    if "KmsKeyId" in data:
+    if data.get("KmsKeyId") is not None:
         out["kms_key_id"] = data["KmsKeyId"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_memorydb.types.tag_list
 
         out["tags"] = capo_memorydb.types.tag_list.deserialize_aws_json_1_1(

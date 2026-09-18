@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: RoutingType) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RoutingType:
     out: RoutingType = {}  # type: ignore[typeddict-item]
-    if "Failover" in data:
+    if data.get("Failover") is not None:
         import capo_cognito_identity_provider.types.failover_type
 
         out["failover"] = (

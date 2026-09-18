@@ -34,7 +34,7 @@ def serialize_aws_json_1_1(value: PutProtocolsListResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PutProtocolsListResponse:
     out: PutProtocolsListResponse = {}  # type: ignore[typeddict-item]
-    if "ProtocolsList" in data:
+    if data.get("ProtocolsList") is not None:
         import capo_fms.types.protocols_list_data
 
         out["protocols_list"] = (
@@ -42,6 +42,6 @@ def deserialize_aws_json_1_1(data: dict) -> PutProtocolsListResponse:
                 data["ProtocolsList"]
             )
         )
-    if "ProtocolsListArn" in data:
+    if data.get("ProtocolsListArn") is not None:
         out["protocols_list_arn"] = data["ProtocolsListArn"]
     return out

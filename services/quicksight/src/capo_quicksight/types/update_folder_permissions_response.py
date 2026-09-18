@@ -52,15 +52,15 @@ def serialize_json(value: UpdateFolderPermissionsResponse) -> dict:
 
 def deserialize_json(data: dict) -> UpdateFolderPermissionsResponse:
     out: UpdateFolderPermissionsResponse = {}  # type: ignore[typeddict-item]
-    if "Status" in data:
+    if data.get("Status") is not None:
         out["status"] = data["Status"]
     else:
         out["status"] = 0
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "FolderId" in data:
+    if data.get("FolderId") is not None:
         out["folder_id"] = data["FolderId"]
-    if "Permissions" in data:
+    if data.get("Permissions") is not None:
         import capo_quicksight.types.resource_permission_list
 
         out["permissions"] = (
@@ -68,6 +68,6 @@ def deserialize_json(data: dict) -> UpdateFolderPermissionsResponse:
                 data["Permissions"]
             )
         )
-    if "RequestId" in data:
+    if data.get("RequestId") is not None:
         out["request_id"] = data["RequestId"]
     return out

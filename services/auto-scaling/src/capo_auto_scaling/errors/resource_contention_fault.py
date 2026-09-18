@@ -40,15 +40,18 @@ class ResourceContentionFault(ServiceError):
 
     code: str | None = "ResourceContentionFault"
 
-    def __init__(self, data: ResourceContentionFault_):
+    def __init__(self, data: ResourceContentionFault_, message: str | None = None):
         super().__init__(
             "server",
             is_throttling_error=False,
             is_retryable=False,
             code="ResourceContentionFault",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_query(cls, el: Element) -> "ResourceContentionFault":
-        return cls(deserialize_query(el))
+    def from_query(
+        cls, el: Element, message: str | None = None
+    ) -> "ResourceContentionFault":
+        return cls(deserialize_query(el), message)

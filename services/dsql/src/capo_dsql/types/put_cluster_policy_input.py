@@ -41,18 +41,18 @@ def serialize_json(value: PutClusterPolicyInput) -> dict:
 
 def deserialize_json(data: dict) -> PutClusterPolicyInput:
     out: PutClusterPolicyInput = {}  # type: ignore[typeddict-item]
-    if "policy" in data:
+    if data.get("policy") is not None:
         out["policy"] = data["policy"]
     else:
         raise DeserializationError("PutClusterPolicyInput.policy required")
-    if "bypassPolicyLockoutSafetyCheck" in data:
+    if data.get("bypassPolicyLockoutSafetyCheck") is not None:
         out["bypass_policy_lockout_safety_check"] = data[
             "bypassPolicyLockoutSafetyCheck"
         ]
     else:
         out["bypass_policy_lockout_safety_check"] = False
-    if "expectedPolicyVersion" in data:
+    if data.get("expectedPolicyVersion") is not None:
         out["expected_policy_version"] = data["expectedPolicyVersion"]
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     return out

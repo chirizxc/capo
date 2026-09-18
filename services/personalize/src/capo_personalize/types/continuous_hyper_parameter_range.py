@@ -24,21 +24,37 @@ def serialize_aws_json_1_1(value: ContinuousHyperParameterRange) -> dict:
     out: dict = {}
     if "name" in value:
         out["name"] = value["name"]
-    out["minValue"] = value.get("min_value", 0)
-    out["maxValue"] = value.get("max_value", 0)
+    out["minValue"] = (
+        "NaN"
+        if value.get("min_value", 0) != value.get("min_value", 0)
+        else "Infinity"
+        if value.get("min_value", 0) == float("inf")
+        else "-Infinity"
+        if value.get("min_value", 0) == float("-inf")
+        else value.get("min_value", 0)
+    )
+    out["maxValue"] = (
+        "NaN"
+        if value.get("max_value", 0) != value.get("max_value", 0)
+        else "Infinity"
+        if value.get("max_value", 0) == float("inf")
+        else "-Infinity"
+        if value.get("max_value", 0) == float("-inf")
+        else value.get("max_value", 0)
+    )
     return out
 
 
 def deserialize_aws_json_1_1(data: dict) -> ContinuousHyperParameterRange:
     out: ContinuousHyperParameterRange = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "minValue" in data:
-        out["min_value"] = data["minValue"]
+    if data.get("minValue") is not None:
+        out["min_value"] = float(data["minValue"])
     else:
         out["min_value"] = 0
-    if "maxValue" in data:
-        out["max_value"] = data["maxValue"]
+    if data.get("maxValue") is not None:
+        out["max_value"] = float(data["maxValue"])
     else:
         out["max_value"] = 0
     return out

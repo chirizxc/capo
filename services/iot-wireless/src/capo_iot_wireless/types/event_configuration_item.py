@@ -59,9 +59,9 @@ def serialize_json(value: EventConfigurationItem) -> dict:
 
 def deserialize_json(data: dict) -> EventConfigurationItem:
     out: EventConfigurationItem = {}  # type: ignore[typeddict-item]
-    if "Identifier" in data:
+    if data.get("Identifier") is not None:
         out["identifier"] = data["Identifier"]
-    if "IdentifierType" in data:
+    if data.get("IdentifierType") is not None:
         import capo_iot_wireless.types.identifier_type
 
         out["identifier_type"] = (
@@ -69,7 +69,7 @@ def deserialize_json(data: dict) -> EventConfigurationItem:
                 data["IdentifierType"]
             )
         )
-    if "PartnerType" in data:
+    if data.get("PartnerType") is not None:
         import capo_iot_wireless.types.event_notification_partner_type
 
         out["partner_type"] = (
@@ -77,7 +77,7 @@ def deserialize_json(data: dict) -> EventConfigurationItem:
                 data["PartnerType"]
             )
         )
-    if "Events" in data:
+    if data.get("Events") is not None:
         import capo_iot_wireless.types.event_notification_item_configurations
 
         out["events"] = (

@@ -23,5 +23,7 @@ def deserialize_aws_json_1_1(data: list) -> Snapshots:
 
     out: Snapshots = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_directory_service.types.snapshot.deserialize_aws_json_1_1(item))
     return out

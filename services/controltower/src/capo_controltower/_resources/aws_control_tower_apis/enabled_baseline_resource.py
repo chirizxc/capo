@@ -95,12 +95,13 @@ class EnabledBaselineResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_controltower.types.enable_baseline_input.EnableBaselineInput = {}  # type: ignore[typeddict-item]
-        input_["baseline_version"] = baseline_version
+        input_: capo_controltower.types.enable_baseline_input.EnableBaselineInput = {
+            "baseline_version": baseline_version,
+            "baseline_identifier": baseline_identifier,
+            "target_identifier": target_identifier,
+        }
         if parameters is not None:
             input_["parameters"] = parameters
-        input_["baseline_identifier"] = baseline_identifier
-        input_["target_identifier"] = target_identifier
         if tags is not None:
             input_["tags"] = tags
 
@@ -109,6 +110,7 @@ class EnabledBaselineResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -146,14 +148,16 @@ class EnabledBaselineResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_controltower.types.get_enabled_baseline_input.GetEnabledBaselineInput = {}  # type: ignore[typeddict-item]
-        input_["enabled_baseline_identifier"] = enabled_baseline_identifier
+        input_: capo_controltower.types.get_enabled_baseline_input.GetEnabledBaselineInput = {
+            "enabled_baseline_identifier": enabled_baseline_identifier
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update(
@@ -199,17 +203,19 @@ class EnabledBaselineResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_controltower.types.update_enabled_baseline_input.UpdateEnabledBaselineInput = {}  # type: ignore[typeddict-item]
-        input_["baseline_version"] = baseline_version
+        input_: capo_controltower.types.update_enabled_baseline_input.UpdateEnabledBaselineInput = {
+            "baseline_version": baseline_version,
+            "enabled_baseline_identifier": enabled_baseline_identifier,
+        }
         if parameters is not None:
             input_["parameters"] = parameters
-        input_["enabled_baseline_identifier"] = enabled_baseline_identifier
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -249,14 +255,16 @@ class EnabledBaselineResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_controltower.types.disable_baseline_input.DisableBaselineInput = {}  # type: ignore[typeddict-item]
-        input_["enabled_baseline_identifier"] = enabled_baseline_identifier
+        input_: capo_controltower.types.disable_baseline_input.DisableBaselineInput = {
+            "enabled_baseline_identifier": enabled_baseline_identifier
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -305,7 +313,7 @@ class EnabledBaselineResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_controltower.types.list_enabled_baselines_input.ListEnabledBaselinesInput = {}  # type: ignore[typeddict-item]
+        input_: capo_controltower.types.list_enabled_baselines_input.ListEnabledBaselinesInput = {}
         if filter is not None:
             input_["filter"] = filter
         if next_token is not None:
@@ -320,6 +328,7 @@ class EnabledBaselineResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def reset_enabled_baseline(
@@ -359,14 +368,16 @@ class EnabledBaselineResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_controltower.types.reset_enabled_baseline_input.ResetEnabledBaselineInput = {}  # type: ignore[typeddict-item]
-        input_["enabled_baseline_identifier"] = enabled_baseline_identifier
+        input_: capo_controltower.types.reset_enabled_baseline_input.ResetEnabledBaselineInput = {
+            "enabled_baseline_identifier": enabled_baseline_identifier
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -422,12 +433,13 @@ class AsyncEnabledBaselineResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_controltower.types.enable_baseline_input.EnableBaselineInput = {}  # type: ignore[typeddict-item]
-        input_["baseline_version"] = baseline_version
+        input_: capo_controltower.types.enable_baseline_input.EnableBaselineInput = {
+            "baseline_version": baseline_version,
+            "baseline_identifier": baseline_identifier,
+            "target_identifier": target_identifier,
+        }
         if parameters is not None:
             input_["parameters"] = parameters
-        input_["baseline_identifier"] = baseline_identifier
-        input_["target_identifier"] = target_identifier
         if tags is not None:
             input_["tags"] = tags
 
@@ -436,6 +448,7 @@ class AsyncEnabledBaselineResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -474,14 +487,16 @@ class AsyncEnabledBaselineResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_controltower.types.get_enabled_baseline_input.GetEnabledBaselineInput = {}  # type: ignore[typeddict-item]
-        input_["enabled_baseline_identifier"] = enabled_baseline_identifier
+        input_: capo_controltower.types.get_enabled_baseline_input.GetEnabledBaselineInput = {
+            "enabled_baseline_identifier": enabled_baseline_identifier
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update(
@@ -528,17 +543,19 @@ class AsyncEnabledBaselineResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_controltower.types.update_enabled_baseline_input.UpdateEnabledBaselineInput = {}  # type: ignore[typeddict-item]
-        input_["baseline_version"] = baseline_version
+        input_: capo_controltower.types.update_enabled_baseline_input.UpdateEnabledBaselineInput = {
+            "baseline_version": baseline_version,
+            "enabled_baseline_identifier": enabled_baseline_identifier,
+        }
         if parameters is not None:
             input_["parameters"] = parameters
-        input_["enabled_baseline_identifier"] = enabled_baseline_identifier
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -579,14 +596,16 @@ class AsyncEnabledBaselineResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_controltower.types.disable_baseline_input.DisableBaselineInput = {}  # type: ignore[typeddict-item]
-        input_["enabled_baseline_identifier"] = enabled_baseline_identifier
+        input_: capo_controltower.types.disable_baseline_input.DisableBaselineInput = {
+            "enabled_baseline_identifier": enabled_baseline_identifier
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -636,7 +655,7 @@ class AsyncEnabledBaselineResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_controltower.types.list_enabled_baselines_input.ListEnabledBaselinesInput = {}  # type: ignore[typeddict-item]
+        input_: capo_controltower.types.list_enabled_baselines_input.ListEnabledBaselinesInput = {}
         if filter is not None:
             input_["filter"] = filter
         if next_token is not None:
@@ -651,6 +670,7 @@ class AsyncEnabledBaselineResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def reset_enabled_baseline(
@@ -691,12 +711,14 @@ class AsyncEnabledBaselineResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_controltower.types.reset_enabled_baseline_input.ResetEnabledBaselineInput = {}  # type: ignore[typeddict-item]
-        input_["enabled_baseline_identifier"] = enabled_baseline_identifier
+        input_: capo_controltower.types.reset_enabled_baseline_input.ResetEnabledBaselineInput = {
+            "enabled_baseline_identifier": enabled_baseline_identifier
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

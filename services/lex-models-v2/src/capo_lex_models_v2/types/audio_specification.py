@@ -27,11 +27,11 @@ def serialize_json(value: AudioSpecification) -> dict:
 
 def deserialize_json(data: dict) -> AudioSpecification:
     out: AudioSpecification = {}  # type: ignore[typeddict-item]
-    if "maxLengthMs" in data:
+    if data.get("maxLengthMs") is not None:
         out["max_length_ms"] = data["maxLengthMs"]
     else:
         raise DeserializationError("AudioSpecification.max_length_ms required")
-    if "endTimeoutMs" in data:
+    if data.get("endTimeoutMs") is not None:
         out["end_timeout_ms"] = data["endTimeoutMs"]
     else:
         raise DeserializationError("AudioSpecification.end_timeout_ms required")

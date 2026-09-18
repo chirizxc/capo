@@ -35,7 +35,7 @@ def serialize_json(value: CdnAuthConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> CdnAuthConfiguration:
     out: CdnAuthConfiguration = {}  # type: ignore[typeddict-item]
-    if "CdnIdentifierSecretArns" in data:
+    if data.get("CdnIdentifierSecretArns") is not None:
         import capo_mediapackagev2.types.cdn_identifier_secret_arns
 
         out["cdn_identifier_secret_arns"] = (
@@ -47,7 +47,7 @@ def deserialize_json(data: dict) -> CdnAuthConfiguration:
         raise DeserializationError(
             "CdnAuthConfiguration.cdn_identifier_secret_arns required"
         )
-    if "SecretsRoleArn" in data:
+    if data.get("SecretsRoleArn") is not None:
         out["secrets_role_arn"] = data["SecretsRoleArn"]
     else:
         raise DeserializationError("CdnAuthConfiguration.secrets_role_arn required")

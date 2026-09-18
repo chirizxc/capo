@@ -36,10 +36,10 @@ def serialize_json(value: EncryptionSetting) -> dict:
 
 def deserialize_json(data: dict) -> EncryptionSetting:
     out: EncryptionSetting = {}  # type: ignore[typeddict-item]
-    if "kmsKeyArn" in data:
+    if data.get("kmsKeyArn") is not None:
         out["kms_key_arn"] = data["kmsKeyArn"]
-    if "botLocaleExportPassword" in data:
+    if data.get("botLocaleExportPassword") is not None:
         out["bot_locale_export_password"] = data["botLocaleExportPassword"]
-    if "associatedTranscriptsPassword" in data:
+    if data.get("associatedTranscriptsPassword") is not None:
         out["associated_transcripts_password"] = data["associatedTranscriptsPassword"]
     return out

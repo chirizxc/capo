@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> UpdateDetectorRequests:
 
     out: UpdateDetectorRequests = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_iot_events_data.types.update_detector_request.deserialize_json(item)
         )

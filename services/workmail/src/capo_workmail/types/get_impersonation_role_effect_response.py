@@ -53,7 +53,7 @@ def serialize_aws_json_1_1(value: GetImpersonationRoleEffectResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetImpersonationRoleEffectResponse:
     out: GetImpersonationRoleEffectResponse = {}  # type: ignore[typeddict-item]
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_workmail.types.impersonation_role_type
 
         out["type"] = (
@@ -61,13 +61,13 @@ def deserialize_aws_json_1_1(data: dict) -> GetImpersonationRoleEffectResponse:
                 data["Type"]
             )
         )
-    if "Effect" in data:
+    if data.get("Effect") is not None:
         import capo_workmail.types.access_effect
 
         out["effect"] = capo_workmail.types.access_effect.deserialize_aws_json_1_1(
             data["Effect"]
         )
-    if "MatchedRules" in data:
+    if data.get("MatchedRules") is not None:
         import capo_workmail.types.impersonation_matched_rule_list
 
         out["matched_rules"] = (

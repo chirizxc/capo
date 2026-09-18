@@ -30,13 +30,13 @@ def serialize_aws_json_1_1(value: CreateProgressUpdateStreamRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateProgressUpdateStreamRequest:
     out: CreateProgressUpdateStreamRequest = {}  # type: ignore[typeddict-item]
-    if "ProgressUpdateStreamName" in data:
+    if data.get("ProgressUpdateStreamName") is not None:
         out["progress_update_stream_name"] = data["ProgressUpdateStreamName"]
     else:
         raise DeserializationError(
             "CreateProgressUpdateStreamRequest.progress_update_stream_name required"
         )
-    if "DryRun" in data:
+    if data.get("DryRun") is not None:
         out["dry_run"] = data["DryRun"]
     else:
         out["dry_run"] = False

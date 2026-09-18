@@ -82,7 +82,7 @@ def serialize_aws_json_1_1(value: CompareFacesResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CompareFacesResponse:
     out: CompareFacesResponse = {}  # type: ignore[typeddict-item]
-    if "SourceImageFace" in data:
+    if data.get("SourceImageFace") is not None:
         import capo_rekognition.types.compared_source_image_face
 
         out["source_image_face"] = (
@@ -90,7 +90,7 @@ def deserialize_aws_json_1_1(data: dict) -> CompareFacesResponse:
                 data["SourceImageFace"]
             )
         )
-    if "FaceMatches" in data:
+    if data.get("FaceMatches") is not None:
         import capo_rekognition.types.compare_faces_match_list
 
         out["face_matches"] = (
@@ -98,7 +98,7 @@ def deserialize_aws_json_1_1(data: dict) -> CompareFacesResponse:
                 data["FaceMatches"]
             )
         )
-    if "UnmatchedFaces" in data:
+    if data.get("UnmatchedFaces") is not None:
         import capo_rekognition.types.compare_faces_unmatch_list
 
         out["unmatched_faces"] = (
@@ -106,7 +106,7 @@ def deserialize_aws_json_1_1(data: dict) -> CompareFacesResponse:
                 data["UnmatchedFaces"]
             )
         )
-    if "SourceImageOrientationCorrection" in data:
+    if data.get("SourceImageOrientationCorrection") is not None:
         import capo_rekognition.types.orientation_correction
 
         out["source_image_orientation_correction"] = (
@@ -114,7 +114,7 @@ def deserialize_aws_json_1_1(data: dict) -> CompareFacesResponse:
                 data["SourceImageOrientationCorrection"]
             )
         )
-    if "TargetImageOrientationCorrection" in data:
+    if data.get("TargetImageOrientationCorrection") is not None:
         import capo_rekognition.types.orientation_correction
 
         out["target_image_orientation_correction"] = (

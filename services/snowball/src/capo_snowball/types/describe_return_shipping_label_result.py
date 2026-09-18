@@ -43,7 +43,7 @@ def serialize_aws_json_1_1(value: DescribeReturnShippingLabelResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeReturnShippingLabelResult:
     out: DescribeReturnShippingLabelResult = {}  # type: ignore[typeddict-item]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_snowball.types.shipping_label_status
 
         out["status"] = (
@@ -51,12 +51,12 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeReturnShippingLabelResult:
                 data["Status"]
             )
         )
-    if "ExpirationDate" in data:
+    if data.get("ExpirationDate") is not None:
         import capo_snowball.types.timestamp
 
         out["expiration_date"] = capo_snowball.types.timestamp.deserialize_aws_json_1_1(
             data["ExpirationDate"]
         )
-    if "ReturnShippingLabelURI" in data:
+    if data.get("ReturnShippingLabelURI") is not None:
         out["return_shipping_label_uri"] = data["ReturnShippingLabelURI"]
     return out

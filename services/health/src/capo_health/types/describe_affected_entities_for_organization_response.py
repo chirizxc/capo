@@ -49,13 +49,13 @@ def deserialize_aws_json_1_1(
     data: dict,
 ) -> DescribeAffectedEntitiesForOrganizationResponse:
     out: DescribeAffectedEntitiesForOrganizationResponse = {}  # type: ignore[typeddict-item]
-    if "entities" in data:
+    if data.get("entities") is not None:
         import capo_health.types.entity_list
 
         out["entities"] = capo_health.types.entity_list.deserialize_aws_json_1_1(
             data["entities"]
         )
-    if "failedSet" in data:
+    if data.get("failedSet") is not None:
         import capo_health.types.describe_affected_entities_for_organization_failed_set
 
         out["failed_set"] = (
@@ -63,6 +63,6 @@ def deserialize_aws_json_1_1(
                 data["failedSet"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

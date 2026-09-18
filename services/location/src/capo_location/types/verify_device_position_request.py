@@ -36,7 +36,7 @@ def serialize_json(value: VerifyDevicePositionRequest) -> dict:
 
 def deserialize_json(data: dict) -> VerifyDevicePositionRequest:
     out: VerifyDevicePositionRequest = {}  # type: ignore[typeddict-item]
-    if "DeviceState" in data:
+    if data.get("DeviceState") is not None:
         import capo_location.types.device_state
 
         out["device_state"] = capo_location.types.device_state.deserialize_json(
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> VerifyDevicePositionRequest:
         )
     else:
         raise DeserializationError("VerifyDevicePositionRequest.device_state required")
-    if "DistanceUnit" in data:
+    if data.get("DistanceUnit") is not None:
         out["distance_unit"] = data["DistanceUnit"]
     return out

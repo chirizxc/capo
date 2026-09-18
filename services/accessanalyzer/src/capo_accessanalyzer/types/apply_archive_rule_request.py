@@ -32,14 +32,14 @@ def serialize_json(value: ApplyArchiveRuleRequest) -> dict:
 
 def deserialize_json(data: dict) -> ApplyArchiveRuleRequest:
     out: ApplyArchiveRuleRequest = {}  # type: ignore[typeddict-item]
-    if "analyzerArn" in data:
+    if data.get("analyzerArn") is not None:
         out["analyzer_arn"] = data["analyzerArn"]
     else:
         raise DeserializationError("ApplyArchiveRuleRequest.analyzer_arn required")
-    if "ruleName" in data:
+    if data.get("ruleName") is not None:
         out["rule_name"] = data["ruleName"]
     else:
         raise DeserializationError("ApplyArchiveRuleRequest.rule_name required")
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     return out

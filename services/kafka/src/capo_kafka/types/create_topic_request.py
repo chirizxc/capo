@@ -38,12 +38,12 @@ def serialize_json(value: CreateTopicRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateTopicRequest:
     out: CreateTopicRequest = {}  # type: ignore[typeddict-item]
-    if "topicName" in data:
+    if data.get("topicName") is not None:
         out["topic_name"] = data["topicName"]
-    if "partitionCount" in data:
+    if data.get("partitionCount") is not None:
         out["partition_count"] = data["partitionCount"]
-    if "replicationFactor" in data:
+    if data.get("replicationFactor") is not None:
         out["replication_factor"] = data["replicationFactor"]
-    if "configs" in data:
+    if data.get("configs") is not None:
         out["configs"] = data["configs"]
     return out

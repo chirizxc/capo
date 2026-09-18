@@ -81,43 +81,43 @@ def serialize_aws_json_1_1(value: AnalysisReport) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AnalysisReport:
     out: AnalysisReport = {}  # type: ignore[typeddict-item]
-    if "AnalysisReportId" in data:
+    if data.get("AnalysisReportId") is not None:
         out["analysis_report_id"] = data["AnalysisReportId"]
     else:
         raise DeserializationError("AnalysisReport.analysis_report_id required")
-    if "Identifier" in data:
+    if data.get("Identifier") is not None:
         out["identifier"] = data["Identifier"]
-    if "ServiceType" in data:
+    if data.get("ServiceType") is not None:
         import capo_pi.types.service_type
 
         out["service_type"] = capo_pi.types.service_type.deserialize_aws_json_1_1(
             data["ServiceType"]
         )
-    if "CreateTime" in data:
+    if data.get("CreateTime") is not None:
         import capo_pi.types.iso_timestamp
 
         out["create_time"] = capo_pi.types.iso_timestamp.deserialize_aws_json_1_1(
             data["CreateTime"]
         )
-    if "StartTime" in data:
+    if data.get("StartTime") is not None:
         import capo_pi.types.iso_timestamp
 
         out["start_time"] = capo_pi.types.iso_timestamp.deserialize_aws_json_1_1(
             data["StartTime"]
         )
-    if "EndTime" in data:
+    if data.get("EndTime") is not None:
         import capo_pi.types.iso_timestamp
 
         out["end_time"] = capo_pi.types.iso_timestamp.deserialize_aws_json_1_1(
             data["EndTime"]
         )
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_pi.types.analysis_status
 
         out["status"] = capo_pi.types.analysis_status.deserialize_aws_json_1_1(
             data["Status"]
         )
-    if "Insights" in data:
+    if data.get("Insights") is not None:
         import capo_pi.types.insight_list
 
         out["insights"] = capo_pi.types.insight_list.deserialize_aws_json_1_1(

@@ -88,15 +88,15 @@ def serialize_aws_json_1_0(value: InferenceSchedulerSummary) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> InferenceSchedulerSummary:
     out: InferenceSchedulerSummary = {}  # type: ignore[typeddict-item]
-    if "ModelName" in data:
+    if data.get("ModelName") is not None:
         out["model_name"] = data["ModelName"]
-    if "ModelArn" in data:
+    if data.get("ModelArn") is not None:
         out["model_arn"] = data["ModelArn"]
-    if "InferenceSchedulerName" in data:
+    if data.get("InferenceSchedulerName") is not None:
         out["inference_scheduler_name"] = data["InferenceSchedulerName"]
-    if "InferenceSchedulerArn" in data:
+    if data.get("InferenceSchedulerArn") is not None:
         out["inference_scheduler_arn"] = data["InferenceSchedulerArn"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_lookoutequipment.types.inference_scheduler_status
 
         out["status"] = (
@@ -104,9 +104,9 @@ def deserialize_aws_json_1_0(data: dict) -> InferenceSchedulerSummary:
                 data["Status"]
             )
         )
-    if "DataDelayOffsetInMinutes" in data:
+    if data.get("DataDelayOffsetInMinutes") is not None:
         out["data_delay_offset_in_minutes"] = data["DataDelayOffsetInMinutes"]
-    if "DataUploadFrequency" in data:
+    if data.get("DataUploadFrequency") is not None:
         import capo_lookoutequipment.types.data_upload_frequency
 
         out["data_upload_frequency"] = (
@@ -114,7 +114,7 @@ def deserialize_aws_json_1_0(data: dict) -> InferenceSchedulerSummary:
                 data["DataUploadFrequency"]
             )
         )
-    if "LatestInferenceResult" in data:
+    if data.get("LatestInferenceResult") is not None:
         import capo_lookoutequipment.types.latest_inference_result
 
         out["latest_inference_result"] = (

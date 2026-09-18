@@ -29,6 +29,8 @@ def deserialize_aws_json_1_0(data: list) -> CountryLaunchStatusInformationList:
 
     out: CountryLaunchStatusInformationList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_pinpoint_sms_voice_v2.types.country_launch_status_information.deserialize_aws_json_1_0(
                 item

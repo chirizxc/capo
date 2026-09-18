@@ -28,7 +28,7 @@ def serialize_json(value: GetAnalyzerResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetAnalyzerResponse:
     out: GetAnalyzerResponse = {}  # type: ignore[typeddict-item]
-    if "analyzer" in data:
+    if data.get("analyzer") is not None:
         import capo_accessanalyzer.types.analyzer_summary
 
         out["analyzer"] = capo_accessanalyzer.types.analyzer_summary.deserialize_json(

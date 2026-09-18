@@ -41,16 +41,16 @@ def serialize_json(value: LogicalResourceId) -> dict:
 
 def deserialize_json(data: dict) -> LogicalResourceId:
     out: LogicalResourceId = {}  # type: ignore[typeddict-item]
-    if "identifier" in data:
+    if data.get("identifier") is not None:
         out["identifier"] = data["identifier"]
     else:
         raise DeserializationError("LogicalResourceId.identifier required")
-    if "logicalStackName" in data:
+    if data.get("logicalStackName") is not None:
         out["logical_stack_name"] = data["logicalStackName"]
-    if "resourceGroupName" in data:
+    if data.get("resourceGroupName") is not None:
         out["resource_group_name"] = data["resourceGroupName"]
-    if "terraformSourceName" in data:
+    if data.get("terraformSourceName") is not None:
         out["terraform_source_name"] = data["terraformSourceName"]
-    if "eksSourceName" in data:
+    if data.get("eksSourceName") is not None:
         out["eks_source_name"] = data["eksSourceName"]
     return out

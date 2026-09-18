@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> __listOfMulticastSourceUpdateRequest:
 
     out: __listOfMulticastSourceUpdateRequest = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_medialive.types.multicast_source_update_request.deserialize_json(item)
         )

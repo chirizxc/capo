@@ -132,15 +132,15 @@ def serialize_aws_json_1_1(value: MySQLSettings) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> MySQLSettings:
     out: MySQLSettings = {}  # type: ignore[typeddict-item]
-    if "AfterConnectScript" in data:
+    if data.get("AfterConnectScript") is not None:
         out["after_connect_script"] = data["AfterConnectScript"]
-    if "CleanSourceMetadataOnMismatch" in data:
+    if data.get("CleanSourceMetadataOnMismatch") is not None:
         out["clean_source_metadata_on_mismatch"] = data["CleanSourceMetadataOnMismatch"]
-    if "DatabaseName" in data:
+    if data.get("DatabaseName") is not None:
         out["database_name"] = data["DatabaseName"]
-    if "EventsPollInterval" in data:
+    if data.get("EventsPollInterval") is not None:
         out["events_poll_interval"] = data["EventsPollInterval"]
-    if "TargetDbType" in data:
+    if data.get("TargetDbType") is not None:
         import capo_database_migration_service.types.target_db_type
 
         out["target_db_type"] = (
@@ -148,29 +148,29 @@ def deserialize_aws_json_1_1(data: dict) -> MySQLSettings:
                 data["TargetDbType"]
             )
         )
-    if "MaxFileSize" in data:
+    if data.get("MaxFileSize") is not None:
         out["max_file_size"] = data["MaxFileSize"]
-    if "ParallelLoadThreads" in data:
+    if data.get("ParallelLoadThreads") is not None:
         out["parallel_load_threads"] = data["ParallelLoadThreads"]
-    if "Password" in data:
+    if data.get("Password") is not None:
         out["password"] = data["Password"]
-    if "Port" in data:
+    if data.get("Port") is not None:
         out["port"] = data["Port"]
-    if "ServerName" in data:
+    if data.get("ServerName") is not None:
         out["server_name"] = data["ServerName"]
-    if "ServerTimezone" in data:
+    if data.get("ServerTimezone") is not None:
         out["server_timezone"] = data["ServerTimezone"]
-    if "Username" in data:
+    if data.get("Username") is not None:
         out["username"] = data["Username"]
-    if "SecretsManagerAccessRoleArn" in data:
+    if data.get("SecretsManagerAccessRoleArn") is not None:
         out["secrets_manager_access_role_arn"] = data["SecretsManagerAccessRoleArn"]
-    if "SecretsManagerSecretId" in data:
+    if data.get("SecretsManagerSecretId") is not None:
         out["secrets_manager_secret_id"] = data["SecretsManagerSecretId"]
-    if "ExecuteTimeout" in data:
+    if data.get("ExecuteTimeout") is not None:
         out["execute_timeout"] = data["ExecuteTimeout"]
-    if "ServiceAccessRoleArn" in data:
+    if data.get("ServiceAccessRoleArn") is not None:
         out["service_access_role_arn"] = data["ServiceAccessRoleArn"]
-    if "AuthenticationMethod" in data:
+    if data.get("AuthenticationMethod") is not None:
         import capo_database_migration_service.types.my_sql_authentication_method
 
         out["authentication_method"] = (

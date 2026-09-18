@@ -53,7 +53,7 @@ def serialize_aws_json_1_1(value: CatalogProperties) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CatalogProperties:
     out: CatalogProperties = {}  # type: ignore[typeddict-item]
-    if "DataLakeAccessProperties" in data:
+    if data.get("DataLakeAccessProperties") is not None:
         import capo_glue.types.data_lake_access_properties
 
         out["data_lake_access_properties"] = (
@@ -61,7 +61,7 @@ def deserialize_aws_json_1_1(data: dict) -> CatalogProperties:
                 data["DataLakeAccessProperties"]
             )
         )
-    if "IcebergOptimizationProperties" in data:
+    if data.get("IcebergOptimizationProperties") is not None:
         import capo_glue.types.iceberg_optimization_properties
 
         out["iceberg_optimization_properties"] = (
@@ -69,7 +69,7 @@ def deserialize_aws_json_1_1(data: dict) -> CatalogProperties:
                 data["IcebergOptimizationProperties"]
             )
         )
-    if "CustomProperties" in data:
+    if data.get("CustomProperties") is not None:
         import capo_glue.types.parameters_map
 
         out["custom_properties"] = (

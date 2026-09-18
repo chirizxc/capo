@@ -31,7 +31,7 @@ def serialize_json(value: GetTemplateGroupAccessControlEntryResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetTemplateGroupAccessControlEntryResponse:
     out: GetTemplateGroupAccessControlEntryResponse = {}  # type: ignore[typeddict-item]
-    if "AccessControlEntry" in data:
+    if data.get("AccessControlEntry") is not None:
         import capo_pca_connector_ad.types.access_control_entry
 
         out["access_control_entry"] = (

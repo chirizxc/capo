@@ -36,13 +36,13 @@ def serialize_aws_json_1_1(value: GetDataQualityModelResultResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetDataQualityModelResultResponse:
     out: GetDataQualityModelResultResponse = {}  # type: ignore[typeddict-item]
-    if "CompletedOn" in data:
+    if data.get("CompletedOn") is not None:
         import capo_glue.types.timestamp
 
         out["completed_on"] = capo_glue.types.timestamp.deserialize_aws_json_1_1(
             data["CompletedOn"]
         )
-    if "Model" in data:
+    if data.get("Model") is not None:
         import capo_glue.types.statistic_model_results
 
         out["model"] = capo_glue.types.statistic_model_results.deserialize_aws_json_1_1(

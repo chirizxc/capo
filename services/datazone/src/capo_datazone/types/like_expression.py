@@ -22,11 +22,11 @@ def serialize_json(value: LikeExpression) -> dict:
 
 def deserialize_json(data: dict) -> LikeExpression:
     out: LikeExpression = {}  # type: ignore[typeddict-item]
-    if "columnName" in data:
+    if data.get("columnName") is not None:
         out["column_name"] = data["columnName"]
     else:
         raise DeserializationError("LikeExpression.column_name required")
-    if "value" in data:
+    if data.get("value") is not None:
         out["value"] = data["value"]
     else:
         raise DeserializationError("LikeExpression.value required")

@@ -25,11 +25,11 @@ def serialize_json(value: TimeRange) -> dict:
 
 def deserialize_json(data: dict) -> TimeRange:
     out: TimeRange = {}  # type: ignore[typeddict-item]
-    if "After" in data:
+    if data.get("After") is not None:
         out["after"] = data["After"]
     else:
         out["after"] = 0
-    if "Before" in data:
+    if data.get("Before") is not None:
         out["before"] = data["Before"]
     else:
         out["before"] = 0

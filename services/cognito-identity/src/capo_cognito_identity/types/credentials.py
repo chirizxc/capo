@@ -50,13 +50,13 @@ def serialize_aws_json_1_1(value: Credentials) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Credentials:
     out: Credentials = {}  # type: ignore[typeddict-item]
-    if "AccessKeyId" in data:
+    if data.get("AccessKeyId") is not None:
         out["access_key_id"] = data["AccessKeyId"]
-    if "SecretKey" in data:
+    if data.get("SecretKey") is not None:
         out["secret_key"] = data["SecretKey"]
-    if "SessionToken" in data:
+    if data.get("SessionToken") is not None:
         out["session_token"] = data["SessionToken"]
-    if "Expiration" in data:
+    if data.get("Expiration") is not None:
         import capo_cognito_identity.types.date_type
 
         out["expiration"] = (

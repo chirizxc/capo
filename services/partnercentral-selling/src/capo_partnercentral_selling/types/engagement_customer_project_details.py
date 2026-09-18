@@ -31,17 +31,17 @@ def serialize_aws_json_1_0(value: EngagementCustomerProjectDetails) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> EngagementCustomerProjectDetails:
     out: EngagementCustomerProjectDetails = {}  # type: ignore[typeddict-item]
-    if "Title" in data:
+    if data.get("Title") is not None:
         out["title"] = data["Title"]
     else:
         raise DeserializationError("EngagementCustomerProjectDetails.title required")
-    if "BusinessProblem" in data:
+    if data.get("BusinessProblem") is not None:
         out["business_problem"] = data["BusinessProblem"]
     else:
         raise DeserializationError(
             "EngagementCustomerProjectDetails.business_problem required"
         )
-    if "TargetCompletionDate" in data:
+    if data.get("TargetCompletionDate") is not None:
         out["target_completion_date"] = data["TargetCompletionDate"]
     else:
         raise DeserializationError(

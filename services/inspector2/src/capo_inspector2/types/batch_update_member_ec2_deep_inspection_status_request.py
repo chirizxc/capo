@@ -30,7 +30,7 @@ def serialize_json(value: BatchUpdateMemberEc2DeepInspectionStatusRequest) -> di
 
 def deserialize_json(data: dict) -> BatchUpdateMemberEc2DeepInspectionStatusRequest:
     out: BatchUpdateMemberEc2DeepInspectionStatusRequest = {}  # type: ignore[typeddict-item]
-    if "accountIds" in data:
+    if data.get("accountIds") is not None:
         import capo_inspector2.types.member_account_ec2_deep_inspection_status_list
 
         out["account_ids"] = (

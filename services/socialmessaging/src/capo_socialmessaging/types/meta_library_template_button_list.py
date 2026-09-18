@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> MetaLibraryTemplateButtonList:
 
     out: MetaLibraryTemplateButtonList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_socialmessaging.types.library_template_button_list.deserialize_json(
                 item

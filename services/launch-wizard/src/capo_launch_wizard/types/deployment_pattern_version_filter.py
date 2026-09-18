@@ -40,7 +40,7 @@ def serialize_json(value: DeploymentPatternVersionFilter) -> dict:
 
 def deserialize_json(data: dict) -> DeploymentPatternVersionFilter:
     out: DeploymentPatternVersionFilter = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         import capo_launch_wizard.types.deployment_pattern_version_filter_key
 
         out["name"] = (
@@ -50,7 +50,7 @@ def deserialize_json(data: dict) -> DeploymentPatternVersionFilter:
         )
     else:
         raise DeserializationError("DeploymentPatternVersionFilter.name required")
-    if "values" in data:
+    if data.get("values") is not None:
         import capo_launch_wizard.types.deployment_pattern_version_filter_values
 
         out["values"] = (

@@ -27,6 +27,8 @@ def deserialize_aws_json_1_1(data: list) -> NFSFileShareInfoList:
 
     out: NFSFileShareInfoList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_storage_gateway.types.nfs_file_share_info.deserialize_aws_json_1_1(
                 item

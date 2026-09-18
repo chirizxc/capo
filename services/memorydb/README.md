@@ -13,9 +13,9 @@ from capo_memorydb import AsyncMemoryDBClient
 
 
 async def main():
-    async with AsyncMemoryDBClient() as s3:
+    async with AsyncMemoryDBClient() as memory_db:
         # Example: call the batch_update_cluster operation
-        response = await s3.batch_update_cluster()
+        response = await memory_db.batch_update_cluster()
         print(response["processed_clusters"])
 ```
 
@@ -28,9 +28,9 @@ from capo_memorydb import AsyncMemoryDBClient
 
 
 async def main():
-    async with AsyncMemoryDBClient() as s3:
+    async with AsyncMemoryDBClient() as memory_db:
         # Example: paginate over describe_ac_ls
-        async for item in s3.iter_describe_ac_ls():
+        async for item in memory_db.iter_describe_ac_ls():
             print(item)
 ```
 
@@ -44,9 +44,9 @@ from capo_memorydb.error import InvalidParameterValueException
 
 
 async def main():
-    async with AsyncMemoryDBClient() as s3:
+    async with AsyncMemoryDBClient() as memory_db:
         try:
-            await s3.batch_update_cluster()
+            await memory_db.batch_update_cluster()
         except InvalidParameterValueException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -63,13 +63,13 @@ from capo_memorydb import AsyncMemoryDBClient
 
 
 async def main():
-    async with AsyncMemoryDBClient() as s3:
+    async with AsyncMemoryDBClient() as memory_db:
         # Default: 3 attempts for every operation
-        response = await s3.batch_update_cluster()
+        response = await memory_db.batch_update_cluster()
 
         # Override per operation
-        response = await s3.batch_update_cluster(config_overrides={"retry_max_attempts": 5})
+        response = await memory_db.batch_update_cluster(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.batch_update_cluster(config_overrides={"retry_max_attempts": 1})
+        response = await memory_db.batch_update_cluster(config_overrides={"retry_max_attempts": 1})
 ```

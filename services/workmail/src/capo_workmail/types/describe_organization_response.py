@@ -74,31 +74,31 @@ def serialize_aws_json_1_1(value: DescribeOrganizationResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeOrganizationResponse:
     out: DescribeOrganizationResponse = {}  # type: ignore[typeddict-item]
-    if "OrganizationId" in data:
+    if data.get("OrganizationId") is not None:
         out["organization_id"] = data["OrganizationId"]
-    if "Alias" in data:
+    if data.get("Alias") is not None:
         out["alias"] = data["Alias"]
-    if "State" in data:
+    if data.get("State") is not None:
         out["state"] = data["State"]
-    if "DirectoryId" in data:
+    if data.get("DirectoryId") is not None:
         out["directory_id"] = data["DirectoryId"]
-    if "DirectoryType" in data:
+    if data.get("DirectoryType") is not None:
         out["directory_type"] = data["DirectoryType"]
-    if "DefaultMailDomain" in data:
+    if data.get("DefaultMailDomain") is not None:
         out["default_mail_domain"] = data["DefaultMailDomain"]
-    if "CompletedDate" in data:
+    if data.get("CompletedDate") is not None:
         import capo_workmail.types.timestamp
 
         out["completed_date"] = capo_workmail.types.timestamp.deserialize_aws_json_1_1(
             data["CompletedDate"]
         )
-    if "ErrorMessage" in data:
+    if data.get("ErrorMessage") is not None:
         out["error_message"] = data["ErrorMessage"]
-    if "ARN" in data:
+    if data.get("ARN") is not None:
         out["arn"] = data["ARN"]
-    if "MigrationAdmin" in data:
+    if data.get("MigrationAdmin") is not None:
         out["migration_admin"] = data["MigrationAdmin"]
-    if "InteroperabilityEnabled" in data:
+    if data.get("InteroperabilityEnabled") is not None:
         out["interoperability_enabled"] = data["InteroperabilityEnabled"]
     else:
         out["interoperability_enabled"] = False

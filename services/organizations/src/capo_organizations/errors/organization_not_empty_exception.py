@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: OrganizationNotEmptyException_) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> OrganizationNotEmptyException_:
     out: OrganizationNotEmptyException_ = {}  # type: ignore[typeddict-item]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     return out
 
@@ -34,15 +34,20 @@ class OrganizationNotEmptyException(ServiceError):
 
     code: str | None = "OrganizationNotEmptyException"
 
-    def __init__(self, data: OrganizationNotEmptyException_):
+    def __init__(
+        self, data: OrganizationNotEmptyException_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="OrganizationNotEmptyException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "OrganizationNotEmptyException":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "OrganizationNotEmptyException":
+        return cls(deserialize_aws_json_1_1(data), message)

@@ -29,8 +29,8 @@ def serialize_json(value: UpdateConfigurationRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateConfigurationRequest:
     out: UpdateConfigurationRequest = {}  # type: ignore[typeddict-item]
-    if "data" in data:
+    if data.get("data") is not None:
         out["data"] = data["data"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
     return out

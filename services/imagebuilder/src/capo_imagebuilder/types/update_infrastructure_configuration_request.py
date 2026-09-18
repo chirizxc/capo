@@ -127,15 +127,15 @@ def serialize_json(value: UpdateInfrastructureConfigurationRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateInfrastructureConfigurationRequest:
     out: UpdateInfrastructureConfigurationRequest = {}  # type: ignore[typeddict-item]
-    if "infrastructureConfigurationArn" in data:
+    if data.get("infrastructureConfigurationArn") is not None:
         out["infrastructure_configuration_arn"] = data["infrastructureConfigurationArn"]
     else:
         raise DeserializationError(
             "UpdateInfrastructureConfigurationRequest.infrastructure_configuration_arn required"
         )
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "instanceTypes" in data:
+    if data.get("instanceTypes") is not None:
         import capo_imagebuilder.types.instance_type_list
 
         out["instance_types"] = (
@@ -143,13 +143,13 @@ def deserialize_json(data: dict) -> UpdateInfrastructureConfigurationRequest:
                 data["instanceTypes"]
             )
         )
-    if "instanceProfileName" in data:
+    if data.get("instanceProfileName") is not None:
         out["instance_profile_name"] = data["instanceProfileName"]
     else:
         raise DeserializationError(
             "UpdateInfrastructureConfigurationRequest.instance_profile_name required"
         )
-    if "securityGroupIds" in data:
+    if data.get("securityGroupIds") is not None:
         import capo_imagebuilder.types.security_group_ids
 
         out["security_group_ids"] = (
@@ -157,21 +157,21 @@ def deserialize_json(data: dict) -> UpdateInfrastructureConfigurationRequest:
                 data["securityGroupIds"]
             )
         )
-    if "subnetId" in data:
+    if data.get("subnetId") is not None:
         out["subnet_id"] = data["subnetId"]
-    if "logging" in data:
+    if data.get("logging") is not None:
         import capo_imagebuilder.types.logging
 
         out["logging"] = capo_imagebuilder.types.logging.deserialize_json(
             data["logging"]
         )
-    if "keyPair" in data:
+    if data.get("keyPair") is not None:
         out["key_pair"] = data["keyPair"]
-    if "terminateInstanceOnFailure" in data:
+    if data.get("terminateInstanceOnFailure") is not None:
         out["terminate_instance_on_failure"] = data["terminateInstanceOnFailure"]
-    if "snsTopicArn" in data:
+    if data.get("snsTopicArn") is not None:
         out["sns_topic_arn"] = data["snsTopicArn"]
-    if "resourceTags" in data:
+    if data.get("resourceTags") is not None:
         import capo_imagebuilder.types.resource_tag_map
 
         out["resource_tags"] = (
@@ -179,7 +179,7 @@ def deserialize_json(data: dict) -> UpdateInfrastructureConfigurationRequest:
                 data["resourceTags"]
             )
         )
-    if "instanceMetadataOptions" in data:
+    if data.get("instanceMetadataOptions") is not None:
         import capo_imagebuilder.types.instance_metadata_options
 
         out["instance_metadata_options"] = (
@@ -187,13 +187,13 @@ def deserialize_json(data: dict) -> UpdateInfrastructureConfigurationRequest:
                 data["instanceMetadataOptions"]
             )
         )
-    if "placement" in data:
+    if data.get("placement") is not None:
         import capo_imagebuilder.types.placement
 
         out["placement"] = capo_imagebuilder.types.placement.deserialize_json(
             data["placement"]
         )
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     else:
         raise DeserializationError(

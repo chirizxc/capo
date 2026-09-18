@@ -35,11 +35,11 @@ def serialize_json(value: TopicDateRangeFilter) -> dict:
 
 def deserialize_json(data: dict) -> TopicDateRangeFilter:
     out: TopicDateRangeFilter = {}  # type: ignore[typeddict-item]
-    if "Inclusive" in data:
+    if data.get("Inclusive") is not None:
         out["inclusive"] = data["Inclusive"]
     else:
         out["inclusive"] = False
-    if "Constant" in data:
+    if data.get("Constant") is not None:
         import capo_quicksight.types.topic_range_filter_constant
 
         out["constant"] = (

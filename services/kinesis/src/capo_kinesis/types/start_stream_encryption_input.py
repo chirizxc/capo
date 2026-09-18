@@ -47,9 +47,9 @@ def serialize_aws_json_1_1(value: StartStreamEncryptionInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> StartStreamEncryptionInput:
     out: StartStreamEncryptionInput = {}  # type: ignore[typeddict-item]
-    if "StreamName" in data:
+    if data.get("StreamName") is not None:
         out["stream_name"] = data["StreamName"]
-    if "EncryptionType" in data:
+    if data.get("EncryptionType") is not None:
         import capo_kinesis.types.encryption_type
 
         out["encryption_type"] = (
@@ -61,12 +61,12 @@ def deserialize_aws_json_1_1(data: dict) -> StartStreamEncryptionInput:
         raise DeserializationError(
             "StartStreamEncryptionInput.encryption_type required"
         )
-    if "KeyId" in data:
+    if data.get("KeyId") is not None:
         out["key_id"] = data["KeyId"]
     else:
         raise DeserializationError("StartStreamEncryptionInput.key_id required")
-    if "StreamARN" in data:
+    if data.get("StreamARN") is not None:
         out["stream_arn"] = data["StreamARN"]
-    if "StreamId" in data:
+    if data.get("StreamId") is not None:
         out["stream_id"] = data["StreamId"]
     return out

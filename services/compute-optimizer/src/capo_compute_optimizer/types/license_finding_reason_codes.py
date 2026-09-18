@@ -29,6 +29,8 @@ def deserialize_aws_json_1_0(data: list) -> LicenseFindingReasonCodes:
 
     out: LicenseFindingReasonCodes = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_compute_optimizer.types.license_finding_reason_code.deserialize_aws_json_1_0(
                 item

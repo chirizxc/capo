@@ -36,15 +36,15 @@ def serialize_aws_json_1_0(value: CreateTypeRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CreateTypeRequest:
     out: CreateTypeRequest = {}  # type: ignore[typeddict-item]
-    if "keyspaceName" in data:
+    if data.get("keyspaceName") is not None:
         out["keyspace_name"] = data["keyspaceName"]
     else:
         raise DeserializationError("CreateTypeRequest.keyspace_name required")
-    if "typeName" in data:
+    if data.get("typeName") is not None:
         out["type_name"] = data["typeName"]
     else:
         raise DeserializationError("CreateTypeRequest.type_name required")
-    if "fieldDefinitions" in data:
+    if data.get("fieldDefinitions") is not None:
         import capo_keyspaces.types.field_list
 
         out["field_definitions"] = (

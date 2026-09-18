@@ -41,7 +41,7 @@ def serialize_json(value: CreateBillingGroupRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateBillingGroupRequest:
     out: CreateBillingGroupRequest = {}  # type: ignore[typeddict-item]
-    if "billingGroupProperties" in data:
+    if data.get("billingGroupProperties") is not None:
         import capo_iot.types.billing_group_properties
 
         out["billing_group_properties"] = (
@@ -49,7 +49,7 @@ def deserialize_json(data: dict) -> CreateBillingGroupRequest:
                 data["billingGroupProperties"]
             )
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_iot.types.tag_list
 
         out["tags"] = capo_iot.types.tag_list.deserialize_json(data["tags"])

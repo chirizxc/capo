@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: GetLoadBalancerTlsPoliciesResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetLoadBalancerTlsPoliciesResult:
     out: GetLoadBalancerTlsPoliciesResult = {}  # type: ignore[typeddict-item]
-    if "tlsPolicies" in data:
+    if data.get("tlsPolicies") is not None:
         import capo_lightsail.types.load_balancer_tls_policy_list
 
         out["tls_policies"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_1(data: dict) -> GetLoadBalancerTlsPoliciesResult:
                 data["tlsPolicies"]
             )
         )
-    if "nextPageToken" in data:
+    if data.get("nextPageToken") is not None:
         out["next_page_token"] = data["nextPageToken"]
     return out

@@ -27,6 +27,8 @@ def deserialize_aws_json_1_1(data: list) -> DeviceDeploymentSummaries:
 
     out: DeviceDeploymentSummaries = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_sagemaker.types.device_deployment_summary.deserialize_aws_json_1_1(
                 item

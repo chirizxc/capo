@@ -28,7 +28,7 @@ def serialize_json(value: ProtectedJobResult) -> dict:
 
 def deserialize_json(data: dict) -> ProtectedJobResult:
     out: ProtectedJobResult = {}  # type: ignore[typeddict-item]
-    if "output" in data:
+    if data.get("output") is not None:
         import capo_cleanrooms.types.protected_job_output
 
         out["output"] = capo_cleanrooms.types.protected_job_output.deserialize_json(

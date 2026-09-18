@@ -46,11 +46,11 @@ def serialize_aws_json_1_1(value: UserStackAssociation) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UserStackAssociation:
     out: UserStackAssociation = {}  # type: ignore[typeddict-item]
-    if "StackName" in data:
+    if data.get("StackName") is not None:
         out["stack_name"] = data["StackName"]
-    if "UserName" in data:
+    if data.get("UserName") is not None:
         out["user_name"] = data["UserName"]
-    if "AuthenticationType" in data:
+    if data.get("AuthenticationType") is not None:
         import capo_appstream.types.authentication_type
 
         out["authentication_type"] = (
@@ -58,6 +58,6 @@ def deserialize_aws_json_1_1(data: dict) -> UserStackAssociation:
                 data["AuthenticationType"]
             )
         )
-    if "SendEmailNotification" in data:
+    if data.get("SendEmailNotification") is not None:
         out["send_email_notification"] = data["SendEmailNotification"]
     return out

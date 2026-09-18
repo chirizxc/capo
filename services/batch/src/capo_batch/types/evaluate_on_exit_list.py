@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> EvaluateOnExitList:
 
     out: EvaluateOnExitList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_batch.types.evaluate_on_exit.deserialize_json(item))
     return out

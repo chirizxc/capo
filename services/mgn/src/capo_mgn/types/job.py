@@ -77,23 +77,23 @@ def serialize_json(value: Job) -> dict:
 
 def deserialize_json(data: dict) -> Job:
     out: Job = {}  # type: ignore[typeddict-item]
-    if "jobID" in data:
+    if data.get("jobID") is not None:
         out["job_id"] = data["jobID"]
     else:
         raise DeserializationError("Job.job_id required")
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "type" in data:
+    if data.get("type") is not None:
         out["type"] = data["type"]
-    if "initiatedBy" in data:
+    if data.get("initiatedBy") is not None:
         out["initiated_by"] = data["initiatedBy"]
-    if "creationDateTime" in data:
+    if data.get("creationDateTime") is not None:
         out["creation_date_time"] = data["creationDateTime"]
-    if "endDateTime" in data:
+    if data.get("endDateTime") is not None:
         out["end_date_time"] = data["endDateTime"]
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
-    if "participatingServers" in data:
+    if data.get("participatingServers") is not None:
         import capo_mgn.types.participating_servers
 
         out["participating_servers"] = (
@@ -101,7 +101,7 @@ def deserialize_json(data: dict) -> Job:
                 data["participatingServers"]
             )
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_mgn.types.tags_map
 
         out["tags"] = capo_mgn.types.tags_map.deserialize_json(data["tags"])

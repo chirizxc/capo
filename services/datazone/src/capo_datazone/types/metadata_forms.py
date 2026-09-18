@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> MetadataForms:
 
     out: MetadataForms = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_datazone.types.form_output.deserialize_json(item))
     return out

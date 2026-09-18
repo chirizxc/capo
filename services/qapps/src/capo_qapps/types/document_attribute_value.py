@@ -64,9 +64,9 @@ def serialize_json(value: DocumentAttributeValue) -> dict:
 
 
 def deserialize_json(data: dict) -> DocumentAttributeValue:
-    if "stringValue" in data:
+    if data.get("stringValue") is not None:
         return {"stringValue": data["stringValue"]}
-    elif "stringListValue" in data:
+    elif data.get("stringListValue") is not None:
         import capo_qapps.types.document_attribute_string_list_value
 
         return {
@@ -74,9 +74,9 @@ def deserialize_json(data: dict) -> DocumentAttributeValue:
                 data["stringListValue"]
             )
         }
-    elif "longValue" in data:
+    elif data.get("longValue") is not None:
         return {"longValue": data["longValue"]}
-    elif "dateValue" in data:
+    elif data.get("dateValue") is not None:
         import capo_qapps.types.timestamp
 
         return {

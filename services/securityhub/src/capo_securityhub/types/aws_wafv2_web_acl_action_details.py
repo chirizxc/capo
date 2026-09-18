@@ -44,7 +44,7 @@ def serialize_json(value: AwsWafv2WebAclActionDetails) -> dict:
 
 def deserialize_json(data: dict) -> AwsWafv2WebAclActionDetails:
     out: AwsWafv2WebAclActionDetails = {}  # type: ignore[typeddict-item]
-    if "Allow" in data:
+    if data.get("Allow") is not None:
         import capo_securityhub.types.aws_wafv2_action_allow_details
 
         out["allow"] = (
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> AwsWafv2WebAclActionDetails:
                 data["Allow"]
             )
         )
-    if "Block" in data:
+    if data.get("Block") is not None:
         import capo_securityhub.types.aws_wafv2_action_block_details
 
         out["block"] = (

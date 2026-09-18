@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> ConfigurationList:
 
     out: ConfigurationList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_omics.types.configuration_list_item.deserialize_json(item))
     return out

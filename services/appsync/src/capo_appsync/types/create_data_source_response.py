@@ -27,7 +27,7 @@ def serialize_json(value: CreateDataSourceResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateDataSourceResponse:
     out: CreateDataSourceResponse = {}  # type: ignore[typeddict-item]
-    if "dataSource" in data:
+    if data.get("dataSource") is not None:
         import capo_appsync.types.data_source
 
         out["data_source"] = capo_appsync.types.data_source.deserialize_json(

@@ -36,15 +36,15 @@ def serialize_json(value: EmailOutboundConfig) -> dict:
 
 def deserialize_json(data: dict) -> EmailOutboundConfig:
     out: EmailOutboundConfig = {}  # type: ignore[typeddict-item]
-    if "connectSourceEmailAddress" in data:
+    if data.get("connectSourceEmailAddress") is not None:
         out["connect_source_email_address"] = data["connectSourceEmailAddress"]
     else:
         raise DeserializationError(
             "EmailOutboundConfig.connect_source_email_address required"
         )
-    if "sourceEmailAddressDisplayName" in data:
+    if data.get("sourceEmailAddressDisplayName") is not None:
         out["source_email_address_display_name"] = data["sourceEmailAddressDisplayName"]
-    if "wisdomTemplateArn" in data:
+    if data.get("wisdomTemplateArn") is not None:
         out["wisdom_template_arn"] = data["wisdomTemplateArn"]
     else:
         raise DeserializationError("EmailOutboundConfig.wisdom_template_arn required")

@@ -52,11 +52,11 @@ def serialize_json(value: DeploymentSpecificationsField) -> dict:
 
 def deserialize_json(data: dict) -> DeploymentSpecificationsField:
     out: DeploymentSpecificationsField = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "allowedValues" in data:
+    if data.get("allowedValues") is not None:
         import capo_launch_wizard.types.allowed_values
 
         out["allowed_values"] = (
@@ -64,9 +64,9 @@ def deserialize_json(data: dict) -> DeploymentSpecificationsField:
                 data["allowedValues"]
             )
         )
-    if "required" in data:
+    if data.get("required") is not None:
         out["required"] = data["required"]
-    if "conditionals" in data:
+    if data.get("conditionals") is not None:
         import capo_launch_wizard.types.specifications_conditional_data
 
         out["conditionals"] = (

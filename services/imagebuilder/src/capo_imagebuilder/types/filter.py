@@ -32,9 +32,9 @@ def serialize_json(value: Filter) -> dict:
 
 def deserialize_json(data: dict) -> Filter:
     out: Filter = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "values" in data:
+    if data.get("values") is not None:
         import capo_imagebuilder.types.filter_values
 
         out["values"] = capo_imagebuilder.types.filter_values.deserialize_json(

@@ -46,18 +46,16 @@ def serialize_json(value: GetConfigurationManagerOutput) -> dict:
     if "name" in value:
         out["Name"] = value["name"]
     if "created_at" in value:
-        import capo_ssm_quicksetup.types._prelude.timestamp
+        import capo_ssm_quicksetup._protocol.serialize
 
-        out["CreatedAt"] = capo_ssm_quicksetup.types._prelude.timestamp.serialize_json(
+        out["CreatedAt"] = capo_ssm_quicksetup._protocol.serialize.fmt_date_time(
             value["created_at"]
         )
     if "last_modified_at" in value:
-        import capo_ssm_quicksetup.types._prelude.timestamp
+        import capo_ssm_quicksetup._protocol.serialize
 
-        out["LastModifiedAt"] = (
-            capo_ssm_quicksetup.types._prelude.timestamp.serialize_json(
-                value["last_modified_at"]
-            )
+        out["LastModifiedAt"] = capo_ssm_quicksetup._protocol.serialize.fmt_date_time(
+            value["last_modified_at"]
         )
     if "status_summaries" in value:
         import capo_ssm_quicksetup.types.status_summaries_list
@@ -84,31 +82,27 @@ def serialize_json(value: GetConfigurationManagerOutput) -> dict:
 
 def deserialize_json(data: dict) -> GetConfigurationManagerOutput:
     out: GetConfigurationManagerOutput = {}  # type: ignore[typeddict-item]
-    if "ManagerArn" in data:
+    if data.get("ManagerArn") is not None:
         out["manager_arn"] = data["ManagerArn"]
     else:
         raise DeserializationError("GetConfigurationManagerOutput.manager_arn required")
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "CreatedAt" in data:
-        import capo_ssm_quicksetup.types._prelude.timestamp
+    if data.get("CreatedAt") is not None:
+        import datetime
 
-        out["created_at"] = (
-            capo_ssm_quicksetup.types._prelude.timestamp.deserialize_json(
-                data["CreatedAt"]
-            )
+        out["created_at"] = datetime.datetime.fromisoformat(
+            data["CreatedAt"].replace("Z", "+00:00")
         )
-    if "LastModifiedAt" in data:
-        import capo_ssm_quicksetup.types._prelude.timestamp
+    if data.get("LastModifiedAt") is not None:
+        import datetime
 
-        out["last_modified_at"] = (
-            capo_ssm_quicksetup.types._prelude.timestamp.deserialize_json(
-                data["LastModifiedAt"]
-            )
+        out["last_modified_at"] = datetime.datetime.fromisoformat(
+            data["LastModifiedAt"].replace("Z", "+00:00")
         )
-    if "StatusSummaries" in data:
+    if data.get("StatusSummaries") is not None:
         import capo_ssm_quicksetup.types.status_summaries_list
 
         out["status_summaries"] = (
@@ -116,7 +110,7 @@ def deserialize_json(data: dict) -> GetConfigurationManagerOutput:
                 data["StatusSummaries"]
             )
         )
-    if "ConfigurationDefinitions" in data:
+    if data.get("ConfigurationDefinitions") is not None:
         import capo_ssm_quicksetup.types.configuration_definitions_list
 
         out["configuration_definitions"] = (
@@ -124,7 +118,7 @@ def deserialize_json(data: dict) -> GetConfigurationManagerOutput:
                 data["ConfigurationDefinitions"]
             )
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_ssm_quicksetup.types.tags_map
 
         out["tags"] = capo_ssm_quicksetup.types.tags_map.deserialize_json(data["Tags"])

@@ -37,14 +37,14 @@ def serialize_aws_json_1_1(value: ListBuildsInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListBuildsInput:
     out: ListBuildsInput = {}  # type: ignore[typeddict-item]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_gamelift.types.build_status
 
         out["status"] = capo_gamelift.types.build_status.deserialize_aws_json_1_1(
             data["Status"]
         )
-    if "Limit" in data:
+    if data.get("Limit") is not None:
         out["limit"] = data["Limit"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

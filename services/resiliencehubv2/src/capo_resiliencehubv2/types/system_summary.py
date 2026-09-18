@@ -68,25 +68,25 @@ def serialize_json(value: SystemSummary) -> dict:
 
 def deserialize_json(data: dict) -> SystemSummary:
     out: SystemSummary = {}  # type: ignore[typeddict-item]
-    if "systemId" in data:
+    if data.get("systemId") is not None:
         out["system_id"] = data["systemId"]
     else:
         raise DeserializationError("SystemSummary.system_id required")
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("SystemSummary.name required")
-    if "systemArn" in data:
+    if data.get("systemArn") is not None:
         out["system_arn"] = data["systemArn"]
-    if "userJourneysCount" in data:
+    if data.get("userJourneysCount") is not None:
         out["user_journeys_count"] = data["userJourneysCount"]
-    if "servicesCount" in data:
+    if data.get("servicesCount") is not None:
         out["services_count"] = data["servicesCount"]
-    if "organizationId" in data:
+    if data.get("organizationId") is not None:
         out["organization_id"] = data["organizationId"]
-    if "ouId" in data:
+    if data.get("ouId") is not None:
         out["ou_id"] = data["ouId"]
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_resiliencehubv2.types._prelude.timestamp
 
         out["created_at"] = (
@@ -94,7 +94,7 @@ def deserialize_json(data: dict) -> SystemSummary:
                 data["createdAt"]
             )
         )
-    if "updatedAt" in data:
+    if data.get("updatedAt") is not None:
         import capo_resiliencehubv2.types._prelude.timestamp
 
         out["updated_at"] = (

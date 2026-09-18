@@ -27,13 +27,13 @@ def serialize_aws_json_1_0(value: SetDefaultMessageFeedbackEnabledRequest) -> di
 
 def deserialize_aws_json_1_0(data: dict) -> SetDefaultMessageFeedbackEnabledRequest:
     out: SetDefaultMessageFeedbackEnabledRequest = {}  # type: ignore[typeddict-item]
-    if "ConfigurationSetName" in data:
+    if data.get("ConfigurationSetName") is not None:
         out["configuration_set_name"] = data["ConfigurationSetName"]
     else:
         raise DeserializationError(
             "SetDefaultMessageFeedbackEnabledRequest.configuration_set_name required"
         )
-    if "MessageFeedbackEnabled" in data:
+    if data.get("MessageFeedbackEnabled") is not None:
         out["message_feedback_enabled"] = data["MessageFeedbackEnabled"]
     else:
         raise DeserializationError(

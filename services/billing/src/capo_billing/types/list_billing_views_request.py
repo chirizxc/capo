@@ -83,7 +83,7 @@ def serialize_aws_json_1_0(value: ListBillingViewsRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ListBillingViewsRequest:
     out: ListBillingViewsRequest = {}  # type: ignore[typeddict-item]
-    if "activeTimeRange" in data:
+    if data.get("activeTimeRange") is not None:
         import capo_billing.types.active_time_range
 
         out["active_time_range"] = (
@@ -91,13 +91,13 @@ def deserialize_aws_json_1_0(data: dict) -> ListBillingViewsRequest:
                 data["activeTimeRange"]
             )
         )
-    if "arns" in data:
+    if data.get("arns") is not None:
         import capo_billing.types.billing_view_arn_list
 
         out["arns"] = capo_billing.types.billing_view_arn_list.deserialize_aws_json_1_0(
             data["arns"]
         )
-    if "billingViewTypes" in data:
+    if data.get("billingViewTypes") is not None:
         import capo_billing.types.billing_view_type_list
 
         out["billing_view_types"] = (
@@ -105,18 +105,18 @@ def deserialize_aws_json_1_0(data: dict) -> ListBillingViewsRequest:
                 data["billingViewTypes"]
             )
         )
-    if "names" in data:
+    if data.get("names") is not None:
         import capo_billing.types.string_searches
 
         out["names"] = capo_billing.types.string_searches.deserialize_aws_json_1_0(
             data["names"]
         )
-    if "ownerAccountId" in data:
+    if data.get("ownerAccountId") is not None:
         out["owner_account_id"] = data["ownerAccountId"]
-    if "sourceAccountId" in data:
+    if data.get("sourceAccountId") is not None:
         out["source_account_id"] = data["sourceAccountId"]
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

@@ -37,15 +37,20 @@ class NumberOfNodesQuotaExceededFault(ServiceError):
 
     code: str | None = "NumberOfNodesQuotaExceededFault"
 
-    def __init__(self, data: NumberOfNodesQuotaExceededFault_):
+    def __init__(
+        self, data: NumberOfNodesQuotaExceededFault_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="NumberOfNodesQuotaExceededFault",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_query(cls, el: Element) -> "NumberOfNodesQuotaExceededFault":
-        return cls(deserialize_query(el))
+    def from_query(
+        cls, el: Element, message: str | None = None
+    ) -> "NumberOfNodesQuotaExceededFault":
+        return cls(deserialize_query(el), message)

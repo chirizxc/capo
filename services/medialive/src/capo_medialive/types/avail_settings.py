@@ -48,11 +48,11 @@ def serialize_json(value: AvailSettings) -> dict:
 
 def deserialize_json(data: dict) -> AvailSettings:
     out: AvailSettings = {}  # type: ignore[typeddict-item]
-    if "esam" in data:
+    if data.get("esam") is not None:
         import capo_medialive.types.esam
 
         out["esam"] = capo_medialive.types.esam.deserialize_json(data["esam"])
-    if "scte35SpliceInsert" in data:
+    if data.get("scte35SpliceInsert") is not None:
         import capo_medialive.types.scte35_splice_insert
 
         out["scte35_splice_insert"] = (
@@ -60,7 +60,7 @@ def deserialize_json(data: dict) -> AvailSettings:
                 data["scte35SpliceInsert"]
             )
         )
-    if "scte35TimeSignalApos" in data:
+    if data.get("scte35TimeSignalApos") is not None:
         import capo_medialive.types.scte35_time_signal_apos
 
         out["scte35_time_signal_apos"] = (

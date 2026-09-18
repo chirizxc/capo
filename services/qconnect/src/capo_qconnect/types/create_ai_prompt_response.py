@@ -27,7 +27,7 @@ def serialize_json(value: CreateAIPromptResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateAIPromptResponse:
     out: CreateAIPromptResponse = {}  # type: ignore[typeddict-item]
-    if "aiPrompt" in data:
+    if data.get("aiPrompt") is not None:
         import capo_qconnect.types.ai_prompt_data
 
         out["ai_prompt"] = capo_qconnect.types.ai_prompt_data.deserialize_json(

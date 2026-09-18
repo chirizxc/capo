@@ -36,7 +36,7 @@ def serialize_json(value: DocumentItem) -> dict:
 
 def deserialize_json(data: dict) -> DocumentItem:
     out: DocumentItem = {}  # type: ignore[typeddict-item]
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_marketplace_discovery.types.legal_document_type
 
         out["type"] = (
@@ -46,10 +46,10 @@ def deserialize_json(data: dict) -> DocumentItem:
         )
     else:
         raise DeserializationError("DocumentItem.type required")
-    if "url" in data:
+    if data.get("url") is not None:
         out["url"] = data["url"]
     else:
         raise DeserializationError("DocumentItem.url required")
-    if "version" in data:
+    if data.get("version") is not None:
         out["version"] = data["version"]
     return out

@@ -89,23 +89,23 @@ def serialize_json(value: SearchPlaceIndexForTextSummary) -> dict:
 
 def deserialize_json(data: dict) -> SearchPlaceIndexForTextSummary:
     out: SearchPlaceIndexForTextSummary = {}  # type: ignore[typeddict-item]
-    if "Text" in data:
+    if data.get("Text") is not None:
         out["text"] = data["Text"]
     else:
         raise DeserializationError("SearchPlaceIndexForTextSummary.text required")
-    if "BiasPosition" in data:
+    if data.get("BiasPosition") is not None:
         import capo_location.types.position
 
         out["bias_position"] = capo_location.types.position.deserialize_json(
             data["BiasPosition"]
         )
-    if "FilterBBox" in data:
+    if data.get("FilterBBox") is not None:
         import capo_location.types.bounding_box
 
         out["filter_b_box"] = capo_location.types.bounding_box.deserialize_json(
             data["FilterBBox"]
         )
-    if "FilterCountries" in data:
+    if data.get("FilterCountries") is not None:
         import capo_location.types.country_code_list
 
         out["filter_countries"] = (
@@ -113,23 +113,23 @@ def deserialize_json(data: dict) -> SearchPlaceIndexForTextSummary:
                 data["FilterCountries"]
             )
         )
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "ResultBBox" in data:
+    if data.get("ResultBBox") is not None:
         import capo_location.types.bounding_box
 
         out["result_b_box"] = capo_location.types.bounding_box.deserialize_json(
             data["ResultBBox"]
         )
-    if "DataSource" in data:
+    if data.get("DataSource") is not None:
         out["data_source"] = data["DataSource"]
     else:
         raise DeserializationError(
             "SearchPlaceIndexForTextSummary.data_source required"
         )
-    if "Language" in data:
+    if data.get("Language") is not None:
         out["language"] = data["Language"]
-    if "FilterCategories" in data:
+    if data.get("FilterCategories") is not None:
         import capo_location.types.filter_place_category_list
 
         out["filter_categories"] = (

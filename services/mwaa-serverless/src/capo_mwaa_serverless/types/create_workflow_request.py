@@ -120,13 +120,13 @@ def serialize_aws_json_1_0(value: CreateWorkflowRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CreateWorkflowRequest:
     out: CreateWorkflowRequest = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("CreateWorkflowRequest.name required")
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
-    if "DefinitionS3Location" in data:
+    if data.get("DefinitionS3Location") is not None:
         import capo_mwaa_serverless.types.definition_s3_location
 
         out["definition_s3_location"] = (
@@ -138,13 +138,13 @@ def deserialize_aws_json_1_0(data: dict) -> CreateWorkflowRequest:
         raise DeserializationError(
             "CreateWorkflowRequest.definition_s3_location required"
         )
-    if "RoleArn" in data:
+    if data.get("RoleArn") is not None:
         out["role_arn"] = data["RoleArn"]
     else:
         raise DeserializationError("CreateWorkflowRequest.role_arn required")
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "EncryptionConfiguration" in data:
+    if data.get("EncryptionConfiguration") is not None:
         import capo_mwaa_serverless.types.encryption_configuration
 
         out["encryption_configuration"] = (
@@ -152,7 +152,7 @@ def deserialize_aws_json_1_0(data: dict) -> CreateWorkflowRequest:
                 data["EncryptionConfiguration"]
             )
         )
-    if "LoggingConfiguration" in data:
+    if data.get("LoggingConfiguration") is not None:
         import capo_mwaa_serverless.types.logging_configuration
 
         out["logging_configuration"] = (
@@ -160,7 +160,7 @@ def deserialize_aws_json_1_0(data: dict) -> CreateWorkflowRequest:
                 data["LoggingConfiguration"]
             )
         )
-    if "EngineVersion" in data:
+    if data.get("EngineVersion") is not None:
         import capo_mwaa_serverless.types.engine_version
 
         out["engine_version"] = (
@@ -168,7 +168,7 @@ def deserialize_aws_json_1_0(data: dict) -> CreateWorkflowRequest:
                 data["EngineVersion"]
             )
         )
-    if "NetworkConfiguration" in data:
+    if data.get("NetworkConfiguration") is not None:
         import capo_mwaa_serverless.types.network_configuration
 
         out["network_configuration"] = (
@@ -176,12 +176,12 @@ def deserialize_aws_json_1_0(data: dict) -> CreateWorkflowRequest:
                 data["NetworkConfiguration"]
             )
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_mwaa_serverless.types.tags
 
         out["tags"] = capo_mwaa_serverless.types.tags.deserialize_aws_json_1_0(
             data["Tags"]
         )
-    if "TriggerMode" in data:
+    if data.get("TriggerMode") is not None:
         out["trigger_mode"] = data["TriggerMode"]
     return out

@@ -25,6 +25,8 @@ def deserialize_json(data: list) -> AdditionalResourcesList:
 
     out: AdditionalResourcesList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_wellarchitected.types.additional_resources.deserialize_json(item)
         )

@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: GetWorkgroupRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetWorkgroupRequest:
     out: GetWorkgroupRequest = {}  # type: ignore[typeddict-item]
-    if "workgroupName" in data:
+    if data.get("workgroupName") is not None:
         out["workgroup_name"] = data["workgroupName"]
     else:
         raise DeserializationError("GetWorkgroupRequest.workgroup_name required")

@@ -54,22 +54,22 @@ def serialize_aws_json_1_1(value: GetUserDefinedFunctionsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetUserDefinedFunctionsRequest:
     out: GetUserDefinedFunctionsRequest = {}  # type: ignore[typeddict-item]
-    if "CatalogId" in data:
+    if data.get("CatalogId") is not None:
         out["catalog_id"] = data["CatalogId"]
-    if "DatabaseName" in data:
+    if data.get("DatabaseName") is not None:
         out["database_name"] = data["DatabaseName"]
-    if "Pattern" in data:
+    if data.get("Pattern") is not None:
         out["pattern"] = data["Pattern"]
     else:
         raise DeserializationError("GetUserDefinedFunctionsRequest.pattern required")
-    if "FunctionType" in data:
+    if data.get("FunctionType") is not None:
         import capo_glue.types.function_type
 
         out["function_type"] = capo_glue.types.function_type.deserialize_aws_json_1_1(
             data["FunctionType"]
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
     return out

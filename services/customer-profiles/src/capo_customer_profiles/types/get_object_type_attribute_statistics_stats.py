@@ -27,10 +27,42 @@ class GetObjectTypeAttributeStatisticsStats(TypedDict, closed=True):
 # --- restJson1 ser/de ---
 def serialize_json(value: GetObjectTypeAttributeStatisticsStats) -> dict:
     out: dict = {}
-    out["Maximum"] = value["maximum"]
-    out["Minimum"] = value["minimum"]
-    out["Average"] = value["average"]
-    out["StandardDeviation"] = value["standard_deviation"]
+    out["Maximum"] = (
+        "NaN"
+        if value["maximum"] != value["maximum"]
+        else "Infinity"
+        if value["maximum"] == float("inf")
+        else "-Infinity"
+        if value["maximum"] == float("-inf")
+        else value["maximum"]
+    )
+    out["Minimum"] = (
+        "NaN"
+        if value["minimum"] != value["minimum"]
+        else "Infinity"
+        if value["minimum"] == float("inf")
+        else "-Infinity"
+        if value["minimum"] == float("-inf")
+        else value["minimum"]
+    )
+    out["Average"] = (
+        "NaN"
+        if value["average"] != value["average"]
+        else "Infinity"
+        if value["average"] == float("inf")
+        else "-Infinity"
+        if value["average"] == float("-inf")
+        else value["average"]
+    )
+    out["StandardDeviation"] = (
+        "NaN"
+        if value["standard_deviation"] != value["standard_deviation"]
+        else "Infinity"
+        if value["standard_deviation"] == float("inf")
+        else "-Infinity"
+        if value["standard_deviation"] == float("-inf")
+        else value["standard_deviation"]
+    )
     import capo_customer_profiles.types.get_object_type_attribute_statistics_percentiles
 
     out["Percentiles"] = (
@@ -43,31 +75,31 @@ def serialize_json(value: GetObjectTypeAttributeStatisticsStats) -> dict:
 
 def deserialize_json(data: dict) -> GetObjectTypeAttributeStatisticsStats:
     out: GetObjectTypeAttributeStatisticsStats = {}  # type: ignore[typeddict-item]
-    if "Maximum" in data:
-        out["maximum"] = data["Maximum"]
+    if data.get("Maximum") is not None:
+        out["maximum"] = float(data["Maximum"])
     else:
         raise DeserializationError(
             "GetObjectTypeAttributeStatisticsStats.maximum required"
         )
-    if "Minimum" in data:
-        out["minimum"] = data["Minimum"]
+    if data.get("Minimum") is not None:
+        out["minimum"] = float(data["Minimum"])
     else:
         raise DeserializationError(
             "GetObjectTypeAttributeStatisticsStats.minimum required"
         )
-    if "Average" in data:
-        out["average"] = data["Average"]
+    if data.get("Average") is not None:
+        out["average"] = float(data["Average"])
     else:
         raise DeserializationError(
             "GetObjectTypeAttributeStatisticsStats.average required"
         )
-    if "StandardDeviation" in data:
-        out["standard_deviation"] = data["StandardDeviation"]
+    if data.get("StandardDeviation") is not None:
+        out["standard_deviation"] = float(data["StandardDeviation"])
     else:
         raise DeserializationError(
             "GetObjectTypeAttributeStatisticsStats.standard_deviation required"
         )
-    if "Percentiles" in data:
+    if data.get("Percentiles") is not None:
         import capo_customer_profiles.types.get_object_type_attribute_statistics_percentiles
 
         out["percentiles"] = (

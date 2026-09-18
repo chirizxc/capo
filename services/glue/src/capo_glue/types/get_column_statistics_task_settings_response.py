@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: GetColumnStatisticsTaskSettingsResponse) -> di
 
 def deserialize_aws_json_1_1(data: dict) -> GetColumnStatisticsTaskSettingsResponse:
     out: GetColumnStatisticsTaskSettingsResponse = {}  # type: ignore[typeddict-item]
-    if "ColumnStatisticsTaskSettings" in data:
+    if data.get("ColumnStatisticsTaskSettings") is not None:
         import capo_glue.types.column_statistics_task_settings
 
         out["column_statistics_task_settings"] = (

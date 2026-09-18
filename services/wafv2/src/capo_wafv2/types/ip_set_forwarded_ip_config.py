@@ -40,11 +40,11 @@ def serialize_aws_json_1_1(value: IPSetForwardedIPConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> IPSetForwardedIPConfig:
     out: IPSetForwardedIPConfig = {}  # type: ignore[typeddict-item]
-    if "HeaderName" in data:
+    if data.get("HeaderName") is not None:
         out["header_name"] = data["HeaderName"]
     else:
         raise DeserializationError("IPSetForwardedIPConfig.header_name required")
-    if "FallbackBehavior" in data:
+    if data.get("FallbackBehavior") is not None:
         import capo_wafv2.types.fallback_behavior
 
         out["fallback_behavior"] = (
@@ -54,7 +54,7 @@ def deserialize_aws_json_1_1(data: dict) -> IPSetForwardedIPConfig:
         )
     else:
         raise DeserializationError("IPSetForwardedIPConfig.fallback_behavior required")
-    if "Position" in data:
+    if data.get("Position") is not None:
         import capo_wafv2.types.forwarded_ip_position
 
         out["position"] = (

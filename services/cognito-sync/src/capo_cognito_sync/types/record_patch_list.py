@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> RecordPatchList:
 
     out: RecordPatchList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_cognito_sync.types.record_patch.deserialize_json(item))
     return out

@@ -32,12 +32,12 @@ def serialize_aws_json_1_1(value: SegmentTypeInfo) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SegmentTypeInfo:
     out: SegmentTypeInfo = {}  # type: ignore[typeddict-item]
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_rekognition.types.segment_type
 
         out["type"] = capo_rekognition.types.segment_type.deserialize_aws_json_1_1(
             data["Type"]
         )
-    if "ModelVersion" in data:
+    if data.get("ModelVersion") is not None:
         out["model_version"] = data["ModelVersion"]
     return out

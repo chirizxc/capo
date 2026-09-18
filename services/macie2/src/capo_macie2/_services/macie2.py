@@ -1,5 +1,6 @@
 """Generated from Smithy shape ``com.amazonaws.macie2#Macie2``."""
 
+import uuid
 import warnings
 from collections.abc import Iterator
 from typing import TYPE_CHECKING, Any, Iterable, Optional
@@ -389,7 +390,7 @@ class Macie2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_macie2.types.accept_invitation_request.AcceptInvitationRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_macie2.types.accept_invitation_request.AcceptInvitationRequest = {}
         if administrator_account_id is not None:
             input_["administrator_account_id"] = administrator_account_id
         if invitation_id is not None:
@@ -402,6 +403,7 @@ class Macie2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def batch_get_custom_data_identifiers(
@@ -441,7 +443,7 @@ class Macie2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_macie2.types.batch_get_custom_data_identifiers_request.BatchGetCustomDataIdentifiersRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_macie2.types.batch_get_custom_data_identifiers_request.BatchGetCustomDataIdentifiersRequest = {}
         if ids is not None:
             input_["ids"] = ids
 
@@ -450,6 +452,7 @@ class Macie2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def batch_update_automated_discovery_accounts(
@@ -489,7 +492,7 @@ class Macie2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_macie2.types.batch_update_automated_discovery_accounts_request.BatchUpdateAutomatedDiscoveryAccountsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_macie2.types.batch_update_automated_discovery_accounts_request.BatchUpdateAutomatedDiscoveryAccountsRequest = {}
         if accounts is not None:
             input_["accounts"] = accounts
 
@@ -498,6 +501,7 @@ class Macie2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_allow_list(
@@ -551,9 +555,10 @@ class Macie2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_macie2.types.create_allow_list_request.CreateAllowListRequest = {}  # type: ignore[typeddict-item]
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_macie2.types.create_allow_list_request.CreateAllowListRequest = {}
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if criteria is not None:
             input_["criteria"] = criteria
         if description is not None:
@@ -568,6 +573,7 @@ class Macie2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_classification_job(
@@ -643,11 +649,12 @@ class Macie2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_macie2.types.create_classification_job_request.CreateClassificationJobRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_macie2.types.create_classification_job_request.CreateClassificationJobRequest = {}
         if allow_list_ids is not None:
             input_["allow_list_ids"] = allow_list_ids
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if custom_data_identifier_ids is not None:
             input_["custom_data_identifier_ids"] = custom_data_identifier_ids
         if description is not None:
@@ -678,6 +685,7 @@ class Macie2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_custom_data_identifier(
@@ -741,9 +749,10 @@ class Macie2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_macie2.types.create_custom_data_identifier_request.CreateCustomDataIdentifierRequest = {}  # type: ignore[typeddict-item]
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_macie2.types.create_custom_data_identifier_request.CreateCustomDataIdentifierRequest = {}
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if description is not None:
             input_["description"] = description
         if ignore_words is not None:
@@ -766,6 +775,7 @@ class Macie2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_findings_filter(
@@ -823,11 +833,12 @@ class Macie2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_macie2.types.create_findings_filter_request.CreateFindingsFilterRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_macie2.types.create_findings_filter_request.CreateFindingsFilterRequest = {}
         if action is not None:
             input_["action"] = action
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if description is not None:
             input_["description"] = description
         if finding_criteria is not None:
@@ -844,6 +855,7 @@ class Macie2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_invitations(
@@ -891,7 +903,7 @@ class Macie2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_macie2.types.create_invitations_request.CreateInvitationsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_macie2.types.create_invitations_request.CreateInvitationsRequest = {}
         if account_ids is not None:
             input_["account_ids"] = account_ids
         if disable_email_notification is not None:
@@ -904,6 +916,7 @@ class Macie2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_member(
@@ -945,7 +958,7 @@ class Macie2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_macie2.types.create_member_request.CreateMemberRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_macie2.types.create_member_request.CreateMemberRequest = {}
         if account is not None:
             input_["account"] = account
         if tags is not None:
@@ -956,6 +969,7 @@ class Macie2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_sample_findings(
@@ -999,7 +1013,7 @@ class Macie2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_macie2.types.create_sample_findings_request.CreateSampleFindingsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_macie2.types.create_sample_findings_request.CreateSampleFindingsRequest = {}
         if finding_types is not None:
             input_["finding_types"] = finding_types
 
@@ -1008,6 +1022,7 @@ class Macie2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def decline_invitations(
@@ -1049,7 +1064,7 @@ class Macie2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_macie2.types.decline_invitations_request.DeclineInvitationsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_macie2.types.decline_invitations_request.DeclineInvitationsRequest = {}
         if account_ids is not None:
             input_["account_ids"] = account_ids
 
@@ -1058,6 +1073,7 @@ class Macie2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_allow_list(
@@ -1097,8 +1113,9 @@ class Macie2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_macie2.types.delete_allow_list_request.DeleteAllowListRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_macie2.types.delete_allow_list_request.DeleteAllowListRequest = {
+            "id": id
+        }
         if ignore_job_checks is not None:
             input_["ignore_job_checks"] = ignore_job_checks
 
@@ -1107,6 +1124,7 @@ class Macie2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_custom_data_identifier(
@@ -1146,14 +1164,16 @@ class Macie2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_macie2.types.delete_custom_data_identifier_request.DeleteCustomDataIdentifierRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_macie2.types.delete_custom_data_identifier_request.DeleteCustomDataIdentifierRequest = {
+            "id": id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_findings_filter(
@@ -1195,14 +1215,16 @@ class Macie2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_macie2.types.delete_findings_filter_request.DeleteFindingsFilterRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_macie2.types.delete_findings_filter_request.DeleteFindingsFilterRequest = {
+            "id": id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_invitations(
@@ -1244,7 +1266,7 @@ class Macie2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_macie2.types.delete_invitations_request.DeleteInvitationsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_macie2.types.delete_invitations_request.DeleteInvitationsRequest = {}
         if account_ids is not None:
             input_["account_ids"] = account_ids
 
@@ -1253,6 +1275,7 @@ class Macie2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_member(
@@ -1292,14 +1315,14 @@ class Macie2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_macie2.types.delete_member_request.DeleteMemberRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_macie2.types.delete_member_request.DeleteMemberRequest = {"id": id}
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_buckets(
@@ -1347,7 +1370,7 @@ class Macie2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_macie2.types.describe_buckets_request.DescribeBucketsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_macie2.types.describe_buckets_request.DescribeBucketsRequest = {}
         if criteria is not None:
             input_["criteria"] = criteria
         if max_results is not None:
@@ -1362,6 +1385,7 @@ class Macie2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_describe_buckets(
@@ -1428,14 +1452,16 @@ class Macie2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_macie2.types.describe_classification_job_request.DescribeClassificationJobRequest = {}  # type: ignore[typeddict-item]
-        input_["job_id"] = job_id
+        input_: capo_macie2.types.describe_classification_job_request.DescribeClassificationJobRequest = {
+            "job_id": job_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_organization_configuration(
@@ -1469,13 +1495,14 @@ class Macie2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_macie2.types.describe_organization_configuration_request.DescribeOrganizationConfigurationRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_macie2.types.describe_organization_configuration_request.DescribeOrganizationConfigurationRequest = {}
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def disable_macie(
@@ -1509,13 +1536,14 @@ class Macie2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_macie2.types.disable_macie_request.DisableMacieRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_macie2.types.disable_macie_request.DisableMacieRequest = {}
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def disable_organization_admin_account(
@@ -1555,7 +1583,7 @@ class Macie2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_macie2.types.disable_organization_admin_account_request.DisableOrganizationAdminAccountRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_macie2.types.disable_organization_admin_account_request.DisableOrganizationAdminAccountRequest = {}
         if admin_account_id is not None:
             input_["admin_account_id"] = admin_account_id
 
@@ -1564,6 +1592,7 @@ class Macie2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def disassociate_from_administrator_account(
@@ -1597,13 +1626,14 @@ class Macie2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_macie2.types.disassociate_from_administrator_account_request.DisassociateFromAdministratorAccountRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_macie2.types.disassociate_from_administrator_account_request.DisassociateFromAdministratorAccountRequest = {}
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def disassociate_from_master_account(
@@ -1637,13 +1667,14 @@ class Macie2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_macie2.types.disassociate_from_master_account_request.DisassociateFromMasterAccountRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_macie2.types.disassociate_from_master_account_request.DisassociateFromMasterAccountRequest = {}
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def disassociate_member(
@@ -1683,14 +1714,16 @@ class Macie2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_macie2.types.disassociate_member_request.DisassociateMemberRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_macie2.types.disassociate_member_request.DisassociateMemberRequest = {
+            "id": id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def enable_macie(
@@ -1736,9 +1769,10 @@ class Macie2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_macie2.types.enable_macie_request.EnableMacieRequest = {}  # type: ignore[typeddict-item]
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_macie2.types.enable_macie_request.EnableMacieRequest = {}
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if finding_publishing_frequency is not None:
             input_["finding_publishing_frequency"] = finding_publishing_frequency
         if status is not None:
@@ -1749,6 +1783,7 @@ class Macie2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def enable_organization_admin_account(
@@ -1790,17 +1825,19 @@ class Macie2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_macie2.types.enable_organization_admin_account_request.EnableOrganizationAdminAccountRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_macie2.types.enable_organization_admin_account_request.EnableOrganizationAdminAccountRequest = {}
         if admin_account_id is not None:
             input_["admin_account_id"] = admin_account_id
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_administrator_account(
@@ -1834,13 +1871,14 @@ class Macie2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_macie2.types.get_administrator_account_request.GetAdministratorAccountRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_macie2.types.get_administrator_account_request.GetAdministratorAccountRequest = {}
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_allow_list(
@@ -1878,14 +1916,16 @@ class Macie2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_macie2.types.get_allow_list_request.GetAllowListRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_macie2.types.get_allow_list_request.GetAllowListRequest = {
+            "id": id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_automated_discovery_configuration(
@@ -1916,13 +1956,14 @@ class Macie2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_macie2.types.get_automated_discovery_configuration_request.GetAutomatedDiscoveryConfigurationRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_macie2.types.get_automated_discovery_configuration_request.GetAutomatedDiscoveryConfigurationRequest = {}
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_bucket_statistics(
@@ -1962,7 +2003,7 @@ class Macie2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_macie2.types.get_bucket_statistics_request.GetBucketStatisticsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_macie2.types.get_bucket_statistics_request.GetBucketStatisticsRequest = {}
         if account_id is not None:
             input_["account_id"] = account_id
 
@@ -1971,6 +2012,7 @@ class Macie2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_classification_export_configuration(
@@ -2004,13 +2046,14 @@ class Macie2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_macie2.types.get_classification_export_configuration_request.GetClassificationExportConfigurationRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_macie2.types.get_classification_export_configuration_request.GetClassificationExportConfigurationRequest = {}
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_classification_scope(
@@ -2048,14 +2091,16 @@ class Macie2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_macie2.types.get_classification_scope_request.GetClassificationScopeRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_macie2.types.get_classification_scope_request.GetClassificationScopeRequest = {
+            "id": id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_custom_data_identifier(
@@ -2095,14 +2140,16 @@ class Macie2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_macie2.types.get_custom_data_identifier_request.GetCustomDataIdentifierRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_macie2.types.get_custom_data_identifier_request.GetCustomDataIdentifierRequest = {
+            "id": id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_findings(
@@ -2146,7 +2193,7 @@ class Macie2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_macie2.types.get_findings_request.GetFindingsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_macie2.types.get_findings_request.GetFindingsRequest = {}
         if finding_ids is not None:
             input_["finding_ids"] = finding_ids
         if sort_criteria is not None:
@@ -2157,6 +2204,7 @@ class Macie2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_findings_filter(
@@ -2196,14 +2244,16 @@ class Macie2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_macie2.types.get_findings_filter_request.GetFindingsFilterRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_macie2.types.get_findings_filter_request.GetFindingsFilterRequest = {
+            "id": id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_findings_publication_configuration(
@@ -2237,13 +2287,14 @@ class Macie2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_macie2.types.get_findings_publication_configuration_request.GetFindingsPublicationConfigurationRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_macie2.types.get_findings_publication_configuration_request.GetFindingsPublicationConfigurationRequest = {}
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_finding_statistics(
@@ -2295,7 +2346,7 @@ class Macie2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_macie2.types.get_finding_statistics_request.GetFindingStatisticsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_macie2.types.get_finding_statistics_request.GetFindingStatisticsRequest = {}
         if finding_criteria is not None:
             input_["finding_criteria"] = finding_criteria
         if group_by is not None:
@@ -2310,6 +2361,7 @@ class Macie2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_invitations_count(
@@ -2343,13 +2395,14 @@ class Macie2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_macie2.types.get_invitations_count_request.GetInvitationsCountRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_macie2.types.get_invitations_count_request.GetInvitationsCountRequest = {}
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_macie_session(
@@ -2383,13 +2436,14 @@ class Macie2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_macie2.types.get_macie_session_request.GetMacieSessionRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_macie2.types.get_macie_session_request.GetMacieSessionRequest = {}
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_master_account(
@@ -2423,13 +2477,14 @@ class Macie2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_macie2.types.get_master_account_request.GetMasterAccountRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_macie2.types.get_master_account_request.GetMasterAccountRequest = {}
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_member(
@@ -2469,14 +2524,14 @@ class Macie2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_macie2.types.get_member_request.GetMemberRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_macie2.types.get_member_request.GetMemberRequest = {"id": id}
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_resource_profile(
@@ -2515,7 +2570,7 @@ class Macie2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_macie2.types.get_resource_profile_request.GetResourceProfileRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_macie2.types.get_resource_profile_request.GetResourceProfileRequest = {}
         if resource_arn is not None:
             input_["resource_arn"] = resource_arn
 
@@ -2524,6 +2579,7 @@ class Macie2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_reveal_configuration(
@@ -2554,13 +2610,14 @@ class Macie2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_macie2.types.get_reveal_configuration_request.GetRevealConfigurationRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_macie2.types.get_reveal_configuration_request.GetRevealConfigurationRequest = {}
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_sensitive_data_occurrences(
@@ -2599,14 +2656,16 @@ class Macie2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_macie2.types.get_sensitive_data_occurrences_request.GetSensitiveDataOccurrencesRequest = {}  # type: ignore[typeddict-item]
-        input_["finding_id"] = finding_id
+        input_: capo_macie2.types.get_sensitive_data_occurrences_request.GetSensitiveDataOccurrencesRequest = {
+            "finding_id": finding_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_sensitive_data_occurrences_availability(
@@ -2643,14 +2702,16 @@ class Macie2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_macie2.types.get_sensitive_data_occurrences_availability_request.GetSensitiveDataOccurrencesAvailabilityRequest = {}  # type: ignore[typeddict-item]
-        input_["finding_id"] = finding_id
+        input_: capo_macie2.types.get_sensitive_data_occurrences_availability_request.GetSensitiveDataOccurrencesAvailabilityRequest = {
+            "finding_id": finding_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_sensitivity_inspection_template(
@@ -2688,14 +2749,16 @@ class Macie2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_macie2.types.get_sensitivity_inspection_template_request.GetSensitivityInspectionTemplateRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_macie2.types.get_sensitivity_inspection_template_request.GetSensitivityInspectionTemplateRequest = {
+            "id": id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_usage_statistics(
@@ -2747,7 +2810,7 @@ class Macie2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_macie2.types.get_usage_statistics_request.GetUsageStatisticsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_macie2.types.get_usage_statistics_request.GetUsageStatisticsRequest = {}
         if filter_by is not None:
             input_["filter_by"] = filter_by
         if max_results is not None:
@@ -2764,6 +2827,7 @@ class Macie2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_get_usage_statistics(
@@ -2834,7 +2898,7 @@ class Macie2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_macie2.types.get_usage_totals_request.GetUsageTotalsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_macie2.types.get_usage_totals_request.GetUsageTotalsRequest = {}
         if time_range is not None:
             input_["time_range"] = time_range
 
@@ -2843,6 +2907,7 @@ class Macie2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_allow_lists(
@@ -2881,7 +2946,7 @@ class Macie2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_macie2.types.list_allow_lists_request.ListAllowListsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_macie2.types.list_allow_lists_request.ListAllowListsRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -2892,6 +2957,7 @@ class Macie2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_allow_lists(
@@ -2956,7 +3022,7 @@ class Macie2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_macie2.types.list_automated_discovery_accounts_request.ListAutomatedDiscoveryAccountsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_macie2.types.list_automated_discovery_accounts_request.ListAutomatedDiscoveryAccountsRequest = {}
         if account_ids is not None:
             input_["account_ids"] = account_ids
         if max_results is not None:
@@ -2969,6 +3035,7 @@ class Macie2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_automated_discovery_accounts(
@@ -3043,7 +3110,7 @@ class Macie2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_macie2.types.list_classification_jobs_request.ListClassificationJobsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_macie2.types.list_classification_jobs_request.ListClassificationJobsRequest = {}
         if filter_criteria is not None:
             input_["filter_criteria"] = filter_criteria
         if max_results is not None:
@@ -3058,6 +3125,7 @@ class Macie2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_classification_jobs(
@@ -3125,7 +3193,7 @@ class Macie2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_macie2.types.list_classification_scopes_request.ListClassificationScopesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_macie2.types.list_classification_scopes_request.ListClassificationScopesRequest = {}
         if name is not None:
             input_["name"] = name
         if next_token is not None:
@@ -3136,6 +3204,7 @@ class Macie2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_classification_scopes(
@@ -3198,7 +3267,7 @@ class Macie2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_macie2.types.list_custom_data_identifiers_request.ListCustomDataIdentifiersRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_macie2.types.list_custom_data_identifiers_request.ListCustomDataIdentifiersRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -3209,6 +3278,7 @@ class Macie2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_custom_data_identifiers(
@@ -3277,7 +3347,7 @@ class Macie2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_macie2.types.list_findings_request.ListFindingsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_macie2.types.list_findings_request.ListFindingsRequest = {}
         if finding_criteria is not None:
             input_["finding_criteria"] = finding_criteria
         if max_results is not None:
@@ -3292,6 +3362,7 @@ class Macie2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_findings(
@@ -3360,7 +3431,7 @@ class Macie2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_macie2.types.list_findings_filters_request.ListFindingsFiltersRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_macie2.types.list_findings_filters_request.ListFindingsFiltersRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -3371,6 +3442,7 @@ class Macie2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_findings_filters(
@@ -3433,7 +3505,7 @@ class Macie2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_macie2.types.list_invitations_request.ListInvitationsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_macie2.types.list_invitations_request.ListInvitationsRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -3444,6 +3516,7 @@ class Macie2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_invitations(
@@ -3497,7 +3570,7 @@ class Macie2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_macie2.types.list_managed_data_identifiers_request.ListManagedDataIdentifiersRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_macie2.types.list_managed_data_identifiers_request.ListManagedDataIdentifiersRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
 
@@ -3506,6 +3579,7 @@ class Macie2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_managed_data_identifiers(
@@ -3568,7 +3642,7 @@ class Macie2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_macie2.types.list_members_request.ListMembersRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_macie2.types.list_members_request.ListMembersRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -3581,6 +3655,7 @@ class Macie2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_members(
@@ -3645,7 +3720,7 @@ class Macie2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_macie2.types.list_organization_admin_accounts_request.ListOrganizationAdminAccountsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_macie2.types.list_organization_admin_accounts_request.ListOrganizationAdminAccountsRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -3656,6 +3731,7 @@ class Macie2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_organization_admin_accounts(
@@ -3716,7 +3792,7 @@ class Macie2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_macie2.types.list_resource_profile_artifacts_request.ListResourceProfileArtifactsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_macie2.types.list_resource_profile_artifacts_request.ListResourceProfileArtifactsRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if resource_arn is not None:
@@ -3727,6 +3803,7 @@ class Macie2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_resource_profile_artifacts(
@@ -3792,7 +3869,7 @@ class Macie2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_macie2.types.list_resource_profile_detections_request.ListResourceProfileDetectionsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_macie2.types.list_resource_profile_detections_request.ListResourceProfileDetectionsRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -3805,6 +3882,7 @@ class Macie2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_resource_profile_detections(
@@ -3867,7 +3945,7 @@ class Macie2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_macie2.types.list_sensitivity_inspection_templates_request.ListSensitivityInspectionTemplatesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_macie2.types.list_sensitivity_inspection_templates_request.ListSensitivityInspectionTemplatesRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -3878,6 +3956,7 @@ class Macie2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_sensitivity_inspection_templates(
@@ -3933,14 +4012,16 @@ class Macie2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_macie2.types.list_tags_for_resource_request.ListTagsForResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_macie2.types.list_tags_for_resource_request.ListTagsForResourceRequest = {
+            "resource_arn": resource_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def put_classification_export_configuration(
@@ -3982,7 +4063,7 @@ class Macie2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_macie2.types.put_classification_export_configuration_request.PutClassificationExportConfigurationRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_macie2.types.put_classification_export_configuration_request.PutClassificationExportConfigurationRequest = {}
         if configuration is not None:
             input_["configuration"] = configuration
 
@@ -3991,6 +4072,7 @@ class Macie2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def put_findings_publication_configuration(
@@ -4034,9 +4116,10 @@ class Macie2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_macie2.types.put_findings_publication_configuration_request.PutFindingsPublicationConfigurationRequest = {}  # type: ignore[typeddict-item]
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_macie2.types.put_findings_publication_configuration_request.PutFindingsPublicationConfigurationRequest = {}
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if security_hub_configuration is not None:
             input_["security_hub_configuration"] = security_hub_configuration
 
@@ -4045,6 +4128,7 @@ class Macie2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def search_resources(
@@ -4094,7 +4178,7 @@ class Macie2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_macie2.types.search_resources_request.SearchResourcesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_macie2.types.search_resources_request.SearchResourcesRequest = {}
         if bucket_criteria is not None:
             input_["bucket_criteria"] = bucket_criteria
         if max_results is not None:
@@ -4109,6 +4193,7 @@ class Macie2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_search_resources(
@@ -4172,8 +4257,9 @@ class Macie2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_macie2.types.tag_resource_request.TagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_macie2.types.tag_resource_request.TagResourceRequest = {
+            "resource_arn": resource_arn
+        }
         if tags is not None:
             input_["tags"] = tags
 
@@ -4182,6 +4268,7 @@ class Macie2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def test_custom_data_identifier(
@@ -4235,7 +4322,7 @@ class Macie2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_macie2.types.test_custom_data_identifier_request.TestCustomDataIdentifierRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_macie2.types.test_custom_data_identifier_request.TestCustomDataIdentifierRequest = {}
         if ignore_words is not None:
             input_["ignore_words"] = ignore_words
         if keywords is not None:
@@ -4252,6 +4339,7 @@ class Macie2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def untag_resource(
@@ -4288,8 +4376,9 @@ class Macie2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_macie2.types.untag_resource_request.UntagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_macie2.types.untag_resource_request.UntagResourceRequest = {
+            "resource_arn": resource_arn
+        }
         if tag_keys is not None:
             input_["tag_keys"] = tag_keys
 
@@ -4298,6 +4387,7 @@ class Macie2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_allow_list(
@@ -4347,12 +4437,13 @@ class Macie2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_macie2.types.update_allow_list_request.UpdateAllowListRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_macie2.types.update_allow_list_request.UpdateAllowListRequest = {
+            "id": id
+        }
         if criteria is not None:
             input_["criteria"] = criteria
         if description is not None:
             input_["description"] = description
-        input_["id"] = id
         if name is not None:
             input_["name"] = name
 
@@ -4361,6 +4452,7 @@ class Macie2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_automated_discovery_configuration(
@@ -4403,7 +4495,7 @@ class Macie2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_macie2.types.update_automated_discovery_configuration_request.UpdateAutomatedDiscoveryConfigurationRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_macie2.types.update_automated_discovery_configuration_request.UpdateAutomatedDiscoveryConfigurationRequest = {}
         if auto_enable_organization_members is not None:
             input_["auto_enable_organization_members"] = (
                 auto_enable_organization_members
@@ -4416,6 +4508,7 @@ class Macie2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_classification_job(
@@ -4457,8 +4550,9 @@ class Macie2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_macie2.types.update_classification_job_request.UpdateClassificationJobRequest = {}  # type: ignore[typeddict-item]
-        input_["job_id"] = job_id
+        input_: capo_macie2.types.update_classification_job_request.UpdateClassificationJobRequest = {
+            "job_id": job_id
+        }
         if job_status is not None:
             input_["job_status"] = job_status
 
@@ -4467,6 +4561,7 @@ class Macie2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_classification_scope(
@@ -4508,8 +4603,9 @@ class Macie2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_macie2.types.update_classification_scope_request.UpdateClassificationScopeRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_macie2.types.update_classification_scope_request.UpdateClassificationScopeRequest = {
+            "id": id
+        }
         if s3 is not None:
             input_["s3"] = s3
 
@@ -4518,6 +4614,7 @@ class Macie2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_findings_filter(
@@ -4575,16 +4672,18 @@ class Macie2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_macie2.types.update_findings_filter_request.UpdateFindingsFilterRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_macie2.types.update_findings_filter_request.UpdateFindingsFilterRequest = {
+            "id": id
+        }
         if action is not None:
             input_["action"] = action
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if description is not None:
             input_["description"] = description
         if finding_criteria is not None:
             input_["finding_criteria"] = finding_criteria
-        input_["id"] = id
         if name is not None:
             input_["name"] = name
         if position is not None:
@@ -4595,6 +4694,7 @@ class Macie2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_macie_session(
@@ -4638,7 +4738,7 @@ class Macie2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_macie2.types.update_macie_session_request.UpdateMacieSessionRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_macie2.types.update_macie_session_request.UpdateMacieSessionRequest = {}
         if finding_publishing_frequency is not None:
             input_["finding_publishing_frequency"] = finding_publishing_frequency
         if status is not None:
@@ -4649,6 +4749,7 @@ class Macie2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_member_session(
@@ -4690,8 +4791,9 @@ class Macie2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_macie2.types.update_member_session_request.UpdateMemberSessionRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_macie2.types.update_member_session_request.UpdateMemberSessionRequest = {
+            "id": id
+        }
         if status is not None:
             input_["status"] = status
 
@@ -4700,6 +4802,7 @@ class Macie2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_organization_configuration(
@@ -4739,7 +4842,7 @@ class Macie2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_macie2.types.update_organization_configuration_request.UpdateOrganizationConfigurationRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_macie2.types.update_organization_configuration_request.UpdateOrganizationConfigurationRequest = {}
         if auto_enable is not None:
             input_["auto_enable"] = auto_enable
 
@@ -4748,6 +4851,7 @@ class Macie2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_resource_profile(
@@ -4790,7 +4894,7 @@ class Macie2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_macie2.types.update_resource_profile_request.UpdateResourceProfileRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_macie2.types.update_resource_profile_request.UpdateResourceProfileRequest = {}
         if resource_arn is not None:
             input_["resource_arn"] = resource_arn
         if sensitivity_score_override is not None:
@@ -4801,6 +4905,7 @@ class Macie2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_resource_profile_detections(
@@ -4843,7 +4948,7 @@ class Macie2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_macie2.types.update_resource_profile_detections_request.UpdateResourceProfileDetectionsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_macie2.types.update_resource_profile_detections_request.UpdateResourceProfileDetectionsRequest = {}
         if resource_arn is not None:
             input_["resource_arn"] = resource_arn
         if suppress_data_identifiers is not None:
@@ -4854,6 +4959,7 @@ class Macie2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_reveal_configuration(
@@ -4896,7 +5002,7 @@ class Macie2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_macie2.types.update_reveal_configuration_request.UpdateRevealConfigurationRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_macie2.types.update_reveal_configuration_request.UpdateRevealConfigurationRequest = {}
         if configuration is not None:
             input_["configuration"] = configuration
         if retrieval_configuration is not None:
@@ -4907,6 +5013,7 @@ class Macie2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_sensitivity_inspection_template(
@@ -4954,12 +5061,13 @@ class Macie2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_macie2.types.update_sensitivity_inspection_template_request.UpdateSensitivityInspectionTemplateRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_macie2.types.update_sensitivity_inspection_template_request.UpdateSensitivityInspectionTemplateRequest = {
+            "id": id
+        }
         if description is not None:
             input_["description"] = description
         if excludes is not None:
             input_["excludes"] = excludes
-        input_["id"] = id
         if includes is not None:
             input_["includes"] = includes
 
@@ -4968,6 +5076,7 @@ class Macie2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def __enter__(self) -> Self:

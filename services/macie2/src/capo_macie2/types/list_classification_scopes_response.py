@@ -36,7 +36,7 @@ def serialize_json(value: ListClassificationScopesResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListClassificationScopesResponse:
     out: ListClassificationScopesResponse = {}  # type: ignore[typeddict-item]
-    if "classificationScopes" in data:
+    if data.get("classificationScopes") is not None:
         import capo_macie2.types.__list_of_classification_scope_summary
 
         out["classification_scopes"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> ListClassificationScopesResponse:
                 data["classificationScopes"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

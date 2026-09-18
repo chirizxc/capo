@@ -41,13 +41,13 @@ def serialize_json(value: GeneratedPolicyProperties) -> dict:
 
 def deserialize_json(data: dict) -> GeneratedPolicyProperties:
     out: GeneratedPolicyProperties = {}  # type: ignore[typeddict-item]
-    if "isComplete" in data:
+    if data.get("isComplete") is not None:
         out["is_complete"] = data["isComplete"]
-    if "principalArn" in data:
+    if data.get("principalArn") is not None:
         out["principal_arn"] = data["principalArn"]
     else:
         raise DeserializationError("GeneratedPolicyProperties.principal_arn required")
-    if "cloudTrailProperties" in data:
+    if data.get("cloudTrailProperties") is not None:
         import capo_accessanalyzer.types.cloud_trail_properties
 
         out["cloud_trail_properties"] = (

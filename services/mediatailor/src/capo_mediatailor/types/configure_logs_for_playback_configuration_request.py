@@ -67,17 +67,17 @@ def serialize_json(value: ConfigureLogsForPlaybackConfigurationRequest) -> dict:
 
 def deserialize_json(data: dict) -> ConfigureLogsForPlaybackConfigurationRequest:
     out: ConfigureLogsForPlaybackConfigurationRequest = {}  # type: ignore[typeddict-item]
-    if "PercentEnabled" in data:
+    if data.get("PercentEnabled") is not None:
         out["percent_enabled"] = data["PercentEnabled"]
     else:
         out["percent_enabled"] = 0
-    if "PlaybackConfigurationName" in data:
+    if data.get("PlaybackConfigurationName") is not None:
         out["playback_configuration_name"] = data["PlaybackConfigurationName"]
     else:
         raise DeserializationError(
             "ConfigureLogsForPlaybackConfigurationRequest.playback_configuration_name required"
         )
-    if "EnabledLoggingStrategies" in data:
+    if data.get("EnabledLoggingStrategies") is not None:
         import capo_mediatailor.types.__list_of_logging_strategies
 
         out["enabled_logging_strategies"] = (
@@ -85,7 +85,7 @@ def deserialize_json(data: dict) -> ConfigureLogsForPlaybackConfigurationRequest
                 data["EnabledLoggingStrategies"]
             )
         )
-    if "AdsInteractionLog" in data:
+    if data.get("AdsInteractionLog") is not None:
         import capo_mediatailor.types.ads_interaction_log
 
         out["ads_interaction_log"] = (
@@ -93,7 +93,7 @@ def deserialize_json(data: dict) -> ConfigureLogsForPlaybackConfigurationRequest
                 data["AdsInteractionLog"]
             )
         )
-    if "ManifestServiceInteractionLog" in data:
+    if data.get("ManifestServiceInteractionLog") is not None:
         import capo_mediatailor.types.manifest_service_interaction_log
 
         out["manifest_service_interaction_log"] = (

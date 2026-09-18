@@ -49,7 +49,7 @@ def serialize_aws_json_1_1(value: FileModes) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> FileModes:
     out: FileModes = {}  # type: ignore[typeddict-item]
-    if "source" in data:
+    if data.get("source") is not None:
         import capo_codecommit.types.file_mode_type_enum
 
         out["source"] = (
@@ -57,7 +57,7 @@ def deserialize_aws_json_1_1(data: dict) -> FileModes:
                 data["source"]
             )
         )
-    if "destination" in data:
+    if data.get("destination") is not None:
         import capo_codecommit.types.file_mode_type_enum
 
         out["destination"] = (
@@ -65,7 +65,7 @@ def deserialize_aws_json_1_1(data: dict) -> FileModes:
                 data["destination"]
             )
         )
-    if "base" in data:
+    if data.get("base") is not None:
         import capo_codecommit.types.file_mode_type_enum
 
         out["base"] = (

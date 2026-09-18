@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> MediaInsightsPipelineConfigurationSummaryLis
 
     out: MediaInsightsPipelineConfigurationSummaryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_chime_sdk_media_pipelines.types.media_insights_pipeline_configuration_summary.deserialize_json(
                 item

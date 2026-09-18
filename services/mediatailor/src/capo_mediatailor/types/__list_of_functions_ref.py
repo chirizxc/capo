@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> __listOfFunctionsRef:
 
     out: __listOfFunctionsRef = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_mediatailor.types.function_ref.deserialize_json(item))
     return out

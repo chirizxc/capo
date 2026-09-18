@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: ManagedConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ManagedConfiguration:
     out: ManagedConfiguration = {}  # type: ignore[typeddict-item]
-    if "ManagedStorageType" in data:
+    if data.get("ManagedStorageType") is not None:
         import capo_sagemaker.types.managed_storage_type
 
         out["managed_storage_type"] = (

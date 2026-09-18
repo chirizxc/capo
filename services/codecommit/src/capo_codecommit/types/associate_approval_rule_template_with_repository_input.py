@@ -34,13 +34,13 @@ def deserialize_aws_json_1_1(
     data: dict,
 ) -> AssociateApprovalRuleTemplateWithRepositoryInput:
     out: AssociateApprovalRuleTemplateWithRepositoryInput = {}  # type: ignore[typeddict-item]
-    if "approvalRuleTemplateName" in data:
+    if data.get("approvalRuleTemplateName") is not None:
         out["approval_rule_template_name"] = data["approvalRuleTemplateName"]
     else:
         raise DeserializationError(
             "AssociateApprovalRuleTemplateWithRepositoryInput.approval_rule_template_name required"
         )
-    if "repositoryName" in data:
+    if data.get("repositoryName") is not None:
         out["repository_name"] = data["repositoryName"]
     else:
         raise DeserializationError(

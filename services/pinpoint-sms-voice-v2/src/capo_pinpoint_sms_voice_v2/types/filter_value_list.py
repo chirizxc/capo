@@ -16,4 +16,4 @@ def serialize_aws_json_1_0(value: FilterValueList) -> list:
 
 
 def deserialize_aws_json_1_0(data: list) -> FilterValueList:
-    return list(data)
+    return [item for item in data if item is not None]

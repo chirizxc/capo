@@ -45,15 +45,15 @@ def serialize_aws_json_1_1(value: CancelStepsInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CancelStepsInput:
     out: CancelStepsInput = {}  # type: ignore[typeddict-item]
-    if "ClusterId" in data:
+    if data.get("ClusterId") is not None:
         out["cluster_id"] = data["ClusterId"]
-    if "StepIds" in data:
+    if data.get("StepIds") is not None:
         import capo_emr.types.step_ids_list
 
         out["step_ids"] = capo_emr.types.step_ids_list.deserialize_aws_json_1_1(
             data["StepIds"]
         )
-    if "StepCancellationOption" in data:
+    if data.get("StepCancellationOption") is not None:
         import capo_emr.types.step_cancellation_option
 
         out["step_cancellation_option"] = (

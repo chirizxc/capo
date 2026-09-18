@@ -64,27 +64,27 @@ def serialize_aws_json_1_1(value: LifecycleEvent) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> LifecycleEvent:
     out: LifecycleEvent = {}  # type: ignore[typeddict-item]
-    if "lifecycleEventName" in data:
+    if data.get("lifecycleEventName") is not None:
         out["lifecycle_event_name"] = data["lifecycleEventName"]
-    if "diagnostics" in data:
+    if data.get("diagnostics") is not None:
         import capo_codedeploy.types.diagnostics
 
         out["diagnostics"] = capo_codedeploy.types.diagnostics.deserialize_aws_json_1_1(
             data["diagnostics"]
         )
-    if "startTime" in data:
+    if data.get("startTime") is not None:
         import capo_codedeploy.types.timestamp
 
         out["start_time"] = capo_codedeploy.types.timestamp.deserialize_aws_json_1_1(
             data["startTime"]
         )
-    if "endTime" in data:
+    if data.get("endTime") is not None:
         import capo_codedeploy.types.timestamp
 
         out["end_time"] = capo_codedeploy.types.timestamp.deserialize_aws_json_1_1(
             data["endTime"]
         )
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_codedeploy.types.lifecycle_event_status
 
         out["status"] = (

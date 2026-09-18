@@ -31,11 +31,11 @@ def serialize_json(value: InputSource) -> dict:
 
 def deserialize_json(data: dict) -> InputSource:
     out: InputSource = {}  # type: ignore[typeddict-item]
-    if "identifier" in data:
+    if data.get("identifier") is not None:
         out["identifier"] = data["identifier"]
     else:
         raise DeserializationError("InputSource.identifier required")
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_resiliencehubv2.types.input_source_type
 
         out["type"] = capo_resiliencehubv2.types.input_source_type.deserialize_json(

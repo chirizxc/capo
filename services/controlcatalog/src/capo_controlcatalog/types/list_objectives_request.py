@@ -41,7 +41,7 @@ def serialize_json(value: ListObjectivesRequest) -> dict:
 
 def deserialize_json(data: dict) -> ListObjectivesRequest:
     out: ListObjectivesRequest = {}  # type: ignore[typeddict-item]
-    if "ObjectiveFilter" in data:
+    if data.get("ObjectiveFilter") is not None:
         import capo_controlcatalog.types.objective_filter
 
         out["objective_filter"] = (

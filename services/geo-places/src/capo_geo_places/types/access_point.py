@@ -27,7 +27,7 @@ def serialize_json(value: AccessPoint) -> dict:
 
 def deserialize_json(data: dict) -> AccessPoint:
     out: AccessPoint = {}  # type: ignore[typeddict-item]
-    if "Position" in data:
+    if data.get("Position") is not None:
         import capo_geo_places.types.position
 
         out["position"] = capo_geo_places.types.position.deserialize_json(

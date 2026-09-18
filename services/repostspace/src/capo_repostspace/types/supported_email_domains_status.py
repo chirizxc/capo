@@ -42,13 +42,13 @@ def serialize_json(value: SupportedEmailDomainsStatus) -> dict:
 
 def deserialize_json(data: dict) -> SupportedEmailDomainsStatus:
     out: SupportedEmailDomainsStatus = {}  # type: ignore[typeddict-item]
-    if "enabled" in data:
+    if data.get("enabled") is not None:
         import capo_repostspace.types.feature_enable_status
 
         out["enabled"] = capo_repostspace.types.feature_enable_status.deserialize_json(
             data["enabled"]
         )
-    if "allowedDomains" in data:
+    if data.get("allowedDomains") is not None:
         import capo_repostspace.types.allowed_domains_list
 
         out["allowed_domains"] = (

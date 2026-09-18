@@ -103,11 +103,11 @@ def serialize_aws_json_1_1(value: CreateGameSessionQueueInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateGameSessionQueueInput:
     out: CreateGameSessionQueueInput = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "TimeoutInSeconds" in data:
+    if data.get("TimeoutInSeconds") is not None:
         out["timeout_in_seconds"] = data["TimeoutInSeconds"]
-    if "PlayerLatencyPolicies" in data:
+    if data.get("PlayerLatencyPolicies") is not None:
         import capo_gamelift.types.player_latency_policy_list
 
         out["player_latency_policies"] = (
@@ -115,7 +115,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateGameSessionQueueInput:
                 data["PlayerLatencyPolicies"]
             )
         )
-    if "Destinations" in data:
+    if data.get("Destinations") is not None:
         import capo_gamelift.types.game_session_queue_destination_list
 
         out["destinations"] = (
@@ -123,7 +123,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateGameSessionQueueInput:
                 data["Destinations"]
             )
         )
-    if "FilterConfiguration" in data:
+    if data.get("FilterConfiguration") is not None:
         import capo_gamelift.types.filter_configuration
 
         out["filter_configuration"] = (
@@ -131,7 +131,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateGameSessionQueueInput:
                 data["FilterConfiguration"]
             )
         )
-    if "PriorityConfiguration" in data:
+    if data.get("PriorityConfiguration") is not None:
         import capo_gamelift.types.priority_configuration
 
         out["priority_configuration"] = (
@@ -139,11 +139,11 @@ def deserialize_aws_json_1_1(data: dict) -> CreateGameSessionQueueInput:
                 data["PriorityConfiguration"]
             )
         )
-    if "CustomEventData" in data:
+    if data.get("CustomEventData") is not None:
         out["custom_event_data"] = data["CustomEventData"]
-    if "NotificationTarget" in data:
+    if data.get("NotificationTarget") is not None:
         out["notification_target"] = data["NotificationTarget"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_gamelift.types.tag_list
 
         out["tags"] = capo_gamelift.types.tag_list.deserialize_aws_json_1_1(

@@ -33,8 +33,8 @@ def serialize_json(value: UpdatePhoneNumberMetadataRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdatePhoneNumberMetadataRequest:
     out: UpdatePhoneNumberMetadataRequest = {}  # type: ignore[typeddict-item]
-    if "PhoneNumberDescription" in data:
+    if data.get("PhoneNumberDescription") is not None:
         out["phone_number_description"] = data["PhoneNumberDescription"]
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
     return out

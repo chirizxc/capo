@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> FirewallPolicyStatelessRuleGroupReferencesLi
 
     out: FirewallPolicyStatelessRuleGroupReferencesList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_securityhub.types.firewall_policy_stateless_rule_group_references_details.deserialize_json(
                 item

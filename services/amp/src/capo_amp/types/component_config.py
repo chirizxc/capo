@@ -25,7 +25,7 @@ def serialize_json(value: ComponentConfig) -> dict:
 
 def deserialize_json(data: dict) -> ComponentConfig:
     out: ComponentConfig = {}  # type: ignore[typeddict-item]
-    if "options" in data:
+    if data.get("options") is not None:
         import capo_amp.types.string_map
 
         out["options"] = capo_amp.types.string_map.deserialize_json(data["options"])

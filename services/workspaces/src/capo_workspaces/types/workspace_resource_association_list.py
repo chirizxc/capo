@@ -29,6 +29,8 @@ def deserialize_aws_json_1_1(data: list) -> WorkspaceResourceAssociationList:
 
     out: WorkspaceResourceAssociationList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_workspaces.types.workspace_resource_association.deserialize_aws_json_1_1(
                 item

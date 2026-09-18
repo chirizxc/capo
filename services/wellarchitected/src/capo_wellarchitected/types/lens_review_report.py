@@ -31,10 +31,10 @@ def serialize_json(value: LensReviewReport) -> dict:
 
 def deserialize_json(data: dict) -> LensReviewReport:
     out: LensReviewReport = {}  # type: ignore[typeddict-item]
-    if "LensAlias" in data:
+    if data.get("LensAlias") is not None:
         out["lens_alias"] = data["LensAlias"]
-    if "LensArn" in data:
+    if data.get("LensArn") is not None:
         out["lens_arn"] = data["LensArn"]
-    if "Base64String" in data:
+    if data.get("Base64String") is not None:
         out["base64_string"] = data["Base64String"]
     return out

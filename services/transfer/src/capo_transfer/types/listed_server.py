@@ -77,17 +77,17 @@ def serialize_aws_json_1_1(value: ListedServer) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListedServer:
     out: ListedServer = {}  # type: ignore[typeddict-item]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
     else:
         raise DeserializationError("ListedServer.arn required")
-    if "Domain" in data:
+    if data.get("Domain") is not None:
         import capo_transfer.types.domain
 
         out["domain"] = capo_transfer.types.domain.deserialize_aws_json_1_1(
             data["Domain"]
         )
-    if "IdentityProviderType" in data:
+    if data.get("IdentityProviderType") is not None:
         import capo_transfer.types.identity_provider_type
 
         out["identity_provider_type"] = (
@@ -95,7 +95,7 @@ def deserialize_aws_json_1_1(data: dict) -> ListedServer:
                 data["IdentityProviderType"]
             )
         )
-    if "EndpointType" in data:
+    if data.get("EndpointType") is not None:
         import capo_transfer.types.endpoint_type
 
         out["endpoint_type"] = (
@@ -103,14 +103,14 @@ def deserialize_aws_json_1_1(data: dict) -> ListedServer:
                 data["EndpointType"]
             )
         )
-    if "LoggingRole" in data:
+    if data.get("LoggingRole") is not None:
         out["logging_role"] = data["LoggingRole"]
-    if "ServerId" in data:
+    if data.get("ServerId") is not None:
         out["server_id"] = data["ServerId"]
-    if "State" in data:
+    if data.get("State") is not None:
         import capo_transfer.types.state
 
         out["state"] = capo_transfer.types.state.deserialize_aws_json_1_1(data["State"])
-    if "UserCount" in data:
+    if data.get("UserCount") is not None:
         out["user_count"] = data["UserCount"]
     return out

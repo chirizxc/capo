@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> ListAttemptEcsTaskDetails:
 
     out: ListAttemptEcsTaskDetails = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_batch.types.attempt_ecs_task_details.deserialize_json(item))
     return out

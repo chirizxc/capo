@@ -36,7 +36,7 @@ def serialize_aws_json_1_0(value: ListTrafficPoliciesResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ListTrafficPoliciesResponse:
     out: ListTrafficPoliciesResponse = {}  # type: ignore[typeddict-item]
-    if "TrafficPolicies" in data:
+    if data.get("TrafficPolicies") is not None:
         import capo_mailmanager.types.traffic_policy_list
 
         out["traffic_policies"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_0(data: dict) -> ListTrafficPoliciesResponse:
                 data["TrafficPolicies"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

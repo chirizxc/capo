@@ -41,7 +41,7 @@ def serialize_aws_json_1_0(value: EntitiesDefinition) -> dict:
 
 
 def deserialize_aws_json_1_0(data: dict) -> EntitiesDefinition:
-    if "entityList" in data:
+    if data.get("entityList") is not None:
         import capo_verifiedpermissions.types.entity_list
 
         return {
@@ -49,7 +49,7 @@ def deserialize_aws_json_1_0(data: dict) -> EntitiesDefinition:
                 data["entityList"]
             )
         }
-    elif "cedarJson" in data:
+    elif data.get("cedarJson") is not None:
         return {"cedarJson": data["cedarJson"]}
     else:
         raise DeserializationError("EntitiesDefinition: no recognized variant key")

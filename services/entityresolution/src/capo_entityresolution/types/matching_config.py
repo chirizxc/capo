@@ -18,6 +18,6 @@ def serialize_json(value: MatchingConfig) -> dict:
 
 def deserialize_json(data: dict) -> MatchingConfig:
     out: MatchingConfig = {}  # type: ignore[typeddict-item]
-    if "enableTransitiveMatching" in data:
+    if data.get("enableTransitiveMatching") is not None:
         out["enable_transitive_matching"] = data["enableTransitiveMatching"]
     return out

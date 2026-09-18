@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> EarthObservationJobOutputBands:
 
     out: EarthObservationJobOutputBands = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_sagemaker_geospatial.types.output_band.deserialize_json(item))
     return out

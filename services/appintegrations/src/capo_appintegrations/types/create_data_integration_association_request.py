@@ -78,9 +78,9 @@ def serialize_json(value: CreateDataIntegrationAssociationRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateDataIntegrationAssociationRequest:
     out: CreateDataIntegrationAssociationRequest = {}  # type: ignore[typeddict-item]
-    if "ClientId" in data:
+    if data.get("ClientId") is not None:
         out["client_id"] = data["ClientId"]
-    if "ObjectConfiguration" in data:
+    if data.get("ObjectConfiguration") is not None:
         import capo_appintegrations.types.object_configuration
 
         out["object_configuration"] = (
@@ -88,9 +88,9 @@ def deserialize_json(data: dict) -> CreateDataIntegrationAssociationRequest:
                 data["ObjectConfiguration"]
             )
         )
-    if "DestinationURI" in data:
+    if data.get("DestinationURI") is not None:
         out["destination_uri"] = data["DestinationURI"]
-    if "ClientAssociationMetadata" in data:
+    if data.get("ClientAssociationMetadata") is not None:
         import capo_appintegrations.types.client_association_metadata
 
         out["client_association_metadata"] = (
@@ -98,9 +98,9 @@ def deserialize_json(data: dict) -> CreateDataIntegrationAssociationRequest:
                 data["ClientAssociationMetadata"]
             )
         )
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
-    if "ExecutionConfiguration" in data:
+    if data.get("ExecutionConfiguration") is not None:
         import capo_appintegrations.types.execution_configuration
 
         out["execution_configuration"] = (

@@ -34,7 +34,7 @@ def serialize_aws_json_1_1(value: GenerateQueryRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GenerateQueryRequest:
     out: GenerateQueryRequest = {}  # type: ignore[typeddict-item]
-    if "EventDataStores" in data:
+    if data.get("EventDataStores") is not None:
         import capo_cloudtrail.types.event_data_store_list
 
         out["event_data_stores"] = (
@@ -44,7 +44,7 @@ def deserialize_aws_json_1_1(data: dict) -> GenerateQueryRequest:
         )
     else:
         raise DeserializationError("GenerateQueryRequest.event_data_stores required")
-    if "Prompt" in data:
+    if data.get("Prompt") is not None:
         out["prompt"] = data["Prompt"]
     else:
         raise DeserializationError("GenerateQueryRequest.prompt required")

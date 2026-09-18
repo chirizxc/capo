@@ -52,7 +52,7 @@ def serialize_json(value: AssetFilterConfiguration) -> dict:
 
 
 def deserialize_json(data: dict) -> AssetFilterConfiguration:
-    if "columnConfiguration" in data:
+    if data.get("columnConfiguration") is not None:
         import capo_datazone.types.column_filter_configuration
 
         return {
@@ -60,7 +60,7 @@ def deserialize_json(data: dict) -> AssetFilterConfiguration:
                 data["columnConfiguration"]
             )
         }
-    elif "rowConfiguration" in data:
+    elif data.get("rowConfiguration") is not None:
         import capo_datazone.types.row_filter_configuration
 
         return {

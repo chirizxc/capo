@@ -49,21 +49,21 @@ def serialize_aws_json_1_1(value: NeighborConnectionDetail) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> NeighborConnectionDetail:
     out: NeighborConnectionDetail = {}  # type: ignore[typeddict-item]
-    if "sourceServerId" in data:
+    if data.get("sourceServerId") is not None:
         out["source_server_id"] = data["sourceServerId"]
     else:
         raise DeserializationError("NeighborConnectionDetail.source_server_id required")
-    if "destinationServerId" in data:
+    if data.get("destinationServerId") is not None:
         out["destination_server_id"] = data["destinationServerId"]
     else:
         raise DeserializationError(
             "NeighborConnectionDetail.destination_server_id required"
         )
-    if "destinationPort" in data:
+    if data.get("destinationPort") is not None:
         out["destination_port"] = data["destinationPort"]
-    if "transportProtocol" in data:
+    if data.get("transportProtocol") is not None:
         out["transport_protocol"] = data["transportProtocol"]
-    if "connectionsCount" in data:
+    if data.get("connectionsCount") is not None:
         out["connections_count"] = data["connectionsCount"]
     else:
         out["connections_count"] = 0

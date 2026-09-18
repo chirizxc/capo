@@ -43,7 +43,7 @@ def serialize_json(value: CompositeSliConfig) -> dict:
 
 def deserialize_json(data: dict) -> CompositeSliConfig:
     out: CompositeSliConfig = {}  # type: ignore[typeddict-item]
-    if "SelectionConfig" in data:
+    if data.get("SelectionConfig") is not None:
         import capo_application_signals.types.selection_config
 
         out["selection_config"] = (
@@ -53,7 +53,7 @@ def deserialize_json(data: dict) -> CompositeSliConfig:
         )
     else:
         raise DeserializationError("CompositeSliConfig.selection_config required")
-    if "Components" in data:
+    if data.get("Components") is not None:
         import capo_application_signals.types.composite_sli_components
 
         out["components"] = (

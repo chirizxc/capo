@@ -33,6 +33,8 @@ def deserialize_json(
 
     out: __listOfInputDeviceConfigurableAudioChannelPairConfig = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_medialive.types.input_device_configurable_audio_channel_pair_config.deserialize_json(
                 item

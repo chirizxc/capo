@@ -39,19 +39,19 @@ def serialize_json(value: RtpRouterOutputConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> RtpRouterOutputConfiguration:
     out: RtpRouterOutputConfiguration = {}  # type: ignore[typeddict-item]
-    if "destinationAddress" in data:
+    if data.get("destinationAddress") is not None:
         out["destination_address"] = data["destinationAddress"]
     else:
         raise DeserializationError(
             "RtpRouterOutputConfiguration.destination_address required"
         )
-    if "destinationPort" in data:
+    if data.get("destinationPort") is not None:
         out["destination_port"] = data["destinationPort"]
     else:
         raise DeserializationError(
             "RtpRouterOutputConfiguration.destination_port required"
         )
-    if "forwardErrorCorrection" in data:
+    if data.get("forwardErrorCorrection") is not None:
         import capo_mediaconnect.types.forward_error_correction_state
 
         out["forward_error_correction"] = (

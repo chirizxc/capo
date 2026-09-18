@@ -35,12 +35,12 @@ def serialize_json(value: Notifications) -> dict:
 
 def deserialize_json(data: dict) -> Notifications:
     out: Notifications = {}  # type: ignore[typeddict-item]
-    if "Progressing" in data:
+    if data.get("Progressing") is not None:
         out["progressing"] = data["Progressing"]
-    if "Completed" in data:
+    if data.get("Completed") is not None:
         out["completed"] = data["Completed"]
-    if "Warning" in data:
+    if data.get("Warning") is not None:
         out["warning"] = data["Warning"]
-    if "Error" in data:
+    if data.get("Error") is not None:
         out["error"] = data["Error"]
     return out

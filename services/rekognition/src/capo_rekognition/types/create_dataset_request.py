@@ -52,7 +52,7 @@ def serialize_aws_json_1_1(value: CreateDatasetRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateDatasetRequest:
     out: CreateDatasetRequest = {}  # type: ignore[typeddict-item]
-    if "DatasetSource" in data:
+    if data.get("DatasetSource") is not None:
         import capo_rekognition.types.dataset_source
 
         out["dataset_source"] = (
@@ -60,7 +60,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateDatasetRequest:
                 data["DatasetSource"]
             )
         )
-    if "DatasetType" in data:
+    if data.get("DatasetType") is not None:
         import capo_rekognition.types.dataset_type
 
         out["dataset_type"] = (
@@ -70,11 +70,11 @@ def deserialize_aws_json_1_1(data: dict) -> CreateDatasetRequest:
         )
     else:
         raise DeserializationError("CreateDatasetRequest.dataset_type required")
-    if "ProjectArn" in data:
+    if data.get("ProjectArn") is not None:
         out["project_arn"] = data["ProjectArn"]
     else:
         raise DeserializationError("CreateDatasetRequest.project_arn required")
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_rekognition.types.tag_map
 
         out["tags"] = capo_rekognition.types.tag_map.deserialize_aws_json_1_1(

@@ -28,13 +28,13 @@ def serialize_json(value: ComputationModelAnomalyDetectionConfiguration) -> dict
 
 def deserialize_json(data: dict) -> ComputationModelAnomalyDetectionConfiguration:
     out: ComputationModelAnomalyDetectionConfiguration = {}  # type: ignore[typeddict-item]
-    if "inputProperties" in data:
+    if data.get("inputProperties") is not None:
         out["input_properties"] = data["inputProperties"]
     else:
         raise DeserializationError(
             "ComputationModelAnomalyDetectionConfiguration.input_properties required"
         )
-    if "resultProperty" in data:
+    if data.get("resultProperty") is not None:
         out["result_property"] = data["resultProperty"]
     else:
         raise DeserializationError(

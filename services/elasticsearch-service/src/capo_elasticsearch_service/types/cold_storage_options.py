@@ -24,7 +24,7 @@ def serialize_json(value: ColdStorageOptions) -> dict:
 
 def deserialize_json(data: dict) -> ColdStorageOptions:
     out: ColdStorageOptions = {}  # type: ignore[typeddict-item]
-    if "Enabled" in data:
+    if data.get("Enabled") is not None:
         out["enabled"] = data["Enabled"]
     else:
         raise DeserializationError("ColdStorageOptions.enabled required")

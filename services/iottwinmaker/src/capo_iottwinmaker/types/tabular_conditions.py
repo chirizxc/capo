@@ -40,13 +40,13 @@ def serialize_json(value: TabularConditions) -> dict:
 
 def deserialize_json(data: dict) -> TabularConditions:
     out: TabularConditions = {}  # type: ignore[typeddict-item]
-    if "orderBy" in data:
+    if data.get("orderBy") is not None:
         import capo_iottwinmaker.types.order_by_list
 
         out["order_by"] = capo_iottwinmaker.types.order_by_list.deserialize_json(
             data["orderBy"]
         )
-    if "propertyFilters" in data:
+    if data.get("propertyFilters") is not None:
         import capo_iottwinmaker.types.property_filters
 
         out["property_filters"] = (

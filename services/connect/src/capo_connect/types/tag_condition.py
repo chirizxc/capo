@@ -27,8 +27,8 @@ def serialize_json(value: TagCondition) -> dict:
 
 def deserialize_json(data: dict) -> TagCondition:
     out: TagCondition = {}  # type: ignore[typeddict-item]
-    if "TagKey" in data:
+    if data.get("TagKey") is not None:
         out["tag_key"] = data["TagKey"]
-    if "TagValue" in data:
+    if data.get("TagValue") is not None:
         out["tag_value"] = data["TagValue"]
     return out

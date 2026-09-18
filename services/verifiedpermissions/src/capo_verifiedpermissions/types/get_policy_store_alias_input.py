@@ -24,7 +24,7 @@ def serialize_aws_json_1_0(value: GetPolicyStoreAliasInput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> GetPolicyStoreAliasInput:
     out: GetPolicyStoreAliasInput = {}  # type: ignore[typeddict-item]
-    if "aliasName" in data:
+    if data.get("aliasName") is not None:
         out["alias_name"] = data["aliasName"]
     else:
         raise DeserializationError("GetPolicyStoreAliasInput.alias_name required")

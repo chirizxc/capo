@@ -41,17 +41,17 @@ def serialize_json(value: EksConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> EksConfiguration:
     out: EksConfiguration = {}  # type: ignore[typeddict-item]
-    if "clusterArn" in data:
+    if data.get("clusterArn") is not None:
         out["cluster_arn"] = data["clusterArn"]
     else:
         raise DeserializationError("EksConfiguration.cluster_arn required")
-    if "securityGroupIds" in data:
+    if data.get("securityGroupIds") is not None:
         import capo_amp.types.security_group_ids
 
         out["security_group_ids"] = capo_amp.types.security_group_ids.deserialize_json(
             data["securityGroupIds"]
         )
-    if "subnetIds" in data:
+    if data.get("subnetIds") is not None:
         import capo_amp.types.subnet_ids
 
         out["subnet_ids"] = capo_amp.types.subnet_ids.deserialize_json(

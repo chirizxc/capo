@@ -34,9 +34,9 @@ def serialize_json(value: AggregationPartitionBy) -> dict:
 
 def deserialize_json(data: dict) -> AggregationPartitionBy:
     out: AggregationPartitionBy = {}  # type: ignore[typeddict-item]
-    if "FieldName" in data:
+    if data.get("FieldName") is not None:
         out["field_name"] = data["FieldName"]
-    if "TimeGranularity" in data:
+    if data.get("TimeGranularity") is not None:
         import capo_quicksight.types.time_granularity
 
         out["time_granularity"] = (

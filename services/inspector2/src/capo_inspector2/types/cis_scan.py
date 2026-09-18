@@ -86,41 +86,41 @@ def serialize_json(value: CisScan) -> dict:
 
 def deserialize_json(data: dict) -> CisScan:
     out: CisScan = {}  # type: ignore[typeddict-item]
-    if "scanArn" in data:
+    if data.get("scanArn") is not None:
         out["scan_arn"] = data["scanArn"]
     else:
         raise DeserializationError("CisScan.scan_arn required")
-    if "scanConfigurationArn" in data:
+    if data.get("scanConfigurationArn") is not None:
         out["scan_configuration_arn"] = data["scanConfigurationArn"]
     else:
         raise DeserializationError("CisScan.scan_configuration_arn required")
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_inspector2.types.cis_scan_status
 
         out["status"] = capo_inspector2.types.cis_scan_status.deserialize_json(
             data["status"]
         )
-    if "scanName" in data:
+    if data.get("scanName") is not None:
         out["scan_name"] = data["scanName"]
-    if "scanDate" in data:
+    if data.get("scanDate") is not None:
         import capo_inspector2.types._prelude.timestamp
 
         out["scan_date"] = capo_inspector2.types._prelude.timestamp.deserialize_json(
             data["scanDate"]
         )
-    if "failedChecks" in data:
+    if data.get("failedChecks") is not None:
         out["failed_checks"] = data["failedChecks"]
-    if "totalChecks" in data:
+    if data.get("totalChecks") is not None:
         out["total_checks"] = data["totalChecks"]
-    if "targets" in data:
+    if data.get("targets") is not None:
         import capo_inspector2.types.cis_targets
 
         out["targets"] = capo_inspector2.types.cis_targets.deserialize_json(
             data["targets"]
         )
-    if "scheduledBy" in data:
+    if data.get("scheduledBy") is not None:
         out["scheduled_by"] = data["scheduledBy"]
-    if "securityLevel" in data:
+    if data.get("securityLevel") is not None:
         import capo_inspector2.types.cis_security_level
 
         out["security_level"] = (

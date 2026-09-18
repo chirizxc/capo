@@ -31,7 +31,7 @@ def serialize_json(value: AnonymousUserDashboardFeatureConfigurations) -> dict:
 
 def deserialize_json(data: dict) -> AnonymousUserDashboardFeatureConfigurations:
     out: AnonymousUserDashboardFeatureConfigurations = {}  # type: ignore[typeddict-item]
-    if "SharedView" in data:
+    if data.get("SharedView") is not None:
         import capo_quicksight.types.shared_view_configurations
 
         out["shared_view"] = (

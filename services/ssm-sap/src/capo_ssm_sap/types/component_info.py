@@ -36,7 +36,7 @@ def serialize_json(value: ComponentInfo) -> dict:
 
 def deserialize_json(data: dict) -> ComponentInfo:
     out: ComponentInfo = {}  # type: ignore[typeddict-item]
-    if "ComponentType" in data:
+    if data.get("ComponentType") is not None:
         import capo_ssm_sap.types.component_type
 
         out["component_type"] = capo_ssm_sap.types.component_type.deserialize_json(
@@ -44,11 +44,11 @@ def deserialize_json(data: dict) -> ComponentInfo:
         )
     else:
         raise DeserializationError("ComponentInfo.component_type required")
-    if "Sid" in data:
+    if data.get("Sid") is not None:
         out["sid"] = data["Sid"]
     else:
         raise DeserializationError("ComponentInfo.sid required")
-    if "Ec2InstanceId" in data:
+    if data.get("Ec2InstanceId") is not None:
         out["ec2_instance_id"] = data["Ec2InstanceId"]
     else:
         raise DeserializationError("ComponentInfo.ec2_instance_id required")

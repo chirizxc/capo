@@ -196,7 +196,7 @@ def serialize_json(value: AggregationResponse) -> dict:
 
 
 def deserialize_json(data: dict) -> AggregationResponse:
-    if "accountAggregation" in data:
+    if data.get("accountAggregation") is not None:
         import capo_inspector2.types.account_aggregation_response
 
         return {
@@ -204,7 +204,7 @@ def deserialize_json(data: dict) -> AggregationResponse:
                 data["accountAggregation"]
             )
         }
-    elif "amiAggregation" in data:
+    elif data.get("amiAggregation") is not None:
         import capo_inspector2.types.ami_aggregation_response
 
         return {
@@ -212,7 +212,7 @@ def deserialize_json(data: dict) -> AggregationResponse:
                 data["amiAggregation"]
             )
         }
-    elif "awsEcrContainerAggregation" in data:
+    elif data.get("awsEcrContainerAggregation") is not None:
         import capo_inspector2.types.aws_ecr_container_aggregation_response
 
         return {
@@ -220,7 +220,7 @@ def deserialize_json(data: dict) -> AggregationResponse:
                 data["awsEcrContainerAggregation"]
             )
         }
-    elif "ec2InstanceAggregation" in data:
+    elif data.get("ec2InstanceAggregation") is not None:
         import capo_inspector2.types.ec2_instance_aggregation_response
 
         return {
@@ -228,7 +228,7 @@ def deserialize_json(data: dict) -> AggregationResponse:
                 data["ec2InstanceAggregation"]
             )
         }
-    elif "findingTypeAggregation" in data:
+    elif data.get("findingTypeAggregation") is not None:
         import capo_inspector2.types.finding_type_aggregation_response
 
         return {
@@ -236,7 +236,7 @@ def deserialize_json(data: dict) -> AggregationResponse:
                 data["findingTypeAggregation"]
             )
         }
-    elif "imageLayerAggregation" in data:
+    elif data.get("imageLayerAggregation") is not None:
         import capo_inspector2.types.image_layer_aggregation_response
 
         return {
@@ -244,7 +244,7 @@ def deserialize_json(data: dict) -> AggregationResponse:
                 data["imageLayerAggregation"]
             )
         }
-    elif "packageAggregation" in data:
+    elif data.get("packageAggregation") is not None:
         import capo_inspector2.types.package_aggregation_response
 
         return {
@@ -252,7 +252,7 @@ def deserialize_json(data: dict) -> AggregationResponse:
                 data["packageAggregation"]
             )
         }
-    elif "repositoryAggregation" in data:
+    elif data.get("repositoryAggregation") is not None:
         import capo_inspector2.types.repository_aggregation_response
 
         return {
@@ -260,7 +260,7 @@ def deserialize_json(data: dict) -> AggregationResponse:
                 data["repositoryAggregation"]
             )
         }
-    elif "titleAggregation" in data:
+    elif data.get("titleAggregation") is not None:
         import capo_inspector2.types.title_aggregation_response
 
         return {
@@ -268,7 +268,7 @@ def deserialize_json(data: dict) -> AggregationResponse:
                 data["titleAggregation"]
             )
         }
-    elif "lambdaLayerAggregation" in data:
+    elif data.get("lambdaLayerAggregation") is not None:
         import capo_inspector2.types.lambda_layer_aggregation_response
 
         return {
@@ -276,7 +276,7 @@ def deserialize_json(data: dict) -> AggregationResponse:
                 data["lambdaLayerAggregation"]
             )
         }
-    elif "lambdaFunctionAggregation" in data:
+    elif data.get("lambdaFunctionAggregation") is not None:
         import capo_inspector2.types.lambda_function_aggregation_response
 
         return {
@@ -284,7 +284,7 @@ def deserialize_json(data: dict) -> AggregationResponse:
                 data["lambdaFunctionAggregation"]
             )
         }
-    elif "codeRepositoryAggregation" in data:
+    elif data.get("codeRepositoryAggregation") is not None:
         import capo_inspector2.types.code_repository_aggregation_response
 
         return {

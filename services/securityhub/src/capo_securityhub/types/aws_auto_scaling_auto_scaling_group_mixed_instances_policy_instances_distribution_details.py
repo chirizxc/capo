@@ -60,18 +60,18 @@ def deserialize_json(
     data: dict,
 ) -> AwsAutoScalingAutoScalingGroupMixedInstancesPolicyInstancesDistributionDetails:
     out: AwsAutoScalingAutoScalingGroupMixedInstancesPolicyInstancesDistributionDetails = {}  # type: ignore[typeddict-item]
-    if "OnDemandAllocationStrategy" in data:
+    if data.get("OnDemandAllocationStrategy") is not None:
         out["on_demand_allocation_strategy"] = data["OnDemandAllocationStrategy"]
-    if "OnDemandBaseCapacity" in data:
+    if data.get("OnDemandBaseCapacity") is not None:
         out["on_demand_base_capacity"] = data["OnDemandBaseCapacity"]
-    if "OnDemandPercentageAboveBaseCapacity" in data:
+    if data.get("OnDemandPercentageAboveBaseCapacity") is not None:
         out["on_demand_percentage_above_base_capacity"] = data[
             "OnDemandPercentageAboveBaseCapacity"
         ]
-    if "SpotAllocationStrategy" in data:
+    if data.get("SpotAllocationStrategy") is not None:
         out["spot_allocation_strategy"] = data["SpotAllocationStrategy"]
-    if "SpotInstancePools" in data:
+    if data.get("SpotInstancePools") is not None:
         out["spot_instance_pools"] = data["SpotInstancePools"]
-    if "SpotMaxPrice" in data:
+    if data.get("SpotMaxPrice") is not None:
         out["spot_max_price"] = data["SpotMaxPrice"]
     return out

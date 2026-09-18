@@ -175,14 +175,16 @@ class Route53RecoveryClusterClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_route53_recovery_cluster.types.get_routing_control_state_request.GetRoutingControlStateRequest = {}  # type: ignore[typeddict-item]
-        input_["routing_control_arn"] = routing_control_arn
+        input_: capo_route53_recovery_cluster.types.get_routing_control_state_request.GetRoutingControlStateRequest = {
+            "routing_control_arn": routing_control_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_routing_controls(
@@ -231,7 +233,7 @@ class Route53RecoveryClusterClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_route53_recovery_cluster.types.list_routing_controls_request.ListRoutingControlsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_route53_recovery_cluster.types.list_routing_controls_request.ListRoutingControlsRequest = {}
         if control_panel_arn is not None:
             input_["control_panel_arn"] = control_panel_arn
         if next_token is not None:
@@ -244,6 +246,7 @@ class Route53RecoveryClusterClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_routing_controls(
@@ -318,9 +321,10 @@ class Route53RecoveryClusterClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_route53_recovery_cluster.types.update_routing_control_state_request.UpdateRoutingControlStateRequest = {}  # type: ignore[typeddict-item]
-        input_["routing_control_arn"] = routing_control_arn
-        input_["routing_control_state"] = routing_control_state
+        input_: capo_route53_recovery_cluster.types.update_routing_control_state_request.UpdateRoutingControlStateRequest = {
+            "routing_control_arn": routing_control_arn,
+            "routing_control_state": routing_control_state,
+        }
         if safety_rules_to_override is not None:
             input_["safety_rules_to_override"] = safety_rules_to_override
 
@@ -329,6 +333,7 @@ class Route53RecoveryClusterClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_routing_control_states(
@@ -373,10 +378,9 @@ class Route53RecoveryClusterClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_route53_recovery_cluster.types.update_routing_control_states_request.UpdateRoutingControlStatesRequest = {}  # type: ignore[typeddict-item]
-        input_["update_routing_control_state_entries"] = (
-            update_routing_control_state_entries
-        )
+        input_: capo_route53_recovery_cluster.types.update_routing_control_states_request.UpdateRoutingControlStatesRequest = {
+            "update_routing_control_state_entries": update_routing_control_state_entries
+        }
         if safety_rules_to_override is not None:
             input_["safety_rules_to_override"] = safety_rules_to_override
 
@@ -385,6 +389,7 @@ class Route53RecoveryClusterClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def __enter__(self) -> Self:

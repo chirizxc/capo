@@ -23,6 +23,8 @@ def deserialize_aws_json_1_0(data: list) -> StepStates:
 
     out: StepStates = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_arc_region_switch.types.step_state.deserialize_aws_json_1_0(item)
         )

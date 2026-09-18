@@ -32,8 +32,8 @@ def serialize_aws_json_1_0(value: S3DestinationConfig) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> S3DestinationConfig:
     out: S3DestinationConfig = {}  # type: ignore[typeddict-item]
-    if "bucket" in data:
+    if data.get("bucket") is not None:
         out["bucket"] = data["bucket"]
-    if "keyPrefix" in data:
+    if data.get("keyPrefix") is not None:
         out["key_prefix"] = data["keyPrefix"]
     return out

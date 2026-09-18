@@ -49,9 +49,9 @@ def serialize_json(value: DataSetNumericFilterCondition) -> dict:
 
 def deserialize_json(data: dict) -> DataSetNumericFilterCondition:
     out: DataSetNumericFilterCondition = {}  # type: ignore[typeddict-item]
-    if "ColumnName" in data:
+    if data.get("ColumnName") is not None:
         out["column_name"] = data["ColumnName"]
-    if "ComparisonFilterCondition" in data:
+    if data.get("ComparisonFilterCondition") is not None:
         import capo_quicksight.types.data_set_numeric_comparison_filter_condition
 
         out["comparison_filter_condition"] = (
@@ -59,7 +59,7 @@ def deserialize_json(data: dict) -> DataSetNumericFilterCondition:
                 data["ComparisonFilterCondition"]
             )
         )
-    if "RangeFilterCondition" in data:
+    if data.get("RangeFilterCondition") is not None:
         import capo_quicksight.types.data_set_numeric_range_filter_condition
 
         out["range_filter_condition"] = (

@@ -26,7 +26,7 @@ def serialize_aws_json_1_0(value: DescribeAutoScalingConfigurationRequest) -> di
 
 def deserialize_aws_json_1_0(data: dict) -> DescribeAutoScalingConfigurationRequest:
     out: DescribeAutoScalingConfigurationRequest = {}  # type: ignore[typeddict-item]
-    if "AutoScalingConfigurationArn" in data:
+    if data.get("AutoScalingConfigurationArn") is not None:
         out["auto_scaling_configuration_arn"] = data["AutoScalingConfigurationArn"]
     else:
         raise DeserializationError(

@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: InvalidFilterException_) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> InvalidFilterException_:
     out: InvalidFilterException_ = {}  # type: ignore[typeddict-item]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     return out
 
@@ -34,15 +34,18 @@ class InvalidFilterException(ServiceError):
 
     code: str | None = "InvalidFilterException"
 
-    def __init__(self, data: InvalidFilterException_):
+    def __init__(self, data: InvalidFilterException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="InvalidFilterException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "InvalidFilterException":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "InvalidFilterException":
+        return cls(deserialize_aws_json_1_1(data), message)

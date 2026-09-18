@@ -23,6 +23,6 @@ def serialize_json(value: DataSourceConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> DataSourceConfiguration:
     out: DataSourceConfiguration = {}  # type: ignore[typeddict-item]
-    if "IntendedUse" in data:
+    if data.get("IntendedUse") is not None:
         out["intended_use"] = data["IntendedUse"]
     return out

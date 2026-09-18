@@ -25,6 +25,6 @@ def serialize_json(value: AvailBlanking) -> dict:
 
 def deserialize_json(data: dict) -> AvailBlanking:
     out: AvailBlanking = {}  # type: ignore[typeddict-item]
-    if "availBlankingImage" in data:
+    if data.get("availBlankingImage") is not None:
         out["avail_blanking_image"] = data["availBlankingImage"]
     return out

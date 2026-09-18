@@ -29,6 +29,8 @@ def deserialize_aws_json_1_1(data: list) -> ListOfAggregatedVariablesImpactExpla
 
     out: ListOfAggregatedVariablesImpactExplanations = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_frauddetector.types.aggregated_variables_impact_explanation.deserialize_aws_json_1_1(
                 item

@@ -70,9 +70,9 @@ def serialize_json(value: EbuTtDDestinationSettings) -> dict:
 
 def deserialize_json(data: dict) -> EbuTtDDestinationSettings:
     out: EbuTtDDestinationSettings = {}  # type: ignore[typeddict-item]
-    if "copyrightHolder" in data:
+    if data.get("copyrightHolder") is not None:
         out["copyright_holder"] = data["copyrightHolder"]
-    if "fillLineGap" in data:
+    if data.get("fillLineGap") is not None:
         import capo_medialive.types.ebu_tt_d_fill_line_gap_control
 
         out["fill_line_gap"] = (
@@ -80,9 +80,9 @@ def deserialize_json(data: dict) -> EbuTtDDestinationSettings:
                 data["fillLineGap"]
             )
         )
-    if "fontFamily" in data:
+    if data.get("fontFamily") is not None:
         out["font_family"] = data["fontFamily"]
-    if "styleControl" in data:
+    if data.get("styleControl") is not None:
         import capo_medialive.types.ebu_tt_d_destination_style_control
 
         out["style_control"] = (
@@ -90,8 +90,8 @@ def deserialize_json(data: dict) -> EbuTtDDestinationSettings:
                 data["styleControl"]
             )
         )
-    if "defaultFontSize" in data:
+    if data.get("defaultFontSize") is not None:
         out["default_font_size"] = data["defaultFontSize"]
-    if "defaultLineHeight" in data:
+    if data.get("defaultLineHeight") is not None:
         out["default_line_height"] = data["defaultLineHeight"]
     return out

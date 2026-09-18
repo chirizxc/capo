@@ -99,9 +99,9 @@ def serialize_aws_json_1_1(value: GetResourceEvaluationSummaryResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetResourceEvaluationSummaryResponse:
     out: GetResourceEvaluationSummaryResponse = {}  # type: ignore[typeddict-item]
-    if "ResourceEvaluationId" in data:
+    if data.get("ResourceEvaluationId") is not None:
         out["resource_evaluation_id"] = data["ResourceEvaluationId"]
-    if "EvaluationMode" in data:
+    if data.get("EvaluationMode") is not None:
         import capo_config_service.types.evaluation_mode
 
         out["evaluation_mode"] = (
@@ -109,7 +109,7 @@ def deserialize_aws_json_1_1(data: dict) -> GetResourceEvaluationSummaryResponse
                 data["EvaluationMode"]
             )
         )
-    if "EvaluationStatus" in data:
+    if data.get("EvaluationStatus") is not None:
         import capo_config_service.types.evaluation_status
 
         out["evaluation_status"] = (
@@ -117,7 +117,7 @@ def deserialize_aws_json_1_1(data: dict) -> GetResourceEvaluationSummaryResponse
                 data["EvaluationStatus"]
             )
         )
-    if "EvaluationStartTimestamp" in data:
+    if data.get("EvaluationStartTimestamp") is not None:
         import capo_config_service.types.date
 
         out["evaluation_start_timestamp"] = (
@@ -125,7 +125,7 @@ def deserialize_aws_json_1_1(data: dict) -> GetResourceEvaluationSummaryResponse
                 data["EvaluationStartTimestamp"]
             )
         )
-    if "Compliance" in data:
+    if data.get("Compliance") is not None:
         import capo_config_service.types.compliance_type
 
         out["compliance"] = (
@@ -133,7 +133,7 @@ def deserialize_aws_json_1_1(data: dict) -> GetResourceEvaluationSummaryResponse
                 data["Compliance"]
             )
         )
-    if "EvaluationContext" in data:
+    if data.get("EvaluationContext") is not None:
         import capo_config_service.types.evaluation_context
 
         out["evaluation_context"] = (
@@ -141,7 +141,7 @@ def deserialize_aws_json_1_1(data: dict) -> GetResourceEvaluationSummaryResponse
                 data["EvaluationContext"]
             )
         )
-    if "ResourceDetails" in data:
+    if data.get("ResourceDetails") is not None:
         import capo_config_service.types.resource_details
 
         out["resource_details"] = (

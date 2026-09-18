@@ -71,17 +71,17 @@ def serialize_aws_json_1_1(value: CopyProductInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CopyProductInput:
     out: CopyProductInput = {}  # type: ignore[typeddict-item]
-    if "AcceptLanguage" in data:
+    if data.get("AcceptLanguage") is not None:
         out["accept_language"] = data["AcceptLanguage"]
-    if "SourceProductArn" in data:
+    if data.get("SourceProductArn") is not None:
         out["source_product_arn"] = data["SourceProductArn"]
     else:
         raise DeserializationError("CopyProductInput.source_product_arn required")
-    if "TargetProductId" in data:
+    if data.get("TargetProductId") is not None:
         out["target_product_id"] = data["TargetProductId"]
-    if "TargetProductName" in data:
+    if data.get("TargetProductName") is not None:
         out["target_product_name"] = data["TargetProductName"]
-    if "SourceProvisioningArtifactIdentifiers" in data:
+    if data.get("SourceProvisioningArtifactIdentifiers") is not None:
         import capo_service_catalog.types.source_provisioning_artifact_properties
 
         out["source_provisioning_artifact_identifiers"] = (
@@ -89,7 +89,7 @@ def deserialize_aws_json_1_1(data: dict) -> CopyProductInput:
                 data["SourceProvisioningArtifactIdentifiers"]
             )
         )
-    if "CopyOptions" in data:
+    if data.get("CopyOptions") is not None:
         import capo_service_catalog.types.copy_options
 
         out["copy_options"] = (
@@ -97,7 +97,7 @@ def deserialize_aws_json_1_1(data: dict) -> CopyProductInput:
                 data["CopyOptions"]
             )
         )
-    if "IdempotencyToken" in data:
+    if data.get("IdempotencyToken") is not None:
         out["idempotency_token"] = data["IdempotencyToken"]
     else:
         raise DeserializationError("CopyProductInput.idempotency_token required")

@@ -32,8 +32,8 @@ def serialize_aws_json_1_1(value: StartFlywheelIterationResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> StartFlywheelIterationResponse:
     out: StartFlywheelIterationResponse = {}  # type: ignore[typeddict-item]
-    if "FlywheelArn" in data:
+    if data.get("FlywheelArn") is not None:
         out["flywheel_arn"] = data["FlywheelArn"]
-    if "FlywheelIterationId" in data:
+    if data.get("FlywheelIterationId") is not None:
         out["flywheel_iteration_id"] = data["FlywheelIterationId"]
     return out

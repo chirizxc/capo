@@ -30,10 +30,10 @@ def serialize_json(value: ListTagsForResourceResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListTagsForResourceResponse:
     out: ListTagsForResourceResponse = {}  # type: ignore[typeddict-item]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_iottwinmaker.types.tag_map
 
         out["tags"] = capo_iottwinmaker.types.tag_map.deserialize_json(data["tags"])
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

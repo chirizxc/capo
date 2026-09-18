@@ -36,7 +36,7 @@ def serialize_json(value: MsSmoothOutputSettings) -> dict:
 
 def deserialize_json(data: dict) -> MsSmoothOutputSettings:
     out: MsSmoothOutputSettings = {}  # type: ignore[typeddict-item]
-    if "h265PackagingType" in data:
+    if data.get("h265PackagingType") is not None:
         import capo_medialive.types.ms_smooth_h265_packaging_type
 
         out["h265_packaging_type"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> MsSmoothOutputSettings:
                 data["h265PackagingType"]
             )
         )
-    if "nameModifier" in data:
+    if data.get("nameModifier") is not None:
         out["name_modifier"] = data["nameModifier"]
     return out

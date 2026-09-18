@@ -38,11 +38,11 @@ def serialize_json(value: SubscribeRequest) -> dict:
 
 def deserialize_json(data: dict) -> SubscribeRequest:
     out: SubscribeRequest = {}  # type: ignore[typeddict-item]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
     else:
         raise DeserializationError("SubscribeRequest.arn required")
-    if "Target" in data:
+    if data.get("Target") is not None:
         import capo_codestar_notifications.types.target
 
         out["target"] = capo_codestar_notifications.types.target.deserialize_json(
@@ -50,6 +50,6 @@ def deserialize_json(data: dict) -> SubscribeRequest:
         )
     else:
         raise DeserializationError("SubscribeRequest.target required")
-    if "ClientRequestToken" in data:
+    if data.get("ClientRequestToken") is not None:
         out["client_request_token"] = data["ClientRequestToken"]
     return out

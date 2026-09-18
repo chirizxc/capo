@@ -31,7 +31,7 @@ def serialize_json(value: DirectAnalysisConfigurationDetails) -> dict:
 
 def deserialize_json(data: dict) -> DirectAnalysisConfigurationDetails:
     out: DirectAnalysisConfigurationDetails = {}  # type: ignore[typeddict-item]
-    if "receiverAccountIds" in data:
+    if data.get("receiverAccountIds") is not None:
         import capo_cleanrooms.types.receiver_account_ids
 
         out["receiver_account_ids"] = (

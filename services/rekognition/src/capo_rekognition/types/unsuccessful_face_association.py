@@ -32,7 +32,15 @@ def serialize_aws_json_1_1(value: UnsuccessfulFaceAssociation) -> dict:
     if "user_id" in value:
         out["UserId"] = value["user_id"]
     if "confidence" in value:
-        out["Confidence"] = value["confidence"]
+        out["Confidence"] = (
+            "NaN"
+            if value["confidence"] != value["confidence"]
+            else "Infinity"
+            if value["confidence"] == float("inf")
+            else "-Infinity"
+            if value["confidence"] == float("-inf")
+            else value["confidence"]
+        )
     if "reasons" in value:
         import capo_rekognition.types.unsuccessful_face_association_reasons
 
@@ -46,13 +54,13 @@ def serialize_aws_json_1_1(value: UnsuccessfulFaceAssociation) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UnsuccessfulFaceAssociation:
     out: UnsuccessfulFaceAssociation = {}  # type: ignore[typeddict-item]
-    if "FaceId" in data:
+    if data.get("FaceId") is not None:
         out["face_id"] = data["FaceId"]
-    if "UserId" in data:
+    if data.get("UserId") is not None:
         out["user_id"] = data["UserId"]
-    if "Confidence" in data:
-        out["confidence"] = data["Confidence"]
-    if "Reasons" in data:
+    if data.get("Confidence") is not None:
+        out["confidence"] = float(data["Confidence"])
+    if data.get("Reasons") is not None:
         import capo_rekognition.types.unsuccessful_face_association_reasons
 
         out["reasons"] = (

@@ -33,10 +33,10 @@ def serialize_json(value: AssociateTargetsWithJobResponse) -> dict:
 
 def deserialize_json(data: dict) -> AssociateTargetsWithJobResponse:
     out: AssociateTargetsWithJobResponse = {}  # type: ignore[typeddict-item]
-    if "jobArn" in data:
+    if data.get("jobArn") is not None:
         out["job_arn"] = data["jobArn"]
-    if "jobId" in data:
+    if data.get("jobId") is not None:
         out["job_id"] = data["jobId"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
     return out

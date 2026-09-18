@@ -34,11 +34,11 @@ def serialize_aws_json_1_1(value: DetectSyntaxRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DetectSyntaxRequest:
     out: DetectSyntaxRequest = {}  # type: ignore[typeddict-item]
-    if "Text" in data:
+    if data.get("Text") is not None:
         out["text"] = data["Text"]
     else:
         raise DeserializationError("DetectSyntaxRequest.text required")
-    if "LanguageCode" in data:
+    if data.get("LanguageCode") is not None:
         import capo_comprehend.types.syntax_language_code
 
         out["language_code"] = (

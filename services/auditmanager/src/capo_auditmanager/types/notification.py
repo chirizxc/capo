@@ -64,24 +64,24 @@ def serialize_json(value: Notification) -> dict:
 
 def deserialize_json(data: dict) -> Notification:
     out: Notification = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "assessmentId" in data:
+    if data.get("assessmentId") is not None:
         out["assessment_id"] = data["assessmentId"]
-    if "assessmentName" in data:
+    if data.get("assessmentName") is not None:
         out["assessment_name"] = data["assessmentName"]
-    if "controlSetId" in data:
+    if data.get("controlSetId") is not None:
         out["control_set_id"] = data["controlSetId"]
-    if "controlSetName" in data:
+    if data.get("controlSetName") is not None:
         out["control_set_name"] = data["controlSetName"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "eventTime" in data:
+    if data.get("eventTime") is not None:
         import capo_auditmanager.types.timestamp
 
         out["event_time"] = capo_auditmanager.types.timestamp.deserialize_json(
             data["eventTime"]
         )
-    if "source" in data:
+    if data.get("source") is not None:
         out["source"] = data["source"]
     return out

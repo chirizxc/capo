@@ -70,34 +70,34 @@ def serialize_json(value: CreateDomainInput) -> dict:
 
 def deserialize_json(data: dict) -> CreateDomainInput:
     out: CreateDomainInput = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("CreateDomainInput.name required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "singleSignOn" in data:
+    if data.get("singleSignOn") is not None:
         import capo_datazone.types.single_sign_on
 
         out["single_sign_on"] = capo_datazone.types.single_sign_on.deserialize_json(
             data["singleSignOn"]
         )
-    if "domainExecutionRole" in data:
+    if data.get("domainExecutionRole") is not None:
         out["domain_execution_role"] = data["domainExecutionRole"]
-    if "kmsKeyIdentifier" in data:
+    if data.get("kmsKeyIdentifier") is not None:
         out["kms_key_identifier"] = data["kmsKeyIdentifier"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_datazone.types.tags
 
         out["tags"] = capo_datazone.types.tags.deserialize_json(data["tags"])
-    if "domainVersion" in data:
+    if data.get("domainVersion") is not None:
         import capo_datazone.types.domain_version
 
         out["domain_version"] = capo_datazone.types.domain_version.deserialize_json(
             data["domainVersion"]
         )
-    if "serviceRole" in data:
+    if data.get("serviceRole") is not None:
         out["service_role"] = data["serviceRole"]
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     return out

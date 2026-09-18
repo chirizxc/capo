@@ -34,13 +34,13 @@ def serialize_aws_json_1_1(value: ChangePasswordRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ChangePasswordRequest:
     out: ChangePasswordRequest = {}  # type: ignore[typeddict-item]
-    if "PreviousPassword" in data:
+    if data.get("PreviousPassword") is not None:
         out["previous_password"] = data["PreviousPassword"]
-    if "ProposedPassword" in data:
+    if data.get("ProposedPassword") is not None:
         out["proposed_password"] = data["ProposedPassword"]
     else:
         raise DeserializationError("ChangePasswordRequest.proposed_password required")
-    if "AccessToken" in data:
+    if data.get("AccessToken") is not None:
         out["access_token"] = data["AccessToken"]
     else:
         raise DeserializationError("ChangePasswordRequest.access_token required")

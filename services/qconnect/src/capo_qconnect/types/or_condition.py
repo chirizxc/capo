@@ -45,7 +45,7 @@ def serialize_json(value: OrCondition) -> dict:
 
 
 def deserialize_json(data: dict) -> OrCondition:
-    if "andConditions" in data:
+    if data.get("andConditions") is not None:
         import capo_qconnect.types.and_conditions
 
         return {
@@ -53,7 +53,7 @@ def deserialize_json(data: dict) -> OrCondition:
                 data["andConditions"]
             )
         }
-    elif "tagCondition" in data:
+    elif data.get("tagCondition") is not None:
         import capo_qconnect.types.tag_condition
 
         return {

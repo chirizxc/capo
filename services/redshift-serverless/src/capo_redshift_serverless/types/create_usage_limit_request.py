@@ -46,20 +46,20 @@ def serialize_aws_json_1_1(value: CreateUsageLimitRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateUsageLimitRequest:
     out: CreateUsageLimitRequest = {}  # type: ignore[typeddict-item]
-    if "resourceArn" in data:
+    if data.get("resourceArn") is not None:
         out["resource_arn"] = data["resourceArn"]
     else:
         raise DeserializationError("CreateUsageLimitRequest.resource_arn required")
-    if "usageType" in data:
+    if data.get("usageType") is not None:
         out["usage_type"] = data["usageType"]
     else:
         raise DeserializationError("CreateUsageLimitRequest.usage_type required")
-    if "amount" in data:
+    if data.get("amount") is not None:
         out["amount"] = data["amount"]
     else:
         raise DeserializationError("CreateUsageLimitRequest.amount required")
-    if "period" in data:
+    if data.get("period") is not None:
         out["period"] = data["period"]
-    if "breachAction" in data:
+    if data.get("breachAction") is not None:
         out["breach_action"] = data["breachAction"]
     return out

@@ -22,7 +22,7 @@ def serialize_json(value: GetCardinalityResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetCardinalityResponse:
     out: GetCardinalityResponse = {}  # type: ignore[typeddict-item]
-    if "cardinality" in data:
+    if data.get("cardinality") is not None:
         out["cardinality"] = data["cardinality"]
     else:
         out["cardinality"] = 0

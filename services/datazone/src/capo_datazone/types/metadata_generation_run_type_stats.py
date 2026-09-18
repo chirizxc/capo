@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> MetadataGenerationRunTypeStats:
 
     out: MetadataGenerationRunTypeStats = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_datazone.types.metadata_generation_run_type_stat.deserialize_json(item)
         )

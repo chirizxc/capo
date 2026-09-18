@@ -26,7 +26,7 @@ def serialize_json(value: CacheConfig) -> dict:
 
 def deserialize_json(data: dict) -> CacheConfig:
     out: CacheConfig = {}  # type: ignore[typeddict-item]
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_amplify.types.cache_config_type
 
         out["type"] = capo_amplify.types.cache_config_type.deserialize_json(

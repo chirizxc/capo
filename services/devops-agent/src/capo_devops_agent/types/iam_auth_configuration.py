@@ -23,15 +23,15 @@ class IamAuthConfiguration(TypedDict, closed=True):
 def serialize_json(value: IamAuthConfiguration) -> dict:
     out: dict = {}
     out["operatorAppRoleArn"] = value["operator_app_role_arn"]
-    import capo_devops_agent.types._prelude.timestamp
+    import capo_devops_agent._protocol.serialize
 
-    out["createdAt"] = capo_devops_agent.types._prelude.timestamp.serialize_json(
+    out["createdAt"] = capo_devops_agent._protocol.serialize.fmt_date_time(
         value["created_at"]
     )
     if "updated_at" in value:
-        import capo_devops_agent.types._prelude.timestamp
+        import capo_devops_agent._protocol.serialize
 
-        out["updatedAt"] = capo_devops_agent.types._prelude.timestamp.serialize_json(
+        out["updatedAt"] = capo_devops_agent._protocol.serialize.fmt_date_time(
             value["updated_at"]
         )
     return out
@@ -39,24 +39,24 @@ def serialize_json(value: IamAuthConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> IamAuthConfiguration:
     out: IamAuthConfiguration = {}  # type: ignore[typeddict-item]
-    if "operatorAppRoleArn" in data:
+    if data.get("operatorAppRoleArn") is not None:
         out["operator_app_role_arn"] = data["operatorAppRoleArn"]
     else:
         raise DeserializationError(
             "IamAuthConfiguration.operator_app_role_arn required"
         )
-    if "createdAt" in data:
-        import capo_devops_agent.types._prelude.timestamp
+    if data.get("createdAt") is not None:
+        import datetime
 
-        out["created_at"] = capo_devops_agent.types._prelude.timestamp.deserialize_json(
-            data["createdAt"]
+        out["created_at"] = datetime.datetime.fromisoformat(
+            data["createdAt"].replace("Z", "+00:00")
         )
     else:
         raise DeserializationError("IamAuthConfiguration.created_at required")
-    if "updatedAt" in data:
-        import capo_devops_agent.types._prelude.timestamp
+    if data.get("updatedAt") is not None:
+        import datetime
 
-        out["updated_at"] = capo_devops_agent.types._prelude.timestamp.deserialize_json(
-            data["updatedAt"]
+        out["updated_at"] = datetime.datetime.fromisoformat(
+            data["updatedAt"].replace("Z", "+00:00")
         )
     return out

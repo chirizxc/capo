@@ -27,8 +27,8 @@ def serialize_aws_json_1_1(value: Term) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Term:
     out: Term = {}  # type: ignore[typeddict-item]
-    if "SourceText" in data:
+    if data.get("SourceText") is not None:
         out["source_text"] = data["SourceText"]
-    if "TargetText" in data:
+    if data.get("TargetText") is not None:
         out["target_text"] = data["TargetText"]
     return out

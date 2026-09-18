@@ -22,11 +22,11 @@ def serialize_json(value: FindingIdentifier) -> dict:
 
 def deserialize_json(data: dict) -> FindingIdentifier:
     out: FindingIdentifier = {}  # type: ignore[typeddict-item]
-    if "scanName" in data:
+    if data.get("scanName") is not None:
         out["scan_name"] = data["scanName"]
     else:
         raise DeserializationError("FindingIdentifier.scan_name required")
-    if "findingId" in data:
+    if data.get("findingId") is not None:
         out["finding_id"] = data["findingId"]
     else:
         raise DeserializationError("FindingIdentifier.finding_id required")

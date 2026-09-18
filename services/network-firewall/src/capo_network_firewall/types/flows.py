@@ -23,5 +23,7 @@ def deserialize_aws_json_1_0(data: list) -> Flows:
 
     out: Flows = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_network_firewall.types.flow.deserialize_aws_json_1_0(item))
     return out

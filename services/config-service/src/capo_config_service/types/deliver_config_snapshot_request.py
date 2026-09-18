@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: DeliverConfigSnapshotRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeliverConfigSnapshotRequest:
     out: DeliverConfigSnapshotRequest = {}  # type: ignore[typeddict-item]
-    if "deliveryChannelName" in data:
+    if data.get("deliveryChannelName") is not None:
         out["delivery_channel_name"] = data["deliveryChannelName"]
     else:
         raise DeserializationError(

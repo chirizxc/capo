@@ -44,7 +44,7 @@ def serialize_aws_json_1_1(value: LendingSummary) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> LendingSummary:
     out: LendingSummary = {}  # type: ignore[typeddict-item]
-    if "DocumentGroups" in data:
+    if data.get("DocumentGroups") is not None:
         import capo_textract.types.document_group_list
 
         out["document_groups"] = (
@@ -52,7 +52,7 @@ def deserialize_aws_json_1_1(data: dict) -> LendingSummary:
                 data["DocumentGroups"]
             )
         )
-    if "UndetectedDocumentTypes" in data:
+    if data.get("UndetectedDocumentTypes") is not None:
         import capo_textract.types.undetected_document_type_list
 
         out["undetected_document_types"] = (

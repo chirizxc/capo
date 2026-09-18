@@ -27,32 +27,80 @@ class DataQualityAggregatedMetrics(TypedDict, closed=True):
 def serialize_aws_json_1_1(value: DataQualityAggregatedMetrics) -> dict:
     out: dict = {}
     if "total_rows_processed" in value:
-        out["TotalRowsProcessed"] = value["total_rows_processed"]
+        out["TotalRowsProcessed"] = (
+            "NaN"
+            if value["total_rows_processed"] != value["total_rows_processed"]
+            else "Infinity"
+            if value["total_rows_processed"] == float("inf")
+            else "-Infinity"
+            if value["total_rows_processed"] == float("-inf")
+            else value["total_rows_processed"]
+        )
     if "total_rows_passed" in value:
-        out["TotalRowsPassed"] = value["total_rows_passed"]
+        out["TotalRowsPassed"] = (
+            "NaN"
+            if value["total_rows_passed"] != value["total_rows_passed"]
+            else "Infinity"
+            if value["total_rows_passed"] == float("inf")
+            else "-Infinity"
+            if value["total_rows_passed"] == float("-inf")
+            else value["total_rows_passed"]
+        )
     if "total_rows_failed" in value:
-        out["TotalRowsFailed"] = value["total_rows_failed"]
+        out["TotalRowsFailed"] = (
+            "NaN"
+            if value["total_rows_failed"] != value["total_rows_failed"]
+            else "Infinity"
+            if value["total_rows_failed"] == float("inf")
+            else "-Infinity"
+            if value["total_rows_failed"] == float("-inf")
+            else value["total_rows_failed"]
+        )
     if "total_rules_processed" in value:
-        out["TotalRulesProcessed"] = value["total_rules_processed"]
+        out["TotalRulesProcessed"] = (
+            "NaN"
+            if value["total_rules_processed"] != value["total_rules_processed"]
+            else "Infinity"
+            if value["total_rules_processed"] == float("inf")
+            else "-Infinity"
+            if value["total_rules_processed"] == float("-inf")
+            else value["total_rules_processed"]
+        )
     if "total_rules_passed" in value:
-        out["TotalRulesPassed"] = value["total_rules_passed"]
+        out["TotalRulesPassed"] = (
+            "NaN"
+            if value["total_rules_passed"] != value["total_rules_passed"]
+            else "Infinity"
+            if value["total_rules_passed"] == float("inf")
+            else "-Infinity"
+            if value["total_rules_passed"] == float("-inf")
+            else value["total_rules_passed"]
+        )
     if "total_rules_failed" in value:
-        out["TotalRulesFailed"] = value["total_rules_failed"]
+        out["TotalRulesFailed"] = (
+            "NaN"
+            if value["total_rules_failed"] != value["total_rules_failed"]
+            else "Infinity"
+            if value["total_rules_failed"] == float("inf")
+            else "-Infinity"
+            if value["total_rules_failed"] == float("-inf")
+            else value["total_rules_failed"]
+        )
     return out
 
 
 def deserialize_aws_json_1_1(data: dict) -> DataQualityAggregatedMetrics:
     out: DataQualityAggregatedMetrics = {}  # type: ignore[typeddict-item]
-    if "TotalRowsProcessed" in data:
-        out["total_rows_processed"] = data["TotalRowsProcessed"]
-    if "TotalRowsPassed" in data:
-        out["total_rows_passed"] = data["TotalRowsPassed"]
-    if "TotalRowsFailed" in data:
-        out["total_rows_failed"] = data["TotalRowsFailed"]
-    if "TotalRulesProcessed" in data:
-        out["total_rules_processed"] = data["TotalRulesProcessed"]
-    if "TotalRulesPassed" in data:
-        out["total_rules_passed"] = data["TotalRulesPassed"]
-    if "TotalRulesFailed" in data:
-        out["total_rules_failed"] = data["TotalRulesFailed"]
+    if data.get("TotalRowsProcessed") is not None:
+        out["total_rows_processed"] = float(data["TotalRowsProcessed"])
+    if data.get("TotalRowsPassed") is not None:
+        out["total_rows_passed"] = float(data["TotalRowsPassed"])
+    if data.get("TotalRowsFailed") is not None:
+        out["total_rows_failed"] = float(data["TotalRowsFailed"])
+    if data.get("TotalRulesProcessed") is not None:
+        out["total_rules_processed"] = float(data["TotalRulesProcessed"])
+    if data.get("TotalRulesPassed") is not None:
+        out["total_rules_passed"] = float(data["TotalRulesPassed"])
+    if data.get("TotalRulesFailed") is not None:
+        out["total_rules_failed"] = float(data["TotalRulesFailed"])
     return out

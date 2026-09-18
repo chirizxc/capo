@@ -41,7 +41,7 @@ def serialize_json(value: RetrieveRequest) -> dict:
 
 def deserialize_json(data: dict) -> RetrieveRequest:
     out: RetrieveRequest = {}  # type: ignore[typeddict-item]
-    if "retrievalConfiguration" in data:
+    if data.get("retrievalConfiguration") is not None:
         import capo_qconnect.types.retrieval_configuration
 
         out["retrieval_configuration"] = (
@@ -51,7 +51,7 @@ def deserialize_json(data: dict) -> RetrieveRequest:
         )
     else:
         raise DeserializationError("RetrieveRequest.retrieval_configuration required")
-    if "retrievalQuery" in data:
+    if data.get("retrievalQuery") is not None:
         out["retrieval_query"] = data["retrievalQuery"]
     else:
         raise DeserializationError("RetrieveRequest.retrieval_query required")

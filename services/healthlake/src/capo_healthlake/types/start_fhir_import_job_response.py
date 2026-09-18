@@ -37,11 +37,11 @@ def serialize_aws_json_1_0(value: StartFHIRImportJobResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> StartFHIRImportJobResponse:
     out: StartFHIRImportJobResponse = {}  # type: ignore[typeddict-item]
-    if "JobId" in data:
+    if data.get("JobId") is not None:
         out["job_id"] = data["JobId"]
     else:
         raise DeserializationError("StartFHIRImportJobResponse.job_id required")
-    if "JobStatus" in data:
+    if data.get("JobStatus") is not None:
         import capo_healthlake.types.job_status
 
         out["job_status"] = capo_healthlake.types.job_status.deserialize_aws_json_1_0(
@@ -49,6 +49,6 @@ def deserialize_aws_json_1_0(data: dict) -> StartFHIRImportJobResponse:
         )
     else:
         raise DeserializationError("StartFHIRImportJobResponse.job_status required")
-    if "DatastoreId" in data:
+    if data.get("DatastoreId") is not None:
         out["datastore_id"] = data["DatastoreId"]
     return out

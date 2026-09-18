@@ -34,13 +34,13 @@ def serialize_json(value: UsageDataSourceResult) -> dict:
 
 def deserialize_json(data: dict) -> UsageDataSourceResult:
     out: UsageDataSourceResult = {}  # type: ignore[typeddict-item]
-    if "dataSource" in data:
+    if data.get("dataSource") is not None:
         import capo_guardduty.types.data_source
 
         out["data_source"] = capo_guardduty.types.data_source.deserialize_json(
             data["dataSource"]
         )
-    if "total" in data:
+    if data.get("total") is not None:
         import capo_guardduty.types.total
 
         out["total"] = capo_guardduty.types.total.deserialize_json(data["total"])

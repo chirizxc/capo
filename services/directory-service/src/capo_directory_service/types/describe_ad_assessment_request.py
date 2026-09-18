@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: DescribeADAssessmentRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeADAssessmentRequest:
     out: DescribeADAssessmentRequest = {}  # type: ignore[typeddict-item]
-    if "AssessmentId" in data:
+    if data.get("AssessmentId") is not None:
         out["assessment_id"] = data["AssessmentId"]
     else:
         raise DeserializationError("DescribeADAssessmentRequest.assessment_id required")

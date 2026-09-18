@@ -36,7 +36,7 @@ def serialize_json(value: ListDomainNamesResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListDomainNamesResponse:
     out: ListDomainNamesResponse = {}  # type: ignore[typeddict-item]
-    if "domainNameConfigs" in data:
+    if data.get("domainNameConfigs") is not None:
         import capo_appsync.types.domain_name_configs
 
         out["domain_name_configs"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> ListDomainNamesResponse:
                 data["domainNameConfigs"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

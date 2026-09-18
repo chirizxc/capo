@@ -23,5 +23,7 @@ def deserialize_aws_json_1_1(data: list) -> PublicKeyList:
 
     out: PublicKeyList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_cloudtrail.types.public_key.deserialize_aws_json_1_1(item))
     return out

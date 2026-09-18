@@ -28,9 +28,9 @@ def serialize_aws_json_1_1(value: ResourceNotFoundException_) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ResourceNotFoundException_:
     out: ResourceNotFoundException_ = {}  # type: ignore[typeddict-item]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
-    if "ResourceType" in data:
+    if data.get("ResourceType") is not None:
         out["resource_type"] = data["ResourceType"]
     return out
 
@@ -40,15 +40,18 @@ class ResourceNotFoundException(ServiceError):
 
     code: str | None = "ResourceNotFoundException"
 
-    def __init__(self, data: ResourceNotFoundException_):
+    def __init__(self, data: ResourceNotFoundException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="ResourceNotFoundException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "ResourceNotFoundException":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "ResourceNotFoundException":
+        return cls(deserialize_aws_json_1_1(data), message)

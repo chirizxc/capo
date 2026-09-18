@@ -85,31 +85,31 @@ def serialize_aws_json_1_0(value: ProgressEvent) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ProgressEvent:
     out: ProgressEvent = {}  # type: ignore[typeddict-item]
-    if "TypeName" in data:
+    if data.get("TypeName") is not None:
         out["type_name"] = data["TypeName"]
-    if "Identifier" in data:
+    if data.get("Identifier") is not None:
         out["identifier"] = data["Identifier"]
-    if "RequestToken" in data:
+    if data.get("RequestToken") is not None:
         out["request_token"] = data["RequestToken"]
-    if "HooksRequestToken" in data:
+    if data.get("HooksRequestToken") is not None:
         out["hooks_request_token"] = data["HooksRequestToken"]
-    if "Operation" in data:
+    if data.get("Operation") is not None:
         out["operation"] = data["Operation"]
-    if "OperationStatus" in data:
+    if data.get("OperationStatus") is not None:
         out["operation_status"] = data["OperationStatus"]
-    if "EventTime" in data:
+    if data.get("EventTime") is not None:
         import capo_cloudcontrol.types.timestamp
 
         out["event_time"] = capo_cloudcontrol.types.timestamp.deserialize_aws_json_1_0(
             data["EventTime"]
         )
-    if "ResourceModel" in data:
+    if data.get("ResourceModel") is not None:
         out["resource_model"] = data["ResourceModel"]
-    if "StatusMessage" in data:
+    if data.get("StatusMessage") is not None:
         out["status_message"] = data["StatusMessage"]
-    if "ErrorCode" in data:
+    if data.get("ErrorCode") is not None:
         out["error_code"] = data["ErrorCode"]
-    if "RetryAfter" in data:
+    if data.get("RetryAfter") is not None:
         import capo_cloudcontrol.types.timestamp
 
         out["retry_after"] = capo_cloudcontrol.types.timestamp.deserialize_aws_json_1_0(

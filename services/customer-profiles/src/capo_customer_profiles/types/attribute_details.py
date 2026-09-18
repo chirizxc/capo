@@ -32,7 +32,7 @@ def serialize_json(value: AttributeDetails) -> dict:
 
 def deserialize_json(data: dict) -> AttributeDetails:
     out: AttributeDetails = {}  # type: ignore[typeddict-item]
-    if "Attributes" in data:
+    if data.get("Attributes") is not None:
         import capo_customer_profiles.types.attribute_list
 
         out["attributes"] = (
@@ -42,7 +42,7 @@ def deserialize_json(data: dict) -> AttributeDetails:
         )
     else:
         raise DeserializationError("AttributeDetails.attributes required")
-    if "Expression" in data:
+    if data.get("Expression") is not None:
         out["expression"] = data["Expression"]
     else:
         raise DeserializationError("AttributeDetails.expression required")

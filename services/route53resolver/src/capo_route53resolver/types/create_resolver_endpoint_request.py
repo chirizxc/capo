@@ -132,15 +132,15 @@ def serialize_aws_json_1_1(value: CreateResolverEndpointRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateResolverEndpointRequest:
     out: CreateResolverEndpointRequest = {}  # type: ignore[typeddict-item]
-    if "CreatorRequestId" in data:
+    if data.get("CreatorRequestId") is not None:
         out["creator_request_id"] = data["CreatorRequestId"]
     else:
         raise DeserializationError(
             "CreateResolverEndpointRequest.creator_request_id required"
         )
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "SecurityGroupIds" in data:
+    if data.get("SecurityGroupIds") is not None:
         import capo_route53resolver.types.security_group_ids
 
         out["security_group_ids"] = (
@@ -152,7 +152,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateResolverEndpointRequest:
         raise DeserializationError(
             "CreateResolverEndpointRequest.security_group_ids required"
         )
-    if "Direction" in data:
+    if data.get("Direction") is not None:
         import capo_route53resolver.types.resolver_endpoint_direction
 
         out["direction"] = (
@@ -162,7 +162,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateResolverEndpointRequest:
         )
     else:
         raise DeserializationError("CreateResolverEndpointRequest.direction required")
-    if "IpAddresses" in data:
+    if data.get("IpAddresses") is not None:
         import capo_route53resolver.types.ip_addresses_request
 
         out["ip_addresses"] = (
@@ -174,17 +174,17 @@ def deserialize_aws_json_1_1(data: dict) -> CreateResolverEndpointRequest:
         raise DeserializationError(
             "CreateResolverEndpointRequest.ip_addresses required"
         )
-    if "OutpostArn" in data:
+    if data.get("OutpostArn") is not None:
         out["outpost_arn"] = data["OutpostArn"]
-    if "PreferredInstanceType" in data:
+    if data.get("PreferredInstanceType") is not None:
         out["preferred_instance_type"] = data["PreferredInstanceType"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_route53resolver.types.tag_list
 
         out["tags"] = capo_route53resolver.types.tag_list.deserialize_aws_json_1_1(
             data["Tags"]
         )
-    if "ResolverEndpointType" in data:
+    if data.get("ResolverEndpointType") is not None:
         import capo_route53resolver.types.resolver_endpoint_type
 
         out["resolver_endpoint_type"] = (
@@ -192,7 +192,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateResolverEndpointRequest:
                 data["ResolverEndpointType"]
             )
         )
-    if "Protocols" in data:
+    if data.get("Protocols") is not None:
         import capo_route53resolver.types.protocol_list
 
         out["protocols"] = (
@@ -200,14 +200,14 @@ def deserialize_aws_json_1_1(data: dict) -> CreateResolverEndpointRequest:
                 data["Protocols"]
             )
         )
-    if "RniEnhancedMetricsEnabled" in data:
+    if data.get("RniEnhancedMetricsEnabled") is not None:
         out["rni_enhanced_metrics_enabled"] = data["RniEnhancedMetricsEnabled"]
-    if "TargetNameServerMetricsEnabled" in data:
+    if data.get("TargetNameServerMetricsEnabled") is not None:
         out["target_name_server_metrics_enabled"] = data[
             "TargetNameServerMetricsEnabled"
         ]
-    if "Dns64Enabled" in data:
+    if data.get("Dns64Enabled") is not None:
         out["dns64_enabled"] = data["Dns64Enabled"]
-    if "Ipv6InternetAccessEnabled" in data:
+    if data.get("Ipv6InternetAccessEnabled") is not None:
         out["ipv6_internet_access_enabled"] = data["Ipv6InternetAccessEnabled"]
     return out

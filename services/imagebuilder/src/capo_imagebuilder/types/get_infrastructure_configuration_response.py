@@ -36,9 +36,9 @@ def serialize_json(value: GetInfrastructureConfigurationResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetInfrastructureConfigurationResponse:
     out: GetInfrastructureConfigurationResponse = {}  # type: ignore[typeddict-item]
-    if "requestId" in data:
+    if data.get("requestId") is not None:
         out["request_id"] = data["requestId"]
-    if "infrastructureConfiguration" in data:
+    if data.get("infrastructureConfiguration") is not None:
         import capo_imagebuilder.types.infrastructure_configuration
 
         out["infrastructure_configuration"] = (

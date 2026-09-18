@@ -65,13 +65,13 @@ def deserialize_json(
     data: dict,
 ) -> ImportAssetsFromLakeFormationTagPolicyResponseDetails:
     out: ImportAssetsFromLakeFormationTagPolicyResponseDetails = {}  # type: ignore[typeddict-item]
-    if "CatalogId" in data:
+    if data.get("CatalogId") is not None:
         out["catalog_id"] = data["CatalogId"]
     else:
         raise DeserializationError(
             "ImportAssetsFromLakeFormationTagPolicyResponseDetails.catalog_id required"
         )
-    if "Database" in data:
+    if data.get("Database") is not None:
         import capo_dataexchange.types.database_lf_tag_policy_and_permissions
 
         out["database"] = (
@@ -79,7 +79,7 @@ def deserialize_json(
                 data["Database"]
             )
         )
-    if "Table" in data:
+    if data.get("Table") is not None:
         import capo_dataexchange.types.table_lf_tag_policy_and_permissions
 
         out["table"] = (
@@ -87,19 +87,19 @@ def deserialize_json(
                 data["Table"]
             )
         )
-    if "RoleArn" in data:
+    if data.get("RoleArn") is not None:
         out["role_arn"] = data["RoleArn"]
     else:
         raise DeserializationError(
             "ImportAssetsFromLakeFormationTagPolicyResponseDetails.role_arn required"
         )
-    if "DataSetId" in data:
+    if data.get("DataSetId") is not None:
         out["data_set_id"] = data["DataSetId"]
     else:
         raise DeserializationError(
             "ImportAssetsFromLakeFormationTagPolicyResponseDetails.data_set_id required"
         )
-    if "RevisionId" in data:
+    if data.get("RevisionId") is not None:
         out["revision_id"] = data["RevisionId"]
     else:
         raise DeserializationError(

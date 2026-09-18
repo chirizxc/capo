@@ -61,26 +61,26 @@ def serialize_json(value: LineageObject) -> dict:
 
 def deserialize_json(data: dict) -> LineageObject:
     out: LineageObject = {}  # type: ignore[typeddict-item]
-    if "startTime" in data:
+    if data.get("startTime") is not None:
         import capo_guardduty.types.timestamp
 
         out["start_time"] = capo_guardduty.types.timestamp.deserialize_json(
             data["startTime"]
         )
-    if "namespacePid" in data:
+    if data.get("namespacePid") is not None:
         out["namespace_pid"] = data["namespacePid"]
-    if "userId" in data:
+    if data.get("userId") is not None:
         out["user_id"] = data["userId"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "pid" in data:
+    if data.get("pid") is not None:
         out["pid"] = data["pid"]
-    if "uuid" in data:
+    if data.get("uuid") is not None:
         out["uuid"] = data["uuid"]
-    if "executablePath" in data:
+    if data.get("executablePath") is not None:
         out["executable_path"] = data["executablePath"]
-    if "euid" in data:
+    if data.get("euid") is not None:
         out["euid"] = data["euid"]
-    if "parentUuid" in data:
+    if data.get("parentUuid") is not None:
         out["parent_uuid"] = data["parentUuid"]
     return out

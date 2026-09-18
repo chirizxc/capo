@@ -1,5 +1,6 @@
 """Generated from Smithy shape ``com.amazonaws.bcmdashboards#AWSBCMDashboardsService``."""
 
+import uuid
 import warnings
 from collections.abc import AsyncIterator
 from typing import TYPE_CHECKING, Any, Iterable, Optional
@@ -217,11 +218,12 @@ class AsyncBCMDashboardsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_bcm_dashboards.types.create_dashboard_request.CreateDashboardRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_bcm_dashboards.types.create_dashboard_request.CreateDashboardRequest = {
+            "name": name,
+            "widgets": widgets,
+        }
         if description is not None:
             input_["description"] = description
-        input_["widgets"] = widgets
         if resource_tags is not None:
             input_["resource_tags"] = resource_tags
 
@@ -230,6 +232,7 @@ class AsyncBCMDashboardsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_scheduled_report(
@@ -277,18 +280,21 @@ class AsyncBCMDashboardsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_bcm_dashboards.types.create_scheduled_report_request.CreateScheduledReportRequest = {}  # type: ignore[typeddict-item]
-        input_["scheduled_report"] = scheduled_report
+        input_: capo_bcm_dashboards.types.create_scheduled_report_request.CreateScheduledReportRequest = {
+            "scheduled_report": scheduled_report
+        }
         if resource_tags is not None:
             input_["resource_tags"] = resource_tags
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_dashboard(
@@ -331,14 +337,16 @@ class AsyncBCMDashboardsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_bcm_dashboards.types.delete_dashboard_request.DeleteDashboardRequest = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
+        input_: capo_bcm_dashboards.types.delete_dashboard_request.DeleteDashboardRequest = {
+            "arn": arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_scheduled_report(
@@ -377,14 +385,16 @@ class AsyncBCMDashboardsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_bcm_dashboards.types.delete_scheduled_report_request.DeleteScheduledReportRequest = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
+        input_: capo_bcm_dashboards.types.delete_scheduled_report_request.DeleteScheduledReportRequest = {
+            "arn": arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def execute_scheduled_report(
@@ -430,10 +440,12 @@ class AsyncBCMDashboardsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_bcm_dashboards.types.execute_scheduled_report_request.ExecuteScheduledReportRequest = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_bcm_dashboards.types.execute_scheduled_report_request.ExecuteScheduledReportRequest = {
+            "arn": arn
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if dry_run is not None:
             input_["dry_run"] = dry_run
 
@@ -442,6 +454,7 @@ class AsyncBCMDashboardsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_dashboard(
@@ -485,14 +498,16 @@ class AsyncBCMDashboardsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_bcm_dashboards.types.get_dashboard_request.GetDashboardRequest = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
+        input_: capo_bcm_dashboards.types.get_dashboard_request.GetDashboardRequest = {
+            "arn": arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_resource_policy(
@@ -536,14 +551,16 @@ class AsyncBCMDashboardsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_bcm_dashboards.types.get_resource_policy_request.GetResourcePolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_bcm_dashboards.types.get_resource_policy_request.GetResourcePolicyRequest = {
+            "resource_arn": resource_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_scheduled_report(
@@ -582,14 +599,16 @@ class AsyncBCMDashboardsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_bcm_dashboards.types.get_scheduled_report_request.GetScheduledReportRequest = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
+        input_: capo_bcm_dashboards.types.get_scheduled_report_request.GetScheduledReportRequest = {
+            "arn": arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_dashboards(
@@ -638,7 +657,7 @@ class AsyncBCMDashboardsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_bcm_dashboards.types.list_dashboards_request.ListDashboardsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_bcm_dashboards.types.list_dashboards_request.ListDashboardsRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -649,6 +668,7 @@ class AsyncBCMDashboardsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_dashboards(
@@ -717,7 +737,7 @@ class AsyncBCMDashboardsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_bcm_dashboards.types.list_scheduled_reports_request.ListScheduledReportsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_bcm_dashboards.types.list_scheduled_reports_request.ListScheduledReportsRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -728,6 +748,7 @@ class AsyncBCMDashboardsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_scheduled_reports(
@@ -795,14 +816,16 @@ class AsyncBCMDashboardsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_bcm_dashboards.types.list_tags_for_resource_request.ListTagsForResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_bcm_dashboards.types.list_tags_for_resource_request.ListTagsForResourceRequest = {
+            "resource_arn": resource_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def tag_resource(
@@ -847,15 +870,17 @@ class AsyncBCMDashboardsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_bcm_dashboards.types.tag_resource_request.TagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["resource_tags"] = resource_tags
+        input_: capo_bcm_dashboards.types.tag_resource_request.TagResourceRequest = {
+            "resource_arn": resource_arn,
+            "resource_tags": resource_tags,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def untag_resource(
@@ -900,15 +925,17 @@ class AsyncBCMDashboardsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_bcm_dashboards.types.untag_resource_request.UntagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["resource_tag_keys"] = resource_tag_keys
+        input_: capo_bcm_dashboards.types.untag_resource_request.UntagResourceRequest = {
+            "resource_arn": resource_arn,
+            "resource_tag_keys": resource_tag_keys,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_dashboard(
@@ -960,9 +987,10 @@ class AsyncBCMDashboardsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_bcm_dashboards.types.update_dashboard_request.UpdateDashboardRequest = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
-        input_["name"] = name
+        input_: capo_bcm_dashboards.types.update_dashboard_request.UpdateDashboardRequest = {
+            "arn": arn,
+            "name": name,
+        }
         if description is not None:
             input_["description"] = description
         if widgets is not None:
@@ -973,6 +1001,7 @@ class AsyncBCMDashboardsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_scheduled_report(
@@ -1044,8 +1073,9 @@ class AsyncBCMDashboardsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_bcm_dashboards.types.update_scheduled_report_request.UpdateScheduledReportRequest = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
+        input_: capo_bcm_dashboards.types.update_scheduled_report_request.UpdateScheduledReportRequest = {
+            "arn": arn
+        }
         if name is not None:
             input_["name"] = name
         if description is not None:
@@ -1074,6 +1104,7 @@ class AsyncBCMDashboardsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def __aenter__(self) -> Self:

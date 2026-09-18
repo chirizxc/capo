@@ -33,18 +33,18 @@ def serialize_json(value: PurchaseReservedInstanceOfferingRequest) -> dict:
 
 def deserialize_json(data: dict) -> PurchaseReservedInstanceOfferingRequest:
     out: PurchaseReservedInstanceOfferingRequest = {}  # type: ignore[typeddict-item]
-    if "ReservedInstanceOfferingId" in data:
+    if data.get("ReservedInstanceOfferingId") is not None:
         out["reserved_instance_offering_id"] = data["ReservedInstanceOfferingId"]
     else:
         raise DeserializationError(
             "PurchaseReservedInstanceOfferingRequest.reserved_instance_offering_id required"
         )
-    if "ReservationName" in data:
+    if data.get("ReservationName") is not None:
         out["reservation_name"] = data["ReservationName"]
     else:
         raise DeserializationError(
             "PurchaseReservedInstanceOfferingRequest.reservation_name required"
         )
-    if "InstanceCount" in data:
+    if data.get("InstanceCount") is not None:
         out["instance_count"] = data["InstanceCount"]
     return out

@@ -26,7 +26,7 @@ def serialize_json(value: GetWorkloadOutput) -> dict:
 
 def deserialize_json(data: dict) -> GetWorkloadOutput:
     out: GetWorkloadOutput = {}  # type: ignore[typeddict-item]
-    if "Workload" in data:
+    if data.get("Workload") is not None:
         import capo_wellarchitected.types.workload
 
         out["workload"] = capo_wellarchitected.types.workload.deserialize_json(

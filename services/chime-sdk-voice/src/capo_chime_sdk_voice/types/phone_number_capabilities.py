@@ -55,16 +55,16 @@ def serialize_json(value: PhoneNumberCapabilities) -> dict:
 
 def deserialize_json(data: dict) -> PhoneNumberCapabilities:
     out: PhoneNumberCapabilities = {}  # type: ignore[typeddict-item]
-    if "InboundCall" in data:
+    if data.get("InboundCall") is not None:
         out["inbound_call"] = data["InboundCall"]
-    if "OutboundCall" in data:
+    if data.get("OutboundCall") is not None:
         out["outbound_call"] = data["OutboundCall"]
-    if "InboundSMS" in data:
+    if data.get("InboundSMS") is not None:
         out["inbound_sms"] = data["InboundSMS"]
-    if "OutboundSMS" in data:
+    if data.get("OutboundSMS") is not None:
         out["outbound_sms"] = data["OutboundSMS"]
-    if "InboundMMS" in data:
+    if data.get("InboundMMS") is not None:
         out["inbound_mms"] = data["InboundMMS"]
-    if "OutboundMMS" in data:
+    if data.get("OutboundMMS") is not None:
         out["outbound_mms"] = data["OutboundMMS"]
     return out

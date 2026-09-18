@@ -25,6 +25,6 @@ def serialize_aws_json_1_1(value: CreateProjectVersionResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateProjectVersionResponse:
     out: CreateProjectVersionResponse = {}  # type: ignore[typeddict-item]
-    if "ProjectVersionArn" in data:
+    if data.get("ProjectVersionArn") is not None:
         out["project_version_arn"] = data["ProjectVersionArn"]
     return out

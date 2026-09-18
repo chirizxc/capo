@@ -40,7 +40,7 @@ def serialize_aws_json_1_1(value: SsmActionDefinition) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SsmActionDefinition:
     out: SsmActionDefinition = {}  # type: ignore[typeddict-item]
-    if "ActionSubType" in data:
+    if data.get("ActionSubType") is not None:
         import capo_budgets.types.action_sub_type
 
         out["action_sub_type"] = (
@@ -50,11 +50,11 @@ def deserialize_aws_json_1_1(data: dict) -> SsmActionDefinition:
         )
     else:
         raise DeserializationError("SsmActionDefinition.action_sub_type required")
-    if "Region" in data:
+    if data.get("Region") is not None:
         out["region"] = data["Region"]
     else:
         raise DeserializationError("SsmActionDefinition.region required")
-    if "InstanceIds" in data:
+    if data.get("InstanceIds") is not None:
         import capo_budgets.types.instance_ids
 
         out["instance_ids"] = capo_budgets.types.instance_ids.deserialize_aws_json_1_1(

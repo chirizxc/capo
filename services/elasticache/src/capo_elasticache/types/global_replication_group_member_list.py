@@ -18,6 +18,9 @@ def serialize_query(
 ) -> None:
     import capo_elasticache.types.global_replication_group_member
 
+    if not value:
+        pairs.append((prefix, ""))
+        return
     for n, item in enumerate(value, 1):
         capo_elasticache.types.global_replication_group_member.serialize_query(
             item, pairs, f"{prefix}.GlobalReplicationGroupMember.{n}"
@@ -42,6 +45,9 @@ def serialize_query_flat(
 ) -> None:
     import capo_elasticache.types.global_replication_group_member
 
+    if not value:
+        pairs.append((prefix, ""))
+        return
     for n, item in enumerate(value, 1):
         capo_elasticache.types.global_replication_group_member.serialize_query(
             item, pairs, f"{prefix}.{n}"

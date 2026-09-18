@@ -30,7 +30,7 @@ def serialize_aws_json_1_1(value: StartDataCollectionByAgentIdsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> StartDataCollectionByAgentIdsRequest:
     out: StartDataCollectionByAgentIdsRequest = {}  # type: ignore[typeddict-item]
-    if "agentIds" in data:
+    if data.get("agentIds") is not None:
         import capo_application_discovery_service.types.agent_ids
 
         out["agent_ids"] = (

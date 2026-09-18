@@ -23,6 +23,6 @@ def serialize_json(value: OIDC) -> dict:
 
 def deserialize_json(data: dict) -> OIDC:
     out: OIDC = {}  # type: ignore[typeddict-item]
-    if "issuer" in data:
+    if data.get("issuer") is not None:
         out["issuer"] = data["issuer"]
     return out

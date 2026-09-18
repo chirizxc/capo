@@ -47,15 +47,15 @@ def serialize_json(value: RepositoryExternalConnectionInfo) -> dict:
 
 def deserialize_json(data: dict) -> RepositoryExternalConnectionInfo:
     out: RepositoryExternalConnectionInfo = {}  # type: ignore[typeddict-item]
-    if "externalConnectionName" in data:
+    if data.get("externalConnectionName") is not None:
         out["external_connection_name"] = data["externalConnectionName"]
-    if "packageFormat" in data:
+    if data.get("packageFormat") is not None:
         import capo_codeartifact.types.package_format
 
         out["package_format"] = capo_codeartifact.types.package_format.deserialize_json(
             data["packageFormat"]
         )
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_codeartifact.types.external_connection_status
 
         out["status"] = (

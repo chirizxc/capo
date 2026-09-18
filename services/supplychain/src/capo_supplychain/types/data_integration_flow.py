@@ -74,15 +74,15 @@ def serialize_json(value: DataIntegrationFlow) -> dict:
 
 def deserialize_json(data: dict) -> DataIntegrationFlow:
     out: DataIntegrationFlow = {}  # type: ignore[typeddict-item]
-    if "instanceId" in data:
+    if data.get("instanceId") is not None:
         out["instance_id"] = data["instanceId"]
     else:
         raise DeserializationError("DataIntegrationFlow.instance_id required")
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("DataIntegrationFlow.name required")
-    if "sources" in data:
+    if data.get("sources") is not None:
         import capo_supplychain.types.data_integration_flow_source_list
 
         out["sources"] = (
@@ -92,7 +92,7 @@ def deserialize_json(data: dict) -> DataIntegrationFlow:
         )
     else:
         raise DeserializationError("DataIntegrationFlow.sources required")
-    if "transformation" in data:
+    if data.get("transformation") is not None:
         import capo_supplychain.types.data_integration_flow_transformation
 
         out["transformation"] = (
@@ -102,7 +102,7 @@ def deserialize_json(data: dict) -> DataIntegrationFlow:
         )
     else:
         raise DeserializationError("DataIntegrationFlow.transformation required")
-    if "target" in data:
+    if data.get("target") is not None:
         import capo_supplychain.types.data_integration_flow_target
 
         out["target"] = (
@@ -112,7 +112,7 @@ def deserialize_json(data: dict) -> DataIntegrationFlow:
         )
     else:
         raise DeserializationError("DataIntegrationFlow.target required")
-    if "createdTime" in data:
+    if data.get("createdTime") is not None:
         import capo_supplychain.types._prelude.timestamp
 
         out["created_time"] = (
@@ -122,7 +122,7 @@ def deserialize_json(data: dict) -> DataIntegrationFlow:
         )
     else:
         raise DeserializationError("DataIntegrationFlow.created_time required")
-    if "lastModifiedTime" in data:
+    if data.get("lastModifiedTime") is not None:
         import capo_supplychain.types._prelude.timestamp
 
         out["last_modified_time"] = (

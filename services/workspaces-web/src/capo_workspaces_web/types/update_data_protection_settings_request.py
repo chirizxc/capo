@@ -53,7 +53,7 @@ def serialize_json(value: UpdateDataProtectionSettingsRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateDataProtectionSettingsRequest:
     out: UpdateDataProtectionSettingsRequest = {}  # type: ignore[typeddict-item]
-    if "inlineRedactionConfiguration" in data:
+    if data.get("inlineRedactionConfiguration") is not None:
         import capo_workspaces_web.types.inline_redaction_configuration
 
         out["inline_redaction_configuration"] = (
@@ -61,10 +61,10 @@ def deserialize_json(data: dict) -> UpdateDataProtectionSettingsRequest:
                 data["inlineRedactionConfiguration"]
             )
         )
-    if "displayName" in data:
+    if data.get("displayName") is not None:
         out["display_name"] = data["displayName"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     return out

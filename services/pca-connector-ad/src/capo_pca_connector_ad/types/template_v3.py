@@ -117,7 +117,7 @@ def serialize_json(value: TemplateV3) -> dict:
 
 def deserialize_json(data: dict) -> TemplateV3:
     out: TemplateV3 = {}  # type: ignore[typeddict-item]
-    if "CertificateValidity" in data:
+    if data.get("CertificateValidity") is not None:
         import capo_pca_connector_ad.types.certificate_validity
 
         out["certificate_validity"] = (
@@ -127,7 +127,7 @@ def deserialize_json(data: dict) -> TemplateV3:
         )
     else:
         raise DeserializationError("TemplateV3.certificate_validity required")
-    if "SupersededTemplates" in data:
+    if data.get("SupersededTemplates") is not None:
         import capo_pca_connector_ad.types.template_name_list
 
         out["superseded_templates"] = (
@@ -135,7 +135,7 @@ def deserialize_json(data: dict) -> TemplateV3:
                 data["SupersededTemplates"]
             )
         )
-    if "PrivateKeyAttributes" in data:
+    if data.get("PrivateKeyAttributes") is not None:
         import capo_pca_connector_ad.types.private_key_attributes_v3
 
         out["private_key_attributes"] = (
@@ -145,7 +145,7 @@ def deserialize_json(data: dict) -> TemplateV3:
         )
     else:
         raise DeserializationError("TemplateV3.private_key_attributes required")
-    if "PrivateKeyFlags" in data:
+    if data.get("PrivateKeyFlags") is not None:
         import capo_pca_connector_ad.types.private_key_flags_v3
 
         out["private_key_flags"] = (
@@ -155,7 +155,7 @@ def deserialize_json(data: dict) -> TemplateV3:
         )
     else:
         raise DeserializationError("TemplateV3.private_key_flags required")
-    if "EnrollmentFlags" in data:
+    if data.get("EnrollmentFlags") is not None:
         import capo_pca_connector_ad.types.enrollment_flags_v3
 
         out["enrollment_flags"] = (
@@ -165,7 +165,7 @@ def deserialize_json(data: dict) -> TemplateV3:
         )
     else:
         raise DeserializationError("TemplateV3.enrollment_flags required")
-    if "SubjectNameFlags" in data:
+    if data.get("SubjectNameFlags") is not None:
         import capo_pca_connector_ad.types.subject_name_flags_v3
 
         out["subject_name_flags"] = (
@@ -175,7 +175,7 @@ def deserialize_json(data: dict) -> TemplateV3:
         )
     else:
         raise DeserializationError("TemplateV3.subject_name_flags required")
-    if "GeneralFlags" in data:
+    if data.get("GeneralFlags") is not None:
         import capo_pca_connector_ad.types.general_flags_v3
 
         out["general_flags"] = (
@@ -185,7 +185,7 @@ def deserialize_json(data: dict) -> TemplateV3:
         )
     else:
         raise DeserializationError("TemplateV3.general_flags required")
-    if "HashAlgorithm" in data:
+    if data.get("HashAlgorithm") is not None:
         import capo_pca_connector_ad.types.hash_algorithm
 
         out["hash_algorithm"] = (
@@ -195,7 +195,7 @@ def deserialize_json(data: dict) -> TemplateV3:
         )
     else:
         raise DeserializationError("TemplateV3.hash_algorithm required")
-    if "Extensions" in data:
+    if data.get("Extensions") is not None:
         import capo_pca_connector_ad.types.extensions_v3
 
         out["extensions"] = capo_pca_connector_ad.types.extensions_v3.deserialize_json(

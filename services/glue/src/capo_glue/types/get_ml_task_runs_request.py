@@ -54,15 +54,15 @@ def serialize_aws_json_1_1(value: GetMLTaskRunsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetMLTaskRunsRequest:
     out: GetMLTaskRunsRequest = {}  # type: ignore[typeddict-item]
-    if "TransformId" in data:
+    if data.get("TransformId") is not None:
         out["transform_id"] = data["TransformId"]
     else:
         raise DeserializationError("GetMLTaskRunsRequest.transform_id required")
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "Filter" in data:
+    if data.get("Filter") is not None:
         import capo_glue.types.task_run_filter_criteria
 
         out["filter"] = (
@@ -70,7 +70,7 @@ def deserialize_aws_json_1_1(data: dict) -> GetMLTaskRunsRequest:
                 data["Filter"]
             )
         )
-    if "Sort" in data:
+    if data.get("Sort") is not None:
         import capo_glue.types.task_run_sort_criteria
 
         out["sort"] = capo_glue.types.task_run_sort_criteria.deserialize_aws_json_1_1(

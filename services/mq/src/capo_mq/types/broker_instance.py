@@ -36,14 +36,14 @@ def serialize_json(value: BrokerInstance) -> dict:
 
 def deserialize_json(data: dict) -> BrokerInstance:
     out: BrokerInstance = {}  # type: ignore[typeddict-item]
-    if "consoleURL" in data:
+    if data.get("consoleURL") is not None:
         out["console_url"] = data["consoleURL"]
-    if "endpoints" in data:
+    if data.get("endpoints") is not None:
         import capo_mq.types.__list_of__string
 
         out["endpoints"] = capo_mq.types.__list_of__string.deserialize_json(
             data["endpoints"]
         )
-    if "ipAddress" in data:
+    if data.get("ipAddress") is not None:
         out["ip_address"] = data["ipAddress"]
     return out

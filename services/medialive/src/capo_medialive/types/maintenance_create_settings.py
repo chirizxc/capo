@@ -34,12 +34,12 @@ def serialize_json(value: MaintenanceCreateSettings) -> dict:
 
 def deserialize_json(data: dict) -> MaintenanceCreateSettings:
     out: MaintenanceCreateSettings = {}  # type: ignore[typeddict-item]
-    if "maintenanceDay" in data:
+    if data.get("maintenanceDay") is not None:
         import capo_medialive.types.maintenance_day
 
         out["maintenance_day"] = capo_medialive.types.maintenance_day.deserialize_json(
             data["maintenanceDay"]
         )
-    if "maintenanceStartTime" in data:
+    if data.get("maintenanceStartTime") is not None:
         out["maintenance_start_time"] = data["maintenanceStartTime"]
     return out

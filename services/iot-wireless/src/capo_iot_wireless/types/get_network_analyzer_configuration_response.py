@@ -82,13 +82,13 @@ def serialize_json(value: GetNetworkAnalyzerConfigurationResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetNetworkAnalyzerConfigurationResponse:
     out: GetNetworkAnalyzerConfigurationResponse = {}  # type: ignore[typeddict-item]
-    if "TraceContent" in data:
+    if data.get("TraceContent") is not None:
         import capo_iot_wireless.types.trace_content
 
         out["trace_content"] = capo_iot_wireless.types.trace_content.deserialize_json(
             data["TraceContent"]
         )
-    if "WirelessDevices" in data:
+    if data.get("WirelessDevices") is not None:
         import capo_iot_wireless.types.wireless_device_list
 
         out["wireless_devices"] = (
@@ -96,7 +96,7 @@ def deserialize_json(data: dict) -> GetNetworkAnalyzerConfigurationResponse:
                 data["WirelessDevices"]
             )
         )
-    if "WirelessGateways" in data:
+    if data.get("WirelessGateways") is not None:
         import capo_iot_wireless.types.wireless_gateway_list
 
         out["wireless_gateways"] = (
@@ -104,13 +104,13 @@ def deserialize_json(data: dict) -> GetNetworkAnalyzerConfigurationResponse:
                 data["WirelessGateways"]
             )
         )
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "MulticastGroups" in data:
+    if data.get("MulticastGroups") is not None:
         import capo_iot_wireless.types.network_analyzer_multicast_group_list
 
         out["multicast_groups"] = (

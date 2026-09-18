@@ -90,27 +90,27 @@ def serialize_json(value: GetVariantImportResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetVariantImportResponse:
     out: GetVariantImportResponse = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("GetVariantImportResponse.id required")
-    if "destinationName" in data:
+    if data.get("destinationName") is not None:
         out["destination_name"] = data["destinationName"]
     else:
         raise DeserializationError("GetVariantImportResponse.destination_name required")
-    if "roleArn" in data:
+    if data.get("roleArn") is not None:
         out["role_arn"] = data["roleArn"]
     else:
         raise DeserializationError("GetVariantImportResponse.role_arn required")
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
     else:
         raise DeserializationError("GetVariantImportResponse.status required")
-    if "statusMessage" in data:
+    if data.get("statusMessage") is not None:
         out["status_message"] = data["statusMessage"]
     else:
         raise DeserializationError("GetVariantImportResponse.status_message required")
-    if "creationTime" in data:
+    if data.get("creationTime") is not None:
         import capo_omics.types.creation_time
 
         out["creation_time"] = capo_omics.types.creation_time.deserialize_json(
@@ -118,7 +118,7 @@ def deserialize_json(data: dict) -> GetVariantImportResponse:
         )
     else:
         raise DeserializationError("GetVariantImportResponse.creation_time required")
-    if "updateTime" in data:
+    if data.get("updateTime") is not None:
         import capo_omics.types.update_time
 
         out["update_time"] = capo_omics.types.update_time.deserialize_json(
@@ -126,13 +126,13 @@ def deserialize_json(data: dict) -> GetVariantImportResponse:
         )
     else:
         raise DeserializationError("GetVariantImportResponse.update_time required")
-    if "completionTime" in data:
+    if data.get("completionTime") is not None:
         import capo_omics.types.completion_time
 
         out["completion_time"] = capo_omics.types.completion_time.deserialize_json(
             data["completionTime"]
         )
-    if "items" in data:
+    if data.get("items") is not None:
         import capo_omics.types.variant_import_item_details
 
         out["items"] = capo_omics.types.variant_import_item_details.deserialize_json(
@@ -140,11 +140,11 @@ def deserialize_json(data: dict) -> GetVariantImportResponse:
         )
     else:
         raise DeserializationError("GetVariantImportResponse.items required")
-    if "runLeftNormalization" in data:
+    if data.get("runLeftNormalization") is not None:
         out["run_left_normalization"] = data["runLeftNormalization"]
     else:
         out["run_left_normalization"] = False
-    if "annotationFields" in data:
+    if data.get("annotationFields") is not None:
         import capo_omics.types.annotation_field_map
 
         out["annotation_fields"] = (

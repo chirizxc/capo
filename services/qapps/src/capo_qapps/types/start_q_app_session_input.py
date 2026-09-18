@@ -51,23 +51,23 @@ def serialize_json(value: StartQAppSessionInput) -> dict:
 
 def deserialize_json(data: dict) -> StartQAppSessionInput:
     out: StartQAppSessionInput = {}  # type: ignore[typeddict-item]
-    if "appId" in data:
+    if data.get("appId") is not None:
         out["app_id"] = data["appId"]
     else:
         raise DeserializationError("StartQAppSessionInput.app_id required")
-    if "appVersion" in data:
+    if data.get("appVersion") is not None:
         out["app_version"] = data["appVersion"]
     else:
         raise DeserializationError("StartQAppSessionInput.app_version required")
-    if "initialValues" in data:
+    if data.get("initialValues") is not None:
         import capo_qapps.types.card_value_list
 
         out["initial_values"] = capo_qapps.types.card_value_list.deserialize_json(
             data["initialValues"]
         )
-    if "sessionId" in data:
+    if data.get("sessionId") is not None:
         out["session_id"] = data["sessionId"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_qapps.types.tag_map
 
         out["tags"] = capo_qapps.types.tag_map.deserialize_json(data["tags"])

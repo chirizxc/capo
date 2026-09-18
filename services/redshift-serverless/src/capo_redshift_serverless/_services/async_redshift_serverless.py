@@ -245,16 +245,18 @@ class AsyncRedshiftServerlessClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_redshift_serverless.types.create_custom_domain_association_request.CreateCustomDomainAssociationRequest = {}  # type: ignore[typeddict-item]
-        input_["workgroup_name"] = workgroup_name
-        input_["custom_domain_name"] = custom_domain_name
-        input_["custom_domain_certificate_arn"] = custom_domain_certificate_arn
+        input_: capo_redshift_serverless.types.create_custom_domain_association_request.CreateCustomDomainAssociationRequest = {
+            "workgroup_name": workgroup_name,
+            "custom_domain_name": custom_domain_name,
+            "custom_domain_certificate_arn": custom_domain_certificate_arn,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_custom_domain_association(
@@ -296,15 +298,17 @@ class AsyncRedshiftServerlessClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_redshift_serverless.types.delete_custom_domain_association_request.DeleteCustomDomainAssociationRequest = {}  # type: ignore[typeddict-item]
-        input_["workgroup_name"] = workgroup_name
-        input_["custom_domain_name"] = custom_domain_name
+        input_: capo_redshift_serverless.types.delete_custom_domain_association_request.DeleteCustomDomainAssociationRequest = {
+            "workgroup_name": workgroup_name,
+            "custom_domain_name": custom_domain_name,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_resource_policy(
@@ -341,14 +345,16 @@ class AsyncRedshiftServerlessClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_redshift_serverless.types.delete_resource_policy_request.DeleteResourcePolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_redshift_serverless.types.delete_resource_policy_request.DeleteResourcePolicyRequest = {
+            "resource_arn": resource_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_credentials(
@@ -397,7 +403,7 @@ class AsyncRedshiftServerlessClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_redshift_serverless.types.get_credentials_request.GetCredentialsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_redshift_serverless.types.get_credentials_request.GetCredentialsRequest = {}
         if db_name is not None:
             input_["db_name"] = db_name
         if duration_seconds is not None:
@@ -412,6 +418,7 @@ class AsyncRedshiftServerlessClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_custom_domain_association(
@@ -453,15 +460,17 @@ class AsyncRedshiftServerlessClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_redshift_serverless.types.get_custom_domain_association_request.GetCustomDomainAssociationRequest = {}  # type: ignore[typeddict-item]
-        input_["custom_domain_name"] = custom_domain_name
-        input_["workgroup_name"] = workgroup_name
+        input_: capo_redshift_serverless.types.get_custom_domain_association_request.GetCustomDomainAssociationRequest = {
+            "custom_domain_name": custom_domain_name,
+            "workgroup_name": workgroup_name,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_identity_center_auth_token(
@@ -502,14 +511,16 @@ class AsyncRedshiftServerlessClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_redshift_serverless.types.get_identity_center_auth_token_request.GetIdentityCenterAuthTokenRequest = {}  # type: ignore[typeddict-item]
-        input_["workgroup_names"] = workgroup_names
+        input_: capo_redshift_serverless.types.get_identity_center_auth_token_request.GetIdentityCenterAuthTokenRequest = {
+            "workgroup_names": workgroup_names
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_resource_policy(
@@ -546,14 +557,16 @@ class AsyncRedshiftServerlessClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_redshift_serverless.types.get_resource_policy_request.GetResourcePolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_redshift_serverless.types.get_resource_policy_request.GetResourcePolicyRequest = {
+            "resource_arn": resource_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_track(
@@ -594,14 +607,16 @@ class AsyncRedshiftServerlessClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_redshift_serverless.types.get_track_request.GetTrackRequest = {}  # type: ignore[typeddict-item]
-        input_["track_name"] = track_name
+        input_: capo_redshift_serverless.types.get_track_request.GetTrackRequest = {
+            "track_name": track_name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_custom_domain_associations(
@@ -652,7 +667,7 @@ class AsyncRedshiftServerlessClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_redshift_serverless.types.list_custom_domain_associations_request.ListCustomDomainAssociationsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_redshift_serverless.types.list_custom_domain_associations_request.ListCustomDomainAssociationsRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -667,6 +682,7 @@ class AsyncRedshiftServerlessClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_custom_domain_associations(
@@ -735,14 +751,16 @@ class AsyncRedshiftServerlessClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_redshift_serverless.types.list_tags_for_resource_request.ListTagsForResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_redshift_serverless.types.list_tags_for_resource_request.ListTagsForResourceRequest = {
+            "resource_arn": resource_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_tracks(
@@ -785,7 +803,7 @@ class AsyncRedshiftServerlessClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_redshift_serverless.types.list_tracks_request.ListTracksRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_redshift_serverless.types.list_tracks_request.ListTracksRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -796,6 +814,7 @@ class AsyncRedshiftServerlessClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_tracks(
@@ -861,15 +880,17 @@ class AsyncRedshiftServerlessClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_redshift_serverless.types.put_resource_policy_request.PutResourcePolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["policy"] = policy
+        input_: capo_redshift_serverless.types.put_resource_policy_request.PutResourcePolicyRequest = {
+            "resource_arn": resource_arn,
+            "policy": policy,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def tag_resource(
@@ -910,15 +931,17 @@ class AsyncRedshiftServerlessClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_redshift_serverless.types.tag_resource_request.TagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tags"] = tags
+        input_: capo_redshift_serverless.types.tag_resource_request.TagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tags": tags,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def untag_resource(
@@ -958,15 +981,17 @@ class AsyncRedshiftServerlessClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_redshift_serverless.types.untag_resource_request.UntagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tag_keys"] = tag_keys
+        input_: capo_redshift_serverless.types.untag_resource_request.UntagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tag_keys": tag_keys,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_custom_domain_association(
@@ -1010,16 +1035,18 @@ class AsyncRedshiftServerlessClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_redshift_serverless.types.update_custom_domain_association_request.UpdateCustomDomainAssociationRequest = {}  # type: ignore[typeddict-item]
-        input_["workgroup_name"] = workgroup_name
-        input_["custom_domain_name"] = custom_domain_name
-        input_["custom_domain_certificate_arn"] = custom_domain_certificate_arn
+        input_: capo_redshift_serverless.types.update_custom_domain_association_request.UpdateCustomDomainAssociationRequest = {
+            "workgroup_name": workgroup_name,
+            "custom_domain_name": custom_domain_name,
+            "custom_domain_certificate_arn": custom_domain_certificate_arn,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def __aenter__(self) -> Self:

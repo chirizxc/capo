@@ -27,8 +27,8 @@ def serialize_json(value: AwsS3BucketWebsiteConfigurationRedirectTo) -> dict:
 
 def deserialize_json(data: dict) -> AwsS3BucketWebsiteConfigurationRedirectTo:
     out: AwsS3BucketWebsiteConfigurationRedirectTo = {}  # type: ignore[typeddict-item]
-    if "Hostname" in data:
+    if data.get("Hostname") is not None:
         out["hostname"] = data["Hostname"]
-    if "Protocol" in data:
+    if data.get("Protocol") is not None:
         out["protocol"] = data["Protocol"]
     return out

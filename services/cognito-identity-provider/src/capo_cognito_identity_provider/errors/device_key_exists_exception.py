@@ -26,7 +26,7 @@ def serialize_aws_json_1_1(value: DeviceKeyExistsException_) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeviceKeyExistsException_:
     out: DeviceKeyExistsException_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     return out
 
@@ -36,15 +36,18 @@ class DeviceKeyExistsException(ServiceError):
 
     code: str | None = "DeviceKeyExistsException"
 
-    def __init__(self, data: DeviceKeyExistsException_):
+    def __init__(self, data: DeviceKeyExistsException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="DeviceKeyExistsException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "DeviceKeyExistsException":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "DeviceKeyExistsException":
+        return cls(deserialize_aws_json_1_1(data), message)

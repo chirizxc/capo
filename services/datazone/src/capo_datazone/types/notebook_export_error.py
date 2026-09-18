@@ -19,7 +19,7 @@ def serialize_json(value: NotebookExportError) -> dict:
 
 def deserialize_json(data: dict) -> NotebookExportError:
     out: NotebookExportError = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     else:
         raise DeserializationError("NotebookExportError.message required")

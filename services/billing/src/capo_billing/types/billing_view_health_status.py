@@ -42,7 +42,7 @@ def serialize_aws_json_1_0(value: BillingViewHealthStatus) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> BillingViewHealthStatus:
     out: BillingViewHealthStatus = {}  # type: ignore[typeddict-item]
-    if "statusCode" in data:
+    if data.get("statusCode") is not None:
         import capo_billing.types.billing_view_status
 
         out["status_code"] = (
@@ -50,7 +50,7 @@ def deserialize_aws_json_1_0(data: dict) -> BillingViewHealthStatus:
                 data["statusCode"]
             )
         )
-    if "statusReasons" in data:
+    if data.get("statusReasons") is not None:
         import capo_billing.types.billing_view_status_reasons
 
         out["status_reasons"] = (

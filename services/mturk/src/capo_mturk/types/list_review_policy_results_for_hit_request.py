@@ -56,13 +56,13 @@ def serialize_aws_json_1_1(value: ListReviewPolicyResultsForHITRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListReviewPolicyResultsForHITRequest:
     out: ListReviewPolicyResultsForHITRequest = {}  # type: ignore[typeddict-item]
-    if "HITId" in data:
+    if data.get("HITId") is not None:
         out["hit_id"] = data["HITId"]
     else:
         raise DeserializationError(
             "ListReviewPolicyResultsForHITRequest.hit_id required"
         )
-    if "PolicyLevels" in data:
+    if data.get("PolicyLevels") is not None:
         import capo_mturk.types.review_policy_level_list
 
         out["policy_levels"] = (
@@ -70,12 +70,12 @@ def deserialize_aws_json_1_1(data: dict) -> ListReviewPolicyResultsForHITRequest
                 data["PolicyLevels"]
             )
         )
-    if "RetrieveActions" in data:
+    if data.get("RetrieveActions") is not None:
         out["retrieve_actions"] = data["RetrieveActions"]
-    if "RetrieveResults" in data:
+    if data.get("RetrieveResults") is not None:
         out["retrieve_results"] = data["RetrieveResults"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
     return out

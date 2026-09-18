@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: CopyBackupResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CopyBackupResponse:
     out: CopyBackupResponse = {}  # type: ignore[typeddict-item]
-    if "Backup" in data:
+    if data.get("Backup") is not None:
         import capo_fsx.types.backup
 
         out["backup"] = capo_fsx.types.backup.deserialize_aws_json_1_1(data["Backup"])

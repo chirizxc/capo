@@ -45,13 +45,13 @@ def serialize_aws_json_1_1(value: TaskObject) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> TaskObject:
     out: TaskObject = {}  # type: ignore[typeddict-item]
-    if "taskId" in data:
+    if data.get("taskId") is not None:
         out["task_id"] = data["taskId"]
-    if "pipelineId" in data:
+    if data.get("pipelineId") is not None:
         out["pipeline_id"] = data["pipelineId"]
-    if "attemptId" in data:
+    if data.get("attemptId") is not None:
         out["attempt_id"] = data["attemptId"]
-    if "objects" in data:
+    if data.get("objects") is not None:
         import capo_data_pipeline.types.pipeline_object_map
 
         out["objects"] = (

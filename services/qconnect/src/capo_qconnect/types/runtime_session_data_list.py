@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> RuntimeSessionDataList:
 
     out: RuntimeSessionDataList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_qconnect.types.runtime_session_data.deserialize_json(item))
     return out

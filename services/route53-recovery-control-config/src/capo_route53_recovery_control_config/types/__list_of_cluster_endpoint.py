@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> __listOfClusterEndpoint:
 
     out: __listOfClusterEndpoint = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_route53_recovery_control_config.types.cluster_endpoint.deserialize_json(
                 item

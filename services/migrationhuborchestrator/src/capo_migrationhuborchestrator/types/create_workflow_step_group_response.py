@@ -74,27 +74,27 @@ def serialize_json(value: CreateWorkflowStepGroupResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateWorkflowStepGroupResponse:
     out: CreateWorkflowStepGroupResponse = {}  # type: ignore[typeddict-item]
-    if "workflowId" in data:
+    if data.get("workflowId") is not None:
         out["workflow_id"] = data["workflowId"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "tools" in data:
+    if data.get("tools") is not None:
         import capo_migrationhuborchestrator.types.tools_list
 
         out["tools"] = capo_migrationhuborchestrator.types.tools_list.deserialize_json(
             data["tools"]
         )
-    if "next" in data:
+    if data.get("next") is not None:
         import capo_migrationhuborchestrator.types.string_list
 
         out["next"] = capo_migrationhuborchestrator.types.string_list.deserialize_json(
             data["next"]
         )
-    if "previous" in data:
+    if data.get("previous") is not None:
         import capo_migrationhuborchestrator.types.string_list
 
         out["previous"] = (
@@ -102,7 +102,7 @@ def deserialize_json(data: dict) -> CreateWorkflowStepGroupResponse:
                 data["previous"]
             )
         )
-    if "creationTime" in data:
+    if data.get("creationTime") is not None:
         import capo_migrationhuborchestrator.types._prelude.timestamp
 
         out["creation_time"] = (

@@ -56,25 +56,25 @@ def serialize_json(value: CriterionAdditionalProperties) -> dict:
 
 def deserialize_json(data: dict) -> CriterionAdditionalProperties:
     out: CriterionAdditionalProperties = {}  # type: ignore[typeddict-item]
-    if "eq" in data:
+    if data.get("eq") is not None:
         import capo_macie2.types.__list_of__string
 
         out["eq"] = capo_macie2.types.__list_of__string.deserialize_json(data["eq"])
-    if "eqExactMatch" in data:
+    if data.get("eqExactMatch") is not None:
         import capo_macie2.types.__list_of__string
 
         out["eq_exact_match"] = capo_macie2.types.__list_of__string.deserialize_json(
             data["eqExactMatch"]
         )
-    if "gt" in data:
+    if data.get("gt") is not None:
         out["gt"] = data["gt"]
-    if "gte" in data:
+    if data.get("gte") is not None:
         out["gte"] = data["gte"]
-    if "lt" in data:
+    if data.get("lt") is not None:
         out["lt"] = data["lt"]
-    if "lte" in data:
+    if data.get("lte") is not None:
         out["lte"] = data["lte"]
-    if "neq" in data:
+    if data.get("neq") is not None:
         import capo_macie2.types.__list_of__string
 
         out["neq"] = capo_macie2.types.__list_of__string.deserialize_json(data["neq"])

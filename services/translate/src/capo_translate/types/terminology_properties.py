@@ -125,15 +125,15 @@ def serialize_aws_json_1_1(value: TerminologyProperties) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> TerminologyProperties:
     out: TerminologyProperties = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "SourceLanguageCode" in data:
+    if data.get("SourceLanguageCode") is not None:
         out["source_language_code"] = data["SourceLanguageCode"]
-    if "TargetLanguageCodes" in data:
+    if data.get("TargetLanguageCodes") is not None:
         import capo_translate.types.language_code_string_list
 
         out["target_language_codes"] = (
@@ -141,7 +141,7 @@ def deserialize_aws_json_1_1(data: dict) -> TerminologyProperties:
                 data["TargetLanguageCodes"]
             )
         )
-    if "EncryptionKey" in data:
+    if data.get("EncryptionKey") is not None:
         import capo_translate.types.encryption_key
 
         out["encryption_key"] = (
@@ -149,17 +149,17 @@ def deserialize_aws_json_1_1(data: dict) -> TerminologyProperties:
                 data["EncryptionKey"]
             )
         )
-    if "SizeBytes" in data:
+    if data.get("SizeBytes") is not None:
         out["size_bytes"] = data["SizeBytes"]
-    if "TermCount" in data:
+    if data.get("TermCount") is not None:
         out["term_count"] = data["TermCount"]
-    if "CreatedAt" in data:
+    if data.get("CreatedAt") is not None:
         import capo_translate.types.timestamp
 
         out["created_at"] = capo_translate.types.timestamp.deserialize_aws_json_1_1(
             data["CreatedAt"]
         )
-    if "LastUpdatedAt" in data:
+    if data.get("LastUpdatedAt") is not None:
         import capo_translate.types.timestamp
 
         out["last_updated_at"] = (
@@ -167,7 +167,7 @@ def deserialize_aws_json_1_1(data: dict) -> TerminologyProperties:
                 data["LastUpdatedAt"]
             )
         )
-    if "Directionality" in data:
+    if data.get("Directionality") is not None:
         import capo_translate.types.directionality
 
         out["directionality"] = (
@@ -175,11 +175,11 @@ def deserialize_aws_json_1_1(data: dict) -> TerminologyProperties:
                 data["Directionality"]
             )
         )
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
-    if "SkippedTermCount" in data:
+    if data.get("SkippedTermCount") is not None:
         out["skipped_term_count"] = data["SkippedTermCount"]
-    if "Format" in data:
+    if data.get("Format") is not None:
         import capo_translate.types.terminology_data_format
 
         out["format"] = (

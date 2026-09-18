@@ -30,7 +30,7 @@ def serialize_json(value: NoManagementPreference) -> dict:
 
 def deserialize_json(data: dict) -> NoManagementPreference:
     out: NoManagementPreference = {}  # type: ignore[typeddict-item]
-    if "targetDestination" in data:
+    if data.get("targetDestination") is not None:
         import capo_migrationhubstrategy.types.no_preference_target_destinations
 
         out["target_destination"] = (

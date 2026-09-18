@@ -185,7 +185,7 @@ def serialize_json(value: DestinationConnectorProperties) -> dict:
 
 def deserialize_json(data: dict) -> DestinationConnectorProperties:
     out: DestinationConnectorProperties = {}  # type: ignore[typeddict-item]
-    if "Redshift" in data:
+    if data.get("Redshift") is not None:
         import capo_appflow.types.redshift_destination_properties
 
         out["redshift"] = (
@@ -193,13 +193,13 @@ def deserialize_json(data: dict) -> DestinationConnectorProperties:
                 data["Redshift"]
             )
         )
-    if "S3" in data:
+    if data.get("S3") is not None:
         import capo_appflow.types.s3_destination_properties
 
         out["s3"] = capo_appflow.types.s3_destination_properties.deserialize_json(
             data["S3"]
         )
-    if "Salesforce" in data:
+    if data.get("Salesforce") is not None:
         import capo_appflow.types.salesforce_destination_properties
 
         out["salesforce"] = (
@@ -207,7 +207,7 @@ def deserialize_json(data: dict) -> DestinationConnectorProperties:
                 data["Salesforce"]
             )
         )
-    if "Snowflake" in data:
+    if data.get("Snowflake") is not None:
         import capo_appflow.types.snowflake_destination_properties
 
         out["snowflake"] = (
@@ -215,7 +215,7 @@ def deserialize_json(data: dict) -> DestinationConnectorProperties:
                 data["Snowflake"]
             )
         )
-    if "EventBridge" in data:
+    if data.get("EventBridge") is not None:
         import capo_appflow.types.event_bridge_destination_properties
 
         out["event_bridge"] = (
@@ -223,7 +223,7 @@ def deserialize_json(data: dict) -> DestinationConnectorProperties:
                 data["EventBridge"]
             )
         )
-    if "LookoutMetrics" in data:
+    if data.get("LookoutMetrics") is not None:
         import capo_appflow.types.lookout_metrics_destination_properties
 
         out["lookout_metrics"] = (
@@ -231,7 +231,7 @@ def deserialize_json(data: dict) -> DestinationConnectorProperties:
                 data["LookoutMetrics"]
             )
         )
-    if "Upsolver" in data:
+    if data.get("Upsolver") is not None:
         import capo_appflow.types.upsolver_destination_properties
 
         out["upsolver"] = (
@@ -239,7 +239,7 @@ def deserialize_json(data: dict) -> DestinationConnectorProperties:
                 data["Upsolver"]
             )
         )
-    if "Honeycode" in data:
+    if data.get("Honeycode") is not None:
         import capo_appflow.types.honeycode_destination_properties
 
         out["honeycode"] = (
@@ -247,7 +247,7 @@ def deserialize_json(data: dict) -> DestinationConnectorProperties:
                 data["Honeycode"]
             )
         )
-    if "CustomerProfiles" in data:
+    if data.get("CustomerProfiles") is not None:
         import capo_appflow.types.customer_profiles_destination_properties
 
         out["customer_profiles"] = (
@@ -255,7 +255,7 @@ def deserialize_json(data: dict) -> DestinationConnectorProperties:
                 data["CustomerProfiles"]
             )
         )
-    if "Zendesk" in data:
+    if data.get("Zendesk") is not None:
         import capo_appflow.types.zendesk_destination_properties
 
         out["zendesk"] = (
@@ -263,7 +263,7 @@ def deserialize_json(data: dict) -> DestinationConnectorProperties:
                 data["Zendesk"]
             )
         )
-    if "Marketo" in data:
+    if data.get("Marketo") is not None:
         import capo_appflow.types.marketo_destination_properties
 
         out["marketo"] = (
@@ -271,7 +271,7 @@ def deserialize_json(data: dict) -> DestinationConnectorProperties:
                 data["Marketo"]
             )
         )
-    if "CustomConnector" in data:
+    if data.get("CustomConnector") is not None:
         import capo_appflow.types.custom_connector_destination_properties
 
         out["custom_connector"] = (
@@ -279,7 +279,7 @@ def deserialize_json(data: dict) -> DestinationConnectorProperties:
                 data["CustomConnector"]
             )
         )
-    if "SAPOData" in data:
+    if data.get("SAPOData") is not None:
         import capo_appflow.types.sapo_data_destination_properties
 
         out["sapo_data"] = (

@@ -51,7 +51,15 @@ def serialize_aws_json_1_1(value: Face) -> dict:
     if "external_image_id" in value:
         out["ExternalImageId"] = value["external_image_id"]
     if "confidence" in value:
-        out["Confidence"] = value["confidence"]
+        out["Confidence"] = (
+            "NaN"
+            if value["confidence"] != value["confidence"]
+            else "Infinity"
+            if value["confidence"] == float("inf")
+            else "-Infinity"
+            if value["confidence"] == float("-inf")
+            else value["confidence"]
+        )
     if "index_faces_model_version" in value:
         out["IndexFacesModelVersion"] = value["index_faces_model_version"]
     if "user_id" in value:
@@ -61,9 +69,9 @@ def serialize_aws_json_1_1(value: Face) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Face:
     out: Face = {}  # type: ignore[typeddict-item]
-    if "FaceId" in data:
+    if data.get("FaceId") is not None:
         out["face_id"] = data["FaceId"]
-    if "BoundingBox" in data:
+    if data.get("BoundingBox") is not None:
         import capo_rekognition.types.bounding_box
 
         out["bounding_box"] = (
@@ -71,14 +79,14 @@ def deserialize_aws_json_1_1(data: dict) -> Face:
                 data["BoundingBox"]
             )
         )
-    if "ImageId" in data:
+    if data.get("ImageId") is not None:
         out["image_id"] = data["ImageId"]
-    if "ExternalImageId" in data:
+    if data.get("ExternalImageId") is not None:
         out["external_image_id"] = data["ExternalImageId"]
-    if "Confidence" in data:
-        out["confidence"] = data["Confidence"]
-    if "IndexFacesModelVersion" in data:
+    if data.get("Confidence") is not None:
+        out["confidence"] = float(data["Confidence"])
+    if data.get("IndexFacesModelVersion") is not None:
         out["index_faces_model_version"] = data["IndexFacesModelVersion"]
-    if "UserId" in data:
+    if data.get("UserId") is not None:
         out["user_id"] = data["UserId"]
     return out

@@ -25,7 +25,7 @@ def serialize_json(value: PlaceGeometry) -> dict:
 
 def deserialize_json(data: dict) -> PlaceGeometry:
     out: PlaceGeometry = {}  # type: ignore[typeddict-item]
-    if "Point" in data:
+    if data.get("Point") is not None:
         import capo_location.types.position
 
         out["point"] = capo_location.types.position.deserialize_json(data["Point"])

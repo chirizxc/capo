@@ -19,7 +19,7 @@ def serialize_json(value: ModelTrainingPaymentConfig) -> dict:
 
 def deserialize_json(data: dict) -> ModelTrainingPaymentConfig:
     out: ModelTrainingPaymentConfig = {}  # type: ignore[typeddict-item]
-    if "isResponsible" in data:
+    if data.get("isResponsible") is not None:
         out["is_responsible"] = data["isResponsible"]
     else:
         raise DeserializationError("ModelTrainingPaymentConfig.is_responsible required")

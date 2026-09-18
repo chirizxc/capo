@@ -71,9 +71,9 @@ def serialize_aws_json_1_1(value: UpdateWorkforceRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateWorkforceRequest:
     out: UpdateWorkforceRequest = {}  # type: ignore[typeddict-item]
-    if "WorkforceName" in data:
+    if data.get("WorkforceName") is not None:
         out["workforce_name"] = data["WorkforceName"]
-    if "SourceIpConfig" in data:
+    if data.get("SourceIpConfig") is not None:
         import capo_sagemaker.types.source_ip_config
 
         out["source_ip_config"] = (
@@ -81,13 +81,13 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateWorkforceRequest:
                 data["SourceIpConfig"]
             )
         )
-    if "OidcConfig" in data:
+    if data.get("OidcConfig") is not None:
         import capo_sagemaker.types.oidc_config
 
         out["oidc_config"] = capo_sagemaker.types.oidc_config.deserialize_aws_json_1_1(
             data["OidcConfig"]
         )
-    if "WorkforceVpcConfig" in data:
+    if data.get("WorkforceVpcConfig") is not None:
         import capo_sagemaker.types.workforce_vpc_config_request
 
         out["workforce_vpc_config"] = (
@@ -95,7 +95,7 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateWorkforceRequest:
                 data["WorkforceVpcConfig"]
             )
         )
-    if "IpAddressType" in data:
+    if data.get("IpAddressType") is not None:
         import capo_sagemaker.types.workforce_ip_address_type
 
         out["ip_address_type"] = (

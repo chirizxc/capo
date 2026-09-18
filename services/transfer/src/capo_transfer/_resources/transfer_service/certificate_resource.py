@@ -95,9 +95,10 @@ class CertificateResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_transfer.types.import_certificate_request.ImportCertificateRequest = {}  # type: ignore[typeddict-item]
-        input_["usage"] = usage
-        input_["certificate"] = certificate
+        input_: capo_transfer.types.import_certificate_request.ImportCertificateRequest = {
+            "usage": usage,
+            "certificate": certificate,
+        }
         if certificate_chain is not None:
             input_["certificate_chain"] = certificate_chain
         if private_key is not None:
@@ -116,6 +117,7 @@ class CertificateResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -154,14 +156,16 @@ class CertificateResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_transfer.types.describe_certificate_request.DescribeCertificateRequest = {}  # type: ignore[typeddict-item]
-        input_["certificate_id"] = certificate_id
+        input_: capo_transfer.types.describe_certificate_request.DescribeCertificateRequest = {
+            "certificate_id": certificate_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update(
@@ -205,8 +209,9 @@ class CertificateResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_transfer.types.update_certificate_request.UpdateCertificateRequest = {}  # type: ignore[typeddict-item]
-        input_["certificate_id"] = certificate_id
+        input_: capo_transfer.types.update_certificate_request.UpdateCertificateRequest = {
+            "certificate_id": certificate_id
+        }
         if active_date is not None:
             input_["active_date"] = active_date
         if inactive_date is not None:
@@ -219,6 +224,7 @@ class CertificateResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -253,14 +259,16 @@ class CertificateResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_transfer.types.delete_certificate_request.DeleteCertificateRequest = {}  # type: ignore[typeddict-item]
-        input_["certificate_id"] = certificate_id
+        input_: capo_transfer.types.delete_certificate_request.DeleteCertificateRequest = {
+            "certificate_id": certificate_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -300,7 +308,7 @@ class CertificateResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_transfer.types.list_certificates_request.ListCertificatesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_transfer.types.list_certificates_request.ListCertificatesRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -311,6 +319,7 @@ class CertificateResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -371,9 +380,10 @@ class AsyncCertificateResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_transfer.types.import_certificate_request.ImportCertificateRequest = {}  # type: ignore[typeddict-item]
-        input_["usage"] = usage
-        input_["certificate"] = certificate
+        input_: capo_transfer.types.import_certificate_request.ImportCertificateRequest = {
+            "usage": usage,
+            "certificate": certificate,
+        }
         if certificate_chain is not None:
             input_["certificate_chain"] = certificate_chain
         if private_key is not None:
@@ -392,6 +402,7 @@ class AsyncCertificateResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -431,14 +442,16 @@ class AsyncCertificateResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_transfer.types.describe_certificate_request.DescribeCertificateRequest = {}  # type: ignore[typeddict-item]
-        input_["certificate_id"] = certificate_id
+        input_: capo_transfer.types.describe_certificate_request.DescribeCertificateRequest = {
+            "certificate_id": certificate_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update(
@@ -483,8 +496,9 @@ class AsyncCertificateResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_transfer.types.update_certificate_request.UpdateCertificateRequest = {}  # type: ignore[typeddict-item]
-        input_["certificate_id"] = certificate_id
+        input_: capo_transfer.types.update_certificate_request.UpdateCertificateRequest = {
+            "certificate_id": certificate_id
+        }
         if active_date is not None:
             input_["active_date"] = active_date
         if inactive_date is not None:
@@ -497,6 +511,7 @@ class AsyncCertificateResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -532,14 +547,16 @@ class AsyncCertificateResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_transfer.types.delete_certificate_request.DeleteCertificateRequest = {}  # type: ignore[typeddict-item]
-        input_["certificate_id"] = certificate_id
+        input_: capo_transfer.types.delete_certificate_request.DeleteCertificateRequest = {
+            "certificate_id": certificate_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -580,7 +597,7 @@ class AsyncCertificateResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_transfer.types.list_certificates_request.ListCertificatesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_transfer.types.list_certificates_request.ListCertificatesRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -591,4 +608,5 @@ class AsyncCertificateResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

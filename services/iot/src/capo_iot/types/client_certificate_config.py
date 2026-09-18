@@ -25,6 +25,6 @@ def serialize_json(value: ClientCertificateConfig) -> dict:
 
 def deserialize_json(data: dict) -> ClientCertificateConfig:
     out: ClientCertificateConfig = {}  # type: ignore[typeddict-item]
-    if "clientCertificateCallbackArn" in data:
+    if data.get("clientCertificateCallbackArn") is not None:
         out["client_certificate_callback_arn"] = data["clientCertificateCallbackArn"]
     return out

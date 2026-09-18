@@ -116,15 +116,15 @@ def serialize_aws_json_1_1(value: UpdateLocationObjectStorageRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateLocationObjectStorageRequest:
     out: UpdateLocationObjectStorageRequest = {}  # type: ignore[typeddict-item]
-    if "LocationArn" in data:
+    if data.get("LocationArn") is not None:
         out["location_arn"] = data["LocationArn"]
     else:
         raise DeserializationError(
             "UpdateLocationObjectStorageRequest.location_arn required"
         )
-    if "ServerPort" in data:
+    if data.get("ServerPort") is not None:
         out["server_port"] = data["ServerPort"]
-    if "ServerProtocol" in data:
+    if data.get("ServerProtocol") is not None:
         import capo_datasync.types.object_storage_server_protocol
 
         out["server_protocol"] = (
@@ -132,21 +132,21 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateLocationObjectStorageRequest:
                 data["ServerProtocol"]
             )
         )
-    if "Subdirectory" in data:
+    if data.get("Subdirectory") is not None:
         out["subdirectory"] = data["Subdirectory"]
-    if "ServerHostname" in data:
+    if data.get("ServerHostname") is not None:
         out["server_hostname"] = data["ServerHostname"]
-    if "AccessKey" in data:
+    if data.get("AccessKey") is not None:
         out["access_key"] = data["AccessKey"]
-    if "SecretKey" in data:
+    if data.get("SecretKey") is not None:
         out["secret_key"] = data["SecretKey"]
-    if "AgentArns" in data:
+    if data.get("AgentArns") is not None:
         import capo_datasync.types.agent_arn_list
 
         out["agent_arns"] = capo_datasync.types.agent_arn_list.deserialize_aws_json_1_1(
             data["AgentArns"]
         )
-    if "ServerCertificate" in data:
+    if data.get("ServerCertificate") is not None:
         import capo_datasync.types.object_storage_certificate
 
         out["server_certificate"] = (
@@ -154,7 +154,7 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateLocationObjectStorageRequest:
                 data["ServerCertificate"]
             )
         )
-    if "CmkSecretConfig" in data:
+    if data.get("CmkSecretConfig") is not None:
         import capo_datasync.types.cmk_secret_config
 
         out["cmk_secret_config"] = (
@@ -162,7 +162,7 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateLocationObjectStorageRequest:
                 data["CmkSecretConfig"]
             )
         )
-    if "CustomSecretConfig" in data:
+    if data.get("CustomSecretConfig") is not None:
         import capo_datasync.types.custom_secret_config
 
         out["custom_secret_config"] = (

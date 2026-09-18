@@ -58,17 +58,17 @@ def serialize_json(value: GetMulticastGroupResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetMulticastGroupResponse:
     out: GetMulticastGroupResponse = {}  # type: ignore[typeddict-item]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         out["status"] = data["Status"]
-    if "LoRaWAN" in data:
+    if data.get("LoRaWAN") is not None:
         import capo_iot_wireless.types.lo_ra_wan_multicast_get
 
         out["lo_ra_wan"] = (
@@ -76,7 +76,7 @@ def deserialize_json(data: dict) -> GetMulticastGroupResponse:
                 data["LoRaWAN"]
             )
         )
-    if "CreatedAt" in data:
+    if data.get("CreatedAt") is not None:
         import capo_iot_wireless.types.created_at
 
         out["created_at"] = capo_iot_wireless.types.created_at.deserialize_json(

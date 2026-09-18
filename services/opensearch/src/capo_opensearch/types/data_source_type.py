@@ -32,7 +32,7 @@ def serialize_json(value: DataSourceType) -> dict:
 
 
 def deserialize_json(data: dict) -> DataSourceType:
-    if "S3GlueDataCatalog" in data:
+    if data.get("S3GlueDataCatalog") is not None:
         import capo_opensearch.types.s3_glue_data_catalog
 
         return {

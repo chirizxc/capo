@@ -30,7 +30,7 @@ def serialize_aws_json_1_1(value: UpdateActionTypeInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateActionTypeInput:
     out: UpdateActionTypeInput = {}  # type: ignore[typeddict-item]
-    if "actionType" in data:
+    if data.get("actionType") is not None:
         import capo_codepipeline.types.action_type_declaration
 
         out["action_type"] = (

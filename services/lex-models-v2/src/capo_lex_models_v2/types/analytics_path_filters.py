@@ -25,6 +25,8 @@ def deserialize_json(data: list) -> AnalyticsPathFilters:
 
     out: AnalyticsPathFilters = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_lex_models_v2.types.analytics_path_filter.deserialize_json(item)
         )

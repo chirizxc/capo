@@ -36,13 +36,13 @@ def serialize_json(value: ValueWithServiceIds) -> dict:
 
 def deserialize_json(data: dict) -> ValueWithServiceIds:
     out: ValueWithServiceIds = {}  # type: ignore[typeddict-item]
-    if "AnnotationValue" in data:
+    if data.get("AnnotationValue") is not None:
         import capo_xray.types.annotation_value
 
         out["annotation_value"] = capo_xray.types.annotation_value.deserialize_json(
             data["AnnotationValue"]
         )
-    if "ServiceIds" in data:
+    if data.get("ServiceIds") is not None:
         import capo_xray.types.service_ids
 
         out["service_ids"] = capo_xray.types.service_ids.deserialize_json(

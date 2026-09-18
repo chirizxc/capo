@@ -28,11 +28,11 @@ def serialize_aws_json_1_0(value: CreateEngagementInvitationResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CreateEngagementInvitationResponse:
     out: CreateEngagementInvitationResponse = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
     else:
         raise DeserializationError("CreateEngagementInvitationResponse.id required")
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
     else:
         raise DeserializationError("CreateEngagementInvitationResponse.arn required")

@@ -508,17 +508,19 @@ class AsyncLexModelsV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lex_models_v2.types.batch_create_custom_vocabulary_item_request.BatchCreateCustomVocabularyItemRequest = {}  # type: ignore[typeddict-item]
-        input_["bot_id"] = bot_id
-        input_["bot_version"] = bot_version
-        input_["locale_id"] = locale_id
-        input_["custom_vocabulary_item_list"] = custom_vocabulary_item_list
+        input_: capo_lex_models_v2.types.batch_create_custom_vocabulary_item_request.BatchCreateCustomVocabularyItemRequest = {
+            "bot_id": bot_id,
+            "bot_version": bot_version,
+            "locale_id": locale_id,
+            "custom_vocabulary_item_list": custom_vocabulary_item_list,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def batch_delete_custom_vocabulary_item(
@@ -563,17 +565,19 @@ class AsyncLexModelsV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lex_models_v2.types.batch_delete_custom_vocabulary_item_request.BatchDeleteCustomVocabularyItemRequest = {}  # type: ignore[typeddict-item]
-        input_["bot_id"] = bot_id
-        input_["bot_version"] = bot_version
-        input_["locale_id"] = locale_id
-        input_["custom_vocabulary_item_list"] = custom_vocabulary_item_list
+        input_: capo_lex_models_v2.types.batch_delete_custom_vocabulary_item_request.BatchDeleteCustomVocabularyItemRequest = {
+            "bot_id": bot_id,
+            "bot_version": bot_version,
+            "locale_id": locale_id,
+            "custom_vocabulary_item_list": custom_vocabulary_item_list,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def batch_update_custom_vocabulary_item(
@@ -618,17 +622,19 @@ class AsyncLexModelsV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lex_models_v2.types.batch_update_custom_vocabulary_item_request.BatchUpdateCustomVocabularyItemRequest = {}  # type: ignore[typeddict-item]
-        input_["bot_id"] = bot_id
-        input_["bot_version"] = bot_version
-        input_["locale_id"] = locale_id
-        input_["custom_vocabulary_item_list"] = custom_vocabulary_item_list
+        input_: capo_lex_models_v2.types.batch_update_custom_vocabulary_item_request.BatchUpdateCustomVocabularyItemRequest = {
+            "bot_id": bot_id,
+            "bot_version": bot_version,
+            "locale_id": locale_id,
+            "custom_vocabulary_item_list": custom_vocabulary_item_list,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def build_bot_locale(
@@ -672,16 +678,18 @@ class AsyncLexModelsV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lex_models_v2.types.build_bot_locale_request.BuildBotLocaleRequest = {}  # type: ignore[typeddict-item]
-        input_["bot_id"] = bot_id
-        input_["bot_version"] = bot_version
-        input_["locale_id"] = locale_id
+        input_: capo_lex_models_v2.types.build_bot_locale_request.BuildBotLocaleRequest = {
+            "bot_id": bot_id,
+            "bot_version": bot_version,
+            "locale_id": locale_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_bot(
@@ -743,13 +751,14 @@ class AsyncLexModelsV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lex_models_v2.types.create_bot_request.CreateBotRequest = {}  # type: ignore[typeddict-item]
-        input_["bot_name"] = bot_name
+        input_: capo_lex_models_v2.types.create_bot_request.CreateBotRequest = {
+            "bot_name": bot_name,
+            "role_arn": role_arn,
+            "data_privacy": data_privacy,
+            "idle_session_ttl_in_seconds": idle_session_ttl_in_seconds,
+        }
         if description is not None:
             input_["description"] = description
-        input_["role_arn"] = role_arn
-        input_["data_privacy"] = data_privacy
-        input_["idle_session_ttl_in_seconds"] = idle_session_ttl_in_seconds
         if bot_tags is not None:
             input_["bot_tags"] = bot_tags
         if test_bot_alias_tags is not None:
@@ -766,6 +775,7 @@ class AsyncLexModelsV2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_bot_alias(
@@ -828,8 +838,10 @@ class AsyncLexModelsV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lex_models_v2.types.create_bot_alias_request.CreateBotAliasRequest = {}  # type: ignore[typeddict-item]
-        input_["bot_alias_name"] = bot_alias_name
+        input_: capo_lex_models_v2.types.create_bot_alias_request.CreateBotAliasRequest = {
+            "bot_alias_name": bot_alias_name,
+            "bot_id": bot_id,
+        }
         if description is not None:
             input_["description"] = description
         if bot_version is not None:
@@ -840,7 +852,6 @@ class AsyncLexModelsV2Client:
             input_["conversation_log_settings"] = conversation_log_settings
         if sentiment_analysis_settings is not None:
             input_["sentiment_analysis_settings"] = sentiment_analysis_settings
-        input_["bot_id"] = bot_id
         if tags is not None:
             input_["tags"] = tags
 
@@ -849,6 +860,7 @@ class AsyncLexModelsV2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_bot_locale(
@@ -921,13 +933,14 @@ class AsyncLexModelsV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lex_models_v2.types.create_bot_locale_request.CreateBotLocaleRequest = {}  # type: ignore[typeddict-item]
-        input_["bot_id"] = bot_id
-        input_["bot_version"] = bot_version
-        input_["locale_id"] = locale_id
+        input_: capo_lex_models_v2.types.create_bot_locale_request.CreateBotLocaleRequest = {
+            "bot_id": bot_id,
+            "bot_version": bot_version,
+            "locale_id": locale_id,
+            "nlu_intent_confidence_threshold": nlu_intent_confidence_threshold,
+        }
         if description is not None:
             input_["description"] = description
-        input_["nlu_intent_confidence_threshold"] = nlu_intent_confidence_threshold
         if voice_settings is not None:
             input_["voice_settings"] = voice_settings
         if unified_speech_settings is not None:
@@ -946,6 +959,7 @@ class AsyncLexModelsV2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_bot_replica(
@@ -989,15 +1003,17 @@ class AsyncLexModelsV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lex_models_v2.types.create_bot_replica_request.CreateBotReplicaRequest = {}  # type: ignore[typeddict-item]
-        input_["bot_id"] = bot_id
-        input_["replica_region"] = replica_region
+        input_: capo_lex_models_v2.types.create_bot_replica_request.CreateBotReplicaRequest = {
+            "bot_id": bot_id,
+            "replica_region": replica_region,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_bot_version(
@@ -1045,17 +1061,19 @@ class AsyncLexModelsV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lex_models_v2.types.create_bot_version_request.CreateBotVersionRequest = {}  # type: ignore[typeddict-item]
-        input_["bot_id"] = bot_id
+        input_: capo_lex_models_v2.types.create_bot_version_request.CreateBotVersionRequest = {
+            "bot_id": bot_id,
+            "bot_version_locale_specification": bot_version_locale_specification,
+        }
         if description is not None:
             input_["description"] = description
-        input_["bot_version_locale_specification"] = bot_version_locale_specification
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_export(
@@ -1101,9 +1119,10 @@ class AsyncLexModelsV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lex_models_v2.types.create_export_request.CreateExportRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_specification"] = resource_specification
-        input_["file_format"] = file_format
+        input_: capo_lex_models_v2.types.create_export_request.CreateExportRequest = {
+            "resource_specification": resource_specification,
+            "file_format": file_format,
+        }
         if file_password is not None:
             input_["file_password"] = file_password
 
@@ -1112,6 +1131,7 @@ class AsyncLexModelsV2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_intent(
@@ -1213,8 +1233,12 @@ class AsyncLexModelsV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lex_models_v2.types.create_intent_request.CreateIntentRequest = {}  # type: ignore[typeddict-item]
-        input_["intent_name"] = intent_name
+        input_: capo_lex_models_v2.types.create_intent_request.CreateIntentRequest = {
+            "intent_name": intent_name,
+            "bot_id": bot_id,
+            "bot_version": bot_version,
+            "locale_id": locale_id,
+        }
         if intent_display_name is not None:
             input_["intent_display_name"] = intent_display_name
         if description is not None:
@@ -1237,9 +1261,6 @@ class AsyncLexModelsV2Client:
             input_["output_contexts"] = output_contexts
         if kendra_configuration is not None:
             input_["kendra_configuration"] = kendra_configuration
-        input_["bot_id"] = bot_id
-        input_["bot_version"] = bot_version
-        input_["locale_id"] = locale_id
         if initial_response_setting is not None:
             input_["initial_response_setting"] = initial_response_setting
         if qn_a_intent_configuration is not None:
@@ -1254,6 +1275,7 @@ class AsyncLexModelsV2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_resource_policy(
@@ -1295,15 +1317,17 @@ class AsyncLexModelsV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lex_models_v2.types.create_resource_policy_request.CreateResourcePolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["policy"] = policy
+        input_: capo_lex_models_v2.types.create_resource_policy_request.CreateResourcePolicyRequest = {
+            "resource_arn": resource_arn,
+            "policy": policy,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_resource_policy_statement(
@@ -1360,12 +1384,13 @@ class AsyncLexModelsV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lex_models_v2.types.create_resource_policy_statement_request.CreateResourcePolicyStatementRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["statement_id"] = statement_id
-        input_["effect"] = effect
-        input_["principal"] = principal
-        input_["action"] = action
+        input_: capo_lex_models_v2.types.create_resource_policy_statement_request.CreateResourcePolicyStatementRequest = {
+            "resource_arn": resource_arn,
+            "statement_id": statement_id,
+            "effect": effect,
+            "principal": principal,
+            "action": action,
+        }
         if condition is not None:
             input_["condition"] = condition
         if expected_revision_id is not None:
@@ -1376,6 +1401,7 @@ class AsyncLexModelsV2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_slot(
@@ -1445,19 +1471,20 @@ class AsyncLexModelsV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lex_models_v2.types.create_slot_request.CreateSlotRequest = {}  # type: ignore[typeddict-item]
-        input_["slot_name"] = slot_name
+        input_: capo_lex_models_v2.types.create_slot_request.CreateSlotRequest = {
+            "slot_name": slot_name,
+            "value_elicitation_setting": value_elicitation_setting,
+            "bot_id": bot_id,
+            "bot_version": bot_version,
+            "locale_id": locale_id,
+            "intent_id": intent_id,
+        }
         if description is not None:
             input_["description"] = description
         if slot_type_id is not None:
             input_["slot_type_id"] = slot_type_id
-        input_["value_elicitation_setting"] = value_elicitation_setting
         if obfuscation_setting is not None:
             input_["obfuscation_setting"] = obfuscation_setting
-        input_["bot_id"] = bot_id
-        input_["bot_version"] = bot_version
-        input_["locale_id"] = locale_id
-        input_["intent_id"] = intent_id
         if multiple_values_setting is not None:
             input_["multiple_values_setting"] = multiple_values_setting
         if sub_slot_setting is not None:
@@ -1468,6 +1495,7 @@ class AsyncLexModelsV2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_slot_type(
@@ -1537,8 +1565,12 @@ class AsyncLexModelsV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lex_models_v2.types.create_slot_type_request.CreateSlotTypeRequest = {}  # type: ignore[typeddict-item]
-        input_["slot_type_name"] = slot_type_name
+        input_: capo_lex_models_v2.types.create_slot_type_request.CreateSlotTypeRequest = {
+            "slot_type_name": slot_type_name,
+            "bot_id": bot_id,
+            "bot_version": bot_version,
+            "locale_id": locale_id,
+        }
         if description is not None:
             input_["description"] = description
         if slot_type_values is not None:
@@ -1547,9 +1579,6 @@ class AsyncLexModelsV2Client:
             input_["value_selection_setting"] = value_selection_setting
         if parent_slot_type_signature is not None:
             input_["parent_slot_type_signature"] = parent_slot_type_signature
-        input_["bot_id"] = bot_id
-        input_["bot_version"] = bot_version
-        input_["locale_id"] = locale_id
         if external_source_setting is not None:
             input_["external_source_setting"] = external_source_setting
         if composite_slot_type_setting is not None:
@@ -1560,6 +1589,7 @@ class AsyncLexModelsV2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_test_set_discrepancy_report(
@@ -1601,15 +1631,17 @@ class AsyncLexModelsV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lex_models_v2.types.create_test_set_discrepancy_report_request.CreateTestSetDiscrepancyReportRequest = {}  # type: ignore[typeddict-item]
-        input_["test_set_id"] = test_set_id
-        input_["target"] = target
+        input_: capo_lex_models_v2.types.create_test_set_discrepancy_report_request.CreateTestSetDiscrepancyReportRequest = {
+            "test_set_id": test_set_id,
+            "target": target,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_upload_url(
@@ -1642,13 +1674,14 @@ class AsyncLexModelsV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lex_models_v2.types.create_upload_url_request.CreateUploadUrlRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_lex_models_v2.types.create_upload_url_request.CreateUploadUrlRequest = {}
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_bot(
@@ -1692,8 +1725,9 @@ class AsyncLexModelsV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lex_models_v2.types.delete_bot_request.DeleteBotRequest = {}  # type: ignore[typeddict-item]
-        input_["bot_id"] = bot_id
+        input_: capo_lex_models_v2.types.delete_bot_request.DeleteBotRequest = {
+            "bot_id": bot_id
+        }
         if skip_resource_in_use_check is not None:
             input_["skip_resource_in_use_check"] = skip_resource_in_use_check
 
@@ -1702,6 +1736,7 @@ class AsyncLexModelsV2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_bot_alias(
@@ -1747,9 +1782,10 @@ class AsyncLexModelsV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lex_models_v2.types.delete_bot_alias_request.DeleteBotAliasRequest = {}  # type: ignore[typeddict-item]
-        input_["bot_alias_id"] = bot_alias_id
-        input_["bot_id"] = bot_id
+        input_: capo_lex_models_v2.types.delete_bot_alias_request.DeleteBotAliasRequest = {
+            "bot_alias_id": bot_alias_id,
+            "bot_id": bot_id,
+        }
         if skip_resource_in_use_check is not None:
             input_["skip_resource_in_use_check"] = skip_resource_in_use_check
 
@@ -1758,6 +1794,7 @@ class AsyncLexModelsV2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_bot_analyzer_recommendation(
@@ -1797,15 +1834,17 @@ class AsyncLexModelsV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lex_models_v2.types.delete_bot_analyzer_recommendation_request.DeleteBotAnalyzerRecommendationRequest = {}  # type: ignore[typeddict-item]
-        input_["bot_id"] = bot_id
-        input_["bot_analyzer_request_id"] = bot_analyzer_request_id
+        input_: capo_lex_models_v2.types.delete_bot_analyzer_recommendation_request.DeleteBotAnalyzerRecommendationRequest = {
+            "bot_id": bot_id,
+            "bot_analyzer_request_id": bot_analyzer_request_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_bot_locale(
@@ -1849,16 +1888,18 @@ class AsyncLexModelsV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lex_models_v2.types.delete_bot_locale_request.DeleteBotLocaleRequest = {}  # type: ignore[typeddict-item]
-        input_["bot_id"] = bot_id
-        input_["bot_version"] = bot_version
-        input_["locale_id"] = locale_id
+        input_: capo_lex_models_v2.types.delete_bot_locale_request.DeleteBotLocaleRequest = {
+            "bot_id": bot_id,
+            "bot_version": bot_version,
+            "locale_id": locale_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_bot_replica(
@@ -1902,15 +1943,17 @@ class AsyncLexModelsV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lex_models_v2.types.delete_bot_replica_request.DeleteBotReplicaRequest = {}  # type: ignore[typeddict-item]
-        input_["bot_id"] = bot_id
-        input_["replica_region"] = replica_region
+        input_: capo_lex_models_v2.types.delete_bot_replica_request.DeleteBotReplicaRequest = {
+            "bot_id": bot_id,
+            "replica_region": replica_region,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_bot_version(
@@ -1958,9 +2001,10 @@ class AsyncLexModelsV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lex_models_v2.types.delete_bot_version_request.DeleteBotVersionRequest = {}  # type: ignore[typeddict-item]
-        input_["bot_id"] = bot_id
-        input_["bot_version"] = bot_version
+        input_: capo_lex_models_v2.types.delete_bot_version_request.DeleteBotVersionRequest = {
+            "bot_id": bot_id,
+            "bot_version": bot_version,
+        }
         if skip_resource_in_use_check is not None:
             input_["skip_resource_in_use_check"] = skip_resource_in_use_check
 
@@ -1969,6 +2013,7 @@ class AsyncLexModelsV2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_custom_vocabulary(
@@ -2012,16 +2057,18 @@ class AsyncLexModelsV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lex_models_v2.types.delete_custom_vocabulary_request.DeleteCustomVocabularyRequest = {}  # type: ignore[typeddict-item]
-        input_["bot_id"] = bot_id
-        input_["bot_version"] = bot_version
-        input_["locale_id"] = locale_id
+        input_: capo_lex_models_v2.types.delete_custom_vocabulary_request.DeleteCustomVocabularyRequest = {
+            "bot_id": bot_id,
+            "bot_version": bot_version,
+            "locale_id": locale_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_export(
@@ -2060,14 +2107,16 @@ class AsyncLexModelsV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lex_models_v2.types.delete_export_request.DeleteExportRequest = {}  # type: ignore[typeddict-item]
-        input_["export_id"] = export_id
+        input_: capo_lex_models_v2.types.delete_export_request.DeleteExportRequest = {
+            "export_id": export_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_import(
@@ -2106,14 +2155,16 @@ class AsyncLexModelsV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lex_models_v2.types.delete_import_request.DeleteImportRequest = {}  # type: ignore[typeddict-item]
-        input_["import_id"] = import_id
+        input_: capo_lex_models_v2.types.delete_import_request.DeleteImportRequest = {
+            "import_id": import_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_intent(
@@ -2157,17 +2208,19 @@ class AsyncLexModelsV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lex_models_v2.types.delete_intent_request.DeleteIntentRequest = {}  # type: ignore[typeddict-item]
-        input_["intent_id"] = intent_id
-        input_["bot_id"] = bot_id
-        input_["bot_version"] = bot_version
-        input_["locale_id"] = locale_id
+        input_: capo_lex_models_v2.types.delete_intent_request.DeleteIntentRequest = {
+            "intent_id": intent_id,
+            "bot_id": bot_id,
+            "bot_version": bot_version,
+            "locale_id": locale_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_resource_policy(
@@ -2209,8 +2262,9 @@ class AsyncLexModelsV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lex_models_v2.types.delete_resource_policy_request.DeleteResourcePolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_lex_models_v2.types.delete_resource_policy_request.DeleteResourcePolicyRequest = {
+            "resource_arn": resource_arn
+        }
         if expected_revision_id is not None:
             input_["expected_revision_id"] = expected_revision_id
 
@@ -2219,6 +2273,7 @@ class AsyncLexModelsV2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_resource_policy_statement(
@@ -2262,9 +2317,10 @@ class AsyncLexModelsV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lex_models_v2.types.delete_resource_policy_statement_request.DeleteResourcePolicyStatementRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["statement_id"] = statement_id
+        input_: capo_lex_models_v2.types.delete_resource_policy_statement_request.DeleteResourcePolicyStatementRequest = {
+            "resource_arn": resource_arn,
+            "statement_id": statement_id,
+        }
         if expected_revision_id is not None:
             input_["expected_revision_id"] = expected_revision_id
 
@@ -2273,6 +2329,7 @@ class AsyncLexModelsV2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_slot(
@@ -2318,18 +2375,20 @@ class AsyncLexModelsV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lex_models_v2.types.delete_slot_request.DeleteSlotRequest = {}  # type: ignore[typeddict-item]
-        input_["slot_id"] = slot_id
-        input_["bot_id"] = bot_id
-        input_["bot_version"] = bot_version
-        input_["locale_id"] = locale_id
-        input_["intent_id"] = intent_id
+        input_: capo_lex_models_v2.types.delete_slot_request.DeleteSlotRequest = {
+            "slot_id": slot_id,
+            "bot_id": bot_id,
+            "bot_version": bot_version,
+            "locale_id": locale_id,
+            "intent_id": intent_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_slot_type(
@@ -2377,11 +2436,12 @@ class AsyncLexModelsV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lex_models_v2.types.delete_slot_type_request.DeleteSlotTypeRequest = {}  # type: ignore[typeddict-item]
-        input_["slot_type_id"] = slot_type_id
-        input_["bot_id"] = bot_id
-        input_["bot_version"] = bot_version
-        input_["locale_id"] = locale_id
+        input_: capo_lex_models_v2.types.delete_slot_type_request.DeleteSlotTypeRequest = {
+            "slot_type_id": slot_type_id,
+            "bot_id": bot_id,
+            "bot_version": bot_version,
+            "locale_id": locale_id,
+        }
         if skip_resource_in_use_check is not None:
             input_["skip_resource_in_use_check"] = skip_resource_in_use_check
 
@@ -2390,6 +2450,7 @@ class AsyncLexModelsV2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_test_set(
@@ -2427,14 +2488,16 @@ class AsyncLexModelsV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lex_models_v2.types.delete_test_set_request.DeleteTestSetRequest = {}  # type: ignore[typeddict-item]
-        input_["test_set_id"] = test_set_id
+        input_: capo_lex_models_v2.types.delete_test_set_request.DeleteTestSetRequest = {
+            "test_set_id": test_set_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_utterances(
@@ -2475,8 +2538,9 @@ class AsyncLexModelsV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lex_models_v2.types.delete_utterances_request.DeleteUtterancesRequest = {}  # type: ignore[typeddict-item]
-        input_["bot_id"] = bot_id
+        input_: capo_lex_models_v2.types.delete_utterances_request.DeleteUtterancesRequest = {
+            "bot_id": bot_id
+        }
         if locale_id is not None:
             input_["locale_id"] = locale_id
         if session_id is not None:
@@ -2487,6 +2551,7 @@ class AsyncLexModelsV2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_bot(
@@ -2525,14 +2590,16 @@ class AsyncLexModelsV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lex_models_v2.types.describe_bot_request.DescribeBotRequest = {}  # type: ignore[typeddict-item]
-        input_["bot_id"] = bot_id
+        input_: capo_lex_models_v2.types.describe_bot_request.DescribeBotRequest = {
+            "bot_id": bot_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_bot_alias(
@@ -2575,15 +2642,17 @@ class AsyncLexModelsV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lex_models_v2.types.describe_bot_alias_request.DescribeBotAliasRequest = {}  # type: ignore[typeddict-item]
-        input_["bot_alias_id"] = bot_alias_id
-        input_["bot_id"] = bot_id
+        input_: capo_lex_models_v2.types.describe_bot_alias_request.DescribeBotAliasRequest = {
+            "bot_alias_id": bot_alias_id,
+            "bot_id": bot_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_bot_analyzer_recommendation(
@@ -2627,9 +2696,10 @@ class AsyncLexModelsV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lex_models_v2.types.describe_bot_analyzer_recommendation_request.DescribeBotAnalyzerRecommendationRequest = {}  # type: ignore[typeddict-item]
-        input_["bot_id"] = bot_id
-        input_["bot_analyzer_request_id"] = bot_analyzer_request_id
+        input_: capo_lex_models_v2.types.describe_bot_analyzer_recommendation_request.DescribeBotAnalyzerRecommendationRequest = {
+            "bot_id": bot_id,
+            "bot_analyzer_request_id": bot_analyzer_request_id,
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -2640,6 +2710,7 @@ class AsyncLexModelsV2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_describe_bot_analyzer_recommendation(
@@ -2707,16 +2778,18 @@ class AsyncLexModelsV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lex_models_v2.types.describe_bot_locale_request.DescribeBotLocaleRequest = {}  # type: ignore[typeddict-item]
-        input_["bot_id"] = bot_id
-        input_["bot_version"] = bot_version
-        input_["locale_id"] = locale_id
+        input_: capo_lex_models_v2.types.describe_bot_locale_request.DescribeBotLocaleRequest = {
+            "bot_id": bot_id,
+            "bot_version": bot_version,
+            "locale_id": locale_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_bot_recommendation(
@@ -2760,17 +2833,19 @@ class AsyncLexModelsV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lex_models_v2.types.describe_bot_recommendation_request.DescribeBotRecommendationRequest = {}  # type: ignore[typeddict-item]
-        input_["bot_id"] = bot_id
-        input_["bot_version"] = bot_version
-        input_["locale_id"] = locale_id
-        input_["bot_recommendation_id"] = bot_recommendation_id
+        input_: capo_lex_models_v2.types.describe_bot_recommendation_request.DescribeBotRecommendationRequest = {
+            "bot_id": bot_id,
+            "bot_version": bot_version,
+            "locale_id": locale_id,
+            "bot_recommendation_id": bot_recommendation_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_bot_replica(
@@ -2811,15 +2886,17 @@ class AsyncLexModelsV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lex_models_v2.types.describe_bot_replica_request.DescribeBotReplicaRequest = {}  # type: ignore[typeddict-item]
-        input_["bot_id"] = bot_id
-        input_["replica_region"] = replica_region
+        input_: capo_lex_models_v2.types.describe_bot_replica_request.DescribeBotReplicaRequest = {
+            "bot_id": bot_id,
+            "replica_region": replica_region,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_bot_resource_generation(
@@ -2863,17 +2940,19 @@ class AsyncLexModelsV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lex_models_v2.types.describe_bot_resource_generation_request.DescribeBotResourceGenerationRequest = {}  # type: ignore[typeddict-item]
-        input_["bot_id"] = bot_id
-        input_["bot_version"] = bot_version
-        input_["locale_id"] = locale_id
-        input_["generation_id"] = generation_id
+        input_: capo_lex_models_v2.types.describe_bot_resource_generation_request.DescribeBotResourceGenerationRequest = {
+            "bot_id": bot_id,
+            "bot_version": bot_version,
+            "locale_id": locale_id,
+            "generation_id": generation_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_bot_version(
@@ -2914,15 +2993,17 @@ class AsyncLexModelsV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lex_models_v2.types.describe_bot_version_request.DescribeBotVersionRequest = {}  # type: ignore[typeddict-item]
-        input_["bot_id"] = bot_id
-        input_["bot_version"] = bot_version
+        input_: capo_lex_models_v2.types.describe_bot_version_request.DescribeBotVersionRequest = {
+            "bot_id": bot_id,
+            "bot_version": bot_version,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_custom_vocabulary_metadata(
@@ -2965,16 +3046,18 @@ class AsyncLexModelsV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lex_models_v2.types.describe_custom_vocabulary_metadata_request.DescribeCustomVocabularyMetadataRequest = {}  # type: ignore[typeddict-item]
-        input_["bot_id"] = bot_id
-        input_["bot_version"] = bot_version
-        input_["locale_id"] = locale_id
+        input_: capo_lex_models_v2.types.describe_custom_vocabulary_metadata_request.DescribeCustomVocabularyMetadataRequest = {
+            "bot_id": bot_id,
+            "bot_version": bot_version,
+            "locale_id": locale_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_export(
@@ -3012,14 +3095,16 @@ class AsyncLexModelsV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lex_models_v2.types.describe_export_request.DescribeExportRequest = {}  # type: ignore[typeddict-item]
-        input_["export_id"] = export_id
+        input_: capo_lex_models_v2.types.describe_export_request.DescribeExportRequest = {
+            "export_id": export_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_import(
@@ -3057,14 +3142,16 @@ class AsyncLexModelsV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lex_models_v2.types.describe_import_request.DescribeImportRequest = {}  # type: ignore[typeddict-item]
-        input_["import_id"] = import_id
+        input_: capo_lex_models_v2.types.describe_import_request.DescribeImportRequest = {
+            "import_id": import_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_intent(
@@ -3109,17 +3196,19 @@ class AsyncLexModelsV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lex_models_v2.types.describe_intent_request.DescribeIntentRequest = {}  # type: ignore[typeddict-item]
-        input_["intent_id"] = intent_id
-        input_["bot_id"] = bot_id
-        input_["bot_version"] = bot_version
-        input_["locale_id"] = locale_id
+        input_: capo_lex_models_v2.types.describe_intent_request.DescribeIntentRequest = {
+            "intent_id": intent_id,
+            "bot_id": bot_id,
+            "bot_version": bot_version,
+            "locale_id": locale_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_resource_policy(
@@ -3156,14 +3245,16 @@ class AsyncLexModelsV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lex_models_v2.types.describe_resource_policy_request.DescribeResourcePolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_lex_models_v2.types.describe_resource_policy_request.DescribeResourcePolicyRequest = {
+            "resource_arn": resource_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_slot(
@@ -3210,18 +3301,20 @@ class AsyncLexModelsV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lex_models_v2.types.describe_slot_request.DescribeSlotRequest = {}  # type: ignore[typeddict-item]
-        input_["slot_id"] = slot_id
-        input_["bot_id"] = bot_id
-        input_["bot_version"] = bot_version
-        input_["locale_id"] = locale_id
-        input_["intent_id"] = intent_id
+        input_: capo_lex_models_v2.types.describe_slot_request.DescribeSlotRequest = {
+            "slot_id": slot_id,
+            "bot_id": bot_id,
+            "bot_version": bot_version,
+            "locale_id": locale_id,
+            "intent_id": intent_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_slot_type(
@@ -3268,17 +3361,19 @@ class AsyncLexModelsV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lex_models_v2.types.describe_slot_type_request.DescribeSlotTypeRequest = {}  # type: ignore[typeddict-item]
-        input_["slot_type_id"] = slot_type_id
-        input_["bot_id"] = bot_id
-        input_["bot_version"] = bot_version
-        input_["locale_id"] = locale_id
+        input_: capo_lex_models_v2.types.describe_slot_type_request.DescribeSlotTypeRequest = {
+            "slot_type_id": slot_type_id,
+            "bot_id": bot_id,
+            "bot_version": bot_version,
+            "locale_id": locale_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_test_execution(
@@ -3317,14 +3412,16 @@ class AsyncLexModelsV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lex_models_v2.types.describe_test_execution_request.DescribeTestExecutionRequest = {}  # type: ignore[typeddict-item]
-        input_["test_execution_id"] = test_execution_id
+        input_: capo_lex_models_v2.types.describe_test_execution_request.DescribeTestExecutionRequest = {
+            "test_execution_id": test_execution_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_test_set(
@@ -3363,14 +3460,16 @@ class AsyncLexModelsV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lex_models_v2.types.describe_test_set_request.DescribeTestSetRequest = {}  # type: ignore[typeddict-item]
-        input_["test_set_id"] = test_set_id
+        input_: capo_lex_models_v2.types.describe_test_set_request.DescribeTestSetRequest = {
+            "test_set_id": test_set_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_test_set_discrepancy_report(
@@ -3409,14 +3508,16 @@ class AsyncLexModelsV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lex_models_v2.types.describe_test_set_discrepancy_report_request.DescribeTestSetDiscrepancyReportRequest = {}  # type: ignore[typeddict-item]
-        input_["test_set_discrepancy_report_id"] = test_set_discrepancy_report_id
+        input_: capo_lex_models_v2.types.describe_test_set_discrepancy_report_request.DescribeTestSetDiscrepancyReportRequest = {
+            "test_set_discrepancy_report_id": test_set_discrepancy_report_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_test_set_generation(
@@ -3455,14 +3556,16 @@ class AsyncLexModelsV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lex_models_v2.types.describe_test_set_generation_request.DescribeTestSetGenerationRequest = {}  # type: ignore[typeddict-item]
-        input_["test_set_generation_id"] = test_set_generation_id
+        input_: capo_lex_models_v2.types.describe_test_set_generation_request.DescribeTestSetGenerationRequest = {
+            "test_set_generation_id": test_set_generation_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def generate_bot_element(
@@ -3509,17 +3612,19 @@ class AsyncLexModelsV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lex_models_v2.types.generate_bot_element_request.GenerateBotElementRequest = {}  # type: ignore[typeddict-item]
-        input_["intent_id"] = intent_id
-        input_["bot_id"] = bot_id
-        input_["bot_version"] = bot_version
-        input_["locale_id"] = locale_id
+        input_: capo_lex_models_v2.types.generate_bot_element_request.GenerateBotElementRequest = {
+            "intent_id": intent_id,
+            "bot_id": bot_id,
+            "bot_version": bot_version,
+            "locale_id": locale_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_test_execution_artifacts_url(
@@ -3558,14 +3663,16 @@ class AsyncLexModelsV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lex_models_v2.types.get_test_execution_artifacts_url_request.GetTestExecutionArtifactsUrlRequest = {}  # type: ignore[typeddict-item]
-        input_["test_execution_id"] = test_execution_id
+        input_: capo_lex_models_v2.types.get_test_execution_artifacts_url_request.GetTestExecutionArtifactsUrlRequest = {
+            "test_execution_id": test_execution_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_aggregated_utterances(
@@ -3625,14 +3732,15 @@ class AsyncLexModelsV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lex_models_v2.types.list_aggregated_utterances_request.ListAggregatedUtterancesRequest = {}  # type: ignore[typeddict-item]
-        input_["bot_id"] = bot_id
+        input_: capo_lex_models_v2.types.list_aggregated_utterances_request.ListAggregatedUtterancesRequest = {
+            "bot_id": bot_id,
+            "locale_id": locale_id,
+            "aggregation_duration": aggregation_duration,
+        }
         if bot_alias_id is not None:
             input_["bot_alias_id"] = bot_alias_id
         if bot_version is not None:
             input_["bot_version"] = bot_version
-        input_["locale_id"] = locale_id
-        input_["aggregation_duration"] = aggregation_duration
         if sort_by is not None:
             input_["sort_by"] = sort_by
         if filters is not None:
@@ -3647,7 +3755,47 @@ class AsyncLexModelsV2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_aggregated_utterances(
+        self,
+        bot_id: "capo_lex_models_v2.types.id.Id",
+        locale_id: "capo_lex_models_v2.types.locale_id.LocaleId",
+        aggregation_duration: "capo_lex_models_v2.types.utterance_aggregation_duration.UtteranceAggregationDuration",
+        *,
+        config_overrides: Optional[AsyncLexModelsV2ClientConfig] = None,
+        bot_alias_id: Optional[
+            "capo_lex_models_v2.types.bot_alias_id.BotAliasId"
+        ] = None,
+        bot_version: Optional["capo_lex_models_v2.types.bot_version.BotVersion"] = None,
+        sort_by: Optional[
+            "capo_lex_models_v2.types.aggregated_utterances_sort_by.AggregatedUtterancesSortBy"
+        ] = None,
+        filters: Optional[
+            "capo_lex_models_v2.types.aggregated_utterances_filters.AggregatedUtterancesFilters"
+        ] = None,
+        max_results: Optional["capo_lex_models_v2.types.max_results.MaxResults"] = None,
+        next_token: Optional["capo_lex_models_v2.types.next_token.NextToken"] = None,
+    ) -> "AsyncIterator[capo_lex_models_v2.types.list_aggregated_utterances_response.ListAggregatedUtterancesResponse]":
+        _token = next_token
+        while True:
+            _response = await self.list_aggregated_utterances(
+                bot_id,
+                locale_id,
+                aggregation_duration,
+                config_overrides=config_overrides,
+                bot_alias_id=bot_alias_id,
+                bot_version=bot_version,
+                sort_by=sort_by,
+                filters=filters,
+                max_results=max_results,
+                next_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_bot_aliases(
         self,
@@ -3688,8 +3836,9 @@ class AsyncLexModelsV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lex_models_v2.types.list_bot_aliases_request.ListBotAliasesRequest = {}  # type: ignore[typeddict-item]
-        input_["bot_id"] = bot_id
+        input_: capo_lex_models_v2.types.list_bot_aliases_request.ListBotAliasesRequest = {
+            "bot_id": bot_id
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -3700,7 +3849,29 @@ class AsyncLexModelsV2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_bot_aliases(
+        self,
+        bot_id: "capo_lex_models_v2.types.id.Id",
+        *,
+        config_overrides: Optional[AsyncLexModelsV2ClientConfig] = None,
+        max_results: Optional["capo_lex_models_v2.types.max_results.MaxResults"] = None,
+        next_token: Optional["capo_lex_models_v2.types.next_token.NextToken"] = None,
+    ) -> "AsyncIterator[capo_lex_models_v2.types.list_bot_aliases_response.ListBotAliasesResponse]":
+        _token = next_token
+        while True:
+            _response = await self.list_bot_aliases(
+                bot_id,
+                config_overrides=config_overrides,
+                max_results=max_results,
+                next_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_bot_alias_replicas(
         self,
@@ -3743,9 +3914,10 @@ class AsyncLexModelsV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lex_models_v2.types.list_bot_alias_replicas_request.ListBotAliasReplicasRequest = {}  # type: ignore[typeddict-item]
-        input_["bot_id"] = bot_id
-        input_["replica_region"] = replica_region
+        input_: capo_lex_models_v2.types.list_bot_alias_replicas_request.ListBotAliasReplicasRequest = {
+            "bot_id": bot_id,
+            "replica_region": replica_region,
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -3756,7 +3928,31 @@ class AsyncLexModelsV2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_bot_alias_replicas(
+        self,
+        bot_id: "capo_lex_models_v2.types.id.Id",
+        replica_region: "capo_lex_models_v2.types.replica_region.ReplicaRegion",
+        *,
+        config_overrides: Optional[AsyncLexModelsV2ClientConfig] = None,
+        max_results: Optional["capo_lex_models_v2.types.max_results.MaxResults"] = None,
+        next_token: Optional["capo_lex_models_v2.types.next_token.NextToken"] = None,
+    ) -> "AsyncIterator[capo_lex_models_v2.types.list_bot_alias_replicas_response.ListBotAliasReplicasResponse]":
+        _token = next_token
+        while True:
+            _response = await self.list_bot_alias_replicas(
+                bot_id,
+                replica_region,
+                config_overrides=config_overrides,
+                max_results=max_results,
+                next_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_bot_analyzer_history(
         self,
@@ -3803,8 +3999,9 @@ class AsyncLexModelsV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lex_models_v2.types.list_bot_analyzer_history_request.ListBotAnalyzerHistoryRequest = {}  # type: ignore[typeddict-item]
-        input_["bot_id"] = bot_id
+        input_: capo_lex_models_v2.types.list_bot_analyzer_history_request.ListBotAnalyzerHistoryRequest = {
+            "bot_id": bot_id
+        }
         if locale_id is not None:
             input_["locale_id"] = locale_id
         if bot_version is not None:
@@ -3819,6 +4016,7 @@ class AsyncLexModelsV2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_bot_analyzer_history(
@@ -3899,9 +4097,10 @@ class AsyncLexModelsV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lex_models_v2.types.list_bot_locales_request.ListBotLocalesRequest = {}  # type: ignore[typeddict-item]
-        input_["bot_id"] = bot_id
-        input_["bot_version"] = bot_version
+        input_: capo_lex_models_v2.types.list_bot_locales_request.ListBotLocalesRequest = {
+            "bot_id": bot_id,
+            "bot_version": bot_version,
+        }
         if sort_by is not None:
             input_["sort_by"] = sort_by
         if filters is not None:
@@ -3916,7 +4115,39 @@ class AsyncLexModelsV2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_bot_locales(
+        self,
+        bot_id: "capo_lex_models_v2.types.id.Id",
+        bot_version: "capo_lex_models_v2.types.bot_version.BotVersion",
+        *,
+        config_overrides: Optional[AsyncLexModelsV2ClientConfig] = None,
+        sort_by: Optional[
+            "capo_lex_models_v2.types.bot_locale_sort_by.BotLocaleSortBy"
+        ] = None,
+        filters: Optional[
+            "capo_lex_models_v2.types.bot_locale_filters.BotLocaleFilters"
+        ] = None,
+        max_results: Optional["capo_lex_models_v2.types.max_results.MaxResults"] = None,
+        next_token: Optional["capo_lex_models_v2.types.next_token.NextToken"] = None,
+    ) -> "AsyncIterator[capo_lex_models_v2.types.list_bot_locales_response.ListBotLocalesResponse]":
+        _token = next_token
+        while True:
+            _response = await self.list_bot_locales(
+                bot_id,
+                bot_version,
+                config_overrides=config_overrides,
+                sort_by=sort_by,
+                filters=filters,
+                max_results=max_results,
+                next_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_bot_recommendations(
         self,
@@ -3961,10 +4192,11 @@ class AsyncLexModelsV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lex_models_v2.types.list_bot_recommendations_request.ListBotRecommendationsRequest = {}  # type: ignore[typeddict-item]
-        input_["bot_id"] = bot_id
-        input_["bot_version"] = bot_version
-        input_["locale_id"] = locale_id
+        input_: capo_lex_models_v2.types.list_bot_recommendations_request.ListBotRecommendationsRequest = {
+            "bot_id": bot_id,
+            "bot_version": bot_version,
+            "locale_id": locale_id,
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -3975,7 +4207,33 @@ class AsyncLexModelsV2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_bot_recommendations(
+        self,
+        bot_id: "capo_lex_models_v2.types.id.Id",
+        bot_version: "capo_lex_models_v2.types.draft_bot_version.DraftBotVersion",
+        locale_id: "capo_lex_models_v2.types.locale_id.LocaleId",
+        *,
+        config_overrides: Optional[AsyncLexModelsV2ClientConfig] = None,
+        max_results: Optional["capo_lex_models_v2.types.max_results.MaxResults"] = None,
+        next_token: Optional["capo_lex_models_v2.types.next_token.NextToken"] = None,
+    ) -> "AsyncIterator[capo_lex_models_v2.types.list_bot_recommendations_response.ListBotRecommendationsResponse]":
+        _token = next_token
+        while True:
+            _response = await self.list_bot_recommendations(
+                bot_id,
+                bot_version,
+                locale_id,
+                config_overrides=config_overrides,
+                max_results=max_results,
+                next_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_bot_replicas(
         self,
@@ -4012,14 +4270,16 @@ class AsyncLexModelsV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lex_models_v2.types.list_bot_replicas_request.ListBotReplicasRequest = {}  # type: ignore[typeddict-item]
-        input_["bot_id"] = bot_id
+        input_: capo_lex_models_v2.types.list_bot_replicas_request.ListBotReplicasRequest = {
+            "bot_id": bot_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_bot_resource_generations(
@@ -4069,10 +4329,11 @@ class AsyncLexModelsV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lex_models_v2.types.list_bot_resource_generations_request.ListBotResourceGenerationsRequest = {}  # type: ignore[typeddict-item]
-        input_["bot_id"] = bot_id
-        input_["bot_version"] = bot_version
-        input_["locale_id"] = locale_id
+        input_: capo_lex_models_v2.types.list_bot_resource_generations_request.ListBotResourceGenerationsRequest = {
+            "bot_id": bot_id,
+            "bot_version": bot_version,
+            "locale_id": locale_id,
+        }
         if sort_by is not None:
             input_["sort_by"] = sort_by
         if max_results is not None:
@@ -4085,7 +4346,37 @@ class AsyncLexModelsV2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_bot_resource_generations(
+        self,
+        bot_id: "capo_lex_models_v2.types.id.Id",
+        bot_version: "capo_lex_models_v2.types.bot_version.BotVersion",
+        locale_id: "capo_lex_models_v2.types.locale_id.LocaleId",
+        *,
+        config_overrides: Optional[AsyncLexModelsV2ClientConfig] = None,
+        sort_by: Optional[
+            "capo_lex_models_v2.types.generation_sort_by.GenerationSortBy"
+        ] = None,
+        max_results: Optional["capo_lex_models_v2.types.max_results.MaxResults"] = None,
+        next_token: Optional["capo_lex_models_v2.types.next_token.NextToken"] = None,
+    ) -> "AsyncIterator[capo_lex_models_v2.types.list_bot_resource_generations_response.ListBotResourceGenerationsResponse]":
+        _token = next_token
+        while True:
+            _response = await self.list_bot_resource_generations(
+                bot_id,
+                bot_version,
+                locale_id,
+                config_overrides=config_overrides,
+                sort_by=sort_by,
+                max_results=max_results,
+                next_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_bots(
         self,
@@ -4128,7 +4419,7 @@ class AsyncLexModelsV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lex_models_v2.types.list_bots_request.ListBotsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_lex_models_v2.types.list_bots_request.ListBotsRequest = {}
         if sort_by is not None:
             input_["sort_by"] = sort_by
         if filters is not None:
@@ -4143,7 +4434,31 @@ class AsyncLexModelsV2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_bots(
+        self,
+        *,
+        config_overrides: Optional[AsyncLexModelsV2ClientConfig] = None,
+        sort_by: Optional["capo_lex_models_v2.types.bot_sort_by.BotSortBy"] = None,
+        filters: Optional["capo_lex_models_v2.types.bot_filters.BotFilters"] = None,
+        max_results: Optional["capo_lex_models_v2.types.max_results.MaxResults"] = None,
+        next_token: Optional["capo_lex_models_v2.types.next_token.NextToken"] = None,
+    ) -> "AsyncIterator[capo_lex_models_v2.types.list_bots_response.ListBotsResponse]":
+        _token = next_token
+        while True:
+            _response = await self.list_bots(
+                config_overrides=config_overrides,
+                sort_by=sort_by,
+                filters=filters,
+                max_results=max_results,
+                next_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_bot_version_replicas(
         self,
@@ -4190,9 +4505,10 @@ class AsyncLexModelsV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lex_models_v2.types.list_bot_version_replicas_request.ListBotVersionReplicasRequest = {}  # type: ignore[typeddict-item]
-        input_["bot_id"] = bot_id
-        input_["replica_region"] = replica_region
+        input_: capo_lex_models_v2.types.list_bot_version_replicas_request.ListBotVersionReplicasRequest = {
+            "bot_id": bot_id,
+            "replica_region": replica_region,
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -4205,7 +4521,35 @@ class AsyncLexModelsV2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_bot_version_replicas(
+        self,
+        bot_id: "capo_lex_models_v2.types.id.Id",
+        replica_region: "capo_lex_models_v2.types.replica_region.ReplicaRegion",
+        *,
+        config_overrides: Optional[AsyncLexModelsV2ClientConfig] = None,
+        max_results: Optional["capo_lex_models_v2.types.max_results.MaxResults"] = None,
+        next_token: Optional["capo_lex_models_v2.types.next_token.NextToken"] = None,
+        sort_by: Optional[
+            "capo_lex_models_v2.types.bot_version_replica_sort_by.BotVersionReplicaSortBy"
+        ] = None,
+    ) -> "AsyncIterator[capo_lex_models_v2.types.list_bot_version_replicas_response.ListBotVersionReplicasResponse]":
+        _token = next_token
+        while True:
+            _response = await self.list_bot_version_replicas(
+                bot_id,
+                replica_region,
+                config_overrides=config_overrides,
+                max_results=max_results,
+                next_token=_token,
+                sort_by=sort_by,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_bot_versions(
         self,
@@ -4250,8 +4594,9 @@ class AsyncLexModelsV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lex_models_v2.types.list_bot_versions_request.ListBotVersionsRequest = {}  # type: ignore[typeddict-item]
-        input_["bot_id"] = bot_id
+        input_: capo_lex_models_v2.types.list_bot_versions_request.ListBotVersionsRequest = {
+            "bot_id": bot_id
+        }
         if sort_by is not None:
             input_["sort_by"] = sort_by
         if max_results is not None:
@@ -4264,7 +4609,33 @@ class AsyncLexModelsV2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_bot_versions(
+        self,
+        bot_id: "capo_lex_models_v2.types.id.Id",
+        *,
+        config_overrides: Optional[AsyncLexModelsV2ClientConfig] = None,
+        sort_by: Optional[
+            "capo_lex_models_v2.types.bot_version_sort_by.BotVersionSortBy"
+        ] = None,
+        max_results: Optional["capo_lex_models_v2.types.max_results.MaxResults"] = None,
+        next_token: Optional["capo_lex_models_v2.types.next_token.NextToken"] = None,
+    ) -> "AsyncIterator[capo_lex_models_v2.types.list_bot_versions_response.ListBotVersionsResponse]":
+        _token = next_token
+        while True:
+            _response = await self.list_bot_versions(
+                bot_id,
+                config_overrides=config_overrides,
+                sort_by=sort_by,
+                max_results=max_results,
+                next_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_built_in_intents(
         self,
@@ -4311,8 +4682,9 @@ class AsyncLexModelsV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lex_models_v2.types.list_built_in_intents_request.ListBuiltInIntentsRequest = {}  # type: ignore[typeddict-item]
-        input_["locale_id"] = locale_id
+        input_: capo_lex_models_v2.types.list_built_in_intents_request.ListBuiltInIntentsRequest = {
+            "locale_id": locale_id
+        }
         if sort_by is not None:
             input_["sort_by"] = sort_by
         if max_results is not None:
@@ -4325,7 +4697,35 @@ class AsyncLexModelsV2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_built_in_intents(
+        self,
+        locale_id: "capo_lex_models_v2.types.locale_id.LocaleId",
+        *,
+        config_overrides: Optional[AsyncLexModelsV2ClientConfig] = None,
+        sort_by: Optional[
+            "capo_lex_models_v2.types.built_in_intent_sort_by.BuiltInIntentSortBy"
+        ] = None,
+        max_results: Optional[
+            "capo_lex_models_v2.types.built_ins_max_results.BuiltInsMaxResults"
+        ] = None,
+        next_token: Optional["capo_lex_models_v2.types.next_token.NextToken"] = None,
+    ) -> "AsyncIterator[capo_lex_models_v2.types.list_built_in_intents_response.ListBuiltInIntentsResponse]":
+        _token = next_token
+        while True:
+            _response = await self.list_built_in_intents(
+                locale_id,
+                config_overrides=config_overrides,
+                sort_by=sort_by,
+                max_results=max_results,
+                next_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_built_in_slot_types(
         self,
@@ -4372,8 +4772,9 @@ class AsyncLexModelsV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lex_models_v2.types.list_built_in_slot_types_request.ListBuiltInSlotTypesRequest = {}  # type: ignore[typeddict-item]
-        input_["locale_id"] = locale_id
+        input_: capo_lex_models_v2.types.list_built_in_slot_types_request.ListBuiltInSlotTypesRequest = {
+            "locale_id": locale_id
+        }
         if sort_by is not None:
             input_["sort_by"] = sort_by
         if max_results is not None:
@@ -4386,7 +4787,35 @@ class AsyncLexModelsV2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_built_in_slot_types(
+        self,
+        locale_id: "capo_lex_models_v2.types.locale_id.LocaleId",
+        *,
+        config_overrides: Optional[AsyncLexModelsV2ClientConfig] = None,
+        sort_by: Optional[
+            "capo_lex_models_v2.types.built_in_slot_type_sort_by.BuiltInSlotTypeSortBy"
+        ] = None,
+        max_results: Optional[
+            "capo_lex_models_v2.types.built_ins_max_results.BuiltInsMaxResults"
+        ] = None,
+        next_token: Optional["capo_lex_models_v2.types.next_token.NextToken"] = None,
+    ) -> "AsyncIterator[capo_lex_models_v2.types.list_built_in_slot_types_response.ListBuiltInSlotTypesResponse]":
+        _token = next_token
+        while True:
+            _response = await self.list_built_in_slot_types(
+                locale_id,
+                config_overrides=config_overrides,
+                sort_by=sort_by,
+                max_results=max_results,
+                next_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_custom_vocabulary_items(
         self,
@@ -4432,10 +4861,11 @@ class AsyncLexModelsV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lex_models_v2.types.list_custom_vocabulary_items_request.ListCustomVocabularyItemsRequest = {}  # type: ignore[typeddict-item]
-        input_["bot_id"] = bot_id
-        input_["bot_version"] = bot_version
-        input_["locale_id"] = locale_id
+        input_: capo_lex_models_v2.types.list_custom_vocabulary_items_request.ListCustomVocabularyItemsRequest = {
+            "bot_id": bot_id,
+            "bot_version": bot_version,
+            "locale_id": locale_id,
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -4446,7 +4876,33 @@ class AsyncLexModelsV2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_custom_vocabulary_items(
+        self,
+        bot_id: "capo_lex_models_v2.types.id.Id",
+        bot_version: "capo_lex_models_v2.types.bot_version.BotVersion",
+        locale_id: "capo_lex_models_v2.types.locale_id.LocaleId",
+        *,
+        config_overrides: Optional[AsyncLexModelsV2ClientConfig] = None,
+        max_results: Optional["capo_lex_models_v2.types.max_results.MaxResults"] = None,
+        next_token: Optional["capo_lex_models_v2.types.next_token.NextToken"] = None,
+    ) -> "AsyncIterator[capo_lex_models_v2.types.list_custom_vocabulary_items_response.ListCustomVocabularyItemsResponse]":
+        _token = next_token
+        while True:
+            _response = await self.list_custom_vocabulary_items(
+                bot_id,
+                bot_version,
+                locale_id,
+                config_overrides=config_overrides,
+                max_results=max_results,
+                next_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_exports(
         self,
@@ -4498,7 +4954,7 @@ class AsyncLexModelsV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lex_models_v2.types.list_exports_request.ListExportsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_lex_models_v2.types.list_exports_request.ListExportsRequest = {}
         if bot_id is not None:
             input_["bot_id"] = bot_id
         if bot_version is not None:
@@ -4519,7 +4975,41 @@ class AsyncLexModelsV2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_exports(
+        self,
+        *,
+        config_overrides: Optional[AsyncLexModelsV2ClientConfig] = None,
+        bot_id: Optional["capo_lex_models_v2.types.id.Id"] = None,
+        bot_version: Optional["capo_lex_models_v2.types.bot_version.BotVersion"] = None,
+        sort_by: Optional[
+            "capo_lex_models_v2.types.export_sort_by.ExportSortBy"
+        ] = None,
+        filters: Optional[
+            "capo_lex_models_v2.types.export_filters.ExportFilters"
+        ] = None,
+        max_results: Optional["capo_lex_models_v2.types.max_results.MaxResults"] = None,
+        next_token: Optional["capo_lex_models_v2.types.next_token.NextToken"] = None,
+        locale_id: Optional["capo_lex_models_v2.types.locale_id.LocaleId"] = None,
+    ) -> "AsyncIterator[capo_lex_models_v2.types.list_exports_response.ListExportsResponse]":
+        _token = next_token
+        while True:
+            _response = await self.list_exports(
+                config_overrides=config_overrides,
+                bot_id=bot_id,
+                bot_version=bot_version,
+                sort_by=sort_by,
+                filters=filters,
+                max_results=max_results,
+                next_token=_token,
+                locale_id=locale_id,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_imports(
         self,
@@ -4573,7 +5063,7 @@ class AsyncLexModelsV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lex_models_v2.types.list_imports_request.ListImportsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_lex_models_v2.types.list_imports_request.ListImportsRequest = {}
         if bot_id is not None:
             input_["bot_id"] = bot_id
         if bot_version is not None:
@@ -4594,7 +5084,43 @@ class AsyncLexModelsV2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_imports(
+        self,
+        *,
+        config_overrides: Optional[AsyncLexModelsV2ClientConfig] = None,
+        bot_id: Optional["capo_lex_models_v2.types.id.Id"] = None,
+        bot_version: Optional[
+            "capo_lex_models_v2.types.draft_bot_version.DraftBotVersion"
+        ] = None,
+        sort_by: Optional[
+            "capo_lex_models_v2.types.import_sort_by.ImportSortBy"
+        ] = None,
+        filters: Optional[
+            "capo_lex_models_v2.types.import_filters.ImportFilters"
+        ] = None,
+        max_results: Optional["capo_lex_models_v2.types.max_results.MaxResults"] = None,
+        next_token: Optional["capo_lex_models_v2.types.next_token.NextToken"] = None,
+        locale_id: Optional["capo_lex_models_v2.types.locale_id.LocaleId"] = None,
+    ) -> "AsyncIterator[capo_lex_models_v2.types.list_imports_response.ListImportsResponse]":
+        _token = next_token
+        while True:
+            _response = await self.list_imports(
+                config_overrides=config_overrides,
+                bot_id=bot_id,
+                bot_version=bot_version,
+                sort_by=sort_by,
+                filters=filters,
+                max_results=max_results,
+                next_token=_token,
+                locale_id=locale_id,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_intent_metrics(
         self,
@@ -4654,11 +5180,12 @@ class AsyncLexModelsV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lex_models_v2.types.list_intent_metrics_request.ListIntentMetricsRequest = {}  # type: ignore[typeddict-item]
-        input_["bot_id"] = bot_id
-        input_["start_date_time"] = start_date_time
-        input_["end_date_time"] = end_date_time
-        input_["metrics"] = metrics
+        input_: capo_lex_models_v2.types.list_intent_metrics_request.ListIntentMetricsRequest = {
+            "bot_id": bot_id,
+            "start_date_time": start_date_time,
+            "end_date_time": end_date_time,
+            "metrics": metrics,
+        }
         if bin_by is not None:
             input_["bin_by"] = bin_by
         if group_by is not None:
@@ -4675,7 +5202,47 @@ class AsyncLexModelsV2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_intent_metrics(
+        self,
+        bot_id: "capo_lex_models_v2.types.id.Id",
+        start_date_time: "capo_lex_models_v2.types.timestamp.Timestamp",
+        end_date_time: "capo_lex_models_v2.types.timestamp.Timestamp",
+        metrics: "capo_lex_models_v2.types.analytics_intent_metrics.AnalyticsIntentMetrics",
+        *,
+        config_overrides: Optional[AsyncLexModelsV2ClientConfig] = None,
+        bin_by: Optional[
+            "capo_lex_models_v2.types.analytics_bin_by_list.AnalyticsBinByList"
+        ] = None,
+        group_by: Optional[
+            "capo_lex_models_v2.types.analytics_intent_group_by_list.AnalyticsIntentGroupByList"
+        ] = None,
+        filters: Optional[
+            "capo_lex_models_v2.types.analytics_intent_filters.AnalyticsIntentFilters"
+        ] = None,
+        max_results: Optional["capo_lex_models_v2.types.max_results.MaxResults"] = None,
+        next_token: Optional["capo_lex_models_v2.types.next_token.NextToken"] = None,
+    ) -> "AsyncIterator[capo_lex_models_v2.types.list_intent_metrics_response.ListIntentMetricsResponse]":
+        _token = next_token
+        while True:
+            _response = await self.list_intent_metrics(
+                bot_id,
+                start_date_time,
+                end_date_time,
+                metrics,
+                config_overrides=config_overrides,
+                bin_by=bin_by,
+                group_by=group_by,
+                filters=filters,
+                max_results=max_results,
+                next_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_intent_paths(
         self,
@@ -4723,11 +5290,12 @@ class AsyncLexModelsV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lex_models_v2.types.list_intent_paths_request.ListIntentPathsRequest = {}  # type: ignore[typeddict-item]
-        input_["bot_id"] = bot_id
-        input_["start_date_time"] = start_date_time
-        input_["end_date_time"] = end_date_time
-        input_["intent_path"] = intent_path
+        input_: capo_lex_models_v2.types.list_intent_paths_request.ListIntentPathsRequest = {
+            "bot_id": bot_id,
+            "start_date_time": start_date_time,
+            "end_date_time": end_date_time,
+            "intent_path": intent_path,
+        }
         if filters is not None:
             input_["filters"] = filters
 
@@ -4736,6 +5304,7 @@ class AsyncLexModelsV2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_intents(
@@ -4789,10 +5358,11 @@ class AsyncLexModelsV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lex_models_v2.types.list_intents_request.ListIntentsRequest = {}  # type: ignore[typeddict-item]
-        input_["bot_id"] = bot_id
-        input_["bot_version"] = bot_version
-        input_["locale_id"] = locale_id
+        input_: capo_lex_models_v2.types.list_intents_request.ListIntentsRequest = {
+            "bot_id": bot_id,
+            "bot_version": bot_version,
+            "locale_id": locale_id,
+        }
         if sort_by is not None:
             input_["sort_by"] = sort_by
         if filters is not None:
@@ -4807,7 +5377,41 @@ class AsyncLexModelsV2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_intents(
+        self,
+        bot_id: "capo_lex_models_v2.types.id.Id",
+        bot_version: "capo_lex_models_v2.types.bot_version.BotVersion",
+        locale_id: "capo_lex_models_v2.types.locale_id.LocaleId",
+        *,
+        config_overrides: Optional[AsyncLexModelsV2ClientConfig] = None,
+        sort_by: Optional[
+            "capo_lex_models_v2.types.intent_sort_by.IntentSortBy"
+        ] = None,
+        filters: Optional[
+            "capo_lex_models_v2.types.intent_filters.IntentFilters"
+        ] = None,
+        max_results: Optional["capo_lex_models_v2.types.max_results.MaxResults"] = None,
+        next_token: Optional["capo_lex_models_v2.types.next_token.NextToken"] = None,
+    ) -> "AsyncIterator[capo_lex_models_v2.types.list_intents_response.ListIntentsResponse]":
+        _token = next_token
+        while True:
+            _response = await self.list_intents(
+                bot_id,
+                bot_version,
+                locale_id,
+                config_overrides=config_overrides,
+                sort_by=sort_by,
+                filters=filters,
+                max_results=max_results,
+                next_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_intent_stage_metrics(
         self,
@@ -4867,11 +5471,12 @@ class AsyncLexModelsV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lex_models_v2.types.list_intent_stage_metrics_request.ListIntentStageMetricsRequest = {}  # type: ignore[typeddict-item]
-        input_["bot_id"] = bot_id
-        input_["start_date_time"] = start_date_time
-        input_["end_date_time"] = end_date_time
-        input_["metrics"] = metrics
+        input_: capo_lex_models_v2.types.list_intent_stage_metrics_request.ListIntentStageMetricsRequest = {
+            "bot_id": bot_id,
+            "start_date_time": start_date_time,
+            "end_date_time": end_date_time,
+            "metrics": metrics,
+        }
         if bin_by is not None:
             input_["bin_by"] = bin_by
         if group_by is not None:
@@ -4888,7 +5493,47 @@ class AsyncLexModelsV2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_intent_stage_metrics(
+        self,
+        bot_id: "capo_lex_models_v2.types.id.Id",
+        start_date_time: "capo_lex_models_v2.types.timestamp.Timestamp",
+        end_date_time: "capo_lex_models_v2.types.timestamp.Timestamp",
+        metrics: "capo_lex_models_v2.types.analytics_intent_stage_metrics.AnalyticsIntentStageMetrics",
+        *,
+        config_overrides: Optional[AsyncLexModelsV2ClientConfig] = None,
+        bin_by: Optional[
+            "capo_lex_models_v2.types.analytics_bin_by_list.AnalyticsBinByList"
+        ] = None,
+        group_by: Optional[
+            "capo_lex_models_v2.types.analytics_intent_stage_group_by_list.AnalyticsIntentStageGroupByList"
+        ] = None,
+        filters: Optional[
+            "capo_lex_models_v2.types.analytics_intent_stage_filters.AnalyticsIntentStageFilters"
+        ] = None,
+        max_results: Optional["capo_lex_models_v2.types.max_results.MaxResults"] = None,
+        next_token: Optional["capo_lex_models_v2.types.next_token.NextToken"] = None,
+    ) -> "AsyncIterator[capo_lex_models_v2.types.list_intent_stage_metrics_response.ListIntentStageMetricsResponse]":
+        _token = next_token
+        while True:
+            _response = await self.list_intent_stage_metrics(
+                bot_id,
+                start_date_time,
+                end_date_time,
+                metrics,
+                config_overrides=config_overrides,
+                bin_by=bin_by,
+                group_by=group_by,
+                filters=filters,
+                max_results=max_results,
+                next_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_recommended_intents(
         self,
@@ -4936,11 +5581,12 @@ class AsyncLexModelsV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lex_models_v2.types.list_recommended_intents_request.ListRecommendedIntentsRequest = {}  # type: ignore[typeddict-item]
-        input_["bot_id"] = bot_id
-        input_["bot_version"] = bot_version
-        input_["locale_id"] = locale_id
-        input_["bot_recommendation_id"] = bot_recommendation_id
+        input_: capo_lex_models_v2.types.list_recommended_intents_request.ListRecommendedIntentsRequest = {
+            "bot_id": bot_id,
+            "bot_version": bot_version,
+            "locale_id": locale_id,
+            "bot_recommendation_id": bot_recommendation_id,
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -4951,7 +5597,35 @@ class AsyncLexModelsV2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_recommended_intents(
+        self,
+        bot_id: "capo_lex_models_v2.types.id.Id",
+        bot_version: "capo_lex_models_v2.types.draft_bot_version.DraftBotVersion",
+        locale_id: "capo_lex_models_v2.types.locale_id.LocaleId",
+        bot_recommendation_id: "capo_lex_models_v2.types.id.Id",
+        *,
+        config_overrides: Optional[AsyncLexModelsV2ClientConfig] = None,
+        next_token: Optional["capo_lex_models_v2.types.next_token.NextToken"] = None,
+        max_results: Optional["capo_lex_models_v2.types.max_results.MaxResults"] = None,
+    ) -> "AsyncIterator[capo_lex_models_v2.types.list_recommended_intents_response.ListRecommendedIntentsResponse]":
+        _token = next_token
+        while True:
+            _response = await self.list_recommended_intents(
+                bot_id,
+                bot_version,
+                locale_id,
+                bot_recommendation_id,
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_session_analytics_data(
         self,
@@ -5005,10 +5679,11 @@ class AsyncLexModelsV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lex_models_v2.types.list_session_analytics_data_request.ListSessionAnalyticsDataRequest = {}  # type: ignore[typeddict-item]
-        input_["bot_id"] = bot_id
-        input_["start_date_time"] = start_date_time
-        input_["end_date_time"] = end_date_time
+        input_: capo_lex_models_v2.types.list_session_analytics_data_request.ListSessionAnalyticsDataRequest = {
+            "bot_id": bot_id,
+            "start_date_time": start_date_time,
+            "end_date_time": end_date_time,
+        }
         if sort_by is not None:
             input_["sort_by"] = sort_by
         if filters is not None:
@@ -5023,7 +5698,41 @@ class AsyncLexModelsV2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_session_analytics_data(
+        self,
+        bot_id: "capo_lex_models_v2.types.id.Id",
+        start_date_time: "capo_lex_models_v2.types.timestamp.Timestamp",
+        end_date_time: "capo_lex_models_v2.types.timestamp.Timestamp",
+        *,
+        config_overrides: Optional[AsyncLexModelsV2ClientConfig] = None,
+        sort_by: Optional[
+            "capo_lex_models_v2.types.session_data_sort_by.SessionDataSortBy"
+        ] = None,
+        filters: Optional[
+            "capo_lex_models_v2.types.analytics_session_filters.AnalyticsSessionFilters"
+        ] = None,
+        max_results: Optional["capo_lex_models_v2.types.max_results.MaxResults"] = None,
+        next_token: Optional["capo_lex_models_v2.types.next_token.NextToken"] = None,
+    ) -> "AsyncIterator[capo_lex_models_v2.types.list_session_analytics_data_response.ListSessionAnalyticsDataResponse]":
+        _token = next_token
+        while True:
+            _response = await self.list_session_analytics_data(
+                bot_id,
+                start_date_time,
+                end_date_time,
+                config_overrides=config_overrides,
+                sort_by=sort_by,
+                filters=filters,
+                max_results=max_results,
+                next_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_session_metrics(
         self,
@@ -5083,11 +5792,12 @@ class AsyncLexModelsV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lex_models_v2.types.list_session_metrics_request.ListSessionMetricsRequest = {}  # type: ignore[typeddict-item]
-        input_["bot_id"] = bot_id
-        input_["start_date_time"] = start_date_time
-        input_["end_date_time"] = end_date_time
-        input_["metrics"] = metrics
+        input_: capo_lex_models_v2.types.list_session_metrics_request.ListSessionMetricsRequest = {
+            "bot_id": bot_id,
+            "start_date_time": start_date_time,
+            "end_date_time": end_date_time,
+            "metrics": metrics,
+        }
         if bin_by is not None:
             input_["bin_by"] = bin_by
         if group_by is not None:
@@ -5104,7 +5814,47 @@ class AsyncLexModelsV2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_session_metrics(
+        self,
+        bot_id: "capo_lex_models_v2.types.id.Id",
+        start_date_time: "capo_lex_models_v2.types.timestamp.Timestamp",
+        end_date_time: "capo_lex_models_v2.types.timestamp.Timestamp",
+        metrics: "capo_lex_models_v2.types.analytics_session_metrics.AnalyticsSessionMetrics",
+        *,
+        config_overrides: Optional[AsyncLexModelsV2ClientConfig] = None,
+        bin_by: Optional[
+            "capo_lex_models_v2.types.analytics_bin_by_list.AnalyticsBinByList"
+        ] = None,
+        group_by: Optional[
+            "capo_lex_models_v2.types.analytics_session_group_by_list.AnalyticsSessionGroupByList"
+        ] = None,
+        filters: Optional[
+            "capo_lex_models_v2.types.analytics_session_filters.AnalyticsSessionFilters"
+        ] = None,
+        max_results: Optional["capo_lex_models_v2.types.max_results.MaxResults"] = None,
+        next_token: Optional["capo_lex_models_v2.types.next_token.NextToken"] = None,
+    ) -> "AsyncIterator[capo_lex_models_v2.types.list_session_metrics_response.ListSessionMetricsResponse]":
+        _token = next_token
+        while True:
+            _response = await self.list_session_metrics(
+                bot_id,
+                start_date_time,
+                end_date_time,
+                metrics,
+                config_overrides=config_overrides,
+                bin_by=bin_by,
+                group_by=group_by,
+                filters=filters,
+                max_results=max_results,
+                next_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_slots(
         self,
@@ -5155,11 +5905,12 @@ class AsyncLexModelsV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lex_models_v2.types.list_slots_request.ListSlotsRequest = {}  # type: ignore[typeddict-item]
-        input_["bot_id"] = bot_id
-        input_["bot_version"] = bot_version
-        input_["locale_id"] = locale_id
-        input_["intent_id"] = intent_id
+        input_: capo_lex_models_v2.types.list_slots_request.ListSlotsRequest = {
+            "bot_id": bot_id,
+            "bot_version": bot_version,
+            "locale_id": locale_id,
+            "intent_id": intent_id,
+        }
         if sort_by is not None:
             input_["sort_by"] = sort_by
         if filters is not None:
@@ -5174,7 +5925,41 @@ class AsyncLexModelsV2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_slots(
+        self,
+        bot_id: "capo_lex_models_v2.types.id.Id",
+        bot_version: "capo_lex_models_v2.types.bot_version.BotVersion",
+        locale_id: "capo_lex_models_v2.types.locale_id.LocaleId",
+        intent_id: "capo_lex_models_v2.types.id.Id",
+        *,
+        config_overrides: Optional[AsyncLexModelsV2ClientConfig] = None,
+        sort_by: Optional["capo_lex_models_v2.types.slot_sort_by.SlotSortBy"] = None,
+        filters: Optional["capo_lex_models_v2.types.slot_filters.SlotFilters"] = None,
+        max_results: Optional["capo_lex_models_v2.types.max_results.MaxResults"] = None,
+        next_token: Optional["capo_lex_models_v2.types.next_token.NextToken"] = None,
+    ) -> (
+        "AsyncIterator[capo_lex_models_v2.types.list_slots_response.ListSlotsResponse]"
+    ):
+        _token = next_token
+        while True:
+            _response = await self.list_slots(
+                bot_id,
+                bot_version,
+                locale_id,
+                intent_id,
+                config_overrides=config_overrides,
+                sort_by=sort_by,
+                filters=filters,
+                max_results=max_results,
+                next_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_slot_types(
         self,
@@ -5227,10 +6012,11 @@ class AsyncLexModelsV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lex_models_v2.types.list_slot_types_request.ListSlotTypesRequest = {}  # type: ignore[typeddict-item]
-        input_["bot_id"] = bot_id
-        input_["bot_version"] = bot_version
-        input_["locale_id"] = locale_id
+        input_: capo_lex_models_v2.types.list_slot_types_request.ListSlotTypesRequest = {
+            "bot_id": bot_id,
+            "bot_version": bot_version,
+            "locale_id": locale_id,
+        }
         if sort_by is not None:
             input_["sort_by"] = sort_by
         if filters is not None:
@@ -5245,7 +6031,41 @@ class AsyncLexModelsV2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_slot_types(
+        self,
+        bot_id: "capo_lex_models_v2.types.id.Id",
+        bot_version: "capo_lex_models_v2.types.bot_version.BotVersion",
+        locale_id: "capo_lex_models_v2.types.locale_id.LocaleId",
+        *,
+        config_overrides: Optional[AsyncLexModelsV2ClientConfig] = None,
+        sort_by: Optional[
+            "capo_lex_models_v2.types.slot_type_sort_by.SlotTypeSortBy"
+        ] = None,
+        filters: Optional[
+            "capo_lex_models_v2.types.slot_type_filters.SlotTypeFilters"
+        ] = None,
+        max_results: Optional["capo_lex_models_v2.types.max_results.MaxResults"] = None,
+        next_token: Optional["capo_lex_models_v2.types.next_token.NextToken"] = None,
+    ) -> "AsyncIterator[capo_lex_models_v2.types.list_slot_types_response.ListSlotTypesResponse]":
+        _token = next_token
+        while True:
+            _response = await self.list_slot_types(
+                bot_id,
+                bot_version,
+                locale_id,
+                config_overrides=config_overrides,
+                sort_by=sort_by,
+                filters=filters,
+                max_results=max_results,
+                next_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_tags_for_resource(
         self,
@@ -5282,14 +6102,16 @@ class AsyncLexModelsV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lex_models_v2.types.list_tags_for_resource_request.ListTagsForResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_lex_models_v2.types.list_tags_for_resource_request.ListTagsForResourceRequest = {
+            "resource_arn": resource_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_test_execution_result_items(
@@ -5334,9 +6156,10 @@ class AsyncLexModelsV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lex_models_v2.types.list_test_execution_result_items_request.ListTestExecutionResultItemsRequest = {}  # type: ignore[typeddict-item]
-        input_["test_execution_id"] = test_execution_id
-        input_["result_filter_by"] = result_filter_by
+        input_: capo_lex_models_v2.types.list_test_execution_result_items_request.ListTestExecutionResultItemsRequest = {
+            "test_execution_id": test_execution_id,
+            "result_filter_by": result_filter_by,
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -5347,7 +6170,31 @@ class AsyncLexModelsV2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_test_execution_result_items(
+        self,
+        test_execution_id: "capo_lex_models_v2.types.id.Id",
+        result_filter_by: "capo_lex_models_v2.types.test_execution_result_filter_by.TestExecutionResultFilterBy",
+        *,
+        config_overrides: Optional[AsyncLexModelsV2ClientConfig] = None,
+        max_results: Optional["capo_lex_models_v2.types.max_results.MaxResults"] = None,
+        next_token: Optional["capo_lex_models_v2.types.next_token.NextToken"] = None,
+    ) -> "AsyncIterator[capo_lex_models_v2.types.list_test_execution_result_items_response.ListTestExecutionResultItemsResponse]":
+        _token = next_token
+        while True:
+            _response = await self.list_test_execution_result_items(
+                test_execution_id,
+                result_filter_by,
+                config_overrides=config_overrides,
+                max_results=max_results,
+                next_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_test_executions(
         self,
@@ -5390,7 +6237,7 @@ class AsyncLexModelsV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lex_models_v2.types.list_test_executions_request.ListTestExecutionsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_lex_models_v2.types.list_test_executions_request.ListTestExecutionsRequest = {}
         if sort_by is not None:
             input_["sort_by"] = sort_by
         if max_results is not None:
@@ -5403,7 +6250,31 @@ class AsyncLexModelsV2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_test_executions(
+        self,
+        *,
+        config_overrides: Optional[AsyncLexModelsV2ClientConfig] = None,
+        sort_by: Optional[
+            "capo_lex_models_v2.types.test_execution_sort_by.TestExecutionSortBy"
+        ] = None,
+        max_results: Optional["capo_lex_models_v2.types.max_results.MaxResults"] = None,
+        next_token: Optional["capo_lex_models_v2.types.next_token.NextToken"] = None,
+    ) -> "AsyncIterator[capo_lex_models_v2.types.list_test_executions_response.ListTestExecutionsResponse]":
+        _token = next_token
+        while True:
+            _response = await self.list_test_executions(
+                config_overrides=config_overrides,
+                sort_by=sort_by,
+                max_results=max_results,
+                next_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_test_set_records(
         self,
@@ -5445,8 +6316,9 @@ class AsyncLexModelsV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lex_models_v2.types.list_test_set_records_request.ListTestSetRecordsRequest = {}  # type: ignore[typeddict-item]
-        input_["test_set_id"] = test_set_id
+        input_: capo_lex_models_v2.types.list_test_set_records_request.ListTestSetRecordsRequest = {
+            "test_set_id": test_set_id
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -5457,7 +6329,29 @@ class AsyncLexModelsV2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_test_set_records(
+        self,
+        test_set_id: "capo_lex_models_v2.types.id.Id",
+        *,
+        config_overrides: Optional[AsyncLexModelsV2ClientConfig] = None,
+        max_results: Optional["capo_lex_models_v2.types.max_results.MaxResults"] = None,
+        next_token: Optional["capo_lex_models_v2.types.next_token.NextToken"] = None,
+    ) -> "AsyncIterator[capo_lex_models_v2.types.list_test_set_records_response.ListTestSetRecordsResponse]":
+        _token = next_token
+        while True:
+            _response = await self.list_test_set_records(
+                test_set_id,
+                config_overrides=config_overrides,
+                max_results=max_results,
+                next_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_test_sets(
         self,
@@ -5500,7 +6394,7 @@ class AsyncLexModelsV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lex_models_v2.types.list_test_sets_request.ListTestSetsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_lex_models_v2.types.list_test_sets_request.ListTestSetsRequest = {}
         if sort_by is not None:
             input_["sort_by"] = sort_by
         if max_results is not None:
@@ -5513,7 +6407,31 @@ class AsyncLexModelsV2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_test_sets(
+        self,
+        *,
+        config_overrides: Optional[AsyncLexModelsV2ClientConfig] = None,
+        sort_by: Optional[
+            "capo_lex_models_v2.types.test_set_sort_by.TestSetSortBy"
+        ] = None,
+        max_results: Optional["capo_lex_models_v2.types.max_results.MaxResults"] = None,
+        next_token: Optional["capo_lex_models_v2.types.next_token.NextToken"] = None,
+    ) -> "AsyncIterator[capo_lex_models_v2.types.list_test_sets_response.ListTestSetsResponse]":
+        _token = next_token
+        while True:
+            _response = await self.list_test_sets(
+                config_overrides=config_overrides,
+                sort_by=sort_by,
+                max_results=max_results,
+                next_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_utterance_analytics_data(
         self,
@@ -5567,10 +6485,11 @@ class AsyncLexModelsV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lex_models_v2.types.list_utterance_analytics_data_request.ListUtteranceAnalyticsDataRequest = {}  # type: ignore[typeddict-item]
-        input_["bot_id"] = bot_id
-        input_["start_date_time"] = start_date_time
-        input_["end_date_time"] = end_date_time
+        input_: capo_lex_models_v2.types.list_utterance_analytics_data_request.ListUtteranceAnalyticsDataRequest = {
+            "bot_id": bot_id,
+            "start_date_time": start_date_time,
+            "end_date_time": end_date_time,
+        }
         if sort_by is not None:
             input_["sort_by"] = sort_by
         if filters is not None:
@@ -5585,7 +6504,41 @@ class AsyncLexModelsV2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_utterance_analytics_data(
+        self,
+        bot_id: "capo_lex_models_v2.types.id.Id",
+        start_date_time: "capo_lex_models_v2.types.timestamp.Timestamp",
+        end_date_time: "capo_lex_models_v2.types.timestamp.Timestamp",
+        *,
+        config_overrides: Optional[AsyncLexModelsV2ClientConfig] = None,
+        sort_by: Optional[
+            "capo_lex_models_v2.types.utterance_data_sort_by.UtteranceDataSortBy"
+        ] = None,
+        filters: Optional[
+            "capo_lex_models_v2.types.analytics_utterance_filters.AnalyticsUtteranceFilters"
+        ] = None,
+        max_results: Optional["capo_lex_models_v2.types.max_results.MaxResults"] = None,
+        next_token: Optional["capo_lex_models_v2.types.next_token.NextToken"] = None,
+    ) -> "AsyncIterator[capo_lex_models_v2.types.list_utterance_analytics_data_response.ListUtteranceAnalyticsDataResponse]":
+        _token = next_token
+        while True:
+            _response = await self.list_utterance_analytics_data(
+                bot_id,
+                start_date_time,
+                end_date_time,
+                config_overrides=config_overrides,
+                sort_by=sort_by,
+                filters=filters,
+                max_results=max_results,
+                next_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_utterance_metrics(
         self,
@@ -5649,11 +6602,12 @@ class AsyncLexModelsV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lex_models_v2.types.list_utterance_metrics_request.ListUtteranceMetricsRequest = {}  # type: ignore[typeddict-item]
-        input_["bot_id"] = bot_id
-        input_["start_date_time"] = start_date_time
-        input_["end_date_time"] = end_date_time
-        input_["metrics"] = metrics
+        input_: capo_lex_models_v2.types.list_utterance_metrics_request.ListUtteranceMetricsRequest = {
+            "bot_id": bot_id,
+            "start_date_time": start_date_time,
+            "end_date_time": end_date_time,
+            "metrics": metrics,
+        }
         if bin_by is not None:
             input_["bin_by"] = bin_by
         if group_by is not None:
@@ -5672,7 +6626,51 @@ class AsyncLexModelsV2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_utterance_metrics(
+        self,
+        bot_id: "capo_lex_models_v2.types.id.Id",
+        start_date_time: "capo_lex_models_v2.types.timestamp.Timestamp",
+        end_date_time: "capo_lex_models_v2.types.timestamp.Timestamp",
+        metrics: "capo_lex_models_v2.types.analytics_utterance_metrics.AnalyticsUtteranceMetrics",
+        *,
+        config_overrides: Optional[AsyncLexModelsV2ClientConfig] = None,
+        bin_by: Optional[
+            "capo_lex_models_v2.types.analytics_bin_by_list.AnalyticsBinByList"
+        ] = None,
+        group_by: Optional[
+            "capo_lex_models_v2.types.analytics_utterance_group_by_list.AnalyticsUtteranceGroupByList"
+        ] = None,
+        attributes: Optional[
+            "capo_lex_models_v2.types.analytics_utterance_attributes.AnalyticsUtteranceAttributes"
+        ] = None,
+        filters: Optional[
+            "capo_lex_models_v2.types.analytics_utterance_filters.AnalyticsUtteranceFilters"
+        ] = None,
+        max_results: Optional["capo_lex_models_v2.types.max_results.MaxResults"] = None,
+        next_token: Optional["capo_lex_models_v2.types.next_token.NextToken"] = None,
+    ) -> "AsyncIterator[capo_lex_models_v2.types.list_utterance_metrics_response.ListUtteranceMetricsResponse]":
+        _token = next_token
+        while True:
+            _response = await self.list_utterance_metrics(
+                bot_id,
+                start_date_time,
+                end_date_time,
+                metrics,
+                config_overrides=config_overrides,
+                bin_by=bin_by,
+                group_by=group_by,
+                attributes=attributes,
+                filters=filters,
+                max_results=max_results,
+                next_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def search_associated_transcripts(
         self,
@@ -5726,14 +6724,15 @@ class AsyncLexModelsV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lex_models_v2.types.search_associated_transcripts_request.SearchAssociatedTranscriptsRequest = {}  # type: ignore[typeddict-item]
-        input_["bot_id"] = bot_id
-        input_["bot_version"] = bot_version
-        input_["locale_id"] = locale_id
-        input_["bot_recommendation_id"] = bot_recommendation_id
+        input_: capo_lex_models_v2.types.search_associated_transcripts_request.SearchAssociatedTranscriptsRequest = {
+            "bot_id": bot_id,
+            "bot_version": bot_version,
+            "locale_id": locale_id,
+            "bot_recommendation_id": bot_recommendation_id,
+            "filters": filters,
+        }
         if search_order is not None:
             input_["search_order"] = search_order
-        input_["filters"] = filters
         if max_results is not None:
             input_["max_results"] = max_results
         if next_index is not None:
@@ -5744,6 +6743,7 @@ class AsyncLexModelsV2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def start_bot_analyzer(
@@ -5792,9 +6792,10 @@ class AsyncLexModelsV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lex_models_v2.types.start_bot_analyzer_request.StartBotAnalyzerRequest = {}  # type: ignore[typeddict-item]
-        input_["bot_id"] = bot_id
-        input_["analysis_scope"] = analysis_scope
+        input_: capo_lex_models_v2.types.start_bot_analyzer_request.StartBotAnalyzerRequest = {
+            "bot_id": bot_id,
+            "analysis_scope": analysis_scope,
+        }
         if locale_id is not None:
             input_["locale_id"] = locale_id
         if bot_version is not None:
@@ -5805,6 +6806,7 @@ class AsyncLexModelsV2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def start_bot_recommendation(
@@ -5855,11 +6857,12 @@ class AsyncLexModelsV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lex_models_v2.types.start_bot_recommendation_request.StartBotRecommendationRequest = {}  # type: ignore[typeddict-item]
-        input_["bot_id"] = bot_id
-        input_["bot_version"] = bot_version
-        input_["locale_id"] = locale_id
-        input_["transcript_source_setting"] = transcript_source_setting
+        input_: capo_lex_models_v2.types.start_bot_recommendation_request.StartBotRecommendationRequest = {
+            "bot_id": bot_id,
+            "bot_version": bot_version,
+            "locale_id": locale_id,
+            "transcript_source_setting": transcript_source_setting,
+        }
         if encryption_setting is not None:
             input_["encryption_setting"] = encryption_setting
 
@@ -5868,6 +6871,7 @@ class AsyncLexModelsV2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def start_bot_resource_generation(
@@ -5913,17 +6917,19 @@ class AsyncLexModelsV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lex_models_v2.types.start_bot_resource_generation_request.StartBotResourceGenerationRequest = {}  # type: ignore[typeddict-item]
-        input_["generation_input_prompt"] = generation_input_prompt
-        input_["bot_id"] = bot_id
-        input_["bot_version"] = bot_version
-        input_["locale_id"] = locale_id
+        input_: capo_lex_models_v2.types.start_bot_resource_generation_request.StartBotResourceGenerationRequest = {
+            "generation_input_prompt": generation_input_prompt,
+            "bot_id": bot_id,
+            "bot_version": bot_version,
+            "locale_id": locale_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def start_import(
@@ -5971,10 +6977,11 @@ class AsyncLexModelsV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lex_models_v2.types.start_import_request.StartImportRequest = {}  # type: ignore[typeddict-item]
-        input_["import_id"] = import_id
-        input_["resource_specification"] = resource_specification
-        input_["merge_strategy"] = merge_strategy
+        input_: capo_lex_models_v2.types.start_import_request.StartImportRequest = {
+            "import_id": import_id,
+            "resource_specification": resource_specification,
+            "merge_strategy": merge_strategy,
+        }
         if file_password is not None:
             input_["file_password"] = file_password
 
@@ -5983,6 +6990,7 @@ class AsyncLexModelsV2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def start_test_execution(
@@ -6030,10 +7038,11 @@ class AsyncLexModelsV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lex_models_v2.types.start_test_execution_request.StartTestExecutionRequest = {}  # type: ignore[typeddict-item]
-        input_["test_set_id"] = test_set_id
-        input_["target"] = target
-        input_["api_mode"] = api_mode
+        input_: capo_lex_models_v2.types.start_test_execution_request.StartTestExecutionRequest = {
+            "test_set_id": test_set_id,
+            "target": target,
+            "api_mode": api_mode,
+        }
         if test_execution_modality is not None:
             input_["test_execution_modality"] = test_execution_modality
 
@@ -6042,6 +7051,7 @@ class AsyncLexModelsV2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def start_test_set_generation(
@@ -6093,13 +7103,14 @@ class AsyncLexModelsV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lex_models_v2.types.start_test_set_generation_request.StartTestSetGenerationRequest = {}  # type: ignore[typeddict-item]
-        input_["test_set_name"] = test_set_name
+        input_: capo_lex_models_v2.types.start_test_set_generation_request.StartTestSetGenerationRequest = {
+            "test_set_name": test_set_name,
+            "storage_location": storage_location,
+            "generation_data_source": generation_data_source,
+            "role_arn": role_arn,
+        }
         if description is not None:
             input_["description"] = description
-        input_["storage_location"] = storage_location
-        input_["generation_data_source"] = generation_data_source
-        input_["role_arn"] = role_arn
         if test_set_tags is not None:
             input_["test_set_tags"] = test_set_tags
 
@@ -6108,6 +7119,7 @@ class AsyncLexModelsV2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def stop_bot_analyzer(
@@ -6147,15 +7159,17 @@ class AsyncLexModelsV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lex_models_v2.types.stop_bot_analyzer_request.StopBotAnalyzerRequest = {}  # type: ignore[typeddict-item]
-        input_["bot_id"] = bot_id
-        input_["bot_analyzer_request_id"] = bot_analyzer_request_id
+        input_: capo_lex_models_v2.types.stop_bot_analyzer_request.StopBotAnalyzerRequest = {
+            "bot_id": bot_id,
+            "bot_analyzer_request_id": bot_analyzer_request_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def stop_bot_recommendation(
@@ -6202,17 +7216,19 @@ class AsyncLexModelsV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lex_models_v2.types.stop_bot_recommendation_request.StopBotRecommendationRequest = {}  # type: ignore[typeddict-item]
-        input_["bot_id"] = bot_id
-        input_["bot_version"] = bot_version
-        input_["locale_id"] = locale_id
-        input_["bot_recommendation_id"] = bot_recommendation_id
+        input_: capo_lex_models_v2.types.stop_bot_recommendation_request.StopBotRecommendationRequest = {
+            "bot_id": bot_id,
+            "bot_version": bot_version,
+            "locale_id": locale_id,
+            "bot_recommendation_id": bot_recommendation_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def tag_resource(
@@ -6252,15 +7268,17 @@ class AsyncLexModelsV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lex_models_v2.types.tag_resource_request.TagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tags"] = tags
+        input_: capo_lex_models_v2.types.tag_resource_request.TagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tags": tags,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def untag_resource(
@@ -6300,15 +7318,17 @@ class AsyncLexModelsV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lex_models_v2.types.untag_resource_request.UntagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tag_keys"] = tag_keys
+        input_: capo_lex_models_v2.types.untag_resource_request.UntagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tag_keys": tag_keys,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_bot(
@@ -6368,14 +7388,15 @@ class AsyncLexModelsV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lex_models_v2.types.update_bot_request.UpdateBotRequest = {}  # type: ignore[typeddict-item]
-        input_["bot_id"] = bot_id
-        input_["bot_name"] = bot_name
+        input_: capo_lex_models_v2.types.update_bot_request.UpdateBotRequest = {
+            "bot_id": bot_id,
+            "bot_name": bot_name,
+            "role_arn": role_arn,
+            "data_privacy": data_privacy,
+            "idle_session_ttl_in_seconds": idle_session_ttl_in_seconds,
+        }
         if description is not None:
             input_["description"] = description
-        input_["role_arn"] = role_arn
-        input_["data_privacy"] = data_privacy
-        input_["idle_session_ttl_in_seconds"] = idle_session_ttl_in_seconds
         if bot_type is not None:
             input_["bot_type"] = bot_type
         if bot_members is not None:
@@ -6388,6 +7409,7 @@ class AsyncLexModelsV2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_bot_alias(
@@ -6448,9 +7470,11 @@ class AsyncLexModelsV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lex_models_v2.types.update_bot_alias_request.UpdateBotAliasRequest = {}  # type: ignore[typeddict-item]
-        input_["bot_alias_id"] = bot_alias_id
-        input_["bot_alias_name"] = bot_alias_name
+        input_: capo_lex_models_v2.types.update_bot_alias_request.UpdateBotAliasRequest = {
+            "bot_alias_id": bot_alias_id,
+            "bot_alias_name": bot_alias_name,
+            "bot_id": bot_id,
+        }
         if description is not None:
             input_["description"] = description
         if bot_version is not None:
@@ -6461,13 +7485,13 @@ class AsyncLexModelsV2Client:
             input_["conversation_log_settings"] = conversation_log_settings
         if sentiment_analysis_settings is not None:
             input_["sentiment_analysis_settings"] = sentiment_analysis_settings
-        input_["bot_id"] = bot_id
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_bot_locale(
@@ -6541,13 +7565,14 @@ class AsyncLexModelsV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lex_models_v2.types.update_bot_locale_request.UpdateBotLocaleRequest = {}  # type: ignore[typeddict-item]
-        input_["bot_id"] = bot_id
-        input_["bot_version"] = bot_version
-        input_["locale_id"] = locale_id
+        input_: capo_lex_models_v2.types.update_bot_locale_request.UpdateBotLocaleRequest = {
+            "bot_id": bot_id,
+            "bot_version": bot_version,
+            "locale_id": locale_id,
+            "nlu_intent_confidence_threshold": nlu_intent_confidence_threshold,
+        }
         if description is not None:
             input_["description"] = description
-        input_["nlu_intent_confidence_threshold"] = nlu_intent_confidence_threshold
         if voice_settings is not None:
             input_["voice_settings"] = voice_settings
         if unified_speech_settings is not None:
@@ -6566,6 +7591,7 @@ class AsyncLexModelsV2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_bot_recommendation(
@@ -6614,18 +7640,20 @@ class AsyncLexModelsV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lex_models_v2.types.update_bot_recommendation_request.UpdateBotRecommendationRequest = {}  # type: ignore[typeddict-item]
-        input_["bot_id"] = bot_id
-        input_["bot_version"] = bot_version
-        input_["locale_id"] = locale_id
-        input_["bot_recommendation_id"] = bot_recommendation_id
-        input_["encryption_setting"] = encryption_setting
+        input_: capo_lex_models_v2.types.update_bot_recommendation_request.UpdateBotRecommendationRequest = {
+            "bot_id": bot_id,
+            "bot_version": bot_version,
+            "locale_id": locale_id,
+            "bot_recommendation_id": bot_recommendation_id,
+            "encryption_setting": encryption_setting,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_export(
@@ -6669,8 +7697,9 @@ class AsyncLexModelsV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lex_models_v2.types.update_export_request.UpdateExportRequest = {}  # type: ignore[typeddict-item]
-        input_["export_id"] = export_id
+        input_: capo_lex_models_v2.types.update_export_request.UpdateExportRequest = {
+            "export_id": export_id
+        }
         if file_password is not None:
             input_["file_password"] = file_password
 
@@ -6679,6 +7708,7 @@ class AsyncLexModelsV2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_intent(
@@ -6786,9 +7816,13 @@ class AsyncLexModelsV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lex_models_v2.types.update_intent_request.UpdateIntentRequest = {}  # type: ignore[typeddict-item]
-        input_["intent_id"] = intent_id
-        input_["intent_name"] = intent_name
+        input_: capo_lex_models_v2.types.update_intent_request.UpdateIntentRequest = {
+            "intent_id": intent_id,
+            "intent_name": intent_name,
+            "bot_id": bot_id,
+            "bot_version": bot_version,
+            "locale_id": locale_id,
+        }
         if intent_display_name is not None:
             input_["intent_display_name"] = intent_display_name
         if description is not None:
@@ -6813,9 +7847,6 @@ class AsyncLexModelsV2Client:
             input_["output_contexts"] = output_contexts
         if kendra_configuration is not None:
             input_["kendra_configuration"] = kendra_configuration
-        input_["bot_id"] = bot_id
-        input_["bot_version"] = bot_version
-        input_["locale_id"] = locale_id
         if initial_response_setting is not None:
             input_["initial_response_setting"] = initial_response_setting
         if qn_a_intent_configuration is not None:
@@ -6830,6 +7861,7 @@ class AsyncLexModelsV2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_resource_policy(
@@ -6875,9 +7907,10 @@ class AsyncLexModelsV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lex_models_v2.types.update_resource_policy_request.UpdateResourcePolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["policy"] = policy
+        input_: capo_lex_models_v2.types.update_resource_policy_request.UpdateResourcePolicyRequest = {
+            "resource_arn": resource_arn,
+            "policy": policy,
+        }
         if expected_revision_id is not None:
             input_["expected_revision_id"] = expected_revision_id
 
@@ -6886,6 +7919,7 @@ class AsyncLexModelsV2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_slot(
@@ -6957,20 +7991,21 @@ class AsyncLexModelsV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lex_models_v2.types.update_slot_request.UpdateSlotRequest = {}  # type: ignore[typeddict-item]
-        input_["slot_id"] = slot_id
-        input_["slot_name"] = slot_name
+        input_: capo_lex_models_v2.types.update_slot_request.UpdateSlotRequest = {
+            "slot_id": slot_id,
+            "slot_name": slot_name,
+            "value_elicitation_setting": value_elicitation_setting,
+            "bot_id": bot_id,
+            "bot_version": bot_version,
+            "locale_id": locale_id,
+            "intent_id": intent_id,
+        }
         if description is not None:
             input_["description"] = description
         if slot_type_id is not None:
             input_["slot_type_id"] = slot_type_id
-        input_["value_elicitation_setting"] = value_elicitation_setting
         if obfuscation_setting is not None:
             input_["obfuscation_setting"] = obfuscation_setting
-        input_["bot_id"] = bot_id
-        input_["bot_version"] = bot_version
-        input_["locale_id"] = locale_id
-        input_["intent_id"] = intent_id
         if multiple_values_setting is not None:
             input_["multiple_values_setting"] = multiple_values_setting
         if sub_slot_setting is not None:
@@ -6981,6 +8016,7 @@ class AsyncLexModelsV2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_slot_type(
@@ -7051,9 +8087,13 @@ class AsyncLexModelsV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lex_models_v2.types.update_slot_type_request.UpdateSlotTypeRequest = {}  # type: ignore[typeddict-item]
-        input_["slot_type_id"] = slot_type_id
-        input_["slot_type_name"] = slot_type_name
+        input_: capo_lex_models_v2.types.update_slot_type_request.UpdateSlotTypeRequest = {
+            "slot_type_id": slot_type_id,
+            "slot_type_name": slot_type_name,
+            "bot_id": bot_id,
+            "bot_version": bot_version,
+            "locale_id": locale_id,
+        }
         if description is not None:
             input_["description"] = description
         if slot_type_values is not None:
@@ -7062,9 +8102,6 @@ class AsyncLexModelsV2Client:
             input_["value_selection_setting"] = value_selection_setting
         if parent_slot_type_signature is not None:
             input_["parent_slot_type_signature"] = parent_slot_type_signature
-        input_["bot_id"] = bot_id
-        input_["bot_version"] = bot_version
-        input_["locale_id"] = locale_id
         if external_source_setting is not None:
             input_["external_source_setting"] = external_source_setting
         if composite_slot_type_setting is not None:
@@ -7075,6 +8112,7 @@ class AsyncLexModelsV2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_test_set(
@@ -7120,9 +8158,10 @@ class AsyncLexModelsV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lex_models_v2.types.update_test_set_request.UpdateTestSetRequest = {}  # type: ignore[typeddict-item]
-        input_["test_set_id"] = test_set_id
-        input_["test_set_name"] = test_set_name
+        input_: capo_lex_models_v2.types.update_test_set_request.UpdateTestSetRequest = {
+            "test_set_id": test_set_id,
+            "test_set_name": test_set_name,
+        }
         if description is not None:
             input_["description"] = description
 
@@ -7131,6 +8170,7 @@ class AsyncLexModelsV2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def __aenter__(self) -> Self:

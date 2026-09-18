@@ -37,15 +37,18 @@ class ClusterQuotaExceededFault(ServiceError):
 
     code: str | None = "ClusterQuotaExceededFault"
 
-    def __init__(self, data: ClusterQuotaExceededFault_):
+    def __init__(self, data: ClusterQuotaExceededFault_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="ClusterQuotaExceededFault",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_query(cls, el: Element) -> "ClusterQuotaExceededFault":
-        return cls(deserialize_query(el))
+    def from_query(
+        cls, el: Element, message: str | None = None
+    ) -> "ClusterQuotaExceededFault":
+        return cls(deserialize_query(el), message)

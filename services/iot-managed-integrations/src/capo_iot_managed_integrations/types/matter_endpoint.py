@@ -36,9 +36,9 @@ def serialize_json(value: MatterEndpoint) -> dict:
 
 def deserialize_json(data: dict) -> MatterEndpoint:
     out: MatterEndpoint = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "clusters" in data:
+    if data.get("clusters") is not None:
         import capo_iot_managed_integrations.types.matter_clusters
 
         out["clusters"] = (

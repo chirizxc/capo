@@ -42,7 +42,7 @@ def serialize_json(value: RoadSnapNotice) -> dict:
 
 def deserialize_json(data: dict) -> RoadSnapNotice:
     out: RoadSnapNotice = {}  # type: ignore[typeddict-item]
-    if "Code" in data:
+    if data.get("Code") is not None:
         import capo_geo_routes.types.road_snap_notice_code
 
         out["code"] = capo_geo_routes.types.road_snap_notice_code.deserialize_json(
@@ -50,11 +50,11 @@ def deserialize_json(data: dict) -> RoadSnapNotice:
         )
     else:
         raise DeserializationError("RoadSnapNotice.code required")
-    if "Title" in data:
+    if data.get("Title") is not None:
         out["title"] = data["Title"]
     else:
         raise DeserializationError("RoadSnapNotice.title required")
-    if "TracePointIndexes" in data:
+    if data.get("TracePointIndexes") is not None:
         import capo_geo_routes.types.road_snap_trace_point_index_list
 
         out["trace_point_indexes"] = (

@@ -36,11 +36,11 @@ def serialize_json(value: ConflictException_) -> dict:
 
 def deserialize_json(data: dict) -> ConflictException_:
     out: ConflictException_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     else:
         raise DeserializationError("ConflictException_.message required")
-    if "reason" in data:
+    if data.get("reason") is not None:
         import capo_arc_zonal_shift.types.conflict_exception_reason
 
         out["reason"] = (
@@ -50,7 +50,7 @@ def deserialize_json(data: dict) -> ConflictException_:
         )
     else:
         raise DeserializationError("ConflictException_.reason required")
-    if "zonalShiftId" in data:
+    if data.get("zonalShiftId") is not None:
         out["zonal_shift_id"] = data["zonalShiftId"]
     return out
 
@@ -60,15 +60,16 @@ class ConflictException(ServiceError):
 
     code: str | None = "ConflictException"
 
-    def __init__(self, data: ConflictException_):
+    def __init__(self, data: ConflictException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="ConflictException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "ConflictException":
-        return cls(deserialize_json(data))
+    def from_json(cls, data: dict, message: str | None = None) -> "ConflictException":
+        return cls(deserialize_json(data), message)

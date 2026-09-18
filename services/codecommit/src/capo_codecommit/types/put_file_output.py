@@ -30,15 +30,15 @@ def serialize_aws_json_1_1(value: PutFileOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PutFileOutput:
     out: PutFileOutput = {}  # type: ignore[typeddict-item]
-    if "commitId" in data:
+    if data.get("commitId") is not None:
         out["commit_id"] = data["commitId"]
     else:
         raise DeserializationError("PutFileOutput.commit_id required")
-    if "blobId" in data:
+    if data.get("blobId") is not None:
         out["blob_id"] = data["blobId"]
     else:
         raise DeserializationError("PutFileOutput.blob_id required")
-    if "treeId" in data:
+    if data.get("treeId") is not None:
         out["tree_id"] = data["treeId"]
     else:
         raise DeserializationError("PutFileOutput.tree_id required")

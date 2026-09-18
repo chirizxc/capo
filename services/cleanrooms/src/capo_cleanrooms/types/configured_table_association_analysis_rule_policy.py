@@ -36,7 +36,7 @@ def serialize_json(value: ConfiguredTableAssociationAnalysisRulePolicy) -> dict:
 
 
 def deserialize_json(data: dict) -> ConfiguredTableAssociationAnalysisRulePolicy:
-    if "v1" in data:
+    if data.get("v1") is not None:
         import capo_cleanrooms.types.configured_table_association_analysis_rule_policy_v1
 
         return {

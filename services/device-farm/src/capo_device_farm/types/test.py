@@ -105,23 +105,23 @@ def serialize_aws_json_1_1(value: Test) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Test:
     out: Test = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_device_farm.types.test_type
 
         out["type"] = capo_device_farm.types.test_type.deserialize_aws_json_1_1(
             data["type"]
         )
-    if "created" in data:
+    if data.get("created") is not None:
         import capo_device_farm.types.date_time
 
         out["created"] = capo_device_farm.types.date_time.deserialize_aws_json_1_1(
             data["created"]
         )
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_device_farm.types.execution_status
 
         out["status"] = (
@@ -129,7 +129,7 @@ def deserialize_aws_json_1_1(data: dict) -> Test:
                 data["status"]
             )
         )
-    if "result" in data:
+    if data.get("result") is not None:
         import capo_device_farm.types.execution_result
 
         out["result"] = (
@@ -137,27 +137,27 @@ def deserialize_aws_json_1_1(data: dict) -> Test:
                 data["result"]
             )
         )
-    if "started" in data:
+    if data.get("started") is not None:
         import capo_device_farm.types.date_time
 
         out["started"] = capo_device_farm.types.date_time.deserialize_aws_json_1_1(
             data["started"]
         )
-    if "stopped" in data:
+    if data.get("stopped") is not None:
         import capo_device_farm.types.date_time
 
         out["stopped"] = capo_device_farm.types.date_time.deserialize_aws_json_1_1(
             data["stopped"]
         )
-    if "counters" in data:
+    if data.get("counters") is not None:
         import capo_device_farm.types.counters
 
         out["counters"] = capo_device_farm.types.counters.deserialize_aws_json_1_1(
             data["counters"]
         )
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
-    if "deviceMinutes" in data:
+    if data.get("deviceMinutes") is not None:
         import capo_device_farm.types.device_minutes
 
         out["device_minutes"] = (

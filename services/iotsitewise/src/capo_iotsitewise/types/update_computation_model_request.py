@@ -59,15 +59,15 @@ def serialize_json(value: UpdateComputationModelRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateComputationModelRequest:
     out: UpdateComputationModelRequest = {}  # type: ignore[typeddict-item]
-    if "computationModelName" in data:
+    if data.get("computationModelName") is not None:
         out["computation_model_name"] = data["computationModelName"]
     else:
         raise DeserializationError(
             "UpdateComputationModelRequest.computation_model_name required"
         )
-    if "computationModelDescription" in data:
+    if data.get("computationModelDescription") is not None:
         out["computation_model_description"] = data["computationModelDescription"]
-    if "computationModelConfiguration" in data:
+    if data.get("computationModelConfiguration") is not None:
         import capo_iotsitewise.types.computation_model_configuration
 
         out["computation_model_configuration"] = (
@@ -79,7 +79,7 @@ def deserialize_json(data: dict) -> UpdateComputationModelRequest:
         raise DeserializationError(
             "UpdateComputationModelRequest.computation_model_configuration required"
         )
-    if "computationModelDataBinding" in data:
+    if data.get("computationModelDataBinding") is not None:
         import capo_iotsitewise.types.computation_model_data_binding
 
         out["computation_model_data_binding"] = (
@@ -91,6 +91,6 @@ def deserialize_json(data: dict) -> UpdateComputationModelRequest:
         raise DeserializationError(
             "UpdateComputationModelRequest.computation_model_data_binding required"
         )
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     return out

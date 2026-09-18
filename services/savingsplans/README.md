@@ -13,9 +13,9 @@ from capo_savingsplans import AsyncsavingsplansClient
 
 
 async def main():
-    async with AsyncsavingsplansClient() as s3:
+    async with AsyncsavingsplansClient() as savingsplans:
         # Example: call the create_savings_plan operation
-        response = await s3.create_savings_plan()
+        response = await savingsplans.create_savings_plan()
         print(response["savings_plan_id"])
 ```
 
@@ -29,9 +29,9 @@ from capo_savingsplans.error import InternalServerException
 
 
 async def main():
-    async with AsyncsavingsplansClient() as s3:
+    async with AsyncsavingsplansClient() as savingsplans:
         try:
-            await s3.create_savings_plan()
+            await savingsplans.create_savings_plan()
         except InternalServerException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -48,13 +48,13 @@ from capo_savingsplans import AsyncsavingsplansClient
 
 
 async def main():
-    async with AsyncsavingsplansClient() as s3:
+    async with AsyncsavingsplansClient() as savingsplans:
         # Default: 3 attempts for every operation
-        response = await s3.create_savings_plan()
+        response = await savingsplans.create_savings_plan()
 
         # Override per operation
-        response = await s3.create_savings_plan(config_overrides={"retry_max_attempts": 5})
+        response = await savingsplans.create_savings_plan(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.create_savings_plan(config_overrides={"retry_max_attempts": 1})
+        response = await savingsplans.create_savings_plan(config_overrides={"retry_max_attempts": 1})
 ```

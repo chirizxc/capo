@@ -40,13 +40,13 @@ def serialize_aws_json_1_1(value: CsrExtensions) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CsrExtensions:
     out: CsrExtensions = {}  # type: ignore[typeddict-item]
-    if "KeyUsage" in data:
+    if data.get("KeyUsage") is not None:
         import capo_acm_pca.types.key_usage
 
         out["key_usage"] = capo_acm_pca.types.key_usage.deserialize_aws_json_1_1(
             data["KeyUsage"]
         )
-    if "SubjectInformationAccess" in data:
+    if data.get("SubjectInformationAccess") is not None:
         import capo_acm_pca.types.access_description_list
 
         out["subject_information_access"] = (

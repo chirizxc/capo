@@ -89,41 +89,41 @@ def serialize_aws_json_1_1(value: Trigger) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Trigger:
     out: Trigger = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "WorkflowName" in data:
+    if data.get("WorkflowName") is not None:
         out["workflow_name"] = data["WorkflowName"]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_glue.types.trigger_type
 
         out["type"] = capo_glue.types.trigger_type.deserialize_aws_json_1_1(
             data["Type"]
         )
-    if "State" in data:
+    if data.get("State") is not None:
         import capo_glue.types.trigger_state
 
         out["state"] = capo_glue.types.trigger_state.deserialize_aws_json_1_1(
             data["State"]
         )
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Schedule" in data:
+    if data.get("Schedule") is not None:
         out["schedule"] = data["Schedule"]
-    if "Actions" in data:
+    if data.get("Actions") is not None:
         import capo_glue.types.action_list
 
         out["actions"] = capo_glue.types.action_list.deserialize_aws_json_1_1(
             data["Actions"]
         )
-    if "Predicate" in data:
+    if data.get("Predicate") is not None:
         import capo_glue.types.predicate
 
         out["predicate"] = capo_glue.types.predicate.deserialize_aws_json_1_1(
             data["Predicate"]
         )
-    if "EventBatchingCondition" in data:
+    if data.get("EventBatchingCondition") is not None:
         import capo_glue.types.event_batching_condition
 
         out["event_batching_condition"] = (

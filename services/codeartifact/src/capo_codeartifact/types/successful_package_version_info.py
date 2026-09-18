@@ -34,9 +34,9 @@ def serialize_json(value: SuccessfulPackageVersionInfo) -> dict:
 
 def deserialize_json(data: dict) -> SuccessfulPackageVersionInfo:
     out: SuccessfulPackageVersionInfo = {}  # type: ignore[typeddict-item]
-    if "revision" in data:
+    if data.get("revision") is not None:
         out["revision"] = data["revision"]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_codeartifact.types.package_version_status
 
         out["status"] = capo_codeartifact.types.package_version_status.deserialize_json(

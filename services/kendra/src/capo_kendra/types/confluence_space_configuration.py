@@ -63,15 +63,15 @@ def serialize_aws_json_1_1(value: ConfluenceSpaceConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ConfluenceSpaceConfiguration:
     out: ConfluenceSpaceConfiguration = {}  # type: ignore[typeddict-item]
-    if "CrawlPersonalSpaces" in data:
+    if data.get("CrawlPersonalSpaces") is not None:
         out["crawl_personal_spaces"] = data["CrawlPersonalSpaces"]
     else:
         out["crawl_personal_spaces"] = False
-    if "CrawlArchivedSpaces" in data:
+    if data.get("CrawlArchivedSpaces") is not None:
         out["crawl_archived_spaces"] = data["CrawlArchivedSpaces"]
     else:
         out["crawl_archived_spaces"] = False
-    if "IncludeSpaces" in data:
+    if data.get("IncludeSpaces") is not None:
         import capo_kendra.types.confluence_space_list
 
         out["include_spaces"] = (
@@ -79,7 +79,7 @@ def deserialize_aws_json_1_1(data: dict) -> ConfluenceSpaceConfiguration:
                 data["IncludeSpaces"]
             )
         )
-    if "ExcludeSpaces" in data:
+    if data.get("ExcludeSpaces") is not None:
         import capo_kendra.types.confluence_space_list
 
         out["exclude_spaces"] = (
@@ -87,7 +87,7 @@ def deserialize_aws_json_1_1(data: dict) -> ConfluenceSpaceConfiguration:
                 data["ExcludeSpaces"]
             )
         )
-    if "SpaceFieldMappings" in data:
+    if data.get("SpaceFieldMappings") is not None:
         import capo_kendra.types.confluence_space_field_mappings_list
 
         out["space_field_mappings"] = (

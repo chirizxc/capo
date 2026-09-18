@@ -42,7 +42,7 @@ def serialize_json(value: MetricSource) -> dict:
 
 def deserialize_json(data: dict) -> MetricSource:
     out: MetricSource = {}  # type: ignore[typeddict-item]
-    if "MetricSourceKeyAttributes" in data:
+    if data.get("MetricSourceKeyAttributes") is not None:
         import capo_application_signals.types.attributes
 
         out["metric_source_key_attributes"] = (
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> MetricSource:
         )
     else:
         raise DeserializationError("MetricSource.metric_source_key_attributes required")
-    if "MetricSourceAttributes" in data:
+    if data.get("MetricSourceAttributes") is not None:
         import capo_application_signals.types.attributes
 
         out["metric_source_attributes"] = (

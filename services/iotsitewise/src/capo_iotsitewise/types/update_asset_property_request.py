@@ -51,9 +51,9 @@ def serialize_json(value: UpdateAssetPropertyRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateAssetPropertyRequest:
     out: UpdateAssetPropertyRequest = {}  # type: ignore[typeddict-item]
-    if "propertyAlias" in data:
+    if data.get("propertyAlias") is not None:
         out["property_alias"] = data["propertyAlias"]
-    if "propertyNotificationState" in data:
+    if data.get("propertyNotificationState") is not None:
         import capo_iotsitewise.types.property_notification_state
 
         out["property_notification_state"] = (
@@ -61,8 +61,8 @@ def deserialize_json(data: dict) -> UpdateAssetPropertyRequest:
                 data["propertyNotificationState"]
             )
         )
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
-    if "propertyUnit" in data:
+    if data.get("propertyUnit") is not None:
         out["property_unit"] = data["propertyUnit"]
     return out

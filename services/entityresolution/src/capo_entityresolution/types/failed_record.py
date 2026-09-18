@@ -31,15 +31,15 @@ def serialize_json(value: FailedRecord) -> dict:
 
 def deserialize_json(data: dict) -> FailedRecord:
     out: FailedRecord = {}  # type: ignore[typeddict-item]
-    if "inputSourceARN" in data:
+    if data.get("inputSourceARN") is not None:
         out["input_source_arn"] = data["inputSourceARN"]
     else:
         raise DeserializationError("FailedRecord.input_source_arn required")
-    if "uniqueId" in data:
+    if data.get("uniqueId") is not None:
         out["unique_id"] = data["uniqueId"]
     else:
         raise DeserializationError("FailedRecord.unique_id required")
-    if "errorMessage" in data:
+    if data.get("errorMessage") is not None:
         out["error_message"] = data["errorMessage"]
     else:
         raise DeserializationError("FailedRecord.error_message required")

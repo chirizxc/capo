@@ -43,15 +43,15 @@ def serialize_aws_json_1_1(value: UpdateNotificationRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateNotificationRequest:
     out: UpdateNotificationRequest = {}  # type: ignore[typeddict-item]
-    if "AccountId" in data:
+    if data.get("AccountId") is not None:
         out["account_id"] = data["AccountId"]
     else:
         raise DeserializationError("UpdateNotificationRequest.account_id required")
-    if "BudgetName" in data:
+    if data.get("BudgetName") is not None:
         out["budget_name"] = data["BudgetName"]
     else:
         raise DeserializationError("UpdateNotificationRequest.budget_name required")
-    if "OldNotification" in data:
+    if data.get("OldNotification") is not None:
         import capo_budgets.types.notification
 
         out["old_notification"] = (
@@ -63,7 +63,7 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateNotificationRequest:
         raise DeserializationError(
             "UpdateNotificationRequest.old_notification required"
         )
-    if "NewNotification" in data:
+    if data.get("NewNotification") is not None:
         import capo_budgets.types.notification
 
         out["new_notification"] = (

@@ -76,11 +76,11 @@ def serialize_aws_json_1_1(value: LoggingConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> LoggingConfiguration:
     out: LoggingConfiguration = {}  # type: ignore[typeddict-item]
-    if "ResourceArn" in data:
+    if data.get("ResourceArn") is not None:
         out["resource_arn"] = data["ResourceArn"]
     else:
         raise DeserializationError("LoggingConfiguration.resource_arn required")
-    if "LogDestinationConfigs" in data:
+    if data.get("LogDestinationConfigs") is not None:
         import capo_wafv2.types.log_destination_configs
 
         out["log_destination_configs"] = (
@@ -92,7 +92,7 @@ def deserialize_aws_json_1_1(data: dict) -> LoggingConfiguration:
         raise DeserializationError(
             "LoggingConfiguration.log_destination_configs required"
         )
-    if "RedactedFields" in data:
+    if data.get("RedactedFields") is not None:
         import capo_wafv2.types.redacted_fields
 
         out["redacted_fields"] = (
@@ -100,11 +100,11 @@ def deserialize_aws_json_1_1(data: dict) -> LoggingConfiguration:
                 data["RedactedFields"]
             )
         )
-    if "ManagedByFirewallManager" in data:
+    if data.get("ManagedByFirewallManager") is not None:
         out["managed_by_firewall_manager"] = data["ManagedByFirewallManager"]
     else:
         out["managed_by_firewall_manager"] = False
-    if "LoggingFilter" in data:
+    if data.get("LoggingFilter") is not None:
         import capo_wafv2.types.logging_filter
 
         out["logging_filter"] = (
@@ -112,13 +112,13 @@ def deserialize_aws_json_1_1(data: dict) -> LoggingConfiguration:
                 data["LoggingFilter"]
             )
         )
-    if "LogType" in data:
+    if data.get("LogType") is not None:
         import capo_wafv2.types.log_type
 
         out["log_type"] = capo_wafv2.types.log_type.deserialize_aws_json_1_1(
             data["LogType"]
         )
-    if "LogScope" in data:
+    if data.get("LogScope") is not None:
         import capo_wafv2.types.log_scope
 
         out["log_scope"] = capo_wafv2.types.log_scope.deserialize_aws_json_1_1(

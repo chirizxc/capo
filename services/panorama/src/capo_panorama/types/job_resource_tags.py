@@ -30,11 +30,11 @@ def serialize_json(value: JobResourceTags) -> dict:
 
 def deserialize_json(data: dict) -> JobResourceTags:
     out: JobResourceTags = {}  # type: ignore[typeddict-item]
-    if "ResourceType" in data:
+    if data.get("ResourceType") is not None:
         out["resource_type"] = data["ResourceType"]
     else:
         raise DeserializationError("JobResourceTags.resource_type required")
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_panorama.types.tag_map
 
         out["tags"] = capo_panorama.types.tag_map.deserialize_json(data["Tags"])

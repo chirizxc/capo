@@ -48,16 +48,16 @@ def serialize_aws_json_1_1(value: SnapshotCopyConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SnapshotCopyConfiguration:
     out: SnapshotCopyConfiguration = {}  # type: ignore[typeddict-item]
-    if "snapshotCopyConfigurationId" in data:
+    if data.get("snapshotCopyConfigurationId") is not None:
         out["snapshot_copy_configuration_id"] = data["snapshotCopyConfigurationId"]
-    if "snapshotCopyConfigurationArn" in data:
+    if data.get("snapshotCopyConfigurationArn") is not None:
         out["snapshot_copy_configuration_arn"] = data["snapshotCopyConfigurationArn"]
-    if "namespaceName" in data:
+    if data.get("namespaceName") is not None:
         out["namespace_name"] = data["namespaceName"]
-    if "destinationRegion" in data:
+    if data.get("destinationRegion") is not None:
         out["destination_region"] = data["destinationRegion"]
-    if "snapshotRetentionPeriod" in data:
+    if data.get("snapshotRetentionPeriod") is not None:
         out["snapshot_retention_period"] = data["snapshotRetentionPeriod"]
-    if "destinationKmsKeyId" in data:
+    if data.get("destinationKmsKeyId") is not None:
         out["destination_kms_key_id"] = data["destinationKmsKeyId"]
     return out

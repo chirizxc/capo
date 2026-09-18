@@ -119,33 +119,33 @@ def serialize_aws_json_1_1(value: EventsDetectionJobProperties) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> EventsDetectionJobProperties:
     out: EventsDetectionJobProperties = {}  # type: ignore[typeddict-item]
-    if "JobId" in data:
+    if data.get("JobId") is not None:
         out["job_id"] = data["JobId"]
-    if "JobArn" in data:
+    if data.get("JobArn") is not None:
         out["job_arn"] = data["JobArn"]
-    if "JobName" in data:
+    if data.get("JobName") is not None:
         out["job_name"] = data["JobName"]
-    if "JobStatus" in data:
+    if data.get("JobStatus") is not None:
         import capo_comprehend.types.job_status
 
         out["job_status"] = capo_comprehend.types.job_status.deserialize_aws_json_1_1(
             data["JobStatus"]
         )
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
-    if "SubmitTime" in data:
+    if data.get("SubmitTime") is not None:
         import capo_comprehend.types.timestamp
 
         out["submit_time"] = capo_comprehend.types.timestamp.deserialize_aws_json_1_1(
             data["SubmitTime"]
         )
-    if "EndTime" in data:
+    if data.get("EndTime") is not None:
         import capo_comprehend.types.timestamp
 
         out["end_time"] = capo_comprehend.types.timestamp.deserialize_aws_json_1_1(
             data["EndTime"]
         )
-    if "InputDataConfig" in data:
+    if data.get("InputDataConfig") is not None:
         import capo_comprehend.types.input_data_config
 
         out["input_data_config"] = (
@@ -153,7 +153,7 @@ def deserialize_aws_json_1_1(data: dict) -> EventsDetectionJobProperties:
                 data["InputDataConfig"]
             )
         )
-    if "OutputDataConfig" in data:
+    if data.get("OutputDataConfig") is not None:
         import capo_comprehend.types.output_data_config
 
         out["output_data_config"] = (
@@ -161,7 +161,7 @@ def deserialize_aws_json_1_1(data: dict) -> EventsDetectionJobProperties:
                 data["OutputDataConfig"]
             )
         )
-    if "LanguageCode" in data:
+    if data.get("LanguageCode") is not None:
         import capo_comprehend.types.language_code
 
         out["language_code"] = (
@@ -169,9 +169,9 @@ def deserialize_aws_json_1_1(data: dict) -> EventsDetectionJobProperties:
                 data["LanguageCode"]
             )
         )
-    if "DataAccessRoleArn" in data:
+    if data.get("DataAccessRoleArn") is not None:
         out["data_access_role_arn"] = data["DataAccessRoleArn"]
-    if "TargetEventTypes" in data:
+    if data.get("TargetEventTypes") is not None:
         import capo_comprehend.types.target_event_types
 
         out["target_event_types"] = (

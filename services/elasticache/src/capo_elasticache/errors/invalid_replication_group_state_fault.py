@@ -37,15 +37,20 @@ class InvalidReplicationGroupStateFault(ServiceError):
 
     code: str | None = "InvalidReplicationGroupStateFault"
 
-    def __init__(self, data: InvalidReplicationGroupStateFault_):
+    def __init__(
+        self, data: InvalidReplicationGroupStateFault_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="InvalidReplicationGroupStateFault",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_query(cls, el: Element) -> "InvalidReplicationGroupStateFault":
-        return cls(deserialize_query(el))
+    def from_query(
+        cls, el: Element, message: str | None = None
+    ) -> "InvalidReplicationGroupStateFault":
+        return cls(deserialize_query(el), message)

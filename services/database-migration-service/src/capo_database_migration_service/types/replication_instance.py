@@ -222,17 +222,17 @@ def serialize_aws_json_1_1(value: ReplicationInstance) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ReplicationInstance:
     out: ReplicationInstance = {}  # type: ignore[typeddict-item]
-    if "ReplicationInstanceIdentifier" in data:
+    if data.get("ReplicationInstanceIdentifier") is not None:
         out["replication_instance_identifier"] = data["ReplicationInstanceIdentifier"]
-    if "ReplicationInstanceClass" in data:
+    if data.get("ReplicationInstanceClass") is not None:
         out["replication_instance_class"] = data["ReplicationInstanceClass"]
-    if "ReplicationInstanceStatus" in data:
+    if data.get("ReplicationInstanceStatus") is not None:
         out["replication_instance_status"] = data["ReplicationInstanceStatus"]
-    if "AllocatedStorage" in data:
+    if data.get("AllocatedStorage") is not None:
         out["allocated_storage"] = data["AllocatedStorage"]
     else:
         out["allocated_storage"] = 0
-    if "InstanceCreateTime" in data:
+    if data.get("InstanceCreateTime") is not None:
         import capo_database_migration_service.types.t_stamp
 
         out["instance_create_time"] = (
@@ -240,7 +240,7 @@ def deserialize_aws_json_1_1(data: dict) -> ReplicationInstance:
                 data["InstanceCreateTime"]
             )
         )
-    if "VpcSecurityGroups" in data:
+    if data.get("VpcSecurityGroups") is not None:
         import capo_database_migration_service.types.vpc_security_group_membership_list
 
         out["vpc_security_groups"] = (
@@ -248,9 +248,9 @@ def deserialize_aws_json_1_1(data: dict) -> ReplicationInstance:
                 data["VpcSecurityGroups"]
             )
         )
-    if "AvailabilityZone" in data:
+    if data.get("AvailabilityZone") is not None:
         out["availability_zone"] = data["AvailabilityZone"]
-    if "ReplicationSubnetGroup" in data:
+    if data.get("ReplicationSubnetGroup") is not None:
         import capo_database_migration_service.types.replication_subnet_group
 
         out["replication_subnet_group"] = (
@@ -258,9 +258,9 @@ def deserialize_aws_json_1_1(data: dict) -> ReplicationInstance:
                 data["ReplicationSubnetGroup"]
             )
         )
-    if "PreferredMaintenanceWindow" in data:
+    if data.get("PreferredMaintenanceWindow") is not None:
         out["preferred_maintenance_window"] = data["PreferredMaintenanceWindow"]
-    if "PendingModifiedValues" in data:
+    if data.get("PendingModifiedValues") is not None:
         import capo_database_migration_service.types.replication_pending_modified_values
 
         out["pending_modified_values"] = (
@@ -268,29 +268,29 @@ def deserialize_aws_json_1_1(data: dict) -> ReplicationInstance:
                 data["PendingModifiedValues"]
             )
         )
-    if "MultiAZ" in data:
+    if data.get("MultiAZ") is not None:
         out["multi_az"] = data["MultiAZ"]
     else:
         out["multi_az"] = False
-    if "EngineVersion" in data:
+    if data.get("EngineVersion") is not None:
         out["engine_version"] = data["EngineVersion"]
-    if "AutoMinorVersionUpgrade" in data:
+    if data.get("AutoMinorVersionUpgrade") is not None:
         out["auto_minor_version_upgrade"] = data["AutoMinorVersionUpgrade"]
     else:
         out["auto_minor_version_upgrade"] = False
-    if "KmsKeyId" in data:
+    if data.get("KmsKeyId") is not None:
         out["kms_key_id"] = data["KmsKeyId"]
-    if "ReplicationInstanceArn" in data:
+    if data.get("ReplicationInstanceArn") is not None:
         out["replication_instance_arn"] = data["ReplicationInstanceArn"]
-    if "ReplicationInstancePublicIpAddress" in data:
+    if data.get("ReplicationInstancePublicIpAddress") is not None:
         out["replication_instance_public_ip_address"] = data[
             "ReplicationInstancePublicIpAddress"
         ]
-    if "ReplicationInstancePrivateIpAddress" in data:
+    if data.get("ReplicationInstancePrivateIpAddress") is not None:
         out["replication_instance_private_ip_address"] = data[
             "ReplicationInstancePrivateIpAddress"
         ]
-    if "ReplicationInstancePublicIpAddresses" in data:
+    if data.get("ReplicationInstancePublicIpAddresses") is not None:
         import capo_database_migration_service.types.replication_instance_public_ip_address_list
 
         out["replication_instance_public_ip_addresses"] = (
@@ -298,7 +298,7 @@ def deserialize_aws_json_1_1(data: dict) -> ReplicationInstance:
                 data["ReplicationInstancePublicIpAddresses"]
             )
         )
-    if "ReplicationInstancePrivateIpAddresses" in data:
+    if data.get("ReplicationInstancePrivateIpAddresses") is not None:
         import capo_database_migration_service.types.replication_instance_private_ip_address_list
 
         out["replication_instance_private_ip_addresses"] = (
@@ -306,7 +306,7 @@ def deserialize_aws_json_1_1(data: dict) -> ReplicationInstance:
                 data["ReplicationInstancePrivateIpAddresses"]
             )
         )
-    if "ReplicationInstanceIpv6Addresses" in data:
+    if data.get("ReplicationInstanceIpv6Addresses") is not None:
         import capo_database_migration_service.types.replication_instance_ipv6_address_list
 
         out["replication_instance_ipv6_addresses"] = (
@@ -314,13 +314,13 @@ def deserialize_aws_json_1_1(data: dict) -> ReplicationInstance:
                 data["ReplicationInstanceIpv6Addresses"]
             )
         )
-    if "PubliclyAccessible" in data:
+    if data.get("PubliclyAccessible") is not None:
         out["publicly_accessible"] = data["PubliclyAccessible"]
     else:
         out["publicly_accessible"] = False
-    if "SecondaryAvailabilityZone" in data:
+    if data.get("SecondaryAvailabilityZone") is not None:
         out["secondary_availability_zone"] = data["SecondaryAvailabilityZone"]
-    if "FreeUntil" in data:
+    if data.get("FreeUntil") is not None:
         import capo_database_migration_service.types.t_stamp
 
         out["free_until"] = (
@@ -328,11 +328,11 @@ def deserialize_aws_json_1_1(data: dict) -> ReplicationInstance:
                 data["FreeUntil"]
             )
         )
-    if "DnsNameServers" in data:
+    if data.get("DnsNameServers") is not None:
         out["dns_name_servers"] = data["DnsNameServers"]
-    if "NetworkType" in data:
+    if data.get("NetworkType") is not None:
         out["network_type"] = data["NetworkType"]
-    if "KerberosAuthenticationSettings" in data:
+    if data.get("KerberosAuthenticationSettings") is not None:
         import capo_database_migration_service.types.kerberos_authentication_settings
 
         out["kerberos_authentication_settings"] = (

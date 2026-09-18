@@ -24,7 +24,7 @@ def serialize_json(value: LexiconNotFoundException_) -> dict:
 
 def deserialize_json(data: dict) -> LexiconNotFoundException_:
     out: LexiconNotFoundException_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     return out
 
@@ -34,15 +34,18 @@ class LexiconNotFoundException(ServiceError):
 
     code: str | None = "LexiconNotFoundException"
 
-    def __init__(self, data: LexiconNotFoundException_):
+    def __init__(self, data: LexiconNotFoundException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="LexiconNotFoundException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "LexiconNotFoundException":
-        return cls(deserialize_json(data))
+    def from_json(
+        cls, data: dict, message: str | None = None
+    ) -> "LexiconNotFoundException":
+        return cls(deserialize_json(data), message)

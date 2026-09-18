@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> ExecutionSummaryList:
 
     out: ExecutionSummaryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_snow_device_management.types.execution_summary.deserialize_json(item)
         )

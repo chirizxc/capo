@@ -13,9 +13,9 @@ from capo_opensearchserverless import AsyncOpenSearchServerlessClient
 
 
 async def main():
-    async with AsyncOpenSearchServerlessClient() as s3:
+    async with AsyncOpenSearchServerlessClient() as open_search_serverless:
         # Example: call the batch_get_collection operation
-        response = await s3.batch_get_collection()
+        response = await open_search_serverless.batch_get_collection()
         print(response["collection_details"])
 ```
 
@@ -29,9 +29,9 @@ from capo_opensearchserverless.error import InternalServerException
 
 
 async def main():
-    async with AsyncOpenSearchServerlessClient() as s3:
+    async with AsyncOpenSearchServerlessClient() as open_search_serverless:
         try:
-            await s3.batch_get_collection()
+            await open_search_serverless.batch_get_collection()
         except InternalServerException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -48,13 +48,13 @@ from capo_opensearchserverless import AsyncOpenSearchServerlessClient
 
 
 async def main():
-    async with AsyncOpenSearchServerlessClient() as s3:
+    async with AsyncOpenSearchServerlessClient() as open_search_serverless:
         # Default: 3 attempts for every operation
-        response = await s3.batch_get_collection()
+        response = await open_search_serverless.batch_get_collection()
 
         # Override per operation
-        response = await s3.batch_get_collection(config_overrides={"retry_max_attempts": 5})
+        response = await open_search_serverless.batch_get_collection(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.batch_get_collection(config_overrides={"retry_max_attempts": 1})
+        response = await open_search_serverless.batch_get_collection(config_overrides={"retry_max_attempts": 1})
 ```

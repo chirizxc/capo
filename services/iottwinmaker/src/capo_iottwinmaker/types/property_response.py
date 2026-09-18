@@ -45,7 +45,7 @@ def serialize_json(value: PropertyResponse) -> dict:
 
 def deserialize_json(data: dict) -> PropertyResponse:
     out: PropertyResponse = {}  # type: ignore[typeddict-item]
-    if "definition" in data:
+    if data.get("definition") is not None:
         import capo_iottwinmaker.types.property_definition_response
 
         out["definition"] = (
@@ -53,12 +53,12 @@ def deserialize_json(data: dict) -> PropertyResponse:
                 data["definition"]
             )
         )
-    if "value" in data:
+    if data.get("value") is not None:
         import capo_iottwinmaker.types.data_value
 
         out["value"] = capo_iottwinmaker.types.data_value.deserialize_json(
             data["value"]
         )
-    if "areAllPropertyValuesReturned" in data:
+    if data.get("areAllPropertyValuesReturned") is not None:
         out["are_all_property_values_returned"] = data["areAllPropertyValuesReturned"]
     return out

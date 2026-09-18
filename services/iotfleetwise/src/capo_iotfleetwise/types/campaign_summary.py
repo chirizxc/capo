@@ -70,17 +70,17 @@ def serialize_aws_json_1_0(value: CampaignSummary) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CampaignSummary:
     out: CampaignSummary = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "signalCatalogArn" in data:
+    if data.get("signalCatalogArn") is not None:
         out["signal_catalog_arn"] = data["signalCatalogArn"]
-    if "targetArn" in data:
+    if data.get("targetArn") is not None:
         out["target_arn"] = data["targetArn"]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_iotfleetwise.types.campaign_status
 
         out["status"] = (
@@ -88,7 +88,7 @@ def deserialize_aws_json_1_0(data: dict) -> CampaignSummary:
                 data["status"]
             )
         )
-    if "creationTime" in data:
+    if data.get("creationTime") is not None:
         import capo_iotfleetwise.types.timestamp
 
         out["creation_time"] = (
@@ -98,7 +98,7 @@ def deserialize_aws_json_1_0(data: dict) -> CampaignSummary:
         )
     else:
         raise DeserializationError("CampaignSummary.creation_time required")
-    if "lastModificationTime" in data:
+    if data.get("lastModificationTime") is not None:
         import capo_iotfleetwise.types.timestamp
 
         out["last_modification_time"] = (

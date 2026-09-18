@@ -27,7 +27,7 @@ def serialize_json(value: GetNetworkOutput) -> dict:
 
 def deserialize_json(data: dict) -> GetNetworkOutput:
     out: GetNetworkOutput = {}  # type: ignore[typeddict-item]
-    if "Network" in data:
+    if data.get("Network") is not None:
         import capo_managedblockchain.types.network
 
         out["network"] = capo_managedblockchain.types.network.deserialize_json(

@@ -36,7 +36,7 @@ def serialize_json(value: AssetBundleImportSource) -> dict:
 
 def deserialize_json(data: dict) -> AssetBundleImportSource:
     out: AssetBundleImportSource = {}  # type: ignore[typeddict-item]
-    if "Body" in data:
+    if data.get("Body") is not None:
         import capo_quicksight.types.asset_bundle_import_body_blob
 
         out["body"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> AssetBundleImportSource:
                 data["Body"]
             )
         )
-    if "S3Uri" in data:
+    if data.get("S3Uri") is not None:
         out["s3_uri"] = data["S3Uri"]
     return out

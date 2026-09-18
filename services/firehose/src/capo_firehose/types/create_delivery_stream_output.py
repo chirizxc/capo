@@ -25,6 +25,6 @@ def serialize_aws_json_1_1(value: CreateDeliveryStreamOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateDeliveryStreamOutput:
     out: CreateDeliveryStreamOutput = {}  # type: ignore[typeddict-item]
-    if "DeliveryStreamARN" in data:
+    if data.get("DeliveryStreamARN") is not None:
         out["delivery_stream_arn"] = data["DeliveryStreamARN"]
     return out

@@ -27,7 +27,7 @@ def serialize_json(value: TrackingFilterGeometry) -> dict:
 
 def deserialize_json(data: dict) -> TrackingFilterGeometry:
     out: TrackingFilterGeometry = {}  # type: ignore[typeddict-item]
-    if "Polygon" in data:
+    if data.get("Polygon") is not None:
         import capo_location.types.linear_rings
 
         out["polygon"] = capo_location.types.linear_rings.deserialize_json(

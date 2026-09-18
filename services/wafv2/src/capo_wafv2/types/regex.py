@@ -25,6 +25,6 @@ def serialize_aws_json_1_1(value: Regex) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Regex:
     out: Regex = {}  # type: ignore[typeddict-item]
-    if "RegexString" in data:
+    if data.get("RegexString") is not None:
         out["regex_string"] = data["RegexString"]
     return out

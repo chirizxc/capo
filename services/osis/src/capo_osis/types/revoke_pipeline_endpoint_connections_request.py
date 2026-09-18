@@ -32,13 +32,13 @@ def serialize_json(value: RevokePipelineEndpointConnectionsRequest) -> dict:
 
 def deserialize_json(data: dict) -> RevokePipelineEndpointConnectionsRequest:
     out: RevokePipelineEndpointConnectionsRequest = {}  # type: ignore[typeddict-item]
-    if "PipelineArn" in data:
+    if data.get("PipelineArn") is not None:
         out["pipeline_arn"] = data["PipelineArn"]
     else:
         raise DeserializationError(
             "RevokePipelineEndpointConnectionsRequest.pipeline_arn required"
         )
-    if "EndpointIds" in data:
+    if data.get("EndpointIds") is not None:
         import capo_osis.types.pipeline_endpoint_ids_list
 
         out["endpoint_ids"] = (

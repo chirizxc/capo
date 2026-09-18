@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> AddonIssueList:
 
     out: AddonIssueList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_eks.types.addon_issue.deserialize_json(item))
     return out

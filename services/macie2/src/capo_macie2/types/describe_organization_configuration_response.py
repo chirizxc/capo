@@ -27,8 +27,8 @@ def serialize_json(value: DescribeOrganizationConfigurationResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribeOrganizationConfigurationResponse:
     out: DescribeOrganizationConfigurationResponse = {}  # type: ignore[typeddict-item]
-    if "autoEnable" in data:
+    if data.get("autoEnable") is not None:
         out["auto_enable"] = data["autoEnable"]
-    if "maxAccountLimitReached" in data:
+    if data.get("maxAccountLimitReached") is not None:
         out["max_account_limit_reached"] = data["maxAccountLimitReached"]
     return out

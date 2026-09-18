@@ -48,16 +48,16 @@ def serialize_aws_json_1_1(value: DescribeRouterConfigurationResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeRouterConfigurationResponse:
     out: DescribeRouterConfigurationResponse = {}  # type: ignore[typeddict-item]
-    if "customerRouterConfig" in data:
+    if data.get("customerRouterConfig") is not None:
         out["customer_router_config"] = data["customerRouterConfig"]
-    if "router" in data:
+    if data.get("router") is not None:
         import capo_direct_connect.types.router_type
 
         out["router"] = capo_direct_connect.types.router_type.deserialize_aws_json_1_1(
             data["router"]
         )
-    if "virtualInterfaceId" in data:
+    if data.get("virtualInterfaceId") is not None:
         out["virtual_interface_id"] = data["virtualInterfaceId"]
-    if "virtualInterfaceName" in data:
+    if data.get("virtualInterfaceName") is not None:
         out["virtual_interface_name"] = data["virtualInterfaceName"]
     return out

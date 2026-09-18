@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> LinkedWhatsAppBusinessAccountSummaryList:
 
     out: LinkedWhatsAppBusinessAccountSummaryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_socialmessaging.types.linked_whats_app_business_account_summary.deserialize_json(
                 item

@@ -52,15 +52,15 @@ def serialize_aws_json_1_1(value: UpdateLocationNfsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateLocationNfsRequest:
     out: UpdateLocationNfsRequest = {}  # type: ignore[typeddict-item]
-    if "LocationArn" in data:
+    if data.get("LocationArn") is not None:
         out["location_arn"] = data["LocationArn"]
     else:
         raise DeserializationError("UpdateLocationNfsRequest.location_arn required")
-    if "Subdirectory" in data:
+    if data.get("Subdirectory") is not None:
         out["subdirectory"] = data["Subdirectory"]
-    if "ServerHostname" in data:
+    if data.get("ServerHostname") is not None:
         out["server_hostname"] = data["ServerHostname"]
-    if "OnPremConfig" in data:
+    if data.get("OnPremConfig") is not None:
         import capo_datasync.types.on_prem_config
 
         out["on_prem_config"] = (
@@ -68,7 +68,7 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateLocationNfsRequest:
                 data["OnPremConfig"]
             )
         )
-    if "MountOptions" in data:
+    if data.get("MountOptions") is not None:
         import capo_datasync.types.nfs_mount_options
 
         out["mount_options"] = (

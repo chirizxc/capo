@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: DeleteDevEndpointRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteDevEndpointRequest:
     out: DeleteDevEndpointRequest = {}  # type: ignore[typeddict-item]
-    if "EndpointName" in data:
+    if data.get("EndpointName") is not None:
         out["endpoint_name"] = data["EndpointName"]
     else:
         raise DeserializationError("DeleteDevEndpointRequest.endpoint_name required")

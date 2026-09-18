@@ -70,17 +70,17 @@ def serialize_json(value: IdNamespaceSummary) -> dict:
 
 def deserialize_json(data: dict) -> IdNamespaceSummary:
     out: IdNamespaceSummary = {}  # type: ignore[typeddict-item]
-    if "idNamespaceName" in data:
+    if data.get("idNamespaceName") is not None:
         out["id_namespace_name"] = data["idNamespaceName"]
     else:
         raise DeserializationError("IdNamespaceSummary.id_namespace_name required")
-    if "idNamespaceArn" in data:
+    if data.get("idNamespaceArn") is not None:
         out["id_namespace_arn"] = data["idNamespaceArn"]
     else:
         raise DeserializationError("IdNamespaceSummary.id_namespace_arn required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "idMappingWorkflowProperties" in data:
+    if data.get("idMappingWorkflowProperties") is not None:
         import capo_entityresolution.types.id_namespace_id_mapping_workflow_metadata_list
 
         out["id_mapping_workflow_properties"] = (
@@ -88,7 +88,7 @@ def deserialize_json(data: dict) -> IdNamespaceSummary:
                 data["idMappingWorkflowProperties"]
             )
         )
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_entityresolution.types.id_namespace_type
 
         out["type"] = capo_entityresolution.types.id_namespace_type.deserialize_json(
@@ -96,7 +96,7 @@ def deserialize_json(data: dict) -> IdNamespaceSummary:
         )
     else:
         raise DeserializationError("IdNamespaceSummary.type required")
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_entityresolution.types._prelude.timestamp
 
         out["created_at"] = (
@@ -106,7 +106,7 @@ def deserialize_json(data: dict) -> IdNamespaceSummary:
         )
     else:
         raise DeserializationError("IdNamespaceSummary.created_at required")
-    if "updatedAt" in data:
+    if data.get("updatedAt") is not None:
         import capo_entityresolution.types._prelude.timestamp
 
         out["updated_at"] = (

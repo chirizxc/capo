@@ -36,7 +36,7 @@ def serialize_json(value: SearchAvailablePhoneNumbersResponse) -> dict:
 
 def deserialize_json(data: dict) -> SearchAvailablePhoneNumbersResponse:
     out: SearchAvailablePhoneNumbersResponse = {}  # type: ignore[typeddict-item]
-    if "E164PhoneNumbers" in data:
+    if data.get("E164PhoneNumbers") is not None:
         import capo_chime.types.e164_phone_number_list
 
         out["e164_phone_numbers"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> SearchAvailablePhoneNumbersResponse:
                 data["E164PhoneNumbers"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

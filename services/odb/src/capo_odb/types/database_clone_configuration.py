@@ -32,13 +32,13 @@ def serialize_aws_json_1_0(value: DatabaseCloneConfiguration) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> DatabaseCloneConfiguration:
     out: DatabaseCloneConfiguration = {}  # type: ignore[typeddict-item]
-    if "sourceAutonomousDatabaseId" in data:
+    if data.get("sourceAutonomousDatabaseId") is not None:
         out["source_autonomous_database_id"] = data["sourceAutonomousDatabaseId"]
     else:
         raise DeserializationError(
             "DatabaseCloneConfiguration.source_autonomous_database_id required"
         )
-    if "cloneType" in data:
+    if data.get("cloneType") is not None:
         import capo_odb.types.clone_type
 
         out["clone_type"] = capo_odb.types.clone_type.deserialize_aws_json_1_0(

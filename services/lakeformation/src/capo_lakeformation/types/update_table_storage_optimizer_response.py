@@ -23,6 +23,6 @@ def serialize_json(value: UpdateTableStorageOptimizerResponse) -> dict:
 
 def deserialize_json(data: dict) -> UpdateTableStorageOptimizerResponse:
     out: UpdateTableStorageOptimizerResponse = {}  # type: ignore[typeddict-item]
-    if "Result" in data:
+    if data.get("Result") is not None:
         out["result"] = data["Result"]
     return out

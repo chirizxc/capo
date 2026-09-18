@@ -79,7 +79,7 @@ def serialize_aws_json_1_1(value: GetPersonTrackingResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetPersonTrackingResponse:
     out: GetPersonTrackingResponse = {}  # type: ignore[typeddict-item]
-    if "JobStatus" in data:
+    if data.get("JobStatus") is not None:
         import capo_rekognition.types.video_job_status
 
         out["job_status"] = (
@@ -87,9 +87,9 @@ def deserialize_aws_json_1_1(data: dict) -> GetPersonTrackingResponse:
                 data["JobStatus"]
             )
         )
-    if "StatusMessage" in data:
+    if data.get("StatusMessage") is not None:
         out["status_message"] = data["StatusMessage"]
-    if "VideoMetadata" in data:
+    if data.get("VideoMetadata") is not None:
         import capo_rekognition.types.video_metadata
 
         out["video_metadata"] = (
@@ -97,9 +97,9 @@ def deserialize_aws_json_1_1(data: dict) -> GetPersonTrackingResponse:
                 data["VideoMetadata"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "Persons" in data:
+    if data.get("Persons") is not None:
         import capo_rekognition.types.person_detections
 
         out["persons"] = (
@@ -107,14 +107,14 @@ def deserialize_aws_json_1_1(data: dict) -> GetPersonTrackingResponse:
                 data["Persons"]
             )
         )
-    if "JobId" in data:
+    if data.get("JobId") is not None:
         out["job_id"] = data["JobId"]
-    if "Video" in data:
+    if data.get("Video") is not None:
         import capo_rekognition.types.video
 
         out["video"] = capo_rekognition.types.video.deserialize_aws_json_1_1(
             data["Video"]
         )
-    if "JobTag" in data:
+    if data.get("JobTag") is not None:
         out["job_tag"] = data["JobTag"]
     return out

@@ -28,7 +28,7 @@ def serialize_json(value: CreateWorkflowDefinitionResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateWorkflowDefinitionResponse:
     out: CreateWorkflowDefinitionResponse = {}  # type: ignore[typeddict-item]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_nova_act.types.workflow_definition_status
 
         out["status"] = capo_nova_act.types.workflow_definition_status.deserialize_json(

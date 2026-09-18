@@ -91,43 +91,43 @@ def serialize_json(value: Cluster) -> dict:
 
 def deserialize_json(data: dict) -> Cluster:
     out: Cluster = {}  # type: ignore[typeddict-item]
-    if "clusterName" in data:
+    if data.get("clusterName") is not None:
         out["cluster_name"] = data["clusterName"]
     else:
         raise DeserializationError("Cluster.cluster_name required")
-    if "clusterArn" in data:
+    if data.get("clusterArn") is not None:
         out["cluster_arn"] = data["clusterArn"]
     else:
         raise DeserializationError("Cluster.cluster_arn required")
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
     else:
         raise DeserializationError("Cluster.status required")
-    if "clusterEndpoint" in data:
+    if data.get("clusterEndpoint") is not None:
         out["cluster_endpoint"] = data["clusterEndpoint"]
     else:
         raise DeserializationError("Cluster.cluster_endpoint required")
-    if "createTime" in data:
+    if data.get("createTime") is not None:
         out["create_time"] = data["createTime"]
     else:
         raise DeserializationError("Cluster.create_time required")
-    if "adminUserName" in data:
+    if data.get("adminUserName") is not None:
         out["admin_user_name"] = data["adminUserName"]
     else:
         raise DeserializationError("Cluster.admin_user_name required")
-    if "authType" in data:
+    if data.get("authType") is not None:
         out["auth_type"] = data["authType"]
     else:
         raise DeserializationError("Cluster.auth_type required")
-    if "shardCapacity" in data:
+    if data.get("shardCapacity") is not None:
         out["shard_capacity"] = data["shardCapacity"]
     else:
         raise DeserializationError("Cluster.shard_capacity required")
-    if "shardCount" in data:
+    if data.get("shardCount") is not None:
         out["shard_count"] = data["shardCount"]
     else:
         raise DeserializationError("Cluster.shard_count required")
-    if "vpcSecurityGroupIds" in data:
+    if data.get("vpcSecurityGroupIds") is not None:
         import capo_docdb_elastic.types.string_list
 
         out["vpc_security_group_ids"] = (
@@ -137,7 +137,7 @@ def deserialize_json(data: dict) -> Cluster:
         )
     else:
         raise DeserializationError("Cluster.vpc_security_group_ids required")
-    if "subnetIds" in data:
+    if data.get("subnetIds") is not None:
         import capo_docdb_elastic.types.string_list
 
         out["subnet_ids"] = capo_docdb_elastic.types.string_list.deserialize_json(
@@ -145,24 +145,24 @@ def deserialize_json(data: dict) -> Cluster:
         )
     else:
         raise DeserializationError("Cluster.subnet_ids required")
-    if "preferredMaintenanceWindow" in data:
+    if data.get("preferredMaintenanceWindow") is not None:
         out["preferred_maintenance_window"] = data["preferredMaintenanceWindow"]
     else:
         raise DeserializationError("Cluster.preferred_maintenance_window required")
-    if "kmsKeyId" in data:
+    if data.get("kmsKeyId") is not None:
         out["kms_key_id"] = data["kmsKeyId"]
     else:
         raise DeserializationError("Cluster.kms_key_id required")
-    if "shards" in data:
+    if data.get("shards") is not None:
         import capo_docdb_elastic.types.shard_list
 
         out["shards"] = capo_docdb_elastic.types.shard_list.deserialize_json(
             data["shards"]
         )
-    if "backupRetentionPeriod" in data:
+    if data.get("backupRetentionPeriod") is not None:
         out["backup_retention_period"] = data["backupRetentionPeriod"]
-    if "preferredBackupWindow" in data:
+    if data.get("preferredBackupWindow") is not None:
         out["preferred_backup_window"] = data["preferredBackupWindow"]
-    if "shardInstanceCount" in data:
+    if data.get("shardInstanceCount") is not None:
         out["shard_instance_count"] = data["shardInstanceCount"]
     return out

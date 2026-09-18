@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: DeleteIdentityPoolInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteIdentityPoolInput:
     out: DeleteIdentityPoolInput = {}  # type: ignore[typeddict-item]
-    if "IdentityPoolId" in data:
+    if data.get("IdentityPoolId") is not None:
         out["identity_pool_id"] = data["IdentityPoolId"]
     else:
         raise DeserializationError("DeleteIdentityPoolInput.identity_pool_id required")

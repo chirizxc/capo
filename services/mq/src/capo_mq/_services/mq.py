@@ -1,5 +1,6 @@
 """Generated from Smithy shape ``com.amazonaws.mq#mq``."""
 
+import uuid
 import warnings
 from collections.abc import Iterator
 from typing import TYPE_CHECKING, Any, Iterable, Optional
@@ -283,7 +284,7 @@ class mqClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mq.types.create_broker_request.CreateBrokerRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_mq.types.create_broker_request.CreateBrokerRequest = {}
         if authentication_strategy is not None:
             input_["authentication_strategy"] = authentication_strategy
         if auto_minor_version_upgrade is not None:
@@ -292,8 +293,9 @@ class mqClient:
             input_["broker_name"] = broker_name
         if configuration is not None:
             input_["configuration"] = configuration
-        if creator_request_id is not None:
-            input_["creator_request_id"] = creator_request_id
+        if creator_request_id is None:
+            creator_request_id = str(uuid.uuid4())
+        input_["creator_request_id"] = creator_request_id
         if deployment_mode is not None:
             input_["deployment_mode"] = deployment_mode
         if encryption_options is not None:
@@ -334,6 +336,7 @@ class mqClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_configuration(
@@ -380,7 +383,7 @@ class mqClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mq.types.create_configuration_request.CreateConfigurationRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_mq.types.create_configuration_request.CreateConfigurationRequest = {}
         if authentication_strategy is not None:
             input_["authentication_strategy"] = authentication_strategy
         if engine_type is not None:
@@ -397,6 +400,7 @@ class mqClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_tags(
@@ -431,8 +435,9 @@ class mqClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mq.types.create_tags_request.CreateTagsRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_mq.types.create_tags_request.CreateTagsRequest = {
+            "resource_arn": resource_arn
+        }
         if tags is not None:
             input_["tags"] = tags
 
@@ -441,6 +446,7 @@ class mqClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_user(
@@ -484,15 +490,16 @@ class mqClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mq.types.create_user_request.CreateUserRequest = {}  # type: ignore[typeddict-item]
-        input_["broker_id"] = broker_id
+        input_: capo_mq.types.create_user_request.CreateUserRequest = {
+            "broker_id": broker_id,
+            "username": username,
+        }
         if console_access is not None:
             input_["console_access"] = console_access
         if groups is not None:
             input_["groups"] = groups
         if password is not None:
             input_["password"] = password
-        input_["username"] = username
         if replication_user is not None:
             input_["replication_user"] = replication_user
 
@@ -501,6 +508,7 @@ class mqClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_broker(
@@ -535,14 +543,16 @@ class mqClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mq.types.delete_broker_request.DeleteBrokerRequest = {}  # type: ignore[typeddict-item]
-        input_["broker_id"] = broker_id
+        input_: capo_mq.types.delete_broker_request.DeleteBrokerRequest = {
+            "broker_id": broker_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_configuration(
@@ -580,14 +590,16 @@ class mqClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mq.types.delete_configuration_request.DeleteConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["configuration_id"] = configuration_id
+        input_: capo_mq.types.delete_configuration_request.DeleteConfigurationRequest = {
+            "configuration_id": configuration_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_tags(
@@ -622,8 +634,9 @@ class mqClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mq.types.delete_tags_request.DeleteTagsRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_mq.types.delete_tags_request.DeleteTagsRequest = {
+            "resource_arn": resource_arn
+        }
         if tag_keys is not None:
             input_["tag_keys"] = tag_keys
 
@@ -632,6 +645,7 @@ class mqClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_user(
@@ -666,15 +680,17 @@ class mqClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mq.types.delete_user_request.DeleteUserRequest = {}  # type: ignore[typeddict-item]
-        input_["broker_id"] = broker_id
-        input_["username"] = username
+        input_: capo_mq.types.delete_user_request.DeleteUserRequest = {
+            "broker_id": broker_id,
+            "username": username,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_broker(
@@ -711,14 +727,16 @@ class mqClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mq.types.describe_broker_request.DescribeBrokerRequest = {}  # type: ignore[typeddict-item]
-        input_["broker_id"] = broker_id
+        input_: capo_mq.types.describe_broker_request.DescribeBrokerRequest = {
+            "broker_id": broker_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_broker_engine_types(
@@ -758,7 +776,7 @@ class mqClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mq.types.describe_broker_engine_types_request.DescribeBrokerEngineTypesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_mq.types.describe_broker_engine_types_request.DescribeBrokerEngineTypesRequest = {}
         if engine_type is not None:
             input_["engine_type"] = engine_type
         if max_results is not None:
@@ -771,6 +789,7 @@ class mqClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_broker_instance_options(
@@ -814,7 +833,7 @@ class mqClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mq.types.describe_broker_instance_options_request.DescribeBrokerInstanceOptionsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_mq.types.describe_broker_instance_options_request.DescribeBrokerInstanceOptionsRequest = {}
         if engine_type is not None:
             input_["engine_type"] = engine_type
         if host_instance_type is not None:
@@ -831,6 +850,7 @@ class mqClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_configuration(
@@ -867,14 +887,16 @@ class mqClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mq.types.describe_configuration_request.DescribeConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["configuration_id"] = configuration_id
+        input_: capo_mq.types.describe_configuration_request.DescribeConfigurationRequest = {
+            "configuration_id": configuration_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_configuration_revision(
@@ -913,15 +935,17 @@ class mqClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mq.types.describe_configuration_revision_request.DescribeConfigurationRevisionRequest = {}  # type: ignore[typeddict-item]
-        input_["configuration_id"] = configuration_id
-        input_["configuration_revision"] = configuration_revision
+        input_: capo_mq.types.describe_configuration_revision_request.DescribeConfigurationRevisionRequest = {
+            "configuration_id": configuration_id,
+            "configuration_revision": configuration_revision,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_user(
@@ -958,15 +982,17 @@ class mqClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mq.types.describe_user_request.DescribeUserRequest = {}  # type: ignore[typeddict-item]
-        input_["broker_id"] = broker_id
-        input_["username"] = username
+        input_: capo_mq.types.describe_user_request.DescribeUserRequest = {
+            "broker_id": broker_id,
+            "username": username,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_brokers(
@@ -1002,7 +1028,7 @@ class mqClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mq.types.list_brokers_request.ListBrokersRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_mq.types.list_brokers_request.ListBrokersRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -1013,6 +1039,7 @@ class mqClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_brokers(
@@ -1074,8 +1101,9 @@ class mqClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mq.types.list_configuration_revisions_request.ListConfigurationRevisionsRequest = {}  # type: ignore[typeddict-item]
-        input_["configuration_id"] = configuration_id
+        input_: capo_mq.types.list_configuration_revisions_request.ListConfigurationRevisionsRequest = {
+            "configuration_id": configuration_id
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -1086,6 +1114,7 @@ class mqClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_configurations(
@@ -1123,7 +1152,7 @@ class mqClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mq.types.list_configurations_request.ListConfigurationsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_mq.types.list_configurations_request.ListConfigurationsRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -1134,6 +1163,7 @@ class mqClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_tags(
@@ -1166,14 +1196,16 @@ class mqClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mq.types.list_tags_request.ListTagsRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_mq.types.list_tags_request.ListTagsRequest = {
+            "resource_arn": resource_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_users(
@@ -1210,8 +1242,9 @@ class mqClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mq.types.list_users_request.ListUsersRequest = {}  # type: ignore[typeddict-item]
-        input_["broker_id"] = broker_id
+        input_: capo_mq.types.list_users_request.ListUsersRequest = {
+            "broker_id": broker_id
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -1222,6 +1255,7 @@ class mqClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def promote(
@@ -1256,8 +1290,7 @@ class mqClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mq.types.promote_request.PromoteRequest = {}  # type: ignore[typeddict-item]
-        input_["broker_id"] = broker_id
+        input_: capo_mq.types.promote_request.PromoteRequest = {"broker_id": broker_id}
         if mode is not None:
             input_["mode"] = mode
 
@@ -1266,6 +1299,7 @@ class mqClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def reboot_broker(
@@ -1300,14 +1334,16 @@ class mqClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mq.types.reboot_broker_request.RebootBrokerRequest = {}  # type: ignore[typeddict-item]
-        input_["broker_id"] = broker_id
+        input_: capo_mq.types.reboot_broker_request.RebootBrokerRequest = {
+            "broker_id": broker_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_broker(
@@ -1377,12 +1413,13 @@ class mqClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mq.types.update_broker_request.UpdateBrokerRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_mq.types.update_broker_request.UpdateBrokerRequest = {
+            "broker_id": broker_id
+        }
         if authentication_strategy is not None:
             input_["authentication_strategy"] = authentication_strategy
         if auto_minor_version_upgrade is not None:
             input_["auto_minor_version_upgrade"] = auto_minor_version_upgrade
-        input_["broker_id"] = broker_id
         if configuration is not None:
             input_["configuration"] = configuration
         if engine_version is not None:
@@ -1405,6 +1442,7 @@ class mqClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_configuration(
@@ -1446,8 +1484,9 @@ class mqClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mq.types.update_configuration_request.UpdateConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["configuration_id"] = configuration_id
+        input_: capo_mq.types.update_configuration_request.UpdateConfigurationRequest = {
+            "configuration_id": configuration_id
+        }
         if data is not None:
             input_["data"] = data
         if description is not None:
@@ -1458,6 +1497,7 @@ class mqClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_user(
@@ -1501,15 +1541,16 @@ class mqClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mq.types.update_user_request.UpdateUserRequest = {}  # type: ignore[typeddict-item]
-        input_["broker_id"] = broker_id
+        input_: capo_mq.types.update_user_request.UpdateUserRequest = {
+            "broker_id": broker_id,
+            "username": username,
+        }
         if console_access is not None:
             input_["console_access"] = console_access
         if groups is not None:
             input_["groups"] = groups
         if password is not None:
             input_["password"] = password
-        input_["username"] = username
         if replication_user is not None:
             input_["replication_user"] = replication_user
 
@@ -1518,6 +1559,7 @@ class mqClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def __enter__(self) -> Self:

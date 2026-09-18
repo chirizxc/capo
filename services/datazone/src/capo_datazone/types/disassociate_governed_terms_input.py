@@ -41,7 +41,7 @@ def serialize_json(value: DisassociateGovernedTermsInput) -> dict:
 
 def deserialize_json(data: dict) -> DisassociateGovernedTermsInput:
     out: DisassociateGovernedTermsInput = {}  # type: ignore[typeddict-item]
-    if "governedGlossaryTerms" in data:
+    if data.get("governedGlossaryTerms") is not None:
         import capo_datazone.types.governed_glossary_terms
 
         out["governed_glossary_terms"] = (

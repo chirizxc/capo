@@ -30,7 +30,7 @@ def serialize_aws_json_1_1(value: DescribeConfigurationsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeConfigurationsRequest:
     out: DescribeConfigurationsRequest = {}  # type: ignore[typeddict-item]
-    if "configurationIds" in data:
+    if data.get("configurationIds") is not None:
         import capo_application_discovery_service.types.configuration_id_list
 
         out["configuration_ids"] = (

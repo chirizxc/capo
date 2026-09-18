@@ -49,7 +49,7 @@ def serialize_json(value: StartRouteAnalysisRequest) -> dict:
 
 def deserialize_json(data: dict) -> StartRouteAnalysisRequest:
     out: StartRouteAnalysisRequest = {}  # type: ignore[typeddict-item]
-    if "Source" in data:
+    if data.get("Source") is not None:
         import capo_networkmanager.types.route_analysis_endpoint_options_specification
 
         out["source"] = (
@@ -59,7 +59,7 @@ def deserialize_json(data: dict) -> StartRouteAnalysisRequest:
         )
     else:
         raise DeserializationError("StartRouteAnalysisRequest.source required")
-    if "Destination" in data:
+    if data.get("Destination") is not None:
         import capo_networkmanager.types.route_analysis_endpoint_options_specification
 
         out["destination"] = (
@@ -69,11 +69,11 @@ def deserialize_json(data: dict) -> StartRouteAnalysisRequest:
         )
     else:
         raise DeserializationError("StartRouteAnalysisRequest.destination required")
-    if "IncludeReturnPath" in data:
+    if data.get("IncludeReturnPath") is not None:
         out["include_return_path"] = data["IncludeReturnPath"]
     else:
         out["include_return_path"] = False
-    if "UseMiddleboxes" in data:
+    if data.get("UseMiddleboxes") is not None:
         out["use_middleboxes"] = data["UseMiddleboxes"]
     else:
         out["use_middleboxes"] = False

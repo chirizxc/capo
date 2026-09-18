@@ -23,5 +23,7 @@ def deserialize_aws_json_1_1(data: list) -> ExcludedRules:
 
     out: ExcludedRules = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_waf_regional.types.excluded_rule.deserialize_aws_json_1_1(item))
     return out

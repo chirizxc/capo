@@ -32,11 +32,11 @@ def serialize_aws_json_1_1(value: SetFileModeEntry) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SetFileModeEntry:
     out: SetFileModeEntry = {}  # type: ignore[typeddict-item]
-    if "filePath" in data:
+    if data.get("filePath") is not None:
         out["file_path"] = data["filePath"]
     else:
         raise DeserializationError("SetFileModeEntry.file_path required")
-    if "fileMode" in data:
+    if data.get("fileMode") is not None:
         import capo_codecommit.types.file_mode_type_enum
 
         out["file_mode"] = (

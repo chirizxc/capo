@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> CustomDNSConfiguration:
 
     out: CustomDNSConfiguration = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_finspace.types.custom_dns_server.deserialize_json(item))
     return out

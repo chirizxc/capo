@@ -38,9 +38,9 @@ def serialize_json(value: StartDeviceDiscoveryResponse) -> dict:
 
 def deserialize_json(data: dict) -> StartDeviceDiscoveryResponse:
     out: StartDeviceDiscoveryResponse = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "StartedAt" in data:
+    if data.get("StartedAt") is not None:
         import capo_iot_managed_integrations.types.discovery_started_at
 
         out["started_at"] = (

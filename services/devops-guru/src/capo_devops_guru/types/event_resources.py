@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> EventResources:
 
     out: EventResources = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_devops_guru.types.event_resource.deserialize_json(item))
     return out

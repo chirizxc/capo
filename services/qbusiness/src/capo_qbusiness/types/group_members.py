@@ -44,19 +44,19 @@ def serialize_json(value: GroupMembers) -> dict:
 
 def deserialize_json(data: dict) -> GroupMembers:
     out: GroupMembers = {}  # type: ignore[typeddict-item]
-    if "memberGroups" in data:
+    if data.get("memberGroups") is not None:
         import capo_qbusiness.types.member_groups
 
         out["member_groups"] = capo_qbusiness.types.member_groups.deserialize_json(
             data["memberGroups"]
         )
-    if "memberUsers" in data:
+    if data.get("memberUsers") is not None:
         import capo_qbusiness.types.member_users
 
         out["member_users"] = capo_qbusiness.types.member_users.deserialize_json(
             data["memberUsers"]
         )
-    if "s3PathForGroupMembers" in data:
+    if data.get("s3PathForGroupMembers") is not None:
         import capo_qbusiness.types.s3
 
         out["s3_path_for_group_members"] = capo_qbusiness.types.s3.deserialize_json(

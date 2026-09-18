@@ -50,13 +50,13 @@ def serialize_json(value: KnowledgeBaseIngestionSummary) -> dict:
 
 def deserialize_json(data: dict) -> KnowledgeBaseIngestionSummary:
     out: KnowledgeBaseIngestionSummary = {}  # type: ignore[typeddict-item]
-    if "IngestionId" in data:
+    if data.get("IngestionId") is not None:
         out["ingestion_id"] = data["IngestionId"]
     else:
         raise DeserializationError(
             "KnowledgeBaseIngestionSummary.ingestion_id required"
         )
-    if "IngestionStatus" in data:
+    if data.get("IngestionStatus") is not None:
         import capo_quicksight.types.kb_ingestion_status
 
         out["ingestion_status"] = (
@@ -68,13 +68,13 @@ def deserialize_json(data: dict) -> KnowledgeBaseIngestionSummary:
         raise DeserializationError(
             "KnowledgeBaseIngestionSummary.ingestion_status required"
         )
-    if "StartTime" in data:
+    if data.get("StartTime") is not None:
         import capo_quicksight.types._prelude.timestamp
 
         out["start_time"] = capo_quicksight.types._prelude.timestamp.deserialize_json(
             data["StartTime"]
         )
-    if "EndTime" in data:
+    if data.get("EndTime") is not None:
         import capo_quicksight.types._prelude.timestamp
 
         out["end_time"] = capo_quicksight.types._prelude.timestamp.deserialize_json(

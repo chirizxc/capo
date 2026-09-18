@@ -39,7 +39,7 @@ def serialize_json(value: WaypointOptimizationSideOfStreetOptions) -> dict:
 
 def deserialize_json(data: dict) -> WaypointOptimizationSideOfStreetOptions:
     out: WaypointOptimizationSideOfStreetOptions = {}  # type: ignore[typeddict-item]
-    if "Position" in data:
+    if data.get("Position") is not None:
         import capo_geo_routes.types.position
 
         out["position"] = capo_geo_routes.types.position.deserialize_json(
@@ -49,7 +49,7 @@ def deserialize_json(data: dict) -> WaypointOptimizationSideOfStreetOptions:
         raise DeserializationError(
             "WaypointOptimizationSideOfStreetOptions.position required"
         )
-    if "UseWith" in data:
+    if data.get("UseWith") is not None:
         import capo_geo_routes.types.side_of_street_matching_strategy
 
         out["use_with"] = (

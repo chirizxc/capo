@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import uuid
 from typing import TYPE_CHECKING, Optional
 
 import capo_datazone._auth._signers
@@ -94,24 +95,27 @@ class Glossary:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_datazone.types.create_glossary_input.CreateGlossaryInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
-        input_["name"] = name
-        input_["owning_project_identifier"] = owning_project_identifier
+        input_: capo_datazone.types.create_glossary_input.CreateGlossaryInput = {
+            "domain_identifier": domain_identifier,
+            "name": name,
+            "owning_project_identifier": owning_project_identifier,
+        }
         if description is not None:
             input_["description"] = description
         if status is not None:
             input_["status"] = status
         if usage_restrictions is not None:
             input_["usage_restrictions"] = usage_restrictions
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -152,15 +156,17 @@ class Glossary:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_datazone.types.get_glossary_input.GetGlossaryInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
-        input_["identifier"] = identifier
+        input_: capo_datazone.types.get_glossary_input.GetGlossaryInput = {
+            "domain_identifier": domain_identifier,
+            "identifier": identifier,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update(
@@ -212,23 +218,26 @@ class Glossary:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_datazone.types.update_glossary_input.UpdateGlossaryInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
-        input_["identifier"] = identifier
+        input_: capo_datazone.types.update_glossary_input.UpdateGlossaryInput = {
+            "domain_identifier": domain_identifier,
+            "identifier": identifier,
+        }
         if name is not None:
             input_["name"] = name
         if description is not None:
             input_["description"] = description
         if status is not None:
             input_["status"] = status
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -270,15 +279,17 @@ class Glossary:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_datazone.types.delete_glossary_input.DeleteGlossaryInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
-        input_["identifier"] = identifier
+        input_: capo_datazone.types.delete_glossary_input.DeleteGlossaryInput = {
+            "domain_identifier": domain_identifier,
+            "identifier": identifier,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -340,24 +351,27 @@ class AsyncGlossary:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_datazone.types.create_glossary_input.CreateGlossaryInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
-        input_["name"] = name
-        input_["owning_project_identifier"] = owning_project_identifier
+        input_: capo_datazone.types.create_glossary_input.CreateGlossaryInput = {
+            "domain_identifier": domain_identifier,
+            "name": name,
+            "owning_project_identifier": owning_project_identifier,
+        }
         if description is not None:
             input_["description"] = description
         if status is not None:
             input_["status"] = status
         if usage_restrictions is not None:
             input_["usage_restrictions"] = usage_restrictions
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -399,15 +413,17 @@ class AsyncGlossary:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_datazone.types.get_glossary_input.GetGlossaryInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
-        input_["identifier"] = identifier
+        input_: capo_datazone.types.get_glossary_input.GetGlossaryInput = {
+            "domain_identifier": domain_identifier,
+            "identifier": identifier,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update(
@@ -460,23 +476,26 @@ class AsyncGlossary:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_datazone.types.update_glossary_input.UpdateGlossaryInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
-        input_["identifier"] = identifier
+        input_: capo_datazone.types.update_glossary_input.UpdateGlossaryInput = {
+            "domain_identifier": domain_identifier,
+            "identifier": identifier,
+        }
         if name is not None:
             input_["name"] = name
         if description is not None:
             input_["description"] = description
         if status is not None:
             input_["status"] = status
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -519,13 +538,15 @@ class AsyncGlossary:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_datazone.types.delete_glossary_input.DeleteGlossaryInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
-        input_["identifier"] = identifier
+        input_: capo_datazone.types.delete_glossary_input.DeleteGlossaryInput = {
+            "domain_identifier": domain_identifier,
+            "identifier": identifier,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

@@ -37,9 +37,9 @@ def serialize_aws_json_1_1(value: ListMediaAnalysisJobsResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListMediaAnalysisJobsResponse:
     out: ListMediaAnalysisJobsResponse = {}  # type: ignore[typeddict-item]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "MediaAnalysisJobs" in data:
+    if data.get("MediaAnalysisJobs") is not None:
         import capo_rekognition.types.media_analysis_job_descriptions
 
         out["media_analysis_jobs"] = (

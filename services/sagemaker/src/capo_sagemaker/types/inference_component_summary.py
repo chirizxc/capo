@@ -77,23 +77,23 @@ def serialize_aws_json_1_1(value: InferenceComponentSummary) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> InferenceComponentSummary:
     out: InferenceComponentSummary = {}  # type: ignore[typeddict-item]
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_sagemaker.types.timestamp
 
         out["creation_time"] = capo_sagemaker.types.timestamp.deserialize_aws_json_1_1(
             data["CreationTime"]
         )
-    if "InferenceComponentArn" in data:
+    if data.get("InferenceComponentArn") is not None:
         out["inference_component_arn"] = data["InferenceComponentArn"]
-    if "InferenceComponentName" in data:
+    if data.get("InferenceComponentName") is not None:
         out["inference_component_name"] = data["InferenceComponentName"]
-    if "EndpointArn" in data:
+    if data.get("EndpointArn") is not None:
         out["endpoint_arn"] = data["EndpointArn"]
-    if "EndpointName" in data:
+    if data.get("EndpointName") is not None:
         out["endpoint_name"] = data["EndpointName"]
-    if "VariantName" in data:
+    if data.get("VariantName") is not None:
         out["variant_name"] = data["VariantName"]
-    if "InferenceComponentStatus" in data:
+    if data.get("InferenceComponentStatus") is not None:
         import capo_sagemaker.types.inference_component_status
 
         out["inference_component_status"] = (
@@ -101,7 +101,7 @@ def deserialize_aws_json_1_1(data: dict) -> InferenceComponentSummary:
                 data["InferenceComponentStatus"]
             )
         )
-    if "LastModifiedTime" in data:
+    if data.get("LastModifiedTime") is not None:
         import capo_sagemaker.types.timestamp
 
         out["last_modified_time"] = (

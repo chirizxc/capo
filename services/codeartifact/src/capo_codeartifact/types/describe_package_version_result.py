@@ -32,7 +32,7 @@ def serialize_json(value: DescribePackageVersionResult) -> dict:
 
 def deserialize_json(data: dict) -> DescribePackageVersionResult:
     out: DescribePackageVersionResult = {}  # type: ignore[typeddict-item]
-    if "packageVersion" in data:
+    if data.get("packageVersion") is not None:
         import capo_codeartifact.types.package_version_description
 
         out["package_version"] = (

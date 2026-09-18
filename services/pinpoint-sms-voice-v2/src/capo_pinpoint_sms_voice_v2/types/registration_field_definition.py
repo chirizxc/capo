@@ -74,25 +74,25 @@ def serialize_aws_json_1_0(value: RegistrationFieldDefinition) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> RegistrationFieldDefinition:
     out: RegistrationFieldDefinition = {}  # type: ignore[typeddict-item]
-    if "SectionPath" in data:
+    if data.get("SectionPath") is not None:
         out["section_path"] = data["SectionPath"]
     else:
         raise DeserializationError("RegistrationFieldDefinition.section_path required")
-    if "FieldPath" in data:
+    if data.get("FieldPath") is not None:
         out["field_path"] = data["FieldPath"]
     else:
         raise DeserializationError("RegistrationFieldDefinition.field_path required")
-    if "FieldType" in data:
+    if data.get("FieldType") is not None:
         out["field_type"] = data["FieldType"]
     else:
         raise DeserializationError("RegistrationFieldDefinition.field_type required")
-    if "FieldRequirement" in data:
+    if data.get("FieldRequirement") is not None:
         out["field_requirement"] = data["FieldRequirement"]
     else:
         raise DeserializationError(
             "RegistrationFieldDefinition.field_requirement required"
         )
-    if "SelectValidation" in data:
+    if data.get("SelectValidation") is not None:
         import capo_pinpoint_sms_voice_v2.types.select_validation
 
         out["select_validation"] = (
@@ -100,7 +100,7 @@ def deserialize_aws_json_1_0(data: dict) -> RegistrationFieldDefinition:
                 data["SelectValidation"]
             )
         )
-    if "TextValidation" in data:
+    if data.get("TextValidation") is not None:
         import capo_pinpoint_sms_voice_v2.types.text_validation
 
         out["text_validation"] = (
@@ -108,7 +108,7 @@ def deserialize_aws_json_1_0(data: dict) -> RegistrationFieldDefinition:
                 data["TextValidation"]
             )
         )
-    if "DisplayHints" in data:
+    if data.get("DisplayHints") is not None:
         import capo_pinpoint_sms_voice_v2.types.registration_field_display_hints
 
         out["display_hints"] = (

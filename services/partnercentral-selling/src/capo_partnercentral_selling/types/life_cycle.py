@@ -84,13 +84,13 @@ def serialize_aws_json_1_0(value: LifeCycle) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> LifeCycle:
     out: LifeCycle = {}  # type: ignore[typeddict-item]
-    if "Stage" in data:
+    if data.get("Stage") is not None:
         import capo_partnercentral_selling.types.stage
 
         out["stage"] = capo_partnercentral_selling.types.stage.deserialize_aws_json_1_0(
             data["Stage"]
         )
-    if "ClosedLostReason" in data:
+    if data.get("ClosedLostReason") is not None:
         import capo_partnercentral_selling.types.closed_lost_reason
 
         out["closed_lost_reason"] = (
@@ -98,11 +98,11 @@ def deserialize_aws_json_1_0(data: dict) -> LifeCycle:
                 data["ClosedLostReason"]
             )
         )
-    if "NextSteps" in data:
+    if data.get("NextSteps") is not None:
         out["next_steps"] = data["NextSteps"]
-    if "TargetCloseDate" in data:
+    if data.get("TargetCloseDate") is not None:
         out["target_close_date"] = data["TargetCloseDate"]
-    if "ReviewStatus" in data:
+    if data.get("ReviewStatus") is not None:
         import capo_partnercentral_selling.types.review_status
 
         out["review_status"] = (
@@ -110,11 +110,11 @@ def deserialize_aws_json_1_0(data: dict) -> LifeCycle:
                 data["ReviewStatus"]
             )
         )
-    if "ReviewComments" in data:
+    if data.get("ReviewComments") is not None:
         out["review_comments"] = data["ReviewComments"]
-    if "ReviewStatusReason" in data:
+    if data.get("ReviewStatusReason") is not None:
         out["review_status_reason"] = data["ReviewStatusReason"]
-    if "NextStepsHistory" in data:
+    if data.get("NextStepsHistory") is not None:
         import capo_partnercentral_selling.types.next_steps_histories
 
         out["next_steps_history"] = (

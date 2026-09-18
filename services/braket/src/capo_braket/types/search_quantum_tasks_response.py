@@ -32,7 +32,7 @@ def serialize_json(value: SearchQuantumTasksResponse) -> dict:
 
 def deserialize_json(data: dict) -> SearchQuantumTasksResponse:
     out: SearchQuantumTasksResponse = {}  # type: ignore[typeddict-item]
-    if "quantumTasks" in data:
+    if data.get("quantumTasks") is not None:
         import capo_braket.types.quantum_task_summary_list
 
         out["quantum_tasks"] = (
@@ -42,6 +42,6 @@ def deserialize_json(data: dict) -> SearchQuantumTasksResponse:
         )
     else:
         raise DeserializationError("SearchQuantumTasksResponse.quantum_tasks required")
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

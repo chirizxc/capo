@@ -35,7 +35,7 @@ def serialize_json(value: ListEncoderConfigurationsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListEncoderConfigurationsResponse:
     out: ListEncoderConfigurationsResponse = {}  # type: ignore[typeddict-item]
-    if "encoderConfigurations" in data:
+    if data.get("encoderConfigurations") is not None:
         import capo_ivs_realtime.types.encoder_configuration_summary_list
 
         out["encoder_configurations"] = (
@@ -47,6 +47,6 @@ def deserialize_json(data: dict) -> ListEncoderConfigurationsResponse:
         raise DeserializationError(
             "ListEncoderConfigurationsResponse.encoder_configurations required"
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

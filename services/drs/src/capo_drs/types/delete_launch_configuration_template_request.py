@@ -26,7 +26,7 @@ def serialize_json(value: DeleteLaunchConfigurationTemplateRequest) -> dict:
 
 def deserialize_json(data: dict) -> DeleteLaunchConfigurationTemplateRequest:
     out: DeleteLaunchConfigurationTemplateRequest = {}  # type: ignore[typeddict-item]
-    if "launchConfigurationTemplateID" in data:
+    if data.get("launchConfigurationTemplateID") is not None:
         out["launch_configuration_template_id"] = data["launchConfigurationTemplateID"]
     else:
         raise DeserializationError(

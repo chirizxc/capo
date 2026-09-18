@@ -75,38 +75,38 @@ def serialize_json(value: GetRecoveryPointIndexDetailsOutput) -> dict:
 
 def deserialize_json(data: dict) -> GetRecoveryPointIndexDetailsOutput:
     out: GetRecoveryPointIndexDetailsOutput = {}  # type: ignore[typeddict-item]
-    if "RecoveryPointArn" in data:
+    if data.get("RecoveryPointArn") is not None:
         out["recovery_point_arn"] = data["RecoveryPointArn"]
-    if "BackupVaultArn" in data:
+    if data.get("BackupVaultArn") is not None:
         out["backup_vault_arn"] = data["BackupVaultArn"]
-    if "SourceResourceArn" in data:
+    if data.get("SourceResourceArn") is not None:
         out["source_resource_arn"] = data["SourceResourceArn"]
-    if "IndexCreationDate" in data:
+    if data.get("IndexCreationDate") is not None:
         import capo_backup.types.timestamp
 
         out["index_creation_date"] = capo_backup.types.timestamp.deserialize_json(
             data["IndexCreationDate"]
         )
-    if "IndexDeletionDate" in data:
+    if data.get("IndexDeletionDate") is not None:
         import capo_backup.types.timestamp
 
         out["index_deletion_date"] = capo_backup.types.timestamp.deserialize_json(
             data["IndexDeletionDate"]
         )
-    if "IndexCompletionDate" in data:
+    if data.get("IndexCompletionDate") is not None:
         import capo_backup.types.timestamp
 
         out["index_completion_date"] = capo_backup.types.timestamp.deserialize_json(
             data["IndexCompletionDate"]
         )
-    if "IndexStatus" in data:
+    if data.get("IndexStatus") is not None:
         import capo_backup.types.index_status
 
         out["index_status"] = capo_backup.types.index_status.deserialize_json(
             data["IndexStatus"]
         )
-    if "IndexStatusMessage" in data:
+    if data.get("IndexStatusMessage") is not None:
         out["index_status_message"] = data["IndexStatusMessage"]
-    if "TotalItemsIndexed" in data:
+    if data.get("TotalItemsIndexed") is not None:
         out["total_items_indexed"] = data["TotalItemsIndexed"]
     return out

@@ -48,9 +48,9 @@ def serialize_json(value: LFTagPolicyResource) -> dict:
 
 def deserialize_json(data: dict) -> LFTagPolicyResource:
     out: LFTagPolicyResource = {}  # type: ignore[typeddict-item]
-    if "CatalogId" in data:
+    if data.get("CatalogId") is not None:
         out["catalog_id"] = data["CatalogId"]
-    if "ResourceType" in data:
+    if data.get("ResourceType") is not None:
         import capo_lakeformation.types.resource_type
 
         out["resource_type"] = capo_lakeformation.types.resource_type.deserialize_json(
@@ -58,7 +58,7 @@ def deserialize_json(data: dict) -> LFTagPolicyResource:
         )
     else:
         raise DeserializationError("LFTagPolicyResource.resource_type required")
-    if "Expression" in data:
+    if data.get("Expression") is not None:
         import capo_lakeformation.types.expression
 
         out["expression"] = capo_lakeformation.types.expression.deserialize_json(
@@ -66,6 +66,6 @@ def deserialize_json(data: dict) -> LFTagPolicyResource:
         )
     else:
         out["expression"] = []
-    if "ExpressionName" in data:
+    if data.get("ExpressionName") is not None:
         out["expression_name"] = data["ExpressionName"]
     return out

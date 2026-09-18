@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> __listOfGrantEntitlementRequest:
 
     out: __listOfGrantEntitlementRequest = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_mediaconnect.types.grant_entitlement_request.deserialize_json(item)
         )

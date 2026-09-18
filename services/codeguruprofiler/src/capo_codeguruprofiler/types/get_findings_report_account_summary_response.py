@@ -39,7 +39,7 @@ def serialize_json(value: GetFindingsReportAccountSummaryResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetFindingsReportAccountSummaryResponse:
     out: GetFindingsReportAccountSummaryResponse = {}  # type: ignore[typeddict-item]
-    if "reportSummaries" in data:
+    if data.get("reportSummaries") is not None:
         import capo_codeguruprofiler.types.findings_report_summaries
 
         out["report_summaries"] = (
@@ -51,6 +51,6 @@ def deserialize_json(data: dict) -> GetFindingsReportAccountSummaryResponse:
         raise DeserializationError(
             "GetFindingsReportAccountSummaryResponse.report_summaries required"
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

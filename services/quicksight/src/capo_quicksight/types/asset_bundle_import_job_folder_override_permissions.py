@@ -42,7 +42,7 @@ def serialize_json(value: AssetBundleImportJobFolderOverridePermissions) -> dict
 
 def deserialize_json(data: dict) -> AssetBundleImportJobFolderOverridePermissions:
     out: AssetBundleImportJobFolderOverridePermissions = {}  # type: ignore[typeddict-item]
-    if "FolderIds" in data:
+    if data.get("FolderIds") is not None:
         import capo_quicksight.types.asset_bundle_restrictive_resource_id_list
 
         out["folder_ids"] = (
@@ -54,7 +54,7 @@ def deserialize_json(data: dict) -> AssetBundleImportJobFolderOverridePermission
         raise DeserializationError(
             "AssetBundleImportJobFolderOverridePermissions.folder_ids required"
         )
-    if "Permissions" in data:
+    if data.get("Permissions") is not None:
         import capo_quicksight.types.asset_bundle_resource_permissions
 
         out["permissions"] = (

@@ -13,10 +13,25 @@ from capo_ivschat import AsyncivschatClient
 
 
 async def main():
-    async with AsyncivschatClient() as s3:
+    async with AsyncivschatClient() as ivschat:
         # Example: call the create_chat_token operation
-        response = await s3.create_chat_token()
+        response = await ivschat.create_chat_token()
         print(response["token"])
+```
+
+## Pagination
+
+Some operations in this SDK support pagination. If the operation supports pagination it will have an `iter_` prefixed method that returns an async iterator.
+
+```python
+from capo_ivschat import AsyncivschatClient
+
+
+async def main():
+    async with AsyncivschatClient() as ivschat:
+        # Example: paginate over list_logging_configurations
+        async for item in ivschat.iter_list_logging_configurations():
+            print(item)
 ```
 
 ## Error Handling
@@ -29,9 +44,9 @@ from capo_ivschat.error import AccessDeniedException
 
 
 async def main():
-    async with AsyncivschatClient() as s3:
+    async with AsyncivschatClient() as ivschat:
         try:
-            await s3.create_chat_token()
+            await ivschat.create_chat_token()
         except AccessDeniedException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -48,13 +63,13 @@ from capo_ivschat import AsyncivschatClient
 
 
 async def main():
-    async with AsyncivschatClient() as s3:
+    async with AsyncivschatClient() as ivschat:
         # Default: 3 attempts for every operation
-        response = await s3.create_chat_token()
+        response = await ivschat.create_chat_token()
 
         # Override per operation
-        response = await s3.create_chat_token(config_overrides={"retry_max_attempts": 5})
+        response = await ivschat.create_chat_token(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.create_chat_token(config_overrides={"retry_max_attempts": 1})
+        response = await ivschat.create_chat_token(config_overrides={"retry_max_attempts": 1})
 ```

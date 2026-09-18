@@ -36,7 +36,7 @@ def serialize_json(value: AwsEfsAccessPointRootDirectoryDetails) -> dict:
 
 def deserialize_json(data: dict) -> AwsEfsAccessPointRootDirectoryDetails:
     out: AwsEfsAccessPointRootDirectoryDetails = {}  # type: ignore[typeddict-item]
-    if "CreationInfo" in data:
+    if data.get("CreationInfo") is not None:
         import capo_securityhub.types.aws_efs_access_point_root_directory_creation_info_details
 
         out["creation_info"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> AwsEfsAccessPointRootDirectoryDetails:
                 data["CreationInfo"]
             )
         )
-    if "Path" in data:
+    if data.get("Path") is not None:
         out["path"] = data["Path"]
     return out

@@ -28,8 +28,8 @@ def serialize_json(value: CapacityConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> CapacityConfiguration:
     out: CapacityConfiguration = {}  # type: ignore[typeddict-item]
-    if "nodeType" in data:
+    if data.get("nodeType") is not None:
         out["node_type"] = data["nodeType"]
-    if "nodeCount" in data:
+    if data.get("nodeCount") is not None:
         out["node_count"] = data["nodeCount"]
     return out

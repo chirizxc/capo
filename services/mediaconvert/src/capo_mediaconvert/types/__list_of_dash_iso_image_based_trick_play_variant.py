@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> __listOfDashIsoImageBasedTrickPlayVariant:
 
     out: __listOfDashIsoImageBasedTrickPlayVariant = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_mediaconvert.types.dash_iso_image_based_trick_play_variant.deserialize_json(
                 item

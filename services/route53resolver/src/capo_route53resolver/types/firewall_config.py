@@ -45,13 +45,13 @@ def serialize_aws_json_1_1(value: FirewallConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> FirewallConfig:
     out: FirewallConfig = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "ResourceId" in data:
+    if data.get("ResourceId") is not None:
         out["resource_id"] = data["ResourceId"]
-    if "OwnerId" in data:
+    if data.get("OwnerId") is not None:
         out["owner_id"] = data["OwnerId"]
-    if "FirewallFailOpen" in data:
+    if data.get("FirewallFailOpen") is not None:
         import capo_route53resolver.types.firewall_fail_open_status
 
         out["firewall_fail_open"] = (

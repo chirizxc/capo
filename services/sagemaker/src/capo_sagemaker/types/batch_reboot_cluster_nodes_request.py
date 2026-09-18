@@ -47,9 +47,9 @@ def serialize_aws_json_1_1(value: BatchRebootClusterNodesRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> BatchRebootClusterNodesRequest:
     out: BatchRebootClusterNodesRequest = {}  # type: ignore[typeddict-item]
-    if "ClusterName" in data:
+    if data.get("ClusterName") is not None:
         out["cluster_name"] = data["ClusterName"]
-    if "NodeIds" in data:
+    if data.get("NodeIds") is not None:
         import capo_sagemaker.types.cluster_node_ids
 
         out["node_ids"] = (
@@ -57,7 +57,7 @@ def deserialize_aws_json_1_1(data: dict) -> BatchRebootClusterNodesRequest:
                 data["NodeIds"]
             )
         )
-    if "NodeLogicalIds" in data:
+    if data.get("NodeLogicalIds") is not None:
         import capo_sagemaker.types.cluster_node_logical_id_list
 
         out["node_logical_ids"] = (

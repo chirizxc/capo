@@ -54,11 +54,11 @@ def serialize_json(value: EdgeConfig) -> dict:
 
 def deserialize_json(data: dict) -> EdgeConfig:
     out: EdgeConfig = {}  # type: ignore[typeddict-item]
-    if "HubDeviceArn" in data:
+    if data.get("HubDeviceArn") is not None:
         out["hub_device_arn"] = data["HubDeviceArn"]
     else:
         raise DeserializationError("EdgeConfig.hub_device_arn required")
-    if "RecorderConfig" in data:
+    if data.get("RecorderConfig") is not None:
         import capo_kinesis_video.types.recorder_config
 
         out["recorder_config"] = (
@@ -68,7 +68,7 @@ def deserialize_json(data: dict) -> EdgeConfig:
         )
     else:
         raise DeserializationError("EdgeConfig.recorder_config required")
-    if "UploaderConfig" in data:
+    if data.get("UploaderConfig") is not None:
         import capo_kinesis_video.types.uploader_config
 
         out["uploader_config"] = (
@@ -76,7 +76,7 @@ def deserialize_json(data: dict) -> EdgeConfig:
                 data["UploaderConfig"]
             )
         )
-    if "DeletionConfig" in data:
+    if data.get("DeletionConfig") is not None:
         import capo_kinesis_video.types.deletion_config
 
         out["deletion_config"] = (

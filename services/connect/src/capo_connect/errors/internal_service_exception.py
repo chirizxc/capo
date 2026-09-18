@@ -25,7 +25,7 @@ def serialize_json(value: InternalServiceException_) -> dict:
 
 def deserialize_json(data: dict) -> InternalServiceException_:
     out: InternalServiceException_ = {}  # type: ignore[typeddict-item]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     return out
 
@@ -35,15 +35,18 @@ class InternalServiceException(ServiceError):
 
     code: str | None = "InternalServiceException"
 
-    def __init__(self, data: InternalServiceException_):
+    def __init__(self, data: InternalServiceException_, message: str | None = None):
         super().__init__(
             "server",
             is_throttling_error=False,
             is_retryable=False,
             code="InternalServiceException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "InternalServiceException":
-        return cls(deserialize_json(data))
+    def from_json(
+        cls, data: dict, message: str | None = None
+    ) -> "InternalServiceException":
+        return cls(deserialize_json(data), message)

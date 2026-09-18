@@ -27,8 +27,8 @@ def serialize_aws_json_1_1(value: DisassociateFleetRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DisassociateFleetRequest:
     out: DisassociateFleetRequest = {}  # type: ignore[typeddict-item]
-    if "FleetName" in data:
+    if data.get("FleetName") is not None:
         out["fleet_name"] = data["FleetName"]
-    if "StackName" in data:
+    if data.get("StackName") is not None:
         out["stack_name"] = data["StackName"]
     return out

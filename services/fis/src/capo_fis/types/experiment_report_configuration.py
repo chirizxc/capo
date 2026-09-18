@@ -57,7 +57,7 @@ def serialize_json(value: ExperimentReportConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> ExperimentReportConfiguration:
     out: ExperimentReportConfiguration = {}  # type: ignore[typeddict-item]
-    if "outputs" in data:
+    if data.get("outputs") is not None:
         import capo_fis.types.experiment_report_configuration_outputs
 
         out["outputs"] = (
@@ -65,7 +65,7 @@ def deserialize_json(data: dict) -> ExperimentReportConfiguration:
                 data["outputs"]
             )
         )
-    if "dataSources" in data:
+    if data.get("dataSources") is not None:
         import capo_fis.types.experiment_report_configuration_data_sources
 
         out["data_sources"] = (
@@ -73,8 +73,8 @@ def deserialize_json(data: dict) -> ExperimentReportConfiguration:
                 data["dataSources"]
             )
         )
-    if "preExperimentDuration" in data:
+    if data.get("preExperimentDuration") is not None:
         out["pre_experiment_duration"] = data["preExperimentDuration"]
-    if "postExperimentDuration" in data:
+    if data.get("postExperimentDuration") is not None:
         out["post_experiment_duration"] = data["postExperimentDuration"]
     return out

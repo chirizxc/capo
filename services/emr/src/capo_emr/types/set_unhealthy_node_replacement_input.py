@@ -34,12 +34,12 @@ def serialize_aws_json_1_1(value: SetUnhealthyNodeReplacementInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SetUnhealthyNodeReplacementInput:
     out: SetUnhealthyNodeReplacementInput = {}  # type: ignore[typeddict-item]
-    if "JobFlowIds" in data:
+    if data.get("JobFlowIds") is not None:
         import capo_emr.types.xml_string_list
 
         out["job_flow_ids"] = capo_emr.types.xml_string_list.deserialize_aws_json_1_1(
             data["JobFlowIds"]
         )
-    if "UnhealthyNodeReplacement" in data:
+    if data.get("UnhealthyNodeReplacement") is not None:
         out["unhealthy_node_replacement"] = data["UnhealthyNodeReplacement"]
     return out

@@ -26,7 +26,7 @@ def serialize_json(value: VideoSelectorColorSpaceSettings) -> dict:
 
 def deserialize_json(data: dict) -> VideoSelectorColorSpaceSettings:
     out: VideoSelectorColorSpaceSettings = {}  # type: ignore[typeddict-item]
-    if "hdr10Settings" in data:
+    if data.get("hdr10Settings") is not None:
         import capo_medialive.types.hdr10_settings
 
         out["hdr10_settings"] = capo_medialive.types.hdr10_settings.deserialize_json(

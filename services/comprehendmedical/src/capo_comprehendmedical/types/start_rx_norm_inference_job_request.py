@@ -73,7 +73,7 @@ def serialize_aws_json_1_1(value: StartRxNormInferenceJobRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> StartRxNormInferenceJobRequest:
     out: StartRxNormInferenceJobRequest = {}  # type: ignore[typeddict-item]
-    if "InputDataConfig" in data:
+    if data.get("InputDataConfig") is not None:
         import capo_comprehendmedical.types.input_data_config
 
         out["input_data_config"] = (
@@ -85,7 +85,7 @@ def deserialize_aws_json_1_1(data: dict) -> StartRxNormInferenceJobRequest:
         raise DeserializationError(
             "StartRxNormInferenceJobRequest.input_data_config required"
         )
-    if "OutputDataConfig" in data:
+    if data.get("OutputDataConfig") is not None:
         import capo_comprehendmedical.types.output_data_config
 
         out["output_data_config"] = (
@@ -97,19 +97,19 @@ def deserialize_aws_json_1_1(data: dict) -> StartRxNormInferenceJobRequest:
         raise DeserializationError(
             "StartRxNormInferenceJobRequest.output_data_config required"
         )
-    if "DataAccessRoleArn" in data:
+    if data.get("DataAccessRoleArn") is not None:
         out["data_access_role_arn"] = data["DataAccessRoleArn"]
     else:
         raise DeserializationError(
             "StartRxNormInferenceJobRequest.data_access_role_arn required"
         )
-    if "JobName" in data:
+    if data.get("JobName") is not None:
         out["job_name"] = data["JobName"]
-    if "ClientRequestToken" in data:
+    if data.get("ClientRequestToken") is not None:
         out["client_request_token"] = data["ClientRequestToken"]
-    if "KMSKey" in data:
+    if data.get("KMSKey") is not None:
         out["kms_key"] = data["KMSKey"]
-    if "LanguageCode" in data:
+    if data.get("LanguageCode") is not None:
         import capo_comprehendmedical.types.language_code
 
         out["language_code"] = (

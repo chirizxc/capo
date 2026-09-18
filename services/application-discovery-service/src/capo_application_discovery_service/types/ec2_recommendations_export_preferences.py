@@ -91,11 +91,11 @@ def serialize_aws_json_1_1(value: Ec2RecommendationsExportPreferences) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Ec2RecommendationsExportPreferences:
     out: Ec2RecommendationsExportPreferences = {}  # type: ignore[typeddict-item]
-    if "enabled" in data:
+    if data.get("enabled") is not None:
         out["enabled"] = data["enabled"]
     else:
         out["enabled"] = False
-    if "cpuPerformanceMetricBasis" in data:
+    if data.get("cpuPerformanceMetricBasis") is not None:
         import capo_application_discovery_service.types.usage_metric_basis
 
         out["cpu_performance_metric_basis"] = (
@@ -103,7 +103,7 @@ def deserialize_aws_json_1_1(data: dict) -> Ec2RecommendationsExportPreferences:
                 data["cpuPerformanceMetricBasis"]
             )
         )
-    if "ramPerformanceMetricBasis" in data:
+    if data.get("ramPerformanceMetricBasis") is not None:
         import capo_application_discovery_service.types.usage_metric_basis
 
         out["ram_performance_metric_basis"] = (
@@ -111,7 +111,7 @@ def deserialize_aws_json_1_1(data: dict) -> Ec2RecommendationsExportPreferences:
                 data["ramPerformanceMetricBasis"]
             )
         )
-    if "tenancy" in data:
+    if data.get("tenancy") is not None:
         import capo_application_discovery_service.types.tenancy
 
         out["tenancy"] = (
@@ -119,7 +119,7 @@ def deserialize_aws_json_1_1(data: dict) -> Ec2RecommendationsExportPreferences:
                 data["tenancy"]
             )
         )
-    if "excludedInstanceTypes" in data:
+    if data.get("excludedInstanceTypes") is not None:
         import capo_application_discovery_service.types.excluded_instance_types
 
         out["excluded_instance_types"] = (
@@ -127,9 +127,9 @@ def deserialize_aws_json_1_1(data: dict) -> Ec2RecommendationsExportPreferences:
                 data["excludedInstanceTypes"]
             )
         )
-    if "preferredRegion" in data:
+    if data.get("preferredRegion") is not None:
         out["preferred_region"] = data["preferredRegion"]
-    if "reservedInstanceOptions" in data:
+    if data.get("reservedInstanceOptions") is not None:
         import capo_application_discovery_service.types.reserved_instance_options
 
         out["reserved_instance_options"] = (

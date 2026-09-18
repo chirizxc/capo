@@ -65,21 +65,21 @@ def serialize_json(value: Collector) -> dict:
 
 def deserialize_json(data: dict) -> Collector:
     out: Collector = {}  # type: ignore[typeddict-item]
-    if "collectorId" in data:
+    if data.get("collectorId") is not None:
         out["collector_id"] = data["collectorId"]
-    if "ipAddress" in data:
+    if data.get("ipAddress") is not None:
         out["ip_address"] = data["ipAddress"]
-    if "hostName" in data:
+    if data.get("hostName") is not None:
         out["host_name"] = data["hostName"]
-    if "collectorHealth" in data:
+    if data.get("collectorHealth") is not None:
         out["collector_health"] = data["collectorHealth"]
-    if "collectorVersion" in data:
+    if data.get("collectorVersion") is not None:
         out["collector_version"] = data["collectorVersion"]
-    if "registeredTimeStamp" in data:
+    if data.get("registeredTimeStamp") is not None:
         out["registered_time_stamp"] = data["registeredTimeStamp"]
-    if "lastActivityTimeStamp" in data:
+    if data.get("lastActivityTimeStamp") is not None:
         out["last_activity_time_stamp"] = data["lastActivityTimeStamp"]
-    if "configurationSummary" in data:
+    if data.get("configurationSummary") is not None:
         import capo_migrationhubstrategy.types.configuration_summary
 
         out["configuration_summary"] = (

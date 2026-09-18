@@ -70,7 +70,15 @@ def serialize_json(value: EvaluationSearchMetadata) -> dict:
         out["ContactAgentId"] = value["contact_agent_id"]
     if "calibration_session_id" in value:
         out["CalibrationSessionId"] = value["calibration_session_id"]
-    out["ScorePercentage"] = value.get("score_percentage", 0)
+    out["ScorePercentage"] = (
+        "NaN"
+        if value.get("score_percentage", 0) != value.get("score_percentage", 0)
+        else "Infinity"
+        if value.get("score_percentage", 0) == float("inf")
+        else "-Infinity"
+        if value.get("score_percentage", 0) == float("-inf")
+        else value.get("score_percentage", 0)
+    )
     out["ScoreAutomaticFail"] = value.get("score_automatic_fail", False)
     out["ScoreNotApplicable"] = value.get("score_not_applicable", False)
     out["AutoEvaluationEnabled"] = value.get("auto_evaluation_enabled", False)
@@ -111,35 +119,35 @@ def serialize_json(value: EvaluationSearchMetadata) -> dict:
 
 def deserialize_json(data: dict) -> EvaluationSearchMetadata:
     out: EvaluationSearchMetadata = {}  # type: ignore[typeddict-item]
-    if "ContactId" in data:
+    if data.get("ContactId") is not None:
         out["contact_id"] = data["ContactId"]
     else:
         raise DeserializationError("EvaluationSearchMetadata.contact_id required")
-    if "EvaluatorArn" in data:
+    if data.get("EvaluatorArn") is not None:
         out["evaluator_arn"] = data["EvaluatorArn"]
     else:
         raise DeserializationError("EvaluationSearchMetadata.evaluator_arn required")
-    if "ContactAgentId" in data:
+    if data.get("ContactAgentId") is not None:
         out["contact_agent_id"] = data["ContactAgentId"]
-    if "CalibrationSessionId" in data:
+    if data.get("CalibrationSessionId") is not None:
         out["calibration_session_id"] = data["CalibrationSessionId"]
-    if "ScorePercentage" in data:
-        out["score_percentage"] = data["ScorePercentage"]
+    if data.get("ScorePercentage") is not None:
+        out["score_percentage"] = float(data["ScorePercentage"])
     else:
         out["score_percentage"] = 0
-    if "ScoreAutomaticFail" in data:
+    if data.get("ScoreAutomaticFail") is not None:
         out["score_automatic_fail"] = data["ScoreAutomaticFail"]
     else:
         out["score_automatic_fail"] = False
-    if "ScoreNotApplicable" in data:
+    if data.get("ScoreNotApplicable") is not None:
         out["score_not_applicable"] = data["ScoreNotApplicable"]
     else:
         out["score_not_applicable"] = False
-    if "AutoEvaluationEnabled" in data:
+    if data.get("AutoEvaluationEnabled") is not None:
         out["auto_evaluation_enabled"] = data["AutoEvaluationEnabled"]
     else:
         out["auto_evaluation_enabled"] = False
-    if "AutoEvaluationStatus" in data:
+    if data.get("AutoEvaluationStatus") is not None:
         import capo_connect.types.auto_evaluation_status
 
         out["auto_evaluation_status"] = (
@@ -147,21 +155,21 @@ def deserialize_json(data: dict) -> EvaluationSearchMetadata:
                 data["AutoEvaluationStatus"]
             )
         )
-    if "AcknowledgedTime" in data:
+    if data.get("AcknowledgedTime") is not None:
         import capo_connect.types.timestamp
 
         out["acknowledged_time"] = capo_connect.types.timestamp.deserialize_json(
             data["AcknowledgedTime"]
         )
-    if "AcknowledgedBy" in data:
+    if data.get("AcknowledgedBy") is not None:
         out["acknowledged_by"] = data["AcknowledgedBy"]
-    if "AcknowledgerComment" in data:
+    if data.get("AcknowledgerComment") is not None:
         out["acknowledger_comment"] = data["AcknowledgerComment"]
-    if "SamplingJobId" in data:
+    if data.get("SamplingJobId") is not None:
         out["sampling_job_id"] = data["SamplingJobId"]
-    if "ReviewId" in data:
+    if data.get("ReviewId") is not None:
         out["review_id"] = data["ReviewId"]
-    if "ContactParticipantRole" in data:
+    if data.get("ContactParticipantRole") is not None:
         import capo_connect.types.contact_participant_role
 
         out["contact_participant_role"] = (
@@ -169,6 +177,6 @@ def deserialize_json(data: dict) -> EvaluationSearchMetadata:
                 data["ContactParticipantRole"]
             )
         )
-    if "ContactParticipantId" in data:
+    if data.get("ContactParticipantId") is not None:
         out["contact_participant_id"] = data["ContactParticipantId"]
     return out

@@ -37,20 +37,20 @@ def serialize_json(value: AudioConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> AudioConfiguration:
     out: AudioConfiguration = {}  # type: ignore[typeddict-item]
-    if "codec" in data:
+    if data.get("codec") is not None:
         out["codec"] = data["codec"]
-    if "targetBitrate" in data:
+    if data.get("targetBitrate") is not None:
         out["target_bitrate"] = data["targetBitrate"]
     else:
         out["target_bitrate"] = 0
-    if "sampleRate" in data:
+    if data.get("sampleRate") is not None:
         out["sample_rate"] = data["sampleRate"]
     else:
         out["sample_rate"] = 0
-    if "channels" in data:
+    if data.get("channels") is not None:
         out["channels"] = data["channels"]
     else:
         out["channels"] = 0
-    if "track" in data:
+    if data.get("track") is not None:
         out["track"] = data["track"]
     return out

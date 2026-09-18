@@ -38,19 +38,19 @@ def serialize_aws_json_1_1(value: AllocateTransitVirtualInterfaceRequest) -> dic
 
 def deserialize_aws_json_1_1(data: dict) -> AllocateTransitVirtualInterfaceRequest:
     out: AllocateTransitVirtualInterfaceRequest = {}  # type: ignore[typeddict-item]
-    if "connectionId" in data:
+    if data.get("connectionId") is not None:
         out["connection_id"] = data["connectionId"]
     else:
         raise DeserializationError(
             "AllocateTransitVirtualInterfaceRequest.connection_id required"
         )
-    if "ownerAccount" in data:
+    if data.get("ownerAccount") is not None:
         out["owner_account"] = data["ownerAccount"]
     else:
         raise DeserializationError(
             "AllocateTransitVirtualInterfaceRequest.owner_account required"
         )
-    if "newTransitVirtualInterfaceAllocation" in data:
+    if data.get("newTransitVirtualInterfaceAllocation") is not None:
         import capo_direct_connect.types.new_transit_virtual_interface_allocation
 
         out["new_transit_virtual_interface_allocation"] = (

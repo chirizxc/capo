@@ -29,7 +29,7 @@ def serialize_aws_json_1_1(value: DescribeMigrationTaskResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeMigrationTaskResult:
     out: DescribeMigrationTaskResult = {}  # type: ignore[typeddict-item]
-    if "MigrationTask" in data:
+    if data.get("MigrationTask") is not None:
         import capo_migration_hub.types.migration_task
 
         out["migration_task"] = (

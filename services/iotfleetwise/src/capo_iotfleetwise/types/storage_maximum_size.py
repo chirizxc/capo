@@ -34,7 +34,7 @@ def serialize_aws_json_1_0(value: StorageMaximumSize) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> StorageMaximumSize:
     out: StorageMaximumSize = {}  # type: ignore[typeddict-item]
-    if "unit" in data:
+    if data.get("unit") is not None:
         import capo_iotfleetwise.types.storage_maximum_size_unit
 
         out["unit"] = (
@@ -44,7 +44,7 @@ def deserialize_aws_json_1_0(data: dict) -> StorageMaximumSize:
         )
     else:
         raise DeserializationError("StorageMaximumSize.unit required")
-    if "value" in data:
+    if data.get("value") is not None:
         out["value"] = data["value"]
     else:
         raise DeserializationError("StorageMaximumSize.value required")

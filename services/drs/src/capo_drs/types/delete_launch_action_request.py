@@ -26,11 +26,11 @@ def serialize_json(value: DeleteLaunchActionRequest) -> dict:
 
 def deserialize_json(data: dict) -> DeleteLaunchActionRequest:
     out: DeleteLaunchActionRequest = {}  # type: ignore[typeddict-item]
-    if "resourceId" in data:
+    if data.get("resourceId") is not None:
         out["resource_id"] = data["resourceId"]
     else:
         raise DeserializationError("DeleteLaunchActionRequest.resource_id required")
-    if "actionId" in data:
+    if data.get("actionId") is not None:
         out["action_id"] = data["actionId"]
     else:
         raise DeserializationError("DeleteLaunchActionRequest.action_id required")

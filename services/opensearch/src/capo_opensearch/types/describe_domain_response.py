@@ -28,7 +28,7 @@ def serialize_json(value: DescribeDomainResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribeDomainResponse:
     out: DescribeDomainResponse = {}  # type: ignore[typeddict-item]
-    if "DomainStatus" in data:
+    if data.get("DomainStatus") is not None:
         import capo_opensearch.types.domain_status
 
         out["domain_status"] = capo_opensearch.types.domain_status.deserialize_json(

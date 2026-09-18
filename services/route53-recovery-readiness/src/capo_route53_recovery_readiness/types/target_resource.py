@@ -44,7 +44,7 @@ def serialize_json(value: TargetResource) -> dict:
 
 def deserialize_json(data: dict) -> TargetResource:
     out: TargetResource = {}  # type: ignore[typeddict-item]
-    if "nLBResource" in data:
+    if data.get("nLBResource") is not None:
         import capo_route53_recovery_readiness.types.nlb_resource
 
         out["nlb_resource"] = (
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> TargetResource:
                 data["nLBResource"]
             )
         )
-    if "r53Resource" in data:
+    if data.get("r53Resource") is not None:
         import capo_route53_recovery_readiness.types.r53_resource_record
 
         out["r53_resource"] = (

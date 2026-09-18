@@ -36,7 +36,7 @@ def serialize_json(value: CreateImportJobRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateImportJobRequest:
     out: CreateImportJobRequest = {}  # type: ignore[typeddict-item]
-    if "ImportDestination" in data:
+    if data.get("ImportDestination") is not None:
         import capo_sesv2.types.import_destination
 
         out["import_destination"] = (
@@ -46,7 +46,7 @@ def deserialize_json(data: dict) -> CreateImportJobRequest:
         )
     else:
         raise DeserializationError("CreateImportJobRequest.import_destination required")
-    if "ImportDataSource" in data:
+    if data.get("ImportDataSource") is not None:
         import capo_sesv2.types.import_data_source
 
         out["import_data_source"] = (

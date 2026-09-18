@@ -135,17 +135,17 @@ def serialize_aws_json_1_0(value: BenefitApplicationSummary) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> BenefitApplicationSummary:
     out: BenefitApplicationSummary = {}  # type: ignore[typeddict-item]
-    if "Catalog" in data:
+    if data.get("Catalog") is not None:
         out["catalog"] = data["Catalog"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "BenefitId" in data:
+    if data.get("BenefitId") is not None:
         out["benefit_id"] = data["BenefitId"]
-    if "Programs" in data:
+    if data.get("Programs") is not None:
         import capo_partnercentral_benefits.types.programs
 
         out["programs"] = (
@@ -153,7 +153,7 @@ def deserialize_aws_json_1_0(data: dict) -> BenefitApplicationSummary:
                 data["Programs"]
             )
         )
-    if "FulfillmentTypes" in data:
+    if data.get("FulfillmentTypes") is not None:
         import capo_partnercentral_benefits.types.fulfillment_types
 
         out["fulfillment_types"] = (
@@ -161,7 +161,7 @@ def deserialize_aws_json_1_0(data: dict) -> BenefitApplicationSummary:
                 data["FulfillmentTypes"]
             )
         )
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_partnercentral_benefits.types.benefit_application_status
 
         out["status"] = (
@@ -169,9 +169,9 @@ def deserialize_aws_json_1_0(data: dict) -> BenefitApplicationSummary:
                 data["Status"]
             )
         )
-    if "Stage" in data:
+    if data.get("Stage") is not None:
         out["stage"] = data["Stage"]
-    if "CreatedAt" in data:
+    if data.get("CreatedAt") is not None:
         import capo_partnercentral_benefits.types.timestamp
 
         out["created_at"] = (
@@ -179,7 +179,7 @@ def deserialize_aws_json_1_0(data: dict) -> BenefitApplicationSummary:
                 data["CreatedAt"]
             )
         )
-    if "UpdatedAt" in data:
+    if data.get("UpdatedAt") is not None:
         import capo_partnercentral_benefits.types.timestamp
 
         out["updated_at"] = (
@@ -187,7 +187,7 @@ def deserialize_aws_json_1_0(data: dict) -> BenefitApplicationSummary:
                 data["UpdatedAt"]
             )
         )
-    if "BenefitApplicationDetails" in data:
+    if data.get("BenefitApplicationDetails") is not None:
         import capo_partnercentral_benefits.types.attributes
 
         out["benefit_application_details"] = (
@@ -195,7 +195,7 @@ def deserialize_aws_json_1_0(data: dict) -> BenefitApplicationSummary:
                 data["BenefitApplicationDetails"]
             )
         )
-    if "AssociatedResources" in data:
+    if data.get("AssociatedResources") is not None:
         import capo_partnercentral_benefits.types.arns
 
         out["associated_resources"] = (

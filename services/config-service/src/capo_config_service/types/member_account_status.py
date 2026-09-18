@@ -60,15 +60,15 @@ def serialize_aws_json_1_1(value: MemberAccountStatus) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> MemberAccountStatus:
     out: MemberAccountStatus = {}  # type: ignore[typeddict-item]
-    if "AccountId" in data:
+    if data.get("AccountId") is not None:
         out["account_id"] = data["AccountId"]
     else:
         raise DeserializationError("MemberAccountStatus.account_id required")
-    if "ConfigRuleName" in data:
+    if data.get("ConfigRuleName") is not None:
         out["config_rule_name"] = data["ConfigRuleName"]
     else:
         raise DeserializationError("MemberAccountStatus.config_rule_name required")
-    if "MemberAccountRuleStatus" in data:
+    if data.get("MemberAccountRuleStatus") is not None:
         import capo_config_service.types.member_account_rule_status
 
         out["member_account_rule_status"] = (
@@ -80,11 +80,11 @@ def deserialize_aws_json_1_1(data: dict) -> MemberAccountStatus:
         raise DeserializationError(
             "MemberAccountStatus.member_account_rule_status required"
         )
-    if "ErrorCode" in data:
+    if data.get("ErrorCode") is not None:
         out["error_code"] = data["ErrorCode"]
-    if "ErrorMessage" in data:
+    if data.get("ErrorMessage") is not None:
         out["error_message"] = data["ErrorMessage"]
-    if "LastUpdateTime" in data:
+    if data.get("LastUpdateTime") is not None:
         import capo_config_service.types.date
 
         out["last_update_time"] = (

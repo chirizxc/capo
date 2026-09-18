@@ -36,16 +36,16 @@ def serialize_aws_json_1_1(value: CatalogImportStatus) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CatalogImportStatus:
     out: CatalogImportStatus = {}  # type: ignore[typeddict-item]
-    if "ImportCompleted" in data:
+    if data.get("ImportCompleted") is not None:
         out["import_completed"] = data["ImportCompleted"]
     else:
         out["import_completed"] = False
-    if "ImportTime" in data:
+    if data.get("ImportTime") is not None:
         import capo_glue.types.timestamp
 
         out["import_time"] = capo_glue.types.timestamp.deserialize_aws_json_1_1(
             data["ImportTime"]
         )
-    if "ImportedBy" in data:
+    if data.get("ImportedBy") is not None:
         out["imported_by"] = data["ImportedBy"]
     return out

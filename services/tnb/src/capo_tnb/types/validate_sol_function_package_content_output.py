@@ -47,37 +47,37 @@ def serialize_json(value: ValidateSolFunctionPackageContentOutput) -> dict:
 
 def deserialize_json(data: dict) -> ValidateSolFunctionPackageContentOutput:
     out: ValidateSolFunctionPackageContentOutput = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError(
             "ValidateSolFunctionPackageContentOutput.id required"
         )
-    if "vnfdId" in data:
+    if data.get("vnfdId") is not None:
         out["vnfd_id"] = data["vnfdId"]
     else:
         raise DeserializationError(
             "ValidateSolFunctionPackageContentOutput.vnfd_id required"
         )
-    if "vnfProductName" in data:
+    if data.get("vnfProductName") is not None:
         out["vnf_product_name"] = data["vnfProductName"]
     else:
         raise DeserializationError(
             "ValidateSolFunctionPackageContentOutput.vnf_product_name required"
         )
-    if "vnfProvider" in data:
+    if data.get("vnfProvider") is not None:
         out["vnf_provider"] = data["vnfProvider"]
     else:
         raise DeserializationError(
             "ValidateSolFunctionPackageContentOutput.vnf_provider required"
         )
-    if "vnfdVersion" in data:
+    if data.get("vnfdVersion") is not None:
         out["vnfd_version"] = data["vnfdVersion"]
     else:
         raise DeserializationError(
             "ValidateSolFunctionPackageContentOutput.vnfd_version required"
         )
-    if "metadata" in data:
+    if data.get("metadata") is not None:
         import capo_tnb.types.validate_sol_function_package_content_metadata
 
         out["metadata"] = (

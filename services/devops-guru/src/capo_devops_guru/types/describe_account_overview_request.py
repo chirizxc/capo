@@ -36,7 +36,7 @@ def serialize_json(value: DescribeAccountOverviewRequest) -> dict:
 
 def deserialize_json(data: dict) -> DescribeAccountOverviewRequest:
     out: DescribeAccountOverviewRequest = {}  # type: ignore[typeddict-item]
-    if "FromTime" in data:
+    if data.get("FromTime") is not None:
         import capo_devops_guru.types.timestamp
 
         out["from_time"] = capo_devops_guru.types.timestamp.deserialize_json(
@@ -44,7 +44,7 @@ def deserialize_json(data: dict) -> DescribeAccountOverviewRequest:
         )
     else:
         raise DeserializationError("DescribeAccountOverviewRequest.from_time required")
-    if "ToTime" in data:
+    if data.get("ToTime") is not None:
         import capo_devops_guru.types.timestamp
 
         out["to_time"] = capo_devops_guru.types.timestamp.deserialize_json(

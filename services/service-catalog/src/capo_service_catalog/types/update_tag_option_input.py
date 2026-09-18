@@ -34,12 +34,12 @@ def serialize_aws_json_1_1(value: UpdateTagOptionInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateTagOptionInput:
     out: UpdateTagOptionInput = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
     else:
         raise DeserializationError("UpdateTagOptionInput.id required")
-    if "Value" in data:
+    if data.get("Value") is not None:
         out["value"] = data["Value"]
-    if "Active" in data:
+    if data.get("Active") is not None:
         out["active"] = data["Active"]
     return out

@@ -18,6 +18,6 @@ def serialize_json(value: RefreshStatisticsIdMap) -> dict:
 
 def deserialize_json(data: dict) -> RefreshStatisticsIdMap:
     out: RefreshStatisticsIdMap = {}  # type: ignore[typeddict-item]
-    if "statisticsId" in data:
+    if data.get("statisticsId") is not None:
         out["statistics_id"] = data["statisticsId"]
     return out

@@ -45,7 +45,7 @@ def serialize_json(value: CreateSbomExportRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateSbomExportRequest:
     out: CreateSbomExportRequest = {}  # type: ignore[typeddict-item]
-    if "resourceFilterCriteria" in data:
+    if data.get("resourceFilterCriteria") is not None:
         import capo_inspector2.types.resource_filter_criteria
 
         out["resource_filter_criteria"] = (
@@ -53,11 +53,11 @@ def deserialize_json(data: dict) -> CreateSbomExportRequest:
                 data["resourceFilterCriteria"]
             )
         )
-    if "reportFormat" in data:
+    if data.get("reportFormat") is not None:
         out["report_format"] = data["reportFormat"]
     else:
         raise DeserializationError("CreateSbomExportRequest.report_format required")
-    if "s3Destination" in data:
+    if data.get("s3Destination") is not None:
         import capo_inspector2.types.destination
 
         out["s3_destination"] = capo_inspector2.types.destination.deserialize_json(

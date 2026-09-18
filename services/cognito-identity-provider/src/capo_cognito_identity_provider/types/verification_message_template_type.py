@@ -66,17 +66,17 @@ def serialize_aws_json_1_1(value: VerificationMessageTemplateType) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> VerificationMessageTemplateType:
     out: VerificationMessageTemplateType = {}  # type: ignore[typeddict-item]
-    if "SmsMessage" in data:
+    if data.get("SmsMessage") is not None:
         out["sms_message"] = data["SmsMessage"]
-    if "EmailMessage" in data:
+    if data.get("EmailMessage") is not None:
         out["email_message"] = data["EmailMessage"]
-    if "EmailSubject" in data:
+    if data.get("EmailSubject") is not None:
         out["email_subject"] = data["EmailSubject"]
-    if "EmailMessageByLink" in data:
+    if data.get("EmailMessageByLink") is not None:
         out["email_message_by_link"] = data["EmailMessageByLink"]
-    if "EmailSubjectByLink" in data:
+    if data.get("EmailSubjectByLink") is not None:
         out["email_subject_by_link"] = data["EmailSubjectByLink"]
-    if "DefaultEmailOption" in data:
+    if data.get("DefaultEmailOption") is not None:
         import capo_cognito_identity_provider.types.default_email_option_type
 
         out["default_email_option"] = (

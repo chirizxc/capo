@@ -36,19 +36,19 @@ def serialize_json(value: EnvironmentDetailsEntity) -> dict:
 
 def deserialize_json(data: dict) -> EnvironmentDetailsEntity:
     out: EnvironmentDetailsEntity = {}  # type: ignore[typeddict-item]
-    if "jobId" in data:
+    if data.get("jobId") is not None:
         out["job_id"] = data["jobId"]
     else:
         raise DeserializationError("EnvironmentDetailsEntity.job_id required")
-    if "environmentId" in data:
+    if data.get("environmentId") is not None:
         out["environment_id"] = data["environmentId"]
     else:
         raise DeserializationError("EnvironmentDetailsEntity.environment_id required")
-    if "schemaVersion" in data:
+    if data.get("schemaVersion") is not None:
         out["schema_version"] = data["schemaVersion"]
     else:
         raise DeserializationError("EnvironmentDetailsEntity.schema_version required")
-    if "template" in data:
+    if data.get("template") is not None:
         out["template"] = data["template"]
     else:
         raise DeserializationError("EnvironmentDetailsEntity.template required")

@@ -62,7 +62,7 @@ def serialize_aws_json_1_1(value: EdgeDeploymentStatus) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> EdgeDeploymentStatus:
     out: EdgeDeploymentStatus = {}  # type: ignore[typeddict-item]
-    if "StageStatus" in data:
+    if data.get("StageStatus") is not None:
         import capo_sagemaker.types.stage_status
 
         out["stage_status"] = (
@@ -70,15 +70,15 @@ def deserialize_aws_json_1_1(data: dict) -> EdgeDeploymentStatus:
                 data["StageStatus"]
             )
         )
-    if "EdgeDeploymentSuccessInStage" in data:
+    if data.get("EdgeDeploymentSuccessInStage") is not None:
         out["edge_deployment_success_in_stage"] = data["EdgeDeploymentSuccessInStage"]
-    if "EdgeDeploymentPendingInStage" in data:
+    if data.get("EdgeDeploymentPendingInStage") is not None:
         out["edge_deployment_pending_in_stage"] = data["EdgeDeploymentPendingInStage"]
-    if "EdgeDeploymentFailedInStage" in data:
+    if data.get("EdgeDeploymentFailedInStage") is not None:
         out["edge_deployment_failed_in_stage"] = data["EdgeDeploymentFailedInStage"]
-    if "EdgeDeploymentStatusMessage" in data:
+    if data.get("EdgeDeploymentStatusMessage") is not None:
         out["edge_deployment_status_message"] = data["EdgeDeploymentStatusMessage"]
-    if "EdgeDeploymentStageStartTime" in data:
+    if data.get("EdgeDeploymentStageStartTime") is not None:
         import capo_sagemaker.types.timestamp
 
         out["edge_deployment_stage_start_time"] = (

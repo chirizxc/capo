@@ -29,6 +29,8 @@ def deserialize_aws_json_1_1(data: list) -> CrossAccountResources:
 
     out: CrossAccountResources = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_global_accelerator.types.cross_account_resource.deserialize_aws_json_1_1(
                 item

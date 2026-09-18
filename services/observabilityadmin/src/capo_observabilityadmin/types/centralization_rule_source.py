@@ -61,7 +61,7 @@ def serialize_json(value: CentralizationRuleSource) -> dict:
 
 def deserialize_json(data: dict) -> CentralizationRuleSource:
     out: CentralizationRuleSource = {}  # type: ignore[typeddict-item]
-    if "Regions" in data:
+    if data.get("Regions") is not None:
         import capo_observabilityadmin.types.regions
 
         out["regions"] = capo_observabilityadmin.types.regions.deserialize_json(
@@ -69,9 +69,9 @@ def deserialize_json(data: dict) -> CentralizationRuleSource:
         )
     else:
         raise DeserializationError("CentralizationRuleSource.regions required")
-    if "Scope" in data:
+    if data.get("Scope") is not None:
         out["scope"] = data["Scope"]
-    if "SourceLogsConfiguration" in data:
+    if data.get("SourceLogsConfiguration") is not None:
         import capo_observabilityadmin.types.source_logs_configuration
 
         out["source_logs_configuration"] = (
@@ -79,7 +79,7 @@ def deserialize_json(data: dict) -> CentralizationRuleSource:
                 data["SourceLogsConfiguration"]
             )
         )
-    if "SourceMetricsConfiguration" in data:
+    if data.get("SourceMetricsConfiguration") is not None:
         import capo_observabilityadmin.types.source_metrics_configuration
 
         out["source_metrics_configuration"] = (

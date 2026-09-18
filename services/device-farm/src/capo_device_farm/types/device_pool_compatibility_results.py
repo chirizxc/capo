@@ -29,6 +29,8 @@ def deserialize_aws_json_1_1(data: list) -> DevicePoolCompatibilityResults:
 
     out: DevicePoolCompatibilityResults = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_device_farm.types.device_pool_compatibility_result.deserialize_aws_json_1_1(
                 item

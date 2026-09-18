@@ -66,25 +66,25 @@ def serialize_json(value: StartNotebookExportOutput) -> dict:
 
 def deserialize_json(data: dict) -> StartNotebookExportOutput:
     out: StartNotebookExportOutput = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("StartNotebookExportOutput.id required")
-    if "domainId" in data:
+    if data.get("domainId") is not None:
         out["domain_id"] = data["domainId"]
     else:
         raise DeserializationError("StartNotebookExportOutput.domain_id required")
-    if "owningProjectId" in data:
+    if data.get("owningProjectId") is not None:
         out["owning_project_id"] = data["owningProjectId"]
     else:
         raise DeserializationError(
             "StartNotebookExportOutput.owning_project_id required"
         )
-    if "notebookId" in data:
+    if data.get("notebookId") is not None:
         out["notebook_id"] = data["notebookId"]
     else:
         raise DeserializationError("StartNotebookExportOutput.notebook_id required")
-    if "fileFormat" in data:
+    if data.get("fileFormat") is not None:
         import capo_datazone.types.file_format
 
         out["file_format"] = capo_datazone.types.file_format.deserialize_json(
@@ -92,7 +92,7 @@ def deserialize_json(data: dict) -> StartNotebookExportOutput:
         )
     else:
         raise DeserializationError("StartNotebookExportOutput.file_format required")
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_datazone.types.notebook_export_status
 
         out["status"] = capo_datazone.types.notebook_export_status.deserialize_json(
@@ -100,12 +100,12 @@ def deserialize_json(data: dict) -> StartNotebookExportOutput:
         )
     else:
         raise DeserializationError("StartNotebookExportOutput.status required")
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_datazone.types.created_at
 
         out["created_at"] = capo_datazone.types.created_at.deserialize_json(
             data["createdAt"]
         )
-    if "createdBy" in data:
+    if data.get("createdBy") is not None:
         out["created_by"] = data["createdBy"]
     return out

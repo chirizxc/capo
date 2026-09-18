@@ -42,22 +42,22 @@ def serialize_aws_json_1_0(value: PutMaintenanceStartTimeInput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> PutMaintenanceStartTimeInput:
     out: PutMaintenanceStartTimeInput = {}  # type: ignore[typeddict-item]
-    if "GatewayArn" in data:
+    if data.get("GatewayArn") is not None:
         out["gateway_arn"] = data["GatewayArn"]
     else:
         raise DeserializationError("PutMaintenanceStartTimeInput.gateway_arn required")
-    if "HourOfDay" in data:
+    if data.get("HourOfDay") is not None:
         out["hour_of_day"] = data["HourOfDay"]
     else:
         raise DeserializationError("PutMaintenanceStartTimeInput.hour_of_day required")
-    if "MinuteOfHour" in data:
+    if data.get("MinuteOfHour") is not None:
         out["minute_of_hour"] = data["MinuteOfHour"]
     else:
         raise DeserializationError(
             "PutMaintenanceStartTimeInput.minute_of_hour required"
         )
-    if "DayOfWeek" in data:
+    if data.get("DayOfWeek") is not None:
         out["day_of_week"] = data["DayOfWeek"]
-    if "DayOfMonth" in data:
+    if data.get("DayOfMonth") is not None:
         out["day_of_month"] = data["DayOfMonth"]
     return out

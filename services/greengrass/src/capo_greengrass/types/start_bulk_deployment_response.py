@@ -27,8 +27,8 @@ def serialize_json(value: StartBulkDeploymentResponse) -> dict:
 
 def deserialize_json(data: dict) -> StartBulkDeploymentResponse:
     out: StartBulkDeploymentResponse = {}  # type: ignore[typeddict-item]
-    if "BulkDeploymentArn" in data:
+    if data.get("BulkDeploymentArn") is not None:
         out["bulk_deployment_arn"] = data["BulkDeploymentArn"]
-    if "BulkDeploymentId" in data:
+    if data.get("BulkDeploymentId") is not None:
         out["bulk_deployment_id"] = data["BulkDeploymentId"]
     return out

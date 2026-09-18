@@ -46,29 +46,29 @@ def serialize_json(value: LocationAction) -> dict:
 
 def deserialize_json(data: dict) -> LocationAction:
     out: LocationAction = {}  # type: ignore[typeddict-item]
-    if "roleArn" in data:
+    if data.get("roleArn") is not None:
         out["role_arn"] = data["roleArn"]
     else:
         raise DeserializationError("LocationAction.role_arn required")
-    if "trackerName" in data:
+    if data.get("trackerName") is not None:
         out["tracker_name"] = data["trackerName"]
     else:
         raise DeserializationError("LocationAction.tracker_name required")
-    if "deviceId" in data:
+    if data.get("deviceId") is not None:
         out["device_id"] = data["deviceId"]
     else:
         raise DeserializationError("LocationAction.device_id required")
-    if "timestamp" in data:
+    if data.get("timestamp") is not None:
         import capo_iot.types.location_timestamp
 
         out["timestamp"] = capo_iot.types.location_timestamp.deserialize_json(
             data["timestamp"]
         )
-    if "latitude" in data:
+    if data.get("latitude") is not None:
         out["latitude"] = data["latitude"]
     else:
         raise DeserializationError("LocationAction.latitude required")
-    if "longitude" in data:
+    if data.get("longitude") is not None:
         out["longitude"] = data["longitude"]
     else:
         raise DeserializationError("LocationAction.longitude required")

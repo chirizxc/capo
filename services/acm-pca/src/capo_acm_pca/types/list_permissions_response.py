@@ -32,9 +32,9 @@ def serialize_aws_json_1_1(value: ListPermissionsResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListPermissionsResponse:
     out: ListPermissionsResponse = {}  # type: ignore[typeddict-item]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "Permissions" in data:
+    if data.get("Permissions") is not None:
         import capo_acm_pca.types.permission_list
 
         out["permissions"] = (

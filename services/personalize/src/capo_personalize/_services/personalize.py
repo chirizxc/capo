@@ -375,16 +375,17 @@ class PersonalizeClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_personalize.types.create_batch_inference_job_request.CreateBatchInferenceJobRequest = {}  # type: ignore[typeddict-item]
-        input_["job_name"] = job_name
-        input_["solution_version_arn"] = solution_version_arn
+        input_: capo_personalize.types.create_batch_inference_job_request.CreateBatchInferenceJobRequest = {
+            "job_name": job_name,
+            "solution_version_arn": solution_version_arn,
+            "job_input": job_input,
+            "job_output": job_output,
+            "role_arn": role_arn,
+        }
         if filter_arn is not None:
             input_["filter_arn"] = filter_arn
         if num_results is not None:
             input_["num_results"] = num_results
-        input_["job_input"] = job_input
-        input_["job_output"] = job_output
-        input_["role_arn"] = role_arn
         if batch_inference_job_config is not None:
             input_["batch_inference_job_config"] = batch_inference_job_config
         if tags is not None:
@@ -399,6 +400,7 @@ class PersonalizeClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_batch_segment_job(
@@ -453,16 +455,17 @@ class PersonalizeClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_personalize.types.create_batch_segment_job_request.CreateBatchSegmentJobRequest = {}  # type: ignore[typeddict-item]
-        input_["job_name"] = job_name
-        input_["solution_version_arn"] = solution_version_arn
+        input_: capo_personalize.types.create_batch_segment_job_request.CreateBatchSegmentJobRequest = {
+            "job_name": job_name,
+            "solution_version_arn": solution_version_arn,
+            "job_input": job_input,
+            "job_output": job_output,
+            "role_arn": role_arn,
+        }
         if filter_arn is not None:
             input_["filter_arn"] = filter_arn
         if num_results is not None:
             input_["num_results"] = num_results
-        input_["job_input"] = job_input
-        input_["job_output"] = job_output
-        input_["role_arn"] = role_arn
         if tags is not None:
             input_["tags"] = tags
 
@@ -471,6 +474,7 @@ class PersonalizeClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_campaign(
@@ -521,9 +525,10 @@ class PersonalizeClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_personalize.types.create_campaign_request.CreateCampaignRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        input_["solution_version_arn"] = solution_version_arn
+        input_: capo_personalize.types.create_campaign_request.CreateCampaignRequest = {
+            "name": name,
+            "solution_version_arn": solution_version_arn,
+        }
         if min_provisioned_tps is not None:
             input_["min_provisioned_tps"] = min_provisioned_tps
         if campaign_config is not None:
@@ -536,6 +541,7 @@ class PersonalizeClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_data_deletion_job(
@@ -582,11 +588,12 @@ class PersonalizeClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_personalize.types.create_data_deletion_job_request.CreateDataDeletionJobRequest = {}  # type: ignore[typeddict-item]
-        input_["job_name"] = job_name
-        input_["dataset_group_arn"] = dataset_group_arn
-        input_["data_source"] = data_source
-        input_["role_arn"] = role_arn
+        input_: capo_personalize.types.create_data_deletion_job_request.CreateDataDeletionJobRequest = {
+            "job_name": job_name,
+            "dataset_group_arn": dataset_group_arn,
+            "data_source": data_source,
+            "role_arn": role_arn,
+        }
         if tags is not None:
             input_["tags"] = tags
 
@@ -595,6 +602,7 @@ class PersonalizeClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_dataset(
@@ -641,11 +649,12 @@ class PersonalizeClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_personalize.types.create_dataset_request.CreateDatasetRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        input_["schema_arn"] = schema_arn
-        input_["dataset_group_arn"] = dataset_group_arn
-        input_["dataset_type"] = dataset_type
+        input_: capo_personalize.types.create_dataset_request.CreateDatasetRequest = {
+            "name": name,
+            "schema_arn": schema_arn,
+            "dataset_group_arn": dataset_group_arn,
+            "dataset_type": dataset_type,
+        }
         if tags is not None:
             input_["tags"] = tags
 
@@ -654,6 +663,7 @@ class PersonalizeClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_dataset_export_job(
@@ -704,13 +714,14 @@ class PersonalizeClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_personalize.types.create_dataset_export_job_request.CreateDatasetExportJobRequest = {}  # type: ignore[typeddict-item]
-        input_["job_name"] = job_name
-        input_["dataset_arn"] = dataset_arn
+        input_: capo_personalize.types.create_dataset_export_job_request.CreateDatasetExportJobRequest = {
+            "job_name": job_name,
+            "dataset_arn": dataset_arn,
+            "role_arn": role_arn,
+            "job_output": job_output,
+        }
         if ingestion_mode is not None:
             input_["ingestion_mode"] = ingestion_mode
-        input_["role_arn"] = role_arn
-        input_["job_output"] = job_output
         if tags is not None:
             input_["tags"] = tags
 
@@ -719,6 +730,7 @@ class PersonalizeClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_dataset_group(
@@ -763,8 +775,9 @@ class PersonalizeClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_personalize.types.create_dataset_group_request.CreateDatasetGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_personalize.types.create_dataset_group_request.CreateDatasetGroupRequest = {
+            "name": name
+        }
         if role_arn is not None:
             input_["role_arn"] = role_arn
         if kms_key_arn is not None:
@@ -779,6 +792,7 @@ class PersonalizeClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_dataset_import_job(
@@ -831,10 +845,11 @@ class PersonalizeClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_personalize.types.create_dataset_import_job_request.CreateDatasetImportJobRequest = {}  # type: ignore[typeddict-item]
-        input_["job_name"] = job_name
-        input_["dataset_arn"] = dataset_arn
-        input_["data_source"] = data_source
+        input_: capo_personalize.types.create_dataset_import_job_request.CreateDatasetImportJobRequest = {
+            "job_name": job_name,
+            "dataset_arn": dataset_arn,
+            "data_source": data_source,
+        }
         if role_arn is not None:
             input_["role_arn"] = role_arn
         if tags is not None:
@@ -851,6 +866,7 @@ class PersonalizeClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_event_tracker(
@@ -893,9 +909,10 @@ class PersonalizeClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_personalize.types.create_event_tracker_request.CreateEventTrackerRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        input_["dataset_group_arn"] = dataset_group_arn
+        input_: capo_personalize.types.create_event_tracker_request.CreateEventTrackerRequest = {
+            "name": name,
+            "dataset_group_arn": dataset_group_arn,
+        }
         if tags is not None:
             input_["tags"] = tags
 
@@ -904,6 +921,7 @@ class PersonalizeClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_filter(
@@ -947,10 +965,11 @@ class PersonalizeClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_personalize.types.create_filter_request.CreateFilterRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        input_["dataset_group_arn"] = dataset_group_arn
-        input_["filter_expression"] = filter_expression
+        input_: capo_personalize.types.create_filter_request.CreateFilterRequest = {
+            "name": name,
+            "dataset_group_arn": dataset_group_arn,
+            "filter_expression": filter_expression,
+        }
         if tags is not None:
             input_["tags"] = tags
 
@@ -959,6 +978,7 @@ class PersonalizeClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_metric_attribution(
@@ -1002,17 +1022,19 @@ class PersonalizeClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_personalize.types.create_metric_attribution_request.CreateMetricAttributionRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        input_["dataset_group_arn"] = dataset_group_arn
-        input_["metrics"] = metrics
-        input_["metrics_output_config"] = metrics_output_config
+        input_: capo_personalize.types.create_metric_attribution_request.CreateMetricAttributionRequest = {
+            "name": name,
+            "dataset_group_arn": dataset_group_arn,
+            "metrics": metrics,
+            "metrics_output_config": metrics_output_config,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_recommender(
@@ -1061,10 +1083,11 @@ class PersonalizeClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_personalize.types.create_recommender_request.CreateRecommenderRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        input_["dataset_group_arn"] = dataset_group_arn
-        input_["recipe_arn"] = recipe_arn
+        input_: capo_personalize.types.create_recommender_request.CreateRecommenderRequest = {
+            "name": name,
+            "dataset_group_arn": dataset_group_arn,
+            "recipe_arn": recipe_arn,
+        }
         if recommender_config is not None:
             input_["recommender_config"] = recommender_config
         if tags is not None:
@@ -1075,6 +1098,7 @@ class PersonalizeClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_schema(
@@ -1114,9 +1138,10 @@ class PersonalizeClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_personalize.types.create_schema_request.CreateSchemaRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        input_["schema"] = schema
+        input_: capo_personalize.types.create_schema_request.CreateSchemaRequest = {
+            "name": name,
+            "schema": schema,
+        }
         if domain is not None:
             input_["domain"] = domain
 
@@ -1125,6 +1150,7 @@ class PersonalizeClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_solution(
@@ -1189,8 +1215,10 @@ class PersonalizeClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_personalize.types.create_solution_request.CreateSolutionRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_personalize.types.create_solution_request.CreateSolutionRequest = {
+            "name": name,
+            "dataset_group_arn": dataset_group_arn,
+        }
         if perform_hpo is not None:
             input_["perform_hpo"] = perform_hpo
         if perform_auto_ml is not None:
@@ -1201,7 +1229,6 @@ class PersonalizeClient:
             input_["perform_incremental_update"] = perform_incremental_update
         if recipe_arn is not None:
             input_["recipe_arn"] = recipe_arn
-        input_["dataset_group_arn"] = dataset_group_arn
         if event_type is not None:
             input_["event_type"] = event_type
         if solution_config is not None:
@@ -1214,6 +1241,7 @@ class PersonalizeClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_solution_version(
@@ -1260,10 +1288,11 @@ class PersonalizeClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_personalize.types.create_solution_version_request.CreateSolutionVersionRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_personalize.types.create_solution_version_request.CreateSolutionVersionRequest = {
+            "solution_arn": solution_arn
+        }
         if name is not None:
             input_["name"] = name
-        input_["solution_arn"] = solution_arn
         if training_mode is not None:
             input_["training_mode"] = training_mode
         if tags is not None:
@@ -1274,6 +1303,7 @@ class PersonalizeClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_campaign(
@@ -1307,14 +1337,16 @@ class PersonalizeClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_personalize.types.delete_campaign_request.DeleteCampaignRequest = {}  # type: ignore[typeddict-item]
-        input_["campaign_arn"] = campaign_arn
+        input_: capo_personalize.types.delete_campaign_request.DeleteCampaignRequest = {
+            "campaign_arn": campaign_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_dataset(
@@ -1348,14 +1380,16 @@ class PersonalizeClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_personalize.types.delete_dataset_request.DeleteDatasetRequest = {}  # type: ignore[typeddict-item]
-        input_["dataset_arn"] = dataset_arn
+        input_: capo_personalize.types.delete_dataset_request.DeleteDatasetRequest = {
+            "dataset_arn": dataset_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_dataset_group(
@@ -1389,14 +1423,16 @@ class PersonalizeClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_personalize.types.delete_dataset_group_request.DeleteDatasetGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["dataset_group_arn"] = dataset_group_arn
+        input_: capo_personalize.types.delete_dataset_group_request.DeleteDatasetGroupRequest = {
+            "dataset_group_arn": dataset_group_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_event_tracker(
@@ -1430,14 +1466,16 @@ class PersonalizeClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_personalize.types.delete_event_tracker_request.DeleteEventTrackerRequest = {}  # type: ignore[typeddict-item]
-        input_["event_tracker_arn"] = event_tracker_arn
+        input_: capo_personalize.types.delete_event_tracker_request.DeleteEventTrackerRequest = {
+            "event_tracker_arn": event_tracker_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_filter(
@@ -1471,14 +1509,16 @@ class PersonalizeClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_personalize.types.delete_filter_request.DeleteFilterRequest = {}  # type: ignore[typeddict-item]
-        input_["filter_arn"] = filter_arn
+        input_: capo_personalize.types.delete_filter_request.DeleteFilterRequest = {
+            "filter_arn": filter_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_metric_attribution(
@@ -1512,14 +1552,16 @@ class PersonalizeClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_personalize.types.delete_metric_attribution_request.DeleteMetricAttributionRequest = {}  # type: ignore[typeddict-item]
-        input_["metric_attribution_arn"] = metric_attribution_arn
+        input_: capo_personalize.types.delete_metric_attribution_request.DeleteMetricAttributionRequest = {
+            "metric_attribution_arn": metric_attribution_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_recommender(
@@ -1553,14 +1595,16 @@ class PersonalizeClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_personalize.types.delete_recommender_request.DeleteRecommenderRequest = {}  # type: ignore[typeddict-item]
-        input_["recommender_arn"] = recommender_arn
+        input_: capo_personalize.types.delete_recommender_request.DeleteRecommenderRequest = {
+            "recommender_arn": recommender_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_schema(
@@ -1594,14 +1638,16 @@ class PersonalizeClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_personalize.types.delete_schema_request.DeleteSchemaRequest = {}  # type: ignore[typeddict-item]
-        input_["schema_arn"] = schema_arn
+        input_: capo_personalize.types.delete_schema_request.DeleteSchemaRequest = {
+            "schema_arn": schema_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_solution(
@@ -1635,14 +1681,16 @@ class PersonalizeClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_personalize.types.delete_solution_request.DeleteSolutionRequest = {}  # type: ignore[typeddict-item]
-        input_["solution_arn"] = solution_arn
+        input_: capo_personalize.types.delete_solution_request.DeleteSolutionRequest = {
+            "solution_arn": solution_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_algorithm(
@@ -1677,14 +1725,16 @@ class PersonalizeClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_personalize.types.describe_algorithm_request.DescribeAlgorithmRequest = {}  # type: ignore[typeddict-item]
-        input_["algorithm_arn"] = algorithm_arn
+        input_: capo_personalize.types.describe_algorithm_request.DescribeAlgorithmRequest = {
+            "algorithm_arn": algorithm_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_batch_inference_job(
@@ -1719,14 +1769,16 @@ class PersonalizeClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_personalize.types.describe_batch_inference_job_request.DescribeBatchInferenceJobRequest = {}  # type: ignore[typeddict-item]
-        input_["batch_inference_job_arn"] = batch_inference_job_arn
+        input_: capo_personalize.types.describe_batch_inference_job_request.DescribeBatchInferenceJobRequest = {
+            "batch_inference_job_arn": batch_inference_job_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_batch_segment_job(
@@ -1761,14 +1813,16 @@ class PersonalizeClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_personalize.types.describe_batch_segment_job_request.DescribeBatchSegmentJobRequest = {}  # type: ignore[typeddict-item]
-        input_["batch_segment_job_arn"] = batch_segment_job_arn
+        input_: capo_personalize.types.describe_batch_segment_job_request.DescribeBatchSegmentJobRequest = {
+            "batch_segment_job_arn": batch_segment_job_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_campaign(
@@ -1803,14 +1857,16 @@ class PersonalizeClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_personalize.types.describe_campaign_request.DescribeCampaignRequest = {}  # type: ignore[typeddict-item]
-        input_["campaign_arn"] = campaign_arn
+        input_: capo_personalize.types.describe_campaign_request.DescribeCampaignRequest = {
+            "campaign_arn": campaign_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_data_deletion_job(
@@ -1845,14 +1901,16 @@ class PersonalizeClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_personalize.types.describe_data_deletion_job_request.DescribeDataDeletionJobRequest = {}  # type: ignore[typeddict-item]
-        input_["data_deletion_job_arn"] = data_deletion_job_arn
+        input_: capo_personalize.types.describe_data_deletion_job_request.DescribeDataDeletionJobRequest = {
+            "data_deletion_job_arn": data_deletion_job_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_dataset(
@@ -1887,14 +1945,16 @@ class PersonalizeClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_personalize.types.describe_dataset_request.DescribeDatasetRequest = {}  # type: ignore[typeddict-item]
-        input_["dataset_arn"] = dataset_arn
+        input_: capo_personalize.types.describe_dataset_request.DescribeDatasetRequest = {
+            "dataset_arn": dataset_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_dataset_export_job(
@@ -1929,14 +1989,16 @@ class PersonalizeClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_personalize.types.describe_dataset_export_job_request.DescribeDatasetExportJobRequest = {}  # type: ignore[typeddict-item]
-        input_["dataset_export_job_arn"] = dataset_export_job_arn
+        input_: capo_personalize.types.describe_dataset_export_job_request.DescribeDatasetExportJobRequest = {
+            "dataset_export_job_arn": dataset_export_job_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_dataset_group(
@@ -1971,14 +2033,16 @@ class PersonalizeClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_personalize.types.describe_dataset_group_request.DescribeDatasetGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["dataset_group_arn"] = dataset_group_arn
+        input_: capo_personalize.types.describe_dataset_group_request.DescribeDatasetGroupRequest = {
+            "dataset_group_arn": dataset_group_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_dataset_import_job(
@@ -2013,14 +2077,16 @@ class PersonalizeClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_personalize.types.describe_dataset_import_job_request.DescribeDatasetImportJobRequest = {}  # type: ignore[typeddict-item]
-        input_["dataset_import_job_arn"] = dataset_import_job_arn
+        input_: capo_personalize.types.describe_dataset_import_job_request.DescribeDatasetImportJobRequest = {
+            "dataset_import_job_arn": dataset_import_job_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_event_tracker(
@@ -2055,14 +2121,16 @@ class PersonalizeClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_personalize.types.describe_event_tracker_request.DescribeEventTrackerRequest = {}  # type: ignore[typeddict-item]
-        input_["event_tracker_arn"] = event_tracker_arn
+        input_: capo_personalize.types.describe_event_tracker_request.DescribeEventTrackerRequest = {
+            "event_tracker_arn": event_tracker_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_feature_transformation(
@@ -2097,14 +2165,16 @@ class PersonalizeClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_personalize.types.describe_feature_transformation_request.DescribeFeatureTransformationRequest = {}  # type: ignore[typeddict-item]
-        input_["feature_transformation_arn"] = feature_transformation_arn
+        input_: capo_personalize.types.describe_feature_transformation_request.DescribeFeatureTransformationRequest = {
+            "feature_transformation_arn": feature_transformation_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_filter(
@@ -2139,14 +2209,16 @@ class PersonalizeClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_personalize.types.describe_filter_request.DescribeFilterRequest = {}  # type: ignore[typeddict-item]
-        input_["filter_arn"] = filter_arn
+        input_: capo_personalize.types.describe_filter_request.DescribeFilterRequest = {
+            "filter_arn": filter_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_metric_attribution(
@@ -2181,14 +2253,16 @@ class PersonalizeClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_personalize.types.describe_metric_attribution_request.DescribeMetricAttributionRequest = {}  # type: ignore[typeddict-item]
-        input_["metric_attribution_arn"] = metric_attribution_arn
+        input_: capo_personalize.types.describe_metric_attribution_request.DescribeMetricAttributionRequest = {
+            "metric_attribution_arn": metric_attribution_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_recipe(
@@ -2223,14 +2297,16 @@ class PersonalizeClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_personalize.types.describe_recipe_request.DescribeRecipeRequest = {}  # type: ignore[typeddict-item]
-        input_["recipe_arn"] = recipe_arn
+        input_: capo_personalize.types.describe_recipe_request.DescribeRecipeRequest = {
+            "recipe_arn": recipe_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_recommender(
@@ -2265,14 +2341,16 @@ class PersonalizeClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_personalize.types.describe_recommender_request.DescribeRecommenderRequest = {}  # type: ignore[typeddict-item]
-        input_["recommender_arn"] = recommender_arn
+        input_: capo_personalize.types.describe_recommender_request.DescribeRecommenderRequest = {
+            "recommender_arn": recommender_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_schema(
@@ -2307,14 +2385,16 @@ class PersonalizeClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_personalize.types.describe_schema_request.DescribeSchemaRequest = {}  # type: ignore[typeddict-item]
-        input_["schema_arn"] = schema_arn
+        input_: capo_personalize.types.describe_schema_request.DescribeSchemaRequest = {
+            "schema_arn": schema_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_solution(
@@ -2349,14 +2429,16 @@ class PersonalizeClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_personalize.types.describe_solution_request.DescribeSolutionRequest = {}  # type: ignore[typeddict-item]
-        input_["solution_arn"] = solution_arn
+        input_: capo_personalize.types.describe_solution_request.DescribeSolutionRequest = {
+            "solution_arn": solution_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_solution_version(
@@ -2391,14 +2473,16 @@ class PersonalizeClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_personalize.types.describe_solution_version_request.DescribeSolutionVersionRequest = {}  # type: ignore[typeddict-item]
-        input_["solution_version_arn"] = solution_version_arn
+        input_: capo_personalize.types.describe_solution_version_request.DescribeSolutionVersionRequest = {
+            "solution_version_arn": solution_version_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_solution_metrics(
@@ -2434,14 +2518,16 @@ class PersonalizeClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_personalize.types.get_solution_metrics_request.GetSolutionMetricsRequest = {}  # type: ignore[typeddict-item]
-        input_["solution_version_arn"] = solution_version_arn
+        input_: capo_personalize.types.get_solution_metrics_request.GetSolutionMetricsRequest = {
+            "solution_version_arn": solution_version_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_batch_inference_jobs(
@@ -2480,7 +2566,7 @@ class PersonalizeClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_personalize.types.list_batch_inference_jobs_request.ListBatchInferenceJobsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_personalize.types.list_batch_inference_jobs_request.ListBatchInferenceJobsRequest = {}
         if solution_version_arn is not None:
             input_["solution_version_arn"] = solution_version_arn
         if next_token is not None:
@@ -2493,6 +2579,7 @@ class PersonalizeClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_batch_inference_jobs(
@@ -2554,7 +2641,7 @@ class PersonalizeClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_personalize.types.list_batch_segment_jobs_request.ListBatchSegmentJobsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_personalize.types.list_batch_segment_jobs_request.ListBatchSegmentJobsRequest = {}
         if solution_version_arn is not None:
             input_["solution_version_arn"] = solution_version_arn
         if next_token is not None:
@@ -2567,6 +2654,7 @@ class PersonalizeClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_batch_segment_jobs(
@@ -2628,7 +2716,7 @@ class PersonalizeClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_personalize.types.list_campaigns_request.ListCampaignsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_personalize.types.list_campaigns_request.ListCampaignsRequest = {}
         if solution_arn is not None:
             input_["solution_arn"] = solution_arn
         if next_token is not None:
@@ -2641,6 +2729,7 @@ class PersonalizeClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_campaigns(
@@ -2702,7 +2791,7 @@ class PersonalizeClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_personalize.types.list_data_deletion_jobs_request.ListDataDeletionJobsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_personalize.types.list_data_deletion_jobs_request.ListDataDeletionJobsRequest = {}
         if dataset_group_arn is not None:
             input_["dataset_group_arn"] = dataset_group_arn
         if next_token is not None:
@@ -2715,6 +2804,7 @@ class PersonalizeClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_dataset_export_jobs(
@@ -2753,7 +2843,7 @@ class PersonalizeClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_personalize.types.list_dataset_export_jobs_request.ListDatasetExportJobsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_personalize.types.list_dataset_export_jobs_request.ListDatasetExportJobsRequest = {}
         if dataset_arn is not None:
             input_["dataset_arn"] = dataset_arn
         if next_token is not None:
@@ -2766,6 +2856,7 @@ class PersonalizeClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_dataset_export_jobs(
@@ -2826,7 +2917,7 @@ class PersonalizeClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_personalize.types.list_dataset_groups_request.ListDatasetGroupsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_personalize.types.list_dataset_groups_request.ListDatasetGroupsRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -2837,6 +2928,7 @@ class PersonalizeClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_dataset_groups(
@@ -2896,7 +2988,7 @@ class PersonalizeClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_personalize.types.list_dataset_import_jobs_request.ListDatasetImportJobsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_personalize.types.list_dataset_import_jobs_request.ListDatasetImportJobsRequest = {}
         if dataset_arn is not None:
             input_["dataset_arn"] = dataset_arn
         if next_token is not None:
@@ -2909,6 +3001,7 @@ class PersonalizeClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_dataset_import_jobs(
@@ -2970,7 +3063,7 @@ class PersonalizeClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_personalize.types.list_datasets_request.ListDatasetsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_personalize.types.list_datasets_request.ListDatasetsRequest = {}
         if dataset_group_arn is not None:
             input_["dataset_group_arn"] = dataset_group_arn
         if next_token is not None:
@@ -2983,6 +3076,7 @@ class PersonalizeClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_datasets(
@@ -3046,7 +3140,7 @@ class PersonalizeClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_personalize.types.list_event_trackers_request.ListEventTrackersRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_personalize.types.list_event_trackers_request.ListEventTrackersRequest = {}
         if dataset_group_arn is not None:
             input_["dataset_group_arn"] = dataset_group_arn
         if next_token is not None:
@@ -3059,6 +3153,7 @@ class PersonalizeClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_event_trackers(
@@ -3120,7 +3215,7 @@ class PersonalizeClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_personalize.types.list_filters_request.ListFiltersRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_personalize.types.list_filters_request.ListFiltersRequest = {}
         if dataset_group_arn is not None:
             input_["dataset_group_arn"] = dataset_group_arn
         if next_token is not None:
@@ -3133,6 +3228,7 @@ class PersonalizeClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_filters(
@@ -3194,7 +3290,7 @@ class PersonalizeClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_personalize.types.list_metric_attribution_metrics_request.ListMetricAttributionMetricsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_personalize.types.list_metric_attribution_metrics_request.ListMetricAttributionMetricsRequest = {}
         if metric_attribution_arn is not None:
             input_["metric_attribution_arn"] = metric_attribution_arn
         if next_token is not None:
@@ -3207,6 +3303,7 @@ class PersonalizeClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_metric_attribution_metrics(
@@ -3268,7 +3365,7 @@ class PersonalizeClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_personalize.types.list_metric_attributions_request.ListMetricAttributionsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_personalize.types.list_metric_attributions_request.ListMetricAttributionsRequest = {}
         if dataset_group_arn is not None:
             input_["dataset_group_arn"] = dataset_group_arn
         if next_token is not None:
@@ -3281,6 +3378,7 @@ class PersonalizeClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_metric_attributions(
@@ -3346,7 +3444,7 @@ class PersonalizeClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_personalize.types.list_recipes_request.ListRecipesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_personalize.types.list_recipes_request.ListRecipesRequest = {}
         if recipe_provider is not None:
             input_["recipe_provider"] = recipe_provider
         if next_token is not None:
@@ -3361,6 +3459,7 @@ class PersonalizeClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_recipes(
@@ -3426,7 +3525,7 @@ class PersonalizeClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_personalize.types.list_recommenders_request.ListRecommendersRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_personalize.types.list_recommenders_request.ListRecommendersRequest = {}
         if dataset_group_arn is not None:
             input_["dataset_group_arn"] = dataset_group_arn
         if next_token is not None:
@@ -3439,6 +3538,7 @@ class PersonalizeClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_recommenders(
@@ -3497,7 +3597,7 @@ class PersonalizeClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_personalize.types.list_schemas_request.ListSchemasRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_personalize.types.list_schemas_request.ListSchemasRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -3508,6 +3608,7 @@ class PersonalizeClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_schemas(
@@ -3567,7 +3668,7 @@ class PersonalizeClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_personalize.types.list_solutions_request.ListSolutionsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_personalize.types.list_solutions_request.ListSolutionsRequest = {}
         if dataset_group_arn is not None:
             input_["dataset_group_arn"] = dataset_group_arn
         if next_token is not None:
@@ -3580,6 +3681,7 @@ class PersonalizeClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_solutions(
@@ -3642,7 +3744,7 @@ class PersonalizeClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_personalize.types.list_solution_versions_request.ListSolutionVersionsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_personalize.types.list_solution_versions_request.ListSolutionVersionsRequest = {}
         if solution_arn is not None:
             input_["solution_arn"] = solution_arn
         if next_token is not None:
@@ -3655,6 +3757,7 @@ class PersonalizeClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_solution_versions(
@@ -3713,14 +3816,16 @@ class PersonalizeClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_personalize.types.list_tags_for_resource_request.ListTagsForResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_personalize.types.list_tags_for_resource_request.ListTagsForResourceRequest = {
+            "resource_arn": resource_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def start_recommender(
@@ -3756,14 +3861,16 @@ class PersonalizeClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_personalize.types.start_recommender_request.StartRecommenderRequest = {}  # type: ignore[typeddict-item]
-        input_["recommender_arn"] = recommender_arn
+        input_: capo_personalize.types.start_recommender_request.StartRecommenderRequest = {
+            "recommender_arn": recommender_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def stop_recommender(
@@ -3799,14 +3906,16 @@ class PersonalizeClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_personalize.types.stop_recommender_request.StopRecommenderRequest = {}  # type: ignore[typeddict-item]
-        input_["recommender_arn"] = recommender_arn
+        input_: capo_personalize.types.stop_recommender_request.StopRecommenderRequest = {
+            "recommender_arn": recommender_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def stop_solution_version_creation(
@@ -3840,14 +3949,16 @@ class PersonalizeClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_personalize.types.stop_solution_version_creation_request.StopSolutionVersionCreationRequest = {}  # type: ignore[typeddict-item]
-        input_["solution_version_arn"] = solution_version_arn
+        input_: capo_personalize.types.stop_solution_version_creation_request.StopSolutionVersionCreationRequest = {
+            "solution_version_arn": solution_version_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def tag_resource(
@@ -3887,15 +3998,17 @@ class PersonalizeClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_personalize.types.tag_resource_request.TagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tags"] = tags
+        input_: capo_personalize.types.tag_resource_request.TagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tags": tags,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def untag_resource(
@@ -3934,15 +4047,17 @@ class PersonalizeClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_personalize.types.untag_resource_request.UntagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tag_keys"] = tag_keys
+        input_: capo_personalize.types.untag_resource_request.UntagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tag_keys": tag_keys,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_campaign(
@@ -3988,8 +4103,9 @@ class PersonalizeClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_personalize.types.update_campaign_request.UpdateCampaignRequest = {}  # type: ignore[typeddict-item]
-        input_["campaign_arn"] = campaign_arn
+        input_: capo_personalize.types.update_campaign_request.UpdateCampaignRequest = {
+            "campaign_arn": campaign_arn
+        }
         if solution_version_arn is not None:
             input_["solution_version_arn"] = solution_version_arn
         if min_provisioned_tps is not None:
@@ -4002,6 +4118,7 @@ class PersonalizeClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_dataset(
@@ -4039,15 +4156,17 @@ class PersonalizeClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_personalize.types.update_dataset_request.UpdateDatasetRequest = {}  # type: ignore[typeddict-item]
-        input_["dataset_arn"] = dataset_arn
-        input_["schema_arn"] = schema_arn
+        input_: capo_personalize.types.update_dataset_request.UpdateDatasetRequest = {
+            "dataset_arn": dataset_arn,
+            "schema_arn": schema_arn,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_metric_attribution(
@@ -4096,7 +4215,7 @@ class PersonalizeClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_personalize.types.update_metric_attribution_request.UpdateMetricAttributionRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_personalize.types.update_metric_attribution_request.UpdateMetricAttributionRequest = {}
         if add_metrics is not None:
             input_["add_metrics"] = add_metrics
         if remove_metrics is not None:
@@ -4111,6 +4230,7 @@ class PersonalizeClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_recommender(
@@ -4148,15 +4268,17 @@ class PersonalizeClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_personalize.types.update_recommender_request.UpdateRecommenderRequest = {}  # type: ignore[typeddict-item]
-        input_["recommender_arn"] = recommender_arn
-        input_["recommender_config"] = recommender_config
+        input_: capo_personalize.types.update_recommender_request.UpdateRecommenderRequest = {
+            "recommender_arn": recommender_arn,
+            "recommender_config": recommender_config,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_solution(
@@ -4205,8 +4327,9 @@ class PersonalizeClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_personalize.types.update_solution_request.UpdateSolutionRequest = {}  # type: ignore[typeddict-item]
-        input_["solution_arn"] = solution_arn
+        input_: capo_personalize.types.update_solution_request.UpdateSolutionRequest = {
+            "solution_arn": solution_arn
+        }
         if perform_auto_training is not None:
             input_["perform_auto_training"] = perform_auto_training
         if perform_incremental_update is not None:
@@ -4219,6 +4342,7 @@ class PersonalizeClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def __enter__(self) -> Self:

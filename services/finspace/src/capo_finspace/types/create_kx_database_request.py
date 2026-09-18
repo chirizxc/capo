@@ -43,17 +43,17 @@ def serialize_json(value: CreateKxDatabaseRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateKxDatabaseRequest:
     out: CreateKxDatabaseRequest = {}  # type: ignore[typeddict-item]
-    if "databaseName" in data:
+    if data.get("databaseName") is not None:
         out["database_name"] = data["databaseName"]
     else:
         raise DeserializationError("CreateKxDatabaseRequest.database_name required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_finspace.types.tag_map
 
         out["tags"] = capo_finspace.types.tag_map.deserialize_json(data["tags"])
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     else:
         raise DeserializationError("CreateKxDatabaseRequest.client_token required")

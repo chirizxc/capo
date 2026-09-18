@@ -28,11 +28,11 @@ def serialize_aws_json_1_1(value: DetachPolicyRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DetachPolicyRequest:
     out: DetachPolicyRequest = {}  # type: ignore[typeddict-item]
-    if "PolicyId" in data:
+    if data.get("PolicyId") is not None:
         out["policy_id"] = data["PolicyId"]
     else:
         raise DeserializationError("DetachPolicyRequest.policy_id required")
-    if "TargetId" in data:
+    if data.get("TargetId") is not None:
         out["target_id"] = data["TargetId"]
     else:
         raise DeserializationError("DetachPolicyRequest.target_id required")

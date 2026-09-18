@@ -32,13 +32,13 @@ def serialize_json(value: UpdateCentralizationRuleForOrganizationInput) -> dict:
 
 def deserialize_json(data: dict) -> UpdateCentralizationRuleForOrganizationInput:
     out: UpdateCentralizationRuleForOrganizationInput = {}  # type: ignore[typeddict-item]
-    if "RuleIdentifier" in data:
+    if data.get("RuleIdentifier") is not None:
         out["rule_identifier"] = data["RuleIdentifier"]
     else:
         raise DeserializationError(
             "UpdateCentralizationRuleForOrganizationInput.rule_identifier required"
         )
-    if "Rule" in data:
+    if data.get("Rule") is not None:
         import capo_observabilityadmin.types.centralization_rule
 
         out["rule"] = (

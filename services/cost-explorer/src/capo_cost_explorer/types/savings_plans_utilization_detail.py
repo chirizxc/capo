@@ -73,9 +73,9 @@ def serialize_aws_json_1_1(value: SavingsPlansUtilizationDetail) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SavingsPlansUtilizationDetail:
     out: SavingsPlansUtilizationDetail = {}  # type: ignore[typeddict-item]
-    if "SavingsPlanArn" in data:
+    if data.get("SavingsPlanArn") is not None:
         out["savings_plan_arn"] = data["SavingsPlanArn"]
-    if "Attributes" in data:
+    if data.get("Attributes") is not None:
         import capo_cost_explorer.types.attributes
 
         out["attributes"] = (
@@ -83,7 +83,7 @@ def deserialize_aws_json_1_1(data: dict) -> SavingsPlansUtilizationDetail:
                 data["Attributes"]
             )
         )
-    if "Utilization" in data:
+    if data.get("Utilization") is not None:
         import capo_cost_explorer.types.savings_plans_utilization
 
         out["utilization"] = (
@@ -91,7 +91,7 @@ def deserialize_aws_json_1_1(data: dict) -> SavingsPlansUtilizationDetail:
                 data["Utilization"]
             )
         )
-    if "Savings" in data:
+    if data.get("Savings") is not None:
         import capo_cost_explorer.types.savings_plans_savings
 
         out["savings"] = (
@@ -99,7 +99,7 @@ def deserialize_aws_json_1_1(data: dict) -> SavingsPlansUtilizationDetail:
                 data["Savings"]
             )
         )
-    if "AmortizedCommitment" in data:
+    if data.get("AmortizedCommitment") is not None:
         import capo_cost_explorer.types.savings_plans_amortized_commitment
 
         out["amortized_commitment"] = (

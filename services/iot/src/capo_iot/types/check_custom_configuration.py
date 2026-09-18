@@ -26,5 +26,7 @@ def deserialize_json(data: dict) -> CheckCustomConfiguration:
     for key, value in data.items():
         import capo_iot.types.config_name
 
+        if value is None:
+            continue
         out[capo_iot.types.config_name.deserialize_json(key)] = value
     return out

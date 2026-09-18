@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> AwsWafRegionalWebAclRulesList:
 
     out: AwsWafRegionalWebAclRulesList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_securityhub.types.aws_waf_regional_web_acl_rules_list_details.deserialize_json(
                 item

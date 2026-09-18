@@ -119,51 +119,51 @@ def serialize_json(value: User) -> dict:
 
 def deserialize_json(data: dict) -> User:
     out: User = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "Username" in data:
+    if data.get("Username") is not None:
         out["username"] = data["Username"]
-    if "EmailAddress" in data:
+    if data.get("EmailAddress") is not None:
         out["email_address"] = data["EmailAddress"]
-    if "GivenName" in data:
+    if data.get("GivenName") is not None:
         out["given_name"] = data["GivenName"]
-    if "Surname" in data:
+    if data.get("Surname") is not None:
         out["surname"] = data["Surname"]
-    if "OrganizationId" in data:
+    if data.get("OrganizationId") is not None:
         out["organization_id"] = data["OrganizationId"]
-    if "RootFolderId" in data:
+    if data.get("RootFolderId") is not None:
         out["root_folder_id"] = data["RootFolderId"]
-    if "RecycleBinFolderId" in data:
+    if data.get("RecycleBinFolderId") is not None:
         out["recycle_bin_folder_id"] = data["RecycleBinFolderId"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_workdocs.types.user_status_type
 
         out["status"] = capo_workdocs.types.user_status_type.deserialize_json(
             data["Status"]
         )
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_workdocs.types.user_type
 
         out["type"] = capo_workdocs.types.user_type.deserialize_json(data["Type"])
-    if "CreatedTimestamp" in data:
+    if data.get("CreatedTimestamp") is not None:
         import capo_workdocs.types.timestamp_type
 
         out["created_timestamp"] = capo_workdocs.types.timestamp_type.deserialize_json(
             data["CreatedTimestamp"]
         )
-    if "ModifiedTimestamp" in data:
+    if data.get("ModifiedTimestamp") is not None:
         import capo_workdocs.types.timestamp_type
 
         out["modified_timestamp"] = capo_workdocs.types.timestamp_type.deserialize_json(
             data["ModifiedTimestamp"]
         )
-    if "TimeZoneId" in data:
+    if data.get("TimeZoneId") is not None:
         out["time_zone_id"] = data["TimeZoneId"]
-    if "Locale" in data:
+    if data.get("Locale") is not None:
         import capo_workdocs.types.locale_type
 
         out["locale"] = capo_workdocs.types.locale_type.deserialize_json(data["Locale"])
-    if "Storage" in data:
+    if data.get("Storage") is not None:
         import capo_workdocs.types.user_storage_metadata
 
         out["storage"] = capo_workdocs.types.user_storage_metadata.deserialize_json(

@@ -34,7 +34,7 @@ def serialize_aws_json_1_1(value: LoggingFilter) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> LoggingFilter:
     out: LoggingFilter = {}  # type: ignore[typeddict-item]
-    if "Filters" in data:
+    if data.get("Filters") is not None:
         import capo_wafv2.types.filters
 
         out["filters"] = capo_wafv2.types.filters.deserialize_aws_json_1_1(
@@ -42,7 +42,7 @@ def deserialize_aws_json_1_1(data: dict) -> LoggingFilter:
         )
     else:
         raise DeserializationError("LoggingFilter.filters required")
-    if "DefaultBehavior" in data:
+    if data.get("DefaultBehavior") is not None:
         import capo_wafv2.types.filter_behavior
 
         out["default_behavior"] = (

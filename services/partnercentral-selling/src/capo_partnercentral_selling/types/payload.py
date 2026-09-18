@@ -45,7 +45,7 @@ def serialize_aws_json_1_0(value: Payload) -> dict:
 
 
 def deserialize_aws_json_1_0(data: dict) -> Payload:
-    if "OpportunityInvitation" in data:
+    if data.get("OpportunityInvitation") is not None:
         import capo_partnercentral_selling.types.opportunity_invitation_payload
 
         return {
@@ -53,7 +53,7 @@ def deserialize_aws_json_1_0(data: dict) -> Payload:
                 data["OpportunityInvitation"]
             )
         }
-    elif "LeadInvitation" in data:
+    elif data.get("LeadInvitation") is not None:
         import capo_partnercentral_selling.types.lead_invitation_payload
 
         return {

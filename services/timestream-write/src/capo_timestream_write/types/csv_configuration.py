@@ -45,14 +45,14 @@ def serialize_aws_json_1_0(value: CsvConfiguration) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CsvConfiguration:
     out: CsvConfiguration = {}  # type: ignore[typeddict-item]
-    if "ColumnSeparator" in data:
+    if data.get("ColumnSeparator") is not None:
         out["column_separator"] = data["ColumnSeparator"]
-    if "EscapeChar" in data:
+    if data.get("EscapeChar") is not None:
         out["escape_char"] = data["EscapeChar"]
-    if "QuoteChar" in data:
+    if data.get("QuoteChar") is not None:
         out["quote_char"] = data["QuoteChar"]
-    if "NullValue" in data:
+    if data.get("NullValue") is not None:
         out["null_value"] = data["NullValue"]
-    if "TrimWhiteSpace" in data:
+    if data.get("TrimWhiteSpace") is not None:
         out["trim_white_space"] = data["TrimWhiteSpace"]
     return out

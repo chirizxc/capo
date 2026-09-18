@@ -40,15 +40,20 @@ class InvalidParameterValueException(ServiceError):
 
     code: str | None = "InvalidParameterValueException"
 
-    def __init__(self, data: InvalidParameterValueException_):
+    def __init__(
+        self, data: InvalidParameterValueException_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="InvalidParameterValueException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_query(cls, el: Element) -> "InvalidParameterValueException":
-        return cls(deserialize_query(el))
+    def from_query(
+        cls, el: Element, message: str | None = None
+    ) -> "InvalidParameterValueException":
+        return cls(deserialize_query(el), message)

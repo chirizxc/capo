@@ -22,11 +22,11 @@ def serialize_json(value: ProtectedJobError) -> dict:
 
 def deserialize_json(data: dict) -> ProtectedJobError:
     out: ProtectedJobError = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     else:
         raise DeserializationError("ProtectedJobError.message required")
-    if "code" in data:
+    if data.get("code") is not None:
         out["code"] = data["code"]
     else:
         raise DeserializationError("ProtectedJobError.code required")

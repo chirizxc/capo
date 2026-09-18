@@ -36,14 +36,14 @@ def serialize_aws_json_1_1(value: ListFacesResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListFacesResponse:
     out: ListFacesResponse = {}  # type: ignore[typeddict-item]
-    if "Faces" in data:
+    if data.get("Faces") is not None:
         import capo_rekognition.types.face_list
 
         out["faces"] = capo_rekognition.types.face_list.deserialize_aws_json_1_1(
             data["Faces"]
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "FaceModelVersion" in data:
+    if data.get("FaceModelVersion") is not None:
         out["face_model_version"] = data["FaceModelVersion"]
     return out

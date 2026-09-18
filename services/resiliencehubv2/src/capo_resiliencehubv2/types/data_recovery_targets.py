@@ -18,6 +18,6 @@ def serialize_json(value: DataRecoveryTargets) -> dict:
 
 def deserialize_json(data: dict) -> DataRecoveryTargets:
     out: DataRecoveryTargets = {}  # type: ignore[typeddict-item]
-    if "timeBetweenBackupsInMinutes" in data:
+    if data.get("timeBetweenBackupsInMinutes") is not None:
         out["time_between_backups_in_minutes"] = data["timeBetweenBackupsInMinutes"]
     return out

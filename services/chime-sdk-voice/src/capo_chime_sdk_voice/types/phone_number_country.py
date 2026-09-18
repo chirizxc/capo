@@ -38,9 +38,9 @@ def serialize_json(value: PhoneNumberCountry) -> dict:
 
 def deserialize_json(data: dict) -> PhoneNumberCountry:
     out: PhoneNumberCountry = {}  # type: ignore[typeddict-item]
-    if "CountryCode" in data:
+    if data.get("CountryCode") is not None:
         out["country_code"] = data["CountryCode"]
-    if "SupportedPhoneNumberTypes" in data:
+    if data.get("SupportedPhoneNumberTypes") is not None:
         import capo_chime_sdk_voice.types.phone_number_type_list
 
         out["supported_phone_number_types"] = (

@@ -63,7 +63,7 @@ def serialize_json(value: CreatePrivacyBudgetTemplateInput) -> dict:
 
 def deserialize_json(data: dict) -> CreatePrivacyBudgetTemplateInput:
     out: CreatePrivacyBudgetTemplateInput = {}  # type: ignore[typeddict-item]
-    if "autoRefresh" in data:
+    if data.get("autoRefresh") is not None:
         import capo_cleanrooms.types.privacy_budget_template_auto_refresh
 
         out["auto_refresh"] = (
@@ -71,7 +71,7 @@ def deserialize_json(data: dict) -> CreatePrivacyBudgetTemplateInput:
                 data["autoRefresh"]
             )
         )
-    if "privacyBudgetType" in data:
+    if data.get("privacyBudgetType") is not None:
         import capo_cleanrooms.types.privacy_budget_type
 
         out["privacy_budget_type"] = (
@@ -83,7 +83,7 @@ def deserialize_json(data: dict) -> CreatePrivacyBudgetTemplateInput:
         raise DeserializationError(
             "CreatePrivacyBudgetTemplateInput.privacy_budget_type required"
         )
-    if "parameters" in data:
+    if data.get("parameters") is not None:
         import capo_cleanrooms.types.privacy_budget_template_parameters_input
 
         out["parameters"] = (
@@ -95,7 +95,7 @@ def deserialize_json(data: dict) -> CreatePrivacyBudgetTemplateInput:
         raise DeserializationError(
             "CreatePrivacyBudgetTemplateInput.parameters required"
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_cleanrooms.types.tag_map
 
         out["tags"] = capo_cleanrooms.types.tag_map.deserialize_json(data["tags"])

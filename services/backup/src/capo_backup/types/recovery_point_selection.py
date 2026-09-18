@@ -48,13 +48,13 @@ def serialize_json(value: RecoveryPointSelection) -> dict:
 
 def deserialize_json(data: dict) -> RecoveryPointSelection:
     out: RecoveryPointSelection = {}  # type: ignore[typeddict-item]
-    if "VaultNames" in data:
+    if data.get("VaultNames") is not None:
         import capo_backup.types.vault_names
 
         out["vault_names"] = capo_backup.types.vault_names.deserialize_json(
             data["VaultNames"]
         )
-    if "ResourceIdentifiers" in data:
+    if data.get("ResourceIdentifiers") is not None:
         import capo_backup.types.resource_identifiers
 
         out["resource_identifiers"] = (
@@ -62,7 +62,7 @@ def deserialize_json(data: dict) -> RecoveryPointSelection:
                 data["ResourceIdentifiers"]
             )
         )
-    if "DateRange" in data:
+    if data.get("DateRange") is not None:
         import capo_backup.types.date_range
 
         out["date_range"] = capo_backup.types.date_range.deserialize_json(

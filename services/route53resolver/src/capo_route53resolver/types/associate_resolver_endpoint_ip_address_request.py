@@ -34,13 +34,13 @@ def serialize_aws_json_1_1(value: AssociateResolverEndpointIpAddressRequest) -> 
 
 def deserialize_aws_json_1_1(data: dict) -> AssociateResolverEndpointIpAddressRequest:
     out: AssociateResolverEndpointIpAddressRequest = {}  # type: ignore[typeddict-item]
-    if "ResolverEndpointId" in data:
+    if data.get("ResolverEndpointId") is not None:
         out["resolver_endpoint_id"] = data["ResolverEndpointId"]
     else:
         raise DeserializationError(
             "AssociateResolverEndpointIpAddressRequest.resolver_endpoint_id required"
         )
-    if "IpAddress" in data:
+    if data.get("IpAddress") is not None:
         import capo_route53resolver.types.ip_address_update
 
         out["ip_address"] = (

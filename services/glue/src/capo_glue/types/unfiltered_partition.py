@@ -44,13 +44,13 @@ def serialize_aws_json_1_1(value: UnfilteredPartition) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UnfilteredPartition:
     out: UnfilteredPartition = {}  # type: ignore[typeddict-item]
-    if "Partition" in data:
+    if data.get("Partition") is not None:
         import capo_glue.types.partition
 
         out["partition"] = capo_glue.types.partition.deserialize_aws_json_1_1(
             data["Partition"]
         )
-    if "AuthorizedColumns" in data:
+    if data.get("AuthorizedColumns") is not None:
         import capo_glue.types.name_string_list
 
         out["authorized_columns"] = (
@@ -58,7 +58,7 @@ def deserialize_aws_json_1_1(data: dict) -> UnfilteredPartition:
                 data["AuthorizedColumns"]
             )
         )
-    if "IsRegisteredWithLakeFormation" in data:
+    if data.get("IsRegisteredWithLakeFormation") is not None:
         out["is_registered_with_lake_formation"] = data["IsRegisteredWithLakeFormation"]
     else:
         out["is_registered_with_lake_formation"] = False

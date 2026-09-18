@@ -27,6 +27,8 @@ def serialize_json(input_to_serialize: KeyMap) -> dict:
 def deserialize_json(data: dict) -> KeyMap:
     out: KeyMap = {}
     for key, value in data.items():
+        if value is None:
+            continue
         import capo_customer_profiles.types.object_type_key_list
 
         out[key] = capo_customer_profiles.types.object_type_key_list.deserialize_json(

@@ -27,6 +27,8 @@ def deserialize_aws_json_1_1(data: list) -> DistributionList:
 
     out: DistributionList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_lightsail.types.lightsail_distribution.deserialize_aws_json_1_1(item)
         )

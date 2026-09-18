@@ -45,11 +45,11 @@ def serialize_json(value: UpdateViewInput) -> dict:
 
 def deserialize_json(data: dict) -> UpdateViewInput:
     out: UpdateViewInput = {}  # type: ignore[typeddict-item]
-    if "ViewArn" in data:
+    if data.get("ViewArn") is not None:
         out["view_arn"] = data["ViewArn"]
     else:
         raise DeserializationError("UpdateViewInput.view_arn required")
-    if "IncludedProperties" in data:
+    if data.get("IncludedProperties") is not None:
         import capo_resource_explorer_2.types.included_property_list
 
         out["included_properties"] = (
@@ -57,7 +57,7 @@ def deserialize_json(data: dict) -> UpdateViewInput:
                 data["IncludedProperties"]
             )
         )
-    if "Filters" in data:
+    if data.get("Filters") is not None:
         import capo_resource_explorer_2.types.search_filter
 
         out["filters"] = capo_resource_explorer_2.types.search_filter.deserialize_json(

@@ -31,7 +31,7 @@ def serialize_json(value: UpdateS3BucketResource) -> dict:
 
 def deserialize_json(data: dict) -> UpdateS3BucketResource:
     out: UpdateS3BucketResource = {}  # type: ignore[typeddict-item]
-    if "objectPrefixes" in data:
+    if data.get("objectPrefixes") is not None:
         import capo_guardduty.types.malware_protection_plan_object_prefixes_list
 
         out["object_prefixes"] = (

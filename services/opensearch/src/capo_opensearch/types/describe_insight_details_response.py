@@ -28,7 +28,7 @@ def serialize_json(value: DescribeInsightDetailsResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribeInsightDetailsResponse:
     out: DescribeInsightDetailsResponse = {}  # type: ignore[typeddict-item]
-    if "Fields" in data:
+    if data.get("Fields") is not None:
         import capo_opensearch.types.insight_field_list
 
         out["fields"] = capo_opensearch.types.insight_field_list.deserialize_json(

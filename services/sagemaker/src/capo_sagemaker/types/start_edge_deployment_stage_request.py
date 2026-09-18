@@ -29,8 +29,8 @@ def serialize_aws_json_1_1(value: StartEdgeDeploymentStageRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> StartEdgeDeploymentStageRequest:
     out: StartEdgeDeploymentStageRequest = {}  # type: ignore[typeddict-item]
-    if "EdgeDeploymentPlanName" in data:
+    if data.get("EdgeDeploymentPlanName") is not None:
         out["edge_deployment_plan_name"] = data["EdgeDeploymentPlanName"]
-    if "StageName" in data:
+    if data.get("StageName") is not None:
         out["stage_name"] = data["StageName"]
     return out

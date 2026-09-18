@@ -31,7 +31,7 @@ def serialize_json(value: SheetImageScalingConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> SheetImageScalingConfiguration:
     out: SheetImageScalingConfiguration = {}  # type: ignore[typeddict-item]
-    if "ScalingType" in data:
+    if data.get("ScalingType") is not None:
         import capo_quicksight.types.sheet_image_scaling_type
 
         out["scaling_type"] = (

@@ -43,9 +43,9 @@ def serialize_aws_json_1_1(value: BatchDetectSentimentItemResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> BatchDetectSentimentItemResult:
     out: BatchDetectSentimentItemResult = {}  # type: ignore[typeddict-item]
-    if "Index" in data:
+    if data.get("Index") is not None:
         out["index"] = data["Index"]
-    if "Sentiment" in data:
+    if data.get("Sentiment") is not None:
         import capo_comprehend.types.sentiment_type
 
         out["sentiment"] = (
@@ -53,7 +53,7 @@ def deserialize_aws_json_1_1(data: dict) -> BatchDetectSentimentItemResult:
                 data["Sentiment"]
             )
         )
-    if "SentimentScore" in data:
+    if data.get("SentimentScore") is not None:
         import capo_comprehend.types.sentiment_score
 
         out["sentiment_score"] = (

@@ -41,7 +41,7 @@ def serialize_json(value: Message) -> dict:
 
 def deserialize_json(data: dict) -> Message:
     out: Message = {}  # type: ignore[typeddict-item]
-    if "contentType" in data:
+    if data.get("contentType") is not None:
         import capo_lex_model_building_service.types.content_type
 
         out["content_type"] = (
@@ -51,10 +51,10 @@ def deserialize_json(data: dict) -> Message:
         )
     else:
         raise DeserializationError("Message.content_type required")
-    if "content" in data:
+    if data.get("content") is not None:
         out["content"] = data["content"]
     else:
         raise DeserializationError("Message.content required")
-    if "groupNumber" in data:
+    if data.get("groupNumber") is not None:
         out["group_number"] = data["groupNumber"]
     return out

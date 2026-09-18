@@ -28,8 +28,8 @@ def serialize_aws_json_1_1(value: AppSpecContent) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AppSpecContent:
     out: AppSpecContent = {}  # type: ignore[typeddict-item]
-    if "content" in data:
+    if data.get("content") is not None:
         out["content"] = data["content"]
-    if "sha256" in data:
+    if data.get("sha256") is not None:
         out["sha256"] = data["sha256"]
     return out

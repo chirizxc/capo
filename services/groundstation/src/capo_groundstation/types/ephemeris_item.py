@@ -78,9 +78,9 @@ def serialize_json(value: EphemerisItem) -> dict:
 
 def deserialize_json(data: dict) -> EphemerisItem:
     out: EphemerisItem = {}  # type: ignore[typeddict-item]
-    if "ephemerisId" in data:
+    if data.get("ephemerisId") is not None:
         out["ephemeris_id"] = data["ephemerisId"]
-    if "ephemerisType" in data:
+    if data.get("ephemerisType") is not None:
         import capo_groundstation.types.ephemeris_type
 
         out["ephemeris_type"] = (
@@ -88,17 +88,17 @@ def deserialize_json(data: dict) -> EphemerisItem:
                 data["ephemerisType"]
             )
         )
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_groundstation.types.ephemeris_status
 
         out["status"] = capo_groundstation.types.ephemeris_status.deserialize_json(
             data["status"]
         )
-    if "priority" in data:
+    if data.get("priority") is not None:
         out["priority"] = data["priority"]
-    if "enabled" in data:
+    if data.get("enabled") is not None:
         out["enabled"] = data["enabled"]
-    if "creationTime" in data:
+    if data.get("creationTime") is not None:
         import capo_groundstation.types._prelude.timestamp
 
         out["creation_time"] = (
@@ -106,9 +106,9 @@ def deserialize_json(data: dict) -> EphemerisItem:
                 data["creationTime"]
             )
         )
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "sourceS3Object" in data:
+    if data.get("sourceS3Object") is not None:
         import capo_groundstation.types.s3_object
 
         out["source_s3_object"] = capo_groundstation.types.s3_object.deserialize_json(

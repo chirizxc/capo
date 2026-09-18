@@ -37,15 +37,18 @@ class UsageLimitAlreadyExistsFault(ServiceError):
 
     code: str | None = "UsageLimitAlreadyExistsFault"
 
-    def __init__(self, data: UsageLimitAlreadyExistsFault_):
+    def __init__(self, data: UsageLimitAlreadyExistsFault_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="UsageLimitAlreadyExistsFault",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_query(cls, el: Element) -> "UsageLimitAlreadyExistsFault":
-        return cls(deserialize_query(el))
+    def from_query(
+        cls, el: Element, message: str | None = None
+    ) -> "UsageLimitAlreadyExistsFault":
+        return cls(deserialize_query(el), message)

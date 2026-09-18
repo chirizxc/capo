@@ -44,11 +44,11 @@ def serialize_json(value: ListEntitiesFilter) -> dict:
 
 
 def deserialize_json(data: dict) -> ListEntitiesFilter:
-    if "parentEntityId" in data:
+    if data.get("parentEntityId") is not None:
         return {"parentEntityId": data["parentEntityId"]}
-    elif "componentTypeId" in data:
+    elif data.get("componentTypeId") is not None:
         return {"componentTypeId": data["componentTypeId"]}
-    elif "externalId" in data:
+    elif data.get("externalId") is not None:
         return {"externalId": data["externalId"]}
     else:
         raise DeserializationError("ListEntitiesFilter: no recognized variant key")

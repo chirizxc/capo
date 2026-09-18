@@ -37,10 +37,10 @@ def serialize_json(value: Location) -> dict:
 
 def deserialize_json(data: dict) -> Location:
     out: Location = {}  # type: ignore[typeddict-item]
-    if "Address" in data:
+    if data.get("Address") is not None:
         out["address"] = data["Address"]
-    if "Latitude" in data:
+    if data.get("Latitude") is not None:
         out["latitude"] = data["Latitude"]
-    if "Longitude" in data:
+    if data.get("Longitude") is not None:
         out["longitude"] = data["Longitude"]
     return out

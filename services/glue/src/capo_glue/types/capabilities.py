@@ -54,7 +54,7 @@ def serialize_aws_json_1_1(value: Capabilities) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Capabilities:
     out: Capabilities = {}  # type: ignore[typeddict-item]
-    if "SupportedAuthenticationTypes" in data:
+    if data.get("SupportedAuthenticationTypes") is not None:
         import capo_glue.types.authentication_types
 
         out["supported_authentication_types"] = (
@@ -66,7 +66,7 @@ def deserialize_aws_json_1_1(data: dict) -> Capabilities:
         raise DeserializationError(
             "Capabilities.supported_authentication_types required"
         )
-    if "SupportedDataOperations" in data:
+    if data.get("SupportedDataOperations") is not None:
         import capo_glue.types.data_operations
 
         out["supported_data_operations"] = (
@@ -76,7 +76,7 @@ def deserialize_aws_json_1_1(data: dict) -> Capabilities:
         )
     else:
         raise DeserializationError("Capabilities.supported_data_operations required")
-    if "SupportedComputeEnvironments" in data:
+    if data.get("SupportedComputeEnvironments") is not None:
         import capo_glue.types.compute_environments
 
         out["supported_compute_environments"] = (

@@ -36,13 +36,13 @@ def serialize_json(value: DataLakeAutoEnableNewAccountConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> DataLakeAutoEnableNewAccountConfiguration:
     out: DataLakeAutoEnableNewAccountConfiguration = {}  # type: ignore[typeddict-item]
-    if "region" in data:
+    if data.get("region") is not None:
         out["region"] = data["region"]
     else:
         raise DeserializationError(
             "DataLakeAutoEnableNewAccountConfiguration.region required"
         )
-    if "sources" in data:
+    if data.get("sources") is not None:
         import capo_securitylake.types.aws_log_source_resource_list
 
         out["sources"] = (

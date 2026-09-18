@@ -112,9 +112,25 @@ def serialize_aws_json_1_1(value: Session) -> dict:
         out["Connections"] = capo_glue.types.connections_list.serialize_aws_json_1_1(
             value["connections"]
         )
-    out["Progress"] = value.get("progress", 0)
+    out["Progress"] = (
+        "NaN"
+        if value.get("progress", 0) != value.get("progress", 0)
+        else "Infinity"
+        if value.get("progress", 0) == float("inf")
+        else "-Infinity"
+        if value.get("progress", 0) == float("-inf")
+        else value.get("progress", 0)
+    )
     if "max_capacity" in value:
-        out["MaxCapacity"] = value["max_capacity"]
+        out["MaxCapacity"] = (
+            "NaN"
+            if value["max_capacity"] != value["max_capacity"]
+            else "Infinity"
+            if value["max_capacity"] == float("inf")
+            else "-Infinity"
+            if value["max_capacity"] == float("-inf")
+            else value["max_capacity"]
+        )
     if "security_configuration" in value:
         out["SecurityConfiguration"] = value["security_configuration"]
     if "glue_version" in value:
@@ -134,9 +150,25 @@ def serialize_aws_json_1_1(value: Session) -> dict:
             value["completed_on"]
         )
     if "execution_time" in value:
-        out["ExecutionTime"] = value["execution_time"]
+        out["ExecutionTime"] = (
+            "NaN"
+            if value["execution_time"] != value["execution_time"]
+            else "Infinity"
+            if value["execution_time"] == float("inf")
+            else "-Infinity"
+            if value["execution_time"] == float("-inf")
+            else value["execution_time"]
+        )
     if "dpu_seconds" in value:
-        out["DPUSeconds"] = value["dpu_seconds"]
+        out["DPUSeconds"] = (
+            "NaN"
+            if value["dpu_seconds"] != value["dpu_seconds"]
+            else "Infinity"
+            if value["dpu_seconds"] == float("inf")
+            else "-Infinity"
+            if value["dpu_seconds"] == float("-inf")
+            else value["dpu_seconds"]
+        )
     if "idle_timeout" in value:
         out["IdleTimeout"] = value["idle_timeout"]
     if "profile_name" in value:
@@ -152,33 +184,33 @@ def serialize_aws_json_1_1(value: Session) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Session:
     out: Session = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "CreatedOn" in data:
+    if data.get("CreatedOn") is not None:
         import capo_glue.types.timestamp_value
 
         out["created_on"] = capo_glue.types.timestamp_value.deserialize_aws_json_1_1(
             data["CreatedOn"]
         )
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_glue.types.session_status
 
         out["status"] = capo_glue.types.session_status.deserialize_aws_json_1_1(
             data["Status"]
         )
-    if "ErrorMessage" in data:
+    if data.get("ErrorMessage") is not None:
         out["error_message"] = data["ErrorMessage"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Role" in data:
+    if data.get("Role") is not None:
         out["role"] = data["Role"]
-    if "Command" in data:
+    if data.get("Command") is not None:
         import capo_glue.types.session_command
 
         out["command"] = capo_glue.types.session_command.deserialize_aws_json_1_1(
             data["Command"]
         )
-    if "DefaultArguments" in data:
+    if data.get("DefaultArguments") is not None:
         import capo_glue.types.orchestration_arguments_map
 
         out["default_arguments"] = (
@@ -186,45 +218,45 @@ def deserialize_aws_json_1_1(data: dict) -> Session:
                 data["DefaultArguments"]
             )
         )
-    if "Connections" in data:
+    if data.get("Connections") is not None:
         import capo_glue.types.connections_list
 
         out["connections"] = capo_glue.types.connections_list.deserialize_aws_json_1_1(
             data["Connections"]
         )
-    if "Progress" in data:
-        out["progress"] = data["Progress"]
+    if data.get("Progress") is not None:
+        out["progress"] = float(data["Progress"])
     else:
         out["progress"] = 0
-    if "MaxCapacity" in data:
-        out["max_capacity"] = data["MaxCapacity"]
-    if "SecurityConfiguration" in data:
+    if data.get("MaxCapacity") is not None:
+        out["max_capacity"] = float(data["MaxCapacity"])
+    if data.get("SecurityConfiguration") is not None:
         out["security_configuration"] = data["SecurityConfiguration"]
-    if "GlueVersion" in data:
+    if data.get("GlueVersion") is not None:
         out["glue_version"] = data["GlueVersion"]
-    if "NumberOfWorkers" in data:
+    if data.get("NumberOfWorkers") is not None:
         out["number_of_workers"] = data["NumberOfWorkers"]
-    if "WorkerType" in data:
+    if data.get("WorkerType") is not None:
         import capo_glue.types.worker_type
 
         out["worker_type"] = capo_glue.types.worker_type.deserialize_aws_json_1_1(
             data["WorkerType"]
         )
-    if "CompletedOn" in data:
+    if data.get("CompletedOn") is not None:
         import capo_glue.types.timestamp_value
 
         out["completed_on"] = capo_glue.types.timestamp_value.deserialize_aws_json_1_1(
             data["CompletedOn"]
         )
-    if "ExecutionTime" in data:
-        out["execution_time"] = data["ExecutionTime"]
-    if "DPUSeconds" in data:
-        out["dpu_seconds"] = data["DPUSeconds"]
-    if "IdleTimeout" in data:
+    if data.get("ExecutionTime") is not None:
+        out["execution_time"] = float(data["ExecutionTime"])
+    if data.get("DPUSeconds") is not None:
+        out["dpu_seconds"] = float(data["DPUSeconds"])
+    if data.get("IdleTimeout") is not None:
         out["idle_timeout"] = data["IdleTimeout"]
-    if "ProfileName" in data:
+    if data.get("ProfileName") is not None:
         out["profile_name"] = data["ProfileName"]
-    if "SessionType" in data:
+    if data.get("SessionType") is not None:
         import capo_glue.types.session_type
 
         out["session_type"] = capo_glue.types.session_type.deserialize_aws_json_1_1(

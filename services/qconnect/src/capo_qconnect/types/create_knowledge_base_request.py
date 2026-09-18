@@ -97,19 +97,19 @@ def serialize_json(value: CreateKnowledgeBaseRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateKnowledgeBaseRequest:
     out: CreateKnowledgeBaseRequest = {}  # type: ignore[typeddict-item]
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("CreateKnowledgeBaseRequest.name required")
-    if "knowledgeBaseType" in data:
+    if data.get("knowledgeBaseType") is not None:
         out["knowledge_base_type"] = data["knowledgeBaseType"]
     else:
         raise DeserializationError(
             "CreateKnowledgeBaseRequest.knowledge_base_type required"
         )
-    if "sourceConfiguration" in data:
+    if data.get("sourceConfiguration") is not None:
         import capo_qconnect.types.source_configuration
 
         out["source_configuration"] = (
@@ -117,7 +117,7 @@ def deserialize_json(data: dict) -> CreateKnowledgeBaseRequest:
                 data["sourceConfiguration"]
             )
         )
-    if "renderingConfiguration" in data:
+    if data.get("renderingConfiguration") is not None:
         import capo_qconnect.types.rendering_configuration
 
         out["rendering_configuration"] = (
@@ -125,7 +125,7 @@ def deserialize_json(data: dict) -> CreateKnowledgeBaseRequest:
                 data["renderingConfiguration"]
             )
         )
-    if "vectorIngestionConfiguration" in data:
+    if data.get("vectorIngestionConfiguration") is not None:
         import capo_qconnect.types.vector_ingestion_configuration
 
         out["vector_ingestion_configuration"] = (
@@ -133,7 +133,7 @@ def deserialize_json(data: dict) -> CreateKnowledgeBaseRequest:
                 data["vectorIngestionConfiguration"]
             )
         )
-    if "serverSideEncryptionConfiguration" in data:
+    if data.get("serverSideEncryptionConfiguration") is not None:
         import capo_qconnect.types.server_side_encryption_configuration
 
         out["server_side_encryption_configuration"] = (
@@ -141,9 +141,9 @@ def deserialize_json(data: dict) -> CreateKnowledgeBaseRequest:
                 data["serverSideEncryptionConfiguration"]
             )
         )
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_qconnect.types.tags
 
         out["tags"] = capo_qconnect.types.tags.deserialize_json(data["tags"])

@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> SecurityConfigurations:
 
     out: SecurityConfigurations = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_emr_containers.types.security_configuration.deserialize_json(item)
         )

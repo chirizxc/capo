@@ -70,25 +70,25 @@ def deserialize_aws_json_1_0(
     data: dict,
 ) -> DeleteProtectConfigurationRuleSetNumberOverrideResult:
     out: DeleteProtectConfigurationRuleSetNumberOverrideResult = {}  # type: ignore[typeddict-item]
-    if "ProtectConfigurationArn" in data:
+    if data.get("ProtectConfigurationArn") is not None:
         out["protect_configuration_arn"] = data["ProtectConfigurationArn"]
     else:
         raise DeserializationError(
             "DeleteProtectConfigurationRuleSetNumberOverrideResult.protect_configuration_arn required"
         )
-    if "ProtectConfigurationId" in data:
+    if data.get("ProtectConfigurationId") is not None:
         out["protect_configuration_id"] = data["ProtectConfigurationId"]
     else:
         raise DeserializationError(
             "DeleteProtectConfigurationRuleSetNumberOverrideResult.protect_configuration_id required"
         )
-    if "DestinationPhoneNumber" in data:
+    if data.get("DestinationPhoneNumber") is not None:
         out["destination_phone_number"] = data["DestinationPhoneNumber"]
     else:
         raise DeserializationError(
             "DeleteProtectConfigurationRuleSetNumberOverrideResult.destination_phone_number required"
         )
-    if "CreatedTimestamp" in data:
+    if data.get("CreatedTimestamp") is not None:
         import capo_pinpoint_sms_voice_v2.types._prelude.timestamp
 
         out["created_timestamp"] = (
@@ -100,15 +100,15 @@ def deserialize_aws_json_1_0(
         raise DeserializationError(
             "DeleteProtectConfigurationRuleSetNumberOverrideResult.created_timestamp required"
         )
-    if "Action" in data:
+    if data.get("Action") is not None:
         out["action"] = data["Action"]
     else:
         raise DeserializationError(
             "DeleteProtectConfigurationRuleSetNumberOverrideResult.action required"
         )
-    if "IsoCountryCode" in data:
+    if data.get("IsoCountryCode") is not None:
         out["iso_country_code"] = data["IsoCountryCode"]
-    if "ExpirationTimestamp" in data:
+    if data.get("ExpirationTimestamp") is not None:
         import capo_pinpoint_sms_voice_v2.types._prelude.timestamp
 
         out["expiration_timestamp"] = (

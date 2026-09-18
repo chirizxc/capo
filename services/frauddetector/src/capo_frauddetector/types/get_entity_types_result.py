@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: GetEntityTypesResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetEntityTypesResult:
     out: GetEntityTypesResult = {}  # type: ignore[typeddict-item]
-    if "entityTypes" in data:
+    if data.get("entityTypes") is not None:
         import capo_frauddetector.types.entity_type_list
 
         out["entity_types"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_1(data: dict) -> GetEntityTypesResult:
                 data["entityTypes"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

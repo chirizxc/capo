@@ -45,11 +45,11 @@ def serialize_json(value: CreateConfigurationManagerInput) -> dict:
 
 def deserialize_json(data: dict) -> CreateConfigurationManagerInput:
     out: CreateConfigurationManagerInput = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "ConfigurationDefinitions" in data:
+    if data.get("ConfigurationDefinitions") is not None:
         import capo_ssm_quicksetup.types.configuration_definitions_input_list
 
         out["configuration_definitions"] = (
@@ -61,7 +61,7 @@ def deserialize_json(data: dict) -> CreateConfigurationManagerInput:
         raise DeserializationError(
             "CreateConfigurationManagerInput.configuration_definitions required"
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_ssm_quicksetup.types.tags_map
 
         out["tags"] = capo_ssm_quicksetup.types.tags_map.deserialize_json(data["Tags"])

@@ -67,7 +67,7 @@ def serialize_json(value: StartReadSetImportJobSourceItem) -> dict:
 
 def deserialize_json(data: dict) -> StartReadSetImportJobSourceItem:
     out: StartReadSetImportJobSourceItem = {}  # type: ignore[typeddict-item]
-    if "sourceFiles" in data:
+    if data.get("sourceFiles") is not None:
         import capo_omics.types.source_files
 
         out["source_files"] = capo_omics.types.source_files.deserialize_json(
@@ -77,31 +77,31 @@ def deserialize_json(data: dict) -> StartReadSetImportJobSourceItem:
         raise DeserializationError(
             "StartReadSetImportJobSourceItem.source_files required"
         )
-    if "sourceFileType" in data:
+    if data.get("sourceFileType") is not None:
         out["source_file_type"] = data["sourceFileType"]
     else:
         raise DeserializationError(
             "StartReadSetImportJobSourceItem.source_file_type required"
         )
-    if "subjectId" in data:
+    if data.get("subjectId") is not None:
         out["subject_id"] = data["subjectId"]
     else:
         raise DeserializationError(
             "StartReadSetImportJobSourceItem.subject_id required"
         )
-    if "sampleId" in data:
+    if data.get("sampleId") is not None:
         out["sample_id"] = data["sampleId"]
     else:
         raise DeserializationError("StartReadSetImportJobSourceItem.sample_id required")
-    if "generatedFrom" in data:
+    if data.get("generatedFrom") is not None:
         out["generated_from"] = data["generatedFrom"]
-    if "referenceArn" in data:
+    if data.get("referenceArn") is not None:
         out["reference_arn"] = data["referenceArn"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_omics.types.tag_map
 
         out["tags"] = capo_omics.types.tag_map.deserialize_json(data["tags"])

@@ -50,20 +50,20 @@ def serialize_json(value: SchemaSummary) -> dict:
 
 def deserialize_json(data: dict) -> SchemaSummary:
     out: SchemaSummary = {}  # type: ignore[typeddict-item]
-    if "LastModified" in data:
+    if data.get("LastModified") is not None:
         import capo_schemas.types.__timestamp_iso8601
 
         out["last_modified"] = capo_schemas.types.__timestamp_iso8601.deserialize_json(
             data["LastModified"]
         )
-    if "SchemaArn" in data:
+    if data.get("SchemaArn") is not None:
         out["schema_arn"] = data["SchemaArn"]
-    if "SchemaName" in data:
+    if data.get("SchemaName") is not None:
         out["schema_name"] = data["SchemaName"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_schemas.types.tags
 
         out["tags"] = capo_schemas.types.tags.deserialize_json(data["tags"])
-    if "VersionCount" in data:
+    if data.get("VersionCount") is not None:
         out["version_count"] = data["VersionCount"]
     return out

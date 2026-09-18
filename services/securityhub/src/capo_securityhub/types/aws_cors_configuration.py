@@ -77,7 +77,7 @@ def serialize_json(value: AwsCorsConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> AwsCorsConfiguration:
     out: AwsCorsConfiguration = {}  # type: ignore[typeddict-item]
-    if "AllowOrigins" in data:
+    if data.get("AllowOrigins") is not None:
         import capo_securityhub.types.non_empty_string_list
 
         out["allow_origins"] = (
@@ -85,9 +85,9 @@ def deserialize_json(data: dict) -> AwsCorsConfiguration:
                 data["AllowOrigins"]
             )
         )
-    if "AllowCredentials" in data:
+    if data.get("AllowCredentials") is not None:
         out["allow_credentials"] = data["AllowCredentials"]
-    if "ExposeHeaders" in data:
+    if data.get("ExposeHeaders") is not None:
         import capo_securityhub.types.non_empty_string_list
 
         out["expose_headers"] = (
@@ -95,9 +95,9 @@ def deserialize_json(data: dict) -> AwsCorsConfiguration:
                 data["ExposeHeaders"]
             )
         )
-    if "MaxAge" in data:
+    if data.get("MaxAge") is not None:
         out["max_age"] = data["MaxAge"]
-    if "AllowMethods" in data:
+    if data.get("AllowMethods") is not None:
         import capo_securityhub.types.non_empty_string_list
 
         out["allow_methods"] = (
@@ -105,7 +105,7 @@ def deserialize_json(data: dict) -> AwsCorsConfiguration:
                 data["AllowMethods"]
             )
         )
-    if "AllowHeaders" in data:
+    if data.get("AllowHeaders") is not None:
         import capo_securityhub.types.non_empty_string_list
 
         out["allow_headers"] = (

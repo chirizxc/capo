@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> JobRunAttempts:
 
     out: JobRunAttempts = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_emr_serverless.types.job_run_attempt_summary.deserialize_json(item)
         )

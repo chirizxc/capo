@@ -40,13 +40,13 @@ def serialize_aws_json_1_0(value: PreferredCommitment) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> PreferredCommitment:
     out: PreferredCommitment = {}  # type: ignore[typeddict-item]
-    if "term" in data:
+    if data.get("term") is not None:
         import capo_cost_optimization_hub.types.term
 
         out["term"] = capo_cost_optimization_hub.types.term.deserialize_aws_json_1_0(
             data["term"]
         )
-    if "paymentOption" in data:
+    if data.get("paymentOption") is not None:
         import capo_cost_optimization_hub.types.payment_option
 
         out["payment_option"] = (

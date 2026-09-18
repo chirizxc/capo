@@ -44,7 +44,7 @@ def serialize_aws_json_1_1(value: DescribeConfigRulesFilters) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeConfigRulesFilters:
     out: DescribeConfigRulesFilters = {}  # type: ignore[typeddict-item]
-    if "EvaluationMode" in data:
+    if data.get("EvaluationMode") is not None:
         import capo_config_service.types.evaluation_mode
 
         out["evaluation_mode"] = (
@@ -52,7 +52,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeConfigRulesFilters:
                 data["EvaluationMode"]
             )
         )
-    if "RuleEvaluationVisibility" in data:
+    if data.get("RuleEvaluationVisibility") is not None:
         import capo_config_service.types.rule_evaluation_visibility
 
         out["rule_evaluation_visibility"] = (

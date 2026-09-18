@@ -32,8 +32,8 @@ def serialize_aws_json_1_1(value: CatalogConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CatalogConfiguration:
     out: CatalogConfiguration = {}  # type: ignore[typeddict-item]
-    if "CatalogARN" in data:
+    if data.get("CatalogARN") is not None:
         out["catalog_arn"] = data["CatalogARN"]
-    if "WarehouseLocation" in data:
+    if data.get("WarehouseLocation") is not None:
         out["warehouse_location"] = data["WarehouseLocation"]
     return out

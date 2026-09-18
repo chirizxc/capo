@@ -55,13 +55,13 @@ def serialize_aws_json_1_1(value: DatasetExportJobSummary) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DatasetExportJobSummary:
     out: DatasetExportJobSummary = {}  # type: ignore[typeddict-item]
-    if "datasetExportJobArn" in data:
+    if data.get("datasetExportJobArn") is not None:
         out["dataset_export_job_arn"] = data["datasetExportJobArn"]
-    if "jobName" in data:
+    if data.get("jobName") is not None:
         out["job_name"] = data["jobName"]
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
-    if "creationDateTime" in data:
+    if data.get("creationDateTime") is not None:
         import capo_personalize.types.date
 
         out["creation_date_time"] = (
@@ -69,7 +69,7 @@ def deserialize_aws_json_1_1(data: dict) -> DatasetExportJobSummary:
                 data["creationDateTime"]
             )
         )
-    if "lastUpdatedDateTime" in data:
+    if data.get("lastUpdatedDateTime") is not None:
         import capo_personalize.types.date
 
         out["last_updated_date_time"] = (
@@ -77,6 +77,6 @@ def deserialize_aws_json_1_1(data: dict) -> DatasetExportJobSummary:
                 data["lastUpdatedDateTime"]
             )
         )
-    if "failureReason" in data:
+    if data.get("failureReason") is not None:
         out["failure_reason"] = data["failureReason"]
     return out

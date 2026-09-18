@@ -46,17 +46,17 @@ def serialize_aws_json_1_1(value: DescribeTableStatisticsMessage) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeTableStatisticsMessage:
     out: DescribeTableStatisticsMessage = {}  # type: ignore[typeddict-item]
-    if "ReplicationTaskArn" in data:
+    if data.get("ReplicationTaskArn") is not None:
         out["replication_task_arn"] = data["ReplicationTaskArn"]
     else:
         raise DeserializationError(
             "DescribeTableStatisticsMessage.replication_task_arn required"
         )
-    if "MaxRecords" in data:
+    if data.get("MaxRecords") is not None:
         out["max_records"] = data["MaxRecords"]
-    if "Marker" in data:
+    if data.get("Marker") is not None:
         out["marker"] = data["Marker"]
-    if "Filters" in data:
+    if data.get("Filters") is not None:
         import capo_database_migration_service.types.filter_list
 
         out["filters"] = (

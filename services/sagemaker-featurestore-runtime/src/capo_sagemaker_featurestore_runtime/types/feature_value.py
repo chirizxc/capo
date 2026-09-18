@@ -45,11 +45,11 @@ def serialize_json(value: FeatureValue) -> dict:
 
 def deserialize_json(data: dict) -> FeatureValue:
     out: FeatureValue = {}  # type: ignore[typeddict-item]
-    if "FeatureName" in data:
+    if data.get("FeatureName") is not None:
         out["feature_name"] = data["FeatureName"]
-    if "ValueAsString" in data:
+    if data.get("ValueAsString") is not None:
         out["value_as_string"] = data["ValueAsString"]
-    if "ValueAsStringList" in data:
+    if data.get("ValueAsStringList") is not None:
         import capo_sagemaker_featurestore_runtime.types.value_as_string_list
 
         out["value_as_string_list"] = (

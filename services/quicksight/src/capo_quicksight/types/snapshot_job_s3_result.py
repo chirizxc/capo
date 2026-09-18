@@ -49,7 +49,7 @@ def serialize_json(value: SnapshotJobS3Result) -> dict:
 
 def deserialize_json(data: dict) -> SnapshotJobS3Result:
     out: SnapshotJobS3Result = {}  # type: ignore[typeddict-item]
-    if "S3DestinationConfiguration" in data:
+    if data.get("S3DestinationConfiguration") is not None:
         import capo_quicksight.types.snapshot_s3_destination_configuration
 
         out["s3_destination_configuration"] = (
@@ -57,9 +57,9 @@ def deserialize_json(data: dict) -> SnapshotJobS3Result:
                 data["S3DestinationConfiguration"]
             )
         )
-    if "S3Uri" in data:
+    if data.get("S3Uri") is not None:
         out["s3_uri"] = data["S3Uri"]
-    if "ErrorInfo" in data:
+    if data.get("ErrorInfo") is not None:
         import capo_quicksight.types.snapshot_job_result_error_info_list
 
         out["error_info"] = (

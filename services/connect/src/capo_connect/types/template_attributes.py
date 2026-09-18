@@ -34,12 +34,12 @@ def serialize_json(value: TemplateAttributes) -> dict:
 
 def deserialize_json(data: dict) -> TemplateAttributes:
     out: TemplateAttributes = {}  # type: ignore[typeddict-item]
-    if "CustomAttributes" in data:
+    if data.get("CustomAttributes") is not None:
         import capo_connect.types.attributes
 
         out["custom_attributes"] = capo_connect.types.attributes.deserialize_json(
             data["CustomAttributes"]
         )
-    if "CustomerProfileAttributes" in data:
+    if data.get("CustomerProfileAttributes") is not None:
         out["customer_profile_attributes"] = data["CustomerProfileAttributes"]
     return out

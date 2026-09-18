@@ -56,23 +56,23 @@ def serialize_json(value: EksCluster) -> dict:
 
 def deserialize_json(data: dict) -> EksCluster:
     out: EksCluster = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_guardduty.types.timestamp
 
         out["created_at"] = capo_guardduty.types.timestamp.deserialize_json(
             data["createdAt"]
         )
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_guardduty.types.cluster_status
 
         out["status"] = capo_guardduty.types.cluster_status.deserialize_json(
             data["status"]
         )
-    if "vpcId" in data:
+    if data.get("vpcId") is not None:
         out["vpc_id"] = data["vpcId"]
-    if "ec2InstanceUids" in data:
+    if data.get("ec2InstanceUids") is not None:
         import capo_guardduty.types.ec2_instance_uids
 
         out["ec2_instance_uids"] = (

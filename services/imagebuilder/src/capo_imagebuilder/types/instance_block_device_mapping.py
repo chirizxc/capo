@@ -45,9 +45,9 @@ def serialize_json(value: InstanceBlockDeviceMapping) -> dict:
 
 def deserialize_json(data: dict) -> InstanceBlockDeviceMapping:
     out: InstanceBlockDeviceMapping = {}  # type: ignore[typeddict-item]
-    if "deviceName" in data:
+    if data.get("deviceName") is not None:
         out["device_name"] = data["deviceName"]
-    if "ebs" in data:
+    if data.get("ebs") is not None:
         import capo_imagebuilder.types.ebs_instance_block_device_specification
 
         out["ebs"] = (
@@ -55,8 +55,8 @@ def deserialize_json(data: dict) -> InstanceBlockDeviceMapping:
                 data["ebs"]
             )
         )
-    if "virtualName" in data:
+    if data.get("virtualName") is not None:
         out["virtual_name"] = data["virtualName"]
-    if "noDevice" in data:
+    if data.get("noDevice") is not None:
         out["no_device"] = data["noDevice"]
     return out

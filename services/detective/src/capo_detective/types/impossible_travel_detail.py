@@ -43,14 +43,14 @@ def serialize_json(value: ImpossibleTravelDetail) -> dict:
 
 def deserialize_json(data: dict) -> ImpossibleTravelDetail:
     out: ImpossibleTravelDetail = {}  # type: ignore[typeddict-item]
-    if "StartingIpAddress" in data:
+    if data.get("StartingIpAddress") is not None:
         out["starting_ip_address"] = data["StartingIpAddress"]
-    if "EndingIpAddress" in data:
+    if data.get("EndingIpAddress") is not None:
         out["ending_ip_address"] = data["EndingIpAddress"]
-    if "StartingLocation" in data:
+    if data.get("StartingLocation") is not None:
         out["starting_location"] = data["StartingLocation"]
-    if "EndingLocation" in data:
+    if data.get("EndingLocation") is not None:
         out["ending_location"] = data["EndingLocation"]
-    if "HourlyTimeDelta" in data:
+    if data.get("HourlyTimeDelta") is not None:
         out["hourly_time_delta"] = data["HourlyTimeDelta"]
     return out

@@ -25,6 +25,6 @@ def serialize_aws_json_1_1(value: DisassociateFileSystemOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DisassociateFileSystemOutput:
     out: DisassociateFileSystemOutput = {}  # type: ignore[typeddict-item]
-    if "FileSystemAssociationARN" in data:
+    if data.get("FileSystemAssociationARN") is not None:
         out["file_system_association_arn"] = data["FileSystemAssociationARN"]
     return out

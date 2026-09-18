@@ -31,8 +31,8 @@ def serialize_aws_json_1_1(value: PipelineExperimentConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PipelineExperimentConfig:
     out: PipelineExperimentConfig = {}  # type: ignore[typeddict-item]
-    if "ExperimentName" in data:
+    if data.get("ExperimentName") is not None:
         out["experiment_name"] = data["ExperimentName"]
-    if "TrialName" in data:
+    if data.get("TrialName") is not None:
         out["trial_name"] = data["TrialName"]
     return out

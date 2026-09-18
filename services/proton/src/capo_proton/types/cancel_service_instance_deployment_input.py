@@ -27,13 +27,13 @@ def serialize_aws_json_1_0(value: CancelServiceInstanceDeploymentInput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CancelServiceInstanceDeploymentInput:
     out: CancelServiceInstanceDeploymentInput = {}  # type: ignore[typeddict-item]
-    if "serviceInstanceName" in data:
+    if data.get("serviceInstanceName") is not None:
         out["service_instance_name"] = data["serviceInstanceName"]
     else:
         raise DeserializationError(
             "CancelServiceInstanceDeploymentInput.service_instance_name required"
         )
-    if "serviceName" in data:
+    if data.get("serviceName") is not None:
         out["service_name"] = data["serviceName"]
     else:
         raise DeserializationError(

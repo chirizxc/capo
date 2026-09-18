@@ -68,7 +68,7 @@ def serialize_aws_json_1_1(value: RedshiftDataSpec) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RedshiftDataSpec:
     out: RedshiftDataSpec = {}  # type: ignore[typeddict-item]
-    if "DatabaseInformation" in data:
+    if data.get("DatabaseInformation") is not None:
         import capo_machine_learning.types.redshift_database
 
         out["database_information"] = (
@@ -78,11 +78,11 @@ def deserialize_aws_json_1_1(data: dict) -> RedshiftDataSpec:
         )
     else:
         raise DeserializationError("RedshiftDataSpec.database_information required")
-    if "SelectSqlQuery" in data:
+    if data.get("SelectSqlQuery") is not None:
         out["select_sql_query"] = data["SelectSqlQuery"]
     else:
         raise DeserializationError("RedshiftDataSpec.select_sql_query required")
-    if "DatabaseCredentials" in data:
+    if data.get("DatabaseCredentials") is not None:
         import capo_machine_learning.types.redshift_database_credentials
 
         out["database_credentials"] = (
@@ -92,14 +92,14 @@ def deserialize_aws_json_1_1(data: dict) -> RedshiftDataSpec:
         )
     else:
         raise DeserializationError("RedshiftDataSpec.database_credentials required")
-    if "S3StagingLocation" in data:
+    if data.get("S3StagingLocation") is not None:
         out["s3_staging_location"] = data["S3StagingLocation"]
     else:
         raise DeserializationError("RedshiftDataSpec.s3_staging_location required")
-    if "DataRearrangement" in data:
+    if data.get("DataRearrangement") is not None:
         out["data_rearrangement"] = data["DataRearrangement"]
-    if "DataSchema" in data:
+    if data.get("DataSchema") is not None:
         out["data_schema"] = data["DataSchema"]
-    if "DataSchemaUri" in data:
+    if data.get("DataSchemaUri") is not None:
         out["data_schema_uri"] = data["DataSchemaUri"]
     return out

@@ -13,9 +13,9 @@ from capo_inspector2 import AsyncInspector2Client
 
 
 async def main():
-    async with AsyncInspector2Client() as s3:
+    async with AsyncInspector2Client() as inspector2:
         # Example: call the associate_member operation
-        response = await s3.associate_member()
+        response = await inspector2.associate_member()
         print(response["account_id"])
 ```
 
@@ -28,9 +28,9 @@ from capo_inspector2 import AsyncInspector2Client
 
 
 async def main():
-    async with AsyncInspector2Client() as s3:
+    async with AsyncInspector2Client() as inspector2:
         # Example: paginate over get_cis_scan_result_details
-        async for item in s3.iter_get_cis_scan_result_details():
+        async for item in inspector2.iter_get_cis_scan_result_details():
             print(item)
 ```
 
@@ -44,9 +44,9 @@ from capo_inspector2.error import AccessDeniedException
 
 
 async def main():
-    async with AsyncInspector2Client() as s3:
+    async with AsyncInspector2Client() as inspector2:
         try:
-            await s3.associate_member()
+            await inspector2.associate_member()
         except AccessDeniedException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -63,13 +63,13 @@ from capo_inspector2 import AsyncInspector2Client
 
 
 async def main():
-    async with AsyncInspector2Client() as s3:
+    async with AsyncInspector2Client() as inspector2:
         # Default: 3 attempts for every operation
-        response = await s3.associate_member()
+        response = await inspector2.associate_member()
 
         # Override per operation
-        response = await s3.associate_member(config_overrides={"retry_max_attempts": 5})
+        response = await inspector2.associate_member(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.associate_member(config_overrides={"retry_max_attempts": 1})
+        response = await inspector2.associate_member(config_overrides={"retry_max_attempts": 1})
 ```

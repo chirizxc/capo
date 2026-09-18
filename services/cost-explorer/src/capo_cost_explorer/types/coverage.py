@@ -53,7 +53,7 @@ def serialize_aws_json_1_1(value: Coverage) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Coverage:
     out: Coverage = {}  # type: ignore[typeddict-item]
-    if "CoverageHours" in data:
+    if data.get("CoverageHours") is not None:
         import capo_cost_explorer.types.coverage_hours
 
         out["coverage_hours"] = (
@@ -61,7 +61,7 @@ def deserialize_aws_json_1_1(data: dict) -> Coverage:
                 data["CoverageHours"]
             )
         )
-    if "CoverageNormalizedUnits" in data:
+    if data.get("CoverageNormalizedUnits") is not None:
         import capo_cost_explorer.types.coverage_normalized_units
 
         out["coverage_normalized_units"] = (
@@ -69,7 +69,7 @@ def deserialize_aws_json_1_1(data: dict) -> Coverage:
                 data["CoverageNormalizedUnits"]
             )
         )
-    if "CoverageCost" in data:
+    if data.get("CoverageCost") is not None:
         import capo_cost_explorer.types.coverage_cost
 
         out["coverage_cost"] = (

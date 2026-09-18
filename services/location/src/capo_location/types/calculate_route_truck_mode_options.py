@@ -43,17 +43,17 @@ def serialize_json(value: CalculateRouteTruckModeOptions) -> dict:
 
 def deserialize_json(data: dict) -> CalculateRouteTruckModeOptions:
     out: CalculateRouteTruckModeOptions = {}  # type: ignore[typeddict-item]
-    if "AvoidFerries" in data:
+    if data.get("AvoidFerries") is not None:
         out["avoid_ferries"] = data["AvoidFerries"]
-    if "AvoidTolls" in data:
+    if data.get("AvoidTolls") is not None:
         out["avoid_tolls"] = data["AvoidTolls"]
-    if "Dimensions" in data:
+    if data.get("Dimensions") is not None:
         import capo_location.types.truck_dimensions
 
         out["dimensions"] = capo_location.types.truck_dimensions.deserialize_json(
             data["Dimensions"]
         )
-    if "Weight" in data:
+    if data.get("Weight") is not None:
         import capo_location.types.truck_weight
 
         out["weight"] = capo_location.types.truck_weight.deserialize_json(

@@ -24,7 +24,7 @@ def serialize_aws_json_1_0(value: GetSecurityConfigRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> GetSecurityConfigRequest:
     out: GetSecurityConfigRequest = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("GetSecurityConfigRequest.id required")

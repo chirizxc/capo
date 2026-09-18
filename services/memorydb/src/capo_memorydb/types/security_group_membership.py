@@ -27,8 +27,8 @@ def serialize_aws_json_1_1(value: SecurityGroupMembership) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SecurityGroupMembership:
     out: SecurityGroupMembership = {}  # type: ignore[typeddict-item]
-    if "SecurityGroupId" in data:
+    if data.get("SecurityGroupId") is not None:
         out["security_group_id"] = data["SecurityGroupId"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         out["status"] = data["Status"]
     return out

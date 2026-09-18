@@ -44,7 +44,7 @@ def serialize_json(value: KubernetesDetails) -> dict:
 
 def deserialize_json(data: dict) -> KubernetesDetails:
     out: KubernetesDetails = {}  # type: ignore[typeddict-item]
-    if "kubernetesUserDetails" in data:
+    if data.get("kubernetesUserDetails") is not None:
         import capo_guardduty.types.kubernetes_user_details
 
         out["kubernetes_user_details"] = (
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> KubernetesDetails:
                 data["kubernetesUserDetails"]
             )
         )
-    if "kubernetesWorkloadDetails" in data:
+    if data.get("kubernetesWorkloadDetails") is not None:
         import capo_guardduty.types.kubernetes_workload_details
 
         out["kubernetes_workload_details"] = (

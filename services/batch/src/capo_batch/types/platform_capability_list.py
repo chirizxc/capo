@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> PlatformCapabilityList:
 
     out: PlatformCapabilityList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_batch.types.platform_capability.deserialize_json(item))
     return out

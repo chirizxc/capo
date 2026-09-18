@@ -33,6 +33,8 @@ def deserialize_json(
 
     out: AwsEc2LaunchTemplateDataElasticInferenceAcceleratorSetList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_securityhub.types.aws_ec2_launch_template_data_elastic_inference_accelerator_set_details.deserialize_json(
                 item

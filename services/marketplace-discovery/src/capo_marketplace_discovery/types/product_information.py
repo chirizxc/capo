@@ -40,15 +40,15 @@ def serialize_json(value: ProductInformation) -> dict:
 
 def deserialize_json(data: dict) -> ProductInformation:
     out: ProductInformation = {}  # type: ignore[typeddict-item]
-    if "productId" in data:
+    if data.get("productId") is not None:
         out["product_id"] = data["productId"]
     else:
         raise DeserializationError("ProductInformation.product_id required")
-    if "productName" in data:
+    if data.get("productName") is not None:
         out["product_name"] = data["productName"]
     else:
         raise DeserializationError("ProductInformation.product_name required")
-    if "manufacturer" in data:
+    if data.get("manufacturer") is not None:
         import capo_marketplace_discovery.types.seller_information
 
         out["manufacturer"] = (

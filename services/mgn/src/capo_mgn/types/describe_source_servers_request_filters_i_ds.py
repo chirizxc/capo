@@ -16,4 +16,4 @@ def serialize_json(value: DescribeSourceServersRequestFiltersIDs) -> list:
 
 
 def deserialize_json(data: list) -> DescribeSourceServersRequestFiltersIDs:
-    return list(data)
+    return [item for item in data if item is not None]

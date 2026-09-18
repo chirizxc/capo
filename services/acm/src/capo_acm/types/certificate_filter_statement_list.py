@@ -27,6 +27,8 @@ def deserialize_aws_json_1_1(data: list) -> CertificateFilterStatementList:
 
     out: CertificateFilterStatementList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_acm.types.certificate_filter_statement.deserialize_aws_json_1_1(item)
         )

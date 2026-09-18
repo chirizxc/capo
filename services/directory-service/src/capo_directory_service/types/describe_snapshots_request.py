@@ -44,9 +44,9 @@ def serialize_aws_json_1_1(value: DescribeSnapshotsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeSnapshotsRequest:
     out: DescribeSnapshotsRequest = {}  # type: ignore[typeddict-item]
-    if "DirectoryId" in data:
+    if data.get("DirectoryId") is not None:
         out["directory_id"] = data["DirectoryId"]
-    if "SnapshotIds" in data:
+    if data.get("SnapshotIds") is not None:
         import capo_directory_service.types.snapshot_ids
 
         out["snapshot_ids"] = (
@@ -54,8 +54,8 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeSnapshotsRequest:
                 data["SnapshotIds"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "Limit" in data:
+    if data.get("Limit") is not None:
         out["limit"] = data["Limit"]
     return out

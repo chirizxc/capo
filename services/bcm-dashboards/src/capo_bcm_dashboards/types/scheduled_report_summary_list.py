@@ -29,6 +29,8 @@ def deserialize_aws_json_1_0(data: list) -> ScheduledReportSummaryList:
 
     out: ScheduledReportSummaryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_bcm_dashboards.types.scheduled_report_summary.deserialize_aws_json_1_0(
                 item

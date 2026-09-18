@@ -28,7 +28,7 @@ def serialize_json(value: BatchGetFindingDetailsRequest) -> dict:
 
 def deserialize_json(data: dict) -> BatchGetFindingDetailsRequest:
     out: BatchGetFindingDetailsRequest = {}  # type: ignore[typeddict-item]
-    if "findingArns" in data:
+    if data.get("findingArns") is not None:
         import capo_inspector2.types.finding_arn_list
 
         out["finding_arns"] = capo_inspector2.types.finding_arn_list.deserialize_json(

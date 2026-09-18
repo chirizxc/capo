@@ -24,7 +24,7 @@ def serialize_json(value: VirtualGatewayGrpcConnectionPool) -> dict:
 
 def deserialize_json(data: dict) -> VirtualGatewayGrpcConnectionPool:
     out: VirtualGatewayGrpcConnectionPool = {}  # type: ignore[typeddict-item]
-    if "maxRequests" in data:
+    if data.get("maxRequests") is not None:
         out["max_requests"] = data["maxRequests"]
     else:
         raise DeserializationError(

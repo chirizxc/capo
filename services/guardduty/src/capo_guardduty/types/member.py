@@ -54,20 +54,20 @@ def serialize_json(value: Member) -> dict:
 
 def deserialize_json(data: dict) -> Member:
     out: Member = {}  # type: ignore[typeddict-item]
-    if "accountId" in data:
+    if data.get("accountId") is not None:
         out["account_id"] = data["accountId"]
-    if "detectorId" in data:
+    if data.get("detectorId") is not None:
         out["detector_id"] = data["detectorId"]
-    if "masterId" in data:
+    if data.get("masterId") is not None:
         out["master_id"] = data["masterId"]
-    if "email" in data:
+    if data.get("email") is not None:
         out["email"] = data["email"]
-    if "relationshipStatus" in data:
+    if data.get("relationshipStatus") is not None:
         out["relationship_status"] = data["relationshipStatus"]
-    if "invitedAt" in data:
+    if data.get("invitedAt") is not None:
         out["invited_at"] = data["invitedAt"]
-    if "updatedAt" in data:
+    if data.get("updatedAt") is not None:
         out["updated_at"] = data["updatedAt"]
-    if "administratorId" in data:
+    if data.get("administratorId") is not None:
         out["administrator_id"] = data["administratorId"]
     return out

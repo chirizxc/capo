@@ -32,13 +32,13 @@ def serialize_json(value: CreateWhatsAppMessageTemplateMediaInput) -> dict:
 
 def deserialize_json(data: dict) -> CreateWhatsAppMessageTemplateMediaInput:
     out: CreateWhatsAppMessageTemplateMediaInput = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError(
             "CreateWhatsAppMessageTemplateMediaInput.id required"
         )
-    if "sourceS3File" in data:
+    if data.get("sourceS3File") is not None:
         import capo_socialmessaging.types.s3_file
 
         out["source_s3_file"] = capo_socialmessaging.types.s3_file.deserialize_json(

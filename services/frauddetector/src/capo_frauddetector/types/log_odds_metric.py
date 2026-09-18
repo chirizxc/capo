@@ -25,22 +25,30 @@ def serialize_aws_json_1_1(value: LogOddsMetric) -> dict:
     out: dict = {}
     out["variableName"] = value["variable_name"]
     out["variableType"] = value["variable_type"]
-    out["variableImportance"] = value["variable_importance"]
+    out["variableImportance"] = (
+        "NaN"
+        if value["variable_importance"] != value["variable_importance"]
+        else "Infinity"
+        if value["variable_importance"] == float("inf")
+        else "-Infinity"
+        if value["variable_importance"] == float("-inf")
+        else value["variable_importance"]
+    )
     return out
 
 
 def deserialize_aws_json_1_1(data: dict) -> LogOddsMetric:
     out: LogOddsMetric = {}  # type: ignore[typeddict-item]
-    if "variableName" in data:
+    if data.get("variableName") is not None:
         out["variable_name"] = data["variableName"]
     else:
         raise DeserializationError("LogOddsMetric.variable_name required")
-    if "variableType" in data:
+    if data.get("variableType") is not None:
         out["variable_type"] = data["variableType"]
     else:
         raise DeserializationError("LogOddsMetric.variable_type required")
-    if "variableImportance" in data:
-        out["variable_importance"] = data["variableImportance"]
+    if data.get("variableImportance") is not None:
+        out["variable_importance"] = float(data["variableImportance"])
     else:
         raise DeserializationError("LogOddsMetric.variable_importance required")
     return out

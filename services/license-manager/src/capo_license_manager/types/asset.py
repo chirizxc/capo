@@ -36,9 +36,9 @@ def serialize_aws_json_1_1(value: Asset) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Asset:
     out: Asset = {}  # type: ignore[typeddict-item]
-    if "AssetArn" in data:
+    if data.get("AssetArn") is not None:
         out["asset_arn"] = data["AssetArn"]
-    if "LatestAssetDiscoveryTime" in data:
+    if data.get("LatestAssetDiscoveryTime") is not None:
         import capo_license_manager.types.date_time
 
         out["latest_asset_discovery_time"] = (

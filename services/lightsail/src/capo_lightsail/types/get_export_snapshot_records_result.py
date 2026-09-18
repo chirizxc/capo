@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: GetExportSnapshotRecordsResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetExportSnapshotRecordsResult:
     out: GetExportSnapshotRecordsResult = {}  # type: ignore[typeddict-item]
-    if "exportSnapshotRecords" in data:
+    if data.get("exportSnapshotRecords") is not None:
         import capo_lightsail.types.export_snapshot_record_list
 
         out["export_snapshot_records"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_1(data: dict) -> GetExportSnapshotRecordsResult:
                 data["exportSnapshotRecords"]
             )
         )
-    if "nextPageToken" in data:
+    if data.get("nextPageToken") is not None:
         out["next_page_token"] = data["nextPageToken"]
     return out

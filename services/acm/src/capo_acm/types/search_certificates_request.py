@@ -60,7 +60,7 @@ def serialize_aws_json_1_1(value: SearchCertificatesRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SearchCertificatesRequest:
     out: SearchCertificatesRequest = {}  # type: ignore[typeddict-item]
-    if "FilterStatement" in data:
+    if data.get("FilterStatement") is not None:
         import capo_acm.types.certificate_filter_statement
 
         out["filter_statement"] = (
@@ -68,13 +68,13 @@ def deserialize_aws_json_1_1(data: dict) -> SearchCertificatesRequest:
                 data["FilterStatement"]
             )
         )
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
     else:
         out["max_results"] = 100
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "SortBy" in data:
+    if data.get("SortBy") is not None:
         import capo_acm.types.search_certificates_sort_by
 
         out["sort_by"] = (
@@ -84,7 +84,7 @@ def deserialize_aws_json_1_1(data: dict) -> SearchCertificatesRequest:
         )
     else:
         out["sort_by"] = "CREATED_AT"
-    if "SortOrder" in data:
+    if data.get("SortOrder") is not None:
         import capo_acm.types.search_certificates_sort_order
 
         out["sort_order"] = (

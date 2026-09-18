@@ -36,11 +36,11 @@ def serialize_aws_json_1_1(value: SetStatusInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SetStatusInput:
     out: SetStatusInput = {}  # type: ignore[typeddict-item]
-    if "pipelineId" in data:
+    if data.get("pipelineId") is not None:
         out["pipeline_id"] = data["pipelineId"]
     else:
         raise DeserializationError("SetStatusInput.pipeline_id required")
-    if "objectIds" in data:
+    if data.get("objectIds") is not None:
         import capo_data_pipeline.types.id_list
 
         out["object_ids"] = capo_data_pipeline.types.id_list.deserialize_aws_json_1_1(
@@ -48,7 +48,7 @@ def deserialize_aws_json_1_1(data: dict) -> SetStatusInput:
         )
     else:
         raise DeserializationError("SetStatusInput.object_ids required")
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
     else:
         raise DeserializationError("SetStatusInput.status required")

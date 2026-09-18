@@ -35,12 +35,12 @@ def serialize_json(value: UpdateTemplateAliasResponse) -> dict:
 
 def deserialize_json(data: dict) -> UpdateTemplateAliasResponse:
     out: UpdateTemplateAliasResponse = {}  # type: ignore[typeddict-item]
-    if "TemplateAlias" in data:
+    if data.get("TemplateAlias") is not None:
         import capo_quicksight.types.template_alias
 
         out["template_alias"] = capo_quicksight.types.template_alias.deserialize_json(
             data["TemplateAlias"]
         )
-    if "RequestId" in data:
+    if data.get("RequestId") is not None:
         out["request_id"] = data["RequestId"]
     return out

@@ -29,6 +29,8 @@ def deserialize_aws_json_1_1(data: list) -> TapeRecoveryPointInfos:
 
     out: TapeRecoveryPointInfos = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_storage_gateway.types.tape_recovery_point_info.deserialize_aws_json_1_1(
                 item

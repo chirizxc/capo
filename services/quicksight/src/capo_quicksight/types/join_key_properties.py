@@ -23,6 +23,6 @@ def serialize_json(value: JoinKeyProperties) -> dict:
 
 def deserialize_json(data: dict) -> JoinKeyProperties:
     out: JoinKeyProperties = {}  # type: ignore[typeddict-item]
-    if "UniqueKey" in data:
+    if data.get("UniqueKey") is not None:
         out["unique_key"] = data["UniqueKey"]
     return out

@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> ComponentPlatformList:
 
     out: ComponentPlatformList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_greengrassv2.types.component_platform.deserialize_json(item))
     return out

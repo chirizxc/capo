@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> AnonymousUserSnapshotJobResultList:
 
     out: AnonymousUserSnapshotJobResultList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_quicksight.types.anonymous_user_snapshot_job_result.deserialize_json(
                 item

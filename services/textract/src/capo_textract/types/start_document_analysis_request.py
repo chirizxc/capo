@@ -98,7 +98,7 @@ def serialize_aws_json_1_1(value: StartDocumentAnalysisRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> StartDocumentAnalysisRequest:
     out: StartDocumentAnalysisRequest = {}  # type: ignore[typeddict-item]
-    if "DocumentLocation" in data:
+    if data.get("DocumentLocation") is not None:
         import capo_textract.types.document_location
 
         out["document_location"] = (
@@ -110,7 +110,7 @@ def deserialize_aws_json_1_1(data: dict) -> StartDocumentAnalysisRequest:
         raise DeserializationError(
             "StartDocumentAnalysisRequest.document_location required"
         )
-    if "FeatureTypes" in data:
+    if data.get("FeatureTypes") is not None:
         import capo_textract.types.feature_types
 
         out["feature_types"] = (
@@ -122,11 +122,11 @@ def deserialize_aws_json_1_1(data: dict) -> StartDocumentAnalysisRequest:
         raise DeserializationError(
             "StartDocumentAnalysisRequest.feature_types required"
         )
-    if "ClientRequestToken" in data:
+    if data.get("ClientRequestToken") is not None:
         out["client_request_token"] = data["ClientRequestToken"]
-    if "JobTag" in data:
+    if data.get("JobTag") is not None:
         out["job_tag"] = data["JobTag"]
-    if "NotificationChannel" in data:
+    if data.get("NotificationChannel") is not None:
         import capo_textract.types.notification_channel
 
         out["notification_channel"] = (
@@ -134,7 +134,7 @@ def deserialize_aws_json_1_1(data: dict) -> StartDocumentAnalysisRequest:
                 data["NotificationChannel"]
             )
         )
-    if "OutputConfig" in data:
+    if data.get("OutputConfig") is not None:
         import capo_textract.types.output_config
 
         out["output_config"] = (
@@ -142,9 +142,9 @@ def deserialize_aws_json_1_1(data: dict) -> StartDocumentAnalysisRequest:
                 data["OutputConfig"]
             )
         )
-    if "KMSKeyId" in data:
+    if data.get("KMSKeyId") is not None:
         out["kms_key_id"] = data["KMSKeyId"]
-    if "QueriesConfig" in data:
+    if data.get("QueriesConfig") is not None:
         import capo_textract.types.queries_config
 
         out["queries_config"] = (
@@ -152,7 +152,7 @@ def deserialize_aws_json_1_1(data: dict) -> StartDocumentAnalysisRequest:
                 data["QueriesConfig"]
             )
         )
-    if "AdaptersConfig" in data:
+    if data.get("AdaptersConfig") is not None:
         import capo_textract.types.adapters_config
 
         out["adapters_config"] = (

@@ -28,7 +28,7 @@ def deserialize_aws_json_1_0(
     data: dict,
 ) -> UpdateDefaultAutoScalingConfigurationRequest:
     out: UpdateDefaultAutoScalingConfigurationRequest = {}  # type: ignore[typeddict-item]
-    if "AutoScalingConfigurationArn" in data:
+    if data.get("AutoScalingConfigurationArn") is not None:
         out["auto_scaling_configuration_arn"] = data["AutoScalingConfigurationArn"]
     else:
         raise DeserializationError(

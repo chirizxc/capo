@@ -43,20 +43,20 @@ def serialize_json(value: RedshiftDataShareDetails) -> dict:
 
 def deserialize_json(data: dict) -> RedshiftDataShareDetails:
     out: RedshiftDataShareDetails = {}  # type: ignore[typeddict-item]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
     else:
         raise DeserializationError("RedshiftDataShareDetails.arn required")
-    if "Database" in data:
+    if data.get("Database") is not None:
         out["database"] = data["Database"]
     else:
         raise DeserializationError("RedshiftDataShareDetails.database required")
-    if "Function" in data:
+    if data.get("Function") is not None:
         out["function"] = data["Function"]
-    if "Table" in data:
+    if data.get("Table") is not None:
         out["table"] = data["Table"]
-    if "Schema" in data:
+    if data.get("Schema") is not None:
         out["schema"] = data["Schema"]
-    if "View" in data:
+    if data.get("View") is not None:
         out["view"] = data["View"]
     return out

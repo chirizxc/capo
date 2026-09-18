@@ -31,12 +31,12 @@ def serialize_aws_json_1_1(value: AgentConfigurationStatus) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AgentConfigurationStatus:
     out: AgentConfigurationStatus = {}  # type: ignore[typeddict-item]
-    if "agentId" in data:
+    if data.get("agentId") is not None:
         out["agent_id"] = data["agentId"]
-    if "operationSucceeded" in data:
+    if data.get("operationSucceeded") is not None:
         out["operation_succeeded"] = data["operationSucceeded"]
     else:
         out["operation_succeeded"] = False
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
     return out

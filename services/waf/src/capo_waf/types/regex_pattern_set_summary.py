@@ -28,13 +28,13 @@ def serialize_aws_json_1_1(value: RegexPatternSetSummary) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RegexPatternSetSummary:
     out: RegexPatternSetSummary = {}  # type: ignore[typeddict-item]
-    if "RegexPatternSetId" in data:
+    if data.get("RegexPatternSetId") is not None:
         out["regex_pattern_set_id"] = data["RegexPatternSetId"]
     else:
         raise DeserializationError(
             "RegexPatternSetSummary.regex_pattern_set_id required"
         )
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("RegexPatternSetSummary.name required")

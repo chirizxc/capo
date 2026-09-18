@@ -23,6 +23,6 @@ def serialize_json(value: IntentStatistics) -> dict:
 
 def deserialize_json(data: dict) -> IntentStatistics:
     out: IntentStatistics = {}  # type: ignore[typeddict-item]
-    if "discoveredIntentCount" in data:
+    if data.get("discoveredIntentCount") is not None:
         out["discovered_intent_count"] = data["discoveredIntentCount"]
     return out

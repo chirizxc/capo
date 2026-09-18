@@ -55,9 +55,9 @@ def serialize_json(value: TransactionDescription) -> dict:
 
 def deserialize_json(data: dict) -> TransactionDescription:
     out: TransactionDescription = {}  # type: ignore[typeddict-item]
-    if "TransactionId" in data:
+    if data.get("TransactionId") is not None:
         out["transaction_id"] = data["TransactionId"]
-    if "TransactionStatus" in data:
+    if data.get("TransactionStatus") is not None:
         import capo_lakeformation.types.transaction_status
 
         out["transaction_status"] = (
@@ -65,7 +65,7 @@ def deserialize_json(data: dict) -> TransactionDescription:
                 data["TransactionStatus"]
             )
         )
-    if "TransactionStartTime" in data:
+    if data.get("TransactionStartTime") is not None:
         import capo_lakeformation.types.timestamp
 
         out["transaction_start_time"] = (
@@ -73,7 +73,7 @@ def deserialize_json(data: dict) -> TransactionDescription:
                 data["TransactionStartTime"]
             )
         )
-    if "TransactionEndTime" in data:
+    if data.get("TransactionEndTime") is not None:
         import capo_lakeformation.types.timestamp
 
         out["transaction_end_time"] = (

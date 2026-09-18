@@ -31,7 +31,7 @@ def serialize_json(value: S3ClassificationScope) -> dict:
 
 def deserialize_json(data: dict) -> S3ClassificationScope:
     out: S3ClassificationScope = {}  # type: ignore[typeddict-item]
-    if "excludes" in data:
+    if data.get("excludes") is not None:
         import capo_macie2.types.s3_classification_scope_exclusion
 
         out["excludes"] = (

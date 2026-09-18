@@ -29,6 +29,8 @@ def deserialize_aws_json_1_1(data: list) -> RateBasedStatementCustomKeys:
 
     out: RateBasedStatementCustomKeys = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_wafv2.types.rate_based_statement_custom_key.deserialize_aws_json_1_1(
                 item

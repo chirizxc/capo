@@ -55,7 +55,7 @@ def serialize_aws_json_1_0(value: KeyBlockHeaders) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> KeyBlockHeaders:
     out: KeyBlockHeaders = {}  # type: ignore[typeddict-item]
-    if "KeyModesOfUse" in data:
+    if data.get("KeyModesOfUse") is not None:
         import capo_payment_cryptography.types.key_modes_of_use
 
         out["key_modes_of_use"] = (
@@ -63,11 +63,11 @@ def deserialize_aws_json_1_0(data: dict) -> KeyBlockHeaders:
                 data["KeyModesOfUse"]
             )
         )
-    if "KeyExportability" in data:
+    if data.get("KeyExportability") is not None:
         out["key_exportability"] = data["KeyExportability"]
-    if "KeyVersion" in data:
+    if data.get("KeyVersion") is not None:
         out["key_version"] = data["KeyVersion"]
-    if "OptionalBlocks" in data:
+    if data.get("OptionalBlocks") is not None:
         import capo_payment_cryptography.types.optional_blocks
 
         out["optional_blocks"] = (

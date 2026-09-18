@@ -31,10 +31,10 @@ def serialize_json(value: AssetPropertyTimestamp) -> dict:
 
 def deserialize_json(data: dict) -> AssetPropertyTimestamp:
     out: AssetPropertyTimestamp = {}  # type: ignore[typeddict-item]
-    if "timeInSeconds" in data:
+    if data.get("timeInSeconds") is not None:
         out["time_in_seconds"] = data["timeInSeconds"]
     else:
         raise DeserializationError("AssetPropertyTimestamp.time_in_seconds required")
-    if "offsetInNanos" in data:
+    if data.get("offsetInNanos") is not None:
         out["offset_in_nanos"] = data["offsetInNanos"]
     return out

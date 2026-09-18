@@ -31,7 +31,7 @@ def serialize_json(value: UpdateWhatsAppFlowAssetsOutput) -> dict:
 
 def deserialize_json(data: dict) -> UpdateWhatsAppFlowAssetsOutput:
     out: UpdateWhatsAppFlowAssetsOutput = {}  # type: ignore[typeddict-item]
-    if "validationErrors" in data:
+    if data.get("validationErrors") is not None:
         import capo_socialmessaging.types.validation_error_list
 
         out["validation_errors"] = (

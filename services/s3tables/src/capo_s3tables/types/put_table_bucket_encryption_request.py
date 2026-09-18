@@ -35,7 +35,7 @@ def serialize_json(value: PutTableBucketEncryptionRequest) -> dict:
 
 def deserialize_json(data: dict) -> PutTableBucketEncryptionRequest:
     out: PutTableBucketEncryptionRequest = {}  # type: ignore[typeddict-item]
-    if "encryptionConfiguration" in data:
+    if data.get("encryptionConfiguration") is not None:
         import capo_s3tables.types.encryption_configuration
 
         out["encryption_configuration"] = (

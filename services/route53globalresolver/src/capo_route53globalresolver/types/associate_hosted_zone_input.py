@@ -31,11 +31,11 @@ def serialize_json(value: AssociateHostedZoneInput) -> dict:
 
 def deserialize_json(data: dict) -> AssociateHostedZoneInput:
     out: AssociateHostedZoneInput = {}  # type: ignore[typeddict-item]
-    if "resourceArn" in data:
+    if data.get("resourceArn") is not None:
         out["resource_arn"] = data["resourceArn"]
     else:
         raise DeserializationError("AssociateHostedZoneInput.resource_arn required")
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("AssociateHostedZoneInput.name required")

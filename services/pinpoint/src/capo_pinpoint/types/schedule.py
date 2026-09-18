@@ -65,9 +65,9 @@ def serialize_json(value: Schedule) -> dict:
 
 def deserialize_json(data: dict) -> Schedule:
     out: Schedule = {}  # type: ignore[typeddict-item]
-    if "EndTime" in data:
+    if data.get("EndTime") is not None:
         out["end_time"] = data["EndTime"]
-    if "EventFilter" in data:
+    if data.get("EventFilter") is not None:
         import capo_pinpoint.types.campaign_event_filter
 
         out["event_filter"] = (
@@ -75,22 +75,22 @@ def deserialize_json(data: dict) -> Schedule:
                 data["EventFilter"]
             )
         )
-    if "Frequency" in data:
+    if data.get("Frequency") is not None:
         import capo_pinpoint.types.frequency
 
         out["frequency"] = capo_pinpoint.types.frequency.deserialize_json(
             data["Frequency"]
         )
-    if "IsLocalTime" in data:
+    if data.get("IsLocalTime") is not None:
         out["is_local_time"] = data["IsLocalTime"]
-    if "QuietTime" in data:
+    if data.get("QuietTime") is not None:
         import capo_pinpoint.types.quiet_time
 
         out["quiet_time"] = capo_pinpoint.types.quiet_time.deserialize_json(
             data["QuietTime"]
         )
-    if "StartTime" in data:
+    if data.get("StartTime") is not None:
         out["start_time"] = data["StartTime"]
-    if "Timezone" in data:
+    if data.get("Timezone") is not None:
         out["timezone"] = data["Timezone"]
     return out

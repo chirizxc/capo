@@ -52,7 +52,7 @@ def serialize_aws_json_1_1(value: SizeConstraintStatement) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SizeConstraintStatement:
     out: SizeConstraintStatement = {}  # type: ignore[typeddict-item]
-    if "FieldToMatch" in data:
+    if data.get("FieldToMatch") is not None:
         import capo_wafv2.types.field_to_match
 
         out["field_to_match"] = (
@@ -62,7 +62,7 @@ def deserialize_aws_json_1_1(data: dict) -> SizeConstraintStatement:
         )
     else:
         raise DeserializationError("SizeConstraintStatement.field_to_match required")
-    if "ComparisonOperator" in data:
+    if data.get("ComparisonOperator") is not None:
         import capo_wafv2.types.comparison_operator
 
         out["comparison_operator"] = (
@@ -74,11 +74,11 @@ def deserialize_aws_json_1_1(data: dict) -> SizeConstraintStatement:
         raise DeserializationError(
             "SizeConstraintStatement.comparison_operator required"
         )
-    if "Size" in data:
+    if data.get("Size") is not None:
         out["size"] = data["Size"]
     else:
         out["size"] = 0
-    if "TextTransformations" in data:
+    if data.get("TextTransformations") is not None:
         import capo_wafv2.types.text_transformations
 
         out["text_transformations"] = (

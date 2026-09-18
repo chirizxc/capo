@@ -32,8 +32,8 @@ def serialize_aws_json_1_0(value: ProxyRulePriority) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ProxyRulePriority:
     out: ProxyRulePriority = {}  # type: ignore[typeddict-item]
-    if "ProxyRuleName" in data:
+    if data.get("ProxyRuleName") is not None:
         out["proxy_rule_name"] = data["ProxyRuleName"]
-    if "NewPosition" in data:
+    if data.get("NewPosition") is not None:
         out["new_position"] = data["NewPosition"]
     return out

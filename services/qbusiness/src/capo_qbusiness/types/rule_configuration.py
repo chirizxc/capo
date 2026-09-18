@@ -49,7 +49,7 @@ def serialize_json(value: RuleConfiguration) -> dict:
 
 
 def deserialize_json(data: dict) -> RuleConfiguration:
-    if "contentBlockerRule" in data:
+    if data.get("contentBlockerRule") is not None:
         import capo_qbusiness.types.content_blocker_rule
 
         return {
@@ -57,7 +57,7 @@ def deserialize_json(data: dict) -> RuleConfiguration:
                 data["contentBlockerRule"]
             )
         }
-    elif "contentRetrievalRule" in data:
+    elif data.get("contentRetrievalRule") is not None:
         import capo_qbusiness.types.content_retrieval_rule
 
         return {

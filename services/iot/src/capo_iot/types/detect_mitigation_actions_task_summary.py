@@ -114,9 +114,9 @@ def serialize_json(value: DetectMitigationActionsTaskSummary) -> dict:
 
 def deserialize_json(data: dict) -> DetectMitigationActionsTaskSummary:
     out: DetectMitigationActionsTaskSummary = {}  # type: ignore[typeddict-item]
-    if "taskId" in data:
+    if data.get("taskId") is not None:
         out["task_id"] = data["taskId"]
-    if "taskStatus" in data:
+    if data.get("taskStatus") is not None:
         import capo_iot.types.detect_mitigation_actions_task_status
 
         out["task_status"] = (
@@ -124,19 +124,19 @@ def deserialize_json(data: dict) -> DetectMitigationActionsTaskSummary:
                 data["taskStatus"]
             )
         )
-    if "taskStartTime" in data:
+    if data.get("taskStartTime") is not None:
         import capo_iot.types.timestamp
 
         out["task_start_time"] = capo_iot.types.timestamp.deserialize_json(
             data["taskStartTime"]
         )
-    if "taskEndTime" in data:
+    if data.get("taskEndTime") is not None:
         import capo_iot.types.timestamp
 
         out["task_end_time"] = capo_iot.types.timestamp.deserialize_json(
             data["taskEndTime"]
         )
-    if "target" in data:
+    if data.get("target") is not None:
         import capo_iot.types.detect_mitigation_actions_task_target
 
         out["target"] = (
@@ -144,7 +144,7 @@ def deserialize_json(data: dict) -> DetectMitigationActionsTaskSummary:
                 data["target"]
             )
         )
-    if "violationEventOccurrenceRange" in data:
+    if data.get("violationEventOccurrenceRange") is not None:
         import capo_iot.types.violation_event_occurrence_range
 
         out["violation_event_occurrence_range"] = (
@@ -152,15 +152,15 @@ def deserialize_json(data: dict) -> DetectMitigationActionsTaskSummary:
                 data["violationEventOccurrenceRange"]
             )
         )
-    if "onlyActiveViolationsIncluded" in data:
+    if data.get("onlyActiveViolationsIncluded") is not None:
         out["only_active_violations_included"] = data["onlyActiveViolationsIncluded"]
     else:
         out["only_active_violations_included"] = False
-    if "suppressedAlertsIncluded" in data:
+    if data.get("suppressedAlertsIncluded") is not None:
         out["suppressed_alerts_included"] = data["suppressedAlertsIncluded"]
     else:
         out["suppressed_alerts_included"] = False
-    if "actionsDefinition" in data:
+    if data.get("actionsDefinition") is not None:
         import capo_iot.types.mitigation_action_list
 
         out["actions_definition"] = (
@@ -168,7 +168,7 @@ def deserialize_json(data: dict) -> DetectMitigationActionsTaskSummary:
                 data["actionsDefinition"]
             )
         )
-    if "taskStatistics" in data:
+    if data.get("taskStatistics") is not None:
         import capo_iot.types.detect_mitigation_actions_task_statistics
 
         out["task_statistics"] = (

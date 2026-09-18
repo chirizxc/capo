@@ -169,41 +169,41 @@ def serialize_aws_json_1_1(value: Workspace) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Workspace:
     out: Workspace = {}  # type: ignore[typeddict-item]
-    if "WorkspaceId" in data:
+    if data.get("WorkspaceId") is not None:
         out["workspace_id"] = data["WorkspaceId"]
-    if "DirectoryId" in data:
+    if data.get("DirectoryId") is not None:
         out["directory_id"] = data["DirectoryId"]
-    if "UserName" in data:
+    if data.get("UserName") is not None:
         out["user_name"] = data["UserName"]
-    if "IpAddress" in data:
+    if data.get("IpAddress") is not None:
         out["ip_address"] = data["IpAddress"]
-    if "Ipv6Address" in data:
+    if data.get("Ipv6Address") is not None:
         out["ipv6_address"] = data["Ipv6Address"]
-    if "State" in data:
+    if data.get("State") is not None:
         import capo_workspaces.types.workspace_state
 
         out["state"] = capo_workspaces.types.workspace_state.deserialize_aws_json_1_1(
             data["State"]
         )
-    if "BundleId" in data:
+    if data.get("BundleId") is not None:
         out["bundle_id"] = data["BundleId"]
-    if "SubnetId" in data:
+    if data.get("SubnetId") is not None:
         out["subnet_id"] = data["SubnetId"]
-    if "ErrorMessage" in data:
+    if data.get("ErrorMessage") is not None:
         out["error_message"] = data["ErrorMessage"]
-    if "ErrorCode" in data:
+    if data.get("ErrorCode") is not None:
         out["error_code"] = data["ErrorCode"]
-    if "ComputerName" in data:
+    if data.get("ComputerName") is not None:
         out["computer_name"] = data["ComputerName"]
-    if "VolumeEncryptionKey" in data:
+    if data.get("VolumeEncryptionKey") is not None:
         out["volume_encryption_key"] = data["VolumeEncryptionKey"]
-    if "UserVolumeEncryptionEnabled" in data:
+    if data.get("UserVolumeEncryptionEnabled") is not None:
         out["user_volume_encryption_enabled"] = data["UserVolumeEncryptionEnabled"]
-    if "RootVolumeEncryptionEnabled" in data:
+    if data.get("RootVolumeEncryptionEnabled") is not None:
         out["root_volume_encryption_enabled"] = data["RootVolumeEncryptionEnabled"]
-    if "WorkspaceName" in data:
+    if data.get("WorkspaceName") is not None:
         out["workspace_name"] = data["WorkspaceName"]
-    if "WorkspaceProperties" in data:
+    if data.get("WorkspaceProperties") is not None:
         import capo_workspaces.types.workspace_properties
 
         out["workspace_properties"] = (
@@ -211,7 +211,7 @@ def deserialize_aws_json_1_1(data: dict) -> Workspace:
                 data["WorkspaceProperties"]
             )
         )
-    if "ModificationStates" in data:
+    if data.get("ModificationStates") is not None:
         import capo_workspaces.types.modification_state_list
 
         out["modification_states"] = (
@@ -219,7 +219,7 @@ def deserialize_aws_json_1_1(data: dict) -> Workspace:
                 data["ModificationStates"]
             )
         )
-    if "RelatedWorkspaces" in data:
+    if data.get("RelatedWorkspaces") is not None:
         import capo_workspaces.types.related_workspaces
 
         out["related_workspaces"] = (
@@ -227,7 +227,7 @@ def deserialize_aws_json_1_1(data: dict) -> Workspace:
                 data["RelatedWorkspaces"]
             )
         )
-    if "DataReplicationSettings" in data:
+    if data.get("DataReplicationSettings") is not None:
         import capo_workspaces.types.data_replication_settings
 
         out["data_replication_settings"] = (
@@ -235,7 +235,7 @@ def deserialize_aws_json_1_1(data: dict) -> Workspace:
                 data["DataReplicationSettings"]
             )
         )
-    if "StandbyWorkspacesProperties" in data:
+    if data.get("StandbyWorkspacesProperties") is not None:
         import capo_workspaces.types.standby_workspaces_properties_list
 
         out["standby_workspaces_properties"] = (

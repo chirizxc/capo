@@ -55,15 +55,15 @@ def serialize_json(value: FailedAssociationResult) -> dict:
 
 def deserialize_json(data: dict) -> FailedAssociationResult:
     out: FailedAssociationResult = {}  # type: ignore[typeddict-item]
-    if "scanConfigurationArn" in data:
+    if data.get("scanConfigurationArn") is not None:
         out["scan_configuration_arn"] = data["scanConfigurationArn"]
-    if "resource" in data:
+    if data.get("resource") is not None:
         import capo_inspector2.types.code_security_resource
 
         out["resource"] = capo_inspector2.types.code_security_resource.deserialize_json(
             data["resource"]
         )
-    if "statusCode" in data:
+    if data.get("statusCode") is not None:
         import capo_inspector2.types.association_result_status_code
 
         out["status_code"] = (
@@ -71,6 +71,6 @@ def deserialize_json(data: dict) -> FailedAssociationResult:
                 data["statusCode"]
             )
         )
-    if "statusMessage" in data:
+    if data.get("statusMessage") is not None:
         out["status_message"] = data["statusMessage"]
     return out

@@ -107,36 +107,36 @@ def serialize_json(value: RouteSetDetails) -> dict:
 
 def deserialize_json(data: dict) -> RouteSetDetails:
     out: RouteSetDetails = {}  # type: ignore[typeddict-item]
-    if "CarrierGatewayId" in data:
+    if data.get("CarrierGatewayId") is not None:
         out["carrier_gateway_id"] = data["CarrierGatewayId"]
-    if "CoreNetworkArn" in data:
+    if data.get("CoreNetworkArn") is not None:
         out["core_network_arn"] = data["CoreNetworkArn"]
-    if "DestinationCidrBlock" in data:
+    if data.get("DestinationCidrBlock") is not None:
         out["destination_cidr_block"] = data["DestinationCidrBlock"]
-    if "DestinationIpv6CidrBlock" in data:
+    if data.get("DestinationIpv6CidrBlock") is not None:
         out["destination_ipv6_cidr_block"] = data["DestinationIpv6CidrBlock"]
-    if "DestinationPrefixListId" in data:
+    if data.get("DestinationPrefixListId") is not None:
         out["destination_prefix_list_id"] = data["DestinationPrefixListId"]
-    if "EgressOnlyInternetGatewayId" in data:
+    if data.get("EgressOnlyInternetGatewayId") is not None:
         out["egress_only_internet_gateway_id"] = data["EgressOnlyInternetGatewayId"]
-    if "GatewayId" in data:
+    if data.get("GatewayId") is not None:
         out["gateway_id"] = data["GatewayId"]
-    if "InstanceId" in data:
+    if data.get("InstanceId") is not None:
         out["instance_id"] = data["InstanceId"]
-    if "InstanceOwnerId" in data:
+    if data.get("InstanceOwnerId") is not None:
         out["instance_owner_id"] = data["InstanceOwnerId"]
-    if "LocalGatewayId" in data:
+    if data.get("LocalGatewayId") is not None:
         out["local_gateway_id"] = data["LocalGatewayId"]
-    if "NatGatewayId" in data:
+    if data.get("NatGatewayId") is not None:
         out["nat_gateway_id"] = data["NatGatewayId"]
-    if "NetworkInterfaceId" in data:
+    if data.get("NetworkInterfaceId") is not None:
         out["network_interface_id"] = data["NetworkInterfaceId"]
-    if "Origin" in data:
+    if data.get("Origin") is not None:
         out["origin"] = data["Origin"]
-    if "State" in data:
+    if data.get("State") is not None:
         out["state"] = data["State"]
-    if "TransitGatewayId" in data:
+    if data.get("TransitGatewayId") is not None:
         out["transit_gateway_id"] = data["TransitGatewayId"]
-    if "VpcPeeringConnectionId" in data:
+    if data.get("VpcPeeringConnectionId") is not None:
         out["vpc_peering_connection_id"] = data["VpcPeeringConnectionId"]
     return out

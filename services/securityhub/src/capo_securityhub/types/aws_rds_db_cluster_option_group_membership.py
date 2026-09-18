@@ -29,8 +29,8 @@ def serialize_json(value: AwsRdsDbClusterOptionGroupMembership) -> dict:
 
 def deserialize_json(data: dict) -> AwsRdsDbClusterOptionGroupMembership:
     out: AwsRdsDbClusterOptionGroupMembership = {}  # type: ignore[typeddict-item]
-    if "DbClusterOptionGroupName" in data:
+    if data.get("DbClusterOptionGroupName") is not None:
         out["db_cluster_option_group_name"] = data["DbClusterOptionGroupName"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         out["status"] = data["Status"]
     return out

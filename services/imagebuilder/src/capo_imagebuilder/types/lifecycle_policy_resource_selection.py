@@ -38,7 +38,7 @@ def serialize_json(value: LifecyclePolicyResourceSelection) -> dict:
 
 def deserialize_json(data: dict) -> LifecyclePolicyResourceSelection:
     out: LifecyclePolicyResourceSelection = {}  # type: ignore[typeddict-item]
-    if "recipes" in data:
+    if data.get("recipes") is not None:
         import capo_imagebuilder.types.lifecycle_policy_resource_selection_recipes
 
         out["recipes"] = (
@@ -46,7 +46,7 @@ def deserialize_json(data: dict) -> LifecyclePolicyResourceSelection:
                 data["recipes"]
             )
         )
-    if "tagMap" in data:
+    if data.get("tagMap") is not None:
         import capo_imagebuilder.types.tag_map
 
         out["tag_map"] = capo_imagebuilder.types.tag_map.deserialize_json(

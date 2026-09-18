@@ -27,8 +27,8 @@ def serialize_aws_json_1_0(value: SampleDocumentKeys) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> SampleDocumentKeys:
     out: SampleDocumentKeys = {}  # type: ignore[typeddict-item]
-    if "input" in data:
+    if data.get("input") is not None:
         out["input"] = data["input"]
-    if "output" in data:
+    if data.get("output") is not None:
         out["output"] = data["output"]
     return out

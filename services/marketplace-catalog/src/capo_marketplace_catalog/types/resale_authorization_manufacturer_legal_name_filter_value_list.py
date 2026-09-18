@@ -20,4 +20,4 @@ def serialize_json(
 def deserialize_json(
     data: list,
 ) -> ResaleAuthorizationManufacturerLegalNameFilterValueList:
-    return list(data)
+    return [item for item in data if item is not None]

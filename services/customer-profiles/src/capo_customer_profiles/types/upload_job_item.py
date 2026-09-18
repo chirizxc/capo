@@ -74,17 +74,17 @@ def serialize_json(value: UploadJobItem) -> dict:
 
 def deserialize_json(data: dict) -> UploadJobItem:
     out: UploadJobItem = {}  # type: ignore[typeddict-item]
-    if "JobId" in data:
+    if data.get("JobId") is not None:
         out["job_id"] = data["JobId"]
-    if "DisplayName" in data:
+    if data.get("DisplayName") is not None:
         out["display_name"] = data["DisplayName"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_customer_profiles.types.upload_job_status
 
         out["status"] = capo_customer_profiles.types.upload_job_status.deserialize_json(
             data["Status"]
         )
-    if "StatusReason" in data:
+    if data.get("StatusReason") is not None:
         import capo_customer_profiles.types.status_reason
 
         out["status_reason"] = (
@@ -92,18 +92,18 @@ def deserialize_json(data: dict) -> UploadJobItem:
                 data["StatusReason"]
             )
         )
-    if "CreatedAt" in data:
+    if data.get("CreatedAt") is not None:
         import capo_customer_profiles.types.timestamp
 
         out["created_at"] = capo_customer_profiles.types.timestamp.deserialize_json(
             data["CreatedAt"]
         )
-    if "CompletedAt" in data:
+    if data.get("CompletedAt") is not None:
         import capo_customer_profiles.types.timestamp
 
         out["completed_at"] = capo_customer_profiles.types.timestamp.deserialize_json(
             data["CompletedAt"]
         )
-    if "DataExpiry" in data:
+    if data.get("DataExpiry") is not None:
         out["data_expiry"] = data["DataExpiry"]
     return out

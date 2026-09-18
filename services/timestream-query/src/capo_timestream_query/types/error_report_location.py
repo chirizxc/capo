@@ -31,7 +31,7 @@ def serialize_aws_json_1_0(value: ErrorReportLocation) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ErrorReportLocation:
     out: ErrorReportLocation = {}  # type: ignore[typeddict-item]
-    if "S3ReportLocation" in data:
+    if data.get("S3ReportLocation") is not None:
         import capo_timestream_query.types.s3_report_location
 
         out["s3_report_location"] = (

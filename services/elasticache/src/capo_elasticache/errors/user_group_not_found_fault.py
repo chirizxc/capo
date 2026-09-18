@@ -37,15 +37,18 @@ class UserGroupNotFoundFault(ServiceError):
 
     code: str | None = "UserGroupNotFoundFault"
 
-    def __init__(self, data: UserGroupNotFoundFault_):
+    def __init__(self, data: UserGroupNotFoundFault_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="UserGroupNotFoundFault",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_query(cls, el: Element) -> "UserGroupNotFoundFault":
-        return cls(deserialize_query(el))
+    def from_query(
+        cls, el: Element, message: str | None = None
+    ) -> "UserGroupNotFoundFault":
+        return cls(deserialize_query(el), message)

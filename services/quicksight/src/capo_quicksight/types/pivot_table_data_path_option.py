@@ -33,7 +33,7 @@ def serialize_json(value: PivotTableDataPathOption) -> dict:
 
 def deserialize_json(data: dict) -> PivotTableDataPathOption:
     out: PivotTableDataPathOption = {}  # type: ignore[typeddict-item]
-    if "DataPathList" in data:
+    if data.get("DataPathList") is not None:
         import capo_quicksight.types.data_path_value_list
 
         out["data_path_list"] = (
@@ -43,6 +43,6 @@ def deserialize_json(data: dict) -> PivotTableDataPathOption:
         )
     else:
         raise DeserializationError("PivotTableDataPathOption.data_path_list required")
-    if "Width" in data:
+    if data.get("Width") is not None:
         out["width"] = data["Width"]
     return out

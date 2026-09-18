@@ -34,13 +34,13 @@ def serialize_json(value: ArgoCdRoleMapping) -> dict:
 
 def deserialize_json(data: dict) -> ArgoCdRoleMapping:
     out: ArgoCdRoleMapping = {}  # type: ignore[typeddict-item]
-    if "role" in data:
+    if data.get("role") is not None:
         import capo_eks.types.argo_cd_role
 
         out["role"] = capo_eks.types.argo_cd_role.deserialize_json(data["role"])
     else:
         raise DeserializationError("ArgoCdRoleMapping.role required")
-    if "identities" in data:
+    if data.get("identities") is not None:
         import capo_eks.types.sso_identity_list
 
         out["identities"] = capo_eks.types.sso_identity_list.deserialize_json(

@@ -62,15 +62,15 @@ def serialize_json(value: CreateEnvironmentProfileOutput) -> dict:
         out["awsAccountRegion"] = value["aws_account_region"]
     out["createdBy"] = value["created_by"]
     if "created_at" in value:
-        import capo_datazone.types._prelude.timestamp
+        import capo_datazone._protocol.serialize
 
-        out["createdAt"] = capo_datazone.types._prelude.timestamp.serialize_json(
+        out["createdAt"] = capo_datazone._protocol.serialize.fmt_date_time(
             value["created_at"]
         )
     if "updated_at" in value:
-        import capo_datazone.types._prelude.timestamp
+        import capo_datazone._protocol.serialize
 
-        out["updatedAt"] = capo_datazone.types._prelude.timestamp.serialize_json(
+        out["updatedAt"] = capo_datazone._protocol.serialize.fmt_date_time(
             value["updated_at"]
         )
     out["name"] = value["name"]
@@ -92,49 +92,49 @@ def serialize_json(value: CreateEnvironmentProfileOutput) -> dict:
 
 def deserialize_json(data: dict) -> CreateEnvironmentProfileOutput:
     out: CreateEnvironmentProfileOutput = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("CreateEnvironmentProfileOutput.id required")
-    if "domainId" in data:
+    if data.get("domainId") is not None:
         out["domain_id"] = data["domainId"]
     else:
         raise DeserializationError("CreateEnvironmentProfileOutput.domain_id required")
-    if "awsAccountId" in data:
+    if data.get("awsAccountId") is not None:
         out["aws_account_id"] = data["awsAccountId"]
-    if "awsAccountRegion" in data:
+    if data.get("awsAccountRegion") is not None:
         out["aws_account_region"] = data["awsAccountRegion"]
-    if "createdBy" in data:
+    if data.get("createdBy") is not None:
         out["created_by"] = data["createdBy"]
     else:
         raise DeserializationError("CreateEnvironmentProfileOutput.created_by required")
-    if "createdAt" in data:
-        import capo_datazone.types._prelude.timestamp
+    if data.get("createdAt") is not None:
+        import datetime
 
-        out["created_at"] = capo_datazone.types._prelude.timestamp.deserialize_json(
-            data["createdAt"]
+        out["created_at"] = datetime.datetime.fromisoformat(
+            data["createdAt"].replace("Z", "+00:00")
         )
-    if "updatedAt" in data:
-        import capo_datazone.types._prelude.timestamp
+    if data.get("updatedAt") is not None:
+        import datetime
 
-        out["updated_at"] = capo_datazone.types._prelude.timestamp.deserialize_json(
-            data["updatedAt"]
+        out["updated_at"] = datetime.datetime.fromisoformat(
+            data["updatedAt"].replace("Z", "+00:00")
         )
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("CreateEnvironmentProfileOutput.name required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "environmentBlueprintId" in data:
+    if data.get("environmentBlueprintId") is not None:
         out["environment_blueprint_id"] = data["environmentBlueprintId"]
     else:
         raise DeserializationError(
             "CreateEnvironmentProfileOutput.environment_blueprint_id required"
         )
-    if "projectId" in data:
+    if data.get("projectId") is not None:
         out["project_id"] = data["projectId"]
-    if "userParameters" in data:
+    if data.get("userParameters") is not None:
         import capo_datazone.types.custom_parameter_list
 
         out["user_parameters"] = (

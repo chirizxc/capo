@@ -28,6 +28,8 @@ def serialize_json(input_to_serialize: FormInputBindingProperties) -> dict:
 def deserialize_json(data: dict) -> FormInputBindingProperties:
     out: FormInputBindingProperties = {}
     for key, value in data.items():
+        if value is None:
+            continue
         import capo_amplifyuibuilder.types.form_input_binding_properties_value
 
         out[key] = (

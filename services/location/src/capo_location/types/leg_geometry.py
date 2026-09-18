@@ -27,7 +27,7 @@ def serialize_json(value: LegGeometry) -> dict:
 
 def deserialize_json(data: dict) -> LegGeometry:
     out: LegGeometry = {}  # type: ignore[typeddict-item]
-    if "LineString" in data:
+    if data.get("LineString") is not None:
         import capo_location.types.line_string
 
         out["line_string"] = capo_location.types.line_string.deserialize_json(

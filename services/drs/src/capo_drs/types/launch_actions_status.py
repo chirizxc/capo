@@ -32,9 +32,9 @@ def serialize_json(value: LaunchActionsStatus) -> dict:
 
 def deserialize_json(data: dict) -> LaunchActionsStatus:
     out: LaunchActionsStatus = {}  # type: ignore[typeddict-item]
-    if "ssmAgentDiscoveryDatetime" in data:
+    if data.get("ssmAgentDiscoveryDatetime") is not None:
         out["ssm_agent_discovery_datetime"] = data["ssmAgentDiscoveryDatetime"]
-    if "runs" in data:
+    if data.get("runs") is not None:
         import capo_drs.types.launch_action_runs
 
         out["runs"] = capo_drs.types.launch_action_runs.deserialize_json(data["runs"])

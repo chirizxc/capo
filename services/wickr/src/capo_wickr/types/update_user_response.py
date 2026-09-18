@@ -78,15 +78,15 @@ def serialize_json(value: UpdateUserResponse) -> dict:
 
 def deserialize_json(data: dict) -> UpdateUserResponse:
     out: UpdateUserResponse = {}  # type: ignore[typeddict-item]
-    if "userId" in data:
+    if data.get("userId") is not None:
         out["user_id"] = data["userId"]
     else:
         raise DeserializationError("UpdateUserResponse.user_id required")
-    if "networkId" in data:
+    if data.get("networkId") is not None:
         out["network_id"] = data["networkId"]
     else:
         raise DeserializationError("UpdateUserResponse.network_id required")
-    if "securityGroupIds" in data:
+    if data.get("securityGroupIds") is not None:
         import capo_wickr.types.security_group_id_list
 
         out["security_group_ids"] = (
@@ -94,24 +94,24 @@ def deserialize_json(data: dict) -> UpdateUserResponse:
                 data["securityGroupIds"]
             )
         )
-    if "firstName" in data:
+    if data.get("firstName") is not None:
         out["first_name"] = data["firstName"]
-    if "lastName" in data:
+    if data.get("lastName") is not None:
         out["last_name"] = data["lastName"]
-    if "middleName" in data:
+    if data.get("middleName") is not None:
         out["middle_name"] = data["middleName"]
-    if "suspended" in data:
+    if data.get("suspended") is not None:
         out["suspended"] = data["suspended"]
     else:
         raise DeserializationError("UpdateUserResponse.suspended required")
-    if "modified" in data:
+    if data.get("modified") is not None:
         out["modified"] = data["modified"]
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
-    if "inviteCode" in data:
+    if data.get("inviteCode") is not None:
         out["invite_code"] = data["inviteCode"]
-    if "inviteExpiration" in data:
+    if data.get("inviteExpiration") is not None:
         out["invite_expiration"] = data["inviteExpiration"]
-    if "codeValidation" in data:
+    if data.get("codeValidation") is not None:
         out["code_validation"] = data["codeValidation"]
     return out

@@ -34,7 +34,15 @@ def serialize_aws_json_1_1(value: Label) -> dict:
     if "name" in value:
         out["Name"] = value["name"]
     if "confidence" in value:
-        out["Confidence"] = value["confidence"]
+        out["Confidence"] = (
+            "NaN"
+            if value["confidence"] != value["confidence"]
+            else "Infinity"
+            if value["confidence"] == float("inf")
+            else "-Infinity"
+            if value["confidence"] == float("-inf")
+            else value["confidence"]
+        )
     if "instances" in value:
         import capo_rekognition.types.instances
 
@@ -66,29 +74,29 @@ def serialize_aws_json_1_1(value: Label) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Label:
     out: Label = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Confidence" in data:
-        out["confidence"] = data["Confidence"]
-    if "Instances" in data:
+    if data.get("Confidence") is not None:
+        out["confidence"] = float(data["Confidence"])
+    if data.get("Instances") is not None:
         import capo_rekognition.types.instances
 
         out["instances"] = capo_rekognition.types.instances.deserialize_aws_json_1_1(
             data["Instances"]
         )
-    if "Parents" in data:
+    if data.get("Parents") is not None:
         import capo_rekognition.types.parents
 
         out["parents"] = capo_rekognition.types.parents.deserialize_aws_json_1_1(
             data["Parents"]
         )
-    if "Aliases" in data:
+    if data.get("Aliases") is not None:
         import capo_rekognition.types.label_aliases
 
         out["aliases"] = capo_rekognition.types.label_aliases.deserialize_aws_json_1_1(
             data["Aliases"]
         )
-    if "Categories" in data:
+    if data.get("Categories") is not None:
         import capo_rekognition.types.label_categories
 
         out["categories"] = (

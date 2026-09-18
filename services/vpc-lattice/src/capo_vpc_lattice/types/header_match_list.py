@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> HeaderMatchList:
 
     out: HeaderMatchList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_vpc_lattice.types.header_match.deserialize_json(item))
     return out

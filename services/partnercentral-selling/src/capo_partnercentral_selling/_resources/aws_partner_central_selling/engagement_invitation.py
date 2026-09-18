@@ -91,17 +91,19 @@ class EngagementInvitation:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_partnercentral_selling.types.create_engagement_invitation_request.CreateEngagementInvitationRequest = {}  # type: ignore[typeddict-item]
-        input_["catalog"] = catalog
-        input_["client_token"] = client_token
-        input_["engagement_identifier"] = engagement_identifier
-        input_["invitation"] = invitation
+        input_: capo_partnercentral_selling.types.create_engagement_invitation_request.CreateEngagementInvitationRequest = {
+            "catalog": catalog,
+            "client_token": client_token,
+            "engagement_identifier": engagement_identifier,
+            "invitation": invitation,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -141,15 +143,17 @@ class EngagementInvitation:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_partnercentral_selling.types.get_engagement_invitation_request.GetEngagementInvitationRequest = {}  # type: ignore[typeddict-item]
-        input_["catalog"] = catalog
-        input_["identifier"] = identifier
+        input_: capo_partnercentral_selling.types.get_engagement_invitation_request.GetEngagementInvitationRequest = {
+            "catalog": catalog,
+            "identifier": identifier,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -215,8 +219,10 @@ class EngagementInvitation:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_partnercentral_selling.types.list_engagement_invitations_request.ListEngagementInvitationsRequest = {}  # type: ignore[typeddict-item]
-        input_["catalog"] = catalog
+        input_: capo_partnercentral_selling.types.list_engagement_invitations_request.ListEngagementInvitationsRequest = {
+            "catalog": catalog,
+            "participant_type": participant_type,
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -225,7 +231,6 @@ class EngagementInvitation:
             input_["sort"] = sort
         if payload_type is not None:
             input_["payload_type"] = payload_type
-        input_["participant_type"] = participant_type
         if status is not None:
             input_["status"] = status
         if engagement_identifier is not None:
@@ -238,6 +243,7 @@ class EngagementInvitation:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def accept_engagement_invitation(
@@ -276,15 +282,17 @@ class EngagementInvitation:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_partnercentral_selling.types.accept_engagement_invitation_request.AcceptEngagementInvitationRequest = {}  # type: ignore[typeddict-item]
-        input_["catalog"] = catalog
-        input_["identifier"] = identifier
+        input_: capo_partnercentral_selling.types.accept_engagement_invitation_request.AcceptEngagementInvitationRequest = {
+            "catalog": catalog,
+            "identifier": identifier,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def reject_engagement_invitation(
@@ -327,9 +335,10 @@ class EngagementInvitation:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_partnercentral_selling.types.reject_engagement_invitation_request.RejectEngagementInvitationRequest = {}  # type: ignore[typeddict-item]
-        input_["catalog"] = catalog
-        input_["identifier"] = identifier
+        input_: capo_partnercentral_selling.types.reject_engagement_invitation_request.RejectEngagementInvitationRequest = {
+            "catalog": catalog,
+            "identifier": identifier,
+        }
         if rejection_reason is not None:
             input_["rejection_reason"] = rejection_reason
 
@@ -338,6 +347,7 @@ class EngagementInvitation:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -389,17 +399,19 @@ class AsyncEngagementInvitation:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_partnercentral_selling.types.create_engagement_invitation_request.CreateEngagementInvitationRequest = {}  # type: ignore[typeddict-item]
-        input_["catalog"] = catalog
-        input_["client_token"] = client_token
-        input_["engagement_identifier"] = engagement_identifier
-        input_["invitation"] = invitation
+        input_: capo_partnercentral_selling.types.create_engagement_invitation_request.CreateEngagementInvitationRequest = {
+            "catalog": catalog,
+            "client_token": client_token,
+            "engagement_identifier": engagement_identifier,
+            "invitation": invitation,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -440,15 +452,17 @@ class AsyncEngagementInvitation:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_partnercentral_selling.types.get_engagement_invitation_request.GetEngagementInvitationRequest = {}  # type: ignore[typeddict-item]
-        input_["catalog"] = catalog
-        input_["identifier"] = identifier
+        input_: capo_partnercentral_selling.types.get_engagement_invitation_request.GetEngagementInvitationRequest = {
+            "catalog": catalog,
+            "identifier": identifier,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -515,8 +529,10 @@ class AsyncEngagementInvitation:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_partnercentral_selling.types.list_engagement_invitations_request.ListEngagementInvitationsRequest = {}  # type: ignore[typeddict-item]
-        input_["catalog"] = catalog
+        input_: capo_partnercentral_selling.types.list_engagement_invitations_request.ListEngagementInvitationsRequest = {
+            "catalog": catalog,
+            "participant_type": participant_type,
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -525,7 +541,6 @@ class AsyncEngagementInvitation:
             input_["sort"] = sort
         if payload_type is not None:
             input_["payload_type"] = payload_type
-        input_["participant_type"] = participant_type
         if status is not None:
             input_["status"] = status
         if engagement_identifier is not None:
@@ -538,6 +553,7 @@ class AsyncEngagementInvitation:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def accept_engagement_invitation(
@@ -577,15 +593,17 @@ class AsyncEngagementInvitation:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_partnercentral_selling.types.accept_engagement_invitation_request.AcceptEngagementInvitationRequest = {}  # type: ignore[typeddict-item]
-        input_["catalog"] = catalog
-        input_["identifier"] = identifier
+        input_: capo_partnercentral_selling.types.accept_engagement_invitation_request.AcceptEngagementInvitationRequest = {
+            "catalog": catalog,
+            "identifier": identifier,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def reject_engagement_invitation(
@@ -629,9 +647,10 @@ class AsyncEngagementInvitation:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_partnercentral_selling.types.reject_engagement_invitation_request.RejectEngagementInvitationRequest = {}  # type: ignore[typeddict-item]
-        input_["catalog"] = catalog
-        input_["identifier"] = identifier
+        input_: capo_partnercentral_selling.types.reject_engagement_invitation_request.RejectEngagementInvitationRequest = {
+            "catalog": catalog,
+            "identifier": identifier,
+        }
         if rejection_reason is not None:
             input_["rejection_reason"] = rejection_reason
 
@@ -640,4 +659,5 @@ class AsyncEngagementInvitation:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

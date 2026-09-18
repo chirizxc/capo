@@ -36,13 +36,13 @@ def serialize_aws_json_1_1(value: DisassociateResourceTypesRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DisassociateResourceTypesRequest:
     out: DisassociateResourceTypesRequest = {}  # type: ignore[typeddict-item]
-    if "ConfigurationRecorderArn" in data:
+    if data.get("ConfigurationRecorderArn") is not None:
         out["configuration_recorder_arn"] = data["ConfigurationRecorderArn"]
     else:
         raise DeserializationError(
             "DisassociateResourceTypesRequest.configuration_recorder_arn required"
         )
-    if "ResourceTypes" in data:
+    if data.get("ResourceTypes") is not None:
         import capo_config_service.types.resource_type_list
 
         out["resource_types"] = (

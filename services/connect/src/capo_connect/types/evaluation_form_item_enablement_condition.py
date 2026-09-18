@@ -43,7 +43,7 @@ def serialize_json(value: EvaluationFormItemEnablementCondition) -> dict:
 
 def deserialize_json(data: dict) -> EvaluationFormItemEnablementCondition:
     out: EvaluationFormItemEnablementCondition = {}  # type: ignore[typeddict-item]
-    if "Operands" in data:
+    if data.get("Operands") is not None:
         import capo_connect.types.evaluation_form_item_enablement_condition_operand_list
 
         out["operands"] = (
@@ -55,7 +55,7 @@ def deserialize_json(data: dict) -> EvaluationFormItemEnablementCondition:
         raise DeserializationError(
             "EvaluationFormItemEnablementCondition.operands required"
         )
-    if "Operator" in data:
+    if data.get("Operator") is not None:
         import capo_connect.types.evaluation_form_item_enablement_operator
 
         out["operator"] = (

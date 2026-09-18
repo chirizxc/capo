@@ -55,7 +55,7 @@ def serialize_aws_json_1_1(value: TokenValidityUnitsType) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> TokenValidityUnitsType:
     out: TokenValidityUnitsType = {}  # type: ignore[typeddict-item]
-    if "AccessToken" in data:
+    if data.get("AccessToken") is not None:
         import capo_cognito_identity_provider.types.time_units_type
 
         out["access_token"] = (
@@ -63,7 +63,7 @@ def deserialize_aws_json_1_1(data: dict) -> TokenValidityUnitsType:
                 data["AccessToken"]
             )
         )
-    if "IdToken" in data:
+    if data.get("IdToken") is not None:
         import capo_cognito_identity_provider.types.time_units_type
 
         out["id_token"] = (
@@ -71,7 +71,7 @@ def deserialize_aws_json_1_1(data: dict) -> TokenValidityUnitsType:
                 data["IdToken"]
             )
         )
-    if "RefreshToken" in data:
+    if data.get("RefreshToken") is not None:
         import capo_cognito_identity_provider.types.time_units_type
 
         out["refresh_token"] = (

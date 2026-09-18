@@ -31,7 +31,7 @@ def serialize_json(value: VpcConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> VpcConfiguration:
     out: VpcConfiguration = {}  # type: ignore[typeddict-item]
-    if "resourceConfigurationArns" in data:
+    if data.get("resourceConfigurationArns") is not None:
         import capo_deadline.types.vpc_resource_configuration_arns
 
         out["resource_configuration_arns"] = (

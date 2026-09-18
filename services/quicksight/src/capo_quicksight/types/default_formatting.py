@@ -40,13 +40,13 @@ def serialize_json(value: DefaultFormatting) -> dict:
 
 def deserialize_json(data: dict) -> DefaultFormatting:
     out: DefaultFormatting = {}  # type: ignore[typeddict-item]
-    if "DisplayFormat" in data:
+    if data.get("DisplayFormat") is not None:
         import capo_quicksight.types.display_format
 
         out["display_format"] = capo_quicksight.types.display_format.deserialize_json(
             data["DisplayFormat"]
         )
-    if "DisplayFormatOptions" in data:
+    if data.get("DisplayFormatOptions") is not None:
         import capo_quicksight.types.display_format_options
 
         out["display_format_options"] = (

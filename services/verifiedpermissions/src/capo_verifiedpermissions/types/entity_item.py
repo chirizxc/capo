@@ -67,7 +67,7 @@ def serialize_aws_json_1_0(value: EntityItem) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> EntityItem:
     out: EntityItem = {}  # type: ignore[typeddict-item]
-    if "identifier" in data:
+    if data.get("identifier") is not None:
         import capo_verifiedpermissions.types.entity_identifier
 
         out["identifier"] = (
@@ -77,7 +77,7 @@ def deserialize_aws_json_1_0(data: dict) -> EntityItem:
         )
     else:
         raise DeserializationError("EntityItem.identifier required")
-    if "attributes" in data:
+    if data.get("attributes") is not None:
         import capo_verifiedpermissions.types.entity_attributes
 
         out["attributes"] = (
@@ -85,7 +85,7 @@ def deserialize_aws_json_1_0(data: dict) -> EntityItem:
                 data["attributes"]
             )
         )
-    if "parents" in data:
+    if data.get("parents") is not None:
         import capo_verifiedpermissions.types.parent_list
 
         out["parents"] = (
@@ -93,7 +93,7 @@ def deserialize_aws_json_1_0(data: dict) -> EntityItem:
                 data["parents"]
             )
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_verifiedpermissions.types.entity_cedar_tags
 
         out["tags"] = (

@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> ExpirationDataRuleList:
 
     out: ExpirationDataRuleList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_s3files.types.expiration_data_rule.deserialize_json(item))
     return out

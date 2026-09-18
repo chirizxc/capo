@@ -36,9 +36,9 @@ def serialize_json(value: BatchAssociateScramSecretResponse) -> dict:
 
 def deserialize_json(data: dict) -> BatchAssociateScramSecretResponse:
     out: BatchAssociateScramSecretResponse = {}  # type: ignore[typeddict-item]
-    if "clusterArn" in data:
+    if data.get("clusterArn") is not None:
         out["cluster_arn"] = data["clusterArn"]
-    if "unprocessedScramSecrets" in data:
+    if data.get("unprocessedScramSecrets") is not None:
         import capo_kafka.types.__list_of_unprocessed_scram_secret
 
         out["unprocessed_scram_secrets"] = (

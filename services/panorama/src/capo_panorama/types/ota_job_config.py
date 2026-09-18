@@ -28,11 +28,11 @@ def serialize_json(value: OTAJobConfig) -> dict:
 
 def deserialize_json(data: dict) -> OTAJobConfig:
     out: OTAJobConfig = {}  # type: ignore[typeddict-item]
-    if "ImageVersion" in data:
+    if data.get("ImageVersion") is not None:
         out["image_version"] = data["ImageVersion"]
     else:
         raise DeserializationError("OTAJobConfig.image_version required")
-    if "AllowMajorVersionUpdate" in data:
+    if data.get("AllowMajorVersionUpdate") is not None:
         out["allow_major_version_update"] = data["AllowMajorVersionUpdate"]
     else:
         out["allow_major_version_update"] = False

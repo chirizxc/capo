@@ -64,7 +64,7 @@ def serialize_aws_json_1_0(value: ListAutomationEventsRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ListAutomationEventsRequest:
     out: ListAutomationEventsRequest = {}  # type: ignore[typeddict-item]
-    if "filters" in data:
+    if data.get("filters") is not None:
         import capo_compute_optimizer_automation.types.automation_event_filter_list
 
         out["filters"] = (
@@ -72,7 +72,7 @@ def deserialize_aws_json_1_0(data: dict) -> ListAutomationEventsRequest:
                 data["filters"]
             )
         )
-    if "startTimeInclusive" in data:
+    if data.get("startTimeInclusive") is not None:
         import capo_compute_optimizer_automation.types._prelude.timestamp
 
         out["start_time_inclusive"] = (
@@ -80,7 +80,7 @@ def deserialize_aws_json_1_0(data: dict) -> ListAutomationEventsRequest:
                 data["startTimeInclusive"]
             )
         )
-    if "endTimeExclusive" in data:
+    if data.get("endTimeExclusive") is not None:
         import capo_compute_optimizer_automation.types._prelude.timestamp
 
         out["end_time_exclusive"] = (
@@ -88,8 +88,8 @@ def deserialize_aws_json_1_0(data: dict) -> ListAutomationEventsRequest:
                 data["endTimeExclusive"]
             )
         )
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

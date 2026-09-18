@@ -40,16 +40,16 @@ def serialize_aws_json_1_0(value: UpdateWatchlistRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> UpdateWatchlistRequest:
     out: UpdateWatchlistRequest = {}  # type: ignore[typeddict-item]
-    if "DomainId" in data:
+    if data.get("DomainId") is not None:
         out["domain_id"] = data["DomainId"]
     else:
         raise DeserializationError("UpdateWatchlistRequest.domain_id required")
-    if "WatchlistId" in data:
+    if data.get("WatchlistId") is not None:
         out["watchlist_id"] = data["WatchlistId"]
     else:
         raise DeserializationError("UpdateWatchlistRequest.watchlist_id required")
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
     return out

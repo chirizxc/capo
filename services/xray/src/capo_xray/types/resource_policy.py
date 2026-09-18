@@ -44,13 +44,13 @@ def serialize_json(value: ResourcePolicy) -> dict:
 
 def deserialize_json(data: dict) -> ResourcePolicy:
     out: ResourcePolicy = {}  # type: ignore[typeddict-item]
-    if "PolicyName" in data:
+    if data.get("PolicyName") is not None:
         out["policy_name"] = data["PolicyName"]
-    if "PolicyDocument" in data:
+    if data.get("PolicyDocument") is not None:
         out["policy_document"] = data["PolicyDocument"]
-    if "PolicyRevisionId" in data:
+    if data.get("PolicyRevisionId") is not None:
         out["policy_revision_id"] = data["PolicyRevisionId"]
-    if "LastUpdatedTime" in data:
+    if data.get("LastUpdatedTime") is not None:
         import capo_xray.types.timestamp
 
         out["last_updated_time"] = capo_xray.types.timestamp.deserialize_json(

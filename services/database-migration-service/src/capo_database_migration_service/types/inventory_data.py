@@ -31,8 +31,8 @@ def serialize_aws_json_1_1(value: InventoryData) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> InventoryData:
     out: InventoryData = {}  # type: ignore[typeddict-item]
-    if "NumberOfDatabases" in data:
+    if data.get("NumberOfDatabases") is not None:
         out["number_of_databases"] = data["NumberOfDatabases"]
-    if "NumberOfSchemas" in data:
+    if data.get("NumberOfSchemas") is not None:
         out["number_of_schemas"] = data["NumberOfSchemas"]
     return out

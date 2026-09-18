@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> GroupingRecommendationList:
 
     out: GroupingRecommendationList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_resiliencehub.types.grouping_recommendation.deserialize_json(item)
         )

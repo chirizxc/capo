@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> AntipatternReportResultList:
 
     out: AntipatternReportResultList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_migrationhubstrategy.types.antipattern_report_result.deserialize_json(
                 item

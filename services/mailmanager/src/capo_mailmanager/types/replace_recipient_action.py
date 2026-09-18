@@ -27,7 +27,7 @@ def serialize_aws_json_1_0(value: ReplaceRecipientAction) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ReplaceRecipientAction:
     out: ReplaceRecipientAction = {}  # type: ignore[typeddict-item]
-    if "ReplaceWith" in data:
+    if data.get("ReplaceWith") is not None:
         import capo_mailmanager.types.recipients
 
         out["replace_with"] = (

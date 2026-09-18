@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: MonitorConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> MonitorConfig:
     out: MonitorConfig = {}  # type: ignore[typeddict-item]
-    if "MonitorName" in data:
+    if data.get("MonitorName") is not None:
         out["monitor_name"] = data["MonitorName"]
     else:
         raise DeserializationError("MonitorConfig.monitor_name required")

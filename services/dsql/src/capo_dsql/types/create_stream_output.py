@@ -58,25 +58,25 @@ def serialize_json(value: CreateStreamOutput) -> dict:
 
 def deserialize_json(data: dict) -> CreateStreamOutput:
     out: CreateStreamOutput = {}  # type: ignore[typeddict-item]
-    if "clusterIdentifier" in data:
+    if data.get("clusterIdentifier") is not None:
         out["cluster_identifier"] = data["clusterIdentifier"]
     else:
         raise DeserializationError("CreateStreamOutput.cluster_identifier required")
-    if "streamIdentifier" in data:
+    if data.get("streamIdentifier") is not None:
         out["stream_identifier"] = data["streamIdentifier"]
     else:
         raise DeserializationError("CreateStreamOutput.stream_identifier required")
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("CreateStreamOutput.arn required")
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_dsql.types.stream_status
 
         out["status"] = capo_dsql.types.stream_status.deserialize_json(data["status"])
     else:
         raise DeserializationError("CreateStreamOutput.status required")
-    if "creationTime" in data:
+    if data.get("creationTime") is not None:
         import capo_dsql.types.stream_creation_time
 
         out["creation_time"] = capo_dsql.types.stream_creation_time.deserialize_json(
@@ -84,7 +84,7 @@ def deserialize_json(data: dict) -> CreateStreamOutput:
         )
     else:
         raise DeserializationError("CreateStreamOutput.creation_time required")
-    if "ordering" in data:
+    if data.get("ordering") is not None:
         import capo_dsql.types.stream_ordering
 
         out["ordering"] = capo_dsql.types.stream_ordering.deserialize_json(
@@ -92,7 +92,7 @@ def deserialize_json(data: dict) -> CreateStreamOutput:
         )
     else:
         raise DeserializationError("CreateStreamOutput.ordering required")
-    if "format" in data:
+    if data.get("format") is not None:
         import capo_dsql.types.stream_format
 
         out["format"] = capo_dsql.types.stream_format.deserialize_json(data["format"])

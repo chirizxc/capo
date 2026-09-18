@@ -43,17 +43,17 @@ def serialize_aws_json_1_1(value: RegisterInstanceRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RegisterInstanceRequest:
     out: RegisterInstanceRequest = {}  # type: ignore[typeddict-item]
-    if "ServiceId" in data:
+    if data.get("ServiceId") is not None:
         out["service_id"] = data["ServiceId"]
     else:
         raise DeserializationError("RegisterInstanceRequest.service_id required")
-    if "InstanceId" in data:
+    if data.get("InstanceId") is not None:
         out["instance_id"] = data["InstanceId"]
     else:
         raise DeserializationError("RegisterInstanceRequest.instance_id required")
-    if "CreatorRequestId" in data:
+    if data.get("CreatorRequestId") is not None:
         out["creator_request_id"] = data["CreatorRequestId"]
-    if "Attributes" in data:
+    if data.get("Attributes") is not None:
         import capo_servicediscovery.types.attributes
 
         out["attributes"] = (

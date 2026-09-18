@@ -32,11 +32,11 @@ def serialize_json(value: TagCollection) -> dict:
 
 def deserialize_json(data: dict) -> TagCollection:
     out: TagCollection = {}  # type: ignore[typeddict-item]
-    if "AppBoundaryKey" in data:
+    if data.get("AppBoundaryKey") is not None:
         out["app_boundary_key"] = data["AppBoundaryKey"]
     else:
         raise DeserializationError("TagCollection.app_boundary_key required")
-    if "TagValues" in data:
+    if data.get("TagValues") is not None:
         import capo_devops_guru.types.tag_values
 
         out["tag_values"] = capo_devops_guru.types.tag_values.deserialize_json(

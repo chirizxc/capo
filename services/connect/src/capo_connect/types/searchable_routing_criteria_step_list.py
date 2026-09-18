@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> SearchableRoutingCriteriaStepList:
 
     out: SearchableRoutingCriteriaStepList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_connect.types.searchable_routing_criteria_step.deserialize_json(item)
         )

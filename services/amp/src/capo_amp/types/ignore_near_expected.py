@@ -21,17 +21,37 @@ IgnoreNearExpected: TypeAlias = _IgnoreNearExpected_amount | _IgnoreNearExpected
 # --- restJson1 ser/de ---
 def serialize_json(value: IgnoreNearExpected) -> dict:
     if "amount" in value:
-        return {"amount": value["amount"]}
+        return {
+            "amount": (
+                "NaN"
+                if value["amount"] != value["amount"]
+                else "Infinity"
+                if value["amount"] == float("inf")
+                else "-Infinity"
+                if value["amount"] == float("-inf")
+                else value["amount"]
+            )
+        }
     elif "ratio" in value:
-        return {"ratio": value["ratio"]}
+        return {
+            "ratio": (
+                "NaN"
+                if value["ratio"] != value["ratio"]
+                else "Infinity"
+                if value["ratio"] == float("inf")
+                else "-Infinity"
+                if value["ratio"] == float("-inf")
+                else value["ratio"]
+            )
+        }
     else:
         raise SerializationError("IgnoreNearExpected: no variant present")
 
 
 def deserialize_json(data: dict) -> IgnoreNearExpected:
-    if "amount" in data:
-        return {"amount": data["amount"]}
-    elif "ratio" in data:
-        return {"ratio": data["ratio"]}
+    if data.get("amount") is not None:
+        return {"amount": float(data["amount"])}
+    elif data.get("ratio") is not None:
+        return {"ratio": float(data["ratio"])}
     else:
         raise DeserializationError("IgnoreNearExpected: no recognized variant key")

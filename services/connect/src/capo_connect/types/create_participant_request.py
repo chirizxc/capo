@@ -45,17 +45,17 @@ def serialize_json(value: CreateParticipantRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateParticipantRequest:
     out: CreateParticipantRequest = {}  # type: ignore[typeddict-item]
-    if "InstanceId" in data:
+    if data.get("InstanceId") is not None:
         out["instance_id"] = data["InstanceId"]
     else:
         raise DeserializationError("CreateParticipantRequest.instance_id required")
-    if "ContactId" in data:
+    if data.get("ContactId") is not None:
         out["contact_id"] = data["ContactId"]
     else:
         raise DeserializationError("CreateParticipantRequest.contact_id required")
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
-    if "ParticipantDetails" in data:
+    if data.get("ParticipantDetails") is not None:
         import capo_connect.types.participant_details_to_add
 
         out["participant_details"] = (

@@ -39,14 +39,14 @@ def serialize_json(value: DataSourceSyncJobMetrics) -> dict:
 
 def deserialize_json(data: dict) -> DataSourceSyncJobMetrics:
     out: DataSourceSyncJobMetrics = {}  # type: ignore[typeddict-item]
-    if "documentsAdded" in data:
+    if data.get("documentsAdded") is not None:
         out["documents_added"] = data["documentsAdded"]
-    if "documentsModified" in data:
+    if data.get("documentsModified") is not None:
         out["documents_modified"] = data["documentsModified"]
-    if "documentsDeleted" in data:
+    if data.get("documentsDeleted") is not None:
         out["documents_deleted"] = data["documentsDeleted"]
-    if "documentsFailed" in data:
+    if data.get("documentsFailed") is not None:
         out["documents_failed"] = data["documentsFailed"]
-    if "documentsScanned" in data:
+    if data.get("documentsScanned") is not None:
         out["documents_scanned"] = data["documentsScanned"]
     return out

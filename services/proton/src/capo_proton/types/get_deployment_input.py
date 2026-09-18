@@ -41,16 +41,16 @@ def serialize_aws_json_1_0(value: GetDeploymentInput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> GetDeploymentInput:
     out: GetDeploymentInput = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("GetDeploymentInput.id required")
-    if "environmentName" in data:
+    if data.get("environmentName") is not None:
         out["environment_name"] = data["environmentName"]
-    if "serviceName" in data:
+    if data.get("serviceName") is not None:
         out["service_name"] = data["serviceName"]
-    if "serviceInstanceName" in data:
+    if data.get("serviceInstanceName") is not None:
         out["service_instance_name"] = data["serviceInstanceName"]
-    if "componentName" in data:
+    if data.get("componentName") is not None:
         out["component_name"] = data["componentName"]
     return out

@@ -106,7 +106,7 @@ def serialize_json(value: UpdateProfileJobRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateProfileJobRequest:
     out: UpdateProfileJobRequest = {}  # type: ignore[typeddict-item]
-    if "Configuration" in data:
+    if data.get("Configuration") is not None:
         import capo_databrew.types.profile_configuration
 
         out["configuration"] = (
@@ -114,29 +114,29 @@ def deserialize_json(data: dict) -> UpdateProfileJobRequest:
                 data["Configuration"]
             )
         )
-    if "EncryptionKeyArn" in data:
+    if data.get("EncryptionKeyArn") is not None:
         out["encryption_key_arn"] = data["EncryptionKeyArn"]
-    if "EncryptionMode" in data:
+    if data.get("EncryptionMode") is not None:
         import capo_databrew.types.encryption_mode
 
         out["encryption_mode"] = capo_databrew.types.encryption_mode.deserialize_json(
             data["EncryptionMode"]
         )
-    if "LogSubscription" in data:
+    if data.get("LogSubscription") is not None:
         import capo_databrew.types.log_subscription
 
         out["log_subscription"] = capo_databrew.types.log_subscription.deserialize_json(
             data["LogSubscription"]
         )
-    if "MaxCapacity" in data:
+    if data.get("MaxCapacity") is not None:
         out["max_capacity"] = data["MaxCapacity"]
     else:
         out["max_capacity"] = 0
-    if "MaxRetries" in data:
+    if data.get("MaxRetries") is not None:
         out["max_retries"] = data["MaxRetries"]
     else:
         out["max_retries"] = 0
-    if "OutputLocation" in data:
+    if data.get("OutputLocation") is not None:
         import capo_databrew.types.s3_location
 
         out["output_location"] = capo_databrew.types.s3_location.deserialize_json(
@@ -144,7 +144,7 @@ def deserialize_json(data: dict) -> UpdateProfileJobRequest:
         )
     else:
         raise DeserializationError("UpdateProfileJobRequest.output_location required")
-    if "ValidationConfigurations" in data:
+    if data.get("ValidationConfigurations") is not None:
         import capo_databrew.types.validation_configuration_list
 
         out["validation_configurations"] = (
@@ -152,15 +152,15 @@ def deserialize_json(data: dict) -> UpdateProfileJobRequest:
                 data["ValidationConfigurations"]
             )
         )
-    if "RoleArn" in data:
+    if data.get("RoleArn") is not None:
         out["role_arn"] = data["RoleArn"]
     else:
         raise DeserializationError("UpdateProfileJobRequest.role_arn required")
-    if "Timeout" in data:
+    if data.get("Timeout") is not None:
         out["timeout"] = data["Timeout"]
     else:
         out["timeout"] = 0
-    if "JobSample" in data:
+    if data.get("JobSample") is not None:
         import capo_databrew.types.job_sample
 
         out["job_sample"] = capo_databrew.types.job_sample.deserialize_json(

@@ -23,6 +23,6 @@ def serialize_aws_json_1_1(value: UpdateMetricAttributionResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateMetricAttributionResponse:
     out: UpdateMetricAttributionResponse = {}  # type: ignore[typeddict-item]
-    if "metricAttributionArn" in data:
+    if data.get("metricAttributionArn") is not None:
         out["metric_attribution_arn"] = data["metricAttributionArn"]
     return out

@@ -54,15 +54,15 @@ def serialize_aws_json_1_1(value: StartCalculationExecutionRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> StartCalculationExecutionRequest:
     out: StartCalculationExecutionRequest = {}  # type: ignore[typeddict-item]
-    if "SessionId" in data:
+    if data.get("SessionId") is not None:
         out["session_id"] = data["SessionId"]
     else:
         raise DeserializationError(
             "StartCalculationExecutionRequest.session_id required"
         )
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "CalculationConfiguration" in data:
+    if data.get("CalculationConfiguration") is not None:
         import capo_athena.types.calculation_configuration
 
         out["calculation_configuration"] = (
@@ -70,8 +70,8 @@ def deserialize_aws_json_1_1(data: dict) -> StartCalculationExecutionRequest:
                 data["CalculationConfiguration"]
             )
         )
-    if "CodeBlock" in data:
+    if data.get("CodeBlock") is not None:
         out["code_block"] = data["CodeBlock"]
-    if "ClientRequestToken" in data:
+    if data.get("ClientRequestToken") is not None:
         out["client_request_token"] = data["ClientRequestToken"]
     return out

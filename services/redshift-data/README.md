@@ -13,9 +13,9 @@ from capo_redshift_data import AsyncRedshiftDataClient
 
 
 async def main():
-    async with AsyncRedshiftDataClient() as s3:
+    async with AsyncRedshiftDataClient() as redshift_data:
         # Example: call the batch_execute_statement operation
-        response = await s3.batch_execute_statement()
+        response = await redshift_data.batch_execute_statement()
         print(response["id"])
 ```
 
@@ -28,9 +28,9 @@ from capo_redshift_data import AsyncRedshiftDataClient
 
 
 async def main():
-    async with AsyncRedshiftDataClient() as s3:
+    async with AsyncRedshiftDataClient() as redshift_data:
         # Example: paginate over describe_table
-        async for item in s3.iter_describe_table():
+        async for item in redshift_data.iter_describe_table():
             print(item)
 ```
 
@@ -44,9 +44,9 @@ from capo_redshift_data.error import ActiveSessionsExceededException
 
 
 async def main():
-    async with AsyncRedshiftDataClient() as s3:
+    async with AsyncRedshiftDataClient() as redshift_data:
         try:
-            await s3.batch_execute_statement()
+            await redshift_data.batch_execute_statement()
         except ActiveSessionsExceededException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -63,13 +63,13 @@ from capo_redshift_data import AsyncRedshiftDataClient
 
 
 async def main():
-    async with AsyncRedshiftDataClient() as s3:
+    async with AsyncRedshiftDataClient() as redshift_data:
         # Default: 3 attempts for every operation
-        response = await s3.batch_execute_statement()
+        response = await redshift_data.batch_execute_statement()
 
         # Override per operation
-        response = await s3.batch_execute_statement(config_overrides={"retry_max_attempts": 5})
+        response = await redshift_data.batch_execute_statement(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.batch_execute_statement(config_overrides={"retry_max_attempts": 1})
+        response = await redshift_data.batch_execute_statement(config_overrides={"retry_max_attempts": 1})
 ```

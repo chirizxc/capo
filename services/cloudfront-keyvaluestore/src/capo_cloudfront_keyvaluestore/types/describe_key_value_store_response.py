@@ -62,21 +62,21 @@ def serialize_json(value: DescribeKeyValueStoreResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribeKeyValueStoreResponse:
     out: DescribeKeyValueStoreResponse = {}  # type: ignore[typeddict-item]
-    if "ItemCount" in data:
+    if data.get("ItemCount") is not None:
         out["item_count"] = data["ItemCount"]
     else:
         raise DeserializationError("DescribeKeyValueStoreResponse.item_count required")
-    if "TotalSizeInBytes" in data:
+    if data.get("TotalSizeInBytes") is not None:
         out["total_size_in_bytes"] = data["TotalSizeInBytes"]
     else:
         raise DeserializationError(
             "DescribeKeyValueStoreResponse.total_size_in_bytes required"
         )
-    if "KvsARN" in data:
+    if data.get("KvsARN") is not None:
         out["kvs_arn"] = data["KvsARN"]
     else:
         raise DeserializationError("DescribeKeyValueStoreResponse.kvs_arn required")
-    if "Created" in data:
+    if data.get("Created") is not None:
         import capo_cloudfront_keyvaluestore.types._prelude.timestamp
 
         out["created"] = (
@@ -86,7 +86,7 @@ def deserialize_json(data: dict) -> DescribeKeyValueStoreResponse:
         )
     else:
         raise DeserializationError("DescribeKeyValueStoreResponse.created required")
-    if "LastModified" in data:
+    if data.get("LastModified") is not None:
         import capo_cloudfront_keyvaluestore.types._prelude.timestamp
 
         out["last_modified"] = (
@@ -94,8 +94,8 @@ def deserialize_json(data: dict) -> DescribeKeyValueStoreResponse:
                 data["LastModified"]
             )
         )
-    if "Status" in data:
+    if data.get("Status") is not None:
         out["status"] = data["Status"]
-    if "FailureReason" in data:
+    if data.get("FailureReason") is not None:
         out["failure_reason"] = data["FailureReason"]
     return out

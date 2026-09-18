@@ -49,7 +49,7 @@ def serialize_json(value: RecommendationRelatedAnomaly) -> dict:
 
 def deserialize_json(data: dict) -> RecommendationRelatedAnomaly:
     out: RecommendationRelatedAnomaly = {}  # type: ignore[typeddict-item]
-    if "Resources" in data:
+    if data.get("Resources") is not None:
         import capo_devops_guru.types.recommendation_related_anomaly_resources
 
         out["resources"] = (
@@ -57,7 +57,7 @@ def deserialize_json(data: dict) -> RecommendationRelatedAnomaly:
                 data["Resources"]
             )
         )
-    if "SourceDetails" in data:
+    if data.get("SourceDetails") is not None:
         import capo_devops_guru.types.related_anomaly_source_details
 
         out["source_details"] = (
@@ -65,6 +65,6 @@ def deserialize_json(data: dict) -> RecommendationRelatedAnomaly:
                 data["SourceDetails"]
             )
         )
-    if "AnomalyId" in data:
+    if data.get("AnomalyId") is not None:
         out["anomaly_id"] = data["AnomalyId"]
     return out

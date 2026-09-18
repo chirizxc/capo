@@ -28,7 +28,7 @@ def serialize_json(value: UpdateAssertionResponse) -> dict:
 
 def deserialize_json(data: dict) -> UpdateAssertionResponse:
     out: UpdateAssertionResponse = {}  # type: ignore[typeddict-item]
-    if "assertion" in data:
+    if data.get("assertion") is not None:
         import capo_resiliencehubv2.types.assertion
 
         out["assertion"] = capo_resiliencehubv2.types.assertion.deserialize_json(

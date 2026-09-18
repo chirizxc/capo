@@ -71,33 +71,33 @@ def serialize_json(value: ReservationPlan) -> dict:
 
 def deserialize_json(data: dict) -> ReservationPlan:
     out: ReservationPlan = {}  # type: ignore[typeddict-item]
-    if "commitment" in data:
+    if data.get("commitment") is not None:
         import capo_mediaconvert.types.commitment
 
         out["commitment"] = capo_mediaconvert.types.commitment.deserialize_json(
             data["commitment"]
         )
-    if "expiresAt" in data:
+    if data.get("expiresAt") is not None:
         import capo_mediaconvert.types.__timestamp_unix
 
         out["expires_at"] = capo_mediaconvert.types.__timestamp_unix.deserialize_json(
             data["expiresAt"]
         )
-    if "purchasedAt" in data:
+    if data.get("purchasedAt") is not None:
         import capo_mediaconvert.types.__timestamp_unix
 
         out["purchased_at"] = capo_mediaconvert.types.__timestamp_unix.deserialize_json(
             data["purchasedAt"]
         )
-    if "renewalType" in data:
+    if data.get("renewalType") is not None:
         import capo_mediaconvert.types.renewal_type
 
         out["renewal_type"] = capo_mediaconvert.types.renewal_type.deserialize_json(
             data["renewalType"]
         )
-    if "reservedSlots" in data:
+    if data.get("reservedSlots") is not None:
         out["reserved_slots"] = data["reservedSlots"]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_mediaconvert.types.reservation_plan_status
 
         out["status"] = (

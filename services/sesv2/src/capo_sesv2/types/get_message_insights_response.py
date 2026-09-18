@@ -53,19 +53,19 @@ def serialize_json(value: GetMessageInsightsResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetMessageInsightsResponse:
     out: GetMessageInsightsResponse = {}  # type: ignore[typeddict-item]
-    if "MessageId" in data:
+    if data.get("MessageId") is not None:
         out["message_id"] = data["MessageId"]
-    if "FromEmailAddress" in data:
+    if data.get("FromEmailAddress") is not None:
         out["from_email_address"] = data["FromEmailAddress"]
-    if "Subject" in data:
+    if data.get("Subject") is not None:
         out["subject"] = data["Subject"]
-    if "EmailTags" in data:
+    if data.get("EmailTags") is not None:
         import capo_sesv2.types.message_tag_list
 
         out["email_tags"] = capo_sesv2.types.message_tag_list.deserialize_json(
             data["EmailTags"]
         )
-    if "Insights" in data:
+    if data.get("Insights") is not None:
         import capo_sesv2.types.email_insights_list
 
         out["insights"] = capo_sesv2.types.email_insights_list.deserialize_json(

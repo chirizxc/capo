@@ -27,7 +27,7 @@ def serialize_aws_json_1_1(value: GetDevEndpointResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetDevEndpointResponse:
     out: GetDevEndpointResponse = {}  # type: ignore[typeddict-item]
-    if "DevEndpoint" in data:
+    if data.get("DevEndpoint") is not None:
         import capo_glue.types.dev_endpoint
 
         out["dev_endpoint"] = capo_glue.types.dev_endpoint.deserialize_aws_json_1_1(

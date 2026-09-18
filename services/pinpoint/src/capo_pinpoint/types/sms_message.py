@@ -69,23 +69,23 @@ def serialize_json(value: SMSMessage) -> dict:
 
 def deserialize_json(data: dict) -> SMSMessage:
     out: SMSMessage = {}  # type: ignore[typeddict-item]
-    if "Body" in data:
+    if data.get("Body") is not None:
         out["body"] = data["Body"]
-    if "Keyword" in data:
+    if data.get("Keyword") is not None:
         out["keyword"] = data["Keyword"]
-    if "MediaUrl" in data:
+    if data.get("MediaUrl") is not None:
         out["media_url"] = data["MediaUrl"]
-    if "MessageType" in data:
+    if data.get("MessageType") is not None:
         import capo_pinpoint.types.message_type
 
         out["message_type"] = capo_pinpoint.types.message_type.deserialize_json(
             data["MessageType"]
         )
-    if "OriginationNumber" in data:
+    if data.get("OriginationNumber") is not None:
         out["origination_number"] = data["OriginationNumber"]
-    if "SenderId" in data:
+    if data.get("SenderId") is not None:
         out["sender_id"] = data["SenderId"]
-    if "Substitutions" in data:
+    if data.get("Substitutions") is not None:
         import capo_pinpoint.types.map_of_list_of__string
 
         out["substitutions"] = (
@@ -93,8 +93,8 @@ def deserialize_json(data: dict) -> SMSMessage:
                 data["Substitutions"]
             )
         )
-    if "EntityId" in data:
+    if data.get("EntityId") is not None:
         out["entity_id"] = data["EntityId"]
-    if "TemplateId" in data:
+    if data.get("TemplateId") is not None:
         out["template_id"] = data["TemplateId"]
     return out

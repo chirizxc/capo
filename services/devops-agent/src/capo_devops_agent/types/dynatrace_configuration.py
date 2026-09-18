@@ -36,11 +36,11 @@ def serialize_json(value: DynatraceConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> DynatraceConfiguration:
     out: DynatraceConfiguration = {}  # type: ignore[typeddict-item]
-    if "envId" in data:
+    if data.get("envId") is not None:
         out["env_id"] = data["envId"]
     else:
         raise DeserializationError("DynatraceConfiguration.env_id required")
-    if "resources" in data:
+    if data.get("resources") is not None:
         import capo_devops_agent.types.dynatrace_resource_list
 
         out["resources"] = (

@@ -14,4 +14,4 @@ def serialize_json(value: IpV6AddressList) -> list:
 
 
 def deserialize_json(data: list) -> IpV6AddressList:
-    return list(data)
+    return [item for item in data if item is not None]

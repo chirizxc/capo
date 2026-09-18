@@ -31,12 +31,12 @@ def serialize_json(value: StartRecoveryRequestSourceServer) -> dict:
 
 def deserialize_json(data: dict) -> StartRecoveryRequestSourceServer:
     out: StartRecoveryRequestSourceServer = {}  # type: ignore[typeddict-item]
-    if "sourceServerID" in data:
+    if data.get("sourceServerID") is not None:
         out["source_server_id"] = data["sourceServerID"]
     else:
         raise DeserializationError(
             "StartRecoveryRequestSourceServer.source_server_id required"
         )
-    if "recoverySnapshotID" in data:
+    if data.get("recoverySnapshotID") is not None:
         out["recovery_snapshot_id"] = data["recoverySnapshotID"]
     return out

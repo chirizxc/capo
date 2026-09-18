@@ -40,11 +40,11 @@ def serialize_aws_json_1_0(value: StartLambdaFunctionFailedEventAttributes) -> d
 
 def deserialize_aws_json_1_0(data: dict) -> StartLambdaFunctionFailedEventAttributes:
     out: StartLambdaFunctionFailedEventAttributes = {}  # type: ignore[typeddict-item]
-    if "scheduledEventId" in data:
+    if data.get("scheduledEventId") is not None:
         out["scheduled_event_id"] = data["scheduledEventId"]
     else:
         out["scheduled_event_id"] = 0
-    if "cause" in data:
+    if data.get("cause") is not None:
         import capo_swf.types.start_lambda_function_failed_cause
 
         out["cause"] = (
@@ -52,6 +52,6 @@ def deserialize_aws_json_1_0(data: dict) -> StartLambdaFunctionFailedEventAttrib
                 data["cause"]
             )
         )
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     return out

@@ -41,17 +41,17 @@ def serialize_json(value: SmsChannelSubtypeParameters) -> dict:
 
 def deserialize_json(data: dict) -> SmsChannelSubtypeParameters:
     out: SmsChannelSubtypeParameters = {}  # type: ignore[typeddict-item]
-    if "destinationPhoneNumber" in data:
+    if data.get("destinationPhoneNumber") is not None:
         out["destination_phone_number"] = data["destinationPhoneNumber"]
     else:
         raise DeserializationError(
             "SmsChannelSubtypeParameters.destination_phone_number required"
         )
-    if "connectSourcePhoneNumberArn" in data:
+    if data.get("connectSourcePhoneNumberArn") is not None:
         out["connect_source_phone_number_arn"] = data["connectSourcePhoneNumberArn"]
-    if "templateArn" in data:
+    if data.get("templateArn") is not None:
         out["template_arn"] = data["templateArn"]
-    if "templateParameters" in data:
+    if data.get("templateParameters") is not None:
         import capo_connectcampaignsv2.types.attributes
 
         out["template_parameters"] = (

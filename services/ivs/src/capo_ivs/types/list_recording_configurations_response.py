@@ -37,7 +37,7 @@ def serialize_json(value: ListRecordingConfigurationsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListRecordingConfigurationsResponse:
     out: ListRecordingConfigurationsResponse = {}  # type: ignore[typeddict-item]
-    if "recordingConfigurations" in data:
+    if data.get("recordingConfigurations") is not None:
         import capo_ivs.types.recording_configuration_list
 
         out["recording_configurations"] = (
@@ -49,6 +49,6 @@ def deserialize_json(data: dict) -> ListRecordingConfigurationsResponse:
         raise DeserializationError(
             "ListRecordingConfigurationsResponse.recording_configurations required"
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

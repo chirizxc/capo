@@ -22,14 +22,22 @@ def serialize_json(value: ShareAttributes) -> dict:
     if "share_identifier" in value:
         out["shareIdentifier"] = value["share_identifier"]
     if "weight_factor" in value:
-        out["weightFactor"] = value["weight_factor"]
+        out["weightFactor"] = (
+            "NaN"
+            if value["weight_factor"] != value["weight_factor"]
+            else "Infinity"
+            if value["weight_factor"] == float("inf")
+            else "-Infinity"
+            if value["weight_factor"] == float("-inf")
+            else value["weight_factor"]
+        )
     return out
 
 
 def deserialize_json(data: dict) -> ShareAttributes:
     out: ShareAttributes = {}  # type: ignore[typeddict-item]
-    if "shareIdentifier" in data:
+    if data.get("shareIdentifier") is not None:
         out["share_identifier"] = data["shareIdentifier"]
-    if "weightFactor" in data:
-        out["weight_factor"] = data["weightFactor"]
+    if data.get("weightFactor") is not None:
+        out["weight_factor"] = float(data["weightFactor"])
     return out

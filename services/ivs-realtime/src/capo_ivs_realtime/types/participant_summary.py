@@ -90,36 +90,36 @@ def serialize_json(value: ParticipantSummary) -> dict:
 
 def deserialize_json(data: dict) -> ParticipantSummary:
     out: ParticipantSummary = {}  # type: ignore[typeddict-item]
-    if "participantId" in data:
+    if data.get("participantId") is not None:
         out["participant_id"] = data["participantId"]
-    if "userId" in data:
+    if data.get("userId") is not None:
         out["user_id"] = data["userId"]
-    if "state" in data:
+    if data.get("state") is not None:
         out["state"] = data["state"]
-    if "firstJoinTime" in data:
+    if data.get("firstJoinTime") is not None:
         import capo_ivs_realtime.types.time
 
         out["first_join_time"] = capo_ivs_realtime.types.time.deserialize_json(
             data["firstJoinTime"]
         )
-    if "published" in data:
+    if data.get("published") is not None:
         out["published"] = data["published"]
     else:
         out["published"] = False
-    if "recordingState" in data:
+    if data.get("recordingState") is not None:
         out["recording_state"] = data["recordingState"]
-    if "replicationType" in data:
+    if data.get("replicationType") is not None:
         out["replication_type"] = data["replicationType"]
-    if "replicationState" in data:
+    if data.get("replicationState") is not None:
         out["replication_state"] = data["replicationState"]
-    if "sourceStageArn" in data:
+    if data.get("sourceStageArn") is not None:
         out["source_stage_arn"] = data["sourceStageArn"]
-    if "sourceSessionId" in data:
+    if data.get("sourceSessionId") is not None:
         out["source_session_id"] = data["sourceSessionId"]
-    if "redundantIngest" in data:
+    if data.get("redundantIngest") is not None:
         out["redundant_ingest"] = data["redundantIngest"]
     else:
         out["redundant_ingest"] = False
-    if "ingestConfigurationArn" in data:
+    if data.get("ingestConfigurationArn") is not None:
         out["ingest_configuration_arn"] = data["ingestConfigurationArn"]
     return out

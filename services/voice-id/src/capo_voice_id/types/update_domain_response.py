@@ -27,7 +27,7 @@ def serialize_aws_json_1_0(value: UpdateDomainResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> UpdateDomainResponse:
     out: UpdateDomainResponse = {}  # type: ignore[typeddict-item]
-    if "Domain" in data:
+    if data.get("Domain") is not None:
         import capo_voice_id.types.domain
 
         out["domain"] = capo_voice_id.types.domain.deserialize_aws_json_1_0(

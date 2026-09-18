@@ -18,6 +18,6 @@ def serialize_aws_json_1_0(value: TransportableTablespace) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> TransportableTablespace:
     out: TransportableTablespace = {}  # type: ignore[typeddict-item]
-    if "ttsBundleUrl" in data:
+    if data.get("ttsBundleUrl") is not None:
         out["tts_bundle_url"] = data["ttsBundleUrl"]
     return out

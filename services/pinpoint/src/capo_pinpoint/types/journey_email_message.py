@@ -23,6 +23,6 @@ def serialize_json(value: JourneyEmailMessage) -> dict:
 
 def deserialize_json(data: dict) -> JourneyEmailMessage:
     out: JourneyEmailMessage = {}  # type: ignore[typeddict-item]
-    if "FromAddress" in data:
+    if data.get("FromAddress") is not None:
         out["from_address"] = data["FromAddress"]
     return out

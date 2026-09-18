@@ -26,7 +26,7 @@ def serialize_json(value: UpdateCaseActionDefinition) -> dict:
 
 def deserialize_json(data: dict) -> UpdateCaseActionDefinition:
     out: UpdateCaseActionDefinition = {}  # type: ignore[typeddict-item]
-    if "Fields" in data:
+    if data.get("Fields") is not None:
         import capo_connect.types.field_values
 
         out["fields"] = capo_connect.types.field_values.deserialize_json(data["Fields"])

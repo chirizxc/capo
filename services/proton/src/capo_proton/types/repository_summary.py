@@ -36,19 +36,19 @@ def serialize_aws_json_1_0(value: RepositorySummary) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> RepositorySummary:
     out: RepositorySummary = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("RepositorySummary.arn required")
-    if "provider" in data:
+    if data.get("provider") is not None:
         out["provider"] = data["provider"]
     else:
         raise DeserializationError("RepositorySummary.provider required")
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("RepositorySummary.name required")
-    if "connectionArn" in data:
+    if data.get("connectionArn") is not None:
         out["connection_arn"] = data["connectionArn"]
     else:
         raise DeserializationError("RepositorySummary.connection_arn required")

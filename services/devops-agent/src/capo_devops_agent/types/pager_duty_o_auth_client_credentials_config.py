@@ -45,15 +45,15 @@ def serialize_json(value: PagerDutyOAuthClientCredentialsConfig) -> dict:
 
 def deserialize_json(data: dict) -> PagerDutyOAuthClientCredentialsConfig:
     out: PagerDutyOAuthClientCredentialsConfig = {}  # type: ignore[typeddict-item]
-    if "clientName" in data:
+    if data.get("clientName") is not None:
         out["client_name"] = data["clientName"]
-    if "clientId" in data:
+    if data.get("clientId") is not None:
         out["client_id"] = data["clientId"]
     else:
         raise DeserializationError(
             "PagerDutyOAuthClientCredentialsConfig.client_id required"
         )
-    if "exchangeParameters" in data:
+    if data.get("exchangeParameters") is not None:
         import capo_devops_agent.types.exchange_parameters
 
         out["exchange_parameters"] = (
@@ -61,7 +61,7 @@ def deserialize_json(data: dict) -> PagerDutyOAuthClientCredentialsConfig:
                 data["exchangeParameters"]
             )
         )
-    if "clientSecret" in data:
+    if data.get("clientSecret") is not None:
         out["client_secret"] = data["clientSecret"]
     else:
         raise DeserializationError(

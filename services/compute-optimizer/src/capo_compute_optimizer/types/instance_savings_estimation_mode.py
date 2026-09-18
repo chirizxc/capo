@@ -31,7 +31,7 @@ def serialize_aws_json_1_0(value: InstanceSavingsEstimationMode) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> InstanceSavingsEstimationMode:
     out: InstanceSavingsEstimationMode = {}  # type: ignore[typeddict-item]
-    if "source" in data:
+    if data.get("source") is not None:
         import capo_compute_optimizer.types.instance_savings_estimation_mode_source
 
         out["source"] = (

@@ -61,13 +61,13 @@ def serialize_json(value: CreateBacklogTaskRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateBacklogTaskRequest:
     out: CreateBacklogTaskRequest = {}  # type: ignore[typeddict-item]
-    if "reference" in data:
+    if data.get("reference") is not None:
         import capo_devops_agent.types.reference_input
 
         out["reference"] = capo_devops_agent.types.reference_input.deserialize_json(
             data["reference"]
         )
-    if "taskType" in data:
+    if data.get("taskType") is not None:
         import capo_devops_agent.types.task_type
 
         out["task_type"] = capo_devops_agent.types.task_type.deserialize_json(
@@ -75,13 +75,13 @@ def deserialize_json(data: dict) -> CreateBacklogTaskRequest:
         )
     else:
         raise DeserializationError("CreateBacklogTaskRequest.task_type required")
-    if "title" in data:
+    if data.get("title") is not None:
         out["title"] = data["title"]
     else:
         raise DeserializationError("CreateBacklogTaskRequest.title required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "priority" in data:
+    if data.get("priority") is not None:
         import capo_devops_agent.types.priority
 
         out["priority"] = capo_devops_agent.types.priority.deserialize_json(
@@ -89,6 +89,6 @@ def deserialize_json(data: dict) -> CreateBacklogTaskRequest:
         )
     else:
         raise DeserializationError("CreateBacklogTaskRequest.priority required")
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     return out

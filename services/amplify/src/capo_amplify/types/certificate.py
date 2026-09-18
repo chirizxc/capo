@@ -42,15 +42,15 @@ def serialize_json(value: Certificate) -> dict:
 
 def deserialize_json(data: dict) -> Certificate:
     out: Certificate = {}  # type: ignore[typeddict-item]
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_amplify.types.certificate_type
 
         out["type"] = capo_amplify.types.certificate_type.deserialize_json(data["type"])
     else:
         raise DeserializationError("Certificate.type required")
-    if "customCertificateArn" in data:
+    if data.get("customCertificateArn") is not None:
         out["custom_certificate_arn"] = data["customCertificateArn"]
-    if "certificateVerificationDNSRecord" in data:
+    if data.get("certificateVerificationDNSRecord") is not None:
         out["certificate_verification_dns_record"] = data[
             "certificateVerificationDNSRecord"
         ]

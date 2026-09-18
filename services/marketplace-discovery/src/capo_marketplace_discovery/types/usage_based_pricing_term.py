@@ -46,11 +46,11 @@ def serialize_json(value: UsageBasedPricingTerm) -> dict:
 
 def deserialize_json(data: dict) -> UsageBasedPricingTerm:
     out: UsageBasedPricingTerm = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("UsageBasedPricingTerm.id required")
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_marketplace_discovery.types.term_type
 
         out["type"] = capo_marketplace_discovery.types.term_type.deserialize_json(
@@ -58,11 +58,11 @@ def deserialize_json(data: dict) -> UsageBasedPricingTerm:
         )
     else:
         raise DeserializationError("UsageBasedPricingTerm.type required")
-    if "currencyCode" in data:
+    if data.get("currencyCode") is not None:
         out["currency_code"] = data["currencyCode"]
     else:
         raise DeserializationError("UsageBasedPricingTerm.currency_code required")
-    if "rateCards" in data:
+    if data.get("rateCards") is not None:
         import capo_marketplace_discovery.types.usage_based_rate_card_list
 
         out["rate_cards"] = (

@@ -66,7 +66,7 @@ def serialize_aws_json_1_0(value: RequestedTermConfiguration) -> dict:
 
 
 def deserialize_aws_json_1_0(data: dict) -> RequestedTermConfiguration:
-    if "configurableUpfrontPricingTermConfiguration" in data:
+    if data.get("configurableUpfrontPricingTermConfiguration") is not None:
         import capo_marketplace_agreement.types.configurable_upfront_pricing_term_configuration
 
         return {
@@ -74,7 +74,7 @@ def deserialize_aws_json_1_0(data: dict) -> RequestedTermConfiguration:
                 data["configurableUpfrontPricingTermConfiguration"]
             )
         }
-    elif "renewalTermConfiguration" in data:
+    elif data.get("renewalTermConfiguration") is not None:
         import capo_marketplace_agreement.types.renewal_term_configuration
 
         return {
@@ -82,7 +82,7 @@ def deserialize_aws_json_1_0(data: dict) -> RequestedTermConfiguration:
                 data["renewalTermConfiguration"]
             )
         }
-    elif "variablePaymentTermConfiguration" in data:
+    elif data.get("variablePaymentTermConfiguration") is not None:
         import capo_marketplace_agreement.types.variable_payment_term_configuration
 
         return {

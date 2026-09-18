@@ -72,16 +72,18 @@ class ApplicationGrantResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_sso_admin.types.put_application_grant_request.PutApplicationGrantRequest = {}  # type: ignore[typeddict-item]
-        input_["application_arn"] = application_arn
-        input_["grant_type"] = grant_type
-        input_["grant"] = grant
+        input_: capo_sso_admin.types.put_application_grant_request.PutApplicationGrantRequest = {
+            "application_arn": application_arn,
+            "grant_type": grant_type,
+            "grant": grant,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -121,15 +123,17 @@ class ApplicationGrantResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_sso_admin.types.get_application_grant_request.GetApplicationGrantRequest = {}  # type: ignore[typeddict-item]
-        input_["application_arn"] = application_arn
-        input_["grant_type"] = grant_type
+        input_: capo_sso_admin.types.get_application_grant_request.GetApplicationGrantRequest = {
+            "application_arn": application_arn,
+            "grant_type": grant_type,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -168,15 +172,17 @@ class ApplicationGrantResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_sso_admin.types.delete_application_grant_request.DeleteApplicationGrantRequest = {}  # type: ignore[typeddict-item]
-        input_["application_arn"] = application_arn
-        input_["grant_type"] = grant_type
+        input_: capo_sso_admin.types.delete_application_grant_request.DeleteApplicationGrantRequest = {
+            "application_arn": application_arn,
+            "grant_type": grant_type,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -216,8 +222,9 @@ class ApplicationGrantResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_sso_admin.types.list_application_grants_request.ListApplicationGrantsRequest = {}  # type: ignore[typeddict-item]
-        input_["application_arn"] = application_arn
+        input_: capo_sso_admin.types.list_application_grants_request.ListApplicationGrantsRequest = {
+            "application_arn": application_arn
+        }
         if next_token is not None:
             input_["next_token"] = next_token
 
@@ -226,6 +233,7 @@ class ApplicationGrantResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -272,16 +280,18 @@ class AsyncApplicationGrantResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_sso_admin.types.put_application_grant_request.PutApplicationGrantRequest = {}  # type: ignore[typeddict-item]
-        input_["application_arn"] = application_arn
-        input_["grant_type"] = grant_type
-        input_["grant"] = grant
+        input_: capo_sso_admin.types.put_application_grant_request.PutApplicationGrantRequest = {
+            "application_arn": application_arn,
+            "grant_type": grant_type,
+            "grant": grant,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -322,15 +332,17 @@ class AsyncApplicationGrantResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_sso_admin.types.get_application_grant_request.GetApplicationGrantRequest = {}  # type: ignore[typeddict-item]
-        input_["application_arn"] = application_arn
-        input_["grant_type"] = grant_type
+        input_: capo_sso_admin.types.get_application_grant_request.GetApplicationGrantRequest = {
+            "application_arn": application_arn,
+            "grant_type": grant_type,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -370,15 +382,17 @@ class AsyncApplicationGrantResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_sso_admin.types.delete_application_grant_request.DeleteApplicationGrantRequest = {}  # type: ignore[typeddict-item]
-        input_["application_arn"] = application_arn
-        input_["grant_type"] = grant_type
+        input_: capo_sso_admin.types.delete_application_grant_request.DeleteApplicationGrantRequest = {
+            "application_arn": application_arn,
+            "grant_type": grant_type,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -419,8 +433,9 @@ class AsyncApplicationGrantResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_sso_admin.types.list_application_grants_request.ListApplicationGrantsRequest = {}  # type: ignore[typeddict-item]
-        input_["application_arn"] = application_arn
+        input_: capo_sso_admin.types.list_application_grants_request.ListApplicationGrantsRequest = {
+            "application_arn": application_arn
+        }
         if next_token is not None:
             input_["next_token"] = next_token
 
@@ -429,4 +444,5 @@ class AsyncApplicationGrantResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

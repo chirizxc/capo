@@ -150,13 +150,13 @@ def serialize_aws_json_1_1(value: ParallelDataProperties) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ParallelDataProperties:
     out: ParallelDataProperties = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_translate.types.parallel_data_status
 
         out["status"] = (
@@ -164,9 +164,9 @@ def deserialize_aws_json_1_1(data: dict) -> ParallelDataProperties:
                 data["Status"]
             )
         )
-    if "SourceLanguageCode" in data:
+    if data.get("SourceLanguageCode") is not None:
         out["source_language_code"] = data["SourceLanguageCode"]
-    if "TargetLanguageCodes" in data:
+    if data.get("TargetLanguageCodes") is not None:
         import capo_translate.types.language_code_string_list
 
         out["target_language_codes"] = (
@@ -174,7 +174,7 @@ def deserialize_aws_json_1_1(data: dict) -> ParallelDataProperties:
                 data["TargetLanguageCodes"]
             )
         )
-    if "ParallelDataConfig" in data:
+    if data.get("ParallelDataConfig") is not None:
         import capo_translate.types.parallel_data_config
 
         out["parallel_data_config"] = (
@@ -182,17 +182,17 @@ def deserialize_aws_json_1_1(data: dict) -> ParallelDataProperties:
                 data["ParallelDataConfig"]
             )
         )
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
-    if "ImportedDataSize" in data:
+    if data.get("ImportedDataSize") is not None:
         out["imported_data_size"] = data["ImportedDataSize"]
-    if "ImportedRecordCount" in data:
+    if data.get("ImportedRecordCount") is not None:
         out["imported_record_count"] = data["ImportedRecordCount"]
-    if "FailedRecordCount" in data:
+    if data.get("FailedRecordCount") is not None:
         out["failed_record_count"] = data["FailedRecordCount"]
-    if "SkippedRecordCount" in data:
+    if data.get("SkippedRecordCount") is not None:
         out["skipped_record_count"] = data["SkippedRecordCount"]
-    if "EncryptionKey" in data:
+    if data.get("EncryptionKey") is not None:
         import capo_translate.types.encryption_key
 
         out["encryption_key"] = (
@@ -200,13 +200,13 @@ def deserialize_aws_json_1_1(data: dict) -> ParallelDataProperties:
                 data["EncryptionKey"]
             )
         )
-    if "CreatedAt" in data:
+    if data.get("CreatedAt") is not None:
         import capo_translate.types.timestamp
 
         out["created_at"] = capo_translate.types.timestamp.deserialize_aws_json_1_1(
             data["CreatedAt"]
         )
-    if "LastUpdatedAt" in data:
+    if data.get("LastUpdatedAt") is not None:
         import capo_translate.types.timestamp
 
         out["last_updated_at"] = (
@@ -214,7 +214,7 @@ def deserialize_aws_json_1_1(data: dict) -> ParallelDataProperties:
                 data["LastUpdatedAt"]
             )
         )
-    if "LatestUpdateAttemptStatus" in data:
+    if data.get("LatestUpdateAttemptStatus") is not None:
         import capo_translate.types.parallel_data_status
 
         out["latest_update_attempt_status"] = (
@@ -222,7 +222,7 @@ def deserialize_aws_json_1_1(data: dict) -> ParallelDataProperties:
                 data["LatestUpdateAttemptStatus"]
             )
         )
-    if "LatestUpdateAttemptAt" in data:
+    if data.get("LatestUpdateAttemptAt") is not None:
         import capo_translate.types.timestamp
 
         out["latest_update_attempt_at"] = (

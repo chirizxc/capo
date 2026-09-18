@@ -48,13 +48,13 @@ def serialize_json(value: QueryGraphInput) -> dict:
 
 def deserialize_json(data: dict) -> QueryGraphInput:
     out: QueryGraphInput = {}  # type: ignore[typeddict-item]
-    if "match" in data:
+    if data.get("match") is not None:
         import capo_datazone.types.match_clauses
 
         out["match"] = capo_datazone.types.match_clauses.deserialize_json(data["match"])
     else:
         raise DeserializationError("QueryGraphInput.match required")
-    if "additionalAttributes" in data:
+    if data.get("additionalAttributes") is not None:
         import capo_datazone.types.additional_attributes
 
         out["additional_attributes"] = (

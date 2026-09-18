@@ -58,11 +58,11 @@ def serialize_json(value: UpdateEnvironmentProfileInput) -> dict:
 
 def deserialize_json(data: dict) -> UpdateEnvironmentProfileInput:
     out: UpdateEnvironmentProfileInput = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "userParameters" in data:
+    if data.get("userParameters") is not None:
         import capo_datazone.types.environment_parameters_list
 
         out["user_parameters"] = (
@@ -70,8 +70,8 @@ def deserialize_json(data: dict) -> UpdateEnvironmentProfileInput:
                 data["userParameters"]
             )
         )
-    if "awsAccountId" in data:
+    if data.get("awsAccountId") is not None:
         out["aws_account_id"] = data["awsAccountId"]
-    if "awsAccountRegion" in data:
+    if data.get("awsAccountRegion") is not None:
         out["aws_account_region"] = data["awsAccountRegion"]
     return out

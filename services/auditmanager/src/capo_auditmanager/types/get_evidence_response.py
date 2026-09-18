@@ -27,7 +27,7 @@ def serialize_json(value: GetEvidenceResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetEvidenceResponse:
     out: GetEvidenceResponse = {}  # type: ignore[typeddict-item]
-    if "evidence" in data:
+    if data.get("evidence") is not None:
         import capo_auditmanager.types.evidence
 
         out["evidence"] = capo_auditmanager.types.evidence.deserialize_json(

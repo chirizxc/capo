@@ -23,5 +23,7 @@ def deserialize_aws_json_1_1(data: list) -> FinalMetricDataList:
 
     out: FinalMetricDataList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_sagemaker.types.metric_data.deserialize_aws_json_1_1(item))
     return out

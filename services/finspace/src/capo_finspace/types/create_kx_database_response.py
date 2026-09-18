@@ -55,21 +55,21 @@ def serialize_json(value: CreateKxDatabaseResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateKxDatabaseResponse:
     out: CreateKxDatabaseResponse = {}  # type: ignore[typeddict-item]
-    if "databaseName" in data:
+    if data.get("databaseName") is not None:
         out["database_name"] = data["databaseName"]
-    if "databaseArn" in data:
+    if data.get("databaseArn") is not None:
         out["database_arn"] = data["databaseArn"]
-    if "environmentId" in data:
+    if data.get("environmentId") is not None:
         out["environment_id"] = data["environmentId"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "createdTimestamp" in data:
+    if data.get("createdTimestamp") is not None:
         import capo_finspace.types.timestamp
 
         out["created_timestamp"] = capo_finspace.types.timestamp.deserialize_json(
             data["createdTimestamp"]
         )
-    if "lastModifiedTimestamp" in data:
+    if data.get("lastModifiedTimestamp") is not None:
         import capo_finspace.types.timestamp
 
         out["last_modified_timestamp"] = capo_finspace.types.timestamp.deserialize_json(

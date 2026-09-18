@@ -23,6 +23,6 @@ def serialize_json(value: ChatEntryPointParameters) -> dict:
 
 def deserialize_json(data: dict) -> ChatEntryPointParameters:
     out: ChatEntryPointParameters = {}  # type: ignore[typeddict-item]
-    if "FlowId" in data:
+    if data.get("FlowId") is not None:
         out["flow_id"] = data["FlowId"]
     return out

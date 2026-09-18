@@ -44,15 +44,15 @@ def serialize_json(value: NdiConfig) -> dict:
 
 def deserialize_json(data: dict) -> NdiConfig:
     out: NdiConfig = {}  # type: ignore[typeddict-item]
-    if "ndiState" in data:
+    if data.get("ndiState") is not None:
         import capo_mediaconnect.types.ndi_state
 
         out["ndi_state"] = capo_mediaconnect.types.ndi_state.deserialize_json(
             data["ndiState"]
         )
-    if "machineName" in data:
+    if data.get("machineName") is not None:
         out["machine_name"] = data["machineName"]
-    if "ndiDiscoveryServers" in data:
+    if data.get("ndiDiscoveryServers") is not None:
         import capo_mediaconnect.types.__list_of_ndi_discovery_server_config
 
         out["ndi_discovery_servers"] = (

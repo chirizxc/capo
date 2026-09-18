@@ -27,7 +27,7 @@ def serialize_aws_json_1_1(value: GetPartitionResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetPartitionResponse:
     out: GetPartitionResponse = {}  # type: ignore[typeddict-item]
-    if "Partition" in data:
+    if data.get("Partition") is not None:
         import capo_glue.types.partition
 
         out["partition"] = capo_glue.types.partition.deserialize_aws_json_1_1(

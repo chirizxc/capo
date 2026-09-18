@@ -40,7 +40,7 @@ def serialize_json(value: BatchGetFindingsResponse) -> dict:
 
 def deserialize_json(data: dict) -> BatchGetFindingsResponse:
     out: BatchGetFindingsResponse = {}  # type: ignore[typeddict-item]
-    if "findings" in data:
+    if data.get("findings") is not None:
         import capo_codeguru_security.types.findings
 
         out["findings"] = capo_codeguru_security.types.findings.deserialize_json(
@@ -48,7 +48,7 @@ def deserialize_json(data: dict) -> BatchGetFindingsResponse:
         )
     else:
         raise DeserializationError("BatchGetFindingsResponse.findings required")
-    if "failedFindings" in data:
+    if data.get("failedFindings") is not None:
         import capo_codeguru_security.types.batch_get_findings_errors
 
         out["failed_findings"] = (

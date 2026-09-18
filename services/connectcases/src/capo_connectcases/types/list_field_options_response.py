@@ -33,7 +33,7 @@ def serialize_json(value: ListFieldOptionsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListFieldOptionsResponse:
     out: ListFieldOptionsResponse = {}  # type: ignore[typeddict-item]
-    if "options" in data:
+    if data.get("options") is not None:
         import capo_connectcases.types.field_options_list
 
         out["options"] = capo_connectcases.types.field_options_list.deserialize_json(
@@ -41,6 +41,6 @@ def deserialize_json(data: dict) -> ListFieldOptionsResponse:
         )
     else:
         raise DeserializationError("ListFieldOptionsResponse.options required")
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

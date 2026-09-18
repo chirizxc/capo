@@ -66,25 +66,25 @@ def serialize_json(value: ChatResponseConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> ChatResponseConfiguration:
     out: ChatResponseConfiguration = {}  # type: ignore[typeddict-item]
-    if "chatResponseConfigurationId" in data:
+    if data.get("chatResponseConfigurationId") is not None:
         out["chat_response_configuration_id"] = data["chatResponseConfigurationId"]
     else:
         raise DeserializationError(
             "ChatResponseConfiguration.chat_response_configuration_id required"
         )
-    if "chatResponseConfigurationArn" in data:
+    if data.get("chatResponseConfigurationArn") is not None:
         out["chat_response_configuration_arn"] = data["chatResponseConfigurationArn"]
     else:
         raise DeserializationError(
             "ChatResponseConfiguration.chat_response_configuration_arn required"
         )
-    if "displayName" in data:
+    if data.get("displayName") is not None:
         out["display_name"] = data["displayName"]
     else:
         raise DeserializationError("ChatResponseConfiguration.display_name required")
-    if "responseConfigurationSummary" in data:
+    if data.get("responseConfigurationSummary") is not None:
         out["response_configuration_summary"] = data["responseConfigurationSummary"]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_qbusiness.types.chat_response_configuration_status
 
         out["status"] = (
@@ -94,13 +94,13 @@ def deserialize_json(data: dict) -> ChatResponseConfiguration:
         )
     else:
         raise DeserializationError("ChatResponseConfiguration.status required")
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_qbusiness.types.timestamp
 
         out["created_at"] = capo_qbusiness.types.timestamp.deserialize_json(
             data["createdAt"]
         )
-    if "updatedAt" in data:
+    if data.get("updatedAt") is not None:
         import capo_qbusiness.types.timestamp
 
         out["updated_at"] = capo_qbusiness.types.timestamp.deserialize_json(

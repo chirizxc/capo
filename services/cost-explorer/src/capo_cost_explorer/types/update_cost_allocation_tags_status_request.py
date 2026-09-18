@@ -30,7 +30,7 @@ def serialize_aws_json_1_1(value: UpdateCostAllocationTagsStatusRequest) -> dict
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateCostAllocationTagsStatusRequest:
     out: UpdateCostAllocationTagsStatusRequest = {}  # type: ignore[typeddict-item]
-    if "CostAllocationTagsStatus" in data:
+    if data.get("CostAllocationTagsStatus") is not None:
         import capo_cost_explorer.types.cost_allocation_tag_status_list
 
         out["cost_allocation_tags_status"] = (

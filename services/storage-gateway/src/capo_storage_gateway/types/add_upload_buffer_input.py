@@ -31,11 +31,11 @@ def serialize_aws_json_1_1(value: AddUploadBufferInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AddUploadBufferInput:
     out: AddUploadBufferInput = {}  # type: ignore[typeddict-item]
-    if "GatewayARN" in data:
+    if data.get("GatewayARN") is not None:
         out["gateway_arn"] = data["GatewayARN"]
     else:
         raise DeserializationError("AddUploadBufferInput.gateway_arn required")
-    if "DiskIds" in data:
+    if data.get("DiskIds") is not None:
         import capo_storage_gateway.types.disk_ids
 
         out["disk_ids"] = capo_storage_gateway.types.disk_ids.deserialize_aws_json_1_1(

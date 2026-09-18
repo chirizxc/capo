@@ -27,8 +27,8 @@ def serialize_aws_json_1_1(value: BuildStatusConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> BuildStatusConfig:
     out: BuildStatusConfig = {}  # type: ignore[typeddict-item]
-    if "context" in data:
+    if data.get("context") is not None:
         out["context"] = data["context"]
-    if "targetUrl" in data:
+    if data.get("targetUrl") is not None:
         out["target_url"] = data["targetUrl"]
     return out

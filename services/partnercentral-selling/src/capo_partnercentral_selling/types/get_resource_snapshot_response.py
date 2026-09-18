@@ -111,15 +111,15 @@ def serialize_aws_json_1_0(value: GetResourceSnapshotResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> GetResourceSnapshotResponse:
     out: GetResourceSnapshotResponse = {}  # type: ignore[typeddict-item]
-    if "Catalog" in data:
+    if data.get("Catalog") is not None:
         out["catalog"] = data["Catalog"]
     else:
         raise DeserializationError("GetResourceSnapshotResponse.catalog required")
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "CreatedBy" in data:
+    if data.get("CreatedBy") is not None:
         out["created_by"] = data["CreatedBy"]
-    if "CreatedAt" in data:
+    if data.get("CreatedAt") is not None:
         import capo_partnercentral_selling.types.date_time
 
         out["created_at"] = (
@@ -127,9 +127,9 @@ def deserialize_aws_json_1_0(data: dict) -> GetResourceSnapshotResponse:
                 data["CreatedAt"]
             )
         )
-    if "EngagementId" in data:
+    if data.get("EngagementId") is not None:
         out["engagement_id"] = data["EngagementId"]
-    if "ResourceType" in data:
+    if data.get("ResourceType") is not None:
         import capo_partnercentral_selling.types.resource_type
 
         out["resource_type"] = (
@@ -137,13 +137,13 @@ def deserialize_aws_json_1_0(data: dict) -> GetResourceSnapshotResponse:
                 data["ResourceType"]
             )
         )
-    if "ResourceId" in data:
+    if data.get("ResourceId") is not None:
         out["resource_id"] = data["ResourceId"]
-    if "ResourceSnapshotTemplateName" in data:
+    if data.get("ResourceSnapshotTemplateName") is not None:
         out["resource_snapshot_template_name"] = data["ResourceSnapshotTemplateName"]
-    if "Revision" in data:
+    if data.get("Revision") is not None:
         out["revision"] = data["Revision"]
-    if "Payload" in data:
+    if data.get("Payload") is not None:
         import capo_partnercentral_selling.types.resource_snapshot_payload
 
         out["payload"] = (
@@ -151,7 +151,7 @@ def deserialize_aws_json_1_0(data: dict) -> GetResourceSnapshotResponse:
                 data["Payload"]
             )
         )
-    if "TargetMemberAccounts" in data:
+    if data.get("TargetMemberAccounts") is not None:
         import capo_partnercentral_selling.types.aws_account_id_or_alias_list
 
         out["target_member_accounts"] = (

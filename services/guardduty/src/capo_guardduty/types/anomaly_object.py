@@ -45,19 +45,19 @@ def serialize_json(value: AnomalyObject) -> dict:
 
 def deserialize_json(data: dict) -> AnomalyObject:
     out: AnomalyObject = {}  # type: ignore[typeddict-item]
-    if "profileType" in data:
+    if data.get("profileType") is not None:
         import capo_guardduty.types.profile_type
 
         out["profile_type"] = capo_guardduty.types.profile_type.deserialize_json(
             data["profileType"]
         )
-    if "profileSubtype" in data:
+    if data.get("profileSubtype") is not None:
         import capo_guardduty.types.profile_subtype
 
         out["profile_subtype"] = capo_guardduty.types.profile_subtype.deserialize_json(
             data["profileSubtype"]
         )
-    if "observations" in data:
+    if data.get("observations") is not None:
         import capo_guardduty.types.observations
 
         out["observations"] = capo_guardduty.types.observations.deserialize_json(

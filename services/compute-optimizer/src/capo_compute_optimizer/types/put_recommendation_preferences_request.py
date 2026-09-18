@@ -130,7 +130,7 @@ def serialize_aws_json_1_0(value: PutRecommendationPreferencesRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> PutRecommendationPreferencesRequest:
     out: PutRecommendationPreferencesRequest = {}  # type: ignore[typeddict-item]
-    if "resourceType" in data:
+    if data.get("resourceType") is not None:
         import capo_compute_optimizer.types.resource_type
 
         out["resource_type"] = (
@@ -142,13 +142,13 @@ def deserialize_aws_json_1_0(data: dict) -> PutRecommendationPreferencesRequest:
         raise DeserializationError(
             "PutRecommendationPreferencesRequest.resource_type required"
         )
-    if "scope" in data:
+    if data.get("scope") is not None:
         import capo_compute_optimizer.types.scope
 
         out["scope"] = capo_compute_optimizer.types.scope.deserialize_aws_json_1_0(
             data["scope"]
         )
-    if "enhancedInfrastructureMetrics" in data:
+    if data.get("enhancedInfrastructureMetrics") is not None:
         import capo_compute_optimizer.types.enhanced_infrastructure_metrics
 
         out["enhanced_infrastructure_metrics"] = (
@@ -156,7 +156,7 @@ def deserialize_aws_json_1_0(data: dict) -> PutRecommendationPreferencesRequest:
                 data["enhancedInfrastructureMetrics"]
             )
         )
-    if "inferredWorkloadTypes" in data:
+    if data.get("inferredWorkloadTypes") is not None:
         import capo_compute_optimizer.types.inferred_workload_types_preference
 
         out["inferred_workload_types"] = (
@@ -164,7 +164,7 @@ def deserialize_aws_json_1_0(data: dict) -> PutRecommendationPreferencesRequest:
                 data["inferredWorkloadTypes"]
             )
         )
-    if "externalMetricsPreference" in data:
+    if data.get("externalMetricsPreference") is not None:
         import capo_compute_optimizer.types.external_metrics_preference
 
         out["external_metrics_preference"] = (
@@ -172,7 +172,7 @@ def deserialize_aws_json_1_0(data: dict) -> PutRecommendationPreferencesRequest:
                 data["externalMetricsPreference"]
             )
         )
-    if "lookBackPeriod" in data:
+    if data.get("lookBackPeriod") is not None:
         import capo_compute_optimizer.types.look_back_period_preference
 
         out["look_back_period"] = (
@@ -180,7 +180,7 @@ def deserialize_aws_json_1_0(data: dict) -> PutRecommendationPreferencesRequest:
                 data["lookBackPeriod"]
             )
         )
-    if "utilizationPreferences" in data:
+    if data.get("utilizationPreferences") is not None:
         import capo_compute_optimizer.types.utilization_preferences
 
         out["utilization_preferences"] = (
@@ -188,7 +188,7 @@ def deserialize_aws_json_1_0(data: dict) -> PutRecommendationPreferencesRequest:
                 data["utilizationPreferences"]
             )
         )
-    if "preferredResources" in data:
+    if data.get("preferredResources") is not None:
         import capo_compute_optimizer.types.preferred_resources
 
         out["preferred_resources"] = (
@@ -196,7 +196,7 @@ def deserialize_aws_json_1_0(data: dict) -> PutRecommendationPreferencesRequest:
                 data["preferredResources"]
             )
         )
-    if "savingsEstimationMode" in data:
+    if data.get("savingsEstimationMode") is not None:
         import capo_compute_optimizer.types.savings_estimation_mode
 
         out["savings_estimation_mode"] = (

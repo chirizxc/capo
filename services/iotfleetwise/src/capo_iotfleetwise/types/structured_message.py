@@ -62,7 +62,7 @@ def serialize_aws_json_1_0(value: StructuredMessage) -> dict:
 
 
 def deserialize_aws_json_1_0(data: dict) -> StructuredMessage:
-    if "primitiveMessageDefinition" in data:
+    if data.get("primitiveMessageDefinition") is not None:
         import capo_iotfleetwise.types.primitive_message_definition
 
         return {
@@ -70,7 +70,7 @@ def deserialize_aws_json_1_0(data: dict) -> StructuredMessage:
                 data["primitiveMessageDefinition"]
             )
         }
-    elif "structuredMessageListDefinition" in data:
+    elif data.get("structuredMessageListDefinition") is not None:
         import capo_iotfleetwise.types.structured_message_list_definition
 
         return {
@@ -78,7 +78,7 @@ def deserialize_aws_json_1_0(data: dict) -> StructuredMessage:
                 data["structuredMessageListDefinition"]
             )
         }
-    elif "structuredMessageDefinition" in data:
+    elif data.get("structuredMessageDefinition") is not None:
         import capo_iotfleetwise.types.structured_message_definition
 
         return {

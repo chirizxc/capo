@@ -31,8 +31,8 @@ def serialize_json(value: GetDashboardEmbedUrlResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetDashboardEmbedUrlResponse:
     out: GetDashboardEmbedUrlResponse = {}  # type: ignore[typeddict-item]
-    if "EmbedUrl" in data:
+    if data.get("EmbedUrl") is not None:
         out["embed_url"] = data["EmbedUrl"]
-    if "RequestId" in data:
+    if data.get("RequestId") is not None:
         out["request_id"] = data["RequestId"]
     return out

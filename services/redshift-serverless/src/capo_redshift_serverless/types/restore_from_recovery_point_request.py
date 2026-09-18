@@ -31,19 +31,19 @@ def serialize_aws_json_1_1(value: RestoreFromRecoveryPointRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RestoreFromRecoveryPointRequest:
     out: RestoreFromRecoveryPointRequest = {}  # type: ignore[typeddict-item]
-    if "recoveryPointId" in data:
+    if data.get("recoveryPointId") is not None:
         out["recovery_point_id"] = data["recoveryPointId"]
     else:
         raise DeserializationError(
             "RestoreFromRecoveryPointRequest.recovery_point_id required"
         )
-    if "namespaceName" in data:
+    if data.get("namespaceName") is not None:
         out["namespace_name"] = data["namespaceName"]
     else:
         raise DeserializationError(
             "RestoreFromRecoveryPointRequest.namespace_name required"
         )
-    if "workgroupName" in data:
+    if data.get("workgroupName") is not None:
         out["workgroup_name"] = data["workgroupName"]
     else:
         raise DeserializationError(

@@ -25,6 +25,8 @@ def deserialize_aws_json_1_1(data: list) -> JobFlowExecutionStateList:
 
     out: JobFlowExecutionStateList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_emr.types.job_flow_execution_state.deserialize_aws_json_1_1(item)
         )

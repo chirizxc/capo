@@ -90,9 +90,9 @@ def serialize_json(value: GeocodeRequest) -> dict:
 
 def deserialize_json(data: dict) -> GeocodeRequest:
     out: GeocodeRequest = {}  # type: ignore[typeddict-item]
-    if "QueryText" in data:
+    if data.get("QueryText") is not None:
         out["query_text"] = data["QueryText"]
-    if "QueryComponents" in data:
+    if data.get("QueryComponents") is not None:
         import capo_geo_places.types.geocode_query_components
 
         out["query_components"] = (
@@ -100,21 +100,21 @@ def deserialize_json(data: dict) -> GeocodeRequest:
                 data["QueryComponents"]
             )
         )
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "BiasPosition" in data:
+    if data.get("BiasPosition") is not None:
         import capo_geo_places.types.position
 
         out["bias_position"] = capo_geo_places.types.position.deserialize_json(
             data["BiasPosition"]
         )
-    if "Filter" in data:
+    if data.get("Filter") is not None:
         import capo_geo_places.types.geocode_filter
 
         out["filter"] = capo_geo_places.types.geocode_filter.deserialize_json(
             data["Filter"]
         )
-    if "AdditionalFeatures" in data:
+    if data.get("AdditionalFeatures") is not None:
         import capo_geo_places.types.geocode_additional_feature_list
 
         out["additional_features"] = (
@@ -122,10 +122,10 @@ def deserialize_json(data: dict) -> GeocodeRequest:
                 data["AdditionalFeatures"]
             )
         )
-    if "Language" in data:
+    if data.get("Language") is not None:
         out["language"] = data["Language"]
-    if "PoliticalView" in data:
+    if data.get("PoliticalView") is not None:
         out["political_view"] = data["PoliticalView"]
-    if "IntendedUse" in data:
+    if data.get("IntendedUse") is not None:
         out["intended_use"] = data["IntendedUse"]
     return out

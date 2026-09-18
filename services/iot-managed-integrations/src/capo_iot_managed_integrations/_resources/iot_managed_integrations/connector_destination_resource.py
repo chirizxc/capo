@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import uuid
 from typing import TYPE_CHECKING, Optional
 
 import capo_iot_managed_integrations._auth._signers
@@ -107,25 +108,28 @@ class ConnectorDestinationResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_iot_managed_integrations.types.create_connector_destination_request.CreateConnectorDestinationRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_iot_managed_integrations.types.create_connector_destination_request.CreateConnectorDestinationRequest = {
+            "cloud_connector_id": cloud_connector_id,
+            "auth_config": auth_config,
+        }
         if name is not None:
             input_["name"] = name
         if description is not None:
             input_["description"] = description
-        input_["cloud_connector_id"] = cloud_connector_id
         if auth_type is not None:
             input_["auth_type"] = auth_type
-        input_["auth_config"] = auth_config
         if secrets_manager is not None:
             input_["secrets_manager"] = secrets_manager
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -163,14 +167,16 @@ class ConnectorDestinationResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_iot_managed_integrations.types.get_connector_destination_request.GetConnectorDestinationRequest = {}  # type: ignore[typeddict-item]
-        input_["identifier"] = identifier
+        input_: capo_iot_managed_integrations.types.get_connector_destination_request.GetConnectorDestinationRequest = {
+            "identifier": identifier
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update(
@@ -226,8 +232,9 @@ class ConnectorDestinationResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_iot_managed_integrations.types.update_connector_destination_request.UpdateConnectorDestinationRequest = {}  # type: ignore[typeddict-item]
-        input_["identifier"] = identifier
+        input_: capo_iot_managed_integrations.types.update_connector_destination_request.UpdateConnectorDestinationRequest = {
+            "identifier": identifier
+        }
         if description is not None:
             input_["description"] = description
         if name is not None:
@@ -244,6 +251,7 @@ class ConnectorDestinationResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -279,14 +287,16 @@ class ConnectorDestinationResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_iot_managed_integrations.types.delete_connector_destination_request.DeleteConnectorDestinationRequest = {}  # type: ignore[typeddict-item]
-        input_["identifier"] = identifier
+        input_: capo_iot_managed_integrations.types.delete_connector_destination_request.DeleteConnectorDestinationRequest = {
+            "identifier": identifier
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -333,7 +343,7 @@ class ConnectorDestinationResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_iot_managed_integrations.types.list_connector_destinations_request.ListConnectorDestinationsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_iot_managed_integrations.types.list_connector_destinations_request.ListConnectorDestinationsRequest = {}
         if cloud_connector_id is not None:
             input_["cloud_connector_id"] = cloud_connector_id
         if next_token is not None:
@@ -346,6 +356,7 @@ class ConnectorDestinationResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -413,25 +424,28 @@ class AsyncConnectorDestinationResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_iot_managed_integrations.types.create_connector_destination_request.CreateConnectorDestinationRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_iot_managed_integrations.types.create_connector_destination_request.CreateConnectorDestinationRequest = {
+            "cloud_connector_id": cloud_connector_id,
+            "auth_config": auth_config,
+        }
         if name is not None:
             input_["name"] = name
         if description is not None:
             input_["description"] = description
-        input_["cloud_connector_id"] = cloud_connector_id
         if auth_type is not None:
             input_["auth_type"] = auth_type
-        input_["auth_config"] = auth_config
         if secrets_manager is not None:
             input_["secrets_manager"] = secrets_manager
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -470,14 +484,16 @@ class AsyncConnectorDestinationResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_iot_managed_integrations.types.get_connector_destination_request.GetConnectorDestinationRequest = {}  # type: ignore[typeddict-item]
-        input_["identifier"] = identifier
+        input_: capo_iot_managed_integrations.types.get_connector_destination_request.GetConnectorDestinationRequest = {
+            "identifier": identifier
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update(
@@ -534,8 +550,9 @@ class AsyncConnectorDestinationResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_iot_managed_integrations.types.update_connector_destination_request.UpdateConnectorDestinationRequest = {}  # type: ignore[typeddict-item]
-        input_["identifier"] = identifier
+        input_: capo_iot_managed_integrations.types.update_connector_destination_request.UpdateConnectorDestinationRequest = {
+            "identifier": identifier
+        }
         if description is not None:
             input_["description"] = description
         if name is not None:
@@ -552,6 +569,7 @@ class AsyncConnectorDestinationResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -588,14 +606,16 @@ class AsyncConnectorDestinationResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_iot_managed_integrations.types.delete_connector_destination_request.DeleteConnectorDestinationRequest = {}  # type: ignore[typeddict-item]
-        input_["identifier"] = identifier
+        input_: capo_iot_managed_integrations.types.delete_connector_destination_request.DeleteConnectorDestinationRequest = {
+            "identifier": identifier
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -643,7 +663,7 @@ class AsyncConnectorDestinationResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_iot_managed_integrations.types.list_connector_destinations_request.ListConnectorDestinationsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_iot_managed_integrations.types.list_connector_destinations_request.ListConnectorDestinationsRequest = {}
         if cloud_connector_id is not None:
             input_["cloud_connector_id"] = cloud_connector_id
         if next_token is not None:
@@ -656,4 +676,5 @@ class AsyncConnectorDestinationResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

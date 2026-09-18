@@ -23,6 +23,6 @@ def serialize_aws_json_1_1(value: CreateEnvironmentEC2Result) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateEnvironmentEC2Result:
     out: CreateEnvironmentEC2Result = {}  # type: ignore[typeddict-item]
-    if "environmentId" in data:
+    if data.get("environmentId") is not None:
         out["environment_id"] = data["environmentId"]
     return out

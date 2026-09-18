@@ -47,10 +47,10 @@ def serialize_aws_json_1_1(value: ManagedWorkgroupListItem) -> dict:
             )
         )
     if "creation_date" in value:
-        import capo_redshift_serverless.types._prelude.timestamp
+        import capo_redshift_serverless._protocol.serialize
 
         out["creationDate"] = (
-            capo_redshift_serverless.types._prelude.timestamp.serialize_aws_json_1_1(
+            capo_redshift_serverless._protocol.serialize.fmt_date_time(
                 value["creation_date"]
             )
         )
@@ -59,13 +59,13 @@ def serialize_aws_json_1_1(value: ManagedWorkgroupListItem) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ManagedWorkgroupListItem:
     out: ManagedWorkgroupListItem = {}  # type: ignore[typeddict-item]
-    if "managedWorkgroupName" in data:
+    if data.get("managedWorkgroupName") is not None:
         out["managed_workgroup_name"] = data["managedWorkgroupName"]
-    if "managedWorkgroupId" in data:
+    if data.get("managedWorkgroupId") is not None:
         out["managed_workgroup_id"] = data["managedWorkgroupId"]
-    if "sourceArn" in data:
+    if data.get("sourceArn") is not None:
         out["source_arn"] = data["sourceArn"]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_redshift_serverless.types.managed_workgroup_status
 
         out["status"] = (
@@ -73,12 +73,10 @@ def deserialize_aws_json_1_1(data: dict) -> ManagedWorkgroupListItem:
                 data["status"]
             )
         )
-    if "creationDate" in data:
-        import capo_redshift_serverless.types._prelude.timestamp
+    if data.get("creationDate") is not None:
+        import datetime
 
-        out["creation_date"] = (
-            capo_redshift_serverless.types._prelude.timestamp.deserialize_aws_json_1_1(
-                data["creationDate"]
-            )
+        out["creation_date"] = datetime.datetime.fromisoformat(
+            data["creationDate"].replace("Z", "+00:00")
         )
     return out

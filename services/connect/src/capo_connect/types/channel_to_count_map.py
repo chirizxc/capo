@@ -27,5 +27,7 @@ def deserialize_json(data: dict) -> ChannelToCountMap:
     for key, value in data.items():
         import capo_connect.types.channel
 
+        if value is None:
+            continue
         out[capo_connect.types.channel.deserialize_json(key)] = value
     return out

@@ -31,7 +31,7 @@ def serialize_json(value: DestinationMetricsConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> DestinationMetricsConfiguration:
     out: DestinationMetricsConfiguration = {}  # type: ignore[typeddict-item]
-    if "BackupConfiguration" in data:
+    if data.get("BackupConfiguration") is not None:
         import capo_observabilityadmin.types.metrics_backup_configuration
 
         out["backup_configuration"] = (

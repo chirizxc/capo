@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> PositionConfigurationList:
 
     out: PositionConfigurationList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_iot_wireless.types.position_configuration_item.deserialize_json(item)
         )

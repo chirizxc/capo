@@ -24,7 +24,7 @@ def serialize_json(value: NullValueFormatConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> NullValueFormatConfiguration:
     out: NullValueFormatConfiguration = {}  # type: ignore[typeddict-item]
-    if "NullString" in data:
+    if data.get("NullString") is not None:
         out["null_string"] = data["NullString"]
     else:
         raise DeserializationError("NullValueFormatConfiguration.null_string required")

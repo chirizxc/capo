@@ -111,7 +111,16 @@ def serialize_aws_json_1_0(value: IdleRecommendation) -> dict:
                 value["utilization_metrics"]
             )
         )
-    out["lookBackPeriodInDays"] = value.get("look_back_period_in_days", 0)
+    out["lookBackPeriodInDays"] = (
+        "NaN"
+        if value.get("look_back_period_in_days", 0)
+        != value.get("look_back_period_in_days", 0)
+        else "Infinity"
+        if value.get("look_back_period_in_days", 0) == float("inf")
+        else "-Infinity"
+        if value.get("look_back_period_in_days", 0) == float("-inf")
+        else value.get("look_back_period_in_days", 0)
+    )
     if "last_refresh_timestamp" in value:
         import capo_compute_optimizer.types.last_refresh_timestamp
 
@@ -131,11 +140,11 @@ def serialize_aws_json_1_0(value: IdleRecommendation) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> IdleRecommendation:
     out: IdleRecommendation = {}  # type: ignore[typeddict-item]
-    if "resourceArn" in data:
+    if data.get("resourceArn") is not None:
         out["resource_arn"] = data["resourceArn"]
-    if "resourceId" in data:
+    if data.get("resourceId") is not None:
         out["resource_id"] = data["resourceId"]
-    if "resourceType" in data:
+    if data.get("resourceType") is not None:
         import capo_compute_optimizer.types.idle_recommendation_resource_type
 
         out["resource_type"] = (
@@ -143,9 +152,9 @@ def deserialize_aws_json_1_0(data: dict) -> IdleRecommendation:
                 data["resourceType"]
             )
         )
-    if "accountId" in data:
+    if data.get("accountId") is not None:
         out["account_id"] = data["accountId"]
-    if "finding" in data:
+    if data.get("finding") is not None:
         import capo_compute_optimizer.types.idle_finding
 
         out["finding"] = (
@@ -153,9 +162,9 @@ def deserialize_aws_json_1_0(data: dict) -> IdleRecommendation:
                 data["finding"]
             )
         )
-    if "findingDescription" in data:
+    if data.get("findingDescription") is not None:
         out["finding_description"] = data["findingDescription"]
-    if "savingsOpportunity" in data:
+    if data.get("savingsOpportunity") is not None:
         import capo_compute_optimizer.types.idle_savings_opportunity
 
         out["savings_opportunity"] = (
@@ -163,7 +172,7 @@ def deserialize_aws_json_1_0(data: dict) -> IdleRecommendation:
                 data["savingsOpportunity"]
             )
         )
-    if "savingsOpportunityAfterDiscounts" in data:
+    if data.get("savingsOpportunityAfterDiscounts") is not None:
         import capo_compute_optimizer.types.idle_savings_opportunity_after_discounts
 
         out["savings_opportunity_after_discounts"] = (
@@ -171,7 +180,7 @@ def deserialize_aws_json_1_0(data: dict) -> IdleRecommendation:
                 data["savingsOpportunityAfterDiscounts"]
             )
         )
-    if "utilizationMetrics" in data:
+    if data.get("utilizationMetrics") is not None:
         import capo_compute_optimizer.types.idle_utilization_metrics
 
         out["utilization_metrics"] = (
@@ -179,11 +188,11 @@ def deserialize_aws_json_1_0(data: dict) -> IdleRecommendation:
                 data["utilizationMetrics"]
             )
         )
-    if "lookBackPeriodInDays" in data:
-        out["look_back_period_in_days"] = data["lookBackPeriodInDays"]
+    if data.get("lookBackPeriodInDays") is not None:
+        out["look_back_period_in_days"] = float(data["lookBackPeriodInDays"])
     else:
         out["look_back_period_in_days"] = 0
-    if "lastRefreshTimestamp" in data:
+    if data.get("lastRefreshTimestamp") is not None:
         import capo_compute_optimizer.types.last_refresh_timestamp
 
         out["last_refresh_timestamp"] = (
@@ -191,7 +200,7 @@ def deserialize_aws_json_1_0(data: dict) -> IdleRecommendation:
                 data["lastRefreshTimestamp"]
             )
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_compute_optimizer.types.tags
 
         out["tags"] = capo_compute_optimizer.types.tags.deserialize_aws_json_1_0(

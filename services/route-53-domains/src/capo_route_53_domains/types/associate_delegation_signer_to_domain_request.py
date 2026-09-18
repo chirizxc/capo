@@ -36,13 +36,13 @@ def serialize_aws_json_1_1(value: AssociateDelegationSignerToDomainRequest) -> d
 
 def deserialize_aws_json_1_1(data: dict) -> AssociateDelegationSignerToDomainRequest:
     out: AssociateDelegationSignerToDomainRequest = {}  # type: ignore[typeddict-item]
-    if "DomainName" in data:
+    if data.get("DomainName") is not None:
         out["domain_name"] = data["DomainName"]
     else:
         raise DeserializationError(
             "AssociateDelegationSignerToDomainRequest.domain_name required"
         )
-    if "SigningAttributes" in data:
+    if data.get("SigningAttributes") is not None:
         import capo_route_53_domains.types.dnssec_signing_attributes
 
         out["signing_attributes"] = (

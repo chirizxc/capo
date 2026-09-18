@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: ListCreateAccountStatusResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListCreateAccountStatusResponse:
     out: ListCreateAccountStatusResponse = {}  # type: ignore[typeddict-item]
-    if "CreateAccountStatuses" in data:
+    if data.get("CreateAccountStatuses") is not None:
         import capo_organizations.types.create_account_statuses
 
         out["create_account_statuses"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_1(data: dict) -> ListCreateAccountStatusResponse:
                 data["CreateAccountStatuses"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

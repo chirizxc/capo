@@ -114,15 +114,15 @@ def serialize_aws_json_1_0(value: GetPolicyStoreOutput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> GetPolicyStoreOutput:
     out: GetPolicyStoreOutput = {}  # type: ignore[typeddict-item]
-    if "policyStoreId" in data:
+    if data.get("policyStoreId") is not None:
         out["policy_store_id"] = data["policyStoreId"]
     else:
         raise DeserializationError("GetPolicyStoreOutput.policy_store_id required")
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("GetPolicyStoreOutput.arn required")
-    if "validationSettings" in data:
+    if data.get("validationSettings") is not None:
         import capo_verifiedpermissions.types.validation_settings
 
         out["validation_settings"] = (
@@ -132,7 +132,7 @@ def deserialize_aws_json_1_0(data: dict) -> GetPolicyStoreOutput:
         )
     else:
         raise DeserializationError("GetPolicyStoreOutput.validation_settings required")
-    if "createdDate" in data:
+    if data.get("createdDate") is not None:
         import capo_verifiedpermissions.types.timestamp_format
 
         out["created_date"] = (
@@ -142,7 +142,7 @@ def deserialize_aws_json_1_0(data: dict) -> GetPolicyStoreOutput:
         )
     else:
         raise DeserializationError("GetPolicyStoreOutput.created_date required")
-    if "lastUpdatedDate" in data:
+    if data.get("lastUpdatedDate") is not None:
         import capo_verifiedpermissions.types.timestamp_format
 
         out["last_updated_date"] = (
@@ -152,9 +152,9 @@ def deserialize_aws_json_1_0(data: dict) -> GetPolicyStoreOutput:
         )
     else:
         raise DeserializationError("GetPolicyStoreOutput.last_updated_date required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "deletionProtection" in data:
+    if data.get("deletionProtection") is not None:
         import capo_verifiedpermissions.types.deletion_protection
 
         out["deletion_protection"] = (
@@ -162,7 +162,7 @@ def deserialize_aws_json_1_0(data: dict) -> GetPolicyStoreOutput:
                 data["deletionProtection"]
             )
         )
-    if "encryptionState" in data:
+    if data.get("encryptionState") is not None:
         import capo_verifiedpermissions.types.encryption_state
 
         out["encryption_state"] = (
@@ -170,7 +170,7 @@ def deserialize_aws_json_1_0(data: dict) -> GetPolicyStoreOutput:
                 data["encryptionState"]
             )
         )
-    if "cedarVersion" in data:
+    if data.get("cedarVersion") is not None:
         import capo_verifiedpermissions.types.cedar_version
 
         out["cedar_version"] = (
@@ -178,7 +178,7 @@ def deserialize_aws_json_1_0(data: dict) -> GetPolicyStoreOutput:
                 data["cedarVersion"]
             )
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_verifiedpermissions.types.tag_map
 
         out["tags"] = capo_verifiedpermissions.types.tag_map.deserialize_aws_json_1_0(

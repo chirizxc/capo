@@ -43,35 +43,35 @@ def serialize_aws_json_1_1(value: WorkflowRunStatistics) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> WorkflowRunStatistics:
     out: WorkflowRunStatistics = {}  # type: ignore[typeddict-item]
-    if "TotalActions" in data:
+    if data.get("TotalActions") is not None:
         out["total_actions"] = data["TotalActions"]
     else:
         out["total_actions"] = 0
-    if "TimeoutActions" in data:
+    if data.get("TimeoutActions") is not None:
         out["timeout_actions"] = data["TimeoutActions"]
     else:
         out["timeout_actions"] = 0
-    if "FailedActions" in data:
+    if data.get("FailedActions") is not None:
         out["failed_actions"] = data["FailedActions"]
     else:
         out["failed_actions"] = 0
-    if "StoppedActions" in data:
+    if data.get("StoppedActions") is not None:
         out["stopped_actions"] = data["StoppedActions"]
     else:
         out["stopped_actions"] = 0
-    if "SucceededActions" in data:
+    if data.get("SucceededActions") is not None:
         out["succeeded_actions"] = data["SucceededActions"]
     else:
         out["succeeded_actions"] = 0
-    if "RunningActions" in data:
+    if data.get("RunningActions") is not None:
         out["running_actions"] = data["RunningActions"]
     else:
         out["running_actions"] = 0
-    if "ErroredActions" in data:
+    if data.get("ErroredActions") is not None:
         out["errored_actions"] = data["ErroredActions"]
     else:
         out["errored_actions"] = 0
-    if "WaitingActions" in data:
+    if data.get("WaitingActions") is not None:
         out["waiting_actions"] = data["WaitingActions"]
     else:
         out["waiting_actions"] = 0

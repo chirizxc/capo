@@ -69,9 +69,9 @@ def serialize_aws_json_1_1(value: DeleteFileSystemResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteFileSystemResponse:
     out: DeleteFileSystemResponse = {}  # type: ignore[typeddict-item]
-    if "FileSystemId" in data:
+    if data.get("FileSystemId") is not None:
         out["file_system_id"] = data["FileSystemId"]
-    if "Lifecycle" in data:
+    if data.get("Lifecycle") is not None:
         import capo_fsx.types.file_system_lifecycle
 
         out["lifecycle"] = (
@@ -79,7 +79,7 @@ def deserialize_aws_json_1_1(data: dict) -> DeleteFileSystemResponse:
                 data["Lifecycle"]
             )
         )
-    if "WindowsResponse" in data:
+    if data.get("WindowsResponse") is not None:
         import capo_fsx.types.delete_file_system_windows_response
 
         out["windows_response"] = (
@@ -87,7 +87,7 @@ def deserialize_aws_json_1_1(data: dict) -> DeleteFileSystemResponse:
                 data["WindowsResponse"]
             )
         )
-    if "LustreResponse" in data:
+    if data.get("LustreResponse") is not None:
         import capo_fsx.types.delete_file_system_lustre_response
 
         out["lustre_response"] = (
@@ -95,7 +95,7 @@ def deserialize_aws_json_1_1(data: dict) -> DeleteFileSystemResponse:
                 data["LustreResponse"]
             )
         )
-    if "OpenZFSResponse" in data:
+    if data.get("OpenZFSResponse") is not None:
         import capo_fsx.types.delete_file_system_open_zfs_response
 
         out["open_zfs_response"] = (

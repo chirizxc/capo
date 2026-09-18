@@ -32,9 +32,9 @@ def serialize_json(value: ListLegalHoldsOutput) -> dict:
 
 def deserialize_json(data: dict) -> ListLegalHoldsOutput:
     out: ListLegalHoldsOutput = {}  # type: ignore[typeddict-item]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "LegalHolds" in data:
+    if data.get("LegalHolds") is not None:
         import capo_backup.types.legal_holds_list
 
         out["legal_holds"] = capo_backup.types.legal_holds_list.deserialize_json(

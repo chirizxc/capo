@@ -27,7 +27,7 @@ def serialize_json(value: StopExperimentResponse) -> dict:
 
 def deserialize_json(data: dict) -> StopExperimentResponse:
     out: StopExperimentResponse = {}  # type: ignore[typeddict-item]
-    if "experiment" in data:
+    if data.get("experiment") is not None:
         import capo_fis.types.experiment
 
         out["experiment"] = capo_fis.types.experiment.deserialize_json(

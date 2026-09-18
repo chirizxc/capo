@@ -32,8 +32,8 @@ def serialize_json(value: CreateAllowListResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateAllowListResponse:
     out: CreateAllowListResponse = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     return out

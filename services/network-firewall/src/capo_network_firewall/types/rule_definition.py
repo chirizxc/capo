@@ -40,7 +40,7 @@ def serialize_aws_json_1_0(value: RuleDefinition) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> RuleDefinition:
     out: RuleDefinition = {}  # type: ignore[typeddict-item]
-    if "MatchAttributes" in data:
+    if data.get("MatchAttributes") is not None:
         import capo_network_firewall.types.match_attributes
 
         out["match_attributes"] = (
@@ -50,7 +50,7 @@ def deserialize_aws_json_1_0(data: dict) -> RuleDefinition:
         )
     else:
         raise DeserializationError("RuleDefinition.match_attributes required")
-    if "Actions" in data:
+    if data.get("Actions") is not None:
         import capo_network_firewall.types.stateless_actions
 
         out["actions"] = (

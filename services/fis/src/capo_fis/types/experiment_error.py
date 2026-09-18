@@ -37,10 +37,10 @@ def serialize_json(value: ExperimentError) -> dict:
 
 def deserialize_json(data: dict) -> ExperimentError:
     out: ExperimentError = {}  # type: ignore[typeddict-item]
-    if "accountId" in data:
+    if data.get("accountId") is not None:
         out["account_id"] = data["accountId"]
-    if "code" in data:
+    if data.get("code") is not None:
         out["code"] = data["code"]
-    if "location" in data:
+    if data.get("location") is not None:
         out["location"] = data["location"]
     return out

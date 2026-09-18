@@ -105,7 +105,7 @@ def serialize_json(value: SlotValueElicitationSetting) -> dict:
 
 def deserialize_json(data: dict) -> SlotValueElicitationSetting:
     out: SlotValueElicitationSetting = {}  # type: ignore[typeddict-item]
-    if "defaultValueSpecification" in data:
+    if data.get("defaultValueSpecification") is not None:
         import capo_lex_models_v2.types.slot_default_value_specification
 
         out["default_value_specification"] = (
@@ -113,7 +113,7 @@ def deserialize_json(data: dict) -> SlotValueElicitationSetting:
                 data["defaultValueSpecification"]
             )
         )
-    if "slotConstraint" in data:
+    if data.get("slotConstraint") is not None:
         import capo_lex_models_v2.types.slot_constraint
 
         out["slot_constraint"] = (
@@ -125,7 +125,7 @@ def deserialize_json(data: dict) -> SlotValueElicitationSetting:
         raise DeserializationError(
             "SlotValueElicitationSetting.slot_constraint required"
         )
-    if "promptSpecification" in data:
+    if data.get("promptSpecification") is not None:
         import capo_lex_models_v2.types.prompt_specification
 
         out["prompt_specification"] = (
@@ -133,7 +133,7 @@ def deserialize_json(data: dict) -> SlotValueElicitationSetting:
                 data["promptSpecification"]
             )
         )
-    if "sampleUtterances" in data:
+    if data.get("sampleUtterances") is not None:
         import capo_lex_models_v2.types.sample_utterances_list
 
         out["sample_utterances"] = (
@@ -141,7 +141,7 @@ def deserialize_json(data: dict) -> SlotValueElicitationSetting:
                 data["sampleUtterances"]
             )
         )
-    if "waitAndContinueSpecification" in data:
+    if data.get("waitAndContinueSpecification") is not None:
         import capo_lex_models_v2.types.wait_and_continue_specification
 
         out["wait_and_continue_specification"] = (
@@ -149,7 +149,7 @@ def deserialize_json(data: dict) -> SlotValueElicitationSetting:
                 data["waitAndContinueSpecification"]
             )
         )
-    if "slotCaptureSetting" in data:
+    if data.get("slotCaptureSetting") is not None:
         import capo_lex_models_v2.types.slot_capture_setting
 
         out["slot_capture_setting"] = (
@@ -157,7 +157,7 @@ def deserialize_json(data: dict) -> SlotValueElicitationSetting:
                 data["slotCaptureSetting"]
             )
         )
-    if "slotResolutionSetting" in data:
+    if data.get("slotResolutionSetting") is not None:
         import capo_lex_models_v2.types.slot_resolution_setting
 
         out["slot_resolution_setting"] = (

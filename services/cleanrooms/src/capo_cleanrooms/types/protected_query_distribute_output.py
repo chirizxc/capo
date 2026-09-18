@@ -41,13 +41,13 @@ def serialize_json(value: ProtectedQueryDistributeOutput) -> dict:
 
 def deserialize_json(data: dict) -> ProtectedQueryDistributeOutput:
     out: ProtectedQueryDistributeOutput = {}  # type: ignore[typeddict-item]
-    if "s3" in data:
+    if data.get("s3") is not None:
         import capo_cleanrooms.types.protected_query_s3_output
 
         out["s3"] = capo_cleanrooms.types.protected_query_s3_output.deserialize_json(
             data["s3"]
         )
-    if "memberList" in data:
+    if data.get("memberList") is not None:
         import capo_cleanrooms.types.protected_query_member_output_list
 
         out["member_list"] = (

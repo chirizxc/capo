@@ -66,9 +66,9 @@ def serialize_json(value: UpdateEventBridgeRuleTemplateRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateEventBridgeRuleTemplateRequest:
     out: UpdateEventBridgeRuleTemplateRequest = {}  # type: ignore[typeddict-item]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "eventTargets" in data:
+    if data.get("eventTargets") is not None:
         import capo_medialive.types.__list_of_event_bridge_rule_template_target
 
         out["event_targets"] = (
@@ -76,7 +76,7 @@ def deserialize_json(data: dict) -> UpdateEventBridgeRuleTemplateRequest:
                 data["eventTargets"]
             )
         )
-    if "eventType" in data:
+    if data.get("eventType") is not None:
         import capo_medialive.types.event_bridge_rule_template_event_type
 
         out["event_type"] = (
@@ -84,8 +84,8 @@ def deserialize_json(data: dict) -> UpdateEventBridgeRuleTemplateRequest:
                 data["eventType"]
             )
         )
-    if "groupIdentifier" in data:
+    if data.get("groupIdentifier") is not None:
         out["group_identifier"] = data["groupIdentifier"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     return out

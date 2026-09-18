@@ -24,7 +24,7 @@ def serialize_json(value: ContainerImage) -> dict:
 
 def deserialize_json(data: dict) -> ContainerImage:
     out: ContainerImage = {}  # type: ignore[typeddict-item]
-    if "uri" in data:
+    if data.get("uri") is not None:
         out["uri"] = data["uri"]
     else:
         raise DeserializationError("ContainerImage.uri required")

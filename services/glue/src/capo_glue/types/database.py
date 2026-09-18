@@ -96,27 +96,27 @@ def serialize_aws_json_1_1(value: Database) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Database:
     out: Database = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("Database.name required")
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "LocationUri" in data:
+    if data.get("LocationUri") is not None:
         out["location_uri"] = data["LocationUri"]
-    if "Parameters" in data:
+    if data.get("Parameters") is not None:
         import capo_glue.types.parameters_map
 
         out["parameters"] = capo_glue.types.parameters_map.deserialize_aws_json_1_1(
             data["Parameters"]
         )
-    if "CreateTime" in data:
+    if data.get("CreateTime") is not None:
         import capo_glue.types.timestamp
 
         out["create_time"] = capo_glue.types.timestamp.deserialize_aws_json_1_1(
             data["CreateTime"]
         )
-    if "CreateTableDefaultPermissions" in data:
+    if data.get("CreateTableDefaultPermissions") is not None:
         import capo_glue.types.principal_permissions_list
 
         out["create_table_default_permissions"] = (
@@ -124,7 +124,7 @@ def deserialize_aws_json_1_1(data: dict) -> Database:
                 data["CreateTableDefaultPermissions"]
             )
         )
-    if "TargetDatabase" in data:
+    if data.get("TargetDatabase") is not None:
         import capo_glue.types.database_identifier
 
         out["target_database"] = (
@@ -132,9 +132,9 @@ def deserialize_aws_json_1_1(data: dict) -> Database:
                 data["TargetDatabase"]
             )
         )
-    if "CatalogId" in data:
+    if data.get("CatalogId") is not None:
         out["catalog_id"] = data["CatalogId"]
-    if "FederatedDatabase" in data:
+    if data.get("FederatedDatabase") is not None:
         import capo_glue.types.federated_database
 
         out["federated_database"] = (

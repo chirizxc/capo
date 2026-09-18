@@ -24,7 +24,7 @@ def serialize_json(value: PutAccountAliasRequest) -> dict:
 
 def deserialize_json(data: dict) -> PutAccountAliasRequest:
     out: PutAccountAliasRequest = {}  # type: ignore[typeddict-item]
-    if "accountAlias" in data:
+    if data.get("accountAlias") is not None:
         out["account_alias"] = data["accountAlias"]
     else:
         raise DeserializationError("PutAccountAliasRequest.account_alias required")

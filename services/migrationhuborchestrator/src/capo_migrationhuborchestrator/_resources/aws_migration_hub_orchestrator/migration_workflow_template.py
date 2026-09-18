@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import uuid
 from typing import TYPE_CHECKING, Optional
 
 import capo_migrationhuborchestrator._auth._signers
@@ -91,13 +92,15 @@ class MigrationWorkflowTemplate:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_migrationhuborchestrator.types.create_template_request.CreateTemplateRequest = {}  # type: ignore[typeddict-item]
-        input_["template_name"] = template_name
+        input_: capo_migrationhuborchestrator.types.create_template_request.CreateTemplateRequest = {
+            "template_name": template_name,
+            "template_source": template_source,
+        }
         if template_description is not None:
             input_["template_description"] = template_description
-        input_["template_source"] = template_source
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if tags is not None:
             input_["tags"] = tags
 
@@ -106,6 +109,7 @@ class MigrationWorkflowTemplate:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -142,14 +146,16 @@ class MigrationWorkflowTemplate:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_migrationhuborchestrator.types.get_migration_workflow_template_request.GetMigrationWorkflowTemplateRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_migrationhuborchestrator.types.get_migration_workflow_template_request.GetMigrationWorkflowTemplateRequest = {
+            "id": id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update(
@@ -195,20 +201,23 @@ class MigrationWorkflowTemplate:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_migrationhuborchestrator.types.update_template_request.UpdateTemplateRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_migrationhuborchestrator.types.update_template_request.UpdateTemplateRequest = {
+            "id": id
+        }
         if template_name is not None:
             input_["template_name"] = template_name
         if template_description is not None:
             input_["template_description"] = template_description
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -246,14 +255,16 @@ class MigrationWorkflowTemplate:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_migrationhuborchestrator.types.delete_template_request.DeleteTemplateRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_migrationhuborchestrator.types.delete_template_request.DeleteTemplateRequest = {
+            "id": id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -299,7 +310,7 @@ class MigrationWorkflowTemplate:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_migrationhuborchestrator.types.list_migration_workflow_templates_request.ListMigrationWorkflowTemplatesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_migrationhuborchestrator.types.list_migration_workflow_templates_request.ListMigrationWorkflowTemplatesRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -312,6 +323,7 @@ class MigrationWorkflowTemplate:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -365,13 +377,15 @@ class AsyncMigrationWorkflowTemplate:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_migrationhuborchestrator.types.create_template_request.CreateTemplateRequest = {}  # type: ignore[typeddict-item]
-        input_["template_name"] = template_name
+        input_: capo_migrationhuborchestrator.types.create_template_request.CreateTemplateRequest = {
+            "template_name": template_name,
+            "template_source": template_source,
+        }
         if template_description is not None:
             input_["template_description"] = template_description
-        input_["template_source"] = template_source
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if tags is not None:
             input_["tags"] = tags
 
@@ -380,6 +394,7 @@ class AsyncMigrationWorkflowTemplate:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -417,14 +432,16 @@ class AsyncMigrationWorkflowTemplate:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_migrationhuborchestrator.types.get_migration_workflow_template_request.GetMigrationWorkflowTemplateRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_migrationhuborchestrator.types.get_migration_workflow_template_request.GetMigrationWorkflowTemplateRequest = {
+            "id": id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update(
@@ -471,20 +488,23 @@ class AsyncMigrationWorkflowTemplate:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_migrationhuborchestrator.types.update_template_request.UpdateTemplateRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_migrationhuborchestrator.types.update_template_request.UpdateTemplateRequest = {
+            "id": id
+        }
         if template_name is not None:
             input_["template_name"] = template_name
         if template_description is not None:
             input_["template_description"] = template_description
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -523,14 +543,16 @@ class AsyncMigrationWorkflowTemplate:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_migrationhuborchestrator.types.delete_template_request.DeleteTemplateRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_migrationhuborchestrator.types.delete_template_request.DeleteTemplateRequest = {
+            "id": id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -577,7 +599,7 @@ class AsyncMigrationWorkflowTemplate:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_migrationhuborchestrator.types.list_migration_workflow_templates_request.ListMigrationWorkflowTemplatesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_migrationhuborchestrator.types.list_migration_workflow_templates_request.ListMigrationWorkflowTemplatesRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -590,4 +612,5 @@ class AsyncMigrationWorkflowTemplate:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

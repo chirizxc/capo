@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: EnvironmentParameterRanges) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> EnvironmentParameterRanges:
     out: EnvironmentParameterRanges = {}  # type: ignore[typeddict-item]
-    if "CategoricalParameterRanges" in data:
+    if data.get("CategoricalParameterRanges") is not None:
         import capo_sagemaker.types.categorical_parameters
 
         out["categorical_parameter_ranges"] = (

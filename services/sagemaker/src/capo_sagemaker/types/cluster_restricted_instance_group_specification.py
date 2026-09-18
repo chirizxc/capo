@@ -125,11 +125,11 @@ def serialize_aws_json_1_1(value: ClusterRestrictedInstanceGroupSpecification) -
 
 def deserialize_aws_json_1_1(data: dict) -> ClusterRestrictedInstanceGroupSpecification:
     out: ClusterRestrictedInstanceGroupSpecification = {}  # type: ignore[typeddict-item]
-    if "InstanceCount" in data:
+    if data.get("InstanceCount") is not None:
         out["instance_count"] = data["InstanceCount"]
-    if "InstanceGroupName" in data:
+    if data.get("InstanceGroupName") is not None:
         out["instance_group_name"] = data["InstanceGroupName"]
-    if "InstanceType" in data:
+    if data.get("InstanceType") is not None:
         import capo_sagemaker.types.cluster_instance_type
 
         out["instance_type"] = (
@@ -137,11 +137,11 @@ def deserialize_aws_json_1_1(data: dict) -> ClusterRestrictedInstanceGroupSpecif
                 data["InstanceType"]
             )
         )
-    if "ExecutionRole" in data:
+    if data.get("ExecutionRole") is not None:
         out["execution_role"] = data["ExecutionRole"]
-    if "ThreadsPerCore" in data:
+    if data.get("ThreadsPerCore") is not None:
         out["threads_per_core"] = data["ThreadsPerCore"]
-    if "InstanceStorageConfigs" in data:
+    if data.get("InstanceStorageConfigs") is not None:
         import capo_sagemaker.types.cluster_instance_storage_configs
 
         out["instance_storage_configs"] = (
@@ -149,7 +149,7 @@ def deserialize_aws_json_1_1(data: dict) -> ClusterRestrictedInstanceGroupSpecif
                 data["InstanceStorageConfigs"]
             )
         )
-    if "OnStartDeepHealthChecks" in data:
+    if data.get("OnStartDeepHealthChecks") is not None:
         import capo_sagemaker.types.on_start_deep_health_checks
 
         out["on_start_deep_health_checks"] = (
@@ -157,9 +157,9 @@ def deserialize_aws_json_1_1(data: dict) -> ClusterRestrictedInstanceGroupSpecif
                 data["OnStartDeepHealthChecks"]
             )
         )
-    if "TrainingPlanArn" in data:
+    if data.get("TrainingPlanArn") is not None:
         out["training_plan_arn"] = data["TrainingPlanArn"]
-    if "OverrideVpcConfig" in data:
+    if data.get("OverrideVpcConfig") is not None:
         import capo_sagemaker.types.vpc_config
 
         out["override_vpc_config"] = (
@@ -167,7 +167,7 @@ def deserialize_aws_json_1_1(data: dict) -> ClusterRestrictedInstanceGroupSpecif
                 data["OverrideVpcConfig"]
             )
         )
-    if "ScheduledUpdateConfig" in data:
+    if data.get("ScheduledUpdateConfig") is not None:
         import capo_sagemaker.types.scheduled_update_config
 
         out["scheduled_update_config"] = (
@@ -175,7 +175,7 @@ def deserialize_aws_json_1_1(data: dict) -> ClusterRestrictedInstanceGroupSpecif
                 data["ScheduledUpdateConfig"]
             )
         )
-    if "EnvironmentConfig" in data:
+    if data.get("EnvironmentConfig") is not None:
         import capo_sagemaker.types.environment_config
 
         out["environment_config"] = (

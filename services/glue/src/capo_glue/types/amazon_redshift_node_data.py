@@ -178,49 +178,49 @@ def serialize_aws_json_1_1(value: AmazonRedshiftNodeData) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AmazonRedshiftNodeData:
     out: AmazonRedshiftNodeData = {}  # type: ignore[typeddict-item]
-    if "AccessType" in data:
+    if data.get("AccessType") is not None:
         out["access_type"] = data["AccessType"]
-    if "SourceType" in data:
+    if data.get("SourceType") is not None:
         out["source_type"] = data["SourceType"]
-    if "Connection" in data:
+    if data.get("Connection") is not None:
         import capo_glue.types.option
 
         out["connection"] = capo_glue.types.option.deserialize_aws_json_1_1(
             data["Connection"]
         )
-    if "Schema" in data:
+    if data.get("Schema") is not None:
         import capo_glue.types.option
 
         out["schema"] = capo_glue.types.option.deserialize_aws_json_1_1(data["Schema"])
-    if "Table" in data:
+    if data.get("Table") is not None:
         import capo_glue.types.option
 
         out["table"] = capo_glue.types.option.deserialize_aws_json_1_1(data["Table"])
-    if "CatalogDatabase" in data:
+    if data.get("CatalogDatabase") is not None:
         import capo_glue.types.option
 
         out["catalog_database"] = capo_glue.types.option.deserialize_aws_json_1_1(
             data["CatalogDatabase"]
         )
-    if "CatalogTable" in data:
+    if data.get("CatalogTable") is not None:
         import capo_glue.types.option
 
         out["catalog_table"] = capo_glue.types.option.deserialize_aws_json_1_1(
             data["CatalogTable"]
         )
-    if "CatalogRedshiftSchema" in data:
+    if data.get("CatalogRedshiftSchema") is not None:
         out["catalog_redshift_schema"] = data["CatalogRedshiftSchema"]
-    if "CatalogRedshiftTable" in data:
+    if data.get("CatalogRedshiftTable") is not None:
         out["catalog_redshift_table"] = data["CatalogRedshiftTable"]
-    if "TempDir" in data:
+    if data.get("TempDir") is not None:
         out["temp_dir"] = data["TempDir"]
-    if "IamRole" in data:
+    if data.get("IamRole") is not None:
         import capo_glue.types.option
 
         out["iam_role"] = capo_glue.types.option.deserialize_aws_json_1_1(
             data["IamRole"]
         )
-    if "AdvancedOptions" in data:
+    if data.get("AdvancedOptions") is not None:
         import capo_glue.types.amazon_redshift_advanced_options
 
         out["advanced_options"] = (
@@ -228,39 +228,39 @@ def deserialize_aws_json_1_1(data: dict) -> AmazonRedshiftNodeData:
                 data["AdvancedOptions"]
             )
         )
-    if "SampleQuery" in data:
+    if data.get("SampleQuery") is not None:
         out["sample_query"] = data["SampleQuery"]
-    if "PreAction" in data:
+    if data.get("PreAction") is not None:
         out["pre_action"] = data["PreAction"]
-    if "PostAction" in data:
+    if data.get("PostAction") is not None:
         out["post_action"] = data["PostAction"]
-    if "Action" in data:
+    if data.get("Action") is not None:
         out["action"] = data["Action"]
-    if "TablePrefix" in data:
+    if data.get("TablePrefix") is not None:
         out["table_prefix"] = data["TablePrefix"]
-    if "Upsert" in data:
+    if data.get("Upsert") is not None:
         out["upsert"] = data["Upsert"]
     else:
         out["upsert"] = False
-    if "MergeAction" in data:
+    if data.get("MergeAction") is not None:
         out["merge_action"] = data["MergeAction"]
-    if "MergeWhenMatched" in data:
+    if data.get("MergeWhenMatched") is not None:
         out["merge_when_matched"] = data["MergeWhenMatched"]
-    if "MergeWhenNotMatched" in data:
+    if data.get("MergeWhenNotMatched") is not None:
         out["merge_when_not_matched"] = data["MergeWhenNotMatched"]
-    if "MergeClause" in data:
+    if data.get("MergeClause") is not None:
         out["merge_clause"] = data["MergeClause"]
-    if "CrawlerConnection" in data:
+    if data.get("CrawlerConnection") is not None:
         out["crawler_connection"] = data["CrawlerConnection"]
-    if "TableSchema" in data:
+    if data.get("TableSchema") is not None:
         import capo_glue.types.option_list
 
         out["table_schema"] = capo_glue.types.option_list.deserialize_aws_json_1_1(
             data["TableSchema"]
         )
-    if "StagingTable" in data:
+    if data.get("StagingTable") is not None:
         out["staging_table"] = data["StagingTable"]
-    if "SelectedColumns" in data:
+    if data.get("SelectedColumns") is not None:
         import capo_glue.types.option_list
 
         out["selected_columns"] = capo_glue.types.option_list.deserialize_aws_json_1_1(

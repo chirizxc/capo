@@ -36,9 +36,9 @@ def serialize_json(value: AudioTrack) -> dict:
 
 def deserialize_json(data: dict) -> AudioTrack:
     out: AudioTrack = {}  # type: ignore[typeddict-item]
-    if "track" in data:
+    if data.get("track") is not None:
         out["track"] = data["track"]
-    if "premixSettings" in data:
+    if data.get("premixSettings") is not None:
         import capo_medialive.types.audio_pre_mixer_settings
 
         out["premix_settings"] = (

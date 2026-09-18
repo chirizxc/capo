@@ -35,12 +35,12 @@ def serialize_json(value: FilePaths) -> dict:
 
 def deserialize_json(data: dict) -> FilePaths:
     out: FilePaths = {}  # type: ignore[typeddict-item]
-    if "FilePath" in data:
+    if data.get("FilePath") is not None:
         out["file_path"] = data["FilePath"]
-    if "FileName" in data:
+    if data.get("FileName") is not None:
         out["file_name"] = data["FileName"]
-    if "ResourceId" in data:
+    if data.get("ResourceId") is not None:
         out["resource_id"] = data["ResourceId"]
-    if "Hash" in data:
+    if data.get("Hash") is not None:
         out["hash"] = data["Hash"]
     return out

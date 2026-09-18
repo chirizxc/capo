@@ -27,6 +27,8 @@ def deserialize_aws_json_1_1(data: list) -> RxNormTraitList:
 
     out: RxNormTraitList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_comprehendmedical.types.rx_norm_trait.deserialize_aws_json_1_1(item)
         )

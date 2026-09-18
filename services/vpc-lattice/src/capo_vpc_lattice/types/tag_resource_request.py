@@ -29,7 +29,7 @@ def serialize_json(value: TagResourceRequest) -> dict:
 
 def deserialize_json(data: dict) -> TagResourceRequest:
     out: TagResourceRequest = {}  # type: ignore[typeddict-item]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_vpc_lattice.types.tag_map
 
         out["tags"] = capo_vpc_lattice.types.tag_map.deserialize_json(data["tags"])

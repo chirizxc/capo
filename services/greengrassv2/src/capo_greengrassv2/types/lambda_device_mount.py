@@ -44,11 +44,11 @@ def serialize_json(value: LambdaDeviceMount) -> dict:
 
 def deserialize_json(data: dict) -> LambdaDeviceMount:
     out: LambdaDeviceMount = {}  # type: ignore[typeddict-item]
-    if "path" in data:
+    if data.get("path") is not None:
         out["path"] = data["path"]
     else:
         raise DeserializationError("LambdaDeviceMount.path required")
-    if "permission" in data:
+    if data.get("permission") is not None:
         import capo_greengrassv2.types.lambda_filesystem_permission
 
         out["permission"] = (
@@ -56,6 +56,6 @@ def deserialize_json(data: dict) -> LambdaDeviceMount:
                 data["permission"]
             )
         )
-    if "addGroupOwner" in data:
+    if data.get("addGroupOwner") is not None:
         out["add_group_owner"] = data["addGroupOwner"]
     return out

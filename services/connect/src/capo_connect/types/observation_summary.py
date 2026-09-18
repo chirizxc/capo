@@ -31,10 +31,10 @@ def serialize_json(value: ObservationSummary) -> dict:
 
 def deserialize_json(data: dict) -> ObservationSummary:
     out: ObservationSummary = {}  # type: ignore[typeddict-item]
-    if "TotalObservations" in data:
+    if data.get("TotalObservations") is not None:
         out["total_observations"] = data["TotalObservations"]
-    if "ObservationsPassed" in data:
+    if data.get("ObservationsPassed") is not None:
         out["observations_passed"] = data["ObservationsPassed"]
-    if "ObservationsFailed" in data:
+    if data.get("ObservationsFailed") is not None:
         out["observations_failed"] = data["ObservationsFailed"]
     return out

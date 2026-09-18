@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> TypedLinkFacetAttributeUpdateList:
 
     out: TypedLinkFacetAttributeUpdateList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_clouddirectory.types.typed_link_facet_attribute_update.deserialize_json(
                 item

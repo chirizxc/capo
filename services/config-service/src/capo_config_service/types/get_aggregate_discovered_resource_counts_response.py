@@ -49,13 +49,13 @@ def deserialize_aws_json_1_1(
     data: dict,
 ) -> GetAggregateDiscoveredResourceCountsResponse:
     out: GetAggregateDiscoveredResourceCountsResponse = {}  # type: ignore[typeddict-item]
-    if "TotalDiscoveredResources" in data:
+    if data.get("TotalDiscoveredResources") is not None:
         out["total_discovered_resources"] = data["TotalDiscoveredResources"]
     else:
         out["total_discovered_resources"] = 0
-    if "GroupByKey" in data:
+    if data.get("GroupByKey") is not None:
         out["group_by_key"] = data["GroupByKey"]
-    if "GroupedResourceCounts" in data:
+    if data.get("GroupedResourceCounts") is not None:
         import capo_config_service.types.grouped_resource_count_list
 
         out["grouped_resource_counts"] = (
@@ -63,6 +63,6 @@ def deserialize_aws_json_1_1(
                 data["GroupedResourceCounts"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

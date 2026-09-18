@@ -35,16 +35,16 @@ def serialize_json(value: UserIdentity) -> dict:
 
 def deserialize_json(data: dict) -> UserIdentity:
     out: UserIdentity = {}  # type: ignore[typeddict-item]
-    if "userType" in data:
+    if data.get("userType") is not None:
         out["user_type"] = data["userType"]
     else:
         raise DeserializationError("UserIdentity.user_type required")
-    if "principalId" in data:
+    if data.get("principalId") is not None:
         out["principal_id"] = data["principalId"]
     else:
         raise DeserializationError("UserIdentity.principal_id required")
-    if "userName" in data:
+    if data.get("userName") is not None:
         out["user_name"] = data["userName"]
-    if "awsAccountId" in data:
+    if data.get("awsAccountId") is not None:
         out["aws_account_id"] = data["awsAccountId"]
     return out

@@ -34,15 +34,15 @@ def serialize_json(value: UpdateInstruction) -> dict:
 
 def deserialize_json(data: dict) -> UpdateInstruction:
     out: UpdateInstruction = {}  # type: ignore[typeddict-item]
-    if "action" in data:
+    if data.get("action") is not None:
         out["action"] = data["action"]
     else:
         raise DeserializationError("UpdateInstruction.action required")
-    if "role" in data:
+    if data.get("role") is not None:
         out["role"] = data["role"]
     else:
         raise DeserializationError("UpdateInstruction.role required")
-    if "users" in data:
+    if data.get("users") is not None:
         import capo_grafana.types.user_list
 
         out["users"] = capo_grafana.types.user_list.deserialize_json(data["users"])

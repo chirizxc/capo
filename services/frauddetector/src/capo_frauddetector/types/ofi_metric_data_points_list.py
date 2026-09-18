@@ -27,6 +27,8 @@ def deserialize_aws_json_1_1(data: list) -> OFIMetricDataPointsList:
 
     out: OFIMetricDataPointsList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_frauddetector.types.ofi_metric_data_point.deserialize_aws_json_1_1(
                 item

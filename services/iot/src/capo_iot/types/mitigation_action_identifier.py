@@ -39,11 +39,11 @@ def serialize_json(value: MitigationActionIdentifier) -> dict:
 
 def deserialize_json(data: dict) -> MitigationActionIdentifier:
     out: MitigationActionIdentifier = {}  # type: ignore[typeddict-item]
-    if "actionName" in data:
+    if data.get("actionName") is not None:
         out["action_name"] = data["actionName"]
-    if "actionArn" in data:
+    if data.get("actionArn") is not None:
         out["action_arn"] = data["actionArn"]
-    if "creationDate" in data:
+    if data.get("creationDate") is not None:
         import capo_iot.types.timestamp
 
         out["creation_date"] = capo_iot.types.timestamp.deserialize_json(

@@ -38,9 +38,9 @@ def serialize_json(value: DescribeMountTargetsResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribeMountTargetsResponse:
     out: DescribeMountTargetsResponse = {}  # type: ignore[typeddict-item]
-    if "Marker" in data:
+    if data.get("Marker") is not None:
         out["marker"] = data["Marker"]
-    if "MountTargets" in data:
+    if data.get("MountTargets") is not None:
         import capo_efs.types.mount_target_descriptions
 
         out["mount_targets"] = (
@@ -48,6 +48,6 @@ def deserialize_json(data: dict) -> DescribeMountTargetsResponse:
                 data["MountTargets"]
             )
         )
-    if "NextMarker" in data:
+    if data.get("NextMarker") is not None:
         out["next_marker"] = data["NextMarker"]
     return out

@@ -27,7 +27,7 @@ def serialize_json(value: ListControlSelectAllOptions) -> dict:
 
 def deserialize_json(data: dict) -> ListControlSelectAllOptions:
     out: ListControlSelectAllOptions = {}  # type: ignore[typeddict-item]
-    if "Visibility" in data:
+    if data.get("Visibility") is not None:
         import capo_quicksight.types.visibility
 
         out["visibility"] = capo_quicksight.types.visibility.deserialize_json(

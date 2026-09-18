@@ -52,7 +52,7 @@ def serialize_aws_json_1_0(value: InvoiceSummariesFilter) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> InvoiceSummariesFilter:
     out: InvoiceSummariesFilter = {}  # type: ignore[typeddict-item]
-    if "TimeInterval" in data:
+    if data.get("TimeInterval") is not None:
         import capo_invoicing.types.date_interval
 
         out["time_interval"] = (
@@ -60,7 +60,7 @@ def deserialize_aws_json_1_0(data: dict) -> InvoiceSummariesFilter:
                 data["TimeInterval"]
             )
         )
-    if "BillingPeriod" in data:
+    if data.get("BillingPeriod") is not None:
         import capo_invoicing.types.billing_period
 
         out["billing_period"] = (
@@ -68,9 +68,9 @@ def deserialize_aws_json_1_0(data: dict) -> InvoiceSummariesFilter:
                 data["BillingPeriod"]
             )
         )
-    if "InvoicingEntity" in data:
+    if data.get("InvoicingEntity") is not None:
         out["invoicing_entity"] = data["InvoicingEntity"]
-    if "ReceiverRole" in data:
+    if data.get("ReceiverRole") is not None:
         import capo_invoicing.types.receiver_role
 
         out["receiver_role"] = (

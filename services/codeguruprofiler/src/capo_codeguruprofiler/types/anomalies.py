@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> Anomalies:
 
     out: Anomalies = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_codeguruprofiler.types.anomaly.deserialize_json(item))
     return out

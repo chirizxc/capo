@@ -31,7 +31,7 @@ def serialize_json(value: TimeSignalMessage) -> dict:
 
 def deserialize_json(data: dict) -> TimeSignalMessage:
     out: TimeSignalMessage = {}  # type: ignore[typeddict-item]
-    if "SegmentationDescriptors" in data:
+    if data.get("SegmentationDescriptors") is not None:
         import capo_mediatailor.types.segmentation_descriptor_list
 
         out["segmentation_descriptors"] = (

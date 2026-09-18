@@ -31,7 +31,7 @@ def serialize_json(value: FilterSelectableValues) -> dict:
 
 def deserialize_json(data: dict) -> FilterSelectableValues:
     out: FilterSelectableValues = {}  # type: ignore[typeddict-item]
-    if "Values" in data:
+    if data.get("Values") is not None:
         import capo_quicksight.types.parameter_selectable_value_list
 
         out["values"] = (

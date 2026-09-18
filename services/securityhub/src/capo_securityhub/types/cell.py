@@ -38,12 +38,12 @@ def serialize_json(value: Cell) -> dict:
 
 def deserialize_json(data: dict) -> Cell:
     out: Cell = {}  # type: ignore[typeddict-item]
-    if "Column" in data:
+    if data.get("Column") is not None:
         out["column"] = data["Column"]
-    if "Row" in data:
+    if data.get("Row") is not None:
         out["row"] = data["Row"]
-    if "ColumnName" in data:
+    if data.get("ColumnName") is not None:
         out["column_name"] = data["ColumnName"]
-    if "CellReference" in data:
+    if data.get("CellReference") is not None:
         out["cell_reference"] = data["CellReference"]
     return out

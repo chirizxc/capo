@@ -28,8 +28,8 @@ def serialize_json(value: CreateIndexResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateIndexResponse:
     out: CreateIndexResponse = {}  # type: ignore[typeddict-item]
-    if "indexId" in data:
+    if data.get("indexId") is not None:
         out["index_id"] = data["indexId"]
-    if "indexArn" in data:
+    if data.get("indexArn") is not None:
         out["index_arn"] = data["indexArn"]
     return out

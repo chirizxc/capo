@@ -52,9 +52,9 @@ def serialize_aws_json_1_1(value: DocumentAttributeValue) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DocumentAttributeValue:
     out: DocumentAttributeValue = {}  # type: ignore[typeddict-item]
-    if "StringValue" in data:
+    if data.get("StringValue") is not None:
         out["string_value"] = data["StringValue"]
-    if "StringListValue" in data:
+    if data.get("StringListValue") is not None:
         import capo_kendra.types.document_attribute_string_list_value
 
         out["string_list_value"] = (
@@ -62,9 +62,9 @@ def deserialize_aws_json_1_1(data: dict) -> DocumentAttributeValue:
                 data["StringListValue"]
             )
         )
-    if "LongValue" in data:
+    if data.get("LongValue") is not None:
         out["long_value"] = data["LongValue"]
-    if "DateValue" in data:
+    if data.get("DateValue") is not None:
         import capo_kendra.types.timestamp
 
         out["date_value"] = capo_kendra.types.timestamp.deserialize_aws_json_1_1(

@@ -31,7 +31,7 @@ def serialize_aws_json_1_0(value: PortSet) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> PortSet:
     out: PortSet = {}  # type: ignore[typeddict-item]
-    if "Definition" in data:
+    if data.get("Definition") is not None:
         import capo_network_firewall.types.variable_definition_list
 
         out["definition"] = (

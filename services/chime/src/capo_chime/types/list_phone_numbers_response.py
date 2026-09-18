@@ -32,12 +32,12 @@ def serialize_json(value: ListPhoneNumbersResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListPhoneNumbersResponse:
     out: ListPhoneNumbersResponse = {}  # type: ignore[typeddict-item]
-    if "PhoneNumbers" in data:
+    if data.get("PhoneNumbers") is not None:
         import capo_chime.types.phone_number_list
 
         out["phone_numbers"] = capo_chime.types.phone_number_list.deserialize_json(
             data["PhoneNumbers"]
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

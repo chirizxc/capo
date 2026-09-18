@@ -48,13 +48,13 @@ def serialize_aws_json_1_1(value: UpdateFleetCapacityOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateFleetCapacityOutput:
     out: UpdateFleetCapacityOutput = {}  # type: ignore[typeddict-item]
-    if "FleetId" in data:
+    if data.get("FleetId") is not None:
         out["fleet_id"] = data["FleetId"]
-    if "FleetArn" in data:
+    if data.get("FleetArn") is not None:
         out["fleet_arn"] = data["FleetArn"]
-    if "Location" in data:
+    if data.get("Location") is not None:
         out["location"] = data["Location"]
-    if "ManagedCapacityConfiguration" in data:
+    if data.get("ManagedCapacityConfiguration") is not None:
         import capo_gamelift.types.managed_capacity_configuration
 
         out["managed_capacity_configuration"] = (

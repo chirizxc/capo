@@ -19,16 +19,32 @@ class IpGeoLocation(TypedDict, closed=True):
 def serialize_json(value: IpGeoLocation) -> dict:
     out: dict = {}
     if "lat" in value:
-        out["lat"] = value["lat"]
+        out["lat"] = (
+            "NaN"
+            if value["lat"] != value["lat"]
+            else "Infinity"
+            if value["lat"] == float("inf")
+            else "-Infinity"
+            if value["lat"] == float("-inf")
+            else value["lat"]
+        )
     if "lon" in value:
-        out["lon"] = value["lon"]
+        out["lon"] = (
+            "NaN"
+            if value["lon"] != value["lon"]
+            else "Infinity"
+            if value["lon"] == float("inf")
+            else "-Infinity"
+            if value["lon"] == float("-inf")
+            else value["lon"]
+        )
     return out
 
 
 def deserialize_json(data: dict) -> IpGeoLocation:
     out: IpGeoLocation = {}  # type: ignore[typeddict-item]
-    if "lat" in data:
-        out["lat"] = data["lat"]
-    if "lon" in data:
-        out["lon"] = data["lon"]
+    if data.get("lat") is not None:
+        out["lat"] = float(data["lat"])
+    if data.get("lon") is not None:
+        out["lon"] = float(data["lon"])
     return out

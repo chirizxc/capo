@@ -88,19 +88,19 @@ def serialize_json(value: DataSourceRunActivity) -> dict:
 
 def deserialize_json(data: dict) -> DataSourceRunActivity:
     out: DataSourceRunActivity = {}  # type: ignore[typeddict-item]
-    if "database" in data:
+    if data.get("database") is not None:
         out["database"] = data["database"]
     else:
         raise DeserializationError("DataSourceRunActivity.database required")
-    if "dataSourceRunId" in data:
+    if data.get("dataSourceRunId") is not None:
         out["data_source_run_id"] = data["dataSourceRunId"]
     else:
         raise DeserializationError("DataSourceRunActivity.data_source_run_id required")
-    if "technicalName" in data:
+    if data.get("technicalName") is not None:
         out["technical_name"] = data["technicalName"]
     else:
         raise DeserializationError("DataSourceRunActivity.technical_name required")
-    if "dataAssetStatus" in data:
+    if data.get("dataAssetStatus") is not None:
         import capo_datazone.types.data_asset_activity_status
 
         out["data_asset_status"] = (
@@ -110,15 +110,15 @@ def deserialize_json(data: dict) -> DataSourceRunActivity:
         )
     else:
         raise DeserializationError("DataSourceRunActivity.data_asset_status required")
-    if "projectId" in data:
+    if data.get("projectId") is not None:
         out["project_id"] = data["projectId"]
     else:
         raise DeserializationError("DataSourceRunActivity.project_id required")
-    if "dataAssetId" in data:
+    if data.get("dataAssetId") is not None:
         out["data_asset_id"] = data["dataAssetId"]
-    if "technicalDescription" in data:
+    if data.get("technicalDescription") is not None:
         out["technical_description"] = data["technicalDescription"]
-    if "errorMessage" in data:
+    if data.get("errorMessage") is not None:
         import capo_datazone.types.data_source_error_message
 
         out["error_message"] = (
@@ -126,13 +126,13 @@ def deserialize_json(data: dict) -> DataSourceRunActivity:
                 data["errorMessage"]
             )
         )
-    if "lineageSummary" in data:
+    if data.get("lineageSummary") is not None:
         import capo_datazone.types.lineage_info
 
         out["lineage_summary"] = capo_datazone.types.lineage_info.deserialize_json(
             data["lineageSummary"]
         )
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_datazone.types.date_time
 
         out["created_at"] = capo_datazone.types.date_time.deserialize_json(
@@ -140,7 +140,7 @@ def deserialize_json(data: dict) -> DataSourceRunActivity:
         )
     else:
         raise DeserializationError("DataSourceRunActivity.created_at required")
-    if "updatedAt" in data:
+    if data.get("updatedAt") is not None:
         import capo_datazone.types.date_time
 
         out["updated_at"] = capo_datazone.types.date_time.deserialize_json(

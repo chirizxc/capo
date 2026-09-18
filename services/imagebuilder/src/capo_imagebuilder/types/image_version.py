@@ -82,35 +82,35 @@ def serialize_json(value: ImageVersion) -> dict:
 
 def deserialize_json(data: dict) -> ImageVersion:
     out: ImageVersion = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_imagebuilder.types.image_type
 
         out["type"] = capo_imagebuilder.types.image_type.deserialize_json(data["type"])
-    if "version" in data:
+    if data.get("version") is not None:
         out["version"] = data["version"]
-    if "platform" in data:
+    if data.get("platform") is not None:
         import capo_imagebuilder.types.platform
 
         out["platform"] = capo_imagebuilder.types.platform.deserialize_json(
             data["platform"]
         )
-    if "osVersion" in data:
+    if data.get("osVersion") is not None:
         out["os_version"] = data["osVersion"]
-    if "owner" in data:
+    if data.get("owner") is not None:
         out["owner"] = data["owner"]
-    if "dateCreated" in data:
+    if data.get("dateCreated") is not None:
         out["date_created"] = data["dateCreated"]
-    if "buildType" in data:
+    if data.get("buildType") is not None:
         import capo_imagebuilder.types.build_type
 
         out["build_type"] = capo_imagebuilder.types.build_type.deserialize_json(
             data["buildType"]
         )
-    if "imageSource" in data:
+    if data.get("imageSource") is not None:
         import capo_imagebuilder.types.image_source
 
         out["image_source"] = capo_imagebuilder.types.image_source.deserialize_json(

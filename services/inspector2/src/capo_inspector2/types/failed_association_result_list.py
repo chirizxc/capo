@@ -25,6 +25,8 @@ def deserialize_json(data: list) -> FailedAssociationResultList:
 
     out: FailedAssociationResultList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_inspector2.types.failed_association_result.deserialize_json(item)
         )

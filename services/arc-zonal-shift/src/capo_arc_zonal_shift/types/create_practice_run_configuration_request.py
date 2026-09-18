@@ -82,13 +82,13 @@ def serialize_json(value: CreatePracticeRunConfigurationRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreatePracticeRunConfigurationRequest:
     out: CreatePracticeRunConfigurationRequest = {}  # type: ignore[typeddict-item]
-    if "resourceIdentifier" in data:
+    if data.get("resourceIdentifier") is not None:
         out["resource_identifier"] = data["resourceIdentifier"]
     else:
         raise DeserializationError(
             "CreatePracticeRunConfigurationRequest.resource_identifier required"
         )
-    if "blockedWindows" in data:
+    if data.get("blockedWindows") is not None:
         import capo_arc_zonal_shift.types.blocked_windows
 
         out["blocked_windows"] = (
@@ -96,7 +96,7 @@ def deserialize_json(data: dict) -> CreatePracticeRunConfigurationRequest:
                 data["blockedWindows"]
             )
         )
-    if "blockedDates" in data:
+    if data.get("blockedDates") is not None:
         import capo_arc_zonal_shift.types.blocked_dates
 
         out["blocked_dates"] = (
@@ -104,7 +104,7 @@ def deserialize_json(data: dict) -> CreatePracticeRunConfigurationRequest:
                 data["blockedDates"]
             )
         )
-    if "blockingAlarms" in data:
+    if data.get("blockingAlarms") is not None:
         import capo_arc_zonal_shift.types.blocking_alarms
 
         out["blocking_alarms"] = (
@@ -112,7 +112,7 @@ def deserialize_json(data: dict) -> CreatePracticeRunConfigurationRequest:
                 data["blockingAlarms"]
             )
         )
-    if "allowedWindows" in data:
+    if data.get("allowedWindows") is not None:
         import capo_arc_zonal_shift.types.allowed_windows
 
         out["allowed_windows"] = (
@@ -120,7 +120,7 @@ def deserialize_json(data: dict) -> CreatePracticeRunConfigurationRequest:
                 data["allowedWindows"]
             )
         )
-    if "outcomeAlarms" in data:
+    if data.get("outcomeAlarms") is not None:
         import capo_arc_zonal_shift.types.outcome_alarms
 
         out["outcome_alarms"] = (

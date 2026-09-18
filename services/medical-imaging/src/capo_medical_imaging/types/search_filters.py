@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> SearchFilters:
 
     out: SearchFilters = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_medical_imaging.types.search_filter.deserialize_json(item))
     return out

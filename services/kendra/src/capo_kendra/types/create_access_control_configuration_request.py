@@ -62,21 +62,21 @@ def serialize_aws_json_1_1(value: CreateAccessControlConfigurationRequest) -> di
 
 def deserialize_aws_json_1_1(data: dict) -> CreateAccessControlConfigurationRequest:
     out: CreateAccessControlConfigurationRequest = {}  # type: ignore[typeddict-item]
-    if "IndexId" in data:
+    if data.get("IndexId") is not None:
         out["index_id"] = data["IndexId"]
     else:
         raise DeserializationError(
             "CreateAccessControlConfigurationRequest.index_id required"
         )
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError(
             "CreateAccessControlConfigurationRequest.name required"
         )
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "AccessControlList" in data:
+    if data.get("AccessControlList") is not None:
         import capo_kendra.types.principal_list
 
         out["access_control_list"] = (
@@ -84,7 +84,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateAccessControlConfigurationRequ
                 data["AccessControlList"]
             )
         )
-    if "HierarchicalAccessControlList" in data:
+    if data.get("HierarchicalAccessControlList") is not None:
         import capo_kendra.types.hierarchical_principal_list
 
         out["hierarchical_access_control_list"] = (
@@ -92,6 +92,6 @@ def deserialize_aws_json_1_1(data: dict) -> CreateAccessControlConfigurationRequ
                 data["HierarchicalAccessControlList"]
             )
         )
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
     return out

@@ -39,11 +39,11 @@ def serialize_aws_json_1_1(value: CreatePartnerAppPresignedUrlRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreatePartnerAppPresignedUrlRequest:
     out: CreatePartnerAppPresignedUrlRequest = {}  # type: ignore[typeddict-item]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "ExpiresInSeconds" in data:
+    if data.get("ExpiresInSeconds") is not None:
         out["expires_in_seconds"] = data["ExpiresInSeconds"]
-    if "SessionExpirationDurationInSeconds" in data:
+    if data.get("SessionExpirationDurationInSeconds") is not None:
         out["session_expiration_duration_in_seconds"] = data[
             "SessionExpirationDurationInSeconds"
         ]

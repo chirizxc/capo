@@ -118,27 +118,27 @@ def serialize_json(value: ReviewTemplateAnswer) -> dict:
 
 def deserialize_json(data: dict) -> ReviewTemplateAnswer:
     out: ReviewTemplateAnswer = {}  # type: ignore[typeddict-item]
-    if "QuestionId" in data:
+    if data.get("QuestionId") is not None:
         out["question_id"] = data["QuestionId"]
-    if "PillarId" in data:
+    if data.get("PillarId") is not None:
         out["pillar_id"] = data["PillarId"]
-    if "QuestionTitle" in data:
+    if data.get("QuestionTitle") is not None:
         out["question_title"] = data["QuestionTitle"]
-    if "QuestionDescription" in data:
+    if data.get("QuestionDescription") is not None:
         out["question_description"] = data["QuestionDescription"]
-    if "ImprovementPlanUrl" in data:
+    if data.get("ImprovementPlanUrl") is not None:
         out["improvement_plan_url"] = data["ImprovementPlanUrl"]
-    if "HelpfulResourceUrl" in data:
+    if data.get("HelpfulResourceUrl") is not None:
         out["helpful_resource_url"] = data["HelpfulResourceUrl"]
-    if "HelpfulResourceDisplayText" in data:
+    if data.get("HelpfulResourceDisplayText") is not None:
         out["helpful_resource_display_text"] = data["HelpfulResourceDisplayText"]
-    if "Choices" in data:
+    if data.get("Choices") is not None:
         import capo_wellarchitected.types.choices
 
         out["choices"] = capo_wellarchitected.types.choices.deserialize_json(
             data["Choices"]
         )
-    if "SelectedChoices" in data:
+    if data.get("SelectedChoices") is not None:
         import capo_wellarchitected.types.selected_choices
 
         out["selected_choices"] = (
@@ -146,7 +146,7 @@ def deserialize_json(data: dict) -> ReviewTemplateAnswer:
                 data["SelectedChoices"]
             )
         )
-    if "ChoiceAnswers" in data:
+    if data.get("ChoiceAnswers") is not None:
         import capo_wellarchitected.types.choice_answers
 
         out["choice_answers"] = (
@@ -154,9 +154,9 @@ def deserialize_json(data: dict) -> ReviewTemplateAnswer:
                 data["ChoiceAnswers"]
             )
         )
-    if "IsApplicable" in data:
+    if data.get("IsApplicable") is not None:
         out["is_applicable"] = data["IsApplicable"]
-    if "AnswerStatus" in data:
+    if data.get("AnswerStatus") is not None:
         import capo_wellarchitected.types.review_template_answer_status
 
         out["answer_status"] = (
@@ -164,9 +164,9 @@ def deserialize_json(data: dict) -> ReviewTemplateAnswer:
                 data["AnswerStatus"]
             )
         )
-    if "Notes" in data:
+    if data.get("Notes") is not None:
         out["notes"] = data["Notes"]
-    if "Reason" in data:
+    if data.get("Reason") is not None:
         import capo_wellarchitected.types.answer_reason
 
         out["reason"] = capo_wellarchitected.types.answer_reason.deserialize_json(

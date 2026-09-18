@@ -43,19 +43,19 @@ def serialize_json(value: DataTableDeleteValueIdentifier) -> dict:
 
 def deserialize_json(data: dict) -> DataTableDeleteValueIdentifier:
     out: DataTableDeleteValueIdentifier = {}  # type: ignore[typeddict-item]
-    if "PrimaryValues" in data:
+    if data.get("PrimaryValues") is not None:
         import capo_connect.types.primary_values_set
 
         out["primary_values"] = capo_connect.types.primary_values_set.deserialize_json(
             data["PrimaryValues"]
         )
-    if "AttributeName" in data:
+    if data.get("AttributeName") is not None:
         out["attribute_name"] = data["AttributeName"]
     else:
         raise DeserializationError(
             "DataTableDeleteValueIdentifier.attribute_name required"
         )
-    if "LockVersion" in data:
+    if data.get("LockVersion") is not None:
         import capo_connect.types.data_table_lock_version
 
         out["lock_version"] = (

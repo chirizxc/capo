@@ -48,15 +48,15 @@ def serialize_json(value: AssetInstance) -> dict:
 
 def deserialize_json(data: dict) -> AssetInstance:
     out: AssetInstance = {}  # type: ignore[typeddict-item]
-    if "InstanceId" in data:
+    if data.get("InstanceId") is not None:
         out["instance_id"] = data["InstanceId"]
-    if "InstanceType" in data:
+    if data.get("InstanceType") is not None:
         out["instance_type"] = data["InstanceType"]
-    if "AssetId" in data:
+    if data.get("AssetId") is not None:
         out["asset_id"] = data["AssetId"]
-    if "AccountId" in data:
+    if data.get("AccountId") is not None:
         out["account_id"] = data["AccountId"]
-    if "AwsServiceName" in data:
+    if data.get("AwsServiceName") is not None:
         import capo_outposts.types.aws_service_name
 
         out["aws_service_name"] = capo_outposts.types.aws_service_name.deserialize_json(

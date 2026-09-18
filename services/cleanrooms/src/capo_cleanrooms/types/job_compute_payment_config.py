@@ -19,7 +19,7 @@ def serialize_json(value: JobComputePaymentConfig) -> dict:
 
 def deserialize_json(data: dict) -> JobComputePaymentConfig:
     out: JobComputePaymentConfig = {}  # type: ignore[typeddict-item]
-    if "isResponsible" in data:
+    if data.get("isResponsible") is not None:
         out["is_responsible"] = data["isResponsible"]
     else:
         raise DeserializationError("JobComputePaymentConfig.is_responsible required")

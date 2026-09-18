@@ -30,7 +30,7 @@ def serialize_json(value: EventTriggerDimension) -> dict:
 
 def deserialize_json(data: dict) -> EventTriggerDimension:
     out: EventTriggerDimension = {}  # type: ignore[typeddict-item]
-    if "ObjectAttributes" in data:
+    if data.get("ObjectAttributes") is not None:
         import capo_customer_profiles.types.object_attributes
 
         out["object_attributes"] = (

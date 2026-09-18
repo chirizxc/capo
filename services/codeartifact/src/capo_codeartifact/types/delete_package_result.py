@@ -28,7 +28,7 @@ def serialize_json(value: DeletePackageResult) -> dict:
 
 def deserialize_json(data: dict) -> DeletePackageResult:
     out: DeletePackageResult = {}  # type: ignore[typeddict-item]
-    if "deletedPackage" in data:
+    if data.get("deletedPackage") is not None:
         import capo_codeartifact.types.package_summary
 
         out["deleted_package"] = (

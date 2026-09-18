@@ -32,7 +32,7 @@ def serialize_json(value: JobRunDetails) -> dict:
 
 
 def deserialize_json(data: dict) -> JobRunDetails:
-    if "lineageRunDetails" in data:
+    if data.get("lineageRunDetails") is not None:
         import capo_datazone.types.lineage_run_details
 
         return {

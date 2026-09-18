@@ -36,7 +36,7 @@ def serialize_json(value: ListPodIdentityAssociationsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListPodIdentityAssociationsResponse:
     out: ListPodIdentityAssociationsResponse = {}  # type: ignore[typeddict-item]
-    if "associations" in data:
+    if data.get("associations") is not None:
         import capo_eks.types.pod_identity_association_summaries
 
         out["associations"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> ListPodIdentityAssociationsResponse:
                 data["associations"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

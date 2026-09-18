@@ -32,11 +32,11 @@ def serialize_json(value: TopicPreference) -> dict:
 
 def deserialize_json(data: dict) -> TopicPreference:
     out: TopicPreference = {}  # type: ignore[typeddict-item]
-    if "TopicName" in data:
+    if data.get("TopicName") is not None:
         out["topic_name"] = data["TopicName"]
     else:
         raise DeserializationError("TopicPreference.topic_name required")
-    if "SubscriptionStatus" in data:
+    if data.get("SubscriptionStatus") is not None:
         import capo_sesv2.types.subscription_status
 
         out["subscription_status"] = (

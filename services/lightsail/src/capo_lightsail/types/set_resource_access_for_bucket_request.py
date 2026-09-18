@@ -36,19 +36,19 @@ def serialize_aws_json_1_1(value: SetResourceAccessForBucketRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SetResourceAccessForBucketRequest:
     out: SetResourceAccessForBucketRequest = {}  # type: ignore[typeddict-item]
-    if "resourceName" in data:
+    if data.get("resourceName") is not None:
         out["resource_name"] = data["resourceName"]
     else:
         raise DeserializationError(
             "SetResourceAccessForBucketRequest.resource_name required"
         )
-    if "bucketName" in data:
+    if data.get("bucketName") is not None:
         out["bucket_name"] = data["bucketName"]
     else:
         raise DeserializationError(
             "SetResourceAccessForBucketRequest.bucket_name required"
         )
-    if "access" in data:
+    if data.get("access") is not None:
         import capo_lightsail.types.resource_bucket_access
 
         out["access"] = (

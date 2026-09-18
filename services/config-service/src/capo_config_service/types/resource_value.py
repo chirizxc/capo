@@ -28,7 +28,7 @@ def serialize_aws_json_1_1(value: ResourceValue) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ResourceValue:
     out: ResourceValue = {}  # type: ignore[typeddict-item]
-    if "Value" in data:
+    if data.get("Value") is not None:
         import capo_config_service.types.resource_value_type
 
         out["value"] = (

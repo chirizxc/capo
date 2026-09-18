@@ -33,10 +33,10 @@ def serialize_json(value: DescribeThemeResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribeThemeResponse:
     out: DescribeThemeResponse = {}  # type: ignore[typeddict-item]
-    if "Theme" in data:
+    if data.get("Theme") is not None:
         import capo_quicksight.types.theme
 
         out["theme"] = capo_quicksight.types.theme.deserialize_json(data["Theme"])
-    if "RequestId" in data:
+    if data.get("RequestId") is not None:
         out["request_id"] = data["RequestId"]
     return out

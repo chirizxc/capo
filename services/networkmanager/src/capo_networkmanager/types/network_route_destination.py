@@ -64,18 +64,18 @@ def serialize_json(value: NetworkRouteDestination) -> dict:
 
 def deserialize_json(data: dict) -> NetworkRouteDestination:
     out: NetworkRouteDestination = {}  # type: ignore[typeddict-item]
-    if "CoreNetworkAttachmentId" in data:
+    if data.get("CoreNetworkAttachmentId") is not None:
         out["core_network_attachment_id"] = data["CoreNetworkAttachmentId"]
-    if "TransitGatewayAttachmentId" in data:
+    if data.get("TransitGatewayAttachmentId") is not None:
         out["transit_gateway_attachment_id"] = data["TransitGatewayAttachmentId"]
-    if "SegmentName" in data:
+    if data.get("SegmentName") is not None:
         out["segment_name"] = data["SegmentName"]
-    if "NetworkFunctionGroupName" in data:
+    if data.get("NetworkFunctionGroupName") is not None:
         out["network_function_group_name"] = data["NetworkFunctionGroupName"]
-    if "EdgeLocation" in data:
+    if data.get("EdgeLocation") is not None:
         out["edge_location"] = data["EdgeLocation"]
-    if "ResourceType" in data:
+    if data.get("ResourceType") is not None:
         out["resource_type"] = data["ResourceType"]
-    if "ResourceId" in data:
+    if data.get("ResourceId") is not None:
         out["resource_id"] = data["ResourceId"]
     return out

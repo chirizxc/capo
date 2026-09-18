@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> ListComponentTypesFilters:
 
     out: ListComponentTypesFilters = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_iottwinmaker.types.list_component_types_filter.deserialize_json(item)
         )

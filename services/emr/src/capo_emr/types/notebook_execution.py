@@ -158,11 +158,11 @@ def serialize_aws_json_1_1(value: NotebookExecution) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> NotebookExecution:
     out: NotebookExecution = {}  # type: ignore[typeddict-item]
-    if "NotebookExecutionId" in data:
+    if data.get("NotebookExecutionId") is not None:
         out["notebook_execution_id"] = data["NotebookExecutionId"]
-    if "EditorId" in data:
+    if data.get("EditorId") is not None:
         out["editor_id"] = data["EditorId"]
-    if "ExecutionEngine" in data:
+    if data.get("ExecutionEngine") is not None:
         import capo_emr.types.execution_engine_config
 
         out["execution_engine"] = (
@@ -170,11 +170,11 @@ def deserialize_aws_json_1_1(data: dict) -> NotebookExecution:
                 data["ExecutionEngine"]
             )
         )
-    if "NotebookExecutionName" in data:
+    if data.get("NotebookExecutionName") is not None:
         out["notebook_execution_name"] = data["NotebookExecutionName"]
-    if "NotebookParams" in data:
+    if data.get("NotebookParams") is not None:
         out["notebook_params"] = data["NotebookParams"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_emr.types.notebook_execution_status
 
         out["status"] = (
@@ -182,31 +182,31 @@ def deserialize_aws_json_1_1(data: dict) -> NotebookExecution:
                 data["Status"]
             )
         )
-    if "StartTime" in data:
+    if data.get("StartTime") is not None:
         import capo_emr.types.date
 
         out["start_time"] = capo_emr.types.date.deserialize_aws_json_1_1(
             data["StartTime"]
         )
-    if "EndTime" in data:
+    if data.get("EndTime") is not None:
         import capo_emr.types.date
 
         out["end_time"] = capo_emr.types.date.deserialize_aws_json_1_1(data["EndTime"])
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "OutputNotebookURI" in data:
+    if data.get("OutputNotebookURI") is not None:
         out["output_notebook_uri"] = data["OutputNotebookURI"]
-    if "LastStateChangeReason" in data:
+    if data.get("LastStateChangeReason") is not None:
         out["last_state_change_reason"] = data["LastStateChangeReason"]
-    if "NotebookInstanceSecurityGroupId" in data:
+    if data.get("NotebookInstanceSecurityGroupId") is not None:
         out["notebook_instance_security_group_id"] = data[
             "NotebookInstanceSecurityGroupId"
         ]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_emr.types.tag_list
 
         out["tags"] = capo_emr.types.tag_list.deserialize_aws_json_1_1(data["Tags"])
-    if "NotebookS3Location" in data:
+    if data.get("NotebookS3Location") is not None:
         import capo_emr.types.notebook_s3_location_for_output
 
         out["notebook_s3_location"] = (
@@ -214,7 +214,7 @@ def deserialize_aws_json_1_1(data: dict) -> NotebookExecution:
                 data["NotebookS3Location"]
             )
         )
-    if "OutputNotebookS3Location" in data:
+    if data.get("OutputNotebookS3Location") is not None:
         import capo_emr.types.output_notebook_s3_location_for_output
 
         out["output_notebook_s3_location"] = (
@@ -222,7 +222,7 @@ def deserialize_aws_json_1_1(data: dict) -> NotebookExecution:
                 data["OutputNotebookS3Location"]
             )
         )
-    if "OutputNotebookFormat" in data:
+    if data.get("OutputNotebookFormat") is not None:
         import capo_emr.types.output_notebook_format
 
         out["output_notebook_format"] = (
@@ -230,7 +230,7 @@ def deserialize_aws_json_1_1(data: dict) -> NotebookExecution:
                 data["OutputNotebookFormat"]
             )
         )
-    if "EnvironmentVariables" in data:
+    if data.get("EnvironmentVariables") is not None:
         import capo_emr.types.environment_variables_map
 
         out["environment_variables"] = (

@@ -41,17 +41,17 @@ def serialize_aws_json_1_1(value: ResetParameterGroupRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ResetParameterGroupRequest:
     out: ResetParameterGroupRequest = {}  # type: ignore[typeddict-item]
-    if "ParameterGroupName" in data:
+    if data.get("ParameterGroupName") is not None:
         out["parameter_group_name"] = data["ParameterGroupName"]
     else:
         raise DeserializationError(
             "ResetParameterGroupRequest.parameter_group_name required"
         )
-    if "AllParameters" in data:
+    if data.get("AllParameters") is not None:
         out["all_parameters"] = data["AllParameters"]
     else:
         out["all_parameters"] = False
-    if "ParameterNames" in data:
+    if data.get("ParameterNames") is not None:
         import capo_memorydb.types.parameter_name_list
 
         out["parameter_names"] = (

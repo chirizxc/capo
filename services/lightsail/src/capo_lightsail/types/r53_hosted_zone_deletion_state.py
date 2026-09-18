@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: R53HostedZoneDeletionState) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> R53HostedZoneDeletionState:
     out: R53HostedZoneDeletionState = {}  # type: ignore[typeddict-item]
-    if "code" in data:
+    if data.get("code") is not None:
         import capo_lightsail.types.r53_hosted_zone_deletion_state_code
 
         out["code"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_1(data: dict) -> R53HostedZoneDeletionState:
                 data["code"]
             )
         )
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     return out

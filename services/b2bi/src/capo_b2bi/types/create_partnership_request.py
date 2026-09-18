@@ -71,21 +71,21 @@ def serialize_aws_json_1_0(value: CreatePartnershipRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CreatePartnershipRequest:
     out: CreatePartnershipRequest = {}  # type: ignore[typeddict-item]
-    if "profileId" in data:
+    if data.get("profileId") is not None:
         out["profile_id"] = data["profileId"]
     else:
         raise DeserializationError("CreatePartnershipRequest.profile_id required")
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("CreatePartnershipRequest.name required")
-    if "email" in data:
+    if data.get("email") is not None:
         out["email"] = data["email"]
     else:
         raise DeserializationError("CreatePartnershipRequest.email required")
-    if "phone" in data:
+    if data.get("phone") is not None:
         out["phone"] = data["phone"]
-    if "capabilities" in data:
+    if data.get("capabilities") is not None:
         import capo_b2bi.types.partnership_capabilities
 
         out["capabilities"] = (
@@ -95,7 +95,7 @@ def deserialize_aws_json_1_0(data: dict) -> CreatePartnershipRequest:
         )
     else:
         raise DeserializationError("CreatePartnershipRequest.capabilities required")
-    if "capabilityOptions" in data:
+    if data.get("capabilityOptions") is not None:
         import capo_b2bi.types.capability_options
 
         out["capability_options"] = (
@@ -103,9 +103,9 @@ def deserialize_aws_json_1_0(data: dict) -> CreatePartnershipRequest:
                 data["capabilityOptions"]
             )
         )
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_b2bi.types.tag_list
 
         out["tags"] = capo_b2bi.types.tag_list.deserialize_aws_json_1_0(data["tags"])

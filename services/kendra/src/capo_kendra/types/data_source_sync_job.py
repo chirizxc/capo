@@ -84,21 +84,21 @@ def serialize_aws_json_1_1(value: DataSourceSyncJob) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DataSourceSyncJob:
     out: DataSourceSyncJob = {}  # type: ignore[typeddict-item]
-    if "ExecutionId" in data:
+    if data.get("ExecutionId") is not None:
         out["execution_id"] = data["ExecutionId"]
-    if "StartTime" in data:
+    if data.get("StartTime") is not None:
         import capo_kendra.types.timestamp
 
         out["start_time"] = capo_kendra.types.timestamp.deserialize_aws_json_1_1(
             data["StartTime"]
         )
-    if "EndTime" in data:
+    if data.get("EndTime") is not None:
         import capo_kendra.types.timestamp
 
         out["end_time"] = capo_kendra.types.timestamp.deserialize_aws_json_1_1(
             data["EndTime"]
         )
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_kendra.types.data_source_sync_job_status
 
         out["status"] = (
@@ -106,17 +106,17 @@ def deserialize_aws_json_1_1(data: dict) -> DataSourceSyncJob:
                 data["Status"]
             )
         )
-    if "ErrorMessage" in data:
+    if data.get("ErrorMessage") is not None:
         out["error_message"] = data["ErrorMessage"]
-    if "ErrorCode" in data:
+    if data.get("ErrorCode") is not None:
         import capo_kendra.types.error_code
 
         out["error_code"] = capo_kendra.types.error_code.deserialize_aws_json_1_1(
             data["ErrorCode"]
         )
-    if "DataSourceErrorCode" in data:
+    if data.get("DataSourceErrorCode") is not None:
         out["data_source_error_code"] = data["DataSourceErrorCode"]
-    if "Metrics" in data:
+    if data.get("Metrics") is not None:
         import capo_kendra.types.data_source_sync_job_metrics
 
         out["metrics"] = (

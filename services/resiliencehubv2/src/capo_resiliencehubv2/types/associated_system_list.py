@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> AssociatedSystemList:
 
     out: AssociatedSystemList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_resiliencehubv2.types.associated_system.deserialize_json(item))
     return out

@@ -107,27 +107,27 @@ def serialize_aws_json_1_0(value: CreateBenefitApplicationInput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CreateBenefitApplicationInput:
     out: CreateBenefitApplicationInput = {}  # type: ignore[typeddict-item]
-    if "Catalog" in data:
+    if data.get("Catalog") is not None:
         out["catalog"] = data["Catalog"]
     else:
         raise DeserializationError("CreateBenefitApplicationInput.catalog required")
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
     else:
         raise DeserializationError(
             "CreateBenefitApplicationInput.client_token required"
         )
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "BenefitIdentifier" in data:
+    if data.get("BenefitIdentifier") is not None:
         out["benefit_identifier"] = data["BenefitIdentifier"]
     else:
         raise DeserializationError(
             "CreateBenefitApplicationInput.benefit_identifier required"
         )
-    if "FulfillmentTypes" in data:
+    if data.get("FulfillmentTypes") is not None:
         import capo_partnercentral_benefits.types.fulfillment_types
 
         out["fulfillment_types"] = (
@@ -135,15 +135,15 @@ def deserialize_aws_json_1_0(data: dict) -> CreateBenefitApplicationInput:
                 data["FulfillmentTypes"]
             )
         )
-    if "BenefitApplicationDetails" in data:
+    if data.get("BenefitApplicationDetails") is not None:
         out["benefit_application_details"] = data["BenefitApplicationDetails"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_partnercentral_benefits.types.tags
 
         out["tags"] = capo_partnercentral_benefits.types.tags.deserialize_aws_json_1_0(
             data["Tags"]
         )
-    if "AssociatedResources" in data:
+    if data.get("AssociatedResources") is not None:
         import capo_partnercentral_benefits.types.arns
 
         out["associated_resources"] = (
@@ -151,7 +151,7 @@ def deserialize_aws_json_1_0(data: dict) -> CreateBenefitApplicationInput:
                 data["AssociatedResources"]
             )
         )
-    if "PartnerContacts" in data:
+    if data.get("PartnerContacts") is not None:
         import capo_partnercentral_benefits.types.contacts
 
         out["partner_contacts"] = (
@@ -159,7 +159,7 @@ def deserialize_aws_json_1_0(data: dict) -> CreateBenefitApplicationInput:
                 data["PartnerContacts"]
             )
         )
-    if "FileDetails" in data:
+    if data.get("FileDetails") is not None:
         import capo_partnercentral_benefits.types.file_input_details
 
         out["file_details"] = (

@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> __listOfMediaStreamOutputConfigurationReques
 
     out: __listOfMediaStreamOutputConfigurationRequest = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_mediaconnect.types.media_stream_output_configuration_request.deserialize_json(
                 item

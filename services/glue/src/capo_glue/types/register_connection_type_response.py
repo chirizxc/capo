@@ -25,6 +25,6 @@ def serialize_aws_json_1_1(value: RegisterConnectionTypeResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RegisterConnectionTypeResponse:
     out: RegisterConnectionTypeResponse = {}  # type: ignore[typeddict-item]
-    if "ConnectionTypeArn" in data:
+    if data.get("ConnectionTypeArn") is not None:
         out["connection_type_arn"] = data["ConnectionTypeArn"]
     return out

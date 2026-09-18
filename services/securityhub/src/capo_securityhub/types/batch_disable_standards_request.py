@@ -31,7 +31,7 @@ def serialize_json(value: BatchDisableStandardsRequest) -> dict:
 
 def deserialize_json(data: dict) -> BatchDisableStandardsRequest:
     out: BatchDisableStandardsRequest = {}  # type: ignore[typeddict-item]
-    if "StandardsSubscriptionArns" in data:
+    if data.get("StandardsSubscriptionArns") is not None:
         import capo_securityhub.types.standards_subscription_arns
 
         out["standards_subscription_arns"] = (

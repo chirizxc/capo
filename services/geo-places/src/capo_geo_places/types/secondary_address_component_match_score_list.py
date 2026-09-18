@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> SecondaryAddressComponentMatchScoreList:
 
     out: SecondaryAddressComponentMatchScoreList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_geo_places.types.secondary_address_component_match_score.deserialize_json(
                 item

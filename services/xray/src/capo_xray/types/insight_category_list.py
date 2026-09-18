@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> InsightCategoryList:
 
     out: InsightCategoryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_xray.types.insight_category.deserialize_json(item))
     return out

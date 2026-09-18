@@ -43,21 +43,21 @@ def serialize_json(value: StartAttachmentUploadRequest) -> dict:
 
 def deserialize_json(data: dict) -> StartAttachmentUploadRequest:
     out: StartAttachmentUploadRequest = {}  # type: ignore[typeddict-item]
-    if "ContentType" in data:
+    if data.get("ContentType") is not None:
         out["content_type"] = data["ContentType"]
     else:
         raise DeserializationError("StartAttachmentUploadRequest.content_type required")
-    if "AttachmentSizeInBytes" in data:
+    if data.get("AttachmentSizeInBytes") is not None:
         out["attachment_size_in_bytes"] = data["AttachmentSizeInBytes"]
     else:
         out["attachment_size_in_bytes"] = 0
-    if "AttachmentName" in data:
+    if data.get("AttachmentName") is not None:
         out["attachment_name"] = data["AttachmentName"]
     else:
         raise DeserializationError(
             "StartAttachmentUploadRequest.attachment_name required"
         )
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
     else:
         raise DeserializationError("StartAttachmentUploadRequest.client_token required")

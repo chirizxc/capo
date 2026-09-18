@@ -34,13 +34,13 @@ def serialize_aws_json_1_1(value: UpdateRelationalDatabaseParametersRequest) -> 
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateRelationalDatabaseParametersRequest:
     out: UpdateRelationalDatabaseParametersRequest = {}  # type: ignore[typeddict-item]
-    if "relationalDatabaseName" in data:
+    if data.get("relationalDatabaseName") is not None:
         out["relational_database_name"] = data["relationalDatabaseName"]
     else:
         raise DeserializationError(
             "UpdateRelationalDatabaseParametersRequest.relational_database_name required"
         )
-    if "parameters" in data:
+    if data.get("parameters") is not None:
         import capo_lightsail.types.relational_database_parameter_list
 
         out["parameters"] = (

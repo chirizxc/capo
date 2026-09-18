@@ -19,7 +19,7 @@ def serialize_json(value: MappingRule) -> dict:
 
 def deserialize_json(data: dict) -> MappingRule:
     out: MappingRule = {}  # type: ignore[typeddict-item]
-    if "specifier" in data:
+    if data.get("specifier") is not None:
         out["specifier"] = data["specifier"]
     else:
         raise DeserializationError("MappingRule.specifier required")

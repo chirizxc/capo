@@ -101,14 +101,16 @@ class TaskResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_neptune_graph.types.cancel_export_task_input.CancelExportTaskInput = {}  # type: ignore[typeddict-item]
-        input_["task_identifier"] = task_identifier
+        input_: capo_neptune_graph.types.cancel_export_task_input.CancelExportTaskInput = {
+            "task_identifier": task_identifier
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def cancel_import_task(
@@ -146,14 +148,16 @@ class TaskResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_neptune_graph.types.cancel_import_task_input.CancelImportTaskInput = {}  # type: ignore[typeddict-item]
-        input_["task_identifier"] = task_identifier
+        input_: capo_neptune_graph.types.cancel_import_task_input.CancelImportTaskInput = {
+            "task_identifier": task_identifier
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_graph_using_import_task(
@@ -237,8 +241,11 @@ class TaskResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_neptune_graph.types.create_graph_using_import_task_input.CreateGraphUsingImportTaskInput = {}  # type: ignore[typeddict-item]
-        input_["graph_name"] = graph_name
+        input_: capo_neptune_graph.types.create_graph_using_import_task_input.CreateGraphUsingImportTaskInput = {
+            "graph_name": graph_name,
+            "source": source,
+            "role_arn": role_arn,
+        }
         if tags is not None:
             input_["tags"] = tags
         if public_connectivity is not None:
@@ -259,20 +266,19 @@ class TaskResource:
             input_["min_provisioned_memory"] = min_provisioned_memory
         if fail_on_error is not None:
             input_["fail_on_error"] = fail_on_error
-        input_["source"] = source
         if format is not None:
             input_["format"] = format
         if parquet_type is not None:
             input_["parquet_type"] = parquet_type
         if blank_node_handling is not None:
             input_["blank_node_handling"] = blank_node_handling
-        input_["role_arn"] = role_arn
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_export_task(
@@ -309,14 +315,16 @@ class TaskResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_neptune_graph.types.get_export_task_input.GetExportTaskInput = {}  # type: ignore[typeddict-item]
-        input_["task_identifier"] = task_identifier
+        input_: capo_neptune_graph.types.get_export_task_input.GetExportTaskInput = {
+            "task_identifier": task_identifier
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_import_task(
@@ -353,14 +361,16 @@ class TaskResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_neptune_graph.types.get_import_task_input.GetImportTaskInput = {}  # type: ignore[typeddict-item]
-        input_["task_identifier"] = task_identifier
+        input_: capo_neptune_graph.types.get_import_task_input.GetImportTaskInput = {
+            "task_identifier": task_identifier
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_export_tasks(
@@ -405,7 +415,7 @@ class TaskResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_neptune_graph.types.list_export_tasks_input.ListExportTasksInput = {}  # type: ignore[typeddict-item]
+        input_: capo_neptune_graph.types.list_export_tasks_input.ListExportTasksInput = {}
         if graph_identifier is not None:
             input_["graph_identifier"] = graph_identifier
         if next_token is not None:
@@ -418,6 +428,7 @@ class TaskResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_import_tasks(
@@ -458,7 +469,7 @@ class TaskResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_neptune_graph.types.list_import_tasks_input.ListImportTasksInput = {}  # type: ignore[typeddict-item]
+        input_: capo_neptune_graph.types.list_import_tasks_input.ListImportTasksInput = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -469,6 +480,7 @@ class TaskResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def start_export_task(
@@ -524,12 +536,13 @@ class TaskResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_neptune_graph.types.start_export_task_input.StartExportTaskInput = {}  # type: ignore[typeddict-item]
-        input_["graph_identifier"] = graph_identifier
-        input_["role_arn"] = role_arn
-        input_["format"] = format
-        input_["destination"] = destination
-        input_["kms_key_identifier"] = kms_key_identifier
+        input_: capo_neptune_graph.types.start_export_task_input.StartExportTaskInput = {
+            "graph_identifier": graph_identifier,
+            "role_arn": role_arn,
+            "format": format,
+            "destination": destination,
+            "kms_key_identifier": kms_key_identifier,
+        }
         if parquet_type is not None:
             input_["parquet_type"] = parquet_type
         if export_filter is not None:
@@ -542,6 +555,7 @@ class TaskResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def start_import_task(
@@ -598,26 +612,28 @@ class TaskResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_neptune_graph.types.start_import_task_input.StartImportTaskInput = {}  # type: ignore[typeddict-item]
+        input_: capo_neptune_graph.types.start_import_task_input.StartImportTaskInput = {
+            "source": source,
+            "graph_identifier": graph_identifier,
+            "role_arn": role_arn,
+        }
         if import_options is not None:
             input_["import_options"] = import_options
         if fail_on_error is not None:
             input_["fail_on_error"] = fail_on_error
-        input_["source"] = source
         if format is not None:
             input_["format"] = format
         if parquet_type is not None:
             input_["parquet_type"] = parquet_type
         if blank_node_handling is not None:
             input_["blank_node_handling"] = blank_node_handling
-        input_["graph_identifier"] = graph_identifier
-        input_["role_arn"] = role_arn
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -661,14 +677,16 @@ class AsyncTaskResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_neptune_graph.types.cancel_export_task_input.CancelExportTaskInput = {}  # type: ignore[typeddict-item]
-        input_["task_identifier"] = task_identifier
+        input_: capo_neptune_graph.types.cancel_export_task_input.CancelExportTaskInput = {
+            "task_identifier": task_identifier
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def cancel_import_task(
@@ -707,14 +725,16 @@ class AsyncTaskResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_neptune_graph.types.cancel_import_task_input.CancelImportTaskInput = {}  # type: ignore[typeddict-item]
-        input_["task_identifier"] = task_identifier
+        input_: capo_neptune_graph.types.cancel_import_task_input.CancelImportTaskInput = {
+            "task_identifier": task_identifier
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_graph_using_import_task(
@@ -799,8 +819,11 @@ class AsyncTaskResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_neptune_graph.types.create_graph_using_import_task_input.CreateGraphUsingImportTaskInput = {}  # type: ignore[typeddict-item]
-        input_["graph_name"] = graph_name
+        input_: capo_neptune_graph.types.create_graph_using_import_task_input.CreateGraphUsingImportTaskInput = {
+            "graph_name": graph_name,
+            "source": source,
+            "role_arn": role_arn,
+        }
         if tags is not None:
             input_["tags"] = tags
         if public_connectivity is not None:
@@ -821,20 +844,19 @@ class AsyncTaskResource:
             input_["min_provisioned_memory"] = min_provisioned_memory
         if fail_on_error is not None:
             input_["fail_on_error"] = fail_on_error
-        input_["source"] = source
         if format is not None:
             input_["format"] = format
         if parquet_type is not None:
             input_["parquet_type"] = parquet_type
         if blank_node_handling is not None:
             input_["blank_node_handling"] = blank_node_handling
-        input_["role_arn"] = role_arn
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_export_task(
@@ -872,14 +894,16 @@ class AsyncTaskResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_neptune_graph.types.get_export_task_input.GetExportTaskInput = {}  # type: ignore[typeddict-item]
-        input_["task_identifier"] = task_identifier
+        input_: capo_neptune_graph.types.get_export_task_input.GetExportTaskInput = {
+            "task_identifier": task_identifier
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_import_task(
@@ -917,14 +941,16 @@ class AsyncTaskResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_neptune_graph.types.get_import_task_input.GetImportTaskInput = {}  # type: ignore[typeddict-item]
-        input_["task_identifier"] = task_identifier
+        input_: capo_neptune_graph.types.get_import_task_input.GetImportTaskInput = {
+            "task_identifier": task_identifier
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_export_tasks(
@@ -970,7 +996,7 @@ class AsyncTaskResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_neptune_graph.types.list_export_tasks_input.ListExportTasksInput = {}  # type: ignore[typeddict-item]
+        input_: capo_neptune_graph.types.list_export_tasks_input.ListExportTasksInput = {}
         if graph_identifier is not None:
             input_["graph_identifier"] = graph_identifier
         if next_token is not None:
@@ -983,6 +1009,7 @@ class AsyncTaskResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_import_tasks(
@@ -1024,7 +1051,7 @@ class AsyncTaskResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_neptune_graph.types.list_import_tasks_input.ListImportTasksInput = {}  # type: ignore[typeddict-item]
+        input_: capo_neptune_graph.types.list_import_tasks_input.ListImportTasksInput = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -1035,6 +1062,7 @@ class AsyncTaskResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def start_export_task(
@@ -1091,12 +1119,13 @@ class AsyncTaskResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_neptune_graph.types.start_export_task_input.StartExportTaskInput = {}  # type: ignore[typeddict-item]
-        input_["graph_identifier"] = graph_identifier
-        input_["role_arn"] = role_arn
-        input_["format"] = format
-        input_["destination"] = destination
-        input_["kms_key_identifier"] = kms_key_identifier
+        input_: capo_neptune_graph.types.start_export_task_input.StartExportTaskInput = {
+            "graph_identifier": graph_identifier,
+            "role_arn": role_arn,
+            "format": format,
+            "destination": destination,
+            "kms_key_identifier": kms_key_identifier,
+        }
         if parquet_type is not None:
             input_["parquet_type"] = parquet_type
         if export_filter is not None:
@@ -1109,6 +1138,7 @@ class AsyncTaskResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def start_import_task(
@@ -1166,24 +1196,26 @@ class AsyncTaskResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_neptune_graph.types.start_import_task_input.StartImportTaskInput = {}  # type: ignore[typeddict-item]
+        input_: capo_neptune_graph.types.start_import_task_input.StartImportTaskInput = {
+            "source": source,
+            "graph_identifier": graph_identifier,
+            "role_arn": role_arn,
+        }
         if import_options is not None:
             input_["import_options"] = import_options
         if fail_on_error is not None:
             input_["fail_on_error"] = fail_on_error
-        input_["source"] = source
         if format is not None:
             input_["format"] = format
         if parquet_type is not None:
             input_["parquet_type"] = parquet_type
         if blank_node_handling is not None:
             input_["blank_node_handling"] = blank_node_handling
-        input_["graph_identifier"] = graph_identifier
-        input_["role_arn"] = role_arn
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

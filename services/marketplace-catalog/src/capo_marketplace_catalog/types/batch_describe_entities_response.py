@@ -40,7 +40,7 @@ def serialize_json(value: BatchDescribeEntitiesResponse) -> dict:
 
 def deserialize_json(data: dict) -> BatchDescribeEntitiesResponse:
     out: BatchDescribeEntitiesResponse = {}  # type: ignore[typeddict-item]
-    if "EntityDetails" in data:
+    if data.get("EntityDetails") is not None:
         import capo_marketplace_catalog.types.entity_details
 
         out["entity_details"] = (
@@ -48,7 +48,7 @@ def deserialize_json(data: dict) -> BatchDescribeEntitiesResponse:
                 data["EntityDetails"]
             )
         )
-    if "Errors" in data:
+    if data.get("Errors") is not None:
         import capo_marketplace_catalog.types.errors
 
         out["errors"] = capo_marketplace_catalog.types.errors.deserialize_json(

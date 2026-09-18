@@ -35,11 +35,11 @@ def serialize_json(value: ModelSummary) -> dict:
 
 def deserialize_json(data: dict) -> ModelSummary:
     out: ModelSummary = {}  # type: ignore[typeddict-item]
-    if "modelId" in data:
+    if data.get("modelId") is not None:
         out["model_id"] = data["modelId"]
     else:
         raise DeserializationError("ModelSummary.model_id required")
-    if "modelLifecycle" in data:
+    if data.get("modelLifecycle") is not None:
         import capo_nova_act.types.model_lifecycle
 
         out["model_lifecycle"] = capo_nova_act.types.model_lifecycle.deserialize_json(
@@ -47,7 +47,7 @@ def deserialize_json(data: dict) -> ModelSummary:
         )
     else:
         raise DeserializationError("ModelSummary.model_lifecycle required")
-    if "minimumCompatibilityVersion" in data:
+    if data.get("minimumCompatibilityVersion") is not None:
         out["minimum_compatibility_version"] = data["minimumCompatibilityVersion"]
     else:
         raise DeserializationError(

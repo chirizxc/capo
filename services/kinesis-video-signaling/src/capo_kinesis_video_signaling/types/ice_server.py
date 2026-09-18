@@ -42,16 +42,16 @@ def serialize_json(value: IceServer) -> dict:
 
 def deserialize_json(data: dict) -> IceServer:
     out: IceServer = {}  # type: ignore[typeddict-item]
-    if "Uris" in data:
+    if data.get("Uris") is not None:
         import capo_kinesis_video_signaling.types.uris
 
         out["uris"] = capo_kinesis_video_signaling.types.uris.deserialize_json(
             data["Uris"]
         )
-    if "Username" in data:
+    if data.get("Username") is not None:
         out["username"] = data["Username"]
-    if "Password" in data:
+    if data.get("Password") is not None:
         out["password"] = data["Password"]
-    if "Ttl" in data:
+    if data.get("Ttl") is not None:
         out["ttl"] = data["Ttl"]
     return out

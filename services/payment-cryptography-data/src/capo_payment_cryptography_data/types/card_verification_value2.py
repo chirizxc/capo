@@ -26,7 +26,7 @@ def serialize_json(value: CardVerificationValue2) -> dict:
 
 def deserialize_json(data: dict) -> CardVerificationValue2:
     out: CardVerificationValue2 = {}  # type: ignore[typeddict-item]
-    if "CardExpiryDate" in data:
+    if data.get("CardExpiryDate") is not None:
         out["card_expiry_date"] = data["CardExpiryDate"]
     else:
         raise DeserializationError("CardVerificationValue2.card_expiry_date required")

@@ -68,15 +68,15 @@ def serialize_aws_json_1_0(value: CreateQueueRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CreateQueueRequest:
     out: CreateQueueRequest = {}  # type: ignore[typeddict-item]
-    if "clusterIdentifier" in data:
+    if data.get("clusterIdentifier") is not None:
         out["cluster_identifier"] = data["clusterIdentifier"]
     else:
         raise DeserializationError("CreateQueueRequest.cluster_identifier required")
-    if "queueName" in data:
+    if data.get("queueName") is not None:
         out["queue_name"] = data["queueName"]
     else:
         raise DeserializationError("CreateQueueRequest.queue_name required")
-    if "computeNodeGroupConfigurations" in data:
+    if data.get("computeNodeGroupConfigurations") is not None:
         import capo_pcs.types.compute_node_group_configuration_list
 
         out["compute_node_group_configurations"] = (
@@ -84,7 +84,7 @@ def deserialize_aws_json_1_0(data: dict) -> CreateQueueRequest:
                 data["computeNodeGroupConfigurations"]
             )
         )
-    if "slurmConfiguration" in data:
+    if data.get("slurmConfiguration") is not None:
         import capo_pcs.types.queue_slurm_configuration_request
 
         out["slurm_configuration"] = (
@@ -92,9 +92,9 @@ def deserialize_aws_json_1_0(data: dict) -> CreateQueueRequest:
                 data["slurmConfiguration"]
             )
         )
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_pcs.types.request_tag_map
 
         out["tags"] = capo_pcs.types.request_tag_map.deserialize_aws_json_1_0(

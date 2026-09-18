@@ -21,7 +21,15 @@ class SamplingBoost(TypedDict, closed=True):
 # --- restJson1 ser/de ---
 def serialize_json(value: SamplingBoost) -> dict:
     out: dict = {}
-    out["BoostRate"] = value.get("boost_rate", 0)
+    out["BoostRate"] = (
+        "NaN"
+        if value.get("boost_rate", 0) != value.get("boost_rate", 0)
+        else "Infinity"
+        if value.get("boost_rate", 0) == float("inf")
+        else "-Infinity"
+        if value.get("boost_rate", 0) == float("-inf")
+        else value.get("boost_rate", 0)
+    )
     import capo_xray.types.timestamp
 
     out["BoostRateTTL"] = capo_xray.types.timestamp.serialize_json(
@@ -32,11 +40,11 @@ def serialize_json(value: SamplingBoost) -> dict:
 
 def deserialize_json(data: dict) -> SamplingBoost:
     out: SamplingBoost = {}  # type: ignore[typeddict-item]
-    if "BoostRate" in data:
-        out["boost_rate"] = data["BoostRate"]
+    if data.get("BoostRate") is not None:
+        out["boost_rate"] = float(data["BoostRate"])
     else:
         out["boost_rate"] = 0
-    if "BoostRateTTL" in data:
+    if data.get("BoostRateTTL") is not None:
         import capo_xray.types.timestamp
 
         out["boost_rate_ttl"] = capo_xray.types.timestamp.deserialize_json(

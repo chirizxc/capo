@@ -31,10 +31,10 @@ def serialize_json(value: OpeningHoursComponents) -> dict:
 
 def deserialize_json(data: dict) -> OpeningHoursComponents:
     out: OpeningHoursComponents = {}  # type: ignore[typeddict-item]
-    if "OpenTime" in data:
+    if data.get("OpenTime") is not None:
         out["open_time"] = data["OpenTime"]
-    if "OpenDuration" in data:
+    if data.get("OpenDuration") is not None:
         out["open_duration"] = data["OpenDuration"]
-    if "Recurrence" in data:
+    if data.get("Recurrence") is not None:
         out["recurrence"] = data["Recurrence"]
     return out

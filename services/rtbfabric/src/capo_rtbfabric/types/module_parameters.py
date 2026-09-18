@@ -62,7 +62,7 @@ def serialize_json(value: ModuleParameters) -> dict:
 
 
 def deserialize_json(data: dict) -> ModuleParameters:
-    if "noBid" in data:
+    if data.get("noBid") is not None:
         import capo_rtbfabric.types.no_bid_module_parameters
 
         return {
@@ -70,7 +70,7 @@ def deserialize_json(data: dict) -> ModuleParameters:
                 data["noBid"]
             )
         }
-    elif "openRtbAttribute" in data:
+    elif data.get("openRtbAttribute") is not None:
         import capo_rtbfabric.types.open_rtb_attribute_module_parameters
 
         return {
@@ -78,7 +78,7 @@ def deserialize_json(data: dict) -> ModuleParameters:
                 data["openRtbAttribute"]
             )
         }
-    elif "rateLimiter" in data:
+    elif data.get("rateLimiter") is not None:
         import capo_rtbfabric.types.rate_limiter_module_parameters
 
         return {

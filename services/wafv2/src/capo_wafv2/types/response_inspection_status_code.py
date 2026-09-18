@@ -40,7 +40,7 @@ def serialize_aws_json_1_1(value: ResponseInspectionStatusCode) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ResponseInspectionStatusCode:
     out: ResponseInspectionStatusCode = {}  # type: ignore[typeddict-item]
-    if "SuccessCodes" in data:
+    if data.get("SuccessCodes") is not None:
         import capo_wafv2.types.response_inspection_status_code_success_codes
 
         out["success_codes"] = (
@@ -52,7 +52,7 @@ def deserialize_aws_json_1_1(data: dict) -> ResponseInspectionStatusCode:
         raise DeserializationError(
             "ResponseInspectionStatusCode.success_codes required"
         )
-    if "FailureCodes" in data:
+    if data.get("FailureCodes") is not None:
         import capo_wafv2.types.response_inspection_status_code_failure_codes
 
         out["failure_codes"] = (

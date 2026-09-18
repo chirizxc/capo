@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> ClusterList:
 
     out: ClusterList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_docdb_elastic.types.cluster_in_list.deserialize_json(item))
     return out

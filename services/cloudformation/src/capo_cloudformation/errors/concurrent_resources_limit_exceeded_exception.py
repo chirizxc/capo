@@ -39,15 +39,22 @@ class ConcurrentResourcesLimitExceededException(ServiceError):
 
     code: str | None = "ConcurrentResourcesLimitExceededException"
 
-    def __init__(self, data: ConcurrentResourcesLimitExceededException_):
+    def __init__(
+        self,
+        data: ConcurrentResourcesLimitExceededException_,
+        message: str | None = None,
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="ConcurrentResourcesLimitExceededException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_query(cls, el: Element) -> "ConcurrentResourcesLimitExceededException":
-        return cls(deserialize_query(el))
+    def from_query(
+        cls, el: Element, message: str | None = None
+    ) -> "ConcurrentResourcesLimitExceededException":
+        return cls(deserialize_query(el), message)

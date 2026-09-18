@@ -51,13 +51,13 @@ def serialize_json(value: RestoreAnalysisResponse) -> dict:
 
 def deserialize_json(data: dict) -> RestoreAnalysisResponse:
     out: RestoreAnalysisResponse = {}  # type: ignore[typeddict-item]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "AnalysisId" in data:
+    if data.get("AnalysisId") is not None:
         out["analysis_id"] = data["AnalysisId"]
-    if "RequestId" in data:
+    if data.get("RequestId") is not None:
         out["request_id"] = data["RequestId"]
-    if "RestorationFailedFolderArns" in data:
+    if data.get("RestorationFailedFolderArns") is not None:
         import capo_quicksight.types.folder_arn_list
 
         out["restoration_failed_folder_arns"] = (

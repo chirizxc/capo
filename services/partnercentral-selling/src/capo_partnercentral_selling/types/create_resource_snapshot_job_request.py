@@ -67,23 +67,23 @@ def serialize_aws_json_1_0(value: CreateResourceSnapshotJobRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CreateResourceSnapshotJobRequest:
     out: CreateResourceSnapshotJobRequest = {}  # type: ignore[typeddict-item]
-    if "Catalog" in data:
+    if data.get("Catalog") is not None:
         out["catalog"] = data["Catalog"]
     else:
         raise DeserializationError("CreateResourceSnapshotJobRequest.catalog required")
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
     else:
         raise DeserializationError(
             "CreateResourceSnapshotJobRequest.client_token required"
         )
-    if "EngagementIdentifier" in data:
+    if data.get("EngagementIdentifier") is not None:
         out["engagement_identifier"] = data["EngagementIdentifier"]
     else:
         raise DeserializationError(
             "CreateResourceSnapshotJobRequest.engagement_identifier required"
         )
-    if "ResourceType" in data:
+    if data.get("ResourceType") is not None:
         import capo_partnercentral_selling.types.resource_type
 
         out["resource_type"] = (
@@ -95,13 +95,13 @@ def deserialize_aws_json_1_0(data: dict) -> CreateResourceSnapshotJobRequest:
         raise DeserializationError(
             "CreateResourceSnapshotJobRequest.resource_type required"
         )
-    if "ResourceIdentifier" in data:
+    if data.get("ResourceIdentifier") is not None:
         out["resource_identifier"] = data["ResourceIdentifier"]
     else:
         raise DeserializationError(
             "CreateResourceSnapshotJobRequest.resource_identifier required"
         )
-    if "ResourceSnapshotTemplateIdentifier" in data:
+    if data.get("ResourceSnapshotTemplateIdentifier") is not None:
         out["resource_snapshot_template_identifier"] = data[
             "ResourceSnapshotTemplateIdentifier"
         ]
@@ -109,7 +109,7 @@ def deserialize_aws_json_1_0(data: dict) -> CreateResourceSnapshotJobRequest:
         raise DeserializationError(
             "CreateResourceSnapshotJobRequest.resource_snapshot_template_identifier required"
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_partnercentral_selling.types.tag_list
 
         out["tags"] = (

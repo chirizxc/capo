@@ -32,7 +32,7 @@ def serialize_aws_json_1_1(value: DecimalNumber) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DecimalNumber:
     out: DecimalNumber = {}  # type: ignore[typeddict-item]
-    if "UnscaledValue" in data:
+    if data.get("UnscaledValue") is not None:
         import capo_glue.types.blob
 
         out["unscaled_value"] = capo_glue.types.blob.deserialize_aws_json_1_1(
@@ -40,7 +40,7 @@ def deserialize_aws_json_1_1(data: dict) -> DecimalNumber:
         )
     else:
         raise DeserializationError("DecimalNumber.unscaled_value required")
-    if "Scale" in data:
+    if data.get("Scale") is not None:
         out["scale"] = data["Scale"]
     else:
         out["scale"] = 0

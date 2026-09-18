@@ -62,28 +62,28 @@ def serialize_aws_json_1_0(value: TemplateVariableMetadata) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> TemplateVariableMetadata:
     out: TemplateVariableMetadata = {}  # type: ignore[typeddict-item]
-    if "Type" in data:
+    if data.get("Type") is not None:
         out["type"] = data["Type"]
     else:
         raise DeserializationError("TemplateVariableMetadata.type required")
-    if "Required" in data:
+    if data.get("Required") is not None:
         out["required"] = data["Required"]
     else:
         out["required"] = False
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "MaxLength" in data:
+    if data.get("MaxLength") is not None:
         out["max_length"] = data["MaxLength"]
-    if "MinValue" in data:
+    if data.get("MinValue") is not None:
         out["min_value"] = data["MinValue"]
-    if "MaxValue" in data:
+    if data.get("MaxValue") is not None:
         out["max_value"] = data["MaxValue"]
-    if "DefaultValue" in data:
+    if data.get("DefaultValue") is not None:
         out["default_value"] = data["DefaultValue"]
-    if "Pattern" in data:
+    if data.get("Pattern") is not None:
         out["pattern"] = data["Pattern"]
-    if "Sample" in data:
+    if data.get("Sample") is not None:
         out["sample"] = data["Sample"]
-    if "Source" in data:
+    if data.get("Source") is not None:
         out["source"] = data["Source"]
     return out

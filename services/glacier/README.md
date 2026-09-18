@@ -13,9 +13,9 @@ from capo_glacier import AsyncGlacierClient
 
 
 async def main():
-    async with AsyncGlacierClient() as s3:
+    async with AsyncGlacierClient() as glacier:
         # Example: call the abort_multipart_upload operation
-        response = await s3.abort_multipart_upload()
+        response = await glacier.abort_multipart_upload()
         print(response)
 ```
 
@@ -28,9 +28,9 @@ from capo_glacier import AsyncGlacierClient
 
 
 async def main():
-    async with AsyncGlacierClient() as s3:
+    async with AsyncGlacierClient() as glacier:
         # Example: paginate over list_jobs
-        async for item in s3.iter_list_jobs():
+        async for item in glacier.iter_list_jobs():
             print(item)
 ```
 
@@ -43,16 +43,16 @@ from capo_glacier import AsyncGlacierClient
 
 
 async def main():
-    async with AsyncGlacierClient() as s3:
+    async with AsyncGlacierClient() as glacier:
         # Example: call upload_archive with a streaming request body
         async def chunks():
             yield b'Hello, World!'
 
-        response = await s3.upload_archive(body=chunks())
+        response = await glacier.upload_archive(body=chunks())
         print(response)
 
         # Or pass the whole body as bytes
-        response = await s3.upload_archive(body=b'Hello, World!')
+        response = await glacier.upload_archive(body=b'Hello, World!')
         print(response)
 ```
 
@@ -65,9 +65,9 @@ from capo_glacier import AsyncGlacierClient
 
 
 async def main():
-    async with AsyncGlacierClient() as s3:
+    async with AsyncGlacierClient() as glacier:
         # Example: call get_job_output and read the streaming response
-        async with s3.get_job_output() as response:
+        async with glacier.get_job_output() as response:
             async for chunk in response["body"]:
                 print(chunk)
 ```
@@ -81,9 +81,9 @@ from capo_glacier import AsyncGlacierClient
 
 
 async def main():
-    async with AsyncGlacierClient() as s3:
+    async with AsyncGlacierClient() as glacier:
         # Example: wait for vault_exists
-        await s3.wait_until_vault_exists(max_wait_time=300)
+        await glacier.wait_until_vault_exists(max_wait_time=300)
 ```
 
 ## Error Handling
@@ -96,9 +96,9 @@ from capo_glacier.error import InvalidParameterValueException
 
 
 async def main():
-    async with AsyncGlacierClient() as s3:
+    async with AsyncGlacierClient() as glacier:
         try:
-            await s3.abort_multipart_upload()
+            await glacier.abort_multipart_upload()
         except InvalidParameterValueException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -115,13 +115,13 @@ from capo_glacier import AsyncGlacierClient
 
 
 async def main():
-    async with AsyncGlacierClient() as s3:
+    async with AsyncGlacierClient() as glacier:
         # Default: 3 attempts for every operation
-        response = await s3.abort_multipart_upload()
+        response = await glacier.abort_multipart_upload()
 
         # Override per operation
-        response = await s3.abort_multipart_upload(config_overrides={"retry_max_attempts": 5})
+        response = await glacier.abort_multipart_upload(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.abort_multipart_upload(config_overrides={"retry_max_attempts": 1})
+        response = await glacier.abort_multipart_upload(config_overrides={"retry_max_attempts": 1})
 ```

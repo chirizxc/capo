@@ -27,7 +27,7 @@ def serialize_aws_json_1_1(value: GetBranchOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetBranchOutput:
     out: GetBranchOutput = {}  # type: ignore[typeddict-item]
-    if "branch" in data:
+    if data.get("branch") is not None:
         import capo_codecommit.types.branch_info
 
         out["branch"] = capo_codecommit.types.branch_info.deserialize_aws_json_1_1(

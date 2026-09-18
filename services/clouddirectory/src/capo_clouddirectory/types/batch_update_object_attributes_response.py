@@ -25,6 +25,6 @@ def serialize_json(value: BatchUpdateObjectAttributesResponse) -> dict:
 
 def deserialize_json(data: dict) -> BatchUpdateObjectAttributesResponse:
     out: BatchUpdateObjectAttributesResponse = {}  # type: ignore[typeddict-item]
-    if "ObjectIdentifier" in data:
+    if data.get("ObjectIdentifier") is not None:
         out["object_identifier"] = data["ObjectIdentifier"]
     return out

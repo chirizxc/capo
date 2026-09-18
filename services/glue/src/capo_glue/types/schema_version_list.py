@@ -27,6 +27,8 @@ def deserialize_aws_json_1_1(data: list) -> SchemaVersionList:
 
     out: SchemaVersionList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_glue.types.schema_version_list_item.deserialize_aws_json_1_1(item)
         )

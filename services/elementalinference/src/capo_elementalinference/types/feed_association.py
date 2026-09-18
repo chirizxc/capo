@@ -26,7 +26,7 @@ def serialize_json(value: FeedAssociation) -> dict:
 
 def deserialize_json(data: dict) -> FeedAssociation:
     out: FeedAssociation = {}  # type: ignore[typeddict-item]
-    if "associatedResourceName" in data:
+    if data.get("associatedResourceName") is not None:
         out["associated_resource_name"] = data["associatedResourceName"]
     else:
         raise DeserializationError("FeedAssociation.associated_resource_name required")

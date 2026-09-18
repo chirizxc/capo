@@ -38,13 +38,13 @@ def serialize_json(value: EvaluateOnExit) -> dict:
 
 def deserialize_json(data: dict) -> EvaluateOnExit:
     out: EvaluateOnExit = {}  # type: ignore[typeddict-item]
-    if "onStatusReason" in data:
+    if data.get("onStatusReason") is not None:
         out["on_status_reason"] = data["onStatusReason"]
-    if "onReason" in data:
+    if data.get("onReason") is not None:
         out["on_reason"] = data["onReason"]
-    if "onExitCode" in data:
+    if data.get("onExitCode") is not None:
         out["on_exit_code"] = data["onExitCode"]
-    if "action" in data:
+    if data.get("action") is not None:
         import capo_batch.types.retry_action
 
         out["action"] = capo_batch.types.retry_action.deserialize_json(data["action"])

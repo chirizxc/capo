@@ -28,7 +28,7 @@ def serialize_json(value: GetReplicationSetOutput) -> dict:
 
 def deserialize_json(data: dict) -> GetReplicationSetOutput:
     out: GetReplicationSetOutput = {}  # type: ignore[typeddict-item]
-    if "replicationSet" in data:
+    if data.get("replicationSet") is not None:
         import capo_ssm_incidents.types.replication_set
 
         out["replication_set"] = (

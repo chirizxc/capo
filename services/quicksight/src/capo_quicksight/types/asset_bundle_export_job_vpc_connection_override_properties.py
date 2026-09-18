@@ -34,13 +34,13 @@ def serialize_json(value: AssetBundleExportJobVPCConnectionOverrideProperties) -
 
 def deserialize_json(data: dict) -> AssetBundleExportJobVPCConnectionOverrideProperties:
     out: AssetBundleExportJobVPCConnectionOverrideProperties = {}  # type: ignore[typeddict-item]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
     else:
         raise DeserializationError(
             "AssetBundleExportJobVPCConnectionOverrideProperties.arn required"
         )
-    if "Properties" in data:
+    if data.get("Properties") is not None:
         import capo_quicksight.types.asset_bundle_export_job_vpc_connection_property_to_override_list
 
         out["properties"] = (

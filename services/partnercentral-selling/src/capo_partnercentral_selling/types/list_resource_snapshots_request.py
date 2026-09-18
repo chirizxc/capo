@@ -72,23 +72,23 @@ def serialize_aws_json_1_0(value: ListResourceSnapshotsRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ListResourceSnapshotsRequest:
     out: ListResourceSnapshotsRequest = {}  # type: ignore[typeddict-item]
-    if "Catalog" in data:
+    if data.get("Catalog") is not None:
         out["catalog"] = data["Catalog"]
     else:
         raise DeserializationError("ListResourceSnapshotsRequest.catalog required")
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
     else:
         out["max_results"] = 100
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "EngagementIdentifier" in data:
+    if data.get("EngagementIdentifier") is not None:
         out["engagement_identifier"] = data["EngagementIdentifier"]
     else:
         raise DeserializationError(
             "ListResourceSnapshotsRequest.engagement_identifier required"
         )
-    if "ResourceType" in data:
+    if data.get("ResourceType") is not None:
         import capo_partnercentral_selling.types.resource_type
 
         out["resource_type"] = (
@@ -96,12 +96,12 @@ def deserialize_aws_json_1_0(data: dict) -> ListResourceSnapshotsRequest:
                 data["ResourceType"]
             )
         )
-    if "ResourceIdentifier" in data:
+    if data.get("ResourceIdentifier") is not None:
         out["resource_identifier"] = data["ResourceIdentifier"]
-    if "ResourceSnapshotTemplateIdentifier" in data:
+    if data.get("ResourceSnapshotTemplateIdentifier") is not None:
         out["resource_snapshot_template_identifier"] = data[
             "ResourceSnapshotTemplateIdentifier"
         ]
-    if "CreatedBy" in data:
+    if data.get("CreatedBy") is not None:
         out["created_by"] = data["CreatedBy"]
     return out

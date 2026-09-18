@@ -35,9 +35,9 @@ def serialize_json(value: UpdateRecipeRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateRecipeRequest:
     out: UpdateRecipeRequest = {}  # type: ignore[typeddict-item]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Steps" in data:
+    if data.get("Steps") is not None:
         import capo_databrew.types.recipe_step_list
 
         out["steps"] = capo_databrew.types.recipe_step_list.deserialize_json(

@@ -32,8 +32,8 @@ def serialize_json(value: ACMManaged) -> dict:
 
 def deserialize_json(data: dict) -> ACMManaged:
     out: ACMManaged = {}  # type: ignore[typeddict-item]
-    if "certificateArn" in data:
+    if data.get("certificateArn") is not None:
         out["certificate_arn"] = data["certificateArn"]
-    if "domainName" in data:
+    if data.get("domainName") is not None:
         out["domain_name"] = data["domainName"]
     return out

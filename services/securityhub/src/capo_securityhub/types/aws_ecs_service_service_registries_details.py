@@ -38,12 +38,12 @@ def serialize_json(value: AwsEcsServiceServiceRegistriesDetails) -> dict:
 
 def deserialize_json(data: dict) -> AwsEcsServiceServiceRegistriesDetails:
     out: AwsEcsServiceServiceRegistriesDetails = {}  # type: ignore[typeddict-item]
-    if "ContainerName" in data:
+    if data.get("ContainerName") is not None:
         out["container_name"] = data["ContainerName"]
-    if "ContainerPort" in data:
+    if data.get("ContainerPort") is not None:
         out["container_port"] = data["ContainerPort"]
-    if "Port" in data:
+    if data.get("Port") is not None:
         out["port"] = data["Port"]
-    if "RegistryArn" in data:
+    if data.get("RegistryArn") is not None:
         out["registry_arn"] = data["RegistryArn"]
     return out

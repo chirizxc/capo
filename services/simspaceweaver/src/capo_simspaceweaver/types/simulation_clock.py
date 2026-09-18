@@ -30,8 +30,8 @@ def serialize_json(value: SimulationClock) -> dict:
 
 def deserialize_json(data: dict) -> SimulationClock:
     out: SimulationClock = {}  # type: ignore[typeddict-item]
-    if "Status" in data:
+    if data.get("Status") is not None:
         out["status"] = data["Status"]
-    if "TargetStatus" in data:
+    if data.get("TargetStatus") is not None:
         out["target_status"] = data["TargetStatus"]
     return out

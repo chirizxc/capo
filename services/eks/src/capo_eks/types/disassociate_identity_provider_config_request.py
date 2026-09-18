@@ -39,7 +39,7 @@ def serialize_json(value: DisassociateIdentityProviderConfigRequest) -> dict:
 
 def deserialize_json(data: dict) -> DisassociateIdentityProviderConfigRequest:
     out: DisassociateIdentityProviderConfigRequest = {}  # type: ignore[typeddict-item]
-    if "identityProviderConfig" in data:
+    if data.get("identityProviderConfig") is not None:
         import capo_eks.types.identity_provider_config
 
         out["identity_provider_config"] = (
@@ -51,6 +51,6 @@ def deserialize_json(data: dict) -> DisassociateIdentityProviderConfigRequest:
         raise DeserializationError(
             "DisassociateIdentityProviderConfigRequest.identity_provider_config required"
         )
-    if "clientRequestToken" in data:
+    if data.get("clientRequestToken") is not None:
         out["client_request_token"] = data["clientRequestToken"]
     return out

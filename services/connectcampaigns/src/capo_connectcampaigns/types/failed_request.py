@@ -30,10 +30,10 @@ def serialize_json(value: FailedRequest) -> dict:
 
 def deserialize_json(data: dict) -> FailedRequest:
     out: FailedRequest = {}  # type: ignore[typeddict-item]
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "failureCode" in data:
+    if data.get("failureCode") is not None:
         out["failure_code"] = data["failureCode"]
     return out

@@ -44,11 +44,11 @@ def serialize_json(value: PrivateKeyAttributesV2) -> dict:
 
 def deserialize_json(data: dict) -> PrivateKeyAttributesV2:
     out: PrivateKeyAttributesV2 = {}  # type: ignore[typeddict-item]
-    if "MinimalKeyLength" in data:
+    if data.get("MinimalKeyLength") is not None:
         out["minimal_key_length"] = data["MinimalKeyLength"]
     else:
         raise DeserializationError("PrivateKeyAttributesV2.minimal_key_length required")
-    if "KeySpec" in data:
+    if data.get("KeySpec") is not None:
         import capo_pca_connector_ad.types.key_spec
 
         out["key_spec"] = capo_pca_connector_ad.types.key_spec.deserialize_json(
@@ -56,7 +56,7 @@ def deserialize_json(data: dict) -> PrivateKeyAttributesV2:
         )
     else:
         raise DeserializationError("PrivateKeyAttributesV2.key_spec required")
-    if "CryptoProviders" in data:
+    if data.get("CryptoProviders") is not None:
         import capo_pca_connector_ad.types.crypto_providers_list
 
         out["crypto_providers"] = (

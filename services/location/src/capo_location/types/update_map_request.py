@@ -46,11 +46,11 @@ def serialize_json(value: UpdateMapRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateMapRequest:
     out: UpdateMapRequest = {}  # type: ignore[typeddict-item]
-    if "PricingPlan" in data:
+    if data.get("PricingPlan") is not None:
         out["pricing_plan"] = data["PricingPlan"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "ConfigurationUpdate" in data:
+    if data.get("ConfigurationUpdate") is not None:
         import capo_location.types.map_configuration_update
 
         out["configuration_update"] = (

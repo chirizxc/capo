@@ -60,7 +60,7 @@ def serialize_aws_json_1_0(value: InvokeLambdaAction) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> InvokeLambdaAction:
     out: InvokeLambdaAction = {}  # type: ignore[typeddict-item]
-    if "ActionFailurePolicy" in data:
+    if data.get("ActionFailurePolicy") is not None:
         import capo_mailmanager.types.action_failure_policy
 
         out["action_failure_policy"] = (
@@ -68,11 +68,11 @@ def deserialize_aws_json_1_0(data: dict) -> InvokeLambdaAction:
                 data["ActionFailurePolicy"]
             )
         )
-    if "FunctionArn" in data:
+    if data.get("FunctionArn") is not None:
         out["function_arn"] = data["FunctionArn"]
     else:
         raise DeserializationError("InvokeLambdaAction.function_arn required")
-    if "InvocationType" in data:
+    if data.get("InvocationType") is not None:
         import capo_mailmanager.types.lambda_invocation_type
 
         out["invocation_type"] = (
@@ -82,10 +82,10 @@ def deserialize_aws_json_1_0(data: dict) -> InvokeLambdaAction:
         )
     else:
         raise DeserializationError("InvokeLambdaAction.invocation_type required")
-    if "RoleArn" in data:
+    if data.get("RoleArn") is not None:
         out["role_arn"] = data["RoleArn"]
     else:
         raise DeserializationError("InvokeLambdaAction.role_arn required")
-    if "RetryTimeMinutes" in data:
+    if data.get("RetryTimeMinutes") is not None:
         out["retry_time_minutes"] = data["RetryTimeMinutes"]
     return out

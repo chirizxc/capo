@@ -40,11 +40,11 @@ def serialize_aws_json_1_1(value: ServerlessTrack) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ServerlessTrack:
     out: ServerlessTrack = {}  # type: ignore[typeddict-item]
-    if "trackName" in data:
+    if data.get("trackName") is not None:
         out["track_name"] = data["trackName"]
-    if "workgroupVersion" in data:
+    if data.get("workgroupVersion") is not None:
         out["workgroup_version"] = data["workgroupVersion"]
-    if "updateTargets" in data:
+    if data.get("updateTargets") is not None:
         import capo_redshift_serverless.types.update_targets_list
 
         out["update_targets"] = (

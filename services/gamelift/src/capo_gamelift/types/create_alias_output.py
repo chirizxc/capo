@@ -25,7 +25,7 @@ def serialize_aws_json_1_1(value: CreateAliasOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateAliasOutput:
     out: CreateAliasOutput = {}  # type: ignore[typeddict-item]
-    if "Alias" in data:
+    if data.get("Alias") is not None:
         import capo_gamelift.types.alias
 
         out["alias"] = capo_gamelift.types.alias.deserialize_aws_json_1_1(data["Alias"])

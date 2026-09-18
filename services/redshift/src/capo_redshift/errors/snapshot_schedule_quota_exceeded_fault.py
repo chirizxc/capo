@@ -39,15 +39,20 @@ class SnapshotScheduleQuotaExceededFault(ServiceError):
 
     code: str | None = "SnapshotScheduleQuotaExceededFault"
 
-    def __init__(self, data: SnapshotScheduleQuotaExceededFault_):
+    def __init__(
+        self, data: SnapshotScheduleQuotaExceededFault_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="SnapshotScheduleQuotaExceededFault",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_query(cls, el: Element) -> "SnapshotScheduleQuotaExceededFault":
-        return cls(deserialize_query(el))
+    def from_query(
+        cls, el: Element, message: str | None = None
+    ) -> "SnapshotScheduleQuotaExceededFault":
+        return cls(deserialize_query(el), message)

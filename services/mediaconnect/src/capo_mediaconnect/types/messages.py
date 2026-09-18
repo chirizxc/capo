@@ -27,7 +27,7 @@ def serialize_json(value: Messages) -> dict:
 
 def deserialize_json(data: dict) -> Messages:
     out: Messages = {}  # type: ignore[typeddict-item]
-    if "errors" in data:
+    if data.get("errors") is not None:
         import capo_mediaconnect.types.__list_of_string
 
         out["errors"] = capo_mediaconnect.types.__list_of_string.deserialize_json(

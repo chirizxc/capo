@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: DeleteIntegrationRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteIntegrationRequest:
     out: DeleteIntegrationRequest = {}  # type: ignore[typeddict-item]
-    if "IntegrationIdentifier" in data:
+    if data.get("IntegrationIdentifier") is not None:
         out["integration_identifier"] = data["IntegrationIdentifier"]
     else:
         raise DeserializationError(

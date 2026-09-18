@@ -48,7 +48,7 @@ def serialize_aws_json_1_1(value: InstanceResizePolicy) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> InstanceResizePolicy:
     out: InstanceResizePolicy = {}  # type: ignore[typeddict-item]
-    if "InstancesToTerminate" in data:
+    if data.get("InstancesToTerminate") is not None:
         import capo_emr.types.ec2_instance_ids_list
 
         out["instances_to_terminate"] = (
@@ -56,7 +56,7 @@ def deserialize_aws_json_1_1(data: dict) -> InstanceResizePolicy:
                 data["InstancesToTerminate"]
             )
         )
-    if "InstancesToProtect" in data:
+    if data.get("InstancesToProtect") is not None:
         import capo_emr.types.ec2_instance_ids_list
 
         out["instances_to_protect"] = (
@@ -64,6 +64,6 @@ def deserialize_aws_json_1_1(data: dict) -> InstanceResizePolicy:
                 data["InstancesToProtect"]
             )
         )
-    if "InstanceTerminationTimeout" in data:
+    if data.get("InstanceTerminationTimeout") is not None:
         out["instance_termination_timeout"] = data["InstanceTerminationTimeout"]
     return out

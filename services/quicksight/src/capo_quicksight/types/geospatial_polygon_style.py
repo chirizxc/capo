@@ -31,7 +31,7 @@ def serialize_json(value: GeospatialPolygonStyle) -> dict:
 
 def deserialize_json(data: dict) -> GeospatialPolygonStyle:
     out: GeospatialPolygonStyle = {}  # type: ignore[typeddict-item]
-    if "PolygonSymbolStyle" in data:
+    if data.get("PolygonSymbolStyle") is not None:
         import capo_quicksight.types.geospatial_polygon_symbol_style
 
         out["polygon_symbol_style"] = (

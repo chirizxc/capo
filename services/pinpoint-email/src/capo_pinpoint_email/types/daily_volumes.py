@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> DailyVolumes:
 
     out: DailyVolumes = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_pinpoint_email.types.daily_volume.deserialize_json(item))
     return out

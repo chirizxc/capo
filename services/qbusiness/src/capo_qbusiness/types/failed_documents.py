@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> FailedDocuments:
 
     out: FailedDocuments = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_qbusiness.types.failed_document.deserialize_json(item))
     return out

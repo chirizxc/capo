@@ -39,16 +39,16 @@ def serialize_aws_json_1_1(value: DeleteTableRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteTableRequest:
     out: DeleteTableRequest = {}  # type: ignore[typeddict-item]
-    if "CatalogId" in data:
+    if data.get("CatalogId") is not None:
         out["catalog_id"] = data["CatalogId"]
-    if "DatabaseName" in data:
+    if data.get("DatabaseName") is not None:
         out["database_name"] = data["DatabaseName"]
     else:
         raise DeserializationError("DeleteTableRequest.database_name required")
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("DeleteTableRequest.name required")
-    if "TransactionId" in data:
+    if data.get("TransactionId") is not None:
         out["transaction_id"] = data["TransactionId"]
     return out

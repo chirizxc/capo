@@ -106,19 +106,19 @@ def serialize_aws_json_1_1(value: CrawlerTargets) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CrawlerTargets:
     out: CrawlerTargets = {}  # type: ignore[typeddict-item]
-    if "S3Targets" in data:
+    if data.get("S3Targets") is not None:
         import capo_glue.types.s3_target_list
 
         out["s3_targets"] = capo_glue.types.s3_target_list.deserialize_aws_json_1_1(
             data["S3Targets"]
         )
-    if "JdbcTargets" in data:
+    if data.get("JdbcTargets") is not None:
         import capo_glue.types.jdbc_target_list
 
         out["jdbc_targets"] = capo_glue.types.jdbc_target_list.deserialize_aws_json_1_1(
             data["JdbcTargets"]
         )
-    if "MongoDBTargets" in data:
+    if data.get("MongoDBTargets") is not None:
         import capo_glue.types.mongo_db_target_list
 
         out["mongo_db_targets"] = (
@@ -126,7 +126,7 @@ def deserialize_aws_json_1_1(data: dict) -> CrawlerTargets:
                 data["MongoDBTargets"]
             )
         )
-    if "DynamoDBTargets" in data:
+    if data.get("DynamoDBTargets") is not None:
         import capo_glue.types.dynamo_db_target_list
 
         out["dynamo_db_targets"] = (
@@ -134,7 +134,7 @@ def deserialize_aws_json_1_1(data: dict) -> CrawlerTargets:
                 data["DynamoDBTargets"]
             )
         )
-    if "CatalogTargets" in data:
+    if data.get("CatalogTargets") is not None:
         import capo_glue.types.catalog_target_list
 
         out["catalog_targets"] = (
@@ -142,7 +142,7 @@ def deserialize_aws_json_1_1(data: dict) -> CrawlerTargets:
                 data["CatalogTargets"]
             )
         )
-    if "DeltaTargets" in data:
+    if data.get("DeltaTargets") is not None:
         import capo_glue.types.delta_target_list
 
         out["delta_targets"] = (
@@ -150,7 +150,7 @@ def deserialize_aws_json_1_1(data: dict) -> CrawlerTargets:
                 data["DeltaTargets"]
             )
         )
-    if "IcebergTargets" in data:
+    if data.get("IcebergTargets") is not None:
         import capo_glue.types.iceberg_target_list
 
         out["iceberg_targets"] = (
@@ -158,7 +158,7 @@ def deserialize_aws_json_1_1(data: dict) -> CrawlerTargets:
                 data["IcebergTargets"]
             )
         )
-    if "HudiTargets" in data:
+    if data.get("HudiTargets") is not None:
         import capo_glue.types.hudi_target_list
 
         out["hudi_targets"] = capo_glue.types.hudi_target_list.deserialize_aws_json_1_1(

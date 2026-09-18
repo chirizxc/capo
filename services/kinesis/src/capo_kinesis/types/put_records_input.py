@@ -47,7 +47,7 @@ def serialize_aws_json_1_1(value: PutRecordsInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PutRecordsInput:
     out: PutRecordsInput = {}  # type: ignore[typeddict-item]
-    if "Records" in data:
+    if data.get("Records") is not None:
         import capo_kinesis.types.put_records_request_entry_list
 
         out["records"] = (
@@ -57,10 +57,10 @@ def deserialize_aws_json_1_1(data: dict) -> PutRecordsInput:
         )
     else:
         raise DeserializationError("PutRecordsInput.records required")
-    if "StreamName" in data:
+    if data.get("StreamName") is not None:
         out["stream_name"] = data["StreamName"]
-    if "StreamARN" in data:
+    if data.get("StreamARN") is not None:
         out["stream_arn"] = data["StreamARN"]
-    if "StreamId" in data:
+    if data.get("StreamId") is not None:
         out["stream_id"] = data["StreamId"]
     return out

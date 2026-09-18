@@ -25,6 +25,6 @@ def serialize_json(value: CreateStreamSessionConnectionOutput) -> dict:
 
 def deserialize_json(data: dict) -> CreateStreamSessionConnectionOutput:
     out: CreateStreamSessionConnectionOutput = {}  # type: ignore[typeddict-item]
-    if "SignalResponse" in data:
+    if data.get("SignalResponse") is not None:
         out["signal_response"] = data["SignalResponse"]
     return out

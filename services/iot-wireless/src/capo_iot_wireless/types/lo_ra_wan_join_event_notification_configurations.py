@@ -31,7 +31,7 @@ def serialize_json(value: LoRaWANJoinEventNotificationConfigurations) -> dict:
 
 def deserialize_json(data: dict) -> LoRaWANJoinEventNotificationConfigurations:
     out: LoRaWANJoinEventNotificationConfigurations = {}  # type: ignore[typeddict-item]
-    if "DevEuiEventTopic" in data:
+    if data.get("DevEuiEventTopic") is not None:
         import capo_iot_wireless.types.event_notification_topic_status
 
         out["dev_eui_event_topic"] = (

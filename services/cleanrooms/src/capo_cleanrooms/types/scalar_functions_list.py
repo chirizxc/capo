@@ -16,4 +16,4 @@ def serialize_json(value: ScalarFunctionsList) -> list:
 
 
 def deserialize_json(data: list) -> ScalarFunctionsList:
-    return list(data)
+    return [item for item in data if item is not None]

@@ -170,23 +170,23 @@ def serialize_json(value: GlueConnection) -> dict:
 
 def deserialize_json(data: dict) -> GlueConnection:
     out: GlueConnection = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "connectionType" in data:
+    if data.get("connectionType") is not None:
         import capo_datazone.types.connection_type
 
         out["connection_type"] = capo_datazone.types.connection_type.deserialize_json(
             data["connectionType"]
         )
-    if "matchCriteria" in data:
+    if data.get("matchCriteria") is not None:
         import capo_datazone.types.match_criteria
 
         out["match_criteria"] = capo_datazone.types.match_criteria.deserialize_json(
             data["matchCriteria"]
         )
-    if "connectionProperties" in data:
+    if data.get("connectionProperties") is not None:
         import capo_datazone.types.connection_properties
 
         out["connection_properties"] = (
@@ -194,25 +194,25 @@ def deserialize_json(data: dict) -> GlueConnection:
                 data["connectionProperties"]
             )
         )
-    if "sparkProperties" in data:
+    if data.get("sparkProperties") is not None:
         import capo_datazone.types.property_map
 
         out["spark_properties"] = capo_datazone.types.property_map.deserialize_json(
             data["sparkProperties"]
         )
-    if "athenaProperties" in data:
+    if data.get("athenaProperties") is not None:
         import capo_datazone.types.property_map
 
         out["athena_properties"] = capo_datazone.types.property_map.deserialize_json(
             data["athenaProperties"]
         )
-    if "pythonProperties" in data:
+    if data.get("pythonProperties") is not None:
         import capo_datazone.types.property_map
 
         out["python_properties"] = capo_datazone.types.property_map.deserialize_json(
             data["pythonProperties"]
         )
-    if "physicalConnectionRequirements" in data:
+    if data.get("physicalConnectionRequirements") is not None:
         import capo_datazone.types.physical_connection_requirements
 
         out["physical_connection_requirements"] = (
@@ -220,13 +220,13 @@ def deserialize_json(data: dict) -> GlueConnection:
                 data["physicalConnectionRequirements"]
             )
         )
-    if "creationTime" in data:
+    if data.get("creationTime") is not None:
         import capo_datazone.types._prelude.timestamp
 
         out["creation_time"] = capo_datazone.types._prelude.timestamp.deserialize_json(
             data["creationTime"]
         )
-    if "lastUpdatedTime" in data:
+    if data.get("lastUpdatedTime") is not None:
         import capo_datazone.types._prelude.timestamp
 
         out["last_updated_time"] = (
@@ -234,17 +234,17 @@ def deserialize_json(data: dict) -> GlueConnection:
                 data["lastUpdatedTime"]
             )
         )
-    if "lastUpdatedBy" in data:
+    if data.get("lastUpdatedBy") is not None:
         out["last_updated_by"] = data["lastUpdatedBy"]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_datazone.types.connection_status
 
         out["status"] = capo_datazone.types.connection_status.deserialize_json(
             data["status"]
         )
-    if "statusReason" in data:
+    if data.get("statusReason") is not None:
         out["status_reason"] = data["statusReason"]
-    if "lastConnectionValidationTime" in data:
+    if data.get("lastConnectionValidationTime") is not None:
         import capo_datazone.types._prelude.timestamp
 
         out["last_connection_validation_time"] = (
@@ -252,7 +252,7 @@ def deserialize_json(data: dict) -> GlueConnection:
                 data["lastConnectionValidationTime"]
             )
         )
-    if "authenticationConfiguration" in data:
+    if data.get("authenticationConfiguration") is not None:
         import capo_datazone.types.authentication_configuration
 
         out["authentication_configuration"] = (
@@ -260,9 +260,9 @@ def deserialize_json(data: dict) -> GlueConnection:
                 data["authenticationConfiguration"]
             )
         )
-    if "connectionSchemaVersion" in data:
+    if data.get("connectionSchemaVersion") is not None:
         out["connection_schema_version"] = data["connectionSchemaVersion"]
-    if "compatibleComputeEnvironments" in data:
+    if data.get("compatibleComputeEnvironments") is not None:
         import capo_datazone.types.compute_environments_list
 
         out["compatible_compute_environments"] = (

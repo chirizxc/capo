@@ -27,6 +27,6 @@ def deserialize_json(
     data: dict,
 ) -> AwsEc2LaunchTemplateDataElasticGpuSpecificationSetDetails:
     out: AwsEc2LaunchTemplateDataElasticGpuSpecificationSetDetails = {}  # type: ignore[typeddict-item]
-    if "Type" in data:
+    if data.get("Type") is not None:
         out["type"] = data["Type"]
     return out

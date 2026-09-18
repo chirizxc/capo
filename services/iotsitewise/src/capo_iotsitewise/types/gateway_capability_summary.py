@@ -38,13 +38,13 @@ def serialize_json(value: GatewayCapabilitySummary) -> dict:
 
 def deserialize_json(data: dict) -> GatewayCapabilitySummary:
     out: GatewayCapabilitySummary = {}  # type: ignore[typeddict-item]
-    if "capabilityNamespace" in data:
+    if data.get("capabilityNamespace") is not None:
         out["capability_namespace"] = data["capabilityNamespace"]
     else:
         raise DeserializationError(
             "GatewayCapabilitySummary.capability_namespace required"
         )
-    if "capabilitySyncStatus" in data:
+    if data.get("capabilitySyncStatus") is not None:
         import capo_iotsitewise.types.capability_sync_status
 
         out["capability_sync_status"] = (

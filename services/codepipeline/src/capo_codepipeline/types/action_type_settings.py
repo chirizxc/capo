@@ -40,12 +40,12 @@ def serialize_aws_json_1_1(value: ActionTypeSettings) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ActionTypeSettings:
     out: ActionTypeSettings = {}  # type: ignore[typeddict-item]
-    if "thirdPartyConfigurationUrl" in data:
+    if data.get("thirdPartyConfigurationUrl") is not None:
         out["third_party_configuration_url"] = data["thirdPartyConfigurationUrl"]
-    if "entityUrlTemplate" in data:
+    if data.get("entityUrlTemplate") is not None:
         out["entity_url_template"] = data["entityUrlTemplate"]
-    if "executionUrlTemplate" in data:
+    if data.get("executionUrlTemplate") is not None:
         out["execution_url_template"] = data["executionUrlTemplate"]
-    if "revisionUrlTemplate" in data:
+    if data.get("revisionUrlTemplate") is not None:
         out["revision_url_template"] = data["revisionUrlTemplate"]
     return out

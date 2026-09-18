@@ -25,6 +25,8 @@ def serialize_json(input_to_serialize: AssignedSessions) -> dict:
 def deserialize_json(data: dict) -> AssignedSessions:
     out: AssignedSessions = {}
     for key, value in data.items():
+        if value is None:
+            continue
         import capo_deadline.types.assigned_session
 
         out[key] = capo_deadline.types.assigned_session.deserialize_json(value)

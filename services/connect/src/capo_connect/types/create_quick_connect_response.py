@@ -28,8 +28,8 @@ def serialize_json(value: CreateQuickConnectResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateQuickConnectResponse:
     out: CreateQuickConnectResponse = {}  # type: ignore[typeddict-item]
-    if "QuickConnectARN" in data:
+    if data.get("QuickConnectARN") is not None:
         out["quick_connect_arn"] = data["QuickConnectARN"]
-    if "QuickConnectId" in data:
+    if data.get("QuickConnectId") is not None:
         out["quick_connect_id"] = data["QuickConnectId"]
     return out

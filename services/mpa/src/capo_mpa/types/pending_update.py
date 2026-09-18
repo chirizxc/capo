@@ -91,11 +91,11 @@ def serialize_json(value: PendingUpdate) -> dict:
 
 def deserialize_json(data: dict) -> PendingUpdate:
     out: PendingUpdate = {}  # type: ignore[typeddict-item]
-    if "VersionId" in data:
+    if data.get("VersionId") is not None:
         out["version_id"] = data["VersionId"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "ApprovalStrategy" in data:
+    if data.get("ApprovalStrategy") is not None:
         import capo_mpa.types.approval_strategy_response
 
         out["approval_strategy"] = (
@@ -103,23 +103,23 @@ def deserialize_json(data: dict) -> PendingUpdate:
                 data["ApprovalStrategy"]
             )
         )
-    if "NumberOfApprovers" in data:
+    if data.get("NumberOfApprovers") is not None:
         out["number_of_approvers"] = data["NumberOfApprovers"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_mpa.types.approval_team_status
 
         out["status"] = capo_mpa.types.approval_team_status.deserialize_json(
             data["Status"]
         )
-    if "StatusCode" in data:
+    if data.get("StatusCode") is not None:
         import capo_mpa.types.approval_team_status_code
 
         out["status_code"] = capo_mpa.types.approval_team_status_code.deserialize_json(
             data["StatusCode"]
         )
-    if "StatusMessage" in data:
+    if data.get("StatusMessage") is not None:
         out["status_message"] = data["StatusMessage"]
-    if "Approvers" in data:
+    if data.get("Approvers") is not None:
         import capo_mpa.types.get_approval_team_response_approvers
 
         out["approvers"] = (
@@ -127,7 +127,7 @@ def deserialize_json(data: dict) -> PendingUpdate:
                 data["Approvers"]
             )
         )
-    if "UpdateInitiationTime" in data:
+    if data.get("UpdateInitiationTime") is not None:
         import capo_mpa.types.iso_timestamp
 
         out["update_initiation_time"] = capo_mpa.types.iso_timestamp.deserialize_json(

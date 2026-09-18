@@ -28,8 +28,8 @@ def serialize_json(value: RoutingRuleMatchHeaderValue) -> dict:
 
 def deserialize_json(data: dict) -> RoutingRuleMatchHeaderValue:
     out: RoutingRuleMatchHeaderValue = {}  # type: ignore[typeddict-item]
-    if "header" in data:
+    if data.get("header") is not None:
         out["header"] = data["header"]
-    if "valueGlob" in data:
+    if data.get("valueGlob") is not None:
         out["value_glob"] = data["valueGlob"]
     return out

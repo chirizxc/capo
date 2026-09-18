@@ -50,19 +50,19 @@ def serialize_json(value: CreateEndpointRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateEndpointRequest:
     out: CreateEndpointRequest = {}  # type: ignore[typeddict-item]
-    if "OutpostId" in data:
+    if data.get("OutpostId") is not None:
         out["outpost_id"] = data["OutpostId"]
     else:
         raise DeserializationError("CreateEndpointRequest.outpost_id required")
-    if "SubnetId" in data:
+    if data.get("SubnetId") is not None:
         out["subnet_id"] = data["SubnetId"]
     else:
         raise DeserializationError("CreateEndpointRequest.subnet_id required")
-    if "SecurityGroupId" in data:
+    if data.get("SecurityGroupId") is not None:
         out["security_group_id"] = data["SecurityGroupId"]
     else:
         raise DeserializationError("CreateEndpointRequest.security_group_id required")
-    if "AccessType" in data:
+    if data.get("AccessType") is not None:
         import capo_s3outposts.types.endpoint_access_type
 
         out["access_type"] = (
@@ -70,6 +70,6 @@ def deserialize_json(data: dict) -> CreateEndpointRequest:
                 data["AccessType"]
             )
         )
-    if "CustomerOwnedIpv4Pool" in data:
+    if data.get("CustomerOwnedIpv4Pool") is not None:
         out["customer_owned_ipv4_pool"] = data["CustomerOwnedIpv4Pool"]
     return out

@@ -150,9 +150,9 @@ def serialize_aws_json_1_1(value: CreateClusterRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateClusterRequest:
     out: CreateClusterRequest = {}  # type: ignore[typeddict-item]
-    if "ClusterName" in data:
+    if data.get("ClusterName") is not None:
         out["cluster_name"] = data["ClusterName"]
-    if "InstanceGroups" in data:
+    if data.get("InstanceGroups") is not None:
         import capo_sagemaker.types.cluster_instance_group_specifications
 
         out["instance_groups"] = (
@@ -160,7 +160,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateClusterRequest:
                 data["InstanceGroups"]
             )
         )
-    if "RestrictedInstanceGroups" in data:
+    if data.get("RestrictedInstanceGroups") is not None:
         import capo_sagemaker.types.cluster_restricted_instance_group_specifications
 
         out["restricted_instance_groups"] = (
@@ -168,7 +168,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateClusterRequest:
                 data["RestrictedInstanceGroups"]
             )
         )
-    if "RestrictedInstanceGroupsConfig" in data:
+    if data.get("RestrictedInstanceGroupsConfig") is not None:
         import capo_sagemaker.types.cluster_restricted_instance_groups_config
 
         out["restricted_instance_groups_config"] = (
@@ -176,19 +176,19 @@ def deserialize_aws_json_1_1(data: dict) -> CreateClusterRequest:
                 data["RestrictedInstanceGroupsConfig"]
             )
         )
-    if "VpcConfig" in data:
+    if data.get("VpcConfig") is not None:
         import capo_sagemaker.types.vpc_config
 
         out["vpc_config"] = capo_sagemaker.types.vpc_config.deserialize_aws_json_1_1(
             data["VpcConfig"]
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_sagemaker.types.tag_list
 
         out["tags"] = capo_sagemaker.types.tag_list.deserialize_aws_json_1_1(
             data["Tags"]
         )
-    if "Orchestrator" in data:
+    if data.get("Orchestrator") is not None:
         import capo_sagemaker.types.cluster_orchestrator
 
         out["orchestrator"] = (
@@ -196,7 +196,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateClusterRequest:
                 data["Orchestrator"]
             )
         )
-    if "NodeRecovery" in data:
+    if data.get("NodeRecovery") is not None:
         import capo_sagemaker.types.cluster_node_recovery
 
         out["node_recovery"] = (
@@ -204,7 +204,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateClusterRequest:
                 data["NodeRecovery"]
             )
         )
-    if "TieredStorageConfig" in data:
+    if data.get("TieredStorageConfig") is not None:
         import capo_sagemaker.types.cluster_tiered_storage_config
 
         out["tiered_storage_config"] = (
@@ -212,7 +212,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateClusterRequest:
                 data["TieredStorageConfig"]
             )
         )
-    if "NodeProvisioningMode" in data:
+    if data.get("NodeProvisioningMode") is not None:
         import capo_sagemaker.types.cluster_node_provisioning_mode
 
         out["node_provisioning_mode"] = (
@@ -220,9 +220,9 @@ def deserialize_aws_json_1_1(data: dict) -> CreateClusterRequest:
                 data["NodeProvisioningMode"]
             )
         )
-    if "ClusterRole" in data:
+    if data.get("ClusterRole") is not None:
         out["cluster_role"] = data["ClusterRole"]
-    if "AutoScaling" in data:
+    if data.get("AutoScaling") is not None:
         import capo_sagemaker.types.cluster_auto_scaling_config
 
         out["auto_scaling"] = (

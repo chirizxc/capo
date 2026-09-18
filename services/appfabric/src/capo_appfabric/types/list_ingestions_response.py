@@ -32,7 +32,7 @@ def serialize_json(value: ListIngestionsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListIngestionsResponse:
     out: ListIngestionsResponse = {}  # type: ignore[typeddict-item]
-    if "ingestions" in data:
+    if data.get("ingestions") is not None:
         import capo_appfabric.types.ingestion_list
 
         out["ingestions"] = capo_appfabric.types.ingestion_list.deserialize_json(
@@ -40,6 +40,6 @@ def deserialize_json(data: dict) -> ListIngestionsResponse:
         )
     else:
         raise DeserializationError("ListIngestionsResponse.ingestions required")
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

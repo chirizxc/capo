@@ -30,7 +30,7 @@ def serialize_json(value: RdsSalSettings) -> dict:
 
 def deserialize_json(data: dict) -> RdsSalSettings:
     out: RdsSalSettings = {}  # type: ignore[typeddict-item]
-    if "RdsSalCredentialsProvider" in data:
+    if data.get("RdsSalCredentialsProvider") is not None:
         import capo_license_manager_user_subscriptions.types.credentials_provider
 
         out["rds_sal_credentials_provider"] = (

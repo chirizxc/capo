@@ -37,7 +37,7 @@ def serialize_aws_json_1_1(value: CreateSystemTemplateRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateSystemTemplateRequest:
     out: CreateSystemTemplateRequest = {}  # type: ignore[typeddict-item]
-    if "definition" in data:
+    if data.get("definition") is not None:
         import capo_iotthingsgraph.types.definition_document
 
         out["definition"] = (
@@ -47,6 +47,6 @@ def deserialize_aws_json_1_1(data: dict) -> CreateSystemTemplateRequest:
         )
     else:
         raise DeserializationError("CreateSystemTemplateRequest.definition required")
-    if "compatibleNamespaceVersion" in data:
+    if data.get("compatibleNamespaceVersion") is not None:
         out["compatible_namespace_version"] = data["compatibleNamespaceVersion"]
     return out

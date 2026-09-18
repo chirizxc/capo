@@ -162,15 +162,15 @@ def serialize_aws_json_1_1(value: KinesisStreamingSourceOptions) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> KinesisStreamingSourceOptions:
     out: KinesisStreamingSourceOptions = {}  # type: ignore[typeddict-item]
-    if "EndpointUrl" in data:
+    if data.get("EndpointUrl") is not None:
         out["endpoint_url"] = data["EndpointUrl"]
-    if "StreamName" in data:
+    if data.get("StreamName") is not None:
         out["stream_name"] = data["StreamName"]
-    if "Classification" in data:
+    if data.get("Classification") is not None:
         out["classification"] = data["Classification"]
-    if "Delimiter" in data:
+    if data.get("Delimiter") is not None:
         out["delimiter"] = data["Delimiter"]
-    if "StartingPosition" in data:
+    if data.get("StartingPosition") is not None:
         import capo_glue.types.starting_position
 
         out["starting_position"] = (
@@ -178,37 +178,37 @@ def deserialize_aws_json_1_1(data: dict) -> KinesisStreamingSourceOptions:
                 data["StartingPosition"]
             )
         )
-    if "MaxFetchTimeInMs" in data:
+    if data.get("MaxFetchTimeInMs") is not None:
         out["max_fetch_time_in_ms"] = data["MaxFetchTimeInMs"]
-    if "MaxFetchRecordsPerShard" in data:
+    if data.get("MaxFetchRecordsPerShard") is not None:
         out["max_fetch_records_per_shard"] = data["MaxFetchRecordsPerShard"]
-    if "MaxRecordPerRead" in data:
+    if data.get("MaxRecordPerRead") is not None:
         out["max_record_per_read"] = data["MaxRecordPerRead"]
-    if "AddIdleTimeBetweenReads" in data:
+    if data.get("AddIdleTimeBetweenReads") is not None:
         out["add_idle_time_between_reads"] = data["AddIdleTimeBetweenReads"]
-    if "IdleTimeBetweenReadsInMs" in data:
+    if data.get("IdleTimeBetweenReadsInMs") is not None:
         out["idle_time_between_reads_in_ms"] = data["IdleTimeBetweenReadsInMs"]
-    if "DescribeShardInterval" in data:
+    if data.get("DescribeShardInterval") is not None:
         out["describe_shard_interval"] = data["DescribeShardInterval"]
-    if "NumRetries" in data:
+    if data.get("NumRetries") is not None:
         out["num_retries"] = data["NumRetries"]
-    if "RetryIntervalMs" in data:
+    if data.get("RetryIntervalMs") is not None:
         out["retry_interval_ms"] = data["RetryIntervalMs"]
-    if "MaxRetryIntervalMs" in data:
+    if data.get("MaxRetryIntervalMs") is not None:
         out["max_retry_interval_ms"] = data["MaxRetryIntervalMs"]
-    if "AvoidEmptyBatches" in data:
+    if data.get("AvoidEmptyBatches") is not None:
         out["avoid_empty_batches"] = data["AvoidEmptyBatches"]
-    if "StreamArn" in data:
+    if data.get("StreamArn") is not None:
         out["stream_arn"] = data["StreamArn"]
-    if "RoleArn" in data:
+    if data.get("RoleArn") is not None:
         out["role_arn"] = data["RoleArn"]
-    if "RoleSessionName" in data:
+    if data.get("RoleSessionName") is not None:
         out["role_session_name"] = data["RoleSessionName"]
-    if "AddRecordTimestamp" in data:
+    if data.get("AddRecordTimestamp") is not None:
         out["add_record_timestamp"] = data["AddRecordTimestamp"]
-    if "EmitConsumerLagMetrics" in data:
+    if data.get("EmitConsumerLagMetrics") is not None:
         out["emit_consumer_lag_metrics"] = data["EmitConsumerLagMetrics"]
-    if "StartingTimestamp" in data:
+    if data.get("StartingTimestamp") is not None:
         import capo_glue.types.iso8601_date_time
 
         out["starting_timestamp"] = (
@@ -216,6 +216,6 @@ def deserialize_aws_json_1_1(data: dict) -> KinesisStreamingSourceOptions:
                 data["StartingTimestamp"]
             )
         )
-    if "FanoutConsumerARN" in data:
+    if data.get("FanoutConsumerARN") is not None:
         out["fanout_consumer_arn"] = data["FanoutConsumerARN"]
     return out

@@ -22,7 +22,7 @@ def serialize_aws_json_1_1(value: ProtectionGroupArbitraryPatternLimits) -> dict
 
 def deserialize_aws_json_1_1(data: dict) -> ProtectionGroupArbitraryPatternLimits:
     out: ProtectionGroupArbitraryPatternLimits = {}  # type: ignore[typeddict-item]
-    if "MaxMembers" in data:
+    if data.get("MaxMembers") is not None:
         out["max_members"] = data["MaxMembers"]
     else:
         out["max_members"] = 0

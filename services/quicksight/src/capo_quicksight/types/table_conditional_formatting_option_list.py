@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> TableConditionalFormattingOptionList:
 
     out: TableConditionalFormattingOptionList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_quicksight.types.table_conditional_formatting_option.deserialize_json(
                 item

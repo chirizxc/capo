@@ -307,25 +307,25 @@ def serialize_json(value: ElasticsearchDomainStatus) -> dict:
 
 def deserialize_json(data: dict) -> ElasticsearchDomainStatus:
     out: ElasticsearchDomainStatus = {}  # type: ignore[typeddict-item]
-    if "DomainId" in data:
+    if data.get("DomainId") is not None:
         out["domain_id"] = data["DomainId"]
     else:
         raise DeserializationError("ElasticsearchDomainStatus.domain_id required")
-    if "DomainName" in data:
+    if data.get("DomainName") is not None:
         out["domain_name"] = data["DomainName"]
     else:
         raise DeserializationError("ElasticsearchDomainStatus.domain_name required")
-    if "ARN" in data:
+    if data.get("ARN") is not None:
         out["arn"] = data["ARN"]
     else:
         raise DeserializationError("ElasticsearchDomainStatus.arn required")
-    if "Created" in data:
+    if data.get("Created") is not None:
         out["created"] = data["Created"]
-    if "Deleted" in data:
+    if data.get("Deleted") is not None:
         out["deleted"] = data["Deleted"]
-    if "Endpoint" in data:
+    if data.get("Endpoint") is not None:
         out["endpoint"] = data["Endpoint"]
-    if "Endpoints" in data:
+    if data.get("Endpoints") is not None:
         import capo_elasticsearch_service.types.endpoints_map
 
         out["endpoints"] = (
@@ -333,13 +333,13 @@ def deserialize_json(data: dict) -> ElasticsearchDomainStatus:
                 data["Endpoints"]
             )
         )
-    if "Processing" in data:
+    if data.get("Processing") is not None:
         out["processing"] = data["Processing"]
-    if "UpgradeProcessing" in data:
+    if data.get("UpgradeProcessing") is not None:
         out["upgrade_processing"] = data["UpgradeProcessing"]
-    if "ElasticsearchVersion" in data:
+    if data.get("ElasticsearchVersion") is not None:
         out["elasticsearch_version"] = data["ElasticsearchVersion"]
-    if "ElasticsearchClusterConfig" in data:
+    if data.get("ElasticsearchClusterConfig") is not None:
         import capo_elasticsearch_service.types.elasticsearch_cluster_config
 
         out["elasticsearch_cluster_config"] = (
@@ -351,7 +351,7 @@ def deserialize_json(data: dict) -> ElasticsearchDomainStatus:
         raise DeserializationError(
             "ElasticsearchDomainStatus.elasticsearch_cluster_config required"
         )
-    if "EBSOptions" in data:
+    if data.get("EBSOptions") is not None:
         import capo_elasticsearch_service.types.ebs_options
 
         out["ebs_options"] = (
@@ -359,9 +359,9 @@ def deserialize_json(data: dict) -> ElasticsearchDomainStatus:
                 data["EBSOptions"]
             )
         )
-    if "AccessPolicies" in data:
+    if data.get("AccessPolicies") is not None:
         out["access_policies"] = data["AccessPolicies"]
-    if "SnapshotOptions" in data:
+    if data.get("SnapshotOptions") is not None:
         import capo_elasticsearch_service.types.snapshot_options
 
         out["snapshot_options"] = (
@@ -369,7 +369,7 @@ def deserialize_json(data: dict) -> ElasticsearchDomainStatus:
                 data["SnapshotOptions"]
             )
         )
-    if "VPCOptions" in data:
+    if data.get("VPCOptions") is not None:
         import capo_elasticsearch_service.types.vpc_derived_info
 
         out["vpc_options"] = (
@@ -377,7 +377,7 @@ def deserialize_json(data: dict) -> ElasticsearchDomainStatus:
                 data["VPCOptions"]
             )
         )
-    if "CognitoOptions" in data:
+    if data.get("CognitoOptions") is not None:
         import capo_elasticsearch_service.types.cognito_options
 
         out["cognito_options"] = (
@@ -385,7 +385,7 @@ def deserialize_json(data: dict) -> ElasticsearchDomainStatus:
                 data["CognitoOptions"]
             )
         )
-    if "EncryptionAtRestOptions" in data:
+    if data.get("EncryptionAtRestOptions") is not None:
         import capo_elasticsearch_service.types.encryption_at_rest_options
 
         out["encryption_at_rest_options"] = (
@@ -393,7 +393,7 @@ def deserialize_json(data: dict) -> ElasticsearchDomainStatus:
                 data["EncryptionAtRestOptions"]
             )
         )
-    if "NodeToNodeEncryptionOptions" in data:
+    if data.get("NodeToNodeEncryptionOptions") is not None:
         import capo_elasticsearch_service.types.node_to_node_encryption_options
 
         out["node_to_node_encryption_options"] = (
@@ -401,7 +401,7 @@ def deserialize_json(data: dict) -> ElasticsearchDomainStatus:
                 data["NodeToNodeEncryptionOptions"]
             )
         )
-    if "AdvancedOptions" in data:
+    if data.get("AdvancedOptions") is not None:
         import capo_elasticsearch_service.types.advanced_options
 
         out["advanced_options"] = (
@@ -409,7 +409,7 @@ def deserialize_json(data: dict) -> ElasticsearchDomainStatus:
                 data["AdvancedOptions"]
             )
         )
-    if "LogPublishingOptions" in data:
+    if data.get("LogPublishingOptions") is not None:
         import capo_elasticsearch_service.types.log_publishing_options
 
         out["log_publishing_options"] = (
@@ -417,7 +417,7 @@ def deserialize_json(data: dict) -> ElasticsearchDomainStatus:
                 data["LogPublishingOptions"]
             )
         )
-    if "ServiceSoftwareOptions" in data:
+    if data.get("ServiceSoftwareOptions") is not None:
         import capo_elasticsearch_service.types.service_software_options
 
         out["service_software_options"] = (
@@ -425,7 +425,7 @@ def deserialize_json(data: dict) -> ElasticsearchDomainStatus:
                 data["ServiceSoftwareOptions"]
             )
         )
-    if "DomainEndpointOptions" in data:
+    if data.get("DomainEndpointOptions") is not None:
         import capo_elasticsearch_service.types.domain_endpoint_options
 
         out["domain_endpoint_options"] = (
@@ -433,7 +433,7 @@ def deserialize_json(data: dict) -> ElasticsearchDomainStatus:
                 data["DomainEndpointOptions"]
             )
         )
-    if "AdvancedSecurityOptions" in data:
+    if data.get("AdvancedSecurityOptions") is not None:
         import capo_elasticsearch_service.types.advanced_security_options
 
         out["advanced_security_options"] = (
@@ -441,7 +441,7 @@ def deserialize_json(data: dict) -> ElasticsearchDomainStatus:
                 data["AdvancedSecurityOptions"]
             )
         )
-    if "AutoTuneOptions" in data:
+    if data.get("AutoTuneOptions") is not None:
         import capo_elasticsearch_service.types.auto_tune_options_output
 
         out["auto_tune_options"] = (
@@ -449,7 +449,7 @@ def deserialize_json(data: dict) -> ElasticsearchDomainStatus:
                 data["AutoTuneOptions"]
             )
         )
-    if "ChangeProgressDetails" in data:
+    if data.get("ChangeProgressDetails") is not None:
         import capo_elasticsearch_service.types.change_progress_details
 
         out["change_progress_details"] = (
@@ -457,7 +457,7 @@ def deserialize_json(data: dict) -> ElasticsearchDomainStatus:
                 data["ChangeProgressDetails"]
             )
         )
-    if "DomainProcessingStatus" in data:
+    if data.get("DomainProcessingStatus") is not None:
         import capo_elasticsearch_service.types.domain_processing_status_type
 
         out["domain_processing_status"] = (
@@ -465,7 +465,7 @@ def deserialize_json(data: dict) -> ElasticsearchDomainStatus:
                 data["DomainProcessingStatus"]
             )
         )
-    if "ModifyingProperties" in data:
+    if data.get("ModifyingProperties") is not None:
         import capo_elasticsearch_service.types.modifying_properties_list
 
         out["modifying_properties"] = (
@@ -473,7 +473,7 @@ def deserialize_json(data: dict) -> ElasticsearchDomainStatus:
                 data["ModifyingProperties"]
             )
         )
-    if "DeploymentStrategyOptions" in data:
+    if data.get("DeploymentStrategyOptions") is not None:
         import capo_elasticsearch_service.types.deployment_strategy_options
 
         out["deployment_strategy_options"] = (
@@ -481,7 +481,7 @@ def deserialize_json(data: dict) -> ElasticsearchDomainStatus:
                 data["DeploymentStrategyOptions"]
             )
         )
-    if "AutomatedSnapshotPauseOptions" in data:
+    if data.get("AutomatedSnapshotPauseOptions") is not None:
         import capo_elasticsearch_service.types.automated_snapshot_pause_options
 
         out["automated_snapshot_pause_options"] = (

@@ -56,15 +56,15 @@ def serialize_aws_json_1_1(value: UpdateApplicationRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateApplicationRequest:
     out: UpdateApplicationRequest = {}  # type: ignore[typeddict-item]
-    if "ApplicationArn" in data:
+    if data.get("ApplicationArn") is not None:
         out["application_arn"] = data["ApplicationArn"]
     else:
         raise DeserializationError("UpdateApplicationRequest.application_arn required")
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_sso_admin.types.application_status
 
         out["status"] = (
@@ -72,7 +72,7 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateApplicationRequest:
                 data["Status"]
             )
         )
-    if "PortalOptions" in data:
+    if data.get("PortalOptions") is not None:
         import capo_sso_admin.types.update_application_portal_options
 
         out["portal_options"] = (

@@ -27,7 +27,7 @@ def serialize_json(value: ScanEc2InstanceWithFindingsResult) -> dict:
 
 def deserialize_json(data: dict) -> ScanEc2InstanceWithFindingsResult:
     out: ScanEc2InstanceWithFindingsResult = {}  # type: ignore[typeddict-item]
-    if "ebsVolumes" in data:
+    if data.get("ebsVolumes") is not None:
         import capo_guardduty.types.ebs_volumes_result
 
         out["ebs_volumes"] = capo_guardduty.types.ebs_volumes_result.deserialize_json(

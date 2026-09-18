@@ -50,11 +50,11 @@ def serialize_json(value: GetMLEndpointOutput) -> dict:
 
 def deserialize_json(data: dict) -> GetMLEndpointOutput:
     out: GetMLEndpointOutput = {}  # type: ignore[typeddict-item]
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "endpoint" in data:
+    if data.get("endpoint") is not None:
         import capo_neptunedata.types.ml_resource_definition
 
         out["endpoint"] = (
@@ -62,7 +62,7 @@ def deserialize_json(data: dict) -> GetMLEndpointOutput:
                 data["endpoint"]
             )
         )
-    if "endpointConfig" in data:
+    if data.get("endpointConfig") is not None:
         import capo_neptunedata.types.ml_config_definition
 
         out["endpoint_config"] = (

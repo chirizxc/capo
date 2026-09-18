@@ -28,11 +28,11 @@ def serialize_json(value: EmailAttachment) -> dict:
 
 def deserialize_json(data: dict) -> EmailAttachment:
     out: EmailAttachment = {}  # type: ignore[typeddict-item]
-    if "FileName" in data:
+    if data.get("FileName") is not None:
         out["file_name"] = data["FileName"]
     else:
         raise DeserializationError("EmailAttachment.file_name required")
-    if "S3Url" in data:
+    if data.get("S3Url") is not None:
         out["s3_url"] = data["S3Url"]
     else:
         raise DeserializationError("EmailAttachment.s3_url required")

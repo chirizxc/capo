@@ -20,7 +20,15 @@ class BinWidthOptions(TypedDict, closed=True):
 def serialize_json(value: BinWidthOptions) -> dict:
     out: dict = {}
     if "value" in value:
-        out["Value"] = value["value"]
+        out["Value"] = (
+            "NaN"
+            if value["value"] != value["value"]
+            else "Infinity"
+            if value["value"] == float("inf")
+            else "-Infinity"
+            if value["value"] == float("-inf")
+            else value["value"]
+        )
     if "bin_count_limit" in value:
         out["BinCountLimit"] = value["bin_count_limit"]
     return out
@@ -28,8 +36,8 @@ def serialize_json(value: BinWidthOptions) -> dict:
 
 def deserialize_json(data: dict) -> BinWidthOptions:
     out: BinWidthOptions = {}  # type: ignore[typeddict-item]
-    if "Value" in data:
-        out["value"] = data["Value"]
-    if "BinCountLimit" in data:
+    if data.get("Value") is not None:
+        out["value"] = float(data["Value"])
+    if data.get("BinCountLimit") is not None:
         out["bin_count_limit"] = data["BinCountLimit"]
     return out

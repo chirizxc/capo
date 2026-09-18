@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import uuid
 from typing import TYPE_CHECKING, Optional
 
 import capo_route53globalresolver._auth._signers
@@ -107,16 +108,18 @@ class AccessSource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_route53globalresolver.types.create_access_source_input.CreateAccessSourceInput = {}  # type: ignore[typeddict-item]
-        input_["cidr"] = cidr
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_route53globalresolver.types.create_access_source_input.CreateAccessSourceInput = {
+            "cidr": cidr,
+            "dns_view_id": dns_view_id,
+            "protocol": protocol,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if ip_address_type is not None:
             input_["ip_address_type"] = ip_address_type
         if name is not None:
             input_["name"] = name
-        input_["dns_view_id"] = dns_view_id
-        input_["protocol"] = protocol
         if tags is not None:
             input_["tags"] = tags
 
@@ -125,6 +128,7 @@ class AccessSource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -162,14 +166,16 @@ class AccessSource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_route53globalresolver.types.get_access_source_input.GetAccessSourceInput = {}  # type: ignore[typeddict-item]
-        input_["access_source_id"] = access_source_id
+        input_: capo_route53globalresolver.types.get_access_source_input.GetAccessSourceInput = {
+            "access_source_id": access_source_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update(
@@ -223,8 +229,9 @@ class AccessSource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_route53globalresolver.types.update_access_source_input.UpdateAccessSourceInput = {}  # type: ignore[typeddict-item]
-        input_["access_source_id"] = access_source_id
+        input_: capo_route53globalresolver.types.update_access_source_input.UpdateAccessSourceInput = {
+            "access_source_id": access_source_id
+        }
         if cidr is not None:
             input_["cidr"] = cidr
         if ip_address_type is not None:
@@ -239,6 +246,7 @@ class AccessSource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -277,14 +285,16 @@ class AccessSource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_route53globalresolver.types.delete_access_source_input.DeleteAccessSourceInput = {}  # type: ignore[typeddict-item]
-        input_["access_source_id"] = access_source_id
+        input_: capo_route53globalresolver.types.delete_access_source_input.DeleteAccessSourceInput = {
+            "access_source_id": access_source_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -325,7 +335,7 @@ class AccessSource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_route53globalresolver.types.list_access_sources_input.ListAccessSourcesInput = {}  # type: ignore[typeddict-item]
+        input_: capo_route53globalresolver.types.list_access_sources_input.ListAccessSourcesInput = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -338,6 +348,7 @@ class AccessSource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -406,16 +417,18 @@ class AsyncAccessSource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_route53globalresolver.types.create_access_source_input.CreateAccessSourceInput = {}  # type: ignore[typeddict-item]
-        input_["cidr"] = cidr
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_route53globalresolver.types.create_access_source_input.CreateAccessSourceInput = {
+            "cidr": cidr,
+            "dns_view_id": dns_view_id,
+            "protocol": protocol,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if ip_address_type is not None:
             input_["ip_address_type"] = ip_address_type
         if name is not None:
             input_["name"] = name
-        input_["dns_view_id"] = dns_view_id
-        input_["protocol"] = protocol
         if tags is not None:
             input_["tags"] = tags
 
@@ -424,6 +437,7 @@ class AsyncAccessSource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -462,14 +476,16 @@ class AsyncAccessSource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_route53globalresolver.types.get_access_source_input.GetAccessSourceInput = {}  # type: ignore[typeddict-item]
-        input_["access_source_id"] = access_source_id
+        input_: capo_route53globalresolver.types.get_access_source_input.GetAccessSourceInput = {
+            "access_source_id": access_source_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update(
@@ -524,8 +540,9 @@ class AsyncAccessSource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_route53globalresolver.types.update_access_source_input.UpdateAccessSourceInput = {}  # type: ignore[typeddict-item]
-        input_["access_source_id"] = access_source_id
+        input_: capo_route53globalresolver.types.update_access_source_input.UpdateAccessSourceInput = {
+            "access_source_id": access_source_id
+        }
         if cidr is not None:
             input_["cidr"] = cidr
         if ip_address_type is not None:
@@ -540,6 +557,7 @@ class AsyncAccessSource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -579,14 +597,16 @@ class AsyncAccessSource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_route53globalresolver.types.delete_access_source_input.DeleteAccessSourceInput = {}  # type: ignore[typeddict-item]
-        input_["access_source_id"] = access_source_id
+        input_: capo_route53globalresolver.types.delete_access_source_input.DeleteAccessSourceInput = {
+            "access_source_id": access_source_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -628,7 +648,7 @@ class AsyncAccessSource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_route53globalresolver.types.list_access_sources_input.ListAccessSourcesInput = {}  # type: ignore[typeddict-item]
+        input_: capo_route53globalresolver.types.list_access_sources_input.ListAccessSourcesInput = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -641,4 +661,5 @@ class AsyncAccessSource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

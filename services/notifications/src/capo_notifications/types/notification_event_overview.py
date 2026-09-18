@@ -85,21 +85,21 @@ def serialize_json(value: NotificationEventOverview) -> dict:
 
 def deserialize_json(data: dict) -> NotificationEventOverview:
     out: NotificationEventOverview = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("NotificationEventOverview.arn required")
-    if "notificationConfigurationArn" in data:
+    if data.get("notificationConfigurationArn") is not None:
         out["notification_configuration_arn"] = data["notificationConfigurationArn"]
     else:
         raise DeserializationError(
             "NotificationEventOverview.notification_configuration_arn required"
         )
-    if "relatedAccount" in data:
+    if data.get("relatedAccount") is not None:
         out["related_account"] = data["relatedAccount"]
     else:
         raise DeserializationError("NotificationEventOverview.related_account required")
-    if "creationTime" in data:
+    if data.get("creationTime") is not None:
         import capo_notifications.types.creation_time
 
         out["creation_time"] = capo_notifications.types.creation_time.deserialize_json(
@@ -107,7 +107,7 @@ def deserialize_json(data: dict) -> NotificationEventOverview:
         )
     else:
         raise DeserializationError("NotificationEventOverview.creation_time required")
-    if "notificationEvent" in data:
+    if data.get("notificationEvent") is not None:
         import capo_notifications.types.notification_event_summary
 
         out["notification_event"] = (
@@ -119,11 +119,11 @@ def deserialize_json(data: dict) -> NotificationEventOverview:
         raise DeserializationError(
             "NotificationEventOverview.notification_event required"
         )
-    if "aggregationEventType" in data:
+    if data.get("aggregationEventType") is not None:
         out["aggregation_event_type"] = data["aggregationEventType"]
-    if "aggregateNotificationEventArn" in data:
+    if data.get("aggregateNotificationEventArn") is not None:
         out["aggregate_notification_event_arn"] = data["aggregateNotificationEventArn"]
-    if "aggregationSummary" in data:
+    if data.get("aggregationSummary") is not None:
         import capo_notifications.types.aggregation_summary
 
         out["aggregation_summary"] = (
@@ -131,6 +131,6 @@ def deserialize_json(data: dict) -> NotificationEventOverview:
                 data["aggregationSummary"]
             )
         )
-    if "organizationalUnitId" in data:
+    if data.get("organizationalUnitId") is not None:
         out["organizational_unit_id"] = data["organizationalUnitId"]
     return out

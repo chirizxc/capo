@@ -32,7 +32,7 @@ def deserialize_json(
     data: dict,
 ) -> IdNamespaceAssociationInputReferencePropertiesSummary:
     out: IdNamespaceAssociationInputReferencePropertiesSummary = {}  # type: ignore[typeddict-item]
-    if "idNamespaceType" in data:
+    if data.get("idNamespaceType") is not None:
         import capo_cleanrooms.types.id_namespace_type
 
         out["id_namespace_type"] = (

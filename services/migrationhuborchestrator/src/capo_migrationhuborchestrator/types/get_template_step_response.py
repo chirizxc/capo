@@ -101,21 +101,21 @@ def serialize_json(value: GetTemplateStepResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetTemplateStepResponse:
     out: GetTemplateStepResponse = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "stepGroupId" in data:
+    if data.get("stepGroupId") is not None:
         out["step_group_id"] = data["stepGroupId"]
-    if "templateId" in data:
+    if data.get("templateId") is not None:
         out["template_id"] = data["templateId"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "stepActionType" in data:
+    if data.get("stepActionType") is not None:
         out["step_action_type"] = data["stepActionType"]
-    if "creationTime" in data:
+    if data.get("creationTime") is not None:
         out["creation_time"] = data["creationTime"]
-    if "previous" in data:
+    if data.get("previous") is not None:
         import capo_migrationhuborchestrator.types.string_list
 
         out["previous"] = (
@@ -123,13 +123,13 @@ def deserialize_json(data: dict) -> GetTemplateStepResponse:
                 data["previous"]
             )
         )
-    if "next" in data:
+    if data.get("next") is not None:
         import capo_migrationhuborchestrator.types.string_list
 
         out["next"] = capo_migrationhuborchestrator.types.string_list.deserialize_json(
             data["next"]
         )
-    if "outputs" in data:
+    if data.get("outputs") is not None:
         import capo_migrationhuborchestrator.types.step_output_list
 
         out["outputs"] = (
@@ -137,7 +137,7 @@ def deserialize_json(data: dict) -> GetTemplateStepResponse:
                 data["outputs"]
             )
         )
-    if "stepAutomationConfiguration" in data:
+    if data.get("stepAutomationConfiguration") is not None:
         import capo_migrationhuborchestrator.types.step_automation_configuration
 
         out["step_automation_configuration"] = (

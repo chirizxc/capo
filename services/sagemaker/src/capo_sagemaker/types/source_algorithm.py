@@ -46,9 +46,9 @@ def serialize_aws_json_1_1(value: SourceAlgorithm) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SourceAlgorithm:
     out: SourceAlgorithm = {}  # type: ignore[typeddict-item]
-    if "ModelDataUrl" in data:
+    if data.get("ModelDataUrl") is not None:
         out["model_data_url"] = data["ModelDataUrl"]
-    if "ModelDataSource" in data:
+    if data.get("ModelDataSource") is not None:
         import capo_sagemaker.types.model_data_source
 
         out["model_data_source"] = (
@@ -56,8 +56,8 @@ def deserialize_aws_json_1_1(data: dict) -> SourceAlgorithm:
                 data["ModelDataSource"]
             )
         )
-    if "ModelDataETag" in data:
+    if data.get("ModelDataETag") is not None:
         out["model_data_e_tag"] = data["ModelDataETag"]
-    if "AlgorithmName" in data:
+    if data.get("AlgorithmName") is not None:
         out["algorithm_name"] = data["AlgorithmName"]
     return out

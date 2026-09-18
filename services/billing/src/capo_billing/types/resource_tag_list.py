@@ -23,5 +23,7 @@ def deserialize_aws_json_1_0(data: list) -> ResourceTagList:
 
     out: ResourceTagList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_billing.types.resource_tag.deserialize_aws_json_1_0(item))
     return out

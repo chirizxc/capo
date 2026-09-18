@@ -33,9 +33,9 @@ def serialize_json(value: RedshiftLineageSyncConfigurationInput) -> dict:
 
 def deserialize_json(data: dict) -> RedshiftLineageSyncConfigurationInput:
     out: RedshiftLineageSyncConfigurationInput = {}  # type: ignore[typeddict-item]
-    if "enabled" in data:
+    if data.get("enabled") is not None:
         out["enabled"] = data["enabled"]
-    if "schedule" in data:
+    if data.get("schedule") is not None:
         import capo_datazone.types.lineage_sync_schedule
 
         out["schedule"] = capo_datazone.types.lineage_sync_schedule.deserialize_json(

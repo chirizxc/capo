@@ -31,10 +31,10 @@ def serialize_json(value: BulkDeploymentMetrics) -> dict:
 
 def deserialize_json(data: dict) -> BulkDeploymentMetrics:
     out: BulkDeploymentMetrics = {}  # type: ignore[typeddict-item]
-    if "InvalidInputRecords" in data:
+    if data.get("InvalidInputRecords") is not None:
         out["invalid_input_records"] = data["InvalidInputRecords"]
-    if "RecordsProcessed" in data:
+    if data.get("RecordsProcessed") is not None:
         out["records_processed"] = data["RecordsProcessed"]
-    if "RetryAttempts" in data:
+    if data.get("RetryAttempts") is not None:
         out["retry_attempts"] = data["RetryAttempts"]
     return out

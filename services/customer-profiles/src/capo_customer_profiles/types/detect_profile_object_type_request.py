@@ -31,7 +31,7 @@ def serialize_json(value: DetectProfileObjectTypeRequest) -> dict:
 
 def deserialize_json(data: dict) -> DetectProfileObjectTypeRequest:
     out: DetectProfileObjectTypeRequest = {}  # type: ignore[typeddict-item]
-    if "Objects" in data:
+    if data.get("Objects") is not None:
         import capo_customer_profiles.types.objects
 
         out["objects"] = capo_customer_profiles.types.objects.deserialize_json(

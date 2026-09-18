@@ -109,7 +109,7 @@ def serialize_json(value: AssetBundleImportJobOverrideTags) -> dict:
 
 def deserialize_json(data: dict) -> AssetBundleImportJobOverrideTags:
     out: AssetBundleImportJobOverrideTags = {}  # type: ignore[typeddict-item]
-    if "VPCConnections" in data:
+    if data.get("VPCConnections") is not None:
         import capo_quicksight.types.asset_bundle_import_job_vpc_connection_override_tags_list
 
         out["vpc_connections"] = (
@@ -117,7 +117,7 @@ def deserialize_json(data: dict) -> AssetBundleImportJobOverrideTags:
                 data["VPCConnections"]
             )
         )
-    if "DataSources" in data:
+    if data.get("DataSources") is not None:
         import capo_quicksight.types.asset_bundle_import_job_data_source_override_tags_list
 
         out["data_sources"] = (
@@ -125,7 +125,7 @@ def deserialize_json(data: dict) -> AssetBundleImportJobOverrideTags:
                 data["DataSources"]
             )
         )
-    if "DataSets" in data:
+    if data.get("DataSets") is not None:
         import capo_quicksight.types.asset_bundle_import_job_data_set_override_tags_list
 
         out["data_sets"] = (
@@ -133,7 +133,7 @@ def deserialize_json(data: dict) -> AssetBundleImportJobOverrideTags:
                 data["DataSets"]
             )
         )
-    if "Themes" in data:
+    if data.get("Themes") is not None:
         import capo_quicksight.types.asset_bundle_import_job_theme_override_tags_list
 
         out["themes"] = (
@@ -141,7 +141,7 @@ def deserialize_json(data: dict) -> AssetBundleImportJobOverrideTags:
                 data["Themes"]
             )
         )
-    if "Analyses" in data:
+    if data.get("Analyses") is not None:
         import capo_quicksight.types.asset_bundle_import_job_analysis_override_tags_list
 
         out["analyses"] = (
@@ -149,7 +149,7 @@ def deserialize_json(data: dict) -> AssetBundleImportJobOverrideTags:
                 data["Analyses"]
             )
         )
-    if "Dashboards" in data:
+    if data.get("Dashboards") is not None:
         import capo_quicksight.types.asset_bundle_import_job_dashboard_override_tags_list
 
         out["dashboards"] = (
@@ -157,7 +157,7 @@ def deserialize_json(data: dict) -> AssetBundleImportJobOverrideTags:
                 data["Dashboards"]
             )
         )
-    if "Folders" in data:
+    if data.get("Folders") is not None:
         import capo_quicksight.types.asset_bundle_import_job_folder_override_tags_list
 
         out["folders"] = (

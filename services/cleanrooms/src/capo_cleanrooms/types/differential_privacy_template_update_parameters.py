@@ -30,8 +30,8 @@ def serialize_json(value: DifferentialPrivacyTemplateUpdateParameters) -> dict:
 
 def deserialize_json(data: dict) -> DifferentialPrivacyTemplateUpdateParameters:
     out: DifferentialPrivacyTemplateUpdateParameters = {}  # type: ignore[typeddict-item]
-    if "epsilon" in data:
+    if data.get("epsilon") is not None:
         out["epsilon"] = data["epsilon"]
-    if "usersNoisePerQuery" in data:
+    if data.get("usersNoisePerQuery") is not None:
         out["users_noise_per_query"] = data["usersNoisePerQuery"]
     return out

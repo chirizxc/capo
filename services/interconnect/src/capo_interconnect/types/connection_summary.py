@@ -81,23 +81,23 @@ def serialize_aws_json_1_0(value: ConnectionSummary) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ConnectionSummary:
     out: ConnectionSummary = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("ConnectionSummary.id required")
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("ConnectionSummary.arn required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
     else:
         raise DeserializationError("ConnectionSummary.description required")
-    if "bandwidth" in data:
+    if data.get("bandwidth") is not None:
         out["bandwidth"] = data["bandwidth"]
     else:
         raise DeserializationError("ConnectionSummary.bandwidth required")
-    if "attachPoint" in data:
+    if data.get("attachPoint") is not None:
         import capo_interconnect.types.attach_point
 
         out["attach_point"] = (
@@ -107,11 +107,11 @@ def deserialize_aws_json_1_0(data: dict) -> ConnectionSummary:
         )
     else:
         raise DeserializationError("ConnectionSummary.attach_point required")
-    if "environmentId" in data:
+    if data.get("environmentId") is not None:
         out["environment_id"] = data["environmentId"]
     else:
         raise DeserializationError("ConnectionSummary.environment_id required")
-    if "provider" in data:
+    if data.get("provider") is not None:
         import capo_interconnect.types.provider
 
         out["provider"] = capo_interconnect.types.provider.deserialize_aws_json_1_0(
@@ -119,15 +119,15 @@ def deserialize_aws_json_1_0(data: dict) -> ConnectionSummary:
         )
     else:
         raise DeserializationError("ConnectionSummary.provider required")
-    if "location" in data:
+    if data.get("location") is not None:
         out["location"] = data["location"]
     else:
         raise DeserializationError("ConnectionSummary.location required")
-    if "type" in data:
+    if data.get("type") is not None:
         out["type"] = data["type"]
     else:
         raise DeserializationError("ConnectionSummary.type required")
-    if "state" in data:
+    if data.get("state") is not None:
         import capo_interconnect.types.connection_state
 
         out["state"] = (
@@ -137,10 +137,10 @@ def deserialize_aws_json_1_0(data: dict) -> ConnectionSummary:
         )
     else:
         raise DeserializationError("ConnectionSummary.state required")
-    if "sharedId" in data:
+    if data.get("sharedId") is not None:
         out["shared_id"] = data["sharedId"]
     else:
         raise DeserializationError("ConnectionSummary.shared_id required")
-    if "billingTier" in data:
+    if data.get("billingTier") is not None:
         out["billing_tier"] = data["billingTier"]
     return out

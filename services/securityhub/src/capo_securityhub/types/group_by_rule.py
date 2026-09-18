@@ -38,13 +38,13 @@ def serialize_json(value: GroupByRule) -> dict:
 
 def deserialize_json(data: dict) -> GroupByRule:
     out: GroupByRule = {}  # type: ignore[typeddict-item]
-    if "Filters" in data:
+    if data.get("Filters") is not None:
         import capo_securityhub.types.ocsf_finding_filters
 
         out["filters"] = capo_securityhub.types.ocsf_finding_filters.deserialize_json(
             data["Filters"]
         )
-    if "GroupByField" in data:
+    if data.get("GroupByField") is not None:
         import capo_securityhub.types.group_by_field
 
         out["group_by_field"] = capo_securityhub.types.group_by_field.deserialize_json(

@@ -79,10 +79,10 @@ def serialize_json(value: CreatePrivateConnectionOutput) -> dict:
         value["status"]
     )
     if "certificate_expiry_time" in value:
-        import capo_devops_agent.types._prelude.timestamp
+        import capo_devops_agent._protocol.serialize
 
         out["certificateExpiryTime"] = (
-            capo_devops_agent.types._prelude.timestamp.serialize_json(
+            capo_devops_agent._protocol.serialize.fmt_date_time(
                 value["certificate_expiry_time"]
             )
         )
@@ -105,11 +105,11 @@ def serialize_json(value: CreatePrivateConnectionOutput) -> dict:
 
 def deserialize_json(data: dict) -> CreatePrivateConnectionOutput:
     out: CreatePrivateConnectionOutput = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("CreatePrivateConnectionOutput.name required")
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_devops_agent.types.private_connection_type
 
         out["type"] = capo_devops_agent.types.private_connection_type.deserialize_json(
@@ -117,15 +117,15 @@ def deserialize_json(data: dict) -> CreatePrivateConnectionOutput:
         )
     else:
         raise DeserializationError("CreatePrivateConnectionOutput.type required")
-    if "resourceGatewayId" in data:
+    if data.get("resourceGatewayId") is not None:
         out["resource_gateway_id"] = data["resourceGatewayId"]
-    if "hostAddress" in data:
+    if data.get("hostAddress") is not None:
         out["host_address"] = data["hostAddress"]
-    if "vpcId" in data:
+    if data.get("vpcId") is not None:
         out["vpc_id"] = data["vpcId"]
-    if "resourceConfigurationId" in data:
+    if data.get("resourceConfigurationId") is not None:
         out["resource_configuration_id"] = data["resourceConfigurationId"]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_devops_agent.types.private_connection_status
 
         out["status"] = (
@@ -135,15 +135,13 @@ def deserialize_json(data: dict) -> CreatePrivateConnectionOutput:
         )
     else:
         raise DeserializationError("CreatePrivateConnectionOutput.status required")
-    if "certificateExpiryTime" in data:
-        import capo_devops_agent.types._prelude.timestamp
+    if data.get("certificateExpiryTime") is not None:
+        import datetime
 
-        out["certificate_expiry_time"] = (
-            capo_devops_agent.types._prelude.timestamp.deserialize_json(
-                data["certificateExpiryTime"]
-            )
+        out["certificate_expiry_time"] = datetime.datetime.fromisoformat(
+            data["certificateExpiryTime"].replace("Z", "+00:00")
         )
-    if "dnsResolution" in data:
+    if data.get("dnsResolution") is not None:
         import capo_devops_agent.types.resource_config_dns_resolution
 
         out["dns_resolution"] = (
@@ -151,9 +149,9 @@ def deserialize_json(data: dict) -> CreatePrivateConnectionOutput:
                 data["dnsResolution"]
             )
         )
-    if "failureMessage" in data:
+    if data.get("failureMessage") is not None:
         out["failure_message"] = data["failureMessage"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_devops_agent.types.tags
 
         out["tags"] = capo_devops_agent.types.tags.deserialize_json(data["tags"])

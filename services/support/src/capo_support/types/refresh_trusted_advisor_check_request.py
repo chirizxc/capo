@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: RefreshTrustedAdvisorCheckRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RefreshTrustedAdvisorCheckRequest:
     out: RefreshTrustedAdvisorCheckRequest = {}  # type: ignore[typeddict-item]
-    if "checkId" in data:
+    if data.get("checkId") is not None:
         out["check_id"] = data["checkId"]
     else:
         raise DeserializationError(

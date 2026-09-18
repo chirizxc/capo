@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> Namespaces:
 
     out: Namespaces = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_quicksight.types.namespace_info_v2.deserialize_json(item))
     return out

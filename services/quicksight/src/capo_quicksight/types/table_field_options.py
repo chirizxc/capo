@@ -66,7 +66,7 @@ def serialize_json(value: TableFieldOptions) -> dict:
 
 def deserialize_json(data: dict) -> TableFieldOptions:
     out: TableFieldOptions = {}  # type: ignore[typeddict-item]
-    if "SelectedFieldOptions" in data:
+    if data.get("SelectedFieldOptions") is not None:
         import capo_quicksight.types.table_field_option_list
 
         out["selected_field_options"] = (
@@ -74,13 +74,13 @@ def deserialize_json(data: dict) -> TableFieldOptions:
                 data["SelectedFieldOptions"]
             )
         )
-    if "Order" in data:
+    if data.get("Order") is not None:
         import capo_quicksight.types.field_order_list
 
         out["order"] = capo_quicksight.types.field_order_list.deserialize_json(
             data["Order"]
         )
-    if "PinnedFieldOptions" in data:
+    if data.get("PinnedFieldOptions") is not None:
         import capo_quicksight.types.table_pinned_field_options
 
         out["pinned_field_options"] = (
@@ -88,7 +88,7 @@ def deserialize_json(data: dict) -> TableFieldOptions:
                 data["PinnedFieldOptions"]
             )
         )
-    if "TransposedTableOptions" in data:
+    if data.get("TransposedTableOptions") is not None:
         import capo_quicksight.types.transposed_table_option_list
 
         out["transposed_table_options"] = (

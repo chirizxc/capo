@@ -27,8 +27,8 @@ def serialize_aws_json_1_1(value: DeleteEntitlementRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteEntitlementRequest:
     out: DeleteEntitlementRequest = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "StackName" in data:
+    if data.get("StackName") is not None:
         out["stack_name"] = data["StackName"]
     return out

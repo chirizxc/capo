@@ -81,19 +81,19 @@ def serialize_aws_json_1_1(value: UpdateNamespaceRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateNamespaceRequest:
     out: UpdateNamespaceRequest = {}  # type: ignore[typeddict-item]
-    if "namespaceName" in data:
+    if data.get("namespaceName") is not None:
         out["namespace_name"] = data["namespaceName"]
     else:
         raise DeserializationError("UpdateNamespaceRequest.namespace_name required")
-    if "adminUserPassword" in data:
+    if data.get("adminUserPassword") is not None:
         out["admin_user_password"] = data["adminUserPassword"]
-    if "adminUsername" in data:
+    if data.get("adminUsername") is not None:
         out["admin_username"] = data["adminUsername"]
-    if "kmsKeyId" in data:
+    if data.get("kmsKeyId") is not None:
         out["kms_key_id"] = data["kmsKeyId"]
-    if "defaultIamRoleArn" in data:
+    if data.get("defaultIamRoleArn") is not None:
         out["default_iam_role_arn"] = data["defaultIamRoleArn"]
-    if "iamRoles" in data:
+    if data.get("iamRoles") is not None:
         import capo_redshift_serverless.types.iam_role_arn_list
 
         out["iam_roles"] = (
@@ -101,7 +101,7 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateNamespaceRequest:
                 data["iamRoles"]
             )
         )
-    if "logExports" in data:
+    if data.get("logExports") is not None:
         import capo_redshift_serverless.types.log_export_list
 
         out["log_exports"] = (
@@ -109,8 +109,8 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateNamespaceRequest:
                 data["logExports"]
             )
         )
-    if "manageAdminPassword" in data:
+    if data.get("manageAdminPassword") is not None:
         out["manage_admin_password"] = data["manageAdminPassword"]
-    if "adminPasswordSecretKmsKeyId" in data:
+    if data.get("adminPasswordSecretKmsKeyId") is not None:
         out["admin_password_secret_kms_key_id"] = data["adminPasswordSecretKmsKeyId"]
     return out

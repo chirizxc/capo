@@ -32,9 +32,9 @@ def serialize_json(value: ListScramSecretsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListScramSecretsResponse:
     out: ListScramSecretsResponse = {}  # type: ignore[typeddict-item]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "secretArnList" in data:
+    if data.get("secretArnList") is not None:
         import capo_kafka.types.__list_of__string
 
         out["secret_arn_list"] = capo_kafka.types.__list_of__string.deserialize_json(

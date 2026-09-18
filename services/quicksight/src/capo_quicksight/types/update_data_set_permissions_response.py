@@ -36,10 +36,10 @@ def serialize_json(value: UpdateDataSetPermissionsResponse) -> dict:
 
 def deserialize_json(data: dict) -> UpdateDataSetPermissionsResponse:
     out: UpdateDataSetPermissionsResponse = {}  # type: ignore[typeddict-item]
-    if "DataSetArn" in data:
+    if data.get("DataSetArn") is not None:
         out["data_set_arn"] = data["DataSetArn"]
-    if "DataSetId" in data:
+    if data.get("DataSetId") is not None:
         out["data_set_id"] = data["DataSetId"]
-    if "RequestId" in data:
+    if data.get("RequestId") is not None:
         out["request_id"] = data["RequestId"]
     return out

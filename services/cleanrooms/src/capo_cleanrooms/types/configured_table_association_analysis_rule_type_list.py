@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> ConfiguredTableAssociationAnalysisRuleTypeLi
 
     out: ConfiguredTableAssociationAnalysisRuleTypeList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_cleanrooms.types.configured_table_association_analysis_rule_type.deserialize_json(
                 item

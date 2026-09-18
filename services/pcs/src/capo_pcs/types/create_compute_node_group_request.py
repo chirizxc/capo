@@ -120,21 +120,21 @@ def serialize_aws_json_1_0(value: CreateComputeNodeGroupRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CreateComputeNodeGroupRequest:
     out: CreateComputeNodeGroupRequest = {}  # type: ignore[typeddict-item]
-    if "clusterIdentifier" in data:
+    if data.get("clusterIdentifier") is not None:
         out["cluster_identifier"] = data["clusterIdentifier"]
     else:
         raise DeserializationError(
             "CreateComputeNodeGroupRequest.cluster_identifier required"
         )
-    if "computeNodeGroupName" in data:
+    if data.get("computeNodeGroupName") is not None:
         out["compute_node_group_name"] = data["computeNodeGroupName"]
     else:
         raise DeserializationError(
             "CreateComputeNodeGroupRequest.compute_node_group_name required"
         )
-    if "amiId" in data:
+    if data.get("amiId") is not None:
         out["ami_id"] = data["amiId"]
-    if "subnetIds" in data:
+    if data.get("subnetIds") is not None:
         import capo_pcs.types.string_list
 
         out["subnet_ids"] = capo_pcs.types.string_list.deserialize_aws_json_1_0(
@@ -142,7 +142,7 @@ def deserialize_aws_json_1_0(data: dict) -> CreateComputeNodeGroupRequest:
         )
     else:
         raise DeserializationError("CreateComputeNodeGroupRequest.subnet_ids required")
-    if "purchaseOption" in data:
+    if data.get("purchaseOption") is not None:
         import capo_pcs.types.purchase_option
 
         out["purchase_option"] = (
@@ -150,7 +150,7 @@ def deserialize_aws_json_1_0(data: dict) -> CreateComputeNodeGroupRequest:
                 data["purchaseOption"]
             )
         )
-    if "customLaunchTemplate" in data:
+    if data.get("customLaunchTemplate") is not None:
         import capo_pcs.types.custom_launch_template
 
         out["custom_launch_template"] = (
@@ -162,13 +162,13 @@ def deserialize_aws_json_1_0(data: dict) -> CreateComputeNodeGroupRequest:
         raise DeserializationError(
             "CreateComputeNodeGroupRequest.custom_launch_template required"
         )
-    if "iamInstanceProfileArn" in data:
+    if data.get("iamInstanceProfileArn") is not None:
         out["iam_instance_profile_arn"] = data["iamInstanceProfileArn"]
     else:
         raise DeserializationError(
             "CreateComputeNodeGroupRequest.iam_instance_profile_arn required"
         )
-    if "scalingConfiguration" in data:
+    if data.get("scalingConfiguration") is not None:
         import capo_pcs.types.scaling_configuration_request
 
         out["scaling_configuration"] = (
@@ -180,7 +180,7 @@ def deserialize_aws_json_1_0(data: dict) -> CreateComputeNodeGroupRequest:
         raise DeserializationError(
             "CreateComputeNodeGroupRequest.scaling_configuration required"
         )
-    if "instanceConfigs" in data:
+    if data.get("instanceConfigs") is not None:
         import capo_pcs.types.instance_list
 
         out["instance_configs"] = capo_pcs.types.instance_list.deserialize_aws_json_1_0(
@@ -190,13 +190,13 @@ def deserialize_aws_json_1_0(data: dict) -> CreateComputeNodeGroupRequest:
         raise DeserializationError(
             "CreateComputeNodeGroupRequest.instance_configs required"
         )
-    if "spotOptions" in data:
+    if data.get("spotOptions") is not None:
         import capo_pcs.types.spot_options
 
         out["spot_options"] = capo_pcs.types.spot_options.deserialize_aws_json_1_0(
             data["spotOptions"]
         )
-    if "slurmConfiguration" in data:
+    if data.get("slurmConfiguration") is not None:
         import capo_pcs.types.compute_node_group_slurm_configuration_request
 
         out["slurm_configuration"] = (
@@ -204,9 +204,9 @@ def deserialize_aws_json_1_0(data: dict) -> CreateComputeNodeGroupRequest:
                 data["slurmConfiguration"]
             )
         )
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_pcs.types.request_tag_map
 
         out["tags"] = capo_pcs.types.request_tag_map.deserialize_aws_json_1_0(

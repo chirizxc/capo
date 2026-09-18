@@ -38,40 +38,64 @@ def serialize_json(value: FieldStats) -> dict:
         out["max"] = value["max"]
     out["count"] = value.get("count", 0)
     out["missing"] = value.get("missing", 0)
-    out["sum"] = value.get("sum", 0)
-    out["sumOfSquares"] = value.get("sum_of_squares", 0)
+    out["sum"] = (
+        "NaN"
+        if value.get("sum", 0) != value.get("sum", 0)
+        else "Infinity"
+        if value.get("sum", 0) == float("inf")
+        else "-Infinity"
+        if value.get("sum", 0) == float("-inf")
+        else value.get("sum", 0)
+    )
+    out["sumOfSquares"] = (
+        "NaN"
+        if value.get("sum_of_squares", 0) != value.get("sum_of_squares", 0)
+        else "Infinity"
+        if value.get("sum_of_squares", 0) == float("inf")
+        else "-Infinity"
+        if value.get("sum_of_squares", 0) == float("-inf")
+        else value.get("sum_of_squares", 0)
+    )
     if "mean" in value:
         out["mean"] = value["mean"]
-    out["stddev"] = value.get("stddev", 0)
+    out["stddev"] = (
+        "NaN"
+        if value.get("stddev", 0) != value.get("stddev", 0)
+        else "Infinity"
+        if value.get("stddev", 0) == float("inf")
+        else "-Infinity"
+        if value.get("stddev", 0) == float("-inf")
+        else value.get("stddev", 0)
+    )
     return out
 
 
 def deserialize_json(data: dict) -> FieldStats:
     out: FieldStats = {}  # type: ignore[typeddict-item]
-    if "min" in data:
+    if data.get("min") is not None:
         out["min"] = data["min"]
-    if "max" in data:
+    if data.get("max") is not None:
         out["max"] = data["max"]
-    if "count" in data:
+    if data.get("count") is not None:
         out["count"] = data["count"]
     else:
         out["count"] = 0
-    if "missing" in data:
+    if data.get("missing") is not None:
         out["missing"] = data["missing"]
     else:
         out["missing"] = 0
-    if "sum" in data:
-        out["sum"] = data["sum"]
+    if data.get("sum") is not None:
+        out["sum"] = float(data["sum"])
     else:
         out["sum"] = 0
-    if "sumOfSquares" in data:
-        out["sum_of_squares"] = data["sumOfSquares"]
+    if data.get("sumOfSquares") is not None:
+        out["sum_of_squares"] = float(data["sumOfSquares"])
     else:
         out["sum_of_squares"] = 0
-    if "mean" in data:
+    if data.get("mean") is not None:
         out["mean"] = data["mean"]
-    if "stddev" in data:
-        out["stddev"] = data["stddev"]
+    if data.get("stddev") is not None:
+        out["stddev"] = float(data["stddev"])
     else:
         out["stddev"] = 0
     return out

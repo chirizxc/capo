@@ -27,7 +27,7 @@ def serialize_json(value: PerformanceConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> PerformanceConfiguration:
     out: PerformanceConfiguration = {}  # type: ignore[typeddict-item]
-    if "UniqueKeys" in data:
+    if data.get("UniqueKeys") is not None:
         import capo_quicksight.types.unique_key_list
 
         out["unique_keys"] = capo_quicksight.types.unique_key_list.deserialize_json(

@@ -39,13 +39,13 @@ def serialize_aws_json_1_1(value: ByteMatchSet) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ByteMatchSet:
     out: ByteMatchSet = {}  # type: ignore[typeddict-item]
-    if "ByteMatchSetId" in data:
+    if data.get("ByteMatchSetId") is not None:
         out["byte_match_set_id"] = data["ByteMatchSetId"]
     else:
         raise DeserializationError("ByteMatchSet.byte_match_set_id required")
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "ByteMatchTuples" in data:
+    if data.get("ByteMatchTuples") is not None:
         import capo_waf_regional.types.byte_match_tuples
 
         out["byte_match_tuples"] = (

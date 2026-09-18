@@ -54,7 +54,7 @@ def serialize_json(value: AwsElasticsearchDomainLogPublishingOptions) -> dict:
 
 def deserialize_json(data: dict) -> AwsElasticsearchDomainLogPublishingOptions:
     out: AwsElasticsearchDomainLogPublishingOptions = {}  # type: ignore[typeddict-item]
-    if "IndexSlowLogs" in data:
+    if data.get("IndexSlowLogs") is not None:
         import capo_securityhub.types.aws_elasticsearch_domain_log_publishing_options_log_config
 
         out["index_slow_logs"] = (
@@ -62,7 +62,7 @@ def deserialize_json(data: dict) -> AwsElasticsearchDomainLogPublishingOptions:
                 data["IndexSlowLogs"]
             )
         )
-    if "SearchSlowLogs" in data:
+    if data.get("SearchSlowLogs") is not None:
         import capo_securityhub.types.aws_elasticsearch_domain_log_publishing_options_log_config
 
         out["search_slow_logs"] = (
@@ -70,7 +70,7 @@ def deserialize_json(data: dict) -> AwsElasticsearchDomainLogPublishingOptions:
                 data["SearchSlowLogs"]
             )
         )
-    if "AuditLogs" in data:
+    if data.get("AuditLogs") is not None:
         import capo_securityhub.types.aws_elasticsearch_domain_log_publishing_options_log_config
 
         out["audit_logs"] = (

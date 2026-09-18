@@ -43,14 +43,14 @@ def serialize_aws_json_1_0(value: SignalInformation) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> SignalInformation:
     out: SignalInformation = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("SignalInformation.name required")
-    if "maxSampleCount" in data:
+    if data.get("maxSampleCount") is not None:
         out["max_sample_count"] = data["maxSampleCount"]
-    if "minimumSamplingIntervalMs" in data:
+    if data.get("minimumSamplingIntervalMs") is not None:
         out["minimum_sampling_interval_ms"] = data["minimumSamplingIntervalMs"]
-    if "dataPartitionId" in data:
+    if data.get("dataPartitionId") is not None:
         out["data_partition_id"] = data["dataPartitionId"]
     return out

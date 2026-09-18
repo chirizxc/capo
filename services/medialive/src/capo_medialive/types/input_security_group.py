@@ -75,27 +75,27 @@ def serialize_json(value: InputSecurityGroup) -> dict:
 
 def deserialize_json(data: dict) -> InputSecurityGroup:
     out: InputSecurityGroup = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "inputs" in data:
+    if data.get("inputs") is not None:
         import capo_medialive.types.__list_of__string
 
         out["inputs"] = capo_medialive.types.__list_of__string.deserialize_json(
             data["inputs"]
         )
-    if "state" in data:
+    if data.get("state") is not None:
         import capo_medialive.types.input_security_group_state
 
         out["state"] = capo_medialive.types.input_security_group_state.deserialize_json(
             data["state"]
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_medialive.types.tags
 
         out["tags"] = capo_medialive.types.tags.deserialize_json(data["tags"])
-    if "whitelistRules" in data:
+    if data.get("whitelistRules") is not None:
         import capo_medialive.types.__list_of_input_whitelist_rule
 
         out["whitelist_rules"] = (
@@ -103,7 +103,7 @@ def deserialize_json(data: dict) -> InputSecurityGroup:
                 data["whitelistRules"]
             )
         )
-    if "channels" in data:
+    if data.get("channels") is not None:
         import capo_medialive.types.__list_of__string
 
         out["channels"] = capo_medialive.types.__list_of__string.deserialize_json(

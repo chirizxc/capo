@@ -49,19 +49,19 @@ def serialize_json(value: IsolineTravelModeOptions) -> dict:
 
 def deserialize_json(data: dict) -> IsolineTravelModeOptions:
     out: IsolineTravelModeOptions = {}  # type: ignore[typeddict-item]
-    if "Car" in data:
+    if data.get("Car") is not None:
         import capo_geo_routes.types.isoline_car_options
 
         out["car"] = capo_geo_routes.types.isoline_car_options.deserialize_json(
             data["Car"]
         )
-    if "Scooter" in data:
+    if data.get("Scooter") is not None:
         import capo_geo_routes.types.isoline_scooter_options
 
         out["scooter"] = capo_geo_routes.types.isoline_scooter_options.deserialize_json(
             data["Scooter"]
         )
-    if "Truck" in data:
+    if data.get("Truck") is not None:
         import capo_geo_routes.types.isoline_truck_options
 
         out["truck"] = capo_geo_routes.types.isoline_truck_options.deserialize_json(

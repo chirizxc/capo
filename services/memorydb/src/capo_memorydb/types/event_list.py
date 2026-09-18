@@ -23,5 +23,7 @@ def deserialize_aws_json_1_1(data: list) -> EventList:
 
     out: EventList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_memorydb.types.event.deserialize_aws_json_1_1(item))
     return out

@@ -35,11 +35,11 @@ def serialize_aws_json_1_1(value: AutoRollbackConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AutoRollbackConfiguration:
     out: AutoRollbackConfiguration = {}  # type: ignore[typeddict-item]
-    if "enabled" in data:
+    if data.get("enabled") is not None:
         out["enabled"] = data["enabled"]
     else:
         out["enabled"] = False
-    if "events" in data:
+    if data.get("events") is not None:
         import capo_codedeploy.types.auto_rollback_events_list
 
         out["events"] = (

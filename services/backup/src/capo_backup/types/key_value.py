@@ -22,11 +22,11 @@ def serialize_json(value: KeyValue) -> dict:
 
 def deserialize_json(data: dict) -> KeyValue:
     out: KeyValue = {}  # type: ignore[typeddict-item]
-    if "Key" in data:
+    if data.get("Key") is not None:
         out["key"] = data["Key"]
     else:
         raise DeserializationError("KeyValue.key required")
-    if "Value" in data:
+    if data.get("Value") is not None:
         out["value"] = data["Value"]
     else:
         raise DeserializationError("KeyValue.value required")

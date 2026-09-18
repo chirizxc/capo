@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: StreamProcessingStartSelector) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> StreamProcessingStartSelector:
     out: StreamProcessingStartSelector = {}  # type: ignore[typeddict-item]
-    if "KVSStreamStartSelector" in data:
+    if data.get("KVSStreamStartSelector") is not None:
         import capo_rekognition.types.kinesis_video_stream_start_selector
 
         out["kvs_stream_start_selector"] = (

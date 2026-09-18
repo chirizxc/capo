@@ -63,7 +63,7 @@ def serialize_aws_json_1_1(value: OfferingTransaction) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> OfferingTransaction:
     out: OfferingTransaction = {}  # type: ignore[typeddict-item]
-    if "offeringStatus" in data:
+    if data.get("offeringStatus") is not None:
         import capo_device_farm.types.offering_status
 
         out["offering_status"] = (
@@ -71,17 +71,17 @@ def deserialize_aws_json_1_1(data: dict) -> OfferingTransaction:
                 data["offeringStatus"]
             )
         )
-    if "transactionId" in data:
+    if data.get("transactionId") is not None:
         out["transaction_id"] = data["transactionId"]
-    if "offeringPromotionId" in data:
+    if data.get("offeringPromotionId") is not None:
         out["offering_promotion_id"] = data["offeringPromotionId"]
-    if "createdOn" in data:
+    if data.get("createdOn") is not None:
         import capo_device_farm.types.date_time
 
         out["created_on"] = capo_device_farm.types.date_time.deserialize_aws_json_1_1(
             data["createdOn"]
         )
-    if "cost" in data:
+    if data.get("cost") is not None:
         import capo_device_farm.types.monetary_amount
 
         out["cost"] = capo_device_farm.types.monetary_amount.deserialize_aws_json_1_1(

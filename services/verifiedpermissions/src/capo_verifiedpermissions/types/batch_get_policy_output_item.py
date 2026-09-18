@@ -74,15 +74,15 @@ def serialize_aws_json_1_0(value: BatchGetPolicyOutputItem) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> BatchGetPolicyOutputItem:
     out: BatchGetPolicyOutputItem = {}  # type: ignore[typeddict-item]
-    if "policyStoreId" in data:
+    if data.get("policyStoreId") is not None:
         out["policy_store_id"] = data["policyStoreId"]
     else:
         raise DeserializationError("BatchGetPolicyOutputItem.policy_store_id required")
-    if "policyId" in data:
+    if data.get("policyId") is not None:
         out["policy_id"] = data["policyId"]
     else:
         raise DeserializationError("BatchGetPolicyOutputItem.policy_id required")
-    if "policyType" in data:
+    if data.get("policyType") is not None:
         import capo_verifiedpermissions.types.policy_type
 
         out["policy_type"] = (
@@ -92,7 +92,7 @@ def deserialize_aws_json_1_0(data: dict) -> BatchGetPolicyOutputItem:
         )
     else:
         raise DeserializationError("BatchGetPolicyOutputItem.policy_type required")
-    if "definition" in data:
+    if data.get("definition") is not None:
         import capo_verifiedpermissions.types.policy_definition_detail
 
         out["definition"] = (
@@ -102,7 +102,7 @@ def deserialize_aws_json_1_0(data: dict) -> BatchGetPolicyOutputItem:
         )
     else:
         raise DeserializationError("BatchGetPolicyOutputItem.definition required")
-    if "createdDate" in data:
+    if data.get("createdDate") is not None:
         import capo_verifiedpermissions.types.timestamp_format
 
         out["created_date"] = (
@@ -112,7 +112,7 @@ def deserialize_aws_json_1_0(data: dict) -> BatchGetPolicyOutputItem:
         )
     else:
         raise DeserializationError("BatchGetPolicyOutputItem.created_date required")
-    if "lastUpdatedDate" in data:
+    if data.get("lastUpdatedDate") is not None:
         import capo_verifiedpermissions.types.timestamp_format
 
         out["last_updated_date"] = (
@@ -124,6 +124,6 @@ def deserialize_aws_json_1_0(data: dict) -> BatchGetPolicyOutputItem:
         raise DeserializationError(
             "BatchGetPolicyOutputItem.last_updated_date required"
         )
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     return out

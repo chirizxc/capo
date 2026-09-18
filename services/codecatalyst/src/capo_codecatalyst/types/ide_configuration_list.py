@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> IdeConfigurationList:
 
     out: IdeConfigurationList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_codecatalyst.types.ide_configuration.deserialize_json(item))
     return out

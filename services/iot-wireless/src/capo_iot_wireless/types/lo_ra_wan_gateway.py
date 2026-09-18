@@ -62,17 +62,25 @@ def serialize_json(value: LoRaWANGateway) -> dict:
             value["beaconing"]
         )
     if "max_eirp" in value:
-        out["MaxEirp"] = value["max_eirp"]
+        out["MaxEirp"] = (
+            "NaN"
+            if value["max_eirp"] != value["max_eirp"]
+            else "Infinity"
+            if value["max_eirp"] == float("inf")
+            else "-Infinity"
+            if value["max_eirp"] == float("-inf")
+            else value["max_eirp"]
+        )
     return out
 
 
 def deserialize_json(data: dict) -> LoRaWANGateway:
     out: LoRaWANGateway = {}  # type: ignore[typeddict-item]
-    if "GatewayEui" in data:
+    if data.get("GatewayEui") is not None:
         out["gateway_eui"] = data["GatewayEui"]
-    if "RfRegion" in data:
+    if data.get("RfRegion") is not None:
         out["rf_region"] = data["RfRegion"]
-    if "JoinEuiFilters" in data:
+    if data.get("JoinEuiFilters") is not None:
         import capo_iot_wireless.types.join_eui_filters
 
         out["join_eui_filters"] = (
@@ -80,24 +88,24 @@ def deserialize_json(data: dict) -> LoRaWANGateway:
                 data["JoinEuiFilters"]
             )
         )
-    if "NetIdFilters" in data:
+    if data.get("NetIdFilters") is not None:
         import capo_iot_wireless.types.net_id_filters
 
         out["net_id_filters"] = capo_iot_wireless.types.net_id_filters.deserialize_json(
             data["NetIdFilters"]
         )
-    if "SubBands" in data:
+    if data.get("SubBands") is not None:
         import capo_iot_wireless.types.sub_bands
 
         out["sub_bands"] = capo_iot_wireless.types.sub_bands.deserialize_json(
             data["SubBands"]
         )
-    if "Beaconing" in data:
+    if data.get("Beaconing") is not None:
         import capo_iot_wireless.types.beaconing
 
         out["beaconing"] = capo_iot_wireless.types.beaconing.deserialize_json(
             data["Beaconing"]
         )
-    if "MaxEirp" in data:
-        out["max_eirp"] = data["MaxEirp"]
+    if data.get("MaxEirp") is not None:
+        out["max_eirp"] = float(data["MaxEirp"])
     return out

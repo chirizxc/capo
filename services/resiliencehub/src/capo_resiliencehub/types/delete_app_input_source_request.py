@@ -59,13 +59,13 @@ def serialize_json(value: DeleteAppInputSourceRequest) -> dict:
 
 def deserialize_json(data: dict) -> DeleteAppInputSourceRequest:
     out: DeleteAppInputSourceRequest = {}  # type: ignore[typeddict-item]
-    if "appArn" in data:
+    if data.get("appArn") is not None:
         out["app_arn"] = data["appArn"]
     else:
         raise DeserializationError("DeleteAppInputSourceRequest.app_arn required")
-    if "sourceArn" in data:
+    if data.get("sourceArn") is not None:
         out["source_arn"] = data["sourceArn"]
-    if "terraformSource" in data:
+    if data.get("terraformSource") is not None:
         import capo_resiliencehub.types.terraform_source
 
         out["terraform_source"] = (
@@ -73,9 +73,9 @@ def deserialize_json(data: dict) -> DeleteAppInputSourceRequest:
                 data["terraformSource"]
             )
         )
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
-    if "eksSourceClusterNamespace" in data:
+    if data.get("eksSourceClusterNamespace") is not None:
         import capo_resiliencehub.types.eks_source_cluster_namespace
 
         out["eks_source_cluster_namespace"] = (

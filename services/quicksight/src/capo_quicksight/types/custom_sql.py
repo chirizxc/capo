@@ -41,19 +41,19 @@ def serialize_json(value: CustomSql) -> dict:
 
 def deserialize_json(data: dict) -> CustomSql:
     out: CustomSql = {}  # type: ignore[typeddict-item]
-    if "DataSourceArn" in data:
+    if data.get("DataSourceArn") is not None:
         out["data_source_arn"] = data["DataSourceArn"]
     else:
         raise DeserializationError("CustomSql.data_source_arn required")
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("CustomSql.name required")
-    if "SqlQuery" in data:
+    if data.get("SqlQuery") is not None:
         out["sql_query"] = data["SqlQuery"]
     else:
         raise DeserializationError("CustomSql.sql_query required")
-    if "Columns" in data:
+    if data.get("Columns") is not None:
         import capo_quicksight.types.input_column_list
 
         out["columns"] = capo_quicksight.types.input_column_list.deserialize_json(

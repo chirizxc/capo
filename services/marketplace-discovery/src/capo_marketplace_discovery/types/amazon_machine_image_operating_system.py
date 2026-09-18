@@ -26,18 +26,18 @@ def serialize_json(value: AmazonMachineImageOperatingSystem) -> dict:
 
 def deserialize_json(data: dict) -> AmazonMachineImageOperatingSystem:
     out: AmazonMachineImageOperatingSystem = {}  # type: ignore[typeddict-item]
-    if "operatingSystemFamilyName" in data:
+    if data.get("operatingSystemFamilyName") is not None:
         out["operating_system_family_name"] = data["operatingSystemFamilyName"]
     else:
         raise DeserializationError(
             "AmazonMachineImageOperatingSystem.operating_system_family_name required"
         )
-    if "operatingSystemName" in data:
+    if data.get("operatingSystemName") is not None:
         out["operating_system_name"] = data["operatingSystemName"]
     else:
         raise DeserializationError(
             "AmazonMachineImageOperatingSystem.operating_system_name required"
         )
-    if "operatingSystemVersion" in data:
+    if data.get("operatingSystemVersion") is not None:
         out["operating_system_version"] = data["operatingSystemVersion"]
     return out

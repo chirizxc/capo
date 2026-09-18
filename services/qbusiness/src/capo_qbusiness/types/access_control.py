@@ -37,7 +37,7 @@ def serialize_json(value: AccessControl) -> dict:
 
 def deserialize_json(data: dict) -> AccessControl:
     out: AccessControl = {}  # type: ignore[typeddict-item]
-    if "principals" in data:
+    if data.get("principals") is not None:
         import capo_qbusiness.types.principals
 
         out["principals"] = capo_qbusiness.types.principals.deserialize_json(
@@ -45,7 +45,7 @@ def deserialize_json(data: dict) -> AccessControl:
         )
     else:
         raise DeserializationError("AccessControl.principals required")
-    if "memberRelation" in data:
+    if data.get("memberRelation") is not None:
         import capo_qbusiness.types.member_relation
 
         out["member_relation"] = capo_qbusiness.types.member_relation.deserialize_json(

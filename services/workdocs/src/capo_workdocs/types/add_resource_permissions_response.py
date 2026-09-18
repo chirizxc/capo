@@ -29,7 +29,7 @@ def serialize_json(value: AddResourcePermissionsResponse) -> dict:
 
 def deserialize_json(data: dict) -> AddResourcePermissionsResponse:
     out: AddResourcePermissionsResponse = {}  # type: ignore[typeddict-item]
-    if "ShareResults" in data:
+    if data.get("ShareResults") is not None:
         import capo_workdocs.types.share_results_list
 
         out["share_results"] = capo_workdocs.types.share_results_list.deserialize_json(

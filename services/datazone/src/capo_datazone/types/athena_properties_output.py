@@ -18,6 +18,6 @@ def serialize_json(value: AthenaPropertiesOutput) -> dict:
 
 def deserialize_json(data: dict) -> AthenaPropertiesOutput:
     out: AthenaPropertiesOutput = {}  # type: ignore[typeddict-item]
-    if "workgroupName" in data:
+    if data.get("workgroupName") is not None:
         out["workgroup_name"] = data["workgroupName"]
     return out

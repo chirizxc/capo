@@ -36,9 +36,9 @@ def serialize_json(value: ListSolNetworkInstancesOutput) -> dict:
 
 def deserialize_json(data: dict) -> ListSolNetworkInstancesOutput:
     out: ListSolNetworkInstancesOutput = {}  # type: ignore[typeddict-item]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "networkInstances" in data:
+    if data.get("networkInstances") is not None:
         import capo_tnb.types.list_sol_network_instance_resources
 
         out["network_instances"] = (

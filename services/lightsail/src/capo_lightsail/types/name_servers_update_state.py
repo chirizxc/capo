@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: NameServersUpdateState) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> NameServersUpdateState:
     out: NameServersUpdateState = {}  # type: ignore[typeddict-item]
-    if "code" in data:
+    if data.get("code") is not None:
         import capo_lightsail.types.name_servers_update_state_code
 
         out["code"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_1(data: dict) -> NameServersUpdateState:
                 data["code"]
             )
         )
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     return out

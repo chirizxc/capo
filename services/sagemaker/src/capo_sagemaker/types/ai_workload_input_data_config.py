@@ -36,9 +36,9 @@ def serialize_aws_json_1_1(value: AIWorkloadInputDataConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AIWorkloadInputDataConfig:
     out: AIWorkloadInputDataConfig = {}  # type: ignore[typeddict-item]
-    if "ChannelName" in data:
+    if data.get("ChannelName") is not None:
         out["channel_name"] = data["ChannelName"]
-    if "DataSource" in data:
+    if data.get("DataSource") is not None:
         import capo_sagemaker.types.ai_workload_data_source
 
         out["data_source"] = (

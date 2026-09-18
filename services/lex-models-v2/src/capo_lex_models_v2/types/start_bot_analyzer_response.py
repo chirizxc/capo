@@ -62,13 +62,13 @@ def serialize_json(value: StartBotAnalyzerResponse) -> dict:
 
 def deserialize_json(data: dict) -> StartBotAnalyzerResponse:
     out: StartBotAnalyzerResponse = {}  # type: ignore[typeddict-item]
-    if "botId" in data:
+    if data.get("botId") is not None:
         out["bot_id"] = data["botId"]
-    if "botVersion" in data:
+    if data.get("botVersion") is not None:
         out["bot_version"] = data["botVersion"]
-    if "localeId" in data:
+    if data.get("localeId") is not None:
         out["locale_id"] = data["localeId"]
-    if "botAnalyzerStatus" in data:
+    if data.get("botAnalyzerStatus") is not None:
         import capo_lex_models_v2.types.bot_analyzer_status
 
         out["bot_analyzer_status"] = (
@@ -76,9 +76,9 @@ def deserialize_json(data: dict) -> StartBotAnalyzerResponse:
                 data["botAnalyzerStatus"]
             )
         )
-    if "botAnalyzerRequestId" in data:
+    if data.get("botAnalyzerRequestId") is not None:
         out["bot_analyzer_request_id"] = data["botAnalyzerRequestId"]
-    if "creationDateTime" in data:
+    if data.get("creationDateTime") is not None:
         import capo_lex_models_v2.types.timestamp
 
         out["creation_date_time"] = capo_lex_models_v2.types.timestamp.deserialize_json(

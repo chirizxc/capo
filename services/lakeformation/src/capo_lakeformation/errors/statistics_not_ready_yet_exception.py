@@ -25,7 +25,7 @@ def serialize_json(value: StatisticsNotReadyYetException_) -> dict:
 
 def deserialize_json(data: dict) -> StatisticsNotReadyYetException_:
     out: StatisticsNotReadyYetException_ = {}  # type: ignore[typeddict-item]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     return out
 
@@ -35,15 +35,20 @@ class StatisticsNotReadyYetException(ServiceError):
 
     code: str | None = "StatisticsNotReadyYetException"
 
-    def __init__(self, data: StatisticsNotReadyYetException_):
+    def __init__(
+        self, data: StatisticsNotReadyYetException_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="StatisticsNotReadyYetException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "StatisticsNotReadyYetException":
-        return cls(deserialize_json(data))
+    def from_json(
+        cls, data: dict, message: str | None = None
+    ) -> "StatisticsNotReadyYetException":
+        return cls(deserialize_json(data), message)

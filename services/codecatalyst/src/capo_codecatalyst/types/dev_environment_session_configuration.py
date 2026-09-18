@@ -39,13 +39,13 @@ def serialize_json(value: DevEnvironmentSessionConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> DevEnvironmentSessionConfiguration:
     out: DevEnvironmentSessionConfiguration = {}  # type: ignore[typeddict-item]
-    if "sessionType" in data:
+    if data.get("sessionType") is not None:
         out["session_type"] = data["sessionType"]
     else:
         raise DeserializationError(
             "DevEnvironmentSessionConfiguration.session_type required"
         )
-    if "executeCommandSessionConfiguration" in data:
+    if data.get("executeCommandSessionConfiguration") is not None:
         import capo_codecatalyst.types.execute_command_session_configuration
 
         out["execute_command_session_configuration"] = (

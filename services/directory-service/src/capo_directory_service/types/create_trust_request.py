@@ -94,19 +94,19 @@ def serialize_aws_json_1_1(value: CreateTrustRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateTrustRequest:
     out: CreateTrustRequest = {}  # type: ignore[typeddict-item]
-    if "DirectoryId" in data:
+    if data.get("DirectoryId") is not None:
         out["directory_id"] = data["DirectoryId"]
     else:
         raise DeserializationError("CreateTrustRequest.directory_id required")
-    if "RemoteDomainName" in data:
+    if data.get("RemoteDomainName") is not None:
         out["remote_domain_name"] = data["RemoteDomainName"]
     else:
         raise DeserializationError("CreateTrustRequest.remote_domain_name required")
-    if "TrustPassword" in data:
+    if data.get("TrustPassword") is not None:
         out["trust_password"] = data["TrustPassword"]
     else:
         raise DeserializationError("CreateTrustRequest.trust_password required")
-    if "TrustDirection" in data:
+    if data.get("TrustDirection") is not None:
         import capo_directory_service.types.trust_direction
 
         out["trust_direction"] = (
@@ -116,7 +116,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateTrustRequest:
         )
     else:
         raise DeserializationError("CreateTrustRequest.trust_direction required")
-    if "TrustType" in data:
+    if data.get("TrustType") is not None:
         import capo_directory_service.types.trust_type
 
         out["trust_type"] = (
@@ -124,7 +124,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateTrustRequest:
                 data["TrustType"]
             )
         )
-    if "ConditionalForwarderIpAddrs" in data:
+    if data.get("ConditionalForwarderIpAddrs") is not None:
         import capo_directory_service.types.dns_ip_addrs
 
         out["conditional_forwarder_ip_addrs"] = (
@@ -132,7 +132,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateTrustRequest:
                 data["ConditionalForwarderIpAddrs"]
             )
         )
-    if "ConditionalForwarderIpv6Addrs" in data:
+    if data.get("ConditionalForwarderIpv6Addrs") is not None:
         import capo_directory_service.types.dns_ipv6_addrs
 
         out["conditional_forwarder_ipv6_addrs"] = (
@@ -140,7 +140,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateTrustRequest:
                 data["ConditionalForwarderIpv6Addrs"]
             )
         )
-    if "SelectiveAuth" in data:
+    if data.get("SelectiveAuth") is not None:
         import capo_directory_service.types.selective_auth
 
         out["selective_auth"] = (

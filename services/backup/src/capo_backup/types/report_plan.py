@@ -87,19 +87,19 @@ def serialize_json(value: ReportPlan) -> dict:
 
 def deserialize_json(data: dict) -> ReportPlan:
     out: ReportPlan = {}  # type: ignore[typeddict-item]
-    if "ReportPlanArn" in data:
+    if data.get("ReportPlanArn") is not None:
         out["report_plan_arn"] = data["ReportPlanArn"]
-    if "ReportPlanName" in data:
+    if data.get("ReportPlanName") is not None:
         out["report_plan_name"] = data["ReportPlanName"]
-    if "ReportPlanDescription" in data:
+    if data.get("ReportPlanDescription") is not None:
         out["report_plan_description"] = data["ReportPlanDescription"]
-    if "ReportSetting" in data:
+    if data.get("ReportSetting") is not None:
         import capo_backup.types.report_setting
 
         out["report_setting"] = capo_backup.types.report_setting.deserialize_json(
             data["ReportSetting"]
         )
-    if "ReportDeliveryChannel" in data:
+    if data.get("ReportDeliveryChannel") is not None:
         import capo_backup.types.report_delivery_channel
 
         out["report_delivery_channel"] = (
@@ -107,15 +107,15 @@ def deserialize_json(data: dict) -> ReportPlan:
                 data["ReportDeliveryChannel"]
             )
         )
-    if "DeploymentStatus" in data:
+    if data.get("DeploymentStatus") is not None:
         out["deployment_status"] = data["DeploymentStatus"]
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_backup.types.timestamp
 
         out["creation_time"] = capo_backup.types.timestamp.deserialize_json(
             data["CreationTime"]
         )
-    if "LastAttemptedExecutionTime" in data:
+    if data.get("LastAttemptedExecutionTime") is not None:
         import capo_backup.types.timestamp
 
         out["last_attempted_execution_time"] = (
@@ -123,7 +123,7 @@ def deserialize_json(data: dict) -> ReportPlan:
                 data["LastAttemptedExecutionTime"]
             )
         )
-    if "LastSuccessfulExecutionTime" in data:
+    if data.get("LastSuccessfulExecutionTime") is not None:
         import capo_backup.types.timestamp
 
         out["last_successful_execution_time"] = (

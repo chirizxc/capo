@@ -23,6 +23,6 @@ def serialize_json(value: ComputeScalingPolicy) -> dict:
 
 def deserialize_json(data: dict) -> ComputeScalingPolicy:
     out: ComputeScalingPolicy = {}  # type: ignore[typeddict-item]
-    if "minScaleDownDelayMinutes" in data:
+    if data.get("minScaleDownDelayMinutes") is not None:
         out["min_scale_down_delay_minutes"] = data["minScaleDownDelayMinutes"]
     return out

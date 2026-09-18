@@ -41,7 +41,7 @@ def serialize_json(value: DescribeSourceNetworksRequestFilters) -> dict:
 
 def deserialize_json(data: dict) -> DescribeSourceNetworksRequestFilters:
     out: DescribeSourceNetworksRequestFilters = {}  # type: ignore[typeddict-item]
-    if "sourceNetworkIDs" in data:
+    if data.get("sourceNetworkIDs") is not None:
         import capo_drs.types.describe_source_networks_request_filters_i_ds
 
         out["source_network_i_ds"] = (
@@ -49,8 +49,8 @@ def deserialize_json(data: dict) -> DescribeSourceNetworksRequestFilters:
                 data["sourceNetworkIDs"]
             )
         )
-    if "originAccountID" in data:
+    if data.get("originAccountID") is not None:
         out["origin_account_id"] = data["originAccountID"]
-    if "originRegion" in data:
+    if data.get("originRegion") is not None:
         out["origin_region"] = data["originRegion"]
     return out

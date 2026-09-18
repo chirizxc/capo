@@ -35,13 +35,13 @@ def serialize_json(value: WebRTCConnection) -> dict:
 
 def deserialize_json(data: dict) -> WebRTCConnection:
     out: WebRTCConnection = {}  # type: ignore[typeddict-item]
-    if "Attendee" in data:
+    if data.get("Attendee") is not None:
         import capo_connectparticipant.types.attendee
 
         out["attendee"] = capo_connectparticipant.types.attendee.deserialize_json(
             data["Attendee"]
         )
-    if "Meeting" in data:
+    if data.get("Meeting") is not None:
         import capo_connectparticipant.types.web_rtc_meeting
 
         out["meeting"] = capo_connectparticipant.types.web_rtc_meeting.deserialize_json(

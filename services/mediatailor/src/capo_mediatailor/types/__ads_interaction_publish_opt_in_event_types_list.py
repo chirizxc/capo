@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> __adsInteractionPublishOptInEventTypesList:
 
     out: __adsInteractionPublishOptInEventTypesList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_mediatailor.types.ads_interaction_publish_opt_in_event_type.deserialize_json(
                 item

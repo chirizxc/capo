@@ -31,10 +31,10 @@ def serialize_aws_json_1_1(value: TrailInfo) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> TrailInfo:
     out: TrailInfo = {}  # type: ignore[typeddict-item]
-    if "TrailARN" in data:
+    if data.get("TrailARN") is not None:
         out["trail_arn"] = data["TrailARN"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "HomeRegion" in data:
+    if data.get("HomeRegion") is not None:
         out["home_region"] = data["HomeRegion"]
     return out

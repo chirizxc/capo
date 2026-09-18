@@ -22,11 +22,11 @@ def serialize_json(value: HeaderTagAction) -> dict:
 
 def deserialize_json(data: dict) -> HeaderTagAction:
     out: HeaderTagAction = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("HeaderTagAction.name required")
-    if "value" in data:
+    if data.get("value") is not None:
         out["value"] = data["value"]
     else:
         raise DeserializationError("HeaderTagAction.value required")

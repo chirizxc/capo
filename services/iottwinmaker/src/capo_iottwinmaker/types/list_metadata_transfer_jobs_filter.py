@@ -37,9 +37,9 @@ def serialize_json(value: ListMetadataTransferJobsFilter) -> dict:
 
 
 def deserialize_json(data: dict) -> ListMetadataTransferJobsFilter:
-    if "workspaceId" in data:
+    if data.get("workspaceId") is not None:
         return {"workspaceId": data["workspaceId"]}
-    elif "state" in data:
+    elif data.get("state") is not None:
         return {"state": data["state"]}
     else:
         raise DeserializationError(

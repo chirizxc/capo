@@ -44,7 +44,7 @@ def serialize_json(value: NumericSeparatorConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> NumericSeparatorConfiguration:
     out: NumericSeparatorConfiguration = {}  # type: ignore[typeddict-item]
-    if "DecimalSeparator" in data:
+    if data.get("DecimalSeparator") is not None:
         import capo_quicksight.types.numeric_separator_symbol
 
         out["decimal_separator"] = (
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> NumericSeparatorConfiguration:
                 data["DecimalSeparator"]
             )
         )
-    if "ThousandsSeparator" in data:
+    if data.get("ThousandsSeparator") is not None:
         import capo_quicksight.types.thousand_separator_options
 
         out["thousands_separator"] = (

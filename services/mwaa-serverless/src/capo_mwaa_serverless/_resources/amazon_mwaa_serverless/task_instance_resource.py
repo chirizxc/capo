@@ -75,16 +75,18 @@ class TaskInstanceResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mwaa_serverless.types.get_task_instance_request.GetTaskInstanceRequest = {}  # type: ignore[typeddict-item]
-        input_["workflow_arn"] = workflow_arn
-        input_["task_instance_id"] = task_instance_id
-        input_["run_id"] = run_id
+        input_: capo_mwaa_serverless.types.get_task_instance_request.GetTaskInstanceRequest = {
+            "workflow_arn": workflow_arn,
+            "task_instance_id": task_instance_id,
+            "run_id": run_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -128,9 +130,10 @@ class TaskInstanceResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mwaa_serverless.types.list_task_instances_request.ListTaskInstancesRequest = {}  # type: ignore[typeddict-item]
-        input_["workflow_arn"] = workflow_arn
-        input_["run_id"] = run_id
+        input_: capo_mwaa_serverless.types.list_task_instances_request.ListTaskInstancesRequest = {
+            "workflow_arn": workflow_arn,
+            "run_id": run_id,
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -141,6 +144,7 @@ class TaskInstanceResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -191,16 +195,18 @@ class AsyncTaskInstanceResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mwaa_serverless.types.get_task_instance_request.GetTaskInstanceRequest = {}  # type: ignore[typeddict-item]
-        input_["workflow_arn"] = workflow_arn
-        input_["task_instance_id"] = task_instance_id
-        input_["run_id"] = run_id
+        input_: capo_mwaa_serverless.types.get_task_instance_request.GetTaskInstanceRequest = {
+            "workflow_arn": workflow_arn,
+            "task_instance_id": task_instance_id,
+            "run_id": run_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -245,9 +251,10 @@ class AsyncTaskInstanceResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mwaa_serverless.types.list_task_instances_request.ListTaskInstancesRequest = {}  # type: ignore[typeddict-item]
-        input_["workflow_arn"] = workflow_arn
-        input_["run_id"] = run_id
+        input_: capo_mwaa_serverless.types.list_task_instances_request.ListTaskInstancesRequest = {
+            "workflow_arn": workflow_arn,
+            "run_id": run_id,
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -258,4 +265,5 @@ class AsyncTaskInstanceResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

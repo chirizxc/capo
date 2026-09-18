@@ -66,19 +66,19 @@ def serialize_json(value: ConfiguredTableAnalysisRule) -> dict:
 
 def deserialize_json(data: dict) -> ConfiguredTableAnalysisRule:
     out: ConfiguredTableAnalysisRule = {}  # type: ignore[typeddict-item]
-    if "configuredTableId" in data:
+    if data.get("configuredTableId") is not None:
         out["configured_table_id"] = data["configuredTableId"]
     else:
         raise DeserializationError(
             "ConfiguredTableAnalysisRule.configured_table_id required"
         )
-    if "configuredTableArn" in data:
+    if data.get("configuredTableArn") is not None:
         out["configured_table_arn"] = data["configuredTableArn"]
     else:
         raise DeserializationError(
             "ConfiguredTableAnalysisRule.configured_table_arn required"
         )
-    if "policy" in data:
+    if data.get("policy") is not None:
         import capo_cleanrooms.types.configured_table_analysis_rule_policy
 
         out["policy"] = (
@@ -88,7 +88,7 @@ def deserialize_json(data: dict) -> ConfiguredTableAnalysisRule:
         )
     else:
         raise DeserializationError("ConfiguredTableAnalysisRule.policy required")
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_cleanrooms.types.configured_table_analysis_rule_type
 
         out["type"] = (
@@ -98,7 +98,7 @@ def deserialize_json(data: dict) -> ConfiguredTableAnalysisRule:
         )
     else:
         raise DeserializationError("ConfiguredTableAnalysisRule.type required")
-    if "createTime" in data:
+    if data.get("createTime") is not None:
         import capo_cleanrooms.types._prelude.timestamp
 
         out["create_time"] = capo_cleanrooms.types._prelude.timestamp.deserialize_json(
@@ -106,7 +106,7 @@ def deserialize_json(data: dict) -> ConfiguredTableAnalysisRule:
         )
     else:
         raise DeserializationError("ConfiguredTableAnalysisRule.create_time required")
-    if "updateTime" in data:
+    if data.get("updateTime") is not None:
         import capo_cleanrooms.types._prelude.timestamp
 
         out["update_time"] = capo_cleanrooms.types._prelude.timestamp.deserialize_json(

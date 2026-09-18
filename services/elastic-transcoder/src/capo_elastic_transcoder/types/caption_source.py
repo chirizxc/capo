@@ -47,15 +47,15 @@ def serialize_json(value: CaptionSource) -> dict:
 
 def deserialize_json(data: dict) -> CaptionSource:
     out: CaptionSource = {}  # type: ignore[typeddict-item]
-    if "Key" in data:
+    if data.get("Key") is not None:
         out["key"] = data["Key"]
-    if "Language" in data:
+    if data.get("Language") is not None:
         out["language"] = data["Language"]
-    if "TimeOffset" in data:
+    if data.get("TimeOffset") is not None:
         out["time_offset"] = data["TimeOffset"]
-    if "Label" in data:
+    if data.get("Label") is not None:
         out["label"] = data["Label"]
-    if "Encryption" in data:
+    if data.get("Encryption") is not None:
         import capo_elastic_transcoder.types.encryption
 
         out["encryption"] = capo_elastic_transcoder.types.encryption.deserialize_json(

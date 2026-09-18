@@ -32,9 +32,9 @@ def serialize_json(value: CreatePartnerInputRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreatePartnerInputRequest:
     out: CreatePartnerInputRequest = {}  # type: ignore[typeddict-item]
-    if "requestId" in data:
+    if data.get("requestId") is not None:
         out["request_id"] = data["requestId"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_medialive.types.tags
 
         out["tags"] = capo_medialive.types.tags.deserialize_json(data["tags"])

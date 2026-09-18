@@ -76,27 +76,27 @@ def serialize_json(value: CreateAssetRevisionInput) -> dict:
 
 def deserialize_json(data: dict) -> CreateAssetRevisionInput:
     out: CreateAssetRevisionInput = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("CreateAssetRevisionInput.name required")
-    if "typeRevision" in data:
+    if data.get("typeRevision") is not None:
         out["type_revision"] = data["typeRevision"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "glossaryTerms" in data:
+    if data.get("glossaryTerms") is not None:
         import capo_datazone.types.glossary_terms
 
         out["glossary_terms"] = capo_datazone.types.glossary_terms.deserialize_json(
             data["glossaryTerms"]
         )
-    if "formsInput" in data:
+    if data.get("formsInput") is not None:
         import capo_datazone.types.form_input_list
 
         out["forms_input"] = capo_datazone.types.form_input_list.deserialize_json(
             data["formsInput"]
         )
-    if "predictionConfiguration" in data:
+    if data.get("predictionConfiguration") is not None:
         import capo_datazone.types.prediction_configuration
 
         out["prediction_configuration"] = (
@@ -104,6 +104,6 @@ def deserialize_json(data: dict) -> CreateAssetRevisionInput:
                 data["predictionConfiguration"]
             )
         )
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     return out

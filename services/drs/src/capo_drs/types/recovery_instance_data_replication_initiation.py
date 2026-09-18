@@ -38,9 +38,9 @@ def serialize_json(value: RecoveryInstanceDataReplicationInitiation) -> dict:
 
 def deserialize_json(data: dict) -> RecoveryInstanceDataReplicationInitiation:
     out: RecoveryInstanceDataReplicationInitiation = {}  # type: ignore[typeddict-item]
-    if "startDateTime" in data:
+    if data.get("startDateTime") is not None:
         out["start_date_time"] = data["startDateTime"]
-    if "steps" in data:
+    if data.get("steps") is not None:
         import capo_drs.types.recovery_instance_data_replication_initiation_steps
 
         out["steps"] = (

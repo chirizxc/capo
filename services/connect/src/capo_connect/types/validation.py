@@ -50,11 +50,51 @@ def serialize_json(value: Validation) -> dict:
     out["MinValues"] = value.get("min_values", 0)
     out["MaxValues"] = value.get("max_values", 0)
     out["IgnoreCase"] = value.get("ignore_case", False)
-    out["Minimum"] = value.get("minimum", 0)
-    out["Maximum"] = value.get("maximum", 0)
-    out["ExclusiveMinimum"] = value.get("exclusive_minimum", 0)
-    out["ExclusiveMaximum"] = value.get("exclusive_maximum", 0)
-    out["MultipleOf"] = value.get("multiple_of", 0)
+    out["Minimum"] = (
+        "NaN"
+        if value.get("minimum", 0) != value.get("minimum", 0)
+        else "Infinity"
+        if value.get("minimum", 0) == float("inf")
+        else "-Infinity"
+        if value.get("minimum", 0) == float("-inf")
+        else value.get("minimum", 0)
+    )
+    out["Maximum"] = (
+        "NaN"
+        if value.get("maximum", 0) != value.get("maximum", 0)
+        else "Infinity"
+        if value.get("maximum", 0) == float("inf")
+        else "-Infinity"
+        if value.get("maximum", 0) == float("-inf")
+        else value.get("maximum", 0)
+    )
+    out["ExclusiveMinimum"] = (
+        "NaN"
+        if value.get("exclusive_minimum", 0) != value.get("exclusive_minimum", 0)
+        else "Infinity"
+        if value.get("exclusive_minimum", 0) == float("inf")
+        else "-Infinity"
+        if value.get("exclusive_minimum", 0) == float("-inf")
+        else value.get("exclusive_minimum", 0)
+    )
+    out["ExclusiveMaximum"] = (
+        "NaN"
+        if value.get("exclusive_maximum", 0) != value.get("exclusive_maximum", 0)
+        else "Infinity"
+        if value.get("exclusive_maximum", 0) == float("inf")
+        else "-Infinity"
+        if value.get("exclusive_maximum", 0) == float("-inf")
+        else value.get("exclusive_maximum", 0)
+    )
+    out["MultipleOf"] = (
+        "NaN"
+        if value.get("multiple_of", 0) != value.get("multiple_of", 0)
+        else "Infinity"
+        if value.get("multiple_of", 0) == float("inf")
+        else "-Infinity"
+        if value.get("multiple_of", 0) == float("-inf")
+        else value.get("multiple_of", 0)
+    )
     if "enum" in value:
         import capo_connect.types.validation_enum
 
@@ -64,47 +104,47 @@ def serialize_json(value: Validation) -> dict:
 
 def deserialize_json(data: dict) -> Validation:
     out: Validation = {}  # type: ignore[typeddict-item]
-    if "MinLength" in data:
+    if data.get("MinLength") is not None:
         out["min_length"] = data["MinLength"]
     else:
         out["min_length"] = 0
-    if "MaxLength" in data:
+    if data.get("MaxLength") is not None:
         out["max_length"] = data["MaxLength"]
     else:
         out["max_length"] = 0
-    if "MinValues" in data:
+    if data.get("MinValues") is not None:
         out["min_values"] = data["MinValues"]
     else:
         out["min_values"] = 0
-    if "MaxValues" in data:
+    if data.get("MaxValues") is not None:
         out["max_values"] = data["MaxValues"]
     else:
         out["max_values"] = 0
-    if "IgnoreCase" in data:
+    if data.get("IgnoreCase") is not None:
         out["ignore_case"] = data["IgnoreCase"]
     else:
         out["ignore_case"] = False
-    if "Minimum" in data:
-        out["minimum"] = data["Minimum"]
+    if data.get("Minimum") is not None:
+        out["minimum"] = float(data["Minimum"])
     else:
         out["minimum"] = 0
-    if "Maximum" in data:
-        out["maximum"] = data["Maximum"]
+    if data.get("Maximum") is not None:
+        out["maximum"] = float(data["Maximum"])
     else:
         out["maximum"] = 0
-    if "ExclusiveMinimum" in data:
-        out["exclusive_minimum"] = data["ExclusiveMinimum"]
+    if data.get("ExclusiveMinimum") is not None:
+        out["exclusive_minimum"] = float(data["ExclusiveMinimum"])
     else:
         out["exclusive_minimum"] = 0
-    if "ExclusiveMaximum" in data:
-        out["exclusive_maximum"] = data["ExclusiveMaximum"]
+    if data.get("ExclusiveMaximum") is not None:
+        out["exclusive_maximum"] = float(data["ExclusiveMaximum"])
     else:
         out["exclusive_maximum"] = 0
-    if "MultipleOf" in data:
-        out["multiple_of"] = data["MultipleOf"]
+    if data.get("MultipleOf") is not None:
+        out["multiple_of"] = float(data["MultipleOf"])
     else:
         out["multiple_of"] = 0
-    if "Enum" in data:
+    if data.get("Enum") is not None:
         import capo_connect.types.validation_enum
 
         out["enum"] = capo_connect.types.validation_enum.deserialize_json(data["Enum"])

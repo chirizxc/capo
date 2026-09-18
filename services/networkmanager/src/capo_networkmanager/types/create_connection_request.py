@@ -53,23 +53,23 @@ def serialize_json(value: CreateConnectionRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateConnectionRequest:
     out: CreateConnectionRequest = {}  # type: ignore[typeddict-item]
-    if "DeviceId" in data:
+    if data.get("DeviceId") is not None:
         out["device_id"] = data["DeviceId"]
     else:
         raise DeserializationError("CreateConnectionRequest.device_id required")
-    if "ConnectedDeviceId" in data:
+    if data.get("ConnectedDeviceId") is not None:
         out["connected_device_id"] = data["ConnectedDeviceId"]
     else:
         raise DeserializationError(
             "CreateConnectionRequest.connected_device_id required"
         )
-    if "LinkId" in data:
+    if data.get("LinkId") is not None:
         out["link_id"] = data["LinkId"]
-    if "ConnectedLinkId" in data:
+    if data.get("ConnectedLinkId") is not None:
         out["connected_link_id"] = data["ConnectedLinkId"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_networkmanager.types.tag_list
 
         out["tags"] = capo_networkmanager.types.tag_list.deserialize_json(data["Tags"])

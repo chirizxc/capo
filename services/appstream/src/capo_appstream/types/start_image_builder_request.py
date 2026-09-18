@@ -30,8 +30,8 @@ def serialize_aws_json_1_1(value: StartImageBuilderRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> StartImageBuilderRequest:
     out: StartImageBuilderRequest = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "AppstreamAgentVersion" in data:
+    if data.get("AppstreamAgentVersion") is not None:
         out["appstream_agent_version"] = data["AppstreamAgentVersion"]
     return out

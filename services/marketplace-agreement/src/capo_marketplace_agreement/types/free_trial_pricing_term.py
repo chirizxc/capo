@@ -48,13 +48,13 @@ def serialize_aws_json_1_0(value: FreeTrialPricingTerm) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> FreeTrialPricingTerm:
     out: FreeTrialPricingTerm = {}  # type: ignore[typeddict-item]
-    if "type" in data:
+    if data.get("type") is not None:
         out["type"] = data["type"]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "duration" in data:
+    if data.get("duration") is not None:
         out["duration"] = data["duration"]
-    if "grants" in data:
+    if data.get("grants") is not None:
         import capo_marketplace_agreement.types.grant_list
 
         out["grants"] = (

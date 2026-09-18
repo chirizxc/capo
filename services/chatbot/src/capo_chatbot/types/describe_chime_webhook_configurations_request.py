@@ -35,10 +35,10 @@ def serialize_json(value: DescribeChimeWebhookConfigurationsRequest) -> dict:
 
 def deserialize_json(data: dict) -> DescribeChimeWebhookConfigurationsRequest:
     out: DescribeChimeWebhookConfigurationsRequest = {}  # type: ignore[typeddict-item]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "ChatConfigurationArn" in data:
+    if data.get("ChatConfigurationArn") is not None:
         out["chat_configuration_arn"] = data["ChatConfigurationArn"]
     return out

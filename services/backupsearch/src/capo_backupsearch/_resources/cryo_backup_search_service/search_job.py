@@ -93,7 +93,9 @@ class SearchJob:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_backupsearch.types.start_search_job_input.StartSearchJobInput = {}  # type: ignore[typeddict-item]
+        input_: capo_backupsearch.types.start_search_job_input.StartSearchJobInput = {
+            "search_scope": search_scope
+        }
         if tags is not None:
             input_["tags"] = tags
         if name is not None:
@@ -102,7 +104,6 @@ class SearchJob:
             input_["encryption_key_arn"] = encryption_key_arn
         if client_token is not None:
             input_["client_token"] = client_token
-        input_["search_scope"] = search_scope
         if item_filters is not None:
             input_["item_filters"] = item_filters
 
@@ -111,6 +112,7 @@ class SearchJob:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -148,14 +150,16 @@ class SearchJob:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_backupsearch.types.get_search_job_input.GetSearchJobInput = {}  # type: ignore[typeddict-item]
-        input_["search_job_identifier"] = search_job_identifier
+        input_: capo_backupsearch.types.get_search_job_input.GetSearchJobInput = {
+            "search_job_identifier": search_job_identifier
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update(
@@ -194,14 +198,16 @@ class SearchJob:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_backupsearch.types.stop_search_job_input.StopSearchJobInput = {}  # type: ignore[typeddict-item]
-        input_["search_job_identifier"] = search_job_identifier
+        input_: capo_backupsearch.types.stop_search_job_input.StopSearchJobInput = {
+            "search_job_identifier": search_job_identifier
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -244,7 +250,7 @@ class SearchJob:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_backupsearch.types.list_search_jobs_input.ListSearchJobsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_backupsearch.types.list_search_jobs_input.ListSearchJobsInput = {}
         if by_status is not None:
             input_["by_status"] = by_status
         if next_token is not None:
@@ -257,6 +263,7 @@ class SearchJob:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -316,7 +323,9 @@ class AsyncSearchJob:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_backupsearch.types.start_search_job_input.StartSearchJobInput = {}  # type: ignore[typeddict-item]
+        input_: capo_backupsearch.types.start_search_job_input.StartSearchJobInput = {
+            "search_scope": search_scope
+        }
         if tags is not None:
             input_["tags"] = tags
         if name is not None:
@@ -325,7 +334,6 @@ class AsyncSearchJob:
             input_["encryption_key_arn"] = encryption_key_arn
         if client_token is not None:
             input_["client_token"] = client_token
-        input_["search_scope"] = search_scope
         if item_filters is not None:
             input_["item_filters"] = item_filters
 
@@ -334,6 +342,7 @@ class AsyncSearchJob:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -372,14 +381,16 @@ class AsyncSearchJob:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_backupsearch.types.get_search_job_input.GetSearchJobInput = {}  # type: ignore[typeddict-item]
-        input_["search_job_identifier"] = search_job_identifier
+        input_: capo_backupsearch.types.get_search_job_input.GetSearchJobInput = {
+            "search_job_identifier": search_job_identifier
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update(
@@ -419,14 +430,16 @@ class AsyncSearchJob:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_backupsearch.types.stop_search_job_input.StopSearchJobInput = {}  # type: ignore[typeddict-item]
-        input_["search_job_identifier"] = search_job_identifier
+        input_: capo_backupsearch.types.stop_search_job_input.StopSearchJobInput = {
+            "search_job_identifier": search_job_identifier
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -470,7 +483,7 @@ class AsyncSearchJob:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_backupsearch.types.list_search_jobs_input.ListSearchJobsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_backupsearch.types.list_search_jobs_input.ListSearchJobsInput = {}
         if by_status is not None:
             input_["by_status"] = by_status
         if next_token is not None:
@@ -483,4 +496,5 @@ class AsyncSearchJob:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

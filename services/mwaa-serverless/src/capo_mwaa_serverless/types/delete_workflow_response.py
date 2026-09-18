@@ -31,10 +31,10 @@ def serialize_aws_json_1_0(value: DeleteWorkflowResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> DeleteWorkflowResponse:
     out: DeleteWorkflowResponse = {}  # type: ignore[typeddict-item]
-    if "WorkflowArn" in data:
+    if data.get("WorkflowArn") is not None:
         out["workflow_arn"] = data["WorkflowArn"]
     else:
         raise DeserializationError("DeleteWorkflowResponse.workflow_arn required")
-    if "WorkflowVersion" in data:
+    if data.get("WorkflowVersion") is not None:
         out["workflow_version"] = data["WorkflowVersion"]
     return out

@@ -36,11 +36,11 @@ def serialize_aws_json_1_0(value: DimensionMapping) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> DimensionMapping:
     out: DimensionMapping = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("DimensionMapping.name required")
-    if "DimensionValueType" in data:
+    if data.get("DimensionValueType") is not None:
         import capo_timestream_query.types.dimension_value_type
 
         out["dimension_value_type"] = (

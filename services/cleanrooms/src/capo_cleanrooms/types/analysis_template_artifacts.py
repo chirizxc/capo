@@ -47,7 +47,7 @@ def serialize_json(value: AnalysisTemplateArtifacts) -> dict:
 
 def deserialize_json(data: dict) -> AnalysisTemplateArtifacts:
     out: AnalysisTemplateArtifacts = {}  # type: ignore[typeddict-item]
-    if "entryPoint" in data:
+    if data.get("entryPoint") is not None:
         import capo_cleanrooms.types.analysis_template_artifact
 
         out["entry_point"] = (
@@ -57,7 +57,7 @@ def deserialize_json(data: dict) -> AnalysisTemplateArtifacts:
         )
     else:
         raise DeserializationError("AnalysisTemplateArtifacts.entry_point required")
-    if "additionalArtifacts" in data:
+    if data.get("additionalArtifacts") is not None:
         import capo_cleanrooms.types.analysis_template_artifact_list
 
         out["additional_artifacts"] = (
@@ -65,7 +65,7 @@ def deserialize_json(data: dict) -> AnalysisTemplateArtifacts:
                 data["additionalArtifacts"]
             )
         )
-    if "roleArn" in data:
+    if data.get("roleArn") is not None:
         out["role_arn"] = data["roleArn"]
     else:
         raise DeserializationError("AnalysisTemplateArtifacts.role_arn required")

@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> BotAnalyzerHistoryList:
 
     out: BotAnalyzerHistoryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_lex_models_v2.types.bot_analyzer_history_summary.deserialize_json(item)
         )

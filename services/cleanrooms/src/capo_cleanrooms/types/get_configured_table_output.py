@@ -28,7 +28,7 @@ def serialize_json(value: GetConfiguredTableOutput) -> dict:
 
 def deserialize_json(data: dict) -> GetConfiguredTableOutput:
     out: GetConfiguredTableOutput = {}  # type: ignore[typeddict-item]
-    if "configuredTable" in data:
+    if data.get("configuredTable") is not None:
         import capo_cleanrooms.types.configured_table
 
         out["configured_table"] = (

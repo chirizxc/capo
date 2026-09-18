@@ -116,9 +116,9 @@ def serialize_aws_json_1_1(value: CreateAIRecommendationJobRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateAIRecommendationJobRequest:
     out: CreateAIRecommendationJobRequest = {}  # type: ignore[typeddict-item]
-    if "AIRecommendationJobName" in data:
+    if data.get("AIRecommendationJobName") is not None:
         out["ai_recommendation_job_name"] = data["AIRecommendationJobName"]
-    if "ModelSource" in data:
+    if data.get("ModelSource") is not None:
         import capo_sagemaker.types.ai_model_source
 
         out["model_source"] = (
@@ -126,7 +126,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateAIRecommendationJobRequest:
                 data["ModelSource"]
             )
         )
-    if "OutputConfig" in data:
+    if data.get("OutputConfig") is not None:
         import capo_sagemaker.types.ai_recommendation_output_config
 
         out["output_config"] = (
@@ -134,9 +134,9 @@ def deserialize_aws_json_1_1(data: dict) -> CreateAIRecommendationJobRequest:
                 data["OutputConfig"]
             )
         )
-    if "AIWorkloadConfigIdentifier" in data:
+    if data.get("AIWorkloadConfigIdentifier") is not None:
         out["ai_workload_config_identifier"] = data["AIWorkloadConfigIdentifier"]
-    if "PerformanceTarget" in data:
+    if data.get("PerformanceTarget") is not None:
         import capo_sagemaker.types.ai_recommendation_performance_target
 
         out["performance_target"] = (
@@ -144,9 +144,9 @@ def deserialize_aws_json_1_1(data: dict) -> CreateAIRecommendationJobRequest:
                 data["PerformanceTarget"]
             )
         )
-    if "RoleArn" in data:
+    if data.get("RoleArn") is not None:
         out["role_arn"] = data["RoleArn"]
-    if "InferenceSpecification" in data:
+    if data.get("InferenceSpecification") is not None:
         import capo_sagemaker.types.ai_recommendation_inference_specification
 
         out["inference_specification"] = (
@@ -154,9 +154,9 @@ def deserialize_aws_json_1_1(data: dict) -> CreateAIRecommendationJobRequest:
                 data["InferenceSpecification"]
             )
         )
-    if "OptimizeModel" in data:
+    if data.get("OptimizeModel") is not None:
         out["optimize_model"] = data["OptimizeModel"]
-    if "ComputeSpec" in data:
+    if data.get("ComputeSpec") is not None:
         import capo_sagemaker.types.ai_recommendation_compute_spec
 
         out["compute_spec"] = (
@@ -164,7 +164,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateAIRecommendationJobRequest:
                 data["ComputeSpec"]
             )
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_sagemaker.types.tag_list
 
         out["tags"] = capo_sagemaker.types.tag_list.deserialize_aws_json_1_1(

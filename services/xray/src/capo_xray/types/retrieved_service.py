@@ -31,11 +31,11 @@ def serialize_json(value: RetrievedService) -> dict:
 
 def deserialize_json(data: dict) -> RetrievedService:
     out: RetrievedService = {}  # type: ignore[typeddict-item]
-    if "Service" in data:
+    if data.get("Service") is not None:
         import capo_xray.types.service
 
         out["service"] = capo_xray.types.service.deserialize_json(data["Service"])
-    if "Links" in data:
+    if data.get("Links") is not None:
         import capo_xray.types.links_list
 
         out["links"] = capo_xray.types.links_list.deserialize_json(data["Links"])

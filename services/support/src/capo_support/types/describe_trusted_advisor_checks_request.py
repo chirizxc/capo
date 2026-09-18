@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: DescribeTrustedAdvisorChecksRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeTrustedAdvisorChecksRequest:
     out: DescribeTrustedAdvisorChecksRequest = {}  # type: ignore[typeddict-item]
-    if "language" in data:
+    if data.get("language") is not None:
         out["language"] = data["language"]
     else:
         raise DeserializationError(

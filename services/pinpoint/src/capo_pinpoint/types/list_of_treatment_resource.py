@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> ListOfTreatmentResource:
 
     out: ListOfTreatmentResource = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_pinpoint.types.treatment_resource.deserialize_json(item))
     return out

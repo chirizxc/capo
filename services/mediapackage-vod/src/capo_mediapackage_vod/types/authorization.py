@@ -27,8 +27,8 @@ def serialize_json(value: Authorization) -> dict:
 
 def deserialize_json(data: dict) -> Authorization:
     out: Authorization = {}  # type: ignore[typeddict-item]
-    if "cdnIdentifierSecret" in data:
+    if data.get("cdnIdentifierSecret") is not None:
         out["cdn_identifier_secret"] = data["cdnIdentifierSecret"]
-    if "secretsRoleArn" in data:
+    if data.get("secretsRoleArn") is not None:
         out["secrets_role_arn"] = data["secretsRoleArn"]
     return out

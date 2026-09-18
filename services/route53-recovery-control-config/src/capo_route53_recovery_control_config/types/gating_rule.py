@@ -101,9 +101,9 @@ def serialize_json(value: GatingRule) -> dict:
 
 def deserialize_json(data: dict) -> GatingRule:
     out: GatingRule = {}  # type: ignore[typeddict-item]
-    if "ControlPanelArn" in data:
+    if data.get("ControlPanelArn") is not None:
         out["control_panel_arn"] = data["ControlPanelArn"]
-    if "GatingControls" in data:
+    if data.get("GatingControls") is not None:
         import capo_route53_recovery_control_config.types.__list_of__string_min1_max256_pattern_a_za_z09
 
         out["gating_controls"] = (
@@ -111,9 +111,9 @@ def deserialize_json(data: dict) -> GatingRule:
                 data["GatingControls"]
             )
         )
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "RuleConfig" in data:
+    if data.get("RuleConfig") is not None:
         import capo_route53_recovery_control_config.types.rule_config
 
         out["rule_config"] = (
@@ -121,9 +121,9 @@ def deserialize_json(data: dict) -> GatingRule:
                 data["RuleConfig"]
             )
         )
-    if "SafetyRuleArn" in data:
+    if data.get("SafetyRuleArn") is not None:
         out["safety_rule_arn"] = data["SafetyRuleArn"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_route53_recovery_control_config.types.status
 
         out["status"] = (
@@ -131,7 +131,7 @@ def deserialize_json(data: dict) -> GatingRule:
                 data["Status"]
             )
         )
-    if "TargetControls" in data:
+    if data.get("TargetControls") is not None:
         import capo_route53_recovery_control_config.types.__list_of__string_min1_max256_pattern_a_za_z09
 
         out["target_controls"] = (
@@ -139,8 +139,8 @@ def deserialize_json(data: dict) -> GatingRule:
                 data["TargetControls"]
             )
         )
-    if "WaitPeriodMs" in data:
+    if data.get("WaitPeriodMs") is not None:
         out["wait_period_ms"] = data["WaitPeriodMs"]
-    if "Owner" in data:
+    if data.get("Owner") is not None:
         out["owner"] = data["Owner"]
     return out

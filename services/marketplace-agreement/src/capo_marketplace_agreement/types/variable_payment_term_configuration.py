@@ -37,7 +37,7 @@ def serialize_aws_json_1_0(value: VariablePaymentTermConfiguration) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> VariablePaymentTermConfiguration:
     out: VariablePaymentTermConfiguration = {}  # type: ignore[typeddict-item]
-    if "paymentRequestApprovalStrategy" in data:
+    if data.get("paymentRequestApprovalStrategy") is not None:
         import capo_marketplace_agreement.types.payment_request_approval_strategy
 
         out["payment_request_approval_strategy"] = (
@@ -49,6 +49,6 @@ def deserialize_aws_json_1_0(data: dict) -> VariablePaymentTermConfiguration:
         raise DeserializationError(
             "VariablePaymentTermConfiguration.payment_request_approval_strategy required"
         )
-    if "expirationDuration" in data:
+    if data.get("expirationDuration") is not None:
         out["expiration_duration"] = data["expirationDuration"]
     return out

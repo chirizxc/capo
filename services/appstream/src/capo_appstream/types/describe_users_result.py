@@ -32,12 +32,12 @@ def serialize_aws_json_1_1(value: DescribeUsersResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeUsersResult:
     out: DescribeUsersResult = {}  # type: ignore[typeddict-item]
-    if "Users" in data:
+    if data.get("Users") is not None:
         import capo_appstream.types.user_list
 
         out["users"] = capo_appstream.types.user_list.deserialize_aws_json_1_1(
             data["Users"]
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

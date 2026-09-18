@@ -34,11 +34,11 @@ def serialize_json(value: ListSopRecommendationsRequest) -> dict:
 
 def deserialize_json(data: dict) -> ListSopRecommendationsRequest:
     out: ListSopRecommendationsRequest = {}  # type: ignore[typeddict-item]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
-    if "assessmentArn" in data:
+    if data.get("assessmentArn") is not None:
         out["assessment_arn"] = data["assessmentArn"]
     else:
         raise DeserializationError(

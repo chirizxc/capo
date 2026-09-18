@@ -25,6 +25,8 @@ def deserialize_json(data: list) -> WorkflowStepsList:
 
     out: WorkflowStepsList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_customer_profiles.types.workflow_step_item.deserialize_json(item)
         )

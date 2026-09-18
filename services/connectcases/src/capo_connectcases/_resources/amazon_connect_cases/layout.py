@@ -85,16 +85,18 @@ class Layout:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_connectcases.types.create_layout_request.CreateLayoutRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_id"] = domain_id
-        input_["name"] = name
-        input_["content"] = content
+        input_: capo_connectcases.types.create_layout_request.CreateLayoutRequest = {
+            "domain_id": domain_id,
+            "name": name,
+            "content": content,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -134,15 +136,17 @@ class Layout:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_connectcases.types.get_layout_request.GetLayoutRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_id"] = domain_id
-        input_["layout_id"] = layout_id
+        input_: capo_connectcases.types.get_layout_request.GetLayoutRequest = {
+            "domain_id": domain_id,
+            "layout_id": layout_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update(
@@ -190,9 +194,10 @@ class Layout:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_connectcases.types.update_layout_request.UpdateLayoutRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_id"] = domain_id
-        input_["layout_id"] = layout_id
+        input_: capo_connectcases.types.update_layout_request.UpdateLayoutRequest = {
+            "domain_id": domain_id,
+            "layout_id": layout_id,
+        }
         if name is not None:
             input_["name"] = name
         if content is not None:
@@ -203,6 +208,7 @@ class Layout:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -243,15 +249,17 @@ class Layout:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_connectcases.types.delete_layout_request.DeleteLayoutRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_id"] = domain_id
-        input_["layout_id"] = layout_id
+        input_: capo_connectcases.types.delete_layout_request.DeleteLayoutRequest = {
+            "domain_id": domain_id,
+            "layout_id": layout_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -293,8 +301,9 @@ class Layout:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_connectcases.types.list_layouts_request.ListLayoutsRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_id"] = domain_id
+        input_: capo_connectcases.types.list_layouts_request.ListLayoutsRequest = {
+            "domain_id": domain_id
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -305,6 +314,7 @@ class Layout:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -354,16 +364,18 @@ class AsyncLayout:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_connectcases.types.create_layout_request.CreateLayoutRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_id"] = domain_id
-        input_["name"] = name
-        input_["content"] = content
+        input_: capo_connectcases.types.create_layout_request.CreateLayoutRequest = {
+            "domain_id": domain_id,
+            "name": name,
+            "content": content,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -404,15 +416,17 @@ class AsyncLayout:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_connectcases.types.get_layout_request.GetLayoutRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_id"] = domain_id
-        input_["layout_id"] = layout_id
+        input_: capo_connectcases.types.get_layout_request.GetLayoutRequest = {
+            "domain_id": domain_id,
+            "layout_id": layout_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update(
@@ -461,9 +475,10 @@ class AsyncLayout:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_connectcases.types.update_layout_request.UpdateLayoutRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_id"] = domain_id
-        input_["layout_id"] = layout_id
+        input_: capo_connectcases.types.update_layout_request.UpdateLayoutRequest = {
+            "domain_id": domain_id,
+            "layout_id": layout_id,
+        }
         if name is not None:
             input_["name"] = name
         if content is not None:
@@ -474,6 +489,7 @@ class AsyncLayout:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -515,15 +531,17 @@ class AsyncLayout:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_connectcases.types.delete_layout_request.DeleteLayoutRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_id"] = domain_id
-        input_["layout_id"] = layout_id
+        input_: capo_connectcases.types.delete_layout_request.DeleteLayoutRequest = {
+            "domain_id": domain_id,
+            "layout_id": layout_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -566,8 +584,9 @@ class AsyncLayout:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_connectcases.types.list_layouts_request.ListLayoutsRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_id"] = domain_id
+        input_: capo_connectcases.types.list_layouts_request.ListLayoutsRequest = {
+            "domain_id": domain_id
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -578,4 +597,5 @@ class AsyncLayout:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

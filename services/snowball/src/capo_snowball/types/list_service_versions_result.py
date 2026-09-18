@@ -56,7 +56,7 @@ def serialize_aws_json_1_1(value: ListServiceVersionsResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListServiceVersionsResult:
     out: ListServiceVersionsResult = {}  # type: ignore[typeddict-item]
-    if "ServiceVersions" in data:
+    if data.get("ServiceVersions") is not None:
         import capo_snowball.types.service_version_list
 
         out["service_versions"] = (
@@ -68,7 +68,7 @@ def deserialize_aws_json_1_1(data: dict) -> ListServiceVersionsResult:
         raise DeserializationError(
             "ListServiceVersionsResult.service_versions required"
         )
-    if "ServiceName" in data:
+    if data.get("ServiceName") is not None:
         import capo_snowball.types.service_name
 
         out["service_name"] = capo_snowball.types.service_name.deserialize_aws_json_1_1(
@@ -76,7 +76,7 @@ def deserialize_aws_json_1_1(data: dict) -> ListServiceVersionsResult:
         )
     else:
         raise DeserializationError("ListServiceVersionsResult.service_name required")
-    if "DependentServices" in data:
+    if data.get("DependentServices") is not None:
         import capo_snowball.types.dependent_service_list
 
         out["dependent_services"] = (
@@ -84,6 +84,6 @@ def deserialize_aws_json_1_1(data: dict) -> ListServiceVersionsResult:
                 data["DependentServices"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

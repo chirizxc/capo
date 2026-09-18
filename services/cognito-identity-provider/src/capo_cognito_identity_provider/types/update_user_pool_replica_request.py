@@ -40,15 +40,15 @@ def serialize_aws_json_1_1(value: UpdateUserPoolReplicaRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateUserPoolReplicaRequest:
     out: UpdateUserPoolReplicaRequest = {}  # type: ignore[typeddict-item]
-    if "UserPoolId" in data:
+    if data.get("UserPoolId") is not None:
         out["user_pool_id"] = data["UserPoolId"]
     else:
         raise DeserializationError("UpdateUserPoolReplicaRequest.user_pool_id required")
-    if "RegionName" in data:
+    if data.get("RegionName") is not None:
         out["region_name"] = data["RegionName"]
     else:
         raise DeserializationError("UpdateUserPoolReplicaRequest.region_name required")
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_cognito_identity_provider.types.update_replica_status_type
 
         out["status"] = (

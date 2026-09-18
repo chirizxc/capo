@@ -32,11 +32,11 @@ def serialize_aws_json_1_1(value: DirectoryVpcSettings) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DirectoryVpcSettings:
     out: DirectoryVpcSettings = {}  # type: ignore[typeddict-item]
-    if "VpcId" in data:
+    if data.get("VpcId") is not None:
         out["vpc_id"] = data["VpcId"]
     else:
         raise DeserializationError("DirectoryVpcSettings.vpc_id required")
-    if "SubnetIds" in data:
+    if data.get("SubnetIds") is not None:
         import capo_directory_service.types.subnet_ids
 
         out["subnet_ids"] = (

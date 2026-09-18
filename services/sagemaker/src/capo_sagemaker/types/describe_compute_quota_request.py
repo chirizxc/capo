@@ -30,8 +30,8 @@ def serialize_aws_json_1_1(value: DescribeComputeQuotaRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeComputeQuotaRequest:
     out: DescribeComputeQuotaRequest = {}  # type: ignore[typeddict-item]
-    if "ComputeQuotaId" in data:
+    if data.get("ComputeQuotaId") is not None:
         out["compute_quota_id"] = data["ComputeQuotaId"]
-    if "ComputeQuotaVersion" in data:
+    if data.get("ComputeQuotaVersion") is not None:
         out["compute_quota_version"] = data["ComputeQuotaVersion"]
     return out

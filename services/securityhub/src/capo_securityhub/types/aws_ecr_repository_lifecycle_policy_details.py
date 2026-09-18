@@ -29,8 +29,8 @@ def serialize_json(value: AwsEcrRepositoryLifecyclePolicyDetails) -> dict:
 
 def deserialize_json(data: dict) -> AwsEcrRepositoryLifecyclePolicyDetails:
     out: AwsEcrRepositoryLifecyclePolicyDetails = {}  # type: ignore[typeddict-item]
-    if "LifecyclePolicyText" in data:
+    if data.get("LifecyclePolicyText") is not None:
         out["lifecycle_policy_text"] = data["LifecyclePolicyText"]
-    if "RegistryId" in data:
+    if data.get("RegistryId") is not None:
         out["registry_id"] = data["RegistryId"]
     return out

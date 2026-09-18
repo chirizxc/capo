@@ -52,27 +52,27 @@ def serialize_json(value: BatchGetTaskError) -> dict:
 
 def deserialize_json(data: dict) -> BatchGetTaskError:
     out: BatchGetTaskError = {}  # type: ignore[typeddict-item]
-    if "farmId" in data:
+    if data.get("farmId") is not None:
         out["farm_id"] = data["farmId"]
     else:
         raise DeserializationError("BatchGetTaskError.farm_id required")
-    if "queueId" in data:
+    if data.get("queueId") is not None:
         out["queue_id"] = data["queueId"]
     else:
         raise DeserializationError("BatchGetTaskError.queue_id required")
-    if "jobId" in data:
+    if data.get("jobId") is not None:
         out["job_id"] = data["jobId"]
     else:
         raise DeserializationError("BatchGetTaskError.job_id required")
-    if "stepId" in data:
+    if data.get("stepId") is not None:
         out["step_id"] = data["stepId"]
     else:
         raise DeserializationError("BatchGetTaskError.step_id required")
-    if "taskId" in data:
+    if data.get("taskId") is not None:
         out["task_id"] = data["taskId"]
     else:
         raise DeserializationError("BatchGetTaskError.task_id required")
-    if "code" in data:
+    if data.get("code") is not None:
         import capo_deadline.types.batch_get_task_error_code
 
         out["code"] = capo_deadline.types.batch_get_task_error_code.deserialize_json(
@@ -80,7 +80,7 @@ def deserialize_json(data: dict) -> BatchGetTaskError:
         )
     else:
         raise DeserializationError("BatchGetTaskError.code required")
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     else:
         raise DeserializationError("BatchGetTaskError.message required")

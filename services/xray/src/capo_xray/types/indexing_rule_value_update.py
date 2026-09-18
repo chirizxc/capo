@@ -34,7 +34,7 @@ def serialize_json(value: IndexingRuleValueUpdate) -> dict:
 
 
 def deserialize_json(data: dict) -> IndexingRuleValueUpdate:
-    if "Probabilistic" in data:
+    if data.get("Probabilistic") is not None:
         import capo_xray.types.probabilistic_rule_value_update
 
         return {

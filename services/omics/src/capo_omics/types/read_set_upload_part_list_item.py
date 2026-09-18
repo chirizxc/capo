@@ -35,15 +35,15 @@ def serialize_json(value: ReadSetUploadPartListItem) -> dict:
     out["partSource"] = value["part_source"]
     out["checksum"] = value["checksum"]
     if "creation_time" in value:
-        import capo_omics.types._prelude.timestamp
+        import capo_omics._protocol.serialize
 
-        out["creationTime"] = capo_omics.types._prelude.timestamp.serialize_json(
+        out["creationTime"] = capo_omics._protocol.serialize.fmt_date_time(
             value["creation_time"]
         )
     if "last_updated_time" in value:
-        import capo_omics.types._prelude.timestamp
+        import capo_omics._protocol.serialize
 
-        out["lastUpdatedTime"] = capo_omics.types._prelude.timestamp.serialize_json(
+        out["lastUpdatedTime"] = capo_omics._protocol.serialize.fmt_date_time(
             value["last_updated_time"]
         )
     return out
@@ -51,32 +51,32 @@ def serialize_json(value: ReadSetUploadPartListItem) -> dict:
 
 def deserialize_json(data: dict) -> ReadSetUploadPartListItem:
     out: ReadSetUploadPartListItem = {}  # type: ignore[typeddict-item]
-    if "partNumber" in data:
+    if data.get("partNumber") is not None:
         out["part_number"] = data["partNumber"]
     else:
         raise DeserializationError("ReadSetUploadPartListItem.part_number required")
-    if "partSize" in data:
+    if data.get("partSize") is not None:
         out["part_size"] = data["partSize"]
     else:
         raise DeserializationError("ReadSetUploadPartListItem.part_size required")
-    if "partSource" in data:
+    if data.get("partSource") is not None:
         out["part_source"] = data["partSource"]
     else:
         raise DeserializationError("ReadSetUploadPartListItem.part_source required")
-    if "checksum" in data:
+    if data.get("checksum") is not None:
         out["checksum"] = data["checksum"]
     else:
         raise DeserializationError("ReadSetUploadPartListItem.checksum required")
-    if "creationTime" in data:
-        import capo_omics.types._prelude.timestamp
+    if data.get("creationTime") is not None:
+        import datetime
 
-        out["creation_time"] = capo_omics.types._prelude.timestamp.deserialize_json(
-            data["creationTime"]
+        out["creation_time"] = datetime.datetime.fromisoformat(
+            data["creationTime"].replace("Z", "+00:00")
         )
-    if "lastUpdatedTime" in data:
-        import capo_omics.types._prelude.timestamp
+    if data.get("lastUpdatedTime") is not None:
+        import datetime
 
-        out["last_updated_time"] = capo_omics.types._prelude.timestamp.deserialize_json(
-            data["lastUpdatedTime"]
+        out["last_updated_time"] = datetime.datetime.fromisoformat(
+            data["lastUpdatedTime"].replace("Z", "+00:00")
         )
     return out

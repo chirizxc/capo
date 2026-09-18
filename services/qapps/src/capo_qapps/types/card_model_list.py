@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> CardModelList:
 
     out: CardModelList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_qapps.types.card.deserialize_json(item))
     return out

@@ -29,8 +29,8 @@ def serialize_aws_json_1_1(value: SCApplicationAttributes) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SCApplicationAttributes:
     out: SCApplicationAttributes = {}  # type: ignore[typeddict-item]
-    if "S3BucketPath" in data:
+    if data.get("S3BucketPath") is not None:
         out["s3_bucket_path"] = data["S3BucketPath"]
-    if "S3BucketRoleArn" in data:
+    if data.get("S3BucketRoleArn") is not None:
         out["s3_bucket_role_arn"] = data["S3BucketRoleArn"]
     return out

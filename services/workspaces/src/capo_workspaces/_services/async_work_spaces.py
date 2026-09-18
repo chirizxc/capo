@@ -460,8 +460,9 @@ class AsyncWorkSpacesClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workspaces.types.accept_account_link_invitation_request.AcceptAccountLinkInvitationRequest = {}  # type: ignore[typeddict-item]
-        input_["link_id"] = link_id
+        input_: capo_workspaces.types.accept_account_link_invitation_request.AcceptAccountLinkInvitationRequest = {
+            "link_id": link_id
+        }
         if client_token is not None:
             input_["client_token"] = client_token
 
@@ -470,6 +471,7 @@ class AsyncWorkSpacesClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def associate_connection_alias(
@@ -511,15 +513,17 @@ class AsyncWorkSpacesClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workspaces.types.associate_connection_alias_request.AssociateConnectionAliasRequest = {}  # type: ignore[typeddict-item]
-        input_["alias_id"] = alias_id
-        input_["resource_id"] = resource_id
+        input_: capo_workspaces.types.associate_connection_alias_request.AssociateConnectionAliasRequest = {
+            "alias_id": alias_id,
+            "resource_id": resource_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def associate_ip_groups(
@@ -561,15 +565,17 @@ class AsyncWorkSpacesClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workspaces.types.associate_ip_groups_request.AssociateIpGroupsRequest = {}  # type: ignore[typeddict-item]
-        input_["directory_id"] = directory_id
-        input_["group_ids"] = group_ids
+        input_: capo_workspaces.types.associate_ip_groups_request.AssociateIpGroupsRequest = {
+            "directory_id": directory_id,
+            "group_ids": group_ids,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def associate_workspace_application(
@@ -615,15 +621,17 @@ class AsyncWorkSpacesClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workspaces.types.associate_workspace_application_request.AssociateWorkspaceApplicationRequest = {}  # type: ignore[typeddict-item]
-        input_["workspace_id"] = workspace_id
-        input_["application_id"] = application_id
+        input_: capo_workspaces.types.associate_workspace_application_request.AssociateWorkspaceApplicationRequest = {
+            "workspace_id": workspace_id,
+            "application_id": application_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def authorize_ip_rules(
@@ -664,15 +672,17 @@ class AsyncWorkSpacesClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workspaces.types.authorize_ip_rules_request.AuthorizeIpRulesRequest = {}  # type: ignore[typeddict-item]
-        input_["group_id"] = group_id
-        input_["user_rules"] = user_rules
+        input_: capo_workspaces.types.authorize_ip_rules_request.AuthorizeIpRulesRequest = {
+            "group_id": group_id,
+            "user_rules": user_rules,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def copy_workspace_image(
@@ -723,12 +733,13 @@ class AsyncWorkSpacesClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workspaces.types.copy_workspace_image_request.CopyWorkspaceImageRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_workspaces.types.copy_workspace_image_request.CopyWorkspaceImageRequest = {
+            "name": name,
+            "source_image_id": source_image_id,
+            "source_region": source_region,
+        }
         if description is not None:
             input_["description"] = description
-        input_["source_image_id"] = source_image_id
-        input_["source_region"] = source_region
         if tags is not None:
             input_["tags"] = tags
 
@@ -737,6 +748,7 @@ class AsyncWorkSpacesClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_account_link_invitation(
@@ -776,8 +788,9 @@ class AsyncWorkSpacesClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workspaces.types.create_account_link_invitation_request.CreateAccountLinkInvitationRequest = {}  # type: ignore[typeddict-item]
-        input_["target_account_id"] = target_account_id
+        input_: capo_workspaces.types.create_account_link_invitation_request.CreateAccountLinkInvitationRequest = {
+            "target_account_id": target_account_id
+        }
         if client_token is not None:
             input_["client_token"] = client_token
 
@@ -786,6 +799,7 @@ class AsyncWorkSpacesClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_connect_client_add_in(
@@ -828,16 +842,18 @@ class AsyncWorkSpacesClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workspaces.types.create_connect_client_add_in_request.CreateConnectClientAddInRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_id"] = resource_id
-        input_["name"] = name
-        input_["url"] = url
+        input_: capo_workspaces.types.create_connect_client_add_in_request.CreateConnectClientAddInRequest = {
+            "resource_id": resource_id,
+            "name": name,
+            "url": url,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_connection_alias(
@@ -879,8 +895,9 @@ class AsyncWorkSpacesClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workspaces.types.create_connection_alias_request.CreateConnectionAliasRequest = {}  # type: ignore[typeddict-item]
-        input_["connection_string"] = connection_string
+        input_: capo_workspaces.types.create_connection_alias_request.CreateConnectionAliasRequest = {
+            "connection_string": connection_string
+        }
         if tags is not None:
             input_["tags"] = tags
 
@@ -889,6 +906,7 @@ class AsyncWorkSpacesClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_ip_group(
@@ -933,8 +951,9 @@ class AsyncWorkSpacesClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workspaces.types.create_ip_group_request.CreateIpGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["group_name"] = group_name
+        input_: capo_workspaces.types.create_ip_group_request.CreateIpGroupRequest = {
+            "group_name": group_name
+        }
         if group_desc is not None:
             input_["group_desc"] = group_desc
         if user_rules is not None:
@@ -947,6 +966,7 @@ class AsyncWorkSpacesClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_standby_workspaces(
@@ -987,15 +1007,17 @@ class AsyncWorkSpacesClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workspaces.types.create_standby_workspaces_request.CreateStandbyWorkspacesRequest = {}  # type: ignore[typeddict-item]
-        input_["primary_region"] = primary_region
-        input_["standby_workspaces"] = standby_workspaces
+        input_: capo_workspaces.types.create_standby_workspaces_request.CreateStandbyWorkspacesRequest = {
+            "primary_region": primary_region,
+            "standby_workspaces": standby_workspaces,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_tags(
@@ -1034,15 +1056,17 @@ class AsyncWorkSpacesClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workspaces.types.create_tags_request.CreateTagsRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_id"] = resource_id
-        input_["tags"] = tags
+        input_: capo_workspaces.types.create_tags_request.CreateTagsRequest = {
+            "resource_id": resource_id,
+            "tags": tags,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_updated_workspace_image(
@@ -1089,10 +1113,11 @@ class AsyncWorkSpacesClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workspaces.types.create_updated_workspace_image_request.CreateUpdatedWorkspaceImageRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        input_["description"] = description
-        input_["source_image_id"] = source_image_id
+        input_: capo_workspaces.types.create_updated_workspace_image_request.CreateUpdatedWorkspaceImageRequest = {
+            "name": name,
+            "description": description,
+            "source_image_id": source_image_id,
+        }
         if tags is not None:
             input_["tags"] = tags
 
@@ -1101,6 +1126,7 @@ class AsyncWorkSpacesClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_workspace_bundle(
@@ -1149,12 +1175,13 @@ class AsyncWorkSpacesClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workspaces.types.create_workspace_bundle_request.CreateWorkspaceBundleRequest = {}  # type: ignore[typeddict-item]
-        input_["bundle_name"] = bundle_name
-        input_["bundle_description"] = bundle_description
-        input_["image_id"] = image_id
-        input_["compute_type"] = compute_type
-        input_["user_storage"] = user_storage
+        input_: capo_workspaces.types.create_workspace_bundle_request.CreateWorkspaceBundleRequest = {
+            "bundle_name": bundle_name,
+            "bundle_description": bundle_description,
+            "image_id": image_id,
+            "compute_type": compute_type,
+            "user_storage": user_storage,
+        }
         if root_storage is not None:
             input_["root_storage"] = root_storage
         if tags is not None:
@@ -1165,6 +1192,7 @@ class AsyncWorkSpacesClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_workspace_image(
@@ -1213,10 +1241,11 @@ class AsyncWorkSpacesClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workspaces.types.create_workspace_image_request.CreateWorkspaceImageRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        input_["description"] = description
-        input_["workspace_id"] = workspace_id
+        input_: capo_workspaces.types.create_workspace_image_request.CreateWorkspaceImageRequest = {
+            "name": name,
+            "description": description,
+            "workspace_id": workspace_id,
+        }
         if tags is not None:
             input_["tags"] = tags
 
@@ -1225,6 +1254,7 @@ class AsyncWorkSpacesClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_workspaces(
@@ -1260,14 +1290,16 @@ class AsyncWorkSpacesClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workspaces.types.create_workspaces_request.CreateWorkspacesRequest = {}  # type: ignore[typeddict-item]
-        input_["workspaces"] = workspaces
+        input_: capo_workspaces.types.create_workspaces_request.CreateWorkspacesRequest = {
+            "workspaces": workspaces
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_workspaces_pool(
@@ -1331,12 +1363,13 @@ class AsyncWorkSpacesClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workspaces.types.create_workspaces_pool_request.CreateWorkspacesPoolRequest = {}  # type: ignore[typeddict-item]
-        input_["pool_name"] = pool_name
-        input_["description"] = description
-        input_["bundle_id"] = bundle_id
-        input_["directory_id"] = directory_id
-        input_["capacity"] = capacity
+        input_: capo_workspaces.types.create_workspaces_pool_request.CreateWorkspacesPoolRequest = {
+            "pool_name": pool_name,
+            "description": description,
+            "bundle_id": bundle_id,
+            "directory_id": directory_id,
+            "capacity": capacity,
+        }
         if tags is not None:
             input_["tags"] = tags
         if application_settings is not None:
@@ -1351,6 +1384,7 @@ class AsyncWorkSpacesClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_account_link_invitation(
@@ -1391,8 +1425,9 @@ class AsyncWorkSpacesClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workspaces.types.delete_account_link_invitation_request.DeleteAccountLinkInvitationRequest = {}  # type: ignore[typeddict-item]
-        input_["link_id"] = link_id
+        input_: capo_workspaces.types.delete_account_link_invitation_request.DeleteAccountLinkInvitationRequest = {
+            "link_id": link_id
+        }
         if client_token is not None:
             input_["client_token"] = client_token
 
@@ -1401,6 +1436,7 @@ class AsyncWorkSpacesClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_client_branding(
@@ -1441,15 +1477,17 @@ class AsyncWorkSpacesClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workspaces.types.delete_client_branding_request.DeleteClientBrandingRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_id"] = resource_id
-        input_["platforms"] = platforms
+        input_: capo_workspaces.types.delete_client_branding_request.DeleteClientBrandingRequest = {
+            "resource_id": resource_id,
+            "platforms": platforms,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_connect_client_add_in(
@@ -1488,15 +1526,17 @@ class AsyncWorkSpacesClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workspaces.types.delete_connect_client_add_in_request.DeleteConnectClientAddInRequest = {}  # type: ignore[typeddict-item]
-        input_["add_in_id"] = add_in_id
-        input_["resource_id"] = resource_id
+        input_: capo_workspaces.types.delete_connect_client_add_in_request.DeleteConnectClientAddInRequest = {
+            "add_in_id": add_in_id,
+            "resource_id": resource_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_connection_alias(
@@ -1536,14 +1576,16 @@ class AsyncWorkSpacesClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workspaces.types.delete_connection_alias_request.DeleteConnectionAliasRequest = {}  # type: ignore[typeddict-item]
-        input_["alias_id"] = alias_id
+        input_: capo_workspaces.types.delete_connection_alias_request.DeleteConnectionAliasRequest = {
+            "alias_id": alias_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_ip_group(
@@ -1581,14 +1623,16 @@ class AsyncWorkSpacesClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workspaces.types.delete_ip_group_request.DeleteIpGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["group_id"] = group_id
+        input_: capo_workspaces.types.delete_ip_group_request.DeleteIpGroupRequest = {
+            "group_id": group_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_tags(
@@ -1626,15 +1670,17 @@ class AsyncWorkSpacesClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workspaces.types.delete_tags_request.DeleteTagsRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_id"] = resource_id
-        input_["tag_keys"] = tag_keys
+        input_: capo_workspaces.types.delete_tags_request.DeleteTagsRequest = {
+            "resource_id": resource_id,
+            "tag_keys": tag_keys,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_workspace_bundle(
@@ -1672,7 +1718,7 @@ class AsyncWorkSpacesClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workspaces.types.delete_workspace_bundle_request.DeleteWorkspaceBundleRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_workspaces.types.delete_workspace_bundle_request.DeleteWorkspaceBundleRequest = {}
         if bundle_id is not None:
             input_["bundle_id"] = bundle_id
 
@@ -1681,6 +1727,7 @@ class AsyncWorkSpacesClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_workspace_image(
@@ -1719,14 +1766,16 @@ class AsyncWorkSpacesClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workspaces.types.delete_workspace_image_request.DeleteWorkspaceImageRequest = {}  # type: ignore[typeddict-item]
-        input_["image_id"] = image_id
+        input_: capo_workspaces.types.delete_workspace_image_request.DeleteWorkspaceImageRequest = {
+            "image_id": image_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def deploy_workspace_applications(
@@ -1768,8 +1817,9 @@ class AsyncWorkSpacesClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workspaces.types.deploy_workspace_applications_request.DeployWorkspaceApplicationsRequest = {}  # type: ignore[typeddict-item]
-        input_["workspace_id"] = workspace_id
+        input_: capo_workspaces.types.deploy_workspace_applications_request.DeployWorkspaceApplicationsRequest = {
+            "workspace_id": workspace_id
+        }
         if force is not None:
             input_["force"] = force
 
@@ -1778,6 +1828,7 @@ class AsyncWorkSpacesClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def deregister_workspace_directory(
@@ -1816,14 +1867,16 @@ class AsyncWorkSpacesClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workspaces.types.deregister_workspace_directory_request.DeregisterWorkspaceDirectoryRequest = {}  # type: ignore[typeddict-item]
-        input_["directory_id"] = directory_id
+        input_: capo_workspaces.types.deregister_workspace_directory_request.DeregisterWorkspaceDirectoryRequest = {
+            "directory_id": directory_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_account(
@@ -1852,13 +1905,14 @@ class AsyncWorkSpacesClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workspaces.types.describe_account_request.DescribeAccountRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_workspaces.types.describe_account_request.DescribeAccountRequest = {}
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_account_modifications(
@@ -1895,7 +1949,7 @@ class AsyncWorkSpacesClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workspaces.types.describe_account_modifications_request.DescribeAccountModificationsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_workspaces.types.describe_account_modifications_request.DescribeAccountModificationsRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
 
@@ -1904,6 +1958,7 @@ class AsyncWorkSpacesClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_application_associations(
@@ -1949,20 +2004,47 @@ class AsyncWorkSpacesClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workspaces.types.describe_application_associations_request.DescribeApplicationAssociationsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_workspaces.types.describe_application_associations_request.DescribeApplicationAssociationsRequest = {
+            "application_id": application_id,
+            "associated_resource_types": associated_resource_types,
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
             input_["next_token"] = next_token
-        input_["application_id"] = application_id
-        input_["associated_resource_types"] = associated_resource_types
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_describe_application_associations(
+        self,
+        application_id: "capo_workspaces.types.work_space_application_id.WorkSpaceApplicationId",
+        associated_resource_types: "capo_workspaces.types.application_associated_resource_type_list.ApplicationAssociatedResourceTypeList",
+        *,
+        config_overrides: Optional[AsyncWorkSpacesClientConfig] = None,
+        max_results: Optional["capo_workspaces.types.limit.Limit"] = None,
+        next_token: Optional[
+            "capo_workspaces.types.pagination_token.PaginationToken"
+        ] = None,
+    ) -> "AsyncIterator[capo_workspaces.types.describe_application_associations_result.DescribeApplicationAssociationsResult]":
+        _token = next_token
+        while True:
+            _response = await self.describe_application_associations(
+                application_id,
+                associated_resource_types,
+                config_overrides=config_overrides,
+                max_results=max_results,
+                next_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def describe_applications(
         self,
@@ -2025,7 +2107,7 @@ class AsyncWorkSpacesClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workspaces.types.describe_applications_request.DescribeApplicationsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_workspaces.types.describe_applications_request.DescribeApplicationsRequest = {}
         if application_ids is not None:
             input_["application_ids"] = application_ids
         if compute_type_names is not None:
@@ -2046,7 +2128,49 @@ class AsyncWorkSpacesClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_describe_applications(
+        self,
+        *,
+        config_overrides: Optional[AsyncWorkSpacesClientConfig] = None,
+        application_ids: Optional[
+            "capo_workspaces.types.work_space_application_id_list.WorkSpaceApplicationIdList"
+        ] = None,
+        compute_type_names: Optional[
+            "capo_workspaces.types.compute_list.ComputeList"
+        ] = None,
+        license_type: Optional[
+            "capo_workspaces.types.work_space_application_license_type.WorkSpaceApplicationLicenseType"
+        ] = None,
+        operating_system_names: Optional[
+            "capo_workspaces.types.operating_system_name_list.OperatingSystemNameList"
+        ] = None,
+        owner: Optional[
+            "capo_workspaces.types.work_space_application_owner.WorkSpaceApplicationOwner"
+        ] = None,
+        max_results: Optional["capo_workspaces.types.limit.Limit"] = None,
+        next_token: Optional[
+            "capo_workspaces.types.pagination_token.PaginationToken"
+        ] = None,
+    ) -> "AsyncIterator[capo_workspaces.types.describe_applications_result.DescribeApplicationsResult]":
+        _token = next_token
+        while True:
+            _response = await self.describe_applications(
+                config_overrides=config_overrides,
+                application_ids=application_ids,
+                compute_type_names=compute_type_names,
+                license_type=license_type,
+                operating_system_names=operating_system_names,
+                owner=owner,
+                max_results=max_results,
+                next_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def describe_bundle_associations(
         self,
@@ -2085,15 +2209,17 @@ class AsyncWorkSpacesClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workspaces.types.describe_bundle_associations_request.DescribeBundleAssociationsRequest = {}  # type: ignore[typeddict-item]
-        input_["bundle_id"] = bundle_id
-        input_["associated_resource_types"] = associated_resource_types
+        input_: capo_workspaces.types.describe_bundle_associations_request.DescribeBundleAssociationsRequest = {
+            "bundle_id": bundle_id,
+            "associated_resource_types": associated_resource_types,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_client_branding(
@@ -2130,14 +2256,16 @@ class AsyncWorkSpacesClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workspaces.types.describe_client_branding_request.DescribeClientBrandingRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_id"] = resource_id
+        input_: capo_workspaces.types.describe_client_branding_request.DescribeClientBrandingRequest = {
+            "resource_id": resource_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_client_properties(
@@ -2174,14 +2302,16 @@ class AsyncWorkSpacesClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workspaces.types.describe_client_properties_request.DescribeClientPropertiesRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_ids"] = resource_ids
+        input_: capo_workspaces.types.describe_client_properties_request.DescribeClientPropertiesRequest = {
+            "resource_ids": resource_ids
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_connect_client_add_ins(
@@ -2224,8 +2354,9 @@ class AsyncWorkSpacesClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workspaces.types.describe_connect_client_add_ins_request.DescribeConnectClientAddInsRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_id"] = resource_id
+        input_: capo_workspaces.types.describe_connect_client_add_ins_request.DescribeConnectClientAddInsRequest = {
+            "resource_id": resource_id
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -2236,6 +2367,7 @@ class AsyncWorkSpacesClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_connection_aliases(
@@ -2284,7 +2416,7 @@ class AsyncWorkSpacesClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workspaces.types.describe_connection_aliases_request.DescribeConnectionAliasesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_workspaces.types.describe_connection_aliases_request.DescribeConnectionAliasesRequest = {}
         if alias_ids is not None:
             input_["alias_ids"] = alias_ids
         if resource_id is not None:
@@ -2299,6 +2431,7 @@ class AsyncWorkSpacesClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_connection_alias_permissions(
@@ -2342,8 +2475,9 @@ class AsyncWorkSpacesClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workspaces.types.describe_connection_alias_permissions_request.DescribeConnectionAliasPermissionsRequest = {}  # type: ignore[typeddict-item]
-        input_["alias_id"] = alias_id
+        input_: capo_workspaces.types.describe_connection_alias_permissions_request.DescribeConnectionAliasPermissionsRequest = {
+            "alias_id": alias_id
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -2354,6 +2488,7 @@ class AsyncWorkSpacesClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_custom_workspace_image_import(
@@ -2389,14 +2524,16 @@ class AsyncWorkSpacesClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workspaces.types.describe_custom_workspace_image_import_request.DescribeCustomWorkspaceImageImportRequest = {}  # type: ignore[typeddict-item]
-        input_["image_id"] = image_id
+        input_: capo_workspaces.types.describe_custom_workspace_image_import_request.DescribeCustomWorkspaceImageImportRequest = {
+            "image_id": image_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_image_associations(
@@ -2436,15 +2573,17 @@ class AsyncWorkSpacesClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workspaces.types.describe_image_associations_request.DescribeImageAssociationsRequest = {}  # type: ignore[typeddict-item]
-        input_["image_id"] = image_id
-        input_["associated_resource_types"] = associated_resource_types
+        input_: capo_workspaces.types.describe_image_associations_request.DescribeImageAssociationsRequest = {
+            "image_id": image_id,
+            "associated_resource_types": associated_resource_types,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_ip_groups(
@@ -2488,7 +2627,7 @@ class AsyncWorkSpacesClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workspaces.types.describe_ip_groups_request.DescribeIpGroupsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_workspaces.types.describe_ip_groups_request.DescribeIpGroupsRequest = {}
         if group_ids is not None:
             input_["group_ids"] = group_ids
         if next_token is not None:
@@ -2501,6 +2640,7 @@ class AsyncWorkSpacesClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_tags(
@@ -2535,14 +2675,16 @@ class AsyncWorkSpacesClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workspaces.types.describe_tags_request.DescribeTagsRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_id"] = resource_id
+        input_: capo_workspaces.types.describe_tags_request.DescribeTagsRequest = {
+            "resource_id": resource_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_workspace_associations(
@@ -2582,15 +2724,17 @@ class AsyncWorkSpacesClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workspaces.types.describe_workspace_associations_request.DescribeWorkspaceAssociationsRequest = {}  # type: ignore[typeddict-item]
-        input_["workspace_id"] = workspace_id
-        input_["associated_resource_types"] = associated_resource_types
+        input_: capo_workspaces.types.describe_workspace_associations_request.DescribeWorkspaceAssociationsRequest = {
+            "workspace_id": workspace_id,
+            "associated_resource_types": associated_resource_types,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_workspace_bundles(
@@ -2633,7 +2777,7 @@ class AsyncWorkSpacesClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workspaces.types.describe_workspace_bundles_request.DescribeWorkspaceBundlesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_workspaces.types.describe_workspace_bundles_request.DescribeWorkspaceBundlesRequest = {}
         if bundle_ids is not None:
             input_["bundle_ids"] = bundle_ids
         if owner is not None:
@@ -2646,6 +2790,7 @@ class AsyncWorkSpacesClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_describe_workspace_bundles(
@@ -2723,7 +2868,7 @@ class AsyncWorkSpacesClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workspaces.types.describe_workspace_directories_request.DescribeWorkspaceDirectoriesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_workspaces.types.describe_workspace_directories_request.DescribeWorkspaceDirectoriesRequest = {}
         if directory_ids is not None:
             input_["directory_ids"] = directory_ids
         if workspace_directory_names is not None:
@@ -2740,6 +2885,7 @@ class AsyncWorkSpacesClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_describe_workspace_directories(
@@ -2817,8 +2963,9 @@ class AsyncWorkSpacesClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workspaces.types.describe_workspace_image_permissions_request.DescribeWorkspaceImagePermissionsRequest = {}  # type: ignore[typeddict-item]
-        input_["image_id"] = image_id
+        input_: capo_workspaces.types.describe_workspace_image_permissions_request.DescribeWorkspaceImagePermissionsRequest = {
+            "image_id": image_id
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -2829,6 +2976,7 @@ class AsyncWorkSpacesClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_workspace_images(
@@ -2873,7 +3021,7 @@ class AsyncWorkSpacesClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workspaces.types.describe_workspace_images_request.DescribeWorkspaceImagesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_workspaces.types.describe_workspace_images_request.DescribeWorkspaceImagesRequest = {}
         if image_ids is not None:
             input_["image_ids"] = image_ids
         if image_type is not None:
@@ -2888,6 +3036,7 @@ class AsyncWorkSpacesClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_workspaces(
@@ -2941,7 +3090,7 @@ class AsyncWorkSpacesClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workspaces.types.describe_workspaces_request.DescribeWorkspacesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_workspaces.types.describe_workspaces_request.DescribeWorkspacesRequest = {}
         if workspace_ids is not None:
             input_["workspace_ids"] = workspace_ids
         if directory_id is not None:
@@ -2962,6 +3111,7 @@ class AsyncWorkSpacesClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_describe_workspaces(
@@ -3039,7 +3189,7 @@ class AsyncWorkSpacesClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workspaces.types.describe_workspaces_connection_status_request.DescribeWorkspacesConnectionStatusRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_workspaces.types.describe_workspaces_connection_status_request.DescribeWorkspacesConnectionStatusRequest = {}
         if workspace_ids is not None:
             input_["workspace_ids"] = workspace_ids
         if next_token is not None:
@@ -3050,6 +3200,7 @@ class AsyncWorkSpacesClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_workspace_snapshots(
@@ -3086,14 +3237,16 @@ class AsyncWorkSpacesClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workspaces.types.describe_workspace_snapshots_request.DescribeWorkspaceSnapshotsRequest = {}  # type: ignore[typeddict-item]
-        input_["workspace_id"] = workspace_id
+        input_: capo_workspaces.types.describe_workspace_snapshots_request.DescribeWorkspaceSnapshotsRequest = {
+            "workspace_id": workspace_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_workspaces_pools(
@@ -3142,7 +3295,7 @@ class AsyncWorkSpacesClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workspaces.types.describe_workspaces_pools_request.DescribeWorkspacesPoolsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_workspaces.types.describe_workspaces_pools_request.DescribeWorkspacesPoolsRequest = {}
         if pool_ids is not None:
             input_["pool_ids"] = pool_ids
         if filters is not None:
@@ -3157,6 +3310,7 @@ class AsyncWorkSpacesClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_workspaces_pool_sessions(
@@ -3203,8 +3357,9 @@ class AsyncWorkSpacesClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workspaces.types.describe_workspaces_pool_sessions_request.DescribeWorkspacesPoolSessionsRequest = {}  # type: ignore[typeddict-item]
-        input_["pool_id"] = pool_id
+        input_: capo_workspaces.types.describe_workspaces_pool_sessions_request.DescribeWorkspacesPoolSessionsRequest = {
+            "pool_id": pool_id
+        }
         if user_id is not None:
             input_["user_id"] = user_id
         if limit is not None:
@@ -3217,6 +3372,7 @@ class AsyncWorkSpacesClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def disassociate_connection_alias(
@@ -3255,14 +3411,16 @@ class AsyncWorkSpacesClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workspaces.types.disassociate_connection_alias_request.DisassociateConnectionAliasRequest = {}  # type: ignore[typeddict-item]
-        input_["alias_id"] = alias_id
+        input_: capo_workspaces.types.disassociate_connection_alias_request.DisassociateConnectionAliasRequest = {
+            "alias_id": alias_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def disassociate_ip_groups(
@@ -3305,15 +3463,17 @@ class AsyncWorkSpacesClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workspaces.types.disassociate_ip_groups_request.DisassociateIpGroupsRequest = {}  # type: ignore[typeddict-item]
-        input_["directory_id"] = directory_id
-        input_["group_ids"] = group_ids
+        input_: capo_workspaces.types.disassociate_ip_groups_request.DisassociateIpGroupsRequest = {
+            "directory_id": directory_id,
+            "group_ids": group_ids,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def disassociate_workspace_application(
@@ -3354,15 +3514,17 @@ class AsyncWorkSpacesClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workspaces.types.disassociate_workspace_application_request.DisassociateWorkspaceApplicationRequest = {}  # type: ignore[typeddict-item]
-        input_["workspace_id"] = workspace_id
-        input_["application_id"] = application_id
+        input_: capo_workspaces.types.disassociate_workspace_application_request.DisassociateWorkspaceApplicationRequest = {
+            "workspace_id": workspace_id,
+            "application_id": application_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_account_link(
@@ -3404,7 +3566,7 @@ class AsyncWorkSpacesClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workspaces.types.get_account_link_request.GetAccountLinkRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_workspaces.types.get_account_link_request.GetAccountLinkRequest = {}
         if link_id is not None:
             input_["link_id"] = link_id
         if linked_account_id is not None:
@@ -3415,6 +3577,7 @@ class AsyncWorkSpacesClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def import_client_branding(
@@ -3478,8 +3641,9 @@ class AsyncWorkSpacesClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workspaces.types.import_client_branding_request.ImportClientBrandingRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_id"] = resource_id
+        input_: capo_workspaces.types.import_client_branding_request.ImportClientBrandingRequest = {
+            "resource_id": resource_id
+        }
         if device_type_windows is not None:
             input_["device_type_windows"] = device_type_windows
         if device_type_osx is not None:
@@ -3498,6 +3662,7 @@ class AsyncWorkSpacesClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def import_custom_workspace_image(
@@ -3553,15 +3718,16 @@ class AsyncWorkSpacesClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workspaces.types.import_custom_workspace_image_request.ImportCustomWorkspaceImageRequest = {}  # type: ignore[typeddict-item]
-        input_["image_name"] = image_name
-        input_["image_description"] = image_description
-        input_["compute_type"] = compute_type
-        input_["protocol"] = protocol
-        input_["image_source"] = image_source
-        input_["infrastructure_configuration_arn"] = infrastructure_configuration_arn
-        input_["platform"] = platform
-        input_["os_version"] = os_version
+        input_: capo_workspaces.types.import_custom_workspace_image_request.ImportCustomWorkspaceImageRequest = {
+            "image_name": image_name,
+            "image_description": image_description,
+            "compute_type": compute_type,
+            "protocol": protocol,
+            "image_source": image_source,
+            "infrastructure_configuration_arn": infrastructure_configuration_arn,
+            "platform": platform,
+            "os_version": os_version,
+        }
         if tags is not None:
             input_["tags"] = tags
 
@@ -3570,6 +3736,7 @@ class AsyncWorkSpacesClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def import_workspace_image(
@@ -3623,11 +3790,12 @@ class AsyncWorkSpacesClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workspaces.types.import_workspace_image_request.ImportWorkspaceImageRequest = {}  # type: ignore[typeddict-item]
-        input_["ec2_image_id"] = ec2_image_id
-        input_["ingestion_process"] = ingestion_process
-        input_["image_name"] = image_name
-        input_["image_description"] = image_description
+        input_: capo_workspaces.types.import_workspace_image_request.ImportWorkspaceImageRequest = {
+            "ec2_image_id": ec2_image_id,
+            "ingestion_process": ingestion_process,
+            "image_name": image_name,
+            "image_description": image_description,
+        }
         if tags is not None:
             input_["tags"] = tags
         if applications is not None:
@@ -3638,6 +3806,7 @@ class AsyncWorkSpacesClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_account_links(
@@ -3682,7 +3851,7 @@ class AsyncWorkSpacesClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workspaces.types.list_account_links_request.ListAccountLinksRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_workspaces.types.list_account_links_request.ListAccountLinksRequest = {}
         if link_status_filter is not None:
             input_["link_status_filter"] = link_status_filter
         if next_token is not None:
@@ -3695,6 +3864,7 @@ class AsyncWorkSpacesClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_account_links(
@@ -3765,8 +3935,9 @@ class AsyncWorkSpacesClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workspaces.types.list_available_management_cidr_ranges_request.ListAvailableManagementCidrRangesRequest = {}  # type: ignore[typeddict-item]
-        input_["management_cidr_range_constraint"] = management_cidr_range_constraint
+        input_: capo_workspaces.types.list_available_management_cidr_ranges_request.ListAvailableManagementCidrRangesRequest = {
+            "management_cidr_range_constraint": management_cidr_range_constraint
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -3777,6 +3948,7 @@ class AsyncWorkSpacesClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def migrate_workspace(
@@ -3818,15 +3990,17 @@ class AsyncWorkSpacesClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workspaces.types.migrate_workspace_request.MigrateWorkspaceRequest = {}  # type: ignore[typeddict-item]
-        input_["source_workspace_id"] = source_workspace_id
-        input_["bundle_id"] = bundle_id
+        input_: capo_workspaces.types.migrate_workspace_request.MigrateWorkspaceRequest = {
+            "source_workspace_id": source_workspace_id,
+            "bundle_id": bundle_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def modify_account(
@@ -3871,7 +4045,7 @@ class AsyncWorkSpacesClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workspaces.types.modify_account_request.ModifyAccountRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_workspaces.types.modify_account_request.ModifyAccountRequest = {}
         if dedicated_tenancy_support is not None:
             input_["dedicated_tenancy_support"] = dedicated_tenancy_support
         if dedicated_tenancy_management_cidr_range is not None:
@@ -3884,6 +4058,7 @@ class AsyncWorkSpacesClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def modify_certificate_based_auth_properties(
@@ -3929,8 +4104,9 @@ class AsyncWorkSpacesClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workspaces.types.modify_certificate_based_auth_properties_request.ModifyCertificateBasedAuthPropertiesRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_id"] = resource_id
+        input_: capo_workspaces.types.modify_certificate_based_auth_properties_request.ModifyCertificateBasedAuthPropertiesRequest = {
+            "resource_id": resource_id
+        }
         if certificate_based_auth_properties is not None:
             input_["certificate_based_auth_properties"] = (
                 certificate_based_auth_properties
@@ -3943,6 +4119,7 @@ class AsyncWorkSpacesClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def modify_client_properties(
@@ -3982,15 +4159,17 @@ class AsyncWorkSpacesClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workspaces.types.modify_client_properties_request.ModifyClientPropertiesRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_id"] = resource_id
-        input_["client_properties"] = client_properties
+        input_: capo_workspaces.types.modify_client_properties_request.ModifyClientPropertiesRequest = {
+            "resource_id": resource_id,
+            "client_properties": client_properties,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def modify_endpoint_encryption_mode(
@@ -4029,15 +4208,17 @@ class AsyncWorkSpacesClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workspaces.types.modify_endpoint_encryption_mode_request.ModifyEndpointEncryptionModeRequest = {}  # type: ignore[typeddict-item]
-        input_["directory_id"] = directory_id
-        input_["endpoint_encryption_mode"] = endpoint_encryption_mode
+        input_: capo_workspaces.types.modify_endpoint_encryption_mode_request.ModifyEndpointEncryptionModeRequest = {
+            "directory_id": directory_id,
+            "endpoint_encryption_mode": endpoint_encryption_mode,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def modify_saml_properties(
@@ -4085,8 +4266,9 @@ class AsyncWorkSpacesClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workspaces.types.modify_saml_properties_request.ModifySamlPropertiesRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_id"] = resource_id
+        input_: capo_workspaces.types.modify_saml_properties_request.ModifySamlPropertiesRequest = {
+            "resource_id": resource_id
+        }
         if saml_properties is not None:
             input_["saml_properties"] = saml_properties
         if properties_to_delete is not None:
@@ -4097,6 +4279,7 @@ class AsyncWorkSpacesClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def modify_selfservice_permissions(
@@ -4136,15 +4319,17 @@ class AsyncWorkSpacesClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workspaces.types.modify_selfservice_permissions_request.ModifySelfservicePermissionsRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_id"] = resource_id
-        input_["selfservice_permissions"] = selfservice_permissions
+        input_: capo_workspaces.types.modify_selfservice_permissions_request.ModifySelfservicePermissionsRequest = {
+            "resource_id": resource_id,
+            "selfservice_permissions": selfservice_permissions,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def modify_streaming_properties(
@@ -4186,8 +4371,9 @@ class AsyncWorkSpacesClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workspaces.types.modify_streaming_properties_request.ModifyStreamingPropertiesRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_id"] = resource_id
+        input_: capo_workspaces.types.modify_streaming_properties_request.ModifyStreamingPropertiesRequest = {
+            "resource_id": resource_id
+        }
         if streaming_properties is not None:
             input_["streaming_properties"] = streaming_properties
 
@@ -4196,6 +4382,7 @@ class AsyncWorkSpacesClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def modify_workspace_access_properties(
@@ -4236,15 +4423,17 @@ class AsyncWorkSpacesClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workspaces.types.modify_workspace_access_properties_request.ModifyWorkspaceAccessPropertiesRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_id"] = resource_id
-        input_["workspace_access_properties"] = workspace_access_properties
+        input_: capo_workspaces.types.modify_workspace_access_properties_request.ModifyWorkspaceAccessPropertiesRequest = {
+            "resource_id": resource_id,
+            "workspace_access_properties": workspace_access_properties,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def modify_workspace_creation_properties(
@@ -4284,15 +4473,17 @@ class AsyncWorkSpacesClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workspaces.types.modify_workspace_creation_properties_request.ModifyWorkspaceCreationPropertiesRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_id"] = resource_id
-        input_["workspace_creation_properties"] = workspace_creation_properties
+        input_: capo_workspaces.types.modify_workspace_creation_properties_request.ModifyWorkspaceCreationPropertiesRequest = {
+            "resource_id": resource_id,
+            "workspace_creation_properties": workspace_creation_properties,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def modify_workspace_properties(
@@ -4341,8 +4532,9 @@ class AsyncWorkSpacesClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workspaces.types.modify_workspace_properties_request.ModifyWorkspacePropertiesRequest = {}  # type: ignore[typeddict-item]
-        input_["workspace_id"] = workspace_id
+        input_: capo_workspaces.types.modify_workspace_properties_request.ModifyWorkspacePropertiesRequest = {
+            "workspace_id": workspace_id
+        }
         if workspace_properties is not None:
             input_["workspace_properties"] = workspace_properties
         if data_replication is not None:
@@ -4353,6 +4545,7 @@ class AsyncWorkSpacesClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def modify_workspace_state(
@@ -4394,15 +4587,17 @@ class AsyncWorkSpacesClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workspaces.types.modify_workspace_state_request.ModifyWorkspaceStateRequest = {}  # type: ignore[typeddict-item]
-        input_["workspace_id"] = workspace_id
-        input_["workspace_state"] = workspace_state
+        input_: capo_workspaces.types.modify_workspace_state_request.ModifyWorkspaceStateRequest = {
+            "workspace_id": workspace_id,
+            "workspace_state": workspace_state,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def reboot_workspaces(
@@ -4437,14 +4632,16 @@ class AsyncWorkSpacesClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workspaces.types.reboot_workspaces_request.RebootWorkspacesRequest = {}  # type: ignore[typeddict-item]
-        input_["reboot_workspace_requests"] = reboot_workspace_requests
+        input_: capo_workspaces.types.reboot_workspaces_request.RebootWorkspacesRequest = {
+            "reboot_workspace_requests": reboot_workspace_requests
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def rebuild_workspaces(
@@ -4479,14 +4676,16 @@ class AsyncWorkSpacesClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workspaces.types.rebuild_workspaces_request.RebuildWorkspacesRequest = {}  # type: ignore[typeddict-item]
-        input_["rebuild_workspace_requests"] = rebuild_workspace_requests
+        input_: capo_workspaces.types.rebuild_workspaces_request.RebuildWorkspacesRequest = {
+            "rebuild_workspace_requests": rebuild_workspace_requests
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def register_workspace_directory(
@@ -4565,7 +4764,7 @@ class AsyncWorkSpacesClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workspaces.types.register_workspace_directory_request.RegisterWorkspaceDirectoryRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_workspaces.types.register_workspace_directory_request.RegisterWorkspaceDirectoryRequest = {}
         if directory_id is not None:
             input_["directory_id"] = directory_id
         if subnet_ids is not None:
@@ -4596,6 +4795,7 @@ class AsyncWorkSpacesClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def reject_account_link_invitation(
@@ -4636,8 +4836,9 @@ class AsyncWorkSpacesClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workspaces.types.reject_account_link_invitation_request.RejectAccountLinkInvitationRequest = {}  # type: ignore[typeddict-item]
-        input_["link_id"] = link_id
+        input_: capo_workspaces.types.reject_account_link_invitation_request.RejectAccountLinkInvitationRequest = {
+            "link_id": link_id
+        }
         if client_token is not None:
             input_["client_token"] = client_token
 
@@ -4646,6 +4847,7 @@ class AsyncWorkSpacesClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def restore_workspace(
@@ -4683,14 +4885,16 @@ class AsyncWorkSpacesClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workspaces.types.restore_workspace_request.RestoreWorkspaceRequest = {}  # type: ignore[typeddict-item]
-        input_["workspace_id"] = workspace_id
+        input_: capo_workspaces.types.restore_workspace_request.RestoreWorkspaceRequest = {
+            "workspace_id": workspace_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def revoke_ip_rules(
@@ -4730,15 +4934,17 @@ class AsyncWorkSpacesClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workspaces.types.revoke_ip_rules_request.RevokeIpRulesRequest = {}  # type: ignore[typeddict-item]
-        input_["group_id"] = group_id
-        input_["user_rules"] = user_rules
+        input_: capo_workspaces.types.revoke_ip_rules_request.RevokeIpRulesRequest = {
+            "group_id": group_id,
+            "user_rules": user_rules,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def start_workspaces(
@@ -4772,14 +4978,16 @@ class AsyncWorkSpacesClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workspaces.types.start_workspaces_request.StartWorkspacesRequest = {}  # type: ignore[typeddict-item]
-        input_["start_workspace_requests"] = start_workspace_requests
+        input_: capo_workspaces.types.start_workspaces_request.StartWorkspacesRequest = {
+            "start_workspace_requests": start_workspace_requests
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def start_workspaces_pool(
@@ -4820,14 +5028,16 @@ class AsyncWorkSpacesClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workspaces.types.start_workspaces_pool_request.StartWorkspacesPoolRequest = {}  # type: ignore[typeddict-item]
-        input_["pool_id"] = pool_id
+        input_: capo_workspaces.types.start_workspaces_pool_request.StartWorkspacesPoolRequest = {
+            "pool_id": pool_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def stop_workspaces(
@@ -4861,14 +5071,16 @@ class AsyncWorkSpacesClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workspaces.types.stop_workspaces_request.StopWorkspacesRequest = {}  # type: ignore[typeddict-item]
-        input_["stop_workspace_requests"] = stop_workspace_requests
+        input_: capo_workspaces.types.stop_workspaces_request.StopWorkspacesRequest = {
+            "stop_workspace_requests": stop_workspace_requests
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def stop_workspaces_pool(
@@ -4907,14 +5119,16 @@ class AsyncWorkSpacesClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workspaces.types.stop_workspaces_pool_request.StopWorkspacesPoolRequest = {}  # type: ignore[typeddict-item]
-        input_["pool_id"] = pool_id
+        input_: capo_workspaces.types.stop_workspaces_pool_request.StopWorkspacesPoolRequest = {
+            "pool_id": pool_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def terminate_workspaces(
@@ -4948,14 +5162,16 @@ class AsyncWorkSpacesClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workspaces.types.terminate_workspaces_request.TerminateWorkspacesRequest = {}  # type: ignore[typeddict-item]
-        input_["terminate_workspace_requests"] = terminate_workspace_requests
+        input_: capo_workspaces.types.terminate_workspaces_request.TerminateWorkspacesRequest = {
+            "terminate_workspace_requests": terminate_workspace_requests
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def terminate_workspaces_pool(
@@ -4994,14 +5210,16 @@ class AsyncWorkSpacesClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workspaces.types.terminate_workspaces_pool_request.TerminateWorkspacesPoolRequest = {}  # type: ignore[typeddict-item]
-        input_["pool_id"] = pool_id
+        input_: capo_workspaces.types.terminate_workspaces_pool_request.TerminateWorkspacesPoolRequest = {
+            "pool_id": pool_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def terminate_workspaces_pool_session(
@@ -5040,14 +5258,16 @@ class AsyncWorkSpacesClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workspaces.types.terminate_workspaces_pool_session_request.TerminateWorkspacesPoolSessionRequest = {}  # type: ignore[typeddict-item]
-        input_["session_id"] = session_id
+        input_: capo_workspaces.types.terminate_workspaces_pool_session_request.TerminateWorkspacesPoolSessionRequest = {
+            "session_id": session_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_connect_client_add_in(
@@ -5090,9 +5310,10 @@ class AsyncWorkSpacesClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workspaces.types.update_connect_client_add_in_request.UpdateConnectClientAddInRequest = {}  # type: ignore[typeddict-item]
-        input_["add_in_id"] = add_in_id
-        input_["resource_id"] = resource_id
+        input_: capo_workspaces.types.update_connect_client_add_in_request.UpdateConnectClientAddInRequest = {
+            "add_in_id": add_in_id,
+            "resource_id": resource_id,
+        }
         if name is not None:
             input_["name"] = name
         if url is not None:
@@ -5103,6 +5324,7 @@ class AsyncWorkSpacesClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_connection_alias_permission(
@@ -5145,15 +5367,17 @@ class AsyncWorkSpacesClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workspaces.types.update_connection_alias_permission_request.UpdateConnectionAliasPermissionRequest = {}  # type: ignore[typeddict-item]
-        input_["alias_id"] = alias_id
-        input_["connection_alias_permission"] = connection_alias_permission
+        input_: capo_workspaces.types.update_connection_alias_permission_request.UpdateConnectionAliasPermissionRequest = {
+            "alias_id": alias_id,
+            "connection_alias_permission": connection_alias_permission,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_rules_of_ip_group(
@@ -5194,15 +5418,17 @@ class AsyncWorkSpacesClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workspaces.types.update_rules_of_ip_group_request.UpdateRulesOfIpGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["group_id"] = group_id
-        input_["user_rules"] = user_rules
+        input_: capo_workspaces.types.update_rules_of_ip_group_request.UpdateRulesOfIpGroupRequest = {
+            "group_id": group_id,
+            "user_rules": user_rules,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_workspace_bundle(
@@ -5245,7 +5471,7 @@ class AsyncWorkSpacesClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workspaces.types.update_workspace_bundle_request.UpdateWorkspaceBundleRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_workspaces.types.update_workspace_bundle_request.UpdateWorkspaceBundleRequest = {}
         if bundle_id is not None:
             input_["bundle_id"] = bundle_id
         if image_id is not None:
@@ -5256,6 +5482,7 @@ class AsyncWorkSpacesClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_workspace_image_permission(
@@ -5298,16 +5525,18 @@ class AsyncWorkSpacesClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workspaces.types.update_workspace_image_permission_request.UpdateWorkspaceImagePermissionRequest = {}  # type: ignore[typeddict-item]
-        input_["image_id"] = image_id
-        input_["allow_copy_image"] = allow_copy_image
-        input_["shared_account_id"] = shared_account_id
+        input_: capo_workspaces.types.update_workspace_image_permission_request.UpdateWorkspaceImagePermissionRequest = {
+            "image_id": image_id,
+            "allow_copy_image": allow_copy_image,
+            "shared_account_id": shared_account_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_workspaces_pool(
@@ -5372,8 +5601,9 @@ class AsyncWorkSpacesClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workspaces.types.update_workspaces_pool_request.UpdateWorkspacesPoolRequest = {}  # type: ignore[typeddict-item]
-        input_["pool_id"] = pool_id
+        input_: capo_workspaces.types.update_workspaces_pool_request.UpdateWorkspacesPoolRequest = {
+            "pool_id": pool_id
+        }
         if description is not None:
             input_["description"] = description
         if bundle_id is not None:
@@ -5394,6 +5624,7 @@ class AsyncWorkSpacesClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def __aenter__(self) -> Self:

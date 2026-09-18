@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: DeployWorkspaceApplicationsResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeployWorkspaceApplicationsResult:
     out: DeployWorkspaceApplicationsResult = {}  # type: ignore[typeddict-item]
-    if "Deployment" in data:
+    if data.get("Deployment") is not None:
         import capo_workspaces.types.work_space_application_deployment
 
         out["deployment"] = (

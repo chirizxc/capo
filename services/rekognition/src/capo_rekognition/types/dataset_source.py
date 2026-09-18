@@ -35,7 +35,7 @@ def serialize_aws_json_1_1(value: DatasetSource) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DatasetSource:
     out: DatasetSource = {}  # type: ignore[typeddict-item]
-    if "GroundTruthManifest" in data:
+    if data.get("GroundTruthManifest") is not None:
         import capo_rekognition.types.ground_truth_manifest
 
         out["ground_truth_manifest"] = (
@@ -43,6 +43,6 @@ def deserialize_aws_json_1_1(data: dict) -> DatasetSource:
                 data["GroundTruthManifest"]
             )
         )
-    if "DatasetArn" in data:
+    if data.get("DatasetArn") is not None:
         out["dataset_arn"] = data["DatasetArn"]
     return out

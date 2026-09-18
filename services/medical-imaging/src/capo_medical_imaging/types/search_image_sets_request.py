@@ -39,7 +39,7 @@ def serialize_json(value: SearchImageSetsRequest) -> dict:
 
 def deserialize_json(data: dict) -> SearchImageSetsRequest:
     out: SearchImageSetsRequest = {}  # type: ignore[typeddict-item]
-    if "searchCriteria" in data:
+    if data.get("searchCriteria") is not None:
         import capo_medical_imaging.types.search_criteria
 
         out["search_criteria"] = (

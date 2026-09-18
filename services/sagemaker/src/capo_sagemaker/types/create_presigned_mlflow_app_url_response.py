@@ -23,6 +23,6 @@ def serialize_aws_json_1_1(value: CreatePresignedMlflowAppUrlResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreatePresignedMlflowAppUrlResponse:
     out: CreatePresignedMlflowAppUrlResponse = {}  # type: ignore[typeddict-item]
-    if "AuthorizedUrl" in data:
+    if data.get("AuthorizedUrl") is not None:
         out["authorized_url"] = data["AuthorizedUrl"]
     return out

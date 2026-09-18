@@ -30,13 +30,13 @@ def serialize_aws_json_1_1(value: DescribeManagedProductsByVendorRequest) -> dic
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeManagedProductsByVendorRequest:
     out: DescribeManagedProductsByVendorRequest = {}  # type: ignore[typeddict-item]
-    if "VendorName" in data:
+    if data.get("VendorName") is not None:
         out["vendor_name"] = data["VendorName"]
     else:
         raise DeserializationError(
             "DescribeManagedProductsByVendorRequest.vendor_name required"
         )
-    if "Scope" in data:
+    if data.get("Scope") is not None:
         import capo_wafv2.types.scope
 
         out["scope"] = capo_wafv2.types.scope.deserialize_aws_json_1_1(data["Scope"])

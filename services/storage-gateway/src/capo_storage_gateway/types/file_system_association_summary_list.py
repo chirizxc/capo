@@ -29,6 +29,8 @@ def deserialize_aws_json_1_1(data: list) -> FileSystemAssociationSummaryList:
 
     out: FileSystemAssociationSummaryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_storage_gateway.types.file_system_association_summary.deserialize_aws_json_1_1(
                 item

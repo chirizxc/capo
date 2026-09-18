@@ -65,31 +65,31 @@ def serialize_json(value: AutocompleteResultItem) -> dict:
 
 def deserialize_json(data: dict) -> AutocompleteResultItem:
     out: AutocompleteResultItem = {}  # type: ignore[typeddict-item]
-    if "PlaceId" in data:
+    if data.get("PlaceId") is not None:
         out["place_id"] = data["PlaceId"]
     else:
         raise DeserializationError("AutocompleteResultItem.place_id required")
-    if "PlaceType" in data:
+    if data.get("PlaceType") is not None:
         out["place_type"] = data["PlaceType"]
     else:
         raise DeserializationError("AutocompleteResultItem.place_type required")
-    if "Title" in data:
+    if data.get("Title") is not None:
         out["title"] = data["Title"]
     else:
         raise DeserializationError("AutocompleteResultItem.title required")
-    if "Address" in data:
+    if data.get("Address") is not None:
         import capo_geo_places.types.address
 
         out["address"] = capo_geo_places.types.address.deserialize_json(data["Address"])
-    if "Distance" in data:
+    if data.get("Distance") is not None:
         out["distance"] = data["Distance"]
     else:
         out["distance"] = 0
-    if "Language" in data:
+    if data.get("Language") is not None:
         out["language"] = data["Language"]
-    if "PoliticalView" in data:
+    if data.get("PoliticalView") is not None:
         out["political_view"] = data["PoliticalView"]
-    if "Highlights" in data:
+    if data.get("Highlights") is not None:
         import capo_geo_places.types.autocomplete_highlights
 
         out["highlights"] = (

@@ -37,7 +37,7 @@ def serialize_json(value: InputVpcRequest) -> dict:
 
 def deserialize_json(data: dict) -> InputVpcRequest:
     out: InputVpcRequest = {}  # type: ignore[typeddict-item]
-    if "securityGroupIds" in data:
+    if data.get("securityGroupIds") is not None:
         import capo_medialive.types.__list_of__string
 
         out["security_group_ids"] = (
@@ -45,7 +45,7 @@ def deserialize_json(data: dict) -> InputVpcRequest:
                 data["securityGroupIds"]
             )
         )
-    if "subnetIds" in data:
+    if data.get("subnetIds") is not None:
         import capo_medialive.types.__list_of__string
 
         out["subnet_ids"] = capo_medialive.types.__list_of__string.deserialize_json(

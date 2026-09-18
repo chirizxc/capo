@@ -36,9 +36,9 @@ def serialize_aws_json_1_1(value: ListCertificatesResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListCertificatesResult:
     out: ListCertificatesResult = {}  # type: ignore[typeddict-item]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "CertificatesInfo" in data:
+    if data.get("CertificatesInfo") is not None:
         import capo_directory_service.types.certificates_info
 
         out["certificates_info"] = (

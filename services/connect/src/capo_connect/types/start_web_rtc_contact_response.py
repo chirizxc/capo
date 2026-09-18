@@ -44,16 +44,16 @@ def serialize_json(value: StartWebRTCContactResponse) -> dict:
 
 def deserialize_json(data: dict) -> StartWebRTCContactResponse:
     out: StartWebRTCContactResponse = {}  # type: ignore[typeddict-item]
-    if "ConnectionData" in data:
+    if data.get("ConnectionData") is not None:
         import capo_connect.types.connection_data
 
         out["connection_data"] = capo_connect.types.connection_data.deserialize_json(
             data["ConnectionData"]
         )
-    if "ContactId" in data:
+    if data.get("ContactId") is not None:
         out["contact_id"] = data["ContactId"]
-    if "ParticipantId" in data:
+    if data.get("ParticipantId") is not None:
         out["participant_id"] = data["ParticipantId"]
-    if "ParticipantToken" in data:
+    if data.get("ParticipantToken") is not None:
         out["participant_token"] = data["ParticipantToken"]
     return out

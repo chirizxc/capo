@@ -37,15 +37,18 @@ class OperationNotFoundException(ServiceError):
 
     code: str | None = "OperationNotFoundException"
 
-    def __init__(self, data: OperationNotFoundException_):
+    def __init__(self, data: OperationNotFoundException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="OperationNotFoundException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_query(cls, el: Element) -> "OperationNotFoundException":
-        return cls(deserialize_query(el))
+    def from_query(
+        cls, el: Element, message: str | None = None
+    ) -> "OperationNotFoundException":
+        return cls(deserialize_query(el), message)

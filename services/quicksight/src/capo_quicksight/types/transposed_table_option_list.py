@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> TransposedTableOptionList:
 
     out: TransposedTableOptionList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_quicksight.types.transposed_table_option.deserialize_json(item))
     return out

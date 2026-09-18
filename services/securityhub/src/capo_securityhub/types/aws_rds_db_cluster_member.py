@@ -43,12 +43,12 @@ def serialize_json(value: AwsRdsDbClusterMember) -> dict:
 
 def deserialize_json(data: dict) -> AwsRdsDbClusterMember:
     out: AwsRdsDbClusterMember = {}  # type: ignore[typeddict-item]
-    if "IsClusterWriter" in data:
+    if data.get("IsClusterWriter") is not None:
         out["is_cluster_writer"] = data["IsClusterWriter"]
-    if "PromotionTier" in data:
+    if data.get("PromotionTier") is not None:
         out["promotion_tier"] = data["PromotionTier"]
-    if "DbInstanceIdentifier" in data:
+    if data.get("DbInstanceIdentifier") is not None:
         out["db_instance_identifier"] = data["DbInstanceIdentifier"]
-    if "DbClusterParameterGroupStatus" in data:
+    if data.get("DbClusterParameterGroupStatus") is not None:
         out["db_cluster_parameter_group_status"] = data["DbClusterParameterGroupStatus"]
     return out

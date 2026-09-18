@@ -27,6 +27,8 @@ def deserialize_aws_json_1_1(data: list) -> WorkspacesIpGroupsList:
 
     out: WorkspacesIpGroupsList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_workspaces.types.workspaces_ip_group.deserialize_aws_json_1_1(item)
         )

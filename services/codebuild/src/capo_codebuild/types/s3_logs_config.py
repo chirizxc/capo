@@ -52,7 +52,7 @@ def serialize_aws_json_1_1(value: S3LogsConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> S3LogsConfig:
     out: S3LogsConfig = {}  # type: ignore[typeddict-item]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_codebuild.types.logs_config_status_type
 
         out["status"] = (
@@ -62,11 +62,11 @@ def deserialize_aws_json_1_1(data: dict) -> S3LogsConfig:
         )
     else:
         raise DeserializationError("S3LogsConfig.status required")
-    if "location" in data:
+    if data.get("location") is not None:
         out["location"] = data["location"]
-    if "encryptionDisabled" in data:
+    if data.get("encryptionDisabled") is not None:
         out["encryption_disabled"] = data["encryptionDisabled"]
-    if "bucketOwnerAccess" in data:
+    if data.get("bucketOwnerAccess") is not None:
         import capo_codebuild.types.bucket_owner_access
 
         out["bucket_owner_access"] = (

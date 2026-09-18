@@ -32,12 +32,12 @@ def serialize_aws_json_1_1(value: ErrorInformation) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ErrorInformation:
     out: ErrorInformation = {}  # type: ignore[typeddict-item]
-    if "code" in data:
+    if data.get("code") is not None:
         import capo_codedeploy.types.error_code
 
         out["code"] = capo_codedeploy.types.error_code.deserialize_aws_json_1_1(
             data["code"]
         )
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     return out

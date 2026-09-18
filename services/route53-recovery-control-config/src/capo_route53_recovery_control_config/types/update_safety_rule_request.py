@@ -44,7 +44,7 @@ def serialize_json(value: UpdateSafetyRuleRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateSafetyRuleRequest:
     out: UpdateSafetyRuleRequest = {}  # type: ignore[typeddict-item]
-    if "AssertionRuleUpdate" in data:
+    if data.get("AssertionRuleUpdate") is not None:
         import capo_route53_recovery_control_config.types.assertion_rule_update
 
         out["assertion_rule_update"] = (
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> UpdateSafetyRuleRequest:
                 data["AssertionRuleUpdate"]
             )
         )
-    if "GatingRuleUpdate" in data:
+    if data.get("GatingRuleUpdate") is not None:
         import capo_route53_recovery_control_config.types.gating_rule_update
 
         out["gating_rule_update"] = (

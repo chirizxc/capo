@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> __listOfUnprocessedAccount:
 
     out: __listOfUnprocessedAccount = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_macie2.types.unprocessed_account.deserialize_json(item))
     return out

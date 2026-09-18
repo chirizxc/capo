@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: PermissionAlreadyExistsException_) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PermissionAlreadyExistsException_:
     out: PermissionAlreadyExistsException_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     return out
 
@@ -34,15 +34,20 @@ class PermissionAlreadyExistsException(ServiceError):
 
     code: str | None = "PermissionAlreadyExistsException"
 
-    def __init__(self, data: PermissionAlreadyExistsException_):
+    def __init__(
+        self, data: PermissionAlreadyExistsException_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="PermissionAlreadyExistsException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "PermissionAlreadyExistsException":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "PermissionAlreadyExistsException":
+        return cls(deserialize_aws_json_1_1(data), message)

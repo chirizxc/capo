@@ -58,15 +58,15 @@ def serialize_aws_json_1_1(value: PortfolioDetail) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PortfolioDetail:
     out: PortfolioDetail = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "ARN" in data:
+    if data.get("ARN") is not None:
         out["arn"] = data["ARN"]
-    if "DisplayName" in data:
+    if data.get("DisplayName") is not None:
         out["display_name"] = data["DisplayName"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "CreatedTime" in data:
+    if data.get("CreatedTime") is not None:
         import capo_service_catalog.types.creation_time
 
         out["created_time"] = (
@@ -74,6 +74,6 @@ def deserialize_aws_json_1_1(data: dict) -> PortfolioDetail:
                 data["CreatedTime"]
             )
         )
-    if "ProviderName" in data:
+    if data.get("ProviderName") is not None:
         out["provider_name"] = data["ProviderName"]
     return out

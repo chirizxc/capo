@@ -32,12 +32,12 @@ def serialize_aws_json_1_1(value: ListReceivedGrantsForOrganizationResponse) -> 
 
 def deserialize_aws_json_1_1(data: dict) -> ListReceivedGrantsForOrganizationResponse:
     out: ListReceivedGrantsForOrganizationResponse = {}  # type: ignore[typeddict-item]
-    if "Grants" in data:
+    if data.get("Grants") is not None:
         import capo_license_manager.types.grant_list
 
         out["grants"] = capo_license_manager.types.grant_list.deserialize_aws_json_1_1(
             data["Grants"]
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

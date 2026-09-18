@@ -131,11 +131,11 @@ def serialize_json(value: CreateAccountSubscriptionRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateAccountSubscriptionRequest:
     out: CreateAccountSubscriptionRequest = {}  # type: ignore[typeddict-item]
-    if "Edition" in data:
+    if data.get("Edition") is not None:
         import capo_quicksight.types.edition
 
         out["edition"] = capo_quicksight.types.edition.deserialize_json(data["Edition"])
-    if "AuthenticationMethod" in data:
+    if data.get("AuthenticationMethod") is not None:
         import capo_quicksight.types.authentication_method_option
 
         out["authentication_method"] = (
@@ -147,68 +147,68 @@ def deserialize_json(data: dict) -> CreateAccountSubscriptionRequest:
         raise DeserializationError(
             "CreateAccountSubscriptionRequest.authentication_method required"
         )
-    if "AccountName" in data:
+    if data.get("AccountName") is not None:
         out["account_name"] = data["AccountName"]
     else:
         raise DeserializationError(
             "CreateAccountSubscriptionRequest.account_name required"
         )
-    if "NotificationEmail" in data:
+    if data.get("NotificationEmail") is not None:
         out["notification_email"] = data["NotificationEmail"]
     else:
         raise DeserializationError(
             "CreateAccountSubscriptionRequest.notification_email required"
         )
-    if "ActiveDirectoryName" in data:
+    if data.get("ActiveDirectoryName") is not None:
         out["active_directory_name"] = data["ActiveDirectoryName"]
-    if "Realm" in data:
+    if data.get("Realm") is not None:
         out["realm"] = data["Realm"]
-    if "DirectoryId" in data:
+    if data.get("DirectoryId") is not None:
         out["directory_id"] = data["DirectoryId"]
-    if "AdminGroup" in data:
+    if data.get("AdminGroup") is not None:
         import capo_quicksight.types.groups_list
 
         out["admin_group"] = capo_quicksight.types.groups_list.deserialize_json(
             data["AdminGroup"]
         )
-    if "AuthorGroup" in data:
+    if data.get("AuthorGroup") is not None:
         import capo_quicksight.types.groups_list
 
         out["author_group"] = capo_quicksight.types.groups_list.deserialize_json(
             data["AuthorGroup"]
         )
-    if "ReaderGroup" in data:
+    if data.get("ReaderGroup") is not None:
         import capo_quicksight.types.groups_list
 
         out["reader_group"] = capo_quicksight.types.groups_list.deserialize_json(
             data["ReaderGroup"]
         )
-    if "AdminProGroup" in data:
+    if data.get("AdminProGroup") is not None:
         import capo_quicksight.types.groups_list
 
         out["admin_pro_group"] = capo_quicksight.types.groups_list.deserialize_json(
             data["AdminProGroup"]
         )
-    if "AuthorProGroup" in data:
+    if data.get("AuthorProGroup") is not None:
         import capo_quicksight.types.groups_list
 
         out["author_pro_group"] = capo_quicksight.types.groups_list.deserialize_json(
             data["AuthorProGroup"]
         )
-    if "ReaderProGroup" in data:
+    if data.get("ReaderProGroup") is not None:
         import capo_quicksight.types.groups_list
 
         out["reader_pro_group"] = capo_quicksight.types.groups_list.deserialize_json(
             data["ReaderProGroup"]
         )
-    if "FirstName" in data:
+    if data.get("FirstName") is not None:
         out["first_name"] = data["FirstName"]
-    if "LastName" in data:
+    if data.get("LastName") is not None:
         out["last_name"] = data["LastName"]
-    if "EmailAddress" in data:
+    if data.get("EmailAddress") is not None:
         out["email_address"] = data["EmailAddress"]
-    if "ContactNumber" in data:
+    if data.get("ContactNumber") is not None:
         out["contact_number"] = data["ContactNumber"]
-    if "IAMIdentityCenterInstanceArn" in data:
+    if data.get("IAMIdentityCenterInstanceArn") is not None:
         out["iam_identity_center_instance_arn"] = data["IAMIdentityCenterInstanceArn"]
     return out

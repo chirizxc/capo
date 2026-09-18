@@ -33,15 +33,15 @@ def serialize_json(value: HttpPackageConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> HttpPackageConfiguration:
     out: HttpPackageConfiguration = {}  # type: ignore[typeddict-item]
-    if "Path" in data:
+    if data.get("Path") is not None:
         out["path"] = data["Path"]
     else:
         raise DeserializationError("HttpPackageConfiguration.path required")
-    if "SourceGroup" in data:
+    if data.get("SourceGroup") is not None:
         out["source_group"] = data["SourceGroup"]
     else:
         raise DeserializationError("HttpPackageConfiguration.source_group required")
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_mediatailor.types.type
 
         out["type"] = capo_mediatailor.types.type.deserialize_json(data["Type"])

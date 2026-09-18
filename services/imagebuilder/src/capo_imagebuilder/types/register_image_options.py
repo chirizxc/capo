@@ -30,8 +30,8 @@ def serialize_json(value: RegisterImageOptions) -> dict:
 
 def deserialize_json(data: dict) -> RegisterImageOptions:
     out: RegisterImageOptions = {}  # type: ignore[typeddict-item]
-    if "secureBootEnabled" in data:
+    if data.get("secureBootEnabled") is not None:
         out["secure_boot_enabled"] = data["secureBootEnabled"]
-    if "uefiData" in data:
+    if data.get("uefiData") is not None:
         out["uefi_data"] = data["uefiData"]
     return out

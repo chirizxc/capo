@@ -77,7 +77,7 @@ def serialize_aws_json_1_1(value: RequestInspectionACFP) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RequestInspectionACFP:
     out: RequestInspectionACFP = {}  # type: ignore[typeddict-item]
-    if "PayloadType" in data:
+    if data.get("PayloadType") is not None:
         import capo_wafv2.types.payload_type
 
         out["payload_type"] = capo_wafv2.types.payload_type.deserialize_aws_json_1_1(
@@ -85,7 +85,7 @@ def deserialize_aws_json_1_1(data: dict) -> RequestInspectionACFP:
         )
     else:
         raise DeserializationError("RequestInspectionACFP.payload_type required")
-    if "UsernameField" in data:
+    if data.get("UsernameField") is not None:
         import capo_wafv2.types.username_field
 
         out["username_field"] = (
@@ -93,7 +93,7 @@ def deserialize_aws_json_1_1(data: dict) -> RequestInspectionACFP:
                 data["UsernameField"]
             )
         )
-    if "PasswordField" in data:
+    if data.get("PasswordField") is not None:
         import capo_wafv2.types.password_field
 
         out["password_field"] = (
@@ -101,13 +101,13 @@ def deserialize_aws_json_1_1(data: dict) -> RequestInspectionACFP:
                 data["PasswordField"]
             )
         )
-    if "EmailField" in data:
+    if data.get("EmailField") is not None:
         import capo_wafv2.types.email_field
 
         out["email_field"] = capo_wafv2.types.email_field.deserialize_aws_json_1_1(
             data["EmailField"]
         )
-    if "PhoneNumberFields" in data:
+    if data.get("PhoneNumberFields") is not None:
         import capo_wafv2.types.phone_number_fields
 
         out["phone_number_fields"] = (
@@ -115,7 +115,7 @@ def deserialize_aws_json_1_1(data: dict) -> RequestInspectionACFP:
                 data["PhoneNumberFields"]
             )
         )
-    if "AddressFields" in data:
+    if data.get("AddressFields") is not None:
         import capo_wafv2.types.address_fields
 
         out["address_fields"] = (

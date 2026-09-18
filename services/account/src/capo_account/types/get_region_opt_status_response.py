@@ -30,8 +30,8 @@ def serialize_json(value: GetRegionOptStatusResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetRegionOptStatusResponse:
     out: GetRegionOptStatusResponse = {}  # type: ignore[typeddict-item]
-    if "RegionName" in data:
+    if data.get("RegionName") is not None:
         out["region_name"] = data["RegionName"]
-    if "RegionOptStatus" in data:
+    if data.get("RegionOptStatus") is not None:
         out["region_opt_status"] = data["RegionOptStatus"]
     return out

@@ -116,11 +116,11 @@ def serialize_aws_json_1_1(value: DescribeFlowDefinitionResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeFlowDefinitionResponse:
     out: DescribeFlowDefinitionResponse = {}  # type: ignore[typeddict-item]
-    if "FlowDefinitionArn" in data:
+    if data.get("FlowDefinitionArn") is not None:
         out["flow_definition_arn"] = data["FlowDefinitionArn"]
-    if "FlowDefinitionName" in data:
+    if data.get("FlowDefinitionName") is not None:
         out["flow_definition_name"] = data["FlowDefinitionName"]
-    if "FlowDefinitionStatus" in data:
+    if data.get("FlowDefinitionStatus") is not None:
         import capo_sagemaker.types.flow_definition_status
 
         out["flow_definition_status"] = (
@@ -128,13 +128,13 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeFlowDefinitionResponse:
                 data["FlowDefinitionStatus"]
             )
         )
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_sagemaker.types.timestamp
 
         out["creation_time"] = capo_sagemaker.types.timestamp.deserialize_aws_json_1_1(
             data["CreationTime"]
         )
-    if "HumanLoopRequestSource" in data:
+    if data.get("HumanLoopRequestSource") is not None:
         import capo_sagemaker.types.human_loop_request_source
 
         out["human_loop_request_source"] = (
@@ -142,7 +142,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeFlowDefinitionResponse:
                 data["HumanLoopRequestSource"]
             )
         )
-    if "HumanLoopActivationConfig" in data:
+    if data.get("HumanLoopActivationConfig") is not None:
         import capo_sagemaker.types.human_loop_activation_config
 
         out["human_loop_activation_config"] = (
@@ -150,7 +150,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeFlowDefinitionResponse:
                 data["HumanLoopActivationConfig"]
             )
         )
-    if "HumanLoopConfig" in data:
+    if data.get("HumanLoopConfig") is not None:
         import capo_sagemaker.types.human_loop_config
 
         out["human_loop_config"] = (
@@ -158,7 +158,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeFlowDefinitionResponse:
                 data["HumanLoopConfig"]
             )
         )
-    if "OutputConfig" in data:
+    if data.get("OutputConfig") is not None:
         import capo_sagemaker.types.flow_definition_output_config
 
         out["output_config"] = (
@@ -166,8 +166,8 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeFlowDefinitionResponse:
                 data["OutputConfig"]
             )
         )
-    if "RoleArn" in data:
+    if data.get("RoleArn") is not None:
         out["role_arn"] = data["RoleArn"]
-    if "FailureReason" in data:
+    if data.get("FailureReason") is not None:
         out["failure_reason"] = data["FailureReason"]
     return out

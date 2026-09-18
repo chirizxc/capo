@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: RateLimitLabelNamespace) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RateLimitLabelNamespace:
     out: RateLimitLabelNamespace = {}  # type: ignore[typeddict-item]
-    if "Namespace" in data:
+    if data.get("Namespace") is not None:
         out["namespace"] = data["Namespace"]
     else:
         raise DeserializationError("RateLimitLabelNamespace.namespace required")

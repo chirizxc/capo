@@ -84,7 +84,7 @@ def serialize_json(value: ZonalShiftInResource) -> dict:
 
 def deserialize_json(data: dict) -> ZonalShiftInResource:
     out: ZonalShiftInResource = {}  # type: ignore[typeddict-item]
-    if "appliedStatus" in data:
+    if data.get("appliedStatus") is not None:
         import capo_arc_zonal_shift.types.applied_status
 
         out["applied_status"] = (
@@ -94,19 +94,19 @@ def deserialize_json(data: dict) -> ZonalShiftInResource:
         )
     else:
         raise DeserializationError("ZonalShiftInResource.applied_status required")
-    if "zonalShiftId" in data:
+    if data.get("zonalShiftId") is not None:
         out["zonal_shift_id"] = data["zonalShiftId"]
     else:
         raise DeserializationError("ZonalShiftInResource.zonal_shift_id required")
-    if "resourceIdentifier" in data:
+    if data.get("resourceIdentifier") is not None:
         out["resource_identifier"] = data["resourceIdentifier"]
     else:
         raise DeserializationError("ZonalShiftInResource.resource_identifier required")
-    if "awayFrom" in data:
+    if data.get("awayFrom") is not None:
         out["away_from"] = data["awayFrom"]
     else:
         raise DeserializationError("ZonalShiftInResource.away_from required")
-    if "expiryTime" in data:
+    if data.get("expiryTime") is not None:
         import capo_arc_zonal_shift.types.expiry_time
 
         out["expiry_time"] = capo_arc_zonal_shift.types.expiry_time.deserialize_json(
@@ -114,7 +114,7 @@ def deserialize_json(data: dict) -> ZonalShiftInResource:
         )
     else:
         raise DeserializationError("ZonalShiftInResource.expiry_time required")
-    if "startTime" in data:
+    if data.get("startTime") is not None:
         import capo_arc_zonal_shift.types.start_time
 
         out["start_time"] = capo_arc_zonal_shift.types.start_time.deserialize_json(
@@ -122,17 +122,17 @@ def deserialize_json(data: dict) -> ZonalShiftInResource:
         )
     else:
         raise DeserializationError("ZonalShiftInResource.start_time required")
-    if "comment" in data:
+    if data.get("comment") is not None:
         out["comment"] = data["comment"]
     else:
         raise DeserializationError("ZonalShiftInResource.comment required")
-    if "shiftType" in data:
+    if data.get("shiftType") is not None:
         import capo_arc_zonal_shift.types.shift_type
 
         out["shift_type"] = capo_arc_zonal_shift.types.shift_type.deserialize_json(
             data["shiftType"]
         )
-    if "practiceRunOutcome" in data:
+    if data.get("practiceRunOutcome") is not None:
         import capo_arc_zonal_shift.types.practice_run_outcome
 
         out["practice_run_outcome"] = (

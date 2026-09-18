@@ -66,7 +66,7 @@ def serialize_json(value: ListControlDisplayOptions) -> dict:
 
 def deserialize_json(data: dict) -> ListControlDisplayOptions:
     out: ListControlDisplayOptions = {}  # type: ignore[typeddict-item]
-    if "SearchOptions" in data:
+    if data.get("SearchOptions") is not None:
         import capo_quicksight.types.list_control_search_options
 
         out["search_options"] = (
@@ -74,7 +74,7 @@ def deserialize_json(data: dict) -> ListControlDisplayOptions:
                 data["SearchOptions"]
             )
         )
-    if "SelectAllOptions" in data:
+    if data.get("SelectAllOptions") is not None:
         import capo_quicksight.types.list_control_select_all_options
 
         out["select_all_options"] = (
@@ -82,13 +82,13 @@ def deserialize_json(data: dict) -> ListControlDisplayOptions:
                 data["SelectAllOptions"]
             )
         )
-    if "TitleOptions" in data:
+    if data.get("TitleOptions") is not None:
         import capo_quicksight.types.label_options
 
         out["title_options"] = capo_quicksight.types.label_options.deserialize_json(
             data["TitleOptions"]
         )
-    if "InfoIconLabelOptions" in data:
+    if data.get("InfoIconLabelOptions") is not None:
         import capo_quicksight.types.sheet_control_info_icon_label_options
 
         out["info_icon_label_options"] = (

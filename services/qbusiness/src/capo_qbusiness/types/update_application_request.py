@@ -95,15 +95,15 @@ def serialize_json(value: UpdateApplicationRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateApplicationRequest:
     out: UpdateApplicationRequest = {}  # type: ignore[typeddict-item]
-    if "identityCenterInstanceArn" in data:
+    if data.get("identityCenterInstanceArn") is not None:
         out["identity_center_instance_arn"] = data["identityCenterInstanceArn"]
-    if "displayName" in data:
+    if data.get("displayName") is not None:
         out["display_name"] = data["displayName"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "roleArn" in data:
+    if data.get("roleArn") is not None:
         out["role_arn"] = data["roleArn"]
-    if "attachmentsConfiguration" in data:
+    if data.get("attachmentsConfiguration") is not None:
         import capo_qbusiness.types.attachments_configuration
 
         out["attachments_configuration"] = (
@@ -111,7 +111,7 @@ def deserialize_json(data: dict) -> UpdateApplicationRequest:
                 data["attachmentsConfiguration"]
             )
         )
-    if "qAppsConfiguration" in data:
+    if data.get("qAppsConfiguration") is not None:
         import capo_qbusiness.types.q_apps_configuration
 
         out["q_apps_configuration"] = (
@@ -119,7 +119,7 @@ def deserialize_json(data: dict) -> UpdateApplicationRequest:
                 data["qAppsConfiguration"]
             )
         )
-    if "personalizationConfiguration" in data:
+    if data.get("personalizationConfiguration") is not None:
         import capo_qbusiness.types.personalization_configuration
 
         out["personalization_configuration"] = (
@@ -127,7 +127,7 @@ def deserialize_json(data: dict) -> UpdateApplicationRequest:
                 data["personalizationConfiguration"]
             )
         )
-    if "autoSubscriptionConfiguration" in data:
+    if data.get("autoSubscriptionConfiguration") is not None:
         import capo_qbusiness.types.auto_subscription_configuration
 
         out["auto_subscription_configuration"] = (

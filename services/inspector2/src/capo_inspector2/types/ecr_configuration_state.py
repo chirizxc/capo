@@ -31,7 +31,7 @@ def serialize_json(value: EcrConfigurationState) -> dict:
 
 def deserialize_json(data: dict) -> EcrConfigurationState:
     out: EcrConfigurationState = {}  # type: ignore[typeddict-item]
-    if "rescanDurationState" in data:
+    if data.get("rescanDurationState") is not None:
         import capo_inspector2.types.ecr_rescan_duration_state
 
         out["rescan_duration_state"] = (

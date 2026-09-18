@@ -23,5 +23,7 @@ def deserialize_aws_json_1_1(data: list) -> EdgeModelStats:
 
     out: EdgeModelStats = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_sagemaker.types.edge_model_stat.deserialize_aws_json_1_1(item))
     return out

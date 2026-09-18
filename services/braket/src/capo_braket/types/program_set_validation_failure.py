@@ -40,13 +40,13 @@ def serialize_json(value: ProgramSetValidationFailure) -> dict:
 
 def deserialize_json(data: dict) -> ProgramSetValidationFailure:
     out: ProgramSetValidationFailure = {}  # type: ignore[typeddict-item]
-    if "programIndex" in data:
+    if data.get("programIndex") is not None:
         out["program_index"] = data["programIndex"]
     else:
         raise DeserializationError("ProgramSetValidationFailure.program_index required")
-    if "inputsIndex" in data:
+    if data.get("inputsIndex") is not None:
         out["inputs_index"] = data["inputsIndex"]
-    if "errors" in data:
+    if data.get("errors") is not None:
         import capo_braket.types.program_validation_failures_list
 
         out["errors"] = (

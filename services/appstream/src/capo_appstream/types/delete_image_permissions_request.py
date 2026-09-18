@@ -28,8 +28,8 @@ def serialize_aws_json_1_1(value: DeleteImagePermissionsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteImagePermissionsRequest:
     out: DeleteImagePermissionsRequest = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "SharedAccountId" in data:
+    if data.get("SharedAccountId") is not None:
         out["shared_account_id"] = data["SharedAccountId"]
     return out

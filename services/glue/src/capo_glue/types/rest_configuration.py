@@ -56,7 +56,7 @@ def serialize_aws_json_1_1(value: RestConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RestConfiguration:
     out: RestConfiguration = {}  # type: ignore[typeddict-item]
-    if "GlobalSourceConfiguration" in data:
+    if data.get("GlobalSourceConfiguration") is not None:
         import capo_glue.types.source_configuration
 
         out["global_source_configuration"] = (
@@ -64,7 +64,7 @@ def deserialize_aws_json_1_1(data: dict) -> RestConfiguration:
                 data["GlobalSourceConfiguration"]
             )
         )
-    if "ValidationEndpointConfiguration" in data:
+    if data.get("ValidationEndpointConfiguration") is not None:
         import capo_glue.types.source_configuration
 
         out["validation_endpoint_configuration"] = (
@@ -72,7 +72,7 @@ def deserialize_aws_json_1_1(data: dict) -> RestConfiguration:
                 data["ValidationEndpointConfiguration"]
             )
         )
-    if "EntityConfigurations" in data:
+    if data.get("EntityConfigurations") is not None:
         import capo_glue.types.entity_configuration_map
 
         out["entity_configurations"] = (

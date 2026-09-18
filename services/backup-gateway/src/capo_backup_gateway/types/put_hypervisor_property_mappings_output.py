@@ -23,6 +23,6 @@ def serialize_aws_json_1_0(value: PutHypervisorPropertyMappingsOutput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> PutHypervisorPropertyMappingsOutput:
     out: PutHypervisorPropertyMappingsOutput = {}  # type: ignore[typeddict-item]
-    if "HypervisorArn" in data:
+    if data.get("HypervisorArn") is not None:
         out["hypervisor_arn"] = data["HypervisorArn"]
     return out

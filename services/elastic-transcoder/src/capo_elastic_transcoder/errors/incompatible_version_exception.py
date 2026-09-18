@@ -23,7 +23,7 @@ def serialize_json(value: IncompatibleVersionException_) -> dict:
 
 def deserialize_json(data: dict) -> IncompatibleVersionException_:
     out: IncompatibleVersionException_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     else:
         raise DeserializationError("IncompatibleVersionException_.message required")
@@ -35,15 +35,18 @@ class IncompatibleVersionException(ServiceError):
 
     code: str | None = "IncompatibleVersionException"
 
-    def __init__(self, data: IncompatibleVersionException_):
+    def __init__(self, data: IncompatibleVersionException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="IncompatibleVersionException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "IncompatibleVersionException":
-        return cls(deserialize_json(data))
+    def from_json(
+        cls, data: dict, message: str | None = None
+    ) -> "IncompatibleVersionException":
+        return cls(deserialize_json(data), message)

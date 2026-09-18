@@ -40,14 +40,14 @@ def serialize_aws_json_1_1(value: ConfirmPrivateVirtualInterfaceRequest) -> dict
 
 def deserialize_aws_json_1_1(data: dict) -> ConfirmPrivateVirtualInterfaceRequest:
     out: ConfirmPrivateVirtualInterfaceRequest = {}  # type: ignore[typeddict-item]
-    if "virtualInterfaceId" in data:
+    if data.get("virtualInterfaceId") is not None:
         out["virtual_interface_id"] = data["virtualInterfaceId"]
     else:
         raise DeserializationError(
             "ConfirmPrivateVirtualInterfaceRequest.virtual_interface_id required"
         )
-    if "virtualGatewayId" in data:
+    if data.get("virtualGatewayId") is not None:
         out["virtual_gateway_id"] = data["virtualGatewayId"]
-    if "directConnectGatewayId" in data:
+    if data.get("directConnectGatewayId") is not None:
         out["direct_connect_gateway_id"] = data["directConnectGatewayId"]
     return out

@@ -41,7 +41,7 @@ def serialize_aws_json_1_1(value: RecipeStep) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RecipeStep:
     out: RecipeStep = {}  # type: ignore[typeddict-item]
-    if "Action" in data:
+    if data.get("Action") is not None:
         import capo_glue.types.recipe_action
 
         out["action"] = capo_glue.types.recipe_action.deserialize_aws_json_1_1(
@@ -49,7 +49,7 @@ def deserialize_aws_json_1_1(data: dict) -> RecipeStep:
         )
     else:
         raise DeserializationError("RecipeStep.action required")
-    if "ConditionExpressions" in data:
+    if data.get("ConditionExpressions") is not None:
         import capo_glue.types.condition_expression_list
 
         out["condition_expressions"] = (

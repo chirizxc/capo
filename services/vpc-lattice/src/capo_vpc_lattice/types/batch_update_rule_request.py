@@ -34,7 +34,7 @@ def serialize_json(value: BatchUpdateRuleRequest) -> dict:
 
 def deserialize_json(data: dict) -> BatchUpdateRuleRequest:
     out: BatchUpdateRuleRequest = {}  # type: ignore[typeddict-item]
-    if "rules" in data:
+    if data.get("rules") is not None:
         import capo_vpc_lattice.types.rule_update_list
 
         out["rules"] = capo_vpc_lattice.types.rule_update_list.deserialize_json(

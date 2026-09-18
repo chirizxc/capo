@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> OfferTermsList:
 
     out: OfferTermsList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_marketplace_discovery.types.offer_term.deserialize_json(item))
     return out

@@ -23,5 +23,7 @@ def deserialize_aws_json_1_1(data: list) -> ActionHistories:
 
     out: ActionHistories = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_budgets.types.action_history.deserialize_aws_json_1_1(item))
     return out

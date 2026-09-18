@@ -43,7 +43,7 @@ def serialize_json(value: DataIntegrationFlowTransformation) -> dict:
 
 def deserialize_json(data: dict) -> DataIntegrationFlowTransformation:
     out: DataIntegrationFlowTransformation = {}  # type: ignore[typeddict-item]
-    if "transformationType" in data:
+    if data.get("transformationType") is not None:
         import capo_supplychain.types.data_integration_flow_transformation_type
 
         out["transformation_type"] = (
@@ -55,7 +55,7 @@ def deserialize_json(data: dict) -> DataIntegrationFlowTransformation:
         raise DeserializationError(
             "DataIntegrationFlowTransformation.transformation_type required"
         )
-    if "sqlTransformation" in data:
+    if data.get("sqlTransformation") is not None:
         import capo_supplychain.types.data_integration_flow_sql_transformation_configuration
 
         out["sql_transformation"] = (

@@ -28,8 +28,11 @@ def serialize_json(input_to_serialize: TypeToFacetMap) -> dict:
 def deserialize_json(data: dict) -> TypeToFacetMap:
     out: TypeToFacetMap = {}
     for key, value in data.items():
-        import capo_marketplace_discovery.types.listing_facet_list
         import capo_marketplace_discovery.types.search_facet_type
+
+        if value is None:
+            continue
+        import capo_marketplace_discovery.types.listing_facet_list
 
         out[
             capo_marketplace_discovery.types.search_facet_type.deserialize_json(key)

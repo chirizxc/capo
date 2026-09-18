@@ -270,7 +270,7 @@ def serialize_aws_json_1_1(value: GitHubConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GitHubConfiguration:
     out: GitHubConfiguration = {}  # type: ignore[typeddict-item]
-    if "SaaSConfiguration" in data:
+    if data.get("SaaSConfiguration") is not None:
         import capo_kendra.types.saa_s_configuration
 
         out["saa_s_configuration"] = (
@@ -278,7 +278,7 @@ def deserialize_aws_json_1_1(data: dict) -> GitHubConfiguration:
                 data["SaaSConfiguration"]
             )
         )
-    if "OnPremiseConfiguration" in data:
+    if data.get("OnPremiseConfiguration") is not None:
         import capo_kendra.types.on_premise_configuration
 
         out["on_premise_configuration"] = (
@@ -286,19 +286,19 @@ def deserialize_aws_json_1_1(data: dict) -> GitHubConfiguration:
                 data["OnPremiseConfiguration"]
             )
         )
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_kendra.types.type
 
         out["type"] = capo_kendra.types.type.deserialize_aws_json_1_1(data["Type"])
-    if "SecretArn" in data:
+    if data.get("SecretArn") is not None:
         out["secret_arn"] = data["SecretArn"]
     else:
         raise DeserializationError("GitHubConfiguration.secret_arn required")
-    if "UseChangeLog" in data:
+    if data.get("UseChangeLog") is not None:
         out["use_change_log"] = data["UseChangeLog"]
     else:
         out["use_change_log"] = False
-    if "GitHubDocumentCrawlProperties" in data:
+    if data.get("GitHubDocumentCrawlProperties") is not None:
         import capo_kendra.types.git_hub_document_crawl_properties
 
         out["git_hub_document_crawl_properties"] = (
@@ -306,7 +306,7 @@ def deserialize_aws_json_1_1(data: dict) -> GitHubConfiguration:
                 data["GitHubDocumentCrawlProperties"]
             )
         )
-    if "RepositoryFilter" in data:
+    if data.get("RepositoryFilter") is not None:
         import capo_kendra.types.repository_names
 
         out["repository_filter"] = (
@@ -314,7 +314,7 @@ def deserialize_aws_json_1_1(data: dict) -> GitHubConfiguration:
                 data["RepositoryFilter"]
             )
         )
-    if "InclusionFolderNamePatterns" in data:
+    if data.get("InclusionFolderNamePatterns") is not None:
         import capo_kendra.types.string_list
 
         out["inclusion_folder_name_patterns"] = (
@@ -322,7 +322,7 @@ def deserialize_aws_json_1_1(data: dict) -> GitHubConfiguration:
                 data["InclusionFolderNamePatterns"]
             )
         )
-    if "InclusionFileTypePatterns" in data:
+    if data.get("InclusionFileTypePatterns") is not None:
         import capo_kendra.types.string_list
 
         out["inclusion_file_type_patterns"] = (
@@ -330,7 +330,7 @@ def deserialize_aws_json_1_1(data: dict) -> GitHubConfiguration:
                 data["InclusionFileTypePatterns"]
             )
         )
-    if "InclusionFileNamePatterns" in data:
+    if data.get("InclusionFileNamePatterns") is not None:
         import capo_kendra.types.string_list
 
         out["inclusion_file_name_patterns"] = (
@@ -338,7 +338,7 @@ def deserialize_aws_json_1_1(data: dict) -> GitHubConfiguration:
                 data["InclusionFileNamePatterns"]
             )
         )
-    if "ExclusionFolderNamePatterns" in data:
+    if data.get("ExclusionFolderNamePatterns") is not None:
         import capo_kendra.types.string_list
 
         out["exclusion_folder_name_patterns"] = (
@@ -346,7 +346,7 @@ def deserialize_aws_json_1_1(data: dict) -> GitHubConfiguration:
                 data["ExclusionFolderNamePatterns"]
             )
         )
-    if "ExclusionFileTypePatterns" in data:
+    if data.get("ExclusionFileTypePatterns") is not None:
         import capo_kendra.types.string_list
 
         out["exclusion_file_type_patterns"] = (
@@ -354,7 +354,7 @@ def deserialize_aws_json_1_1(data: dict) -> GitHubConfiguration:
                 data["ExclusionFileTypePatterns"]
             )
         )
-    if "ExclusionFileNamePatterns" in data:
+    if data.get("ExclusionFileNamePatterns") is not None:
         import capo_kendra.types.string_list
 
         out["exclusion_file_name_patterns"] = (
@@ -362,7 +362,7 @@ def deserialize_aws_json_1_1(data: dict) -> GitHubConfiguration:
                 data["ExclusionFileNamePatterns"]
             )
         )
-    if "VpcConfiguration" in data:
+    if data.get("VpcConfiguration") is not None:
         import capo_kendra.types.data_source_vpc_configuration
 
         out["vpc_configuration"] = (
@@ -370,7 +370,7 @@ def deserialize_aws_json_1_1(data: dict) -> GitHubConfiguration:
                 data["VpcConfiguration"]
             )
         )
-    if "GitHubRepositoryConfigurationFieldMappings" in data:
+    if data.get("GitHubRepositoryConfigurationFieldMappings") is not None:
         import capo_kendra.types.data_source_to_index_field_mapping_list
 
         out["git_hub_repository_configuration_field_mappings"] = (
@@ -378,7 +378,7 @@ def deserialize_aws_json_1_1(data: dict) -> GitHubConfiguration:
                 data["GitHubRepositoryConfigurationFieldMappings"]
             )
         )
-    if "GitHubCommitConfigurationFieldMappings" in data:
+    if data.get("GitHubCommitConfigurationFieldMappings") is not None:
         import capo_kendra.types.data_source_to_index_field_mapping_list
 
         out["git_hub_commit_configuration_field_mappings"] = (
@@ -386,7 +386,7 @@ def deserialize_aws_json_1_1(data: dict) -> GitHubConfiguration:
                 data["GitHubCommitConfigurationFieldMappings"]
             )
         )
-    if "GitHubIssueDocumentConfigurationFieldMappings" in data:
+    if data.get("GitHubIssueDocumentConfigurationFieldMappings") is not None:
         import capo_kendra.types.data_source_to_index_field_mapping_list
 
         out["git_hub_issue_document_configuration_field_mappings"] = (
@@ -394,7 +394,7 @@ def deserialize_aws_json_1_1(data: dict) -> GitHubConfiguration:
                 data["GitHubIssueDocumentConfigurationFieldMappings"]
             )
         )
-    if "GitHubIssueCommentConfigurationFieldMappings" in data:
+    if data.get("GitHubIssueCommentConfigurationFieldMappings") is not None:
         import capo_kendra.types.data_source_to_index_field_mapping_list
 
         out["git_hub_issue_comment_configuration_field_mappings"] = (
@@ -402,7 +402,7 @@ def deserialize_aws_json_1_1(data: dict) -> GitHubConfiguration:
                 data["GitHubIssueCommentConfigurationFieldMappings"]
             )
         )
-    if "GitHubIssueAttachmentConfigurationFieldMappings" in data:
+    if data.get("GitHubIssueAttachmentConfigurationFieldMappings") is not None:
         import capo_kendra.types.data_source_to_index_field_mapping_list
 
         out["git_hub_issue_attachment_configuration_field_mappings"] = (
@@ -410,7 +410,7 @@ def deserialize_aws_json_1_1(data: dict) -> GitHubConfiguration:
                 data["GitHubIssueAttachmentConfigurationFieldMappings"]
             )
         )
-    if "GitHubPullRequestCommentConfigurationFieldMappings" in data:
+    if data.get("GitHubPullRequestCommentConfigurationFieldMappings") is not None:
         import capo_kendra.types.data_source_to_index_field_mapping_list
 
         out["git_hub_pull_request_comment_configuration_field_mappings"] = (
@@ -418,7 +418,7 @@ def deserialize_aws_json_1_1(data: dict) -> GitHubConfiguration:
                 data["GitHubPullRequestCommentConfigurationFieldMappings"]
             )
         )
-    if "GitHubPullRequestDocumentConfigurationFieldMappings" in data:
+    if data.get("GitHubPullRequestDocumentConfigurationFieldMappings") is not None:
         import capo_kendra.types.data_source_to_index_field_mapping_list
 
         out["git_hub_pull_request_document_configuration_field_mappings"] = (
@@ -426,7 +426,10 @@ def deserialize_aws_json_1_1(data: dict) -> GitHubConfiguration:
                 data["GitHubPullRequestDocumentConfigurationFieldMappings"]
             )
         )
-    if "GitHubPullRequestDocumentAttachmentConfigurationFieldMappings" in data:
+    if (
+        data.get("GitHubPullRequestDocumentAttachmentConfigurationFieldMappings")
+        is not None
+    ):
         import capo_kendra.types.data_source_to_index_field_mapping_list
 
         out["git_hub_pull_request_document_attachment_configuration_field_mappings"] = (

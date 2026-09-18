@@ -23,6 +23,6 @@ def serialize_json(value: TcpRouteMatch) -> dict:
 
 def deserialize_json(data: dict) -> TcpRouteMatch:
     out: TcpRouteMatch = {}  # type: ignore[typeddict-item]
-    if "port" in data:
+    if data.get("port") is not None:
         out["port"] = data["port"]
     return out

@@ -81,9 +81,9 @@ def deserialize_json(
     data: dict,
 ) -> UpdateLakeFormationIdentityCenterConfigurationRequest:
     out: UpdateLakeFormationIdentityCenterConfigurationRequest = {}  # type: ignore[typeddict-item]
-    if "CatalogId" in data:
+    if data.get("CatalogId") is not None:
         out["catalog_id"] = data["CatalogId"]
-    if "ShareRecipients" in data:
+    if data.get("ShareRecipients") is not None:
         import capo_lakeformation.types.data_lake_principal_list
 
         out["share_recipients"] = (
@@ -91,7 +91,7 @@ def deserialize_json(
                 data["ShareRecipients"]
             )
         )
-    if "ServiceIntegrations" in data:
+    if data.get("ServiceIntegrations") is not None:
         import capo_lakeformation.types.service_integration_list
 
         out["service_integrations"] = (
@@ -99,7 +99,7 @@ def deserialize_json(
                 data["ServiceIntegrations"]
             )
         )
-    if "ApplicationStatus" in data:
+    if data.get("ApplicationStatus") is not None:
         import capo_lakeformation.types.application_status
 
         out["application_status"] = (
@@ -107,7 +107,7 @@ def deserialize_json(
                 data["ApplicationStatus"]
             )
         )
-    if "ExternalFiltering" in data:
+    if data.get("ExternalFiltering") is not None:
         import capo_lakeformation.types.external_filtering_configuration
 
         out["external_filtering"] = (

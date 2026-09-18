@@ -29,9 +29,9 @@ def serialize_json(value: FormStyleConfig) -> dict:
 
 
 def deserialize_json(data: dict) -> FormStyleConfig:
-    if "tokenReference" in data:
+    if data.get("tokenReference") is not None:
         return {"tokenReference": data["tokenReference"]}
-    elif "value" in data:
+    elif data.get("value") is not None:
         return {"value": data["value"]}
     else:
         raise DeserializationError("FormStyleConfig: no recognized variant key")

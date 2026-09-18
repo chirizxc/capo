@@ -136,11 +136,11 @@ def serialize_aws_json_1_1(value: UpdateTrialComponentRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateTrialComponentRequest:
     out: UpdateTrialComponentRequest = {}  # type: ignore[typeddict-item]
-    if "TrialComponentName" in data:
+    if data.get("TrialComponentName") is not None:
         out["trial_component_name"] = data["TrialComponentName"]
-    if "DisplayName" in data:
+    if data.get("DisplayName") is not None:
         out["display_name"] = data["DisplayName"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_sagemaker.types.trial_component_status
 
         out["status"] = (
@@ -148,19 +148,19 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateTrialComponentRequest:
                 data["Status"]
             )
         )
-    if "StartTime" in data:
+    if data.get("StartTime") is not None:
         import capo_sagemaker.types.timestamp
 
         out["start_time"] = capo_sagemaker.types.timestamp.deserialize_aws_json_1_1(
             data["StartTime"]
         )
-    if "EndTime" in data:
+    if data.get("EndTime") is not None:
         import capo_sagemaker.types.timestamp
 
         out["end_time"] = capo_sagemaker.types.timestamp.deserialize_aws_json_1_1(
             data["EndTime"]
         )
-    if "Parameters" in data:
+    if data.get("Parameters") is not None:
         import capo_sagemaker.types.trial_component_parameters
 
         out["parameters"] = (
@@ -168,7 +168,7 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateTrialComponentRequest:
                 data["Parameters"]
             )
         )
-    if "ParametersToRemove" in data:
+    if data.get("ParametersToRemove") is not None:
         import capo_sagemaker.types.list_trial_component_key256
 
         out["parameters_to_remove"] = (
@@ -176,7 +176,7 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateTrialComponentRequest:
                 data["ParametersToRemove"]
             )
         )
-    if "InputArtifacts" in data:
+    if data.get("InputArtifacts") is not None:
         import capo_sagemaker.types.trial_component_artifacts
 
         out["input_artifacts"] = (
@@ -184,7 +184,7 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateTrialComponentRequest:
                 data["InputArtifacts"]
             )
         )
-    if "InputArtifactsToRemove" in data:
+    if data.get("InputArtifactsToRemove") is not None:
         import capo_sagemaker.types.list_trial_component_key256
 
         out["input_artifacts_to_remove"] = (
@@ -192,7 +192,7 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateTrialComponentRequest:
                 data["InputArtifactsToRemove"]
             )
         )
-    if "OutputArtifacts" in data:
+    if data.get("OutputArtifacts") is not None:
         import capo_sagemaker.types.trial_component_artifacts
 
         out["output_artifacts"] = (
@@ -200,7 +200,7 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateTrialComponentRequest:
                 data["OutputArtifacts"]
             )
         )
-    if "OutputArtifactsToRemove" in data:
+    if data.get("OutputArtifactsToRemove") is not None:
         import capo_sagemaker.types.list_trial_component_key256
 
         out["output_artifacts_to_remove"] = (

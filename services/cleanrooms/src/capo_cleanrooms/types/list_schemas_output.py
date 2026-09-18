@@ -33,7 +33,7 @@ def serialize_json(value: ListSchemasOutput) -> dict:
 
 def deserialize_json(data: dict) -> ListSchemasOutput:
     out: ListSchemasOutput = {}  # type: ignore[typeddict-item]
-    if "schemaSummaries" in data:
+    if data.get("schemaSummaries") is not None:
         import capo_cleanrooms.types.schema_summary_list
 
         out["schema_summaries"] = (
@@ -43,6 +43,6 @@ def deserialize_json(data: dict) -> ListSchemasOutput:
         )
     else:
         raise DeserializationError("ListSchemasOutput.schema_summaries required")
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

@@ -11,4 +11,4 @@ def serialize_json(value: CryptoProvidersList) -> list:
 
 
 def deserialize_json(data: list) -> CryptoProvidersList:
-    return list(data)
+    return [item for item in data if item is not None]

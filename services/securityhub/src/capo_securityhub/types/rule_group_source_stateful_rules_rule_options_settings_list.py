@@ -16,4 +16,4 @@ def serialize_json(value: RuleGroupSourceStatefulRulesRuleOptionsSettingsList) -
 
 
 def deserialize_json(data: list) -> RuleGroupSourceStatefulRulesRuleOptionsSettingsList:
-    return list(data)
+    return [item for item in data if item is not None]

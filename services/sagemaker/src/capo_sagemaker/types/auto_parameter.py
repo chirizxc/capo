@@ -28,8 +28,8 @@ def serialize_aws_json_1_1(value: AutoParameter) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AutoParameter:
     out: AutoParameter = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "ValueHint" in data:
+    if data.get("ValueHint") is not None:
         out["value_hint"] = data["ValueHint"]
     return out

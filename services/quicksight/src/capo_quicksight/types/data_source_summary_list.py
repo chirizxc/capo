@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> DataSourceSummaryList:
 
     out: DataSourceSummaryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_quicksight.types.data_source_summary.deserialize_json(item))
     return out

@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> DifferentialPrivacyColumnList:
 
     out: DifferentialPrivacyColumnList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_cleanrooms.types.differential_privacy_column.deserialize_json(item)
         )

@@ -25,13 +25,21 @@ def serialize_aws_json_1_0(value: IdleSummary) -> dict:
         out["name"] = capo_compute_optimizer.types.idle_finding.serialize_aws_json_1_0(
             value["name"]
         )
-    out["value"] = value.get("value", 0)
+    out["value"] = (
+        "NaN"
+        if value.get("value", 0) != value.get("value", 0)
+        else "Infinity"
+        if value.get("value", 0) == float("inf")
+        else "-Infinity"
+        if value.get("value", 0) == float("-inf")
+        else value.get("value", 0)
+    )
     return out
 
 
 def deserialize_aws_json_1_0(data: dict) -> IdleSummary:
     out: IdleSummary = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         import capo_compute_optimizer.types.idle_finding
 
         out["name"] = (
@@ -39,8 +47,8 @@ def deserialize_aws_json_1_0(data: dict) -> IdleSummary:
                 data["name"]
             )
         )
-    if "value" in data:
-        out["value"] = data["value"]
+    if data.get("value") is not None:
+        out["value"] = float(data["value"])
     else:
         out["value"] = 0
     return out

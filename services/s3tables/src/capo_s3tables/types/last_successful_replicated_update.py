@@ -23,9 +23,9 @@ class LastSuccessfulReplicatedUpdate(TypedDict, closed=True):
 def serialize_json(value: LastSuccessfulReplicatedUpdate) -> dict:
     out: dict = {}
     out["metadataLocation"] = value["metadata_location"]
-    import capo_s3tables.types._prelude.timestamp
+    import capo_s3tables._protocol.serialize
 
-    out["timestamp"] = capo_s3tables.types._prelude.timestamp.serialize_json(
+    out["timestamp"] = capo_s3tables._protocol.serialize.fmt_date_time(
         value["timestamp"]
     )
     return out
@@ -33,17 +33,17 @@ def serialize_json(value: LastSuccessfulReplicatedUpdate) -> dict:
 
 def deserialize_json(data: dict) -> LastSuccessfulReplicatedUpdate:
     out: LastSuccessfulReplicatedUpdate = {}  # type: ignore[typeddict-item]
-    if "metadataLocation" in data:
+    if data.get("metadataLocation") is not None:
         out["metadata_location"] = data["metadataLocation"]
     else:
         raise DeserializationError(
             "LastSuccessfulReplicatedUpdate.metadata_location required"
         )
-    if "timestamp" in data:
-        import capo_s3tables.types._prelude.timestamp
+    if data.get("timestamp") is not None:
+        import datetime
 
-        out["timestamp"] = capo_s3tables.types._prelude.timestamp.deserialize_json(
-            data["timestamp"]
+        out["timestamp"] = datetime.datetime.fromisoformat(
+            data["timestamp"].replace("Z", "+00:00")
         )
     else:
         raise DeserializationError("LastSuccessfulReplicatedUpdate.timestamp required")

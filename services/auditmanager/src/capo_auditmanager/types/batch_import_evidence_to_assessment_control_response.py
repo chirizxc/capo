@@ -31,7 +31,7 @@ def serialize_json(value: BatchImportEvidenceToAssessmentControlResponse) -> dic
 
 def deserialize_json(data: dict) -> BatchImportEvidenceToAssessmentControlResponse:
     out: BatchImportEvidenceToAssessmentControlResponse = {}  # type: ignore[typeddict-item]
-    if "errors" in data:
+    if data.get("errors") is not None:
         import capo_auditmanager.types.batch_import_evidence_to_assessment_control_errors
 
         out["errors"] = (

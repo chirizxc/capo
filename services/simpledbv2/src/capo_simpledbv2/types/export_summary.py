@@ -44,11 +44,11 @@ def serialize_json(value: ExportSummary) -> dict:
 
 def deserialize_json(data: dict) -> ExportSummary:
     out: ExportSummary = {}  # type: ignore[typeddict-item]
-    if "exportArn" in data:
+    if data.get("exportArn") is not None:
         out["export_arn"] = data["exportArn"]
     else:
         raise DeserializationError("ExportSummary.export_arn required")
-    if "exportStatus" in data:
+    if data.get("exportStatus") is not None:
         import capo_simpledbv2.types.export_status
 
         out["export_status"] = capo_simpledbv2.types.export_status.deserialize_json(
@@ -56,7 +56,7 @@ def deserialize_json(data: dict) -> ExportSummary:
         )
     else:
         raise DeserializationError("ExportSummary.export_status required")
-    if "requestedAt" in data:
+    if data.get("requestedAt") is not None:
         import capo_simpledbv2.types.requested_at
 
         out["requested_at"] = capo_simpledbv2.types.requested_at.deserialize_json(
@@ -64,7 +64,7 @@ def deserialize_json(data: dict) -> ExportSummary:
         )
     else:
         raise DeserializationError("ExportSummary.requested_at required")
-    if "domainName" in data:
+    if data.get("domainName") is not None:
         out["domain_name"] = data["domainName"]
     else:
         raise DeserializationError("ExportSummary.domain_name required")

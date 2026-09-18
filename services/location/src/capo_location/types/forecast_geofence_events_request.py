@@ -42,7 +42,15 @@ def serialize_json(value: ForecastGeofenceEventsRequest) -> dict:
         )
     )
     if "time_horizon_minutes" in value:
-        out["TimeHorizonMinutes"] = value["time_horizon_minutes"]
+        out["TimeHorizonMinutes"] = (
+            "NaN"
+            if value["time_horizon_minutes"] != value["time_horizon_minutes"]
+            else "Infinity"
+            if value["time_horizon_minutes"] == float("inf")
+            else "-Infinity"
+            if value["time_horizon_minutes"] == float("-inf")
+            else value["time_horizon_minutes"]
+        )
     if "distance_unit" in value:
         out["DistanceUnit"] = value["distance_unit"]
     if "speed_unit" in value:
@@ -56,7 +64,7 @@ def serialize_json(value: ForecastGeofenceEventsRequest) -> dict:
 
 def deserialize_json(data: dict) -> ForecastGeofenceEventsRequest:
     out: ForecastGeofenceEventsRequest = {}  # type: ignore[typeddict-item]
-    if "DeviceState" in data:
+    if data.get("DeviceState") is not None:
         import capo_location.types.forecast_geofence_events_device_state
 
         out["device_state"] = (
@@ -68,14 +76,14 @@ def deserialize_json(data: dict) -> ForecastGeofenceEventsRequest:
         raise DeserializationError(
             "ForecastGeofenceEventsRequest.device_state required"
         )
-    if "TimeHorizonMinutes" in data:
-        out["time_horizon_minutes"] = data["TimeHorizonMinutes"]
-    if "DistanceUnit" in data:
+    if data.get("TimeHorizonMinutes") is not None:
+        out["time_horizon_minutes"] = float(data["TimeHorizonMinutes"])
+    if data.get("DistanceUnit") is not None:
         out["distance_unit"] = data["DistanceUnit"]
-    if "SpeedUnit" in data:
+    if data.get("SpeedUnit") is not None:
         out["speed_unit"] = data["SpeedUnit"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
     return out

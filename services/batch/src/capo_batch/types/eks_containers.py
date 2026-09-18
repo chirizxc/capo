@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> EksContainers:
 
     out: EksContainers = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_batch.types.eks_container.deserialize_json(item))
     return out

@@ -38,13 +38,13 @@ def deserialize_aws_json_1_0(
     data: dict,
 ) -> ProtectConfigurationRuleSetNumberOverrideFilterItem:
     out: ProtectConfigurationRuleSetNumberOverrideFilterItem = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError(
             "ProtectConfigurationRuleSetNumberOverrideFilterItem.name required"
         )
-    if "Values" in data:
+    if data.get("Values") is not None:
         import capo_pinpoint_sms_voice_v2.types.filter_value_list
 
         out["values"] = (

@@ -25,6 +25,6 @@ def serialize_aws_json_1_1(value: NotebookInstanceLifecycleHook) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> NotebookInstanceLifecycleHook:
     out: NotebookInstanceLifecycleHook = {}  # type: ignore[typeddict-item]
-    if "Content" in data:
+    if data.get("Content") is not None:
         out["content"] = data["Content"]
     return out

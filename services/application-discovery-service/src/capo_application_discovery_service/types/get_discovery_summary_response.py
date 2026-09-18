@@ -83,23 +83,23 @@ def serialize_aws_json_1_1(value: GetDiscoverySummaryResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetDiscoverySummaryResponse:
     out: GetDiscoverySummaryResponse = {}  # type: ignore[typeddict-item]
-    if "servers" in data:
+    if data.get("servers") is not None:
         out["servers"] = data["servers"]
     else:
         out["servers"] = 0
-    if "applications" in data:
+    if data.get("applications") is not None:
         out["applications"] = data["applications"]
     else:
         out["applications"] = 0
-    if "serversMappedToApplications" in data:
+    if data.get("serversMappedToApplications") is not None:
         out["servers_mapped_to_applications"] = data["serversMappedToApplications"]
     else:
         out["servers_mapped_to_applications"] = 0
-    if "serversMappedtoTags" in data:
+    if data.get("serversMappedtoTags") is not None:
         out["servers_mappedto_tags"] = data["serversMappedtoTags"]
     else:
         out["servers_mappedto_tags"] = 0
-    if "agentSummary" in data:
+    if data.get("agentSummary") is not None:
         import capo_application_discovery_service.types.customer_agent_info
 
         out["agent_summary"] = (
@@ -107,7 +107,7 @@ def deserialize_aws_json_1_1(data: dict) -> GetDiscoverySummaryResponse:
                 data["agentSummary"]
             )
         )
-    if "connectorSummary" in data:
+    if data.get("connectorSummary") is not None:
         import capo_application_discovery_service.types.customer_connector_info
 
         out["connector_summary"] = (
@@ -115,7 +115,7 @@ def deserialize_aws_json_1_1(data: dict) -> GetDiscoverySummaryResponse:
                 data["connectorSummary"]
             )
         )
-    if "meCollectorSummary" in data:
+    if data.get("meCollectorSummary") is not None:
         import capo_application_discovery_service.types.customer_me_collector_info
 
         out["me_collector_summary"] = (
@@ -123,7 +123,7 @@ def deserialize_aws_json_1_1(data: dict) -> GetDiscoverySummaryResponse:
                 data["meCollectorSummary"]
             )
         )
-    if "agentlessCollectorSummary" in data:
+    if data.get("agentlessCollectorSummary") is not None:
         import capo_application_discovery_service.types.customer_agentless_collector_info
 
         out["agentless_collector_summary"] = (

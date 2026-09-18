@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> __listOfListedFlow:
 
     out: __listOfListedFlow = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_mediaconnect.types.listed_flow.deserialize_json(item))
     return out

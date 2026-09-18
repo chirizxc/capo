@@ -25,6 +25,8 @@ def deserialize_json(data: list) -> UserJourneySummaryList:
 
     out: UserJourneySummaryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_resiliencehubv2.types.user_journey_summary.deserialize_json(item)
         )

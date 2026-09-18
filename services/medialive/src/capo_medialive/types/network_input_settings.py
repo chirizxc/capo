@@ -57,7 +57,7 @@ def serialize_json(value: NetworkInputSettings) -> dict:
 
 def deserialize_json(data: dict) -> NetworkInputSettings:
     out: NetworkInputSettings = {}  # type: ignore[typeddict-item]
-    if "hlsInputSettings" in data:
+    if data.get("hlsInputSettings") is not None:
         import capo_medialive.types.hls_input_settings
 
         out["hls_input_settings"] = (
@@ -65,7 +65,7 @@ def deserialize_json(data: dict) -> NetworkInputSettings:
                 data["hlsInputSettings"]
             )
         )
-    if "serverValidation" in data:
+    if data.get("serverValidation") is not None:
         import capo_medialive.types.network_input_server_validation
 
         out["server_validation"] = (
@@ -73,7 +73,7 @@ def deserialize_json(data: dict) -> NetworkInputSettings:
                 data["serverValidation"]
             )
         )
-    if "multicastInputSettings" in data:
+    if data.get("multicastInputSettings") is not None:
         import capo_medialive.types.multicast_input_settings
 
         out["multicast_input_settings"] = (

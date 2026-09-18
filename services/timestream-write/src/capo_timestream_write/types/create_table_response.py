@@ -27,7 +27,7 @@ def serialize_aws_json_1_0(value: CreateTableResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CreateTableResponse:
     out: CreateTableResponse = {}  # type: ignore[typeddict-item]
-    if "Table" in data:
+    if data.get("Table") is not None:
         import capo_timestream_write.types.table
 
         out["table"] = capo_timestream_write.types.table.deserialize_aws_json_1_0(

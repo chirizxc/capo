@@ -30,11 +30,11 @@ def serialize_aws_json_1_1(value: RetentionConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RetentionConfiguration:
     out: RetentionConfiguration = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("RetentionConfiguration.name required")
-    if "RetentionPeriodInDays" in data:
+    if data.get("RetentionPeriodInDays") is not None:
         out["retention_period_in_days"] = data["RetentionPeriodInDays"]
     else:
         raise DeserializationError(

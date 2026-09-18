@@ -38,19 +38,19 @@ def serialize_aws_json_1_1(value: UpdateInstanceCustomHealthStatusRequest) -> di
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateInstanceCustomHealthStatusRequest:
     out: UpdateInstanceCustomHealthStatusRequest = {}  # type: ignore[typeddict-item]
-    if "ServiceId" in data:
+    if data.get("ServiceId") is not None:
         out["service_id"] = data["ServiceId"]
     else:
         raise DeserializationError(
             "UpdateInstanceCustomHealthStatusRequest.service_id required"
         )
-    if "InstanceId" in data:
+    if data.get("InstanceId") is not None:
         out["instance_id"] = data["InstanceId"]
     else:
         raise DeserializationError(
             "UpdateInstanceCustomHealthStatusRequest.instance_id required"
         )
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_servicediscovery.types.custom_health_status
 
         out["status"] = (

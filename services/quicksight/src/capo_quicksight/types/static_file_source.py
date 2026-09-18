@@ -44,7 +44,7 @@ def serialize_json(value: StaticFileSource) -> dict:
 
 def deserialize_json(data: dict) -> StaticFileSource:
     out: StaticFileSource = {}  # type: ignore[typeddict-item]
-    if "UrlOptions" in data:
+    if data.get("UrlOptions") is not None:
         import capo_quicksight.types.static_file_url_source_options
 
         out["url_options"] = (
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> StaticFileSource:
                 data["UrlOptions"]
             )
         )
-    if "S3Options" in data:
+    if data.get("S3Options") is not None:
         import capo_quicksight.types.static_file_s3_source_options
 
         out["s3_options"] = (

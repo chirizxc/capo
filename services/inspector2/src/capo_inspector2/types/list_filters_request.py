@@ -44,16 +44,16 @@ def serialize_json(value: ListFiltersRequest) -> dict:
 
 def deserialize_json(data: dict) -> ListFiltersRequest:
     out: ListFiltersRequest = {}  # type: ignore[typeddict-item]
-    if "arns" in data:
+    if data.get("arns") is not None:
         import capo_inspector2.types.filter_arn_list
 
         out["arns"] = capo_inspector2.types.filter_arn_list.deserialize_json(
             data["arns"]
         )
-    if "action" in data:
+    if data.get("action") is not None:
         out["action"] = data["action"]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
     return out

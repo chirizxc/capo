@@ -28,7 +28,7 @@ def serialize_json(value: CreateDataLakeNamespaceResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateDataLakeNamespaceResponse:
     out: CreateDataLakeNamespaceResponse = {}  # type: ignore[typeddict-item]
-    if "namespace" in data:
+    if data.get("namespace") is not None:
         import capo_supplychain.types.data_lake_namespace
 
         out["namespace"] = capo_supplychain.types.data_lake_namespace.deserialize_json(

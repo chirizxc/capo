@@ -24,7 +24,7 @@ def serialize_aws_json_1_0(value: ClientTokenConflictException_) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ClientTokenConflictException_:
     out: ClientTokenConflictException_ = {}  # type: ignore[typeddict-item]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     return out
 
@@ -34,15 +34,18 @@ class ClientTokenConflictException(ServiceError):
 
     code: str | None = "ClientTokenConflictException"
 
-    def __init__(self, data: ClientTokenConflictException_):
+    def __init__(self, data: ClientTokenConflictException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="ClientTokenConflictException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_0(cls, data: dict) -> "ClientTokenConflictException":
-        return cls(deserialize_aws_json_1_0(data))
+    def from_aws_json_1_0(
+        cls, data: dict, message: str | None = None
+    ) -> "ClientTokenConflictException":
+        return cls(deserialize_aws_json_1_0(data), message)

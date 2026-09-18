@@ -25,6 +25,8 @@ def deserialize_json(data: list) -> CookieSpecifications:
 
     out: CookieSpecifications = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_workspaces_web.types.cookie_specification.deserialize_json(item)
         )

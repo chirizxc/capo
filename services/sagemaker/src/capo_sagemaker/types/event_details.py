@@ -29,7 +29,7 @@ def serialize_aws_json_1_1(value: EventDetails) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> EventDetails:
     out: EventDetails = {}  # type: ignore[typeddict-item]
-    if "EventMetadata" in data:
+    if data.get("EventMetadata") is not None:
         import capo_sagemaker.types.event_metadata
 
         out["event_metadata"] = (

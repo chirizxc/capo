@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: PullRequestStatusChangedEventMetadata) -> dict
 
 def deserialize_aws_json_1_1(data: dict) -> PullRequestStatusChangedEventMetadata:
     out: PullRequestStatusChangedEventMetadata = {}  # type: ignore[typeddict-item]
-    if "pullRequestStatus" in data:
+    if data.get("pullRequestStatus") is not None:
         import capo_codecommit.types.pull_request_status_enum
 
         out["pull_request_status"] = (

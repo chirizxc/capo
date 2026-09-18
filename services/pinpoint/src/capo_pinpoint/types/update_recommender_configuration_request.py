@@ -33,7 +33,7 @@ def serialize_json(value: UpdateRecommenderConfigurationRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateRecommenderConfigurationRequest:
     out: UpdateRecommenderConfigurationRequest = {}  # type: ignore[typeddict-item]
-    if "UpdateRecommenderConfiguration" in data:
+    if data.get("UpdateRecommenderConfiguration") is not None:
         import capo_pinpoint.types.update_recommender_configuration_shape
 
         out["update_recommender_configuration"] = (

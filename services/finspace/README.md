@@ -13,9 +13,9 @@ from capo_finspace import AsyncfinspaceClient
 
 
 async def main():
-    async with AsyncfinspaceClient() as s3:
+    async with AsyncfinspaceClient() as finspace:
         # Example: call the create_environment operation
-        response = await s3.create_environment()
+        response = await finspace.create_environment()
         print(response["environment_id"])
 ```
 
@@ -28,9 +28,9 @@ from capo_finspace import AsyncfinspaceClient
 
 
 async def main():
-    async with AsyncfinspaceClient() as s3:
-        # Example: paginate over list_kx_environments
-        async for item in s3.iter_list_kx_environments():
+    async with AsyncfinspaceClient() as finspace:
+        # Example: paginate over list_kx_changesets
+        async for item in finspace.iter_list_kx_changesets():
             print(item)
 ```
 
@@ -44,9 +44,9 @@ from capo_finspace.error import AccessDeniedException
 
 
 async def main():
-    async with AsyncfinspaceClient() as s3:
+    async with AsyncfinspaceClient() as finspace:
         try:
-            await s3.create_environment()
+            await finspace.create_environment()
         except AccessDeniedException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -63,13 +63,13 @@ from capo_finspace import AsyncfinspaceClient
 
 
 async def main():
-    async with AsyncfinspaceClient() as s3:
+    async with AsyncfinspaceClient() as finspace:
         # Default: 3 attempts for every operation
-        response = await s3.create_environment()
+        response = await finspace.create_environment()
 
         # Override per operation
-        response = await s3.create_environment(config_overrides={"retry_max_attempts": 5})
+        response = await finspace.create_environment(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.create_environment(config_overrides={"retry_max_attempts": 1})
+        response = await finspace.create_environment(config_overrides={"retry_max_attempts": 1})
 ```

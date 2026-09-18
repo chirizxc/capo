@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> VpcEndpointSummaryList:
 
     out: VpcEndpointSummaryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_elasticsearch_service.types.vpc_endpoint_summary.deserialize_json(item)
         )

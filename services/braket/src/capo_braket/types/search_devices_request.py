@@ -36,11 +36,11 @@ def serialize_json(value: SearchDevicesRequest) -> dict:
 
 def deserialize_json(data: dict) -> SearchDevicesRequest:
     out: SearchDevicesRequest = {}  # type: ignore[typeddict-item]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
-    if "filters" in data:
+    if data.get("filters") is not None:
         import capo_braket.types.search_devices_filter_list
 
         out["filters"] = capo_braket.types.search_devices_filter_list.deserialize_json(

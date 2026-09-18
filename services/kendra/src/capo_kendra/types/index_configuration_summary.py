@@ -62,17 +62,17 @@ def serialize_aws_json_1_1(value: IndexConfigurationSummary) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> IndexConfigurationSummary:
     out: IndexConfigurationSummary = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "Edition" in data:
+    if data.get("Edition") is not None:
         import capo_kendra.types.index_edition
 
         out["edition"] = capo_kendra.types.index_edition.deserialize_aws_json_1_1(
             data["Edition"]
         )
-    if "CreatedAt" in data:
+    if data.get("CreatedAt") is not None:
         import capo_kendra.types.timestamp
 
         out["created_at"] = capo_kendra.types.timestamp.deserialize_aws_json_1_1(
@@ -80,7 +80,7 @@ def deserialize_aws_json_1_1(data: dict) -> IndexConfigurationSummary:
         )
     else:
         raise DeserializationError("IndexConfigurationSummary.created_at required")
-    if "UpdatedAt" in data:
+    if data.get("UpdatedAt") is not None:
         import capo_kendra.types.timestamp
 
         out["updated_at"] = capo_kendra.types.timestamp.deserialize_aws_json_1_1(
@@ -88,7 +88,7 @@ def deserialize_aws_json_1_1(data: dict) -> IndexConfigurationSummary:
         )
     else:
         raise DeserializationError("IndexConfigurationSummary.updated_at required")
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_kendra.types.index_status
 
         out["status"] = capo_kendra.types.index_status.deserialize_aws_json_1_1(

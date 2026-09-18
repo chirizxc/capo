@@ -62,11 +62,11 @@ def serialize_aws_json_1_0(value: ListConnectionsRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ListConnectionsRequest:
     out: ListConnectionsRequest = {}  # type: ignore[typeddict-item]
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "state" in data:
+    if data.get("state") is not None:
         import capo_interconnect.types.connection_state
 
         out["state"] = (
@@ -74,15 +74,15 @@ def deserialize_aws_json_1_0(data: dict) -> ListConnectionsRequest:
                 data["state"]
             )
         )
-    if "environmentId" in data:
+    if data.get("environmentId") is not None:
         out["environment_id"] = data["environmentId"]
-    if "provider" in data:
+    if data.get("provider") is not None:
         import capo_interconnect.types.provider
 
         out["provider"] = capo_interconnect.types.provider.deserialize_aws_json_1_0(
             data["provider"]
         )
-    if "attachPoint" in data:
+    if data.get("attachPoint") is not None:
         import capo_interconnect.types.attach_point
 
         out["attach_point"] = (

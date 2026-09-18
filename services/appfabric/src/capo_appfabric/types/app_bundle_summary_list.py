@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> AppBundleSummaryList:
 
     out: AppBundleSummaryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_appfabric.types.app_bundle_summary.deserialize_json(item))
     return out

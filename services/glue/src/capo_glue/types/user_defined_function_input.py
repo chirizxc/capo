@@ -58,25 +58,25 @@ def serialize_aws_json_1_1(value: UserDefinedFunctionInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UserDefinedFunctionInput:
     out: UserDefinedFunctionInput = {}  # type: ignore[typeddict-item]
-    if "FunctionName" in data:
+    if data.get("FunctionName") is not None:
         out["function_name"] = data["FunctionName"]
-    if "ClassName" in data:
+    if data.get("ClassName") is not None:
         out["class_name"] = data["ClassName"]
-    if "OwnerName" in data:
+    if data.get("OwnerName") is not None:
         out["owner_name"] = data["OwnerName"]
-    if "FunctionType" in data:
+    if data.get("FunctionType") is not None:
         import capo_glue.types.function_type
 
         out["function_type"] = capo_glue.types.function_type.deserialize_aws_json_1_1(
             data["FunctionType"]
         )
-    if "OwnerType" in data:
+    if data.get("OwnerType") is not None:
         import capo_glue.types.principal_type
 
         out["owner_type"] = capo_glue.types.principal_type.deserialize_aws_json_1_1(
             data["OwnerType"]
         )
-    if "ResourceUris" in data:
+    if data.get("ResourceUris") is not None:
         import capo_glue.types.resource_uri_list
 
         out["resource_uris"] = (

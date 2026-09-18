@@ -36,9 +36,9 @@ def serialize_json(value: GetUtterancesViewResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetUtterancesViewResponse:
     out: GetUtterancesViewResponse = {}  # type: ignore[typeddict-item]
-    if "botName" in data:
+    if data.get("botName") is not None:
         out["bot_name"] = data["botName"]
-    if "utterances" in data:
+    if data.get("utterances") is not None:
         import capo_lex_model_building_service.types.lists_of_utterances
 
         out["utterances"] = (

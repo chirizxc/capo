@@ -69,7 +69,7 @@ def serialize_json(value: StartCodegenJobData) -> dict:
 
 def deserialize_json(data: dict) -> StartCodegenJobData:
     out: StartCodegenJobData = {}  # type: ignore[typeddict-item]
-    if "renderConfig" in data:
+    if data.get("renderConfig") is not None:
         import capo_amplifyuibuilder.types.codegen_job_render_config
 
         out["render_config"] = (
@@ -79,7 +79,7 @@ def deserialize_json(data: dict) -> StartCodegenJobData:
         )
     else:
         raise DeserializationError("StartCodegenJobData.render_config required")
-    if "genericDataSchema" in data:
+    if data.get("genericDataSchema") is not None:
         import capo_amplifyuibuilder.types.codegen_job_generic_data_schema
 
         out["generic_data_schema"] = (
@@ -87,9 +87,9 @@ def deserialize_json(data: dict) -> StartCodegenJobData:
                 data["genericDataSchema"]
             )
         )
-    if "autoGenerateForms" in data:
+    if data.get("autoGenerateForms") is not None:
         out["auto_generate_forms"] = data["autoGenerateForms"]
-    if "features" in data:
+    if data.get("features") is not None:
         import capo_amplifyuibuilder.types.codegen_feature_flags
 
         out["features"] = (
@@ -97,7 +97,7 @@ def deserialize_json(data: dict) -> StartCodegenJobData:
                 data["features"]
             )
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_amplifyuibuilder.types.tags
 
         out["tags"] = capo_amplifyuibuilder.types.tags.deserialize_json(data["tags"])

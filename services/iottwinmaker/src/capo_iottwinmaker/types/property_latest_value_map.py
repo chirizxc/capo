@@ -25,6 +25,8 @@ def serialize_json(input_to_serialize: PropertyLatestValueMap) -> dict:
 def deserialize_json(data: dict) -> PropertyLatestValueMap:
     out: PropertyLatestValueMap = {}
     for key, value in data.items():
+        if value is None:
+            continue
         import capo_iottwinmaker.types.property_latest_value
 
         out[key] = capo_iottwinmaker.types.property_latest_value.deserialize_json(value)

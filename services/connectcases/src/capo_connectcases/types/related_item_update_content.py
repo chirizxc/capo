@@ -47,7 +47,7 @@ def serialize_json(value: RelatedItemUpdateContent) -> dict:
 
 
 def deserialize_json(data: dict) -> RelatedItemUpdateContent:
-    if "comment" in data:
+    if data.get("comment") is not None:
         import capo_connectcases.types.comment_update_content
 
         return {
@@ -55,7 +55,7 @@ def deserialize_json(data: dict) -> RelatedItemUpdateContent:
                 data["comment"]
             )
         }
-    elif "custom" in data:
+    elif data.get("custom") is not None:
         import capo_connectcases.types.custom_update_content
 
         return {

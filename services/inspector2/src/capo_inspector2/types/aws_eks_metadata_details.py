@@ -35,9 +35,9 @@ def serialize_json(value: AwsEksMetadataDetails) -> dict:
 
 def deserialize_json(data: dict) -> AwsEksMetadataDetails:
     out: AwsEksMetadataDetails = {}  # type: ignore[typeddict-item]
-    if "namespace" in data:
+    if data.get("namespace") is not None:
         out["namespace"] = data["namespace"]
-    if "workloadInfoList" in data:
+    if data.get("workloadInfoList") is not None:
         import capo_inspector2.types.aws_eks_workload_info_list
 
         out["workload_info_list"] = (

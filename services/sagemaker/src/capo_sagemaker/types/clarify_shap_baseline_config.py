@@ -35,10 +35,10 @@ def serialize_aws_json_1_1(value: ClarifyShapBaselineConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ClarifyShapBaselineConfig:
     out: ClarifyShapBaselineConfig = {}  # type: ignore[typeddict-item]
-    if "MimeType" in data:
+    if data.get("MimeType") is not None:
         out["mime_type"] = data["MimeType"]
-    if "ShapBaseline" in data:
+    if data.get("ShapBaseline") is not None:
         out["shap_baseline"] = data["ShapBaseline"]
-    if "ShapBaselineUri" in data:
+    if data.get("ShapBaselineUri") is not None:
         out["shap_baseline_uri"] = data["ShapBaselineUri"]
     return out

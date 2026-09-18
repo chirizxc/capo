@@ -31,8 +31,8 @@ def serialize_json(value: ResaleAuthorizationCreatedDateFilterDateRange) -> dict
 
 def deserialize_json(data: dict) -> ResaleAuthorizationCreatedDateFilterDateRange:
     out: ResaleAuthorizationCreatedDateFilterDateRange = {}  # type: ignore[typeddict-item]
-    if "AfterValue" in data:
+    if data.get("AfterValue") is not None:
         out["after_value"] = data["AfterValue"]
-    if "BeforeValue" in data:
+    if data.get("BeforeValue") is not None:
         out["before_value"] = data["BeforeValue"]
     return out

@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: ListLoggingConfigurationsResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListLoggingConfigurationsResponse:
     out: ListLoggingConfigurationsResponse = {}  # type: ignore[typeddict-item]
-    if "LoggingConfigurations" in data:
+    if data.get("LoggingConfigurations") is not None:
         import capo_waf_regional.types.logging_configurations
 
         out["logging_configurations"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_1(data: dict) -> ListLoggingConfigurationsResponse:
                 data["LoggingConfigurations"]
             )
         )
-    if "NextMarker" in data:
+    if data.get("NextMarker") is not None:
         out["next_marker"] = data["NextMarker"]
     return out

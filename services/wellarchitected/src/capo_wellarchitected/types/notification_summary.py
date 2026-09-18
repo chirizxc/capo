@@ -40,13 +40,13 @@ def serialize_json(value: NotificationSummary) -> dict:
 
 def deserialize_json(data: dict) -> NotificationSummary:
     out: NotificationSummary = {}  # type: ignore[typeddict-item]
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_wellarchitected.types.notification_type
 
         out["type"] = capo_wellarchitected.types.notification_type.deserialize_json(
             data["Type"]
         )
-    if "LensUpgradeSummary" in data:
+    if data.get("LensUpgradeSummary") is not None:
         import capo_wellarchitected.types.lens_upgrade_summary
 
         out["lens_upgrade_summary"] = (

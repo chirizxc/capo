@@ -62,19 +62,19 @@ def serialize_aws_json_1_1(value: ListDataSourceSyncJobsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListDataSourceSyncJobsRequest:
     out: ListDataSourceSyncJobsRequest = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
     else:
         raise DeserializationError("ListDataSourceSyncJobsRequest.id required")
-    if "IndexId" in data:
+    if data.get("IndexId") is not None:
         out["index_id"] = data["IndexId"]
     else:
         raise DeserializationError("ListDataSourceSyncJobsRequest.index_id required")
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "StartTimeFilter" in data:
+    if data.get("StartTimeFilter") is not None:
         import capo_kendra.types.time_range
 
         out["start_time_filter"] = (
@@ -82,7 +82,7 @@ def deserialize_aws_json_1_1(data: dict) -> ListDataSourceSyncJobsRequest:
                 data["StartTimeFilter"]
             )
         )
-    if "StatusFilter" in data:
+    if data.get("StatusFilter") is not None:
         import capo_kendra.types.data_source_sync_job_status
 
         out["status_filter"] = (

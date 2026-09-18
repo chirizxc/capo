@@ -27,7 +27,7 @@ def serialize_aws_json_1_1(value: GetWorkflowResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetWorkflowResponse:
     out: GetWorkflowResponse = {}  # type: ignore[typeddict-item]
-    if "Workflow" in data:
+    if data.get("Workflow") is not None:
         import capo_glue.types.workflow
 
         out["workflow"] = capo_glue.types.workflow.deserialize_aws_json_1_1(

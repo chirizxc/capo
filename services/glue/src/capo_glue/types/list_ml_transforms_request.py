@@ -57,11 +57,11 @@ def serialize_aws_json_1_1(value: ListMLTransformsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListMLTransformsRequest:
     out: ListMLTransformsRequest = {}  # type: ignore[typeddict-item]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "Filter" in data:
+    if data.get("Filter") is not None:
         import capo_glue.types.transform_filter_criteria
 
         out["filter"] = (
@@ -69,13 +69,13 @@ def deserialize_aws_json_1_1(data: dict) -> ListMLTransformsRequest:
                 data["Filter"]
             )
         )
-    if "Sort" in data:
+    if data.get("Sort") is not None:
         import capo_glue.types.transform_sort_criteria
 
         out["sort"] = capo_glue.types.transform_sort_criteria.deserialize_aws_json_1_1(
             data["Sort"]
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_glue.types.tags_map
 
         out["tags"] = capo_glue.types.tags_map.deserialize_aws_json_1_1(data["Tags"])

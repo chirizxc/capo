@@ -51,11 +51,11 @@ def serialize_json(value: EntityPropertyReference) -> dict:
 
 def deserialize_json(data: dict) -> EntityPropertyReference:
     out: EntityPropertyReference = {}  # type: ignore[typeddict-item]
-    if "componentName" in data:
+    if data.get("componentName") is not None:
         out["component_name"] = data["componentName"]
-    if "componentPath" in data:
+    if data.get("componentPath") is not None:
         out["component_path"] = data["componentPath"]
-    if "externalIdProperty" in data:
+    if data.get("externalIdProperty") is not None:
         import capo_iottwinmaker.types.external_id_property
 
         out["external_id_property"] = (
@@ -63,9 +63,9 @@ def deserialize_json(data: dict) -> EntityPropertyReference:
                 data["externalIdProperty"]
             )
         )
-    if "entityId" in data:
+    if data.get("entityId") is not None:
         out["entity_id"] = data["entityId"]
-    if "propertyName" in data:
+    if data.get("propertyName") is not None:
         out["property_name"] = data["propertyName"]
     else:
         raise DeserializationError("EntityPropertyReference.property_name required")

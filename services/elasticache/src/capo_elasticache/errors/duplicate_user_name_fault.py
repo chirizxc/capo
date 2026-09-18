@@ -37,15 +37,18 @@ class DuplicateUserNameFault(ServiceError):
 
     code: str | None = "DuplicateUserNameFault"
 
-    def __init__(self, data: DuplicateUserNameFault_):
+    def __init__(self, data: DuplicateUserNameFault_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="DuplicateUserNameFault",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_query(cls, el: Element) -> "DuplicateUserNameFault":
-        return cls(deserialize_query(el))
+    def from_query(
+        cls, el: Element, message: str | None = None
+    ) -> "DuplicateUserNameFault":
+        return cls(deserialize_query(el), message)

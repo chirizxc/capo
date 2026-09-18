@@ -50,18 +50,18 @@ def serialize_json(value: NetworkInterface) -> dict:
 
 def deserialize_json(data: dict) -> NetworkInterface:
     out: NetworkInterface = {}  # type: ignore[typeddict-item]
-    if "SubnetId" in data:
+    if data.get("SubnetId") is not None:
         out["subnet_id"] = data["SubnetId"]
-    if "AvailabilityZone" in data:
+    if data.get("AvailabilityZone") is not None:
         out["availability_zone"] = data["AvailabilityZone"]
-    if "ErrorMessage" in data:
+    if data.get("ErrorMessage") is not None:
         out["error_message"] = data["ErrorMessage"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_quicksight.types.network_interface_status
 
         out["status"] = capo_quicksight.types.network_interface_status.deserialize_json(
             data["Status"]
         )
-    if "NetworkInterfaceId" in data:
+    if data.get("NetworkInterfaceId") is not None:
         out["network_interface_id"] = data["NetworkInterfaceId"]
     return out

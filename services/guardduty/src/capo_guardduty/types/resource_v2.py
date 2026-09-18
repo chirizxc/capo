@@ -68,13 +68,13 @@ def serialize_json(value: ResourceV2) -> dict:
 
 def deserialize_json(data: dict) -> ResourceV2:
     out: ResourceV2 = {}  # type: ignore[typeddict-item]
-    if "uid" in data:
+    if data.get("uid") is not None:
         out["uid"] = data["uid"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "accountId" in data:
+    if data.get("accountId") is not None:
         out["account_id"] = data["accountId"]
-    if "resourceType" in data:
+    if data.get("resourceType") is not None:
         import capo_guardduty.types.finding_resource_type
 
         out["resource_type"] = (
@@ -82,17 +82,17 @@ def deserialize_json(data: dict) -> ResourceV2:
                 data["resourceType"]
             )
         )
-    if "region" in data:
+    if data.get("region") is not None:
         out["region"] = data["region"]
-    if "service" in data:
+    if data.get("service") is not None:
         out["service"] = data["service"]
-    if "cloudPartition" in data:
+    if data.get("cloudPartition") is not None:
         out["cloud_partition"] = data["cloudPartition"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_guardduty.types.tags
 
         out["tags"] = capo_guardduty.types.tags.deserialize_json(data["tags"])
-    if "data" in data:
+    if data.get("data") is not None:
         import capo_guardduty.types.resource_data
 
         out["data"] = capo_guardduty.types.resource_data.deserialize_json(data["data"])

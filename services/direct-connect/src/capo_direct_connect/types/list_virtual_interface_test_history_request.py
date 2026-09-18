@@ -62,11 +62,11 @@ def serialize_aws_json_1_1(value: ListVirtualInterfaceTestHistoryRequest) -> dic
 
 def deserialize_aws_json_1_1(data: dict) -> ListVirtualInterfaceTestHistoryRequest:
     out: ListVirtualInterfaceTestHistoryRequest = {}  # type: ignore[typeddict-item]
-    if "testId" in data:
+    if data.get("testId") is not None:
         out["test_id"] = data["testId"]
-    if "virtualInterfaceId" in data:
+    if data.get("virtualInterfaceId") is not None:
         out["virtual_interface_id"] = data["virtualInterfaceId"]
-    if "bgpPeers" in data:
+    if data.get("bgpPeers") is not None:
         import capo_direct_connect.types.bgp_peer_id_list
 
         out["bgp_peers"] = (
@@ -74,10 +74,10 @@ def deserialize_aws_json_1_1(data: dict) -> ListVirtualInterfaceTestHistoryReque
                 data["bgpPeers"]
             )
         )
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

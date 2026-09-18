@@ -58,13 +58,13 @@ def serialize_json(value: ConfigurationSummary) -> dict:
 
 def deserialize_json(data: dict) -> ConfigurationSummary:
     out: ConfigurationSummary = {}  # type: ignore[typeddict-item]
-    if "Sources" in data:
+    if data.get("Sources") is not None:
         import capo_observabilityadmin.types.sources
 
         out["sources"] = capo_observabilityadmin.types.sources.deserialize_json(
             data["Sources"]
         )
-    if "DataSources" in data:
+    if data.get("DataSources") is not None:
         import capo_observabilityadmin.types.data_sources
 
         out["data_sources"] = (
@@ -72,15 +72,15 @@ def deserialize_json(data: dict) -> ConfigurationSummary:
                 data["DataSources"]
             )
         )
-    if "Processors" in data:
+    if data.get("Processors") is not None:
         import capo_observabilityadmin.types.processors
 
         out["processors"] = capo_observabilityadmin.types.processors.deserialize_json(
             data["Processors"]
         )
-    if "ProcessorCount" in data:
+    if data.get("ProcessorCount") is not None:
         out["processor_count"] = data["ProcessorCount"]
-    if "Sinks" in data:
+    if data.get("Sinks") is not None:
         import capo_observabilityadmin.types.sinks
 
         out["sinks"] = capo_observabilityadmin.types.sinks.deserialize_json(

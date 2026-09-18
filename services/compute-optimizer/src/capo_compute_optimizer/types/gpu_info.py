@@ -27,7 +27,7 @@ def serialize_aws_json_1_0(value: GpuInfo) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> GpuInfo:
     out: GpuInfo = {}  # type: ignore[typeddict-item]
-    if "gpus" in data:
+    if data.get("gpus") is not None:
         import capo_compute_optimizer.types.gpus
 
         out["gpus"] = capo_compute_optimizer.types.gpus.deserialize_aws_json_1_0(

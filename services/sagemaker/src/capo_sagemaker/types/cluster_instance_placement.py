@@ -32,8 +32,8 @@ def serialize_aws_json_1_1(value: ClusterInstancePlacement) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ClusterInstancePlacement:
     out: ClusterInstancePlacement = {}  # type: ignore[typeddict-item]
-    if "AvailabilityZone" in data:
+    if data.get("AvailabilityZone") is not None:
         out["availability_zone"] = data["AvailabilityZone"]
-    if "AvailabilityZoneId" in data:
+    if data.get("AvailabilityZoneId") is not None:
         out["availability_zone_id"] = data["AvailabilityZoneId"]
     return out

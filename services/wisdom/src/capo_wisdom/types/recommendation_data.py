@@ -33,7 +33,15 @@ def serialize_json(value: RecommendationData) -> dict:
     import capo_wisdom.types.document
 
     out["document"] = capo_wisdom.types.document.serialize_json(value["document"])
-    out["relevanceScore"] = value.get("relevance_score", 0)
+    out["relevanceScore"] = (
+        "NaN"
+        if value.get("relevance_score", 0) != value.get("relevance_score", 0)
+        else "Infinity"
+        if value.get("relevance_score", 0) == float("inf")
+        else "-Infinity"
+        if value.get("relevance_score", 0) == float("-inf")
+        else value.get("relevance_score", 0)
+    )
     if "relevance_level" in value:
         out["relevanceLevel"] = value["relevance_level"]
     if "type" in value:
@@ -43,22 +51,22 @@ def serialize_json(value: RecommendationData) -> dict:
 
 def deserialize_json(data: dict) -> RecommendationData:
     out: RecommendationData = {}  # type: ignore[typeddict-item]
-    if "recommendationId" in data:
+    if data.get("recommendationId") is not None:
         out["recommendation_id"] = data["recommendationId"]
     else:
         raise DeserializationError("RecommendationData.recommendation_id required")
-    if "document" in data:
+    if data.get("document") is not None:
         import capo_wisdom.types.document
 
         out["document"] = capo_wisdom.types.document.deserialize_json(data["document"])
     else:
         raise DeserializationError("RecommendationData.document required")
-    if "relevanceScore" in data:
-        out["relevance_score"] = data["relevanceScore"]
+    if data.get("relevanceScore") is not None:
+        out["relevance_score"] = float(data["relevanceScore"])
     else:
         out["relevance_score"] = 0
-    if "relevanceLevel" in data:
+    if data.get("relevanceLevel") is not None:
         out["relevance_level"] = data["relevanceLevel"]
-    if "type" in data:
+    if data.get("type") is not None:
         out["type"] = data["type"]
     return out

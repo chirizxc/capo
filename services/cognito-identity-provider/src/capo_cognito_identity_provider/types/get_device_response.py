@@ -30,7 +30,7 @@ def serialize_aws_json_1_1(value: GetDeviceResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetDeviceResponse:
     out: GetDeviceResponse = {}  # type: ignore[typeddict-item]
-    if "Device" in data:
+    if data.get("Device") is not None:
         import capo_cognito_identity_provider.types.device_type
 
         out["device"] = (

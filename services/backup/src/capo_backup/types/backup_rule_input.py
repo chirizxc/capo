@@ -108,53 +108,53 @@ def serialize_json(value: BackupRuleInput) -> dict:
 
 def deserialize_json(data: dict) -> BackupRuleInput:
     out: BackupRuleInput = {}  # type: ignore[typeddict-item]
-    if "RuleName" in data:
+    if data.get("RuleName") is not None:
         out["rule_name"] = data["RuleName"]
     else:
         raise DeserializationError("BackupRuleInput.rule_name required")
-    if "TargetBackupVaultName" in data:
+    if data.get("TargetBackupVaultName") is not None:
         out["target_backup_vault_name"] = data["TargetBackupVaultName"]
     else:
         raise DeserializationError("BackupRuleInput.target_backup_vault_name required")
-    if "TargetLogicallyAirGappedBackupVaultArn" in data:
+    if data.get("TargetLogicallyAirGappedBackupVaultArn") is not None:
         out["target_logically_air_gapped_backup_vault_arn"] = data[
             "TargetLogicallyAirGappedBackupVaultArn"
         ]
-    if "ScheduleExpression" in data:
+    if data.get("ScheduleExpression") is not None:
         out["schedule_expression"] = data["ScheduleExpression"]
-    if "StartWindowMinutes" in data:
+    if data.get("StartWindowMinutes") is not None:
         out["start_window_minutes"] = data["StartWindowMinutes"]
-    if "CompletionWindowMinutes" in data:
+    if data.get("CompletionWindowMinutes") is not None:
         out["completion_window_minutes"] = data["CompletionWindowMinutes"]
-    if "Lifecycle" in data:
+    if data.get("Lifecycle") is not None:
         import capo_backup.types.lifecycle
 
         out["lifecycle"] = capo_backup.types.lifecycle.deserialize_json(
             data["Lifecycle"]
         )
-    if "RecoveryPointTags" in data:
+    if data.get("RecoveryPointTags") is not None:
         import capo_backup.types.tags
 
         out["recovery_point_tags"] = capo_backup.types.tags.deserialize_json(
             data["RecoveryPointTags"]
         )
-    if "CopyActions" in data:
+    if data.get("CopyActions") is not None:
         import capo_backup.types.copy_actions
 
         out["copy_actions"] = capo_backup.types.copy_actions.deserialize_json(
             data["CopyActions"]
         )
-    if "EnableContinuousBackup" in data:
+    if data.get("EnableContinuousBackup") is not None:
         out["enable_continuous_backup"] = data["EnableContinuousBackup"]
-    if "ScheduleExpressionTimezone" in data:
+    if data.get("ScheduleExpressionTimezone") is not None:
         out["schedule_expression_timezone"] = data["ScheduleExpressionTimezone"]
-    if "IndexActions" in data:
+    if data.get("IndexActions") is not None:
         import capo_backup.types.index_actions
 
         out["index_actions"] = capo_backup.types.index_actions.deserialize_json(
             data["IndexActions"]
         )
-    if "ScanActions" in data:
+    if data.get("ScanActions") is not None:
         import capo_backup.types.scan_actions
 
         out["scan_actions"] = capo_backup.types.scan_actions.deserialize_json(

@@ -29,6 +29,8 @@ def deserialize_aws_json_1_1(data: list) -> CustomRoutingAccelerators:
 
     out: CustomRoutingAccelerators = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_global_accelerator.types.custom_routing_accelerator.deserialize_aws_json_1_1(
                 item

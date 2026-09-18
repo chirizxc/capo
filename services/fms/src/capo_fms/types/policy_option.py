@@ -57,7 +57,7 @@ def serialize_aws_json_1_1(value: PolicyOption) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PolicyOption:
     out: PolicyOption = {}  # type: ignore[typeddict-item]
-    if "NetworkFirewallPolicy" in data:
+    if data.get("NetworkFirewallPolicy") is not None:
         import capo_fms.types.network_firewall_policy
 
         out["network_firewall_policy"] = (
@@ -65,7 +65,7 @@ def deserialize_aws_json_1_1(data: dict) -> PolicyOption:
                 data["NetworkFirewallPolicy"]
             )
         )
-    if "ThirdPartyFirewallPolicy" in data:
+    if data.get("ThirdPartyFirewallPolicy") is not None:
         import capo_fms.types.third_party_firewall_policy
 
         out["third_party_firewall_policy"] = (
@@ -73,7 +73,7 @@ def deserialize_aws_json_1_1(data: dict) -> PolicyOption:
                 data["ThirdPartyFirewallPolicy"]
             )
         )
-    if "NetworkAclCommonPolicy" in data:
+    if data.get("NetworkAclCommonPolicy") is not None:
         import capo_fms.types.network_acl_common_policy
 
         out["network_acl_common_policy"] = (

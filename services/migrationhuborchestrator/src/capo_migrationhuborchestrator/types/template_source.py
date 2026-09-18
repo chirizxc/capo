@@ -31,7 +31,7 @@ def serialize_json(value: TemplateSource) -> dict:
 
 
 def deserialize_json(data: dict) -> TemplateSource:
-    if "workflowId" in data:
+    if data.get("workflowId") is not None:
         return {"workflowId": data["workflowId"]}
     else:
         raise DeserializationError("TemplateSource: no recognized variant key")

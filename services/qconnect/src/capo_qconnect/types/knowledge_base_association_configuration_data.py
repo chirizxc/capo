@@ -40,15 +40,15 @@ def serialize_json(value: KnowledgeBaseAssociationConfigurationData) -> dict:
 
 def deserialize_json(data: dict) -> KnowledgeBaseAssociationConfigurationData:
     out: KnowledgeBaseAssociationConfigurationData = {}  # type: ignore[typeddict-item]
-    if "contentTagFilter" in data:
+    if data.get("contentTagFilter") is not None:
         import capo_qconnect.types.tag_filter
 
         out["content_tag_filter"] = capo_qconnect.types.tag_filter.deserialize_json(
             data["contentTagFilter"]
         )
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
-    if "overrideKnowledgeBaseSearchType" in data:
+    if data.get("overrideKnowledgeBaseSearchType") is not None:
         out["override_knowledge_base_search_type"] = data[
             "overrideKnowledgeBaseSearchType"
         ]

@@ -18,6 +18,6 @@ def serialize_json(value: SendWhatsAppMessageOutput) -> dict:
 
 def deserialize_json(data: dict) -> SendWhatsAppMessageOutput:
     out: SendWhatsAppMessageOutput = {}  # type: ignore[typeddict-item]
-    if "messageId" in data:
+    if data.get("messageId") is not None:
         out["message_id"] = data["messageId"]
     return out

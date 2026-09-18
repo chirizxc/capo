@@ -34,7 +34,7 @@ def serialize_json(value: SlaInputContent) -> dict:
 
 
 def deserialize_json(data: dict) -> SlaInputContent:
-    if "slaInputConfiguration" in data:
+    if data.get("slaInputConfiguration") is not None:
         import capo_connectcases.types.sla_input_configuration
 
         return {

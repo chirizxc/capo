@@ -103,11 +103,11 @@ def serialize_json(value: PackageDetails) -> dict:
 
 def deserialize_json(data: dict) -> PackageDetails:
     out: PackageDetails = {}  # type: ignore[typeddict-item]
-    if "PackageID" in data:
+    if data.get("PackageID") is not None:
         out["package_id"] = data["PackageID"]
-    if "PackageName" in data:
+    if data.get("PackageName") is not None:
         out["package_name"] = data["PackageName"]
-    if "PackageType" in data:
+    if data.get("PackageType") is not None:
         import capo_elasticsearch_service.types.package_type
 
         out["package_type"] = (
@@ -115,9 +115,9 @@ def deserialize_json(data: dict) -> PackageDetails:
                 data["PackageType"]
             )
         )
-    if "PackageDescription" in data:
+    if data.get("PackageDescription") is not None:
         out["package_description"] = data["PackageDescription"]
-    if "PackageStatus" in data:
+    if data.get("PackageStatus") is not None:
         import capo_elasticsearch_service.types.package_status
 
         out["package_status"] = (
@@ -125,7 +125,7 @@ def deserialize_json(data: dict) -> PackageDetails:
                 data["PackageStatus"]
             )
         )
-    if "CreatedAt" in data:
+    if data.get("CreatedAt") is not None:
         import capo_elasticsearch_service.types.created_at
 
         out["created_at"] = (
@@ -133,7 +133,7 @@ def deserialize_json(data: dict) -> PackageDetails:
                 data["CreatedAt"]
             )
         )
-    if "LastUpdatedAt" in data:
+    if data.get("LastUpdatedAt") is not None:
         import capo_elasticsearch_service.types.last_updated
 
         out["last_updated_at"] = (
@@ -141,9 +141,9 @@ def deserialize_json(data: dict) -> PackageDetails:
                 data["LastUpdatedAt"]
             )
         )
-    if "AvailablePackageVersion" in data:
+    if data.get("AvailablePackageVersion") is not None:
         out["available_package_version"] = data["AvailablePackageVersion"]
-    if "ErrorDetails" in data:
+    if data.get("ErrorDetails") is not None:
         import capo_elasticsearch_service.types.error_details
 
         out["error_details"] = (

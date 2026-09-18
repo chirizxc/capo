@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> CandidateAddressList:
 
     out: CandidateAddressList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_chime_sdk_voice.types.candidate_address.deserialize_json(item))
     return out

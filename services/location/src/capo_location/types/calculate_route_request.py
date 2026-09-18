@@ -123,7 +123,7 @@ def serialize_json(value: CalculateRouteRequest) -> dict:
 
 def deserialize_json(data: dict) -> CalculateRouteRequest:
     out: CalculateRouteRequest = {}  # type: ignore[typeddict-item]
-    if "DeparturePosition" in data:
+    if data.get("DeparturePosition") is not None:
         import capo_location.types.position
 
         out["departure_position"] = capo_location.types.position.deserialize_json(
@@ -131,7 +131,7 @@ def deserialize_json(data: dict) -> CalculateRouteRequest:
         )
     else:
         raise DeserializationError("CalculateRouteRequest.departure_position required")
-    if "DestinationPosition" in data:
+    if data.get("DestinationPosition") is not None:
         import capo_location.types.position
 
         out["destination_position"] = capo_location.types.position.deserialize_json(
@@ -141,7 +141,7 @@ def deserialize_json(data: dict) -> CalculateRouteRequest:
         raise DeserializationError(
             "CalculateRouteRequest.destination_position required"
         )
-    if "WaypointPositions" in data:
+    if data.get("WaypointPositions") is not None:
         import capo_location.types.waypoint_position_list
 
         out["waypoint_positions"] = (
@@ -149,21 +149,21 @@ def deserialize_json(data: dict) -> CalculateRouteRequest:
                 data["WaypointPositions"]
             )
         )
-    if "TravelMode" in data:
+    if data.get("TravelMode") is not None:
         out["travel_mode"] = data["TravelMode"]
-    if "DepartureTime" in data:
+    if data.get("DepartureTime") is not None:
         import capo_location.types.timestamp
 
         out["departure_time"] = capo_location.types.timestamp.deserialize_json(
             data["DepartureTime"]
         )
-    if "DepartNow" in data:
+    if data.get("DepartNow") is not None:
         out["depart_now"] = data["DepartNow"]
-    if "DistanceUnit" in data:
+    if data.get("DistanceUnit") is not None:
         out["distance_unit"] = data["DistanceUnit"]
-    if "IncludeLegGeometry" in data:
+    if data.get("IncludeLegGeometry") is not None:
         out["include_leg_geometry"] = data["IncludeLegGeometry"]
-    if "CarModeOptions" in data:
+    if data.get("CarModeOptions") is not None:
         import capo_location.types.calculate_route_car_mode_options
 
         out["car_mode_options"] = (
@@ -171,7 +171,7 @@ def deserialize_json(data: dict) -> CalculateRouteRequest:
                 data["CarModeOptions"]
             )
         )
-    if "TruckModeOptions" in data:
+    if data.get("TruckModeOptions") is not None:
         import capo_location.types.calculate_route_truck_mode_options
 
         out["truck_mode_options"] = (
@@ -179,12 +179,12 @@ def deserialize_json(data: dict) -> CalculateRouteRequest:
                 data["TruckModeOptions"]
             )
         )
-    if "ArrivalTime" in data:
+    if data.get("ArrivalTime") is not None:
         import capo_location.types.timestamp
 
         out["arrival_time"] = capo_location.types.timestamp.deserialize_json(
             data["ArrivalTime"]
         )
-    if "OptimizeFor" in data:
+    if data.get("OptimizeFor") is not None:
         out["optimize_for"] = data["OptimizeFor"]
     return out

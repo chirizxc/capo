@@ -23,6 +23,6 @@ def serialize_aws_json_1_1(value: GetHomeRegionResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetHomeRegionResult:
     out: GetHomeRegionResult = {}  # type: ignore[typeddict-item]
-    if "HomeRegion" in data:
+    if data.get("HomeRegion") is not None:
         out["home_region"] = data["HomeRegion"]
     return out

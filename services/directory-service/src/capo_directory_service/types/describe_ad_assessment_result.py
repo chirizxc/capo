@@ -42,7 +42,7 @@ def serialize_aws_json_1_1(value: DescribeADAssessmentResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeADAssessmentResult:
     out: DescribeADAssessmentResult = {}  # type: ignore[typeddict-item]
-    if "Assessment" in data:
+    if data.get("Assessment") is not None:
         import capo_directory_service.types.assessment
 
         out["assessment"] = (
@@ -50,7 +50,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeADAssessmentResult:
                 data["Assessment"]
             )
         )
-    if "AssessmentReports" in data:
+    if data.get("AssessmentReports") is not None:
         import capo_directory_service.types.assessment_reports
 
         out["assessment_reports"] = (

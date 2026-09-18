@@ -29,7 +29,7 @@ def serialize_aws_json_1_1(value: DetectCustomLabelsResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DetectCustomLabelsResponse:
     out: DetectCustomLabelsResponse = {}  # type: ignore[typeddict-item]
-    if "CustomLabels" in data:
+    if data.get("CustomLabels") is not None:
         import capo_rekognition.types.custom_labels
 
         out["custom_labels"] = (

@@ -28,7 +28,7 @@ def deserialize_aws_json_1_1(
     data: dict,
 ) -> CancelDomainTransferToAnotherAwsAccountRequest:
     out: CancelDomainTransferToAnotherAwsAccountRequest = {}  # type: ignore[typeddict-item]
-    if "DomainName" in data:
+    if data.get("DomainName") is not None:
         out["domain_name"] = data["DomainName"]
     else:
         raise DeserializationError(

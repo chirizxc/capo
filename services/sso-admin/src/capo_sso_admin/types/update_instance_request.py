@@ -42,13 +42,13 @@ def serialize_aws_json_1_1(value: UpdateInstanceRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateInstanceRequest:
     out: UpdateInstanceRequest = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "InstanceArn" in data:
+    if data.get("InstanceArn") is not None:
         out["instance_arn"] = data["InstanceArn"]
     else:
         raise DeserializationError("UpdateInstanceRequest.instance_arn required")
-    if "EncryptionConfiguration" in data:
+    if data.get("EncryptionConfiguration") is not None:
         import capo_sso_admin.types.encryption_configuration
 
         out["encryption_configuration"] = (

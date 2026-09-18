@@ -27,6 +27,8 @@ def serialize_aws_json_1_1(input_to_serialize: ExclusionQuotaList) -> dict:
 def deserialize_aws_json_1_1(data: dict) -> ExclusionQuotaList:
     out: ExclusionQuotaList = {}
     for key, value in data.items():
+        if value is None:
+            continue
         import capo_service_quotas.types.quota_info_list
 
         out[key] = capo_service_quotas.types.quota_info_list.deserialize_aws_json_1_1(

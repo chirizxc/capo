@@ -27,6 +27,8 @@ def deserialize_aws_json_1_1(data: list) -> ReservedNodesOfferingList:
 
     out: ReservedNodesOfferingList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_memorydb.types.reserved_nodes_offering.deserialize_aws_json_1_1(item)
         )

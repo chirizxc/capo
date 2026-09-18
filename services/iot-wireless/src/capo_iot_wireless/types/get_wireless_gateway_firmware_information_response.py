@@ -31,7 +31,7 @@ def serialize_json(value: GetWirelessGatewayFirmwareInformationResponse) -> dict
 
 def deserialize_json(data: dict) -> GetWirelessGatewayFirmwareInformationResponse:
     out: GetWirelessGatewayFirmwareInformationResponse = {}  # type: ignore[typeddict-item]
-    if "LoRaWAN" in data:
+    if data.get("LoRaWAN") is not None:
         import capo_iot_wireless.types.lo_ra_wan_gateway_current_version
 
         out["lo_ra_wan"] = (

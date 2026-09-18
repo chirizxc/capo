@@ -35,24 +35,32 @@ def serialize_aws_json_1_1(value: Geometry) -> dict:
             value["polygon"]
         )
     if "rotation_angle" in value:
-        out["RotationAngle"] = value["rotation_angle"]
+        out["RotationAngle"] = (
+            "NaN"
+            if value["rotation_angle"] != value["rotation_angle"]
+            else "Infinity"
+            if value["rotation_angle"] == float("inf")
+            else "-Infinity"
+            if value["rotation_angle"] == float("-inf")
+            else value["rotation_angle"]
+        )
     return out
 
 
 def deserialize_aws_json_1_1(data: dict) -> Geometry:
     out: Geometry = {}  # type: ignore[typeddict-item]
-    if "BoundingBox" in data:
+    if data.get("BoundingBox") is not None:
         import capo_textract.types.bounding_box
 
         out["bounding_box"] = capo_textract.types.bounding_box.deserialize_aws_json_1_1(
             data["BoundingBox"]
         )
-    if "Polygon" in data:
+    if data.get("Polygon") is not None:
         import capo_textract.types.polygon
 
         out["polygon"] = capo_textract.types.polygon.deserialize_aws_json_1_1(
             data["Polygon"]
         )
-    if "RotationAngle" in data:
-        out["rotation_angle"] = data["RotationAngle"]
+    if data.get("RotationAngle") is not None:
+        out["rotation_angle"] = float(data["RotationAngle"])
     return out

@@ -44,16 +44,16 @@ def serialize_json(value: ProcessDetails) -> dict:
 
 def deserialize_json(data: dict) -> ProcessDetails:
     out: ProcessDetails = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Path" in data:
+    if data.get("Path") is not None:
         out["path"] = data["Path"]
-    if "Pid" in data:
+    if data.get("Pid") is not None:
         out["pid"] = data["Pid"]
-    if "ParentPid" in data:
+    if data.get("ParentPid") is not None:
         out["parent_pid"] = data["ParentPid"]
-    if "LaunchedAt" in data:
+    if data.get("LaunchedAt") is not None:
         out["launched_at"] = data["LaunchedAt"]
-    if "TerminatedAt" in data:
+    if data.get("TerminatedAt") is not None:
         out["terminated_at"] = data["TerminatedAt"]
     return out

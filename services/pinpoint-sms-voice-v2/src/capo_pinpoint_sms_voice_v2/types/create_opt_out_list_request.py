@@ -42,11 +42,11 @@ def serialize_aws_json_1_0(value: CreateOptOutListRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CreateOptOutListRequest:
     out: CreateOptOutListRequest = {}  # type: ignore[typeddict-item]
-    if "OptOutListName" in data:
+    if data.get("OptOutListName") is not None:
         out["opt_out_list_name"] = data["OptOutListName"]
     else:
         raise DeserializationError("CreateOptOutListRequest.opt_out_list_name required")
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_pinpoint_sms_voice_v2.types.tag_list
 
         out["tags"] = (
@@ -54,6 +54,6 @@ def deserialize_aws_json_1_0(data: dict) -> CreateOptOutListRequest:
                 data["Tags"]
             )
         )
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
     return out

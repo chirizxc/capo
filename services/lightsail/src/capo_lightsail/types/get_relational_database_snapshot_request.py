@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: GetRelationalDatabaseSnapshotRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetRelationalDatabaseSnapshotRequest:
     out: GetRelationalDatabaseSnapshotRequest = {}  # type: ignore[typeddict-item]
-    if "relationalDatabaseSnapshotName" in data:
+    if data.get("relationalDatabaseSnapshotName") is not None:
         out["relational_database_snapshot_name"] = data[
             "relationalDatabaseSnapshotName"
         ]

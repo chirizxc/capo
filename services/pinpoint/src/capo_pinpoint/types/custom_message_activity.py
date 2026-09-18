@@ -61,9 +61,9 @@ def serialize_json(value: CustomMessageActivity) -> dict:
 
 def deserialize_json(data: dict) -> CustomMessageActivity:
     out: CustomMessageActivity = {}  # type: ignore[typeddict-item]
-    if "DeliveryUri" in data:
+    if data.get("DeliveryUri") is not None:
         out["delivery_uri"] = data["DeliveryUri"]
-    if "EndpointTypes" in data:
+    if data.get("EndpointTypes") is not None:
         import capo_pinpoint.types.list_of__endpoint_types_element
 
         out["endpoint_types"] = (
@@ -71,7 +71,7 @@ def deserialize_json(data: dict) -> CustomMessageActivity:
                 data["EndpointTypes"]
             )
         )
-    if "MessageConfig" in data:
+    if data.get("MessageConfig") is not None:
         import capo_pinpoint.types.journey_custom_message
 
         out["message_config"] = (
@@ -79,10 +79,10 @@ def deserialize_json(data: dict) -> CustomMessageActivity:
                 data["MessageConfig"]
             )
         )
-    if "NextActivity" in data:
+    if data.get("NextActivity") is not None:
         out["next_activity"] = data["NextActivity"]
-    if "TemplateName" in data:
+    if data.get("TemplateName") is not None:
         out["template_name"] = data["TemplateName"]
-    if "TemplateVersion" in data:
+    if data.get("TemplateVersion") is not None:
         out["template_version"] = data["TemplateVersion"]
     return out

@@ -42,13 +42,13 @@ def serialize_aws_json_1_1(value: DescribeLoaRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeLoaRequest:
     out: DescribeLoaRequest = {}  # type: ignore[typeddict-item]
-    if "connectionId" in data:
+    if data.get("connectionId") is not None:
         out["connection_id"] = data["connectionId"]
     else:
         raise DeserializationError("DescribeLoaRequest.connection_id required")
-    if "providerName" in data:
+    if data.get("providerName") is not None:
         out["provider_name"] = data["providerName"]
-    if "loaContentType" in data:
+    if data.get("loaContentType") is not None:
         import capo_direct_connect.types.loa_content_type
 
         out["loa_content_type"] = (

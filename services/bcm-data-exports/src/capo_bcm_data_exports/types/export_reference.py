@@ -38,15 +38,15 @@ def serialize_aws_json_1_1(value: ExportReference) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ExportReference:
     out: ExportReference = {}  # type: ignore[typeddict-item]
-    if "ExportArn" in data:
+    if data.get("ExportArn") is not None:
         out["export_arn"] = data["ExportArn"]
     else:
         raise DeserializationError("ExportReference.export_arn required")
-    if "ExportName" in data:
+    if data.get("ExportName") is not None:
         out["export_name"] = data["ExportName"]
     else:
         raise DeserializationError("ExportReference.export_name required")
-    if "ExportStatus" in data:
+    if data.get("ExportStatus") is not None:
         import capo_bcm_data_exports.types.export_status
 
         out["export_status"] = (

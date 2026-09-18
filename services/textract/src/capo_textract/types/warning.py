@@ -30,9 +30,9 @@ def serialize_aws_json_1_1(value: Warning) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Warning:
     out: Warning = {}  # type: ignore[typeddict-item]
-    if "ErrorCode" in data:
+    if data.get("ErrorCode") is not None:
         out["error_code"] = data["ErrorCode"]
-    if "Pages" in data:
+    if data.get("Pages") is not None:
         import capo_textract.types.pages
 
         out["pages"] = capo_textract.types.pages.deserialize_aws_json_1_1(data["Pages"])

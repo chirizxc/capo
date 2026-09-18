@@ -29,12 +29,12 @@ def serialize_aws_json_1_1(value: DescribeCostCategoryDefinitionRequest) -> dict
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeCostCategoryDefinitionRequest:
     out: DescribeCostCategoryDefinitionRequest = {}  # type: ignore[typeddict-item]
-    if "CostCategoryArn" in data:
+    if data.get("CostCategoryArn") is not None:
         out["cost_category_arn"] = data["CostCategoryArn"]
     else:
         raise DeserializationError(
             "DescribeCostCategoryDefinitionRequest.cost_category_arn required"
         )
-    if "EffectiveOn" in data:
+    if data.get("EffectiveOn") is not None:
         out["effective_on"] = data["EffectiveOn"]
     return out

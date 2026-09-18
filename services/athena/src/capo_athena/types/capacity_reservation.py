@@ -74,11 +74,11 @@ def serialize_aws_json_1_1(value: CapacityReservation) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CapacityReservation:
     out: CapacityReservation = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("CapacityReservation.name required")
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_athena.types.capacity_reservation_status
 
         out["status"] = (
@@ -88,15 +88,15 @@ def deserialize_aws_json_1_1(data: dict) -> CapacityReservation:
         )
     else:
         raise DeserializationError("CapacityReservation.status required")
-    if "TargetDpus" in data:
+    if data.get("TargetDpus") is not None:
         out["target_dpus"] = data["TargetDpus"]
     else:
         raise DeserializationError("CapacityReservation.target_dpus required")
-    if "AllocatedDpus" in data:
+    if data.get("AllocatedDpus") is not None:
         out["allocated_dpus"] = data["AllocatedDpus"]
     else:
         raise DeserializationError("CapacityReservation.allocated_dpus required")
-    if "LastAllocation" in data:
+    if data.get("LastAllocation") is not None:
         import capo_athena.types.capacity_allocation
 
         out["last_allocation"] = (
@@ -104,7 +104,7 @@ def deserialize_aws_json_1_1(data: dict) -> CapacityReservation:
                 data["LastAllocation"]
             )
         )
-    if "LastSuccessfulAllocationTime" in data:
+    if data.get("LastSuccessfulAllocationTime") is not None:
         import capo_athena.types.timestamp
 
         out["last_successful_allocation_time"] = (
@@ -112,7 +112,7 @@ def deserialize_aws_json_1_1(data: dict) -> CapacityReservation:
                 data["LastSuccessfulAllocationTime"]
             )
         )
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_athena.types.timestamp
 
         out["creation_time"] = capo_athena.types.timestamp.deserialize_aws_json_1_1(

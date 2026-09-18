@@ -34,7 +34,7 @@ def serialize_json(value: JobEngineVersion) -> dict:
 
 def deserialize_json(data: dict) -> JobEngineVersion:
     out: JobEngineVersion = {}  # type: ignore[typeddict-item]
-    if "expirationDate" in data:
+    if data.get("expirationDate") is not None:
         import capo_mediaconvert.types.__timestamp_unix
 
         out["expiration_date"] = (
@@ -42,6 +42,6 @@ def deserialize_json(data: dict) -> JobEngineVersion:
                 data["expirationDate"]
             )
         )
-    if "version" in data:
+    if data.get("version") is not None:
         out["version"] = data["version"]
     return out

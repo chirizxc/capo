@@ -126,7 +126,7 @@ def serialize_aws_json_1_1(value: ListInferenceRecommendationsJobsRequest) -> di
 
 def deserialize_aws_json_1_1(data: dict) -> ListInferenceRecommendationsJobsRequest:
     out: ListInferenceRecommendationsJobsRequest = {}  # type: ignore[typeddict-item]
-    if "CreationTimeAfter" in data:
+    if data.get("CreationTimeAfter") is not None:
         import capo_sagemaker.types.creation_time
 
         out["creation_time_after"] = (
@@ -134,7 +134,7 @@ def deserialize_aws_json_1_1(data: dict) -> ListInferenceRecommendationsJobsRequ
                 data["CreationTimeAfter"]
             )
         )
-    if "CreationTimeBefore" in data:
+    if data.get("CreationTimeBefore") is not None:
         import capo_sagemaker.types.creation_time
 
         out["creation_time_before"] = (
@@ -142,7 +142,7 @@ def deserialize_aws_json_1_1(data: dict) -> ListInferenceRecommendationsJobsRequ
                 data["CreationTimeBefore"]
             )
         )
-    if "LastModifiedTimeAfter" in data:
+    if data.get("LastModifiedTimeAfter") is not None:
         import capo_sagemaker.types.last_modified_time
 
         out["last_modified_time_after"] = (
@@ -150,7 +150,7 @@ def deserialize_aws_json_1_1(data: dict) -> ListInferenceRecommendationsJobsRequ
                 data["LastModifiedTimeAfter"]
             )
         )
-    if "LastModifiedTimeBefore" in data:
+    if data.get("LastModifiedTimeBefore") is not None:
         import capo_sagemaker.types.last_modified_time
 
         out["last_modified_time_before"] = (
@@ -158,9 +158,9 @@ def deserialize_aws_json_1_1(data: dict) -> ListInferenceRecommendationsJobsRequ
                 data["LastModifiedTimeBefore"]
             )
         )
-    if "NameContains" in data:
+    if data.get("NameContains") is not None:
         out["name_contains"] = data["NameContains"]
-    if "StatusEquals" in data:
+    if data.get("StatusEquals") is not None:
         import capo_sagemaker.types.recommendation_job_status
 
         out["status_equals"] = (
@@ -168,7 +168,7 @@ def deserialize_aws_json_1_1(data: dict) -> ListInferenceRecommendationsJobsRequ
                 data["StatusEquals"]
             )
         )
-    if "SortBy" in data:
+    if data.get("SortBy") is not None:
         import capo_sagemaker.types.list_inference_recommendations_jobs_sort_by
 
         out["sort_by"] = (
@@ -176,18 +176,18 @@ def deserialize_aws_json_1_1(data: dict) -> ListInferenceRecommendationsJobsRequ
                 data["SortBy"]
             )
         )
-    if "SortOrder" in data:
+    if data.get("SortOrder") is not None:
         import capo_sagemaker.types.sort_order
 
         out["sort_order"] = capo_sagemaker.types.sort_order.deserialize_aws_json_1_1(
             data["SortOrder"]
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "ModelNameEquals" in data:
+    if data.get("ModelNameEquals") is not None:
         out["model_name_equals"] = data["ModelNameEquals"]
-    if "ModelPackageVersionArnEquals" in data:
+    if data.get("ModelPackageVersionArnEquals") is not None:
         out["model_package_version_arn_equals"] = data["ModelPackageVersionArnEquals"]
     return out

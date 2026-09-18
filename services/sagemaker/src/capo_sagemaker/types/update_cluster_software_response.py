@@ -23,6 +23,6 @@ def serialize_aws_json_1_1(value: UpdateClusterSoftwareResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateClusterSoftwareResponse:
     out: UpdateClusterSoftwareResponse = {}  # type: ignore[typeddict-item]
-    if "ClusterArn" in data:
+    if data.get("ClusterArn") is not None:
         out["cluster_arn"] = data["ClusterArn"]
     return out

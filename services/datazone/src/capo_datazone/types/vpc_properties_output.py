@@ -62,11 +62,11 @@ def serialize_json(value: VpcPropertiesOutput) -> dict:
 
 def deserialize_json(data: dict) -> VpcPropertiesOutput:
     out: VpcPropertiesOutput = {}  # type: ignore[typeddict-item]
-    if "vpcId" in data:
+    if data.get("vpcId") is not None:
         out["vpc_id"] = data["vpcId"]
     else:
         raise DeserializationError("VpcPropertiesOutput.vpc_id required")
-    if "subnetIds" in data:
+    if data.get("subnetIds") is not None:
         import capo_datazone.types.vpc_connection_subnet_id_list
 
         out["subnet_ids"] = (
@@ -76,7 +76,7 @@ def deserialize_json(data: dict) -> VpcPropertiesOutput:
         )
     else:
         raise DeserializationError("VpcPropertiesOutput.subnet_ids required")
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_datazone.types.connection_status
 
         out["status"] = capo_datazone.types.connection_status.deserialize_json(
@@ -84,9 +84,9 @@ def deserialize_json(data: dict) -> VpcPropertiesOutput:
         )
     else:
         raise DeserializationError("VpcPropertiesOutput.status required")
-    if "securityGroupId" in data:
+    if data.get("securityGroupId") is not None:
         out["security_group_id"] = data["securityGroupId"]
-    if "glueConnectionNames" in data:
+    if data.get("glueConnectionNames") is not None:
         import capo_datazone.types.glue_connection_names
 
         out["glue_connection_names"] = (

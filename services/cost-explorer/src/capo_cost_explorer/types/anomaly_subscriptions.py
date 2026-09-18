@@ -27,6 +27,8 @@ def deserialize_aws_json_1_1(data: list) -> AnomalySubscriptions:
 
     out: AnomalySubscriptions = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_cost_explorer.types.anomaly_subscription.deserialize_aws_json_1_1(item)
         )

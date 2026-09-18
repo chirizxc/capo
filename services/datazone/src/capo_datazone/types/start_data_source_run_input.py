@@ -28,6 +28,6 @@ def serialize_json(value: StartDataSourceRunInput) -> dict:
 
 def deserialize_json(data: dict) -> StartDataSourceRunInput:
     out: StartDataSourceRunInput = {}  # type: ignore[typeddict-item]
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     return out

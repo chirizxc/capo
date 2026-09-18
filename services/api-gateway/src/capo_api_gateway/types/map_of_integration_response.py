@@ -25,6 +25,8 @@ def serialize_json(input_to_serialize: MapOfIntegrationResponse) -> dict:
 def deserialize_json(data: dict) -> MapOfIntegrationResponse:
     out: MapOfIntegrationResponse = {}
     for key, value in data.items():
+        if value is None:
+            continue
         import capo_api_gateway.types.integration_response
 
         out[key] = capo_api_gateway.types.integration_response.deserialize_json(value)

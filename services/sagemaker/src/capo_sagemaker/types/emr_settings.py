@@ -44,7 +44,7 @@ def serialize_aws_json_1_1(value: EmrSettings) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> EmrSettings:
     out: EmrSettings = {}  # type: ignore[typeddict-item]
-    if "AssumableRoleArns" in data:
+    if data.get("AssumableRoleArns") is not None:
         import capo_sagemaker.types.assumable_role_arns
 
         out["assumable_role_arns"] = (
@@ -52,7 +52,7 @@ def deserialize_aws_json_1_1(data: dict) -> EmrSettings:
                 data["AssumableRoleArns"]
             )
         )
-    if "ExecutionRoleArns" in data:
+    if data.get("ExecutionRoleArns") is not None:
         import capo_sagemaker.types.execution_role_arns
 
         out["execution_role_arns"] = (

@@ -106,19 +106,19 @@ def serialize_json(value: AnswerSummary) -> dict:
 
 def deserialize_json(data: dict) -> AnswerSummary:
     out: AnswerSummary = {}  # type: ignore[typeddict-item]
-    if "QuestionId" in data:
+    if data.get("QuestionId") is not None:
         out["question_id"] = data["QuestionId"]
-    if "PillarId" in data:
+    if data.get("PillarId") is not None:
         out["pillar_id"] = data["PillarId"]
-    if "QuestionTitle" in data:
+    if data.get("QuestionTitle") is not None:
         out["question_title"] = data["QuestionTitle"]
-    if "Choices" in data:
+    if data.get("Choices") is not None:
         import capo_wellarchitected.types.choices
 
         out["choices"] = capo_wellarchitected.types.choices.deserialize_json(
             data["Choices"]
         )
-    if "SelectedChoices" in data:
+    if data.get("SelectedChoices") is not None:
         import capo_wellarchitected.types.selected_choices
 
         out["selected_choices"] = (
@@ -126,7 +126,7 @@ def deserialize_json(data: dict) -> AnswerSummary:
                 data["SelectedChoices"]
             )
         )
-    if "ChoiceAnswerSummaries" in data:
+    if data.get("ChoiceAnswerSummaries") is not None:
         import capo_wellarchitected.types.choice_answer_summaries
 
         out["choice_answer_summaries"] = (
@@ -134,19 +134,19 @@ def deserialize_json(data: dict) -> AnswerSummary:
                 data["ChoiceAnswerSummaries"]
             )
         )
-    if "IsApplicable" in data:
+    if data.get("IsApplicable") is not None:
         out["is_applicable"] = data["IsApplicable"]
-    if "Risk" in data:
+    if data.get("Risk") is not None:
         import capo_wellarchitected.types.risk
 
         out["risk"] = capo_wellarchitected.types.risk.deserialize_json(data["Risk"])
-    if "Reason" in data:
+    if data.get("Reason") is not None:
         import capo_wellarchitected.types.answer_reason
 
         out["reason"] = capo_wellarchitected.types.answer_reason.deserialize_json(
             data["Reason"]
         )
-    if "QuestionType" in data:
+    if data.get("QuestionType") is not None:
         import capo_wellarchitected.types.question_type
 
         out["question_type"] = (
@@ -154,7 +154,7 @@ def deserialize_json(data: dict) -> AnswerSummary:
                 data["QuestionType"]
             )
         )
-    if "JiraConfiguration" in data:
+    if data.get("JiraConfiguration") is not None:
         import capo_wellarchitected.types.jira_configuration
 
         out["jira_configuration"] = (

@@ -89,17 +89,17 @@ def serialize_json(value: SessionLogger) -> dict:
 
 def deserialize_json(data: dict) -> SessionLogger:
     out: SessionLogger = {}  # type: ignore[typeddict-item]
-    if "sessionLoggerArn" in data:
+    if data.get("sessionLoggerArn") is not None:
         out["session_logger_arn"] = data["sessionLoggerArn"]
     else:
         raise DeserializationError("SessionLogger.session_logger_arn required")
-    if "eventFilter" in data:
+    if data.get("eventFilter") is not None:
         import capo_workspaces_web.types.event_filter
 
         out["event_filter"] = capo_workspaces_web.types.event_filter.deserialize_json(
             data["eventFilter"]
         )
-    if "logConfiguration" in data:
+    if data.get("logConfiguration") is not None:
         import capo_workspaces_web.types.log_configuration
 
         out["log_configuration"] = (
@@ -107,9 +107,9 @@ def deserialize_json(data: dict) -> SessionLogger:
                 data["logConfiguration"]
             )
         )
-    if "customerManagedKey" in data:
+    if data.get("customerManagedKey") is not None:
         out["customer_managed_key"] = data["customerManagedKey"]
-    if "additionalEncryptionContext" in data:
+    if data.get("additionalEncryptionContext") is not None:
         import capo_workspaces_web.types.encryption_context_map
 
         out["additional_encryption_context"] = (
@@ -117,7 +117,7 @@ def deserialize_json(data: dict) -> SessionLogger:
                 data["additionalEncryptionContext"]
             )
         )
-    if "associatedPortalArns" in data:
+    if data.get("associatedPortalArns") is not None:
         import capo_workspaces_web.types.arn_list
 
         out["associated_portal_arns"] = (
@@ -125,9 +125,9 @@ def deserialize_json(data: dict) -> SessionLogger:
                 data["associatedPortalArns"]
             )
         )
-    if "displayName" in data:
+    if data.get("displayName") is not None:
         out["display_name"] = data["displayName"]
-    if "creationDate" in data:
+    if data.get("creationDate") is not None:
         import capo_workspaces_web.types.timestamp
 
         out["creation_date"] = capo_workspaces_web.types.timestamp.deserialize_json(

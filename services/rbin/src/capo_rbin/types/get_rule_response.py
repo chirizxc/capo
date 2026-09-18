@@ -109,53 +109,53 @@ def serialize_json(value: GetRuleResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetRuleResponse:
     out: GetRuleResponse = {}  # type: ignore[typeddict-item]
-    if "Identifier" in data:
+    if data.get("Identifier") is not None:
         out["identifier"] = data["Identifier"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "ResourceType" in data:
+    if data.get("ResourceType") is not None:
         import capo_rbin.types.resource_type
 
         out["resource_type"] = capo_rbin.types.resource_type.deserialize_json(
             data["ResourceType"]
         )
-    if "RetentionPeriod" in data:
+    if data.get("RetentionPeriod") is not None:
         import capo_rbin.types.retention_period
 
         out["retention_period"] = capo_rbin.types.retention_period.deserialize_json(
             data["RetentionPeriod"]
         )
-    if "ResourceTags" in data:
+    if data.get("ResourceTags") is not None:
         import capo_rbin.types.resource_tags
 
         out["resource_tags"] = capo_rbin.types.resource_tags.deserialize_json(
             data["ResourceTags"]
         )
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_rbin.types.rule_status
 
         out["status"] = capo_rbin.types.rule_status.deserialize_json(data["Status"])
-    if "LockConfiguration" in data:
+    if data.get("LockConfiguration") is not None:
         import capo_rbin.types.lock_configuration
 
         out["lock_configuration"] = capo_rbin.types.lock_configuration.deserialize_json(
             data["LockConfiguration"]
         )
-    if "LockState" in data:
+    if data.get("LockState") is not None:
         import capo_rbin.types.lock_state
 
         out["lock_state"] = capo_rbin.types.lock_state.deserialize_json(
             data["LockState"]
         )
-    if "LockEndTime" in data:
+    if data.get("LockEndTime") is not None:
         import capo_rbin.types.time_stamp
 
         out["lock_end_time"] = capo_rbin.types.time_stamp.deserialize_json(
             data["LockEndTime"]
         )
-    if "RuleArn" in data:
+    if data.get("RuleArn") is not None:
         out["rule_arn"] = data["RuleArn"]
-    if "ExcludeResourceTags" in data:
+    if data.get("ExcludeResourceTags") is not None:
         import capo_rbin.types.exclude_resource_tags
 
         out["exclude_resource_tags"] = (

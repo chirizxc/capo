@@ -13,10 +13,25 @@ from capo_iotsecuretunneling import AsyncIoTSecureTunnelingClient
 
 
 async def main():
-    async with AsyncIoTSecureTunnelingClient() as s3:
+    async with AsyncIoTSecureTunnelingClient() as io_t_secure_tunneling:
         # Example: call the close_tunnel operation
-        response = await s3.close_tunnel()
+        response = await io_t_secure_tunneling.close_tunnel()
         print(response)
+```
+
+## Pagination
+
+Some operations in this SDK support pagination. If the operation supports pagination it will have an `iter_` prefixed method that returns an async iterator.
+
+```python
+from capo_iotsecuretunneling import AsyncIoTSecureTunnelingClient
+
+
+async def main():
+    async with AsyncIoTSecureTunnelingClient() as io_t_secure_tunneling:
+        # Example: paginate over list_tunnels
+        async for item in io_t_secure_tunneling.iter_list_tunnels():
+            print(item)
 ```
 
 ## Error Handling
@@ -29,9 +44,9 @@ from capo_iotsecuretunneling.error import ResourceNotFoundException
 
 
 async def main():
-    async with AsyncIoTSecureTunnelingClient() as s3:
+    async with AsyncIoTSecureTunnelingClient() as io_t_secure_tunneling:
         try:
-            await s3.close_tunnel()
+            await io_t_secure_tunneling.close_tunnel()
         except ResourceNotFoundException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -48,13 +63,13 @@ from capo_iotsecuretunneling import AsyncIoTSecureTunnelingClient
 
 
 async def main():
-    async with AsyncIoTSecureTunnelingClient() as s3:
+    async with AsyncIoTSecureTunnelingClient() as io_t_secure_tunneling:
         # Default: 3 attempts for every operation
-        response = await s3.close_tunnel()
+        response = await io_t_secure_tunneling.close_tunnel()
 
         # Override per operation
-        response = await s3.close_tunnel(config_overrides={"retry_max_attempts": 5})
+        response = await io_t_secure_tunneling.close_tunnel(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.close_tunnel(config_overrides={"retry_max_attempts": 1})
+        response = await io_t_secure_tunneling.close_tunnel(config_overrides={"retry_max_attempts": 1})
 ```

@@ -34,7 +34,7 @@ def serialize_aws_json_1_0(value: EncryptionKeyConfigurationInput) -> dict:
 
 
 def deserialize_aws_json_1_0(data: dict) -> EncryptionKeyConfigurationInput:
-    if "awsEncryptionKey" in data:
+    if data.get("awsEncryptionKey") is not None:
         import capo_odb.types.aws_encryption_key_configuration_input
 
         return {

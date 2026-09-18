@@ -36,11 +36,11 @@ def serialize_aws_json_1_1(value: DeployedImage) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeployedImage:
     out: DeployedImage = {}  # type: ignore[typeddict-item]
-    if "SpecifiedImage" in data:
+    if data.get("SpecifiedImage") is not None:
         out["specified_image"] = data["SpecifiedImage"]
-    if "ResolvedImage" in data:
+    if data.get("ResolvedImage") is not None:
         out["resolved_image"] = data["ResolvedImage"]
-    if "ResolutionTime" in data:
+    if data.get("ResolutionTime") is not None:
         import capo_sagemaker.types.timestamp
 
         out["resolution_time"] = (

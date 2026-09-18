@@ -13,9 +13,9 @@ from capo_service_quotas import AsyncServiceQuotasClient
 
 
 async def main():
-    async with AsyncServiceQuotasClient() as s3:
+    async with AsyncServiceQuotasClient() as service_quotas:
         # Example: call the associate_service_quota_template operation
-        response = await s3.associate_service_quota_template()
+        response = await service_quotas.associate_service_quota_template()
         print(response)
 ```
 
@@ -28,9 +28,9 @@ from capo_service_quotas import AsyncServiceQuotasClient
 
 
 async def main():
-    async with AsyncServiceQuotasClient() as s3:
+    async with AsyncServiceQuotasClient() as service_quotas:
         # Example: paginate over list_aws_default_service_quotas
-        async for item in s3.iter_list_aws_default_service_quotas():
+        async for item in service_quotas.iter_list_aws_default_service_quotas():
             print(item)
 ```
 
@@ -44,9 +44,9 @@ from capo_service_quotas.error import AccessDeniedException
 
 
 async def main():
-    async with AsyncServiceQuotasClient() as s3:
+    async with AsyncServiceQuotasClient() as service_quotas:
         try:
-            await s3.associate_service_quota_template()
+            await service_quotas.associate_service_quota_template()
         except AccessDeniedException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -63,13 +63,13 @@ from capo_service_quotas import AsyncServiceQuotasClient
 
 
 async def main():
-    async with AsyncServiceQuotasClient() as s3:
+    async with AsyncServiceQuotasClient() as service_quotas:
         # Default: 3 attempts for every operation
-        response = await s3.associate_service_quota_template()
+        response = await service_quotas.associate_service_quota_template()
 
         # Override per operation
-        response = await s3.associate_service_quota_template(config_overrides={"retry_max_attempts": 5})
+        response = await service_quotas.associate_service_quota_template(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.associate_service_quota_template(config_overrides={"retry_max_attempts": 1})
+        response = await service_quotas.associate_service_quota_template(config_overrides={"retry_max_attempts": 1})
 ```

@@ -37,7 +37,7 @@ def serialize_aws_json_1_1(value: DeploySystemInstanceResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeploySystemInstanceResponse:
     out: DeploySystemInstanceResponse = {}  # type: ignore[typeddict-item]
-    if "summary" in data:
+    if data.get("summary") is not None:
         import capo_iotthingsgraph.types.system_instance_summary
 
         out["summary"] = (
@@ -47,6 +47,6 @@ def deserialize_aws_json_1_1(data: dict) -> DeploySystemInstanceResponse:
         )
     else:
         raise DeserializationError("DeploySystemInstanceResponse.summary required")
-    if "greengrassDeploymentId" in data:
+    if data.get("greengrassDeploymentId") is not None:
         out["greengrass_deployment_id"] = data["greengrassDeploymentId"]
     return out

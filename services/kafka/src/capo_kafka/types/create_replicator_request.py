@@ -75,9 +75,9 @@ def serialize_json(value: CreateReplicatorRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateReplicatorRequest:
     out: CreateReplicatorRequest = {}  # type: ignore[typeddict-item]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "kafkaClusters" in data:
+    if data.get("kafkaClusters") is not None:
         import capo_kafka.types.__list_of_kafka_cluster
 
         out["kafka_clusters"] = (
@@ -85,7 +85,7 @@ def deserialize_json(data: dict) -> CreateReplicatorRequest:
                 data["kafkaClusters"]
             )
         )
-    if "replicationInfoList" in data:
+    if data.get("replicationInfoList") is not None:
         import capo_kafka.types.__list_of_replication_info
 
         out["replication_info_list"] = (
@@ -93,15 +93,15 @@ def deserialize_json(data: dict) -> CreateReplicatorRequest:
                 data["replicationInfoList"]
             )
         )
-    if "replicatorName" in data:
+    if data.get("replicatorName") is not None:
         out["replicator_name"] = data["replicatorName"]
-    if "serviceExecutionRoleArn" in data:
+    if data.get("serviceExecutionRoleArn") is not None:
         out["service_execution_role_arn"] = data["serviceExecutionRoleArn"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_kafka.types.__map_of__string
 
         out["tags"] = capo_kafka.types.__map_of__string.deserialize_json(data["tags"])
-    if "logDelivery" in data:
+    if data.get("logDelivery") is not None:
         import capo_kafka.types.log_delivery
 
         out["log_delivery"] = capo_kafka.types.log_delivery.deserialize_json(

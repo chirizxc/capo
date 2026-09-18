@@ -34,11 +34,11 @@ def serialize_json(value: DescribeAccountCustomPermissionResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribeAccountCustomPermissionResponse:
     out: DescribeAccountCustomPermissionResponse = {}  # type: ignore[typeddict-item]
-    if "CustomPermissionsName" in data:
+    if data.get("CustomPermissionsName") is not None:
         out["custom_permissions_name"] = data["CustomPermissionsName"]
-    if "RequestId" in data:
+    if data.get("RequestId") is not None:
         out["request_id"] = data["RequestId"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         out["status"] = data["Status"]
     else:
         out["status"] = 0

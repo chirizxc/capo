@@ -29,9 +29,9 @@ def serialize_aws_json_1_1(value: DDBELTCatalogAdditionalOptions) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DDBELTCatalogAdditionalOptions:
     out: DDBELTCatalogAdditionalOptions = {}  # type: ignore[typeddict-item]
-    if "DynamodbExport" in data:
+    if data.get("DynamodbExport") is not None:
         out["dynamodb_export"] = data["DynamodbExport"]
-    if "DynamodbUnnestDDBJson" in data:
+    if data.get("DynamodbUnnestDDBJson") is not None:
         out["dynamodb_unnest_ddb_json"] = data["DynamodbUnnestDDBJson"]
     else:
         out["dynamodb_unnest_ddb_json"] = False

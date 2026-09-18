@@ -41,11 +41,11 @@ def serialize_aws_json_1_1(value: UnsuccessfulFaceDisassociation) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UnsuccessfulFaceDisassociation:
     out: UnsuccessfulFaceDisassociation = {}  # type: ignore[typeddict-item]
-    if "FaceId" in data:
+    if data.get("FaceId") is not None:
         out["face_id"] = data["FaceId"]
-    if "UserId" in data:
+    if data.get("UserId") is not None:
         out["user_id"] = data["UserId"]
-    if "Reasons" in data:
+    if data.get("Reasons") is not None:
         import capo_rekognition.types.unsuccessful_face_disassociation_reasons
 
         out["reasons"] = (

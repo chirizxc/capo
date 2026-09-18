@@ -73,15 +73,15 @@ def serialize_aws_json_1_1(value: CreateAppImageConfigRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateAppImageConfigRequest:
     out: CreateAppImageConfigRequest = {}  # type: ignore[typeddict-item]
-    if "AppImageConfigName" in data:
+    if data.get("AppImageConfigName") is not None:
         out["app_image_config_name"] = data["AppImageConfigName"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_sagemaker.types.tag_list
 
         out["tags"] = capo_sagemaker.types.tag_list.deserialize_aws_json_1_1(
             data["Tags"]
         )
-    if "KernelGatewayImageConfig" in data:
+    if data.get("KernelGatewayImageConfig") is not None:
         import capo_sagemaker.types.kernel_gateway_image_config
 
         out["kernel_gateway_image_config"] = (
@@ -89,7 +89,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateAppImageConfigRequest:
                 data["KernelGatewayImageConfig"]
             )
         )
-    if "JupyterLabAppImageConfig" in data:
+    if data.get("JupyterLabAppImageConfig") is not None:
         import capo_sagemaker.types.jupyter_lab_app_image_config
 
         out["jupyter_lab_app_image_config"] = (
@@ -97,7 +97,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateAppImageConfigRequest:
                 data["JupyterLabAppImageConfig"]
             )
         )
-    if "CodeEditorAppImageConfig" in data:
+    if data.get("CodeEditorAppImageConfig") is not None:
         import capo_sagemaker.types.code_editor_app_image_config
 
         out["code_editor_app_image_config"] = (

@@ -32,12 +32,12 @@ def serialize_aws_json_1_1(value: ListParentsResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListParentsResponse:
     out: ListParentsResponse = {}  # type: ignore[typeddict-item]
-    if "Parents" in data:
+    if data.get("Parents") is not None:
         import capo_organizations.types.parents
 
         out["parents"] = capo_organizations.types.parents.deserialize_aws_json_1_1(
             data["Parents"]
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

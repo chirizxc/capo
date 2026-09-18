@@ -34,9 +34,9 @@ def serialize_json(value: StartRecommendationReportGenerationRequest) -> dict:
 
 def deserialize_json(data: dict) -> StartRecommendationReportGenerationRequest:
     out: StartRecommendationReportGenerationRequest = {}  # type: ignore[typeddict-item]
-    if "outputFormat" in data:
+    if data.get("outputFormat") is not None:
         out["output_format"] = data["outputFormat"]
-    if "groupIdFilter" in data:
+    if data.get("groupIdFilter") is not None:
         import capo_migrationhubstrategy.types.group_ids
 
         out["group_id_filter"] = (

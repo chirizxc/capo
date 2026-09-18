@@ -48,13 +48,13 @@ def serialize_aws_json_1_0(value: UpdateCollectionGroupRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> UpdateCollectionGroupRequest:
     out: UpdateCollectionGroupRequest = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("UpdateCollectionGroupRequest.id required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "capacityLimits" in data:
+    if data.get("capacityLimits") is not None:
         import capo_opensearchserverless.types.collection_group_capacity_limits
 
         out["capacity_limits"] = (
@@ -62,6 +62,6 @@ def deserialize_aws_json_1_0(data: dict) -> UpdateCollectionGroupRequest:
                 data["capacityLimits"]
             )
         )
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     return out

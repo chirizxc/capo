@@ -22,11 +22,11 @@ def serialize_json(value: RistRouterInputConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> RistRouterInputConfiguration:
     out: RistRouterInputConfiguration = {}  # type: ignore[typeddict-item]
-    if "port" in data:
+    if data.get("port") is not None:
         out["port"] = data["port"]
     else:
         raise DeserializationError("RistRouterInputConfiguration.port required")
-    if "recoveryLatencyMilliseconds" in data:
+    if data.get("recoveryLatencyMilliseconds") is not None:
         out["recovery_latency_milliseconds"] = data["recoveryLatencyMilliseconds"]
     else:
         raise DeserializationError(

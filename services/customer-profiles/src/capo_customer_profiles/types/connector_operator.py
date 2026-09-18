@@ -81,7 +81,7 @@ def serialize_json(value: ConnectorOperator) -> dict:
 
 def deserialize_json(data: dict) -> ConnectorOperator:
     out: ConnectorOperator = {}  # type: ignore[typeddict-item]
-    if "Marketo" in data:
+    if data.get("Marketo") is not None:
         import capo_customer_profiles.types.marketo_connector_operator
 
         out["marketo"] = (
@@ -89,13 +89,13 @@ def deserialize_json(data: dict) -> ConnectorOperator:
                 data["Marketo"]
             )
         )
-    if "S3" in data:
+    if data.get("S3") is not None:
         import capo_customer_profiles.types.s3_connector_operator
 
         out["s3"] = capo_customer_profiles.types.s3_connector_operator.deserialize_json(
             data["S3"]
         )
-    if "Salesforce" in data:
+    if data.get("Salesforce") is not None:
         import capo_customer_profiles.types.salesforce_connector_operator
 
         out["salesforce"] = (
@@ -103,7 +103,7 @@ def deserialize_json(data: dict) -> ConnectorOperator:
                 data["Salesforce"]
             )
         )
-    if "ServiceNow" in data:
+    if data.get("ServiceNow") is not None:
         import capo_customer_profiles.types.service_now_connector_operator
 
         out["service_now"] = (
@@ -111,7 +111,7 @@ def deserialize_json(data: dict) -> ConnectorOperator:
                 data["ServiceNow"]
             )
         )
-    if "Zendesk" in data:
+    if data.get("Zendesk") is not None:
         import capo_customer_profiles.types.zendesk_connector_operator
 
         out["zendesk"] = (

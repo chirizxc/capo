@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: EntitlementAlreadyExistsException_) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> EntitlementAlreadyExistsException_:
     out: EntitlementAlreadyExistsException_ = {}  # type: ignore[typeddict-item]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     return out
 
@@ -34,15 +34,20 @@ class EntitlementAlreadyExistsException(ServiceError):
 
     code: str | None = "EntitlementAlreadyExistsException"
 
-    def __init__(self, data: EntitlementAlreadyExistsException_):
+    def __init__(
+        self, data: EntitlementAlreadyExistsException_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="EntitlementAlreadyExistsException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "EntitlementAlreadyExistsException":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "EntitlementAlreadyExistsException":
+        return cls(deserialize_aws_json_1_1(data), message)

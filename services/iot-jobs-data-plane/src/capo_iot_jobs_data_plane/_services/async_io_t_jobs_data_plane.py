@@ -1,5 +1,6 @@
 """Generated from Smithy shape ``com.amazonaws.iotjobsdataplane#IotLaserThingJobManagerExternalService``."""
 
+import uuid
 import warnings
 from typing import TYPE_CHECKING, Any, Iterable, Optional
 
@@ -194,9 +195,10 @@ class AsyncIoTJobsDataPlaneClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot_jobs_data_plane.types.describe_job_execution_request.DescribeJobExecutionRequest = {}  # type: ignore[typeddict-item]
-        input_["job_id"] = job_id
-        input_["thing_name"] = thing_name
+        input_: capo_iot_jobs_data_plane.types.describe_job_execution_request.DescribeJobExecutionRequest = {
+            "job_id": job_id,
+            "thing_name": thing_name,
+        }
         if include_job_document is not None:
             input_["include_job_document"] = include_job_document
         if execution_number is not None:
@@ -207,6 +209,7 @@ class AsyncIoTJobsDataPlaneClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_pending_job_executions(
@@ -245,14 +248,16 @@ class AsyncIoTJobsDataPlaneClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot_jobs_data_plane.types.get_pending_job_executions_request.GetPendingJobExecutionsRequest = {}  # type: ignore[typeddict-item]
-        input_["thing_name"] = thing_name
+        input_: capo_iot_jobs_data_plane.types.get_pending_job_executions_request.GetPendingJobExecutionsRequest = {
+            "thing_name": thing_name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def start_command_execution(
@@ -306,21 +311,24 @@ class AsyncIoTJobsDataPlaneClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot_jobs_data_plane.types.start_command_execution_request.StartCommandExecutionRequest = {}  # type: ignore[typeddict-item]
-        input_["target_arn"] = target_arn
-        input_["command_arn"] = command_arn
+        input_: capo_iot_jobs_data_plane.types.start_command_execution_request.StartCommandExecutionRequest = {
+            "target_arn": target_arn,
+            "command_arn": command_arn,
+        }
         if parameters is not None:
             input_["parameters"] = parameters
         if execution_timeout_seconds is not None:
             input_["execution_timeout_seconds"] = execution_timeout_seconds
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def start_next_pending_job_execution(
@@ -367,8 +375,9 @@ class AsyncIoTJobsDataPlaneClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot_jobs_data_plane.types.start_next_pending_job_execution_request.StartNextPendingJobExecutionRequest = {}  # type: ignore[typeddict-item]
-        input_["thing_name"] = thing_name
+        input_: capo_iot_jobs_data_plane.types.start_next_pending_job_execution_request.StartNextPendingJobExecutionRequest = {
+            "thing_name": thing_name
+        }
         if status_details is not None:
             input_["status_details"] = status_details
         if step_timeout_in_minutes is not None:
@@ -379,6 +388,7 @@ class AsyncIoTJobsDataPlaneClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_job_execution(
@@ -446,10 +456,11 @@ class AsyncIoTJobsDataPlaneClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot_jobs_data_plane.types.update_job_execution_request.UpdateJobExecutionRequest = {}  # type: ignore[typeddict-item]
-        input_["job_id"] = job_id
-        input_["thing_name"] = thing_name
-        input_["status"] = status
+        input_: capo_iot_jobs_data_plane.types.update_job_execution_request.UpdateJobExecutionRequest = {
+            "job_id": job_id,
+            "thing_name": thing_name,
+            "status": status,
+        }
         if status_details is not None:
             input_["status_details"] = status_details
         if step_timeout_in_minutes is not None:
@@ -468,6 +479,7 @@ class AsyncIoTJobsDataPlaneClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def __aenter__(self) -> Self:

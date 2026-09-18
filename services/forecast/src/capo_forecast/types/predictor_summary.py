@@ -79,15 +79,15 @@ def serialize_aws_json_1_1(value: PredictorSummary) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PredictorSummary:
     out: PredictorSummary = {}  # type: ignore[typeddict-item]
-    if "PredictorArn" in data:
+    if data.get("PredictorArn") is not None:
         out["predictor_arn"] = data["PredictorArn"]
-    if "PredictorName" in data:
+    if data.get("PredictorName") is not None:
         out["predictor_name"] = data["PredictorName"]
-    if "DatasetGroupArn" in data:
+    if data.get("DatasetGroupArn") is not None:
         out["dataset_group_arn"] = data["DatasetGroupArn"]
-    if "IsAutoPredictor" in data:
+    if data.get("IsAutoPredictor") is not None:
         out["is_auto_predictor"] = data["IsAutoPredictor"]
-    if "ReferencePredictorSummary" in data:
+    if data.get("ReferencePredictorSummary") is not None:
         import capo_forecast.types.reference_predictor_summary
 
         out["reference_predictor_summary"] = (
@@ -95,17 +95,17 @@ def deserialize_aws_json_1_1(data: dict) -> PredictorSummary:
                 data["ReferencePredictorSummary"]
             )
         )
-    if "Status" in data:
+    if data.get("Status") is not None:
         out["status"] = data["Status"]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_forecast.types.timestamp
 
         out["creation_time"] = capo_forecast.types.timestamp.deserialize_aws_json_1_1(
             data["CreationTime"]
         )
-    if "LastModificationTime" in data:
+    if data.get("LastModificationTime") is not None:
         import capo_forecast.types.timestamp
 
         out["last_modification_time"] = (

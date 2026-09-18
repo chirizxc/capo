@@ -25,6 +25,6 @@ def serialize_json(value: GetHLSStreamingSessionURLOutput) -> dict:
 
 def deserialize_json(data: dict) -> GetHLSStreamingSessionURLOutput:
     out: GetHLSStreamingSessionURLOutput = {}  # type: ignore[typeddict-item]
-    if "HLSStreamingSessionURL" in data:
+    if data.get("HLSStreamingSessionURL") is not None:
         out["hls_streaming_session_url"] = data["HLSStreamingSessionURL"]
     return out

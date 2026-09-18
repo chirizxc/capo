@@ -91,15 +91,15 @@ def serialize_json(value: Meeting) -> dict:
 
 def deserialize_json(data: dict) -> Meeting:
     out: Meeting = {}  # type: ignore[typeddict-item]
-    if "MeetingId" in data:
+    if data.get("MeetingId") is not None:
         out["meeting_id"] = data["MeetingId"]
-    if "MeetingHostId" in data:
+    if data.get("MeetingHostId") is not None:
         out["meeting_host_id"] = data["MeetingHostId"]
-    if "ExternalMeetingId" in data:
+    if data.get("ExternalMeetingId") is not None:
         out["external_meeting_id"] = data["ExternalMeetingId"]
-    if "MediaRegion" in data:
+    if data.get("MediaRegion") is not None:
         out["media_region"] = data["MediaRegion"]
-    if "MediaPlacement" in data:
+    if data.get("MediaPlacement") is not None:
         import capo_chime_sdk_meetings.types.media_placement
 
         out["media_placement"] = (
@@ -107,7 +107,7 @@ def deserialize_json(data: dict) -> Meeting:
                 data["MediaPlacement"]
             )
         )
-    if "MeetingFeatures" in data:
+    if data.get("MeetingFeatures") is not None:
         import capo_chime_sdk_meetings.types.meeting_features_configuration
 
         out["meeting_features"] = (
@@ -115,9 +115,9 @@ def deserialize_json(data: dict) -> Meeting:
                 data["MeetingFeatures"]
             )
         )
-    if "PrimaryMeetingId" in data:
+    if data.get("PrimaryMeetingId") is not None:
         out["primary_meeting_id"] = data["PrimaryMeetingId"]
-    if "TenantIds" in data:
+    if data.get("TenantIds") is not None:
         import capo_chime_sdk_meetings.types.tenant_id_list
 
         out["tenant_ids"] = (
@@ -125,6 +125,6 @@ def deserialize_json(data: dict) -> Meeting:
                 data["TenantIds"]
             )
         )
-    if "MeetingArn" in data:
+    if data.get("MeetingArn") is not None:
         out["meeting_arn"] = data["MeetingArn"]
     return out

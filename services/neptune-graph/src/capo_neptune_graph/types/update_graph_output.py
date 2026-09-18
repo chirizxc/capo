@@ -104,27 +104,27 @@ def serialize_json(value: UpdateGraphOutput) -> dict:
 
 def deserialize_json(data: dict) -> UpdateGraphOutput:
     out: UpdateGraphOutput = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("UpdateGraphOutput.id required")
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("UpdateGraphOutput.name required")
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("UpdateGraphOutput.arn required")
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_neptune_graph.types.graph_status
 
         out["status"] = capo_neptune_graph.types.graph_status.deserialize_json(
             data["status"]
         )
-    if "statusReason" in data:
+    if data.get("statusReason") is not None:
         out["status_reason"] = data["statusReason"]
-    if "createTime" in data:
+    if data.get("createTime") is not None:
         import capo_neptune_graph.types._prelude.timestamp
 
         out["create_time"] = (
@@ -132,13 +132,13 @@ def deserialize_json(data: dict) -> UpdateGraphOutput:
                 data["createTime"]
             )
         )
-    if "provisionedMemory" in data:
+    if data.get("provisionedMemory") is not None:
         out["provisioned_memory"] = data["provisionedMemory"]
-    if "endpoint" in data:
+    if data.get("endpoint") is not None:
         out["endpoint"] = data["endpoint"]
-    if "publicConnectivity" in data:
+    if data.get("publicConnectivity") is not None:
         out["public_connectivity"] = data["publicConnectivity"]
-    if "vectorSearchConfiguration" in data:
+    if data.get("vectorSearchConfiguration") is not None:
         import capo_neptune_graph.types.vector_search_configuration
 
         out["vector_search_configuration"] = (
@@ -146,14 +146,14 @@ def deserialize_json(data: dict) -> UpdateGraphOutput:
                 data["vectorSearchConfiguration"]
             )
         )
-    if "replicaCount" in data:
+    if data.get("replicaCount") is not None:
         out["replica_count"] = data["replicaCount"]
-    if "kmsKeyIdentifier" in data:
+    if data.get("kmsKeyIdentifier") is not None:
         out["kms_key_identifier"] = data["kmsKeyIdentifier"]
-    if "sourceSnapshotId" in data:
+    if data.get("sourceSnapshotId") is not None:
         out["source_snapshot_id"] = data["sourceSnapshotId"]
-    if "deletionProtection" in data:
+    if data.get("deletionProtection") is not None:
         out["deletion_protection"] = data["deletionProtection"]
-    if "buildNumber" in data:
+    if data.get("buildNumber") is not None:
         out["build_number"] = data["buildNumber"]
     return out

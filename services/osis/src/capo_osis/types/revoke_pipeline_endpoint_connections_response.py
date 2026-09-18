@@ -23,6 +23,6 @@ def serialize_json(value: RevokePipelineEndpointConnectionsResponse) -> dict:
 
 def deserialize_json(data: dict) -> RevokePipelineEndpointConnectionsResponse:
     out: RevokePipelineEndpointConnectionsResponse = {}  # type: ignore[typeddict-item]
-    if "PipelineArn" in data:
+    if data.get("PipelineArn") is not None:
         out["pipeline_arn"] = data["PipelineArn"]
     return out

@@ -10,6 +10,7 @@ from typing_extensions import Never
 
 import capo_signer._auth._signers
 import capo_signer._auth._sigv4
+import capo_signer._protocol.eventstream
 import capo_signer.errors.access_denied_exception
 import capo_signer.errors.internal_service_error_exception
 import capo_signer.errors.too_many_requests_exception
@@ -31,19 +32,19 @@ def handle_error(response: zapros.Response) -> Never:
     match code:
         case "AccessDeniedException":
             raise capo_signer.errors.access_denied_exception.AccessDeniedException.from_json(
-                data
+                data, message
             )
         case "InternalServiceErrorException":
             raise capo_signer.errors.internal_service_error_exception.InternalServiceErrorException.from_json(
-                data
+                data, message
             )
         case "TooManyRequestsException":
             raise capo_signer.errors.too_many_requests_exception.TooManyRequestsException.from_json(
-                data
+                data, message
             )
         case "ValidationException":
             raise capo_signer.errors.validation_exception.ValidationException.from_json(
-                data
+                data, message
             )
         case _:
             raise UnknownServiceError(code=code, message=message, response=response)
@@ -76,19 +77,26 @@ def get_signer(
     auth_schemes: list[dict[str, Any]] | None = None,
 ) -> capo_signer._auth._signers.Signer | None:
     name_to_schema = {s["name"]: s for s in (auth_schemes or [])}  # noqa: F841
-    if options.credentials_provider is not None:
-        sigv4_config = (
-            name_to_schema.get("sigv4")
-            or name_to_schema.get("sigv4a")
-            or name_to_schema.get("sigv4-s3express")
-            or capo_signer._auth._sigv4.build_sigv4_auth_scheme(
-                "signer", options.region
-            )
+    if (
+        options.credentials_provider is not None
+        and name_to_schema
+        and not name_to_schema.keys() & {"sigv4", "sigv4-s3express"}
+    ):
+        raise RuntimeError(
+            "Endpoint requires an unsupported auth scheme: " + ", ".join(name_to_schema)
         )
-        if sigv4_config is not None:
-            return capo_signer._auth._signers.SigV4Signer(
-                options.credentials_provider, auth_scheme=sigv4_config
+    if options.credentials_provider is not None:
+        endpoint_scheme = name_to_schema.get("sigv4") or name_to_schema.get(
+            "sigv4-s3express"
+        )
+        if endpoint_scheme is not None or not name_to_schema:
+            sigv4_config = capo_signer._auth._sigv4.build_sigv4_auth_scheme(
+                "signer", options.region, endpoint_scheme
             )
+            if sigv4_config is not None:
+                return capo_signer._auth._signers.SigV4Signer(
+                    options.credentials_provider, auth_scheme=sigv4_config
+                )
     raise RuntimeError("Auth was not resolved")
 
 
@@ -104,30 +112,53 @@ def build_request(
             Endpoint=options.endpoint,
         )
     )  # noqa: F841
+    import capo_signer._protocol.serialize
+    import capo_signer.types.signing_status
+
     url = endpoint.url.rstrip("/") + "/signing-jobs"
-    params: dict[str, str] = {}
+    params: list[tuple[str, str]] = []
     if "status" in input_:
-        params["status"] = str(input_["status"])
+        params.append(
+            (
+                "status",
+                capo_signer.types.signing_status.serialize_json(input_["status"]),
+            )
+        )
     if "platform_id" in input_:
-        params["platformId"] = str(input_["platform_id"])
+        params.append(("platformId", input_["platform_id"]))
     if "requested_by" in input_:
-        params["requestedBy"] = str(input_["requested_by"])
+        params.append(("requestedBy", input_["requested_by"]))
     if "max_results" in input_:
-        params["maxResults"] = str(input_["max_results"])
+        params.append(("maxResults", str(input_["max_results"])))
     if "next_token" in input_:
-        params["nextToken"] = str(input_["next_token"])
-    params["isRevoked"] = str(input_.get("is_revoked", False))
+        params.append(("nextToken", input_["next_token"]))
+    params.append(("isRevoked", "true" if input_.get("is_revoked", False) else "false"))
     if "signature_expires_before" in input_:
-        params["signatureExpiresBefore"] = str(input_["signature_expires_before"])
+        params.append(
+            (
+                "signatureExpiresBefore",
+                capo_signer._protocol.serialize.fmt_date_time(
+                    input_["signature_expires_before"]
+                ),
+            )
+        )
     if "signature_expires_after" in input_:
-        params["signatureExpiresAfter"] = str(input_["signature_expires_after"])
+        params.append(
+            (
+                "signatureExpiresAfter",
+                capo_signer._protocol.serialize.fmt_date_time(
+                    input_["signature_expires_after"]
+                ),
+            )
+        )
     if "job_invoker" in input_:
-        params["jobInvoker"] = str(input_["job_invoker"])
+        params.append(("jobInvoker", input_["job_invoker"]))
     headers: dict[str, str] = {k: ", ".join(v) for k, v in endpoint.headers.items()}
     body: bytes | None = b""
     signer = get_signer(options, auth_schemes=endpoint.properties.get("authSchemes"))
     normalized_url = zapros.URL(url)
-    normalized_url.search_params.update(params)
+    for k, v in params:
+        normalized_url.search_params.append(k, v)
     return zapros.Request(
         normalized_url, "GET", headers=headers, body=body, context={"signer": signer}
     )
@@ -142,7 +173,7 @@ def list_signing_jobs(
 ]:
     response = options.client.handler.handle(build_request(options, input_))
     try:
-        if response.status >= 400:
+        if response.status >= 300:
             response.read()
             handle_error(response)
         return handle_response(response), response
@@ -160,7 +191,7 @@ async def async_list_signing_jobs(
 ]:
     response = await options.client.handler.ahandle(build_request(options, input_))
     try:
-        if response.status >= 400:
+        if response.status >= 300:
             await response.aread()
             handle_error(response)
         return await async_handle_response(response), response

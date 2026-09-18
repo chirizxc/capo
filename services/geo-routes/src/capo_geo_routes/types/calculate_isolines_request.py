@@ -199,31 +199,31 @@ def serialize_json(value: CalculateIsolinesRequest) -> dict:
 
 def deserialize_json(data: dict) -> CalculateIsolinesRequest:
     out: CalculateIsolinesRequest = {}  # type: ignore[typeddict-item]
-    if "Allow" in data:
+    if data.get("Allow") is not None:
         import capo_geo_routes.types.isoline_allow_options
 
         out["allow"] = capo_geo_routes.types.isoline_allow_options.deserialize_json(
             data["Allow"]
         )
-    if "ArrivalTime" in data:
+    if data.get("ArrivalTime") is not None:
         out["arrival_time"] = data["ArrivalTime"]
-    if "Avoid" in data:
+    if data.get("Avoid") is not None:
         import capo_geo_routes.types.isoline_avoidance_options
 
         out["avoid"] = capo_geo_routes.types.isoline_avoidance_options.deserialize_json(
             data["Avoid"]
         )
-    if "DepartNow" in data:
+    if data.get("DepartNow") is not None:
         out["depart_now"] = data["DepartNow"]
-    if "DepartureTime" in data:
+    if data.get("DepartureTime") is not None:
         out["departure_time"] = data["DepartureTime"]
-    if "Destination" in data:
+    if data.get("Destination") is not None:
         import capo_geo_routes.types.position
 
         out["destination"] = capo_geo_routes.types.position.deserialize_json(
             data["Destination"]
         )
-    if "DestinationOptions" in data:
+    if data.get("DestinationOptions") is not None:
         import capo_geo_routes.types.isoline_destination_options
 
         out["destination_options"] = (
@@ -231,7 +231,7 @@ def deserialize_json(data: dict) -> CalculateIsolinesRequest:
                 data["DestinationOptions"]
             )
         )
-    if "IsolineGeometryFormat" in data:
+    if data.get("IsolineGeometryFormat") is not None:
         import capo_geo_routes.types.geometry_format
 
         out["isoline_geometry_format"] = (
@@ -239,7 +239,7 @@ def deserialize_json(data: dict) -> CalculateIsolinesRequest:
                 data["IsolineGeometryFormat"]
             )
         )
-    if "IsolineGranularity" in data:
+    if data.get("IsolineGranularity") is not None:
         import capo_geo_routes.types.isoline_granularity_options
 
         out["isoline_granularity"] = (
@@ -247,7 +247,7 @@ def deserialize_json(data: dict) -> CalculateIsolinesRequest:
                 data["IsolineGranularity"]
             )
         )
-    if "OptimizeIsolineFor" in data:
+    if data.get("OptimizeIsolineFor") is not None:
         import capo_geo_routes.types.isoline_optimization_objective
 
         out["optimize_isoline_for"] = (
@@ -255,7 +255,7 @@ def deserialize_json(data: dict) -> CalculateIsolinesRequest:
                 data["OptimizeIsolineFor"]
             )
         )
-    if "OptimizeRoutingFor" in data:
+    if data.get("OptimizeRoutingFor") is not None:
         import capo_geo_routes.types.routing_objective
 
         out["optimize_routing_for"] = (
@@ -263,11 +263,11 @@ def deserialize_json(data: dict) -> CalculateIsolinesRequest:
                 data["OptimizeRoutingFor"]
             )
         )
-    if "Origin" in data:
+    if data.get("Origin") is not None:
         import capo_geo_routes.types.position
 
         out["origin"] = capo_geo_routes.types.position.deserialize_json(data["Origin"])
-    if "OriginOptions" in data:
+    if data.get("OriginOptions") is not None:
         import capo_geo_routes.types.isoline_origin_options
 
         out["origin_options"] = (
@@ -275,7 +275,7 @@ def deserialize_json(data: dict) -> CalculateIsolinesRequest:
                 data["OriginOptions"]
             )
         )
-    if "Thresholds" in data:
+    if data.get("Thresholds") is not None:
         import capo_geo_routes.types.isoline_thresholds
 
         out["thresholds"] = capo_geo_routes.types.isoline_thresholds.deserialize_json(
@@ -283,19 +283,19 @@ def deserialize_json(data: dict) -> CalculateIsolinesRequest:
         )
     else:
         raise DeserializationError("CalculateIsolinesRequest.thresholds required")
-    if "Traffic" in data:
+    if data.get("Traffic") is not None:
         import capo_geo_routes.types.isoline_traffic_options
 
         out["traffic"] = capo_geo_routes.types.isoline_traffic_options.deserialize_json(
             data["Traffic"]
         )
-    if "TravelMode" in data:
+    if data.get("TravelMode") is not None:
         import capo_geo_routes.types.isoline_travel_mode
 
         out["travel_mode"] = capo_geo_routes.types.isoline_travel_mode.deserialize_json(
             data["TravelMode"]
         )
-    if "TravelModeOptions" in data:
+    if data.get("TravelModeOptions") is not None:
         import capo_geo_routes.types.isoline_travel_mode_options
 
         out["travel_mode_options"] = (

@@ -101,11 +101,11 @@ def serialize_json(value: MedicalScribeConfigurationEvent) -> dict:
 
 def deserialize_json(data: dict) -> MedicalScribeConfigurationEvent:
     out: MedicalScribeConfigurationEvent = {}  # type: ignore[typeddict-item]
-    if "VocabularyName" in data:
+    if data.get("VocabularyName") is not None:
         out["vocabulary_name"] = data["VocabularyName"]
-    if "VocabularyFilterName" in data:
+    if data.get("VocabularyFilterName") is not None:
         out["vocabulary_filter_name"] = data["VocabularyFilterName"]
-    if "VocabularyFilterMethod" in data:
+    if data.get("VocabularyFilterMethod") is not None:
         import capo_transcribe_streaming.types.medical_scribe_vocabulary_filter_method
 
         out["vocabulary_filter_method"] = (
@@ -113,13 +113,13 @@ def deserialize_json(data: dict) -> MedicalScribeConfigurationEvent:
                 data["VocabularyFilterMethod"]
             )
         )
-    if "ResourceAccessRoleArn" in data:
+    if data.get("ResourceAccessRoleArn") is not None:
         out["resource_access_role_arn"] = data["ResourceAccessRoleArn"]
     else:
         raise DeserializationError(
             "MedicalScribeConfigurationEvent.resource_access_role_arn required"
         )
-    if "ChannelDefinitions" in data:
+    if data.get("ChannelDefinitions") is not None:
         import capo_transcribe_streaming.types.medical_scribe_channel_definitions
 
         out["channel_definitions"] = (
@@ -127,7 +127,7 @@ def deserialize_json(data: dict) -> MedicalScribeConfigurationEvent:
                 data["ChannelDefinitions"]
             )
         )
-    if "EncryptionSettings" in data:
+    if data.get("EncryptionSettings") is not None:
         import capo_transcribe_streaming.types.medical_scribe_encryption_settings
 
         out["encryption_settings"] = (
@@ -135,7 +135,7 @@ def deserialize_json(data: dict) -> MedicalScribeConfigurationEvent:
                 data["EncryptionSettings"]
             )
         )
-    if "PostStreamAnalyticsSettings" in data:
+    if data.get("PostStreamAnalyticsSettings") is not None:
         import capo_transcribe_streaming.types.medical_scribe_post_stream_analytics_settings
 
         out["post_stream_analytics_settings"] = (
@@ -147,7 +147,7 @@ def deserialize_json(data: dict) -> MedicalScribeConfigurationEvent:
         raise DeserializationError(
             "MedicalScribeConfigurationEvent.post_stream_analytics_settings required"
         )
-    if "MedicalScribeContext" in data:
+    if data.get("MedicalScribeContext") is not None:
         import capo_transcribe_streaming.types.medical_scribe_context
 
         out["medical_scribe_context"] = (

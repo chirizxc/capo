@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> ResiliencyPolicies:
 
     out: ResiliencyPolicies = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_resiliencehub.types.resiliency_policy.deserialize_json(item))
     return out

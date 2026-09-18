@@ -40,31 +40,31 @@ def serialize_aws_json_1_1(value: AllocateConnectionOnInterconnectRequest) -> di
 
 def deserialize_aws_json_1_1(data: dict) -> AllocateConnectionOnInterconnectRequest:
     out: AllocateConnectionOnInterconnectRequest = {}  # type: ignore[typeddict-item]
-    if "bandwidth" in data:
+    if data.get("bandwidth") is not None:
         out["bandwidth"] = data["bandwidth"]
     else:
         raise DeserializationError(
             "AllocateConnectionOnInterconnectRequest.bandwidth required"
         )
-    if "connectionName" in data:
+    if data.get("connectionName") is not None:
         out["connection_name"] = data["connectionName"]
     else:
         raise DeserializationError(
             "AllocateConnectionOnInterconnectRequest.connection_name required"
         )
-    if "ownerAccount" in data:
+    if data.get("ownerAccount") is not None:
         out["owner_account"] = data["ownerAccount"]
     else:
         raise DeserializationError(
             "AllocateConnectionOnInterconnectRequest.owner_account required"
         )
-    if "interconnectId" in data:
+    if data.get("interconnectId") is not None:
         out["interconnect_id"] = data["interconnectId"]
     else:
         raise DeserializationError(
             "AllocateConnectionOnInterconnectRequest.interconnect_id required"
         )
-    if "vlan" in data:
+    if data.get("vlan") is not None:
         out["vlan"] = data["vlan"]
     else:
         out["vlan"] = 0

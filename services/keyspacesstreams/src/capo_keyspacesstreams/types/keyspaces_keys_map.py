@@ -27,6 +27,8 @@ def serialize_aws_json_1_0(input_to_serialize: KeyspacesKeysMap) -> dict:
 def deserialize_aws_json_1_0(data: dict) -> KeyspacesKeysMap:
     out: KeyspacesKeysMap = {}
     for key, value in data.items():
+        if value is None:
+            continue
         import capo_keyspacesstreams.types.keyspaces_cell_value
 
         out[key] = (

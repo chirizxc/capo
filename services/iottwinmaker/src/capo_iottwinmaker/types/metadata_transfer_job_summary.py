@@ -66,17 +66,17 @@ def serialize_json(value: MetadataTransferJobSummary) -> dict:
 
 def deserialize_json(data: dict) -> MetadataTransferJobSummary:
     out: MetadataTransferJobSummary = {}  # type: ignore[typeddict-item]
-    if "metadataTransferJobId" in data:
+    if data.get("metadataTransferJobId") is not None:
         out["metadata_transfer_job_id"] = data["metadataTransferJobId"]
     else:
         raise DeserializationError(
             "MetadataTransferJobSummary.metadata_transfer_job_id required"
         )
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("MetadataTransferJobSummary.arn required")
-    if "creationDateTime" in data:
+    if data.get("creationDateTime") is not None:
         import capo_iottwinmaker.types.timestamp
 
         out["creation_date_time"] = capo_iottwinmaker.types.timestamp.deserialize_json(
@@ -86,7 +86,7 @@ def deserialize_json(data: dict) -> MetadataTransferJobSummary:
         raise DeserializationError(
             "MetadataTransferJobSummary.creation_date_time required"
         )
-    if "updateDateTime" in data:
+    if data.get("updateDateTime") is not None:
         import capo_iottwinmaker.types.timestamp
 
         out["update_date_time"] = capo_iottwinmaker.types.timestamp.deserialize_json(
@@ -96,7 +96,7 @@ def deserialize_json(data: dict) -> MetadataTransferJobSummary:
         raise DeserializationError(
             "MetadataTransferJobSummary.update_date_time required"
         )
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_iottwinmaker.types.metadata_transfer_job_status
 
         out["status"] = (
@@ -106,7 +106,7 @@ def deserialize_json(data: dict) -> MetadataTransferJobSummary:
         )
     else:
         raise DeserializationError("MetadataTransferJobSummary.status required")
-    if "progress" in data:
+    if data.get("progress") is not None:
         import capo_iottwinmaker.types.metadata_transfer_job_progress
 
         out["progress"] = (

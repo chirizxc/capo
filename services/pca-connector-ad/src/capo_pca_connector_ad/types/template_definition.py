@@ -62,7 +62,7 @@ def serialize_json(value: TemplateDefinition) -> dict:
 
 
 def deserialize_json(data: dict) -> TemplateDefinition:
-    if "TemplateV2" in data:
+    if data.get("TemplateV2") is not None:
         import capo_pca_connector_ad.types.template_v2
 
         return {
@@ -70,7 +70,7 @@ def deserialize_json(data: dict) -> TemplateDefinition:
                 data["TemplateV2"]
             )
         }
-    elif "TemplateV3" in data:
+    elif data.get("TemplateV3") is not None:
         import capo_pca_connector_ad.types.template_v3
 
         return {
@@ -78,7 +78,7 @@ def deserialize_json(data: dict) -> TemplateDefinition:
                 data["TemplateV3"]
             )
         }
-    elif "TemplateV4" in data:
+    elif data.get("TemplateV4") is not None:
         import capo_pca_connector_ad.types.template_v4
 
         return {

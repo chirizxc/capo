@@ -50,7 +50,7 @@ def serialize_json(value: RouterNetworkInterfaceConfiguration) -> dict:
 
 
 def deserialize_json(data: dict) -> RouterNetworkInterfaceConfiguration:
-    if "public" in data:
+    if data.get("public") is not None:
         import capo_mediaconnect.types.public_router_network_interface_configuration
 
         return {
@@ -58,7 +58,7 @@ def deserialize_json(data: dict) -> RouterNetworkInterfaceConfiguration:
                 data["public"]
             )
         }
-    elif "vpc" in data:
+    elif data.get("vpc") is not None:
         import capo_mediaconnect.types.vpc_router_network_interface_configuration
 
         return {

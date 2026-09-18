@@ -27,7 +27,7 @@ def serialize_aws_json_1_0(value: NlpConfiguration) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> NlpConfiguration:
     out: NlpConfiguration = {}  # type: ignore[typeddict-item]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_healthlake.types.nlp_status
 
         out["status"] = capo_healthlake.types.nlp_status.deserialize_aws_json_1_0(

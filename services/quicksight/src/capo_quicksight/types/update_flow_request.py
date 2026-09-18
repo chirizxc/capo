@@ -50,12 +50,12 @@ def serialize_json(value: UpdateFlowRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateFlowRequest:
     out: UpdateFlowRequest = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "FlowDefinition" in data:
+    if data.get("FlowDefinition") is not None:
         out["flow_definition"] = data["FlowDefinition"]
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
     return out

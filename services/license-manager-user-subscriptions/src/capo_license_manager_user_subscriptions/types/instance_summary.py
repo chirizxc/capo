@@ -61,15 +61,15 @@ def serialize_json(value: InstanceSummary) -> dict:
 
 def deserialize_json(data: dict) -> InstanceSummary:
     out: InstanceSummary = {}  # type: ignore[typeddict-item]
-    if "InstanceId" in data:
+    if data.get("InstanceId") is not None:
         out["instance_id"] = data["InstanceId"]
     else:
         raise DeserializationError("InstanceSummary.instance_id required")
-    if "Status" in data:
+    if data.get("Status") is not None:
         out["status"] = data["Status"]
     else:
         raise DeserializationError("InstanceSummary.status required")
-    if "Products" in data:
+    if data.get("Products") is not None:
         import capo_license_manager_user_subscriptions.types.string_list
 
         out["products"] = (
@@ -79,13 +79,13 @@ def deserialize_json(data: dict) -> InstanceSummary:
         )
     else:
         raise DeserializationError("InstanceSummary.products required")
-    if "LastStatusCheckDate" in data:
+    if data.get("LastStatusCheckDate") is not None:
         out["last_status_check_date"] = data["LastStatusCheckDate"]
-    if "StatusMessage" in data:
+    if data.get("StatusMessage") is not None:
         out["status_message"] = data["StatusMessage"]
-    if "OwnerAccountId" in data:
+    if data.get("OwnerAccountId") is not None:
         out["owner_account_id"] = data["OwnerAccountId"]
-    if "IdentityProvider" in data:
+    if data.get("IdentityProvider") is not None:
         import capo_license_manager_user_subscriptions.types.identity_provider
 
         out["identity_provider"] = (

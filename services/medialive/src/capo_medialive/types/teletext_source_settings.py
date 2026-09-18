@@ -34,7 +34,7 @@ def serialize_json(value: TeletextSourceSettings) -> dict:
 
 def deserialize_json(data: dict) -> TeletextSourceSettings:
     out: TeletextSourceSettings = {}  # type: ignore[typeddict-item]
-    if "outputRectangle" in data:
+    if data.get("outputRectangle") is not None:
         import capo_medialive.types.caption_rectangle
 
         out["output_rectangle"] = (
@@ -42,6 +42,6 @@ def deserialize_json(data: dict) -> TeletextSourceSettings:
                 data["outputRectangle"]
             )
         )
-    if "pageNumber" in data:
+    if data.get("pageNumber") is not None:
         out["page_number"] = data["pageNumber"]
     return out

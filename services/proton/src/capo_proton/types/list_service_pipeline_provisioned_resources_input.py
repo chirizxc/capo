@@ -31,12 +31,12 @@ def deserialize_aws_json_1_0(
     data: dict,
 ) -> ListServicePipelineProvisionedResourcesInput:
     out: ListServicePipelineProvisionedResourcesInput = {}  # type: ignore[typeddict-item]
-    if "serviceName" in data:
+    if data.get("serviceName") is not None:
         out["service_name"] = data["serviceName"]
     else:
         raise DeserializationError(
             "ListServicePipelineProvisionedResourcesInput.service_name required"
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

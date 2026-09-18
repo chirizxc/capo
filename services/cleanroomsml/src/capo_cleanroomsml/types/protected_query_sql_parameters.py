@@ -38,11 +38,11 @@ def serialize_json(value: ProtectedQuerySQLParameters) -> dict:
 
 def deserialize_json(data: dict) -> ProtectedQuerySQLParameters:
     out: ProtectedQuerySQLParameters = {}  # type: ignore[typeddict-item]
-    if "queryString" in data:
+    if data.get("queryString") is not None:
         out["query_string"] = data["queryString"]
-    if "analysisTemplateArn" in data:
+    if data.get("analysisTemplateArn") is not None:
         out["analysis_template_arn"] = data["analysisTemplateArn"]
-    if "parameters" in data:
+    if data.get("parameters") is not None:
         import capo_cleanroomsml.types.parameter_map
 
         out["parameters"] = capo_cleanroomsml.types.parameter_map.deserialize_json(

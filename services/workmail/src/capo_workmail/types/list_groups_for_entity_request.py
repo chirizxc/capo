@@ -51,17 +51,17 @@ def serialize_aws_json_1_1(value: ListGroupsForEntityRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListGroupsForEntityRequest:
     out: ListGroupsForEntityRequest = {}  # type: ignore[typeddict-item]
-    if "OrganizationId" in data:
+    if data.get("OrganizationId") is not None:
         out["organization_id"] = data["OrganizationId"]
     else:
         raise DeserializationError(
             "ListGroupsForEntityRequest.organization_id required"
         )
-    if "EntityId" in data:
+    if data.get("EntityId") is not None:
         out["entity_id"] = data["EntityId"]
     else:
         raise DeserializationError("ListGroupsForEntityRequest.entity_id required")
-    if "Filters" in data:
+    if data.get("Filters") is not None:
         import capo_workmail.types.list_groups_for_entity_filters
 
         out["filters"] = (
@@ -69,8 +69,8 @@ def deserialize_aws_json_1_1(data: dict) -> ListGroupsForEntityRequest:
                 data["Filters"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
     return out

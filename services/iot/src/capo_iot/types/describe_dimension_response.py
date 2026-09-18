@@ -63,27 +63,27 @@ def serialize_json(value: DescribeDimensionResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribeDimensionResponse:
     out: DescribeDimensionResponse = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_iot.types.dimension_type
 
         out["type"] = capo_iot.types.dimension_type.deserialize_json(data["type"])
-    if "stringValues" in data:
+    if data.get("stringValues") is not None:
         import capo_iot.types.dimension_string_values
 
         out["string_values"] = capo_iot.types.dimension_string_values.deserialize_json(
             data["stringValues"]
         )
-    if "creationDate" in data:
+    if data.get("creationDate") is not None:
         import capo_iot.types.timestamp
 
         out["creation_date"] = capo_iot.types.timestamp.deserialize_json(
             data["creationDate"]
         )
-    if "lastModifiedDate" in data:
+    if data.get("lastModifiedDate") is not None:
         import capo_iot.types.timestamp
 
         out["last_modified_date"] = capo_iot.types.timestamp.deserialize_json(

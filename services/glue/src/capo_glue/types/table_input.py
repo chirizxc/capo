@@ -121,31 +121,31 @@ def serialize_aws_json_1_1(value: TableInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> TableInput:
     out: TableInput = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("TableInput.name required")
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Owner" in data:
+    if data.get("Owner") is not None:
         out["owner"] = data["Owner"]
-    if "LastAccessTime" in data:
+    if data.get("LastAccessTime") is not None:
         import capo_glue.types.timestamp
 
         out["last_access_time"] = capo_glue.types.timestamp.deserialize_aws_json_1_1(
             data["LastAccessTime"]
         )
-    if "LastAnalyzedTime" in data:
+    if data.get("LastAnalyzedTime") is not None:
         import capo_glue.types.timestamp
 
         out["last_analyzed_time"] = capo_glue.types.timestamp.deserialize_aws_json_1_1(
             data["LastAnalyzedTime"]
         )
-    if "Retention" in data:
+    if data.get("Retention") is not None:
         out["retention"] = data["Retention"]
     else:
         out["retention"] = 0
-    if "StorageDescriptor" in data:
+    if data.get("StorageDescriptor") is not None:
         import capo_glue.types.storage_descriptor
 
         out["storage_descriptor"] = (
@@ -153,31 +153,31 @@ def deserialize_aws_json_1_1(data: dict) -> TableInput:
                 data["StorageDescriptor"]
             )
         )
-    if "PartitionKeys" in data:
+    if data.get("PartitionKeys") is not None:
         import capo_glue.types.column_list
 
         out["partition_keys"] = capo_glue.types.column_list.deserialize_aws_json_1_1(
             data["PartitionKeys"]
         )
-    if "ViewOriginalText" in data:
+    if data.get("ViewOriginalText") is not None:
         out["view_original_text"] = data["ViewOriginalText"]
-    if "ViewExpandedText" in data:
+    if data.get("ViewExpandedText") is not None:
         out["view_expanded_text"] = data["ViewExpandedText"]
-    if "TableType" in data:
+    if data.get("TableType") is not None:
         out["table_type"] = data["TableType"]
-    if "Parameters" in data:
+    if data.get("Parameters") is not None:
         import capo_glue.types.parameters_map
 
         out["parameters"] = capo_glue.types.parameters_map.deserialize_aws_json_1_1(
             data["Parameters"]
         )
-    if "TargetTable" in data:
+    if data.get("TargetTable") is not None:
         import capo_glue.types.table_identifier
 
         out["target_table"] = capo_glue.types.table_identifier.deserialize_aws_json_1_1(
             data["TargetTable"]
         )
-    if "ViewDefinition" in data:
+    if data.get("ViewDefinition") is not None:
         import capo_glue.types.view_definition_input
 
         out["view_definition"] = (

@@ -45,17 +45,17 @@ def serialize_json(value: CreateAssetRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateAssetRequest:
     out: CreateAssetRequest = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "packagingGroupId" in data:
+    if data.get("packagingGroupId") is not None:
         out["packaging_group_id"] = data["packagingGroupId"]
-    if "resourceId" in data:
+    if data.get("resourceId") is not None:
         out["resource_id"] = data["resourceId"]
-    if "sourceArn" in data:
+    if data.get("sourceArn") is not None:
         out["source_arn"] = data["sourceArn"]
-    if "sourceRoleArn" in data:
+    if data.get("sourceRoleArn") is not None:
         out["source_role_arn"] = data["sourceRoleArn"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_mediapackage_vod.types.tags
 
         out["tags"] = capo_mediapackage_vod.types.tags.deserialize_json(data["tags"])

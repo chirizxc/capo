@@ -36,7 +36,7 @@ def serialize_aws_json_1_0(value: ListResourceRequestsOutput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ListResourceRequestsOutput:
     out: ListResourceRequestsOutput = {}  # type: ignore[typeddict-item]
-    if "ResourceRequestStatusSummaries" in data:
+    if data.get("ResourceRequestStatusSummaries") is not None:
         import capo_cloudcontrol.types.resource_request_status_summaries
 
         out["resource_request_status_summaries"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_0(data: dict) -> ListResourceRequestsOutput:
                 data["ResourceRequestStatusSummaries"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

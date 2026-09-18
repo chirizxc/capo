@@ -42,15 +42,15 @@ def serialize_json(value: ImageResponseCard) -> dict:
 
 def deserialize_json(data: dict) -> ImageResponseCard:
     out: ImageResponseCard = {}  # type: ignore[typeddict-item]
-    if "title" in data:
+    if data.get("title") is not None:
         out["title"] = data["title"]
     else:
         raise DeserializationError("ImageResponseCard.title required")
-    if "subtitle" in data:
+    if data.get("subtitle") is not None:
         out["subtitle"] = data["subtitle"]
-    if "imageUrl" in data:
+    if data.get("imageUrl") is not None:
         out["image_url"] = data["imageUrl"]
-    if "buttons" in data:
+    if data.get("buttons") is not None:
         import capo_lex_models_v2.types.buttons_list
 
         out["buttons"] = capo_lex_models_v2.types.buttons_list.deserialize_json(

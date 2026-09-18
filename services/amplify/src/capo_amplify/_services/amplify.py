@@ -362,8 +362,7 @@ class AmplifyClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_amplify.types.create_app_request.CreateAppRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_amplify.types.create_app_request.CreateAppRequest = {"name": name}
         if description is not None:
             input_["description"] = description
         if repository is not None:
@@ -412,6 +411,7 @@ class AmplifyClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_backend_environment(
@@ -457,9 +457,10 @@ class AmplifyClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_amplify.types.create_backend_environment_request.CreateBackendEnvironmentRequest = {}  # type: ignore[typeddict-item]
-        input_["app_id"] = app_id
-        input_["environment_name"] = environment_name
+        input_: capo_amplify.types.create_backend_environment_request.CreateBackendEnvironmentRequest = {
+            "app_id": app_id,
+            "environment_name": environment_name,
+        }
         if stack_name is not None:
             input_["stack_name"] = stack_name
         if deployment_artifacts is not None:
@@ -470,6 +471,7 @@ class AmplifyClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_branch(
@@ -570,9 +572,10 @@ class AmplifyClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_amplify.types.create_branch_request.CreateBranchRequest = {}  # type: ignore[typeddict-item]
-        input_["app_id"] = app_id
-        input_["branch_name"] = branch_name
+        input_: capo_amplify.types.create_branch_request.CreateBranchRequest = {
+            "app_id": app_id,
+            "branch_name": branch_name,
+        }
         if description is not None:
             input_["description"] = description
         if stage is not None:
@@ -617,6 +620,7 @@ class AmplifyClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_deployment(
@@ -657,9 +661,10 @@ class AmplifyClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_amplify.types.create_deployment_request.CreateDeploymentRequest = {}  # type: ignore[typeddict-item]
-        input_["app_id"] = app_id
-        input_["branch_name"] = branch_name
+        input_: capo_amplify.types.create_deployment_request.CreateDeploymentRequest = {
+            "app_id": app_id,
+            "branch_name": branch_name,
+        }
         if file_map is not None:
             input_["file_map"] = file_map
 
@@ -668,6 +673,7 @@ class AmplifyClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_domain_association(
@@ -726,12 +732,13 @@ class AmplifyClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_amplify.types.create_domain_association_request.CreateDomainAssociationRequest = {}  # type: ignore[typeddict-item]
-        input_["app_id"] = app_id
-        input_["domain_name"] = domain_name
+        input_: capo_amplify.types.create_domain_association_request.CreateDomainAssociationRequest = {
+            "app_id": app_id,
+            "domain_name": domain_name,
+            "sub_domain_settings": sub_domain_settings,
+        }
         if enable_auto_sub_domain is not None:
             input_["enable_auto_sub_domain"] = enable_auto_sub_domain
-        input_["sub_domain_settings"] = sub_domain_settings
         if auto_sub_domain_creation_patterns is not None:
             input_["auto_sub_domain_creation_patterns"] = (
                 auto_sub_domain_creation_patterns
@@ -746,6 +753,7 @@ class AmplifyClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_webhook(
@@ -788,9 +796,10 @@ class AmplifyClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_amplify.types.create_webhook_request.CreateWebhookRequest = {}  # type: ignore[typeddict-item]
-        input_["app_id"] = app_id
-        input_["branch_name"] = branch_name
+        input_: capo_amplify.types.create_webhook_request.CreateWebhookRequest = {
+            "app_id": app_id,
+            "branch_name": branch_name,
+        }
         if description is not None:
             input_["description"] = description
 
@@ -799,6 +808,7 @@ class AmplifyClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_app(
@@ -834,14 +844,16 @@ class AmplifyClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_amplify.types.delete_app_request.DeleteAppRequest = {}  # type: ignore[typeddict-item]
-        input_["app_id"] = app_id
+        input_: capo_amplify.types.delete_app_request.DeleteAppRequest = {
+            "app_id": app_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_backend_environment(
@@ -881,15 +893,17 @@ class AmplifyClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_amplify.types.delete_backend_environment_request.DeleteBackendEnvironmentRequest = {}  # type: ignore[typeddict-item]
-        input_["app_id"] = app_id
-        input_["environment_name"] = environment_name
+        input_: capo_amplify.types.delete_backend_environment_request.DeleteBackendEnvironmentRequest = {
+            "app_id": app_id,
+            "environment_name": environment_name,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_branch(
@@ -929,15 +943,17 @@ class AmplifyClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_amplify.types.delete_branch_request.DeleteBranchRequest = {}  # type: ignore[typeddict-item]
-        input_["app_id"] = app_id
-        input_["branch_name"] = branch_name
+        input_: capo_amplify.types.delete_branch_request.DeleteBranchRequest = {
+            "app_id": app_id,
+            "branch_name": branch_name,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_domain_association(
@@ -977,15 +993,17 @@ class AmplifyClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_amplify.types.delete_domain_association_request.DeleteDomainAssociationRequest = {}  # type: ignore[typeddict-item]
-        input_["app_id"] = app_id
-        input_["domain_name"] = domain_name
+        input_: capo_amplify.types.delete_domain_association_request.DeleteDomainAssociationRequest = {
+            "app_id": app_id,
+            "domain_name": domain_name,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_job(
@@ -1025,16 +1043,18 @@ class AmplifyClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_amplify.types.delete_job_request.DeleteJobRequest = {}  # type: ignore[typeddict-item]
-        input_["app_id"] = app_id
-        input_["branch_name"] = branch_name
-        input_["job_id"] = job_id
+        input_: capo_amplify.types.delete_job_request.DeleteJobRequest = {
+            "app_id": app_id,
+            "branch_name": branch_name,
+            "job_id": job_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_webhook(
@@ -1072,14 +1092,16 @@ class AmplifyClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_amplify.types.delete_webhook_request.DeleteWebhookRequest = {}  # type: ignore[typeddict-item]
-        input_["webhook_id"] = webhook_id
+        input_: capo_amplify.types.delete_webhook_request.DeleteWebhookRequest = {
+            "webhook_id": webhook_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def generate_access_logs(
@@ -1122,19 +1144,21 @@ class AmplifyClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_amplify.types.generate_access_logs_request.GenerateAccessLogsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_amplify.types.generate_access_logs_request.GenerateAccessLogsRequest = {
+            "domain_name": domain_name,
+            "app_id": app_id,
+        }
         if start_time is not None:
             input_["start_time"] = start_time
         if end_time is not None:
             input_["end_time"] = end_time
-        input_["domain_name"] = domain_name
-        input_["app_id"] = app_id
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_app(
@@ -1167,14 +1191,14 @@ class AmplifyClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_amplify.types.get_app_request.GetAppRequest = {}  # type: ignore[typeddict-item]
-        input_["app_id"] = app_id
+        input_: capo_amplify.types.get_app_request.GetAppRequest = {"app_id": app_id}
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_artifact_url(
@@ -1212,14 +1236,16 @@ class AmplifyClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_amplify.types.get_artifact_url_request.GetArtifactUrlRequest = {}  # type: ignore[typeddict-item]
-        input_["artifact_id"] = artifact_id
+        input_: capo_amplify.types.get_artifact_url_request.GetArtifactUrlRequest = {
+            "artifact_id": artifact_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_backend_environment(
@@ -1260,15 +1286,17 @@ class AmplifyClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_amplify.types.get_backend_environment_request.GetBackendEnvironmentRequest = {}  # type: ignore[typeddict-item]
-        input_["app_id"] = app_id
-        input_["environment_name"] = environment_name
+        input_: capo_amplify.types.get_backend_environment_request.GetBackendEnvironmentRequest = {
+            "app_id": app_id,
+            "environment_name": environment_name,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_branch(
@@ -1305,15 +1333,17 @@ class AmplifyClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_amplify.types.get_branch_request.GetBranchRequest = {}  # type: ignore[typeddict-item]
-        input_["app_id"] = app_id
-        input_["branch_name"] = branch_name
+        input_: capo_amplify.types.get_branch_request.GetBranchRequest = {
+            "app_id": app_id,
+            "branch_name": branch_name,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_domain_association(
@@ -1352,15 +1382,17 @@ class AmplifyClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_amplify.types.get_domain_association_request.GetDomainAssociationRequest = {}  # type: ignore[typeddict-item]
-        input_["app_id"] = app_id
-        input_["domain_name"] = domain_name
+        input_: capo_amplify.types.get_domain_association_request.GetDomainAssociationRequest = {
+            "app_id": app_id,
+            "domain_name": domain_name,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_job(
@@ -1398,16 +1430,18 @@ class AmplifyClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_amplify.types.get_job_request.GetJobRequest = {}  # type: ignore[typeddict-item]
-        input_["app_id"] = app_id
-        input_["branch_name"] = branch_name
-        input_["job_id"] = job_id
+        input_: capo_amplify.types.get_job_request.GetJobRequest = {
+            "app_id": app_id,
+            "branch_name": branch_name,
+            "job_id": job_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_webhook(
@@ -1445,14 +1479,16 @@ class AmplifyClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_amplify.types.get_webhook_request.GetWebhookRequest = {}  # type: ignore[typeddict-item]
-        input_["webhook_id"] = webhook_id
+        input_: capo_amplify.types.get_webhook_request.GetWebhookRequest = {
+            "webhook_id": webhook_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_apps(
@@ -1490,7 +1526,7 @@ class AmplifyClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_amplify.types.list_apps_request.ListAppsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_amplify.types.list_apps_request.ListAppsRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -1501,6 +1537,7 @@ class AmplifyClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_apps(
@@ -1568,10 +1605,11 @@ class AmplifyClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_amplify.types.list_artifacts_request.ListArtifactsRequest = {}  # type: ignore[typeddict-item]
-        input_["app_id"] = app_id
-        input_["branch_name"] = branch_name
-        input_["job_id"] = job_id
+        input_: capo_amplify.types.list_artifacts_request.ListArtifactsRequest = {
+            "app_id": app_id,
+            "branch_name": branch_name,
+            "job_id": job_id,
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -1582,6 +1620,7 @@ class AmplifyClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_backend_environments(
@@ -1625,8 +1664,9 @@ class AmplifyClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_amplify.types.list_backend_environments_request.ListBackendEnvironmentsRequest = {}  # type: ignore[typeddict-item]
-        input_["app_id"] = app_id
+        input_: capo_amplify.types.list_backend_environments_request.ListBackendEnvironmentsRequest = {
+            "app_id": app_id
+        }
         if environment_name is not None:
             input_["environment_name"] = environment_name
         if next_token is not None:
@@ -1639,6 +1679,7 @@ class AmplifyClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_branches(
@@ -1678,8 +1719,9 @@ class AmplifyClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_amplify.types.list_branches_request.ListBranchesRequest = {}  # type: ignore[typeddict-item]
-        input_["app_id"] = app_id
+        input_: capo_amplify.types.list_branches_request.ListBranchesRequest = {
+            "app_id": app_id
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -1690,6 +1732,7 @@ class AmplifyClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_branches(
@@ -1752,8 +1795,9 @@ class AmplifyClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_amplify.types.list_domain_associations_request.ListDomainAssociationsRequest = {}  # type: ignore[typeddict-item]
-        input_["app_id"] = app_id
+        input_: capo_amplify.types.list_domain_associations_request.ListDomainAssociationsRequest = {
+            "app_id": app_id
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -1764,6 +1808,7 @@ class AmplifyClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_domain_associations(
@@ -1827,9 +1872,10 @@ class AmplifyClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_amplify.types.list_jobs_request.ListJobsRequest = {}  # type: ignore[typeddict-item]
-        input_["app_id"] = app_id
-        input_["branch_name"] = branch_name
+        input_: capo_amplify.types.list_jobs_request.ListJobsRequest = {
+            "app_id": app_id,
+            "branch_name": branch_name,
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -1840,6 +1886,7 @@ class AmplifyClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_jobs(
@@ -1902,14 +1949,16 @@ class AmplifyClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_amplify.types.list_tags_for_resource_request.ListTagsForResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_amplify.types.list_tags_for_resource_request.ListTagsForResourceRequest = {
+            "resource_arn": resource_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_webhooks(
@@ -1950,8 +1999,9 @@ class AmplifyClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_amplify.types.list_webhooks_request.ListWebhooksRequest = {}  # type: ignore[typeddict-item]
-        input_["app_id"] = app_id
+        input_: capo_amplify.types.list_webhooks_request.ListWebhooksRequest = {
+            "app_id": app_id
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -1962,6 +2012,7 @@ class AmplifyClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def start_deployment(
@@ -2009,9 +2060,10 @@ class AmplifyClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_amplify.types.start_deployment_request.StartDeploymentRequest = {}  # type: ignore[typeddict-item]
-        input_["app_id"] = app_id
-        input_["branch_name"] = branch_name
+        input_: capo_amplify.types.start_deployment_request.StartDeploymentRequest = {
+            "app_id": app_id,
+            "branch_name": branch_name,
+        }
         if job_id is not None:
             input_["job_id"] = job_id
         if source_url is not None:
@@ -2024,6 +2076,7 @@ class AmplifyClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def start_job(
@@ -2075,12 +2128,13 @@ class AmplifyClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_amplify.types.start_job_request.StartJobRequest = {}  # type: ignore[typeddict-item]
-        input_["app_id"] = app_id
-        input_["branch_name"] = branch_name
+        input_: capo_amplify.types.start_job_request.StartJobRequest = {
+            "app_id": app_id,
+            "branch_name": branch_name,
+            "job_type": job_type,
+        }
         if job_id is not None:
             input_["job_id"] = job_id
-        input_["job_type"] = job_type
         if job_reason is not None:
             input_["job_reason"] = job_reason
         if commit_id is not None:
@@ -2095,6 +2149,7 @@ class AmplifyClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def stop_job(
@@ -2132,16 +2187,18 @@ class AmplifyClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_amplify.types.stop_job_request.StopJobRequest = {}  # type: ignore[typeddict-item]
-        input_["app_id"] = app_id
-        input_["branch_name"] = branch_name
-        input_["job_id"] = job_id
+        input_: capo_amplify.types.stop_job_request.StopJobRequest = {
+            "app_id": app_id,
+            "branch_name": branch_name,
+            "job_id": job_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def tag_resource(
@@ -2179,15 +2236,17 @@ class AmplifyClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_amplify.types.tag_resource_request.TagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tags"] = tags
+        input_: capo_amplify.types.tag_resource_request.TagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tags": tags,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def untag_resource(
@@ -2225,15 +2284,17 @@ class AmplifyClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_amplify.types.untag_resource_request.UntagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tag_keys"] = tag_keys
+        input_: capo_amplify.types.untag_resource_request.UntagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tag_keys": tag_keys,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_app(
@@ -2332,8 +2393,9 @@ class AmplifyClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_amplify.types.update_app_request.UpdateAppRequest = {}  # type: ignore[typeddict-item]
-        input_["app_id"] = app_id
+        input_: capo_amplify.types.update_app_request.UpdateAppRequest = {
+            "app_id": app_id
+        }
         if name is not None:
             input_["name"] = name
         if description is not None:
@@ -2382,6 +2444,7 @@ class AmplifyClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_branch(
@@ -2479,9 +2542,10 @@ class AmplifyClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_amplify.types.update_branch_request.UpdateBranchRequest = {}  # type: ignore[typeddict-item]
-        input_["app_id"] = app_id
-        input_["branch_name"] = branch_name
+        input_: capo_amplify.types.update_branch_request.UpdateBranchRequest = {
+            "app_id": app_id,
+            "branch_name": branch_name,
+        }
         if description is not None:
             input_["description"] = description
         if framework is not None:
@@ -2524,6 +2588,7 @@ class AmplifyClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_domain_association(
@@ -2583,9 +2648,10 @@ class AmplifyClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_amplify.types.update_domain_association_request.UpdateDomainAssociationRequest = {}  # type: ignore[typeddict-item]
-        input_["app_id"] = app_id
-        input_["domain_name"] = domain_name
+        input_: capo_amplify.types.update_domain_association_request.UpdateDomainAssociationRequest = {
+            "app_id": app_id,
+            "domain_name": domain_name,
+        }
         if enable_auto_sub_domain is not None:
             input_["enable_auto_sub_domain"] = enable_auto_sub_domain
         if sub_domain_settings is not None:
@@ -2604,6 +2670,7 @@ class AmplifyClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_webhook(
@@ -2645,8 +2712,9 @@ class AmplifyClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_amplify.types.update_webhook_request.UpdateWebhookRequest = {}  # type: ignore[typeddict-item]
-        input_["webhook_id"] = webhook_id
+        input_: capo_amplify.types.update_webhook_request.UpdateWebhookRequest = {
+            "webhook_id": webhook_id
+        }
         if branch_name is not None:
             input_["branch_name"] = branch_name
         if description is not None:
@@ -2657,6 +2725,7 @@ class AmplifyClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def __enter__(self) -> Self:

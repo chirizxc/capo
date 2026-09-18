@@ -283,7 +283,7 @@ def serialize_json(value: Job) -> dict:
 
 def deserialize_json(data: dict) -> Job:
     out: Job = {}  # type: ignore[typeddict-item]
-    if "accelerationSettings" in data:
+    if data.get("accelerationSettings") is not None:
         import capo_mediaconvert.types.acceleration_settings
 
         out["acceleration_settings"] = (
@@ -291,7 +291,7 @@ def deserialize_json(data: dict) -> Job:
                 data["accelerationSettings"]
             )
         )
-    if "accelerationStatus" in data:
+    if data.get("accelerationStatus") is not None:
         import capo_mediaconvert.types.acceleration_status
 
         out["acceleration_status"] = (
@@ -299,9 +299,9 @@ def deserialize_json(data: dict) -> Job:
                 data["accelerationStatus"]
             )
         )
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "billingTagsSource" in data:
+    if data.get("billingTagsSource") is not None:
         import capo_mediaconvert.types.billing_tags_source
 
         out["billing_tags_source"] = (
@@ -309,21 +309,21 @@ def deserialize_json(data: dict) -> Job:
                 data["billingTagsSource"]
             )
         )
-    if "clientRequestToken" in data:
+    if data.get("clientRequestToken") is not None:
         out["client_request_token"] = data["clientRequestToken"]
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_mediaconvert.types.__timestamp_unix
 
         out["created_at"] = capo_mediaconvert.types.__timestamp_unix.deserialize_json(
             data["createdAt"]
         )
-    if "currentPhase" in data:
+    if data.get("currentPhase") is not None:
         import capo_mediaconvert.types.job_phase
 
         out["current_phase"] = capo_mediaconvert.types.job_phase.deserialize_json(
             data["currentPhase"]
         )
-    if "elementalInferenceConfiguration" in data:
+    if data.get("elementalInferenceConfiguration") is not None:
         import capo_mediaconvert.types.elemental_inference_configuration
 
         out["elemental_inference_configuration"] = (
@@ -331,11 +331,11 @@ def deserialize_json(data: dict) -> Job:
                 data["elementalInferenceConfiguration"]
             )
         )
-    if "errorCode" in data:
+    if data.get("errorCode") is not None:
         out["error_code"] = data["errorCode"]
-    if "errorMessage" in data:
+    if data.get("errorMessage") is not None:
         out["error_message"] = data["errorMessage"]
-    if "hopDestinations" in data:
+    if data.get("hopDestinations") is not None:
         import capo_mediaconvert.types.__list_of_hop_destination
 
         out["hop_destinations"] = (
@@ -343,25 +343,25 @@ def deserialize_json(data: dict) -> Job:
                 data["hopDestinations"]
             )
         )
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "jobEngineVersionRequested" in data:
+    if data.get("jobEngineVersionRequested") is not None:
         out["job_engine_version_requested"] = data["jobEngineVersionRequested"]
-    if "jobEngineVersionUsed" in data:
+    if data.get("jobEngineVersionUsed") is not None:
         out["job_engine_version_used"] = data["jobEngineVersionUsed"]
-    if "jobPercentComplete" in data:
+    if data.get("jobPercentComplete") is not None:
         out["job_percent_complete"] = data["jobPercentComplete"]
-    if "jobTemplate" in data:
+    if data.get("jobTemplate") is not None:
         out["job_template"] = data["jobTemplate"]
-    if "lastShareDetails" in data:
+    if data.get("lastShareDetails") is not None:
         out["last_share_details"] = data["lastShareDetails"]
-    if "messages" in data:
+    if data.get("messages") is not None:
         import capo_mediaconvert.types.job_messages
 
         out["messages"] = capo_mediaconvert.types.job_messages.deserialize_json(
             data["messages"]
         )
-    if "outputGroupDetails" in data:
+    if data.get("outputGroupDetails") is not None:
         import capo_mediaconvert.types.__list_of_output_group_detail
 
         out["output_group_details"] = (
@@ -369,11 +369,11 @@ def deserialize_json(data: dict) -> Job:
                 data["outputGroupDetails"]
             )
         )
-    if "priority" in data:
+    if data.get("priority") is not None:
         out["priority"] = data["priority"]
-    if "queue" in data:
+    if data.get("queue") is not None:
         out["queue"] = data["queue"]
-    if "queueTransitions" in data:
+    if data.get("queueTransitions") is not None:
         import capo_mediaconvert.types.__list_of_queue_transition
 
         out["queue_transitions"] = (
@@ -381,23 +381,23 @@ def deserialize_json(data: dict) -> Job:
                 data["queueTransitions"]
             )
         )
-    if "retryCount" in data:
+    if data.get("retryCount") is not None:
         out["retry_count"] = data["retryCount"]
-    if "role" in data:
+    if data.get("role") is not None:
         out["role"] = data["role"]
-    if "settings" in data:
+    if data.get("settings") is not None:
         import capo_mediaconvert.types.job_settings
 
         out["settings"] = capo_mediaconvert.types.job_settings.deserialize_json(
             data["settings"]
         )
-    if "shareStatus" in data:
+    if data.get("shareStatus") is not None:
         import capo_mediaconvert.types.share_status
 
         out["share_status"] = capo_mediaconvert.types.share_status.deserialize_json(
             data["shareStatus"]
         )
-    if "simulateReservedQueue" in data:
+    if data.get("simulateReservedQueue") is not None:
         import capo_mediaconvert.types.simulate_reserved_queue
 
         out["simulate_reserved_queue"] = (
@@ -405,13 +405,13 @@ def deserialize_json(data: dict) -> Job:
                 data["simulateReservedQueue"]
             )
         )
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_mediaconvert.types.job_status
 
         out["status"] = capo_mediaconvert.types.job_status.deserialize_json(
             data["status"]
         )
-    if "statusUpdateInterval" in data:
+    if data.get("statusUpdateInterval") is not None:
         import capo_mediaconvert.types.status_update_interval
 
         out["status_update_interval"] = (
@@ -419,11 +419,11 @@ def deserialize_json(data: dict) -> Job:
                 data["statusUpdateInterval"]
             )
         )
-    if "timing" in data:
+    if data.get("timing") is not None:
         import capo_mediaconvert.types.timing
 
         out["timing"] = capo_mediaconvert.types.timing.deserialize_json(data["timing"])
-    if "userMetadata" in data:
+    if data.get("userMetadata") is not None:
         import capo_mediaconvert.types.__map_of__string
 
         out["user_metadata"] = (
@@ -431,7 +431,7 @@ def deserialize_json(data: dict) -> Job:
                 data["userMetadata"]
             )
         )
-    if "warnings" in data:
+    if data.get("warnings") is not None:
         import capo_mediaconvert.types.__list_of_warning_group
 
         out["warnings"] = (

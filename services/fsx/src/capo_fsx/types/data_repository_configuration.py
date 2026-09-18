@@ -70,7 +70,7 @@ def serialize_aws_json_1_1(value: DataRepositoryConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DataRepositoryConfiguration:
     out: DataRepositoryConfiguration = {}  # type: ignore[typeddict-item]
-    if "Lifecycle" in data:
+    if data.get("Lifecycle") is not None:
         import capo_fsx.types.data_repository_lifecycle
 
         out["lifecycle"] = (
@@ -78,13 +78,13 @@ def deserialize_aws_json_1_1(data: dict) -> DataRepositoryConfiguration:
                 data["Lifecycle"]
             )
         )
-    if "ImportPath" in data:
+    if data.get("ImportPath") is not None:
         out["import_path"] = data["ImportPath"]
-    if "ExportPath" in data:
+    if data.get("ExportPath") is not None:
         out["export_path"] = data["ExportPath"]
-    if "ImportedFileChunkSize" in data:
+    if data.get("ImportedFileChunkSize") is not None:
         out["imported_file_chunk_size"] = data["ImportedFileChunkSize"]
-    if "AutoImportPolicy" in data:
+    if data.get("AutoImportPolicy") is not None:
         import capo_fsx.types.auto_import_policy_type
 
         out["auto_import_policy"] = (
@@ -92,7 +92,7 @@ def deserialize_aws_json_1_1(data: dict) -> DataRepositoryConfiguration:
                 data["AutoImportPolicy"]
             )
         )
-    if "FailureDetails" in data:
+    if data.get("FailureDetails") is not None:
         import capo_fsx.types.data_repository_failure_details
 
         out["failure_details"] = (

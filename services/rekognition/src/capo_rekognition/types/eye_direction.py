@@ -22,20 +22,44 @@ class EyeDirection(TypedDict, closed=True):
 def serialize_aws_json_1_1(value: EyeDirection) -> dict:
     out: dict = {}
     if "yaw" in value:
-        out["Yaw"] = value["yaw"]
+        out["Yaw"] = (
+            "NaN"
+            if value["yaw"] != value["yaw"]
+            else "Infinity"
+            if value["yaw"] == float("inf")
+            else "-Infinity"
+            if value["yaw"] == float("-inf")
+            else value["yaw"]
+        )
     if "pitch" in value:
-        out["Pitch"] = value["pitch"]
+        out["Pitch"] = (
+            "NaN"
+            if value["pitch"] != value["pitch"]
+            else "Infinity"
+            if value["pitch"] == float("inf")
+            else "-Infinity"
+            if value["pitch"] == float("-inf")
+            else value["pitch"]
+        )
     if "confidence" in value:
-        out["Confidence"] = value["confidence"]
+        out["Confidence"] = (
+            "NaN"
+            if value["confidence"] != value["confidence"]
+            else "Infinity"
+            if value["confidence"] == float("inf")
+            else "-Infinity"
+            if value["confidence"] == float("-inf")
+            else value["confidence"]
+        )
     return out
 
 
 def deserialize_aws_json_1_1(data: dict) -> EyeDirection:
     out: EyeDirection = {}  # type: ignore[typeddict-item]
-    if "Yaw" in data:
-        out["yaw"] = data["Yaw"]
-    if "Pitch" in data:
-        out["pitch"] = data["Pitch"]
-    if "Confidence" in data:
-        out["confidence"] = data["Confidence"]
+    if data.get("Yaw") is not None:
+        out["yaw"] = float(data["Yaw"])
+    if data.get("Pitch") is not None:
+        out["pitch"] = float(data["Pitch"])
+    if data.get("Confidence") is not None:
+        out["confidence"] = float(data["Confidence"])
     return out

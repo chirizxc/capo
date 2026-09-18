@@ -25,7 +25,7 @@ def serialize_json(value: ListTagsForResourceResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListTagsForResourceResponse:
     out: ListTagsForResourceResponse = {}  # type: ignore[typeddict-item]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_pca_connector_scep.types.tags
 
         out["tags"] = capo_pca_connector_scep.types.tags.deserialize_json(data["Tags"])

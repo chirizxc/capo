@@ -58,17 +58,17 @@ def serialize_aws_json_1_0(value: Database) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> Database:
     out: Database = {}  # type: ignore[typeddict-item]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "DatabaseName" in data:
+    if data.get("DatabaseName") is not None:
         out["database_name"] = data["DatabaseName"]
-    if "TableCount" in data:
+    if data.get("TableCount") is not None:
         out["table_count"] = data["TableCount"]
     else:
         out["table_count"] = 0
-    if "KmsKeyId" in data:
+    if data.get("KmsKeyId") is not None:
         out["kms_key_id"] = data["KmsKeyId"]
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_timestream_write.types.date
 
         out["creation_time"] = (
@@ -76,7 +76,7 @@ def deserialize_aws_json_1_0(data: dict) -> Database:
                 data["CreationTime"]
             )
         )
-    if "LastUpdatedTime" in data:
+    if data.get("LastUpdatedTime") is not None:
         import capo_timestream_write.types.date
 
         out["last_updated_time"] = (

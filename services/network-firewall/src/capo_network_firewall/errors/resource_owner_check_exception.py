@@ -24,7 +24,7 @@ def serialize_aws_json_1_0(value: ResourceOwnerCheckException_) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ResourceOwnerCheckException_:
     out: ResourceOwnerCheckException_ = {}  # type: ignore[typeddict-item]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     return out
 
@@ -34,15 +34,18 @@ class ResourceOwnerCheckException(ServiceError):
 
     code: str | None = "ResourceOwnerCheckException"
 
-    def __init__(self, data: ResourceOwnerCheckException_):
+    def __init__(self, data: ResourceOwnerCheckException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="ResourceOwnerCheckException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_0(cls, data: dict) -> "ResourceOwnerCheckException":
-        return cls(deserialize_aws_json_1_0(data))
+    def from_aws_json_1_0(
+        cls, data: dict, message: str | None = None
+    ) -> "ResourceOwnerCheckException":
+        return cls(deserialize_aws_json_1_0(data), message)

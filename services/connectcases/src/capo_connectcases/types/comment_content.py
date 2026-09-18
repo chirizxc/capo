@@ -28,11 +28,11 @@ def serialize_json(value: CommentContent) -> dict:
 
 def deserialize_json(data: dict) -> CommentContent:
     out: CommentContent = {}  # type: ignore[typeddict-item]
-    if "body" in data:
+    if data.get("body") is not None:
         out["body"] = data["body"]
     else:
         raise DeserializationError("CommentContent.body required")
-    if "contentType" in data:
+    if data.get("contentType") is not None:
         out["content_type"] = data["contentType"]
     else:
         raise DeserializationError("CommentContent.content_type required")

@@ -58,9 +58,25 @@ def serialize_json(value: CdmaObj) -> dict:
     if "pilot_power" in value:
         out["PilotPower"] = value["pilot_power"]
     if "base_lat" in value:
-        out["BaseLat"] = value["base_lat"]
+        out["BaseLat"] = (
+            "NaN"
+            if value["base_lat"] != value["base_lat"]
+            else "Infinity"
+            if value["base_lat"] == float("inf")
+            else "-Infinity"
+            if value["base_lat"] == float("-inf")
+            else value["base_lat"]
+        )
     if "base_lng" in value:
-        out["BaseLng"] = value["base_lng"]
+        out["BaseLng"] = (
+            "NaN"
+            if value["base_lng"] != value["base_lng"]
+            else "Infinity"
+            if value["base_lng"] == float("inf")
+            else "-Infinity"
+            if value["base_lng"] == float("-inf")
+            else value["base_lng"]
+        )
     if "cdma_nmr" in value:
         import capo_iot_wireless.types.cdma_nmr_list
 
@@ -72,33 +88,33 @@ def serialize_json(value: CdmaObj) -> dict:
 
 def deserialize_json(data: dict) -> CdmaObj:
     out: CdmaObj = {}  # type: ignore[typeddict-item]
-    if "SystemId" in data:
+    if data.get("SystemId") is not None:
         out["system_id"] = data["SystemId"]
     else:
         raise DeserializationError("CdmaObj.system_id required")
-    if "NetworkId" in data:
+    if data.get("NetworkId") is not None:
         out["network_id"] = data["NetworkId"]
     else:
         raise DeserializationError("CdmaObj.network_id required")
-    if "BaseStationId" in data:
+    if data.get("BaseStationId") is not None:
         out["base_station_id"] = data["BaseStationId"]
     else:
         raise DeserializationError("CdmaObj.base_station_id required")
-    if "RegistrationZone" in data:
+    if data.get("RegistrationZone") is not None:
         out["registration_zone"] = data["RegistrationZone"]
-    if "CdmaLocalId" in data:
+    if data.get("CdmaLocalId") is not None:
         import capo_iot_wireless.types.cdma_local_id
 
         out["cdma_local_id"] = capo_iot_wireless.types.cdma_local_id.deserialize_json(
             data["CdmaLocalId"]
         )
-    if "PilotPower" in data:
+    if data.get("PilotPower") is not None:
         out["pilot_power"] = data["PilotPower"]
-    if "BaseLat" in data:
-        out["base_lat"] = data["BaseLat"]
-    if "BaseLng" in data:
-        out["base_lng"] = data["BaseLng"]
-    if "CdmaNmr" in data:
+    if data.get("BaseLat") is not None:
+        out["base_lat"] = float(data["BaseLat"])
+    if data.get("BaseLng") is not None:
+        out["base_lng"] = float(data["BaseLng"])
+    if data.get("CdmaNmr") is not None:
         import capo_iot_wireless.types.cdma_nmr_list
 
         out["cdma_nmr"] = capo_iot_wireless.types.cdma_nmr_list.deserialize_json(

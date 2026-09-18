@@ -137,29 +137,29 @@ def serialize_json(value: ContainerRecipe) -> dict:
 
 def deserialize_json(data: dict) -> ContainerRecipe:
     out: ContainerRecipe = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "containerType" in data:
+    if data.get("containerType") is not None:
         import capo_imagebuilder.types.container_type
 
         out["container_type"] = capo_imagebuilder.types.container_type.deserialize_json(
             data["containerType"]
         )
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "platform" in data:
+    if data.get("platform") is not None:
         import capo_imagebuilder.types.platform
 
         out["platform"] = capo_imagebuilder.types.platform.deserialize_json(
             data["platform"]
         )
-    if "owner" in data:
+    if data.get("owner") is not None:
         out["owner"] = data["owner"]
-    if "version" in data:
+    if data.get("version") is not None:
         out["version"] = data["version"]
-    if "components" in data:
+    if data.get("components") is not None:
         import capo_imagebuilder.types.component_configuration_list
 
         out["components"] = (
@@ -167,7 +167,7 @@ def deserialize_json(data: dict) -> ContainerRecipe:
                 data["components"]
             )
         )
-    if "instanceConfiguration" in data:
+    if data.get("instanceConfiguration") is not None:
         import capo_imagebuilder.types.instance_configuration
 
         out["instance_configuration"] = (
@@ -175,23 +175,23 @@ def deserialize_json(data: dict) -> ContainerRecipe:
                 data["instanceConfiguration"]
             )
         )
-    if "dockerfileTemplateData" in data:
+    if data.get("dockerfileTemplateData") is not None:
         out["dockerfile_template_data"] = data["dockerfileTemplateData"]
-    if "kmsKeyId" in data:
+    if data.get("kmsKeyId") is not None:
         out["kms_key_id"] = data["kmsKeyId"]
-    if "encrypted" in data:
+    if data.get("encrypted") is not None:
         out["encrypted"] = data["encrypted"]
-    if "parentImage" in data:
+    if data.get("parentImage") is not None:
         out["parent_image"] = data["parentImage"]
-    if "dateCreated" in data:
+    if data.get("dateCreated") is not None:
         out["date_created"] = data["dateCreated"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_imagebuilder.types.tag_map
 
         out["tags"] = capo_imagebuilder.types.tag_map.deserialize_json(data["tags"])
-    if "workingDirectory" in data:
+    if data.get("workingDirectory") is not None:
         out["working_directory"] = data["workingDirectory"]
-    if "targetRepository" in data:
+    if data.get("targetRepository") is not None:
         import capo_imagebuilder.types.target_container_repository
 
         out["target_repository"] = (

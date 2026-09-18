@@ -37,7 +37,7 @@ def serialize_json(value: ListResourcePermissionStatementsOutput) -> dict:
 
 def deserialize_json(data: dict) -> ListResourcePermissionStatementsOutput:
     out: ListResourcePermissionStatementsOutput = {}  # type: ignore[typeddict-item]
-    if "permissionStatements" in data:
+    if data.get("permissionStatements") is not None:
         import capo_signin.types.permission_statement_summaries
 
         out["permission_statements"] = (
@@ -49,6 +49,6 @@ def deserialize_json(data: dict) -> ListResourcePermissionStatementsOutput:
         raise DeserializationError(
             "ListResourcePermissionStatementsOutput.permission_statements required"
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

@@ -74,7 +74,7 @@ def serialize_json(value: UserSearchCriteria) -> dict:
 
 def deserialize_json(data: dict) -> UserSearchCriteria:
     out: UserSearchCriteria = {}  # type: ignore[typeddict-item]
-    if "OrConditions" in data:
+    if data.get("OrConditions") is not None:
         import capo_connect.types.user_search_condition_list
 
         out["or_conditions"] = (
@@ -82,7 +82,7 @@ def deserialize_json(data: dict) -> UserSearchCriteria:
                 data["OrConditions"]
             )
         )
-    if "AndConditions" in data:
+    if data.get("AndConditions") is not None:
         import capo_connect.types.user_search_condition_list
 
         out["and_conditions"] = (
@@ -90,19 +90,19 @@ def deserialize_json(data: dict) -> UserSearchCriteria:
                 data["AndConditions"]
             )
         )
-    if "StringCondition" in data:
+    if data.get("StringCondition") is not None:
         import capo_connect.types.string_condition
 
         out["string_condition"] = capo_connect.types.string_condition.deserialize_json(
             data["StringCondition"]
         )
-    if "ListCondition" in data:
+    if data.get("ListCondition") is not None:
         import capo_connect.types.list_condition
 
         out["list_condition"] = capo_connect.types.list_condition.deserialize_json(
             data["ListCondition"]
         )
-    if "HierarchyGroupCondition" in data:
+    if data.get("HierarchyGroupCondition") is not None:
         import capo_connect.types.hierarchy_group_condition
 
         out["hierarchy_group_condition"] = (

@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: RegionOfInterest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RegionOfInterest:
     out: RegionOfInterest = {}  # type: ignore[typeddict-item]
-    if "BoundingBox" in data:
+    if data.get("BoundingBox") is not None:
         import capo_rekognition.types.bounding_box
 
         out["bounding_box"] = (
@@ -44,7 +44,7 @@ def deserialize_aws_json_1_1(data: dict) -> RegionOfInterest:
                 data["BoundingBox"]
             )
         )
-    if "Polygon" in data:
+    if data.get("Polygon") is not None:
         import capo_rekognition.types.polygon
 
         out["polygon"] = capo_rekognition.types.polygon.deserialize_aws_json_1_1(

@@ -78,25 +78,25 @@ def serialize_json(value: JobTemplate) -> dict:
 
 def deserialize_json(data: dict) -> JobTemplate:
     out: JobTemplate = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_emr_containers.types.date
 
         out["created_at"] = capo_emr_containers.types.date.deserialize_json(
             data["createdAt"]
         )
-    if "createdBy" in data:
+    if data.get("createdBy") is not None:
         out["created_by"] = data["createdBy"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_emr_containers.types.tag_map
 
         out["tags"] = capo_emr_containers.types.tag_map.deserialize_json(data["tags"])
-    if "jobTemplateData" in data:
+    if data.get("jobTemplateData") is not None:
         import capo_emr_containers.types.job_template_data
 
         out["job_template_data"] = (
@@ -106,8 +106,8 @@ def deserialize_json(data: dict) -> JobTemplate:
         )
     else:
         raise DeserializationError("JobTemplate.job_template_data required")
-    if "kmsKeyArn" in data:
+    if data.get("kmsKeyArn") is not None:
         out["kms_key_arn"] = data["kmsKeyArn"]
-    if "decryptionError" in data:
+    if data.get("decryptionError") is not None:
         out["decryption_error"] = data["decryptionError"]
     return out

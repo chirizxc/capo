@@ -38,17 +38,17 @@ def serialize_json(value: ManagedFirewallDomainListsItem) -> dict:
 
 def deserialize_json(data: dict) -> ManagedFirewallDomainListsItem:
     out: ManagedFirewallDomainListsItem = {}  # type: ignore[typeddict-item]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("ManagedFirewallDomainListsItem.id required")
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("ManagedFirewallDomainListsItem.name required")
-    if "managedListType" in data:
+    if data.get("managedListType") is not None:
         out["managed_list_type"] = data["managedListType"]
     else:
         raise DeserializationError(

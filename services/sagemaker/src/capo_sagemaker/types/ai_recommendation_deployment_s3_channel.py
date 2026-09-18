@@ -28,8 +28,8 @@ def serialize_aws_json_1_1(value: AIRecommendationDeploymentS3Channel) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AIRecommendationDeploymentS3Channel:
     out: AIRecommendationDeploymentS3Channel = {}  # type: ignore[typeddict-item]
-    if "ChannelName" in data:
+    if data.get("ChannelName") is not None:
         out["channel_name"] = data["ChannelName"]
-    if "Uri" in data:
+    if data.get("Uri") is not None:
         out["uri"] = data["Uri"]
     return out

@@ -25,6 +25,8 @@ def deserialize_aws_json_1_1(data: list) -> StandbyWorkspacesList:
 
     out: StandbyWorkspacesList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_workspaces.types.standby_workspace.deserialize_aws_json_1_1(item)
         )

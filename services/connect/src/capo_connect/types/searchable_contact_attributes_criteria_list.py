@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> SearchableContactAttributesCriteriaList:
 
     out: SearchableContactAttributesCriteriaList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_connect.types.searchable_contact_attributes_criteria.deserialize_json(
                 item

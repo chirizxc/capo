@@ -31,7 +31,7 @@ def serialize_json(value: ResolveComponentCandidatesResponse) -> dict:
 
 def deserialize_json(data: dict) -> ResolveComponentCandidatesResponse:
     out: ResolveComponentCandidatesResponse = {}  # type: ignore[typeddict-item]
-    if "resolvedComponentVersions" in data:
+    if data.get("resolvedComponentVersions") is not None:
         import capo_greengrassv2.types.resolved_component_versions_list
 
         out["resolved_component_versions"] = (

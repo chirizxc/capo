@@ -36,12 +36,12 @@ def serialize_aws_json_1_1(value: ListStatementsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListStatementsRequest:
     out: ListStatementsRequest = {}  # type: ignore[typeddict-item]
-    if "SessionId" in data:
+    if data.get("SessionId") is not None:
         out["session_id"] = data["SessionId"]
     else:
         raise DeserializationError("ListStatementsRequest.session_id required")
-    if "RequestOrigin" in data:
+    if data.get("RequestOrigin") is not None:
         out["request_origin"] = data["RequestOrigin"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

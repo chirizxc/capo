@@ -34,12 +34,12 @@ def serialize_json(value: ListSecurityGroupsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListSecurityGroupsResponse:
     out: ListSecurityGroupsResponse = {}  # type: ignore[typeddict-item]
-    if "securityGroups" in data:
+    if data.get("securityGroups") is not None:
         import capo_wickr.types.security_group_list
 
         out["security_groups"] = capo_wickr.types.security_group_list.deserialize_json(
             data["securityGroups"]
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

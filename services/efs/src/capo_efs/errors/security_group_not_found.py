@@ -27,11 +27,11 @@ def serialize_json(value: SecurityGroupNotFound_) -> dict:
 
 def deserialize_json(data: dict) -> SecurityGroupNotFound_:
     out: SecurityGroupNotFound_ = {}  # type: ignore[typeddict-item]
-    if "ErrorCode" in data:
+    if data.get("ErrorCode") is not None:
         out["error_code"] = data["ErrorCode"]
     else:
         raise DeserializationError("SecurityGroupNotFound_.error_code required")
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     return out
 
@@ -41,15 +41,18 @@ class SecurityGroupNotFound(ServiceError):
 
     code: str | None = "SecurityGroupNotFound"
 
-    def __init__(self, data: SecurityGroupNotFound_):
+    def __init__(self, data: SecurityGroupNotFound_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="SecurityGroupNotFound",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "SecurityGroupNotFound":
-        return cls(deserialize_json(data))
+    def from_json(
+        cls, data: dict, message: str | None = None
+    ) -> "SecurityGroupNotFound":
+        return cls(deserialize_json(data), message)

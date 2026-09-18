@@ -31,7 +31,7 @@ def serialize_json(value: AwsCloudFrontDistributionOriginGroup) -> dict:
 
 def deserialize_json(data: dict) -> AwsCloudFrontDistributionOriginGroup:
     out: AwsCloudFrontDistributionOriginGroup = {}  # type: ignore[typeddict-item]
-    if "FailoverCriteria" in data:
+    if data.get("FailoverCriteria") is not None:
         import capo_securityhub.types.aws_cloud_front_distribution_origin_group_failover
 
         out["failover_criteria"] = (

@@ -32,7 +32,7 @@ def serialize_aws_json_1_1(value: TranslatedDocument) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> TranslatedDocument:
     out: TranslatedDocument = {}  # type: ignore[typeddict-item]
-    if "Content" in data:
+    if data.get("Content") is not None:
         import capo_translate.types.translated_document_content
 
         out["content"] = (

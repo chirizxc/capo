@@ -52,17 +52,17 @@ def serialize_json(value: DetailedInstanceTypeItem) -> dict:
 
 def deserialize_json(data: dict) -> DetailedInstanceTypeItem:
     out: DetailedInstanceTypeItem = {}  # type: ignore[typeddict-item]
-    if "InstanceType" in data:
+    if data.get("InstanceType") is not None:
         out["instance_type"] = data["InstanceType"]
-    if "VCPUs" in data:
+    if data.get("VCPUs") is not None:
         out["vcp_us"] = data["VCPUs"]
-    if "MemoryInMib" in data:
+    if data.get("MemoryInMib") is not None:
         out["memory_in_mib"] = data["MemoryInMib"]
     else:
         out["memory_in_mib"] = 0
-    if "NetworkPerformance" in data:
+    if data.get("NetworkPerformance") is not None:
         out["network_performance"] = data["NetworkPerformance"]
-    if "FormFactorConfigs" in data:
+    if data.get("FormFactorConfigs") is not None:
         import capo_outposts.types.form_factor_config_list
 
         out["form_factor_configs"] = (

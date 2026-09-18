@@ -31,7 +31,7 @@ def serialize_json(value: StartCanaryDryRunResponse) -> dict:
 
 def deserialize_json(data: dict) -> StartCanaryDryRunResponse:
     out: StartCanaryDryRunResponse = {}  # type: ignore[typeddict-item]
-    if "DryRunConfig" in data:
+    if data.get("DryRunConfig") is not None:
         import capo_synthetics.types.dry_run_config_output
 
         out["dry_run_config"] = (

@@ -42,7 +42,7 @@ def serialize_json(value: StartCutoverRequest) -> dict:
 
 def deserialize_json(data: dict) -> StartCutoverRequest:
     out: StartCutoverRequest = {}  # type: ignore[typeddict-item]
-    if "sourceServerIDs" in data:
+    if data.get("sourceServerIDs") is not None:
         import capo_mgn.types.start_cutover_request_source_server_i_ds
 
         out["source_server_i_ds"] = (
@@ -52,10 +52,10 @@ def deserialize_json(data: dict) -> StartCutoverRequest:
         )
     else:
         raise DeserializationError("StartCutoverRequest.source_server_i_ds required")
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_mgn.types.tags_map
 
         out["tags"] = capo_mgn.types.tags_map.deserialize_json(data["tags"])
-    if "accountID" in data:
+    if data.get("accountID") is not None:
         out["account_id"] = data["accountID"]
     return out

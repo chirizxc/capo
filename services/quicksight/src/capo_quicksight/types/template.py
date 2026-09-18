@@ -61,25 +61,25 @@ def serialize_json(value: Template) -> dict:
 
 def deserialize_json(data: dict) -> Template:
     out: Template = {}  # type: ignore[typeddict-item]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Version" in data:
+    if data.get("Version") is not None:
         import capo_quicksight.types.template_version
 
         out["version"] = capo_quicksight.types.template_version.deserialize_json(
             data["Version"]
         )
-    if "TemplateId" in data:
+    if data.get("TemplateId") is not None:
         out["template_id"] = data["TemplateId"]
-    if "LastUpdatedTime" in data:
+    if data.get("LastUpdatedTime") is not None:
         import capo_quicksight.types.timestamp
 
         out["last_updated_time"] = capo_quicksight.types.timestamp.deserialize_json(
             data["LastUpdatedTime"]
         )
-    if "CreatedTime" in data:
+    if data.get("CreatedTime") is not None:
         import capo_quicksight.types.timestamp
 
         out["created_time"] = capo_quicksight.types.timestamp.deserialize_json(

@@ -39,15 +39,20 @@ class CacheSecurityGroupAlreadyExistsFault(ServiceError):
 
     code: str | None = "CacheSecurityGroupAlreadyExistsFault"
 
-    def __init__(self, data: CacheSecurityGroupAlreadyExistsFault_):
+    def __init__(
+        self, data: CacheSecurityGroupAlreadyExistsFault_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="CacheSecurityGroupAlreadyExistsFault",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_query(cls, el: Element) -> "CacheSecurityGroupAlreadyExistsFault":
-        return cls(deserialize_query(el))
+    def from_query(
+        cls, el: Element, message: str | None = None
+    ) -> "CacheSecurityGroupAlreadyExistsFault":
+        return cls(deserialize_query(el), message)

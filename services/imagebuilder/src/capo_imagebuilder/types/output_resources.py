@@ -34,11 +34,11 @@ def serialize_json(value: OutputResources) -> dict:
 
 def deserialize_json(data: dict) -> OutputResources:
     out: OutputResources = {}  # type: ignore[typeddict-item]
-    if "amis" in data:
+    if data.get("amis") is not None:
         import capo_imagebuilder.types.ami_list
 
         out["amis"] = capo_imagebuilder.types.ami_list.deserialize_json(data["amis"])
-    if "containers" in data:
+    if data.get("containers") is not None:
         import capo_imagebuilder.types.container_list
 
         out["containers"] = capo_imagebuilder.types.container_list.deserialize_json(

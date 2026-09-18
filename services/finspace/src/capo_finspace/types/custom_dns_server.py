@@ -28,11 +28,11 @@ def serialize_json(value: CustomDNSServer) -> dict:
 
 def deserialize_json(data: dict) -> CustomDNSServer:
     out: CustomDNSServer = {}  # type: ignore[typeddict-item]
-    if "customDNSServerName" in data:
+    if data.get("customDNSServerName") is not None:
         out["custom_dns_server_name"] = data["customDNSServerName"]
     else:
         raise DeserializationError("CustomDNSServer.custom_dns_server_name required")
-    if "customDNSServerIP" in data:
+    if data.get("customDNSServerIP") is not None:
         out["custom_dns_server_ip"] = data["customDNSServerIP"]
     else:
         raise DeserializationError("CustomDNSServer.custom_dns_server_ip required")

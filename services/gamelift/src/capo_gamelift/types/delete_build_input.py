@@ -23,6 +23,6 @@ def serialize_aws_json_1_1(value: DeleteBuildInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteBuildInput:
     out: DeleteBuildInput = {}  # type: ignore[typeddict-item]
-    if "BuildId" in data:
+    if data.get("BuildId") is not None:
         out["build_id"] = data["BuildId"]
     return out

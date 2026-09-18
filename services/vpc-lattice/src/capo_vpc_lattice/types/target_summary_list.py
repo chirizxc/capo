@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> TargetSummaryList:
 
     out: TargetSummaryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_vpc_lattice.types.target_summary.deserialize_json(item))
     return out

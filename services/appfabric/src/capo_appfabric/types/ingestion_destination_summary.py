@@ -24,7 +24,7 @@ def serialize_json(value: IngestionDestinationSummary) -> dict:
 
 def deserialize_json(data: dict) -> IngestionDestinationSummary:
     out: IngestionDestinationSummary = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("IngestionDestinationSummary.arn required")

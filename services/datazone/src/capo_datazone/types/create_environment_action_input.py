@@ -41,11 +41,11 @@ def serialize_json(value: CreateEnvironmentActionInput) -> dict:
 
 def deserialize_json(data: dict) -> CreateEnvironmentActionInput:
     out: CreateEnvironmentActionInput = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("CreateEnvironmentActionInput.name required")
-    if "parameters" in data:
+    if data.get("parameters") is not None:
         import capo_datazone.types.action_parameters
 
         out["parameters"] = capo_datazone.types.action_parameters.deserialize_json(
@@ -53,6 +53,6 @@ def deserialize_json(data: dict) -> CreateEnvironmentActionInput:
         )
     else:
         raise DeserializationError("CreateEnvironmentActionInput.parameters required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
     return out

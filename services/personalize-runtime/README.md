@@ -13,9 +13,9 @@ from capo_personalize_runtime import AsyncPersonalizeRuntimeClient
 
 
 async def main():
-    async with AsyncPersonalizeRuntimeClient() as s3:
+    async with AsyncPersonalizeRuntimeClient() as personalize_runtime:
         # Example: call the get_action_recommendations operation
-        response = await s3.get_action_recommendations()
+        response = await personalize_runtime.get_action_recommendations()
         print(response["action_list"])
 ```
 
@@ -29,9 +29,9 @@ from capo_personalize_runtime.error import InvalidInputException
 
 
 async def main():
-    async with AsyncPersonalizeRuntimeClient() as s3:
+    async with AsyncPersonalizeRuntimeClient() as personalize_runtime:
         try:
-            await s3.get_action_recommendations()
+            await personalize_runtime.get_action_recommendations()
         except InvalidInputException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -48,13 +48,13 @@ from capo_personalize_runtime import AsyncPersonalizeRuntimeClient
 
 
 async def main():
-    async with AsyncPersonalizeRuntimeClient() as s3:
+    async with AsyncPersonalizeRuntimeClient() as personalize_runtime:
         # Default: 3 attempts for every operation
-        response = await s3.get_action_recommendations()
+        response = await personalize_runtime.get_action_recommendations()
 
         # Override per operation
-        response = await s3.get_action_recommendations(config_overrides={"retry_max_attempts": 5})
+        response = await personalize_runtime.get_action_recommendations(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.get_action_recommendations(config_overrides={"retry_max_attempts": 1})
+        response = await personalize_runtime.get_action_recommendations(config_overrides={"retry_max_attempts": 1})
 ```

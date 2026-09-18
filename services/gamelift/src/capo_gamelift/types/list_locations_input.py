@@ -41,7 +41,7 @@ def serialize_aws_json_1_1(value: ListLocationsInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListLocationsInput:
     out: ListLocationsInput = {}  # type: ignore[typeddict-item]
-    if "Filters" in data:
+    if data.get("Filters") is not None:
         import capo_gamelift.types.location_filter_list
 
         out["filters"] = (
@@ -49,8 +49,8 @@ def deserialize_aws_json_1_1(data: dict) -> ListLocationsInput:
                 data["Filters"]
             )
         )
-    if "Limit" in data:
+    if data.get("Limit") is not None:
         out["limit"] = data["Limit"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

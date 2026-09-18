@@ -29,7 +29,7 @@ def serialize_aws_json_1_0(value: ProgramManagementAccountTypeFilters) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ProgramManagementAccountTypeFilters:
     out: ProgramManagementAccountTypeFilters = {}  # type: ignore[typeddict-item]
-    if "programs" in data:
+    if data.get("programs") is not None:
         import capo_partnercentral_channel.types.program_list
 
         out["programs"] = (

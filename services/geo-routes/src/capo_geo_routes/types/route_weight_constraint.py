@@ -32,7 +32,7 @@ def serialize_json(value: RouteWeightConstraint) -> dict:
 
 def deserialize_json(data: dict) -> RouteWeightConstraint:
     out: RouteWeightConstraint = {}  # type: ignore[typeddict-item]
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_geo_routes.types.route_weight_constraint_type
 
         out["type"] = (
@@ -42,7 +42,7 @@ def deserialize_json(data: dict) -> RouteWeightConstraint:
         )
     else:
         raise DeserializationError("RouteWeightConstraint.type required")
-    if "Value" in data:
+    if data.get("Value") is not None:
         out["value"] = data["Value"]
     else:
         out["value"] = 0

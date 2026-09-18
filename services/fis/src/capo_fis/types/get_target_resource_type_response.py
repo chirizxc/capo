@@ -29,7 +29,7 @@ def serialize_json(value: GetTargetResourceTypeResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetTargetResourceTypeResponse:
     out: GetTargetResourceTypeResponse = {}  # type: ignore[typeddict-item]
-    if "targetResourceType" in data:
+    if data.get("targetResourceType") is not None:
         import capo_fis.types.target_resource_type
 
         out["target_resource_type"] = (

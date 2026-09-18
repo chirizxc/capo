@@ -1,5 +1,6 @@
 """Generated from Smithy shape ``com.amazonaws.resiliencehub#AwsResilienceHub``."""
 
+import uuid
 import warnings
 from collections.abc import AsyncIterator
 from typing import TYPE_CHECKING, Any, Iterable, Optional
@@ -338,15 +339,17 @@ class AsyncresiliencehubClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_resiliencehub.types.accept_resource_grouping_recommendations_request.AcceptResourceGroupingRecommendationsRequest = {}  # type: ignore[typeddict-item]
-        input_["app_arn"] = app_arn
-        input_["entries"] = entries
+        input_: capo_resiliencehub.types.accept_resource_grouping_recommendations_request.AcceptResourceGroupingRecommendationsRequest = {
+            "app_arn": app_arn,
+            "entries": entries,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def add_draft_app_version_resource_mappings(
@@ -389,15 +392,17 @@ class AsyncresiliencehubClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_resiliencehub.types.add_draft_app_version_resource_mappings_request.AddDraftAppVersionResourceMappingsRequest = {}  # type: ignore[typeddict-item]
-        input_["app_arn"] = app_arn
-        input_["resource_mappings"] = resource_mappings
+        input_: capo_resiliencehub.types.add_draft_app_version_resource_mappings_request.AddDraftAppVersionResourceMappingsRequest = {
+            "app_arn": app_arn,
+            "resource_mappings": resource_mappings,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def batch_update_recommendation_status(
@@ -438,15 +443,17 @@ class AsyncresiliencehubClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_resiliencehub.types.batch_update_recommendation_status_request.BatchUpdateRecommendationStatusRequest = {}  # type: ignore[typeddict-item]
-        input_["app_arn"] = app_arn
-        input_["request_entries"] = request_entries
+        input_: capo_resiliencehub.types.batch_update_recommendation_status_request.BatchUpdateRecommendationStatusRequest = {
+            "app_arn": app_arn,
+            "request_entries": request_entries,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_app(
@@ -513,16 +520,18 @@ class AsyncresiliencehubClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_resiliencehub.types.create_app_request.CreateAppRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_resiliencehub.types.create_app_request.CreateAppRequest = {
+            "name": name
+        }
         if description is not None:
             input_["description"] = description
         if policy_arn is not None:
             input_["policy_arn"] = policy_arn
         if tags is not None:
             input_["tags"] = tags
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if assessment_schedule is not None:
             input_["assessment_schedule"] = assessment_schedule
         if permission_model is not None:
@@ -537,6 +546,7 @@ class AsyncresiliencehubClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_app_version_app_component(
@@ -591,22 +601,25 @@ class AsyncresiliencehubClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_resiliencehub.types.create_app_version_app_component_request.CreateAppVersionAppComponentRequest = {}  # type: ignore[typeddict-item]
-        input_["app_arn"] = app_arn
+        input_: capo_resiliencehub.types.create_app_version_app_component_request.CreateAppVersionAppComponentRequest = {
+            "app_arn": app_arn,
+            "name": name,
+            "type": type,
+        }
         if id is not None:
             input_["id"] = id
-        input_["name"] = name
-        input_["type"] = type
         if additional_info is not None:
             input_["additional_info"] = additional_info
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_app_version_resource(
@@ -673,28 +686,31 @@ class AsyncresiliencehubClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_resiliencehub.types.create_app_version_resource_request.CreateAppVersionResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["app_arn"] = app_arn
+        input_: capo_resiliencehub.types.create_app_version_resource_request.CreateAppVersionResourceRequest = {
+            "app_arn": app_arn,
+            "logical_resource_id": logical_resource_id,
+            "physical_resource_id": physical_resource_id,
+            "resource_type": resource_type,
+            "app_components": app_components,
+        }
         if resource_name is not None:
             input_["resource_name"] = resource_name
-        input_["logical_resource_id"] = logical_resource_id
-        input_["physical_resource_id"] = physical_resource_id
         if aws_region is not None:
             input_["aws_region"] = aws_region
         if aws_account_id is not None:
             input_["aws_account_id"] = aws_account_id
-        input_["resource_type"] = resource_type
-        input_["app_components"] = app_components
         if additional_info is not None:
             input_["additional_info"] = additional_info
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_recommendation_template(
@@ -757,17 +773,19 @@ class AsyncresiliencehubClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_resiliencehub.types.create_recommendation_template_request.CreateRecommendationTemplateRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_resiliencehub.types.create_recommendation_template_request.CreateRecommendationTemplateRequest = {
+            "assessment_arn": assessment_arn,
+            "name": name,
+        }
         if recommendation_ids is not None:
             input_["recommendation_ids"] = recommendation_ids
         if format is not None:
             input_["format"] = format
         if recommendation_types is not None:
             input_["recommendation_types"] = recommendation_types
-        input_["assessment_arn"] = assessment_arn
-        input_["name"] = name
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if tags is not None:
             input_["tags"] = tags
         if bucket_name is not None:
@@ -778,6 +796,7 @@ class AsyncresiliencehubClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_resiliency_policy(
@@ -835,16 +854,18 @@ class AsyncresiliencehubClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_resiliencehub.types.create_resiliency_policy_request.CreateResiliencyPolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["policy_name"] = policy_name
+        input_: capo_resiliencehub.types.create_resiliency_policy_request.CreateResiliencyPolicyRequest = {
+            "policy_name": policy_name,
+            "tier": tier,
+            "policy": policy,
+        }
         if policy_description is not None:
             input_["policy_description"] = policy_description
         if data_location_constraint is not None:
             input_["data_location_constraint"] = data_location_constraint
-        input_["tier"] = tier
-        input_["policy"] = policy
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if tags is not None:
             input_["tags"] = tags
 
@@ -853,6 +874,7 @@ class AsyncresiliencehubClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_app(
@@ -899,18 +921,21 @@ class AsyncresiliencehubClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_resiliencehub.types.delete_app_request.DeleteAppRequest = {}  # type: ignore[typeddict-item]
-        input_["app_arn"] = app_arn
+        input_: capo_resiliencehub.types.delete_app_request.DeleteAppRequest = {
+            "app_arn": app_arn
+        }
         if force_delete is not None:
             input_["force_delete"] = force_delete
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_app_assessment(
@@ -954,16 +979,19 @@ class AsyncresiliencehubClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_resiliencehub.types.delete_app_assessment_request.DeleteAppAssessmentRequest = {}  # type: ignore[typeddict-item]
-        input_["assessment_arn"] = assessment_arn
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_resiliencehub.types.delete_app_assessment_request.DeleteAppAssessmentRequest = {
+            "assessment_arn": assessment_arn
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_app_input_source(
@@ -1017,14 +1045,16 @@ class AsyncresiliencehubClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_resiliencehub.types.delete_app_input_source_request.DeleteAppInputSourceRequest = {}  # type: ignore[typeddict-item]
-        input_["app_arn"] = app_arn
+        input_: capo_resiliencehub.types.delete_app_input_source_request.DeleteAppInputSourceRequest = {
+            "app_arn": app_arn
+        }
         if source_arn is not None:
             input_["source_arn"] = source_arn
         if terraform_source is not None:
             input_["terraform_source"] = terraform_source
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if eks_source_cluster_namespace is not None:
             input_["eks_source_cluster_namespace"] = eks_source_cluster_namespace
 
@@ -1033,6 +1063,7 @@ class AsyncresiliencehubClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_app_version_app_component(
@@ -1078,17 +1109,20 @@ class AsyncresiliencehubClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_resiliencehub.types.delete_app_version_app_component_request.DeleteAppVersionAppComponentRequest = {}  # type: ignore[typeddict-item]
-        input_["app_arn"] = app_arn
-        input_["id"] = id
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_resiliencehub.types.delete_app_version_app_component_request.DeleteAppVersionAppComponentRequest = {
+            "app_arn": app_arn,
+            "id": id,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_app_version_resource(
@@ -1150,8 +1184,9 @@ class AsyncresiliencehubClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_resiliencehub.types.delete_app_version_resource_request.DeleteAppVersionResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["app_arn"] = app_arn
+        input_: capo_resiliencehub.types.delete_app_version_resource_request.DeleteAppVersionResourceRequest = {
+            "app_arn": app_arn
+        }
         if resource_name is not None:
             input_["resource_name"] = resource_name
         if logical_resource_id is not None:
@@ -1162,14 +1197,16 @@ class AsyncresiliencehubClient:
             input_["aws_region"] = aws_region
         if aws_account_id is not None:
             input_["aws_account_id"] = aws_account_id
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_recommendation_template(
@@ -1212,16 +1249,19 @@ class AsyncresiliencehubClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_resiliencehub.types.delete_recommendation_template_request.DeleteRecommendationTemplateRequest = {}  # type: ignore[typeddict-item]
-        input_["recommendation_template_arn"] = recommendation_template_arn
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_resiliencehub.types.delete_recommendation_template_request.DeleteRecommendationTemplateRequest = {
+            "recommendation_template_arn": recommendation_template_arn
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_resiliency_policy(
@@ -1265,16 +1305,19 @@ class AsyncresiliencehubClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_resiliencehub.types.delete_resiliency_policy_request.DeleteResiliencyPolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["policy_arn"] = policy_arn
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_resiliencehub.types.delete_resiliency_policy_request.DeleteResiliencyPolicyRequest = {
+            "policy_arn": policy_arn
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_app(
@@ -1313,14 +1356,16 @@ class AsyncresiliencehubClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_resiliencehub.types.describe_app_request.DescribeAppRequest = {}  # type: ignore[typeddict-item]
-        input_["app_arn"] = app_arn
+        input_: capo_resiliencehub.types.describe_app_request.DescribeAppRequest = {
+            "app_arn": app_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_app_assessment(
@@ -1359,14 +1404,16 @@ class AsyncresiliencehubClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_resiliencehub.types.describe_app_assessment_request.DescribeAppAssessmentRequest = {}  # type: ignore[typeddict-item]
-        input_["assessment_arn"] = assessment_arn
+        input_: capo_resiliencehub.types.describe_app_assessment_request.DescribeAppAssessmentRequest = {
+            "assessment_arn": assessment_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_app_version(
@@ -1407,15 +1454,17 @@ class AsyncresiliencehubClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_resiliencehub.types.describe_app_version_request.DescribeAppVersionRequest = {}  # type: ignore[typeddict-item]
-        input_["app_arn"] = app_arn
-        input_["app_version"] = app_version
+        input_: capo_resiliencehub.types.describe_app_version_request.DescribeAppVersionRequest = {
+            "app_arn": app_arn,
+            "app_version": app_version,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_app_version_app_component(
@@ -1459,16 +1508,18 @@ class AsyncresiliencehubClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_resiliencehub.types.describe_app_version_app_component_request.DescribeAppVersionAppComponentRequest = {}  # type: ignore[typeddict-item]
-        input_["app_arn"] = app_arn
-        input_["app_version"] = app_version
-        input_["id"] = id
+        input_: capo_resiliencehub.types.describe_app_version_app_component_request.DescribeAppVersionAppComponentRequest = {
+            "app_arn": app_arn,
+            "app_version": app_version,
+            "id": id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_app_version_resource(
@@ -1528,9 +1579,10 @@ class AsyncresiliencehubClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_resiliencehub.types.describe_app_version_resource_request.DescribeAppVersionResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["app_arn"] = app_arn
-        input_["app_version"] = app_version
+        input_: capo_resiliencehub.types.describe_app_version_resource_request.DescribeAppVersionResourceRequest = {
+            "app_arn": app_arn,
+            "app_version": app_version,
+        }
         if resource_name is not None:
             input_["resource_name"] = resource_name
         if logical_resource_id is not None:
@@ -1547,6 +1599,7 @@ class AsyncresiliencehubClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_app_version_resources_resolution_status(
@@ -1589,9 +1642,10 @@ class AsyncresiliencehubClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_resiliencehub.types.describe_app_version_resources_resolution_status_request.DescribeAppVersionResourcesResolutionStatusRequest = {}  # type: ignore[typeddict-item]
-        input_["app_arn"] = app_arn
-        input_["app_version"] = app_version
+        input_: capo_resiliencehub.types.describe_app_version_resources_resolution_status_request.DescribeAppVersionResourcesResolutionStatusRequest = {
+            "app_arn": app_arn,
+            "app_version": app_version,
+        }
         if resolution_id is not None:
             input_["resolution_id"] = resolution_id
 
@@ -1600,6 +1654,7 @@ class AsyncresiliencehubClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_app_version_template(
@@ -1640,15 +1695,17 @@ class AsyncresiliencehubClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_resiliencehub.types.describe_app_version_template_request.DescribeAppVersionTemplateRequest = {}  # type: ignore[typeddict-item]
-        input_["app_arn"] = app_arn
-        input_["app_version"] = app_version
+        input_: capo_resiliencehub.types.describe_app_version_template_request.DescribeAppVersionTemplateRequest = {
+            "app_arn": app_arn,
+            "app_version": app_version,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_draft_app_version_resources_import_status(
@@ -1687,14 +1744,16 @@ class AsyncresiliencehubClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_resiliencehub.types.describe_draft_app_version_resources_import_status_request.DescribeDraftAppVersionResourcesImportStatusRequest = {}  # type: ignore[typeddict-item]
-        input_["app_arn"] = app_arn
+        input_: capo_resiliencehub.types.describe_draft_app_version_resources_import_status_request.DescribeDraftAppVersionResourcesImportStatusRequest = {
+            "app_arn": app_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_metrics_export(
@@ -1733,14 +1792,16 @@ class AsyncresiliencehubClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_resiliencehub.types.describe_metrics_export_request.DescribeMetricsExportRequest = {}  # type: ignore[typeddict-item]
-        input_["metrics_export_id"] = metrics_export_id
+        input_: capo_resiliencehub.types.describe_metrics_export_request.DescribeMetricsExportRequest = {
+            "metrics_export_id": metrics_export_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_resiliency_policy(
@@ -1779,14 +1840,16 @@ class AsyncresiliencehubClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_resiliencehub.types.describe_resiliency_policy_request.DescribeResiliencyPolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["policy_arn"] = policy_arn
+        input_: capo_resiliencehub.types.describe_resiliency_policy_request.DescribeResiliencyPolicyRequest = {
+            "policy_arn": policy_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_resource_grouping_recommendation_task(
@@ -1827,8 +1890,9 @@ class AsyncresiliencehubClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_resiliencehub.types.describe_resource_grouping_recommendation_task_request.DescribeResourceGroupingRecommendationTaskRequest = {}  # type: ignore[typeddict-item]
-        input_["app_arn"] = app_arn
+        input_: capo_resiliencehub.types.describe_resource_grouping_recommendation_task_request.DescribeResourceGroupingRecommendationTaskRequest = {
+            "app_arn": app_arn
+        }
         if grouping_id is not None:
             input_["grouping_id"] = grouping_id
 
@@ -1837,6 +1901,7 @@ class AsyncresiliencehubClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def import_resources_to_draft_app_version(
@@ -1891,8 +1956,9 @@ class AsyncresiliencehubClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_resiliencehub.types.import_resources_to_draft_app_version_request.ImportResourcesToDraftAppVersionRequest = {}  # type: ignore[typeddict-item]
-        input_["app_arn"] = app_arn
+        input_: capo_resiliencehub.types.import_resources_to_draft_app_version_request.ImportResourcesToDraftAppVersionRequest = {
+            "app_arn": app_arn
+        }
         if source_arns is not None:
             input_["source_arns"] = source_arns
         if terraform_sources is not None:
@@ -1907,6 +1973,7 @@ class AsyncresiliencehubClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_alarm_recommendations(
@@ -1949,8 +2016,9 @@ class AsyncresiliencehubClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_resiliencehub.types.list_alarm_recommendations_request.ListAlarmRecommendationsRequest = {}  # type: ignore[typeddict-item]
-        input_["assessment_arn"] = assessment_arn
+        input_: capo_resiliencehub.types.list_alarm_recommendations_request.ListAlarmRecommendationsRequest = {
+            "assessment_arn": assessment_arn
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -1961,7 +2029,29 @@ class AsyncresiliencehubClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_alarm_recommendations(
+        self,
+        assessment_arn: "capo_resiliencehub.types.arn.Arn",
+        *,
+        config_overrides: Optional[AsyncresiliencehubClientConfig] = None,
+        next_token: Optional["capo_resiliencehub.types.next_token.NextToken"] = None,
+        max_results: Optional["capo_resiliencehub.types.max_results.MaxResults"] = None,
+    ) -> "AsyncIterator[capo_resiliencehub.types.list_alarm_recommendations_response.ListAlarmRecommendationsResponse]":
+        _token = next_token
+        while True:
+            _response = await self.list_alarm_recommendations(
+                assessment_arn,
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_app_assessment_compliance_drifts(
         self,
@@ -2002,8 +2092,9 @@ class AsyncresiliencehubClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_resiliencehub.types.list_app_assessment_compliance_drifts_request.ListAppAssessmentComplianceDriftsRequest = {}  # type: ignore[typeddict-item]
-        input_["assessment_arn"] = assessment_arn
+        input_: capo_resiliencehub.types.list_app_assessment_compliance_drifts_request.ListAppAssessmentComplianceDriftsRequest = {
+            "assessment_arn": assessment_arn
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -2014,7 +2105,29 @@ class AsyncresiliencehubClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_app_assessment_compliance_drifts(
+        self,
+        assessment_arn: "capo_resiliencehub.types.arn.Arn",
+        *,
+        config_overrides: Optional[AsyncresiliencehubClientConfig] = None,
+        next_token: Optional["capo_resiliencehub.types.next_token.NextToken"] = None,
+        max_results: Optional["capo_resiliencehub.types.max_results.MaxResults"] = None,
+    ) -> "AsyncIterator[capo_resiliencehub.types.list_app_assessment_compliance_drifts_response.ListAppAssessmentComplianceDriftsResponse]":
+        _token = next_token
+        while True:
+            _response = await self.list_app_assessment_compliance_drifts(
+                assessment_arn,
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_app_assessment_resource_drifts(
         self,
@@ -2055,8 +2168,9 @@ class AsyncresiliencehubClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_resiliencehub.types.list_app_assessment_resource_drifts_request.ListAppAssessmentResourceDriftsRequest = {}  # type: ignore[typeddict-item]
-        input_["assessment_arn"] = assessment_arn
+        input_: capo_resiliencehub.types.list_app_assessment_resource_drifts_request.ListAppAssessmentResourceDriftsRequest = {
+            "assessment_arn": assessment_arn
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -2067,6 +2181,7 @@ class AsyncresiliencehubClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_app_assessment_resource_drifts(
@@ -2152,7 +2267,7 @@ class AsyncresiliencehubClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_resiliencehub.types.list_app_assessments_request.ListAppAssessmentsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_resiliencehub.types.list_app_assessments_request.ListAppAssessmentsRequest = {}
         if app_arn is not None:
             input_["app_arn"] = app_arn
         if assessment_name is not None:
@@ -2175,7 +2290,49 @@ class AsyncresiliencehubClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_app_assessments(
+        self,
+        *,
+        config_overrides: Optional[AsyncresiliencehubClientConfig] = None,
+        app_arn: Optional["capo_resiliencehub.types.arn.Arn"] = None,
+        assessment_name: Optional[
+            "capo_resiliencehub.types.entity_name.EntityName"
+        ] = None,
+        assessment_status: Optional[
+            "capo_resiliencehub.types.assessment_status_list.AssessmentStatusList"
+        ] = None,
+        compliance_status: Optional[
+            "capo_resiliencehub.types.compliance_status.ComplianceStatus"
+        ] = None,
+        invoker: Optional[
+            "capo_resiliencehub.types.assessment_invoker.AssessmentInvoker"
+        ] = None,
+        reverse_order: Optional[
+            "capo_resiliencehub.types.boolean_optional.BooleanOptional"
+        ] = None,
+        next_token: Optional["capo_resiliencehub.types.next_token.NextToken"] = None,
+        max_results: Optional["capo_resiliencehub.types.max_results.MaxResults"] = None,
+    ) -> "AsyncIterator[capo_resiliencehub.types.list_app_assessments_response.ListAppAssessmentsResponse]":
+        _token = next_token
+        while True:
+            _response = await self.list_app_assessments(
+                config_overrides=config_overrides,
+                app_arn=app_arn,
+                assessment_name=assessment_name,
+                assessment_status=assessment_status,
+                compliance_status=compliance_status,
+                invoker=invoker,
+                reverse_order=reverse_order,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_app_component_compliances(
         self,
@@ -2217,19 +2374,42 @@ class AsyncresiliencehubClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_resiliencehub.types.list_app_component_compliances_request.ListAppComponentCompliancesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_resiliencehub.types.list_app_component_compliances_request.ListAppComponentCompliancesRequest = {
+            "assessment_arn": assessment_arn
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
             input_["max_results"] = max_results
-        input_["assessment_arn"] = assessment_arn
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_app_component_compliances(
+        self,
+        assessment_arn: "capo_resiliencehub.types.arn.Arn",
+        *,
+        config_overrides: Optional[AsyncresiliencehubClientConfig] = None,
+        next_token: Optional["capo_resiliencehub.types.next_token.NextToken"] = None,
+        max_results: Optional["capo_resiliencehub.types.max_results.MaxResults"] = None,
+    ) -> "AsyncIterator[capo_resiliencehub.types.list_app_component_compliances_response.ListAppComponentCompliancesResponse]":
+        _token = next_token
+        while True:
+            _response = await self.list_app_component_compliances(
+                assessment_arn,
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_app_component_recommendations(
         self,
@@ -2271,8 +2451,9 @@ class AsyncresiliencehubClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_resiliencehub.types.list_app_component_recommendations_request.ListAppComponentRecommendationsRequest = {}  # type: ignore[typeddict-item]
-        input_["assessment_arn"] = assessment_arn
+        input_: capo_resiliencehub.types.list_app_component_recommendations_request.ListAppComponentRecommendationsRequest = {
+            "assessment_arn": assessment_arn
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -2283,7 +2464,29 @@ class AsyncresiliencehubClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_app_component_recommendations(
+        self,
+        assessment_arn: "capo_resiliencehub.types.arn.Arn",
+        *,
+        config_overrides: Optional[AsyncresiliencehubClientConfig] = None,
+        next_token: Optional["capo_resiliencehub.types.next_token.NextToken"] = None,
+        max_results: Optional["capo_resiliencehub.types.max_results.MaxResults"] = None,
+    ) -> "AsyncIterator[capo_resiliencehub.types.list_app_component_recommendations_response.ListAppComponentRecommendationsResponse]":
+        _token = next_token
+        while True:
+            _response = await self.list_app_component_recommendations(
+                assessment_arn,
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_app_input_sources(
         self,
@@ -2327,9 +2530,10 @@ class AsyncresiliencehubClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_resiliencehub.types.list_app_input_sources_request.ListAppInputSourcesRequest = {}  # type: ignore[typeddict-item]
-        input_["app_arn"] = app_arn
-        input_["app_version"] = app_version
+        input_: capo_resiliencehub.types.list_app_input_sources_request.ListAppInputSourcesRequest = {
+            "app_arn": app_arn,
+            "app_version": app_version,
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -2340,7 +2544,31 @@ class AsyncresiliencehubClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_app_input_sources(
+        self,
+        app_arn: "capo_resiliencehub.types.arn.Arn",
+        app_version: "capo_resiliencehub.types.entity_version.EntityVersion",
+        *,
+        config_overrides: Optional[AsyncresiliencehubClientConfig] = None,
+        next_token: Optional["capo_resiliencehub.types.next_token.NextToken"] = None,
+        max_results: Optional["capo_resiliencehub.types.max_results.MaxResults"] = None,
+    ) -> "AsyncIterator[capo_resiliencehub.types.list_app_input_sources_response.ListAppInputSourcesResponse]":
+        _token = next_token
+        while True:
+            _response = await self.list_app_input_sources(
+                app_arn,
+                app_version,
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_apps(
         self,
@@ -2397,7 +2625,7 @@ class AsyncresiliencehubClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_resiliencehub.types.list_apps_request.ListAppsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_resiliencehub.types.list_apps_request.ListAppsRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -2420,7 +2648,45 @@ class AsyncresiliencehubClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_apps(
+        self,
+        *,
+        config_overrides: Optional[AsyncresiliencehubClientConfig] = None,
+        next_token: Optional["capo_resiliencehub.types.next_token.NextToken"] = None,
+        max_results: Optional["capo_resiliencehub.types.max_results.MaxResults"] = None,
+        name: Optional["capo_resiliencehub.types.entity_name.EntityName"] = None,
+        app_arn: Optional["capo_resiliencehub.types.arn.Arn"] = None,
+        from_last_assessment_time: Optional[
+            "capo_resiliencehub.types.time_stamp.TimeStamp"
+        ] = None,
+        to_last_assessment_time: Optional[
+            "capo_resiliencehub.types.time_stamp.TimeStamp"
+        ] = None,
+        reverse_order: Optional[
+            "capo_resiliencehub.types.boolean_optional.BooleanOptional"
+        ] = None,
+        aws_application_arn: Optional["capo_resiliencehub.types.arn.Arn"] = None,
+    ) -> "AsyncIterator[capo_resiliencehub.types.list_apps_response.ListAppsResponse]":
+        _token = next_token
+        while True:
+            _response = await self.list_apps(
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+                name=name,
+                app_arn=app_arn,
+                from_last_assessment_time=from_last_assessment_time,
+                to_last_assessment_time=to_last_assessment_time,
+                reverse_order=reverse_order,
+                aws_application_arn=aws_application_arn,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_app_version_app_components(
         self,
@@ -2465,9 +2731,10 @@ class AsyncresiliencehubClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_resiliencehub.types.list_app_version_app_components_request.ListAppVersionAppComponentsRequest = {}  # type: ignore[typeddict-item]
-        input_["app_arn"] = app_arn
-        input_["app_version"] = app_version
+        input_: capo_resiliencehub.types.list_app_version_app_components_request.ListAppVersionAppComponentsRequest = {
+            "app_arn": app_arn,
+            "app_version": app_version,
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -2478,7 +2745,31 @@ class AsyncresiliencehubClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_app_version_app_components(
+        self,
+        app_arn: "capo_resiliencehub.types.arn.Arn",
+        app_version: "capo_resiliencehub.types.entity_version.EntityVersion",
+        *,
+        config_overrides: Optional[AsyncresiliencehubClientConfig] = None,
+        next_token: Optional["capo_resiliencehub.types.next_token.NextToken"] = None,
+        max_results: Optional["capo_resiliencehub.types.max_results.MaxResults"] = None,
+    ) -> "AsyncIterator[capo_resiliencehub.types.list_app_version_app_components_response.ListAppVersionAppComponentsResponse]":
+        _token = next_token
+        while True:
+            _response = await self.list_app_version_app_components(
+                app_arn,
+                app_version,
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_app_version_resource_mappings(
         self,
@@ -2522,9 +2813,10 @@ class AsyncresiliencehubClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_resiliencehub.types.list_app_version_resource_mappings_request.ListAppVersionResourceMappingsRequest = {}  # type: ignore[typeddict-item]
-        input_["app_arn"] = app_arn
-        input_["app_version"] = app_version
+        input_: capo_resiliencehub.types.list_app_version_resource_mappings_request.ListAppVersionResourceMappingsRequest = {
+            "app_arn": app_arn,
+            "app_version": app_version,
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -2535,7 +2827,31 @@ class AsyncresiliencehubClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_app_version_resource_mappings(
+        self,
+        app_arn: "capo_resiliencehub.types.arn.Arn",
+        app_version: "capo_resiliencehub.types.entity_version.EntityVersion",
+        *,
+        config_overrides: Optional[AsyncresiliencehubClientConfig] = None,
+        next_token: Optional["capo_resiliencehub.types.next_token.NextToken"] = None,
+        max_results: Optional["capo_resiliencehub.types.max_results.MaxResults"] = None,
+    ) -> "AsyncIterator[capo_resiliencehub.types.list_app_version_resource_mappings_response.ListAppVersionResourceMappingsResponse]":
+        _token = next_token
+        while True:
+            _response = await self.list_app_version_resource_mappings(
+                app_arn,
+                app_version,
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_app_version_resources(
         self,
@@ -2582,9 +2898,10 @@ class AsyncresiliencehubClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_resiliencehub.types.list_app_version_resources_request.ListAppVersionResourcesRequest = {}  # type: ignore[typeddict-item]
-        input_["app_arn"] = app_arn
-        input_["app_version"] = app_version
+        input_: capo_resiliencehub.types.list_app_version_resources_request.ListAppVersionResourcesRequest = {
+            "app_arn": app_arn,
+            "app_version": app_version,
+        }
         if resolution_id is not None:
             input_["resolution_id"] = resolution_id
         if next_token is not None:
@@ -2597,7 +2914,33 @@ class AsyncresiliencehubClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_app_version_resources(
+        self,
+        app_arn: "capo_resiliencehub.types.arn.Arn",
+        app_version: "capo_resiliencehub.types.entity_version.EntityVersion",
+        *,
+        config_overrides: Optional[AsyncresiliencehubClientConfig] = None,
+        resolution_id: Optional["capo_resiliencehub.types.string255.String255"] = None,
+        next_token: Optional["capo_resiliencehub.types.next_token.NextToken"] = None,
+        max_results: Optional["capo_resiliencehub.types.max_results.MaxResults"] = None,
+    ) -> "AsyncIterator[capo_resiliencehub.types.list_app_version_resources_response.ListAppVersionResourcesResponse]":
+        _token = next_token
+        while True:
+            _response = await self.list_app_version_resources(
+                app_arn,
+                app_version,
+                config_overrides=config_overrides,
+                resolution_id=resolution_id,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_app_versions(
         self,
@@ -2642,8 +2985,9 @@ class AsyncresiliencehubClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_resiliencehub.types.list_app_versions_request.ListAppVersionsRequest = {}  # type: ignore[typeddict-item]
-        input_["app_arn"] = app_arn
+        input_: capo_resiliencehub.types.list_app_versions_request.ListAppVersionsRequest = {
+            "app_arn": app_arn
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -2658,7 +3002,33 @@ class AsyncresiliencehubClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_app_versions(
+        self,
+        app_arn: "capo_resiliencehub.types.arn.Arn",
+        *,
+        config_overrides: Optional[AsyncresiliencehubClientConfig] = None,
+        next_token: Optional["capo_resiliencehub.types.next_token.NextToken"] = None,
+        max_results: Optional["capo_resiliencehub.types.max_results.MaxResults"] = None,
+        start_time: Optional["capo_resiliencehub.types.time_stamp.TimeStamp"] = None,
+        end_time: Optional["capo_resiliencehub.types.time_stamp.TimeStamp"] = None,
+    ) -> "AsyncIterator[capo_resiliencehub.types.list_app_versions_response.ListAppVersionsResponse]":
+        _token = next_token
+        while True:
+            _response = await self.list_app_versions(
+                app_arn,
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+                start_time=start_time,
+                end_time=end_time,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_metrics(
         self,
@@ -2707,7 +3077,7 @@ class AsyncresiliencehubClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_resiliencehub.types.list_metrics_request.ListMetricsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_resiliencehub.types.list_metrics_request.ListMetricsRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -2726,6 +3096,7 @@ class AsyncresiliencehubClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_metrics(
@@ -2812,7 +3183,7 @@ class AsyncresiliencehubClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_resiliencehub.types.list_recommendation_templates_request.ListRecommendationTemplatesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_resiliencehub.types.list_recommendation_templates_request.ListRecommendationTemplatesRequest = {}
         if assessment_arn is not None:
             input_["assessment_arn"] = assessment_arn
         if reverse_order is not None:
@@ -2833,7 +3204,43 @@ class AsyncresiliencehubClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_recommendation_templates(
+        self,
+        *,
+        config_overrides: Optional[AsyncresiliencehubClientConfig] = None,
+        assessment_arn: Optional["capo_resiliencehub.types.arn.Arn"] = None,
+        reverse_order: Optional[
+            "capo_resiliencehub.types.boolean_optional.BooleanOptional"
+        ] = None,
+        status: Optional[
+            "capo_resiliencehub.types.recommendation_template_status_list.RecommendationTemplateStatusList"
+        ] = None,
+        recommendation_template_arn: Optional[
+            "capo_resiliencehub.types.arn.Arn"
+        ] = None,
+        name: Optional["capo_resiliencehub.types.entity_name.EntityName"] = None,
+        next_token: Optional["capo_resiliencehub.types.next_token.NextToken"] = None,
+        max_results: Optional["capo_resiliencehub.types.max_results.MaxResults"] = None,
+    ) -> "AsyncIterator[capo_resiliencehub.types.list_recommendation_templates_response.ListRecommendationTemplatesResponse]":
+        _token = next_token
+        while True:
+            _response = await self.list_recommendation_templates(
+                config_overrides=config_overrides,
+                assessment_arn=assessment_arn,
+                reverse_order=reverse_order,
+                status=status,
+                recommendation_template_arn=recommendation_template_arn,
+                name=name,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_resiliency_policies(
         self,
@@ -2875,7 +3282,7 @@ class AsyncresiliencehubClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_resiliencehub.types.list_resiliency_policies_request.ListResiliencyPoliciesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_resiliencehub.types.list_resiliency_policies_request.ListResiliencyPoliciesRequest = {}
         if policy_name is not None:
             input_["policy_name"] = policy_name
         if next_token is not None:
@@ -2888,7 +3295,29 @@ class AsyncresiliencehubClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_resiliency_policies(
+        self,
+        *,
+        config_overrides: Optional[AsyncresiliencehubClientConfig] = None,
+        policy_name: Optional["capo_resiliencehub.types.entity_name.EntityName"] = None,
+        next_token: Optional["capo_resiliencehub.types.next_token.NextToken"] = None,
+        max_results: Optional["capo_resiliencehub.types.max_results.MaxResults"] = None,
+    ) -> "AsyncIterator[capo_resiliencehub.types.list_resiliency_policies_response.ListResiliencyPoliciesResponse]":
+        _token = next_token
+        while True:
+            _response = await self.list_resiliency_policies(
+                config_overrides=config_overrides,
+                policy_name=policy_name,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_resource_grouping_recommendations(
         self,
@@ -2930,7 +3359,7 @@ class AsyncresiliencehubClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_resiliencehub.types.list_resource_grouping_recommendations_request.ListResourceGroupingRecommendationsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_resiliencehub.types.list_resource_grouping_recommendations_request.ListResourceGroupingRecommendationsRequest = {}
         if app_arn is not None:
             input_["app_arn"] = app_arn
         if next_token is not None:
@@ -2943,6 +3372,7 @@ class AsyncresiliencehubClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_resource_grouping_recommendations(
@@ -3009,19 +3439,42 @@ class AsyncresiliencehubClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_resiliencehub.types.list_sop_recommendations_request.ListSopRecommendationsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_resiliencehub.types.list_sop_recommendations_request.ListSopRecommendationsRequest = {
+            "assessment_arn": assessment_arn
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
             input_["max_results"] = max_results
-        input_["assessment_arn"] = assessment_arn
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_sop_recommendations(
+        self,
+        assessment_arn: "capo_resiliencehub.types.arn.Arn",
+        *,
+        config_overrides: Optional[AsyncresiliencehubClientConfig] = None,
+        next_token: Optional["capo_resiliencehub.types.next_token.NextToken"] = None,
+        max_results: Optional["capo_resiliencehub.types.max_results.MaxResults"] = None,
+    ) -> "AsyncIterator[capo_resiliencehub.types.list_sop_recommendations_response.ListSopRecommendationsResponse]":
+        _token = next_token
+        while True:
+            _response = await self.list_sop_recommendations(
+                assessment_arn,
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_suggested_resiliency_policies(
         self,
@@ -3061,7 +3514,7 @@ class AsyncresiliencehubClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_resiliencehub.types.list_suggested_resiliency_policies_request.ListSuggestedResiliencyPoliciesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_resiliencehub.types.list_suggested_resiliency_policies_request.ListSuggestedResiliencyPoliciesRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -3072,7 +3525,27 @@ class AsyncresiliencehubClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_suggested_resiliency_policies(
+        self,
+        *,
+        config_overrides: Optional[AsyncresiliencehubClientConfig] = None,
+        next_token: Optional["capo_resiliencehub.types.next_token.NextToken"] = None,
+        max_results: Optional["capo_resiliencehub.types.max_results.MaxResults"] = None,
+    ) -> "AsyncIterator[capo_resiliencehub.types.list_suggested_resiliency_policies_response.ListSuggestedResiliencyPoliciesResponse]":
+        _token = next_token
+        while True:
+            _response = await self.list_suggested_resiliency_policies(
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_tags_for_resource(
         self,
@@ -3110,14 +3583,16 @@ class AsyncresiliencehubClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_resiliencehub.types.list_tags_for_resource_request.ListTagsForResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_resiliencehub.types.list_tags_for_resource_request.ListTagsForResourceRequest = {
+            "resource_arn": resource_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_test_recommendations(
@@ -3161,19 +3636,42 @@ class AsyncresiliencehubClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_resiliencehub.types.list_test_recommendations_request.ListTestRecommendationsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_resiliencehub.types.list_test_recommendations_request.ListTestRecommendationsRequest = {
+            "assessment_arn": assessment_arn
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
             input_["max_results"] = max_results
-        input_["assessment_arn"] = assessment_arn
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_test_recommendations(
+        self,
+        assessment_arn: "capo_resiliencehub.types.arn.Arn",
+        *,
+        config_overrides: Optional[AsyncresiliencehubClientConfig] = None,
+        next_token: Optional["capo_resiliencehub.types.next_token.NextToken"] = None,
+        max_results: Optional["capo_resiliencehub.types.max_results.MaxResults"] = None,
+    ) -> "AsyncIterator[capo_resiliencehub.types.list_test_recommendations_response.ListTestRecommendationsResponse]":
+        _token = next_token
+        while True:
+            _response = await self.list_test_recommendations(
+                assessment_arn,
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_unsupported_app_version_resources(
         self,
@@ -3220,9 +3718,10 @@ class AsyncresiliencehubClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_resiliencehub.types.list_unsupported_app_version_resources_request.ListUnsupportedAppVersionResourcesRequest = {}  # type: ignore[typeddict-item]
-        input_["app_arn"] = app_arn
-        input_["app_version"] = app_version
+        input_: capo_resiliencehub.types.list_unsupported_app_version_resources_request.ListUnsupportedAppVersionResourcesRequest = {
+            "app_arn": app_arn,
+            "app_version": app_version,
+        }
         if resolution_id is not None:
             input_["resolution_id"] = resolution_id
         if next_token is not None:
@@ -3235,7 +3734,33 @@ class AsyncresiliencehubClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_unsupported_app_version_resources(
+        self,
+        app_arn: "capo_resiliencehub.types.arn.Arn",
+        app_version: "capo_resiliencehub.types.entity_version.EntityVersion",
+        *,
+        config_overrides: Optional[AsyncresiliencehubClientConfig] = None,
+        resolution_id: Optional["capo_resiliencehub.types.string255.String255"] = None,
+        next_token: Optional["capo_resiliencehub.types.next_token.NextToken"] = None,
+        max_results: Optional["capo_resiliencehub.types.max_results.MaxResults"] = None,
+    ) -> "AsyncIterator[capo_resiliencehub.types.list_unsupported_app_version_resources_response.ListUnsupportedAppVersionResourcesResponse]":
+        _token = next_token
+        while True:
+            _response = await self.list_unsupported_app_version_resources(
+                app_arn,
+                app_version,
+                config_overrides=config_overrides,
+                resolution_id=resolution_id,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def publish_app_version(
         self,
@@ -3278,8 +3803,9 @@ class AsyncresiliencehubClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_resiliencehub.types.publish_app_version_request.PublishAppVersionRequest = {}  # type: ignore[typeddict-item]
-        input_["app_arn"] = app_arn
+        input_: capo_resiliencehub.types.publish_app_version_request.PublishAppVersionRequest = {
+            "app_arn": app_arn
+        }
         if version_name is not None:
             input_["version_name"] = version_name
 
@@ -3288,6 +3814,7 @@ class AsyncresiliencehubClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def put_draft_app_version_template(
@@ -3329,15 +3856,17 @@ class AsyncresiliencehubClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_resiliencehub.types.put_draft_app_version_template_request.PutDraftAppVersionTemplateRequest = {}  # type: ignore[typeddict-item]
-        input_["app_arn"] = app_arn
-        input_["app_template_body"] = app_template_body
+        input_: capo_resiliencehub.types.put_draft_app_version_template_request.PutDraftAppVersionTemplateRequest = {
+            "app_arn": app_arn,
+            "app_template_body": app_template_body,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def reject_resource_grouping_recommendations(
@@ -3378,15 +3907,17 @@ class AsyncresiliencehubClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_resiliencehub.types.reject_resource_grouping_recommendations_request.RejectResourceGroupingRecommendationsRequest = {}  # type: ignore[typeddict-item]
-        input_["app_arn"] = app_arn
-        input_["entries"] = entries
+        input_: capo_resiliencehub.types.reject_resource_grouping_recommendations_request.RejectResourceGroupingRecommendationsRequest = {
+            "app_arn": app_arn,
+            "entries": entries,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def remove_draft_app_version_resource_mappings(
@@ -3450,8 +3981,9 @@ class AsyncresiliencehubClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_resiliencehub.types.remove_draft_app_version_resource_mappings_request.RemoveDraftAppVersionResourceMappingsRequest = {}  # type: ignore[typeddict-item]
-        input_["app_arn"] = app_arn
+        input_: capo_resiliencehub.types.remove_draft_app_version_resource_mappings_request.RemoveDraftAppVersionResourceMappingsRequest = {
+            "app_arn": app_arn
+        }
         if resource_names is not None:
             input_["resource_names"] = resource_names
         if logical_stack_names is not None:
@@ -3470,6 +4002,7 @@ class AsyncresiliencehubClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def resolve_app_version_resources(
@@ -3511,15 +4044,17 @@ class AsyncresiliencehubClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_resiliencehub.types.resolve_app_version_resources_request.ResolveAppVersionResourcesRequest = {}  # type: ignore[typeddict-item]
-        input_["app_arn"] = app_arn
-        input_["app_version"] = app_version
+        input_: capo_resiliencehub.types.resolve_app_version_resources_request.ResolveAppVersionResourcesRequest = {
+            "app_arn": app_arn,
+            "app_version": app_version,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def start_app_assessment(
@@ -3570,12 +4105,14 @@ class AsyncresiliencehubClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_resiliencehub.types.start_app_assessment_request.StartAppAssessmentRequest = {}  # type: ignore[typeddict-item]
-        input_["app_arn"] = app_arn
-        input_["app_version"] = app_version
-        input_["assessment_name"] = assessment_name
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_resiliencehub.types.start_app_assessment_request.StartAppAssessmentRequest = {
+            "app_arn": app_arn,
+            "app_version": app_version,
+            "assessment_name": assessment_name,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if tags is not None:
             input_["tags"] = tags
 
@@ -3584,6 +4121,7 @@ class AsyncresiliencehubClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def start_metrics_export(
@@ -3627,17 +4165,19 @@ class AsyncresiliencehubClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_resiliencehub.types.start_metrics_export_request.StartMetricsExportRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_resiliencehub.types.start_metrics_export_request.StartMetricsExportRequest = {}
         if bucket_name is not None:
             input_["bucket_name"] = bucket_name
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def start_resource_grouping_recommendation_task(
@@ -3677,14 +4217,16 @@ class AsyncresiliencehubClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_resiliencehub.types.start_resource_grouping_recommendation_task_request.StartResourceGroupingRecommendationTaskRequest = {}  # type: ignore[typeddict-item]
-        input_["app_arn"] = app_arn
+        input_: capo_resiliencehub.types.start_resource_grouping_recommendation_task_request.StartResourceGroupingRecommendationTaskRequest = {
+            "app_arn": app_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def tag_resource(
@@ -3725,15 +4267,17 @@ class AsyncresiliencehubClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_resiliencehub.types.tag_resource_request.TagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tags"] = tags
+        input_: capo_resiliencehub.types.tag_resource_request.TagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tags": tags,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def untag_resource(
@@ -3774,15 +4318,17 @@ class AsyncresiliencehubClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_resiliencehub.types.untag_resource_request.UntagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tag_keys"] = tag_keys
+        input_: capo_resiliencehub.types.untag_resource_request.UntagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tag_keys": tag_keys,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_app(
@@ -3844,8 +4390,9 @@ class AsyncresiliencehubClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_resiliencehub.types.update_app_request.UpdateAppRequest = {}  # type: ignore[typeddict-item]
-        input_["app_arn"] = app_arn
+        input_: capo_resiliencehub.types.update_app_request.UpdateAppRequest = {
+            "app_arn": app_arn
+        }
         if description is not None:
             input_["description"] = description
         if policy_arn is not None:
@@ -3864,6 +4411,7 @@ class AsyncresiliencehubClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_app_version(
@@ -3909,8 +4457,9 @@ class AsyncresiliencehubClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_resiliencehub.types.update_app_version_request.UpdateAppVersionRequest = {}  # type: ignore[typeddict-item]
-        input_["app_arn"] = app_arn
+        input_: capo_resiliencehub.types.update_app_version_request.UpdateAppVersionRequest = {
+            "app_arn": app_arn
+        }
         if additional_info is not None:
             input_["additional_info"] = additional_info
 
@@ -3919,6 +4468,7 @@ class AsyncresiliencehubClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_app_version_app_component(
@@ -3968,9 +4518,10 @@ class AsyncresiliencehubClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_resiliencehub.types.update_app_version_app_component_request.UpdateAppVersionAppComponentRequest = {}  # type: ignore[typeddict-item]
-        input_["app_arn"] = app_arn
-        input_["id"] = id
+        input_: capo_resiliencehub.types.update_app_version_app_component_request.UpdateAppVersionAppComponentRequest = {
+            "app_arn": app_arn,
+            "id": id,
+        }
         if name is not None:
             input_["name"] = name
         if type is not None:
@@ -3983,6 +4534,7 @@ class AsyncresiliencehubClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_app_version_resource(
@@ -4055,8 +4607,9 @@ class AsyncresiliencehubClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_resiliencehub.types.update_app_version_resource_request.UpdateAppVersionResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["app_arn"] = app_arn
+        input_: capo_resiliencehub.types.update_app_version_resource_request.UpdateAppVersionResourceRequest = {
+            "app_arn": app_arn
+        }
         if resource_name is not None:
             input_["resource_name"] = resource_name
         if logical_resource_id is not None:
@@ -4081,6 +4634,7 @@ class AsyncresiliencehubClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_resiliency_policy(
@@ -4138,8 +4692,9 @@ class AsyncresiliencehubClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_resiliencehub.types.update_resiliency_policy_request.UpdateResiliencyPolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["policy_arn"] = policy_arn
+        input_: capo_resiliencehub.types.update_resiliency_policy_request.UpdateResiliencyPolicyRequest = {
+            "policy_arn": policy_arn
+        }
         if policy_name is not None:
             input_["policy_name"] = policy_name
         if policy_description is not None:
@@ -4156,6 +4711,7 @@ class AsyncresiliencehubClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def __aenter__(self) -> Self:

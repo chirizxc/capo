@@ -22,8 +22,8 @@ def serialize_json(value: EventPayload) -> dict:
 
 def deserialize_json(data: dict) -> EventPayload:
     out: EventPayload = {}  # type: ignore[typeddict-item]
-    if "contentType" in data:
+    if data.get("contentType") is not None:
         out["content_type"] = data["contentType"]
-    if "data" in data:
+    if data.get("data") is not None:
         out["data"] = data["data"]
     return out

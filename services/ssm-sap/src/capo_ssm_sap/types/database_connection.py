@@ -40,7 +40,7 @@ def serialize_json(value: DatabaseConnection) -> dict:
 
 def deserialize_json(data: dict) -> DatabaseConnection:
     out: DatabaseConnection = {}  # type: ignore[typeddict-item]
-    if "DatabaseConnectionMethod" in data:
+    if data.get("DatabaseConnectionMethod") is not None:
         import capo_ssm_sap.types.database_connection_method
 
         out["database_connection_method"] = (
@@ -48,8 +48,8 @@ def deserialize_json(data: dict) -> DatabaseConnection:
                 data["DatabaseConnectionMethod"]
             )
         )
-    if "DatabaseArn" in data:
+    if data.get("DatabaseArn") is not None:
         out["database_arn"] = data["DatabaseArn"]
-    if "ConnectionIp" in data:
+    if data.get("ConnectionIp") is not None:
         out["connection_ip"] = data["ConnectionIp"]
     return out

@@ -125,11 +125,11 @@ def serialize_json(value: GetRecommenderResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetRecommenderResponse:
     out: GetRecommenderResponse = {}  # type: ignore[typeddict-item]
-    if "RecommenderName" in data:
+    if data.get("RecommenderName") is not None:
         out["recommender_name"] = data["RecommenderName"]
     else:
         raise DeserializationError("GetRecommenderResponse.recommender_name required")
-    if "RecommenderRecipeName" in data:
+    if data.get("RecommenderRecipeName") is not None:
         import capo_customer_profiles.types.recommender_recipe_name
 
         out["recommender_recipe_name"] = (
@@ -141,9 +141,9 @@ def deserialize_json(data: dict) -> GetRecommenderResponse:
         raise DeserializationError(
             "GetRecommenderResponse.recommender_recipe_name required"
         )
-    if "RecommenderSchemaName" in data:
+    if data.get("RecommenderSchemaName") is not None:
         out["recommender_schema_name"] = data["RecommenderSchemaName"]
-    if "RecommenderConfig" in data:
+    if data.get("RecommenderConfig") is not None:
         import capo_customer_profiles.types.recommender_config
 
         out["recommender_config"] = (
@@ -151,9 +151,9 @@ def deserialize_json(data: dict) -> GetRecommenderResponse:
                 data["RecommenderConfig"]
             )
         )
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_customer_profiles.types.recommender_status
 
         out["status"] = (
@@ -161,7 +161,7 @@ def deserialize_json(data: dict) -> GetRecommenderResponse:
                 data["Status"]
             )
         )
-    if "LastUpdatedAt" in data:
+    if data.get("LastUpdatedAt") is not None:
         import capo_customer_profiles.types.timestamp
 
         out["last_updated_at"] = (
@@ -169,15 +169,15 @@ def deserialize_json(data: dict) -> GetRecommenderResponse:
                 data["LastUpdatedAt"]
             )
         )
-    if "CreatedAt" in data:
+    if data.get("CreatedAt") is not None:
         import capo_customer_profiles.types.timestamp
 
         out["created_at"] = capo_customer_profiles.types.timestamp.deserialize_json(
             data["CreatedAt"]
         )
-    if "FailureReason" in data:
+    if data.get("FailureReason") is not None:
         out["failure_reason"] = data["FailureReason"]
-    if "LatestRecommenderUpdate" in data:
+    if data.get("LatestRecommenderUpdate") is not None:
         import capo_customer_profiles.types.recommender_update
 
         out["latest_recommender_update"] = (
@@ -185,7 +185,7 @@ def deserialize_json(data: dict) -> GetRecommenderResponse:
                 data["LatestRecommenderUpdate"]
             )
         )
-    if "TrainingMetrics" in data:
+    if data.get("TrainingMetrics") is not None:
         import capo_customer_profiles.types.training_metrics_list
 
         out["training_metrics"] = (
@@ -193,7 +193,7 @@ def deserialize_json(data: dict) -> GetRecommenderResponse:
                 data["TrainingMetrics"]
             )
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_customer_profiles.types.tag_map
 
         out["tags"] = capo_customer_profiles.types.tag_map.deserialize_json(

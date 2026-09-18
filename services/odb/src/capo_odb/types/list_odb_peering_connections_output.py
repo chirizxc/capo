@@ -36,9 +36,9 @@ def serialize_aws_json_1_0(value: ListOdbPeeringConnectionsOutput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ListOdbPeeringConnectionsOutput:
     out: ListOdbPeeringConnectionsOutput = {}  # type: ignore[typeddict-item]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "odbPeeringConnections" in data:
+    if data.get("odbPeeringConnections") is not None:
         import capo_odb.types.odb_peering_connection_list
 
         out["odb_peering_connections"] = (

@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> KxScalingGroupList:
 
     out: KxScalingGroupList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_finspace.types.kx_scaling_group.deserialize_json(item))
     return out

@@ -54,21 +54,21 @@ def serialize_json(value: KubernetesUserDetails) -> dict:
 
 def deserialize_json(data: dict) -> KubernetesUserDetails:
     out: KubernetesUserDetails = {}  # type: ignore[typeddict-item]
-    if "username" in data:
+    if data.get("username") is not None:
         out["username"] = data["username"]
-    if "uid" in data:
+    if data.get("uid") is not None:
         out["uid"] = data["uid"]
-    if "groups" in data:
+    if data.get("groups") is not None:
         import capo_guardduty.types.groups
 
         out["groups"] = capo_guardduty.types.groups.deserialize_json(data["groups"])
-    if "sessionName" in data:
+    if data.get("sessionName") is not None:
         import capo_guardduty.types.session_name_list
 
         out["session_name"] = capo_guardduty.types.session_name_list.deserialize_json(
             data["sessionName"]
         )
-    if "impersonatedUser" in data:
+    if data.get("impersonatedUser") is not None:
         import capo_guardduty.types.impersonated_user
 
         out["impersonated_user"] = (

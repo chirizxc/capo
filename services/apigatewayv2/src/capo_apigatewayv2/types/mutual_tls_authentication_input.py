@@ -32,8 +32,8 @@ def serialize_json(value: MutualTlsAuthenticationInput) -> dict:
 
 def deserialize_json(data: dict) -> MutualTlsAuthenticationInput:
     out: MutualTlsAuthenticationInput = {}  # type: ignore[typeddict-item]
-    if "truststoreUri" in data:
+    if data.get("truststoreUri") is not None:
         out["truststore_uri"] = data["truststoreUri"]
-    if "truststoreVersion" in data:
+    if data.get("truststoreVersion") is not None:
         out["truststore_version"] = data["truststoreVersion"]
     return out

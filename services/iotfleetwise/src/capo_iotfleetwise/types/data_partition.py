@@ -47,11 +47,11 @@ def serialize_aws_json_1_0(value: DataPartition) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> DataPartition:
     out: DataPartition = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("DataPartition.id required")
-    if "storageOptions" in data:
+    if data.get("storageOptions") is not None:
         import capo_iotfleetwise.types.data_partition_storage_options
 
         out["storage_options"] = (
@@ -61,7 +61,7 @@ def deserialize_aws_json_1_0(data: dict) -> DataPartition:
         )
     else:
         raise DeserializationError("DataPartition.storage_options required")
-    if "uploadOptions" in data:
+    if data.get("uploadOptions") is not None:
         import capo_iotfleetwise.types.data_partition_upload_options
 
         out["upload_options"] = (

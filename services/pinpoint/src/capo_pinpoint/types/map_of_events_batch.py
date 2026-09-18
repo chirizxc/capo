@@ -25,6 +25,8 @@ def serialize_json(input_to_serialize: MapOfEventsBatch) -> dict:
 def deserialize_json(data: dict) -> MapOfEventsBatch:
     out: MapOfEventsBatch = {}
     for key, value in data.items():
+        if value is None:
+            continue
         import capo_pinpoint.types.events_batch
 
         out[key] = capo_pinpoint.types.events_batch.deserialize_json(value)

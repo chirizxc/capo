@@ -23,10 +23,10 @@ def serialize_json(value: WhatsAppSignupCallback) -> dict:
 
 def deserialize_json(data: dict) -> WhatsAppSignupCallback:
     out: WhatsAppSignupCallback = {}  # type: ignore[typeddict-item]
-    if "accessToken" in data:
+    if data.get("accessToken") is not None:
         out["access_token"] = data["accessToken"]
     else:
         raise DeserializationError("WhatsAppSignupCallback.access_token required")
-    if "callbackUrl" in data:
+    if data.get("callbackUrl") is not None:
         out["callback_url"] = data["callbackUrl"]
     return out

@@ -19,6 +19,10 @@ class ListSystemVersionsInput(TypedDict, closed=True):
 # --- awsJson1_0 ser/de ---
 def serialize_aws_json_1_0(value: ListSystemVersionsInput) -> dict:
     out: dict = {}
+    if "max_results" in value:
+        out["maxResults"] = value["max_results"]
+    if "next_token" in value:
+        out["nextToken"] = value["next_token"]
     out["giVersion"] = value["gi_version"]
     out["shape"] = value["shape"]
     return out
@@ -26,11 +30,15 @@ def serialize_aws_json_1_0(value: ListSystemVersionsInput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ListSystemVersionsInput:
     out: ListSystemVersionsInput = {}  # type: ignore[typeddict-item]
-    if "giVersion" in data:
+    if data.get("maxResults") is not None:
+        out["max_results"] = data["maxResults"]
+    if data.get("nextToken") is not None:
+        out["next_token"] = data["nextToken"]
+    if data.get("giVersion") is not None:
         out["gi_version"] = data["giVersion"]
     else:
         raise DeserializationError("ListSystemVersionsInput.gi_version required")
-    if "shape" in data:
+    if data.get("shape") is not None:
         out["shape"] = data["shape"]
     else:
         raise DeserializationError("ListSystemVersionsInput.shape required")

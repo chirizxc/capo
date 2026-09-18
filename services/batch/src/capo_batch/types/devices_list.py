@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> DevicesList:
 
     out: DevicesList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_batch.types.device.deserialize_json(item))
     return out

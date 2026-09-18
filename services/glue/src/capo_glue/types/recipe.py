@@ -50,11 +50,11 @@ def serialize_aws_json_1_1(value: Recipe) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Recipe:
     out: Recipe = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("Recipe.name required")
-    if "Inputs" in data:
+    if data.get("Inputs") is not None:
         import capo_glue.types.one_input
 
         out["inputs"] = capo_glue.types.one_input.deserialize_aws_json_1_1(
@@ -62,7 +62,7 @@ def deserialize_aws_json_1_1(data: dict) -> Recipe:
         )
     else:
         raise DeserializationError("Recipe.inputs required")
-    if "RecipeReference" in data:
+    if data.get("RecipeReference") is not None:
         import capo_glue.types.recipe_reference
 
         out["recipe_reference"] = (
@@ -70,7 +70,7 @@ def deserialize_aws_json_1_1(data: dict) -> Recipe:
                 data["RecipeReference"]
             )
         )
-    if "RecipeSteps" in data:
+    if data.get("RecipeSteps") is not None:
         import capo_glue.types.recipe_steps
 
         out["recipe_steps"] = capo_glue.types.recipe_steps.deserialize_aws_json_1_1(

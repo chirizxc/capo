@@ -29,12 +29,12 @@ def serialize_aws_json_1_0(value: RecordMarkerDecisionAttributes) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> RecordMarkerDecisionAttributes:
     out: RecordMarkerDecisionAttributes = {}  # type: ignore[typeddict-item]
-    if "markerName" in data:
+    if data.get("markerName") is not None:
         out["marker_name"] = data["markerName"]
     else:
         raise DeserializationError(
             "RecordMarkerDecisionAttributes.marker_name required"
         )
-    if "details" in data:
+    if data.get("details") is not None:
         out["details"] = data["details"]
     return out

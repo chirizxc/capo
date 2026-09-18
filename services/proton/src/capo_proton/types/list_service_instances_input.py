@@ -58,13 +58,13 @@ def serialize_aws_json_1_0(value: ListServiceInstancesInput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ListServiceInstancesInput:
     out: ListServiceInstancesInput = {}  # type: ignore[typeddict-item]
-    if "serviceName" in data:
+    if data.get("serviceName") is not None:
         out["service_name"] = data["serviceName"]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
-    if "filters" in data:
+    if data.get("filters") is not None:
         import capo_proton.types.list_service_instances_filter_list
 
         out["filters"] = (
@@ -72,8 +72,8 @@ def deserialize_aws_json_1_0(data: dict) -> ListServiceInstancesInput:
                 data["filters"]
             )
         )
-    if "sortBy" in data:
+    if data.get("sortBy") is not None:
         out["sort_by"] = data["sortBy"]
-    if "sortOrder" in data:
+    if data.get("sortOrder") is not None:
         out["sort_order"] = data["sortOrder"]
     return out

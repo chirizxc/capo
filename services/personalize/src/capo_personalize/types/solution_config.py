@@ -121,15 +121,15 @@ def serialize_aws_json_1_1(value: SolutionConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SolutionConfig:
     out: SolutionConfig = {}  # type: ignore[typeddict-item]
-    if "eventValueThreshold" in data:
+    if data.get("eventValueThreshold") is not None:
         out["event_value_threshold"] = data["eventValueThreshold"]
-    if "hpoConfig" in data:
+    if data.get("hpoConfig") is not None:
         import capo_personalize.types.hpo_config
 
         out["hpo_config"] = capo_personalize.types.hpo_config.deserialize_aws_json_1_1(
             data["hpoConfig"]
         )
-    if "algorithmHyperParameters" in data:
+    if data.get("algorithmHyperParameters") is not None:
         import capo_personalize.types.hyper_parameters
 
         out["algorithm_hyper_parameters"] = (
@@ -137,7 +137,7 @@ def deserialize_aws_json_1_1(data: dict) -> SolutionConfig:
                 data["algorithmHyperParameters"]
             )
         )
-    if "featureTransformationParameters" in data:
+    if data.get("featureTransformationParameters") is not None:
         import capo_personalize.types.feature_transformation_parameters
 
         out["feature_transformation_parameters"] = (
@@ -145,7 +145,7 @@ def deserialize_aws_json_1_1(data: dict) -> SolutionConfig:
                 data["featureTransformationParameters"]
             )
         )
-    if "autoMLConfig" in data:
+    if data.get("autoMLConfig") is not None:
         import capo_personalize.types.auto_ml_config
 
         out["auto_ml_config"] = (
@@ -153,7 +153,7 @@ def deserialize_aws_json_1_1(data: dict) -> SolutionConfig:
                 data["autoMLConfig"]
             )
         )
-    if "eventsConfig" in data:
+    if data.get("eventsConfig") is not None:
         import capo_personalize.types.events_config
 
         out["events_config"] = (
@@ -161,7 +161,7 @@ def deserialize_aws_json_1_1(data: dict) -> SolutionConfig:
                 data["eventsConfig"]
             )
         )
-    if "optimizationObjective" in data:
+    if data.get("optimizationObjective") is not None:
         import capo_personalize.types.optimization_objective
 
         out["optimization_objective"] = (
@@ -169,7 +169,7 @@ def deserialize_aws_json_1_1(data: dict) -> SolutionConfig:
                 data["optimizationObjective"]
             )
         )
-    if "trainingDataConfig" in data:
+    if data.get("trainingDataConfig") is not None:
         import capo_personalize.types.training_data_config
 
         out["training_data_config"] = (
@@ -177,7 +177,7 @@ def deserialize_aws_json_1_1(data: dict) -> SolutionConfig:
                 data["trainingDataConfig"]
             )
         )
-    if "autoTrainingConfig" in data:
+    if data.get("autoTrainingConfig") is not None:
         import capo_personalize.types.auto_training_config
 
         out["auto_training_config"] = (

@@ -24,7 +24,7 @@ def serialize_aws_json_1_0(value: StopRetrainingSchedulerRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> StopRetrainingSchedulerRequest:
     out: StopRetrainingSchedulerRequest = {}  # type: ignore[typeddict-item]
-    if "ModelName" in data:
+    if data.get("ModelName") is not None:
         out["model_name"] = data["ModelName"]
     else:
         raise DeserializationError("StopRetrainingSchedulerRequest.model_name required")

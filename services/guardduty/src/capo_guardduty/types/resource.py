@@ -203,7 +203,7 @@ def serialize_json(value: Resource) -> dict:
 
 def deserialize_json(data: dict) -> Resource:
     out: Resource = {}  # type: ignore[typeddict-item]
-    if "accessKeyDetails" in data:
+    if data.get("accessKeyDetails") is not None:
         import capo_guardduty.types.access_key_details
 
         out["access_key_details"] = (
@@ -211,7 +211,7 @@ def deserialize_json(data: dict) -> Resource:
                 data["accessKeyDetails"]
             )
         )
-    if "s3BucketDetails" in data:
+    if data.get("s3BucketDetails") is not None:
         import capo_guardduty.types.s3_bucket_details
 
         out["s3_bucket_details"] = (
@@ -219,7 +219,7 @@ def deserialize_json(data: dict) -> Resource:
                 data["s3BucketDetails"]
             )
         )
-    if "instanceDetails" in data:
+    if data.get("instanceDetails") is not None:
         import capo_guardduty.types.instance_details
 
         out["instance_details"] = (
@@ -227,7 +227,7 @@ def deserialize_json(data: dict) -> Resource:
                 data["instanceDetails"]
             )
         )
-    if "eksClusterDetails" in data:
+    if data.get("eksClusterDetails") is not None:
         import capo_guardduty.types.eks_cluster_details
 
         out["eks_cluster_details"] = (
@@ -235,7 +235,7 @@ def deserialize_json(data: dict) -> Resource:
                 data["eksClusterDetails"]
             )
         )
-    if "kubernetesDetails" in data:
+    if data.get("kubernetesDetails") is not None:
         import capo_guardduty.types.kubernetes_details
 
         out["kubernetes_details"] = (
@@ -243,9 +243,9 @@ def deserialize_json(data: dict) -> Resource:
                 data["kubernetesDetails"]
             )
         )
-    if "resourceType" in data:
+    if data.get("resourceType") is not None:
         out["resource_type"] = data["resourceType"]
-    if "ebsVolumeDetails" in data:
+    if data.get("ebsVolumeDetails") is not None:
         import capo_guardduty.types.ebs_volume_details
 
         out["ebs_volume_details"] = (
@@ -253,7 +253,7 @@ def deserialize_json(data: dict) -> Resource:
                 data["ebsVolumeDetails"]
             )
         )
-    if "ecsClusterDetails" in data:
+    if data.get("ecsClusterDetails") is not None:
         import capo_guardduty.types.ecs_cluster_details
 
         out["ecs_cluster_details"] = (
@@ -261,19 +261,19 @@ def deserialize_json(data: dict) -> Resource:
                 data["ecsClusterDetails"]
             )
         )
-    if "containerDetails" in data:
+    if data.get("containerDetails") is not None:
         import capo_guardduty.types.container
 
         out["container_details"] = capo_guardduty.types.container.deserialize_json(
             data["containerDetails"]
         )
-    if "lambdaDetails" in data:
+    if data.get("lambdaDetails") is not None:
         import capo_guardduty.types.lambda_details
 
         out["lambda_details"] = capo_guardduty.types.lambda_details.deserialize_json(
             data["lambdaDetails"]
         )
-    if "rdsDbInstanceDetails" in data:
+    if data.get("rdsDbInstanceDetails") is not None:
         import capo_guardduty.types.rds_db_instance_details
 
         out["rds_db_instance_details"] = (
@@ -281,7 +281,7 @@ def deserialize_json(data: dict) -> Resource:
                 data["rdsDbInstanceDetails"]
             )
         )
-    if "rdsLimitlessDbDetails" in data:
+    if data.get("rdsLimitlessDbDetails") is not None:
         import capo_guardduty.types.rds_limitless_db_details
 
         out["rds_limitless_db_details"] = (
@@ -289,7 +289,7 @@ def deserialize_json(data: dict) -> Resource:
                 data["rdsLimitlessDbDetails"]
             )
         )
-    if "rdsDbUserDetails" in data:
+    if data.get("rdsDbUserDetails") is not None:
         import capo_guardduty.types.rds_db_user_details
 
         out["rds_db_user_details"] = (
@@ -297,7 +297,7 @@ def deserialize_json(data: dict) -> Resource:
                 data["rdsDbUserDetails"]
             )
         )
-    if "ebsSnapshotDetails" in data:
+    if data.get("ebsSnapshotDetails") is not None:
         import capo_guardduty.types.ebs_snapshot_details
 
         out["ebs_snapshot_details"] = (
@@ -305,7 +305,7 @@ def deserialize_json(data: dict) -> Resource:
                 data["ebsSnapshotDetails"]
             )
         )
-    if "ec2ImageDetails" in data:
+    if data.get("ec2ImageDetails") is not None:
         import capo_guardduty.types.ec2_image_details
 
         out["ec2_image_details"] = (
@@ -313,7 +313,7 @@ def deserialize_json(data: dict) -> Resource:
                 data["ec2ImageDetails"]
             )
         )
-    if "recoveryPointDetails" in data:
+    if data.get("recoveryPointDetails") is not None:
         import capo_guardduty.types.recovery_point_details
 
         out["recovery_point_details"] = (

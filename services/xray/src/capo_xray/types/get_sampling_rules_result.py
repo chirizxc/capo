@@ -36,7 +36,7 @@ def serialize_json(value: GetSamplingRulesResult) -> dict:
 
 def deserialize_json(data: dict) -> GetSamplingRulesResult:
     out: GetSamplingRulesResult = {}  # type: ignore[typeddict-item]
-    if "SamplingRuleRecords" in data:
+    if data.get("SamplingRuleRecords") is not None:
         import capo_xray.types.sampling_rule_record_list
 
         out["sampling_rule_records"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> GetSamplingRulesResult:
                 data["SamplingRuleRecords"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

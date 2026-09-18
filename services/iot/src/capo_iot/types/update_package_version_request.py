@@ -66,26 +66,26 @@ def serialize_json(value: UpdatePackageVersionRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdatePackageVersionRequest:
     out: UpdatePackageVersionRequest = {}  # type: ignore[typeddict-item]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "attributes" in data:
+    if data.get("attributes") is not None:
         import capo_iot.types.resource_attributes
 
         out["attributes"] = capo_iot.types.resource_attributes.deserialize_json(
             data["attributes"]
         )
-    if "artifact" in data:
+    if data.get("artifact") is not None:
         import capo_iot.types.package_version_artifact
 
         out["artifact"] = capo_iot.types.package_version_artifact.deserialize_json(
             data["artifact"]
         )
-    if "action" in data:
+    if data.get("action") is not None:
         import capo_iot.types.package_version_action
 
         out["action"] = capo_iot.types.package_version_action.deserialize_json(
             data["action"]
         )
-    if "recipe" in data:
+    if data.get("recipe") is not None:
         out["recipe"] = data["recipe"]
     return out

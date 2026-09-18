@@ -27,6 +27,8 @@ def deserialize_aws_json_1_1(data: list) -> ScalingPolicies:
 
     out: ScalingPolicies = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_auto_scaling_plans.types.scaling_policy.deserialize_aws_json_1_1(item)
         )

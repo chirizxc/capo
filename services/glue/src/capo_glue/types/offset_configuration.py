@@ -35,7 +35,7 @@ def serialize_aws_json_1_1(value: OffsetConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> OffsetConfiguration:
     out: OffsetConfiguration = {}  # type: ignore[typeddict-item]
-    if "OffsetParameter" in data:
+    if data.get("OffsetParameter") is not None:
         import capo_glue.types.extracted_parameter
 
         out["offset_parameter"] = (
@@ -45,7 +45,7 @@ def deserialize_aws_json_1_1(data: dict) -> OffsetConfiguration:
         )
     else:
         raise DeserializationError("OffsetConfiguration.offset_parameter required")
-    if "LimitParameter" in data:
+    if data.get("LimitParameter") is not None:
         import capo_glue.types.extracted_parameter
 
         out["limit_parameter"] = (

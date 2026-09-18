@@ -36,9 +36,9 @@ def serialize_aws_json_1_0(value: StartDataIngestionJobResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> StartDataIngestionJobResponse:
     out: StartDataIngestionJobResponse = {}  # type: ignore[typeddict-item]
-    if "JobId" in data:
+    if data.get("JobId") is not None:
         out["job_id"] = data["JobId"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_lookoutequipment.types.ingestion_job_status
 
         out["status"] = (

@@ -47,29 +47,29 @@ def serialize_aws_json_1_0(value: VerifyDestinationNumberResult) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> VerifyDestinationNumberResult:
     out: VerifyDestinationNumberResult = {}  # type: ignore[typeddict-item]
-    if "VerifiedDestinationNumberArn" in data:
+    if data.get("VerifiedDestinationNumberArn") is not None:
         out["verified_destination_number_arn"] = data["VerifiedDestinationNumberArn"]
     else:
         raise DeserializationError(
             "VerifyDestinationNumberResult.verified_destination_number_arn required"
         )
-    if "VerifiedDestinationNumberId" in data:
+    if data.get("VerifiedDestinationNumberId") is not None:
         out["verified_destination_number_id"] = data["VerifiedDestinationNumberId"]
     else:
         raise DeserializationError(
             "VerifyDestinationNumberResult.verified_destination_number_id required"
         )
-    if "DestinationPhoneNumber" in data:
+    if data.get("DestinationPhoneNumber") is not None:
         out["destination_phone_number"] = data["DestinationPhoneNumber"]
     else:
         raise DeserializationError(
             "VerifyDestinationNumberResult.destination_phone_number required"
         )
-    if "Status" in data:
+    if data.get("Status") is not None:
         out["status"] = data["Status"]
     else:
         raise DeserializationError("VerifyDestinationNumberResult.status required")
-    if "CreatedTimestamp" in data:
+    if data.get("CreatedTimestamp") is not None:
         import capo_pinpoint_sms_voice_v2.types._prelude.timestamp
 
         out["created_timestamp"] = (

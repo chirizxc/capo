@@ -185,18 +185,18 @@ def serialize_aws_json_1_0(value: GetDbClusterOutput) -> dict:
             )
         )
     if "last_maintenance_time" in value:
-        import capo_timestream_influxdb.types._prelude.timestamp
+        import capo_timestream_influxdb._protocol.serialize
 
         out["lastMaintenanceTime"] = (
-            capo_timestream_influxdb.types._prelude.timestamp.serialize_aws_json_1_0(
+            capo_timestream_influxdb._protocol.serialize.fmt_date_time(
                 value["last_maintenance_time"]
             )
         )
     if "next_maintenance_time" in value:
-        import capo_timestream_influxdb.types._prelude.timestamp
+        import capo_timestream_influxdb._protocol.serialize
 
         out["nextMaintenanceTime"] = (
-            capo_timestream_influxdb.types._prelude.timestamp.serialize_aws_json_1_0(
+            capo_timestream_influxdb._protocol.serialize.fmt_date_time(
                 value["next_maintenance_time"]
             )
         )
@@ -241,19 +241,19 @@ def serialize_aws_json_1_0(value: GetDbClusterOutput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> GetDbClusterOutput:
     out: GetDbClusterOutput = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("GetDbClusterOutput.id required")
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("GetDbClusterOutput.name required")
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("GetDbClusterOutput.arn required")
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_timestream_influxdb.types.cluster_status
 
         out["status"] = (
@@ -261,13 +261,13 @@ def deserialize_aws_json_1_0(data: dict) -> GetDbClusterOutput:
                 data["status"]
             )
         )
-    if "endpoint" in data:
+    if data.get("endpoint") is not None:
         out["endpoint"] = data["endpoint"]
-    if "readerEndpoint" in data:
+    if data.get("readerEndpoint") is not None:
         out["reader_endpoint"] = data["readerEndpoint"]
-    if "port" in data:
+    if data.get("port") is not None:
         out["port"] = data["port"]
-    if "deploymentType" in data:
+    if data.get("deploymentType") is not None:
         import capo_timestream_influxdb.types.cluster_deployment_type
 
         out["deployment_type"] = (
@@ -275,7 +275,7 @@ def deserialize_aws_json_1_0(data: dict) -> GetDbClusterOutput:
                 data["deploymentType"]
             )
         )
-    if "dbInstanceType" in data:
+    if data.get("dbInstanceType") is not None:
         import capo_timestream_influxdb.types.db_instance_type
 
         out["db_instance_type"] = (
@@ -283,7 +283,7 @@ def deserialize_aws_json_1_0(data: dict) -> GetDbClusterOutput:
                 data["dbInstanceType"]
             )
         )
-    if "networkType" in data:
+    if data.get("networkType") is not None:
         import capo_timestream_influxdb.types.network_type
 
         out["network_type"] = (
@@ -291,7 +291,7 @@ def deserialize_aws_json_1_0(data: dict) -> GetDbClusterOutput:
                 data["networkType"]
             )
         )
-    if "dbStorageType" in data:
+    if data.get("dbStorageType") is not None:
         import capo_timestream_influxdb.types.db_storage_type
 
         out["db_storage_type"] = (
@@ -299,9 +299,9 @@ def deserialize_aws_json_1_0(data: dict) -> GetDbClusterOutput:
                 data["dbStorageType"]
             )
         )
-    if "allocatedStorage" in data:
+    if data.get("allocatedStorage") is not None:
         out["allocated_storage"] = data["allocatedStorage"]
-    if "engineType" in data:
+    if data.get("engineType") is not None:
         import capo_timestream_influxdb.types.engine_type
 
         out["engine_type"] = (
@@ -309,11 +309,11 @@ def deserialize_aws_json_1_0(data: dict) -> GetDbClusterOutput:
                 data["engineType"]
             )
         )
-    if "publiclyAccessible" in data:
+    if data.get("publiclyAccessible") is not None:
         out["publicly_accessible"] = data["publiclyAccessible"]
-    if "dbParameterGroupIdentifier" in data:
+    if data.get("dbParameterGroupIdentifier") is not None:
         out["db_parameter_group_identifier"] = data["dbParameterGroupIdentifier"]
-    if "logDeliveryConfiguration" in data:
+    if data.get("logDeliveryConfiguration") is not None:
         import capo_timestream_influxdb.types.log_delivery_configuration
 
         out["log_delivery_configuration"] = (
@@ -321,7 +321,7 @@ def deserialize_aws_json_1_0(data: dict) -> GetDbClusterOutput:
                 data["logDeliveryConfiguration"]
             )
         )
-    if "maintenanceSchedule" in data:
+    if data.get("maintenanceSchedule") is not None:
         import capo_timestream_influxdb.types.maintenance_schedule
 
         out["maintenance_schedule"] = (
@@ -329,25 +329,21 @@ def deserialize_aws_json_1_0(data: dict) -> GetDbClusterOutput:
                 data["maintenanceSchedule"]
             )
         )
-    if "lastMaintenanceTime" in data:
-        import capo_timestream_influxdb.types._prelude.timestamp
+    if data.get("lastMaintenanceTime") is not None:
+        import datetime
 
-        out["last_maintenance_time"] = (
-            capo_timestream_influxdb.types._prelude.timestamp.deserialize_aws_json_1_0(
-                data["lastMaintenanceTime"]
-            )
+        out["last_maintenance_time"] = datetime.datetime.fromisoformat(
+            data["lastMaintenanceTime"].replace("Z", "+00:00")
         )
-    if "nextMaintenanceTime" in data:
-        import capo_timestream_influxdb.types._prelude.timestamp
+    if data.get("nextMaintenanceTime") is not None:
+        import datetime
 
-        out["next_maintenance_time"] = (
-            capo_timestream_influxdb.types._prelude.timestamp.deserialize_aws_json_1_0(
-                data["nextMaintenanceTime"]
-            )
+        out["next_maintenance_time"] = datetime.datetime.fromisoformat(
+            data["nextMaintenanceTime"].replace("Z", "+00:00")
         )
-    if "influxAuthParametersSecretArn" in data:
+    if data.get("influxAuthParametersSecretArn") is not None:
         out["influx_auth_parameters_secret_arn"] = data["influxAuthParametersSecretArn"]
-    if "vpcSubnetIds" in data:
+    if data.get("vpcSubnetIds") is not None:
         import capo_timestream_influxdb.types.vpc_subnet_id_list
 
         out["vpc_subnet_ids"] = (
@@ -355,7 +351,7 @@ def deserialize_aws_json_1_0(data: dict) -> GetDbClusterOutput:
                 data["vpcSubnetIds"]
             )
         )
-    if "vpcSecurityGroupIds" in data:
+    if data.get("vpcSecurityGroupIds") is not None:
         import capo_timestream_influxdb.types.vpc_security_group_id_list
 
         out["vpc_security_group_ids"] = (
@@ -363,7 +359,7 @@ def deserialize_aws_json_1_0(data: dict) -> GetDbClusterOutput:
                 data["vpcSecurityGroupIds"]
             )
         )
-    if "failoverMode" in data:
+    if data.get("failoverMode") is not None:
         import capo_timestream_influxdb.types.failover_mode
 
         out["failover_mode"] = (
@@ -371,7 +367,7 @@ def deserialize_aws_json_1_0(data: dict) -> GetDbClusterOutput:
                 data["failoverMode"]
             )
         )
-    if "clusterConfiguration" in data:
+    if data.get("clusterConfiguration") is not None:
         import capo_timestream_influxdb.types.cluster_configuration
 
         out["cluster_configuration"] = (

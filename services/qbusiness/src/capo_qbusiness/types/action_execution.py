@@ -36,11 +36,11 @@ def serialize_json(value: ActionExecution) -> dict:
 
 def deserialize_json(data: dict) -> ActionExecution:
     out: ActionExecution = {}  # type: ignore[typeddict-item]
-    if "pluginId" in data:
+    if data.get("pluginId") is not None:
         out["plugin_id"] = data["pluginId"]
     else:
         raise DeserializationError("ActionExecution.plugin_id required")
-    if "payload" in data:
+    if data.get("payload") is not None:
         import capo_qbusiness.types.action_execution_payload
 
         out["payload"] = capo_qbusiness.types.action_execution_payload.deserialize_json(
@@ -48,7 +48,7 @@ def deserialize_json(data: dict) -> ActionExecution:
         )
     else:
         raise DeserializationError("ActionExecution.payload required")
-    if "payloadFieldNameSeparator" in data:
+    if data.get("payloadFieldNameSeparator") is not None:
         out["payload_field_name_separator"] = data["payloadFieldNameSeparator"]
     else:
         raise DeserializationError(

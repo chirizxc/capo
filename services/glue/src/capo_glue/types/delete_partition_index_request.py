@@ -35,17 +35,17 @@ def serialize_aws_json_1_1(value: DeletePartitionIndexRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeletePartitionIndexRequest:
     out: DeletePartitionIndexRequest = {}  # type: ignore[typeddict-item]
-    if "CatalogId" in data:
+    if data.get("CatalogId") is not None:
         out["catalog_id"] = data["CatalogId"]
-    if "DatabaseName" in data:
+    if data.get("DatabaseName") is not None:
         out["database_name"] = data["DatabaseName"]
     else:
         raise DeserializationError("DeletePartitionIndexRequest.database_name required")
-    if "TableName" in data:
+    if data.get("TableName") is not None:
         out["table_name"] = data["TableName"]
     else:
         raise DeserializationError("DeletePartitionIndexRequest.table_name required")
-    if "IndexName" in data:
+    if data.get("IndexName") is not None:
         out["index_name"] = data["IndexName"]
     else:
         raise DeserializationError("DeletePartitionIndexRequest.index_name required")

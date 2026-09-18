@@ -36,7 +36,7 @@ def serialize_json(value: ListProviderServicesOutput) -> dict:
 
 def deserialize_json(data: dict) -> ListProviderServicesOutput:
     out: ListProviderServicesOutput = {}  # type: ignore[typeddict-item]
-    if "providerServiceSummaries" in data:
+    if data.get("providerServiceSummaries") is not None:
         import capo_entityresolution.types.provider_service_list
 
         out["provider_service_summaries"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> ListProviderServicesOutput:
                 data["providerServiceSummaries"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

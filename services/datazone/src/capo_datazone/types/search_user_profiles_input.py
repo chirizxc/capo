@@ -46,7 +46,7 @@ def serialize_json(value: SearchUserProfilesInput) -> dict:
 
 def deserialize_json(data: dict) -> SearchUserProfilesInput:
     out: SearchUserProfilesInput = {}  # type: ignore[typeddict-item]
-    if "userType" in data:
+    if data.get("userType") is not None:
         import capo_datazone.types.user_search_type
 
         out["user_type"] = capo_datazone.types.user_search_type.deserialize_json(
@@ -54,10 +54,10 @@ def deserialize_json(data: dict) -> SearchUserProfilesInput:
         )
     else:
         raise DeserializationError("SearchUserProfilesInput.user_type required")
-    if "searchText" in data:
+    if data.get("searchText") is not None:
         out["search_text"] = data["searchText"]
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

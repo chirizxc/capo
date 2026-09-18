@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> UpdateInstructionBatch:
 
     out: UpdateInstructionBatch = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_grafana.types.update_instruction.deserialize_json(item))
     return out

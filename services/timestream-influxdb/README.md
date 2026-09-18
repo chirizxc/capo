@@ -13,9 +13,9 @@ from capo_timestream_influxdb import AsyncTimestreamInfluxDBClient
 
 
 async def main():
-    async with AsyncTimestreamInfluxDBClient() as s3:
+    async with AsyncTimestreamInfluxDBClient() as timestream_influx_db:
         # Example: call the list_tags_for_resource operation
-        response = await s3.list_tags_for_resource()
+        response = await timestream_influx_db.list_tags_for_resource()
         print(response["tags"])
 ```
 
@@ -29,9 +29,9 @@ from capo_timestream_influxdb.error import ResourceNotFoundException
 
 
 async def main():
-    async with AsyncTimestreamInfluxDBClient() as s3:
+    async with AsyncTimestreamInfluxDBClient() as timestream_influx_db:
         try:
-            await s3.list_tags_for_resource()
+            await timestream_influx_db.list_tags_for_resource()
         except ResourceNotFoundException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -48,13 +48,13 @@ from capo_timestream_influxdb import AsyncTimestreamInfluxDBClient
 
 
 async def main():
-    async with AsyncTimestreamInfluxDBClient() as s3:
+    async with AsyncTimestreamInfluxDBClient() as timestream_influx_db:
         # Default: 3 attempts for every operation
-        response = await s3.list_tags_for_resource()
+        response = await timestream_influx_db.list_tags_for_resource()
 
         # Override per operation
-        response = await s3.list_tags_for_resource(config_overrides={"retry_max_attempts": 5})
+        response = await timestream_influx_db.list_tags_for_resource(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.list_tags_for_resource(config_overrides={"retry_max_attempts": 1})
+        response = await timestream_influx_db.list_tags_for_resource(config_overrides={"retry_max_attempts": 1})
 ```

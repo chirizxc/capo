@@ -32,9 +32,9 @@ def serialize_aws_json_1_1(value: ListReportsForReportGroupOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListReportsForReportGroupOutput:
     out: ListReportsForReportGroupOutput = {}  # type: ignore[typeddict-item]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "reports" in data:
+    if data.get("reports") is not None:
         import capo_codebuild.types.report_arns
 
         out["reports"] = capo_codebuild.types.report_arns.deserialize_aws_json_1_1(

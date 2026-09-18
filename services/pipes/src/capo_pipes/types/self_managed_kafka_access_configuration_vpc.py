@@ -34,11 +34,11 @@ def serialize_json(value: SelfManagedKafkaAccessConfigurationVpc) -> dict:
 
 def deserialize_json(data: dict) -> SelfManagedKafkaAccessConfigurationVpc:
     out: SelfManagedKafkaAccessConfigurationVpc = {}  # type: ignore[typeddict-item]
-    if "Subnets" in data:
+    if data.get("Subnets") is not None:
         import capo_pipes.types.subnet_ids
 
         out["subnets"] = capo_pipes.types.subnet_ids.deserialize_json(data["Subnets"])
-    if "SecurityGroup" in data:
+    if data.get("SecurityGroup") is not None:
         import capo_pipes.types.security_group_ids
 
         out["security_group"] = capo_pipes.types.security_group_ids.deserialize_json(

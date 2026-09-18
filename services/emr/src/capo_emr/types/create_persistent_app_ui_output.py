@@ -30,8 +30,8 @@ def serialize_aws_json_1_1(value: CreatePersistentAppUIOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreatePersistentAppUIOutput:
     out: CreatePersistentAppUIOutput = {}  # type: ignore[typeddict-item]
-    if "PersistentAppUIId" in data:
+    if data.get("PersistentAppUIId") is not None:
         out["persistent_app_ui_id"] = data["PersistentAppUIId"]
-    if "RuntimeRoleEnabledCluster" in data:
+    if data.get("RuntimeRoleEnabledCluster") is not None:
         out["runtime_role_enabled_cluster"] = data["RuntimeRoleEnabledCluster"]
     return out

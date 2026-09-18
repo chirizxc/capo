@@ -46,11 +46,11 @@ def serialize_aws_json_1_1(value: UpdateDataCatalogInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateDataCatalogInput:
     out: UpdateDataCatalogInput = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("UpdateDataCatalogInput.name required")
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_athena.types.data_catalog_type
 
         out["type"] = capo_athena.types.data_catalog_type.deserialize_aws_json_1_1(
@@ -58,9 +58,9 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateDataCatalogInput:
         )
     else:
         raise DeserializationError("UpdateDataCatalogInput.type required")
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Parameters" in data:
+    if data.get("Parameters") is not None:
         import capo_athena.types.parameters_map
 
         out["parameters"] = capo_athena.types.parameters_map.deserialize_aws_json_1_1(

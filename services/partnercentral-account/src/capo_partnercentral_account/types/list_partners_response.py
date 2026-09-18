@@ -37,7 +37,7 @@ def serialize_aws_json_1_0(value: ListPartnersResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ListPartnersResponse:
     out: ListPartnersResponse = {}  # type: ignore[typeddict-item]
-    if "PartnerSummaryList" in data:
+    if data.get("PartnerSummaryList") is not None:
         import capo_partnercentral_account.types.partner_summary_list
 
         out["partner_summary_list"] = (
@@ -47,6 +47,6 @@ def deserialize_aws_json_1_0(data: dict) -> ListPartnersResponse:
         )
     else:
         raise DeserializationError("ListPartnersResponse.partner_summary_list required")
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

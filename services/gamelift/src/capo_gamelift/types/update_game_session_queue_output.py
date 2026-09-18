@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: UpdateGameSessionQueueOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateGameSessionQueueOutput:
     out: UpdateGameSessionQueueOutput = {}  # type: ignore[typeddict-item]
-    if "GameSessionQueue" in data:
+    if data.get("GameSessionQueue") is not None:
         import capo_gamelift.types.game_session_queue
 
         out["game_session_queue"] = (

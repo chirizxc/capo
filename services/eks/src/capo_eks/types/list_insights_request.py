@@ -39,12 +39,12 @@ def serialize_json(value: ListInsightsRequest) -> dict:
 
 def deserialize_json(data: dict) -> ListInsightsRequest:
     out: ListInsightsRequest = {}  # type: ignore[typeddict-item]
-    if "filter" in data:
+    if data.get("filter") is not None:
         import capo_eks.types.insights_filter
 
         out["filter"] = capo_eks.types.insights_filter.deserialize_json(data["filter"])
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

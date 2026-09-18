@@ -53,7 +53,7 @@ def serialize_aws_json_1_0(value: TestParsingRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> TestParsingRequest:
     out: TestParsingRequest = {}  # type: ignore[typeddict-item]
-    if "inputFile" in data:
+    if data.get("inputFile") is not None:
         import capo_b2bi.types.s3_location
 
         out["input_file"] = capo_b2bi.types.s3_location.deserialize_aws_json_1_0(
@@ -61,7 +61,7 @@ def deserialize_aws_json_1_0(data: dict) -> TestParsingRequest:
         )
     else:
         raise DeserializationError("TestParsingRequest.input_file required")
-    if "fileFormat" in data:
+    if data.get("fileFormat") is not None:
         import capo_b2bi.types.file_format
 
         out["file_format"] = capo_b2bi.types.file_format.deserialize_aws_json_1_0(
@@ -69,7 +69,7 @@ def deserialize_aws_json_1_0(data: dict) -> TestParsingRequest:
         )
     else:
         raise DeserializationError("TestParsingRequest.file_format required")
-    if "ediType" in data:
+    if data.get("ediType") is not None:
         import capo_b2bi.types.edi_type
 
         out["edi_type"] = capo_b2bi.types.edi_type.deserialize_aws_json_1_0(
@@ -77,7 +77,7 @@ def deserialize_aws_json_1_0(data: dict) -> TestParsingRequest:
         )
     else:
         raise DeserializationError("TestParsingRequest.edi_type required")
-    if "advancedOptions" in data:
+    if data.get("advancedOptions") is not None:
         import capo_b2bi.types.advanced_options
 
         out["advanced_options"] = (

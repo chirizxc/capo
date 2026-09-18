@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: EbsConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> EbsConfiguration:
     out: EbsConfiguration = {}  # type: ignore[typeddict-item]
-    if "EbsBlockDeviceConfigs" in data:
+    if data.get("EbsBlockDeviceConfigs") is not None:
         import capo_emr.types.ebs_block_device_config_list
 
         out["ebs_block_device_configs"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_1(data: dict) -> EbsConfiguration:
                 data["EbsBlockDeviceConfigs"]
             )
         )
-    if "EbsOptimized" in data:
+    if data.get("EbsOptimized") is not None:
         out["ebs_optimized"] = data["EbsOptimized"]
     return out

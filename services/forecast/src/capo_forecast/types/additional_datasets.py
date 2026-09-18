@@ -25,6 +25,8 @@ def deserialize_aws_json_1_1(data: list) -> AdditionalDatasets:
 
     out: AdditionalDatasets = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_forecast.types.additional_dataset.deserialize_aws_json_1_1(item)
         )

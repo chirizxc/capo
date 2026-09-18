@@ -34,12 +34,12 @@ def serialize_json(value: EphemerisDescription) -> dict:
 
 def deserialize_json(data: dict) -> EphemerisDescription:
     out: EphemerisDescription = {}  # type: ignore[typeddict-item]
-    if "sourceS3Object" in data:
+    if data.get("sourceS3Object") is not None:
         import capo_groundstation.types.s3_object
 
         out["source_s3_object"] = capo_groundstation.types.s3_object.deserialize_json(
             data["sourceS3Object"]
         )
-    if "ephemerisData" in data:
+    if data.get("ephemerisData") is not None:
         out["ephemeris_data"] = data["ephemerisData"]
     return out

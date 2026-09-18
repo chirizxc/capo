@@ -38,16 +38,16 @@ def serialize_json(value: NotificationSetting) -> dict:
 
 def deserialize_json(data: dict) -> NotificationSetting:
     out: NotificationSetting = {}  # type: ignore[typeddict-item]
-    if "enabled" in data:
+    if data.get("enabled") is not None:
         out["enabled"] = data["enabled"]
     else:
         raise DeserializationError("NotificationSetting.enabled required")
-    if "event" in data:
+    if data.get("event") is not None:
         out["event"] = data["event"]
     else:
         raise DeserializationError("NotificationSetting.event required")
-    if "threshold" in data:
+    if data.get("threshold") is not None:
         out["threshold"] = data["threshold"]
-    if "channel" in data:
+    if data.get("channel") is not None:
         out["channel"] = data["channel"]
     return out

@@ -39,11 +39,11 @@ def serialize_json(value: CreatePortalProductRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreatePortalProductRequest:
     out: CreatePortalProductRequest = {}  # type: ignore[typeddict-item]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "displayName" in data:
+    if data.get("displayName") is not None:
         out["display_name"] = data["displayName"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_apigatewayv2.types.tags
 
         out["tags"] = capo_apigatewayv2.types.tags.deserialize_json(data["tags"])

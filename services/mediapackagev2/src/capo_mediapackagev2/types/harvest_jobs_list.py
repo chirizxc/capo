@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> HarvestJobsList:
 
     out: HarvestJobsList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_mediapackagev2.types.harvest_job.deserialize_json(item))
     return out

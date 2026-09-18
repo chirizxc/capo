@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> LinearRingsList:
 
     out: LinearRingsList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_sagemaker_geospatial.types.linear_rings.deserialize_json(item))
     return out

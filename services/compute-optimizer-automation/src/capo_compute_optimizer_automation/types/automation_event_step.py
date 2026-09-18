@@ -93,11 +93,11 @@ def serialize_aws_json_1_0(value: AutomationEventStep) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> AutomationEventStep:
     out: AutomationEventStep = {}  # type: ignore[typeddict-item]
-    if "eventId" in data:
+    if data.get("eventId") is not None:
         out["event_id"] = data["eventId"]
-    if "stepId" in data:
+    if data.get("stepId") is not None:
         out["step_id"] = data["stepId"]
-    if "stepType" in data:
+    if data.get("stepType") is not None:
         import capo_compute_optimizer_automation.types.step_type
 
         out["step_type"] = (
@@ -105,7 +105,7 @@ def deserialize_aws_json_1_0(data: dict) -> AutomationEventStep:
                 data["stepType"]
             )
         )
-    if "stepStatus" in data:
+    if data.get("stepStatus") is not None:
         import capo_compute_optimizer_automation.types.step_status
 
         out["step_status"] = (
@@ -113,9 +113,9 @@ def deserialize_aws_json_1_0(data: dict) -> AutomationEventStep:
                 data["stepStatus"]
             )
         )
-    if "resourceId" in data:
+    if data.get("resourceId") is not None:
         out["resource_id"] = data["resourceId"]
-    if "startTimestamp" in data:
+    if data.get("startTimestamp") is not None:
         import capo_compute_optimizer_automation.types._prelude.timestamp
 
         out["start_timestamp"] = (
@@ -123,7 +123,7 @@ def deserialize_aws_json_1_0(data: dict) -> AutomationEventStep:
                 data["startTimestamp"]
             )
         )
-    if "completedTimestamp" in data:
+    if data.get("completedTimestamp") is not None:
         import capo_compute_optimizer_automation.types._prelude.timestamp
 
         out["completed_timestamp"] = (
@@ -131,7 +131,7 @@ def deserialize_aws_json_1_0(data: dict) -> AutomationEventStep:
                 data["completedTimestamp"]
             )
         )
-    if "estimatedMonthlySavings" in data:
+    if data.get("estimatedMonthlySavings") is not None:
         import capo_compute_optimizer_automation.types.estimated_monthly_savings
 
         out["estimated_monthly_savings"] = (

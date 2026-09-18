@@ -31,8 +31,8 @@ def serialize_aws_json_1_0(value: Constraints) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> Constraints:
     out: Constraints = {}  # type: ignore[typeddict-item]
-    if "multipleDimensionSelection" in data:
+    if data.get("multipleDimensionSelection") is not None:
         out["multiple_dimension_selection"] = data["multipleDimensionSelection"]
-    if "quantityConfiguration" in data:
+    if data.get("quantityConfiguration") is not None:
         out["quantity_configuration"] = data["quantityConfiguration"]
     return out

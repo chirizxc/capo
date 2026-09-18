@@ -90,33 +90,33 @@ def serialize_aws_json_1_1(value: Blueprint) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Blueprint:
     out: Blueprint = {}  # type: ignore[typeddict-item]
-    if "blueprintId" in data:
+    if data.get("blueprintId") is not None:
         out["blueprint_id"] = data["blueprintId"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "group" in data:
+    if data.get("group") is not None:
         out["group"] = data["group"]
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_lightsail.types.blueprint_type
 
         out["type"] = capo_lightsail.types.blueprint_type.deserialize_aws_json_1_1(
             data["type"]
         )
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "isActive" in data:
+    if data.get("isActive") is not None:
         out["is_active"] = data["isActive"]
-    if "minPower" in data:
+    if data.get("minPower") is not None:
         out["min_power"] = data["minPower"]
-    if "version" in data:
+    if data.get("version") is not None:
         out["version"] = data["version"]
-    if "versionCode" in data:
+    if data.get("versionCode") is not None:
         out["version_code"] = data["versionCode"]
-    if "productUrl" in data:
+    if data.get("productUrl") is not None:
         out["product_url"] = data["productUrl"]
-    if "licenseUrl" in data:
+    if data.get("licenseUrl") is not None:
         out["license_url"] = data["licenseUrl"]
-    if "platform" in data:
+    if data.get("platform") is not None:
         import capo_lightsail.types.instance_platform
 
         out["platform"] = (
@@ -124,7 +124,7 @@ def deserialize_aws_json_1_1(data: dict) -> Blueprint:
                 data["platform"]
             )
         )
-    if "appCategory" in data:
+    if data.get("appCategory") is not None:
         import capo_lightsail.types.app_category
 
         out["app_category"] = (

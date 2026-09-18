@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> OfferAssociatedEntityList:
 
     out: OfferAssociatedEntityList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_marketplace_discovery.types.offer_associated_entity.deserialize_json(
                 item

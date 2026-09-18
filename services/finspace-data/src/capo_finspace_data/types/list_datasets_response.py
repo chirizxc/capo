@@ -32,12 +32,12 @@ def serialize_json(value: ListDatasetsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListDatasetsResponse:
     out: ListDatasetsResponse = {}  # type: ignore[typeddict-item]
-    if "datasets" in data:
+    if data.get("datasets") is not None:
         import capo_finspace_data.types.dataset_list
 
         out["datasets"] = capo_finspace_data.types.dataset_list.deserialize_json(
             data["datasets"]
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

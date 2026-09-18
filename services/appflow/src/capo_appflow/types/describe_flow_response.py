@@ -170,23 +170,23 @@ def serialize_json(value: DescribeFlowResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribeFlowResponse:
     out: DescribeFlowResponse = {}  # type: ignore[typeddict-item]
-    if "flowArn" in data:
+    if data.get("flowArn") is not None:
         out["flow_arn"] = data["flowArn"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "flowName" in data:
+    if data.get("flowName") is not None:
         out["flow_name"] = data["flowName"]
-    if "kmsArn" in data:
+    if data.get("kmsArn") is not None:
         out["kms_arn"] = data["kmsArn"]
-    if "flowStatus" in data:
+    if data.get("flowStatus") is not None:
         import capo_appflow.types.flow_status
 
         out["flow_status"] = capo_appflow.types.flow_status.deserialize_json(
             data["flowStatus"]
         )
-    if "flowStatusMessage" in data:
+    if data.get("flowStatusMessage") is not None:
         out["flow_status_message"] = data["flowStatusMessage"]
-    if "sourceFlowConfig" in data:
+    if data.get("sourceFlowConfig") is not None:
         import capo_appflow.types.source_flow_config
 
         out["source_flow_config"] = (
@@ -194,7 +194,7 @@ def deserialize_json(data: dict) -> DescribeFlowResponse:
                 data["sourceFlowConfig"]
             )
         )
-    if "destinationFlowConfigList" in data:
+    if data.get("destinationFlowConfigList") is not None:
         import capo_appflow.types.destination_flow_config_list
 
         out["destination_flow_config_list"] = (
@@ -202,7 +202,7 @@ def deserialize_json(data: dict) -> DescribeFlowResponse:
                 data["destinationFlowConfigList"]
             )
         )
-    if "lastRunExecutionDetails" in data:
+    if data.get("lastRunExecutionDetails") is not None:
         import capo_appflow.types.execution_details
 
         out["last_run_execution_details"] = (
@@ -210,35 +210,35 @@ def deserialize_json(data: dict) -> DescribeFlowResponse:
                 data["lastRunExecutionDetails"]
             )
         )
-    if "triggerConfig" in data:
+    if data.get("triggerConfig") is not None:
         import capo_appflow.types.trigger_config
 
         out["trigger_config"] = capo_appflow.types.trigger_config.deserialize_json(
             data["triggerConfig"]
         )
-    if "tasks" in data:
+    if data.get("tasks") is not None:
         import capo_appflow.types.tasks
 
         out["tasks"] = capo_appflow.types.tasks.deserialize_json(data["tasks"])
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_appflow.types.date
 
         out["created_at"] = capo_appflow.types.date.deserialize_json(data["createdAt"])
-    if "lastUpdatedAt" in data:
+    if data.get("lastUpdatedAt") is not None:
         import capo_appflow.types.date
 
         out["last_updated_at"] = capo_appflow.types.date.deserialize_json(
             data["lastUpdatedAt"]
         )
-    if "createdBy" in data:
+    if data.get("createdBy") is not None:
         out["created_by"] = data["createdBy"]
-    if "lastUpdatedBy" in data:
+    if data.get("lastUpdatedBy") is not None:
         out["last_updated_by"] = data["lastUpdatedBy"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_appflow.types.tag_map
 
         out["tags"] = capo_appflow.types.tag_map.deserialize_json(data["tags"])
-    if "metadataCatalogConfig" in data:
+    if data.get("metadataCatalogConfig") is not None:
         import capo_appflow.types.metadata_catalog_config
 
         out["metadata_catalog_config"] = (
@@ -246,7 +246,7 @@ def deserialize_json(data: dict) -> DescribeFlowResponse:
                 data["metadataCatalogConfig"]
             )
         )
-    if "lastRunMetadataCatalogDetails" in data:
+    if data.get("lastRunMetadataCatalogDetails") is not None:
         import capo_appflow.types.metadata_catalog_details
 
         out["last_run_metadata_catalog_details"] = (
@@ -254,6 +254,6 @@ def deserialize_json(data: dict) -> DescribeFlowResponse:
                 data["lastRunMetadataCatalogDetails"]
             )
         )
-    if "schemaVersion" in data:
+    if data.get("schemaVersion") is not None:
         out["schema_version"] = data["schemaVersion"]
     return out

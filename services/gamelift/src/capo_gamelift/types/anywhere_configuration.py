@@ -25,6 +25,6 @@ def serialize_aws_json_1_1(value: AnywhereConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AnywhereConfiguration:
     out: AnywhereConfiguration = {}  # type: ignore[typeddict-item]
-    if "Cost" in data:
+    if data.get("Cost") is not None:
         out["cost"] = data["Cost"]
     return out

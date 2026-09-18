@@ -57,7 +57,7 @@ def serialize_json(value: ScopeDetails) -> dict:
 
 def deserialize_json(data: dict) -> ScopeDetails:
     out: ScopeDetails = {}  # type: ignore[typeddict-item]
-    if "LakeFormationTagPolicies" in data:
+    if data.get("LakeFormationTagPolicies") is not None:
         import capo_dataexchange.types.list_of_lake_formation_tag_policies
 
         out["lake_formation_tag_policies"] = (
@@ -65,7 +65,7 @@ def deserialize_json(data: dict) -> ScopeDetails:
                 data["LakeFormationTagPolicies"]
             )
         )
-    if "RedshiftDataShares" in data:
+    if data.get("RedshiftDataShares") is not None:
         import capo_dataexchange.types.list_of_redshift_data_shares
 
         out["redshift_data_shares"] = (
@@ -73,7 +73,7 @@ def deserialize_json(data: dict) -> ScopeDetails:
                 data["RedshiftDataShares"]
             )
         )
-    if "S3DataAccesses" in data:
+    if data.get("S3DataAccesses") is not None:
         import capo_dataexchange.types.list_of_s3_data_accesses
 
         out["s3_data_accesses"] = (

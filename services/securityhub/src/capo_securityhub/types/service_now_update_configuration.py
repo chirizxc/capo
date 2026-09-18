@@ -23,6 +23,6 @@ def serialize_json(value: ServiceNowUpdateConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> ServiceNowUpdateConfiguration:
     out: ServiceNowUpdateConfiguration = {}  # type: ignore[typeddict-item]
-    if "SecretArn" in data:
+    if data.get("SecretArn") is not None:
         out["secret_arn"] = data["SecretArn"]
     return out

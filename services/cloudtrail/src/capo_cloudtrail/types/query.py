@@ -41,9 +41,9 @@ def serialize_aws_json_1_1(value: Query) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Query:
     out: Query = {}  # type: ignore[typeddict-item]
-    if "QueryId" in data:
+    if data.get("QueryId") is not None:
         out["query_id"] = data["QueryId"]
-    if "QueryStatus" in data:
+    if data.get("QueryStatus") is not None:
         import capo_cloudtrail.types.query_status
 
         out["query_status"] = (
@@ -51,7 +51,7 @@ def deserialize_aws_json_1_1(data: dict) -> Query:
                 data["QueryStatus"]
             )
         )
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_cloudtrail.types.date
 
         out["creation_time"] = capo_cloudtrail.types.date.deserialize_aws_json_1_1(

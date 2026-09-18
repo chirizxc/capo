@@ -68,26 +68,26 @@ def serialize_json(value: PatchSummary) -> dict:
 
 def deserialize_json(data: dict) -> PatchSummary:
     out: PatchSummary = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "InstalledCount" in data:
+    if data.get("InstalledCount") is not None:
         out["installed_count"] = data["InstalledCount"]
-    if "MissingCount" in data:
+    if data.get("MissingCount") is not None:
         out["missing_count"] = data["MissingCount"]
-    if "FailedCount" in data:
+    if data.get("FailedCount") is not None:
         out["failed_count"] = data["FailedCount"]
-    if "InstalledOtherCount" in data:
+    if data.get("InstalledOtherCount") is not None:
         out["installed_other_count"] = data["InstalledOtherCount"]
-    if "InstalledRejectedCount" in data:
+    if data.get("InstalledRejectedCount") is not None:
         out["installed_rejected_count"] = data["InstalledRejectedCount"]
-    if "InstalledPendingReboot" in data:
+    if data.get("InstalledPendingReboot") is not None:
         out["installed_pending_reboot"] = data["InstalledPendingReboot"]
-    if "OperationStartTime" in data:
+    if data.get("OperationStartTime") is not None:
         out["operation_start_time"] = data["OperationStartTime"]
-    if "OperationEndTime" in data:
+    if data.get("OperationEndTime") is not None:
         out["operation_end_time"] = data["OperationEndTime"]
-    if "RebootOption" in data:
+    if data.get("RebootOption") is not None:
         out["reboot_option"] = data["RebootOption"]
-    if "Operation" in data:
+    if data.get("Operation") is not None:
         out["operation"] = data["Operation"]
     return out

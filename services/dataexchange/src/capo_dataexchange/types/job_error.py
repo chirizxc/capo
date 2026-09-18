@@ -48,7 +48,15 @@ def serialize_json(value: JobError) -> dict:
         )
     if "limit_name" in value:
         out["LimitName"] = value["limit_name"]
-    out["LimitValue"] = value.get("limit_value", 0)
+    out["LimitValue"] = (
+        "NaN"
+        if value.get("limit_value", 0) != value.get("limit_value", 0)
+        else "Infinity"
+        if value.get("limit_value", 0) == float("inf")
+        else "-Infinity"
+        if value.get("limit_value", 0) == float("-inf")
+        else value.get("limit_value", 0)
+    )
     out["Message"] = value["message"]
     if "resource_id" in value:
         out["ResourceId"] = value["resource_id"]
@@ -59,28 +67,28 @@ def serialize_json(value: JobError) -> dict:
 
 def deserialize_json(data: dict) -> JobError:
     out: JobError = {}  # type: ignore[typeddict-item]
-    if "Code" in data:
+    if data.get("Code") is not None:
         out["code"] = data["Code"]
     else:
         raise DeserializationError("JobError.code required")
-    if "Details" in data:
+    if data.get("Details") is not None:
         import capo_dataexchange.types.details
 
         out["details"] = capo_dataexchange.types.details.deserialize_json(
             data["Details"]
         )
-    if "LimitName" in data:
+    if data.get("LimitName") is not None:
         out["limit_name"] = data["LimitName"]
-    if "LimitValue" in data:
-        out["limit_value"] = data["LimitValue"]
+    if data.get("LimitValue") is not None:
+        out["limit_value"] = float(data["LimitValue"])
     else:
         out["limit_value"] = 0
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     else:
         raise DeserializationError("JobError.message required")
-    if "ResourceId" in data:
+    if data.get("ResourceId") is not None:
         out["resource_id"] = data["ResourceId"]
-    if "ResourceType" in data:
+    if data.get("ResourceType") is not None:
         out["resource_type"] = data["ResourceType"]
     return out

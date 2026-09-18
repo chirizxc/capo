@@ -32,9 +32,9 @@ def serialize_json(value: StartConfigurationPolicyAssociationRequest) -> dict:
 
 def deserialize_json(data: dict) -> StartConfigurationPolicyAssociationRequest:
     out: StartConfigurationPolicyAssociationRequest = {}  # type: ignore[typeddict-item]
-    if "ConfigurationPolicyIdentifier" in data:
+    if data.get("ConfigurationPolicyIdentifier") is not None:
         out["configuration_policy_identifier"] = data["ConfigurationPolicyIdentifier"]
-    if "Target" in data:
+    if data.get("Target") is not None:
         import capo_securityhub.types.target
 
         out["target"] = capo_securityhub.types.target.deserialize_json(data["Target"])

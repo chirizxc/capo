@@ -78,13 +78,13 @@ def serialize_aws_json_1_1(value: StartSessionInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> StartSessionInput:
     out: StartSessionInput = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "ClusterId" in data:
+    if data.get("ClusterId") is not None:
         out["cluster_id"] = data["ClusterId"]
-    if "ExecutionRoleArn" in data:
+    if data.get("ExecutionRoleArn") is not None:
         out["execution_role_arn"] = data["ExecutionRoleArn"]
-    if "EngineConfigurations" in data:
+    if data.get("EngineConfigurations") is not None:
         import capo_emr.types.configuration_list
 
         out["engine_configurations"] = (
@@ -92,7 +92,7 @@ def deserialize_aws_json_1_1(data: dict) -> StartSessionInput:
                 data["EngineConfigurations"]
             )
         )
-    if "MonitoringConfiguration" in data:
+    if data.get("MonitoringConfiguration") is not None:
         import capo_emr.types.session_monitoring_configuration
 
         out["monitoring_configuration"] = (
@@ -100,11 +100,11 @@ def deserialize_aws_json_1_1(data: dict) -> StartSessionInput:
                 data["MonitoringConfiguration"]
             )
         )
-    if "SessionIdleTimeoutInMinutes" in data:
+    if data.get("SessionIdleTimeoutInMinutes") is not None:
         out["session_idle_timeout_in_minutes"] = data["SessionIdleTimeoutInMinutes"]
-    if "ClientRequestToken" in data:
+    if data.get("ClientRequestToken") is not None:
         out["client_request_token"] = data["ClientRequestToken"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_emr.types.tag_list
 
         out["tags"] = capo_emr.types.tag_list.deserialize_aws_json_1_1(data["Tags"])

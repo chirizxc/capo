@@ -91,27 +91,27 @@ def serialize_aws_json_1_0(value: VmEntitlement) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> VmEntitlement:
     out: VmEntitlement = {}  # type: ignore[typeddict-item]
-    if "vmId" in data:
+    if data.get("vmId") is not None:
         out["vm_id"] = data["vmId"]
-    if "environmentId" in data:
+    if data.get("environmentId") is not None:
         out["environment_id"] = data["environmentId"]
-    if "connectorId" in data:
+    if data.get("connectorId") is not None:
         out["connector_id"] = data["connectorId"]
-    if "vmName" in data:
+    if data.get("vmName") is not None:
         out["vm_name"] = data["vmName"]
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_evs.types.entitlement_type
 
         out["type"] = capo_evs.types.entitlement_type.deserialize_aws_json_1_0(
             data["type"]
         )
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_evs.types.entitlement_status
 
         out["status"] = capo_evs.types.entitlement_status.deserialize_aws_json_1_0(
             data["status"]
         )
-    if "lastSyncedAt" in data:
+    if data.get("lastSyncedAt") is not None:
         import capo_evs.types._prelude.timestamp
 
         out["last_synced_at"] = (
@@ -119,19 +119,19 @@ def deserialize_aws_json_1_0(data: dict) -> VmEntitlement:
                 data["lastSyncedAt"]
             )
         )
-    if "startedAt" in data:
+    if data.get("startedAt") is not None:
         import capo_evs.types._prelude.timestamp
 
         out["started_at"] = capo_evs.types._prelude.timestamp.deserialize_aws_json_1_0(
             data["startedAt"]
         )
-    if "stoppedAt" in data:
+    if data.get("stoppedAt") is not None:
         import capo_evs.types._prelude.timestamp
 
         out["stopped_at"] = capo_evs.types._prelude.timestamp.deserialize_aws_json_1_0(
             data["stoppedAt"]
         )
-    if "errorDetail" in data:
+    if data.get("errorDetail") is not None:
         import capo_evs.types.error_detail
 
         out["error_detail"] = capo_evs.types.error_detail.deserialize_aws_json_1_0(

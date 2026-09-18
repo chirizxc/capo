@@ -41,15 +41,15 @@ def serialize_json(value: EmptyVisual) -> dict:
 
 def deserialize_json(data: dict) -> EmptyVisual:
     out: EmptyVisual = {}  # type: ignore[typeddict-item]
-    if "VisualId" in data:
+    if data.get("VisualId") is not None:
         out["visual_id"] = data["VisualId"]
     else:
         raise DeserializationError("EmptyVisual.visual_id required")
-    if "DataSetIdentifier" in data:
+    if data.get("DataSetIdentifier") is not None:
         out["data_set_identifier"] = data["DataSetIdentifier"]
     else:
         raise DeserializationError("EmptyVisual.data_set_identifier required")
-    if "Actions" in data:
+    if data.get("Actions") is not None:
         import capo_quicksight.types.visual_custom_action_list
 
         out["actions"] = (

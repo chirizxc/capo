@@ -41,7 +41,7 @@ def serialize_json(value: ExtensionsV4) -> dict:
 
 def deserialize_json(data: dict) -> ExtensionsV4:
     out: ExtensionsV4 = {}  # type: ignore[typeddict-item]
-    if "KeyUsage" in data:
+    if data.get("KeyUsage") is not None:
         import capo_pca_connector_ad.types.key_usage
 
         out["key_usage"] = capo_pca_connector_ad.types.key_usage.deserialize_json(
@@ -49,7 +49,7 @@ def deserialize_json(data: dict) -> ExtensionsV4:
         )
     else:
         raise DeserializationError("ExtensionsV4.key_usage required")
-    if "ApplicationPolicies" in data:
+    if data.get("ApplicationPolicies") is not None:
         import capo_pca_connector_ad.types.application_policies
 
         out["application_policies"] = (

@@ -37,9 +37,9 @@ def serialize_json(value: ListNotificationsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListNotificationsResponse:
     out: ListNotificationsResponse = {}  # type: ignore[typeddict-item]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "NotificationSummaryList" in data:
+    if data.get("NotificationSummaryList") is not None:
         import capo_connect.types.notification_summary_list
 
         out["notification_summary_list"] = (

@@ -94,13 +94,13 @@ def serialize_aws_json_1_0(value: ProxyConfiguration) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ProxyConfiguration:
     out: ProxyConfiguration = {}  # type: ignore[typeddict-item]
-    if "ProxyConfigurationName" in data:
+    if data.get("ProxyConfigurationName") is not None:
         out["proxy_configuration_name"] = data["ProxyConfigurationName"]
-    if "ProxyConfigurationArn" in data:
+    if data.get("ProxyConfigurationArn") is not None:
         out["proxy_configuration_arn"] = data["ProxyConfigurationArn"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "CreateTime" in data:
+    if data.get("CreateTime") is not None:
         import capo_network_firewall.types.create_time
 
         out["create_time"] = (
@@ -108,7 +108,7 @@ def deserialize_aws_json_1_0(data: dict) -> ProxyConfiguration:
                 data["CreateTime"]
             )
         )
-    if "DeleteTime" in data:
+    if data.get("DeleteTime") is not None:
         import capo_network_firewall.types.delete_time
 
         out["delete_time"] = (
@@ -116,7 +116,7 @@ def deserialize_aws_json_1_0(data: dict) -> ProxyConfiguration:
                 data["DeleteTime"]
             )
         )
-    if "RuleGroups" in data:
+    if data.get("RuleGroups") is not None:
         import capo_network_firewall.types.proxy_config_rule_group_set
 
         out["rule_groups"] = (
@@ -124,7 +124,7 @@ def deserialize_aws_json_1_0(data: dict) -> ProxyConfiguration:
                 data["RuleGroups"]
             )
         )
-    if "DefaultRulePhaseActions" in data:
+    if data.get("DefaultRulePhaseActions") is not None:
         import capo_network_firewall.types.proxy_config_default_rule_phase_actions_request
 
         out["default_rule_phase_actions"] = (
@@ -132,7 +132,7 @@ def deserialize_aws_json_1_0(data: dict) -> ProxyConfiguration:
                 data["DefaultRulePhaseActions"]
             )
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_network_firewall.types.tag_list
 
         out["tags"] = capo_network_firewall.types.tag_list.deserialize_aws_json_1_0(

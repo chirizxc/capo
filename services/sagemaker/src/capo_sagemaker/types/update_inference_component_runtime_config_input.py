@@ -38,9 +38,9 @@ def serialize_aws_json_1_1(value: UpdateInferenceComponentRuntimeConfigInput) ->
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateInferenceComponentRuntimeConfigInput:
     out: UpdateInferenceComponentRuntimeConfigInput = {}  # type: ignore[typeddict-item]
-    if "InferenceComponentName" in data:
+    if data.get("InferenceComponentName") is not None:
         out["inference_component_name"] = data["InferenceComponentName"]
-    if "DesiredRuntimeConfig" in data:
+    if data.get("DesiredRuntimeConfig") is not None:
         import capo_sagemaker.types.inference_component_runtime_config
 
         out["desired_runtime_config"] = (

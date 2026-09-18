@@ -38,17 +38,17 @@ def serialize_json(value: IntentLevelSlotResolutionTestResultItem) -> dict:
 
 def deserialize_json(data: dict) -> IntentLevelSlotResolutionTestResultItem:
     out: IntentLevelSlotResolutionTestResultItem = {}  # type: ignore[typeddict-item]
-    if "intentName" in data:
+    if data.get("intentName") is not None:
         out["intent_name"] = data["intentName"]
     else:
         raise DeserializationError(
             "IntentLevelSlotResolutionTestResultItem.intent_name required"
         )
-    if "multiTurnConversation" in data:
+    if data.get("multiTurnConversation") is not None:
         out["multi_turn_conversation"] = data["multiTurnConversation"]
     else:
         out["multi_turn_conversation"] = False
-    if "slotResolutionResults" in data:
+    if data.get("slotResolutionResults") is not None:
         import capo_lex_models_v2.types.slot_resolution_test_result_items
 
         out["slot_resolution_results"] = (

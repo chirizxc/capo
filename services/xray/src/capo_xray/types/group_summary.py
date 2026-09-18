@@ -44,13 +44,13 @@ def serialize_json(value: GroupSummary) -> dict:
 
 def deserialize_json(data: dict) -> GroupSummary:
     out: GroupSummary = {}  # type: ignore[typeddict-item]
-    if "GroupName" in data:
+    if data.get("GroupName") is not None:
         out["group_name"] = data["GroupName"]
-    if "GroupARN" in data:
+    if data.get("GroupARN") is not None:
         out["group_arn"] = data["GroupARN"]
-    if "FilterExpression" in data:
+    if data.get("FilterExpression") is not None:
         out["filter_expression"] = data["FilterExpression"]
-    if "InsightsConfiguration" in data:
+    if data.get("InsightsConfiguration") is not None:
         import capo_xray.types.insights_configuration
 
         out["insights_configuration"] = (

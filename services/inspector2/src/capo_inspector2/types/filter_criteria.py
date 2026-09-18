@@ -522,13 +522,13 @@ def serialize_json(value: FilterCriteria) -> dict:
 
 def deserialize_json(data: dict) -> FilterCriteria:
     out: FilterCriteria = {}  # type: ignore[typeddict-item]
-    if "findingArn" in data:
+    if data.get("findingArn") is not None:
         import capo_inspector2.types.string_filter_list
 
         out["finding_arn"] = capo_inspector2.types.string_filter_list.deserialize_json(
             data["findingArn"]
         )
-    if "awsAccountId" in data:
+    if data.get("awsAccountId") is not None:
         import capo_inspector2.types.string_filter_list
 
         out["aws_account_id"] = (
@@ -536,19 +536,19 @@ def deserialize_json(data: dict) -> FilterCriteria:
                 data["awsAccountId"]
             )
         )
-    if "findingType" in data:
+    if data.get("findingType") is not None:
         import capo_inspector2.types.string_filter_list
 
         out["finding_type"] = capo_inspector2.types.string_filter_list.deserialize_json(
             data["findingType"]
         )
-    if "severity" in data:
+    if data.get("severity") is not None:
         import capo_inspector2.types.string_filter_list
 
         out["severity"] = capo_inspector2.types.string_filter_list.deserialize_json(
             data["severity"]
         )
-    if "firstObservedAt" in data:
+    if data.get("firstObservedAt") is not None:
         import capo_inspector2.types.date_filter_list
 
         out["first_observed_at"] = (
@@ -556,7 +556,7 @@ def deserialize_json(data: dict) -> FilterCriteria:
                 data["firstObservedAt"]
             )
         )
-    if "lastObservedAt" in data:
+    if data.get("lastObservedAt") is not None:
         import capo_inspector2.types.date_filter_list
 
         out["last_observed_at"] = (
@@ -564,13 +564,13 @@ def deserialize_json(data: dict) -> FilterCriteria:
                 data["lastObservedAt"]
             )
         )
-    if "updatedAt" in data:
+    if data.get("updatedAt") is not None:
         import capo_inspector2.types.date_filter_list
 
         out["updated_at"] = capo_inspector2.types.date_filter_list.deserialize_json(
             data["updatedAt"]
         )
-    if "findingStatus" in data:
+    if data.get("findingStatus") is not None:
         import capo_inspector2.types.string_filter_list
 
         out["finding_status"] = (
@@ -578,13 +578,13 @@ def deserialize_json(data: dict) -> FilterCriteria:
                 data["findingStatus"]
             )
         )
-    if "title" in data:
+    if data.get("title") is not None:
         import capo_inspector2.types.string_filter_list
 
         out["title"] = capo_inspector2.types.string_filter_list.deserialize_json(
             data["title"]
         )
-    if "inspectorScore" in data:
+    if data.get("inspectorScore") is not None:
         import capo_inspector2.types.number_filter_list
 
         out["inspector_score"] = (
@@ -592,7 +592,7 @@ def deserialize_json(data: dict) -> FilterCriteria:
                 data["inspectorScore"]
             )
         )
-    if "resourceType" in data:
+    if data.get("resourceType") is not None:
         import capo_inspector2.types.string_filter_list
 
         out["resource_type"] = (
@@ -600,19 +600,19 @@ def deserialize_json(data: dict) -> FilterCriteria:
                 data["resourceType"]
             )
         )
-    if "resourceId" in data:
+    if data.get("resourceId") is not None:
         import capo_inspector2.types.string_filter_list
 
         out["resource_id"] = capo_inspector2.types.string_filter_list.deserialize_json(
             data["resourceId"]
         )
-    if "resourceTags" in data:
+    if data.get("resourceTags") is not None:
         import capo_inspector2.types.map_filter_list
 
         out["resource_tags"] = capo_inspector2.types.map_filter_list.deserialize_json(
             data["resourceTags"]
         )
-    if "ec2InstanceImageId" in data:
+    if data.get("ec2InstanceImageId") is not None:
         import capo_inspector2.types.string_filter_list
 
         out["ec2_instance_image_id"] = (
@@ -620,7 +620,7 @@ def deserialize_json(data: dict) -> FilterCriteria:
                 data["ec2InstanceImageId"]
             )
         )
-    if "ec2InstanceVpcId" in data:
+    if data.get("ec2InstanceVpcId") is not None:
         import capo_inspector2.types.string_filter_list
 
         out["ec2_instance_vpc_id"] = (
@@ -628,7 +628,7 @@ def deserialize_json(data: dict) -> FilterCriteria:
                 data["ec2InstanceVpcId"]
             )
         )
-    if "ec2InstanceSubnetId" in data:
+    if data.get("ec2InstanceSubnetId") is not None:
         import capo_inspector2.types.string_filter_list
 
         out["ec2_instance_subnet_id"] = (
@@ -636,7 +636,7 @@ def deserialize_json(data: dict) -> FilterCriteria:
                 data["ec2InstanceSubnetId"]
             )
         )
-    if "ecrImagePushedAt" in data:
+    if data.get("ecrImagePushedAt") is not None:
         import capo_inspector2.types.date_filter_list
 
         out["ecr_image_pushed_at"] = (
@@ -644,7 +644,7 @@ def deserialize_json(data: dict) -> FilterCriteria:
                 data["ecrImagePushedAt"]
             )
         )
-    if "ecrImageArchitecture" in data:
+    if data.get("ecrImageArchitecture") is not None:
         import capo_inspector2.types.string_filter_list
 
         out["ecr_image_architecture"] = (
@@ -652,7 +652,7 @@ def deserialize_json(data: dict) -> FilterCriteria:
                 data["ecrImageArchitecture"]
             )
         )
-    if "ecrImageRegistry" in data:
+    if data.get("ecrImageRegistry") is not None:
         import capo_inspector2.types.string_filter_list
 
         out["ecr_image_registry"] = (
@@ -660,7 +660,7 @@ def deserialize_json(data: dict) -> FilterCriteria:
                 data["ecrImageRegistry"]
             )
         )
-    if "ecrImageRepositoryName" in data:
+    if data.get("ecrImageRepositoryName") is not None:
         import capo_inspector2.types.string_filter_list
 
         out["ecr_image_repository_name"] = (
@@ -668,7 +668,7 @@ def deserialize_json(data: dict) -> FilterCriteria:
                 data["ecrImageRepositoryName"]
             )
         )
-    if "ecrImageTags" in data:
+    if data.get("ecrImageTags") is not None:
         import capo_inspector2.types.string_filter_list
 
         out["ecr_image_tags"] = (
@@ -676,7 +676,7 @@ def deserialize_json(data: dict) -> FilterCriteria:
                 data["ecrImageTags"]
             )
         )
-    if "ecrImageHash" in data:
+    if data.get("ecrImageHash") is not None:
         import capo_inspector2.types.string_filter_list
 
         out["ecr_image_hash"] = (
@@ -684,7 +684,7 @@ def deserialize_json(data: dict) -> FilterCriteria:
                 data["ecrImageHash"]
             )
         )
-    if "ecrImageLastInUseAt" in data:
+    if data.get("ecrImageLastInUseAt") is not None:
         import capo_inspector2.types.date_filter_list
 
         out["ecr_image_last_in_use_at"] = (
@@ -692,7 +692,7 @@ def deserialize_json(data: dict) -> FilterCriteria:
                 data["ecrImageLastInUseAt"]
             )
         )
-    if "ecrImageInUseCount" in data:
+    if data.get("ecrImageInUseCount") is not None:
         import capo_inspector2.types.number_filter_list
 
         out["ecr_image_in_use_count"] = (
@@ -700,7 +700,7 @@ def deserialize_json(data: dict) -> FilterCriteria:
                 data["ecrImageInUseCount"]
             )
         )
-    if "portRange" in data:
+    if data.get("portRange") is not None:
         import capo_inspector2.types.port_range_filter_list
 
         out["port_range"] = (
@@ -708,7 +708,7 @@ def deserialize_json(data: dict) -> FilterCriteria:
                 data["portRange"]
             )
         )
-    if "networkProtocol" in data:
+    if data.get("networkProtocol") is not None:
         import capo_inspector2.types.string_filter_list
 
         out["network_protocol"] = (
@@ -716,13 +716,13 @@ def deserialize_json(data: dict) -> FilterCriteria:
                 data["networkProtocol"]
             )
         )
-    if "componentId" in data:
+    if data.get("componentId") is not None:
         import capo_inspector2.types.string_filter_list
 
         out["component_id"] = capo_inspector2.types.string_filter_list.deserialize_json(
             data["componentId"]
         )
-    if "componentType" in data:
+    if data.get("componentType") is not None:
         import capo_inspector2.types.string_filter_list
 
         out["component_type"] = (
@@ -730,7 +730,7 @@ def deserialize_json(data: dict) -> FilterCriteria:
                 data["componentType"]
             )
         )
-    if "vulnerabilityId" in data:
+    if data.get("vulnerabilityId") is not None:
         import capo_inspector2.types.string_filter_list
 
         out["vulnerability_id"] = (
@@ -738,7 +738,7 @@ def deserialize_json(data: dict) -> FilterCriteria:
                 data["vulnerabilityId"]
             )
         )
-    if "vulnerabilitySource" in data:
+    if data.get("vulnerabilitySource") is not None:
         import capo_inspector2.types.string_filter_list
 
         out["vulnerability_source"] = (
@@ -746,7 +746,7 @@ def deserialize_json(data: dict) -> FilterCriteria:
                 data["vulnerabilitySource"]
             )
         )
-    if "vendorSeverity" in data:
+    if data.get("vendorSeverity") is not None:
         import capo_inspector2.types.string_filter_list
 
         out["vendor_severity"] = (
@@ -754,7 +754,7 @@ def deserialize_json(data: dict) -> FilterCriteria:
                 data["vendorSeverity"]
             )
         )
-    if "vulnerablePackages" in data:
+    if data.get("vulnerablePackages") is not None:
         import capo_inspector2.types.package_filter_list
 
         out["vulnerable_packages"] = (
@@ -762,7 +762,7 @@ def deserialize_json(data: dict) -> FilterCriteria:
                 data["vulnerablePackages"]
             )
         )
-    if "relatedVulnerabilities" in data:
+    if data.get("relatedVulnerabilities") is not None:
         import capo_inspector2.types.string_filter_list
 
         out["related_vulnerabilities"] = (
@@ -770,7 +770,7 @@ def deserialize_json(data: dict) -> FilterCriteria:
                 data["relatedVulnerabilities"]
             )
         )
-    if "fixAvailable" in data:
+    if data.get("fixAvailable") is not None:
         import capo_inspector2.types.string_filter_list
 
         out["fix_available"] = (
@@ -778,7 +778,7 @@ def deserialize_json(data: dict) -> FilterCriteria:
                 data["fixAvailable"]
             )
         )
-    if "lambdaFunctionName" in data:
+    if data.get("lambdaFunctionName") is not None:
         import capo_inspector2.types.string_filter_list
 
         out["lambda_function_name"] = (
@@ -786,7 +786,7 @@ def deserialize_json(data: dict) -> FilterCriteria:
                 data["lambdaFunctionName"]
             )
         )
-    if "lambdaFunctionLayers" in data:
+    if data.get("lambdaFunctionLayers") is not None:
         import capo_inspector2.types.string_filter_list
 
         out["lambda_function_layers"] = (
@@ -794,7 +794,7 @@ def deserialize_json(data: dict) -> FilterCriteria:
                 data["lambdaFunctionLayers"]
             )
         )
-    if "lambdaFunctionRuntime" in data:
+    if data.get("lambdaFunctionRuntime") is not None:
         import capo_inspector2.types.string_filter_list
 
         out["lambda_function_runtime"] = (
@@ -802,7 +802,7 @@ def deserialize_json(data: dict) -> FilterCriteria:
                 data["lambdaFunctionRuntime"]
             )
         )
-    if "lambdaFunctionLastModifiedAt" in data:
+    if data.get("lambdaFunctionLastModifiedAt") is not None:
         import capo_inspector2.types.date_filter_list
 
         out["lambda_function_last_modified_at"] = (
@@ -810,7 +810,7 @@ def deserialize_json(data: dict) -> FilterCriteria:
                 data["lambdaFunctionLastModifiedAt"]
             )
         )
-    if "lambdaFunctionExecutionRoleArn" in data:
+    if data.get("lambdaFunctionExecutionRoleArn") is not None:
         import capo_inspector2.types.string_filter_list
 
         out["lambda_function_execution_role_arn"] = (
@@ -818,7 +818,7 @@ def deserialize_json(data: dict) -> FilterCriteria:
                 data["lambdaFunctionExecutionRoleArn"]
             )
         )
-    if "exploitAvailable" in data:
+    if data.get("exploitAvailable") is not None:
         import capo_inspector2.types.string_filter_list
 
         out["exploit_available"] = (
@@ -826,7 +826,7 @@ def deserialize_json(data: dict) -> FilterCriteria:
                 data["exploitAvailable"]
             )
         )
-    if "codeVulnerabilityDetectorName" in data:
+    if data.get("codeVulnerabilityDetectorName") is not None:
         import capo_inspector2.types.string_filter_list
 
         out["code_vulnerability_detector_name"] = (
@@ -834,7 +834,7 @@ def deserialize_json(data: dict) -> FilterCriteria:
                 data["codeVulnerabilityDetectorName"]
             )
         )
-    if "codeVulnerabilityDetectorTags" in data:
+    if data.get("codeVulnerabilityDetectorTags") is not None:
         import capo_inspector2.types.string_filter_list
 
         out["code_vulnerability_detector_tags"] = (
@@ -842,7 +842,7 @@ def deserialize_json(data: dict) -> FilterCriteria:
                 data["codeVulnerabilityDetectorTags"]
             )
         )
-    if "codeVulnerabilityFilePath" in data:
+    if data.get("codeVulnerabilityFilePath") is not None:
         import capo_inspector2.types.string_filter_list
 
         out["code_vulnerability_file_path"] = (
@@ -850,13 +850,13 @@ def deserialize_json(data: dict) -> FilterCriteria:
                 data["codeVulnerabilityFilePath"]
             )
         )
-    if "epssScore" in data:
+    if data.get("epssScore") is not None:
         import capo_inspector2.types.number_filter_list
 
         out["epss_score"] = capo_inspector2.types.number_filter_list.deserialize_json(
             data["epssScore"]
         )
-    if "codeRepositoryProjectName" in data:
+    if data.get("codeRepositoryProjectName") is not None:
         import capo_inspector2.types.string_filter_list
 
         out["code_repository_project_name"] = (
@@ -864,7 +864,7 @@ def deserialize_json(data: dict) -> FilterCriteria:
                 data["codeRepositoryProjectName"]
             )
         )
-    if "codeRepositoryProviderType" in data:
+    if data.get("codeRepositoryProviderType") is not None:
         import capo_inspector2.types.string_filter_list
 
         out["code_repository_provider_type"] = (

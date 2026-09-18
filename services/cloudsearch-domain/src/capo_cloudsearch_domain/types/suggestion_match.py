@@ -31,12 +31,12 @@ def serialize_json(value: SuggestionMatch) -> dict:
 
 def deserialize_json(data: dict) -> SuggestionMatch:
     out: SuggestionMatch = {}  # type: ignore[typeddict-item]
-    if "suggestion" in data:
+    if data.get("suggestion") is not None:
         out["suggestion"] = data["suggestion"]
-    if "score" in data:
+    if data.get("score") is not None:
         out["score"] = data["score"]
     else:
         out["score"] = 0
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     return out

@@ -37,10 +37,10 @@ def serialize_json(value: DeviceUnderTest) -> dict:
 
 def deserialize_json(data: dict) -> DeviceUnderTest:
     out: DeviceUnderTest = {}  # type: ignore[typeddict-item]
-    if "thingArn" in data:
+    if data.get("thingArn") is not None:
         out["thing_arn"] = data["thingArn"]
-    if "certificateArn" in data:
+    if data.get("certificateArn") is not None:
         out["certificate_arn"] = data["certificateArn"]
-    if "deviceRoleArn" in data:
+    if data.get("deviceRoleArn") is not None:
         out["device_role_arn"] = data["deviceRoleArn"]
     return out

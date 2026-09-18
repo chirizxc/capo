@@ -46,13 +46,13 @@ def serialize_json(value: SankeyDiagramAggregatedFieldWells) -> dict:
 
 def deserialize_json(data: dict) -> SankeyDiagramAggregatedFieldWells:
     out: SankeyDiagramAggregatedFieldWells = {}  # type: ignore[typeddict-item]
-    if "Source" in data:
+    if data.get("Source") is not None:
         import capo_quicksight.types.dimension_field_list
 
         out["source"] = capo_quicksight.types.dimension_field_list.deserialize_json(
             data["Source"]
         )
-    if "Destination" in data:
+    if data.get("Destination") is not None:
         import capo_quicksight.types.dimension_field_list
 
         out["destination"] = (
@@ -60,7 +60,7 @@ def deserialize_json(data: dict) -> SankeyDiagramAggregatedFieldWells:
                 data["Destination"]
             )
         )
-    if "Weight" in data:
+    if data.get("Weight") is not None:
         import capo_quicksight.types.measure_field_list
 
         out["weight"] = capo_quicksight.types.measure_field_list.deserialize_json(

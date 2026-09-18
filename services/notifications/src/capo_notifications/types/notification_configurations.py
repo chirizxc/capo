@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> NotificationConfigurations:
 
     out: NotificationConfigurations = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_notifications.types.notification_configuration_structure.deserialize_json(
                 item

@@ -31,10 +31,10 @@ def serialize_json(value: AwsElasticBeanstalkEnvironmentTier) -> dict:
 
 def deserialize_json(data: dict) -> AwsElasticBeanstalkEnvironmentTier:
     out: AwsElasticBeanstalkEnvironmentTier = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Type" in data:
+    if data.get("Type") is not None:
         out["type"] = data["Type"]
-    if "Version" in data:
+    if data.get("Version") is not None:
         out["version"] = data["Version"]
     return out

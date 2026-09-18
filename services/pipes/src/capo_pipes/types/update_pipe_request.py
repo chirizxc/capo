@@ -108,11 +108,11 @@ def serialize_json(value: UpdatePipeRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdatePipeRequest:
     out: UpdatePipeRequest = {}  # type: ignore[typeddict-item]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "DesiredState" in data:
+    if data.get("DesiredState") is not None:
         out["desired_state"] = data["DesiredState"]
-    if "SourceParameters" in data:
+    if data.get("SourceParameters") is not None:
         import capo_pipes.types.update_pipe_source_parameters
 
         out["source_parameters"] = (
@@ -120,9 +120,9 @@ def deserialize_json(data: dict) -> UpdatePipeRequest:
                 data["SourceParameters"]
             )
         )
-    if "Enrichment" in data:
+    if data.get("Enrichment") is not None:
         out["enrichment"] = data["Enrichment"]
-    if "EnrichmentParameters" in data:
+    if data.get("EnrichmentParameters") is not None:
         import capo_pipes.types.pipe_enrichment_parameters
 
         out["enrichment_parameters"] = (
@@ -130,9 +130,9 @@ def deserialize_json(data: dict) -> UpdatePipeRequest:
                 data["EnrichmentParameters"]
             )
         )
-    if "Target" in data:
+    if data.get("Target") is not None:
         out["target"] = data["Target"]
-    if "TargetParameters" in data:
+    if data.get("TargetParameters") is not None:
         import capo_pipes.types.pipe_target_parameters
 
         out["target_parameters"] = (
@@ -140,11 +140,11 @@ def deserialize_json(data: dict) -> UpdatePipeRequest:
                 data["TargetParameters"]
             )
         )
-    if "RoleArn" in data:
+    if data.get("RoleArn") is not None:
         out["role_arn"] = data["RoleArn"]
     else:
         raise DeserializationError("UpdatePipeRequest.role_arn required")
-    if "LogConfiguration" in data:
+    if data.get("LogConfiguration") is not None:
         import capo_pipes.types.pipe_log_configuration_parameters
 
         out["log_configuration"] = (
@@ -152,6 +152,6 @@ def deserialize_json(data: dict) -> UpdatePipeRequest:
                 data["LogConfiguration"]
             )
         )
-    if "KmsKeyIdentifier" in data:
+    if data.get("KmsKeyIdentifier") is not None:
         out["kms_key_identifier"] = data["KmsKeyIdentifier"]
     return out

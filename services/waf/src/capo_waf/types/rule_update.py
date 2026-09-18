@@ -34,7 +34,7 @@ def serialize_aws_json_1_1(value: RuleUpdate) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RuleUpdate:
     out: RuleUpdate = {}  # type: ignore[typeddict-item]
-    if "Action" in data:
+    if data.get("Action") is not None:
         import capo_waf.types.change_action
 
         out["action"] = capo_waf.types.change_action.deserialize_aws_json_1_1(
@@ -42,7 +42,7 @@ def deserialize_aws_json_1_1(data: dict) -> RuleUpdate:
         )
     else:
         raise DeserializationError("RuleUpdate.action required")
-    if "Predicate" in data:
+    if data.get("Predicate") is not None:
         import capo_waf.types.predicate
 
         out["predicate"] = capo_waf.types.predicate.deserialize_aws_json_1_1(

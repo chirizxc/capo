@@ -121,7 +121,7 @@ def serialize_json(value: CustomerManagedWorkerCapabilities) -> dict:
 
 def deserialize_json(data: dict) -> CustomerManagedWorkerCapabilities:
     out: CustomerManagedWorkerCapabilities = {}  # type: ignore[typeddict-item]
-    if "vCpuCount" in data:
+    if data.get("vCpuCount") is not None:
         import capo_deadline.types.v_cpu_count_range
 
         out["v_cpu_count"] = capo_deadline.types.v_cpu_count_range.deserialize_json(
@@ -131,7 +131,7 @@ def deserialize_json(data: dict) -> CustomerManagedWorkerCapabilities:
         raise DeserializationError(
             "CustomerManagedWorkerCapabilities.v_cpu_count required"
         )
-    if "memoryMiB" in data:
+    if data.get("memoryMiB") is not None:
         import capo_deadline.types.memory_mi_b_range
 
         out["memory_mi_b"] = capo_deadline.types.memory_mi_b_range.deserialize_json(
@@ -141,7 +141,7 @@ def deserialize_json(data: dict) -> CustomerManagedWorkerCapabilities:
         raise DeserializationError(
             "CustomerManagedWorkerCapabilities.memory_mi_b required"
         )
-    if "acceleratorTypes" in data:
+    if data.get("acceleratorTypes") is not None:
         import capo_deadline.types.accelerator_types
 
         out["accelerator_types"] = (
@@ -149,7 +149,7 @@ def deserialize_json(data: dict) -> CustomerManagedWorkerCapabilities:
                 data["acceleratorTypes"]
             )
         )
-    if "acceleratorCount" in data:
+    if data.get("acceleratorCount") is not None:
         import capo_deadline.types.accelerator_count_range
 
         out["accelerator_count"] = (
@@ -157,7 +157,7 @@ def deserialize_json(data: dict) -> CustomerManagedWorkerCapabilities:
                 data["acceleratorCount"]
             )
         )
-    if "acceleratorTotalMemoryMiB" in data:
+    if data.get("acceleratorTotalMemoryMiB") is not None:
         import capo_deadline.types.accelerator_total_memory_mi_b_range
 
         out["accelerator_total_memory_mi_b"] = (
@@ -165,7 +165,7 @@ def deserialize_json(data: dict) -> CustomerManagedWorkerCapabilities:
                 data["acceleratorTotalMemoryMiB"]
             )
         )
-    if "osFamily" in data:
+    if data.get("osFamily") is not None:
         import capo_deadline.types.customer_managed_fleet_operating_system_family
 
         out["os_family"] = (
@@ -177,7 +177,7 @@ def deserialize_json(data: dict) -> CustomerManagedWorkerCapabilities:
         raise DeserializationError(
             "CustomerManagedWorkerCapabilities.os_family required"
         )
-    if "cpuArchitectureType" in data:
+    if data.get("cpuArchitectureType") is not None:
         import capo_deadline.types.cpu_architecture_type
 
         out["cpu_architecture_type"] = (
@@ -189,7 +189,7 @@ def deserialize_json(data: dict) -> CustomerManagedWorkerCapabilities:
         raise DeserializationError(
             "CustomerManagedWorkerCapabilities.cpu_architecture_type required"
         )
-    if "customAmounts" in data:
+    if data.get("customAmounts") is not None:
         import capo_deadline.types.custom_fleet_amount_capabilities
 
         out["custom_amounts"] = (
@@ -197,7 +197,7 @@ def deserialize_json(data: dict) -> CustomerManagedWorkerCapabilities:
                 data["customAmounts"]
             )
         )
-    if "customAttributes" in data:
+    if data.get("customAttributes") is not None:
         import capo_deadline.types.custom_fleet_attribute_capabilities
 
         out["custom_attributes"] = (

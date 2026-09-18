@@ -37,14 +37,14 @@ def serialize_aws_json_1_1(value: GetWebACLResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetWebACLResponse:
     out: GetWebACLResponse = {}  # type: ignore[typeddict-item]
-    if "WebACL" in data:
+    if data.get("WebACL") is not None:
         import capo_wafv2.types.web_acl
 
         out["web_acl"] = capo_wafv2.types.web_acl.deserialize_aws_json_1_1(
             data["WebACL"]
         )
-    if "LockToken" in data:
+    if data.get("LockToken") is not None:
         out["lock_token"] = data["LockToken"]
-    if "ApplicationIntegrationURL" in data:
+    if data.get("ApplicationIntegrationURL") is not None:
         out["application_integration_url"] = data["ApplicationIntegrationURL"]
     return out

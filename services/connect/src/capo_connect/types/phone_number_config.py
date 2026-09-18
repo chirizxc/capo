@@ -39,13 +39,13 @@ def serialize_json(value: PhoneNumberConfig) -> dict:
 
 def deserialize_json(data: dict) -> PhoneNumberConfig:
     out: PhoneNumberConfig = {}  # type: ignore[typeddict-item]
-    if "Channel" in data:
+    if data.get("Channel") is not None:
         import capo_connect.types.channel
 
         out["channel"] = capo_connect.types.channel.deserialize_json(data["Channel"])
     else:
         raise DeserializationError("PhoneNumberConfig.channel required")
-    if "PhoneType" in data:
+    if data.get("PhoneType") is not None:
         import capo_connect.types.phone_type
 
         out["phone_type"] = capo_connect.types.phone_type.deserialize_json(
@@ -53,6 +53,6 @@ def deserialize_json(data: dict) -> PhoneNumberConfig:
         )
     else:
         raise DeserializationError("PhoneNumberConfig.phone_type required")
-    if "PhoneNumber" in data:
+    if data.get("PhoneNumber") is not None:
         out["phone_number"] = data["PhoneNumber"]
     return out

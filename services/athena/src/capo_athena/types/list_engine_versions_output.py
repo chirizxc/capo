@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: ListEngineVersionsOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListEngineVersionsOutput:
     out: ListEngineVersionsOutput = {}  # type: ignore[typeddict-item]
-    if "EngineVersions" in data:
+    if data.get("EngineVersions") is not None:
         import capo_athena.types.engine_versions_list
 
         out["engine_versions"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_1(data: dict) -> ListEngineVersionsOutput:
                 data["EngineVersions"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

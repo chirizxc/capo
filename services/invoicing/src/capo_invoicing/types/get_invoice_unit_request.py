@@ -35,11 +35,11 @@ def serialize_aws_json_1_0(value: GetInvoiceUnitRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> GetInvoiceUnitRequest:
     out: GetInvoiceUnitRequest = {}  # type: ignore[typeddict-item]
-    if "InvoiceUnitArn" in data:
+    if data.get("InvoiceUnitArn") is not None:
         out["invoice_unit_arn"] = data["InvoiceUnitArn"]
     else:
         raise DeserializationError("GetInvoiceUnitRequest.invoice_unit_arn required")
-    if "AsOf" in data:
+    if data.get("AsOf") is not None:
         import capo_invoicing.types.as_of_timestamp
 
         out["as_of"] = capo_invoicing.types.as_of_timestamp.deserialize_aws_json_1_0(

@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> LicenseEndpointSummaries:
 
     out: LicenseEndpointSummaries = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_deadline.types.license_endpoint_summary.deserialize_json(item))
     return out

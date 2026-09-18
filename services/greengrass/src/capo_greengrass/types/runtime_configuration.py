@@ -31,7 +31,7 @@ def serialize_json(value: RuntimeConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> RuntimeConfiguration:
     out: RuntimeConfiguration = {}  # type: ignore[typeddict-item]
-    if "TelemetryConfiguration" in data:
+    if data.get("TelemetryConfiguration") is not None:
         import capo_greengrass.types.telemetry_configuration
 
         out["telemetry_configuration"] = (

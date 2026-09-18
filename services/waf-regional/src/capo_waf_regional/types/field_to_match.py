@@ -33,7 +33,7 @@ def serialize_aws_json_1_1(value: FieldToMatch) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> FieldToMatch:
     out: FieldToMatch = {}  # type: ignore[typeddict-item]
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_waf_regional.types.match_field_type
 
         out["type"] = capo_waf_regional.types.match_field_type.deserialize_aws_json_1_1(
@@ -41,6 +41,6 @@ def deserialize_aws_json_1_1(data: dict) -> FieldToMatch:
         )
     else:
         raise DeserializationError("FieldToMatch.type required")
-    if "Data" in data:
+    if data.get("Data") is not None:
         out["data"] = data["Data"]
     return out

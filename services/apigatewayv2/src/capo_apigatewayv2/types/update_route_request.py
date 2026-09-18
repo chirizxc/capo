@@ -115,9 +115,9 @@ def serialize_json(value: UpdateRouteRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateRouteRequest:
     out: UpdateRouteRequest = {}  # type: ignore[typeddict-item]
-    if "apiKeyRequired" in data:
+    if data.get("apiKeyRequired") is not None:
         out["api_key_required"] = data["apiKeyRequired"]
-    if "authorizationScopes" in data:
+    if data.get("authorizationScopes") is not None:
         import capo_apigatewayv2.types.authorization_scopes
 
         out["authorization_scopes"] = (
@@ -125,7 +125,7 @@ def deserialize_json(data: dict) -> UpdateRouteRequest:
                 data["authorizationScopes"]
             )
         )
-    if "authorizationType" in data:
+    if data.get("authorizationType") is not None:
         import capo_apigatewayv2.types.authorization_type
 
         out["authorization_type"] = (
@@ -133,19 +133,19 @@ def deserialize_json(data: dict) -> UpdateRouteRequest:
                 data["authorizationType"]
             )
         )
-    if "authorizerId" in data:
+    if data.get("authorizerId") is not None:
         out["authorizer_id"] = data["authorizerId"]
-    if "modelSelectionExpression" in data:
+    if data.get("modelSelectionExpression") is not None:
         out["model_selection_expression"] = data["modelSelectionExpression"]
-    if "operationName" in data:
+    if data.get("operationName") is not None:
         out["operation_name"] = data["operationName"]
-    if "requestModels" in data:
+    if data.get("requestModels") is not None:
         import capo_apigatewayv2.types.route_models
 
         out["request_models"] = capo_apigatewayv2.types.route_models.deserialize_json(
             data["requestModels"]
         )
-    if "requestParameters" in data:
+    if data.get("requestParameters") is not None:
         import capo_apigatewayv2.types.route_parameters
 
         out["request_parameters"] = (
@@ -153,12 +153,12 @@ def deserialize_json(data: dict) -> UpdateRouteRequest:
                 data["requestParameters"]
             )
         )
-    if "routeKey" in data:
+    if data.get("routeKey") is not None:
         out["route_key"] = data["routeKey"]
-    if "routeResponseSelectionExpression" in data:
+    if data.get("routeResponseSelectionExpression") is not None:
         out["route_response_selection_expression"] = data[
             "routeResponseSelectionExpression"
         ]
-    if "target" in data:
+    if data.get("target") is not None:
         out["target"] = data["target"]
     return out

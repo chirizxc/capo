@@ -47,18 +47,18 @@ def serialize_aws_json_1_1(value: ListWorkloadsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListWorkloadsRequest:
     out: ListWorkloadsRequest = {}  # type: ignore[typeddict-item]
-    if "ResourceGroupName" in data:
+    if data.get("ResourceGroupName") is not None:
         out["resource_group_name"] = data["ResourceGroupName"]
     else:
         raise DeserializationError("ListWorkloadsRequest.resource_group_name required")
-    if "ComponentName" in data:
+    if data.get("ComponentName") is not None:
         out["component_name"] = data["ComponentName"]
     else:
         raise DeserializationError("ListWorkloadsRequest.component_name required")
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "AccountId" in data:
+    if data.get("AccountId") is not None:
         out["account_id"] = data["AccountId"]
     return out

@@ -92,7 +92,7 @@ def serialize_json(value: UpdateJobRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateJobRequest:
     out: UpdateJobRequest = {}  # type: ignore[typeddict-item]
-    if "targetTaskRunStatus" in data:
+    if data.get("targetTaskRunStatus") is not None:
         import capo_deadline.types.job_target_task_run_status
 
         out["target_task_run_status"] = (
@@ -100,13 +100,13 @@ def deserialize_json(data: dict) -> UpdateJobRequest:
                 data["targetTaskRunStatus"]
             )
         )
-    if "priority" in data:
+    if data.get("priority") is not None:
         out["priority"] = data["priority"]
-    if "maxFailedTasksCount" in data:
+    if data.get("maxFailedTasksCount") is not None:
         out["max_failed_tasks_count"] = data["maxFailedTasksCount"]
-    if "maxRetriesPerTask" in data:
+    if data.get("maxRetriesPerTask") is not None:
         out["max_retries_per_task"] = data["maxRetriesPerTask"]
-    if "lifecycleStatus" in data:
+    if data.get("lifecycleStatus") is not None:
         import capo_deadline.types.update_job_lifecycle_status
 
         out["lifecycle_status"] = (
@@ -114,10 +114,10 @@ def deserialize_json(data: dict) -> UpdateJobRequest:
                 data["lifecycleStatus"]
             )
         )
-    if "maxWorkerCount" in data:
+    if data.get("maxWorkerCount") is not None:
         out["max_worker_count"] = data["maxWorkerCount"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
     return out

@@ -42,7 +42,7 @@ def serialize_aws_json_1_1(value: ThroughputConfigUpdate) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ThroughputConfigUpdate:
     out: ThroughputConfigUpdate = {}  # type: ignore[typeddict-item]
-    if "ThroughputMode" in data:
+    if data.get("ThroughputMode") is not None:
         import capo_sagemaker.types.throughput_mode
 
         out["throughput_mode"] = (
@@ -50,8 +50,8 @@ def deserialize_aws_json_1_1(data: dict) -> ThroughputConfigUpdate:
                 data["ThroughputMode"]
             )
         )
-    if "ProvisionedReadCapacityUnits" in data:
+    if data.get("ProvisionedReadCapacityUnits") is not None:
         out["provisioned_read_capacity_units"] = data["ProvisionedReadCapacityUnits"]
-    if "ProvisionedWriteCapacityUnits" in data:
+    if data.get("ProvisionedWriteCapacityUnits") is not None:
         out["provisioned_write_capacity_units"] = data["ProvisionedWriteCapacityUnits"]
     return out

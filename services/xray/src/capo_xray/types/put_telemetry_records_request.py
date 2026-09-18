@@ -43,7 +43,7 @@ def serialize_json(value: PutTelemetryRecordsRequest) -> dict:
 
 def deserialize_json(data: dict) -> PutTelemetryRecordsRequest:
     out: PutTelemetryRecordsRequest = {}  # type: ignore[typeddict-item]
-    if "TelemetryRecords" in data:
+    if data.get("TelemetryRecords") is not None:
         import capo_xray.types.telemetry_record_list
 
         out["telemetry_records"] = (
@@ -55,10 +55,10 @@ def deserialize_json(data: dict) -> PutTelemetryRecordsRequest:
         raise DeserializationError(
             "PutTelemetryRecordsRequest.telemetry_records required"
         )
-    if "EC2InstanceId" in data:
+    if data.get("EC2InstanceId") is not None:
         out["ec2_instance_id"] = data["EC2InstanceId"]
-    if "Hostname" in data:
+    if data.get("Hostname") is not None:
         out["hostname"] = data["Hostname"]
-    if "ResourceARN" in data:
+    if data.get("ResourceARN") is not None:
         out["resource_arn"] = data["ResourceARN"]
     return out

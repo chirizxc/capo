@@ -49,11 +49,11 @@ def serialize_json(value: UpdateContactRoutingDataRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateContactRoutingDataRequest:
     out: UpdateContactRoutingDataRequest = {}  # type: ignore[typeddict-item]
-    if "QueueTimeAdjustmentSeconds" in data:
+    if data.get("QueueTimeAdjustmentSeconds") is not None:
         out["queue_time_adjustment_seconds"] = data["QueueTimeAdjustmentSeconds"]
-    if "QueuePriority" in data:
+    if data.get("QueuePriority") is not None:
         out["queue_priority"] = data["QueuePriority"]
-    if "RoutingCriteria" in data:
+    if data.get("RoutingCriteria") is not None:
         import capo_connect.types.routing_criteria_input
 
         out["routing_criteria"] = (

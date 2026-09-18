@@ -38,7 +38,7 @@ def serialize_json(value: CustomLogSourceConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> CustomLogSourceConfiguration:
     out: CustomLogSourceConfiguration = {}  # type: ignore[typeddict-item]
-    if "crawlerConfiguration" in data:
+    if data.get("crawlerConfiguration") is not None:
         import capo_securitylake.types.custom_log_source_crawler_configuration
 
         out["crawler_configuration"] = (
@@ -50,7 +50,7 @@ def deserialize_json(data: dict) -> CustomLogSourceConfiguration:
         raise DeserializationError(
             "CustomLogSourceConfiguration.crawler_configuration required"
         )
-    if "providerIdentity" in data:
+    if data.get("providerIdentity") is not None:
         import capo_securitylake.types.aws_identity
 
         out["provider_identity"] = (

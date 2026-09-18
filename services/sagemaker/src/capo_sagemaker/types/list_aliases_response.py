@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: ListAliasesResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListAliasesResponse:
     out: ListAliasesResponse = {}  # type: ignore[typeddict-item]
-    if "SageMakerImageVersionAliases" in data:
+    if data.get("SageMakerImageVersionAliases") is not None:
         import capo_sagemaker.types.sage_maker_image_version_aliases
 
         out["sage_maker_image_version_aliases"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_1(data: dict) -> ListAliasesResponse:
                 data["SageMakerImageVersionAliases"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

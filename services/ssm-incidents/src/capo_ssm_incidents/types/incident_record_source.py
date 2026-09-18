@@ -39,15 +39,15 @@ def serialize_json(value: IncidentRecordSource) -> dict:
 
 def deserialize_json(data: dict) -> IncidentRecordSource:
     out: IncidentRecordSource = {}  # type: ignore[typeddict-item]
-    if "createdBy" in data:
+    if data.get("createdBy") is not None:
         out["created_by"] = data["createdBy"]
     else:
         raise DeserializationError("IncidentRecordSource.created_by required")
-    if "invokedBy" in data:
+    if data.get("invokedBy") is not None:
         out["invoked_by"] = data["invokedBy"]
-    if "resourceArn" in data:
+    if data.get("resourceArn") is not None:
         out["resource_arn"] = data["resourceArn"]
-    if "source" in data:
+    if data.get("source") is not None:
         out["source"] = data["source"]
     else:
         raise DeserializationError("IncidentRecordSource.source required")

@@ -52,25 +52,25 @@ def serialize_json(value: UpdateDatasetRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateDatasetRequest:
     out: UpdateDatasetRequest = {}  # type: ignore[typeddict-item]
-    if "Format" in data:
+    if data.get("Format") is not None:
         import capo_databrew.types.input_format
 
         out["format"] = capo_databrew.types.input_format.deserialize_json(
             data["Format"]
         )
-    if "FormatOptions" in data:
+    if data.get("FormatOptions") is not None:
         import capo_databrew.types.format_options
 
         out["format_options"] = capo_databrew.types.format_options.deserialize_json(
             data["FormatOptions"]
         )
-    if "Input" in data:
+    if data.get("Input") is not None:
         import capo_databrew.types.input
 
         out["input"] = capo_databrew.types.input.deserialize_json(data["Input"])
     else:
         raise DeserializationError("UpdateDatasetRequest.input required")
-    if "PathOptions" in data:
+    if data.get("PathOptions") is not None:
         import capo_databrew.types.path_options
 
         out["path_options"] = capo_databrew.types.path_options.deserialize_json(

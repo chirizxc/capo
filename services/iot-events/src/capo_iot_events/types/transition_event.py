@@ -39,19 +39,19 @@ def serialize_json(value: TransitionEvent) -> dict:
 
 def deserialize_json(data: dict) -> TransitionEvent:
     out: TransitionEvent = {}  # type: ignore[typeddict-item]
-    if "eventName" in data:
+    if data.get("eventName") is not None:
         out["event_name"] = data["eventName"]
     else:
         raise DeserializationError("TransitionEvent.event_name required")
-    if "condition" in data:
+    if data.get("condition") is not None:
         out["condition"] = data["condition"]
     else:
         raise DeserializationError("TransitionEvent.condition required")
-    if "actions" in data:
+    if data.get("actions") is not None:
         import capo_iot_events.types.actions
 
         out["actions"] = capo_iot_events.types.actions.deserialize_json(data["actions"])
-    if "nextState" in data:
+    if data.get("nextState") is not None:
         out["next_state"] = data["nextState"]
     else:
         raise DeserializationError("TransitionEvent.next_state required")

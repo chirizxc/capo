@@ -27,7 +27,7 @@ def deserialize_aws_json_1_1(
     data: dict,
 ) -> EventDataStoreTerminationProtectedException_:
     out: EventDataStoreTerminationProtectedException_ = {}  # type: ignore[typeddict-item]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     return out
 
@@ -37,17 +37,22 @@ class EventDataStoreTerminationProtectedException(ServiceError):
 
     code: str | None = "EventDataStoreTerminationProtectedException"
 
-    def __init__(self, data: EventDataStoreTerminationProtectedException_):
+    def __init__(
+        self,
+        data: EventDataStoreTerminationProtectedException_,
+        message: str | None = None,
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="EventDataStoreTerminationProtectedException",
+            message=message,
         )
         self.data = data
 
     @classmethod
     def from_aws_json_1_1(
-        cls, data: dict
+        cls, data: dict, message: str | None = None
     ) -> "EventDataStoreTerminationProtectedException":
-        return cls(deserialize_aws_json_1_1(data))
+        return cls(deserialize_aws_json_1_1(data), message)

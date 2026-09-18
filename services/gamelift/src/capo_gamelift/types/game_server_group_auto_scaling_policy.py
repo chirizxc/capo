@@ -38,9 +38,9 @@ def serialize_aws_json_1_1(value: GameServerGroupAutoScalingPolicy) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GameServerGroupAutoScalingPolicy:
     out: GameServerGroupAutoScalingPolicy = {}  # type: ignore[typeddict-item]
-    if "EstimatedInstanceWarmup" in data:
+    if data.get("EstimatedInstanceWarmup") is not None:
         out["estimated_instance_warmup"] = data["EstimatedInstanceWarmup"]
-    if "TargetTrackingConfiguration" in data:
+    if data.get("TargetTrackingConfiguration") is not None:
         import capo_gamelift.types.target_tracking_configuration
 
         out["target_tracking_configuration"] = (

@@ -32,14 +32,14 @@ def serialize_json(value: StartResourceScanRequest) -> dict:
 
 def deserialize_json(data: dict) -> StartResourceScanRequest:
     out: StartResourceScanRequest = {}  # type: ignore[typeddict-item]
-    if "analyzerArn" in data:
+    if data.get("analyzerArn") is not None:
         out["analyzer_arn"] = data["analyzerArn"]
     else:
         raise DeserializationError("StartResourceScanRequest.analyzer_arn required")
-    if "resourceArn" in data:
+    if data.get("resourceArn") is not None:
         out["resource_arn"] = data["resourceArn"]
     else:
         raise DeserializationError("StartResourceScanRequest.resource_arn required")
-    if "resourceOwnerAccount" in data:
+    if data.get("resourceOwnerAccount") is not None:
         out["resource_owner_account"] = data["resourceOwnerAccount"]
     return out

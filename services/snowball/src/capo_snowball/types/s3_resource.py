@@ -45,15 +45,15 @@ def serialize_aws_json_1_1(value: S3Resource) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> S3Resource:
     out: S3Resource = {}  # type: ignore[typeddict-item]
-    if "BucketArn" in data:
+    if data.get("BucketArn") is not None:
         out["bucket_arn"] = data["BucketArn"]
-    if "KeyRange" in data:
+    if data.get("KeyRange") is not None:
         import capo_snowball.types.key_range
 
         out["key_range"] = capo_snowball.types.key_range.deserialize_aws_json_1_1(
             data["KeyRange"]
         )
-    if "TargetOnDeviceServices" in data:
+    if data.get("TargetOnDeviceServices") is not None:
         import capo_snowball.types.target_on_device_service_list
 
         out["target_on_device_services"] = (

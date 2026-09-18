@@ -39,9 +39,9 @@ def deserialize_json(
     data: dict,
 ) -> AwsEc2LaunchTemplateDataCapacityReservationSpecificationCapacityReservationTargetDetails:
     out: AwsEc2LaunchTemplateDataCapacityReservationSpecificationCapacityReservationTargetDetails = {}  # type: ignore[typeddict-item]
-    if "CapacityReservationId" in data:
+    if data.get("CapacityReservationId") is not None:
         out["capacity_reservation_id"] = data["CapacityReservationId"]
-    if "CapacityReservationResourceGroupArn" in data:
+    if data.get("CapacityReservationResourceGroupArn") is not None:
         out["capacity_reservation_resource_group_arn"] = data[
             "CapacityReservationResourceGroupArn"
         ]

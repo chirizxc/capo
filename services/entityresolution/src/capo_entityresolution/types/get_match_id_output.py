@@ -22,8 +22,8 @@ def serialize_json(value: GetMatchIdOutput) -> dict:
 
 def deserialize_json(data: dict) -> GetMatchIdOutput:
     out: GetMatchIdOutput = {}  # type: ignore[typeddict-item]
-    if "matchId" in data:
+    if data.get("matchId") is not None:
         out["match_id"] = data["matchId"]
-    if "matchRule" in data:
+    if data.get("matchRule") is not None:
         out["match_rule"] = data["matchRule"]
     return out

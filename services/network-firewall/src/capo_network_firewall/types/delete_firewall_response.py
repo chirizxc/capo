@@ -38,13 +38,13 @@ def serialize_aws_json_1_0(value: DeleteFirewallResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> DeleteFirewallResponse:
     out: DeleteFirewallResponse = {}  # type: ignore[typeddict-item]
-    if "Firewall" in data:
+    if data.get("Firewall") is not None:
         import capo_network_firewall.types.firewall
 
         out["firewall"] = capo_network_firewall.types.firewall.deserialize_aws_json_1_0(
             data["Firewall"]
         )
-    if "FirewallStatus" in data:
+    if data.get("FirewallStatus") is not None:
         import capo_network_firewall.types.firewall_status
 
         out["firewall_status"] = (

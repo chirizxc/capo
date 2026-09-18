@@ -25,7 +25,7 @@ def serialize_aws_json_1_1(value: GetTableResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetTableResponse:
     out: GetTableResponse = {}  # type: ignore[typeddict-item]
-    if "Table" in data:
+    if data.get("Table") is not None:
         import capo_glue.types.table
 
         out["table"] = capo_glue.types.table.deserialize_aws_json_1_1(data["Table"])

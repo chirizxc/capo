@@ -32,10 +32,10 @@ def serialize_json(value: RegisterJobDefinitionResponse) -> dict:
 
 def deserialize_json(data: dict) -> RegisterJobDefinitionResponse:
     out: RegisterJobDefinitionResponse = {}  # type: ignore[typeddict-item]
-    if "jobDefinitionName" in data:
+    if data.get("jobDefinitionName") is not None:
         out["job_definition_name"] = data["jobDefinitionName"]
-    if "jobDefinitionArn" in data:
+    if data.get("jobDefinitionArn") is not None:
         out["job_definition_arn"] = data["jobDefinitionArn"]
-    if "revision" in data:
+    if data.get("revision") is not None:
         out["revision"] = data["revision"]
     return out

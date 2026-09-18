@@ -82,7 +82,7 @@ def serialize_json(value: GatewayInstance) -> dict:
 
 def deserialize_json(data: dict) -> GatewayInstance:
     out: GatewayInstance = {}  # type: ignore[typeddict-item]
-    if "bridgePlacement" in data:
+    if data.get("bridgePlacement") is not None:
         import capo_mediaconnect.types.bridge_placement
 
         out["bridge_placement"] = (
@@ -90,7 +90,7 @@ def deserialize_json(data: dict) -> GatewayInstance:
                 data["bridgePlacement"]
             )
         )
-    if "connectionStatus" in data:
+    if data.get("connectionStatus") is not None:
         import capo_mediaconnect.types.connection_status
 
         out["connection_status"] = (
@@ -98,13 +98,13 @@ def deserialize_json(data: dict) -> GatewayInstance:
                 data["connectionStatus"]
             )
         )
-    if "gatewayArn" in data:
+    if data.get("gatewayArn") is not None:
         out["gateway_arn"] = data["gatewayArn"]
-    if "gatewayInstanceArn" in data:
+    if data.get("gatewayInstanceArn") is not None:
         out["gateway_instance_arn"] = data["gatewayInstanceArn"]
-    if "instanceId" in data:
+    if data.get("instanceId") is not None:
         out["instance_id"] = data["instanceId"]
-    if "instanceMessages" in data:
+    if data.get("instanceMessages") is not None:
         import capo_mediaconnect.types.__list_of_message_detail
 
         out["instance_messages"] = (
@@ -112,12 +112,12 @@ def deserialize_json(data: dict) -> GatewayInstance:
                 data["instanceMessages"]
             )
         )
-    if "instanceState" in data:
+    if data.get("instanceState") is not None:
         import capo_mediaconnect.types.instance_state
 
         out["instance_state"] = capo_mediaconnect.types.instance_state.deserialize_json(
             data["instanceState"]
         )
-    if "runningBridgeCount" in data:
+    if data.get("runningBridgeCount") is not None:
         out["running_bridge_count"] = data["runningBridgeCount"]
     return out

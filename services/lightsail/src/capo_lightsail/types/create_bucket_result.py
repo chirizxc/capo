@@ -36,13 +36,13 @@ def serialize_aws_json_1_1(value: CreateBucketResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateBucketResult:
     out: CreateBucketResult = {}  # type: ignore[typeddict-item]
-    if "bucket" in data:
+    if data.get("bucket") is not None:
         import capo_lightsail.types.bucket
 
         out["bucket"] = capo_lightsail.types.bucket.deserialize_aws_json_1_1(
             data["bucket"]
         )
-    if "operations" in data:
+    if data.get("operations") is not None:
         import capo_lightsail.types.operation_list
 
         out["operations"] = (

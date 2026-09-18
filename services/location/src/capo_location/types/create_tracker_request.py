@@ -69,26 +69,26 @@ def serialize_json(value: CreateTrackerRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateTrackerRequest:
     out: CreateTrackerRequest = {}  # type: ignore[typeddict-item]
-    if "TrackerName" in data:
+    if data.get("TrackerName") is not None:
         out["tracker_name"] = data["TrackerName"]
     else:
         raise DeserializationError("CreateTrackerRequest.tracker_name required")
-    if "PricingPlan" in data:
+    if data.get("PricingPlan") is not None:
         out["pricing_plan"] = data["PricingPlan"]
-    if "KmsKeyId" in data:
+    if data.get("KmsKeyId") is not None:
         out["kms_key_id"] = data["KmsKeyId"]
-    if "PricingPlanDataSource" in data:
+    if data.get("PricingPlanDataSource") is not None:
         out["pricing_plan_data_source"] = data["PricingPlanDataSource"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_location.types.tag_map
 
         out["tags"] = capo_location.types.tag_map.deserialize_json(data["Tags"])
-    if "PositionFiltering" in data:
+    if data.get("PositionFiltering") is not None:
         out["position_filtering"] = data["PositionFiltering"]
-    if "EventBridgeEnabled" in data:
+    if data.get("EventBridgeEnabled") is not None:
         out["event_bridge_enabled"] = data["EventBridgeEnabled"]
-    if "KmsKeyEnableGeospatialQueries" in data:
+    if data.get("KmsKeyEnableGeospatialQueries") is not None:
         out["kms_key_enable_geospatial_queries"] = data["KmsKeyEnableGeospatialQueries"]
     return out

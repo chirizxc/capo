@@ -29,12 +29,12 @@ def serialize_json(value: GetRetrievedTracesGraphRequest) -> dict:
 
 def deserialize_json(data: dict) -> GetRetrievedTracesGraphRequest:
     out: GetRetrievedTracesGraphRequest = {}  # type: ignore[typeddict-item]
-    if "RetrievalToken" in data:
+    if data.get("RetrievalToken") is not None:
         out["retrieval_token"] = data["RetrievalToken"]
     else:
         raise DeserializationError(
             "GetRetrievedTracesGraphRequest.retrieval_token required"
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

@@ -121,7 +121,7 @@ def serialize_aws_json_1_0(value: RecommendationSummary) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> RecommendationSummary:
     out: RecommendationSummary = {}  # type: ignore[typeddict-item]
-    if "summaries" in data:
+    if data.get("summaries") is not None:
         import capo_compute_optimizer.types.summaries
 
         out["summaries"] = (
@@ -129,7 +129,7 @@ def deserialize_aws_json_1_0(data: dict) -> RecommendationSummary:
                 data["summaries"]
             )
         )
-    if "idleSummaries" in data:
+    if data.get("idleSummaries") is not None:
         import capo_compute_optimizer.types.idle_summaries
 
         out["idle_summaries"] = (
@@ -137,7 +137,7 @@ def deserialize_aws_json_1_0(data: dict) -> RecommendationSummary:
                 data["idleSummaries"]
             )
         )
-    if "recommendationResourceType" in data:
+    if data.get("recommendationResourceType") is not None:
         import capo_compute_optimizer.types.recommendation_source_type
 
         out["recommendation_resource_type"] = (
@@ -145,9 +145,9 @@ def deserialize_aws_json_1_0(data: dict) -> RecommendationSummary:
                 data["recommendationResourceType"]
             )
         )
-    if "accountId" in data:
+    if data.get("accountId") is not None:
         out["account_id"] = data["accountId"]
-    if "savingsOpportunity" in data:
+    if data.get("savingsOpportunity") is not None:
         import capo_compute_optimizer.types.savings_opportunity
 
         out["savings_opportunity"] = (
@@ -155,7 +155,7 @@ def deserialize_aws_json_1_0(data: dict) -> RecommendationSummary:
                 data["savingsOpportunity"]
             )
         )
-    if "idleSavingsOpportunity" in data:
+    if data.get("idleSavingsOpportunity") is not None:
         import capo_compute_optimizer.types.savings_opportunity
 
         out["idle_savings_opportunity"] = (
@@ -163,7 +163,7 @@ def deserialize_aws_json_1_0(data: dict) -> RecommendationSummary:
                 data["idleSavingsOpportunity"]
             )
         )
-    if "aggregatedSavingsOpportunity" in data:
+    if data.get("aggregatedSavingsOpportunity") is not None:
         import capo_compute_optimizer.types.savings_opportunity
 
         out["aggregated_savings_opportunity"] = (
@@ -171,7 +171,7 @@ def deserialize_aws_json_1_0(data: dict) -> RecommendationSummary:
                 data["aggregatedSavingsOpportunity"]
             )
         )
-    if "currentPerformanceRiskRatings" in data:
+    if data.get("currentPerformanceRiskRatings") is not None:
         import capo_compute_optimizer.types.current_performance_risk_ratings
 
         out["current_performance_risk_ratings"] = (
@@ -179,7 +179,7 @@ def deserialize_aws_json_1_0(data: dict) -> RecommendationSummary:
                 data["currentPerformanceRiskRatings"]
             )
         )
-    if "inferredWorkloadSavings" in data:
+    if data.get("inferredWorkloadSavings") is not None:
         import capo_compute_optimizer.types.inferred_workload_savings
 
         out["inferred_workload_savings"] = (

@@ -36,7 +36,7 @@ def serialize_json(value: AssetBundleImportJobDataSourceCredentials) -> dict:
 
 def deserialize_json(data: dict) -> AssetBundleImportJobDataSourceCredentials:
     out: AssetBundleImportJobDataSourceCredentials = {}  # type: ignore[typeddict-item]
-    if "CredentialPair" in data:
+    if data.get("CredentialPair") is not None:
         import capo_quicksight.types.asset_bundle_import_job_data_source_credential_pair
 
         out["credential_pair"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> AssetBundleImportJobDataSourceCredentials:
                 data["CredentialPair"]
             )
         )
-    if "SecretArn" in data:
+    if data.get("SecretArn") is not None:
         out["secret_arn"] = data["SecretArn"]
     return out

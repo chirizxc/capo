@@ -27,7 +27,7 @@ def serialize_aws_json_1_1(value: AdditionalEnis) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AdditionalEnis:
     out: AdditionalEnis = {}  # type: ignore[typeddict-item]
-    if "EfaEnis" in data:
+    if data.get("EfaEnis") is not None:
         import capo_sagemaker.types.efa_enis
 
         out["efa_enis"] = capo_sagemaker.types.efa_enis.deserialize_aws_json_1_1(

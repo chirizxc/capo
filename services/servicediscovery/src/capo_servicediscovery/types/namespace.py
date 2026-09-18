@@ -93,15 +93,15 @@ def serialize_aws_json_1_1(value: Namespace) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Namespace:
     out: Namespace = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "ResourceOwner" in data:
+    if data.get("ResourceOwner") is not None:
         out["resource_owner"] = data["ResourceOwner"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_servicediscovery.types.namespace_type
 
         out["type"] = (
@@ -109,11 +109,11 @@ def deserialize_aws_json_1_1(data: dict) -> Namespace:
                 data["Type"]
             )
         )
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "ServiceCount" in data:
+    if data.get("ServiceCount") is not None:
         out["service_count"] = data["ServiceCount"]
-    if "Properties" in data:
+    if data.get("Properties") is not None:
         import capo_servicediscovery.types.namespace_properties
 
         out["properties"] = (
@@ -121,7 +121,7 @@ def deserialize_aws_json_1_1(data: dict) -> Namespace:
                 data["Properties"]
             )
         )
-    if "CreateDate" in data:
+    if data.get("CreateDate") is not None:
         import capo_servicediscovery.types.timestamp
 
         out["create_date"] = (
@@ -129,6 +129,6 @@ def deserialize_aws_json_1_1(data: dict) -> Namespace:
                 data["CreateDate"]
             )
         )
-    if "CreatorRequestId" in data:
+    if data.get("CreatorRequestId") is not None:
         out["creator_request_id"] = data["CreatorRequestId"]
     return out

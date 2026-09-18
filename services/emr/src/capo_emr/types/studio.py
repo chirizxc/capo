@@ -143,61 +143,61 @@ def serialize_aws_json_1_1(value: Studio) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Studio:
     out: Studio = {}  # type: ignore[typeddict-item]
-    if "StudioId" in data:
+    if data.get("StudioId") is not None:
         out["studio_id"] = data["StudioId"]
-    if "StudioArn" in data:
+    if data.get("StudioArn") is not None:
         out["studio_arn"] = data["StudioArn"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "AuthMode" in data:
+    if data.get("AuthMode") is not None:
         import capo_emr.types.auth_mode
 
         out["auth_mode"] = capo_emr.types.auth_mode.deserialize_aws_json_1_1(
             data["AuthMode"]
         )
-    if "VpcId" in data:
+    if data.get("VpcId") is not None:
         out["vpc_id"] = data["VpcId"]
-    if "SubnetIds" in data:
+    if data.get("SubnetIds") is not None:
         import capo_emr.types.subnet_id_list
 
         out["subnet_ids"] = capo_emr.types.subnet_id_list.deserialize_aws_json_1_1(
             data["SubnetIds"]
         )
-    if "ServiceRole" in data:
+    if data.get("ServiceRole") is not None:
         out["service_role"] = data["ServiceRole"]
-    if "UserRole" in data:
+    if data.get("UserRole") is not None:
         out["user_role"] = data["UserRole"]
-    if "WorkspaceSecurityGroupId" in data:
+    if data.get("WorkspaceSecurityGroupId") is not None:
         out["workspace_security_group_id"] = data["WorkspaceSecurityGroupId"]
-    if "EngineSecurityGroupId" in data:
+    if data.get("EngineSecurityGroupId") is not None:
         out["engine_security_group_id"] = data["EngineSecurityGroupId"]
-    if "Url" in data:
+    if data.get("Url") is not None:
         out["url"] = data["Url"]
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_emr.types.date
 
         out["creation_time"] = capo_emr.types.date.deserialize_aws_json_1_1(
             data["CreationTime"]
         )
-    if "DefaultS3Location" in data:
+    if data.get("DefaultS3Location") is not None:
         out["default_s3_location"] = data["DefaultS3Location"]
-    if "IdpAuthUrl" in data:
+    if data.get("IdpAuthUrl") is not None:
         out["idp_auth_url"] = data["IdpAuthUrl"]
-    if "IdpRelayStateParameterName" in data:
+    if data.get("IdpRelayStateParameterName") is not None:
         out["idp_relay_state_parameter_name"] = data["IdpRelayStateParameterName"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_emr.types.tag_list
 
         out["tags"] = capo_emr.types.tag_list.deserialize_aws_json_1_1(data["Tags"])
-    if "IdcInstanceArn" in data:
+    if data.get("IdcInstanceArn") is not None:
         out["idc_instance_arn"] = data["IdcInstanceArn"]
-    if "TrustedIdentityPropagationEnabled" in data:
+    if data.get("TrustedIdentityPropagationEnabled") is not None:
         out["trusted_identity_propagation_enabled"] = data[
             "TrustedIdentityPropagationEnabled"
         ]
-    if "IdcUserAssignment" in data:
+    if data.get("IdcUserAssignment") is not None:
         import capo_emr.types.idc_user_assignment
 
         out["idc_user_assignment"] = (
@@ -205,6 +205,6 @@ def deserialize_aws_json_1_1(data: dict) -> Studio:
                 data["IdcUserAssignment"]
             )
         )
-    if "EncryptionKeyArn" in data:
+    if data.get("EncryptionKeyArn") is not None:
         out["encryption_key_arn"] = data["EncryptionKeyArn"]
     return out

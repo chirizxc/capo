@@ -166,43 +166,43 @@ def serialize_json(value: Pipeline) -> dict:
 
 def deserialize_json(data: dict) -> Pipeline:
     out: Pipeline = {}  # type: ignore[typeddict-item]
-    if "PipelineName" in data:
+    if data.get("PipelineName") is not None:
         out["pipeline_name"] = data["PipelineName"]
-    if "PipelineArn" in data:
+    if data.get("PipelineArn") is not None:
         out["pipeline_arn"] = data["PipelineArn"]
-    if "MinUnits" in data:
+    if data.get("MinUnits") is not None:
         out["min_units"] = data["MinUnits"]
     else:
         out["min_units"] = 0
-    if "MaxUnits" in data:
+    if data.get("MaxUnits") is not None:
         out["max_units"] = data["MaxUnits"]
     else:
         out["max_units"] = 0
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_osis.types.pipeline_status
 
         out["status"] = capo_osis.types.pipeline_status.deserialize_json(data["Status"])
-    if "StatusReason" in data:
+    if data.get("StatusReason") is not None:
         import capo_osis.types.pipeline_status_reason
 
         out["status_reason"] = capo_osis.types.pipeline_status_reason.deserialize_json(
             data["StatusReason"]
         )
-    if "PipelineConfigurationBody" in data:
+    if data.get("PipelineConfigurationBody") is not None:
         out["pipeline_configuration_body"] = data["PipelineConfigurationBody"]
-    if "CreatedAt" in data:
+    if data.get("CreatedAt") is not None:
         import capo_osis.types.timestamp
 
         out["created_at"] = capo_osis.types.timestamp.deserialize_json(
             data["CreatedAt"]
         )
-    if "LastUpdatedAt" in data:
+    if data.get("LastUpdatedAt") is not None:
         import capo_osis.types.timestamp
 
         out["last_updated_at"] = capo_osis.types.timestamp.deserialize_json(
             data["LastUpdatedAt"]
         )
-    if "IngestEndpointUrls" in data:
+    if data.get("IngestEndpointUrls") is not None:
         import capo_osis.types.ingest_endpoint_urls_list
 
         out["ingest_endpoint_urls"] = (
@@ -210,7 +210,7 @@ def deserialize_json(data: dict) -> Pipeline:
                 data["IngestEndpointUrls"]
             )
         )
-    if "LogPublishingOptions" in data:
+    if data.get("LogPublishingOptions") is not None:
         import capo_osis.types.log_publishing_options
 
         out["log_publishing_options"] = (
@@ -218,19 +218,19 @@ def deserialize_json(data: dict) -> Pipeline:
                 data["LogPublishingOptions"]
             )
         )
-    if "VpcEndpoints" in data:
+    if data.get("VpcEndpoints") is not None:
         import capo_osis.types.vpc_endpoints_list
 
         out["vpc_endpoints"] = capo_osis.types.vpc_endpoints_list.deserialize_json(
             data["VpcEndpoints"]
         )
-    if "BufferOptions" in data:
+    if data.get("BufferOptions") is not None:
         import capo_osis.types.buffer_options
 
         out["buffer_options"] = capo_osis.types.buffer_options.deserialize_json(
             data["BufferOptions"]
         )
-    if "EncryptionAtRestOptions" in data:
+    if data.get("EncryptionAtRestOptions") is not None:
         import capo_osis.types.encryption_at_rest_options
 
         out["encryption_at_rest_options"] = (
@@ -238,9 +238,9 @@ def deserialize_json(data: dict) -> Pipeline:
                 data["EncryptionAtRestOptions"]
             )
         )
-    if "VpcEndpointService" in data:
+    if data.get("VpcEndpointService") is not None:
         out["vpc_endpoint_service"] = data["VpcEndpointService"]
-    if "ServiceVpcEndpoints" in data:
+    if data.get("ServiceVpcEndpoints") is not None:
         import capo_osis.types.service_vpc_endpoints_list
 
         out["service_vpc_endpoints"] = (
@@ -248,7 +248,7 @@ def deserialize_json(data: dict) -> Pipeline:
                 data["ServiceVpcEndpoints"]
             )
         )
-    if "Destinations" in data:
+    if data.get("Destinations") is not None:
         import capo_osis.types.pipeline_destination_list
 
         out["destinations"] = (
@@ -256,10 +256,10 @@ def deserialize_json(data: dict) -> Pipeline:
                 data["Destinations"]
             )
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_osis.types.tag_list
 
         out["tags"] = capo_osis.types.tag_list.deserialize_json(data["Tags"])
-    if "PipelineRoleArn" in data:
+    if data.get("PipelineRoleArn") is not None:
         out["pipeline_role_arn"] = data["PipelineRoleArn"]
     return out

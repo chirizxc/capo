@@ -48,7 +48,7 @@ def serialize_json(value: WebRTCMeeting) -> dict:
 
 def deserialize_json(data: dict) -> WebRTCMeeting:
     out: WebRTCMeeting = {}  # type: ignore[typeddict-item]
-    if "MediaPlacement" in data:
+    if data.get("MediaPlacement") is not None:
         import capo_connectparticipant.types.web_rtc_media_placement
 
         out["media_placement"] = (
@@ -56,7 +56,7 @@ def deserialize_json(data: dict) -> WebRTCMeeting:
                 data["MediaPlacement"]
             )
         )
-    if "MeetingFeatures" in data:
+    if data.get("MeetingFeatures") is not None:
         import capo_connectparticipant.types.meeting_features_configuration
 
         out["meeting_features"] = (
@@ -64,6 +64,6 @@ def deserialize_json(data: dict) -> WebRTCMeeting:
                 data["MeetingFeatures"]
             )
         )
-    if "MeetingId" in data:
+    if data.get("MeetingId") is not None:
         out["meeting_id"] = data["MeetingId"]
     return out

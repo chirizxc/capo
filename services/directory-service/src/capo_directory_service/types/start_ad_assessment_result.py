@@ -25,6 +25,6 @@ def serialize_aws_json_1_1(value: StartADAssessmentResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> StartADAssessmentResult:
     out: StartADAssessmentResult = {}  # type: ignore[typeddict-item]
-    if "AssessmentId" in data:
+    if data.get("AssessmentId") is not None:
         out["assessment_id"] = data["AssessmentId"]
     return out

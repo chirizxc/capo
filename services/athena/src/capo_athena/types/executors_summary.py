@@ -55,21 +55,21 @@ def serialize_aws_json_1_1(value: ExecutorsSummary) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ExecutorsSummary:
     out: ExecutorsSummary = {}  # type: ignore[typeddict-item]
-    if "ExecutorId" in data:
+    if data.get("ExecutorId") is not None:
         out["executor_id"] = data["ExecutorId"]
     else:
         raise DeserializationError("ExecutorsSummary.executor_id required")
-    if "ExecutorType" in data:
+    if data.get("ExecutorType") is not None:
         import capo_athena.types.executor_type
 
         out["executor_type"] = capo_athena.types.executor_type.deserialize_aws_json_1_1(
             data["ExecutorType"]
         )
-    if "StartDateTime" in data:
+    if data.get("StartDateTime") is not None:
         out["start_date_time"] = data["StartDateTime"]
-    if "TerminationDateTime" in data:
+    if data.get("TerminationDateTime") is not None:
         out["termination_date_time"] = data["TerminationDateTime"]
-    if "ExecutorState" in data:
+    if data.get("ExecutorState") is not None:
         import capo_athena.types.executor_state
 
         out["executor_state"] = (
@@ -77,6 +77,6 @@ def deserialize_aws_json_1_1(data: dict) -> ExecutorsSummary:
                 data["ExecutorState"]
             )
         )
-    if "ExecutorSize" in data:
+    if data.get("ExecutorSize") is not None:
         out["executor_size"] = data["ExecutorSize"]
     return out

@@ -51,7 +51,15 @@ def serialize_json(value: Event) -> dict:
         out["eventId"] = value["event_id"]
     out["eventType"] = value["event_type"]
     if "event_value" in value:
-        out["eventValue"] = value["event_value"]
+        out["eventValue"] = (
+            "NaN"
+            if value["event_value"] != value["event_value"]
+            else "Infinity"
+            if value["event_value"] == float("inf")
+            else "-Infinity"
+            if value["event_value"] == float("-inf")
+            else value["event_value"]
+        )
     if "item_id" in value:
         out["itemId"] = value["item_id"]
     if "properties" in value:
@@ -80,19 +88,19 @@ def serialize_json(value: Event) -> dict:
 
 def deserialize_json(data: dict) -> Event:
     out: Event = {}  # type: ignore[typeddict-item]
-    if "eventId" in data:
+    if data.get("eventId") is not None:
         out["event_id"] = data["eventId"]
-    if "eventType" in data:
+    if data.get("eventType") is not None:
         out["event_type"] = data["eventType"]
     else:
         raise DeserializationError("Event.event_type required")
-    if "eventValue" in data:
-        out["event_value"] = data["eventValue"]
-    if "itemId" in data:
+    if data.get("eventValue") is not None:
+        out["event_value"] = float(data["eventValue"])
+    if data.get("itemId") is not None:
         out["item_id"] = data["itemId"]
-    if "properties" in data:
+    if data.get("properties") is not None:
         out["properties"] = data["properties"]
-    if "sentAt" in data:
+    if data.get("sentAt") is not None:
         import capo_personalize_events.types.date
 
         out["sent_at"] = capo_personalize_events.types.date.deserialize_json(
@@ -100,15 +108,15 @@ def deserialize_json(data: dict) -> Event:
         )
     else:
         raise DeserializationError("Event.sent_at required")
-    if "recommendationId" in data:
+    if data.get("recommendationId") is not None:
         out["recommendation_id"] = data["recommendationId"]
-    if "impression" in data:
+    if data.get("impression") is not None:
         import capo_personalize_events.types.impression
 
         out["impression"] = capo_personalize_events.types.impression.deserialize_json(
             data["impression"]
         )
-    if "metricAttribution" in data:
+    if data.get("metricAttribution") is not None:
         import capo_personalize_events.types.metric_attribution
 
         out["metric_attribution"] = (

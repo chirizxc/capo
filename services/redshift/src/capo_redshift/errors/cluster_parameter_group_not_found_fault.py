@@ -39,15 +39,20 @@ class ClusterParameterGroupNotFoundFault(ServiceError):
 
     code: str | None = "ClusterParameterGroupNotFoundFault"
 
-    def __init__(self, data: ClusterParameterGroupNotFoundFault_):
+    def __init__(
+        self, data: ClusterParameterGroupNotFoundFault_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="ClusterParameterGroupNotFoundFault",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_query(cls, el: Element) -> "ClusterParameterGroupNotFoundFault":
-        return cls(deserialize_query(el))
+    def from_query(
+        cls, el: Element, message: str | None = None
+    ) -> "ClusterParameterGroupNotFoundFault":
+        return cls(deserialize_query(el), message)

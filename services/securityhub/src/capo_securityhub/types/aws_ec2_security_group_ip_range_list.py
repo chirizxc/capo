@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> AwsEc2SecurityGroupIpRangeList:
 
     out: AwsEc2SecurityGroupIpRangeList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_securityhub.types.aws_ec2_security_group_ip_range.deserialize_json(
                 item

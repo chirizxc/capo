@@ -36,7 +36,7 @@ def serialize_json(value: GetNetworkResourceCountsResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetNetworkResourceCountsResponse:
     out: GetNetworkResourceCountsResponse = {}  # type: ignore[typeddict-item]
-    if "NetworkResourceCounts" in data:
+    if data.get("NetworkResourceCounts") is not None:
         import capo_networkmanager.types.network_resource_count_list
 
         out["network_resource_counts"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> GetNetworkResourceCountsResponse:
                 data["NetworkResourceCounts"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

@@ -31,7 +31,7 @@ def serialize_json(value: HumanLoopDataAttributes) -> dict:
 
 def deserialize_json(data: dict) -> HumanLoopDataAttributes:
     out: HumanLoopDataAttributes = {}  # type: ignore[typeddict-item]
-    if "ContentClassifiers" in data:
+    if data.get("ContentClassifiers") is not None:
         import capo_sagemaker_a2i_runtime.types.content_classifiers
 
         out["content_classifiers"] = (

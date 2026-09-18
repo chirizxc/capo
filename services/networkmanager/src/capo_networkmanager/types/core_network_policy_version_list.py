@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> CoreNetworkPolicyVersionList:
 
     out: CoreNetworkPolicyVersionList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_networkmanager.types.core_network_policy_version.deserialize_json(item)
         )

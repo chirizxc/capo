@@ -77,17 +77,17 @@ def serialize_aws_json_1_1(value: DeviceSummary) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeviceSummary:
     out: DeviceSummary = {}  # type: ignore[typeddict-item]
-    if "DeviceName" in data:
+    if data.get("DeviceName") is not None:
         out["device_name"] = data["DeviceName"]
-    if "DeviceArn" in data:
+    if data.get("DeviceArn") is not None:
         out["device_arn"] = data["DeviceArn"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "DeviceFleetName" in data:
+    if data.get("DeviceFleetName") is not None:
         out["device_fleet_name"] = data["DeviceFleetName"]
-    if "IotThingName" in data:
+    if data.get("IotThingName") is not None:
         out["iot_thing_name"] = data["IotThingName"]
-    if "RegistrationTime" in data:
+    if data.get("RegistrationTime") is not None:
         import capo_sagemaker.types.timestamp
 
         out["registration_time"] = (
@@ -95,7 +95,7 @@ def deserialize_aws_json_1_1(data: dict) -> DeviceSummary:
                 data["RegistrationTime"]
             )
         )
-    if "LatestHeartbeat" in data:
+    if data.get("LatestHeartbeat") is not None:
         import capo_sagemaker.types.timestamp
 
         out["latest_heartbeat"] = (
@@ -103,7 +103,7 @@ def deserialize_aws_json_1_1(data: dict) -> DeviceSummary:
                 data["LatestHeartbeat"]
             )
         )
-    if "Models" in data:
+    if data.get("Models") is not None:
         import capo_sagemaker.types.edge_model_summaries
 
         out["models"] = (
@@ -111,6 +111,6 @@ def deserialize_aws_json_1_1(data: dict) -> DeviceSummary:
                 data["Models"]
             )
         )
-    if "AgentVersion" in data:
+    if data.get("AgentVersion") is not None:
         out["agent_version"] = data["AgentVersion"]
     return out

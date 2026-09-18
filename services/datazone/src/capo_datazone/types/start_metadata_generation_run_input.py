@@ -64,13 +64,13 @@ def serialize_json(value: StartMetadataGenerationRunInput) -> dict:
 
 def deserialize_json(data: dict) -> StartMetadataGenerationRunInput:
     out: StartMetadataGenerationRunInput = {}  # type: ignore[typeddict-item]
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_datazone.types.metadata_generation_run_type
 
         out["type"] = capo_datazone.types.metadata_generation_run_type.deserialize_json(
             data["type"]
         )
-    if "types" in data:
+    if data.get("types") is not None:
         import capo_datazone.types.metadata_generation_run_types
 
         out["types"] = (
@@ -78,7 +78,7 @@ def deserialize_json(data: dict) -> StartMetadataGenerationRunInput:
                 data["types"]
             )
         )
-    if "target" in data:
+    if data.get("target") is not None:
         import capo_datazone.types.metadata_generation_run_target
 
         out["target"] = (
@@ -88,9 +88,9 @@ def deserialize_json(data: dict) -> StartMetadataGenerationRunInput:
         )
     else:
         raise DeserializationError("StartMetadataGenerationRunInput.target required")
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
-    if "owningProjectIdentifier" in data:
+    if data.get("owningProjectIdentifier") is not None:
         out["owning_project_identifier"] = data["owningProjectIdentifier"]
     else:
         raise DeserializationError(

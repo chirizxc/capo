@@ -44,7 +44,7 @@ def serialize_aws_json_1_0(value: Ec2InstanceSavingsPlans) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> Ec2InstanceSavingsPlans:
     out: Ec2InstanceSavingsPlans = {}  # type: ignore[typeddict-item]
-    if "configuration" in data:
+    if data.get("configuration") is not None:
         import capo_cost_optimization_hub.types.ec2_instance_savings_plans_configuration
 
         out["configuration"] = (
@@ -52,7 +52,7 @@ def deserialize_aws_json_1_0(data: dict) -> Ec2InstanceSavingsPlans:
                 data["configuration"]
             )
         )
-    if "costCalculation" in data:
+    if data.get("costCalculation") is not None:
         import capo_cost_optimization_hub.types.savings_plans_cost_calculation
 
         out["cost_calculation"] = (

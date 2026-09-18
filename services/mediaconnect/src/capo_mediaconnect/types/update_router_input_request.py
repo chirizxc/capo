@@ -86,9 +86,9 @@ def serialize_json(value: UpdateRouterInputRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateRouterInputRequest:
     out: UpdateRouterInputRequest = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "configuration" in data:
+    if data.get("configuration") is not None:
         import capo_mediaconnect.types.router_input_configuration
 
         out["configuration"] = (
@@ -96,21 +96,21 @@ def deserialize_json(data: dict) -> UpdateRouterInputRequest:
                 data["configuration"]
             )
         )
-    if "maximumBitrate" in data:
+    if data.get("maximumBitrate") is not None:
         out["maximum_bitrate"] = data["maximumBitrate"]
-    if "routingScope" in data:
+    if data.get("routingScope") is not None:
         import capo_mediaconnect.types.routing_scope
 
         out["routing_scope"] = capo_mediaconnect.types.routing_scope.deserialize_json(
             data["routingScope"]
         )
-    if "tier" in data:
+    if data.get("tier") is not None:
         import capo_mediaconnect.types.router_input_tier
 
         out["tier"] = capo_mediaconnect.types.router_input_tier.deserialize_json(
             data["tier"]
         )
-    if "transitEncryption" in data:
+    if data.get("transitEncryption") is not None:
         import capo_mediaconnect.types.router_input_transit_encryption
 
         out["transit_encryption"] = (
@@ -118,7 +118,7 @@ def deserialize_json(data: dict) -> UpdateRouterInputRequest:
                 data["transitEncryption"]
             )
         )
-    if "maintenanceConfiguration" in data:
+    if data.get("maintenanceConfiguration") is not None:
         import capo_mediaconnect.types.maintenance_configuration
 
         out["maintenance_configuration"] = (

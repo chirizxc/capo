@@ -32,7 +32,7 @@ def serialize_json(value: ServiceIntegrationUnion) -> dict:
 
 
 def deserialize_json(data: dict) -> ServiceIntegrationUnion:
-    if "Redshift" in data:
+    if data.get("Redshift") is not None:
         import capo_lakeformation.types.redshift_service_integrations
 
         return {

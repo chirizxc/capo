@@ -59,33 +59,33 @@ def serialize_json(value: ReportSetting) -> dict:
 
 def deserialize_json(data: dict) -> ReportSetting:
     out: ReportSetting = {}  # type: ignore[typeddict-item]
-    if "ReportTemplate" in data:
+    if data.get("ReportTemplate") is not None:
         out["report_template"] = data["ReportTemplate"]
     else:
         raise DeserializationError("ReportSetting.report_template required")
-    if "FrameworkArns" in data:
+    if data.get("FrameworkArns") is not None:
         import capo_backup.types.string_list
 
         out["framework_arns"] = capo_backup.types.string_list.deserialize_json(
             data["FrameworkArns"]
         )
-    if "NumberOfFrameworks" in data:
+    if data.get("NumberOfFrameworks") is not None:
         out["number_of_frameworks"] = data["NumberOfFrameworks"]
     else:
         out["number_of_frameworks"] = 0
-    if "Accounts" in data:
+    if data.get("Accounts") is not None:
         import capo_backup.types.string_list
 
         out["accounts"] = capo_backup.types.string_list.deserialize_json(
             data["Accounts"]
         )
-    if "OrganizationUnits" in data:
+    if data.get("OrganizationUnits") is not None:
         import capo_backup.types.string_list
 
         out["organization_units"] = capo_backup.types.string_list.deserialize_json(
             data["OrganizationUnits"]
         )
-    if "Regions" in data:
+    if data.get("Regions") is not None:
         import capo_backup.types.string_list
 
         out["regions"] = capo_backup.types.string_list.deserialize_json(data["Regions"])

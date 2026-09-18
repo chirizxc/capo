@@ -34,12 +34,12 @@ def serialize_json(value: SheetControlInfoIconLabelOptions) -> dict:
 
 def deserialize_json(data: dict) -> SheetControlInfoIconLabelOptions:
     out: SheetControlInfoIconLabelOptions = {}  # type: ignore[typeddict-item]
-    if "Visibility" in data:
+    if data.get("Visibility") is not None:
         import capo_quicksight.types.visibility
 
         out["visibility"] = capo_quicksight.types.visibility.deserialize_json(
             data["Visibility"]
         )
-    if "InfoIconText" in data:
+    if data.get("InfoIconText") is not None:
         out["info_icon_text"] = data["InfoIconText"]
     return out

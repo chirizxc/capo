@@ -63,23 +63,23 @@ def serialize_aws_json_1_0(value: WorkflowTypeConfiguration) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> WorkflowTypeConfiguration:
     out: WorkflowTypeConfiguration = {}  # type: ignore[typeddict-item]
-    if "defaultTaskStartToCloseTimeout" in data:
+    if data.get("defaultTaskStartToCloseTimeout") is not None:
         out["default_task_start_to_close_timeout"] = data[
             "defaultTaskStartToCloseTimeout"
         ]
-    if "defaultExecutionStartToCloseTimeout" in data:
+    if data.get("defaultExecutionStartToCloseTimeout") is not None:
         out["default_execution_start_to_close_timeout"] = data[
             "defaultExecutionStartToCloseTimeout"
         ]
-    if "defaultTaskList" in data:
+    if data.get("defaultTaskList") is not None:
         import capo_swf.types.task_list
 
         out["default_task_list"] = capo_swf.types.task_list.deserialize_aws_json_1_0(
             data["defaultTaskList"]
         )
-    if "defaultTaskPriority" in data:
+    if data.get("defaultTaskPriority") is not None:
         out["default_task_priority"] = data["defaultTaskPriority"]
-    if "defaultChildPolicy" in data:
+    if data.get("defaultChildPolicy") is not None:
         import capo_swf.types.child_policy
 
         out["default_child_policy"] = (
@@ -87,6 +87,6 @@ def deserialize_aws_json_1_0(data: dict) -> WorkflowTypeConfiguration:
                 data["defaultChildPolicy"]
             )
         )
-    if "defaultLambdaRole" in data:
+    if data.get("defaultLambdaRole") is not None:
         out["default_lambda_role"] = data["defaultLambdaRole"]
     return out

@@ -29,7 +29,7 @@ def serialize_json(value: OffPeakWindow) -> dict:
 
 def deserialize_json(data: dict) -> OffPeakWindow:
     out: OffPeakWindow = {}  # type: ignore[typeddict-item]
-    if "WindowStartTime" in data:
+    if data.get("WindowStartTime") is not None:
         import capo_opensearch.types.window_start_time
 
         out["window_start_time"] = (

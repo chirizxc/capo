@@ -27,7 +27,7 @@ def serialize_json(value: DescribeSecurityProfileResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribeSecurityProfileResponse:
     out: DescribeSecurityProfileResponse = {}  # type: ignore[typeddict-item]
-    if "SecurityProfile" in data:
+    if data.get("SecurityProfile") is not None:
         import capo_connect.types.security_profile
 
         out["security_profile"] = capo_connect.types.security_profile.deserialize_json(

@@ -43,13 +43,13 @@ def serialize_json(value: CreateTicketV2Request) -> dict:
 
 def deserialize_json(data: dict) -> CreateTicketV2Request:
     out: CreateTicketV2Request = {}  # type: ignore[typeddict-item]
-    if "ConnectorId" in data:
+    if data.get("ConnectorId") is not None:
         out["connector_id"] = data["ConnectorId"]
-    if "FindingMetadataUid" in data:
+    if data.get("FindingMetadataUid") is not None:
         out["finding_metadata_uid"] = data["FindingMetadataUid"]
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
-    if "Mode" in data:
+    if data.get("Mode") is not None:
         import capo_securityhub.types.ticket_creation_mode
 
         out["mode"] = capo_securityhub.types.ticket_creation_mode.deserialize_json(

@@ -39,14 +39,14 @@ def serialize_json(value: EvaluationReviewRequestComment) -> dict:
 
 def deserialize_json(data: dict) -> EvaluationReviewRequestComment:
     out: EvaluationReviewRequestComment = {}  # type: ignore[typeddict-item]
-    if "Comment" in data:
+    if data.get("Comment") is not None:
         out["comment"] = data["Comment"]
-    if "CreatedTime" in data:
+    if data.get("CreatedTime") is not None:
         import capo_connect.types.timestamp
 
         out["created_time"] = capo_connect.types.timestamp.deserialize_json(
             data["CreatedTime"]
         )
-    if "CreatedBy" in data:
+    if data.get("CreatedBy") is not None:
         out["created_by"] = data["CreatedBy"]
     return out

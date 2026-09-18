@@ -23,6 +23,6 @@ def serialize_json(value: StartOutboundChatContactResponse) -> dict:
 
 def deserialize_json(data: dict) -> StartOutboundChatContactResponse:
     out: StartOutboundChatContactResponse = {}  # type: ignore[typeddict-item]
-    if "ContactId" in data:
+    if data.get("ContactId") is not None:
         out["contact_id"] = data["ContactId"]
     return out

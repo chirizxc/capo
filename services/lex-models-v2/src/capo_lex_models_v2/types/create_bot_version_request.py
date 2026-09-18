@@ -38,9 +38,9 @@ def serialize_json(value: CreateBotVersionRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateBotVersionRequest:
     out: CreateBotVersionRequest = {}  # type: ignore[typeddict-item]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "botVersionLocaleSpecification" in data:
+    if data.get("botVersionLocaleSpecification") is not None:
         import capo_lex_models_v2.types.bot_version_locale_specification
 
         out["bot_version_locale_specification"] = (

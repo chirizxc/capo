@@ -32,7 +32,7 @@ def serialize_json(value: FieldSortExpression) -> dict:
 
 def deserialize_json(data: dict) -> FieldSortExpression:
     out: FieldSortExpression = {}  # type: ignore[typeddict-item]
-    if "sortOrder" in data:
+    if data.get("sortOrder") is not None:
         import capo_deadline.types.sort_order
 
         out["sort_order"] = capo_deadline.types.sort_order.deserialize_json(
@@ -40,7 +40,7 @@ def deserialize_json(data: dict) -> FieldSortExpression:
         )
     else:
         raise DeserializationError("FieldSortExpression.sort_order required")
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("FieldSortExpression.name required")

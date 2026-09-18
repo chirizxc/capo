@@ -30,15 +30,15 @@ def serialize_json(value: TelephonySettings) -> dict:
 
 def deserialize_json(data: dict) -> TelephonySettings:
     out: TelephonySettings = {}  # type: ignore[typeddict-item]
-    if "InboundCalling" in data:
+    if data.get("InboundCalling") is not None:
         out["inbound_calling"] = data["InboundCalling"]
     else:
         raise DeserializationError("TelephonySettings.inbound_calling required")
-    if "OutboundCalling" in data:
+    if data.get("OutboundCalling") is not None:
         out["outbound_calling"] = data["OutboundCalling"]
     else:
         raise DeserializationError("TelephonySettings.outbound_calling required")
-    if "SMS" in data:
+    if data.get("SMS") is not None:
         out["sms"] = data["SMS"]
     else:
         raise DeserializationError("TelephonySettings.sms required")

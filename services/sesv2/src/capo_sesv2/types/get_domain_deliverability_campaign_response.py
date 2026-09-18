@@ -32,7 +32,7 @@ def serialize_json(value: GetDomainDeliverabilityCampaignResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetDomainDeliverabilityCampaignResponse:
     out: GetDomainDeliverabilityCampaignResponse = {}  # type: ignore[typeddict-item]
-    if "DomainDeliverabilityCampaign" in data:
+    if data.get("DomainDeliverabilityCampaign") is not None:
         import capo_sesv2.types.domain_deliverability_campaign
 
         out["domain_deliverability_campaign"] = (

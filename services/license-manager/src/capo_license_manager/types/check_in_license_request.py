@@ -28,12 +28,12 @@ def serialize_aws_json_1_1(value: CheckInLicenseRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CheckInLicenseRequest:
     out: CheckInLicenseRequest = {}  # type: ignore[typeddict-item]
-    if "LicenseConsumptionToken" in data:
+    if data.get("LicenseConsumptionToken") is not None:
         out["license_consumption_token"] = data["LicenseConsumptionToken"]
     else:
         raise DeserializationError(
             "CheckInLicenseRequest.license_consumption_token required"
         )
-    if "Beneficiary" in data:
+    if data.get("Beneficiary") is not None:
         out["beneficiary"] = data["Beneficiary"]
     return out

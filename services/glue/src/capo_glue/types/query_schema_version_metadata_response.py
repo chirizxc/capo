@@ -43,7 +43,7 @@ def serialize_aws_json_1_1(value: QuerySchemaVersionMetadataResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> QuerySchemaVersionMetadataResponse:
     out: QuerySchemaVersionMetadataResponse = {}  # type: ignore[typeddict-item]
-    if "MetadataInfoMap" in data:
+    if data.get("MetadataInfoMap") is not None:
         import capo_glue.types.metadata_info_map
 
         out["metadata_info_map"] = (
@@ -51,8 +51,8 @@ def deserialize_aws_json_1_1(data: dict) -> QuerySchemaVersionMetadataResponse:
                 data["MetadataInfoMap"]
             )
         )
-    if "SchemaVersionId" in data:
+    if data.get("SchemaVersionId") is not None:
         out["schema_version_id"] = data["SchemaVersionId"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

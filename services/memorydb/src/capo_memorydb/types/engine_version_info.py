@@ -35,12 +35,12 @@ def serialize_aws_json_1_1(value: EngineVersionInfo) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> EngineVersionInfo:
     out: EngineVersionInfo = {}  # type: ignore[typeddict-item]
-    if "Engine" in data:
+    if data.get("Engine") is not None:
         out["engine"] = data["Engine"]
-    if "EngineVersion" in data:
+    if data.get("EngineVersion") is not None:
         out["engine_version"] = data["EngineVersion"]
-    if "EnginePatchVersion" in data:
+    if data.get("EnginePatchVersion") is not None:
         out["engine_patch_version"] = data["EnginePatchVersion"]
-    if "ParameterGroupFamily" in data:
+    if data.get("ParameterGroupFamily") is not None:
         out["parameter_group_family"] = data["ParameterGroupFamily"]
     return out

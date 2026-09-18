@@ -64,9 +64,9 @@ def serialize_json(value: AwsCodeBuildProjectEnvironment) -> dict:
 
 def deserialize_json(data: dict) -> AwsCodeBuildProjectEnvironment:
     out: AwsCodeBuildProjectEnvironment = {}  # type: ignore[typeddict-item]
-    if "Certificate" in data:
+    if data.get("Certificate") is not None:
         out["certificate"] = data["Certificate"]
-    if "EnvironmentVariables" in data:
+    if data.get("EnvironmentVariables") is not None:
         import capo_securityhub.types.aws_code_build_project_environment_environment_variables_list
 
         out["environment_variables"] = (
@@ -74,11 +74,11 @@ def deserialize_json(data: dict) -> AwsCodeBuildProjectEnvironment:
                 data["EnvironmentVariables"]
             )
         )
-    if "PrivilegedMode" in data:
+    if data.get("PrivilegedMode") is not None:
         out["privileged_mode"] = data["PrivilegedMode"]
-    if "ImagePullCredentialsType" in data:
+    if data.get("ImagePullCredentialsType") is not None:
         out["image_pull_credentials_type"] = data["ImagePullCredentialsType"]
-    if "RegistryCredential" in data:
+    if data.get("RegistryCredential") is not None:
         import capo_securityhub.types.aws_code_build_project_environment_registry_credential
 
         out["registry_credential"] = (
@@ -86,6 +86,6 @@ def deserialize_json(data: dict) -> AwsCodeBuildProjectEnvironment:
                 data["RegistryCredential"]
             )
         )
-    if "Type" in data:
+    if data.get("Type") is not None:
         out["type"] = data["Type"]
     return out

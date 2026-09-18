@@ -30,7 +30,7 @@ def serialize_json(value: ProtectedQueryDistributeOutputConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> ProtectedQueryDistributeOutputConfiguration:
     out: ProtectedQueryDistributeOutputConfiguration = {}  # type: ignore[typeddict-item]
-    if "locations" in data:
+    if data.get("locations") is not None:
         import capo_cleanrooms.types.protected_query_distribute_output_configuration_locations
 
         out["locations"] = (

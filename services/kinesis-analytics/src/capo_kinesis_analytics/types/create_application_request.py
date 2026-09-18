@@ -78,25 +78,25 @@ def serialize_aws_json_1_1(value: CreateApplicationRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateApplicationRequest:
     out: CreateApplicationRequest = {}  # type: ignore[typeddict-item]
-    if "ApplicationName" in data:
+    if data.get("ApplicationName") is not None:
         out["application_name"] = data["ApplicationName"]
     else:
         raise DeserializationError("CreateApplicationRequest.application_name required")
-    if "ApplicationDescription" in data:
+    if data.get("ApplicationDescription") is not None:
         out["application_description"] = data["ApplicationDescription"]
-    if "Inputs" in data:
+    if data.get("Inputs") is not None:
         import capo_kinesis_analytics.types.inputs
 
         out["inputs"] = capo_kinesis_analytics.types.inputs.deserialize_aws_json_1_1(
             data["Inputs"]
         )
-    if "Outputs" in data:
+    if data.get("Outputs") is not None:
         import capo_kinesis_analytics.types.outputs
 
         out["outputs"] = capo_kinesis_analytics.types.outputs.deserialize_aws_json_1_1(
             data["Outputs"]
         )
-    if "CloudWatchLoggingOptions" in data:
+    if data.get("CloudWatchLoggingOptions") is not None:
         import capo_kinesis_analytics.types.cloud_watch_logging_options
 
         out["cloud_watch_logging_options"] = (
@@ -104,9 +104,9 @@ def deserialize_aws_json_1_1(data: dict) -> CreateApplicationRequest:
                 data["CloudWatchLoggingOptions"]
             )
         )
-    if "ApplicationCode" in data:
+    if data.get("ApplicationCode") is not None:
         out["application_code"] = data["ApplicationCode"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_kinesis_analytics.types.tags
 
         out["tags"] = capo_kinesis_analytics.types.tags.deserialize_aws_json_1_1(

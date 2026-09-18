@@ -25,6 +25,8 @@ def deserialize_aws_json_1_1(data: list) -> ImageTagDetailList:
 
     out: ImageTagDetailList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_ecr_public.types.image_tag_detail.deserialize_aws_json_1_1(item)
         )

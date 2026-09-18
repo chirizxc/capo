@@ -26,10 +26,10 @@ def serialize_json(value: ReasonSummary) -> dict:
 
 def deserialize_json(data: dict) -> ReasonSummary:
     out: ReasonSummary = {}  # type: ignore[typeddict-item]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "statementIndex" in data:
+    if data.get("statementIndex") is not None:
         out["statement_index"] = data["statementIndex"]
-    if "statementId" in data:
+    if data.get("statementId") is not None:
         out["statement_id"] = data["statementId"]
     return out

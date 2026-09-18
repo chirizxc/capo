@@ -67,23 +67,23 @@ def serialize_aws_json_1_0(value: ListFHIRImportJobsRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ListFHIRImportJobsRequest:
     out: ListFHIRImportJobsRequest = {}  # type: ignore[typeddict-item]
-    if "DatastoreId" in data:
+    if data.get("DatastoreId") is not None:
         out["datastore_id"] = data["DatastoreId"]
     else:
         raise DeserializationError("ListFHIRImportJobsRequest.datastore_id required")
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "JobName" in data:
+    if data.get("JobName") is not None:
         out["job_name"] = data["JobName"]
-    if "JobStatus" in data:
+    if data.get("JobStatus") is not None:
         import capo_healthlake.types.job_status
 
         out["job_status"] = capo_healthlake.types.job_status.deserialize_aws_json_1_0(
             data["JobStatus"]
         )
-    if "SubmittedBefore" in data:
+    if data.get("SubmittedBefore") is not None:
         import capo_healthlake.types.timestamp
 
         out["submitted_before"] = (
@@ -91,7 +91,7 @@ def deserialize_aws_json_1_0(data: dict) -> ListFHIRImportJobsRequest:
                 data["SubmittedBefore"]
             )
         )
-    if "SubmittedAfter" in data:
+    if data.get("SubmittedAfter") is not None:
         import capo_healthlake.types.timestamp
 
         out["submitted_after"] = (

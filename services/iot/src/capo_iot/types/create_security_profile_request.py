@@ -90,19 +90,19 @@ def serialize_json(value: CreateSecurityProfileRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateSecurityProfileRequest:
     out: CreateSecurityProfileRequest = {}  # type: ignore[typeddict-item]
-    if "securityProfileDescription" in data:
+    if data.get("securityProfileDescription") is not None:
         out["security_profile_description"] = data["securityProfileDescription"]
-    if "behaviors" in data:
+    if data.get("behaviors") is not None:
         import capo_iot.types.behaviors
 
         out["behaviors"] = capo_iot.types.behaviors.deserialize_json(data["behaviors"])
-    if "alertTargets" in data:
+    if data.get("alertTargets") is not None:
         import capo_iot.types.alert_targets
 
         out["alert_targets"] = capo_iot.types.alert_targets.deserialize_json(
             data["alertTargets"]
         )
-    if "additionalMetricsToRetain" in data:
+    if data.get("additionalMetricsToRetain") is not None:
         import capo_iot.types.additional_metrics_to_retain_list
 
         out["additional_metrics_to_retain"] = (
@@ -110,7 +110,7 @@ def deserialize_json(data: dict) -> CreateSecurityProfileRequest:
                 data["additionalMetricsToRetain"]
             )
         )
-    if "additionalMetricsToRetainV2" in data:
+    if data.get("additionalMetricsToRetainV2") is not None:
         import capo_iot.types.additional_metrics_to_retain_v2_list
 
         out["additional_metrics_to_retain_v2"] = (
@@ -118,11 +118,11 @@ def deserialize_json(data: dict) -> CreateSecurityProfileRequest:
                 data["additionalMetricsToRetainV2"]
             )
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_iot.types.tag_list
 
         out["tags"] = capo_iot.types.tag_list.deserialize_json(data["tags"])
-    if "metricsExportConfig" in data:
+    if data.get("metricsExportConfig") is not None:
         import capo_iot.types.metrics_export_config
 
         out["metrics_export_config"] = (

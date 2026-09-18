@@ -26,7 +26,7 @@ def serialize_json(value: DailySchedule) -> dict:
 
 def deserialize_json(data: dict) -> DailySchedule:
     out: DailySchedule = {}  # type: ignore[typeddict-item]
-    if "startTime" in data:
+    if data.get("startTime") is not None:
         import capo_inspector2.types.time
 
         out["start_time"] = capo_inspector2.types.time.deserialize_json(

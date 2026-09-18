@@ -48,15 +48,15 @@ def serialize_json(value: CreateDistributionConfigurationRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateDistributionConfigurationRequest:
     out: CreateDistributionConfigurationRequest = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError(
             "CreateDistributionConfigurationRequest.name required"
         )
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "distributions" in data:
+    if data.get("distributions") is not None:
         import capo_imagebuilder.types.distribution_list
 
         out["distributions"] = (
@@ -68,11 +68,11 @@ def deserialize_json(data: dict) -> CreateDistributionConfigurationRequest:
         raise DeserializationError(
             "CreateDistributionConfigurationRequest.distributions required"
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_imagebuilder.types.tag_map
 
         out["tags"] = capo_imagebuilder.types.tag_map.deserialize_json(data["tags"])
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     else:
         raise DeserializationError(

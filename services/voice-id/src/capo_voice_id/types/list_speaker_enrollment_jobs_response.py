@@ -36,7 +36,7 @@ def serialize_aws_json_1_0(value: ListSpeakerEnrollmentJobsResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ListSpeakerEnrollmentJobsResponse:
     out: ListSpeakerEnrollmentJobsResponse = {}  # type: ignore[typeddict-item]
-    if "JobSummaries" in data:
+    if data.get("JobSummaries") is not None:
         import capo_voice_id.types.speaker_enrollment_job_summaries
 
         out["job_summaries"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_0(data: dict) -> ListSpeakerEnrollmentJobsResponse:
                 data["JobSummaries"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

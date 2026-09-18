@@ -25,5 +25,7 @@ def deserialize_aws_json_1_1(data: list) -> ParameterGroupList:
 
     out: ParameterGroupList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_memorydb.types.parameter_group.deserialize_aws_json_1_1(item))
     return out

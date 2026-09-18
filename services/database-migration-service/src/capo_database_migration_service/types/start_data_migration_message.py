@@ -34,13 +34,13 @@ def serialize_aws_json_1_1(value: StartDataMigrationMessage) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> StartDataMigrationMessage:
     out: StartDataMigrationMessage = {}  # type: ignore[typeddict-item]
-    if "DataMigrationIdentifier" in data:
+    if data.get("DataMigrationIdentifier") is not None:
         out["data_migration_identifier"] = data["DataMigrationIdentifier"]
     else:
         raise DeserializationError(
             "StartDataMigrationMessage.data_migration_identifier required"
         )
-    if "StartType" in data:
+    if data.get("StartType") is not None:
         import capo_database_migration_service.types.start_replication_migration_type_value
 
         out["start_type"] = (

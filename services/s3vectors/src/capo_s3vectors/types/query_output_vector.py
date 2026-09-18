@@ -24,7 +24,15 @@ class QueryOutputVector(TypedDict, closed=True):
 def serialize_json(value: QueryOutputVector) -> dict:
     out: dict = {}
     if "distance" in value:
-        out["distance"] = value["distance"]
+        out["distance"] = (
+            "NaN"
+            if value["distance"] != value["distance"]
+            else "Infinity"
+            if value["distance"] == float("inf")
+            else "-Infinity"
+            if value["distance"] == float("-inf")
+            else value["distance"]
+        )
     out["key"] = value["key"]
     if "metadata" in value:
         out["metadata"] = value["metadata"]
@@ -33,12 +41,12 @@ def serialize_json(value: QueryOutputVector) -> dict:
 
 def deserialize_json(data: dict) -> QueryOutputVector:
     out: QueryOutputVector = {}  # type: ignore[typeddict-item]
-    if "distance" in data:
-        out["distance"] = data["distance"]
-    if "key" in data:
+    if data.get("distance") is not None:
+        out["distance"] = float(data["distance"])
+    if data.get("key") is not None:
         out["key"] = data["key"]
     else:
         raise DeserializationError("QueryOutputVector.key required")
-    if "metadata" in data:
+    if data.get("metadata") is not None:
         out["metadata"] = data["metadata"]
     return out

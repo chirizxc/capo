@@ -24,7 +24,7 @@ def serialize_json(value: UserJobsFirst) -> dict:
 
 def deserialize_json(data: dict) -> UserJobsFirst:
     out: UserJobsFirst = {}  # type: ignore[typeddict-item]
-    if "userIdentityId" in data:
+    if data.get("userIdentityId") is not None:
         out["user_identity_id"] = data["userIdentityId"]
     else:
         raise DeserializationError("UserJobsFirst.user_identity_id required")

@@ -41,13 +41,13 @@ def serialize_aws_json_1_1(value: AgentsAlreadyRunningAssessmentException_) -> d
 
 def deserialize_aws_json_1_1(data: dict) -> AgentsAlreadyRunningAssessmentException_:
     out: AgentsAlreadyRunningAssessmentException_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     else:
         raise DeserializationError(
             "AgentsAlreadyRunningAssessmentException_.message required"
         )
-    if "agents" in data:
+    if data.get("agents") is not None:
         import capo_inspector.types.agent_already_running_assessment_list
 
         out["agents"] = (
@@ -59,13 +59,13 @@ def deserialize_aws_json_1_1(data: dict) -> AgentsAlreadyRunningAssessmentExcept
         raise DeserializationError(
             "AgentsAlreadyRunningAssessmentException_.agents required"
         )
-    if "agentsTruncated" in data:
+    if data.get("agentsTruncated") is not None:
         out["agents_truncated"] = data["agentsTruncated"]
     else:
         raise DeserializationError(
             "AgentsAlreadyRunningAssessmentException_.agents_truncated required"
         )
-    if "canRetry" in data:
+    if data.get("canRetry") is not None:
         out["can_retry"] = data["canRetry"]
     else:
         raise DeserializationError(
@@ -79,15 +79,20 @@ class AgentsAlreadyRunningAssessmentException(ServiceError):
 
     code: str | None = "AgentsAlreadyRunningAssessmentException"
 
-    def __init__(self, data: AgentsAlreadyRunningAssessmentException_):
+    def __init__(
+        self, data: AgentsAlreadyRunningAssessmentException_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="AgentsAlreadyRunningAssessmentException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "AgentsAlreadyRunningAssessmentException":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "AgentsAlreadyRunningAssessmentException":
+        return cls(deserialize_aws_json_1_1(data), message)

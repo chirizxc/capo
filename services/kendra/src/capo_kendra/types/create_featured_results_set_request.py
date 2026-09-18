@@ -84,21 +84,21 @@ def serialize_aws_json_1_1(value: CreateFeaturedResultsSetRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateFeaturedResultsSetRequest:
     out: CreateFeaturedResultsSetRequest = {}  # type: ignore[typeddict-item]
-    if "IndexId" in data:
+    if data.get("IndexId") is not None:
         out["index_id"] = data["IndexId"]
     else:
         raise DeserializationError("CreateFeaturedResultsSetRequest.index_id required")
-    if "FeaturedResultsSetName" in data:
+    if data.get("FeaturedResultsSetName") is not None:
         out["featured_results_set_name"] = data["FeaturedResultsSetName"]
     else:
         raise DeserializationError(
             "CreateFeaturedResultsSetRequest.featured_results_set_name required"
         )
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_kendra.types.featured_results_set_status
 
         out["status"] = (
@@ -106,13 +106,13 @@ def deserialize_aws_json_1_1(data: dict) -> CreateFeaturedResultsSetRequest:
                 data["Status"]
             )
         )
-    if "QueryTexts" in data:
+    if data.get("QueryTexts") is not None:
         import capo_kendra.types.query_text_list
 
         out["query_texts"] = capo_kendra.types.query_text_list.deserialize_aws_json_1_1(
             data["QueryTexts"]
         )
-    if "FeaturedDocuments" in data:
+    if data.get("FeaturedDocuments") is not None:
         import capo_kendra.types.featured_document_list
 
         out["featured_documents"] = (
@@ -120,7 +120,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateFeaturedResultsSetRequest:
                 data["FeaturedDocuments"]
             )
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_kendra.types.tag_list
 
         out["tags"] = capo_kendra.types.tag_list.deserialize_aws_json_1_1(data["Tags"])

@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> FileSystemLocationsList:
 
     out: FileSystemLocationsList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_deadline.types.file_system_location.deserialize_json(item))
     return out

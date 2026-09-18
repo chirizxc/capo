@@ -32,10 +32,10 @@ def serialize_aws_json_1_1(value: S3StorageConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> S3StorageConfig:
     out: S3StorageConfig = {}  # type: ignore[typeddict-item]
-    if "S3Uri" in data:
+    if data.get("S3Uri") is not None:
         out["s3_uri"] = data["S3Uri"]
-    if "KmsKeyId" in data:
+    if data.get("KmsKeyId") is not None:
         out["kms_key_id"] = data["KmsKeyId"]
-    if "ResolvedOutputS3Uri" in data:
+    if data.get("ResolvedOutputS3Uri") is not None:
         out["resolved_output_s3_uri"] = data["ResolvedOutputS3Uri"]
     return out

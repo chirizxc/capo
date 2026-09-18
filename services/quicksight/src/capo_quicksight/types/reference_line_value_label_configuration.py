@@ -44,7 +44,7 @@ def serialize_json(value: ReferenceLineValueLabelConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> ReferenceLineValueLabelConfiguration:
     out: ReferenceLineValueLabelConfiguration = {}  # type: ignore[typeddict-item]
-    if "RelativePosition" in data:
+    if data.get("RelativePosition") is not None:
         import capo_quicksight.types.reference_line_value_label_relative_position
 
         out["relative_position"] = (
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> ReferenceLineValueLabelConfiguration:
                 data["RelativePosition"]
             )
         )
-    if "FormatConfiguration" in data:
+    if data.get("FormatConfiguration") is not None:
         import capo_quicksight.types.numeric_format_configuration
 
         out["format_configuration"] = (

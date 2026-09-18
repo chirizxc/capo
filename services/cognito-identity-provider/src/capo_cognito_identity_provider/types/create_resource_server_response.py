@@ -32,7 +32,7 @@ def serialize_aws_json_1_1(value: CreateResourceServerResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateResourceServerResponse:
     out: CreateResourceServerResponse = {}  # type: ignore[typeddict-item]
-    if "ResourceServer" in data:
+    if data.get("ResourceServer") is not None:
         import capo_cognito_identity_provider.types.resource_server_type
 
         out["resource_server"] = (

@@ -70,33 +70,33 @@ def serialize_json(value: DescribeAuditTaskResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribeAuditTaskResponse:
     out: DescribeAuditTaskResponse = {}  # type: ignore[typeddict-item]
-    if "taskStatus" in data:
+    if data.get("taskStatus") is not None:
         import capo_iot.types.audit_task_status
 
         out["task_status"] = capo_iot.types.audit_task_status.deserialize_json(
             data["taskStatus"]
         )
-    if "taskType" in data:
+    if data.get("taskType") is not None:
         import capo_iot.types.audit_task_type
 
         out["task_type"] = capo_iot.types.audit_task_type.deserialize_json(
             data["taskType"]
         )
-    if "taskStartTime" in data:
+    if data.get("taskStartTime") is not None:
         import capo_iot.types.timestamp
 
         out["task_start_time"] = capo_iot.types.timestamp.deserialize_json(
             data["taskStartTime"]
         )
-    if "taskStatistics" in data:
+    if data.get("taskStatistics") is not None:
         import capo_iot.types.task_statistics
 
         out["task_statistics"] = capo_iot.types.task_statistics.deserialize_json(
             data["taskStatistics"]
         )
-    if "scheduledAuditName" in data:
+    if data.get("scheduledAuditName") is not None:
         out["scheduled_audit_name"] = data["scheduledAuditName"]
-    if "auditDetails" in data:
+    if data.get("auditDetails") is not None:
         import capo_iot.types.audit_details
 
         out["audit_details"] = capo_iot.types.audit_details.deserialize_json(

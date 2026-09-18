@@ -35,14 +35,14 @@ def serialize_aws_json_1_1(value: ListCustomRoutingListenersRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListCustomRoutingListenersRequest:
     out: ListCustomRoutingListenersRequest = {}  # type: ignore[typeddict-item]
-    if "AcceleratorArn" in data:
+    if data.get("AcceleratorArn") is not None:
         out["accelerator_arn"] = data["AcceleratorArn"]
     else:
         raise DeserializationError(
             "ListCustomRoutingListenersRequest.accelerator_arn required"
         )
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

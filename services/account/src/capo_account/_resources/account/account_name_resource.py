@@ -64,8 +64,9 @@ class AccountNameResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_account.types.put_account_name_request.PutAccountNameRequest = {}  # type: ignore[typeddict-item]
-        input_["account_name"] = account_name
+        input_: capo_account.types.put_account_name_request.PutAccountNameRequest = {
+            "account_name": account_name
+        }
         if account_id is not None:
             input_["account_id"] = account_id
 
@@ -74,6 +75,7 @@ class AccountNameResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -110,7 +112,7 @@ class AccountNameResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_account.types.get_account_information_request.GetAccountInformationRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_account.types.get_account_information_request.GetAccountInformationRequest = {}
         if account_id is not None:
             input_["account_id"] = account_id
 
@@ -119,6 +121,7 @@ class AccountNameResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -161,8 +164,9 @@ class AsyncAccountNameResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_account.types.put_account_name_request.PutAccountNameRequest = {}  # type: ignore[typeddict-item]
-        input_["account_name"] = account_name
+        input_: capo_account.types.put_account_name_request.PutAccountNameRequest = {
+            "account_name": account_name
+        }
         if account_id is not None:
             input_["account_id"] = account_id
 
@@ -171,6 +175,7 @@ class AsyncAccountNameResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -208,7 +213,7 @@ class AsyncAccountNameResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_account.types.get_account_information_request.GetAccountInformationRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_account.types.get_account_information_request.GetAccountInformationRequest = {}
         if account_id is not None:
             input_["account_id"] = account_id
 
@@ -217,4 +222,5 @@ class AsyncAccountNameResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

@@ -39,12 +39,12 @@ def serialize_json(value: ImportBackendAuthRequest) -> dict:
 
 def deserialize_json(data: dict) -> ImportBackendAuthRequest:
     out: ImportBackendAuthRequest = {}  # type: ignore[typeddict-item]
-    if "identityPoolId" in data:
+    if data.get("identityPoolId") is not None:
         out["identity_pool_id"] = data["identityPoolId"]
-    if "nativeClientId" in data:
+    if data.get("nativeClientId") is not None:
         out["native_client_id"] = data["nativeClientId"]
-    if "userPoolId" in data:
+    if data.get("userPoolId") is not None:
         out["user_pool_id"] = data["userPoolId"]
-    if "webClientId" in data:
+    if data.get("webClientId") is not None:
         out["web_client_id"] = data["webClientId"]
     return out

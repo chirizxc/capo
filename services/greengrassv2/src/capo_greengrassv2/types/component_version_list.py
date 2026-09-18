@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> ComponentVersionList:
 
     out: ComponentVersionList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_greengrassv2.types.component_version_list_item.deserialize_json(item)
         )

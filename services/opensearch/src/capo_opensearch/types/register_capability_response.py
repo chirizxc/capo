@@ -50,17 +50,17 @@ def serialize_json(value: RegisterCapabilityResponse) -> dict:
 
 def deserialize_json(data: dict) -> RegisterCapabilityResponse:
     out: RegisterCapabilityResponse = {}  # type: ignore[typeddict-item]
-    if "capabilityName" in data:
+    if data.get("capabilityName") is not None:
         out["capability_name"] = data["capabilityName"]
-    if "applicationId" in data:
+    if data.get("applicationId") is not None:
         out["application_id"] = data["applicationId"]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_opensearch.types.capability_status
 
         out["status"] = capo_opensearch.types.capability_status.deserialize_json(
             data["status"]
         )
-    if "capabilityConfig" in data:
+    if data.get("capabilityConfig") is not None:
         import capo_opensearch.types.capability_base_response_config
 
         out["capability_config"] = (

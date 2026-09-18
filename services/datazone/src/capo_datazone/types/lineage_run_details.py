@@ -31,7 +31,7 @@ def serialize_json(value: LineageRunDetails) -> dict:
 
 def deserialize_json(data: dict) -> LineageRunDetails:
     out: LineageRunDetails = {}  # type: ignore[typeddict-item]
-    if "sqlQueryRunDetails" in data:
+    if data.get("sqlQueryRunDetails") is not None:
         import capo_datazone.types.lineage_sql_query_run_details
 
         out["sql_query_run_details"] = (

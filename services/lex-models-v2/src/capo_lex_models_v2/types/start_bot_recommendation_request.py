@@ -54,7 +54,7 @@ def serialize_json(value: StartBotRecommendationRequest) -> dict:
 
 def deserialize_json(data: dict) -> StartBotRecommendationRequest:
     out: StartBotRecommendationRequest = {}  # type: ignore[typeddict-item]
-    if "transcriptSourceSetting" in data:
+    if data.get("transcriptSourceSetting") is not None:
         import capo_lex_models_v2.types.transcript_source_setting
 
         out["transcript_source_setting"] = (
@@ -66,7 +66,7 @@ def deserialize_json(data: dict) -> StartBotRecommendationRequest:
         raise DeserializationError(
             "StartBotRecommendationRequest.transcript_source_setting required"
         )
-    if "encryptionSetting" in data:
+    if data.get("encryptionSetting") is not None:
         import capo_lex_models_v2.types.encryption_setting
 
         out["encryption_setting"] = (

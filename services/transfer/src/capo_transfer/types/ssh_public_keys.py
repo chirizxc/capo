@@ -23,5 +23,7 @@ def deserialize_aws_json_1_1(data: list) -> SshPublicKeys:
 
     out: SshPublicKeys = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_transfer.types.ssh_public_key.deserialize_aws_json_1_1(item))
     return out

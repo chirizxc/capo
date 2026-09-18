@@ -32,11 +32,11 @@ def serialize_aws_json_1_1(value: RemoveTagsFromResourceInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RemoveTagsFromResourceInput:
     out: RemoveTagsFromResourceInput = {}  # type: ignore[typeddict-item]
-    if "ResourceARN" in data:
+    if data.get("ResourceARN") is not None:
         out["resource_arn"] = data["ResourceARN"]
     else:
         raise DeserializationError("RemoveTagsFromResourceInput.resource_arn required")
-    if "TagKeys" in data:
+    if data.get("TagKeys") is not None:
         import capo_storage_gateway.types.tag_keys
 
         out["tag_keys"] = capo_storage_gateway.types.tag_keys.deserialize_aws_json_1_1(

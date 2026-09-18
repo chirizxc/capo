@@ -34,11 +34,11 @@ def serialize_json(value: SearchJobsFilter) -> dict:
 
 def deserialize_json(data: dict) -> SearchJobsFilter:
     out: SearchJobsFilter = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("SearchJobsFilter.name required")
-    if "values" in data:
+    if data.get("values") is not None:
         import capo_braket.types.string256_list
 
         out["values"] = capo_braket.types.string256_list.deserialize_json(
@@ -46,7 +46,7 @@ def deserialize_json(data: dict) -> SearchJobsFilter:
         )
     else:
         raise DeserializationError("SearchJobsFilter.values required")
-    if "operator" in data:
+    if data.get("operator") is not None:
         out["operator"] = data["operator"]
     else:
         raise DeserializationError("SearchJobsFilter.operator required")

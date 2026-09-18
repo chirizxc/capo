@@ -45,15 +45,15 @@ def serialize_json(value: FilterV2) -> dict:
 
 def deserialize_json(data: dict) -> FilterV2:
     out: FilterV2 = {}  # type: ignore[typeddict-item]
-    if "FilterKey" in data:
+    if data.get("FilterKey") is not None:
         out["filter_key"] = data["FilterKey"]
-    if "FilterValues" in data:
+    if data.get("FilterValues") is not None:
         import capo_connect.types.filter_value_list
 
         out["filter_values"] = capo_connect.types.filter_value_list.deserialize_json(
             data["FilterValues"]
         )
-    if "StringCondition" in data:
+    if data.get("StringCondition") is not None:
         import capo_connect.types.filter_v2_string_condition
 
         out["string_condition"] = (

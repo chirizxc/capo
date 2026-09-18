@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: UpdateResolverDnssecConfigResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateResolverDnssecConfigResponse:
     out: UpdateResolverDnssecConfigResponse = {}  # type: ignore[typeddict-item]
-    if "ResolverDNSSECConfig" in data:
+    if data.get("ResolverDNSSECConfig") is not None:
         import capo_route53resolver.types.resolver_dnssec_config
 
         out["resolver_dnssec_config"] = (

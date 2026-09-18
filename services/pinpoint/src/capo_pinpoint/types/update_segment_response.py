@@ -28,7 +28,7 @@ def serialize_json(value: UpdateSegmentResponse) -> dict:
 
 def deserialize_json(data: dict) -> UpdateSegmentResponse:
     out: UpdateSegmentResponse = {}  # type: ignore[typeddict-item]
-    if "SegmentResponse" in data:
+    if data.get("SegmentResponse") is not None:
         import capo_pinpoint.types.segment_response
 
         out["segment_response"] = capo_pinpoint.types.segment_response.deserialize_json(

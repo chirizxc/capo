@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> AggregationList:
 
     out: AggregationList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_datazone.types.aggregation_list_item.deserialize_json(item))
     return out

@@ -31,19 +31,19 @@ def serialize_aws_json_1_1(value: DisassociateMemberFromGroupRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DisassociateMemberFromGroupRequest:
     out: DisassociateMemberFromGroupRequest = {}  # type: ignore[typeddict-item]
-    if "OrganizationId" in data:
+    if data.get("OrganizationId") is not None:
         out["organization_id"] = data["OrganizationId"]
     else:
         raise DeserializationError(
             "DisassociateMemberFromGroupRequest.organization_id required"
         )
-    if "GroupId" in data:
+    if data.get("GroupId") is not None:
         out["group_id"] = data["GroupId"]
     else:
         raise DeserializationError(
             "DisassociateMemberFromGroupRequest.group_id required"
         )
-    if "MemberId" in data:
+    if data.get("MemberId") is not None:
         out["member_id"] = data["MemberId"]
     else:
         raise DeserializationError(

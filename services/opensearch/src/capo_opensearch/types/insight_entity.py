@@ -33,7 +33,7 @@ def serialize_json(value: InsightEntity) -> dict:
 
 def deserialize_json(data: dict) -> InsightEntity:
     out: InsightEntity = {}  # type: ignore[typeddict-item]
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_opensearch.types.insight_entity_type
 
         out["type"] = capo_opensearch.types.insight_entity_type.deserialize_json(
@@ -41,6 +41,6 @@ def deserialize_json(data: dict) -> InsightEntity:
         )
     else:
         raise DeserializationError("InsightEntity.type required")
-    if "Value" in data:
+    if data.get("Value") is not None:
         out["value"] = data["Value"]
     return out

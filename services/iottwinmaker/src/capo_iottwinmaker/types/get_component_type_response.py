@@ -143,21 +143,21 @@ def serialize_json(value: GetComponentTypeResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetComponentTypeResponse:
     out: GetComponentTypeResponse = {}  # type: ignore[typeddict-item]
-    if "workspaceId" in data:
+    if data.get("workspaceId") is not None:
         out["workspace_id"] = data["workspaceId"]
     else:
         raise DeserializationError("GetComponentTypeResponse.workspace_id required")
-    if "isSingleton" in data:
+    if data.get("isSingleton") is not None:
         out["is_singleton"] = data["isSingleton"]
-    if "componentTypeId" in data:
+    if data.get("componentTypeId") is not None:
         out["component_type_id"] = data["componentTypeId"]
     else:
         raise DeserializationError(
             "GetComponentTypeResponse.component_type_id required"
         )
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "propertyDefinitions" in data:
+    if data.get("propertyDefinitions") is not None:
         import capo_iottwinmaker.types.property_definitions_response
 
         out["property_definitions"] = (
@@ -165,19 +165,19 @@ def deserialize_json(data: dict) -> GetComponentTypeResponse:
                 data["propertyDefinitions"]
             )
         )
-    if "extendsFrom" in data:
+    if data.get("extendsFrom") is not None:
         import capo_iottwinmaker.types.extends_from
 
         out["extends_from"] = capo_iottwinmaker.types.extends_from.deserialize_json(
             data["extendsFrom"]
         )
-    if "functions" in data:
+    if data.get("functions") is not None:
         import capo_iottwinmaker.types.functions_response
 
         out["functions"] = capo_iottwinmaker.types.functions_response.deserialize_json(
             data["functions"]
         )
-    if "creationDateTime" in data:
+    if data.get("creationDateTime") is not None:
         import capo_iottwinmaker.types.timestamp
 
         out["creation_date_time"] = capo_iottwinmaker.types.timestamp.deserialize_json(
@@ -187,7 +187,7 @@ def deserialize_json(data: dict) -> GetComponentTypeResponse:
         raise DeserializationError(
             "GetComponentTypeResponse.creation_date_time required"
         )
-    if "updateDateTime" in data:
+    if data.get("updateDateTime") is not None:
         import capo_iottwinmaker.types.timestamp
 
         out["update_date_time"] = capo_iottwinmaker.types.timestamp.deserialize_json(
@@ -195,19 +195,19 @@ def deserialize_json(data: dict) -> GetComponentTypeResponse:
         )
     else:
         raise DeserializationError("GetComponentTypeResponse.update_date_time required")
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("GetComponentTypeResponse.arn required")
-    if "isAbstract" in data:
+    if data.get("isAbstract") is not None:
         out["is_abstract"] = data["isAbstract"]
-    if "isSchemaInitialized" in data:
+    if data.get("isSchemaInitialized") is not None:
         out["is_schema_initialized"] = data["isSchemaInitialized"]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_iottwinmaker.types.status
 
         out["status"] = capo_iottwinmaker.types.status.deserialize_json(data["status"])
-    if "propertyGroups" in data:
+    if data.get("propertyGroups") is not None:
         import capo_iottwinmaker.types.property_groups_response
 
         out["property_groups"] = (
@@ -215,11 +215,11 @@ def deserialize_json(data: dict) -> GetComponentTypeResponse:
                 data["propertyGroups"]
             )
         )
-    if "syncSource" in data:
+    if data.get("syncSource") is not None:
         out["sync_source"] = data["syncSource"]
-    if "componentTypeName" in data:
+    if data.get("componentTypeName") is not None:
         out["component_type_name"] = data["componentTypeName"]
-    if "compositeComponentTypes" in data:
+    if data.get("compositeComponentTypes") is not None:
         import capo_iottwinmaker.types.composite_component_types_response
 
         out["composite_component_types"] = (

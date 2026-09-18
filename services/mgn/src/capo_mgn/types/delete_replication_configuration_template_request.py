@@ -26,7 +26,7 @@ def serialize_json(value: DeleteReplicationConfigurationTemplateRequest) -> dict
 
 def deserialize_json(data: dict) -> DeleteReplicationConfigurationTemplateRequest:
     out: DeleteReplicationConfigurationTemplateRequest = {}  # type: ignore[typeddict-item]
-    if "replicationConfigurationTemplateID" in data:
+    if data.get("replicationConfigurationTemplateID") is not None:
         out["replication_configuration_template_id"] = data[
             "replicationConfigurationTemplateID"
         ]

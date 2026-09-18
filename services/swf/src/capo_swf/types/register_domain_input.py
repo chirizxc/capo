@@ -46,13 +46,13 @@ def serialize_aws_json_1_0(value: RegisterDomainInput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> RegisterDomainInput:
     out: RegisterDomainInput = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("RegisterDomainInput.name required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "workflowExecutionRetentionPeriodInDays" in data:
+    if data.get("workflowExecutionRetentionPeriodInDays") is not None:
         out["workflow_execution_retention_period_in_days"] = data[
             "workflowExecutionRetentionPeriodInDays"
         ]
@@ -60,7 +60,7 @@ def deserialize_aws_json_1_0(data: dict) -> RegisterDomainInput:
         raise DeserializationError(
             "RegisterDomainInput.workflow_execution_retention_period_in_days required"
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_swf.types.resource_tag_list
 
         out["tags"] = capo_swf.types.resource_tag_list.deserialize_aws_json_1_0(

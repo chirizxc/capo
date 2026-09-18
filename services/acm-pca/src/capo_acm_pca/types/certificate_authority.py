@@ -161,17 +161,17 @@ def serialize_aws_json_1_1(value: CertificateAuthority) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CertificateAuthority:
     out: CertificateAuthority = {}  # type: ignore[typeddict-item]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "OwnerAccount" in data:
+    if data.get("OwnerAccount") is not None:
         out["owner_account"] = data["OwnerAccount"]
-    if "CreatedAt" in data:
+    if data.get("CreatedAt") is not None:
         import capo_acm_pca.types.t_stamp
 
         out["created_at"] = capo_acm_pca.types.t_stamp.deserialize_aws_json_1_1(
             data["CreatedAt"]
         )
-    if "LastStateChangeAt" in data:
+    if data.get("LastStateChangeAt") is not None:
         import capo_acm_pca.types.t_stamp
 
         out["last_state_change_at"] = (
@@ -179,7 +179,7 @@ def deserialize_aws_json_1_1(data: dict) -> CertificateAuthority:
                 data["LastStateChangeAt"]
             )
         )
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_acm_pca.types.certificate_authority_type
 
         out["type"] = (
@@ -187,9 +187,9 @@ def deserialize_aws_json_1_1(data: dict) -> CertificateAuthority:
                 data["Type"]
             )
         )
-    if "Serial" in data:
+    if data.get("Serial") is not None:
         out["serial"] = data["Serial"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_acm_pca.types.certificate_authority_status
 
         out["status"] = (
@@ -197,19 +197,19 @@ def deserialize_aws_json_1_1(data: dict) -> CertificateAuthority:
                 data["Status"]
             )
         )
-    if "NotBefore" in data:
+    if data.get("NotBefore") is not None:
         import capo_acm_pca.types.t_stamp
 
         out["not_before"] = capo_acm_pca.types.t_stamp.deserialize_aws_json_1_1(
             data["NotBefore"]
         )
-    if "NotAfter" in data:
+    if data.get("NotAfter") is not None:
         import capo_acm_pca.types.t_stamp
 
         out["not_after"] = capo_acm_pca.types.t_stamp.deserialize_aws_json_1_1(
             data["NotAfter"]
         )
-    if "FailureReason" in data:
+    if data.get("FailureReason") is not None:
         import capo_acm_pca.types.failure_reason
 
         out["failure_reason"] = (
@@ -217,7 +217,7 @@ def deserialize_aws_json_1_1(data: dict) -> CertificateAuthority:
                 data["FailureReason"]
             )
         )
-    if "CertificateAuthorityConfiguration" in data:
+    if data.get("CertificateAuthorityConfiguration") is not None:
         import capo_acm_pca.types.certificate_authority_configuration
 
         out["certificate_authority_configuration"] = (
@@ -225,7 +225,7 @@ def deserialize_aws_json_1_1(data: dict) -> CertificateAuthority:
                 data["CertificateAuthorityConfiguration"]
             )
         )
-    if "RevocationConfiguration" in data:
+    if data.get("RevocationConfiguration") is not None:
         import capo_acm_pca.types.revocation_configuration
 
         out["revocation_configuration"] = (
@@ -233,13 +233,13 @@ def deserialize_aws_json_1_1(data: dict) -> CertificateAuthority:
                 data["RevocationConfiguration"]
             )
         )
-    if "RestorableUntil" in data:
+    if data.get("RestorableUntil") is not None:
         import capo_acm_pca.types.t_stamp
 
         out["restorable_until"] = capo_acm_pca.types.t_stamp.deserialize_aws_json_1_1(
             data["RestorableUntil"]
         )
-    if "KeyStorageSecurityStandard" in data:
+    if data.get("KeyStorageSecurityStandard") is not None:
         import capo_acm_pca.types.key_storage_security_standard
 
         out["key_storage_security_standard"] = (
@@ -247,7 +247,7 @@ def deserialize_aws_json_1_1(data: dict) -> CertificateAuthority:
                 data["KeyStorageSecurityStandard"]
             )
         )
-    if "UsageMode" in data:
+    if data.get("UsageMode") is not None:
         import capo_acm_pca.types.certificate_authority_usage_mode
 
         out["usage_mode"] = (

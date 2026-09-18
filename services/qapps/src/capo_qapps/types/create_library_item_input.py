@@ -39,15 +39,15 @@ def serialize_json(value: CreateLibraryItemInput) -> dict:
 
 def deserialize_json(data: dict) -> CreateLibraryItemInput:
     out: CreateLibraryItemInput = {}  # type: ignore[typeddict-item]
-    if "appId" in data:
+    if data.get("appId") is not None:
         out["app_id"] = data["appId"]
     else:
         raise DeserializationError("CreateLibraryItemInput.app_id required")
-    if "appVersion" in data:
+    if data.get("appVersion") is not None:
         out["app_version"] = data["appVersion"]
     else:
         raise DeserializationError("CreateLibraryItemInput.app_version required")
-    if "categories" in data:
+    if data.get("categories") is not None:
         import capo_qapps.types.category_id_list
 
         out["categories"] = capo_qapps.types.category_id_list.deserialize_json(

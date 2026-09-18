@@ -37,14 +37,14 @@ class StartQueryWorkloadInsightsTopContributorsInput(TypedDict, closed=True):
 # --- restJson1 ser/de ---
 def serialize_json(value: StartQueryWorkloadInsightsTopContributorsInput) -> dict:
     out: dict = {}
-    import capo_networkflowmonitor.types._prelude.timestamp
+    import capo_networkflowmonitor._protocol.serialize
 
-    out["startTime"] = capo_networkflowmonitor.types._prelude.timestamp.serialize_json(
+    out["startTime"] = capo_networkflowmonitor._protocol.serialize.fmt_date_time(
         value["start_time"]
     )
-    import capo_networkflowmonitor.types._prelude.timestamp
+    import capo_networkflowmonitor._protocol.serialize
 
-    out["endTime"] = capo_networkflowmonitor.types._prelude.timestamp.serialize_json(
+    out["endTime"] = capo_networkflowmonitor._protocol.serialize.fmt_date_time(
         value["end_time"]
     )
     import capo_networkflowmonitor.types.workload_insights_metric
@@ -68,31 +68,27 @@ def serialize_json(value: StartQueryWorkloadInsightsTopContributorsInput) -> dic
 
 def deserialize_json(data: dict) -> StartQueryWorkloadInsightsTopContributorsInput:
     out: StartQueryWorkloadInsightsTopContributorsInput = {}  # type: ignore[typeddict-item]
-    if "startTime" in data:
-        import capo_networkflowmonitor.types._prelude.timestamp
+    if data.get("startTime") is not None:
+        import datetime
 
-        out["start_time"] = (
-            capo_networkflowmonitor.types._prelude.timestamp.deserialize_json(
-                data["startTime"]
-            )
+        out["start_time"] = datetime.datetime.fromisoformat(
+            data["startTime"].replace("Z", "+00:00")
         )
     else:
         raise DeserializationError(
             "StartQueryWorkloadInsightsTopContributorsInput.start_time required"
         )
-    if "endTime" in data:
-        import capo_networkflowmonitor.types._prelude.timestamp
+    if data.get("endTime") is not None:
+        import datetime
 
-        out["end_time"] = (
-            capo_networkflowmonitor.types._prelude.timestamp.deserialize_json(
-                data["endTime"]
-            )
+        out["end_time"] = datetime.datetime.fromisoformat(
+            data["endTime"].replace("Z", "+00:00")
         )
     else:
         raise DeserializationError(
             "StartQueryWorkloadInsightsTopContributorsInput.end_time required"
         )
-    if "metricName" in data:
+    if data.get("metricName") is not None:
         import capo_networkflowmonitor.types.workload_insights_metric
 
         out["metric_name"] = (
@@ -104,7 +100,7 @@ def deserialize_json(data: dict) -> StartQueryWorkloadInsightsTopContributorsInp
         raise DeserializationError(
             "StartQueryWorkloadInsightsTopContributorsInput.metric_name required"
         )
-    if "destinationCategory" in data:
+    if data.get("destinationCategory") is not None:
         import capo_networkflowmonitor.types.destination_category
 
         out["destination_category"] = (
@@ -116,6 +112,6 @@ def deserialize_json(data: dict) -> StartQueryWorkloadInsightsTopContributorsInp
         raise DeserializationError(
             "StartQueryWorkloadInsightsTopContributorsInput.destination_category required"
         )
-    if "limit" in data:
+    if data.get("limit") is not None:
         out["limit"] = data["limit"]
     return out

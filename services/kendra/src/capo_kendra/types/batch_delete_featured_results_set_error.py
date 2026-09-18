@@ -36,11 +36,11 @@ def serialize_aws_json_1_1(value: BatchDeleteFeaturedResultsSetError) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> BatchDeleteFeaturedResultsSetError:
     out: BatchDeleteFeaturedResultsSetError = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
     else:
         raise DeserializationError("BatchDeleteFeaturedResultsSetError.id required")
-    if "ErrorCode" in data:
+    if data.get("ErrorCode") is not None:
         import capo_kendra.types.error_code
 
         out["error_code"] = capo_kendra.types.error_code.deserialize_aws_json_1_1(
@@ -50,7 +50,7 @@ def deserialize_aws_json_1_1(data: dict) -> BatchDeleteFeaturedResultsSetError:
         raise DeserializationError(
             "BatchDeleteFeaturedResultsSetError.error_code required"
         )
-    if "ErrorMessage" in data:
+    if data.get("ErrorMessage") is not None:
         out["error_message"] = data["ErrorMessage"]
     else:
         raise DeserializationError(

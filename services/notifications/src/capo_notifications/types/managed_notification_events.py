@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> ManagedNotificationEvents:
 
     out: ManagedNotificationEvents = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_notifications.types.managed_notification_event_overview.deserialize_json(
                 item

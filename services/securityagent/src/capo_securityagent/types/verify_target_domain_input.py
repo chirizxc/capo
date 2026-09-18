@@ -24,7 +24,7 @@ def serialize_json(value: VerifyTargetDomainInput) -> dict:
 
 def deserialize_json(data: dict) -> VerifyTargetDomainInput:
     out: VerifyTargetDomainInput = {}  # type: ignore[typeddict-item]
-    if "targetDomainId" in data:
+    if data.get("targetDomainId") is not None:
         out["target_domain_id"] = data["targetDomainId"]
     else:
         raise DeserializationError("VerifyTargetDomainInput.target_domain_id required")

@@ -36,9 +36,9 @@ def serialize_aws_json_1_1(value: RecommendationJobOutputConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RecommendationJobOutputConfig:
     out: RecommendationJobOutputConfig = {}  # type: ignore[typeddict-item]
-    if "KmsKeyId" in data:
+    if data.get("KmsKeyId") is not None:
         out["kms_key_id"] = data["KmsKeyId"]
-    if "CompiledOutputConfig" in data:
+    if data.get("CompiledOutputConfig") is not None:
         import capo_sagemaker.types.recommendation_job_compiled_output_config
 
         out["compiled_output_config"] = (

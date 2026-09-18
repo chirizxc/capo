@@ -31,12 +31,12 @@ def serialize_json(value: ListRequesterGatewaysResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListRequesterGatewaysResponse:
     out: ListRequesterGatewaysResponse = {}  # type: ignore[typeddict-item]
-    if "gatewayIds" in data:
+    if data.get("gatewayIds") is not None:
         import capo_rtbfabric.types.gateway_id_list
 
         out["gateway_ids"] = capo_rtbfabric.types.gateway_id_list.deserialize_json(
             data["gatewayIds"]
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

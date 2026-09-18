@@ -27,8 +27,8 @@ def serialize_json(value: AwsAccount) -> dict:
 
 def deserialize_json(data: dict) -> AwsAccount:
     out: AwsAccount = {}  # type: ignore[typeddict-item]
-    if "accountId" in data:
+    if data.get("accountId") is not None:
         out["account_id"] = data["accountId"]
-    if "principalId" in data:
+    if data.get("principalId") is not None:
         out["principal_id"] = data["principalId"]
     return out

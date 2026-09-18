@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> FindingsTrendsStringFilterList:
 
     out: FindingsTrendsStringFilterList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_securityhub.types.findings_trends_string_filter.deserialize_json(item)
         )

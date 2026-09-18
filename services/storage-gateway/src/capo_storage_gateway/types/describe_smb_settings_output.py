@@ -75,11 +75,11 @@ def serialize_aws_json_1_1(value: DescribeSMBSettingsOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeSMBSettingsOutput:
     out: DescribeSMBSettingsOutput = {}  # type: ignore[typeddict-item]
-    if "GatewayARN" in data:
+    if data.get("GatewayARN") is not None:
         out["gateway_arn"] = data["GatewayARN"]
-    if "DomainName" in data:
+    if data.get("DomainName") is not None:
         out["domain_name"] = data["DomainName"]
-    if "ActiveDirectoryStatus" in data:
+    if data.get("ActiveDirectoryStatus") is not None:
         import capo_storage_gateway.types.active_directory_status
 
         out["active_directory_status"] = (
@@ -87,9 +87,9 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeSMBSettingsOutput:
                 data["ActiveDirectoryStatus"]
             )
         )
-    if "SMBGuestPasswordSet" in data:
+    if data.get("SMBGuestPasswordSet") is not None:
         out["smb_guest_password_set"] = data["SMBGuestPasswordSet"]
-    if "SMBSecurityStrategy" in data:
+    if data.get("SMBSecurityStrategy") is not None:
         import capo_storage_gateway.types.smb_security_strategy
 
         out["smb_security_strategy"] = (
@@ -97,9 +97,9 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeSMBSettingsOutput:
                 data["SMBSecurityStrategy"]
             )
         )
-    if "FileSharesVisible" in data:
+    if data.get("FileSharesVisible") is not None:
         out["file_shares_visible"] = data["FileSharesVisible"]
-    if "SMBLocalGroups" in data:
+    if data.get("SMBLocalGroups") is not None:
         import capo_storage_gateway.types.smb_local_groups
 
         out["smb_local_groups"] = (

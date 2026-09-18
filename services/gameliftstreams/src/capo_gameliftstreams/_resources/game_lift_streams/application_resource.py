@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import uuid
 from typing import TYPE_CHECKING, Optional
 
 import capo_gameliftstreams._auth._signers
@@ -105,25 +106,28 @@ class ApplicationResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_gameliftstreams.types.create_application_input.CreateApplicationInput = {}  # type: ignore[typeddict-item]
-        input_["description"] = description
-        input_["runtime_environment"] = runtime_environment
-        input_["executable_path"] = executable_path
-        input_["application_source_uri"] = application_source_uri
+        input_: capo_gameliftstreams.types.create_application_input.CreateApplicationInput = {
+            "description": description,
+            "runtime_environment": runtime_environment,
+            "executable_path": executable_path,
+            "application_source_uri": application_source_uri,
+        }
         if application_log_paths is not None:
             input_["application_log_paths"] = application_log_paths
         if application_log_output_uri is not None:
             input_["application_log_output_uri"] = application_log_output_uri
         if tags is not None:
             input_["tags"] = tags
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -161,14 +165,16 @@ class ApplicationResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_gameliftstreams.types.get_application_input.GetApplicationInput = {}  # type: ignore[typeddict-item]
-        input_["identifier"] = identifier
+        input_: capo_gameliftstreams.types.get_application_input.GetApplicationInput = {
+            "identifier": identifier
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update(
@@ -218,8 +224,9 @@ class ApplicationResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_gameliftstreams.types.update_application_input.UpdateApplicationInput = {}  # type: ignore[typeddict-item]
-        input_["identifier"] = identifier
+        input_: capo_gameliftstreams.types.update_application_input.UpdateApplicationInput = {
+            "identifier": identifier
+        }
         if description is not None:
             input_["description"] = description
         if application_log_paths is not None:
@@ -232,6 +239,7 @@ class ApplicationResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -268,14 +276,16 @@ class ApplicationResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_gameliftstreams.types.delete_application_input.DeleteApplicationInput = {}  # type: ignore[typeddict-item]
-        input_["identifier"] = identifier
+        input_: capo_gameliftstreams.types.delete_application_input.DeleteApplicationInput = {
+            "identifier": identifier
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -316,7 +326,7 @@ class ApplicationResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_gameliftstreams.types.list_applications_input.ListApplicationsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_gameliftstreams.types.list_applications_input.ListApplicationsInput = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -327,6 +337,7 @@ class ApplicationResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -391,25 +402,28 @@ class AsyncApplicationResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_gameliftstreams.types.create_application_input.CreateApplicationInput = {}  # type: ignore[typeddict-item]
-        input_["description"] = description
-        input_["runtime_environment"] = runtime_environment
-        input_["executable_path"] = executable_path
-        input_["application_source_uri"] = application_source_uri
+        input_: capo_gameliftstreams.types.create_application_input.CreateApplicationInput = {
+            "description": description,
+            "runtime_environment": runtime_environment,
+            "executable_path": executable_path,
+            "application_source_uri": application_source_uri,
+        }
         if application_log_paths is not None:
             input_["application_log_paths"] = application_log_paths
         if application_log_output_uri is not None:
             input_["application_log_output_uri"] = application_log_output_uri
         if tags is not None:
             input_["tags"] = tags
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -448,14 +462,16 @@ class AsyncApplicationResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_gameliftstreams.types.get_application_input.GetApplicationInput = {}  # type: ignore[typeddict-item]
-        input_["identifier"] = identifier
+        input_: capo_gameliftstreams.types.get_application_input.GetApplicationInput = {
+            "identifier": identifier
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update(
@@ -506,8 +522,9 @@ class AsyncApplicationResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_gameliftstreams.types.update_application_input.UpdateApplicationInput = {}  # type: ignore[typeddict-item]
-        input_["identifier"] = identifier
+        input_: capo_gameliftstreams.types.update_application_input.UpdateApplicationInput = {
+            "identifier": identifier
+        }
         if description is not None:
             input_["description"] = description
         if application_log_paths is not None:
@@ -520,6 +537,7 @@ class AsyncApplicationResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -557,14 +575,16 @@ class AsyncApplicationResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_gameliftstreams.types.delete_application_input.DeleteApplicationInput = {}  # type: ignore[typeddict-item]
-        input_["identifier"] = identifier
+        input_: capo_gameliftstreams.types.delete_application_input.DeleteApplicationInput = {
+            "identifier": identifier
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -606,7 +626,7 @@ class AsyncApplicationResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_gameliftstreams.types.list_applications_input.ListApplicationsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_gameliftstreams.types.list_applications_input.ListApplicationsInput = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -617,4 +637,5 @@ class AsyncApplicationResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

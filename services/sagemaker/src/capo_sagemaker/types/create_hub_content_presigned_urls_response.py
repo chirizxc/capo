@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: CreateHubContentPresignedUrlsResponse) -> dict
 
 def deserialize_aws_json_1_1(data: dict) -> CreateHubContentPresignedUrlsResponse:
     out: CreateHubContentPresignedUrlsResponse = {}  # type: ignore[typeddict-item]
-    if "AuthorizedUrlConfigs" in data:
+    if data.get("AuthorizedUrlConfigs") is not None:
         import capo_sagemaker.types.authorized_url_configs
 
         out["authorized_url_configs"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_1(data: dict) -> CreateHubContentPresignedUrlsRespons
                 data["AuthorizedUrlConfigs"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

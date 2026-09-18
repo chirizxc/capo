@@ -49,17 +49,17 @@ def serialize_json(value: UpdateRecoveryPointLifecycleOutput) -> dict:
 
 def deserialize_json(data: dict) -> UpdateRecoveryPointLifecycleOutput:
     out: UpdateRecoveryPointLifecycleOutput = {}  # type: ignore[typeddict-item]
-    if "BackupVaultArn" in data:
+    if data.get("BackupVaultArn") is not None:
         out["backup_vault_arn"] = data["BackupVaultArn"]
-    if "RecoveryPointArn" in data:
+    if data.get("RecoveryPointArn") is not None:
         out["recovery_point_arn"] = data["RecoveryPointArn"]
-    if "Lifecycle" in data:
+    if data.get("Lifecycle") is not None:
         import capo_backup.types.lifecycle
 
         out["lifecycle"] = capo_backup.types.lifecycle.deserialize_json(
             data["Lifecycle"]
         )
-    if "CalculatedLifecycle" in data:
+    if data.get("CalculatedLifecycle") is not None:
         import capo_backup.types.calculated_lifecycle
 
         out["calculated_lifecycle"] = (

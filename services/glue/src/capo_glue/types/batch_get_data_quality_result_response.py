@@ -41,7 +41,7 @@ def serialize_aws_json_1_1(value: BatchGetDataQualityResultResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> BatchGetDataQualityResultResponse:
     out: BatchGetDataQualityResultResponse = {}  # type: ignore[typeddict-item]
-    if "Results" in data:
+    if data.get("Results") is not None:
         import capo_glue.types.data_quality_results_list
 
         out["results"] = (
@@ -51,7 +51,7 @@ def deserialize_aws_json_1_1(data: dict) -> BatchGetDataQualityResultResponse:
         )
     else:
         raise DeserializationError("BatchGetDataQualityResultResponse.results required")
-    if "ResultsNotFound" in data:
+    if data.get("ResultsNotFound") is not None:
         import capo_glue.types.data_quality_result_ids
 
         out["results_not_found"] = (

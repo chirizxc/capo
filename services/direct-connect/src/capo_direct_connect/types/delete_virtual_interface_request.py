@@ -26,7 +26,7 @@ def serialize_aws_json_1_1(value: DeleteVirtualInterfaceRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteVirtualInterfaceRequest:
     out: DeleteVirtualInterfaceRequest = {}  # type: ignore[typeddict-item]
-    if "virtualInterfaceId" in data:
+    if data.get("virtualInterfaceId") is not None:
         out["virtual_interface_id"] = data["virtualInterfaceId"]
     else:
         raise DeserializationError(

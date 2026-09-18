@@ -1,6 +1,7 @@
 """Generated from Smithy shape ``com.amazonaws.inspector#InspectorService``."""
 
 import warnings
+from collections.abc import AsyncIterator
 from typing import TYPE_CHECKING, Any, Iterable, Optional
 
 from typing_extensions import Self, TypedDict
@@ -16,6 +17,7 @@ from capo_inspector._auth._providers import (
     default_aws_credentials_chain,
 )
 from capo_inspector._auth._zapros_handler import AuthMiddleware
+from capo_inspector._pagination import resolve_path as _resolve_path
 from capo_inspector._services._aws_config import aaws_config
 from capo_inspector._services._pipeline import (
     AsyncInterceptor,
@@ -259,15 +261,17 @@ class AsyncInspectorClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_inspector.types.add_attributes_to_findings_request.AddAttributesToFindingsRequest = {}  # type: ignore[typeddict-item]
-        input_["finding_arns"] = finding_arns
-        input_["attributes"] = attributes
+        input_: capo_inspector.types.add_attributes_to_findings_request.AddAttributesToFindingsRequest = {
+            "finding_arns": finding_arns,
+            "attributes": attributes,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_assessment_target(
@@ -316,8 +320,9 @@ class AsyncInspectorClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_inspector.types.create_assessment_target_request.CreateAssessmentTargetRequest = {}  # type: ignore[typeddict-item]
-        input_["assessment_target_name"] = assessment_target_name
+        input_: capo_inspector.types.create_assessment_target_request.CreateAssessmentTargetRequest = {
+            "assessment_target_name": assessment_target_name
+        }
         if resource_group_arn is not None:
             input_["resource_group_arn"] = resource_group_arn
 
@@ -326,6 +331,7 @@ class AsyncInspectorClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_assessment_template(
@@ -381,11 +387,12 @@ class AsyncInspectorClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_inspector.types.create_assessment_template_request.CreateAssessmentTemplateRequest = {}  # type: ignore[typeddict-item]
-        input_["assessment_target_arn"] = assessment_target_arn
-        input_["assessment_template_name"] = assessment_template_name
-        input_["duration_in_seconds"] = duration_in_seconds
-        input_["rules_package_arns"] = rules_package_arns
+        input_: capo_inspector.types.create_assessment_template_request.CreateAssessmentTemplateRequest = {
+            "assessment_target_arn": assessment_target_arn,
+            "assessment_template_name": assessment_template_name,
+            "duration_in_seconds": duration_in_seconds,
+            "rules_package_arns": rules_package_arns,
+        }
         if user_attributes_for_findings is not None:
             input_["user_attributes_for_findings"] = user_attributes_for_findings
 
@@ -394,6 +401,7 @@ class AsyncInspectorClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_exclusions_preview(
@@ -433,14 +441,16 @@ class AsyncInspectorClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_inspector.types.create_exclusions_preview_request.CreateExclusionsPreviewRequest = {}  # type: ignore[typeddict-item]
-        input_["assessment_template_arn"] = assessment_template_arn
+        input_: capo_inspector.types.create_exclusions_preview_request.CreateExclusionsPreviewRequest = {
+            "assessment_template_arn": assessment_template_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_resource_group(
@@ -485,14 +495,16 @@ class AsyncInspectorClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_inspector.types.create_resource_group_request.CreateResourceGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_group_tags"] = resource_group_tags
+        input_: capo_inspector.types.create_resource_group_request.CreateResourceGroupRequest = {
+            "resource_group_tags": resource_group_tags
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_assessment_run(
@@ -536,14 +548,16 @@ class AsyncInspectorClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_inspector.types.delete_assessment_run_request.DeleteAssessmentRunRequest = {}  # type: ignore[typeddict-item]
-        input_["assessment_run_arn"] = assessment_run_arn
+        input_: capo_inspector.types.delete_assessment_run_request.DeleteAssessmentRunRequest = {
+            "assessment_run_arn": assessment_run_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_assessment_target(
@@ -587,14 +601,16 @@ class AsyncInspectorClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_inspector.types.delete_assessment_target_request.DeleteAssessmentTargetRequest = {}  # type: ignore[typeddict-item]
-        input_["assessment_target_arn"] = assessment_target_arn
+        input_: capo_inspector.types.delete_assessment_target_request.DeleteAssessmentTargetRequest = {
+            "assessment_target_arn": assessment_target_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_assessment_template(
@@ -638,14 +654,16 @@ class AsyncInspectorClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_inspector.types.delete_assessment_template_request.DeleteAssessmentTemplateRequest = {}  # type: ignore[typeddict-item]
-        input_["assessment_template_arn"] = assessment_template_arn
+        input_: capo_inspector.types.delete_assessment_template_request.DeleteAssessmentTemplateRequest = {
+            "assessment_template_arn": assessment_template_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_assessment_runs(
@@ -681,14 +699,16 @@ class AsyncInspectorClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_inspector.types.describe_assessment_runs_request.DescribeAssessmentRunsRequest = {}  # type: ignore[typeddict-item]
-        input_["assessment_run_arns"] = assessment_run_arns
+        input_: capo_inspector.types.describe_assessment_runs_request.DescribeAssessmentRunsRequest = {
+            "assessment_run_arns": assessment_run_arns
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_assessment_targets(
@@ -724,14 +744,16 @@ class AsyncInspectorClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_inspector.types.describe_assessment_targets_request.DescribeAssessmentTargetsRequest = {}  # type: ignore[typeddict-item]
-        input_["assessment_target_arns"] = assessment_target_arns
+        input_: capo_inspector.types.describe_assessment_targets_request.DescribeAssessmentTargetsRequest = {
+            "assessment_target_arns": assessment_target_arns
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_assessment_templates(
@@ -764,14 +786,16 @@ class AsyncInspectorClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_inspector.types.describe_assessment_templates_request.DescribeAssessmentTemplatesRequest = {}  # type: ignore[typeddict-item]
-        input_["assessment_template_arns"] = assessment_template_arns
+        input_: capo_inspector.types.describe_assessment_templates_request.DescribeAssessmentTemplatesRequest = {
+            "assessment_template_arns": assessment_template_arns
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_cross_account_access_role(
@@ -806,6 +830,7 @@ class AsyncInspectorClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_exclusions(
@@ -843,8 +868,9 @@ class AsyncInspectorClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_inspector.types.describe_exclusions_request.DescribeExclusionsRequest = {}  # type: ignore[typeddict-item]
-        input_["exclusion_arns"] = exclusion_arns
+        input_: capo_inspector.types.describe_exclusions_request.DescribeExclusionsRequest = {
+            "exclusion_arns": exclusion_arns
+        }
         if locale is not None:
             input_["locale"] = locale
 
@@ -853,6 +879,7 @@ class AsyncInspectorClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_findings(
@@ -890,8 +917,9 @@ class AsyncInspectorClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_inspector.types.describe_findings_request.DescribeFindingsRequest = {}  # type: ignore[typeddict-item]
-        input_["finding_arns"] = finding_arns
+        input_: capo_inspector.types.describe_findings_request.DescribeFindingsRequest = {
+            "finding_arns": finding_arns
+        }
         if locale is not None:
             input_["locale"] = locale
 
@@ -900,6 +928,7 @@ class AsyncInspectorClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_resource_groups(
@@ -935,14 +964,16 @@ class AsyncInspectorClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_inspector.types.describe_resource_groups_request.DescribeResourceGroupsRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_group_arns"] = resource_group_arns
+        input_: capo_inspector.types.describe_resource_groups_request.DescribeResourceGroupsRequest = {
+            "resource_group_arns": resource_group_arns
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_rules_packages(
@@ -986,8 +1017,9 @@ class AsyncInspectorClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_inspector.types.describe_rules_packages_request.DescribeRulesPackagesRequest = {}  # type: ignore[typeddict-item]
-        input_["rules_package_arns"] = rules_package_arns
+        input_: capo_inspector.types.describe_rules_packages_request.DescribeRulesPackagesRequest = {
+            "rules_package_arns": rules_package_arns
+        }
         if locale is not None:
             input_["locale"] = locale
 
@@ -996,6 +1028,7 @@ class AsyncInspectorClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_assessment_report(
@@ -1040,16 +1073,18 @@ class AsyncInspectorClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_inspector.types.get_assessment_report_request.GetAssessmentReportRequest = {}  # type: ignore[typeddict-item]
-        input_["assessment_run_arn"] = assessment_run_arn
-        input_["report_file_format"] = report_file_format
-        input_["report_type"] = report_type
+        input_: capo_inspector.types.get_assessment_report_request.GetAssessmentReportRequest = {
+            "assessment_run_arn": assessment_run_arn,
+            "report_file_format": report_file_format,
+            "report_type": report_type,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_exclusions_preview(
@@ -1099,9 +1134,10 @@ class AsyncInspectorClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_inspector.types.get_exclusions_preview_request.GetExclusionsPreviewRequest = {}  # type: ignore[typeddict-item]
-        input_["assessment_template_arn"] = assessment_template_arn
-        input_["preview_token"] = preview_token
+        input_: capo_inspector.types.get_exclusions_preview_request.GetExclusionsPreviewRequest = {
+            "assessment_template_arn": assessment_template_arn,
+            "preview_token": preview_token,
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -1114,7 +1150,37 @@ class AsyncInspectorClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_get_exclusions_preview(
+        self,
+        assessment_template_arn: "capo_inspector.types.arn.Arn",
+        preview_token: "capo_inspector.types.uuid.UUID",
+        *,
+        config_overrides: Optional[AsyncInspectorClientConfig] = None,
+        next_token: Optional[
+            "capo_inspector.types.pagination_token.PaginationToken"
+        ] = None,
+        max_results: Optional[
+            "capo_inspector.types.list_max_results.ListMaxResults"
+        ] = None,
+        locale: Optional["capo_inspector.types.locale.Locale"] = None,
+    ) -> "AsyncIterator[capo_inspector.types.get_exclusions_preview_response.GetExclusionsPreviewResponse]":
+        _token = next_token
+        while True:
+            _response = await self.get_exclusions_preview(
+                assessment_template_arn,
+                preview_token,
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+                locale=locale,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def get_telemetry_metadata(
         self,
@@ -1157,14 +1223,16 @@ class AsyncInspectorClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_inspector.types.get_telemetry_metadata_request.GetTelemetryMetadataRequest = {}  # type: ignore[typeddict-item]
-        input_["assessment_run_arn"] = assessment_run_arn
+        input_: capo_inspector.types.get_telemetry_metadata_request.GetTelemetryMetadataRequest = {
+            "assessment_run_arn": assessment_run_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_assessment_run_agents(
@@ -1218,8 +1286,9 @@ class AsyncInspectorClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_inspector.types.list_assessment_run_agents_request.ListAssessmentRunAgentsRequest = {}  # type: ignore[typeddict-item]
-        input_["assessment_run_arn"] = assessment_run_arn
+        input_: capo_inspector.types.list_assessment_run_agents_request.ListAssessmentRunAgentsRequest = {
+            "assessment_run_arn": assessment_run_arn
+        }
         if filter is not None:
             input_["filter"] = filter
         if next_token is not None:
@@ -1232,7 +1301,35 @@ class AsyncInspectorClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_assessment_run_agents(
+        self,
+        assessment_run_arn: "capo_inspector.types.arn.Arn",
+        *,
+        config_overrides: Optional[AsyncInspectorClientConfig] = None,
+        filter: Optional["capo_inspector.types.agent_filter.AgentFilter"] = None,
+        next_token: Optional[
+            "capo_inspector.types.pagination_token.PaginationToken"
+        ] = None,
+        max_results: Optional[
+            "capo_inspector.types.list_max_results.ListMaxResults"
+        ] = None,
+    ) -> "AsyncIterator[capo_inspector.types.list_assessment_run_agents_response.ListAssessmentRunAgentsResponse]":
+        _token = next_token
+        while True:
+            _response = await self.list_assessment_run_agents(
+                assessment_run_arn,
+                config_overrides=config_overrides,
+                filter=filter,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_assessment_runs(
         self,
@@ -1291,7 +1388,7 @@ class AsyncInspectorClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_inspector.types.list_assessment_runs_request.ListAssessmentRunsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_inspector.types.list_assessment_runs_request.ListAssessmentRunsRequest = {}
         if assessment_template_arns is not None:
             input_["assessment_template_arns"] = assessment_template_arns
         if filter is not None:
@@ -1306,7 +1403,39 @@ class AsyncInspectorClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_assessment_runs(
+        self,
+        *,
+        config_overrides: Optional[AsyncInspectorClientConfig] = None,
+        assessment_template_arns: Optional[
+            "capo_inspector.types.list_parent_arn_list.ListParentArnList"
+        ] = None,
+        filter: Optional[
+            "capo_inspector.types.assessment_run_filter.AssessmentRunFilter"
+        ] = None,
+        next_token: Optional[
+            "capo_inspector.types.pagination_token.PaginationToken"
+        ] = None,
+        max_results: Optional[
+            "capo_inspector.types.list_max_results.ListMaxResults"
+        ] = None,
+    ) -> "AsyncIterator[capo_inspector.types.list_assessment_runs_response.ListAssessmentRunsResponse]":
+        _token = next_token
+        while True:
+            _response = await self.list_assessment_runs(
+                config_overrides=config_overrides,
+                assessment_template_arns=assessment_template_arns,
+                filter=filter,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_assessment_targets(
         self,
@@ -1358,7 +1487,7 @@ class AsyncInspectorClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_inspector.types.list_assessment_targets_request.ListAssessmentTargetsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_inspector.types.list_assessment_targets_request.ListAssessmentTargetsRequest = {}
         if filter is not None:
             input_["filter"] = filter
         if next_token is not None:
@@ -1371,7 +1500,35 @@ class AsyncInspectorClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_assessment_targets(
+        self,
+        *,
+        config_overrides: Optional[AsyncInspectorClientConfig] = None,
+        filter: Optional[
+            "capo_inspector.types.assessment_target_filter.AssessmentTargetFilter"
+        ] = None,
+        next_token: Optional[
+            "capo_inspector.types.pagination_token.PaginationToken"
+        ] = None,
+        max_results: Optional[
+            "capo_inspector.types.list_max_results.ListMaxResults"
+        ] = None,
+    ) -> "AsyncIterator[capo_inspector.types.list_assessment_targets_response.ListAssessmentTargetsResponse]":
+        _token = next_token
+        while True:
+            _response = await self.list_assessment_targets(
+                config_overrides=config_overrides,
+                filter=filter,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_assessment_templates(
         self,
@@ -1428,7 +1585,7 @@ class AsyncInspectorClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_inspector.types.list_assessment_templates_request.ListAssessmentTemplatesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_inspector.types.list_assessment_templates_request.ListAssessmentTemplatesRequest = {}
         if assessment_target_arns is not None:
             input_["assessment_target_arns"] = assessment_target_arns
         if filter is not None:
@@ -1443,7 +1600,39 @@ class AsyncInspectorClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_assessment_templates(
+        self,
+        *,
+        config_overrides: Optional[AsyncInspectorClientConfig] = None,
+        assessment_target_arns: Optional[
+            "capo_inspector.types.list_parent_arn_list.ListParentArnList"
+        ] = None,
+        filter: Optional[
+            "capo_inspector.types.assessment_template_filter.AssessmentTemplateFilter"
+        ] = None,
+        next_token: Optional[
+            "capo_inspector.types.pagination_token.PaginationToken"
+        ] = None,
+        max_results: Optional[
+            "capo_inspector.types.list_max_results.ListMaxResults"
+        ] = None,
+    ) -> "AsyncIterator[capo_inspector.types.list_assessment_templates_response.ListAssessmentTemplatesResponse]":
+        _token = next_token
+        while True:
+            _response = await self.list_assessment_templates(
+                config_overrides=config_overrides,
+                assessment_target_arns=assessment_target_arns,
+                filter=filter,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_event_subscriptions(
         self,
@@ -1488,7 +1677,7 @@ class AsyncInspectorClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_inspector.types.list_event_subscriptions_request.ListEventSubscriptionsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_inspector.types.list_event_subscriptions_request.ListEventSubscriptionsRequest = {}
         if resource_arn is not None:
             input_["resource_arn"] = resource_arn
         if next_token is not None:
@@ -1501,7 +1690,33 @@ class AsyncInspectorClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_event_subscriptions(
+        self,
+        *,
+        config_overrides: Optional[AsyncInspectorClientConfig] = None,
+        resource_arn: Optional["capo_inspector.types.arn.Arn"] = None,
+        next_token: Optional[
+            "capo_inspector.types.pagination_token.PaginationToken"
+        ] = None,
+        max_results: Optional[
+            "capo_inspector.types.list_event_subscriptions_max_results.ListEventSubscriptionsMaxResults"
+        ] = None,
+    ) -> "AsyncIterator[capo_inspector.types.list_event_subscriptions_response.ListEventSubscriptionsResponse]":
+        _token = next_token
+        while True:
+            _response = await self.list_event_subscriptions(
+                config_overrides=config_overrides,
+                resource_arn=resource_arn,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_exclusions(
         self,
@@ -1546,8 +1761,9 @@ class AsyncInspectorClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_inspector.types.list_exclusions_request.ListExclusionsRequest = {}  # type: ignore[typeddict-item]
-        input_["assessment_run_arn"] = assessment_run_arn
+        input_: capo_inspector.types.list_exclusions_request.ListExclusionsRequest = {
+            "assessment_run_arn": assessment_run_arn
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -1558,7 +1774,33 @@ class AsyncInspectorClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_exclusions(
+        self,
+        assessment_run_arn: "capo_inspector.types.arn.Arn",
+        *,
+        config_overrides: Optional[AsyncInspectorClientConfig] = None,
+        next_token: Optional[
+            "capo_inspector.types.pagination_token.PaginationToken"
+        ] = None,
+        max_results: Optional[
+            "capo_inspector.types.list_max_results.ListMaxResults"
+        ] = None,
+    ) -> "AsyncIterator[capo_inspector.types.list_exclusions_response.ListExclusionsResponse]":
+        _token = next_token
+        while True:
+            _response = await self.list_exclusions(
+                assessment_run_arn,
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_findings(
         self,
@@ -1613,7 +1855,7 @@ class AsyncInspectorClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_inspector.types.list_findings_request.ListFindingsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_inspector.types.list_findings_request.ListFindingsRequest = {}
         if assessment_run_arns is not None:
             input_["assessment_run_arns"] = assessment_run_arns
         if filter is not None:
@@ -1628,7 +1870,37 @@ class AsyncInspectorClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_findings(
+        self,
+        *,
+        config_overrides: Optional[AsyncInspectorClientConfig] = None,
+        assessment_run_arns: Optional[
+            "capo_inspector.types.list_parent_arn_list.ListParentArnList"
+        ] = None,
+        filter: Optional["capo_inspector.types.finding_filter.FindingFilter"] = None,
+        next_token: Optional[
+            "capo_inspector.types.pagination_token.PaginationToken"
+        ] = None,
+        max_results: Optional[
+            "capo_inspector.types.list_max_results.ListMaxResults"
+        ] = None,
+    ) -> "AsyncIterator[capo_inspector.types.list_findings_response.ListFindingsResponse]":
+        _token = next_token
+        while True:
+            _response = await self.list_findings(
+                config_overrides=config_overrides,
+                assessment_run_arns=assessment_run_arns,
+                filter=filter,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_rules_packages(
         self,
@@ -1676,7 +1948,7 @@ class AsyncInspectorClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_inspector.types.list_rules_packages_request.ListRulesPackagesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_inspector.types.list_rules_packages_request.ListRulesPackagesRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -1687,7 +1959,31 @@ class AsyncInspectorClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_rules_packages(
+        self,
+        *,
+        config_overrides: Optional[AsyncInspectorClientConfig] = None,
+        next_token: Optional[
+            "capo_inspector.types.pagination_token.PaginationToken"
+        ] = None,
+        max_results: Optional[
+            "capo_inspector.types.list_max_results.ListMaxResults"
+        ] = None,
+    ) -> "AsyncIterator[capo_inspector.types.list_rules_packages_response.ListRulesPackagesResponse]":
+        _token = next_token
+        while True:
+            _response = await self.list_rules_packages(
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_tags_for_resource(
         self,
@@ -1730,14 +2026,16 @@ class AsyncInspectorClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_inspector.types.list_tags_for_resource_request.ListTagsForResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_inspector.types.list_tags_for_resource_request.ListTagsForResourceRequest = {
+            "resource_arn": resource_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def preview_agents(
@@ -1790,8 +2088,9 @@ class AsyncInspectorClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_inspector.types.preview_agents_request.PreviewAgentsRequest = {}  # type: ignore[typeddict-item]
-        input_["preview_agents_arn"] = preview_agents_arn
+        input_: capo_inspector.types.preview_agents_request.PreviewAgentsRequest = {
+            "preview_agents_arn": preview_agents_arn
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -1802,7 +2101,33 @@ class AsyncInspectorClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_preview_agents(
+        self,
+        preview_agents_arn: "capo_inspector.types.arn.Arn",
+        *,
+        config_overrides: Optional[AsyncInspectorClientConfig] = None,
+        next_token: Optional[
+            "capo_inspector.types.pagination_token.PaginationToken"
+        ] = None,
+        max_results: Optional[
+            "capo_inspector.types.preview_agents_max_results.PreviewAgentsMaxResults"
+        ] = None,
+    ) -> "AsyncIterator[capo_inspector.types.preview_agents_response.PreviewAgentsResponse]":
+        _token = next_token
+        while True:
+            _response = await self.preview_agents(
+                preview_agents_arn,
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def register_cross_account_access_role(
         self,
@@ -1844,14 +2169,16 @@ class AsyncInspectorClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_inspector.types.register_cross_account_access_role_request.RegisterCrossAccountAccessRoleRequest = {}  # type: ignore[typeddict-item]
-        input_["role_arn"] = role_arn
+        input_: capo_inspector.types.register_cross_account_access_role_request.RegisterCrossAccountAccessRoleRequest = {
+            "role_arn": role_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def remove_attributes_from_findings(
@@ -1898,15 +2225,17 @@ class AsyncInspectorClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_inspector.types.remove_attributes_from_findings_request.RemoveAttributesFromFindingsRequest = {}  # type: ignore[typeddict-item]
-        input_["finding_arns"] = finding_arns
-        input_["attribute_keys"] = attribute_keys
+        input_: capo_inspector.types.remove_attributes_from_findings_request.RemoveAttributesFromFindingsRequest = {
+            "finding_arns": finding_arns,
+            "attribute_keys": attribute_keys,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def set_tags_for_resource(
@@ -1951,8 +2280,9 @@ class AsyncInspectorClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_inspector.types.set_tags_for_resource_request.SetTagsForResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_inspector.types.set_tags_for_resource_request.SetTagsForResourceRequest = {
+            "resource_arn": resource_arn
+        }
         if tags is not None:
             input_["tags"] = tags
 
@@ -1961,6 +2291,7 @@ class AsyncInspectorClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def start_assessment_run(
@@ -2014,8 +2345,9 @@ class AsyncInspectorClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_inspector.types.start_assessment_run_request.StartAssessmentRunRequest = {}  # type: ignore[typeddict-item]
-        input_["assessment_template_arn"] = assessment_template_arn
+        input_: capo_inspector.types.start_assessment_run_request.StartAssessmentRunRequest = {
+            "assessment_template_arn": assessment_template_arn
+        }
         if assessment_run_name is not None:
             input_["assessment_run_name"] = assessment_run_name
 
@@ -2024,6 +2356,7 @@ class AsyncInspectorClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def stop_assessment_run(
@@ -2068,8 +2401,9 @@ class AsyncInspectorClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_inspector.types.stop_assessment_run_request.StopAssessmentRunRequest = {}  # type: ignore[typeddict-item]
-        input_["assessment_run_arn"] = assessment_run_arn
+        input_: capo_inspector.types.stop_assessment_run_request.StopAssessmentRunRequest = {
+            "assessment_run_arn": assessment_run_arn
+        }
         if stop_action is not None:
             input_["stop_action"] = stop_action
 
@@ -2078,6 +2412,7 @@ class AsyncInspectorClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def subscribe_to_event(
@@ -2125,16 +2460,18 @@ class AsyncInspectorClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_inspector.types.subscribe_to_event_request.SubscribeToEventRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["event"] = event
-        input_["topic_arn"] = topic_arn
+        input_: capo_inspector.types.subscribe_to_event_request.SubscribeToEventRequest = {
+            "resource_arn": resource_arn,
+            "event": event,
+            "topic_arn": topic_arn,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def unsubscribe_from_event(
@@ -2181,16 +2518,18 @@ class AsyncInspectorClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_inspector.types.unsubscribe_from_event_request.UnsubscribeFromEventRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["event"] = event
-        input_["topic_arn"] = topic_arn
+        input_: capo_inspector.types.unsubscribe_from_event_request.UnsubscribeFromEventRequest = {
+            "resource_arn": resource_arn,
+            "event": event,
+            "topic_arn": topic_arn,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_assessment_target(
@@ -2237,9 +2576,10 @@ class AsyncInspectorClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_inspector.types.update_assessment_target_request.UpdateAssessmentTargetRequest = {}  # type: ignore[typeddict-item]
-        input_["assessment_target_arn"] = assessment_target_arn
-        input_["assessment_target_name"] = assessment_target_name
+        input_: capo_inspector.types.update_assessment_target_request.UpdateAssessmentTargetRequest = {
+            "assessment_target_arn": assessment_target_arn,
+            "assessment_target_name": assessment_target_name,
+        }
         if resource_group_arn is not None:
             input_["resource_group_arn"] = resource_group_arn
 
@@ -2248,6 +2588,7 @@ class AsyncInspectorClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def __aenter__(self) -> Self:

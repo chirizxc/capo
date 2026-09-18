@@ -44,17 +44,17 @@ def serialize_json(value: StartReadSetExportJobRequest) -> dict:
 
 def deserialize_json(data: dict) -> StartReadSetExportJobRequest:
     out: StartReadSetExportJobRequest = {}  # type: ignore[typeddict-item]
-    if "destination" in data:
+    if data.get("destination") is not None:
         out["destination"] = data["destination"]
     else:
         raise DeserializationError("StartReadSetExportJobRequest.destination required")
-    if "roleArn" in data:
+    if data.get("roleArn") is not None:
         out["role_arn"] = data["roleArn"]
     else:
         raise DeserializationError("StartReadSetExportJobRequest.role_arn required")
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
-    if "sources" in data:
+    if data.get("sources") is not None:
         import capo_omics.types.export_read_set_list
 
         out["sources"] = capo_omics.types.export_read_set_list.deserialize_json(

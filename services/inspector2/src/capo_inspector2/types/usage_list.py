@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> UsageList:
 
     out: UsageList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_inspector2.types.usage.deserialize_json(item))
     return out

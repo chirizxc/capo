@@ -28,8 +28,8 @@ def serialize_json(value: AssetCompositeModelPathSegment) -> dict:
 
 def deserialize_json(data: dict) -> AssetCompositeModelPathSegment:
     out: AssetCompositeModelPathSegment = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     return out

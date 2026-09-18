@@ -27,8 +27,8 @@ def serialize_json(value: Country) -> dict:
 
 def deserialize_json(data: dict) -> Country:
     out: Country = {}  # type: ignore[typeddict-item]
-    if "countryCode" in data:
+    if data.get("countryCode") is not None:
         out["country_code"] = data["countryCode"]
-    if "countryName" in data:
+    if data.get("countryName") is not None:
         out["country_name"] = data["countryName"]
     return out

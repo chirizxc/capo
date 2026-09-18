@@ -30,8 +30,8 @@ def serialize_aws_json_1_1(value: FSxLustreFileSystemConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> FSxLustreFileSystemConfig:
     out: FSxLustreFileSystemConfig = {}  # type: ignore[typeddict-item]
-    if "FileSystemId" in data:
+    if data.get("FileSystemId") is not None:
         out["file_system_id"] = data["FileSystemId"]
-    if "FileSystemPath" in data:
+    if data.get("FileSystemPath") is not None:
         out["file_system_path"] = data["FileSystemPath"]
     return out

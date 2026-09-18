@@ -34,11 +34,11 @@ def serialize_json(value: EventSource) -> dict:
 
 def deserialize_json(data: dict) -> EventSource:
     out: EventSource = {}  # type: ignore[typeddict-item]
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_dlm.types.event_source_values
 
         out["type"] = capo_dlm.types.event_source_values.deserialize_json(data["Type"])
-    if "Parameters" in data:
+    if data.get("Parameters") is not None:
         import capo_dlm.types.event_parameters
 
         out["parameters"] = capo_dlm.types.event_parameters.deserialize_json(

@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> IntentClassificationTestResultItemList:
 
     out: IntentClassificationTestResultItemList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_lex_models_v2.types.intent_classification_test_result_item.deserialize_json(
                 item

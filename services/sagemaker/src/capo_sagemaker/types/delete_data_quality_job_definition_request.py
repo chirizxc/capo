@@ -25,6 +25,6 @@ def serialize_aws_json_1_1(value: DeleteDataQualityJobDefinitionRequest) -> dict
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteDataQualityJobDefinitionRequest:
     out: DeleteDataQualityJobDefinitionRequest = {}  # type: ignore[typeddict-item]
-    if "JobDefinitionName" in data:
+    if data.get("JobDefinitionName") is not None:
         out["job_definition_name"] = data["JobDefinitionName"]
     return out

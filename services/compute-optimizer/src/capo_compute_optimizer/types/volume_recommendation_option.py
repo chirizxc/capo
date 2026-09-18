@@ -42,7 +42,15 @@ def serialize_aws_json_1_0(value: VolumeRecommendationOption) -> dict:
                 value["configuration"]
             )
         )
-    out["performanceRisk"] = value.get("performance_risk", 0)
+    out["performanceRisk"] = (
+        "NaN"
+        if value.get("performance_risk", 0) != value.get("performance_risk", 0)
+        else "Infinity"
+        if value.get("performance_risk", 0) == float("inf")
+        else "-Infinity"
+        if value.get("performance_risk", 0) == float("-inf")
+        else value.get("performance_risk", 0)
+    )
     out["rank"] = value.get("rank", 0)
     if "savings_opportunity" in value:
         import capo_compute_optimizer.types.savings_opportunity
@@ -65,7 +73,7 @@ def serialize_aws_json_1_0(value: VolumeRecommendationOption) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> VolumeRecommendationOption:
     out: VolumeRecommendationOption = {}  # type: ignore[typeddict-item]
-    if "configuration" in data:
+    if data.get("configuration") is not None:
         import capo_compute_optimizer.types.volume_configuration
 
         out["configuration"] = (
@@ -73,15 +81,15 @@ def deserialize_aws_json_1_0(data: dict) -> VolumeRecommendationOption:
                 data["configuration"]
             )
         )
-    if "performanceRisk" in data:
-        out["performance_risk"] = data["performanceRisk"]
+    if data.get("performanceRisk") is not None:
+        out["performance_risk"] = float(data["performanceRisk"])
     else:
         out["performance_risk"] = 0
-    if "rank" in data:
+    if data.get("rank") is not None:
         out["rank"] = data["rank"]
     else:
         out["rank"] = 0
-    if "savingsOpportunity" in data:
+    if data.get("savingsOpportunity") is not None:
         import capo_compute_optimizer.types.savings_opportunity
 
         out["savings_opportunity"] = (
@@ -89,7 +97,7 @@ def deserialize_aws_json_1_0(data: dict) -> VolumeRecommendationOption:
                 data["savingsOpportunity"]
             )
         )
-    if "savingsOpportunityAfterDiscounts" in data:
+    if data.get("savingsOpportunityAfterDiscounts") is not None:
         import capo_compute_optimizer.types.ebs_savings_opportunity_after_discounts
 
         out["savings_opportunity_after_discounts"] = (

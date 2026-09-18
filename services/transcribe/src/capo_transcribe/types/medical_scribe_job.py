@@ -151,9 +151,9 @@ def serialize_aws_json_1_1(value: MedicalScribeJob) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> MedicalScribeJob:
     out: MedicalScribeJob = {}  # type: ignore[typeddict-item]
-    if "MedicalScribeJobName" in data:
+    if data.get("MedicalScribeJobName") is not None:
         out["medical_scribe_job_name"] = data["MedicalScribeJobName"]
-    if "MedicalScribeJobStatus" in data:
+    if data.get("MedicalScribeJobStatus") is not None:
         import capo_transcribe.types.medical_scribe_job_status
 
         out["medical_scribe_job_status"] = (
@@ -161,7 +161,7 @@ def deserialize_aws_json_1_1(data: dict) -> MedicalScribeJob:
                 data["MedicalScribeJobStatus"]
             )
         )
-    if "LanguageCode" in data:
+    if data.get("LanguageCode") is not None:
         import capo_transcribe.types.medical_scribe_language_code
 
         out["language_code"] = (
@@ -169,13 +169,13 @@ def deserialize_aws_json_1_1(data: dict) -> MedicalScribeJob:
                 data["LanguageCode"]
             )
         )
-    if "Media" in data:
+    if data.get("Media") is not None:
         import capo_transcribe.types.media
 
         out["media"] = capo_transcribe.types.media.deserialize_aws_json_1_1(
             data["Media"]
         )
-    if "MedicalScribeOutput" in data:
+    if data.get("MedicalScribeOutput") is not None:
         import capo_transcribe.types.medical_scribe_output
 
         out["medical_scribe_output"] = (
@@ -183,19 +183,19 @@ def deserialize_aws_json_1_1(data: dict) -> MedicalScribeJob:
                 data["MedicalScribeOutput"]
             )
         )
-    if "StartTime" in data:
+    if data.get("StartTime") is not None:
         import capo_transcribe.types.date_time
 
         out["start_time"] = capo_transcribe.types.date_time.deserialize_aws_json_1_1(
             data["StartTime"]
         )
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_transcribe.types.date_time
 
         out["creation_time"] = capo_transcribe.types.date_time.deserialize_aws_json_1_1(
             data["CreationTime"]
         )
-    if "CompletionTime" in data:
+    if data.get("CompletionTime") is not None:
         import capo_transcribe.types.date_time
 
         out["completion_time"] = (
@@ -203,9 +203,9 @@ def deserialize_aws_json_1_1(data: dict) -> MedicalScribeJob:
                 data["CompletionTime"]
             )
         )
-    if "FailureReason" in data:
+    if data.get("FailureReason") is not None:
         out["failure_reason"] = data["FailureReason"]
-    if "Settings" in data:
+    if data.get("Settings") is not None:
         import capo_transcribe.types.medical_scribe_settings
 
         out["settings"] = (
@@ -213,9 +213,9 @@ def deserialize_aws_json_1_1(data: dict) -> MedicalScribeJob:
                 data["Settings"]
             )
         )
-    if "DataAccessRoleArn" in data:
+    if data.get("DataAccessRoleArn") is not None:
         out["data_access_role_arn"] = data["DataAccessRoleArn"]
-    if "ChannelDefinitions" in data:
+    if data.get("ChannelDefinitions") is not None:
         import capo_transcribe.types.medical_scribe_channel_definitions
 
         out["channel_definitions"] = (
@@ -223,9 +223,9 @@ def deserialize_aws_json_1_1(data: dict) -> MedicalScribeJob:
                 data["ChannelDefinitions"]
             )
         )
-    if "MedicalScribeContextProvided" in data:
+    if data.get("MedicalScribeContextProvided") is not None:
         out["medical_scribe_context_provided"] = data["MedicalScribeContextProvided"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_transcribe.types.tag_list
 
         out["tags"] = capo_transcribe.types.tag_list.deserialize_aws_json_1_1(

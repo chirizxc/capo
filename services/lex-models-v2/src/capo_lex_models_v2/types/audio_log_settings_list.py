@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> AudioLogSettingsList:
 
     out: AudioLogSettingsList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_lex_models_v2.types.audio_log_setting.deserialize_json(item))
     return out

@@ -29,9 +29,9 @@ def serialize_json(value: NotControllerException_) -> dict:
 
 def deserialize_json(data: dict) -> NotControllerException_:
     out: NotControllerException_ = {}  # type: ignore[typeddict-item]
-    if "invalidParameter" in data:
+    if data.get("invalidParameter") is not None:
         out["invalid_parameter"] = data["invalidParameter"]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     return out
 
@@ -41,15 +41,18 @@ class NotControllerException(ServiceError):
 
     code: str | None = "NotControllerException"
 
-    def __init__(self, data: NotControllerException_):
+    def __init__(self, data: NotControllerException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="NotControllerException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "NotControllerException":
-        return cls(deserialize_json(data))
+    def from_json(
+        cls, data: dict, message: str | None = None
+    ) -> "NotControllerException":
+        return cls(deserialize_json(data), message)

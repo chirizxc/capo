@@ -109,9 +109,9 @@ def serialize_aws_json_1_1(value: DefaultSpaceSettings) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DefaultSpaceSettings:
     out: DefaultSpaceSettings = {}  # type: ignore[typeddict-item]
-    if "ExecutionRole" in data:
+    if data.get("ExecutionRole") is not None:
         out["execution_role"] = data["ExecutionRole"]
-    if "SecurityGroups" in data:
+    if data.get("SecurityGroups") is not None:
         import capo_sagemaker.types.security_group_ids
 
         out["security_groups"] = (
@@ -119,7 +119,7 @@ def deserialize_aws_json_1_1(data: dict) -> DefaultSpaceSettings:
                 data["SecurityGroups"]
             )
         )
-    if "JupyterServerAppSettings" in data:
+    if data.get("JupyterServerAppSettings") is not None:
         import capo_sagemaker.types.jupyter_server_app_settings
 
         out["jupyter_server_app_settings"] = (
@@ -127,7 +127,7 @@ def deserialize_aws_json_1_1(data: dict) -> DefaultSpaceSettings:
                 data["JupyterServerAppSettings"]
             )
         )
-    if "KernelGatewayAppSettings" in data:
+    if data.get("KernelGatewayAppSettings") is not None:
         import capo_sagemaker.types.kernel_gateway_app_settings
 
         out["kernel_gateway_app_settings"] = (
@@ -135,7 +135,7 @@ def deserialize_aws_json_1_1(data: dict) -> DefaultSpaceSettings:
                 data["KernelGatewayAppSettings"]
             )
         )
-    if "JupyterLabAppSettings" in data:
+    if data.get("JupyterLabAppSettings") is not None:
         import capo_sagemaker.types.jupyter_lab_app_settings
 
         out["jupyter_lab_app_settings"] = (
@@ -143,7 +143,7 @@ def deserialize_aws_json_1_1(data: dict) -> DefaultSpaceSettings:
                 data["JupyterLabAppSettings"]
             )
         )
-    if "SpaceStorageSettings" in data:
+    if data.get("SpaceStorageSettings") is not None:
         import capo_sagemaker.types.default_space_storage_settings
 
         out["space_storage_settings"] = (
@@ -151,7 +151,7 @@ def deserialize_aws_json_1_1(data: dict) -> DefaultSpaceSettings:
                 data["SpaceStorageSettings"]
             )
         )
-    if "CustomPosixUserConfig" in data:
+    if data.get("CustomPosixUserConfig") is not None:
         import capo_sagemaker.types.custom_posix_user_config
 
         out["custom_posix_user_config"] = (
@@ -159,7 +159,7 @@ def deserialize_aws_json_1_1(data: dict) -> DefaultSpaceSettings:
                 data["CustomPosixUserConfig"]
             )
         )
-    if "CustomFileSystemConfigs" in data:
+    if data.get("CustomFileSystemConfigs") is not None:
         import capo_sagemaker.types.custom_file_system_configs
 
         out["custom_file_system_configs"] = (

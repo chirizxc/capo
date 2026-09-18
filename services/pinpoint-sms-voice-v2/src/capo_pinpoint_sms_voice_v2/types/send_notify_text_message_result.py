@@ -33,10 +33,10 @@ def serialize_aws_json_1_0(value: SendNotifyTextMessageResult) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> SendNotifyTextMessageResult:
     out: SendNotifyTextMessageResult = {}  # type: ignore[typeddict-item]
-    if "MessageId" in data:
+    if data.get("MessageId") is not None:
         out["message_id"] = data["MessageId"]
-    if "TemplateId" in data:
+    if data.get("TemplateId") is not None:
         out["template_id"] = data["TemplateId"]
-    if "ResolvedMessageBody" in data:
+    if data.get("ResolvedMessageBody") is not None:
         out["resolved_message_body"] = data["ResolvedMessageBody"]
     return out

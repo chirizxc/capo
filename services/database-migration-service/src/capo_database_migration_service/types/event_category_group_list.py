@@ -29,6 +29,8 @@ def deserialize_aws_json_1_1(data: list) -> EventCategoryGroupList:
 
     out: EventCategoryGroupList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_database_migration_service.types.event_category_group.deserialize_aws_json_1_1(
                 item

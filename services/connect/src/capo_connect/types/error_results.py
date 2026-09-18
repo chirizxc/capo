@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> ErrorResults:
 
     out: ErrorResults = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_connect.types.error_result.deserialize_json(item))
     return out

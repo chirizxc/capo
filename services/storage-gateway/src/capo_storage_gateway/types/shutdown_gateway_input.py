@@ -23,7 +23,7 @@ def serialize_aws_json_1_1(value: ShutdownGatewayInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ShutdownGatewayInput:
     out: ShutdownGatewayInput = {}  # type: ignore[typeddict-item]
-    if "GatewayARN" in data:
+    if data.get("GatewayARN") is not None:
         out["gateway_arn"] = data["GatewayARN"]
     else:
         raise DeserializationError("ShutdownGatewayInput.gateway_arn required")

@@ -41,14 +41,14 @@ def serialize_aws_json_1_1(value: SchemaShortInfoResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SchemaShortInfoResponse:
     out: SchemaShortInfoResponse = {}  # type: ignore[typeddict-item]
-    if "SchemaId" in data:
+    if data.get("SchemaId") is not None:
         out["schema_id"] = data["SchemaId"]
-    if "SchemaName" in data:
+    if data.get("SchemaName") is not None:
         out["schema_name"] = data["SchemaName"]
-    if "DatabaseId" in data:
+    if data.get("DatabaseId") is not None:
         out["database_id"] = data["DatabaseId"]
-    if "DatabaseName" in data:
+    if data.get("DatabaseName") is not None:
         out["database_name"] = data["DatabaseName"]
-    if "DatabaseIpAddress" in data:
+    if data.get("DatabaseIpAddress") is not None:
         out["database_ip_address"] = data["DatabaseIpAddress"]
     return out

@@ -56,19 +56,19 @@ def serialize_json(value: RepositorySummary) -> dict:
 
 def deserialize_json(data: dict) -> RepositorySummary:
     out: RepositorySummary = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "administratorAccount" in data:
+    if data.get("administratorAccount") is not None:
         out["administrator_account"] = data["administratorAccount"]
-    if "domainName" in data:
+    if data.get("domainName") is not None:
         out["domain_name"] = data["domainName"]
-    if "domainOwner" in data:
+    if data.get("domainOwner") is not None:
         out["domain_owner"] = data["domainOwner"]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "createdTime" in data:
+    if data.get("createdTime") is not None:
         import capo_codeartifact.types.timestamp
 
         out["created_time"] = capo_codeartifact.types.timestamp.deserialize_json(

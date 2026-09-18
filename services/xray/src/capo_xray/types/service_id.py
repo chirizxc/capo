@@ -38,14 +38,14 @@ def serialize_json(value: ServiceId) -> dict:
 
 def deserialize_json(data: dict) -> ServiceId:
     out: ServiceId = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Names" in data:
+    if data.get("Names") is not None:
         import capo_xray.types.service_names
 
         out["names"] = capo_xray.types.service_names.deserialize_json(data["Names"])
-    if "AccountId" in data:
+    if data.get("AccountId") is not None:
         out["account_id"] = data["AccountId"]
-    if "Type" in data:
+    if data.get("Type") is not None:
         out["type"] = data["Type"]
     return out

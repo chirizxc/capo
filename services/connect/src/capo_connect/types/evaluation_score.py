@@ -26,28 +26,44 @@ class EvaluationScore(TypedDict, closed=True):
 # --- restJson1 ser/de ---
 def serialize_json(value: EvaluationScore) -> dict:
     out: dict = {}
-    out["Percentage"] = value.get("percentage", 0)
+    out["Percentage"] = (
+        "NaN"
+        if value.get("percentage", 0) != value.get("percentage", 0)
+        else "Infinity"
+        if value.get("percentage", 0) == float("inf")
+        else "-Infinity"
+        if value.get("percentage", 0) == float("-inf")
+        else value.get("percentage", 0)
+    )
     out["NotApplicable"] = value.get("not_applicable", False)
     out["AutomaticFail"] = value.get("automatic_fail", False)
     if "applied_weight" in value:
-        out["AppliedWeight"] = value["applied_weight"]
+        out["AppliedWeight"] = (
+            "NaN"
+            if value["applied_weight"] != value["applied_weight"]
+            else "Infinity"
+            if value["applied_weight"] == float("inf")
+            else "-Infinity"
+            if value["applied_weight"] == float("-inf")
+            else value["applied_weight"]
+        )
     return out
 
 
 def deserialize_json(data: dict) -> EvaluationScore:
     out: EvaluationScore = {}  # type: ignore[typeddict-item]
-    if "Percentage" in data:
-        out["percentage"] = data["Percentage"]
+    if data.get("Percentage") is not None:
+        out["percentage"] = float(data["Percentage"])
     else:
         out["percentage"] = 0
-    if "NotApplicable" in data:
+    if data.get("NotApplicable") is not None:
         out["not_applicable"] = data["NotApplicable"]
     else:
         out["not_applicable"] = False
-    if "AutomaticFail" in data:
+    if data.get("AutomaticFail") is not None:
         out["automatic_fail"] = data["AutomaticFail"]
     else:
         out["automatic_fail"] = False
-    if "AppliedWeight" in data:
-        out["applied_weight"] = data["AppliedWeight"]
+    if data.get("AppliedWeight") is not None:
+        out["applied_weight"] = float(data["AppliedWeight"])
     return out

@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: GetQualificationTypeRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetQualificationTypeRequest:
     out: GetQualificationTypeRequest = {}  # type: ignore[typeddict-item]
-    if "QualificationTypeId" in data:
+    if data.get("QualificationTypeId") is not None:
         out["qualification_type_id"] = data["QualificationTypeId"]
     else:
         raise DeserializationError(

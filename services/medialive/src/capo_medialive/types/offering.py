@@ -60,7 +60,15 @@ def serialize_json(value: Offering) -> dict:
             )
         )
     if "fixed_price" in value:
-        out["fixedPrice"] = value["fixed_price"]
+        out["fixedPrice"] = (
+            "NaN"
+            if value["fixed_price"] != value["fixed_price"]
+            else "Infinity"
+            if value["fixed_price"] == float("inf")
+            else "-Infinity"
+            if value["fixed_price"] == float("-inf")
+            else value["fixed_price"]
+        )
     if "offering_description" in value:
         out["offeringDescription"] = value["offering_description"]
     if "offering_id" in value:
@@ -82,19 +90,27 @@ def serialize_json(value: Offering) -> dict:
             )
         )
     if "usage_price" in value:
-        out["usagePrice"] = value["usage_price"]
+        out["usagePrice"] = (
+            "NaN"
+            if value["usage_price"] != value["usage_price"]
+            else "Infinity"
+            if value["usage_price"] == float("inf")
+            else "-Infinity"
+            if value["usage_price"] == float("-inf")
+            else value["usage_price"]
+        )
     return out
 
 
 def deserialize_json(data: dict) -> Offering:
     out: Offering = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "currencyCode" in data:
+    if data.get("currencyCode") is not None:
         out["currency_code"] = data["currencyCode"]
-    if "duration" in data:
+    if data.get("duration") is not None:
         out["duration"] = data["duration"]
-    if "durationUnits" in data:
+    if data.get("durationUnits") is not None:
         import capo_medialive.types.offering_duration_units
 
         out["duration_units"] = (
@@ -102,21 +118,21 @@ def deserialize_json(data: dict) -> Offering:
                 data["durationUnits"]
             )
         )
-    if "fixedPrice" in data:
-        out["fixed_price"] = data["fixedPrice"]
-    if "offeringDescription" in data:
+    if data.get("fixedPrice") is not None:
+        out["fixed_price"] = float(data["fixedPrice"])
+    if data.get("offeringDescription") is not None:
         out["offering_description"] = data["offeringDescription"]
-    if "offeringId" in data:
+    if data.get("offeringId") is not None:
         out["offering_id"] = data["offeringId"]
-    if "offeringType" in data:
+    if data.get("offeringType") is not None:
         import capo_medialive.types.offering_type
 
         out["offering_type"] = capo_medialive.types.offering_type.deserialize_json(
             data["offeringType"]
         )
-    if "region" in data:
+    if data.get("region") is not None:
         out["region"] = data["region"]
-    if "resourceSpecification" in data:
+    if data.get("resourceSpecification") is not None:
         import capo_medialive.types.reservation_resource_specification
 
         out["resource_specification"] = (
@@ -124,6 +140,6 @@ def deserialize_json(data: dict) -> Offering:
                 data["resourceSpecification"]
             )
         )
-    if "usagePrice" in data:
-        out["usage_price"] = data["usagePrice"]
+    if data.get("usagePrice") is not None:
+        out["usage_price"] = float(data["usagePrice"])
     return out

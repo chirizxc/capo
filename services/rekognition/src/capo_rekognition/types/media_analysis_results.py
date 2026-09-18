@@ -39,13 +39,13 @@ def serialize_aws_json_1_1(value: MediaAnalysisResults) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> MediaAnalysisResults:
     out: MediaAnalysisResults = {}  # type: ignore[typeddict-item]
-    if "S3Object" in data:
+    if data.get("S3Object") is not None:
         import capo_rekognition.types.s3_object
 
         out["s3_object"] = capo_rekognition.types.s3_object.deserialize_aws_json_1_1(
             data["S3Object"]
         )
-    if "ModelVersions" in data:
+    if data.get("ModelVersions") is not None:
         import capo_rekognition.types.media_analysis_model_versions
 
         out["model_versions"] = (

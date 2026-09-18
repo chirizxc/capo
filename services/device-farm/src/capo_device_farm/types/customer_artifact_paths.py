@@ -51,13 +51,13 @@ def serialize_aws_json_1_1(value: CustomerArtifactPaths) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CustomerArtifactPaths:
     out: CustomerArtifactPaths = {}  # type: ignore[typeddict-item]
-    if "iosPaths" in data:
+    if data.get("iosPaths") is not None:
         import capo_device_farm.types.ios_paths
 
         out["ios_paths"] = capo_device_farm.types.ios_paths.deserialize_aws_json_1_1(
             data["iosPaths"]
         )
-    if "androidPaths" in data:
+    if data.get("androidPaths") is not None:
         import capo_device_farm.types.android_paths
 
         out["android_paths"] = (
@@ -65,7 +65,7 @@ def deserialize_aws_json_1_1(data: dict) -> CustomerArtifactPaths:
                 data["androidPaths"]
             )
         )
-    if "deviceHostPaths" in data:
+    if data.get("deviceHostPaths") is not None:
         import capo_device_farm.types.device_host_paths
 
         out["device_host_paths"] = (

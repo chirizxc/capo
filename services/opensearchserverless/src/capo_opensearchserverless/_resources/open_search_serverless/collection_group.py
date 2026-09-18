@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import uuid
 from typing import TYPE_CHECKING, Optional
 
 from capo_opensearchserverless._services._pipeline import (
@@ -93,9 +94,10 @@ class CollectionGroup:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_opensearchserverless.types.create_collection_group_request.CreateCollectionGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        input_["standby_replicas"] = standby_replicas
+        input_: capo_opensearchserverless.types.create_collection_group_request.CreateCollectionGroupRequest = {
+            "name": name,
+            "standby_replicas": standby_replicas,
+        }
         if description is not None:
             input_["description"] = description
         if tags is not None:
@@ -104,14 +106,16 @@ class CollectionGroup:
             input_["capacity_limits"] = capacity_limits
         if generation is not None:
             input_["generation"] = generation
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update(
@@ -158,20 +162,23 @@ class CollectionGroup:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_opensearchserverless.types.update_collection_group_request.UpdateCollectionGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_opensearchserverless.types.update_collection_group_request.UpdateCollectionGroupRequest = {
+            "id": id
+        }
         if description is not None:
             input_["description"] = description
         if capacity_limits is not None:
             input_["capacity_limits"] = capacity_limits
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -212,16 +219,19 @@ class CollectionGroup:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_opensearchserverless.types.delete_collection_group_request.DeleteCollectionGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_opensearchserverless.types.delete_collection_group_request.DeleteCollectionGroupRequest = {
+            "id": id
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -258,7 +268,7 @@ class CollectionGroup:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_opensearchserverless.types.list_collection_groups_request.ListCollectionGroupsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_opensearchserverless.types.list_collection_groups_request.ListCollectionGroupsRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -269,6 +279,7 @@ class CollectionGroup:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -329,9 +340,10 @@ class AsyncCollectionGroup:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_opensearchserverless.types.create_collection_group_request.CreateCollectionGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        input_["standby_replicas"] = standby_replicas
+        input_: capo_opensearchserverless.types.create_collection_group_request.CreateCollectionGroupRequest = {
+            "name": name,
+            "standby_replicas": standby_replicas,
+        }
         if description is not None:
             input_["description"] = description
         if tags is not None:
@@ -340,14 +352,16 @@ class AsyncCollectionGroup:
             input_["capacity_limits"] = capacity_limits
         if generation is not None:
             input_["generation"] = generation
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update(
@@ -395,20 +409,23 @@ class AsyncCollectionGroup:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_opensearchserverless.types.update_collection_group_request.UpdateCollectionGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_opensearchserverless.types.update_collection_group_request.UpdateCollectionGroupRequest = {
+            "id": id
+        }
         if description is not None:
             input_["description"] = description
         if capacity_limits is not None:
             input_["capacity_limits"] = capacity_limits
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -450,16 +467,19 @@ class AsyncCollectionGroup:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_opensearchserverless.types.delete_collection_group_request.DeleteCollectionGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_opensearchserverless.types.delete_collection_group_request.DeleteCollectionGroupRequest = {
+            "id": id
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -497,7 +517,7 @@ class AsyncCollectionGroup:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_opensearchserverless.types.list_collection_groups_request.ListCollectionGroupsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_opensearchserverless.types.list_collection_groups_request.ListCollectionGroupsRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -508,4 +528,5 @@ class AsyncCollectionGroup:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

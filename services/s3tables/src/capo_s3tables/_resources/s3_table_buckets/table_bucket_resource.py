@@ -99,8 +99,9 @@ class TableBucketResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_s3tables.types.create_table_bucket_request.CreateTableBucketRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_s3tables.types.create_table_bucket_request.CreateTableBucketRequest = {
+            "name": name
+        }
         if encryption_configuration is not None:
             input_["encryption_configuration"] = encryption_configuration
         if storage_class_configuration is not None:
@@ -113,6 +114,7 @@ class TableBucketResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_table_bucket(
@@ -149,14 +151,16 @@ class TableBucketResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_s3tables.types.delete_table_bucket_request.DeleteTableBucketRequest = {}  # type: ignore[typeddict-item]
-        input_["table_bucket_arn"] = table_bucket_arn
+        input_: capo_s3tables.types.delete_table_bucket_request.DeleteTableBucketRequest = {
+            "table_bucket_arn": table_bucket_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_table_bucket_metrics_configuration(
@@ -193,14 +197,16 @@ class TableBucketResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_s3tables.types.delete_table_bucket_metrics_configuration_request.DeleteTableBucketMetricsConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["table_bucket_arn"] = table_bucket_arn
+        input_: capo_s3tables.types.delete_table_bucket_metrics_configuration_request.DeleteTableBucketMetricsConfigurationRequest = {
+            "table_bucket_arn": table_bucket_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_table_bucket(
@@ -240,14 +246,16 @@ class TableBucketResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_s3tables.types.get_table_bucket_request.GetTableBucketRequest = {}  # type: ignore[typeddict-item]
-        input_["table_bucket_arn"] = table_bucket_arn
+        input_: capo_s3tables.types.get_table_bucket_request.GetTableBucketRequest = {
+            "table_bucket_arn": table_bucket_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_table_bucket_maintenance_configuration(
@@ -286,14 +294,16 @@ class TableBucketResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_s3tables.types.get_table_bucket_maintenance_configuration_request.GetTableBucketMaintenanceConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["table_bucket_arn"] = table_bucket_arn
+        input_: capo_s3tables.types.get_table_bucket_maintenance_configuration_request.GetTableBucketMaintenanceConfigurationRequest = {
+            "table_bucket_arn": table_bucket_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_table_bucket_metrics_configuration(
@@ -332,14 +342,16 @@ class TableBucketResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_s3tables.types.get_table_bucket_metrics_configuration_request.GetTableBucketMetricsConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["table_bucket_arn"] = table_bucket_arn
+        input_: capo_s3tables.types.get_table_bucket_metrics_configuration_request.GetTableBucketMetricsConfigurationRequest = {
+            "table_bucket_arn": table_bucket_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_table_bucket_storage_class(
@@ -378,14 +390,16 @@ class TableBucketResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_s3tables.types.get_table_bucket_storage_class_request.GetTableBucketStorageClassRequest = {}  # type: ignore[typeddict-item]
-        input_["table_bucket_arn"] = table_bucket_arn
+        input_: capo_s3tables.types.get_table_bucket_storage_class_request.GetTableBucketStorageClassRequest = {
+            "table_bucket_arn": table_bucket_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_table_buckets(
@@ -433,7 +447,7 @@ class TableBucketResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_s3tables.types.list_table_buckets_request.ListTableBucketsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_s3tables.types.list_table_buckets_request.ListTableBucketsRequest = {}
         if prefix is not None:
             input_["prefix"] = prefix
         if continuation_token is not None:
@@ -448,6 +462,7 @@ class TableBucketResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def put_table_bucket_maintenance_configuration(
@@ -488,16 +503,18 @@ class TableBucketResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_s3tables.types.put_table_bucket_maintenance_configuration_request.PutTableBucketMaintenanceConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["table_bucket_arn"] = table_bucket_arn
-        input_["type"] = type
-        input_["value"] = value
+        input_: capo_s3tables.types.put_table_bucket_maintenance_configuration_request.PutTableBucketMaintenanceConfigurationRequest = {
+            "table_bucket_arn": table_bucket_arn,
+            "type": type,
+            "value": value,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def put_table_bucket_metrics_configuration(
@@ -534,14 +551,16 @@ class TableBucketResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_s3tables.types.put_table_bucket_metrics_configuration_request.PutTableBucketMetricsConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["table_bucket_arn"] = table_bucket_arn
+        input_: capo_s3tables.types.put_table_bucket_metrics_configuration_request.PutTableBucketMetricsConfigurationRequest = {
+            "table_bucket_arn": table_bucket_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def put_table_bucket_storage_class(
@@ -580,15 +599,17 @@ class TableBucketResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_s3tables.types.put_table_bucket_storage_class_request.PutTableBucketStorageClassRequest = {}  # type: ignore[typeddict-item]
-        input_["table_bucket_arn"] = table_bucket_arn
-        input_["storage_class_configuration"] = storage_class_configuration
+        input_: capo_s3tables.types.put_table_bucket_storage_class_request.PutTableBucketStorageClassRequest = {
+            "table_bucket_arn": table_bucket_arn,
+            "storage_class_configuration": storage_class_configuration,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -643,8 +664,9 @@ class AsyncTableBucketResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_s3tables.types.create_table_bucket_request.CreateTableBucketRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_s3tables.types.create_table_bucket_request.CreateTableBucketRequest = {
+            "name": name
+        }
         if encryption_configuration is not None:
             input_["encryption_configuration"] = encryption_configuration
         if storage_class_configuration is not None:
@@ -657,6 +679,7 @@ class AsyncTableBucketResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_table_bucket(
@@ -694,14 +717,16 @@ class AsyncTableBucketResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_s3tables.types.delete_table_bucket_request.DeleteTableBucketRequest = {}  # type: ignore[typeddict-item]
-        input_["table_bucket_arn"] = table_bucket_arn
+        input_: capo_s3tables.types.delete_table_bucket_request.DeleteTableBucketRequest = {
+            "table_bucket_arn": table_bucket_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_table_bucket_metrics_configuration(
@@ -739,14 +764,16 @@ class AsyncTableBucketResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_s3tables.types.delete_table_bucket_metrics_configuration_request.DeleteTableBucketMetricsConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["table_bucket_arn"] = table_bucket_arn
+        input_: capo_s3tables.types.delete_table_bucket_metrics_configuration_request.DeleteTableBucketMetricsConfigurationRequest = {
+            "table_bucket_arn": table_bucket_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_table_bucket(
@@ -787,14 +814,16 @@ class AsyncTableBucketResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_s3tables.types.get_table_bucket_request.GetTableBucketRequest = {}  # type: ignore[typeddict-item]
-        input_["table_bucket_arn"] = table_bucket_arn
+        input_: capo_s3tables.types.get_table_bucket_request.GetTableBucketRequest = {
+            "table_bucket_arn": table_bucket_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_table_bucket_maintenance_configuration(
@@ -834,14 +863,16 @@ class AsyncTableBucketResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_s3tables.types.get_table_bucket_maintenance_configuration_request.GetTableBucketMaintenanceConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["table_bucket_arn"] = table_bucket_arn
+        input_: capo_s3tables.types.get_table_bucket_maintenance_configuration_request.GetTableBucketMaintenanceConfigurationRequest = {
+            "table_bucket_arn": table_bucket_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_table_bucket_metrics_configuration(
@@ -881,14 +912,16 @@ class AsyncTableBucketResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_s3tables.types.get_table_bucket_metrics_configuration_request.GetTableBucketMetricsConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["table_bucket_arn"] = table_bucket_arn
+        input_: capo_s3tables.types.get_table_bucket_metrics_configuration_request.GetTableBucketMetricsConfigurationRequest = {
+            "table_bucket_arn": table_bucket_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_table_bucket_storage_class(
@@ -928,14 +961,16 @@ class AsyncTableBucketResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_s3tables.types.get_table_bucket_storage_class_request.GetTableBucketStorageClassRequest = {}  # type: ignore[typeddict-item]
-        input_["table_bucket_arn"] = table_bucket_arn
+        input_: capo_s3tables.types.get_table_bucket_storage_class_request.GetTableBucketStorageClassRequest = {
+            "table_bucket_arn": table_bucket_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_table_buckets(
@@ -984,7 +1019,7 @@ class AsyncTableBucketResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_s3tables.types.list_table_buckets_request.ListTableBucketsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_s3tables.types.list_table_buckets_request.ListTableBucketsRequest = {}
         if prefix is not None:
             input_["prefix"] = prefix
         if continuation_token is not None:
@@ -999,6 +1034,7 @@ class AsyncTableBucketResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def put_table_bucket_maintenance_configuration(
@@ -1040,16 +1076,18 @@ class AsyncTableBucketResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_s3tables.types.put_table_bucket_maintenance_configuration_request.PutTableBucketMaintenanceConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["table_bucket_arn"] = table_bucket_arn
-        input_["type"] = type
-        input_["value"] = value
+        input_: capo_s3tables.types.put_table_bucket_maintenance_configuration_request.PutTableBucketMaintenanceConfigurationRequest = {
+            "table_bucket_arn": table_bucket_arn,
+            "type": type,
+            "value": value,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def put_table_bucket_metrics_configuration(
@@ -1087,14 +1125,16 @@ class AsyncTableBucketResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_s3tables.types.put_table_bucket_metrics_configuration_request.PutTableBucketMetricsConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["table_bucket_arn"] = table_bucket_arn
+        input_: capo_s3tables.types.put_table_bucket_metrics_configuration_request.PutTableBucketMetricsConfigurationRequest = {
+            "table_bucket_arn": table_bucket_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def put_table_bucket_storage_class(
@@ -1134,13 +1174,15 @@ class AsyncTableBucketResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_s3tables.types.put_table_bucket_storage_class_request.PutTableBucketStorageClassRequest = {}  # type: ignore[typeddict-item]
-        input_["table_bucket_arn"] = table_bucket_arn
-        input_["storage_class_configuration"] = storage_class_configuration
+        input_: capo_s3tables.types.put_table_bucket_storage_class_request.PutTableBucketStorageClassRequest = {
+            "table_bucket_arn": table_bucket_arn,
+            "storage_class_configuration": storage_class_configuration,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

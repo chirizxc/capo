@@ -24,7 +24,7 @@ def serialize_aws_json_1_0(value: GetInvoicePDFRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> GetInvoicePDFRequest:
     out: GetInvoicePDFRequest = {}  # type: ignore[typeddict-item]
-    if "InvoiceId" in data:
+    if data.get("InvoiceId") is not None:
         out["invoice_id"] = data["InvoiceId"]
     else:
         raise DeserializationError("GetInvoicePDFRequest.invoice_id required")

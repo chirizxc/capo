@@ -32,12 +32,12 @@ def serialize_json(value: CreateBillOfMaterialsImportJobRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateBillOfMaterialsImportJobRequest:
     out: CreateBillOfMaterialsImportJobRequest = {}  # type: ignore[typeddict-item]
-    if "s3uri" in data:
+    if data.get("s3uri") is not None:
         out["s3uri"] = data["s3uri"]
     else:
         raise DeserializationError(
             "CreateBillOfMaterialsImportJobRequest.s3uri required"
         )
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     return out

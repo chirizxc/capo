@@ -25,6 +25,8 @@ def deserialize_json(data: list) -> FrameMetricData:
 
     out: FrameMetricData = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_codeguruprofiler.types.frame_metric_datum.deserialize_json(item)
         )

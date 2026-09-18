@@ -33,10 +33,10 @@ def serialize_json(value: CreateCertificateFromCsrResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateCertificateFromCsrResponse:
     out: CreateCertificateFromCsrResponse = {}  # type: ignore[typeddict-item]
-    if "certificateArn" in data:
+    if data.get("certificateArn") is not None:
         out["certificate_arn"] = data["certificateArn"]
-    if "certificateId" in data:
+    if data.get("certificateId") is not None:
         out["certificate_id"] = data["certificateId"]
-    if "certificatePem" in data:
+    if data.get("certificatePem") is not None:
         out["certificate_pem"] = data["certificatePem"]
     return out

@@ -106,15 +106,23 @@ def serialize_aws_json_1_1(value: SupportContainerDefinitionInput) -> dict:
             )
         )
     if "vcpu" in value:
-        out["Vcpu"] = value["vcpu"]
+        out["Vcpu"] = (
+            "NaN"
+            if value["vcpu"] != value["vcpu"]
+            else "Infinity"
+            if value["vcpu"] == float("inf")
+            else "-Infinity"
+            if value["vcpu"] == float("-inf")
+            else value["vcpu"]
+        )
     return out
 
 
 def deserialize_aws_json_1_1(data: dict) -> SupportContainerDefinitionInput:
     out: SupportContainerDefinitionInput = {}  # type: ignore[typeddict-item]
-    if "ContainerName" in data:
+    if data.get("ContainerName") is not None:
         out["container_name"] = data["ContainerName"]
-    if "DependsOn" in data:
+    if data.get("DependsOn") is not None:
         import capo_gamelift.types.container_dependency_list
 
         out["depends_on"] = (
@@ -122,7 +130,7 @@ def deserialize_aws_json_1_1(data: dict) -> SupportContainerDefinitionInput:
                 data["DependsOn"]
             )
         )
-    if "MountPoints" in data:
+    if data.get("MountPoints") is not None:
         import capo_gamelift.types.container_mount_point_list
 
         out["mount_points"] = (
@@ -130,7 +138,7 @@ def deserialize_aws_json_1_1(data: dict) -> SupportContainerDefinitionInput:
                 data["MountPoints"]
             )
         )
-    if "EnvironmentOverride" in data:
+    if data.get("EnvironmentOverride") is not None:
         import capo_gamelift.types.container_environment_list
 
         out["environment_override"] = (
@@ -138,9 +146,9 @@ def deserialize_aws_json_1_1(data: dict) -> SupportContainerDefinitionInput:
                 data["EnvironmentOverride"]
             )
         )
-    if "Essential" in data:
+    if data.get("Essential") is not None:
         out["essential"] = data["Essential"]
-    if "HealthCheck" in data:
+    if data.get("HealthCheck") is not None:
         import capo_gamelift.types.container_health_check
 
         out["health_check"] = (
@@ -148,11 +156,11 @@ def deserialize_aws_json_1_1(data: dict) -> SupportContainerDefinitionInput:
                 data["HealthCheck"]
             )
         )
-    if "ImageUri" in data:
+    if data.get("ImageUri") is not None:
         out["image_uri"] = data["ImageUri"]
-    if "MemoryHardLimitMebibytes" in data:
+    if data.get("MemoryHardLimitMebibytes") is not None:
         out["memory_hard_limit_mebibytes"] = data["MemoryHardLimitMebibytes"]
-    if "PortConfiguration" in data:
+    if data.get("PortConfiguration") is not None:
         import capo_gamelift.types.container_port_configuration
 
         out["port_configuration"] = (
@@ -160,6 +168,6 @@ def deserialize_aws_json_1_1(data: dict) -> SupportContainerDefinitionInput:
                 data["PortConfiguration"]
             )
         )
-    if "Vcpu" in data:
-        out["vcpu"] = data["Vcpu"]
+    if data.get("Vcpu") is not None:
+        out["vcpu"] = float(data["Vcpu"])
     return out

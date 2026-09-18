@@ -29,6 +29,8 @@ def deserialize_aws_json_1_0(data: list) -> VpcIngressConnectionSummaryList:
 
     out: VpcIngressConnectionSummaryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_apprunner.types.vpc_ingress_connection_summary.deserialize_aws_json_1_0(
                 item

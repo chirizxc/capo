@@ -32,7 +32,7 @@ def serialize_json(value: ContentSource) -> dict:
 
 
 def deserialize_json(data: dict) -> ContentSource:
-    if "retriever" in data:
+    if data.get("retriever") is not None:
         import capo_qbusiness.types.retriever_content_source
 
         return {

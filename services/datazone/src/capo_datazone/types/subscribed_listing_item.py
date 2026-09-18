@@ -49,7 +49,7 @@ def serialize_json(value: SubscribedListingItem) -> dict:
 
 
 def deserialize_json(data: dict) -> SubscribedListingItem:
-    if "assetListing" in data:
+    if data.get("assetListing") is not None:
         import capo_datazone.types.subscribed_asset_listing
 
         return {
@@ -57,7 +57,7 @@ def deserialize_json(data: dict) -> SubscribedListingItem:
                 data["assetListing"]
             )
         }
-    elif "productListing" in data:
+    elif data.get("productListing") is not None:
         import capo_datazone.types.subscribed_product_listing
 
         return {

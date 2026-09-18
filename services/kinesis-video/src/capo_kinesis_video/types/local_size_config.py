@@ -38,9 +38,9 @@ def serialize_json(value: LocalSizeConfig) -> dict:
 
 def deserialize_json(data: dict) -> LocalSizeConfig:
     out: LocalSizeConfig = {}  # type: ignore[typeddict-item]
-    if "MaxLocalMediaSizeInMB" in data:
+    if data.get("MaxLocalMediaSizeInMB") is not None:
         out["max_local_media_size_in_mb"] = data["MaxLocalMediaSizeInMB"]
-    if "StrategyOnFullSize" in data:
+    if data.get("StrategyOnFullSize") is not None:
         import capo_kinesis_video.types.strategy_on_full_size
 
         out["strategy_on_full_size"] = (

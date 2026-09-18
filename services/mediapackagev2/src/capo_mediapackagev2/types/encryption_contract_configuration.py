@@ -44,7 +44,7 @@ def serialize_json(value: EncryptionContractConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> EncryptionContractConfiguration:
     out: EncryptionContractConfiguration = {}  # type: ignore[typeddict-item]
-    if "PresetSpeke20Audio" in data:
+    if data.get("PresetSpeke20Audio") is not None:
         import capo_mediapackagev2.types.preset_speke20_audio
 
         out["preset_speke20_audio"] = (
@@ -56,7 +56,7 @@ def deserialize_json(data: dict) -> EncryptionContractConfiguration:
         raise DeserializationError(
             "EncryptionContractConfiguration.preset_speke20_audio required"
         )
-    if "PresetSpeke20Video" in data:
+    if data.get("PresetSpeke20Video") is not None:
         import capo_mediapackagev2.types.preset_speke20_video
 
         out["preset_speke20_video"] = (

@@ -62,11 +62,11 @@ def serialize_json(value: ConnectPeerConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> ConnectPeerConfiguration:
     out: ConnectPeerConfiguration = {}  # type: ignore[typeddict-item]
-    if "CoreNetworkAddress" in data:
+    if data.get("CoreNetworkAddress") is not None:
         out["core_network_address"] = data["CoreNetworkAddress"]
-    if "PeerAddress" in data:
+    if data.get("PeerAddress") is not None:
         out["peer_address"] = data["PeerAddress"]
-    if "InsideCidrBlocks" in data:
+    if data.get("InsideCidrBlocks") is not None:
         import capo_networkmanager.types.constrained_string_list
 
         out["inside_cidr_blocks"] = (
@@ -74,13 +74,13 @@ def deserialize_json(data: dict) -> ConnectPeerConfiguration:
                 data["InsideCidrBlocks"]
             )
         )
-    if "Protocol" in data:
+    if data.get("Protocol") is not None:
         import capo_networkmanager.types.tunnel_protocol
 
         out["protocol"] = capo_networkmanager.types.tunnel_protocol.deserialize_json(
             data["Protocol"]
         )
-    if "BgpConfigurations" in data:
+    if data.get("BgpConfigurations") is not None:
         import capo_networkmanager.types.connect_peer_bgp_configuration_list
 
         out["bgp_configurations"] = (

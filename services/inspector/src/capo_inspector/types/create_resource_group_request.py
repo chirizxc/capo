@@ -30,7 +30,7 @@ def serialize_aws_json_1_1(value: CreateResourceGroupRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateResourceGroupRequest:
     out: CreateResourceGroupRequest = {}  # type: ignore[typeddict-item]
-    if "resourceGroupTags" in data:
+    if data.get("resourceGroupTags") is not None:
         import capo_inspector.types.resource_group_tags
 
         out["resource_group_tags"] = (

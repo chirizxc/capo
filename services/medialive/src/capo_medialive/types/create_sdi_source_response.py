@@ -27,7 +27,7 @@ def serialize_json(value: CreateSdiSourceResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateSdiSourceResponse:
     out: CreateSdiSourceResponse = {}  # type: ignore[typeddict-item]
-    if "sdiSource" in data:
+    if data.get("sdiSource") is not None:
         import capo_medialive.types.sdi_source
 
         out["sdi_source"] = capo_medialive.types.sdi_source.deserialize_json(

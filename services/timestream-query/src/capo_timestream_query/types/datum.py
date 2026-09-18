@@ -63,9 +63,9 @@ def serialize_aws_json_1_0(value: Datum) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> Datum:
     out: Datum = {}  # type: ignore[typeddict-item]
-    if "ScalarValue" in data:
+    if data.get("ScalarValue") is not None:
         out["scalar_value"] = data["ScalarValue"]
-    if "TimeSeriesValue" in data:
+    if data.get("TimeSeriesValue") is not None:
         import capo_timestream_query.types.time_series_data_point_list
 
         out["time_series_value"] = (
@@ -73,7 +73,7 @@ def deserialize_aws_json_1_0(data: dict) -> Datum:
                 data["TimeSeriesValue"]
             )
         )
-    if "ArrayValue" in data:
+    if data.get("ArrayValue") is not None:
         import capo_timestream_query.types.datum_list
 
         out["array_value"] = (
@@ -81,12 +81,12 @@ def deserialize_aws_json_1_0(data: dict) -> Datum:
                 data["ArrayValue"]
             )
         )
-    if "RowValue" in data:
+    if data.get("RowValue") is not None:
         import capo_timestream_query.types.row
 
         out["row_value"] = capo_timestream_query.types.row.deserialize_aws_json_1_0(
             data["RowValue"]
         )
-    if "NullValue" in data:
+    if data.get("NullValue") is not None:
         out["null_value"] = data["NullValue"]
     return out

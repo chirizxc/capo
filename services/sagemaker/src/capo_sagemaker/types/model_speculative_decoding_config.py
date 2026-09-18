@@ -44,7 +44,7 @@ def serialize_aws_json_1_1(value: ModelSpeculativeDecodingConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ModelSpeculativeDecodingConfig:
     out: ModelSpeculativeDecodingConfig = {}  # type: ignore[typeddict-item]
-    if "Technique" in data:
+    if data.get("Technique") is not None:
         import capo_sagemaker.types.model_speculative_decoding_technique
 
         out["technique"] = (
@@ -52,7 +52,7 @@ def deserialize_aws_json_1_1(data: dict) -> ModelSpeculativeDecodingConfig:
                 data["Technique"]
             )
         )
-    if "TrainingDataSource" in data:
+    if data.get("TrainingDataSource") is not None:
         import capo_sagemaker.types.model_speculative_decoding_training_data_source
 
         out["training_data_source"] = (

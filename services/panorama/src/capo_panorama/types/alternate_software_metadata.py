@@ -23,6 +23,6 @@ def serialize_json(value: AlternateSoftwareMetadata) -> dict:
 
 def deserialize_json(data: dict) -> AlternateSoftwareMetadata:
     out: AlternateSoftwareMetadata = {}  # type: ignore[typeddict-item]
-    if "Version" in data:
+    if data.get("Version") is not None:
         out["version"] = data["Version"]
     return out

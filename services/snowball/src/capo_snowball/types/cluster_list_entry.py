@@ -45,9 +45,9 @@ def serialize_aws_json_1_1(value: ClusterListEntry) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ClusterListEntry:
     out: ClusterListEntry = {}  # type: ignore[typeddict-item]
-    if "ClusterId" in data:
+    if data.get("ClusterId") is not None:
         out["cluster_id"] = data["ClusterId"]
-    if "ClusterState" in data:
+    if data.get("ClusterState") is not None:
         import capo_snowball.types.cluster_state
 
         out["cluster_state"] = (
@@ -55,12 +55,12 @@ def deserialize_aws_json_1_1(data: dict) -> ClusterListEntry:
                 data["ClusterState"]
             )
         )
-    if "CreationDate" in data:
+    if data.get("CreationDate") is not None:
         import capo_snowball.types.timestamp
 
         out["creation_date"] = capo_snowball.types.timestamp.deserialize_aws_json_1_1(
             data["CreationDate"]
         )
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
     return out

@@ -83,7 +83,7 @@ def serialize_json(value: PutFunctionRequest) -> dict:
 
 def deserialize_json(data: dict) -> PutFunctionRequest:
     out: PutFunctionRequest = {}  # type: ignore[typeddict-item]
-    if "FunctionType" in data:
+    if data.get("FunctionType") is not None:
         import capo_mediatailor.types.function_type
 
         out["function_type"] = capo_mediatailor.types.function_type.deserialize_json(
@@ -91,9 +91,9 @@ def deserialize_json(data: dict) -> PutFunctionRequest:
         )
     else:
         raise DeserializationError("PutFunctionRequest.function_type required")
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "HttpRequestConfiguration" in data:
+    if data.get("HttpRequestConfiguration") is not None:
         import capo_mediatailor.types.http_request_configuration
 
         out["http_request_configuration"] = (
@@ -101,7 +101,7 @@ def deserialize_json(data: dict) -> PutFunctionRequest:
                 data["HttpRequestConfiguration"]
             )
         )
-    if "CustomOutputConfiguration" in data:
+    if data.get("CustomOutputConfiguration") is not None:
         import capo_mediatailor.types.custom_output_configuration
 
         out["custom_output_configuration"] = (
@@ -109,7 +109,7 @@ def deserialize_json(data: dict) -> PutFunctionRequest:
                 data["CustomOutputConfiguration"]
             )
         )
-    if "SequentialExecutorConfiguration" in data:
+    if data.get("SequentialExecutorConfiguration") is not None:
         import capo_mediatailor.types.sequential_executor_configuration
 
         out["sequential_executor_configuration"] = (
@@ -117,7 +117,7 @@ def deserialize_json(data: dict) -> PutFunctionRequest:
                 data["SequentialExecutorConfiguration"]
             )
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_mediatailor.types.__map_of__string
 
         out["tags"] = capo_mediatailor.types.__map_of__string.deserialize_json(

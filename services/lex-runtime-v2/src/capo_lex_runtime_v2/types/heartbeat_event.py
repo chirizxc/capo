@@ -25,7 +25,7 @@ def serialize_json(value: HeartbeatEvent) -> dict:
 
 def deserialize_json(data: dict) -> HeartbeatEvent:
     out: HeartbeatEvent = {}  # type: ignore[typeddict-item]
-    if "eventId" in data:
+    if data.get("eventId") is not None:
         out["event_id"] = data["eventId"]
     return out
 

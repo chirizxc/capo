@@ -57,7 +57,7 @@ def serialize_aws_json_1_1(value: ClientAuthenticationSettingInfo) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ClientAuthenticationSettingInfo:
     out: ClientAuthenticationSettingInfo = {}  # type: ignore[typeddict-item]
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_directory_service.types.client_authentication_type
 
         out["type"] = (
@@ -65,7 +65,7 @@ def deserialize_aws_json_1_1(data: dict) -> ClientAuthenticationSettingInfo:
                 data["Type"]
             )
         )
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_directory_service.types.client_authentication_status
 
         out["status"] = (
@@ -73,7 +73,7 @@ def deserialize_aws_json_1_1(data: dict) -> ClientAuthenticationSettingInfo:
                 data["Status"]
             )
         )
-    if "LastUpdatedDateTime" in data:
+    if data.get("LastUpdatedDateTime") is not None:
         import capo_directory_service.types.last_updated_date_time
 
         out["last_updated_date_time"] = (

@@ -45,15 +45,15 @@ def serialize_json(value: SpanMessage) -> dict:
 
 def deserialize_json(data: dict) -> SpanMessage:
     out: SpanMessage = {}  # type: ignore[typeddict-item]
-    if "messageId" in data:
+    if data.get("messageId") is not None:
         out["message_id"] = data["messageId"]
     else:
         raise DeserializationError("SpanMessage.message_id required")
-    if "participant" in data:
+    if data.get("participant") is not None:
         out["participant"] = data["participant"]
     else:
         raise DeserializationError("SpanMessage.participant required")
-    if "timestamp" in data:
+    if data.get("timestamp") is not None:
         import capo_qconnect.types._prelude.timestamp
 
         out["timestamp"] = capo_qconnect.types._prelude.timestamp.deserialize_json(
@@ -61,7 +61,7 @@ def deserialize_json(data: dict) -> SpanMessage:
         )
     else:
         raise DeserializationError("SpanMessage.timestamp required")
-    if "values" in data:
+    if data.get("values") is not None:
         import capo_qconnect.types.span_message_value_list
 
         out["values"] = capo_qconnect.types.span_message_value_list.deserialize_json(

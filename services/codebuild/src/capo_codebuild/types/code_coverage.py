@@ -48,13 +48,30 @@ def serialize_aws_json_1_1(value: CodeCoverage) -> dict:
     if "file_path" in value:
         out["filePath"] = value["file_path"]
     if "line_coverage_percentage" in value:
-        out["lineCoveragePercentage"] = value["line_coverage_percentage"]
+        out["lineCoveragePercentage"] = (
+            "NaN"
+            if value["line_coverage_percentage"] != value["line_coverage_percentage"]
+            else "Infinity"
+            if value["line_coverage_percentage"] == float("inf")
+            else "-Infinity"
+            if value["line_coverage_percentage"] == float("-inf")
+            else value["line_coverage_percentage"]
+        )
     if "lines_covered" in value:
         out["linesCovered"] = value["lines_covered"]
     if "lines_missed" in value:
         out["linesMissed"] = value["lines_missed"]
     if "branch_coverage_percentage" in value:
-        out["branchCoveragePercentage"] = value["branch_coverage_percentage"]
+        out["branchCoveragePercentage"] = (
+            "NaN"
+            if value["branch_coverage_percentage"]
+            != value["branch_coverage_percentage"]
+            else "Infinity"
+            if value["branch_coverage_percentage"] == float("inf")
+            else "-Infinity"
+            if value["branch_coverage_percentage"] == float("-inf")
+            else value["branch_coverage_percentage"]
+        )
     if "branches_covered" in value:
         out["branchesCovered"] = value["branches_covered"]
     if "branches_missed" in value:
@@ -70,25 +87,25 @@ def serialize_aws_json_1_1(value: CodeCoverage) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CodeCoverage:
     out: CodeCoverage = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "reportARN" in data:
+    if data.get("reportARN") is not None:
         out["report_arn"] = data["reportARN"]
-    if "filePath" in data:
+    if data.get("filePath") is not None:
         out["file_path"] = data["filePath"]
-    if "lineCoveragePercentage" in data:
-        out["line_coverage_percentage"] = data["lineCoveragePercentage"]
-    if "linesCovered" in data:
+    if data.get("lineCoveragePercentage") is not None:
+        out["line_coverage_percentage"] = float(data["lineCoveragePercentage"])
+    if data.get("linesCovered") is not None:
         out["lines_covered"] = data["linesCovered"]
-    if "linesMissed" in data:
+    if data.get("linesMissed") is not None:
         out["lines_missed"] = data["linesMissed"]
-    if "branchCoveragePercentage" in data:
-        out["branch_coverage_percentage"] = data["branchCoveragePercentage"]
-    if "branchesCovered" in data:
+    if data.get("branchCoveragePercentage") is not None:
+        out["branch_coverage_percentage"] = float(data["branchCoveragePercentage"])
+    if data.get("branchesCovered") is not None:
         out["branches_covered"] = data["branchesCovered"]
-    if "branchesMissed" in data:
+    if data.get("branchesMissed") is not None:
         out["branches_missed"] = data["branchesMissed"]
-    if "expired" in data:
+    if data.get("expired") is not None:
         import capo_codebuild.types.timestamp
 
         out["expired"] = capo_codebuild.types.timestamp.deserialize_aws_json_1_1(

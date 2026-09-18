@@ -25,6 +25,8 @@ def deserialize_json(data: list) -> AutoApprovedChangeTypeList:
 
     out: AutoApprovedChangeTypeList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_cleanrooms.types.auto_approved_change_type.deserialize_json(item)
         )

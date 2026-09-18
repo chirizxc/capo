@@ -32,7 +32,7 @@ def serialize_json(value: CriteriaBlockForJob) -> dict:
 
 def deserialize_json(data: dict) -> CriteriaBlockForJob:
     out: CriteriaBlockForJob = {}  # type: ignore[typeddict-item]
-    if "and" in data:
+    if data.get("and") is not None:
         import capo_macie2.types.__list_of_criteria_for_job
 
         out["and"] = capo_macie2.types.__list_of_criteria_for_job.deserialize_json(

@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> WebExperiences:
 
     out: WebExperiences = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_qbusiness.types.web_experience.deserialize_json(item))
     return out

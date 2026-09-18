@@ -43,15 +43,15 @@ def serialize_json(value: FilePath) -> dict:
 
 def deserialize_json(data: dict) -> FilePath:
     out: FilePath = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "path" in data:
+    if data.get("path") is not None:
         out["path"] = data["path"]
-    if "startLine" in data:
+    if data.get("startLine") is not None:
         out["start_line"] = data["startLine"]
-    if "endLine" in data:
+    if data.get("endLine") is not None:
         out["end_line"] = data["endLine"]
-    if "codeSnippet" in data:
+    if data.get("codeSnippet") is not None:
         import capo_codeguru_security.types.code_snippet
 
         out["code_snippet"] = (

@@ -30,7 +30,7 @@ def serialize_json(value: DisassociateMembersRequest) -> dict:
 
 def deserialize_json(data: dict) -> DisassociateMembersRequest:
     out: DisassociateMembersRequest = {}  # type: ignore[typeddict-item]
-    if "accountIds" in data:
+    if data.get("accountIds") is not None:
         import capo_guardduty.types.account_ids
 
         out["account_ids"] = capo_guardduty.types.account_ids.deserialize_json(

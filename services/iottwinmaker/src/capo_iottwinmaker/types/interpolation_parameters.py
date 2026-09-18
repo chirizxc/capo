@@ -32,8 +32,8 @@ def serialize_json(value: InterpolationParameters) -> dict:
 
 def deserialize_json(data: dict) -> InterpolationParameters:
     out: InterpolationParameters = {}  # type: ignore[typeddict-item]
-    if "interpolationType" in data:
+    if data.get("interpolationType") is not None:
         out["interpolation_type"] = data["interpolationType"]
-    if "intervalInSeconds" in data:
+    if data.get("intervalInSeconds") is not None:
         out["interval_in_seconds"] = data["intervalInSeconds"]
     return out

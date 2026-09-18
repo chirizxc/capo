@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> RealTimeContactAnalysisCharacterIntervals:
 
     out: RealTimeContactAnalysisCharacterIntervals = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_connect.types.real_time_contact_analysis_character_interval.deserialize_json(
                 item

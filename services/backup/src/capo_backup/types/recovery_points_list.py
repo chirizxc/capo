@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> RecoveryPointsList:
 
     out: RecoveryPointsList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_backup.types.recovery_point_member.deserialize_json(item))
     return out

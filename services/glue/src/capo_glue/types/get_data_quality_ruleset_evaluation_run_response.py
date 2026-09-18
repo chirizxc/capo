@@ -138,21 +138,21 @@ def serialize_aws_json_1_1(value: GetDataQualityRulesetEvaluationRunResponse) ->
 
 def deserialize_aws_json_1_1(data: dict) -> GetDataQualityRulesetEvaluationRunResponse:
     out: GetDataQualityRulesetEvaluationRunResponse = {}  # type: ignore[typeddict-item]
-    if "RunId" in data:
+    if data.get("RunId") is not None:
         out["run_id"] = data["RunId"]
-    if "DataSource" in data:
+    if data.get("DataSource") is not None:
         import capo_glue.types.data_source
 
         out["data_source"] = capo_glue.types.data_source.deserialize_aws_json_1_1(
             data["DataSource"]
         )
-    if "Role" in data:
+    if data.get("Role") is not None:
         out["role"] = data["Role"]
-    if "NumberOfWorkers" in data:
+    if data.get("NumberOfWorkers") is not None:
         out["number_of_workers"] = data["NumberOfWorkers"]
-    if "Timeout" in data:
+    if data.get("Timeout") is not None:
         out["timeout"] = data["Timeout"]
-    if "AdditionalRunOptions" in data:
+    if data.get("AdditionalRunOptions") is not None:
         import capo_glue.types.data_quality_evaluation_run_additional_run_options
 
         out["additional_run_options"] = (
@@ -160,43 +160,43 @@ def deserialize_aws_json_1_1(data: dict) -> GetDataQualityRulesetEvaluationRunRe
                 data["AdditionalRunOptions"]
             )
         )
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_glue.types.task_status_type
 
         out["status"] = capo_glue.types.task_status_type.deserialize_aws_json_1_1(
             data["Status"]
         )
-    if "ErrorString" in data:
+    if data.get("ErrorString") is not None:
         out["error_string"] = data["ErrorString"]
-    if "StartedOn" in data:
+    if data.get("StartedOn") is not None:
         import capo_glue.types.timestamp
 
         out["started_on"] = capo_glue.types.timestamp.deserialize_aws_json_1_1(
             data["StartedOn"]
         )
-    if "LastModifiedOn" in data:
+    if data.get("LastModifiedOn") is not None:
         import capo_glue.types.timestamp
 
         out["last_modified_on"] = capo_glue.types.timestamp.deserialize_aws_json_1_1(
             data["LastModifiedOn"]
         )
-    if "CompletedOn" in data:
+    if data.get("CompletedOn") is not None:
         import capo_glue.types.timestamp
 
         out["completed_on"] = capo_glue.types.timestamp.deserialize_aws_json_1_1(
             data["CompletedOn"]
         )
-    if "ExecutionTime" in data:
+    if data.get("ExecutionTime") is not None:
         out["execution_time"] = data["ExecutionTime"]
     else:
         out["execution_time"] = 0
-    if "RulesetNames" in data:
+    if data.get("RulesetNames") is not None:
         import capo_glue.types.ruleset_names
 
         out["ruleset_names"] = capo_glue.types.ruleset_names.deserialize_aws_json_1_1(
             data["RulesetNames"]
         )
-    if "ResultIds" in data:
+    if data.get("ResultIds") is not None:
         import capo_glue.types.data_quality_result_id_list
 
         out["result_ids"] = (
@@ -204,7 +204,7 @@ def deserialize_aws_json_1_1(data: dict) -> GetDataQualityRulesetEvaluationRunRe
                 data["ResultIds"]
             )
         )
-    if "AdditionalDataSources" in data:
+    if data.get("AdditionalDataSources") is not None:
         import capo_glue.types.data_source_map
 
         out["additional_data_sources"] = (

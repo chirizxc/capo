@@ -48,7 +48,7 @@ def serialize_json(value: DocumentationPartLocation) -> dict:
 
 def deserialize_json(data: dict) -> DocumentationPartLocation:
     out: DocumentationPartLocation = {}  # type: ignore[typeddict-item]
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_api_gateway.types.documentation_part_type
 
         out["type"] = capo_api_gateway.types.documentation_part_type.deserialize_json(
@@ -56,12 +56,12 @@ def deserialize_json(data: dict) -> DocumentationPartLocation:
         )
     else:
         raise DeserializationError("DocumentationPartLocation.type required")
-    if "path" in data:
+    if data.get("path") is not None:
         out["path"] = data["path"]
-    if "method" in data:
+    if data.get("method") is not None:
         out["method"] = data["method"]
-    if "statusCode" in data:
+    if data.get("statusCode") is not None:
         out["status_code"] = data["statusCode"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     return out

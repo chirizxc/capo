@@ -32,10 +32,10 @@ def serialize_json(value: IssueLocation) -> dict:
 
 def deserialize_json(data: dict) -> IssueLocation:
     out: IssueLocation = {}  # type: ignore[typeddict-item]
-    if "botLocale" in data:
+    if data.get("botLocale") is not None:
         out["bot_locale"] = data["botLocale"]
-    if "intentId" in data:
+    if data.get("intentId") is not None:
         out["intent_id"] = data["intentId"]
-    if "slotId" in data:
+    if data.get("slotId") is not None:
         out["slot_id"] = data["slotId"]
     return out

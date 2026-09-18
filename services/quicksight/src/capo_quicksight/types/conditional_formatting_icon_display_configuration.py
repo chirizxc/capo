@@ -31,7 +31,7 @@ def serialize_json(value: ConditionalFormattingIconDisplayConfiguration) -> dict
 
 def deserialize_json(data: dict) -> ConditionalFormattingIconDisplayConfiguration:
     out: ConditionalFormattingIconDisplayConfiguration = {}  # type: ignore[typeddict-item]
-    if "IconDisplayOption" in data:
+    if data.get("IconDisplayOption") is not None:
         import capo_quicksight.types.conditional_formatting_icon_display_option
 
         out["icon_display_option"] = (

@@ -29,6 +29,8 @@ def deserialize_aws_json_1_1(data: list) -> AggregateEvaluationResultList:
 
     out: AggregateEvaluationResultList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_config_service.types.aggregate_evaluation_result.deserialize_aws_json_1_1(
                 item

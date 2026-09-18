@@ -48,24 +48,24 @@ def serialize_json(value: MetricReference) -> dict:
 
 def deserialize_json(data: dict) -> MetricReference:
     out: MetricReference = {}  # type: ignore[typeddict-item]
-    if "Namespace" in data:
+    if data.get("Namespace") is not None:
         out["namespace"] = data["Namespace"]
     else:
         raise DeserializationError("MetricReference.namespace required")
-    if "MetricType" in data:
+    if data.get("MetricType") is not None:
         out["metric_type"] = data["MetricType"]
     else:
         raise DeserializationError("MetricReference.metric_type required")
-    if "Dimensions" in data:
+    if data.get("Dimensions") is not None:
         import capo_application_signals.types.dimensions
 
         out["dimensions"] = capo_application_signals.types.dimensions.deserialize_json(
             data["Dimensions"]
         )
-    if "MetricName" in data:
+    if data.get("MetricName") is not None:
         out["metric_name"] = data["MetricName"]
     else:
         raise DeserializationError("MetricReference.metric_name required")
-    if "AccountId" in data:
+    if data.get("AccountId") is not None:
         out["account_id"] = data["AccountId"]
     return out

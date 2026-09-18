@@ -79,19 +79,19 @@ def serialize_aws_json_1_0(value: GetRelayResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> GetRelayResponse:
     out: GetRelayResponse = {}  # type: ignore[typeddict-item]
-    if "RelayId" in data:
+    if data.get("RelayId") is not None:
         out["relay_id"] = data["RelayId"]
     else:
         raise DeserializationError("GetRelayResponse.relay_id required")
-    if "RelayArn" in data:
+    if data.get("RelayArn") is not None:
         out["relay_arn"] = data["RelayArn"]
-    if "RelayName" in data:
+    if data.get("RelayName") is not None:
         out["relay_name"] = data["RelayName"]
-    if "ServerName" in data:
+    if data.get("ServerName") is not None:
         out["server_name"] = data["ServerName"]
-    if "ServerPort" in data:
+    if data.get("ServerPort") is not None:
         out["server_port"] = data["ServerPort"]
-    if "Authentication" in data:
+    if data.get("Authentication") is not None:
         import capo_mailmanager.types.relay_authentication
 
         out["authentication"] = (
@@ -99,7 +99,7 @@ def deserialize_aws_json_1_0(data: dict) -> GetRelayResponse:
                 data["Authentication"]
             )
         )
-    if "CreatedTimestamp" in data:
+    if data.get("CreatedTimestamp") is not None:
         import capo_mailmanager.types._prelude.timestamp
 
         out["created_timestamp"] = (
@@ -107,7 +107,7 @@ def deserialize_aws_json_1_0(data: dict) -> GetRelayResponse:
                 data["CreatedTimestamp"]
             )
         )
-    if "LastModifiedTimestamp" in data:
+    if data.get("LastModifiedTimestamp") is not None:
         import capo_mailmanager.types._prelude.timestamp
 
         out["last_modified_timestamp"] = (

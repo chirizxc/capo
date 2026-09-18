@@ -38,9 +38,9 @@ def serialize_json(value: UpdateConnectorV2Request) -> dict:
 
 def deserialize_json(data: dict) -> UpdateConnectorV2Request:
     out: UpdateConnectorV2Request = {}  # type: ignore[typeddict-item]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Provider" in data:
+    if data.get("Provider") is not None:
         import capo_securityhub.types.provider_update_configuration
 
         out["provider"] = (

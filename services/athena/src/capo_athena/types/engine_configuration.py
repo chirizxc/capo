@@ -70,15 +70,15 @@ def serialize_aws_json_1_1(value: EngineConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> EngineConfiguration:
     out: EngineConfiguration = {}  # type: ignore[typeddict-item]
-    if "CoordinatorDpuSize" in data:
+    if data.get("CoordinatorDpuSize") is not None:
         out["coordinator_dpu_size"] = data["CoordinatorDpuSize"]
-    if "MaxConcurrentDpus" in data:
+    if data.get("MaxConcurrentDpus") is not None:
         out["max_concurrent_dpus"] = data["MaxConcurrentDpus"]
     else:
         out["max_concurrent_dpus"] = 20
-    if "DefaultExecutorDpuSize" in data:
+    if data.get("DefaultExecutorDpuSize") is not None:
         out["default_executor_dpu_size"] = data["DefaultExecutorDpuSize"]
-    if "AdditionalConfigs" in data:
+    if data.get("AdditionalConfigs") is not None:
         import capo_athena.types.parameters_map
 
         out["additional_configs"] = (
@@ -86,7 +86,7 @@ def deserialize_aws_json_1_1(data: dict) -> EngineConfiguration:
                 data["AdditionalConfigs"]
             )
         )
-    if "SparkProperties" in data:
+    if data.get("SparkProperties") is not None:
         import capo_athena.types.parameters_map
 
         out["spark_properties"] = (
@@ -94,7 +94,7 @@ def deserialize_aws_json_1_1(data: dict) -> EngineConfiguration:
                 data["SparkProperties"]
             )
         )
-    if "Classifications" in data:
+    if data.get("Classifications") is not None:
         import capo_athena.types.classification_list
 
         out["classifications"] = (

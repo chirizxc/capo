@@ -86,7 +86,7 @@ def serialize_aws_json_1_0(value: Record) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> Record:
     out: Record = {}  # type: ignore[typeddict-item]
-    if "Dimensions" in data:
+    if data.get("Dimensions") is not None:
         import capo_timestream_write.types.dimensions
 
         out["dimensions"] = (
@@ -94,11 +94,11 @@ def deserialize_aws_json_1_0(data: dict) -> Record:
                 data["Dimensions"]
             )
         )
-    if "MeasureName" in data:
+    if data.get("MeasureName") is not None:
         out["measure_name"] = data["MeasureName"]
-    if "MeasureValue" in data:
+    if data.get("MeasureValue") is not None:
         out["measure_value"] = data["MeasureValue"]
-    if "MeasureValueType" in data:
+    if data.get("MeasureValueType") is not None:
         import capo_timestream_write.types.measure_value_type
 
         out["measure_value_type"] = (
@@ -106,9 +106,9 @@ def deserialize_aws_json_1_0(data: dict) -> Record:
                 data["MeasureValueType"]
             )
         )
-    if "Time" in data:
+    if data.get("Time") is not None:
         out["time"] = data["Time"]
-    if "TimeUnit" in data:
+    if data.get("TimeUnit") is not None:
         import capo_timestream_write.types.time_unit
 
         out["time_unit"] = (
@@ -116,9 +116,9 @@ def deserialize_aws_json_1_0(data: dict) -> Record:
                 data["TimeUnit"]
             )
         )
-    if "Version" in data:
+    if data.get("Version") is not None:
         out["version"] = data["Version"]
-    if "MeasureValues" in data:
+    if data.get("MeasureValues") is not None:
         import capo_timestream_write.types.measure_values
 
         out["measure_values"] = (

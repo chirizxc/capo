@@ -31,8 +31,8 @@ def serialize_aws_json_1_1(value: UserContextDataType) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UserContextDataType:
     out: UserContextDataType = {}  # type: ignore[typeddict-item]
-    if "IpAddress" in data:
+    if data.get("IpAddress") is not None:
         out["ip_address"] = data["IpAddress"]
-    if "EncodedData" in data:
+    if data.get("EncodedData") is not None:
         out["encoded_data"] = data["EncodedData"]
     return out

@@ -21,18 +21,26 @@ class WorkerAmountCapability(TypedDict, closed=True):
 def serialize_json(value: WorkerAmountCapability) -> dict:
     out: dict = {}
     out["name"] = value["name"]
-    out["value"] = value["value"]
+    out["value"] = (
+        "NaN"
+        if value["value"] != value["value"]
+        else "Infinity"
+        if value["value"] == float("inf")
+        else "-Infinity"
+        if value["value"] == float("-inf")
+        else value["value"]
+    )
     return out
 
 
 def deserialize_json(data: dict) -> WorkerAmountCapability:
     out: WorkerAmountCapability = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("WorkerAmountCapability.name required")
-    if "value" in data:
-        out["value"] = data["value"]
+    if data.get("value") is not None:
+        out["value"] = float(data["value"])
     else:
         raise DeserializationError("WorkerAmountCapability.value required")
     return out

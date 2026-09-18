@@ -38,13 +38,13 @@ def serialize_json(value: DeregisterTargetsResponse) -> dict:
 
 def deserialize_json(data: dict) -> DeregisterTargetsResponse:
     out: DeregisterTargetsResponse = {}  # type: ignore[typeddict-item]
-    if "successful" in data:
+    if data.get("successful") is not None:
         import capo_vpc_lattice.types.target_list
 
         out["successful"] = capo_vpc_lattice.types.target_list.deserialize_json(
             data["successful"]
         )
-    if "unsuccessful" in data:
+    if data.get("unsuccessful") is not None:
         import capo_vpc_lattice.types.target_failure_list
 
         out["unsuccessful"] = (

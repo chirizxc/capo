@@ -50,7 +50,7 @@ def serialize_json(value: IdentityProviderConfiguration) -> dict:
 
 
 def deserialize_json(data: dict) -> IdentityProviderConfiguration:
-    if "samlConfiguration" in data:
+    if data.get("samlConfiguration") is not None:
         import capo_qbusiness.types.saml_provider_configuration
 
         return {
@@ -58,7 +58,7 @@ def deserialize_json(data: dict) -> IdentityProviderConfiguration:
                 data["samlConfiguration"]
             )
         }
-    elif "openIDConnectConfiguration" in data:
+    elif data.get("openIDConnectConfiguration") is not None:
         import capo_qbusiness.types.open_id_connect_provider_configuration
 
         return {

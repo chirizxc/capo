@@ -68,23 +68,23 @@ def serialize_json(value: DataCollectionDetails) -> dict:
 
 def deserialize_json(data: dict) -> DataCollectionDetails:
     out: DataCollectionDetails = {}  # type: ignore[typeddict-item]
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
-    if "servers" in data:
+    if data.get("servers") is not None:
         out["servers"] = data["servers"]
-    if "failed" in data:
+    if data.get("failed") is not None:
         out["failed"] = data["failed"]
-    if "success" in data:
+    if data.get("success") is not None:
         out["success"] = data["success"]
-    if "inProgress" in data:
+    if data.get("inProgress") is not None:
         out["in_progress"] = data["inProgress"]
-    if "startTime" in data:
+    if data.get("startTime") is not None:
         import capo_migrationhubstrategy.types.time_stamp
 
         out["start_time"] = capo_migrationhubstrategy.types.time_stamp.deserialize_json(
             data["startTime"]
         )
-    if "completionTime" in data:
+    if data.get("completionTime") is not None:
         import capo_migrationhubstrategy.types.time_stamp
 
         out["completion_time"] = (
@@ -92,6 +92,6 @@ def deserialize_json(data: dict) -> DataCollectionDetails:
                 data["completionTime"]
             )
         )
-    if "statusMessage" in data:
+    if data.get("statusMessage") is not None:
         out["status_message"] = data["statusMessage"]
     return out

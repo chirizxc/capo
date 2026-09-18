@@ -56,25 +56,25 @@ def serialize_json(value: CreateMountTargetRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateMountTargetRequest:
     out: CreateMountTargetRequest = {}  # type: ignore[typeddict-item]
-    if "fileSystemId" in data:
+    if data.get("fileSystemId") is not None:
         out["file_system_id"] = data["fileSystemId"]
     else:
         raise DeserializationError("CreateMountTargetRequest.file_system_id required")
-    if "subnetId" in data:
+    if data.get("subnetId") is not None:
         out["subnet_id"] = data["subnetId"]
     else:
         raise DeserializationError("CreateMountTargetRequest.subnet_id required")
-    if "ipv4Address" in data:
+    if data.get("ipv4Address") is not None:
         out["ipv4_address"] = data["ipv4Address"]
-    if "ipv6Address" in data:
+    if data.get("ipv6Address") is not None:
         out["ipv6_address"] = data["ipv6Address"]
-    if "ipAddressType" in data:
+    if data.get("ipAddressType") is not None:
         import capo_s3files.types.ip_address_type
 
         out["ip_address_type"] = capo_s3files.types.ip_address_type.deserialize_json(
             data["ipAddressType"]
         )
-    if "securityGroups" in data:
+    if data.get("securityGroups") is not None:
         import capo_s3files.types.security_groups
 
         out["security_groups"] = capo_s3files.types.security_groups.deserialize_json(

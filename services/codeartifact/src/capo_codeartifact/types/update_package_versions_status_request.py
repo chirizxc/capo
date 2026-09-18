@@ -79,7 +79,7 @@ def serialize_json(value: UpdatePackageVersionsStatusRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdatePackageVersionsStatusRequest:
     out: UpdatePackageVersionsStatusRequest = {}  # type: ignore[typeddict-item]
-    if "versions" in data:
+    if data.get("versions") is not None:
         import capo_codeartifact.types.package_version_list
 
         out["versions"] = capo_codeartifact.types.package_version_list.deserialize_json(
@@ -89,7 +89,7 @@ def deserialize_json(data: dict) -> UpdatePackageVersionsStatusRequest:
         raise DeserializationError(
             "UpdatePackageVersionsStatusRequest.versions required"
         )
-    if "versionRevisions" in data:
+    if data.get("versionRevisions") is not None:
         import capo_codeartifact.types.package_version_revision_map
 
         out["version_revisions"] = (
@@ -97,7 +97,7 @@ def deserialize_json(data: dict) -> UpdatePackageVersionsStatusRequest:
                 data["versionRevisions"]
             )
         )
-    if "expectedStatus" in data:
+    if data.get("expectedStatus") is not None:
         import capo_codeartifact.types.package_version_status
 
         out["expected_status"] = (
@@ -105,7 +105,7 @@ def deserialize_json(data: dict) -> UpdatePackageVersionsStatusRequest:
                 data["expectedStatus"]
             )
         )
-    if "targetStatus" in data:
+    if data.get("targetStatus") is not None:
         import capo_codeartifact.types.package_version_status
 
         out["target_status"] = (

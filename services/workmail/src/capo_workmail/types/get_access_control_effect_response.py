@@ -44,7 +44,7 @@ def serialize_aws_json_1_1(value: GetAccessControlEffectResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetAccessControlEffectResponse:
     out: GetAccessControlEffectResponse = {}  # type: ignore[typeddict-item]
-    if "Effect" in data:
+    if data.get("Effect") is not None:
         import capo_workmail.types.access_control_rule_effect
 
         out["effect"] = (
@@ -52,7 +52,7 @@ def deserialize_aws_json_1_1(data: dict) -> GetAccessControlEffectResponse:
                 data["Effect"]
             )
         )
-    if "MatchedRules" in data:
+    if data.get("MatchedRules") is not None:
         import capo_workmail.types.access_control_rule_name_list
 
         out["matched_rules"] = (

@@ -25,6 +25,8 @@ def deserialize_json(data: list) -> ComponentTypeSummaries:
 
     out: ComponentTypeSummaries = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_iottwinmaker.types.component_type_summary.deserialize_json(item)
         )

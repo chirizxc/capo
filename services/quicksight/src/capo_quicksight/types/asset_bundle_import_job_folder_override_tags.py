@@ -36,7 +36,7 @@ def serialize_json(value: AssetBundleImportJobFolderOverrideTags) -> dict:
 
 def deserialize_json(data: dict) -> AssetBundleImportJobFolderOverrideTags:
     out: AssetBundleImportJobFolderOverrideTags = {}  # type: ignore[typeddict-item]
-    if "FolderIds" in data:
+    if data.get("FolderIds") is not None:
         import capo_quicksight.types.asset_bundle_restrictive_resource_id_list
 
         out["folder_ids"] = (
@@ -48,7 +48,7 @@ def deserialize_json(data: dict) -> AssetBundleImportJobFolderOverrideTags:
         raise DeserializationError(
             "AssetBundleImportJobFolderOverrideTags.folder_ids required"
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_quicksight.types.tag_list
 
         out["tags"] = capo_quicksight.types.tag_list.deserialize_json(data["Tags"])

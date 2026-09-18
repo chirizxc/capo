@@ -37,7 +37,15 @@ def serialize_json(value: RouteOriginOptions) -> dict:
     out["AvoidActionsForDistance"] = value.get("avoid_actions_for_distance", 0)
     if "avoid_u_turns" in value:
         out["AvoidUTurns"] = value["avoid_u_turns"]
-    out["Heading"] = value.get("heading", 0)
+    out["Heading"] = (
+        "NaN"
+        if value.get("heading", 0) != value.get("heading", 0)
+        else "Infinity"
+        if value.get("heading", 0) == float("inf")
+        else "-Infinity"
+        if value.get("heading", 0) == float("-inf")
+        else value.get("heading", 0)
+    )
     if "matching" in value:
         import capo_geo_routes.types.route_matching_options
 
@@ -57,23 +65,23 @@ def serialize_json(value: RouteOriginOptions) -> dict:
 
 def deserialize_json(data: dict) -> RouteOriginOptions:
     out: RouteOriginOptions = {}  # type: ignore[typeddict-item]
-    if "AvoidActionsForDistance" in data:
+    if data.get("AvoidActionsForDistance") is not None:
         out["avoid_actions_for_distance"] = data["AvoidActionsForDistance"]
     else:
         out["avoid_actions_for_distance"] = 0
-    if "AvoidUTurns" in data:
+    if data.get("AvoidUTurns") is not None:
         out["avoid_u_turns"] = data["AvoidUTurns"]
-    if "Heading" in data:
-        out["heading"] = data["Heading"]
+    if data.get("Heading") is not None:
+        out["heading"] = float(data["Heading"])
     else:
         out["heading"] = 0
-    if "Matching" in data:
+    if data.get("Matching") is not None:
         import capo_geo_routes.types.route_matching_options
 
         out["matching"] = capo_geo_routes.types.route_matching_options.deserialize_json(
             data["Matching"]
         )
-    if "SideOfStreet" in data:
+    if data.get("SideOfStreet") is not None:
         import capo_geo_routes.types.route_side_of_street_options
 
         out["side_of_street"] = (

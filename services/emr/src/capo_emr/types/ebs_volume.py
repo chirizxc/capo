@@ -27,8 +27,8 @@ def serialize_aws_json_1_1(value: EbsVolume) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> EbsVolume:
     out: EbsVolume = {}  # type: ignore[typeddict-item]
-    if "Device" in data:
+    if data.get("Device") is not None:
         out["device"] = data["Device"]
-    if "VolumeId" in data:
+    if data.get("VolumeId") is not None:
         out["volume_id"] = data["VolumeId"]
     return out

@@ -34,7 +34,7 @@ def serialize_json(value: GetServiceInput) -> dict:
 
 def deserialize_json(data: dict) -> GetServiceInput:
     out: GetServiceInput = {}  # type: ignore[typeddict-item]
-    if "KeyAttributes" in data:
+    if data.get("KeyAttributes") is not None:
         import capo_application_signals.types.attributes
 
         out["key_attributes"] = (

@@ -52,13 +52,13 @@ def serialize_json(value: ApiFulfillmentOption) -> dict:
 
 def deserialize_json(data: dict) -> ApiFulfillmentOption:
     out: ApiFulfillmentOption = {}  # type: ignore[typeddict-item]
-    if "fulfillmentOptionId" in data:
+    if data.get("fulfillmentOptionId") is not None:
         out["fulfillment_option_id"] = data["fulfillmentOptionId"]
     else:
         raise DeserializationError(
             "ApiFulfillmentOption.fulfillment_option_id required"
         )
-    if "fulfillmentOptionType" in data:
+    if data.get("fulfillmentOptionType") is not None:
         import capo_marketplace_discovery.types.fulfillment_option_type
 
         out["fulfillment_option_type"] = (
@@ -70,15 +70,15 @@ def deserialize_json(data: dict) -> ApiFulfillmentOption:
         raise DeserializationError(
             "ApiFulfillmentOption.fulfillment_option_type required"
         )
-    if "fulfillmentOptionDisplayName" in data:
+    if data.get("fulfillmentOptionDisplayName") is not None:
         out["fulfillment_option_display_name"] = data["fulfillmentOptionDisplayName"]
     else:
         raise DeserializationError(
             "ApiFulfillmentOption.fulfillment_option_display_name required"
         )
-    if "usageInstructions" in data:
+    if data.get("usageInstructions") is not None:
         out["usage_instructions"] = data["usageInstructions"]
-    if "awsSupportedServices" in data:
+    if data.get("awsSupportedServices") is not None:
         import capo_marketplace_discovery.types.aws_supported_service_list
 
         out["aws_supported_services"] = (

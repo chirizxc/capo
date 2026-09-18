@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> TransitionEvents:
 
     out: TransitionEvents = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_iot_events.types.transition_event.deserialize_json(item))
     return out

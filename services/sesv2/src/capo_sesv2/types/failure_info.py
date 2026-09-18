@@ -30,8 +30,8 @@ def serialize_json(value: FailureInfo) -> dict:
 
 def deserialize_json(data: dict) -> FailureInfo:
     out: FailureInfo = {}  # type: ignore[typeddict-item]
-    if "FailedRecordsS3Url" in data:
+    if data.get("FailedRecordsS3Url") is not None:
         out["failed_records_s3_url"] = data["FailedRecordsS3Url"]
-    if "ErrorMessage" in data:
+    if data.get("ErrorMessage") is not None:
         out["error_message"] = data["ErrorMessage"]
     return out

@@ -27,11 +27,11 @@ def serialize_json(value: ThroughputLimitExceeded_) -> dict:
 
 def deserialize_json(data: dict) -> ThroughputLimitExceeded_:
     out: ThroughputLimitExceeded_ = {}  # type: ignore[typeddict-item]
-    if "ErrorCode" in data:
+    if data.get("ErrorCode") is not None:
         out["error_code"] = data["ErrorCode"]
     else:
         raise DeserializationError("ThroughputLimitExceeded_.error_code required")
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     return out
 
@@ -41,15 +41,18 @@ class ThroughputLimitExceeded(ServiceError):
 
     code: str | None = "ThroughputLimitExceeded"
 
-    def __init__(self, data: ThroughputLimitExceeded_):
+    def __init__(self, data: ThroughputLimitExceeded_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="ThroughputLimitExceeded",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "ThroughputLimitExceeded":
-        return cls(deserialize_json(data))
+    def from_json(
+        cls, data: dict, message: str | None = None
+    ) -> "ThroughputLimitExceeded":
+        return cls(deserialize_json(data), message)

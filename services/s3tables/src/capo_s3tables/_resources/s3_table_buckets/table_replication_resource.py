@@ -71,15 +71,17 @@ class TableReplicationResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_s3tables.types.delete_table_replication_request.DeleteTableReplicationRequest = {}  # type: ignore[typeddict-item]
-        input_["table_arn"] = table_arn
-        input_["version_token"] = version_token
+        input_: capo_s3tables.types.delete_table_replication_request.DeleteTableReplicationRequest = {
+            "table_arn": table_arn,
+            "version_token": version_token,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_table_replication(
@@ -121,14 +123,16 @@ class TableReplicationResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_s3tables.types.get_table_replication_request.GetTableReplicationRequest = {}  # type: ignore[typeddict-item]
-        input_["table_arn"] = table_arn
+        input_: capo_s3tables.types.get_table_replication_request.GetTableReplicationRequest = {
+            "table_arn": table_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_table_replication_status(
@@ -167,14 +171,16 @@ class TableReplicationResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_s3tables.types.get_table_replication_status_request.GetTableReplicationStatusRequest = {}  # type: ignore[typeddict-item]
-        input_["table_arn"] = table_arn
+        input_: capo_s3tables.types.get_table_replication_status_request.GetTableReplicationStatusRequest = {
+            "table_arn": table_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def put_table_replication(
@@ -220,17 +226,19 @@ class TableReplicationResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_s3tables.types.put_table_replication_request.PutTableReplicationRequest = {}  # type: ignore[typeddict-item]
-        input_["table_arn"] = table_arn
+        input_: capo_s3tables.types.put_table_replication_request.PutTableReplicationRequest = {
+            "table_arn": table_arn,
+            "configuration": configuration,
+        }
         if version_token is not None:
             input_["version_token"] = version_token
-        input_["configuration"] = configuration
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -276,15 +284,17 @@ class AsyncTableReplicationResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_s3tables.types.delete_table_replication_request.DeleteTableReplicationRequest = {}  # type: ignore[typeddict-item]
-        input_["table_arn"] = table_arn
-        input_["version_token"] = version_token
+        input_: capo_s3tables.types.delete_table_replication_request.DeleteTableReplicationRequest = {
+            "table_arn": table_arn,
+            "version_token": version_token,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_table_replication(
@@ -327,14 +337,16 @@ class AsyncTableReplicationResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_s3tables.types.get_table_replication_request.GetTableReplicationRequest = {}  # type: ignore[typeddict-item]
-        input_["table_arn"] = table_arn
+        input_: capo_s3tables.types.get_table_replication_request.GetTableReplicationRequest = {
+            "table_arn": table_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_table_replication_status(
@@ -374,14 +386,16 @@ class AsyncTableReplicationResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_s3tables.types.get_table_replication_status_request.GetTableReplicationStatusRequest = {}  # type: ignore[typeddict-item]
-        input_["table_arn"] = table_arn
+        input_: capo_s3tables.types.get_table_replication_status_request.GetTableReplicationStatusRequest = {
+            "table_arn": table_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def put_table_replication(
@@ -428,15 +442,17 @@ class AsyncTableReplicationResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_s3tables.types.put_table_replication_request.PutTableReplicationRequest = {}  # type: ignore[typeddict-item]
-        input_["table_arn"] = table_arn
+        input_: capo_s3tables.types.put_table_replication_request.PutTableReplicationRequest = {
+            "table_arn": table_arn,
+            "configuration": configuration,
+        }
         if version_token is not None:
             input_["version_token"] = version_token
-        input_["configuration"] = configuration
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

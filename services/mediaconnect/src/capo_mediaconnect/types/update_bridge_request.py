@@ -60,7 +60,7 @@ def serialize_json(value: UpdateBridgeRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateBridgeRequest:
     out: UpdateBridgeRequest = {}  # type: ignore[typeddict-item]
-    if "egressGatewayBridge" in data:
+    if data.get("egressGatewayBridge") is not None:
         import capo_mediaconnect.types.update_egress_gateway_bridge_request
 
         out["egress_gateway_bridge"] = (
@@ -68,7 +68,7 @@ def deserialize_json(data: dict) -> UpdateBridgeRequest:
                 data["egressGatewayBridge"]
             )
         )
-    if "ingressGatewayBridge" in data:
+    if data.get("ingressGatewayBridge") is not None:
         import capo_mediaconnect.types.update_ingress_gateway_bridge_request
 
         out["ingress_gateway_bridge"] = (
@@ -76,7 +76,7 @@ def deserialize_json(data: dict) -> UpdateBridgeRequest:
                 data["ingressGatewayBridge"]
             )
         )
-    if "sourceFailoverConfig" in data:
+    if data.get("sourceFailoverConfig") is not None:
         import capo_mediaconnect.types.update_failover_config
 
         out["source_failover_config"] = (

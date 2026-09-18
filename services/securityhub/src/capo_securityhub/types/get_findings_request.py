@@ -50,7 +50,7 @@ def serialize_json(value: GetFindingsRequest) -> dict:
 
 def deserialize_json(data: dict) -> GetFindingsRequest:
     out: GetFindingsRequest = {}  # type: ignore[typeddict-item]
-    if "Filters" in data:
+    if data.get("Filters") is not None:
         import capo_securityhub.types.aws_security_finding_filters
 
         out["filters"] = (
@@ -58,14 +58,14 @@ def deserialize_json(data: dict) -> GetFindingsRequest:
                 data["Filters"]
             )
         )
-    if "SortCriteria" in data:
+    if data.get("SortCriteria") is not None:
         import capo_securityhub.types.sort_criteria
 
         out["sort_criteria"] = capo_securityhub.types.sort_criteria.deserialize_json(
             data["SortCriteria"]
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
     return out

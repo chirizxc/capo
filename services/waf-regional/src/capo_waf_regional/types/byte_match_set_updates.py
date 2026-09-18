@@ -27,6 +27,8 @@ def deserialize_aws_json_1_1(data: list) -> ByteMatchSetUpdates:
 
     out: ByteMatchSetUpdates = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_waf_regional.types.byte_match_set_update.deserialize_aws_json_1_1(item)
         )

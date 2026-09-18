@@ -39,15 +39,15 @@ def serialize_aws_json_1_1(value: UpdateDomainNameserversRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateDomainNameserversRequest:
     out: UpdateDomainNameserversRequest = {}  # type: ignore[typeddict-item]
-    if "DomainName" in data:
+    if data.get("DomainName") is not None:
         out["domain_name"] = data["DomainName"]
     else:
         raise DeserializationError(
             "UpdateDomainNameserversRequest.domain_name required"
         )
-    if "FIAuthKey" in data:
+    if data.get("FIAuthKey") is not None:
         out["fi_auth_key"] = data["FIAuthKey"]
-    if "Nameservers" in data:
+    if data.get("Nameservers") is not None:
         import capo_route_53_domains.types.nameserver_list
 
         out["nameservers"] = (

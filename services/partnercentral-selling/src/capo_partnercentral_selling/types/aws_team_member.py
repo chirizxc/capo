@@ -45,13 +45,13 @@ def serialize_aws_json_1_0(value: AwsTeamMember) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> AwsTeamMember:
     out: AwsTeamMember = {}  # type: ignore[typeddict-item]
-    if "Email" in data:
+    if data.get("Email") is not None:
         out["email"] = data["Email"]
-    if "FirstName" in data:
+    if data.get("FirstName") is not None:
         out["first_name"] = data["FirstName"]
-    if "LastName" in data:
+    if data.get("LastName") is not None:
         out["last_name"] = data["LastName"]
-    if "BusinessTitle" in data:
+    if data.get("BusinessTitle") is not None:
         import capo_partnercentral_selling.types.aws_member_business_title
 
         out["business_title"] = (

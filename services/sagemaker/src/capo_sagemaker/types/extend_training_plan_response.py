@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: ExtendTrainingPlanResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ExtendTrainingPlanResponse:
     out: ExtendTrainingPlanResponse = {}  # type: ignore[typeddict-item]
-    if "TrainingPlanExtensions" in data:
+    if data.get("TrainingPlanExtensions") is not None:
         import capo_sagemaker.types.training_plan_extensions
 
         out["training_plan_extensions"] = (

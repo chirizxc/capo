@@ -35,12 +35,12 @@ def serialize_aws_json_1_1(value: DescribeSchemasMessage) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeSchemasMessage:
     out: DescribeSchemasMessage = {}  # type: ignore[typeddict-item]
-    if "EndpointArn" in data:
+    if data.get("EndpointArn") is not None:
         out["endpoint_arn"] = data["EndpointArn"]
     else:
         raise DeserializationError("DescribeSchemasMessage.endpoint_arn required")
-    if "MaxRecords" in data:
+    if data.get("MaxRecords") is not None:
         out["max_records"] = data["MaxRecords"]
-    if "Marker" in data:
+    if data.get("Marker") is not None:
         out["marker"] = data["Marker"]
     return out

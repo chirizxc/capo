@@ -40,7 +40,7 @@ def deserialize_aws_json_1_1(
     data: dict,
 ) -> ListFailuresForLicenseConfigurationOperationsResponse:
     out: ListFailuresForLicenseConfigurationOperationsResponse = {}  # type: ignore[typeddict-item]
-    if "LicenseOperationFailureList" in data:
+    if data.get("LicenseOperationFailureList") is not None:
         import capo_license_manager.types.license_operation_failure_list
 
         out["license_operation_failure_list"] = (
@@ -48,6 +48,6 @@ def deserialize_aws_json_1_1(
                 data["LicenseOperationFailureList"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

@@ -97,7 +97,9 @@ class AnnotationStore:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_omics.types.create_annotation_store_request.CreateAnnotationStoreRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_omics.types.create_annotation_store_request.CreateAnnotationStoreRequest = {
+            "store_format": store_format
+        }
         if reference is not None:
             input_["reference"] = reference
         if name is not None:
@@ -110,7 +112,6 @@ class AnnotationStore:
             input_["version_name"] = version_name
         if sse_config is not None:
             input_["sse_config"] = sse_config
-        input_["store_format"] = store_format
         if store_options is not None:
             input_["store_options"] = store_options
 
@@ -119,6 +120,7 @@ class AnnotationStore:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -153,14 +155,16 @@ class AnnotationStore:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_omics.types.get_annotation_store_request.GetAnnotationStoreRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_omics.types.get_annotation_store_request.GetAnnotationStoreRequest = {
+            "name": name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update(
@@ -200,8 +204,9 @@ class AnnotationStore:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_omics.types.update_annotation_store_request.UpdateAnnotationStoreRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_omics.types.update_annotation_store_request.UpdateAnnotationStoreRequest = {
+            "name": name
+        }
         if description is not None:
             input_["description"] = description
 
@@ -210,6 +215,7 @@ class AnnotationStore:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -250,8 +256,9 @@ class AnnotationStore:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_omics.types.delete_annotation_store_request.DeleteAnnotationStoreRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_omics.types.delete_annotation_store_request.DeleteAnnotationStoreRequest = {
+            "name": name
+        }
         if force is not None:
             input_["force"] = force
 
@@ -260,6 +267,7 @@ class AnnotationStore:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -307,7 +315,7 @@ class AnnotationStore:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_omics.types.list_annotation_stores_request.ListAnnotationStoresRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_omics.types.list_annotation_stores_request.ListAnnotationStoresRequest = {}
         if ids is not None:
             input_["ids"] = ids
         if max_results is not None:
@@ -322,6 +330,7 @@ class AnnotationStore:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -381,7 +390,9 @@ class AsyncAnnotationStore:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_omics.types.create_annotation_store_request.CreateAnnotationStoreRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_omics.types.create_annotation_store_request.CreateAnnotationStoreRequest = {
+            "store_format": store_format
+        }
         if reference is not None:
             input_["reference"] = reference
         if name is not None:
@@ -394,7 +405,6 @@ class AsyncAnnotationStore:
             input_["version_name"] = version_name
         if sse_config is not None:
             input_["sse_config"] = sse_config
-        input_["store_format"] = store_format
         if store_options is not None:
             input_["store_options"] = store_options
 
@@ -403,6 +413,7 @@ class AsyncAnnotationStore:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -438,14 +449,16 @@ class AsyncAnnotationStore:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_omics.types.get_annotation_store_request.GetAnnotationStoreRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_omics.types.get_annotation_store_request.GetAnnotationStoreRequest = {
+            "name": name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update(
@@ -486,8 +499,9 @@ class AsyncAnnotationStore:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_omics.types.update_annotation_store_request.UpdateAnnotationStoreRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_omics.types.update_annotation_store_request.UpdateAnnotationStoreRequest = {
+            "name": name
+        }
         if description is not None:
             input_["description"] = description
 
@@ -496,6 +510,7 @@ class AsyncAnnotationStore:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -537,8 +552,9 @@ class AsyncAnnotationStore:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_omics.types.delete_annotation_store_request.DeleteAnnotationStoreRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_omics.types.delete_annotation_store_request.DeleteAnnotationStoreRequest = {
+            "name": name
+        }
         if force is not None:
             input_["force"] = force
 
@@ -547,6 +563,7 @@ class AsyncAnnotationStore:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -595,7 +612,7 @@ class AsyncAnnotationStore:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_omics.types.list_annotation_stores_request.ListAnnotationStoresRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_omics.types.list_annotation_stores_request.ListAnnotationStoresRequest = {}
         if ids is not None:
             input_["ids"] = ids
         if max_results is not None:
@@ -610,4 +627,5 @@ class AsyncAnnotationStore:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

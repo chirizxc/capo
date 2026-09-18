@@ -31,7 +31,7 @@ def serialize_json(value: RadarChartSeriesSettings) -> dict:
 
 def deserialize_json(data: dict) -> RadarChartSeriesSettings:
     out: RadarChartSeriesSettings = {}  # type: ignore[typeddict-item]
-    if "AreaStyleSettings" in data:
+    if data.get("AreaStyleSettings") is not None:
         import capo_quicksight.types.radar_chart_area_style_settings
 
         out["area_style_settings"] = (

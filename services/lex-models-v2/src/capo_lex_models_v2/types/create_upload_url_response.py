@@ -28,8 +28,8 @@ def serialize_json(value: CreateUploadUrlResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateUploadUrlResponse:
     out: CreateUploadUrlResponse = {}  # type: ignore[typeddict-item]
-    if "importId" in data:
+    if data.get("importId") is not None:
         out["import_id"] = data["importId"]
-    if "uploadUrl" in data:
+    if data.get("uploadUrl") is not None:
         out["upload_url"] = data["uploadUrl"]
     return out

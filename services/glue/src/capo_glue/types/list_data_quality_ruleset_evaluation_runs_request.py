@@ -41,7 +41,7 @@ def serialize_aws_json_1_1(value: ListDataQualityRulesetEvaluationRunsRequest) -
 
 def deserialize_aws_json_1_1(data: dict) -> ListDataQualityRulesetEvaluationRunsRequest:
     out: ListDataQualityRulesetEvaluationRunsRequest = {}  # type: ignore[typeddict-item]
-    if "Filter" in data:
+    if data.get("Filter") is not None:
         import capo_glue.types.data_quality_ruleset_evaluation_run_filter
 
         out["filter"] = (
@@ -49,8 +49,8 @@ def deserialize_aws_json_1_1(data: dict) -> ListDataQualityRulesetEvaluationRuns
                 data["Filter"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
     return out

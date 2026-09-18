@@ -62,7 +62,7 @@ def serialize_json(value: VirtualGatewayConnectionPool) -> dict:
 
 
 def deserialize_json(data: dict) -> VirtualGatewayConnectionPool:
-    if "http" in data:
+    if data.get("http") is not None:
         import capo_app_mesh.types.virtual_gateway_http_connection_pool
 
         return {
@@ -70,7 +70,7 @@ def deserialize_json(data: dict) -> VirtualGatewayConnectionPool:
                 data["http"]
             )
         }
-    elif "http2" in data:
+    elif data.get("http2") is not None:
         import capo_app_mesh.types.virtual_gateway_http2_connection_pool
 
         return {
@@ -78,7 +78,7 @@ def deserialize_json(data: dict) -> VirtualGatewayConnectionPool:
                 data["http2"]
             )
         }
-    elif "grpc" in data:
+    elif data.get("grpc") is not None:
         import capo_app_mesh.types.virtual_gateway_grpc_connection_pool
 
         return {

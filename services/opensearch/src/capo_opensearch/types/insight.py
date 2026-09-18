@@ -77,38 +77,38 @@ def serialize_json(value: Insight) -> dict:
 
 def deserialize_json(data: dict) -> Insight:
     out: Insight = {}  # type: ignore[typeddict-item]
-    if "InsightId" in data:
+    if data.get("InsightId") is not None:
         out["insight_id"] = data["InsightId"]
-    if "DisplayName" in data:
+    if data.get("DisplayName") is not None:
         out["display_name"] = data["DisplayName"]
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_opensearch.types.insight_type
 
         out["type"] = capo_opensearch.types.insight_type.deserialize_json(data["Type"])
-    if "Priority" in data:
+    if data.get("Priority") is not None:
         import capo_opensearch.types.insight_priority_level
 
         out["priority"] = capo_opensearch.types.insight_priority_level.deserialize_json(
             data["Priority"]
         )
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_opensearch.types.insight_status
 
         out["status"] = capo_opensearch.types.insight_status.deserialize_json(
             data["Status"]
         )
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_opensearch.types.update_timestamp
 
         out["creation_time"] = capo_opensearch.types.update_timestamp.deserialize_json(
             data["CreationTime"]
         )
-    if "UpdateTime" in data:
+    if data.get("UpdateTime") is not None:
         import capo_opensearch.types.update_timestamp
 
         out["update_time"] = capo_opensearch.types.update_timestamp.deserialize_json(
             data["UpdateTime"]
         )
-    if "IsExperimental" in data:
+    if data.get("IsExperimental") is not None:
         out["is_experimental"] = data["IsExperimental"]
     return out

@@ -32,9 +32,9 @@ def serialize_aws_json_1_1(value: ListLanguageModelsResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListLanguageModelsResponse:
     out: ListLanguageModelsResponse = {}  # type: ignore[typeddict-item]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "Models" in data:
+    if data.get("Models") is not None:
         import capo_transcribe.types.models
 
         out["models"] = capo_transcribe.types.models.deserialize_aws_json_1_1(

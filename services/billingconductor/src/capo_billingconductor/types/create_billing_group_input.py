@@ -68,11 +68,11 @@ def serialize_json(value: CreateBillingGroupInput) -> dict:
 
 def deserialize_json(data: dict) -> CreateBillingGroupInput:
     out: CreateBillingGroupInput = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("CreateBillingGroupInput.name required")
-    if "AccountGrouping" in data:
+    if data.get("AccountGrouping") is not None:
         import capo_billingconductor.types.account_grouping
 
         out["account_grouping"] = (
@@ -82,7 +82,7 @@ def deserialize_json(data: dict) -> CreateBillingGroupInput:
         )
     else:
         raise DeserializationError("CreateBillingGroupInput.account_grouping required")
-    if "ComputationPreference" in data:
+    if data.get("ComputationPreference") is not None:
         import capo_billingconductor.types.computation_preference
 
         out["computation_preference"] = (
@@ -94,11 +94,11 @@ def deserialize_json(data: dict) -> CreateBillingGroupInput:
         raise DeserializationError(
             "CreateBillingGroupInput.computation_preference required"
         )
-    if "PrimaryAccountId" in data:
+    if data.get("PrimaryAccountId") is not None:
         out["primary_account_id"] = data["PrimaryAccountId"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_billingconductor.types.tag_map
 
         out["tags"] = capo_billingconductor.types.tag_map.deserialize_json(data["Tags"])

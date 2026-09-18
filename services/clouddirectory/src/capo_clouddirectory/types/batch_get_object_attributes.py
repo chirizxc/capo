@@ -46,7 +46,7 @@ def serialize_json(value: BatchGetObjectAttributes) -> dict:
 
 def deserialize_json(data: dict) -> BatchGetObjectAttributes:
     out: BatchGetObjectAttributes = {}  # type: ignore[typeddict-item]
-    if "ObjectReference" in data:
+    if data.get("ObjectReference") is not None:
         import capo_clouddirectory.types.object_reference
 
         out["object_reference"] = (
@@ -56,7 +56,7 @@ def deserialize_json(data: dict) -> BatchGetObjectAttributes:
         )
     else:
         raise DeserializationError("BatchGetObjectAttributes.object_reference required")
-    if "SchemaFacet" in data:
+    if data.get("SchemaFacet") is not None:
         import capo_clouddirectory.types.schema_facet
 
         out["schema_facet"] = capo_clouddirectory.types.schema_facet.deserialize_json(
@@ -64,7 +64,7 @@ def deserialize_json(data: dict) -> BatchGetObjectAttributes:
         )
     else:
         raise DeserializationError("BatchGetObjectAttributes.schema_facet required")
-    if "AttributeNames" in data:
+    if data.get("AttributeNames") is not None:
         import capo_clouddirectory.types.attribute_name_list
 
         out["attribute_names"] = (

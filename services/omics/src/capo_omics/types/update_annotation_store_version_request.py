@@ -27,6 +27,6 @@ def serialize_json(value: UpdateAnnotationStoreVersionRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateAnnotationStoreVersionRequest:
     out: UpdateAnnotationStoreVersionRequest = {}  # type: ignore[typeddict-item]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
     return out

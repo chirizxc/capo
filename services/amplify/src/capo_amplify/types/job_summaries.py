@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> JobSummaries:
 
     out: JobSummaries = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_amplify.types.job_summary.deserialize_json(item))
     return out

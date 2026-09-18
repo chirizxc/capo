@@ -46,15 +46,15 @@ def serialize_aws_json_1_0(value: WriteRecordsRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> WriteRecordsRequest:
     out: WriteRecordsRequest = {}  # type: ignore[typeddict-item]
-    if "DatabaseName" in data:
+    if data.get("DatabaseName") is not None:
         out["database_name"] = data["DatabaseName"]
     else:
         raise DeserializationError("WriteRecordsRequest.database_name required")
-    if "TableName" in data:
+    if data.get("TableName") is not None:
         out["table_name"] = data["TableName"]
     else:
         raise DeserializationError("WriteRecordsRequest.table_name required")
-    if "CommonAttributes" in data:
+    if data.get("CommonAttributes") is not None:
         import capo_timestream_write.types.record
 
         out["common_attributes"] = (
@@ -62,7 +62,7 @@ def deserialize_aws_json_1_0(data: dict) -> WriteRecordsRequest:
                 data["CommonAttributes"]
             )
         )
-    if "Records" in data:
+    if data.get("Records") is not None:
         import capo_timestream_write.types.records
 
         out["records"] = capo_timestream_write.types.records.deserialize_aws_json_1_0(

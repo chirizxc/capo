@@ -48,11 +48,11 @@ def serialize_aws_json_1_1(value: ListDevicesRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListDevicesRequest:
     out: ListDevicesRequest = {}  # type: ignore[typeddict-item]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "LatestHeartbeatAfter" in data:
+    if data.get("LatestHeartbeatAfter") is not None:
         import capo_sagemaker.types.timestamp
 
         out["latest_heartbeat_after"] = (
@@ -60,8 +60,8 @@ def deserialize_aws_json_1_1(data: dict) -> ListDevicesRequest:
                 data["LatestHeartbeatAfter"]
             )
         )
-    if "ModelName" in data:
+    if data.get("ModelName") is not None:
         out["model_name"] = data["ModelName"]
-    if "DeviceFleetName" in data:
+    if data.get("DeviceFleetName") is not None:
         out["device_fleet_name"] = data["DeviceFleetName"]
     return out

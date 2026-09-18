@@ -36,11 +36,11 @@ def serialize_aws_json_1_1(value: UpdateMaxRecordSizeInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateMaxRecordSizeInput:
     out: UpdateMaxRecordSizeInput = {}  # type: ignore[typeddict-item]
-    if "StreamARN" in data:
+    if data.get("StreamARN") is not None:
         out["stream_arn"] = data["StreamARN"]
-    if "StreamId" in data:
+    if data.get("StreamId") is not None:
         out["stream_id"] = data["StreamId"]
-    if "MaxRecordSizeInKiB" in data:
+    if data.get("MaxRecordSizeInKiB") is not None:
         out["max_record_size_in_ki_b"] = data["MaxRecordSizeInKiB"]
     else:
         raise DeserializationError(

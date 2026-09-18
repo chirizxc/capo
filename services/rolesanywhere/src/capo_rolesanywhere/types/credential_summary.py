@@ -27,9 +27,9 @@ class CredentialSummary(TypedDict, closed=True):
 def serialize_json(value: CredentialSummary) -> dict:
     out: dict = {}
     if "seen_at" in value:
-        import capo_rolesanywhere.types._prelude.timestamp
+        import capo_rolesanywhere._protocol.serialize
 
-        out["seenAt"] = capo_rolesanywhere.types._prelude.timestamp.serialize_json(
+        out["seenAt"] = capo_rolesanywhere._protocol.serialize.fmt_date_time(
             value["seen_at"]
         )
     if "serial_number" in value:
@@ -47,20 +47,20 @@ def serialize_json(value: CredentialSummary) -> dict:
 
 def deserialize_json(data: dict) -> CredentialSummary:
     out: CredentialSummary = {}  # type: ignore[typeddict-item]
-    if "seenAt" in data:
-        import capo_rolesanywhere.types._prelude.timestamp
+    if data.get("seenAt") is not None:
+        import datetime
 
-        out["seen_at"] = capo_rolesanywhere.types._prelude.timestamp.deserialize_json(
-            data["seenAt"]
+        out["seen_at"] = datetime.datetime.fromisoformat(
+            data["seenAt"].replace("Z", "+00:00")
         )
-    if "serialNumber" in data:
+    if data.get("serialNumber") is not None:
         out["serial_number"] = data["serialNumber"]
-    if "issuer" in data:
+    if data.get("issuer") is not None:
         out["issuer"] = data["issuer"]
-    if "enabled" in data:
+    if data.get("enabled") is not None:
         out["enabled"] = data["enabled"]
-    if "x509CertificateData" in data:
+    if data.get("x509CertificateData") is not None:
         out["x509_certificate_data"] = data["x509CertificateData"]
-    if "failed" in data:
+    if data.get("failed") is not None:
         out["failed"] = data["failed"]
     return out

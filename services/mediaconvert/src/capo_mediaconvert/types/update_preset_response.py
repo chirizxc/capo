@@ -25,7 +25,7 @@ def serialize_json(value: UpdatePresetResponse) -> dict:
 
 def deserialize_json(data: dict) -> UpdatePresetResponse:
     out: UpdatePresetResponse = {}  # type: ignore[typeddict-item]
-    if "preset" in data:
+    if data.get("preset") is not None:
         import capo_mediaconvert.types.preset
 
         out["preset"] = capo_mediaconvert.types.preset.deserialize_json(data["preset"])

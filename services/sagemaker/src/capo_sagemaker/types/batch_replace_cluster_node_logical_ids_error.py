@@ -43,9 +43,9 @@ def serialize_aws_json_1_1(value: BatchReplaceClusterNodeLogicalIdsError) -> dic
 
 def deserialize_aws_json_1_1(data: dict) -> BatchReplaceClusterNodeLogicalIdsError:
     out: BatchReplaceClusterNodeLogicalIdsError = {}  # type: ignore[typeddict-item]
-    if "NodeLogicalId" in data:
+    if data.get("NodeLogicalId") is not None:
         out["node_logical_id"] = data["NodeLogicalId"]
-    if "ErrorCode" in data:
+    if data.get("ErrorCode") is not None:
         import capo_sagemaker.types.batch_replace_cluster_nodes_error_code
 
         out["error_code"] = (
@@ -53,6 +53,6 @@ def deserialize_aws_json_1_1(data: dict) -> BatchReplaceClusterNodeLogicalIdsErr
                 data["ErrorCode"]
             )
         )
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     return out

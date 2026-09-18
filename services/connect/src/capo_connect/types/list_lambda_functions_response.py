@@ -34,7 +34,7 @@ def serialize_json(value: ListLambdaFunctionsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListLambdaFunctionsResponse:
     out: ListLambdaFunctionsResponse = {}  # type: ignore[typeddict-item]
-    if "LambdaFunctions" in data:
+    if data.get("LambdaFunctions") is not None:
         import capo_connect.types.function_arns_list
 
         out["lambda_functions"] = (
@@ -42,6 +42,6 @@ def deserialize_json(data: dict) -> ListLambdaFunctionsResponse:
                 data["LambdaFunctions"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

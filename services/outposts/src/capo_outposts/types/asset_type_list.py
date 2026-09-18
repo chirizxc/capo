@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> AssetTypeList:
 
     out: AssetTypeList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_outposts.types.asset_type.deserialize_json(item))
     return out

@@ -68,30 +68,30 @@ def serialize_json(value: KubernetesWorkloadDetails) -> dict:
 
 def deserialize_json(data: dict) -> KubernetesWorkloadDetails:
     out: KubernetesWorkloadDetails = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "type" in data:
+    if data.get("type") is not None:
         out["type"] = data["type"]
-    if "uid" in data:
+    if data.get("uid") is not None:
         out["uid"] = data["uid"]
-    if "namespace" in data:
+    if data.get("namespace") is not None:
         out["namespace"] = data["namespace"]
-    if "hostNetwork" in data:
+    if data.get("hostNetwork") is not None:
         out["host_network"] = data["hostNetwork"]
-    if "serviceAccountName" in data:
+    if data.get("serviceAccountName") is not None:
         out["service_account_name"] = data["serviceAccountName"]
-    if "containers" in data:
+    if data.get("containers") is not None:
         import capo_guardduty.types.containers
 
         out["containers"] = capo_guardduty.types.containers.deserialize_json(
             data["containers"]
         )
-    if "volumes" in data:
+    if data.get("volumes") is not None:
         import capo_guardduty.types.volumes
 
         out["volumes"] = capo_guardduty.types.volumes.deserialize_json(data["volumes"])
-    if "hostIPC" in data:
+    if data.get("hostIPC") is not None:
         out["host_ipc"] = data["hostIPC"]
-    if "hostPID" in data:
+    if data.get("hostPID") is not None:
         out["host_pid"] = data["hostPID"]
     return out

@@ -25,7 +25,7 @@ def serialize_json(value: GetStreamResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetStreamResponse:
     out: GetStreamResponse = {}  # type: ignore[typeddict-item]
-    if "stream" in data:
+    if data.get("stream") is not None:
         import capo_ivs.types.stream
 
         out["stream"] = capo_ivs.types.stream.deserialize_json(data["stream"])

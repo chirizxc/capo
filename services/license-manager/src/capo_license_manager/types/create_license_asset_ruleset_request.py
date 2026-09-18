@@ -54,13 +54,13 @@ def serialize_aws_json_1_1(value: CreateLicenseAssetRulesetRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateLicenseAssetRulesetRequest:
     out: CreateLicenseAssetRulesetRequest = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("CreateLicenseAssetRulesetRequest.name required")
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Rules" in data:
+    if data.get("Rules") is not None:
         import capo_license_manager.types.license_asset_rule_list
 
         out["rules"] = (
@@ -70,13 +70,13 @@ def deserialize_aws_json_1_1(data: dict) -> CreateLicenseAssetRulesetRequest:
         )
     else:
         raise DeserializationError("CreateLicenseAssetRulesetRequest.rules required")
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_license_manager.types.tag_list
 
         out["tags"] = capo_license_manager.types.tag_list.deserialize_aws_json_1_1(
             data["Tags"]
         )
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
     else:
         raise DeserializationError(

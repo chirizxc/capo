@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: SourceAlgorithmSpecification) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SourceAlgorithmSpecification:
     out: SourceAlgorithmSpecification = {}  # type: ignore[typeddict-item]
-    if "SourceAlgorithms" in data:
+    if data.get("SourceAlgorithms") is not None:
         import capo_sagemaker.types.source_algorithm_list
 
         out["source_algorithms"] = (

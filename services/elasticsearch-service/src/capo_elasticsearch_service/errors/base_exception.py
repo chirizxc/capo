@@ -25,7 +25,7 @@ def serialize_json(value: BaseException_) -> dict:
 
 def deserialize_json(data: dict) -> BaseException_:
     out: BaseException_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     return out
 
@@ -35,15 +35,16 @@ class BaseException(ServiceError):
 
     code: str | None = "BaseException"
 
-    def __init__(self, data: BaseException_):
+    def __init__(self, data: BaseException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="BaseException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "BaseException":
-        return cls(deserialize_json(data))
+    def from_json(cls, data: dict, message: str | None = None) -> "BaseException":
+        return cls(deserialize_json(data), message)

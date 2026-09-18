@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> ThingGroupDocumentList:
 
     out: ThingGroupDocumentList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_iot.types.thing_group_document.deserialize_json(item))
     return out

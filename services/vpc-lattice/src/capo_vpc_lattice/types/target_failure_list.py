@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> TargetFailureList:
 
     out: TargetFailureList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_vpc_lattice.types.target_failure.deserialize_json(item))
     return out

@@ -22,8 +22,8 @@ def serialize_json(value: ProactiveRefreshTokenRenewal) -> dict:
 
 def deserialize_json(data: dict) -> ProactiveRefreshTokenRenewal:
     out: ProactiveRefreshTokenRenewal = {}  # type: ignore[typeddict-item]
-    if "enabled" in data:
+    if data.get("enabled") is not None:
         out["enabled"] = data["enabled"]
-    if "DaysBeforeRenewal" in data:
+    if data.get("DaysBeforeRenewal") is not None:
         out["days_before_renewal"] = data["DaysBeforeRenewal"]
     return out

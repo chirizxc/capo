@@ -25,6 +25,6 @@ def serialize_json(value: ObjectReference) -> dict:
 
 def deserialize_json(data: dict) -> ObjectReference:
     out: ObjectReference = {}  # type: ignore[typeddict-item]
-    if "Selector" in data:
+    if data.get("Selector") is not None:
         out["selector"] = data["Selector"]
     return out

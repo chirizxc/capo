@@ -32,17 +32,17 @@ def serialize_aws_json_1_1(value: CancelMailboxExportJobRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CancelMailboxExportJobRequest:
     out: CancelMailboxExportJobRequest = {}  # type: ignore[typeddict-item]
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
     else:
         raise DeserializationError(
             "CancelMailboxExportJobRequest.client_token required"
         )
-    if "JobId" in data:
+    if data.get("JobId") is not None:
         out["job_id"] = data["JobId"]
     else:
         raise DeserializationError("CancelMailboxExportJobRequest.job_id required")
-    if "OrganizationId" in data:
+    if data.get("OrganizationId") is not None:
         out["organization_id"] = data["OrganizationId"]
     else:
         raise DeserializationError(

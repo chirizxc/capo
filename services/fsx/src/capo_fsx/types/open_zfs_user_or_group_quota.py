@@ -38,14 +38,14 @@ def serialize_aws_json_1_1(value: OpenZFSUserOrGroupQuota) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> OpenZFSUserOrGroupQuota:
     out: OpenZFSUserOrGroupQuota = {}  # type: ignore[typeddict-item]
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_fsx.types.open_zfs_quota_type
 
         out["type"] = capo_fsx.types.open_zfs_quota_type.deserialize_aws_json_1_1(
             data["Type"]
         )
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "StorageCapacityQuotaGiB" in data:
+    if data.get("StorageCapacityQuotaGiB") is not None:
         out["storage_capacity_quota_gi_b"] = data["StorageCapacityQuotaGiB"]
     return out

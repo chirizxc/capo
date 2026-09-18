@@ -89,17 +89,17 @@ def serialize_json(value: UpdateContactRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateContactRequest:
     out: UpdateContactRequest = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "References" in data:
+    if data.get("References") is not None:
         import capo_connect.types.contact_references
 
         out["references"] = capo_connect.types.contact_references.deserialize_json(
             data["References"]
         )
-    if "SegmentAttributes" in data:
+    if data.get("SegmentAttributes") is not None:
         import capo_connect.types.segment_attributes
 
         out["segment_attributes"] = (
@@ -107,25 +107,25 @@ def deserialize_json(data: dict) -> UpdateContactRequest:
                 data["SegmentAttributes"]
             )
         )
-    if "QueueInfo" in data:
+    if data.get("QueueInfo") is not None:
         import capo_connect.types.queue_info_input
 
         out["queue_info"] = capo_connect.types.queue_info_input.deserialize_json(
             data["QueueInfo"]
         )
-    if "UserInfo" in data:
+    if data.get("UserInfo") is not None:
         import capo_connect.types.user_info
 
         out["user_info"] = capo_connect.types.user_info.deserialize_json(
             data["UserInfo"]
         )
-    if "CustomerEndpoint" in data:
+    if data.get("CustomerEndpoint") is not None:
         import capo_connect.types.endpoint
 
         out["customer_endpoint"] = capo_connect.types.endpoint.deserialize_json(
             data["CustomerEndpoint"]
         )
-    if "SystemEndpoint" in data:
+    if data.get("SystemEndpoint") is not None:
         import capo_connect.types.endpoint
 
         out["system_endpoint"] = capo_connect.types.endpoint.deserialize_json(

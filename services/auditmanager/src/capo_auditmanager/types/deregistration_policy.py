@@ -31,7 +31,7 @@ def serialize_json(value: DeregistrationPolicy) -> dict:
 
 def deserialize_json(data: dict) -> DeregistrationPolicy:
     out: DeregistrationPolicy = {}  # type: ignore[typeddict-item]
-    if "deleteResources" in data:
+    if data.get("deleteResources") is not None:
         import capo_auditmanager.types.delete_resources
 
         out["delete_resources"] = (

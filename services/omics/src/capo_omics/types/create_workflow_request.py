@@ -155,23 +155,23 @@ def serialize_json(value: CreateWorkflowRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateWorkflowRequest:
     out: CreateWorkflowRequest = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "engine" in data:
+    if data.get("engine") is not None:
         out["engine"] = data["engine"]
-    if "definitionZip" in data:
+    if data.get("definitionZip") is not None:
         import capo_omics.types._prelude.blob
 
         out["definition_zip"] = capo_omics.types._prelude.blob.deserialize_json(
             data["definitionZip"]
         )
-    if "definitionUri" in data:
+    if data.get("definitionUri") is not None:
         out["definition_uri"] = data["definitionUri"]
-    if "main" in data:
+    if data.get("main") is not None:
         out["main"] = data["main"]
-    if "parameterTemplate" in data:
+    if data.get("parameterTemplate") is not None:
         import capo_omics.types.workflow_parameter_template
 
         out["parameter_template"] = (
@@ -179,21 +179,21 @@ def deserialize_json(data: dict) -> CreateWorkflowRequest:
                 data["parameterTemplate"]
             )
         )
-    if "storageCapacity" in data:
+    if data.get("storageCapacity") is not None:
         out["storage_capacity"] = data["storageCapacity"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_omics.types.tag_map
 
         out["tags"] = capo_omics.types.tag_map.deserialize_json(data["tags"])
-    if "requestId" in data:
+    if data.get("requestId") is not None:
         out["request_id"] = data["requestId"]
     else:
         raise DeserializationError("CreateWorkflowRequest.request_id required")
-    if "accelerators" in data:
+    if data.get("accelerators") is not None:
         out["accelerators"] = data["accelerators"]
-    if "storageType" in data:
+    if data.get("storageType") is not None:
         out["storage_type"] = data["storageType"]
-    if "containerRegistryMap" in data:
+    if data.get("containerRegistryMap") is not None:
         import capo_omics.types.container_registry_map
 
         out["container_registry_map"] = (
@@ -201,15 +201,15 @@ def deserialize_json(data: dict) -> CreateWorkflowRequest:
                 data["containerRegistryMap"]
             )
         )
-    if "containerRegistryMapUri" in data:
+    if data.get("containerRegistryMapUri") is not None:
         out["container_registry_map_uri"] = data["containerRegistryMapUri"]
-    if "readmeMarkdown" in data:
+    if data.get("readmeMarkdown") is not None:
         out["readme_markdown"] = data["readmeMarkdown"]
-    if "parameterTemplatePath" in data:
+    if data.get("parameterTemplatePath") is not None:
         out["parameter_template_path"] = data["parameterTemplatePath"]
-    if "readmePath" in data:
+    if data.get("readmePath") is not None:
         out["readme_path"] = data["readmePath"]
-    if "definitionRepository" in data:
+    if data.get("definitionRepository") is not None:
         import capo_omics.types.definition_repository
 
         out["definition_repository"] = (
@@ -217,8 +217,8 @@ def deserialize_json(data: dict) -> CreateWorkflowRequest:
                 data["definitionRepository"]
             )
         )
-    if "workflowBucketOwnerId" in data:
+    if data.get("workflowBucketOwnerId") is not None:
         out["workflow_bucket_owner_id"] = data["workflowBucketOwnerId"]
-    if "readmeUri" in data:
+    if data.get("readmeUri") is not None:
         out["readme_uri"] = data["readmeUri"]
     return out

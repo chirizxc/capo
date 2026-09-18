@@ -34,7 +34,7 @@ def serialize_json(value: PutMetadataFlagRequest) -> dict:
 
 def deserialize_json(data: dict) -> PutMetadataFlagRequest:
     out: PutMetadataFlagRequest = {}  # type: ignore[typeddict-item]
-    if "body" in data:
+    if data.get("body") is not None:
         import capo_amplifyuibuilder.types.put_metadata_flag_body
 
         out["body"] = (

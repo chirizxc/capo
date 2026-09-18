@@ -32,8 +32,8 @@ def serialize_aws_json_1_1(value: ThirdPartyFirewallFirewallPolicy) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ThirdPartyFirewallFirewallPolicy:
     out: ThirdPartyFirewallFirewallPolicy = {}  # type: ignore[typeddict-item]
-    if "FirewallPolicyId" in data:
+    if data.get("FirewallPolicyId") is not None:
         out["firewall_policy_id"] = data["FirewallPolicyId"]
-    if "FirewallPolicyName" in data:
+    if data.get("FirewallPolicyName") is not None:
         out["firewall_policy_name"] = data["FirewallPolicyName"]
     return out

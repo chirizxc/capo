@@ -35,13 +35,13 @@ def serialize_aws_json_1_1(value: StartImportTaskRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> StartImportTaskRequest:
     out: StartImportTaskRequest = {}  # type: ignore[typeddict-item]
-    if "clientRequestToken" in data:
+    if data.get("clientRequestToken") is not None:
         out["client_request_token"] = data["clientRequestToken"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("StartImportTaskRequest.name required")
-    if "importUrl" in data:
+    if data.get("importUrl") is not None:
         out["import_url"] = data["importUrl"]
     else:
         raise DeserializationError("StartImportTaskRequest.import_url required")

@@ -28,8 +28,8 @@ def serialize_json(value: RandomSplitEntry) -> dict:
 
 def deserialize_json(data: dict) -> RandomSplitEntry:
     out: RandomSplitEntry = {}  # type: ignore[typeddict-item]
-    if "NextActivity" in data:
+    if data.get("NextActivity") is not None:
         out["next_activity"] = data["NextActivity"]
-    if "Percentage" in data:
+    if data.get("Percentage") is not None:
         out["percentage"] = data["Percentage"]
     return out

@@ -41,14 +41,14 @@ def serialize_aws_json_1_0(value: ListFirewallsRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ListFirewallsRequest:
     out: ListFirewallsRequest = {}  # type: ignore[typeddict-item]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "VpcIds" in data:
+    if data.get("VpcIds") is not None:
         import capo_network_firewall.types.vpc_ids
 
         out["vpc_ids"] = capo_network_firewall.types.vpc_ids.deserialize_aws_json_1_0(
             data["VpcIds"]
         )
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
     return out

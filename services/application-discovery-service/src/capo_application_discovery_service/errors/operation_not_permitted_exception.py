@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: OperationNotPermittedException_) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> OperationNotPermittedException_:
     out: OperationNotPermittedException_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     return out
 
@@ -34,15 +34,20 @@ class OperationNotPermittedException(ServiceError):
 
     code: str | None = "OperationNotPermittedException"
 
-    def __init__(self, data: OperationNotPermittedException_):
+    def __init__(
+        self, data: OperationNotPermittedException_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="OperationNotPermittedException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "OperationNotPermittedException":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "OperationNotPermittedException":
+        return cls(deserialize_aws_json_1_1(data), message)

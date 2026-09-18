@@ -54,7 +54,7 @@ def serialize_aws_json_1_1(value: GetPerformanceAnalysisReportRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetPerformanceAnalysisReportRequest:
     out: GetPerformanceAnalysisReportRequest = {}  # type: ignore[typeddict-item]
-    if "ServiceType" in data:
+    if data.get("ServiceType") is not None:
         import capo_pi.types.service_type
 
         out["service_type"] = capo_pi.types.service_type.deserialize_aws_json_1_1(
@@ -64,25 +64,25 @@ def deserialize_aws_json_1_1(data: dict) -> GetPerformanceAnalysisReportRequest:
         raise DeserializationError(
             "GetPerformanceAnalysisReportRequest.service_type required"
         )
-    if "Identifier" in data:
+    if data.get("Identifier") is not None:
         out["identifier"] = data["Identifier"]
     else:
         raise DeserializationError(
             "GetPerformanceAnalysisReportRequest.identifier required"
         )
-    if "AnalysisReportId" in data:
+    if data.get("AnalysisReportId") is not None:
         out["analysis_report_id"] = data["AnalysisReportId"]
     else:
         raise DeserializationError(
             "GetPerformanceAnalysisReportRequest.analysis_report_id required"
         )
-    if "TextFormat" in data:
+    if data.get("TextFormat") is not None:
         import capo_pi.types.text_format
 
         out["text_format"] = capo_pi.types.text_format.deserialize_aws_json_1_1(
             data["TextFormat"]
         )
-    if "AcceptLanguage" in data:
+    if data.get("AcceptLanguage") is not None:
         import capo_pi.types.accept_language
 
         out["accept_language"] = capo_pi.types.accept_language.deserialize_aws_json_1_1(

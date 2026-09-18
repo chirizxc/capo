@@ -36,7 +36,7 @@ def serialize_json(value: DependencyConfig) -> dict:
 
 def deserialize_json(data: dict) -> DependencyConfig:
     out: DependencyConfig = {}  # type: ignore[typeddict-item]
-    if "DependencyKeyAttributes" in data:
+    if data.get("DependencyKeyAttributes") is not None:
         import capo_application_signals.types.attributes
 
         out["dependency_key_attributes"] = (
@@ -48,7 +48,7 @@ def deserialize_json(data: dict) -> DependencyConfig:
         raise DeserializationError(
             "DependencyConfig.dependency_key_attributes required"
         )
-    if "DependencyOperationName" in data:
+    if data.get("DependencyOperationName") is not None:
         out["dependency_operation_name"] = data["DependencyOperationName"]
     else:
         raise DeserializationError(

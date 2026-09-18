@@ -89,17 +89,17 @@ def serialize_aws_json_1_1(value: ReportGroup) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ReportGroup:
     out: ReportGroup = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_codebuild.types.report_type
 
         out["type"] = capo_codebuild.types.report_type.deserialize_aws_json_1_1(
             data["type"]
         )
-    if "exportConfig" in data:
+    if data.get("exportConfig") is not None:
         import capo_codebuild.types.report_export_config
 
         out["export_config"] = (
@@ -107,25 +107,25 @@ def deserialize_aws_json_1_1(data: dict) -> ReportGroup:
                 data["exportConfig"]
             )
         )
-    if "created" in data:
+    if data.get("created") is not None:
         import capo_codebuild.types.timestamp
 
         out["created"] = capo_codebuild.types.timestamp.deserialize_aws_json_1_1(
             data["created"]
         )
-    if "lastModified" in data:
+    if data.get("lastModified") is not None:
         import capo_codebuild.types.timestamp
 
         out["last_modified"] = capo_codebuild.types.timestamp.deserialize_aws_json_1_1(
             data["lastModified"]
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_codebuild.types.tag_list
 
         out["tags"] = capo_codebuild.types.tag_list.deserialize_aws_json_1_1(
             data["tags"]
         )
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_codebuild.types.report_group_status_type
 
         out["status"] = (

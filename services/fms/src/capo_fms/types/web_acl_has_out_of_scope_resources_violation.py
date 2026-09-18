@@ -36,9 +36,9 @@ def serialize_aws_json_1_1(value: WebACLHasOutOfScopeResourcesViolation) -> dict
 
 def deserialize_aws_json_1_1(data: dict) -> WebACLHasOutOfScopeResourcesViolation:
     out: WebACLHasOutOfScopeResourcesViolation = {}  # type: ignore[typeddict-item]
-    if "WebACLArn" in data:
+    if data.get("WebACLArn") is not None:
         out["web_acl_arn"] = data["WebACLArn"]
-    if "OutOfScopeResourceList" in data:
+    if data.get("OutOfScopeResourceList") is not None:
         import capo_fms.types.resource_arn_list
 
         out["out_of_scope_resource_list"] = (

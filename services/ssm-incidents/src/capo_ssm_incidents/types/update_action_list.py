@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> UpdateActionList:
 
     out: UpdateActionList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_ssm_incidents.types.update_replication_set_action.deserialize_json(
                 item

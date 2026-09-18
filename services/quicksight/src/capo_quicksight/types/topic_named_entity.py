@@ -65,19 +65,19 @@ def serialize_json(value: TopicNamedEntity) -> dict:
 
 def deserialize_json(data: dict) -> TopicNamedEntity:
     out: TopicNamedEntity = {}  # type: ignore[typeddict-item]
-    if "EntityName" in data:
+    if data.get("EntityName") is not None:
         out["entity_name"] = data["EntityName"]
     else:
         raise DeserializationError("TopicNamedEntity.entity_name required")
-    if "EntityDescription" in data:
+    if data.get("EntityDescription") is not None:
         out["entity_description"] = data["EntityDescription"]
-    if "EntitySynonyms" in data:
+    if data.get("EntitySynonyms") is not None:
         import capo_quicksight.types.synonyms
 
         out["entity_synonyms"] = capo_quicksight.types.synonyms.deserialize_json(
             data["EntitySynonyms"]
         )
-    if "SemanticEntityType" in data:
+    if data.get("SemanticEntityType") is not None:
         import capo_quicksight.types.semantic_entity_type
 
         out["semantic_entity_type"] = (
@@ -85,7 +85,7 @@ def deserialize_json(data: dict) -> TopicNamedEntity:
                 data["SemanticEntityType"]
             )
         )
-    if "Definition" in data:
+    if data.get("Definition") is not None:
         import capo_quicksight.types.named_entity_definitions
 
         out["definition"] = (

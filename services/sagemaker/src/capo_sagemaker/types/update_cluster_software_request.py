@@ -56,9 +56,9 @@ def serialize_aws_json_1_1(value: UpdateClusterSoftwareRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateClusterSoftwareRequest:
     out: UpdateClusterSoftwareRequest = {}  # type: ignore[typeddict-item]
-    if "ClusterName" in data:
+    if data.get("ClusterName") is not None:
         out["cluster_name"] = data["ClusterName"]
-    if "InstanceGroups" in data:
+    if data.get("InstanceGroups") is not None:
         import capo_sagemaker.types.update_cluster_software_instance_groups
 
         out["instance_groups"] = (
@@ -66,7 +66,7 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateClusterSoftwareRequest:
                 data["InstanceGroups"]
             )
         )
-    if "DeploymentConfig" in data:
+    if data.get("DeploymentConfig") is not None:
         import capo_sagemaker.types.deployment_configuration
 
         out["deployment_config"] = (
@@ -74,6 +74,6 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateClusterSoftwareRequest:
                 data["DeploymentConfig"]
             )
         )
-    if "ImageId" in data:
+    if data.get("ImageId") is not None:
         out["image_id"] = data["ImageId"]
     return out

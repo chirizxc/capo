@@ -132,19 +132,19 @@ def serialize_json(value: FlowDefinition) -> dict:
 
 def deserialize_json(data: dict) -> FlowDefinition:
     out: FlowDefinition = {}  # type: ignore[typeddict-item]
-    if "flowArn" in data:
+    if data.get("flowArn") is not None:
         out["flow_arn"] = data["flowArn"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "flowName" in data:
+    if data.get("flowName") is not None:
         out["flow_name"] = data["flowName"]
-    if "flowStatus" in data:
+    if data.get("flowStatus") is not None:
         import capo_appflow.types.flow_status
 
         out["flow_status"] = capo_appflow.types.flow_status.deserialize_json(
             data["flowStatus"]
         )
-    if "sourceConnectorType" in data:
+    if data.get("sourceConnectorType") is not None:
         import capo_appflow.types.connector_type
 
         out["source_connector_type"] = (
@@ -152,9 +152,9 @@ def deserialize_json(data: dict) -> FlowDefinition:
                 data["sourceConnectorType"]
             )
         )
-    if "sourceConnectorLabel" in data:
+    if data.get("sourceConnectorLabel") is not None:
         out["source_connector_label"] = data["sourceConnectorLabel"]
-    if "destinationConnectorType" in data:
+    if data.get("destinationConnectorType") is not None:
         import capo_appflow.types.connector_type
 
         out["destination_connector_type"] = (
@@ -162,33 +162,33 @@ def deserialize_json(data: dict) -> FlowDefinition:
                 data["destinationConnectorType"]
             )
         )
-    if "destinationConnectorLabel" in data:
+    if data.get("destinationConnectorLabel") is not None:
         out["destination_connector_label"] = data["destinationConnectorLabel"]
-    if "triggerType" in data:
+    if data.get("triggerType") is not None:
         import capo_appflow.types.trigger_type
 
         out["trigger_type"] = capo_appflow.types.trigger_type.deserialize_json(
             data["triggerType"]
         )
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_appflow.types.date
 
         out["created_at"] = capo_appflow.types.date.deserialize_json(data["createdAt"])
-    if "lastUpdatedAt" in data:
+    if data.get("lastUpdatedAt") is not None:
         import capo_appflow.types.date
 
         out["last_updated_at"] = capo_appflow.types.date.deserialize_json(
             data["lastUpdatedAt"]
         )
-    if "createdBy" in data:
+    if data.get("createdBy") is not None:
         out["created_by"] = data["createdBy"]
-    if "lastUpdatedBy" in data:
+    if data.get("lastUpdatedBy") is not None:
         out["last_updated_by"] = data["lastUpdatedBy"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_appflow.types.tag_map
 
         out["tags"] = capo_appflow.types.tag_map.deserialize_json(data["tags"])
-    if "lastRunExecutionDetails" in data:
+    if data.get("lastRunExecutionDetails") is not None:
         import capo_appflow.types.execution_details
 
         out["last_run_execution_details"] = (

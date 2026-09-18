@@ -42,11 +42,11 @@ def serialize_aws_json_1_1(value: Merge) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Merge:
     out: Merge = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("Merge.name required")
-    if "Inputs" in data:
+    if data.get("Inputs") is not None:
         import capo_glue.types.two_inputs
 
         out["inputs"] = capo_glue.types.two_inputs.deserialize_aws_json_1_1(
@@ -54,11 +54,11 @@ def deserialize_aws_json_1_1(data: dict) -> Merge:
         )
     else:
         raise DeserializationError("Merge.inputs required")
-    if "Source" in data:
+    if data.get("Source") is not None:
         out["source"] = data["Source"]
     else:
         raise DeserializationError("Merge.source required")
-    if "PrimaryKeys" in data:
+    if data.get("PrimaryKeys") is not None:
         import capo_glue.types.glue_studio_path_list
 
         out["primary_keys"] = (

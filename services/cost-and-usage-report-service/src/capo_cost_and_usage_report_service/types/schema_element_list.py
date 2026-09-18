@@ -29,6 +29,8 @@ def deserialize_aws_json_1_1(data: list) -> SchemaElementList:
 
     out: SchemaElementList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_cost_and_usage_report_service.types.schema_element.deserialize_aws_json_1_1(
                 item

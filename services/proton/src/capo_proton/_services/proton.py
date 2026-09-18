@@ -312,14 +312,16 @@ class ProtonClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_proton.types.cancel_component_deployment_input.CancelComponentDeploymentInput = {}  # type: ignore[typeddict-item]
-        input_["component_name"] = component_name
+        input_: capo_proton.types.cancel_component_deployment_input.CancelComponentDeploymentInput = {
+            "component_name": component_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def cancel_environment_deployment(
@@ -358,14 +360,16 @@ class ProtonClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_proton.types.cancel_environment_deployment_input.CancelEnvironmentDeploymentInput = {}  # type: ignore[typeddict-item]
-        input_["environment_name"] = environment_name
+        input_: capo_proton.types.cancel_environment_deployment_input.CancelEnvironmentDeploymentInput = {
+            "environment_name": environment_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def cancel_service_instance_deployment(
@@ -406,15 +410,17 @@ class ProtonClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_proton.types.cancel_service_instance_deployment_input.CancelServiceInstanceDeploymentInput = {}  # type: ignore[typeddict-item]
-        input_["service_instance_name"] = service_instance_name
-        input_["service_name"] = service_name
+        input_: capo_proton.types.cancel_service_instance_deployment_input.CancelServiceInstanceDeploymentInput = {
+            "service_instance_name": service_instance_name,
+            "service_name": service_name,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def cancel_service_pipeline_deployment(
@@ -453,14 +459,16 @@ class ProtonClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_proton.types.cancel_service_pipeline_deployment_input.CancelServicePipelineDeploymentInput = {}  # type: ignore[typeddict-item]
-        input_["service_name"] = service_name
+        input_: capo_proton.types.cancel_service_pipeline_deployment_input.CancelServicePipelineDeploymentInput = {
+            "service_name": service_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_repository_sync_status(
@@ -504,17 +512,19 @@ class ProtonClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_proton.types.get_repository_sync_status_input.GetRepositorySyncStatusInput = {}  # type: ignore[typeddict-item]
-        input_["repository_name"] = repository_name
-        input_["repository_provider"] = repository_provider
-        input_["branch"] = branch
-        input_["sync_type"] = sync_type
+        input_: capo_proton.types.get_repository_sync_status_input.GetRepositorySyncStatusInput = {
+            "repository_name": repository_name,
+            "repository_provider": repository_provider,
+            "branch": branch,
+            "sync_type": sync_type,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_resources_summary(
@@ -545,13 +555,14 @@ class ProtonClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_proton.types.get_resources_summary_input.GetResourcesSummaryInput = {}  # type: ignore[typeddict-item]
+        input_: capo_proton.types.get_resources_summary_input.GetResourcesSummaryInput = {}
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_service_instance_sync_status(
@@ -591,15 +602,17 @@ class ProtonClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_proton.types.get_service_instance_sync_status_input.GetServiceInstanceSyncStatusInput = {}  # type: ignore[typeddict-item]
-        input_["service_name"] = service_name
-        input_["service_instance_name"] = service_instance_name
+        input_: capo_proton.types.get_service_instance_sync_status_input.GetServiceInstanceSyncStatusInput = {
+            "service_name": service_name,
+            "service_instance_name": service_instance_name,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_template_sync_status(
@@ -643,16 +656,18 @@ class ProtonClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_proton.types.get_template_sync_status_input.GetTemplateSyncStatusInput = {}  # type: ignore[typeddict-item]
-        input_["template_name"] = template_name
-        input_["template_type"] = template_type
-        input_["template_version"] = template_version
+        input_: capo_proton.types.get_template_sync_status_input.GetTemplateSyncStatusInput = {
+            "template_name": template_name,
+            "template_type": template_type,
+            "template_version": template_version,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_repository_sync_definitions(
@@ -697,10 +712,11 @@ class ProtonClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_proton.types.list_repository_sync_definitions_input.ListRepositorySyncDefinitionsInput = {}  # type: ignore[typeddict-item]
-        input_["repository_name"] = repository_name
-        input_["repository_provider"] = repository_provider
-        input_["sync_type"] = sync_type
+        input_: capo_proton.types.list_repository_sync_definitions_input.ListRepositorySyncDefinitionsInput = {
+            "repository_name": repository_name,
+            "repository_provider": repository_provider,
+            "sync_type": sync_type,
+        }
         if next_token is not None:
             input_["next_token"] = next_token
 
@@ -709,6 +725,7 @@ class ProtonClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_repository_sync_definitions(
@@ -779,8 +796,9 @@ class ProtonClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_proton.types.list_tags_for_resource_input.ListTagsForResourceInput = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_proton.types.list_tags_for_resource_input.ListTagsForResourceInput = {
+            "resource_arn": resource_arn
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -791,6 +809,7 @@ class ProtonClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_tags_for_resource(
@@ -867,8 +886,9 @@ class ProtonClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_proton.types.notify_resource_deployment_status_change_input.NotifyResourceDeploymentStatusChangeInput = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_proton.types.notify_resource_deployment_status_change_input.NotifyResourceDeploymentStatusChangeInput = {
+            "resource_arn": resource_arn
+        }
         if status is not None:
             input_["status"] = status
         if outputs is not None:
@@ -883,6 +903,7 @@ class ProtonClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def tag_resource(
@@ -923,15 +944,17 @@ class ProtonClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_proton.types.tag_resource_input.TagResourceInput = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tags"] = tags
+        input_: capo_proton.types.tag_resource_input.TagResourceInput = {
+            "resource_arn": resource_arn,
+            "tags": tags,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def untag_resource(
@@ -972,15 +995,17 @@ class ProtonClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_proton.types.untag_resource_input.UntagResourceInput = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tag_keys"] = tag_keys
+        input_: capo_proton.types.untag_resource_input.UntagResourceInput = {
+            "resource_arn": resource_arn,
+            "tag_keys": tag_keys,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def __enter__(self) -> Self:

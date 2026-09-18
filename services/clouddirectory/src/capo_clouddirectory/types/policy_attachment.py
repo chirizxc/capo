@@ -36,10 +36,10 @@ def serialize_json(value: PolicyAttachment) -> dict:
 
 def deserialize_json(data: dict) -> PolicyAttachment:
     out: PolicyAttachment = {}  # type: ignore[typeddict-item]
-    if "PolicyId" in data:
+    if data.get("PolicyId") is not None:
         out["policy_id"] = data["PolicyId"]
-    if "ObjectIdentifier" in data:
+    if data.get("ObjectIdentifier") is not None:
         out["object_identifier"] = data["ObjectIdentifier"]
-    if "PolicyType" in data:
+    if data.get("PolicyType") is not None:
         out["policy_type"] = data["PolicyType"]
     return out

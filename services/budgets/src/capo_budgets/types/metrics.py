@@ -23,5 +23,7 @@ def deserialize_aws_json_1_1(data: list) -> Metrics:
 
     out: Metrics = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_budgets.types.metric.deserialize_aws_json_1_1(item))
     return out

@@ -23,6 +23,6 @@ def serialize_json(value: PromoteResourceShareCreatedFromPolicyResponse) -> dict
 
 def deserialize_json(data: dict) -> PromoteResourceShareCreatedFromPolicyResponse:
     out: PromoteResourceShareCreatedFromPolicyResponse = {}  # type: ignore[typeddict-item]
-    if "returnValue" in data:
+    if data.get("returnValue") is not None:
         out["return_value"] = data["returnValue"]
     return out

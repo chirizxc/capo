@@ -34,13 +34,13 @@ def serialize_aws_json_1_0(value: ConfigurableUpfrontPricingTermConfiguration) -
 
 def deserialize_aws_json_1_0(data: dict) -> ConfigurableUpfrontPricingTermConfiguration:
     out: ConfigurableUpfrontPricingTermConfiguration = {}  # type: ignore[typeddict-item]
-    if "selectorValue" in data:
+    if data.get("selectorValue") is not None:
         out["selector_value"] = data["selectorValue"]
     else:
         raise DeserializationError(
             "ConfigurableUpfrontPricingTermConfiguration.selector_value required"
         )
-    if "dimensions" in data:
+    if data.get("dimensions") is not None:
         import capo_marketplace_agreement.types.dimension_list
 
         out["dimensions"] = (

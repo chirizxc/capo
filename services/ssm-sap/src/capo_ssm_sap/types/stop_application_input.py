@@ -41,11 +41,11 @@ def serialize_json(value: StopApplicationInput) -> dict:
 
 def deserialize_json(data: dict) -> StopApplicationInput:
     out: StopApplicationInput = {}  # type: ignore[typeddict-item]
-    if "ApplicationId" in data:
+    if data.get("ApplicationId") is not None:
         out["application_id"] = data["ApplicationId"]
     else:
         raise DeserializationError("StopApplicationInput.application_id required")
-    if "StopConnectedEntity" in data:
+    if data.get("StopConnectedEntity") is not None:
         import capo_ssm_sap.types.connected_entity_type
 
         out["stop_connected_entity"] = (
@@ -53,6 +53,6 @@ def deserialize_json(data: dict) -> StopApplicationInput:
                 data["StopConnectedEntity"]
             )
         )
-    if "IncludeEc2InstanceShutdown" in data:
+    if data.get("IncludeEc2InstanceShutdown") is not None:
         out["include_ec2_instance_shutdown"] = data["IncludeEc2InstanceShutdown"]
     return out

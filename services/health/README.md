@@ -13,9 +13,9 @@ from capo_health import AsyncHealthClient
 
 
 async def main():
-    async with AsyncHealthClient() as s3:
+    async with AsyncHealthClient() as health:
         # Example: call the describe_affected_accounts_for_organization operation
-        response = await s3.describe_affected_accounts_for_organization()
+        response = await health.describe_affected_accounts_for_organization()
         print(response["affected_accounts"])
 ```
 
@@ -28,9 +28,9 @@ from capo_health import AsyncHealthClient
 
 
 async def main():
-    async with AsyncHealthClient() as s3:
+    async with AsyncHealthClient() as health:
         # Example: paginate over describe_affected_accounts_for_organization
-        async for item in s3.iter_describe_affected_accounts_for_organization():
+        async for item in health.iter_describe_affected_accounts_for_organization():
             print(item)
 ```
 
@@ -44,9 +44,9 @@ from capo_health.error import InvalidPaginationToken
 
 
 async def main():
-    async with AsyncHealthClient() as s3:
+    async with AsyncHealthClient() as health:
         try:
-            await s3.describe_affected_accounts_for_organization()
+            await health.describe_affected_accounts_for_organization()
         except InvalidPaginationToken as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -63,13 +63,13 @@ from capo_health import AsyncHealthClient
 
 
 async def main():
-    async with AsyncHealthClient() as s3:
+    async with AsyncHealthClient() as health:
         # Default: 3 attempts for every operation
-        response = await s3.describe_affected_accounts_for_organization()
+        response = await health.describe_affected_accounts_for_organization()
 
         # Override per operation
-        response = await s3.describe_affected_accounts_for_organization(config_overrides={"retry_max_attempts": 5})
+        response = await health.describe_affected_accounts_for_organization(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.describe_affected_accounts_for_organization(config_overrides={"retry_max_attempts": 1})
+        response = await health.describe_affected_accounts_for_organization(config_overrides={"retry_max_attempts": 1})
 ```

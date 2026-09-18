@@ -27,6 +27,8 @@ def deserialize_aws_json_1_1(data: list) -> TrackingServerSummaryList:
 
     out: TrackingServerSummaryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_sagemaker.types.tracking_server_summary.deserialize_aws_json_1_1(item)
         )

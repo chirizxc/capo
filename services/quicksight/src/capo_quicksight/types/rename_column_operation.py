@@ -27,11 +27,11 @@ def serialize_json(value: RenameColumnOperation) -> dict:
 
 def deserialize_json(data: dict) -> RenameColumnOperation:
     out: RenameColumnOperation = {}  # type: ignore[typeddict-item]
-    if "ColumnName" in data:
+    if data.get("ColumnName") is not None:
         out["column_name"] = data["ColumnName"]
     else:
         raise DeserializationError("RenameColumnOperation.column_name required")
-    if "NewColumnName" in data:
+    if data.get("NewColumnName") is not None:
         out["new_column_name"] = data["NewColumnName"]
     else:
         raise DeserializationError("RenameColumnOperation.new_column_name required")

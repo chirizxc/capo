@@ -128,15 +128,15 @@ def serialize_json(value: UpdateComponentData) -> dict:
 
 def deserialize_json(data: dict) -> UpdateComponentData:
     out: UpdateComponentData = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "sourceId" in data:
+    if data.get("sourceId") is not None:
         out["source_id"] = data["sourceId"]
-    if "componentType" in data:
+    if data.get("componentType") is not None:
         out["component_type"] = data["componentType"]
-    if "properties" in data:
+    if data.get("properties") is not None:
         import capo_amplifyuibuilder.types.component_properties
 
         out["properties"] = (
@@ -144,7 +144,7 @@ def deserialize_json(data: dict) -> UpdateComponentData:
                 data["properties"]
             )
         )
-    if "children" in data:
+    if data.get("children") is not None:
         import capo_amplifyuibuilder.types.component_child_list
 
         out["children"] = (
@@ -152,7 +152,7 @@ def deserialize_json(data: dict) -> UpdateComponentData:
                 data["children"]
             )
         )
-    if "variants" in data:
+    if data.get("variants") is not None:
         import capo_amplifyuibuilder.types.component_variants
 
         out["variants"] = (
@@ -160,7 +160,7 @@ def deserialize_json(data: dict) -> UpdateComponentData:
                 data["variants"]
             )
         )
-    if "overrides" in data:
+    if data.get("overrides") is not None:
         import capo_amplifyuibuilder.types.component_overrides
 
         out["overrides"] = (
@@ -168,7 +168,7 @@ def deserialize_json(data: dict) -> UpdateComponentData:
                 data["overrides"]
             )
         )
-    if "bindingProperties" in data:
+    if data.get("bindingProperties") is not None:
         import capo_amplifyuibuilder.types.component_binding_properties
 
         out["binding_properties"] = (
@@ -176,7 +176,7 @@ def deserialize_json(data: dict) -> UpdateComponentData:
                 data["bindingProperties"]
             )
         )
-    if "collectionProperties" in data:
+    if data.get("collectionProperties") is not None:
         import capo_amplifyuibuilder.types.component_collection_properties
 
         out["collection_properties"] = (
@@ -184,12 +184,12 @@ def deserialize_json(data: dict) -> UpdateComponentData:
                 data["collectionProperties"]
             )
         )
-    if "events" in data:
+    if data.get("events") is not None:
         import capo_amplifyuibuilder.types.component_events
 
         out["events"] = capo_amplifyuibuilder.types.component_events.deserialize_json(
             data["events"]
         )
-    if "schemaVersion" in data:
+    if data.get("schemaVersion") is not None:
         out["schema_version"] = data["schemaVersion"]
     return out

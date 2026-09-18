@@ -26,10 +26,10 @@ def serialize_json(value: VPCFlowLogParameters) -> dict:
 
 def deserialize_json(data: dict) -> VPCFlowLogParameters:
     out: VPCFlowLogParameters = {}  # type: ignore[typeddict-item]
-    if "LogFormat" in data:
+    if data.get("LogFormat") is not None:
         out["log_format"] = data["LogFormat"]
-    if "TrafficType" in data:
+    if data.get("TrafficType") is not None:
         out["traffic_type"] = data["TrafficType"]
-    if "MaxAggregationInterval" in data:
+    if data.get("MaxAggregationInterval") is not None:
         out["max_aggregation_interval"] = data["MaxAggregationInterval"]
     return out

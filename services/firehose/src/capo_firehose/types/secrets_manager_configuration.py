@@ -34,11 +34,11 @@ def serialize_aws_json_1_1(value: SecretsManagerConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SecretsManagerConfiguration:
     out: SecretsManagerConfiguration = {}  # type: ignore[typeddict-item]
-    if "SecretARN" in data:
+    if data.get("SecretARN") is not None:
         out["secret_arn"] = data["SecretARN"]
-    if "RoleARN" in data:
+    if data.get("RoleARN") is not None:
         out["role_arn"] = data["RoleARN"]
-    if "Enabled" in data:
+    if data.get("Enabled") is not None:
         out["enabled"] = data["Enabled"]
     else:
         raise DeserializationError("SecretsManagerConfiguration.enabled required")

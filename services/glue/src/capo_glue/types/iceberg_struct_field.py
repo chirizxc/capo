@@ -49,26 +49,26 @@ def serialize_aws_json_1_1(value: IcebergStructField) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> IcebergStructField:
     out: IcebergStructField = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
     else:
         out["id"] = 0
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("IcebergStructField.name required")
-    if "Type" in data:
+    if data.get("Type") is not None:
         out["type"] = data["Type"]
     else:
         raise DeserializationError("IcebergStructField.type required")
-    if "Required" in data:
+    if data.get("Required") is not None:
         out["required"] = data["Required"]
     else:
         out["required"] = False
-    if "Doc" in data:
+    if data.get("Doc") is not None:
         out["doc"] = data["Doc"]
-    if "InitialDefault" in data:
+    if data.get("InitialDefault") is not None:
         out["initial_default"] = data["InitialDefault"]
-    if "WriteDefault" in data:
+    if data.get("WriteDefault") is not None:
         out["write_default"] = data["WriteDefault"]
     return out

@@ -24,7 +24,7 @@ def serialize_json(value: ReadNoneConnectionMetadata) -> dict:
 
 def deserialize_json(data: dict) -> ReadNoneConnectionMetadata:
     out: ReadNoneConnectionMetadata = {}  # type: ignore[typeddict-item]
-    if "BaseEndpoint" in data:
+    if data.get("BaseEndpoint") is not None:
         out["base_endpoint"] = data["BaseEndpoint"]
     else:
         raise DeserializationError("ReadNoneConnectionMetadata.base_endpoint required")

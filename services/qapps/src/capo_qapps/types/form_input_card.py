@@ -61,15 +61,15 @@ def serialize_json(value: FormInputCard) -> dict:
 
 def deserialize_json(data: dict) -> FormInputCard:
     out: FormInputCard = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("FormInputCard.id required")
-    if "title" in data:
+    if data.get("title") is not None:
         out["title"] = data["title"]
     else:
         raise DeserializationError("FormInputCard.title required")
-    if "dependencies" in data:
+    if data.get("dependencies") is not None:
         import capo_qapps.types.dependency_list
 
         out["dependencies"] = capo_qapps.types.dependency_list.deserialize_json(
@@ -77,13 +77,13 @@ def deserialize_json(data: dict) -> FormInputCard:
         )
     else:
         raise DeserializationError("FormInputCard.dependencies required")
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_qapps.types.card_type
 
         out["type"] = capo_qapps.types.card_type.deserialize_json(data["type"])
     else:
         raise DeserializationError("FormInputCard.type required")
-    if "metadata" in data:
+    if data.get("metadata") is not None:
         import capo_qapps.types.form_input_card_metadata
 
         out["metadata"] = capo_qapps.types.form_input_card_metadata.deserialize_json(
@@ -91,7 +91,7 @@ def deserialize_json(data: dict) -> FormInputCard:
         )
     else:
         raise DeserializationError("FormInputCard.metadata required")
-    if "computeMode" in data:
+    if data.get("computeMode") is not None:
         import capo_qapps.types.input_card_compute_mode
 
         out["compute_mode"] = capo_qapps.types.input_card_compute_mode.deserialize_json(

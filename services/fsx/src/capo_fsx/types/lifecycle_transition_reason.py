@@ -22,6 +22,6 @@ def serialize_aws_json_1_1(value: LifecycleTransitionReason) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> LifecycleTransitionReason:
     out: LifecycleTransitionReason = {}  # type: ignore[typeddict-item]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     return out

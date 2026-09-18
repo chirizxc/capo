@@ -36,9 +36,9 @@ def serialize_json(value: UpdateSecurityHubConfigurationRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateSecurityHubConfigurationRequest:
     out: UpdateSecurityHubConfigurationRequest = {}  # type: ignore[typeddict-item]
-    if "AutoEnableControls" in data:
+    if data.get("AutoEnableControls") is not None:
         out["auto_enable_controls"] = data["AutoEnableControls"]
-    if "ControlFindingGenerator" in data:
+    if data.get("ControlFindingGenerator") is not None:
         import capo_securityhub.types.control_finding_generator
 
         out["control_finding_generator"] = (

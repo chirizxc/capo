@@ -40,13 +40,13 @@ def serialize_json(value: ObjectAttributeRange) -> dict:
 
 def deserialize_json(data: dict) -> ObjectAttributeRange:
     out: ObjectAttributeRange = {}  # type: ignore[typeddict-item]
-    if "AttributeKey" in data:
+    if data.get("AttributeKey") is not None:
         import capo_clouddirectory.types.attribute_key
 
         out["attribute_key"] = capo_clouddirectory.types.attribute_key.deserialize_json(
             data["AttributeKey"]
         )
-    if "Range" in data:
+    if data.get("Range") is not None:
         import capo_clouddirectory.types.typed_attribute_value_range
 
         out["range"] = (

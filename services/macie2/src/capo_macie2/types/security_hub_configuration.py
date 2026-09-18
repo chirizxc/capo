@@ -29,8 +29,8 @@ def serialize_json(value: SecurityHubConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> SecurityHubConfiguration:
     out: SecurityHubConfiguration = {}  # type: ignore[typeddict-item]
-    if "publishClassificationFindings" in data:
+    if data.get("publishClassificationFindings") is not None:
         out["publish_classification_findings"] = data["publishClassificationFindings"]
-    if "publishPolicyFindings" in data:
+    if data.get("publishPolicyFindings") is not None:
         out["publish_policy_findings"] = data["publishPolicyFindings"]
     return out

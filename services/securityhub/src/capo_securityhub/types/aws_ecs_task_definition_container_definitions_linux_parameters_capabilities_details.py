@@ -41,13 +41,13 @@ def deserialize_json(
     data: dict,
 ) -> AwsEcsTaskDefinitionContainerDefinitionsLinuxParametersCapabilitiesDetails:
     out: AwsEcsTaskDefinitionContainerDefinitionsLinuxParametersCapabilitiesDetails = {}  # type: ignore[typeddict-item]
-    if "Add" in data:
+    if data.get("Add") is not None:
         import capo_securityhub.types.non_empty_string_list
 
         out["add"] = capo_securityhub.types.non_empty_string_list.deserialize_json(
             data["Add"]
         )
-    if "Drop" in data:
+    if data.get("Drop") is not None:
         import capo_securityhub.types.non_empty_string_list
 
         out["drop"] = capo_securityhub.types.non_empty_string_list.deserialize_json(

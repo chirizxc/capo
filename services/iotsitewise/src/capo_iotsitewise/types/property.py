@@ -80,19 +80,19 @@ def serialize_json(value: Property) -> dict:
 
 def deserialize_json(data: dict) -> Property:
     out: Property = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("Property.id required")
-    if "externalId" in data:
+    if data.get("externalId") is not None:
         out["external_id"] = data["externalId"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("Property.name required")
-    if "alias" in data:
+    if data.get("alias") is not None:
         out["alias"] = data["alias"]
-    if "notification" in data:
+    if data.get("notification") is not None:
         import capo_iotsitewise.types.property_notification
 
         out["notification"] = (
@@ -100,7 +100,7 @@ def deserialize_json(data: dict) -> Property:
                 data["notification"]
             )
         )
-    if "dataType" in data:
+    if data.get("dataType") is not None:
         import capo_iotsitewise.types.property_data_type
 
         out["data_type"] = capo_iotsitewise.types.property_data_type.deserialize_json(
@@ -108,15 +108,15 @@ def deserialize_json(data: dict) -> Property:
         )
     else:
         raise DeserializationError("Property.data_type required")
-    if "unit" in data:
+    if data.get("unit") is not None:
         out["unit"] = data["unit"]
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_iotsitewise.types.property_type
 
         out["type"] = capo_iotsitewise.types.property_type.deserialize_json(
             data["type"]
         )
-    if "path" in data:
+    if data.get("path") is not None:
         import capo_iotsitewise.types.asset_property_path
 
         out["path"] = capo_iotsitewise.types.asset_property_path.deserialize_json(

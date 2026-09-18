@@ -29,9 +29,9 @@ def serialize_aws_json_1_1(value: ListPageResolutionsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListPageResolutionsRequest:
     out: ListPageResolutionsRequest = {}  # type: ignore[typeddict-item]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "PageId" in data:
+    if data.get("PageId") is not None:
         out["page_id"] = data["PageId"]
     else:
         raise DeserializationError("ListPageResolutionsRequest.page_id required")

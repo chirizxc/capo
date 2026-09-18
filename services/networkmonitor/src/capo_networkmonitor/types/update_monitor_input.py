@@ -27,7 +27,7 @@ def serialize_json(value: UpdateMonitorInput) -> dict:
 
 def deserialize_json(data: dict) -> UpdateMonitorInput:
     out: UpdateMonitorInput = {}  # type: ignore[typeddict-item]
-    if "aggregationPeriod" in data:
+    if data.get("aggregationPeriod") is not None:
         out["aggregation_period"] = data["aggregationPeriod"]
     else:
         raise DeserializationError("UpdateMonitorInput.aggregation_period required")

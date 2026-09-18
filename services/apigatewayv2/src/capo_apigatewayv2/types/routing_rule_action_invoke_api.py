@@ -33,10 +33,10 @@ def serialize_json(value: RoutingRuleActionInvokeApi) -> dict:
 
 def deserialize_json(data: dict) -> RoutingRuleActionInvokeApi:
     out: RoutingRuleActionInvokeApi = {}  # type: ignore[typeddict-item]
-    if "apiId" in data:
+    if data.get("apiId") is not None:
         out["api_id"] = data["apiId"]
-    if "stage" in data:
+    if data.get("stage") is not None:
         out["stage"] = data["stage"]
-    if "stripBasePath" in data:
+    if data.get("stripBasePath") is not None:
         out["strip_base_path"] = data["stripBasePath"]
     return out

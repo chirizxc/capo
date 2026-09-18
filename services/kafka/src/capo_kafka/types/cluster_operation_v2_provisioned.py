@@ -63,7 +63,7 @@ def serialize_json(value: ClusterOperationV2Provisioned) -> dict:
 
 def deserialize_json(data: dict) -> ClusterOperationV2Provisioned:
     out: ClusterOperationV2Provisioned = {}  # type: ignore[typeddict-item]
-    if "operationSteps" in data:
+    if data.get("operationSteps") is not None:
         import capo_kafka.types.__list_of_cluster_operation_step
 
         out["operation_steps"] = (
@@ -71,7 +71,7 @@ def deserialize_json(data: dict) -> ClusterOperationV2Provisioned:
                 data["operationSteps"]
             )
         )
-    if "sourceClusterInfo" in data:
+    if data.get("sourceClusterInfo") is not None:
         import capo_kafka.types.mutable_cluster_info
 
         out["source_cluster_info"] = (
@@ -79,7 +79,7 @@ def deserialize_json(data: dict) -> ClusterOperationV2Provisioned:
                 data["sourceClusterInfo"]
             )
         )
-    if "targetClusterInfo" in data:
+    if data.get("targetClusterInfo") is not None:
         import capo_kafka.types.mutable_cluster_info
 
         out["target_cluster_info"] = (
@@ -87,7 +87,7 @@ def deserialize_json(data: dict) -> ClusterOperationV2Provisioned:
                 data["targetClusterInfo"]
             )
         )
-    if "vpcConnectionInfo" in data:
+    if data.get("vpcConnectionInfo") is not None:
         import capo_kafka.types.vpc_connection_info
 
         out["vpc_connection_info"] = (

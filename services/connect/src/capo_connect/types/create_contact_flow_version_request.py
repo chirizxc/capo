@@ -59,18 +59,18 @@ def serialize_json(value: CreateContactFlowVersionRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateContactFlowVersionRequest:
     out: CreateContactFlowVersionRequest = {}  # type: ignore[typeddict-item]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "FlowContentSha256" in data:
+    if data.get("FlowContentSha256") is not None:
         out["flow_content_sha256"] = data["FlowContentSha256"]
-    if "ContactFlowVersion" in data:
+    if data.get("ContactFlowVersion") is not None:
         out["contact_flow_version"] = data["ContactFlowVersion"]
-    if "LastModifiedTime" in data:
+    if data.get("LastModifiedTime") is not None:
         import capo_connect.types.timestamp
 
         out["last_modified_time"] = capo_connect.types.timestamp.deserialize_json(
             data["LastModifiedTime"]
         )
-    if "LastModifiedRegion" in data:
+    if data.get("LastModifiedRegion") is not None:
         out["last_modified_region"] = data["LastModifiedRegion"]
     return out

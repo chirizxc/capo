@@ -14,4 +14,4 @@ def serialize_json(value: EC2FamilyList) -> list:
 
 
 def deserialize_json(data: list) -> EC2FamilyList:
-    return list(data)
+    return [item for item in data if item is not None]

@@ -31,7 +31,7 @@ def serialize_json(value: GetServerStrategiesResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetServerStrategiesResponse:
     out: GetServerStrategiesResponse = {}  # type: ignore[typeddict-item]
-    if "serverStrategies" in data:
+    if data.get("serverStrategies") is not None:
         import capo_migrationhubstrategy.types.server_strategies
 
         out["server_strategies"] = (

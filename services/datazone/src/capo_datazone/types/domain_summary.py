@@ -75,25 +75,25 @@ def serialize_json(value: DomainSummary) -> dict:
 
 def deserialize_json(data: dict) -> DomainSummary:
     out: DomainSummary = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("DomainSummary.id required")
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("DomainSummary.name required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("DomainSummary.arn required")
-    if "managedAccountId" in data:
+    if data.get("managedAccountId") is not None:
         out["managed_account_id"] = data["managedAccountId"]
     else:
         raise DeserializationError("DomainSummary.managed_account_id required")
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_datazone.types.domain_status
 
         out["status"] = capo_datazone.types.domain_status.deserialize_json(
@@ -101,9 +101,9 @@ def deserialize_json(data: dict) -> DomainSummary:
         )
     else:
         raise DeserializationError("DomainSummary.status required")
-    if "portalUrl" in data:
+    if data.get("portalUrl") is not None:
         out["portal_url"] = data["portalUrl"]
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_datazone.types.created_at
 
         out["created_at"] = capo_datazone.types.created_at.deserialize_json(
@@ -111,13 +111,13 @@ def deserialize_json(data: dict) -> DomainSummary:
         )
     else:
         raise DeserializationError("DomainSummary.created_at required")
-    if "lastUpdatedAt" in data:
+    if data.get("lastUpdatedAt") is not None:
         import capo_datazone.types.updated_at
 
         out["last_updated_at"] = capo_datazone.types.updated_at.deserialize_json(
             data["lastUpdatedAt"]
         )
-    if "domainVersion" in data:
+    if data.get("domainVersion") is not None:
         import capo_datazone.types.domain_version
 
         out["domain_version"] = capo_datazone.types.domain_version.deserialize_json(

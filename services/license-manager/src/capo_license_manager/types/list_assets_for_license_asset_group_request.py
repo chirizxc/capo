@@ -36,20 +36,20 @@ def serialize_aws_json_1_1(value: ListAssetsForLicenseAssetGroupRequest) -> dict
 
 def deserialize_aws_json_1_1(data: dict) -> ListAssetsForLicenseAssetGroupRequest:
     out: ListAssetsForLicenseAssetGroupRequest = {}  # type: ignore[typeddict-item]
-    if "LicenseAssetGroupArn" in data:
+    if data.get("LicenseAssetGroupArn") is not None:
         out["license_asset_group_arn"] = data["LicenseAssetGroupArn"]
     else:
         raise DeserializationError(
             "ListAssetsForLicenseAssetGroupRequest.license_asset_group_arn required"
         )
-    if "AssetType" in data:
+    if data.get("AssetType") is not None:
         out["asset_type"] = data["AssetType"]
     else:
         raise DeserializationError(
             "ListAssetsForLicenseAssetGroupRequest.asset_type required"
         )
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

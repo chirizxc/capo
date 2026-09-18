@@ -236,8 +236,9 @@ class drsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_drs.types.create_extended_source_server_request.CreateExtendedSourceServerRequest = {}  # type: ignore[typeddict-item]
-        input_["source_server_arn"] = source_server_arn
+        input_: capo_drs.types.create_extended_source_server_request.CreateExtendedSourceServerRequest = {
+            "source_server_arn": source_server_arn
+        }
         if tags is not None:
             input_["tags"] = tags
 
@@ -246,6 +247,7 @@ class drsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_launch_action(
@@ -281,15 +283,17 @@ class drsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_drs.types.delete_launch_action_request.DeleteLaunchActionRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_id"] = resource_id
-        input_["action_id"] = action_id
+        input_: capo_drs.types.delete_launch_action_request.DeleteLaunchActionRequest = {
+            "resource_id": resource_id,
+            "action_id": action_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def initialize_service(
@@ -320,13 +324,14 @@ class drsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_drs.types.initialize_service_request.InitializeServiceRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_drs.types.initialize_service_request.InitializeServiceRequest = {}
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_extensible_source_servers(
@@ -370,8 +375,9 @@ class drsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_drs.types.list_extensible_source_servers_request.ListExtensibleSourceServersRequest = {}  # type: ignore[typeddict-item]
-        input_["staging_account_id"] = staging_account_id
+        input_: capo_drs.types.list_extensible_source_servers_request.ListExtensibleSourceServersRequest = {
+            "staging_account_id": staging_account_id
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -382,6 +388,7 @@ class drsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_extensible_source_servers(
@@ -451,8 +458,9 @@ class drsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_drs.types.list_launch_actions_request.ListLaunchActionsRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_id"] = resource_id
+        input_: capo_drs.types.list_launch_actions_request.ListLaunchActionsRequest = {
+            "resource_id": resource_id
+        }
         if filters is not None:
             input_["filters"] = filters
         if max_results is not None:
@@ -465,6 +473,7 @@ class drsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_launch_actions(
@@ -531,7 +540,7 @@ class drsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_drs.types.list_staging_accounts_request.ListStagingAccountsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_drs.types.list_staging_accounts_request.ListStagingAccountsRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -542,6 +551,7 @@ class drsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_staging_accounts(
@@ -600,14 +610,16 @@ class drsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_drs.types.list_tags_for_resource_request.ListTagsForResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_drs.types.list_tags_for_resource_request.ListTagsForResourceRequest = {
+            "resource_arn": resource_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def put_launch_action(
@@ -660,25 +672,27 @@ class drsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_drs.types.put_launch_action_request.PutLaunchActionRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_id"] = resource_id
-        input_["action_code"] = action_code
-        input_["order"] = order
-        input_["action_id"] = action_id
-        input_["optional"] = optional
-        input_["active"] = active
-        input_["name"] = name
-        input_["action_version"] = action_version
-        input_["category"] = category
+        input_: capo_drs.types.put_launch_action_request.PutLaunchActionRequest = {
+            "resource_id": resource_id,
+            "action_code": action_code,
+            "order": order,
+            "action_id": action_id,
+            "optional": optional,
+            "active": active,
+            "name": name,
+            "action_version": action_version,
+            "category": category,
+            "description": description,
+        }
         if parameters is not None:
             input_["parameters"] = parameters
-        input_["description"] = description
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def tag_resource(
@@ -716,15 +730,17 @@ class drsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_drs.types.tag_resource_request.TagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tags"] = tags
+        input_: capo_drs.types.tag_resource_request.TagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tags": tags,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def untag_resource(
@@ -762,15 +778,17 @@ class drsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_drs.types.untag_resource_request.UntagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tag_keys"] = tag_keys
+        input_: capo_drs.types.untag_resource_request.UntagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tag_keys": tag_keys,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def __enter__(self) -> Self:

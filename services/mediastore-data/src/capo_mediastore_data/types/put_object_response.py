@@ -37,11 +37,11 @@ def serialize_json(value: PutObjectResponse) -> dict:
 
 def deserialize_json(data: dict) -> PutObjectResponse:
     out: PutObjectResponse = {}  # type: ignore[typeddict-item]
-    if "ContentSHA256" in data:
+    if data.get("ContentSHA256") is not None:
         out["content_sha256"] = data["ContentSHA256"]
-    if "ETag" in data:
+    if data.get("ETag") is not None:
         out["e_tag"] = data["ETag"]
-    if "StorageClass" in data:
+    if data.get("StorageClass") is not None:
         import capo_mediastore_data.types.storage_class
 
         out["storage_class"] = (

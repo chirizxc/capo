@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> Subscriptions:
 
     out: Subscriptions = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_qbusiness.types.subscription.deserialize_json(item))
     return out

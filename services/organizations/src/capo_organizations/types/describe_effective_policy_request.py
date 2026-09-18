@@ -35,7 +35,7 @@ def serialize_aws_json_1_1(value: DescribeEffectivePolicyRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeEffectivePolicyRequest:
     out: DescribeEffectivePolicyRequest = {}  # type: ignore[typeddict-item]
-    if "PolicyType" in data:
+    if data.get("PolicyType") is not None:
         import capo_organizations.types.effective_policy_type
 
         out["policy_type"] = (
@@ -47,6 +47,6 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeEffectivePolicyRequest:
         raise DeserializationError(
             "DescribeEffectivePolicyRequest.policy_type required"
         )
-    if "TargetId" in data:
+    if data.get("TargetId") is not None:
         out["target_id"] = data["TargetId"]
     return out

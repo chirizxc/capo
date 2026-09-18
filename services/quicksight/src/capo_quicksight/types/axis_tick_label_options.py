@@ -26,18 +26,26 @@ def serialize_json(value: AxisTickLabelOptions) -> dict:
             value["label_options"]
         )
     if "rotation_angle" in value:
-        out["RotationAngle"] = value["rotation_angle"]
+        out["RotationAngle"] = (
+            "NaN"
+            if value["rotation_angle"] != value["rotation_angle"]
+            else "Infinity"
+            if value["rotation_angle"] == float("inf")
+            else "-Infinity"
+            if value["rotation_angle"] == float("-inf")
+            else value["rotation_angle"]
+        )
     return out
 
 
 def deserialize_json(data: dict) -> AxisTickLabelOptions:
     out: AxisTickLabelOptions = {}  # type: ignore[typeddict-item]
-    if "LabelOptions" in data:
+    if data.get("LabelOptions") is not None:
         import capo_quicksight.types.label_options
 
         out["label_options"] = capo_quicksight.types.label_options.deserialize_json(
             data["LabelOptions"]
         )
-    if "RotationAngle" in data:
-        out["rotation_angle"] = data["RotationAngle"]
+    if data.get("RotationAngle") is not None:
+        out["rotation_angle"] = float(data["RotationAngle"])
     return out

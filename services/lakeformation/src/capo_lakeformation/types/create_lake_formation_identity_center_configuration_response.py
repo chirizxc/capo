@@ -29,6 +29,6 @@ def deserialize_json(
     data: dict,
 ) -> CreateLakeFormationIdentityCenterConfigurationResponse:
     out: CreateLakeFormationIdentityCenterConfigurationResponse = {}  # type: ignore[typeddict-item]
-    if "ApplicationArn" in data:
+    if data.get("ApplicationArn") is not None:
         out["application_arn"] = data["ApplicationArn"]
     return out

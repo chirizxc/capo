@@ -75,11 +75,36 @@ def serialize_aws_json_1_0(value: Recommendation) -> dict:
     if "recommended_resource_type" in value:
         out["recommendedResourceType"] = value["recommended_resource_type"]
     if "estimated_monthly_savings" in value:
-        out["estimatedMonthlySavings"] = value["estimated_monthly_savings"]
+        out["estimatedMonthlySavings"] = (
+            "NaN"
+            if value["estimated_monthly_savings"] != value["estimated_monthly_savings"]
+            else "Infinity"
+            if value["estimated_monthly_savings"] == float("inf")
+            else "-Infinity"
+            if value["estimated_monthly_savings"] == float("-inf")
+            else value["estimated_monthly_savings"]
+        )
     if "estimated_savings_percentage" in value:
-        out["estimatedSavingsPercentage"] = value["estimated_savings_percentage"]
+        out["estimatedSavingsPercentage"] = (
+            "NaN"
+            if value["estimated_savings_percentage"]
+            != value["estimated_savings_percentage"]
+            else "Infinity"
+            if value["estimated_savings_percentage"] == float("inf")
+            else "-Infinity"
+            if value["estimated_savings_percentage"] == float("-inf")
+            else value["estimated_savings_percentage"]
+        )
     if "estimated_monthly_cost" in value:
-        out["estimatedMonthlyCost"] = value["estimated_monthly_cost"]
+        out["estimatedMonthlyCost"] = (
+            "NaN"
+            if value["estimated_monthly_cost"] != value["estimated_monthly_cost"]
+            else "Infinity"
+            if value["estimated_monthly_cost"] == float("inf")
+            else "-Infinity"
+            if value["estimated_monthly_cost"] == float("-inf")
+            else value["estimated_monthly_cost"]
+        )
     if "currency_code" in value:
         out["currencyCode"] = value["currency_code"]
     if "implementation_effort" in value:
@@ -123,41 +148,41 @@ def serialize_aws_json_1_0(value: Recommendation) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> Recommendation:
     out: Recommendation = {}  # type: ignore[typeddict-item]
-    if "recommendationId" in data:
+    if data.get("recommendationId") is not None:
         out["recommendation_id"] = data["recommendationId"]
-    if "accountId" in data:
+    if data.get("accountId") is not None:
         out["account_id"] = data["accountId"]
-    if "region" in data:
+    if data.get("region") is not None:
         out["region"] = data["region"]
-    if "resourceId" in data:
+    if data.get("resourceId") is not None:
         out["resource_id"] = data["resourceId"]
-    if "resourceArn" in data:
+    if data.get("resourceArn") is not None:
         out["resource_arn"] = data["resourceArn"]
-    if "currentResourceType" in data:
+    if data.get("currentResourceType") is not None:
         out["current_resource_type"] = data["currentResourceType"]
-    if "recommendedResourceType" in data:
+    if data.get("recommendedResourceType") is not None:
         out["recommended_resource_type"] = data["recommendedResourceType"]
-    if "estimatedMonthlySavings" in data:
-        out["estimated_monthly_savings"] = data["estimatedMonthlySavings"]
-    if "estimatedSavingsPercentage" in data:
-        out["estimated_savings_percentage"] = data["estimatedSavingsPercentage"]
-    if "estimatedMonthlyCost" in data:
-        out["estimated_monthly_cost"] = data["estimatedMonthlyCost"]
-    if "currencyCode" in data:
+    if data.get("estimatedMonthlySavings") is not None:
+        out["estimated_monthly_savings"] = float(data["estimatedMonthlySavings"])
+    if data.get("estimatedSavingsPercentage") is not None:
+        out["estimated_savings_percentage"] = float(data["estimatedSavingsPercentage"])
+    if data.get("estimatedMonthlyCost") is not None:
+        out["estimated_monthly_cost"] = float(data["estimatedMonthlyCost"])
+    if data.get("currencyCode") is not None:
         out["currency_code"] = data["currencyCode"]
-    if "implementationEffort" in data:
+    if data.get("implementationEffort") is not None:
         out["implementation_effort"] = data["implementationEffort"]
-    if "restartNeeded" in data:
+    if data.get("restartNeeded") is not None:
         out["restart_needed"] = data["restartNeeded"]
-    if "actionType" in data:
+    if data.get("actionType") is not None:
         out["action_type"] = data["actionType"]
-    if "rollbackPossible" in data:
+    if data.get("rollbackPossible") is not None:
         out["rollback_possible"] = data["rollbackPossible"]
-    if "currentResourceSummary" in data:
+    if data.get("currentResourceSummary") is not None:
         out["current_resource_summary"] = data["currentResourceSummary"]
-    if "recommendedResourceSummary" in data:
+    if data.get("recommendedResourceSummary") is not None:
         out["recommended_resource_summary"] = data["recommendedResourceSummary"]
-    if "lastRefreshTimestamp" in data:
+    if data.get("lastRefreshTimestamp") is not None:
         import capo_cost_optimization_hub.types.datetime
 
         out["last_refresh_timestamp"] = (
@@ -165,11 +190,11 @@ def deserialize_aws_json_1_0(data: dict) -> Recommendation:
                 data["lastRefreshTimestamp"]
             )
         )
-    if "recommendationLookbackPeriodInDays" in data:
+    if data.get("recommendationLookbackPeriodInDays") is not None:
         out["recommendation_lookback_period_in_days"] = data[
             "recommendationLookbackPeriodInDays"
         ]
-    if "source" in data:
+    if data.get("source") is not None:
         import capo_cost_optimization_hub.types.source
 
         out["source"] = (
@@ -177,7 +202,7 @@ def deserialize_aws_json_1_0(data: dict) -> Recommendation:
                 data["source"]
             )
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_cost_optimization_hub.types.tag_list
 
         out["tags"] = (

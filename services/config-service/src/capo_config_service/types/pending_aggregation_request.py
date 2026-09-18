@@ -28,8 +28,8 @@ def serialize_aws_json_1_1(value: PendingAggregationRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PendingAggregationRequest:
     out: PendingAggregationRequest = {}  # type: ignore[typeddict-item]
-    if "RequesterAccountId" in data:
+    if data.get("RequesterAccountId") is not None:
         out["requester_account_id"] = data["RequesterAccountId"]
-    if "RequesterAwsRegion" in data:
+    if data.get("RequesterAwsRegion") is not None:
         out["requester_aws_region"] = data["RequesterAwsRegion"]
     return out

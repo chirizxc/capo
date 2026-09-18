@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: ListCuratedEnvironmentImagesOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListCuratedEnvironmentImagesOutput:
     out: ListCuratedEnvironmentImagesOutput = {}  # type: ignore[typeddict-item]
-    if "platforms" in data:
+    if data.get("platforms") is not None:
         import capo_codebuild.types.environment_platforms
 
         out["platforms"] = (

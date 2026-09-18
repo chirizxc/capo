@@ -83,7 +83,7 @@ def serialize_aws_json_1_1(value: StartEventsDetectionJobRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> StartEventsDetectionJobRequest:
     out: StartEventsDetectionJobRequest = {}  # type: ignore[typeddict-item]
-    if "InputDataConfig" in data:
+    if data.get("InputDataConfig") is not None:
         import capo_comprehend.types.input_data_config
 
         out["input_data_config"] = (
@@ -95,7 +95,7 @@ def deserialize_aws_json_1_1(data: dict) -> StartEventsDetectionJobRequest:
         raise DeserializationError(
             "StartEventsDetectionJobRequest.input_data_config required"
         )
-    if "OutputDataConfig" in data:
+    if data.get("OutputDataConfig") is not None:
         import capo_comprehend.types.output_data_config
 
         out["output_data_config"] = (
@@ -107,15 +107,15 @@ def deserialize_aws_json_1_1(data: dict) -> StartEventsDetectionJobRequest:
         raise DeserializationError(
             "StartEventsDetectionJobRequest.output_data_config required"
         )
-    if "DataAccessRoleArn" in data:
+    if data.get("DataAccessRoleArn") is not None:
         out["data_access_role_arn"] = data["DataAccessRoleArn"]
     else:
         raise DeserializationError(
             "StartEventsDetectionJobRequest.data_access_role_arn required"
         )
-    if "JobName" in data:
+    if data.get("JobName") is not None:
         out["job_name"] = data["JobName"]
-    if "LanguageCode" in data:
+    if data.get("LanguageCode") is not None:
         import capo_comprehend.types.language_code
 
         out["language_code"] = (
@@ -127,9 +127,9 @@ def deserialize_aws_json_1_1(data: dict) -> StartEventsDetectionJobRequest:
         raise DeserializationError(
             "StartEventsDetectionJobRequest.language_code required"
         )
-    if "ClientRequestToken" in data:
+    if data.get("ClientRequestToken") is not None:
         out["client_request_token"] = data["ClientRequestToken"]
-    if "TargetEventTypes" in data:
+    if data.get("TargetEventTypes") is not None:
         import capo_comprehend.types.target_event_types
 
         out["target_event_types"] = (
@@ -141,7 +141,7 @@ def deserialize_aws_json_1_1(data: dict) -> StartEventsDetectionJobRequest:
         raise DeserializationError(
             "StartEventsDetectionJobRequest.target_event_types required"
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_comprehend.types.tag_list
 
         out["tags"] = capo_comprehend.types.tag_list.deserialize_aws_json_1_1(

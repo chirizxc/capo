@@ -100,23 +100,23 @@ def serialize_aws_json_1_1(value: ExecuteStatementInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ExecuteStatementInput:
     out: ExecuteStatementInput = {}  # type: ignore[typeddict-item]
-    if "Sql" in data:
+    if data.get("Sql") is not None:
         out["sql"] = data["Sql"]
     else:
         raise DeserializationError("ExecuteStatementInput.sql required")
-    if "ClusterIdentifier" in data:
+    if data.get("ClusterIdentifier") is not None:
         out["cluster_identifier"] = data["ClusterIdentifier"]
-    if "SecretArn" in data:
+    if data.get("SecretArn") is not None:
         out["secret_arn"] = data["SecretArn"]
-    if "DbUser" in data:
+    if data.get("DbUser") is not None:
         out["db_user"] = data["DbUser"]
-    if "Database" in data:
+    if data.get("Database") is not None:
         out["database"] = data["Database"]
-    if "WithEvent" in data:
+    if data.get("WithEvent") is not None:
         out["with_event"] = data["WithEvent"]
-    if "StatementName" in data:
+    if data.get("StatementName") is not None:
         out["statement_name"] = data["StatementName"]
-    if "Parameters" in data:
+    if data.get("Parameters") is not None:
         import capo_redshift_data.types.sql_parameters_list
 
         out["parameters"] = (
@@ -124,14 +124,14 @@ def deserialize_aws_json_1_1(data: dict) -> ExecuteStatementInput:
                 data["Parameters"]
             )
         )
-    if "WorkgroupName" in data:
+    if data.get("WorkgroupName") is not None:
         out["workgroup_name"] = data["WorkgroupName"]
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
-    if "ResultFormat" in data:
+    if data.get("ResultFormat") is not None:
         out["result_format"] = data["ResultFormat"]
-    if "SessionKeepAliveSeconds" in data:
+    if data.get("SessionKeepAliveSeconds") is not None:
         out["session_keep_alive_seconds"] = data["SessionKeepAliveSeconds"]
-    if "SessionId" in data:
+    if data.get("SessionId") is not None:
         out["session_id"] = data["SessionId"]
     return out

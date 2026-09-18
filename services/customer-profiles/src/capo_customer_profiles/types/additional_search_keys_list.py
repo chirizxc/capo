@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> additionalSearchKeysList:
 
     out: additionalSearchKeysList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_customer_profiles.types.additional_search_key.deserialize_json(item)
         )

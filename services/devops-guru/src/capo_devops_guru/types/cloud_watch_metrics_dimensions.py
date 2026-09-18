@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> CloudWatchMetricsDimensions:
 
     out: CloudWatchMetricsDimensions = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_devops_guru.types.cloud_watch_metrics_dimension.deserialize_json(item)
         )

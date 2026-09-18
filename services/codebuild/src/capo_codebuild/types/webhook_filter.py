@@ -39,7 +39,7 @@ def serialize_aws_json_1_1(value: WebhookFilter) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> WebhookFilter:
     out: WebhookFilter = {}  # type: ignore[typeddict-item]
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_codebuild.types.webhook_filter_type
 
         out["type"] = capo_codebuild.types.webhook_filter_type.deserialize_aws_json_1_1(
@@ -47,10 +47,10 @@ def deserialize_aws_json_1_1(data: dict) -> WebhookFilter:
         )
     else:
         raise DeserializationError("WebhookFilter.type required")
-    if "pattern" in data:
+    if data.get("pattern") is not None:
         out["pattern"] = data["pattern"]
     else:
         raise DeserializationError("WebhookFilter.pattern required")
-    if "excludeMatchedPattern" in data:
+    if data.get("excludeMatchedPattern") is not None:
         out["exclude_matched_pattern"] = data["excludeMatchedPattern"]
     return out

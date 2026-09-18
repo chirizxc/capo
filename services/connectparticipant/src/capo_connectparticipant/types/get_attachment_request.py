@@ -34,10 +34,10 @@ def serialize_json(value: GetAttachmentRequest) -> dict:
 
 def deserialize_json(data: dict) -> GetAttachmentRequest:
     out: GetAttachmentRequest = {}  # type: ignore[typeddict-item]
-    if "AttachmentId" in data:
+    if data.get("AttachmentId") is not None:
         out["attachment_id"] = data["AttachmentId"]
     else:
         raise DeserializationError("GetAttachmentRequest.attachment_id required")
-    if "UrlExpiryInSeconds" in data:
+    if data.get("UrlExpiryInSeconds") is not None:
         out["url_expiry_in_seconds"] = data["UrlExpiryInSeconds"]
     return out

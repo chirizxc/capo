@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> NotebookRunSummaryList:
 
     out: NotebookRunSummaryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_datazone.types.notebook_run_summary.deserialize_json(item))
     return out

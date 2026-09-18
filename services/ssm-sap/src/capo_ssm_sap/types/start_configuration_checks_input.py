@@ -37,13 +37,13 @@ def serialize_json(value: StartConfigurationChecksInput) -> dict:
 
 def deserialize_json(data: dict) -> StartConfigurationChecksInput:
     out: StartConfigurationChecksInput = {}  # type: ignore[typeddict-item]
-    if "ApplicationId" in data:
+    if data.get("ApplicationId") is not None:
         out["application_id"] = data["ApplicationId"]
     else:
         raise DeserializationError(
             "StartConfigurationChecksInput.application_id required"
         )
-    if "ConfigurationCheckIds" in data:
+    if data.get("ConfigurationCheckIds") is not None:
         import capo_ssm_sap.types.configuration_check_type_list
 
         out["configuration_check_ids"] = (

@@ -38,16 +38,16 @@ def serialize_json(value: ListAppliedSchemaArnsRequest) -> dict:
 
 def deserialize_json(data: dict) -> ListAppliedSchemaArnsRequest:
     out: ListAppliedSchemaArnsRequest = {}  # type: ignore[typeddict-item]
-    if "DirectoryArn" in data:
+    if data.get("DirectoryArn") is not None:
         out["directory_arn"] = data["DirectoryArn"]
     else:
         raise DeserializationError(
             "ListAppliedSchemaArnsRequest.directory_arn required"
         )
-    if "SchemaArn" in data:
+    if data.get("SchemaArn") is not None:
         out["schema_arn"] = data["SchemaArn"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
     return out

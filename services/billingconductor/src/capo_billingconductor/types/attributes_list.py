@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> AttributesList:
 
     out: AttributesList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_billingconductor.types.attribute.deserialize_json(item))
     return out

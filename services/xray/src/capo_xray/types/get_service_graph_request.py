@@ -46,7 +46,7 @@ def serialize_json(value: GetServiceGraphRequest) -> dict:
 
 def deserialize_json(data: dict) -> GetServiceGraphRequest:
     out: GetServiceGraphRequest = {}  # type: ignore[typeddict-item]
-    if "StartTime" in data:
+    if data.get("StartTime") is not None:
         import capo_xray.types.timestamp
 
         out["start_time"] = capo_xray.types.timestamp.deserialize_json(
@@ -54,16 +54,16 @@ def deserialize_json(data: dict) -> GetServiceGraphRequest:
         )
     else:
         raise DeserializationError("GetServiceGraphRequest.start_time required")
-    if "EndTime" in data:
+    if data.get("EndTime") is not None:
         import capo_xray.types.timestamp
 
         out["end_time"] = capo_xray.types.timestamp.deserialize_json(data["EndTime"])
     else:
         raise DeserializationError("GetServiceGraphRequest.end_time required")
-    if "GroupName" in data:
+    if data.get("GroupName") is not None:
         out["group_name"] = data["GroupName"]
-    if "GroupARN" in data:
+    if data.get("GroupARN") is not None:
         out["group_arn"] = data["GroupARN"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

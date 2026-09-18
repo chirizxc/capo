@@ -26,7 +26,7 @@ def serialize_json(value: GetJobRunResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetJobRunResponse:
     out: GetJobRunResponse = {}  # type: ignore[typeddict-item]
-    if "jobRun" in data:
+    if data.get("jobRun") is not None:
         import capo_emr_serverless.types.job_run
 
         out["job_run"] = capo_emr_serverless.types.job_run.deserialize_json(

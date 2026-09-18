@@ -16,4 +16,4 @@ def serialize_json(value: SessionStateSet) -> list:
 
 
 def deserialize_json(data: list) -> SessionStateSet:
-    return list(data)
+    return [item for item in data if item is not None]

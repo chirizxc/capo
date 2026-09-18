@@ -33,7 +33,7 @@ def serialize_json(value: CreateTestSetDiscrepancyReportRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateTestSetDiscrepancyReportRequest:
     out: CreateTestSetDiscrepancyReportRequest = {}  # type: ignore[typeddict-item]
-    if "target" in data:
+    if data.get("target") is not None:
         import capo_lex_models_v2.types.test_set_discrepancy_report_resource_target
 
         out["target"] = (

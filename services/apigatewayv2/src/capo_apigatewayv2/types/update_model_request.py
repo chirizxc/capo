@@ -51,12 +51,12 @@ def serialize_json(value: UpdateModelRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateModelRequest:
     out: UpdateModelRequest = {}  # type: ignore[typeddict-item]
-    if "contentType" in data:
+    if data.get("contentType") is not None:
         out["content_type"] = data["contentType"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "schema" in data:
+    if data.get("schema") is not None:
         out["schema"] = data["schema"]
     return out

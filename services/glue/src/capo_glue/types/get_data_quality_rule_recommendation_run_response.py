@@ -110,55 +110,55 @@ def serialize_aws_json_1_1(value: GetDataQualityRuleRecommendationRunResponse) -
 
 def deserialize_aws_json_1_1(data: dict) -> GetDataQualityRuleRecommendationRunResponse:
     out: GetDataQualityRuleRecommendationRunResponse = {}  # type: ignore[typeddict-item]
-    if "RunId" in data:
+    if data.get("RunId") is not None:
         out["run_id"] = data["RunId"]
-    if "DataSource" in data:
+    if data.get("DataSource") is not None:
         import capo_glue.types.data_source
 
         out["data_source"] = capo_glue.types.data_source.deserialize_aws_json_1_1(
             data["DataSource"]
         )
-    if "Role" in data:
+    if data.get("Role") is not None:
         out["role"] = data["Role"]
-    if "NumberOfWorkers" in data:
+    if data.get("NumberOfWorkers") is not None:
         out["number_of_workers"] = data["NumberOfWorkers"]
-    if "Timeout" in data:
+    if data.get("Timeout") is not None:
         out["timeout"] = data["Timeout"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_glue.types.task_status_type
 
         out["status"] = capo_glue.types.task_status_type.deserialize_aws_json_1_1(
             data["Status"]
         )
-    if "ErrorString" in data:
+    if data.get("ErrorString") is not None:
         out["error_string"] = data["ErrorString"]
-    if "StartedOn" in data:
+    if data.get("StartedOn") is not None:
         import capo_glue.types.timestamp
 
         out["started_on"] = capo_glue.types.timestamp.deserialize_aws_json_1_1(
             data["StartedOn"]
         )
-    if "LastModifiedOn" in data:
+    if data.get("LastModifiedOn") is not None:
         import capo_glue.types.timestamp
 
         out["last_modified_on"] = capo_glue.types.timestamp.deserialize_aws_json_1_1(
             data["LastModifiedOn"]
         )
-    if "CompletedOn" in data:
+    if data.get("CompletedOn") is not None:
         import capo_glue.types.timestamp
 
         out["completed_on"] = capo_glue.types.timestamp.deserialize_aws_json_1_1(
             data["CompletedOn"]
         )
-    if "ExecutionTime" in data:
+    if data.get("ExecutionTime") is not None:
         out["execution_time"] = data["ExecutionTime"]
     else:
         out["execution_time"] = 0
-    if "RecommendedRuleset" in data:
+    if data.get("RecommendedRuleset") is not None:
         out["recommended_ruleset"] = data["RecommendedRuleset"]
-    if "CreatedRulesetName" in data:
+    if data.get("CreatedRulesetName") is not None:
         out["created_ruleset_name"] = data["CreatedRulesetName"]
-    if "DataQualitySecurityConfiguration" in data:
+    if data.get("DataQualitySecurityConfiguration") is not None:
         out["data_quality_security_configuration"] = data[
             "DataQualitySecurityConfiguration"
         ]

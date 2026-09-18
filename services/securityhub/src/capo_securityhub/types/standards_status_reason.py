@@ -31,7 +31,7 @@ def serialize_json(value: StandardsStatusReason) -> dict:
 
 def deserialize_json(data: dict) -> StandardsStatusReason:
     out: StandardsStatusReason = {}  # type: ignore[typeddict-item]
-    if "StatusReasonCode" in data:
+    if data.get("StatusReasonCode") is not None:
         import capo_securityhub.types.status_reason_code
 
         out["status_reason_code"] = (

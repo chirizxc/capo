@@ -37,7 +37,7 @@ def serialize_aws_json_1_0(value: ListRoutingControlsResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ListRoutingControlsResponse:
     out: ListRoutingControlsResponse = {}  # type: ignore[typeddict-item]
-    if "RoutingControls" in data:
+    if data.get("RoutingControls") is not None:
         import capo_route53_recovery_cluster.types.routing_controls
 
         out["routing_controls"] = (
@@ -49,6 +49,6 @@ def deserialize_aws_json_1_0(data: dict) -> ListRoutingControlsResponse:
         raise DeserializationError(
             "ListRoutingControlsResponse.routing_controls required"
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

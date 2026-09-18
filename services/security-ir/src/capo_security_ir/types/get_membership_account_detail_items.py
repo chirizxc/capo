@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> GetMembershipAccountDetailItems:
 
     out: GetMembershipAccountDetailItems = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_security_ir.types.get_membership_account_detail_item.deserialize_json(
                 item

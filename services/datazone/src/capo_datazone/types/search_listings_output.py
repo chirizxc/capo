@@ -47,17 +47,17 @@ def serialize_json(value: SearchListingsOutput) -> dict:
 
 def deserialize_json(data: dict) -> SearchListingsOutput:
     out: SearchListingsOutput = {}  # type: ignore[typeddict-item]
-    if "items" in data:
+    if data.get("items") is not None:
         import capo_datazone.types.search_result_items
 
         out["items"] = capo_datazone.types.search_result_items.deserialize_json(
             data["items"]
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "totalMatchCount" in data:
+    if data.get("totalMatchCount") is not None:
         out["total_match_count"] = data["totalMatchCount"]
-    if "aggregates" in data:
+    if data.get("aggregates") is not None:
         import capo_datazone.types.aggregation_output_list
 
         out["aggregates"] = (

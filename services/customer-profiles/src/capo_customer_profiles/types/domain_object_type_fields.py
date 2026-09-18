@@ -27,6 +27,8 @@ def serialize_json(input_to_serialize: DomainObjectTypeFields) -> dict:
 def deserialize_json(data: dict) -> DomainObjectTypeFields:
     out: DomainObjectTypeFields = {}
     for key, value in data.items():
+        if value is None:
+            continue
         import capo_customer_profiles.types.domain_object_type_field
 
         out[key] = (

@@ -35,7 +35,7 @@ def serialize_aws_json_1_1(value: MinimumHealthyHosts) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> MinimumHealthyHosts:
     out: MinimumHealthyHosts = {}  # type: ignore[typeddict-item]
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_codedeploy.types.minimum_healthy_hosts_type
 
         out["type"] = (
@@ -43,7 +43,7 @@ def deserialize_aws_json_1_1(data: dict) -> MinimumHealthyHosts:
                 data["type"]
             )
         )
-    if "value" in data:
+    if data.get("value") is not None:
         out["value"] = data["value"]
     else:
         out["value"] = 0

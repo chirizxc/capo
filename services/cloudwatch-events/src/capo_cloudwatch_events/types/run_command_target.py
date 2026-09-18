@@ -36,11 +36,11 @@ def serialize_aws_json_1_1(value: RunCommandTarget) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RunCommandTarget:
     out: RunCommandTarget = {}  # type: ignore[typeddict-item]
-    if "Key" in data:
+    if data.get("Key") is not None:
         out["key"] = data["Key"]
     else:
         raise DeserializationError("RunCommandTarget.key required")
-    if "Values" in data:
+    if data.get("Values") is not None:
         import capo_cloudwatch_events.types.run_command_target_values
 
         out["values"] = (

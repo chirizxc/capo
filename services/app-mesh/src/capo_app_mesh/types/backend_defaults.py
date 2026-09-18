@@ -27,7 +27,7 @@ def serialize_json(value: BackendDefaults) -> dict:
 
 def deserialize_json(data: dict) -> BackendDefaults:
     out: BackendDefaults = {}  # type: ignore[typeddict-item]
-    if "clientPolicy" in data:
+    if data.get("clientPolicy") is not None:
         import capo_app_mesh.types.client_policy
 
         out["client_policy"] = capo_app_mesh.types.client_policy.deserialize_json(

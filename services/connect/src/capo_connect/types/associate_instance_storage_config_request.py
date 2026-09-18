@@ -48,7 +48,7 @@ def serialize_json(value: AssociateInstanceStorageConfigRequest) -> dict:
 
 def deserialize_json(data: dict) -> AssociateInstanceStorageConfigRequest:
     out: AssociateInstanceStorageConfigRequest = {}  # type: ignore[typeddict-item]
-    if "ResourceType" in data:
+    if data.get("ResourceType") is not None:
         import capo_connect.types.instance_storage_resource_type
 
         out["resource_type"] = (
@@ -60,7 +60,7 @@ def deserialize_json(data: dict) -> AssociateInstanceStorageConfigRequest:
         raise DeserializationError(
             "AssociateInstanceStorageConfigRequest.resource_type required"
         )
-    if "StorageConfig" in data:
+    if data.get("StorageConfig") is not None:
         import capo_connect.types.instance_storage_config
 
         out["storage_config"] = (
@@ -72,6 +72,6 @@ def deserialize_json(data: dict) -> AssociateInstanceStorageConfigRequest:
         raise DeserializationError(
             "AssociateInstanceStorageConfigRequest.storage_config required"
         )
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
     return out

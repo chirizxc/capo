@@ -36,13 +36,13 @@ def serialize_json(value: Resource) -> dict:
 
 def deserialize_json(data: dict) -> Resource:
     out: Resource = {}  # type: ignore[typeddict-item]
-    if "portal" in data:
+    if data.get("portal") is not None:
         import capo_iotsitewise.types.portal_resource
 
         out["portal"] = capo_iotsitewise.types.portal_resource.deserialize_json(
             data["portal"]
         )
-    if "project" in data:
+    if data.get("project") is not None:
         import capo_iotsitewise.types.project_resource
 
         out["project"] = capo_iotsitewise.types.project_resource.deserialize_json(

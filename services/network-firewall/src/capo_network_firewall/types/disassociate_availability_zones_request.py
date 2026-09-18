@@ -45,13 +45,13 @@ def serialize_aws_json_1_0(value: DisassociateAvailabilityZonesRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> DisassociateAvailabilityZonesRequest:
     out: DisassociateAvailabilityZonesRequest = {}  # type: ignore[typeddict-item]
-    if "UpdateToken" in data:
+    if data.get("UpdateToken") is not None:
         out["update_token"] = data["UpdateToken"]
-    if "FirewallArn" in data:
+    if data.get("FirewallArn") is not None:
         out["firewall_arn"] = data["FirewallArn"]
-    if "FirewallName" in data:
+    if data.get("FirewallName") is not None:
         out["firewall_name"] = data["FirewallName"]
-    if "AvailabilityZoneMappings" in data:
+    if data.get("AvailabilityZoneMappings") is not None:
         import capo_network_firewall.types.availability_zone_mappings
 
         out["availability_zone_mappings"] = (

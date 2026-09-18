@@ -35,7 +35,7 @@ def serialize_aws_json_1_1(value: PolicyTypeScope) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PolicyTypeScope:
     out: PolicyTypeScope = {}  # type: ignore[typeddict-item]
-    if "PolicyTypes" in data:
+    if data.get("PolicyTypes") is not None:
         import capo_fms.types.security_service_type_list
 
         out["policy_types"] = (
@@ -43,7 +43,7 @@ def deserialize_aws_json_1_1(data: dict) -> PolicyTypeScope:
                 data["PolicyTypes"]
             )
         )
-    if "AllPolicyTypesEnabled" in data:
+    if data.get("AllPolicyTypesEnabled") is not None:
         out["all_policy_types_enabled"] = data["AllPolicyTypesEnabled"]
     else:
         out["all_policy_types_enabled"] = False

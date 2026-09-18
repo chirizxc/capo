@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: GetSecurityConfigurationResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetSecurityConfigurationResponse:
     out: GetSecurityConfigurationResponse = {}  # type: ignore[typeddict-item]
-    if "SecurityConfiguration" in data:
+    if data.get("SecurityConfiguration") is not None:
         import capo_glue.types.security_configuration
 
         out["security_configuration"] = (

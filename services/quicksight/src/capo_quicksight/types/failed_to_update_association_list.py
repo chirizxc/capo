@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> FailedToUpdateAssociationList:
 
     out: FailedToUpdateAssociationList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_quicksight.types.failed_to_update_association.deserialize_json(item)
         )

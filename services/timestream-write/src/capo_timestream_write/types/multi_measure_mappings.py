@@ -37,9 +37,9 @@ def serialize_aws_json_1_0(value: MultiMeasureMappings) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> MultiMeasureMappings:
     out: MultiMeasureMappings = {}  # type: ignore[typeddict-item]
-    if "TargetMultiMeasureName" in data:
+    if data.get("TargetMultiMeasureName") is not None:
         out["target_multi_measure_name"] = data["TargetMultiMeasureName"]
-    if "MultiMeasureAttributeMappings" in data:
+    if data.get("MultiMeasureAttributeMappings") is not None:
         import capo_timestream_write.types.multi_measure_attribute_mapping_list
 
         out["multi_measure_attribute_mappings"] = (

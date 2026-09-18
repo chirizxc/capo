@@ -180,11 +180,11 @@ def serialize_json(value: UpdateDataSetRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateDataSetRequest:
     out: UpdateDataSetRequest = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("UpdateDataSetRequest.name required")
-    if "PhysicalTableMap" in data:
+    if data.get("PhysicalTableMap") is not None:
         import capo_quicksight.types.physical_table_map
 
         out["physical_table_map"] = (
@@ -194,7 +194,7 @@ def deserialize_json(data: dict) -> UpdateDataSetRequest:
         )
     else:
         raise DeserializationError("UpdateDataSetRequest.physical_table_map required")
-    if "LogicalTableMap" in data:
+    if data.get("LogicalTableMap") is not None:
         import capo_quicksight.types.logical_table_map
 
         out["logical_table_map"] = (
@@ -202,7 +202,7 @@ def deserialize_json(data: dict) -> UpdateDataSetRequest:
                 data["LogicalTableMap"]
             )
         )
-    if "ImportMode" in data:
+    if data.get("ImportMode") is not None:
         import capo_quicksight.types.data_set_import_mode
 
         out["import_mode"] = (
@@ -212,19 +212,19 @@ def deserialize_json(data: dict) -> UpdateDataSetRequest:
         )
     else:
         raise DeserializationError("UpdateDataSetRequest.import_mode required")
-    if "ColumnGroups" in data:
+    if data.get("ColumnGroups") is not None:
         import capo_quicksight.types.column_group_list
 
         out["column_groups"] = capo_quicksight.types.column_group_list.deserialize_json(
             data["ColumnGroups"]
         )
-    if "FieldFolders" in data:
+    if data.get("FieldFolders") is not None:
         import capo_quicksight.types.field_folder_map
 
         out["field_folders"] = capo_quicksight.types.field_folder_map.deserialize_json(
             data["FieldFolders"]
         )
-    if "RowLevelPermissionDataSet" in data:
+    if data.get("RowLevelPermissionDataSet") is not None:
         import capo_quicksight.types.row_level_permission_data_set
 
         out["row_level_permission_data_set"] = (
@@ -232,7 +232,7 @@ def deserialize_json(data: dict) -> UpdateDataSetRequest:
                 data["RowLevelPermissionDataSet"]
             )
         )
-    if "RowLevelPermissionTagConfiguration" in data:
+    if data.get("RowLevelPermissionTagConfiguration") is not None:
         import capo_quicksight.types.row_level_permission_tag_configuration
 
         out["row_level_permission_tag_configuration"] = (
@@ -240,7 +240,7 @@ def deserialize_json(data: dict) -> UpdateDataSetRequest:
                 data["RowLevelPermissionTagConfiguration"]
             )
         )
-    if "ColumnLevelPermissionRules" in data:
+    if data.get("ColumnLevelPermissionRules") is not None:
         import capo_quicksight.types.column_level_permission_rule_list
 
         out["column_level_permission_rules"] = (
@@ -248,7 +248,7 @@ def deserialize_json(data: dict) -> UpdateDataSetRequest:
                 data["ColumnLevelPermissionRules"]
             )
         )
-    if "DataSetUsageConfiguration" in data:
+    if data.get("DataSetUsageConfiguration") is not None:
         import capo_quicksight.types.data_set_usage_configuration
 
         out["data_set_usage_configuration"] = (
@@ -256,7 +256,7 @@ def deserialize_json(data: dict) -> UpdateDataSetRequest:
                 data["DataSetUsageConfiguration"]
             )
         )
-    if "DatasetParameters" in data:
+    if data.get("DatasetParameters") is not None:
         import capo_quicksight.types.dataset_parameter_list
 
         out["dataset_parameters"] = (
@@ -264,7 +264,7 @@ def deserialize_json(data: dict) -> UpdateDataSetRequest:
                 data["DatasetParameters"]
             )
         )
-    if "PerformanceConfiguration" in data:
+    if data.get("PerformanceConfiguration") is not None:
         import capo_quicksight.types.performance_configuration
 
         out["performance_configuration"] = (
@@ -272,7 +272,7 @@ def deserialize_json(data: dict) -> UpdateDataSetRequest:
                 data["PerformanceConfiguration"]
             )
         )
-    if "DataPrepConfiguration" in data:
+    if data.get("DataPrepConfiguration") is not None:
         import capo_quicksight.types.data_prep_configuration
 
         out["data_prep_configuration"] = (
@@ -280,7 +280,7 @@ def deserialize_json(data: dict) -> UpdateDataSetRequest:
                 data["DataPrepConfiguration"]
             )
         )
-    if "SemanticModelConfiguration" in data:
+    if data.get("SemanticModelConfiguration") is not None:
         import capo_quicksight.types.semantic_model_configuration
 
         out["semantic_model_configuration"] = (

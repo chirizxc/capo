@@ -27,7 +27,7 @@ def serialize_json(value: Logging) -> dict:
 
 def deserialize_json(data: dict) -> Logging:
     out: Logging = {}  # type: ignore[typeddict-item]
-    if "clusterLogging" in data:
+    if data.get("clusterLogging") is not None:
         import capo_eks.types.log_setups
 
         out["cluster_logging"] = capo_eks.types.log_setups.deserialize_json(

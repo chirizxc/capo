@@ -106,19 +106,19 @@ def serialize_json(value: CreateApplicationResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateApplicationResponse:
     out: CreateApplicationResponse = {}  # type: ignore[typeddict-item]
-    if "applicationId" in data:
+    if data.get("applicationId") is not None:
         out["application_id"] = data["applicationId"]
-    if "author" in data:
+    if data.get("author") is not None:
         out["author"] = data["author"]
-    if "creationTime" in data:
+    if data.get("creationTime") is not None:
         out["creation_time"] = data["creationTime"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "homePageUrl" in data:
+    if data.get("homePageUrl") is not None:
         out["home_page_url"] = data["homePageUrl"]
-    if "isVerifiedAuthor" in data:
+    if data.get("isVerifiedAuthor") is not None:
         out["is_verified_author"] = data["isVerifiedAuthor"]
-    if "labels" in data:
+    if data.get("labels") is not None:
         import capo_serverlessapplicationrepository.types.__list_of__string
 
         out["labels"] = (
@@ -126,17 +126,17 @@ def deserialize_json(data: dict) -> CreateApplicationResponse:
                 data["labels"]
             )
         )
-    if "licenseUrl" in data:
+    if data.get("licenseUrl") is not None:
         out["license_url"] = data["licenseUrl"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "readmeUrl" in data:
+    if data.get("readmeUrl") is not None:
         out["readme_url"] = data["readmeUrl"]
-    if "spdxLicenseId" in data:
+    if data.get("spdxLicenseId") is not None:
         out["spdx_license_id"] = data["spdxLicenseId"]
-    if "verifiedAuthorUrl" in data:
+    if data.get("verifiedAuthorUrl") is not None:
         out["verified_author_url"] = data["verifiedAuthorUrl"]
-    if "version" in data:
+    if data.get("version") is not None:
         import capo_serverlessapplicationrepository.types.version
 
         out["version"] = (

@@ -91,7 +91,16 @@ def serialize_aws_json_1_0(value: LambdaFunctionRecommendation) -> dict:
                 value["utilization_metrics"]
             )
         )
-    out["lookbackPeriodInDays"] = value.get("lookback_period_in_days", 0)
+    out["lookbackPeriodInDays"] = (
+        "NaN"
+        if value.get("lookback_period_in_days", 0)
+        != value.get("lookback_period_in_days", 0)
+        else "Infinity"
+        if value.get("lookback_period_in_days", 0) == float("inf")
+        else "-Infinity"
+        if value.get("lookback_period_in_days", 0) == float("-inf")
+        else value.get("lookback_period_in_days", 0)
+    )
     if "last_refresh_timestamp" in value:
         import capo_compute_optimizer.types.last_refresh_timestamp
 
@@ -151,21 +160,21 @@ def serialize_aws_json_1_0(value: LambdaFunctionRecommendation) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> LambdaFunctionRecommendation:
     out: LambdaFunctionRecommendation = {}  # type: ignore[typeddict-item]
-    if "functionArn" in data:
+    if data.get("functionArn") is not None:
         out["function_arn"] = data["functionArn"]
-    if "functionVersion" in data:
+    if data.get("functionVersion") is not None:
         out["function_version"] = data["functionVersion"]
-    if "accountId" in data:
+    if data.get("accountId") is not None:
         out["account_id"] = data["accountId"]
-    if "currentMemorySize" in data:
+    if data.get("currentMemorySize") is not None:
         out["current_memory_size"] = data["currentMemorySize"]
     else:
         out["current_memory_size"] = 0
-    if "numberOfInvocations" in data:
+    if data.get("numberOfInvocations") is not None:
         out["number_of_invocations"] = data["numberOfInvocations"]
     else:
         out["number_of_invocations"] = 0
-    if "utilizationMetrics" in data:
+    if data.get("utilizationMetrics") is not None:
         import capo_compute_optimizer.types.lambda_function_utilization_metrics
 
         out["utilization_metrics"] = (
@@ -173,11 +182,11 @@ def deserialize_aws_json_1_0(data: dict) -> LambdaFunctionRecommendation:
                 data["utilizationMetrics"]
             )
         )
-    if "lookbackPeriodInDays" in data:
-        out["lookback_period_in_days"] = data["lookbackPeriodInDays"]
+    if data.get("lookbackPeriodInDays") is not None:
+        out["lookback_period_in_days"] = float(data["lookbackPeriodInDays"])
     else:
         out["lookback_period_in_days"] = 0
-    if "lastRefreshTimestamp" in data:
+    if data.get("lastRefreshTimestamp") is not None:
         import capo_compute_optimizer.types.last_refresh_timestamp
 
         out["last_refresh_timestamp"] = (
@@ -185,7 +194,7 @@ def deserialize_aws_json_1_0(data: dict) -> LambdaFunctionRecommendation:
                 data["lastRefreshTimestamp"]
             )
         )
-    if "finding" in data:
+    if data.get("finding") is not None:
         import capo_compute_optimizer.types.lambda_function_recommendation_finding
 
         out["finding"] = (
@@ -193,7 +202,7 @@ def deserialize_aws_json_1_0(data: dict) -> LambdaFunctionRecommendation:
                 data["finding"]
             )
         )
-    if "findingReasonCodes" in data:
+    if data.get("findingReasonCodes") is not None:
         import capo_compute_optimizer.types.lambda_function_recommendation_finding_reason_codes
 
         out["finding_reason_codes"] = (
@@ -201,7 +210,7 @@ def deserialize_aws_json_1_0(data: dict) -> LambdaFunctionRecommendation:
                 data["findingReasonCodes"]
             )
         )
-    if "memorySizeRecommendationOptions" in data:
+    if data.get("memorySizeRecommendationOptions") is not None:
         import capo_compute_optimizer.types.lambda_function_memory_recommendation_options
 
         out["memory_size_recommendation_options"] = (
@@ -209,7 +218,7 @@ def deserialize_aws_json_1_0(data: dict) -> LambdaFunctionRecommendation:
                 data["memorySizeRecommendationOptions"]
             )
         )
-    if "currentPerformanceRisk" in data:
+    if data.get("currentPerformanceRisk") is not None:
         import capo_compute_optimizer.types.current_performance_risk
 
         out["current_performance_risk"] = (
@@ -217,7 +226,7 @@ def deserialize_aws_json_1_0(data: dict) -> LambdaFunctionRecommendation:
                 data["currentPerformanceRisk"]
             )
         )
-    if "effectiveRecommendationPreferences" in data:
+    if data.get("effectiveRecommendationPreferences") is not None:
         import capo_compute_optimizer.types.lambda_effective_recommendation_preferences
 
         out["effective_recommendation_preferences"] = (
@@ -225,7 +234,7 @@ def deserialize_aws_json_1_0(data: dict) -> LambdaFunctionRecommendation:
                 data["effectiveRecommendationPreferences"]
             )
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_compute_optimizer.types.tags
 
         out["tags"] = capo_compute_optimizer.types.tags.deserialize_aws_json_1_0(

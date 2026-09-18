@@ -31,12 +31,12 @@ def serialize_json(value: ListAppsResult) -> dict:
 
 def deserialize_json(data: dict) -> ListAppsResult:
     out: ListAppsResult = {}  # type: ignore[typeddict-item]
-    if "apps" in data:
+    if data.get("apps") is not None:
         import capo_amplify.types.apps
 
         out["apps"] = capo_amplify.types.apps.deserialize_json(data["apps"])
     else:
         raise DeserializationError("ListAppsResult.apps required")
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

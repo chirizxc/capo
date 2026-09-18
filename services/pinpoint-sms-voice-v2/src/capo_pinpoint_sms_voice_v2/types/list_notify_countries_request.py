@@ -61,7 +61,7 @@ def serialize_aws_json_1_0(value: ListNotifyCountriesRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ListNotifyCountriesRequest:
     out: ListNotifyCountriesRequest = {}  # type: ignore[typeddict-item]
-    if "Channels" in data:
+    if data.get("Channels") is not None:
         import capo_pinpoint_sms_voice_v2.types.notify_enabled_channels_list
 
         out["channels"] = (
@@ -69,7 +69,7 @@ def deserialize_aws_json_1_0(data: dict) -> ListNotifyCountriesRequest:
                 data["Channels"]
             )
         )
-    if "UseCases" in data:
+    if data.get("UseCases") is not None:
         import capo_pinpoint_sms_voice_v2.types.notify_use_case_list
 
         out["use_cases"] = (
@@ -77,10 +77,10 @@ def deserialize_aws_json_1_0(data: dict) -> ListNotifyCountriesRequest:
                 data["UseCases"]
             )
         )
-    if "Tier" in data:
+    if data.get("Tier") is not None:
         out["tier"] = data["Tier"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
     return out

@@ -33,7 +33,7 @@ def serialize_json(value: ListAdConfigurationsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListAdConfigurationsResponse:
     out: ListAdConfigurationsResponse = {}  # type: ignore[typeddict-item]
-    if "adConfigurations" in data:
+    if data.get("adConfigurations") is not None:
         import capo_ivs.types.ad_configuration_list
 
         out["ad_configurations"] = (
@@ -45,6 +45,6 @@ def deserialize_json(data: dict) -> ListAdConfigurationsResponse:
         raise DeserializationError(
             "ListAdConfigurationsResponse.ad_configurations required"
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

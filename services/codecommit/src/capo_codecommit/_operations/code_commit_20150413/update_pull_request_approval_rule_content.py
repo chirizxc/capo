@@ -10,6 +10,7 @@ from typing_extensions import Never
 
 import capo_codecommit._auth._signers
 import capo_codecommit._auth._sigv4
+import capo_codecommit._protocol.eventstream
 import capo_codecommit.errors.approval_rule_content_required_exception
 import capo_codecommit.errors.approval_rule_does_not_exist_exception
 import capo_codecommit.errors.approval_rule_name_required_exception
@@ -41,67 +42,67 @@ def handle_error(response: zapros.Response) -> Never:
     match code:
         case "ApprovalRuleContentRequiredException":
             raise capo_codecommit.errors.approval_rule_content_required_exception.ApprovalRuleContentRequiredException.from_aws_json_1_1(
-                data
+                data, message
             )
         case "ApprovalRuleDoesNotExistException":
             raise capo_codecommit.errors.approval_rule_does_not_exist_exception.ApprovalRuleDoesNotExistException.from_aws_json_1_1(
-                data
+                data, message
             )
         case "ApprovalRuleNameRequiredException":
             raise capo_codecommit.errors.approval_rule_name_required_exception.ApprovalRuleNameRequiredException.from_aws_json_1_1(
-                data
+                data, message
             )
         case "CannotModifyApprovalRuleFromTemplateException":
             raise capo_codecommit.errors.cannot_modify_approval_rule_from_template_exception.CannotModifyApprovalRuleFromTemplateException.from_aws_json_1_1(
-                data
+                data, message
             )
         case "EncryptionIntegrityChecksFailedException":
             raise capo_codecommit.errors.encryption_integrity_checks_failed_exception.EncryptionIntegrityChecksFailedException.from_aws_json_1_1(
-                data
+                data, message
             )
         case "EncryptionKeyAccessDeniedException":
             raise capo_codecommit.errors.encryption_key_access_denied_exception.EncryptionKeyAccessDeniedException.from_aws_json_1_1(
-                data
+                data, message
             )
         case "EncryptionKeyDisabledException":
             raise capo_codecommit.errors.encryption_key_disabled_exception.EncryptionKeyDisabledException.from_aws_json_1_1(
-                data
+                data, message
             )
         case "EncryptionKeyNotFoundException":
             raise capo_codecommit.errors.encryption_key_not_found_exception.EncryptionKeyNotFoundException.from_aws_json_1_1(
-                data
+                data, message
             )
         case "EncryptionKeyUnavailableException":
             raise capo_codecommit.errors.encryption_key_unavailable_exception.EncryptionKeyUnavailableException.from_aws_json_1_1(
-                data
+                data, message
             )
         case "InvalidApprovalRuleContentException":
             raise capo_codecommit.errors.invalid_approval_rule_content_exception.InvalidApprovalRuleContentException.from_aws_json_1_1(
-                data
+                data, message
             )
         case "InvalidApprovalRuleNameException":
             raise capo_codecommit.errors.invalid_approval_rule_name_exception.InvalidApprovalRuleNameException.from_aws_json_1_1(
-                data
+                data, message
             )
         case "InvalidPullRequestIdException":
             raise capo_codecommit.errors.invalid_pull_request_id_exception.InvalidPullRequestIdException.from_aws_json_1_1(
-                data
+                data, message
             )
         case "InvalidRuleContentSha256Exception":
             raise capo_codecommit.errors.invalid_rule_content_sha256_exception.InvalidRuleContentSha256Exception.from_aws_json_1_1(
-                data
+                data, message
             )
         case "PullRequestAlreadyClosedException":
             raise capo_codecommit.errors.pull_request_already_closed_exception.PullRequestAlreadyClosedException.from_aws_json_1_1(
-                data
+                data, message
             )
         case "PullRequestDoesNotExistException":
             raise capo_codecommit.errors.pull_request_does_not_exist_exception.PullRequestDoesNotExistException.from_aws_json_1_1(
-                data
+                data, message
             )
         case "PullRequestIdRequiredException":
             raise capo_codecommit.errors.pull_request_id_required_exception.PullRequestIdRequiredException.from_aws_json_1_1(
-                data
+                data, message
             )
         case _:
             raise UnknownServiceError(code=code, message=message, response=response)
@@ -130,19 +131,26 @@ def get_signer(
     auth_schemes: list[dict[str, Any]] | None = None,
 ) -> capo_codecommit._auth._signers.Signer | None:
     name_to_schema = {s["name"]: s for s in (auth_schemes or [])}  # noqa: F841
-    if options.credentials_provider is not None:
-        sigv4_config = (
-            name_to_schema.get("sigv4")
-            or name_to_schema.get("sigv4a")
-            or name_to_schema.get("sigv4-s3express")
-            or capo_codecommit._auth._sigv4.build_sigv4_auth_scheme(
-                "codecommit", options.region
-            )
+    if (
+        options.credentials_provider is not None
+        and name_to_schema
+        and not name_to_schema.keys() & {"sigv4", "sigv4-s3express"}
+    ):
+        raise RuntimeError(
+            "Endpoint requires an unsupported auth scheme: " + ", ".join(name_to_schema)
         )
-        if sigv4_config is not None:
-            return capo_codecommit._auth._signers.SigV4Signer(
-                options.credentials_provider, auth_scheme=sigv4_config
+    if options.credentials_provider is not None:
+        endpoint_scheme = name_to_schema.get("sigv4") or name_to_schema.get(
+            "sigv4-s3express"
+        )
+        if endpoint_scheme is not None or not name_to_schema:
+            sigv4_config = capo_codecommit._auth._sigv4.build_sigv4_auth_scheme(
+                "codecommit", options.region, endpoint_scheme
             )
+            if sigv4_config is not None:
+                return capo_codecommit._auth._signers.SigV4Signer(
+                    options.credentials_provider, auth_scheme=sigv4_config
+                )
     raise RuntimeError("Auth was not resolved")
 
 
@@ -159,18 +167,20 @@ def build_request(
         )
     )  # noqa: F841
     url = endpoint.url.rstrip("/") + ""
-    params: dict[str, str] = {}
+    params: list[tuple[str, str]] = []
     headers: dict[str, str] = {k: ", ".join(v) for k, v in endpoint.headers.items()}
     headers["X-Amz-Target"] = "CodeCommit_20150413.UpdatePullRequestApprovalRuleContent"
     body: bytes | None = json.dumps(
         capo_codecommit.types.update_pull_request_approval_rule_content_input.serialize_aws_json_1_1(
             input_
-        )
+        ),
+        allow_nan=False,
     ).encode()
     headers["content-type"] = "application/x-amz-json-1.1"
     signer = get_signer(options, auth_schemes=endpoint.properties.get("authSchemes"))
     normalized_url = zapros.URL(url)
-    normalized_url.search_params.update(params)
+    for k, v in params:
+        normalized_url.search_params.append(k, v)
     return zapros.Request(
         normalized_url, "POST", headers=headers, body=body, context={"signer": signer}
     )
@@ -185,7 +195,7 @@ def update_pull_request_approval_rule_content(
 ]:
     response = options.client.handler.handle(build_request(options, input_))
     try:
-        if response.status >= 400:
+        if response.status >= 300:
             response.read()
             handle_error(response)
         return handle_response(response), response
@@ -203,7 +213,7 @@ async def async_update_pull_request_approval_rule_content(
 ]:
     response = await options.client.handler.ahandle(build_request(options, input_))
     try:
-        if response.status >= 400:
+        if response.status >= 300:
             await response.aread()
             handle_error(response)
         return await async_handle_response(response), response

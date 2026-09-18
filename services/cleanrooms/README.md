@@ -13,10 +13,25 @@ from capo_cleanrooms import AsyncCleanRoomsClient
 
 
 async def main():
-    async with AsyncCleanRoomsClient() as s3:
+    async with AsyncCleanRoomsClient() as clean_rooms:
         # Example: call the list_tags_for_resource operation
-        response = await s3.list_tags_for_resource()
+        response = await clean_rooms.list_tags_for_resource()
         print(response["tags"])
+```
+
+## Pagination
+
+Some operations in this SDK support pagination. If the operation supports pagination it will have an `iter_` prefixed method that returns an async iterator.
+
+```python
+from capo_cleanrooms import AsyncCleanRoomsClient
+
+
+async def main():
+    async with AsyncCleanRoomsClient() as clean_rooms:
+        # Example: paginate over list_collaboration_change_requests
+        async for item in clean_rooms.iter_list_collaboration_change_requests():
+            print(item)
 ```
 
 ## Error Handling
@@ -29,9 +44,9 @@ from capo_cleanrooms.error import ResourceNotFoundException
 
 
 async def main():
-    async with AsyncCleanRoomsClient() as s3:
+    async with AsyncCleanRoomsClient() as clean_rooms:
         try:
-            await s3.list_tags_for_resource()
+            await clean_rooms.list_tags_for_resource()
         except ResourceNotFoundException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -48,13 +63,13 @@ from capo_cleanrooms import AsyncCleanRoomsClient
 
 
 async def main():
-    async with AsyncCleanRoomsClient() as s3:
+    async with AsyncCleanRoomsClient() as clean_rooms:
         # Default: 3 attempts for every operation
-        response = await s3.list_tags_for_resource()
+        response = await clean_rooms.list_tags_for_resource()
 
         # Override per operation
-        response = await s3.list_tags_for_resource(config_overrides={"retry_max_attempts": 5})
+        response = await clean_rooms.list_tags_for_resource(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.list_tags_for_resource(config_overrides={"retry_max_attempts": 1})
+        response = await clean_rooms.list_tags_for_resource(config_overrides={"retry_max_attempts": 1})
 ```

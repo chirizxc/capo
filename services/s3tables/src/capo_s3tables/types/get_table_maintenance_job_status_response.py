@@ -32,13 +32,13 @@ def serialize_json(value: GetTableMaintenanceJobStatusResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetTableMaintenanceJobStatusResponse:
     out: GetTableMaintenanceJobStatusResponse = {}  # type: ignore[typeddict-item]
-    if "tableARN" in data:
+    if data.get("tableARN") is not None:
         out["table_arn"] = data["tableARN"]
     else:
         raise DeserializationError(
             "GetTableMaintenanceJobStatusResponse.table_arn required"
         )
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_s3tables.types.table_maintenance_job_status
 
         out["status"] = (

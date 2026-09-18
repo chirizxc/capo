@@ -32,9 +32,9 @@ def serialize_json(value: ResourceDownloadOwnerSetting) -> dict:
 
 def deserialize_json(data: dict) -> ResourceDownloadOwnerSetting:
     out: ResourceDownloadOwnerSetting = {}  # type: ignore[typeddict-item]
-    if "GroupOwner" in data:
+    if data.get("GroupOwner") is not None:
         out["group_owner"] = data["GroupOwner"]
-    if "GroupPermission" in data:
+    if data.get("GroupPermission") is not None:
         import capo_greengrass.types.permission
 
         out["group_permission"] = capo_greengrass.types.permission.deserialize_json(

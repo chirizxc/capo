@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: DescribeFindingsResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeFindingsResponse:
     out: DescribeFindingsResponse = {}  # type: ignore[typeddict-item]
-    if "findings" in data:
+    if data.get("findings") is not None:
         import capo_inspector.types.finding_list
 
         out["findings"] = capo_inspector.types.finding_list.deserialize_aws_json_1_1(
@@ -44,7 +44,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeFindingsResponse:
         )
     else:
         raise DeserializationError("DescribeFindingsResponse.findings required")
-    if "failedItems" in data:
+    if data.get("failedItems") is not None:
         import capo_inspector.types.failed_items
 
         out["failed_items"] = (

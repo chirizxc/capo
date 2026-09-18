@@ -36,19 +36,19 @@ def serialize_json(value: BatchGetSessionActionIdentifier) -> dict:
 
 def deserialize_json(data: dict) -> BatchGetSessionActionIdentifier:
     out: BatchGetSessionActionIdentifier = {}  # type: ignore[typeddict-item]
-    if "farmId" in data:
+    if data.get("farmId") is not None:
         out["farm_id"] = data["farmId"]
     else:
         raise DeserializationError("BatchGetSessionActionIdentifier.farm_id required")
-    if "queueId" in data:
+    if data.get("queueId") is not None:
         out["queue_id"] = data["queueId"]
     else:
         raise DeserializationError("BatchGetSessionActionIdentifier.queue_id required")
-    if "jobId" in data:
+    if data.get("jobId") is not None:
         out["job_id"] = data["jobId"]
     else:
         raise DeserializationError("BatchGetSessionActionIdentifier.job_id required")
-    if "sessionActionId" in data:
+    if data.get("sessionActionId") is not None:
         out["session_action_id"] = data["sessionActionId"]
     else:
         raise DeserializationError(

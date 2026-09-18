@@ -34,7 +34,7 @@ def serialize_json(value: UpdateWorkloadShareInput) -> dict:
 
 def deserialize_json(data: dict) -> UpdateWorkloadShareInput:
     out: UpdateWorkloadShareInput = {}  # type: ignore[typeddict-item]
-    if "PermissionType" in data:
+    if data.get("PermissionType") is not None:
         import capo_wellarchitected.types.permission_type
 
         out["permission_type"] = (

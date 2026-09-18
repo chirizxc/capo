@@ -27,11 +27,11 @@ def serialize_aws_json_1_1(value: FailoverShardRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> FailoverShardRequest:
     out: FailoverShardRequest = {}  # type: ignore[typeddict-item]
-    if "ClusterName" in data:
+    if data.get("ClusterName") is not None:
         out["cluster_name"] = data["ClusterName"]
     else:
         raise DeserializationError("FailoverShardRequest.cluster_name required")
-    if "ShardName" in data:
+    if data.get("ShardName") is not None:
         out["shard_name"] = data["ShardName"]
     else:
         raise DeserializationError("FailoverShardRequest.shard_name required")

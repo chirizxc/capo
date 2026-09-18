@@ -137,15 +137,15 @@ def serialize_aws_json_1_0(value: ListOpportunitiesRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ListOpportunitiesRequest:
     out: ListOpportunitiesRequest = {}  # type: ignore[typeddict-item]
-    if "Catalog" in data:
+    if data.get("Catalog") is not None:
         out["catalog"] = data["Catalog"]
     else:
         raise DeserializationError("ListOpportunitiesRequest.catalog required")
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "Sort" in data:
+    if data.get("Sort") is not None:
         import capo_partnercentral_selling.types.opportunity_sort
 
         out["sort"] = (
@@ -153,7 +153,7 @@ def deserialize_aws_json_1_0(data: dict) -> ListOpportunitiesRequest:
                 data["Sort"]
             )
         )
-    if "LastModifiedDate" in data:
+    if data.get("LastModifiedDate") is not None:
         import capo_partnercentral_selling.types.last_modified_date
 
         out["last_modified_date"] = (
@@ -161,7 +161,7 @@ def deserialize_aws_json_1_0(data: dict) -> ListOpportunitiesRequest:
                 data["LastModifiedDate"]
             )
         )
-    if "Identifier" in data:
+    if data.get("Identifier") is not None:
         import capo_partnercentral_selling.types.filter_identifier
 
         out["identifier"] = (
@@ -169,7 +169,7 @@ def deserialize_aws_json_1_0(data: dict) -> ListOpportunitiesRequest:
                 data["Identifier"]
             )
         )
-    if "LifeCycleStage" in data:
+    if data.get("LifeCycleStage") is not None:
         import capo_partnercentral_selling.types.filter_life_cycle_stage
 
         out["life_cycle_stage"] = (
@@ -177,7 +177,7 @@ def deserialize_aws_json_1_0(data: dict) -> ListOpportunitiesRequest:
                 data["LifeCycleStage"]
             )
         )
-    if "LifeCycleReviewStatus" in data:
+    if data.get("LifeCycleReviewStatus") is not None:
         import capo_partnercentral_selling.types.filter_life_cycle_review_status
 
         out["life_cycle_review_status"] = (
@@ -185,7 +185,7 @@ def deserialize_aws_json_1_0(data: dict) -> ListOpportunitiesRequest:
                 data["LifeCycleReviewStatus"]
             )
         )
-    if "CustomerCompanyName" in data:
+    if data.get("CustomerCompanyName") is not None:
         import capo_partnercentral_selling.types.string_list
 
         out["customer_company_name"] = (
@@ -193,7 +193,7 @@ def deserialize_aws_json_1_0(data: dict) -> ListOpportunitiesRequest:
                 data["CustomerCompanyName"]
             )
         )
-    if "CreatedDate" in data:
+    if data.get("CreatedDate") is not None:
         import capo_partnercentral_selling.types.created_date_filter
 
         out["created_date"] = (
@@ -201,7 +201,7 @@ def deserialize_aws_json_1_0(data: dict) -> ListOpportunitiesRequest:
                 data["CreatedDate"]
             )
         )
-    if "TargetCloseDate" in data:
+    if data.get("TargetCloseDate") is not None:
         import capo_partnercentral_selling.types.target_close_date_filter
 
         out["target_close_date"] = (

@@ -32,6 +32,7 @@ class UpdateVocabularyRequest(TypedDict, closed=True):
 # --- awsJson1_1 ser/de ---
 def serialize_aws_json_1_1(value: UpdateVocabularyRequest) -> dict:
     out: dict = {}
+    out["VocabularyName"] = value["vocabulary_name"]
     import capo_transcribe.types.language_code
 
     out["LanguageCode"] = capo_transcribe.types.language_code.serialize_aws_json_1_1(
@@ -52,7 +53,11 @@ def serialize_aws_json_1_1(value: UpdateVocabularyRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateVocabularyRequest:
     out: UpdateVocabularyRequest = {}  # type: ignore[typeddict-item]
-    if "LanguageCode" in data:
+    if data.get("VocabularyName") is not None:
+        out["vocabulary_name"] = data["VocabularyName"]
+    else:
+        raise DeserializationError("UpdateVocabularyRequest.vocabulary_name required")
+    if data.get("LanguageCode") is not None:
         import capo_transcribe.types.language_code
 
         out["language_code"] = (
@@ -62,14 +67,14 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateVocabularyRequest:
         )
     else:
         raise DeserializationError("UpdateVocabularyRequest.language_code required")
-    if "Phrases" in data:
+    if data.get("Phrases") is not None:
         import capo_transcribe.types.phrases
 
         out["phrases"] = capo_transcribe.types.phrases.deserialize_aws_json_1_1(
             data["Phrases"]
         )
-    if "VocabularyFileUri" in data:
+    if data.get("VocabularyFileUri") is not None:
         out["vocabulary_file_uri"] = data["VocabularyFileUri"]
-    if "DataAccessRoleArn" in data:
+    if data.get("DataAccessRoleArn") is not None:
         out["data_access_role_arn"] = data["DataAccessRoleArn"]
     return out

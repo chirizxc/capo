@@ -24,9 +24,9 @@ def serialize_json(value: SendMessageResponseCreatedEvent) -> dict:
 
 def deserialize_json(data: dict) -> SendMessageResponseCreatedEvent:
     out: SendMessageResponseCreatedEvent = {}  # type: ignore[typeddict-item]
-    if "responseId" in data:
+    if data.get("responseId") is not None:
         out["response_id"] = data["responseId"]
-    if "sequenceNumber" in data:
+    if data.get("sequenceNumber") is not None:
         out["sequence_number"] = data["sequenceNumber"]
     return out
 

@@ -48,11 +48,11 @@ def serialize_json(value: CreateCodeSecurityIntegrationRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateCodeSecurityIntegrationRequest:
     out: CreateCodeSecurityIntegrationRequest = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("CreateCodeSecurityIntegrationRequest.name required")
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_inspector2.types.integration_type
 
         out["type"] = capo_inspector2.types.integration_type.deserialize_json(
@@ -60,7 +60,7 @@ def deserialize_json(data: dict) -> CreateCodeSecurityIntegrationRequest:
         )
     else:
         raise DeserializationError("CreateCodeSecurityIntegrationRequest.type required")
-    if "details" in data:
+    if data.get("details") is not None:
         import capo_inspector2.types.create_integration_detail
 
         out["details"] = (
@@ -68,7 +68,7 @@ def deserialize_json(data: dict) -> CreateCodeSecurityIntegrationRequest:
                 data["details"]
             )
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_inspector2.types.tag_map
 
         out["tags"] = capo_inspector2.types.tag_map.deserialize_json(data["tags"])

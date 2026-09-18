@@ -103,29 +103,29 @@ def serialize_json(value: Task) -> dict:
 
 def deserialize_json(data: dict) -> Task:
     out: Task = {}  # type: ignore[typeddict-item]
-    if "agentSpaceId" in data:
+    if data.get("agentSpaceId") is not None:
         out["agent_space_id"] = data["agentSpaceId"]
     else:
         raise DeserializationError("Task.agent_space_id required")
-    if "taskId" in data:
+    if data.get("taskId") is not None:
         out["task_id"] = data["taskId"]
     else:
         raise DeserializationError("Task.task_id required")
-    if "executionId" in data:
+    if data.get("executionId") is not None:
         out["execution_id"] = data["executionId"]
-    if "title" in data:
+    if data.get("title") is not None:
         out["title"] = data["title"]
     else:
         raise DeserializationError("Task.title required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "reference" in data:
+    if data.get("reference") is not None:
         import capo_devops_agent.types.reference_output
 
         out["reference"] = capo_devops_agent.types.reference_output.deserialize_json(
             data["reference"]
         )
-    if "taskType" in data:
+    if data.get("taskType") is not None:
         import capo_devops_agent.types.task_type
 
         out["task_type"] = capo_devops_agent.types.task_type.deserialize_json(
@@ -133,7 +133,7 @@ def deserialize_json(data: dict) -> Task:
         )
     else:
         raise DeserializationError("Task.task_type required")
-    if "priority" in data:
+    if data.get("priority") is not None:
         import capo_devops_agent.types.priority
 
         out["priority"] = capo_devops_agent.types.priority.deserialize_json(
@@ -141,7 +141,7 @@ def deserialize_json(data: dict) -> Task:
         )
     else:
         raise DeserializationError("Task.priority required")
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_devops_agent.types.task_status
 
         out["status"] = capo_devops_agent.types.task_status.deserialize_json(
@@ -149,7 +149,7 @@ def deserialize_json(data: dict) -> Task:
         )
     else:
         raise DeserializationError("Task.status required")
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_devops_agent.types.back_log_timestamp
 
         out["created_at"] = capo_devops_agent.types.back_log_timestamp.deserialize_json(
@@ -157,7 +157,7 @@ def deserialize_json(data: dict) -> Task:
         )
     else:
         raise DeserializationError("Task.created_at required")
-    if "updatedAt" in data:
+    if data.get("updatedAt") is not None:
         import capo_devops_agent.types.back_log_timestamp
 
         out["updated_at"] = capo_devops_agent.types.back_log_timestamp.deserialize_json(
@@ -165,19 +165,19 @@ def deserialize_json(data: dict) -> Task:
         )
     else:
         raise DeserializationError("Task.updated_at required")
-    if "version" in data:
+    if data.get("version") is not None:
         out["version"] = data["version"]
     else:
         raise DeserializationError("Task.version required")
-    if "supportMetadata" in data:
+    if data.get("supportMetadata") is not None:
         out["support_metadata"] = data["supportMetadata"]
-    if "metadata" in data:
+    if data.get("metadata") is not None:
         out["metadata"] = data["metadata"]
-    if "primaryTaskId" in data:
+    if data.get("primaryTaskId") is not None:
         out["primary_task_id"] = data["primaryTaskId"]
-    if "statusReason" in data:
+    if data.get("statusReason") is not None:
         out["status_reason"] = data["statusReason"]
-    if "hasLinkedTasks" in data:
+    if data.get("hasLinkedTasks") is not None:
         out["has_linked_tasks"] = data["hasLinkedTasks"]
     else:
         out["has_linked_tasks"] = False

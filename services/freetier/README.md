@@ -13,9 +13,9 @@ from capo_freetier import AsyncFreeTierClient
 
 
 async def main():
-    async with AsyncFreeTierClient() as s3:
+    async with AsyncFreeTierClient() as free_tier:
         # Example: call the get_account_activity operation
-        response = await s3.get_account_activity()
+        response = await free_tier.get_account_activity()
         print(response["activity_id"])
 ```
 
@@ -28,9 +28,9 @@ from capo_freetier import AsyncFreeTierClient
 
 
 async def main():
-    async with AsyncFreeTierClient() as s3:
+    async with AsyncFreeTierClient() as free_tier:
         # Example: paginate over get_free_tier_usage
-        async for item in s3.iter_get_free_tier_usage():
+        async for item in free_tier.iter_get_free_tier_usage():
             print(item)
 ```
 
@@ -44,9 +44,9 @@ from capo_freetier.error import InternalServerException
 
 
 async def main():
-    async with AsyncFreeTierClient() as s3:
+    async with AsyncFreeTierClient() as free_tier:
         try:
-            await s3.get_account_activity()
+            await free_tier.get_account_activity()
         except InternalServerException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -63,13 +63,13 @@ from capo_freetier import AsyncFreeTierClient
 
 
 async def main():
-    async with AsyncFreeTierClient() as s3:
+    async with AsyncFreeTierClient() as free_tier:
         # Default: 3 attempts for every operation
-        response = await s3.get_account_activity()
+        response = await free_tier.get_account_activity()
 
         # Override per operation
-        response = await s3.get_account_activity(config_overrides={"retry_max_attempts": 5})
+        response = await free_tier.get_account_activity(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.get_account_activity(config_overrides={"retry_max_attempts": 1})
+        response = await free_tier.get_account_activity(config_overrides={"retry_max_attempts": 1})
 ```

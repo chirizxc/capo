@@ -39,14 +39,14 @@ def serialize_json(value: ListReputationEntitiesRequest) -> dict:
 
 def deserialize_json(data: dict) -> ListReputationEntitiesRequest:
     out: ListReputationEntitiesRequest = {}  # type: ignore[typeddict-item]
-    if "Filter" in data:
+    if data.get("Filter") is not None:
         import capo_sesv2.types.reputation_entity_filter
 
         out["filter"] = capo_sesv2.types.reputation_entity_filter.deserialize_json(
             data["Filter"]
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "PageSize" in data:
+    if data.get("PageSize") is not None:
         out["page_size"] = data["PageSize"]
     return out

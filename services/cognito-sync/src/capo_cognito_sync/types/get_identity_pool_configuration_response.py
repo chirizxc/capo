@@ -45,15 +45,15 @@ def serialize_json(value: GetIdentityPoolConfigurationResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetIdentityPoolConfigurationResponse:
     out: GetIdentityPoolConfigurationResponse = {}  # type: ignore[typeddict-item]
-    if "IdentityPoolId" in data:
+    if data.get("IdentityPoolId") is not None:
         out["identity_pool_id"] = data["IdentityPoolId"]
-    if "PushSync" in data:
+    if data.get("PushSync") is not None:
         import capo_cognito_sync.types.push_sync
 
         out["push_sync"] = capo_cognito_sync.types.push_sync.deserialize_json(
             data["PushSync"]
         )
-    if "CognitoStreams" in data:
+    if data.get("CognitoStreams") is not None:
         import capo_cognito_sync.types.cognito_streams
 
         out["cognito_streams"] = (

@@ -136,21 +136,21 @@ def serialize_json(value: GetJobResponse) -> dict:
     out["instanceConfig"] = capo_braket.types.instance_config.serialize_json(
         value["instance_config"]
     )
-    import capo_braket.types._prelude.timestamp
+    import capo_braket._protocol.serialize
 
-    out["createdAt"] = capo_braket.types._prelude.timestamp.serialize_json(
+    out["createdAt"] = capo_braket._protocol.serialize.fmt_date_time(
         value["created_at"]
     )
     if "started_at" in value:
-        import capo_braket.types._prelude.timestamp
+        import capo_braket._protocol.serialize
 
-        out["startedAt"] = capo_braket.types._prelude.timestamp.serialize_json(
+        out["startedAt"] = capo_braket._protocol.serialize.fmt_date_time(
             value["started_at"]
         )
     if "ended_at" in value:
-        import capo_braket.types._prelude.timestamp
+        import capo_braket._protocol.serialize
 
-        out["endedAt"] = capo_braket.types._prelude.timestamp.serialize_json(
+        out["endedAt"] = capo_braket._protocol.serialize.fmt_date_time(
             value["ended_at"]
         )
     if "billable_duration" in value:
@@ -186,37 +186,37 @@ def serialize_json(value: GetJobResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetJobResponse:
     out: GetJobResponse = {}  # type: ignore[typeddict-item]
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
     else:
         raise DeserializationError("GetJobResponse.status required")
-    if "jobArn" in data:
+    if data.get("jobArn") is not None:
         out["job_arn"] = data["jobArn"]
     else:
         raise DeserializationError("GetJobResponse.job_arn required")
-    if "roleArn" in data:
+    if data.get("roleArn") is not None:
         out["role_arn"] = data["roleArn"]
     else:
         raise DeserializationError("GetJobResponse.role_arn required")
-    if "failureReason" in data:
+    if data.get("failureReason") is not None:
         out["failure_reason"] = data["failureReason"]
-    if "jobName" in data:
+    if data.get("jobName") is not None:
         out["job_name"] = data["jobName"]
     else:
         raise DeserializationError("GetJobResponse.job_name required")
-    if "hyperParameters" in data:
+    if data.get("hyperParameters") is not None:
         import capo_braket.types.hyper_parameters
 
         out["hyper_parameters"] = capo_braket.types.hyper_parameters.deserialize_json(
             data["hyperParameters"]
         )
-    if "inputDataConfig" in data:
+    if data.get("inputDataConfig") is not None:
         import capo_braket.types.input_config_list
 
         out["input_data_config"] = capo_braket.types.input_config_list.deserialize_json(
             data["inputDataConfig"]
         )
-    if "outputDataConfig" in data:
+    if data.get("outputDataConfig") is not None:
         import capo_braket.types.job_output_data_config
 
         out["output_data_config"] = (
@@ -226,7 +226,7 @@ def deserialize_json(data: dict) -> GetJobResponse:
         )
     else:
         raise DeserializationError("GetJobResponse.output_data_config required")
-    if "stoppingCondition" in data:
+    if data.get("stoppingCondition") is not None:
         import capo_braket.types.job_stopping_condition
 
         out["stopping_condition"] = (
@@ -234,7 +234,7 @@ def deserialize_json(data: dict) -> GetJobResponse:
                 data["stoppingCondition"]
             )
         )
-    if "checkpointConfig" in data:
+    if data.get("checkpointConfig") is not None:
         import capo_braket.types.job_checkpoint_config
 
         out["checkpoint_config"] = (
@@ -242,7 +242,7 @@ def deserialize_json(data: dict) -> GetJobResponse:
                 data["checkpointConfig"]
             )
         )
-    if "algorithmSpecification" in data:
+    if data.get("algorithmSpecification") is not None:
         import capo_braket.types.algorithm_specification
 
         out["algorithm_specification"] = (
@@ -252,7 +252,7 @@ def deserialize_json(data: dict) -> GetJobResponse:
         )
     else:
         raise DeserializationError("GetJobResponse.algorithm_specification required")
-    if "instanceConfig" in data:
+    if data.get("instanceConfig") is not None:
         import capo_braket.types.instance_config
 
         out["instance_config"] = capo_braket.types.instance_config.deserialize_json(
@@ -260,49 +260,49 @@ def deserialize_json(data: dict) -> GetJobResponse:
         )
     else:
         raise DeserializationError("GetJobResponse.instance_config required")
-    if "createdAt" in data:
-        import capo_braket.types._prelude.timestamp
+    if data.get("createdAt") is not None:
+        import datetime
 
-        out["created_at"] = capo_braket.types._prelude.timestamp.deserialize_json(
-            data["createdAt"]
+        out["created_at"] = datetime.datetime.fromisoformat(
+            data["createdAt"].replace("Z", "+00:00")
         )
     else:
         raise DeserializationError("GetJobResponse.created_at required")
-    if "startedAt" in data:
-        import capo_braket.types._prelude.timestamp
+    if data.get("startedAt") is not None:
+        import datetime
 
-        out["started_at"] = capo_braket.types._prelude.timestamp.deserialize_json(
-            data["startedAt"]
+        out["started_at"] = datetime.datetime.fromisoformat(
+            data["startedAt"].replace("Z", "+00:00")
         )
-    if "endedAt" in data:
-        import capo_braket.types._prelude.timestamp
+    if data.get("endedAt") is not None:
+        import datetime
 
-        out["ended_at"] = capo_braket.types._prelude.timestamp.deserialize_json(
-            data["endedAt"]
+        out["ended_at"] = datetime.datetime.fromisoformat(
+            data["endedAt"].replace("Z", "+00:00")
         )
-    if "billableDuration" in data:
+    if data.get("billableDuration") is not None:
         out["billable_duration"] = data["billableDuration"]
-    if "deviceConfig" in data:
+    if data.get("deviceConfig") is not None:
         import capo_braket.types.device_config
 
         out["device_config"] = capo_braket.types.device_config.deserialize_json(
             data["deviceConfig"]
         )
-    if "events" in data:
+    if data.get("events") is not None:
         import capo_braket.types.job_events
 
         out["events"] = capo_braket.types.job_events.deserialize_json(data["events"])
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_braket.types.tags_map
 
         out["tags"] = capo_braket.types.tags_map.deserialize_json(data["tags"])
-    if "queueInfo" in data:
+    if data.get("queueInfo") is not None:
         import capo_braket.types.hybrid_job_queue_info
 
         out["queue_info"] = capo_braket.types.hybrid_job_queue_info.deserialize_json(
             data["queueInfo"]
         )
-    if "associations" in data:
+    if data.get("associations") is not None:
         import capo_braket.types.associations
 
         out["associations"] = capo_braket.types.associations.deserialize_json(

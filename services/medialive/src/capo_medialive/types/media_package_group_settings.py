@@ -42,13 +42,13 @@ def serialize_json(value: MediaPackageGroupSettings) -> dict:
 
 def deserialize_json(data: dict) -> MediaPackageGroupSettings:
     out: MediaPackageGroupSettings = {}  # type: ignore[typeddict-item]
-    if "destination" in data:
+    if data.get("destination") is not None:
         import capo_medialive.types.output_location_ref
 
         out["destination"] = capo_medialive.types.output_location_ref.deserialize_json(
             data["destination"]
         )
-    if "mediapackageV2GroupSettings" in data:
+    if data.get("mediapackageV2GroupSettings") is not None:
         import capo_medialive.types.media_package_v2_group_settings
 
         out["mediapackage_v2_group_settings"] = (

@@ -40,15 +40,20 @@ class TypeConfigurationNotFoundException(ServiceError):
 
     code: str | None = "TypeConfigurationNotFoundException"
 
-    def __init__(self, data: TypeConfigurationNotFoundException_):
+    def __init__(
+        self, data: TypeConfigurationNotFoundException_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="TypeConfigurationNotFoundException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_query(cls, el: Element) -> "TypeConfigurationNotFoundException":
-        return cls(deserialize_query(el))
+    def from_query(
+        cls, el: Element, message: str | None = None
+    ) -> "TypeConfigurationNotFoundException":
+        return cls(deserialize_query(el), message)

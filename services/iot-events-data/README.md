@@ -13,9 +13,9 @@ from capo_iot_events_data import AsyncIoTEventsDataClient
 
 
 async def main():
-    async with AsyncIoTEventsDataClient() as s3:
+    async with AsyncIoTEventsDataClient() as io_t_events_data:
         # Example: call the batch_acknowledge_alarm operation
-        response = await s3.batch_acknowledge_alarm()
+        response = await io_t_events_data.batch_acknowledge_alarm()
         print(response["error_entries"])
 ```
 
@@ -29,9 +29,9 @@ from capo_iot_events_data.error import InternalFailureException
 
 
 async def main():
-    async with AsyncIoTEventsDataClient() as s3:
+    async with AsyncIoTEventsDataClient() as io_t_events_data:
         try:
-            await s3.batch_acknowledge_alarm()
+            await io_t_events_data.batch_acknowledge_alarm()
         except InternalFailureException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -48,13 +48,13 @@ from capo_iot_events_data import AsyncIoTEventsDataClient
 
 
 async def main():
-    async with AsyncIoTEventsDataClient() as s3:
+    async with AsyncIoTEventsDataClient() as io_t_events_data:
         # Default: 3 attempts for every operation
-        response = await s3.batch_acknowledge_alarm()
+        response = await io_t_events_data.batch_acknowledge_alarm()
 
         # Override per operation
-        response = await s3.batch_acknowledge_alarm(config_overrides={"retry_max_attempts": 5})
+        response = await io_t_events_data.batch_acknowledge_alarm(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.batch_acknowledge_alarm(config_overrides={"retry_max_attempts": 1})
+        response = await io_t_events_data.batch_acknowledge_alarm(config_overrides={"retry_max_attempts": 1})
 ```

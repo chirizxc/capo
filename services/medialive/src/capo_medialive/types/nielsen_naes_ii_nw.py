@@ -29,7 +29,15 @@ def serialize_json(value: NielsenNaesIiNw) -> dict:
     if "check_digit_string" in value:
         out["checkDigitString"] = value["check_digit_string"]
     if "sid" in value:
-        out["sid"] = value["sid"]
+        out["sid"] = (
+            "NaN"
+            if value["sid"] != value["sid"]
+            else "Infinity"
+            if value["sid"] == float("inf")
+            else "-Infinity"
+            if value["sid"] == float("-inf")
+            else value["sid"]
+        )
     if "timezone" in value:
         import capo_medialive.types.nielsen_watermark_timezones
 
@@ -43,11 +51,11 @@ def serialize_json(value: NielsenNaesIiNw) -> dict:
 
 def deserialize_json(data: dict) -> NielsenNaesIiNw:
     out: NielsenNaesIiNw = {}  # type: ignore[typeddict-item]
-    if "checkDigitString" in data:
+    if data.get("checkDigitString") is not None:
         out["check_digit_string"] = data["checkDigitString"]
-    if "sid" in data:
-        out["sid"] = data["sid"]
-    if "timezone" in data:
+    if data.get("sid") is not None:
+        out["sid"] = float(data["sid"])
+    if data.get("timezone") is not None:
         import capo_medialive.types.nielsen_watermark_timezones
 
         out["timezone"] = (

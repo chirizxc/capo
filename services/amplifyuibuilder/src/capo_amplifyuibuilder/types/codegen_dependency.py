@@ -30,12 +30,12 @@ def serialize_json(value: CodegenDependency) -> dict:
 
 def deserialize_json(data: dict) -> CodegenDependency:
     out: CodegenDependency = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "supportedVersion" in data:
+    if data.get("supportedVersion") is not None:
         out["supported_version"] = data["supportedVersion"]
-    if "isSemVer" in data:
+    if data.get("isSemVer") is not None:
         out["is_sem_ver"] = data["isSemVer"]
-    if "reason" in data:
+    if data.get("reason") is not None:
         out["reason"] = data["reason"]
     return out

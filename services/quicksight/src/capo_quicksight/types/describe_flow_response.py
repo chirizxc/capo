@@ -33,12 +33,12 @@ def serialize_json(value: DescribeFlowResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribeFlowResponse:
     out: DescribeFlowResponse = {}  # type: ignore[typeddict-item]
-    if "Flow" in data:
+    if data.get("Flow") is not None:
         import capo_quicksight.types.flow_detail
 
         out["flow"] = capo_quicksight.types.flow_detail.deserialize_json(data["Flow"])
     else:
         raise DeserializationError("DescribeFlowResponse.flow required")
-    if "RequestId" in data:
+    if data.get("RequestId") is not None:
         out["request_id"] = data["RequestId"]
     return out

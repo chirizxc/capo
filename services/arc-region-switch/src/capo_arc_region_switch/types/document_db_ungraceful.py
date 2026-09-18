@@ -31,7 +31,7 @@ def serialize_aws_json_1_0(value: DocumentDbUngraceful) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> DocumentDbUngraceful:
     out: DocumentDbUngraceful = {}  # type: ignore[typeddict-item]
-    if "ungraceful" in data:
+    if data.get("ungraceful") is not None:
         import capo_arc_region_switch.types.document_db_ungraceful_behavior
 
         out["ungraceful"] = (

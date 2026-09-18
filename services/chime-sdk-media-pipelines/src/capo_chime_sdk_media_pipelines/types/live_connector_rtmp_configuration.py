@@ -44,11 +44,11 @@ def serialize_json(value: LiveConnectorRTMPConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> LiveConnectorRTMPConfiguration:
     out: LiveConnectorRTMPConfiguration = {}  # type: ignore[typeddict-item]
-    if "Url" in data:
+    if data.get("Url") is not None:
         out["url"] = data["Url"]
     else:
         raise DeserializationError("LiveConnectorRTMPConfiguration.url required")
-    if "AudioChannels" in data:
+    if data.get("AudioChannels") is not None:
         import capo_chime_sdk_media_pipelines.types.audio_channels_option
 
         out["audio_channels"] = (
@@ -56,6 +56,6 @@ def deserialize_json(data: dict) -> LiveConnectorRTMPConfiguration:
                 data["AudioChannels"]
             )
         )
-    if "AudioSampleRate" in data:
+    if data.get("AudioSampleRate") is not None:
         out["audio_sample_rate"] = data["AudioSampleRate"]
     return out

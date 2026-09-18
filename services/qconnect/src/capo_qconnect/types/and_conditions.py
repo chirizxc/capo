@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> AndConditions:
 
     out: AndConditions = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_qconnect.types.tag_condition.deserialize_json(item))
     return out

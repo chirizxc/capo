@@ -42,14 +42,14 @@ def serialize_aws_json_1_1(value: CreateBackupRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateBackupRequest:
     out: CreateBackupRequest = {}  # type: ignore[typeddict-item]
-    if "FileSystemId" in data:
+    if data.get("FileSystemId") is not None:
         out["file_system_id"] = data["FileSystemId"]
-    if "ClientRequestToken" in data:
+    if data.get("ClientRequestToken") is not None:
         out["client_request_token"] = data["ClientRequestToken"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_fsx.types.tags
 
         out["tags"] = capo_fsx.types.tags.deserialize_aws_json_1_1(data["Tags"])
-    if "VolumeId" in data:
+    if data.get("VolumeId") is not None:
         out["volume_id"] = data["VolumeId"]
     return out

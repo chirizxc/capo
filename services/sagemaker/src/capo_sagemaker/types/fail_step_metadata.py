@@ -23,6 +23,6 @@ def serialize_aws_json_1_1(value: FailStepMetadata) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> FailStepMetadata:
     out: FailStepMetadata = {}  # type: ignore[typeddict-item]
-    if "ErrorMessage" in data:
+    if data.get("ErrorMessage") is not None:
         out["error_message"] = data["ErrorMessage"]
     return out

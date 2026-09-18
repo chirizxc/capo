@@ -32,12 +32,12 @@ def serialize_json(value: ListWebExperiencesResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListWebExperiencesResponse:
     out: ListWebExperiencesResponse = {}  # type: ignore[typeddict-item]
-    if "webExperiences" in data:
+    if data.get("webExperiences") is not None:
         import capo_qbusiness.types.web_experiences
 
         out["web_experiences"] = capo_qbusiness.types.web_experiences.deserialize_json(
             data["webExperiences"]
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

@@ -1,5 +1,6 @@
 """Generated from Smithy shape ``com.amazonaws.mediaconvert#MediaConvert``."""
 
+import uuid
 import warnings
 from collections.abc import AsyncIterator
 from typing import TYPE_CHECKING, Any, Iterable, Optional
@@ -263,7 +264,7 @@ class AsyncMediaConvertClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mediaconvert.types.associate_certificate_request.AssociateCertificateRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_mediaconvert.types.associate_certificate_request.AssociateCertificateRequest = {}
         if arn is not None:
             input_["arn"] = arn
 
@@ -272,6 +273,7 @@ class AsyncMediaConvertClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def cancel_job(
@@ -312,14 +314,14 @@ class AsyncMediaConvertClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mediaconvert.types.cancel_job_request.CancelJobRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_mediaconvert.types.cancel_job_request.CancelJobRequest = {"id": id}
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_job(
@@ -406,13 +408,14 @@ class AsyncMediaConvertClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mediaconvert.types.create_job_request.CreateJobRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_mediaconvert.types.create_job_request.CreateJobRequest = {}
         if acceleration_settings is not None:
             input_["acceleration_settings"] = acceleration_settings
         if billing_tags_source is not None:
             input_["billing_tags_source"] = billing_tags_source
-        if client_request_token is not None:
-            input_["client_request_token"] = client_request_token
+        if client_request_token is None:
+            client_request_token = str(uuid.uuid4())
+        input_["client_request_token"] = client_request_token
         if hop_destinations is not None:
             input_["hop_destinations"] = hop_destinations
         if job_engine_version is not None:
@@ -441,6 +444,7 @@ class AsyncMediaConvertClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_job_template(
@@ -513,7 +517,7 @@ class AsyncMediaConvertClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mediaconvert.types.create_job_template_request.CreateJobTemplateRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_mediaconvert.types.create_job_template_request.CreateJobTemplateRequest = {}
         if acceleration_settings is not None:
             input_["acceleration_settings"] = acceleration_settings
         if category is not None:
@@ -540,6 +544,7 @@ class AsyncMediaConvertClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_preset(
@@ -592,7 +597,7 @@ class AsyncMediaConvertClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mediaconvert.types.create_preset_request.CreatePresetRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_mediaconvert.types.create_preset_request.CreatePresetRequest = {}
         if category is not None:
             input_["category"] = category
         if description is not None:
@@ -609,6 +614,7 @@ class AsyncMediaConvertClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_queue(
@@ -671,7 +677,7 @@ class AsyncMediaConvertClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mediaconvert.types.create_queue_request.CreateQueueRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_mediaconvert.types.create_queue_request.CreateQueueRequest = {}
         if concurrent_jobs is not None:
             input_["concurrent_jobs"] = concurrent_jobs
         if description is not None:
@@ -694,6 +700,7 @@ class AsyncMediaConvertClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_resource_share(
@@ -736,7 +743,7 @@ class AsyncMediaConvertClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mediaconvert.types.create_resource_share_request.CreateResourceShareRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_mediaconvert.types.create_resource_share_request.CreateResourceShareRequest = {}
         if job_id is not None:
             input_["job_id"] = job_id
         if support_case_id is not None:
@@ -747,6 +754,7 @@ class AsyncMediaConvertClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_job_template(
@@ -789,14 +797,16 @@ class AsyncMediaConvertClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mediaconvert.types.delete_job_template_request.DeleteJobTemplateRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_mediaconvert.types.delete_job_template_request.DeleteJobTemplateRequest = {
+            "name": name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_policy(
@@ -831,13 +841,14 @@ class AsyncMediaConvertClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mediaconvert.types.delete_policy_request.DeletePolicyRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_mediaconvert.types.delete_policy_request.DeletePolicyRequest = {}
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_preset(
@@ -878,14 +889,16 @@ class AsyncMediaConvertClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mediaconvert.types.delete_preset_request.DeletePresetRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_mediaconvert.types.delete_preset_request.DeletePresetRequest = {
+            "name": name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_queue(
@@ -926,14 +939,16 @@ class AsyncMediaConvertClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mediaconvert.types.delete_queue_request.DeleteQueueRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_mediaconvert.types.delete_queue_request.DeleteQueueRequest = {
+            "name": name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_endpoints(
@@ -982,7 +997,7 @@ class AsyncMediaConvertClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mediaconvert.types.describe_endpoints_request.DescribeEndpointsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_mediaconvert.types.describe_endpoints_request.DescribeEndpointsRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if mode is not None:
@@ -995,6 +1010,7 @@ class AsyncMediaConvertClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_describe_endpoints(
@@ -1060,14 +1076,16 @@ class AsyncMediaConvertClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mediaconvert.types.disassociate_certificate_request.DisassociateCertificateRequest = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
+        input_: capo_mediaconvert.types.disassociate_certificate_request.DisassociateCertificateRequest = {
+            "arn": arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_job(
@@ -1108,14 +1126,14 @@ class AsyncMediaConvertClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mediaconvert.types.get_job_request.GetJobRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_mediaconvert.types.get_job_request.GetJobRequest = {"id": id}
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_jobs_query_results(
@@ -1156,14 +1174,16 @@ class AsyncMediaConvertClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mediaconvert.types.get_jobs_query_results_request.GetJobsQueryResultsRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_mediaconvert.types.get_jobs_query_results_request.GetJobsQueryResultsRequest = {
+            "id": id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_job_template(
@@ -1204,14 +1224,16 @@ class AsyncMediaConvertClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mediaconvert.types.get_job_template_request.GetJobTemplateRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_mediaconvert.types.get_job_template_request.GetJobTemplateRequest = {
+            "name": name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_policy(
@@ -1246,13 +1268,14 @@ class AsyncMediaConvertClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mediaconvert.types.get_policy_request.GetPolicyRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_mediaconvert.types.get_policy_request.GetPolicyRequest = {}
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_preset(
@@ -1293,14 +1316,16 @@ class AsyncMediaConvertClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mediaconvert.types.get_preset_request.GetPresetRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_mediaconvert.types.get_preset_request.GetPresetRequest = {
+            "name": name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_queue(
@@ -1341,14 +1366,16 @@ class AsyncMediaConvertClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mediaconvert.types.get_queue_request.GetQueueRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_mediaconvert.types.get_queue_request.GetQueueRequest = {
+            "name": name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_jobs(
@@ -1399,7 +1426,7 @@ class AsyncMediaConvertClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mediaconvert.types.list_jobs_request.ListJobsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_mediaconvert.types.list_jobs_request.ListJobsRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -1416,6 +1443,7 @@ class AsyncMediaConvertClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_jobs(
@@ -1497,7 +1525,7 @@ class AsyncMediaConvertClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mediaconvert.types.list_job_templates_request.ListJobTemplatesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_mediaconvert.types.list_job_templates_request.ListJobTemplatesRequest = {}
         if category is not None:
             input_["category"] = category
         if list_by is not None:
@@ -1514,6 +1542,7 @@ class AsyncMediaConvertClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_job_templates(
@@ -1595,7 +1624,7 @@ class AsyncMediaConvertClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mediaconvert.types.list_presets_request.ListPresetsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_mediaconvert.types.list_presets_request.ListPresetsRequest = {}
         if category is not None:
             input_["category"] = category
         if list_by is not None:
@@ -1612,6 +1641,7 @@ class AsyncMediaConvertClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_presets(
@@ -1689,7 +1719,7 @@ class AsyncMediaConvertClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mediaconvert.types.list_queues_request.ListQueuesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_mediaconvert.types.list_queues_request.ListQueuesRequest = {}
         if list_by is not None:
             input_["list_by"] = list_by
         if max_results is not None:
@@ -1704,6 +1734,7 @@ class AsyncMediaConvertClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_queues(
@@ -1771,14 +1802,16 @@ class AsyncMediaConvertClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mediaconvert.types.list_tags_for_resource_request.ListTagsForResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
+        input_: capo_mediaconvert.types.list_tags_for_resource_request.ListTagsForResourceRequest = {
+            "arn": arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_versions(
@@ -1823,7 +1856,7 @@ class AsyncMediaConvertClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mediaconvert.types.list_versions_request.ListVersionsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_mediaconvert.types.list_versions_request.ListVersionsRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -1834,6 +1867,7 @@ class AsyncMediaConvertClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_versions(
@@ -1899,7 +1933,7 @@ class AsyncMediaConvertClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mediaconvert.types.probe_request.ProbeRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_mediaconvert.types.probe_request.ProbeRequest = {}
         if input_files is not None:
             input_["input_files"] = input_files
 
@@ -1908,6 +1942,7 @@ class AsyncMediaConvertClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def put_policy(
@@ -1948,7 +1983,7 @@ class AsyncMediaConvertClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mediaconvert.types.put_policy_request.PutPolicyRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_mediaconvert.types.put_policy_request.PutPolicyRequest = {}
         if policy is not None:
             input_["policy"] = policy
 
@@ -1957,6 +1992,7 @@ class AsyncMediaConvertClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def search_jobs(
@@ -2009,7 +2045,7 @@ class AsyncMediaConvertClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mediaconvert.types.search_jobs_request.SearchJobsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_mediaconvert.types.search_jobs_request.SearchJobsRequest = {}
         if input_file is not None:
             input_["input_file"] = input_file
         if max_results is not None:
@@ -2028,6 +2064,7 @@ class AsyncMediaConvertClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_search_jobs(
@@ -2109,7 +2146,7 @@ class AsyncMediaConvertClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mediaconvert.types.start_jobs_query_request.StartJobsQueryRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_mediaconvert.types.start_jobs_query_request.StartJobsQueryRequest = {}
         if filter_list is not None:
             input_["filter_list"] = filter_list
         if max_results is not None:
@@ -2124,6 +2161,7 @@ class AsyncMediaConvertClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def tag_resource(
@@ -2168,7 +2206,7 @@ class AsyncMediaConvertClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mediaconvert.types.tag_resource_request.TagResourceRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_mediaconvert.types.tag_resource_request.TagResourceRequest = {}
         if arn is not None:
             input_["arn"] = arn
         if tags is not None:
@@ -2179,6 +2217,7 @@ class AsyncMediaConvertClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def untag_resource(
@@ -2223,8 +2262,9 @@ class AsyncMediaConvertClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mediaconvert.types.untag_resource_request.UntagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
+        input_: capo_mediaconvert.types.untag_resource_request.UntagResourceRequest = {
+            "arn": arn
+        }
         if tag_keys is not None:
             input_["tag_keys"] = tag_keys
 
@@ -2233,6 +2273,7 @@ class AsyncMediaConvertClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_job_template(
@@ -2301,7 +2342,9 @@ class AsyncMediaConvertClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mediaconvert.types.update_job_template_request.UpdateJobTemplateRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_mediaconvert.types.update_job_template_request.UpdateJobTemplateRequest = {
+            "name": name
+        }
         if acceleration_settings is not None:
             input_["acceleration_settings"] = acceleration_settings
         if category is not None:
@@ -2310,7 +2353,6 @@ class AsyncMediaConvertClient:
             input_["description"] = description
         if hop_destinations is not None:
             input_["hop_destinations"] = hop_destinations
-        input_["name"] = name
         if priority is not None:
             input_["priority"] = priority
         if queue is not None:
@@ -2325,6 +2367,7 @@ class AsyncMediaConvertClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_preset(
@@ -2373,12 +2416,13 @@ class AsyncMediaConvertClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mediaconvert.types.update_preset_request.UpdatePresetRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_mediaconvert.types.update_preset_request.UpdatePresetRequest = {
+            "name": name
+        }
         if category is not None:
             input_["category"] = category
         if description is not None:
             input_["description"] = description
-        input_["name"] = name
         if settings is not None:
             input_["settings"] = settings
 
@@ -2387,6 +2431,7 @@ class AsyncMediaConvertClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_queue(
@@ -2441,14 +2486,15 @@ class AsyncMediaConvertClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mediaconvert.types.update_queue_request.UpdateQueueRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_mediaconvert.types.update_queue_request.UpdateQueueRequest = {
+            "name": name
+        }
         if concurrent_jobs is not None:
             input_["concurrent_jobs"] = concurrent_jobs
         if description is not None:
             input_["description"] = description
         if maximum_concurrent_feeds is not None:
             input_["maximum_concurrent_feeds"] = maximum_concurrent_feeds
-        input_["name"] = name
         if reservation_plan_settings is not None:
             input_["reservation_plan_settings"] = reservation_plan_settings
         if status is not None:
@@ -2459,6 +2505,7 @@ class AsyncMediaConvertClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def __aenter__(self) -> Self:

@@ -32,10 +32,10 @@ def serialize_aws_json_1_1(value: ResponseResourceMetric) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ResponseResourceMetric:
     out: ResponseResourceMetric = {}  # type: ignore[typeddict-item]
-    if "Metric" in data:
+    if data.get("Metric") is not None:
         out["metric"] = data["Metric"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Unit" in data:
+    if data.get("Unit") is not None:
         out["unit"] = data["Unit"]
     return out

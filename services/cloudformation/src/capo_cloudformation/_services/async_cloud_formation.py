@@ -1,6 +1,7 @@
 """Generated from Smithy shape ``com.amazonaws.cloudformation#CloudFormation``."""
 
 import time
+import uuid
 import warnings
 from collections.abc import AsyncIterator
 from typing import TYPE_CHECKING, Any, Iterable, Optional
@@ -480,13 +481,14 @@ class AsyncCloudFormationClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudformation.types.activate_organizations_access_input.ActivateOrganizationsAccessInput = {}  # type: ignore[typeddict-item]
+        input_: capo_cloudformation.types.activate_organizations_access_input.ActivateOrganizationsAccessInput = {}
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def activate_type(
@@ -558,7 +560,7 @@ class AsyncCloudFormationClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudformation.types.activate_type_input.ActivateTypeInput = {}  # type: ignore[typeddict-item]
+        input_: capo_cloudformation.types.activate_type_input.ActivateTypeInput = {}
         if type is not None:
             input_["type"] = type
         if public_type_arn is not None:
@@ -585,6 +587,7 @@ class AsyncCloudFormationClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def batch_describe_type_configurations(
@@ -622,7 +625,7 @@ class AsyncCloudFormationClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudformation.types.batch_describe_type_configurations_input.BatchDescribeTypeConfigurationsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_cloudformation.types.batch_describe_type_configurations_input.BatchDescribeTypeConfigurationsInput = {}
         if type_configuration_identifiers is not None:
             input_["type_configuration_identifiers"] = type_configuration_identifiers
 
@@ -631,6 +634,7 @@ class AsyncCloudFormationClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def cancel_update_stack(
@@ -667,7 +671,7 @@ class AsyncCloudFormationClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudformation.types.cancel_update_stack_input.CancelUpdateStackInput = {}  # type: ignore[typeddict-item]
+        input_: capo_cloudformation.types.cancel_update_stack_input.CancelUpdateStackInput = {}
         if stack_name is not None:
             input_["stack_name"] = stack_name
         if client_request_token is not None:
@@ -678,6 +682,7 @@ class AsyncCloudFormationClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def continue_update_rollback(
@@ -724,7 +729,7 @@ class AsyncCloudFormationClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudformation.types.continue_update_rollback_input.ContinueUpdateRollbackInput = {}  # type: ignore[typeddict-item]
+        input_: capo_cloudformation.types.continue_update_rollback_input.ContinueUpdateRollbackInput = {}
         if stack_name is not None:
             input_["stack_name"] = stack_name
         if role_arn is not None:
@@ -739,6 +744,7 @@ class AsyncCloudFormationClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_change_set(
@@ -847,7 +853,7 @@ class AsyncCloudFormationClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudformation.types.create_change_set_input.CreateChangeSetInput = {}  # type: ignore[typeddict-item]
+        input_: capo_cloudformation.types.create_change_set_input.CreateChangeSetInput = {}
         if stack_name is not None:
             input_["stack_name"] = stack_name
         if template_body is not None:
@@ -894,6 +900,7 @@ class AsyncCloudFormationClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_generated_template(
@@ -948,7 +955,7 @@ class AsyncCloudFormationClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudformation.types.create_generated_template_input.CreateGeneratedTemplateInput = {}  # type: ignore[typeddict-item]
+        input_: capo_cloudformation.types.create_generated_template_input.CreateGeneratedTemplateInput = {}
         if resources is not None:
             input_["resources"] = resources
         if generated_template_name is not None:
@@ -963,6 +970,7 @@ class AsyncCloudFormationClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_stack(
@@ -1060,7 +1068,7 @@ class AsyncCloudFormationClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudformation.types.create_stack_input.CreateStackInput = {}  # type: ignore[typeddict-item]
+        input_: capo_cloudformation.types.create_stack_input.CreateStackInput = {}
         if stack_name is not None:
             input_["stack_name"] = stack_name
         if template_body is not None:
@@ -1103,6 +1111,7 @@ class AsyncCloudFormationClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_stack_instances(
@@ -1166,7 +1175,7 @@ class AsyncCloudFormationClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudformation.types.create_stack_instances_input.CreateStackInstancesInput = {}  # type: ignore[typeddict-item]
+        input_: capo_cloudformation.types.create_stack_instances_input.CreateStackInstancesInput = {}
         if stack_set_name is not None:
             input_["stack_set_name"] = stack_set_name
         if accounts is not None:
@@ -1179,8 +1188,9 @@ class AsyncCloudFormationClient:
             input_["parameter_overrides"] = parameter_overrides
         if operation_preferences is not None:
             input_["operation_preferences"] = operation_preferences
-        if operation_id is not None:
-            input_["operation_id"] = operation_id
+        if operation_id is None:
+            operation_id = str(uuid.uuid4())
+        input_["operation_id"] = operation_id
         if call_as is not None:
             input_["call_as"] = call_as
 
@@ -1189,6 +1199,7 @@ class AsyncCloudFormationClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_stack_refactor(
@@ -1236,7 +1247,7 @@ class AsyncCloudFormationClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudformation.types.create_stack_refactor_input.CreateStackRefactorInput = {}  # type: ignore[typeddict-item]
+        input_: capo_cloudformation.types.create_stack_refactor_input.CreateStackRefactorInput = {}
         if description is not None:
             input_["description"] = description
         if enable_stack_creation is not None:
@@ -1251,6 +1262,7 @@ class AsyncCloudFormationClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_stack_set(
@@ -1337,7 +1349,7 @@ class AsyncCloudFormationClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudformation.types.create_stack_set_input.CreateStackSetInput = {}  # type: ignore[typeddict-item]
+        input_: capo_cloudformation.types.create_stack_set_input.CreateStackSetInput = {}
         if stack_set_name is not None:
             input_["stack_set_name"] = stack_set_name
         if description is not None:
@@ -1364,8 +1376,9 @@ class AsyncCloudFormationClient:
             input_["auto_deployment"] = auto_deployment
         if call_as is not None:
             input_["call_as"] = call_as
-        if client_request_token is not None:
-            input_["client_request_token"] = client_request_token
+        if client_request_token is None:
+            client_request_token = str(uuid.uuid4())
+        input_["client_request_token"] = client_request_token
         if managed_execution is not None:
             input_["managed_execution"] = managed_execution
 
@@ -1374,6 +1387,7 @@ class AsyncCloudFormationClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def deactivate_organizations_access(
@@ -1403,13 +1417,14 @@ class AsyncCloudFormationClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudformation.types.deactivate_organizations_access_input.DeactivateOrganizationsAccessInput = {}  # type: ignore[typeddict-item]
+        input_: capo_cloudformation.types.deactivate_organizations_access_input.DeactivateOrganizationsAccessInput = {}
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def deactivate_type(
@@ -1453,7 +1468,7 @@ class AsyncCloudFormationClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudformation.types.deactivate_type_input.DeactivateTypeInput = {}  # type: ignore[typeddict-item]
+        input_: capo_cloudformation.types.deactivate_type_input.DeactivateTypeInput = {}
         if type_name is not None:
             input_["type_name"] = type_name
         if type is not None:
@@ -1466,6 +1481,7 @@ class AsyncCloudFormationClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_change_set(
@@ -1506,7 +1522,7 @@ class AsyncCloudFormationClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudformation.types.delete_change_set_input.DeleteChangeSetInput = {}  # type: ignore[typeddict-item]
+        input_: capo_cloudformation.types.delete_change_set_input.DeleteChangeSetInput = {}
         if change_set_name is not None:
             input_["change_set_name"] = change_set_name
         if stack_name is not None:
@@ -1517,6 +1533,7 @@ class AsyncCloudFormationClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_generated_template(
@@ -1558,7 +1575,7 @@ class AsyncCloudFormationClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudformation.types.delete_generated_template_input.DeleteGeneratedTemplateInput = {}  # type: ignore[typeddict-item]
+        input_: capo_cloudformation.types.delete_generated_template_input.DeleteGeneratedTemplateInput = {}
         if generated_template_name is not None:
             input_["generated_template_name"] = generated_template_name
 
@@ -1567,6 +1584,7 @@ class AsyncCloudFormationClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_stack(
@@ -1613,7 +1631,7 @@ class AsyncCloudFormationClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudformation.types.delete_stack_input.DeleteStackInput = {}  # type: ignore[typeddict-item]
+        input_: capo_cloudformation.types.delete_stack_input.DeleteStackInput = {}
         if stack_name is not None:
             input_["stack_name"] = stack_name
         if retain_resources is not None:
@@ -1630,6 +1648,7 @@ class AsyncCloudFormationClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_stack_instances(
@@ -1692,7 +1711,7 @@ class AsyncCloudFormationClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudformation.types.delete_stack_instances_input.DeleteStackInstancesInput = {}  # type: ignore[typeddict-item]
+        input_: capo_cloudformation.types.delete_stack_instances_input.DeleteStackInstancesInput = {}
         if stack_set_name is not None:
             input_["stack_set_name"] = stack_set_name
         if accounts is not None:
@@ -1705,8 +1724,9 @@ class AsyncCloudFormationClient:
             input_["operation_preferences"] = operation_preferences
         if retain_stacks is not None:
             input_["retain_stacks"] = retain_stacks
-        if operation_id is not None:
-            input_["operation_id"] = operation_id
+        if operation_id is None:
+            operation_id = str(uuid.uuid4())
+        input_["operation_id"] = operation_id
         if call_as is not None:
             input_["call_as"] = call_as
 
@@ -1715,6 +1735,7 @@ class AsyncCloudFormationClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_stack_set(
@@ -1754,7 +1775,7 @@ class AsyncCloudFormationClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudformation.types.delete_stack_set_input.DeleteStackSetInput = {}  # type: ignore[typeddict-item]
+        input_: capo_cloudformation.types.delete_stack_set_input.DeleteStackSetInput = {}
         if stack_set_name is not None:
             input_["stack_set_name"] = stack_set_name
         if call_as is not None:
@@ -1765,6 +1786,7 @@ class AsyncCloudFormationClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def deregister_type(
@@ -1810,7 +1832,7 @@ class AsyncCloudFormationClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudformation.types.deregister_type_input.DeregisterTypeInput = {}  # type: ignore[typeddict-item]
+        input_: capo_cloudformation.types.deregister_type_input.DeregisterTypeInput = {}
         if arn is not None:
             input_["arn"] = arn
         if type is not None:
@@ -1825,6 +1847,7 @@ class AsyncCloudFormationClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_account_limits(
@@ -1858,7 +1881,7 @@ class AsyncCloudFormationClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudformation.types.describe_account_limits_input.DescribeAccountLimitsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_cloudformation.types.describe_account_limits_input.DescribeAccountLimitsInput = {}
         if next_token is not None:
             input_["next_token"] = next_token
 
@@ -1867,6 +1890,7 @@ class AsyncCloudFormationClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_describe_account_limits(
@@ -1932,7 +1956,7 @@ class AsyncCloudFormationClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudformation.types.describe_change_set_input.DescribeChangeSetInput = {}  # type: ignore[typeddict-item]
+        input_: capo_cloudformation.types.describe_change_set_input.DescribeChangeSetInput = {}
         if change_set_name is not None:
             input_["change_set_name"] = change_set_name
         if stack_name is not None:
@@ -1947,6 +1971,7 @@ class AsyncCloudFormationClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_describe_change_set(
@@ -2024,7 +2049,7 @@ class AsyncCloudFormationClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudformation.types.describe_change_set_hooks_input.DescribeChangeSetHooksInput = {}  # type: ignore[typeddict-item]
+        input_: capo_cloudformation.types.describe_change_set_hooks_input.DescribeChangeSetHooksInput = {}
         if change_set_name is not None:
             input_["change_set_name"] = change_set_name
         if stack_name is not None:
@@ -2039,6 +2064,7 @@ class AsyncCloudFormationClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_events(
@@ -2086,7 +2112,7 @@ class AsyncCloudFormationClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudformation.types.describe_events_input.DescribeEventsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_cloudformation.types.describe_events_input.DescribeEventsInput = {}
         if stack_name is not None:
             input_["stack_name"] = stack_name
         if change_set_name is not None:
@@ -2103,6 +2129,7 @@ class AsyncCloudFormationClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_describe_events(
@@ -2172,7 +2199,7 @@ class AsyncCloudFormationClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudformation.types.describe_generated_template_input.DescribeGeneratedTemplateInput = {}  # type: ignore[typeddict-item]
+        input_: capo_cloudformation.types.describe_generated_template_input.DescribeGeneratedTemplateInput = {}
         if generated_template_name is not None:
             input_["generated_template_name"] = generated_template_name
 
@@ -2181,6 +2208,7 @@ class AsyncCloudFormationClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_organizations_access(
@@ -2216,7 +2244,7 @@ class AsyncCloudFormationClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudformation.types.describe_organizations_access_input.DescribeOrganizationsAccessInput = {}  # type: ignore[typeddict-item]
+        input_: capo_cloudformation.types.describe_organizations_access_input.DescribeOrganizationsAccessInput = {}
         if call_as is not None:
             input_["call_as"] = call_as
 
@@ -2225,6 +2253,7 @@ class AsyncCloudFormationClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_publisher(
@@ -2261,7 +2290,7 @@ class AsyncCloudFormationClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudformation.types.describe_publisher_input.DescribePublisherInput = {}  # type: ignore[typeddict-item]
+        input_: capo_cloudformation.types.describe_publisher_input.DescribePublisherInput = {}
         if publisher_id is not None:
             input_["publisher_id"] = publisher_id
 
@@ -2270,6 +2299,7 @@ class AsyncCloudFormationClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_resource_scan(
@@ -2306,7 +2336,7 @@ class AsyncCloudFormationClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudformation.types.describe_resource_scan_input.DescribeResourceScanInput = {}  # type: ignore[typeddict-item]
+        input_: capo_cloudformation.types.describe_resource_scan_input.DescribeResourceScanInput = {}
         if resource_scan_id is not None:
             input_["resource_scan_id"] = resource_scan_id
 
@@ -2315,6 +2345,7 @@ class AsyncCloudFormationClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_stack_drift_detection_status(
@@ -2350,7 +2381,7 @@ class AsyncCloudFormationClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudformation.types.describe_stack_drift_detection_status_input.DescribeStackDriftDetectionStatusInput = {}  # type: ignore[typeddict-item]
+        input_: capo_cloudformation.types.describe_stack_drift_detection_status_input.DescribeStackDriftDetectionStatusInput = {}
         if stack_drift_detection_id is not None:
             input_["stack_drift_detection_id"] = stack_drift_detection_id
 
@@ -2359,6 +2390,7 @@ class AsyncCloudFormationClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_stack_events(
@@ -2394,7 +2426,7 @@ class AsyncCloudFormationClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudformation.types.describe_stack_events_input.DescribeStackEventsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_cloudformation.types.describe_stack_events_input.DescribeStackEventsInput = {}
         if stack_name is not None:
             input_["stack_name"] = stack_name
         if next_token is not None:
@@ -2405,6 +2437,7 @@ class AsyncCloudFormationClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_describe_stack_events(
@@ -2473,7 +2506,7 @@ class AsyncCloudFormationClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudformation.types.describe_stack_instance_input.DescribeStackInstanceInput = {}  # type: ignore[typeddict-item]
+        input_: capo_cloudformation.types.describe_stack_instance_input.DescribeStackInstanceInput = {}
         if stack_set_name is not None:
             input_["stack_set_name"] = stack_set_name
         if stack_instance_account is not None:
@@ -2488,6 +2521,7 @@ class AsyncCloudFormationClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_stack_refactor(
@@ -2524,7 +2558,7 @@ class AsyncCloudFormationClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudformation.types.describe_stack_refactor_input.DescribeStackRefactorInput = {}  # type: ignore[typeddict-item]
+        input_: capo_cloudformation.types.describe_stack_refactor_input.DescribeStackRefactorInput = {}
         if stack_refactor_id is not None:
             input_["stack_refactor_id"] = stack_refactor_id
 
@@ -2533,6 +2567,7 @@ class AsyncCloudFormationClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_stack_resource(
@@ -2570,7 +2605,7 @@ class AsyncCloudFormationClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudformation.types.describe_stack_resource_input.DescribeStackResourceInput = {}  # type: ignore[typeddict-item]
+        input_: capo_cloudformation.types.describe_stack_resource_input.DescribeStackResourceInput = {}
         if stack_name is not None:
             input_["stack_name"] = stack_name
         if logical_resource_id is not None:
@@ -2581,6 +2616,7 @@ class AsyncCloudFormationClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_stack_resource_drifts(
@@ -2626,7 +2662,7 @@ class AsyncCloudFormationClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudformation.types.describe_stack_resource_drifts_input.DescribeStackResourceDriftsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_cloudformation.types.describe_stack_resource_drifts_input.DescribeStackResourceDriftsInput = {}
         if stack_name is not None:
             input_["stack_name"] = stack_name
         if stack_resource_drift_status_filters is not None:
@@ -2643,7 +2679,37 @@ class AsyncCloudFormationClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_describe_stack_resource_drifts(
+        self,
+        *,
+        config_overrides: Optional[AsyncCloudFormationClientConfig] = None,
+        stack_name: Optional[
+            "capo_cloudformation.types.stack_name_or_id.StackNameOrId"
+        ] = None,
+        stack_resource_drift_status_filters: Optional[
+            "capo_cloudformation.types.stack_resource_drift_status_filters.StackResourceDriftStatusFilters"
+        ] = None,
+        next_token: Optional["capo_cloudformation.types.next_token.NextToken"] = None,
+        max_results: Optional[
+            "capo_cloudformation.types.boxed_max_results.BoxedMaxResults"
+        ] = None,
+    ) -> "AsyncIterator[capo_cloudformation.types.describe_stack_resource_drifts_output.DescribeStackResourceDriftsOutput]":
+        _token = next_token
+        while True:
+            _response = await self.describe_stack_resource_drifts(
+                config_overrides=config_overrides,
+                stack_name=stack_name,
+                stack_resource_drift_status_filters=stack_resource_drift_status_filters,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def describe_stack_resources(
         self,
@@ -2684,7 +2750,7 @@ class AsyncCloudFormationClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudformation.types.describe_stack_resources_input.DescribeStackResourcesInput = {}  # type: ignore[typeddict-item]
+        input_: capo_cloudformation.types.describe_stack_resources_input.DescribeStackResourcesInput = {}
         if stack_name is not None:
             input_["stack_name"] = stack_name
         if logical_resource_id is not None:
@@ -2697,6 +2763,7 @@ class AsyncCloudFormationClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_stacks(
@@ -2732,7 +2799,7 @@ class AsyncCloudFormationClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudformation.types.describe_stacks_input.DescribeStacksInput = {}  # type: ignore[typeddict-item]
+        input_: capo_cloudformation.types.describe_stacks_input.DescribeStacksInput = {}
         if stack_name is not None:
             input_["stack_name"] = stack_name
         if next_token is not None:
@@ -2743,6 +2810,7 @@ class AsyncCloudFormationClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_describe_stacks(
@@ -2848,7 +2916,7 @@ class AsyncCloudFormationClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudformation.types.describe_stack_set_input.DescribeStackSetInput = {}  # type: ignore[typeddict-item]
+        input_: capo_cloudformation.types.describe_stack_set_input.DescribeStackSetInput = {}
         if stack_set_name is not None:
             input_["stack_set_name"] = stack_set_name
         if call_as is not None:
@@ -2859,6 +2927,7 @@ class AsyncCloudFormationClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_stack_set_operation(
@@ -2902,7 +2971,7 @@ class AsyncCloudFormationClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudformation.types.describe_stack_set_operation_input.DescribeStackSetOperationInput = {}  # type: ignore[typeddict-item]
+        input_: capo_cloudformation.types.describe_stack_set_operation_input.DescribeStackSetOperationInput = {}
         if stack_set_name is not None:
             input_["stack_set_name"] = stack_set_name
         if operation_id is not None:
@@ -2915,6 +2984,7 @@ class AsyncCloudFormationClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_type(
@@ -2966,7 +3036,7 @@ class AsyncCloudFormationClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudformation.types.describe_type_input.DescribeTypeInput = {}  # type: ignore[typeddict-item]
+        input_: capo_cloudformation.types.describe_type_input.DescribeTypeInput = {}
         if type is not None:
             input_["type"] = type
         if type_name is not None:
@@ -2985,6 +3055,7 @@ class AsyncCloudFormationClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_type_registration(
@@ -3021,7 +3092,7 @@ class AsyncCloudFormationClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudformation.types.describe_type_registration_input.DescribeTypeRegistrationInput = {}  # type: ignore[typeddict-item]
+        input_: capo_cloudformation.types.describe_type_registration_input.DescribeTypeRegistrationInput = {}
         if registration_token is not None:
             input_["registration_token"] = registration_token
 
@@ -3030,6 +3101,7 @@ class AsyncCloudFormationClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def detect_stack_drift(
@@ -3069,7 +3141,7 @@ class AsyncCloudFormationClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudformation.types.detect_stack_drift_input.DetectStackDriftInput = {}  # type: ignore[typeddict-item]
+        input_: capo_cloudformation.types.detect_stack_drift_input.DetectStackDriftInput = {}
         if stack_name is not None:
             input_["stack_name"] = stack_name
         if logical_resource_ids is not None:
@@ -3080,6 +3152,7 @@ class AsyncCloudFormationClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def detect_stack_resource_drift(
@@ -3119,7 +3192,7 @@ class AsyncCloudFormationClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudformation.types.detect_stack_resource_drift_input.DetectStackResourceDriftInput = {}  # type: ignore[typeddict-item]
+        input_: capo_cloudformation.types.detect_stack_resource_drift_input.DetectStackResourceDriftInput = {}
         if stack_name is not None:
             input_["stack_name"] = stack_name
         if logical_resource_id is not None:
@@ -3130,6 +3203,7 @@ class AsyncCloudFormationClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def detect_stack_set_drift(
@@ -3178,13 +3252,14 @@ class AsyncCloudFormationClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudformation.types.detect_stack_set_drift_input.DetectStackSetDriftInput = {}  # type: ignore[typeddict-item]
+        input_: capo_cloudformation.types.detect_stack_set_drift_input.DetectStackSetDriftInput = {}
         if stack_set_name is not None:
             input_["stack_set_name"] = stack_set_name
         if operation_preferences is not None:
             input_["operation_preferences"] = operation_preferences
-        if operation_id is not None:
-            input_["operation_id"] = operation_id
+        if operation_id is None:
+            operation_id = str(uuid.uuid4())
+        input_["operation_id"] = operation_id
         if call_as is not None:
             input_["call_as"] = call_as
 
@@ -3193,6 +3268,7 @@ class AsyncCloudFormationClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def estimate_template_cost(
@@ -3234,7 +3310,7 @@ class AsyncCloudFormationClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudformation.types.estimate_template_cost_input.EstimateTemplateCostInput = {}  # type: ignore[typeddict-item]
+        input_: capo_cloudformation.types.estimate_template_cost_input.EstimateTemplateCostInput = {}
         if template_body is not None:
             input_["template_body"] = template_body
         if template_url is not None:
@@ -3247,6 +3323,7 @@ class AsyncCloudFormationClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def execute_change_set(
@@ -3302,7 +3379,7 @@ class AsyncCloudFormationClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudformation.types.execute_change_set_input.ExecuteChangeSetInput = {}  # type: ignore[typeddict-item]
+        input_: capo_cloudformation.types.execute_change_set_input.ExecuteChangeSetInput = {}
         if change_set_name is not None:
             input_["change_set_name"] = change_set_name
         if stack_name is not None:
@@ -3319,6 +3396,7 @@ class AsyncCloudFormationClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def execute_stack_refactor(
@@ -3352,7 +3430,7 @@ class AsyncCloudFormationClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudformation.types.execute_stack_refactor_input.ExecuteStackRefactorInput = {}  # type: ignore[typeddict-item]
+        input_: capo_cloudformation.types.execute_stack_refactor_input.ExecuteStackRefactorInput = {}
         if stack_refactor_id is not None:
             input_["stack_refactor_id"] = stack_refactor_id
 
@@ -3361,6 +3439,7 @@ class AsyncCloudFormationClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_generated_template(
@@ -3411,7 +3490,7 @@ class AsyncCloudFormationClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudformation.types.get_generated_template_input.GetGeneratedTemplateInput = {}  # type: ignore[typeddict-item]
+        input_: capo_cloudformation.types.get_generated_template_input.GetGeneratedTemplateInput = {}
         if format is not None:
             input_["format"] = format
         if generated_template_name is not None:
@@ -3422,6 +3501,7 @@ class AsyncCloudFormationClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_hook_result(
@@ -3458,7 +3538,7 @@ class AsyncCloudFormationClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudformation.types.get_hook_result_input.GetHookResultInput = {}  # type: ignore[typeddict-item]
+        input_: capo_cloudformation.types.get_hook_result_input.GetHookResultInput = {}
         if hook_result_id is not None:
             input_["hook_result_id"] = hook_result_id
 
@@ -3467,6 +3547,7 @@ class AsyncCloudFormationClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_stack_policy(
@@ -3500,7 +3581,7 @@ class AsyncCloudFormationClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudformation.types.get_stack_policy_input.GetStackPolicyInput = {}  # type: ignore[typeddict-item]
+        input_: capo_cloudformation.types.get_stack_policy_input.GetStackPolicyInput = {}
         if stack_name is not None:
             input_["stack_name"] = stack_name
 
@@ -3509,6 +3590,7 @@ class AsyncCloudFormationClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_template(
@@ -3551,7 +3633,7 @@ class AsyncCloudFormationClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudformation.types.get_template_input.GetTemplateInput = {}  # type: ignore[typeddict-item]
+        input_: capo_cloudformation.types.get_template_input.GetTemplateInput = {}
         if stack_name is not None:
             input_["stack_name"] = stack_name
         if change_set_name is not None:
@@ -3564,6 +3646,7 @@ class AsyncCloudFormationClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_template_summary(
@@ -3620,7 +3703,7 @@ class AsyncCloudFormationClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudformation.types.get_template_summary_input.GetTemplateSummaryInput = {}  # type: ignore[typeddict-item]
+        input_: capo_cloudformation.types.get_template_summary_input.GetTemplateSummaryInput = {}
         if template_body is not None:
             input_["template_body"] = template_body
         if template_url is not None:
@@ -3639,6 +3722,7 @@ class AsyncCloudFormationClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def import_stacks_to_stack_set(
@@ -3703,7 +3787,7 @@ class AsyncCloudFormationClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudformation.types.import_stacks_to_stack_set_input.ImportStacksToStackSetInput = {}  # type: ignore[typeddict-item]
+        input_: capo_cloudformation.types.import_stacks_to_stack_set_input.ImportStacksToStackSetInput = {}
         if stack_set_name is not None:
             input_["stack_set_name"] = stack_set_name
         if stack_ids is not None:
@@ -3714,8 +3798,9 @@ class AsyncCloudFormationClient:
             input_["organizational_unit_ids"] = organizational_unit_ids
         if operation_preferences is not None:
             input_["operation_preferences"] = operation_preferences
-        if operation_id is not None:
-            input_["operation_id"] = operation_id
+        if operation_id is None:
+            operation_id = str(uuid.uuid4())
+        input_["operation_id"] = operation_id
         if call_as is not None:
             input_["call_as"] = call_as
 
@@ -3724,6 +3809,7 @@ class AsyncCloudFormationClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_change_sets(
@@ -3761,7 +3847,7 @@ class AsyncCloudFormationClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudformation.types.list_change_sets_input.ListChangeSetsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_cloudformation.types.list_change_sets_input.ListChangeSetsInput = {}
         if stack_name is not None:
             input_["stack_name"] = stack_name
         if next_token is not None:
@@ -3772,6 +3858,7 @@ class AsyncCloudFormationClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_change_sets(
@@ -3828,7 +3915,7 @@ class AsyncCloudFormationClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudformation.types.list_exports_input.ListExportsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_cloudformation.types.list_exports_input.ListExportsInput = {}
         if next_token is not None:
             input_["next_token"] = next_token
 
@@ -3837,6 +3924,7 @@ class AsyncCloudFormationClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_exports(
@@ -3893,7 +3981,7 @@ class AsyncCloudFormationClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudformation.types.list_generated_templates_input.ListGeneratedTemplatesInput = {}  # type: ignore[typeddict-item]
+        input_: capo_cloudformation.types.list_generated_templates_input.ListGeneratedTemplatesInput = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -3904,6 +3992,7 @@ class AsyncCloudFormationClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_generated_templates(
@@ -3975,7 +4064,7 @@ class AsyncCloudFormationClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudformation.types.list_hook_results_input.ListHookResultsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_cloudformation.types.list_hook_results_input.ListHookResultsInput = {}
         if target_type is not None:
             input_["target_type"] = target_type
         if target_id is not None:
@@ -3992,6 +4081,7 @@ class AsyncCloudFormationClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_imports(
@@ -4029,7 +4119,7 @@ class AsyncCloudFormationClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudformation.types.list_imports_input.ListImportsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_cloudformation.types.list_imports_input.ListImportsInput = {}
         if export_name is not None:
             input_["export_name"] = export_name
         if next_token is not None:
@@ -4040,6 +4130,7 @@ class AsyncCloudFormationClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_imports(
@@ -4116,7 +4207,7 @@ class AsyncCloudFormationClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudformation.types.list_resource_scan_related_resources_input.ListResourceScanRelatedResourcesInput = {}  # type: ignore[typeddict-item]
+        input_: capo_cloudformation.types.list_resource_scan_related_resources_input.ListResourceScanRelatedResourcesInput = {}
         if resource_scan_id is not None:
             input_["resource_scan_id"] = resource_scan_id
         if resources is not None:
@@ -4131,6 +4222,7 @@ class AsyncCloudFormationClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_resource_scan_related_resources(
@@ -4227,7 +4319,7 @@ class AsyncCloudFormationClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudformation.types.list_resource_scan_resources_input.ListResourceScanResourcesInput = {}  # type: ignore[typeddict-item]
+        input_: capo_cloudformation.types.list_resource_scan_resources_input.ListResourceScanResourcesInput = {}
         if resource_scan_id is not None:
             input_["resource_scan_id"] = resource_scan_id
         if resource_identifier is not None:
@@ -4248,6 +4340,7 @@ class AsyncCloudFormationClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_resource_scan_resources(
@@ -4328,7 +4421,7 @@ class AsyncCloudFormationClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudformation.types.list_resource_scans_input.ListResourceScansInput = {}  # type: ignore[typeddict-item]
+        input_: capo_cloudformation.types.list_resource_scans_input.ListResourceScansInput = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -4341,6 +4434,7 @@ class AsyncCloudFormationClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_resource_scans(
@@ -4430,7 +4524,7 @@ class AsyncCloudFormationClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudformation.types.list_stack_instance_resource_drifts_input.ListStackInstanceResourceDriftsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_cloudformation.types.list_stack_instance_resource_drifts_input.ListStackInstanceResourceDriftsInput = {}
         if stack_set_name is not None:
             input_["stack_set_name"] = stack_set_name
         if next_token is not None:
@@ -4455,6 +4549,7 @@ class AsyncCloudFormationClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_stack_instances(
@@ -4513,7 +4608,7 @@ class AsyncCloudFormationClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudformation.types.list_stack_instances_input.ListStackInstancesInput = {}  # type: ignore[typeddict-item]
+        input_: capo_cloudformation.types.list_stack_instances_input.ListStackInstancesInput = {}
         if stack_set_name is not None:
             input_["stack_set_name"] = stack_set_name
         if next_token is not None:
@@ -4534,6 +4629,7 @@ class AsyncCloudFormationClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_stack_instances(
@@ -4616,7 +4712,7 @@ class AsyncCloudFormationClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudformation.types.list_stack_refactor_actions_input.ListStackRefactorActionsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_cloudformation.types.list_stack_refactor_actions_input.ListStackRefactorActionsInput = {}
         if stack_refactor_id is not None:
             input_["stack_refactor_id"] = stack_refactor_id
         if next_token is not None:
@@ -4629,6 +4725,7 @@ class AsyncCloudFormationClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_stack_refactor_actions(
@@ -4699,7 +4796,7 @@ class AsyncCloudFormationClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudformation.types.list_stack_refactors_input.ListStackRefactorsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_cloudformation.types.list_stack_refactors_input.ListStackRefactorsInput = {}
         if execution_status_filter is not None:
             input_["execution_status_filter"] = execution_status_filter
         if next_token is not None:
@@ -4712,6 +4809,7 @@ class AsyncCloudFormationClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_stack_refactors(
@@ -4776,7 +4874,7 @@ class AsyncCloudFormationClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudformation.types.list_stack_resources_input.ListStackResourcesInput = {}  # type: ignore[typeddict-item]
+        input_: capo_cloudformation.types.list_stack_resources_input.ListStackResourcesInput = {}
         if stack_name is not None:
             input_["stack_name"] = stack_name
         if next_token is not None:
@@ -4787,6 +4885,7 @@ class AsyncCloudFormationClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_stack_resources(
@@ -4845,7 +4944,7 @@ class AsyncCloudFormationClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudformation.types.list_stacks_input.ListStacksInput = {}  # type: ignore[typeddict-item]
+        input_: capo_cloudformation.types.list_stacks_input.ListStacksInput = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if stack_status_filter is not None:
@@ -4856,6 +4955,7 @@ class AsyncCloudFormationClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_stacks(
@@ -4923,7 +5023,7 @@ class AsyncCloudFormationClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudformation.types.list_stack_set_auto_deployment_targets_input.ListStackSetAutoDeploymentTargetsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_cloudformation.types.list_stack_set_auto_deployment_targets_input.ListStackSetAutoDeploymentTargetsInput = {}
         if stack_set_name is not None:
             input_["stack_set_name"] = stack_set_name
         if next_token is not None:
@@ -4938,6 +5038,7 @@ class AsyncCloudFormationClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_stack_set_operation_results(
@@ -4991,7 +5092,7 @@ class AsyncCloudFormationClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudformation.types.list_stack_set_operation_results_input.ListStackSetOperationResultsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_cloudformation.types.list_stack_set_operation_results_input.ListStackSetOperationResultsInput = {}
         if stack_set_name is not None:
             input_["stack_set_name"] = stack_set_name
         if operation_id is not None:
@@ -5010,6 +5111,7 @@ class AsyncCloudFormationClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_stack_set_operation_results(
@@ -5091,7 +5193,7 @@ class AsyncCloudFormationClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudformation.types.list_stack_set_operations_input.ListStackSetOperationsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_cloudformation.types.list_stack_set_operations_input.ListStackSetOperationsInput = {}
         if stack_set_name is not None:
             input_["stack_set_name"] = stack_set_name
         if next_token is not None:
@@ -5106,6 +5208,7 @@ class AsyncCloudFormationClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_stack_set_operations(
@@ -5178,7 +5281,7 @@ class AsyncCloudFormationClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudformation.types.list_stack_sets_input.ListStackSetsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_cloudformation.types.list_stack_sets_input.ListStackSetsInput = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -5193,6 +5296,7 @@ class AsyncCloudFormationClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_stack_sets(
@@ -5270,7 +5374,7 @@ class AsyncCloudFormationClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudformation.types.list_type_registrations_input.ListTypeRegistrationsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_cloudformation.types.list_type_registrations_input.ListTypeRegistrationsInput = {}
         if type is not None:
             input_["type"] = type
         if type_name is not None:
@@ -5289,7 +5393,39 @@ class AsyncCloudFormationClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_type_registrations(
+        self,
+        *,
+        config_overrides: Optional[AsyncCloudFormationClientConfig] = None,
+        type: Optional["capo_cloudformation.types.registry_type.RegistryType"] = None,
+        type_name: Optional["capo_cloudformation.types.type_name.TypeName"] = None,
+        type_arn: Optional["capo_cloudformation.types.type_arn.TypeArn"] = None,
+        registration_status_filter: Optional[
+            "capo_cloudformation.types.registration_status.RegistrationStatus"
+        ] = None,
+        max_results: Optional[
+            "capo_cloudformation.types.max_results.MaxResults"
+        ] = None,
+        next_token: Optional["capo_cloudformation.types.next_token.NextToken"] = None,
+    ) -> "AsyncIterator[capo_cloudformation.types.list_type_registrations_output.ListTypeRegistrationsOutput]":
+        _token = next_token
+        while True:
+            _response = await self.list_type_registrations(
+                config_overrides=config_overrides,
+                type=type,
+                type_name=type_name,
+                type_arn=type_arn,
+                registration_status_filter=registration_status_filter,
+                max_results=max_results,
+                next_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_types(
         self,
@@ -5341,7 +5477,7 @@ class AsyncCloudFormationClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudformation.types.list_types_input.ListTypesInput = {}  # type: ignore[typeddict-item]
+        input_: capo_cloudformation.types.list_types_input.ListTypesInput = {}
         if visibility is not None:
             input_["visibility"] = visibility
         if provisioning_type is not None:
@@ -5362,6 +5498,7 @@ class AsyncCloudFormationClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_types(
@@ -5451,7 +5588,7 @@ class AsyncCloudFormationClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudformation.types.list_type_versions_input.ListTypeVersionsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_cloudformation.types.list_type_versions_input.ListTypeVersionsInput = {}
         if type is not None:
             input_["type"] = type
         if type_name is not None:
@@ -5472,7 +5609,43 @@ class AsyncCloudFormationClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_type_versions(
+        self,
+        *,
+        config_overrides: Optional[AsyncCloudFormationClientConfig] = None,
+        type: Optional["capo_cloudformation.types.registry_type.RegistryType"] = None,
+        type_name: Optional["capo_cloudformation.types.type_name.TypeName"] = None,
+        arn: Optional["capo_cloudformation.types.type_arn.TypeArn"] = None,
+        max_results: Optional[
+            "capo_cloudformation.types.max_results.MaxResults"
+        ] = None,
+        next_token: Optional["capo_cloudformation.types.next_token.NextToken"] = None,
+        deprecated_status: Optional[
+            "capo_cloudformation.types.deprecated_status.DeprecatedStatus"
+        ] = None,
+        publisher_id: Optional[
+            "capo_cloudformation.types.publisher_id.PublisherId"
+        ] = None,
+    ) -> "AsyncIterator[capo_cloudformation.types.list_type_versions_output.ListTypeVersionsOutput]":
+        _token = next_token
+        while True:
+            _response = await self.list_type_versions(
+                config_overrides=config_overrides,
+                type=type,
+                type_name=type_name,
+                arn=arn,
+                max_results=max_results,
+                next_token=_token,
+                deprecated_status=deprecated_status,
+                publisher_id=publisher_id,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def publish_type(
         self,
@@ -5519,7 +5692,7 @@ class AsyncCloudFormationClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudformation.types.publish_type_input.PublishTypeInput = {}  # type: ignore[typeddict-item]
+        input_: capo_cloudformation.types.publish_type_input.PublishTypeInput = {}
         if type is not None:
             input_["type"] = type
         if arn is not None:
@@ -5534,6 +5707,7 @@ class AsyncCloudFormationClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def record_handler_progress(
@@ -5595,7 +5769,7 @@ class AsyncCloudFormationClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudformation.types.record_handler_progress_input.RecordHandlerProgressInput = {}  # type: ignore[typeddict-item]
+        input_: capo_cloudformation.types.record_handler_progress_input.RecordHandlerProgressInput = {}
         if bearer_token is not None:
             input_["bearer_token"] = bearer_token
         if operation_status is not None:
@@ -5616,6 +5790,7 @@ class AsyncCloudFormationClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def register_publisher(
@@ -5656,7 +5831,7 @@ class AsyncCloudFormationClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudformation.types.register_publisher_input.RegisterPublisherInput = {}  # type: ignore[typeddict-item]
+        input_: capo_cloudformation.types.register_publisher_input.RegisterPublisherInput = {}
         if accept_terms_and_conditions is not None:
             input_["accept_terms_and_conditions"] = accept_terms_and_conditions
         if connection_arn is not None:
@@ -5667,6 +5842,7 @@ class AsyncCloudFormationClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def register_type(
@@ -5719,7 +5895,7 @@ class AsyncCloudFormationClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudformation.types.register_type_input.RegisterTypeInput = {}  # type: ignore[typeddict-item]
+        input_: capo_cloudformation.types.register_type_input.RegisterTypeInput = {}
         if type is not None:
             input_["type"] = type
         if type_name is not None:
@@ -5738,6 +5914,7 @@ class AsyncCloudFormationClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def rollback_stack(
@@ -5784,7 +5961,7 @@ class AsyncCloudFormationClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudformation.types.rollback_stack_input.RollbackStackInput = {}  # type: ignore[typeddict-item]
+        input_: capo_cloudformation.types.rollback_stack_input.RollbackStackInput = {}
         if stack_name is not None:
             input_["stack_name"] = stack_name
         if role_arn is not None:
@@ -5799,6 +5976,7 @@ class AsyncCloudFormationClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def set_stack_policy(
@@ -5838,7 +6016,7 @@ class AsyncCloudFormationClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudformation.types.set_stack_policy_input.SetStackPolicyInput = {}  # type: ignore[typeddict-item]
+        input_: capo_cloudformation.types.set_stack_policy_input.SetStackPolicyInput = {}
         if stack_name is not None:
             input_["stack_name"] = stack_name
         if stack_policy_body is not None:
@@ -5851,6 +6029,7 @@ class AsyncCloudFormationClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def set_type_configuration(
@@ -5900,7 +6079,7 @@ class AsyncCloudFormationClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudformation.types.set_type_configuration_input.SetTypeConfigurationInput = {}  # type: ignore[typeddict-item]
+        input_: capo_cloudformation.types.set_type_configuration_input.SetTypeConfigurationInput = {}
         if type_arn is not None:
             input_["type_arn"] = type_arn
         if configuration is not None:
@@ -5917,6 +6096,7 @@ class AsyncCloudFormationClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def set_type_default_version(
@@ -5962,7 +6142,7 @@ class AsyncCloudFormationClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudformation.types.set_type_default_version_input.SetTypeDefaultVersionInput = {}  # type: ignore[typeddict-item]
+        input_: capo_cloudformation.types.set_type_default_version_input.SetTypeDefaultVersionInput = {}
         if arn is not None:
             input_["arn"] = arn
         if type is not None:
@@ -5977,6 +6157,7 @@ class AsyncCloudFormationClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def signal_resource(
@@ -6022,7 +6203,7 @@ class AsyncCloudFormationClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudformation.types.signal_resource_input.SignalResourceInput = {}  # type: ignore[typeddict-item]
+        input_: capo_cloudformation.types.signal_resource_input.SignalResourceInput = {}
         if stack_name is not None:
             input_["stack_name"] = stack_name
         if logical_resource_id is not None:
@@ -6037,6 +6218,7 @@ class AsyncCloudFormationClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def start_resource_scan(
@@ -6084,7 +6266,7 @@ class AsyncCloudFormationClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudformation.types.start_resource_scan_input.StartResourceScanInput = {}  # type: ignore[typeddict-item]
+        input_: capo_cloudformation.types.start_resource_scan_input.StartResourceScanInput = {}
         if client_request_token is not None:
             input_["client_request_token"] = client_request_token
         if scan_filters is not None:
@@ -6095,6 +6277,7 @@ class AsyncCloudFormationClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def stop_stack_set_operation(
@@ -6139,7 +6322,7 @@ class AsyncCloudFormationClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudformation.types.stop_stack_set_operation_input.StopStackSetOperationInput = {}  # type: ignore[typeddict-item]
+        input_: capo_cloudformation.types.stop_stack_set_operation_input.StopStackSetOperationInput = {}
         if stack_set_name is not None:
             input_["stack_set_name"] = stack_set_name
         if operation_id is not None:
@@ -6152,6 +6335,7 @@ class AsyncCloudFormationClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def test_type(
@@ -6201,7 +6385,7 @@ class AsyncCloudFormationClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudformation.types.test_type_input.TestTypeInput = {}  # type: ignore[typeddict-item]
+        input_: capo_cloudformation.types.test_type_input.TestTypeInput = {}
         if arn is not None:
             input_["arn"] = arn
         if type is not None:
@@ -6218,6 +6402,7 @@ class AsyncCloudFormationClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_generated_template(
@@ -6290,7 +6475,7 @@ class AsyncCloudFormationClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudformation.types.update_generated_template_input.UpdateGeneratedTemplateInput = {}  # type: ignore[typeddict-item]
+        input_: capo_cloudformation.types.update_generated_template_input.UpdateGeneratedTemplateInput = {}
         if generated_template_name is not None:
             input_["generated_template_name"] = generated_template_name
         if new_generated_template_name is not None:
@@ -6309,6 +6494,7 @@ class AsyncCloudFormationClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_stack(
@@ -6406,7 +6592,7 @@ class AsyncCloudFormationClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudformation.types.update_stack_input.UpdateStackInput = {}  # type: ignore[typeddict-item]
+        input_: capo_cloudformation.types.update_stack_input.UpdateStackInput = {}
         if stack_name is not None:
             input_["stack_name"] = stack_name
         if template_body is not None:
@@ -6449,6 +6635,7 @@ class AsyncCloudFormationClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_stack_instances(
@@ -6512,7 +6699,7 @@ class AsyncCloudFormationClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudformation.types.update_stack_instances_input.UpdateStackInstancesInput = {}  # type: ignore[typeddict-item]
+        input_: capo_cloudformation.types.update_stack_instances_input.UpdateStackInstancesInput = {}
         if stack_set_name is not None:
             input_["stack_set_name"] = stack_set_name
         if accounts is not None:
@@ -6525,8 +6712,9 @@ class AsyncCloudFormationClient:
             input_["parameter_overrides"] = parameter_overrides
         if operation_preferences is not None:
             input_["operation_preferences"] = operation_preferences
-        if operation_id is not None:
-            input_["operation_id"] = operation_id
+        if operation_id is None:
+            operation_id = str(uuid.uuid4())
+        input_["operation_id"] = operation_id
         if call_as is not None:
             input_["call_as"] = call_as
 
@@ -6535,6 +6723,7 @@ class AsyncCloudFormationClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_stack_set(
@@ -6638,7 +6827,7 @@ class AsyncCloudFormationClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudformation.types.update_stack_set_input.UpdateStackSetInput = {}  # type: ignore[typeddict-item]
+        input_: capo_cloudformation.types.update_stack_set_input.UpdateStackSetInput = {}
         if stack_set_name is not None:
             input_["stack_set_name"] = stack_set_name
         if description is not None:
@@ -6667,8 +6856,9 @@ class AsyncCloudFormationClient:
             input_["permission_model"] = permission_model
         if auto_deployment is not None:
             input_["auto_deployment"] = auto_deployment
-        if operation_id is not None:
-            input_["operation_id"] = operation_id
+        if operation_id is None:
+            operation_id = str(uuid.uuid4())
+        input_["operation_id"] = operation_id
         if accounts is not None:
             input_["accounts"] = accounts
         if regions is not None:
@@ -6683,6 +6873,7 @@ class AsyncCloudFormationClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_termination_protection(
@@ -6722,7 +6913,7 @@ class AsyncCloudFormationClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudformation.types.update_termination_protection_input.UpdateTerminationProtectionInput = {}  # type: ignore[typeddict-item]
+        input_: capo_cloudformation.types.update_termination_protection_input.UpdateTerminationProtectionInput = {}
         if enable_termination_protection is not None:
             input_["enable_termination_protection"] = enable_termination_protection
         if stack_name is not None:
@@ -6733,6 +6924,7 @@ class AsyncCloudFormationClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def validate_template(
@@ -6772,7 +6964,7 @@ class AsyncCloudFormationClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudformation.types.validate_template_input.ValidateTemplateInput = {}  # type: ignore[typeddict-item]
+        input_: capo_cloudformation.types.validate_template_input.ValidateTemplateInput = {}
         if template_body is not None:
             input_["template_body"] = template_body
         if template_url is not None:
@@ -6783,6 +6975,7 @@ class AsyncCloudFormationClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def __aenter__(self) -> Self:

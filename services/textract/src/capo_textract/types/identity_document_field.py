@@ -37,7 +37,7 @@ def serialize_aws_json_1_1(value: IdentityDocumentField) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> IdentityDocumentField:
     out: IdentityDocumentField = {}  # type: ignore[typeddict-item]
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_textract.types.analyze_id_detections
 
         out["type"] = (
@@ -45,7 +45,7 @@ def deserialize_aws_json_1_1(data: dict) -> IdentityDocumentField:
                 data["Type"]
             )
         )
-    if "ValueDetection" in data:
+    if data.get("ValueDetection") is not None:
         import capo_textract.types.analyze_id_detections
 
         out["value_detection"] = (

@@ -60,7 +60,7 @@ def serialize_json(value: ListGroupResourcesOutput) -> dict:
 
 def deserialize_json(data: dict) -> ListGroupResourcesOutput:
     out: ListGroupResourcesOutput = {}  # type: ignore[typeddict-item]
-    if "Resources" in data:
+    if data.get("Resources") is not None:
         import capo_resource_groups.types.list_group_resources_item_list
 
         out["resources"] = (
@@ -68,7 +68,7 @@ def deserialize_json(data: dict) -> ListGroupResourcesOutput:
                 data["Resources"]
             )
         )
-    if "ResourceIdentifiers" in data:
+    if data.get("ResourceIdentifiers") is not None:
         import capo_resource_groups.types.resource_identifier_list
 
         out["resource_identifiers"] = (
@@ -76,9 +76,9 @@ def deserialize_json(data: dict) -> ListGroupResourcesOutput:
                 data["ResourceIdentifiers"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "QueryErrors" in data:
+    if data.get("QueryErrors") is not None:
         import capo_resource_groups.types.query_error_list
 
         out["query_errors"] = (

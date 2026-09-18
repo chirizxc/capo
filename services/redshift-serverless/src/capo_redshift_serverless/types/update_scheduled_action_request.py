@@ -84,13 +84,13 @@ def serialize_aws_json_1_1(value: UpdateScheduledActionRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateScheduledActionRequest:
     out: UpdateScheduledActionRequest = {}  # type: ignore[typeddict-item]
-    if "scheduledActionName" in data:
+    if data.get("scheduledActionName") is not None:
         out["scheduled_action_name"] = data["scheduledActionName"]
     else:
         raise DeserializationError(
             "UpdateScheduledActionRequest.scheduled_action_name required"
         )
-    if "targetAction" in data:
+    if data.get("targetAction") is not None:
         import capo_redshift_serverless.types.target_action
 
         out["target_action"] = (
@@ -98,7 +98,7 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateScheduledActionRequest:
                 data["targetAction"]
             )
         )
-    if "schedule" in data:
+    if data.get("schedule") is not None:
         import capo_redshift_serverless.types.schedule
 
         out["schedule"] = (
@@ -106,13 +106,13 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateScheduledActionRequest:
                 data["schedule"]
             )
         )
-    if "roleArn" in data:
+    if data.get("roleArn") is not None:
         out["role_arn"] = data["roleArn"]
-    if "enabled" in data:
+    if data.get("enabled") is not None:
         out["enabled"] = data["enabled"]
-    if "scheduledActionDescription" in data:
+    if data.get("scheduledActionDescription") is not None:
         out["scheduled_action_description"] = data["scheduledActionDescription"]
-    if "startTime" in data:
+    if data.get("startTime") is not None:
         import capo_redshift_serverless.types._prelude.timestamp
 
         out["start_time"] = (
@@ -120,7 +120,7 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateScheduledActionRequest:
                 data["startTime"]
             )
         )
-    if "endTime" in data:
+    if data.get("endTime") is not None:
         import capo_redshift_serverless.types._prelude.timestamp
 
         out["end_time"] = (

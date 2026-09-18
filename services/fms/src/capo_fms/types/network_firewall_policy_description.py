@@ -106,7 +106,7 @@ def serialize_aws_json_1_1(value: NetworkFirewallPolicyDescription) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> NetworkFirewallPolicyDescription:
     out: NetworkFirewallPolicyDescription = {}  # type: ignore[typeddict-item]
-    if "StatelessRuleGroups" in data:
+    if data.get("StatelessRuleGroups") is not None:
         import capo_fms.types.stateless_rule_group_list
 
         out["stateless_rule_groups"] = (
@@ -114,7 +114,7 @@ def deserialize_aws_json_1_1(data: dict) -> NetworkFirewallPolicyDescription:
                 data["StatelessRuleGroups"]
             )
         )
-    if "StatelessDefaultActions" in data:
+    if data.get("StatelessDefaultActions") is not None:
         import capo_fms.types.network_firewall_action_list
 
         out["stateless_default_actions"] = (
@@ -122,7 +122,7 @@ def deserialize_aws_json_1_1(data: dict) -> NetworkFirewallPolicyDescription:
                 data["StatelessDefaultActions"]
             )
         )
-    if "StatelessFragmentDefaultActions" in data:
+    if data.get("StatelessFragmentDefaultActions") is not None:
         import capo_fms.types.network_firewall_action_list
 
         out["stateless_fragment_default_actions"] = (
@@ -130,7 +130,7 @@ def deserialize_aws_json_1_1(data: dict) -> NetworkFirewallPolicyDescription:
                 data["StatelessFragmentDefaultActions"]
             )
         )
-    if "StatelessCustomActions" in data:
+    if data.get("StatelessCustomActions") is not None:
         import capo_fms.types.network_firewall_action_list
 
         out["stateless_custom_actions"] = (
@@ -138,7 +138,7 @@ def deserialize_aws_json_1_1(data: dict) -> NetworkFirewallPolicyDescription:
                 data["StatelessCustomActions"]
             )
         )
-    if "StatefulRuleGroups" in data:
+    if data.get("StatefulRuleGroups") is not None:
         import capo_fms.types.stateful_rule_group_list
 
         out["stateful_rule_groups"] = (
@@ -146,7 +146,7 @@ def deserialize_aws_json_1_1(data: dict) -> NetworkFirewallPolicyDescription:
                 data["StatefulRuleGroups"]
             )
         )
-    if "StatefulDefaultActions" in data:
+    if data.get("StatefulDefaultActions") is not None:
         import capo_fms.types.network_firewall_action_list
 
         out["stateful_default_actions"] = (
@@ -154,7 +154,7 @@ def deserialize_aws_json_1_1(data: dict) -> NetworkFirewallPolicyDescription:
                 data["StatefulDefaultActions"]
             )
         )
-    if "StatefulEngineOptions" in data:
+    if data.get("StatefulEngineOptions") is not None:
         import capo_fms.types.stateful_engine_options
 
         out["stateful_engine_options"] = (

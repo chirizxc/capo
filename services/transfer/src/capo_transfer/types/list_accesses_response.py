@@ -37,13 +37,13 @@ def serialize_aws_json_1_1(value: ListAccessesResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListAccessesResponse:
     out: ListAccessesResponse = {}  # type: ignore[typeddict-item]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "ServerId" in data:
+    if data.get("ServerId") is not None:
         out["server_id"] = data["ServerId"]
     else:
         raise DeserializationError("ListAccessesResponse.server_id required")
-    if "Accesses" in data:
+    if data.get("Accesses") is not None:
         import capo_transfer.types.listed_accesses
 
         out["accesses"] = capo_transfer.types.listed_accesses.deserialize_aws_json_1_1(

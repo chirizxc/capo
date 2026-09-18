@@ -26,7 +26,7 @@ def deserialize_json(
     data: dict,
 ) -> EvaluationSuggestedAnswerTranscriptMillisecondOffsets:
     out: EvaluationSuggestedAnswerTranscriptMillisecondOffsets = {}  # type: ignore[typeddict-item]
-    if "BeginOffsetMillis" in data:
+    if data.get("BeginOffsetMillis") is not None:
         out["begin_offset_millis"] = data["BeginOffsetMillis"]
     else:
         out["begin_offset_millis"] = 0

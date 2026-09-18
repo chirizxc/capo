@@ -29,6 +29,8 @@ def deserialize_aws_json_1_1(data: list) -> DirectConnectGatewayAssociationList:
 
     out: DirectConnectGatewayAssociationList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_direct_connect.types.direct_connect_gateway_association.deserialize_aws_json_1_1(
                 item

@@ -26,7 +26,7 @@ def serialize_json(value: UsageTrackingResource) -> dict:
 
 
 def deserialize_json(data: dict) -> UsageTrackingResource:
-    if "queueId" in data:
+    if data.get("queueId") is not None:
         return {"queueId": data["queueId"]}
     else:
         raise DeserializationError("UsageTrackingResource: no recognized variant key")

@@ -25,7 +25,7 @@ def serialize_aws_json_1_1(value: GetTagsResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetTagsResponse:
     out: GetTagsResponse = {}  # type: ignore[typeddict-item]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_glue.types.tags_map
 
         out["tags"] = capo_glue.types.tags_map.deserialize_aws_json_1_1(data["Tags"])

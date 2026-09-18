@@ -34,17 +34,17 @@ def serialize_aws_json_1_1(value: GetRegexPatternSetRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetRegexPatternSetRequest:
     out: GetRegexPatternSetRequest = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("GetRegexPatternSetRequest.name required")
-    if "Scope" in data:
+    if data.get("Scope") is not None:
         import capo_wafv2.types.scope
 
         out["scope"] = capo_wafv2.types.scope.deserialize_aws_json_1_1(data["Scope"])
     else:
         raise DeserializationError("GetRegexPatternSetRequest.scope required")
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
     else:
         raise DeserializationError("GetRegexPatternSetRequest.id required")

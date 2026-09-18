@@ -32,7 +32,7 @@ def serialize_aws_json_1_1(value: DescribeDeliveryStreamOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeDeliveryStreamOutput:
     out: DescribeDeliveryStreamOutput = {}  # type: ignore[typeddict-item]
-    if "DeliveryStreamDescription" in data:
+    if data.get("DeliveryStreamDescription") is not None:
         import capo_firehose.types.delivery_stream_description
 
         out["delivery_stream_description"] = (

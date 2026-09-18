@@ -76,15 +76,15 @@ def serialize_aws_json_1_0(value: UpdateProxyRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> UpdateProxyRequest:
     out: UpdateProxyRequest = {}  # type: ignore[typeddict-item]
-    if "NatGatewayId" in data:
+    if data.get("NatGatewayId") is not None:
         out["nat_gateway_id"] = data["NatGatewayId"]
     else:
         raise DeserializationError("UpdateProxyRequest.nat_gateway_id required")
-    if "ProxyName" in data:
+    if data.get("ProxyName") is not None:
         out["proxy_name"] = data["ProxyName"]
-    if "ProxyArn" in data:
+    if data.get("ProxyArn") is not None:
         out["proxy_arn"] = data["ProxyArn"]
-    if "ListenerPropertiesToAdd" in data:
+    if data.get("ListenerPropertiesToAdd") is not None:
         import capo_network_firewall.types.listener_properties_request
 
         out["listener_properties_to_add"] = (
@@ -92,7 +92,7 @@ def deserialize_aws_json_1_0(data: dict) -> UpdateProxyRequest:
                 data["ListenerPropertiesToAdd"]
             )
         )
-    if "ListenerPropertiesToRemove" in data:
+    if data.get("ListenerPropertiesToRemove") is not None:
         import capo_network_firewall.types.listener_properties_request
 
         out["listener_properties_to_remove"] = (
@@ -100,7 +100,7 @@ def deserialize_aws_json_1_0(data: dict) -> UpdateProxyRequest:
                 data["ListenerPropertiesToRemove"]
             )
         )
-    if "TlsInterceptProperties" in data:
+    if data.get("TlsInterceptProperties") is not None:
         import capo_network_firewall.types.tls_intercept_properties_request
 
         out["tls_intercept_properties"] = (
@@ -108,7 +108,7 @@ def deserialize_aws_json_1_0(data: dict) -> UpdateProxyRequest:
                 data["TlsInterceptProperties"]
             )
         )
-    if "UpdateToken" in data:
+    if data.get("UpdateToken") is not None:
         out["update_token"] = data["UpdateToken"]
     else:
         raise DeserializationError("UpdateProxyRequest.update_token required")

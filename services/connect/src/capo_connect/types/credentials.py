@@ -44,17 +44,17 @@ def serialize_json(value: Credentials) -> dict:
 
 def deserialize_json(data: dict) -> Credentials:
     out: Credentials = {}  # type: ignore[typeddict-item]
-    if "AccessToken" in data:
+    if data.get("AccessToken") is not None:
         out["access_token"] = data["AccessToken"]
-    if "AccessTokenExpiration" in data:
+    if data.get("AccessTokenExpiration") is not None:
         import capo_connect.types.timestamp
 
         out["access_token_expiration"] = capo_connect.types.timestamp.deserialize_json(
             data["AccessTokenExpiration"]
         )
-    if "RefreshToken" in data:
+    if data.get("RefreshToken") is not None:
         out["refresh_token"] = data["RefreshToken"]
-    if "RefreshTokenExpiration" in data:
+    if data.get("RefreshTokenExpiration") is not None:
         import capo_connect.types.timestamp
 
         out["refresh_token_expiration"] = capo_connect.types.timestamp.deserialize_json(

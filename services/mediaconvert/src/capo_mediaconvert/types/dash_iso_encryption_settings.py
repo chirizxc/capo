@@ -44,7 +44,7 @@ def serialize_json(value: DashIsoEncryptionSettings) -> dict:
 
 def deserialize_json(data: dict) -> DashIsoEncryptionSettings:
     out: DashIsoEncryptionSettings = {}  # type: ignore[typeddict-item]
-    if "playbackDeviceCompatibility" in data:
+    if data.get("playbackDeviceCompatibility") is not None:
         import capo_mediaconvert.types.dash_iso_playback_device_compatibility
 
         out["playback_device_compatibility"] = (
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> DashIsoEncryptionSettings:
                 data["playbackDeviceCompatibility"]
             )
         )
-    if "spekeKeyProvider" in data:
+    if data.get("spekeKeyProvider") is not None:
         import capo_mediaconvert.types.speke_key_provider
 
         out["speke_key_provider"] = (

@@ -28,8 +28,8 @@ def serialize_json(value: DryRunResults) -> dict:
 
 def deserialize_json(data: dict) -> DryRunResults:
     out: DryRunResults = {}  # type: ignore[typeddict-item]
-    if "DeploymentType" in data:
+    if data.get("DeploymentType") is not None:
         out["deployment_type"] = data["DeploymentType"]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     return out

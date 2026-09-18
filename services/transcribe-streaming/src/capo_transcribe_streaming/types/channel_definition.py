@@ -34,11 +34,11 @@ def serialize_json(value: ChannelDefinition) -> dict:
 
 def deserialize_json(data: dict) -> ChannelDefinition:
     out: ChannelDefinition = {}  # type: ignore[typeddict-item]
-    if "ChannelId" in data:
+    if data.get("ChannelId") is not None:
         out["channel_id"] = data["ChannelId"]
     else:
         out["channel_id"] = 0
-    if "ParticipantRole" in data:
+    if data.get("ParticipantRole") is not None:
         import capo_transcribe_streaming.types.participant_role
 
         out["participant_role"] = (

@@ -39,11 +39,11 @@ def serialize_aws_json_1_1(value: FileMetadata) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> FileMetadata:
     out: FileMetadata = {}  # type: ignore[typeddict-item]
-    if "absolutePath" in data:
+    if data.get("absolutePath") is not None:
         out["absolute_path"] = data["absolutePath"]
-    if "blobId" in data:
+    if data.get("blobId") is not None:
         out["blob_id"] = data["blobId"]
-    if "fileMode" in data:
+    if data.get("fileMode") is not None:
         import capo_codecommit.types.file_mode_type_enum
 
         out["file_mode"] = (

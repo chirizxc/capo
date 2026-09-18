@@ -27,7 +27,7 @@ def serialize_json(value: BatchScheduleActionDeleteRequest) -> dict:
 
 def deserialize_json(data: dict) -> BatchScheduleActionDeleteRequest:
     out: BatchScheduleActionDeleteRequest = {}  # type: ignore[typeddict-item]
-    if "actionNames" in data:
+    if data.get("actionNames") is not None:
         import capo_medialive.types.__list_of__string
 
         out["action_names"] = capo_medialive.types.__list_of__string.deserialize_json(

@@ -44,7 +44,7 @@ def serialize_json(value: ControlFilter) -> dict:
 
 def deserialize_json(data: dict) -> ControlFilter:
     out: ControlFilter = {}  # type: ignore[typeddict-item]
-    if "Implementations" in data:
+    if data.get("Implementations") is not None:
         import capo_controlcatalog.types.implementation_filter
 
         out["implementations"] = (
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> ControlFilter:
                 data["Implementations"]
             )
         )
-    if "GovernedProviders" in data:
+    if data.get("GovernedProviders") is not None:
         import capo_controlcatalog.types.governed_provider_filter_list
 
         out["governed_providers"] = (

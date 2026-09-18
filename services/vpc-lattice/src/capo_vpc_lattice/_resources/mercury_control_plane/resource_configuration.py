@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import uuid
 from typing import TYPE_CHECKING, Optional
 
 import capo_vpc_lattice._auth._signers
@@ -130,9 +131,10 @@ class ResourceConfiguration:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_vpc_lattice.types.create_resource_configuration_request.CreateResourceConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        input_["type"] = type
+        input_: capo_vpc_lattice.types.create_resource_configuration_request.CreateResourceConfigurationRequest = {
+            "name": name,
+            "type": type,
+        }
         if port_ranges is not None:
             input_["port_ranges"] = port_ranges
         if protocol is not None:
@@ -157,8 +159,9 @@ class ResourceConfiguration:
             input_["group_domain"] = group_domain
         if domain_verification_identifier is not None:
             input_["domain_verification_identifier"] = domain_verification_identifier
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if tags is not None:
             input_["tags"] = tags
 
@@ -167,6 +170,7 @@ class ResourceConfiguration:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -204,14 +208,16 @@ class ResourceConfiguration:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_vpc_lattice.types.get_resource_configuration_request.GetResourceConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_configuration_identifier"] = resource_configuration_identifier
+        input_: capo_vpc_lattice.types.get_resource_configuration_request.GetResourceConfigurationRequest = {
+            "resource_configuration_identifier": resource_configuration_identifier
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update(
@@ -262,8 +268,9 @@ class ResourceConfiguration:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_vpc_lattice.types.update_resource_configuration_request.UpdateResourceConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_configuration_identifier"] = resource_configuration_identifier
+        input_: capo_vpc_lattice.types.update_resource_configuration_request.UpdateResourceConfigurationRequest = {
+            "resource_configuration_identifier": resource_configuration_identifier
+        }
         if resource_configuration_definition is not None:
             input_["resource_configuration_definition"] = (
                 resource_configuration_definition
@@ -280,6 +287,7 @@ class ResourceConfiguration:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -318,14 +326,16 @@ class ResourceConfiguration:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_vpc_lattice.types.delete_resource_configuration_request.DeleteResourceConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_configuration_identifier"] = resource_configuration_identifier
+        input_: capo_vpc_lattice.types.delete_resource_configuration_request.DeleteResourceConfigurationRequest = {
+            "resource_configuration_identifier": resource_configuration_identifier
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -376,7 +386,7 @@ class ResourceConfiguration:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_vpc_lattice.types.list_resource_configurations_request.ListResourceConfigurationsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_vpc_lattice.types.list_resource_configurations_request.ListResourceConfigurationsRequest = {}
         if resource_gateway_identifier is not None:
             input_["resource_gateway_identifier"] = resource_gateway_identifier
         if resource_configuration_group_identifier is not None:
@@ -395,6 +405,7 @@ class ResourceConfiguration:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -480,9 +491,10 @@ class AsyncResourceConfiguration:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_vpc_lattice.types.create_resource_configuration_request.CreateResourceConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        input_["type"] = type
+        input_: capo_vpc_lattice.types.create_resource_configuration_request.CreateResourceConfigurationRequest = {
+            "name": name,
+            "type": type,
+        }
         if port_ranges is not None:
             input_["port_ranges"] = port_ranges
         if protocol is not None:
@@ -507,8 +519,9 @@ class AsyncResourceConfiguration:
             input_["group_domain"] = group_domain
         if domain_verification_identifier is not None:
             input_["domain_verification_identifier"] = domain_verification_identifier
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if tags is not None:
             input_["tags"] = tags
 
@@ -517,6 +530,7 @@ class AsyncResourceConfiguration:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -555,14 +569,16 @@ class AsyncResourceConfiguration:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_vpc_lattice.types.get_resource_configuration_request.GetResourceConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_configuration_identifier"] = resource_configuration_identifier
+        input_: capo_vpc_lattice.types.get_resource_configuration_request.GetResourceConfigurationRequest = {
+            "resource_configuration_identifier": resource_configuration_identifier
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update(
@@ -614,8 +630,9 @@ class AsyncResourceConfiguration:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_vpc_lattice.types.update_resource_configuration_request.UpdateResourceConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_configuration_identifier"] = resource_configuration_identifier
+        input_: capo_vpc_lattice.types.update_resource_configuration_request.UpdateResourceConfigurationRequest = {
+            "resource_configuration_identifier": resource_configuration_identifier
+        }
         if resource_configuration_definition is not None:
             input_["resource_configuration_definition"] = (
                 resource_configuration_definition
@@ -632,6 +649,7 @@ class AsyncResourceConfiguration:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -671,14 +689,16 @@ class AsyncResourceConfiguration:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_vpc_lattice.types.delete_resource_configuration_request.DeleteResourceConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_configuration_identifier"] = resource_configuration_identifier
+        input_: capo_vpc_lattice.types.delete_resource_configuration_request.DeleteResourceConfigurationRequest = {
+            "resource_configuration_identifier": resource_configuration_identifier
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -730,7 +750,7 @@ class AsyncResourceConfiguration:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_vpc_lattice.types.list_resource_configurations_request.ListResourceConfigurationsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_vpc_lattice.types.list_resource_configurations_request.ListResourceConfigurationsRequest = {}
         if resource_gateway_identifier is not None:
             input_["resource_gateway_identifier"] = resource_gateway_identifier
         if resource_configuration_group_identifier is not None:
@@ -749,4 +769,5 @@ class AsyncResourceConfiguration:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

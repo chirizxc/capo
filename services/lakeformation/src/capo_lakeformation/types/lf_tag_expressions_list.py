@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> LFTagExpressionsList:
 
     out: LFTagExpressionsList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_lakeformation.types.lf_tag_expression.deserialize_json(item))
     return out

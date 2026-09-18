@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import uuid
 from typing import TYPE_CHECKING, Optional
 
 import capo_workspaces_web._auth._signers
@@ -153,7 +154,7 @@ class PortalResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_workspaces_web.types.create_portal_request.CreatePortalRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_workspaces_web.types.create_portal_request.CreatePortalRequest = {}
         if display_name is not None:
             input_["display_name"] = display_name
         if tags is not None:
@@ -162,8 +163,9 @@ class PortalResource:
             input_["customer_managed_key"] = customer_managed_key
         if additional_encryption_context is not None:
             input_["additional_encryption_context"] = additional_encryption_context
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if authentication_type is not None:
             input_["authentication_type"] = authentication_type
         if instance_type is not None:
@@ -178,6 +180,7 @@ class PortalResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -215,14 +218,16 @@ class PortalResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_workspaces_web.types.get_portal_request.GetPortalRequest = {}  # type: ignore[typeddict-item]
-        input_["portal_arn"] = portal_arn
+        input_: capo_workspaces_web.types.get_portal_request.GetPortalRequest = {
+            "portal_arn": portal_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update(
@@ -282,8 +287,9 @@ class PortalResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_workspaces_web.types.update_portal_request.UpdatePortalRequest = {}  # type: ignore[typeddict-item]
-        input_["portal_arn"] = portal_arn
+        input_: capo_workspaces_web.types.update_portal_request.UpdatePortalRequest = {
+            "portal_arn": portal_arn
+        }
         if display_name is not None:
             input_["display_name"] = display_name
         if authentication_type is not None:
@@ -300,6 +306,7 @@ class PortalResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -337,14 +344,16 @@ class PortalResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_workspaces_web.types.delete_portal_request.DeletePortalRequest = {}  # type: ignore[typeddict-item]
-        input_["portal_arn"] = portal_arn
+        input_: capo_workspaces_web.types.delete_portal_request.DeletePortalRequest = {
+            "portal_arn": portal_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -387,7 +396,7 @@ class PortalResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_workspaces_web.types.list_portals_request.ListPortalsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_workspaces_web.types.list_portals_request.ListPortalsRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -398,6 +407,7 @@ class PortalResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def associate_browser_settings(
@@ -438,15 +448,17 @@ class PortalResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_workspaces_web.types.associate_browser_settings_request.AssociateBrowserSettingsRequest = {}  # type: ignore[typeddict-item]
-        input_["portal_arn"] = portal_arn
-        input_["browser_settings_arn"] = browser_settings_arn
+        input_: capo_workspaces_web.types.associate_browser_settings_request.AssociateBrowserSettingsRequest = {
+            "portal_arn": portal_arn,
+            "browser_settings_arn": browser_settings_arn,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def associate_data_protection_settings(
@@ -487,15 +499,17 @@ class PortalResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_workspaces_web.types.associate_data_protection_settings_request.AssociateDataProtectionSettingsRequest = {}  # type: ignore[typeddict-item]
-        input_["portal_arn"] = portal_arn
-        input_["data_protection_settings_arn"] = data_protection_settings_arn
+        input_: capo_workspaces_web.types.associate_data_protection_settings_request.AssociateDataProtectionSettingsRequest = {
+            "portal_arn": portal_arn,
+            "data_protection_settings_arn": data_protection_settings_arn,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def associate_ip_access_settings(
@@ -536,15 +550,17 @@ class PortalResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_workspaces_web.types.associate_ip_access_settings_request.AssociateIpAccessSettingsRequest = {}  # type: ignore[typeddict-item]
-        input_["portal_arn"] = portal_arn
-        input_["ip_access_settings_arn"] = ip_access_settings_arn
+        input_: capo_workspaces_web.types.associate_ip_access_settings_request.AssociateIpAccessSettingsRequest = {
+            "portal_arn": portal_arn,
+            "ip_access_settings_arn": ip_access_settings_arn,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def associate_network_settings(
@@ -585,15 +601,17 @@ class PortalResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_workspaces_web.types.associate_network_settings_request.AssociateNetworkSettingsRequest = {}  # type: ignore[typeddict-item]
-        input_["portal_arn"] = portal_arn
-        input_["network_settings_arn"] = network_settings_arn
+        input_: capo_workspaces_web.types.associate_network_settings_request.AssociateNetworkSettingsRequest = {
+            "portal_arn": portal_arn,
+            "network_settings_arn": network_settings_arn,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def associate_session_logger(
@@ -640,15 +658,17 @@ class PortalResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_workspaces_web.types.associate_session_logger_request.AssociateSessionLoggerRequest = {}  # type: ignore[typeddict-item]
-        input_["portal_arn"] = portal_arn
-        input_["session_logger_arn"] = session_logger_arn
+        input_: capo_workspaces_web.types.associate_session_logger_request.AssociateSessionLoggerRequest = {
+            "portal_arn": portal_arn,
+            "session_logger_arn": session_logger_arn,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def associate_trust_store(
@@ -689,15 +709,17 @@ class PortalResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_workspaces_web.types.associate_trust_store_request.AssociateTrustStoreRequest = {}  # type: ignore[typeddict-item]
-        input_["portal_arn"] = portal_arn
-        input_["trust_store_arn"] = trust_store_arn
+        input_: capo_workspaces_web.types.associate_trust_store_request.AssociateTrustStoreRequest = {
+            "portal_arn": portal_arn,
+            "trust_store_arn": trust_store_arn,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def associate_user_access_logging_settings(
@@ -738,15 +760,17 @@ class PortalResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_workspaces_web.types.associate_user_access_logging_settings_request.AssociateUserAccessLoggingSettingsRequest = {}  # type: ignore[typeddict-item]
-        input_["portal_arn"] = portal_arn
-        input_["user_access_logging_settings_arn"] = user_access_logging_settings_arn
+        input_: capo_workspaces_web.types.associate_user_access_logging_settings_request.AssociateUserAccessLoggingSettingsRequest = {
+            "portal_arn": portal_arn,
+            "user_access_logging_settings_arn": user_access_logging_settings_arn,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def associate_user_settings(
@@ -787,15 +811,17 @@ class PortalResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_workspaces_web.types.associate_user_settings_request.AssociateUserSettingsRequest = {}  # type: ignore[typeddict-item]
-        input_["portal_arn"] = portal_arn
-        input_["user_settings_arn"] = user_settings_arn
+        input_: capo_workspaces_web.types.associate_user_settings_request.AssociateUserSettingsRequest = {
+            "portal_arn": portal_arn,
+            "user_settings_arn": user_settings_arn,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def disassociate_browser_settings(
@@ -834,14 +860,16 @@ class PortalResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_workspaces_web.types.disassociate_browser_settings_request.DisassociateBrowserSettingsRequest = {}  # type: ignore[typeddict-item]
-        input_["portal_arn"] = portal_arn
+        input_: capo_workspaces_web.types.disassociate_browser_settings_request.DisassociateBrowserSettingsRequest = {
+            "portal_arn": portal_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def disassociate_data_protection_settings(
@@ -880,14 +908,16 @@ class PortalResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_workspaces_web.types.disassociate_data_protection_settings_request.DisassociateDataProtectionSettingsRequest = {}  # type: ignore[typeddict-item]
-        input_["portal_arn"] = portal_arn
+        input_: capo_workspaces_web.types.disassociate_data_protection_settings_request.DisassociateDataProtectionSettingsRequest = {
+            "portal_arn": portal_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def disassociate_ip_access_settings(
@@ -926,14 +956,16 @@ class PortalResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_workspaces_web.types.disassociate_ip_access_settings_request.DisassociateIpAccessSettingsRequest = {}  # type: ignore[typeddict-item]
-        input_["portal_arn"] = portal_arn
+        input_: capo_workspaces_web.types.disassociate_ip_access_settings_request.DisassociateIpAccessSettingsRequest = {
+            "portal_arn": portal_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def disassociate_network_settings(
@@ -972,14 +1004,16 @@ class PortalResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_workspaces_web.types.disassociate_network_settings_request.DisassociateNetworkSettingsRequest = {}  # type: ignore[typeddict-item]
-        input_["portal_arn"] = portal_arn
+        input_: capo_workspaces_web.types.disassociate_network_settings_request.DisassociateNetworkSettingsRequest = {
+            "portal_arn": portal_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def disassociate_session_logger(
@@ -1023,14 +1057,16 @@ class PortalResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_workspaces_web.types.disassociate_session_logger_request.DisassociateSessionLoggerRequest = {}  # type: ignore[typeddict-item]
-        input_["portal_arn"] = portal_arn
+        input_: capo_workspaces_web.types.disassociate_session_logger_request.DisassociateSessionLoggerRequest = {
+            "portal_arn": portal_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def disassociate_trust_store(
@@ -1069,14 +1105,16 @@ class PortalResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_workspaces_web.types.disassociate_trust_store_request.DisassociateTrustStoreRequest = {}  # type: ignore[typeddict-item]
-        input_["portal_arn"] = portal_arn
+        input_: capo_workspaces_web.types.disassociate_trust_store_request.DisassociateTrustStoreRequest = {
+            "portal_arn": portal_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def disassociate_user_access_logging_settings(
@@ -1115,14 +1153,16 @@ class PortalResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_workspaces_web.types.disassociate_user_access_logging_settings_request.DisassociateUserAccessLoggingSettingsRequest = {}  # type: ignore[typeddict-item]
-        input_["portal_arn"] = portal_arn
+        input_: capo_workspaces_web.types.disassociate_user_access_logging_settings_request.DisassociateUserAccessLoggingSettingsRequest = {
+            "portal_arn": portal_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def disassociate_user_settings(
@@ -1161,14 +1201,16 @@ class PortalResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_workspaces_web.types.disassociate_user_settings_request.DisassociateUserSettingsRequest = {}  # type: ignore[typeddict-item]
-        input_["portal_arn"] = portal_arn
+        input_: capo_workspaces_web.types.disassociate_user_settings_request.DisassociateUserSettingsRequest = {
+            "portal_arn": portal_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_portal_service_provider_metadata(
@@ -1206,14 +1248,16 @@ class PortalResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_workspaces_web.types.get_portal_service_provider_metadata_request.GetPortalServiceProviderMetadataRequest = {}  # type: ignore[typeddict-item]
-        input_["portal_arn"] = portal_arn
+        input_: capo_workspaces_web.types.get_portal_service_provider_metadata_request.GetPortalServiceProviderMetadataRequest = {
+            "portal_arn": portal_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -1291,7 +1335,7 @@ class AsyncPortalResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_workspaces_web.types.create_portal_request.CreatePortalRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_workspaces_web.types.create_portal_request.CreatePortalRequest = {}
         if display_name is not None:
             input_["display_name"] = display_name
         if tags is not None:
@@ -1300,8 +1344,9 @@ class AsyncPortalResource:
             input_["customer_managed_key"] = customer_managed_key
         if additional_encryption_context is not None:
             input_["additional_encryption_context"] = additional_encryption_context
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if authentication_type is not None:
             input_["authentication_type"] = authentication_type
         if instance_type is not None:
@@ -1316,6 +1361,7 @@ class AsyncPortalResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -1354,14 +1400,16 @@ class AsyncPortalResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_workspaces_web.types.get_portal_request.GetPortalRequest = {}  # type: ignore[typeddict-item]
-        input_["portal_arn"] = portal_arn
+        input_: capo_workspaces_web.types.get_portal_request.GetPortalRequest = {
+            "portal_arn": portal_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update(
@@ -1422,8 +1470,9 @@ class AsyncPortalResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_workspaces_web.types.update_portal_request.UpdatePortalRequest = {}  # type: ignore[typeddict-item]
-        input_["portal_arn"] = portal_arn
+        input_: capo_workspaces_web.types.update_portal_request.UpdatePortalRequest = {
+            "portal_arn": portal_arn
+        }
         if display_name is not None:
             input_["display_name"] = display_name
         if authentication_type is not None:
@@ -1440,6 +1489,7 @@ class AsyncPortalResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -1478,14 +1528,16 @@ class AsyncPortalResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_workspaces_web.types.delete_portal_request.DeletePortalRequest = {}  # type: ignore[typeddict-item]
-        input_["portal_arn"] = portal_arn
+        input_: capo_workspaces_web.types.delete_portal_request.DeletePortalRequest = {
+            "portal_arn": portal_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -1529,7 +1581,7 @@ class AsyncPortalResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_workspaces_web.types.list_portals_request.ListPortalsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_workspaces_web.types.list_portals_request.ListPortalsRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -1540,6 +1592,7 @@ class AsyncPortalResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def associate_browser_settings(
@@ -1581,15 +1634,17 @@ class AsyncPortalResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_workspaces_web.types.associate_browser_settings_request.AssociateBrowserSettingsRequest = {}  # type: ignore[typeddict-item]
-        input_["portal_arn"] = portal_arn
-        input_["browser_settings_arn"] = browser_settings_arn
+        input_: capo_workspaces_web.types.associate_browser_settings_request.AssociateBrowserSettingsRequest = {
+            "portal_arn": portal_arn,
+            "browser_settings_arn": browser_settings_arn,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def associate_data_protection_settings(
@@ -1631,15 +1686,17 @@ class AsyncPortalResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_workspaces_web.types.associate_data_protection_settings_request.AssociateDataProtectionSettingsRequest = {}  # type: ignore[typeddict-item]
-        input_["portal_arn"] = portal_arn
-        input_["data_protection_settings_arn"] = data_protection_settings_arn
+        input_: capo_workspaces_web.types.associate_data_protection_settings_request.AssociateDataProtectionSettingsRequest = {
+            "portal_arn": portal_arn,
+            "data_protection_settings_arn": data_protection_settings_arn,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def associate_ip_access_settings(
@@ -1681,15 +1738,17 @@ class AsyncPortalResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_workspaces_web.types.associate_ip_access_settings_request.AssociateIpAccessSettingsRequest = {}  # type: ignore[typeddict-item]
-        input_["portal_arn"] = portal_arn
-        input_["ip_access_settings_arn"] = ip_access_settings_arn
+        input_: capo_workspaces_web.types.associate_ip_access_settings_request.AssociateIpAccessSettingsRequest = {
+            "portal_arn": portal_arn,
+            "ip_access_settings_arn": ip_access_settings_arn,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def associate_network_settings(
@@ -1731,15 +1790,17 @@ class AsyncPortalResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_workspaces_web.types.associate_network_settings_request.AssociateNetworkSettingsRequest = {}  # type: ignore[typeddict-item]
-        input_["portal_arn"] = portal_arn
-        input_["network_settings_arn"] = network_settings_arn
+        input_: capo_workspaces_web.types.associate_network_settings_request.AssociateNetworkSettingsRequest = {
+            "portal_arn": portal_arn,
+            "network_settings_arn": network_settings_arn,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def associate_session_logger(
@@ -1787,15 +1848,17 @@ class AsyncPortalResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_workspaces_web.types.associate_session_logger_request.AssociateSessionLoggerRequest = {}  # type: ignore[typeddict-item]
-        input_["portal_arn"] = portal_arn
-        input_["session_logger_arn"] = session_logger_arn
+        input_: capo_workspaces_web.types.associate_session_logger_request.AssociateSessionLoggerRequest = {
+            "portal_arn": portal_arn,
+            "session_logger_arn": session_logger_arn,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def associate_trust_store(
@@ -1837,15 +1900,17 @@ class AsyncPortalResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_workspaces_web.types.associate_trust_store_request.AssociateTrustStoreRequest = {}  # type: ignore[typeddict-item]
-        input_["portal_arn"] = portal_arn
-        input_["trust_store_arn"] = trust_store_arn
+        input_: capo_workspaces_web.types.associate_trust_store_request.AssociateTrustStoreRequest = {
+            "portal_arn": portal_arn,
+            "trust_store_arn": trust_store_arn,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def associate_user_access_logging_settings(
@@ -1887,15 +1952,17 @@ class AsyncPortalResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_workspaces_web.types.associate_user_access_logging_settings_request.AssociateUserAccessLoggingSettingsRequest = {}  # type: ignore[typeddict-item]
-        input_["portal_arn"] = portal_arn
-        input_["user_access_logging_settings_arn"] = user_access_logging_settings_arn
+        input_: capo_workspaces_web.types.associate_user_access_logging_settings_request.AssociateUserAccessLoggingSettingsRequest = {
+            "portal_arn": portal_arn,
+            "user_access_logging_settings_arn": user_access_logging_settings_arn,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def associate_user_settings(
@@ -1937,15 +2004,17 @@ class AsyncPortalResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_workspaces_web.types.associate_user_settings_request.AssociateUserSettingsRequest = {}  # type: ignore[typeddict-item]
-        input_["portal_arn"] = portal_arn
-        input_["user_settings_arn"] = user_settings_arn
+        input_: capo_workspaces_web.types.associate_user_settings_request.AssociateUserSettingsRequest = {
+            "portal_arn": portal_arn,
+            "user_settings_arn": user_settings_arn,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def disassociate_browser_settings(
@@ -1985,14 +2054,16 @@ class AsyncPortalResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_workspaces_web.types.disassociate_browser_settings_request.DisassociateBrowserSettingsRequest = {}  # type: ignore[typeddict-item]
-        input_["portal_arn"] = portal_arn
+        input_: capo_workspaces_web.types.disassociate_browser_settings_request.DisassociateBrowserSettingsRequest = {
+            "portal_arn": portal_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def disassociate_data_protection_settings(
@@ -2032,14 +2103,16 @@ class AsyncPortalResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_workspaces_web.types.disassociate_data_protection_settings_request.DisassociateDataProtectionSettingsRequest = {}  # type: ignore[typeddict-item]
-        input_["portal_arn"] = portal_arn
+        input_: capo_workspaces_web.types.disassociate_data_protection_settings_request.DisassociateDataProtectionSettingsRequest = {
+            "portal_arn": portal_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def disassociate_ip_access_settings(
@@ -2079,14 +2152,16 @@ class AsyncPortalResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_workspaces_web.types.disassociate_ip_access_settings_request.DisassociateIpAccessSettingsRequest = {}  # type: ignore[typeddict-item]
-        input_["portal_arn"] = portal_arn
+        input_: capo_workspaces_web.types.disassociate_ip_access_settings_request.DisassociateIpAccessSettingsRequest = {
+            "portal_arn": portal_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def disassociate_network_settings(
@@ -2126,14 +2201,16 @@ class AsyncPortalResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_workspaces_web.types.disassociate_network_settings_request.DisassociateNetworkSettingsRequest = {}  # type: ignore[typeddict-item]
-        input_["portal_arn"] = portal_arn
+        input_: capo_workspaces_web.types.disassociate_network_settings_request.DisassociateNetworkSettingsRequest = {
+            "portal_arn": portal_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def disassociate_session_logger(
@@ -2178,14 +2255,16 @@ class AsyncPortalResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_workspaces_web.types.disassociate_session_logger_request.DisassociateSessionLoggerRequest = {}  # type: ignore[typeddict-item]
-        input_["portal_arn"] = portal_arn
+        input_: capo_workspaces_web.types.disassociate_session_logger_request.DisassociateSessionLoggerRequest = {
+            "portal_arn": portal_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def disassociate_trust_store(
@@ -2225,14 +2304,16 @@ class AsyncPortalResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_workspaces_web.types.disassociate_trust_store_request.DisassociateTrustStoreRequest = {}  # type: ignore[typeddict-item]
-        input_["portal_arn"] = portal_arn
+        input_: capo_workspaces_web.types.disassociate_trust_store_request.DisassociateTrustStoreRequest = {
+            "portal_arn": portal_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def disassociate_user_access_logging_settings(
@@ -2272,14 +2353,16 @@ class AsyncPortalResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_workspaces_web.types.disassociate_user_access_logging_settings_request.DisassociateUserAccessLoggingSettingsRequest = {}  # type: ignore[typeddict-item]
-        input_["portal_arn"] = portal_arn
+        input_: capo_workspaces_web.types.disassociate_user_access_logging_settings_request.DisassociateUserAccessLoggingSettingsRequest = {
+            "portal_arn": portal_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def disassociate_user_settings(
@@ -2319,14 +2402,16 @@ class AsyncPortalResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_workspaces_web.types.disassociate_user_settings_request.DisassociateUserSettingsRequest = {}  # type: ignore[typeddict-item]
-        input_["portal_arn"] = portal_arn
+        input_: capo_workspaces_web.types.disassociate_user_settings_request.DisassociateUserSettingsRequest = {
+            "portal_arn": portal_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_portal_service_provider_metadata(
@@ -2365,12 +2450,14 @@ class AsyncPortalResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_workspaces_web.types.get_portal_service_provider_metadata_request.GetPortalServiceProviderMetadataRequest = {}  # type: ignore[typeddict-item]
-        input_["portal_arn"] = portal_arn
+        input_: capo_workspaces_web.types.get_portal_service_provider_metadata_request.GetPortalServiceProviderMetadataRequest = {
+            "portal_arn": portal_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

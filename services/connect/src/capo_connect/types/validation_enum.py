@@ -33,11 +33,11 @@ def serialize_json(value: ValidationEnum) -> dict:
 
 def deserialize_json(data: dict) -> ValidationEnum:
     out: ValidationEnum = {}  # type: ignore[typeddict-item]
-    if "Strict" in data:
+    if data.get("Strict") is not None:
         out["strict"] = data["Strict"]
     else:
         out["strict"] = False
-    if "Values" in data:
+    if data.get("Values") is not None:
         import capo_connect.types.validation_enum_values
 
         out["values"] = capo_connect.types.validation_enum_values.deserialize_json(

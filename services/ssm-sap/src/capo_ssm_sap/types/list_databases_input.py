@@ -38,12 +38,12 @@ def serialize_json(value: ListDatabasesInput) -> dict:
 
 def deserialize_json(data: dict) -> ListDatabasesInput:
     out: ListDatabasesInput = {}  # type: ignore[typeddict-item]
-    if "ApplicationId" in data:
+    if data.get("ApplicationId") is not None:
         out["application_id"] = data["ApplicationId"]
-    if "ComponentId" in data:
+    if data.get("ComponentId") is not None:
         out["component_id"] = data["ComponentId"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
     return out

@@ -24,7 +24,7 @@ def serialize_json(value: CreateQuantumTaskResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateQuantumTaskResponse:
     out: CreateQuantumTaskResponse = {}  # type: ignore[typeddict-item]
-    if "quantumTaskArn" in data:
+    if data.get("quantumTaskArn") is not None:
         out["quantum_task_arn"] = data["quantumTaskArn"]
     else:
         raise DeserializationError(

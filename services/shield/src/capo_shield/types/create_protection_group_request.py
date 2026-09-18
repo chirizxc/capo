@@ -77,13 +77,13 @@ def serialize_aws_json_1_1(value: CreateProtectionGroupRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateProtectionGroupRequest:
     out: CreateProtectionGroupRequest = {}  # type: ignore[typeddict-item]
-    if "ProtectionGroupId" in data:
+    if data.get("ProtectionGroupId") is not None:
         out["protection_group_id"] = data["ProtectionGroupId"]
     else:
         raise DeserializationError(
             "CreateProtectionGroupRequest.protection_group_id required"
         )
-    if "Aggregation" in data:
+    if data.get("Aggregation") is not None:
         import capo_shield.types.protection_group_aggregation
 
         out["aggregation"] = (
@@ -93,7 +93,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateProtectionGroupRequest:
         )
     else:
         raise DeserializationError("CreateProtectionGroupRequest.aggregation required")
-    if "Pattern" in data:
+    if data.get("Pattern") is not None:
         import capo_shield.types.protection_group_pattern
 
         out["pattern"] = (
@@ -103,7 +103,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateProtectionGroupRequest:
         )
     else:
         raise DeserializationError("CreateProtectionGroupRequest.pattern required")
-    if "ResourceType" in data:
+    if data.get("ResourceType") is not None:
         import capo_shield.types.protected_resource_type
 
         out["resource_type"] = (
@@ -111,7 +111,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateProtectionGroupRequest:
                 data["ResourceType"]
             )
         )
-    if "Members" in data:
+    if data.get("Members") is not None:
         import capo_shield.types.protection_group_members
 
         out["members"] = (
@@ -119,7 +119,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateProtectionGroupRequest:
                 data["Members"]
             )
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_shield.types.tag_list
 
         out["tags"] = capo_shield.types.tag_list.deserialize_aws_json_1_1(data["Tags"])

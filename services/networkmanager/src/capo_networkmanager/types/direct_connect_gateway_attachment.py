@@ -33,12 +33,12 @@ def serialize_json(value: DirectConnectGatewayAttachment) -> dict:
 
 def deserialize_json(data: dict) -> DirectConnectGatewayAttachment:
     out: DirectConnectGatewayAttachment = {}  # type: ignore[typeddict-item]
-    if "Attachment" in data:
+    if data.get("Attachment") is not None:
         import capo_networkmanager.types.attachment
 
         out["attachment"] = capo_networkmanager.types.attachment.deserialize_json(
             data["Attachment"]
         )
-    if "DirectConnectGatewayArn" in data:
+    if data.get("DirectConnectGatewayArn") is not None:
         out["direct_connect_gateway_arn"] = data["DirectConnectGatewayArn"]
     return out

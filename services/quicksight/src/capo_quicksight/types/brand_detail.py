@@ -93,25 +93,25 @@ def serialize_json(value: BrandDetail) -> dict:
 
 def deserialize_json(data: dict) -> BrandDetail:
     out: BrandDetail = {}  # type: ignore[typeddict-item]
-    if "BrandId" in data:
+    if data.get("BrandId") is not None:
         out["brand_id"] = data["BrandId"]
     else:
         raise DeserializationError("BrandDetail.brand_id required")
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "BrandStatus" in data:
+    if data.get("BrandStatus") is not None:
         import capo_quicksight.types.brand_status
 
         out["brand_status"] = capo_quicksight.types.brand_status.deserialize_json(
             data["BrandStatus"]
         )
-    if "CreatedTime" in data:
+    if data.get("CreatedTime") is not None:
         import capo_quicksight.types._prelude.timestamp
 
         out["created_time"] = capo_quicksight.types._prelude.timestamp.deserialize_json(
             data["CreatedTime"]
         )
-    if "LastUpdatedTime" in data:
+    if data.get("LastUpdatedTime") is not None:
         import capo_quicksight.types._prelude.timestamp
 
         out["last_updated_time"] = (
@@ -119,9 +119,9 @@ def deserialize_json(data: dict) -> BrandDetail:
                 data["LastUpdatedTime"]
             )
         )
-    if "VersionId" in data:
+    if data.get("VersionId") is not None:
         out["version_id"] = data["VersionId"]
-    if "VersionStatus" in data:
+    if data.get("VersionStatus") is not None:
         import capo_quicksight.types.brand_version_status
 
         out["version_status"] = (
@@ -129,13 +129,13 @@ def deserialize_json(data: dict) -> BrandDetail:
                 data["VersionStatus"]
             )
         )
-    if "Errors" in data:
+    if data.get("Errors") is not None:
         import capo_quicksight.types.error_list
 
         out["errors"] = capo_quicksight.types.error_list.deserialize_json(
             data["Errors"]
         )
-    if "Logo" in data:
+    if data.get("Logo") is not None:
         import capo_quicksight.types.logo
 
         out["logo"] = capo_quicksight.types.logo.deserialize_json(data["Logo"])

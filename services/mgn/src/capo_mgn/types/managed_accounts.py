@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> ManagedAccounts:
 
     out: ManagedAccounts = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_mgn.types.managed_account.deserialize_json(item))
     return out

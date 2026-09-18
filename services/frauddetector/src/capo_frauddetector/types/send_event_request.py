@@ -61,19 +61,19 @@ def serialize_aws_json_1_1(value: SendEventRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SendEventRequest:
     out: SendEventRequest = {}  # type: ignore[typeddict-item]
-    if "eventId" in data:
+    if data.get("eventId") is not None:
         out["event_id"] = data["eventId"]
     else:
         raise DeserializationError("SendEventRequest.event_id required")
-    if "eventTypeName" in data:
+    if data.get("eventTypeName") is not None:
         out["event_type_name"] = data["eventTypeName"]
     else:
         raise DeserializationError("SendEventRequest.event_type_name required")
-    if "eventTimestamp" in data:
+    if data.get("eventTimestamp") is not None:
         out["event_timestamp"] = data["eventTimestamp"]
     else:
         raise DeserializationError("SendEventRequest.event_timestamp required")
-    if "eventVariables" in data:
+    if data.get("eventVariables") is not None:
         import capo_frauddetector.types.event_variable_map
 
         out["event_variables"] = (
@@ -83,11 +83,11 @@ def deserialize_aws_json_1_1(data: dict) -> SendEventRequest:
         )
     else:
         raise DeserializationError("SendEventRequest.event_variables required")
-    if "assignedLabel" in data:
+    if data.get("assignedLabel") is not None:
         out["assigned_label"] = data["assignedLabel"]
-    if "labelTimestamp" in data:
+    if data.get("labelTimestamp") is not None:
         out["label_timestamp"] = data["labelTimestamp"]
-    if "entities" in data:
+    if data.get("entities") is not None:
         import capo_frauddetector.types.list_of_entities
 
         out["entities"] = (

@@ -68,7 +68,7 @@ def serialize_json(value: EcdhDerivationAttributes) -> dict:
 
 def deserialize_json(data: dict) -> EcdhDerivationAttributes:
     out: EcdhDerivationAttributes = {}  # type: ignore[typeddict-item]
-    if "CertificateAuthorityPublicKeyIdentifier" in data:
+    if data.get("CertificateAuthorityPublicKeyIdentifier") is not None:
         out["certificate_authority_public_key_identifier"] = data[
             "CertificateAuthorityPublicKeyIdentifier"
         ]
@@ -76,13 +76,13 @@ def deserialize_json(data: dict) -> EcdhDerivationAttributes:
         raise DeserializationError(
             "EcdhDerivationAttributes.certificate_authority_public_key_identifier required"
         )
-    if "PublicKeyCertificate" in data:
+    if data.get("PublicKeyCertificate") is not None:
         out["public_key_certificate"] = data["PublicKeyCertificate"]
     else:
         raise DeserializationError(
             "EcdhDerivationAttributes.public_key_certificate required"
         )
-    if "KeyAlgorithm" in data:
+    if data.get("KeyAlgorithm") is not None:
         import capo_payment_cryptography_data.types.symmetric_key_algorithm
 
         out["key_algorithm"] = (
@@ -92,7 +92,7 @@ def deserialize_json(data: dict) -> EcdhDerivationAttributes:
         )
     else:
         raise DeserializationError("EcdhDerivationAttributes.key_algorithm required")
-    if "KeyDerivationFunction" in data:
+    if data.get("KeyDerivationFunction") is not None:
         import capo_payment_cryptography_data.types.key_derivation_function
 
         out["key_derivation_function"] = (
@@ -104,7 +104,7 @@ def deserialize_json(data: dict) -> EcdhDerivationAttributes:
         raise DeserializationError(
             "EcdhDerivationAttributes.key_derivation_function required"
         )
-    if "KeyDerivationHashAlgorithm" in data:
+    if data.get("KeyDerivationHashAlgorithm") is not None:
         import capo_payment_cryptography_data.types.key_derivation_hash_algorithm
 
         out["key_derivation_hash_algorithm"] = (
@@ -116,7 +116,7 @@ def deserialize_json(data: dict) -> EcdhDerivationAttributes:
         raise DeserializationError(
             "EcdhDerivationAttributes.key_derivation_hash_algorithm required"
         )
-    if "SharedInformation" in data:
+    if data.get("SharedInformation") is not None:
         out["shared_information"] = data["SharedInformation"]
     else:
         raise DeserializationError(

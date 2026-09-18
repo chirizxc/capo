@@ -37,6 +37,8 @@ class CreateBillScenarioRequest(TypedDict, closed=True):
 def serialize_aws_json_1_0(value: CreateBillScenarioRequest) -> dict:
     out: dict = {}
     out["name"] = value["name"]
+    if "client_token" in value:
+        out["clientToken"] = value["client_token"]
     if "tags" in value:
         import capo_bcm_pricing_calculator.types.tags
 
@@ -60,17 +62,19 @@ def serialize_aws_json_1_0(value: CreateBillScenarioRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CreateBillScenarioRequest:
     out: CreateBillScenarioRequest = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("CreateBillScenarioRequest.name required")
-    if "tags" in data:
+    if data.get("clientToken") is not None:
+        out["client_token"] = data["clientToken"]
+    if data.get("tags") is not None:
         import capo_bcm_pricing_calculator.types.tags
 
         out["tags"] = capo_bcm_pricing_calculator.types.tags.deserialize_aws_json_1_0(
             data["tags"]
         )
-    if "groupSharingPreference" in data:
+    if data.get("groupSharingPreference") is not None:
         import capo_bcm_pricing_calculator.types.group_sharing_preference_enum
 
         out["group_sharing_preference"] = (
@@ -78,7 +82,7 @@ def deserialize_aws_json_1_0(data: dict) -> CreateBillScenarioRequest:
                 data["groupSharingPreference"]
             )
         )
-    if "costCategoryGroupSharingPreferenceArn" in data:
+    if data.get("costCategoryGroupSharingPreferenceArn") is not None:
         out["cost_category_group_sharing_preference_arn"] = data[
             "costCategoryGroupSharingPreferenceArn"
         ]

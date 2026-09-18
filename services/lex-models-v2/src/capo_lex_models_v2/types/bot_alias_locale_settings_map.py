@@ -27,6 +27,8 @@ def serialize_json(input_to_serialize: BotAliasLocaleSettingsMap) -> dict:
 def deserialize_json(data: dict) -> BotAliasLocaleSettingsMap:
     out: BotAliasLocaleSettingsMap = {}
     for key, value in data.items():
+        if value is None:
+            continue
         import capo_lex_models_v2.types.bot_alias_locale_settings
 
         out[key] = capo_lex_models_v2.types.bot_alias_locale_settings.deserialize_json(

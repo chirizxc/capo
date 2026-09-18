@@ -37,10 +37,10 @@ def serialize_aws_json_1_0(value: ListStreamsInput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ListStreamsInput:
     out: ListStreamsInput = {}  # type: ignore[typeddict-item]
-    if "TableName" in data:
+    if data.get("TableName") is not None:
         out["table_name"] = data["TableName"]
-    if "Limit" in data:
+    if data.get("Limit") is not None:
         out["limit"] = data["Limit"]
-    if "ExclusiveStartStreamArn" in data:
+    if data.get("ExclusiveStartStreamArn") is not None:
         out["exclusive_start_stream_arn"] = data["ExclusiveStartStreamArn"]
     return out

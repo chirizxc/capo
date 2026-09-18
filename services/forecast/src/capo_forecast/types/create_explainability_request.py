@@ -77,17 +77,17 @@ def serialize_aws_json_1_1(value: CreateExplainabilityRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateExplainabilityRequest:
     out: CreateExplainabilityRequest = {}  # type: ignore[typeddict-item]
-    if "ExplainabilityName" in data:
+    if data.get("ExplainabilityName") is not None:
         out["explainability_name"] = data["ExplainabilityName"]
     else:
         raise DeserializationError(
             "CreateExplainabilityRequest.explainability_name required"
         )
-    if "ResourceArn" in data:
+    if data.get("ResourceArn") is not None:
         out["resource_arn"] = data["ResourceArn"]
     else:
         raise DeserializationError("CreateExplainabilityRequest.resource_arn required")
-    if "ExplainabilityConfig" in data:
+    if data.get("ExplainabilityConfig") is not None:
         import capo_forecast.types.explainability_config
 
         out["explainability_config"] = (
@@ -99,25 +99,25 @@ def deserialize_aws_json_1_1(data: dict) -> CreateExplainabilityRequest:
         raise DeserializationError(
             "CreateExplainabilityRequest.explainability_config required"
         )
-    if "DataSource" in data:
+    if data.get("DataSource") is not None:
         import capo_forecast.types.data_source
 
         out["data_source"] = capo_forecast.types.data_source.deserialize_aws_json_1_1(
             data["DataSource"]
         )
-    if "Schema" in data:
+    if data.get("Schema") is not None:
         import capo_forecast.types.schema
 
         out["schema"] = capo_forecast.types.schema.deserialize_aws_json_1_1(
             data["Schema"]
         )
-    if "EnableVisualization" in data:
+    if data.get("EnableVisualization") is not None:
         out["enable_visualization"] = data["EnableVisualization"]
-    if "StartDateTime" in data:
+    if data.get("StartDateTime") is not None:
         out["start_date_time"] = data["StartDateTime"]
-    if "EndDateTime" in data:
+    if data.get("EndDateTime") is not None:
         out["end_date_time"] = data["EndDateTime"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_forecast.types.tags
 
         out["tags"] = capo_forecast.types.tags.deserialize_aws_json_1_1(data["Tags"])

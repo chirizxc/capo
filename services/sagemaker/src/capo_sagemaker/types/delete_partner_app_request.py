@@ -28,8 +28,8 @@ def serialize_aws_json_1_1(value: DeletePartnerAppRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeletePartnerAppRequest:
     out: DeletePartnerAppRequest = {}  # type: ignore[typeddict-item]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
     return out

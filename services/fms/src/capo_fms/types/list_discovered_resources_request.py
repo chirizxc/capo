@@ -44,7 +44,7 @@ def serialize_aws_json_1_1(value: ListDiscoveredResourcesRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListDiscoveredResourcesRequest:
     out: ListDiscoveredResourcesRequest = {}  # type: ignore[typeddict-item]
-    if "MemberAccountIds" in data:
+    if data.get("MemberAccountIds") is not None:
         import capo_fms.types.aws_account_id_list
 
         out["member_account_ids"] = (
@@ -56,14 +56,14 @@ def deserialize_aws_json_1_1(data: dict) -> ListDiscoveredResourcesRequest:
         raise DeserializationError(
             "ListDiscoveredResourcesRequest.member_account_ids required"
         )
-    if "ResourceType" in data:
+    if data.get("ResourceType") is not None:
         out["resource_type"] = data["ResourceType"]
     else:
         raise DeserializationError(
             "ListDiscoveredResourcesRequest.resource_type required"
         )
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> ExportSummaryList:
 
     out: ExportSummaryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_lex_models_v2.types.export_summary.deserialize_json(item))
     return out

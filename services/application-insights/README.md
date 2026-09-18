@@ -13,10 +13,25 @@ from capo_application_insights import AsyncApplicationInsightsClient
 
 
 async def main():
-    async with AsyncApplicationInsightsClient() as s3:
+    async with AsyncApplicationInsightsClient() as application_insights:
         # Example: call the add_workload operation
-        response = await s3.add_workload()
+        response = await application_insights.add_workload()
         print(response["workload_id"])
+```
+
+## Pagination
+
+Some operations in this SDK support pagination. If the operation supports pagination it will have an `iter_` prefixed method that returns an async iterator.
+
+```python
+from capo_application_insights import AsyncApplicationInsightsClient
+
+
+async def main():
+    async with AsyncApplicationInsightsClient() as application_insights:
+        # Example: paginate over list_applications
+        async for item in application_insights.iter_list_applications():
+            print(item)
 ```
 
 ## Error Handling
@@ -29,9 +44,9 @@ from capo_application_insights.error import InternalServerException
 
 
 async def main():
-    async with AsyncApplicationInsightsClient() as s3:
+    async with AsyncApplicationInsightsClient() as application_insights:
         try:
-            await s3.add_workload()
+            await application_insights.add_workload()
         except InternalServerException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -48,13 +63,13 @@ from capo_application_insights import AsyncApplicationInsightsClient
 
 
 async def main():
-    async with AsyncApplicationInsightsClient() as s3:
+    async with AsyncApplicationInsightsClient() as application_insights:
         # Default: 3 attempts for every operation
-        response = await s3.add_workload()
+        response = await application_insights.add_workload()
 
         # Override per operation
-        response = await s3.add_workload(config_overrides={"retry_max_attempts": 5})
+        response = await application_insights.add_workload(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.add_workload(config_overrides={"retry_max_attempts": 1})
+        response = await application_insights.add_workload(config_overrides={"retry_max_attempts": 1})
 ```

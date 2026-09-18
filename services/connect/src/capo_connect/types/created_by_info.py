@@ -32,9 +32,9 @@ def serialize_json(value: CreatedByInfo) -> dict:
 
 
 def deserialize_json(data: dict) -> CreatedByInfo:
-    if "ConnectUserArn" in data:
+    if data.get("ConnectUserArn") is not None:
         return {"ConnectUserArn": data["ConnectUserArn"]}
-    elif "AWSIdentityArn" in data:
+    elif data.get("AWSIdentityArn") is not None:
         return {"AWSIdentityArn": data["AWSIdentityArn"]}
     else:
         raise DeserializationError("CreatedByInfo: no recognized variant key")

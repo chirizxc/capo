@@ -32,15 +32,15 @@ def serialize_aws_json_1_0(value: GetTemplateSyncStatusInput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> GetTemplateSyncStatusInput:
     out: GetTemplateSyncStatusInput = {}  # type: ignore[typeddict-item]
-    if "templateName" in data:
+    if data.get("templateName") is not None:
         out["template_name"] = data["templateName"]
     else:
         raise DeserializationError("GetTemplateSyncStatusInput.template_name required")
-    if "templateType" in data:
+    if data.get("templateType") is not None:
         out["template_type"] = data["templateType"]
     else:
         raise DeserializationError("GetTemplateSyncStatusInput.template_type required")
-    if "templateVersion" in data:
+    if data.get("templateVersion") is not None:
         out["template_version"] = data["templateVersion"]
     else:
         raise DeserializationError(

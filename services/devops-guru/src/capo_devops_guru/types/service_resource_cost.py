@@ -40,16 +40,32 @@ def serialize_json(value: ServiceResourceCost) -> dict:
             )
         )
     out["Count"] = value.get("count", 0)
-    out["UnitCost"] = value.get("unit_cost", 0)
-    out["Cost"] = value.get("cost", 0)
+    out["UnitCost"] = (
+        "NaN"
+        if value.get("unit_cost", 0) != value.get("unit_cost", 0)
+        else "Infinity"
+        if value.get("unit_cost", 0) == float("inf")
+        else "-Infinity"
+        if value.get("unit_cost", 0) == float("-inf")
+        else value.get("unit_cost", 0)
+    )
+    out["Cost"] = (
+        "NaN"
+        if value.get("cost", 0) != value.get("cost", 0)
+        else "Infinity"
+        if value.get("cost", 0) == float("inf")
+        else "-Infinity"
+        if value.get("cost", 0) == float("-inf")
+        else value.get("cost", 0)
+    )
     return out
 
 
 def deserialize_json(data: dict) -> ServiceResourceCost:
     out: ServiceResourceCost = {}  # type: ignore[typeddict-item]
-    if "Type" in data:
+    if data.get("Type") is not None:
         out["type"] = data["Type"]
-    if "State" in data:
+    if data.get("State") is not None:
         import capo_devops_guru.types.cost_estimation_service_resource_state
 
         out["state"] = (
@@ -57,16 +73,16 @@ def deserialize_json(data: dict) -> ServiceResourceCost:
                 data["State"]
             )
         )
-    if "Count" in data:
+    if data.get("Count") is not None:
         out["count"] = data["Count"]
     else:
         out["count"] = 0
-    if "UnitCost" in data:
-        out["unit_cost"] = data["UnitCost"]
+    if data.get("UnitCost") is not None:
+        out["unit_cost"] = float(data["UnitCost"])
     else:
         out["unit_cost"] = 0
-    if "Cost" in data:
-        out["cost"] = data["Cost"]
+    if data.get("Cost") is not None:
+        out["cost"] = float(data["Cost"])
     else:
         out["cost"] = 0
     return out

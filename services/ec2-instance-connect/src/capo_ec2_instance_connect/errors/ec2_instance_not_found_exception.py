@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: EC2InstanceNotFoundException_) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> EC2InstanceNotFoundException_:
     out: EC2InstanceNotFoundException_ = {}  # type: ignore[typeddict-item]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     return out
 
@@ -34,15 +34,18 @@ class EC2InstanceNotFoundException(ServiceError):
 
     code: str | None = "EC2InstanceNotFoundException"
 
-    def __init__(self, data: EC2InstanceNotFoundException_):
+    def __init__(self, data: EC2InstanceNotFoundException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="EC2InstanceNotFoundException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "EC2InstanceNotFoundException":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "EC2InstanceNotFoundException":
+        return cls(deserialize_aws_json_1_1(data), message)

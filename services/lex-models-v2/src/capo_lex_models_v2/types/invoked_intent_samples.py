@@ -25,6 +25,8 @@ def deserialize_json(data: list) -> InvokedIntentSamples:
 
     out: InvokedIntentSamples = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_lex_models_v2.types.invoked_intent_sample.deserialize_json(item)
         )

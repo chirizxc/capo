@@ -44,17 +44,17 @@ def serialize_aws_json_1_0(value: Check) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> Check:
     out: Check = {}  # type: ignore[typeddict-item]
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_evs.types.check_type
 
         out["type"] = capo_evs.types.check_type.deserialize_aws_json_1_0(data["type"])
-    if "result" in data:
+    if data.get("result") is not None:
         import capo_evs.types.check_result
 
         out["result"] = capo_evs.types.check_result.deserialize_aws_json_1_0(
             data["result"]
         )
-    if "impairedSince" in data:
+    if data.get("impairedSince") is not None:
         import capo_evs.types._prelude.timestamp
 
         out["impaired_since"] = (

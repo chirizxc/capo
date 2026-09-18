@@ -27,6 +27,8 @@ def deserialize_aws_json_1_1(data: list) -> LinkStatusFilterList:
 
     out: LinkStatusFilterList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_workspaces.types.account_link_status_enum.deserialize_aws_json_1_1(
                 item

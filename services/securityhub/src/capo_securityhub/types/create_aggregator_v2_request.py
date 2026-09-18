@@ -46,18 +46,18 @@ def serialize_json(value: CreateAggregatorV2Request) -> dict:
 
 def deserialize_json(data: dict) -> CreateAggregatorV2Request:
     out: CreateAggregatorV2Request = {}  # type: ignore[typeddict-item]
-    if "RegionLinkingMode" in data:
+    if data.get("RegionLinkingMode") is not None:
         out["region_linking_mode"] = data["RegionLinkingMode"]
-    if "LinkedRegions" in data:
+    if data.get("LinkedRegions") is not None:
         import capo_securityhub.types.string_list
 
         out["linked_regions"] = capo_securityhub.types.string_list.deserialize_json(
             data["LinkedRegions"]
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_securityhub.types.tag_map
 
         out["tags"] = capo_securityhub.types.tag_map.deserialize_json(data["Tags"])
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
     return out

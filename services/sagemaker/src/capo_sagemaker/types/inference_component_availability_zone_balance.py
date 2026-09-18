@@ -38,7 +38,7 @@ def serialize_aws_json_1_1(value: InferenceComponentAvailabilityZoneBalance) -> 
 
 def deserialize_aws_json_1_1(data: dict) -> InferenceComponentAvailabilityZoneBalance:
     out: InferenceComponentAvailabilityZoneBalance = {}  # type: ignore[typeddict-item]
-    if "EnforcementMode" in data:
+    if data.get("EnforcementMode") is not None:
         import capo_sagemaker.types.availability_zone_balance_enforcement_mode
 
         out["enforcement_mode"] = (
@@ -46,6 +46,6 @@ def deserialize_aws_json_1_1(data: dict) -> InferenceComponentAvailabilityZoneBa
                 data["EnforcementMode"]
             )
         )
-    if "MaxImbalance" in data:
+    if data.get("MaxImbalance") is not None:
         out["max_imbalance"] = data["MaxImbalance"]
     return out

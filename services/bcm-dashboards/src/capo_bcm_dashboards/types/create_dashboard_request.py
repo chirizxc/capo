@@ -50,13 +50,13 @@ def serialize_aws_json_1_0(value: CreateDashboardRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CreateDashboardRequest:
     out: CreateDashboardRequest = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("CreateDashboardRequest.name required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "widgets" in data:
+    if data.get("widgets") is not None:
         import capo_bcm_dashboards.types.widget_list
 
         out["widgets"] = capo_bcm_dashboards.types.widget_list.deserialize_aws_json_1_0(
@@ -64,7 +64,7 @@ def deserialize_aws_json_1_0(data: dict) -> CreateDashboardRequest:
         )
     else:
         raise DeserializationError("CreateDashboardRequest.widgets required")
-    if "resourceTags" in data:
+    if data.get("resourceTags") is not None:
         import capo_bcm_dashboards.types.resource_tag_list
 
         out["resource_tags"] = (

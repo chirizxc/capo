@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> ValidationExceptionErrorArgumentList:
 
     out: ValidationExceptionErrorArgumentList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_panorama.types.validation_exception_error_argument.deserialize_json(
                 item

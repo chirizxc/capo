@@ -37,14 +37,14 @@ def serialize_json(value: GetMLConfigurationResponse) -> dict:
             value["default_output_location"]
         )
     )
-    import capo_cleanroomsml.types._prelude.timestamp
+    import capo_cleanroomsml._protocol.serialize
 
-    out["createTime"] = capo_cleanroomsml.types._prelude.timestamp.serialize_json(
+    out["createTime"] = capo_cleanroomsml._protocol.serialize.fmt_date_time(
         value["create_time"]
     )
-    import capo_cleanroomsml.types._prelude.timestamp
+    import capo_cleanroomsml._protocol.serialize
 
-    out["updateTime"] = capo_cleanroomsml.types._prelude.timestamp.serialize_json(
+    out["updateTime"] = capo_cleanroomsml._protocol.serialize.fmt_date_time(
         value["update_time"]
     )
     return out
@@ -52,13 +52,13 @@ def serialize_json(value: GetMLConfigurationResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetMLConfigurationResponse:
     out: GetMLConfigurationResponse = {}  # type: ignore[typeddict-item]
-    if "membershipIdentifier" in data:
+    if data.get("membershipIdentifier") is not None:
         out["membership_identifier"] = data["membershipIdentifier"]
     else:
         raise DeserializationError(
             "GetMLConfigurationResponse.membership_identifier required"
         )
-    if "defaultOutputLocation" in data:
+    if data.get("defaultOutputLocation") is not None:
         import capo_cleanroomsml.types.ml_output_configuration
 
         out["default_output_location"] = (
@@ -70,23 +70,19 @@ def deserialize_json(data: dict) -> GetMLConfigurationResponse:
         raise DeserializationError(
             "GetMLConfigurationResponse.default_output_location required"
         )
-    if "createTime" in data:
-        import capo_cleanroomsml.types._prelude.timestamp
+    if data.get("createTime") is not None:
+        import datetime
 
-        out["create_time"] = (
-            capo_cleanroomsml.types._prelude.timestamp.deserialize_json(
-                data["createTime"]
-            )
+        out["create_time"] = datetime.datetime.fromisoformat(
+            data["createTime"].replace("Z", "+00:00")
         )
     else:
         raise DeserializationError("GetMLConfigurationResponse.create_time required")
-    if "updateTime" in data:
-        import capo_cleanroomsml.types._prelude.timestamp
+    if data.get("updateTime") is not None:
+        import datetime
 
-        out["update_time"] = (
-            capo_cleanroomsml.types._prelude.timestamp.deserialize_json(
-                data["updateTime"]
-            )
+        out["update_time"] = datetime.datetime.fromisoformat(
+            data["updateTime"].replace("Z", "+00:00")
         )
     else:
         raise DeserializationError("GetMLConfigurationResponse.update_time required")

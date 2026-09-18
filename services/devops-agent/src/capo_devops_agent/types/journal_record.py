@@ -52,23 +52,23 @@ def serialize_json(value: JournalRecord) -> dict:
 
 def deserialize_json(data: dict) -> JournalRecord:
     out: JournalRecord = {}  # type: ignore[typeddict-item]
-    if "agentSpaceId" in data:
+    if data.get("agentSpaceId") is not None:
         out["agent_space_id"] = data["agentSpaceId"]
     else:
         raise DeserializationError("JournalRecord.agent_space_id required")
-    if "executionId" in data:
+    if data.get("executionId") is not None:
         out["execution_id"] = data["executionId"]
     else:
         raise DeserializationError("JournalRecord.execution_id required")
-    if "recordId" in data:
+    if data.get("recordId") is not None:
         out["record_id"] = data["recordId"]
     else:
         raise DeserializationError("JournalRecord.record_id required")
-    if "content" in data:
+    if data.get("content") is not None:
         out["content"] = data["content"]
     else:
         raise DeserializationError("JournalRecord.content required")
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_devops_agent.types.journal_timestamp
 
         out["created_at"] = capo_devops_agent.types.journal_timestamp.deserialize_json(
@@ -76,11 +76,11 @@ def deserialize_json(data: dict) -> JournalRecord:
         )
     else:
         raise DeserializationError("JournalRecord.created_at required")
-    if "recordType" in data:
+    if data.get("recordType") is not None:
         out["record_type"] = data["recordType"]
     else:
         raise DeserializationError("JournalRecord.record_type required")
-    if "userReference" in data:
+    if data.get("userReference") is not None:
         import capo_devops_agent.types.user_reference
 
         out["user_reference"] = capo_devops_agent.types.user_reference.deserialize_json(

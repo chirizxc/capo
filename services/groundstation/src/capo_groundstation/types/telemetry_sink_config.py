@@ -44,7 +44,7 @@ def serialize_json(value: TelemetrySinkConfig) -> dict:
 
 def deserialize_json(data: dict) -> TelemetrySinkConfig:
     out: TelemetrySinkConfig = {}  # type: ignore[typeddict-item]
-    if "telemetrySinkType" in data:
+    if data.get("telemetrySinkType") is not None:
         import capo_groundstation.types.telemetry_sink_type
 
         out["telemetry_sink_type"] = (
@@ -54,7 +54,7 @@ def deserialize_json(data: dict) -> TelemetrySinkConfig:
         )
     else:
         raise DeserializationError("TelemetrySinkConfig.telemetry_sink_type required")
-    if "telemetrySinkData" in data:
+    if data.get("telemetrySinkData") is not None:
         import capo_groundstation.types.telemetry_sink_data
 
         out["telemetry_sink_data"] = (

@@ -36,9 +36,9 @@ def serialize_aws_json_1_1(value: LambdaResource) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> LambdaResource:
     out: LambdaResource = {}  # type: ignore[typeddict-item]
-    if "LambdaArn" in data:
+    if data.get("LambdaArn") is not None:
         out["lambda_arn"] = data["LambdaArn"]
-    if "EventTriggers" in data:
+    if data.get("EventTriggers") is not None:
         import capo_snowball.types.event_trigger_definition_list
 
         out["event_triggers"] = (

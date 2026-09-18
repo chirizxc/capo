@@ -32,12 +32,12 @@ def serialize_aws_json_1_1(value: DescribeTrustsResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeTrustsResult:
     out: DescribeTrustsResult = {}  # type: ignore[typeddict-item]
-    if "Trusts" in data:
+    if data.get("Trusts") is not None:
         import capo_directory_service.types.trusts
 
         out["trusts"] = capo_directory_service.types.trusts.deserialize_aws_json_1_1(
             data["Trusts"]
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

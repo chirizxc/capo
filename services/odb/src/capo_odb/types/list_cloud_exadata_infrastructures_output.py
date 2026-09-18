@@ -34,9 +34,9 @@ def serialize_aws_json_1_0(value: ListCloudExadataInfrastructuresOutput) -> dict
 
 def deserialize_aws_json_1_0(data: dict) -> ListCloudExadataInfrastructuresOutput:
     out: ListCloudExadataInfrastructuresOutput = {}  # type: ignore[typeddict-item]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "cloudExadataInfrastructures" in data:
+    if data.get("cloudExadataInfrastructures") is not None:
         import capo_odb.types.cloud_exadata_infrastructure_list
 
         out["cloud_exadata_infrastructures"] = (

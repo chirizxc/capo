@@ -53,13 +53,13 @@ def deserialize_aws_json_1_0(
     data: dict,
 ) -> ListBillEstimateInputUsageModificationsRequest:
     out: ListBillEstimateInputUsageModificationsRequest = {}  # type: ignore[typeddict-item]
-    if "billEstimateId" in data:
+    if data.get("billEstimateId") is not None:
         out["bill_estimate_id"] = data["billEstimateId"]
     else:
         raise DeserializationError(
             "ListBillEstimateInputUsageModificationsRequest.bill_estimate_id required"
         )
-    if "filters" in data:
+    if data.get("filters") is not None:
         import capo_bcm_pricing_calculator.types.list_usage_filters
 
         out["filters"] = (
@@ -67,8 +67,8 @@ def deserialize_aws_json_1_0(
                 data["filters"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
     return out

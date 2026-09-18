@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> TargetStores:
 
     out: TargetStores = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_sagemaker_featurestore_runtime.types.target_store.deserialize_json(
                 item

@@ -29,7 +29,7 @@ def serialize_json(value: UpdateCloudFormationCollectionFilter) -> dict:
 
 def deserialize_json(data: dict) -> UpdateCloudFormationCollectionFilter:
     out: UpdateCloudFormationCollectionFilter = {}  # type: ignore[typeddict-item]
-    if "StackNames" in data:
+    if data.get("StackNames") is not None:
         import capo_devops_guru.types.update_stack_names
 
         out["stack_names"] = capo_devops_guru.types.update_stack_names.deserialize_json(

@@ -22,11 +22,11 @@ def serialize_json(value: RegisteredSlackServiceDetails) -> dict:
 
 def deserialize_json(data: dict) -> RegisteredSlackServiceDetails:
     out: RegisteredSlackServiceDetails = {}  # type: ignore[typeddict-item]
-    if "teamId" in data:
+    if data.get("teamId") is not None:
         out["team_id"] = data["teamId"]
     else:
         raise DeserializationError("RegisteredSlackServiceDetails.team_id required")
-    if "teamName" in data:
+    if data.get("teamName") is not None:
         out["team_name"] = data["teamName"]
     else:
         raise DeserializationError("RegisteredSlackServiceDetails.team_name required")

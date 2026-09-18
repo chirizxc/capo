@@ -30,12 +30,12 @@ def serialize_json(value: CreateWorkflowStepResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateWorkflowStepResponse:
     out: CreateWorkflowStepResponse = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "stepGroupId" in data:
+    if data.get("stepGroupId") is not None:
         out["step_group_id"] = data["stepGroupId"]
-    if "workflowId" in data:
+    if data.get("workflowId") is not None:
         out["workflow_id"] = data["workflowId"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     return out

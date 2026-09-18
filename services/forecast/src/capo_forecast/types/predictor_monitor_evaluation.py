@@ -106,19 +106,19 @@ def serialize_aws_json_1_1(value: PredictorMonitorEvaluation) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PredictorMonitorEvaluation:
     out: PredictorMonitorEvaluation = {}  # type: ignore[typeddict-item]
-    if "ResourceArn" in data:
+    if data.get("ResourceArn") is not None:
         out["resource_arn"] = data["ResourceArn"]
-    if "MonitorArn" in data:
+    if data.get("MonitorArn") is not None:
         out["monitor_arn"] = data["MonitorArn"]
-    if "EvaluationTime" in data:
+    if data.get("EvaluationTime") is not None:
         import capo_forecast.types.timestamp
 
         out["evaluation_time"] = capo_forecast.types.timestamp.deserialize_aws_json_1_1(
             data["EvaluationTime"]
         )
-    if "EvaluationState" in data:
+    if data.get("EvaluationState") is not None:
         out["evaluation_state"] = data["EvaluationState"]
-    if "WindowStartDatetime" in data:
+    if data.get("WindowStartDatetime") is not None:
         import capo_forecast.types.timestamp
 
         out["window_start_datetime"] = (
@@ -126,7 +126,7 @@ def deserialize_aws_json_1_1(data: dict) -> PredictorMonitorEvaluation:
                 data["WindowStartDatetime"]
             )
         )
-    if "WindowEndDatetime" in data:
+    if data.get("WindowEndDatetime") is not None:
         import capo_forecast.types.timestamp
 
         out["window_end_datetime"] = (
@@ -134,7 +134,7 @@ def deserialize_aws_json_1_1(data: dict) -> PredictorMonitorEvaluation:
                 data["WindowEndDatetime"]
             )
         )
-    if "PredictorEvent" in data:
+    if data.get("PredictorEvent") is not None:
         import capo_forecast.types.predictor_event
 
         out["predictor_event"] = (
@@ -142,7 +142,7 @@ def deserialize_aws_json_1_1(data: dict) -> PredictorMonitorEvaluation:
                 data["PredictorEvent"]
             )
         )
-    if "MonitorDataSource" in data:
+    if data.get("MonitorDataSource") is not None:
         import capo_forecast.types.monitor_data_source
 
         out["monitor_data_source"] = (
@@ -150,7 +150,7 @@ def deserialize_aws_json_1_1(data: dict) -> PredictorMonitorEvaluation:
                 data["MonitorDataSource"]
             )
         )
-    if "MetricResults" in data:
+    if data.get("MetricResults") is not None:
         import capo_forecast.types.metric_results
 
         out["metric_results"] = (
@@ -158,8 +158,8 @@ def deserialize_aws_json_1_1(data: dict) -> PredictorMonitorEvaluation:
                 data["MetricResults"]
             )
         )
-    if "NumItemsEvaluated" in data:
+    if data.get("NumItemsEvaluated") is not None:
         out["num_items_evaluated"] = data["NumItemsEvaluated"]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     return out

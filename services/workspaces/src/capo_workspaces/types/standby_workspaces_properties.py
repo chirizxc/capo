@@ -47,9 +47,9 @@ def serialize_aws_json_1_1(value: StandbyWorkspacesProperties) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> StandbyWorkspacesProperties:
     out: StandbyWorkspacesProperties = {}  # type: ignore[typeddict-item]
-    if "StandbyWorkspaceId" in data:
+    if data.get("StandbyWorkspaceId") is not None:
         out["standby_workspace_id"] = data["StandbyWorkspaceId"]
-    if "DataReplication" in data:
+    if data.get("DataReplication") is not None:
         import capo_workspaces.types.data_replication
 
         out["data_replication"] = (
@@ -57,7 +57,7 @@ def deserialize_aws_json_1_1(data: dict) -> StandbyWorkspacesProperties:
                 data["DataReplication"]
             )
         )
-    if "RecoverySnapshotTime" in data:
+    if data.get("RecoverySnapshotTime") is not None:
         import capo_workspaces.types.timestamp
 
         out["recovery_snapshot_time"] = (

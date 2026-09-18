@@ -31,10 +31,10 @@ def serialize_aws_json_1_0(value: TaxBreakdownItem) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> TaxBreakdownItem:
     out: TaxBreakdownItem = {}  # type: ignore[typeddict-item]
-    if "amount" in data:
+    if data.get("amount") is not None:
         out["amount"] = data["amount"]
-    if "rate" in data:
+    if data.get("rate") is not None:
         out["rate"] = data["rate"]
-    if "type" in data:
+    if data.get("type") is not None:
         out["type"] = data["type"]
     return out

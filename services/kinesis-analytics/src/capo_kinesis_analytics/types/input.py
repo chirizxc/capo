@@ -86,11 +86,11 @@ def serialize_aws_json_1_1(value: Input) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Input:
     out: Input = {}  # type: ignore[typeddict-item]
-    if "NamePrefix" in data:
+    if data.get("NamePrefix") is not None:
         out["name_prefix"] = data["NamePrefix"]
     else:
         raise DeserializationError("Input.name_prefix required")
-    if "InputProcessingConfiguration" in data:
+    if data.get("InputProcessingConfiguration") is not None:
         import capo_kinesis_analytics.types.input_processing_configuration
 
         out["input_processing_configuration"] = (
@@ -98,7 +98,7 @@ def deserialize_aws_json_1_1(data: dict) -> Input:
                 data["InputProcessingConfiguration"]
             )
         )
-    if "KinesisStreamsInput" in data:
+    if data.get("KinesisStreamsInput") is not None:
         import capo_kinesis_analytics.types.kinesis_streams_input
 
         out["kinesis_streams_input"] = (
@@ -106,7 +106,7 @@ def deserialize_aws_json_1_1(data: dict) -> Input:
                 data["KinesisStreamsInput"]
             )
         )
-    if "KinesisFirehoseInput" in data:
+    if data.get("KinesisFirehoseInput") is not None:
         import capo_kinesis_analytics.types.kinesis_firehose_input
 
         out["kinesis_firehose_input"] = (
@@ -114,7 +114,7 @@ def deserialize_aws_json_1_1(data: dict) -> Input:
                 data["KinesisFirehoseInput"]
             )
         )
-    if "InputParallelism" in data:
+    if data.get("InputParallelism") is not None:
         import capo_kinesis_analytics.types.input_parallelism
 
         out["input_parallelism"] = (
@@ -122,7 +122,7 @@ def deserialize_aws_json_1_1(data: dict) -> Input:
                 data["InputParallelism"]
             )
         )
-    if "InputSchema" in data:
+    if data.get("InputSchema") is not None:
         import capo_kinesis_analytics.types.source_schema
 
         out["input_schema"] = (

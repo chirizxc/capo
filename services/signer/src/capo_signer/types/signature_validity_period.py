@@ -29,11 +29,11 @@ def serialize_json(value: SignatureValidityPeriod) -> dict:
 
 def deserialize_json(data: dict) -> SignatureValidityPeriod:
     out: SignatureValidityPeriod = {}  # type: ignore[typeddict-item]
-    if "value" in data:
+    if data.get("value") is not None:
         out["value"] = data["value"]
     else:
         out["value"] = 0
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_signer.types.validity_type
 
         out["type"] = capo_signer.types.validity_type.deserialize_json(data["type"])

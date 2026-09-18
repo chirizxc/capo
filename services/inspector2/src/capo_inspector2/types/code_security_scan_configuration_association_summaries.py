@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> CodeSecurityScanConfigurationAssociationSumm
 
     out: CodeSecurityScanConfigurationAssociationSummaries = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_inspector2.types.code_security_scan_configuration_association_summary.deserialize_json(
                 item

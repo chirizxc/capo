@@ -28,11 +28,11 @@ def serialize_aws_json_1_0(value: DeleteRepositoryInput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> DeleteRepositoryInput:
     out: DeleteRepositoryInput = {}  # type: ignore[typeddict-item]
-    if "provider" in data:
+    if data.get("provider") is not None:
         out["provider"] = data["provider"]
     else:
         raise DeserializationError("DeleteRepositoryInput.provider required")
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("DeleteRepositoryInput.name required")

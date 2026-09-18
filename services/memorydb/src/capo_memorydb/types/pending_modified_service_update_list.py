@@ -29,6 +29,8 @@ def deserialize_aws_json_1_1(data: list) -> PendingModifiedServiceUpdateList:
 
     out: PendingModifiedServiceUpdateList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_memorydb.types.pending_modified_service_update.deserialize_aws_json_1_1(
                 item

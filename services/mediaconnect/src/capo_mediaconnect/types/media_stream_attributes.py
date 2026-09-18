@@ -29,10 +29,10 @@ def serialize_json(value: MediaStreamAttributes) -> dict:
 
 def deserialize_json(data: dict) -> MediaStreamAttributes:
     out: MediaStreamAttributes = {}  # type: ignore[typeddict-item]
-    if "fmtp" in data:
+    if data.get("fmtp") is not None:
         import capo_mediaconnect.types.fmtp
 
         out["fmtp"] = capo_mediaconnect.types.fmtp.deserialize_json(data["fmtp"])
-    if "lang" in data:
+    if data.get("lang") is not None:
         out["lang"] = data["lang"]
     return out

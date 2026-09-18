@@ -23,12 +23,12 @@ def serialize_aws_json_1_1(value: UpdateSnapshotCopyConfigurationRequest) -> dic
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateSnapshotCopyConfigurationRequest:
     out: UpdateSnapshotCopyConfigurationRequest = {}  # type: ignore[typeddict-item]
-    if "snapshotCopyConfigurationId" in data:
+    if data.get("snapshotCopyConfigurationId") is not None:
         out["snapshot_copy_configuration_id"] = data["snapshotCopyConfigurationId"]
     else:
         raise DeserializationError(
             "UpdateSnapshotCopyConfigurationRequest.snapshot_copy_configuration_id required"
         )
-    if "snapshotRetentionPeriod" in data:
+    if data.get("snapshotRetentionPeriod") is not None:
         out["snapshot_retention_period"] = data["snapshotRetentionPeriod"]
     return out

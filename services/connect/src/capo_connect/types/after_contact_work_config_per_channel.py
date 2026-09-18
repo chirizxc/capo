@@ -50,13 +50,13 @@ def serialize_json(value: AfterContactWorkConfigPerChannel) -> dict:
 
 def deserialize_json(data: dict) -> AfterContactWorkConfigPerChannel:
     out: AfterContactWorkConfigPerChannel = {}  # type: ignore[typeddict-item]
-    if "Channel" in data:
+    if data.get("Channel") is not None:
         import capo_connect.types.channel
 
         out["channel"] = capo_connect.types.channel.deserialize_json(data["Channel"])
     else:
         raise DeserializationError("AfterContactWorkConfigPerChannel.channel required")
-    if "AfterContactWorkConfig" in data:
+    if data.get("AfterContactWorkConfig") is not None:
         import capo_connect.types.after_contact_work_config
 
         out["after_contact_work_config"] = (
@@ -68,7 +68,7 @@ def deserialize_json(data: dict) -> AfterContactWorkConfigPerChannel:
         raise DeserializationError(
             "AfterContactWorkConfigPerChannel.after_contact_work_config required"
         )
-    if "AgentFirstCallbackAfterContactWorkConfig" in data:
+    if data.get("AgentFirstCallbackAfterContactWorkConfig") is not None:
         import capo_connect.types.after_contact_work_config
 
         out["agent_first_callback_after_contact_work_config"] = (

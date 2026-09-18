@@ -25,6 +25,8 @@ def serialize_json(input_to_serialize: DailyHours) -> dict:
 def deserialize_json(data: dict) -> DailyHours:
     out: DailyHours = {}
     for key, value in data.items():
+        if value is None:
+            continue
         import capo_connectcampaignsv2.types.time_range_list
 
         out[key] = capo_connectcampaignsv2.types.time_range_list.deserialize_json(value)

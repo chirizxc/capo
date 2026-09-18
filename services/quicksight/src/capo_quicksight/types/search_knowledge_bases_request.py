@@ -55,11 +55,11 @@ def serialize_json(value: SearchKnowledgeBasesRequest) -> dict:
 
 def deserialize_json(data: dict) -> SearchKnowledgeBasesRequest:
     out: SearchKnowledgeBasesRequest = {}  # type: ignore[typeddict-item]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "Filters" in data:
+    if data.get("Filters") is not None:
         import capo_quicksight.types.knowledge_base_search_filters
 
         out["filters"] = (
@@ -67,7 +67,7 @@ def deserialize_json(data: dict) -> SearchKnowledgeBasesRequest:
                 data["Filters"]
             )
         )
-    if "SortBy" in data:
+    if data.get("SortBy") is not None:
         import capo_quicksight.types.knowledge_base_sort_by
 
         out["sort_by"] = capo_quicksight.types.knowledge_base_sort_by.deserialize_json(

@@ -25,5 +25,7 @@ def deserialize_aws_json_1_1(data: list) -> ParameterMapEntryList:
 
     out: ParameterMapEntryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_mturk.types.parameter_map_entry.deserialize_aws_json_1_1(item))
     return out

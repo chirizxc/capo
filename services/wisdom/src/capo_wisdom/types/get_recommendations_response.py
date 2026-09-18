@@ -39,7 +39,7 @@ def serialize_json(value: GetRecommendationsResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetRecommendationsResponse:
     out: GetRecommendationsResponse = {}  # type: ignore[typeddict-item]
-    if "recommendations" in data:
+    if data.get("recommendations") is not None:
         import capo_wisdom.types.recommendation_list
 
         out["recommendations"] = capo_wisdom.types.recommendation_list.deserialize_json(
@@ -49,7 +49,7 @@ def deserialize_json(data: dict) -> GetRecommendationsResponse:
         raise DeserializationError(
             "GetRecommendationsResponse.recommendations required"
         )
-    if "triggers" in data:
+    if data.get("triggers") is not None:
         import capo_wisdom.types.recommendation_trigger_list
 
         out["triggers"] = (

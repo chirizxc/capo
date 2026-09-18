@@ -37,9 +37,9 @@ def serialize_aws_json_1_1(value: StartQuotaUtilizationReportResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> StartQuotaUtilizationReportResponse:
     out: StartQuotaUtilizationReportResponse = {}  # type: ignore[typeddict-item]
-    if "ReportId" in data:
+    if data.get("ReportId") is not None:
         out["report_id"] = data["ReportId"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_service_quotas.types.report_status
 
         out["status"] = (
@@ -47,6 +47,6 @@ def deserialize_aws_json_1_1(data: dict) -> StartQuotaUtilizationReportResponse:
                 data["Status"]
             )
         )
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     return out

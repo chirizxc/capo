@@ -109,11 +109,12 @@ class KeyResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_payment_cryptography.types.create_key_input.CreateKeyInput = {}  # type: ignore[typeddict-item]
-        input_["key_attributes"] = key_attributes
+        input_: capo_payment_cryptography.types.create_key_input.CreateKeyInput = {
+            "key_attributes": key_attributes,
+            "exportable": exportable,
+        }
         if key_check_value_algorithm is not None:
             input_["key_check_value_algorithm"] = key_check_value_algorithm
-        input_["exportable"] = exportable
         if enabled is not None:
             input_["enabled"] = enabled
         if tags is not None:
@@ -128,6 +129,7 @@ class KeyResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -166,14 +168,16 @@ class KeyResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_payment_cryptography.types.get_key_input.GetKeyInput = {}  # type: ignore[typeddict-item]
-        input_["key_identifier"] = key_identifier
+        input_: capo_payment_cryptography.types.get_key_input.GetKeyInput = {
+            "key_identifier": key_identifier
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -215,8 +219,9 @@ class KeyResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_payment_cryptography.types.delete_key_input.DeleteKeyInput = {}  # type: ignore[typeddict-item]
-        input_["key_identifier"] = key_identifier
+        input_: capo_payment_cryptography.types.delete_key_input.DeleteKeyInput = {
+            "key_identifier": key_identifier
+        }
         if delete_key_in_days is not None:
             input_["delete_key_in_days"] = delete_key_in_days
 
@@ -225,6 +230,7 @@ class KeyResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -273,7 +279,7 @@ class KeyResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_payment_cryptography.types.list_keys_input.ListKeysInput = {}  # type: ignore[typeddict-item]
+        input_: capo_payment_cryptography.types.list_keys_input.ListKeysInput = {}
         if key_state is not None:
             input_["key_state"] = key_state
         if next_token is not None:
@@ -286,6 +292,7 @@ class KeyResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def add_key_replication_regions(
@@ -327,15 +334,17 @@ class KeyResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_payment_cryptography.types.add_key_replication_regions_input.AddKeyReplicationRegionsInput = {}  # type: ignore[typeddict-item]
-        input_["key_identifier"] = key_identifier
-        input_["replication_regions"] = replication_regions
+        input_: capo_payment_cryptography.types.add_key_replication_regions_input.AddKeyReplicationRegionsInput = {
+            "key_identifier": key_identifier,
+            "replication_regions": replication_regions,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def remove_key_replication_regions(
@@ -377,15 +386,17 @@ class KeyResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_payment_cryptography.types.remove_key_replication_regions_input.RemoveKeyReplicationRegionsInput = {}  # type: ignore[typeddict-item]
-        input_["key_identifier"] = key_identifier
-        input_["replication_regions"] = replication_regions
+        input_: capo_payment_cryptography.types.remove_key_replication_regions_input.RemoveKeyReplicationRegionsInput = {
+            "key_identifier": key_identifier,
+            "replication_regions": replication_regions,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def restore_key(
@@ -426,14 +437,16 @@ class KeyResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_payment_cryptography.types.restore_key_input.RestoreKeyInput = {}  # type: ignore[typeddict-item]
-        input_["key_identifier"] = key_identifier
+        input_: capo_payment_cryptography.types.restore_key_input.RestoreKeyInput = {
+            "key_identifier": key_identifier
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def start_key_usage(
@@ -474,14 +487,16 @@ class KeyResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_payment_cryptography.types.start_key_usage_input.StartKeyUsageInput = {}  # type: ignore[typeddict-item]
-        input_["key_identifier"] = key_identifier
+        input_: capo_payment_cryptography.types.start_key_usage_input.StartKeyUsageInput = {
+            "key_identifier": key_identifier
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def stop_key_usage(
@@ -522,14 +537,16 @@ class KeyResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_payment_cryptography.types.stop_key_usage_input.StopKeyUsageInput = {}  # type: ignore[typeddict-item]
-        input_["key_identifier"] = key_identifier
+        input_: capo_payment_cryptography.types.stop_key_usage_input.StopKeyUsageInput = {
+            "key_identifier": key_identifier
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -593,11 +610,12 @@ class AsyncKeyResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_payment_cryptography.types.create_key_input.CreateKeyInput = {}  # type: ignore[typeddict-item]
-        input_["key_attributes"] = key_attributes
+        input_: capo_payment_cryptography.types.create_key_input.CreateKeyInput = {
+            "key_attributes": key_attributes,
+            "exportable": exportable,
+        }
         if key_check_value_algorithm is not None:
             input_["key_check_value_algorithm"] = key_check_value_algorithm
-        input_["exportable"] = exportable
         if enabled is not None:
             input_["enabled"] = enabled
         if tags is not None:
@@ -612,6 +630,7 @@ class AsyncKeyResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -651,14 +670,16 @@ class AsyncKeyResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_payment_cryptography.types.get_key_input.GetKeyInput = {}  # type: ignore[typeddict-item]
-        input_["key_identifier"] = key_identifier
+        input_: capo_payment_cryptography.types.get_key_input.GetKeyInput = {
+            "key_identifier": key_identifier
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -701,8 +722,9 @@ class AsyncKeyResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_payment_cryptography.types.delete_key_input.DeleteKeyInput = {}  # type: ignore[typeddict-item]
-        input_["key_identifier"] = key_identifier
+        input_: capo_payment_cryptography.types.delete_key_input.DeleteKeyInput = {
+            "key_identifier": key_identifier
+        }
         if delete_key_in_days is not None:
             input_["delete_key_in_days"] = delete_key_in_days
 
@@ -711,6 +733,7 @@ class AsyncKeyResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -760,7 +783,7 @@ class AsyncKeyResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_payment_cryptography.types.list_keys_input.ListKeysInput = {}  # type: ignore[typeddict-item]
+        input_: capo_payment_cryptography.types.list_keys_input.ListKeysInput = {}
         if key_state is not None:
             input_["key_state"] = key_state
         if next_token is not None:
@@ -773,6 +796,7 @@ class AsyncKeyResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def add_key_replication_regions(
@@ -815,15 +839,17 @@ class AsyncKeyResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_payment_cryptography.types.add_key_replication_regions_input.AddKeyReplicationRegionsInput = {}  # type: ignore[typeddict-item]
-        input_["key_identifier"] = key_identifier
-        input_["replication_regions"] = replication_regions
+        input_: capo_payment_cryptography.types.add_key_replication_regions_input.AddKeyReplicationRegionsInput = {
+            "key_identifier": key_identifier,
+            "replication_regions": replication_regions,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def remove_key_replication_regions(
@@ -866,15 +892,17 @@ class AsyncKeyResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_payment_cryptography.types.remove_key_replication_regions_input.RemoveKeyReplicationRegionsInput = {}  # type: ignore[typeddict-item]
-        input_["key_identifier"] = key_identifier
-        input_["replication_regions"] = replication_regions
+        input_: capo_payment_cryptography.types.remove_key_replication_regions_input.RemoveKeyReplicationRegionsInput = {
+            "key_identifier": key_identifier,
+            "replication_regions": replication_regions,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def restore_key(
@@ -916,14 +944,16 @@ class AsyncKeyResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_payment_cryptography.types.restore_key_input.RestoreKeyInput = {}  # type: ignore[typeddict-item]
-        input_["key_identifier"] = key_identifier
+        input_: capo_payment_cryptography.types.restore_key_input.RestoreKeyInput = {
+            "key_identifier": key_identifier
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def start_key_usage(
@@ -965,14 +995,16 @@ class AsyncKeyResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_payment_cryptography.types.start_key_usage_input.StartKeyUsageInput = {}  # type: ignore[typeddict-item]
-        input_["key_identifier"] = key_identifier
+        input_: capo_payment_cryptography.types.start_key_usage_input.StartKeyUsageInput = {
+            "key_identifier": key_identifier
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def stop_key_usage(
@@ -1014,12 +1046,14 @@ class AsyncKeyResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_payment_cryptography.types.stop_key_usage_input.StopKeyUsageInput = {}  # type: ignore[typeddict-item]
-        input_["key_identifier"] = key_identifier
+        input_: capo_payment_cryptography.types.stop_key_usage_input.StopKeyUsageInput = {
+            "key_identifier": key_identifier
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

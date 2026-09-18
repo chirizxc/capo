@@ -69,11 +69,11 @@ def serialize_json(value: ChangeProgressDetails) -> dict:
 
 def deserialize_json(data: dict) -> ChangeProgressDetails:
     out: ChangeProgressDetails = {}  # type: ignore[typeddict-item]
-    if "ChangeId" in data:
+    if data.get("ChangeId") is not None:
         out["change_id"] = data["ChangeId"]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
-    if "ConfigChangeStatus" in data:
+    if data.get("ConfigChangeStatus") is not None:
         import capo_opensearch.types.config_change_status
 
         out["config_change_status"] = (
@@ -81,19 +81,19 @@ def deserialize_json(data: dict) -> ChangeProgressDetails:
                 data["ConfigChangeStatus"]
             )
         )
-    if "InitiatedBy" in data:
+    if data.get("InitiatedBy") is not None:
         import capo_opensearch.types.initiated_by
 
         out["initiated_by"] = capo_opensearch.types.initiated_by.deserialize_json(
             data["InitiatedBy"]
         )
-    if "StartTime" in data:
+    if data.get("StartTime") is not None:
         import capo_opensearch.types.update_timestamp
 
         out["start_time"] = capo_opensearch.types.update_timestamp.deserialize_json(
             data["StartTime"]
         )
-    if "LastUpdatedTime" in data:
+    if data.get("LastUpdatedTime") is not None:
         import capo_opensearch.types.update_timestamp
 
         out["last_updated_time"] = (

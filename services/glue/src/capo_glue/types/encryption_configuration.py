@@ -66,7 +66,7 @@ def serialize_aws_json_1_1(value: EncryptionConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> EncryptionConfiguration:
     out: EncryptionConfiguration = {}  # type: ignore[typeddict-item]
-    if "S3Encryption" in data:
+    if data.get("S3Encryption") is not None:
         import capo_glue.types.s3_encryption_list
 
         out["s3_encryption"] = (
@@ -74,7 +74,7 @@ def deserialize_aws_json_1_1(data: dict) -> EncryptionConfiguration:
                 data["S3Encryption"]
             )
         )
-    if "CloudWatchEncryption" in data:
+    if data.get("CloudWatchEncryption") is not None:
         import capo_glue.types.cloud_watch_encryption
 
         out["cloud_watch_encryption"] = (
@@ -82,7 +82,7 @@ def deserialize_aws_json_1_1(data: dict) -> EncryptionConfiguration:
                 data["CloudWatchEncryption"]
             )
         )
-    if "JobBookmarksEncryption" in data:
+    if data.get("JobBookmarksEncryption") is not None:
         import capo_glue.types.job_bookmarks_encryption
 
         out["job_bookmarks_encryption"] = (
@@ -90,7 +90,7 @@ def deserialize_aws_json_1_1(data: dict) -> EncryptionConfiguration:
                 data["JobBookmarksEncryption"]
             )
         )
-    if "DataQualityEncryption" in data:
+    if data.get("DataQualityEncryption") is not None:
         import capo_glue.types.data_quality_encryption
 
         out["data_quality_encryption"] = (

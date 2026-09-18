@@ -64,9 +64,9 @@ def serialize_json(value: UpdateDeploymentResponse) -> dict:
 
 def deserialize_json(data: dict) -> UpdateDeploymentResponse:
     out: UpdateDeploymentResponse = {}  # type: ignore[typeddict-item]
-    if "autoDeployed" in data:
+    if data.get("autoDeployed") is not None:
         out["auto_deployed"] = data["autoDeployed"]
-    if "createdDate" in data:
+    if data.get("createdDate") is not None:
         import capo_apigatewayv2.types.__timestamp_iso8601
 
         out["created_date"] = (
@@ -74,9 +74,9 @@ def deserialize_json(data: dict) -> UpdateDeploymentResponse:
                 data["createdDate"]
             )
         )
-    if "deploymentId" in data:
+    if data.get("deploymentId") is not None:
         out["deployment_id"] = data["deploymentId"]
-    if "deploymentStatus" in data:
+    if data.get("deploymentStatus") is not None:
         import capo_apigatewayv2.types.deployment_status
 
         out["deployment_status"] = (
@@ -84,8 +84,8 @@ def deserialize_json(data: dict) -> UpdateDeploymentResponse:
                 data["deploymentStatus"]
             )
         )
-    if "deploymentStatusMessage" in data:
+    if data.get("deploymentStatusMessage") is not None:
         out["deployment_status_message"] = data["deploymentStatusMessage"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
     return out

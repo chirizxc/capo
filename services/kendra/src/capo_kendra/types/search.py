@@ -31,19 +31,19 @@ def serialize_aws_json_1_1(value: Search) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Search:
     out: Search = {}  # type: ignore[typeddict-item]
-    if "Facetable" in data:
+    if data.get("Facetable") is not None:
         out["facetable"] = data["Facetable"]
     else:
         out["facetable"] = False
-    if "Searchable" in data:
+    if data.get("Searchable") is not None:
         out["searchable"] = data["Searchable"]
     else:
         out["searchable"] = False
-    if "Displayable" in data:
+    if data.get("Displayable") is not None:
         out["displayable"] = data["Displayable"]
     else:
         out["displayable"] = False
-    if "Sortable" in data:
+    if data.get("Sortable") is not None:
         out["sortable"] = data["Sortable"]
     else:
         out["sortable"] = False

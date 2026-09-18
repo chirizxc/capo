@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> CodeLineList:
 
     out: CodeLineList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_inspector2.types.code_line.deserialize_json(item))
     return out

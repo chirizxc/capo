@@ -25,7 +25,7 @@ def serialize_json(value: ServiceFailureException_) -> dict:
 
 def deserialize_json(data: dict) -> ServiceFailureException_:
     out: ServiceFailureException_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     return out
 
@@ -35,18 +35,21 @@ class ServiceFailureException(ServiceError):
 
     code: str | None = "ServiceFailureException"
 
-    def __init__(self, data: ServiceFailureException_):
+    def __init__(self, data: ServiceFailureException_, message: str | None = None):
         super().__init__(
             "server",
             is_throttling_error=False,
             is_retryable=False,
             code="ServiceFailureException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "ServiceFailureException":
-        return cls(deserialize_json(data))
+    def from_json(
+        cls, data: dict, message: str | None = None
+    ) -> "ServiceFailureException":
+        return cls(deserialize_json(data), message)
 
 
 def serialize_event_json(value: ServiceFailureException_) -> bytes:

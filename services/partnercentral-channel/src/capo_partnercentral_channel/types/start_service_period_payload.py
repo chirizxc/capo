@@ -61,7 +61,7 @@ def serialize_aws_json_1_0(value: StartServicePeriodPayload) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> StartServicePeriodPayload:
     out: StartServicePeriodPayload = {}  # type: ignore[typeddict-item]
-    if "programManagementAccountIdentifier" in data:
+    if data.get("programManagementAccountIdentifier") is not None:
         out["program_management_account_identifier"] = data[
             "programManagementAccountIdentifier"
         ]
@@ -69,9 +69,9 @@ def deserialize_aws_json_1_0(data: dict) -> StartServicePeriodPayload:
         raise DeserializationError(
             "StartServicePeriodPayload.program_management_account_identifier required"
         )
-    if "note" in data:
+    if data.get("note") is not None:
         out["note"] = data["note"]
-    if "servicePeriodType" in data:
+    if data.get("servicePeriodType") is not None:
         import capo_partnercentral_channel.types.service_period_type
 
         out["service_period_type"] = (
@@ -83,9 +83,9 @@ def deserialize_aws_json_1_0(data: dict) -> StartServicePeriodPayload:
         raise DeserializationError(
             "StartServicePeriodPayload.service_period_type required"
         )
-    if "minimumNoticeDays" in data:
+    if data.get("minimumNoticeDays") is not None:
         out["minimum_notice_days"] = data["minimumNoticeDays"]
-    if "endDate" in data:
+    if data.get("endDate") is not None:
         import capo_partnercentral_channel.types.date_time
 
         out["end_date"] = (

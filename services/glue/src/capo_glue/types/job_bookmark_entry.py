@@ -47,24 +47,24 @@ def serialize_aws_json_1_1(value: JobBookmarkEntry) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> JobBookmarkEntry:
     out: JobBookmarkEntry = {}  # type: ignore[typeddict-item]
-    if "JobName" in data:
+    if data.get("JobName") is not None:
         out["job_name"] = data["JobName"]
-    if "Version" in data:
+    if data.get("Version") is not None:
         out["version"] = data["Version"]
     else:
         out["version"] = 0
-    if "Run" in data:
+    if data.get("Run") is not None:
         out["run"] = data["Run"]
     else:
         out["run"] = 0
-    if "Attempt" in data:
+    if data.get("Attempt") is not None:
         out["attempt"] = data["Attempt"]
     else:
         out["attempt"] = 0
-    if "PreviousRunId" in data:
+    if data.get("PreviousRunId") is not None:
         out["previous_run_id"] = data["PreviousRunId"]
-    if "RunId" in data:
+    if data.get("RunId") is not None:
         out["run_id"] = data["RunId"]
-    if "JobBookmark" in data:
+    if data.get("JobBookmark") is not None:
         out["job_bookmark"] = data["JobBookmark"]
     return out

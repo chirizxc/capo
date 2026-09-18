@@ -28,8 +28,8 @@ def serialize_aws_json_1_0(value: ListTrafficPoliciesRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ListTrafficPoliciesRequest:
     out: ListTrafficPoliciesRequest = {}  # type: ignore[typeddict-item]
-    if "PageSize" in data:
+    if data.get("PageSize") is not None:
         out["page_size"] = data["PageSize"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

@@ -26,7 +26,7 @@ def serialize_aws_json_1_1(value: WebAuthnOriginNotAllowedException_) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> WebAuthnOriginNotAllowedException_:
     out: WebAuthnOriginNotAllowedException_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     return out
 
@@ -36,15 +36,20 @@ class WebAuthnOriginNotAllowedException(ServiceError):
 
     code: str | None = "WebAuthnOriginNotAllowedException"
 
-    def __init__(self, data: WebAuthnOriginNotAllowedException_):
+    def __init__(
+        self, data: WebAuthnOriginNotAllowedException_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="WebAuthnOriginNotAllowedException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "WebAuthnOriginNotAllowedException":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "WebAuthnOriginNotAllowedException":
+        return cls(deserialize_aws_json_1_1(data), message)

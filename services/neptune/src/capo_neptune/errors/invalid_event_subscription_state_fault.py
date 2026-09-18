@@ -40,15 +40,20 @@ class InvalidEventSubscriptionStateFault(ServiceError):
 
     code: str | None = "InvalidEventSubscriptionStateFault"
 
-    def __init__(self, data: InvalidEventSubscriptionStateFault_):
+    def __init__(
+        self, data: InvalidEventSubscriptionStateFault_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="InvalidEventSubscriptionStateFault",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_query(cls, el: Element) -> "InvalidEventSubscriptionStateFault":
-        return cls(deserialize_query(el))
+    def from_query(
+        cls, el: Element, message: str | None = None
+    ) -> "InvalidEventSubscriptionStateFault":
+        return cls(deserialize_query(el), message)

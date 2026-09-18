@@ -64,7 +64,7 @@ def serialize_aws_json_1_1(value: ConformancePackEvaluationFilters) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ConformancePackEvaluationFilters:
     out: ConformancePackEvaluationFilters = {}  # type: ignore[typeddict-item]
-    if "ConfigRuleNames" in data:
+    if data.get("ConfigRuleNames") is not None:
         import capo_config_service.types.conformance_pack_config_rule_names
 
         out["config_rule_names"] = (
@@ -72,7 +72,7 @@ def deserialize_aws_json_1_1(data: dict) -> ConformancePackEvaluationFilters:
                 data["ConfigRuleNames"]
             )
         )
-    if "ComplianceType" in data:
+    if data.get("ComplianceType") is not None:
         import capo_config_service.types.conformance_pack_compliance_type
 
         out["compliance_type"] = (
@@ -80,9 +80,9 @@ def deserialize_aws_json_1_1(data: dict) -> ConformancePackEvaluationFilters:
                 data["ComplianceType"]
             )
         )
-    if "ResourceType" in data:
+    if data.get("ResourceType") is not None:
         out["resource_type"] = data["ResourceType"]
-    if "ResourceIds" in data:
+    if data.get("ResourceIds") is not None:
         import capo_config_service.types.conformance_pack_compliance_resource_ids
 
         out["resource_ids"] = (

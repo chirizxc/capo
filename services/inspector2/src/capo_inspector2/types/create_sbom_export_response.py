@@ -23,6 +23,6 @@ def serialize_json(value: CreateSbomExportResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateSbomExportResponse:
     out: CreateSbomExportResponse = {}  # type: ignore[typeddict-item]
-    if "reportId" in data:
+    if data.get("reportId") is not None:
         out["report_id"] = data["reportId"]
     return out

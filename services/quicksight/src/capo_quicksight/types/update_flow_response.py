@@ -34,14 +34,14 @@ def serialize_json(value: UpdateFlowResponse) -> dict:
 
 def deserialize_json(data: dict) -> UpdateFlowResponse:
     out: UpdateFlowResponse = {}  # type: ignore[typeddict-item]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
     else:
         raise DeserializationError("UpdateFlowResponse.arn required")
-    if "FlowId" in data:
+    if data.get("FlowId") is not None:
         out["flow_id"] = data["FlowId"]
     else:
         raise DeserializationError("UpdateFlowResponse.flow_id required")
-    if "RequestId" in data:
+    if data.get("RequestId") is not None:
         out["request_id"] = data["RequestId"]
     return out

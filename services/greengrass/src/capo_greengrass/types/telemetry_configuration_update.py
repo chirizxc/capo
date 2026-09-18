@@ -27,7 +27,7 @@ def serialize_json(value: TelemetryConfigurationUpdate) -> dict:
 
 def deserialize_json(data: dict) -> TelemetryConfigurationUpdate:
     out: TelemetryConfigurationUpdate = {}  # type: ignore[typeddict-item]
-    if "Telemetry" in data:
+    if data.get("Telemetry") is not None:
         import capo_greengrass.types.telemetry
 
         out["telemetry"] = capo_greengrass.types.telemetry.deserialize_json(

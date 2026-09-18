@@ -30,13 +30,13 @@ def serialize_aws_json_1_1(value: GetPrincipalTagAttributeMapInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetPrincipalTagAttributeMapInput:
     out: GetPrincipalTagAttributeMapInput = {}  # type: ignore[typeddict-item]
-    if "IdentityPoolId" in data:
+    if data.get("IdentityPoolId") is not None:
         out["identity_pool_id"] = data["IdentityPoolId"]
     else:
         raise DeserializationError(
             "GetPrincipalTagAttributeMapInput.identity_pool_id required"
         )
-    if "IdentityProviderName" in data:
+    if data.get("IdentityProviderName") is not None:
         out["identity_provider_name"] = data["IdentityProviderName"]
     else:
         raise DeserializationError(

@@ -27,8 +27,8 @@ def serialize_json(value: PipelineDestination) -> dict:
 
 def deserialize_json(data: dict) -> PipelineDestination:
     out: PipelineDestination = {}  # type: ignore[typeddict-item]
-    if "ServiceName" in data:
+    if data.get("ServiceName") is not None:
         out["service_name"] = data["ServiceName"]
-    if "Endpoint" in data:
+    if data.get("Endpoint") is not None:
         out["endpoint"] = data["Endpoint"]
     return out

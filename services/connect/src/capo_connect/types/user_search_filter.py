@@ -41,7 +41,7 @@ def serialize_json(value: UserSearchFilter) -> dict:
 
 def deserialize_json(data: dict) -> UserSearchFilter:
     out: UserSearchFilter = {}  # type: ignore[typeddict-item]
-    if "TagFilter" in data:
+    if data.get("TagFilter") is not None:
         import capo_connect.types.control_plane_tag_filter
 
         out["tag_filter"] = (
@@ -49,7 +49,7 @@ def deserialize_json(data: dict) -> UserSearchFilter:
                 data["TagFilter"]
             )
         )
-    if "UserAttributeFilter" in data:
+    if data.get("UserAttributeFilter") is not None:
         import capo_connect.types.control_plane_user_attribute_filter
 
         out["user_attribute_filter"] = (

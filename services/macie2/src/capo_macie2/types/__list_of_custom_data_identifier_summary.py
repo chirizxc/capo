@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> __listOfCustomDataIdentifierSummary:
 
     out: __listOfCustomDataIdentifierSummary = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_macie2.types.custom_data_identifier_summary.deserialize_json(item)
         )

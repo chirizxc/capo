@@ -26,10 +26,10 @@ def serialize_json(value: BridgeFlowOutput) -> dict:
 
 def deserialize_json(data: dict) -> BridgeFlowOutput:
     out: BridgeFlowOutput = {}  # type: ignore[typeddict-item]
-    if "flowArn" in data:
+    if data.get("flowArn") is not None:
         out["flow_arn"] = data["flowArn"]
-    if "flowSourceArn" in data:
+    if data.get("flowSourceArn") is not None:
         out["flow_source_arn"] = data["flowSourceArn"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     return out

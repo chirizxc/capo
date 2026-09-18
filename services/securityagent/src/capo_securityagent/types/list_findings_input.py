@@ -76,38 +76,38 @@ def serialize_json(value: ListFindingsInput) -> dict:
 
 def deserialize_json(data: dict) -> ListFindingsInput:
     out: ListFindingsInput = {}  # type: ignore[typeddict-item]
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
-    if "pentestJobId" in data:
+    if data.get("pentestJobId") is not None:
         out["pentest_job_id"] = data["pentestJobId"]
-    if "codeReviewJobId" in data:
+    if data.get("codeReviewJobId") is not None:
         out["code_review_job_id"] = data["codeReviewJobId"]
-    if "agentSpaceId" in data:
+    if data.get("agentSpaceId") is not None:
         out["agent_space_id"] = data["agentSpaceId"]
     else:
         raise DeserializationError("ListFindingsInput.agent_space_id required")
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "riskType" in data:
+    if data.get("riskType") is not None:
         out["risk_type"] = data["riskType"]
-    if "riskLevel" in data:
+    if data.get("riskLevel") is not None:
         import capo_securityagent.types.risk_level
 
         out["risk_level"] = capo_securityagent.types.risk_level.deserialize_json(
             data["riskLevel"]
         )
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_securityagent.types.finding_status
 
         out["status"] = capo_securityagent.types.finding_status.deserialize_json(
             data["status"]
         )
-    if "confidence" in data:
+    if data.get("confidence") is not None:
         import capo_securityagent.types.confidence_level
 
         out["confidence"] = capo_securityagent.types.confidence_level.deserialize_json(
             data["confidence"]
         )
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     return out

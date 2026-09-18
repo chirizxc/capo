@@ -62,7 +62,7 @@ def serialize_json(value: ProtectedQueryOutput) -> dict:
 
 
 def deserialize_json(data: dict) -> ProtectedQueryOutput:
-    if "s3" in data:
+    if data.get("s3") is not None:
         import capo_cleanrooms.types.protected_query_s3_output
 
         return {
@@ -70,7 +70,7 @@ def deserialize_json(data: dict) -> ProtectedQueryOutput:
                 data["s3"]
             )
         }
-    elif "memberList" in data:
+    elif data.get("memberList") is not None:
         import capo_cleanrooms.types.protected_query_member_output_list
 
         return {
@@ -78,7 +78,7 @@ def deserialize_json(data: dict) -> ProtectedQueryOutput:
                 data["memberList"]
             )
         }
-    elif "distribute" in data:
+    elif data.get("distribute") is not None:
         import capo_cleanrooms.types.protected_query_distribute_output
 
         return {

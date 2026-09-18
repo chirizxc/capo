@@ -87,13 +87,13 @@ def serialize_json(value: FunnelChartDataLabelOptions) -> dict:
 
 def deserialize_json(data: dict) -> FunnelChartDataLabelOptions:
     out: FunnelChartDataLabelOptions = {}  # type: ignore[typeddict-item]
-    if "Visibility" in data:
+    if data.get("Visibility") is not None:
         import capo_quicksight.types.visibility
 
         out["visibility"] = capo_quicksight.types.visibility.deserialize_json(
             data["Visibility"]
         )
-    if "CategoryLabelVisibility" in data:
+    if data.get("CategoryLabelVisibility") is not None:
         import capo_quicksight.types.visibility
 
         out["category_label_visibility"] = (
@@ -101,7 +101,7 @@ def deserialize_json(data: dict) -> FunnelChartDataLabelOptions:
                 data["CategoryLabelVisibility"]
             )
         )
-    if "MeasureLabelVisibility" in data:
+    if data.get("MeasureLabelVisibility") is not None:
         import capo_quicksight.types.visibility
 
         out["measure_label_visibility"] = (
@@ -109,13 +109,13 @@ def deserialize_json(data: dict) -> FunnelChartDataLabelOptions:
                 data["MeasureLabelVisibility"]
             )
         )
-    if "Position" in data:
+    if data.get("Position") is not None:
         import capo_quicksight.types.data_label_position
 
         out["position"] = capo_quicksight.types.data_label_position.deserialize_json(
             data["Position"]
         )
-    if "LabelFontConfiguration" in data:
+    if data.get("LabelFontConfiguration") is not None:
         import capo_quicksight.types.font_configuration
 
         out["label_font_configuration"] = (
@@ -123,9 +123,9 @@ def deserialize_json(data: dict) -> FunnelChartDataLabelOptions:
                 data["LabelFontConfiguration"]
             )
         )
-    if "LabelColor" in data:
+    if data.get("LabelColor") is not None:
         out["label_color"] = data["LabelColor"]
-    if "MeasureDataLabelStyle" in data:
+    if data.get("MeasureDataLabelStyle") is not None:
         import capo_quicksight.types.funnel_chart_measure_data_label_style
 
         out["measure_data_label_style"] = (

@@ -35,14 +35,14 @@ def serialize_json(value: BucketCountPolicyAllowsUnencryptedObjectUploads) -> di
 
 def deserialize_json(data: dict) -> BucketCountPolicyAllowsUnencryptedObjectUploads:
     out: BucketCountPolicyAllowsUnencryptedObjectUploads = {}  # type: ignore[typeddict-item]
-    if "allowsUnencryptedObjectUploads" in data:
+    if data.get("allowsUnencryptedObjectUploads") is not None:
         out["allows_unencrypted_object_uploads"] = data[
             "allowsUnencryptedObjectUploads"
         ]
-    if "deniesUnencryptedObjectUploads" in data:
+    if data.get("deniesUnencryptedObjectUploads") is not None:
         out["denies_unencrypted_object_uploads"] = data[
             "deniesUnencryptedObjectUploads"
         ]
-    if "unknown" in data:
+    if data.get("unknown") is not None:
         out["unknown"] = data["unknown"]
     return out

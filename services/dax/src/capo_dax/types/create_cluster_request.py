@@ -120,21 +120,21 @@ def serialize_aws_json_1_1(value: CreateClusterRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateClusterRequest:
     out: CreateClusterRequest = {}  # type: ignore[typeddict-item]
-    if "ClusterName" in data:
+    if data.get("ClusterName") is not None:
         out["cluster_name"] = data["ClusterName"]
     else:
         raise DeserializationError("CreateClusterRequest.cluster_name required")
-    if "NodeType" in data:
+    if data.get("NodeType") is not None:
         out["node_type"] = data["NodeType"]
     else:
         raise DeserializationError("CreateClusterRequest.node_type required")
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "ReplicationFactor" in data:
+    if data.get("ReplicationFactor") is not None:
         out["replication_factor"] = data["ReplicationFactor"]
     else:
         out["replication_factor"] = 0
-    if "AvailabilityZones" in data:
+    if data.get("AvailabilityZones") is not None:
         import capo_dax.types.availability_zone_list
 
         out["availability_zones"] = (
@@ -142,9 +142,9 @@ def deserialize_aws_json_1_1(data: dict) -> CreateClusterRequest:
                 data["AvailabilityZones"]
             )
         )
-    if "SubnetGroupName" in data:
+    if data.get("SubnetGroupName") is not None:
         out["subnet_group_name"] = data["SubnetGroupName"]
-    if "SecurityGroupIds" in data:
+    if data.get("SecurityGroupIds") is not None:
         import capo_dax.types.security_group_identifier_list
 
         out["security_group_ids"] = (
@@ -152,21 +152,21 @@ def deserialize_aws_json_1_1(data: dict) -> CreateClusterRequest:
                 data["SecurityGroupIds"]
             )
         )
-    if "PreferredMaintenanceWindow" in data:
+    if data.get("PreferredMaintenanceWindow") is not None:
         out["preferred_maintenance_window"] = data["PreferredMaintenanceWindow"]
-    if "NotificationTopicArn" in data:
+    if data.get("NotificationTopicArn") is not None:
         out["notification_topic_arn"] = data["NotificationTopicArn"]
-    if "IamRoleArn" in data:
+    if data.get("IamRoleArn") is not None:
         out["iam_role_arn"] = data["IamRoleArn"]
     else:
         raise DeserializationError("CreateClusterRequest.iam_role_arn required")
-    if "ParameterGroupName" in data:
+    if data.get("ParameterGroupName") is not None:
         out["parameter_group_name"] = data["ParameterGroupName"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_dax.types.tag_list
 
         out["tags"] = capo_dax.types.tag_list.deserialize_aws_json_1_1(data["Tags"])
-    if "SSESpecification" in data:
+    if data.get("SSESpecification") is not None:
         import capo_dax.types.sse_specification
 
         out["sse_specification"] = (
@@ -174,7 +174,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateClusterRequest:
                 data["SSESpecification"]
             )
         )
-    if "ClusterEndpointEncryptionType" in data:
+    if data.get("ClusterEndpointEncryptionType") is not None:
         import capo_dax.types.cluster_endpoint_encryption_type
 
         out["cluster_endpoint_encryption_type"] = (
@@ -182,7 +182,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateClusterRequest:
                 data["ClusterEndpointEncryptionType"]
             )
         )
-    if "NetworkType" in data:
+    if data.get("NetworkType") is not None:
         import capo_dax.types.network_type
 
         out["network_type"] = capo_dax.types.network_type.deserialize_aws_json_1_1(

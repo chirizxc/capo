@@ -76,38 +76,38 @@ def serialize_json(value: CreateFunctionRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateFunctionRequest:
     out: CreateFunctionRequest = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("CreateFunctionRequest.name required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "dataSourceName" in data:
+    if data.get("dataSourceName") is not None:
         out["data_source_name"] = data["dataSourceName"]
     else:
         raise DeserializationError("CreateFunctionRequest.data_source_name required")
-    if "requestMappingTemplate" in data:
+    if data.get("requestMappingTemplate") is not None:
         out["request_mapping_template"] = data["requestMappingTemplate"]
-    if "responseMappingTemplate" in data:
+    if data.get("responseMappingTemplate") is not None:
         out["response_mapping_template"] = data["responseMappingTemplate"]
-    if "functionVersion" in data:
+    if data.get("functionVersion") is not None:
         out["function_version"] = data["functionVersion"]
-    if "syncConfig" in data:
+    if data.get("syncConfig") is not None:
         import capo_appsync.types.sync_config
 
         out["sync_config"] = capo_appsync.types.sync_config.deserialize_json(
             data["syncConfig"]
         )
-    if "maxBatchSize" in data:
+    if data.get("maxBatchSize") is not None:
         out["max_batch_size"] = data["maxBatchSize"]
     else:
         out["max_batch_size"] = 0
-    if "runtime" in data:
+    if data.get("runtime") is not None:
         import capo_appsync.types.app_sync_runtime
 
         out["runtime"] = capo_appsync.types.app_sync_runtime.deserialize_json(
             data["runtime"]
         )
-    if "code" in data:
+    if data.get("code") is not None:
         out["code"] = data["code"]
     return out

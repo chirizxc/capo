@@ -40,12 +40,12 @@ def serialize_aws_json_1_1(value: ListFleetsInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListFleetsInput:
     out: ListFleetsInput = {}  # type: ignore[typeddict-item]
-    if "BuildId" in data:
+    if data.get("BuildId") is not None:
         out["build_id"] = data["BuildId"]
-    if "ScriptId" in data:
+    if data.get("ScriptId") is not None:
         out["script_id"] = data["ScriptId"]
-    if "Limit" in data:
+    if data.get("Limit") is not None:
         out["limit"] = data["Limit"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

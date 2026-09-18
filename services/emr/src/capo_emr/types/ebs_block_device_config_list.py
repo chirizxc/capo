@@ -25,6 +25,8 @@ def deserialize_aws_json_1_1(data: list) -> EbsBlockDeviceConfigList:
 
     out: EbsBlockDeviceConfigList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_emr.types.ebs_block_device_config.deserialize_aws_json_1_1(item)
         )

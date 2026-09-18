@@ -27,7 +27,7 @@ def serialize_json(value: TrafficShapingRetrievalWindow) -> dict:
 
 def deserialize_json(data: dict) -> TrafficShapingRetrievalWindow:
     out: TrafficShapingRetrievalWindow = {}  # type: ignore[typeddict-item]
-    if "RetrievalWindowDurationSeconds" in data:
+    if data.get("RetrievalWindowDurationSeconds") is not None:
         out["retrieval_window_duration_seconds"] = data[
             "RetrievalWindowDurationSeconds"
         ]

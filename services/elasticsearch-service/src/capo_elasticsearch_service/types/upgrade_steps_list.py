@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> UpgradeStepsList:
 
     out: UpgradeStepsList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_elasticsearch_service.types.upgrade_step_item.deserialize_json(item)
         )

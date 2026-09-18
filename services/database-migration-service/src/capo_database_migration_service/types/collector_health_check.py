@@ -52,7 +52,7 @@ def serialize_aws_json_1_1(value: CollectorHealthCheck) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CollectorHealthCheck:
     out: CollectorHealthCheck = {}  # type: ignore[typeddict-item]
-    if "CollectorStatus" in data:
+    if data.get("CollectorStatus") is not None:
         import capo_database_migration_service.types.collector_status
 
         out["collector_status"] = (
@@ -60,11 +60,11 @@ def deserialize_aws_json_1_1(data: dict) -> CollectorHealthCheck:
                 data["CollectorStatus"]
             )
         )
-    if "LocalCollectorS3Access" in data:
+    if data.get("LocalCollectorS3Access") is not None:
         out["local_collector_s3_access"] = data["LocalCollectorS3Access"]
-    if "WebCollectorS3Access" in data:
+    if data.get("WebCollectorS3Access") is not None:
         out["web_collector_s3_access"] = data["WebCollectorS3Access"]
-    if "WebCollectorGrantedRoleBasedAccess" in data:
+    if data.get("WebCollectorGrantedRoleBasedAccess") is not None:
         out["web_collector_granted_role_based_access"] = data[
             "WebCollectorGrantedRoleBasedAccess"
         ]

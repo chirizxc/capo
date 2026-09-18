@@ -16,4 +16,4 @@ def serialize_json(value: ConstrainedStringList) -> list:
 
 
 def deserialize_json(data: list) -> ConstrainedStringList:
-    return list(data)
+    return [item for item in data if item is not None]

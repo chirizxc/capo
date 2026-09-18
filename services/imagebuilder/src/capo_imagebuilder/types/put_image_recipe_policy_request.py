@@ -28,13 +28,13 @@ def serialize_json(value: PutImageRecipePolicyRequest) -> dict:
 
 def deserialize_json(data: dict) -> PutImageRecipePolicyRequest:
     out: PutImageRecipePolicyRequest = {}  # type: ignore[typeddict-item]
-    if "imageRecipeArn" in data:
+    if data.get("imageRecipeArn") is not None:
         out["image_recipe_arn"] = data["imageRecipeArn"]
     else:
         raise DeserializationError(
             "PutImageRecipePolicyRequest.image_recipe_arn required"
         )
-    if "policy" in data:
+    if data.get("policy") is not None:
         out["policy"] = data["policy"]
     else:
         raise DeserializationError("PutImageRecipePolicyRequest.policy required")

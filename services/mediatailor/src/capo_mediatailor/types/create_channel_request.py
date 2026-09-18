@@ -86,13 +86,13 @@ def serialize_json(value: CreateChannelRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateChannelRequest:
     out: CreateChannelRequest = {}  # type: ignore[typeddict-item]
-    if "FillerSlate" in data:
+    if data.get("FillerSlate") is not None:
         import capo_mediatailor.types.slate_source
 
         out["filler_slate"] = capo_mediatailor.types.slate_source.deserialize_json(
             data["FillerSlate"]
         )
-    if "Outputs" in data:
+    if data.get("Outputs") is not None:
         import capo_mediatailor.types.request_outputs
 
         out["outputs"] = capo_mediatailor.types.request_outputs.deserialize_json(
@@ -100,7 +100,7 @@ def deserialize_json(data: dict) -> CreateChannelRequest:
         )
     else:
         raise DeserializationError("CreateChannelRequest.outputs required")
-    if "PlaybackMode" in data:
+    if data.get("PlaybackMode") is not None:
         import capo_mediatailor.types.playback_mode
 
         out["playback_mode"] = capo_mediatailor.types.playback_mode.deserialize_json(
@@ -108,17 +108,17 @@ def deserialize_json(data: dict) -> CreateChannelRequest:
         )
     else:
         raise DeserializationError("CreateChannelRequest.playback_mode required")
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_mediatailor.types.__map_of__string
 
         out["tags"] = capo_mediatailor.types.__map_of__string.deserialize_json(
             data["tags"]
         )
-    if "Tier" in data:
+    if data.get("Tier") is not None:
         import capo_mediatailor.types.tier
 
         out["tier"] = capo_mediatailor.types.tier.deserialize_json(data["Tier"])
-    if "TimeShiftConfiguration" in data:
+    if data.get("TimeShiftConfiguration") is not None:
         import capo_mediatailor.types.time_shift_configuration
 
         out["time_shift_configuration"] = (
@@ -126,7 +126,7 @@ def deserialize_json(data: dict) -> CreateChannelRequest:
                 data["TimeShiftConfiguration"]
             )
         )
-    if "Audiences" in data:
+    if data.get("Audiences") is not None:
         import capo_mediatailor.types.audiences
 
         out["audiences"] = capo_mediatailor.types.audiences.deserialize_json(

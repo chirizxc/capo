@@ -27,7 +27,7 @@ def serialize_json(value: ListCategoriesOutput) -> dict:
 
 def deserialize_json(data: dict) -> ListCategoriesOutput:
     out: ListCategoriesOutput = {}  # type: ignore[typeddict-item]
-    if "categories" in data:
+    if data.get("categories") is not None:
         import capo_qapps.types.categories_list
 
         out["categories"] = capo_qapps.types.categories_list.deserialize_json(

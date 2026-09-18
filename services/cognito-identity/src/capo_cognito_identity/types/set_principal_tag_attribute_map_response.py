@@ -50,13 +50,13 @@ def serialize_aws_json_1_1(value: SetPrincipalTagAttributeMapResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SetPrincipalTagAttributeMapResponse:
     out: SetPrincipalTagAttributeMapResponse = {}  # type: ignore[typeddict-item]
-    if "IdentityPoolId" in data:
+    if data.get("IdentityPoolId") is not None:
         out["identity_pool_id"] = data["IdentityPoolId"]
-    if "IdentityProviderName" in data:
+    if data.get("IdentityProviderName") is not None:
         out["identity_provider_name"] = data["IdentityProviderName"]
-    if "UseDefaults" in data:
+    if data.get("UseDefaults") is not None:
         out["use_defaults"] = data["UseDefaults"]
-    if "PrincipalTags" in data:
+    if data.get("PrincipalTags") is not None:
         import capo_cognito_identity.types.principal_tags
 
         out["principal_tags"] = (

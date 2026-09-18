@@ -40,7 +40,7 @@ def deserialize_json(
     data: dict,
 ) -> DescribeOutboundCrossClusterSearchConnectionsResponse:
     out: DescribeOutboundCrossClusterSearchConnectionsResponse = {}  # type: ignore[typeddict-item]
-    if "CrossClusterSearchConnections" in data:
+    if data.get("CrossClusterSearchConnections") is not None:
         import capo_elasticsearch_service.types.outbound_cross_cluster_search_connections
 
         out["cross_cluster_search_connections"] = (
@@ -48,6 +48,6 @@ def deserialize_json(
                 data["CrossClusterSearchConnections"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

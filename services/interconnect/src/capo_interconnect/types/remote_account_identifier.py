@@ -26,7 +26,7 @@ def serialize_aws_json_1_0(value: RemoteAccountIdentifier) -> dict:
 
 
 def deserialize_aws_json_1_0(data: dict) -> RemoteAccountIdentifier:
-    if "identifier" in data:
+    if data.get("identifier") is not None:
         return {"identifier": data["identifier"]}
     else:
         raise DeserializationError("RemoteAccountIdentifier: no recognized variant key")

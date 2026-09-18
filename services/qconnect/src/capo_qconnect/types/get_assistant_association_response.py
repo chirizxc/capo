@@ -31,7 +31,7 @@ def serialize_json(value: GetAssistantAssociationResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetAssistantAssociationResponse:
     out: GetAssistantAssociationResponse = {}  # type: ignore[typeddict-item]
-    if "assistantAssociation" in data:
+    if data.get("assistantAssociation") is not None:
         import capo_qconnect.types.assistant_association_data
 
         out["assistant_association"] = (

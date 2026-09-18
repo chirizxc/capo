@@ -62,29 +62,29 @@ def serialize_aws_json_1_1(value: CreateMultiRegionClusterRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateMultiRegionClusterRequest:
     out: CreateMultiRegionClusterRequest = {}  # type: ignore[typeddict-item]
-    if "MultiRegionClusterNameSuffix" in data:
+    if data.get("MultiRegionClusterNameSuffix") is not None:
         out["multi_region_cluster_name_suffix"] = data["MultiRegionClusterNameSuffix"]
     else:
         raise DeserializationError(
             "CreateMultiRegionClusterRequest.multi_region_cluster_name_suffix required"
         )
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Engine" in data:
+    if data.get("Engine") is not None:
         out["engine"] = data["Engine"]
-    if "EngineVersion" in data:
+    if data.get("EngineVersion") is not None:
         out["engine_version"] = data["EngineVersion"]
-    if "NodeType" in data:
+    if data.get("NodeType") is not None:
         out["node_type"] = data["NodeType"]
     else:
         raise DeserializationError("CreateMultiRegionClusterRequest.node_type required")
-    if "MultiRegionParameterGroupName" in data:
+    if data.get("MultiRegionParameterGroupName") is not None:
         out["multi_region_parameter_group_name"] = data["MultiRegionParameterGroupName"]
-    if "NumShards" in data:
+    if data.get("NumShards") is not None:
         out["num_shards"] = data["NumShards"]
-    if "TLSEnabled" in data:
+    if data.get("TLSEnabled") is not None:
         out["tls_enabled"] = data["TLSEnabled"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_memorydb.types.tag_list
 
         out["tags"] = capo_memorydb.types.tag_list.deserialize_aws_json_1_1(

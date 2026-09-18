@@ -87,21 +87,21 @@ def serialize_json(value: CreateIdMappingWorkflowOutput) -> dict:
 
 def deserialize_json(data: dict) -> CreateIdMappingWorkflowOutput:
     out: CreateIdMappingWorkflowOutput = {}  # type: ignore[typeddict-item]
-    if "workflowName" in data:
+    if data.get("workflowName") is not None:
         out["workflow_name"] = data["workflowName"]
     else:
         raise DeserializationError(
             "CreateIdMappingWorkflowOutput.workflow_name required"
         )
-    if "workflowArn" in data:
+    if data.get("workflowArn") is not None:
         out["workflow_arn"] = data["workflowArn"]
     else:
         raise DeserializationError(
             "CreateIdMappingWorkflowOutput.workflow_arn required"
         )
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "inputSourceConfig" in data:
+    if data.get("inputSourceConfig") is not None:
         import capo_entityresolution.types.id_mapping_workflow_input_source_config
 
         out["input_source_config"] = (
@@ -113,7 +113,7 @@ def deserialize_json(data: dict) -> CreateIdMappingWorkflowOutput:
         raise DeserializationError(
             "CreateIdMappingWorkflowOutput.input_source_config required"
         )
-    if "outputSourceConfig" in data:
+    if data.get("outputSourceConfig") is not None:
         import capo_entityresolution.types.id_mapping_workflow_output_source_config
 
         out["output_source_config"] = (
@@ -121,7 +121,7 @@ def deserialize_json(data: dict) -> CreateIdMappingWorkflowOutput:
                 data["outputSourceConfig"]
             )
         )
-    if "idMappingTechniques" in data:
+    if data.get("idMappingTechniques") is not None:
         import capo_entityresolution.types.id_mapping_techniques
 
         out["id_mapping_techniques"] = (
@@ -133,7 +133,7 @@ def deserialize_json(data: dict) -> CreateIdMappingWorkflowOutput:
         raise DeserializationError(
             "CreateIdMappingWorkflowOutput.id_mapping_techniques required"
         )
-    if "incrementalRunConfig" in data:
+    if data.get("incrementalRunConfig") is not None:
         import capo_entityresolution.types.id_mapping_incremental_run_config
 
         out["incremental_run_config"] = (
@@ -141,7 +141,7 @@ def deserialize_json(data: dict) -> CreateIdMappingWorkflowOutput:
                 data["incrementalRunConfig"]
             )
         )
-    if "roleArn" in data:
+    if data.get("roleArn") is not None:
         out["role_arn"] = data["roleArn"]
     else:
         out["role_arn"] = ""

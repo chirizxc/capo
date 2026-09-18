@@ -64,9 +64,9 @@ def serialize_json(value: ReplicationSet) -> dict:
 
 def deserialize_json(data: dict) -> ReplicationSet:
     out: ReplicationSet = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "regionMap" in data:
+    if data.get("regionMap") is not None:
         import capo_ssm_incidents.types.region_info_map
 
         out["region_map"] = capo_ssm_incidents.types.region_info_map.deserialize_json(
@@ -74,15 +74,15 @@ def deserialize_json(data: dict) -> ReplicationSet:
         )
     else:
         raise DeserializationError("ReplicationSet.region_map required")
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
     else:
         raise DeserializationError("ReplicationSet.status required")
-    if "deletionProtected" in data:
+    if data.get("deletionProtected") is not None:
         out["deletion_protected"] = data["deletionProtected"]
     else:
         raise DeserializationError("ReplicationSet.deletion_protected required")
-    if "createdTime" in data:
+    if data.get("createdTime") is not None:
         import capo_ssm_incidents.types._prelude.timestamp
 
         out["created_time"] = (
@@ -92,11 +92,11 @@ def deserialize_json(data: dict) -> ReplicationSet:
         )
     else:
         raise DeserializationError("ReplicationSet.created_time required")
-    if "createdBy" in data:
+    if data.get("createdBy") is not None:
         out["created_by"] = data["createdBy"]
     else:
         raise DeserializationError("ReplicationSet.created_by required")
-    if "lastModifiedTime" in data:
+    if data.get("lastModifiedTime") is not None:
         import capo_ssm_incidents.types._prelude.timestamp
 
         out["last_modified_time"] = (
@@ -106,7 +106,7 @@ def deserialize_json(data: dict) -> ReplicationSet:
         )
     else:
         raise DeserializationError("ReplicationSet.last_modified_time required")
-    if "lastModifiedBy" in data:
+    if data.get("lastModifiedBy") is not None:
         out["last_modified_by"] = data["lastModifiedBy"]
     else:
         raise DeserializationError("ReplicationSet.last_modified_by required")

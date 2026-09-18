@@ -72,35 +72,35 @@ def serialize_json(value: DescribeGeofenceCollectionResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribeGeofenceCollectionResponse:
     out: DescribeGeofenceCollectionResponse = {}  # type: ignore[typeddict-item]
-    if "CollectionName" in data:
+    if data.get("CollectionName") is not None:
         out["collection_name"] = data["CollectionName"]
     else:
         raise DeserializationError(
             "DescribeGeofenceCollectionResponse.collection_name required"
         )
-    if "CollectionArn" in data:
+    if data.get("CollectionArn") is not None:
         out["collection_arn"] = data["CollectionArn"]
     else:
         raise DeserializationError(
             "DescribeGeofenceCollectionResponse.collection_arn required"
         )
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
     else:
         raise DeserializationError(
             "DescribeGeofenceCollectionResponse.description required"
         )
-    if "PricingPlan" in data:
+    if data.get("PricingPlan") is not None:
         out["pricing_plan"] = data["PricingPlan"]
-    if "PricingPlanDataSource" in data:
+    if data.get("PricingPlanDataSource") is not None:
         out["pricing_plan_data_source"] = data["PricingPlanDataSource"]
-    if "KmsKeyId" in data:
+    if data.get("KmsKeyId") is not None:
         out["kms_key_id"] = data["KmsKeyId"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_location.types.tag_map
 
         out["tags"] = capo_location.types.tag_map.deserialize_json(data["Tags"])
-    if "CreateTime" in data:
+    if data.get("CreateTime") is not None:
         import capo_location.types.timestamp
 
         out["create_time"] = capo_location.types.timestamp.deserialize_json(
@@ -110,7 +110,7 @@ def deserialize_json(data: dict) -> DescribeGeofenceCollectionResponse:
         raise DeserializationError(
             "DescribeGeofenceCollectionResponse.create_time required"
         )
-    if "UpdateTime" in data:
+    if data.get("UpdateTime") is not None:
         import capo_location.types.timestamp
 
         out["update_time"] = capo_location.types.timestamp.deserialize_json(
@@ -120,6 +120,6 @@ def deserialize_json(data: dict) -> DescribeGeofenceCollectionResponse:
         raise DeserializationError(
             "DescribeGeofenceCollectionResponse.update_time required"
         )
-    if "GeofenceCount" in data:
+    if data.get("GeofenceCount") is not None:
         out["geofence_count"] = data["GeofenceCount"]
     return out

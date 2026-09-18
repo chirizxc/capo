@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> AccountFreeTrialInfos:
 
     out: AccountFreeTrialInfos = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_guardduty.types.account_free_trial_info.deserialize_json(item))
     return out

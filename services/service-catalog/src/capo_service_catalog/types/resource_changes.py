@@ -27,6 +27,8 @@ def deserialize_aws_json_1_1(data: list) -> ResourceChanges:
 
     out: ResourceChanges = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_service_catalog.types.resource_change.deserialize_aws_json_1_1(item)
         )

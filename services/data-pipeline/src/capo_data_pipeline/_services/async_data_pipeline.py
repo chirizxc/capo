@@ -224,8 +224,9 @@ class AsyncDataPipelineClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_data_pipeline.types.activate_pipeline_input.ActivatePipelineInput = {}  # type: ignore[typeddict-item]
-        input_["pipeline_id"] = pipeline_id
+        input_: capo_data_pipeline.types.activate_pipeline_input.ActivatePipelineInput = {
+            "pipeline_id": pipeline_id
+        }
         if parameter_values is not None:
             input_["parameter_values"] = parameter_values
         if start_timestamp is not None:
@@ -236,6 +237,7 @@ class AsyncDataPipelineClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def add_tags(
@@ -275,15 +277,17 @@ class AsyncDataPipelineClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_data_pipeline.types.add_tags_input.AddTagsInput = {}  # type: ignore[typeddict-item]
-        input_["pipeline_id"] = pipeline_id
-        input_["tags"] = tags
+        input_: capo_data_pipeline.types.add_tags_input.AddTagsInput = {
+            "pipeline_id": pipeline_id,
+            "tags": tags,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_pipeline(
@@ -325,9 +329,10 @@ class AsyncDataPipelineClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_data_pipeline.types.create_pipeline_input.CreatePipelineInput = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        input_["unique_id"] = unique_id
+        input_: capo_data_pipeline.types.create_pipeline_input.CreatePipelineInput = {
+            "name": name,
+            "unique_id": unique_id,
+        }
         if description is not None:
             input_["description"] = description
         if tags is not None:
@@ -338,6 +343,7 @@ class AsyncDataPipelineClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def deactivate_pipeline(
@@ -379,8 +385,9 @@ class AsyncDataPipelineClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_data_pipeline.types.deactivate_pipeline_input.DeactivatePipelineInput = {}  # type: ignore[typeddict-item]
-        input_["pipeline_id"] = pipeline_id
+        input_: capo_data_pipeline.types.deactivate_pipeline_input.DeactivatePipelineInput = {
+            "pipeline_id": pipeline_id
+        }
         if cancel_active is not None:
             input_["cancel_active"] = cancel_active
 
@@ -389,6 +396,7 @@ class AsyncDataPipelineClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_pipeline(
@@ -423,14 +431,16 @@ class AsyncDataPipelineClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_data_pipeline.types.delete_pipeline_input.DeletePipelineInput = {}  # type: ignore[typeddict-item]
-        input_["pipeline_id"] = pipeline_id
+        input_: capo_data_pipeline.types.delete_pipeline_input.DeletePipelineInput = {
+            "pipeline_id": pipeline_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_objects(
@@ -476,9 +486,10 @@ class AsyncDataPipelineClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_data_pipeline.types.describe_objects_input.DescribeObjectsInput = {}  # type: ignore[typeddict-item]
-        input_["pipeline_id"] = pipeline_id
-        input_["object_ids"] = object_ids
+        input_: capo_data_pipeline.types.describe_objects_input.DescribeObjectsInput = {
+            "pipeline_id": pipeline_id,
+            "object_ids": object_ids,
+        }
         if evaluate_expressions is not None:
             input_["evaluate_expressions"] = evaluate_expressions
         if marker is not None:
@@ -489,6 +500,7 @@ class AsyncDataPipelineClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_describe_objects(
@@ -553,14 +565,16 @@ class AsyncDataPipelineClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_data_pipeline.types.describe_pipelines_input.DescribePipelinesInput = {}  # type: ignore[typeddict-item]
-        input_["pipeline_ids"] = pipeline_ids
+        input_: capo_data_pipeline.types.describe_pipelines_input.DescribePipelinesInput = {
+            "pipeline_ids": pipeline_ids
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def evaluate_expression(
@@ -603,16 +617,18 @@ class AsyncDataPipelineClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_data_pipeline.types.evaluate_expression_input.EvaluateExpressionInput = {}  # type: ignore[typeddict-item]
-        input_["pipeline_id"] = pipeline_id
-        input_["object_id"] = object_id
-        input_["expression"] = expression
+        input_: capo_data_pipeline.types.evaluate_expression_input.EvaluateExpressionInput = {
+            "pipeline_id": pipeline_id,
+            "object_id": object_id,
+            "expression": expression,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_pipeline_definition(
@@ -652,8 +668,9 @@ class AsyncDataPipelineClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_data_pipeline.types.get_pipeline_definition_input.GetPipelineDefinitionInput = {}  # type: ignore[typeddict-item]
-        input_["pipeline_id"] = pipeline_id
+        input_: capo_data_pipeline.types.get_pipeline_definition_input.GetPipelineDefinitionInput = {
+            "pipeline_id": pipeline_id
+        }
         if version is not None:
             input_["version"] = version
 
@@ -662,6 +679,7 @@ class AsyncDataPipelineClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_pipelines(
@@ -697,7 +715,7 @@ class AsyncDataPipelineClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_data_pipeline.types.list_pipelines_input.ListPipelinesInput = {}  # type: ignore[typeddict-item]
+        input_: capo_data_pipeline.types.list_pipelines_input.ListPipelinesInput = {}
         if marker is not None:
             input_["marker"] = marker
 
@@ -706,6 +724,7 @@ class AsyncDataPipelineClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_pipelines(
@@ -767,8 +786,9 @@ class AsyncDataPipelineClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_data_pipeline.types.poll_for_task_input.PollForTaskInput = {}  # type: ignore[typeddict-item]
-        input_["worker_group"] = worker_group
+        input_: capo_data_pipeline.types.poll_for_task_input.PollForTaskInput = {
+            "worker_group": worker_group
+        }
         if hostname is not None:
             input_["hostname"] = hostname
         if instance_identity is not None:
@@ -779,6 +799,7 @@ class AsyncDataPipelineClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def put_pipeline_definition(
@@ -826,9 +847,10 @@ class AsyncDataPipelineClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_data_pipeline.types.put_pipeline_definition_input.PutPipelineDefinitionInput = {}  # type: ignore[typeddict-item]
-        input_["pipeline_id"] = pipeline_id
-        input_["pipeline_objects"] = pipeline_objects
+        input_: capo_data_pipeline.types.put_pipeline_definition_input.PutPipelineDefinitionInput = {
+            "pipeline_id": pipeline_id,
+            "pipeline_objects": pipeline_objects,
+        }
         if parameter_objects is not None:
             input_["parameter_objects"] = parameter_objects
         if parameter_values is not None:
@@ -839,6 +861,7 @@ class AsyncDataPipelineClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def query_objects(
@@ -884,11 +907,12 @@ class AsyncDataPipelineClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_data_pipeline.types.query_objects_input.QueryObjectsInput = {}  # type: ignore[typeddict-item]
-        input_["pipeline_id"] = pipeline_id
+        input_: capo_data_pipeline.types.query_objects_input.QueryObjectsInput = {
+            "pipeline_id": pipeline_id,
+            "sphere": sphere,
+        }
         if query is not None:
             input_["query"] = query
-        input_["sphere"] = sphere
         if marker is not None:
             input_["marker"] = marker
         if limit is not None:
@@ -899,6 +923,7 @@ class AsyncDataPipelineClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_query_objects(
@@ -965,15 +990,17 @@ class AsyncDataPipelineClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_data_pipeline.types.remove_tags_input.RemoveTagsInput = {}  # type: ignore[typeddict-item]
-        input_["pipeline_id"] = pipeline_id
-        input_["tag_keys"] = tag_keys
+        input_: capo_data_pipeline.types.remove_tags_input.RemoveTagsInput = {
+            "pipeline_id": pipeline_id,
+            "tag_keys": tag_keys,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def report_task_progress(
@@ -1016,8 +1043,9 @@ class AsyncDataPipelineClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_data_pipeline.types.report_task_progress_input.ReportTaskProgressInput = {}  # type: ignore[typeddict-item]
-        input_["task_id"] = task_id
+        input_: capo_data_pipeline.types.report_task_progress_input.ReportTaskProgressInput = {
+            "task_id": task_id
+        }
         if fields is not None:
             input_["fields"] = fields
 
@@ -1026,6 +1054,7 @@ class AsyncDataPipelineClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def report_task_runner_heartbeat(
@@ -1065,8 +1094,9 @@ class AsyncDataPipelineClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_data_pipeline.types.report_task_runner_heartbeat_input.ReportTaskRunnerHeartbeatInput = {}  # type: ignore[typeddict-item]
-        input_["taskrunner_id"] = taskrunner_id
+        input_: capo_data_pipeline.types.report_task_runner_heartbeat_input.ReportTaskRunnerHeartbeatInput = {
+            "taskrunner_id": taskrunner_id
+        }
         if worker_group is not None:
             input_["worker_group"] = worker_group
         if hostname is not None:
@@ -1077,6 +1107,7 @@ class AsyncDataPipelineClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def set_status(
@@ -1116,16 +1147,18 @@ class AsyncDataPipelineClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_data_pipeline.types.set_status_input.SetStatusInput = {}  # type: ignore[typeddict-item]
-        input_["pipeline_id"] = pipeline_id
-        input_["object_ids"] = object_ids
-        input_["status"] = status
+        input_: capo_data_pipeline.types.set_status_input.SetStatusInput = {
+            "pipeline_id": pipeline_id,
+            "object_ids": object_ids,
+            "status": status,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def set_task_status(
@@ -1174,9 +1207,10 @@ class AsyncDataPipelineClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_data_pipeline.types.set_task_status_input.SetTaskStatusInput = {}  # type: ignore[typeddict-item]
-        input_["task_id"] = task_id
-        input_["task_status"] = task_status
+        input_: capo_data_pipeline.types.set_task_status_input.SetTaskStatusInput = {
+            "task_id": task_id,
+            "task_status": task_status,
+        }
         if error_id is not None:
             input_["error_id"] = error_id
         if error_message is not None:
@@ -1189,6 +1223,7 @@ class AsyncDataPipelineClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def validate_pipeline_definition(
@@ -1236,9 +1271,10 @@ class AsyncDataPipelineClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_data_pipeline.types.validate_pipeline_definition_input.ValidatePipelineDefinitionInput = {}  # type: ignore[typeddict-item]
-        input_["pipeline_id"] = pipeline_id
-        input_["pipeline_objects"] = pipeline_objects
+        input_: capo_data_pipeline.types.validate_pipeline_definition_input.ValidatePipelineDefinitionInput = {
+            "pipeline_id": pipeline_id,
+            "pipeline_objects": pipeline_objects,
+        }
         if parameter_objects is not None:
             input_["parameter_objects"] = parameter_objects
         if parameter_values is not None:
@@ -1249,6 +1285,7 @@ class AsyncDataPipelineClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def __aenter__(self) -> Self:

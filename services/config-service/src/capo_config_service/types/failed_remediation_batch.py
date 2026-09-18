@@ -36,9 +36,9 @@ def serialize_aws_json_1_1(value: FailedRemediationBatch) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> FailedRemediationBatch:
     out: FailedRemediationBatch = {}  # type: ignore[typeddict-item]
-    if "FailureMessage" in data:
+    if data.get("FailureMessage") is not None:
         out["failure_message"] = data["FailureMessage"]
-    if "FailedItems" in data:
+    if data.get("FailedItems") is not None:
         import capo_config_service.types.remediation_configurations
 
         out["failed_items"] = (

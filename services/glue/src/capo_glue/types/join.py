@@ -46,11 +46,11 @@ def serialize_aws_json_1_1(value: Join) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Join:
     out: Join = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("Join.name required")
-    if "Inputs" in data:
+    if data.get("Inputs") is not None:
         import capo_glue.types.two_inputs
 
         out["inputs"] = capo_glue.types.two_inputs.deserialize_aws_json_1_1(
@@ -58,7 +58,7 @@ def deserialize_aws_json_1_1(data: dict) -> Join:
         )
     else:
         raise DeserializationError("Join.inputs required")
-    if "JoinType" in data:
+    if data.get("JoinType") is not None:
         import capo_glue.types.join_type
 
         out["join_type"] = capo_glue.types.join_type.deserialize_aws_json_1_1(
@@ -66,7 +66,7 @@ def deserialize_aws_json_1_1(data: dict) -> Join:
         )
     else:
         raise DeserializationError("Join.join_type required")
-    if "Columns" in data:
+    if data.get("Columns") is not None:
         import capo_glue.types.join_columns
 
         out["columns"] = capo_glue.types.join_columns.deserialize_aws_json_1_1(

@@ -37,15 +37,18 @@ class CreatedButModifiedException(ServiceError):
 
     code: str | None = "CreatedButModifiedException"
 
-    def __init__(self, data: CreatedButModifiedException_):
+    def __init__(self, data: CreatedButModifiedException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="CreatedButModifiedException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_query(cls, el: Element) -> "CreatedButModifiedException":
-        return cls(deserialize_query(el))
+    def from_query(
+        cls, el: Element, message: str | None = None
+    ) -> "CreatedButModifiedException":
+        return cls(deserialize_query(el), message)

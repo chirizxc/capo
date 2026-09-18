@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> ParticipatingServers:
 
     out: ParticipatingServers = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_mgn.types.participating_server.deserialize_json(item))
     return out

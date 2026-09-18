@@ -69,7 +69,7 @@ def serialize_aws_json_1_0(value: ImportTr34KeyBlock) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ImportTr34KeyBlock:
     out: ImportTr34KeyBlock = {}  # type: ignore[typeddict-item]
-    if "CertificateAuthorityPublicKeyIdentifier" in data:
+    if data.get("CertificateAuthorityPublicKeyIdentifier") is not None:
         out["certificate_authority_public_key_identifier"] = data[
             "CertificateAuthorityPublicKeyIdentifier"
         ]
@@ -77,28 +77,28 @@ def deserialize_aws_json_1_0(data: dict) -> ImportTr34KeyBlock:
         raise DeserializationError(
             "ImportTr34KeyBlock.certificate_authority_public_key_identifier required"
         )
-    if "SigningKeyCertificate" in data:
+    if data.get("SigningKeyCertificate") is not None:
         out["signing_key_certificate"] = data["SigningKeyCertificate"]
     else:
         raise DeserializationError(
             "ImportTr34KeyBlock.signing_key_certificate required"
         )
-    if "ImportToken" in data:
+    if data.get("ImportToken") is not None:
         out["import_token"] = data["ImportToken"]
     else:
         out["import_token"] = ""
-    if "WrappingKeyIdentifier" in data:
+    if data.get("WrappingKeyIdentifier") is not None:
         out["wrapping_key_identifier"] = data["WrappingKeyIdentifier"]
-    if "WrappingKeyCertificate" in data:
+    if data.get("WrappingKeyCertificate") is not None:
         out["wrapping_key_certificate"] = data["WrappingKeyCertificate"]
-    if "WrappedKeyBlock" in data:
+    if data.get("WrappedKeyBlock") is not None:
         out["wrapped_key_block"] = data["WrappedKeyBlock"]
     else:
         raise DeserializationError("ImportTr34KeyBlock.wrapped_key_block required")
-    if "KeyBlockFormat" in data:
+    if data.get("KeyBlockFormat") is not None:
         out["key_block_format"] = data["KeyBlockFormat"]
     else:
         raise DeserializationError("ImportTr34KeyBlock.key_block_format required")
-    if "RandomNonce" in data:
+    if data.get("RandomNonce") is not None:
         out["random_nonce"] = data["RandomNonce"]
     return out

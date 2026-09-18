@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> ListEdgeAgentConfigurationsEdgeConfigList:
 
     out: ListEdgeAgentConfigurationsEdgeConfigList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_kinesis_video.types.list_edge_agent_configurations_edge_config.deserialize_json(
                 item

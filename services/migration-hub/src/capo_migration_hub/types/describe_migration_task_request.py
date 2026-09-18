@@ -32,13 +32,13 @@ def serialize_aws_json_1_1(value: DescribeMigrationTaskRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeMigrationTaskRequest:
     out: DescribeMigrationTaskRequest = {}  # type: ignore[typeddict-item]
-    if "ProgressUpdateStream" in data:
+    if data.get("ProgressUpdateStream") is not None:
         out["progress_update_stream"] = data["ProgressUpdateStream"]
     else:
         raise DeserializationError(
             "DescribeMigrationTaskRequest.progress_update_stream required"
         )
-    if "MigrationTaskName" in data:
+    if data.get("MigrationTaskName") is not None:
         out["migration_task_name"] = data["MigrationTaskName"]
     else:
         raise DeserializationError(

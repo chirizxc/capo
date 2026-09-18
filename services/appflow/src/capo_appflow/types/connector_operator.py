@@ -215,7 +215,7 @@ def serialize_json(value: ConnectorOperator) -> dict:
 
 def deserialize_json(data: dict) -> ConnectorOperator:
     out: ConnectorOperator = {}  # type: ignore[typeddict-item]
-    if "Amplitude" in data:
+    if data.get("Amplitude") is not None:
         import capo_appflow.types.amplitude_connector_operator
 
         out["amplitude"] = (
@@ -223,13 +223,13 @@ def deserialize_json(data: dict) -> ConnectorOperator:
                 data["Amplitude"]
             )
         )
-    if "Datadog" in data:
+    if data.get("Datadog") is not None:
         import capo_appflow.types.datadog_connector_operator
 
         out["datadog"] = capo_appflow.types.datadog_connector_operator.deserialize_json(
             data["Datadog"]
         )
-    if "Dynatrace" in data:
+    if data.get("Dynatrace") is not None:
         import capo_appflow.types.dynatrace_connector_operator
 
         out["dynatrace"] = (
@@ -237,7 +237,7 @@ def deserialize_json(data: dict) -> ConnectorOperator:
                 data["Dynatrace"]
             )
         )
-    if "GoogleAnalytics" in data:
+    if data.get("GoogleAnalytics") is not None:
         import capo_appflow.types.google_analytics_connector_operator
 
         out["google_analytics"] = (
@@ -245,7 +245,7 @@ def deserialize_json(data: dict) -> ConnectorOperator:
                 data["GoogleAnalytics"]
             )
         )
-    if "InforNexus" in data:
+    if data.get("InforNexus") is not None:
         import capo_appflow.types.infor_nexus_connector_operator
 
         out["infor_nexus"] = (
@@ -253,19 +253,19 @@ def deserialize_json(data: dict) -> ConnectorOperator:
                 data["InforNexus"]
             )
         )
-    if "Marketo" in data:
+    if data.get("Marketo") is not None:
         import capo_appflow.types.marketo_connector_operator
 
         out["marketo"] = capo_appflow.types.marketo_connector_operator.deserialize_json(
             data["Marketo"]
         )
-    if "S3" in data:
+    if data.get("S3") is not None:
         import capo_appflow.types.s3_connector_operator
 
         out["s3"] = capo_appflow.types.s3_connector_operator.deserialize_json(
             data["S3"]
         )
-    if "Salesforce" in data:
+    if data.get("Salesforce") is not None:
         import capo_appflow.types.salesforce_connector_operator
 
         out["salesforce"] = (
@@ -273,7 +273,7 @@ def deserialize_json(data: dict) -> ConnectorOperator:
                 data["Salesforce"]
             )
         )
-    if "ServiceNow" in data:
+    if data.get("ServiceNow") is not None:
         import capo_appflow.types.service_now_connector_operator
 
         out["service_now"] = (
@@ -281,7 +281,7 @@ def deserialize_json(data: dict) -> ConnectorOperator:
                 data["ServiceNow"]
             )
         )
-    if "Singular" in data:
+    if data.get("Singular") is not None:
         import capo_appflow.types.singular_connector_operator
 
         out["singular"] = (
@@ -289,13 +289,13 @@ def deserialize_json(data: dict) -> ConnectorOperator:
                 data["Singular"]
             )
         )
-    if "Slack" in data:
+    if data.get("Slack") is not None:
         import capo_appflow.types.slack_connector_operator
 
         out["slack"] = capo_appflow.types.slack_connector_operator.deserialize_json(
             data["Slack"]
         )
-    if "Trendmicro" in data:
+    if data.get("Trendmicro") is not None:
         import capo_appflow.types.trendmicro_connector_operator
 
         out["trendmicro"] = (
@@ -303,19 +303,19 @@ def deserialize_json(data: dict) -> ConnectorOperator:
                 data["Trendmicro"]
             )
         )
-    if "Veeva" in data:
+    if data.get("Veeva") is not None:
         import capo_appflow.types.veeva_connector_operator
 
         out["veeva"] = capo_appflow.types.veeva_connector_operator.deserialize_json(
             data["Veeva"]
         )
-    if "Zendesk" in data:
+    if data.get("Zendesk") is not None:
         import capo_appflow.types.zendesk_connector_operator
 
         out["zendesk"] = capo_appflow.types.zendesk_connector_operator.deserialize_json(
             data["Zendesk"]
         )
-    if "SAPOData" in data:
+    if data.get("SAPOData") is not None:
         import capo_appflow.types.sapo_data_connector_operator
 
         out["sapo_data"] = (
@@ -323,13 +323,13 @@ def deserialize_json(data: dict) -> ConnectorOperator:
                 data["SAPOData"]
             )
         )
-    if "CustomConnector" in data:
+    if data.get("CustomConnector") is not None:
         import capo_appflow.types.operator
 
         out["custom_connector"] = capo_appflow.types.operator.deserialize_json(
             data["CustomConnector"]
         )
-    if "Pardot" in data:
+    if data.get("Pardot") is not None:
         import capo_appflow.types.pardot_connector_operator
 
         out["pardot"] = capo_appflow.types.pardot_connector_operator.deserialize_json(

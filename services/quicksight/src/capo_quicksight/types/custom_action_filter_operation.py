@@ -40,7 +40,7 @@ def serialize_json(value: CustomActionFilterOperation) -> dict:
 
 def deserialize_json(data: dict) -> CustomActionFilterOperation:
     out: CustomActionFilterOperation = {}  # type: ignore[typeddict-item]
-    if "SelectedFieldsConfiguration" in data:
+    if data.get("SelectedFieldsConfiguration") is not None:
         import capo_quicksight.types.filter_operation_selected_fields_configuration
 
         out["selected_fields_configuration"] = (
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> CustomActionFilterOperation:
         raise DeserializationError(
             "CustomActionFilterOperation.selected_fields_configuration required"
         )
-    if "TargetVisualsConfiguration" in data:
+    if data.get("TargetVisualsConfiguration") is not None:
         import capo_quicksight.types.filter_operation_target_visuals_configuration
 
         out["target_visuals_configuration"] = (

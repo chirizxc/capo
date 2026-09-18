@@ -51,15 +51,15 @@ def serialize_json(value: ConfigurationListItem) -> dict:
 
 def deserialize_json(data: dict) -> ConfigurationListItem:
     out: ConfigurationListItem = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
-    if "creationTime" in data:
+    if data.get("creationTime") is not None:
         import capo_omics.types.configuration_timestamp
 
         out["creation_time"] = (

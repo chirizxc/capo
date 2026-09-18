@@ -124,17 +124,17 @@ def serialize_json(value: CreateJobTemplateRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateJobTemplateRequest:
     out: CreateJobTemplateRequest = {}  # type: ignore[typeddict-item]
-    if "jobArn" in data:
+    if data.get("jobArn") is not None:
         out["job_arn"] = data["jobArn"]
-    if "documentSource" in data:
+    if data.get("documentSource") is not None:
         out["document_source"] = data["documentSource"]
-    if "document" in data:
+    if data.get("document") is not None:
         out["document"] = data["document"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
     else:
         raise DeserializationError("CreateJobTemplateRequest.description required")
-    if "presignedUrlConfig" in data:
+    if data.get("presignedUrlConfig") is not None:
         import capo_iot.types.presigned_url_config
 
         out["presigned_url_config"] = (
@@ -142,7 +142,7 @@ def deserialize_json(data: dict) -> CreateJobTemplateRequest:
                 data["presignedUrlConfig"]
             )
         )
-    if "jobExecutionsRolloutConfig" in data:
+    if data.get("jobExecutionsRolloutConfig") is not None:
         import capo_iot.types.job_executions_rollout_config
 
         out["job_executions_rollout_config"] = (
@@ -150,23 +150,23 @@ def deserialize_json(data: dict) -> CreateJobTemplateRequest:
                 data["jobExecutionsRolloutConfig"]
             )
         )
-    if "abortConfig" in data:
+    if data.get("abortConfig") is not None:
         import capo_iot.types.abort_config
 
         out["abort_config"] = capo_iot.types.abort_config.deserialize_json(
             data["abortConfig"]
         )
-    if "timeoutConfig" in data:
+    if data.get("timeoutConfig") is not None:
         import capo_iot.types.timeout_config
 
         out["timeout_config"] = capo_iot.types.timeout_config.deserialize_json(
             data["timeoutConfig"]
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_iot.types.tag_list
 
         out["tags"] = capo_iot.types.tag_list.deserialize_json(data["tags"])
-    if "jobExecutionsRetryConfig" in data:
+    if data.get("jobExecutionsRetryConfig") is not None:
         import capo_iot.types.job_executions_retry_config
 
         out["job_executions_retry_config"] = (
@@ -174,7 +174,7 @@ def deserialize_json(data: dict) -> CreateJobTemplateRequest:
                 data["jobExecutionsRetryConfig"]
             )
         )
-    if "maintenanceWindows" in data:
+    if data.get("maintenanceWindows") is not None:
         import capo_iot.types.maintenance_windows
 
         out["maintenance_windows"] = (
@@ -182,7 +182,7 @@ def deserialize_json(data: dict) -> CreateJobTemplateRequest:
                 data["maintenanceWindows"]
             )
         )
-    if "destinationPackageVersions" in data:
+    if data.get("destinationPackageVersions") is not None:
         import capo_iot.types.destination_package_versions
 
         out["destination_package_versions"] = (

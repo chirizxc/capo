@@ -32,12 +32,12 @@ def serialize_aws_json_1_1(value: SetTerminationProtectionInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SetTerminationProtectionInput:
     out: SetTerminationProtectionInput = {}  # type: ignore[typeddict-item]
-    if "JobFlowIds" in data:
+    if data.get("JobFlowIds") is not None:
         import capo_emr.types.xml_string_list
 
         out["job_flow_ids"] = capo_emr.types.xml_string_list.deserialize_aws_json_1_1(
             data["JobFlowIds"]
         )
-    if "TerminationProtected" in data:
+    if data.get("TerminationProtected") is not None:
         out["termination_protected"] = data["TerminationProtected"]
     return out

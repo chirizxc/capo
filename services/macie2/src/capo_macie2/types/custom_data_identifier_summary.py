@@ -44,18 +44,18 @@ def serialize_json(value: CustomDataIdentifierSummary) -> dict:
 
 def deserialize_json(data: dict) -> CustomDataIdentifierSummary:
     out: CustomDataIdentifierSummary = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_macie2.types.__timestamp_iso8601
 
         out["created_at"] = capo_macie2.types.__timestamp_iso8601.deserialize_json(
             data["createdAt"]
         )
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     return out

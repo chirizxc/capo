@@ -307,17 +307,19 @@ class SecurityAgentClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_securityagent.types.add_artifact_input.AddArtifactInput = {}  # type: ignore[typeddict-item]
-        input_["agent_space_id"] = agent_space_id
-        input_["artifact_content"] = artifact_content
-        input_["artifact_type"] = artifact_type
-        input_["file_name"] = file_name
+        input_: capo_securityagent.types.add_artifact_input.AddArtifactInput = {
+            "agent_space_id": agent_space_id,
+            "artifact_content": artifact_content,
+            "artifact_type": artifact_type,
+            "file_name": file_name,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def batch_delete_code_reviews(
@@ -352,15 +354,17 @@ class SecurityAgentClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_securityagent.types.batch_delete_code_reviews_input.BatchDeleteCodeReviewsInput = {}  # type: ignore[typeddict-item]
-        input_["code_review_ids"] = code_review_ids
-        input_["agent_space_id"] = agent_space_id
+        input_: capo_securityagent.types.batch_delete_code_reviews_input.BatchDeleteCodeReviewsInput = {
+            "code_review_ids": code_review_ids,
+            "agent_space_id": agent_space_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def batch_delete_pentests(
@@ -395,15 +399,17 @@ class SecurityAgentClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_securityagent.types.batch_delete_pentests_input.BatchDeletePentestsInput = {}  # type: ignore[typeddict-item]
-        input_["pentest_ids"] = pentest_ids
-        input_["agent_space_id"] = agent_space_id
+        input_: capo_securityagent.types.batch_delete_pentests_input.BatchDeletePentestsInput = {
+            "pentest_ids": pentest_ids,
+            "agent_space_id": agent_space_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def batch_get_artifact_metadata(
@@ -443,15 +449,17 @@ class SecurityAgentClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_securityagent.types.batch_get_artifact_metadata_input.BatchGetArtifactMetadataInput = {}  # type: ignore[typeddict-item]
-        input_["agent_space_id"] = agent_space_id
-        input_["artifact_ids"] = artifact_ids
+        input_: capo_securityagent.types.batch_get_artifact_metadata_input.BatchGetArtifactMetadataInput = {
+            "agent_space_id": agent_space_id,
+            "artifact_ids": artifact_ids,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def batch_get_code_review_jobs(
@@ -486,15 +494,17 @@ class SecurityAgentClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_securityagent.types.batch_get_code_review_jobs_input.BatchGetCodeReviewJobsInput = {}  # type: ignore[typeddict-item]
-        input_["code_review_job_ids"] = code_review_job_ids
-        input_["agent_space_id"] = agent_space_id
+        input_: capo_securityagent.types.batch_get_code_review_jobs_input.BatchGetCodeReviewJobsInput = {
+            "code_review_job_ids": code_review_job_ids,
+            "agent_space_id": agent_space_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def batch_get_code_review_job_tasks(
@@ -529,15 +539,17 @@ class SecurityAgentClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_securityagent.types.batch_get_code_review_job_tasks_input.BatchGetCodeReviewJobTasksInput = {}  # type: ignore[typeddict-item]
-        input_["agent_space_id"] = agent_space_id
-        input_["code_review_job_task_ids"] = code_review_job_task_ids
+        input_: capo_securityagent.types.batch_get_code_review_job_tasks_input.BatchGetCodeReviewJobTasksInput = {
+            "agent_space_id": agent_space_id,
+            "code_review_job_task_ids": code_review_job_task_ids,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def batch_get_code_reviews(
@@ -572,15 +584,17 @@ class SecurityAgentClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_securityagent.types.batch_get_code_reviews_input.BatchGetCodeReviewsInput = {}  # type: ignore[typeddict-item]
-        input_["code_review_ids"] = code_review_ids
-        input_["agent_space_id"] = agent_space_id
+        input_: capo_securityagent.types.batch_get_code_reviews_input.BatchGetCodeReviewsInput = {
+            "code_review_ids": code_review_ids,
+            "agent_space_id": agent_space_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def batch_get_findings(
@@ -615,15 +629,17 @@ class SecurityAgentClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_securityagent.types.batch_get_findings_input.BatchGetFindingsInput = {}  # type: ignore[typeddict-item]
-        input_["finding_ids"] = finding_ids
-        input_["agent_space_id"] = agent_space_id
+        input_: capo_securityagent.types.batch_get_findings_input.BatchGetFindingsInput = {
+            "finding_ids": finding_ids,
+            "agent_space_id": agent_space_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def batch_get_pentest_jobs(
@@ -658,15 +674,17 @@ class SecurityAgentClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_securityagent.types.batch_get_pentest_jobs_input.BatchGetPentestJobsInput = {}  # type: ignore[typeddict-item]
-        input_["pentest_job_ids"] = pentest_job_ids
-        input_["agent_space_id"] = agent_space_id
+        input_: capo_securityagent.types.batch_get_pentest_jobs_input.BatchGetPentestJobsInput = {
+            "pentest_job_ids": pentest_job_ids,
+            "agent_space_id": agent_space_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def batch_get_pentest_job_tasks(
@@ -701,15 +719,17 @@ class SecurityAgentClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_securityagent.types.batch_get_pentest_job_tasks_input.BatchGetPentestJobTasksInput = {}  # type: ignore[typeddict-item]
-        input_["agent_space_id"] = agent_space_id
-        input_["task_ids"] = task_ids
+        input_: capo_securityagent.types.batch_get_pentest_job_tasks_input.BatchGetPentestJobTasksInput = {
+            "agent_space_id": agent_space_id,
+            "task_ids": task_ids,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def batch_get_pentests(
@@ -744,15 +764,17 @@ class SecurityAgentClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_securityagent.types.batch_get_pentests_input.BatchGetPentestsInput = {}  # type: ignore[typeddict-item]
-        input_["pentest_ids"] = pentest_ids
-        input_["agent_space_id"] = agent_space_id
+        input_: capo_securityagent.types.batch_get_pentests_input.BatchGetPentestsInput = {
+            "pentest_ids": pentest_ids,
+            "agent_space_id": agent_space_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_code_review(
@@ -801,10 +823,11 @@ class SecurityAgentClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_securityagent.types.create_code_review_input.CreateCodeReviewInput = {}  # type: ignore[typeddict-item]
-        input_["title"] = title
-        input_["agent_space_id"] = agent_space_id
-        input_["assets"] = assets
+        input_: capo_securityagent.types.create_code_review_input.CreateCodeReviewInput = {
+            "title": title,
+            "agent_space_id": agent_space_id,
+            "assets": assets,
+        }
         if service_role is not None:
             input_["service_role"] = service_role
         if log_config is not None:
@@ -817,6 +840,7 @@ class SecurityAgentClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_membership(
@@ -859,11 +883,12 @@ class SecurityAgentClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_securityagent.types.create_membership_request.CreateMembershipRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
-        input_["agent_space_id"] = agent_space_id
-        input_["membership_id"] = membership_id
-        input_["member_type"] = member_type
+        input_: capo_securityagent.types.create_membership_request.CreateMembershipRequest = {
+            "application_id": application_id,
+            "agent_space_id": agent_space_id,
+            "membership_id": membership_id,
+            "member_type": member_type,
+        }
         if config is not None:
             input_["config"] = config
 
@@ -872,6 +897,7 @@ class SecurityAgentClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_pentest(
@@ -930,9 +956,10 @@ class SecurityAgentClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_securityagent.types.create_pentest_input.CreatePentestInput = {}  # type: ignore[typeddict-item]
-        input_["title"] = title
-        input_["agent_space_id"] = agent_space_id
+        input_: capo_securityagent.types.create_pentest_input.CreatePentestInput = {
+            "title": title,
+            "agent_space_id": agent_space_id,
+        }
         if assets is not None:
             input_["assets"] = assets
         if exclude_risk_types is not None:
@@ -953,6 +980,7 @@ class SecurityAgentClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_artifact(
@@ -992,15 +1020,17 @@ class SecurityAgentClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_securityagent.types.delete_artifact_input.DeleteArtifactInput = {}  # type: ignore[typeddict-item]
-        input_["agent_space_id"] = agent_space_id
-        input_["artifact_id"] = artifact_id
+        input_: capo_securityagent.types.delete_artifact_input.DeleteArtifactInput = {
+            "agent_space_id": agent_space_id,
+            "artifact_id": artifact_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_membership(
@@ -1041,10 +1071,11 @@ class SecurityAgentClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_securityagent.types.delete_membership_request.DeleteMembershipRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
-        input_["agent_space_id"] = agent_space_id
-        input_["membership_id"] = membership_id
+        input_: capo_securityagent.types.delete_membership_request.DeleteMembershipRequest = {
+            "application_id": application_id,
+            "agent_space_id": agent_space_id,
+            "membership_id": membership_id,
+        }
         if member_type is not None:
             input_["member_type"] = member_type
 
@@ -1053,6 +1084,7 @@ class SecurityAgentClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_artifact(
@@ -1092,15 +1124,17 @@ class SecurityAgentClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_securityagent.types.get_artifact_input.GetArtifactInput = {}  # type: ignore[typeddict-item]
-        input_["agent_space_id"] = agent_space_id
-        input_["artifact_id"] = artifact_id
+        input_: capo_securityagent.types.get_artifact_input.GetArtifactInput = {
+            "agent_space_id": agent_space_id,
+            "artifact_id": artifact_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def initiate_provider_registration(
@@ -1139,14 +1173,16 @@ class SecurityAgentClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_securityagent.types.initiate_provider_registration_input.InitiateProviderRegistrationInput = {}  # type: ignore[typeddict-item]
-        input_["provider"] = provider
+        input_: capo_securityagent.types.initiate_provider_registration_input.InitiateProviderRegistrationInput = {
+            "provider": provider
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_artifacts(
@@ -1188,8 +1224,9 @@ class SecurityAgentClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_securityagent.types.list_artifacts_input.ListArtifactsInput = {}  # type: ignore[typeddict-item]
-        input_["agent_space_id"] = agent_space_id
+        input_: capo_securityagent.types.list_artifacts_input.ListArtifactsInput = {
+            "agent_space_id": agent_space_id
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -1200,6 +1237,7 @@ class SecurityAgentClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_artifacts(
@@ -1261,11 +1299,12 @@ class SecurityAgentClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_securityagent.types.list_code_review_jobs_for_code_review_input.ListCodeReviewJobsForCodeReviewInput = {}  # type: ignore[typeddict-item]
+        input_: capo_securityagent.types.list_code_review_jobs_for_code_review_input.ListCodeReviewJobsForCodeReviewInput = {
+            "code_review_id": code_review_id,
+            "agent_space_id": agent_space_id,
+        }
         if max_results is not None:
             input_["max_results"] = max_results
-        input_["code_review_id"] = code_review_id
-        input_["agent_space_id"] = agent_space_id
         if next_token is not None:
             input_["next_token"] = next_token
 
@@ -1274,6 +1313,7 @@ class SecurityAgentClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_code_review_jobs_for_code_review(
@@ -1341,8 +1381,9 @@ class SecurityAgentClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_securityagent.types.list_code_review_job_tasks_input.ListCodeReviewJobTasksInput = {}  # type: ignore[typeddict-item]
-        input_["agent_space_id"] = agent_space_id
+        input_: capo_securityagent.types.list_code_review_job_tasks_input.ListCodeReviewJobTasksInput = {
+            "agent_space_id": agent_space_id
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if code_review_job_id is not None:
@@ -1359,6 +1400,7 @@ class SecurityAgentClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_code_review_job_tasks(
@@ -1424,18 +1466,20 @@ class SecurityAgentClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_securityagent.types.list_code_reviews_input.ListCodeReviewsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_securityagent.types.list_code_reviews_input.ListCodeReviewsInput = {
+            "agent_space_id": agent_space_id
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
             input_["next_token"] = next_token
-        input_["agent_space_id"] = agent_space_id
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_code_reviews(
@@ -1499,11 +1543,12 @@ class SecurityAgentClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_securityagent.types.list_discovered_endpoints_input.ListDiscoveredEndpointsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_securityagent.types.list_discovered_endpoints_input.ListDiscoveredEndpointsInput = {
+            "pentest_job_id": pentest_job_id,
+            "agent_space_id": agent_space_id,
+        }
         if max_results is not None:
             input_["max_results"] = max_results
-        input_["pentest_job_id"] = pentest_job_id
-        input_["agent_space_id"] = agent_space_id
         if prefix is not None:
             input_["prefix"] = prefix
         if next_token is not None:
@@ -1514,6 +1559,7 @@ class SecurityAgentClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_discovered_endpoints(
@@ -1595,14 +1641,15 @@ class SecurityAgentClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_securityagent.types.list_findings_input.ListFindingsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_securityagent.types.list_findings_input.ListFindingsInput = {
+            "agent_space_id": agent_space_id
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if pentest_job_id is not None:
             input_["pentest_job_id"] = pentest_job_id
         if code_review_job_id is not None:
             input_["code_review_job_id"] = code_review_job_id
-        input_["agent_space_id"] = agent_space_id
         if next_token is not None:
             input_["next_token"] = next_token
         if risk_type is not None:
@@ -1621,6 +1668,7 @@ class SecurityAgentClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_findings(
@@ -1711,8 +1759,9 @@ class SecurityAgentClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_securityagent.types.list_integrated_resources_input.ListIntegratedResourcesInput = {}  # type: ignore[typeddict-item]
-        input_["agent_space_id"] = agent_space_id
+        input_: capo_securityagent.types.list_integrated_resources_input.ListIntegratedResourcesInput = {
+            "agent_space_id": agent_space_id
+        }
         if integration_id is not None:
             input_["integration_id"] = integration_id
         if resource_type is not None:
@@ -1727,6 +1776,7 @@ class SecurityAgentClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_integrated_resources(
@@ -1800,9 +1850,10 @@ class SecurityAgentClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_securityagent.types.list_memberships_request.ListMembershipsRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
-        input_["agent_space_id"] = agent_space_id
+        input_: capo_securityagent.types.list_memberships_request.ListMembershipsRequest = {
+            "application_id": application_id,
+            "agent_space_id": agent_space_id,
+        }
         if member_type is not None:
             input_["member_type"] = member_type
         if max_results is not None:
@@ -1815,6 +1866,7 @@ class SecurityAgentClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_memberships(
@@ -1882,11 +1934,12 @@ class SecurityAgentClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_securityagent.types.list_pentest_jobs_for_pentest_input.ListPentestJobsForPentestInput = {}  # type: ignore[typeddict-item]
+        input_: capo_securityagent.types.list_pentest_jobs_for_pentest_input.ListPentestJobsForPentestInput = {
+            "pentest_id": pentest_id,
+            "agent_space_id": agent_space_id,
+        }
         if max_results is not None:
             input_["max_results"] = max_results
-        input_["pentest_id"] = pentest_id
-        input_["agent_space_id"] = agent_space_id
         if next_token is not None:
             input_["next_token"] = next_token
 
@@ -1895,6 +1948,7 @@ class SecurityAgentClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_pentest_jobs_for_pentest(
@@ -1962,8 +2016,9 @@ class SecurityAgentClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_securityagent.types.list_pentest_job_tasks_input.ListPentestJobTasksInput = {}  # type: ignore[typeddict-item]
-        input_["agent_space_id"] = agent_space_id
+        input_: capo_securityagent.types.list_pentest_job_tasks_input.ListPentestJobTasksInput = {
+            "agent_space_id": agent_space_id
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if pentest_job_id is not None:
@@ -1980,6 +2035,7 @@ class SecurityAgentClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_pentest_job_tasks(
@@ -2045,18 +2101,20 @@ class SecurityAgentClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_securityagent.types.list_pentests_input.ListPentestsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_securityagent.types.list_pentests_input.ListPentestsInput = {
+            "agent_space_id": agent_space_id
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
             input_["next_token"] = next_token
-        input_["agent_space_id"] = agent_space_id
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_pentests(
@@ -2112,14 +2170,16 @@ class SecurityAgentClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_securityagent.types.list_tags_for_resource_input.ListTagsForResourceInput = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_securityagent.types.list_tags_for_resource_input.ListTagsForResourceInput = {
+            "resource_arn": resource_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def start_code_remediation(
@@ -2158,19 +2218,21 @@ class SecurityAgentClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_securityagent.types.start_code_remediation_input.StartCodeRemediationInput = {}  # type: ignore[typeddict-item]
-        input_["agent_space_id"] = agent_space_id
+        input_: capo_securityagent.types.start_code_remediation_input.StartCodeRemediationInput = {
+            "agent_space_id": agent_space_id,
+            "finding_ids": finding_ids,
+        }
         if pentest_job_id is not None:
             input_["pentest_job_id"] = pentest_job_id
         if code_review_job_id is not None:
             input_["code_review_job_id"] = code_review_job_id
-        input_["finding_ids"] = finding_ids
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def start_code_review_job(
@@ -2207,15 +2269,17 @@ class SecurityAgentClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_securityagent.types.start_code_review_job_input.StartCodeReviewJobInput = {}  # type: ignore[typeddict-item]
-        input_["agent_space_id"] = agent_space_id
-        input_["code_review_id"] = code_review_id
+        input_: capo_securityagent.types.start_code_review_job_input.StartCodeReviewJobInput = {
+            "agent_space_id": agent_space_id,
+            "code_review_id": code_review_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def start_pentest_job(
@@ -2250,15 +2314,17 @@ class SecurityAgentClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_securityagent.types.start_pentest_job_input.StartPentestJobInput = {}  # type: ignore[typeddict-item]
-        input_["agent_space_id"] = agent_space_id
-        input_["pentest_id"] = pentest_id
+        input_: capo_securityagent.types.start_pentest_job_input.StartPentestJobInput = {
+            "agent_space_id": agent_space_id,
+            "pentest_id": pentest_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def stop_code_review_job(
@@ -2293,15 +2359,17 @@ class SecurityAgentClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_securityagent.types.stop_code_review_job_input.StopCodeReviewJobInput = {}  # type: ignore[typeddict-item]
-        input_["agent_space_id"] = agent_space_id
-        input_["code_review_job_id"] = code_review_job_id
+        input_: capo_securityagent.types.stop_code_review_job_input.StopCodeReviewJobInput = {
+            "agent_space_id": agent_space_id,
+            "code_review_job_id": code_review_job_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def stop_pentest_job(
@@ -2336,15 +2404,17 @@ class SecurityAgentClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_securityagent.types.stop_pentest_job_input.StopPentestJobInput = {}  # type: ignore[typeddict-item]
-        input_["agent_space_id"] = agent_space_id
-        input_["pentest_job_id"] = pentest_job_id
+        input_: capo_securityagent.types.stop_pentest_job_input.StopPentestJobInput = {
+            "agent_space_id": agent_space_id,
+            "pentest_job_id": pentest_job_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def tag_resource(
@@ -2379,15 +2449,17 @@ class SecurityAgentClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_securityagent.types.tag_resource_input.TagResourceInput = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tags"] = tags
+        input_: capo_securityagent.types.tag_resource_input.TagResourceInput = {
+            "resource_arn": resource_arn,
+            "tags": tags,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def untag_resource(
@@ -2422,15 +2494,17 @@ class SecurityAgentClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_securityagent.types.untag_resource_input.UntagResourceInput = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tag_keys"] = tag_keys
+        input_: capo_securityagent.types.untag_resource_input.UntagResourceInput = {
+            "resource_arn": resource_arn,
+            "tag_keys": tag_keys,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_code_review(
@@ -2481,9 +2555,10 @@ class SecurityAgentClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_securityagent.types.update_code_review_input.UpdateCodeReviewInput = {}  # type: ignore[typeddict-item]
-        input_["code_review_id"] = code_review_id
-        input_["agent_space_id"] = agent_space_id
+        input_: capo_securityagent.types.update_code_review_input.UpdateCodeReviewInput = {
+            "code_review_id": code_review_id,
+            "agent_space_id": agent_space_id,
+        }
         if title is not None:
             input_["title"] = title
         if assets is not None:
@@ -2500,6 +2575,7 @@ class SecurityAgentClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_finding(
@@ -2540,9 +2616,10 @@ class SecurityAgentClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_securityagent.types.update_finding_input.UpdateFindingInput = {}  # type: ignore[typeddict-item]
-        input_["finding_id"] = finding_id
-        input_["agent_space_id"] = agent_space_id
+        input_: capo_securityagent.types.update_finding_input.UpdateFindingInput = {
+            "finding_id": finding_id,
+            "agent_space_id": agent_space_id,
+        }
         if risk_level is not None:
             input_["risk_level"] = risk_level
         if status is not None:
@@ -2553,6 +2630,7 @@ class SecurityAgentClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_integrated_resources(
@@ -2595,16 +2673,18 @@ class SecurityAgentClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_securityagent.types.update_integrated_resources_input.UpdateIntegratedResourcesInput = {}  # type: ignore[typeddict-item]
-        input_["agent_space_id"] = agent_space_id
-        input_["integration_id"] = integration_id
-        input_["items"] = items
+        input_: capo_securityagent.types.update_integrated_resources_input.UpdateIntegratedResourcesInput = {
+            "agent_space_id": agent_space_id,
+            "integration_id": integration_id,
+            "items": items,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_pentest(
@@ -2665,9 +2745,10 @@ class SecurityAgentClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_securityagent.types.update_pentest_input.UpdatePentestInput = {}  # type: ignore[typeddict-item]
-        input_["pentest_id"] = pentest_id
-        input_["agent_space_id"] = agent_space_id
+        input_: capo_securityagent.types.update_pentest_input.UpdatePentestInput = {
+            "pentest_id": pentest_id,
+            "agent_space_id": agent_space_id,
+        }
         if title is not None:
             input_["title"] = title
         if assets is not None:
@@ -2690,6 +2771,7 @@ class SecurityAgentClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def verify_target_domain(
@@ -2724,14 +2806,16 @@ class SecurityAgentClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_securityagent.types.verify_target_domain_input.VerifyTargetDomainInput = {}  # type: ignore[typeddict-item]
-        input_["target_domain_id"] = target_domain_id
+        input_: capo_securityagent.types.verify_target_domain_input.VerifyTargetDomainInput = {
+            "target_domain_id": target_domain_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def __enter__(self) -> Self:

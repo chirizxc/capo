@@ -28,7 +28,7 @@ def serialize_aws_json_1_0(value: ValidationSettings) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ValidationSettings:
     out: ValidationSettings = {}  # type: ignore[typeddict-item]
-    if "mode" in data:
+    if data.get("mode") is not None:
         import capo_verifiedpermissions.types.validation_mode
 
         out["mode"] = (

@@ -119,25 +119,25 @@ def serialize_json(value: Resource) -> dict:
 
 def deserialize_json(data: dict) -> Resource:
     out: Resource = {}  # type: ignore[typeddict-item]
-    if "Catalog" in data:
+    if data.get("Catalog") is not None:
         import capo_lakeformation.types.catalog_resource
 
         out["catalog"] = capo_lakeformation.types.catalog_resource.deserialize_json(
             data["Catalog"]
         )
-    if "Database" in data:
+    if data.get("Database") is not None:
         import capo_lakeformation.types.database_resource
 
         out["database"] = capo_lakeformation.types.database_resource.deserialize_json(
             data["Database"]
         )
-    if "Table" in data:
+    if data.get("Table") is not None:
         import capo_lakeformation.types.table_resource
 
         out["table"] = capo_lakeformation.types.table_resource.deserialize_json(
             data["Table"]
         )
-    if "TableWithColumns" in data:
+    if data.get("TableWithColumns") is not None:
         import capo_lakeformation.types.table_with_columns_resource
 
         out["table_with_columns"] = (
@@ -145,7 +145,7 @@ def deserialize_json(data: dict) -> Resource:
                 data["TableWithColumns"]
             )
         )
-    if "DataLocation" in data:
+    if data.get("DataLocation") is not None:
         import capo_lakeformation.types.data_location_resource
 
         out["data_location"] = (
@@ -153,7 +153,7 @@ def deserialize_json(data: dict) -> Resource:
                 data["DataLocation"]
             )
         )
-    if "DataCellsFilter" in data:
+    if data.get("DataCellsFilter") is not None:
         import capo_lakeformation.types.data_cells_filter_resource
 
         out["data_cells_filter"] = (
@@ -161,13 +161,13 @@ def deserialize_json(data: dict) -> Resource:
                 data["DataCellsFilter"]
             )
         )
-    if "LFTag" in data:
+    if data.get("LFTag") is not None:
         import capo_lakeformation.types.lf_tag_key_resource
 
         out["lf_tag"] = capo_lakeformation.types.lf_tag_key_resource.deserialize_json(
             data["LFTag"]
         )
-    if "LFTagPolicy" in data:
+    if data.get("LFTagPolicy") is not None:
         import capo_lakeformation.types.lf_tag_policy_resource
 
         out["lf_tag_policy"] = (
@@ -175,7 +175,7 @@ def deserialize_json(data: dict) -> Resource:
                 data["LFTagPolicy"]
             )
         )
-    if "LFTagExpression" in data:
+    if data.get("LFTagExpression") is not None:
         import capo_lakeformation.types.lf_tag_expression_resource
 
         out["lf_tag_expression"] = (

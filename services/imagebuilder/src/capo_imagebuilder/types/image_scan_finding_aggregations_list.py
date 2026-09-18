@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> ImageScanFindingAggregationsList:
 
     out: ImageScanFindingAggregationsList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_imagebuilder.types.image_scan_finding_aggregation.deserialize_json(
                 item

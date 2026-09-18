@@ -30,8 +30,8 @@ def serialize_json(value: AwsElasticsearchDomainLogPublishingOptionsLogConfig) -
 
 def deserialize_json(data: dict) -> AwsElasticsearchDomainLogPublishingOptionsLogConfig:
     out: AwsElasticsearchDomainLogPublishingOptionsLogConfig = {}  # type: ignore[typeddict-item]
-    if "CloudWatchLogsLogGroupArn" in data:
+    if data.get("CloudWatchLogsLogGroupArn") is not None:
         out["cloud_watch_logs_log_group_arn"] = data["CloudWatchLogsLogGroupArn"]
-    if "Enabled" in data:
+    if data.get("Enabled") is not None:
         out["enabled"] = data["Enabled"]
     return out

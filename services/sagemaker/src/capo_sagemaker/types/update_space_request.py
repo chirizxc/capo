@@ -46,11 +46,11 @@ def serialize_aws_json_1_1(value: UpdateSpaceRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateSpaceRequest:
     out: UpdateSpaceRequest = {}  # type: ignore[typeddict-item]
-    if "DomainId" in data:
+    if data.get("DomainId") is not None:
         out["domain_id"] = data["DomainId"]
-    if "SpaceName" in data:
+    if data.get("SpaceName") is not None:
         out["space_name"] = data["SpaceName"]
-    if "SpaceSettings" in data:
+    if data.get("SpaceSettings") is not None:
         import capo_sagemaker.types.space_settings
 
         out["space_settings"] = (
@@ -58,6 +58,6 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateSpaceRequest:
                 data["SpaceSettings"]
             )
         )
-    if "SpaceDisplayName" in data:
+    if data.get("SpaceDisplayName") is not None:
         out["space_display_name"] = data["SpaceDisplayName"]
     return out

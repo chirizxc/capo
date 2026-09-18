@@ -62,17 +62,17 @@ def serialize_aws_json_1_0(value: VirtualMachineDetails) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> VirtualMachineDetails:
     out: VirtualMachineDetails = {}  # type: ignore[typeddict-item]
-    if "HostName" in data:
+    if data.get("HostName") is not None:
         out["host_name"] = data["HostName"]
-    if "HypervisorId" in data:
+    if data.get("HypervisorId") is not None:
         out["hypervisor_id"] = data["HypervisorId"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Path" in data:
+    if data.get("Path") is not None:
         out["path"] = data["Path"]
-    if "ResourceArn" in data:
+    if data.get("ResourceArn") is not None:
         out["resource_arn"] = data["ResourceArn"]
-    if "LastBackupDate" in data:
+    if data.get("LastBackupDate") is not None:
         import capo_backup_gateway.types.time
 
         out["last_backup_date"] = (
@@ -80,7 +80,7 @@ def deserialize_aws_json_1_0(data: dict) -> VirtualMachineDetails:
                 data["LastBackupDate"]
             )
         )
-    if "VmwareTags" in data:
+    if data.get("VmwareTags") is not None:
         import capo_backup_gateway.types.vmware_tags
 
         out["vmware_tags"] = (

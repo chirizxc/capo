@@ -178,11 +178,11 @@ def serialize_json(value: UpdateWorkloadInput) -> dict:
 
 def deserialize_json(data: dict) -> UpdateWorkloadInput:
     out: UpdateWorkloadInput = {}  # type: ignore[typeddict-item]
-    if "WorkloadName" in data:
+    if data.get("WorkloadName") is not None:
         out["workload_name"] = data["WorkloadName"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Environment" in data:
+    if data.get("Environment") is not None:
         import capo_wellarchitected.types.workload_environment
 
         out["environment"] = (
@@ -190,7 +190,7 @@ def deserialize_json(data: dict) -> UpdateWorkloadInput:
                 data["Environment"]
             )
         )
-    if "AccountIds" in data:
+    if data.get("AccountIds") is not None:
         import capo_wellarchitected.types.workload_account_ids
 
         out["account_ids"] = (
@@ -198,7 +198,7 @@ def deserialize_json(data: dict) -> UpdateWorkloadInput:
                 data["AccountIds"]
             )
         )
-    if "AwsRegions" in data:
+    if data.get("AwsRegions") is not None:
         import capo_wellarchitected.types.workload_aws_regions
 
         out["aws_regions"] = (
@@ -206,7 +206,7 @@ def deserialize_json(data: dict) -> UpdateWorkloadInput:
                 data["AwsRegions"]
             )
         )
-    if "NonAwsRegions" in data:
+    if data.get("NonAwsRegions") is not None:
         import capo_wellarchitected.types.workload_non_aws_regions
 
         out["non_aws_regions"] = (
@@ -214,7 +214,7 @@ def deserialize_json(data: dict) -> UpdateWorkloadInput:
                 data["NonAwsRegions"]
             )
         )
-    if "PillarPriorities" in data:
+    if data.get("PillarPriorities") is not None:
         import capo_wellarchitected.types.workload_pillar_priorities
 
         out["pillar_priorities"] = (
@@ -222,21 +222,21 @@ def deserialize_json(data: dict) -> UpdateWorkloadInput:
                 data["PillarPriorities"]
             )
         )
-    if "ArchitecturalDesign" in data:
+    if data.get("ArchitecturalDesign") is not None:
         out["architectural_design"] = data["ArchitecturalDesign"]
-    if "ReviewOwner" in data:
+    if data.get("ReviewOwner") is not None:
         out["review_owner"] = data["ReviewOwner"]
-    if "IsReviewOwnerUpdateAcknowledged" in data:
+    if data.get("IsReviewOwnerUpdateAcknowledged") is not None:
         out["is_review_owner_update_acknowledged"] = data[
             "IsReviewOwnerUpdateAcknowledged"
         ]
-    if "IndustryType" in data:
+    if data.get("IndustryType") is not None:
         out["industry_type"] = data["IndustryType"]
-    if "Industry" in data:
+    if data.get("Industry") is not None:
         out["industry"] = data["Industry"]
-    if "Notes" in data:
+    if data.get("Notes") is not None:
         out["notes"] = data["Notes"]
-    if "ImprovementStatus" in data:
+    if data.get("ImprovementStatus") is not None:
         import capo_wellarchitected.types.workload_improvement_status
 
         out["improvement_status"] = (
@@ -244,7 +244,7 @@ def deserialize_json(data: dict) -> UpdateWorkloadInput:
                 data["ImprovementStatus"]
             )
         )
-    if "DiscoveryConfig" in data:
+    if data.get("DiscoveryConfig") is not None:
         import capo_wellarchitected.types.workload_discovery_config
 
         out["discovery_config"] = (
@@ -252,7 +252,7 @@ def deserialize_json(data: dict) -> UpdateWorkloadInput:
                 data["DiscoveryConfig"]
             )
         )
-    if "Applications" in data:
+    if data.get("Applications") is not None:
         import capo_wellarchitected.types.workload_applications
 
         out["applications"] = (
@@ -260,7 +260,7 @@ def deserialize_json(data: dict) -> UpdateWorkloadInput:
                 data["Applications"]
             )
         )
-    if "JiraConfiguration" in data:
+    if data.get("JiraConfiguration") is not None:
         import capo_wellarchitected.types.workload_jira_configuration_input
 
         out["jira_configuration"] = (

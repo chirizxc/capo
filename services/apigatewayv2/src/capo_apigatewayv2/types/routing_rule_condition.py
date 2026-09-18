@@ -44,7 +44,7 @@ def serialize_json(value: RoutingRuleCondition) -> dict:
 
 def deserialize_json(data: dict) -> RoutingRuleCondition:
     out: RoutingRuleCondition = {}  # type: ignore[typeddict-item]
-    if "matchBasePaths" in data:
+    if data.get("matchBasePaths") is not None:
         import capo_apigatewayv2.types.routing_rule_match_base_paths
 
         out["match_base_paths"] = (
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> RoutingRuleCondition:
                 data["matchBasePaths"]
             )
         )
-    if "matchHeaders" in data:
+    if data.get("matchHeaders") is not None:
         import capo_apigatewayv2.types.routing_rule_match_headers
 
         out["match_headers"] = (

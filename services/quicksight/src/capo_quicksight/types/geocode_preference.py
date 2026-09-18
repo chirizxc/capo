@@ -36,7 +36,7 @@ def serialize_json(value: GeocodePreference) -> dict:
 
 def deserialize_json(data: dict) -> GeocodePreference:
     out: GeocodePreference = {}  # type: ignore[typeddict-item]
-    if "RequestKey" in data:
+    if data.get("RequestKey") is not None:
         import capo_quicksight.types.geocoder_hierarchy
 
         out["request_key"] = capo_quicksight.types.geocoder_hierarchy.deserialize_json(
@@ -44,7 +44,7 @@ def deserialize_json(data: dict) -> GeocodePreference:
         )
     else:
         raise DeserializationError("GeocodePreference.request_key required")
-    if "Preference" in data:
+    if data.get("Preference") is not None:
         import capo_quicksight.types.geocode_preference_value
 
         out["preference"] = (

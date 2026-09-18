@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> TraversedConstructsList:
 
     out: TraversedConstructsList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_networkflowmonitor.types.traversed_component.deserialize_json(item)
         )

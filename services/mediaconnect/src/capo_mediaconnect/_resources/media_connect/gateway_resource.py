@@ -86,7 +86,7 @@ class GatewayResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mediaconnect.types.create_gateway_request.CreateGatewayRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_mediaconnect.types.create_gateway_request.CreateGatewayRequest = {}
         if egress_cidr_blocks is not None:
             input_["egress_cidr_blocks"] = egress_cidr_blocks
         if name is not None:
@@ -99,6 +99,7 @@ class GatewayResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -138,14 +139,16 @@ class GatewayResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mediaconnect.types.describe_gateway_request.DescribeGatewayRequest = {}  # type: ignore[typeddict-item]
-        input_["gateway_arn"] = gateway_arn
+        input_: capo_mediaconnect.types.describe_gateway_request.DescribeGatewayRequest = {
+            "gateway_arn": gateway_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -185,14 +188,16 @@ class GatewayResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mediaconnect.types.delete_gateway_request.DeleteGatewayRequest = {}  # type: ignore[typeddict-item]
-        input_["gateway_arn"] = gateway_arn
+        input_: capo_mediaconnect.types.delete_gateway_request.DeleteGatewayRequest = {
+            "gateway_arn": gateway_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -232,7 +237,7 @@ class GatewayResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mediaconnect.types.list_gateways_request.ListGatewaysRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_mediaconnect.types.list_gateways_request.ListGatewaysRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -243,6 +248,7 @@ class GatewayResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -296,7 +302,7 @@ class AsyncGatewayResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mediaconnect.types.create_gateway_request.CreateGatewayRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_mediaconnect.types.create_gateway_request.CreateGatewayRequest = {}
         if egress_cidr_blocks is not None:
             input_["egress_cidr_blocks"] = egress_cidr_blocks
         if name is not None:
@@ -309,6 +315,7 @@ class AsyncGatewayResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -349,14 +356,16 @@ class AsyncGatewayResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mediaconnect.types.describe_gateway_request.DescribeGatewayRequest = {}  # type: ignore[typeddict-item]
-        input_["gateway_arn"] = gateway_arn
+        input_: capo_mediaconnect.types.describe_gateway_request.DescribeGatewayRequest = {
+            "gateway_arn": gateway_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -397,14 +406,16 @@ class AsyncGatewayResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mediaconnect.types.delete_gateway_request.DeleteGatewayRequest = {}  # type: ignore[typeddict-item]
-        input_["gateway_arn"] = gateway_arn
+        input_: capo_mediaconnect.types.delete_gateway_request.DeleteGatewayRequest = {
+            "gateway_arn": gateway_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -445,7 +456,7 @@ class AsyncGatewayResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mediaconnect.types.list_gateways_request.ListGatewaysRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_mediaconnect.types.list_gateways_request.ListGatewaysRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -456,4 +467,5 @@ class AsyncGatewayResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

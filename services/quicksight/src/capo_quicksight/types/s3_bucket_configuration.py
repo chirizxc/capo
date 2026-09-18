@@ -30,15 +30,15 @@ def serialize_json(value: S3BucketConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> S3BucketConfiguration:
     out: S3BucketConfiguration = {}  # type: ignore[typeddict-item]
-    if "BucketName" in data:
+    if data.get("BucketName") is not None:
         out["bucket_name"] = data["BucketName"]
     else:
         raise DeserializationError("S3BucketConfiguration.bucket_name required")
-    if "BucketPrefix" in data:
+    if data.get("BucketPrefix") is not None:
         out["bucket_prefix"] = data["BucketPrefix"]
     else:
         raise DeserializationError("S3BucketConfiguration.bucket_prefix required")
-    if "BucketRegion" in data:
+    if data.get("BucketRegion") is not None:
         out["bucket_region"] = data["BucketRegion"]
     else:
         raise DeserializationError("S3BucketConfiguration.bucket_region required")

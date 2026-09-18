@@ -26,7 +26,7 @@ def serialize_json(value: UtteranceAudioInputSpecification) -> dict:
 
 def deserialize_json(data: dict) -> UtteranceAudioInputSpecification:
     out: UtteranceAudioInputSpecification = {}  # type: ignore[typeddict-item]
-    if "audioFileS3Location" in data:
+    if data.get("audioFileS3Location") is not None:
         out["audio_file_s3_location"] = data["audioFileS3Location"]
     else:
         raise DeserializationError(

@@ -77,23 +77,23 @@ def serialize_aws_json_1_0(value: CreateVehicleRequestItem) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CreateVehicleRequestItem:
     out: CreateVehicleRequestItem = {}  # type: ignore[typeddict-item]
-    if "vehicleName" in data:
+    if data.get("vehicleName") is not None:
         out["vehicle_name"] = data["vehicleName"]
     else:
         raise DeserializationError("CreateVehicleRequestItem.vehicle_name required")
-    if "modelManifestArn" in data:
+    if data.get("modelManifestArn") is not None:
         out["model_manifest_arn"] = data["modelManifestArn"]
     else:
         raise DeserializationError(
             "CreateVehicleRequestItem.model_manifest_arn required"
         )
-    if "decoderManifestArn" in data:
+    if data.get("decoderManifestArn") is not None:
         out["decoder_manifest_arn"] = data["decoderManifestArn"]
     else:
         raise DeserializationError(
             "CreateVehicleRequestItem.decoder_manifest_arn required"
         )
-    if "attributes" in data:
+    if data.get("attributes") is not None:
         import capo_iotfleetwise.types.attributes_map
 
         out["attributes"] = (
@@ -101,7 +101,7 @@ def deserialize_aws_json_1_0(data: dict) -> CreateVehicleRequestItem:
                 data["attributes"]
             )
         )
-    if "associationBehavior" in data:
+    if data.get("associationBehavior") is not None:
         import capo_iotfleetwise.types.vehicle_association_behavior
 
         out["association_behavior"] = (
@@ -109,13 +109,13 @@ def deserialize_aws_json_1_0(data: dict) -> CreateVehicleRequestItem:
                 data["associationBehavior"]
             )
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_iotfleetwise.types.tag_list
 
         out["tags"] = capo_iotfleetwise.types.tag_list.deserialize_aws_json_1_0(
             data["tags"]
         )
-    if "stateTemplates" in data:
+    if data.get("stateTemplates") is not None:
         import capo_iotfleetwise.types.state_template_associations
 
         out["state_templates"] = (

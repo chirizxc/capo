@@ -25,6 +25,8 @@ def serialize_aws_json_1_1(input_to_serialize: VersionsToPublish) -> dict:
 def deserialize_aws_json_1_1(data: dict) -> VersionsToPublish:
     out: VersionsToPublish = {}
     for key, value in data.items():
+        if value is None:
+            continue
         import capo_wafv2.types.version_to_publish
 
         out[key] = capo_wafv2.types.version_to_publish.deserialize_aws_json_1_1(value)

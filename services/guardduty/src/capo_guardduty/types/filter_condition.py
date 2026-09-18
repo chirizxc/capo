@@ -32,10 +32,10 @@ def serialize_json(value: FilterCondition) -> dict:
 
 def deserialize_json(data: dict) -> FilterCondition:
     out: FilterCondition = {}  # type: ignore[typeddict-item]
-    if "equalsValue" in data:
+    if data.get("equalsValue") is not None:
         out["equals_value"] = data["equalsValue"]
-    if "greaterThan" in data:
+    if data.get("greaterThan") is not None:
         out["greater_than"] = data["greaterThan"]
-    if "lessThan" in data:
+    if data.get("lessThan") is not None:
         out["less_than"] = data["lessThan"]
     return out

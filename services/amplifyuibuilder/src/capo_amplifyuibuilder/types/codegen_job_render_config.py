@@ -32,7 +32,7 @@ def serialize_json(value: CodegenJobRenderConfig) -> dict:
 
 
 def deserialize_json(data: dict) -> CodegenJobRenderConfig:
-    if "react" in data:
+    if data.get("react") is not None:
         import capo_amplifyuibuilder.types.react_start_codegen_job_data
 
         return {

@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> AccessPointDescriptions:
 
     out: AccessPointDescriptions = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_efs.types.access_point_description.deserialize_json(item))
     return out

@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: GetIPSetRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetIPSetRequest:
     out: GetIPSetRequest = {}  # type: ignore[typeddict-item]
-    if "IPSetId" in data:
+    if data.get("IPSetId") is not None:
         out["ip_set_id"] = data["IPSetId"]
     else:
         raise DeserializationError("GetIPSetRequest.ip_set_id required")

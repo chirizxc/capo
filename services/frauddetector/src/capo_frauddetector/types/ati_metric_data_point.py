@@ -23,24 +23,56 @@ class ATIMetricDataPoint(TypedDict, closed=True):
 def serialize_aws_json_1_1(value: ATIMetricDataPoint) -> dict:
     out: dict = {}
     if "cr" in value:
-        out["cr"] = value["cr"]
+        out["cr"] = (
+            "NaN"
+            if value["cr"] != value["cr"]
+            else "Infinity"
+            if value["cr"] == float("inf")
+            else "-Infinity"
+            if value["cr"] == float("-inf")
+            else value["cr"]
+        )
     if "adr" in value:
-        out["adr"] = value["adr"]
+        out["adr"] = (
+            "NaN"
+            if value["adr"] != value["adr"]
+            else "Infinity"
+            if value["adr"] == float("inf")
+            else "-Infinity"
+            if value["adr"] == float("-inf")
+            else value["adr"]
+        )
     if "threshold" in value:
-        out["threshold"] = value["threshold"]
+        out["threshold"] = (
+            "NaN"
+            if value["threshold"] != value["threshold"]
+            else "Infinity"
+            if value["threshold"] == float("inf")
+            else "-Infinity"
+            if value["threshold"] == float("-inf")
+            else value["threshold"]
+        )
     if "atodr" in value:
-        out["atodr"] = value["atodr"]
+        out["atodr"] = (
+            "NaN"
+            if value["atodr"] != value["atodr"]
+            else "Infinity"
+            if value["atodr"] == float("inf")
+            else "-Infinity"
+            if value["atodr"] == float("-inf")
+            else value["atodr"]
+        )
     return out
 
 
 def deserialize_aws_json_1_1(data: dict) -> ATIMetricDataPoint:
     out: ATIMetricDataPoint = {}  # type: ignore[typeddict-item]
-    if "cr" in data:
-        out["cr"] = data["cr"]
-    if "adr" in data:
-        out["adr"] = data["adr"]
-    if "threshold" in data:
-        out["threshold"] = data["threshold"]
-    if "atodr" in data:
-        out["atodr"] = data["atodr"]
+    if data.get("cr") is not None:
+        out["cr"] = float(data["cr"])
+    if data.get("adr") is not None:
+        out["adr"] = float(data["adr"])
+    if data.get("threshold") is not None:
+        out["threshold"] = float(data["threshold"])
+    if data.get("atodr") is not None:
+        out["atodr"] = float(data["atodr"])
     return out

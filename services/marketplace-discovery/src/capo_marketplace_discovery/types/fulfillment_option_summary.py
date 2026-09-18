@@ -36,7 +36,7 @@ def serialize_json(value: FulfillmentOptionSummary) -> dict:
 
 def deserialize_json(data: dict) -> FulfillmentOptionSummary:
     out: FulfillmentOptionSummary = {}  # type: ignore[typeddict-item]
-    if "fulfillmentOptionType" in data:
+    if data.get("fulfillmentOptionType") is not None:
         import capo_marketplace_discovery.types.fulfillment_option_type
 
         out["fulfillment_option_type"] = (
@@ -48,7 +48,7 @@ def deserialize_json(data: dict) -> FulfillmentOptionSummary:
         raise DeserializationError(
             "FulfillmentOptionSummary.fulfillment_option_type required"
         )
-    if "displayName" in data:
+    if data.get("displayName") is not None:
         out["display_name"] = data["displayName"]
     else:
         raise DeserializationError("FulfillmentOptionSummary.display_name required")

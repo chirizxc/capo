@@ -25,7 +25,7 @@ def serialize_json(value: RemoteNodeNetwork) -> dict:
 
 def deserialize_json(data: dict) -> RemoteNodeNetwork:
     out: RemoteNodeNetwork = {}  # type: ignore[typeddict-item]
-    if "cidrs" in data:
+    if data.get("cidrs") is not None:
         import capo_eks.types.string_list
 
         out["cidrs"] = capo_eks.types.string_list.deserialize_json(data["cidrs"])

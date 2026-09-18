@@ -47,7 +47,7 @@ def serialize_aws_json_1_0(value: UpdateProxyRuleResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> UpdateProxyRuleResponse:
     out: UpdateProxyRuleResponse = {}  # type: ignore[typeddict-item]
-    if "ProxyRule" in data:
+    if data.get("ProxyRule") is not None:
         import capo_network_firewall.types.proxy_rule
 
         out["proxy_rule"] = (
@@ -55,7 +55,7 @@ def deserialize_aws_json_1_0(data: dict) -> UpdateProxyRuleResponse:
                 data["ProxyRule"]
             )
         )
-    if "RemovedConditions" in data:
+    if data.get("RemovedConditions") is not None:
         import capo_network_firewall.types.proxy_rule_condition_list
 
         out["removed_conditions"] = (
@@ -63,6 +63,6 @@ def deserialize_aws_json_1_0(data: dict) -> UpdateProxyRuleResponse:
                 data["RemovedConditions"]
             )
         )
-    if "UpdateToken" in data:
+    if data.get("UpdateToken") is not None:
         out["update_token"] = data["UpdateToken"]
     return out

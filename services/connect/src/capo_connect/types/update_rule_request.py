@@ -48,15 +48,15 @@ def serialize_json(value: UpdateRuleRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateRuleRequest:
     out: UpdateRuleRequest = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("UpdateRuleRequest.name required")
-    if "Function" in data:
+    if data.get("Function") is not None:
         out["function"] = data["Function"]
     else:
         raise DeserializationError("UpdateRuleRequest.function required")
-    if "Actions" in data:
+    if data.get("Actions") is not None:
         import capo_connect.types.rule_actions
 
         out["actions"] = capo_connect.types.rule_actions.deserialize_json(
@@ -64,7 +64,7 @@ def deserialize_json(data: dict) -> UpdateRuleRequest:
         )
     else:
         raise DeserializationError("UpdateRuleRequest.actions required")
-    if "PublishStatus" in data:
+    if data.get("PublishStatus") is not None:
         import capo_connect.types.rule_publish_status
 
         out["publish_status"] = capo_connect.types.rule_publish_status.deserialize_json(

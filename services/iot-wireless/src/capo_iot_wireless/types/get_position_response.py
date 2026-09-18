@@ -76,19 +76,19 @@ def serialize_json(value: GetPositionResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetPositionResponse:
     out: GetPositionResponse = {}  # type: ignore[typeddict-item]
-    if "Position" in data:
+    if data.get("Position") is not None:
         import capo_iot_wireless.types.position_coordinate
 
         out["position"] = capo_iot_wireless.types.position_coordinate.deserialize_json(
             data["Position"]
         )
-    if "Accuracy" in data:
+    if data.get("Accuracy") is not None:
         import capo_iot_wireless.types.accuracy
 
         out["accuracy"] = capo_iot_wireless.types.accuracy.deserialize_json(
             data["Accuracy"]
         )
-    if "SolverType" in data:
+    if data.get("SolverType") is not None:
         import capo_iot_wireless.types.position_solver_type
 
         out["solver_type"] = (
@@ -96,7 +96,7 @@ def deserialize_json(data: dict) -> GetPositionResponse:
                 data["SolverType"]
             )
         )
-    if "SolverProvider" in data:
+    if data.get("SolverProvider") is not None:
         import capo_iot_wireless.types.position_solver_provider
 
         out["solver_provider"] = (
@@ -104,8 +104,8 @@ def deserialize_json(data: dict) -> GetPositionResponse:
                 data["SolverProvider"]
             )
         )
-    if "SolverVersion" in data:
+    if data.get("SolverVersion") is not None:
         out["solver_version"] = data["SolverVersion"]
-    if "Timestamp" in data:
+    if data.get("Timestamp") is not None:
         out["timestamp"] = data["Timestamp"]
     return out

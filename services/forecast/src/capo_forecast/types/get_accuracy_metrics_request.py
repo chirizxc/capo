@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: GetAccuracyMetricsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetAccuracyMetricsRequest:
     out: GetAccuracyMetricsRequest = {}  # type: ignore[typeddict-item]
-    if "PredictorArn" in data:
+    if data.get("PredictorArn") is not None:
         out["predictor_arn"] = data["PredictorArn"]
     else:
         raise DeserializationError("GetAccuracyMetricsRequest.predictor_arn required")

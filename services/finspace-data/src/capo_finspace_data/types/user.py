@@ -84,49 +84,49 @@ def serialize_json(value: User) -> dict:
 
 def deserialize_json(data: dict) -> User:
     out: User = {}  # type: ignore[typeddict-item]
-    if "userId" in data:
+    if data.get("userId") is not None:
         out["user_id"] = data["userId"]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_finspace_data.types.user_status
 
         out["status"] = capo_finspace_data.types.user_status.deserialize_json(
             data["status"]
         )
-    if "firstName" in data:
+    if data.get("firstName") is not None:
         out["first_name"] = data["firstName"]
-    if "lastName" in data:
+    if data.get("lastName") is not None:
         out["last_name"] = data["lastName"]
-    if "emailAddress" in data:
+    if data.get("emailAddress") is not None:
         out["email_address"] = data["emailAddress"]
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_finspace_data.types.user_type
 
         out["type"] = capo_finspace_data.types.user_type.deserialize_json(data["type"])
-    if "apiAccess" in data:
+    if data.get("apiAccess") is not None:
         import capo_finspace_data.types.api_access
 
         out["api_access"] = capo_finspace_data.types.api_access.deserialize_json(
             data["apiAccess"]
         )
-    if "apiAccessPrincipalArn" in data:
+    if data.get("apiAccessPrincipalArn") is not None:
         out["api_access_principal_arn"] = data["apiAccessPrincipalArn"]
-    if "createTime" in data:
+    if data.get("createTime") is not None:
         out["create_time"] = data["createTime"]
     else:
         out["create_time"] = 0
-    if "lastEnabledTime" in data:
+    if data.get("lastEnabledTime") is not None:
         out["last_enabled_time"] = data["lastEnabledTime"]
     else:
         out["last_enabled_time"] = 0
-    if "lastDisabledTime" in data:
+    if data.get("lastDisabledTime") is not None:
         out["last_disabled_time"] = data["lastDisabledTime"]
     else:
         out["last_disabled_time"] = 0
-    if "lastModifiedTime" in data:
+    if data.get("lastModifiedTime") is not None:
         out["last_modified_time"] = data["lastModifiedTime"]
     else:
         out["last_modified_time"] = 0
-    if "lastLoginTime" in data:
+    if data.get("lastLoginTime") is not None:
         out["last_login_time"] = data["lastLoginTime"]
     else:
         out["last_login_time"] = 0

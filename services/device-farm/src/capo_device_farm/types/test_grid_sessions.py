@@ -27,6 +27,8 @@ def deserialize_aws_json_1_1(data: list) -> TestGridSessions:
 
     out: TestGridSessions = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_device_farm.types.test_grid_session.deserialize_aws_json_1_1(item)
         )

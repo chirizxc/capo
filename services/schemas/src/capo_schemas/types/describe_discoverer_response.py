@@ -56,23 +56,23 @@ def serialize_json(value: DescribeDiscovererResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribeDiscovererResponse:
     out: DescribeDiscovererResponse = {}  # type: ignore[typeddict-item]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "DiscovererArn" in data:
+    if data.get("DiscovererArn") is not None:
         out["discoverer_arn"] = data["DiscovererArn"]
-    if "DiscovererId" in data:
+    if data.get("DiscovererId") is not None:
         out["discoverer_id"] = data["DiscovererId"]
-    if "SourceArn" in data:
+    if data.get("SourceArn") is not None:
         out["source_arn"] = data["SourceArn"]
-    if "State" in data:
+    if data.get("State") is not None:
         import capo_schemas.types.discoverer_state
 
         out["state"] = capo_schemas.types.discoverer_state.deserialize_json(
             data["State"]
         )
-    if "CrossAccount" in data:
+    if data.get("CrossAccount") is not None:
         out["cross_account"] = data["CrossAccount"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_schemas.types.tags
 
         out["tags"] = capo_schemas.types.tags.deserialize_json(data["tags"])

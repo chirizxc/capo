@@ -78,33 +78,33 @@ def serialize_json(value: AssistantSummary) -> dict:
 
 def deserialize_json(data: dict) -> AssistantSummary:
     out: AssistantSummary = {}  # type: ignore[typeddict-item]
-    if "assistantId" in data:
+    if data.get("assistantId") is not None:
         out["assistant_id"] = data["assistantId"]
     else:
         raise DeserializationError("AssistantSummary.assistant_id required")
-    if "assistantArn" in data:
+    if data.get("assistantArn") is not None:
         out["assistant_arn"] = data["assistantArn"]
     else:
         raise DeserializationError("AssistantSummary.assistant_arn required")
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("AssistantSummary.name required")
-    if "type" in data:
+    if data.get("type") is not None:
         out["type"] = data["type"]
     else:
         raise DeserializationError("AssistantSummary.type required")
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
     else:
         raise DeserializationError("AssistantSummary.status required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_wisdom.types.tags
 
         out["tags"] = capo_wisdom.types.tags.deserialize_json(data["tags"])
-    if "serverSideEncryptionConfiguration" in data:
+    if data.get("serverSideEncryptionConfiguration") is not None:
         import capo_wisdom.types.server_side_encryption_configuration
 
         out["server_side_encryption_configuration"] = (
@@ -112,7 +112,7 @@ def deserialize_json(data: dict) -> AssistantSummary:
                 data["serverSideEncryptionConfiguration"]
             )
         )
-    if "integrationConfiguration" in data:
+    if data.get("integrationConfiguration") is not None:
         import capo_wisdom.types.assistant_integration_configuration
 
         out["integration_configuration"] = (

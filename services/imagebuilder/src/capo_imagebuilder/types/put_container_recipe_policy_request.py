@@ -30,13 +30,13 @@ def serialize_json(value: PutContainerRecipePolicyRequest) -> dict:
 
 def deserialize_json(data: dict) -> PutContainerRecipePolicyRequest:
     out: PutContainerRecipePolicyRequest = {}  # type: ignore[typeddict-item]
-    if "containerRecipeArn" in data:
+    if data.get("containerRecipeArn") is not None:
         out["container_recipe_arn"] = data["containerRecipeArn"]
     else:
         raise DeserializationError(
             "PutContainerRecipePolicyRequest.container_recipe_arn required"
         )
-    if "policy" in data:
+    if data.get("policy") is not None:
         out["policy"] = data["policy"]
     else:
         raise DeserializationError("PutContainerRecipePolicyRequest.policy required")

@@ -33,7 +33,7 @@ def serialize_json(value: ListExportTasksOutput) -> dict:
 
 def deserialize_json(data: dict) -> ListExportTasksOutput:
     out: ListExportTasksOutput = {}  # type: ignore[typeddict-item]
-    if "tasks" in data:
+    if data.get("tasks") is not None:
         import capo_neptune_graph.types.export_task_summary_list
 
         out["tasks"] = (
@@ -43,6 +43,6 @@ def deserialize_json(data: dict) -> ListExportTasksOutput:
         )
     else:
         raise DeserializationError("ListExportTasksOutput.tasks required")
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

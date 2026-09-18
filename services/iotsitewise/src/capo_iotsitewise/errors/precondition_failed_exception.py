@@ -31,15 +31,15 @@ def serialize_json(value: PreconditionFailedException_) -> dict:
 
 def deserialize_json(data: dict) -> PreconditionFailedException_:
     out: PreconditionFailedException_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     else:
         raise DeserializationError("PreconditionFailedException_.message required")
-    if "resourceId" in data:
+    if data.get("resourceId") is not None:
         out["resource_id"] = data["resourceId"]
     else:
         raise DeserializationError("PreconditionFailedException_.resource_id required")
-    if "resourceArn" in data:
+    if data.get("resourceArn") is not None:
         out["resource_arn"] = data["resourceArn"]
     else:
         raise DeserializationError("PreconditionFailedException_.resource_arn required")
@@ -51,15 +51,18 @@ class PreconditionFailedException(ServiceError):
 
     code: str | None = "PreconditionFailedException"
 
-    def __init__(self, data: PreconditionFailedException_):
+    def __init__(self, data: PreconditionFailedException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="PreconditionFailedException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "PreconditionFailedException":
-        return cls(deserialize_json(data))
+    def from_json(
+        cls, data: dict, message: str | None = None
+    ) -> "PreconditionFailedException":
+        return cls(deserialize_json(data), message)

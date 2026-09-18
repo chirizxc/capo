@@ -24,7 +24,7 @@ def serialize_json(value: GetWorkloadInput) -> dict:
 
 def deserialize_json(data: dict) -> GetWorkloadInput:
     out: GetWorkloadInput = {}  # type: ignore[typeddict-item]
-    if "workloadName" in data:
+    if data.get("workloadName") is not None:
         out["workload_name"] = data["workloadName"]
     else:
         raise DeserializationError("GetWorkloadInput.workload_name required")

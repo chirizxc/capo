@@ -89,8 +89,9 @@ class LandingZoneResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_controltower.types.create_landing_zone_input.CreateLandingZoneInput = {}  # type: ignore[typeddict-item]
-        input_["version"] = version
+        input_: capo_controltower.types.create_landing_zone_input.CreateLandingZoneInput = {
+            "version": version
+        }
         if remediation_types is not None:
             input_["remediation_types"] = remediation_types
         if tags is not None:
@@ -103,6 +104,7 @@ class LandingZoneResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -140,14 +142,16 @@ class LandingZoneResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_controltower.types.get_landing_zone_input.GetLandingZoneInput = {}  # type: ignore[typeddict-item]
-        input_["landing_zone_identifier"] = landing_zone_identifier
+        input_: capo_controltower.types.get_landing_zone_input.GetLandingZoneInput = {
+            "landing_zone_identifier": landing_zone_identifier
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update(
@@ -194,11 +198,12 @@ class LandingZoneResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_controltower.types.update_landing_zone_input.UpdateLandingZoneInput = {}  # type: ignore[typeddict-item]
-        input_["version"] = version
+        input_: capo_controltower.types.update_landing_zone_input.UpdateLandingZoneInput = {
+            "version": version,
+            "landing_zone_identifier": landing_zone_identifier,
+        }
         if remediation_types is not None:
             input_["remediation_types"] = remediation_types
-        input_["landing_zone_identifier"] = landing_zone_identifier
         if manifest is not None:
             input_["manifest"] = manifest
 
@@ -207,6 +212,7 @@ class LandingZoneResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -245,14 +251,16 @@ class LandingZoneResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_controltower.types.delete_landing_zone_input.DeleteLandingZoneInput = {}  # type: ignore[typeddict-item]
-        input_["landing_zone_identifier"] = landing_zone_identifier
+        input_: capo_controltower.types.delete_landing_zone_input.DeleteLandingZoneInput = {
+            "landing_zone_identifier": landing_zone_identifier
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -293,7 +301,7 @@ class LandingZoneResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_controltower.types.list_landing_zones_input.ListLandingZonesInput = {}  # type: ignore[typeddict-item]
+        input_: capo_controltower.types.list_landing_zones_input.ListLandingZonesInput = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -304,6 +312,7 @@ class LandingZoneResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def reset_landing_zone(
@@ -342,14 +351,16 @@ class LandingZoneResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_controltower.types.reset_landing_zone_input.ResetLandingZoneInput = {}  # type: ignore[typeddict-item]
-        input_["landing_zone_identifier"] = landing_zone_identifier
+        input_: capo_controltower.types.reset_landing_zone_input.ResetLandingZoneInput = {
+            "landing_zone_identifier": landing_zone_identifier
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -401,8 +412,9 @@ class AsyncLandingZoneResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_controltower.types.create_landing_zone_input.CreateLandingZoneInput = {}  # type: ignore[typeddict-item]
-        input_["version"] = version
+        input_: capo_controltower.types.create_landing_zone_input.CreateLandingZoneInput = {
+            "version": version
+        }
         if remediation_types is not None:
             input_["remediation_types"] = remediation_types
         if tags is not None:
@@ -415,6 +427,7 @@ class AsyncLandingZoneResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -453,14 +466,16 @@ class AsyncLandingZoneResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_controltower.types.get_landing_zone_input.GetLandingZoneInput = {}  # type: ignore[typeddict-item]
-        input_["landing_zone_identifier"] = landing_zone_identifier
+        input_: capo_controltower.types.get_landing_zone_input.GetLandingZoneInput = {
+            "landing_zone_identifier": landing_zone_identifier
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update(
@@ -508,11 +523,12 @@ class AsyncLandingZoneResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_controltower.types.update_landing_zone_input.UpdateLandingZoneInput = {}  # type: ignore[typeddict-item]
-        input_["version"] = version
+        input_: capo_controltower.types.update_landing_zone_input.UpdateLandingZoneInput = {
+            "version": version,
+            "landing_zone_identifier": landing_zone_identifier,
+        }
         if remediation_types is not None:
             input_["remediation_types"] = remediation_types
-        input_["landing_zone_identifier"] = landing_zone_identifier
         if manifest is not None:
             input_["manifest"] = manifest
 
@@ -521,6 +537,7 @@ class AsyncLandingZoneResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -560,14 +577,16 @@ class AsyncLandingZoneResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_controltower.types.delete_landing_zone_input.DeleteLandingZoneInput = {}  # type: ignore[typeddict-item]
-        input_["landing_zone_identifier"] = landing_zone_identifier
+        input_: capo_controltower.types.delete_landing_zone_input.DeleteLandingZoneInput = {
+            "landing_zone_identifier": landing_zone_identifier
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -609,7 +628,7 @@ class AsyncLandingZoneResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_controltower.types.list_landing_zones_input.ListLandingZonesInput = {}  # type: ignore[typeddict-item]
+        input_: capo_controltower.types.list_landing_zones_input.ListLandingZonesInput = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -620,6 +639,7 @@ class AsyncLandingZoneResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def reset_landing_zone(
@@ -659,12 +679,14 @@ class AsyncLandingZoneResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_controltower.types.reset_landing_zone_input.ResetLandingZoneInput = {}  # type: ignore[typeddict-item]
-        input_["landing_zone_identifier"] = landing_zone_identifier
+        input_: capo_controltower.types.reset_landing_zone_input.ResetLandingZoneInput = {
+            "landing_zone_identifier": landing_zone_identifier
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

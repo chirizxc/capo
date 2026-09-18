@@ -26,6 +26,6 @@ def serialize_json(value: ResetUserPasswordRequest) -> dict:
 
 def deserialize_json(data: dict) -> ResetUserPasswordRequest:
     out: ResetUserPasswordRequest = {}  # type: ignore[typeddict-item]
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     return out

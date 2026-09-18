@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import datetime
+import uuid
 from typing import TYPE_CHECKING, Optional
 
 from capo_bcm_pricing_calculator._services._pipeline import (
@@ -94,10 +95,12 @@ class WorkloadEstimate:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_bcm_pricing_calculator.types.create_workload_estimate_request.CreateWorkloadEstimateRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_bcm_pricing_calculator.types.create_workload_estimate_request.CreateWorkloadEstimateRequest = {
+            "name": name
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if rate_type is not None:
             input_["rate_type"] = rate_type
         if tags is not None:
@@ -108,6 +111,7 @@ class WorkloadEstimate:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -146,14 +150,16 @@ class WorkloadEstimate:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_bcm_pricing_calculator.types.get_workload_estimate_request.GetWorkloadEstimateRequest = {}  # type: ignore[typeddict-item]
-        input_["identifier"] = identifier
+        input_: capo_bcm_pricing_calculator.types.get_workload_estimate_request.GetWorkloadEstimateRequest = {
+            "identifier": identifier
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update(
@@ -199,8 +205,9 @@ class WorkloadEstimate:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_bcm_pricing_calculator.types.update_workload_estimate_request.UpdateWorkloadEstimateRequest = {}  # type: ignore[typeddict-item]
-        input_["identifier"] = identifier
+        input_: capo_bcm_pricing_calculator.types.update_workload_estimate_request.UpdateWorkloadEstimateRequest = {
+            "identifier": identifier
+        }
         if name is not None:
             input_["name"] = name
         if expires_at is not None:
@@ -211,6 +218,7 @@ class WorkloadEstimate:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -248,14 +256,16 @@ class WorkloadEstimate:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_bcm_pricing_calculator.types.delete_workload_estimate_request.DeleteWorkloadEstimateRequest = {}  # type: ignore[typeddict-item]
-        input_["identifier"] = identifier
+        input_: capo_bcm_pricing_calculator.types.delete_workload_estimate_request.DeleteWorkloadEstimateRequest = {
+            "identifier": identifier
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -311,7 +321,7 @@ class WorkloadEstimate:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_bcm_pricing_calculator.types.list_workload_estimates_request.ListWorkloadEstimatesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_bcm_pricing_calculator.types.list_workload_estimates_request.ListWorkloadEstimatesRequest = {}
         if created_at_filter is not None:
             input_["created_at_filter"] = created_at_filter
         if expires_at_filter is not None:
@@ -328,6 +338,7 @@ class WorkloadEstimate:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -383,10 +394,12 @@ class AsyncWorkloadEstimate:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_bcm_pricing_calculator.types.create_workload_estimate_request.CreateWorkloadEstimateRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_bcm_pricing_calculator.types.create_workload_estimate_request.CreateWorkloadEstimateRequest = {
+            "name": name
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if rate_type is not None:
             input_["rate_type"] = rate_type
         if tags is not None:
@@ -397,6 +410,7 @@ class AsyncWorkloadEstimate:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -436,14 +450,16 @@ class AsyncWorkloadEstimate:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_bcm_pricing_calculator.types.get_workload_estimate_request.GetWorkloadEstimateRequest = {}  # type: ignore[typeddict-item]
-        input_["identifier"] = identifier
+        input_: capo_bcm_pricing_calculator.types.get_workload_estimate_request.GetWorkloadEstimateRequest = {
+            "identifier": identifier
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update(
@@ -490,8 +506,9 @@ class AsyncWorkloadEstimate:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_bcm_pricing_calculator.types.update_workload_estimate_request.UpdateWorkloadEstimateRequest = {}  # type: ignore[typeddict-item]
-        input_["identifier"] = identifier
+        input_: capo_bcm_pricing_calculator.types.update_workload_estimate_request.UpdateWorkloadEstimateRequest = {
+            "identifier": identifier
+        }
         if name is not None:
             input_["name"] = name
         if expires_at is not None:
@@ -502,6 +519,7 @@ class AsyncWorkloadEstimate:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -540,14 +558,16 @@ class AsyncWorkloadEstimate:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_bcm_pricing_calculator.types.delete_workload_estimate_request.DeleteWorkloadEstimateRequest = {}  # type: ignore[typeddict-item]
-        input_["identifier"] = identifier
+        input_: capo_bcm_pricing_calculator.types.delete_workload_estimate_request.DeleteWorkloadEstimateRequest = {
+            "identifier": identifier
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -604,7 +624,7 @@ class AsyncWorkloadEstimate:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_bcm_pricing_calculator.types.list_workload_estimates_request.ListWorkloadEstimatesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_bcm_pricing_calculator.types.list_workload_estimates_request.ListWorkloadEstimatesRequest = {}
         if created_at_filter is not None:
             input_["created_at_filter"] = created_at_filter
         if expires_at_filter is not None:
@@ -621,4 +641,5 @@ class AsyncWorkloadEstimate:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

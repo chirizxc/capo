@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> __listOfSchemaSummary:
 
     out: __listOfSchemaSummary = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_schemas.types.schema_summary.deserialize_json(item))
     return out

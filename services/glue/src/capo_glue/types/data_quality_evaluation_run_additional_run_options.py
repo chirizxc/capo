@@ -50,11 +50,11 @@ def deserialize_aws_json_1_1(
     data: dict,
 ) -> DataQualityEvaluationRunAdditionalRunOptions:
     out: DataQualityEvaluationRunAdditionalRunOptions = {}  # type: ignore[typeddict-item]
-    if "CloudWatchMetricsEnabled" in data:
+    if data.get("CloudWatchMetricsEnabled") is not None:
         out["cloud_watch_metrics_enabled"] = data["CloudWatchMetricsEnabled"]
-    if "ResultsS3Prefix" in data:
+    if data.get("ResultsS3Prefix") is not None:
         out["results_s3_prefix"] = data["ResultsS3Prefix"]
-    if "CompositeRuleEvaluationMethod" in data:
+    if data.get("CompositeRuleEvaluationMethod") is not None:
         import capo_glue.types.dq_composite_rule_evaluation_method
 
         out["composite_rule_evaluation_method"] = (
@@ -62,6 +62,6 @@ def deserialize_aws_json_1_1(
                 data["CompositeRuleEvaluationMethod"]
             )
         )
-    if "CustomLogGroupPrefix" in data:
+    if data.get("CustomLogGroupPrefix") is not None:
         out["custom_log_group_prefix"] = data["CustomLogGroupPrefix"]
     return out

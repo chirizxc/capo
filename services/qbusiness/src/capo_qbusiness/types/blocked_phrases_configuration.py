@@ -34,12 +34,12 @@ def serialize_json(value: BlockedPhrasesConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> BlockedPhrasesConfiguration:
     out: BlockedPhrasesConfiguration = {}  # type: ignore[typeddict-item]
-    if "blockedPhrases" in data:
+    if data.get("blockedPhrases") is not None:
         import capo_qbusiness.types.blocked_phrases
 
         out["blocked_phrases"] = capo_qbusiness.types.blocked_phrases.deserialize_json(
             data["blockedPhrases"]
         )
-    if "systemMessageOverride" in data:
+    if data.get("systemMessageOverride") is not None:
         out["system_message_override"] = data["systemMessageOverride"]
     return out

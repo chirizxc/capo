@@ -31,11 +31,11 @@ def serialize_json(value: CreateGroupRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateGroupRequest:
     out: CreateGroupRequest = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("CreateGroupRequest.name required")
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_synthetics.types.tag_map
 
         out["tags"] = capo_synthetics.types.tag_map.deserialize_json(data["Tags"])

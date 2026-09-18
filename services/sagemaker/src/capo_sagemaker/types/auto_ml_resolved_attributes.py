@@ -55,7 +55,7 @@ def serialize_aws_json_1_1(value: AutoMLResolvedAttributes) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AutoMLResolvedAttributes:
     out: AutoMLResolvedAttributes = {}  # type: ignore[typeddict-item]
-    if "AutoMLJobObjective" in data:
+    if data.get("AutoMLJobObjective") is not None:
         import capo_sagemaker.types.auto_ml_job_objective
 
         out["auto_ml_job_objective"] = (
@@ -63,7 +63,7 @@ def deserialize_aws_json_1_1(data: dict) -> AutoMLResolvedAttributes:
                 data["AutoMLJobObjective"]
             )
         )
-    if "CompletionCriteria" in data:
+    if data.get("CompletionCriteria") is not None:
         import capo_sagemaker.types.auto_ml_job_completion_criteria
 
         out["completion_criteria"] = (
@@ -71,7 +71,7 @@ def deserialize_aws_json_1_1(data: dict) -> AutoMLResolvedAttributes:
                 data["CompletionCriteria"]
             )
         )
-    if "AutoMLProblemTypeResolvedAttributes" in data:
+    if data.get("AutoMLProblemTypeResolvedAttributes") is not None:
         import capo_sagemaker.types.auto_ml_problem_type_resolved_attributes
 
         out["auto_ml_problem_type_resolved_attributes"] = (

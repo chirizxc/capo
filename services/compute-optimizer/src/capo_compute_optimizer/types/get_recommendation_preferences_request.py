@@ -49,7 +49,7 @@ def serialize_aws_json_1_0(value: GetRecommendationPreferencesRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> GetRecommendationPreferencesRequest:
     out: GetRecommendationPreferencesRequest = {}  # type: ignore[typeddict-item]
-    if "resourceType" in data:
+    if data.get("resourceType") is not None:
         import capo_compute_optimizer.types.resource_type
 
         out["resource_type"] = (
@@ -61,14 +61,14 @@ def deserialize_aws_json_1_0(data: dict) -> GetRecommendationPreferencesRequest:
         raise DeserializationError(
             "GetRecommendationPreferencesRequest.resource_type required"
         )
-    if "scope" in data:
+    if data.get("scope") is not None:
         import capo_compute_optimizer.types.scope
 
         out["scope"] = capo_compute_optimizer.types.scope.deserialize_aws_json_1_0(
             data["scope"]
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
     return out

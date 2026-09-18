@@ -52,7 +52,7 @@ def serialize_json(value: DataSetNumericRangeFilterCondition) -> dict:
 
 def deserialize_json(data: dict) -> DataSetNumericRangeFilterCondition:
     out: DataSetNumericRangeFilterCondition = {}  # type: ignore[typeddict-item]
-    if "RangeMinimum" in data:
+    if data.get("RangeMinimum") is not None:
         import capo_quicksight.types.data_set_numeric_filter_value
 
         out["range_minimum"] = (
@@ -60,7 +60,7 @@ def deserialize_json(data: dict) -> DataSetNumericRangeFilterCondition:
                 data["RangeMinimum"]
             )
         )
-    if "RangeMaximum" in data:
+    if data.get("RangeMaximum") is not None:
         import capo_quicksight.types.data_set_numeric_filter_value
 
         out["range_maximum"] = (
@@ -68,8 +68,8 @@ def deserialize_json(data: dict) -> DataSetNumericRangeFilterCondition:
                 data["RangeMaximum"]
             )
         )
-    if "IncludeMinimum" in data:
+    if data.get("IncludeMinimum") is not None:
         out["include_minimum"] = data["IncludeMinimum"]
-    if "IncludeMaximum" in data:
+    if data.get("IncludeMaximum") is not None:
         out["include_maximum"] = data["IncludeMaximum"]
     return out

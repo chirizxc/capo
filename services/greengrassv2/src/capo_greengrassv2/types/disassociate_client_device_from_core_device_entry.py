@@ -24,7 +24,7 @@ def serialize_json(value: DisassociateClientDeviceFromCoreDeviceEntry) -> dict:
 
 def deserialize_json(data: dict) -> DisassociateClientDeviceFromCoreDeviceEntry:
     out: DisassociateClientDeviceFromCoreDeviceEntry = {}  # type: ignore[typeddict-item]
-    if "thingName" in data:
+    if data.get("thingName") is not None:
         out["thing_name"] = data["thingName"]
     else:
         raise DeserializationError(

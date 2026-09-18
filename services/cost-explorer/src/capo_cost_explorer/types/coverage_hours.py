@@ -44,12 +44,12 @@ def serialize_aws_json_1_1(value: CoverageHours) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CoverageHours:
     out: CoverageHours = {}  # type: ignore[typeddict-item]
-    if "OnDemandHours" in data:
+    if data.get("OnDemandHours") is not None:
         out["on_demand_hours"] = data["OnDemandHours"]
-    if "ReservedHours" in data:
+    if data.get("ReservedHours") is not None:
         out["reserved_hours"] = data["ReservedHours"]
-    if "TotalRunningHours" in data:
+    if data.get("TotalRunningHours") is not None:
         out["total_running_hours"] = data["TotalRunningHours"]
-    if "CoverageHoursPercentage" in data:
+    if data.get("CoverageHoursPercentage") is not None:
         out["coverage_hours_percentage"] = data["CoverageHoursPercentage"]
     return out

@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> DocumentAclConditions:
 
     out: DocumentAclConditions = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_qbusiness.types.document_acl_condition.deserialize_json(item))
     return out

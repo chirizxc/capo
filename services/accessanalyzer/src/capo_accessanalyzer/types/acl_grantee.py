@@ -33,9 +33,9 @@ def serialize_json(value: AclGrantee) -> dict:
 
 
 def deserialize_json(data: dict) -> AclGrantee:
-    if "id" in data:
+    if data.get("id") is not None:
         return {"id": data["id"]}
-    elif "uri" in data:
+    elif data.get("uri") is not None:
         return {"uri": data["uri"]}
     else:
         raise DeserializationError("AclGrantee: no recognized variant key")

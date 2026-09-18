@@ -43,13 +43,13 @@ def serialize_json(value: TriggerDetails) -> dict:
 
 def deserialize_json(data: dict) -> TriggerDetails:
     out: TriggerDetails = {}  # type: ignore[typeddict-item]
-    if "source" in data:
+    if data.get("source") is not None:
         out["source"] = data["source"]
     else:
         raise DeserializationError("TriggerDetails.source required")
-    if "triggerArn" in data:
+    if data.get("triggerArn") is not None:
         out["trigger_arn"] = data["triggerArn"]
-    if "timestamp" in data:
+    if data.get("timestamp") is not None:
         import capo_ssm_incidents.types._prelude.timestamp
 
         out["timestamp"] = capo_ssm_incidents.types._prelude.timestamp.deserialize_json(
@@ -57,6 +57,6 @@ def deserialize_json(data: dict) -> TriggerDetails:
         )
     else:
         raise DeserializationError("TriggerDetails.timestamp required")
-    if "rawData" in data:
+    if data.get("rawData") is not None:
         out["raw_data"] = data["rawData"]
     return out

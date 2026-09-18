@@ -222,7 +222,7 @@ class ResourceExplorer2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_resource_explorer_2.types.batch_get_view_input.BatchGetViewInput = {}  # type: ignore[typeddict-item]
+        input_: capo_resource_explorer_2.types.batch_get_view_input.BatchGetViewInput = {}
         if view_arns is not None:
             input_["view_arns"] = view_arns
 
@@ -231,6 +231,7 @@ class ResourceExplorer2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_resource_explorer_setup(
@@ -274,17 +275,19 @@ class ResourceExplorer2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_resource_explorer_2.types.create_resource_explorer_setup_input.CreateResourceExplorerSetupInput = {}  # type: ignore[typeddict-item]
-        input_["region_list"] = region_list
+        input_: capo_resource_explorer_2.types.create_resource_explorer_setup_input.CreateResourceExplorerSetupInput = {
+            "region_list": region_list,
+            "view_name": view_name,
+        }
         if aggregator_regions is not None:
             input_["aggregator_regions"] = aggregator_regions
-        input_["view_name"] = view_name
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_resource_explorer_setup(
@@ -326,7 +329,7 @@ class ResourceExplorer2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_resource_explorer_2.types.delete_resource_explorer_setup_input.DeleteResourceExplorerSetupInput = {}  # type: ignore[typeddict-item]
+        input_: capo_resource_explorer_2.types.delete_resource_explorer_setup_input.DeleteResourceExplorerSetupInput = {}
         if region_list is not None:
             input_["region_list"] = region_list
         if delete_in_all_regions is not None:
@@ -337,6 +340,7 @@ class ResourceExplorer2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def disassociate_default_view(
@@ -370,6 +374,7 @@ class ResourceExplorer2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_account_level_service_configuration(
@@ -406,6 +411,7 @@ class ResourceExplorer2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_default_view(
@@ -443,6 +449,7 @@ class ResourceExplorer2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_index(
@@ -480,6 +487,7 @@ class ResourceExplorer2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_managed_view(
@@ -518,14 +526,16 @@ class ResourceExplorer2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_resource_explorer_2.types.get_managed_view_input.GetManagedViewInput = {}  # type: ignore[typeddict-item]
-        input_["managed_view_arn"] = managed_view_arn
+        input_: capo_resource_explorer_2.types.get_managed_view_input.GetManagedViewInput = {
+            "managed_view_arn": managed_view_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_resource_explorer_setup(
@@ -567,8 +577,9 @@ class ResourceExplorer2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_resource_explorer_2.types.get_resource_explorer_setup_input.GetResourceExplorerSetupInput = {}  # type: ignore[typeddict-item]
-        input_["task_id"] = task_id
+        input_: capo_resource_explorer_2.types.get_resource_explorer_setup_input.GetResourceExplorerSetupInput = {
+            "task_id": task_id
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -579,6 +590,7 @@ class ResourceExplorer2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_get_resource_explorer_setup(
@@ -641,6 +653,7 @@ class ResourceExplorer2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_service_view(
@@ -678,14 +691,16 @@ class ResourceExplorer2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_resource_explorer_2.types.get_service_view_input.GetServiceViewInput = {}  # type: ignore[typeddict-item]
-        input_["service_view_arn"] = service_view_arn
+        input_: capo_resource_explorer_2.types.get_service_view_input.GetServiceViewInput = {
+            "service_view_arn": service_view_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_indexes_for_members(
@@ -726,8 +741,9 @@ class ResourceExplorer2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_resource_explorer_2.types.list_indexes_for_members_input.ListIndexesForMembersInput = {}  # type: ignore[typeddict-item]
-        input_["account_id_list"] = account_id_list
+        input_: capo_resource_explorer_2.types.list_indexes_for_members_input.ListIndexesForMembersInput = {
+            "account_id_list": account_id_list
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -738,6 +754,7 @@ class ResourceExplorer2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_indexes_for_members(
@@ -802,7 +819,7 @@ class ResourceExplorer2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_resource_explorer_2.types.list_managed_views_input.ListManagedViewsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_resource_explorer_2.types.list_managed_views_input.ListManagedViewsInput = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -815,6 +832,7 @@ class ResourceExplorer2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_managed_views(
@@ -884,7 +902,7 @@ class ResourceExplorer2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_resource_explorer_2.types.list_resources_input.ListResourcesInput = {}  # type: ignore[typeddict-item]
+        input_: capo_resource_explorer_2.types.list_resources_input.ListResourcesInput = {}
         if filters is not None:
             input_["filters"] = filters
         if max_results is not None:
@@ -899,6 +917,7 @@ class ResourceExplorer2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_resources(
@@ -968,7 +987,7 @@ class ResourceExplorer2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_resource_explorer_2.types.list_service_indexes_input.ListServiceIndexesInput = {}  # type: ignore[typeddict-item]
+        input_: capo_resource_explorer_2.types.list_service_indexes_input.ListServiceIndexesInput = {}
         if regions is not None:
             input_["regions"] = regions
         if max_results is not None:
@@ -981,6 +1000,7 @@ class ResourceExplorer2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_service_indexes(
@@ -1044,7 +1064,7 @@ class ResourceExplorer2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_resource_explorer_2.types.list_service_views_input.ListServiceViewsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_resource_explorer_2.types.list_service_views_input.ListServiceViewsInput = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -1055,6 +1075,7 @@ class ResourceExplorer2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_service_views(
@@ -1113,7 +1134,7 @@ class ResourceExplorer2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_resource_explorer_2.types.list_streaming_access_for_services_input.ListStreamingAccessForServicesInput = {}  # type: ignore[typeddict-item]
+        input_: capo_resource_explorer_2.types.list_streaming_access_for_services_input.ListStreamingAccessForServicesInput = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -1124,6 +1145,7 @@ class ResourceExplorer2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_streaming_access_for_services(
@@ -1183,7 +1205,7 @@ class ResourceExplorer2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_resource_explorer_2.types.list_supported_resource_types_input.ListSupportedResourceTypesInput = {}  # type: ignore[typeddict-item]
+        input_: capo_resource_explorer_2.types.list_supported_resource_types_input.ListSupportedResourceTypesInput = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -1194,6 +1216,7 @@ class ResourceExplorer2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_supported_resource_types(
@@ -1253,14 +1276,16 @@ class ResourceExplorer2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_resource_explorer_2.types.list_tags_for_resource_input.ListTagsForResourceInput = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_resource_explorer_2.types.list_tags_for_resource_input.ListTagsForResourceInput = {
+            "resource_arn": resource_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def search(
@@ -1305,8 +1330,9 @@ class ResourceExplorer2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_resource_explorer_2.types.search_input.SearchInput = {}  # type: ignore[typeddict-item]
-        input_["query_string"] = query_string
+        input_: capo_resource_explorer_2.types.search_input.SearchInput = {
+            "query_string": query_string
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if view_arn is not None:
@@ -1319,6 +1345,7 @@ class ResourceExplorer2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_search(
@@ -1384,8 +1411,9 @@ class ResourceExplorer2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_resource_explorer_2.types.tag_resource_input.TagResourceInput = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_resource_explorer_2.types.tag_resource_input.TagResourceInput = {
+            "resource_arn": resource_arn
+        }
         if tags is not None:
             input_["tags"] = tags
 
@@ -1394,6 +1422,7 @@ class ResourceExplorer2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def untag_resource(
@@ -1434,15 +1463,17 @@ class ResourceExplorer2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_resource_explorer_2.types.untag_resource_input.UntagResourceInput = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tag_keys"] = tag_keys
+        input_: capo_resource_explorer_2.types.untag_resource_input.UntagResourceInput = {
+            "resource_arn": resource_arn,
+            "tag_keys": tag_keys,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def __enter__(self) -> Self:

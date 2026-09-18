@@ -66,13 +66,13 @@ def serialize_aws_json_1_1(value: ListDeploymentsInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListDeploymentsInput:
     out: ListDeploymentsInput = {}  # type: ignore[typeddict-item]
-    if "applicationName" in data:
+    if data.get("applicationName") is not None:
         out["application_name"] = data["applicationName"]
-    if "deploymentGroupName" in data:
+    if data.get("deploymentGroupName") is not None:
         out["deployment_group_name"] = data["deploymentGroupName"]
-    if "externalId" in data:
+    if data.get("externalId") is not None:
         out["external_id"] = data["externalId"]
-    if "includeOnlyStatuses" in data:
+    if data.get("includeOnlyStatuses") is not None:
         import capo_codedeploy.types.deployment_status_list
 
         out["include_only_statuses"] = (
@@ -80,7 +80,7 @@ def deserialize_aws_json_1_1(data: dict) -> ListDeploymentsInput:
                 data["includeOnlyStatuses"]
             )
         )
-    if "createTimeRange" in data:
+    if data.get("createTimeRange") is not None:
         import capo_codedeploy.types.time_range
 
         out["create_time_range"] = (
@@ -88,6 +88,6 @@ def deserialize_aws_json_1_1(data: dict) -> ListDeploymentsInput:
                 data["createTimeRange"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

@@ -39,13 +39,13 @@ def serialize_json(value: DashPlaylistSettings) -> dict:
 
 def deserialize_json(data: dict) -> DashPlaylistSettings:
     out: DashPlaylistSettings = {}  # type: ignore[typeddict-item]
-    if "ManifestWindowSeconds" in data:
+    if data.get("ManifestWindowSeconds") is not None:
         out["manifest_window_seconds"] = data["ManifestWindowSeconds"]
-    if "MinBufferTimeSeconds" in data:
+    if data.get("MinBufferTimeSeconds") is not None:
         out["min_buffer_time_seconds"] = data["MinBufferTimeSeconds"]
-    if "MinUpdatePeriodSeconds" in data:
+    if data.get("MinUpdatePeriodSeconds") is not None:
         out["min_update_period_seconds"] = data["MinUpdatePeriodSeconds"]
-    if "SuggestedPresentationDelaySeconds" in data:
+    if data.get("SuggestedPresentationDelaySeconds") is not None:
         out["suggested_presentation_delay_seconds"] = data[
             "SuggestedPresentationDelaySeconds"
         ]

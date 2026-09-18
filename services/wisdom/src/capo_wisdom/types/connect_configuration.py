@@ -23,6 +23,6 @@ def serialize_json(value: ConnectConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> ConnectConfiguration:
     out: ConnectConfiguration = {}  # type: ignore[typeddict-item]
-    if "instanceId" in data:
+    if data.get("instanceId") is not None:
         out["instance_id"] = data["instanceId"]
     return out

@@ -42,19 +42,19 @@ def serialize_json(value: WabaPhoneNumberSetupFinalization) -> dict:
 
 def deserialize_json(data: dict) -> WabaPhoneNumberSetupFinalization:
     out: WabaPhoneNumberSetupFinalization = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("WabaPhoneNumberSetupFinalization.id required")
-    if "twoFactorPin" in data:
+    if data.get("twoFactorPin") is not None:
         out["two_factor_pin"] = data["twoFactorPin"]
     else:
         raise DeserializationError(
             "WabaPhoneNumberSetupFinalization.two_factor_pin required"
         )
-    if "dataLocalizationRegion" in data:
+    if data.get("dataLocalizationRegion") is not None:
         out["data_localization_region"] = data["dataLocalizationRegion"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_socialmessaging.types.tag_list
 
         out["tags"] = capo_socialmessaging.types.tag_list.deserialize_json(data["tags"])

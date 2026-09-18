@@ -63,17 +63,17 @@ def serialize_json(value: CreateJobPlaylist) -> dict:
 
 def deserialize_json(data: dict) -> CreateJobPlaylist:
     out: CreateJobPlaylist = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Format" in data:
+    if data.get("Format") is not None:
         out["format"] = data["Format"]
-    if "OutputKeys" in data:
+    if data.get("OutputKeys") is not None:
         import capo_elastic_transcoder.types.output_keys
 
         out["output_keys"] = capo_elastic_transcoder.types.output_keys.deserialize_json(
             data["OutputKeys"]
         )
-    if "HlsContentProtection" in data:
+    if data.get("HlsContentProtection") is not None:
         import capo_elastic_transcoder.types.hls_content_protection
 
         out["hls_content_protection"] = (
@@ -81,7 +81,7 @@ def deserialize_json(data: dict) -> CreateJobPlaylist:
                 data["HlsContentProtection"]
             )
         )
-    if "PlayReadyDrm" in data:
+    if data.get("PlayReadyDrm") is not None:
         import capo_elastic_transcoder.types.play_ready_drm
 
         out["play_ready_drm"] = (

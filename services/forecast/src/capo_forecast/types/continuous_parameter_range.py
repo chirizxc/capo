@@ -27,8 +27,24 @@ class ContinuousParameterRange(TypedDict, closed=True):
 def serialize_aws_json_1_1(value: ContinuousParameterRange) -> dict:
     out: dict = {}
     out["Name"] = value["name"]
-    out["MaxValue"] = value["max_value"]
-    out["MinValue"] = value["min_value"]
+    out["MaxValue"] = (
+        "NaN"
+        if value["max_value"] != value["max_value"]
+        else "Infinity"
+        if value["max_value"] == float("inf")
+        else "-Infinity"
+        if value["max_value"] == float("-inf")
+        else value["max_value"]
+    )
+    out["MinValue"] = (
+        "NaN"
+        if value["min_value"] != value["min_value"]
+        else "Infinity"
+        if value["min_value"] == float("inf")
+        else "-Infinity"
+        if value["min_value"] == float("-inf")
+        else value["min_value"]
+    )
     if "scaling_type" in value:
         import capo_forecast.types.scaling_type
 
@@ -40,19 +56,19 @@ def serialize_aws_json_1_1(value: ContinuousParameterRange) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ContinuousParameterRange:
     out: ContinuousParameterRange = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("ContinuousParameterRange.name required")
-    if "MaxValue" in data:
-        out["max_value"] = data["MaxValue"]
+    if data.get("MaxValue") is not None:
+        out["max_value"] = float(data["MaxValue"])
     else:
         raise DeserializationError("ContinuousParameterRange.max_value required")
-    if "MinValue" in data:
-        out["min_value"] = data["MinValue"]
+    if data.get("MinValue") is not None:
+        out["min_value"] = float(data["MinValue"])
     else:
         raise DeserializationError("ContinuousParameterRange.min_value required")
-    if "ScalingType" in data:
+    if data.get("ScalingType") is not None:
         import capo_forecast.types.scaling_type
 
         out["scaling_type"] = capo_forecast.types.scaling_type.deserialize_aws_json_1_1(

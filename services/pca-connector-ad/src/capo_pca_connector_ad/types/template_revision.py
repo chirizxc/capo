@@ -22,11 +22,11 @@ def serialize_json(value: TemplateRevision) -> dict:
 
 def deserialize_json(data: dict) -> TemplateRevision:
     out: TemplateRevision = {}  # type: ignore[typeddict-item]
-    if "MajorRevision" in data:
+    if data.get("MajorRevision") is not None:
         out["major_revision"] = data["MajorRevision"]
     else:
         raise DeserializationError("TemplateRevision.major_revision required")
-    if "MinorRevision" in data:
+    if data.get("MinorRevision") is not None:
         out["minor_revision"] = data["MinorRevision"]
     else:
         raise DeserializationError("TemplateRevision.minor_revision required")

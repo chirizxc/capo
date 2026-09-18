@@ -52,13 +52,13 @@ def serialize_json(value: CredentialLockerSummary) -> dict:
 
 def deserialize_json(data: dict) -> CredentialLockerSummary:
     out: CredentialLockerSummary = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "CreatedAt" in data:
+    if data.get("CreatedAt") is not None:
         import capo_iot_managed_integrations.types.credential_locker_created_at
 
         out["created_at"] = (

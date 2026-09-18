@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: MediaAnalysisOperationsConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> MediaAnalysisOperationsConfig:
     out: MediaAnalysisOperationsConfig = {}  # type: ignore[typeddict-item]
-    if "DetectModerationLabels" in data:
+    if data.get("DetectModerationLabels") is not None:
         import capo_rekognition.types.media_analysis_detect_moderation_labels_config
 
         out["detect_moderation_labels"] = (

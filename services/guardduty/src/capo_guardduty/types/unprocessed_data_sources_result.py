@@ -30,7 +30,7 @@ def serialize_json(value: UnprocessedDataSourcesResult) -> dict:
 
 def deserialize_json(data: dict) -> UnprocessedDataSourcesResult:
     out: UnprocessedDataSourcesResult = {}  # type: ignore[typeddict-item]
-    if "malwareProtection" in data:
+    if data.get("malwareProtection") is not None:
         import capo_guardduty.types.malware_protection_configuration_result
 
         out["malware_protection"] = (

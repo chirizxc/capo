@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> ChangeSetSummaryList:
 
     out: ChangeSetSummaryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_marketplace_catalog.types.change_set_summary_list_item.deserialize_json(
                 item

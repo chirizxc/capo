@@ -29,6 +29,8 @@ def deserialize_aws_json_1_0(data: list) -> RecommendationSummariesList:
 
     out: RecommendationSummariesList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_cost_optimization_hub.types.recommendation_summary.deserialize_aws_json_1_0(
                 item

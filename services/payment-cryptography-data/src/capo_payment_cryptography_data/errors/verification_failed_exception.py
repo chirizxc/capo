@@ -26,11 +26,11 @@ def serialize_json(value: VerificationFailedException_) -> dict:
 
 def deserialize_json(data: dict) -> VerificationFailedException_:
     out: VerificationFailedException_ = {}  # type: ignore[typeddict-item]
-    if "Reason" in data:
+    if data.get("Reason") is not None:
         out["reason"] = data["Reason"]
     else:
         raise DeserializationError("VerificationFailedException_.reason required")
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     else:
         raise DeserializationError("VerificationFailedException_.message required")
@@ -42,15 +42,18 @@ class VerificationFailedException(ServiceError):
 
     code: str | None = "VerificationFailedException"
 
-    def __init__(self, data: VerificationFailedException_):
+    def __init__(self, data: VerificationFailedException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="VerificationFailedException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "VerificationFailedException":
-        return cls(deserialize_json(data))
+    def from_json(
+        cls, data: dict, message: str | None = None
+    ) -> "VerificationFailedException":
+        return cls(deserialize_json(data), message)

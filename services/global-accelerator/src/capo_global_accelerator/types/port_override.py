@@ -27,8 +27,8 @@ def serialize_aws_json_1_1(value: PortOverride) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PortOverride:
     out: PortOverride = {}  # type: ignore[typeddict-item]
-    if "ListenerPort" in data:
+    if data.get("ListenerPort") is not None:
         out["listener_port"] = data["ListenerPort"]
-    if "EndpointPort" in data:
+    if data.get("EndpointPort") is not None:
         out["endpoint_port"] = data["EndpointPort"]
     return out

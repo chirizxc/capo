@@ -76,7 +76,7 @@ def serialize_aws_json_1_1(value: RuleExecutionInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RuleExecutionInput:
     out: RuleExecutionInput = {}  # type: ignore[typeddict-item]
-    if "ruleTypeId" in data:
+    if data.get("ruleTypeId") is not None:
         import capo_codepipeline.types.rule_type_id
 
         out["rule_type_id"] = (
@@ -84,7 +84,7 @@ def deserialize_aws_json_1_1(data: dict) -> RuleExecutionInput:
                 data["ruleTypeId"]
             )
         )
-    if "configuration" in data:
+    if data.get("configuration") is not None:
         import capo_codepipeline.types.rule_configuration_map
 
         out["configuration"] = (
@@ -92,7 +92,7 @@ def deserialize_aws_json_1_1(data: dict) -> RuleExecutionInput:
                 data["configuration"]
             )
         )
-    if "resolvedConfiguration" in data:
+    if data.get("resolvedConfiguration") is not None:
         import capo_codepipeline.types.resolved_rule_configuration_map
 
         out["resolved_configuration"] = (
@@ -100,11 +100,11 @@ def deserialize_aws_json_1_1(data: dict) -> RuleExecutionInput:
                 data["resolvedConfiguration"]
             )
         )
-    if "roleArn" in data:
+    if data.get("roleArn") is not None:
         out["role_arn"] = data["roleArn"]
-    if "region" in data:
+    if data.get("region") is not None:
         out["region"] = data["region"]
-    if "inputArtifacts" in data:
+    if data.get("inputArtifacts") is not None:
         import capo_codepipeline.types.artifact_detail_list
 
         out["input_artifacts"] = (

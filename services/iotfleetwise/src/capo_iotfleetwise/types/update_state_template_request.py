@@ -4,6 +4,8 @@ from typing import TYPE_CHECKING
 
 from typing_extensions import NotRequired, TypedDict
 
+from capo_iotfleetwise.errors import DeserializationError
+
 if TYPE_CHECKING:
     import capo_iotfleetwise.types.description
     import capo_iotfleetwise.types.resource_identifier
@@ -38,6 +40,7 @@ class UpdateStateTemplateRequest(TypedDict, closed=True):
 # --- awsJson1_0 ser/de ---
 def serialize_aws_json_1_0(value: UpdateStateTemplateRequest) -> dict:
     out: dict = {}
+    out["identifier"] = value["identifier"]
     if "description" in value:
         out["description"] = value["description"]
     if "state_template_properties_to_add" in value:
@@ -77,9 +80,13 @@ def serialize_aws_json_1_0(value: UpdateStateTemplateRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> UpdateStateTemplateRequest:
     out: UpdateStateTemplateRequest = {}  # type: ignore[typeddict-item]
-    if "description" in data:
+    if data.get("identifier") is not None:
+        out["identifier"] = data["identifier"]
+    else:
+        raise DeserializationError("UpdateStateTemplateRequest.identifier required")
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "stateTemplatePropertiesToAdd" in data:
+    if data.get("stateTemplatePropertiesToAdd") is not None:
         import capo_iotfleetwise.types.state_template_properties
 
         out["state_template_properties_to_add"] = (
@@ -87,7 +94,7 @@ def deserialize_aws_json_1_0(data: dict) -> UpdateStateTemplateRequest:
                 data["stateTemplatePropertiesToAdd"]
             )
         )
-    if "stateTemplatePropertiesToRemove" in data:
+    if data.get("stateTemplatePropertiesToRemove") is not None:
         import capo_iotfleetwise.types.state_template_properties
 
         out["state_template_properties_to_remove"] = (
@@ -95,7 +102,7 @@ def deserialize_aws_json_1_0(data: dict) -> UpdateStateTemplateRequest:
                 data["stateTemplatePropertiesToRemove"]
             )
         )
-    if "dataExtraDimensions" in data:
+    if data.get("dataExtraDimensions") is not None:
         import capo_iotfleetwise.types.state_template_data_extra_dimension_node_path_list
 
         out["data_extra_dimensions"] = (
@@ -103,7 +110,7 @@ def deserialize_aws_json_1_0(data: dict) -> UpdateStateTemplateRequest:
                 data["dataExtraDimensions"]
             )
         )
-    if "metadataExtraDimensions" in data:
+    if data.get("metadataExtraDimensions") is not None:
         import capo_iotfleetwise.types.state_template_metadata_extra_dimension_node_path_list
 
         out["metadata_extra_dimensions"] = (

@@ -23,5 +23,7 @@ def deserialize_json(data: dict) -> DimensionsMap:
     for key, value in data.items():
         import capo_sustainability.types.dimension
 
+        if value is None:
+            continue
         out[capo_sustainability.types.dimension.deserialize_json(key)] = value
     return out

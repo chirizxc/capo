@@ -38,9 +38,9 @@ def serialize_json(value: PermissionGroupParams) -> dict:
 
 def deserialize_json(data: dict) -> PermissionGroupParams:
     out: PermissionGroupParams = {}  # type: ignore[typeddict-item]
-    if "permissionGroupId" in data:
+    if data.get("permissionGroupId") is not None:
         out["permission_group_id"] = data["permissionGroupId"]
-    if "datasetPermissions" in data:
+    if data.get("datasetPermissions") is not None:
         import capo_finspace_data.types.resource_permissions_list
 
         out["dataset_permissions"] = (

@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: HiveJsonSerDe) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> HiveJsonSerDe:
     out: HiveJsonSerDe = {}  # type: ignore[typeddict-item]
-    if "TimestampFormats" in data:
+    if data.get("TimestampFormats") is not None:
         import capo_firehose.types.list_of_non_empty_strings
 
         out["timestamp_formats"] = (

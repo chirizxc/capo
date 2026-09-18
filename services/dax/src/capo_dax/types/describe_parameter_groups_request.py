@@ -41,7 +41,7 @@ def serialize_aws_json_1_1(value: DescribeParameterGroupsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeParameterGroupsRequest:
     out: DescribeParameterGroupsRequest = {}  # type: ignore[typeddict-item]
-    if "ParameterGroupNames" in data:
+    if data.get("ParameterGroupNames") is not None:
         import capo_dax.types.parameter_group_name_list
 
         out["parameter_group_names"] = (
@@ -49,8 +49,8 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeParameterGroupsRequest:
                 data["ParameterGroupNames"]
             )
         )
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

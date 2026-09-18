@@ -44,7 +44,7 @@ def serialize_json(value: FunnelChartSortConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> FunnelChartSortConfiguration:
     out: FunnelChartSortConfiguration = {}  # type: ignore[typeddict-item]
-    if "CategorySort" in data:
+    if data.get("CategorySort") is not None:
         import capo_quicksight.types.field_sort_options_list
 
         out["category_sort"] = (
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> FunnelChartSortConfiguration:
                 data["CategorySort"]
             )
         )
-    if "CategoryItemsLimit" in data:
+    if data.get("CategoryItemsLimit") is not None:
         import capo_quicksight.types.items_limit_configuration
 
         out["category_items_limit"] = (

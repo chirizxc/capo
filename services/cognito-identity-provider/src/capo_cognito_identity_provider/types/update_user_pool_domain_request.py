@@ -63,17 +63,17 @@ def serialize_aws_json_1_1(value: UpdateUserPoolDomainRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateUserPoolDomainRequest:
     out: UpdateUserPoolDomainRequest = {}  # type: ignore[typeddict-item]
-    if "Domain" in data:
+    if data.get("Domain") is not None:
         out["domain"] = data["Domain"]
     else:
         raise DeserializationError("UpdateUserPoolDomainRequest.domain required")
-    if "UserPoolId" in data:
+    if data.get("UserPoolId") is not None:
         out["user_pool_id"] = data["UserPoolId"]
     else:
         raise DeserializationError("UpdateUserPoolDomainRequest.user_pool_id required")
-    if "ManagedLoginVersion" in data:
+    if data.get("ManagedLoginVersion") is not None:
         out["managed_login_version"] = data["ManagedLoginVersion"]
-    if "CustomDomainConfig" in data:
+    if data.get("CustomDomainConfig") is not None:
         import capo_cognito_identity_provider.types.custom_domain_config_type
 
         out["custom_domain_config"] = (
@@ -81,7 +81,7 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateUserPoolDomainRequest:
                 data["CustomDomainConfig"]
             )
         )
-    if "Routing" in data:
+    if data.get("Routing") is not None:
         import capo_cognito_identity_provider.types.routing_type
 
         out["routing"] = (

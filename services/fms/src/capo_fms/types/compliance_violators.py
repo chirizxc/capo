@@ -25,5 +25,7 @@ def deserialize_aws_json_1_1(data: list) -> ComplianceViolators:
 
     out: ComplianceViolators = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_fms.types.compliance_violator.deserialize_aws_json_1_1(item))
     return out

@@ -38,13 +38,13 @@ def serialize_json(value: CheckAccessNotGrantedRequest) -> dict:
 
 def deserialize_json(data: dict) -> CheckAccessNotGrantedRequest:
     out: CheckAccessNotGrantedRequest = {}  # type: ignore[typeddict-item]
-    if "policyDocument" in data:
+    if data.get("policyDocument") is not None:
         out["policy_document"] = data["policyDocument"]
     else:
         raise DeserializationError(
             "CheckAccessNotGrantedRequest.policy_document required"
         )
-    if "access" in data:
+    if data.get("access") is not None:
         import capo_accessanalyzer.types.access_list
 
         out["access"] = capo_accessanalyzer.types.access_list.deserialize_json(
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> CheckAccessNotGrantedRequest:
         )
     else:
         raise DeserializationError("CheckAccessNotGrantedRequest.access required")
-    if "policyType" in data:
+    if data.get("policyType") is not None:
         out["policy_type"] = data["policyType"]
     else:
         raise DeserializationError("CheckAccessNotGrantedRequest.policy_type required")

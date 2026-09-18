@@ -28,11 +28,11 @@ def serialize_aws_json_1_1(value: DeleteAdapterVersionRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteAdapterVersionRequest:
     out: DeleteAdapterVersionRequest = {}  # type: ignore[typeddict-item]
-    if "AdapterId" in data:
+    if data.get("AdapterId") is not None:
         out["adapter_id"] = data["AdapterId"]
     else:
         raise DeserializationError("DeleteAdapterVersionRequest.adapter_id required")
-    if "AdapterVersion" in data:
+    if data.get("AdapterVersion") is not None:
         out["adapter_version"] = data["AdapterVersion"]
     else:
         raise DeserializationError(

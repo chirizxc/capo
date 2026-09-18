@@ -62,21 +62,21 @@ def serialize_json(value: IAMPolicyAssignment) -> dict:
 
 def deserialize_json(data: dict) -> IAMPolicyAssignment:
     out: IAMPolicyAssignment = {}  # type: ignore[typeddict-item]
-    if "AwsAccountId" in data:
+    if data.get("AwsAccountId") is not None:
         out["aws_account_id"] = data["AwsAccountId"]
-    if "AssignmentId" in data:
+    if data.get("AssignmentId") is not None:
         out["assignment_id"] = data["AssignmentId"]
-    if "AssignmentName" in data:
+    if data.get("AssignmentName") is not None:
         out["assignment_name"] = data["AssignmentName"]
-    if "PolicyArn" in data:
+    if data.get("PolicyArn") is not None:
         out["policy_arn"] = data["PolicyArn"]
-    if "Identities" in data:
+    if data.get("Identities") is not None:
         import capo_quicksight.types.identity_map
 
         out["identities"] = capo_quicksight.types.identity_map.deserialize_json(
             data["Identities"]
         )
-    if "AssignmentStatus" in data:
+    if data.get("AssignmentStatus") is not None:
         import capo_quicksight.types.assignment_status
 
         out["assignment_status"] = (

@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: ReferencedImagesNotFoundException_) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ReferencedImagesNotFoundException_:
     out: ReferencedImagesNotFoundException_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     return out
 
@@ -34,15 +34,20 @@ class ReferencedImagesNotFoundException(ServiceError):
 
     code: str | None = "ReferencedImagesNotFoundException"
 
-    def __init__(self, data: ReferencedImagesNotFoundException_):
+    def __init__(
+        self, data: ReferencedImagesNotFoundException_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="ReferencedImagesNotFoundException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "ReferencedImagesNotFoundException":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "ReferencedImagesNotFoundException":
+        return cls(deserialize_aws_json_1_1(data), message)

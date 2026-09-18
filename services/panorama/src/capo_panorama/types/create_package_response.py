@@ -38,11 +38,11 @@ def serialize_json(value: CreatePackageResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreatePackageResponse:
     out: CreatePackageResponse = {}  # type: ignore[typeddict-item]
-    if "PackageId" in data:
+    if data.get("PackageId") is not None:
         out["package_id"] = data["PackageId"]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "StorageLocation" in data:
+    if data.get("StorageLocation") is not None:
         import capo_panorama.types.storage_location
 
         out["storage_location"] = capo_panorama.types.storage_location.deserialize_json(

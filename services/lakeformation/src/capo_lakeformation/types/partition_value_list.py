@@ -28,7 +28,7 @@ def serialize_json(value: PartitionValueList) -> dict:
 
 def deserialize_json(data: dict) -> PartitionValueList:
     out: PartitionValueList = {}  # type: ignore[typeddict-item]
-    if "Values" in data:
+    if data.get("Values") is not None:
         import capo_lakeformation.types.value_string_list
 
         out["values"] = capo_lakeformation.types.value_string_list.deserialize_json(

@@ -74,15 +74,15 @@ def serialize_json(value: CreateHoursOfOperationOverrideRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateHoursOfOperationOverrideRequest:
     out: CreateHoursOfOperationOverrideRequest = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError(
             "CreateHoursOfOperationOverrideRequest.name required"
         )
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Config" in data:
+    if data.get("Config") is not None:
         import capo_connect.types.hours_of_operation_override_config_list
 
         out["config"] = (
@@ -94,19 +94,19 @@ def deserialize_json(data: dict) -> CreateHoursOfOperationOverrideRequest:
         raise DeserializationError(
             "CreateHoursOfOperationOverrideRequest.config required"
         )
-    if "EffectiveFrom" in data:
+    if data.get("EffectiveFrom") is not None:
         out["effective_from"] = data["EffectiveFrom"]
     else:
         raise DeserializationError(
             "CreateHoursOfOperationOverrideRequest.effective_from required"
         )
-    if "EffectiveTill" in data:
+    if data.get("EffectiveTill") is not None:
         out["effective_till"] = data["EffectiveTill"]
     else:
         raise DeserializationError(
             "CreateHoursOfOperationOverrideRequest.effective_till required"
         )
-    if "RecurrenceConfig" in data:
+    if data.get("RecurrenceConfig") is not None:
         import capo_connect.types.recurrence_config
 
         out["recurrence_config"] = (
@@ -114,7 +114,7 @@ def deserialize_json(data: dict) -> CreateHoursOfOperationOverrideRequest:
                 data["RecurrenceConfig"]
             )
         )
-    if "OverrideType" in data:
+    if data.get("OverrideType") is not None:
         import capo_connect.types.override_type
 
         out["override_type"] = capo_connect.types.override_type.deserialize_json(

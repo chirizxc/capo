@@ -39,13 +39,13 @@ def serialize_json(value: S3BucketCriteriaForJob) -> dict:
 
 def deserialize_json(data: dict) -> S3BucketCriteriaForJob:
     out: S3BucketCriteriaForJob = {}  # type: ignore[typeddict-item]
-    if "excludes" in data:
+    if data.get("excludes") is not None:
         import capo_macie2.types.criteria_block_for_job
 
         out["excludes"] = capo_macie2.types.criteria_block_for_job.deserialize_json(
             data["excludes"]
         )
-    if "includes" in data:
+    if data.get("includes") is not None:
         import capo_macie2.types.criteria_block_for_job
 
         out["includes"] = capo_macie2.types.criteria_block_for_job.deserialize_json(

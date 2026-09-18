@@ -38,16 +38,16 @@ def serialize_json(value: WorkerResourceConfig) -> dict:
 
 def deserialize_json(data: dict) -> WorkerResourceConfig:
     out: WorkerResourceConfig = {}  # type: ignore[typeddict-item]
-    if "cpu" in data:
+    if data.get("cpu") is not None:
         out["cpu"] = data["cpu"]
     else:
         raise DeserializationError("WorkerResourceConfig.cpu required")
-    if "memory" in data:
+    if data.get("memory") is not None:
         out["memory"] = data["memory"]
     else:
         raise DeserializationError("WorkerResourceConfig.memory required")
-    if "disk" in data:
+    if data.get("disk") is not None:
         out["disk"] = data["disk"]
-    if "diskType" in data:
+    if data.get("diskType") is not None:
         out["disk_type"] = data["diskType"]
     return out

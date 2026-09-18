@@ -38,12 +38,12 @@ def serialize_aws_json_1_1(value: PutRecordsResultEntry) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PutRecordsResultEntry:
     out: PutRecordsResultEntry = {}  # type: ignore[typeddict-item]
-    if "SequenceNumber" in data:
+    if data.get("SequenceNumber") is not None:
         out["sequence_number"] = data["SequenceNumber"]
-    if "ShardId" in data:
+    if data.get("ShardId") is not None:
         out["shard_id"] = data["ShardId"]
-    if "ErrorCode" in data:
+    if data.get("ErrorCode") is not None:
         out["error_code"] = data["ErrorCode"]
-    if "ErrorMessage" in data:
+    if data.get("ErrorMessage") is not None:
         out["error_message"] = data["ErrorMessage"]
     return out

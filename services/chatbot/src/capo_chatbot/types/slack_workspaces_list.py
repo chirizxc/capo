@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> SlackWorkspacesList:
 
     out: SlackWorkspacesList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_chatbot.types.slack_workspace.deserialize_json(item))
     return out

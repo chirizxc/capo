@@ -27,7 +27,7 @@ def serialize_aws_json_1_1(value: CategoricalParameterRangeSpecification) -> dic
 
 def deserialize_aws_json_1_1(data: dict) -> CategoricalParameterRangeSpecification:
     out: CategoricalParameterRangeSpecification = {}  # type: ignore[typeddict-item]
-    if "Values" in data:
+    if data.get("Values") is not None:
         import capo_sagemaker.types.parameter_values
 
         out["values"] = capo_sagemaker.types.parameter_values.deserialize_aws_json_1_1(

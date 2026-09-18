@@ -48,9 +48,9 @@ def serialize_json(value: InputTamsSettings) -> dict:
 
 def deserialize_json(data: dict) -> InputTamsSettings:
     out: InputTamsSettings = {}  # type: ignore[typeddict-item]
-    if "authConnectionArn" in data:
+    if data.get("authConnectionArn") is not None:
         out["auth_connection_arn"] = data["authConnectionArn"]
-    if "gapHandling" in data:
+    if data.get("gapHandling") is not None:
         import capo_mediaconvert.types.tams_gap_handling
 
         out["gap_handling"] = (
@@ -58,8 +58,8 @@ def deserialize_json(data: dict) -> InputTamsSettings:
                 data["gapHandling"]
             )
         )
-    if "sourceId" in data:
+    if data.get("sourceId") is not None:
         out["source_id"] = data["sourceId"]
-    if "timerange" in data:
+    if data.get("timerange") is not None:
         out["timerange"] = data["timerange"]
     return out

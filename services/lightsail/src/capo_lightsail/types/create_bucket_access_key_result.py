@@ -36,13 +36,13 @@ def serialize_aws_json_1_1(value: CreateBucketAccessKeyResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateBucketAccessKeyResult:
     out: CreateBucketAccessKeyResult = {}  # type: ignore[typeddict-item]
-    if "accessKey" in data:
+    if data.get("accessKey") is not None:
         import capo_lightsail.types.access_key
 
         out["access_key"] = capo_lightsail.types.access_key.deserialize_aws_json_1_1(
             data["accessKey"]
         )
-    if "operations" in data:
+    if data.get("operations") is not None:
         import capo_lightsail.types.operation_list
 
         out["operations"] = (

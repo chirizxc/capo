@@ -36,7 +36,7 @@ def serialize_json(value: AwsLogSourceResource) -> dict:
 
 def deserialize_json(data: dict) -> AwsLogSourceResource:
     out: AwsLogSourceResource = {}  # type: ignore[typeddict-item]
-    if "sourceName" in data:
+    if data.get("sourceName") is not None:
         import capo_securitylake.types.aws_log_source_name
 
         out["source_name"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> AwsLogSourceResource:
                 data["sourceName"]
             )
         )
-    if "sourceVersion" in data:
+    if data.get("sourceVersion") is not None:
         out["source_version"] = data["sourceVersion"]
     return out

@@ -40,7 +40,7 @@ def deserialize_aws_json_1_1(
     data: dict,
 ) -> ListModelExplainabilityJobDefinitionsResponse:
     out: ListModelExplainabilityJobDefinitionsResponse = {}  # type: ignore[typeddict-item]
-    if "JobDefinitionSummaries" in data:
+    if data.get("JobDefinitionSummaries") is not None:
         import capo_sagemaker.types.monitoring_job_definition_summary_list
 
         out["job_definition_summaries"] = (
@@ -48,6 +48,6 @@ def deserialize_aws_json_1_1(
                 data["JobDefinitionSummaries"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

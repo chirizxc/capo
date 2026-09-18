@@ -43,15 +43,15 @@ def serialize_aws_json_1_1(value: Column) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Column:
     out: Column = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("Column.name required")
-    if "Type" in data:
+    if data.get("Type") is not None:
         out["type"] = data["Type"]
-    if "Comment" in data:
+    if data.get("Comment") is not None:
         out["comment"] = data["Comment"]
-    if "Parameters" in data:
+    if data.get("Parameters") is not None:
         import capo_glue.types.parameters_map
 
         out["parameters"] = capo_glue.types.parameters_map.deserialize_aws_json_1_1(

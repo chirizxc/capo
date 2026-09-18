@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> ListOfReceivedDataGrantSummariesEntry:
 
     out: ListOfReceivedDataGrantSummariesEntry = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_dataexchange.types.received_data_grant_summaries_entry.deserialize_json(
                 item

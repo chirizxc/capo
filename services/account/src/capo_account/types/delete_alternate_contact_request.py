@@ -31,12 +31,12 @@ def serialize_json(value: DeleteAlternateContactRequest) -> dict:
 
 def deserialize_json(data: dict) -> DeleteAlternateContactRequest:
     out: DeleteAlternateContactRequest = {}  # type: ignore[typeddict-item]
-    if "AlternateContactType" in data:
+    if data.get("AlternateContactType") is not None:
         out["alternate_contact_type"] = data["AlternateContactType"]
     else:
         raise DeserializationError(
             "DeleteAlternateContactRequest.alternate_contact_type required"
         )
-    if "AccountId" in data:
+    if data.get("AccountId") is not None:
         out["account_id"] = data["AccountId"]
     return out

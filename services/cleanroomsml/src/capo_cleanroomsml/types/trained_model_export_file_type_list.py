@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> TrainedModelExportFileTypeList:
 
     out: TrainedModelExportFileTypeList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_cleanroomsml.types.trained_model_export_file_type.deserialize_json(
                 item

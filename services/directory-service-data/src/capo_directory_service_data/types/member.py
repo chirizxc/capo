@@ -36,15 +36,15 @@ def serialize_json(value: Member) -> dict:
 
 def deserialize_json(data: dict) -> Member:
     out: Member = {}  # type: ignore[typeddict-item]
-    if "SID" in data:
+    if data.get("SID") is not None:
         out["sid"] = data["SID"]
     else:
         raise DeserializationError("Member.sid required")
-    if "SAMAccountName" in data:
+    if data.get("SAMAccountName") is not None:
         out["sam_account_name"] = data["SAMAccountName"]
     else:
         raise DeserializationError("Member.sam_account_name required")
-    if "MemberType" in data:
+    if data.get("MemberType") is not None:
         import capo_directory_service_data.types.member_type
 
         out["member_type"] = (

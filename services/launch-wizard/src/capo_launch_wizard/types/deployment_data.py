@@ -102,21 +102,21 @@ def serialize_json(value: DeploymentData) -> dict:
 
 def deserialize_json(data: dict) -> DeploymentData:
     out: DeploymentData = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "workloadName" in data:
+    if data.get("workloadName") is not None:
         out["workload_name"] = data["workloadName"]
-    if "patternName" in data:
+    if data.get("patternName") is not None:
         out["pattern_name"] = data["patternName"]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_launch_wizard.types.deployment_status
 
         out["status"] = capo_launch_wizard.types.deployment_status.deserialize_json(
             data["status"]
         )
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_launch_wizard.types._prelude.timestamp
 
         out["created_at"] = (
@@ -124,7 +124,7 @@ def deserialize_json(data: dict) -> DeploymentData:
                 data["createdAt"]
             )
         )
-    if "modifiedAt" in data:
+    if data.get("modifiedAt") is not None:
         import capo_launch_wizard.types._prelude.timestamp
 
         out["modified_at"] = (
@@ -132,7 +132,7 @@ def deserialize_json(data: dict) -> DeploymentData:
                 data["modifiedAt"]
             )
         )
-    if "specifications" in data:
+    if data.get("specifications") is not None:
         import capo_launch_wizard.types.deployment_specifications
 
         out["specifications"] = (
@@ -140,9 +140,9 @@ def deserialize_json(data: dict) -> DeploymentData:
                 data["specifications"]
             )
         )
-    if "resourceGroup" in data:
+    if data.get("resourceGroup") is not None:
         out["resource_group"] = data["resourceGroup"]
-    if "deletedAt" in data:
+    if data.get("deletedAt") is not None:
         import capo_launch_wizard.types._prelude.timestamp
 
         out["deleted_at"] = (
@@ -150,10 +150,10 @@ def deserialize_json(data: dict) -> DeploymentData:
                 data["deletedAt"]
             )
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_launch_wizard.types.tags
 
         out["tags"] = capo_launch_wizard.types.tags.deserialize_json(data["tags"])
-    if "deploymentArn" in data:
+    if data.get("deploymentArn") is not None:
         out["deployment_arn"] = data["deploymentArn"]
     return out

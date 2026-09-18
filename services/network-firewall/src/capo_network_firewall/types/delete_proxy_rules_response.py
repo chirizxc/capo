@@ -31,7 +31,7 @@ def serialize_aws_json_1_0(value: DeleteProxyRulesResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> DeleteProxyRulesResponse:
     out: DeleteProxyRulesResponse = {}  # type: ignore[typeddict-item]
-    if "ProxyRuleGroup" in data:
+    if data.get("ProxyRuleGroup") is not None:
         import capo_network_firewall.types.proxy_rule_group
 
         out["proxy_rule_group"] = (

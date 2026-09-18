@@ -23,6 +23,6 @@ def serialize_json(value: VpcConnectivityTls) -> dict:
 
 def deserialize_json(data: dict) -> VpcConnectivityTls:
     out: VpcConnectivityTls = {}  # type: ignore[typeddict-item]
-    if "enabled" in data:
+    if data.get("enabled") is not None:
         out["enabled"] = data["enabled"]
     return out

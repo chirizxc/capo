@@ -52,17 +52,17 @@ def serialize_json(value: GetTelemetryEvaluationStatusOutput) -> dict:
 
 def deserialize_json(data: dict) -> GetTelemetryEvaluationStatusOutput:
     out: GetTelemetryEvaluationStatusOutput = {}  # type: ignore[typeddict-item]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_observabilityadmin.types.status
 
         out["status"] = capo_observabilityadmin.types.status.deserialize_json(
             data["Status"]
         )
-    if "FailureReason" in data:
+    if data.get("FailureReason") is not None:
         out["failure_reason"] = data["FailureReason"]
-    if "HomeRegion" in data:
+    if data.get("HomeRegion") is not None:
         out["home_region"] = data["HomeRegion"]
-    if "RegionStatuses" in data:
+    if data.get("RegionStatuses") is not None:
         import capo_observabilityadmin.types.region_statuses
 
         out["region_statuses"] = (

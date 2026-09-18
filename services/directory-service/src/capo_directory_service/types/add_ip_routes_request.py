@@ -38,11 +38,11 @@ def serialize_aws_json_1_1(value: AddIpRoutesRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AddIpRoutesRequest:
     out: AddIpRoutesRequest = {}  # type: ignore[typeddict-item]
-    if "DirectoryId" in data:
+    if data.get("DirectoryId") is not None:
         out["directory_id"] = data["DirectoryId"]
     else:
         raise DeserializationError("AddIpRoutesRequest.directory_id required")
-    if "IpRoutes" in data:
+    if data.get("IpRoutes") is not None:
         import capo_directory_service.types.ip_routes
 
         out["ip_routes"] = (
@@ -52,7 +52,7 @@ def deserialize_aws_json_1_1(data: dict) -> AddIpRoutesRequest:
         )
     else:
         raise DeserializationError("AddIpRoutesRequest.ip_routes required")
-    if "UpdateSecurityGroupForDirectoryControllers" in data:
+    if data.get("UpdateSecurityGroupForDirectoryControllers") is not None:
         out["update_security_group_for_directory_controllers"] = data[
             "UpdateSecurityGroupForDirectoryControllers"
         ]

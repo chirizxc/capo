@@ -64,7 +64,7 @@ def serialize_json(value: GetApplicationComponentDetailsResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetApplicationComponentDetailsResponse:
     out: GetApplicationComponentDetailsResponse = {}  # type: ignore[typeddict-item]
-    if "applicationComponentDetail" in data:
+    if data.get("applicationComponentDetail") is not None:
         import capo_migrationhubstrategy.types.application_component_detail
 
         out["application_component_detail"] = (
@@ -72,7 +72,7 @@ def deserialize_json(data: dict) -> GetApplicationComponentDetailsResponse:
                 data["applicationComponentDetail"]
             )
         )
-    if "associatedApplications" in data:
+    if data.get("associatedApplications") is not None:
         import capo_migrationhubstrategy.types.associated_applications
 
         out["associated_applications"] = (
@@ -80,9 +80,9 @@ def deserialize_json(data: dict) -> GetApplicationComponentDetailsResponse:
                 data["associatedApplications"]
             )
         )
-    if "moreApplicationResource" in data:
+    if data.get("moreApplicationResource") is not None:
         out["more_application_resource"] = data["moreApplicationResource"]
-    if "associatedServerIds" in data:
+    if data.get("associatedServerIds") is not None:
         import capo_migrationhubstrategy.types.associated_server_i_ds
 
         out["associated_server_ids"] = (

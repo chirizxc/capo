@@ -49,15 +49,15 @@ def serialize_aws_json_1_1(value: CreateImageRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateImageRequest:
     out: CreateImageRequest = {}  # type: ignore[typeddict-item]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "DisplayName" in data:
+    if data.get("DisplayName") is not None:
         out["display_name"] = data["DisplayName"]
-    if "ImageName" in data:
+    if data.get("ImageName") is not None:
         out["image_name"] = data["ImageName"]
-    if "RoleArn" in data:
+    if data.get("RoleArn") is not None:
         out["role_arn"] = data["RoleArn"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_sagemaker.types.tag_list
 
         out["tags"] = capo_sagemaker.types.tag_list.deserialize_aws_json_1_1(

@@ -29,7 +29,7 @@ def serialize_json(value: SendMessagesRequest) -> dict:
 
 def deserialize_json(data: dict) -> SendMessagesRequest:
     out: SendMessagesRequest = {}  # type: ignore[typeddict-item]
-    if "MessageRequest" in data:
+    if data.get("MessageRequest") is not None:
         import capo_pinpoint.types.message_request
 
         out["message_request"] = capo_pinpoint.types.message_request.deserialize_json(

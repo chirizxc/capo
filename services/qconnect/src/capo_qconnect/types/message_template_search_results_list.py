@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> MessageTemplateSearchResultsList:
 
     out: MessageTemplateSearchResultsList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_qconnect.types.message_template_search_result_data.deserialize_json(
                 item

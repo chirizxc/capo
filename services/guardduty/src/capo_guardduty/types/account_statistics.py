@@ -37,14 +37,14 @@ def serialize_json(value: AccountStatistics) -> dict:
 
 def deserialize_json(data: dict) -> AccountStatistics:
     out: AccountStatistics = {}  # type: ignore[typeddict-item]
-    if "accountId" in data:
+    if data.get("accountId") is not None:
         out["account_id"] = data["accountId"]
-    if "lastGeneratedAt" in data:
+    if data.get("lastGeneratedAt") is not None:
         import capo_guardduty.types.timestamp
 
         out["last_generated_at"] = capo_guardduty.types.timestamp.deserialize_json(
             data["lastGeneratedAt"]
         )
-    if "totalFindings" in data:
+    if data.get("totalFindings") is not None:
         out["total_findings"] = data["totalFindings"]
     return out

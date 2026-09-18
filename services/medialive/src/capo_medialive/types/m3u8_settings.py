@@ -148,13 +148,13 @@ def serialize_json(value: M3u8Settings) -> dict:
 
 def deserialize_json(data: dict) -> M3u8Settings:
     out: M3u8Settings = {}  # type: ignore[typeddict-item]
-    if "audioFramesPerPes" in data:
+    if data.get("audioFramesPerPes") is not None:
         out["audio_frames_per_pes"] = data["audioFramesPerPes"]
-    if "audioPids" in data:
+    if data.get("audioPids") is not None:
         out["audio_pids"] = data["audioPids"]
-    if "ecmPid" in data:
+    if data.get("ecmPid") is not None:
         out["ecm_pid"] = data["ecmPid"]
-    if "nielsenId3Behavior" in data:
+    if data.get("nielsenId3Behavior") is not None:
         import capo_medialive.types.m3u8_nielsen_id3_behavior
 
         out["nielsen_id3_behavior"] = (
@@ -162,25 +162,25 @@ def deserialize_json(data: dict) -> M3u8Settings:
                 data["nielsenId3Behavior"]
             )
         )
-    if "patInterval" in data:
+    if data.get("patInterval") is not None:
         out["pat_interval"] = data["patInterval"]
-    if "pcrControl" in data:
+    if data.get("pcrControl") is not None:
         import capo_medialive.types.m3u8_pcr_control
 
         out["pcr_control"] = capo_medialive.types.m3u8_pcr_control.deserialize_json(
             data["pcrControl"]
         )
-    if "pcrPeriod" in data:
+    if data.get("pcrPeriod") is not None:
         out["pcr_period"] = data["pcrPeriod"]
-    if "pcrPid" in data:
+    if data.get("pcrPid") is not None:
         out["pcr_pid"] = data["pcrPid"]
-    if "pmtInterval" in data:
+    if data.get("pmtInterval") is not None:
         out["pmt_interval"] = data["pmtInterval"]
-    if "pmtPid" in data:
+    if data.get("pmtPid") is not None:
         out["pmt_pid"] = data["pmtPid"]
-    if "programNum" in data:
+    if data.get("programNum") is not None:
         out["program_num"] = data["programNum"]
-    if "scte35Behavior" in data:
+    if data.get("scte35Behavior") is not None:
         import capo_medialive.types.m3u8_scte35_behavior
 
         out["scte35_behavior"] = (
@@ -188,9 +188,9 @@ def deserialize_json(data: dict) -> M3u8Settings:
                 data["scte35Behavior"]
             )
         )
-    if "scte35Pid" in data:
+    if data.get("scte35Pid") is not None:
         out["scte35_pid"] = data["scte35Pid"]
-    if "timedMetadataBehavior" in data:
+    if data.get("timedMetadataBehavior") is not None:
         import capo_medialive.types.m3u8_timed_metadata_behavior
 
         out["timed_metadata_behavior"] = (
@@ -198,18 +198,18 @@ def deserialize_json(data: dict) -> M3u8Settings:
                 data["timedMetadataBehavior"]
             )
         )
-    if "timedMetadataPid" in data:
+    if data.get("timedMetadataPid") is not None:
         out["timed_metadata_pid"] = data["timedMetadataPid"]
-    if "transportStreamId" in data:
+    if data.get("transportStreamId") is not None:
         out["transport_stream_id"] = data["transportStreamId"]
-    if "videoPid" in data:
+    if data.get("videoPid") is not None:
         out["video_pid"] = data["videoPid"]
-    if "klvBehavior" in data:
+    if data.get("klvBehavior") is not None:
         import capo_medialive.types.m3u8_klv_behavior
 
         out["klv_behavior"] = capo_medialive.types.m3u8_klv_behavior.deserialize_json(
             data["klvBehavior"]
         )
-    if "klvDataPids" in data:
+    if data.get("klvDataPids") is not None:
         out["klv_data_pids"] = data["klvDataPids"]
     return out

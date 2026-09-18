@@ -132,7 +132,7 @@ def serialize_json(value: Finding) -> dict:
 
 def deserialize_json(data: dict) -> Finding:
     out: Finding = {}  # type: ignore[typeddict-item]
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_codeguru_security.types._prelude.timestamp
 
         out["created_at"] = (
@@ -140,13 +140,13 @@ def deserialize_json(data: dict) -> Finding:
                 data["createdAt"]
             )
         )
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "generatorId" in data:
+    if data.get("generatorId") is not None:
         out["generator_id"] = data["generatorId"]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "updatedAt" in data:
+    if data.get("updatedAt") is not None:
         import capo_codeguru_security.types._prelude.timestamp
 
         out["updated_at"] = (
@@ -154,21 +154,21 @@ def deserialize_json(data: dict) -> Finding:
                 data["updatedAt"]
             )
         )
-    if "type" in data:
+    if data.get("type") is not None:
         out["type"] = data["type"]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_codeguru_security.types.status
 
         out["status"] = capo_codeguru_security.types.status.deserialize_json(
             data["status"]
         )
-    if "resource" in data:
+    if data.get("resource") is not None:
         import capo_codeguru_security.types.resource
 
         out["resource"] = capo_codeguru_security.types.resource.deserialize_json(
             data["resource"]
         )
-    if "vulnerability" in data:
+    if data.get("vulnerability") is not None:
         import capo_codeguru_security.types.vulnerability
 
         out["vulnerability"] = (
@@ -176,21 +176,21 @@ def deserialize_json(data: dict) -> Finding:
                 data["vulnerability"]
             )
         )
-    if "severity" in data:
+    if data.get("severity") is not None:
         import capo_codeguru_security.types.severity
 
         out["severity"] = capo_codeguru_security.types.severity.deserialize_json(
             data["severity"]
         )
-    if "remediation" in data:
+    if data.get("remediation") is not None:
         import capo_codeguru_security.types.remediation
 
         out["remediation"] = capo_codeguru_security.types.remediation.deserialize_json(
             data["remediation"]
         )
-    if "title" in data:
+    if data.get("title") is not None:
         out["title"] = data["title"]
-    if "detectorTags" in data:
+    if data.get("detectorTags") is not None:
         import capo_codeguru_security.types.detector_tags
 
         out["detector_tags"] = (
@@ -198,10 +198,10 @@ def deserialize_json(data: dict) -> Finding:
                 data["detectorTags"]
             )
         )
-    if "detectorId" in data:
+    if data.get("detectorId") is not None:
         out["detector_id"] = data["detectorId"]
-    if "detectorName" in data:
+    if data.get("detectorName") is not None:
         out["detector_name"] = data["detectorName"]
-    if "ruleId" in data:
+    if data.get("ruleId") is not None:
         out["rule_id"] = data["ruleId"]
     return out

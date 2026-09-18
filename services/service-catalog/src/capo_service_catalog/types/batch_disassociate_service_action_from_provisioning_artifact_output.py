@@ -37,7 +37,7 @@ def deserialize_aws_json_1_1(
     data: dict,
 ) -> BatchDisassociateServiceActionFromProvisioningArtifactOutput:
     out: BatchDisassociateServiceActionFromProvisioningArtifactOutput = {}  # type: ignore[typeddict-item]
-    if "FailedServiceActionAssociations" in data:
+    if data.get("FailedServiceActionAssociations") is not None:
         import capo_service_catalog.types.failed_service_action_associations
 
         out["failed_service_action_associations"] = (

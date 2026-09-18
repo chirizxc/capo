@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: DistributeDataset) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DistributeDataset:
     out: DistributeDataset = {}  # type: ignore[typeddict-item]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
     else:
         raise DeserializationError("DistributeDataset.arn required")

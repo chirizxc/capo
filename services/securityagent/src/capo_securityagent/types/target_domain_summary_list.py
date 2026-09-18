@@ -25,6 +25,8 @@ def deserialize_json(data: list) -> TargetDomainSummaryList:
 
     out: TargetDomainSummaryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_securityagent.types.target_domain_summary.deserialize_json(item)
         )

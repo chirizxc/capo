@@ -35,13 +35,13 @@ def serialize_json(value: AIMLOptionsStatus) -> dict:
 
 def deserialize_json(data: dict) -> AIMLOptionsStatus:
     out: AIMLOptionsStatus = {}  # type: ignore[typeddict-item]
-    if "Options" in data:
+    if data.get("Options") is not None:
         import capo_opensearch.types.aiml_options_output
 
         out["options"] = capo_opensearch.types.aiml_options_output.deserialize_json(
             data["Options"]
         )
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_opensearch.types.option_status
 
         out["status"] = capo_opensearch.types.option_status.deserialize_json(

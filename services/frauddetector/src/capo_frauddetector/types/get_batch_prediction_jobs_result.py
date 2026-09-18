@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: GetBatchPredictionJobsResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetBatchPredictionJobsResult:
     out: GetBatchPredictionJobsResult = {}  # type: ignore[typeddict-item]
-    if "batchPredictions" in data:
+    if data.get("batchPredictions") is not None:
         import capo_frauddetector.types.batch_prediction_list
 
         out["batch_predictions"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_1(data: dict) -> GetBatchPredictionJobsResult:
                 data["batchPredictions"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

@@ -32,7 +32,7 @@ def serialize_json(value: IoTJobAbortConfig) -> dict:
 
 def deserialize_json(data: dict) -> IoTJobAbortConfig:
     out: IoTJobAbortConfig = {}  # type: ignore[typeddict-item]
-    if "criteriaList" in data:
+    if data.get("criteriaList") is not None:
         import capo_greengrassv2.types.io_t_job_abort_criteria_list
 
         out["criteria_list"] = (

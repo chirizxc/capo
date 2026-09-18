@@ -103,13 +103,13 @@ def serialize_aws_json_1_1(value: FindingFilter) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> FindingFilter:
     out: FindingFilter = {}  # type: ignore[typeddict-item]
-    if "agentIds" in data:
+    if data.get("agentIds") is not None:
         import capo_inspector.types.agent_id_list
 
         out["agent_ids"] = capo_inspector.types.agent_id_list.deserialize_aws_json_1_1(
             data["agentIds"]
         )
-    if "autoScalingGroups" in data:
+    if data.get("autoScalingGroups") is not None:
         import capo_inspector.types.auto_scaling_group_list
 
         out["auto_scaling_groups"] = (
@@ -117,7 +117,7 @@ def deserialize_aws_json_1_1(data: dict) -> FindingFilter:
                 data["autoScalingGroups"]
             )
         )
-    if "ruleNames" in data:
+    if data.get("ruleNames") is not None:
         import capo_inspector.types.rule_name_list
 
         out["rule_names"] = (
@@ -125,13 +125,13 @@ def deserialize_aws_json_1_1(data: dict) -> FindingFilter:
                 data["ruleNames"]
             )
         )
-    if "severities" in data:
+    if data.get("severities") is not None:
         import capo_inspector.types.severity_list
 
         out["severities"] = capo_inspector.types.severity_list.deserialize_aws_json_1_1(
             data["severities"]
         )
-    if "rulesPackageArns" in data:
+    if data.get("rulesPackageArns") is not None:
         import capo_inspector.types.filter_rules_package_arn_list
 
         out["rules_package_arns"] = (
@@ -139,7 +139,7 @@ def deserialize_aws_json_1_1(data: dict) -> FindingFilter:
                 data["rulesPackageArns"]
             )
         )
-    if "attributes" in data:
+    if data.get("attributes") is not None:
         import capo_inspector.types.attribute_list
 
         out["attributes"] = (
@@ -147,7 +147,7 @@ def deserialize_aws_json_1_1(data: dict) -> FindingFilter:
                 data["attributes"]
             )
         )
-    if "userAttributes" in data:
+    if data.get("userAttributes") is not None:
         import capo_inspector.types.attribute_list
 
         out["user_attributes"] = (
@@ -155,7 +155,7 @@ def deserialize_aws_json_1_1(data: dict) -> FindingFilter:
                 data["userAttributes"]
             )
         )
-    if "creationTimeRange" in data:
+    if data.get("creationTimeRange") is not None:
         import capo_inspector.types.timestamp_range
 
         out["creation_time_range"] = (

@@ -49,11 +49,11 @@ def serialize_json(value: UpdateKxVolumeRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateKxVolumeRequest:
     out: UpdateKxVolumeRequest = {}  # type: ignore[typeddict-item]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
-    if "nas1Configuration" in data:
+    if data.get("nas1Configuration") is not None:
         import capo_finspace.types.kx_nas1_configuration
 
         out["nas1_configuration"] = (

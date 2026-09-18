@@ -27,8 +27,8 @@ def serialize_aws_json_1_1(value: Edge) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Edge:
     out: Edge = {}  # type: ignore[typeddict-item]
-    if "SourceId" in data:
+    if data.get("SourceId") is not None:
         out["source_id"] = data["SourceId"]
-    if "DestinationId" in data:
+    if data.get("DestinationId") is not None:
         out["destination_id"] = data["DestinationId"]
     return out

@@ -36,9 +36,9 @@ def serialize_json(value: LakeFormationConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> LakeFormationConfiguration:
     out: LakeFormationConfiguration = {}  # type: ignore[typeddict-item]
-    if "locationRegistrationRole" in data:
+    if data.get("locationRegistrationRole") is not None:
         out["location_registration_role"] = data["locationRegistrationRole"]
-    if "locationRegistrationExcludeS3Locations" in data:
+    if data.get("locationRegistrationExcludeS3Locations") is not None:
         import capo_datazone.types.s3_location_list
 
         out["location_registration_exclude_s3_locations"] = (

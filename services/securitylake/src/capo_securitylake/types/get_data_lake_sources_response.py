@@ -43,9 +43,9 @@ def serialize_json(value: GetDataLakeSourcesResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetDataLakeSourcesResponse:
     out: GetDataLakeSourcesResponse = {}  # type: ignore[typeddict-item]
-    if "dataLakeArn" in data:
+    if data.get("dataLakeArn") is not None:
         out["data_lake_arn"] = data["dataLakeArn"]
-    if "dataLakeSources" in data:
+    if data.get("dataLakeSources") is not None:
         import capo_securitylake.types.data_lake_source_list
 
         out["data_lake_sources"] = (
@@ -53,6 +53,6 @@ def deserialize_json(data: dict) -> GetDataLakeSourcesResponse:
                 data["dataLakeSources"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

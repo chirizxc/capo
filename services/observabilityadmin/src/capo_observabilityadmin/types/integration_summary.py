@@ -34,9 +34,9 @@ def serialize_json(value: IntegrationSummary) -> dict:
 
 def deserialize_json(data: dict) -> IntegrationSummary:
     out: IntegrationSummary = {}  # type: ignore[typeddict-item]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_observabilityadmin.types.integration_status
 
         out["status"] = (

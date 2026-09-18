@@ -59,19 +59,19 @@ def serialize_json(value: GrpcMetadataMatchMethod) -> dict:
 
 
 def deserialize_json(data: dict) -> GrpcMetadataMatchMethod:
-    if "exact" in data:
+    if data.get("exact") is not None:
         return {"exact": data["exact"]}
-    elif "regex" in data:
+    elif data.get("regex") is not None:
         return {"regex": data["regex"]}
-    elif "range" in data:
+    elif data.get("range") is not None:
         import capo_app_mesh.types.match_range
 
         return {
             "range": capo_app_mesh.types.match_range.deserialize_json(data["range"])
         }
-    elif "prefix" in data:
+    elif data.get("prefix") is not None:
         return {"prefix": data["prefix"]}
-    elif "suffix" in data:
+    elif data.get("suffix") is not None:
         return {"suffix": data["suffix"]}
     else:
         raise DeserializationError("GrpcMetadataMatchMethod: no recognized variant key")

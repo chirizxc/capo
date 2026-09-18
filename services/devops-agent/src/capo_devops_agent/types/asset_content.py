@@ -45,7 +45,7 @@ def serialize_json(value: AssetContent) -> dict:
 
 
 def deserialize_json(data: dict) -> AssetContent:
-    if "file" in data:
+    if data.get("file") is not None:
         import capo_devops_agent.types.asset_file_content
 
         return {
@@ -53,7 +53,7 @@ def deserialize_json(data: dict) -> AssetContent:
                 data["file"]
             )
         }
-    elif "zip" in data:
+    elif data.get("zip") is not None:
         import capo_devops_agent.types.asset_zip_content
 
         return {

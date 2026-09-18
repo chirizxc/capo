@@ -38,10 +38,10 @@ def serialize_json(value: AwsAppSyncGraphQlApiLambdaAuthorizerConfigDetails) -> 
 
 def deserialize_json(data: dict) -> AwsAppSyncGraphQlApiLambdaAuthorizerConfigDetails:
     out: AwsAppSyncGraphQlApiLambdaAuthorizerConfigDetails = {}  # type: ignore[typeddict-item]
-    if "AuthorizerResultTtlInSeconds" in data:
+    if data.get("AuthorizerResultTtlInSeconds") is not None:
         out["authorizer_result_ttl_in_seconds"] = data["AuthorizerResultTtlInSeconds"]
-    if "AuthorizerUri" in data:
+    if data.get("AuthorizerUri") is not None:
         out["authorizer_uri"] = data["AuthorizerUri"]
-    if "IdentityValidationExpression" in data:
+    if data.get("IdentityValidationExpression") is not None:
         out["identity_validation_expression"] = data["IdentityValidationExpression"]
     return out

@@ -25,6 +25,6 @@ def serialize_aws_json_1_1(value: InputParallelism) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> InputParallelism:
     out: InputParallelism = {}  # type: ignore[typeddict-item]
-    if "Count" in data:
+    if data.get("Count") is not None:
         out["count"] = data["Count"]
     return out

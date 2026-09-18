@@ -36,12 +36,12 @@ def serialize_aws_json_1_1(value: IcebergOrphanFileDeletionConfiguration) -> dic
 
 def deserialize_aws_json_1_1(data: dict) -> IcebergOrphanFileDeletionConfiguration:
     out: IcebergOrphanFileDeletionConfiguration = {}  # type: ignore[typeddict-item]
-    if "orphanFileRetentionPeriodInDays" in data:
+    if data.get("orphanFileRetentionPeriodInDays") is not None:
         out["orphan_file_retention_period_in_days"] = data[
             "orphanFileRetentionPeriodInDays"
         ]
-    if "location" in data:
+    if data.get("location") is not None:
         out["location"] = data["location"]
-    if "runRateInHours" in data:
+    if data.get("runRateInHours") is not None:
         out["run_rate_in_hours"] = data["runRateInHours"]
     return out

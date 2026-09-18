@@ -100,7 +100,7 @@ def serialize_aws_json_1_1(value: ListImageVersionsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListImageVersionsRequest:
     out: ListImageVersionsRequest = {}  # type: ignore[typeddict-item]
-    if "CreationTimeAfter" in data:
+    if data.get("CreationTimeAfter") is not None:
         import capo_sagemaker.types.timestamp
 
         out["creation_time_after"] = (
@@ -108,7 +108,7 @@ def deserialize_aws_json_1_1(data: dict) -> ListImageVersionsRequest:
                 data["CreationTimeAfter"]
             )
         )
-    if "CreationTimeBefore" in data:
+    if data.get("CreationTimeBefore") is not None:
         import capo_sagemaker.types.timestamp
 
         out["creation_time_before"] = (
@@ -116,9 +116,9 @@ def deserialize_aws_json_1_1(data: dict) -> ListImageVersionsRequest:
                 data["CreationTimeBefore"]
             )
         )
-    if "ImageName" in data:
+    if data.get("ImageName") is not None:
         out["image_name"] = data["ImageName"]
-    if "LastModifiedTimeAfter" in data:
+    if data.get("LastModifiedTimeAfter") is not None:
         import capo_sagemaker.types.timestamp
 
         out["last_modified_time_after"] = (
@@ -126,7 +126,7 @@ def deserialize_aws_json_1_1(data: dict) -> ListImageVersionsRequest:
                 data["LastModifiedTimeAfter"]
             )
         )
-    if "LastModifiedTimeBefore" in data:
+    if data.get("LastModifiedTimeBefore") is not None:
         import capo_sagemaker.types.timestamp
 
         out["last_modified_time_before"] = (
@@ -134,11 +134,11 @@ def deserialize_aws_json_1_1(data: dict) -> ListImageVersionsRequest:
                 data["LastModifiedTimeBefore"]
             )
         )
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "SortBy" in data:
+    if data.get("SortBy") is not None:
         import capo_sagemaker.types.image_version_sort_by
 
         out["sort_by"] = (
@@ -146,7 +146,7 @@ def deserialize_aws_json_1_1(data: dict) -> ListImageVersionsRequest:
                 data["SortBy"]
             )
         )
-    if "SortOrder" in data:
+    if data.get("SortOrder") is not None:
         import capo_sagemaker.types.image_version_sort_order
 
         out["sort_order"] = (

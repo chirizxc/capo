@@ -67,9 +67,9 @@ def serialize_aws_json_1_0(value: AwsOpportunityLifeCycle) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> AwsOpportunityLifeCycle:
     out: AwsOpportunityLifeCycle = {}  # type: ignore[typeddict-item]
-    if "TargetCloseDate" in data:
+    if data.get("TargetCloseDate") is not None:
         out["target_close_date"] = data["TargetCloseDate"]
-    if "ClosedLostReason" in data:
+    if data.get("ClosedLostReason") is not None:
         import capo_partnercentral_selling.types.aws_closed_lost_reason
 
         out["closed_lost_reason"] = (
@@ -77,7 +77,7 @@ def deserialize_aws_json_1_0(data: dict) -> AwsOpportunityLifeCycle:
                 data["ClosedLostReason"]
             )
         )
-    if "Stage" in data:
+    if data.get("Stage") is not None:
         import capo_partnercentral_selling.types.aws_opportunity_stage
 
         out["stage"] = (
@@ -85,9 +85,9 @@ def deserialize_aws_json_1_0(data: dict) -> AwsOpportunityLifeCycle:
                 data["Stage"]
             )
         )
-    if "NextSteps" in data:
+    if data.get("NextSteps") is not None:
         out["next_steps"] = data["NextSteps"]
-    if "NextStepsHistory" in data:
+    if data.get("NextStepsHistory") is not None:
         import capo_partnercentral_selling.types.profile_next_steps_histories
 
         out["next_steps_history"] = (

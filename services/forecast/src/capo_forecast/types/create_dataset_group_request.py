@@ -46,13 +46,13 @@ def serialize_aws_json_1_1(value: CreateDatasetGroupRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateDatasetGroupRequest:
     out: CreateDatasetGroupRequest = {}  # type: ignore[typeddict-item]
-    if "DatasetGroupName" in data:
+    if data.get("DatasetGroupName") is not None:
         out["dataset_group_name"] = data["DatasetGroupName"]
     else:
         raise DeserializationError(
             "CreateDatasetGroupRequest.dataset_group_name required"
         )
-    if "Domain" in data:
+    if data.get("Domain") is not None:
         import capo_forecast.types.domain
 
         out["domain"] = capo_forecast.types.domain.deserialize_aws_json_1_1(
@@ -60,13 +60,13 @@ def deserialize_aws_json_1_1(data: dict) -> CreateDatasetGroupRequest:
         )
     else:
         raise DeserializationError("CreateDatasetGroupRequest.domain required")
-    if "DatasetArns" in data:
+    if data.get("DatasetArns") is not None:
         import capo_forecast.types.arn_list
 
         out["dataset_arns"] = capo_forecast.types.arn_list.deserialize_aws_json_1_1(
             data["DatasetArns"]
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_forecast.types.tags
 
         out["tags"] = capo_forecast.types.tags.deserialize_aws_json_1_1(data["Tags"])

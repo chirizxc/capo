@@ -35,14 +35,14 @@ def serialize_json(value: ExportReadSetDetail) -> dict:
 
 def deserialize_json(data: dict) -> ExportReadSetDetail:
     out: ExportReadSetDetail = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("ExportReadSetDetail.id required")
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
     else:
         raise DeserializationError("ExportReadSetDetail.status required")
-    if "statusMessage" in data:
+    if data.get("statusMessage") is not None:
         out["status_message"] = data["statusMessage"]
     return out

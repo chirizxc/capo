@@ -36,9 +36,9 @@ def serialize_json(value: ListSegmentDefinitionsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListSegmentDefinitionsResponse:
     out: ListSegmentDefinitionsResponse = {}  # type: ignore[typeddict-item]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "Items" in data:
+    if data.get("Items") is not None:
         import capo_customer_profiles.types.segment_definitions_list
 
         out["items"] = (

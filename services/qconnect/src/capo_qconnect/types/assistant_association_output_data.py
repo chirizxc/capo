@@ -50,7 +50,7 @@ def serialize_json(value: AssistantAssociationOutputData) -> dict:
 
 
 def deserialize_json(data: dict) -> AssistantAssociationOutputData:
-    if "knowledgeBaseAssociation" in data:
+    if data.get("knowledgeBaseAssociation") is not None:
         import capo_qconnect.types.knowledge_base_association_data
 
         return {
@@ -58,7 +58,7 @@ def deserialize_json(data: dict) -> AssistantAssociationOutputData:
                 data["knowledgeBaseAssociation"]
             )
         }
-    elif "externalBedrockKnowledgeBaseConfig" in data:
+    elif data.get("externalBedrockKnowledgeBaseConfig") is not None:
         import capo_qconnect.types.external_bedrock_knowledge_base_config
 
         return {

@@ -56,21 +56,21 @@ def serialize_aws_json_1_1(value: MonitorSummary) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> MonitorSummary:
     out: MonitorSummary = {}  # type: ignore[typeddict-item]
-    if "MonitorArn" in data:
+    if data.get("MonitorArn") is not None:
         out["monitor_arn"] = data["MonitorArn"]
-    if "MonitorName" in data:
+    if data.get("MonitorName") is not None:
         out["monitor_name"] = data["MonitorName"]
-    if "ResourceArn" in data:
+    if data.get("ResourceArn") is not None:
         out["resource_arn"] = data["ResourceArn"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         out["status"] = data["Status"]
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_forecast.types.timestamp
 
         out["creation_time"] = capo_forecast.types.timestamp.deserialize_aws_json_1_1(
             data["CreationTime"]
         )
-    if "LastModificationTime" in data:
+    if data.get("LastModificationTime") is not None:
         import capo_forecast.types.timestamp
 
         out["last_modification_time"] = (

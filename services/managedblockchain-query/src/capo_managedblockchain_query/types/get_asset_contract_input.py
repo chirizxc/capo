@@ -32,7 +32,7 @@ def serialize_json(value: GetAssetContractInput) -> dict:
 
 def deserialize_json(data: dict) -> GetAssetContractInput:
     out: GetAssetContractInput = {}  # type: ignore[typeddict-item]
-    if "contractIdentifier" in data:
+    if data.get("contractIdentifier") is not None:
         import capo_managedblockchain_query.types.contract_identifier
 
         out["contract_identifier"] = (

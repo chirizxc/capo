@@ -38,7 +38,7 @@ def serialize_aws_json_1_0(value: ListAutomationEventStepsResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ListAutomationEventStepsResponse:
     out: ListAutomationEventStepsResponse = {}  # type: ignore[typeddict-item]
-    if "automationEventSteps" in data:
+    if data.get("automationEventSteps") is not None:
         import capo_compute_optimizer_automation.types.automation_event_steps
 
         out["automation_event_steps"] = (
@@ -46,6 +46,6 @@ def deserialize_aws_json_1_0(data: dict) -> ListAutomationEventStepsResponse:
                 data["automationEventSteps"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

@@ -49,7 +49,7 @@ def serialize_json(value: ListObjectParentsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListObjectParentsResponse:
     out: ListObjectParentsResponse = {}  # type: ignore[typeddict-item]
-    if "Parents" in data:
+    if data.get("Parents") is not None:
         import capo_clouddirectory.types.object_identifier_to_link_name_map
 
         out["parents"] = (
@@ -57,9 +57,9 @@ def deserialize_json(data: dict) -> ListObjectParentsResponse:
                 data["Parents"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "ParentLinks" in data:
+    if data.get("ParentLinks") is not None:
         import capo_clouddirectory.types.object_identifier_and_link_name_list
 
         out["parent_links"] = (

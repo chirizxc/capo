@@ -36,7 +36,7 @@ def serialize_json(value: RdsDbClusterSnapshotAttributeValue) -> dict:
 
 
 def deserialize_json(data: dict) -> RdsDbClusterSnapshotAttributeValue:
-    if "accountIds" in data:
+    if data.get("accountIds") is not None:
         import capo_accessanalyzer.types.rds_db_cluster_snapshot_account_ids_list
 
         return {

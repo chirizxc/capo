@@ -85,25 +85,25 @@ def serialize_json(value: Resource) -> dict:
 
 def deserialize_json(data: dict) -> Resource:
     out: Resource = {}  # type: ignore[typeddict-item]
-    if "Type" in data:
+    if data.get("Type") is not None:
         out["type"] = data["Type"]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "Partition" in data:
+    if data.get("Partition") is not None:
         import capo_securityhub.types.partition
 
         out["partition"] = capo_securityhub.types.partition.deserialize_json(
             data["Partition"]
         )
-    if "Region" in data:
+    if data.get("Region") is not None:
         out["region"] = data["Region"]
-    if "ResourceRole" in data:
+    if data.get("ResourceRole") is not None:
         out["resource_role"] = data["ResourceRole"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_securityhub.types.field_map
 
         out["tags"] = capo_securityhub.types.field_map.deserialize_json(data["Tags"])
-    if "DataClassification" in data:
+    if data.get("DataClassification") is not None:
         import capo_securityhub.types.data_classification_details
 
         out["data_classification"] = (
@@ -111,14 +111,14 @@ def deserialize_json(data: dict) -> Resource:
                 data["DataClassification"]
             )
         )
-    if "Details" in data:
+    if data.get("Details") is not None:
         import capo_securityhub.types.resource_details
 
         out["details"] = capo_securityhub.types.resource_details.deserialize_json(
             data["Details"]
         )
-    if "ApplicationName" in data:
+    if data.get("ApplicationName") is not None:
         out["application_name"] = data["ApplicationName"]
-    if "ApplicationArn" in data:
+    if data.get("ApplicationArn") is not None:
         out["application_arn"] = data["ApplicationArn"]
     return out

@@ -81,13 +81,13 @@ def serialize_json(value: ResourceShareAssociation) -> dict:
 
 def deserialize_json(data: dict) -> ResourceShareAssociation:
     out: ResourceShareAssociation = {}  # type: ignore[typeddict-item]
-    if "resourceShareArn" in data:
+    if data.get("resourceShareArn") is not None:
         out["resource_share_arn"] = data["resourceShareArn"]
-    if "resourceShareName" in data:
+    if data.get("resourceShareName") is not None:
         out["resource_share_name"] = data["resourceShareName"]
-    if "associatedEntity" in data:
+    if data.get("associatedEntity") is not None:
         out["associated_entity"] = data["associatedEntity"]
-    if "associationType" in data:
+    if data.get("associationType") is not None:
         import capo_ram.types.resource_share_association_type
 
         out["association_type"] = (
@@ -95,7 +95,7 @@ def deserialize_json(data: dict) -> ResourceShareAssociation:
                 data["associationType"]
             )
         )
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_ram.types.resource_share_association_status
 
         out["status"] = (
@@ -103,20 +103,20 @@ def deserialize_json(data: dict) -> ResourceShareAssociation:
                 data["status"]
             )
         )
-    if "statusMessage" in data:
+    if data.get("statusMessage") is not None:
         out["status_message"] = data["statusMessage"]
-    if "creationTime" in data:
+    if data.get("creationTime") is not None:
         import capo_ram.types.date_time
 
         out["creation_time"] = capo_ram.types.date_time.deserialize_json(
             data["creationTime"]
         )
-    if "lastUpdatedTime" in data:
+    if data.get("lastUpdatedTime") is not None:
         import capo_ram.types.date_time
 
         out["last_updated_time"] = capo_ram.types.date_time.deserialize_json(
             data["lastUpdatedTime"]
         )
-    if "external" in data:
+    if data.get("external") is not None:
         out["external"] = data["external"]
     return out

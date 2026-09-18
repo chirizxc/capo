@@ -44,16 +44,16 @@ def serialize_json(value: Placement) -> dict:
 
 def deserialize_json(data: dict) -> Placement:
     out: Placement = {}  # type: ignore[typeddict-item]
-    if "availabilityZone" in data:
+    if data.get("availabilityZone") is not None:
         out["availability_zone"] = data["availabilityZone"]
-    if "tenancy" in data:
+    if data.get("tenancy") is not None:
         import capo_imagebuilder.types.tenancy_type
 
         out["tenancy"] = capo_imagebuilder.types.tenancy_type.deserialize_json(
             data["tenancy"]
         )
-    if "hostId" in data:
+    if data.get("hostId") is not None:
         out["host_id"] = data["hostId"]
-    if "hostResourceGroupArn" in data:
+    if data.get("hostResourceGroupArn") is not None:
         out["host_resource_group_arn"] = data["hostResourceGroupArn"]
     return out

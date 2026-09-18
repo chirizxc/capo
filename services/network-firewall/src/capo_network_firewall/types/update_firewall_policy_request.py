@@ -70,15 +70,15 @@ def serialize_aws_json_1_0(value: UpdateFirewallPolicyRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> UpdateFirewallPolicyRequest:
     out: UpdateFirewallPolicyRequest = {}  # type: ignore[typeddict-item]
-    if "UpdateToken" in data:
+    if data.get("UpdateToken") is not None:
         out["update_token"] = data["UpdateToken"]
     else:
         raise DeserializationError("UpdateFirewallPolicyRequest.update_token required")
-    if "FirewallPolicyArn" in data:
+    if data.get("FirewallPolicyArn") is not None:
         out["firewall_policy_arn"] = data["FirewallPolicyArn"]
-    if "FirewallPolicyName" in data:
+    if data.get("FirewallPolicyName") is not None:
         out["firewall_policy_name"] = data["FirewallPolicyName"]
-    if "FirewallPolicy" in data:
+    if data.get("FirewallPolicy") is not None:
         import capo_network_firewall.types.firewall_policy
 
         out["firewall_policy"] = (
@@ -90,13 +90,13 @@ def deserialize_aws_json_1_0(data: dict) -> UpdateFirewallPolicyRequest:
         raise DeserializationError(
             "UpdateFirewallPolicyRequest.firewall_policy required"
         )
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "DryRun" in data:
+    if data.get("DryRun") is not None:
         out["dry_run"] = data["DryRun"]
     else:
         out["dry_run"] = False
-    if "EncryptionConfiguration" in data:
+    if data.get("EncryptionConfiguration") is not None:
         import capo_network_firewall.types.encryption_configuration
 
         out["encryption_configuration"] = (

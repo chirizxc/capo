@@ -13,10 +13,25 @@ from capo_codestar_connections import AsyncCodeStarconnectionsClient
 
 
 async def main():
-    async with AsyncCodeStarconnectionsClient() as s3:
+    async with AsyncCodeStarconnectionsClient() as code_starconnections:
         # Example: call the create_connection operation
-        response = await s3.create_connection()
+        response = await code_starconnections.create_connection()
         print(response["connection_arn"])
+```
+
+## Pagination
+
+Some operations in this SDK support pagination. If the operation supports pagination it will have an `iter_` prefixed method that returns an async iterator.
+
+```python
+from capo_codestar_connections import AsyncCodeStarconnectionsClient
+
+
+async def main():
+    async with AsyncCodeStarconnectionsClient() as code_starconnections:
+        # Example: paginate over list_connections
+        async for item in code_starconnections.iter_list_connections():
+            print(item)
 ```
 
 ## Error Handling
@@ -29,9 +44,9 @@ from capo_codestar_connections.error import LimitExceededException
 
 
 async def main():
-    async with AsyncCodeStarconnectionsClient() as s3:
+    async with AsyncCodeStarconnectionsClient() as code_starconnections:
         try:
-            await s3.create_connection()
+            await code_starconnections.create_connection()
         except LimitExceededException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -48,13 +63,13 @@ from capo_codestar_connections import AsyncCodeStarconnectionsClient
 
 
 async def main():
-    async with AsyncCodeStarconnectionsClient() as s3:
+    async with AsyncCodeStarconnectionsClient() as code_starconnections:
         # Default: 3 attempts for every operation
-        response = await s3.create_connection()
+        response = await code_starconnections.create_connection()
 
         # Override per operation
-        response = await s3.create_connection(config_overrides={"retry_max_attempts": 5})
+        response = await code_starconnections.create_connection(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.create_connection(config_overrides={"retry_max_attempts": 1})
+        response = await code_starconnections.create_connection(config_overrides={"retry_max_attempts": 1})
 ```

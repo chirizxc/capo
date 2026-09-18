@@ -65,9 +65,9 @@ def serialize_json(value: GeneratedAnswerResult) -> dict:
 
 def deserialize_json(data: dict) -> GeneratedAnswerResult:
     out: GeneratedAnswerResult = {}  # type: ignore[typeddict-item]
-    if "QuestionText" in data:
+    if data.get("QuestionText") is not None:
         out["question_text"] = data["QuestionText"]
-    if "AnswerStatus" in data:
+    if data.get("AnswerStatus") is not None:
         import capo_quicksight.types.generated_answer_status
 
         out["answer_status"] = (
@@ -75,16 +75,16 @@ def deserialize_json(data: dict) -> GeneratedAnswerResult:
                 data["AnswerStatus"]
             )
         )
-    if "TopicId" in data:
+    if data.get("TopicId") is not None:
         out["topic_id"] = data["TopicId"]
-    if "TopicName" in data:
+    if data.get("TopicName") is not None:
         out["topic_name"] = data["TopicName"]
-    if "Restatement" in data:
+    if data.get("Restatement") is not None:
         out["restatement"] = data["Restatement"]
-    if "QuestionId" in data:
+    if data.get("QuestionId") is not None:
         out["question_id"] = data["QuestionId"]
-    if "AnswerId" in data:
+    if data.get("AnswerId") is not None:
         out["answer_id"] = data["AnswerId"]
-    if "QuestionUrl" in data:
+    if data.get("QuestionUrl") is not None:
         out["question_url"] = data["QuestionUrl"]
     return out

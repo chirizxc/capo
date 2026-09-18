@@ -28,8 +28,8 @@ def serialize_aws_json_1_0(value: ProxyConfigurationMetadata) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ProxyConfigurationMetadata:
     out: ProxyConfigurationMetadata = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
     return out

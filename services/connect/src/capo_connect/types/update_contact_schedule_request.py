@@ -36,15 +36,15 @@ def serialize_json(value: UpdateContactScheduleRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateContactScheduleRequest:
     out: UpdateContactScheduleRequest = {}  # type: ignore[typeddict-item]
-    if "InstanceId" in data:
+    if data.get("InstanceId") is not None:
         out["instance_id"] = data["InstanceId"]
     else:
         raise DeserializationError("UpdateContactScheduleRequest.instance_id required")
-    if "ContactId" in data:
+    if data.get("ContactId") is not None:
         out["contact_id"] = data["ContactId"]
     else:
         raise DeserializationError("UpdateContactScheduleRequest.contact_id required")
-    if "ScheduledTime" in data:
+    if data.get("ScheduledTime") is not None:
         import capo_connect.types.timestamp
 
         out["scheduled_time"] = capo_connect.types.timestamp.deserialize_json(

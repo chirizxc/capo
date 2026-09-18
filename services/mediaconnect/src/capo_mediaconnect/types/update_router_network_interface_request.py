@@ -40,9 +40,9 @@ def serialize_json(value: UpdateRouterNetworkInterfaceRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateRouterNetworkInterfaceRequest:
     out: UpdateRouterNetworkInterfaceRequest = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "configuration" in data:
+    if data.get("configuration") is not None:
         import capo_mediaconnect.types.router_network_interface_configuration
 
         out["configuration"] = (

@@ -16,4 +16,4 @@ def serialize_aws_json_1_1(value: RotationOverridePreviewMemberList) -> list:
 
 
 def deserialize_aws_json_1_1(data: list) -> RotationOverridePreviewMemberList:
-    return list(data)
+    return [item for item in data if item is not None]

@@ -38,7 +38,7 @@ def serialize_json(value: NotificationConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> NotificationConfiguration:
     out: NotificationConfiguration = {}  # type: ignore[typeddict-item]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_kinesis_video.types.configuration_status
 
         out["status"] = capo_kinesis_video.types.configuration_status.deserialize_json(
@@ -46,7 +46,7 @@ def deserialize_json(data: dict) -> NotificationConfiguration:
         )
     else:
         raise DeserializationError("NotificationConfiguration.status required")
-    if "DestinationConfig" in data:
+    if data.get("DestinationConfig") is not None:
         import capo_kinesis_video.types.notification_destination_config
 
         out["destination_config"] = (

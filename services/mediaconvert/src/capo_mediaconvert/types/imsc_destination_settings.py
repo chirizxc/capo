@@ -44,7 +44,7 @@ def serialize_json(value: ImscDestinationSettings) -> dict:
 
 def deserialize_json(data: dict) -> ImscDestinationSettings:
     out: ImscDestinationSettings = {}  # type: ignore[typeddict-item]
-    if "accessibility" in data:
+    if data.get("accessibility") is not None:
         import capo_mediaconvert.types.imsc_accessibility_subs
 
         out["accessibility"] = (
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> ImscDestinationSettings:
                 data["accessibility"]
             )
         )
-    if "stylePassthrough" in data:
+    if data.get("stylePassthrough") is not None:
         import capo_mediaconvert.types.imsc_style_passthrough
 
         out["style_passthrough"] = (

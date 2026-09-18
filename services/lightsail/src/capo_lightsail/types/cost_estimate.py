@@ -36,9 +36,9 @@ def serialize_aws_json_1_1(value: CostEstimate) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CostEstimate:
     out: CostEstimate = {}  # type: ignore[typeddict-item]
-    if "usageType" in data:
+    if data.get("usageType") is not None:
         out["usage_type"] = data["usageType"]
-    if "resultsByTime" in data:
+    if data.get("resultsByTime") is not None:
         import capo_lightsail.types.estimates_by_time
 
         out["results_by_time"] = (

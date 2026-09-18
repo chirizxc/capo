@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> Slots:
 
     out: Slots = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_quicksight.types.slot.deserialize_json(item))
     return out

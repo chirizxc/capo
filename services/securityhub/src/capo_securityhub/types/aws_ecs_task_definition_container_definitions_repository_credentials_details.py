@@ -31,6 +31,6 @@ def deserialize_json(
     data: dict,
 ) -> AwsEcsTaskDefinitionContainerDefinitionsRepositoryCredentialsDetails:
     out: AwsEcsTaskDefinitionContainerDefinitionsRepositoryCredentialsDetails = {}  # type: ignore[typeddict-item]
-    if "CredentialsParameter" in data:
+    if data.get("CredentialsParameter") is not None:
         out["credentials_parameter"] = data["CredentialsParameter"]
     return out

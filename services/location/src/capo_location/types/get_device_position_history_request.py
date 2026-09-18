@@ -50,20 +50,20 @@ def serialize_json(value: GetDevicePositionHistoryRequest) -> dict:
 
 def deserialize_json(data: dict) -> GetDevicePositionHistoryRequest:
     out: GetDevicePositionHistoryRequest = {}  # type: ignore[typeddict-item]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "StartTimeInclusive" in data:
+    if data.get("StartTimeInclusive") is not None:
         import capo_location.types.timestamp
 
         out["start_time_inclusive"] = capo_location.types.timestamp.deserialize_json(
             data["StartTimeInclusive"]
         )
-    if "EndTimeExclusive" in data:
+    if data.get("EndTimeExclusive") is not None:
         import capo_location.types.timestamp
 
         out["end_time_exclusive"] = capo_location.types.timestamp.deserialize_json(
             data["EndTimeExclusive"]
         )
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
     return out

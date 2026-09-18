@@ -37,10 +37,10 @@ def serialize_json(value: CaptionLanguageMapping) -> dict:
 
 def deserialize_json(data: dict) -> CaptionLanguageMapping:
     out: CaptionLanguageMapping = {}  # type: ignore[typeddict-item]
-    if "captionChannel" in data:
+    if data.get("captionChannel") is not None:
         out["caption_channel"] = data["captionChannel"]
-    if "languageCode" in data:
+    if data.get("languageCode") is not None:
         out["language_code"] = data["languageCode"]
-    if "languageDescription" in data:
+    if data.get("languageDescription") is not None:
         out["language_description"] = data["languageDescription"]
     return out

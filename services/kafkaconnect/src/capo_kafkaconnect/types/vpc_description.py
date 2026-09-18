@@ -39,7 +39,7 @@ def serialize_json(value: VpcDescription) -> dict:
 
 def deserialize_json(data: dict) -> VpcDescription:
     out: VpcDescription = {}  # type: ignore[typeddict-item]
-    if "securityGroups" in data:
+    if data.get("securityGroups") is not None:
         import capo_kafkaconnect.types.__list_of__string
 
         out["security_groups"] = (
@@ -47,7 +47,7 @@ def deserialize_json(data: dict) -> VpcDescription:
                 data["securityGroups"]
             )
         )
-    if "subnets" in data:
+    if data.get("subnets") is not None:
         import capo_kafkaconnect.types.__list_of__string
 
         out["subnets"] = capo_kafkaconnect.types.__list_of__string.deserialize_json(

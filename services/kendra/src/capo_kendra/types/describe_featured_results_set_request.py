@@ -30,13 +30,13 @@ def serialize_aws_json_1_1(value: DescribeFeaturedResultsSetRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeFeaturedResultsSetRequest:
     out: DescribeFeaturedResultsSetRequest = {}  # type: ignore[typeddict-item]
-    if "IndexId" in data:
+    if data.get("IndexId") is not None:
         out["index_id"] = data["IndexId"]
     else:
         raise DeserializationError(
             "DescribeFeaturedResultsSetRequest.index_id required"
         )
-    if "FeaturedResultsSetId" in data:
+    if data.get("FeaturedResultsSetId") is not None:
         out["featured_results_set_id"] = data["FeaturedResultsSetId"]
     else:
         raise DeserializationError(

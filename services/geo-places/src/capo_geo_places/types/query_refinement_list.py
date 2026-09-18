@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> QueryRefinementList:
 
     out: QueryRefinementList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_geo_places.types.query_refinement.deserialize_json(item))
     return out

@@ -173,11 +173,11 @@ def serialize_aws_json_1_1(value: CreateNFSFileShareInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateNFSFileShareInput:
     out: CreateNFSFileShareInput = {}  # type: ignore[typeddict-item]
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
     else:
         raise DeserializationError("CreateNFSFileShareInput.client_token required")
-    if "NFSFileShareDefaults" in data:
+    if data.get("NFSFileShareDefaults") is not None:
         import capo_storage_gateway.types.nfs_file_share_defaults
 
         out["nfs_file_share_defaults"] = (
@@ -185,11 +185,11 @@ def deserialize_aws_json_1_1(data: dict) -> CreateNFSFileShareInput:
                 data["NFSFileShareDefaults"]
             )
         )
-    if "GatewayARN" in data:
+    if data.get("GatewayARN") is not None:
         out["gateway_arn"] = data["GatewayARN"]
     else:
         raise DeserializationError("CreateNFSFileShareInput.gateway_arn required")
-    if "EncryptionType" in data:
+    if data.get("EncryptionType") is not None:
         import capo_storage_gateway.types.encryption_type
 
         out["encryption_type"] = (
@@ -197,21 +197,21 @@ def deserialize_aws_json_1_1(data: dict) -> CreateNFSFileShareInput:
                 data["EncryptionType"]
             )
         )
-    if "KMSEncrypted" in data:
+    if data.get("KMSEncrypted") is not None:
         out["kms_encrypted"] = data["KMSEncrypted"]
-    if "KMSKey" in data:
+    if data.get("KMSKey") is not None:
         out["kms_key"] = data["KMSKey"]
-    if "Role" in data:
+    if data.get("Role") is not None:
         out["role"] = data["Role"]
     else:
         raise DeserializationError("CreateNFSFileShareInput.role required")
-    if "LocationARN" in data:
+    if data.get("LocationARN") is not None:
         out["location_arn"] = data["LocationARN"]
     else:
         raise DeserializationError("CreateNFSFileShareInput.location_arn required")
-    if "DefaultStorageClass" in data:
+    if data.get("DefaultStorageClass") is not None:
         out["default_storage_class"] = data["DefaultStorageClass"]
-    if "ObjectACL" in data:
+    if data.get("ObjectACL") is not None:
         import capo_storage_gateway.types.object_acl
 
         out["object_acl"] = (
@@ -219,7 +219,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateNFSFileShareInput:
                 data["ObjectACL"]
             )
         )
-    if "ClientList" in data:
+    if data.get("ClientList") is not None:
         import capo_storage_gateway.types.file_share_client_list
 
         out["client_list"] = (
@@ -227,23 +227,23 @@ def deserialize_aws_json_1_1(data: dict) -> CreateNFSFileShareInput:
                 data["ClientList"]
             )
         )
-    if "Squash" in data:
+    if data.get("Squash") is not None:
         out["squash"] = data["Squash"]
-    if "ReadOnly" in data:
+    if data.get("ReadOnly") is not None:
         out["read_only"] = data["ReadOnly"]
-    if "GuessMIMETypeEnabled" in data:
+    if data.get("GuessMIMETypeEnabled") is not None:
         out["guess_mime_type_enabled"] = data["GuessMIMETypeEnabled"]
-    if "RequesterPays" in data:
+    if data.get("RequesterPays") is not None:
         out["requester_pays"] = data["RequesterPays"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_storage_gateway.types.tags
 
         out["tags"] = capo_storage_gateway.types.tags.deserialize_aws_json_1_1(
             data["Tags"]
         )
-    if "FileShareName" in data:
+    if data.get("FileShareName") is not None:
         out["file_share_name"] = data["FileShareName"]
-    if "CacheAttributes" in data:
+    if data.get("CacheAttributes") is not None:
         import capo_storage_gateway.types.cache_attributes
 
         out["cache_attributes"] = (
@@ -251,12 +251,12 @@ def deserialize_aws_json_1_1(data: dict) -> CreateNFSFileShareInput:
                 data["CacheAttributes"]
             )
         )
-    if "NotificationPolicy" in data:
+    if data.get("NotificationPolicy") is not None:
         out["notification_policy"] = data["NotificationPolicy"]
-    if "VPCEndpointDNSName" in data:
+    if data.get("VPCEndpointDNSName") is not None:
         out["vpc_endpoint_dns_name"] = data["VPCEndpointDNSName"]
-    if "BucketRegion" in data:
+    if data.get("BucketRegion") is not None:
         out["bucket_region"] = data["BucketRegion"]
-    if "AuditDestinationARN" in data:
+    if data.get("AuditDestinationARN") is not None:
         out["audit_destination_arn"] = data["AuditDestinationARN"]
     return out

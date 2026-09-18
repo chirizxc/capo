@@ -27,7 +27,7 @@ def serialize_json(value: OutboundStrategyConfig) -> dict:
 
 def deserialize_json(data: dict) -> OutboundStrategyConfig:
     out: OutboundStrategyConfig = {}  # type: ignore[typeddict-item]
-    if "AgentFirst" in data:
+    if data.get("AgentFirst") is not None:
         import capo_connect.types.agent_first
 
         out["agent_first"] = capo_connect.types.agent_first.deserialize_json(

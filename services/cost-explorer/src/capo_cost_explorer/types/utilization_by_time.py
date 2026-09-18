@@ -55,7 +55,7 @@ def serialize_aws_json_1_1(value: UtilizationByTime) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UtilizationByTime:
     out: UtilizationByTime = {}  # type: ignore[typeddict-item]
-    if "TimePeriod" in data:
+    if data.get("TimePeriod") is not None:
         import capo_cost_explorer.types.date_interval
 
         out["time_period"] = (
@@ -63,7 +63,7 @@ def deserialize_aws_json_1_1(data: dict) -> UtilizationByTime:
                 data["TimePeriod"]
             )
         )
-    if "Groups" in data:
+    if data.get("Groups") is not None:
         import capo_cost_explorer.types.reservation_utilization_groups
 
         out["groups"] = (
@@ -71,7 +71,7 @@ def deserialize_aws_json_1_1(data: dict) -> UtilizationByTime:
                 data["Groups"]
             )
         )
-    if "Total" in data:
+    if data.get("Total") is not None:
         import capo_cost_explorer.types.reservation_aggregates
 
         out["total"] = (

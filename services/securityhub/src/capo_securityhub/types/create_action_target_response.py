@@ -25,6 +25,6 @@ def serialize_json(value: CreateActionTargetResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateActionTargetResponse:
     out: CreateActionTargetResponse = {}  # type: ignore[typeddict-item]
-    if "ActionTargetArn" in data:
+    if data.get("ActionTargetArn") is not None:
         out["action_target_arn"] = data["ActionTargetArn"]
     return out

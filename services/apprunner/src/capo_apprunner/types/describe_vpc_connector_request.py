@@ -26,7 +26,7 @@ def serialize_aws_json_1_0(value: DescribeVpcConnectorRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> DescribeVpcConnectorRequest:
     out: DescribeVpcConnectorRequest = {}  # type: ignore[typeddict-item]
-    if "VpcConnectorArn" in data:
+    if data.get("VpcConnectorArn") is not None:
         out["vpc_connector_arn"] = data["VpcConnectorArn"]
     else:
         raise DeserializationError(

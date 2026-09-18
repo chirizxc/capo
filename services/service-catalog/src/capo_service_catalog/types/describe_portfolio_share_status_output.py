@@ -54,13 +54,13 @@ def serialize_aws_json_1_1(value: DescribePortfolioShareStatusOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribePortfolioShareStatusOutput:
     out: DescribePortfolioShareStatusOutput = {}  # type: ignore[typeddict-item]
-    if "PortfolioShareToken" in data:
+    if data.get("PortfolioShareToken") is not None:
         out["portfolio_share_token"] = data["PortfolioShareToken"]
-    if "PortfolioId" in data:
+    if data.get("PortfolioId") is not None:
         out["portfolio_id"] = data["PortfolioId"]
-    if "OrganizationNodeValue" in data:
+    if data.get("OrganizationNodeValue") is not None:
         out["organization_node_value"] = data["OrganizationNodeValue"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_service_catalog.types.share_status
 
         out["status"] = (
@@ -68,7 +68,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribePortfolioShareStatusOutput:
                 data["Status"]
             )
         )
-    if "ShareDetails" in data:
+    if data.get("ShareDetails") is not None:
         import capo_service_catalog.types.share_details
 
         out["share_details"] = (

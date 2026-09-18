@@ -25,6 +25,8 @@ def serialize_json(input_to_serialize: WorkflowParameterTemplate) -> dict:
 def deserialize_json(data: dict) -> WorkflowParameterTemplate:
     out: WorkflowParameterTemplate = {}
     for key, value in data.items():
+        if value is None:
+            continue
         import capo_omics.types.workflow_parameter
 
         out[key] = capo_omics.types.workflow_parameter.deserialize_json(value)

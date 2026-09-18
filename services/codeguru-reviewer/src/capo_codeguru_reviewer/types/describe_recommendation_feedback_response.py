@@ -31,7 +31,7 @@ def serialize_json(value: DescribeRecommendationFeedbackResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribeRecommendationFeedbackResponse:
     out: DescribeRecommendationFeedbackResponse = {}  # type: ignore[typeddict-item]
-    if "RecommendationFeedback" in data:
+    if data.get("RecommendationFeedback") is not None:
         import capo_codeguru_reviewer.types.recommendation_feedback
 
         out["recommendation_feedback"] = (

@@ -37,13 +37,13 @@ def serialize_aws_json_1_1(value: ListExecutionsResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListExecutionsResponse:
     out: ListExecutionsResponse = {}  # type: ignore[typeddict-item]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "WorkflowId" in data:
+    if data.get("WorkflowId") is not None:
         out["workflow_id"] = data["WorkflowId"]
     else:
         raise DeserializationError("ListExecutionsResponse.workflow_id required")
-    if "Executions" in data:
+    if data.get("Executions") is not None:
         import capo_transfer.types.listed_executions
 
         out["executions"] = (

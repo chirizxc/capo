@@ -34,19 +34,19 @@ def serialize_aws_json_1_1(value: GetImpersonationRoleEffectRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetImpersonationRoleEffectRequest:
     out: GetImpersonationRoleEffectRequest = {}  # type: ignore[typeddict-item]
-    if "OrganizationId" in data:
+    if data.get("OrganizationId") is not None:
         out["organization_id"] = data["OrganizationId"]
     else:
         raise DeserializationError(
             "GetImpersonationRoleEffectRequest.organization_id required"
         )
-    if "ImpersonationRoleId" in data:
+    if data.get("ImpersonationRoleId") is not None:
         out["impersonation_role_id"] = data["ImpersonationRoleId"]
     else:
         raise DeserializationError(
             "GetImpersonationRoleEffectRequest.impersonation_role_id required"
         )
-    if "TargetUser" in data:
+    if data.get("TargetUser") is not None:
         out["target_user"] = data["TargetUser"]
     else:
         raise DeserializationError(

@@ -85,15 +85,15 @@ def serialize_json(value: CaptionDescription) -> dict:
 
 def deserialize_json(data: dict) -> CaptionDescription:
     out: CaptionDescription = {}  # type: ignore[typeddict-item]
-    if "accessibility" in data:
+    if data.get("accessibility") is not None:
         import capo_medialive.types.accessibility_type
 
         out["accessibility"] = capo_medialive.types.accessibility_type.deserialize_json(
             data["accessibility"]
         )
-    if "captionSelectorName" in data:
+    if data.get("captionSelectorName") is not None:
         out["caption_selector_name"] = data["captionSelectorName"]
-    if "destinationSettings" in data:
+    if data.get("destinationSettings") is not None:
         import capo_medialive.types.caption_destination_settings
 
         out["destination_settings"] = (
@@ -101,13 +101,13 @@ def deserialize_json(data: dict) -> CaptionDescription:
                 data["destinationSettings"]
             )
         )
-    if "languageCode" in data:
+    if data.get("languageCode") is not None:
         out["language_code"] = data["languageCode"]
-    if "languageDescription" in data:
+    if data.get("languageDescription") is not None:
         out["language_description"] = data["languageDescription"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "captionDashRoles" in data:
+    if data.get("captionDashRoles") is not None:
         import capo_medialive.types.__list_of_dash_role_caption
 
         out["caption_dash_roles"] = (
@@ -115,7 +115,7 @@ def deserialize_json(data: dict) -> CaptionDescription:
                 data["captionDashRoles"]
             )
         )
-    if "dvbDashAccessibility" in data:
+    if data.get("dvbDashAccessibility") is not None:
         import capo_medialive.types.dvb_dash_accessibility
 
         out["dvb_dash_accessibility"] = (

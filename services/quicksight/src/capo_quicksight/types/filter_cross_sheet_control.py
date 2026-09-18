@@ -44,15 +44,15 @@ def serialize_json(value: FilterCrossSheetControl) -> dict:
 
 def deserialize_json(data: dict) -> FilterCrossSheetControl:
     out: FilterCrossSheetControl = {}  # type: ignore[typeddict-item]
-    if "FilterControlId" in data:
+    if data.get("FilterControlId") is not None:
         out["filter_control_id"] = data["FilterControlId"]
     else:
         raise DeserializationError("FilterCrossSheetControl.filter_control_id required")
-    if "SourceFilterId" in data:
+    if data.get("SourceFilterId") is not None:
         out["source_filter_id"] = data["SourceFilterId"]
     else:
         raise DeserializationError("FilterCrossSheetControl.source_filter_id required")
-    if "CascadingControlConfiguration" in data:
+    if data.get("CascadingControlConfiguration") is not None:
         import capo_quicksight.types.cascading_control_configuration
 
         out["cascading_control_configuration"] = (

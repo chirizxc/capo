@@ -39,15 +39,20 @@ class ReservedCacheNodeQuotaExceededFault(ServiceError):
 
     code: str | None = "ReservedCacheNodeQuotaExceededFault"
 
-    def __init__(self, data: ReservedCacheNodeQuotaExceededFault_):
+    def __init__(
+        self, data: ReservedCacheNodeQuotaExceededFault_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="ReservedCacheNodeQuotaExceededFault",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_query(cls, el: Element) -> "ReservedCacheNodeQuotaExceededFault":
-        return cls(deserialize_query(el))
+    def from_query(
+        cls, el: Element, message: str | None = None
+    ) -> "ReservedCacheNodeQuotaExceededFault":
+        return cls(deserialize_query(el), message)

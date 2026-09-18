@@ -35,12 +35,12 @@ def serialize_json(value: MetadataTransferJobProgress) -> dict:
 
 def deserialize_json(data: dict) -> MetadataTransferJobProgress:
     out: MetadataTransferJobProgress = {}  # type: ignore[typeddict-item]
-    if "totalCount" in data:
+    if data.get("totalCount") is not None:
         out["total_count"] = data["totalCount"]
-    if "succeededCount" in data:
+    if data.get("succeededCount") is not None:
         out["succeeded_count"] = data["succeededCount"]
-    if "skippedCount" in data:
+    if data.get("skippedCount") is not None:
         out["skipped_count"] = data["skippedCount"]
-    if "failedCount" in data:
+    if data.get("failedCount") is not None:
         out["failed_count"] = data["failedCount"]
     return out

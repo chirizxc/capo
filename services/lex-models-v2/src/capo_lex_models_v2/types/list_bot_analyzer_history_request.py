@@ -43,12 +43,12 @@ def serialize_json(value: ListBotAnalyzerHistoryRequest) -> dict:
 
 def deserialize_json(data: dict) -> ListBotAnalyzerHistoryRequest:
     out: ListBotAnalyzerHistoryRequest = {}  # type: ignore[typeddict-item]
-    if "localeId" in data:
+    if data.get("localeId") is not None:
         out["locale_id"] = data["localeId"]
-    if "botVersion" in data:
+    if data.get("botVersion") is not None:
         out["bot_version"] = data["botVersion"]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
     return out

@@ -25,6 +25,8 @@ def deserialize_json(data: list) -> ColumnSemanticPropertyList:
 
     out: ColumnSemanticPropertyList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_quicksight.types.column_semantic_property.deserialize_json(item)
         )

@@ -35,7 +35,7 @@ def serialize_json(value: RefreshTokenRequest) -> dict:
 
 def deserialize_json(data: dict) -> RefreshTokenRequest:
     out: RefreshTokenRequest = {}  # type: ignore[typeddict-item]
-    if "refreshTokenBody" in data:
+    if data.get("refreshTokenBody") is not None:
         import capo_amplifyuibuilder.types.refresh_token_request_body
 
         out["refresh_token_body"] = (

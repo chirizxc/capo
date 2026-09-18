@@ -1,5 +1,6 @@
 """Generated from Smithy shape ``com.amazonaws.dataexchange#DataExchange``."""
 
+import uuid
 import warnings
 from collections.abc import Iterator
 from typing import TYPE_CHECKING, Any, Iterable, Optional
@@ -262,14 +263,16 @@ class DataExchangeClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_dataexchange.types.accept_data_grant_request.AcceptDataGrantRequest = {}  # type: ignore[typeddict-item]
-        input_["data_grant_arn"] = data_grant_arn
+        input_: capo_dataexchange.types.accept_data_grant_request.AcceptDataGrantRequest = {
+            "data_grant_arn": data_grant_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def cancel_job(
@@ -305,14 +308,16 @@ class DataExchangeClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_dataexchange.types.cancel_job_request.CancelJobRequest = {}  # type: ignore[typeddict-item]
-        input_["job_id"] = job_id
+        input_: capo_dataexchange.types.cancel_job_request.CancelJobRequest = {
+            "job_id": job_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_data_grant(
@@ -363,11 +368,12 @@ class DataExchangeClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_dataexchange.types.create_data_grant_request.CreateDataGrantRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        input_["grant_distribution_scope"] = grant_distribution_scope
-        input_["receiver_principal"] = receiver_principal
-        input_["source_data_set_id"] = source_data_set_id
+        input_: capo_dataexchange.types.create_data_grant_request.CreateDataGrantRequest = {
+            "name": name,
+            "grant_distribution_scope": grant_distribution_scope,
+            "receiver_principal": receiver_principal,
+            "source_data_set_id": source_data_set_id,
+        }
         if ends_at is not None:
             input_["ends_at"] = ends_at
         if description is not None:
@@ -380,6 +386,7 @@ class DataExchangeClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_data_set(
@@ -423,10 +430,11 @@ class DataExchangeClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_dataexchange.types.create_data_set_request.CreateDataSetRequest = {}  # type: ignore[typeddict-item]
-        input_["asset_type"] = asset_type
-        input_["description"] = description
-        input_["name"] = name
+        input_: capo_dataexchange.types.create_data_set_request.CreateDataSetRequest = {
+            "asset_type": asset_type,
+            "description": description,
+            "name": name,
+        }
         if tags is not None:
             input_["tags"] = tags
 
@@ -435,6 +443,7 @@ class DataExchangeClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_event_action(
@@ -478,9 +487,10 @@ class DataExchangeClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_dataexchange.types.create_event_action_request.CreateEventActionRequest = {}  # type: ignore[typeddict-item]
-        input_["action"] = action
-        input_["event"] = event
+        input_: capo_dataexchange.types.create_event_action_request.CreateEventActionRequest = {
+            "action": action,
+            "event": event,
+        }
         if tags is not None:
             input_["tags"] = tags
 
@@ -489,6 +499,7 @@ class DataExchangeClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_job(
@@ -533,17 +544,19 @@ class DataExchangeClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_dataexchange.types.create_job_request.CreateJobRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_dataexchange.types.create_job_request.CreateJobRequest = {
+            "details": details,
+            "type": type,
+        }
         if asset_configuration is not None:
             input_["asset_configuration"] = asset_configuration
-        input_["details"] = details
-        input_["type"] = type
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_revision(
@@ -587,10 +600,11 @@ class DataExchangeClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_dataexchange.types.create_revision_request.CreateRevisionRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_dataexchange.types.create_revision_request.CreateRevisionRequest = {
+            "data_set_id": data_set_id
+        }
         if comment is not None:
             input_["comment"] = comment
-        input_["data_set_id"] = data_set_id
         if tags is not None:
             input_["tags"] = tags
 
@@ -599,6 +613,7 @@ class DataExchangeClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_asset(
@@ -639,16 +654,18 @@ class DataExchangeClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_dataexchange.types.delete_asset_request.DeleteAssetRequest = {}  # type: ignore[typeddict-item]
-        input_["asset_id"] = asset_id
-        input_["data_set_id"] = data_set_id
-        input_["revision_id"] = revision_id
+        input_: capo_dataexchange.types.delete_asset_request.DeleteAssetRequest = {
+            "asset_id": asset_id,
+            "data_set_id": data_set_id,
+            "revision_id": revision_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_data_grant(
@@ -684,14 +701,16 @@ class DataExchangeClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_dataexchange.types.delete_data_grant_request.DeleteDataGrantRequest = {}  # type: ignore[typeddict-item]
-        input_["data_grant_id"] = data_grant_id
+        input_: capo_dataexchange.types.delete_data_grant_request.DeleteDataGrantRequest = {
+            "data_grant_id": data_grant_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_data_set(
@@ -728,14 +747,16 @@ class DataExchangeClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_dataexchange.types.delete_data_set_request.DeleteDataSetRequest = {}  # type: ignore[typeddict-item]
-        input_["data_set_id"] = data_set_id
+        input_: capo_dataexchange.types.delete_data_set_request.DeleteDataSetRequest = {
+            "data_set_id": data_set_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_event_action(
@@ -770,14 +791,16 @@ class DataExchangeClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_dataexchange.types.delete_event_action_request.DeleteEventActionRequest = {}  # type: ignore[typeddict-item]
-        input_["event_action_id"] = event_action_id
+        input_: capo_dataexchange.types.delete_event_action_request.DeleteEventActionRequest = {
+            "event_action_id": event_action_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_revision(
@@ -816,15 +839,17 @@ class DataExchangeClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_dataexchange.types.delete_revision_request.DeleteRevisionRequest = {}  # type: ignore[typeddict-item]
-        input_["data_set_id"] = data_set_id
-        input_["revision_id"] = revision_id
+        input_: capo_dataexchange.types.delete_revision_request.DeleteRevisionRequest = {
+            "data_set_id": data_set_id,
+            "revision_id": revision_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_asset(
@@ -865,16 +890,18 @@ class DataExchangeClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_dataexchange.types.get_asset_request.GetAssetRequest = {}  # type: ignore[typeddict-item]
-        input_["asset_id"] = asset_id
-        input_["data_set_id"] = data_set_id
-        input_["revision_id"] = revision_id
+        input_: capo_dataexchange.types.get_asset_request.GetAssetRequest = {
+            "asset_id": asset_id,
+            "data_set_id": data_set_id,
+            "revision_id": revision_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_data_grant(
@@ -912,14 +939,16 @@ class DataExchangeClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_dataexchange.types.get_data_grant_request.GetDataGrantRequest = {}  # type: ignore[typeddict-item]
-        input_["data_grant_id"] = data_grant_id
+        input_: capo_dataexchange.types.get_data_grant_request.GetDataGrantRequest = {
+            "data_grant_id": data_grant_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_data_set(
@@ -956,14 +985,16 @@ class DataExchangeClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_dataexchange.types.get_data_set_request.GetDataSetRequest = {}  # type: ignore[typeddict-item]
-        input_["data_set_id"] = data_set_id
+        input_: capo_dataexchange.types.get_data_set_request.GetDataSetRequest = {
+            "data_set_id": data_set_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_event_action(
@@ -1000,14 +1031,16 @@ class DataExchangeClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_dataexchange.types.get_event_action_request.GetEventActionRequest = {}  # type: ignore[typeddict-item]
-        input_["event_action_id"] = event_action_id
+        input_: capo_dataexchange.types.get_event_action_request.GetEventActionRequest = {
+            "event_action_id": event_action_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_job(
@@ -1044,14 +1077,16 @@ class DataExchangeClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_dataexchange.types.get_job_request.GetJobRequest = {}  # type: ignore[typeddict-item]
-        input_["job_id"] = job_id
+        input_: capo_dataexchange.types.get_job_request.GetJobRequest = {
+            "job_id": job_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_received_data_grant(
@@ -1089,14 +1124,16 @@ class DataExchangeClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_dataexchange.types.get_received_data_grant_request.GetReceivedDataGrantRequest = {}  # type: ignore[typeddict-item]
-        input_["data_grant_arn"] = data_grant_arn
+        input_: capo_dataexchange.types.get_received_data_grant_request.GetReceivedDataGrantRequest = {
+            "data_grant_arn": data_grant_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_revision(
@@ -1135,15 +1172,17 @@ class DataExchangeClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_dataexchange.types.get_revision_request.GetRevisionRequest = {}  # type: ignore[typeddict-item]
-        input_["data_set_id"] = data_set_id
-        input_["revision_id"] = revision_id
+        input_: capo_dataexchange.types.get_revision_request.GetRevisionRequest = {
+            "data_set_id": data_set_id,
+            "revision_id": revision_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_data_grants(
@@ -1183,7 +1222,7 @@ class DataExchangeClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_dataexchange.types.list_data_grants_request.ListDataGrantsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_dataexchange.types.list_data_grants_request.ListDataGrantsRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -1194,6 +1233,7 @@ class DataExchangeClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_data_grants(
@@ -1255,8 +1295,9 @@ class DataExchangeClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_dataexchange.types.list_data_set_revisions_request.ListDataSetRevisionsRequest = {}  # type: ignore[typeddict-item]
-        input_["data_set_id"] = data_set_id
+        input_: capo_dataexchange.types.list_data_set_revisions_request.ListDataSetRevisionsRequest = {
+            "data_set_id": data_set_id
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -1267,6 +1308,7 @@ class DataExchangeClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_data_set_revisions(
@@ -1330,7 +1372,7 @@ class DataExchangeClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_dataexchange.types.list_data_sets_request.ListDataSetsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_dataexchange.types.list_data_sets_request.ListDataSetsRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -1343,6 +1385,7 @@ class DataExchangeClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_data_sets(
@@ -1406,7 +1449,7 @@ class DataExchangeClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_dataexchange.types.list_event_actions_request.ListEventActionsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_dataexchange.types.list_event_actions_request.ListEventActionsRequest = {}
         if event_source_id is not None:
             input_["event_source_id"] = event_source_id
         if max_results is not None:
@@ -1419,6 +1462,7 @@ class DataExchangeClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_event_actions(
@@ -1484,7 +1528,7 @@ class DataExchangeClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_dataexchange.types.list_jobs_request.ListJobsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_dataexchange.types.list_jobs_request.ListJobsRequest = {}
         if data_set_id is not None:
             input_["data_set_id"] = data_set_id
         if max_results is not None:
@@ -1499,6 +1543,7 @@ class DataExchangeClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_jobs(
@@ -1567,7 +1612,7 @@ class DataExchangeClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_dataexchange.types.list_received_data_grants_request.ListReceivedDataGrantsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_dataexchange.types.list_received_data_grants_request.ListReceivedDataGrantsRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -1580,6 +1625,7 @@ class DataExchangeClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_received_data_grants(
@@ -1647,19 +1693,21 @@ class DataExchangeClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_dataexchange.types.list_revision_assets_request.ListRevisionAssetsRequest = {}  # type: ignore[typeddict-item]
-        input_["data_set_id"] = data_set_id
+        input_: capo_dataexchange.types.list_revision_assets_request.ListRevisionAssetsRequest = {
+            "data_set_id": data_set_id,
+            "revision_id": revision_id,
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
             input_["next_token"] = next_token
-        input_["revision_id"] = revision_id
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_revision_assets(
@@ -1717,14 +1765,16 @@ class DataExchangeClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_dataexchange.types.list_tags_for_resource_request.ListTagsForResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_dataexchange.types.list_tags_for_resource_request.ListTagsForResourceRequest = {
+            "resource_arn": resource_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def revoke_revision(
@@ -1767,16 +1817,18 @@ class DataExchangeClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_dataexchange.types.revoke_revision_request.RevokeRevisionRequest = {}  # type: ignore[typeddict-item]
-        input_["data_set_id"] = data_set_id
-        input_["revision_id"] = revision_id
-        input_["revocation_comment"] = revocation_comment
+        input_: capo_dataexchange.types.revoke_revision_request.RevokeRevisionRequest = {
+            "data_set_id": data_set_id,
+            "revision_id": revision_id,
+            "revocation_comment": revocation_comment,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def send_api_asset(
@@ -1832,26 +1884,28 @@ class DataExchangeClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_dataexchange.types.send_api_asset_request.SendApiAssetRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_dataexchange.types.send_api_asset_request.SendApiAssetRequest = {
+            "asset_id": asset_id,
+            "data_set_id": data_set_id,
+            "revision_id": revision_id,
+        }
         if body is not None:
             input_["body"] = body
         if query_string_parameters is not None:
             input_["query_string_parameters"] = query_string_parameters
-        input_["asset_id"] = asset_id
-        input_["data_set_id"] = data_set_id
         if request_headers is not None:
             input_["request_headers"] = request_headers
         if method is not None:
             input_["method"] = method
         if path is not None:
             input_["path"] = path
-        input_["revision_id"] = revision_id
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def send_data_set_notification(
@@ -1906,23 +1960,26 @@ class DataExchangeClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_dataexchange.types.send_data_set_notification_request.SendDataSetNotificationRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_dataexchange.types.send_data_set_notification_request.SendDataSetNotificationRequest = {
+            "data_set_id": data_set_id,
+            "type": type,
+        }
         if scope is not None:
             input_["scope"] = scope
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if comment is not None:
             input_["comment"] = comment
-        input_["data_set_id"] = data_set_id
         if details is not None:
             input_["details"] = details
-        input_["type"] = type
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def start_job(
@@ -1961,14 +2018,16 @@ class DataExchangeClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_dataexchange.types.start_job_request.StartJobRequest = {}  # type: ignore[typeddict-item]
-        input_["job_id"] = job_id
+        input_: capo_dataexchange.types.start_job_request.StartJobRequest = {
+            "job_id": job_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def tag_resource(
@@ -2001,15 +2060,17 @@ class DataExchangeClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_dataexchange.types.tag_resource_request.TagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tags"] = tags
+        input_: capo_dataexchange.types.tag_resource_request.TagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tags": tags,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def untag_resource(
@@ -2042,15 +2103,17 @@ class DataExchangeClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_dataexchange.types.untag_resource_request.UntagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tag_keys"] = tag_keys
+        input_: capo_dataexchange.types.untag_resource_request.UntagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tag_keys": tag_keys,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_asset(
@@ -2095,17 +2158,19 @@ class DataExchangeClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_dataexchange.types.update_asset_request.UpdateAssetRequest = {}  # type: ignore[typeddict-item]
-        input_["asset_id"] = asset_id
-        input_["data_set_id"] = data_set_id
-        input_["name"] = name
-        input_["revision_id"] = revision_id
+        input_: capo_dataexchange.types.update_asset_request.UpdateAssetRequest = {
+            "asset_id": asset_id,
+            "data_set_id": data_set_id,
+            "name": name,
+            "revision_id": revision_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_data_set(
@@ -2147,8 +2212,9 @@ class DataExchangeClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_dataexchange.types.update_data_set_request.UpdateDataSetRequest = {}  # type: ignore[typeddict-item]
-        input_["data_set_id"] = data_set_id
+        input_: capo_dataexchange.types.update_data_set_request.UpdateDataSetRequest = {
+            "data_set_id": data_set_id
+        }
         if description is not None:
             input_["description"] = description
         if name is not None:
@@ -2159,6 +2225,7 @@ class DataExchangeClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_event_action(
@@ -2200,16 +2267,18 @@ class DataExchangeClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_dataexchange.types.update_event_action_request.UpdateEventActionRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_dataexchange.types.update_event_action_request.UpdateEventActionRequest = {
+            "event_action_id": event_action_id
+        }
         if action is not None:
             input_["action"] = action
-        input_["event_action_id"] = event_action_id
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_revision(
@@ -2256,19 +2325,21 @@ class DataExchangeClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_dataexchange.types.update_revision_request.UpdateRevisionRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_dataexchange.types.update_revision_request.UpdateRevisionRequest = {
+            "data_set_id": data_set_id,
+            "revision_id": revision_id,
+        }
         if comment is not None:
             input_["comment"] = comment
-        input_["data_set_id"] = data_set_id
         if finalized is not None:
             input_["finalized"] = finalized
-        input_["revision_id"] = revision_id
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def __enter__(self) -> Self:

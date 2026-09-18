@@ -97,23 +97,23 @@ def serialize_json(value: CreateJobRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateJobRequest:
     out: CreateJobRequest = {}  # type: ignore[typeddict-item]
-    if "PipelineId" in data:
+    if data.get("PipelineId") is not None:
         out["pipeline_id"] = data["PipelineId"]
     else:
         raise DeserializationError("CreateJobRequest.pipeline_id required")
-    if "Input" in data:
+    if data.get("Input") is not None:
         import capo_elastic_transcoder.types.job_input
 
         out["input"] = capo_elastic_transcoder.types.job_input.deserialize_json(
             data["Input"]
         )
-    if "Inputs" in data:
+    if data.get("Inputs") is not None:
         import capo_elastic_transcoder.types.job_inputs
 
         out["inputs"] = capo_elastic_transcoder.types.job_inputs.deserialize_json(
             data["Inputs"]
         )
-    if "Output" in data:
+    if data.get("Output") is not None:
         import capo_elastic_transcoder.types.create_job_output
 
         out["output"] = (
@@ -121,7 +121,7 @@ def deserialize_json(data: dict) -> CreateJobRequest:
                 data["Output"]
             )
         )
-    if "Outputs" in data:
+    if data.get("Outputs") is not None:
         import capo_elastic_transcoder.types.create_job_outputs
 
         out["outputs"] = (
@@ -129,9 +129,9 @@ def deserialize_json(data: dict) -> CreateJobRequest:
                 data["Outputs"]
             )
         )
-    if "OutputKeyPrefix" in data:
+    if data.get("OutputKeyPrefix") is not None:
         out["output_key_prefix"] = data["OutputKeyPrefix"]
-    if "Playlists" in data:
+    if data.get("Playlists") is not None:
         import capo_elastic_transcoder.types.create_job_playlists
 
         out["playlists"] = (
@@ -139,7 +139,7 @@ def deserialize_json(data: dict) -> CreateJobRequest:
                 data["Playlists"]
             )
         )
-    if "UserMetadata" in data:
+    if data.get("UserMetadata") is not None:
         import capo_elastic_transcoder.types.user_metadata
 
         out["user_metadata"] = (

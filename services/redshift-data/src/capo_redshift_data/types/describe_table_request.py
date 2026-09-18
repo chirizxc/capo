@@ -67,28 +67,28 @@ def serialize_aws_json_1_1(value: DescribeTableRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeTableRequest:
     out: DescribeTableRequest = {}  # type: ignore[typeddict-item]
-    if "ClusterIdentifier" in data:
+    if data.get("ClusterIdentifier") is not None:
         out["cluster_identifier"] = data["ClusterIdentifier"]
-    if "SecretArn" in data:
+    if data.get("SecretArn") is not None:
         out["secret_arn"] = data["SecretArn"]
-    if "DbUser" in data:
+    if data.get("DbUser") is not None:
         out["db_user"] = data["DbUser"]
-    if "Database" in data:
+    if data.get("Database") is not None:
         out["database"] = data["Database"]
     else:
         raise DeserializationError("DescribeTableRequest.database required")
-    if "ConnectedDatabase" in data:
+    if data.get("ConnectedDatabase") is not None:
         out["connected_database"] = data["ConnectedDatabase"]
-    if "Schema" in data:
+    if data.get("Schema") is not None:
         out["schema"] = data["Schema"]
-    if "Table" in data:
+    if data.get("Table") is not None:
         out["table"] = data["Table"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
     else:
         out["max_results"] = 0
-    if "WorkgroupName" in data:
+    if data.get("WorkgroupName") is not None:
         out["workgroup_name"] = data["WorkgroupName"]
     return out

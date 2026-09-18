@@ -49,11 +49,11 @@ def serialize_aws_json_1_1(value: ListExecutorsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListExecutorsRequest:
     out: ListExecutorsRequest = {}  # type: ignore[typeddict-item]
-    if "SessionId" in data:
+    if data.get("SessionId") is not None:
         out["session_id"] = data["SessionId"]
     else:
         raise DeserializationError("ListExecutorsRequest.session_id required")
-    if "ExecutorStateFilter" in data:
+    if data.get("ExecutorStateFilter") is not None:
         import capo_athena.types.executor_state
 
         out["executor_state_filter"] = (
@@ -61,8 +61,8 @@ def deserialize_aws_json_1_1(data: dict) -> ListExecutorsRequest:
                 data["ExecutorStateFilter"]
             )
         )
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

@@ -49,13 +49,13 @@ def serialize_aws_json_1_1(value: NotifyApplicationStateRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> NotifyApplicationStateRequest:
     out: NotifyApplicationStateRequest = {}  # type: ignore[typeddict-item]
-    if "ApplicationId" in data:
+    if data.get("ApplicationId") is not None:
         out["application_id"] = data["ApplicationId"]
     else:
         raise DeserializationError(
             "NotifyApplicationStateRequest.application_id required"
         )
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_migration_hub.types.application_status
 
         out["status"] = (
@@ -65,7 +65,7 @@ def deserialize_aws_json_1_1(data: dict) -> NotifyApplicationStateRequest:
         )
     else:
         raise DeserializationError("NotifyApplicationStateRequest.status required")
-    if "UpdateDateTime" in data:
+    if data.get("UpdateDateTime") is not None:
         import capo_migration_hub.types.update_date_time
 
         out["update_date_time"] = (
@@ -73,7 +73,7 @@ def deserialize_aws_json_1_1(data: dict) -> NotifyApplicationStateRequest:
                 data["UpdateDateTime"]
             )
         )
-    if "DryRun" in data:
+    if data.get("DryRun") is not None:
         out["dry_run"] = data["DryRun"]
     else:
         out["dry_run"] = False

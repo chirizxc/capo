@@ -37,7 +37,7 @@ def serialize_json(value: ListOrganizationalUnitsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListOrganizationalUnitsResponse:
     out: ListOrganizationalUnitsResponse = {}  # type: ignore[typeddict-item]
-    if "organizationalUnits" in data:
+    if data.get("organizationalUnits") is not None:
         import capo_notifications.types.organizational_units
 
         out["organizational_units"] = (
@@ -49,6 +49,6 @@ def deserialize_json(data: dict) -> ListOrganizationalUnitsResponse:
         raise DeserializationError(
             "ListOrganizationalUnitsResponse.organizational_units required"
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

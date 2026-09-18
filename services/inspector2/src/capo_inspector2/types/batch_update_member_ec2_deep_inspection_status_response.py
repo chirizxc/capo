@@ -44,7 +44,7 @@ def serialize_json(value: BatchUpdateMemberEc2DeepInspectionStatusResponse) -> d
 
 def deserialize_json(data: dict) -> BatchUpdateMemberEc2DeepInspectionStatusResponse:
     out: BatchUpdateMemberEc2DeepInspectionStatusResponse = {}  # type: ignore[typeddict-item]
-    if "accountIds" in data:
+    if data.get("accountIds") is not None:
         import capo_inspector2.types.member_account_ec2_deep_inspection_status_state_list
 
         out["account_ids"] = (
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> BatchUpdateMemberEc2DeepInspectionStatusResp
                 data["accountIds"]
             )
         )
-    if "failedAccountIds" in data:
+    if data.get("failedAccountIds") is not None:
         import capo_inspector2.types.failed_member_account_ec2_deep_inspection_status_state_list
 
         out["failed_account_ids"] = (

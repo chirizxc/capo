@@ -13,9 +13,9 @@ from capo_pinpoint import AsyncPinpointClient
 
 
 async def main():
-    async with AsyncPinpointClient() as s3:
+    async with AsyncPinpointClient() as pinpoint:
         # Example: call the create_app operation
-        response = await s3.create_app()
+        response = await pinpoint.create_app()
         print(response["application_response"])
 ```
 
@@ -29,9 +29,9 @@ from capo_pinpoint.error import BadRequestException
 
 
 async def main():
-    async with AsyncPinpointClient() as s3:
+    async with AsyncPinpointClient() as pinpoint:
         try:
-            await s3.create_app()
+            await pinpoint.create_app()
         except BadRequestException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -48,13 +48,13 @@ from capo_pinpoint import AsyncPinpointClient
 
 
 async def main():
-    async with AsyncPinpointClient() as s3:
+    async with AsyncPinpointClient() as pinpoint:
         # Default: 3 attempts for every operation
-        response = await s3.create_app()
+        response = await pinpoint.create_app()
 
         # Override per operation
-        response = await s3.create_app(config_overrides={"retry_max_attempts": 5})
+        response = await pinpoint.create_app(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.create_app(config_overrides={"retry_max_attempts": 1})
+        response = await pinpoint.create_app(config_overrides={"retry_max_attempts": 1})
 ```

@@ -54,7 +54,7 @@ def serialize_json(value: TreeMapAggregatedFieldWells) -> dict:
 
 def deserialize_json(data: dict) -> TreeMapAggregatedFieldWells:
     out: TreeMapAggregatedFieldWells = {}  # type: ignore[typeddict-item]
-    if "Groups" in data:
+    if data.get("Groups") is not None:
         import capo_quicksight.types.tree_map_dimension_field_list
 
         out["groups"] = (
@@ -62,7 +62,7 @@ def deserialize_json(data: dict) -> TreeMapAggregatedFieldWells:
                 data["Groups"]
             )
         )
-    if "Sizes" in data:
+    if data.get("Sizes") is not None:
         import capo_quicksight.types.tree_map_measure_field_list
 
         out["sizes"] = (
@@ -70,7 +70,7 @@ def deserialize_json(data: dict) -> TreeMapAggregatedFieldWells:
                 data["Sizes"]
             )
         )
-    if "Colors" in data:
+    if data.get("Colors") is not None:
         import capo_quicksight.types.tree_map_measure_field_list
 
         out["colors"] = (

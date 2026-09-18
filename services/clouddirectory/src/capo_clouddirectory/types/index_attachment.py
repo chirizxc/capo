@@ -38,7 +38,7 @@ def serialize_json(value: IndexAttachment) -> dict:
 
 def deserialize_json(data: dict) -> IndexAttachment:
     out: IndexAttachment = {}  # type: ignore[typeddict-item]
-    if "IndexedAttributes" in data:
+    if data.get("IndexedAttributes") is not None:
         import capo_clouddirectory.types.attribute_key_and_value_list
 
         out["indexed_attributes"] = (
@@ -46,6 +46,6 @@ def deserialize_json(data: dict) -> IndexAttachment:
                 data["IndexedAttributes"]
             )
         )
-    if "ObjectIdentifier" in data:
+    if data.get("ObjectIdentifier") is not None:
         out["object_identifier"] = data["ObjectIdentifier"]
     return out

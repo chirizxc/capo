@@ -31,7 +31,7 @@ def serialize_json(value: CrossClusterSearchConnectionProperties) -> dict:
 
 def deserialize_json(data: dict) -> CrossClusterSearchConnectionProperties:
     out: CrossClusterSearchConnectionProperties = {}  # type: ignore[typeddict-item]
-    if "SkipUnavailable" in data:
+    if data.get("SkipUnavailable") is not None:
         import capo_opensearch.types.skip_unavailable_status
 
         out["skip_unavailable"] = (

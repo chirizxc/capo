@@ -30,7 +30,7 @@ def serialize_json(value: PutUserStatusRequest) -> dict:
 
 def deserialize_json(data: dict) -> PutUserStatusRequest:
     out: PutUserStatusRequest = {}  # type: ignore[typeddict-item]
-    if "AgentStatusId" in data:
+    if data.get("AgentStatusId") is not None:
         out["agent_status_id"] = data["AgentStatusId"]
     else:
         raise DeserializationError("PutUserStatusRequest.agent_status_id required")

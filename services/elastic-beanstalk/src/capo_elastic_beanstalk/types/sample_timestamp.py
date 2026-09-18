@@ -10,7 +10,12 @@ SampleTimestamp: TypeAlias = datetime.datetime
 
 # --- awsQuery ser/de ---
 def to_query_text(value: SampleTimestamp) -> str:
-    return value.isoformat()
+    value = (
+        value.astimezone(datetime.timezone.utc)
+        if value.tzinfo
+        else value.replace(tzinfo=datetime.timezone.utc)
+    )
+    return value.isoformat().replace("+00:00", "Z")
 
 
 def from_query_text(text: str) -> SampleTimestamp:

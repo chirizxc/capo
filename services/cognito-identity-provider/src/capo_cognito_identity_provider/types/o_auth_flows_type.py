@@ -29,6 +29,8 @@ def deserialize_aws_json_1_1(data: list) -> OAuthFlowsType:
 
     out: OAuthFlowsType = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_cognito_identity_provider.types.o_auth_flow_type.deserialize_aws_json_1_1(
                 item

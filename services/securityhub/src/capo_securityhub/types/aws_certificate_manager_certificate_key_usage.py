@@ -23,6 +23,6 @@ def serialize_json(value: AwsCertificateManagerCertificateKeyUsage) -> dict:
 
 def deserialize_json(data: dict) -> AwsCertificateManagerCertificateKeyUsage:
     out: AwsCertificateManagerCertificateKeyUsage = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     return out

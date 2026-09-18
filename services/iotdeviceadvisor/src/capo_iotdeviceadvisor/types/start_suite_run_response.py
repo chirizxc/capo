@@ -44,16 +44,16 @@ def serialize_json(value: StartSuiteRunResponse) -> dict:
 
 def deserialize_json(data: dict) -> StartSuiteRunResponse:
     out: StartSuiteRunResponse = {}  # type: ignore[typeddict-item]
-    if "suiteRunId" in data:
+    if data.get("suiteRunId") is not None:
         out["suite_run_id"] = data["suiteRunId"]
-    if "suiteRunArn" in data:
+    if data.get("suiteRunArn") is not None:
         out["suite_run_arn"] = data["suiteRunArn"]
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_iotdeviceadvisor.types.timestamp
 
         out["created_at"] = capo_iotdeviceadvisor.types.timestamp.deserialize_json(
             data["createdAt"]
         )
-    if "endpoint" in data:
+    if data.get("endpoint") is not None:
         out["endpoint"] = data["endpoint"]
     return out

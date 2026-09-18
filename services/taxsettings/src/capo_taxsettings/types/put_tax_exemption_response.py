@@ -23,6 +23,6 @@ def serialize_json(value: PutTaxExemptionResponse) -> dict:
 
 def deserialize_json(data: dict) -> PutTaxExemptionResponse:
     out: PutTaxExemptionResponse = {}  # type: ignore[typeddict-item]
-    if "caseId" in data:
+    if data.get("caseId") is not None:
         out["case_id"] = data["caseId"]
     return out

@@ -36,7 +36,7 @@ def serialize_json(value: DescribeReplicationConfigurationsResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribeReplicationConfigurationsResponse:
     out: DescribeReplicationConfigurationsResponse = {}  # type: ignore[typeddict-item]
-    if "Replications" in data:
+    if data.get("Replications") is not None:
         import capo_efs.types.replication_configuration_descriptions
 
         out["replications"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> DescribeReplicationConfigurationsResponse:
                 data["Replications"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

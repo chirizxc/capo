@@ -235,9 +235,9 @@ def serialize_aws_json_1_0(value: InfluxDBv2Parameters) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> InfluxDBv2Parameters:
     out: InfluxDBv2Parameters = {}  # type: ignore[typeddict-item]
-    if "fluxLogEnabled" in data:
+    if data.get("fluxLogEnabled") is not None:
         out["flux_log_enabled"] = data["fluxLogEnabled"]
-    if "logLevel" in data:
+    if data.get("logLevel") is not None:
         import capo_timestream_influxdb.types.log_level
 
         out["log_level"] = (
@@ -245,13 +245,13 @@ def deserialize_aws_json_1_0(data: dict) -> InfluxDBv2Parameters:
                 data["logLevel"]
             )
         )
-    if "noTasks" in data:
+    if data.get("noTasks") is not None:
         out["no_tasks"] = data["noTasks"]
-    if "queryConcurrency" in data:
+    if data.get("queryConcurrency") is not None:
         out["query_concurrency"] = data["queryConcurrency"]
-    if "queryQueueSize" in data:
+    if data.get("queryQueueSize") is not None:
         out["query_queue_size"] = data["queryQueueSize"]
-    if "tracingType" in data:
+    if data.get("tracingType") is not None:
         import capo_timestream_influxdb.types.tracing_type
 
         out["tracing_type"] = (
@@ -259,9 +259,9 @@ def deserialize_aws_json_1_0(data: dict) -> InfluxDBv2Parameters:
                 data["tracingType"]
             )
         )
-    if "metricsDisabled" in data:
+    if data.get("metricsDisabled") is not None:
         out["metrics_disabled"] = data["metricsDisabled"]
-    if "httpIdleTimeout" in data:
+    if data.get("httpIdleTimeout") is not None:
         import capo_timestream_influxdb.types.duration
 
         out["http_idle_timeout"] = (
@@ -269,7 +269,7 @@ def deserialize_aws_json_1_0(data: dict) -> InfluxDBv2Parameters:
                 data["httpIdleTimeout"]
             )
         )
-    if "httpReadHeaderTimeout" in data:
+    if data.get("httpReadHeaderTimeout") is not None:
         import capo_timestream_influxdb.types.duration
 
         out["http_read_header_timeout"] = (
@@ -277,7 +277,7 @@ def deserialize_aws_json_1_0(data: dict) -> InfluxDBv2Parameters:
                 data["httpReadHeaderTimeout"]
             )
         )
-    if "httpReadTimeout" in data:
+    if data.get("httpReadTimeout") is not None:
         import capo_timestream_influxdb.types.duration
 
         out["http_read_timeout"] = (
@@ -285,7 +285,7 @@ def deserialize_aws_json_1_0(data: dict) -> InfluxDBv2Parameters:
                 data["httpReadTimeout"]
             )
         )
-    if "httpWriteTimeout" in data:
+    if data.get("httpWriteTimeout") is not None:
         import capo_timestream_influxdb.types.duration
 
         out["http_write_timeout"] = (
@@ -293,31 +293,31 @@ def deserialize_aws_json_1_0(data: dict) -> InfluxDBv2Parameters:
                 data["httpWriteTimeout"]
             )
         )
-    if "influxqlMaxSelectBuckets" in data:
+    if data.get("influxqlMaxSelectBuckets") is not None:
         out["influxql_max_select_buckets"] = data["influxqlMaxSelectBuckets"]
-    if "influxqlMaxSelectPoint" in data:
+    if data.get("influxqlMaxSelectPoint") is not None:
         out["influxql_max_select_point"] = data["influxqlMaxSelectPoint"]
-    if "influxqlMaxSelectSeries" in data:
+    if data.get("influxqlMaxSelectSeries") is not None:
         out["influxql_max_select_series"] = data["influxqlMaxSelectSeries"]
-    if "pprofDisabled" in data:
+    if data.get("pprofDisabled") is not None:
         out["pprof_disabled"] = data["pprofDisabled"]
-    if "queryInitialMemoryBytes" in data:
+    if data.get("queryInitialMemoryBytes") is not None:
         out["query_initial_memory_bytes"] = data["queryInitialMemoryBytes"]
-    if "queryMaxMemoryBytes" in data:
+    if data.get("queryMaxMemoryBytes") is not None:
         out["query_max_memory_bytes"] = data["queryMaxMemoryBytes"]
-    if "queryMemoryBytes" in data:
+    if data.get("queryMemoryBytes") is not None:
         out["query_memory_bytes"] = data["queryMemoryBytes"]
-    if "sessionLength" in data:
+    if data.get("sessionLength") is not None:
         out["session_length"] = data["sessionLength"]
-    if "sessionRenewDisabled" in data:
+    if data.get("sessionRenewDisabled") is not None:
         out["session_renew_disabled"] = data["sessionRenewDisabled"]
-    if "storageCacheMaxMemorySize" in data:
+    if data.get("storageCacheMaxMemorySize") is not None:
         out["storage_cache_max_memory_size"] = data["storageCacheMaxMemorySize"]
-    if "storageCacheSnapshotMemorySize" in data:
+    if data.get("storageCacheSnapshotMemorySize") is not None:
         out["storage_cache_snapshot_memory_size"] = data[
             "storageCacheSnapshotMemorySize"
         ]
-    if "storageCacheSnapshotWriteColdDuration" in data:
+    if data.get("storageCacheSnapshotWriteColdDuration") is not None:
         import capo_timestream_influxdb.types.duration
 
         out["storage_cache_snapshot_write_cold_duration"] = (
@@ -325,7 +325,7 @@ def deserialize_aws_json_1_0(data: dict) -> InfluxDBv2Parameters:
                 data["storageCacheSnapshotWriteColdDuration"]
             )
         )
-    if "storageCompactFullWriteColdDuration" in data:
+    if data.get("storageCompactFullWriteColdDuration") is not None:
         import capo_timestream_influxdb.types.duration
 
         out["storage_compact_full_write_cold_duration"] = (
@@ -333,17 +333,17 @@ def deserialize_aws_json_1_0(data: dict) -> InfluxDBv2Parameters:
                 data["storageCompactFullWriteColdDuration"]
             )
         )
-    if "storageCompactThroughputBurst" in data:
+    if data.get("storageCompactThroughputBurst") is not None:
         out["storage_compact_throughput_burst"] = data["storageCompactThroughputBurst"]
-    if "storageMaxConcurrentCompactions" in data:
+    if data.get("storageMaxConcurrentCompactions") is not None:
         out["storage_max_concurrent_compactions"] = data[
             "storageMaxConcurrentCompactions"
         ]
-    if "storageMaxIndexLogFileSize" in data:
+    if data.get("storageMaxIndexLogFileSize") is not None:
         out["storage_max_index_log_file_size"] = data["storageMaxIndexLogFileSize"]
-    if "storageNoValidateFieldSize" in data:
+    if data.get("storageNoValidateFieldSize") is not None:
         out["storage_no_validate_field_size"] = data["storageNoValidateFieldSize"]
-    if "storageRetentionCheckInterval" in data:
+    if data.get("storageRetentionCheckInterval") is not None:
         import capo_timestream_influxdb.types.duration
 
         out["storage_retention_check_interval"] = (
@@ -351,15 +351,15 @@ def deserialize_aws_json_1_0(data: dict) -> InfluxDBv2Parameters:
                 data["storageRetentionCheckInterval"]
             )
         )
-    if "storageSeriesFileMaxConcurrentSnapshotCompactions" in data:
+    if data.get("storageSeriesFileMaxConcurrentSnapshotCompactions") is not None:
         out["storage_series_file_max_concurrent_snapshot_compactions"] = data[
             "storageSeriesFileMaxConcurrentSnapshotCompactions"
         ]
-    if "storageSeriesIdSetCacheSize" in data:
+    if data.get("storageSeriesIdSetCacheSize") is not None:
         out["storage_series_id_set_cache_size"] = data["storageSeriesIdSetCacheSize"]
-    if "storageWalMaxConcurrentWrites" in data:
+    if data.get("storageWalMaxConcurrentWrites") is not None:
         out["storage_wal_max_concurrent_writes"] = data["storageWalMaxConcurrentWrites"]
-    if "storageWalMaxWriteDelay" in data:
+    if data.get("storageWalMaxWriteDelay") is not None:
         import capo_timestream_influxdb.types.duration
 
         out["storage_wal_max_write_delay"] = (
@@ -367,6 +367,6 @@ def deserialize_aws_json_1_0(data: dict) -> InfluxDBv2Parameters:
                 data["storageWalMaxWriteDelay"]
             )
         )
-    if "uiDisabled" in data:
+    if data.get("uiDisabled") is not None:
         out["ui_disabled"] = data["uiDisabled"]
     return out

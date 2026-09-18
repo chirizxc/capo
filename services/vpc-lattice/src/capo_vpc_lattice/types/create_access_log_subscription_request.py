@@ -49,23 +49,23 @@ def serialize_json(value: CreateAccessLogSubscriptionRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateAccessLogSubscriptionRequest:
     out: CreateAccessLogSubscriptionRequest = {}  # type: ignore[typeddict-item]
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
-    if "resourceIdentifier" in data:
+    if data.get("resourceIdentifier") is not None:
         out["resource_identifier"] = data["resourceIdentifier"]
     else:
         raise DeserializationError(
             "CreateAccessLogSubscriptionRequest.resource_identifier required"
         )
-    if "destinationArn" in data:
+    if data.get("destinationArn") is not None:
         out["destination_arn"] = data["destinationArn"]
     else:
         raise DeserializationError(
             "CreateAccessLogSubscriptionRequest.destination_arn required"
         )
-    if "serviceNetworkLogType" in data:
+    if data.get("serviceNetworkLogType") is not None:
         out["service_network_log_type"] = data["serviceNetworkLogType"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_vpc_lattice.types.tag_map
 
         out["tags"] = capo_vpc_lattice.types.tag_map.deserialize_json(data["tags"])

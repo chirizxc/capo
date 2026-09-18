@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> HashList:
 
     out: HashList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_cleanrooms.types.hash.deserialize_json(item))
     return out

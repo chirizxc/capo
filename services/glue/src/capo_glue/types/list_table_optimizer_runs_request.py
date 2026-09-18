@@ -50,21 +50,21 @@ def serialize_aws_json_1_1(value: ListTableOptimizerRunsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListTableOptimizerRunsRequest:
     out: ListTableOptimizerRunsRequest = {}  # type: ignore[typeddict-item]
-    if "CatalogId" in data:
+    if data.get("CatalogId") is not None:
         out["catalog_id"] = data["CatalogId"]
     else:
         raise DeserializationError("ListTableOptimizerRunsRequest.catalog_id required")
-    if "DatabaseName" in data:
+    if data.get("DatabaseName") is not None:
         out["database_name"] = data["DatabaseName"]
     else:
         raise DeserializationError(
             "ListTableOptimizerRunsRequest.database_name required"
         )
-    if "TableName" in data:
+    if data.get("TableName") is not None:
         out["table_name"] = data["TableName"]
     else:
         raise DeserializationError("ListTableOptimizerRunsRequest.table_name required")
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_glue.types.table_optimizer_type
 
         out["type"] = capo_glue.types.table_optimizer_type.deserialize_aws_json_1_1(
@@ -72,10 +72,10 @@ def deserialize_aws_json_1_1(data: dict) -> ListTableOptimizerRunsRequest:
         )
     else:
         raise DeserializationError("ListTableOptimizerRunsRequest.type required")
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
     else:
         out["max_results"] = 0
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

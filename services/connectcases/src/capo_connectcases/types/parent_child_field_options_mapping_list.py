@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> ParentChildFieldOptionsMappingList:
 
     out: ParentChildFieldOptionsMappingList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_connectcases.types.parent_child_field_options_mapping.deserialize_json(
                 item

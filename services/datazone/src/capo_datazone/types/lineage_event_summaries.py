@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> LineageEventSummaries:
 
     out: LineageEventSummaries = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_datazone.types.lineage_event_summary.deserialize_json(item))
     return out

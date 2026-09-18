@@ -31,10 +31,10 @@ def serialize_json(value: ClosedDaysRule) -> dict:
 
 def deserialize_json(data: dict) -> ClosedDaysRule:
     out: ClosedDaysRule = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "StartDateTime" in data:
+    if data.get("StartDateTime") is not None:
         out["start_date_time"] = data["StartDateTime"]
-    if "EndDateTime" in data:
+    if data.get("EndDateTime") is not None:
         out["end_date_time"] = data["EndDateTime"]
     return out

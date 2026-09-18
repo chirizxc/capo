@@ -14,4 +14,4 @@ def serialize_json(value: IPsList) -> list:
 
 
 def deserialize_json(data: list) -> IPsList:
-    return list(data)
+    return [item for item in data if item is not None]

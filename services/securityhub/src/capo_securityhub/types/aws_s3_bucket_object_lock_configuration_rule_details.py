@@ -31,7 +31,7 @@ def serialize_json(value: AwsS3BucketObjectLockConfigurationRuleDetails) -> dict
 
 def deserialize_json(data: dict) -> AwsS3BucketObjectLockConfigurationRuleDetails:
     out: AwsS3BucketObjectLockConfigurationRuleDetails = {}  # type: ignore[typeddict-item]
-    if "DefaultRetention" in data:
+    if data.get("DefaultRetention") is not None:
         import capo_securityhub.types.aws_s3_bucket_object_lock_configuration_rule_default_retention_details
 
         out["default_retention"] = (

@@ -47,15 +47,15 @@ def serialize_aws_json_1_1(value: PreparedStatement) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PreparedStatement:
     out: PreparedStatement = {}  # type: ignore[typeddict-item]
-    if "StatementName" in data:
+    if data.get("StatementName") is not None:
         out["statement_name"] = data["StatementName"]
-    if "QueryStatement" in data:
+    if data.get("QueryStatement") is not None:
         out["query_statement"] = data["QueryStatement"]
-    if "WorkGroupName" in data:
+    if data.get("WorkGroupName") is not None:
         out["work_group_name"] = data["WorkGroupName"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "LastModifiedTime" in data:
+    if data.get("LastModifiedTime") is not None:
         import capo_athena.types.date
 
         out["last_modified_time"] = capo_athena.types.date.deserialize_aws_json_1_1(

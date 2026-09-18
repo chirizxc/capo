@@ -55,21 +55,21 @@ def serialize_json(value: DataLakeNamespace) -> dict:
 
 def deserialize_json(data: dict) -> DataLakeNamespace:
     out: DataLakeNamespace = {}  # type: ignore[typeddict-item]
-    if "instanceId" in data:
+    if data.get("instanceId") is not None:
         out["instance_id"] = data["instanceId"]
     else:
         raise DeserializationError("DataLakeNamespace.instance_id required")
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("DataLakeNamespace.name required")
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("DataLakeNamespace.arn required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "createdTime" in data:
+    if data.get("createdTime") is not None:
         import capo_supplychain.types._prelude.timestamp
 
         out["created_time"] = (
@@ -79,7 +79,7 @@ def deserialize_json(data: dict) -> DataLakeNamespace:
         )
     else:
         raise DeserializationError("DataLakeNamespace.created_time required")
-    if "lastModifiedTime" in data:
+    if data.get("lastModifiedTime") is not None:
         import capo_supplychain.types._prelude.timestamp
 
         out["last_modified_time"] = (

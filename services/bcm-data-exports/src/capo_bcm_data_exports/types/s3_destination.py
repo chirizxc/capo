@@ -47,21 +47,21 @@ def serialize_aws_json_1_1(value: S3Destination) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> S3Destination:
     out: S3Destination = {}  # type: ignore[typeddict-item]
-    if "S3Bucket" in data:
+    if data.get("S3Bucket") is not None:
         out["s3_bucket"] = data["S3Bucket"]
     else:
         raise DeserializationError("S3Destination.s3_bucket required")
-    if "S3BucketOwner" in data:
+    if data.get("S3BucketOwner") is not None:
         out["s3_bucket_owner"] = data["S3BucketOwner"]
-    if "S3Prefix" in data:
+    if data.get("S3Prefix") is not None:
         out["s3_prefix"] = data["S3Prefix"]
     else:
         raise DeserializationError("S3Destination.s3_prefix required")
-    if "S3Region" in data:
+    if data.get("S3Region") is not None:
         out["s3_region"] = data["S3Region"]
     else:
         raise DeserializationError("S3Destination.s3_region required")
-    if "S3OutputConfigurations" in data:
+    if data.get("S3OutputConfigurations") is not None:
         import capo_bcm_data_exports.types.s3_output_configurations
 
         out["s3_output_configurations"] = (

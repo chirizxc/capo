@@ -214,19 +214,23 @@ class KinesisVideoArchivedMediaClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kinesis_video_archived_media.types.get_clip_input.GetClipInput = {}  # type: ignore[typeddict-item]
+        input_: capo_kinesis_video_archived_media.types.get_clip_input.GetClipInput = {
+            "clip_fragment_selector": clip_fragment_selector
+        }
         if stream_name is not None:
             input_["stream_name"] = stream_name
         if stream_arn is not None:
             input_["stream_arn"] = stream_arn
-        input_["clip_fragment_selector"] = clip_fragment_selector
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
-        yield response.output
+        try:
+            yield response.output
+        finally:
+            response.response.close()
 
     def get_dash_streaming_session_url(
         self,
@@ -296,7 +300,7 @@ class KinesisVideoArchivedMediaClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kinesis_video_archived_media.types.get_dash_streaming_session_url_input.GetDASHStreamingSessionURLInput = {}  # type: ignore[typeddict-item]
+        input_: capo_kinesis_video_archived_media.types.get_dash_streaming_session_url_input.GetDASHStreamingSessionURLInput = {}
         if stream_name is not None:
             input_["stream_name"] = stream_name
         if stream_arn is not None:
@@ -319,6 +323,7 @@ class KinesisVideoArchivedMediaClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_hls_streaming_session_url(
@@ -393,7 +398,7 @@ class KinesisVideoArchivedMediaClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kinesis_video_archived_media.types.get_hls_streaming_session_url_input.GetHLSStreamingSessionURLInput = {}  # type: ignore[typeddict-item]
+        input_: capo_kinesis_video_archived_media.types.get_hls_streaming_session_url_input.GetHLSStreamingSessionURLInput = {}
         if stream_name is not None:
             input_["stream_name"] = stream_name
         if stream_arn is not None:
@@ -420,6 +425,7 @@ class KinesisVideoArchivedMediaClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_images(
@@ -495,17 +501,18 @@ class KinesisVideoArchivedMediaClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kinesis_video_archived_media.types.get_images_input.GetImagesInput = {}  # type: ignore[typeddict-item]
+        input_: capo_kinesis_video_archived_media.types.get_images_input.GetImagesInput = {
+            "image_selector_type": image_selector_type,
+            "start_timestamp": start_timestamp,
+            "end_timestamp": end_timestamp,
+            "format": format,
+        }
         if stream_name is not None:
             input_["stream_name"] = stream_name
         if stream_arn is not None:
             input_["stream_arn"] = stream_arn
-        input_["image_selector_type"] = image_selector_type
-        input_["start_timestamp"] = start_timestamp
-        input_["end_timestamp"] = end_timestamp
         if sampling_interval is not None:
             input_["sampling_interval"] = sampling_interval
-        input_["format"] = format
         if format_config is not None:
             input_["format_config"] = format_config
         if width_pixels is not None:
@@ -522,6 +529,7 @@ class KinesisVideoArchivedMediaClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_get_images(
@@ -624,19 +632,23 @@ class KinesisVideoArchivedMediaClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kinesis_video_archived_media.types.get_media_for_fragment_list_input.GetMediaForFragmentListInput = {}  # type: ignore[typeddict-item]
+        input_: capo_kinesis_video_archived_media.types.get_media_for_fragment_list_input.GetMediaForFragmentListInput = {
+            "fragments": fragments
+        }
         if stream_name is not None:
             input_["stream_name"] = stream_name
         if stream_arn is not None:
             input_["stream_arn"] = stream_arn
-        input_["fragments"] = fragments
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
-        yield response.output
+        try:
+            yield response.output
+        finally:
+            response.response.close()
 
     def list_fragments(
         self,
@@ -690,7 +702,7 @@ class KinesisVideoArchivedMediaClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kinesis_video_archived_media.types.list_fragments_input.ListFragmentsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_kinesis_video_archived_media.types.list_fragments_input.ListFragmentsInput = {}
         if stream_name is not None:
             input_["stream_name"] = stream_name
         if stream_arn is not None:
@@ -707,6 +719,7 @@ class KinesisVideoArchivedMediaClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_fragments(

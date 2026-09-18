@@ -13,9 +13,9 @@ from capo_firehose import AsyncFirehoseClient
 
 
 async def main():
-    async with AsyncFirehoseClient() as s3:
+    async with AsyncFirehoseClient() as firehose:
         # Example: call the create_delivery_stream operation
-        response = await s3.create_delivery_stream()
+        response = await firehose.create_delivery_stream()
         print(response["delivery_stream_arn"])
 ```
 
@@ -29,9 +29,9 @@ from capo_firehose.error import InvalidArgumentException
 
 
 async def main():
-    async with AsyncFirehoseClient() as s3:
+    async with AsyncFirehoseClient() as firehose:
         try:
-            await s3.create_delivery_stream()
+            await firehose.create_delivery_stream()
         except InvalidArgumentException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -48,13 +48,13 @@ from capo_firehose import AsyncFirehoseClient
 
 
 async def main():
-    async with AsyncFirehoseClient() as s3:
+    async with AsyncFirehoseClient() as firehose:
         # Default: 3 attempts for every operation
-        response = await s3.create_delivery_stream()
+        response = await firehose.create_delivery_stream()
 
         # Override per operation
-        response = await s3.create_delivery_stream(config_overrides={"retry_max_attempts": 5})
+        response = await firehose.create_delivery_stream(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.create_delivery_stream(config_overrides={"retry_max_attempts": 1})
+        response = await firehose.create_delivery_stream(config_overrides={"retry_max_attempts": 1})
 ```

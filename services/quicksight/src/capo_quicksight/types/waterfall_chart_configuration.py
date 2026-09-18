@@ -162,7 +162,7 @@ def serialize_json(value: WaterfallChartConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> WaterfallChartConfiguration:
     out: WaterfallChartConfiguration = {}  # type: ignore[typeddict-item]
-    if "FieldWells" in data:
+    if data.get("FieldWells") is not None:
         import capo_quicksight.types.waterfall_chart_field_wells
 
         out["field_wells"] = (
@@ -170,7 +170,7 @@ def deserialize_json(data: dict) -> WaterfallChartConfiguration:
                 data["FieldWells"]
             )
         )
-    if "SortConfiguration" in data:
+    if data.get("SortConfiguration") is not None:
         import capo_quicksight.types.waterfall_chart_sort_configuration
 
         out["sort_configuration"] = (
@@ -178,7 +178,7 @@ def deserialize_json(data: dict) -> WaterfallChartConfiguration:
                 data["SortConfiguration"]
             )
         )
-    if "WaterfallChartOptions" in data:
+    if data.get("WaterfallChartOptions") is not None:
         import capo_quicksight.types.waterfall_chart_options
 
         out["waterfall_chart_options"] = (
@@ -186,7 +186,7 @@ def deserialize_json(data: dict) -> WaterfallChartConfiguration:
                 data["WaterfallChartOptions"]
             )
         )
-    if "CategoryAxisLabelOptions" in data:
+    if data.get("CategoryAxisLabelOptions") is not None:
         import capo_quicksight.types.chart_axis_label_options
 
         out["category_axis_label_options"] = (
@@ -194,7 +194,7 @@ def deserialize_json(data: dict) -> WaterfallChartConfiguration:
                 data["CategoryAxisLabelOptions"]
             )
         )
-    if "CategoryAxisDisplayOptions" in data:
+    if data.get("CategoryAxisDisplayOptions") is not None:
         import capo_quicksight.types.axis_display_options
 
         out["category_axis_display_options"] = (
@@ -202,7 +202,7 @@ def deserialize_json(data: dict) -> WaterfallChartConfiguration:
                 data["CategoryAxisDisplayOptions"]
             )
         )
-    if "PrimaryYAxisLabelOptions" in data:
+    if data.get("PrimaryYAxisLabelOptions") is not None:
         import capo_quicksight.types.chart_axis_label_options
 
         out["primary_y_axis_label_options"] = (
@@ -210,7 +210,7 @@ def deserialize_json(data: dict) -> WaterfallChartConfiguration:
                 data["PrimaryYAxisLabelOptions"]
             )
         )
-    if "PrimaryYAxisDisplayOptions" in data:
+    if data.get("PrimaryYAxisDisplayOptions") is not None:
         import capo_quicksight.types.axis_display_options
 
         out["primary_y_axis_display_options"] = (
@@ -218,25 +218,25 @@ def deserialize_json(data: dict) -> WaterfallChartConfiguration:
                 data["PrimaryYAxisDisplayOptions"]
             )
         )
-    if "Legend" in data:
+    if data.get("Legend") is not None:
         import capo_quicksight.types.legend_options
 
         out["legend"] = capo_quicksight.types.legend_options.deserialize_json(
             data["Legend"]
         )
-    if "DataLabels" in data:
+    if data.get("DataLabels") is not None:
         import capo_quicksight.types.data_label_options
 
         out["data_labels"] = capo_quicksight.types.data_label_options.deserialize_json(
             data["DataLabels"]
         )
-    if "VisualPalette" in data:
+    if data.get("VisualPalette") is not None:
         import capo_quicksight.types.visual_palette
 
         out["visual_palette"] = capo_quicksight.types.visual_palette.deserialize_json(
             data["VisualPalette"]
         )
-    if "ColorConfiguration" in data:
+    if data.get("ColorConfiguration") is not None:
         import capo_quicksight.types.waterfall_chart_color_configuration
 
         out["color_configuration"] = (
@@ -244,7 +244,7 @@ def deserialize_json(data: dict) -> WaterfallChartConfiguration:
                 data["ColorConfiguration"]
             )
         )
-    if "Interactions" in data:
+    if data.get("Interactions") is not None:
         import capo_quicksight.types.visual_interaction_options
 
         out["interactions"] = (

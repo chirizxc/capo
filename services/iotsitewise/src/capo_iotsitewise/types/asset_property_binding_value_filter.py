@@ -27,11 +27,11 @@ def serialize_json(value: AssetPropertyBindingValueFilter) -> dict:
 
 def deserialize_json(data: dict) -> AssetPropertyBindingValueFilter:
     out: AssetPropertyBindingValueFilter = {}  # type: ignore[typeddict-item]
-    if "assetId" in data:
+    if data.get("assetId") is not None:
         out["asset_id"] = data["assetId"]
     else:
         raise DeserializationError("AssetPropertyBindingValueFilter.asset_id required")
-    if "propertyId" in data:
+    if data.get("propertyId") is not None:
         out["property_id"] = data["propertyId"]
     else:
         raise DeserializationError(

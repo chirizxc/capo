@@ -23,6 +23,6 @@ def serialize_aws_json_1_1(value: DeleteContextResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteContextResponse:
     out: DeleteContextResponse = {}  # type: ignore[typeddict-item]
-    if "ContextArn" in data:
+    if data.get("ContextArn") is not None:
         out["context_arn"] = data["ContextArn"]
     return out

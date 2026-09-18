@@ -40,7 +40,7 @@ def serialize_json(value: UnprocessedConfigurationPolicyAssociation) -> dict:
 
 def deserialize_json(data: dict) -> UnprocessedConfigurationPolicyAssociation:
     out: UnprocessedConfigurationPolicyAssociation = {}  # type: ignore[typeddict-item]
-    if "ConfigurationPolicyAssociationIdentifiers" in data:
+    if data.get("ConfigurationPolicyAssociationIdentifiers") is not None:
         import capo_securityhub.types.configuration_policy_association
 
         out["configuration_policy_association_identifiers"] = (
@@ -48,8 +48,8 @@ def deserialize_json(data: dict) -> UnprocessedConfigurationPolicyAssociation:
                 data["ConfigurationPolicyAssociationIdentifiers"]
             )
         )
-    if "ErrorCode" in data:
+    if data.get("ErrorCode") is not None:
         out["error_code"] = data["ErrorCode"]
-    if "ErrorReason" in data:
+    if data.get("ErrorReason") is not None:
         out["error_reason"] = data["ErrorReason"]
     return out

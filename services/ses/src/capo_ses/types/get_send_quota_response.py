@@ -26,10 +26,48 @@ def serialize_query(
     value: GetSendQuotaResponse, pairs: list[tuple[str, str]], prefix: str
 ) -> None:
     key_prefix = f"{prefix}." if prefix else ""
-    pairs.append((f"{key_prefix}Max24HourSend", str(value.get("max24_hour_send", 0))))
-    pairs.append((f"{key_prefix}MaxSendRate", str(value.get("max_send_rate", 0))))
     pairs.append(
-        (f"{key_prefix}SentLast24Hours", str(value.get("sent_last24_hours", 0)))
+        (
+            f"{key_prefix}Max24HourSend",
+            (
+                "NaN"
+                if value.get("max24_hour_send", 0) != value.get("max24_hour_send", 0)
+                else "Infinity"
+                if value.get("max24_hour_send", 0) == float("inf")
+                else "-Infinity"
+                if value.get("max24_hour_send", 0) == float("-inf")
+                else str(value.get("max24_hour_send", 0))
+            ),
+        )
+    )
+    pairs.append(
+        (
+            f"{key_prefix}MaxSendRate",
+            (
+                "NaN"
+                if value.get("max_send_rate", 0) != value.get("max_send_rate", 0)
+                else "Infinity"
+                if value.get("max_send_rate", 0) == float("inf")
+                else "-Infinity"
+                if value.get("max_send_rate", 0) == float("-inf")
+                else str(value.get("max_send_rate", 0))
+            ),
+        )
+    )
+    pairs.append(
+        (
+            f"{key_prefix}SentLast24Hours",
+            (
+                "NaN"
+                if value.get("sent_last24_hours", 0)
+                != value.get("sent_last24_hours", 0)
+                else "Infinity"
+                if value.get("sent_last24_hours", 0) == float("inf")
+                else "-Infinity"
+                if value.get("sent_last24_hours", 0) == float("-inf")
+                else str(value.get("sent_last24_hours", 0))
+            ),
+        )
     )
 
 

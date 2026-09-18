@@ -28,15 +28,15 @@ def serialize_json(value: JobStats) -> dict:
 
 def deserialize_json(data: dict) -> JobStats:
     out: JobStats = {}  # type: ignore[typeddict-item]
-    if "NumberOfProfilesReviewed" in data:
+    if data.get("NumberOfProfilesReviewed") is not None:
         out["number_of_profiles_reviewed"] = data["NumberOfProfilesReviewed"]
     else:
         out["number_of_profiles_reviewed"] = 0
-    if "NumberOfMatchesFound" in data:
+    if data.get("NumberOfMatchesFound") is not None:
         out["number_of_matches_found"] = data["NumberOfMatchesFound"]
     else:
         out["number_of_matches_found"] = 0
-    if "NumberOfMergesDone" in data:
+    if data.get("NumberOfMergesDone") is not None:
         out["number_of_merges_done"] = data["NumberOfMergesDone"]
     else:
         out["number_of_merges_done"] = 0

@@ -43,18 +43,18 @@ def serialize_json(value: CreateHarvestJobRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateHarvestJobRequest:
     out: CreateHarvestJobRequest = {}  # type: ignore[typeddict-item]
-    if "endTime" in data:
+    if data.get("endTime") is not None:
         out["end_time"] = data["endTime"]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "originEndpointId" in data:
+    if data.get("originEndpointId") is not None:
         out["origin_endpoint_id"] = data["originEndpointId"]
-    if "s3Destination" in data:
+    if data.get("s3Destination") is not None:
         import capo_mediapackage.types.s3_destination
 
         out["s3_destination"] = capo_mediapackage.types.s3_destination.deserialize_json(
             data["s3Destination"]
         )
-    if "startTime" in data:
+    if data.get("startTime") is not None:
         out["start_time"] = data["startTime"]
     return out

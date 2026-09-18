@@ -57,13 +57,13 @@ def serialize_aws_json_1_1(value: StartReplicationTaskMessage) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> StartReplicationTaskMessage:
     out: StartReplicationTaskMessage = {}  # type: ignore[typeddict-item]
-    if "ReplicationTaskArn" in data:
+    if data.get("ReplicationTaskArn") is not None:
         out["replication_task_arn"] = data["ReplicationTaskArn"]
     else:
         raise DeserializationError(
             "StartReplicationTaskMessage.replication_task_arn required"
         )
-    if "StartReplicationTaskType" in data:
+    if data.get("StartReplicationTaskType") is not None:
         import capo_database_migration_service.types.start_replication_task_type_value
 
         out["start_replication_task_type"] = (
@@ -75,7 +75,7 @@ def deserialize_aws_json_1_1(data: dict) -> StartReplicationTaskMessage:
         raise DeserializationError(
             "StartReplicationTaskMessage.start_replication_task_type required"
         )
-    if "CdcStartTime" in data:
+    if data.get("CdcStartTime") is not None:
         import capo_database_migration_service.types.t_stamp
 
         out["cdc_start_time"] = (
@@ -83,8 +83,8 @@ def deserialize_aws_json_1_1(data: dict) -> StartReplicationTaskMessage:
                 data["CdcStartTime"]
             )
         )
-    if "CdcStartPosition" in data:
+    if data.get("CdcStartPosition") is not None:
         out["cdc_start_position"] = data["CdcStartPosition"]
-    if "CdcStopPosition" in data:
+    if data.get("CdcStopPosition") is not None:
         out["cdc_stop_position"] = data["CdcStopPosition"]
     return out

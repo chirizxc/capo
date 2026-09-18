@@ -35,13 +35,13 @@ def serialize_json(value: StepFunctionsAction) -> dict:
 
 def deserialize_json(data: dict) -> StepFunctionsAction:
     out: StepFunctionsAction = {}  # type: ignore[typeddict-item]
-    if "executionNamePrefix" in data:
+    if data.get("executionNamePrefix") is not None:
         out["execution_name_prefix"] = data["executionNamePrefix"]
-    if "stateMachineName" in data:
+    if data.get("stateMachineName") is not None:
         out["state_machine_name"] = data["stateMachineName"]
     else:
         raise DeserializationError("StepFunctionsAction.state_machine_name required")
-    if "roleArn" in data:
+    if data.get("roleArn") is not None:
         out["role_arn"] = data["roleArn"]
     else:
         raise DeserializationError("StepFunctionsAction.role_arn required")

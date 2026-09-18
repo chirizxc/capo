@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: DescribePendingMaintenanceActionsResponse) -> 
 
 def deserialize_aws_json_1_1(data: dict) -> DescribePendingMaintenanceActionsResponse:
     out: DescribePendingMaintenanceActionsResponse = {}  # type: ignore[typeddict-item]
-    if "PendingMaintenanceActions" in data:
+    if data.get("PendingMaintenanceActions") is not None:
         import capo_database_migration_service.types.pending_maintenance_actions
 
         out["pending_maintenance_actions"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_1(data: dict) -> DescribePendingMaintenanceActionsRes
                 data["PendingMaintenanceActions"]
             )
         )
-    if "Marker" in data:
+    if data.get("Marker") is not None:
         out["marker"] = data["Marker"]
     return out

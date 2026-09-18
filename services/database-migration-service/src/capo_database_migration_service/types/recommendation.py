@@ -68,17 +68,17 @@ def serialize_aws_json_1_1(value: Recommendation) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Recommendation:
     out: Recommendation = {}  # type: ignore[typeddict-item]
-    if "DatabaseId" in data:
+    if data.get("DatabaseId") is not None:
         out["database_id"] = data["DatabaseId"]
-    if "EngineName" in data:
+    if data.get("EngineName") is not None:
         out["engine_name"] = data["EngineName"]
-    if "CreatedDate" in data:
+    if data.get("CreatedDate") is not None:
         out["created_date"] = data["CreatedDate"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         out["status"] = data["Status"]
-    if "Preferred" in data:
+    if data.get("Preferred") is not None:
         out["preferred"] = data["Preferred"]
-    if "Settings" in data:
+    if data.get("Settings") is not None:
         import capo_database_migration_service.types.recommendation_settings
 
         out["settings"] = (
@@ -86,7 +86,7 @@ def deserialize_aws_json_1_1(data: dict) -> Recommendation:
                 data["Settings"]
             )
         )
-    if "Data" in data:
+    if data.get("Data") is not None:
         import capo_database_migration_service.types.recommendation_data
 
         out["data"] = (

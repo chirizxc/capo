@@ -37,9 +37,9 @@ def serialize_json(value: ListAudienceExportJobsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListAudienceExportJobsResponse:
     out: ListAudienceExportJobsResponse = {}  # type: ignore[typeddict-item]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "audienceExportJobs" in data:
+    if data.get("audienceExportJobs") is not None:
         import capo_cleanroomsml.types.audience_export_job_list
 
         out["audience_export_jobs"] = (

@@ -30,13 +30,13 @@ def serialize_json(value: AssociateCertificateRequest) -> dict:
 
 def deserialize_json(data: dict) -> AssociateCertificateRequest:
     out: AssociateCertificateRequest = {}  # type: ignore[typeddict-item]
-    if "acmCertificateArn" in data:
+    if data.get("acmCertificateArn") is not None:
         out["acm_certificate_arn"] = data["acmCertificateArn"]
     else:
         raise DeserializationError(
             "AssociateCertificateRequest.acm_certificate_arn required"
         )
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     else:
         raise DeserializationError("AssociateCertificateRequest.client_token required")

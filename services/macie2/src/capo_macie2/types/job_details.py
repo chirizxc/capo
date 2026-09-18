@@ -54,13 +54,13 @@ def serialize_json(value: JobDetails) -> dict:
 
 def deserialize_json(data: dict) -> JobDetails:
     out: JobDetails = {}  # type: ignore[typeddict-item]
-    if "isDefinedInJob" in data:
+    if data.get("isDefinedInJob") is not None:
         import capo_macie2.types.is_defined_in_job
 
         out["is_defined_in_job"] = capo_macie2.types.is_defined_in_job.deserialize_json(
             data["isDefinedInJob"]
         )
-    if "isMonitoredByJob" in data:
+    if data.get("isMonitoredByJob") is not None:
         import capo_macie2.types.is_monitored_by_job
 
         out["is_monitored_by_job"] = (
@@ -68,9 +68,9 @@ def deserialize_json(data: dict) -> JobDetails:
                 data["isMonitoredByJob"]
             )
         )
-    if "lastJobId" in data:
+    if data.get("lastJobId") is not None:
         out["last_job_id"] = data["lastJobId"]
-    if "lastJobRunTime" in data:
+    if data.get("lastJobRunTime") is not None:
         import capo_macie2.types.__timestamp_iso8601
 
         out["last_job_run_time"] = (

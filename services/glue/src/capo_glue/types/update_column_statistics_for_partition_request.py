@@ -52,21 +52,21 @@ def serialize_aws_json_1_1(value: UpdateColumnStatisticsForPartitionRequest) -> 
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateColumnStatisticsForPartitionRequest:
     out: UpdateColumnStatisticsForPartitionRequest = {}  # type: ignore[typeddict-item]
-    if "CatalogId" in data:
+    if data.get("CatalogId") is not None:
         out["catalog_id"] = data["CatalogId"]
-    if "DatabaseName" in data:
+    if data.get("DatabaseName") is not None:
         out["database_name"] = data["DatabaseName"]
     else:
         raise DeserializationError(
             "UpdateColumnStatisticsForPartitionRequest.database_name required"
         )
-    if "TableName" in data:
+    if data.get("TableName") is not None:
         out["table_name"] = data["TableName"]
     else:
         raise DeserializationError(
             "UpdateColumnStatisticsForPartitionRequest.table_name required"
         )
-    if "PartitionValues" in data:
+    if data.get("PartitionValues") is not None:
         import capo_glue.types.value_string_list
 
         out["partition_values"] = (
@@ -78,7 +78,7 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateColumnStatisticsForPartitionRe
         raise DeserializationError(
             "UpdateColumnStatisticsForPartitionRequest.partition_values required"
         )
-    if "ColumnStatisticsList" in data:
+    if data.get("ColumnStatisticsList") is not None:
         import capo_glue.types.update_column_statistics_list
 
         out["column_statistics_list"] = (

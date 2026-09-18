@@ -56,7 +56,7 @@ def serialize_aws_json_1_1(value: StartAutoManagementRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> StartAutoManagementRequest:
     out: StartAutoManagementRequest = {}  # type: ignore[typeddict-item]
-    if "OptInLevel" in data:
+    if data.get("OptInLevel") is not None:
         import capo_service_quotas.types.opt_in_level
 
         out["opt_in_level"] = (
@@ -66,7 +66,7 @@ def deserialize_aws_json_1_1(data: dict) -> StartAutoManagementRequest:
         )
     else:
         raise DeserializationError("StartAutoManagementRequest.opt_in_level required")
-    if "OptInType" in data:
+    if data.get("OptInType") is not None:
         import capo_service_quotas.types.opt_in_type
 
         out["opt_in_type"] = (
@@ -76,9 +76,9 @@ def deserialize_aws_json_1_1(data: dict) -> StartAutoManagementRequest:
         )
     else:
         raise DeserializationError("StartAutoManagementRequest.opt_in_type required")
-    if "NotificationArn" in data:
+    if data.get("NotificationArn") is not None:
         out["notification_arn"] = data["NotificationArn"]
-    if "ExclusionList" in data:
+    if data.get("ExclusionList") is not None:
         import capo_service_quotas.types.exclusion_list
 
         out["exclusion_list"] = (

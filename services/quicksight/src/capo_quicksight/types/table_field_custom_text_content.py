@@ -33,9 +33,9 @@ def serialize_json(value: TableFieldCustomTextContent) -> dict:
 
 def deserialize_json(data: dict) -> TableFieldCustomTextContent:
     out: TableFieldCustomTextContent = {}  # type: ignore[typeddict-item]
-    if "Value" in data:
+    if data.get("Value") is not None:
         out["value"] = data["Value"]
-    if "FontConfiguration" in data:
+    if data.get("FontConfiguration") is not None:
         import capo_quicksight.types.font_configuration
 
         out["font_configuration"] = (

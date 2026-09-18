@@ -121,17 +121,17 @@ def serialize_aws_json_1_0(value: FraudsterRegistrationJob) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> FraudsterRegistrationJob:
     out: FraudsterRegistrationJob = {}  # type: ignore[typeddict-item]
-    if "JobName" in data:
+    if data.get("JobName") is not None:
         out["job_name"] = data["JobName"]
-    if "JobId" in data:
+    if data.get("JobId") is not None:
         out["job_id"] = data["JobId"]
-    if "JobStatus" in data:
+    if data.get("JobStatus") is not None:
         out["job_status"] = data["JobStatus"]
-    if "DomainId" in data:
+    if data.get("DomainId") is not None:
         out["domain_id"] = data["DomainId"]
-    if "DataAccessRoleArn" in data:
+    if data.get("DataAccessRoleArn") is not None:
         out["data_access_role_arn"] = data["DataAccessRoleArn"]
-    if "RegistrationConfig" in data:
+    if data.get("RegistrationConfig") is not None:
         import capo_voice_id.types.registration_config
 
         out["registration_config"] = (
@@ -139,7 +139,7 @@ def deserialize_aws_json_1_0(data: dict) -> FraudsterRegistrationJob:
                 data["RegistrationConfig"]
             )
         )
-    if "InputDataConfig" in data:
+    if data.get("InputDataConfig") is not None:
         import capo_voice_id.types.input_data_config
 
         out["input_data_config"] = (
@@ -147,7 +147,7 @@ def deserialize_aws_json_1_0(data: dict) -> FraudsterRegistrationJob:
                 data["InputDataConfig"]
             )
         )
-    if "OutputDataConfig" in data:
+    if data.get("OutputDataConfig") is not None:
         import capo_voice_id.types.output_data_config
 
         out["output_data_config"] = (
@@ -155,19 +155,19 @@ def deserialize_aws_json_1_0(data: dict) -> FraudsterRegistrationJob:
                 data["OutputDataConfig"]
             )
         )
-    if "CreatedAt" in data:
+    if data.get("CreatedAt") is not None:
         import capo_voice_id.types.timestamp
 
         out["created_at"] = capo_voice_id.types.timestamp.deserialize_aws_json_1_0(
             data["CreatedAt"]
         )
-    if "EndedAt" in data:
+    if data.get("EndedAt") is not None:
         import capo_voice_id.types.timestamp
 
         out["ended_at"] = capo_voice_id.types.timestamp.deserialize_aws_json_1_0(
             data["EndedAt"]
         )
-    if "FailureDetails" in data:
+    if data.get("FailureDetails") is not None:
         import capo_voice_id.types.failure_details
 
         out["failure_details"] = (
@@ -175,7 +175,7 @@ def deserialize_aws_json_1_0(data: dict) -> FraudsterRegistrationJob:
                 data["FailureDetails"]
             )
         )
-    if "JobProgress" in data:
+    if data.get("JobProgress") is not None:
         import capo_voice_id.types.job_progress
 
         out["job_progress"] = capo_voice_id.types.job_progress.deserialize_aws_json_1_0(

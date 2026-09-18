@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> BatchDeleteTaxRegistrationErrors:
 
     out: BatchDeleteTaxRegistrationErrors = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_taxsettings.types.batch_delete_tax_registration_error.deserialize_json(
                 item

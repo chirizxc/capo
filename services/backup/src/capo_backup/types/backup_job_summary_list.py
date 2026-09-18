@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> BackupJobSummaryList:
 
     out: BackupJobSummaryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_backup.types.backup_job_summary.deserialize_json(item))
     return out

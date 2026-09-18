@@ -29,7 +29,7 @@ def serialize_aws_json_1_1(value: DeleteUsageLimitResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteUsageLimitResponse:
     out: DeleteUsageLimitResponse = {}  # type: ignore[typeddict-item]
-    if "usageLimit" in data:
+    if data.get("usageLimit") is not None:
         import capo_redshift_serverless.types.usage_limit
 
         out["usage_limit"] = (

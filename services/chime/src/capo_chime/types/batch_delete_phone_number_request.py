@@ -28,7 +28,7 @@ def serialize_json(value: BatchDeletePhoneNumberRequest) -> dict:
 
 def deserialize_json(data: dict) -> BatchDeletePhoneNumberRequest:
     out: BatchDeletePhoneNumberRequest = {}  # type: ignore[typeddict-item]
-    if "PhoneNumberIds" in data:
+    if data.get("PhoneNumberIds") is not None:
         import capo_chime.types.non_empty_string_list
 
         out["phone_number_ids"] = (

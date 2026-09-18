@@ -36,14 +36,14 @@ def serialize_json(value: SearchInput) -> dict:
 
 def deserialize_json(data: dict) -> SearchInput:
     out: SearchInput = {}  # type: ignore[typeddict-item]
-    if "QueryString" in data:
+    if data.get("QueryString") is not None:
         out["query_string"] = data["QueryString"]
     else:
         raise DeserializationError("SearchInput.query_string required")
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "ViewArn" in data:
+    if data.get("ViewArn") is not None:
         out["view_arn"] = data["ViewArn"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

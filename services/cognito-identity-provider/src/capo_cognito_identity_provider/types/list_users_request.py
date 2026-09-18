@@ -60,11 +60,11 @@ def serialize_aws_json_1_1(value: ListUsersRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListUsersRequest:
     out: ListUsersRequest = {}  # type: ignore[typeddict-item]
-    if "UserPoolId" in data:
+    if data.get("UserPoolId") is not None:
         out["user_pool_id"] = data["UserPoolId"]
     else:
         raise DeserializationError("ListUsersRequest.user_pool_id required")
-    if "AttributesToGet" in data:
+    if data.get("AttributesToGet") is not None:
         import capo_cognito_identity_provider.types.searched_attribute_names_list_type
 
         out["attributes_to_get"] = (
@@ -72,10 +72,10 @@ def deserialize_aws_json_1_1(data: dict) -> ListUsersRequest:
                 data["AttributesToGet"]
             )
         )
-    if "Limit" in data:
+    if data.get("Limit") is not None:
         out["limit"] = data["Limit"]
-    if "PaginationToken" in data:
+    if data.get("PaginationToken") is not None:
         out["pagination_token"] = data["PaginationToken"]
-    if "Filter" in data:
+    if data.get("Filter") is not None:
         out["filter"] = data["Filter"]
     return out

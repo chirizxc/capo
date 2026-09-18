@@ -25,6 +25,8 @@ def deserialize_aws_json_1_1(data: list) -> AccessControlRulesList:
 
     out: AccessControlRulesList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_workmail.types.access_control_rule.deserialize_aws_json_1_1(item)
         )

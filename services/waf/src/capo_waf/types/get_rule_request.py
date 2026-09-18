@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: GetRuleRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetRuleRequest:
     out: GetRuleRequest = {}  # type: ignore[typeddict-item]
-    if "RuleId" in data:
+    if data.get("RuleId") is not None:
         out["rule_id"] = data["RuleId"]
     else:
         raise DeserializationError("GetRuleRequest.rule_id required")

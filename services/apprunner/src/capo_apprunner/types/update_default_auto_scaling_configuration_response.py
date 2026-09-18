@@ -36,7 +36,7 @@ def deserialize_aws_json_1_0(
     data: dict,
 ) -> UpdateDefaultAutoScalingConfigurationResponse:
     out: UpdateDefaultAutoScalingConfigurationResponse = {}  # type: ignore[typeddict-item]
-    if "AutoScalingConfiguration" in data:
+    if data.get("AutoScalingConfiguration") is not None:
         import capo_apprunner.types.auto_scaling_configuration
 
         out["auto_scaling_configuration"] = (

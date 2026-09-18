@@ -34,11 +34,11 @@ def serialize_aws_json_1_1(value: DeleteTagsForDomainRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteTagsForDomainRequest:
     out: DeleteTagsForDomainRequest = {}  # type: ignore[typeddict-item]
-    if "DomainName" in data:
+    if data.get("DomainName") is not None:
         out["domain_name"] = data["DomainName"]
     else:
         raise DeserializationError("DeleteTagsForDomainRequest.domain_name required")
-    if "TagsToDelete" in data:
+    if data.get("TagsToDelete") is not None:
         import capo_route_53_domains.types.tag_key_list
 
         out["tags_to_delete"] = (

@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: GetVPCEConfigurationResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetVPCEConfigurationResult:
     out: GetVPCEConfigurationResult = {}  # type: ignore[typeddict-item]
-    if "vpceConfiguration" in data:
+    if data.get("vpceConfiguration") is not None:
         import capo_device_farm.types.vpce_configuration
 
         out["vpce_configuration"] = (

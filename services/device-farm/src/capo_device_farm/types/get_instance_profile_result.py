@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: GetInstanceProfileResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetInstanceProfileResult:
     out: GetInstanceProfileResult = {}  # type: ignore[typeddict-item]
-    if "instanceProfile" in data:
+    if data.get("instanceProfile") is not None:
         import capo_device_farm.types.instance_profile
 
         out["instance_profile"] = (

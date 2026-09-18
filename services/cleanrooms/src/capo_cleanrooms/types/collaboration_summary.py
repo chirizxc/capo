@@ -80,27 +80,27 @@ def serialize_json(value: CollaborationSummary) -> dict:
 
 def deserialize_json(data: dict) -> CollaborationSummary:
     out: CollaborationSummary = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("CollaborationSummary.id required")
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("CollaborationSummary.arn required")
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("CollaborationSummary.name required")
-    if "creatorAccountId" in data:
+    if data.get("creatorAccountId") is not None:
         out["creator_account_id"] = data["creatorAccountId"]
     else:
         raise DeserializationError("CollaborationSummary.creator_account_id required")
-    if "creatorDisplayName" in data:
+    if data.get("creatorDisplayName") is not None:
         out["creator_display_name"] = data["creatorDisplayName"]
     else:
         raise DeserializationError("CollaborationSummary.creator_display_name required")
-    if "createTime" in data:
+    if data.get("createTime") is not None:
         import capo_cleanrooms.types._prelude.timestamp
 
         out["create_time"] = capo_cleanrooms.types._prelude.timestamp.deserialize_json(
@@ -108,7 +108,7 @@ def deserialize_json(data: dict) -> CollaborationSummary:
         )
     else:
         raise DeserializationError("CollaborationSummary.create_time required")
-    if "updateTime" in data:
+    if data.get("updateTime") is not None:
         import capo_cleanrooms.types._prelude.timestamp
 
         out["update_time"] = capo_cleanrooms.types._prelude.timestamp.deserialize_json(
@@ -116,15 +116,15 @@ def deserialize_json(data: dict) -> CollaborationSummary:
         )
     else:
         raise DeserializationError("CollaborationSummary.update_time required")
-    if "memberStatus" in data:
+    if data.get("memberStatus") is not None:
         out["member_status"] = data["memberStatus"]
     else:
         raise DeserializationError("CollaborationSummary.member_status required")
-    if "membershipId" in data:
+    if data.get("membershipId") is not None:
         out["membership_id"] = data["membershipId"]
-    if "membershipArn" in data:
+    if data.get("membershipArn") is not None:
         out["membership_arn"] = data["membershipArn"]
-    if "analyticsEngine" in data:
+    if data.get("analyticsEngine") is not None:
         import capo_cleanrooms.types.analytics_engine
 
         out["analytics_engine"] = (

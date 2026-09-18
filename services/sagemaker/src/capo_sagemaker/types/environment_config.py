@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: EnvironmentConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> EnvironmentConfig:
     out: EnvironmentConfig = {}  # type: ignore[typeddict-item]
-    if "FSxLustreConfig" in data:
+    if data.get("FSxLustreConfig") is not None:
         import capo_sagemaker.types.f_sx_lustre_config
 
         out["f_sx_lustre_config"] = (

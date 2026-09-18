@@ -23,6 +23,6 @@ def serialize_aws_json_1_1(value: CreateAddressResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateAddressResult:
     out: CreateAddressResult = {}  # type: ignore[typeddict-item]
-    if "AddressId" in data:
+    if data.get("AddressId") is not None:
         out["address_id"] = data["AddressId"]
     return out

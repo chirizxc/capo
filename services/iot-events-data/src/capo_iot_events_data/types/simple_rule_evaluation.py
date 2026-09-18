@@ -43,9 +43,9 @@ def serialize_json(value: SimpleRuleEvaluation) -> dict:
 
 def deserialize_json(data: dict) -> SimpleRuleEvaluation:
     out: SimpleRuleEvaluation = {}  # type: ignore[typeddict-item]
-    if "inputPropertyValue" in data:
+    if data.get("inputPropertyValue") is not None:
         out["input_property_value"] = data["inputPropertyValue"]
-    if "operator" in data:
+    if data.get("operator") is not None:
         import capo_iot_events_data.types.comparison_operator
 
         out["operator"] = (
@@ -53,6 +53,6 @@ def deserialize_json(data: dict) -> SimpleRuleEvaluation:
                 data["operator"]
             )
         )
-    if "thresholdValue" in data:
+    if data.get("thresholdValue") is not None:
         out["threshold_value"] = data["thresholdValue"]
     return out

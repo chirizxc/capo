@@ -45,7 +45,7 @@ def serialize_aws_json_1_1(value: DescribeContinuousExportsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeContinuousExportsRequest:
     out: DescribeContinuousExportsRequest = {}  # type: ignore[typeddict-item]
-    if "exportIds" in data:
+    if data.get("exportIds") is not None:
         import capo_application_discovery_service.types.continuous_export_ids
 
         out["export_ids"] = (
@@ -53,8 +53,8 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeContinuousExportsRequest:
                 data["exportIds"]
             )
         )
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

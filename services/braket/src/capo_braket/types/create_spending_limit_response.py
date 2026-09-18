@@ -24,7 +24,7 @@ def serialize_json(value: CreateSpendingLimitResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateSpendingLimitResponse:
     out: CreateSpendingLimitResponse = {}  # type: ignore[typeddict-item]
-    if "spendingLimitArn" in data:
+    if data.get("spendingLimitArn") is not None:
         out["spending_limit_arn"] = data["spendingLimitArn"]
     else:
         raise DeserializationError(

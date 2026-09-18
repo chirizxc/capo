@@ -198,19 +198,19 @@ def serialize_aws_json_1_1(value: RelationalDatabase) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RelationalDatabase:
     out: RelationalDatabase = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "supportCode" in data:
+    if data.get("supportCode") is not None:
         out["support_code"] = data["supportCode"]
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_lightsail.types.iso_date
 
         out["created_at"] = capo_lightsail.types.iso_date.deserialize_aws_json_1_1(
             data["createdAt"]
         )
-    if "location" in data:
+    if data.get("location") is not None:
         import capo_lightsail.types.resource_location
 
         out["location"] = (
@@ -218,7 +218,7 @@ def deserialize_aws_json_1_1(data: dict) -> RelationalDatabase:
                 data["location"]
             )
         )
-    if "resourceType" in data:
+    if data.get("resourceType") is not None:
         import capo_lightsail.types.resource_type
 
         out["resource_type"] = (
@@ -226,19 +226,19 @@ def deserialize_aws_json_1_1(data: dict) -> RelationalDatabase:
                 data["resourceType"]
             )
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_lightsail.types.tag_list
 
         out["tags"] = capo_lightsail.types.tag_list.deserialize_aws_json_1_1(
             data["tags"]
         )
-    if "relationalDatabaseBlueprintId" in data:
+    if data.get("relationalDatabaseBlueprintId") is not None:
         out["relational_database_blueprint_id"] = data["relationalDatabaseBlueprintId"]
-    if "relationalDatabaseBundleId" in data:
+    if data.get("relationalDatabaseBundleId") is not None:
         out["relational_database_bundle_id"] = data["relationalDatabaseBundleId"]
-    if "masterDatabaseName" in data:
+    if data.get("masterDatabaseName") is not None:
         out["master_database_name"] = data["masterDatabaseName"]
-    if "hardware" in data:
+    if data.get("hardware") is not None:
         import capo_lightsail.types.relational_database_hardware
 
         out["hardware"] = (
@@ -246,13 +246,13 @@ def deserialize_aws_json_1_1(data: dict) -> RelationalDatabase:
                 data["hardware"]
             )
         )
-    if "state" in data:
+    if data.get("state") is not None:
         out["state"] = data["state"]
-    if "secondaryAvailabilityZone" in data:
+    if data.get("secondaryAvailabilityZone") is not None:
         out["secondary_availability_zone"] = data["secondaryAvailabilityZone"]
-    if "backupRetentionEnabled" in data:
+    if data.get("backupRetentionEnabled") is not None:
         out["backup_retention_enabled"] = data["backupRetentionEnabled"]
-    if "pendingModifiedValues" in data:
+    if data.get("pendingModifiedValues") is not None:
         import capo_lightsail.types.pending_modified_relational_database_values
 
         out["pending_modified_values"] = (
@@ -260,11 +260,11 @@ def deserialize_aws_json_1_1(data: dict) -> RelationalDatabase:
                 data["pendingModifiedValues"]
             )
         )
-    if "engine" in data:
+    if data.get("engine") is not None:
         out["engine"] = data["engine"]
-    if "engineVersion" in data:
+    if data.get("engineVersion") is not None:
         out["engine_version"] = data["engineVersion"]
-    if "latestRestorableTime" in data:
+    if data.get("latestRestorableTime") is not None:
         import capo_lightsail.types.iso_date
 
         out["latest_restorable_time"] = (
@@ -272,17 +272,17 @@ def deserialize_aws_json_1_1(data: dict) -> RelationalDatabase:
                 data["latestRestorableTime"]
             )
         )
-    if "masterUsername" in data:
+    if data.get("masterUsername") is not None:
         out["master_username"] = data["masterUsername"]
-    if "parameterApplyStatus" in data:
+    if data.get("parameterApplyStatus") is not None:
         out["parameter_apply_status"] = data["parameterApplyStatus"]
-    if "preferredBackupWindow" in data:
+    if data.get("preferredBackupWindow") is not None:
         out["preferred_backup_window"] = data["preferredBackupWindow"]
-    if "preferredMaintenanceWindow" in data:
+    if data.get("preferredMaintenanceWindow") is not None:
         out["preferred_maintenance_window"] = data["preferredMaintenanceWindow"]
-    if "publiclyAccessible" in data:
+    if data.get("publiclyAccessible") is not None:
         out["publicly_accessible"] = data["publiclyAccessible"]
-    if "masterEndpoint" in data:
+    if data.get("masterEndpoint") is not None:
         import capo_lightsail.types.relational_database_endpoint
 
         out["master_endpoint"] = (
@@ -290,7 +290,7 @@ def deserialize_aws_json_1_1(data: dict) -> RelationalDatabase:
                 data["masterEndpoint"]
             )
         )
-    if "pendingMaintenanceActions" in data:
+    if data.get("pendingMaintenanceActions") is not None:
         import capo_lightsail.types.pending_maintenance_action_list
 
         out["pending_maintenance_actions"] = (
@@ -298,6 +298,6 @@ def deserialize_aws_json_1_1(data: dict) -> RelationalDatabase:
                 data["pendingMaintenanceActions"]
             )
         )
-    if "caCertificateIdentifier" in data:
+    if data.get("caCertificateIdentifier") is not None:
         out["ca_certificate_identifier"] = data["caCertificateIdentifier"]
     return out

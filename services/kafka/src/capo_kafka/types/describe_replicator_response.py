@@ -121,17 +121,17 @@ def serialize_json(value: DescribeReplicatorResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribeReplicatorResponse:
     out: DescribeReplicatorResponse = {}  # type: ignore[typeddict-item]
-    if "creationTime" in data:
+    if data.get("creationTime") is not None:
         import capo_kafka.types.__timestamp_iso8601
 
         out["creation_time"] = capo_kafka.types.__timestamp_iso8601.deserialize_json(
             data["creationTime"]
         )
-    if "currentVersion" in data:
+    if data.get("currentVersion") is not None:
         out["current_version"] = data["currentVersion"]
-    if "isReplicatorReference" in data:
+    if data.get("isReplicatorReference") is not None:
         out["is_replicator_reference"] = data["isReplicatorReference"]
-    if "kafkaClusters" in data:
+    if data.get("kafkaClusters") is not None:
         import capo_kafka.types.__list_of_kafka_cluster_description
 
         out["kafka_clusters"] = (
@@ -139,7 +139,7 @@ def deserialize_json(data: dict) -> DescribeReplicatorResponse:
                 data["kafkaClusters"]
             )
         )
-    if "replicationInfoList" in data:
+    if data.get("replicationInfoList") is not None:
         import capo_kafka.types.__list_of_replication_info_description
 
         out["replication_info_list"] = (
@@ -147,33 +147,33 @@ def deserialize_json(data: dict) -> DescribeReplicatorResponse:
                 data["replicationInfoList"]
             )
         )
-    if "replicatorArn" in data:
+    if data.get("replicatorArn") is not None:
         out["replicator_arn"] = data["replicatorArn"]
-    if "replicatorDescription" in data:
+    if data.get("replicatorDescription") is not None:
         out["replicator_description"] = data["replicatorDescription"]
-    if "replicatorName" in data:
+    if data.get("replicatorName") is not None:
         out["replicator_name"] = data["replicatorName"]
-    if "replicatorResourceArn" in data:
+    if data.get("replicatorResourceArn") is not None:
         out["replicator_resource_arn"] = data["replicatorResourceArn"]
-    if "replicatorState" in data:
+    if data.get("replicatorState") is not None:
         import capo_kafka.types.replicator_state
 
         out["replicator_state"] = capo_kafka.types.replicator_state.deserialize_json(
             data["replicatorState"]
         )
-    if "serviceExecutionRoleArn" in data:
+    if data.get("serviceExecutionRoleArn") is not None:
         out["service_execution_role_arn"] = data["serviceExecutionRoleArn"]
-    if "stateInfo" in data:
+    if data.get("stateInfo") is not None:
         import capo_kafka.types.replication_state_info
 
         out["state_info"] = capo_kafka.types.replication_state_info.deserialize_json(
             data["stateInfo"]
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_kafka.types.__map_of__string
 
         out["tags"] = capo_kafka.types.__map_of__string.deserialize_json(data["tags"])
-    if "logDelivery" in data:
+    if data.get("logDelivery") is not None:
         import capo_kafka.types.log_delivery
 
         out["log_delivery"] = capo_kafka.types.log_delivery.deserialize_json(

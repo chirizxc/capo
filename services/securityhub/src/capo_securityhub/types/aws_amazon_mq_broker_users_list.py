@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> AwsAmazonMqBrokerUsersList:
 
     out: AwsAmazonMqBrokerUsersList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_securityhub.types.aws_amazon_mq_broker_users_details.deserialize_json(
                 item

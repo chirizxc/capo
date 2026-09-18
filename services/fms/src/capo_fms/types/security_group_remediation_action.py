@@ -55,7 +55,7 @@ def serialize_aws_json_1_1(value: SecurityGroupRemediationAction) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SecurityGroupRemediationAction:
     out: SecurityGroupRemediationAction = {}  # type: ignore[typeddict-item]
-    if "RemediationActionType" in data:
+    if data.get("RemediationActionType") is not None:
         import capo_fms.types.remediation_action_type
 
         out["remediation_action_type"] = (
@@ -63,9 +63,9 @@ def deserialize_aws_json_1_1(data: dict) -> SecurityGroupRemediationAction:
                 data["RemediationActionType"]
             )
         )
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "RemediationResult" in data:
+    if data.get("RemediationResult") is not None:
         import capo_fms.types.security_group_rule_description
 
         out["remediation_result"] = (
@@ -73,7 +73,7 @@ def deserialize_aws_json_1_1(data: dict) -> SecurityGroupRemediationAction:
                 data["RemediationResult"]
             )
         )
-    if "IsDefaultAction" in data:
+    if data.get("IsDefaultAction") is not None:
         out["is_default_action"] = data["IsDefaultAction"]
     else:
         out["is_default_action"] = False

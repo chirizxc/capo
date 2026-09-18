@@ -28,8 +28,8 @@ def serialize_json(value: EksSecret) -> dict:
 
 def deserialize_json(data: dict) -> EksSecret:
     out: EksSecret = {}  # type: ignore[typeddict-item]
-    if "secretName" in data:
+    if data.get("secretName") is not None:
         out["secret_name"] = data["secretName"]
-    if "optional" in data:
+    if data.get("optional") is not None:
         out["optional"] = data["optional"]
     return out

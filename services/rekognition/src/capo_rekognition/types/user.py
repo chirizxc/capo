@@ -32,9 +32,9 @@ def serialize_aws_json_1_1(value: User) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> User:
     out: User = {}  # type: ignore[typeddict-item]
-    if "UserId" in data:
+    if data.get("UserId") is not None:
         out["user_id"] = data["UserId"]
-    if "UserStatus" in data:
+    if data.get("UserStatus") is not None:
         import capo_rekognition.types.user_status
 
         out["user_status"] = (

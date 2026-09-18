@@ -42,15 +42,15 @@ def serialize_json(value: TaskSummary) -> dict:
 
 def deserialize_json(data: dict) -> TaskSummary:
     out: TaskSummary = {}  # type: ignore[typeddict-item]
-    if "taskId" in data:
+    if data.get("taskId") is not None:
         out["task_id"] = data["taskId"]
     else:
         raise DeserializationError("TaskSummary.task_id required")
-    if "taskArn" in data:
+    if data.get("taskArn") is not None:
         out["task_arn"] = data["taskArn"]
-    if "state" in data:
+    if data.get("state") is not None:
         out["state"] = data["state"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_snow_device_management.types.tag_map
 
         out["tags"] = capo_snow_device_management.types.tag_map.deserialize_json(

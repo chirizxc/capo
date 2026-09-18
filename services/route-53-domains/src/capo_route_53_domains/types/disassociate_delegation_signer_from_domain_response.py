@@ -27,6 +27,6 @@ def deserialize_aws_json_1_1(
     data: dict,
 ) -> DisassociateDelegationSignerFromDomainResponse:
     out: DisassociateDelegationSignerFromDomainResponse = {}  # type: ignore[typeddict-item]
-    if "OperationId" in data:
+    if data.get("OperationId") is not None:
         out["operation_id"] = data["OperationId"]
     return out

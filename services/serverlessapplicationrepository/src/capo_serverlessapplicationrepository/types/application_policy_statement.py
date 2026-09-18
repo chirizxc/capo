@@ -62,7 +62,7 @@ def serialize_json(value: ApplicationPolicyStatement) -> dict:
 
 def deserialize_json(data: dict) -> ApplicationPolicyStatement:
     out: ApplicationPolicyStatement = {}  # type: ignore[typeddict-item]
-    if "actions" in data:
+    if data.get("actions") is not None:
         import capo_serverlessapplicationrepository.types.__list_of__string
 
         out["actions"] = (
@@ -70,7 +70,7 @@ def deserialize_json(data: dict) -> ApplicationPolicyStatement:
                 data["actions"]
             )
         )
-    if "principalOrgIDs" in data:
+    if data.get("principalOrgIDs") is not None:
         import capo_serverlessapplicationrepository.types.__list_of__string
 
         out["principal_org_i_ds"] = (
@@ -78,7 +78,7 @@ def deserialize_json(data: dict) -> ApplicationPolicyStatement:
                 data["principalOrgIDs"]
             )
         )
-    if "principals" in data:
+    if data.get("principals") is not None:
         import capo_serverlessapplicationrepository.types.__list_of__string
 
         out["principals"] = (
@@ -86,6 +86,6 @@ def deserialize_json(data: dict) -> ApplicationPolicyStatement:
                 data["principals"]
             )
         )
-    if "statementId" in data:
+    if data.get("statementId") is not None:
         out["statement_id"] = data["statementId"]
     return out

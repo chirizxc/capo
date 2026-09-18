@@ -25,6 +25,8 @@ def deserialize_json(data: list) -> WorkloadInsightsTopContributorsTimestampsLis
 
     out: WorkloadInsightsTopContributorsTimestampsList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_networkflowmonitor.types._prelude.timestamp.deserialize_json(item)
         )

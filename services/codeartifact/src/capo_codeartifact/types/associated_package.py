@@ -50,17 +50,17 @@ def serialize_json(value: AssociatedPackage) -> dict:
 
 def deserialize_json(data: dict) -> AssociatedPackage:
     out: AssociatedPackage = {}  # type: ignore[typeddict-item]
-    if "format" in data:
+    if data.get("format") is not None:
         import capo_codeartifact.types.package_format
 
         out["format"] = capo_codeartifact.types.package_format.deserialize_json(
             data["format"]
         )
-    if "namespace" in data:
+    if data.get("namespace") is not None:
         out["namespace"] = data["namespace"]
-    if "package" in data:
+    if data.get("package") is not None:
         out["package"] = data["package"]
-    if "associationType" in data:
+    if data.get("associationType") is not None:
         import capo_codeartifact.types.package_group_association_type
 
         out["association_type"] = (

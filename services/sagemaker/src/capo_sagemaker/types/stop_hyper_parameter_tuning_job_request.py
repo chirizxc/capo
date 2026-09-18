@@ -25,6 +25,6 @@ def serialize_aws_json_1_1(value: StopHyperParameterTuningJobRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> StopHyperParameterTuningJobRequest:
     out: StopHyperParameterTuningJobRequest = {}  # type: ignore[typeddict-item]
-    if "HyperParameterTuningJobName" in data:
+    if data.get("HyperParameterTuningJobName") is not None:
         out["hyper_parameter_tuning_job_name"] = data["HyperParameterTuningJobName"]
     return out

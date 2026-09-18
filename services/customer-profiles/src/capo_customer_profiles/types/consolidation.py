@@ -32,7 +32,7 @@ def serialize_json(value: Consolidation) -> dict:
 
 def deserialize_json(data: dict) -> Consolidation:
     out: Consolidation = {}  # type: ignore[typeddict-item]
-    if "MatchingAttributesList" in data:
+    if data.get("MatchingAttributesList") is not None:
         import capo_customer_profiles.types.matching_attributes_list
 
         out["matching_attributes_list"] = (

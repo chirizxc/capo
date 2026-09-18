@@ -55,7 +55,7 @@ def serialize_json(value: CodegenGenericDataField) -> dict:
 
 def deserialize_json(data: dict) -> CodegenGenericDataField:
     out: CodegenGenericDataField = {}  # type: ignore[typeddict-item]
-    if "dataType" in data:
+    if data.get("dataType") is not None:
         import capo_amplifyuibuilder.types.codegen_generic_data_field_data_type
 
         out["data_type"] = (
@@ -65,23 +65,23 @@ def deserialize_json(data: dict) -> CodegenGenericDataField:
         )
     else:
         raise DeserializationError("CodegenGenericDataField.data_type required")
-    if "dataTypeValue" in data:
+    if data.get("dataTypeValue") is not None:
         out["data_type_value"] = data["dataTypeValue"]
     else:
         raise DeserializationError("CodegenGenericDataField.data_type_value required")
-    if "required" in data:
+    if data.get("required") is not None:
         out["required"] = data["required"]
     else:
         raise DeserializationError("CodegenGenericDataField.required required")
-    if "readOnly" in data:
+    if data.get("readOnly") is not None:
         out["read_only"] = data["readOnly"]
     else:
         raise DeserializationError("CodegenGenericDataField.read_only required")
-    if "isArray" in data:
+    if data.get("isArray") is not None:
         out["is_array"] = data["isArray"]
     else:
         raise DeserializationError("CodegenGenericDataField.is_array required")
-    if "relationship" in data:
+    if data.get("relationship") is not None:
         import capo_amplifyuibuilder.types.codegen_generic_data_relationship_type
 
         out["relationship"] = (

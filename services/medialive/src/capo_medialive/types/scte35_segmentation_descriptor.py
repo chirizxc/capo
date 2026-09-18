@@ -100,7 +100,7 @@ def serialize_json(value: Scte35SegmentationDescriptor) -> dict:
 
 def deserialize_json(data: dict) -> Scte35SegmentationDescriptor:
     out: Scte35SegmentationDescriptor = {}  # type: ignore[typeddict-item]
-    if "deliveryRestrictions" in data:
+    if data.get("deliveryRestrictions") is not None:
         import capo_medialive.types.scte35_delivery_restrictions
 
         out["delivery_restrictions"] = (
@@ -108,9 +108,9 @@ def deserialize_json(data: dict) -> Scte35SegmentationDescriptor:
                 data["deliveryRestrictions"]
             )
         )
-    if "segmentNum" in data:
+    if data.get("segmentNum") is not None:
         out["segment_num"] = data["segmentNum"]
-    if "segmentationCancelIndicator" in data:
+    if data.get("segmentationCancelIndicator") is not None:
         import capo_medialive.types.scte35_segmentation_cancel_indicator
 
         out["segmentation_cancel_indicator"] = (
@@ -118,20 +118,20 @@ def deserialize_json(data: dict) -> Scte35SegmentationDescriptor:
                 data["segmentationCancelIndicator"]
             )
         )
-    if "segmentationDuration" in data:
+    if data.get("segmentationDuration") is not None:
         out["segmentation_duration"] = data["segmentationDuration"]
-    if "segmentationEventId" in data:
+    if data.get("segmentationEventId") is not None:
         out["segmentation_event_id"] = data["segmentationEventId"]
-    if "segmentationTypeId" in data:
+    if data.get("segmentationTypeId") is not None:
         out["segmentation_type_id"] = data["segmentationTypeId"]
-    if "segmentationUpid" in data:
+    if data.get("segmentationUpid") is not None:
         out["segmentation_upid"] = data["segmentationUpid"]
-    if "segmentationUpidType" in data:
+    if data.get("segmentationUpidType") is not None:
         out["segmentation_upid_type"] = data["segmentationUpidType"]
-    if "segmentsExpected" in data:
+    if data.get("segmentsExpected") is not None:
         out["segments_expected"] = data["segmentsExpected"]
-    if "subSegmentNum" in data:
+    if data.get("subSegmentNum") is not None:
         out["sub_segment_num"] = data["subSegmentNum"]
-    if "subSegmentsExpected" in data:
+    if data.get("subSegmentsExpected") is not None:
         out["sub_segments_expected"] = data["subSegmentsExpected"]
     return out

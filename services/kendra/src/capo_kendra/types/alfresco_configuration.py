@@ -131,19 +131,19 @@ def serialize_aws_json_1_1(value: AlfrescoConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AlfrescoConfiguration:
     out: AlfrescoConfiguration = {}  # type: ignore[typeddict-item]
-    if "SiteUrl" in data:
+    if data.get("SiteUrl") is not None:
         out["site_url"] = data["SiteUrl"]
     else:
         raise DeserializationError("AlfrescoConfiguration.site_url required")
-    if "SiteId" in data:
+    if data.get("SiteId") is not None:
         out["site_id"] = data["SiteId"]
     else:
         raise DeserializationError("AlfrescoConfiguration.site_id required")
-    if "SecretArn" in data:
+    if data.get("SecretArn") is not None:
         out["secret_arn"] = data["SecretArn"]
     else:
         raise DeserializationError("AlfrescoConfiguration.secret_arn required")
-    if "SslCertificateS3Path" in data:
+    if data.get("SslCertificateS3Path") is not None:
         import capo_kendra.types.s3_path
 
         out["ssl_certificate_s3_path"] = (
@@ -155,21 +155,21 @@ def deserialize_aws_json_1_1(data: dict) -> AlfrescoConfiguration:
         raise DeserializationError(
             "AlfrescoConfiguration.ssl_certificate_s3_path required"
         )
-    if "CrawlSystemFolders" in data:
+    if data.get("CrawlSystemFolders") is not None:
         out["crawl_system_folders"] = data["CrawlSystemFolders"]
     else:
         out["crawl_system_folders"] = False
-    if "CrawlComments" in data:
+    if data.get("CrawlComments") is not None:
         out["crawl_comments"] = data["CrawlComments"]
     else:
         out["crawl_comments"] = False
-    if "EntityFilter" in data:
+    if data.get("EntityFilter") is not None:
         import capo_kendra.types.entity_filter
 
         out["entity_filter"] = capo_kendra.types.entity_filter.deserialize_aws_json_1_1(
             data["EntityFilter"]
         )
-    if "DocumentLibraryFieldMappings" in data:
+    if data.get("DocumentLibraryFieldMappings") is not None:
         import capo_kendra.types.data_source_to_index_field_mapping_list
 
         out["document_library_field_mappings"] = (
@@ -177,7 +177,7 @@ def deserialize_aws_json_1_1(data: dict) -> AlfrescoConfiguration:
                 data["DocumentLibraryFieldMappings"]
             )
         )
-    if "BlogFieldMappings" in data:
+    if data.get("BlogFieldMappings") is not None:
         import capo_kendra.types.data_source_to_index_field_mapping_list
 
         out["blog_field_mappings"] = (
@@ -185,7 +185,7 @@ def deserialize_aws_json_1_1(data: dict) -> AlfrescoConfiguration:
                 data["BlogFieldMappings"]
             )
         )
-    if "WikiFieldMappings" in data:
+    if data.get("WikiFieldMappings") is not None:
         import capo_kendra.types.data_source_to_index_field_mapping_list
 
         out["wiki_field_mappings"] = (
@@ -193,7 +193,7 @@ def deserialize_aws_json_1_1(data: dict) -> AlfrescoConfiguration:
                 data["WikiFieldMappings"]
             )
         )
-    if "InclusionPatterns" in data:
+    if data.get("InclusionPatterns") is not None:
         import capo_kendra.types.data_source_inclusions_exclusions_strings
 
         out["inclusion_patterns"] = (
@@ -201,7 +201,7 @@ def deserialize_aws_json_1_1(data: dict) -> AlfrescoConfiguration:
                 data["InclusionPatterns"]
             )
         )
-    if "ExclusionPatterns" in data:
+    if data.get("ExclusionPatterns") is not None:
         import capo_kendra.types.data_source_inclusions_exclusions_strings
 
         out["exclusion_patterns"] = (
@@ -209,7 +209,7 @@ def deserialize_aws_json_1_1(data: dict) -> AlfrescoConfiguration:
                 data["ExclusionPatterns"]
             )
         )
-    if "VpcConfiguration" in data:
+    if data.get("VpcConfiguration") is not None:
         import capo_kendra.types.data_source_vpc_configuration
 
         out["vpc_configuration"] = (

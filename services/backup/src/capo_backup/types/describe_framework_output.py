@@ -68,13 +68,13 @@ def serialize_json(value: DescribeFrameworkOutput) -> dict:
 
 def deserialize_json(data: dict) -> DescribeFrameworkOutput:
     out: DescribeFrameworkOutput = {}  # type: ignore[typeddict-item]
-    if "FrameworkName" in data:
+    if data.get("FrameworkName") is not None:
         out["framework_name"] = data["FrameworkName"]
-    if "FrameworkArn" in data:
+    if data.get("FrameworkArn") is not None:
         out["framework_arn"] = data["FrameworkArn"]
-    if "FrameworkDescription" in data:
+    if data.get("FrameworkDescription") is not None:
         out["framework_description"] = data["FrameworkDescription"]
-    if "FrameworkControls" in data:
+    if data.get("FrameworkControls") is not None:
         import capo_backup.types.framework_controls
 
         out["framework_controls"] = (
@@ -82,16 +82,16 @@ def deserialize_json(data: dict) -> DescribeFrameworkOutput:
                 data["FrameworkControls"]
             )
         )
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_backup.types.timestamp
 
         out["creation_time"] = capo_backup.types.timestamp.deserialize_json(
             data["CreationTime"]
         )
-    if "DeploymentStatus" in data:
+    if data.get("DeploymentStatus") is not None:
         out["deployment_status"] = data["DeploymentStatus"]
-    if "FrameworkStatus" in data:
+    if data.get("FrameworkStatus") is not None:
         out["framework_status"] = data["FrameworkStatus"]
-    if "IdempotencyToken" in data:
+    if data.get("IdempotencyToken") is not None:
         out["idempotency_token"] = data["IdempotencyToken"]
     return out

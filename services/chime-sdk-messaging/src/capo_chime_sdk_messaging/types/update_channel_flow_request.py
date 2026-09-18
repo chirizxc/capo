@@ -35,7 +35,7 @@ def serialize_json(value: UpdateChannelFlowRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateChannelFlowRequest:
     out: UpdateChannelFlowRequest = {}  # type: ignore[typeddict-item]
-    if "Processors" in data:
+    if data.get("Processors") is not None:
         import capo_chime_sdk_messaging.types.processor_list
 
         out["processors"] = (
@@ -45,7 +45,7 @@ def deserialize_json(data: dict) -> UpdateChannelFlowRequest:
         )
     else:
         raise DeserializationError("UpdateChannelFlowRequest.processors required")
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("UpdateChannelFlowRequest.name required")

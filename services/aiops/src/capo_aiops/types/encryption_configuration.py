@@ -34,12 +34,12 @@ def serialize_json(value: EncryptionConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> EncryptionConfiguration:
     out: EncryptionConfiguration = {}  # type: ignore[typeddict-item]
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_aiops.types.encryption_configuration_type
 
         out["type"] = capo_aiops.types.encryption_configuration_type.deserialize_json(
             data["type"]
         )
-    if "kmsKeyId" in data:
+    if data.get("kmsKeyId") is not None:
         out["kms_key_id"] = data["kmsKeyId"]
     return out

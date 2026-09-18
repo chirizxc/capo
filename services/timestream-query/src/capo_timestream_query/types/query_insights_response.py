@@ -69,7 +69,7 @@ def serialize_aws_json_1_0(value: QueryInsightsResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> QueryInsightsResponse:
     out: QueryInsightsResponse = {}  # type: ignore[typeddict-item]
-    if "QuerySpatialCoverage" in data:
+    if data.get("QuerySpatialCoverage") is not None:
         import capo_timestream_query.types.query_spatial_coverage
 
         out["query_spatial_coverage"] = (
@@ -77,7 +77,7 @@ def deserialize_aws_json_1_0(data: dict) -> QueryInsightsResponse:
                 data["QuerySpatialCoverage"]
             )
         )
-    if "QueryTemporalRange" in data:
+    if data.get("QueryTemporalRange") is not None:
         import capo_timestream_query.types.query_temporal_range
 
         out["query_temporal_range"] = (
@@ -85,16 +85,16 @@ def deserialize_aws_json_1_0(data: dict) -> QueryInsightsResponse:
                 data["QueryTemporalRange"]
             )
         )
-    if "QueryTableCount" in data:
+    if data.get("QueryTableCount") is not None:
         out["query_table_count"] = data["QueryTableCount"]
-    if "OutputRows" in data:
+    if data.get("OutputRows") is not None:
         out["output_rows"] = data["OutputRows"]
-    if "OutputBytes" in data:
+    if data.get("OutputBytes") is not None:
         out["output_bytes"] = data["OutputBytes"]
-    if "UnloadPartitionCount" in data:
+    if data.get("UnloadPartitionCount") is not None:
         out["unload_partition_count"] = data["UnloadPartitionCount"]
-    if "UnloadWrittenRows" in data:
+    if data.get("UnloadWrittenRows") is not None:
         out["unload_written_rows"] = data["UnloadWrittenRows"]
-    if "UnloadWrittenBytes" in data:
+    if data.get("UnloadWrittenBytes") is not None:
         out["unload_written_bytes"] = data["UnloadWrittenBytes"]
     return out

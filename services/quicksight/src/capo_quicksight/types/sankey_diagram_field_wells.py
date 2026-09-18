@@ -31,7 +31,7 @@ def serialize_json(value: SankeyDiagramFieldWells) -> dict:
 
 def deserialize_json(data: dict) -> SankeyDiagramFieldWells:
     out: SankeyDiagramFieldWells = {}  # type: ignore[typeddict-item]
-    if "SankeyDiagramAggregatedFieldWells" in data:
+    if data.get("SankeyDiagramAggregatedFieldWells") is not None:
         import capo_quicksight.types.sankey_diagram_aggregated_field_wells
 
         out["sankey_diagram_aggregated_field_wells"] = (

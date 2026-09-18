@@ -29,10 +29,10 @@ def serialize_json(value: Content) -> dict:
 
 def deserialize_json(data: dict) -> Content:
     out: Content = {}  # type: ignore[typeddict-item]
-    if "Data" in data:
+    if data.get("Data") is not None:
         out["data"] = data["Data"]
     else:
         raise DeserializationError("Content.data required")
-    if "Charset" in data:
+    if data.get("Charset") is not None:
         out["charset"] = data["Charset"]
     return out

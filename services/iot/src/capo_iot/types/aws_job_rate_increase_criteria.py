@@ -31,8 +31,8 @@ def serialize_json(value: AwsJobRateIncreaseCriteria) -> dict:
 
 def deserialize_json(data: dict) -> AwsJobRateIncreaseCriteria:
     out: AwsJobRateIncreaseCriteria = {}  # type: ignore[typeddict-item]
-    if "numberOfNotifiedThings" in data:
+    if data.get("numberOfNotifiedThings") is not None:
         out["number_of_notified_things"] = data["numberOfNotifiedThings"]
-    if "numberOfSucceededThings" in data:
+    if data.get("numberOfSucceededThings") is not None:
         out["number_of_succeeded_things"] = data["numberOfSucceededThings"]
     return out

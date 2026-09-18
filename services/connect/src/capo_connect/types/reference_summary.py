@@ -153,11 +153,11 @@ def serialize_json(value: ReferenceSummary) -> dict:
 
 
 def deserialize_json(data: dict) -> ReferenceSummary:
-    if "Url" in data:
+    if data.get("Url") is not None:
         import capo_connect.types.url_reference
 
         return {"Url": capo_connect.types.url_reference.deserialize_json(data["Url"])}
-    elif "Attachment" in data:
+    elif data.get("Attachment") is not None:
         import capo_connect.types.attachment_reference
 
         return {
@@ -165,7 +165,7 @@ def deserialize_json(data: dict) -> ReferenceSummary:
                 data["Attachment"]
             )
         }
-    elif "EmailMessage" in data:
+    elif data.get("EmailMessage") is not None:
         import capo_connect.types.email_message_reference
 
         return {
@@ -173,7 +173,7 @@ def deserialize_json(data: dict) -> ReferenceSummary:
                 data["EmailMessage"]
             )
         }
-    elif "EmailMessageRedacted" in data:
+    elif data.get("EmailMessageRedacted") is not None:
         import capo_connect.types.email_message_reference
 
         return {
@@ -181,7 +181,7 @@ def deserialize_json(data: dict) -> ReferenceSummary:
                 data["EmailMessageRedacted"]
             )
         }
-    elif "EmailMessagePlainText" in data:
+    elif data.get("EmailMessagePlainText") is not None:
         import capo_connect.types.email_message_reference
 
         return {
@@ -189,7 +189,7 @@ def deserialize_json(data: dict) -> ReferenceSummary:
                 data["EmailMessagePlainText"]
             )
         }
-    elif "EmailMessagePlainTextRedacted" in data:
+    elif data.get("EmailMessagePlainTextRedacted") is not None:
         import capo_connect.types.email_message_reference
 
         return {
@@ -197,7 +197,7 @@ def deserialize_json(data: dict) -> ReferenceSummary:
                 data["EmailMessagePlainTextRedacted"]
             )
         }
-    elif "String" in data:
+    elif data.get("String") is not None:
         import capo_connect.types.string_reference
 
         return {
@@ -205,7 +205,7 @@ def deserialize_json(data: dict) -> ReferenceSummary:
                 data["String"]
             )
         }
-    elif "Number" in data:
+    elif data.get("Number") is not None:
         import capo_connect.types.number_reference
 
         return {
@@ -213,13 +213,13 @@ def deserialize_json(data: dict) -> ReferenceSummary:
                 data["Number"]
             )
         }
-    elif "Date" in data:
+    elif data.get("Date") is not None:
         import capo_connect.types.date_reference
 
         return {
             "Date": capo_connect.types.date_reference.deserialize_json(data["Date"])
         }
-    elif "Email" in data:
+    elif data.get("Email") is not None:
         import capo_connect.types.email_reference
 
         return {

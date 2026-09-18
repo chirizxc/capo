@@ -47,13 +47,13 @@ def serialize_json(value: CreateWorkflowDefinitionRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateWorkflowDefinitionRequest:
     out: CreateWorkflowDefinitionRequest = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("CreateWorkflowDefinitionRequest.name required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "exportConfig" in data:
+    if data.get("exportConfig") is not None:
         import capo_nova_act.types.workflow_export_config
 
         out["export_config"] = (
@@ -61,6 +61,6 @@ def deserialize_json(data: dict) -> CreateWorkflowDefinitionRequest:
                 data["exportConfig"]
             )
         )
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     return out

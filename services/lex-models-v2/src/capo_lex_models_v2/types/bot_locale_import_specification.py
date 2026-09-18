@@ -55,7 +55,16 @@ def serialize_json(value: BotLocaleImportSpecification) -> dict:
     out["botVersion"] = value["bot_version"]
     out["localeId"] = value["locale_id"]
     if "nlu_intent_confidence_threshold" in value:
-        out["nluIntentConfidenceThreshold"] = value["nlu_intent_confidence_threshold"]
+        out["nluIntentConfidenceThreshold"] = (
+            "NaN"
+            if value["nlu_intent_confidence_threshold"]
+            != value["nlu_intent_confidence_threshold"]
+            else "Infinity"
+            if value["nlu_intent_confidence_threshold"] == float("inf")
+            else "-Infinity"
+            if value["nlu_intent_confidence_threshold"] == float("-inf")
+            else value["nlu_intent_confidence_threshold"]
+        )
     if "voice_settings" in value:
         import capo_lex_models_v2.types.voice_settings
 
@@ -99,21 +108,23 @@ def serialize_json(value: BotLocaleImportSpecification) -> dict:
 
 def deserialize_json(data: dict) -> BotLocaleImportSpecification:
     out: BotLocaleImportSpecification = {}  # type: ignore[typeddict-item]
-    if "botId" in data:
+    if data.get("botId") is not None:
         out["bot_id"] = data["botId"]
     else:
         raise DeserializationError("BotLocaleImportSpecification.bot_id required")
-    if "botVersion" in data:
+    if data.get("botVersion") is not None:
         out["bot_version"] = data["botVersion"]
     else:
         raise DeserializationError("BotLocaleImportSpecification.bot_version required")
-    if "localeId" in data:
+    if data.get("localeId") is not None:
         out["locale_id"] = data["localeId"]
     else:
         raise DeserializationError("BotLocaleImportSpecification.locale_id required")
-    if "nluIntentConfidenceThreshold" in data:
-        out["nlu_intent_confidence_threshold"] = data["nluIntentConfidenceThreshold"]
-    if "voiceSettings" in data:
+    if data.get("nluIntentConfidenceThreshold") is not None:
+        out["nlu_intent_confidence_threshold"] = float(
+            data["nluIntentConfidenceThreshold"]
+        )
+    if data.get("voiceSettings") is not None:
         import capo_lex_models_v2.types.voice_settings
 
         out["voice_settings"] = (
@@ -121,7 +132,7 @@ def deserialize_json(data: dict) -> BotLocaleImportSpecification:
                 data["voiceSettings"]
             )
         )
-    if "speechRecognitionSettings" in data:
+    if data.get("speechRecognitionSettings") is not None:
         import capo_lex_models_v2.types.speech_recognition_settings
 
         out["speech_recognition_settings"] = (
@@ -129,7 +140,7 @@ def deserialize_json(data: dict) -> BotLocaleImportSpecification:
                 data["speechRecognitionSettings"]
             )
         )
-    if "speechDetectionSensitivity" in data:
+    if data.get("speechDetectionSensitivity") is not None:
         import capo_lex_models_v2.types.speech_detection_sensitivity
 
         out["speech_detection_sensitivity"] = (
@@ -137,7 +148,7 @@ def deserialize_json(data: dict) -> BotLocaleImportSpecification:
                 data["speechDetectionSensitivity"]
             )
         )
-    if "unifiedSpeechSettings" in data:
+    if data.get("unifiedSpeechSettings") is not None:
         import capo_lex_models_v2.types.unified_speech_settings
 
         out["unified_speech_settings"] = (
@@ -145,7 +156,7 @@ def deserialize_json(data: dict) -> BotLocaleImportSpecification:
                 data["unifiedSpeechSettings"]
             )
         )
-    if "audioFillerSettings" in data:
+    if data.get("audioFillerSettings") is not None:
         import capo_lex_models_v2.types.audio_filler_settings
 
         out["audio_filler_settings"] = (

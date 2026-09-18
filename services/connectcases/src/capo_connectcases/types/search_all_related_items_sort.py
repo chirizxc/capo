@@ -28,11 +28,11 @@ def serialize_json(value: SearchAllRelatedItemsSort) -> dict:
 
 def deserialize_json(data: dict) -> SearchAllRelatedItemsSort:
     out: SearchAllRelatedItemsSort = {}  # type: ignore[typeddict-item]
-    if "sortProperty" in data:
+    if data.get("sortProperty") is not None:
         out["sort_property"] = data["sortProperty"]
     else:
         raise DeserializationError("SearchAllRelatedItemsSort.sort_property required")
-    if "sortOrder" in data:
+    if data.get("sortOrder") is not None:
         out["sort_order"] = data["sortOrder"]
     else:
         raise DeserializationError("SearchAllRelatedItemsSort.sort_order required")

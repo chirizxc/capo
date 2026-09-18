@@ -22,11 +22,11 @@ def serialize_json(value: Substring) -> dict:
 
 def deserialize_json(data: dict) -> Substring:
     out: Substring = {}  # type: ignore[typeddict-item]
-    if "start" in data:
+    if data.get("start") is not None:
         out["start"] = data["start"]
     else:
         raise DeserializationError("Substring.start required")
-    if "length" in data:
+    if data.get("length") is not None:
         out["length"] = data["length"]
     else:
         raise DeserializationError("Substring.length required")

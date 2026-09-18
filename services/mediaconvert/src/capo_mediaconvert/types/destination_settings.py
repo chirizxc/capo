@@ -31,7 +31,7 @@ def serialize_json(value: DestinationSettings) -> dict:
 
 def deserialize_json(data: dict) -> DestinationSettings:
     out: DestinationSettings = {}  # type: ignore[typeddict-item]
-    if "s3Settings" in data:
+    if data.get("s3Settings") is not None:
         import capo_mediaconvert.types.s3_destination_settings
 
         out["s3_settings"] = (

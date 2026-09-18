@@ -44,15 +44,15 @@ def serialize_aws_json_1_0(value: ActivitySummary) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ActivitySummary:
     out: ActivitySummary = {}  # type: ignore[typeddict-item]
-    if "activityId" in data:
+    if data.get("activityId") is not None:
         out["activity_id"] = data["activityId"]
     else:
         raise DeserializationError("ActivitySummary.activity_id required")
-    if "title" in data:
+    if data.get("title") is not None:
         out["title"] = data["title"]
     else:
         raise DeserializationError("ActivitySummary.title required")
-    if "reward" in data:
+    if data.get("reward") is not None:
         import capo_freetier.types.activity_reward
 
         out["reward"] = capo_freetier.types.activity_reward.deserialize_aws_json_1_0(
@@ -60,7 +60,7 @@ def deserialize_aws_json_1_0(data: dict) -> ActivitySummary:
         )
     else:
         raise DeserializationError("ActivitySummary.reward required")
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_freetier.types.activity_status
 
         out["status"] = capo_freetier.types.activity_status.deserialize_aws_json_1_0(

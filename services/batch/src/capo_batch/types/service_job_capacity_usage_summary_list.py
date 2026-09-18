@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> ServiceJobCapacityUsageSummaryList:
 
     out: ServiceJobCapacityUsageSummaryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_batch.types.service_job_capacity_usage_summary.deserialize_json(item)
         )

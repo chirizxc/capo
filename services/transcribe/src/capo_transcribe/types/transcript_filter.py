@@ -84,7 +84,7 @@ def serialize_aws_json_1_1(value: TranscriptFilter) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> TranscriptFilter:
     out: TranscriptFilter = {}  # type: ignore[typeddict-item]
-    if "TranscriptFilterType" in data:
+    if data.get("TranscriptFilterType") is not None:
         import capo_transcribe.types.transcript_filter_type
 
         out["transcript_filter_type"] = (
@@ -94,7 +94,7 @@ def deserialize_aws_json_1_1(data: dict) -> TranscriptFilter:
         )
     else:
         raise DeserializationError("TranscriptFilter.transcript_filter_type required")
-    if "AbsoluteTimeRange" in data:
+    if data.get("AbsoluteTimeRange") is not None:
         import capo_transcribe.types.absolute_time_range
 
         out["absolute_time_range"] = (
@@ -102,7 +102,7 @@ def deserialize_aws_json_1_1(data: dict) -> TranscriptFilter:
                 data["AbsoluteTimeRange"]
             )
         )
-    if "RelativeTimeRange" in data:
+    if data.get("RelativeTimeRange") is not None:
         import capo_transcribe.types.relative_time_range
 
         out["relative_time_range"] = (
@@ -110,7 +110,7 @@ def deserialize_aws_json_1_1(data: dict) -> TranscriptFilter:
                 data["RelativeTimeRange"]
             )
         )
-    if "ParticipantRole" in data:
+    if data.get("ParticipantRole") is not None:
         import capo_transcribe.types.participant_role
 
         out["participant_role"] = (
@@ -118,9 +118,9 @@ def deserialize_aws_json_1_1(data: dict) -> TranscriptFilter:
                 data["ParticipantRole"]
             )
         )
-    if "Negate" in data:
+    if data.get("Negate") is not None:
         out["negate"] = data["Negate"]
-    if "Targets" in data:
+    if data.get("Targets") is not None:
         import capo_transcribe.types.string_target_list
 
         out["targets"] = (

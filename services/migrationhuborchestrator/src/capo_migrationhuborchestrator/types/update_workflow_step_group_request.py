@@ -59,17 +59,17 @@ def serialize_json(value: UpdateWorkflowStepGroupRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateWorkflowStepGroupRequest:
     out: UpdateWorkflowStepGroupRequest = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "next" in data:
+    if data.get("next") is not None:
         import capo_migrationhuborchestrator.types.string_list
 
         out["next"] = capo_migrationhuborchestrator.types.string_list.deserialize_json(
             data["next"]
         )
-    if "previous" in data:
+    if data.get("previous") is not None:
         import capo_migrationhuborchestrator.types.string_list
 
         out["previous"] = (

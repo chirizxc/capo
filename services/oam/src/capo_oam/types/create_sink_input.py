@@ -31,11 +31,11 @@ def serialize_json(value: CreateSinkInput) -> dict:
 
 def deserialize_json(data: dict) -> CreateSinkInput:
     out: CreateSinkInput = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("CreateSinkInput.name required")
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_oam.types.tag_map_input
 
         out["tags"] = capo_oam.types.tag_map_input.deserialize_json(data["Tags"])

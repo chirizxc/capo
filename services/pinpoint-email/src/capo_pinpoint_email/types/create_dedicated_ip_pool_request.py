@@ -31,11 +31,11 @@ def serialize_json(value: CreateDedicatedIpPoolRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateDedicatedIpPoolRequest:
     out: CreateDedicatedIpPoolRequest = {}  # type: ignore[typeddict-item]
-    if "PoolName" in data:
+    if data.get("PoolName") is not None:
         out["pool_name"] = data["PoolName"]
     else:
         raise DeserializationError("CreateDedicatedIpPoolRequest.pool_name required")
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_pinpoint_email.types.tag_list
 
         out["tags"] = capo_pinpoint_email.types.tag_list.deserialize_json(data["Tags"])

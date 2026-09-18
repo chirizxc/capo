@@ -31,11 +31,11 @@ def serialize_json(value: CreatePackageRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreatePackageRequest:
     out: CreatePackageRequest = {}  # type: ignore[typeddict-item]
-    if "PackageName" in data:
+    if data.get("PackageName") is not None:
         out["package_name"] = data["PackageName"]
     else:
         raise DeserializationError("CreatePackageRequest.package_name required")
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_panorama.types.tag_map
 
         out["tags"] = capo_panorama.types.tag_map.deserialize_json(data["Tags"])

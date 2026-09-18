@@ -25,6 +25,8 @@ def deserialize_json(data: list) -> BehaviorModelTrainingSummaries:
 
     out: BehaviorModelTrainingSummaries = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_iot.types.behavior_model_training_summary.deserialize_json(item)
         )

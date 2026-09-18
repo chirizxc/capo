@@ -19,7 +19,7 @@ def serialize_json(value: CreateConfigurationManagerOutput) -> dict:
 
 def deserialize_json(data: dict) -> CreateConfigurationManagerOutput:
     out: CreateConfigurationManagerOutput = {}  # type: ignore[typeddict-item]
-    if "ManagerArn" in data:
+    if data.get("ManagerArn") is not None:
         out["manager_arn"] = data["ManagerArn"]
     else:
         raise DeserializationError(

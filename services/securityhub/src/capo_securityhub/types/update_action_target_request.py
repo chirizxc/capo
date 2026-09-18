@@ -29,8 +29,8 @@ def serialize_json(value: UpdateActionTargetRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateActionTargetRequest:
     out: UpdateActionTargetRequest = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
     return out

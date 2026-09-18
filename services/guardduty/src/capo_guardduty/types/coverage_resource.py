@@ -68,13 +68,13 @@ def serialize_json(value: CoverageResource) -> dict:
 
 def deserialize_json(data: dict) -> CoverageResource:
     out: CoverageResource = {}  # type: ignore[typeddict-item]
-    if "resourceId" in data:
+    if data.get("resourceId") is not None:
         out["resource_id"] = data["resourceId"]
-    if "detectorId" in data:
+    if data.get("detectorId") is not None:
         out["detector_id"] = data["detectorId"]
-    if "accountId" in data:
+    if data.get("accountId") is not None:
         out["account_id"] = data["accountId"]
-    if "resourceDetails" in data:
+    if data.get("resourceDetails") is not None:
         import capo_guardduty.types.coverage_resource_details
 
         out["resource_details"] = (
@@ -82,15 +82,15 @@ def deserialize_json(data: dict) -> CoverageResource:
                 data["resourceDetails"]
             )
         )
-    if "coverageStatus" in data:
+    if data.get("coverageStatus") is not None:
         import capo_guardduty.types.coverage_status
 
         out["coverage_status"] = capo_guardduty.types.coverage_status.deserialize_json(
             data["coverageStatus"]
         )
-    if "issue" in data:
+    if data.get("issue") is not None:
         out["issue"] = data["issue"]
-    if "updatedAt" in data:
+    if data.get("updatedAt") is not None:
         import capo_guardduty.types.timestamp
 
         out["updated_at"] = capo_guardduty.types.timestamp.deserialize_json(

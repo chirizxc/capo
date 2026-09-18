@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> __listOfParameterValue:
 
     out: __listOfParameterValue = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_serverlessapplicationrepository.types.parameter_value.deserialize_json(
                 item

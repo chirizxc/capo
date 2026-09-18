@@ -30,7 +30,7 @@ def serialize_json(value: FunctionDefaultConfig) -> dict:
 
 def deserialize_json(data: dict) -> FunctionDefaultConfig:
     out: FunctionDefaultConfig = {}  # type: ignore[typeddict-item]
-    if "Execution" in data:
+    if data.get("Execution") is not None:
         import capo_greengrass.types.function_default_execution_config
 
         out["execution"] = (

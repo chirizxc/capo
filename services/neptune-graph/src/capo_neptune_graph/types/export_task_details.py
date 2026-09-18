@@ -42,7 +42,7 @@ def serialize_json(value: ExportTaskDetails) -> dict:
 
 def deserialize_json(data: dict) -> ExportTaskDetails:
     out: ExportTaskDetails = {}  # type: ignore[typeddict-item]
-    if "startTime" in data:
+    if data.get("startTime") is not None:
         import capo_neptune_graph.types._prelude.timestamp
 
         out["start_time"] = (
@@ -52,16 +52,16 @@ def deserialize_json(data: dict) -> ExportTaskDetails:
         )
     else:
         raise DeserializationError("ExportTaskDetails.start_time required")
-    if "timeElapsedSeconds" in data:
+    if data.get("timeElapsedSeconds") is not None:
         out["time_elapsed_seconds"] = data["timeElapsedSeconds"]
     else:
         raise DeserializationError("ExportTaskDetails.time_elapsed_seconds required")
-    if "progressPercentage" in data:
+    if data.get("progressPercentage") is not None:
         out["progress_percentage"] = data["progressPercentage"]
     else:
         raise DeserializationError("ExportTaskDetails.progress_percentage required")
-    if "numVerticesWritten" in data:
+    if data.get("numVerticesWritten") is not None:
         out["num_vertices_written"] = data["numVerticesWritten"]
-    if "numEdgesWritten" in data:
+    if data.get("numEdgesWritten") is not None:
         out["num_edges_written"] = data["numEdgesWritten"]
     return out

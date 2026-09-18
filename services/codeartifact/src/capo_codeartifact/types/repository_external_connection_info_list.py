@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> RepositoryExternalConnectionInfoList:
 
     out: RepositoryExternalConnectionInfoList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_codeartifact.types.repository_external_connection_info.deserialize_json(
                 item

@@ -36,7 +36,7 @@ def serialize_json(value: ListWaitingWorkflowStepsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListWaitingWorkflowStepsResponse:
     out: ListWaitingWorkflowStepsResponse = {}  # type: ignore[typeddict-item]
-    if "steps" in data:
+    if data.get("steps") is not None:
         import capo_imagebuilder.types.workflow_step_execution_list
 
         out["steps"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> ListWaitingWorkflowStepsResponse:
                 data["steps"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

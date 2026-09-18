@@ -61,21 +61,21 @@ def serialize_json(value: CreateDirectConnectGatewayAttachmentRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateDirectConnectGatewayAttachmentRequest:
     out: CreateDirectConnectGatewayAttachmentRequest = {}  # type: ignore[typeddict-item]
-    if "CoreNetworkId" in data:
+    if data.get("CoreNetworkId") is not None:
         out["core_network_id"] = data["CoreNetworkId"]
     else:
         raise DeserializationError(
             "CreateDirectConnectGatewayAttachmentRequest.core_network_id required"
         )
-    if "DirectConnectGatewayArn" in data:
+    if data.get("DirectConnectGatewayArn") is not None:
         out["direct_connect_gateway_arn"] = data["DirectConnectGatewayArn"]
     else:
         raise DeserializationError(
             "CreateDirectConnectGatewayAttachmentRequest.direct_connect_gateway_arn required"
         )
-    if "RoutingPolicyLabel" in data:
+    if data.get("RoutingPolicyLabel") is not None:
         out["routing_policy_label"] = data["RoutingPolicyLabel"]
-    if "EdgeLocations" in data:
+    if data.get("EdgeLocations") is not None:
         import capo_networkmanager.types.external_region_code_list
 
         out["edge_locations"] = (
@@ -87,10 +87,10 @@ def deserialize_json(data: dict) -> CreateDirectConnectGatewayAttachmentRequest:
         raise DeserializationError(
             "CreateDirectConnectGatewayAttachmentRequest.edge_locations required"
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_networkmanager.types.tag_list
 
         out["tags"] = capo_networkmanager.types.tag_list.deserialize_json(data["Tags"])
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
     return out

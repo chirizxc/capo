@@ -31,8 +31,8 @@ def serialize_json(value: ToolOutputConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> ToolOutputConfiguration:
     out: ToolOutputConfiguration = {}  # type: ignore[typeddict-item]
-    if "outputVariableNameOverride" in data:
+    if data.get("outputVariableNameOverride") is not None:
         out["output_variable_name_override"] = data["outputVariableNameOverride"]
-    if "sessionDataNamespace" in data:
+    if data.get("sessionDataNamespace") is not None:
         out["session_data_namespace"] = data["sessionDataNamespace"]
     return out

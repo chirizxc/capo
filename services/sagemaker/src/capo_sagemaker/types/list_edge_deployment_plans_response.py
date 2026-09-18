@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: ListEdgeDeploymentPlansResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListEdgeDeploymentPlansResponse:
     out: ListEdgeDeploymentPlansResponse = {}  # type: ignore[typeddict-item]
-    if "EdgeDeploymentPlanSummaries" in data:
+    if data.get("EdgeDeploymentPlanSummaries") is not None:
         import capo_sagemaker.types.edge_deployment_plan_summaries
 
         out["edge_deployment_plan_summaries"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_1(data: dict) -> ListEdgeDeploymentPlansResponse:
                 data["EdgeDeploymentPlanSummaries"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

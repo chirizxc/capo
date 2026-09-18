@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: ListDominantLanguageDetectionJobsResponse) -> 
 
 def deserialize_aws_json_1_1(data: dict) -> ListDominantLanguageDetectionJobsResponse:
     out: ListDominantLanguageDetectionJobsResponse = {}  # type: ignore[typeddict-item]
-    if "DominantLanguageDetectionJobPropertiesList" in data:
+    if data.get("DominantLanguageDetectionJobPropertiesList") is not None:
         import capo_comprehend.types.dominant_language_detection_job_properties_list
 
         out["dominant_language_detection_job_properties_list"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_1(data: dict) -> ListDominantLanguageDetectionJobsRes
                 data["DominantLanguageDetectionJobPropertiesList"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

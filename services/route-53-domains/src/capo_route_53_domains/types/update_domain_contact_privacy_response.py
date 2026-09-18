@@ -23,6 +23,6 @@ def serialize_aws_json_1_1(value: UpdateDomainContactPrivacyResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateDomainContactPrivacyResponse:
     out: UpdateDomainContactPrivacyResponse = {}  # type: ignore[typeddict-item]
-    if "OperationId" in data:
+    if data.get("OperationId") is not None:
         out["operation_id"] = data["OperationId"]
     return out

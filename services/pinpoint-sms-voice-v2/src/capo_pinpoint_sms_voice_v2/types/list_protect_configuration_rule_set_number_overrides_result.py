@@ -50,19 +50,19 @@ def deserialize_aws_json_1_0(
     data: dict,
 ) -> ListProtectConfigurationRuleSetNumberOverridesResult:
     out: ListProtectConfigurationRuleSetNumberOverridesResult = {}  # type: ignore[typeddict-item]
-    if "ProtectConfigurationArn" in data:
+    if data.get("ProtectConfigurationArn") is not None:
         out["protect_configuration_arn"] = data["ProtectConfigurationArn"]
     else:
         raise DeserializationError(
             "ListProtectConfigurationRuleSetNumberOverridesResult.protect_configuration_arn required"
         )
-    if "ProtectConfigurationId" in data:
+    if data.get("ProtectConfigurationId") is not None:
         out["protect_configuration_id"] = data["ProtectConfigurationId"]
     else:
         raise DeserializationError(
             "ListProtectConfigurationRuleSetNumberOverridesResult.protect_configuration_id required"
         )
-    if "RuleSetNumberOverrides" in data:
+    if data.get("RuleSetNumberOverrides") is not None:
         import capo_pinpoint_sms_voice_v2.types.protect_configuration_rule_set_number_override_list
 
         out["rule_set_number_overrides"] = (
@@ -70,6 +70,6 @@ def deserialize_aws_json_1_0(
                 data["RuleSetNumberOverrides"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

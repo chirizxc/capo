@@ -34,14 +34,14 @@ def serialize_aws_json_1_1(value: Target) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Target:
     out: Target = {}  # type: ignore[typeddict-item]
-    if "repositoryName" in data:
+    if data.get("repositoryName") is not None:
         out["repository_name"] = data["repositoryName"]
     else:
         raise DeserializationError("Target.repository_name required")
-    if "sourceReference" in data:
+    if data.get("sourceReference") is not None:
         out["source_reference"] = data["sourceReference"]
     else:
         raise DeserializationError("Target.source_reference required")
-    if "destinationReference" in data:
+    if data.get("destinationReference") is not None:
         out["destination_reference"] = data["destinationReference"]
     return out

@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> AuthorSpecifiedAggregations:
 
     out: AuthorSpecifiedAggregations = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_quicksight.types.author_specified_aggregation.deserialize_json(item)
         )

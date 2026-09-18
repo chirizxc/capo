@@ -94,15 +94,15 @@ def serialize_json(value: Task) -> dict:
             value["logs_location"]
         )
     if "created_at" in value:
-        import capo_securityagent.types._prelude.timestamp
+        import capo_securityagent._protocol.serialize
 
-        out["createdAt"] = capo_securityagent.types._prelude.timestamp.serialize_json(
+        out["createdAt"] = capo_securityagent._protocol.serialize.fmt_date_time(
             value["created_at"]
         )
     if "updated_at" in value:
-        import capo_securityagent.types._prelude.timestamp
+        import capo_securityagent._protocol.serialize
 
-        out["updatedAt"] = capo_securityagent.types._prelude.timestamp.serialize_json(
+        out["updatedAt"] = capo_securityagent._protocol.serialize.fmt_date_time(
             value["updated_at"]
         )
     return out
@@ -110,39 +110,39 @@ def serialize_json(value: Task) -> dict:
 
 def deserialize_json(data: dict) -> Task:
     out: Task = {}  # type: ignore[typeddict-item]
-    if "taskId" in data:
+    if data.get("taskId") is not None:
         out["task_id"] = data["taskId"]
     else:
         raise DeserializationError("Task.task_id required")
-    if "pentestId" in data:
+    if data.get("pentestId") is not None:
         out["pentest_id"] = data["pentestId"]
-    if "pentestJobId" in data:
+    if data.get("pentestJobId") is not None:
         out["pentest_job_id"] = data["pentestJobId"]
-    if "agentSpaceId" in data:
+    if data.get("agentSpaceId") is not None:
         out["agent_space_id"] = data["agentSpaceId"]
-    if "title" in data:
+    if data.get("title") is not None:
         out["title"] = data["title"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "categories" in data:
+    if data.get("categories") is not None:
         import capo_securityagent.types.category_list
 
         out["categories"] = capo_securityagent.types.category_list.deserialize_json(
             data["categories"]
         )
-    if "riskType" in data:
+    if data.get("riskType") is not None:
         import capo_securityagent.types.risk_type
 
         out["risk_type"] = capo_securityagent.types.risk_type.deserialize_json(
             data["riskType"]
         )
-    if "targetEndpoint" in data:
+    if data.get("targetEndpoint") is not None:
         import capo_securityagent.types.endpoint
 
         out["target_endpoint"] = capo_securityagent.types.endpoint.deserialize_json(
             data["targetEndpoint"]
         )
-    if "executionStatus" in data:
+    if data.get("executionStatus") is not None:
         import capo_securityagent.types.task_execution_status
 
         out["execution_status"] = (
@@ -150,26 +150,22 @@ def deserialize_json(data: dict) -> Task:
                 data["executionStatus"]
             )
         )
-    if "logsLocation" in data:
+    if data.get("logsLocation") is not None:
         import capo_securityagent.types.log_location
 
         out["logs_location"] = capo_securityagent.types.log_location.deserialize_json(
             data["logsLocation"]
         )
-    if "createdAt" in data:
-        import capo_securityagent.types._prelude.timestamp
+    if data.get("createdAt") is not None:
+        import datetime
 
-        out["created_at"] = (
-            capo_securityagent.types._prelude.timestamp.deserialize_json(
-                data["createdAt"]
-            )
+        out["created_at"] = datetime.datetime.fromisoformat(
+            data["createdAt"].replace("Z", "+00:00")
         )
-    if "updatedAt" in data:
-        import capo_securityagent.types._prelude.timestamp
+    if data.get("updatedAt") is not None:
+        import datetime
 
-        out["updated_at"] = (
-            capo_securityagent.types._prelude.timestamp.deserialize_json(
-                data["updatedAt"]
-            )
+        out["updated_at"] = datetime.datetime.fromisoformat(
+            data["updatedAt"].replace("Z", "+00:00")
         )
     return out

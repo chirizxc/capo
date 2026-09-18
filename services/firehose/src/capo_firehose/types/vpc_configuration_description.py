@@ -46,7 +46,7 @@ def serialize_aws_json_1_1(value: VpcConfigurationDescription) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> VpcConfigurationDescription:
     out: VpcConfigurationDescription = {}  # type: ignore[typeddict-item]
-    if "SubnetIds" in data:
+    if data.get("SubnetIds") is not None:
         import capo_firehose.types.subnet_id_list
 
         out["subnet_ids"] = capo_firehose.types.subnet_id_list.deserialize_aws_json_1_1(
@@ -54,11 +54,11 @@ def deserialize_aws_json_1_1(data: dict) -> VpcConfigurationDescription:
         )
     else:
         raise DeserializationError("VpcConfigurationDescription.subnet_ids required")
-    if "RoleARN" in data:
+    if data.get("RoleARN") is not None:
         out["role_arn"] = data["RoleARN"]
     else:
         raise DeserializationError("VpcConfigurationDescription.role_arn required")
-    if "SecurityGroupIds" in data:
+    if data.get("SecurityGroupIds") is not None:
         import capo_firehose.types.security_group_id_list
 
         out["security_group_ids"] = (
@@ -70,7 +70,7 @@ def deserialize_aws_json_1_1(data: dict) -> VpcConfigurationDescription:
         raise DeserializationError(
             "VpcConfigurationDescription.security_group_ids required"
         )
-    if "VpcId" in data:
+    if data.get("VpcId") is not None:
         out["vpc_id"] = data["VpcId"]
     else:
         raise DeserializationError("VpcConfigurationDescription.vpc_id required")

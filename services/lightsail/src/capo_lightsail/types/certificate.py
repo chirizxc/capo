@@ -176,13 +176,13 @@ def serialize_aws_json_1_1(value: Certificate) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Certificate:
     out: Certificate = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "domainName" in data:
+    if data.get("domainName") is not None:
         out["domain_name"] = data["domainName"]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_lightsail.types.certificate_status
 
         out["status"] = (
@@ -190,9 +190,9 @@ def deserialize_aws_json_1_1(data: dict) -> Certificate:
                 data["status"]
             )
         )
-    if "serialNumber" in data:
+    if data.get("serialNumber") is not None:
         out["serial_number"] = data["serialNumber"]
-    if "subjectAlternativeNames" in data:
+    if data.get("subjectAlternativeNames") is not None:
         import capo_lightsail.types.subject_alternative_name_list
 
         out["subject_alternative_names"] = (
@@ -200,7 +200,7 @@ def deserialize_aws_json_1_1(data: dict) -> Certificate:
                 data["subjectAlternativeNames"]
             )
         )
-    if "domainValidationRecords" in data:
+    if data.get("domainValidationRecords") is not None:
         import capo_lightsail.types.domain_validation_record_list
 
         out["domain_validation_records"] = (
@@ -208,43 +208,43 @@ def deserialize_aws_json_1_1(data: dict) -> Certificate:
                 data["domainValidationRecords"]
             )
         )
-    if "requestFailureReason" in data:
+    if data.get("requestFailureReason") is not None:
         out["request_failure_reason"] = data["requestFailureReason"]
-    if "inUseResourceCount" in data:
+    if data.get("inUseResourceCount") is not None:
         out["in_use_resource_count"] = data["inUseResourceCount"]
     else:
         out["in_use_resource_count"] = 0
-    if "keyAlgorithm" in data:
+    if data.get("keyAlgorithm") is not None:
         out["key_algorithm"] = data["keyAlgorithm"]
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_lightsail.types.iso_date
 
         out["created_at"] = capo_lightsail.types.iso_date.deserialize_aws_json_1_1(
             data["createdAt"]
         )
-    if "issuedAt" in data:
+    if data.get("issuedAt") is not None:
         import capo_lightsail.types.iso_date
 
         out["issued_at"] = capo_lightsail.types.iso_date.deserialize_aws_json_1_1(
             data["issuedAt"]
         )
-    if "issuerCA" in data:
+    if data.get("issuerCA") is not None:
         out["issuer_ca"] = data["issuerCA"]
-    if "notBefore" in data:
+    if data.get("notBefore") is not None:
         import capo_lightsail.types.iso_date
 
         out["not_before"] = capo_lightsail.types.iso_date.deserialize_aws_json_1_1(
             data["notBefore"]
         )
-    if "notAfter" in data:
+    if data.get("notAfter") is not None:
         import capo_lightsail.types.iso_date
 
         out["not_after"] = capo_lightsail.types.iso_date.deserialize_aws_json_1_1(
             data["notAfter"]
         )
-    if "eligibleToRenew" in data:
+    if data.get("eligibleToRenew") is not None:
         out["eligible_to_renew"] = data["eligibleToRenew"]
-    if "renewalSummary" in data:
+    if data.get("renewalSummary") is not None:
         import capo_lightsail.types.renewal_summary
 
         out["renewal_summary"] = (
@@ -252,20 +252,20 @@ def deserialize_aws_json_1_1(data: dict) -> Certificate:
                 data["renewalSummary"]
             )
         )
-    if "revokedAt" in data:
+    if data.get("revokedAt") is not None:
         import capo_lightsail.types.iso_date
 
         out["revoked_at"] = capo_lightsail.types.iso_date.deserialize_aws_json_1_1(
             data["revokedAt"]
         )
-    if "revocationReason" in data:
+    if data.get("revocationReason") is not None:
         out["revocation_reason"] = data["revocationReason"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_lightsail.types.tag_list
 
         out["tags"] = capo_lightsail.types.tag_list.deserialize_aws_json_1_1(
             data["tags"]
         )
-    if "supportCode" in data:
+    if data.get("supportCode") is not None:
         out["support_code"] = data["supportCode"]
     return out

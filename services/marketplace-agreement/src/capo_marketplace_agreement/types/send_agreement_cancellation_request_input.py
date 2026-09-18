@@ -48,13 +48,13 @@ def serialize_aws_json_1_0(value: SendAgreementCancellationRequestInput) -> dict
 
 def deserialize_aws_json_1_0(data: dict) -> SendAgreementCancellationRequestInput:
     out: SendAgreementCancellationRequestInput = {}  # type: ignore[typeddict-item]
-    if "agreementId" in data:
+    if data.get("agreementId") is not None:
         out["agreement_id"] = data["agreementId"]
     else:
         raise DeserializationError(
             "SendAgreementCancellationRequestInput.agreement_id required"
         )
-    if "reasonCode" in data:
+    if data.get("reasonCode") is not None:
         import capo_marketplace_agreement.types.agreement_cancellation_request_reason_code
 
         out["reason_code"] = (
@@ -66,8 +66,8 @@ def deserialize_aws_json_1_0(data: dict) -> SendAgreementCancellationRequestInpu
         raise DeserializationError(
             "SendAgreementCancellationRequestInput.reason_code required"
         )
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
     return out

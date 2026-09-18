@@ -101,21 +101,21 @@ def serialize_aws_json_1_1(value: CreateNamespaceRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateNamespaceRequest:
     out: CreateNamespaceRequest = {}  # type: ignore[typeddict-item]
-    if "namespaceName" in data:
+    if data.get("namespaceName") is not None:
         out["namespace_name"] = data["namespaceName"]
     else:
         raise DeserializationError("CreateNamespaceRequest.namespace_name required")
-    if "adminUsername" in data:
+    if data.get("adminUsername") is not None:
         out["admin_username"] = data["adminUsername"]
-    if "adminUserPassword" in data:
+    if data.get("adminUserPassword") is not None:
         out["admin_user_password"] = data["adminUserPassword"]
-    if "dbName" in data:
+    if data.get("dbName") is not None:
         out["db_name"] = data["dbName"]
-    if "kmsKeyId" in data:
+    if data.get("kmsKeyId") is not None:
         out["kms_key_id"] = data["kmsKeyId"]
-    if "defaultIamRoleArn" in data:
+    if data.get("defaultIamRoleArn") is not None:
         out["default_iam_role_arn"] = data["defaultIamRoleArn"]
-    if "iamRoles" in data:
+    if data.get("iamRoles") is not None:
         import capo_redshift_serverless.types.iam_role_arn_list
 
         out["iam_roles"] = (
@@ -123,7 +123,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateNamespaceRequest:
                 data["iamRoles"]
             )
         )
-    if "logExports" in data:
+    if data.get("logExports") is not None:
         import capo_redshift_serverless.types.log_export_list
 
         out["log_exports"] = (
@@ -131,16 +131,16 @@ def deserialize_aws_json_1_1(data: dict) -> CreateNamespaceRequest:
                 data["logExports"]
             )
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_redshift_serverless.types.tag_list
 
         out["tags"] = capo_redshift_serverless.types.tag_list.deserialize_aws_json_1_1(
             data["tags"]
         )
-    if "manageAdminPassword" in data:
+    if data.get("manageAdminPassword") is not None:
         out["manage_admin_password"] = data["manageAdminPassword"]
-    if "adminPasswordSecretKmsKeyId" in data:
+    if data.get("adminPasswordSecretKmsKeyId") is not None:
         out["admin_password_secret_kms_key_id"] = data["adminPasswordSecretKmsKeyId"]
-    if "redshiftIdcApplicationArn" in data:
+    if data.get("redshiftIdcApplicationArn") is not None:
         out["redshift_idc_application_arn"] = data["redshiftIdcApplicationArn"]
     return out

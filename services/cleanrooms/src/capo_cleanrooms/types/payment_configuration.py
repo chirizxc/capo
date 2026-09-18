@@ -56,7 +56,7 @@ def serialize_json(value: PaymentConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> PaymentConfiguration:
     out: PaymentConfiguration = {}  # type: ignore[typeddict-item]
-    if "queryCompute" in data:
+    if data.get("queryCompute") is not None:
         import capo_cleanrooms.types.query_compute_payment_config
 
         out["query_compute"] = (
@@ -66,7 +66,7 @@ def deserialize_json(data: dict) -> PaymentConfiguration:
         )
     else:
         raise DeserializationError("PaymentConfiguration.query_compute required")
-    if "machineLearning" in data:
+    if data.get("machineLearning") is not None:
         import capo_cleanrooms.types.ml_payment_config
 
         out["machine_learning"] = (
@@ -74,7 +74,7 @@ def deserialize_json(data: dict) -> PaymentConfiguration:
                 data["machineLearning"]
             )
         )
-    if "jobCompute" in data:
+    if data.get("jobCompute") is not None:
         import capo_cleanrooms.types.job_compute_payment_config
 
         out["job_compute"] = (

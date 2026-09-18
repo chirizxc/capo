@@ -27,6 +27,8 @@ def deserialize_aws_json_1_1(data: list) -> AccountModificationList:
 
     out: AccountModificationList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_workspaces.types.account_modification.deserialize_aws_json_1_1(item)
         )

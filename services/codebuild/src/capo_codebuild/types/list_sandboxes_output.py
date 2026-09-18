@@ -32,12 +32,12 @@ def serialize_aws_json_1_1(value: ListSandboxesOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListSandboxesOutput:
     out: ListSandboxesOutput = {}  # type: ignore[typeddict-item]
-    if "ids" in data:
+    if data.get("ids") is not None:
         import capo_codebuild.types.sandbox_ids
 
         out["ids"] = capo_codebuild.types.sandbox_ids.deserialize_aws_json_1_1(
             data["ids"]
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

@@ -44,20 +44,20 @@ def serialize_json(value: DatabaseInputDefinition) -> dict:
 
 def deserialize_json(data: dict) -> DatabaseInputDefinition:
     out: DatabaseInputDefinition = {}  # type: ignore[typeddict-item]
-    if "GlueConnectionName" in data:
+    if data.get("GlueConnectionName") is not None:
         out["glue_connection_name"] = data["GlueConnectionName"]
     else:
         raise DeserializationError(
             "DatabaseInputDefinition.glue_connection_name required"
         )
-    if "DatabaseTableName" in data:
+    if data.get("DatabaseTableName") is not None:
         out["database_table_name"] = data["DatabaseTableName"]
-    if "TempDirectory" in data:
+    if data.get("TempDirectory") is not None:
         import capo_databrew.types.s3_location
 
         out["temp_directory"] = capo_databrew.types.s3_location.deserialize_json(
             data["TempDirectory"]
         )
-    if "QueryString" in data:
+    if data.get("QueryString") is not None:
         out["query_string"] = data["QueryString"]
     return out

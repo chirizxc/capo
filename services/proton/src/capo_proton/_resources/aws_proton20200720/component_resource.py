@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import uuid
 from typing import TYPE_CHECKING, Optional
 
 from capo_proton._services._pipeline import (
@@ -104,8 +105,11 @@ class ComponentResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_proton.types.create_component_input.CreateComponentInput = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_proton.types.create_component_input.CreateComponentInput = {
+            "name": name,
+            "template_file": template_file,
+            "manifest": manifest,
+        }
         if description is not None:
             input_["description"] = description
         if service_name is not None:
@@ -114,20 +118,20 @@ class ComponentResource:
             input_["service_instance_name"] = service_instance_name
         if environment_name is not None:
             input_["environment_name"] = environment_name
-        input_["template_file"] = template_file
-        input_["manifest"] = manifest
         if service_spec is not None:
             input_["service_spec"] = service_spec
         if tags is not None:
             input_["tags"] = tags
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -165,14 +169,14 @@ class ComponentResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_proton.types.get_component_input.GetComponentInput = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_proton.types.get_component_input.GetComponentInput = {"name": name}
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update(
@@ -232,9 +236,10 @@ class ComponentResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_proton.types.update_component_input.UpdateComponentInput = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        input_["deployment_type"] = deployment_type
+        input_: capo_proton.types.update_component_input.UpdateComponentInput = {
+            "name": name,
+            "deployment_type": deployment_type,
+        }
         if description is not None:
             input_["description"] = description
         if service_name is not None:
@@ -245,14 +250,16 @@ class ComponentResource:
             input_["service_spec"] = service_spec
         if template_file is not None:
             input_["template_file"] = template_file
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -291,14 +298,16 @@ class ComponentResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_proton.types.delete_component_input.DeleteComponentInput = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_proton.types.delete_component_input.DeleteComponentInput = {
+            "name": name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -349,7 +358,7 @@ class ComponentResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_proton.types.list_components_input.ListComponentsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_proton.types.list_components_input.ListComponentsInput = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if environment_name is not None:
@@ -366,6 +375,7 @@ class ComponentResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -433,8 +443,11 @@ class AsyncComponentResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_proton.types.create_component_input.CreateComponentInput = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_proton.types.create_component_input.CreateComponentInput = {
+            "name": name,
+            "template_file": template_file,
+            "manifest": manifest,
+        }
         if description is not None:
             input_["description"] = description
         if service_name is not None:
@@ -443,20 +456,20 @@ class AsyncComponentResource:
             input_["service_instance_name"] = service_instance_name
         if environment_name is not None:
             input_["environment_name"] = environment_name
-        input_["template_file"] = template_file
-        input_["manifest"] = manifest
         if service_spec is not None:
             input_["service_spec"] = service_spec
         if tags is not None:
             input_["tags"] = tags
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -495,14 +508,14 @@ class AsyncComponentResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_proton.types.get_component_input.GetComponentInput = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_proton.types.get_component_input.GetComponentInput = {"name": name}
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update(
@@ -563,9 +576,10 @@ class AsyncComponentResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_proton.types.update_component_input.UpdateComponentInput = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        input_["deployment_type"] = deployment_type
+        input_: capo_proton.types.update_component_input.UpdateComponentInput = {
+            "name": name,
+            "deployment_type": deployment_type,
+        }
         if description is not None:
             input_["description"] = description
         if service_name is not None:
@@ -576,14 +590,16 @@ class AsyncComponentResource:
             input_["service_spec"] = service_spec
         if template_file is not None:
             input_["template_file"] = template_file
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -623,14 +639,16 @@ class AsyncComponentResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_proton.types.delete_component_input.DeleteComponentInput = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_proton.types.delete_component_input.DeleteComponentInput = {
+            "name": name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -682,7 +700,7 @@ class AsyncComponentResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_proton.types.list_components_input.ListComponentsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_proton.types.list_components_input.ListComponentsInput = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if environment_name is not None:
@@ -699,4 +717,5 @@ class AsyncComponentResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

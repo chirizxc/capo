@@ -34,11 +34,11 @@ def serialize_json(value: FileLocation) -> dict:
 
 def deserialize_json(data: dict) -> FileLocation:
     out: FileLocation = {}  # type: ignore[typeddict-item]
-    if "stream" in data:
+    if data.get("stream") is not None:
         import capo_iot.types.stream
 
         out["stream"] = capo_iot.types.stream.deserialize_json(data["stream"])
-    if "s3Location" in data:
+    if data.get("s3Location") is not None:
         import capo_iot.types.s3_location
 
         out["s3_location"] = capo_iot.types.s3_location.deserialize_json(

@@ -36,9 +36,9 @@ def serialize_aws_json_1_1(value: RecommendationJobPayloadConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RecommendationJobPayloadConfig:
     out: RecommendationJobPayloadConfig = {}  # type: ignore[typeddict-item]
-    if "SamplePayloadUrl" in data:
+    if data.get("SamplePayloadUrl") is not None:
         out["sample_payload_url"] = data["SamplePayloadUrl"]
-    if "SupportedContentTypes" in data:
+    if data.get("SupportedContentTypes") is not None:
         import capo_sagemaker.types.recommendation_job_supported_content_types
 
         out["supported_content_types"] = (

@@ -29,6 +29,8 @@ def serialize_aws_json_1_1(input_to_serialize: RemediationParameters) -> dict:
 def deserialize_aws_json_1_1(data: dict) -> RemediationParameters:
     out: RemediationParameters = {}
     for key, value in data.items():
+        if value is None:
+            continue
         import capo_config_service.types.remediation_parameter_value
 
         out[key] = (

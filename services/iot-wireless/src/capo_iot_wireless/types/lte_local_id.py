@@ -28,11 +28,11 @@ def serialize_json(value: LteLocalId) -> dict:
 
 def deserialize_json(data: dict) -> LteLocalId:
     out: LteLocalId = {}  # type: ignore[typeddict-item]
-    if "Pci" in data:
+    if data.get("Pci") is not None:
         out["pci"] = data["Pci"]
     else:
         raise DeserializationError("LteLocalId.pci required")
-    if "Earfcn" in data:
+    if data.get("Earfcn") is not None:
         out["earfcn"] = data["Earfcn"]
     else:
         raise DeserializationError("LteLocalId.earfcn required")

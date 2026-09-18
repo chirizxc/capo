@@ -25,6 +25,8 @@ def serialize_json(input_to_serialize: SegmentAttributes) -> dict:
 def deserialize_json(data: dict) -> SegmentAttributes:
     out: SegmentAttributes = {}
     for key, value in data.items():
+        if value is None:
+            continue
         import capo_connect.types.segment_attribute_value
 
         out[key] = capo_connect.types.segment_attribute_value.deserialize_json(value)

@@ -23,6 +23,6 @@ def serialize_json(value: InputWhitelistRule) -> dict:
 
 def deserialize_json(data: dict) -> InputWhitelistRule:
     out: InputWhitelistRule = {}  # type: ignore[typeddict-item]
-    if "cidr" in data:
+    if data.get("cidr") is not None:
         out["cidr"] = data["cidr"]
     return out

@@ -28,11 +28,11 @@ def serialize_aws_json_1_1(value: StopDataSourceSyncJobRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> StopDataSourceSyncJobRequest:
     out: StopDataSourceSyncJobRequest = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
     else:
         raise DeserializationError("StopDataSourceSyncJobRequest.id required")
-    if "IndexId" in data:
+    if data.get("IndexId") is not None:
         out["index_id"] = data["IndexId"]
     else:
         raise DeserializationError("StopDataSourceSyncJobRequest.index_id required")

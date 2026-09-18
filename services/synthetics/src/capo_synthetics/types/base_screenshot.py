@@ -37,11 +37,11 @@ def serialize_json(value: BaseScreenshot) -> dict:
 
 def deserialize_json(data: dict) -> BaseScreenshot:
     out: BaseScreenshot = {}  # type: ignore[typeddict-item]
-    if "ScreenshotName" in data:
+    if data.get("ScreenshotName") is not None:
         out["screenshot_name"] = data["ScreenshotName"]
     else:
         raise DeserializationError("BaseScreenshot.screenshot_name required")
-    if "IgnoreCoordinates" in data:
+    if data.get("IgnoreCoordinates") is not None:
         import capo_synthetics.types.base_screenshot_ignore_coordinates
 
         out["ignore_coordinates"] = (

@@ -56,9 +56,9 @@ def serialize_aws_json_1_1(value: CopyStepDetails) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CopyStepDetails:
     out: CopyStepDetails = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "DestinationFileLocation" in data:
+    if data.get("DestinationFileLocation") is not None:
         import capo_transfer.types.input_file_location
 
         out["destination_file_location"] = (
@@ -66,7 +66,7 @@ def deserialize_aws_json_1_1(data: dict) -> CopyStepDetails:
                 data["DestinationFileLocation"]
             )
         )
-    if "OverwriteExisting" in data:
+    if data.get("OverwriteExisting") is not None:
         import capo_transfer.types.overwrite_existing
 
         out["overwrite_existing"] = (
@@ -74,6 +74,6 @@ def deserialize_aws_json_1_1(data: dict) -> CopyStepDetails:
                 data["OverwriteExisting"]
             )
         )
-    if "SourceFileLocation" in data:
+    if data.get("SourceFileLocation") is not None:
         out["source_file_location"] = data["SourceFileLocation"]
     return out

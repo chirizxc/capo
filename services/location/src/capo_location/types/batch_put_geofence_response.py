@@ -40,7 +40,7 @@ def serialize_json(value: BatchPutGeofenceResponse) -> dict:
 
 def deserialize_json(data: dict) -> BatchPutGeofenceResponse:
     out: BatchPutGeofenceResponse = {}  # type: ignore[typeddict-item]
-    if "Successes" in data:
+    if data.get("Successes") is not None:
         import capo_location.types.batch_put_geofence_success_list
 
         out["successes"] = (
@@ -50,7 +50,7 @@ def deserialize_json(data: dict) -> BatchPutGeofenceResponse:
         )
     else:
         raise DeserializationError("BatchPutGeofenceResponse.successes required")
-    if "Errors" in data:
+    if data.get("Errors") is not None:
         import capo_location.types.batch_put_geofence_error_list
 
         out["errors"] = (

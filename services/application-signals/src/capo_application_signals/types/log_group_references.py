@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> LogGroupReferences:
 
     out: LogGroupReferences = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_application_signals.types.attributes.deserialize_json(item))
     return out

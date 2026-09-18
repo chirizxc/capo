@@ -40,7 +40,7 @@ def serialize_aws_json_1_0(value: WorkflowExecutionTimedOutEventAttributes) -> d
 
 def deserialize_aws_json_1_0(data: dict) -> WorkflowExecutionTimedOutEventAttributes:
     out: WorkflowExecutionTimedOutEventAttributes = {}  # type: ignore[typeddict-item]
-    if "timeoutType" in data:
+    if data.get("timeoutType") is not None:
         import capo_swf.types.workflow_execution_timeout_type
 
         out["timeout_type"] = (
@@ -52,7 +52,7 @@ def deserialize_aws_json_1_0(data: dict) -> WorkflowExecutionTimedOutEventAttrib
         raise DeserializationError(
             "WorkflowExecutionTimedOutEventAttributes.timeout_type required"
         )
-    if "childPolicy" in data:
+    if data.get("childPolicy") is not None:
         import capo_swf.types.child_policy
 
         out["child_policy"] = capo_swf.types.child_policy.deserialize_aws_json_1_0(

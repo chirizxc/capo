@@ -47,11 +47,11 @@ def serialize_json(value: ActionSummary) -> dict:
 
 def deserialize_json(data: dict) -> ActionSummary:
     out: ActionSummary = {}  # type: ignore[typeddict-item]
-    if "actionId" in data:
+    if data.get("actionId") is not None:
         out["action_id"] = data["actionId"]
-    if "actionDefinitionId" in data:
+    if data.get("actionDefinitionId") is not None:
         out["action_definition_id"] = data["actionDefinitionId"]
-    if "targetResource" in data:
+    if data.get("targetResource") is not None:
         import capo_iotsitewise.types.target_resource
 
         out["target_resource"] = (
@@ -59,7 +59,7 @@ def deserialize_json(data: dict) -> ActionSummary:
                 data["targetResource"]
             )
         )
-    if "resolveTo" in data:
+    if data.get("resolveTo") is not None:
         import capo_iotsitewise.types.resolve_to
 
         out["resolve_to"] = capo_iotsitewise.types.resolve_to.deserialize_json(

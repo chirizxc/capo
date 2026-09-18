@@ -73,15 +73,15 @@ def serialize_aws_json_1_1(value: UpdateCrossAccountAttachmentRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateCrossAccountAttachmentRequest:
     out: UpdateCrossAccountAttachmentRequest = {}  # type: ignore[typeddict-item]
-    if "AttachmentArn" in data:
+    if data.get("AttachmentArn") is not None:
         out["attachment_arn"] = data["AttachmentArn"]
     else:
         raise DeserializationError(
             "UpdateCrossAccountAttachmentRequest.attachment_arn required"
         )
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "AddPrincipals" in data:
+    if data.get("AddPrincipals") is not None:
         import capo_global_accelerator.types.principals
 
         out["add_principals"] = (
@@ -89,7 +89,7 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateCrossAccountAttachmentRequest:
                 data["AddPrincipals"]
             )
         )
-    if "RemovePrincipals" in data:
+    if data.get("RemovePrincipals") is not None:
         import capo_global_accelerator.types.principals
 
         out["remove_principals"] = (
@@ -97,7 +97,7 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateCrossAccountAttachmentRequest:
                 data["RemovePrincipals"]
             )
         )
-    if "AddResources" in data:
+    if data.get("AddResources") is not None:
         import capo_global_accelerator.types.resources
 
         out["add_resources"] = (
@@ -105,7 +105,7 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateCrossAccountAttachmentRequest:
                 data["AddResources"]
             )
         )
-    if "RemoveResources" in data:
+    if data.get("RemoveResources") is not None:
         import capo_global_accelerator.types.resources
 
         out["remove_resources"] = (

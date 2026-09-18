@@ -26,7 +26,7 @@ def serialize_json(value: CreateCodeSecurityScanConfigurationResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateCodeSecurityScanConfigurationResponse:
     out: CreateCodeSecurityScanConfigurationResponse = {}  # type: ignore[typeddict-item]
-    if "scanConfigurationArn" in data:
+    if data.get("scanConfigurationArn") is not None:
         out["scan_configuration_arn"] = data["scanConfigurationArn"]
     else:
         raise DeserializationError(

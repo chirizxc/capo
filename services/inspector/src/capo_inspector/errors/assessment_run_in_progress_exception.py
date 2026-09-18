@@ -41,11 +41,11 @@ def serialize_aws_json_1_1(value: AssessmentRunInProgressException_) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AssessmentRunInProgressException_:
     out: AssessmentRunInProgressException_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     else:
         raise DeserializationError("AssessmentRunInProgressException_.message required")
-    if "assessmentRunArns" in data:
+    if data.get("assessmentRunArns") is not None:
         import capo_inspector.types.assessment_run_in_progress_arn_list
 
         out["assessment_run_arns"] = (
@@ -57,13 +57,13 @@ def deserialize_aws_json_1_1(data: dict) -> AssessmentRunInProgressException_:
         raise DeserializationError(
             "AssessmentRunInProgressException_.assessment_run_arns required"
         )
-    if "assessmentRunArnsTruncated" in data:
+    if data.get("assessmentRunArnsTruncated") is not None:
         out["assessment_run_arns_truncated"] = data["assessmentRunArnsTruncated"]
     else:
         raise DeserializationError(
             "AssessmentRunInProgressException_.assessment_run_arns_truncated required"
         )
-    if "canRetry" in data:
+    if data.get("canRetry") is not None:
         out["can_retry"] = data["canRetry"]
     else:
         raise DeserializationError(
@@ -77,15 +77,20 @@ class AssessmentRunInProgressException(ServiceError):
 
     code: str | None = "AssessmentRunInProgressException"
 
-    def __init__(self, data: AssessmentRunInProgressException_):
+    def __init__(
+        self, data: AssessmentRunInProgressException_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="AssessmentRunInProgressException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "AssessmentRunInProgressException":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "AssessmentRunInProgressException":
+        return cls(deserialize_aws_json_1_1(data), message)

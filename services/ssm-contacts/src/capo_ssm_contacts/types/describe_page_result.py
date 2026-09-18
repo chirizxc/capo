@@ -82,49 +82,49 @@ def serialize_aws_json_1_1(value: DescribePageResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribePageResult:
     out: DescribePageResult = {}  # type: ignore[typeddict-item]
-    if "PageArn" in data:
+    if data.get("PageArn") is not None:
         out["page_arn"] = data["PageArn"]
     else:
         raise DeserializationError("DescribePageResult.page_arn required")
-    if "EngagementArn" in data:
+    if data.get("EngagementArn") is not None:
         out["engagement_arn"] = data["EngagementArn"]
     else:
         raise DeserializationError("DescribePageResult.engagement_arn required")
-    if "ContactArn" in data:
+    if data.get("ContactArn") is not None:
         out["contact_arn"] = data["ContactArn"]
     else:
         raise DeserializationError("DescribePageResult.contact_arn required")
-    if "Sender" in data:
+    if data.get("Sender") is not None:
         out["sender"] = data["Sender"]
     else:
         raise DeserializationError("DescribePageResult.sender required")
-    if "Subject" in data:
+    if data.get("Subject") is not None:
         out["subject"] = data["Subject"]
     else:
         raise DeserializationError("DescribePageResult.subject required")
-    if "Content" in data:
+    if data.get("Content") is not None:
         out["content"] = data["Content"]
     else:
         raise DeserializationError("DescribePageResult.content required")
-    if "PublicSubject" in data:
+    if data.get("PublicSubject") is not None:
         out["public_subject"] = data["PublicSubject"]
-    if "PublicContent" in data:
+    if data.get("PublicContent") is not None:
         out["public_content"] = data["PublicContent"]
-    if "IncidentId" in data:
+    if data.get("IncidentId") is not None:
         out["incident_id"] = data["IncidentId"]
-    if "SentTime" in data:
+    if data.get("SentTime") is not None:
         import capo_ssm_contacts.types.date_time
 
         out["sent_time"] = capo_ssm_contacts.types.date_time.deserialize_aws_json_1_1(
             data["SentTime"]
         )
-    if "ReadTime" in data:
+    if data.get("ReadTime") is not None:
         import capo_ssm_contacts.types.date_time
 
         out["read_time"] = capo_ssm_contacts.types.date_time.deserialize_aws_json_1_1(
             data["ReadTime"]
         )
-    if "DeliveryTime" in data:
+    if data.get("DeliveryTime") is not None:
         import capo_ssm_contacts.types.date_time
 
         out["delivery_time"] = (

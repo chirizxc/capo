@@ -64,7 +64,7 @@ def serialize_json(value: DestinationParameterValueConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> DestinationParameterValueConfiguration:
     out: DestinationParameterValueConfiguration = {}  # type: ignore[typeddict-item]
-    if "CustomValuesConfiguration" in data:
+    if data.get("CustomValuesConfiguration") is not None:
         import capo_quicksight.types.custom_values_configuration
 
         out["custom_values_configuration"] = (
@@ -72,7 +72,7 @@ def deserialize_json(data: dict) -> DestinationParameterValueConfiguration:
                 data["CustomValuesConfiguration"]
             )
         )
-    if "SelectAllValueOptions" in data:
+    if data.get("SelectAllValueOptions") is not None:
         import capo_quicksight.types.select_all_value_options
 
         out["select_all_value_options"] = (
@@ -80,11 +80,11 @@ def deserialize_json(data: dict) -> DestinationParameterValueConfiguration:
                 data["SelectAllValueOptions"]
             )
         )
-    if "SourceParameterName" in data:
+    if data.get("SourceParameterName") is not None:
         out["source_parameter_name"] = data["SourceParameterName"]
-    if "SourceField" in data:
+    if data.get("SourceField") is not None:
         out["source_field"] = data["SourceField"]
-    if "SourceColumn" in data:
+    if data.get("SourceColumn") is not None:
         import capo_quicksight.types.column_identifier
 
         out["source_column"] = capo_quicksight.types.column_identifier.deserialize_json(

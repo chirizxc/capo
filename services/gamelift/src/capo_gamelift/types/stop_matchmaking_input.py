@@ -25,6 +25,6 @@ def serialize_aws_json_1_1(value: StopMatchmakingInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> StopMatchmakingInput:
     out: StopMatchmakingInput = {}  # type: ignore[typeddict-item]
-    if "TicketId" in data:
+    if data.get("TicketId") is not None:
         out["ticket_id"] = data["TicketId"]
     return out

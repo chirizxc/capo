@@ -27,8 +27,8 @@ def serialize_aws_json_1_0(value: IngressVpcConfiguration) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> IngressVpcConfiguration:
     out: IngressVpcConfiguration = {}  # type: ignore[typeddict-item]
-    if "VpcId" in data:
+    if data.get("VpcId") is not None:
         out["vpc_id"] = data["VpcId"]
-    if "VpcEndpointId" in data:
+    if data.get("VpcEndpointId") is not None:
         out["vpc_endpoint_id"] = data["VpcEndpointId"]
     return out

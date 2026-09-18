@@ -49,7 +49,7 @@ def serialize_aws_json_1_1(value: LDAPSSettingInfo) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> LDAPSSettingInfo:
     out: LDAPSSettingInfo = {}  # type: ignore[typeddict-item]
-    if "LDAPSStatus" in data:
+    if data.get("LDAPSStatus") is not None:
         import capo_directory_service.types.ldaps_status
 
         out["ldaps_status"] = (
@@ -57,9 +57,9 @@ def deserialize_aws_json_1_1(data: dict) -> LDAPSSettingInfo:
                 data["LDAPSStatus"]
             )
         )
-    if "LDAPSStatusReason" in data:
+    if data.get("LDAPSStatusReason") is not None:
         out["ldaps_status_reason"] = data["LDAPSStatusReason"]
-    if "LastUpdatedDateTime" in data:
+    if data.get("LastUpdatedDateTime") is not None:
         import capo_directory_service.types.last_updated_date_time
 
         out["last_updated_date_time"] = (

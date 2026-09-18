@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> SpanGuardrailAssessmentList:
 
     out: SpanGuardrailAssessmentList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_qconnect.types.span_guardrail_assessment.deserialize_json(item))
     return out

@@ -135,7 +135,7 @@ def serialize_json(value: MediaPackageV2GroupSettings) -> dict:
 
 def deserialize_json(data: dict) -> MediaPackageV2GroupSettings:
     out: MediaPackageV2GroupSettings = {}  # type: ignore[typeddict-item]
-    if "captionLanguageMappings" in data:
+    if data.get("captionLanguageMappings") is not None:
         import capo_medialive.types.__list_of_caption_language_mapping
 
         out["caption_language_mappings"] = (
@@ -143,19 +143,19 @@ def deserialize_json(data: dict) -> MediaPackageV2GroupSettings:
                 data["captionLanguageMappings"]
             )
         )
-    if "id3Behavior" in data:
+    if data.get("id3Behavior") is not None:
         import capo_medialive.types.cmaf_id3_behavior
 
         out["id3_behavior"] = capo_medialive.types.cmaf_id3_behavior.deserialize_json(
             data["id3Behavior"]
         )
-    if "klvBehavior" in data:
+    if data.get("klvBehavior") is not None:
         import capo_medialive.types.cmaf_klv_behavior
 
         out["klv_behavior"] = capo_medialive.types.cmaf_klv_behavior.deserialize_json(
             data["klvBehavior"]
         )
-    if "nielsenId3Behavior" in data:
+    if data.get("nielsenId3Behavior") is not None:
         import capo_medialive.types.cmaf_nielsen_id3_behavior
 
         out["nielsen_id3_behavior"] = (
@@ -163,15 +163,15 @@ def deserialize_json(data: dict) -> MediaPackageV2GroupSettings:
                 data["nielsenId3Behavior"]
             )
         )
-    if "scte35Type" in data:
+    if data.get("scte35Type") is not None:
         import capo_medialive.types.scte35_type
 
         out["scte35_type"] = capo_medialive.types.scte35_type.deserialize_json(
             data["scte35Type"]
         )
-    if "segmentLength" in data:
+    if data.get("segmentLength") is not None:
         out["segment_length"] = data["segmentLength"]
-    if "segmentLengthUnits" in data:
+    if data.get("segmentLengthUnits") is not None:
         import capo_medialive.types.cmaf_ingest_segment_length_units
 
         out["segment_length_units"] = (
@@ -179,7 +179,7 @@ def deserialize_json(data: dict) -> MediaPackageV2GroupSettings:
                 data["segmentLengthUnits"]
             )
         )
-    if "timedMetadataId3Frame" in data:
+    if data.get("timedMetadataId3Frame") is not None:
         import capo_medialive.types.cmaf_timed_metadata_id3_frame
 
         out["timed_metadata_id3_frame"] = (
@@ -187,9 +187,9 @@ def deserialize_json(data: dict) -> MediaPackageV2GroupSettings:
                 data["timedMetadataId3Frame"]
             )
         )
-    if "timedMetadataId3Period" in data:
+    if data.get("timedMetadataId3Period") is not None:
         out["timed_metadata_id3_period"] = data["timedMetadataId3Period"]
-    if "timedMetadataPassthrough" in data:
+    if data.get("timedMetadataPassthrough") is not None:
         import capo_medialive.types.cmaf_timed_metadata_passthrough
 
         out["timed_metadata_passthrough"] = (
@@ -197,7 +197,7 @@ def deserialize_json(data: dict) -> MediaPackageV2GroupSettings:
                 data["timedMetadataPassthrough"]
             )
         )
-    if "additionalDestinations" in data:
+    if data.get("additionalDestinations") is not None:
         import capo_medialive.types.__list_of_media_package_additional_destinations
 
         out["additional_destinations"] = (

@@ -36,13 +36,13 @@ def serialize_json(value: Prometheus) -> dict:
 
 def deserialize_json(data: dict) -> Prometheus:
     out: Prometheus = {}  # type: ignore[typeddict-item]
-    if "jmxExporter" in data:
+    if data.get("jmxExporter") is not None:
         import capo_kafka.types.jmx_exporter
 
         out["jmx_exporter"] = capo_kafka.types.jmx_exporter.deserialize_json(
             data["jmxExporter"]
         )
-    if "nodeExporter" in data:
+    if data.get("nodeExporter") is not None:
         import capo_kafka.types.node_exporter
 
         out["node_exporter"] = capo_kafka.types.node_exporter.deserialize_json(

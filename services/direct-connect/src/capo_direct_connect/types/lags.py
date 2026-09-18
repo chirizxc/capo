@@ -34,12 +34,12 @@ def serialize_aws_json_1_1(value: Lags) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Lags:
     out: Lags = {}  # type: ignore[typeddict-item]
-    if "lags" in data:
+    if data.get("lags") is not None:
         import capo_direct_connect.types.lag_list
 
         out["lags"] = capo_direct_connect.types.lag_list.deserialize_aws_json_1_1(
             data["lags"]
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

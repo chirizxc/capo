@@ -67,21 +67,21 @@ def serialize_aws_json_1_1(value: BuildSummary) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> BuildSummary:
     out: BuildSummary = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "requestedOn" in data:
+    if data.get("requestedOn") is not None:
         import capo_codebuild.types.timestamp
 
         out["requested_on"] = capo_codebuild.types.timestamp.deserialize_aws_json_1_1(
             data["requestedOn"]
         )
-    if "buildStatus" in data:
+    if data.get("buildStatus") is not None:
         import capo_codebuild.types.status_type
 
         out["build_status"] = capo_codebuild.types.status_type.deserialize_aws_json_1_1(
             data["buildStatus"]
         )
-    if "primaryArtifact" in data:
+    if data.get("primaryArtifact") is not None:
         import capo_codebuild.types.resolved_artifact
 
         out["primary_artifact"] = (
@@ -89,7 +89,7 @@ def deserialize_aws_json_1_1(data: dict) -> BuildSummary:
                 data["primaryArtifact"]
             )
         )
-    if "secondaryArtifacts" in data:
+    if data.get("secondaryArtifacts") is not None:
         import capo_codebuild.types.resolved_secondary_artifacts
 
         out["secondary_artifacts"] = (

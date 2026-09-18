@@ -25,6 +25,8 @@ def deserialize_aws_json_1_1(data: list) -> BuildsNotDeleted:
 
     out: BuildsNotDeleted = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_codebuild.types.build_not_deleted.deserialize_aws_json_1_1(item)
         )

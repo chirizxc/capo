@@ -23,6 +23,6 @@ def serialize_json(value: DataSourceFreeTrial) -> dict:
 
 def deserialize_json(data: dict) -> DataSourceFreeTrial:
     out: DataSourceFreeTrial = {}  # type: ignore[typeddict-item]
-    if "freeTrialDaysRemaining" in data:
+    if data.get("freeTrialDaysRemaining") is not None:
         out["free_trial_days_remaining"] = data["freeTrialDaysRemaining"]
     return out

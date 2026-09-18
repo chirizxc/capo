@@ -63,7 +63,7 @@ def serialize_json(value: CalculateRouteMatrixResponse) -> dict:
 
 def deserialize_json(data: dict) -> CalculateRouteMatrixResponse:
     out: CalculateRouteMatrixResponse = {}  # type: ignore[typeddict-item]
-    if "RouteMatrix" in data:
+    if data.get("RouteMatrix") is not None:
         import capo_location.types.route_matrix
 
         out["route_matrix"] = capo_location.types.route_matrix.deserialize_json(
@@ -71,7 +71,7 @@ def deserialize_json(data: dict) -> CalculateRouteMatrixResponse:
         )
     else:
         raise DeserializationError("CalculateRouteMatrixResponse.route_matrix required")
-    if "SnappedDeparturePositions" in data:
+    if data.get("SnappedDeparturePositions") is not None:
         import capo_location.types.position_list
 
         out["snapped_departure_positions"] = (
@@ -79,7 +79,7 @@ def deserialize_json(data: dict) -> CalculateRouteMatrixResponse:
                 data["SnappedDeparturePositions"]
             )
         )
-    if "SnappedDestinationPositions" in data:
+    if data.get("SnappedDestinationPositions") is not None:
         import capo_location.types.position_list
 
         out["snapped_destination_positions"] = (
@@ -87,7 +87,7 @@ def deserialize_json(data: dict) -> CalculateRouteMatrixResponse:
                 data["SnappedDestinationPositions"]
             )
         )
-    if "Summary" in data:
+    if data.get("Summary") is not None:
         import capo_location.types.calculate_route_matrix_summary
 
         out["summary"] = (

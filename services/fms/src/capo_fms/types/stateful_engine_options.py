@@ -40,13 +40,13 @@ def serialize_aws_json_1_1(value: StatefulEngineOptions) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> StatefulEngineOptions:
     out: StatefulEngineOptions = {}  # type: ignore[typeddict-item]
-    if "RuleOrder" in data:
+    if data.get("RuleOrder") is not None:
         import capo_fms.types.rule_order
 
         out["rule_order"] = capo_fms.types.rule_order.deserialize_aws_json_1_1(
             data["RuleOrder"]
         )
-    if "StreamExceptionPolicy" in data:
+    if data.get("StreamExceptionPolicy") is not None:
         import capo_fms.types.stream_exception_policy
 
         out["stream_exception_policy"] = (

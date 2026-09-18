@@ -70,15 +70,15 @@ def serialize_aws_json_1_1(value: PipelineExecutionSummary) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PipelineExecutionSummary:
     out: PipelineExecutionSummary = {}  # type: ignore[typeddict-item]
-    if "PipelineExecutionArn" in data:
+    if data.get("PipelineExecutionArn") is not None:
         out["pipeline_execution_arn"] = data["PipelineExecutionArn"]
-    if "StartTime" in data:
+    if data.get("StartTime") is not None:
         import capo_sagemaker.types.timestamp
 
         out["start_time"] = capo_sagemaker.types.timestamp.deserialize_aws_json_1_1(
             data["StartTime"]
         )
-    if "PipelineExecutionStatus" in data:
+    if data.get("PipelineExecutionStatus") is not None:
         import capo_sagemaker.types.pipeline_execution_status
 
         out["pipeline_execution_status"] = (
@@ -86,11 +86,11 @@ def deserialize_aws_json_1_1(data: dict) -> PipelineExecutionSummary:
                 data["PipelineExecutionStatus"]
             )
         )
-    if "PipelineExecutionDescription" in data:
+    if data.get("PipelineExecutionDescription") is not None:
         out["pipeline_execution_description"] = data["PipelineExecutionDescription"]
-    if "PipelineExecutionDisplayName" in data:
+    if data.get("PipelineExecutionDisplayName") is not None:
         out["pipeline_execution_display_name"] = data["PipelineExecutionDisplayName"]
-    if "PipelineExecutionFailureReason" in data:
+    if data.get("PipelineExecutionFailureReason") is not None:
         out["pipeline_execution_failure_reason"] = data[
             "PipelineExecutionFailureReason"
         ]

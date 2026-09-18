@@ -89,15 +89,15 @@ def serialize_json(value: CreateIndexInput) -> dict:
 
 def deserialize_json(data: dict) -> CreateIndexInput:
     out: CreateIndexInput = {}  # type: ignore[typeddict-item]
-    if "vectorBucketName" in data:
+    if data.get("vectorBucketName") is not None:
         out["vector_bucket_name"] = data["vectorBucketName"]
-    if "vectorBucketArn" in data:
+    if data.get("vectorBucketArn") is not None:
         out["vector_bucket_arn"] = data["vectorBucketArn"]
-    if "indexName" in data:
+    if data.get("indexName") is not None:
         out["index_name"] = data["indexName"]
     else:
         raise DeserializationError("CreateIndexInput.index_name required")
-    if "dataType" in data:
+    if data.get("dataType") is not None:
         import capo_s3vectors.types.data_type
 
         out["data_type"] = capo_s3vectors.types.data_type.deserialize_json(
@@ -105,11 +105,11 @@ def deserialize_json(data: dict) -> CreateIndexInput:
         )
     else:
         raise DeserializationError("CreateIndexInput.data_type required")
-    if "dimension" in data:
+    if data.get("dimension") is not None:
         out["dimension"] = data["dimension"]
     else:
         raise DeserializationError("CreateIndexInput.dimension required")
-    if "distanceMetric" in data:
+    if data.get("distanceMetric") is not None:
         import capo_s3vectors.types.distance_metric
 
         out["distance_metric"] = capo_s3vectors.types.distance_metric.deserialize_json(
@@ -117,7 +117,7 @@ def deserialize_json(data: dict) -> CreateIndexInput:
         )
     else:
         raise DeserializationError("CreateIndexInput.distance_metric required")
-    if "metadataConfiguration" in data:
+    if data.get("metadataConfiguration") is not None:
         import capo_s3vectors.types.metadata_configuration
 
         out["metadata_configuration"] = (
@@ -125,7 +125,7 @@ def deserialize_json(data: dict) -> CreateIndexInput:
                 data["metadataConfiguration"]
             )
         )
-    if "encryptionConfiguration" in data:
+    if data.get("encryptionConfiguration") is not None:
         import capo_s3vectors.types.encryption_configuration
 
         out["encryption_configuration"] = (
@@ -133,7 +133,7 @@ def deserialize_json(data: dict) -> CreateIndexInput:
                 data["encryptionConfiguration"]
             )
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_s3vectors.types.tags_map
 
         out["tags"] = capo_s3vectors.types.tags_map.deserialize_json(data["tags"])

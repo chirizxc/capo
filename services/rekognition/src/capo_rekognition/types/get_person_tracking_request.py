@@ -47,15 +47,15 @@ def serialize_aws_json_1_1(value: GetPersonTrackingRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetPersonTrackingRequest:
     out: GetPersonTrackingRequest = {}  # type: ignore[typeddict-item]
-    if "JobId" in data:
+    if data.get("JobId") is not None:
         out["job_id"] = data["JobId"]
     else:
         raise DeserializationError("GetPersonTrackingRequest.job_id required")
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "SortBy" in data:
+    if data.get("SortBy") is not None:
         import capo_rekognition.types.person_tracking_sort_by
 
         out["sort_by"] = (

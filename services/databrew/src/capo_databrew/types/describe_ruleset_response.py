@@ -81,37 +81,37 @@ def serialize_json(value: DescribeRulesetResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribeRulesetResponse:
     out: DescribeRulesetResponse = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("DescribeRulesetResponse.name required")
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "TargetArn" in data:
+    if data.get("TargetArn") is not None:
         out["target_arn"] = data["TargetArn"]
-    if "Rules" in data:
+    if data.get("Rules") is not None:
         import capo_databrew.types.rule_list
 
         out["rules"] = capo_databrew.types.rule_list.deserialize_json(data["Rules"])
-    if "CreateDate" in data:
+    if data.get("CreateDate") is not None:
         import capo_databrew.types.date
 
         out["create_date"] = capo_databrew.types.date.deserialize_json(
             data["CreateDate"]
         )
-    if "CreatedBy" in data:
+    if data.get("CreatedBy") is not None:
         out["created_by"] = data["CreatedBy"]
-    if "LastModifiedBy" in data:
+    if data.get("LastModifiedBy") is not None:
         out["last_modified_by"] = data["LastModifiedBy"]
-    if "LastModifiedDate" in data:
+    if data.get("LastModifiedDate") is not None:
         import capo_databrew.types.date
 
         out["last_modified_date"] = capo_databrew.types.date.deserialize_json(
             data["LastModifiedDate"]
         )
-    if "ResourceArn" in data:
+    if data.get("ResourceArn") is not None:
         out["resource_arn"] = data["ResourceArn"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_databrew.types.tag_map
 
         out["tags"] = capo_databrew.types.tag_map.deserialize_json(data["Tags"])

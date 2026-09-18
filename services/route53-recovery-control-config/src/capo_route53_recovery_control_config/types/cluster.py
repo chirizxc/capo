@@ -76,9 +76,9 @@ def serialize_json(value: Cluster) -> dict:
 
 def deserialize_json(data: dict) -> Cluster:
     out: Cluster = {}  # type: ignore[typeddict-item]
-    if "ClusterArn" in data:
+    if data.get("ClusterArn") is not None:
         out["cluster_arn"] = data["ClusterArn"]
-    if "ClusterEndpoints" in data:
+    if data.get("ClusterEndpoints") is not None:
         import capo_route53_recovery_control_config.types.__list_of_cluster_endpoint
 
         out["cluster_endpoints"] = (
@@ -86,9 +86,9 @@ def deserialize_json(data: dict) -> Cluster:
                 data["ClusterEndpoints"]
             )
         )
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_route53_recovery_control_config.types.status
 
         out["status"] = (
@@ -96,9 +96,9 @@ def deserialize_json(data: dict) -> Cluster:
                 data["Status"]
             )
         )
-    if "Owner" in data:
+    if data.get("Owner") is not None:
         out["owner"] = data["Owner"]
-    if "NetworkType" in data:
+    if data.get("NetworkType") is not None:
         import capo_route53_recovery_control_config.types.network_type
 
         out["network_type"] = (

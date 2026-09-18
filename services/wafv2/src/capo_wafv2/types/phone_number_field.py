@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: PhoneNumberField) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PhoneNumberField:
     out: PhoneNumberField = {}  # type: ignore[typeddict-item]
-    if "Identifier" in data:
+    if data.get("Identifier") is not None:
         out["identifier"] = data["Identifier"]
     else:
         raise DeserializationError("PhoneNumberField.identifier required")

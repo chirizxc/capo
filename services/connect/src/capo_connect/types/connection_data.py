@@ -32,11 +32,11 @@ def serialize_json(value: ConnectionData) -> dict:
 
 def deserialize_json(data: dict) -> ConnectionData:
     out: ConnectionData = {}  # type: ignore[typeddict-item]
-    if "Attendee" in data:
+    if data.get("Attendee") is not None:
         import capo_connect.types.attendee
 
         out["attendee"] = capo_connect.types.attendee.deserialize_json(data["Attendee"])
-    if "Meeting" in data:
+    if data.get("Meeting") is not None:
         import capo_connect.types.meeting
 
         out["meeting"] = capo_connect.types.meeting.deserialize_json(data["Meeting"])

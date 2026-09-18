@@ -39,7 +39,7 @@ def serialize_json(value: BatchDeleteDocumentRequest) -> dict:
 
 def deserialize_json(data: dict) -> BatchDeleteDocumentRequest:
     out: BatchDeleteDocumentRequest = {}  # type: ignore[typeddict-item]
-    if "documents" in data:
+    if data.get("documents") is not None:
         import capo_qbusiness.types.delete_documents
 
         out["documents"] = capo_qbusiness.types.delete_documents.deserialize_json(
@@ -47,6 +47,6 @@ def deserialize_json(data: dict) -> BatchDeleteDocumentRequest:
         )
     else:
         raise DeserializationError("BatchDeleteDocumentRequest.documents required")
-    if "dataSourceSyncId" in data:
+    if data.get("dataSourceSyncId") is not None:
         out["data_source_sync_id"] = data["dataSourceSyncId"]
     return out

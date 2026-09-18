@@ -38,13 +38,13 @@ def serialize_json(value: Indicator) -> dict:
 
 def deserialize_json(data: dict) -> Indicator:
     out: Indicator = {}  # type: ignore[typeddict-item]
-    if "IndicatorType" in data:
+    if data.get("IndicatorType") is not None:
         import capo_detective.types.indicator_type
 
         out["indicator_type"] = capo_detective.types.indicator_type.deserialize_json(
             data["IndicatorType"]
         )
-    if "IndicatorDetail" in data:
+    if data.get("IndicatorDetail") is not None:
         import capo_detective.types.indicator_detail
 
         out["indicator_detail"] = (

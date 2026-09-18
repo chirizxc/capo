@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: GetContainerLogResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetContainerLogResult:
     out: GetContainerLogResult = {}  # type: ignore[typeddict-item]
-    if "logEvents" in data:
+    if data.get("logEvents") is not None:
         import capo_lightsail.types.container_service_log_event_list
 
         out["log_events"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_1(data: dict) -> GetContainerLogResult:
                 data["logEvents"]
             )
         )
-    if "nextPageToken" in data:
+    if data.get("nextPageToken") is not None:
         out["next_page_token"] = data["nextPageToken"]
     return out

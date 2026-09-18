@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> AwsS3BucketBucketLifecycleConfigurationRules
 
     out: AwsS3BucketBucketLifecycleConfigurationRulesList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_securityhub.types.aws_s3_bucket_bucket_lifecycle_configuration_rules_details.deserialize_json(
                 item

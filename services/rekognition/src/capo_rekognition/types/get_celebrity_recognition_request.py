@@ -47,15 +47,15 @@ def serialize_aws_json_1_1(value: GetCelebrityRecognitionRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetCelebrityRecognitionRequest:
     out: GetCelebrityRecognitionRequest = {}  # type: ignore[typeddict-item]
-    if "JobId" in data:
+    if data.get("JobId") is not None:
         out["job_id"] = data["JobId"]
     else:
         raise DeserializationError("GetCelebrityRecognitionRequest.job_id required")
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "SortBy" in data:
+    if data.get("SortBy") is not None:
         import capo_rekognition.types.celebrity_recognition_sort_by
 
         out["sort_by"] = (

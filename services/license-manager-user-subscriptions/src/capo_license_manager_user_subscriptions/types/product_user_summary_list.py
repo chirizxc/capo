@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> ProductUserSummaryList:
 
     out: ProductUserSummaryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_license_manager_user_subscriptions.types.product_user_summary.deserialize_json(
                 item

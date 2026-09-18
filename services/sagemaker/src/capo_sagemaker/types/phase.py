@@ -37,10 +37,10 @@ def serialize_aws_json_1_1(value: Phase) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Phase:
     out: Phase = {}  # type: ignore[typeddict-item]
-    if "InitialNumberOfUsers" in data:
+    if data.get("InitialNumberOfUsers") is not None:
         out["initial_number_of_users"] = data["InitialNumberOfUsers"]
-    if "SpawnRate" in data:
+    if data.get("SpawnRate") is not None:
         out["spawn_rate"] = data["SpawnRate"]
-    if "DurationInSeconds" in data:
+    if data.get("DurationInSeconds") is not None:
         out["duration_in_seconds"] = data["DurationInSeconds"]
     return out

@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> Plugins:
 
     out: Plugins = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_qbusiness.types.plugin.deserialize_json(item))
     return out

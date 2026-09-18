@@ -38,9 +38,9 @@ def serialize_json(value: BatchPutMetricsRequest) -> dict:
 
 def deserialize_json(data: dict) -> BatchPutMetricsRequest:
     out: BatchPutMetricsRequest = {}  # type: ignore[typeddict-item]
-    if "TrialComponentName" in data:
+    if data.get("TrialComponentName") is not None:
         out["trial_component_name"] = data["TrialComponentName"]
-    if "MetricData" in data:
+    if data.get("MetricData") is not None:
         import capo_sagemaker_metrics.types.raw_metric_data_list
 
         out["metric_data"] = (

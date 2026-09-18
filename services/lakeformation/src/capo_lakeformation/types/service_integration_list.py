@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> ServiceIntegrationList:
 
     out: ServiceIntegrationList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_lakeformation.types.service_integration_union.deserialize_json(item)
         )

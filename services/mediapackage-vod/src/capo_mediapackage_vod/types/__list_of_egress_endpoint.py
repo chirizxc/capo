@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> __listOfEgressEndpoint:
 
     out: __listOfEgressEndpoint = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_mediapackage_vod.types.egress_endpoint.deserialize_json(item))
     return out

@@ -25,5 +25,7 @@ def deserialize_aws_json_1_1(data: list) -> OnPartialUploadWorkflowDetails:
 
     out: OnPartialUploadWorkflowDetails = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_transfer.types.workflow_detail.deserialize_aws_json_1_1(item))
     return out

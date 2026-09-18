@@ -28,11 +28,11 @@ def serialize_json(value: BatchPutProfileObjectResponseItem) -> dict:
 
 def deserialize_json(data: dict) -> BatchPutProfileObjectResponseItem:
     out: BatchPutProfileObjectResponseItem = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
     else:
         raise DeserializationError("BatchPutProfileObjectResponseItem.id required")
-    if "ProfileObjectUniqueKey" in data:
+    if data.get("ProfileObjectUniqueKey") is not None:
         out["profile_object_unique_key"] = data["ProfileObjectUniqueKey"]
     else:
         raise DeserializationError(

@@ -42,7 +42,7 @@ def serialize_aws_json_1_0(value: ArchiveBooleanExpression) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ArchiveBooleanExpression:
     out: ArchiveBooleanExpression = {}  # type: ignore[typeddict-item]
-    if "Evaluate" in data:
+    if data.get("Evaluate") is not None:
         import capo_mailmanager.types.archive_boolean_to_evaluate
 
         out["evaluate"] = (
@@ -52,7 +52,7 @@ def deserialize_aws_json_1_0(data: dict) -> ArchiveBooleanExpression:
         )
     else:
         raise DeserializationError("ArchiveBooleanExpression.evaluate required")
-    if "Operator" in data:
+    if data.get("Operator") is not None:
         import capo_mailmanager.types.archive_boolean_operator
 
         out["operator"] = (

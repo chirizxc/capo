@@ -23,6 +23,6 @@ def serialize_aws_json_1_1(value: CreateDataSourceFromS3Output) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateDataSourceFromS3Output:
     out: CreateDataSourceFromS3Output = {}  # type: ignore[typeddict-item]
-    if "DataSourceId" in data:
+    if data.get("DataSourceId") is not None:
         out["data_source_id"] = data["DataSourceId"]
     return out

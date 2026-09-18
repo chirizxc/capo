@@ -122,13 +122,13 @@ def serialize_json(value: Typography) -> dict:
 
 def deserialize_json(data: dict) -> Typography:
     out: Typography = {}  # type: ignore[typeddict-item]
-    if "FontFamilies" in data:
+    if data.get("FontFamilies") is not None:
         import capo_quicksight.types.font_list
 
         out["font_families"] = capo_quicksight.types.font_list.deserialize_json(
             data["FontFamilies"]
         )
-    if "AxisTitleFontConfiguration" in data:
+    if data.get("AxisTitleFontConfiguration") is not None:
         import capo_quicksight.types.font_configuration
 
         out["axis_title_font_configuration"] = (
@@ -136,7 +136,7 @@ def deserialize_json(data: dict) -> Typography:
                 data["AxisTitleFontConfiguration"]
             )
         )
-    if "AxisLabelFontConfiguration" in data:
+    if data.get("AxisLabelFontConfiguration") is not None:
         import capo_quicksight.types.font_configuration
 
         out["axis_label_font_configuration"] = (
@@ -144,7 +144,7 @@ def deserialize_json(data: dict) -> Typography:
                 data["AxisLabelFontConfiguration"]
             )
         )
-    if "LegendTitleFontConfiguration" in data:
+    if data.get("LegendTitleFontConfiguration") is not None:
         import capo_quicksight.types.font_configuration
 
         out["legend_title_font_configuration"] = (
@@ -152,7 +152,7 @@ def deserialize_json(data: dict) -> Typography:
                 data["LegendTitleFontConfiguration"]
             )
         )
-    if "LegendValueFontConfiguration" in data:
+    if data.get("LegendValueFontConfiguration") is not None:
         import capo_quicksight.types.font_configuration
 
         out["legend_value_font_configuration"] = (
@@ -160,7 +160,7 @@ def deserialize_json(data: dict) -> Typography:
                 data["LegendValueFontConfiguration"]
             )
         )
-    if "DataLabelFontConfiguration" in data:
+    if data.get("DataLabelFontConfiguration") is not None:
         import capo_quicksight.types.font_configuration
 
         out["data_label_font_configuration"] = (
@@ -168,7 +168,7 @@ def deserialize_json(data: dict) -> Typography:
                 data["DataLabelFontConfiguration"]
             )
         )
-    if "VisualTitleFontConfiguration" in data:
+    if data.get("VisualTitleFontConfiguration") is not None:
         import capo_quicksight.types.visual_title_font_configuration
 
         out["visual_title_font_configuration"] = (
@@ -176,7 +176,7 @@ def deserialize_json(data: dict) -> Typography:
                 data["VisualTitleFontConfiguration"]
             )
         )
-    if "VisualSubtitleFontConfiguration" in data:
+    if data.get("VisualSubtitleFontConfiguration") is not None:
         import capo_quicksight.types.visual_subtitle_font_configuration
 
         out["visual_subtitle_font_configuration"] = (
@@ -184,7 +184,7 @@ def deserialize_json(data: dict) -> Typography:
                 data["VisualSubtitleFontConfiguration"]
             )
         )
-    if "ControlTitleFontConfiguration" in data:
+    if data.get("ControlTitleFontConfiguration") is not None:
         import capo_quicksight.types.control_title_font_configuration
 
         out["control_title_font_configuration"] = (

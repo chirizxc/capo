@@ -31,10 +31,10 @@ def serialize_aws_json_1_1(value: ProcessedObject) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ProcessedObject:
     out: ProcessedObject = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Type" in data:
+    if data.get("Type") is not None:
         out["type"] = data["Type"]
-    if "EndpointType" in data:
+    if data.get("EndpointType") is not None:
         out["endpoint_type"] = data["EndpointType"]
     return out

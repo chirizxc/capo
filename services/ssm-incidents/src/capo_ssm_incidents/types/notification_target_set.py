@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> NotificationTargetSet:
 
     out: NotificationTargetSet = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_ssm_incidents.types.notification_target_item.deserialize_json(item)
         )

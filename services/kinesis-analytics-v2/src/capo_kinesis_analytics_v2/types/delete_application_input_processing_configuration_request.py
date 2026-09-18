@@ -38,19 +38,19 @@ def deserialize_aws_json_1_1(
     data: dict,
 ) -> DeleteApplicationInputProcessingConfigurationRequest:
     out: DeleteApplicationInputProcessingConfigurationRequest = {}  # type: ignore[typeddict-item]
-    if "ApplicationName" in data:
+    if data.get("ApplicationName") is not None:
         out["application_name"] = data["ApplicationName"]
     else:
         raise DeserializationError(
             "DeleteApplicationInputProcessingConfigurationRequest.application_name required"
         )
-    if "CurrentApplicationVersionId" in data:
+    if data.get("CurrentApplicationVersionId") is not None:
         out["current_application_version_id"] = data["CurrentApplicationVersionId"]
     else:
         raise DeserializationError(
             "DeleteApplicationInputProcessingConfigurationRequest.current_application_version_id required"
         )
-    if "InputId" in data:
+    if data.get("InputId") is not None:
         out["input_id"] = data["InputId"]
     else:
         raise DeserializationError(

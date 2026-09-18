@@ -27,6 +27,6 @@ def serialize_aws_json_1_1(value: PutLifecycleEventHookExecutionStatusOutput) ->
 
 def deserialize_aws_json_1_1(data: dict) -> PutLifecycleEventHookExecutionStatusOutput:
     out: PutLifecycleEventHookExecutionStatusOutput = {}  # type: ignore[typeddict-item]
-    if "lifecycleEventHookExecutionId" in data:
+    if data.get("lifecycleEventHookExecutionId") is not None:
         out["lifecycle_event_hook_execution_id"] = data["lifecycleEventHookExecutionId"]
     return out

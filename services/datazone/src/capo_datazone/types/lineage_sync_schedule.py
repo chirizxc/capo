@@ -18,6 +18,6 @@ def serialize_json(value: LineageSyncSchedule) -> dict:
 
 def deserialize_json(data: dict) -> LineageSyncSchedule:
     out: LineageSyncSchedule = {}  # type: ignore[typeddict-item]
-    if "schedule" in data:
+    if data.get("schedule") is not None:
         out["schedule"] = data["schedule"]
     return out

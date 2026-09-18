@@ -31,7 +31,7 @@ def serialize_json(value: ExportingConfig) -> dict:
 
 def deserialize_json(data: dict) -> ExportingConfig:
     out: ExportingConfig = {}  # type: ignore[typeddict-item]
-    if "S3Exporting" in data:
+    if data.get("S3Exporting") is not None:
         import capo_customer_profiles.types.s3_exporting_config
 
         out["s3_exporting"] = (

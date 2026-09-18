@@ -174,17 +174,17 @@ def serialize_json(value: Device) -> dict:
 
 def deserialize_json(data: dict) -> Device:
     out: Device = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "serialNumber" in data:
+    if data.get("serialNumber") is not None:
         out["serial_number"] = data["serialNumber"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "model" in data:
+    if data.get("model") is not None:
         out["model"] = data["model"]
-    if "environmentId" in data:
+    if data.get("environmentId") is not None:
         out["environment_id"] = data["environmentId"]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_workspaces_thin_client.types.device_status
 
         out["status"] = (
@@ -192,17 +192,17 @@ def deserialize_json(data: dict) -> Device:
                 data["status"]
             )
         )
-    if "currentSoftwareSetId" in data:
+    if data.get("currentSoftwareSetId") is not None:
         out["current_software_set_id"] = data["currentSoftwareSetId"]
-    if "currentSoftwareSetVersion" in data:
+    if data.get("currentSoftwareSetVersion") is not None:
         out["current_software_set_version"] = data["currentSoftwareSetVersion"]
-    if "desiredSoftwareSetId" in data:
+    if data.get("desiredSoftwareSetId") is not None:
         out["desired_software_set_id"] = data["desiredSoftwareSetId"]
-    if "pendingSoftwareSetId" in data:
+    if data.get("pendingSoftwareSetId") is not None:
         out["pending_software_set_id"] = data["pendingSoftwareSetId"]
-    if "pendingSoftwareSetVersion" in data:
+    if data.get("pendingSoftwareSetVersion") is not None:
         out["pending_software_set_version"] = data["pendingSoftwareSetVersion"]
-    if "softwareSetUpdateSchedule" in data:
+    if data.get("softwareSetUpdateSchedule") is not None:
         import capo_workspaces_thin_client.types.software_set_update_schedule
 
         out["software_set_update_schedule"] = (
@@ -210,7 +210,7 @@ def deserialize_json(data: dict) -> Device:
                 data["softwareSetUpdateSchedule"]
             )
         )
-    if "softwareSetComplianceStatus" in data:
+    if data.get("softwareSetComplianceStatus") is not None:
         import capo_workspaces_thin_client.types.device_software_set_compliance_status
 
         out["software_set_compliance_status"] = (
@@ -218,7 +218,7 @@ def deserialize_json(data: dict) -> Device:
                 data["softwareSetComplianceStatus"]
             )
         )
-    if "softwareSetUpdateStatus" in data:
+    if data.get("softwareSetUpdateStatus") is not None:
         import capo_workspaces_thin_client.types.software_set_update_status
 
         out["software_set_update_status"] = (
@@ -226,7 +226,7 @@ def deserialize_json(data: dict) -> Device:
                 data["softwareSetUpdateStatus"]
             )
         )
-    if "lastConnectedAt" in data:
+    if data.get("lastConnectedAt") is not None:
         import capo_workspaces_thin_client.types.timestamp
 
         out["last_connected_at"] = (
@@ -234,7 +234,7 @@ def deserialize_json(data: dict) -> Device:
                 data["lastConnectedAt"]
             )
         )
-    if "lastPostureAt" in data:
+    if data.get("lastPostureAt") is not None:
         import capo_workspaces_thin_client.types.timestamp
 
         out["last_posture_at"] = (
@@ -242,7 +242,7 @@ def deserialize_json(data: dict) -> Device:
                 data["lastPostureAt"]
             )
         )
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_workspaces_thin_client.types.timestamp
 
         out["created_at"] = (
@@ -250,7 +250,7 @@ def deserialize_json(data: dict) -> Device:
                 data["createdAt"]
             )
         )
-    if "updatedAt" in data:
+    if data.get("updatedAt") is not None:
         import capo_workspaces_thin_client.types.timestamp
 
         out["updated_at"] = (
@@ -258,10 +258,10 @@ def deserialize_json(data: dict) -> Device:
                 data["updatedAt"]
             )
         )
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "kmsKeyArn" in data:
+    if data.get("kmsKeyArn") is not None:
         out["kms_key_arn"] = data["kmsKeyArn"]
-    if "lastUserId" in data:
+    if data.get("lastUserId") is not None:
         out["last_user_id"] = data["lastUserId"]
     return out

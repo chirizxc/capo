@@ -25,6 +25,6 @@ def serialize_json(value: DetachObjectResponse) -> dict:
 
 def deserialize_json(data: dict) -> DetachObjectResponse:
     out: DetachObjectResponse = {}  # type: ignore[typeddict-item]
-    if "DetachedObjectIdentifier" in data:
+    if data.get("DetachedObjectIdentifier") is not None:
         out["detached_object_identifier"] = data["DetachedObjectIdentifier"]
     return out

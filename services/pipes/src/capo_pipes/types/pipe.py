@@ -77,32 +77,32 @@ def serialize_json(value: Pipe) -> dict:
 
 def deserialize_json(data: dict) -> Pipe:
     out: Pipe = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "DesiredState" in data:
+    if data.get("DesiredState") is not None:
         out["desired_state"] = data["DesiredState"]
-    if "CurrentState" in data:
+    if data.get("CurrentState") is not None:
         out["current_state"] = data["CurrentState"]
-    if "StateReason" in data:
+    if data.get("StateReason") is not None:
         out["state_reason"] = data["StateReason"]
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_pipes.types.timestamp
 
         out["creation_time"] = capo_pipes.types.timestamp.deserialize_json(
             data["CreationTime"]
         )
-    if "LastModifiedTime" in data:
+    if data.get("LastModifiedTime") is not None:
         import capo_pipes.types.timestamp
 
         out["last_modified_time"] = capo_pipes.types.timestamp.deserialize_json(
             data["LastModifiedTime"]
         )
-    if "Source" in data:
+    if data.get("Source") is not None:
         out["source"] = data["Source"]
-    if "Target" in data:
+    if data.get("Target") is not None:
         out["target"] = data["Target"]
-    if "Enrichment" in data:
+    if data.get("Enrichment") is not None:
         out["enrichment"] = data["Enrichment"]
     return out

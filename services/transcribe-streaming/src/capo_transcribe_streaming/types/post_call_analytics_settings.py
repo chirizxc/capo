@@ -46,17 +46,17 @@ def serialize_json(value: PostCallAnalyticsSettings) -> dict:
 
 def deserialize_json(data: dict) -> PostCallAnalyticsSettings:
     out: PostCallAnalyticsSettings = {}  # type: ignore[typeddict-item]
-    if "OutputLocation" in data:
+    if data.get("OutputLocation") is not None:
         out["output_location"] = data["OutputLocation"]
     else:
         raise DeserializationError("PostCallAnalyticsSettings.output_location required")
-    if "DataAccessRoleArn" in data:
+    if data.get("DataAccessRoleArn") is not None:
         out["data_access_role_arn"] = data["DataAccessRoleArn"]
     else:
         raise DeserializationError(
             "PostCallAnalyticsSettings.data_access_role_arn required"
         )
-    if "ContentRedactionOutput" in data:
+    if data.get("ContentRedactionOutput") is not None:
         import capo_transcribe_streaming.types.content_redaction_output
 
         out["content_redaction_output"] = (
@@ -64,6 +64,6 @@ def deserialize_json(data: dict) -> PostCallAnalyticsSettings:
                 data["ContentRedactionOutput"]
             )
         )
-    if "OutputEncryptionKMSKeyId" in data:
+    if data.get("OutputEncryptionKMSKeyId") is not None:
         out["output_encryption_kms_key_id"] = data["OutputEncryptionKMSKeyId"]
     return out

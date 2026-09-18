@@ -61,9 +61,9 @@ def serialize_aws_json_1_1(value: WorkspaceConnectionStatus) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> WorkspaceConnectionStatus:
     out: WorkspaceConnectionStatus = {}  # type: ignore[typeddict-item]
-    if "WorkspaceId" in data:
+    if data.get("WorkspaceId") is not None:
         out["workspace_id"] = data["WorkspaceId"]
-    if "ConnectionState" in data:
+    if data.get("ConnectionState") is not None:
         import capo_workspaces.types.connection_state
 
         out["connection_state"] = (
@@ -71,7 +71,7 @@ def deserialize_aws_json_1_1(data: dict) -> WorkspaceConnectionStatus:
                 data["ConnectionState"]
             )
         )
-    if "ConnectionStateCheckTimestamp" in data:
+    if data.get("ConnectionStateCheckTimestamp") is not None:
         import capo_workspaces.types.timestamp
 
         out["connection_state_check_timestamp"] = (
@@ -79,7 +79,7 @@ def deserialize_aws_json_1_1(data: dict) -> WorkspaceConnectionStatus:
                 data["ConnectionStateCheckTimestamp"]
             )
         )
-    if "LastKnownUserConnectionTimestamp" in data:
+    if data.get("LastKnownUserConnectionTimestamp") is not None:
         import capo_workspaces.types.timestamp
 
         out["last_known_user_connection_timestamp"] = (

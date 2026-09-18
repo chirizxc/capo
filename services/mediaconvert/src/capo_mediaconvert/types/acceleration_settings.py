@@ -27,7 +27,7 @@ def serialize_json(value: AccelerationSettings) -> dict:
 
 def deserialize_json(data: dict) -> AccelerationSettings:
     out: AccelerationSettings = {}  # type: ignore[typeddict-item]
-    if "mode" in data:
+    if data.get("mode") is not None:
         import capo_mediaconvert.types.acceleration_mode
 
         out["mode"] = capo_mediaconvert.types.acceleration_mode.deserialize_json(

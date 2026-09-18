@@ -35,7 +35,7 @@ def serialize_json(value: UpdateShareInvitationInput) -> dict:
 
 def deserialize_json(data: dict) -> UpdateShareInvitationInput:
     out: UpdateShareInvitationInput = {}  # type: ignore[typeddict-item]
-    if "ShareInvitationAction" in data:
+    if data.get("ShareInvitationAction") is not None:
         import capo_wellarchitected.types.share_invitation_action
 
         out["share_invitation_action"] = (

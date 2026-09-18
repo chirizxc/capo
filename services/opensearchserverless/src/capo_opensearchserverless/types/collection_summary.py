@@ -50,16 +50,16 @@ def serialize_aws_json_1_0(value: CollectionSummary) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CollectionSummary:
     out: CollectionSummary = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "kmsKeyArn" in data:
+    if data.get("kmsKeyArn") is not None:
         out["kms_key_arn"] = data["kmsKeyArn"]
-    if "collectionGroupName" in data:
+    if data.get("collectionGroupName") is not None:
         out["collection_group_name"] = data["collectionGroupName"]
     return out

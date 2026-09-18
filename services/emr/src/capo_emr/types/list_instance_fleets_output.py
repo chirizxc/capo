@@ -34,7 +34,7 @@ def serialize_aws_json_1_1(value: ListInstanceFleetsOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListInstanceFleetsOutput:
     out: ListInstanceFleetsOutput = {}  # type: ignore[typeddict-item]
-    if "InstanceFleets" in data:
+    if data.get("InstanceFleets") is not None:
         import capo_emr.types.instance_fleet_list
 
         out["instance_fleets"] = (
@@ -42,6 +42,6 @@ def deserialize_aws_json_1_1(data: dict) -> ListInstanceFleetsOutput:
                 data["InstanceFleets"]
             )
         )
-    if "Marker" in data:
+    if data.get("Marker") is not None:
         out["marker"] = data["Marker"]
     return out

@@ -51,7 +51,7 @@ def serialize_json(value: ReferenceLineDynamicDataConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> ReferenceLineDynamicDataConfiguration:
     out: ReferenceLineDynamicDataConfiguration = {}  # type: ignore[typeddict-item]
-    if "Column" in data:
+    if data.get("Column") is not None:
         import capo_quicksight.types.column_identifier
 
         out["column"] = capo_quicksight.types.column_identifier.deserialize_json(
@@ -61,7 +61,7 @@ def deserialize_json(data: dict) -> ReferenceLineDynamicDataConfiguration:
         raise DeserializationError(
             "ReferenceLineDynamicDataConfiguration.column required"
         )
-    if "MeasureAggregationFunction" in data:
+    if data.get("MeasureAggregationFunction") is not None:
         import capo_quicksight.types.aggregation_function
 
         out["measure_aggregation_function"] = (
@@ -69,7 +69,7 @@ def deserialize_json(data: dict) -> ReferenceLineDynamicDataConfiguration:
                 data["MeasureAggregationFunction"]
             )
         )
-    if "Calculation" in data:
+    if data.get("Calculation") is not None:
         import capo_quicksight.types.numerical_aggregation_function
 
         out["calculation"] = (

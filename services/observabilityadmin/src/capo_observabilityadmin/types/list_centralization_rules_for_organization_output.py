@@ -36,7 +36,7 @@ def serialize_json(value: ListCentralizationRulesForOrganizationOutput) -> dict:
 
 def deserialize_json(data: dict) -> ListCentralizationRulesForOrganizationOutput:
     out: ListCentralizationRulesForOrganizationOutput = {}  # type: ignore[typeddict-item]
-    if "CentralizationRuleSummaries" in data:
+    if data.get("CentralizationRuleSummaries") is not None:
         import capo_observabilityadmin.types.centralization_rule_summaries
 
         out["centralization_rule_summaries"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> ListCentralizationRulesForOrganizationOutput
                 data["CentralizationRuleSummaries"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

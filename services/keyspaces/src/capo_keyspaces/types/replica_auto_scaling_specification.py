@@ -36,9 +36,9 @@ def serialize_aws_json_1_0(value: ReplicaAutoScalingSpecification) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ReplicaAutoScalingSpecification:
     out: ReplicaAutoScalingSpecification = {}  # type: ignore[typeddict-item]
-    if "region" in data:
+    if data.get("region") is not None:
         out["region"] = data["region"]
-    if "autoScalingSpecification" in data:
+    if data.get("autoScalingSpecification") is not None:
         import capo_keyspaces.types.auto_scaling_specification
 
         out["auto_scaling_specification"] = (

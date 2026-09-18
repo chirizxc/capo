@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: StartRemoteDeleteResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> StartRemoteDeleteResponse:
     out: StartRemoteDeleteResponse = {}  # type: ignore[typeddict-item]
-    if "DeleteId" in data:
+    if data.get("DeleteId") is not None:
         out["delete_id"] = data["DeleteId"]
     else:
         raise DeserializationError("StartRemoteDeleteResponse.delete_id required")

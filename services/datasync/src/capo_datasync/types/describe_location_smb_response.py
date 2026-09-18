@@ -135,21 +135,21 @@ def serialize_aws_json_1_1(value: DescribeLocationSmbResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeLocationSmbResponse:
     out: DescribeLocationSmbResponse = {}  # type: ignore[typeddict-item]
-    if "LocationArn" in data:
+    if data.get("LocationArn") is not None:
         out["location_arn"] = data["LocationArn"]
-    if "LocationUri" in data:
+    if data.get("LocationUri") is not None:
         out["location_uri"] = data["LocationUri"]
-    if "AgentArns" in data:
+    if data.get("AgentArns") is not None:
         import capo_datasync.types.agent_arn_list
 
         out["agent_arns"] = capo_datasync.types.agent_arn_list.deserialize_aws_json_1_1(
             data["AgentArns"]
         )
-    if "User" in data:
+    if data.get("User") is not None:
         out["user"] = data["User"]
-    if "Domain" in data:
+    if data.get("Domain") is not None:
         out["domain"] = data["Domain"]
-    if "MountOptions" in data:
+    if data.get("MountOptions") is not None:
         import capo_datasync.types.smb_mount_options
 
         out["mount_options"] = (
@@ -157,13 +157,13 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeLocationSmbResponse:
                 data["MountOptions"]
             )
         )
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_datasync.types.time
 
         out["creation_time"] = capo_datasync.types.time.deserialize_aws_json_1_1(
             data["CreationTime"]
         )
-    if "DnsIpAddresses" in data:
+    if data.get("DnsIpAddresses") is not None:
         import capo_datasync.types.dns_ip_list
 
         out["dns_ip_addresses"] = (
@@ -171,9 +171,9 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeLocationSmbResponse:
                 data["DnsIpAddresses"]
             )
         )
-    if "KerberosPrincipal" in data:
+    if data.get("KerberosPrincipal") is not None:
         out["kerberos_principal"] = data["KerberosPrincipal"]
-    if "AuthenticationType" in data:
+    if data.get("AuthenticationType") is not None:
         import capo_datasync.types.smb_authentication_type
 
         out["authentication_type"] = (
@@ -181,7 +181,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeLocationSmbResponse:
                 data["AuthenticationType"]
             )
         )
-    if "ManagedSecretConfig" in data:
+    if data.get("ManagedSecretConfig") is not None:
         import capo_datasync.types.managed_secret_config
 
         out["managed_secret_config"] = (
@@ -189,7 +189,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeLocationSmbResponse:
                 data["ManagedSecretConfig"]
             )
         )
-    if "CmkSecretConfig" in data:
+    if data.get("CmkSecretConfig") is not None:
         import capo_datasync.types.cmk_secret_config
 
         out["cmk_secret_config"] = (
@@ -197,7 +197,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeLocationSmbResponse:
                 data["CmkSecretConfig"]
             )
         )
-    if "CustomSecretConfig" in data:
+    if data.get("CustomSecretConfig") is not None:
         import capo_datasync.types.custom_secret_config
 
         out["custom_secret_config"] = (

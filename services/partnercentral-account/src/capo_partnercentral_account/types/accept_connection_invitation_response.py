@@ -30,7 +30,7 @@ def serialize_aws_json_1_0(value: AcceptConnectionInvitationResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> AcceptConnectionInvitationResponse:
     out: AcceptConnectionInvitationResponse = {}  # type: ignore[typeddict-item]
-    if "Connection" in data:
+    if data.get("Connection") is not None:
         import capo_partnercentral_account.types.connection
 
         out["connection"] = (

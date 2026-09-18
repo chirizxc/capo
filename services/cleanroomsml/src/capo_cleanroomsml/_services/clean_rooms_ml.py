@@ -1,5 +1,6 @@
 """Generated from Smithy shape ``com.amazonaws.cleanroomsml#AWSStarkControlService``."""
 
+import datetime
 import warnings
 from collections.abc import Iterator
 from typing import TYPE_CHECKING, Any, Iterable, Optional
@@ -68,11 +69,102 @@ from capo_cleanroomsml._services._pipeline import (
 )
 
 if TYPE_CHECKING:
+    import capo_cleanroomsml.types.account_id
+    import capo_cleanroomsml.types.audience_export_job_summary
+    import capo_cleanroomsml.types.audience_generation_job_arn
+    import capo_cleanroomsml.types.audience_generation_job_data_source
+    import capo_cleanroomsml.types.audience_generation_job_summary
+    import capo_cleanroomsml.types.audience_model_arn
+    import capo_cleanroomsml.types.audience_model_summary
+    import capo_cleanroomsml.types.audience_size
+    import capo_cleanroomsml.types.audience_size_config
+    import capo_cleanroomsml.types.cancel_trained_model_inference_job_request
+    import capo_cleanroomsml.types.cancel_trained_model_request
     import capo_cleanroomsml.types.collaboration_configured_model_algorithm_association_summary
     import capo_cleanroomsml.types.collaboration_ml_input_channel_summary
     import capo_cleanroomsml.types.collaboration_trained_model_export_job_summary
     import capo_cleanroomsml.types.collaboration_trained_model_inference_job_summary
     import capo_cleanroomsml.types.collaboration_trained_model_summary
+    import capo_cleanroomsml.types.configured_audience_model_arn
+    import capo_cleanroomsml.types.configured_audience_model_output_config
+    import capo_cleanroomsml.types.configured_audience_model_summary
+    import capo_cleanroomsml.types.configured_model_algorithm_arn
+    import capo_cleanroomsml.types.configured_model_algorithm_association_arn
+    import capo_cleanroomsml.types.configured_model_algorithm_association_arn_list
+    import capo_cleanroomsml.types.configured_model_algorithm_association_summary
+    import capo_cleanroomsml.types.configured_model_algorithm_summary
+    import capo_cleanroomsml.types.container_config
+    import capo_cleanroomsml.types.create_audience_model_request
+    import capo_cleanroomsml.types.create_audience_model_response
+    import capo_cleanroomsml.types.create_configured_audience_model_request
+    import capo_cleanroomsml.types.create_configured_audience_model_response
+    import capo_cleanroomsml.types.create_configured_model_algorithm_association_request
+    import capo_cleanroomsml.types.create_configured_model_algorithm_association_response
+    import capo_cleanroomsml.types.create_configured_model_algorithm_request
+    import capo_cleanroomsml.types.create_configured_model_algorithm_response
+    import capo_cleanroomsml.types.create_ml_input_channel_request
+    import capo_cleanroomsml.types.create_ml_input_channel_response
+    import capo_cleanroomsml.types.create_trained_model_request
+    import capo_cleanroomsml.types.create_trained_model_response
+    import capo_cleanroomsml.types.create_training_dataset_request
+    import capo_cleanroomsml.types.create_training_dataset_response
+    import capo_cleanroomsml.types.dataset_list
+    import capo_cleanroomsml.types.delete_audience_generation_job_request
+    import capo_cleanroomsml.types.delete_audience_model_request
+    import capo_cleanroomsml.types.delete_configured_audience_model_policy_request
+    import capo_cleanroomsml.types.delete_configured_audience_model_request
+    import capo_cleanroomsml.types.delete_configured_model_algorithm_association_request
+    import capo_cleanroomsml.types.delete_configured_model_algorithm_request
+    import capo_cleanroomsml.types.delete_ml_configuration_request
+    import capo_cleanroomsml.types.delete_ml_input_channel_data_request
+    import capo_cleanroomsml.types.delete_trained_model_output_request
+    import capo_cleanroomsml.types.delete_training_dataset_request
+    import capo_cleanroomsml.types.environment
+    import capo_cleanroomsml.types.get_audience_generation_job_request
+    import capo_cleanroomsml.types.get_audience_generation_job_response
+    import capo_cleanroomsml.types.get_audience_model_request
+    import capo_cleanroomsml.types.get_audience_model_response
+    import capo_cleanroomsml.types.get_collaboration_configured_model_algorithm_association_request
+    import capo_cleanroomsml.types.get_collaboration_configured_model_algorithm_association_response
+    import capo_cleanroomsml.types.get_collaboration_ml_input_channel_request
+    import capo_cleanroomsml.types.get_collaboration_ml_input_channel_response
+    import capo_cleanroomsml.types.get_collaboration_trained_model_request
+    import capo_cleanroomsml.types.get_collaboration_trained_model_response
+    import capo_cleanroomsml.types.get_configured_audience_model_policy_request
+    import capo_cleanroomsml.types.get_configured_audience_model_policy_response
+    import capo_cleanroomsml.types.get_configured_audience_model_request
+    import capo_cleanroomsml.types.get_configured_audience_model_response
+    import capo_cleanroomsml.types.get_configured_model_algorithm_association_request
+    import capo_cleanroomsml.types.get_configured_model_algorithm_association_response
+    import capo_cleanroomsml.types.get_configured_model_algorithm_request
+    import capo_cleanroomsml.types.get_configured_model_algorithm_response
+    import capo_cleanroomsml.types.get_ml_configuration_request
+    import capo_cleanroomsml.types.get_ml_configuration_response
+    import capo_cleanroomsml.types.get_ml_input_channel_request
+    import capo_cleanroomsml.types.get_ml_input_channel_response
+    import capo_cleanroomsml.types.get_trained_model_inference_job_request
+    import capo_cleanroomsml.types.get_trained_model_inference_job_response
+    import capo_cleanroomsml.types.get_trained_model_request
+    import capo_cleanroomsml.types.get_trained_model_response
+    import capo_cleanroomsml.types.get_training_dataset_request
+    import capo_cleanroomsml.types.get_training_dataset_response
+    import capo_cleanroomsml.types.hash
+    import capo_cleanroomsml.types.hyper_parameters
+    import capo_cleanroomsml.types.iam_role_arn
+    import capo_cleanroomsml.types.incremental_training_data_channels
+    import capo_cleanroomsml.types.inference_container_config
+    import capo_cleanroomsml.types.inference_container_execution_parameters
+    import capo_cleanroomsml.types.inference_environment_map
+    import capo_cleanroomsml.types.inference_output_configuration
+    import capo_cleanroomsml.types.inference_resource_config
+    import capo_cleanroomsml.types.input_channel
+    import capo_cleanroomsml.types.kms_key_arn
+    import capo_cleanroomsml.types.list_audience_export_jobs_request
+    import capo_cleanroomsml.types.list_audience_export_jobs_response
+    import capo_cleanroomsml.types.list_audience_generation_jobs_request
+    import capo_cleanroomsml.types.list_audience_generation_jobs_response
+    import capo_cleanroomsml.types.list_audience_models_request
+    import capo_cleanroomsml.types.list_audience_models_response
     import capo_cleanroomsml.types.list_collaboration_configured_model_algorithm_associations_request
     import capo_cleanroomsml.types.list_collaboration_configured_model_algorithm_associations_response
     import capo_cleanroomsml.types.list_collaboration_ml_input_channels_request
@@ -83,18 +175,69 @@ if TYPE_CHECKING:
     import capo_cleanroomsml.types.list_collaboration_trained_model_inference_jobs_response
     import capo_cleanroomsml.types.list_collaboration_trained_models_request
     import capo_cleanroomsml.types.list_collaboration_trained_models_response
+    import capo_cleanroomsml.types.list_configured_audience_models_request
+    import capo_cleanroomsml.types.list_configured_audience_models_response
+    import capo_cleanroomsml.types.list_configured_model_algorithm_associations_request
+    import capo_cleanroomsml.types.list_configured_model_algorithm_associations_response
+    import capo_cleanroomsml.types.list_configured_model_algorithms_request
+    import capo_cleanroomsml.types.list_configured_model_algorithms_response
+    import capo_cleanroomsml.types.list_ml_input_channels_request
+    import capo_cleanroomsml.types.list_ml_input_channels_response
     import capo_cleanroomsml.types.list_tags_for_resource_request
     import capo_cleanroomsml.types.list_tags_for_resource_response
+    import capo_cleanroomsml.types.list_trained_model_inference_jobs_request
+    import capo_cleanroomsml.types.list_trained_model_inference_jobs_response
+    import capo_cleanroomsml.types.list_trained_model_versions_request
+    import capo_cleanroomsml.types.list_trained_model_versions_response
+    import capo_cleanroomsml.types.list_trained_models_request
+    import capo_cleanroomsml.types.list_trained_models_response
+    import capo_cleanroomsml.types.list_training_datasets_request
+    import capo_cleanroomsml.types.list_training_datasets_response
     import capo_cleanroomsml.types.max_results
+    import capo_cleanroomsml.types.metrics_list
+    import capo_cleanroomsml.types.min_matching_seed_size
+    import capo_cleanroomsml.types.ml_input_channel_arn
+    import capo_cleanroomsml.types.ml_input_channel_summary
+    import capo_cleanroomsml.types.ml_output_configuration
+    import capo_cleanroomsml.types.model_inference_data_source
+    import capo_cleanroomsml.types.model_training_data_channels
+    import capo_cleanroomsml.types.name_string
     import capo_cleanroomsml.types.next_token
+    import capo_cleanroomsml.types.payer_configuration
+    import capo_cleanroomsml.types.policy_existence_condition
+    import capo_cleanroomsml.types.privacy_configuration
+    import capo_cleanroomsml.types.put_configured_audience_model_policy_request
+    import capo_cleanroomsml.types.put_configured_audience_model_policy_response
+    import capo_cleanroomsml.types.put_ml_configuration_request
+    import capo_cleanroomsml.types.resource_config
+    import capo_cleanroomsml.types.resource_description
+    import capo_cleanroomsml.types.resource_policy
+    import capo_cleanroomsml.types.start_audience_export_job_request
+    import capo_cleanroomsml.types.start_audience_generation_job_request
+    import capo_cleanroomsml.types.start_audience_generation_job_response
+    import capo_cleanroomsml.types.start_trained_model_export_job_request
+    import capo_cleanroomsml.types.start_trained_model_inference_job_request
+    import capo_cleanroomsml.types.start_trained_model_inference_job_response
+    import capo_cleanroomsml.types.stopping_condition
     import capo_cleanroomsml.types.tag_keys
     import capo_cleanroomsml.types.tag_map
+    import capo_cleanroomsml.types.tag_on_create_policy
     import capo_cleanroomsml.types.tag_resource_request
     import capo_cleanroomsml.types.tag_resource_response
     import capo_cleanroomsml.types.taggable_arn
     import capo_cleanroomsml.types.trained_model_arn
+    import capo_cleanroomsml.types.trained_model_export_output_configuration
+    import capo_cleanroomsml.types.trained_model_inference_job_arn
+    import capo_cleanroomsml.types.trained_model_inference_job_summary
+    import capo_cleanroomsml.types.trained_model_status
+    import capo_cleanroomsml.types.trained_model_summary
+    import capo_cleanroomsml.types.training_dataset_arn
+    import capo_cleanroomsml.types.training_dataset_summary
+    import capo_cleanroomsml.types.training_input_mode
     import capo_cleanroomsml.types.untag_resource_request
     import capo_cleanroomsml.types.untag_resource_response
+    import capo_cleanroomsml.types.update_configured_audience_model_request
+    import capo_cleanroomsml.types.update_configured_audience_model_response
     import capo_cleanroomsml.types.uuid
 
 
@@ -245,18 +388,20 @@ class CleanRoomsMLClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cleanroomsml.types.list_collaboration_configured_model_algorithm_associations_request.ListCollaborationConfiguredModelAlgorithmAssociationsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_cleanroomsml.types.list_collaboration_configured_model_algorithm_associations_request.ListCollaborationConfiguredModelAlgorithmAssociationsRequest = {
+            "collaboration_identifier": collaboration_identifier
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
             input_["max_results"] = max_results
-        input_["collaboration_identifier"] = collaboration_identifier
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_collaboration_configured_model_algorithm_associations(
@@ -321,18 +466,20 @@ class CleanRoomsMLClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cleanroomsml.types.list_collaboration_ml_input_channels_request.ListCollaborationMLInputChannelsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_cleanroomsml.types.list_collaboration_ml_input_channels_request.ListCollaborationMLInputChannelsRequest = {
+            "collaboration_identifier": collaboration_identifier
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
             input_["max_results"] = max_results
-        input_["collaboration_identifier"] = collaboration_identifier
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_collaboration_ml_input_channels(
@@ -401,13 +548,14 @@ class CleanRoomsMLClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cleanroomsml.types.list_collaboration_trained_model_export_jobs_request.ListCollaborationTrainedModelExportJobsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_cleanroomsml.types.list_collaboration_trained_model_export_jobs_request.ListCollaborationTrainedModelExportJobsRequest = {
+            "collaboration_identifier": collaboration_identifier,
+            "trained_model_arn": trained_model_arn,
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
             input_["max_results"] = max_results
-        input_["collaboration_identifier"] = collaboration_identifier
-        input_["trained_model_arn"] = trained_model_arn
         if trained_model_version_identifier is not None:
             input_["trained_model_version_identifier"] = (
                 trained_model_version_identifier
@@ -418,6 +566,7 @@ class CleanRoomsMLClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_collaboration_trained_model_export_jobs(
@@ -496,12 +645,13 @@ class CleanRoomsMLClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cleanroomsml.types.list_collaboration_trained_model_inference_jobs_request.ListCollaborationTrainedModelInferenceJobsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_cleanroomsml.types.list_collaboration_trained_model_inference_jobs_request.ListCollaborationTrainedModelInferenceJobsRequest = {
+            "collaboration_identifier": collaboration_identifier
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
             input_["max_results"] = max_results
-        input_["collaboration_identifier"] = collaboration_identifier
         if trained_model_arn is not None:
             input_["trained_model_arn"] = trained_model_arn
         if trained_model_version_identifier is not None:
@@ -514,6 +664,7 @@ class CleanRoomsMLClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_collaboration_trained_model_inference_jobs(
@@ -586,18 +737,20 @@ class CleanRoomsMLClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cleanroomsml.types.list_collaboration_trained_models_request.ListCollaborationTrainedModelsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_cleanroomsml.types.list_collaboration_trained_models_request.ListCollaborationTrainedModelsRequest = {
+            "collaboration_identifier": collaboration_identifier
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
             input_["max_results"] = max_results
-        input_["collaboration_identifier"] = collaboration_identifier
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_collaboration_trained_models(
@@ -656,14 +809,16 @@ class CleanRoomsMLClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cleanroomsml.types.list_tags_for_resource_request.ListTagsForResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_cleanroomsml.types.list_tags_for_resource_request.ListTagsForResourceRequest = {
+            "resource_arn": resource_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def tag_resource(
@@ -701,15 +856,17 @@ class CleanRoomsMLClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cleanroomsml.types.tag_resource_request.TagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tags"] = tags
+        input_: capo_cleanroomsml.types.tag_resource_request.TagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tags": tags,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def untag_resource(
@@ -747,16 +904,3156 @@ class CleanRoomsMLClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cleanroomsml.types.untag_resource_request.UntagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tag_keys"] = tag_keys
+        input_: capo_cleanroomsml.types.untag_resource_request.UntagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tag_keys": tag_keys,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def start_audience_export_job(
+        self,
+        name: "capo_cleanroomsml.types.name_string.NameString",
+        audience_generation_job_arn: "capo_cleanroomsml.types.audience_generation_job_arn.AudienceGenerationJobArn",
+        audience_size: "capo_cleanroomsml.types.audience_size.AudienceSize",
+        *,
+        config_overrides: Optional[CleanRoomsMLClientConfig] = None,
+        description: Optional[
+            "capo_cleanroomsml.types.resource_description.ResourceDescription"
+        ] = None,
+    ) -> None:
+        """<p>Export an audience of a specified size after you have generated an audience.</p>
+
+        Args:
+            name: <p>The name of the audience export job.</p>
+            audience_generation_job_arn: <p>The Amazon Resource Name (ARN) of the audience generation job that you want to export.</p>
+            description: <p>The description of the audience export job.</p>
+
+        Raises:
+            capo_cleanroomsml.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_cleanroomsml.errors.conflict_exception.ConflictException: <p>You can't complete this action because another resource depends on this resource.</p>
+            capo_cleanroomsml.errors.resource_not_found_exception.ResourceNotFoundException: <p>The resource you are requesting does not exist.</p>
+            capo_cleanroomsml.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>You have exceeded your service quota.</p>
+            capo_cleanroomsml.errors.validation_exception.ValidationException: <p>The request parameters for this request are incorrect.</p>
+            capo_cleanroomsml.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_cleanroomsml.types.start_audience_export_job_request.StartAudienceExportJobRequest]",
+        ) -> OperationResponse[None]:
+            import capo_cleanroomsml._operations.aws_stark_control_service.start_audience_export_job
+
+            output, http_response = (
+                capo_cleanroomsml._operations.aws_stark_control_service.start_audience_export_job.start_audience_export_job(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_cleanroomsml.types.start_audience_export_job_request.StartAudienceExportJobRequest = {
+            "name": name,
+            "audience_generation_job_arn": audience_generation_job_arn,
+            "audience_size": audience_size,
+        }
+        if description is not None:
+            input_["description"] = description
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def list_audience_export_jobs(
+        self,
+        *,
+        config_overrides: Optional[CleanRoomsMLClientConfig] = None,
+        next_token: Optional["capo_cleanroomsml.types.next_token.NextToken"] = None,
+        max_results: Optional["capo_cleanroomsml.types.max_results.MaxResults"] = None,
+        audience_generation_job_arn: Optional[
+            "capo_cleanroomsml.types.audience_generation_job_arn.AudienceGenerationJobArn"
+        ] = None,
+    ) -> "capo_cleanroomsml.types.list_audience_export_jobs_response.ListAudienceExportJobsResponse":
+        """<p>Returns a list of the audience export jobs.</p>
+
+        Args:
+            next_token: <p>The token value retrieved from a previous call to access the next page of results.</p>
+            max_results: <p>The maximum size of the results that is returned per call.</p>
+            audience_generation_job_arn: <p>The Amazon Resource Name (ARN) of the audience generation job that you are interested in.</p>
+
+        Raises:
+            capo_cleanroomsml.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_cleanroomsml.errors.validation_exception.ValidationException: <p>The request parameters for this request are incorrect.</p>
+            capo_cleanroomsml.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_cleanroomsml.types.list_audience_export_jobs_request.ListAudienceExportJobsRequest]",
+        ) -> OperationResponse[
+            "capo_cleanroomsml.types.list_audience_export_jobs_response.ListAudienceExportJobsResponse"
+        ]:
+            import capo_cleanroomsml._operations.aws_stark_control_service.list_audience_export_jobs
+
+            output, http_response = (
+                capo_cleanroomsml._operations.aws_stark_control_service.list_audience_export_jobs.list_audience_export_jobs(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_cleanroomsml.types.list_audience_export_jobs_request.ListAudienceExportJobsRequest = {}
+        if next_token is not None:
+            input_["next_token"] = next_token
+        if max_results is not None:
+            input_["max_results"] = max_results
+        if audience_generation_job_arn is not None:
+            input_["audience_generation_job_arn"] = audience_generation_job_arn
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def iter_list_audience_export_jobs(
+        self,
+        *,
+        config_overrides: Optional[CleanRoomsMLClientConfig] = None,
+        next_token: Optional["capo_cleanroomsml.types.next_token.NextToken"] = None,
+        max_results: Optional["capo_cleanroomsml.types.max_results.MaxResults"] = None,
+        audience_generation_job_arn: Optional[
+            "capo_cleanroomsml.types.audience_generation_job_arn.AudienceGenerationJobArn"
+        ] = None,
+    ) -> "Iterator[capo_cleanroomsml.types.audience_export_job_summary.AudienceExportJobSummary]":
+        _token = next_token
+        while True:
+            _response = self.list_audience_export_jobs(
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+                audience_generation_job_arn=audience_generation_job_arn,
+            )
+            _page = _resolve_path(_response, ("audience_export_jobs",))
+            for _item in _page or []:
+                yield _item
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
+
+    def start_audience_generation_job(
+        self,
+        name: "capo_cleanroomsml.types.name_string.NameString",
+        configured_audience_model_arn: "capo_cleanroomsml.types.configured_audience_model_arn.ConfiguredAudienceModelArn",
+        seed_audience: "capo_cleanroomsml.types.audience_generation_job_data_source.AudienceGenerationJobDataSource",
+        *,
+        config_overrides: Optional[CleanRoomsMLClientConfig] = None,
+        include_seed_in_output: Optional[bool] = None,
+        collaboration_id: Optional["capo_cleanroomsml.types.uuid.UUID"] = None,
+        description: Optional[
+            "capo_cleanroomsml.types.resource_description.ResourceDescription"
+        ] = None,
+        tags: Optional["capo_cleanroomsml.types.tag_map.TagMap"] = None,
+    ) -> "capo_cleanroomsml.types.start_audience_generation_job_response.StartAudienceGenerationJobResponse":
+        """<p>Information necessary to start the audience generation job.</p>
+
+        Args:
+            name: <p>The name of the audience generation job.</p>
+            configured_audience_model_arn: <p>The Amazon Resource Name (ARN) of the configured audience model that is used for this audience generation job.</p>
+            seed_audience: <p>The seed audience that is used to generate the audience.</p>
+            include_seed_in_output: <p>Whether the seed audience is included in the audience generation output.</p>
+            collaboration_id: <p>The identifier of the collaboration that contains the audience generation job.</p>
+            description: <p>The description of the audience generation job.</p>
+            tags: <p>The optional metadata that you apply to the resource to help you categorize and organize them. Each tag consists of a key and an optional value, both of which you define.</p> <p>The following basic restrictions apply to tags:</p> <ul> <li> <p>Maximum number of tags per resource - 50.</p> </li> <li> <p>For each resource, each tag key must be unique, and each tag key can have only one value.</p> </li> <li> <p>Maximum key length - 128 Unicode characters in UTF-8.</p> </li> <li> <p>Maximum value length - 256 Unicode characters in UTF-8.</p> </li> <li> <p>If your tagging schema is used across multiple services and resources, remember that other services may have restrictions on allowed characters. Generally allowed characters are: letters, numbers, and spaces representable in UTF-8, and the following characters: + - = . _ : / @.</p> </li> <li> <p>Tag keys and values are case sensitive.</p> </li> <li> <p>Do not use aws:, AWS:, or any upper or lowercase combination of such as a prefix for keys as it is reserved for AWS use. You cannot edit or delete tag keys with this prefix. Values can have this prefix. If a tag value has aws as its prefix but the key does not, then Clean Rooms ML considers it to be a user tag and will count against the limit of 50 tags. Tags with only the key prefix of aws do not count against your tags per resource limit.</p> </li> </ul>
+
+        Raises:
+            capo_cleanroomsml.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_cleanroomsml.errors.conflict_exception.ConflictException: <p>You can't complete this action because another resource depends on this resource.</p>
+            capo_cleanroomsml.errors.resource_not_found_exception.ResourceNotFoundException: <p>The resource you are requesting does not exist.</p>
+            capo_cleanroomsml.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>You have exceeded your service quota.</p>
+            capo_cleanroomsml.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
+            capo_cleanroomsml.errors.validation_exception.ValidationException: <p>The request parameters for this request are incorrect.</p>
+            capo_cleanroomsml.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_cleanroomsml.types.start_audience_generation_job_request.StartAudienceGenerationJobRequest]",
+        ) -> OperationResponse[
+            "capo_cleanroomsml.types.start_audience_generation_job_response.StartAudienceGenerationJobResponse"
+        ]:
+            import capo_cleanroomsml._operations.aws_stark_control_service.start_audience_generation_job
+
+            output, http_response = (
+                capo_cleanroomsml._operations.aws_stark_control_service.start_audience_generation_job.start_audience_generation_job(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_cleanroomsml.types.start_audience_generation_job_request.StartAudienceGenerationJobRequest = {
+            "name": name,
+            "configured_audience_model_arn": configured_audience_model_arn,
+            "seed_audience": seed_audience,
+        }
+        if include_seed_in_output is not None:
+            input_["include_seed_in_output"] = include_seed_in_output
+        if collaboration_id is not None:
+            input_["collaboration_id"] = collaboration_id
+        if description is not None:
+            input_["description"] = description
+        if tags is not None:
+            input_["tags"] = tags
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def get_audience_generation_job(
+        self,
+        audience_generation_job_arn: "capo_cleanroomsml.types.audience_generation_job_arn.AudienceGenerationJobArn",
+        *,
+        config_overrides: Optional[CleanRoomsMLClientConfig] = None,
+    ) -> "capo_cleanroomsml.types.get_audience_generation_job_response.GetAudienceGenerationJobResponse":
+        """<p>Returns information about an audience generation job.</p>
+
+        Args:
+            audience_generation_job_arn: <p>The Amazon Resource Name (ARN) of the audience generation job that you are interested in.</p>
+
+        Raises:
+            capo_cleanroomsml.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_cleanroomsml.errors.resource_not_found_exception.ResourceNotFoundException: <p>The resource you are requesting does not exist.</p>
+            capo_cleanroomsml.errors.validation_exception.ValidationException: <p>The request parameters for this request are incorrect.</p>
+            capo_cleanroomsml.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_cleanroomsml.types.get_audience_generation_job_request.GetAudienceGenerationJobRequest]",
+        ) -> OperationResponse[
+            "capo_cleanroomsml.types.get_audience_generation_job_response.GetAudienceGenerationJobResponse"
+        ]:
+            import capo_cleanroomsml._operations.aws_stark_control_service.get_audience_generation_job
+
+            output, http_response = (
+                capo_cleanroomsml._operations.aws_stark_control_service.get_audience_generation_job.get_audience_generation_job(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_cleanroomsml.types.get_audience_generation_job_request.GetAudienceGenerationJobRequest = {
+            "audience_generation_job_arn": audience_generation_job_arn
+        }
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def delete_audience_generation_job(
+        self,
+        audience_generation_job_arn: "capo_cleanroomsml.types.audience_generation_job_arn.AudienceGenerationJobArn",
+        *,
+        config_overrides: Optional[CleanRoomsMLClientConfig] = None,
+    ) -> None:
+        """<p>Deletes the specified audience generation job, and removes all data associated with the job.</p>
+
+        Args:
+            audience_generation_job_arn: <p>The Amazon Resource Name (ARN) of the audience generation job that you want to delete.</p>
+
+        Raises:
+            capo_cleanroomsml.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_cleanroomsml.errors.conflict_exception.ConflictException: <p>You can't complete this action because another resource depends on this resource.</p>
+            capo_cleanroomsml.errors.resource_not_found_exception.ResourceNotFoundException: <p>The resource you are requesting does not exist.</p>
+            capo_cleanroomsml.errors.validation_exception.ValidationException: <p>The request parameters for this request are incorrect.</p>
+            capo_cleanroomsml.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_cleanroomsml.types.delete_audience_generation_job_request.DeleteAudienceGenerationJobRequest]",
+        ) -> OperationResponse[None]:
+            import capo_cleanroomsml._operations.aws_stark_control_service.delete_audience_generation_job
+
+            output, http_response = (
+                capo_cleanroomsml._operations.aws_stark_control_service.delete_audience_generation_job.delete_audience_generation_job(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_cleanroomsml.types.delete_audience_generation_job_request.DeleteAudienceGenerationJobRequest = {
+            "audience_generation_job_arn": audience_generation_job_arn
+        }
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def list_audience_generation_jobs(
+        self,
+        *,
+        config_overrides: Optional[CleanRoomsMLClientConfig] = None,
+        next_token: Optional["capo_cleanroomsml.types.next_token.NextToken"] = None,
+        max_results: Optional["capo_cleanroomsml.types.max_results.MaxResults"] = None,
+        configured_audience_model_arn: Optional[
+            "capo_cleanroomsml.types.configured_audience_model_arn.ConfiguredAudienceModelArn"
+        ] = None,
+        collaboration_id: Optional["capo_cleanroomsml.types.uuid.UUID"] = None,
+    ) -> "capo_cleanroomsml.types.list_audience_generation_jobs_response.ListAudienceGenerationJobsResponse":
+        """<p>Returns a list of audience generation jobs.</p>
+
+        Args:
+            next_token: <p>The token value retrieved from a previous call to access the next page of results.</p>
+            max_results: <p>The maximum size of the results that is returned per call.</p>
+            configured_audience_model_arn: <p>The Amazon Resource Name (ARN) of the configured audience model that was used for the audience generation jobs that you are interested in.</p>
+            collaboration_id: <p>The identifier of the collaboration that contains the audience generation jobs that you are interested in.</p>
+
+        Raises:
+            capo_cleanroomsml.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_cleanroomsml.errors.validation_exception.ValidationException: <p>The request parameters for this request are incorrect.</p>
+            capo_cleanroomsml.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_cleanroomsml.types.list_audience_generation_jobs_request.ListAudienceGenerationJobsRequest]",
+        ) -> OperationResponse[
+            "capo_cleanroomsml.types.list_audience_generation_jobs_response.ListAudienceGenerationJobsResponse"
+        ]:
+            import capo_cleanroomsml._operations.aws_stark_control_service.list_audience_generation_jobs
+
+            output, http_response = (
+                capo_cleanroomsml._operations.aws_stark_control_service.list_audience_generation_jobs.list_audience_generation_jobs(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_cleanroomsml.types.list_audience_generation_jobs_request.ListAudienceGenerationJobsRequest = {}
+        if next_token is not None:
+            input_["next_token"] = next_token
+        if max_results is not None:
+            input_["max_results"] = max_results
+        if configured_audience_model_arn is not None:
+            input_["configured_audience_model_arn"] = configured_audience_model_arn
+        if collaboration_id is not None:
+            input_["collaboration_id"] = collaboration_id
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def iter_list_audience_generation_jobs(
+        self,
+        *,
+        config_overrides: Optional[CleanRoomsMLClientConfig] = None,
+        next_token: Optional["capo_cleanroomsml.types.next_token.NextToken"] = None,
+        max_results: Optional["capo_cleanroomsml.types.max_results.MaxResults"] = None,
+        configured_audience_model_arn: Optional[
+            "capo_cleanroomsml.types.configured_audience_model_arn.ConfiguredAudienceModelArn"
+        ] = None,
+        collaboration_id: Optional["capo_cleanroomsml.types.uuid.UUID"] = None,
+    ) -> "Iterator[capo_cleanroomsml.types.audience_generation_job_summary.AudienceGenerationJobSummary]":
+        _token = next_token
+        while True:
+            _response = self.list_audience_generation_jobs(
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+                configured_audience_model_arn=configured_audience_model_arn,
+                collaboration_id=collaboration_id,
+            )
+            _page = _resolve_path(_response, ("audience_generation_jobs",))
+            for _item in _page or []:
+                yield _item
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
+
+    def create_audience_model(
+        self,
+        name: "capo_cleanroomsml.types.name_string.NameString",
+        training_dataset_arn: "capo_cleanroomsml.types.training_dataset_arn.TrainingDatasetArn",
+        *,
+        config_overrides: Optional[CleanRoomsMLClientConfig] = None,
+        training_data_start_time: Optional[datetime.datetime] = None,
+        training_data_end_time: Optional[datetime.datetime] = None,
+        kms_key_arn: Optional["capo_cleanroomsml.types.kms_key_arn.KmsKeyArn"] = None,
+        tags: Optional["capo_cleanroomsml.types.tag_map.TagMap"] = None,
+        description: Optional[
+            "capo_cleanroomsml.types.resource_description.ResourceDescription"
+        ] = None,
+    ) -> "capo_cleanroomsml.types.create_audience_model_response.CreateAudienceModelResponse":
+        """<p>Defines the information necessary to create an audience model. An audience model is a machine learning model that Clean Rooms ML trains to measure similarity between users. Clean Rooms ML manages training and storing the audience model. The audience model can be used in multiple calls to the <a>StartAudienceGenerationJob</a> API.</p>
+
+        Args:
+            training_data_start_time: <p>The start date and time of the training window.</p>
+            training_data_end_time: <p>The end date and time of the training window.</p>
+            name: <p>The name of the audience model resource.</p>
+            training_dataset_arn: <p>The Amazon Resource Name (ARN) of the training dataset for this audience model.</p>
+            kms_key_arn: <p>The Amazon Resource Name (ARN) of the KMS key. This key is used to encrypt and decrypt customer-owned data in the trained ML model and the associated data.</p>
+            tags: <p>The optional metadata that you apply to the resource to help you categorize and organize them. Each tag consists of a key and an optional value, both of which you define.</p> <p>The following basic restrictions apply to tags:</p> <ul> <li> <p>Maximum number of tags per resource - 50.</p> </li> <li> <p>For each resource, each tag key must be unique, and each tag key can have only one value.</p> </li> <li> <p>Maximum key length - 128 Unicode characters in UTF-8.</p> </li> <li> <p>Maximum value length - 256 Unicode characters in UTF-8.</p> </li> <li> <p>If your tagging schema is used across multiple services and resources, remember that other services may have restrictions on allowed characters. Generally allowed characters are: letters, numbers, and spaces representable in UTF-8, and the following characters: + - = . _ : / @.</p> </li> <li> <p>Tag keys and values are case sensitive.</p> </li> <li> <p>Do not use aws:, AWS:, or any upper or lowercase combination of such as a prefix for keys as it is reserved for AWS use. You cannot edit or delete tag keys with this prefix. Values can have this prefix. If a tag value has aws as its prefix but the key does not, then Clean Rooms ML considers it to be a user tag and will count against the limit of 50 tags. Tags with only the key prefix of aws do not count against your tags per resource limit.</p> </li> </ul>
+            description: <p>The description of the audience model.</p>
+
+        Raises:
+            capo_cleanroomsml.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_cleanroomsml.errors.conflict_exception.ConflictException: <p>You can't complete this action because another resource depends on this resource.</p>
+            capo_cleanroomsml.errors.resource_not_found_exception.ResourceNotFoundException: <p>The resource you are requesting does not exist.</p>
+            capo_cleanroomsml.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>You have exceeded your service quota.</p>
+            capo_cleanroomsml.errors.validation_exception.ValidationException: <p>The request parameters for this request are incorrect.</p>
+            capo_cleanroomsml.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_cleanroomsml.types.create_audience_model_request.CreateAudienceModelRequest]",
+        ) -> OperationResponse[
+            "capo_cleanroomsml.types.create_audience_model_response.CreateAudienceModelResponse"
+        ]:
+            import capo_cleanroomsml._operations.aws_stark_control_service.create_audience_model
+
+            output, http_response = (
+                capo_cleanroomsml._operations.aws_stark_control_service.create_audience_model.create_audience_model(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_cleanroomsml.types.create_audience_model_request.CreateAudienceModelRequest = {
+            "name": name,
+            "training_dataset_arn": training_dataset_arn,
+        }
+        if training_data_start_time is not None:
+            input_["training_data_start_time"] = training_data_start_time
+        if training_data_end_time is not None:
+            input_["training_data_end_time"] = training_data_end_time
+        if kms_key_arn is not None:
+            input_["kms_key_arn"] = kms_key_arn
+        if tags is not None:
+            input_["tags"] = tags
+        if description is not None:
+            input_["description"] = description
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def get_audience_model(
+        self,
+        audience_model_arn: "capo_cleanroomsml.types.audience_model_arn.AudienceModelArn",
+        *,
+        config_overrides: Optional[CleanRoomsMLClientConfig] = None,
+    ) -> "capo_cleanroomsml.types.get_audience_model_response.GetAudienceModelResponse":
+        """<p>Returns information about an audience model</p>
+
+        Args:
+            audience_model_arn: <p>The Amazon Resource Name (ARN) of the audience model that you are interested in.</p>
+
+        Raises:
+            capo_cleanroomsml.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_cleanroomsml.errors.resource_not_found_exception.ResourceNotFoundException: <p>The resource you are requesting does not exist.</p>
+            capo_cleanroomsml.errors.validation_exception.ValidationException: <p>The request parameters for this request are incorrect.</p>
+            capo_cleanroomsml.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_cleanroomsml.types.get_audience_model_request.GetAudienceModelRequest]",
+        ) -> OperationResponse[
+            "capo_cleanroomsml.types.get_audience_model_response.GetAudienceModelResponse"
+        ]:
+            import capo_cleanroomsml._operations.aws_stark_control_service.get_audience_model
+
+            output, http_response = (
+                capo_cleanroomsml._operations.aws_stark_control_service.get_audience_model.get_audience_model(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_cleanroomsml.types.get_audience_model_request.GetAudienceModelRequest = {
+            "audience_model_arn": audience_model_arn
+        }
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def delete_audience_model(
+        self,
+        audience_model_arn: "capo_cleanroomsml.types.audience_model_arn.AudienceModelArn",
+        *,
+        config_overrides: Optional[CleanRoomsMLClientConfig] = None,
+    ) -> None:
+        """<p>Specifies an audience model that you want to delete. You can't delete an audience model if there are any configured audience models that depend on the audience model.</p>
+
+        Args:
+            audience_model_arn: <p>The Amazon Resource Name (ARN) of the audience model that you want to delete.</p>
+
+        Raises:
+            capo_cleanroomsml.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_cleanroomsml.errors.conflict_exception.ConflictException: <p>You can't complete this action because another resource depends on this resource.</p>
+            capo_cleanroomsml.errors.resource_not_found_exception.ResourceNotFoundException: <p>The resource you are requesting does not exist.</p>
+            capo_cleanroomsml.errors.validation_exception.ValidationException: <p>The request parameters for this request are incorrect.</p>
+            capo_cleanroomsml.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_cleanroomsml.types.delete_audience_model_request.DeleteAudienceModelRequest]",
+        ) -> OperationResponse[None]:
+            import capo_cleanroomsml._operations.aws_stark_control_service.delete_audience_model
+
+            output, http_response = (
+                capo_cleanroomsml._operations.aws_stark_control_service.delete_audience_model.delete_audience_model(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_cleanroomsml.types.delete_audience_model_request.DeleteAudienceModelRequest = {
+            "audience_model_arn": audience_model_arn
+        }
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def list_audience_models(
+        self,
+        *,
+        config_overrides: Optional[CleanRoomsMLClientConfig] = None,
+        next_token: Optional["capo_cleanroomsml.types.next_token.NextToken"] = None,
+        max_results: Optional["capo_cleanroomsml.types.max_results.MaxResults"] = None,
+    ) -> "capo_cleanroomsml.types.list_audience_models_response.ListAudienceModelsResponse":
+        """<p>Returns a list of audience models.</p>
+
+        Args:
+            next_token: <p>The token value retrieved from a previous call to access the next page of results.</p>
+            max_results: <p>The maximum size of the results that is returned per call.</p>
+
+        Raises:
+            capo_cleanroomsml.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_cleanroomsml.errors.validation_exception.ValidationException: <p>The request parameters for this request are incorrect.</p>
+            capo_cleanroomsml.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_cleanroomsml.types.list_audience_models_request.ListAudienceModelsRequest]",
+        ) -> OperationResponse[
+            "capo_cleanroomsml.types.list_audience_models_response.ListAudienceModelsResponse"
+        ]:
+            import capo_cleanroomsml._operations.aws_stark_control_service.list_audience_models
+
+            output, http_response = (
+                capo_cleanroomsml._operations.aws_stark_control_service.list_audience_models.list_audience_models(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_cleanroomsml.types.list_audience_models_request.ListAudienceModelsRequest = {}
+        if next_token is not None:
+            input_["next_token"] = next_token
+        if max_results is not None:
+            input_["max_results"] = max_results
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def iter_list_audience_models(
+        self,
+        *,
+        config_overrides: Optional[CleanRoomsMLClientConfig] = None,
+        next_token: Optional["capo_cleanroomsml.types.next_token.NextToken"] = None,
+        max_results: Optional["capo_cleanroomsml.types.max_results.MaxResults"] = None,
+    ) -> (
+        "Iterator[capo_cleanroomsml.types.audience_model_summary.AudienceModelSummary]"
+    ):
+        _token = next_token
+        while True:
+            _response = self.list_audience_models(
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+            )
+            _page = _resolve_path(_response, ("audience_models",))
+            for _item in _page or []:
+                yield _item
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
+
+    def create_configured_audience_model(
+        self,
+        name: "capo_cleanroomsml.types.name_string.NameString",
+        audience_model_arn: "capo_cleanroomsml.types.audience_model_arn.AudienceModelArn",
+        output_config: "capo_cleanroomsml.types.configured_audience_model_output_config.ConfiguredAudienceModelOutputConfig",
+        shared_audience_metrics: "capo_cleanroomsml.types.metrics_list.MetricsList",
+        *,
+        config_overrides: Optional[CleanRoomsMLClientConfig] = None,
+        description: Optional[
+            "capo_cleanroomsml.types.resource_description.ResourceDescription"
+        ] = None,
+        min_matching_seed_size: Optional[
+            "capo_cleanroomsml.types.min_matching_seed_size.MinMatchingSeedSize"
+        ] = None,
+        audience_size_config: Optional[
+            "capo_cleanroomsml.types.audience_size_config.AudienceSizeConfig"
+        ] = None,
+        tags: Optional["capo_cleanroomsml.types.tag_map.TagMap"] = None,
+        child_resource_tag_on_create_policy: Optional[
+            "capo_cleanroomsml.types.tag_on_create_policy.TagOnCreatePolicy"
+        ] = None,
+    ) -> "capo_cleanroomsml.types.create_configured_audience_model_response.CreateConfiguredAudienceModelResponse":
+        """<p>Defines the information necessary to create a configured audience model.</p>
+
+        Args:
+            name: <p>The name of the configured audience model.</p>
+            audience_model_arn: <p>The Amazon Resource Name (ARN) of the audience model to use for the configured audience model.</p>
+            output_config: <p>Configure the Amazon S3 location and IAM Role for audiences created using this configured audience model. Each audience will have a unique location. The IAM Role must have <code>s3:PutObject</code> permission on the destination Amazon S3 location. If the destination is protected with Amazon S3 KMS-SSE, then the Role must also have the required KMS permissions.</p>
+            description: <p>The description of the configured audience model.</p>
+            shared_audience_metrics: <p>Whether audience metrics are shared.</p>
+            min_matching_seed_size: <p>The minimum number of users from the seed audience that must match with users in the training data of the audience model. The default value is 500.</p>
+            audience_size_config: <p>Configure the list of output sizes of audiences that can be created using this configured audience model. A request to <a>StartAudienceGenerationJob</a> that uses this configured audience model must have an <code>audienceSize</code> selected from this list. You can use the <code>ABSOLUTE</code> <a>AudienceSize</a> to configure out audience sizes using the count of identifiers in the output. You can use the <code>Percentage</code> <a>AudienceSize</a> to configure sizes in the range 1-100 percent.</p>
+            tags: <p>The optional metadata that you apply to the resource to help you categorize and organize them. Each tag consists of a key and an optional value, both of which you define.</p> <p>The following basic restrictions apply to tags:</p> <ul> <li> <p>Maximum number of tags per resource - 50.</p> </li> <li> <p>For each resource, each tag key must be unique, and each tag key can have only one value.</p> </li> <li> <p>Maximum key length - 128 Unicode characters in UTF-8.</p> </li> <li> <p>Maximum value length - 256 Unicode characters in UTF-8.</p> </li> <li> <p>If your tagging schema is used across multiple services and resources, remember that other services may have restrictions on allowed characters. Generally allowed characters are: letters, numbers, and spaces representable in UTF-8, and the following characters: + - = . _ : / @.</p> </li> <li> <p>Tag keys and values are case sensitive.</p> </li> <li> <p>Do not use aws:, AWS:, or any upper or lowercase combination of such as a prefix for keys as it is reserved for AWS use. You cannot edit or delete tag keys with this prefix. Values can have this prefix. If a tag value has aws as its prefix but the key does not, then Clean Rooms ML considers it to be a user tag and will count against the limit of 50 tags. Tags with only the key prefix of aws do not count against your tags per resource limit.</p> </li> </ul>
+            child_resource_tag_on_create_policy: <p>Configure how the service tags audience generation jobs created using this configured audience model. If you specify <code>NONE</code>, the tags from the <a>StartAudienceGenerationJob</a> request determine the tags of the audience generation job. If you specify <code>FROM_PARENT_RESOURCE</code>, the audience generation job inherits the tags from the configured audience model, by default. Tags in the <a>StartAudienceGenerationJob</a> will override the default.</p> <p>When the client is in a different account than the configured audience model, the tags from the client are never applied to a resource in the caller's account.</p>
+
+        Raises:
+            capo_cleanroomsml.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_cleanroomsml.errors.conflict_exception.ConflictException: <p>You can't complete this action because another resource depends on this resource.</p>
+            capo_cleanroomsml.errors.resource_not_found_exception.ResourceNotFoundException: <p>The resource you are requesting does not exist.</p>
+            capo_cleanroomsml.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>You have exceeded your service quota.</p>
+            capo_cleanroomsml.errors.validation_exception.ValidationException: <p>The request parameters for this request are incorrect.</p>
+            capo_cleanroomsml.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_cleanroomsml.types.create_configured_audience_model_request.CreateConfiguredAudienceModelRequest]",
+        ) -> OperationResponse[
+            "capo_cleanroomsml.types.create_configured_audience_model_response.CreateConfiguredAudienceModelResponse"
+        ]:
+            import capo_cleanroomsml._operations.aws_stark_control_service.create_configured_audience_model
+
+            output, http_response = (
+                capo_cleanroomsml._operations.aws_stark_control_service.create_configured_audience_model.create_configured_audience_model(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_cleanroomsml.types.create_configured_audience_model_request.CreateConfiguredAudienceModelRequest = {
+            "name": name,
+            "audience_model_arn": audience_model_arn,
+            "output_config": output_config,
+            "shared_audience_metrics": shared_audience_metrics,
+        }
+        if description is not None:
+            input_["description"] = description
+        if min_matching_seed_size is not None:
+            input_["min_matching_seed_size"] = min_matching_seed_size
+        if audience_size_config is not None:
+            input_["audience_size_config"] = audience_size_config
+        if tags is not None:
+            input_["tags"] = tags
+        if child_resource_tag_on_create_policy is not None:
+            input_["child_resource_tag_on_create_policy"] = (
+                child_resource_tag_on_create_policy
+            )
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def get_configured_audience_model(
+        self,
+        configured_audience_model_arn: "capo_cleanroomsml.types.configured_audience_model_arn.ConfiguredAudienceModelArn",
+        *,
+        config_overrides: Optional[CleanRoomsMLClientConfig] = None,
+    ) -> "capo_cleanroomsml.types.get_configured_audience_model_response.GetConfiguredAudienceModelResponse":
+        """<p>Returns information about a specified configured audience model.</p>
+
+        Args:
+            configured_audience_model_arn: <p>The Amazon Resource Name (ARN) of the configured audience model that you are interested in.</p>
+
+        Raises:
+            capo_cleanroomsml.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_cleanroomsml.errors.resource_not_found_exception.ResourceNotFoundException: <p>The resource you are requesting does not exist.</p>
+            capo_cleanroomsml.errors.validation_exception.ValidationException: <p>The request parameters for this request are incorrect.</p>
+            capo_cleanroomsml.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_cleanroomsml.types.get_configured_audience_model_request.GetConfiguredAudienceModelRequest]",
+        ) -> OperationResponse[
+            "capo_cleanroomsml.types.get_configured_audience_model_response.GetConfiguredAudienceModelResponse"
+        ]:
+            import capo_cleanroomsml._operations.aws_stark_control_service.get_configured_audience_model
+
+            output, http_response = (
+                capo_cleanroomsml._operations.aws_stark_control_service.get_configured_audience_model.get_configured_audience_model(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_cleanroomsml.types.get_configured_audience_model_request.GetConfiguredAudienceModelRequest = {
+            "configured_audience_model_arn": configured_audience_model_arn
+        }
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def update_configured_audience_model(
+        self,
+        configured_audience_model_arn: "capo_cleanroomsml.types.configured_audience_model_arn.ConfiguredAudienceModelArn",
+        *,
+        config_overrides: Optional[CleanRoomsMLClientConfig] = None,
+        output_config: Optional[
+            "capo_cleanroomsml.types.configured_audience_model_output_config.ConfiguredAudienceModelOutputConfig"
+        ] = None,
+        audience_model_arn: Optional[
+            "capo_cleanroomsml.types.audience_model_arn.AudienceModelArn"
+        ] = None,
+        shared_audience_metrics: Optional[
+            "capo_cleanroomsml.types.metrics_list.MetricsList"
+        ] = None,
+        min_matching_seed_size: Optional[
+            "capo_cleanroomsml.types.min_matching_seed_size.MinMatchingSeedSize"
+        ] = None,
+        audience_size_config: Optional[
+            "capo_cleanroomsml.types.audience_size_config.AudienceSizeConfig"
+        ] = None,
+        description: Optional[
+            "capo_cleanroomsml.types.resource_description.ResourceDescription"
+        ] = None,
+    ) -> "capo_cleanroomsml.types.update_configured_audience_model_response.UpdateConfiguredAudienceModelResponse":
+        """<p>Provides the information necessary to update a configured audience model. Updates that impact audience generation jobs take effect when a new job starts, but do not impact currently running jobs.</p>
+
+        Args:
+            configured_audience_model_arn: <p>The Amazon Resource Name (ARN) of the configured audience model that you want to update.</p>
+            output_config: <p>The new output configuration.</p>
+            audience_model_arn: <p>The Amazon Resource Name (ARN) of the new audience model that you want to use.</p>
+            shared_audience_metrics: <p>The new value for whether to share audience metrics.</p>
+            min_matching_seed_size: <p>The minimum number of users from the seed audience that must match with users in the training data of the audience model.</p>
+            audience_size_config: <p>The new audience size configuration.</p>
+            description: <p>The new description of the configured audience model.</p>
+
+        Raises:
+            capo_cleanroomsml.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_cleanroomsml.errors.conflict_exception.ConflictException: <p>You can't complete this action because another resource depends on this resource.</p>
+            capo_cleanroomsml.errors.resource_not_found_exception.ResourceNotFoundException: <p>The resource you are requesting does not exist.</p>
+            capo_cleanroomsml.errors.validation_exception.ValidationException: <p>The request parameters for this request are incorrect.</p>
+            capo_cleanroomsml.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_cleanroomsml.types.update_configured_audience_model_request.UpdateConfiguredAudienceModelRequest]",
+        ) -> OperationResponse[
+            "capo_cleanroomsml.types.update_configured_audience_model_response.UpdateConfiguredAudienceModelResponse"
+        ]:
+            import capo_cleanroomsml._operations.aws_stark_control_service.update_configured_audience_model
+
+            output, http_response = (
+                capo_cleanroomsml._operations.aws_stark_control_service.update_configured_audience_model.update_configured_audience_model(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_cleanroomsml.types.update_configured_audience_model_request.UpdateConfiguredAudienceModelRequest = {
+            "configured_audience_model_arn": configured_audience_model_arn
+        }
+        if output_config is not None:
+            input_["output_config"] = output_config
+        if audience_model_arn is not None:
+            input_["audience_model_arn"] = audience_model_arn
+        if shared_audience_metrics is not None:
+            input_["shared_audience_metrics"] = shared_audience_metrics
+        if min_matching_seed_size is not None:
+            input_["min_matching_seed_size"] = min_matching_seed_size
+        if audience_size_config is not None:
+            input_["audience_size_config"] = audience_size_config
+        if description is not None:
+            input_["description"] = description
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def delete_configured_audience_model(
+        self,
+        configured_audience_model_arn: "capo_cleanroomsml.types.configured_audience_model_arn.ConfiguredAudienceModelArn",
+        *,
+        config_overrides: Optional[CleanRoomsMLClientConfig] = None,
+    ) -> None:
+        """<p>Deletes the specified configured audience model. You can't delete a configured audience model if there are any lookalike models that use the configured audience model. If you delete a configured audience model, it will be removed from any collaborations that it is associated to.</p>
+
+        Args:
+            configured_audience_model_arn: <p>The Amazon Resource Name (ARN) of the configured audience model that you want to delete.</p>
+
+        Raises:
+            capo_cleanroomsml.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_cleanroomsml.errors.conflict_exception.ConflictException: <p>You can't complete this action because another resource depends on this resource.</p>
+            capo_cleanroomsml.errors.resource_not_found_exception.ResourceNotFoundException: <p>The resource you are requesting does not exist.</p>
+            capo_cleanroomsml.errors.validation_exception.ValidationException: <p>The request parameters for this request are incorrect.</p>
+            capo_cleanroomsml.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_cleanroomsml.types.delete_configured_audience_model_request.DeleteConfiguredAudienceModelRequest]",
+        ) -> OperationResponse[None]:
+            import capo_cleanroomsml._operations.aws_stark_control_service.delete_configured_audience_model
+
+            output, http_response = (
+                capo_cleanroomsml._operations.aws_stark_control_service.delete_configured_audience_model.delete_configured_audience_model(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_cleanroomsml.types.delete_configured_audience_model_request.DeleteConfiguredAudienceModelRequest = {
+            "configured_audience_model_arn": configured_audience_model_arn
+        }
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def list_configured_audience_models(
+        self,
+        *,
+        config_overrides: Optional[CleanRoomsMLClientConfig] = None,
+        next_token: Optional["capo_cleanroomsml.types.next_token.NextToken"] = None,
+        max_results: Optional["capo_cleanroomsml.types.max_results.MaxResults"] = None,
+    ) -> "capo_cleanroomsml.types.list_configured_audience_models_response.ListConfiguredAudienceModelsResponse":
+        """<p>Returns a list of the configured audience models.</p>
+
+        Args:
+            next_token: <p>The token value retrieved from a previous call to access the next page of results.</p>
+            max_results: <p>The maximum size of the results that is returned per call.</p>
+
+        Raises:
+            capo_cleanroomsml.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_cleanroomsml.errors.validation_exception.ValidationException: <p>The request parameters for this request are incorrect.</p>
+            capo_cleanroomsml.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_cleanroomsml.types.list_configured_audience_models_request.ListConfiguredAudienceModelsRequest]",
+        ) -> OperationResponse[
+            "capo_cleanroomsml.types.list_configured_audience_models_response.ListConfiguredAudienceModelsResponse"
+        ]:
+            import capo_cleanroomsml._operations.aws_stark_control_service.list_configured_audience_models
+
+            output, http_response = (
+                capo_cleanroomsml._operations.aws_stark_control_service.list_configured_audience_models.list_configured_audience_models(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_cleanroomsml.types.list_configured_audience_models_request.ListConfiguredAudienceModelsRequest = {}
+        if next_token is not None:
+            input_["next_token"] = next_token
+        if max_results is not None:
+            input_["max_results"] = max_results
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def iter_list_configured_audience_models(
+        self,
+        *,
+        config_overrides: Optional[CleanRoomsMLClientConfig] = None,
+        next_token: Optional["capo_cleanroomsml.types.next_token.NextToken"] = None,
+        max_results: Optional["capo_cleanroomsml.types.max_results.MaxResults"] = None,
+    ) -> "Iterator[capo_cleanroomsml.types.configured_audience_model_summary.ConfiguredAudienceModelSummary]":
+        _token = next_token
+        while True:
+            _response = self.list_configured_audience_models(
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+            )
+            _page = _resolve_path(_response, ("configured_audience_models",))
+            for _item in _page or []:
+                yield _item
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
+
+    def put_configured_audience_model_policy(
+        self,
+        configured_audience_model_arn: "capo_cleanroomsml.types.configured_audience_model_arn.ConfiguredAudienceModelArn",
+        configured_audience_model_policy: "capo_cleanroomsml.types.resource_policy.ResourcePolicy",
+        *,
+        config_overrides: Optional[CleanRoomsMLClientConfig] = None,
+        previous_policy_hash: Optional["capo_cleanroomsml.types.hash.Hash"] = None,
+        policy_existence_condition: Optional[
+            "capo_cleanroomsml.types.policy_existence_condition.PolicyExistenceCondition"
+        ] = None,
+    ) -> "capo_cleanroomsml.types.put_configured_audience_model_policy_response.PutConfiguredAudienceModelPolicyResponse":
+        """<p>Create or update the resource policy for a configured audience model.</p>
+
+        Args:
+            configured_audience_model_arn: <p>The Amazon Resource Name (ARN) of the configured audience model that the resource policy will govern.</p>
+            configured_audience_model_policy: <p>The IAM resource policy.</p>
+            previous_policy_hash: <p>A cryptographic hash of the contents of the policy used to prevent unexpected concurrent modification of the policy.</p>
+            policy_existence_condition: <p>Use this to prevent unexpected concurrent modification of the policy.</p>
+
+        Raises:
+            capo_cleanroomsml.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_cleanroomsml.errors.resource_not_found_exception.ResourceNotFoundException: <p>The resource you are requesting does not exist.</p>
+            capo_cleanroomsml.errors.validation_exception.ValidationException: <p>The request parameters for this request are incorrect.</p>
+            capo_cleanroomsml.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_cleanroomsml.types.put_configured_audience_model_policy_request.PutConfiguredAudienceModelPolicyRequest]",
+        ) -> OperationResponse[
+            "capo_cleanroomsml.types.put_configured_audience_model_policy_response.PutConfiguredAudienceModelPolicyResponse"
+        ]:
+            import capo_cleanroomsml._operations.aws_stark_control_service.put_configured_audience_model_policy
+
+            output, http_response = (
+                capo_cleanroomsml._operations.aws_stark_control_service.put_configured_audience_model_policy.put_configured_audience_model_policy(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_cleanroomsml.types.put_configured_audience_model_policy_request.PutConfiguredAudienceModelPolicyRequest = {
+            "configured_audience_model_arn": configured_audience_model_arn,
+            "configured_audience_model_policy": configured_audience_model_policy,
+        }
+        if previous_policy_hash is not None:
+            input_["previous_policy_hash"] = previous_policy_hash
+        if policy_existence_condition is not None:
+            input_["policy_existence_condition"] = policy_existence_condition
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def get_configured_audience_model_policy(
+        self,
+        configured_audience_model_arn: "capo_cleanroomsml.types.configured_audience_model_arn.ConfiguredAudienceModelArn",
+        *,
+        config_overrides: Optional[CleanRoomsMLClientConfig] = None,
+    ) -> "capo_cleanroomsml.types.get_configured_audience_model_policy_response.GetConfiguredAudienceModelPolicyResponse":
+        """<p>Returns information about a configured audience model policy.</p>
+
+        Args:
+            configured_audience_model_arn: <p>The Amazon Resource Name (ARN) of the configured audience model that you are interested in.</p>
+
+        Raises:
+            capo_cleanroomsml.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_cleanroomsml.errors.resource_not_found_exception.ResourceNotFoundException: <p>The resource you are requesting does not exist.</p>
+            capo_cleanroomsml.errors.validation_exception.ValidationException: <p>The request parameters for this request are incorrect.</p>
+            capo_cleanroomsml.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_cleanroomsml.types.get_configured_audience_model_policy_request.GetConfiguredAudienceModelPolicyRequest]",
+        ) -> OperationResponse[
+            "capo_cleanroomsml.types.get_configured_audience_model_policy_response.GetConfiguredAudienceModelPolicyResponse"
+        ]:
+            import capo_cleanroomsml._operations.aws_stark_control_service.get_configured_audience_model_policy
+
+            output, http_response = (
+                capo_cleanroomsml._operations.aws_stark_control_service.get_configured_audience_model_policy.get_configured_audience_model_policy(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_cleanroomsml.types.get_configured_audience_model_policy_request.GetConfiguredAudienceModelPolicyRequest = {
+            "configured_audience_model_arn": configured_audience_model_arn
+        }
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def delete_configured_audience_model_policy(
+        self,
+        configured_audience_model_arn: "capo_cleanroomsml.types.configured_audience_model_arn.ConfiguredAudienceModelArn",
+        *,
+        config_overrides: Optional[CleanRoomsMLClientConfig] = None,
+    ) -> None:
+        """<p>Deletes the specified configured audience model policy.</p>
+
+        Args:
+            configured_audience_model_arn: <p>The Amazon Resource Name (ARN) of the configured audience model policy that you want to delete.</p>
+
+        Raises:
+            capo_cleanroomsml.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_cleanroomsml.errors.resource_not_found_exception.ResourceNotFoundException: <p>The resource you are requesting does not exist.</p>
+            capo_cleanroomsml.errors.validation_exception.ValidationException: <p>The request parameters for this request are incorrect.</p>
+            capo_cleanroomsml.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_cleanroomsml.types.delete_configured_audience_model_policy_request.DeleteConfiguredAudienceModelPolicyRequest]",
+        ) -> OperationResponse[None]:
+            import capo_cleanroomsml._operations.aws_stark_control_service.delete_configured_audience_model_policy
+
+            output, http_response = (
+                capo_cleanroomsml._operations.aws_stark_control_service.delete_configured_audience_model_policy.delete_configured_audience_model_policy(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_cleanroomsml.types.delete_configured_audience_model_policy_request.DeleteConfiguredAudienceModelPolicyRequest = {
+            "configured_audience_model_arn": configured_audience_model_arn
+        }
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def create_configured_model_algorithm(
+        self,
+        name: "capo_cleanroomsml.types.name_string.NameString",
+        role_arn: "capo_cleanroomsml.types.iam_role_arn.IamRoleArn",
+        *,
+        config_overrides: Optional[CleanRoomsMLClientConfig] = None,
+        description: Optional[
+            "capo_cleanroomsml.types.resource_description.ResourceDescription"
+        ] = None,
+        training_container_config: Optional[
+            "capo_cleanroomsml.types.container_config.ContainerConfig"
+        ] = None,
+        inference_container_config: Optional[
+            "capo_cleanroomsml.types.inference_container_config.InferenceContainerConfig"
+        ] = None,
+        tags: Optional["capo_cleanroomsml.types.tag_map.TagMap"] = None,
+        kms_key_arn: Optional["capo_cleanroomsml.types.kms_key_arn.KmsKeyArn"] = None,
+    ) -> "capo_cleanroomsml.types.create_configured_model_algorithm_response.CreateConfiguredModelAlgorithmResponse":
+        """<p>Creates a configured model algorithm using a container image stored in an ECR repository.</p>
+
+        Args:
+            name: <p>The name of the configured model algorithm.</p>
+            description: <p>The description of the configured model algorithm.</p>
+            role_arn: <p>The Amazon Resource Name (ARN) of the role that is used to access the repository.</p>
+            training_container_config: <p>Configuration information for the training container, including entrypoints and arguments.</p>
+            inference_container_config: <p>Configuration information for the inference container that is used when you run an inference job on a configured model algorithm.</p>
+            tags: <p>The optional metadata that you apply to the resource to help you categorize and organize them. Each tag consists of a key and an optional value, both of which you define.</p> <p>The following basic restrictions apply to tags:</p> <ul> <li> <p>Maximum number of tags per resource - 50.</p> </li> <li> <p>For each resource, each tag key must be unique, and each tag key can have only one value.</p> </li> <li> <p>Maximum key length - 128 Unicode characters in UTF-8.</p> </li> <li> <p>Maximum value length - 256 Unicode characters in UTF-8.</p> </li> <li> <p>If your tagging schema is used across multiple services and resources, remember that other services may have restrictions on allowed characters. Generally allowed characters are: letters, numbers, and spaces representable in UTF-8, and the following characters: + - = . _ : / @.</p> </li> <li> <p>Tag keys and values are case sensitive.</p> </li> <li> <p>Do not use aws:, AWS:, or any upper or lowercase combination of such as a prefix for keys as it is reserved for AWS use. You cannot edit or delete tag keys with this prefix. Values can have this prefix. If a tag value has aws as its prefix but the key does not, then Clean Rooms ML considers it to be a user tag and will count against the limit of 50 tags. Tags with only the key prefix of aws do not count against your tags per resource limit.</p> </li> </ul>
+            kms_key_arn: <p>The Amazon Resource Name (ARN) of the KMS key. This key is used to encrypt and decrypt customer-owned data in the configured ML model algorithm and associated data.</p>
+
+        Raises:
+            capo_cleanroomsml.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_cleanroomsml.errors.conflict_exception.ConflictException: <p>You can't complete this action because another resource depends on this resource.</p>
+            capo_cleanroomsml.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>You have exceeded your service quota.</p>
+            capo_cleanroomsml.errors.validation_exception.ValidationException: <p>The request parameters for this request are incorrect.</p>
+            capo_cleanroomsml.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_cleanroomsml.types.create_configured_model_algorithm_request.CreateConfiguredModelAlgorithmRequest]",
+        ) -> OperationResponse[
+            "capo_cleanroomsml.types.create_configured_model_algorithm_response.CreateConfiguredModelAlgorithmResponse"
+        ]:
+            import capo_cleanroomsml._operations.aws_stark_control_service.create_configured_model_algorithm
+
+            output, http_response = (
+                capo_cleanroomsml._operations.aws_stark_control_service.create_configured_model_algorithm.create_configured_model_algorithm(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_cleanroomsml.types.create_configured_model_algorithm_request.CreateConfiguredModelAlgorithmRequest = {
+            "name": name,
+            "role_arn": role_arn,
+        }
+        if description is not None:
+            input_["description"] = description
+        if training_container_config is not None:
+            input_["training_container_config"] = training_container_config
+        if inference_container_config is not None:
+            input_["inference_container_config"] = inference_container_config
+        if tags is not None:
+            input_["tags"] = tags
+        if kms_key_arn is not None:
+            input_["kms_key_arn"] = kms_key_arn
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def get_configured_model_algorithm(
+        self,
+        configured_model_algorithm_arn: "capo_cleanroomsml.types.configured_model_algorithm_arn.ConfiguredModelAlgorithmArn",
+        *,
+        config_overrides: Optional[CleanRoomsMLClientConfig] = None,
+    ) -> "capo_cleanroomsml.types.get_configured_model_algorithm_response.GetConfiguredModelAlgorithmResponse":
+        """<p>Returns information about a configured model algorithm.</p>
+
+        Args:
+            configured_model_algorithm_arn: <p>The Amazon Resource Name (ARN) of the configured model algorithm that you want to return information about.</p>
+
+        Raises:
+            capo_cleanroomsml.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_cleanroomsml.errors.resource_not_found_exception.ResourceNotFoundException: <p>The resource you are requesting does not exist.</p>
+            capo_cleanroomsml.errors.validation_exception.ValidationException: <p>The request parameters for this request are incorrect.</p>
+            capo_cleanroomsml.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_cleanroomsml.types.get_configured_model_algorithm_request.GetConfiguredModelAlgorithmRequest]",
+        ) -> OperationResponse[
+            "capo_cleanroomsml.types.get_configured_model_algorithm_response.GetConfiguredModelAlgorithmResponse"
+        ]:
+            import capo_cleanroomsml._operations.aws_stark_control_service.get_configured_model_algorithm
+
+            output, http_response = (
+                capo_cleanroomsml._operations.aws_stark_control_service.get_configured_model_algorithm.get_configured_model_algorithm(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_cleanroomsml.types.get_configured_model_algorithm_request.GetConfiguredModelAlgorithmRequest = {
+            "configured_model_algorithm_arn": configured_model_algorithm_arn
+        }
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def delete_configured_model_algorithm(
+        self,
+        configured_model_algorithm_arn: "capo_cleanroomsml.types.configured_model_algorithm_arn.ConfiguredModelAlgorithmArn",
+        *,
+        config_overrides: Optional[CleanRoomsMLClientConfig] = None,
+    ) -> None:
+        """<p>Deletes a configured model algorithm.</p>
+
+        Args:
+            configured_model_algorithm_arn: <p>The Amazon Resource Name (ARN) of the configured model algorithm that you want to delete.</p>
+
+        Raises:
+            capo_cleanroomsml.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_cleanroomsml.errors.conflict_exception.ConflictException: <p>You can't complete this action because another resource depends on this resource.</p>
+            capo_cleanroomsml.errors.resource_not_found_exception.ResourceNotFoundException: <p>The resource you are requesting does not exist.</p>
+            capo_cleanroomsml.errors.validation_exception.ValidationException: <p>The request parameters for this request are incorrect.</p>
+            capo_cleanroomsml.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_cleanroomsml.types.delete_configured_model_algorithm_request.DeleteConfiguredModelAlgorithmRequest]",
+        ) -> OperationResponse[None]:
+            import capo_cleanroomsml._operations.aws_stark_control_service.delete_configured_model_algorithm
+
+            output, http_response = (
+                capo_cleanroomsml._operations.aws_stark_control_service.delete_configured_model_algorithm.delete_configured_model_algorithm(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_cleanroomsml.types.delete_configured_model_algorithm_request.DeleteConfiguredModelAlgorithmRequest = {
+            "configured_model_algorithm_arn": configured_model_algorithm_arn
+        }
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def list_configured_model_algorithms(
+        self,
+        *,
+        config_overrides: Optional[CleanRoomsMLClientConfig] = None,
+        next_token: Optional["capo_cleanroomsml.types.next_token.NextToken"] = None,
+        max_results: Optional["capo_cleanroomsml.types.max_results.MaxResults"] = None,
+    ) -> "capo_cleanroomsml.types.list_configured_model_algorithms_response.ListConfiguredModelAlgorithmsResponse":
+        """<p>Returns a list of configured model algorithms.</p>
+
+        Args:
+            next_token: <p>The token value retrieved from a previous call to access the next page of results.</p>
+            max_results: <p>The maximum size of the results that is returned per call.</p>
+
+        Raises:
+            capo_cleanroomsml.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_cleanroomsml.errors.validation_exception.ValidationException: <p>The request parameters for this request are incorrect.</p>
+            capo_cleanroomsml.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_cleanroomsml.types.list_configured_model_algorithms_request.ListConfiguredModelAlgorithmsRequest]",
+        ) -> OperationResponse[
+            "capo_cleanroomsml.types.list_configured_model_algorithms_response.ListConfiguredModelAlgorithmsResponse"
+        ]:
+            import capo_cleanroomsml._operations.aws_stark_control_service.list_configured_model_algorithms
+
+            output, http_response = (
+                capo_cleanroomsml._operations.aws_stark_control_service.list_configured_model_algorithms.list_configured_model_algorithms(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_cleanroomsml.types.list_configured_model_algorithms_request.ListConfiguredModelAlgorithmsRequest = {}
+        if next_token is not None:
+            input_["next_token"] = next_token
+        if max_results is not None:
+            input_["max_results"] = max_results
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def iter_list_configured_model_algorithms(
+        self,
+        *,
+        config_overrides: Optional[CleanRoomsMLClientConfig] = None,
+        next_token: Optional["capo_cleanroomsml.types.next_token.NextToken"] = None,
+        max_results: Optional["capo_cleanroomsml.types.max_results.MaxResults"] = None,
+    ) -> "Iterator[capo_cleanroomsml.types.configured_model_algorithm_summary.ConfiguredModelAlgorithmSummary]":
+        _token = next_token
+        while True:
+            _response = self.list_configured_model_algorithms(
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+            )
+            _page = _resolve_path(_response, ("configured_model_algorithms",))
+            for _item in _page or []:
+                yield _item
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
+
+    def create_configured_model_algorithm_association(
+        self,
+        membership_identifier: "capo_cleanroomsml.types.uuid.UUID",
+        configured_model_algorithm_arn: "capo_cleanroomsml.types.configured_model_algorithm_arn.ConfiguredModelAlgorithmArn",
+        name: "capo_cleanroomsml.types.name_string.NameString",
+        *,
+        config_overrides: Optional[CleanRoomsMLClientConfig] = None,
+        description: Optional[
+            "capo_cleanroomsml.types.resource_description.ResourceDescription"
+        ] = None,
+        privacy_configuration: Optional[
+            "capo_cleanroomsml.types.privacy_configuration.PrivacyConfiguration"
+        ] = None,
+        tags: Optional["capo_cleanroomsml.types.tag_map.TagMap"] = None,
+    ) -> "capo_cleanroomsml.types.create_configured_model_algorithm_association_response.CreateConfiguredModelAlgorithmAssociationResponse":
+        """<p>Associates a configured model algorithm to a collaboration for use by any member of the collaboration.</p>
+
+        Args:
+            membership_identifier: <p>The membership ID of the member who is associating this configured model algorithm.</p>
+            configured_model_algorithm_arn: <p>The Amazon Resource Name (ARN) of the configured model algorithm that you want to associate.</p>
+            name: <p>The name of the configured model algorithm association.</p>
+            description: <p>The description of the configured model algorithm association.</p>
+            privacy_configuration: <p>Specifies the privacy configuration information for the configured model algorithm association. This information includes the maximum data size that can be exported.</p>
+            tags: <p>The optional metadata that you apply to the resource to help you categorize and organize them. Each tag consists of a key and an optional value, both of which you define.</p> <p>The following basic restrictions apply to tags:</p> <ul> <li> <p>Maximum number of tags per resource - 50.</p> </li> <li> <p>For each resource, each tag key must be unique, and each tag key can have only one value.</p> </li> <li> <p>Maximum key length - 128 Unicode characters in UTF-8.</p> </li> <li> <p>Maximum value length - 256 Unicode characters in UTF-8.</p> </li> <li> <p>If your tagging schema is used across multiple services and resources, remember that other services may have restrictions on allowed characters. Generally allowed characters are: letters, numbers, and spaces representable in UTF-8, and the following characters: + - = . _ : / @.</p> </li> <li> <p>Tag keys and values are case sensitive.</p> </li> <li> <p>Do not use aws:, AWS:, or any upper or lowercase combination of such as a prefix for keys as it is reserved for AWS use. You cannot edit or delete tag keys with this prefix. Values can have this prefix. If a tag value has aws as its prefix but the key does not, then Clean Rooms ML considers it to be a user tag and will count against the limit of 50 tags. Tags with only the key prefix of aws do not count against your tags per resource limit.</p> </li> </ul>
+
+        Raises:
+            capo_cleanroomsml.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_cleanroomsml.errors.conflict_exception.ConflictException: <p>You can't complete this action because another resource depends on this resource.</p>
+            capo_cleanroomsml.errors.resource_not_found_exception.ResourceNotFoundException: <p>The resource you are requesting does not exist.</p>
+            capo_cleanroomsml.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>You have exceeded your service quota.</p>
+            capo_cleanroomsml.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
+            capo_cleanroomsml.errors.validation_exception.ValidationException: <p>The request parameters for this request are incorrect.</p>
+            capo_cleanroomsml.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_cleanroomsml.types.create_configured_model_algorithm_association_request.CreateConfiguredModelAlgorithmAssociationRequest]",
+        ) -> OperationResponse[
+            "capo_cleanroomsml.types.create_configured_model_algorithm_association_response.CreateConfiguredModelAlgorithmAssociationResponse"
+        ]:
+            import capo_cleanroomsml._operations.aws_stark_control_service.create_configured_model_algorithm_association
+
+            output, http_response = (
+                capo_cleanroomsml._operations.aws_stark_control_service.create_configured_model_algorithm_association.create_configured_model_algorithm_association(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_cleanroomsml.types.create_configured_model_algorithm_association_request.CreateConfiguredModelAlgorithmAssociationRequest = {
+            "membership_identifier": membership_identifier,
+            "configured_model_algorithm_arn": configured_model_algorithm_arn,
+            "name": name,
+        }
+        if description is not None:
+            input_["description"] = description
+        if privacy_configuration is not None:
+            input_["privacy_configuration"] = privacy_configuration
+        if tags is not None:
+            input_["tags"] = tags
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def get_configured_model_algorithm_association(
+        self,
+        configured_model_algorithm_association_arn: "capo_cleanroomsml.types.configured_model_algorithm_association_arn.ConfiguredModelAlgorithmAssociationArn",
+        membership_identifier: "capo_cleanroomsml.types.uuid.UUID",
+        *,
+        config_overrides: Optional[CleanRoomsMLClientConfig] = None,
+    ) -> "capo_cleanroomsml.types.get_configured_model_algorithm_association_response.GetConfiguredModelAlgorithmAssociationResponse":
+        """<p>Returns information about a configured model algorithm association.</p>
+
+        Args:
+            configured_model_algorithm_association_arn: <p>The Amazon Resource Name (ARN) of the configured model algorithm association that you want to return information about.</p>
+            membership_identifier: <p>The membership ID of the member that created the configured model algorithm association.</p>
+
+        Raises:
+            capo_cleanroomsml.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_cleanroomsml.errors.resource_not_found_exception.ResourceNotFoundException: <p>The resource you are requesting does not exist.</p>
+            capo_cleanroomsml.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
+            capo_cleanroomsml.errors.validation_exception.ValidationException: <p>The request parameters for this request are incorrect.</p>
+            capo_cleanroomsml.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_cleanroomsml.types.get_configured_model_algorithm_association_request.GetConfiguredModelAlgorithmAssociationRequest]",
+        ) -> OperationResponse[
+            "capo_cleanroomsml.types.get_configured_model_algorithm_association_response.GetConfiguredModelAlgorithmAssociationResponse"
+        ]:
+            import capo_cleanroomsml._operations.aws_stark_control_service.get_configured_model_algorithm_association
+
+            output, http_response = (
+                capo_cleanroomsml._operations.aws_stark_control_service.get_configured_model_algorithm_association.get_configured_model_algorithm_association(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_cleanroomsml.types.get_configured_model_algorithm_association_request.GetConfiguredModelAlgorithmAssociationRequest = {
+            "configured_model_algorithm_association_arn": configured_model_algorithm_association_arn,
+            "membership_identifier": membership_identifier,
+        }
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def delete_configured_model_algorithm_association(
+        self,
+        configured_model_algorithm_association_arn: "capo_cleanroomsml.types.configured_model_algorithm_association_arn.ConfiguredModelAlgorithmAssociationArn",
+        membership_identifier: "capo_cleanroomsml.types.uuid.UUID",
+        *,
+        config_overrides: Optional[CleanRoomsMLClientConfig] = None,
+    ) -> None:
+        """<p>Deletes a configured model algorithm association.</p>
+
+        Args:
+            configured_model_algorithm_association_arn: <p>The Amazon Resource Name (ARN) of the configured model algorithm association that you want to delete.</p>
+            membership_identifier: <p>The membership ID of the member that is deleting the configured model algorithm association.</p>
+
+        Raises:
+            capo_cleanroomsml.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_cleanroomsml.errors.conflict_exception.ConflictException: <p>You can't complete this action because another resource depends on this resource.</p>
+            capo_cleanroomsml.errors.resource_not_found_exception.ResourceNotFoundException: <p>The resource you are requesting does not exist.</p>
+            capo_cleanroomsml.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
+            capo_cleanroomsml.errors.validation_exception.ValidationException: <p>The request parameters for this request are incorrect.</p>
+            capo_cleanroomsml.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_cleanroomsml.types.delete_configured_model_algorithm_association_request.DeleteConfiguredModelAlgorithmAssociationRequest]",
+        ) -> OperationResponse[None]:
+            import capo_cleanroomsml._operations.aws_stark_control_service.delete_configured_model_algorithm_association
+
+            output, http_response = (
+                capo_cleanroomsml._operations.aws_stark_control_service.delete_configured_model_algorithm_association.delete_configured_model_algorithm_association(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_cleanroomsml.types.delete_configured_model_algorithm_association_request.DeleteConfiguredModelAlgorithmAssociationRequest = {
+            "configured_model_algorithm_association_arn": configured_model_algorithm_association_arn,
+            "membership_identifier": membership_identifier,
+        }
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def list_configured_model_algorithm_associations(
+        self,
+        membership_identifier: "capo_cleanroomsml.types.uuid.UUID",
+        *,
+        config_overrides: Optional[CleanRoomsMLClientConfig] = None,
+        next_token: Optional["capo_cleanroomsml.types.next_token.NextToken"] = None,
+        max_results: Optional["capo_cleanroomsml.types.max_results.MaxResults"] = None,
+    ) -> "capo_cleanroomsml.types.list_configured_model_algorithm_associations_response.ListConfiguredModelAlgorithmAssociationsResponse":
+        """<p>Returns a list of configured model algorithm associations.</p>
+
+        Args:
+            next_token: <p>The token value retrieved from a previous call to access the next page of results.</p>
+            max_results: <p>The maximum size of the results that is returned per call.</p>
+            membership_identifier: <p>The membership ID of the member that created the configured model algorithm associations you are interested in.</p>
+
+        Raises:
+            capo_cleanroomsml.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_cleanroomsml.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
+            capo_cleanroomsml.errors.validation_exception.ValidationException: <p>The request parameters for this request are incorrect.</p>
+            capo_cleanroomsml.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_cleanroomsml.types.list_configured_model_algorithm_associations_request.ListConfiguredModelAlgorithmAssociationsRequest]",
+        ) -> OperationResponse[
+            "capo_cleanroomsml.types.list_configured_model_algorithm_associations_response.ListConfiguredModelAlgorithmAssociationsResponse"
+        ]:
+            import capo_cleanroomsml._operations.aws_stark_control_service.list_configured_model_algorithm_associations
+
+            output, http_response = (
+                capo_cleanroomsml._operations.aws_stark_control_service.list_configured_model_algorithm_associations.list_configured_model_algorithm_associations(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_cleanroomsml.types.list_configured_model_algorithm_associations_request.ListConfiguredModelAlgorithmAssociationsRequest = {
+            "membership_identifier": membership_identifier
+        }
+        if next_token is not None:
+            input_["next_token"] = next_token
+        if max_results is not None:
+            input_["max_results"] = max_results
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def iter_list_configured_model_algorithm_associations(
+        self,
+        membership_identifier: "capo_cleanroomsml.types.uuid.UUID",
+        *,
+        config_overrides: Optional[CleanRoomsMLClientConfig] = None,
+        next_token: Optional["capo_cleanroomsml.types.next_token.NextToken"] = None,
+        max_results: Optional["capo_cleanroomsml.types.max_results.MaxResults"] = None,
+    ) -> "Iterator[capo_cleanroomsml.types.configured_model_algorithm_association_summary.ConfiguredModelAlgorithmAssociationSummary]":
+        _token = next_token
+        while True:
+            _response = self.list_configured_model_algorithm_associations(
+                membership_identifier,
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+            )
+            _page = _resolve_path(
+                _response, ("configured_model_algorithm_associations",)
+            )
+            for _item in _page or []:
+                yield _item
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
+
+    def get_collaboration_configured_model_algorithm_association(
+        self,
+        configured_model_algorithm_association_arn: "capo_cleanroomsml.types.configured_model_algorithm_association_arn.ConfiguredModelAlgorithmAssociationArn",
+        collaboration_identifier: "capo_cleanroomsml.types.uuid.UUID",
+        *,
+        config_overrides: Optional[CleanRoomsMLClientConfig] = None,
+    ) -> "capo_cleanroomsml.types.get_collaboration_configured_model_algorithm_association_response.GetCollaborationConfiguredModelAlgorithmAssociationResponse":
+        """<p>Returns information about the configured model algorithm association in a collaboration.</p>
+
+        Args:
+            configured_model_algorithm_association_arn: <p>The Amazon Resource Name (ARN) of the configured model algorithm association that you want to return information about.</p>
+            collaboration_identifier: <p>The collaboration ID for the collaboration that contains the configured model algorithm association that you want to return information about.</p>
+
+        Raises:
+            capo_cleanroomsml.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_cleanroomsml.errors.resource_not_found_exception.ResourceNotFoundException: <p>The resource you are requesting does not exist.</p>
+            capo_cleanroomsml.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
+            capo_cleanroomsml.errors.validation_exception.ValidationException: <p>The request parameters for this request are incorrect.</p>
+            capo_cleanroomsml.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_cleanroomsml.types.get_collaboration_configured_model_algorithm_association_request.GetCollaborationConfiguredModelAlgorithmAssociationRequest]",
+        ) -> OperationResponse[
+            "capo_cleanroomsml.types.get_collaboration_configured_model_algorithm_association_response.GetCollaborationConfiguredModelAlgorithmAssociationResponse"
+        ]:
+            import capo_cleanroomsml._operations.aws_stark_control_service.get_collaboration_configured_model_algorithm_association
+
+            output, http_response = (
+                capo_cleanroomsml._operations.aws_stark_control_service.get_collaboration_configured_model_algorithm_association.get_collaboration_configured_model_algorithm_association(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_cleanroomsml.types.get_collaboration_configured_model_algorithm_association_request.GetCollaborationConfiguredModelAlgorithmAssociationRequest = {
+            "configured_model_algorithm_association_arn": configured_model_algorithm_association_arn,
+            "collaboration_identifier": collaboration_identifier,
+        }
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def put_ml_configuration(
+        self,
+        membership_identifier: "capo_cleanroomsml.types.uuid.UUID",
+        default_output_location: "capo_cleanroomsml.types.ml_output_configuration.MLOutputConfiguration",
+        *,
+        config_overrides: Optional[CleanRoomsMLClientConfig] = None,
+    ) -> None:
+        """<p>Assigns information about an ML configuration.</p>
+
+        Args:
+            membership_identifier: <p>The membership ID of the member that is being configured.</p>
+            default_output_location: <p>The default Amazon S3 location where ML output is stored for the specified member.</p>
+
+        Raises:
+            capo_cleanroomsml.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_cleanroomsml.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
+            capo_cleanroomsml.errors.validation_exception.ValidationException: <p>The request parameters for this request are incorrect.</p>
+            capo_cleanroomsml.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_cleanroomsml.types.put_ml_configuration_request.PutMLConfigurationRequest]",
+        ) -> OperationResponse[None]:
+            import capo_cleanroomsml._operations.aws_stark_control_service.put_ml_configuration
+
+            output, http_response = (
+                capo_cleanroomsml._operations.aws_stark_control_service.put_ml_configuration.put_ml_configuration(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_cleanroomsml.types.put_ml_configuration_request.PutMLConfigurationRequest = {
+            "membership_identifier": membership_identifier,
+            "default_output_location": default_output_location,
+        }
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def get_ml_configuration(
+        self,
+        membership_identifier: "capo_cleanroomsml.types.uuid.UUID",
+        *,
+        config_overrides: Optional[CleanRoomsMLClientConfig] = None,
+    ) -> "capo_cleanroomsml.types.get_ml_configuration_response.GetMLConfigurationResponse":
+        """<p>Returns information about a specific ML configuration.</p>
+
+        Args:
+            membership_identifier: <p>The membership ID of the member that owns the ML configuration you want to return information about.</p>
+
+        Raises:
+            capo_cleanroomsml.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_cleanroomsml.errors.resource_not_found_exception.ResourceNotFoundException: <p>The resource you are requesting does not exist.</p>
+            capo_cleanroomsml.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
+            capo_cleanroomsml.errors.validation_exception.ValidationException: <p>The request parameters for this request are incorrect.</p>
+            capo_cleanroomsml.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_cleanroomsml.types.get_ml_configuration_request.GetMLConfigurationRequest]",
+        ) -> OperationResponse[
+            "capo_cleanroomsml.types.get_ml_configuration_response.GetMLConfigurationResponse"
+        ]:
+            import capo_cleanroomsml._operations.aws_stark_control_service.get_ml_configuration
+
+            output, http_response = (
+                capo_cleanroomsml._operations.aws_stark_control_service.get_ml_configuration.get_ml_configuration(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_cleanroomsml.types.get_ml_configuration_request.GetMLConfigurationRequest = {
+            "membership_identifier": membership_identifier
+        }
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def delete_ml_configuration(
+        self,
+        membership_identifier: "capo_cleanroomsml.types.uuid.UUID",
+        *,
+        config_overrides: Optional[CleanRoomsMLClientConfig] = None,
+    ) -> None:
+        """<p>Deletes a ML modeling configuration.</p>
+
+        Args:
+            membership_identifier: <p>The membership ID of the of the member that is deleting the ML modeling configuration.</p>
+
+        Raises:
+            capo_cleanroomsml.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_cleanroomsml.errors.resource_not_found_exception.ResourceNotFoundException: <p>The resource you are requesting does not exist.</p>
+            capo_cleanroomsml.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
+            capo_cleanroomsml.errors.validation_exception.ValidationException: <p>The request parameters for this request are incorrect.</p>
+            capo_cleanroomsml.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_cleanroomsml.types.delete_ml_configuration_request.DeleteMLConfigurationRequest]",
+        ) -> OperationResponse[None]:
+            import capo_cleanroomsml._operations.aws_stark_control_service.delete_ml_configuration
+
+            output, http_response = (
+                capo_cleanroomsml._operations.aws_stark_control_service.delete_ml_configuration.delete_ml_configuration(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_cleanroomsml.types.delete_ml_configuration_request.DeleteMLConfigurationRequest = {
+            "membership_identifier": membership_identifier
+        }
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def create_ml_input_channel(
+        self,
+        membership_identifier: "capo_cleanroomsml.types.uuid.UUID",
+        configured_model_algorithm_associations: "capo_cleanroomsml.types.configured_model_algorithm_association_arn_list.ConfiguredModelAlgorithmAssociationArnList",
+        input_channel: "capo_cleanroomsml.types.input_channel.InputChannel",
+        name: "capo_cleanroomsml.types.name_string.NameString",
+        retention_in_days: int,
+        *,
+        config_overrides: Optional[CleanRoomsMLClientConfig] = None,
+        description: Optional[
+            "capo_cleanroomsml.types.resource_description.ResourceDescription"
+        ] = None,
+        kms_key_arn: Optional["capo_cleanroomsml.types.kms_key_arn.KmsKeyArn"] = None,
+        tags: Optional["capo_cleanroomsml.types.tag_map.TagMap"] = None,
+        payer_configuration: Optional[
+            "capo_cleanroomsml.types.payer_configuration.PayerConfiguration"
+        ] = None,
+    ) -> "capo_cleanroomsml.types.create_ml_input_channel_response.CreateMLInputChannelResponse":
+        """<p>Provides the information to create an ML input channel. An ML input channel is the result of a query that can be used for ML modeling.</p>
+
+        Args:
+            membership_identifier: <p>The membership ID of the member that is creating the ML input channel.</p>
+            configured_model_algorithm_associations: <p>The associated configured model algorithms that are necessary to create this ML input channel.</p>
+            input_channel: <p>The input data that is used to create this ML input channel.</p>
+            name: <p>The name of the ML input channel.</p>
+            retention_in_days: <p>The number of days that the data in the ML input channel is retained.</p>
+            description: <p>The description of the ML input channel.</p>
+            kms_key_arn: <p>The Amazon Resource Name (ARN) of the KMS key that is used to access the input channel.</p>
+            tags: <p>The optional metadata that you apply to the resource to help you categorize and organize them. Each tag consists of a key and an optional value, both of which you define.</p> <p>The following basic restrictions apply to tags:</p> <ul> <li> <p>Maximum number of tags per resource - 50.</p> </li> <li> <p>For each resource, each tag key must be unique, and each tag key can have only one value.</p> </li> <li> <p>Maximum key length - 128 Unicode characters in UTF-8.</p> </li> <li> <p>Maximum value length - 256 Unicode characters in UTF-8.</p> </li> <li> <p>If your tagging schema is used across multiple services and resources, remember that other services may have restrictions on allowed characters. Generally allowed characters are: letters, numbers, and spaces representable in UTF-8, and the following characters: + - = . _ : / @.</p> </li> <li> <p>Tag keys and values are case sensitive.</p> </li> <li> <p>Do not use aws:, AWS:, or any upper or lowercase combination of such as a prefix for keys as it is reserved for AWS use. You cannot edit or delete tag keys with this prefix. Values can have this prefix. If a tag value has aws as its prefix but the key does not, then Clean Rooms ML considers it to be a user tag and will count against the limit of 50 tags. Tags with only the key prefix of aws do not count against your tags per resource limit.</p> </li> </ul>
+            payer_configuration: <p>The payer configuration for the ML input channel. Determines which member account pays for compute and synthetic data costs.</p>
+
+        Raises:
+            capo_cleanroomsml.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_cleanroomsml.errors.conflict_exception.ConflictException: <p>You can't complete this action because another resource depends on this resource.</p>
+            capo_cleanroomsml.errors.resource_not_found_exception.ResourceNotFoundException: <p>The resource you are requesting does not exist.</p>
+            capo_cleanroomsml.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>You have exceeded your service quota.</p>
+            capo_cleanroomsml.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
+            capo_cleanroomsml.errors.validation_exception.ValidationException: <p>The request parameters for this request are incorrect.</p>
+            capo_cleanroomsml.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_cleanroomsml.types.create_ml_input_channel_request.CreateMLInputChannelRequest]",
+        ) -> OperationResponse[
+            "capo_cleanroomsml.types.create_ml_input_channel_response.CreateMLInputChannelResponse"
+        ]:
+            import capo_cleanroomsml._operations.aws_stark_control_service.create_ml_input_channel
+
+            output, http_response = (
+                capo_cleanroomsml._operations.aws_stark_control_service.create_ml_input_channel.create_ml_input_channel(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_cleanroomsml.types.create_ml_input_channel_request.CreateMLInputChannelRequest = {
+            "membership_identifier": membership_identifier,
+            "configured_model_algorithm_associations": configured_model_algorithm_associations,
+            "input_channel": input_channel,
+            "name": name,
+            "retention_in_days": retention_in_days,
+        }
+        if description is not None:
+            input_["description"] = description
+        if kms_key_arn is not None:
+            input_["kms_key_arn"] = kms_key_arn
+        if tags is not None:
+            input_["tags"] = tags
+        if payer_configuration is not None:
+            input_["payer_configuration"] = payer_configuration
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def get_ml_input_channel(
+        self,
+        ml_input_channel_arn: "capo_cleanroomsml.types.ml_input_channel_arn.MLInputChannelArn",
+        membership_identifier: "capo_cleanroomsml.types.uuid.UUID",
+        *,
+        config_overrides: Optional[CleanRoomsMLClientConfig] = None,
+    ) -> "capo_cleanroomsml.types.get_ml_input_channel_response.GetMLInputChannelResponse":
+        """<p>Returns information about an ML input channel.</p>
+
+        Args:
+            ml_input_channel_arn: <p>The Amazon Resource Name (ARN) of the ML input channel that you want to get.</p>
+            membership_identifier: <p>The membership ID of the membership that contains the ML input channel that you want to get.</p>
+
+        Raises:
+            capo_cleanroomsml.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_cleanroomsml.errors.resource_not_found_exception.ResourceNotFoundException: <p>The resource you are requesting does not exist.</p>
+            capo_cleanroomsml.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
+            capo_cleanroomsml.errors.validation_exception.ValidationException: <p>The request parameters for this request are incorrect.</p>
+            capo_cleanroomsml.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_cleanroomsml.types.get_ml_input_channel_request.GetMLInputChannelRequest]",
+        ) -> OperationResponse[
+            "capo_cleanroomsml.types.get_ml_input_channel_response.GetMLInputChannelResponse"
+        ]:
+            import capo_cleanroomsml._operations.aws_stark_control_service.get_ml_input_channel
+
+            output, http_response = (
+                capo_cleanroomsml._operations.aws_stark_control_service.get_ml_input_channel.get_ml_input_channel(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_cleanroomsml.types.get_ml_input_channel_request.GetMLInputChannelRequest = {
+            "ml_input_channel_arn": ml_input_channel_arn,
+            "membership_identifier": membership_identifier,
+        }
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def delete_ml_input_channel_data(
+        self,
+        ml_input_channel_arn: "capo_cleanroomsml.types.ml_input_channel_arn.MLInputChannelArn",
+        membership_identifier: "capo_cleanroomsml.types.uuid.UUID",
+        *,
+        config_overrides: Optional[CleanRoomsMLClientConfig] = None,
+    ) -> None:
+        """<p>Provides the information necessary to delete an ML input channel.</p>
+
+        Args:
+            ml_input_channel_arn: <p>The Amazon Resource Name (ARN) of the ML input channel that you want to delete.</p>
+            membership_identifier: <p>The membership ID of the membership that contains the ML input channel you want to delete.</p>
+
+        Raises:
+            capo_cleanroomsml.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_cleanroomsml.errors.conflict_exception.ConflictException: <p>You can't complete this action because another resource depends on this resource.</p>
+            capo_cleanroomsml.errors.resource_not_found_exception.ResourceNotFoundException: <p>The resource you are requesting does not exist.</p>
+            capo_cleanroomsml.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
+            capo_cleanroomsml.errors.validation_exception.ValidationException: <p>The request parameters for this request are incorrect.</p>
+            capo_cleanroomsml.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_cleanroomsml.types.delete_ml_input_channel_data_request.DeleteMLInputChannelDataRequest]",
+        ) -> OperationResponse[None]:
+            import capo_cleanroomsml._operations.aws_stark_control_service.delete_ml_input_channel_data
+
+            output, http_response = (
+                capo_cleanroomsml._operations.aws_stark_control_service.delete_ml_input_channel_data.delete_ml_input_channel_data(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_cleanroomsml.types.delete_ml_input_channel_data_request.DeleteMLInputChannelDataRequest = {
+            "ml_input_channel_arn": ml_input_channel_arn,
+            "membership_identifier": membership_identifier,
+        }
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def list_ml_input_channels(
+        self,
+        membership_identifier: "capo_cleanroomsml.types.uuid.UUID",
+        *,
+        config_overrides: Optional[CleanRoomsMLClientConfig] = None,
+        next_token: Optional["capo_cleanroomsml.types.next_token.NextToken"] = None,
+        max_results: Optional["capo_cleanroomsml.types.max_results.MaxResults"] = None,
+    ) -> "capo_cleanroomsml.types.list_ml_input_channels_response.ListMLInputChannelsResponse":
+        """<p>Returns a list of ML input channels.</p>
+
+        Args:
+            next_token: <p>The token value retrieved from a previous call to access the next page of results.</p>
+            max_results: <p>The maximum number of ML input channels to return.</p>
+            membership_identifier: <p>The membership ID of the membership that contains the ML input channels that you want to list.</p>
+
+        Raises:
+            capo_cleanroomsml.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_cleanroomsml.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
+            capo_cleanroomsml.errors.validation_exception.ValidationException: <p>The request parameters for this request are incorrect.</p>
+            capo_cleanroomsml.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_cleanroomsml.types.list_ml_input_channels_request.ListMLInputChannelsRequest]",
+        ) -> OperationResponse[
+            "capo_cleanroomsml.types.list_ml_input_channels_response.ListMLInputChannelsResponse"
+        ]:
+            import capo_cleanroomsml._operations.aws_stark_control_service.list_ml_input_channels
+
+            output, http_response = (
+                capo_cleanroomsml._operations.aws_stark_control_service.list_ml_input_channels.list_ml_input_channels(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_cleanroomsml.types.list_ml_input_channels_request.ListMLInputChannelsRequest = {
+            "membership_identifier": membership_identifier
+        }
+        if next_token is not None:
+            input_["next_token"] = next_token
+        if max_results is not None:
+            input_["max_results"] = max_results
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def iter_list_ml_input_channels(
+        self,
+        membership_identifier: "capo_cleanroomsml.types.uuid.UUID",
+        *,
+        config_overrides: Optional[CleanRoomsMLClientConfig] = None,
+        next_token: Optional["capo_cleanroomsml.types.next_token.NextToken"] = None,
+        max_results: Optional["capo_cleanroomsml.types.max_results.MaxResults"] = None,
+    ) -> "Iterator[capo_cleanroomsml.types.ml_input_channel_summary.MLInputChannelSummary]":
+        _token = next_token
+        while True:
+            _response = self.list_ml_input_channels(
+                membership_identifier,
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+            )
+            _page = _resolve_path(_response, ("ml_input_channels_list",))
+            for _item in _page or []:
+                yield _item
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
+
+    def get_collaboration_ml_input_channel(
+        self,
+        ml_input_channel_arn: "capo_cleanroomsml.types.ml_input_channel_arn.MLInputChannelArn",
+        collaboration_identifier: "capo_cleanroomsml.types.uuid.UUID",
+        *,
+        config_overrides: Optional[CleanRoomsMLClientConfig] = None,
+    ) -> "capo_cleanroomsml.types.get_collaboration_ml_input_channel_response.GetCollaborationMLInputChannelResponse":
+        """<p>Returns information about a specific ML input channel in a collaboration.</p>
+
+        Args:
+            ml_input_channel_arn: <p>The Amazon Resource Name (ARN) of the ML input channel that you want to get.</p>
+            collaboration_identifier: <p>The collaboration ID of the collaboration that contains the ML input channel that you want to get.</p>
+
+        Raises:
+            capo_cleanroomsml.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_cleanroomsml.errors.resource_not_found_exception.ResourceNotFoundException: <p>The resource you are requesting does not exist.</p>
+            capo_cleanroomsml.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
+            capo_cleanroomsml.errors.validation_exception.ValidationException: <p>The request parameters for this request are incorrect.</p>
+            capo_cleanroomsml.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_cleanroomsml.types.get_collaboration_ml_input_channel_request.GetCollaborationMLInputChannelRequest]",
+        ) -> OperationResponse[
+            "capo_cleanroomsml.types.get_collaboration_ml_input_channel_response.GetCollaborationMLInputChannelResponse"
+        ]:
+            import capo_cleanroomsml._operations.aws_stark_control_service.get_collaboration_ml_input_channel
+
+            output, http_response = (
+                capo_cleanroomsml._operations.aws_stark_control_service.get_collaboration_ml_input_channel.get_collaboration_ml_input_channel(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_cleanroomsml.types.get_collaboration_ml_input_channel_request.GetCollaborationMLInputChannelRequest = {
+            "ml_input_channel_arn": ml_input_channel_arn,
+            "collaboration_identifier": collaboration_identifier,
+        }
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def create_trained_model(
+        self,
+        membership_identifier: "capo_cleanroomsml.types.uuid.UUID",
+        name: "capo_cleanroomsml.types.name_string.NameString",
+        configured_model_algorithm_association_arn: "capo_cleanroomsml.types.configured_model_algorithm_association_arn.ConfiguredModelAlgorithmAssociationArn",
+        resource_config: "capo_cleanroomsml.types.resource_config.ResourceConfig",
+        data_channels: "capo_cleanroomsml.types.model_training_data_channels.ModelTrainingDataChannels",
+        *,
+        config_overrides: Optional[CleanRoomsMLClientConfig] = None,
+        hyperparameters: Optional[
+            "capo_cleanroomsml.types.hyper_parameters.HyperParameters"
+        ] = None,
+        environment: Optional["capo_cleanroomsml.types.environment.Environment"] = None,
+        stopping_condition: Optional[
+            "capo_cleanroomsml.types.stopping_condition.StoppingCondition"
+        ] = None,
+        incremental_training_data_channels: Optional[
+            "capo_cleanroomsml.types.incremental_training_data_channels.IncrementalTrainingDataChannels"
+        ] = None,
+        training_input_mode: Optional[
+            "capo_cleanroomsml.types.training_input_mode.TrainingInputMode"
+        ] = None,
+        description: Optional[
+            "capo_cleanroomsml.types.resource_description.ResourceDescription"
+        ] = None,
+        kms_key_arn: Optional["capo_cleanroomsml.types.kms_key_arn.KmsKeyArn"] = None,
+        tags: Optional["capo_cleanroomsml.types.tag_map.TagMap"] = None,
+        ml_model_training_payer_account_id: Optional[
+            "capo_cleanroomsml.types.account_id.AccountId"
+        ] = None,
+    ) -> "capo_cleanroomsml.types.create_trained_model_response.CreateTrainedModelResponse":
+        """<p>Creates a trained model from an associated configured model algorithm using data from any member of the collaboration.</p>
+
+        Args:
+            membership_identifier: <p>The membership ID of the member that is creating the trained model.</p>
+            name: <p>The name of the trained model.</p>
+            configured_model_algorithm_association_arn: <p>The associated configured model algorithm used to train this model.</p>
+            hyperparameters: <p>Algorithm-specific parameters that influence the quality of the model. You set hyperparameters before you start the learning process.</p>
+            environment: <p>The environment variables to set in the Docker container.</p>
+            resource_config: <p>Information about the EC2 resources that are used to train this model.</p>
+            stopping_condition: <p>The criteria that is used to stop model training.</p>
+            incremental_training_data_channels: <p>Specifies the incremental training data channels for the trained model. </p> <p>Incremental training allows you to create a new trained model with updates without retraining from scratch. You can specify up to one incremental training data channel that references a previously trained model and its version.</p> <p>Limit: Maximum of 20 channels total (including both <code>incrementalTrainingDataChannels</code> and <code>dataChannels</code>).</p>
+            data_channels: <p>Defines the data channels that are used as input for the trained model request.</p> <p>Limit: Maximum of 20 channels total (including both <code>dataChannels</code> and <code>incrementalTrainingDataChannels</code>).</p>
+            training_input_mode: <p>The input mode for accessing the training data. This parameter determines how the training data is made available to the training algorithm. Valid values are:</p> <ul> <li> <p> <code>File</code> - The training data is downloaded to the training instance and made available as files.</p> </li> <li> <p> <code>FastFile</code> - The training data is streamed directly from Amazon S3 to the training algorithm, providing faster access for large datasets.</p> </li> <li> <p> <code>Pipe</code> - The training data is streamed to the training algorithm using named pipes, which can improve performance for certain algorithms.</p> </li> </ul>
+            description: <p>The description of the trained model.</p>
+            kms_key_arn: <p>The Amazon Resource Name (ARN) of the KMS key. This key is used to encrypt and decrypt customer-owned data in the trained ML model and the associated data.</p>
+            tags: <p>The optional metadata that you apply to the resource to help you categorize and organize them. Each tag consists of a key and an optional value, both of which you define.</p> <p>The following basic restrictions apply to tags:</p> <ul> <li> <p>Maximum number of tags per resource - 50.</p> </li> <li> <p>For each resource, each tag key must be unique, and each tag key can have only one value.</p> </li> <li> <p>Maximum key length - 128 Unicode characters in UTF-8.</p> </li> <li> <p>Maximum value length - 256 Unicode characters in UTF-8.</p> </li> <li> <p>If your tagging schema is used across multiple services and resources, remember that other services may have restrictions on allowed characters. Generally allowed characters are: letters, numbers, and spaces representable in UTF-8, and the following characters: + - = . _ : / @.</p> </li> <li> <p>Tag keys and values are case sensitive.</p> </li> <li> <p>Do not use aws:, AWS:, or any upper or lowercase combination of such as a prefix for keys as it is reserved for AWS use. You cannot edit or delete tag keys with this prefix. Values can have this prefix. If a tag value has aws as its prefix but the key does not, then Clean Rooms ML considers it to be a user tag and will count against the limit of 50 tags. Tags with only the key prefix of aws do not count against your tags per resource limit.</p> </li> </ul>
+            ml_model_training_payer_account_id: <p>The account ID of the member that is responsible for paying for model training costs.</p>
+
+        Raises:
+            capo_cleanroomsml.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_cleanroomsml.errors.conflict_exception.ConflictException: <p>You can't complete this action because another resource depends on this resource.</p>
+            capo_cleanroomsml.errors.internal_service_exception.InternalServiceException: <p>An internal service error occurred. Retry your request. If the problem persists, contact AWS Support.</p>
+            capo_cleanroomsml.errors.resource_not_found_exception.ResourceNotFoundException: <p>The resource you are requesting does not exist.</p>
+            capo_cleanroomsml.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>You have exceeded your service quota.</p>
+            capo_cleanroomsml.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
+            capo_cleanroomsml.errors.validation_exception.ValidationException: <p>The request parameters for this request are incorrect.</p>
+            capo_cleanroomsml.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_cleanroomsml.types.create_trained_model_request.CreateTrainedModelRequest]",
+        ) -> OperationResponse[
+            "capo_cleanroomsml.types.create_trained_model_response.CreateTrainedModelResponse"
+        ]:
+            import capo_cleanroomsml._operations.aws_stark_control_service.create_trained_model
+
+            output, http_response = (
+                capo_cleanroomsml._operations.aws_stark_control_service.create_trained_model.create_trained_model(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_cleanroomsml.types.create_trained_model_request.CreateTrainedModelRequest = {
+            "membership_identifier": membership_identifier,
+            "name": name,
+            "configured_model_algorithm_association_arn": configured_model_algorithm_association_arn,
+            "resource_config": resource_config,
+            "data_channels": data_channels,
+        }
+        if hyperparameters is not None:
+            input_["hyperparameters"] = hyperparameters
+        if environment is not None:
+            input_["environment"] = environment
+        if stopping_condition is not None:
+            input_["stopping_condition"] = stopping_condition
+        if incremental_training_data_channels is not None:
+            input_["incremental_training_data_channels"] = (
+                incremental_training_data_channels
+            )
+        if training_input_mode is not None:
+            input_["training_input_mode"] = training_input_mode
+        if description is not None:
+            input_["description"] = description
+        if kms_key_arn is not None:
+            input_["kms_key_arn"] = kms_key_arn
+        if tags is not None:
+            input_["tags"] = tags
+        if ml_model_training_payer_account_id is not None:
+            input_["ml_model_training_payer_account_id"] = (
+                ml_model_training_payer_account_id
+            )
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def get_trained_model(
+        self,
+        trained_model_arn: "capo_cleanroomsml.types.trained_model_arn.TrainedModelArn",
+        membership_identifier: "capo_cleanroomsml.types.uuid.UUID",
+        *,
+        config_overrides: Optional[CleanRoomsMLClientConfig] = None,
+        version_identifier: Optional["capo_cleanroomsml.types.uuid.UUID"] = None,
+    ) -> "capo_cleanroomsml.types.get_trained_model_response.GetTrainedModelResponse":
+        """<p>Returns information about a trained model.</p>
+
+        Args:
+            trained_model_arn: <p>The Amazon Resource Name (ARN) of the trained model that you are interested in.</p>
+            membership_identifier: <p>The membership ID of the member that created the trained model that you are interested in.</p>
+            version_identifier: <p>The version identifier of the trained model to retrieve. If not specified, the operation returns information about the latest version of the trained model.</p>
+
+        Raises:
+            capo_cleanroomsml.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_cleanroomsml.errors.resource_not_found_exception.ResourceNotFoundException: <p>The resource you are requesting does not exist.</p>
+            capo_cleanroomsml.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
+            capo_cleanroomsml.errors.validation_exception.ValidationException: <p>The request parameters for this request are incorrect.</p>
+            capo_cleanroomsml.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_cleanroomsml.types.get_trained_model_request.GetTrainedModelRequest]",
+        ) -> OperationResponse[
+            "capo_cleanroomsml.types.get_trained_model_response.GetTrainedModelResponse"
+        ]:
+            import capo_cleanroomsml._operations.aws_stark_control_service.get_trained_model
+
+            output, http_response = (
+                capo_cleanroomsml._operations.aws_stark_control_service.get_trained_model.get_trained_model(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_cleanroomsml.types.get_trained_model_request.GetTrainedModelRequest = {
+            "trained_model_arn": trained_model_arn,
+            "membership_identifier": membership_identifier,
+        }
+        if version_identifier is not None:
+            input_["version_identifier"] = version_identifier
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def delete_trained_model_output(
+        self,
+        trained_model_arn: "capo_cleanroomsml.types.trained_model_arn.TrainedModelArn",
+        membership_identifier: "capo_cleanroomsml.types.uuid.UUID",
+        *,
+        config_overrides: Optional[CleanRoomsMLClientConfig] = None,
+        version_identifier: Optional["capo_cleanroomsml.types.uuid.UUID"] = None,
+    ) -> None:
+        """<p>Deletes the model artifacts stored by the service.</p>
+
+        Args:
+            trained_model_arn: <p>The Amazon Resource Name (ARN) of the trained model whose output you want to delete.</p>
+            membership_identifier: <p>The membership ID of the member that is deleting the trained model output.</p>
+            version_identifier: <p>The version identifier of the trained model to delete. If not specified, the operation will delete the base version of the trained model. When specified, only the particular version will be deleted.</p>
+
+        Raises:
+            capo_cleanroomsml.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_cleanroomsml.errors.conflict_exception.ConflictException: <p>You can't complete this action because another resource depends on this resource.</p>
+            capo_cleanroomsml.errors.resource_not_found_exception.ResourceNotFoundException: <p>The resource you are requesting does not exist.</p>
+            capo_cleanroomsml.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
+            capo_cleanroomsml.errors.validation_exception.ValidationException: <p>The request parameters for this request are incorrect.</p>
+            capo_cleanroomsml.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_cleanroomsml.types.delete_trained_model_output_request.DeleteTrainedModelOutputRequest]",
+        ) -> OperationResponse[None]:
+            import capo_cleanroomsml._operations.aws_stark_control_service.delete_trained_model_output
+
+            output, http_response = (
+                capo_cleanroomsml._operations.aws_stark_control_service.delete_trained_model_output.delete_trained_model_output(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_cleanroomsml.types.delete_trained_model_output_request.DeleteTrainedModelOutputRequest = {
+            "trained_model_arn": trained_model_arn,
+            "membership_identifier": membership_identifier,
+        }
+        if version_identifier is not None:
+            input_["version_identifier"] = version_identifier
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def list_trained_models(
+        self,
+        membership_identifier: "capo_cleanroomsml.types.uuid.UUID",
+        *,
+        config_overrides: Optional[CleanRoomsMLClientConfig] = None,
+        next_token: Optional["capo_cleanroomsml.types.next_token.NextToken"] = None,
+        max_results: Optional["capo_cleanroomsml.types.max_results.MaxResults"] = None,
+    ) -> (
+        "capo_cleanroomsml.types.list_trained_models_response.ListTrainedModelsResponse"
+    ):
+        """<p>Returns a list of trained models.</p>
+
+        Args:
+            next_token: <p>The token value retrieved from a previous call to access the next page of results.</p>
+            max_results: <p>The maximum size of the results that is returned per call.</p>
+            membership_identifier: <p>The membership ID of the member that created the trained models you are interested in.</p>
+
+        Raises:
+            capo_cleanroomsml.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_cleanroomsml.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
+            capo_cleanroomsml.errors.validation_exception.ValidationException: <p>The request parameters for this request are incorrect.</p>
+            capo_cleanroomsml.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_cleanroomsml.types.list_trained_models_request.ListTrainedModelsRequest]",
+        ) -> OperationResponse[
+            "capo_cleanroomsml.types.list_trained_models_response.ListTrainedModelsResponse"
+        ]:
+            import capo_cleanroomsml._operations.aws_stark_control_service.list_trained_models
+
+            output, http_response = (
+                capo_cleanroomsml._operations.aws_stark_control_service.list_trained_models.list_trained_models(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_cleanroomsml.types.list_trained_models_request.ListTrainedModelsRequest = {
+            "membership_identifier": membership_identifier
+        }
+        if next_token is not None:
+            input_["next_token"] = next_token
+        if max_results is not None:
+            input_["max_results"] = max_results
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def iter_list_trained_models(
+        self,
+        membership_identifier: "capo_cleanroomsml.types.uuid.UUID",
+        *,
+        config_overrides: Optional[CleanRoomsMLClientConfig] = None,
+        next_token: Optional["capo_cleanroomsml.types.next_token.NextToken"] = None,
+        max_results: Optional["capo_cleanroomsml.types.max_results.MaxResults"] = None,
+    ) -> "Iterator[capo_cleanroomsml.types.trained_model_summary.TrainedModelSummary]":
+        _token = next_token
+        while True:
+            _response = self.list_trained_models(
+                membership_identifier,
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+            )
+            _page = _resolve_path(_response, ("trained_models",))
+            for _item in _page or []:
+                yield _item
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
+
+    def cancel_trained_model(
+        self,
+        membership_identifier: "capo_cleanroomsml.types.uuid.UUID",
+        trained_model_arn: "capo_cleanroomsml.types.trained_model_arn.TrainedModelArn",
+        *,
+        config_overrides: Optional[CleanRoomsMLClientConfig] = None,
+        version_identifier: Optional["capo_cleanroomsml.types.uuid.UUID"] = None,
+    ) -> None:
+        """<p>Submits a request to cancel the trained model job.</p>
+
+        Args:
+            membership_identifier: <p>The membership ID of the trained model job that you want to cancel.</p>
+            trained_model_arn: <p>The Amazon Resource Name (ARN) of the trained model job that you want to cancel.</p>
+            version_identifier: <p>The version identifier of the trained model to cancel. This parameter allows you to specify which version of the trained model you want to cancel when multiple versions exist.</p> <p>If <code>versionIdentifier</code> is not specified, the base model will be cancelled.</p>
+
+        Raises:
+            capo_cleanroomsml.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_cleanroomsml.errors.conflict_exception.ConflictException: <p>You can't complete this action because another resource depends on this resource.</p>
+            capo_cleanroomsml.errors.resource_not_found_exception.ResourceNotFoundException: <p>The resource you are requesting does not exist.</p>
+            capo_cleanroomsml.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
+            capo_cleanroomsml.errors.validation_exception.ValidationException: <p>The request parameters for this request are incorrect.</p>
+            capo_cleanroomsml.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_cleanroomsml.types.cancel_trained_model_request.CancelTrainedModelRequest]",
+        ) -> OperationResponse[None]:
+            import capo_cleanroomsml._operations.aws_stark_control_service.cancel_trained_model
+
+            output, http_response = (
+                capo_cleanroomsml._operations.aws_stark_control_service.cancel_trained_model.cancel_trained_model(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_cleanroomsml.types.cancel_trained_model_request.CancelTrainedModelRequest = {
+            "membership_identifier": membership_identifier,
+            "trained_model_arn": trained_model_arn,
+        }
+        if version_identifier is not None:
+            input_["version_identifier"] = version_identifier
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def get_collaboration_trained_model(
+        self,
+        trained_model_arn: "capo_cleanroomsml.types.trained_model_arn.TrainedModelArn",
+        collaboration_identifier: "capo_cleanroomsml.types.uuid.UUID",
+        *,
+        config_overrides: Optional[CleanRoomsMLClientConfig] = None,
+        version_identifier: Optional["capo_cleanroomsml.types.uuid.UUID"] = None,
+    ) -> "capo_cleanroomsml.types.get_collaboration_trained_model_response.GetCollaborationTrainedModelResponse":
+        """<p>Returns information about a trained model in a collaboration.</p>
+
+        Args:
+            trained_model_arn: <p>The Amazon Resource Name (ARN) of the trained model that you want to return information about.</p>
+            collaboration_identifier: <p>The collaboration ID that contains the trained model that you want to return information about.</p>
+            version_identifier: <p>The version identifier of the trained model to retrieve. If not specified, the operation returns information about the latest version of the trained model.</p>
+
+        Raises:
+            capo_cleanroomsml.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_cleanroomsml.errors.resource_not_found_exception.ResourceNotFoundException: <p>The resource you are requesting does not exist.</p>
+            capo_cleanroomsml.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
+            capo_cleanroomsml.errors.validation_exception.ValidationException: <p>The request parameters for this request are incorrect.</p>
+            capo_cleanroomsml.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_cleanroomsml.types.get_collaboration_trained_model_request.GetCollaborationTrainedModelRequest]",
+        ) -> OperationResponse[
+            "capo_cleanroomsml.types.get_collaboration_trained_model_response.GetCollaborationTrainedModelResponse"
+        ]:
+            import capo_cleanroomsml._operations.aws_stark_control_service.get_collaboration_trained_model
+
+            output, http_response = (
+                capo_cleanroomsml._operations.aws_stark_control_service.get_collaboration_trained_model.get_collaboration_trained_model(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_cleanroomsml.types.get_collaboration_trained_model_request.GetCollaborationTrainedModelRequest = {
+            "trained_model_arn": trained_model_arn,
+            "collaboration_identifier": collaboration_identifier,
+        }
+        if version_identifier is not None:
+            input_["version_identifier"] = version_identifier
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def list_trained_model_versions(
+        self,
+        membership_identifier: "capo_cleanroomsml.types.uuid.UUID",
+        trained_model_arn: "capo_cleanroomsml.types.trained_model_arn.TrainedModelArn",
+        *,
+        config_overrides: Optional[CleanRoomsMLClientConfig] = None,
+        next_token: Optional["capo_cleanroomsml.types.next_token.NextToken"] = None,
+        max_results: Optional["capo_cleanroomsml.types.max_results.MaxResults"] = None,
+        status: Optional[
+            "capo_cleanroomsml.types.trained_model_status.TrainedModelStatus"
+        ] = None,
+    ) -> "capo_cleanroomsml.types.list_trained_model_versions_response.ListTrainedModelVersionsResponse":
+        """<p>Returns a list of trained model versions for a specified trained model. This operation allows you to view all versions of a trained model, including information about their status and creation details. You can use this to track the evolution of your trained models and select specific versions for inference or further training.</p>
+
+        Args:
+            next_token: <p>The pagination token from a previous <code>ListTrainedModelVersions</code> request. Use this token to retrieve the next page of results.</p>
+            max_results: <p>The maximum number of trained model versions to return in a single page. The default value is 10, and the maximum value is 100.</p>
+            membership_identifier: <p>The membership identifier for the collaboration that contains the trained model.</p>
+            trained_model_arn: <p>The Amazon Resource Name (ARN) of the trained model for which to list versions.</p>
+            status: <p>Filter the results to only include trained model versions with the specified status. Valid values include <code>CREATE_PENDING</code>, <code>CREATE_IN_PROGRESS</code>, <code>ACTIVE</code>, <code>CREATE_FAILED</code>, and others.</p>
+
+        Raises:
+            capo_cleanroomsml.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_cleanroomsml.errors.resource_not_found_exception.ResourceNotFoundException: <p>The resource you are requesting does not exist.</p>
+            capo_cleanroomsml.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
+            capo_cleanroomsml.errors.validation_exception.ValidationException: <p>The request parameters for this request are incorrect.</p>
+            capo_cleanroomsml.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_cleanroomsml.types.list_trained_model_versions_request.ListTrainedModelVersionsRequest]",
+        ) -> OperationResponse[
+            "capo_cleanroomsml.types.list_trained_model_versions_response.ListTrainedModelVersionsResponse"
+        ]:
+            import capo_cleanroomsml._operations.aws_stark_control_service.list_trained_model_versions
+
+            output, http_response = (
+                capo_cleanroomsml._operations.aws_stark_control_service.list_trained_model_versions.list_trained_model_versions(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_cleanroomsml.types.list_trained_model_versions_request.ListTrainedModelVersionsRequest = {
+            "membership_identifier": membership_identifier,
+            "trained_model_arn": trained_model_arn,
+        }
+        if next_token is not None:
+            input_["next_token"] = next_token
+        if max_results is not None:
+            input_["max_results"] = max_results
+        if status is not None:
+            input_["status"] = status
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def iter_list_trained_model_versions(
+        self,
+        membership_identifier: "capo_cleanroomsml.types.uuid.UUID",
+        trained_model_arn: "capo_cleanroomsml.types.trained_model_arn.TrainedModelArn",
+        *,
+        config_overrides: Optional[CleanRoomsMLClientConfig] = None,
+        next_token: Optional["capo_cleanroomsml.types.next_token.NextToken"] = None,
+        max_results: Optional["capo_cleanroomsml.types.max_results.MaxResults"] = None,
+        status: Optional[
+            "capo_cleanroomsml.types.trained_model_status.TrainedModelStatus"
+        ] = None,
+    ) -> "Iterator[capo_cleanroomsml.types.trained_model_summary.TrainedModelSummary]":
+        _token = next_token
+        while True:
+            _response = self.list_trained_model_versions(
+                membership_identifier,
+                trained_model_arn,
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+                status=status,
+            )
+            _page = _resolve_path(_response, ("trained_models",))
+            for _item in _page or []:
+                yield _item
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
+
+    def start_trained_model_export_job(
+        self,
+        name: "capo_cleanroomsml.types.name_string.NameString",
+        trained_model_arn: "capo_cleanroomsml.types.trained_model_arn.TrainedModelArn",
+        membership_identifier: "capo_cleanroomsml.types.uuid.UUID",
+        output_configuration: "capo_cleanroomsml.types.trained_model_export_output_configuration.TrainedModelExportOutputConfiguration",
+        *,
+        config_overrides: Optional[CleanRoomsMLClientConfig] = None,
+        trained_model_version_identifier: Optional[
+            "capo_cleanroomsml.types.uuid.UUID"
+        ] = None,
+        description: Optional[
+            "capo_cleanroomsml.types.resource_description.ResourceDescription"
+        ] = None,
+    ) -> None:
+        """<p>Provides the information necessary to start a trained model export job.</p>
+
+        Args:
+            name: <p>The name of the trained model export job.</p>
+            trained_model_arn: <p>The Amazon Resource Name (ARN) of the trained model that you want to export.</p>
+            trained_model_version_identifier: <p>The version identifier of the trained model to export. This specifies which version of the trained model should be exported to the specified destination.</p>
+            membership_identifier: <p>The membership ID of the member that is receiving the exported trained model artifacts.</p>
+            output_configuration: <p>The output configuration information for the trained model export job.</p>
+            description: <p>The description of the trained model export job.</p>
+
+        Raises:
+            capo_cleanroomsml.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_cleanroomsml.errors.conflict_exception.ConflictException: <p>You can't complete this action because another resource depends on this resource.</p>
+            capo_cleanroomsml.errors.resource_not_found_exception.ResourceNotFoundException: <p>The resource you are requesting does not exist.</p>
+            capo_cleanroomsml.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
+            capo_cleanroomsml.errors.validation_exception.ValidationException: <p>The request parameters for this request are incorrect.</p>
+            capo_cleanroomsml.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_cleanroomsml.types.start_trained_model_export_job_request.StartTrainedModelExportJobRequest]",
+        ) -> OperationResponse[None]:
+            import capo_cleanroomsml._operations.aws_stark_control_service.start_trained_model_export_job
+
+            output, http_response = (
+                capo_cleanroomsml._operations.aws_stark_control_service.start_trained_model_export_job.start_trained_model_export_job(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_cleanroomsml.types.start_trained_model_export_job_request.StartTrainedModelExportJobRequest = {
+            "name": name,
+            "trained_model_arn": trained_model_arn,
+            "membership_identifier": membership_identifier,
+            "output_configuration": output_configuration,
+        }
+        if trained_model_version_identifier is not None:
+            input_["trained_model_version_identifier"] = (
+                trained_model_version_identifier
+            )
+        if description is not None:
+            input_["description"] = description
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def start_trained_model_inference_job(
+        self,
+        membership_identifier: "capo_cleanroomsml.types.uuid.UUID",
+        name: "capo_cleanroomsml.types.name_string.NameString",
+        trained_model_arn: "capo_cleanroomsml.types.trained_model_arn.TrainedModelArn",
+        resource_config: "capo_cleanroomsml.types.inference_resource_config.InferenceResourceConfig",
+        output_configuration: "capo_cleanroomsml.types.inference_output_configuration.InferenceOutputConfiguration",
+        data_source: "capo_cleanroomsml.types.model_inference_data_source.ModelInferenceDataSource",
+        *,
+        config_overrides: Optional[CleanRoomsMLClientConfig] = None,
+        trained_model_version_identifier: Optional[
+            "capo_cleanroomsml.types.uuid.UUID"
+        ] = None,
+        configured_model_algorithm_association_arn: Optional[
+            "capo_cleanroomsml.types.configured_model_algorithm_association_arn.ConfiguredModelAlgorithmAssociationArn"
+        ] = None,
+        description: Optional[
+            "capo_cleanroomsml.types.resource_description.ResourceDescription"
+        ] = None,
+        container_execution_parameters: Optional[
+            "capo_cleanroomsml.types.inference_container_execution_parameters.InferenceContainerExecutionParameters"
+        ] = None,
+        environment: Optional[
+            "capo_cleanroomsml.types.inference_environment_map.InferenceEnvironmentMap"
+        ] = None,
+        kms_key_arn: Optional["capo_cleanroomsml.types.kms_key_arn.KmsKeyArn"] = None,
+        tags: Optional["capo_cleanroomsml.types.tag_map.TagMap"] = None,
+        ml_model_inference_payer_account_id: Optional[
+            "capo_cleanroomsml.types.account_id.AccountId"
+        ] = None,
+    ) -> "capo_cleanroomsml.types.start_trained_model_inference_job_response.StartTrainedModelInferenceJobResponse":
+        """<p>Defines the information necessary to begin a trained model inference job.</p>
+
+        Args:
+            membership_identifier: <p>The membership ID of the membership that contains the trained model inference job.</p>
+            name: <p>The name of the trained model inference job.</p>
+            trained_model_arn: <p>The Amazon Resource Name (ARN) of the trained model that is used for this trained model inference job.</p>
+            trained_model_version_identifier: <p>The version identifier of the trained model to use for inference. This specifies which version of the trained model should be used to generate predictions on the input data.</p>
+            configured_model_algorithm_association_arn: <p>The Amazon Resource Name (ARN) of the configured model algorithm association that is used for this trained model inference job.</p>
+            resource_config: <p>Defines the resource configuration for the trained model inference job.</p>
+            output_configuration: <p>Defines the output configuration information for the trained model inference job.</p>
+            data_source: <p>Defines the data source that is used for the trained model inference job.</p>
+            description: <p>The description of the trained model inference job.</p>
+            container_execution_parameters: <p>The execution parameters for the container.</p>
+            environment: <p>The environment variables to set in the Docker container.</p>
+            kms_key_arn: <p>The Amazon Resource Name (ARN) of the KMS key. This key is used to encrypt and decrypt customer-owned data in the ML inference job and associated data.</p>
+            tags: <p>The optional metadata that you apply to the resource to help you categorize and organize them. Each tag consists of a key and an optional value, both of which you define.</p> <p>The following basic restrictions apply to tags:</p> <ul> <li> <p>Maximum number of tags per resource - 50.</p> </li> <li> <p>For each resource, each tag key must be unique, and each tag key can have only one value.</p> </li> <li> <p>Maximum key length - 128 Unicode characters in UTF-8.</p> </li> <li> <p>Maximum value length - 256 Unicode characters in UTF-8.</p> </li> <li> <p>If your tagging schema is used across multiple services and resources, remember that other services may have restrictions on allowed characters. Generally allowed characters are: letters, numbers, and spaces representable in UTF-8, and the following characters: + - = . _ : / @.</p> </li> <li> <p>Tag keys and values are case sensitive.</p> </li> <li> <p>Do not use aws:, AWS:, or any upper or lowercase combination of such as a prefix for keys as it is reserved for AWS use. You cannot edit or delete tag keys with this prefix. Values can have this prefix. If a tag value has aws as its prefix but the key does not, then Clean Rooms ML considers it to be a user tag and will count against the limit of 50 tags. Tags with only the key prefix of aws do not count against your tags per resource limit.</p> </li> </ul>
+            ml_model_inference_payer_account_id: <p>The account ID of the member that is responsible for paying for model inference costs.</p>
+
+        Raises:
+            capo_cleanroomsml.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_cleanroomsml.errors.conflict_exception.ConflictException: <p>You can't complete this action because another resource depends on this resource.</p>
+            capo_cleanroomsml.errors.resource_not_found_exception.ResourceNotFoundException: <p>The resource you are requesting does not exist.</p>
+            capo_cleanroomsml.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>You have exceeded your service quota.</p>
+            capo_cleanroomsml.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
+            capo_cleanroomsml.errors.validation_exception.ValidationException: <p>The request parameters for this request are incorrect.</p>
+            capo_cleanroomsml.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_cleanroomsml.types.start_trained_model_inference_job_request.StartTrainedModelInferenceJobRequest]",
+        ) -> OperationResponse[
+            "capo_cleanroomsml.types.start_trained_model_inference_job_response.StartTrainedModelInferenceJobResponse"
+        ]:
+            import capo_cleanroomsml._operations.aws_stark_control_service.start_trained_model_inference_job
+
+            output, http_response = (
+                capo_cleanroomsml._operations.aws_stark_control_service.start_trained_model_inference_job.start_trained_model_inference_job(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_cleanroomsml.types.start_trained_model_inference_job_request.StartTrainedModelInferenceJobRequest = {
+            "membership_identifier": membership_identifier,
+            "name": name,
+            "trained_model_arn": trained_model_arn,
+            "resource_config": resource_config,
+            "output_configuration": output_configuration,
+            "data_source": data_source,
+        }
+        if trained_model_version_identifier is not None:
+            input_["trained_model_version_identifier"] = (
+                trained_model_version_identifier
+            )
+        if configured_model_algorithm_association_arn is not None:
+            input_["configured_model_algorithm_association_arn"] = (
+                configured_model_algorithm_association_arn
+            )
+        if description is not None:
+            input_["description"] = description
+        if container_execution_parameters is not None:
+            input_["container_execution_parameters"] = container_execution_parameters
+        if environment is not None:
+            input_["environment"] = environment
+        if kms_key_arn is not None:
+            input_["kms_key_arn"] = kms_key_arn
+        if tags is not None:
+            input_["tags"] = tags
+        if ml_model_inference_payer_account_id is not None:
+            input_["ml_model_inference_payer_account_id"] = (
+                ml_model_inference_payer_account_id
+            )
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def get_trained_model_inference_job(
+        self,
+        membership_identifier: "capo_cleanroomsml.types.uuid.UUID",
+        trained_model_inference_job_arn: "capo_cleanroomsml.types.trained_model_inference_job_arn.TrainedModelInferenceJobArn",
+        *,
+        config_overrides: Optional[CleanRoomsMLClientConfig] = None,
+    ) -> "capo_cleanroomsml.types.get_trained_model_inference_job_response.GetTrainedModelInferenceJobResponse":
+        """<p>Returns information about a trained model inference job.</p>
+
+        Args:
+            membership_identifier: <p>Provides the membership ID of the membership that contains the trained model inference job that you are interested in.</p>
+            trained_model_inference_job_arn: <p>Provides the Amazon Resource Name (ARN) of the trained model inference job that you are interested in.</p>
+
+        Raises:
+            capo_cleanroomsml.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_cleanroomsml.errors.resource_not_found_exception.ResourceNotFoundException: <p>The resource you are requesting does not exist.</p>
+            capo_cleanroomsml.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
+            capo_cleanroomsml.errors.validation_exception.ValidationException: <p>The request parameters for this request are incorrect.</p>
+            capo_cleanroomsml.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_cleanroomsml.types.get_trained_model_inference_job_request.GetTrainedModelInferenceJobRequest]",
+        ) -> OperationResponse[
+            "capo_cleanroomsml.types.get_trained_model_inference_job_response.GetTrainedModelInferenceJobResponse"
+        ]:
+            import capo_cleanroomsml._operations.aws_stark_control_service.get_trained_model_inference_job
+
+            output, http_response = (
+                capo_cleanroomsml._operations.aws_stark_control_service.get_trained_model_inference_job.get_trained_model_inference_job(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_cleanroomsml.types.get_trained_model_inference_job_request.GetTrainedModelInferenceJobRequest = {
+            "membership_identifier": membership_identifier,
+            "trained_model_inference_job_arn": trained_model_inference_job_arn,
+        }
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def list_trained_model_inference_jobs(
+        self,
+        membership_identifier: "capo_cleanroomsml.types.uuid.UUID",
+        *,
+        config_overrides: Optional[CleanRoomsMLClientConfig] = None,
+        next_token: Optional["capo_cleanroomsml.types.next_token.NextToken"] = None,
+        max_results: Optional["capo_cleanroomsml.types.max_results.MaxResults"] = None,
+        trained_model_arn: Optional[
+            "capo_cleanroomsml.types.trained_model_arn.TrainedModelArn"
+        ] = None,
+        trained_model_version_identifier: Optional[
+            "capo_cleanroomsml.types.uuid.UUID"
+        ] = None,
+    ) -> "capo_cleanroomsml.types.list_trained_model_inference_jobs_response.ListTrainedModelInferenceJobsResponse":
+        """<p>Returns a list of trained model inference jobs that match the request parameters.</p>
+
+        Args:
+            next_token: <p>The token value retrieved from a previous call to access the next page of results.</p>
+            max_results: <p>The maximum size of the results that is returned per call.</p>
+            membership_identifier: <p>The membership </p>
+            trained_model_arn: <p>The Amazon Resource Name (ARN) of a trained model that was used to create the trained model inference jobs that you are interested in.</p>
+            trained_model_version_identifier: <p>The version identifier of the trained model to filter inference jobs by. When specified, only inference jobs that used this specific version of the trained model are returned.</p>
+
+        Raises:
+            capo_cleanroomsml.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_cleanroomsml.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
+            capo_cleanroomsml.errors.validation_exception.ValidationException: <p>The request parameters for this request are incorrect.</p>
+            capo_cleanroomsml.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_cleanroomsml.types.list_trained_model_inference_jobs_request.ListTrainedModelInferenceJobsRequest]",
+        ) -> OperationResponse[
+            "capo_cleanroomsml.types.list_trained_model_inference_jobs_response.ListTrainedModelInferenceJobsResponse"
+        ]:
+            import capo_cleanroomsml._operations.aws_stark_control_service.list_trained_model_inference_jobs
+
+            output, http_response = (
+                capo_cleanroomsml._operations.aws_stark_control_service.list_trained_model_inference_jobs.list_trained_model_inference_jobs(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_cleanroomsml.types.list_trained_model_inference_jobs_request.ListTrainedModelInferenceJobsRequest = {
+            "membership_identifier": membership_identifier
+        }
+        if next_token is not None:
+            input_["next_token"] = next_token
+        if max_results is not None:
+            input_["max_results"] = max_results
+        if trained_model_arn is not None:
+            input_["trained_model_arn"] = trained_model_arn
+        if trained_model_version_identifier is not None:
+            input_["trained_model_version_identifier"] = (
+                trained_model_version_identifier
+            )
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def iter_list_trained_model_inference_jobs(
+        self,
+        membership_identifier: "capo_cleanroomsml.types.uuid.UUID",
+        *,
+        config_overrides: Optional[CleanRoomsMLClientConfig] = None,
+        next_token: Optional["capo_cleanroomsml.types.next_token.NextToken"] = None,
+        max_results: Optional["capo_cleanroomsml.types.max_results.MaxResults"] = None,
+        trained_model_arn: Optional[
+            "capo_cleanroomsml.types.trained_model_arn.TrainedModelArn"
+        ] = None,
+        trained_model_version_identifier: Optional[
+            "capo_cleanroomsml.types.uuid.UUID"
+        ] = None,
+    ) -> "Iterator[capo_cleanroomsml.types.trained_model_inference_job_summary.TrainedModelInferenceJobSummary]":
+        _token = next_token
+        while True:
+            _response = self.list_trained_model_inference_jobs(
+                membership_identifier,
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+                trained_model_arn=trained_model_arn,
+                trained_model_version_identifier=trained_model_version_identifier,
+            )
+            _page = _resolve_path(_response, ("trained_model_inference_jobs",))
+            for _item in _page or []:
+                yield _item
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
+
+    def cancel_trained_model_inference_job(
+        self,
+        membership_identifier: "capo_cleanroomsml.types.uuid.UUID",
+        trained_model_inference_job_arn: "capo_cleanroomsml.types.trained_model_inference_job_arn.TrainedModelInferenceJobArn",
+        *,
+        config_overrides: Optional[CleanRoomsMLClientConfig] = None,
+    ) -> None:
+        """<p>Submits a request to cancel a trained model inference job.</p>
+
+        Args:
+            membership_identifier: <p>The membership ID of the trained model inference job that you want to cancel.</p>
+            trained_model_inference_job_arn: <p>The Amazon Resource Name (ARN) of the trained model inference job that you want to cancel.</p>
+
+        Raises:
+            capo_cleanroomsml.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_cleanroomsml.errors.conflict_exception.ConflictException: <p>You can't complete this action because another resource depends on this resource.</p>
+            capo_cleanroomsml.errors.resource_not_found_exception.ResourceNotFoundException: <p>The resource you are requesting does not exist.</p>
+            capo_cleanroomsml.errors.throttling_exception.ThrottlingException: <p>The request was denied due to request throttling.</p>
+            capo_cleanroomsml.errors.validation_exception.ValidationException: <p>The request parameters for this request are incorrect.</p>
+            capo_cleanroomsml.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_cleanroomsml.types.cancel_trained_model_inference_job_request.CancelTrainedModelInferenceJobRequest]",
+        ) -> OperationResponse[None]:
+            import capo_cleanroomsml._operations.aws_stark_control_service.cancel_trained_model_inference_job
+
+            output, http_response = (
+                capo_cleanroomsml._operations.aws_stark_control_service.cancel_trained_model_inference_job.cancel_trained_model_inference_job(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_cleanroomsml.types.cancel_trained_model_inference_job_request.CancelTrainedModelInferenceJobRequest = {
+            "membership_identifier": membership_identifier,
+            "trained_model_inference_job_arn": trained_model_inference_job_arn,
+        }
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def create_training_dataset(
+        self,
+        name: "capo_cleanroomsml.types.name_string.NameString",
+        role_arn: "capo_cleanroomsml.types.iam_role_arn.IamRoleArn",
+        training_data: "capo_cleanroomsml.types.dataset_list.DatasetList",
+        *,
+        config_overrides: Optional[CleanRoomsMLClientConfig] = None,
+        tags: Optional["capo_cleanroomsml.types.tag_map.TagMap"] = None,
+        description: Optional[
+            "capo_cleanroomsml.types.resource_description.ResourceDescription"
+        ] = None,
+    ) -> "capo_cleanroomsml.types.create_training_dataset_response.CreateTrainingDatasetResponse":
+        """<p>Defines the information necessary to create a training dataset. In Clean Rooms ML, the <code>TrainingDataset</code> is metadata that points to a Glue table, which is read only during <code>AudienceModel</code> creation.</p>
+
+        Args:
+            name: <p>The name of the training dataset. This name must be unique in your account and region.</p>
+            role_arn: <p>The ARN of the IAM role that Clean Rooms ML can assume to read the data referred to in the <code>dataSource</code> field of each dataset.</p> <p>Passing a role across AWS accounts is not allowed. If you pass a role that isn't in your account, you get an <code>AccessDeniedException</code> error.</p>
+            training_data: <p>An array of information that lists the Dataset objects, which specifies the dataset type and details on its location and schema. You must provide a role that has read access to these tables.</p>
+            tags: <p>The optional metadata that you apply to the resource to help you categorize and organize them. Each tag consists of a key and an optional value, both of which you define.</p> <p>The following basic restrictions apply to tags:</p> <ul> <li> <p>Maximum number of tags per resource - 50.</p> </li> <li> <p>For each resource, each tag key must be unique, and each tag key can have only one value.</p> </li> <li> <p>Maximum key length - 128 Unicode characters in UTF-8.</p> </li> <li> <p>Maximum value length - 256 Unicode characters in UTF-8.</p> </li> <li> <p>If your tagging schema is used across multiple services and resources, remember that other services may have restrictions on allowed characters. Generally allowed characters are: letters, numbers, and spaces representable in UTF-8, and the following characters: + - = . _ : / @.</p> </li> <li> <p>Tag keys and values are case sensitive.</p> </li> <li> <p>Do not use aws:, AWS:, or any upper or lowercase combination of such as a prefix for keys as it is reserved for AWS use. You cannot edit or delete tag keys with this prefix. Values can have this prefix. If a tag value has aws as its prefix but the key does not, then Clean Rooms ML considers it to be a user tag and will count against the limit of 50 tags. Tags with only the key prefix of aws do not count against your tags per resource limit.</p> </li> </ul>
+            description: <p>The description of the training dataset.</p>
+
+        Raises:
+            capo_cleanroomsml.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_cleanroomsml.errors.conflict_exception.ConflictException: <p>You can't complete this action because another resource depends on this resource.</p>
+            capo_cleanroomsml.errors.validation_exception.ValidationException: <p>The request parameters for this request are incorrect.</p>
+            capo_cleanroomsml.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_cleanroomsml.types.create_training_dataset_request.CreateTrainingDatasetRequest]",
+        ) -> OperationResponse[
+            "capo_cleanroomsml.types.create_training_dataset_response.CreateTrainingDatasetResponse"
+        ]:
+            import capo_cleanroomsml._operations.aws_stark_control_service.create_training_dataset
+
+            output, http_response = (
+                capo_cleanroomsml._operations.aws_stark_control_service.create_training_dataset.create_training_dataset(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_cleanroomsml.types.create_training_dataset_request.CreateTrainingDatasetRequest = {
+            "name": name,
+            "role_arn": role_arn,
+            "training_data": training_data,
+        }
+        if tags is not None:
+            input_["tags"] = tags
+        if description is not None:
+            input_["description"] = description
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def get_training_dataset(
+        self,
+        training_dataset_arn: "capo_cleanroomsml.types.training_dataset_arn.TrainingDatasetArn",
+        *,
+        config_overrides: Optional[CleanRoomsMLClientConfig] = None,
+    ) -> "capo_cleanroomsml.types.get_training_dataset_response.GetTrainingDatasetResponse":
+        """<p>Returns information about a training dataset.</p>
+
+        Args:
+            training_dataset_arn: <p>The Amazon Resource Name (ARN) of the training dataset that you are interested in.</p>
+
+        Raises:
+            capo_cleanroomsml.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_cleanroomsml.errors.resource_not_found_exception.ResourceNotFoundException: <p>The resource you are requesting does not exist.</p>
+            capo_cleanroomsml.errors.validation_exception.ValidationException: <p>The request parameters for this request are incorrect.</p>
+            capo_cleanroomsml.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_cleanroomsml.types.get_training_dataset_request.GetTrainingDatasetRequest]",
+        ) -> OperationResponse[
+            "capo_cleanroomsml.types.get_training_dataset_response.GetTrainingDatasetResponse"
+        ]:
+            import capo_cleanroomsml._operations.aws_stark_control_service.get_training_dataset
+
+            output, http_response = (
+                capo_cleanroomsml._operations.aws_stark_control_service.get_training_dataset.get_training_dataset(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_cleanroomsml.types.get_training_dataset_request.GetTrainingDatasetRequest = {
+            "training_dataset_arn": training_dataset_arn
+        }
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def delete_training_dataset(
+        self,
+        training_dataset_arn: "capo_cleanroomsml.types.training_dataset_arn.TrainingDatasetArn",
+        *,
+        config_overrides: Optional[CleanRoomsMLClientConfig] = None,
+    ) -> None:
+        """<p>Specifies a training dataset that you want to delete. You can't delete a training dataset if there are any audience models that depend on the training dataset. In Clean Rooms ML, the <code>TrainingDataset</code> is metadata that points to a Glue table, which is read only during <code>AudienceModel</code> creation. This action deletes the metadata.</p>
+
+        Args:
+            training_dataset_arn: <p>The Amazon Resource Name (ARN) of the training dataset that you want to delete.</p>
+
+        Raises:
+            capo_cleanroomsml.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_cleanroomsml.errors.conflict_exception.ConflictException: <p>You can't complete this action because another resource depends on this resource.</p>
+            capo_cleanroomsml.errors.resource_not_found_exception.ResourceNotFoundException: <p>The resource you are requesting does not exist.</p>
+            capo_cleanroomsml.errors.validation_exception.ValidationException: <p>The request parameters for this request are incorrect.</p>
+            capo_cleanroomsml.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_cleanroomsml.types.delete_training_dataset_request.DeleteTrainingDatasetRequest]",
+        ) -> OperationResponse[None]:
+            import capo_cleanroomsml._operations.aws_stark_control_service.delete_training_dataset
+
+            output, http_response = (
+                capo_cleanroomsml._operations.aws_stark_control_service.delete_training_dataset.delete_training_dataset(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_cleanroomsml.types.delete_training_dataset_request.DeleteTrainingDatasetRequest = {
+            "training_dataset_arn": training_dataset_arn
+        }
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def list_training_datasets(
+        self,
+        *,
+        config_overrides: Optional[CleanRoomsMLClientConfig] = None,
+        next_token: Optional["capo_cleanroomsml.types.next_token.NextToken"] = None,
+        max_results: Optional["capo_cleanroomsml.types.max_results.MaxResults"] = None,
+    ) -> "capo_cleanroomsml.types.list_training_datasets_response.ListTrainingDatasetsResponse":
+        """<p>Returns a list of training datasets.</p>
+
+        Args:
+            next_token: <p>The token value retrieved from a previous call to access the next page of results.</p>
+            max_results: <p>The maximum size of the results that is returned per call.</p>
+
+        Raises:
+            capo_cleanroomsml.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_cleanroomsml.errors.validation_exception.ValidationException: <p>The request parameters for this request are incorrect.</p>
+            capo_cleanroomsml.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        def _handler(
+            req: "OperationRequest[capo_cleanroomsml.types.list_training_datasets_request.ListTrainingDatasetsRequest]",
+        ) -> OperationResponse[
+            "capo_cleanroomsml.types.list_training_datasets_response.ListTrainingDatasetsResponse"
+        ]:
+            import capo_cleanroomsml._operations.aws_stark_control_service.list_training_datasets
+
+            output, http_response = (
+                capo_cleanroomsml._operations.aws_stark_control_service.list_training_datasets.list_training_datasets(
+                    req.options, req.input
+                )
+            )
+            return OperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_cleanroomsml.types.list_training_datasets_request.ListTrainingDatasetsRequest = {}
+        if next_token is not None:
+            input_["next_token"] = next_token
+        if max_results is not None:
+            input_["max_results"] = max_results
+
+        response = execute_pipeline(
+            OperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        response.response.close()
+        return response.output
+
+    def iter_list_training_datasets(
+        self,
+        *,
+        config_overrides: Optional[CleanRoomsMLClientConfig] = None,
+        next_token: Optional["capo_cleanroomsml.types.next_token.NextToken"] = None,
+        max_results: Optional["capo_cleanroomsml.types.max_results.MaxResults"] = None,
+    ) -> "Iterator[capo_cleanroomsml.types.training_dataset_summary.TrainingDatasetSummary]":
+        _token = next_token
+        while True:
+            _response = self.list_training_datasets(
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+            )
+            _page = _resolve_path(_response, ("training_datasets",))
+            for _item in _page or []:
+                yield _item
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def __enter__(self) -> Self:
         return self

@@ -36,10 +36,10 @@ def serialize_json(value: UpdateKxEnvironmentRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateKxEnvironmentRequest:
     out: UpdateKxEnvironmentRequest = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     return out

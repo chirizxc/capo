@@ -23,6 +23,6 @@ def serialize_json(value: RouteTransponder) -> dict:
 
 def deserialize_json(data: dict) -> RouteTransponder:
     out: RouteTransponder = {}  # type: ignore[typeddict-item]
-    if "SystemName" in data:
+    if data.get("SystemName") is not None:
         out["system_name"] = data["SystemName"]
     return out

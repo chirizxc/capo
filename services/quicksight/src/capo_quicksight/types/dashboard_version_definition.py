@@ -134,7 +134,7 @@ def serialize_json(value: DashboardVersionDefinition) -> dict:
 
 def deserialize_json(data: dict) -> DashboardVersionDefinition:
     out: DashboardVersionDefinition = {}  # type: ignore[typeddict-item]
-    if "DataSetIdentifierDeclarations" in data:
+    if data.get("DataSetIdentifierDeclarations") is not None:
         import capo_quicksight.types.data_set_identifier_declaration_list
 
         out["data_set_identifier_declarations"] = (
@@ -146,13 +146,13 @@ def deserialize_json(data: dict) -> DashboardVersionDefinition:
         raise DeserializationError(
             "DashboardVersionDefinition.data_set_identifier_declarations required"
         )
-    if "Sheets" in data:
+    if data.get("Sheets") is not None:
         import capo_quicksight.types.sheet_definition_list
 
         out["sheets"] = capo_quicksight.types.sheet_definition_list.deserialize_json(
             data["Sheets"]
         )
-    if "TooltipSheets" in data:
+    if data.get("TooltipSheets") is not None:
         import capo_quicksight.types.tooltip_sheet_definition_list
 
         out["tooltip_sheets"] = (
@@ -160,7 +160,7 @@ def deserialize_json(data: dict) -> DashboardVersionDefinition:
                 data["TooltipSheets"]
             )
         )
-    if "CalculatedFields" in data:
+    if data.get("CalculatedFields") is not None:
         import capo_quicksight.types.calculated_fields
 
         out["calculated_fields"] = (
@@ -168,7 +168,7 @@ def deserialize_json(data: dict) -> DashboardVersionDefinition:
                 data["CalculatedFields"]
             )
         )
-    if "ParameterDeclarations" in data:
+    if data.get("ParameterDeclarations") is not None:
         import capo_quicksight.types.parameter_declaration_list
 
         out["parameter_declarations"] = (
@@ -176,13 +176,13 @@ def deserialize_json(data: dict) -> DashboardVersionDefinition:
                 data["ParameterDeclarations"]
             )
         )
-    if "FilterGroups" in data:
+    if data.get("FilterGroups") is not None:
         import capo_quicksight.types.filter_group_list
 
         out["filter_groups"] = capo_quicksight.types.filter_group_list.deserialize_json(
             data["FilterGroups"]
         )
-    if "ColumnConfigurations" in data:
+    if data.get("ColumnConfigurations") is not None:
         import capo_quicksight.types.column_configuration_list
 
         out["column_configurations"] = (
@@ -190,7 +190,7 @@ def deserialize_json(data: dict) -> DashboardVersionDefinition:
                 data["ColumnConfigurations"]
             )
         )
-    if "AnalysisDefaults" in data:
+    if data.get("AnalysisDefaults") is not None:
         import capo_quicksight.types.analysis_defaults
 
         out["analysis_defaults"] = (
@@ -198,13 +198,13 @@ def deserialize_json(data: dict) -> DashboardVersionDefinition:
                 data["AnalysisDefaults"]
             )
         )
-    if "Options" in data:
+    if data.get("Options") is not None:
         import capo_quicksight.types.asset_options
 
         out["options"] = capo_quicksight.types.asset_options.deserialize_json(
             data["Options"]
         )
-    if "StaticFiles" in data:
+    if data.get("StaticFiles") is not None:
         import capo_quicksight.types.static_file_list
 
         out["static_files"] = capo_quicksight.types.static_file_list.deserialize_json(

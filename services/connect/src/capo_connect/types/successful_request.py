@@ -30,8 +30,8 @@ def serialize_json(value: SuccessfulRequest) -> dict:
 
 def deserialize_json(data: dict) -> SuccessfulRequest:
     out: SuccessfulRequest = {}  # type: ignore[typeddict-item]
-    if "RequestIdentifier" in data:
+    if data.get("RequestIdentifier") is not None:
         out["request_identifier"] = data["RequestIdentifier"]
-    if "ContactId" in data:
+    if data.get("ContactId") is not None:
         out["contact_id"] = data["ContactId"]
     return out

@@ -39,11 +39,11 @@ def serialize_json(value: CreateReadinessCheckRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateReadinessCheckRequest:
     out: CreateReadinessCheckRequest = {}  # type: ignore[typeddict-item]
-    if "readinessCheckName" in data:
+    if data.get("readinessCheckName") is not None:
         out["readiness_check_name"] = data["readinessCheckName"]
-    if "resourceSetName" in data:
+    if data.get("resourceSetName") is not None:
         out["resource_set_name"] = data["resourceSetName"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_route53_recovery_readiness.types.tags
 
         out["tags"] = capo_route53_recovery_readiness.types.tags.deserialize_json(

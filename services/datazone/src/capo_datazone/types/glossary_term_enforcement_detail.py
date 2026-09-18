@@ -31,7 +31,7 @@ def serialize_json(value: GlossaryTermEnforcementDetail) -> dict:
 
 def deserialize_json(data: dict) -> GlossaryTermEnforcementDetail:
     out: GlossaryTermEnforcementDetail = {}  # type: ignore[typeddict-item]
-    if "requiredGlossaryTermIds" in data:
+    if data.get("requiredGlossaryTermIds") is not None:
         import capo_datazone.types.glossary_term_identifiers
 
         out["required_glossary_term_ids"] = (

@@ -37,15 +37,18 @@ class InvalidClusterStateFault(ServiceError):
 
     code: str | None = "InvalidClusterStateFault"
 
-    def __init__(self, data: InvalidClusterStateFault_):
+    def __init__(self, data: InvalidClusterStateFault_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="InvalidClusterStateFault",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_query(cls, el: Element) -> "InvalidClusterStateFault":
-        return cls(deserialize_query(el))
+    def from_query(
+        cls, el: Element, message: str | None = None
+    ) -> "InvalidClusterStateFault":
+        return cls(deserialize_query(el), message)

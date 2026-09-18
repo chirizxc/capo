@@ -25,6 +25,6 @@ def serialize_json(value: GatewayRouteHostnameRewrite) -> dict:
 
 def deserialize_json(data: dict) -> GatewayRouteHostnameRewrite:
     out: GatewayRouteHostnameRewrite = {}  # type: ignore[typeddict-item]
-    if "defaultTargetHostname" in data:
+    if data.get("defaultTargetHostname") is not None:
         out["default_target_hostname"] = data["defaultTargetHostname"]
     return out

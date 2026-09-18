@@ -45,11 +45,11 @@ def serialize_json(value: UpdateCalculatedAttributeDefinitionRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateCalculatedAttributeDefinitionRequest:
     out: UpdateCalculatedAttributeDefinitionRequest = {}  # type: ignore[typeddict-item]
-    if "DisplayName" in data:
+    if data.get("DisplayName") is not None:
         out["display_name"] = data["DisplayName"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Conditions" in data:
+    if data.get("Conditions") is not None:
         import capo_customer_profiles.types.conditions
 
         out["conditions"] = capo_customer_profiles.types.conditions.deserialize_json(

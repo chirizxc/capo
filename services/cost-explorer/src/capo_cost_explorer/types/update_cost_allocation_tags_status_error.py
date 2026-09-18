@@ -33,10 +33,10 @@ def serialize_aws_json_1_1(value: UpdateCostAllocationTagsStatusError) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateCostAllocationTagsStatusError:
     out: UpdateCostAllocationTagsStatusError = {}  # type: ignore[typeddict-item]
-    if "TagKey" in data:
+    if data.get("TagKey") is not None:
         out["tag_key"] = data["TagKey"]
-    if "Code" in data:
+    if data.get("Code") is not None:
         out["code"] = data["Code"]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     return out

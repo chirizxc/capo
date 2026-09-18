@@ -158,17 +158,17 @@ def serialize_aws_json_1_1(value: CreatePredictorRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreatePredictorRequest:
     out: CreatePredictorRequest = {}  # type: ignore[typeddict-item]
-    if "PredictorName" in data:
+    if data.get("PredictorName") is not None:
         out["predictor_name"] = data["PredictorName"]
     else:
         raise DeserializationError("CreatePredictorRequest.predictor_name required")
-    if "AlgorithmArn" in data:
+    if data.get("AlgorithmArn") is not None:
         out["algorithm_arn"] = data["AlgorithmArn"]
-    if "ForecastHorizon" in data:
+    if data.get("ForecastHorizon") is not None:
         out["forecast_horizon"] = data["ForecastHorizon"]
     else:
         raise DeserializationError("CreatePredictorRequest.forecast_horizon required")
-    if "ForecastTypes" in data:
+    if data.get("ForecastTypes") is not None:
         import capo_forecast.types.forecast_types
 
         out["forecast_types"] = (
@@ -176,9 +176,9 @@ def deserialize_aws_json_1_1(data: dict) -> CreatePredictorRequest:
                 data["ForecastTypes"]
             )
         )
-    if "PerformAutoML" in data:
+    if data.get("PerformAutoML") is not None:
         out["perform_auto_ml"] = data["PerformAutoML"]
-    if "AutoMLOverrideStrategy" in data:
+    if data.get("AutoMLOverrideStrategy") is not None:
         import capo_forecast.types.auto_ml_override_strategy
 
         out["auto_ml_override_strategy"] = (
@@ -186,9 +186,9 @@ def deserialize_aws_json_1_1(data: dict) -> CreatePredictorRequest:
                 data["AutoMLOverrideStrategy"]
             )
         )
-    if "PerformHPO" in data:
+    if data.get("PerformHPO") is not None:
         out["perform_hpo"] = data["PerformHPO"]
-    if "TrainingParameters" in data:
+    if data.get("TrainingParameters") is not None:
         import capo_forecast.types.training_parameters
 
         out["training_parameters"] = (
@@ -196,7 +196,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreatePredictorRequest:
                 data["TrainingParameters"]
             )
         )
-    if "EvaluationParameters" in data:
+    if data.get("EvaluationParameters") is not None:
         import capo_forecast.types.evaluation_parameters
 
         out["evaluation_parameters"] = (
@@ -204,7 +204,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreatePredictorRequest:
                 data["EvaluationParameters"]
             )
         )
-    if "HPOConfig" in data:
+    if data.get("HPOConfig") is not None:
         import capo_forecast.types.hyper_parameter_tuning_job_config
 
         out["hpo_config"] = (
@@ -212,7 +212,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreatePredictorRequest:
                 data["HPOConfig"]
             )
         )
-    if "InputDataConfig" in data:
+    if data.get("InputDataConfig") is not None:
         import capo_forecast.types.input_data_config
 
         out["input_data_config"] = (
@@ -222,7 +222,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreatePredictorRequest:
         )
     else:
         raise DeserializationError("CreatePredictorRequest.input_data_config required")
-    if "FeaturizationConfig" in data:
+    if data.get("FeaturizationConfig") is not None:
         import capo_forecast.types.featurization_config
 
         out["featurization_config"] = (
@@ -234,7 +234,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreatePredictorRequest:
         raise DeserializationError(
             "CreatePredictorRequest.featurization_config required"
         )
-    if "EncryptionConfig" in data:
+    if data.get("EncryptionConfig") is not None:
         import capo_forecast.types.encryption_config
 
         out["encryption_config"] = (
@@ -242,11 +242,11 @@ def deserialize_aws_json_1_1(data: dict) -> CreatePredictorRequest:
                 data["EncryptionConfig"]
             )
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_forecast.types.tags
 
         out["tags"] = capo_forecast.types.tags.deserialize_aws_json_1_1(data["Tags"])
-    if "OptimizationMetric" in data:
+    if data.get("OptimizationMetric") is not None:
         import capo_forecast.types.optimization_metric
 
         out["optimization_metric"] = (

@@ -79,47 +79,47 @@ def serialize_json(value: CreateQuantumTaskRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateQuantumTaskRequest:
     out: CreateQuantumTaskRequest = {}  # type: ignore[typeddict-item]
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     else:
         raise DeserializationError("CreateQuantumTaskRequest.client_token required")
-    if "deviceArn" in data:
+    if data.get("deviceArn") is not None:
         out["device_arn"] = data["deviceArn"]
     else:
         raise DeserializationError("CreateQuantumTaskRequest.device_arn required")
-    if "deviceParameters" in data:
+    if data.get("deviceParameters") is not None:
         out["device_parameters"] = data["deviceParameters"]
-    if "shots" in data:
+    if data.get("shots") is not None:
         out["shots"] = data["shots"]
     else:
         raise DeserializationError("CreateQuantumTaskRequest.shots required")
-    if "outputS3Bucket" in data:
+    if data.get("outputS3Bucket") is not None:
         out["output_s3_bucket"] = data["outputS3Bucket"]
     else:
         raise DeserializationError("CreateQuantumTaskRequest.output_s3_bucket required")
-    if "outputS3KeyPrefix" in data:
+    if data.get("outputS3KeyPrefix") is not None:
         out["output_s3_key_prefix"] = data["outputS3KeyPrefix"]
     else:
         raise DeserializationError(
             "CreateQuantumTaskRequest.output_s3_key_prefix required"
         )
-    if "action" in data:
+    if data.get("action") is not None:
         out["action"] = data["action"]
     else:
         raise DeserializationError("CreateQuantumTaskRequest.action required")
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_braket.types.tags_map
 
         out["tags"] = capo_braket.types.tags_map.deserialize_json(data["tags"])
-    if "jobToken" in data:
+    if data.get("jobToken") is not None:
         out["job_token"] = data["jobToken"]
-    if "associations" in data:
+    if data.get("associations") is not None:
         import capo_braket.types.associations
 
         out["associations"] = capo_braket.types.associations.deserialize_json(
             data["associations"]
         )
-    if "experimentalCapabilities" in data:
+    if data.get("experimentalCapabilities") is not None:
         import capo_braket.types.experimental_capabilities
 
         out["experimental_capabilities"] = (

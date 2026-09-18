@@ -42,15 +42,15 @@ def serialize_aws_json_1_0(value: CreateEnvironmentHostRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CreateEnvironmentHostRequest:
     out: CreateEnvironmentHostRequest = {}  # type: ignore[typeddict-item]
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
-    if "environmentId" in data:
+    if data.get("environmentId") is not None:
         out["environment_id"] = data["environmentId"]
     else:
         raise DeserializationError(
             "CreateEnvironmentHostRequest.environment_id required"
         )
-    if "host" in data:
+    if data.get("host") is not None:
         import capo_evs.types.host_info_for_create
 
         out["host"] = capo_evs.types.host_info_for_create.deserialize_aws_json_1_0(
@@ -58,6 +58,6 @@ def deserialize_aws_json_1_0(data: dict) -> CreateEnvironmentHostRequest:
         )
     else:
         raise DeserializationError("CreateEnvironmentHostRequest.host required")
-    if "esxVersion" in data:
+    if data.get("esxVersion") is not None:
         out["esx_version"] = data["esxVersion"]
     return out

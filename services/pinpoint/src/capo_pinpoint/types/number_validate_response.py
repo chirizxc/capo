@@ -76,32 +76,32 @@ def serialize_json(value: NumberValidateResponse) -> dict:
 
 def deserialize_json(data: dict) -> NumberValidateResponse:
     out: NumberValidateResponse = {}  # type: ignore[typeddict-item]
-    if "Carrier" in data:
+    if data.get("Carrier") is not None:
         out["carrier"] = data["Carrier"]
-    if "City" in data:
+    if data.get("City") is not None:
         out["city"] = data["City"]
-    if "CleansedPhoneNumberE164" in data:
+    if data.get("CleansedPhoneNumberE164") is not None:
         out["cleansed_phone_number_e164"] = data["CleansedPhoneNumberE164"]
-    if "CleansedPhoneNumberNational" in data:
+    if data.get("CleansedPhoneNumberNational") is not None:
         out["cleansed_phone_number_national"] = data["CleansedPhoneNumberNational"]
-    if "Country" in data:
+    if data.get("Country") is not None:
         out["country"] = data["Country"]
-    if "CountryCodeIso2" in data:
+    if data.get("CountryCodeIso2") is not None:
         out["country_code_iso2"] = data["CountryCodeIso2"]
-    if "CountryCodeNumeric" in data:
+    if data.get("CountryCodeNumeric") is not None:
         out["country_code_numeric"] = data["CountryCodeNumeric"]
-    if "County" in data:
+    if data.get("County") is not None:
         out["county"] = data["County"]
-    if "OriginalCountryCodeIso2" in data:
+    if data.get("OriginalCountryCodeIso2") is not None:
         out["original_country_code_iso2"] = data["OriginalCountryCodeIso2"]
-    if "OriginalPhoneNumber" in data:
+    if data.get("OriginalPhoneNumber") is not None:
         out["original_phone_number"] = data["OriginalPhoneNumber"]
-    if "PhoneType" in data:
+    if data.get("PhoneType") is not None:
         out["phone_type"] = data["PhoneType"]
-    if "PhoneTypeCode" in data:
+    if data.get("PhoneTypeCode") is not None:
         out["phone_type_code"] = data["PhoneTypeCode"]
-    if "Timezone" in data:
+    if data.get("Timezone") is not None:
         out["timezone"] = data["Timezone"]
-    if "ZipCode" in data:
+    if data.get("ZipCode") is not None:
         out["zip_code"] = data["ZipCode"]
     return out

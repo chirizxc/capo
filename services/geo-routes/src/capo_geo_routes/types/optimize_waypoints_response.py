@@ -70,7 +70,7 @@ def serialize_json(value: OptimizeWaypointsResponse) -> dict:
 
 def deserialize_json(data: dict) -> OptimizeWaypointsResponse:
     out: OptimizeWaypointsResponse = {}  # type: ignore[typeddict-item]
-    if "Connections" in data:
+    if data.get("Connections") is not None:
         import capo_geo_routes.types.waypoint_optimization_connection_list
 
         out["connections"] = (
@@ -80,15 +80,15 @@ def deserialize_json(data: dict) -> OptimizeWaypointsResponse:
         )
     else:
         raise DeserializationError("OptimizeWaypointsResponse.connections required")
-    if "Distance" in data:
+    if data.get("Distance") is not None:
         out["distance"] = data["Distance"]
     else:
         out["distance"] = 0
-    if "Duration" in data:
+    if data.get("Duration") is not None:
         out["duration"] = data["Duration"]
     else:
         out["duration"] = 0
-    if "ImpedingWaypoints" in data:
+    if data.get("ImpedingWaypoints") is not None:
         import capo_geo_routes.types.waypoint_optimization_impeding_waypoint_list
 
         out["impeding_waypoints"] = (
@@ -100,7 +100,7 @@ def deserialize_json(data: dict) -> OptimizeWaypointsResponse:
         raise DeserializationError(
             "OptimizeWaypointsResponse.impeding_waypoints required"
         )
-    if "OptimizedWaypoints" in data:
+    if data.get("OptimizedWaypoints") is not None:
         import capo_geo_routes.types.waypoint_optimization_optimized_waypoint_list
 
         out["optimized_waypoints"] = (
@@ -112,7 +112,7 @@ def deserialize_json(data: dict) -> OptimizeWaypointsResponse:
         raise DeserializationError(
             "OptimizeWaypointsResponse.optimized_waypoints required"
         )
-    if "TimeBreakdown" in data:
+    if data.get("TimeBreakdown") is not None:
         import capo_geo_routes.types.waypoint_optimization_time_breakdown
 
         out["time_breakdown"] = (

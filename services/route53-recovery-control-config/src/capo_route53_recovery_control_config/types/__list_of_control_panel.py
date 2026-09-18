@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> __listOfControlPanel:
 
     out: __listOfControlPanel = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_route53_recovery_control_config.types.control_panel.deserialize_json(
                 item

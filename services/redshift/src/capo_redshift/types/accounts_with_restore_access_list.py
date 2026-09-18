@@ -18,6 +18,9 @@ def serialize_query(
 ) -> None:
     import capo_redshift.types.account_with_restore_access
 
+    if not value:
+        pairs.append((prefix, ""))
+        return
     for n, item in enumerate(value, 1):
         capo_redshift.types.account_with_restore_access.serialize_query(
             item, pairs, f"{prefix}.AccountWithRestoreAccess.{n}"
@@ -40,6 +43,9 @@ def serialize_query_flat(
 ) -> None:
     import capo_redshift.types.account_with_restore_access
 
+    if not value:
+        pairs.append((prefix, ""))
+        return
     for n, item in enumerate(value, 1):
         capo_redshift.types.account_with_restore_access.serialize_query(
             item, pairs, f"{prefix}.{n}"

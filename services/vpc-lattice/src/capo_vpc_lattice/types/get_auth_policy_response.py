@@ -45,17 +45,17 @@ def serialize_json(value: GetAuthPolicyResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetAuthPolicyResponse:
     out: GetAuthPolicyResponse = {}  # type: ignore[typeddict-item]
-    if "policy" in data:
+    if data.get("policy") is not None:
         out["policy"] = data["policy"]
-    if "state" in data:
+    if data.get("state") is not None:
         out["state"] = data["state"]
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_vpc_lattice.types.timestamp
 
         out["created_at"] = capo_vpc_lattice.types.timestamp.deserialize_json(
             data["createdAt"]
         )
-    if "lastUpdatedAt" in data:
+    if data.get("lastUpdatedAt") is not None:
         import capo_vpc_lattice.types.timestamp
 
         out["last_updated_at"] = capo_vpc_lattice.types.timestamp.deserialize_json(

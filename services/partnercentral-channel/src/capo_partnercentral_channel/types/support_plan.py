@@ -66,7 +66,7 @@ def serialize_aws_json_1_0(value: SupportPlan) -> dict:
 
 
 def deserialize_aws_json_1_0(data: dict) -> SupportPlan:
-    if "resoldEnterprise" in data:
+    if data.get("resoldEnterprise") is not None:
         import capo_partnercentral_channel.types.resold_enterprise
 
         return {
@@ -74,7 +74,7 @@ def deserialize_aws_json_1_0(data: dict) -> SupportPlan:
                 data["resoldEnterprise"]
             )
         }
-    elif "partnerLedSupport" in data:
+    elif data.get("partnerLedSupport") is not None:
         import capo_partnercentral_channel.types.partner_led_support
 
         return {
@@ -82,7 +82,7 @@ def deserialize_aws_json_1_0(data: dict) -> SupportPlan:
                 data["partnerLedSupport"]
             )
         }
-    elif "resoldUnifiedOperations" in data:
+    elif data.get("resoldUnifiedOperations") is not None:
         import capo_partnercentral_channel.types.resold_unified_operations
 
         return {

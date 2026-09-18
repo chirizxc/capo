@@ -38,7 +38,7 @@ def serialize_json(value: GetLatestConfigurationResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetLatestConfigurationResponse:
     out: GetLatestConfigurationResponse = {}  # type: ignore[typeddict-item]
-    if "Configuration" in data:
+    if data.get("Configuration") is not None:
         import capo_appconfigdata.types.sensitive_blob
 
         out["configuration"] = capo_appconfigdata.types.sensitive_blob.deserialize_json(

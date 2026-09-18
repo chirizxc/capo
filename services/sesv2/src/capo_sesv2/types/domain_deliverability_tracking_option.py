@@ -45,15 +45,15 @@ def serialize_json(value: DomainDeliverabilityTrackingOption) -> dict:
 
 def deserialize_json(data: dict) -> DomainDeliverabilityTrackingOption:
     out: DomainDeliverabilityTrackingOption = {}  # type: ignore[typeddict-item]
-    if "Domain" in data:
+    if data.get("Domain") is not None:
         out["domain"] = data["Domain"]
-    if "SubscriptionStartDate" in data:
+    if data.get("SubscriptionStartDate") is not None:
         import capo_sesv2.types.timestamp
 
         out["subscription_start_date"] = capo_sesv2.types.timestamp.deserialize_json(
             data["SubscriptionStartDate"]
         )
-    if "InboxPlacementTrackingOption" in data:
+    if data.get("InboxPlacementTrackingOption") is not None:
         import capo_sesv2.types.inbox_placement_tracking_option
 
         out["inbox_placement_tracking_option"] = (

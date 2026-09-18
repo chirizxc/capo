@@ -40,9 +40,9 @@ def serialize_json(value: UnprocessedSecurityControl) -> dict:
 
 def deserialize_json(data: dict) -> UnprocessedSecurityControl:
     out: UnprocessedSecurityControl = {}  # type: ignore[typeddict-item]
-    if "SecurityControlId" in data:
+    if data.get("SecurityControlId") is not None:
         out["security_control_id"] = data["SecurityControlId"]
-    if "ErrorCode" in data:
+    if data.get("ErrorCode") is not None:
         import capo_securityhub.types.unprocessed_error_code
 
         out["error_code"] = (
@@ -50,6 +50,6 @@ def deserialize_json(data: dict) -> UnprocessedSecurityControl:
                 data["ErrorCode"]
             )
         )
-    if "ErrorReason" in data:
+    if data.get("ErrorReason") is not None:
         out["error_reason"] = data["ErrorReason"]
     return out

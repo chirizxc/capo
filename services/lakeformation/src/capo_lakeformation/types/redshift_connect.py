@@ -30,7 +30,7 @@ def serialize_json(value: RedshiftConnect) -> dict:
 
 def deserialize_json(data: dict) -> RedshiftConnect:
     out: RedshiftConnect = {}  # type: ignore[typeddict-item]
-    if "Authorization" in data:
+    if data.get("Authorization") is not None:
         import capo_lakeformation.types.service_authorization
 
         out["authorization"] = (

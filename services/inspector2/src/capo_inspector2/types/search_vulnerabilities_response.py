@@ -33,7 +33,7 @@ def serialize_json(value: SearchVulnerabilitiesResponse) -> dict:
 
 def deserialize_json(data: dict) -> SearchVulnerabilitiesResponse:
     out: SearchVulnerabilitiesResponse = {}  # type: ignore[typeddict-item]
-    if "vulnerabilities" in data:
+    if data.get("vulnerabilities") is not None:
         import capo_inspector2.types.vulnerabilities
 
         out["vulnerabilities"] = capo_inspector2.types.vulnerabilities.deserialize_json(
@@ -43,6 +43,6 @@ def deserialize_json(data: dict) -> SearchVulnerabilitiesResponse:
         raise DeserializationError(
             "SearchVulnerabilitiesResponse.vulnerabilities required"
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

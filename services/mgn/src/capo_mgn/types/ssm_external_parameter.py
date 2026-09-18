@@ -26,7 +26,7 @@ def serialize_json(value: SsmExternalParameter) -> dict:
 
 
 def deserialize_json(data: dict) -> SsmExternalParameter:
-    if "dynamicPath" in data:
+    if data.get("dynamicPath") is not None:
         return {"dynamicPath": data["dynamicPath"]}
     else:
         raise DeserializationError("SsmExternalParameter: no recognized variant key")

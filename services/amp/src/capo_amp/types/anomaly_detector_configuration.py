@@ -34,7 +34,7 @@ def serialize_json(value: AnomalyDetectorConfiguration) -> dict:
 
 
 def deserialize_json(data: dict) -> AnomalyDetectorConfiguration:
-    if "randomCutForest" in data:
+    if data.get("randomCutForest") is not None:
         import capo_amp.types.random_cut_forest_configuration
 
         return {

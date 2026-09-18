@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> BatchPutGeofenceRequestEntryList:
 
     out: BatchPutGeofenceRequestEntryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_location.types.batch_put_geofence_request_entry.deserialize_json(item)
         )

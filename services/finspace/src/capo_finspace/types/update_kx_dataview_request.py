@@ -56,11 +56,11 @@ def serialize_json(value: UpdateKxDataviewRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateKxDataviewRequest:
     out: UpdateKxDataviewRequest = {}  # type: ignore[typeddict-item]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "changesetId" in data:
+    if data.get("changesetId") is not None:
         out["changeset_id"] = data["changesetId"]
-    if "segmentConfigurations" in data:
+    if data.get("segmentConfigurations") is not None:
         import capo_finspace.types.kx_dataview_segment_configuration_list
 
         out["segment_configurations"] = (
@@ -68,7 +68,7 @@ def deserialize_json(data: dict) -> UpdateKxDataviewRequest:
                 data["segmentConfigurations"]
             )
         )
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     else:
         raise DeserializationError("UpdateKxDataviewRequest.client_token required")

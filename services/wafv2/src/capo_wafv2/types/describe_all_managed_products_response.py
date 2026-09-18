@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: DescribeAllManagedProductsResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeAllManagedProductsResponse:
     out: DescribeAllManagedProductsResponse = {}  # type: ignore[typeddict-item]
-    if "ManagedProducts" in data:
+    if data.get("ManagedProducts") is not None:
         import capo_wafv2.types.managed_product_descriptors
 
         out["managed_products"] = (

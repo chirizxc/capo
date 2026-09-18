@@ -48,7 +48,7 @@ def serialize_json(value: AntennaDownlinkDemodDecodeConfig) -> dict:
 
 def deserialize_json(data: dict) -> AntennaDownlinkDemodDecodeConfig:
     out: AntennaDownlinkDemodDecodeConfig = {}  # type: ignore[typeddict-item]
-    if "spectrumConfig" in data:
+    if data.get("spectrumConfig") is not None:
         import capo_groundstation.types.spectrum_config
 
         out["spectrum_config"] = (
@@ -60,7 +60,7 @@ def deserialize_json(data: dict) -> AntennaDownlinkDemodDecodeConfig:
         raise DeserializationError(
             "AntennaDownlinkDemodDecodeConfig.spectrum_config required"
         )
-    if "demodulationConfig" in data:
+    if data.get("demodulationConfig") is not None:
         import capo_groundstation.types.demodulation_config
 
         out["demodulation_config"] = (
@@ -72,7 +72,7 @@ def deserialize_json(data: dict) -> AntennaDownlinkDemodDecodeConfig:
         raise DeserializationError(
             "AntennaDownlinkDemodDecodeConfig.demodulation_config required"
         )
-    if "decodeConfig" in data:
+    if data.get("decodeConfig") is not None:
         import capo_groundstation.types.decode_config
 
         out["decode_config"] = capo_groundstation.types.decode_config.deserialize_json(

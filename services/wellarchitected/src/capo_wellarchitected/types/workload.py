@@ -259,15 +259,15 @@ def serialize_json(value: Workload) -> dict:
 
 def deserialize_json(data: dict) -> Workload:
     out: Workload = {}  # type: ignore[typeddict-item]
-    if "WorkloadId" in data:
+    if data.get("WorkloadId") is not None:
         out["workload_id"] = data["WorkloadId"]
-    if "WorkloadArn" in data:
+    if data.get("WorkloadArn") is not None:
         out["workload_arn"] = data["WorkloadArn"]
-    if "WorkloadName" in data:
+    if data.get("WorkloadName") is not None:
         out["workload_name"] = data["WorkloadName"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Environment" in data:
+    if data.get("Environment") is not None:
         import capo_wellarchitected.types.workload_environment
 
         out["environment"] = (
@@ -275,13 +275,13 @@ def deserialize_json(data: dict) -> Workload:
                 data["Environment"]
             )
         )
-    if "UpdatedAt" in data:
+    if data.get("UpdatedAt") is not None:
         import capo_wellarchitected.types.timestamp
 
         out["updated_at"] = capo_wellarchitected.types.timestamp.deserialize_json(
             data["UpdatedAt"]
         )
-    if "AccountIds" in data:
+    if data.get("AccountIds") is not None:
         import capo_wellarchitected.types.workload_account_ids
 
         out["account_ids"] = (
@@ -289,7 +289,7 @@ def deserialize_json(data: dict) -> Workload:
                 data["AccountIds"]
             )
         )
-    if "AwsRegions" in data:
+    if data.get("AwsRegions") is not None:
         import capo_wellarchitected.types.workload_aws_regions
 
         out["aws_regions"] = (
@@ -297,7 +297,7 @@ def deserialize_json(data: dict) -> Workload:
                 data["AwsRegions"]
             )
         )
-    if "NonAwsRegions" in data:
+    if data.get("NonAwsRegions") is not None:
         import capo_wellarchitected.types.workload_non_aws_regions
 
         out["non_aws_regions"] = (
@@ -305,11 +305,11 @@ def deserialize_json(data: dict) -> Workload:
                 data["NonAwsRegions"]
             )
         )
-    if "ArchitecturalDesign" in data:
+    if data.get("ArchitecturalDesign") is not None:
         out["architectural_design"] = data["ArchitecturalDesign"]
-    if "ReviewOwner" in data:
+    if data.get("ReviewOwner") is not None:
         out["review_owner"] = data["ReviewOwner"]
-    if "ReviewRestrictionDate" in data:
+    if data.get("ReviewRestrictionDate") is not None:
         import capo_wellarchitected.types.timestamp
 
         out["review_restriction_date"] = (
@@ -317,17 +317,17 @@ def deserialize_json(data: dict) -> Workload:
                 data["ReviewRestrictionDate"]
             )
         )
-    if "IsReviewOwnerUpdateAcknowledged" in data:
+    if data.get("IsReviewOwnerUpdateAcknowledged") is not None:
         out["is_review_owner_update_acknowledged"] = data[
             "IsReviewOwnerUpdateAcknowledged"
         ]
-    if "IndustryType" in data:
+    if data.get("IndustryType") is not None:
         out["industry_type"] = data["IndustryType"]
-    if "Industry" in data:
+    if data.get("Industry") is not None:
         out["industry"] = data["Industry"]
-    if "Notes" in data:
+    if data.get("Notes") is not None:
         out["notes"] = data["Notes"]
-    if "ImprovementStatus" in data:
+    if data.get("ImprovementStatus") is not None:
         import capo_wellarchitected.types.workload_improvement_status
 
         out["improvement_status"] = (
@@ -335,13 +335,13 @@ def deserialize_json(data: dict) -> Workload:
                 data["ImprovementStatus"]
             )
         )
-    if "RiskCounts" in data:
+    if data.get("RiskCounts") is not None:
         import capo_wellarchitected.types.risk_counts
 
         out["risk_counts"] = capo_wellarchitected.types.risk_counts.deserialize_json(
             data["RiskCounts"]
         )
-    if "PillarPriorities" in data:
+    if data.get("PillarPriorities") is not None:
         import capo_wellarchitected.types.workload_pillar_priorities
 
         out["pillar_priorities"] = (
@@ -349,21 +349,21 @@ def deserialize_json(data: dict) -> Workload:
                 data["PillarPriorities"]
             )
         )
-    if "Lenses" in data:
+    if data.get("Lenses") is not None:
         import capo_wellarchitected.types.workload_lenses
 
         out["lenses"] = capo_wellarchitected.types.workload_lenses.deserialize_json(
             data["Lenses"]
         )
-    if "Owner" in data:
+    if data.get("Owner") is not None:
         out["owner"] = data["Owner"]
-    if "ShareInvitationId" in data:
+    if data.get("ShareInvitationId") is not None:
         out["share_invitation_id"] = data["ShareInvitationId"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_wellarchitected.types.tag_map
 
         out["tags"] = capo_wellarchitected.types.tag_map.deserialize_json(data["Tags"])
-    if "DiscoveryConfig" in data:
+    if data.get("DiscoveryConfig") is not None:
         import capo_wellarchitected.types.workload_discovery_config
 
         out["discovery_config"] = (
@@ -371,7 +371,7 @@ def deserialize_json(data: dict) -> Workload:
                 data["DiscoveryConfig"]
             )
         )
-    if "Applications" in data:
+    if data.get("Applications") is not None:
         import capo_wellarchitected.types.workload_applications
 
         out["applications"] = (
@@ -379,13 +379,13 @@ def deserialize_json(data: dict) -> Workload:
                 data["Applications"]
             )
         )
-    if "Profiles" in data:
+    if data.get("Profiles") is not None:
         import capo_wellarchitected.types.workload_profiles
 
         out["profiles"] = capo_wellarchitected.types.workload_profiles.deserialize_json(
             data["Profiles"]
         )
-    if "PrioritizedRiskCounts" in data:
+    if data.get("PrioritizedRiskCounts") is not None:
         import capo_wellarchitected.types.risk_counts
 
         out["prioritized_risk_counts"] = (
@@ -393,7 +393,7 @@ def deserialize_json(data: dict) -> Workload:
                 data["PrioritizedRiskCounts"]
             )
         )
-    if "JiraConfiguration" in data:
+    if data.get("JiraConfiguration") is not None:
         import capo_wellarchitected.types.workload_jira_configuration_output
 
         out["jira_configuration"] = (

@@ -48,23 +48,23 @@ def serialize_json(value: RecordPatch) -> dict:
 
 def deserialize_json(data: dict) -> RecordPatch:
     out: RecordPatch = {}  # type: ignore[typeddict-item]
-    if "Op" in data:
+    if data.get("Op") is not None:
         import capo_cognito_sync.types.operation
 
         out["op"] = capo_cognito_sync.types.operation.deserialize_json(data["Op"])
     else:
         raise DeserializationError("RecordPatch.op required")
-    if "Key" in data:
+    if data.get("Key") is not None:
         out["key"] = data["Key"]
     else:
         raise DeserializationError("RecordPatch.key required")
-    if "Value" in data:
+    if data.get("Value") is not None:
         out["value"] = data["Value"]
-    if "SyncCount" in data:
+    if data.get("SyncCount") is not None:
         out["sync_count"] = data["SyncCount"]
     else:
         raise DeserializationError("RecordPatch.sync_count required")
-    if "DeviceLastModifiedDate" in data:
+    if data.get("DeviceLastModifiedDate") is not None:
         import capo_cognito_sync.types.date
 
         out["device_last_modified_date"] = (

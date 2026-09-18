@@ -28,11 +28,11 @@ def serialize_json(value: Oauth2Credential) -> dict:
 
 def deserialize_json(data: dict) -> Oauth2Credential:
     out: Oauth2Credential = {}  # type: ignore[typeddict-item]
-    if "clientId" in data:
+    if data.get("clientId") is not None:
         out["client_id"] = data["clientId"]
     else:
         raise DeserializationError("Oauth2Credential.client_id required")
-    if "clientSecret" in data:
+    if data.get("clientSecret") is not None:
         out["client_secret"] = data["clientSecret"]
     else:
         raise DeserializationError("Oauth2Credential.client_secret required")

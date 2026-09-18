@@ -29,10 +29,10 @@ def serialize_json(value: JavaScriptSourceMaps) -> dict:
 
 def deserialize_json(data: dict) -> JavaScriptSourceMaps:
     out: JavaScriptSourceMaps = {}  # type: ignore[typeddict-item]
-    if "Status" in data:
+    if data.get("Status") is not None:
         out["status"] = data["Status"]
     else:
         raise DeserializationError("JavaScriptSourceMaps.status required")
-    if "S3Uri" in data:
+    if data.get("S3Uri") is not None:
         out["s3_uri"] = data["S3Uri"]
     return out

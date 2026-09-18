@@ -29,7 +29,7 @@ def serialize_json(value: SetCognitoEventsRequest) -> dict:
 
 def deserialize_json(data: dict) -> SetCognitoEventsRequest:
     out: SetCognitoEventsRequest = {}  # type: ignore[typeddict-item]
-    if "Events" in data:
+    if data.get("Events") is not None:
         import capo_cognito_sync.types.events
 
         out["events"] = capo_cognito_sync.types.events.deserialize_json(data["Events"])

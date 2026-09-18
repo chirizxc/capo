@@ -102,9 +102,9 @@ def serialize_aws_json_1_0(value: DbServerSummary) -> dict:
     if "shape" in value:
         out["shape"] = value["shape"]
     if "created_at" in value:
-        import capo_odb.types._prelude.timestamp
+        import capo_odb._protocol.serialize
 
-        out["createdAt"] = capo_odb.types._prelude.timestamp.serialize_aws_json_1_0(
+        out["createdAt"] = capo_odb._protocol.serialize.fmt_date_time(
             value["created_at"]
         )
     if "vm_cluster_ids" in value:
@@ -140,21 +140,21 @@ def serialize_aws_json_1_0(value: DbServerSummary) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> DbServerSummary:
     out: DbServerSummary = {}  # type: ignore[typeddict-item]
-    if "dbServerId" in data:
+    if data.get("dbServerId") is not None:
         out["db_server_id"] = data["dbServerId"]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_odb.types.resource_status
 
         out["status"] = capo_odb.types.resource_status.deserialize_aws_json_1_0(
             data["status"]
         )
-    if "statusReason" in data:
+    if data.get("statusReason") is not None:
         out["status_reason"] = data["statusReason"]
-    if "cpuCoreCount" in data:
+    if data.get("cpuCoreCount") is not None:
         out["cpu_core_count"] = data["cpuCoreCount"]
-    if "dbNodeStorageSizeInGBs" in data:
+    if data.get("dbNodeStorageSizeInGBs") is not None:
         out["db_node_storage_size_in_g_bs"] = data["dbNodeStorageSizeInGBs"]
-    if "dbServerPatchingDetails" in data:
+    if data.get("dbServerPatchingDetails") is not None:
         import capo_odb.types.db_server_patching_details
 
         out["db_server_patching_details"] = (
@@ -162,43 +162,43 @@ def deserialize_aws_json_1_0(data: dict) -> DbServerSummary:
                 data["dbServerPatchingDetails"]
             )
         )
-    if "displayName" in data:
+    if data.get("displayName") is not None:
         out["display_name"] = data["displayName"]
-    if "exadataInfrastructureId" in data:
+    if data.get("exadataInfrastructureId") is not None:
         out["exadata_infrastructure_id"] = data["exadataInfrastructureId"]
-    if "ocid" in data:
+    if data.get("ocid") is not None:
         out["ocid"] = data["ocid"]
-    if "ociResourceAnchorName" in data:
+    if data.get("ociResourceAnchorName") is not None:
         out["oci_resource_anchor_name"] = data["ociResourceAnchorName"]
-    if "maxCpuCount" in data:
+    if data.get("maxCpuCount") is not None:
         out["max_cpu_count"] = data["maxCpuCount"]
-    if "maxDbNodeStorageInGBs" in data:
+    if data.get("maxDbNodeStorageInGBs") is not None:
         out["max_db_node_storage_in_g_bs"] = data["maxDbNodeStorageInGBs"]
-    if "maxMemoryInGBs" in data:
+    if data.get("maxMemoryInGBs") is not None:
         out["max_memory_in_g_bs"] = data["maxMemoryInGBs"]
-    if "memorySizeInGBs" in data:
+    if data.get("memorySizeInGBs") is not None:
         out["memory_size_in_g_bs"] = data["memorySizeInGBs"]
-    if "shape" in data:
+    if data.get("shape") is not None:
         out["shape"] = data["shape"]
-    if "createdAt" in data:
-        import capo_odb.types._prelude.timestamp
+    if data.get("createdAt") is not None:
+        import datetime
 
-        out["created_at"] = capo_odb.types._prelude.timestamp.deserialize_aws_json_1_0(
-            data["createdAt"]
+        out["created_at"] = datetime.datetime.fromisoformat(
+            data["createdAt"].replace("Z", "+00:00")
         )
-    if "vmClusterIds" in data:
+    if data.get("vmClusterIds") is not None:
         import capo_odb.types.string_list
 
         out["vm_cluster_ids"] = capo_odb.types.string_list.deserialize_aws_json_1_0(
             data["vmClusterIds"]
         )
-    if "computeModel" in data:
+    if data.get("computeModel") is not None:
         import capo_odb.types.compute_model
 
         out["compute_model"] = capo_odb.types.compute_model.deserialize_aws_json_1_0(
             data["computeModel"]
         )
-    if "autonomousVmClusterIds" in data:
+    if data.get("autonomousVmClusterIds") is not None:
         import capo_odb.types.string_list
 
         out["autonomous_vm_cluster_ids"] = (
@@ -206,7 +206,7 @@ def deserialize_aws_json_1_0(data: dict) -> DbServerSummary:
                 data["autonomousVmClusterIds"]
             )
         )
-    if "autonomousVirtualMachineIds" in data:
+    if data.get("autonomousVirtualMachineIds") is not None:
         import capo_odb.types.string_list
 
         out["autonomous_virtual_machine_ids"] = (

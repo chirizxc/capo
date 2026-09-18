@@ -29,6 +29,8 @@ def deserialize_aws_json_1_1(data: list) -> MaterializedViewRefreshTaskRunsList:
 
     out: MaterializedViewRefreshTaskRunsList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_glue.types.materialized_view_refresh_task_run.deserialize_aws_json_1_1(
                 item

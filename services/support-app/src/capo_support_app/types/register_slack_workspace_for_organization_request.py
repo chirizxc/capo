@@ -24,7 +24,7 @@ def serialize_json(value: RegisterSlackWorkspaceForOrganizationRequest) -> dict:
 
 def deserialize_json(data: dict) -> RegisterSlackWorkspaceForOrganizationRequest:
     out: RegisterSlackWorkspaceForOrganizationRequest = {}  # type: ignore[typeddict-item]
-    if "teamId" in data:
+    if data.get("teamId") is not None:
         out["team_id"] = data["teamId"]
     else:
         raise DeserializationError(

@@ -304,7 +304,7 @@ def serialize_json(value: DescribeBrokerResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribeBrokerResponse:
     out: DescribeBrokerResponse = {}  # type: ignore[typeddict-item]
-    if "actionsRequired" in data:
+    if data.get("actionsRequired") is not None:
         import capo_mq.types.__list_of_action_required
 
         out["actions_required"] = (
@@ -312,7 +312,7 @@ def deserialize_json(data: dict) -> DescribeBrokerResponse:
                 data["actionsRequired"]
             )
         )
-    if "authenticationStrategy" in data:
+    if data.get("authenticationStrategy") is not None:
         import capo_mq.types.authentication_strategy
 
         out["authentication_strategy"] = (
@@ -320,13 +320,13 @@ def deserialize_json(data: dict) -> DescribeBrokerResponse:
                 data["authenticationStrategy"]
             )
         )
-    if "autoMinorVersionUpgrade" in data:
+    if data.get("autoMinorVersionUpgrade") is not None:
         out["auto_minor_version_upgrade"] = data["autoMinorVersionUpgrade"]
-    if "brokerArn" in data:
+    if data.get("brokerArn") is not None:
         out["broker_arn"] = data["brokerArn"]
-    if "brokerId" in data:
+    if data.get("brokerId") is not None:
         out["broker_id"] = data["brokerId"]
-    if "brokerInstances" in data:
+    if data.get("brokerInstances") is not None:
         import capo_mq.types.__list_of_broker_instance
 
         out["broker_instances"] = (
@@ -334,49 +334,49 @@ def deserialize_json(data: dict) -> DescribeBrokerResponse:
                 data["brokerInstances"]
             )
         )
-    if "brokerName" in data:
+    if data.get("brokerName") is not None:
         out["broker_name"] = data["brokerName"]
-    if "brokerState" in data:
+    if data.get("brokerState") is not None:
         import capo_mq.types.broker_state
 
         out["broker_state"] = capo_mq.types.broker_state.deserialize_json(
             data["brokerState"]
         )
-    if "configurations" in data:
+    if data.get("configurations") is not None:
         import capo_mq.types.configurations
 
         out["configurations"] = capo_mq.types.configurations.deserialize_json(
             data["configurations"]
         )
-    if "created" in data:
+    if data.get("created") is not None:
         import capo_mq.types.__timestamp_iso8601
 
         out["created"] = capo_mq.types.__timestamp_iso8601.deserialize_json(
             data["created"]
         )
-    if "deploymentMode" in data:
+    if data.get("deploymentMode") is not None:
         import capo_mq.types.deployment_mode
 
         out["deployment_mode"] = capo_mq.types.deployment_mode.deserialize_json(
             data["deploymentMode"]
         )
-    if "encryptionOptions" in data:
+    if data.get("encryptionOptions") is not None:
         import capo_mq.types.encryption_options
 
         out["encryption_options"] = capo_mq.types.encryption_options.deserialize_json(
             data["encryptionOptions"]
         )
-    if "engineType" in data:
+    if data.get("engineType") is not None:
         import capo_mq.types.engine_type
 
         out["engine_type"] = capo_mq.types.engine_type.deserialize_json(
             data["engineType"]
         )
-    if "engineVersion" in data:
+    if data.get("engineVersion") is not None:
         out["engine_version"] = data["engineVersion"]
-    if "hostInstanceType" in data:
+    if data.get("hostInstanceType") is not None:
         out["host_instance_type"] = data["hostInstanceType"]
-    if "ldapServerMetadata" in data:
+    if data.get("ldapServerMetadata") is not None:
         import capo_mq.types.ldap_server_metadata_output
 
         out["ldap_server_metadata"] = (
@@ -384,11 +384,11 @@ def deserialize_json(data: dict) -> DescribeBrokerResponse:
                 data["ldapServerMetadata"]
             )
         )
-    if "logs" in data:
+    if data.get("logs") is not None:
         import capo_mq.types.logs_summary
 
         out["logs"] = capo_mq.types.logs_summary.deserialize_json(data["logs"])
-    if "maintenanceWindowStartTime" in data:
+    if data.get("maintenanceWindowStartTime") is not None:
         import capo_mq.types.weekly_start_time
 
         out["maintenance_window_start_time"] = (
@@ -396,7 +396,7 @@ def deserialize_json(data: dict) -> DescribeBrokerResponse:
                 data["maintenanceWindowStartTime"]
             )
         )
-    if "pendingAuthenticationStrategy" in data:
+    if data.get("pendingAuthenticationStrategy") is not None:
         import capo_mq.types.authentication_strategy
 
         out["pending_authentication_strategy"] = (
@@ -404,11 +404,11 @@ def deserialize_json(data: dict) -> DescribeBrokerResponse:
                 data["pendingAuthenticationStrategy"]
             )
         )
-    if "pendingEngineVersion" in data:
+    if data.get("pendingEngineVersion") is not None:
         out["pending_engine_version"] = data["pendingEngineVersion"]
-    if "pendingHostInstanceType" in data:
+    if data.get("pendingHostInstanceType") is not None:
         out["pending_host_instance_type"] = data["pendingHostInstanceType"]
-    if "pendingLdapServerMetadata" in data:
+    if data.get("pendingLdapServerMetadata") is not None:
         import capo_mq.types.ldap_server_metadata_output
 
         out["pending_ldap_server_metadata"] = (
@@ -416,7 +416,7 @@ def deserialize_json(data: dict) -> DescribeBrokerResponse:
                 data["pendingLdapServerMetadata"]
             )
         )
-    if "pendingSecurityGroups" in data:
+    if data.get("pendingSecurityGroups") is not None:
         import capo_mq.types.__list_of__string
 
         out["pending_security_groups"] = (
@@ -424,37 +424,37 @@ def deserialize_json(data: dict) -> DescribeBrokerResponse:
                 data["pendingSecurityGroups"]
             )
         )
-    if "publiclyAccessible" in data:
+    if data.get("publiclyAccessible") is not None:
         out["publicly_accessible"] = data["publiclyAccessible"]
-    if "securityGroups" in data:
+    if data.get("securityGroups") is not None:
         import capo_mq.types.__list_of__string
 
         out["security_groups"] = capo_mq.types.__list_of__string.deserialize_json(
             data["securityGroups"]
         )
-    if "storageType" in data:
+    if data.get("storageType") is not None:
         import capo_mq.types.broker_storage_type
 
         out["storage_type"] = capo_mq.types.broker_storage_type.deserialize_json(
             data["storageType"]
         )
-    if "subnetIds" in data:
+    if data.get("subnetIds") is not None:
         import capo_mq.types.__list_of__string
 
         out["subnet_ids"] = capo_mq.types.__list_of__string.deserialize_json(
             data["subnetIds"]
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_mq.types.__map_of__string
 
         out["tags"] = capo_mq.types.__map_of__string.deserialize_json(data["tags"])
-    if "users" in data:
+    if data.get("users") is not None:
         import capo_mq.types.__list_of_user_summary
 
         out["users"] = capo_mq.types.__list_of_user_summary.deserialize_json(
             data["users"]
         )
-    if "dataReplicationMetadata" in data:
+    if data.get("dataReplicationMetadata") is not None:
         import capo_mq.types.data_replication_metadata_output
 
         out["data_replication_metadata"] = (
@@ -462,7 +462,7 @@ def deserialize_json(data: dict) -> DescribeBrokerResponse:
                 data["dataReplicationMetadata"]
             )
         )
-    if "dataReplicationMode" in data:
+    if data.get("dataReplicationMode") is not None:
         import capo_mq.types.data_replication_mode
 
         out["data_replication_mode"] = (
@@ -470,7 +470,7 @@ def deserialize_json(data: dict) -> DescribeBrokerResponse:
                 data["dataReplicationMode"]
             )
         )
-    if "pendingDataReplicationMetadata" in data:
+    if data.get("pendingDataReplicationMetadata") is not None:
         import capo_mq.types.data_replication_metadata_output
 
         out["pending_data_replication_metadata"] = (
@@ -478,7 +478,7 @@ def deserialize_json(data: dict) -> DescribeBrokerResponse:
                 data["pendingDataReplicationMetadata"]
             )
         )
-    if "pendingDataReplicationMode" in data:
+    if data.get("pendingDataReplicationMode") is not None:
         import capo_mq.types.data_replication_mode
 
         out["pending_data_replication_mode"] = (

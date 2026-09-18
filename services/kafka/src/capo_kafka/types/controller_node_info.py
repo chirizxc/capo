@@ -27,7 +27,7 @@ def serialize_json(value: ControllerNodeInfo) -> dict:
 
 def deserialize_json(data: dict) -> ControllerNodeInfo:
     out: ControllerNodeInfo = {}  # type: ignore[typeddict-item]
-    if "endpoints" in data:
+    if data.get("endpoints") is not None:
         import capo_kafka.types.__list_of__string
 
         out["endpoints"] = capo_kafka.types.__list_of__string.deserialize_json(

@@ -13,9 +13,9 @@ from capo_marketplace_commerce_analytics import AsyncMarketplaceCommerceAnalytic
 
 
 async def main():
-    async with AsyncMarketplaceCommerceAnalyticsClient() as s3:
+    async with AsyncMarketplaceCommerceAnalyticsClient() as marketplace_commerce_analytics:
         # Example: call the generate_data_set operation
-        response = await s3.generate_data_set()
+        response = await marketplace_commerce_analytics.generate_data_set()
         print(response["data_set_request_id"])
 ```
 
@@ -29,9 +29,9 @@ from capo_marketplace_commerce_analytics.error import MarketplaceCommerceAnalyti
 
 
 async def main():
-    async with AsyncMarketplaceCommerceAnalyticsClient() as s3:
+    async with AsyncMarketplaceCommerceAnalyticsClient() as marketplace_commerce_analytics:
         try:
-            await s3.generate_data_set()
+            await marketplace_commerce_analytics.generate_data_set()
         except MarketplaceCommerceAnalyticsException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -48,13 +48,13 @@ from capo_marketplace_commerce_analytics import AsyncMarketplaceCommerceAnalytic
 
 
 async def main():
-    async with AsyncMarketplaceCommerceAnalyticsClient() as s3:
+    async with AsyncMarketplaceCommerceAnalyticsClient() as marketplace_commerce_analytics:
         # Default: 3 attempts for every operation
-        response = await s3.generate_data_set()
+        response = await marketplace_commerce_analytics.generate_data_set()
 
         # Override per operation
-        response = await s3.generate_data_set(config_overrides={"retry_max_attempts": 5})
+        response = await marketplace_commerce_analytics.generate_data_set(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.generate_data_set(config_overrides={"retry_max_attempts": 1})
+        response = await marketplace_commerce_analytics.generate_data_set(config_overrides={"retry_max_attempts": 1})
 ```

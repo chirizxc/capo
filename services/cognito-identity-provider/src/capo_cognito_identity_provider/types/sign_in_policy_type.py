@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: SignInPolicyType) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SignInPolicyType:
     out: SignInPolicyType = {}  # type: ignore[typeddict-item]
-    if "AllowedFirstAuthFactors" in data:
+    if data.get("AllowedFirstAuthFactors") is not None:
         import capo_cognito_identity_provider.types.allowed_first_auth_factors_list_type
 
         out["allowed_first_auth_factors"] = (

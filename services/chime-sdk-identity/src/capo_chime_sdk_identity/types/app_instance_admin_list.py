@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> AppInstanceAdminList:
 
     out: AppInstanceAdminList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_chime_sdk_identity.types.app_instance_admin_summary.deserialize_json(
                 item

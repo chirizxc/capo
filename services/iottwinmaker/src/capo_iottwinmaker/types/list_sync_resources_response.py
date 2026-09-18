@@ -36,7 +36,7 @@ def serialize_json(value: ListSyncResourcesResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListSyncResourcesResponse:
     out: ListSyncResourcesResponse = {}  # type: ignore[typeddict-item]
-    if "syncResources" in data:
+    if data.get("syncResources") is not None:
         import capo_iottwinmaker.types.sync_resource_summaries
 
         out["sync_resources"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> ListSyncResourcesResponse:
                 data["syncResources"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

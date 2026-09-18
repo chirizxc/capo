@@ -42,19 +42,19 @@ def deserialize_aws_json_1_1(
     data: dict,
 ) -> CreateCertificateAuthorityAuditReportRequest:
     out: CreateCertificateAuthorityAuditReportRequest = {}  # type: ignore[typeddict-item]
-    if "CertificateAuthorityArn" in data:
+    if data.get("CertificateAuthorityArn") is not None:
         out["certificate_authority_arn"] = data["CertificateAuthorityArn"]
     else:
         raise DeserializationError(
             "CreateCertificateAuthorityAuditReportRequest.certificate_authority_arn required"
         )
-    if "S3BucketName" in data:
+    if data.get("S3BucketName") is not None:
         out["s3_bucket_name"] = data["S3BucketName"]
     else:
         raise DeserializationError(
             "CreateCertificateAuthorityAuditReportRequest.s3_bucket_name required"
         )
-    if "AuditReportResponseFormat" in data:
+    if data.get("AuditReportResponseFormat") is not None:
         import capo_acm_pca.types.audit_report_response_format
 
         out["audit_report_response_format"] = (

@@ -27,6 +27,8 @@ def serialize_json(input_to_serialize: MapOfMapOfEndpointMessageResult) -> dict:
 def deserialize_json(data: dict) -> MapOfMapOfEndpointMessageResult:
     out: MapOfMapOfEndpointMessageResult = {}
     for key, value in data.items():
+        if value is None:
+            continue
         import capo_pinpoint.types.map_of_endpoint_message_result
 
         out[key] = capo_pinpoint.types.map_of_endpoint_message_result.deserialize_json(

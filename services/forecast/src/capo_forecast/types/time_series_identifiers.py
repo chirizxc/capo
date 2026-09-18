@@ -39,18 +39,18 @@ def serialize_aws_json_1_1(value: TimeSeriesIdentifiers) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> TimeSeriesIdentifiers:
     out: TimeSeriesIdentifiers = {}  # type: ignore[typeddict-item]
-    if "DataSource" in data:
+    if data.get("DataSource") is not None:
         import capo_forecast.types.data_source
 
         out["data_source"] = capo_forecast.types.data_source.deserialize_aws_json_1_1(
             data["DataSource"]
         )
-    if "Schema" in data:
+    if data.get("Schema") is not None:
         import capo_forecast.types.schema
 
         out["schema"] = capo_forecast.types.schema.deserialize_aws_json_1_1(
             data["Schema"]
         )
-    if "Format" in data:
+    if data.get("Format") is not None:
         out["format"] = data["Format"]
     return out

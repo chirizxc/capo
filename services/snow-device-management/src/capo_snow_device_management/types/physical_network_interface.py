@@ -52,18 +52,18 @@ def serialize_json(value: PhysicalNetworkInterface) -> dict:
 
 def deserialize_json(data: dict) -> PhysicalNetworkInterface:
     out: PhysicalNetworkInterface = {}  # type: ignore[typeddict-item]
-    if "physicalNetworkInterfaceId" in data:
+    if data.get("physicalNetworkInterfaceId") is not None:
         out["physical_network_interface_id"] = data["physicalNetworkInterfaceId"]
-    if "physicalConnectorType" in data:
+    if data.get("physicalConnectorType") is not None:
         out["physical_connector_type"] = data["physicalConnectorType"]
-    if "ipAddressAssignment" in data:
+    if data.get("ipAddressAssignment") is not None:
         out["ip_address_assignment"] = data["ipAddressAssignment"]
-    if "ipAddress" in data:
+    if data.get("ipAddress") is not None:
         out["ip_address"] = data["ipAddress"]
-    if "netmask" in data:
+    if data.get("netmask") is not None:
         out["netmask"] = data["netmask"]
-    if "defaultGateway" in data:
+    if data.get("defaultGateway") is not None:
         out["default_gateway"] = data["defaultGateway"]
-    if "macAddress" in data:
+    if data.get("macAddress") is not None:
         out["mac_address"] = data["macAddress"]
     return out

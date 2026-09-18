@@ -24,7 +24,7 @@ def serialize_json(value: TleProgramTrackSettings) -> dict:
 
 def deserialize_json(data: dict) -> TleProgramTrackSettings:
     out: TleProgramTrackSettings = {}  # type: ignore[typeddict-item]
-    if "ephemerisId" in data:
+    if data.get("ephemerisId") is not None:
         out["ephemeris_id"] = data["ephemerisId"]
     else:
         raise DeserializationError("TleProgramTrackSettings.ephemeris_id required")

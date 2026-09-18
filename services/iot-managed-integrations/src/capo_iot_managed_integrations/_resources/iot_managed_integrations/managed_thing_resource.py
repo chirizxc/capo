@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import uuid
 from typing import TYPE_CHECKING, Optional
 
 import capo_iot_managed_integrations._auth._signers
@@ -164,14 +165,15 @@ class ManagedThingResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_iot_managed_integrations.types.create_managed_thing_request.CreateManagedThingRequest = {}  # type: ignore[typeddict-item]
-        input_["role"] = role
+        input_: capo_iot_managed_integrations.types.create_managed_thing_request.CreateManagedThingRequest = {
+            "role": role,
+            "authentication_material": authentication_material,
+            "authentication_material_type": authentication_material_type,
+        }
         if owner is not None:
             input_["owner"] = owner
         if credential_locker_id is not None:
             input_["credential_locker_id"] = credential_locker_id
-        input_["authentication_material"] = authentication_material
-        input_["authentication_material_type"] = authentication_material_type
         if wi_fi_simple_setup_configuration is not None:
             input_["wi_fi_simple_setup_configuration"] = (
                 wi_fi_simple_setup_configuration
@@ -190,8 +192,9 @@ class ManagedThingResource:
             input_["capability_schemas"] = capability_schemas
         if capabilities is not None:
             input_["capabilities"] = capabilities
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if classification is not None:
             input_["classification"] = classification
         if tags is not None:
@@ -204,6 +207,7 @@ class ManagedThingResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -243,14 +247,16 @@ class ManagedThingResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_iot_managed_integrations.types.get_managed_thing_request.GetManagedThingRequest = {}  # type: ignore[typeddict-item]
-        input_["identifier"] = identifier
+        input_: capo_iot_managed_integrations.types.get_managed_thing_request.GetManagedThingRequest = {
+            "identifier": identifier
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update(
@@ -333,8 +339,9 @@ class ManagedThingResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_iot_managed_integrations.types.update_managed_thing_request.UpdateManagedThingRequest = {}  # type: ignore[typeddict-item]
-        input_["identifier"] = identifier
+        input_: capo_iot_managed_integrations.types.update_managed_thing_request.UpdateManagedThingRequest = {
+            "identifier": identifier
+        }
         if owner is not None:
             input_["owner"] = owner
         if credential_locker_id is not None:
@@ -369,6 +376,7 @@ class ManagedThingResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -409,8 +417,9 @@ class ManagedThingResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_iot_managed_integrations.types.delete_managed_thing_request.DeleteManagedThingRequest = {}  # type: ignore[typeddict-item]
-        input_["identifier"] = identifier
+        input_: capo_iot_managed_integrations.types.delete_managed_thing_request.DeleteManagedThingRequest = {
+            "identifier": identifier
+        }
         if force is not None:
             input_["force"] = force
 
@@ -419,6 +428,7 @@ class ManagedThingResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -497,7 +507,7 @@ class ManagedThingResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_iot_managed_integrations.types.list_managed_things_request.ListManagedThingsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_iot_managed_integrations.types.list_managed_things_request.ListManagedThingsRequest = {}
         if owner_filter is not None:
             input_["owner_filter"] = owner_filter
         if credential_locker_filter is not None:
@@ -528,6 +538,7 @@ class ManagedThingResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_managed_thing_capabilities(
@@ -567,14 +578,16 @@ class ManagedThingResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_iot_managed_integrations.types.get_managed_thing_capabilities_request.GetManagedThingCapabilitiesRequest = {}  # type: ignore[typeddict-item]
-        input_["identifier"] = identifier
+        input_: capo_iot_managed_integrations.types.get_managed_thing_capabilities_request.GetManagedThingCapabilitiesRequest = {
+            "identifier": identifier
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_managed_thing_certificate(
@@ -619,14 +632,16 @@ class ManagedThingResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_iot_managed_integrations.types.get_managed_thing_certificate_request.GetManagedThingCertificateRequest = {}  # type: ignore[typeddict-item]
-        input_["identifier"] = identifier
+        input_: capo_iot_managed_integrations.types.get_managed_thing_certificate_request.GetManagedThingCertificateRequest = {
+            "identifier": identifier
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_managed_thing_connectivity_data(
@@ -666,14 +681,16 @@ class ManagedThingResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_iot_managed_integrations.types.get_managed_thing_connectivity_data_request.GetManagedThingConnectivityDataRequest = {}  # type: ignore[typeddict-item]
-        input_["identifier"] = identifier
+        input_: capo_iot_managed_integrations.types.get_managed_thing_connectivity_data_request.GetManagedThingConnectivityDataRequest = {
+            "identifier": identifier
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_managed_thing_meta_data(
@@ -713,14 +730,16 @@ class ManagedThingResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_iot_managed_integrations.types.get_managed_thing_meta_data_request.GetManagedThingMetaDataRequest = {}  # type: ignore[typeddict-item]
-        input_["identifier"] = identifier
+        input_: capo_iot_managed_integrations.types.get_managed_thing_meta_data_request.GetManagedThingMetaDataRequest = {
+            "identifier": identifier
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_managed_thing_schemas(
@@ -776,8 +795,9 @@ class ManagedThingResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_iot_managed_integrations.types.list_managed_thing_schemas_request.ListManagedThingSchemasRequest = {}  # type: ignore[typeddict-item]
-        input_["identifier"] = identifier
+        input_: capo_iot_managed_integrations.types.list_managed_thing_schemas_request.ListManagedThingSchemasRequest = {
+            "identifier": identifier
+        }
         if endpoint_id_filter is not None:
             input_["endpoint_id_filter"] = endpoint_id_filter
         if capability_id_filter is not None:
@@ -792,6 +812,7 @@ class ManagedThingResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -888,14 +909,15 @@ class AsyncManagedThingResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_iot_managed_integrations.types.create_managed_thing_request.CreateManagedThingRequest = {}  # type: ignore[typeddict-item]
-        input_["role"] = role
+        input_: capo_iot_managed_integrations.types.create_managed_thing_request.CreateManagedThingRequest = {
+            "role": role,
+            "authentication_material": authentication_material,
+            "authentication_material_type": authentication_material_type,
+        }
         if owner is not None:
             input_["owner"] = owner
         if credential_locker_id is not None:
             input_["credential_locker_id"] = credential_locker_id
-        input_["authentication_material"] = authentication_material
-        input_["authentication_material_type"] = authentication_material_type
         if wi_fi_simple_setup_configuration is not None:
             input_["wi_fi_simple_setup_configuration"] = (
                 wi_fi_simple_setup_configuration
@@ -914,8 +936,9 @@ class AsyncManagedThingResource:
             input_["capability_schemas"] = capability_schemas
         if capabilities is not None:
             input_["capabilities"] = capabilities
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if classification is not None:
             input_["classification"] = classification
         if tags is not None:
@@ -928,6 +951,7 @@ class AsyncManagedThingResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -968,14 +992,16 @@ class AsyncManagedThingResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_iot_managed_integrations.types.get_managed_thing_request.GetManagedThingRequest = {}  # type: ignore[typeddict-item]
-        input_["identifier"] = identifier
+        input_: capo_iot_managed_integrations.types.get_managed_thing_request.GetManagedThingRequest = {
+            "identifier": identifier
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update(
@@ -1059,8 +1085,9 @@ class AsyncManagedThingResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_iot_managed_integrations.types.update_managed_thing_request.UpdateManagedThingRequest = {}  # type: ignore[typeddict-item]
-        input_["identifier"] = identifier
+        input_: capo_iot_managed_integrations.types.update_managed_thing_request.UpdateManagedThingRequest = {
+            "identifier": identifier
+        }
         if owner is not None:
             input_["owner"] = owner
         if credential_locker_id is not None:
@@ -1095,6 +1122,7 @@ class AsyncManagedThingResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -1136,8 +1164,9 @@ class AsyncManagedThingResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_iot_managed_integrations.types.delete_managed_thing_request.DeleteManagedThingRequest = {}  # type: ignore[typeddict-item]
-        input_["identifier"] = identifier
+        input_: capo_iot_managed_integrations.types.delete_managed_thing_request.DeleteManagedThingRequest = {
+            "identifier": identifier
+        }
         if force is not None:
             input_["force"] = force
 
@@ -1146,6 +1175,7 @@ class AsyncManagedThingResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -1225,7 +1255,7 @@ class AsyncManagedThingResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_iot_managed_integrations.types.list_managed_things_request.ListManagedThingsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_iot_managed_integrations.types.list_managed_things_request.ListManagedThingsRequest = {}
         if owner_filter is not None:
             input_["owner_filter"] = owner_filter
         if credential_locker_filter is not None:
@@ -1256,6 +1286,7 @@ class AsyncManagedThingResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_managed_thing_capabilities(
@@ -1296,14 +1327,16 @@ class AsyncManagedThingResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_iot_managed_integrations.types.get_managed_thing_capabilities_request.GetManagedThingCapabilitiesRequest = {}  # type: ignore[typeddict-item]
-        input_["identifier"] = identifier
+        input_: capo_iot_managed_integrations.types.get_managed_thing_capabilities_request.GetManagedThingCapabilitiesRequest = {
+            "identifier": identifier
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_managed_thing_certificate(
@@ -1349,14 +1382,16 @@ class AsyncManagedThingResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_iot_managed_integrations.types.get_managed_thing_certificate_request.GetManagedThingCertificateRequest = {}  # type: ignore[typeddict-item]
-        input_["identifier"] = identifier
+        input_: capo_iot_managed_integrations.types.get_managed_thing_certificate_request.GetManagedThingCertificateRequest = {
+            "identifier": identifier
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_managed_thing_connectivity_data(
@@ -1397,14 +1432,16 @@ class AsyncManagedThingResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_iot_managed_integrations.types.get_managed_thing_connectivity_data_request.GetManagedThingConnectivityDataRequest = {}  # type: ignore[typeddict-item]
-        input_["identifier"] = identifier
+        input_: capo_iot_managed_integrations.types.get_managed_thing_connectivity_data_request.GetManagedThingConnectivityDataRequest = {
+            "identifier": identifier
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_managed_thing_meta_data(
@@ -1445,14 +1482,16 @@ class AsyncManagedThingResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_iot_managed_integrations.types.get_managed_thing_meta_data_request.GetManagedThingMetaDataRequest = {}  # type: ignore[typeddict-item]
-        input_["identifier"] = identifier
+        input_: capo_iot_managed_integrations.types.get_managed_thing_meta_data_request.GetManagedThingMetaDataRequest = {
+            "identifier": identifier
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_managed_thing_schemas(
@@ -1509,8 +1548,9 @@ class AsyncManagedThingResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_iot_managed_integrations.types.list_managed_thing_schemas_request.ListManagedThingSchemasRequest = {}  # type: ignore[typeddict-item]
-        input_["identifier"] = identifier
+        input_: capo_iot_managed_integrations.types.list_managed_thing_schemas_request.ListManagedThingSchemasRequest = {
+            "identifier": identifier
+        }
         if endpoint_id_filter is not None:
             input_["endpoint_id_filter"] = endpoint_id_filter
         if capability_id_filter is not None:
@@ -1525,4 +1565,5 @@ class AsyncManagedThingResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

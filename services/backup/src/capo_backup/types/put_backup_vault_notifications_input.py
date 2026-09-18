@@ -35,13 +35,13 @@ def serialize_json(value: PutBackupVaultNotificationsInput) -> dict:
 
 def deserialize_json(data: dict) -> PutBackupVaultNotificationsInput:
     out: PutBackupVaultNotificationsInput = {}  # type: ignore[typeddict-item]
-    if "SNSTopicArn" in data:
+    if data.get("SNSTopicArn") is not None:
         out["sns_topic_arn"] = data["SNSTopicArn"]
     else:
         raise DeserializationError(
             "PutBackupVaultNotificationsInput.sns_topic_arn required"
         )
-    if "BackupVaultEvents" in data:
+    if data.get("BackupVaultEvents") is not None:
         import capo_backup.types.backup_vault_events
 
         out["backup_vault_events"] = (

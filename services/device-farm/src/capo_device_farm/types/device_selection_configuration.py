@@ -32,7 +32,7 @@ def serialize_aws_json_1_1(value: DeviceSelectionConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeviceSelectionConfiguration:
     out: DeviceSelectionConfiguration = {}  # type: ignore[typeddict-item]
-    if "filters" in data:
+    if data.get("filters") is not None:
         import capo_device_farm.types.device_filters
 
         out["filters"] = capo_device_farm.types.device_filters.deserialize_aws_json_1_1(
@@ -40,7 +40,7 @@ def deserialize_aws_json_1_1(data: dict) -> DeviceSelectionConfiguration:
         )
     else:
         raise DeserializationError("DeviceSelectionConfiguration.filters required")
-    if "maxDevices" in data:
+    if data.get("maxDevices") is not None:
         out["max_devices"] = data["maxDevices"]
     else:
         raise DeserializationError("DeviceSelectionConfiguration.max_devices required")

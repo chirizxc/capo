@@ -38,12 +38,12 @@ def serialize_aws_json_1_1(value: DeleteServiceActionInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteServiceActionInput:
     out: DeleteServiceActionInput = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
     else:
         raise DeserializationError("DeleteServiceActionInput.id required")
-    if "AcceptLanguage" in data:
+    if data.get("AcceptLanguage") is not None:
         out["accept_language"] = data["AcceptLanguage"]
-    if "IdempotencyToken" in data:
+    if data.get("IdempotencyToken") is not None:
         out["idempotency_token"] = data["IdempotencyToken"]
     return out

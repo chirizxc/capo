@@ -27,6 +27,8 @@ def deserialize_aws_json_1_1(data: list) -> LineageGroupSummaries:
 
     out: LineageGroupSummaries = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_sagemaker.types.lineage_group_summary.deserialize_aws_json_1_1(item)
         )

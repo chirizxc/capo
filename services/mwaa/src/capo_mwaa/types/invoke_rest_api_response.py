@@ -27,8 +27,8 @@ def serialize_json(value: InvokeRestApiResponse) -> dict:
 
 def deserialize_json(data: dict) -> InvokeRestApiResponse:
     out: InvokeRestApiResponse = {}  # type: ignore[typeddict-item]
-    if "RestApiStatusCode" in data:
+    if data.get("RestApiStatusCode") is not None:
         out["rest_api_status_code"] = data["RestApiStatusCode"]
-    if "RestApiResponse" in data:
+    if data.get("RestApiResponse") is not None:
         out["rest_api_response"] = data["RestApiResponse"]
     return out

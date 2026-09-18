@@ -32,9 +32,9 @@ def serialize_json(value: ResourceTags) -> dict:
 
 def deserialize_json(data: dict) -> ResourceTags:
     out: ResourceTags = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_mediaconvert.types.__map_of__string
 
         out["tags"] = capo_mediaconvert.types.__map_of__string.deserialize_json(

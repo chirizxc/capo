@@ -64,26 +64,26 @@ def serialize_json(value: SendOTPMessageRequestParameters) -> dict:
 
 def deserialize_json(data: dict) -> SendOTPMessageRequestParameters:
     out: SendOTPMessageRequestParameters = {}  # type: ignore[typeddict-item]
-    if "AllowedAttempts" in data:
+    if data.get("AllowedAttempts") is not None:
         out["allowed_attempts"] = data["AllowedAttempts"]
-    if "BrandName" in data:
+    if data.get("BrandName") is not None:
         out["brand_name"] = data["BrandName"]
-    if "Channel" in data:
+    if data.get("Channel") is not None:
         out["channel"] = data["Channel"]
-    if "CodeLength" in data:
+    if data.get("CodeLength") is not None:
         out["code_length"] = data["CodeLength"]
-    if "DestinationIdentity" in data:
+    if data.get("DestinationIdentity") is not None:
         out["destination_identity"] = data["DestinationIdentity"]
-    if "EntityId" in data:
+    if data.get("EntityId") is not None:
         out["entity_id"] = data["EntityId"]
-    if "Language" in data:
+    if data.get("Language") is not None:
         out["language"] = data["Language"]
-    if "OriginationIdentity" in data:
+    if data.get("OriginationIdentity") is not None:
         out["origination_identity"] = data["OriginationIdentity"]
-    if "ReferenceId" in data:
+    if data.get("ReferenceId") is not None:
         out["reference_id"] = data["ReferenceId"]
-    if "TemplateId" in data:
+    if data.get("TemplateId") is not None:
         out["template_id"] = data["TemplateId"]
-    if "ValidityPeriod" in data:
+    if data.get("ValidityPeriod") is not None:
         out["validity_period"] = data["ValidityPeriod"]
     return out

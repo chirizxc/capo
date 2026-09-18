@@ -25,17 +25,17 @@ def serialize_json(value: MemoryLimitExceededException_) -> dict:
 
 def deserialize_json(data: dict) -> MemoryLimitExceededException_:
     out: MemoryLimitExceededException_ = {}  # type: ignore[typeddict-item]
-    if "detailedMessage" in data:
+    if data.get("detailedMessage") is not None:
         out["detailed_message"] = data["detailedMessage"]
     else:
         raise DeserializationError(
             "MemoryLimitExceededException_.detailed_message required"
         )
-    if "requestId" in data:
+    if data.get("requestId") is not None:
         out["request_id"] = data["requestId"]
     else:
         raise DeserializationError("MemoryLimitExceededException_.request_id required")
-    if "code" in data:
+    if data.get("code") is not None:
         out["code"] = data["code"]
     else:
         raise DeserializationError("MemoryLimitExceededException_.code required")
@@ -47,15 +47,18 @@ class MemoryLimitExceededException(ServiceError):
 
     code: str | None = "MemoryLimitExceededException"
 
-    def __init__(self, data: MemoryLimitExceededException_):
+    def __init__(self, data: MemoryLimitExceededException_, message: str | None = None):
         super().__init__(
             "server",
             is_throttling_error=False,
             is_retryable=True,
             code="MemoryLimitExceededException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "MemoryLimitExceededException":
-        return cls(deserialize_json(data))
+    def from_json(
+        cls, data: dict, message: str | None = None
+    ) -> "MemoryLimitExceededException":
+        return cls(deserialize_json(data), message)

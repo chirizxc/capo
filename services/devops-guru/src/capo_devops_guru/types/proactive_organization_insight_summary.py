@@ -106,27 +106,27 @@ def serialize_json(value: ProactiveOrganizationInsightSummary) -> dict:
 
 def deserialize_json(data: dict) -> ProactiveOrganizationInsightSummary:
     out: ProactiveOrganizationInsightSummary = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "AccountId" in data:
+    if data.get("AccountId") is not None:
         out["account_id"] = data["AccountId"]
-    if "OrganizationalUnitId" in data:
+    if data.get("OrganizationalUnitId") is not None:
         out["organizational_unit_id"] = data["OrganizationalUnitId"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Severity" in data:
+    if data.get("Severity") is not None:
         import capo_devops_guru.types.insight_severity
 
         out["severity"] = capo_devops_guru.types.insight_severity.deserialize_json(
             data["Severity"]
         )
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_devops_guru.types.insight_status
 
         out["status"] = capo_devops_guru.types.insight_status.deserialize_json(
             data["Status"]
         )
-    if "InsightTimeRange" in data:
+    if data.get("InsightTimeRange") is not None:
         import capo_devops_guru.types.insight_time_range
 
         out["insight_time_range"] = (
@@ -134,7 +134,7 @@ def deserialize_json(data: dict) -> ProactiveOrganizationInsightSummary:
                 data["InsightTimeRange"]
             )
         )
-    if "PredictionTimeRange" in data:
+    if data.get("PredictionTimeRange") is not None:
         import capo_devops_guru.types.prediction_time_range
 
         out["prediction_time_range"] = (
@@ -142,7 +142,7 @@ def deserialize_json(data: dict) -> ProactiveOrganizationInsightSummary:
                 data["PredictionTimeRange"]
             )
         )
-    if "ResourceCollection" in data:
+    if data.get("ResourceCollection") is not None:
         import capo_devops_guru.types.resource_collection
 
         out["resource_collection"] = (
@@ -150,7 +150,7 @@ def deserialize_json(data: dict) -> ProactiveOrganizationInsightSummary:
                 data["ResourceCollection"]
             )
         )
-    if "ServiceCollection" in data:
+    if data.get("ServiceCollection") is not None:
         import capo_devops_guru.types.service_collection
 
         out["service_collection"] = (

@@ -26,7 +26,7 @@ def serialize_json(value: MessageInput) -> dict:
 
 def deserialize_json(data: dict) -> MessageInput:
     out: MessageInput = {}  # type: ignore[typeddict-item]
-    if "value" in data:
+    if data.get("value") is not None:
         import capo_qconnect.types.message_data
 
         out["value"] = capo_qconnect.types.message_data.deserialize_json(data["value"])

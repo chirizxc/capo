@@ -34,7 +34,7 @@ def serialize_json(value: GetAgentSpaceOutput) -> dict:
 
 def deserialize_json(data: dict) -> GetAgentSpaceOutput:
     out: GetAgentSpaceOutput = {}  # type: ignore[typeddict-item]
-    if "agentSpace" in data:
+    if data.get("agentSpace") is not None:
         import capo_devops_agent.types.agent_space
 
         out["agent_space"] = capo_devops_agent.types.agent_space.deserialize_json(
@@ -42,7 +42,7 @@ def deserialize_json(data: dict) -> GetAgentSpaceOutput:
         )
     else:
         raise DeserializationError("GetAgentSpaceOutput.agent_space required")
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_devops_agent.types.tags
 
         out["tags"] = capo_devops_agent.types.tags.deserialize_json(data["tags"])

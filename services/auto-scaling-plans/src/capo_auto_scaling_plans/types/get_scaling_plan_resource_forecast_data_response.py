@@ -28,7 +28,7 @@ def serialize_aws_json_1_1(value: GetScalingPlanResourceForecastDataResponse) ->
 
 def deserialize_aws_json_1_1(data: dict) -> GetScalingPlanResourceForecastDataResponse:
     out: GetScalingPlanResourceForecastDataResponse = {}  # type: ignore[typeddict-item]
-    if "Datapoints" in data:
+    if data.get("Datapoints") is not None:
         import capo_auto_scaling_plans.types.datapoints
 
         out["datapoints"] = (

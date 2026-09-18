@@ -10,8 +10,19 @@ DoubleArray: TypeAlias = list["capo_rds_data.types.boxed_double.BoxedDouble | No
 
 # --- restJson1 ser/de ---
 def serialize_json(value: DoubleArray) -> list:
-    return list(value)
+    return [
+        (
+            "NaN"
+            if item != item
+            else "Infinity"
+            if item == float("inf")
+            else "-Infinity"
+            if item == float("-inf")
+            else item
+        )
+        for item in value
+    ]
 
 
 def deserialize_json(data: list) -> DoubleArray:
-    return list(data)
+    return [None if item is None else float(item) for item in data]

@@ -101,15 +101,16 @@ class ServiceResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_proton.types.create_service_input.CreateServiceInput = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_proton.types.create_service_input.CreateServiceInput = {
+            "name": name,
+            "template_name": template_name,
+            "template_major_version": template_major_version,
+            "spec": spec,
+        }
         if description is not None:
             input_["description"] = description
-        input_["template_name"] = template_name
-        input_["template_major_version"] = template_major_version
         if template_minor_version is not None:
             input_["template_minor_version"] = template_minor_version
-        input_["spec"] = spec
         if repository_connection_arn is not None:
             input_["repository_connection_arn"] = repository_connection_arn
         if repository_id is not None:
@@ -124,6 +125,7 @@ class ServiceResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -159,14 +161,14 @@ class ServiceResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_proton.types.get_service_input.GetServiceInput = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_proton.types.get_service_input.GetServiceInput = {"name": name}
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update(
@@ -210,8 +212,9 @@ class ServiceResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_proton.types.update_service_input.UpdateServiceInput = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_proton.types.update_service_input.UpdateServiceInput = {
+            "name": name
+        }
         if description is not None:
             input_["description"] = description
         if spec is not None:
@@ -222,6 +225,7 @@ class ServiceResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -260,14 +264,16 @@ class ServiceResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_proton.types.delete_service_input.DeleteServiceInput = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_proton.types.delete_service_input.DeleteServiceInput = {
+            "name": name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -308,7 +314,7 @@ class ServiceResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_proton.types.list_services_input.ListServicesInput = {}  # type: ignore[typeddict-item]
+        input_: capo_proton.types.list_services_input.ListServicesInput = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -319,6 +325,7 @@ class ServiceResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -384,15 +391,16 @@ class AsyncServiceResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_proton.types.create_service_input.CreateServiceInput = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_proton.types.create_service_input.CreateServiceInput = {
+            "name": name,
+            "template_name": template_name,
+            "template_major_version": template_major_version,
+            "spec": spec,
+        }
         if description is not None:
             input_["description"] = description
-        input_["template_name"] = template_name
-        input_["template_major_version"] = template_major_version
         if template_minor_version is not None:
             input_["template_minor_version"] = template_minor_version
-        input_["spec"] = spec
         if repository_connection_arn is not None:
             input_["repository_connection_arn"] = repository_connection_arn
         if repository_id is not None:
@@ -407,6 +415,7 @@ class AsyncServiceResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -445,14 +454,14 @@ class AsyncServiceResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_proton.types.get_service_input.GetServiceInput = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_proton.types.get_service_input.GetServiceInput = {"name": name}
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update(
@@ -497,8 +506,9 @@ class AsyncServiceResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_proton.types.update_service_input.UpdateServiceInput = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_proton.types.update_service_input.UpdateServiceInput = {
+            "name": name
+        }
         if description is not None:
             input_["description"] = description
         if spec is not None:
@@ -509,6 +519,7 @@ class AsyncServiceResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -548,14 +559,16 @@ class AsyncServiceResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_proton.types.delete_service_input.DeleteServiceInput = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_proton.types.delete_service_input.DeleteServiceInput = {
+            "name": name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -597,7 +610,7 @@ class AsyncServiceResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_proton.types.list_services_input.ListServicesInput = {}  # type: ignore[typeddict-item]
+        input_: capo_proton.types.list_services_input.ListServicesInput = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -608,4 +621,5 @@ class AsyncServiceResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

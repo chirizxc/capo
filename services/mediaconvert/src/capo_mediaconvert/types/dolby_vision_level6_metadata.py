@@ -31,8 +31,8 @@ def serialize_json(value: DolbyVisionLevel6Metadata) -> dict:
 
 def deserialize_json(data: dict) -> DolbyVisionLevel6Metadata:
     out: DolbyVisionLevel6Metadata = {}  # type: ignore[typeddict-item]
-    if "maxCll" in data:
+    if data.get("maxCll") is not None:
         out["max_cll"] = data["maxCll"]
-    if "maxFall" in data:
+    if data.get("maxFall") is not None:
         out["max_fall"] = data["maxFall"]
     return out

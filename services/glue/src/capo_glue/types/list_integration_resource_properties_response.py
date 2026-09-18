@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: ListIntegrationResourcePropertiesResponse) -> 
 
 def deserialize_aws_json_1_1(data: dict) -> ListIntegrationResourcePropertiesResponse:
     out: ListIntegrationResourcePropertiesResponse = {}  # type: ignore[typeddict-item]
-    if "IntegrationResourcePropertyList" in data:
+    if data.get("IntegrationResourcePropertyList") is not None:
         import capo_glue.types.integration_resource_property_list
 
         out["integration_resource_property_list"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_1(data: dict) -> ListIntegrationResourcePropertiesRes
                 data["IntegrationResourcePropertyList"]
             )
         )
-    if "Marker" in data:
+    if data.get("Marker") is not None:
         out["marker"] = data["Marker"]
     return out

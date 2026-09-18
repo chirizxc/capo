@@ -69,9 +69,9 @@ def serialize_json(value: BotAliasReplicaSummary) -> dict:
 
 def deserialize_json(data: dict) -> BotAliasReplicaSummary:
     out: BotAliasReplicaSummary = {}  # type: ignore[typeddict-item]
-    if "botAliasId" in data:
+    if data.get("botAliasId") is not None:
         out["bot_alias_id"] = data["botAliasId"]
-    if "botAliasReplicationStatus" in data:
+    if data.get("botAliasReplicationStatus") is not None:
         import capo_lex_models_v2.types.bot_alias_replication_status
 
         out["bot_alias_replication_status"] = (
@@ -79,15 +79,15 @@ def deserialize_json(data: dict) -> BotAliasReplicaSummary:
                 data["botAliasReplicationStatus"]
             )
         )
-    if "botVersion" in data:
+    if data.get("botVersion") is not None:
         out["bot_version"] = data["botVersion"]
-    if "creationDateTime" in data:
+    if data.get("creationDateTime") is not None:
         import capo_lex_models_v2.types.timestamp
 
         out["creation_date_time"] = capo_lex_models_v2.types.timestamp.deserialize_json(
             data["creationDateTime"]
         )
-    if "lastUpdatedDateTime" in data:
+    if data.get("lastUpdatedDateTime") is not None:
         import capo_lex_models_v2.types.timestamp
 
         out["last_updated_date_time"] = (
@@ -95,7 +95,7 @@ def deserialize_json(data: dict) -> BotAliasReplicaSummary:
                 data["lastUpdatedDateTime"]
             )
         )
-    if "failureReasons" in data:
+    if data.get("failureReasons") is not None:
         import capo_lex_models_v2.types.failure_reasons
 
         out["failure_reasons"] = (

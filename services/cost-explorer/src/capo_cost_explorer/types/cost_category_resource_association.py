@@ -34,10 +34,10 @@ def serialize_aws_json_1_1(value: CostCategoryResourceAssociation) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CostCategoryResourceAssociation:
     out: CostCategoryResourceAssociation = {}  # type: ignore[typeddict-item]
-    if "ResourceArn" in data:
+    if data.get("ResourceArn") is not None:
         out["resource_arn"] = data["ResourceArn"]
-    if "CostCategoryName" in data:
+    if data.get("CostCategoryName") is not None:
         out["cost_category_name"] = data["CostCategoryName"]
-    if "CostCategoryArn" in data:
+    if data.get("CostCategoryArn") is not None:
         out["cost_category_arn"] = data["CostCategoryArn"]
     return out

@@ -25,6 +25,10 @@ class ListScheduledActionsRequest(TypedDict, closed=True):
 # --- awsJson1_1 ser/de ---
 def serialize_aws_json_1_1(value: ListScheduledActionsRequest) -> dict:
     out: dict = {}
+    if "next_token" in value:
+        out["nextToken"] = value["next_token"]
+    if "max_results" in value:
+        out["maxResults"] = value["max_results"]
     if "namespace_name" in value:
         out["namespaceName"] = value["namespace_name"]
     return out
@@ -32,6 +36,10 @@ def serialize_aws_json_1_1(value: ListScheduledActionsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListScheduledActionsRequest:
     out: ListScheduledActionsRequest = {}  # type: ignore[typeddict-item]
-    if "namespaceName" in data:
+    if data.get("nextToken") is not None:
+        out["next_token"] = data["nextToken"]
+    if data.get("maxResults") is not None:
+        out["max_results"] = data["maxResults"]
+    if data.get("namespaceName") is not None:
         out["namespace_name"] = data["namespaceName"]
     return out

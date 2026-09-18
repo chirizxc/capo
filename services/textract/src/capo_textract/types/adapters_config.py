@@ -28,7 +28,7 @@ def serialize_aws_json_1_1(value: AdaptersConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AdaptersConfig:
     out: AdaptersConfig = {}  # type: ignore[typeddict-item]
-    if "Adapters" in data:
+    if data.get("Adapters") is not None:
         import capo_textract.types.adapters
 
         out["adapters"] = capo_textract.types.adapters.deserialize_aws_json_1_1(

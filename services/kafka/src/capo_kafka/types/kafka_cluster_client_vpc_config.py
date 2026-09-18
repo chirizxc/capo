@@ -37,13 +37,13 @@ def serialize_json(value: KafkaClusterClientVpcConfig) -> dict:
 
 def deserialize_json(data: dict) -> KafkaClusterClientVpcConfig:
     out: KafkaClusterClientVpcConfig = {}  # type: ignore[typeddict-item]
-    if "securityGroupIds" in data:
+    if data.get("securityGroupIds") is not None:
         import capo_kafka.types.__list_of__string
 
         out["security_group_ids"] = capo_kafka.types.__list_of__string.deserialize_json(
             data["securityGroupIds"]
         )
-    if "subnetIds" in data:
+    if data.get("subnetIds") is not None:
         import capo_kafka.types.__list_of__string
 
         out["subnet_ids"] = capo_kafka.types.__list_of__string.deserialize_json(

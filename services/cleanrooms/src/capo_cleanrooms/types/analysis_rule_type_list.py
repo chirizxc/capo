@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> AnalysisRuleTypeList:
 
     out: AnalysisRuleTypeList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_cleanrooms.types.analysis_rule_type.deserialize_json(item))
     return out

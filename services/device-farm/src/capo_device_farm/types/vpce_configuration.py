@@ -51,14 +51,14 @@ def serialize_aws_json_1_1(value: VPCEConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> VPCEConfiguration:
     out: VPCEConfiguration = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "vpceConfigurationName" in data:
+    if data.get("vpceConfigurationName") is not None:
         out["vpce_configuration_name"] = data["vpceConfigurationName"]
-    if "vpceServiceName" in data:
+    if data.get("vpceServiceName") is not None:
         out["vpce_service_name"] = data["vpceServiceName"]
-    if "serviceDnsName" in data:
+    if data.get("serviceDnsName") is not None:
         out["service_dns_name"] = data["serviceDnsName"]
-    if "vpceConfigurationDescription" in data:
+    if data.get("vpceConfigurationDescription") is not None:
         out["vpce_configuration_description"] = data["vpceConfigurationDescription"]
     return out

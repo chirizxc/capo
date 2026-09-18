@@ -23,6 +23,6 @@ def serialize_json(value: CreateTelemetryRuleForOrganizationOutput) -> dict:
 
 def deserialize_json(data: dict) -> CreateTelemetryRuleForOrganizationOutput:
     out: CreateTelemetryRuleForOrganizationOutput = {}  # type: ignore[typeddict-item]
-    if "RuleArn" in data:
+    if data.get("RuleArn") is not None:
         out["rule_arn"] = data["RuleArn"]
     return out

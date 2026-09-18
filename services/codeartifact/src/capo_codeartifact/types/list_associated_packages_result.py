@@ -36,7 +36,7 @@ def serialize_json(value: ListAssociatedPackagesResult) -> dict:
 
 def deserialize_json(data: dict) -> ListAssociatedPackagesResult:
     out: ListAssociatedPackagesResult = {}  # type: ignore[typeddict-item]
-    if "packages" in data:
+    if data.get("packages") is not None:
         import capo_codeartifact.types.associated_package_list
 
         out["packages"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> ListAssociatedPackagesResult:
                 data["packages"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

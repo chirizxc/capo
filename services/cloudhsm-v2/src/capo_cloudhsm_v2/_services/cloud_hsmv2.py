@@ -1,6 +1,7 @@
 """Generated from Smithy shape ``com.amazonaws.cloudhsmv2#BaldrApiService``."""
 
 import warnings
+from collections.abc import Iterator
 from typing import TYPE_CHECKING, Any, Iterable, Optional
 
 from typing_extensions import Self, TypedDict
@@ -16,6 +17,7 @@ from capo_cloudhsm_v2._auth._providers import (
     default_aws_credentials_chain,
 )
 from capo_cloudhsm_v2._auth._zapros_handler import AuthMiddleware
+from capo_cloudhsm_v2._pagination import resolve_path as _resolve_path
 from capo_cloudhsm_v2._services._aws_config import aws_config
 from capo_cloudhsm_v2._services._pipeline import (
     Interceptor,
@@ -223,9 +225,10 @@ class CloudHSMV2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudhsm_v2.types.copy_backup_to_region_request.CopyBackupToRegionRequest = {}  # type: ignore[typeddict-item]
-        input_["destination_region"] = destination_region
-        input_["backup_id"] = backup_id
+        input_: capo_cloudhsm_v2.types.copy_backup_to_region_request.CopyBackupToRegionRequest = {
+            "destination_region": destination_region,
+            "backup_id": backup_id,
+        }
         if tag_list is not None:
             input_["tag_list"] = tag_list
 
@@ -234,6 +237,7 @@ class CloudHSMV2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_cluster(
@@ -290,13 +294,14 @@ class CloudHSMV2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudhsm_v2.types.create_cluster_request.CreateClusterRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_cloudhsm_v2.types.create_cluster_request.CreateClusterRequest = {
+            "hsm_type": hsm_type,
+            "subnet_ids": subnet_ids,
+        }
         if backup_retention_policy is not None:
             input_["backup_retention_policy"] = backup_retention_policy
-        input_["hsm_type"] = hsm_type
         if source_backup_id is not None:
             input_["source_backup_id"] = source_backup_id
-        input_["subnet_ids"] = subnet_ids
         if network_type is not None:
             input_["network_type"] = network_type
         if tag_list is not None:
@@ -309,6 +314,7 @@ class CloudHSMV2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_hsm(
@@ -350,9 +356,10 @@ class CloudHSMV2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudhsm_v2.types.create_hsm_request.CreateHsmRequest = {}  # type: ignore[typeddict-item]
-        input_["cluster_id"] = cluster_id
-        input_["availability_zone"] = availability_zone
+        input_: capo_cloudhsm_v2.types.create_hsm_request.CreateHsmRequest = {
+            "cluster_id": cluster_id,
+            "availability_zone": availability_zone,
+        }
         if ip_address is not None:
             input_["ip_address"] = ip_address
 
@@ -361,6 +368,7 @@ class CloudHSMV2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_backup(
@@ -398,14 +406,16 @@ class CloudHSMV2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudhsm_v2.types.delete_backup_request.DeleteBackupRequest = {}  # type: ignore[typeddict-item]
-        input_["backup_id"] = backup_id
+        input_: capo_cloudhsm_v2.types.delete_backup_request.DeleteBackupRequest = {
+            "backup_id": backup_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_cluster(
@@ -444,14 +454,16 @@ class CloudHSMV2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudhsm_v2.types.delete_cluster_request.DeleteClusterRequest = {}  # type: ignore[typeddict-item]
-        input_["cluster_id"] = cluster_id
+        input_: capo_cloudhsm_v2.types.delete_cluster_request.DeleteClusterRequest = {
+            "cluster_id": cluster_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_hsm(
@@ -495,8 +507,9 @@ class CloudHSMV2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudhsm_v2.types.delete_hsm_request.DeleteHsmRequest = {}  # type: ignore[typeddict-item]
-        input_["cluster_id"] = cluster_id
+        input_: capo_cloudhsm_v2.types.delete_hsm_request.DeleteHsmRequest = {
+            "cluster_id": cluster_id
+        }
         if hsm_id is not None:
             input_["hsm_id"] = hsm_id
         if eni_id is not None:
@@ -509,6 +522,7 @@ class CloudHSMV2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_resource_policy(
@@ -548,7 +562,7 @@ class CloudHSMV2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudhsm_v2.types.delete_resource_policy_request.DeleteResourcePolicyRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_cloudhsm_v2.types.delete_resource_policy_request.DeleteResourcePolicyRequest = {}
         if resource_arn is not None:
             input_["resource_arn"] = resource_arn
 
@@ -557,6 +571,7 @@ class CloudHSMV2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_backups(
@@ -605,7 +620,7 @@ class CloudHSMV2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudhsm_v2.types.describe_backups_request.DescribeBackupsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_cloudhsm_v2.types.describe_backups_request.DescribeBackupsRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -622,7 +637,35 @@ class CloudHSMV2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_describe_backups(
+        self,
+        *,
+        config_overrides: Optional[CloudHSMV2ClientConfig] = None,
+        next_token: Optional["capo_cloudhsm_v2.types.next_token.NextToken"] = None,
+        max_results: Optional[
+            "capo_cloudhsm_v2.types.backups_max_size.BackupsMaxSize"
+        ] = None,
+        filters: Optional["capo_cloudhsm_v2.types.filters.Filters"] = None,
+        shared: Optional["capo_cloudhsm_v2.types.boolean.Boolean"] = None,
+        sort_ascending: Optional["capo_cloudhsm_v2.types.boolean.Boolean"] = None,
+    ) -> "Iterator[capo_cloudhsm_v2.types.describe_backups_response.DescribeBackupsResponse]":
+        _token = next_token
+        while True:
+            _response = self.describe_backups(
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+                filters=filters,
+                shared=shared,
+                sort_ascending=sort_ascending,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def describe_clusters(
         self,
@@ -665,7 +708,7 @@ class CloudHSMV2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudhsm_v2.types.describe_clusters_request.DescribeClustersRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_cloudhsm_v2.types.describe_clusters_request.DescribeClustersRequest = {}
         if filters is not None:
             input_["filters"] = filters
         if next_token is not None:
@@ -678,7 +721,31 @@ class CloudHSMV2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_describe_clusters(
+        self,
+        *,
+        config_overrides: Optional[CloudHSMV2ClientConfig] = None,
+        filters: Optional["capo_cloudhsm_v2.types.filters.Filters"] = None,
+        next_token: Optional["capo_cloudhsm_v2.types.next_token.NextToken"] = None,
+        max_results: Optional[
+            "capo_cloudhsm_v2.types.clusters_max_size.ClustersMaxSize"
+        ] = None,
+    ) -> "Iterator[capo_cloudhsm_v2.types.describe_clusters_response.DescribeClustersResponse]":
+        _token = next_token
+        while True:
+            _response = self.describe_clusters(
+                config_overrides=config_overrides,
+                filters=filters,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def get_resource_policy(
         self,
@@ -719,7 +786,7 @@ class CloudHSMV2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudhsm_v2.types.get_resource_policy_request.GetResourcePolicyRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_cloudhsm_v2.types.get_resource_policy_request.GetResourcePolicyRequest = {}
         if resource_arn is not None:
             input_["resource_arn"] = resource_arn
 
@@ -728,6 +795,7 @@ class CloudHSMV2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def initialize_cluster(
@@ -769,16 +837,18 @@ class CloudHSMV2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudhsm_v2.types.initialize_cluster_request.InitializeClusterRequest = {}  # type: ignore[typeddict-item]
-        input_["cluster_id"] = cluster_id
-        input_["signed_cert"] = signed_cert
-        input_["trust_anchor"] = trust_anchor
+        input_: capo_cloudhsm_v2.types.initialize_cluster_request.InitializeClusterRequest = {
+            "cluster_id": cluster_id,
+            "signed_cert": signed_cert,
+            "trust_anchor": trust_anchor,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_tags(
@@ -821,8 +891,9 @@ class CloudHSMV2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudhsm_v2.types.list_tags_request.ListTagsRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_id"] = resource_id
+        input_: capo_cloudhsm_v2.types.list_tags_request.ListTagsRequest = {
+            "resource_id": resource_id
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -833,7 +904,29 @@ class CloudHSMV2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_tags(
+        self,
+        resource_id: "capo_cloudhsm_v2.types.resource_id.ResourceId",
+        *,
+        config_overrides: Optional[CloudHSMV2ClientConfig] = None,
+        next_token: Optional["capo_cloudhsm_v2.types.next_token.NextToken"] = None,
+        max_results: Optional["capo_cloudhsm_v2.types.max_size.MaxSize"] = None,
+    ) -> "Iterator[capo_cloudhsm_v2.types.list_tags_response.ListTagsResponse]":
+        _token = next_token
+        while True:
+            _response = self.list_tags(
+                resource_id,
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def modify_backup_attributes(
         self,
@@ -872,15 +965,17 @@ class CloudHSMV2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudhsm_v2.types.modify_backup_attributes_request.ModifyBackupAttributesRequest = {}  # type: ignore[typeddict-item]
-        input_["backup_id"] = backup_id
-        input_["never_expires"] = never_expires
+        input_: capo_cloudhsm_v2.types.modify_backup_attributes_request.ModifyBackupAttributesRequest = {
+            "backup_id": backup_id,
+            "never_expires": never_expires,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def modify_cluster(
@@ -924,18 +1019,20 @@ class CloudHSMV2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudhsm_v2.types.modify_cluster_request.ModifyClusterRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_cloudhsm_v2.types.modify_cluster_request.ModifyClusterRequest = {
+            "cluster_id": cluster_id
+        }
         if hsm_type is not None:
             input_["hsm_type"] = hsm_type
         if backup_retention_policy is not None:
             input_["backup_retention_policy"] = backup_retention_policy
-        input_["cluster_id"] = cluster_id
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def put_resource_policy(
@@ -981,7 +1078,7 @@ class CloudHSMV2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudhsm_v2.types.put_resource_policy_request.PutResourcePolicyRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_cloudhsm_v2.types.put_resource_policy_request.PutResourcePolicyRequest = {}
         if resource_arn is not None:
             input_["resource_arn"] = resource_arn
         if policy is not None:
@@ -992,6 +1089,7 @@ class CloudHSMV2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def restore_backup(
@@ -1029,14 +1127,16 @@ class CloudHSMV2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudhsm_v2.types.restore_backup_request.RestoreBackupRequest = {}  # type: ignore[typeddict-item]
-        input_["backup_id"] = backup_id
+        input_: capo_cloudhsm_v2.types.restore_backup_request.RestoreBackupRequest = {
+            "backup_id": backup_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def tag_resource(
@@ -1078,15 +1178,17 @@ class CloudHSMV2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudhsm_v2.types.tag_resource_request.TagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_id"] = resource_id
-        input_["tag_list"] = tag_list
+        input_: capo_cloudhsm_v2.types.tag_resource_request.TagResourceRequest = {
+            "resource_id": resource_id,
+            "tag_list": tag_list,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def untag_resource(
@@ -1127,15 +1229,17 @@ class CloudHSMV2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudhsm_v2.types.untag_resource_request.UntagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_id"] = resource_id
-        input_["tag_key_list"] = tag_key_list
+        input_: capo_cloudhsm_v2.types.untag_resource_request.UntagResourceRequest = {
+            "resource_id": resource_id,
+            "tag_key_list": tag_key_list,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def __enter__(self) -> Self:

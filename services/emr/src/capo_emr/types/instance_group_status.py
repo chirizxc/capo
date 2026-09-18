@@ -51,13 +51,13 @@ def serialize_aws_json_1_1(value: InstanceGroupStatus) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> InstanceGroupStatus:
     out: InstanceGroupStatus = {}  # type: ignore[typeddict-item]
-    if "State" in data:
+    if data.get("State") is not None:
         import capo_emr.types.instance_group_state
 
         out["state"] = capo_emr.types.instance_group_state.deserialize_aws_json_1_1(
             data["State"]
         )
-    if "StateChangeReason" in data:
+    if data.get("StateChangeReason") is not None:
         import capo_emr.types.instance_group_state_change_reason
 
         out["state_change_reason"] = (
@@ -65,7 +65,7 @@ def deserialize_aws_json_1_1(data: dict) -> InstanceGroupStatus:
                 data["StateChangeReason"]
             )
         )
-    if "Timeline" in data:
+    if data.get("Timeline") is not None:
         import capo_emr.types.instance_group_timeline
 
         out["timeline"] = (

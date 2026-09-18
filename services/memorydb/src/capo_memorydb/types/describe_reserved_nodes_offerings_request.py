@@ -44,16 +44,16 @@ def serialize_aws_json_1_1(value: DescribeReservedNodesOfferingsRequest) -> dict
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeReservedNodesOfferingsRequest:
     out: DescribeReservedNodesOfferingsRequest = {}  # type: ignore[typeddict-item]
-    if "ReservedNodesOfferingId" in data:
+    if data.get("ReservedNodesOfferingId") is not None:
         out["reserved_nodes_offering_id"] = data["ReservedNodesOfferingId"]
-    if "NodeType" in data:
+    if data.get("NodeType") is not None:
         out["node_type"] = data["NodeType"]
-    if "Duration" in data:
+    if data.get("Duration") is not None:
         out["duration"] = data["Duration"]
-    if "OfferingType" in data:
+    if data.get("OfferingType") is not None:
         out["offering_type"] = data["OfferingType"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

@@ -34,18 +34,18 @@ def serialize_aws_json_1_1(value: StartProjectVersionRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> StartProjectVersionRequest:
     out: StartProjectVersionRequest = {}  # type: ignore[typeddict-item]
-    if "ProjectVersionArn" in data:
+    if data.get("ProjectVersionArn") is not None:
         out["project_version_arn"] = data["ProjectVersionArn"]
     else:
         raise DeserializationError(
             "StartProjectVersionRequest.project_version_arn required"
         )
-    if "MinInferenceUnits" in data:
+    if data.get("MinInferenceUnits") is not None:
         out["min_inference_units"] = data["MinInferenceUnits"]
     else:
         raise DeserializationError(
             "StartProjectVersionRequest.min_inference_units required"
         )
-    if "MaxInferenceUnits" in data:
+    if data.get("MaxInferenceUnits") is not None:
         out["max_inference_units"] = data["MaxInferenceUnits"]
     return out

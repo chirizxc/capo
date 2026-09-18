@@ -40,7 +40,7 @@ def serialize_aws_json_1_1(value: BatchUpdatePartitionFailureEntry) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> BatchUpdatePartitionFailureEntry:
     out: BatchUpdatePartitionFailureEntry = {}  # type: ignore[typeddict-item]
-    if "PartitionValueList" in data:
+    if data.get("PartitionValueList") is not None:
         import capo_glue.types.bounded_partition_value_list
 
         out["partition_value_list"] = (
@@ -48,7 +48,7 @@ def deserialize_aws_json_1_1(data: dict) -> BatchUpdatePartitionFailureEntry:
                 data["PartitionValueList"]
             )
         )
-    if "ErrorDetail" in data:
+    if data.get("ErrorDetail") is not None:
         import capo_glue.types.error_detail
 
         out["error_detail"] = capo_glue.types.error_detail.deserialize_aws_json_1_1(

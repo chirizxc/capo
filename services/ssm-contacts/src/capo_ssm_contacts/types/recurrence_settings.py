@@ -80,7 +80,7 @@ def serialize_aws_json_1_1(value: RecurrenceSettings) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RecurrenceSettings:
     out: RecurrenceSettings = {}  # type: ignore[typeddict-item]
-    if "MonthlySettings" in data:
+    if data.get("MonthlySettings") is not None:
         import capo_ssm_contacts.types.monthly_settings
 
         out["monthly_settings"] = (
@@ -88,7 +88,7 @@ def deserialize_aws_json_1_1(data: dict) -> RecurrenceSettings:
                 data["MonthlySettings"]
             )
         )
-    if "WeeklySettings" in data:
+    if data.get("WeeklySettings") is not None:
         import capo_ssm_contacts.types.weekly_settings
 
         out["weekly_settings"] = (
@@ -96,7 +96,7 @@ def deserialize_aws_json_1_1(data: dict) -> RecurrenceSettings:
                 data["WeeklySettings"]
             )
         )
-    if "DailySettings" in data:
+    if data.get("DailySettings") is not None:
         import capo_ssm_contacts.types.daily_settings
 
         out["daily_settings"] = (
@@ -104,11 +104,11 @@ def deserialize_aws_json_1_1(data: dict) -> RecurrenceSettings:
                 data["DailySettings"]
             )
         )
-    if "NumberOfOnCalls" in data:
+    if data.get("NumberOfOnCalls") is not None:
         out["number_of_on_calls"] = data["NumberOfOnCalls"]
     else:
         raise DeserializationError("RecurrenceSettings.number_of_on_calls required")
-    if "ShiftCoverages" in data:
+    if data.get("ShiftCoverages") is not None:
         import capo_ssm_contacts.types.shift_coverages_map
 
         out["shift_coverages"] = (
@@ -116,7 +116,7 @@ def deserialize_aws_json_1_1(data: dict) -> RecurrenceSettings:
                 data["ShiftCoverages"]
             )
         )
-    if "RecurrenceMultiplier" in data:
+    if data.get("RecurrenceMultiplier") is not None:
         out["recurrence_multiplier"] = data["RecurrenceMultiplier"]
     else:
         raise DeserializationError("RecurrenceSettings.recurrence_multiplier required")

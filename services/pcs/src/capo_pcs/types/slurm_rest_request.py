@@ -26,7 +26,7 @@ def serialize_aws_json_1_0(value: SlurmRestRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> SlurmRestRequest:
     out: SlurmRestRequest = {}  # type: ignore[typeddict-item]
-    if "mode" in data:
+    if data.get("mode") is not None:
         import capo_pcs.types.slurm_rest_mode
 
         out["mode"] = capo_pcs.types.slurm_rest_mode.deserialize_aws_json_1_0(

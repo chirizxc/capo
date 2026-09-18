@@ -13,9 +13,9 @@ from capo_connecthealth import AsyncConnectHealthClient
 
 
 async def main():
-    async with AsyncConnectHealthClient() as s3:
+    async with AsyncConnectHealthClient() as connect_health:
         # Example: call the activate_subscription operation
-        response = await s3.activate_subscription()
+        response = await connect_health.activate_subscription()
         print(response["subscription"])
 ```
 
@@ -28,9 +28,9 @@ from capo_connecthealth import AsyncConnectHealthClient
 
 
 async def main():
-    async with AsyncConnectHealthClient() as s3:
+    async with AsyncConnectHealthClient() as connect_health:
         # Example: paginate over list_domains
-        async for item in s3.iter_list_domains():
+        async for item in connect_health.iter_list_domains():
             print(item)
 ```
 
@@ -43,16 +43,16 @@ from capo_connecthealth import AsyncConnectHealthClient
 
 
 async def main():
-    async with AsyncConnectHealthClient() as s3:
+    async with AsyncConnectHealthClient() as connect_health:
         # Example: call start_medical_scribe_listening_session with a streaming request body
         async def chunks():
             yield b'Hello, World!'
 
-        response = await s3.start_medical_scribe_listening_session(input_stream=chunks())
+        response = await connect_health.start_medical_scribe_listening_session(input_stream=chunks())
         print(response)
 
         # Or pass the whole body as bytes
-        response = await s3.start_medical_scribe_listening_session(input_stream=b'Hello, World!')
+        response = await connect_health.start_medical_scribe_listening_session(input_stream=b'Hello, World!')
         print(response)
 ```
 
@@ -66,9 +66,9 @@ from capo_connecthealth.error import AccessDeniedException
 
 
 async def main():
-    async with AsyncConnectHealthClient() as s3:
+    async with AsyncConnectHealthClient() as connect_health:
         try:
-            await s3.activate_subscription()
+            await connect_health.activate_subscription()
         except AccessDeniedException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -85,13 +85,13 @@ from capo_connecthealth import AsyncConnectHealthClient
 
 
 async def main():
-    async with AsyncConnectHealthClient() as s3:
+    async with AsyncConnectHealthClient() as connect_health:
         # Default: 3 attempts for every operation
-        response = await s3.activate_subscription()
+        response = await connect_health.activate_subscription()
 
         # Override per operation
-        response = await s3.activate_subscription(config_overrides={"retry_max_attempts": 5})
+        response = await connect_health.activate_subscription(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.activate_subscription(config_overrides={"retry_max_attempts": 1})
+        response = await connect_health.activate_subscription(config_overrides={"retry_max_attempts": 1})
 ```

@@ -49,15 +49,15 @@ def serialize_aws_json_1_0(value: DescribeStreamInput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> DescribeStreamInput:
     out: DescribeStreamInput = {}  # type: ignore[typeddict-item]
-    if "StreamArn" in data:
+    if data.get("StreamArn") is not None:
         out["stream_arn"] = data["StreamArn"]
     else:
         raise DeserializationError("DescribeStreamInput.stream_arn required")
-    if "Limit" in data:
+    if data.get("Limit") is not None:
         out["limit"] = data["Limit"]
-    if "ExclusiveStartShardId" in data:
+    if data.get("ExclusiveStartShardId") is not None:
         out["exclusive_start_shard_id"] = data["ExclusiveStartShardId"]
-    if "ShardFilter" in data:
+    if data.get("ShardFilter") is not None:
         import capo_dynamodb_streams.types.shard_filter
 
         out["shard_filter"] = (

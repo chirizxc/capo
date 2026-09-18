@@ -29,12 +29,12 @@ def serialize_aws_json_1_1(value: ListApplicationGrantsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListApplicationGrantsRequest:
     out: ListApplicationGrantsRequest = {}  # type: ignore[typeddict-item]
-    if "ApplicationArn" in data:
+    if data.get("ApplicationArn") is not None:
         out["application_arn"] = data["ApplicationArn"]
     else:
         raise DeserializationError(
             "ListApplicationGrantsRequest.application_arn required"
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

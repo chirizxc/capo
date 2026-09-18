@@ -27,7 +27,7 @@ def serialize_json(value: AwsCertificateManagerCertificateOptions) -> dict:
 
 def deserialize_json(data: dict) -> AwsCertificateManagerCertificateOptions:
     out: AwsCertificateManagerCertificateOptions = {}  # type: ignore[typeddict-item]
-    if "CertificateTransparencyLoggingPreference" in data:
+    if data.get("CertificateTransparencyLoggingPreference") is not None:
         out["certificate_transparency_logging_preference"] = data[
             "CertificateTransparencyLoggingPreference"
         ]

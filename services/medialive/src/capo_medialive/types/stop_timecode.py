@@ -36,7 +36,7 @@ def serialize_json(value: StopTimecode) -> dict:
 
 def deserialize_json(data: dict) -> StopTimecode:
     out: StopTimecode = {}  # type: ignore[typeddict-item]
-    if "lastFrameClippingBehavior" in data:
+    if data.get("lastFrameClippingBehavior") is not None:
         import capo_medialive.types.last_frame_clipping_behavior
 
         out["last_frame_clipping_behavior"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> StopTimecode:
                 data["lastFrameClippingBehavior"]
             )
         )
-    if "timecode" in data:
+    if data.get("timecode") is not None:
         out["timecode"] = data["timecode"]
     return out

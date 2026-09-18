@@ -42,19 +42,19 @@ def serialize_json(value: MetricInterval) -> dict:
 
 def deserialize_json(data: dict) -> MetricInterval:
     out: MetricInterval = {}  # type: ignore[typeddict-item]
-    if "Interval" in data:
+    if data.get("Interval") is not None:
         import capo_connect.types.interval_period
 
         out["interval"] = capo_connect.types.interval_period.deserialize_json(
             data["Interval"]
         )
-    if "StartTime" in data:
+    if data.get("StartTime") is not None:
         import capo_connect.types.timestamp
 
         out["start_time"] = capo_connect.types.timestamp.deserialize_json(
             data["StartTime"]
         )
-    if "EndTime" in data:
+    if data.get("EndTime") is not None:
         import capo_connect.types.timestamp
 
         out["end_time"] = capo_connect.types.timestamp.deserialize_json(data["EndTime"])

@@ -37,13 +37,13 @@ def serialize_json(value: CreateAttendeeRequestItem) -> dict:
 
 def deserialize_json(data: dict) -> CreateAttendeeRequestItem:
     out: CreateAttendeeRequestItem = {}  # type: ignore[typeddict-item]
-    if "ExternalUserId" in data:
+    if data.get("ExternalUserId") is not None:
         out["external_user_id"] = data["ExternalUserId"]
     else:
         raise DeserializationError(
             "CreateAttendeeRequestItem.external_user_id required"
         )
-    if "Capabilities" in data:
+    if data.get("Capabilities") is not None:
         import capo_chime_sdk_meetings.types.attendee_capabilities
 
         out["capabilities"] = (

@@ -34,7 +34,7 @@ def serialize_json(value: BadRequestDetails) -> dict:
 
 
 def deserialize_json(data: dict) -> BadRequestDetails:
-    if "InvalidParameters" in data:
+    if data.get("InvalidParameters") is not None:
         import capo_appconfigdata.types.invalid_parameter_map
 
         return {

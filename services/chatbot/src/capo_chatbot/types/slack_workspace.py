@@ -38,16 +38,16 @@ def serialize_json(value: SlackWorkspace) -> dict:
 
 def deserialize_json(data: dict) -> SlackWorkspace:
     out: SlackWorkspace = {}  # type: ignore[typeddict-item]
-    if "SlackTeamId" in data:
+    if data.get("SlackTeamId") is not None:
         out["slack_team_id"] = data["SlackTeamId"]
     else:
         raise DeserializationError("SlackWorkspace.slack_team_id required")
-    if "SlackTeamName" in data:
+    if data.get("SlackTeamName") is not None:
         out["slack_team_name"] = data["SlackTeamName"]
     else:
         raise DeserializationError("SlackWorkspace.slack_team_name required")
-    if "State" in data:
+    if data.get("State") is not None:
         out["state"] = data["State"]
-    if "StateReason" in data:
+    if data.get("StateReason") is not None:
         out["state_reason"] = data["StateReason"]
     return out

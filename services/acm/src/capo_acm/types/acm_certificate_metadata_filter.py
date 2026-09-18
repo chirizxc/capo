@@ -119,7 +119,7 @@ def serialize_aws_json_1_1(value: AcmCertificateMetadataFilter) -> dict:
 
 
 def deserialize_aws_json_1_1(data: dict) -> AcmCertificateMetadataFilter:
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_acm.types.certificate_status
 
         return {
@@ -127,7 +127,7 @@ def deserialize_aws_json_1_1(data: dict) -> AcmCertificateMetadataFilter:
                 data["Status"]
             )
         }
-    elif "RenewalStatus" in data:
+    elif data.get("RenewalStatus") is not None:
         import capo_acm.types.renewal_status
 
         return {
@@ -135,7 +135,7 @@ def deserialize_aws_json_1_1(data: dict) -> AcmCertificateMetadataFilter:
                 data["RenewalStatus"]
             )
         }
-    elif "Type" in data:
+    elif data.get("Type") is not None:
         import capo_acm.types.certificate_type
 
         return {
@@ -143,11 +143,11 @@ def deserialize_aws_json_1_1(data: dict) -> AcmCertificateMetadataFilter:
                 data["Type"]
             )
         }
-    elif "InUse" in data:
+    elif data.get("InUse") is not None:
         return {"InUse": data["InUse"]}
-    elif "Exported" in data:
+    elif data.get("Exported") is not None:
         return {"Exported": data["Exported"]}
-    elif "ExportOption" in data:
+    elif data.get("ExportOption") is not None:
         import capo_acm.types.certificate_export
 
         return {
@@ -155,7 +155,7 @@ def deserialize_aws_json_1_1(data: dict) -> AcmCertificateMetadataFilter:
                 data["ExportOption"]
             )
         }
-    elif "ManagedBy" in data:
+    elif data.get("ManagedBy") is not None:
         import capo_acm.types.certificate_managed_by
 
         return {
@@ -163,7 +163,7 @@ def deserialize_aws_json_1_1(data: dict) -> AcmCertificateMetadataFilter:
                 data["ManagedBy"]
             )
         }
-    elif "ValidationMethod" in data:
+    elif data.get("ValidationMethod") is not None:
         import capo_acm.types.validation_method
 
         return {

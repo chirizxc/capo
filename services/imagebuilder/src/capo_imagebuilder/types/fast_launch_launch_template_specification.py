@@ -38,10 +38,10 @@ def serialize_json(value: FastLaunchLaunchTemplateSpecification) -> dict:
 
 def deserialize_json(data: dict) -> FastLaunchLaunchTemplateSpecification:
     out: FastLaunchLaunchTemplateSpecification = {}  # type: ignore[typeddict-item]
-    if "launchTemplateId" in data:
+    if data.get("launchTemplateId") is not None:
         out["launch_template_id"] = data["launchTemplateId"]
-    if "launchTemplateName" in data:
+    if data.get("launchTemplateName") is not None:
         out["launch_template_name"] = data["launchTemplateName"]
-    if "launchTemplateVersion" in data:
+    if data.get("launchTemplateVersion") is not None:
         out["launch_template_version"] = data["launchTemplateVersion"]
     return out

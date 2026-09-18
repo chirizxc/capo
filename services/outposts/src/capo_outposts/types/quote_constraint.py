@@ -36,7 +36,7 @@ def serialize_json(value: QuoteConstraint) -> dict:
 
 def deserialize_json(data: dict) -> QuoteConstraint:
     out: QuoteConstraint = {}  # type: ignore[typeddict-item]
-    if "QuoteConstraintType" in data:
+    if data.get("QuoteConstraintType") is not None:
         import capo_outposts.types.quote_constraint_type
 
         out["quote_constraint_type"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> QuoteConstraint:
                 data["QuoteConstraintType"]
             )
         )
-    if "Value" in data:
+    if data.get("Value") is not None:
         out["value"] = data["Value"]
     return out

@@ -27,11 +27,11 @@ def serialize_aws_json_1_1(value: Datatype) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Datatype:
     out: Datatype = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
     else:
         raise DeserializationError("Datatype.id required")
-    if "Label" in data:
+    if data.get("Label") is not None:
         out["label"] = data["Label"]
     else:
         raise DeserializationError("Datatype.label required")

@@ -50,17 +50,17 @@ def serialize_json(value: Detection) -> dict:
 
 def deserialize_json(data: dict) -> Detection:
     out: Detection = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "count" in data:
+    if data.get("count") is not None:
         out["count"] = data["count"]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "suppressed" in data:
+    if data.get("suppressed") is not None:
         out["suppressed"] = data["suppressed"]
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_macie2.types.data_identifier_type
 
         out["type"] = capo_macie2.types.data_identifier_type.deserialize_json(

@@ -49,18 +49,18 @@ def serialize_aws_json_1_1(value: UpdateGroupRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateGroupRequest:
     out: UpdateGroupRequest = {}  # type: ignore[typeddict-item]
-    if "GroupName" in data:
+    if data.get("GroupName") is not None:
         out["group_name"] = data["GroupName"]
     else:
         raise DeserializationError("UpdateGroupRequest.group_name required")
-    if "UserPoolId" in data:
+    if data.get("UserPoolId") is not None:
         out["user_pool_id"] = data["UserPoolId"]
     else:
         raise DeserializationError("UpdateGroupRequest.user_pool_id required")
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "RoleArn" in data:
+    if data.get("RoleArn") is not None:
         out["role_arn"] = data["RoleArn"]
-    if "Precedence" in data:
+    if data.get("Precedence") is not None:
         out["precedence"] = data["Precedence"]
     return out

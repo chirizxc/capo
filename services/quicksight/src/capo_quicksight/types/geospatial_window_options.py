@@ -40,7 +40,7 @@ def serialize_json(value: GeospatialWindowOptions) -> dict:
 
 def deserialize_json(data: dict) -> GeospatialWindowOptions:
     out: GeospatialWindowOptions = {}  # type: ignore[typeddict-item]
-    if "Bounds" in data:
+    if data.get("Bounds") is not None:
         import capo_quicksight.types.geospatial_coordinate_bounds
 
         out["bounds"] = (
@@ -48,7 +48,7 @@ def deserialize_json(data: dict) -> GeospatialWindowOptions:
                 data["Bounds"]
             )
         )
-    if "MapZoomMode" in data:
+    if data.get("MapZoomMode") is not None:
         import capo_quicksight.types.map_zoom_mode
 
         out["map_zoom_mode"] = capo_quicksight.types.map_zoom_mode.deserialize_json(

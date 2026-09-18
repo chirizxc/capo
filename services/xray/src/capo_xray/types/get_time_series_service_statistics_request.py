@@ -63,7 +63,7 @@ def serialize_json(value: GetTimeSeriesServiceStatisticsRequest) -> dict:
 
 def deserialize_json(data: dict) -> GetTimeSeriesServiceStatisticsRequest:
     out: GetTimeSeriesServiceStatisticsRequest = {}  # type: ignore[typeddict-item]
-    if "StartTime" in data:
+    if data.get("StartTime") is not None:
         import capo_xray.types.timestamp
 
         out["start_time"] = capo_xray.types.timestamp.deserialize_json(
@@ -73,7 +73,7 @@ def deserialize_json(data: dict) -> GetTimeSeriesServiceStatisticsRequest:
         raise DeserializationError(
             "GetTimeSeriesServiceStatisticsRequest.start_time required"
         )
-    if "EndTime" in data:
+    if data.get("EndTime") is not None:
         import capo_xray.types.timestamp
 
         out["end_time"] = capo_xray.types.timestamp.deserialize_json(data["EndTime"])
@@ -81,16 +81,16 @@ def deserialize_json(data: dict) -> GetTimeSeriesServiceStatisticsRequest:
         raise DeserializationError(
             "GetTimeSeriesServiceStatisticsRequest.end_time required"
         )
-    if "GroupName" in data:
+    if data.get("GroupName") is not None:
         out["group_name"] = data["GroupName"]
-    if "GroupARN" in data:
+    if data.get("GroupARN") is not None:
         out["group_arn"] = data["GroupARN"]
-    if "EntitySelectorExpression" in data:
+    if data.get("EntitySelectorExpression") is not None:
         out["entity_selector_expression"] = data["EntitySelectorExpression"]
-    if "Period" in data:
+    if data.get("Period") is not None:
         out["period"] = data["Period"]
-    if "ForecastStatistics" in data:
+    if data.get("ForecastStatistics") is not None:
         out["forecast_statistics"] = data["ForecastStatistics"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

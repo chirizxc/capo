@@ -63,7 +63,7 @@ def serialize_json(value: PackageGroupOriginRestriction) -> dict:
 
 def deserialize_json(data: dict) -> PackageGroupOriginRestriction:
     out: PackageGroupOriginRestriction = {}  # type: ignore[typeddict-item]
-    if "mode" in data:
+    if data.get("mode") is not None:
         import capo_codeartifact.types.package_group_origin_restriction_mode
 
         out["mode"] = (
@@ -71,7 +71,7 @@ def deserialize_json(data: dict) -> PackageGroupOriginRestriction:
                 data["mode"]
             )
         )
-    if "effectiveMode" in data:
+    if data.get("effectiveMode") is not None:
         import capo_codeartifact.types.package_group_origin_restriction_mode
 
         out["effective_mode"] = (
@@ -79,7 +79,7 @@ def deserialize_json(data: dict) -> PackageGroupOriginRestriction:
                 data["effectiveMode"]
             )
         )
-    if "inheritedFrom" in data:
+    if data.get("inheritedFrom") is not None:
         import capo_codeartifact.types.package_group_reference
 
         out["inherited_from"] = (
@@ -87,6 +87,6 @@ def deserialize_json(data: dict) -> PackageGroupOriginRestriction:
                 data["inheritedFrom"]
             )
         )
-    if "repositoriesCount" in data:
+    if data.get("repositoriesCount") is not None:
         out["repositories_count"] = data["repositoriesCount"]
     return out

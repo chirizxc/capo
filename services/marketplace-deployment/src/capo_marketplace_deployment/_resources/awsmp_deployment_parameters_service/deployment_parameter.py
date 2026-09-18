@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import datetime
+import uuid
 from typing import TYPE_CHECKING, Optional
 
 import capo_marketplace_deployment._auth._signers
@@ -97,23 +98,26 @@ class DeploymentParameter:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_marketplace_deployment.types.put_deployment_parameter_request.PutDeploymentParameterRequest = {}  # type: ignore[typeddict-item]
-        input_["catalog"] = catalog
-        input_["product_id"] = product_id
-        input_["agreement_id"] = agreement_id
-        input_["deployment_parameter"] = deployment_parameter
+        input_: capo_marketplace_deployment.types.put_deployment_parameter_request.PutDeploymentParameterRequest = {
+            "catalog": catalog,
+            "product_id": product_id,
+            "agreement_id": agreement_id,
+            "deployment_parameter": deployment_parameter,
+        }
         if tags is not None:
             input_["tags"] = tags
         if expiration_date is not None:
             input_["expiration_date"] = expiration_date
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -183,21 +187,24 @@ class AsyncDeploymentParameter:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_marketplace_deployment.types.put_deployment_parameter_request.PutDeploymentParameterRequest = {}  # type: ignore[typeddict-item]
-        input_["catalog"] = catalog
-        input_["product_id"] = product_id
-        input_["agreement_id"] = agreement_id
-        input_["deployment_parameter"] = deployment_parameter
+        input_: capo_marketplace_deployment.types.put_deployment_parameter_request.PutDeploymentParameterRequest = {
+            "catalog": catalog,
+            "product_id": product_id,
+            "agreement_id": agreement_id,
+            "deployment_parameter": deployment_parameter,
+        }
         if tags is not None:
             input_["tags"] = tags
         if expiration_date is not None:
             input_["expiration_date"] = expiration_date
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

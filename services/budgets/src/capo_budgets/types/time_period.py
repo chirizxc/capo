@@ -35,13 +35,13 @@ def serialize_aws_json_1_1(value: TimePeriod) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> TimePeriod:
     out: TimePeriod = {}  # type: ignore[typeddict-item]
-    if "Start" in data:
+    if data.get("Start") is not None:
         import capo_budgets.types.generic_timestamp
 
         out["start"] = capo_budgets.types.generic_timestamp.deserialize_aws_json_1_1(
             data["Start"]
         )
-    if "End" in data:
+    if data.get("End") is not None:
         import capo_budgets.types.generic_timestamp
 
         out["end"] = capo_budgets.types.generic_timestamp.deserialize_aws_json_1_1(

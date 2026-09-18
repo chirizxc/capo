@@ -70,7 +70,7 @@ def serialize_aws_json_1_1(value: PartnerAppConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PartnerAppConfig:
     out: PartnerAppConfig = {}  # type: ignore[typeddict-item]
-    if "AdminUsers" in data:
+    if data.get("AdminUsers") is not None:
         import capo_sagemaker.types.partner_app_admin_user_list
 
         out["admin_users"] = (
@@ -78,7 +78,7 @@ def deserialize_aws_json_1_1(data: dict) -> PartnerAppConfig:
                 data["AdminUsers"]
             )
         )
-    if "Arguments" in data:
+    if data.get("Arguments") is not None:
         import capo_sagemaker.types.partner_app_arguments
 
         out["arguments"] = (
@@ -86,7 +86,7 @@ def deserialize_aws_json_1_1(data: dict) -> PartnerAppConfig:
                 data["Arguments"]
             )
         )
-    if "AssignedGroupPatterns" in data:
+    if data.get("AssignedGroupPatterns") is not None:
         import capo_sagemaker.types.assigned_group_patterns_list
 
         out["assigned_group_patterns"] = (
@@ -94,7 +94,7 @@ def deserialize_aws_json_1_1(data: dict) -> PartnerAppConfig:
                 data["AssignedGroupPatterns"]
             )
         )
-    if "RoleGroupAssignments" in data:
+    if data.get("RoleGroupAssignments") is not None:
         import capo_sagemaker.types.role_group_assignments_list
 
         out["role_group_assignments"] = (

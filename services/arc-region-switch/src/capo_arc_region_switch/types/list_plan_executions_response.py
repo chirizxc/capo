@@ -35,7 +35,7 @@ def serialize_aws_json_1_0(value: ListPlanExecutionsResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ListPlanExecutionsResponse:
     out: ListPlanExecutionsResponse = {}  # type: ignore[typeddict-item]
-    if "items" in data:
+    if data.get("items") is not None:
         import capo_arc_region_switch.types.abbreviated_executions_list
 
         out["items"] = (
@@ -43,6 +43,6 @@ def deserialize_aws_json_1_0(data: dict) -> ListPlanExecutionsResponse:
                 data["items"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

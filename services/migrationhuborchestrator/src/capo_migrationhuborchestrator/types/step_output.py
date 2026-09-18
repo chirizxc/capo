@@ -31,10 +31,10 @@ def serialize_json(value: StepOutput) -> dict:
 
 def deserialize_json(data: dict) -> StepOutput:
     out: StepOutput = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "dataType" in data:
+    if data.get("dataType") is not None:
         out["data_type"] = data["dataType"]
-    if "required" in data:
+    if data.get("required") is not None:
         out["required"] = data["required"]
     return out

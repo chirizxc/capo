@@ -75,28 +75,28 @@ def serialize_json(value: ConfigurationProfile) -> dict:
 
 def deserialize_json(data: dict) -> ConfigurationProfile:
     out: ConfigurationProfile = {}  # type: ignore[typeddict-item]
-    if "ApplicationId" in data:
+    if data.get("ApplicationId") is not None:
         out["application_id"] = data["ApplicationId"]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "LocationUri" in data:
+    if data.get("LocationUri") is not None:
         out["location_uri"] = data["LocationUri"]
-    if "RetrievalRoleArn" in data:
+    if data.get("RetrievalRoleArn") is not None:
         out["retrieval_role_arn"] = data["RetrievalRoleArn"]
-    if "Validators" in data:
+    if data.get("Validators") is not None:
         import capo_appconfig.types.validator_list
 
         out["validators"] = capo_appconfig.types.validator_list.deserialize_json(
             data["Validators"]
         )
-    if "Type" in data:
+    if data.get("Type") is not None:
         out["type"] = data["Type"]
-    if "KmsKeyArn" in data:
+    if data.get("KmsKeyArn") is not None:
         out["kms_key_arn"] = data["KmsKeyArn"]
-    if "KmsKeyIdentifier" in data:
+    if data.get("KmsKeyIdentifier") is not None:
         out["kms_key_identifier"] = data["KmsKeyIdentifier"]
     return out

@@ -70,15 +70,15 @@ def serialize_json(value: Invitation) -> dict:
 
 def deserialize_json(data: dict) -> Invitation:
     out: Invitation = {}  # type: ignore[typeddict-item]
-    if "InvitationId" in data:
+    if data.get("InvitationId") is not None:
         out["invitation_id"] = data["InvitationId"]
-    if "CreationDate" in data:
+    if data.get("CreationDate") is not None:
         import capo_managedblockchain.types.timestamp
 
         out["creation_date"] = capo_managedblockchain.types.timestamp.deserialize_json(
             data["CreationDate"]
         )
-    if "ExpirationDate" in data:
+    if data.get("ExpirationDate") is not None:
         import capo_managedblockchain.types.timestamp
 
         out["expiration_date"] = (
@@ -86,13 +86,13 @@ def deserialize_json(data: dict) -> Invitation:
                 data["ExpirationDate"]
             )
         )
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_managedblockchain.types.invitation_status
 
         out["status"] = capo_managedblockchain.types.invitation_status.deserialize_json(
             data["Status"]
         )
-    if "NetworkSummary" in data:
+    if data.get("NetworkSummary") is not None:
         import capo_managedblockchain.types.network_summary
 
         out["network_summary"] = (
@@ -100,6 +100,6 @@ def deserialize_json(data: dict) -> Invitation:
                 data["NetworkSummary"]
             )
         )
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
     return out

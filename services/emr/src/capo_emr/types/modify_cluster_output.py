@@ -28,8 +28,8 @@ def serialize_aws_json_1_1(value: ModifyClusterOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ModifyClusterOutput:
     out: ModifyClusterOutput = {}  # type: ignore[typeddict-item]
-    if "StepConcurrencyLevel" in data:
+    if data.get("StepConcurrencyLevel") is not None:
         out["step_concurrency_level"] = data["StepConcurrencyLevel"]
-    if "ExtendedSupport" in data:
+    if data.get("ExtendedSupport") is not None:
         out["extended_support"] = data["ExtendedSupport"]
     return out

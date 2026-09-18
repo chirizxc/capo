@@ -19,7 +19,7 @@ def serialize_json(value: MCPServerAuthorizationDiscoveryConfig) -> dict:
 
 def deserialize_json(data: dict) -> MCPServerAuthorizationDiscoveryConfig:
     out: MCPServerAuthorizationDiscoveryConfig = {}  # type: ignore[typeddict-item]
-    if "returnToEndpoint" in data:
+    if data.get("returnToEndpoint") is not None:
         out["return_to_endpoint"] = data["returnToEndpoint"]
     else:
         raise DeserializationError(

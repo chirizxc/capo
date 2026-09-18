@@ -29,6 +29,8 @@ def deserialize_aws_json_1_1(data: list) -> AggregatedSourceStatusTypeList:
 
     out: AggregatedSourceStatusTypeList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_config_service.types.aggregated_source_status_type.deserialize_aws_json_1_1(
                 item

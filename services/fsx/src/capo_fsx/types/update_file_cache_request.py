@@ -42,11 +42,11 @@ def serialize_aws_json_1_1(value: UpdateFileCacheRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateFileCacheRequest:
     out: UpdateFileCacheRequest = {}  # type: ignore[typeddict-item]
-    if "FileCacheId" in data:
+    if data.get("FileCacheId") is not None:
         out["file_cache_id"] = data["FileCacheId"]
-    if "ClientRequestToken" in data:
+    if data.get("ClientRequestToken") is not None:
         out["client_request_token"] = data["ClientRequestToken"]
-    if "LustreConfiguration" in data:
+    if data.get("LustreConfiguration") is not None:
         import capo_fsx.types.update_file_cache_lustre_configuration
 
         out["lustre_configuration"] = (

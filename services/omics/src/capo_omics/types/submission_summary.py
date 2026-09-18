@@ -48,24 +48,24 @@ def serialize_json(value: SubmissionSummary) -> dict:
 
 def deserialize_json(data: dict) -> SubmissionSummary:
     out: SubmissionSummary = {}  # type: ignore[typeddict-item]
-    if "successfulStartSubmissionCount" in data:
+    if data.get("successfulStartSubmissionCount") is not None:
         out["successful_start_submission_count"] = data[
             "successfulStartSubmissionCount"
         ]
-    if "failedStartSubmissionCount" in data:
+    if data.get("failedStartSubmissionCount") is not None:
         out["failed_start_submission_count"] = data["failedStartSubmissionCount"]
-    if "pendingStartSubmissionCount" in data:
+    if data.get("pendingStartSubmissionCount") is not None:
         out["pending_start_submission_count"] = data["pendingStartSubmissionCount"]
-    if "successfulCancelSubmissionCount" in data:
+    if data.get("successfulCancelSubmissionCount") is not None:
         out["successful_cancel_submission_count"] = data[
             "successfulCancelSubmissionCount"
         ]
-    if "failedCancelSubmissionCount" in data:
+    if data.get("failedCancelSubmissionCount") is not None:
         out["failed_cancel_submission_count"] = data["failedCancelSubmissionCount"]
-    if "successfulDeleteSubmissionCount" in data:
+    if data.get("successfulDeleteSubmissionCount") is not None:
         out["successful_delete_submission_count"] = data[
             "successfulDeleteSubmissionCount"
         ]
-    if "failedDeleteSubmissionCount" in data:
+    if data.get("failedDeleteSubmissionCount") is not None:
         out["failed_delete_submission_count"] = data["failedDeleteSubmissionCount"]
     return out

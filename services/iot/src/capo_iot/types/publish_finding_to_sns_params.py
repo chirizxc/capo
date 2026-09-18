@@ -24,7 +24,7 @@ def serialize_json(value: PublishFindingToSnsParams) -> dict:
 
 def deserialize_json(data: dict) -> PublishFindingToSnsParams:
     out: PublishFindingToSnsParams = {}  # type: ignore[typeddict-item]
-    if "topicArn" in data:
+    if data.get("topicArn") is not None:
         out["topic_arn"] = data["topicArn"]
     else:
         raise DeserializationError("PublishFindingToSnsParams.topic_arn required")

@@ -36,13 +36,13 @@ def serialize_json(value: Anomaly) -> dict:
 
 def deserialize_json(data: dict) -> Anomaly:
     out: Anomaly = {}  # type: ignore[typeddict-item]
-    if "profiles" in data:
+    if data.get("profiles") is not None:
         import capo_guardduty.types.anomaly_profiles
 
         out["profiles"] = capo_guardduty.types.anomaly_profiles.deserialize_json(
             data["profiles"]
         )
-    if "unusual" in data:
+    if data.get("unusual") is not None:
         import capo_guardduty.types.anomaly_unusual
 
         out["unusual"] = capo_guardduty.types.anomaly_unusual.deserialize_json(

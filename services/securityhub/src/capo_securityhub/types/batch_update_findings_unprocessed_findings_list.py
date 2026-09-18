@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> BatchUpdateFindingsUnprocessedFindingsList:
 
     out: BatchUpdateFindingsUnprocessedFindingsList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_securityhub.types.batch_update_findings_unprocessed_finding.deserialize_json(
                 item

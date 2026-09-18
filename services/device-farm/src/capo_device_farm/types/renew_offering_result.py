@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: RenewOfferingResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RenewOfferingResult:
     out: RenewOfferingResult = {}  # type: ignore[typeddict-item]
-    if "offeringTransaction" in data:
+    if data.get("offeringTransaction") is not None:
         import capo_device_farm.types.offering_transaction
 
         out["offering_transaction"] = (

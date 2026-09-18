@@ -33,7 +33,20 @@ def serialize_query(
 ) -> None:
     key_prefix = f"{prefix}." if prefix else ""
     if "default_value" in value:
-        pairs.append((f"{key_prefix}DefaultValue", str(value["default_value"])))
+        pairs.append(
+            (
+                f"{key_prefix}DefaultValue",
+                (
+                    "NaN"
+                    if value["default_value"] != value["default_value"]
+                    else "Infinity"
+                    if value["default_value"] == float("inf")
+                    else "-Infinity"
+                    if value["default_value"] == float("-inf")
+                    else str(value["default_value"])
+                ),
+            )
+        )
     if "source_field" in value:
         pairs.append((f"{key_prefix}SourceField", str(value["source_field"])))
     if "facet_enabled" in value:

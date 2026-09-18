@@ -40,7 +40,7 @@ def serialize_aws_json_1_0(value: BatchGetPolicyOutput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> BatchGetPolicyOutput:
     out: BatchGetPolicyOutput = {}  # type: ignore[typeddict-item]
-    if "results" in data:
+    if data.get("results") is not None:
         import capo_verifiedpermissions.types.batch_get_policy_output_list
 
         out["results"] = (
@@ -50,7 +50,7 @@ def deserialize_aws_json_1_0(data: dict) -> BatchGetPolicyOutput:
         )
     else:
         raise DeserializationError("BatchGetPolicyOutput.results required")
-    if "errors" in data:
+    if data.get("errors") is not None:
         import capo_verifiedpermissions.types.batch_get_policy_error_list
 
         out["errors"] = (

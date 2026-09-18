@@ -42,7 +42,7 @@ def serialize_json(value: VideoSelectorSettings) -> dict:
 
 def deserialize_json(data: dict) -> VideoSelectorSettings:
     out: VideoSelectorSettings = {}  # type: ignore[typeddict-item]
-    if "videoSelectorPid" in data:
+    if data.get("videoSelectorPid") is not None:
         import capo_medialive.types.video_selector_pid
 
         out["video_selector_pid"] = (
@@ -50,7 +50,7 @@ def deserialize_json(data: dict) -> VideoSelectorSettings:
                 data["videoSelectorPid"]
             )
         )
-    if "videoSelectorProgramId" in data:
+    if data.get("videoSelectorProgramId") is not None:
         import capo_medialive.types.video_selector_program_id
 
         out["video_selector_program_id"] = (

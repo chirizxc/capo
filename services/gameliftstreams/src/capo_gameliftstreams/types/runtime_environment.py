@@ -32,7 +32,7 @@ def serialize_json(value: RuntimeEnvironment) -> dict:
 
 def deserialize_json(data: dict) -> RuntimeEnvironment:
     out: RuntimeEnvironment = {}  # type: ignore[typeddict-item]
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_gameliftstreams.types.runtime_environment_type
 
         out["type"] = (
@@ -42,7 +42,7 @@ def deserialize_json(data: dict) -> RuntimeEnvironment:
         )
     else:
         raise DeserializationError("RuntimeEnvironment.type required")
-    if "Version" in data:
+    if data.get("Version") is not None:
         out["version"] = data["Version"]
     else:
         raise DeserializationError("RuntimeEnvironment.version required")

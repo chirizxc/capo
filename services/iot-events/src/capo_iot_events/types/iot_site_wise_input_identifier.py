@@ -31,7 +31,7 @@ def serialize_json(value: IotSiteWiseInputIdentifier) -> dict:
 
 def deserialize_json(data: dict) -> IotSiteWiseInputIdentifier:
     out: IotSiteWiseInputIdentifier = {}  # type: ignore[typeddict-item]
-    if "iotSiteWiseAssetModelPropertyIdentifier" in data:
+    if data.get("iotSiteWiseAssetModelPropertyIdentifier") is not None:
         import capo_iot_events.types.iot_site_wise_asset_model_property_identifier
 
         out["iot_site_wise_asset_model_property_identifier"] = (

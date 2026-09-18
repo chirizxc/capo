@@ -24,7 +24,7 @@ def serialize_json(value: GetFailbackReplicationConfigurationRequest) -> dict:
 
 def deserialize_json(data: dict) -> GetFailbackReplicationConfigurationRequest:
     out: GetFailbackReplicationConfigurationRequest = {}  # type: ignore[typeddict-item]
-    if "recoveryInstanceID" in data:
+    if data.get("recoveryInstanceID") is not None:
         out["recovery_instance_id"] = data["recoveryInstanceID"]
     else:
         raise DeserializationError(

@@ -38,7 +38,7 @@ def serialize_aws_json_1_1(value: SizeConstraintSetUpdate) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SizeConstraintSetUpdate:
     out: SizeConstraintSetUpdate = {}  # type: ignore[typeddict-item]
-    if "Action" in data:
+    if data.get("Action") is not None:
         import capo_waf_regional.types.change_action
 
         out["action"] = capo_waf_regional.types.change_action.deserialize_aws_json_1_1(
@@ -46,7 +46,7 @@ def deserialize_aws_json_1_1(data: dict) -> SizeConstraintSetUpdate:
         )
     else:
         raise DeserializationError("SizeConstraintSetUpdate.action required")
-    if "SizeConstraint" in data:
+    if data.get("SizeConstraint") is not None:
         import capo_waf_regional.types.size_constraint
 
         out["size_constraint"] = (

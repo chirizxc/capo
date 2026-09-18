@@ -37,15 +37,20 @@ class SnapshotScheduleNotFoundFault(ServiceError):
 
     code: str | None = "SnapshotScheduleNotFoundFault"
 
-    def __init__(self, data: SnapshotScheduleNotFoundFault_):
+    def __init__(
+        self, data: SnapshotScheduleNotFoundFault_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="SnapshotScheduleNotFoundFault",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_query(cls, el: Element) -> "SnapshotScheduleNotFoundFault":
-        return cls(deserialize_query(el))
+    def from_query(
+        cls, el: Element, message: str | None = None
+    ) -> "SnapshotScheduleNotFoundFault":
+        return cls(deserialize_query(el), message)

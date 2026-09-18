@@ -36,9 +36,9 @@ def serialize_json(value: HttpDataSourceConfig) -> dict:
 
 def deserialize_json(data: dict) -> HttpDataSourceConfig:
     out: HttpDataSourceConfig = {}  # type: ignore[typeddict-item]
-    if "endpoint" in data:
+    if data.get("endpoint") is not None:
         out["endpoint"] = data["endpoint"]
-    if "authorizationConfig" in data:
+    if data.get("authorizationConfig") is not None:
         import capo_appsync.types.authorization_config
 
         out["authorization_config"] = (

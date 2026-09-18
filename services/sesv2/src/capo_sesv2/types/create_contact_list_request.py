@@ -43,19 +43,19 @@ def serialize_json(value: CreateContactListRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateContactListRequest:
     out: CreateContactListRequest = {}  # type: ignore[typeddict-item]
-    if "ContactListName" in data:
+    if data.get("ContactListName") is not None:
         out["contact_list_name"] = data["ContactListName"]
     else:
         raise DeserializationError(
             "CreateContactListRequest.contact_list_name required"
         )
-    if "Topics" in data:
+    if data.get("Topics") is not None:
         import capo_sesv2.types.topics
 
         out["topics"] = capo_sesv2.types.topics.deserialize_json(data["Topics"])
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_sesv2.types.tag_list
 
         out["tags"] = capo_sesv2.types.tag_list.deserialize_json(data["Tags"])

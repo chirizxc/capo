@@ -45,14 +45,14 @@ def serialize_aws_json_1_1(value: DescribeNamespaceResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeNamespaceResponse:
     out: DescribeNamespaceResponse = {}  # type: ignore[typeddict-item]
-    if "namespaceArn" in data:
+    if data.get("namespaceArn") is not None:
         out["namespace_arn"] = data["namespaceArn"]
-    if "namespaceName" in data:
+    if data.get("namespaceName") is not None:
         out["namespace_name"] = data["namespaceName"]
-    if "trackingNamespaceName" in data:
+    if data.get("trackingNamespaceName") is not None:
         out["tracking_namespace_name"] = data["trackingNamespaceName"]
-    if "trackingNamespaceVersion" in data:
+    if data.get("trackingNamespaceVersion") is not None:
         out["tracking_namespace_version"] = data["trackingNamespaceVersion"]
-    if "namespaceVersion" in data:
+    if data.get("namespaceVersion") is not None:
         out["namespace_version"] = data["namespaceVersion"]
     return out

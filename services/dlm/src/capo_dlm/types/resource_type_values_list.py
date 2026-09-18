@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> ResourceTypeValuesList:
 
     out: ResourceTypeValuesList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_dlm.types.resource_type_values.deserialize_json(item))
     return out

@@ -50,14 +50,14 @@ def serialize_json(value: VietnamAdditionalInfo) -> dict:
 
 def deserialize_json(data: dict) -> VietnamAdditionalInfo:
     out: VietnamAdditionalInfo = {}  # type: ignore[typeddict-item]
-    if "enterpriseIdentificationNumber" in data:
+    if data.get("enterpriseIdentificationNumber") is not None:
         out["enterprise_identification_number"] = data["enterpriseIdentificationNumber"]
-    if "electronicTransactionCodeNumber" in data:
+    if data.get("electronicTransactionCodeNumber") is not None:
         out["electronic_transaction_code_number"] = data[
             "electronicTransactionCodeNumber"
         ]
-    if "paymentVoucherNumber" in data:
+    if data.get("paymentVoucherNumber") is not None:
         out["payment_voucher_number"] = data["paymentVoucherNumber"]
-    if "paymentVoucherNumberDate" in data:
+    if data.get("paymentVoucherNumberDate") is not None:
         out["payment_voucher_number_date"] = data["paymentVoucherNumberDate"]
     return out

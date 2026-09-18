@@ -25,6 +25,6 @@ def serialize_json(value: BulkPublishResponse) -> dict:
 
 def deserialize_json(data: dict) -> BulkPublishResponse:
     out: BulkPublishResponse = {}  # type: ignore[typeddict-item]
-    if "IdentityPoolId" in data:
+    if data.get("IdentityPoolId") is not None:
         out["identity_pool_id"] = data["IdentityPoolId"]
     return out

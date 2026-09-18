@@ -41,19 +41,19 @@ def serialize_json(value: CreateEventActionRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateEventActionRequest:
     out: CreateEventActionRequest = {}  # type: ignore[typeddict-item]
-    if "Action" in data:
+    if data.get("Action") is not None:
         import capo_dataexchange.types.action
 
         out["action"] = capo_dataexchange.types.action.deserialize_json(data["Action"])
     else:
         raise DeserializationError("CreateEventActionRequest.action required")
-    if "Event" in data:
+    if data.get("Event") is not None:
         import capo_dataexchange.types.event
 
         out["event"] = capo_dataexchange.types.event.deserialize_json(data["Event"])
     else:
         raise DeserializationError("CreateEventActionRequest.event required")
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_dataexchange.types.map_of__string
 
         out["tags"] = capo_dataexchange.types.map_of__string.deserialize_json(

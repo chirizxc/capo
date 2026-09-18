@@ -34,7 +34,7 @@ def serialize_json(value: TagResourceRequest) -> dict:
 
 def deserialize_json(data: dict) -> TagResourceRequest:
     out: TagResourceRequest = {}  # type: ignore[typeddict-item]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_route53_recovery_control_config.types.__map_of__string_min0_max256_pattern_s
 
         out["tags"] = (

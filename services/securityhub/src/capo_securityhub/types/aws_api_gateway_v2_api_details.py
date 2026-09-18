@@ -72,25 +72,25 @@ def serialize_json(value: AwsApiGatewayV2ApiDetails) -> dict:
 
 def deserialize_json(data: dict) -> AwsApiGatewayV2ApiDetails:
     out: AwsApiGatewayV2ApiDetails = {}  # type: ignore[typeddict-item]
-    if "ApiEndpoint" in data:
+    if data.get("ApiEndpoint") is not None:
         out["api_endpoint"] = data["ApiEndpoint"]
-    if "ApiId" in data:
+    if data.get("ApiId") is not None:
         out["api_id"] = data["ApiId"]
-    if "ApiKeySelectionExpression" in data:
+    if data.get("ApiKeySelectionExpression") is not None:
         out["api_key_selection_expression"] = data["ApiKeySelectionExpression"]
-    if "CreatedDate" in data:
+    if data.get("CreatedDate") is not None:
         out["created_date"] = data["CreatedDate"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Version" in data:
+    if data.get("Version") is not None:
         out["version"] = data["Version"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "ProtocolType" in data:
+    if data.get("ProtocolType") is not None:
         out["protocol_type"] = data["ProtocolType"]
-    if "RouteSelectionExpression" in data:
+    if data.get("RouteSelectionExpression") is not None:
         out["route_selection_expression"] = data["RouteSelectionExpression"]
-    if "CorsConfiguration" in data:
+    if data.get("CorsConfiguration") is not None:
         import capo_securityhub.types.aws_cors_configuration
 
         out["cors_configuration"] = (

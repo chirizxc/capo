@@ -45,15 +45,15 @@ def serialize_aws_json_1_1(value: DeleteBuildBatchOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteBuildBatchOutput:
     out: DeleteBuildBatchOutput = {}  # type: ignore[typeddict-item]
-    if "statusCode" in data:
+    if data.get("statusCode") is not None:
         out["status_code"] = data["statusCode"]
-    if "buildsDeleted" in data:
+    if data.get("buildsDeleted") is not None:
         import capo_codebuild.types.build_ids
 
         out["builds_deleted"] = capo_codebuild.types.build_ids.deserialize_aws_json_1_1(
             data["buildsDeleted"]
         )
-    if "buildsNotDeleted" in data:
+    if data.get("buildsNotDeleted") is not None:
         import capo_codebuild.types.builds_not_deleted
 
         out["builds_not_deleted"] = (

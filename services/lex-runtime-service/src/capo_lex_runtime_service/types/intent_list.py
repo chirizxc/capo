@@ -25,6 +25,8 @@ def deserialize_json(data: list) -> IntentList:
 
     out: IntentList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_lex_runtime_service.types.predicted_intent.deserialize_json(item)
         )

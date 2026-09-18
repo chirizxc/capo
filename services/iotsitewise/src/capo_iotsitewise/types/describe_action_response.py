@@ -60,11 +60,11 @@ def serialize_json(value: DescribeActionResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribeActionResponse:
     out: DescribeActionResponse = {}  # type: ignore[typeddict-item]
-    if "actionId" in data:
+    if data.get("actionId") is not None:
         out["action_id"] = data["actionId"]
     else:
         raise DeserializationError("DescribeActionResponse.action_id required")
-    if "targetResource" in data:
+    if data.get("targetResource") is not None:
         import capo_iotsitewise.types.target_resource
 
         out["target_resource"] = (
@@ -74,13 +74,13 @@ def deserialize_json(data: dict) -> DescribeActionResponse:
         )
     else:
         raise DeserializationError("DescribeActionResponse.target_resource required")
-    if "actionDefinitionId" in data:
+    if data.get("actionDefinitionId") is not None:
         out["action_definition_id"] = data["actionDefinitionId"]
     else:
         raise DeserializationError(
             "DescribeActionResponse.action_definition_id required"
         )
-    if "actionPayload" in data:
+    if data.get("actionPayload") is not None:
         import capo_iotsitewise.types.action_payload
 
         out["action_payload"] = capo_iotsitewise.types.action_payload.deserialize_json(
@@ -88,7 +88,7 @@ def deserialize_json(data: dict) -> DescribeActionResponse:
         )
     else:
         raise DeserializationError("DescribeActionResponse.action_payload required")
-    if "executionTime" in data:
+    if data.get("executionTime") is not None:
         import capo_iotsitewise.types.timestamp
 
         out["execution_time"] = capo_iotsitewise.types.timestamp.deserialize_json(
@@ -96,7 +96,7 @@ def deserialize_json(data: dict) -> DescribeActionResponse:
         )
     else:
         raise DeserializationError("DescribeActionResponse.execution_time required")
-    if "resolveTo" in data:
+    if data.get("resolveTo") is not None:
         import capo_iotsitewise.types.resolve_to
 
         out["resolve_to"] = capo_iotsitewise.types.resolve_to.deserialize_json(

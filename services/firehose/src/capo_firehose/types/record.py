@@ -26,7 +26,7 @@ def serialize_aws_json_1_1(value: Record) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Record:
     out: Record = {}  # type: ignore[typeddict-item]
-    if "Data" in data:
+    if data.get("Data") is not None:
         import capo_firehose.types.data
 
         out["data"] = capo_firehose.types.data.deserialize_aws_json_1_1(data["Data"])

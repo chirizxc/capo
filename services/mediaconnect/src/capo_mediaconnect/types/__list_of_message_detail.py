@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> __listOfMessageDetail:
 
     out: __listOfMessageDetail = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_mediaconnect.types.message_detail.deserialize_json(item))
     return out

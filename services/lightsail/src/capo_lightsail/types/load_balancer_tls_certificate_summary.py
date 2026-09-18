@@ -28,8 +28,8 @@ def serialize_aws_json_1_1(value: LoadBalancerTlsCertificateSummary) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> LoadBalancerTlsCertificateSummary:
     out: LoadBalancerTlsCertificateSummary = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "isAttached" in data:
+    if data.get("isAttached") is not None:
         out["is_attached"] = data["isAttached"]
     return out

@@ -45,11 +45,11 @@ def serialize_json(value: SidewalkGetDeviceProfile) -> dict:
 
 def deserialize_json(data: dict) -> SidewalkGetDeviceProfile:
     out: SidewalkGetDeviceProfile = {}  # type: ignore[typeddict-item]
-    if "ApplicationServerPublicKey" in data:
+    if data.get("ApplicationServerPublicKey") is not None:
         out["application_server_public_key"] = data["ApplicationServerPublicKey"]
-    if "QualificationStatus" in data:
+    if data.get("QualificationStatus") is not None:
         out["qualification_status"] = data["QualificationStatus"]
-    if "DakCertificateMetadata" in data:
+    if data.get("DakCertificateMetadata") is not None:
         import capo_iot_wireless.types.dak_certificate_metadata_list
 
         out["dak_certificate_metadata"] = (

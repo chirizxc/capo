@@ -43,12 +43,12 @@ def serialize_aws_json_1_1(value: ExperimentConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ExperimentConfig:
     out: ExperimentConfig = {}  # type: ignore[typeddict-item]
-    if "ExperimentName" in data:
+    if data.get("ExperimentName") is not None:
         out["experiment_name"] = data["ExperimentName"]
-    if "TrialName" in data:
+    if data.get("TrialName") is not None:
         out["trial_name"] = data["TrialName"]
-    if "TrialComponentDisplayName" in data:
+    if data.get("TrialComponentDisplayName") is not None:
         out["trial_component_display_name"] = data["TrialComponentDisplayName"]
-    if "RunName" in data:
+    if data.get("RunName") is not None:
         out["run_name"] = data["RunName"]
     return out

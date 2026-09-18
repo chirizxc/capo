@@ -32,7 +32,7 @@ def serialize_json(value: ListVirtualGatewaysOutput) -> dict:
 
 def deserialize_json(data: dict) -> ListVirtualGatewaysOutput:
     out: ListVirtualGatewaysOutput = {}  # type: ignore[typeddict-item]
-    if "virtualGateways" in data:
+    if data.get("virtualGateways") is not None:
         import capo_app_mesh.types.virtual_gateway_list
 
         out["virtual_gateways"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> ListVirtualGatewaysOutput:
         raise DeserializationError(
             "ListVirtualGatewaysOutput.virtual_gateways required"
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

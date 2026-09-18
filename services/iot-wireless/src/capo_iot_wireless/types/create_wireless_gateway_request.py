@@ -54,11 +54,11 @@ def serialize_json(value: CreateWirelessGatewayRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateWirelessGatewayRequest:
     out: CreateWirelessGatewayRequest = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "LoRaWAN" in data:
+    if data.get("LoRaWAN") is not None:
         import capo_iot_wireless.types.lo_ra_wan_gateway
 
         out["lo_ra_wan"] = capo_iot_wireless.types.lo_ra_wan_gateway.deserialize_json(
@@ -66,10 +66,10 @@ def deserialize_json(data: dict) -> CreateWirelessGatewayRequest:
         )
     else:
         raise DeserializationError("CreateWirelessGatewayRequest.lo_ra_wan required")
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_iot_wireless.types.tag_list
 
         out["tags"] = capo_iot_wireless.types.tag_list.deserialize_json(data["Tags"])
-    if "ClientRequestToken" in data:
+    if data.get("ClientRequestToken") is not None:
         out["client_request_token"] = data["ClientRequestToken"]
     return out

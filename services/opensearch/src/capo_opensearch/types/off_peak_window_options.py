@@ -32,9 +32,9 @@ def serialize_json(value: OffPeakWindowOptions) -> dict:
 
 def deserialize_json(data: dict) -> OffPeakWindowOptions:
     out: OffPeakWindowOptions = {}  # type: ignore[typeddict-item]
-    if "Enabled" in data:
+    if data.get("Enabled") is not None:
         out["enabled"] = data["Enabled"]
-    if "OffPeakWindow" in data:
+    if data.get("OffPeakWindow") is not None:
         import capo_opensearch.types.off_peak_window
 
         out["off_peak_window"] = capo_opensearch.types.off_peak_window.deserialize_json(

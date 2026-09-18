@@ -33,15 +33,15 @@ def serialize_aws_json_1_1(value: CloudWatchLoggingOptionDescription) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CloudWatchLoggingOptionDescription:
     out: CloudWatchLoggingOptionDescription = {}  # type: ignore[typeddict-item]
-    if "CloudWatchLoggingOptionId" in data:
+    if data.get("CloudWatchLoggingOptionId") is not None:
         out["cloud_watch_logging_option_id"] = data["CloudWatchLoggingOptionId"]
-    if "LogStreamARN" in data:
+    if data.get("LogStreamARN") is not None:
         out["log_stream_arn"] = data["LogStreamARN"]
     else:
         raise DeserializationError(
             "CloudWatchLoggingOptionDescription.log_stream_arn required"
         )
-    if "RoleARN" in data:
+    if data.get("RoleARN") is not None:
         out["role_arn"] = data["RoleARN"]
     else:
         raise DeserializationError(

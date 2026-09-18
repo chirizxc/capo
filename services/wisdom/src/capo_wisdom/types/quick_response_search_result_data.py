@@ -91,16 +91,8 @@ def serialize_json(value: QuickResponseSearchResultData) -> dict:
     out["contents"] = capo_wisdom.types.quick_response_contents.serialize_json(
         value["contents"]
     )
-    import capo_wisdom.types._prelude.timestamp
-
-    out["createdTime"] = capo_wisdom.types._prelude.timestamp.serialize_json(
-        value["created_time"]
-    )
-    import capo_wisdom.types._prelude.timestamp
-
-    out["lastModifiedTime"] = capo_wisdom.types._prelude.timestamp.serialize_json(
-        value["last_modified_time"]
-    )
+    out["createdTime"] = value["created_time"].timestamp()
+    out["lastModifiedTime"] = value["last_modified_time"].timestamp()
     out["isActive"] = value["is_active"]
     if "description" in value:
         out["description"] = value["description"]
@@ -147,45 +139,45 @@ def serialize_json(value: QuickResponseSearchResultData) -> dict:
 
 def deserialize_json(data: dict) -> QuickResponseSearchResultData:
     out: QuickResponseSearchResultData = {}  # type: ignore[typeddict-item]
-    if "quickResponseArn" in data:
+    if data.get("quickResponseArn") is not None:
         out["quick_response_arn"] = data["quickResponseArn"]
     else:
         raise DeserializationError(
             "QuickResponseSearchResultData.quick_response_arn required"
         )
-    if "quickResponseId" in data:
+    if data.get("quickResponseId") is not None:
         out["quick_response_id"] = data["quickResponseId"]
     else:
         raise DeserializationError(
             "QuickResponseSearchResultData.quick_response_id required"
         )
-    if "knowledgeBaseArn" in data:
+    if data.get("knowledgeBaseArn") is not None:
         out["knowledge_base_arn"] = data["knowledgeBaseArn"]
     else:
         raise DeserializationError(
             "QuickResponseSearchResultData.knowledge_base_arn required"
         )
-    if "knowledgeBaseId" in data:
+    if data.get("knowledgeBaseId") is not None:
         out["knowledge_base_id"] = data["knowledgeBaseId"]
     else:
         raise DeserializationError(
             "QuickResponseSearchResultData.knowledge_base_id required"
         )
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("QuickResponseSearchResultData.name required")
-    if "contentType" in data:
+    if data.get("contentType") is not None:
         out["content_type"] = data["contentType"]
     else:
         raise DeserializationError(
             "QuickResponseSearchResultData.content_type required"
         )
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
     else:
         raise DeserializationError("QuickResponseSearchResultData.status required")
-    if "contents" in data:
+    if data.get("contents") is not None:
         import capo_wisdom.types.quick_response_contents
 
         out["contents"] = capo_wisdom.types.quick_response_contents.deserialize_json(
@@ -193,35 +185,33 @@ def deserialize_json(data: dict) -> QuickResponseSearchResultData:
         )
     else:
         raise DeserializationError("QuickResponseSearchResultData.contents required")
-    if "createdTime" in data:
-        import capo_wisdom.types._prelude.timestamp
+    if data.get("createdTime") is not None:
+        import datetime
 
-        out["created_time"] = capo_wisdom.types._prelude.timestamp.deserialize_json(
-            data["createdTime"]
+        out["created_time"] = datetime.datetime.fromtimestamp(
+            float(data["createdTime"]), tz=datetime.timezone.utc
         )
     else:
         raise DeserializationError(
             "QuickResponseSearchResultData.created_time required"
         )
-    if "lastModifiedTime" in data:
-        import capo_wisdom.types._prelude.timestamp
+    if data.get("lastModifiedTime") is not None:
+        import datetime
 
-        out["last_modified_time"] = (
-            capo_wisdom.types._prelude.timestamp.deserialize_json(
-                data["lastModifiedTime"]
-            )
+        out["last_modified_time"] = datetime.datetime.fromtimestamp(
+            float(data["lastModifiedTime"]), tz=datetime.timezone.utc
         )
     else:
         raise DeserializationError(
             "QuickResponseSearchResultData.last_modified_time required"
         )
-    if "isActive" in data:
+    if data.get("isActive") is not None:
         out["is_active"] = data["isActive"]
     else:
         raise DeserializationError("QuickResponseSearchResultData.is_active required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "groupingConfiguration" in data:
+    if data.get("groupingConfiguration") is not None:
         import capo_wisdom.types.grouping_configuration
 
         out["grouping_configuration"] = (
@@ -229,17 +219,17 @@ def deserialize_json(data: dict) -> QuickResponseSearchResultData:
                 data["groupingConfiguration"]
             )
         )
-    if "shortcutKey" in data:
+    if data.get("shortcutKey") is not None:
         out["shortcut_key"] = data["shortcutKey"]
-    if "lastModifiedBy" in data:
+    if data.get("lastModifiedBy") is not None:
         out["last_modified_by"] = data["lastModifiedBy"]
-    if "channels" in data:
+    if data.get("channels") is not None:
         import capo_wisdom.types.channels
 
         out["channels"] = capo_wisdom.types.channels.deserialize_json(data["channels"])
-    if "language" in data:
+    if data.get("language") is not None:
         out["language"] = data["language"]
-    if "attributesNotInterpolated" in data:
+    if data.get("attributesNotInterpolated") is not None:
         import capo_wisdom.types.contact_attribute_keys
 
         out["attributes_not_interpolated"] = (
@@ -247,7 +237,7 @@ def deserialize_json(data: dict) -> QuickResponseSearchResultData:
                 data["attributesNotInterpolated"]
             )
         )
-    if "attributesInterpolated" in data:
+    if data.get("attributesInterpolated") is not None:
         import capo_wisdom.types.contact_attribute_keys
 
         out["attributes_interpolated"] = (
@@ -255,7 +245,7 @@ def deserialize_json(data: dict) -> QuickResponseSearchResultData:
                 data["attributesInterpolated"]
             )
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_wisdom.types.tags
 
         out["tags"] = capo_wisdom.types.tags.deserialize_json(data["tags"])

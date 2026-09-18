@@ -54,7 +54,7 @@ def serialize_aws_json_1_1(value: SearchEntitiesRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SearchEntitiesRequest:
     out: SearchEntitiesRequest = {}  # type: ignore[typeddict-item]
-    if "entityTypes" in data:
+    if data.get("entityTypes") is not None:
         import capo_iotthingsgraph.types.entity_types
 
         out["entity_types"] = (
@@ -64,7 +64,7 @@ def deserialize_aws_json_1_1(data: dict) -> SearchEntitiesRequest:
         )
     else:
         raise DeserializationError("SearchEntitiesRequest.entity_types required")
-    if "filters" in data:
+    if data.get("filters") is not None:
         import capo_iotthingsgraph.types.entity_filters
 
         out["filters"] = (
@@ -72,10 +72,10 @@ def deserialize_aws_json_1_1(data: dict) -> SearchEntitiesRequest:
                 data["filters"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
-    if "namespaceVersion" in data:
+    if data.get("namespaceVersion") is not None:
         out["namespace_version"] = data["namespaceVersion"]
     return out

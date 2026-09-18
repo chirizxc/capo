@@ -36,7 +36,7 @@ def serialize_json(value: SearchSpendingLimitsResponse) -> dict:
 
 def deserialize_json(data: dict) -> SearchSpendingLimitsResponse:
     out: SearchSpendingLimitsResponse = {}  # type: ignore[typeddict-item]
-    if "spendingLimits" in data:
+    if data.get("spendingLimits") is not None:
         import capo_braket.types.spending_limit_summary_list
 
         out["spending_limits"] = (
@@ -48,6 +48,6 @@ def deserialize_json(data: dict) -> SearchSpendingLimitsResponse:
         raise DeserializationError(
             "SearchSpendingLimitsResponse.spending_limits required"
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

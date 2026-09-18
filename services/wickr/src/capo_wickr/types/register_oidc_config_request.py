@@ -54,26 +54,26 @@ def serialize_json(value: RegisterOidcConfigRequest) -> dict:
 
 def deserialize_json(data: dict) -> RegisterOidcConfigRequest:
     out: RegisterOidcConfigRequest = {}  # type: ignore[typeddict-item]
-    if "companyId" in data:
+    if data.get("companyId") is not None:
         out["company_id"] = data["companyId"]
     else:
         raise DeserializationError("RegisterOidcConfigRequest.company_id required")
-    if "customUsername" in data:
+    if data.get("customUsername") is not None:
         out["custom_username"] = data["customUsername"]
-    if "extraAuthParams" in data:
+    if data.get("extraAuthParams") is not None:
         out["extra_auth_params"] = data["extraAuthParams"]
-    if "issuer" in data:
+    if data.get("issuer") is not None:
         out["issuer"] = data["issuer"]
     else:
         raise DeserializationError("RegisterOidcConfigRequest.issuer required")
-    if "scopes" in data:
+    if data.get("scopes") is not None:
         out["scopes"] = data["scopes"]
     else:
         raise DeserializationError("RegisterOidcConfigRequest.scopes required")
-    if "secret" in data:
+    if data.get("secret") is not None:
         out["secret"] = data["secret"]
-    if "ssoTokenBufferMinutes" in data:
+    if data.get("ssoTokenBufferMinutes") is not None:
         out["sso_token_buffer_minutes"] = data["ssoTokenBufferMinutes"]
-    if "userId" in data:
+    if data.get("userId") is not None:
         out["user_id"] = data["userId"]
     return out

@@ -24,7 +24,7 @@ def serialize_json(value: CreateSlackChannelConfigurationException_) -> dict:
 
 def deserialize_json(data: dict) -> CreateSlackChannelConfigurationException_:
     out: CreateSlackChannelConfigurationException_ = {}  # type: ignore[typeddict-item]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     return out
 
@@ -34,15 +34,22 @@ class CreateSlackChannelConfigurationException(ServiceError):
 
     code: str | None = "CreateSlackChannelConfigurationException"
 
-    def __init__(self, data: CreateSlackChannelConfigurationException_):
+    def __init__(
+        self,
+        data: CreateSlackChannelConfigurationException_,
+        message: str | None = None,
+    ):
         super().__init__(
             "server",
             is_throttling_error=False,
             is_retryable=False,
             code="CreateSlackChannelConfigurationException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "CreateSlackChannelConfigurationException":
-        return cls(deserialize_json(data))
+    def from_json(
+        cls, data: dict, message: str | None = None
+    ) -> "CreateSlackChannelConfigurationException":
+        return cls(deserialize_json(data), message)

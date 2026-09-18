@@ -41,11 +41,11 @@ def serialize_aws_json_1_1(value: CallbackStepMetadata) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CallbackStepMetadata:
     out: CallbackStepMetadata = {}  # type: ignore[typeddict-item]
-    if "CallbackToken" in data:
+    if data.get("CallbackToken") is not None:
         out["callback_token"] = data["CallbackToken"]
-    if "SqsQueueUrl" in data:
+    if data.get("SqsQueueUrl") is not None:
         out["sqs_queue_url"] = data["SqsQueueUrl"]
-    if "OutputParameters" in data:
+    if data.get("OutputParameters") is not None:
         import capo_sagemaker.types.output_parameter_list
 
         out["output_parameters"] = (

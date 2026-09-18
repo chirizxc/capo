@@ -28,8 +28,8 @@ def serialize_aws_json_1_1(value: S3FileSystemConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> S3FileSystemConfig:
     out: S3FileSystemConfig = {}  # type: ignore[typeddict-item]
-    if "MountPath" in data:
+    if data.get("MountPath") is not None:
         out["mount_path"] = data["MountPath"]
-    if "S3Uri" in data:
+    if data.get("S3Uri") is not None:
         out["s3_uri"] = data["S3Uri"]
     return out

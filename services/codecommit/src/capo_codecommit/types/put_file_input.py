@@ -71,15 +71,15 @@ def serialize_aws_json_1_1(value: PutFileInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PutFileInput:
     out: PutFileInput = {}  # type: ignore[typeddict-item]
-    if "repositoryName" in data:
+    if data.get("repositoryName") is not None:
         out["repository_name"] = data["repositoryName"]
     else:
         raise DeserializationError("PutFileInput.repository_name required")
-    if "branchName" in data:
+    if data.get("branchName") is not None:
         out["branch_name"] = data["branchName"]
     else:
         raise DeserializationError("PutFileInput.branch_name required")
-    if "fileContent" in data:
+    if data.get("fileContent") is not None:
         import capo_codecommit.types.file_content
 
         out["file_content"] = (
@@ -89,11 +89,11 @@ def deserialize_aws_json_1_1(data: dict) -> PutFileInput:
         )
     else:
         raise DeserializationError("PutFileInput.file_content required")
-    if "filePath" in data:
+    if data.get("filePath") is not None:
         out["file_path"] = data["filePath"]
     else:
         raise DeserializationError("PutFileInput.file_path required")
-    if "fileMode" in data:
+    if data.get("fileMode") is not None:
         import capo_codecommit.types.file_mode_type_enum
 
         out["file_mode"] = (
@@ -101,12 +101,12 @@ def deserialize_aws_json_1_1(data: dict) -> PutFileInput:
                 data["fileMode"]
             )
         )
-    if "parentCommitId" in data:
+    if data.get("parentCommitId") is not None:
         out["parent_commit_id"] = data["parentCommitId"]
-    if "commitMessage" in data:
+    if data.get("commitMessage") is not None:
         out["commit_message"] = data["commitMessage"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "email" in data:
+    if data.get("email") is not None:
         out["email"] = data["email"]
     return out

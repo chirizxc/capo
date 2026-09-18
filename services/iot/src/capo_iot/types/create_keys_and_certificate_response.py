@@ -40,13 +40,13 @@ def serialize_json(value: CreateKeysAndCertificateResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateKeysAndCertificateResponse:
     out: CreateKeysAndCertificateResponse = {}  # type: ignore[typeddict-item]
-    if "certificateArn" in data:
+    if data.get("certificateArn") is not None:
         out["certificate_arn"] = data["certificateArn"]
-    if "certificateId" in data:
+    if data.get("certificateId") is not None:
         out["certificate_id"] = data["certificateId"]
-    if "certificatePem" in data:
+    if data.get("certificatePem") is not None:
         out["certificate_pem"] = data["certificatePem"]
-    if "keyPair" in data:
+    if data.get("keyPair") is not None:
         import capo_iot.types.key_pair
 
         out["key_pair"] = capo_iot.types.key_pair.deserialize_json(data["keyPair"])

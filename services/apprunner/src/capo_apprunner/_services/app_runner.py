@@ -1,6 +1,7 @@
 """Generated from Smithy shape ``com.amazonaws.apprunner#AppRunner``."""
 
 import warnings
+from collections.abc import Iterator
 from typing import TYPE_CHECKING, Any, Iterable, Optional
 
 from typing_extensions import Self, TypedDict
@@ -16,6 +17,7 @@ from capo_apprunner._auth._providers import (
     default_aws_credentials_chain,
 )
 from capo_apprunner._auth._zapros_handler import AuthMiddleware
+from capo_apprunner._pagination import resolve_path as _resolve_path
 from capo_apprunner._services._aws_config import aws_config
 from capo_apprunner._services._pipeline import (
     Interceptor,
@@ -267,9 +269,10 @@ class AppRunnerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_apprunner.types.associate_custom_domain_request.AssociateCustomDomainRequest = {}  # type: ignore[typeddict-item]
-        input_["service_arn"] = service_arn
-        input_["domain_name"] = domain_name
+        input_: capo_apprunner.types.associate_custom_domain_request.AssociateCustomDomainRequest = {
+            "service_arn": service_arn,
+            "domain_name": domain_name,
+        }
         if enable_www_subdomain is not None:
             input_["enable_www_subdomain"] = enable_www_subdomain
 
@@ -278,6 +281,7 @@ class AppRunnerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_auto_scaling_configuration(
@@ -327,8 +331,9 @@ class AppRunnerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_apprunner.types.create_auto_scaling_configuration_request.CreateAutoScalingConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["auto_scaling_configuration_name"] = auto_scaling_configuration_name
+        input_: capo_apprunner.types.create_auto_scaling_configuration_request.CreateAutoScalingConfigurationRequest = {
+            "auto_scaling_configuration_name": auto_scaling_configuration_name
+        }
         if max_concurrency is not None:
             input_["max_concurrency"] = max_concurrency
         if min_size is not None:
@@ -343,6 +348,7 @@ class AppRunnerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_connection(
@@ -382,9 +388,10 @@ class AppRunnerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_apprunner.types.create_connection_request.CreateConnectionRequest = {}  # type: ignore[typeddict-item]
-        input_["connection_name"] = connection_name
-        input_["provider_type"] = provider_type
+        input_: capo_apprunner.types.create_connection_request.CreateConnectionRequest = {
+            "connection_name": connection_name,
+            "provider_type": provider_type,
+        }
         if tags is not None:
             input_["tags"] = tags
 
@@ -393,6 +400,7 @@ class AppRunnerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_observability_configuration(
@@ -434,8 +442,9 @@ class AppRunnerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_apprunner.types.create_observability_configuration_request.CreateObservabilityConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["observability_configuration_name"] = observability_configuration_name
+        input_: capo_apprunner.types.create_observability_configuration_request.CreateObservabilityConfigurationRequest = {
+            "observability_configuration_name": observability_configuration_name
+        }
         if trace_configuration is not None:
             input_["trace_configuration"] = trace_configuration
         if tags is not None:
@@ -446,6 +455,7 @@ class AppRunnerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_service(
@@ -509,9 +519,10 @@ class AppRunnerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_apprunner.types.create_service_request.CreateServiceRequest = {}  # type: ignore[typeddict-item]
-        input_["service_name"] = service_name
-        input_["source_configuration"] = source_configuration
+        input_: capo_apprunner.types.create_service_request.CreateServiceRequest = {
+            "service_name": service_name,
+            "source_configuration": source_configuration,
+        }
         if instance_configuration is not None:
             input_["instance_configuration"] = instance_configuration
         if tags is not None:
@@ -532,6 +543,7 @@ class AppRunnerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_vpc_connector(
@@ -575,9 +587,10 @@ class AppRunnerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_apprunner.types.create_vpc_connector_request.CreateVpcConnectorRequest = {}  # type: ignore[typeddict-item]
-        input_["vpc_connector_name"] = vpc_connector_name
-        input_["subnets"] = subnets
+        input_: capo_apprunner.types.create_vpc_connector_request.CreateVpcConnectorRequest = {
+            "vpc_connector_name": vpc_connector_name,
+            "subnets": subnets,
+        }
         if security_groups is not None:
             input_["security_groups"] = security_groups
         if tags is not None:
@@ -588,6 +601,7 @@ class AppRunnerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_vpc_ingress_connection(
@@ -630,10 +644,11 @@ class AppRunnerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_apprunner.types.create_vpc_ingress_connection_request.CreateVpcIngressConnectionRequest = {}  # type: ignore[typeddict-item]
-        input_["service_arn"] = service_arn
-        input_["vpc_ingress_connection_name"] = vpc_ingress_connection_name
-        input_["ingress_vpc_configuration"] = ingress_vpc_configuration
+        input_: capo_apprunner.types.create_vpc_ingress_connection_request.CreateVpcIngressConnectionRequest = {
+            "service_arn": service_arn,
+            "vpc_ingress_connection_name": vpc_ingress_connection_name,
+            "ingress_vpc_configuration": ingress_vpc_configuration,
+        }
         if tags is not None:
             input_["tags"] = tags
 
@@ -642,6 +657,7 @@ class AppRunnerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_auto_scaling_configuration(
@@ -679,8 +695,9 @@ class AppRunnerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_apprunner.types.delete_auto_scaling_configuration_request.DeleteAutoScalingConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["auto_scaling_configuration_arn"] = auto_scaling_configuration_arn
+        input_: capo_apprunner.types.delete_auto_scaling_configuration_request.DeleteAutoScalingConfigurationRequest = {
+            "auto_scaling_configuration_arn": auto_scaling_configuration_arn
+        }
         if delete_all_revisions is not None:
             input_["delete_all_revisions"] = delete_all_revisions
 
@@ -689,6 +706,7 @@ class AppRunnerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_connection(
@@ -724,14 +742,16 @@ class AppRunnerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_apprunner.types.delete_connection_request.DeleteConnectionRequest = {}  # type: ignore[typeddict-item]
-        input_["connection_arn"] = connection_arn
+        input_: capo_apprunner.types.delete_connection_request.DeleteConnectionRequest = {
+            "connection_arn": connection_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_observability_configuration(
@@ -767,14 +787,16 @@ class AppRunnerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_apprunner.types.delete_observability_configuration_request.DeleteObservabilityConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["observability_configuration_arn"] = observability_configuration_arn
+        input_: capo_apprunner.types.delete_observability_configuration_request.DeleteObservabilityConfigurationRequest = {
+            "observability_configuration_arn": observability_configuration_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_service(
@@ -811,14 +833,16 @@ class AppRunnerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_apprunner.types.delete_service_request.DeleteServiceRequest = {}  # type: ignore[typeddict-item]
-        input_["service_arn"] = service_arn
+        input_: capo_apprunner.types.delete_service_request.DeleteServiceRequest = {
+            "service_arn": service_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_vpc_connector(
@@ -856,14 +880,16 @@ class AppRunnerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_apprunner.types.delete_vpc_connector_request.DeleteVpcConnectorRequest = {}  # type: ignore[typeddict-item]
-        input_["vpc_connector_arn"] = vpc_connector_arn
+        input_: capo_apprunner.types.delete_vpc_connector_request.DeleteVpcConnectorRequest = {
+            "vpc_connector_arn": vpc_connector_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_vpc_ingress_connection(
@@ -900,14 +926,16 @@ class AppRunnerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_apprunner.types.delete_vpc_ingress_connection_request.DeleteVpcIngressConnectionRequest = {}  # type: ignore[typeddict-item]
-        input_["vpc_ingress_connection_arn"] = vpc_ingress_connection_arn
+        input_: capo_apprunner.types.delete_vpc_ingress_connection_request.DeleteVpcIngressConnectionRequest = {
+            "vpc_ingress_connection_arn": vpc_ingress_connection_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_auto_scaling_configuration(
@@ -943,14 +971,16 @@ class AppRunnerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_apprunner.types.describe_auto_scaling_configuration_request.DescribeAutoScalingConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["auto_scaling_configuration_arn"] = auto_scaling_configuration_arn
+        input_: capo_apprunner.types.describe_auto_scaling_configuration_request.DescribeAutoScalingConfigurationRequest = {
+            "auto_scaling_configuration_arn": auto_scaling_configuration_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_custom_domains(
@@ -992,8 +1022,9 @@ class AppRunnerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_apprunner.types.describe_custom_domains_request.DescribeCustomDomainsRequest = {}  # type: ignore[typeddict-item]
-        input_["service_arn"] = service_arn
+        input_: capo_apprunner.types.describe_custom_domains_request.DescribeCustomDomainsRequest = {
+            "service_arn": service_arn
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -1004,7 +1035,31 @@ class AppRunnerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_describe_custom_domains(
+        self,
+        service_arn: "capo_apprunner.types.app_runner_resource_arn.AppRunnerResourceArn",
+        *,
+        config_overrides: Optional[AppRunnerClientConfig] = None,
+        next_token: Optional["capo_apprunner.types.string.String"] = None,
+        max_results: Optional[
+            "capo_apprunner.types.describe_custom_domains_max_results.DescribeCustomDomainsMaxResults"
+        ] = None,
+    ) -> "Iterator[capo_apprunner.types.describe_custom_domains_response.DescribeCustomDomainsResponse]":
+        _token = next_token
+        while True:
+            _response = self.describe_custom_domains(
+                service_arn,
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def describe_observability_configuration(
         self,
@@ -1039,14 +1094,16 @@ class AppRunnerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_apprunner.types.describe_observability_configuration_request.DescribeObservabilityConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["observability_configuration_arn"] = observability_configuration_arn
+        input_: capo_apprunner.types.describe_observability_configuration_request.DescribeObservabilityConfigurationRequest = {
+            "observability_configuration_arn": observability_configuration_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_service(
@@ -1082,14 +1139,16 @@ class AppRunnerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_apprunner.types.describe_service_request.DescribeServiceRequest = {}  # type: ignore[typeddict-item]
-        input_["service_arn"] = service_arn
+        input_: capo_apprunner.types.describe_service_request.DescribeServiceRequest = {
+            "service_arn": service_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_vpc_connector(
@@ -1125,14 +1184,16 @@ class AppRunnerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_apprunner.types.describe_vpc_connector_request.DescribeVpcConnectorRequest = {}  # type: ignore[typeddict-item]
-        input_["vpc_connector_arn"] = vpc_connector_arn
+        input_: capo_apprunner.types.describe_vpc_connector_request.DescribeVpcConnectorRequest = {
+            "vpc_connector_arn": vpc_connector_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_vpc_ingress_connection(
@@ -1168,14 +1229,16 @@ class AppRunnerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_apprunner.types.describe_vpc_ingress_connection_request.DescribeVpcIngressConnectionRequest = {}  # type: ignore[typeddict-item]
-        input_["vpc_ingress_connection_arn"] = vpc_ingress_connection_arn
+        input_: capo_apprunner.types.describe_vpc_ingress_connection_request.DescribeVpcIngressConnectionRequest = {
+            "vpc_ingress_connection_arn": vpc_ingress_connection_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def disassociate_custom_domain(
@@ -1214,15 +1277,17 @@ class AppRunnerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_apprunner.types.disassociate_custom_domain_request.DisassociateCustomDomainRequest = {}  # type: ignore[typeddict-item]
-        input_["service_arn"] = service_arn
-        input_["domain_name"] = domain_name
+        input_: capo_apprunner.types.disassociate_custom_domain_request.DisassociateCustomDomainRequest = {
+            "service_arn": service_arn,
+            "domain_name": domain_name,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_auto_scaling_configurations(
@@ -1265,7 +1330,7 @@ class AppRunnerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_apprunner.types.list_auto_scaling_configurations_request.ListAutoScalingConfigurationsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_apprunner.types.list_auto_scaling_configurations_request.ListAutoScalingConfigurationsRequest = {}
         if auto_scaling_configuration_name is not None:
             input_["auto_scaling_configuration_name"] = auto_scaling_configuration_name
         if latest_only is not None:
@@ -1280,7 +1345,33 @@ class AppRunnerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_auto_scaling_configurations(
+        self,
+        *,
+        config_overrides: Optional[AppRunnerClientConfig] = None,
+        auto_scaling_configuration_name: Optional[
+            "capo_apprunner.types.auto_scaling_configuration_name.AutoScalingConfigurationName"
+        ] = None,
+        latest_only: Optional["capo_apprunner.types.boolean.Boolean"] = None,
+        max_results: Optional["capo_apprunner.types.max_results.MaxResults"] = None,
+        next_token: Optional["capo_apprunner.types.next_token.NextToken"] = None,
+    ) -> "Iterator[capo_apprunner.types.list_auto_scaling_configurations_response.ListAutoScalingConfigurationsResponse]":
+        _token = next_token
+        while True:
+            _response = self.list_auto_scaling_configurations(
+                config_overrides=config_overrides,
+                auto_scaling_configuration_name=auto_scaling_configuration_name,
+                latest_only=latest_only,
+                max_results=max_results,
+                next_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def list_connections(
         self,
@@ -1320,7 +1411,7 @@ class AppRunnerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_apprunner.types.list_connections_request.ListConnectionsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_apprunner.types.list_connections_request.ListConnectionsRequest = {}
         if connection_name is not None:
             input_["connection_name"] = connection_name
         if max_results is not None:
@@ -1333,7 +1424,31 @@ class AppRunnerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_connections(
+        self,
+        *,
+        config_overrides: Optional[AppRunnerClientConfig] = None,
+        connection_name: Optional[
+            "capo_apprunner.types.connection_name.ConnectionName"
+        ] = None,
+        max_results: Optional["capo_apprunner.types.max_results.MaxResults"] = None,
+        next_token: Optional["capo_apprunner.types.next_token.NextToken"] = None,
+    ) -> "Iterator[capo_apprunner.types.list_connections_response.ListConnectionsResponse]":
+        _token = next_token
+        while True:
+            _response = self.list_connections(
+                config_overrides=config_overrides,
+                connection_name=connection_name,
+                max_results=max_results,
+                next_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def list_observability_configurations(
         self,
@@ -1375,7 +1490,7 @@ class AppRunnerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_apprunner.types.list_observability_configurations_request.ListObservabilityConfigurationsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_apprunner.types.list_observability_configurations_request.ListObservabilityConfigurationsRequest = {}
         if observability_configuration_name is not None:
             input_["observability_configuration_name"] = (
                 observability_configuration_name
@@ -1392,7 +1507,33 @@ class AppRunnerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_observability_configurations(
+        self,
+        *,
+        config_overrides: Optional[AppRunnerClientConfig] = None,
+        observability_configuration_name: Optional[
+            "capo_apprunner.types.observability_configuration_name.ObservabilityConfigurationName"
+        ] = None,
+        latest_only: Optional["capo_apprunner.types.boolean.Boolean"] = None,
+        max_results: Optional["capo_apprunner.types.max_results.MaxResults"] = None,
+        next_token: Optional["capo_apprunner.types.next_token.NextToken"] = None,
+    ) -> "Iterator[capo_apprunner.types.list_observability_configurations_response.ListObservabilityConfigurationsResponse]":
+        _token = next_token
+        while True:
+            _response = self.list_observability_configurations(
+                config_overrides=config_overrides,
+                observability_configuration_name=observability_configuration_name,
+                latest_only=latest_only,
+                max_results=max_results,
+                next_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def list_operations(
         self,
@@ -1433,8 +1574,9 @@ class AppRunnerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_apprunner.types.list_operations_request.ListOperationsRequest = {}  # type: ignore[typeddict-item]
-        input_["service_arn"] = service_arn
+        input_: capo_apprunner.types.list_operations_request.ListOperationsRequest = {
+            "service_arn": service_arn
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -1445,7 +1587,33 @@ class AppRunnerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_operations(
+        self,
+        service_arn: "capo_apprunner.types.app_runner_resource_arn.AppRunnerResourceArn",
+        *,
+        config_overrides: Optional[AppRunnerClientConfig] = None,
+        next_token: Optional["capo_apprunner.types.string.String"] = None,
+        max_results: Optional[
+            "capo_apprunner.types.list_operations_max_results.ListOperationsMaxResults"
+        ] = None,
+    ) -> (
+        "Iterator[capo_apprunner.types.list_operations_response.ListOperationsResponse]"
+    ):
+        _token = next_token
+        while True:
+            _response = self.list_operations(
+                service_arn,
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def list_services(
         self,
@@ -1483,7 +1651,7 @@ class AppRunnerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_apprunner.types.list_services_request.ListServicesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_apprunner.types.list_services_request.ListServicesRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -1494,7 +1662,29 @@ class AppRunnerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_services(
+        self,
+        *,
+        config_overrides: Optional[AppRunnerClientConfig] = None,
+        next_token: Optional["capo_apprunner.types.string.String"] = None,
+        max_results: Optional[
+            "capo_apprunner.types.service_max_results.ServiceMaxResults"
+        ] = None,
+    ) -> "Iterator[capo_apprunner.types.list_services_response.ListServicesResponse]":
+        _token = next_token
+        while True:
+            _response = self.list_services(
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def list_services_for_auto_scaling_configuration(
         self,
@@ -1533,8 +1723,9 @@ class AppRunnerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_apprunner.types.list_services_for_auto_scaling_configuration_request.ListServicesForAutoScalingConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["auto_scaling_configuration_arn"] = auto_scaling_configuration_arn
+        input_: capo_apprunner.types.list_services_for_auto_scaling_configuration_request.ListServicesForAutoScalingConfigurationRequest = {
+            "auto_scaling_configuration_arn": auto_scaling_configuration_arn
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -1545,7 +1736,29 @@ class AppRunnerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_services_for_auto_scaling_configuration(
+        self,
+        auto_scaling_configuration_arn: "capo_apprunner.types.app_runner_resource_arn.AppRunnerResourceArn",
+        *,
+        config_overrides: Optional[AppRunnerClientConfig] = None,
+        max_results: Optional["capo_apprunner.types.max_results.MaxResults"] = None,
+        next_token: Optional["capo_apprunner.types.next_token.NextToken"] = None,
+    ) -> "Iterator[capo_apprunner.types.list_services_for_auto_scaling_configuration_response.ListServicesForAutoScalingConfigurationResponse]":
+        _token = next_token
+        while True:
+            _response = self.list_services_for_auto_scaling_configuration(
+                auto_scaling_configuration_arn,
+                config_overrides=config_overrides,
+                max_results=max_results,
+                next_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def list_tags_for_resource(
         self,
@@ -1581,14 +1794,16 @@ class AppRunnerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_apprunner.types.list_tags_for_resource_request.ListTagsForResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_apprunner.types.list_tags_for_resource_request.ListTagsForResourceRequest = {
+            "resource_arn": resource_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_vpc_connectors(
@@ -1625,7 +1840,7 @@ class AppRunnerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_apprunner.types.list_vpc_connectors_request.ListVpcConnectorsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_apprunner.types.list_vpc_connectors_request.ListVpcConnectorsRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -1636,7 +1851,27 @@ class AppRunnerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_vpc_connectors(
+        self,
+        *,
+        config_overrides: Optional[AppRunnerClientConfig] = None,
+        max_results: Optional["capo_apprunner.types.max_results.MaxResults"] = None,
+        next_token: Optional["capo_apprunner.types.next_token.NextToken"] = None,
+    ) -> "Iterator[capo_apprunner.types.list_vpc_connectors_response.ListVpcConnectorsResponse]":
+        _token = next_token
+        while True:
+            _response = self.list_vpc_connectors(
+                config_overrides=config_overrides,
+                max_results=max_results,
+                next_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def list_vpc_ingress_connections(
         self,
@@ -1676,7 +1911,7 @@ class AppRunnerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_apprunner.types.list_vpc_ingress_connections_request.ListVpcIngressConnectionsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_apprunner.types.list_vpc_ingress_connections_request.ListVpcIngressConnectionsRequest = {}
         if filter is not None:
             input_["filter"] = filter
         if max_results is not None:
@@ -1689,7 +1924,31 @@ class AppRunnerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_vpc_ingress_connections(
+        self,
+        *,
+        config_overrides: Optional[AppRunnerClientConfig] = None,
+        filter: Optional[
+            "capo_apprunner.types.list_vpc_ingress_connections_filter.ListVpcIngressConnectionsFilter"
+        ] = None,
+        max_results: Optional["capo_apprunner.types.max_results.MaxResults"] = None,
+        next_token: Optional["capo_apprunner.types.next_token.NextToken"] = None,
+    ) -> "Iterator[capo_apprunner.types.list_vpc_ingress_connections_response.ListVpcIngressConnectionsResponse]":
+        _token = next_token
+        while True:
+            _response = self.list_vpc_ingress_connections(
+                config_overrides=config_overrides,
+                filter=filter,
+                max_results=max_results,
+                next_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def pause_service(
         self,
@@ -1725,14 +1984,16 @@ class AppRunnerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_apprunner.types.pause_service_request.PauseServiceRequest = {}  # type: ignore[typeddict-item]
-        input_["service_arn"] = service_arn
+        input_: capo_apprunner.types.pause_service_request.PauseServiceRequest = {
+            "service_arn": service_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def resume_service(
@@ -1769,14 +2030,16 @@ class AppRunnerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_apprunner.types.resume_service_request.ResumeServiceRequest = {}  # type: ignore[typeddict-item]
-        input_["service_arn"] = service_arn
+        input_: capo_apprunner.types.resume_service_request.ResumeServiceRequest = {
+            "service_arn": service_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def start_deployment(
@@ -1812,14 +2075,16 @@ class AppRunnerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_apprunner.types.start_deployment_request.StartDeploymentRequest = {}  # type: ignore[typeddict-item]
-        input_["service_arn"] = service_arn
+        input_: capo_apprunner.types.start_deployment_request.StartDeploymentRequest = {
+            "service_arn": service_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def tag_resource(
@@ -1858,15 +2123,17 @@ class AppRunnerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_apprunner.types.tag_resource_request.TagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tags"] = tags
+        input_: capo_apprunner.types.tag_resource_request.TagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tags": tags,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def untag_resource(
@@ -1905,15 +2172,17 @@ class AppRunnerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_apprunner.types.untag_resource_request.UntagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tag_keys"] = tag_keys
+        input_: capo_apprunner.types.untag_resource_request.UntagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tag_keys": tag_keys,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_default_auto_scaling_configuration(
@@ -1949,14 +2218,16 @@ class AppRunnerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_apprunner.types.update_default_auto_scaling_configuration_request.UpdateDefaultAutoScalingConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["auto_scaling_configuration_arn"] = auto_scaling_configuration_arn
+        input_: capo_apprunner.types.update_default_auto_scaling_configuration_request.UpdateDefaultAutoScalingConfigurationRequest = {
+            "auto_scaling_configuration_arn": auto_scaling_configuration_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_service(
@@ -2017,8 +2288,9 @@ class AppRunnerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_apprunner.types.update_service_request.UpdateServiceRequest = {}  # type: ignore[typeddict-item]
-        input_["service_arn"] = service_arn
+        input_: capo_apprunner.types.update_service_request.UpdateServiceRequest = {
+            "service_arn": service_arn
+        }
         if source_configuration is not None:
             input_["source_configuration"] = source_configuration
         if instance_configuration is not None:
@@ -2037,6 +2309,7 @@ class AppRunnerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_vpc_ingress_connection(
@@ -2075,15 +2348,17 @@ class AppRunnerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_apprunner.types.update_vpc_ingress_connection_request.UpdateVpcIngressConnectionRequest = {}  # type: ignore[typeddict-item]
-        input_["vpc_ingress_connection_arn"] = vpc_ingress_connection_arn
-        input_["ingress_vpc_configuration"] = ingress_vpc_configuration
+        input_: capo_apprunner.types.update_vpc_ingress_connection_request.UpdateVpcIngressConnectionRequest = {
+            "vpc_ingress_connection_arn": vpc_ingress_connection_arn,
+            "ingress_vpc_configuration": ingress_vpc_configuration,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def __enter__(self) -> Self:

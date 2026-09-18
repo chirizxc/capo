@@ -45,21 +45,21 @@ def serialize_aws_json_1_1(value: AssociatePrincipalWithPortfolioInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AssociatePrincipalWithPortfolioInput:
     out: AssociatePrincipalWithPortfolioInput = {}  # type: ignore[typeddict-item]
-    if "AcceptLanguage" in data:
+    if data.get("AcceptLanguage") is not None:
         out["accept_language"] = data["AcceptLanguage"]
-    if "PortfolioId" in data:
+    if data.get("PortfolioId") is not None:
         out["portfolio_id"] = data["PortfolioId"]
     else:
         raise DeserializationError(
             "AssociatePrincipalWithPortfolioInput.portfolio_id required"
         )
-    if "PrincipalARN" in data:
+    if data.get("PrincipalARN") is not None:
         out["principal_arn"] = data["PrincipalARN"]
     else:
         raise DeserializationError(
             "AssociatePrincipalWithPortfolioInput.principal_arn required"
         )
-    if "PrincipalType" in data:
+    if data.get("PrincipalType") is not None:
         import capo_service_catalog.types.principal_type
 
         out["principal_type"] = (

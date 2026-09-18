@@ -80,13 +80,13 @@ def serialize_aws_json_1_1(value: DescribeModelPackageGroupOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeModelPackageGroupOutput:
     out: DescribeModelPackageGroupOutput = {}  # type: ignore[typeddict-item]
-    if "ModelPackageGroupName" in data:
+    if data.get("ModelPackageGroupName") is not None:
         out["model_package_group_name"] = data["ModelPackageGroupName"]
-    if "ModelPackageGroupArn" in data:
+    if data.get("ModelPackageGroupArn") is not None:
         out["model_package_group_arn"] = data["ModelPackageGroupArn"]
-    if "ModelPackageGroupDescription" in data:
+    if data.get("ModelPackageGroupDescription") is not None:
         out["model_package_group_description"] = data["ModelPackageGroupDescription"]
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_sagemaker.types.creation_time
 
         out["creation_time"] = (
@@ -94,13 +94,13 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeModelPackageGroupOutput:
                 data["CreationTime"]
             )
         )
-    if "CreatedBy" in data:
+    if data.get("CreatedBy") is not None:
         import capo_sagemaker.types.user_context
 
         out["created_by"] = capo_sagemaker.types.user_context.deserialize_aws_json_1_1(
             data["CreatedBy"]
         )
-    if "ModelPackageGroupStatus" in data:
+    if data.get("ModelPackageGroupStatus") is not None:
         import capo_sagemaker.types.model_package_group_status
 
         out["model_package_group_status"] = (
@@ -108,7 +108,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeModelPackageGroupOutput:
                 data["ModelPackageGroupStatus"]
             )
         )
-    if "ManagedConfiguration" in data:
+    if data.get("ManagedConfiguration") is not None:
         import capo_sagemaker.types.managed_configuration
 
         out["managed_configuration"] = (

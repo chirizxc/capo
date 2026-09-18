@@ -22,11 +22,11 @@ def serialize_json(value: StartQAppSessionOutput) -> dict:
 
 def deserialize_json(data: dict) -> StartQAppSessionOutput:
     out: StartQAppSessionOutput = {}  # type: ignore[typeddict-item]
-    if "sessionId" in data:
+    if data.get("sessionId") is not None:
         out["session_id"] = data["sessionId"]
     else:
         raise DeserializationError("StartQAppSessionOutput.session_id required")
-    if "sessionArn" in data:
+    if data.get("sessionArn") is not None:
         out["session_arn"] = data["sessionArn"]
     else:
         raise DeserializationError("StartQAppSessionOutput.session_arn required")

@@ -19,6 +19,7 @@ from capo_mediastore_data._auth._providers import (
 )
 from capo_mediastore_data._auth._zapros_handler import AuthMiddleware
 from capo_mediastore_data._iter import ensure_sync_iterator
+from capo_mediastore_data._pagination import resolve_path as _resolve_path
 from capo_mediastore_data._services._aws_config import aws_config
 from capo_mediastore_data._services._pipeline import (
     Interceptor,
@@ -178,14 +179,16 @@ class MediaStoreDataClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mediastore_data.types.delete_object_request.DeleteObjectRequest = {}  # type: ignore[typeddict-item]
-        input_["path"] = path
+        input_: capo_mediastore_data.types.delete_object_request.DeleteObjectRequest = {
+            "path": path
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_object(
@@ -221,14 +224,16 @@ class MediaStoreDataClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mediastore_data.types.describe_object_request.DescribeObjectRequest = {}  # type: ignore[typeddict-item]
-        input_["path"] = path
+        input_: capo_mediastore_data.types.describe_object_request.DescribeObjectRequest = {
+            "path": path
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     @contextmanager
@@ -268,8 +273,9 @@ class MediaStoreDataClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mediastore_data.types.get_object_request.GetObjectRequest = {}  # type: ignore[typeddict-item]
-        input_["path"] = path
+        input_: capo_mediastore_data.types.get_object_request.GetObjectRequest = {
+            "path": path
+        }
         if range is not None:
             input_["range"] = range
 
@@ -278,7 +284,10 @@ class MediaStoreDataClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
-        yield response.output
+        try:
+            yield response.output
+        finally:
+            response.response.close()
 
     def list_items(
         self,
@@ -320,7 +329,7 @@ class MediaStoreDataClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mediastore_data.types.list_items_request.ListItemsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_mediastore_data.types.list_items_request.ListItemsRequest = {}
         if path is not None:
             input_["path"] = path
         if max_results is not None:
@@ -333,7 +342,33 @@ class MediaStoreDataClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_items(
+        self,
+        *,
+        config_overrides: Optional[MediaStoreDataClientConfig] = None,
+        path: Optional[
+            "capo_mediastore_data.types.list_path_naming.ListPathNaming"
+        ] = None,
+        max_results: Optional["capo_mediastore_data.types.list_limit.ListLimit"] = None,
+        next_token: Optional[
+            "capo_mediastore_data.types.pagination_token.PaginationToken"
+        ] = None,
+    ) -> "Iterator[capo_mediastore_data.types.list_items_response.ListItemsResponse]":
+        _token = next_token
+        while True:
+            _response = self.list_items(
+                config_overrides=config_overrides,
+                path=path,
+                max_results=max_results,
+                next_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def put_object(
         self,
@@ -385,9 +420,10 @@ class MediaStoreDataClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mediastore_data.types.put_object_request.PutObjectRequest = {}  # type: ignore[typeddict-item]
-        input_["body"] = ensure_sync_iterator(body)
-        input_["path"] = path
+        input_: capo_mediastore_data.types.put_object_request.PutObjectRequest = {
+            "body": ensure_sync_iterator(body),
+            "path": path,
+        }
         if content_type is not None:
             input_["content_type"] = content_type
         if cache_control is not None:
@@ -402,6 +438,7 @@ class MediaStoreDataClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def __enter__(self) -> Self:

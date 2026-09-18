@@ -40,11 +40,11 @@ def serialize_json(value: AssociateAccessPolicyResponse) -> dict:
 
 def deserialize_json(data: dict) -> AssociateAccessPolicyResponse:
     out: AssociateAccessPolicyResponse = {}  # type: ignore[typeddict-item]
-    if "clusterName" in data:
+    if data.get("clusterName") is not None:
         out["cluster_name"] = data["clusterName"]
-    if "principalArn" in data:
+    if data.get("principalArn") is not None:
         out["principal_arn"] = data["principalArn"]
-    if "associatedAccessPolicy" in data:
+    if data.get("associatedAccessPolicy") is not None:
         import capo_eks.types.associated_access_policy
 
         out["associated_access_policy"] = (

@@ -30,8 +30,8 @@ def serialize_aws_json_1_1(value: DescribeFleetLocationUtilizationInput) -> dict
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeFleetLocationUtilizationInput:
     out: DescribeFleetLocationUtilizationInput = {}  # type: ignore[typeddict-item]
-    if "FleetId" in data:
+    if data.get("FleetId") is not None:
         out["fleet_id"] = data["FleetId"]
-    if "Location" in data:
+    if data.get("Location") is not None:
         out["location"] = data["Location"]
     return out

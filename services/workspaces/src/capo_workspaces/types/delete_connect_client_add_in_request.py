@@ -28,11 +28,11 @@ def serialize_aws_json_1_1(value: DeleteConnectClientAddInRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteConnectClientAddInRequest:
     out: DeleteConnectClientAddInRequest = {}  # type: ignore[typeddict-item]
-    if "AddInId" in data:
+    if data.get("AddInId") is not None:
         out["add_in_id"] = data["AddInId"]
     else:
         raise DeserializationError("DeleteConnectClientAddInRequest.add_in_id required")
-    if "ResourceId" in data:
+    if data.get("ResourceId") is not None:
         out["resource_id"] = data["ResourceId"]
     else:
         raise DeserializationError(

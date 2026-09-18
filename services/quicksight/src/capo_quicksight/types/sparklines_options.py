@@ -107,11 +107,11 @@ def serialize_json(value: SparklinesOptions) -> dict:
 
 def deserialize_json(data: dict) -> SparklinesOptions:
     out: SparklinesOptions = {}  # type: ignore[typeddict-item]
-    if "FieldId" in data:
+    if data.get("FieldId") is not None:
         out["field_id"] = data["FieldId"]
     else:
         raise DeserializationError("SparklinesOptions.field_id required")
-    if "XAxisField" in data:
+    if data.get("XAxisField") is not None:
         import capo_quicksight.types.dimension_field
 
         out["x_axis_field"] = capo_quicksight.types.dimension_field.deserialize_json(
@@ -119,7 +119,7 @@ def deserialize_json(data: dict) -> SparklinesOptions:
         )
     else:
         raise DeserializationError("SparklinesOptions.x_axis_field required")
-    if "YAxisBehavior" in data:
+    if data.get("YAxisBehavior") is not None:
         import capo_quicksight.types.sparkline_axis_behavior
 
         out["y_axis_behavior"] = (
@@ -127,7 +127,7 @@ def deserialize_json(data: dict) -> SparklinesOptions:
                 data["YAxisBehavior"]
             )
         )
-    if "VisualType" in data:
+    if data.get("VisualType") is not None:
         import capo_quicksight.types.sparkline_visual_type
 
         out["visual_type"] = (
@@ -135,9 +135,9 @@ def deserialize_json(data: dict) -> SparklinesOptions:
                 data["VisualType"]
             )
         )
-    if "LineColor" in data:
+    if data.get("LineColor") is not None:
         out["line_color"] = data["LineColor"]
-    if "LineInterpolation" in data:
+    if data.get("LineInterpolation") is not None:
         import capo_quicksight.types.line_interpolation
 
         out["line_interpolation"] = (
@@ -145,7 +145,7 @@ def deserialize_json(data: dict) -> SparklinesOptions:
                 data["LineInterpolation"]
             )
         )
-    if "AllPointsMarker" in data:
+    if data.get("AllPointsMarker") is not None:
         import capo_quicksight.types.line_chart_marker_style_settings
 
         out["all_points_marker"] = (
@@ -153,7 +153,7 @@ def deserialize_json(data: dict) -> SparklinesOptions:
                 data["AllPointsMarker"]
             )
         )
-    if "MaxValueMarker" in data:
+    if data.get("MaxValueMarker") is not None:
         import capo_quicksight.types.line_chart_marker_style_settings
 
         out["max_value_marker"] = (
@@ -161,7 +161,7 @@ def deserialize_json(data: dict) -> SparklinesOptions:
                 data["MaxValueMarker"]
             )
         )
-    if "MinValueMarker" in data:
+    if data.get("MinValueMarker") is not None:
         import capo_quicksight.types.line_chart_marker_style_settings
 
         out["min_value_marker"] = (

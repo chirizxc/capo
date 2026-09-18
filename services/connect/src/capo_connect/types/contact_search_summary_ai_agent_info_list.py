@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> ContactSearchSummaryAiAgentInfoList:
 
     out: ContactSearchSummaryAiAgentInfoList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_connect.types.contact_search_summary_ai_agent_info.deserialize_json(
                 item

@@ -92,9 +92,9 @@ def serialize_aws_json_1_1(value: GetResourcesInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetResourcesInput:
     out: GetResourcesInput = {}  # type: ignore[typeddict-item]
-    if "PaginationToken" in data:
+    if data.get("PaginationToken") is not None:
         out["pagination_token"] = data["PaginationToken"]
-    if "TagFilters" in data:
+    if data.get("TagFilters") is not None:
         import capo_resource_groups_tagging_api.types.tag_filter_list
 
         out["tag_filters"] = (
@@ -102,11 +102,11 @@ def deserialize_aws_json_1_1(data: dict) -> GetResourcesInput:
                 data["TagFilters"]
             )
         )
-    if "ResourcesPerPage" in data:
+    if data.get("ResourcesPerPage") is not None:
         out["resources_per_page"] = data["ResourcesPerPage"]
-    if "TagsPerPage" in data:
+    if data.get("TagsPerPage") is not None:
         out["tags_per_page"] = data["TagsPerPage"]
-    if "ResourceTypeFilters" in data:
+    if data.get("ResourceTypeFilters") is not None:
         import capo_resource_groups_tagging_api.types.resource_type_filter_list
 
         out["resource_type_filters"] = (
@@ -114,11 +114,11 @@ def deserialize_aws_json_1_1(data: dict) -> GetResourcesInput:
                 data["ResourceTypeFilters"]
             )
         )
-    if "IncludeComplianceDetails" in data:
+    if data.get("IncludeComplianceDetails") is not None:
         out["include_compliance_details"] = data["IncludeComplianceDetails"]
-    if "ExcludeCompliantResources" in data:
+    if data.get("ExcludeCompliantResources") is not None:
         out["exclude_compliant_resources"] = data["ExcludeCompliantResources"]
-    if "ResourceARNList" in data:
+    if data.get("ResourceARNList") is not None:
         import capo_resource_groups_tagging_api.types.resource_arn_list_for_get
 
         out["resource_arn_list"] = (

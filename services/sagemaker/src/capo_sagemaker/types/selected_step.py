@@ -23,6 +23,6 @@ def serialize_aws_json_1_1(value: SelectedStep) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SelectedStep:
     out: SelectedStep = {}  # type: ignore[typeddict-item]
-    if "StepName" in data:
+    if data.get("StepName") is not None:
         out["step_name"] = data["StepName"]
     return out

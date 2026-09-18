@@ -74,41 +74,41 @@ def serialize_json(value: SessionSummary) -> dict:
 
 def deserialize_json(data: dict) -> SessionSummary:
     out: SessionSummary = {}  # type: ignore[typeddict-item]
-    if "applicationId" in data:
+    if data.get("applicationId") is not None:
         out["application_id"] = data["applicationId"]
     else:
         raise DeserializationError("SessionSummary.application_id required")
-    if "sessionId" in data:
+    if data.get("sessionId") is not None:
         out["session_id"] = data["sessionId"]
     else:
         raise DeserializationError("SessionSummary.session_id required")
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("SessionSummary.arn required")
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "state" in data:
+    if data.get("state") is not None:
         out["state"] = data["state"]
     else:
         raise DeserializationError("SessionSummary.state required")
-    if "stateDetails" in data:
+    if data.get("stateDetails") is not None:
         out["state_details"] = data["stateDetails"]
     else:
         raise DeserializationError("SessionSummary.state_details required")
-    if "releaseLabel" in data:
+    if data.get("releaseLabel") is not None:
         out["release_label"] = data["releaseLabel"]
     else:
         raise DeserializationError("SessionSummary.release_label required")
-    if "executionRoleArn" in data:
+    if data.get("executionRoleArn") is not None:
         out["execution_role_arn"] = data["executionRoleArn"]
     else:
         raise DeserializationError("SessionSummary.execution_role_arn required")
-    if "createdBy" in data:
+    if data.get("createdBy") is not None:
         out["created_by"] = data["createdBy"]
     else:
         raise DeserializationError("SessionSummary.created_by required")
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_emr_serverless.types.date
 
         out["created_at"] = capo_emr_serverless.types.date.deserialize_json(
@@ -116,7 +116,7 @@ def deserialize_json(data: dict) -> SessionSummary:
         )
     else:
         raise DeserializationError("SessionSummary.created_at required")
-    if "updatedAt" in data:
+    if data.get("updatedAt") is not None:
         import capo_emr_serverless.types.date
 
         out["updated_at"] = capo_emr_serverless.types.date.deserialize_json(

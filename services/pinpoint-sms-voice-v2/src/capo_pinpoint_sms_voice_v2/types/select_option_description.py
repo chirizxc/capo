@@ -27,12 +27,12 @@ def serialize_aws_json_1_0(value: SelectOptionDescription) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> SelectOptionDescription:
     out: SelectOptionDescription = {}  # type: ignore[typeddict-item]
-    if "Option" in data:
+    if data.get("Option") is not None:
         out["option"] = data["Option"]
     else:
         raise DeserializationError("SelectOptionDescription.option required")
-    if "Title" in data:
+    if data.get("Title") is not None:
         out["title"] = data["Title"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
     return out

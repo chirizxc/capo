@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> AwsDynamoDbTableKeySchemaList:
 
     out: AwsDynamoDbTableKeySchemaList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_securityhub.types.aws_dynamo_db_table_key_schema.deserialize_json(item)
         )

@@ -41,9 +41,9 @@ def serialize_json(value: SensitiveDataResult) -> dict:
 
 def deserialize_json(data: dict) -> SensitiveDataResult:
     out: SensitiveDataResult = {}  # type: ignore[typeddict-item]
-    if "Category" in data:
+    if data.get("Category") is not None:
         out["category"] = data["Category"]
-    if "Detections" in data:
+    if data.get("Detections") is not None:
         import capo_securityhub.types.sensitive_data_detections_list
 
         out["detections"] = (
@@ -51,6 +51,6 @@ def deserialize_json(data: dict) -> SensitiveDataResult:
                 data["Detections"]
             )
         )
-    if "TotalCount" in data:
+    if data.get("TotalCount") is not None:
         out["total_count"] = data["TotalCount"]
     return out

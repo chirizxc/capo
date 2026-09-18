@@ -38,7 +38,7 @@ def serialize_json(value: NodeOption) -> dict:
 
 def deserialize_json(data: dict) -> NodeOption:
     out: NodeOption = {}  # type: ignore[typeddict-item]
-    if "NodeType" in data:
+    if data.get("NodeType") is not None:
         import capo_opensearch.types.node_options_node_type
 
         out["node_type"] = (
@@ -46,7 +46,7 @@ def deserialize_json(data: dict) -> NodeOption:
                 data["NodeType"]
             )
         )
-    if "NodeConfig" in data:
+    if data.get("NodeConfig") is not None:
         import capo_opensearch.types.node_config
 
         out["node_config"] = capo_opensearch.types.node_config.deserialize_json(

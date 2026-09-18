@@ -55,31 +55,31 @@ def serialize_json(value: AssistantAssociationData) -> dict:
 
 def deserialize_json(data: dict) -> AssistantAssociationData:
     out: AssistantAssociationData = {}  # type: ignore[typeddict-item]
-    if "assistantAssociationId" in data:
+    if data.get("assistantAssociationId") is not None:
         out["assistant_association_id"] = data["assistantAssociationId"]
     else:
         raise DeserializationError(
             "AssistantAssociationData.assistant_association_id required"
         )
-    if "assistantAssociationArn" in data:
+    if data.get("assistantAssociationArn") is not None:
         out["assistant_association_arn"] = data["assistantAssociationArn"]
     else:
         raise DeserializationError(
             "AssistantAssociationData.assistant_association_arn required"
         )
-    if "assistantId" in data:
+    if data.get("assistantId") is not None:
         out["assistant_id"] = data["assistantId"]
     else:
         raise DeserializationError("AssistantAssociationData.assistant_id required")
-    if "assistantArn" in data:
+    if data.get("assistantArn") is not None:
         out["assistant_arn"] = data["assistantArn"]
     else:
         raise DeserializationError("AssistantAssociationData.assistant_arn required")
-    if "associationType" in data:
+    if data.get("associationType") is not None:
         out["association_type"] = data["associationType"]
     else:
         raise DeserializationError("AssistantAssociationData.association_type required")
-    if "associationData" in data:
+    if data.get("associationData") is not None:
         import capo_qconnect.types.assistant_association_output_data
 
         out["association_data"] = (
@@ -89,7 +89,7 @@ def deserialize_json(data: dict) -> AssistantAssociationData:
         )
     else:
         raise DeserializationError("AssistantAssociationData.association_data required")
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_qconnect.types.tags
 
         out["tags"] = capo_qconnect.types.tags.deserialize_json(data["tags"])

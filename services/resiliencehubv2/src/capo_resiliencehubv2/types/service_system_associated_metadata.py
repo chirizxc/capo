@@ -26,8 +26,8 @@ def serialize_json(value: ServiceSystemAssociatedMetadata) -> dict:
 
 def deserialize_json(data: dict) -> ServiceSystemAssociatedMetadata:
     out: ServiceSystemAssociatedMetadata = {}  # type: ignore[typeddict-item]
-    if "systemName" in data:
+    if data.get("systemName") is not None:
         out["system_name"] = data["systemName"]
-    if "systemArn" in data:
+    if data.get("systemArn") is not None:
         out["system_arn"] = data["systemArn"]
     return out

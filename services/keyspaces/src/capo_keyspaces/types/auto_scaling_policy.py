@@ -31,7 +31,7 @@ def serialize_aws_json_1_0(value: AutoScalingPolicy) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> AutoScalingPolicy:
     out: AutoScalingPolicy = {}  # type: ignore[typeddict-item]
-    if "targetTrackingScalingPolicyConfiguration" in data:
+    if data.get("targetTrackingScalingPolicyConfiguration") is not None:
         import capo_keyspaces.types.target_tracking_scaling_policy_configuration
 
         out["target_tracking_scaling_policy_configuration"] = (

@@ -43,7 +43,7 @@ def serialize_aws_json_1_1(value: AccountTakeoverRiskConfigurationType) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AccountTakeoverRiskConfigurationType:
     out: AccountTakeoverRiskConfigurationType = {}  # type: ignore[typeddict-item]
-    if "NotifyConfiguration" in data:
+    if data.get("NotifyConfiguration") is not None:
         import capo_cognito_identity_provider.types.notify_configuration_type
 
         out["notify_configuration"] = (
@@ -51,7 +51,7 @@ def deserialize_aws_json_1_1(data: dict) -> AccountTakeoverRiskConfigurationType
                 data["NotifyConfiguration"]
             )
         )
-    if "Actions" in data:
+    if data.get("Actions") is not None:
         import capo_cognito_identity_provider.types.account_takeover_actions_type
 
         out["actions"] = (

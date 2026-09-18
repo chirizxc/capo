@@ -24,7 +24,7 @@ def serialize_json(value: ConditionalOperationFailedException_) -> dict:
 
 def deserialize_json(data: dict) -> ConditionalOperationFailedException_:
     out: ConditionalOperationFailedException_ = {}  # type: ignore[typeddict-item]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     return out
 
@@ -34,15 +34,20 @@ class ConditionalOperationFailedException(ServiceError):
 
     code: str | None = "ConditionalOperationFailedException"
 
-    def __init__(self, data: ConditionalOperationFailedException_):
+    def __init__(
+        self, data: ConditionalOperationFailedException_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="ConditionalOperationFailedException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "ConditionalOperationFailedException":
-        return cls(deserialize_json(data))
+    def from_json(
+        cls, data: dict, message: str | None = None
+    ) -> "ConditionalOperationFailedException":
+        return cls(deserialize_json(data), message)

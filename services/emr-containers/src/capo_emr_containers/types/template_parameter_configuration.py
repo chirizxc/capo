@@ -36,7 +36,7 @@ def serialize_json(value: TemplateParameterConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> TemplateParameterConfiguration:
     out: TemplateParameterConfiguration = {}  # type: ignore[typeddict-item]
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_emr_containers.types.template_parameter_data_type
 
         out["type"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> TemplateParameterConfiguration:
                 data["type"]
             )
         )
-    if "defaultValue" in data:
+    if data.get("defaultValue") is not None:
         out["default_value"] = data["defaultValue"]
     return out

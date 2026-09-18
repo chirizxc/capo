@@ -103,7 +103,7 @@ def serialize_aws_json_1_1(value: SavingsPlansPurchaseRecommendation) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SavingsPlansPurchaseRecommendation:
     out: SavingsPlansPurchaseRecommendation = {}  # type: ignore[typeddict-item]
-    if "AccountScope" in data:
+    if data.get("AccountScope") is not None:
         import capo_cost_explorer.types.account_scope
 
         out["account_scope"] = (
@@ -111,7 +111,7 @@ def deserialize_aws_json_1_1(data: dict) -> SavingsPlansPurchaseRecommendation:
                 data["AccountScope"]
             )
         )
-    if "SavingsPlansType" in data:
+    if data.get("SavingsPlansType") is not None:
         import capo_cost_explorer.types.supported_savings_plans_type
 
         out["savings_plans_type"] = (
@@ -119,7 +119,7 @@ def deserialize_aws_json_1_1(data: dict) -> SavingsPlansPurchaseRecommendation:
                 data["SavingsPlansType"]
             )
         )
-    if "TermInYears" in data:
+    if data.get("TermInYears") is not None:
         import capo_cost_explorer.types.term_in_years
 
         out["term_in_years"] = (
@@ -127,7 +127,7 @@ def deserialize_aws_json_1_1(data: dict) -> SavingsPlansPurchaseRecommendation:
                 data["TermInYears"]
             )
         )
-    if "PaymentOption" in data:
+    if data.get("PaymentOption") is not None:
         import capo_cost_explorer.types.payment_option
 
         out["payment_option"] = (
@@ -135,7 +135,7 @@ def deserialize_aws_json_1_1(data: dict) -> SavingsPlansPurchaseRecommendation:
                 data["PaymentOption"]
             )
         )
-    if "LookbackPeriodInDays" in data:
+    if data.get("LookbackPeriodInDays") is not None:
         import capo_cost_explorer.types.lookback_period_in_days
 
         out["lookback_period_in_days"] = (
@@ -143,7 +143,7 @@ def deserialize_aws_json_1_1(data: dict) -> SavingsPlansPurchaseRecommendation:
                 data["LookbackPeriodInDays"]
             )
         )
-    if "SavingsPlansPurchaseRecommendationDetails" in data:
+    if data.get("SavingsPlansPurchaseRecommendationDetails") is not None:
         import capo_cost_explorer.types.savings_plans_purchase_recommendation_detail_list
 
         out["savings_plans_purchase_recommendation_details"] = (
@@ -151,7 +151,7 @@ def deserialize_aws_json_1_1(data: dict) -> SavingsPlansPurchaseRecommendation:
                 data["SavingsPlansPurchaseRecommendationDetails"]
             )
         )
-    if "SavingsPlansPurchaseRecommendationSummary" in data:
+    if data.get("SavingsPlansPurchaseRecommendationSummary") is not None:
         import capo_cost_explorer.types.savings_plans_purchase_recommendation_summary
 
         out["savings_plans_purchase_recommendation_summary"] = (

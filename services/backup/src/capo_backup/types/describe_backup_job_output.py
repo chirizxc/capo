@@ -201,97 +201,97 @@ def serialize_json(value: DescribeBackupJobOutput) -> dict:
 
 def deserialize_json(data: dict) -> DescribeBackupJobOutput:
     out: DescribeBackupJobOutput = {}  # type: ignore[typeddict-item]
-    if "AccountId" in data:
+    if data.get("AccountId") is not None:
         out["account_id"] = data["AccountId"]
-    if "BackupJobId" in data:
+    if data.get("BackupJobId") is not None:
         out["backup_job_id"] = data["BackupJobId"]
-    if "BackupVaultName" in data:
+    if data.get("BackupVaultName") is not None:
         out["backup_vault_name"] = data["BackupVaultName"]
-    if "RecoveryPointLifecycle" in data:
+    if data.get("RecoveryPointLifecycle") is not None:
         import capo_backup.types.lifecycle
 
         out["recovery_point_lifecycle"] = capo_backup.types.lifecycle.deserialize_json(
             data["RecoveryPointLifecycle"]
         )
-    if "BackupVaultArn" in data:
+    if data.get("BackupVaultArn") is not None:
         out["backup_vault_arn"] = data["BackupVaultArn"]
-    if "VaultType" in data:
+    if data.get("VaultType") is not None:
         out["vault_type"] = data["VaultType"]
-    if "VaultLockState" in data:
+    if data.get("VaultLockState") is not None:
         out["vault_lock_state"] = data["VaultLockState"]
-    if "RecoveryPointArn" in data:
+    if data.get("RecoveryPointArn") is not None:
         out["recovery_point_arn"] = data["RecoveryPointArn"]
-    if "EncryptionKeyArn" in data:
+    if data.get("EncryptionKeyArn") is not None:
         out["encryption_key_arn"] = data["EncryptionKeyArn"]
-    if "IsEncrypted" in data:
+    if data.get("IsEncrypted") is not None:
         out["is_encrypted"] = data["IsEncrypted"]
     else:
         out["is_encrypted"] = False
-    if "ResourceArn" in data:
+    if data.get("ResourceArn") is not None:
         out["resource_arn"] = data["ResourceArn"]
-    if "CreationDate" in data:
+    if data.get("CreationDate") is not None:
         import capo_backup.types.timestamp
 
         out["creation_date"] = capo_backup.types.timestamp.deserialize_json(
             data["CreationDate"]
         )
-    if "CompletionDate" in data:
+    if data.get("CompletionDate") is not None:
         import capo_backup.types.timestamp
 
         out["completion_date"] = capo_backup.types.timestamp.deserialize_json(
             data["CompletionDate"]
         )
-    if "State" in data:
+    if data.get("State") is not None:
         import capo_backup.types.backup_job_state
 
         out["state"] = capo_backup.types.backup_job_state.deserialize_json(
             data["State"]
         )
-    if "StatusMessage" in data:
+    if data.get("StatusMessage") is not None:
         out["status_message"] = data["StatusMessage"]
-    if "PercentDone" in data:
+    if data.get("PercentDone") is not None:
         out["percent_done"] = data["PercentDone"]
-    if "BackupSizeInBytes" in data:
+    if data.get("BackupSizeInBytes") is not None:
         out["backup_size_in_bytes"] = data["BackupSizeInBytes"]
-    if "IamRoleArn" in data:
+    if data.get("IamRoleArn") is not None:
         out["iam_role_arn"] = data["IamRoleArn"]
-    if "CreatedBy" in data:
+    if data.get("CreatedBy") is not None:
         import capo_backup.types.recovery_point_creator
 
         out["created_by"] = capo_backup.types.recovery_point_creator.deserialize_json(
             data["CreatedBy"]
         )
-    if "ResourceType" in data:
+    if data.get("ResourceType") is not None:
         out["resource_type"] = data["ResourceType"]
-    if "BytesTransferred" in data:
+    if data.get("BytesTransferred") is not None:
         out["bytes_transferred"] = data["BytesTransferred"]
-    if "ExpectedCompletionDate" in data:
+    if data.get("ExpectedCompletionDate") is not None:
         import capo_backup.types.timestamp
 
         out["expected_completion_date"] = capo_backup.types.timestamp.deserialize_json(
             data["ExpectedCompletionDate"]
         )
-    if "StartBy" in data:
+    if data.get("StartBy") is not None:
         import capo_backup.types.timestamp
 
         out["start_by"] = capo_backup.types.timestamp.deserialize_json(data["StartBy"])
-    if "BackupOptions" in data:
+    if data.get("BackupOptions") is not None:
         import capo_backup.types.backup_options
 
         out["backup_options"] = capo_backup.types.backup_options.deserialize_json(
             data["BackupOptions"]
         )
-    if "BackupType" in data:
+    if data.get("BackupType") is not None:
         out["backup_type"] = data["BackupType"]
-    if "ParentJobId" in data:
+    if data.get("ParentJobId") is not None:
         out["parent_job_id"] = data["ParentJobId"]
-    if "IsParent" in data:
+    if data.get("IsParent") is not None:
         out["is_parent"] = data["IsParent"]
     else:
         out["is_parent"] = False
-    if "NumberOfChildJobs" in data:
+    if data.get("NumberOfChildJobs") is not None:
         out["number_of_child_jobs"] = data["NumberOfChildJobs"]
-    if "ChildJobsInState" in data:
+    if data.get("ChildJobsInState") is not None:
         import capo_backup.types.backup_job_child_jobs_in_state
 
         out["child_jobs_in_state"] = (
@@ -299,14 +299,14 @@ def deserialize_json(data: dict) -> DescribeBackupJobOutput:
                 data["ChildJobsInState"]
             )
         )
-    if "ResourceName" in data:
+    if data.get("ResourceName") is not None:
         out["resource_name"] = data["ResourceName"]
-    if "InitiationDate" in data:
+    if data.get("InitiationDate") is not None:
         import capo_backup.types.timestamp
 
         out["initiation_date"] = capo_backup.types.timestamp.deserialize_json(
             data["InitiationDate"]
         )
-    if "MessageCategory" in data:
+    if data.get("MessageCategory") is not None:
         out["message_category"] = data["MessageCategory"]
     return out

@@ -52,11 +52,11 @@ def serialize_aws_json_1_1(value: AddApplicationVpcConfigurationResponse) -> dic
 
 def deserialize_aws_json_1_1(data: dict) -> AddApplicationVpcConfigurationResponse:
     out: AddApplicationVpcConfigurationResponse = {}  # type: ignore[typeddict-item]
-    if "ApplicationARN" in data:
+    if data.get("ApplicationARN") is not None:
         out["application_arn"] = data["ApplicationARN"]
-    if "ApplicationVersionId" in data:
+    if data.get("ApplicationVersionId") is not None:
         out["application_version_id"] = data["ApplicationVersionId"]
-    if "VpcConfigurationDescription" in data:
+    if data.get("VpcConfigurationDescription") is not None:
         import capo_kinesis_analytics_v2.types.vpc_configuration_description
 
         out["vpc_configuration_description"] = (
@@ -64,6 +64,6 @@ def deserialize_aws_json_1_1(data: dict) -> AddApplicationVpcConfigurationRespon
                 data["VpcConfigurationDescription"]
             )
         )
-    if "OperationId" in data:
+    if data.get("OperationId") is not None:
         out["operation_id"] = data["OperationId"]
     return out

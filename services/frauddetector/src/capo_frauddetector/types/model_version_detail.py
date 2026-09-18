@@ -138,9 +138,9 @@ def serialize_aws_json_1_1(value: ModelVersionDetail) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ModelVersionDetail:
     out: ModelVersionDetail = {}  # type: ignore[typeddict-item]
-    if "modelId" in data:
+    if data.get("modelId") is not None:
         out["model_id"] = data["modelId"]
-    if "modelType" in data:
+    if data.get("modelType") is not None:
         import capo_frauddetector.types.model_type_enum
 
         out["model_type"] = (
@@ -148,11 +148,11 @@ def deserialize_aws_json_1_1(data: dict) -> ModelVersionDetail:
                 data["modelType"]
             )
         )
-    if "modelVersionNumber" in data:
+    if data.get("modelVersionNumber") is not None:
         out["model_version_number"] = data["modelVersionNumber"]
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
-    if "trainingDataSource" in data:
+    if data.get("trainingDataSource") is not None:
         import capo_frauddetector.types.training_data_source_enum
 
         out["training_data_source"] = (
@@ -160,7 +160,7 @@ def deserialize_aws_json_1_1(data: dict) -> ModelVersionDetail:
                 data["trainingDataSource"]
             )
         )
-    if "trainingDataSchema" in data:
+    if data.get("trainingDataSchema") is not None:
         import capo_frauddetector.types.training_data_schema
 
         out["training_data_schema"] = (
@@ -168,7 +168,7 @@ def deserialize_aws_json_1_1(data: dict) -> ModelVersionDetail:
                 data["trainingDataSchema"]
             )
         )
-    if "externalEventsDetail" in data:
+    if data.get("externalEventsDetail") is not None:
         import capo_frauddetector.types.external_events_detail
 
         out["external_events_detail"] = (
@@ -176,7 +176,7 @@ def deserialize_aws_json_1_1(data: dict) -> ModelVersionDetail:
                 data["externalEventsDetail"]
             )
         )
-    if "ingestedEventsDetail" in data:
+    if data.get("ingestedEventsDetail") is not None:
         import capo_frauddetector.types.ingested_events_detail
 
         out["ingested_events_detail"] = (
@@ -184,7 +184,7 @@ def deserialize_aws_json_1_1(data: dict) -> ModelVersionDetail:
                 data["ingestedEventsDetail"]
             )
         )
-    if "trainingResult" in data:
+    if data.get("trainingResult") is not None:
         import capo_frauddetector.types.training_result
 
         out["training_result"] = (
@@ -192,13 +192,13 @@ def deserialize_aws_json_1_1(data: dict) -> ModelVersionDetail:
                 data["trainingResult"]
             )
         )
-    if "lastUpdatedTime" in data:
+    if data.get("lastUpdatedTime") is not None:
         out["last_updated_time"] = data["lastUpdatedTime"]
-    if "createdTime" in data:
+    if data.get("createdTime") is not None:
         out["created_time"] = data["createdTime"]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "trainingResultV2" in data:
+    if data.get("trainingResultV2") is not None:
         import capo_frauddetector.types.training_result_v2
 
         out["training_result_v2"] = (

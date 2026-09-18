@@ -29,9 +29,9 @@ def serialize_json(value: PackageEncryptionOptions) -> dict:
 
 def deserialize_json(data: dict) -> PackageEncryptionOptions:
     out: PackageEncryptionOptions = {}  # type: ignore[typeddict-item]
-    if "KmsKeyIdentifier" in data:
+    if data.get("KmsKeyIdentifier") is not None:
         out["kms_key_identifier"] = data["KmsKeyIdentifier"]
-    if "EncryptionEnabled" in data:
+    if data.get("EncryptionEnabled") is not None:
         out["encryption_enabled"] = data["EncryptionEnabled"]
     else:
         raise DeserializationError(

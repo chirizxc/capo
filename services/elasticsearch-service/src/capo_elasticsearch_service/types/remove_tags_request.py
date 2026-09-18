@@ -32,11 +32,11 @@ def serialize_json(value: RemoveTagsRequest) -> dict:
 
 def deserialize_json(data: dict) -> RemoveTagsRequest:
     out: RemoveTagsRequest = {}  # type: ignore[typeddict-item]
-    if "ARN" in data:
+    if data.get("ARN") is not None:
         out["arn"] = data["ARN"]
     else:
         raise DeserializationError("RemoveTagsRequest.arn required")
-    if "TagKeys" in data:
+    if data.get("TagKeys") is not None:
         import capo_elasticsearch_service.types.string_list
 
         out["tag_keys"] = capo_elasticsearch_service.types.string_list.deserialize_json(

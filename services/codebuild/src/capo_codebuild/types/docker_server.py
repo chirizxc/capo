@@ -52,7 +52,7 @@ def serialize_aws_json_1_1(value: DockerServer) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DockerServer:
     out: DockerServer = {}  # type: ignore[typeddict-item]
-    if "computeType" in data:
+    if data.get("computeType") is not None:
         import capo_codebuild.types.compute_type
 
         out["compute_type"] = (
@@ -62,7 +62,7 @@ def deserialize_aws_json_1_1(data: dict) -> DockerServer:
         )
     else:
         raise DeserializationError("DockerServer.compute_type required")
-    if "securityGroupIds" in data:
+    if data.get("securityGroupIds") is not None:
         import capo_codebuild.types.security_group_ids
 
         out["security_group_ids"] = (
@@ -70,7 +70,7 @@ def deserialize_aws_json_1_1(data: dict) -> DockerServer:
                 data["securityGroupIds"]
             )
         )
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_codebuild.types.docker_server_status
 
         out["status"] = (

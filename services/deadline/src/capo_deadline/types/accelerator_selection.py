@@ -30,7 +30,7 @@ def serialize_json(value: AcceleratorSelection) -> dict:
 
 def deserialize_json(data: dict) -> AcceleratorSelection:
     out: AcceleratorSelection = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         import capo_deadline.types.accelerator_name
 
         out["name"] = capo_deadline.types.accelerator_name.deserialize_json(
@@ -38,7 +38,7 @@ def deserialize_json(data: dict) -> AcceleratorSelection:
         )
     else:
         raise DeserializationError("AcceleratorSelection.name required")
-    if "runtime" in data:
+    if data.get("runtime") is not None:
         out["runtime"] = data["runtime"]
     else:
         out["runtime"] = "latest"

@@ -52,17 +52,17 @@ def serialize_aws_json_1_1(value: RegisterCertificateRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RegisterCertificateRequest:
     out: RegisterCertificateRequest = {}  # type: ignore[typeddict-item]
-    if "DirectoryId" in data:
+    if data.get("DirectoryId") is not None:
         out["directory_id"] = data["DirectoryId"]
     else:
         raise DeserializationError("RegisterCertificateRequest.directory_id required")
-    if "CertificateData" in data:
+    if data.get("CertificateData") is not None:
         out["certificate_data"] = data["CertificateData"]
     else:
         raise DeserializationError(
             "RegisterCertificateRequest.certificate_data required"
         )
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_directory_service.types.certificate_type
 
         out["type"] = (
@@ -70,7 +70,7 @@ def deserialize_aws_json_1_1(data: dict) -> RegisterCertificateRequest:
                 data["Type"]
             )
         )
-    if "ClientCertAuthSettings" in data:
+    if data.get("ClientCertAuthSettings") is not None:
         import capo_directory_service.types.client_cert_auth_settings
 
         out["client_cert_auth_settings"] = (

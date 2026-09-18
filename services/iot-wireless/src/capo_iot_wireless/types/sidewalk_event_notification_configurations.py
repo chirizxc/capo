@@ -31,7 +31,7 @@ def serialize_json(value: SidewalkEventNotificationConfigurations) -> dict:
 
 def deserialize_json(data: dict) -> SidewalkEventNotificationConfigurations:
     out: SidewalkEventNotificationConfigurations = {}  # type: ignore[typeddict-item]
-    if "AmazonIdEventTopic" in data:
+    if data.get("AmazonIdEventTopic") is not None:
         import capo_iot_wireless.types.event_notification_topic_status
 
         out["amazon_id_event_topic"] = (

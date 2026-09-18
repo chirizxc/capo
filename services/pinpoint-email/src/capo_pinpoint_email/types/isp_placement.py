@@ -36,9 +36,9 @@ def serialize_json(value: IspPlacement) -> dict:
 
 def deserialize_json(data: dict) -> IspPlacement:
     out: IspPlacement = {}  # type: ignore[typeddict-item]
-    if "IspName" in data:
+    if data.get("IspName") is not None:
         out["isp_name"] = data["IspName"]
-    if "PlacementStatistics" in data:
+    if data.get("PlacementStatistics") is not None:
         import capo_pinpoint_email.types.placement_statistics
 
         out["placement_statistics"] = (

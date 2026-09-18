@@ -30,7 +30,7 @@ def serialize_json(value: FrameCaptureCdnSettings) -> dict:
 
 def deserialize_json(data: dict) -> FrameCaptureCdnSettings:
     out: FrameCaptureCdnSettings = {}  # type: ignore[typeddict-item]
-    if "frameCaptureS3Settings" in data:
+    if data.get("frameCaptureS3Settings") is not None:
         import capo_medialive.types.frame_capture_s3_settings
 
         out["frame_capture_s3_settings"] = (

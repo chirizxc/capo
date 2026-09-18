@@ -40,7 +40,7 @@ def serialize_json(value: GridLayoutConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> GridLayoutConfiguration:
     out: GridLayoutConfiguration = {}  # type: ignore[typeddict-item]
-    if "Elements" in data:
+    if data.get("Elements") is not None:
         import capo_quicksight.types.grid_layout_element_list
 
         out["elements"] = (
@@ -50,7 +50,7 @@ def deserialize_json(data: dict) -> GridLayoutConfiguration:
         )
     else:
         raise DeserializationError("GridLayoutConfiguration.elements required")
-    if "CanvasSizeOptions" in data:
+    if data.get("CanvasSizeOptions") is not None:
         import capo_quicksight.types.grid_layout_canvas_size_options
 
         out["canvas_size_options"] = (

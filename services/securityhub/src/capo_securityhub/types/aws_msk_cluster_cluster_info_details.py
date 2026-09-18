@@ -66,7 +66,7 @@ def serialize_json(value: AwsMskClusterClusterInfoDetails) -> dict:
 
 def deserialize_json(data: dict) -> AwsMskClusterClusterInfoDetails:
     out: AwsMskClusterClusterInfoDetails = {}  # type: ignore[typeddict-item]
-    if "EncryptionInfo" in data:
+    if data.get("EncryptionInfo") is not None:
         import capo_securityhub.types.aws_msk_cluster_cluster_info_encryption_info_details
 
         out["encryption_info"] = (
@@ -74,13 +74,13 @@ def deserialize_json(data: dict) -> AwsMskClusterClusterInfoDetails:
                 data["EncryptionInfo"]
             )
         )
-    if "CurrentVersion" in data:
+    if data.get("CurrentVersion") is not None:
         out["current_version"] = data["CurrentVersion"]
-    if "NumberOfBrokerNodes" in data:
+    if data.get("NumberOfBrokerNodes") is not None:
         out["number_of_broker_nodes"] = data["NumberOfBrokerNodes"]
-    if "ClusterName" in data:
+    if data.get("ClusterName") is not None:
         out["cluster_name"] = data["ClusterName"]
-    if "ClientAuthentication" in data:
+    if data.get("ClientAuthentication") is not None:
         import capo_securityhub.types.aws_msk_cluster_cluster_info_client_authentication_details
 
         out["client_authentication"] = (
@@ -88,6 +88,6 @@ def deserialize_json(data: dict) -> AwsMskClusterClusterInfoDetails:
                 data["ClientAuthentication"]
             )
         )
-    if "EnhancedMonitoring" in data:
+    if data.get("EnhancedMonitoring") is not None:
         out["enhanced_monitoring"] = data["EnhancedMonitoring"]
     return out

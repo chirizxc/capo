@@ -43,17 +43,17 @@ def serialize_json(value: BedrockKnowledgeStoreConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> BedrockKnowledgeStoreConfiguration:
     out: BedrockKnowledgeStoreConfiguration = {}  # type: ignore[typeddict-item]
-    if "bedrockKnowledgeBaseArn" in data:
+    if data.get("bedrockKnowledgeBaseArn") is not None:
         out["bedrock_knowledge_base_arn"] = data["bedrockKnowledgeBaseArn"]
     else:
         raise DeserializationError(
             "BedrockKnowledgeStoreConfiguration.bedrock_knowledge_base_arn required"
         )
-    if "exactResponse" in data:
+    if data.get("exactResponse") is not None:
         out["exact_response"] = data["exactResponse"]
     else:
         out["exact_response"] = False
-    if "exactResponseFields" in data:
+    if data.get("exactResponseFields") is not None:
         import capo_lex_models_v2.types.bedrock_knowledge_store_exact_response_fields
 
         out["exact_response_fields"] = (

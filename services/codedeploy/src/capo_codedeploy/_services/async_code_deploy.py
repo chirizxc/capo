@@ -306,15 +306,17 @@ class AsyncCodeDeployClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codedeploy.types.add_tags_to_on_premises_instances_input.AddTagsToOnPremisesInstancesInput = {}  # type: ignore[typeddict-item]
-        input_["tags"] = tags
-        input_["instance_names"] = instance_names
+        input_: capo_codedeploy.types.add_tags_to_on_premises_instances_input.AddTagsToOnPremisesInstancesInput = {
+            "tags": tags,
+            "instance_names": instance_names,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def batch_get_application_revisions(
@@ -356,15 +358,17 @@ class AsyncCodeDeployClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codedeploy.types.batch_get_application_revisions_input.BatchGetApplicationRevisionsInput = {}  # type: ignore[typeddict-item]
-        input_["application_name"] = application_name
-        input_["revisions"] = revisions
+        input_: capo_codedeploy.types.batch_get_application_revisions_input.BatchGetApplicationRevisionsInput = {
+            "application_name": application_name,
+            "revisions": revisions,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def batch_get_applications(
@@ -404,14 +408,16 @@ class AsyncCodeDeployClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codedeploy.types.batch_get_applications_input.BatchGetApplicationsInput = {}  # type: ignore[typeddict-item]
-        input_["application_names"] = application_names
+        input_: capo_codedeploy.types.batch_get_applications_input.BatchGetApplicationsInput = {
+            "application_names": application_names
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def batch_get_deployment_groups(
@@ -454,15 +460,17 @@ class AsyncCodeDeployClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codedeploy.types.batch_get_deployment_groups_input.BatchGetDeploymentGroupsInput = {}  # type: ignore[typeddict-item]
-        input_["application_name"] = application_name
-        input_["deployment_group_names"] = deployment_group_names
+        input_: capo_codedeploy.types.batch_get_deployment_groups_input.BatchGetDeploymentGroupsInput = {
+            "application_name": application_name,
+            "deployment_group_names": deployment_group_names,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def batch_get_deployment_instances(
@@ -505,15 +513,17 @@ class AsyncCodeDeployClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codedeploy.types.batch_get_deployment_instances_input.BatchGetDeploymentInstancesInput = {}  # type: ignore[typeddict-item]
-        input_["deployment_id"] = deployment_id
-        input_["instance_ids"] = instance_ids
+        input_: capo_codedeploy.types.batch_get_deployment_instances_input.BatchGetDeploymentInstancesInput = {
+            "deployment_id": deployment_id,
+            "instance_ids": instance_ids,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def batch_get_deployments(
@@ -550,14 +560,16 @@ class AsyncCodeDeployClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codedeploy.types.batch_get_deployments_input.BatchGetDeploymentsInput = {}  # type: ignore[typeddict-item]
-        input_["deployment_ids"] = deployment_ids
+        input_: capo_codedeploy.types.batch_get_deployments_input.BatchGetDeploymentsInput = {
+            "deployment_ids": deployment_ids
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def batch_get_deployment_targets(
@@ -602,15 +614,17 @@ class AsyncCodeDeployClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codedeploy.types.batch_get_deployment_targets_input.BatchGetDeploymentTargetsInput = {}  # type: ignore[typeddict-item]
-        input_["deployment_id"] = deployment_id
-        input_["target_ids"] = target_ids
+        input_: capo_codedeploy.types.batch_get_deployment_targets_input.BatchGetDeploymentTargetsInput = {
+            "deployment_id": deployment_id,
+            "target_ids": target_ids,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def batch_get_on_premises_instances(
@@ -647,14 +661,16 @@ class AsyncCodeDeployClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codedeploy.types.batch_get_on_premises_instances_input.BatchGetOnPremisesInstancesInput = {}  # type: ignore[typeddict-item]
-        input_["instance_names"] = instance_names
+        input_: capo_codedeploy.types.batch_get_on_premises_instances_input.BatchGetOnPremisesInstancesInput = {
+            "instance_names": instance_names
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def continue_deployment(
@@ -700,7 +716,7 @@ class AsyncCodeDeployClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codedeploy.types.continue_deployment_input.ContinueDeploymentInput = {}  # type: ignore[typeddict-item]
+        input_: capo_codedeploy.types.continue_deployment_input.ContinueDeploymentInput = {}
         if deployment_id is not None:
             input_["deployment_id"] = deployment_id
         if deployment_wait_type is not None:
@@ -711,6 +727,7 @@ class AsyncCodeDeployClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_application(
@@ -756,8 +773,9 @@ class AsyncCodeDeployClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codedeploy.types.create_application_input.CreateApplicationInput = {}  # type: ignore[typeddict-item]
-        input_["application_name"] = application_name
+        input_: capo_codedeploy.types.create_application_input.CreateApplicationInput = {
+            "application_name": application_name
+        }
         if compute_platform is not None:
             input_["compute_platform"] = compute_platform
         if tags is not None:
@@ -768,6 +786,7 @@ class AsyncCodeDeployClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_deployment(
@@ -865,8 +884,9 @@ class AsyncCodeDeployClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codedeploy.types.create_deployment_input.CreateDeploymentInput = {}  # type: ignore[typeddict-item]
-        input_["application_name"] = application_name
+        input_: capo_codedeploy.types.create_deployment_input.CreateDeploymentInput = {
+            "application_name": application_name
+        }
         if deployment_group_name is not None:
             input_["deployment_group_name"] = deployment_group_name
         if revision is not None:
@@ -895,6 +915,7 @@ class AsyncCodeDeployClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_deployment_config(
@@ -950,8 +971,9 @@ class AsyncCodeDeployClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codedeploy.types.create_deployment_config_input.CreateDeploymentConfigInput = {}  # type: ignore[typeddict-item]
-        input_["deployment_config_name"] = deployment_config_name
+        input_: capo_codedeploy.types.create_deployment_config_input.CreateDeploymentConfigInput = {
+            "deployment_config_name": deployment_config_name
+        }
         if minimum_healthy_hosts is not None:
             input_["minimum_healthy_hosts"] = minimum_healthy_hosts
         if traffic_routing_config is not None:
@@ -966,6 +988,7 @@ class AsyncCodeDeployClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_deployment_group(
@@ -1096,9 +1119,11 @@ class AsyncCodeDeployClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codedeploy.types.create_deployment_group_input.CreateDeploymentGroupInput = {}  # type: ignore[typeddict-item]
-        input_["application_name"] = application_name
-        input_["deployment_group_name"] = deployment_group_name
+        input_: capo_codedeploy.types.create_deployment_group_input.CreateDeploymentGroupInput = {
+            "application_name": application_name,
+            "deployment_group_name": deployment_group_name,
+            "service_role_arn": service_role_arn,
+        }
         if deployment_config_name is not None:
             input_["deployment_config_name"] = deployment_config_name
         if ec2_tag_filters is not None:
@@ -1109,7 +1134,6 @@ class AsyncCodeDeployClient:
             )
         if auto_scaling_groups is not None:
             input_["auto_scaling_groups"] = auto_scaling_groups
-        input_["service_role_arn"] = service_role_arn
         if trigger_configurations is not None:
             input_["trigger_configurations"] = trigger_configurations
         if alarm_configuration is not None:
@@ -1142,6 +1166,7 @@ class AsyncCodeDeployClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_application(
@@ -1176,14 +1201,16 @@ class AsyncCodeDeployClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codedeploy.types.delete_application_input.DeleteApplicationInput = {}  # type: ignore[typeddict-item]
-        input_["application_name"] = application_name
+        input_: capo_codedeploy.types.delete_application_input.DeleteApplicationInput = {
+            "application_name": application_name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_deployment_config(
@@ -1219,14 +1246,16 @@ class AsyncCodeDeployClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codedeploy.types.delete_deployment_config_input.DeleteDeploymentConfigInput = {}  # type: ignore[typeddict-item]
-        input_["deployment_config_name"] = deployment_config_name
+        input_: capo_codedeploy.types.delete_deployment_config_input.DeleteDeploymentConfigInput = {
+            "deployment_config_name": deployment_config_name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_deployment_group(
@@ -1267,15 +1296,17 @@ class AsyncCodeDeployClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codedeploy.types.delete_deployment_group_input.DeleteDeploymentGroupInput = {}  # type: ignore[typeddict-item]
-        input_["application_name"] = application_name
-        input_["deployment_group_name"] = deployment_group_name
+        input_: capo_codedeploy.types.delete_deployment_group_input.DeleteDeploymentGroupInput = {
+            "application_name": application_name,
+            "deployment_group_name": deployment_group_name,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_git_hub_account_token(
@@ -1316,7 +1347,7 @@ class AsyncCodeDeployClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codedeploy.types.delete_git_hub_account_token_input.DeleteGitHubAccountTokenInput = {}  # type: ignore[typeddict-item]
+        input_: capo_codedeploy.types.delete_git_hub_account_token_input.DeleteGitHubAccountTokenInput = {}
         if token_name is not None:
             input_["token_name"] = token_name
 
@@ -1325,6 +1356,7 @@ class AsyncCodeDeployClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_resources_by_external_id(
@@ -1358,7 +1390,7 @@ class AsyncCodeDeployClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codedeploy.types.delete_resources_by_external_id_input.DeleteResourcesByExternalIdInput = {}  # type: ignore[typeddict-item]
+        input_: capo_codedeploy.types.delete_resources_by_external_id_input.DeleteResourcesByExternalIdInput = {}
         if external_id is not None:
             input_["external_id"] = external_id
 
@@ -1367,6 +1399,7 @@ class AsyncCodeDeployClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def deregister_on_premises_instance(
@@ -1400,14 +1433,16 @@ class AsyncCodeDeployClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codedeploy.types.deregister_on_premises_instance_input.DeregisterOnPremisesInstanceInput = {}  # type: ignore[typeddict-item]
-        input_["instance_name"] = instance_name
+        input_: capo_codedeploy.types.deregister_on_premises_instance_input.DeregisterOnPremisesInstanceInput = {
+            "instance_name": instance_name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_application(
@@ -1444,14 +1479,16 @@ class AsyncCodeDeployClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codedeploy.types.get_application_input.GetApplicationInput = {}  # type: ignore[typeddict-item]
-        input_["application_name"] = application_name
+        input_: capo_codedeploy.types.get_application_input.GetApplicationInput = {
+            "application_name": application_name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_application_revision(
@@ -1493,15 +1530,17 @@ class AsyncCodeDeployClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codedeploy.types.get_application_revision_input.GetApplicationRevisionInput = {}  # type: ignore[typeddict-item]
-        input_["application_name"] = application_name
-        input_["revision"] = revision
+        input_: capo_codedeploy.types.get_application_revision_input.GetApplicationRevisionInput = {
+            "application_name": application_name,
+            "revision": revision,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_deployment(
@@ -1538,14 +1577,16 @@ class AsyncCodeDeployClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codedeploy.types.get_deployment_input.GetDeploymentInput = {}  # type: ignore[typeddict-item]
-        input_["deployment_id"] = deployment_id
+        input_: capo_codedeploy.types.get_deployment_input.GetDeploymentInput = {
+            "deployment_id": deployment_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_deployment_config(
@@ -1583,14 +1624,16 @@ class AsyncCodeDeployClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codedeploy.types.get_deployment_config_input.GetDeploymentConfigInput = {}  # type: ignore[typeddict-item]
-        input_["deployment_config_name"] = deployment_config_name
+        input_: capo_codedeploy.types.get_deployment_config_input.GetDeploymentConfigInput = {
+            "deployment_config_name": deployment_config_name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_deployment_group(
@@ -1633,15 +1676,17 @@ class AsyncCodeDeployClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codedeploy.types.get_deployment_group_input.GetDeploymentGroupInput = {}  # type: ignore[typeddict-item]
-        input_["application_name"] = application_name
-        input_["deployment_group_name"] = deployment_group_name
+        input_: capo_codedeploy.types.get_deployment_group_input.GetDeploymentGroupInput = {
+            "application_name": application_name,
+            "deployment_group_name": deployment_group_name,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_deployment_instance(
@@ -1684,15 +1729,17 @@ class AsyncCodeDeployClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codedeploy.types.get_deployment_instance_input.GetDeploymentInstanceInput = {}  # type: ignore[typeddict-item]
-        input_["deployment_id"] = deployment_id
-        input_["instance_id"] = instance_id
+        input_: capo_codedeploy.types.get_deployment_instance_input.GetDeploymentInstanceInput = {
+            "deployment_id": deployment_id,
+            "instance_id": instance_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_deployment_target(
@@ -1736,15 +1783,17 @@ class AsyncCodeDeployClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codedeploy.types.get_deployment_target_input.GetDeploymentTargetInput = {}  # type: ignore[typeddict-item]
-        input_["deployment_id"] = deployment_id
-        input_["target_id"] = target_id
+        input_: capo_codedeploy.types.get_deployment_target_input.GetDeploymentTargetInput = {
+            "deployment_id": deployment_id,
+            "target_id": target_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_on_premises_instance(
@@ -1781,14 +1830,16 @@ class AsyncCodeDeployClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codedeploy.types.get_on_premises_instance_input.GetOnPremisesInstanceInput = {}  # type: ignore[typeddict-item]
-        input_["instance_name"] = instance_name
+        input_: capo_codedeploy.types.get_on_premises_instance_input.GetOnPremisesInstanceInput = {
+            "instance_name": instance_name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_application_revisions(
@@ -1848,8 +1899,9 @@ class AsyncCodeDeployClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codedeploy.types.list_application_revisions_input.ListApplicationRevisionsInput = {}  # type: ignore[typeddict-item]
-        input_["application_name"] = application_name
+        input_: capo_codedeploy.types.list_application_revisions_input.ListApplicationRevisionsInput = {
+            "application_name": application_name
+        }
         if sort_by is not None:
             input_["sort_by"] = sort_by
         if sort_order is not None:
@@ -1868,6 +1920,7 @@ class AsyncCodeDeployClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_application_revisions(
@@ -1937,7 +1990,7 @@ class AsyncCodeDeployClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codedeploy.types.list_applications_input.ListApplicationsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_codedeploy.types.list_applications_input.ListApplicationsInput = {}
         if next_token is not None:
             input_["next_token"] = next_token
 
@@ -1946,6 +1999,7 @@ class AsyncCodeDeployClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_applications(
@@ -1999,7 +2053,7 @@ class AsyncCodeDeployClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codedeploy.types.list_deployment_configs_input.ListDeploymentConfigsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_codedeploy.types.list_deployment_configs_input.ListDeploymentConfigsInput = {}
         if next_token is not None:
             input_["next_token"] = next_token
 
@@ -2008,6 +2062,7 @@ class AsyncCodeDeployClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_deployment_configs(
@@ -2068,8 +2123,9 @@ class AsyncCodeDeployClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codedeploy.types.list_deployment_groups_input.ListDeploymentGroupsInput = {}  # type: ignore[typeddict-item]
-        input_["application_name"] = application_name
+        input_: capo_codedeploy.types.list_deployment_groups_input.ListDeploymentGroupsInput = {
+            "application_name": application_name
+        }
         if next_token is not None:
             input_["next_token"] = next_token
 
@@ -2078,6 +2134,7 @@ class AsyncCodeDeployClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_deployment_groups(
@@ -2154,8 +2211,9 @@ class AsyncCodeDeployClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codedeploy.types.list_deployment_instances_input.ListDeploymentInstancesInput = {}  # type: ignore[typeddict-item]
-        input_["deployment_id"] = deployment_id
+        input_: capo_codedeploy.types.list_deployment_instances_input.ListDeploymentInstancesInput = {
+            "deployment_id": deployment_id
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if instance_status_filter is not None:
@@ -2168,6 +2226,7 @@ class AsyncCodeDeployClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_deployment_instances(
@@ -2259,7 +2318,7 @@ class AsyncCodeDeployClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codedeploy.types.list_deployments_input.ListDeploymentsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_codedeploy.types.list_deployments_input.ListDeploymentsInput = {}
         if application_name is not None:
             input_["application_name"] = application_name
         if deployment_group_name is not None:
@@ -2278,6 +2337,7 @@ class AsyncCodeDeployClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_deployments(
@@ -2363,8 +2423,9 @@ class AsyncCodeDeployClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codedeploy.types.list_deployment_targets_input.ListDeploymentTargetsInput = {}  # type: ignore[typeddict-item]
-        input_["deployment_id"] = deployment_id
+        input_: capo_codedeploy.types.list_deployment_targets_input.ListDeploymentTargetsInput = {
+            "deployment_id": deployment_id
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if target_filters is not None:
@@ -2375,6 +2436,7 @@ class AsyncCodeDeployClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_git_hub_account_token_names(
@@ -2411,7 +2473,7 @@ class AsyncCodeDeployClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codedeploy.types.list_git_hub_account_token_names_input.ListGitHubAccountTokenNamesInput = {}  # type: ignore[typeddict-item]
+        input_: capo_codedeploy.types.list_git_hub_account_token_names_input.ListGitHubAccountTokenNamesInput = {}
         if next_token is not None:
             input_["next_token"] = next_token
 
@@ -2420,6 +2482,7 @@ class AsyncCodeDeployClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_on_premises_instances(
@@ -2464,7 +2527,7 @@ class AsyncCodeDeployClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codedeploy.types.list_on_premises_instances_input.ListOnPremisesInstancesInput = {}  # type: ignore[typeddict-item]
+        input_: capo_codedeploy.types.list_on_premises_instances_input.ListOnPremisesInstancesInput = {}
         if registration_status is not None:
             input_["registration_status"] = registration_status
         if tag_filters is not None:
@@ -2477,6 +2540,7 @@ class AsyncCodeDeployClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_tags_for_resource(
@@ -2517,8 +2581,9 @@ class AsyncCodeDeployClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codedeploy.types.list_tags_for_resource_input.ListTagsForResourceInput = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_codedeploy.types.list_tags_for_resource_input.ListTagsForResourceInput = {
+            "resource_arn": resource_arn
+        }
         if next_token is not None:
             input_["next_token"] = next_token
 
@@ -2527,6 +2592,7 @@ class AsyncCodeDeployClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def put_lifecycle_event_hook_execution_status(
@@ -2577,7 +2643,7 @@ class AsyncCodeDeployClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codedeploy.types.put_lifecycle_event_hook_execution_status_input.PutLifecycleEventHookExecutionStatusInput = {}  # type: ignore[typeddict-item]
+        input_: capo_codedeploy.types.put_lifecycle_event_hook_execution_status_input.PutLifecycleEventHookExecutionStatusInput = {}
         if deployment_id is not None:
             input_["deployment_id"] = deployment_id
         if lifecycle_event_hook_execution_id is not None:
@@ -2592,6 +2658,7 @@ class AsyncCodeDeployClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def register_application_revision(
@@ -2633,17 +2700,19 @@ class AsyncCodeDeployClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codedeploy.types.register_application_revision_input.RegisterApplicationRevisionInput = {}  # type: ignore[typeddict-item]
-        input_["application_name"] = application_name
+        input_: capo_codedeploy.types.register_application_revision_input.RegisterApplicationRevisionInput = {
+            "application_name": application_name,
+            "revision": revision,
+        }
         if description is not None:
             input_["description"] = description
-        input_["revision"] = revision
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def register_on_premises_instance(
@@ -2691,8 +2760,9 @@ class AsyncCodeDeployClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codedeploy.types.register_on_premises_instance_input.RegisterOnPremisesInstanceInput = {}  # type: ignore[typeddict-item]
-        input_["instance_name"] = instance_name
+        input_: capo_codedeploy.types.register_on_premises_instance_input.RegisterOnPremisesInstanceInput = {
+            "instance_name": instance_name
+        }
         if iam_session_arn is not None:
             input_["iam_session_arn"] = iam_session_arn
         if iam_user_arn is not None:
@@ -2703,6 +2773,7 @@ class AsyncCodeDeployClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def remove_tags_from_on_premises_instances(
@@ -2743,15 +2814,17 @@ class AsyncCodeDeployClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codedeploy.types.remove_tags_from_on_premises_instances_input.RemoveTagsFromOnPremisesInstancesInput = {}  # type: ignore[typeddict-item]
-        input_["tags"] = tags
-        input_["instance_names"] = instance_names
+        input_: capo_codedeploy.types.remove_tags_from_on_premises_instances_input.RemoveTagsFromOnPremisesInstancesInput = {
+            "tags": tags,
+            "instance_names": instance_names,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def skip_wait_time_for_instance_termination(
@@ -2791,7 +2864,7 @@ class AsyncCodeDeployClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codedeploy.types.skip_wait_time_for_instance_termination_input.SkipWaitTimeForInstanceTerminationInput = {}  # type: ignore[typeddict-item]
+        input_: capo_codedeploy.types.skip_wait_time_for_instance_termination_input.SkipWaitTimeForInstanceTerminationInput = {}
         if deployment_id is not None:
             input_["deployment_id"] = deployment_id
 
@@ -2800,6 +2873,7 @@ class AsyncCodeDeployClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def stop_deployment(
@@ -2843,8 +2917,9 @@ class AsyncCodeDeployClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codedeploy.types.stop_deployment_input.StopDeploymentInput = {}  # type: ignore[typeddict-item]
-        input_["deployment_id"] = deployment_id
+        input_: capo_codedeploy.types.stop_deployment_input.StopDeploymentInput = {
+            "deployment_id": deployment_id
+        }
         if auto_rollback_enabled is not None:
             input_["auto_rollback_enabled"] = auto_rollback_enabled
 
@@ -2853,6 +2928,7 @@ class AsyncCodeDeployClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def tag_resource(
@@ -2896,15 +2972,17 @@ class AsyncCodeDeployClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codedeploy.types.tag_resource_input.TagResourceInput = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tags"] = tags
+        input_: capo_codedeploy.types.tag_resource_input.TagResourceInput = {
+            "resource_arn": resource_arn,
+            "tags": tags,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def untag_resource(
@@ -2948,15 +3026,17 @@ class AsyncCodeDeployClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codedeploy.types.untag_resource_input.UntagResourceInput = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tag_keys"] = tag_keys
+        input_: capo_codedeploy.types.untag_resource_input.UntagResourceInput = {
+            "resource_arn": resource_arn,
+            "tag_keys": tag_keys,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_application(
@@ -2998,7 +3078,7 @@ class AsyncCodeDeployClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codedeploy.types.update_application_input.UpdateApplicationInput = {}  # type: ignore[typeddict-item]
+        input_: capo_codedeploy.types.update_application_input.UpdateApplicationInput = {}
         if application_name is not None:
             input_["application_name"] = application_name
         if new_application_name is not None:
@@ -3009,6 +3089,7 @@ class AsyncCodeDeployClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_deployment_group(
@@ -3139,9 +3220,10 @@ class AsyncCodeDeployClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codedeploy.types.update_deployment_group_input.UpdateDeploymentGroupInput = {}  # type: ignore[typeddict-item]
-        input_["application_name"] = application_name
-        input_["current_deployment_group_name"] = current_deployment_group_name
+        input_: capo_codedeploy.types.update_deployment_group_input.UpdateDeploymentGroupInput = {
+            "application_name": application_name,
+            "current_deployment_group_name": current_deployment_group_name,
+        }
         if new_deployment_group_name is not None:
             input_["new_deployment_group_name"] = new_deployment_group_name
         if deployment_config_name is not None:
@@ -3186,6 +3268,7 @@ class AsyncCodeDeployClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def __aenter__(self) -> Self:

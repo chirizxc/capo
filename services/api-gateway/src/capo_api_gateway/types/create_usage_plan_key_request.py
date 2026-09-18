@@ -29,11 +29,11 @@ def serialize_json(value: CreateUsagePlanKeyRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateUsagePlanKeyRequest:
     out: CreateUsagePlanKeyRequest = {}  # type: ignore[typeddict-item]
-    if "keyId" in data:
+    if data.get("keyId") is not None:
         out["key_id"] = data["keyId"]
     else:
         raise DeserializationError("CreateUsagePlanKeyRequest.key_id required")
-    if "keyType" in data:
+    if data.get("keyType") is not None:
         out["key_type"] = data["keyType"]
     else:
         raise DeserializationError("CreateUsagePlanKeyRequest.key_type required")

@@ -13,9 +13,9 @@ from capo_codeartifact import AsynccodeartifactClient
 
 
 async def main():
-    async with AsynccodeartifactClient() as s3:
+    async with AsynccodeartifactClient() as codeartifact:
         # Example: call the associate_external_connection operation
-        response = await s3.associate_external_connection()
+        response = await codeartifact.associate_external_connection()
         print(response["repository"])
 ```
 
@@ -28,9 +28,9 @@ from capo_codeartifact import AsynccodeartifactClient
 
 
 async def main():
-    async with AsynccodeartifactClient() as s3:
+    async with AsynccodeartifactClient() as codeartifact:
         # Example: paginate over list_allowed_repositories_for_group
-        async for item in s3.iter_list_allowed_repositories_for_group():
+        async for item in codeartifact.iter_list_allowed_repositories_for_group():
             print(item)
 ```
 
@@ -43,16 +43,16 @@ from capo_codeartifact import AsynccodeartifactClient
 
 
 async def main():
-    async with AsynccodeartifactClient() as s3:
+    async with AsynccodeartifactClient() as codeartifact:
         # Example: call publish_package_version with a streaming request body
         async def chunks():
             yield b'Hello, World!'
 
-        response = await s3.publish_package_version(asset_content=chunks())
+        response = await codeartifact.publish_package_version(asset_content=chunks())
         print(response)
 
         # Or pass the whole body as bytes
-        response = await s3.publish_package_version(asset_content=b'Hello, World!')
+        response = await codeartifact.publish_package_version(asset_content=b'Hello, World!')
         print(response)
 ```
 
@@ -65,9 +65,9 @@ from capo_codeartifact import AsynccodeartifactClient
 
 
 async def main():
-    async with AsynccodeartifactClient() as s3:
+    async with AsynccodeartifactClient() as codeartifact:
         # Example: call get_package_version_asset and read the streaming response
-        async with s3.get_package_version_asset() as response:
+        async with codeartifact.get_package_version_asset() as response:
             async for chunk in response["asset"]:
                 print(chunk)
 ```
@@ -82,9 +82,9 @@ from capo_codeartifact.error import AccessDeniedException
 
 
 async def main():
-    async with AsynccodeartifactClient() as s3:
+    async with AsynccodeartifactClient() as codeartifact:
         try:
-            await s3.associate_external_connection()
+            await codeartifact.associate_external_connection()
         except AccessDeniedException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -101,13 +101,13 @@ from capo_codeartifact import AsynccodeartifactClient
 
 
 async def main():
-    async with AsynccodeartifactClient() as s3:
+    async with AsynccodeartifactClient() as codeartifact:
         # Default: 3 attempts for every operation
-        response = await s3.associate_external_connection()
+        response = await codeartifact.associate_external_connection()
 
         # Override per operation
-        response = await s3.associate_external_connection(config_overrides={"retry_max_attempts": 5})
+        response = await codeartifact.associate_external_connection(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.associate_external_connection(config_overrides={"retry_max_attempts": 1})
+        response = await codeartifact.associate_external_connection(config_overrides={"retry_max_attempts": 1})
 ```

@@ -29,7 +29,7 @@ def serialize_json(value: DisassociateOrganizationalUnitRequest) -> dict:
 
 def deserialize_json(data: dict) -> DisassociateOrganizationalUnitRequest:
     out: DisassociateOrganizationalUnitRequest = {}  # type: ignore[typeddict-item]
-    if "notificationConfigurationArn" in data:
+    if data.get("notificationConfigurationArn") is not None:
         out["notification_configuration_arn"] = data["notificationConfigurationArn"]
     else:
         raise DeserializationError(

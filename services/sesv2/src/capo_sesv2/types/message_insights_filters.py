@@ -85,7 +85,7 @@ def serialize_json(value: MessageInsightsFilters) -> dict:
 
 def deserialize_json(data: dict) -> MessageInsightsFilters:
     out: MessageInsightsFilters = {}  # type: ignore[typeddict-item]
-    if "FromEmailAddress" in data:
+    if data.get("FromEmailAddress") is not None:
         import capo_sesv2.types.email_address_filter_list
 
         out["from_email_address"] = (
@@ -93,7 +93,7 @@ def deserialize_json(data: dict) -> MessageInsightsFilters:
                 data["FromEmailAddress"]
             )
         )
-    if "Destination" in data:
+    if data.get("Destination") is not None:
         import capo_sesv2.types.email_address_filter_list
 
         out["destination"] = (
@@ -101,17 +101,17 @@ def deserialize_json(data: dict) -> MessageInsightsFilters:
                 data["Destination"]
             )
         )
-    if "Subject" in data:
+    if data.get("Subject") is not None:
         import capo_sesv2.types.email_subject_filter_list
 
         out["subject"] = capo_sesv2.types.email_subject_filter_list.deserialize_json(
             data["Subject"]
         )
-    if "Isp" in data:
+    if data.get("Isp") is not None:
         import capo_sesv2.types.isp_filter_list
 
         out["isp"] = capo_sesv2.types.isp_filter_list.deserialize_json(data["Isp"])
-    if "LastDeliveryEvent" in data:
+    if data.get("LastDeliveryEvent") is not None:
         import capo_sesv2.types.last_delivery_event_list
 
         out["last_delivery_event"] = (
@@ -119,7 +119,7 @@ def deserialize_json(data: dict) -> MessageInsightsFilters:
                 data["LastDeliveryEvent"]
             )
         )
-    if "LastEngagementEvent" in data:
+    if data.get("LastEngagementEvent") is not None:
         import capo_sesv2.types.last_engagement_event_list
 
         out["last_engagement_event"] = (

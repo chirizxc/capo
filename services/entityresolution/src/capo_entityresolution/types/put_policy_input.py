@@ -32,9 +32,9 @@ def serialize_json(value: PutPolicyInput) -> dict:
 
 def deserialize_json(data: dict) -> PutPolicyInput:
     out: PutPolicyInput = {}  # type: ignore[typeddict-item]
-    if "token" in data:
+    if data.get("token") is not None:
         out["token"] = data["token"]
-    if "policy" in data:
+    if data.get("policy") is not None:
         out["policy"] = data["policy"]
     else:
         raise DeserializationError("PutPolicyInput.policy required")

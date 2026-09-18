@@ -231,45 +231,45 @@ def serialize_json(value: Environment) -> dict:
 
 def deserialize_json(data: dict) -> Environment:
     out: Environment = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         out["status"] = data["Status"]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "CreatedAt" in data:
+    if data.get("CreatedAt") is not None:
         import capo_mwaa.types.created_at
 
         out["created_at"] = capo_mwaa.types.created_at.deserialize_json(
             data["CreatedAt"]
         )
-    if "WebserverUrl" in data:
+    if data.get("WebserverUrl") is not None:
         out["webserver_url"] = data["WebserverUrl"]
-    if "ExecutionRoleArn" in data:
+    if data.get("ExecutionRoleArn") is not None:
         out["execution_role_arn"] = data["ExecutionRoleArn"]
-    if "ServiceRoleArn" in data:
+    if data.get("ServiceRoleArn") is not None:
         out["service_role_arn"] = data["ServiceRoleArn"]
-    if "KmsKey" in data:
+    if data.get("KmsKey") is not None:
         out["kms_key"] = data["KmsKey"]
-    if "AirflowVersion" in data:
+    if data.get("AirflowVersion") is not None:
         out["airflow_version"] = data["AirflowVersion"]
-    if "SourceBucketArn" in data:
+    if data.get("SourceBucketArn") is not None:
         out["source_bucket_arn"] = data["SourceBucketArn"]
-    if "DagS3Path" in data:
+    if data.get("DagS3Path") is not None:
         out["dag_s3_path"] = data["DagS3Path"]
-    if "PluginsS3Path" in data:
+    if data.get("PluginsS3Path") is not None:
         out["plugins_s3_path"] = data["PluginsS3Path"]
-    if "PluginsS3ObjectVersion" in data:
+    if data.get("PluginsS3ObjectVersion") is not None:
         out["plugins_s3_object_version"] = data["PluginsS3ObjectVersion"]
-    if "RequirementsS3Path" in data:
+    if data.get("RequirementsS3Path") is not None:
         out["requirements_s3_path"] = data["RequirementsS3Path"]
-    if "RequirementsS3ObjectVersion" in data:
+    if data.get("RequirementsS3ObjectVersion") is not None:
         out["requirements_s3_object_version"] = data["RequirementsS3ObjectVersion"]
-    if "StartupScriptS3Path" in data:
+    if data.get("StartupScriptS3Path") is not None:
         out["startup_script_s3_path"] = data["StartupScriptS3Path"]
-    if "StartupScriptS3ObjectVersion" in data:
+    if data.get("StartupScriptS3ObjectVersion") is not None:
         out["startup_script_s3_object_version"] = data["StartupScriptS3ObjectVersion"]
-    if "AirflowConfigurationOptions" in data:
+    if data.get("AirflowConfigurationOptions") is not None:
         import capo_mwaa.types.airflow_configuration_options
 
         out["airflow_configuration_options"] = (
@@ -277,11 +277,11 @@ def deserialize_json(data: dict) -> Environment:
                 data["AirflowConfigurationOptions"]
             )
         )
-    if "EnvironmentClass" in data:
+    if data.get("EnvironmentClass") is not None:
         out["environment_class"] = data["EnvironmentClass"]
-    if "MaxWorkers" in data:
+    if data.get("MaxWorkers") is not None:
         out["max_workers"] = data["MaxWorkers"]
-    if "NetworkConfiguration" in data:
+    if data.get("NetworkConfiguration") is not None:
         import capo_mwaa.types.network_configuration
 
         out["network_configuration"] = (
@@ -289,7 +289,7 @@ def deserialize_json(data: dict) -> Environment:
                 data["NetworkConfiguration"]
             )
         )
-    if "LoggingConfiguration" in data:
+    if data.get("LoggingConfiguration") is not None:
         import capo_mwaa.types.logging_configuration
 
         out["logging_configuration"] = (
@@ -297,34 +297,34 @@ def deserialize_json(data: dict) -> Environment:
                 data["LoggingConfiguration"]
             )
         )
-    if "LastUpdate" in data:
+    if data.get("LastUpdate") is not None:
         import capo_mwaa.types.last_update
 
         out["last_update"] = capo_mwaa.types.last_update.deserialize_json(
             data["LastUpdate"]
         )
-    if "WeeklyMaintenanceWindowStart" in data:
+    if data.get("WeeklyMaintenanceWindowStart") is not None:
         out["weekly_maintenance_window_start"] = data["WeeklyMaintenanceWindowStart"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_mwaa.types.tag_map
 
         out["tags"] = capo_mwaa.types.tag_map.deserialize_json(data["Tags"])
-    if "WebserverAccessMode" in data:
+    if data.get("WebserverAccessMode") is not None:
         out["webserver_access_mode"] = data["WebserverAccessMode"]
-    if "MinWorkers" in data:
+    if data.get("MinWorkers") is not None:
         out["min_workers"] = data["MinWorkers"]
-    if "Schedulers" in data:
+    if data.get("Schedulers") is not None:
         out["schedulers"] = data["Schedulers"]
-    if "WebserverVpcEndpointService" in data:
+    if data.get("WebserverVpcEndpointService") is not None:
         out["webserver_vpc_endpoint_service"] = data["WebserverVpcEndpointService"]
-    if "DatabaseVpcEndpointService" in data:
+    if data.get("DatabaseVpcEndpointService") is not None:
         out["database_vpc_endpoint_service"] = data["DatabaseVpcEndpointService"]
-    if "CeleryExecutorQueue" in data:
+    if data.get("CeleryExecutorQueue") is not None:
         out["celery_executor_queue"] = data["CeleryExecutorQueue"]
-    if "EndpointManagement" in data:
+    if data.get("EndpointManagement") is not None:
         out["endpoint_management"] = data["EndpointManagement"]
-    if "MinWebservers" in data:
+    if data.get("MinWebservers") is not None:
         out["min_webservers"] = data["MinWebservers"]
-    if "MaxWebservers" in data:
+    if data.get("MaxWebservers") is not None:
         out["max_webservers"] = data["MaxWebservers"]
     return out

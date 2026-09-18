@@ -198,25 +198,25 @@ def serialize_json(value: GetPlaceResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetPlaceResponse:
     out: GetPlaceResponse = {}  # type: ignore[typeddict-item]
-    if "PlaceId" in data:
+    if data.get("PlaceId") is not None:
         out["place_id"] = data["PlaceId"]
     else:
         raise DeserializationError("GetPlaceResponse.place_id required")
-    if "PlaceType" in data:
+    if data.get("PlaceType") is not None:
         out["place_type"] = data["PlaceType"]
     else:
         raise DeserializationError("GetPlaceResponse.place_type required")
-    if "Title" in data:
+    if data.get("Title") is not None:
         out["title"] = data["Title"]
     else:
         raise DeserializationError("GetPlaceResponse.title required")
-    if "Address" in data:
+    if data.get("Address") is not None:
         import capo_geo_places.types.address
 
         out["address"] = capo_geo_places.types.address.deserialize_json(data["Address"])
-    if "AddressNumberCorrected" in data:
+    if data.get("AddressNumberCorrected") is not None:
         out["address_number_corrected"] = data["AddressNumberCorrected"]
-    if "PostalCodeDetails" in data:
+    if data.get("PostalCodeDetails") is not None:
         import capo_geo_places.types.postal_code_details_list
 
         out["postal_code_details"] = (
@@ -224,31 +224,31 @@ def deserialize_json(data: dict) -> GetPlaceResponse:
                 data["PostalCodeDetails"]
             )
         )
-    if "Position" in data:
+    if data.get("Position") is not None:
         import capo_geo_places.types.position
 
         out["position"] = capo_geo_places.types.position.deserialize_json(
             data["Position"]
         )
-    if "MapView" in data:
+    if data.get("MapView") is not None:
         import capo_geo_places.types.bounding_box
 
         out["map_view"] = capo_geo_places.types.bounding_box.deserialize_json(
             data["MapView"]
         )
-    if "Categories" in data:
+    if data.get("Categories") is not None:
         import capo_geo_places.types.category_list
 
         out["categories"] = capo_geo_places.types.category_list.deserialize_json(
             data["Categories"]
         )
-    if "FoodTypes" in data:
+    if data.get("FoodTypes") is not None:
         import capo_geo_places.types.food_type_list
 
         out["food_types"] = capo_geo_places.types.food_type_list.deserialize_json(
             data["FoodTypes"]
         )
-    if "BusinessChains" in data:
+    if data.get("BusinessChains") is not None:
         import capo_geo_places.types.business_chain_list
 
         out["business_chains"] = (
@@ -256,13 +256,13 @@ def deserialize_json(data: dict) -> GetPlaceResponse:
                 data["BusinessChains"]
             )
         )
-    if "Contacts" in data:
+    if data.get("Contacts") is not None:
         import capo_geo_places.types.contacts
 
         out["contacts"] = capo_geo_places.types.contacts.deserialize_json(
             data["Contacts"]
         )
-    if "OpeningHours" in data:
+    if data.get("OpeningHours") is not None:
         import capo_geo_places.types.opening_hours_list
 
         out["opening_hours"] = (
@@ -270,13 +270,13 @@ def deserialize_json(data: dict) -> GetPlaceResponse:
                 data["OpeningHours"]
             )
         )
-    if "AccessPoints" in data:
+    if data.get("AccessPoints") is not None:
         import capo_geo_places.types.access_point_list
 
         out["access_points"] = capo_geo_places.types.access_point_list.deserialize_json(
             data["AccessPoints"]
         )
-    if "AccessRestrictions" in data:
+    if data.get("AccessRestrictions") is not None:
         import capo_geo_places.types.access_restriction_list
 
         out["access_restrictions"] = (
@@ -284,27 +284,27 @@ def deserialize_json(data: dict) -> GetPlaceResponse:
                 data["AccessRestrictions"]
             )
         )
-    if "TimeZone" in data:
+    if data.get("TimeZone") is not None:
         import capo_geo_places.types.time_zone
 
         out["time_zone"] = capo_geo_places.types.time_zone.deserialize_json(
             data["TimeZone"]
         )
-    if "PoliticalView" in data:
+    if data.get("PoliticalView") is not None:
         out["political_view"] = data["PoliticalView"]
-    if "Phonemes" in data:
+    if data.get("Phonemes") is not None:
         import capo_geo_places.types.phoneme_details
 
         out["phonemes"] = capo_geo_places.types.phoneme_details.deserialize_json(
             data["Phonemes"]
         )
-    if "MainAddress" in data:
+    if data.get("MainAddress") is not None:
         import capo_geo_places.types.related_place
 
         out["main_address"] = capo_geo_places.types.related_place.deserialize_json(
             data["MainAddress"]
         )
-    if "SecondaryAddresses" in data:
+    if data.get("SecondaryAddresses") is not None:
         import capo_geo_places.types.related_place_list
 
         out["secondary_addresses"] = (

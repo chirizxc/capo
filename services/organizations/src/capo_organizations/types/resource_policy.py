@@ -38,7 +38,7 @@ def serialize_aws_json_1_1(value: ResourcePolicy) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ResourcePolicy:
     out: ResourcePolicy = {}  # type: ignore[typeddict-item]
-    if "ResourcePolicySummary" in data:
+    if data.get("ResourcePolicySummary") is not None:
         import capo_organizations.types.resource_policy_summary
 
         out["resource_policy_summary"] = (
@@ -46,6 +46,6 @@ def deserialize_aws_json_1_1(data: dict) -> ResourcePolicy:
                 data["ResourcePolicySummary"]
             )
         )
-    if "Content" in data:
+    if data.get("Content") is not None:
         out["content"] = data["Content"]
     return out

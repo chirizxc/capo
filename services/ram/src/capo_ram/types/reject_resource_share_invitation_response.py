@@ -36,7 +36,7 @@ def serialize_json(value: RejectResourceShareInvitationResponse) -> dict:
 
 def deserialize_json(data: dict) -> RejectResourceShareInvitationResponse:
     out: RejectResourceShareInvitationResponse = {}  # type: ignore[typeddict-item]
-    if "resourceShareInvitation" in data:
+    if data.get("resourceShareInvitation") is not None:
         import capo_ram.types.resource_share_invitation
 
         out["resource_share_invitation"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> RejectResourceShareInvitationResponse:
                 data["resourceShareInvitation"]
             )
         )
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     return out

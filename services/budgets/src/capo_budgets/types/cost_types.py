@@ -69,26 +69,26 @@ def serialize_aws_json_1_1(value: CostTypes) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CostTypes:
     out: CostTypes = {}  # type: ignore[typeddict-item]
-    if "IncludeTax" in data:
+    if data.get("IncludeTax") is not None:
         out["include_tax"] = data["IncludeTax"]
-    if "IncludeSubscription" in data:
+    if data.get("IncludeSubscription") is not None:
         out["include_subscription"] = data["IncludeSubscription"]
-    if "UseBlended" in data:
+    if data.get("UseBlended") is not None:
         out["use_blended"] = data["UseBlended"]
-    if "IncludeRefund" in data:
+    if data.get("IncludeRefund") is not None:
         out["include_refund"] = data["IncludeRefund"]
-    if "IncludeCredit" in data:
+    if data.get("IncludeCredit") is not None:
         out["include_credit"] = data["IncludeCredit"]
-    if "IncludeUpfront" in data:
+    if data.get("IncludeUpfront") is not None:
         out["include_upfront"] = data["IncludeUpfront"]
-    if "IncludeRecurring" in data:
+    if data.get("IncludeRecurring") is not None:
         out["include_recurring"] = data["IncludeRecurring"]
-    if "IncludeOtherSubscription" in data:
+    if data.get("IncludeOtherSubscription") is not None:
         out["include_other_subscription"] = data["IncludeOtherSubscription"]
-    if "IncludeSupport" in data:
+    if data.get("IncludeSupport") is not None:
         out["include_support"] = data["IncludeSupport"]
-    if "IncludeDiscount" in data:
+    if data.get("IncludeDiscount") is not None:
         out["include_discount"] = data["IncludeDiscount"]
-    if "UseAmortized" in data:
+    if data.get("UseAmortized") is not None:
         out["use_amortized"] = data["UseAmortized"]
     return out

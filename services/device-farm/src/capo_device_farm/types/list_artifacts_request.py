@@ -37,11 +37,11 @@ def serialize_aws_json_1_1(value: ListArtifactsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListArtifactsRequest:
     out: ListArtifactsRequest = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("ListArtifactsRequest.arn required")
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_device_farm.types.artifact_category
 
         out["type"] = capo_device_farm.types.artifact_category.deserialize_aws_json_1_1(
@@ -49,6 +49,6 @@ def deserialize_aws_json_1_1(data: dict) -> ListArtifactsRequest:
         )
     else:
         raise DeserializationError("ListArtifactsRequest.type required")
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

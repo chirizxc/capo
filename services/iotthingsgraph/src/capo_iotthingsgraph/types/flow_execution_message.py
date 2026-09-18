@@ -54,9 +54,9 @@ def serialize_aws_json_1_1(value: FlowExecutionMessage) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> FlowExecutionMessage:
     out: FlowExecutionMessage = {}  # type: ignore[typeddict-item]
-    if "messageId" in data:
+    if data.get("messageId") is not None:
         out["message_id"] = data["messageId"]
-    if "eventType" in data:
+    if data.get("eventType") is not None:
         import capo_iotthingsgraph.types.flow_execution_event_type
 
         out["event_type"] = (
@@ -64,12 +64,12 @@ def deserialize_aws_json_1_1(data: dict) -> FlowExecutionMessage:
                 data["eventType"]
             )
         )
-    if "timestamp" in data:
+    if data.get("timestamp") is not None:
         import capo_iotthingsgraph.types.timestamp
 
         out["timestamp"] = capo_iotthingsgraph.types.timestamp.deserialize_aws_json_1_1(
             data["timestamp"]
         )
-    if "payload" in data:
+    if data.get("payload") is not None:
         out["payload"] = data["payload"]
     return out

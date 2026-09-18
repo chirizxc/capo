@@ -71,11 +71,11 @@ def serialize_aws_json_1_1(value: ModelCardExportJobSummary) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ModelCardExportJobSummary:
     out: ModelCardExportJobSummary = {}  # type: ignore[typeddict-item]
-    if "ModelCardExportJobName" in data:
+    if data.get("ModelCardExportJobName") is not None:
         out["model_card_export_job_name"] = data["ModelCardExportJobName"]
-    if "ModelCardExportJobArn" in data:
+    if data.get("ModelCardExportJobArn") is not None:
         out["model_card_export_job_arn"] = data["ModelCardExportJobArn"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_sagemaker.types.model_card_export_job_status
 
         out["status"] = (
@@ -83,17 +83,17 @@ def deserialize_aws_json_1_1(data: dict) -> ModelCardExportJobSummary:
                 data["Status"]
             )
         )
-    if "ModelCardName" in data:
+    if data.get("ModelCardName") is not None:
         out["model_card_name"] = data["ModelCardName"]
-    if "ModelCardVersion" in data:
+    if data.get("ModelCardVersion") is not None:
         out["model_card_version"] = data["ModelCardVersion"]
-    if "CreatedAt" in data:
+    if data.get("CreatedAt") is not None:
         import capo_sagemaker.types.timestamp
 
         out["created_at"] = capo_sagemaker.types.timestamp.deserialize_aws_json_1_1(
             data["CreatedAt"]
         )
-    if "LastModifiedAt" in data:
+    if data.get("LastModifiedAt") is not None:
         import capo_sagemaker.types.timestamp
 
         out["last_modified_at"] = (

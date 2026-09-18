@@ -60,9 +60,9 @@ def serialize_aws_json_1_1(value: StepConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> StepConfig:
     out: StepConfig = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "ActionOnFailure" in data:
+    if data.get("ActionOnFailure") is not None:
         import capo_emr.types.action_on_failure
 
         out["action_on_failure"] = (
@@ -70,7 +70,7 @@ def deserialize_aws_json_1_1(data: dict) -> StepConfig:
                 data["ActionOnFailure"]
             )
         )
-    if "HadoopJarStep" in data:
+    if data.get("HadoopJarStep") is not None:
         import capo_emr.types.hadoop_jar_step_config
 
         out["hadoop_jar_step"] = (
@@ -78,7 +78,7 @@ def deserialize_aws_json_1_1(data: dict) -> StepConfig:
                 data["HadoopJarStep"]
             )
         )
-    if "StepMonitoringConfiguration" in data:
+    if data.get("StepMonitoringConfiguration") is not None:
         import capo_emr.types.step_monitoring_configuration
 
         out["step_monitoring_configuration"] = (

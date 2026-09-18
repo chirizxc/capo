@@ -32,12 +32,12 @@ def serialize_aws_json_1_1(value: ListDatabasesOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListDatabasesOutput:
     out: ListDatabasesOutput = {}  # type: ignore[typeddict-item]
-    if "DatabaseList" in data:
+    if data.get("DatabaseList") is not None:
         import capo_athena.types.database_list
 
         out["database_list"] = capo_athena.types.database_list.deserialize_aws_json_1_1(
             data["DatabaseList"]
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

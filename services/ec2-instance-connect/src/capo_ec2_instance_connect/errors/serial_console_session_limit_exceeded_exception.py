@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: SerialConsoleSessionLimitExceededException_) -
 
 def deserialize_aws_json_1_1(data: dict) -> SerialConsoleSessionLimitExceededException_:
     out: SerialConsoleSessionLimitExceededException_ = {}  # type: ignore[typeddict-item]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     return out
 
@@ -34,17 +34,22 @@ class SerialConsoleSessionLimitExceededException(ServiceError):
 
     code: str | None = "SerialConsoleSessionLimitExceededException"
 
-    def __init__(self, data: SerialConsoleSessionLimitExceededException_):
+    def __init__(
+        self,
+        data: SerialConsoleSessionLimitExceededException_,
+        message: str | None = None,
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="SerialConsoleSessionLimitExceededException",
+            message=message,
         )
         self.data = data
 
     @classmethod
     def from_aws_json_1_1(
-        cls, data: dict
+        cls, data: dict, message: str | None = None
     ) -> "SerialConsoleSessionLimitExceededException":
-        return cls(deserialize_aws_json_1_1(data))
+        return cls(deserialize_aws_json_1_1(data), message)

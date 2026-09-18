@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: InvalidDataRepositoryType_) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> InvalidDataRepositoryType_:
     out: InvalidDataRepositoryType_ = {}  # type: ignore[typeddict-item]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     return out
 
@@ -34,15 +34,18 @@ class InvalidDataRepositoryType(ServiceError):
 
     code: str | None = "InvalidDataRepositoryType"
 
-    def __init__(self, data: InvalidDataRepositoryType_):
+    def __init__(self, data: InvalidDataRepositoryType_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="InvalidDataRepositoryType",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "InvalidDataRepositoryType":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "InvalidDataRepositoryType":
+        return cls(deserialize_aws_json_1_1(data), message)

@@ -62,13 +62,13 @@ def serialize_aws_json_1_1(value: ResourceSpec) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ResourceSpec:
     out: ResourceSpec = {}  # type: ignore[typeddict-item]
-    if "SageMakerImageArn" in data:
+    if data.get("SageMakerImageArn") is not None:
         out["sage_maker_image_arn"] = data["SageMakerImageArn"]
-    if "SageMakerImageVersionArn" in data:
+    if data.get("SageMakerImageVersionArn") is not None:
         out["sage_maker_image_version_arn"] = data["SageMakerImageVersionArn"]
-    if "SageMakerImageVersionAlias" in data:
+    if data.get("SageMakerImageVersionAlias") is not None:
         out["sage_maker_image_version_alias"] = data["SageMakerImageVersionAlias"]
-    if "InstanceType" in data:
+    if data.get("InstanceType") is not None:
         import capo_sagemaker.types.app_instance_type
 
         out["instance_type"] = (
@@ -76,8 +76,8 @@ def deserialize_aws_json_1_1(data: dict) -> ResourceSpec:
                 data["InstanceType"]
             )
         )
-    if "LifecycleConfigArn" in data:
+    if data.get("LifecycleConfigArn") is not None:
         out["lifecycle_config_arn"] = data["LifecycleConfigArn"]
-    if "TrainingPlanArn" in data:
+    if data.get("TrainingPlanArn") is not None:
         out["training_plan_arn"] = data["TrainingPlanArn"]
     return out

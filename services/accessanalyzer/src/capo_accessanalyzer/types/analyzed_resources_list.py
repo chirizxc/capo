@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> AnalyzedResourcesList:
 
     out: AnalyzedResourcesList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_accessanalyzer.types.analyzed_resource_summary.deserialize_json(item)
         )

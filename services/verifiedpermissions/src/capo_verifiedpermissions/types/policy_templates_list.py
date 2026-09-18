@@ -29,6 +29,8 @@ def deserialize_aws_json_1_0(data: list) -> PolicyTemplatesList:
 
     out: PolicyTemplatesList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_verifiedpermissions.types.policy_template_item.deserialize_aws_json_1_0(
                 item

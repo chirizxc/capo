@@ -63,7 +63,7 @@ def serialize_aws_json_1_1(value: ClarifyShapConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ClarifyShapConfig:
     out: ClarifyShapConfig = {}  # type: ignore[typeddict-item]
-    if "ShapBaselineConfig" in data:
+    if data.get("ShapBaselineConfig") is not None:
         import capo_sagemaker.types.clarify_shap_baseline_config
 
         out["shap_baseline_config"] = (
@@ -71,13 +71,13 @@ def deserialize_aws_json_1_1(data: dict) -> ClarifyShapConfig:
                 data["ShapBaselineConfig"]
             )
         )
-    if "NumberOfSamples" in data:
+    if data.get("NumberOfSamples") is not None:
         out["number_of_samples"] = data["NumberOfSamples"]
-    if "UseLogit" in data:
+    if data.get("UseLogit") is not None:
         out["use_logit"] = data["UseLogit"]
-    if "Seed" in data:
+    if data.get("Seed") is not None:
         out["seed"] = data["Seed"]
-    if "TextConfig" in data:
+    if data.get("TextConfig") is not None:
         import capo_sagemaker.types.clarify_text_config
 
         out["text_config"] = (

@@ -28,11 +28,11 @@ def serialize_json(value: MetadataFormReference) -> dict:
 
 def deserialize_json(data: dict) -> MetadataFormReference:
     out: MetadataFormReference = {}  # type: ignore[typeddict-item]
-    if "typeIdentifier" in data:
+    if data.get("typeIdentifier") is not None:
         out["type_identifier"] = data["typeIdentifier"]
     else:
         raise DeserializationError("MetadataFormReference.type_identifier required")
-    if "typeRevision" in data:
+    if data.get("typeRevision") is not None:
         out["type_revision"] = data["typeRevision"]
     else:
         raise DeserializationError("MetadataFormReference.type_revision required")

@@ -25,6 +25,8 @@ def deserialize_json(data: list) -> PrivateIpAddresses:
 
     out: PrivateIpAddresses = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_guardduty.types.private_ip_address_details.deserialize_json(item)
         )

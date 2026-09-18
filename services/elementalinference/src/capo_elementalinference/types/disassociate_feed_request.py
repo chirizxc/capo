@@ -32,13 +32,13 @@ def serialize_json(value: DisassociateFeedRequest) -> dict:
 
 def deserialize_json(data: dict) -> DisassociateFeedRequest:
     out: DisassociateFeedRequest = {}  # type: ignore[typeddict-item]
-    if "associatedResourceName" in data:
+    if data.get("associatedResourceName") is not None:
         out["associated_resource_name"] = data["associatedResourceName"]
     else:
         raise DeserializationError(
             "DisassociateFeedRequest.associated_resource_name required"
         )
-    if "dryRun" in data:
+    if data.get("dryRun") is not None:
         out["dry_run"] = data["dryRun"]
     else:
         out["dry_run"] = False

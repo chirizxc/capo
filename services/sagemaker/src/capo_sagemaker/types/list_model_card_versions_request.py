@@ -95,7 +95,7 @@ def serialize_aws_json_1_1(value: ListModelCardVersionsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListModelCardVersionsRequest:
     out: ListModelCardVersionsRequest = {}  # type: ignore[typeddict-item]
-    if "CreationTimeAfter" in data:
+    if data.get("CreationTimeAfter") is not None:
         import capo_sagemaker.types.timestamp
 
         out["creation_time_after"] = (
@@ -103,7 +103,7 @@ def deserialize_aws_json_1_1(data: dict) -> ListModelCardVersionsRequest:
                 data["CreationTimeAfter"]
             )
         )
-    if "CreationTimeBefore" in data:
+    if data.get("CreationTimeBefore") is not None:
         import capo_sagemaker.types.timestamp
 
         out["creation_time_before"] = (
@@ -111,11 +111,11 @@ def deserialize_aws_json_1_1(data: dict) -> ListModelCardVersionsRequest:
                 data["CreationTimeBefore"]
             )
         )
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "ModelCardName" in data:
+    if data.get("ModelCardName") is not None:
         out["model_card_name"] = data["ModelCardName"]
-    if "ModelCardStatus" in data:
+    if data.get("ModelCardStatus") is not None:
         import capo_sagemaker.types.model_card_status
 
         out["model_card_status"] = (
@@ -123,9 +123,9 @@ def deserialize_aws_json_1_1(data: dict) -> ListModelCardVersionsRequest:
                 data["ModelCardStatus"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "SortBy" in data:
+    if data.get("SortBy") is not None:
         import capo_sagemaker.types.model_card_version_sort_by
 
         out["sort_by"] = (
@@ -133,7 +133,7 @@ def deserialize_aws_json_1_1(data: dict) -> ListModelCardVersionsRequest:
                 data["SortBy"]
             )
         )
-    if "SortOrder" in data:
+    if data.get("SortOrder") is not None:
         import capo_sagemaker.types.model_card_sort_order
 
         out["sort_order"] = (

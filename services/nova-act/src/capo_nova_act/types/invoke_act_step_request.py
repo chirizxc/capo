@@ -44,7 +44,7 @@ def serialize_json(value: InvokeActStepRequest) -> dict:
 
 def deserialize_json(data: dict) -> InvokeActStepRequest:
     out: InvokeActStepRequest = {}  # type: ignore[typeddict-item]
-    if "callResults" in data:
+    if data.get("callResults") is not None:
         import capo_nova_act.types.call_results
 
         out["call_results"] = capo_nova_act.types.call_results.deserialize_json(
@@ -52,6 +52,6 @@ def deserialize_json(data: dict) -> InvokeActStepRequest:
         )
     else:
         raise DeserializationError("InvokeActStepRequest.call_results required")
-    if "previousStepId" in data:
+    if data.get("previousStepId") is not None:
         out["previous_step_id"] = data["previousStepId"]
     return out

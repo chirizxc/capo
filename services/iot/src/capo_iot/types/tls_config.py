@@ -23,6 +23,6 @@ def serialize_json(value: TlsConfig) -> dict:
 
 def deserialize_json(data: dict) -> TlsConfig:
     out: TlsConfig = {}  # type: ignore[typeddict-item]
-    if "securityPolicy" in data:
+    if data.get("securityPolicy") is not None:
         out["security_policy"] = data["securityPolicy"]
     return out

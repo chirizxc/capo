@@ -25,6 +25,6 @@ def serialize_json(value: CompositeComponentTypeRequest) -> dict:
 
 def deserialize_json(data: dict) -> CompositeComponentTypeRequest:
     out: CompositeComponentTypeRequest = {}  # type: ignore[typeddict-item]
-    if "componentTypeId" in data:
+    if data.get("componentTypeId") is not None:
         out["component_type_id"] = data["componentTypeId"]
     return out

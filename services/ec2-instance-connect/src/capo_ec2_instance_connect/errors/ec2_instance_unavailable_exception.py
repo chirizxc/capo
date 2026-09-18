@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: EC2InstanceUnavailableException_) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> EC2InstanceUnavailableException_:
     out: EC2InstanceUnavailableException_ = {}  # type: ignore[typeddict-item]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     return out
 
@@ -34,15 +34,20 @@ class EC2InstanceUnavailableException(ServiceError):
 
     code: str | None = "EC2InstanceUnavailableException"
 
-    def __init__(self, data: EC2InstanceUnavailableException_):
+    def __init__(
+        self, data: EC2InstanceUnavailableException_, message: str | None = None
+    ):
         super().__init__(
             "server",
             is_throttling_error=False,
             is_retryable=False,
             code="EC2InstanceUnavailableException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "EC2InstanceUnavailableException":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "EC2InstanceUnavailableException":
+        return cls(deserialize_aws_json_1_1(data), message)

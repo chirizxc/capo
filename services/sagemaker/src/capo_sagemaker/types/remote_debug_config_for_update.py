@@ -25,6 +25,6 @@ def serialize_aws_json_1_1(value: RemoteDebugConfigForUpdate) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RemoteDebugConfigForUpdate:
     out: RemoteDebugConfigForUpdate = {}  # type: ignore[typeddict-item]
-    if "EnableRemoteDebug" in data:
+    if data.get("EnableRemoteDebug") is not None:
         out["enable_remote_debug"] = data["EnableRemoteDebug"]
     return out

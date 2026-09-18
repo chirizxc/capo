@@ -19,12 +19,20 @@ class PercentileAggregation(TypedDict, closed=True):
 def serialize_json(value: PercentileAggregation) -> dict:
     out: dict = {}
     if "percentile_value" in value:
-        out["PercentileValue"] = value["percentile_value"]
+        out["PercentileValue"] = (
+            "NaN"
+            if value["percentile_value"] != value["percentile_value"]
+            else "Infinity"
+            if value["percentile_value"] == float("inf")
+            else "-Infinity"
+            if value["percentile_value"] == float("-inf")
+            else value["percentile_value"]
+        )
     return out
 
 
 def deserialize_json(data: dict) -> PercentileAggregation:
     out: PercentileAggregation = {}  # type: ignore[typeddict-item]
-    if "PercentileValue" in data:
-        out["percentile_value"] = data["PercentileValue"]
+    if data.get("PercentileValue") is not None:
+        out["percentile_value"] = float(data["PercentileValue"])
     return out

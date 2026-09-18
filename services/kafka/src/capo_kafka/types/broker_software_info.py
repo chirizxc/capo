@@ -32,10 +32,10 @@ def serialize_json(value: BrokerSoftwareInfo) -> dict:
 
 def deserialize_json(data: dict) -> BrokerSoftwareInfo:
     out: BrokerSoftwareInfo = {}  # type: ignore[typeddict-item]
-    if "configurationArn" in data:
+    if data.get("configurationArn") is not None:
         out["configuration_arn"] = data["configurationArn"]
-    if "configurationRevision" in data:
+    if data.get("configurationRevision") is not None:
         out["configuration_revision"] = data["configurationRevision"]
-    if "kafkaVersion" in data:
+    if data.get("kafkaVersion") is not None:
         out["kafka_version"] = data["kafkaVersion"]
     return out

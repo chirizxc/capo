@@ -98,32 +98,32 @@ def serialize_aws_json_1_1(value: IBMDb2Settings) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> IBMDb2Settings:
     out: IBMDb2Settings = {}  # type: ignore[typeddict-item]
-    if "DatabaseName" in data:
+    if data.get("DatabaseName") is not None:
         out["database_name"] = data["DatabaseName"]
-    if "Password" in data:
+    if data.get("Password") is not None:
         out["password"] = data["Password"]
-    if "Port" in data:
+    if data.get("Port") is not None:
         out["port"] = data["Port"]
-    if "ServerName" in data:
+    if data.get("ServerName") is not None:
         out["server_name"] = data["ServerName"]
-    if "SetDataCaptureChanges" in data:
+    if data.get("SetDataCaptureChanges") is not None:
         out["set_data_capture_changes"] = data["SetDataCaptureChanges"]
-    if "CurrentLsn" in data:
+    if data.get("CurrentLsn") is not None:
         out["current_lsn"] = data["CurrentLsn"]
-    if "MaxKBytesPerRead" in data:
+    if data.get("MaxKBytesPerRead") is not None:
         out["max_k_bytes_per_read"] = data["MaxKBytesPerRead"]
-    if "Username" in data:
+    if data.get("Username") is not None:
         out["username"] = data["Username"]
-    if "SecretsManagerAccessRoleArn" in data:
+    if data.get("SecretsManagerAccessRoleArn") is not None:
         out["secrets_manager_access_role_arn"] = data["SecretsManagerAccessRoleArn"]
-    if "SecretsManagerSecretId" in data:
+    if data.get("SecretsManagerSecretId") is not None:
         out["secrets_manager_secret_id"] = data["SecretsManagerSecretId"]
-    if "LoadTimeout" in data:
+    if data.get("LoadTimeout") is not None:
         out["load_timeout"] = data["LoadTimeout"]
-    if "WriteBufferSize" in data:
+    if data.get("WriteBufferSize") is not None:
         out["write_buffer_size"] = data["WriteBufferSize"]
-    if "MaxFileSize" in data:
+    if data.get("MaxFileSize") is not None:
         out["max_file_size"] = data["MaxFileSize"]
-    if "KeepCsvFiles" in data:
+    if data.get("KeepCsvFiles") is not None:
         out["keep_csv_files"] = data["KeepCsvFiles"]
     return out

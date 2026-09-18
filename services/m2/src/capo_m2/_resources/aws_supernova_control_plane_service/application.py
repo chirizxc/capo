@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import uuid
 from typing import TYPE_CHECKING, Optional
 
 import capo_m2._auth._signers
@@ -160,16 +161,18 @@ class Application:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_m2.types.create_application_request.CreateApplicationRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_m2.types.create_application_request.CreateApplicationRequest = {
+            "name": name,
+            "engine_type": engine_type,
+            "definition": definition,
+        }
         if description is not None:
             input_["description"] = description
-        input_["engine_type"] = engine_type
-        input_["definition"] = definition
         if tags is not None:
             input_["tags"] = tags
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if kms_key_id is not None:
             input_["kms_key_id"] = kms_key_id
         if role_arn is not None:
@@ -180,6 +183,7 @@ class Application:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -217,14 +221,16 @@ class Application:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_m2.types.get_application_request.GetApplicationRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
+        input_: capo_m2.types.get_application_request.GetApplicationRequest = {
+            "application_id": application_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update(
@@ -271,11 +277,12 @@ class Application:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_m2.types.update_application_request.UpdateApplicationRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
+        input_: capo_m2.types.update_application_request.UpdateApplicationRequest = {
+            "application_id": application_id,
+            "current_application_version": current_application_version,
+        }
         if description is not None:
             input_["description"] = description
-        input_["current_application_version"] = current_application_version
         if definition is not None:
             input_["definition"] = definition
 
@@ -284,6 +291,7 @@ class Application:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -321,14 +329,16 @@ class Application:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_m2.types.delete_application_request.DeleteApplicationRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
+        input_: capo_m2.types.delete_application_request.DeleteApplicationRequest = {
+            "application_id": application_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -371,7 +381,7 @@ class Application:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_m2.types.list_applications_request.ListApplicationsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_m2.types.list_applications_request.ListApplicationsRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -386,6 +396,7 @@ class Application:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def cancel_batch_job_execution(
@@ -430,9 +441,10 @@ class Application:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_m2.types.cancel_batch_job_execution_request.CancelBatchJobExecutionRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
-        input_["execution_id"] = execution_id
+        input_: capo_m2.types.cancel_batch_job_execution_request.CancelBatchJobExecutionRequest = {
+            "application_id": application_id,
+            "execution_id": execution_id,
+        }
         if auth_secrets_manager_arn is not None:
             input_["auth_secrets_manager_arn"] = auth_secrets_manager_arn
 
@@ -441,6 +453,7 @@ class Application:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_data_set_export_task(
@@ -486,11 +499,13 @@ class Application:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_m2.types.create_data_set_export_task_request.CreateDataSetExportTaskRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
-        input_["export_config"] = export_config
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_m2.types.create_data_set_export_task_request.CreateDataSetExportTaskRequest = {
+            "application_id": application_id,
+            "export_config": export_config,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if kms_key_id is not None:
             input_["kms_key_id"] = kms_key_id
 
@@ -499,6 +514,7 @@ class Application:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_data_set_import_task(
@@ -542,17 +558,20 @@ class Application:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_m2.types.create_data_set_import_task_request.CreateDataSetImportTaskRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
-        input_["import_config"] = import_config
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_m2.types.create_data_set_import_task_request.CreateDataSetImportTaskRequest = {
+            "application_id": application_id,
+            "import_config": import_config,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_deployment(
@@ -598,18 +617,21 @@ class Application:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_m2.types.create_deployment_request.CreateDeploymentRequest = {}  # type: ignore[typeddict-item]
-        input_["environment_id"] = environment_id
-        input_["application_id"] = application_id
-        input_["application_version"] = application_version
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_m2.types.create_deployment_request.CreateDeploymentRequest = {
+            "environment_id": environment_id,
+            "application_id": application_id,
+            "application_version": application_version,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_application_from_environment(
@@ -650,15 +672,17 @@ class Application:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_m2.types.delete_application_from_environment_request.DeleteApplicationFromEnvironmentRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
-        input_["environment_id"] = environment_id
+        input_: capo_m2.types.delete_application_from_environment_request.DeleteApplicationFromEnvironmentRequest = {
+            "application_id": application_id,
+            "environment_id": environment_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_application_version(
@@ -698,15 +722,17 @@ class Application:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_m2.types.get_application_version_request.GetApplicationVersionRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
-        input_["application_version"] = application_version
+        input_: capo_m2.types.get_application_version_request.GetApplicationVersionRequest = {
+            "application_id": application_id,
+            "application_version": application_version,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_batch_job_execution(
@@ -746,15 +772,17 @@ class Application:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_m2.types.get_batch_job_execution_request.GetBatchJobExecutionRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
-        input_["execution_id"] = execution_id
+        input_: capo_m2.types.get_batch_job_execution_request.GetBatchJobExecutionRequest = {
+            "application_id": application_id,
+            "execution_id": execution_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_data_set_details(
@@ -797,15 +825,17 @@ class Application:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_m2.types.get_data_set_details_request.GetDataSetDetailsRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
-        input_["data_set_name"] = data_set_name
+        input_: capo_m2.types.get_data_set_details_request.GetDataSetDetailsRequest = {
+            "application_id": application_id,
+            "data_set_name": data_set_name,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_data_set_export_task(
@@ -845,15 +875,17 @@ class Application:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_m2.types.get_data_set_export_task_request.GetDataSetExportTaskRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
-        input_["task_id"] = task_id
+        input_: capo_m2.types.get_data_set_export_task_request.GetDataSetExportTaskRequest = {
+            "application_id": application_id,
+            "task_id": task_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_data_set_import_task(
@@ -893,15 +925,17 @@ class Application:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_m2.types.get_data_set_import_task_request.GetDataSetImportTaskRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
-        input_["task_id"] = task_id
+        input_: capo_m2.types.get_data_set_import_task_request.GetDataSetImportTaskRequest = {
+            "application_id": application_id,
+            "task_id": task_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_deployment(
@@ -941,15 +975,17 @@ class Application:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_m2.types.get_deployment_request.GetDeploymentRequest = {}  # type: ignore[typeddict-item]
-        input_["deployment_id"] = deployment_id
-        input_["application_id"] = application_id
+        input_: capo_m2.types.get_deployment_request.GetDeploymentRequest = {
+            "deployment_id": deployment_id,
+            "application_id": application_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_application_versions(
@@ -991,18 +1027,20 @@ class Application:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_m2.types.list_application_versions_request.ListApplicationVersionsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_m2.types.list_application_versions_request.ListApplicationVersionsRequest = {
+            "application_id": application_id
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
             input_["max_results"] = max_results
-        input_["application_id"] = application_id
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_batch_job_definitions(
@@ -1046,12 +1084,13 @@ class Application:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_m2.types.list_batch_job_definitions_request.ListBatchJobDefinitionsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_m2.types.list_batch_job_definitions_request.ListBatchJobDefinitionsRequest = {
+            "application_id": application_id
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
             input_["max_results"] = max_results
-        input_["application_id"] = application_id
         if prefix is not None:
             input_["prefix"] = prefix
 
@@ -1060,6 +1099,7 @@ class Application:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_batch_job_executions(
@@ -1113,12 +1153,13 @@ class Application:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_m2.types.list_batch_job_executions_request.ListBatchJobExecutionsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_m2.types.list_batch_job_executions_request.ListBatchJobExecutionsRequest = {
+            "application_id": application_id
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
             input_["max_results"] = max_results
-        input_["application_id"] = application_id
         if execution_ids is not None:
             input_["execution_ids"] = execution_ids
         if job_name is not None:
@@ -1135,6 +1176,7 @@ class Application:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_batch_job_restart_points(
@@ -1179,9 +1221,10 @@ class Application:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_m2.types.list_batch_job_restart_points_request.ListBatchJobRestartPointsRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
-        input_["execution_id"] = execution_id
+        input_: capo_m2.types.list_batch_job_restart_points_request.ListBatchJobRestartPointsRequest = {
+            "application_id": application_id,
+            "execution_id": execution_id,
+        }
         if auth_secrets_manager_arn is not None:
             input_["auth_secrets_manager_arn"] = auth_secrets_manager_arn
 
@@ -1190,6 +1233,7 @@ class Application:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_data_set_export_history(
@@ -1231,18 +1275,20 @@ class Application:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_m2.types.list_data_set_export_history_request.ListDataSetExportHistoryRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_m2.types.list_data_set_export_history_request.ListDataSetExportHistoryRequest = {
+            "application_id": application_id
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
             input_["max_results"] = max_results
-        input_["application_id"] = application_id
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_data_set_import_history(
@@ -1284,18 +1330,20 @@ class Application:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_m2.types.list_data_set_import_history_request.ListDataSetImportHistoryRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_m2.types.list_data_set_import_history_request.ListDataSetImportHistoryRequest = {
+            "application_id": application_id
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
             input_["max_results"] = max_results
-        input_["application_id"] = application_id
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_data_sets(
@@ -1344,8 +1392,9 @@ class Application:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_m2.types.list_data_sets_request.ListDataSetsRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
+        input_: capo_m2.types.list_data_sets_request.ListDataSetsRequest = {
+            "application_id": application_id
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -1360,6 +1409,7 @@ class Application:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_deployments(
@@ -1401,18 +1451,20 @@ class Application:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_m2.types.list_deployments_request.ListDeploymentsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_m2.types.list_deployments_request.ListDeploymentsRequest = {
+            "application_id": application_id
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
             input_["max_results"] = max_results
-        input_["application_id"] = application_id
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def start_application(
@@ -1451,14 +1503,16 @@ class Application:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_m2.types.start_application_request.StartApplicationRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
+        input_: capo_m2.types.start_application_request.StartApplicationRequest = {
+            "application_id": application_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def start_batch_job(
@@ -1507,9 +1561,10 @@ class Application:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_m2.types.start_batch_job_request.StartBatchJobRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
-        input_["batch_job_identifier"] = batch_job_identifier
+        input_: capo_m2.types.start_batch_job_request.StartBatchJobRequest = {
+            "application_id": application_id,
+            "batch_job_identifier": batch_job_identifier,
+        }
         if job_params is not None:
             input_["job_params"] = job_params
         if auth_secrets_manager_arn is not None:
@@ -1520,6 +1575,7 @@ class Application:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def stop_application(
@@ -1560,8 +1616,9 @@ class Application:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_m2.types.stop_application_request.StopApplicationRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
+        input_: capo_m2.types.stop_application_request.StopApplicationRequest = {
+            "application_id": application_id
+        }
         if force_stop is not None:
             input_["force_stop"] = force_stop
 
@@ -1570,6 +1627,7 @@ class Application:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -1630,16 +1688,18 @@ class AsyncApplication:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_m2.types.create_application_request.CreateApplicationRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_m2.types.create_application_request.CreateApplicationRequest = {
+            "name": name,
+            "engine_type": engine_type,
+            "definition": definition,
+        }
         if description is not None:
             input_["description"] = description
-        input_["engine_type"] = engine_type
-        input_["definition"] = definition
         if tags is not None:
             input_["tags"] = tags
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if kms_key_id is not None:
             input_["kms_key_id"] = kms_key_id
         if role_arn is not None:
@@ -1650,6 +1710,7 @@ class AsyncApplication:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -1688,14 +1749,16 @@ class AsyncApplication:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_m2.types.get_application_request.GetApplicationRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
+        input_: capo_m2.types.get_application_request.GetApplicationRequest = {
+            "application_id": application_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update(
@@ -1743,11 +1806,12 @@ class AsyncApplication:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_m2.types.update_application_request.UpdateApplicationRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
+        input_: capo_m2.types.update_application_request.UpdateApplicationRequest = {
+            "application_id": application_id,
+            "current_application_version": current_application_version,
+        }
         if description is not None:
             input_["description"] = description
-        input_["current_application_version"] = current_application_version
         if definition is not None:
             input_["definition"] = definition
 
@@ -1756,6 +1820,7 @@ class AsyncApplication:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -1794,14 +1859,16 @@ class AsyncApplication:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_m2.types.delete_application_request.DeleteApplicationRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
+        input_: capo_m2.types.delete_application_request.DeleteApplicationRequest = {
+            "application_id": application_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -1845,7 +1912,7 @@ class AsyncApplication:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_m2.types.list_applications_request.ListApplicationsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_m2.types.list_applications_request.ListApplicationsRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -1860,6 +1927,7 @@ class AsyncApplication:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def cancel_batch_job_execution(
@@ -1905,9 +1973,10 @@ class AsyncApplication:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_m2.types.cancel_batch_job_execution_request.CancelBatchJobExecutionRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
-        input_["execution_id"] = execution_id
+        input_: capo_m2.types.cancel_batch_job_execution_request.CancelBatchJobExecutionRequest = {
+            "application_id": application_id,
+            "execution_id": execution_id,
+        }
         if auth_secrets_manager_arn is not None:
             input_["auth_secrets_manager_arn"] = auth_secrets_manager_arn
 
@@ -1916,6 +1985,7 @@ class AsyncApplication:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_data_set_export_task(
@@ -1962,11 +2032,13 @@ class AsyncApplication:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_m2.types.create_data_set_export_task_request.CreateDataSetExportTaskRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
-        input_["export_config"] = export_config
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_m2.types.create_data_set_export_task_request.CreateDataSetExportTaskRequest = {
+            "application_id": application_id,
+            "export_config": export_config,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if kms_key_id is not None:
             input_["kms_key_id"] = kms_key_id
 
@@ -1975,6 +2047,7 @@ class AsyncApplication:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_data_set_import_task(
@@ -2019,17 +2092,20 @@ class AsyncApplication:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_m2.types.create_data_set_import_task_request.CreateDataSetImportTaskRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
-        input_["import_config"] = import_config
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_m2.types.create_data_set_import_task_request.CreateDataSetImportTaskRequest = {
+            "application_id": application_id,
+            "import_config": import_config,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_deployment(
@@ -2076,18 +2152,21 @@ class AsyncApplication:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_m2.types.create_deployment_request.CreateDeploymentRequest = {}  # type: ignore[typeddict-item]
-        input_["environment_id"] = environment_id
-        input_["application_id"] = application_id
-        input_["application_version"] = application_version
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_m2.types.create_deployment_request.CreateDeploymentRequest = {
+            "environment_id": environment_id,
+            "application_id": application_id,
+            "application_version": application_version,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_application_from_environment(
@@ -2129,15 +2208,17 @@ class AsyncApplication:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_m2.types.delete_application_from_environment_request.DeleteApplicationFromEnvironmentRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
-        input_["environment_id"] = environment_id
+        input_: capo_m2.types.delete_application_from_environment_request.DeleteApplicationFromEnvironmentRequest = {
+            "application_id": application_id,
+            "environment_id": environment_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_application_version(
@@ -2178,15 +2259,17 @@ class AsyncApplication:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_m2.types.get_application_version_request.GetApplicationVersionRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
-        input_["application_version"] = application_version
+        input_: capo_m2.types.get_application_version_request.GetApplicationVersionRequest = {
+            "application_id": application_id,
+            "application_version": application_version,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_batch_job_execution(
@@ -2227,15 +2310,17 @@ class AsyncApplication:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_m2.types.get_batch_job_execution_request.GetBatchJobExecutionRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
-        input_["execution_id"] = execution_id
+        input_: capo_m2.types.get_batch_job_execution_request.GetBatchJobExecutionRequest = {
+            "application_id": application_id,
+            "execution_id": execution_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_data_set_details(
@@ -2279,15 +2364,17 @@ class AsyncApplication:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_m2.types.get_data_set_details_request.GetDataSetDetailsRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
-        input_["data_set_name"] = data_set_name
+        input_: capo_m2.types.get_data_set_details_request.GetDataSetDetailsRequest = {
+            "application_id": application_id,
+            "data_set_name": data_set_name,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_data_set_export_task(
@@ -2328,15 +2415,17 @@ class AsyncApplication:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_m2.types.get_data_set_export_task_request.GetDataSetExportTaskRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
-        input_["task_id"] = task_id
+        input_: capo_m2.types.get_data_set_export_task_request.GetDataSetExportTaskRequest = {
+            "application_id": application_id,
+            "task_id": task_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_data_set_import_task(
@@ -2377,15 +2466,17 @@ class AsyncApplication:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_m2.types.get_data_set_import_task_request.GetDataSetImportTaskRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
-        input_["task_id"] = task_id
+        input_: capo_m2.types.get_data_set_import_task_request.GetDataSetImportTaskRequest = {
+            "application_id": application_id,
+            "task_id": task_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_deployment(
@@ -2426,15 +2517,17 @@ class AsyncApplication:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_m2.types.get_deployment_request.GetDeploymentRequest = {}  # type: ignore[typeddict-item]
-        input_["deployment_id"] = deployment_id
-        input_["application_id"] = application_id
+        input_: capo_m2.types.get_deployment_request.GetDeploymentRequest = {
+            "deployment_id": deployment_id,
+            "application_id": application_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_application_versions(
@@ -2477,18 +2570,20 @@ class AsyncApplication:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_m2.types.list_application_versions_request.ListApplicationVersionsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_m2.types.list_application_versions_request.ListApplicationVersionsRequest = {
+            "application_id": application_id
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
             input_["max_results"] = max_results
-        input_["application_id"] = application_id
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_batch_job_definitions(
@@ -2533,12 +2628,13 @@ class AsyncApplication:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_m2.types.list_batch_job_definitions_request.ListBatchJobDefinitionsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_m2.types.list_batch_job_definitions_request.ListBatchJobDefinitionsRequest = {
+            "application_id": application_id
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
             input_["max_results"] = max_results
-        input_["application_id"] = application_id
         if prefix is not None:
             input_["prefix"] = prefix
 
@@ -2547,6 +2643,7 @@ class AsyncApplication:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_batch_job_executions(
@@ -2601,12 +2698,13 @@ class AsyncApplication:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_m2.types.list_batch_job_executions_request.ListBatchJobExecutionsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_m2.types.list_batch_job_executions_request.ListBatchJobExecutionsRequest = {
+            "application_id": application_id
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
             input_["max_results"] = max_results
-        input_["application_id"] = application_id
         if execution_ids is not None:
             input_["execution_ids"] = execution_ids
         if job_name is not None:
@@ -2623,6 +2721,7 @@ class AsyncApplication:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_batch_job_restart_points(
@@ -2668,9 +2767,10 @@ class AsyncApplication:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_m2.types.list_batch_job_restart_points_request.ListBatchJobRestartPointsRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
-        input_["execution_id"] = execution_id
+        input_: capo_m2.types.list_batch_job_restart_points_request.ListBatchJobRestartPointsRequest = {
+            "application_id": application_id,
+            "execution_id": execution_id,
+        }
         if auth_secrets_manager_arn is not None:
             input_["auth_secrets_manager_arn"] = auth_secrets_manager_arn
 
@@ -2679,6 +2779,7 @@ class AsyncApplication:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_data_set_export_history(
@@ -2721,18 +2822,20 @@ class AsyncApplication:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_m2.types.list_data_set_export_history_request.ListDataSetExportHistoryRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_m2.types.list_data_set_export_history_request.ListDataSetExportHistoryRequest = {
+            "application_id": application_id
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
             input_["max_results"] = max_results
-        input_["application_id"] = application_id
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_data_set_import_history(
@@ -2775,18 +2878,20 @@ class AsyncApplication:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_m2.types.list_data_set_import_history_request.ListDataSetImportHistoryRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_m2.types.list_data_set_import_history_request.ListDataSetImportHistoryRequest = {
+            "application_id": application_id
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
             input_["max_results"] = max_results
-        input_["application_id"] = application_id
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_data_sets(
@@ -2836,8 +2941,9 @@ class AsyncApplication:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_m2.types.list_data_sets_request.ListDataSetsRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
+        input_: capo_m2.types.list_data_sets_request.ListDataSetsRequest = {
+            "application_id": application_id
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -2852,6 +2958,7 @@ class AsyncApplication:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_deployments(
@@ -2894,18 +3001,20 @@ class AsyncApplication:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_m2.types.list_deployments_request.ListDeploymentsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_m2.types.list_deployments_request.ListDeploymentsRequest = {
+            "application_id": application_id
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
             input_["max_results"] = max_results
-        input_["application_id"] = application_id
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def start_application(
@@ -2945,14 +3054,16 @@ class AsyncApplication:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_m2.types.start_application_request.StartApplicationRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
+        input_: capo_m2.types.start_application_request.StartApplicationRequest = {
+            "application_id": application_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def start_batch_job(
@@ -3002,9 +3113,10 @@ class AsyncApplication:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_m2.types.start_batch_job_request.StartBatchJobRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
-        input_["batch_job_identifier"] = batch_job_identifier
+        input_: capo_m2.types.start_batch_job_request.StartBatchJobRequest = {
+            "application_id": application_id,
+            "batch_job_identifier": batch_job_identifier,
+        }
         if job_params is not None:
             input_["job_params"] = job_params
         if auth_secrets_manager_arn is not None:
@@ -3015,6 +3127,7 @@ class AsyncApplication:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def stop_application(
@@ -3056,8 +3169,9 @@ class AsyncApplication:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_m2.types.stop_application_request.StopApplicationRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
+        input_: capo_m2.types.stop_application_request.StopApplicationRequest = {
+            "application_id": application_id
+        }
         if force_stop is not None:
             input_["force_stop"] = force_stop
 
@@ -3066,4 +3180,5 @@ class AsyncApplication:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

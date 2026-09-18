@@ -33,7 +33,7 @@ def serialize_aws_json_1_0(value: MinimalWorkflow) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> MinimalWorkflow:
     out: MinimalWorkflow = {}  # type: ignore[typeddict-item]
-    if "action" in data:
+    if data.get("action") is not None:
         import capo_arc_region_switch.types.execution_action
 
         out["action"] = (
@@ -41,6 +41,6 @@ def deserialize_aws_json_1_0(data: dict) -> MinimalWorkflow:
                 data["action"]
             )
         )
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     return out

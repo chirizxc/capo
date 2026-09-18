@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> ListOf__EndpointTypesElement:
 
     out: ListOf__EndpointTypesElement = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_pinpoint.types.__endpoint_types_element.deserialize_json(item))
     return out

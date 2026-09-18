@@ -34,15 +34,15 @@ def serialize_json(value: DeleteVocabularyResponse) -> dict:
 
 def deserialize_json(data: dict) -> DeleteVocabularyResponse:
     out: DeleteVocabularyResponse = {}  # type: ignore[typeddict-item]
-    if "VocabularyArn" in data:
+    if data.get("VocabularyArn") is not None:
         out["vocabulary_arn"] = data["VocabularyArn"]
     else:
         raise DeserializationError("DeleteVocabularyResponse.vocabulary_arn required")
-    if "VocabularyId" in data:
+    if data.get("VocabularyId") is not None:
         out["vocabulary_id"] = data["VocabularyId"]
     else:
         raise DeserializationError("DeleteVocabularyResponse.vocabulary_id required")
-    if "State" in data:
+    if data.get("State") is not None:
         import capo_connect.types.vocabulary_state
 
         out["state"] = capo_connect.types.vocabulary_state.deserialize_json(

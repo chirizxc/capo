@@ -73,14 +73,16 @@ class RasterDataCollection:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_sagemaker_geospatial.types.get_raster_data_collection_input.GetRasterDataCollectionInput = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
+        input_: capo_sagemaker_geospatial.types.get_raster_data_collection_input.GetRasterDataCollectionInput = {
+            "arn": arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -122,7 +124,7 @@ class RasterDataCollection:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_sagemaker_geospatial.types.list_raster_data_collections_input.ListRasterDataCollectionsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_sagemaker_geospatial.types.list_raster_data_collections_input.ListRasterDataCollectionsInput = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -133,6 +135,7 @@ class RasterDataCollection:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def search_raster_data_collection(
@@ -176,9 +179,10 @@ class RasterDataCollection:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_sagemaker_geospatial.types.search_raster_data_collection_input.SearchRasterDataCollectionInput = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
-        input_["raster_data_collection_query"] = raster_data_collection_query
+        input_: capo_sagemaker_geospatial.types.search_raster_data_collection_input.SearchRasterDataCollectionInput = {
+            "arn": arn,
+            "raster_data_collection_query": raster_data_collection_query,
+        }
         if next_token is not None:
             input_["next_token"] = next_token
 
@@ -187,6 +191,7 @@ class RasterDataCollection:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -230,14 +235,16 @@ class AsyncRasterDataCollection:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_sagemaker_geospatial.types.get_raster_data_collection_input.GetRasterDataCollectionInput = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
+        input_: capo_sagemaker_geospatial.types.get_raster_data_collection_input.GetRasterDataCollectionInput = {
+            "arn": arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -280,7 +287,7 @@ class AsyncRasterDataCollection:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_sagemaker_geospatial.types.list_raster_data_collections_input.ListRasterDataCollectionsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_sagemaker_geospatial.types.list_raster_data_collections_input.ListRasterDataCollectionsInput = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -291,6 +298,7 @@ class AsyncRasterDataCollection:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def search_raster_data_collection(
@@ -335,9 +343,10 @@ class AsyncRasterDataCollection:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_sagemaker_geospatial.types.search_raster_data_collection_input.SearchRasterDataCollectionInput = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
-        input_["raster_data_collection_query"] = raster_data_collection_query
+        input_: capo_sagemaker_geospatial.types.search_raster_data_collection_input.SearchRasterDataCollectionInput = {
+            "arn": arn,
+            "raster_data_collection_query": raster_data_collection_query,
+        }
         if next_token is not None:
             input_["next_token"] = next_token
 
@@ -346,4 +355,5 @@ class AsyncRasterDataCollection:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

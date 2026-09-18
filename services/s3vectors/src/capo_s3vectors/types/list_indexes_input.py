@@ -51,14 +51,14 @@ def serialize_json(value: ListIndexesInput) -> dict:
 
 def deserialize_json(data: dict) -> ListIndexesInput:
     out: ListIndexesInput = {}  # type: ignore[typeddict-item]
-    if "vectorBucketName" in data:
+    if data.get("vectorBucketName") is not None:
         out["vector_bucket_name"] = data["vectorBucketName"]
-    if "vectorBucketArn" in data:
+    if data.get("vectorBucketArn") is not None:
         out["vector_bucket_arn"] = data["vectorBucketArn"]
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "prefix" in data:
+    if data.get("prefix") is not None:
         out["prefix"] = data["prefix"]
     return out

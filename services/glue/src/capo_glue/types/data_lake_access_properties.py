@@ -37,14 +37,14 @@ def serialize_aws_json_1_1(value: DataLakeAccessProperties) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DataLakeAccessProperties:
     out: DataLakeAccessProperties = {}  # type: ignore[typeddict-item]
-    if "DataLakeAccess" in data:
+    if data.get("DataLakeAccess") is not None:
         out["data_lake_access"] = data["DataLakeAccess"]
     else:
         out["data_lake_access"] = False
-    if "DataTransferRole" in data:
+    if data.get("DataTransferRole") is not None:
         out["data_transfer_role"] = data["DataTransferRole"]
-    if "KmsKey" in data:
+    if data.get("KmsKey") is not None:
         out["kms_key"] = data["KmsKey"]
-    if "CatalogType" in data:
+    if data.get("CatalogType") is not None:
         out["catalog_type"] = data["CatalogType"]
     return out

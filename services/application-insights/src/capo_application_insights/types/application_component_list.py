@@ -29,6 +29,8 @@ def deserialize_aws_json_1_1(data: list) -> ApplicationComponentList:
 
     out: ApplicationComponentList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_application_insights.types.application_component.deserialize_aws_json_1_1(
                 item

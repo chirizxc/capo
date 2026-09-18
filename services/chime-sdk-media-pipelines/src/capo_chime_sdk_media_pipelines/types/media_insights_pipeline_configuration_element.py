@@ -147,7 +147,7 @@ def serialize_json(value: MediaInsightsPipelineConfigurationElement) -> dict:
 
 def deserialize_json(data: dict) -> MediaInsightsPipelineConfigurationElement:
     out: MediaInsightsPipelineConfigurationElement = {}  # type: ignore[typeddict-item]
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_chime_sdk_media_pipelines.types.media_insights_pipeline_configuration_element_type
 
         out["type"] = (
@@ -159,7 +159,7 @@ def deserialize_json(data: dict) -> MediaInsightsPipelineConfigurationElement:
         raise DeserializationError(
             "MediaInsightsPipelineConfigurationElement.type required"
         )
-    if "AmazonTranscribeCallAnalyticsProcessorConfiguration" in data:
+    if data.get("AmazonTranscribeCallAnalyticsProcessorConfiguration") is not None:
         import capo_chime_sdk_media_pipelines.types.amazon_transcribe_call_analytics_processor_configuration
 
         out["amazon_transcribe_call_analytics_processor_configuration"] = (
@@ -167,7 +167,7 @@ def deserialize_json(data: dict) -> MediaInsightsPipelineConfigurationElement:
                 data["AmazonTranscribeCallAnalyticsProcessorConfiguration"]
             )
         )
-    if "AmazonTranscribeProcessorConfiguration" in data:
+    if data.get("AmazonTranscribeProcessorConfiguration") is not None:
         import capo_chime_sdk_media_pipelines.types.amazon_transcribe_processor_configuration
 
         out["amazon_transcribe_processor_configuration"] = (
@@ -175,7 +175,7 @@ def deserialize_json(data: dict) -> MediaInsightsPipelineConfigurationElement:
                 data["AmazonTranscribeProcessorConfiguration"]
             )
         )
-    if "KinesisDataStreamSinkConfiguration" in data:
+    if data.get("KinesisDataStreamSinkConfiguration") is not None:
         import capo_chime_sdk_media_pipelines.types.kinesis_data_stream_sink_configuration
 
         out["kinesis_data_stream_sink_configuration"] = (
@@ -183,7 +183,7 @@ def deserialize_json(data: dict) -> MediaInsightsPipelineConfigurationElement:
                 data["KinesisDataStreamSinkConfiguration"]
             )
         )
-    if "S3RecordingSinkConfiguration" in data:
+    if data.get("S3RecordingSinkConfiguration") is not None:
         import capo_chime_sdk_media_pipelines.types.s3_recording_sink_configuration
 
         out["s3_recording_sink_configuration"] = (
@@ -191,7 +191,7 @@ def deserialize_json(data: dict) -> MediaInsightsPipelineConfigurationElement:
                 data["S3RecordingSinkConfiguration"]
             )
         )
-    if "VoiceAnalyticsProcessorConfiguration" in data:
+    if data.get("VoiceAnalyticsProcessorConfiguration") is not None:
         import capo_chime_sdk_media_pipelines.types.voice_analytics_processor_configuration
 
         out["voice_analytics_processor_configuration"] = (
@@ -199,7 +199,7 @@ def deserialize_json(data: dict) -> MediaInsightsPipelineConfigurationElement:
                 data["VoiceAnalyticsProcessorConfiguration"]
             )
         )
-    if "LambdaFunctionSinkConfiguration" in data:
+    if data.get("LambdaFunctionSinkConfiguration") is not None:
         import capo_chime_sdk_media_pipelines.types.lambda_function_sink_configuration
 
         out["lambda_function_sink_configuration"] = (
@@ -207,7 +207,7 @@ def deserialize_json(data: dict) -> MediaInsightsPipelineConfigurationElement:
                 data["LambdaFunctionSinkConfiguration"]
             )
         )
-    if "SqsQueueSinkConfiguration" in data:
+    if data.get("SqsQueueSinkConfiguration") is not None:
         import capo_chime_sdk_media_pipelines.types.sqs_queue_sink_configuration
 
         out["sqs_queue_sink_configuration"] = (
@@ -215,7 +215,7 @@ def deserialize_json(data: dict) -> MediaInsightsPipelineConfigurationElement:
                 data["SqsQueueSinkConfiguration"]
             )
         )
-    if "SnsTopicSinkConfiguration" in data:
+    if data.get("SnsTopicSinkConfiguration") is not None:
         import capo_chime_sdk_media_pipelines.types.sns_topic_sink_configuration
 
         out["sns_topic_sink_configuration"] = (
@@ -223,7 +223,7 @@ def deserialize_json(data: dict) -> MediaInsightsPipelineConfigurationElement:
                 data["SnsTopicSinkConfiguration"]
             )
         )
-    if "VoiceEnhancementSinkConfiguration" in data:
+    if data.get("VoiceEnhancementSinkConfiguration") is not None:
         import capo_chime_sdk_media_pipelines.types.voice_enhancement_sink_configuration
 
         out["voice_enhancement_sink_configuration"] = (

@@ -28,10 +28,10 @@ def serialize_aws_json_1_1(value: ResponseConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ResponseConfiguration:
     out: ResponseConfiguration = {}  # type: ignore[typeddict-item]
-    if "ResultPath" in data:
+    if data.get("ResultPath") is not None:
         out["result_path"] = data["ResultPath"]
     else:
         raise DeserializationError("ResponseConfiguration.result_path required")
-    if "ErrorPath" in data:
+    if data.get("ErrorPath") is not None:
         out["error_path"] = data["ErrorPath"]
     return out

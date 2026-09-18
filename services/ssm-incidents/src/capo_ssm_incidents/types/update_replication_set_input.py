@@ -37,11 +37,11 @@ def serialize_json(value: UpdateReplicationSetInput) -> dict:
 
 def deserialize_json(data: dict) -> UpdateReplicationSetInput:
     out: UpdateReplicationSetInput = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("UpdateReplicationSetInput.arn required")
-    if "actions" in data:
+    if data.get("actions") is not None:
         import capo_ssm_incidents.types.update_action_list
 
         out["actions"] = capo_ssm_incidents.types.update_action_list.deserialize_json(
@@ -49,6 +49,6 @@ def deserialize_json(data: dict) -> UpdateReplicationSetInput:
         )
     else:
         raise DeserializationError("UpdateReplicationSetInput.actions required")
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     return out

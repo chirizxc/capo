@@ -50,15 +50,15 @@ def serialize_json(value: UpdateMonitorOutput) -> dict:
 
 def deserialize_json(data: dict) -> UpdateMonitorOutput:
     out: UpdateMonitorOutput = {}  # type: ignore[typeddict-item]
-    if "monitorArn" in data:
+    if data.get("monitorArn") is not None:
         out["monitor_arn"] = data["monitorArn"]
     else:
         raise DeserializationError("UpdateMonitorOutput.monitor_arn required")
-    if "monitorName" in data:
+    if data.get("monitorName") is not None:
         out["monitor_name"] = data["monitorName"]
     else:
         raise DeserializationError("UpdateMonitorOutput.monitor_name required")
-    if "state" in data:
+    if data.get("state") is not None:
         import capo_networkmonitor.types.monitor_state
 
         out["state"] = capo_networkmonitor.types.monitor_state.deserialize_json(
@@ -66,9 +66,9 @@ def deserialize_json(data: dict) -> UpdateMonitorOutput:
         )
     else:
         raise DeserializationError("UpdateMonitorOutput.state required")
-    if "aggregationPeriod" in data:
+    if data.get("aggregationPeriod") is not None:
         out["aggregation_period"] = data["aggregationPeriod"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_networkmonitor.types.tag_map
 
         out["tags"] = capo_networkmonitor.types.tag_map.deserialize_json(data["tags"])

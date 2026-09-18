@@ -29,6 +29,8 @@ def deserialize_aws_json_1_0(data: list) -> GetRecommendationErrors:
 
     out: GetRecommendationErrors = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_compute_optimizer.types.get_recommendation_error.deserialize_aws_json_1_0(
                 item

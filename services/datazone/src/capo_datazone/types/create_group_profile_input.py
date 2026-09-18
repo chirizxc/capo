@@ -36,10 +36,10 @@ def serialize_json(value: CreateGroupProfileInput) -> dict:
 
 def deserialize_json(data: dict) -> CreateGroupProfileInput:
     out: CreateGroupProfileInput = {}  # type: ignore[typeddict-item]
-    if "groupIdentifier" in data:
+    if data.get("groupIdentifier") is not None:
         out["group_identifier"] = data["groupIdentifier"]
-    if "rolePrincipalArn" in data:
+    if data.get("rolePrincipalArn") is not None:
         out["role_principal_arn"] = data["rolePrincipalArn"]
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     return out

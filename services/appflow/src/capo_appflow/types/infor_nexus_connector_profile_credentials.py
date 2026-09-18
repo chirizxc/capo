@@ -35,25 +35,25 @@ def serialize_json(value: InforNexusConnectorProfileCredentials) -> dict:
 
 def deserialize_json(data: dict) -> InforNexusConnectorProfileCredentials:
     out: InforNexusConnectorProfileCredentials = {}  # type: ignore[typeddict-item]
-    if "accessKeyId" in data:
+    if data.get("accessKeyId") is not None:
         out["access_key_id"] = data["accessKeyId"]
     else:
         raise DeserializationError(
             "InforNexusConnectorProfileCredentials.access_key_id required"
         )
-    if "userId" in data:
+    if data.get("userId") is not None:
         out["user_id"] = data["userId"]
     else:
         raise DeserializationError(
             "InforNexusConnectorProfileCredentials.user_id required"
         )
-    if "secretAccessKey" in data:
+    if data.get("secretAccessKey") is not None:
         out["secret_access_key"] = data["secretAccessKey"]
     else:
         raise DeserializationError(
             "InforNexusConnectorProfileCredentials.secret_access_key required"
         )
-    if "datakey" in data:
+    if data.get("datakey") is not None:
         out["datakey"] = data["datakey"]
     else:
         raise DeserializationError(

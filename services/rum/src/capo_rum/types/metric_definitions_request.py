@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> MetricDefinitionsRequest:
 
     out: MetricDefinitionsRequest = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_rum.types.metric_definition_request.deserialize_json(item))
     return out

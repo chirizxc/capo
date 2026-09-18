@@ -24,7 +24,7 @@ def serialize_json(value: DeleteClusterPolicyOutput) -> dict:
 
 def deserialize_json(data: dict) -> DeleteClusterPolicyOutput:
     out: DeleteClusterPolicyOutput = {}  # type: ignore[typeddict-item]
-    if "policyVersion" in data:
+    if data.get("policyVersion") is not None:
         out["policy_version"] = data["policyVersion"]
     else:
         raise DeserializationError("DeleteClusterPolicyOutput.policy_version required")

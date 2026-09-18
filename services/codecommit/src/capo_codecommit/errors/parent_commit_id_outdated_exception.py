@@ -25,7 +25,7 @@ def serialize_aws_json_1_1(value: ParentCommitIdOutdatedException_) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ParentCommitIdOutdatedException_:
     out: ParentCommitIdOutdatedException_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     return out
 
@@ -35,15 +35,20 @@ class ParentCommitIdOutdatedException(ServiceError):
 
     code: str | None = "ParentCommitIdOutdatedException"
 
-    def __init__(self, data: ParentCommitIdOutdatedException_):
+    def __init__(
+        self, data: ParentCommitIdOutdatedException_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="ParentCommitIdOutdatedException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "ParentCommitIdOutdatedException":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "ParentCommitIdOutdatedException":
+        return cls(deserialize_aws_json_1_1(data), message)

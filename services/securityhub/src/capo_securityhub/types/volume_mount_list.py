@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> VolumeMountList:
 
     out: VolumeMountList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_securityhub.types.volume_mount.deserialize_json(item))
     return out

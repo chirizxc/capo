@@ -44,7 +44,7 @@ def serialize_aws_json_1_1(value: EncryptionConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> EncryptionConfiguration:
     out: EncryptionConfiguration = {}  # type: ignore[typeddict-item]
-    if "NoEncryptionConfig" in data:
+    if data.get("NoEncryptionConfig") is not None:
         import capo_firehose.types.no_encryption_config
 
         out["no_encryption_config"] = (
@@ -52,7 +52,7 @@ def deserialize_aws_json_1_1(data: dict) -> EncryptionConfiguration:
                 data["NoEncryptionConfig"]
             )
         )
-    if "KMSEncryptionConfig" in data:
+    if data.get("KMSEncryptionConfig") is not None:
         import capo_firehose.types.kms_encryption_config
 
         out["kms_encryption_config"] = (

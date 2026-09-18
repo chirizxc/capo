@@ -44,7 +44,7 @@ def serialize_json(value: UpdateRegionSettingsInput) -> dict:
 
 def deserialize_json(data: dict) -> UpdateRegionSettingsInput:
     out: UpdateRegionSettingsInput = {}  # type: ignore[typeddict-item]
-    if "ResourceTypeOptInPreference" in data:
+    if data.get("ResourceTypeOptInPreference") is not None:
         import capo_backup.types.resource_type_opt_in_preference
 
         out["resource_type_opt_in_preference"] = (
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> UpdateRegionSettingsInput:
                 data["ResourceTypeOptInPreference"]
             )
         )
-    if "ResourceTypeManagementPreference" in data:
+    if data.get("ResourceTypeManagementPreference") is not None:
         import capo_backup.types.resource_type_management_preference
 
         out["resource_type_management_preference"] = (

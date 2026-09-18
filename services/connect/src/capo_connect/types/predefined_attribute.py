@@ -76,15 +76,15 @@ def serialize_json(value: PredefinedAttribute) -> dict:
 
 def deserialize_json(data: dict) -> PredefinedAttribute:
     out: PredefinedAttribute = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Values" in data:
+    if data.get("Values") is not None:
         import capo_connect.types.predefined_attribute_values
 
         out["values"] = capo_connect.types.predefined_attribute_values.deserialize_json(
             data["Values"]
         )
-    if "Purposes" in data:
+    if data.get("Purposes") is not None:
         import capo_connect.types.predefined_attribute_purpose_name_list
 
         out["purposes"] = (
@@ -92,7 +92,7 @@ def deserialize_json(data: dict) -> PredefinedAttribute:
                 data["Purposes"]
             )
         )
-    if "AttributeConfiguration" in data:
+    if data.get("AttributeConfiguration") is not None:
         import capo_connect.types.predefined_attribute_configuration
 
         out["attribute_configuration"] = (
@@ -100,12 +100,12 @@ def deserialize_json(data: dict) -> PredefinedAttribute:
                 data["AttributeConfiguration"]
             )
         )
-    if "LastModifiedTime" in data:
+    if data.get("LastModifiedTime") is not None:
         import capo_connect.types.timestamp
 
         out["last_modified_time"] = capo_connect.types.timestamp.deserialize_json(
             data["LastModifiedTime"]
         )
-    if "LastModifiedRegion" in data:
+    if data.get("LastModifiedRegion") is not None:
         out["last_modified_region"] = data["LastModifiedRegion"]
     return out

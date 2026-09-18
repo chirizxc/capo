@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> AccessTypeList:
 
     out: AccessTypeList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_securitylake.types.access_type.deserialize_json(item))
     return out

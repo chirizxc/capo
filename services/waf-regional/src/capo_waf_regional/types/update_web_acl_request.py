@@ -48,15 +48,15 @@ def serialize_aws_json_1_1(value: UpdateWebACLRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateWebACLRequest:
     out: UpdateWebACLRequest = {}  # type: ignore[typeddict-item]
-    if "WebACLId" in data:
+    if data.get("WebACLId") is not None:
         out["web_acl_id"] = data["WebACLId"]
     else:
         raise DeserializationError("UpdateWebACLRequest.web_acl_id required")
-    if "ChangeToken" in data:
+    if data.get("ChangeToken") is not None:
         out["change_token"] = data["ChangeToken"]
     else:
         raise DeserializationError("UpdateWebACLRequest.change_token required")
-    if "Updates" in data:
+    if data.get("Updates") is not None:
         import capo_waf_regional.types.web_acl_updates
 
         out["updates"] = (
@@ -64,7 +64,7 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateWebACLRequest:
                 data["Updates"]
             )
         )
-    if "DefaultAction" in data:
+    if data.get("DefaultAction") is not None:
         import capo_waf_regional.types.waf_action
 
         out["default_action"] = (

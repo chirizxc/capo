@@ -26,7 +26,7 @@ def serialize_json(value: SlotDefaultValue) -> dict:
 
 def deserialize_json(data: dict) -> SlotDefaultValue:
     out: SlotDefaultValue = {}  # type: ignore[typeddict-item]
-    if "defaultValue" in data:
+    if data.get("defaultValue") is not None:
         out["default_value"] = data["defaultValue"]
     else:
         raise DeserializationError("SlotDefaultValue.default_value required")

@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> ListAssetModelsTypeFilter:
 
     out: ListAssetModelsTypeFilter = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_iotsitewise.types.asset_model_type.deserialize_json(item))
     return out

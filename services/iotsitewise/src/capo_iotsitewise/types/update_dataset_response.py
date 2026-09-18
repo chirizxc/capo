@@ -37,11 +37,11 @@ def serialize_json(value: UpdateDatasetResponse) -> dict:
 
 def deserialize_json(data: dict) -> UpdateDatasetResponse:
     out: UpdateDatasetResponse = {}  # type: ignore[typeddict-item]
-    if "datasetId" in data:
+    if data.get("datasetId") is not None:
         out["dataset_id"] = data["datasetId"]
-    if "datasetArn" in data:
+    if data.get("datasetArn") is not None:
         out["dataset_arn"] = data["datasetArn"]
-    if "datasetStatus" in data:
+    if data.get("datasetStatus") is not None:
         import capo_iotsitewise.types.dataset_status
 
         out["dataset_status"] = capo_iotsitewise.types.dataset_status.deserialize_json(

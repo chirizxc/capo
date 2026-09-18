@@ -39,9 +39,25 @@ def serialize_json(value: Gnss) -> dict:
     out: dict = {}
     out["Payload"] = value["payload"]
     if "capture_time" in value:
-        out["CaptureTime"] = value["capture_time"]
+        out["CaptureTime"] = (
+            "NaN"
+            if value["capture_time"] != value["capture_time"]
+            else "Infinity"
+            if value["capture_time"] == float("inf")
+            else "-Infinity"
+            if value["capture_time"] == float("-inf")
+            else value["capture_time"]
+        )
     if "capture_time_accuracy" in value:
-        out["CaptureTimeAccuracy"] = value["capture_time_accuracy"]
+        out["CaptureTimeAccuracy"] = (
+            "NaN"
+            if value["capture_time_accuracy"] != value["capture_time_accuracy"]
+            else "Infinity"
+            if value["capture_time_accuracy"] == float("inf")
+            else "-Infinity"
+            if value["capture_time_accuracy"] == float("-inf")
+            else value["capture_time_accuracy"]
+        )
     if "assist_position" in value:
         import capo_iot_wireless.types.assist_position
 
@@ -49,22 +65,30 @@ def serialize_json(value: Gnss) -> dict:
             value["assist_position"]
         )
     if "assist_altitude" in value:
-        out["AssistAltitude"] = value["assist_altitude"]
+        out["AssistAltitude"] = (
+            "NaN"
+            if value["assist_altitude"] != value["assist_altitude"]
+            else "Infinity"
+            if value["assist_altitude"] == float("inf")
+            else "-Infinity"
+            if value["assist_altitude"] == float("-inf")
+            else value["assist_altitude"]
+        )
     out["Use2DSolver"] = value.get("use2_d_solver", False)
     return out
 
 
 def deserialize_json(data: dict) -> Gnss:
     out: Gnss = {}  # type: ignore[typeddict-item]
-    if "Payload" in data:
+    if data.get("Payload") is not None:
         out["payload"] = data["Payload"]
     else:
         raise DeserializationError("Gnss.payload required")
-    if "CaptureTime" in data:
-        out["capture_time"] = data["CaptureTime"]
-    if "CaptureTimeAccuracy" in data:
-        out["capture_time_accuracy"] = data["CaptureTimeAccuracy"]
-    if "AssistPosition" in data:
+    if data.get("CaptureTime") is not None:
+        out["capture_time"] = float(data["CaptureTime"])
+    if data.get("CaptureTimeAccuracy") is not None:
+        out["capture_time_accuracy"] = float(data["CaptureTimeAccuracy"])
+    if data.get("AssistPosition") is not None:
         import capo_iot_wireless.types.assist_position
 
         out["assist_position"] = (
@@ -72,9 +96,9 @@ def deserialize_json(data: dict) -> Gnss:
                 data["AssistPosition"]
             )
         )
-    if "AssistAltitude" in data:
-        out["assist_altitude"] = data["AssistAltitude"]
-    if "Use2DSolver" in data:
+    if data.get("AssistAltitude") is not None:
+        out["assist_altitude"] = float(data["AssistAltitude"])
+    if data.get("Use2DSolver") is not None:
         out["use2_d_solver"] = data["Use2DSolver"]
     else:
         out["use2_d_solver"] = False

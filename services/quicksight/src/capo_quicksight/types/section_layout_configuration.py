@@ -30,7 +30,7 @@ def serialize_json(value: SectionLayoutConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> SectionLayoutConfiguration:
     out: SectionLayoutConfiguration = {}  # type: ignore[typeddict-item]
-    if "FreeFormLayout" in data:
+    if data.get("FreeFormLayout") is not None:
         import capo_quicksight.types.free_form_section_layout_configuration
 
         out["free_form_layout"] = (

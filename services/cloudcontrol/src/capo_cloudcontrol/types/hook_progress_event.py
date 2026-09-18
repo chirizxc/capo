@@ -70,17 +70,17 @@ def serialize_aws_json_1_0(value: HookProgressEvent) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> HookProgressEvent:
     out: HookProgressEvent = {}  # type: ignore[typeddict-item]
-    if "HookTypeName" in data:
+    if data.get("HookTypeName") is not None:
         out["hook_type_name"] = data["HookTypeName"]
-    if "HookTypeVersionId" in data:
+    if data.get("HookTypeVersionId") is not None:
         out["hook_type_version_id"] = data["HookTypeVersionId"]
-    if "HookTypeArn" in data:
+    if data.get("HookTypeArn") is not None:
         out["hook_type_arn"] = data["HookTypeArn"]
-    if "InvocationPoint" in data:
+    if data.get("InvocationPoint") is not None:
         out["invocation_point"] = data["InvocationPoint"]
-    if "HookStatus" in data:
+    if data.get("HookStatus") is not None:
         out["hook_status"] = data["HookStatus"]
-    if "HookEventTime" in data:
+    if data.get("HookEventTime") is not None:
         import capo_cloudcontrol.types.timestamp
 
         out["hook_event_time"] = (
@@ -88,8 +88,8 @@ def deserialize_aws_json_1_0(data: dict) -> HookProgressEvent:
                 data["HookEventTime"]
             )
         )
-    if "HookStatusMessage" in data:
+    if data.get("HookStatusMessage") is not None:
         out["hook_status_message"] = data["HookStatusMessage"]
-    if "FailureMode" in data:
+    if data.get("FailureMode") is not None:
         out["failure_mode"] = data["FailureMode"]
     return out

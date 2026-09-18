@@ -30,9 +30,9 @@ def serialize_json(value: TooManyTagsException_) -> dict:
 
 def deserialize_json(data: dict) -> TooManyTagsException_:
     out: TooManyTagsException_ = {}  # type: ignore[typeddict-item]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
-    if "ResourceName" in data:
+    if data.get("ResourceName") is not None:
         out["resource_name"] = data["ResourceName"]
     return out
 
@@ -42,15 +42,18 @@ class TooManyTagsException(ServiceError):
 
     code: str | None = "TooManyTagsException"
 
-    def __init__(self, data: TooManyTagsException_):
+    def __init__(self, data: TooManyTagsException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="TooManyTagsException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "TooManyTagsException":
-        return cls(deserialize_json(data))
+    def from_json(
+        cls, data: dict, message: str | None = None
+    ) -> "TooManyTagsException":
+        return cls(deserialize_json(data), message)

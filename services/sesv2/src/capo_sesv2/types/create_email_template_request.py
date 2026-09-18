@@ -39,11 +39,11 @@ def serialize_json(value: CreateEmailTemplateRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateEmailTemplateRequest:
     out: CreateEmailTemplateRequest = {}  # type: ignore[typeddict-item]
-    if "TemplateName" in data:
+    if data.get("TemplateName") is not None:
         out["template_name"] = data["TemplateName"]
     else:
         raise DeserializationError("CreateEmailTemplateRequest.template_name required")
-    if "TemplateContent" in data:
+    if data.get("TemplateContent") is not None:
         import capo_sesv2.types.email_template_content
 
         out["template_content"] = (
@@ -55,7 +55,7 @@ def deserialize_json(data: dict) -> CreateEmailTemplateRequest:
         raise DeserializationError(
             "CreateEmailTemplateRequest.template_content required"
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_sesv2.types.tag_list
 
         out["tags"] = capo_sesv2.types.tag_list.deserialize_json(data["Tags"])

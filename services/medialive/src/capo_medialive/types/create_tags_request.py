@@ -26,7 +26,7 @@ def serialize_json(value: CreateTagsRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateTagsRequest:
     out: CreateTagsRequest = {}  # type: ignore[typeddict-item]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_medialive.types.tags
 
         out["tags"] = capo_medialive.types.tags.deserialize_json(data["tags"])

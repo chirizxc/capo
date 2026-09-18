@@ -64,23 +64,23 @@ def serialize_aws_json_1_1(value: UpdateAccessControlConfigurationRequest) -> di
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateAccessControlConfigurationRequest:
     out: UpdateAccessControlConfigurationRequest = {}  # type: ignore[typeddict-item]
-    if "IndexId" in data:
+    if data.get("IndexId") is not None:
         out["index_id"] = data["IndexId"]
     else:
         raise DeserializationError(
             "UpdateAccessControlConfigurationRequest.index_id required"
         )
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
     else:
         raise DeserializationError(
             "UpdateAccessControlConfigurationRequest.id required"
         )
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "AccessControlList" in data:
+    if data.get("AccessControlList") is not None:
         import capo_kendra.types.principal_list
 
         out["access_control_list"] = (
@@ -88,7 +88,7 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateAccessControlConfigurationRequ
                 data["AccessControlList"]
             )
         )
-    if "HierarchicalAccessControlList" in data:
+    if data.get("HierarchicalAccessControlList") is not None:
         import capo_kendra.types.hierarchical_principal_list
 
         out["hierarchical_access_control_list"] = (

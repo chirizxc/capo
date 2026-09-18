@@ -40,19 +40,19 @@ def serialize_json(value: StopNotebookRunOutput) -> dict:
 
 def deserialize_json(data: dict) -> StopNotebookRunOutput:
     out: StopNotebookRunOutput = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("StopNotebookRunOutput.id required")
-    if "domainId" in data:
+    if data.get("domainId") is not None:
         out["domain_id"] = data["domainId"]
     else:
         raise DeserializationError("StopNotebookRunOutput.domain_id required")
-    if "owningProjectId" in data:
+    if data.get("owningProjectId") is not None:
         out["owning_project_id"] = data["owningProjectId"]
     else:
         raise DeserializationError("StopNotebookRunOutput.owning_project_id required")
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_datazone.types.notebook_run_status
 
         out["status"] = capo_datazone.types.notebook_run_status.deserialize_json(

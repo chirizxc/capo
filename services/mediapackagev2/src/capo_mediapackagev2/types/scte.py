@@ -55,7 +55,7 @@ def serialize_json(value: Scte) -> dict:
 
 def deserialize_json(data: dict) -> Scte:
     out: Scte = {}  # type: ignore[typeddict-item]
-    if "ScteFilter" in data:
+    if data.get("ScteFilter") is not None:
         import capo_mediapackagev2.types.scte_filter_list
 
         out["scte_filter"] = (
@@ -63,7 +63,7 @@ def deserialize_json(data: dict) -> Scte:
                 data["ScteFilter"]
             )
         )
-    if "ScteInSegments" in data:
+    if data.get("ScteInSegments") is not None:
         import capo_mediapackagev2.types.scte_in_segments
 
         out["scte_in_segments"] = (
@@ -71,7 +71,7 @@ def deserialize_json(data: dict) -> Scte:
                 data["ScteInSegments"]
             )
         )
-    if "CustomAdTypes" in data:
+    if data.get("CustomAdTypes") is not None:
         import capo_mediapackagev2.types.custom_ad_type_list
 
         out["custom_ad_types"] = (

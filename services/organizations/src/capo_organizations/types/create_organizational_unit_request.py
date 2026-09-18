@@ -37,15 +37,15 @@ def serialize_aws_json_1_1(value: CreateOrganizationalUnitRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateOrganizationalUnitRequest:
     out: CreateOrganizationalUnitRequest = {}  # type: ignore[typeddict-item]
-    if "ParentId" in data:
+    if data.get("ParentId") is not None:
         out["parent_id"] = data["ParentId"]
     else:
         raise DeserializationError("CreateOrganizationalUnitRequest.parent_id required")
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("CreateOrganizationalUnitRequest.name required")
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_organizations.types.tags
 
         out["tags"] = capo_organizations.types.tags.deserialize_aws_json_1_1(

@@ -35,17 +35,17 @@ def serialize_aws_json_1_1(value: CreateEvaluationInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateEvaluationInput:
     out: CreateEvaluationInput = {}  # type: ignore[typeddict-item]
-    if "EvaluationId" in data:
+    if data.get("EvaluationId") is not None:
         out["evaluation_id"] = data["EvaluationId"]
     else:
         raise DeserializationError("CreateEvaluationInput.evaluation_id required")
-    if "EvaluationName" in data:
+    if data.get("EvaluationName") is not None:
         out["evaluation_name"] = data["EvaluationName"]
-    if "MLModelId" in data:
+    if data.get("MLModelId") is not None:
         out["ml_model_id"] = data["MLModelId"]
     else:
         raise DeserializationError("CreateEvaluationInput.ml_model_id required")
-    if "EvaluationDataSourceId" in data:
+    if data.get("EvaluationDataSourceId") is not None:
         out["evaluation_data_source_id"] = data["EvaluationDataSourceId"]
     else:
         raise DeserializationError(

@@ -196,7 +196,7 @@ def serialize_json(value: DataDetails) -> dict:
 
 
 def deserialize_json(data: dict) -> DataDetails:
-    if "contentData" in data:
+    if data.get("contentData") is not None:
         import capo_qconnect.types.content_data_details
 
         return {
@@ -204,7 +204,7 @@ def deserialize_json(data: dict) -> DataDetails:
                 data["contentData"]
             )
         }
-    elif "generativeData" in data:
+    elif data.get("generativeData") is not None:
         import capo_qconnect.types.generative_data_details
 
         return {
@@ -212,7 +212,7 @@ def deserialize_json(data: dict) -> DataDetails:
                 data["generativeData"]
             )
         }
-    elif "intentDetectedData" in data:
+    elif data.get("intentDetectedData") is not None:
         import capo_qconnect.types.intent_detected_data_details
 
         return {
@@ -220,7 +220,7 @@ def deserialize_json(data: dict) -> DataDetails:
                 data["intentDetectedData"]
             )
         }
-    elif "sourceContentData" in data:
+    elif data.get("sourceContentData") is not None:
         import capo_qconnect.types.source_content_data_details
 
         return {
@@ -228,7 +228,7 @@ def deserialize_json(data: dict) -> DataDetails:
                 data["sourceContentData"]
             )
         }
-    elif "generativeChunkData" in data:
+    elif data.get("generativeChunkData") is not None:
         import capo_qconnect.types.generative_chunk_data_details
 
         return {
@@ -236,7 +236,7 @@ def deserialize_json(data: dict) -> DataDetails:
                 data["generativeChunkData"]
             )
         }
-    elif "emailResponseChunkData" in data:
+    elif data.get("emailResponseChunkData") is not None:
         import capo_qconnect.types.email_response_chunk_data_details
 
         return {
@@ -244,7 +244,7 @@ def deserialize_json(data: dict) -> DataDetails:
                 data["emailResponseChunkData"]
             )
         }
-    elif "emailOverviewChunkData" in data:
+    elif data.get("emailOverviewChunkData") is not None:
         import capo_qconnect.types.email_overview_chunk_data_details
 
         return {
@@ -252,7 +252,7 @@ def deserialize_json(data: dict) -> DataDetails:
                 data["emailOverviewChunkData"]
             )
         }
-    elif "emailGenerativeAnswerChunkData" in data:
+    elif data.get("emailGenerativeAnswerChunkData") is not None:
         import capo_qconnect.types.email_generative_answer_chunk_data_details
 
         return {
@@ -260,7 +260,7 @@ def deserialize_json(data: dict) -> DataDetails:
                 data["emailGenerativeAnswerChunkData"]
             )
         }
-    elif "caseSummarizationChunkData" in data:
+    elif data.get("caseSummarizationChunkData") is not None:
         import capo_qconnect.types.case_summarization_chunk_data_details
 
         return {
@@ -268,7 +268,7 @@ def deserialize_json(data: dict) -> DataDetails:
                 data["caseSummarizationChunkData"]
             )
         }
-    elif "suggestedMessageData" in data:
+    elif data.get("suggestedMessageData") is not None:
         import capo_qconnect.types.suggested_message_data_details
 
         return {
@@ -276,7 +276,7 @@ def deserialize_json(data: dict) -> DataDetails:
                 data["suggestedMessageData"]
             )
         }
-    elif "notesData" in data:
+    elif data.get("notesData") is not None:
         import capo_qconnect.types.notes_data_details
 
         return {
@@ -284,7 +284,7 @@ def deserialize_json(data: dict) -> DataDetails:
                 data["notesData"]
             )
         }
-    elif "notesChunkData" in data:
+    elif data.get("notesChunkData") is not None:
         import capo_qconnect.types.notes_chunk_data_details
 
         return {

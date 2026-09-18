@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> SourceConfigurations:
 
     out: SourceConfigurations = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_iottwinmaker.types.source_configuration.deserialize_json(item))
     return out

@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> CidrBlockAssociationList:
 
     out: CidrBlockAssociationList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_securityhub.types.cidr_block_association.deserialize_json(item))
     return out

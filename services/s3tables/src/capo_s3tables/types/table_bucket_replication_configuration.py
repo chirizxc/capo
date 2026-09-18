@@ -34,11 +34,11 @@ def serialize_json(value: TableBucketReplicationConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> TableBucketReplicationConfiguration:
     out: TableBucketReplicationConfiguration = {}  # type: ignore[typeddict-item]
-    if "role" in data:
+    if data.get("role") is not None:
         out["role"] = data["role"]
     else:
         raise DeserializationError("TableBucketReplicationConfiguration.role required")
-    if "rules" in data:
+    if data.get("rules") is not None:
         import capo_s3tables.types.table_bucket_replication_rules
 
         out["rules"] = (

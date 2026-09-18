@@ -59,15 +59,15 @@ def serialize_aws_json_1_0(value: UpdateRelationshipRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> UpdateRelationshipRequest:
     out: UpdateRelationshipRequest = {}  # type: ignore[typeddict-item]
-    if "catalog" in data:
+    if data.get("catalog") is not None:
         out["catalog"] = data["catalog"]
     else:
         raise DeserializationError("UpdateRelationshipRequest.catalog required")
-    if "identifier" in data:
+    if data.get("identifier") is not None:
         out["identifier"] = data["identifier"]
     else:
         raise DeserializationError("UpdateRelationshipRequest.identifier required")
-    if "programManagementAccountIdentifier" in data:
+    if data.get("programManagementAccountIdentifier") is not None:
         out["program_management_account_identifier"] = data[
             "programManagementAccountIdentifier"
         ]
@@ -75,11 +75,11 @@ def deserialize_aws_json_1_0(data: dict) -> UpdateRelationshipRequest:
         raise DeserializationError(
             "UpdateRelationshipRequest.program_management_account_identifier required"
         )
-    if "revision" in data:
+    if data.get("revision") is not None:
         out["revision"] = data["revision"]
-    if "displayName" in data:
+    if data.get("displayName") is not None:
         out["display_name"] = data["displayName"]
-    if "requestedSupportPlan" in data:
+    if data.get("requestedSupportPlan") is not None:
         import capo_partnercentral_channel.types.support_plan
 
         out["requested_support_plan"] = (

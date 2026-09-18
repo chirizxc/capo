@@ -31,7 +31,7 @@ def serialize_aws_json_1_0(value: CreateCollectionGroupResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CreateCollectionGroupResponse:
     out: CreateCollectionGroupResponse = {}  # type: ignore[typeddict-item]
-    if "createCollectionGroupDetail" in data:
+    if data.get("createCollectionGroupDetail") is not None:
         import capo_opensearchserverless.types.create_collection_group_detail
 
         out["create_collection_group_detail"] = (

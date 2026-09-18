@@ -26,16 +26,24 @@ def serialize_aws_json_1_1(value: RxNormConcept) -> dict:
     if "code" in value:
         out["Code"] = value["code"]
     if "score" in value:
-        out["Score"] = value["score"]
+        out["Score"] = (
+            "NaN"
+            if value["score"] != value["score"]
+            else "Infinity"
+            if value["score"] == float("inf")
+            else "-Infinity"
+            if value["score"] == float("-inf")
+            else value["score"]
+        )
     return out
 
 
 def deserialize_aws_json_1_1(data: dict) -> RxNormConcept:
     out: RxNormConcept = {}  # type: ignore[typeddict-item]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Code" in data:
+    if data.get("Code") is not None:
         out["code"] = data["Code"]
-    if "Score" in data:
-        out["score"] = data["Score"]
+    if data.get("Score") is not None:
+        out["score"] = float(data["Score"])
     return out

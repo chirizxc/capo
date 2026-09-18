@@ -42,15 +42,15 @@ def serialize_json(value: AssociateFlowRequest) -> dict:
 
 def deserialize_json(data: dict) -> AssociateFlowRequest:
     out: AssociateFlowRequest = {}  # type: ignore[typeddict-item]
-    if "ResourceId" in data:
+    if data.get("ResourceId") is not None:
         out["resource_id"] = data["ResourceId"]
     else:
         raise DeserializationError("AssociateFlowRequest.resource_id required")
-    if "FlowId" in data:
+    if data.get("FlowId") is not None:
         out["flow_id"] = data["FlowId"]
     else:
         raise DeserializationError("AssociateFlowRequest.flow_id required")
-    if "ResourceType" in data:
+    if data.get("ResourceType") is not None:
         import capo_connect.types.flow_association_resource_type
 
         out["resource_type"] = (

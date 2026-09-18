@@ -13,9 +13,9 @@ from capo_accessanalyzer import AsyncAccessAnalyzerClient
 
 
 async def main():
-    async with AsyncAccessAnalyzerClient() as s3:
+    async with AsyncAccessAnalyzerClient() as access_analyzer:
         # Example: call the apply_archive_rule operation
-        response = await s3.apply_archive_rule()
+        response = await access_analyzer.apply_archive_rule()
         print(response)
 ```
 
@@ -28,9 +28,9 @@ from capo_accessanalyzer import AsyncAccessAnalyzerClient
 
 
 async def main():
-    async with AsyncAccessAnalyzerClient() as s3:
+    async with AsyncAccessAnalyzerClient() as access_analyzer:
         # Example: paginate over get_finding_recommendation
-        async for item in s3.iter_get_finding_recommendation():
+        async for item in access_analyzer.iter_get_finding_recommendation():
             print(item)
 ```
 
@@ -44,9 +44,9 @@ from capo_accessanalyzer.error import AccessDeniedException
 
 
 async def main():
-    async with AsyncAccessAnalyzerClient() as s3:
+    async with AsyncAccessAnalyzerClient() as access_analyzer:
         try:
-            await s3.apply_archive_rule()
+            await access_analyzer.apply_archive_rule()
         except AccessDeniedException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -63,13 +63,13 @@ from capo_accessanalyzer import AsyncAccessAnalyzerClient
 
 
 async def main():
-    async with AsyncAccessAnalyzerClient() as s3:
+    async with AsyncAccessAnalyzerClient() as access_analyzer:
         # Default: 3 attempts for every operation
-        response = await s3.apply_archive_rule()
+        response = await access_analyzer.apply_archive_rule()
 
         # Override per operation
-        response = await s3.apply_archive_rule(config_overrides={"retry_max_attempts": 5})
+        response = await access_analyzer.apply_archive_rule(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.apply_archive_rule(config_overrides={"retry_max_attempts": 1})
+        response = await access_analyzer.apply_archive_rule(config_overrides={"retry_max_attempts": 1})
 ```

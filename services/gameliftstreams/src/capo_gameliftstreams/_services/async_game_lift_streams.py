@@ -1,5 +1,6 @@
 """Generated from Smithy shape ``com.amazonaws.gameliftstreams#GameLiftStreams``."""
 
+import uuid
 import warnings
 from collections.abc import AsyncIterator
 from typing import TYPE_CHECKING, Any, Iterable, Optional
@@ -216,15 +217,17 @@ class AsyncGameLiftStreamsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_gameliftstreams.types.add_stream_group_locations_input.AddStreamGroupLocationsInput = {}  # type: ignore[typeddict-item]
-        input_["identifier"] = identifier
-        input_["location_configurations"] = location_configurations
+        input_: capo_gameliftstreams.types.add_stream_group_locations_input.AddStreamGroupLocationsInput = {
+            "identifier": identifier,
+            "location_configurations": location_configurations,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def associate_applications(
@@ -266,15 +269,17 @@ class AsyncGameLiftStreamsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_gameliftstreams.types.associate_applications_input.AssociateApplicationsInput = {}  # type: ignore[typeddict-item]
-        input_["identifier"] = identifier
-        input_["application_identifiers"] = application_identifiers
+        input_: capo_gameliftstreams.types.associate_applications_input.AssociateApplicationsInput = {
+            "identifier": identifier,
+            "application_identifiers": application_identifiers,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_stream_session_connection(
@@ -322,18 +327,21 @@ class AsyncGameLiftStreamsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_gameliftstreams.types.create_stream_session_connection_input.CreateStreamSessionConnectionInput = {}  # type: ignore[typeddict-item]
-        if client_token is not None:
-            input_["client_token"] = client_token
-        input_["identifier"] = identifier
-        input_["stream_session_identifier"] = stream_session_identifier
-        input_["signal_request"] = signal_request
+        input_: capo_gameliftstreams.types.create_stream_session_connection_input.CreateStreamSessionConnectionInput = {
+            "identifier": identifier,
+            "stream_session_identifier": stream_session_identifier,
+            "signal_request": signal_request,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def disassociate_applications(
@@ -374,15 +382,17 @@ class AsyncGameLiftStreamsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_gameliftstreams.types.disassociate_applications_input.DisassociateApplicationsInput = {}  # type: ignore[typeddict-item]
-        input_["identifier"] = identifier
-        input_["application_identifiers"] = application_identifiers
+        input_: capo_gameliftstreams.types.disassociate_applications_input.DisassociateApplicationsInput = {
+            "identifier": identifier,
+            "application_identifiers": application_identifiers,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def export_stream_session_files(
@@ -425,16 +435,18 @@ class AsyncGameLiftStreamsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_gameliftstreams.types.export_stream_session_files_input.ExportStreamSessionFilesInput = {}  # type: ignore[typeddict-item]
-        input_["identifier"] = identifier
-        input_["stream_session_identifier"] = stream_session_identifier
-        input_["output_uri"] = output_uri
+        input_: capo_gameliftstreams.types.export_stream_session_files_input.ExportStreamSessionFilesInput = {
+            "identifier": identifier,
+            "stream_session_identifier": stream_session_identifier,
+            "output_uri": output_uri,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_stream_session(
@@ -475,15 +487,17 @@ class AsyncGameLiftStreamsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_gameliftstreams.types.get_stream_session_input.GetStreamSessionInput = {}  # type: ignore[typeddict-item]
-        input_["identifier"] = identifier
-        input_["stream_session_identifier"] = stream_session_identifier
+        input_: capo_gameliftstreams.types.get_stream_session_input.GetStreamSessionInput = {
+            "identifier": identifier,
+            "stream_session_identifier": stream_session_identifier,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_stream_sessions(
@@ -536,7 +550,9 @@ class AsyncGameLiftStreamsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_gameliftstreams.types.list_stream_sessions_input.ListStreamSessionsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_gameliftstreams.types.list_stream_sessions_input.ListStreamSessionsInput = {
+            "identifier": identifier
+        }
         if status is not None:
             input_["status"] = status
         if export_files_status is not None:
@@ -545,13 +561,13 @@ class AsyncGameLiftStreamsClient:
             input_["next_token"] = next_token
         if max_results is not None:
             input_["max_results"] = max_results
-        input_["identifier"] = identifier
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_stream_sessions(
@@ -634,7 +650,7 @@ class AsyncGameLiftStreamsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_gameliftstreams.types.list_stream_sessions_by_account_input.ListStreamSessionsByAccountInput = {}  # type: ignore[typeddict-item]
+        input_: capo_gameliftstreams.types.list_stream_sessions_by_account_input.ListStreamSessionsByAccountInput = {}
         if status is not None:
             input_["status"] = status
         if export_files_status is not None:
@@ -649,6 +665,7 @@ class AsyncGameLiftStreamsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_stream_sessions_by_account(
@@ -717,14 +734,16 @@ class AsyncGameLiftStreamsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_gameliftstreams.types.list_tags_for_resource_request.ListTagsForResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_gameliftstreams.types.list_tags_for_resource_request.ListTagsForResourceRequest = {
+            "resource_arn": resource_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def remove_stream_group_locations(
@@ -763,15 +782,17 @@ class AsyncGameLiftStreamsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_gameliftstreams.types.remove_stream_group_locations_input.RemoveStreamGroupLocationsInput = {}  # type: ignore[typeddict-item]
-        input_["identifier"] = identifier
-        input_["locations"] = locations
+        input_: capo_gameliftstreams.types.remove_stream_group_locations_input.RemoveStreamGroupLocationsInput = {
+            "identifier": identifier,
+            "locations": locations,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def start_stream_session(
@@ -851,15 +872,17 @@ class AsyncGameLiftStreamsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_gameliftstreams.types.start_stream_session_input.StartStreamSessionInput = {}  # type: ignore[typeddict-item]
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_gameliftstreams.types.start_stream_session_input.StartStreamSessionInput = {
+            "identifier": identifier,
+            "protocol": protocol,
+            "signal_request": signal_request,
+            "application_identifier": application_identifier,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if description is not None:
             input_["description"] = description
-        input_["identifier"] = identifier
-        input_["protocol"] = protocol
-        input_["signal_request"] = signal_request
-        input_["application_identifier"] = application_identifier
         if user_id is not None:
             input_["user_id"] = user_id
         if locations is not None:
@@ -882,6 +905,7 @@ class AsyncGameLiftStreamsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def tag_resource(
@@ -921,15 +945,17 @@ class AsyncGameLiftStreamsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_gameliftstreams.types.tag_resource_request.TagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tags"] = tags
+        input_: capo_gameliftstreams.types.tag_resource_request.TagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tags": tags,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def terminate_stream_session(
@@ -968,15 +994,17 @@ class AsyncGameLiftStreamsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_gameliftstreams.types.terminate_stream_session_input.TerminateStreamSessionInput = {}  # type: ignore[typeddict-item]
-        input_["identifier"] = identifier
-        input_["stream_session_identifier"] = stream_session_identifier
+        input_: capo_gameliftstreams.types.terminate_stream_session_input.TerminateStreamSessionInput = {
+            "identifier": identifier,
+            "stream_session_identifier": stream_session_identifier,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def untag_resource(
@@ -1016,15 +1044,17 @@ class AsyncGameLiftStreamsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_gameliftstreams.types.untag_resource_request.UntagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tag_keys"] = tag_keys
+        input_: capo_gameliftstreams.types.untag_resource_request.UntagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tag_keys": tag_keys,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def __aenter__(self) -> Self:

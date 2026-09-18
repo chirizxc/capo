@@ -10,6 +10,7 @@ from typing_extensions import Never
 
 import capo_cloudtrail._auth._signers
 import capo_cloudtrail._auth._sigv4
+import capo_cloudtrail._protocol.eventstream
 import capo_cloudtrail.errors.account_not_found_exception
 import capo_cloudtrail.errors.account_not_registered_exception
 import capo_cloudtrail.errors.cloud_trail_access_not_enabled_exception
@@ -35,47 +36,47 @@ def handle_error(response: zapros.Response) -> Never:
     match code:
         case "AccountNotFoundException":
             raise capo_cloudtrail.errors.account_not_found_exception.AccountNotFoundException.from_aws_json_1_1(
-                data
+                data, message
             )
         case "AccountNotRegisteredException":
             raise capo_cloudtrail.errors.account_not_registered_exception.AccountNotRegisteredException.from_aws_json_1_1(
-                data
+                data, message
             )
         case "CloudTrailAccessNotEnabledException":
             raise capo_cloudtrail.errors.cloud_trail_access_not_enabled_exception.CloudTrailAccessNotEnabledException.from_aws_json_1_1(
-                data
+                data, message
             )
         case "ConflictException":
             raise capo_cloudtrail.errors.conflict_exception.ConflictException.from_aws_json_1_1(
-                data
+                data, message
             )
         case "InsufficientDependencyServiceAccessPermissionException":
             raise capo_cloudtrail.errors.insufficient_dependency_service_access_permission_exception.InsufficientDependencyServiceAccessPermissionException.from_aws_json_1_1(
-                data
+                data, message
             )
         case "InvalidParameterException":
             raise capo_cloudtrail.errors.invalid_parameter_exception.InvalidParameterException.from_aws_json_1_1(
-                data
+                data, message
             )
         case "NotOrganizationManagementAccountException":
             raise capo_cloudtrail.errors.not_organization_management_account_exception.NotOrganizationManagementAccountException.from_aws_json_1_1(
-                data
+                data, message
             )
         case "OperationNotPermittedException":
             raise capo_cloudtrail.errors.operation_not_permitted_exception.OperationNotPermittedException.from_aws_json_1_1(
-                data
+                data, message
             )
         case "OrganizationNotInAllFeaturesModeException":
             raise capo_cloudtrail.errors.organization_not_in_all_features_mode_exception.OrganizationNotInAllFeaturesModeException.from_aws_json_1_1(
-                data
+                data, message
             )
         case "OrganizationsNotInUseException":
             raise capo_cloudtrail.errors.organizations_not_in_use_exception.OrganizationsNotInUseException.from_aws_json_1_1(
-                data
+                data, message
             )
         case "UnsupportedOperationException":
             raise capo_cloudtrail.errors.unsupported_operation_exception.UnsupportedOperationException.from_aws_json_1_1(
-                data
+                data, message
             )
         case _:
             raise UnknownServiceError(code=code, message=message, response=response)
@@ -100,19 +101,26 @@ def get_signer(
     auth_schemes: list[dict[str, Any]] | None = None,
 ) -> capo_cloudtrail._auth._signers.Signer | None:
     name_to_schema = {s["name"]: s for s in (auth_schemes or [])}  # noqa: F841
-    if options.credentials_provider is not None:
-        sigv4_config = (
-            name_to_schema.get("sigv4")
-            or name_to_schema.get("sigv4a")
-            or name_to_schema.get("sigv4-s3express")
-            or capo_cloudtrail._auth._sigv4.build_sigv4_auth_scheme(
-                "cloudtrail", options.region
-            )
+    if (
+        options.credentials_provider is not None
+        and name_to_schema
+        and not name_to_schema.keys() & {"sigv4", "sigv4-s3express"}
+    ):
+        raise RuntimeError(
+            "Endpoint requires an unsupported auth scheme: " + ", ".join(name_to_schema)
         )
-        if sigv4_config is not None:
-            return capo_cloudtrail._auth._signers.SigV4Signer(
-                options.credentials_provider, auth_scheme=sigv4_config
+    if options.credentials_provider is not None:
+        endpoint_scheme = name_to_schema.get("sigv4") or name_to_schema.get(
+            "sigv4-s3express"
+        )
+        if endpoint_scheme is not None or not name_to_schema:
+            sigv4_config = capo_cloudtrail._auth._sigv4.build_sigv4_auth_scheme(
+                "cloudtrail", options.region, endpoint_scheme
             )
+            if sigv4_config is not None:
+                return capo_cloudtrail._auth._signers.SigV4Signer(
+                    options.credentials_provider, auth_scheme=sigv4_config
+                )
     raise RuntimeError("Auth was not resolved")
 
 
@@ -129,18 +137,20 @@ def build_request(
         )
     )  # noqa: F841
     url = endpoint.url.rstrip("/") + ""
-    params: dict[str, str] = {}
+    params: list[tuple[str, str]] = []
     headers: dict[str, str] = {k: ", ".join(v) for k, v in endpoint.headers.items()}
     headers["X-Amz-Target"] = "CloudTrail_20131101.DeregisterOrganizationDelegatedAdmin"
     body: bytes | None = json.dumps(
         capo_cloudtrail.types.deregister_organization_delegated_admin_request.serialize_aws_json_1_1(
             input_
-        )
+        ),
+        allow_nan=False,
     ).encode()
     headers["content-type"] = "application/x-amz-json-1.1"
     signer = get_signer(options, auth_schemes=endpoint.properties.get("authSchemes"))
     normalized_url = zapros.URL(url)
-    normalized_url.search_params.update(params)
+    for k, v in params:
+        normalized_url.search_params.append(k, v)
     return zapros.Request(
         normalized_url, "POST", headers=headers, body=body, context={"signer": signer}
     )
@@ -155,7 +165,7 @@ def deregister_organization_delegated_admin(
 ]:
     response = options.client.handler.handle(build_request(options, input_))
     try:
-        if response.status >= 400:
+        if response.status >= 300:
             response.read()
             handle_error(response)
         return handle_response(response), response
@@ -173,7 +183,7 @@ async def async_deregister_organization_delegated_admin(
 ]:
     response = await options.client.handler.ahandle(build_request(options, input_))
     try:
-        if response.status >= 400:
+        if response.status >= 300:
             await response.aread()
             handle_error(response)
         return await async_handle_response(response), response

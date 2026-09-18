@@ -40,13 +40,13 @@ def serialize_json(value: BatchGetViewOutput) -> dict:
 
 def deserialize_json(data: dict) -> BatchGetViewOutput:
     out: BatchGetViewOutput = {}  # type: ignore[typeddict-item]
-    if "Views" in data:
+    if data.get("Views") is not None:
         import capo_resource_explorer_2.types.view_list
 
         out["views"] = capo_resource_explorer_2.types.view_list.deserialize_json(
             data["Views"]
         )
-    if "Errors" in data:
+    if data.get("Errors") is not None:
         import capo_resource_explorer_2.types.batch_get_view_errors
 
         out["errors"] = (

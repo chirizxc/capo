@@ -43,9 +43,9 @@ def serialize_json(value: DescribeSavingsPlanRatesResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribeSavingsPlanRatesResponse:
     out: DescribeSavingsPlanRatesResponse = {}  # type: ignore[typeddict-item]
-    if "savingsPlanId" in data:
+    if data.get("savingsPlanId") is not None:
         out["savings_plan_id"] = data["savingsPlanId"]
-    if "searchResults" in data:
+    if data.get("searchResults") is not None:
         import capo_savingsplans.types.savings_plan_rate_list
 
         out["search_results"] = (
@@ -53,6 +53,6 @@ def deserialize_json(data: dict) -> DescribeSavingsPlanRatesResponse:
                 data["searchResults"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

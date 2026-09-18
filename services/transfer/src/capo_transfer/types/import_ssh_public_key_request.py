@@ -32,17 +32,17 @@ def serialize_aws_json_1_1(value: ImportSshPublicKeyRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ImportSshPublicKeyRequest:
     out: ImportSshPublicKeyRequest = {}  # type: ignore[typeddict-item]
-    if "ServerId" in data:
+    if data.get("ServerId") is not None:
         out["server_id"] = data["ServerId"]
     else:
         raise DeserializationError("ImportSshPublicKeyRequest.server_id required")
-    if "SshPublicKeyBody" in data:
+    if data.get("SshPublicKeyBody") is not None:
         out["ssh_public_key_body"] = data["SshPublicKeyBody"]
     else:
         raise DeserializationError(
             "ImportSshPublicKeyRequest.ssh_public_key_body required"
         )
-    if "UserName" in data:
+    if data.get("UserName") is not None:
         out["user_name"] = data["UserName"]
     else:
         raise DeserializationError("ImportSshPublicKeyRequest.user_name required")

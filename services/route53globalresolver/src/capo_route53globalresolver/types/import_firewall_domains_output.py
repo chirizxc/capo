@@ -36,15 +36,15 @@ def serialize_json(value: ImportFirewallDomainsOutput) -> dict:
 
 def deserialize_json(data: dict) -> ImportFirewallDomainsOutput:
     out: ImportFirewallDomainsOutput = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("ImportFirewallDomainsOutput.id required")
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("ImportFirewallDomainsOutput.name required")
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_route53globalresolver.types.cr_resource_status
 
         out["status"] = (

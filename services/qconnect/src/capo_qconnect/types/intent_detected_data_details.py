@@ -33,14 +33,14 @@ def serialize_json(value: IntentDetectedDataDetails) -> dict:
 
 def deserialize_json(data: dict) -> IntentDetectedDataDetails:
     out: IntentDetectedDataDetails = {}  # type: ignore[typeddict-item]
-    if "intent" in data:
+    if data.get("intent") is not None:
         out["intent"] = data["intent"]
     else:
         raise DeserializationError("IntentDetectedDataDetails.intent required")
-    if "intentId" in data:
+    if data.get("intentId") is not None:
         out["intent_id"] = data["intentId"]
     else:
         raise DeserializationError("IntentDetectedDataDetails.intent_id required")
-    if "relevanceLevel" in data:
+    if data.get("relevanceLevel") is not None:
         out["relevance_level"] = data["relevanceLevel"]
     return out

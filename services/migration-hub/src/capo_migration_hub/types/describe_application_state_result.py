@@ -44,7 +44,7 @@ def serialize_aws_json_1_1(value: DescribeApplicationStateResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeApplicationStateResult:
     out: DescribeApplicationStateResult = {}  # type: ignore[typeddict-item]
-    if "ApplicationStatus" in data:
+    if data.get("ApplicationStatus") is not None:
         import capo_migration_hub.types.application_status
 
         out["application_status"] = (
@@ -52,7 +52,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeApplicationStateResult:
                 data["ApplicationStatus"]
             )
         )
-    if "LastUpdatedTime" in data:
+    if data.get("LastUpdatedTime") is not None:
         import capo_migration_hub.types.update_date_time
 
         out["last_updated_time"] = (

@@ -39,7 +39,7 @@ def serialize_json(value: DocumentAcl) -> dict:
 
 def deserialize_json(data: dict) -> DocumentAcl:
     out: DocumentAcl = {}  # type: ignore[typeddict-item]
-    if "allowlist" in data:
+    if data.get("allowlist") is not None:
         import capo_qbusiness.types.document_acl_membership
 
         out["allowlist"] = (
@@ -47,7 +47,7 @@ def deserialize_json(data: dict) -> DocumentAcl:
                 data["allowlist"]
             )
         )
-    if "denyList" in data:
+    if data.get("denyList") is not None:
         import capo_qbusiness.types.document_acl_membership
 
         out["deny_list"] = (

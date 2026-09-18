@@ -16,4 +16,4 @@ def serialize_json(value: __listOf__integerMin1Max2147483647) -> list:
 
 
 def deserialize_json(data: list) -> __listOf__integerMin1Max2147483647:
-    return list(data)
+    return [item for item in data if item is not None]

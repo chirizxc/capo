@@ -71,9 +71,9 @@ def serialize_aws_json_1_1(value: DeauthorizeConnectionResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeauthorizeConnectionResponse:
     out: DeauthorizeConnectionResponse = {}  # type: ignore[typeddict-item]
-    if "ConnectionArn" in data:
+    if data.get("ConnectionArn") is not None:
         out["connection_arn"] = data["ConnectionArn"]
-    if "ConnectionState" in data:
+    if data.get("ConnectionState") is not None:
         import capo_cloudwatch_events.types.connection_state
 
         out["connection_state"] = (
@@ -81,7 +81,7 @@ def deserialize_aws_json_1_1(data: dict) -> DeauthorizeConnectionResponse:
                 data["ConnectionState"]
             )
         )
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_cloudwatch_events.types.timestamp
 
         out["creation_time"] = (
@@ -89,7 +89,7 @@ def deserialize_aws_json_1_1(data: dict) -> DeauthorizeConnectionResponse:
                 data["CreationTime"]
             )
         )
-    if "LastModifiedTime" in data:
+    if data.get("LastModifiedTime") is not None:
         import capo_cloudwatch_events.types.timestamp
 
         out["last_modified_time"] = (
@@ -97,7 +97,7 @@ def deserialize_aws_json_1_1(data: dict) -> DeauthorizeConnectionResponse:
                 data["LastModifiedTime"]
             )
         )
-    if "LastAuthorizedTime" in data:
+    if data.get("LastAuthorizedTime") is not None:
         import capo_cloudwatch_events.types.timestamp
 
         out["last_authorized_time"] = (

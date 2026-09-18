@@ -39,25 +39,25 @@ def serialize_json(value: StartConfigurationSessionRequest) -> dict:
 
 def deserialize_json(data: dict) -> StartConfigurationSessionRequest:
     out: StartConfigurationSessionRequest = {}  # type: ignore[typeddict-item]
-    if "ApplicationIdentifier" in data:
+    if data.get("ApplicationIdentifier") is not None:
         out["application_identifier"] = data["ApplicationIdentifier"]
     else:
         raise DeserializationError(
             "StartConfigurationSessionRequest.application_identifier required"
         )
-    if "EnvironmentIdentifier" in data:
+    if data.get("EnvironmentIdentifier") is not None:
         out["environment_identifier"] = data["EnvironmentIdentifier"]
     else:
         raise DeserializationError(
             "StartConfigurationSessionRequest.environment_identifier required"
         )
-    if "ConfigurationProfileIdentifier" in data:
+    if data.get("ConfigurationProfileIdentifier") is not None:
         out["configuration_profile_identifier"] = data["ConfigurationProfileIdentifier"]
     else:
         raise DeserializationError(
             "StartConfigurationSessionRequest.configuration_profile_identifier required"
         )
-    if "RequiredMinimumPollIntervalInSeconds" in data:
+    if data.get("RequiredMinimumPollIntervalInSeconds") is not None:
         out["required_minimum_poll_interval_in_seconds"] = data[
             "RequiredMinimumPollIntervalInSeconds"
         ]

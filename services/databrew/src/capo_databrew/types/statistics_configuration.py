@@ -38,7 +38,7 @@ def serialize_json(value: StatisticsConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> StatisticsConfiguration:
     out: StatisticsConfiguration = {}  # type: ignore[typeddict-item]
-    if "IncludedStatistics" in data:
+    if data.get("IncludedStatistics") is not None:
         import capo_databrew.types.statistic_list
 
         out["included_statistics"] = (
@@ -46,7 +46,7 @@ def deserialize_json(data: dict) -> StatisticsConfiguration:
                 data["IncludedStatistics"]
             )
         )
-    if "Overrides" in data:
+    if data.get("Overrides") is not None:
         import capo_databrew.types.statistic_override_list
 
         out["overrides"] = capo_databrew.types.statistic_override_list.deserialize_json(

@@ -41,7 +41,7 @@ def serialize_json(value: DataSetDateComparisonFilterCondition) -> dict:
 
 def deserialize_json(data: dict) -> DataSetDateComparisonFilterCondition:
     out: DataSetDateComparisonFilterCondition = {}  # type: ignore[typeddict-item]
-    if "Operator" in data:
+    if data.get("Operator") is not None:
         import capo_quicksight.types.data_set_date_comparison_filter_operator
 
         out["operator"] = (
@@ -53,7 +53,7 @@ def deserialize_json(data: dict) -> DataSetDateComparisonFilterCondition:
         raise DeserializationError(
             "DataSetDateComparisonFilterCondition.operator required"
         )
-    if "Value" in data:
+    if data.get("Value") is not None:
         import capo_quicksight.types.data_set_date_filter_value
 
         out["value"] = (

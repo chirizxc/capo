@@ -40,19 +40,19 @@ def serialize_aws_json_1_1(value: DescribeWorkingStorageOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeWorkingStorageOutput:
     out: DescribeWorkingStorageOutput = {}  # type: ignore[typeddict-item]
-    if "GatewayARN" in data:
+    if data.get("GatewayARN") is not None:
         out["gateway_arn"] = data["GatewayARN"]
-    if "DiskIds" in data:
+    if data.get("DiskIds") is not None:
         import capo_storage_gateway.types.disk_ids
 
         out["disk_ids"] = capo_storage_gateway.types.disk_ids.deserialize_aws_json_1_1(
             data["DiskIds"]
         )
-    if "WorkingStorageUsedInBytes" in data:
+    if data.get("WorkingStorageUsedInBytes") is not None:
         out["working_storage_used_in_bytes"] = data["WorkingStorageUsedInBytes"]
     else:
         out["working_storage_used_in_bytes"] = 0
-    if "WorkingStorageAllocatedInBytes" in data:
+    if data.get("WorkingStorageAllocatedInBytes") is not None:
         out["working_storage_allocated_in_bytes"] = data[
             "WorkingStorageAllocatedInBytes"
         ]

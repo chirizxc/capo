@@ -51,7 +51,7 @@ def serialize_aws_json_1_1(value: FlowTemplateDescription) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> FlowTemplateDescription:
     out: FlowTemplateDescription = {}  # type: ignore[typeddict-item]
-    if "summary" in data:
+    if data.get("summary") is not None:
         import capo_iotthingsgraph.types.flow_template_summary
 
         out["summary"] = (
@@ -59,7 +59,7 @@ def deserialize_aws_json_1_1(data: dict) -> FlowTemplateDescription:
                 data["summary"]
             )
         )
-    if "definition" in data:
+    if data.get("definition") is not None:
         import capo_iotthingsgraph.types.definition_document
 
         out["definition"] = (
@@ -67,6 +67,6 @@ def deserialize_aws_json_1_1(data: dict) -> FlowTemplateDescription:
                 data["definition"]
             )
         )
-    if "validatedNamespaceVersion" in data:
+    if data.get("validatedNamespaceVersion") is not None:
         out["validated_namespace_version"] = data["validatedNamespaceVersion"]
     return out

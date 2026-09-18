@@ -44,7 +44,7 @@ def serialize_aws_json_1_1(value: SystemInstanceFilter) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SystemInstanceFilter:
     out: SystemInstanceFilter = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         import capo_iotthingsgraph.types.system_instance_filter_name
 
         out["name"] = (
@@ -52,7 +52,7 @@ def deserialize_aws_json_1_1(data: dict) -> SystemInstanceFilter:
                 data["name"]
             )
         )
-    if "value" in data:
+    if data.get("value") is not None:
         import capo_iotthingsgraph.types.system_instance_filter_values
 
         out["value"] = (

@@ -441,7 +441,7 @@ class PinpointClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_pinpoint.types.create_app_request.CreateAppRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_pinpoint.types.create_app_request.CreateAppRequest = {}
         if create_application_request is not None:
             input_["create_application_request"] = create_application_request
 
@@ -450,6 +450,7 @@ class PinpointClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_campaign(
@@ -492,8 +493,9 @@ class PinpointClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_pinpoint.types.create_campaign_request.CreateCampaignRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
+        input_: capo_pinpoint.types.create_campaign_request.CreateCampaignRequest = {
+            "application_id": application_id
+        }
         if write_campaign_request is not None:
             input_["write_campaign_request"] = write_campaign_request
 
@@ -502,6 +504,7 @@ class PinpointClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_email_template(
@@ -544,16 +547,18 @@ class PinpointClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_pinpoint.types.create_email_template_request.CreateEmailTemplateRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_pinpoint.types.create_email_template_request.CreateEmailTemplateRequest = {
+            "template_name": template_name
+        }
         if email_template_request is not None:
             input_["email_template_request"] = email_template_request
-        input_["template_name"] = template_name
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_export_job(
@@ -596,8 +601,9 @@ class PinpointClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_pinpoint.types.create_export_job_request.CreateExportJobRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
+        input_: capo_pinpoint.types.create_export_job_request.CreateExportJobRequest = {
+            "application_id": application_id
+        }
         if export_job_request is not None:
             input_["export_job_request"] = export_job_request
 
@@ -606,6 +612,7 @@ class PinpointClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_import_job(
@@ -648,8 +655,9 @@ class PinpointClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_pinpoint.types.create_import_job_request.CreateImportJobRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
+        input_: capo_pinpoint.types.create_import_job_request.CreateImportJobRequest = {
+            "application_id": application_id
+        }
         if import_job_request is not None:
             input_["import_job_request"] = import_job_request
 
@@ -658,6 +666,7 @@ class PinpointClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_in_app_template(
@@ -698,16 +707,18 @@ class PinpointClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_pinpoint.types.create_in_app_template_request.CreateInAppTemplateRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_pinpoint.types.create_in_app_template_request.CreateInAppTemplateRequest = {
+            "template_name": template_name
+        }
         if in_app_template_request is not None:
             input_["in_app_template_request"] = in_app_template_request
-        input_["template_name"] = template_name
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_journey(
@@ -750,8 +761,9 @@ class PinpointClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_pinpoint.types.create_journey_request.CreateJourneyRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
+        input_: capo_pinpoint.types.create_journey_request.CreateJourneyRequest = {
+            "application_id": application_id
+        }
         if write_journey_request is not None:
             input_["write_journey_request"] = write_journey_request
 
@@ -760,6 +772,7 @@ class PinpointClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_push_template(
@@ -800,18 +813,20 @@ class PinpointClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_pinpoint.types.create_push_template_request.CreatePushTemplateRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_pinpoint.types.create_push_template_request.CreatePushTemplateRequest = {
+            "template_name": template_name
+        }
         if push_notification_template_request is not None:
             input_["push_notification_template_request"] = (
                 push_notification_template_request
             )
-        input_["template_name"] = template_name
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_recommender_configuration(
@@ -850,7 +865,7 @@ class PinpointClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_pinpoint.types.create_recommender_configuration_request.CreateRecommenderConfigurationRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_pinpoint.types.create_recommender_configuration_request.CreateRecommenderConfigurationRequest = {}
         if create_recommender_configuration is not None:
             input_["create_recommender_configuration"] = (
                 create_recommender_configuration
@@ -861,6 +876,7 @@ class PinpointClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_segment(
@@ -903,8 +919,9 @@ class PinpointClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_pinpoint.types.create_segment_request.CreateSegmentRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
+        input_: capo_pinpoint.types.create_segment_request.CreateSegmentRequest = {
+            "application_id": application_id
+        }
         if write_segment_request is not None:
             input_["write_segment_request"] = write_segment_request
 
@@ -913,6 +930,7 @@ class PinpointClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_sms_template(
@@ -953,16 +971,18 @@ class PinpointClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_pinpoint.types.create_sms_template_request.CreateSmsTemplateRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_pinpoint.types.create_sms_template_request.CreateSmsTemplateRequest = {
+            "template_name": template_name
+        }
         if sms_template_request is not None:
             input_["sms_template_request"] = sms_template_request
-        input_["template_name"] = template_name
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_voice_template(
@@ -1005,8 +1025,9 @@ class PinpointClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_pinpoint.types.create_voice_template_request.CreateVoiceTemplateRequest = {}  # type: ignore[typeddict-item]
-        input_["template_name"] = template_name
+        input_: capo_pinpoint.types.create_voice_template_request.CreateVoiceTemplateRequest = {
+            "template_name": template_name
+        }
         if voice_template_request is not None:
             input_["voice_template_request"] = voice_template_request
 
@@ -1015,6 +1036,7 @@ class PinpointClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_adm_channel(
@@ -1054,14 +1076,16 @@ class PinpointClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_pinpoint.types.delete_adm_channel_request.DeleteAdmChannelRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
+        input_: capo_pinpoint.types.delete_adm_channel_request.DeleteAdmChannelRequest = {
+            "application_id": application_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_apns_channel(
@@ -1101,14 +1125,16 @@ class PinpointClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_pinpoint.types.delete_apns_channel_request.DeleteApnsChannelRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
+        input_: capo_pinpoint.types.delete_apns_channel_request.DeleteApnsChannelRequest = {
+            "application_id": application_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_apns_sandbox_channel(
@@ -1148,14 +1174,16 @@ class PinpointClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_pinpoint.types.delete_apns_sandbox_channel_request.DeleteApnsSandboxChannelRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
+        input_: capo_pinpoint.types.delete_apns_sandbox_channel_request.DeleteApnsSandboxChannelRequest = {
+            "application_id": application_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_apns_voip_channel(
@@ -1195,14 +1223,16 @@ class PinpointClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_pinpoint.types.delete_apns_voip_channel_request.DeleteApnsVoipChannelRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
+        input_: capo_pinpoint.types.delete_apns_voip_channel_request.DeleteApnsVoipChannelRequest = {
+            "application_id": application_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_apns_voip_sandbox_channel(
@@ -1242,14 +1272,16 @@ class PinpointClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_pinpoint.types.delete_apns_voip_sandbox_channel_request.DeleteApnsVoipSandboxChannelRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
+        input_: capo_pinpoint.types.delete_apns_voip_sandbox_channel_request.DeleteApnsVoipSandboxChannelRequest = {
+            "application_id": application_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_app(
@@ -1289,14 +1321,16 @@ class PinpointClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_pinpoint.types.delete_app_request.DeleteAppRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
+        input_: capo_pinpoint.types.delete_app_request.DeleteAppRequest = {
+            "application_id": application_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_baidu_channel(
@@ -1336,14 +1370,16 @@ class PinpointClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_pinpoint.types.delete_baidu_channel_request.DeleteBaiduChannelRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
+        input_: capo_pinpoint.types.delete_baidu_channel_request.DeleteBaiduChannelRequest = {
+            "application_id": application_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_campaign(
@@ -1385,15 +1421,17 @@ class PinpointClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_pinpoint.types.delete_campaign_request.DeleteCampaignRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
-        input_["campaign_id"] = campaign_id
+        input_: capo_pinpoint.types.delete_campaign_request.DeleteCampaignRequest = {
+            "application_id": application_id,
+            "campaign_id": campaign_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_email_channel(
@@ -1433,14 +1471,16 @@ class PinpointClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_pinpoint.types.delete_email_channel_request.DeleteEmailChannelRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
+        input_: capo_pinpoint.types.delete_email_channel_request.DeleteEmailChannelRequest = {
+            "application_id": application_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_email_template(
@@ -1484,8 +1524,9 @@ class PinpointClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_pinpoint.types.delete_email_template_request.DeleteEmailTemplateRequest = {}  # type: ignore[typeddict-item]
-        input_["template_name"] = template_name
+        input_: capo_pinpoint.types.delete_email_template_request.DeleteEmailTemplateRequest = {
+            "template_name": template_name
+        }
         if version is not None:
             input_["version"] = version
 
@@ -1494,6 +1535,7 @@ class PinpointClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_endpoint(
@@ -1535,15 +1577,17 @@ class PinpointClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_pinpoint.types.delete_endpoint_request.DeleteEndpointRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
-        input_["endpoint_id"] = endpoint_id
+        input_: capo_pinpoint.types.delete_endpoint_request.DeleteEndpointRequest = {
+            "application_id": application_id,
+            "endpoint_id": endpoint_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_event_stream(
@@ -1583,14 +1627,16 @@ class PinpointClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_pinpoint.types.delete_event_stream_request.DeleteEventStreamRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
+        input_: capo_pinpoint.types.delete_event_stream_request.DeleteEventStreamRequest = {
+            "application_id": application_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_gcm_channel(
@@ -1630,14 +1676,16 @@ class PinpointClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_pinpoint.types.delete_gcm_channel_request.DeleteGcmChannelRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
+        input_: capo_pinpoint.types.delete_gcm_channel_request.DeleteGcmChannelRequest = {
+            "application_id": application_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_in_app_template(
@@ -1679,8 +1727,9 @@ class PinpointClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_pinpoint.types.delete_in_app_template_request.DeleteInAppTemplateRequest = {}  # type: ignore[typeddict-item]
-        input_["template_name"] = template_name
+        input_: capo_pinpoint.types.delete_in_app_template_request.DeleteInAppTemplateRequest = {
+            "template_name": template_name
+        }
         if version is not None:
             input_["version"] = version
 
@@ -1689,6 +1738,7 @@ class PinpointClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_journey(
@@ -1730,15 +1780,17 @@ class PinpointClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_pinpoint.types.delete_journey_request.DeleteJourneyRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
-        input_["journey_id"] = journey_id
+        input_: capo_pinpoint.types.delete_journey_request.DeleteJourneyRequest = {
+            "application_id": application_id,
+            "journey_id": journey_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_push_template(
@@ -1780,8 +1832,9 @@ class PinpointClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_pinpoint.types.delete_push_template_request.DeletePushTemplateRequest = {}  # type: ignore[typeddict-item]
-        input_["template_name"] = template_name
+        input_: capo_pinpoint.types.delete_push_template_request.DeletePushTemplateRequest = {
+            "template_name": template_name
+        }
         if version is not None:
             input_["version"] = version
 
@@ -1790,6 +1843,7 @@ class PinpointClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_recommender_configuration(
@@ -1829,14 +1883,16 @@ class PinpointClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_pinpoint.types.delete_recommender_configuration_request.DeleteRecommenderConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["recommender_id"] = recommender_id
+        input_: capo_pinpoint.types.delete_recommender_configuration_request.DeleteRecommenderConfigurationRequest = {
+            "recommender_id": recommender_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_segment(
@@ -1878,15 +1934,17 @@ class PinpointClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_pinpoint.types.delete_segment_request.DeleteSegmentRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
-        input_["segment_id"] = segment_id
+        input_: capo_pinpoint.types.delete_segment_request.DeleteSegmentRequest = {
+            "application_id": application_id,
+            "segment_id": segment_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_sms_channel(
@@ -1926,14 +1984,16 @@ class PinpointClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_pinpoint.types.delete_sms_channel_request.DeleteSmsChannelRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
+        input_: capo_pinpoint.types.delete_sms_channel_request.DeleteSmsChannelRequest = {
+            "application_id": application_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_sms_template(
@@ -1975,8 +2035,9 @@ class PinpointClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_pinpoint.types.delete_sms_template_request.DeleteSmsTemplateRequest = {}  # type: ignore[typeddict-item]
-        input_["template_name"] = template_name
+        input_: capo_pinpoint.types.delete_sms_template_request.DeleteSmsTemplateRequest = {
+            "template_name": template_name
+        }
         if version is not None:
             input_["version"] = version
 
@@ -1985,6 +2046,7 @@ class PinpointClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_user_endpoints(
@@ -2028,15 +2090,17 @@ class PinpointClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_pinpoint.types.delete_user_endpoints_request.DeleteUserEndpointsRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
-        input_["user_id"] = user_id
+        input_: capo_pinpoint.types.delete_user_endpoints_request.DeleteUserEndpointsRequest = {
+            "application_id": application_id,
+            "user_id": user_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_voice_channel(
@@ -2076,14 +2140,16 @@ class PinpointClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_pinpoint.types.delete_voice_channel_request.DeleteVoiceChannelRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
+        input_: capo_pinpoint.types.delete_voice_channel_request.DeleteVoiceChannelRequest = {
+            "application_id": application_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_voice_template(
@@ -2127,8 +2193,9 @@ class PinpointClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_pinpoint.types.delete_voice_template_request.DeleteVoiceTemplateRequest = {}  # type: ignore[typeddict-item]
-        input_["template_name"] = template_name
+        input_: capo_pinpoint.types.delete_voice_template_request.DeleteVoiceTemplateRequest = {
+            "template_name": template_name
+        }
         if version is not None:
             input_["version"] = version
 
@@ -2137,6 +2204,7 @@ class PinpointClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_adm_channel(
@@ -2176,14 +2244,16 @@ class PinpointClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_pinpoint.types.get_adm_channel_request.GetAdmChannelRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
+        input_: capo_pinpoint.types.get_adm_channel_request.GetAdmChannelRequest = {
+            "application_id": application_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_apns_channel(
@@ -2223,14 +2293,16 @@ class PinpointClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_pinpoint.types.get_apns_channel_request.GetApnsChannelRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
+        input_: capo_pinpoint.types.get_apns_channel_request.GetApnsChannelRequest = {
+            "application_id": application_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_apns_sandbox_channel(
@@ -2270,14 +2342,16 @@ class PinpointClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_pinpoint.types.get_apns_sandbox_channel_request.GetApnsSandboxChannelRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
+        input_: capo_pinpoint.types.get_apns_sandbox_channel_request.GetApnsSandboxChannelRequest = {
+            "application_id": application_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_apns_voip_channel(
@@ -2319,14 +2393,16 @@ class PinpointClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_pinpoint.types.get_apns_voip_channel_request.GetApnsVoipChannelRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
+        input_: capo_pinpoint.types.get_apns_voip_channel_request.GetApnsVoipChannelRequest = {
+            "application_id": application_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_apns_voip_sandbox_channel(
@@ -2366,14 +2442,16 @@ class PinpointClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_pinpoint.types.get_apns_voip_sandbox_channel_request.GetApnsVoipSandboxChannelRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
+        input_: capo_pinpoint.types.get_apns_voip_sandbox_channel_request.GetApnsVoipSandboxChannelRequest = {
+            "application_id": application_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_app(
@@ -2409,14 +2487,16 @@ class PinpointClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_pinpoint.types.get_app_request.GetAppRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
+        input_: capo_pinpoint.types.get_app_request.GetAppRequest = {
+            "application_id": application_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_application_date_range_kpi(
@@ -2470,11 +2550,12 @@ class PinpointClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_pinpoint.types.get_application_date_range_kpi_request.GetApplicationDateRangeKpiRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
+        input_: capo_pinpoint.types.get_application_date_range_kpi_request.GetApplicationDateRangeKpiRequest = {
+            "application_id": application_id,
+            "kpi_name": kpi_name,
+        }
         if end_time is not None:
             input_["end_time"] = end_time
-        input_["kpi_name"] = kpi_name
         if next_token is not None:
             input_["next_token"] = next_token
         if page_size is not None:
@@ -2487,6 +2568,7 @@ class PinpointClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_application_settings(
@@ -2526,14 +2608,16 @@ class PinpointClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_pinpoint.types.get_application_settings_request.GetApplicationSettingsRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
+        input_: capo_pinpoint.types.get_application_settings_request.GetApplicationSettingsRequest = {
+            "application_id": application_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_apps(
@@ -2573,7 +2657,7 @@ class PinpointClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_pinpoint.types.get_apps_request.GetAppsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_pinpoint.types.get_apps_request.GetAppsRequest = {}
         if page_size is not None:
             input_["page_size"] = page_size
         if token is not None:
@@ -2584,6 +2668,7 @@ class PinpointClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_baidu_channel(
@@ -2623,14 +2708,16 @@ class PinpointClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_pinpoint.types.get_baidu_channel_request.GetBaiduChannelRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
+        input_: capo_pinpoint.types.get_baidu_channel_request.GetBaiduChannelRequest = {
+            "application_id": application_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_campaign(
@@ -2672,15 +2759,17 @@ class PinpointClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_pinpoint.types.get_campaign_request.GetCampaignRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
-        input_["campaign_id"] = campaign_id
+        input_: capo_pinpoint.types.get_campaign_request.GetCampaignRequest = {
+            "application_id": application_id,
+            "campaign_id": campaign_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_campaign_activities(
@@ -2726,9 +2815,10 @@ class PinpointClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_pinpoint.types.get_campaign_activities_request.GetCampaignActivitiesRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
-        input_["campaign_id"] = campaign_id
+        input_: capo_pinpoint.types.get_campaign_activities_request.GetCampaignActivitiesRequest = {
+            "application_id": application_id,
+            "campaign_id": campaign_id,
+        }
         if page_size is not None:
             input_["page_size"] = page_size
         if token is not None:
@@ -2739,6 +2829,7 @@ class PinpointClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_campaign_date_range_kpi(
@@ -2794,12 +2885,13 @@ class PinpointClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_pinpoint.types.get_campaign_date_range_kpi_request.GetCampaignDateRangeKpiRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
-        input_["campaign_id"] = campaign_id
+        input_: capo_pinpoint.types.get_campaign_date_range_kpi_request.GetCampaignDateRangeKpiRequest = {
+            "application_id": application_id,
+            "campaign_id": campaign_id,
+            "kpi_name": kpi_name,
+        }
         if end_time is not None:
             input_["end_time"] = end_time
-        input_["kpi_name"] = kpi_name
         if next_token is not None:
             input_["next_token"] = next_token
         if page_size is not None:
@@ -2812,6 +2904,7 @@ class PinpointClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_campaigns(
@@ -2855,8 +2948,9 @@ class PinpointClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_pinpoint.types.get_campaigns_request.GetCampaignsRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
+        input_: capo_pinpoint.types.get_campaigns_request.GetCampaignsRequest = {
+            "application_id": application_id
+        }
         if page_size is not None:
             input_["page_size"] = page_size
         if token is not None:
@@ -2867,6 +2961,7 @@ class PinpointClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_campaign_version(
@@ -2910,16 +3005,18 @@ class PinpointClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_pinpoint.types.get_campaign_version_request.GetCampaignVersionRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
-        input_["campaign_id"] = campaign_id
-        input_["version"] = version
+        input_: capo_pinpoint.types.get_campaign_version_request.GetCampaignVersionRequest = {
+            "application_id": application_id,
+            "campaign_id": campaign_id,
+            "version": version,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_campaign_versions(
@@ -2967,9 +3064,10 @@ class PinpointClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_pinpoint.types.get_campaign_versions_request.GetCampaignVersionsRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
-        input_["campaign_id"] = campaign_id
+        input_: capo_pinpoint.types.get_campaign_versions_request.GetCampaignVersionsRequest = {
+            "application_id": application_id,
+            "campaign_id": campaign_id,
+        }
         if page_size is not None:
             input_["page_size"] = page_size
         if token is not None:
@@ -2980,6 +3078,7 @@ class PinpointClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_channels(
@@ -3019,14 +3118,16 @@ class PinpointClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_pinpoint.types.get_channels_request.GetChannelsRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
+        input_: capo_pinpoint.types.get_channels_request.GetChannelsRequest = {
+            "application_id": application_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_email_channel(
@@ -3066,14 +3167,16 @@ class PinpointClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_pinpoint.types.get_email_channel_request.GetEmailChannelRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
+        input_: capo_pinpoint.types.get_email_channel_request.GetEmailChannelRequest = {
+            "application_id": application_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_email_template(
@@ -3115,8 +3218,9 @@ class PinpointClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_pinpoint.types.get_email_template_request.GetEmailTemplateRequest = {}  # type: ignore[typeddict-item]
-        input_["template_name"] = template_name
+        input_: capo_pinpoint.types.get_email_template_request.GetEmailTemplateRequest = {
+            "template_name": template_name
+        }
         if version is not None:
             input_["version"] = version
 
@@ -3125,6 +3229,7 @@ class PinpointClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_endpoint(
@@ -3166,15 +3271,17 @@ class PinpointClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_pinpoint.types.get_endpoint_request.GetEndpointRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
-        input_["endpoint_id"] = endpoint_id
+        input_: capo_pinpoint.types.get_endpoint_request.GetEndpointRequest = {
+            "application_id": application_id,
+            "endpoint_id": endpoint_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_event_stream(
@@ -3214,14 +3321,16 @@ class PinpointClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_pinpoint.types.get_event_stream_request.GetEventStreamRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
+        input_: capo_pinpoint.types.get_event_stream_request.GetEventStreamRequest = {
+            "application_id": application_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_export_job(
@@ -3263,15 +3372,17 @@ class PinpointClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_pinpoint.types.get_export_job_request.GetExportJobRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
-        input_["job_id"] = job_id
+        input_: capo_pinpoint.types.get_export_job_request.GetExportJobRequest = {
+            "application_id": application_id,
+            "job_id": job_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_export_jobs(
@@ -3315,8 +3426,9 @@ class PinpointClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_pinpoint.types.get_export_jobs_request.GetExportJobsRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
+        input_: capo_pinpoint.types.get_export_jobs_request.GetExportJobsRequest = {
+            "application_id": application_id
+        }
         if page_size is not None:
             input_["page_size"] = page_size
         if token is not None:
@@ -3327,6 +3439,7 @@ class PinpointClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_gcm_channel(
@@ -3366,14 +3479,16 @@ class PinpointClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_pinpoint.types.get_gcm_channel_request.GetGcmChannelRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
+        input_: capo_pinpoint.types.get_gcm_channel_request.GetGcmChannelRequest = {
+            "application_id": application_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_import_job(
@@ -3415,15 +3530,17 @@ class PinpointClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_pinpoint.types.get_import_job_request.GetImportJobRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
-        input_["job_id"] = job_id
+        input_: capo_pinpoint.types.get_import_job_request.GetImportJobRequest = {
+            "application_id": application_id,
+            "job_id": job_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_import_jobs(
@@ -3467,8 +3584,9 @@ class PinpointClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_pinpoint.types.get_import_jobs_request.GetImportJobsRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
+        input_: capo_pinpoint.types.get_import_jobs_request.GetImportJobsRequest = {
+            "application_id": application_id
+        }
         if page_size is not None:
             input_["page_size"] = page_size
         if token is not None:
@@ -3479,6 +3597,7 @@ class PinpointClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_in_app_messages(
@@ -3520,15 +3639,17 @@ class PinpointClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_pinpoint.types.get_in_app_messages_request.GetInAppMessagesRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
-        input_["endpoint_id"] = endpoint_id
+        input_: capo_pinpoint.types.get_in_app_messages_request.GetInAppMessagesRequest = {
+            "application_id": application_id,
+            "endpoint_id": endpoint_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_in_app_template(
@@ -3570,8 +3691,9 @@ class PinpointClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_pinpoint.types.get_in_app_template_request.GetInAppTemplateRequest = {}  # type: ignore[typeddict-item]
-        input_["template_name"] = template_name
+        input_: capo_pinpoint.types.get_in_app_template_request.GetInAppTemplateRequest = {
+            "template_name": template_name
+        }
         if version is not None:
             input_["version"] = version
 
@@ -3580,6 +3702,7 @@ class PinpointClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_journey(
@@ -3621,15 +3744,17 @@ class PinpointClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_pinpoint.types.get_journey_request.GetJourneyRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
-        input_["journey_id"] = journey_id
+        input_: capo_pinpoint.types.get_journey_request.GetJourneyRequest = {
+            "application_id": application_id,
+            "journey_id": journey_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_journey_date_range_kpi(
@@ -3685,12 +3810,13 @@ class PinpointClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_pinpoint.types.get_journey_date_range_kpi_request.GetJourneyDateRangeKpiRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
+        input_: capo_pinpoint.types.get_journey_date_range_kpi_request.GetJourneyDateRangeKpiRequest = {
+            "application_id": application_id,
+            "journey_id": journey_id,
+            "kpi_name": kpi_name,
+        }
         if end_time is not None:
             input_["end_time"] = end_time
-        input_["journey_id"] = journey_id
-        input_["kpi_name"] = kpi_name
         if next_token is not None:
             input_["next_token"] = next_token
         if page_size is not None:
@@ -3703,6 +3829,7 @@ class PinpointClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_journey_execution_activity_metrics(
@@ -3750,10 +3877,11 @@ class PinpointClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_pinpoint.types.get_journey_execution_activity_metrics_request.GetJourneyExecutionActivityMetricsRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
-        input_["journey_activity_id"] = journey_activity_id
-        input_["journey_id"] = journey_id
+        input_: capo_pinpoint.types.get_journey_execution_activity_metrics_request.GetJourneyExecutionActivityMetricsRequest = {
+            "application_id": application_id,
+            "journey_activity_id": journey_activity_id,
+            "journey_id": journey_id,
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if page_size is not None:
@@ -3764,6 +3892,7 @@ class PinpointClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_journey_execution_metrics(
@@ -3809,9 +3938,10 @@ class PinpointClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_pinpoint.types.get_journey_execution_metrics_request.GetJourneyExecutionMetricsRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
-        input_["journey_id"] = journey_id
+        input_: capo_pinpoint.types.get_journey_execution_metrics_request.GetJourneyExecutionMetricsRequest = {
+            "application_id": application_id,
+            "journey_id": journey_id,
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if page_size is not None:
@@ -3822,6 +3952,7 @@ class PinpointClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_journey_run_execution_activity_metrics(
@@ -3877,21 +4008,23 @@ class PinpointClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_pinpoint.types.get_journey_run_execution_activity_metrics_request.GetJourneyRunExecutionActivityMetricsRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
-        input_["journey_activity_id"] = journey_activity_id
-        input_["journey_id"] = journey_id
+        input_: capo_pinpoint.types.get_journey_run_execution_activity_metrics_request.GetJourneyRunExecutionActivityMetricsRequest = {
+            "application_id": application_id,
+            "journey_activity_id": journey_activity_id,
+            "journey_id": journey_id,
+            "run_id": run_id,
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if page_size is not None:
             input_["page_size"] = page_size
-        input_["run_id"] = run_id
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_journey_run_execution_metrics(
@@ -3945,20 +4078,22 @@ class PinpointClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_pinpoint.types.get_journey_run_execution_metrics_request.GetJourneyRunExecutionMetricsRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
-        input_["journey_id"] = journey_id
+        input_: capo_pinpoint.types.get_journey_run_execution_metrics_request.GetJourneyRunExecutionMetricsRequest = {
+            "application_id": application_id,
+            "journey_id": journey_id,
+            "run_id": run_id,
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if page_size is not None:
             input_["page_size"] = page_size
-        input_["run_id"] = run_id
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_journey_runs(
@@ -4010,9 +4145,10 @@ class PinpointClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_pinpoint.types.get_journey_runs_request.GetJourneyRunsRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
-        input_["journey_id"] = journey_id
+        input_: capo_pinpoint.types.get_journey_runs_request.GetJourneyRunsRequest = {
+            "application_id": application_id,
+            "journey_id": journey_id,
+        }
         if page_size is not None:
             input_["page_size"] = page_size
         if token is not None:
@@ -4023,6 +4159,7 @@ class PinpointClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_push_template(
@@ -4064,8 +4201,9 @@ class PinpointClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_pinpoint.types.get_push_template_request.GetPushTemplateRequest = {}  # type: ignore[typeddict-item]
-        input_["template_name"] = template_name
+        input_: capo_pinpoint.types.get_push_template_request.GetPushTemplateRequest = {
+            "template_name": template_name
+        }
         if version is not None:
             input_["version"] = version
 
@@ -4074,6 +4212,7 @@ class PinpointClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_recommender_configuration(
@@ -4113,14 +4252,16 @@ class PinpointClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_pinpoint.types.get_recommender_configuration_request.GetRecommenderConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["recommender_id"] = recommender_id
+        input_: capo_pinpoint.types.get_recommender_configuration_request.GetRecommenderConfigurationRequest = {
+            "recommender_id": recommender_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_recommender_configurations(
@@ -4162,7 +4303,7 @@ class PinpointClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_pinpoint.types.get_recommender_configurations_request.GetRecommenderConfigurationsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_pinpoint.types.get_recommender_configurations_request.GetRecommenderConfigurationsRequest = {}
         if page_size is not None:
             input_["page_size"] = page_size
         if token is not None:
@@ -4173,6 +4314,7 @@ class PinpointClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_segment(
@@ -4214,15 +4356,17 @@ class PinpointClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_pinpoint.types.get_segment_request.GetSegmentRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
-        input_["segment_id"] = segment_id
+        input_: capo_pinpoint.types.get_segment_request.GetSegmentRequest = {
+            "application_id": application_id,
+            "segment_id": segment_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_segment_export_jobs(
@@ -4268,11 +4412,12 @@ class PinpointClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_pinpoint.types.get_segment_export_jobs_request.GetSegmentExportJobsRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
+        input_: capo_pinpoint.types.get_segment_export_jobs_request.GetSegmentExportJobsRequest = {
+            "application_id": application_id,
+            "segment_id": segment_id,
+        }
         if page_size is not None:
             input_["page_size"] = page_size
-        input_["segment_id"] = segment_id
         if token is not None:
             input_["token"] = token
 
@@ -4281,6 +4426,7 @@ class PinpointClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_segment_import_jobs(
@@ -4326,11 +4472,12 @@ class PinpointClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_pinpoint.types.get_segment_import_jobs_request.GetSegmentImportJobsRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
+        input_: capo_pinpoint.types.get_segment_import_jobs_request.GetSegmentImportJobsRequest = {
+            "application_id": application_id,
+            "segment_id": segment_id,
+        }
         if page_size is not None:
             input_["page_size"] = page_size
-        input_["segment_id"] = segment_id
         if token is not None:
             input_["token"] = token
 
@@ -4339,6 +4486,7 @@ class PinpointClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_segments(
@@ -4382,8 +4530,9 @@ class PinpointClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_pinpoint.types.get_segments_request.GetSegmentsRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
+        input_: capo_pinpoint.types.get_segments_request.GetSegmentsRequest = {
+            "application_id": application_id
+        }
         if page_size is not None:
             input_["page_size"] = page_size
         if token is not None:
@@ -4394,6 +4543,7 @@ class PinpointClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_segment_version(
@@ -4437,16 +4587,18 @@ class PinpointClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_pinpoint.types.get_segment_version_request.GetSegmentVersionRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
-        input_["segment_id"] = segment_id
-        input_["version"] = version
+        input_: capo_pinpoint.types.get_segment_version_request.GetSegmentVersionRequest = {
+            "application_id": application_id,
+            "segment_id": segment_id,
+            "version": version,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_segment_versions(
@@ -4492,11 +4644,12 @@ class PinpointClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_pinpoint.types.get_segment_versions_request.GetSegmentVersionsRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
+        input_: capo_pinpoint.types.get_segment_versions_request.GetSegmentVersionsRequest = {
+            "application_id": application_id,
+            "segment_id": segment_id,
+        }
         if page_size is not None:
             input_["page_size"] = page_size
-        input_["segment_id"] = segment_id
         if token is not None:
             input_["token"] = token
 
@@ -4505,6 +4658,7 @@ class PinpointClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_sms_channel(
@@ -4544,14 +4698,16 @@ class PinpointClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_pinpoint.types.get_sms_channel_request.GetSmsChannelRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
+        input_: capo_pinpoint.types.get_sms_channel_request.GetSmsChannelRequest = {
+            "application_id": application_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_sms_template(
@@ -4593,8 +4749,9 @@ class PinpointClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_pinpoint.types.get_sms_template_request.GetSmsTemplateRequest = {}  # type: ignore[typeddict-item]
-        input_["template_name"] = template_name
+        input_: capo_pinpoint.types.get_sms_template_request.GetSmsTemplateRequest = {
+            "template_name": template_name
+        }
         if version is not None:
             input_["version"] = version
 
@@ -4603,6 +4760,7 @@ class PinpointClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_user_endpoints(
@@ -4644,15 +4802,17 @@ class PinpointClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_pinpoint.types.get_user_endpoints_request.GetUserEndpointsRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
-        input_["user_id"] = user_id
+        input_: capo_pinpoint.types.get_user_endpoints_request.GetUserEndpointsRequest = {
+            "application_id": application_id,
+            "user_id": user_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_voice_channel(
@@ -4692,14 +4852,16 @@ class PinpointClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_pinpoint.types.get_voice_channel_request.GetVoiceChannelRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
+        input_: capo_pinpoint.types.get_voice_channel_request.GetVoiceChannelRequest = {
+            "application_id": application_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_voice_template(
@@ -4741,8 +4903,9 @@ class PinpointClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_pinpoint.types.get_voice_template_request.GetVoiceTemplateRequest = {}  # type: ignore[typeddict-item]
-        input_["template_name"] = template_name
+        input_: capo_pinpoint.types.get_voice_template_request.GetVoiceTemplateRequest = {
+            "template_name": template_name
+        }
         if version is not None:
             input_["version"] = version
 
@@ -4751,6 +4914,7 @@ class PinpointClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_journeys(
@@ -4794,8 +4958,9 @@ class PinpointClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_pinpoint.types.list_journeys_request.ListJourneysRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
+        input_: capo_pinpoint.types.list_journeys_request.ListJourneysRequest = {
+            "application_id": application_id
+        }
         if page_size is not None:
             input_["page_size"] = page_size
         if token is not None:
@@ -4806,6 +4971,7 @@ class PinpointClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_tags_for_resource(
@@ -4838,14 +5004,16 @@ class PinpointClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_pinpoint.types.list_tags_for_resource_request.ListTagsForResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_pinpoint.types.list_tags_for_resource_request.ListTagsForResourceRequest = {
+            "resource_arn": resource_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_templates(
@@ -4889,7 +5057,7 @@ class PinpointClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_pinpoint.types.list_templates_request.ListTemplatesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_pinpoint.types.list_templates_request.ListTemplatesRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if page_size is not None:
@@ -4904,6 +5072,7 @@ class PinpointClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_template_versions(
@@ -4949,19 +5118,21 @@ class PinpointClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_pinpoint.types.list_template_versions_request.ListTemplateVersionsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_pinpoint.types.list_template_versions_request.ListTemplateVersionsRequest = {
+            "template_name": template_name,
+            "template_type": template_type,
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if page_size is not None:
             input_["page_size"] = page_size
-        input_["template_name"] = template_name
-        input_["template_type"] = template_type
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def phone_number_validate(
@@ -5002,7 +5173,7 @@ class PinpointClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_pinpoint.types.phone_number_validate_request.PhoneNumberValidateRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_pinpoint.types.phone_number_validate_request.PhoneNumberValidateRequest = {}
         if number_validate_request is not None:
             input_["number_validate_request"] = number_validate_request
 
@@ -5011,6 +5182,7 @@ class PinpointClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def put_events(
@@ -5053,8 +5225,9 @@ class PinpointClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_pinpoint.types.put_events_request.PutEventsRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
+        input_: capo_pinpoint.types.put_events_request.PutEventsRequest = {
+            "application_id": application_id
+        }
         if events_request is not None:
             input_["events_request"] = events_request
 
@@ -5063,6 +5236,7 @@ class PinpointClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def put_event_stream(
@@ -5105,8 +5279,9 @@ class PinpointClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_pinpoint.types.put_event_stream_request.PutEventStreamRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
+        input_: capo_pinpoint.types.put_event_stream_request.PutEventStreamRequest = {
+            "application_id": application_id
+        }
         if write_event_stream is not None:
             input_["write_event_stream"] = write_event_stream
 
@@ -5115,6 +5290,7 @@ class PinpointClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def remove_attributes(
@@ -5159,9 +5335,10 @@ class PinpointClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_pinpoint.types.remove_attributes_request.RemoveAttributesRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
-        input_["attribute_type"] = attribute_type
+        input_: capo_pinpoint.types.remove_attributes_request.RemoveAttributesRequest = {
+            "application_id": application_id,
+            "attribute_type": attribute_type,
+        }
         if update_attributes_request is not None:
             input_["update_attributes_request"] = update_attributes_request
 
@@ -5170,6 +5347,7 @@ class PinpointClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def send_messages(
@@ -5212,8 +5390,9 @@ class PinpointClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_pinpoint.types.send_messages_request.SendMessagesRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
+        input_: capo_pinpoint.types.send_messages_request.SendMessagesRequest = {
+            "application_id": application_id
+        }
         if message_request is not None:
             input_["message_request"] = message_request
 
@@ -5222,6 +5401,7 @@ class PinpointClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def send_otp_message(
@@ -5264,8 +5444,9 @@ class PinpointClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_pinpoint.types.send_otp_message_request.SendOTPMessageRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
+        input_: capo_pinpoint.types.send_otp_message_request.SendOTPMessageRequest = {
+            "application_id": application_id
+        }
         if send_otp_message_request_parameters is not None:
             input_["send_otp_message_request_parameters"] = (
                 send_otp_message_request_parameters
@@ -5276,6 +5457,7 @@ class PinpointClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def send_users_messages(
@@ -5318,8 +5500,9 @@ class PinpointClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_pinpoint.types.send_users_messages_request.SendUsersMessagesRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
+        input_: capo_pinpoint.types.send_users_messages_request.SendUsersMessagesRequest = {
+            "application_id": application_id
+        }
         if send_users_message_request is not None:
             input_["send_users_message_request"] = send_users_message_request
 
@@ -5328,6 +5511,7 @@ class PinpointClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def tag_resource(
@@ -5359,8 +5543,9 @@ class PinpointClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_pinpoint.types.tag_resource_request.TagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_pinpoint.types.tag_resource_request.TagResourceRequest = {
+            "resource_arn": resource_arn
+        }
         if tags_model is not None:
             input_["tags_model"] = tags_model
 
@@ -5369,6 +5554,7 @@ class PinpointClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def untag_resource(
@@ -5401,8 +5587,9 @@ class PinpointClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_pinpoint.types.untag_resource_request.UntagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_pinpoint.types.untag_resource_request.UntagResourceRequest = {
+            "resource_arn": resource_arn
+        }
         if tag_keys is not None:
             input_["tag_keys"] = tag_keys
 
@@ -5411,6 +5598,7 @@ class PinpointClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_adm_channel(
@@ -5453,16 +5641,18 @@ class PinpointClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_pinpoint.types.update_adm_channel_request.UpdateAdmChannelRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_pinpoint.types.update_adm_channel_request.UpdateAdmChannelRequest = {
+            "application_id": application_id
+        }
         if adm_channel_request is not None:
             input_["adm_channel_request"] = adm_channel_request
-        input_["application_id"] = application_id
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_apns_channel(
@@ -5505,16 +5695,18 @@ class PinpointClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_pinpoint.types.update_apns_channel_request.UpdateApnsChannelRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_pinpoint.types.update_apns_channel_request.UpdateApnsChannelRequest = {
+            "application_id": application_id
+        }
         if apns_channel_request is not None:
             input_["apns_channel_request"] = apns_channel_request
-        input_["application_id"] = application_id
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_apns_sandbox_channel(
@@ -5557,16 +5749,18 @@ class PinpointClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_pinpoint.types.update_apns_sandbox_channel_request.UpdateApnsSandboxChannelRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_pinpoint.types.update_apns_sandbox_channel_request.UpdateApnsSandboxChannelRequest = {
+            "application_id": application_id
+        }
         if apns_sandbox_channel_request is not None:
             input_["apns_sandbox_channel_request"] = apns_sandbox_channel_request
-        input_["application_id"] = application_id
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_apns_voip_channel(
@@ -5609,16 +5803,18 @@ class PinpointClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_pinpoint.types.update_apns_voip_channel_request.UpdateApnsVoipChannelRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_pinpoint.types.update_apns_voip_channel_request.UpdateApnsVoipChannelRequest = {
+            "application_id": application_id
+        }
         if apns_voip_channel_request is not None:
             input_["apns_voip_channel_request"] = apns_voip_channel_request
-        input_["application_id"] = application_id
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_apns_voip_sandbox_channel(
@@ -5661,18 +5857,20 @@ class PinpointClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_pinpoint.types.update_apns_voip_sandbox_channel_request.UpdateApnsVoipSandboxChannelRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_pinpoint.types.update_apns_voip_sandbox_channel_request.UpdateApnsVoipSandboxChannelRequest = {
+            "application_id": application_id
+        }
         if apns_voip_sandbox_channel_request is not None:
             input_["apns_voip_sandbox_channel_request"] = (
                 apns_voip_sandbox_channel_request
             )
-        input_["application_id"] = application_id
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_application_settings(
@@ -5715,8 +5913,9 @@ class PinpointClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_pinpoint.types.update_application_settings_request.UpdateApplicationSettingsRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
+        input_: capo_pinpoint.types.update_application_settings_request.UpdateApplicationSettingsRequest = {
+            "application_id": application_id
+        }
         if write_application_settings_request is not None:
             input_["write_application_settings_request"] = (
                 write_application_settings_request
@@ -5727,6 +5926,7 @@ class PinpointClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_baidu_channel(
@@ -5769,8 +5969,9 @@ class PinpointClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_pinpoint.types.update_baidu_channel_request.UpdateBaiduChannelRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
+        input_: capo_pinpoint.types.update_baidu_channel_request.UpdateBaiduChannelRequest = {
+            "application_id": application_id
+        }
         if baidu_channel_request is not None:
             input_["baidu_channel_request"] = baidu_channel_request
 
@@ -5779,6 +5980,7 @@ class PinpointClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_campaign(
@@ -5823,9 +6025,10 @@ class PinpointClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_pinpoint.types.update_campaign_request.UpdateCampaignRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
-        input_["campaign_id"] = campaign_id
+        input_: capo_pinpoint.types.update_campaign_request.UpdateCampaignRequest = {
+            "application_id": application_id,
+            "campaign_id": campaign_id,
+        }
         if write_campaign_request is not None:
             input_["write_campaign_request"] = write_campaign_request
 
@@ -5834,6 +6037,7 @@ class PinpointClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_email_channel(
@@ -5876,8 +6080,9 @@ class PinpointClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_pinpoint.types.update_email_channel_request.UpdateEmailChannelRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
+        input_: capo_pinpoint.types.update_email_channel_request.UpdateEmailChannelRequest = {
+            "application_id": application_id
+        }
         if email_channel_request is not None:
             input_["email_channel_request"] = email_channel_request
 
@@ -5886,6 +6091,7 @@ class PinpointClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_email_template(
@@ -5934,12 +6140,13 @@ class PinpointClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_pinpoint.types.update_email_template_request.UpdateEmailTemplateRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_pinpoint.types.update_email_template_request.UpdateEmailTemplateRequest = {
+            "template_name": template_name
+        }
         if create_new_version is not None:
             input_["create_new_version"] = create_new_version
         if email_template_request is not None:
             input_["email_template_request"] = email_template_request
-        input_["template_name"] = template_name
         if version is not None:
             input_["version"] = version
 
@@ -5948,6 +6155,7 @@ class PinpointClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_endpoint(
@@ -5992,9 +6200,10 @@ class PinpointClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_pinpoint.types.update_endpoint_request.UpdateEndpointRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
-        input_["endpoint_id"] = endpoint_id
+        input_: capo_pinpoint.types.update_endpoint_request.UpdateEndpointRequest = {
+            "application_id": application_id,
+            "endpoint_id": endpoint_id,
+        }
         if endpoint_request is not None:
             input_["endpoint_request"] = endpoint_request
 
@@ -6003,6 +6212,7 @@ class PinpointClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_endpoints_batch(
@@ -6045,8 +6255,9 @@ class PinpointClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_pinpoint.types.update_endpoints_batch_request.UpdateEndpointsBatchRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
+        input_: capo_pinpoint.types.update_endpoints_batch_request.UpdateEndpointsBatchRequest = {
+            "application_id": application_id
+        }
         if endpoint_batch_request is not None:
             input_["endpoint_batch_request"] = endpoint_batch_request
 
@@ -6055,6 +6266,7 @@ class PinpointClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_gcm_channel(
@@ -6097,8 +6309,9 @@ class PinpointClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_pinpoint.types.update_gcm_channel_request.UpdateGcmChannelRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
+        input_: capo_pinpoint.types.update_gcm_channel_request.UpdateGcmChannelRequest = {
+            "application_id": application_id
+        }
         if gcm_channel_request is not None:
             input_["gcm_channel_request"] = gcm_channel_request
 
@@ -6107,6 +6320,7 @@ class PinpointClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_in_app_template(
@@ -6153,12 +6367,13 @@ class PinpointClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_pinpoint.types.update_in_app_template_request.UpdateInAppTemplateRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_pinpoint.types.update_in_app_template_request.UpdateInAppTemplateRequest = {
+            "template_name": template_name
+        }
         if create_new_version is not None:
             input_["create_new_version"] = create_new_version
         if in_app_template_request is not None:
             input_["in_app_template_request"] = in_app_template_request
-        input_["template_name"] = template_name
         if version is not None:
             input_["version"] = version
 
@@ -6167,6 +6382,7 @@ class PinpointClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_journey(
@@ -6212,9 +6428,10 @@ class PinpointClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_pinpoint.types.update_journey_request.UpdateJourneyRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
-        input_["journey_id"] = journey_id
+        input_: capo_pinpoint.types.update_journey_request.UpdateJourneyRequest = {
+            "application_id": application_id,
+            "journey_id": journey_id,
+        }
         if write_journey_request is not None:
             input_["write_journey_request"] = write_journey_request
 
@@ -6223,6 +6440,7 @@ class PinpointClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_journey_state(
@@ -6267,9 +6485,10 @@ class PinpointClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_pinpoint.types.update_journey_state_request.UpdateJourneyStateRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
-        input_["journey_id"] = journey_id
+        input_: capo_pinpoint.types.update_journey_state_request.UpdateJourneyStateRequest = {
+            "application_id": application_id,
+            "journey_id": journey_id,
+        }
         if journey_state_request is not None:
             input_["journey_state_request"] = journey_state_request
 
@@ -6278,6 +6497,7 @@ class PinpointClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_push_template(
@@ -6324,14 +6544,15 @@ class PinpointClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_pinpoint.types.update_push_template_request.UpdatePushTemplateRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_pinpoint.types.update_push_template_request.UpdatePushTemplateRequest = {
+            "template_name": template_name
+        }
         if create_new_version is not None:
             input_["create_new_version"] = create_new_version
         if push_notification_template_request is not None:
             input_["push_notification_template_request"] = (
                 push_notification_template_request
             )
-        input_["template_name"] = template_name
         if version is not None:
             input_["version"] = version
 
@@ -6340,6 +6561,7 @@ class PinpointClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_recommender_configuration(
@@ -6382,8 +6604,9 @@ class PinpointClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_pinpoint.types.update_recommender_configuration_request.UpdateRecommenderConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["recommender_id"] = recommender_id
+        input_: capo_pinpoint.types.update_recommender_configuration_request.UpdateRecommenderConfigurationRequest = {
+            "recommender_id": recommender_id
+        }
         if update_recommender_configuration is not None:
             input_["update_recommender_configuration"] = (
                 update_recommender_configuration
@@ -6394,6 +6617,7 @@ class PinpointClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_segment(
@@ -6438,9 +6662,10 @@ class PinpointClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_pinpoint.types.update_segment_request.UpdateSegmentRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
-        input_["segment_id"] = segment_id
+        input_: capo_pinpoint.types.update_segment_request.UpdateSegmentRequest = {
+            "application_id": application_id,
+            "segment_id": segment_id,
+        }
         if write_segment_request is not None:
             input_["write_segment_request"] = write_segment_request
 
@@ -6449,6 +6674,7 @@ class PinpointClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_sms_channel(
@@ -6491,8 +6717,9 @@ class PinpointClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_pinpoint.types.update_sms_channel_request.UpdateSmsChannelRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
+        input_: capo_pinpoint.types.update_sms_channel_request.UpdateSmsChannelRequest = {
+            "application_id": application_id
+        }
         if sms_channel_request is not None:
             input_["sms_channel_request"] = sms_channel_request
 
@@ -6501,6 +6728,7 @@ class PinpointClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_sms_template(
@@ -6547,12 +6775,13 @@ class PinpointClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_pinpoint.types.update_sms_template_request.UpdateSmsTemplateRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_pinpoint.types.update_sms_template_request.UpdateSmsTemplateRequest = {
+            "template_name": template_name
+        }
         if create_new_version is not None:
             input_["create_new_version"] = create_new_version
         if sms_template_request is not None:
             input_["sms_template_request"] = sms_template_request
-        input_["template_name"] = template_name
         if version is not None:
             input_["version"] = version
 
@@ -6561,6 +6790,7 @@ class PinpointClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_template_active_version(
@@ -6605,17 +6835,19 @@ class PinpointClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_pinpoint.types.update_template_active_version_request.UpdateTemplateActiveVersionRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_pinpoint.types.update_template_active_version_request.UpdateTemplateActiveVersionRequest = {
+            "template_name": template_name,
+            "template_type": template_type,
+        }
         if template_active_version_request is not None:
             input_["template_active_version_request"] = template_active_version_request
-        input_["template_name"] = template_name
-        input_["template_type"] = template_type
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_voice_channel(
@@ -6658,8 +6890,9 @@ class PinpointClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_pinpoint.types.update_voice_channel_request.UpdateVoiceChannelRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
+        input_: capo_pinpoint.types.update_voice_channel_request.UpdateVoiceChannelRequest = {
+            "application_id": application_id
+        }
         if voice_channel_request is not None:
             input_["voice_channel_request"] = voice_channel_request
 
@@ -6668,6 +6901,7 @@ class PinpointClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_voice_template(
@@ -6716,10 +6950,11 @@ class PinpointClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_pinpoint.types.update_voice_template_request.UpdateVoiceTemplateRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_pinpoint.types.update_voice_template_request.UpdateVoiceTemplateRequest = {
+            "template_name": template_name
+        }
         if create_new_version is not None:
             input_["create_new_version"] = create_new_version
-        input_["template_name"] = template_name
         if version is not None:
             input_["version"] = version
         if voice_template_request is not None:
@@ -6730,6 +6965,7 @@ class PinpointClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def verify_otp_message(
@@ -6772,8 +7008,9 @@ class PinpointClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_pinpoint.types.verify_otp_message_request.VerifyOTPMessageRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
+        input_: capo_pinpoint.types.verify_otp_message_request.VerifyOTPMessageRequest = {
+            "application_id": application_id
+        }
         if verify_otp_message_request_parameters is not None:
             input_["verify_otp_message_request_parameters"] = (
                 verify_otp_message_request_parameters
@@ -6784,6 +7021,7 @@ class PinpointClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def __enter__(self) -> Self:

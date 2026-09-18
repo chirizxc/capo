@@ -13,9 +13,9 @@ from capo_greengrassv2 import AsyncGreengrassV2Client
 
 
 async def main():
-    async with AsyncGreengrassV2Client() as s3:
+    async with AsyncGreengrassV2Client() as greengrass_v2:
         # Example: call the associate_service_role_to_account operation
-        response = await s3.associate_service_role_to_account()
+        response = await greengrass_v2.associate_service_role_to_account()
         print(response["associated_at"])
 ```
 
@@ -28,9 +28,9 @@ from capo_greengrassv2 import AsyncGreengrassV2Client
 
 
 async def main():
-    async with AsyncGreengrassV2Client() as s3:
+    async with AsyncGreengrassV2Client() as greengrass_v2:
         # Example: paginate over list_client_devices_associated_with_core_device
-        async for item in s3.iter_list_client_devices_associated_with_core_device():
+        async for item in greengrass_v2.iter_list_client_devices_associated_with_core_device():
             print(item)
 ```
 
@@ -44,9 +44,9 @@ from capo_greengrassv2.error import InternalServerException
 
 
 async def main():
-    async with AsyncGreengrassV2Client() as s3:
+    async with AsyncGreengrassV2Client() as greengrass_v2:
         try:
-            await s3.associate_service_role_to_account()
+            await greengrass_v2.associate_service_role_to_account()
         except InternalServerException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -63,13 +63,13 @@ from capo_greengrassv2 import AsyncGreengrassV2Client
 
 
 async def main():
-    async with AsyncGreengrassV2Client() as s3:
+    async with AsyncGreengrassV2Client() as greengrass_v2:
         # Default: 3 attempts for every operation
-        response = await s3.associate_service_role_to_account()
+        response = await greengrass_v2.associate_service_role_to_account()
 
         # Override per operation
-        response = await s3.associate_service_role_to_account(config_overrides={"retry_max_attempts": 5})
+        response = await greengrass_v2.associate_service_role_to_account(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.associate_service_role_to_account(config_overrides={"retry_max_attempts": 1})
+        response = await greengrass_v2.associate_service_role_to_account(config_overrides={"retry_max_attempts": 1})
 ```

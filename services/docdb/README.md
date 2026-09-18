@@ -13,9 +13,9 @@ from capo_docdb import AsyncDocDBClient
 
 
 async def main():
-    async with AsyncDocDBClient() as s3:
+    async with AsyncDocDBClient() as doc_db:
         # Example: call the add_source_identifier_to_subscription operation
-        response = await s3.add_source_identifier_to_subscription()
+        response = await doc_db.add_source_identifier_to_subscription()
         print(response["event_subscription"])
 ```
 
@@ -28,9 +28,9 @@ from capo_docdb import AsyncDocDBClient
 
 
 async def main():
-    async with AsyncDocDBClient() as s3:
+    async with AsyncDocDBClient() as doc_db:
         # Example: paginate over describe_certificates
-        async for item in s3.iter_describe_certificates():
+        async for item in doc_db.iter_describe_certificates():
             print(item)
 ```
 
@@ -44,9 +44,9 @@ from capo_docdb.error import SourceNotFoundFault
 
 
 async def main():
-    async with AsyncDocDBClient() as s3:
+    async with AsyncDocDBClient() as doc_db:
         try:
-            await s3.add_source_identifier_to_subscription()
+            await doc_db.add_source_identifier_to_subscription()
         except SourceNotFoundFault as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -63,13 +63,13 @@ from capo_docdb import AsyncDocDBClient
 
 
 async def main():
-    async with AsyncDocDBClient() as s3:
+    async with AsyncDocDBClient() as doc_db:
         # Default: 3 attempts for every operation
-        response = await s3.add_source_identifier_to_subscription()
+        response = await doc_db.add_source_identifier_to_subscription()
 
         # Override per operation
-        response = await s3.add_source_identifier_to_subscription(config_overrides={"retry_max_attempts": 5})
+        response = await doc_db.add_source_identifier_to_subscription(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.add_source_identifier_to_subscription(config_overrides={"retry_max_attempts": 1})
+        response = await doc_db.add_source_identifier_to_subscription(config_overrides={"retry_max_attempts": 1})
 ```

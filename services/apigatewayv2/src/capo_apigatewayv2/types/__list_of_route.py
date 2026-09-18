@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> __listOfRoute:
 
     out: __listOfRoute = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_apigatewayv2.types.route.deserialize_json(item))
     return out

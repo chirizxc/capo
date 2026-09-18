@@ -4,6 +4,8 @@ from typing import TYPE_CHECKING
 
 from typing_extensions import NotRequired, TypedDict
 
+from capo_odb.errors import DeserializationError
+
 if TYPE_CHECKING:
     import capo_odb.types.autonomous_database_backup_status
     import capo_odb.types.autonomous_database_backup_type
@@ -30,6 +32,11 @@ class ListAutonomousDatabaseBackupsInput(TypedDict, closed=True):
 # --- awsJson1_0 ser/de ---
 def serialize_aws_json_1_0(value: ListAutonomousDatabaseBackupsInput) -> dict:
     out: dict = {}
+    if "max_results" in value:
+        out["maxResults"] = value["max_results"]
+    if "next_token" in value:
+        out["nextToken"] = value["next_token"]
+    out["autonomousDatabaseId"] = value["autonomous_database_id"]
     if "status" in value:
         import capo_odb.types.autonomous_database_backup_status
 
@@ -51,7 +58,17 @@ def serialize_aws_json_1_0(value: ListAutonomousDatabaseBackupsInput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ListAutonomousDatabaseBackupsInput:
     out: ListAutonomousDatabaseBackupsInput = {}  # type: ignore[typeddict-item]
-    if "status" in data:
+    if data.get("maxResults") is not None:
+        out["max_results"] = data["maxResults"]
+    if data.get("nextToken") is not None:
+        out["next_token"] = data["nextToken"]
+    if data.get("autonomousDatabaseId") is not None:
+        out["autonomous_database_id"] = data["autonomousDatabaseId"]
+    else:
+        raise DeserializationError(
+            "ListAutonomousDatabaseBackupsInput.autonomous_database_id required"
+        )
+    if data.get("status") is not None:
         import capo_odb.types.autonomous_database_backup_status
 
         out["status"] = (
@@ -59,7 +76,7 @@ def deserialize_aws_json_1_0(data: dict) -> ListAutonomousDatabaseBackupsInput:
                 data["status"]
             )
         )
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_odb.types.autonomous_database_backup_type
 
         out["type"] = (

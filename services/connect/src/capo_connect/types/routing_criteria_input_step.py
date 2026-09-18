@@ -40,7 +40,7 @@ def serialize_json(value: RoutingCriteriaInputStep) -> dict:
 
 def deserialize_json(data: dict) -> RoutingCriteriaInputStep:
     out: RoutingCriteriaInputStep = {}  # type: ignore[typeddict-item]
-    if "Expiry" in data:
+    if data.get("Expiry") is not None:
         import capo_connect.types.routing_criteria_input_step_expiry
 
         out["expiry"] = (
@@ -48,7 +48,7 @@ def deserialize_json(data: dict) -> RoutingCriteriaInputStep:
                 data["Expiry"]
             )
         )
-    if "Expression" in data:
+    if data.get("Expression") is not None:
         import capo_connect.types.expression
 
         out["expression"] = capo_connect.types.expression.deserialize_json(

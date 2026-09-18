@@ -44,15 +44,15 @@ def serialize_json(value: DataLakeUpdateStatus) -> dict:
 
 def deserialize_json(data: dict) -> DataLakeUpdateStatus:
     out: DataLakeUpdateStatus = {}  # type: ignore[typeddict-item]
-    if "requestId" in data:
+    if data.get("requestId") is not None:
         out["request_id"] = data["requestId"]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_securitylake.types.data_lake_status
 
         out["status"] = capo_securitylake.types.data_lake_status.deserialize_json(
             data["status"]
         )
-    if "exception" in data:
+    if data.get("exception") is not None:
         import capo_securitylake.types.data_lake_update_exception
 
         out["exception"] = (

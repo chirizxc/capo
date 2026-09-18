@@ -35,21 +35,21 @@ def serialize_aws_json_1_1(value: DeleteColumnStatisticsForTableRequest) -> dict
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteColumnStatisticsForTableRequest:
     out: DeleteColumnStatisticsForTableRequest = {}  # type: ignore[typeddict-item]
-    if "CatalogId" in data:
+    if data.get("CatalogId") is not None:
         out["catalog_id"] = data["CatalogId"]
-    if "DatabaseName" in data:
+    if data.get("DatabaseName") is not None:
         out["database_name"] = data["DatabaseName"]
     else:
         raise DeserializationError(
             "DeleteColumnStatisticsForTableRequest.database_name required"
         )
-    if "TableName" in data:
+    if data.get("TableName") is not None:
         out["table_name"] = data["TableName"]
     else:
         raise DeserializationError(
             "DeleteColumnStatisticsForTableRequest.table_name required"
         )
-    if "ColumnName" in data:
+    if data.get("ColumnName") is not None:
         out["column_name"] = data["ColumnName"]
     else:
         raise DeserializationError(

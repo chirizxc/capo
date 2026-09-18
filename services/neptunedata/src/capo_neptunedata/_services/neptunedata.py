@@ -262,14 +262,16 @@ class neptunedataClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_neptunedata.types.cancel_gremlin_query_input.CancelGremlinQueryInput = {}  # type: ignore[typeddict-item]
-        input_["query_id"] = query_id
+        input_: capo_neptunedata.types.cancel_gremlin_query_input.CancelGremlinQueryInput = {
+            "query_id": query_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def cancel_loader_job(
@@ -315,14 +317,16 @@ class neptunedataClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_neptunedata.types.cancel_loader_job_input.CancelLoaderJobInput = {}  # type: ignore[typeddict-item]
-        input_["load_id"] = load_id
+        input_: capo_neptunedata.types.cancel_loader_job_input.CancelLoaderJobInput = {
+            "load_id": load_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def cancel_ml_data_processing_job(
@@ -370,8 +374,9 @@ class neptunedataClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_neptunedata.types.cancel_ml_data_processing_job_input.CancelMLDataProcessingJobInput = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_neptunedata.types.cancel_ml_data_processing_job_input.CancelMLDataProcessingJobInput = {
+            "id": id
+        }
         if neptune_iam_role_arn is not None:
             input_["neptune_iam_role_arn"] = neptune_iam_role_arn
         if clean is not None:
@@ -382,6 +387,7 @@ class neptunedataClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def cancel_ml_model_training_job(
@@ -429,8 +435,9 @@ class neptunedataClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_neptunedata.types.cancel_ml_model_training_job_input.CancelMLModelTrainingJobInput = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_neptunedata.types.cancel_ml_model_training_job_input.CancelMLModelTrainingJobInput = {
+            "id": id
+        }
         if neptune_iam_role_arn is not None:
             input_["neptune_iam_role_arn"] = neptune_iam_role_arn
         if clean is not None:
@@ -441,6 +448,7 @@ class neptunedataClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def cancel_ml_model_transform_job(
@@ -488,8 +496,9 @@ class neptunedataClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_neptunedata.types.cancel_ml_model_transform_job_input.CancelMLModelTransformJobInput = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_neptunedata.types.cancel_ml_model_transform_job_input.CancelMLModelTransformJobInput = {
+            "id": id
+        }
         if neptune_iam_role_arn is not None:
             input_["neptune_iam_role_arn"] = neptune_iam_role_arn
         if clean is not None:
@@ -500,6 +509,7 @@ class neptunedataClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def cancel_open_cypher_query(
@@ -549,8 +559,9 @@ class neptunedataClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_neptunedata.types.cancel_open_cypher_query_input.CancelOpenCypherQueryInput = {}  # type: ignore[typeddict-item]
-        input_["query_id"] = query_id
+        input_: capo_neptunedata.types.cancel_open_cypher_query_input.CancelOpenCypherQueryInput = {
+            "query_id": query_id
+        }
         if silent is not None:
             input_["silent"] = silent
 
@@ -559,6 +570,7 @@ class neptunedataClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_ml_endpoint(
@@ -618,7 +630,7 @@ class neptunedataClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_neptunedata.types.create_ml_endpoint_input.CreateMLEndpointInput = {}  # type: ignore[typeddict-item]
+        input_: capo_neptunedata.types.create_ml_endpoint_input.CreateMLEndpointInput = {}
         if id is not None:
             input_["id"] = id
         if ml_model_training_job_id is not None:
@@ -643,6 +655,7 @@ class neptunedataClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_ml_endpoint(
@@ -690,8 +703,9 @@ class neptunedataClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_neptunedata.types.delete_ml_endpoint_input.DeleteMLEndpointInput = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_neptunedata.types.delete_ml_endpoint_input.DeleteMLEndpointInput = {
+            "id": id
+        }
         if neptune_iam_role_arn is not None:
             input_["neptune_iam_role_arn"] = neptune_iam_role_arn
         if clean is not None:
@@ -702,6 +716,7 @@ class neptunedataClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_propertygraph_statistics(
@@ -747,6 +762,7 @@ class neptunedataClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_sparql_statistics(
@@ -792,6 +808,7 @@ class neptunedataClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def execute_fast_reset(
@@ -839,8 +856,9 @@ class neptunedataClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_neptunedata.types.execute_fast_reset_input.ExecuteFastResetInput = {}  # type: ignore[typeddict-item]
-        input_["action"] = action
+        input_: capo_neptunedata.types.execute_fast_reset_input.ExecuteFastResetInput = {
+            "action": action
+        }
         if token is not None:
             input_["token"] = token
 
@@ -849,6 +867,7 @@ class neptunedataClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def execute_gremlin_explain_query(
@@ -901,14 +920,16 @@ class neptunedataClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_neptunedata.types.execute_gremlin_explain_query_input.ExecuteGremlinExplainQueryInput = {}  # type: ignore[typeddict-item]
-        input_["gremlin_query"] = gremlin_query
+        input_: capo_neptunedata.types.execute_gremlin_explain_query_input.ExecuteGremlinExplainQueryInput = {
+            "gremlin_query": gremlin_query
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def execute_gremlin_profile_query(
@@ -969,8 +990,9 @@ class neptunedataClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_neptunedata.types.execute_gremlin_profile_query_input.ExecuteGremlinProfileQueryInput = {}  # type: ignore[typeddict-item]
-        input_["gremlin_query"] = gremlin_query
+        input_: capo_neptunedata.types.execute_gremlin_profile_query_input.ExecuteGremlinProfileQueryInput = {
+            "gremlin_query": gremlin_query
+        }
         if results is not None:
             input_["results"] = results
         if chop is not None:
@@ -985,6 +1007,7 @@ class neptunedataClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def execute_gremlin_query(
@@ -1041,8 +1064,9 @@ class neptunedataClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_neptunedata.types.execute_gremlin_query_input.ExecuteGremlinQueryInput = {}  # type: ignore[typeddict-item]
-        input_["gremlin_query"] = gremlin_query
+        input_: capo_neptunedata.types.execute_gremlin_query_input.ExecuteGremlinQueryInput = {
+            "gremlin_query": gremlin_query
+        }
         if serializer is not None:
             input_["serializer"] = serializer
 
@@ -1051,6 +1075,7 @@ class neptunedataClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def execute_open_cypher_explain_query(
@@ -1108,17 +1133,19 @@ class neptunedataClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_neptunedata.types.execute_open_cypher_explain_query_input.ExecuteOpenCypherExplainQueryInput = {}  # type: ignore[typeddict-item]
-        input_["open_cypher_query"] = open_cypher_query
+        input_: capo_neptunedata.types.execute_open_cypher_explain_query_input.ExecuteOpenCypherExplainQueryInput = {
+            "open_cypher_query": open_cypher_query,
+            "explain_mode": explain_mode,
+        }
         if parameters is not None:
             input_["parameters"] = parameters
-        input_["explain_mode"] = explain_mode
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def execute_open_cypher_query(
@@ -1174,8 +1201,9 @@ class neptunedataClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_neptunedata.types.execute_open_cypher_query_input.ExecuteOpenCypherQueryInput = {}  # type: ignore[typeddict-item]
-        input_["open_cypher_query"] = open_cypher_query
+        input_: capo_neptunedata.types.execute_open_cypher_query_input.ExecuteOpenCypherQueryInput = {
+            "open_cypher_query": open_cypher_query
+        }
         if parameters is not None:
             input_["parameters"] = parameters
 
@@ -1184,6 +1212,7 @@ class neptunedataClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_engine_status(
@@ -1224,6 +1253,7 @@ class neptunedataClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_gremlin_query_status(
@@ -1272,14 +1302,16 @@ class neptunedataClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_neptunedata.types.get_gremlin_query_status_input.GetGremlinQueryStatusInput = {}  # type: ignore[typeddict-item]
-        input_["query_id"] = query_id
+        input_: capo_neptunedata.types.get_gremlin_query_status_input.GetGremlinQueryStatusInput = {
+            "query_id": query_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_loader_job_status(
@@ -1337,8 +1369,9 @@ class neptunedataClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_neptunedata.types.get_loader_job_status_input.GetLoaderJobStatusInput = {}  # type: ignore[typeddict-item]
-        input_["load_id"] = load_id
+        input_: capo_neptunedata.types.get_loader_job_status_input.GetLoaderJobStatusInput = {
+            "load_id": load_id
+        }
         if details is not None:
             input_["details"] = details
         if errors is not None:
@@ -1353,6 +1386,7 @@ class neptunedataClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_ml_data_processing_job(
@@ -1398,8 +1432,9 @@ class neptunedataClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_neptunedata.types.get_ml_data_processing_job_input.GetMLDataProcessingJobInput = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_neptunedata.types.get_ml_data_processing_job_input.GetMLDataProcessingJobInput = {
+            "id": id
+        }
         if neptune_iam_role_arn is not None:
             input_["neptune_iam_role_arn"] = neptune_iam_role_arn
 
@@ -1408,6 +1443,7 @@ class neptunedataClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_ml_endpoint(
@@ -1453,8 +1489,9 @@ class neptunedataClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_neptunedata.types.get_ml_endpoint_input.GetMLEndpointInput = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_neptunedata.types.get_ml_endpoint_input.GetMLEndpointInput = {
+            "id": id
+        }
         if neptune_iam_role_arn is not None:
             input_["neptune_iam_role_arn"] = neptune_iam_role_arn
 
@@ -1463,6 +1500,7 @@ class neptunedataClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_ml_model_training_job(
@@ -1508,8 +1546,9 @@ class neptunedataClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_neptunedata.types.get_ml_model_training_job_input.GetMLModelTrainingJobInput = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_neptunedata.types.get_ml_model_training_job_input.GetMLModelTrainingJobInput = {
+            "id": id
+        }
         if neptune_iam_role_arn is not None:
             input_["neptune_iam_role_arn"] = neptune_iam_role_arn
 
@@ -1518,6 +1557,7 @@ class neptunedataClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_ml_model_transform_job(
@@ -1563,8 +1603,9 @@ class neptunedataClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_neptunedata.types.get_ml_model_transform_job_input.GetMLModelTransformJobInput = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_neptunedata.types.get_ml_model_transform_job_input.GetMLModelTransformJobInput = {
+            "id": id
+        }
         if neptune_iam_role_arn is not None:
             input_["neptune_iam_role_arn"] = neptune_iam_role_arn
 
@@ -1573,6 +1614,7 @@ class neptunedataClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_open_cypher_query_status(
@@ -1622,14 +1664,16 @@ class neptunedataClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_neptunedata.types.get_open_cypher_query_status_input.GetOpenCypherQueryStatusInput = {}  # type: ignore[typeddict-item]
-        input_["query_id"] = query_id
+        input_: capo_neptunedata.types.get_open_cypher_query_status_input.GetOpenCypherQueryStatusInput = {
+            "query_id": query_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_propertygraph_statistics(
@@ -1675,6 +1719,7 @@ class neptunedataClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_propertygraph_stream(
@@ -1729,7 +1774,7 @@ class neptunedataClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_neptunedata.types.get_propertygraph_stream_input.GetPropertygraphStreamInput = {}  # type: ignore[typeddict-item]
+        input_: capo_neptunedata.types.get_propertygraph_stream_input.GetPropertygraphStreamInput = {}
         if limit is not None:
             input_["limit"] = limit
         if iterator_type is not None:
@@ -1746,6 +1791,7 @@ class neptunedataClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_propertygraph_summary(
@@ -1793,7 +1839,7 @@ class neptunedataClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_neptunedata.types.get_propertygraph_summary_input.GetPropertygraphSummaryInput = {}  # type: ignore[typeddict-item]
+        input_: capo_neptunedata.types.get_propertygraph_summary_input.GetPropertygraphSummaryInput = {}
         if mode is not None:
             input_["mode"] = mode
 
@@ -1802,6 +1848,7 @@ class neptunedataClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_rdf_graph_summary(
@@ -1849,7 +1896,7 @@ class neptunedataClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_neptunedata.types.get_rdf_graph_summary_input.GetRDFGraphSummaryInput = {}  # type: ignore[typeddict-item]
+        input_: capo_neptunedata.types.get_rdf_graph_summary_input.GetRDFGraphSummaryInput = {}
         if mode is not None:
             input_["mode"] = mode
 
@@ -1858,6 +1905,7 @@ class neptunedataClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_sparql_statistics(
@@ -1905,6 +1953,7 @@ class neptunedataClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_sparql_stream(
@@ -1959,7 +2008,7 @@ class neptunedataClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_neptunedata.types.get_sparql_stream_input.GetSparqlStreamInput = {}  # type: ignore[typeddict-item]
+        input_: capo_neptunedata.types.get_sparql_stream_input.GetSparqlStreamInput = {}
         if limit is not None:
             input_["limit"] = limit
         if iterator_type is not None:
@@ -1976,6 +2025,7 @@ class neptunedataClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_gremlin_queries(
@@ -2024,7 +2074,7 @@ class neptunedataClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_neptunedata.types.list_gremlin_queries_input.ListGremlinQueriesInput = {}  # type: ignore[typeddict-item]
+        input_: capo_neptunedata.types.list_gremlin_queries_input.ListGremlinQueriesInput = {}
         if include_waiting is not None:
             input_["include_waiting"] = include_waiting
 
@@ -2033,6 +2083,7 @@ class neptunedataClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_loader_jobs(
@@ -2081,7 +2132,7 @@ class neptunedataClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_neptunedata.types.list_loader_jobs_input.ListLoaderJobsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_neptunedata.types.list_loader_jobs_input.ListLoaderJobsInput = {}
         if limit is not None:
             input_["limit"] = limit
         if include_queued_loads is not None:
@@ -2092,6 +2143,7 @@ class neptunedataClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_ml_data_processing_jobs(
@@ -2139,7 +2191,7 @@ class neptunedataClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_neptunedata.types.list_ml_data_processing_jobs_input.ListMLDataProcessingJobsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_neptunedata.types.list_ml_data_processing_jobs_input.ListMLDataProcessingJobsInput = {}
         if max_items is not None:
             input_["max_items"] = max_items
         if neptune_iam_role_arn is not None:
@@ -2150,6 +2202,7 @@ class neptunedataClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_ml_endpoints(
@@ -2197,7 +2250,7 @@ class neptunedataClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_neptunedata.types.list_ml_endpoints_input.ListMLEndpointsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_neptunedata.types.list_ml_endpoints_input.ListMLEndpointsInput = {}
         if max_items is not None:
             input_["max_items"] = max_items
         if neptune_iam_role_arn is not None:
@@ -2208,6 +2261,7 @@ class neptunedataClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_ml_model_training_jobs(
@@ -2255,7 +2309,7 @@ class neptunedataClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_neptunedata.types.list_ml_model_training_jobs_input.ListMLModelTrainingJobsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_neptunedata.types.list_ml_model_training_jobs_input.ListMLModelTrainingJobsInput = {}
         if max_items is not None:
             input_["max_items"] = max_items
         if neptune_iam_role_arn is not None:
@@ -2266,6 +2320,7 @@ class neptunedataClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_ml_model_transform_jobs(
@@ -2313,7 +2368,7 @@ class neptunedataClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_neptunedata.types.list_ml_model_transform_jobs_input.ListMLModelTransformJobsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_neptunedata.types.list_ml_model_transform_jobs_input.ListMLModelTransformJobsInput = {}
         if max_items is not None:
             input_["max_items"] = max_items
         if neptune_iam_role_arn is not None:
@@ -2324,6 +2379,7 @@ class neptunedataClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_open_cypher_queries(
@@ -2373,7 +2429,7 @@ class neptunedataClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_neptunedata.types.list_open_cypher_queries_input.ListOpenCypherQueriesInput = {}  # type: ignore[typeddict-item]
+        input_: capo_neptunedata.types.list_open_cypher_queries_input.ListOpenCypherQueriesInput = {}
         if include_waiting is not None:
             input_["include_waiting"] = include_waiting
 
@@ -2382,6 +2438,7 @@ class neptunedataClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def manage_propertygraph_statistics(
@@ -2429,7 +2486,7 @@ class neptunedataClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_neptunedata.types.manage_propertygraph_statistics_input.ManagePropertygraphStatisticsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_neptunedata.types.manage_propertygraph_statistics_input.ManagePropertygraphStatisticsInput = {}
         if mode is not None:
             input_["mode"] = mode
 
@@ -2438,6 +2495,7 @@ class neptunedataClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def manage_sparql_statistics(
@@ -2485,7 +2543,7 @@ class neptunedataClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_neptunedata.types.manage_sparql_statistics_input.ManageSparqlStatisticsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_neptunedata.types.manage_sparql_statistics_input.ManageSparqlStatisticsInput = {}
         if mode is not None:
             input_["mode"] = mode
 
@@ -2494,6 +2552,7 @@ class neptunedataClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def start_loader_job(
@@ -2566,11 +2625,12 @@ class neptunedataClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_neptunedata.types.start_loader_job_input.StartLoaderJobInput = {}  # type: ignore[typeddict-item]
-        input_["source"] = source
-        input_["format"] = format
-        input_["s3_bucket_region"] = s3_bucket_region
-        input_["iam_role_arn"] = iam_role_arn
+        input_: capo_neptunedata.types.start_loader_job_input.StartLoaderJobInput = {
+            "source": source,
+            "format": format,
+            "s3_bucket_region": s3_bucket_region,
+            "iam_role_arn": iam_role_arn,
+        }
         if mode is not None:
             input_["mode"] = mode
         if fail_on_error is not None:
@@ -2597,6 +2657,7 @@ class neptunedataClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def start_ml_data_processing_job(
@@ -2670,13 +2731,14 @@ class neptunedataClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_neptunedata.types.start_ml_data_processing_job_input.StartMLDataProcessingJobInput = {}  # type: ignore[typeddict-item]
+        input_: capo_neptunedata.types.start_ml_data_processing_job_input.StartMLDataProcessingJobInput = {
+            "input_data_s3_location": input_data_s3_location,
+            "processed_data_s3_location": processed_data_s3_location,
+        }
         if id is not None:
             input_["id"] = id
         if previous_data_processing_job_id is not None:
             input_["previous_data_processing_job_id"] = previous_data_processing_job_id
-        input_["input_data_s3_location"] = input_data_s3_location
-        input_["processed_data_s3_location"] = processed_data_s3_location
         if sagemaker_iam_role_arn is not None:
             input_["sagemaker_iam_role_arn"] = sagemaker_iam_role_arn
         if neptune_iam_role_arn is not None:
@@ -2707,6 +2769,7 @@ class neptunedataClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def start_ml_model_training_job(
@@ -2788,13 +2851,14 @@ class neptunedataClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_neptunedata.types.start_ml_model_training_job_input.StartMLModelTrainingJobInput = {}  # type: ignore[typeddict-item]
+        input_: capo_neptunedata.types.start_ml_model_training_job_input.StartMLModelTrainingJobInput = {
+            "data_processing_job_id": data_processing_job_id,
+            "train_model_s3_location": train_model_s3_location,
+        }
         if id is not None:
             input_["id"] = id
         if previous_model_training_job_id is not None:
             input_["previous_model_training_job_id"] = previous_model_training_job_id
-        input_["data_processing_job_id"] = data_processing_job_id
-        input_["train_model_s3_location"] = train_model_s3_location
         if sagemaker_iam_role_arn is not None:
             input_["sagemaker_iam_role_arn"] = sagemaker_iam_role_arn
         if neptune_iam_role_arn is not None:
@@ -2833,6 +2897,7 @@ class neptunedataClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def start_ml_model_transform_job(
@@ -2906,7 +2971,9 @@ class neptunedataClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_neptunedata.types.start_ml_model_transform_job_input.StartMLModelTransformJobInput = {}  # type: ignore[typeddict-item]
+        input_: capo_neptunedata.types.start_ml_model_transform_job_input.StartMLModelTransformJobInput = {
+            "model_transform_output_s3_location": model_transform_output_s3_location
+        }
         if id is not None:
             input_["id"] = id
         if data_processing_job_id is not None:
@@ -2915,9 +2982,6 @@ class neptunedataClient:
             input_["ml_model_training_job_id"] = ml_model_training_job_id
         if training_job_name is not None:
             input_["training_job_name"] = training_job_name
-        input_["model_transform_output_s3_location"] = (
-            model_transform_output_s3_location
-        )
         if sagemaker_iam_role_arn is not None:
             input_["sagemaker_iam_role_arn"] = sagemaker_iam_role_arn
         if neptune_iam_role_arn is not None:
@@ -2946,6 +3010,7 @@ class neptunedataClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def __enter__(self) -> Self:

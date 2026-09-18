@@ -54,13 +54,13 @@ def serialize_aws_json_1_1(value: SupportedEndpointType) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SupportedEndpointType:
     out: SupportedEndpointType = {}  # type: ignore[typeddict-item]
-    if "EngineName" in data:
+    if data.get("EngineName") is not None:
         out["engine_name"] = data["EngineName"]
-    if "SupportsCDC" in data:
+    if data.get("SupportsCDC") is not None:
         out["supports_cdc"] = data["SupportsCDC"]
     else:
         out["supports_cdc"] = False
-    if "EndpointType" in data:
+    if data.get("EndpointType") is not None:
         import capo_database_migration_service.types.replication_endpoint_type_value
 
         out["endpoint_type"] = (
@@ -68,10 +68,10 @@ def deserialize_aws_json_1_1(data: dict) -> SupportedEndpointType:
                 data["EndpointType"]
             )
         )
-    if "ReplicationInstanceEngineMinimumVersion" in data:
+    if data.get("ReplicationInstanceEngineMinimumVersion") is not None:
         out["replication_instance_engine_minimum_version"] = data[
             "ReplicationInstanceEngineMinimumVersion"
         ]
-    if "EngineDisplayName" in data:
+    if data.get("EngineDisplayName") is not None:
         out["engine_display_name"] = data["EngineDisplayName"]
     return out

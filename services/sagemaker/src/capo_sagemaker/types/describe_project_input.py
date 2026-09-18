@@ -25,6 +25,6 @@ def serialize_aws_json_1_1(value: DescribeProjectInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeProjectInput:
     out: DescribeProjectInput = {}  # type: ignore[typeddict-item]
-    if "ProjectName" in data:
+    if data.get("ProjectName") is not None:
         out["project_name"] = data["ProjectName"]
     return out

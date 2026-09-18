@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> Deployments:
 
     out: Deployments = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_greengrass.types.deployment.deserialize_json(item))
     return out

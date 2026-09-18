@@ -63,17 +63,17 @@ def serialize_aws_json_1_0(value: PolicyTemplateItem) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> PolicyTemplateItem:
     out: PolicyTemplateItem = {}  # type: ignore[typeddict-item]
-    if "policyStoreId" in data:
+    if data.get("policyStoreId") is not None:
         out["policy_store_id"] = data["policyStoreId"]
     else:
         raise DeserializationError("PolicyTemplateItem.policy_store_id required")
-    if "policyTemplateId" in data:
+    if data.get("policyTemplateId") is not None:
         out["policy_template_id"] = data["policyTemplateId"]
     else:
         raise DeserializationError("PolicyTemplateItem.policy_template_id required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "createdDate" in data:
+    if data.get("createdDate") is not None:
         import capo_verifiedpermissions.types.timestamp_format
 
         out["created_date"] = (
@@ -83,7 +83,7 @@ def deserialize_aws_json_1_0(data: dict) -> PolicyTemplateItem:
         )
     else:
         raise DeserializationError("PolicyTemplateItem.created_date required")
-    if "lastUpdatedDate" in data:
+    if data.get("lastUpdatedDate") is not None:
         import capo_verifiedpermissions.types.timestamp_format
 
         out["last_updated_date"] = (
@@ -93,6 +93,6 @@ def deserialize_aws_json_1_0(data: dict) -> PolicyTemplateItem:
         )
     else:
         raise DeserializationError("PolicyTemplateItem.last_updated_date required")
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     return out

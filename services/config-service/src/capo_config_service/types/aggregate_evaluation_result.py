@@ -82,7 +82,7 @@ def serialize_aws_json_1_1(value: AggregateEvaluationResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AggregateEvaluationResult:
     out: AggregateEvaluationResult = {}  # type: ignore[typeddict-item]
-    if "EvaluationResultIdentifier" in data:
+    if data.get("EvaluationResultIdentifier") is not None:
         import capo_config_service.types.evaluation_result_identifier
 
         out["evaluation_result_identifier"] = (
@@ -90,7 +90,7 @@ def deserialize_aws_json_1_1(data: dict) -> AggregateEvaluationResult:
                 data["EvaluationResultIdentifier"]
             )
         )
-    if "ComplianceType" in data:
+    if data.get("ComplianceType") is not None:
         import capo_config_service.types.compliance_type
 
         out["compliance_type"] = (
@@ -98,7 +98,7 @@ def deserialize_aws_json_1_1(data: dict) -> AggregateEvaluationResult:
                 data["ComplianceType"]
             )
         )
-    if "ResultRecordedTime" in data:
+    if data.get("ResultRecordedTime") is not None:
         import capo_config_service.types.date
 
         out["result_recorded_time"] = (
@@ -106,7 +106,7 @@ def deserialize_aws_json_1_1(data: dict) -> AggregateEvaluationResult:
                 data["ResultRecordedTime"]
             )
         )
-    if "ConfigRuleInvokedTime" in data:
+    if data.get("ConfigRuleInvokedTime") is not None:
         import capo_config_service.types.date
 
         out["config_rule_invoked_time"] = (
@@ -114,10 +114,10 @@ def deserialize_aws_json_1_1(data: dict) -> AggregateEvaluationResult:
                 data["ConfigRuleInvokedTime"]
             )
         )
-    if "Annotation" in data:
+    if data.get("Annotation") is not None:
         out["annotation"] = data["Annotation"]
-    if "AccountId" in data:
+    if data.get("AccountId") is not None:
         out["account_id"] = data["AccountId"]
-    if "AwsRegion" in data:
+    if data.get("AwsRegion") is not None:
         out["aws_region"] = data["AwsRegion"]
     return out

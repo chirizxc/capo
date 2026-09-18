@@ -111,9 +111,9 @@ def serialize_json(value: UpdateExperimentTemplateRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateExperimentTemplateRequest:
     out: UpdateExperimentTemplateRequest = {}  # type: ignore[typeddict-item]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "stopConditions" in data:
+    if data.get("stopConditions") is not None:
         import capo_fis.types.update_experiment_template_stop_condition_input_list
 
         out["stop_conditions"] = (
@@ -121,7 +121,7 @@ def deserialize_json(data: dict) -> UpdateExperimentTemplateRequest:
                 data["stopConditions"]
             )
         )
-    if "targets" in data:
+    if data.get("targets") is not None:
         import capo_fis.types.update_experiment_template_target_input_map
 
         out["targets"] = (
@@ -129,7 +129,7 @@ def deserialize_json(data: dict) -> UpdateExperimentTemplateRequest:
                 data["targets"]
             )
         )
-    if "actions" in data:
+    if data.get("actions") is not None:
         import capo_fis.types.update_experiment_template_action_input_map
 
         out["actions"] = (
@@ -137,9 +137,9 @@ def deserialize_json(data: dict) -> UpdateExperimentTemplateRequest:
                 data["actions"]
             )
         )
-    if "roleArn" in data:
+    if data.get("roleArn") is not None:
         out["role_arn"] = data["roleArn"]
-    if "logConfiguration" in data:
+    if data.get("logConfiguration") is not None:
         import capo_fis.types.update_experiment_template_log_configuration_input
 
         out["log_configuration"] = (
@@ -147,7 +147,7 @@ def deserialize_json(data: dict) -> UpdateExperimentTemplateRequest:
                 data["logConfiguration"]
             )
         )
-    if "experimentOptions" in data:
+    if data.get("experimentOptions") is not None:
         import capo_fis.types.update_experiment_template_experiment_options_input
 
         out["experiment_options"] = (
@@ -155,7 +155,7 @@ def deserialize_json(data: dict) -> UpdateExperimentTemplateRequest:
                 data["experimentOptions"]
             )
         )
-    if "experimentReportConfiguration" in data:
+    if data.get("experimentReportConfiguration") is not None:
         import capo_fis.types.update_experiment_template_report_configuration_input
 
         out["experiment_report_configuration"] = (

@@ -49,9 +49,9 @@ def serialize_aws_json_1_1(value: DeploymentStage) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeploymentStage:
     out: DeploymentStage = {}  # type: ignore[typeddict-item]
-    if "StageName" in data:
+    if data.get("StageName") is not None:
         out["stage_name"] = data["StageName"]
-    if "DeviceSelectionConfig" in data:
+    if data.get("DeviceSelectionConfig") is not None:
         import capo_sagemaker.types.device_selection_config
 
         out["device_selection_config"] = (
@@ -59,7 +59,7 @@ def deserialize_aws_json_1_1(data: dict) -> DeploymentStage:
                 data["DeviceSelectionConfig"]
             )
         )
-    if "DeploymentConfig" in data:
+    if data.get("DeploymentConfig") is not None:
         import capo_sagemaker.types.edge_deployment_config
 
         out["deployment_config"] = (

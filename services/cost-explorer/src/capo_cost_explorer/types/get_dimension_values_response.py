@@ -44,7 +44,7 @@ def serialize_aws_json_1_1(value: GetDimensionValuesResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetDimensionValuesResponse:
     out: GetDimensionValuesResponse = {}  # type: ignore[typeddict-item]
-    if "DimensionValues" in data:
+    if data.get("DimensionValues") is not None:
         import capo_cost_explorer.types.dimension_values_with_attributes_list
 
         out["dimension_values"] = (
@@ -56,14 +56,14 @@ def deserialize_aws_json_1_1(data: dict) -> GetDimensionValuesResponse:
         raise DeserializationError(
             "GetDimensionValuesResponse.dimension_values required"
         )
-    if "ReturnSize" in data:
+    if data.get("ReturnSize") is not None:
         out["return_size"] = data["ReturnSize"]
     else:
         raise DeserializationError("GetDimensionValuesResponse.return_size required")
-    if "TotalSize" in data:
+    if data.get("TotalSize") is not None:
         out["total_size"] = data["TotalSize"]
     else:
         raise DeserializationError("GetDimensionValuesResponse.total_size required")
-    if "NextPageToken" in data:
+    if data.get("NextPageToken") is not None:
         out["next_page_token"] = data["NextPageToken"]
     return out

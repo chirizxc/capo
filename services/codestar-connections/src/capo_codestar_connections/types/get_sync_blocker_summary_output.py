@@ -32,7 +32,7 @@ def serialize_aws_json_1_0(value: GetSyncBlockerSummaryOutput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> GetSyncBlockerSummaryOutput:
     out: GetSyncBlockerSummaryOutput = {}  # type: ignore[typeddict-item]
-    if "SyncBlockerSummary" in data:
+    if data.get("SyncBlockerSummary") is not None:
         import capo_codestar_connections.types.sync_blocker_summary
 
         out["sync_blocker_summary"] = (

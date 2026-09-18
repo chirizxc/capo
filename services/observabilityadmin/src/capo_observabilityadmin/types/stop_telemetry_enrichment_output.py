@@ -31,7 +31,7 @@ def serialize_json(value: StopTelemetryEnrichmentOutput) -> dict:
 
 def deserialize_json(data: dict) -> StopTelemetryEnrichmentOutput:
     out: StopTelemetryEnrichmentOutput = {}  # type: ignore[typeddict-item]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_observabilityadmin.types.telemetry_enrichment_status
 
         out["status"] = (

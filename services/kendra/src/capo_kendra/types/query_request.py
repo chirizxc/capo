@@ -163,13 +163,13 @@ def serialize_aws_json_1_1(value: QueryRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> QueryRequest:
     out: QueryRequest = {}  # type: ignore[typeddict-item]
-    if "IndexId" in data:
+    if data.get("IndexId") is not None:
         out["index_id"] = data["IndexId"]
     else:
         raise DeserializationError("QueryRequest.index_id required")
-    if "QueryText" in data:
+    if data.get("QueryText") is not None:
         out["query_text"] = data["QueryText"]
-    if "AttributeFilter" in data:
+    if data.get("AttributeFilter") is not None:
         import capo_kendra.types.attribute_filter
 
         out["attribute_filter"] = (
@@ -177,13 +177,13 @@ def deserialize_aws_json_1_1(data: dict) -> QueryRequest:
                 data["AttributeFilter"]
             )
         )
-    if "Facets" in data:
+    if data.get("Facets") is not None:
         import capo_kendra.types.facet_list
 
         out["facets"] = capo_kendra.types.facet_list.deserialize_aws_json_1_1(
             data["Facets"]
         )
-    if "RequestedDocumentAttributes" in data:
+    if data.get("RequestedDocumentAttributes") is not None:
         import capo_kendra.types.document_attribute_key_list
 
         out["requested_document_attributes"] = (
@@ -191,7 +191,7 @@ def deserialize_aws_json_1_1(data: dict) -> QueryRequest:
                 data["RequestedDocumentAttributes"]
             )
         )
-    if "QueryResultTypeFilter" in data:
+    if data.get("QueryResultTypeFilter") is not None:
         import capo_kendra.types.query_result_type
 
         out["query_result_type_filter"] = (
@@ -199,7 +199,7 @@ def deserialize_aws_json_1_1(data: dict) -> QueryRequest:
                 data["QueryResultTypeFilter"]
             )
         )
-    if "DocumentRelevanceOverrideConfigurations" in data:
+    if data.get("DocumentRelevanceOverrideConfigurations") is not None:
         import capo_kendra.types.document_relevance_override_configuration_list
 
         out["document_relevance_override_configurations"] = (
@@ -207,11 +207,11 @@ def deserialize_aws_json_1_1(data: dict) -> QueryRequest:
                 data["DocumentRelevanceOverrideConfigurations"]
             )
         )
-    if "PageNumber" in data:
+    if data.get("PageNumber") is not None:
         out["page_number"] = data["PageNumber"]
-    if "PageSize" in data:
+    if data.get("PageSize") is not None:
         out["page_size"] = data["PageSize"]
-    if "SortingConfiguration" in data:
+    if data.get("SortingConfiguration") is not None:
         import capo_kendra.types.sorting_configuration
 
         out["sorting_configuration"] = (
@@ -219,7 +219,7 @@ def deserialize_aws_json_1_1(data: dict) -> QueryRequest:
                 data["SortingConfiguration"]
             )
         )
-    if "SortingConfigurations" in data:
+    if data.get("SortingConfigurations") is not None:
         import capo_kendra.types.sorting_configuration_list
 
         out["sorting_configurations"] = (
@@ -227,15 +227,15 @@ def deserialize_aws_json_1_1(data: dict) -> QueryRequest:
                 data["SortingConfigurations"]
             )
         )
-    if "UserContext" in data:
+    if data.get("UserContext") is not None:
         import capo_kendra.types.user_context
 
         out["user_context"] = capo_kendra.types.user_context.deserialize_aws_json_1_1(
             data["UserContext"]
         )
-    if "VisitorId" in data:
+    if data.get("VisitorId") is not None:
         out["visitor_id"] = data["VisitorId"]
-    if "SpellCorrectionConfiguration" in data:
+    if data.get("SpellCorrectionConfiguration") is not None:
         import capo_kendra.types.spell_correction_configuration
 
         out["spell_correction_configuration"] = (
@@ -243,7 +243,7 @@ def deserialize_aws_json_1_1(data: dict) -> QueryRequest:
                 data["SpellCorrectionConfiguration"]
             )
         )
-    if "CollapseConfiguration" in data:
+    if data.get("CollapseConfiguration") is not None:
         import capo_kendra.types.collapse_configuration
 
         out["collapse_configuration"] = (

@@ -31,9 +31,9 @@ def serialize_json(value: DataLocationResource) -> dict:
 
 def deserialize_json(data: dict) -> DataLocationResource:
     out: DataLocationResource = {}  # type: ignore[typeddict-item]
-    if "CatalogId" in data:
+    if data.get("CatalogId") is not None:
         out["catalog_id"] = data["CatalogId"]
-    if "ResourceArn" in data:
+    if data.get("ResourceArn") is not None:
         out["resource_arn"] = data["ResourceArn"]
     else:
         raise DeserializationError("DataLocationResource.resource_arn required")

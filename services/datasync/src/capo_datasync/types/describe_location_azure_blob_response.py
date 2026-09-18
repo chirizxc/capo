@@ -118,11 +118,11 @@ def serialize_aws_json_1_1(value: DescribeLocationAzureBlobResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeLocationAzureBlobResponse:
     out: DescribeLocationAzureBlobResponse = {}  # type: ignore[typeddict-item]
-    if "LocationArn" in data:
+    if data.get("LocationArn") is not None:
         out["location_arn"] = data["LocationArn"]
-    if "LocationUri" in data:
+    if data.get("LocationUri") is not None:
         out["location_uri"] = data["LocationUri"]
-    if "AuthenticationType" in data:
+    if data.get("AuthenticationType") is not None:
         import capo_datasync.types.azure_blob_authentication_type
 
         out["authentication_type"] = (
@@ -130,13 +130,13 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeLocationAzureBlobResponse:
                 data["AuthenticationType"]
             )
         )
-    if "BlobType" in data:
+    if data.get("BlobType") is not None:
         import capo_datasync.types.azure_blob_type
 
         out["blob_type"] = capo_datasync.types.azure_blob_type.deserialize_aws_json_1_1(
             data["BlobType"]
         )
-    if "AccessTier" in data:
+    if data.get("AccessTier") is not None:
         import capo_datasync.types.azure_access_tier
 
         out["access_tier"] = (
@@ -144,19 +144,19 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeLocationAzureBlobResponse:
                 data["AccessTier"]
             )
         )
-    if "AgentArns" in data:
+    if data.get("AgentArns") is not None:
         import capo_datasync.types.agent_arn_list
 
         out["agent_arns"] = capo_datasync.types.agent_arn_list.deserialize_aws_json_1_1(
             data["AgentArns"]
         )
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_datasync.types.time
 
         out["creation_time"] = capo_datasync.types.time.deserialize_aws_json_1_1(
             data["CreationTime"]
         )
-    if "ManagedSecretConfig" in data:
+    if data.get("ManagedSecretConfig") is not None:
         import capo_datasync.types.managed_secret_config
 
         out["managed_secret_config"] = (
@@ -164,7 +164,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeLocationAzureBlobResponse:
                 data["ManagedSecretConfig"]
             )
         )
-    if "CmkSecretConfig" in data:
+    if data.get("CmkSecretConfig") is not None:
         import capo_datasync.types.cmk_secret_config
 
         out["cmk_secret_config"] = (
@@ -172,7 +172,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeLocationAzureBlobResponse:
                 data["CmkSecretConfig"]
             )
         )
-    if "CustomSecretConfig" in data:
+    if data.get("CustomSecretConfig") is not None:
         import capo_datasync.types.custom_secret_config
 
         out["custom_secret_config"] = (

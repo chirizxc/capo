@@ -36,11 +36,11 @@ def serialize_json(value: FilterParameter) -> dict:
 
 def deserialize_json(data: dict) -> FilterParameter:
     out: FilterParameter = {}  # type: ignore[typeddict-item]
-    if "Field" in data:
+    if data.get("Field") is not None:
         out["field"] = data["Field"]
-    if "Operator" in data:
+    if data.get("Operator") is not None:
         out["operator"] = data["Operator"]
-    if "Values" in data:
+    if data.get("Values") is not None:
         import capo_internetmonitor.types.filter_list
 
         out["values"] = capo_internetmonitor.types.filter_list.deserialize_json(

@@ -32,7 +32,7 @@ def serialize_json(value: CopyFromSource) -> dict:
 
 
 def deserialize_json(data: dict) -> CopyFromSource:
-    if "conversation" in data:
+    if data.get("conversation") is not None:
         import capo_qbusiness.types.conversation_source
 
         return {

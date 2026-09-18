@@ -77,34 +77,34 @@ def serialize_json(value: Preset) -> dict:
 
 def deserialize_json(data: dict) -> Preset:
     out: Preset = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Container" in data:
+    if data.get("Container") is not None:
         out["container"] = data["Container"]
-    if "Audio" in data:
+    if data.get("Audio") is not None:
         import capo_elastic_transcoder.types.audio_parameters
 
         out["audio"] = capo_elastic_transcoder.types.audio_parameters.deserialize_json(
             data["Audio"]
         )
-    if "Video" in data:
+    if data.get("Video") is not None:
         import capo_elastic_transcoder.types.video_parameters
 
         out["video"] = capo_elastic_transcoder.types.video_parameters.deserialize_json(
             data["Video"]
         )
-    if "Thumbnails" in data:
+    if data.get("Thumbnails") is not None:
         import capo_elastic_transcoder.types.thumbnails
 
         out["thumbnails"] = capo_elastic_transcoder.types.thumbnails.deserialize_json(
             data["Thumbnails"]
         )
-    if "Type" in data:
+    if data.get("Type") is not None:
         out["type"] = data["Type"]
     return out

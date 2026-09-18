@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> ProfileResourceAssociations:
 
     out: ProfileResourceAssociations = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_route53profiles.types.profile_resource_association.deserialize_json(
                 item

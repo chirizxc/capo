@@ -40,7 +40,7 @@ def serialize_json(value: ExtendedDataServices) -> dict:
 
 def deserialize_json(data: dict) -> ExtendedDataServices:
     out: ExtendedDataServices = {}  # type: ignore[typeddict-item]
-    if "copyProtectionAction" in data:
+    if data.get("copyProtectionAction") is not None:
         import capo_mediaconvert.types.copy_protection_action
 
         out["copy_protection_action"] = (
@@ -48,7 +48,7 @@ def deserialize_json(data: dict) -> ExtendedDataServices:
                 data["copyProtectionAction"]
             )
         )
-    if "vchipAction" in data:
+    if data.get("vchipAction") is not None:
         import capo_mediaconvert.types.vchip_action
 
         out["vchip_action"] = capo_mediaconvert.types.vchip_action.deserialize_json(

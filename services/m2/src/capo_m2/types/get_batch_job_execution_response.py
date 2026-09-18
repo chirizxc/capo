@@ -93,43 +93,43 @@ def serialize_json(value: GetBatchJobExecutionResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetBatchJobExecutionResponse:
     out: GetBatchJobExecutionResponse = {}  # type: ignore[typeddict-item]
-    if "executionId" in data:
+    if data.get("executionId") is not None:
         out["execution_id"] = data["executionId"]
     else:
         raise DeserializationError("GetBatchJobExecutionResponse.execution_id required")
-    if "applicationId" in data:
+    if data.get("applicationId") is not None:
         out["application_id"] = data["applicationId"]
     else:
         raise DeserializationError(
             "GetBatchJobExecutionResponse.application_id required"
         )
-    if "jobId" in data:
+    if data.get("jobId") is not None:
         out["job_id"] = data["jobId"]
-    if "jobName" in data:
+    if data.get("jobName") is not None:
         out["job_name"] = data["jobName"]
-    if "jobUser" in data:
+    if data.get("jobUser") is not None:
         out["job_user"] = data["jobUser"]
-    if "jobType" in data:
+    if data.get("jobType") is not None:
         out["job_type"] = data["jobType"]
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
     else:
         raise DeserializationError("GetBatchJobExecutionResponse.status required")
-    if "startTime" in data:
+    if data.get("startTime") is not None:
         import capo_m2.types.timestamp
 
         out["start_time"] = capo_m2.types.timestamp.deserialize_json(data["startTime"])
     else:
         raise DeserializationError("GetBatchJobExecutionResponse.start_time required")
-    if "endTime" in data:
+    if data.get("endTime") is not None:
         import capo_m2.types.timestamp
 
         out["end_time"] = capo_m2.types.timestamp.deserialize_json(data["endTime"])
-    if "statusReason" in data:
+    if data.get("statusReason") is not None:
         out["status_reason"] = data["statusReason"]
-    if "returnCode" in data:
+    if data.get("returnCode") is not None:
         out["return_code"] = data["returnCode"]
-    if "batchJobIdentifier" in data:
+    if data.get("batchJobIdentifier") is not None:
         import capo_m2.types.batch_job_identifier
 
         out["batch_job_identifier"] = (
@@ -137,7 +137,7 @@ def deserialize_json(data: dict) -> GetBatchJobExecutionResponse:
                 data["batchJobIdentifier"]
             )
         )
-    if "jobStepRestartMarker" in data:
+    if data.get("jobStepRestartMarker") is not None:
         import capo_m2.types.job_step_restart_marker
 
         out["job_step_restart_marker"] = (

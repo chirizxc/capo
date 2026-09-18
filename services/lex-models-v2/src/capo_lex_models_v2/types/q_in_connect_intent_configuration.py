@@ -31,7 +31,7 @@ def serialize_json(value: QInConnectIntentConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> QInConnectIntentConfiguration:
     out: QInConnectIntentConfiguration = {}  # type: ignore[typeddict-item]
-    if "qInConnectAssistantConfiguration" in data:
+    if data.get("qInConnectAssistantConfiguration") is not None:
         import capo_lex_models_v2.types.q_in_connect_assistant_configuration
 
         out["q_in_connect_assistant_configuration"] = (

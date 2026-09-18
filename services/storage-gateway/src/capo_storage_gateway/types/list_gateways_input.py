@@ -30,8 +30,8 @@ def serialize_aws_json_1_1(value: ListGatewaysInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListGatewaysInput:
     out: ListGatewaysInput = {}  # type: ignore[typeddict-item]
-    if "Marker" in data:
+    if data.get("Marker") is not None:
         out["marker"] = data["Marker"]
-    if "Limit" in data:
+    if data.get("Limit") is not None:
         out["limit"] = data["Limit"]
     return out

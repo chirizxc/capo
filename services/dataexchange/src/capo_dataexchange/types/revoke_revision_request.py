@@ -31,7 +31,7 @@ def serialize_json(value: RevokeRevisionRequest) -> dict:
 
 def deserialize_json(data: dict) -> RevokeRevisionRequest:
     out: RevokeRevisionRequest = {}  # type: ignore[typeddict-item]
-    if "RevocationComment" in data:
+    if data.get("RevocationComment") is not None:
         out["revocation_comment"] = data["RevocationComment"]
     else:
         raise DeserializationError("RevokeRevisionRequest.revocation_comment required")

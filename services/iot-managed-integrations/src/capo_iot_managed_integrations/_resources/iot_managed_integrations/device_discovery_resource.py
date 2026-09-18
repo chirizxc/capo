@@ -133,8 +133,9 @@ class DeviceDiscoveryResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_iot_managed_integrations.types.start_device_discovery_request.StartDeviceDiscoveryRequest = {}  # type: ignore[typeddict-item]
-        input_["discovery_type"] = discovery_type
+        input_: capo_iot_managed_integrations.types.start_device_discovery_request.StartDeviceDiscoveryRequest = {
+            "discovery_type": discovery_type
+        }
         if custom_protocol_detail is not None:
             input_["custom_protocol_detail"] = custom_protocol_detail
         if controller_identifier is not None:
@@ -165,6 +166,7 @@ class DeviceDiscoveryResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -204,14 +206,16 @@ class DeviceDiscoveryResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_iot_managed_integrations.types.get_device_discovery_request.GetDeviceDiscoveryRequest = {}  # type: ignore[typeddict-item]
-        input_["identifier"] = identifier
+        input_: capo_iot_managed_integrations.types.get_device_discovery_request.GetDeviceDiscoveryRequest = {
+            "identifier": identifier
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -264,7 +268,7 @@ class DeviceDiscoveryResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_iot_managed_integrations.types.list_device_discoveries_request.ListDeviceDiscoveriesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_iot_managed_integrations.types.list_device_discoveries_request.ListDeviceDiscoveriesRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -279,6 +283,7 @@ class DeviceDiscoveryResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_discovered_devices(
@@ -326,8 +331,9 @@ class DeviceDiscoveryResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_iot_managed_integrations.types.list_discovered_devices_request.ListDiscoveredDevicesRequest = {}  # type: ignore[typeddict-item]
-        input_["identifier"] = identifier
+        input_: capo_iot_managed_integrations.types.list_discovered_devices_request.ListDiscoveredDevicesRequest = {
+            "identifier": identifier
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -338,6 +344,7 @@ class DeviceDiscoveryResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -426,8 +433,9 @@ class AsyncDeviceDiscoveryResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_iot_managed_integrations.types.start_device_discovery_request.StartDeviceDiscoveryRequest = {}  # type: ignore[typeddict-item]
-        input_["discovery_type"] = discovery_type
+        input_: capo_iot_managed_integrations.types.start_device_discovery_request.StartDeviceDiscoveryRequest = {
+            "discovery_type": discovery_type
+        }
         if custom_protocol_detail is not None:
             input_["custom_protocol_detail"] = custom_protocol_detail
         if controller_identifier is not None:
@@ -458,6 +466,7 @@ class AsyncDeviceDiscoveryResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -498,14 +507,16 @@ class AsyncDeviceDiscoveryResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_iot_managed_integrations.types.get_device_discovery_request.GetDeviceDiscoveryRequest = {}  # type: ignore[typeddict-item]
-        input_["identifier"] = identifier
+        input_: capo_iot_managed_integrations.types.get_device_discovery_request.GetDeviceDiscoveryRequest = {
+            "identifier": identifier
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -559,7 +570,7 @@ class AsyncDeviceDiscoveryResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_iot_managed_integrations.types.list_device_discoveries_request.ListDeviceDiscoveriesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_iot_managed_integrations.types.list_device_discoveries_request.ListDeviceDiscoveriesRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -574,6 +585,7 @@ class AsyncDeviceDiscoveryResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_discovered_devices(
@@ -622,8 +634,9 @@ class AsyncDeviceDiscoveryResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_iot_managed_integrations.types.list_discovered_devices_request.ListDiscoveredDevicesRequest = {}  # type: ignore[typeddict-item]
-        input_["identifier"] = identifier
+        input_: capo_iot_managed_integrations.types.list_discovered_devices_request.ListDiscoveredDevicesRequest = {
+            "identifier": identifier
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -634,4 +647,5 @@ class AsyncDeviceDiscoveryResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

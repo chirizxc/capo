@@ -36,12 +36,12 @@ def serialize_json(value: Core) -> dict:
 
 def deserialize_json(data: dict) -> Core:
     out: Core = {}  # type: ignore[typeddict-item]
-    if "CertificateArn" in data:
+    if data.get("CertificateArn") is not None:
         out["certificate_arn"] = data["CertificateArn"]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "SyncShadow" in data:
+    if data.get("SyncShadow") is not None:
         out["sync_shadow"] = data["SyncShadow"]
-    if "ThingArn" in data:
+    if data.get("ThingArn") is not None:
         out["thing_arn"] = data["ThingArn"]
     return out

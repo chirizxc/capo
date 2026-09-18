@@ -24,7 +24,7 @@ def serialize_json(value: GetTelemetryRuleForOrganizationInput) -> dict:
 
 def deserialize_json(data: dict) -> GetTelemetryRuleForOrganizationInput:
     out: GetTelemetryRuleForOrganizationInput = {}  # type: ignore[typeddict-item]
-    if "RuleIdentifier" in data:
+    if data.get("RuleIdentifier") is not None:
         out["rule_identifier"] = data["RuleIdentifier"]
     else:
         raise DeserializationError(

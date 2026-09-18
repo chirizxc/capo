@@ -61,7 +61,7 @@ def serialize_aws_json_1_1(value: ConformancePackEvaluationResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ConformancePackEvaluationResult:
     out: ConformancePackEvaluationResult = {}  # type: ignore[typeddict-item]
-    if "ComplianceType" in data:
+    if data.get("ComplianceType") is not None:
         import capo_config_service.types.conformance_pack_compliance_type
 
         out["compliance_type"] = (
@@ -73,7 +73,7 @@ def deserialize_aws_json_1_1(data: dict) -> ConformancePackEvaluationResult:
         raise DeserializationError(
             "ConformancePackEvaluationResult.compliance_type required"
         )
-    if "EvaluationResultIdentifier" in data:
+    if data.get("EvaluationResultIdentifier") is not None:
         import capo_config_service.types.evaluation_result_identifier
 
         out["evaluation_result_identifier"] = (
@@ -85,7 +85,7 @@ def deserialize_aws_json_1_1(data: dict) -> ConformancePackEvaluationResult:
         raise DeserializationError(
             "ConformancePackEvaluationResult.evaluation_result_identifier required"
         )
-    if "ConfigRuleInvokedTime" in data:
+    if data.get("ConfigRuleInvokedTime") is not None:
         import capo_config_service.types.date
 
         out["config_rule_invoked_time"] = (
@@ -97,7 +97,7 @@ def deserialize_aws_json_1_1(data: dict) -> ConformancePackEvaluationResult:
         raise DeserializationError(
             "ConformancePackEvaluationResult.config_rule_invoked_time required"
         )
-    if "ResultRecordedTime" in data:
+    if data.get("ResultRecordedTime") is not None:
         import capo_config_service.types.date
 
         out["result_recorded_time"] = (
@@ -109,6 +109,6 @@ def deserialize_aws_json_1_1(data: dict) -> ConformancePackEvaluationResult:
         raise DeserializationError(
             "ConformancePackEvaluationResult.result_recorded_time required"
         )
-    if "Annotation" in data:
+    if data.get("Annotation") is not None:
         out["annotation"] = data["Annotation"]
     return out

@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: DeleteInstanceRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteInstanceRequest:
     out: DeleteInstanceRequest = {}  # type: ignore[typeddict-item]
-    if "InstanceArn" in data:
+    if data.get("InstanceArn") is not None:
         out["instance_arn"] = data["InstanceArn"]
     else:
         raise DeserializationError("DeleteInstanceRequest.instance_arn required")

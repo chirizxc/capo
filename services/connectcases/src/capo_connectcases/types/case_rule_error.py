@@ -31,14 +31,14 @@ def serialize_json(value: CaseRuleError) -> dict:
 
 def deserialize_json(data: dict) -> CaseRuleError:
     out: CaseRuleError = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("CaseRuleError.id required")
-    if "errorCode" in data:
+    if data.get("errorCode") is not None:
         out["error_code"] = data["errorCode"]
     else:
         raise DeserializationError("CaseRuleError.error_code required")
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     return out

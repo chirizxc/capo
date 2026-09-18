@@ -1,5 +1,6 @@
 """Generated from Smithy shape ``com.amazonaws.comprehendmedical#ComprehendMedical_20181030``."""
 
+import uuid
 import warnings
 from typing import TYPE_CHECKING, Any, Iterable, Optional
 
@@ -222,14 +223,16 @@ class AsyncComprehendMedicalClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_comprehendmedical.types.describe_entities_detection_v2_job_request.DescribeEntitiesDetectionV2JobRequest = {}  # type: ignore[typeddict-item]
-        input_["job_id"] = job_id
+        input_: capo_comprehendmedical.types.describe_entities_detection_v2_job_request.DescribeEntitiesDetectionV2JobRequest = {
+            "job_id": job_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_icd10_cm_inference_job(
@@ -267,14 +270,16 @@ class AsyncComprehendMedicalClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_comprehendmedical.types.describe_icd10_cm_inference_job_request.DescribeICD10CMInferenceJobRequest = {}  # type: ignore[typeddict-item]
-        input_["job_id"] = job_id
+        input_: capo_comprehendmedical.types.describe_icd10_cm_inference_job_request.DescribeICD10CMInferenceJobRequest = {
+            "job_id": job_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_phi_detection_job(
@@ -312,14 +317,16 @@ class AsyncComprehendMedicalClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_comprehendmedical.types.describe_phi_detection_job_request.DescribePHIDetectionJobRequest = {}  # type: ignore[typeddict-item]
-        input_["job_id"] = job_id
+        input_: capo_comprehendmedical.types.describe_phi_detection_job_request.DescribePHIDetectionJobRequest = {
+            "job_id": job_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_rx_norm_inference_job(
@@ -357,14 +364,16 @@ class AsyncComprehendMedicalClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_comprehendmedical.types.describe_rx_norm_inference_job_request.DescribeRxNormInferenceJobRequest = {}  # type: ignore[typeddict-item]
-        input_["job_id"] = job_id
+        input_: capo_comprehendmedical.types.describe_rx_norm_inference_job_request.DescribeRxNormInferenceJobRequest = {
+            "job_id": job_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_snomedct_inference_job(
@@ -402,14 +411,16 @@ class AsyncComprehendMedicalClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_comprehendmedical.types.describe_snomedct_inference_job_request.DescribeSNOMEDCTInferenceJobRequest = {}  # type: ignore[typeddict-item]
-        input_["job_id"] = job_id
+        input_: capo_comprehendmedical.types.describe_snomedct_inference_job_request.DescribeSNOMEDCTInferenceJobRequest = {
+            "job_id": job_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def detect_entities(
@@ -449,14 +460,16 @@ class AsyncComprehendMedicalClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_comprehendmedical.types.detect_entities_request.DetectEntitiesRequest = {}  # type: ignore[typeddict-item]
-        input_["text"] = text
+        input_: capo_comprehendmedical.types.detect_entities_request.DetectEntitiesRequest = {
+            "text": text
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def detect_entities_v2(
@@ -496,14 +509,16 @@ class AsyncComprehendMedicalClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_comprehendmedical.types.detect_entities_v2_request.DetectEntitiesV2Request = {}  # type: ignore[typeddict-item]
-        input_["text"] = text
+        input_: capo_comprehendmedical.types.detect_entities_v2_request.DetectEntitiesV2Request = {
+            "text": text
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def detect_phi(
@@ -543,14 +558,16 @@ class AsyncComprehendMedicalClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_comprehendmedical.types.detect_phi_request.DetectPHIRequest = {}  # type: ignore[typeddict-item]
-        input_["text"] = text
+        input_: capo_comprehendmedical.types.detect_phi_request.DetectPHIRequest = {
+            "text": text
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def infer_icd10_cm(
@@ -590,14 +607,16 @@ class AsyncComprehendMedicalClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_comprehendmedical.types.infer_icd10_cm_request.InferICD10CMRequest = {}  # type: ignore[typeddict-item]
-        input_["text"] = text
+        input_: capo_comprehendmedical.types.infer_icd10_cm_request.InferICD10CMRequest = {
+            "text": text
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def infer_rx_norm(
@@ -637,14 +656,16 @@ class AsyncComprehendMedicalClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_comprehendmedical.types.infer_rx_norm_request.InferRxNormRequest = {}  # type: ignore[typeddict-item]
-        input_["text"] = text
+        input_: capo_comprehendmedical.types.infer_rx_norm_request.InferRxNormRequest = {
+            "text": text
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def infer_snomedct(
@@ -684,14 +705,16 @@ class AsyncComprehendMedicalClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_comprehendmedical.types.infer_snomedct_request.InferSNOMEDCTRequest = {}  # type: ignore[typeddict-item]
-        input_["text"] = text
+        input_: capo_comprehendmedical.types.infer_snomedct_request.InferSNOMEDCTRequest = {
+            "text": text
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_entities_detection_v2_jobs(
@@ -737,7 +760,7 @@ class AsyncComprehendMedicalClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_comprehendmedical.types.list_entities_detection_v2_jobs_request.ListEntitiesDetectionV2JobsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_comprehendmedical.types.list_entities_detection_v2_jobs_request.ListEntitiesDetectionV2JobsRequest = {}
         if filter is not None:
             input_["filter"] = filter
         if next_token is not None:
@@ -750,6 +773,7 @@ class AsyncComprehendMedicalClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_icd10_cm_inference_jobs(
@@ -795,7 +819,7 @@ class AsyncComprehendMedicalClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_comprehendmedical.types.list_icd10_cm_inference_jobs_request.ListICD10CMInferenceJobsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_comprehendmedical.types.list_icd10_cm_inference_jobs_request.ListICD10CMInferenceJobsRequest = {}
         if filter is not None:
             input_["filter"] = filter
         if next_token is not None:
@@ -808,6 +832,7 @@ class AsyncComprehendMedicalClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_phi_detection_jobs(
@@ -853,7 +878,7 @@ class AsyncComprehendMedicalClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_comprehendmedical.types.list_phi_detection_jobs_request.ListPHIDetectionJobsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_comprehendmedical.types.list_phi_detection_jobs_request.ListPHIDetectionJobsRequest = {}
         if filter is not None:
             input_["filter"] = filter
         if next_token is not None:
@@ -866,6 +891,7 @@ class AsyncComprehendMedicalClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_rx_norm_inference_jobs(
@@ -911,7 +937,7 @@ class AsyncComprehendMedicalClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_comprehendmedical.types.list_rx_norm_inference_jobs_request.ListRxNormInferenceJobsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_comprehendmedical.types.list_rx_norm_inference_jobs_request.ListRxNormInferenceJobsRequest = {}
         if filter is not None:
             input_["filter"] = filter
         if next_token is not None:
@@ -924,6 +950,7 @@ class AsyncComprehendMedicalClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_snomedct_inference_jobs(
@@ -968,7 +995,7 @@ class AsyncComprehendMedicalClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_comprehendmedical.types.list_snomedct_inference_jobs_request.ListSNOMEDCTInferenceJobsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_comprehendmedical.types.list_snomedct_inference_jobs_request.ListSNOMEDCTInferenceJobsRequest = {}
         if filter is not None:
             input_["filter"] = filter
         if next_token is not None:
@@ -981,6 +1008,7 @@ class AsyncComprehendMedicalClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def start_entities_detection_v2_job(
@@ -1032,23 +1060,26 @@ class AsyncComprehendMedicalClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_comprehendmedical.types.start_entities_detection_v2_job_request.StartEntitiesDetectionV2JobRequest = {}  # type: ignore[typeddict-item]
-        input_["input_data_config"] = input_data_config
-        input_["output_data_config"] = output_data_config
-        input_["data_access_role_arn"] = data_access_role_arn
+        input_: capo_comprehendmedical.types.start_entities_detection_v2_job_request.StartEntitiesDetectionV2JobRequest = {
+            "input_data_config": input_data_config,
+            "output_data_config": output_data_config,
+            "data_access_role_arn": data_access_role_arn,
+            "language_code": language_code,
+        }
         if job_name is not None:
             input_["job_name"] = job_name
-        if client_request_token is not None:
-            input_["client_request_token"] = client_request_token
+        if client_request_token is None:
+            client_request_token = str(uuid.uuid4())
+        input_["client_request_token"] = client_request_token
         if kms_key is not None:
             input_["kms_key"] = kms_key
-        input_["language_code"] = language_code
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def start_icd10_cm_inference_job(
@@ -1100,23 +1131,26 @@ class AsyncComprehendMedicalClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_comprehendmedical.types.start_icd10_cm_inference_job_request.StartICD10CMInferenceJobRequest = {}  # type: ignore[typeddict-item]
-        input_["input_data_config"] = input_data_config
-        input_["output_data_config"] = output_data_config
-        input_["data_access_role_arn"] = data_access_role_arn
+        input_: capo_comprehendmedical.types.start_icd10_cm_inference_job_request.StartICD10CMInferenceJobRequest = {
+            "input_data_config": input_data_config,
+            "output_data_config": output_data_config,
+            "data_access_role_arn": data_access_role_arn,
+            "language_code": language_code,
+        }
         if job_name is not None:
             input_["job_name"] = job_name
-        if client_request_token is not None:
-            input_["client_request_token"] = client_request_token
+        if client_request_token is None:
+            client_request_token = str(uuid.uuid4())
+        input_["client_request_token"] = client_request_token
         if kms_key is not None:
             input_["kms_key"] = kms_key
-        input_["language_code"] = language_code
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def start_phi_detection_job(
@@ -1168,23 +1202,26 @@ class AsyncComprehendMedicalClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_comprehendmedical.types.start_phi_detection_job_request.StartPHIDetectionJobRequest = {}  # type: ignore[typeddict-item]
-        input_["input_data_config"] = input_data_config
-        input_["output_data_config"] = output_data_config
-        input_["data_access_role_arn"] = data_access_role_arn
+        input_: capo_comprehendmedical.types.start_phi_detection_job_request.StartPHIDetectionJobRequest = {
+            "input_data_config": input_data_config,
+            "output_data_config": output_data_config,
+            "data_access_role_arn": data_access_role_arn,
+            "language_code": language_code,
+        }
         if job_name is not None:
             input_["job_name"] = job_name
-        if client_request_token is not None:
-            input_["client_request_token"] = client_request_token
+        if client_request_token is None:
+            client_request_token = str(uuid.uuid4())
+        input_["client_request_token"] = client_request_token
         if kms_key is not None:
             input_["kms_key"] = kms_key
-        input_["language_code"] = language_code
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def start_rx_norm_inference_job(
@@ -1236,23 +1273,26 @@ class AsyncComprehendMedicalClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_comprehendmedical.types.start_rx_norm_inference_job_request.StartRxNormInferenceJobRequest = {}  # type: ignore[typeddict-item]
-        input_["input_data_config"] = input_data_config
-        input_["output_data_config"] = output_data_config
-        input_["data_access_role_arn"] = data_access_role_arn
+        input_: capo_comprehendmedical.types.start_rx_norm_inference_job_request.StartRxNormInferenceJobRequest = {
+            "input_data_config": input_data_config,
+            "output_data_config": output_data_config,
+            "data_access_role_arn": data_access_role_arn,
+            "language_code": language_code,
+        }
         if job_name is not None:
             input_["job_name"] = job_name
-        if client_request_token is not None:
-            input_["client_request_token"] = client_request_token
+        if client_request_token is None:
+            client_request_token = str(uuid.uuid4())
+        input_["client_request_token"] = client_request_token
         if kms_key is not None:
             input_["kms_key"] = kms_key
-        input_["language_code"] = language_code
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def start_snomedct_inference_job(
@@ -1302,23 +1342,26 @@ class AsyncComprehendMedicalClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_comprehendmedical.types.start_snomedct_inference_job_request.StartSNOMEDCTInferenceJobRequest = {}  # type: ignore[typeddict-item]
-        input_["input_data_config"] = input_data_config
-        input_["output_data_config"] = output_data_config
-        input_["data_access_role_arn"] = data_access_role_arn
+        input_: capo_comprehendmedical.types.start_snomedct_inference_job_request.StartSNOMEDCTInferenceJobRequest = {
+            "input_data_config": input_data_config,
+            "output_data_config": output_data_config,
+            "data_access_role_arn": data_access_role_arn,
+            "language_code": language_code,
+        }
         if job_name is not None:
             input_["job_name"] = job_name
-        if client_request_token is not None:
-            input_["client_request_token"] = client_request_token
+        if client_request_token is None:
+            client_request_token = str(uuid.uuid4())
+        input_["client_request_token"] = client_request_token
         if kms_key is not None:
             input_["kms_key"] = kms_key
-        input_["language_code"] = language_code
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def stop_entities_detection_v2_job(
@@ -1355,14 +1398,16 @@ class AsyncComprehendMedicalClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_comprehendmedical.types.stop_entities_detection_v2_job_request.StopEntitiesDetectionV2JobRequest = {}  # type: ignore[typeddict-item]
-        input_["job_id"] = job_id
+        input_: capo_comprehendmedical.types.stop_entities_detection_v2_job_request.StopEntitiesDetectionV2JobRequest = {
+            "job_id": job_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def stop_icd10_cm_inference_job(
@@ -1399,14 +1444,16 @@ class AsyncComprehendMedicalClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_comprehendmedical.types.stop_icd10_cm_inference_job_request.StopICD10CMInferenceJobRequest = {}  # type: ignore[typeddict-item]
-        input_["job_id"] = job_id
+        input_: capo_comprehendmedical.types.stop_icd10_cm_inference_job_request.StopICD10CMInferenceJobRequest = {
+            "job_id": job_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def stop_phi_detection_job(
@@ -1443,14 +1490,16 @@ class AsyncComprehendMedicalClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_comprehendmedical.types.stop_phi_detection_job_request.StopPHIDetectionJobRequest = {}  # type: ignore[typeddict-item]
-        input_["job_id"] = job_id
+        input_: capo_comprehendmedical.types.stop_phi_detection_job_request.StopPHIDetectionJobRequest = {
+            "job_id": job_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def stop_rx_norm_inference_job(
@@ -1487,14 +1536,16 @@ class AsyncComprehendMedicalClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_comprehendmedical.types.stop_rx_norm_inference_job_request.StopRxNormInferenceJobRequest = {}  # type: ignore[typeddict-item]
-        input_["job_id"] = job_id
+        input_: capo_comprehendmedical.types.stop_rx_norm_inference_job_request.StopRxNormInferenceJobRequest = {
+            "job_id": job_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def stop_snomedct_inference_job(
@@ -1532,14 +1583,16 @@ class AsyncComprehendMedicalClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_comprehendmedical.types.stop_snomedct_inference_job_request.StopSNOMEDCTInferenceJobRequest = {}  # type: ignore[typeddict-item]
-        input_["job_id"] = job_id
+        input_: capo_comprehendmedical.types.stop_snomedct_inference_job_request.StopSNOMEDCTInferenceJobRequest = {
+            "job_id": job_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def __aenter__(self) -> Self:

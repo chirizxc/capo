@@ -37,15 +37,18 @@ class InvalidElasticIpFault(ServiceError):
 
     code: str | None = "InvalidElasticIpFault"
 
-    def __init__(self, data: InvalidElasticIpFault_):
+    def __init__(self, data: InvalidElasticIpFault_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="InvalidElasticIpFault",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_query(cls, el: Element) -> "InvalidElasticIpFault":
-        return cls(deserialize_query(el))
+    def from_query(
+        cls, el: Element, message: str | None = None
+    ) -> "InvalidElasticIpFault":
+        return cls(deserialize_query(el), message)

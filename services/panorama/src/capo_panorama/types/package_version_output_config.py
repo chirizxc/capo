@@ -32,17 +32,17 @@ def serialize_json(value: PackageVersionOutputConfig) -> dict:
 
 def deserialize_json(data: dict) -> PackageVersionOutputConfig:
     out: PackageVersionOutputConfig = {}  # type: ignore[typeddict-item]
-    if "PackageName" in data:
+    if data.get("PackageName") is not None:
         out["package_name"] = data["PackageName"]
     else:
         raise DeserializationError("PackageVersionOutputConfig.package_name required")
-    if "PackageVersion" in data:
+    if data.get("PackageVersion") is not None:
         out["package_version"] = data["PackageVersion"]
     else:
         raise DeserializationError(
             "PackageVersionOutputConfig.package_version required"
         )
-    if "MarkLatest" in data:
+    if data.get("MarkLatest") is not None:
         out["mark_latest"] = data["MarkLatest"]
     else:
         out["mark_latest"] = False

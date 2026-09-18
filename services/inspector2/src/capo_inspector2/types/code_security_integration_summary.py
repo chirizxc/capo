@@ -70,17 +70,17 @@ def serialize_json(value: CodeSecurityIntegrationSummary) -> dict:
 
 def deserialize_json(data: dict) -> CodeSecurityIntegrationSummary:
     out: CodeSecurityIntegrationSummary = {}  # type: ignore[typeddict-item]
-    if "integrationArn" in data:
+    if data.get("integrationArn") is not None:
         out["integration_arn"] = data["integrationArn"]
     else:
         raise DeserializationError(
             "CodeSecurityIntegrationSummary.integration_arn required"
         )
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("CodeSecurityIntegrationSummary.name required")
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_inspector2.types.integration_type
 
         out["type"] = capo_inspector2.types.integration_type.deserialize_json(
@@ -88,7 +88,7 @@ def deserialize_json(data: dict) -> CodeSecurityIntegrationSummary:
         )
     else:
         raise DeserializationError("CodeSecurityIntegrationSummary.type required")
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_inspector2.types.integration_status
 
         out["status"] = capo_inspector2.types.integration_status.deserialize_json(
@@ -96,13 +96,13 @@ def deserialize_json(data: dict) -> CodeSecurityIntegrationSummary:
         )
     else:
         raise DeserializationError("CodeSecurityIntegrationSummary.status required")
-    if "statusReason" in data:
+    if data.get("statusReason") is not None:
         out["status_reason"] = data["statusReason"]
     else:
         raise DeserializationError(
             "CodeSecurityIntegrationSummary.status_reason required"
         )
-    if "createdOn" in data:
+    if data.get("createdOn") is not None:
         import capo_inspector2.types._prelude.timestamp
 
         out["created_on"] = capo_inspector2.types._prelude.timestamp.deserialize_json(
@@ -110,7 +110,7 @@ def deserialize_json(data: dict) -> CodeSecurityIntegrationSummary:
         )
     else:
         raise DeserializationError("CodeSecurityIntegrationSummary.created_on required")
-    if "lastUpdateOn" in data:
+    if data.get("lastUpdateOn") is not None:
         import capo_inspector2.types._prelude.timestamp
 
         out["last_update_on"] = (
@@ -122,7 +122,7 @@ def deserialize_json(data: dict) -> CodeSecurityIntegrationSummary:
         raise DeserializationError(
             "CodeSecurityIntegrationSummary.last_update_on required"
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_inspector2.types.tag_map
 
         out["tags"] = capo_inspector2.types.tag_map.deserialize_json(data["tags"])

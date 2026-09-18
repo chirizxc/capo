@@ -48,7 +48,7 @@ def serialize_aws_json_1_1(value: DescribeEventsForOrganizationRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeEventsForOrganizationRequest:
     out: DescribeEventsForOrganizationRequest = {}  # type: ignore[typeddict-item]
-    if "filter" in data:
+    if data.get("filter") is not None:
         import capo_health.types.organization_event_filter
 
         out["filter"] = (
@@ -56,10 +56,10 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeEventsForOrganizationRequest
                 data["filter"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
-    if "locale" in data:
+    if data.get("locale") is not None:
         out["locale"] = data["locale"]
     return out

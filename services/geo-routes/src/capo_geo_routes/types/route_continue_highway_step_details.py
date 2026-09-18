@@ -44,7 +44,15 @@ def serialize_json(value: RouteContinueHighwayStepDetails) -> dict:
                 value["steering_direction"]
             )
         )
-    out["TurnAngle"] = value.get("turn_angle", 0)
+    out["TurnAngle"] = (
+        "NaN"
+        if value.get("turn_angle", 0) != value.get("turn_angle", 0)
+        else "Infinity"
+        if value.get("turn_angle", 0) == float("inf")
+        else "-Infinity"
+        if value.get("turn_angle", 0) == float("-inf")
+        else value.get("turn_angle", 0)
+    )
     if "turn_intensity" in value:
         import capo_geo_routes.types.route_turn_intensity
 
@@ -58,7 +66,7 @@ def serialize_json(value: RouteContinueHighwayStepDetails) -> dict:
 
 def deserialize_json(data: dict) -> RouteContinueHighwayStepDetails:
     out: RouteContinueHighwayStepDetails = {}  # type: ignore[typeddict-item]
-    if "Intersection" in data:
+    if data.get("Intersection") is not None:
         import capo_geo_routes.types.localized_string_list
 
         out["intersection"] = (
@@ -70,7 +78,7 @@ def deserialize_json(data: dict) -> RouteContinueHighwayStepDetails:
         raise DeserializationError(
             "RouteContinueHighwayStepDetails.intersection required"
         )
-    if "SteeringDirection" in data:
+    if data.get("SteeringDirection") is not None:
         import capo_geo_routes.types.route_steering_direction
 
         out["steering_direction"] = (
@@ -78,11 +86,11 @@ def deserialize_json(data: dict) -> RouteContinueHighwayStepDetails:
                 data["SteeringDirection"]
             )
         )
-    if "TurnAngle" in data:
-        out["turn_angle"] = data["TurnAngle"]
+    if data.get("TurnAngle") is not None:
+        out["turn_angle"] = float(data["TurnAngle"])
     else:
         out["turn_angle"] = 0
-    if "TurnIntensity" in data:
+    if data.get("TurnIntensity") is not None:
         import capo_geo_routes.types.route_turn_intensity
 
         out["turn_intensity"] = (

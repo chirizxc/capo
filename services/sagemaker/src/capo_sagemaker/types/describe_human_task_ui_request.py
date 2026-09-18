@@ -25,6 +25,6 @@ def serialize_aws_json_1_1(value: DescribeHumanTaskUiRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeHumanTaskUiRequest:
     out: DescribeHumanTaskUiRequest = {}  # type: ignore[typeddict-item]
-    if "HumanTaskUiName" in data:
+    if data.get("HumanTaskUiName") is not None:
         out["human_task_ui_name"] = data["HumanTaskUiName"]
     return out

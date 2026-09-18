@@ -73,9 +73,9 @@ def serialize_aws_json_1_1(value: CreateHubContentPresignedUrlsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateHubContentPresignedUrlsRequest:
     out: CreateHubContentPresignedUrlsRequest = {}  # type: ignore[typeddict-item]
-    if "HubName" in data:
+    if data.get("HubName") is not None:
         out["hub_name"] = data["HubName"]
-    if "HubContentType" in data:
+    if data.get("HubContentType") is not None:
         import capo_sagemaker.types.hub_content_type
 
         out["hub_content_type"] = (
@@ -83,11 +83,11 @@ def deserialize_aws_json_1_1(data: dict) -> CreateHubContentPresignedUrlsRequest
                 data["HubContentType"]
             )
         )
-    if "HubContentName" in data:
+    if data.get("HubContentName") is not None:
         out["hub_content_name"] = data["HubContentName"]
-    if "HubContentVersion" in data:
+    if data.get("HubContentVersion") is not None:
         out["hub_content_version"] = data["HubContentVersion"]
-    if "AccessConfig" in data:
+    if data.get("AccessConfig") is not None:
         import capo_sagemaker.types.presigned_url_access_config
 
         out["access_config"] = (
@@ -95,8 +95,8 @@ def deserialize_aws_json_1_1(data: dict) -> CreateHubContentPresignedUrlsRequest
                 data["AccessConfig"]
             )
         )
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

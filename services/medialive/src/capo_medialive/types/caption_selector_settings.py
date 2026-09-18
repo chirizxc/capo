@@ -114,7 +114,7 @@ def serialize_json(value: CaptionSelectorSettings) -> dict:
 
 def deserialize_json(data: dict) -> CaptionSelectorSettings:
     out: CaptionSelectorSettings = {}  # type: ignore[typeddict-item]
-    if "ancillarySourceSettings" in data:
+    if data.get("ancillarySourceSettings") is not None:
         import capo_medialive.types.ancillary_source_settings
 
         out["ancillary_source_settings"] = (
@@ -122,7 +122,7 @@ def deserialize_json(data: dict) -> CaptionSelectorSettings:
                 data["ancillarySourceSettings"]
             )
         )
-    if "aribSourceSettings" in data:
+    if data.get("aribSourceSettings") is not None:
         import capo_medialive.types.arib_source_settings
 
         out["arib_source_settings"] = (
@@ -130,7 +130,7 @@ def deserialize_json(data: dict) -> CaptionSelectorSettings:
                 data["aribSourceSettings"]
             )
         )
-    if "dvbSubSourceSettings" in data:
+    if data.get("dvbSubSourceSettings") is not None:
         import capo_medialive.types.dvb_sub_source_settings
 
         out["dvb_sub_source_settings"] = (
@@ -138,7 +138,7 @@ def deserialize_json(data: dict) -> CaptionSelectorSettings:
                 data["dvbSubSourceSettings"]
             )
         )
-    if "embeddedSourceSettings" in data:
+    if data.get("embeddedSourceSettings") is not None:
         import capo_medialive.types.embedded_source_settings
 
         out["embedded_source_settings"] = (
@@ -146,7 +146,7 @@ def deserialize_json(data: dict) -> CaptionSelectorSettings:
                 data["embeddedSourceSettings"]
             )
         )
-    if "scte20SourceSettings" in data:
+    if data.get("scte20SourceSettings") is not None:
         import capo_medialive.types.scte20_source_settings
 
         out["scte20_source_settings"] = (
@@ -154,7 +154,7 @@ def deserialize_json(data: dict) -> CaptionSelectorSettings:
                 data["scte20SourceSettings"]
             )
         )
-    if "scte27SourceSettings" in data:
+    if data.get("scte27SourceSettings") is not None:
         import capo_medialive.types.scte27_source_settings
 
         out["scte27_source_settings"] = (
@@ -162,7 +162,7 @@ def deserialize_json(data: dict) -> CaptionSelectorSettings:
                 data["scte27SourceSettings"]
             )
         )
-    if "teletextSourceSettings" in data:
+    if data.get("teletextSourceSettings") is not None:
         import capo_medialive.types.teletext_source_settings
 
         out["teletext_source_settings"] = (
@@ -170,7 +170,7 @@ def deserialize_json(data: dict) -> CaptionSelectorSettings:
                 data["teletextSourceSettings"]
             )
         )
-    if "smartSubtitleSourceSettings" in data:
+    if data.get("smartSubtitleSourceSettings") is not None:
         import capo_medialive.types.smart_subtitle_source_settings
 
         out["smart_subtitle_source_settings"] = (

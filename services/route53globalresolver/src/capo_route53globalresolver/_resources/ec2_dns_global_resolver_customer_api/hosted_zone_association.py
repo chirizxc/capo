@@ -82,16 +82,18 @@ class HostedZoneAssociation:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_route53globalresolver.types.associate_hosted_zone_input.AssociateHostedZoneInput = {}  # type: ignore[typeddict-item]
-        input_["hosted_zone_id"] = hosted_zone_id
-        input_["resource_arn"] = resource_arn
-        input_["name"] = name
+        input_: capo_route53globalresolver.types.associate_hosted_zone_input.AssociateHostedZoneInput = {
+            "hosted_zone_id": hosted_zone_id,
+            "resource_arn": resource_arn,
+            "name": name,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -129,14 +131,16 @@ class HostedZoneAssociation:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_route53globalresolver.types.get_hosted_zone_association_input.GetHostedZoneAssociationInput = {}  # type: ignore[typeddict-item]
-        input_["hosted_zone_association_id"] = hosted_zone_association_id
+        input_: capo_route53globalresolver.types.get_hosted_zone_association_input.GetHostedZoneAssociationInput = {
+            "hosted_zone_association_id": hosted_zone_association_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update(
@@ -180,8 +184,9 @@ class HostedZoneAssociation:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_route53globalresolver.types.update_hosted_zone_association_input.UpdateHostedZoneAssociationInput = {}  # type: ignore[typeddict-item]
-        input_["hosted_zone_association_id"] = hosted_zone_association_id
+        input_: capo_route53globalresolver.types.update_hosted_zone_association_input.UpdateHostedZoneAssociationInput = {
+            "hosted_zone_association_id": hosted_zone_association_id
+        }
         if name is not None:
             input_["name"] = name
 
@@ -190,6 +195,7 @@ class HostedZoneAssociation:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -231,18 +237,20 @@ class HostedZoneAssociation:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_route53globalresolver.types.list_hosted_zone_associations_input.ListHostedZoneAssociationsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_route53globalresolver.types.list_hosted_zone_associations_input.ListHostedZoneAssociationsInput = {
+            "resource_arn": resource_arn
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
             input_["next_token"] = next_token
-        input_["resource_arn"] = resource_arn
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -292,16 +300,18 @@ class AsyncHostedZoneAssociation:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_route53globalresolver.types.associate_hosted_zone_input.AssociateHostedZoneInput = {}  # type: ignore[typeddict-item]
-        input_["hosted_zone_id"] = hosted_zone_id
-        input_["resource_arn"] = resource_arn
-        input_["name"] = name
+        input_: capo_route53globalresolver.types.associate_hosted_zone_input.AssociateHostedZoneInput = {
+            "hosted_zone_id": hosted_zone_id,
+            "resource_arn": resource_arn,
+            "name": name,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -340,14 +350,16 @@ class AsyncHostedZoneAssociation:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_route53globalresolver.types.get_hosted_zone_association_input.GetHostedZoneAssociationInput = {}  # type: ignore[typeddict-item]
-        input_["hosted_zone_association_id"] = hosted_zone_association_id
+        input_: capo_route53globalresolver.types.get_hosted_zone_association_input.GetHostedZoneAssociationInput = {
+            "hosted_zone_association_id": hosted_zone_association_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update(
@@ -392,8 +404,9 @@ class AsyncHostedZoneAssociation:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_route53globalresolver.types.update_hosted_zone_association_input.UpdateHostedZoneAssociationInput = {}  # type: ignore[typeddict-item]
-        input_["hosted_zone_association_id"] = hosted_zone_association_id
+        input_: capo_route53globalresolver.types.update_hosted_zone_association_input.UpdateHostedZoneAssociationInput = {
+            "hosted_zone_association_id": hosted_zone_association_id
+        }
         if name is not None:
             input_["name"] = name
 
@@ -402,6 +415,7 @@ class AsyncHostedZoneAssociation:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -444,16 +458,18 @@ class AsyncHostedZoneAssociation:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_route53globalresolver.types.list_hosted_zone_associations_input.ListHostedZoneAssociationsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_route53globalresolver.types.list_hosted_zone_associations_input.ListHostedZoneAssociationsInput = {
+            "resource_arn": resource_arn
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
             input_["next_token"] = next_token
-        input_["resource_arn"] = resource_arn
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

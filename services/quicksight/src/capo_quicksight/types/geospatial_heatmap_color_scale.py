@@ -31,7 +31,7 @@ def serialize_json(value: GeospatialHeatmapColorScale) -> dict:
 
 def deserialize_json(data: dict) -> GeospatialHeatmapColorScale:
     out: GeospatialHeatmapColorScale = {}  # type: ignore[typeddict-item]
-    if "Colors" in data:
+    if data.get("Colors") is not None:
         import capo_quicksight.types.geospatial_heatmap_data_color_list
 
         out["colors"] = (

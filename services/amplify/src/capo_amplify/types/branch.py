@@ -196,37 +196,37 @@ def serialize_json(value: Branch) -> dict:
 
 def deserialize_json(data: dict) -> Branch:
     out: Branch = {}  # type: ignore[typeddict-item]
-    if "branchArn" in data:
+    if data.get("branchArn") is not None:
         out["branch_arn"] = data["branchArn"]
     else:
         raise DeserializationError("Branch.branch_arn required")
-    if "branchName" in data:
+    if data.get("branchName") is not None:
         out["branch_name"] = data["branchName"]
     else:
         raise DeserializationError("Branch.branch_name required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
     else:
         raise DeserializationError("Branch.description required")
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_amplify.types.tag_map
 
         out["tags"] = capo_amplify.types.tag_map.deserialize_json(data["tags"])
-    if "stage" in data:
+    if data.get("stage") is not None:
         import capo_amplify.types.stage
 
         out["stage"] = capo_amplify.types.stage.deserialize_json(data["stage"])
     else:
         raise DeserializationError("Branch.stage required")
-    if "displayName" in data:
+    if data.get("displayName") is not None:
         out["display_name"] = data["displayName"]
     else:
         raise DeserializationError("Branch.display_name required")
-    if "enableNotification" in data:
+    if data.get("enableNotification") is not None:
         out["enable_notification"] = data["enableNotification"]
     else:
         raise DeserializationError("Branch.enable_notification required")
-    if "createTime" in data:
+    if data.get("createTime") is not None:
         import capo_amplify.types.create_time
 
         out["create_time"] = capo_amplify.types.create_time.deserialize_json(
@@ -234,7 +234,7 @@ def deserialize_json(data: dict) -> Branch:
         )
     else:
         raise DeserializationError("Branch.create_time required")
-    if "updateTime" in data:
+    if data.get("updateTime") is not None:
         import capo_amplify.types.update_time
 
         out["update_time"] = capo_amplify.types.update_time.deserialize_json(
@@ -242,7 +242,7 @@ def deserialize_json(data: dict) -> Branch:
         )
     else:
         raise DeserializationError("Branch.update_time required")
-    if "environmentVariables" in data:
+    if data.get("environmentVariables") is not None:
         import capo_amplify.types.environment_variables
 
         out["environment_variables"] = (
@@ -252,13 +252,13 @@ def deserialize_json(data: dict) -> Branch:
         )
     else:
         raise DeserializationError("Branch.environment_variables required")
-    if "enableAutoBuild" in data:
+    if data.get("enableAutoBuild") is not None:
         out["enable_auto_build"] = data["enableAutoBuild"]
     else:
         raise DeserializationError("Branch.enable_auto_build required")
-    if "enableSkewProtection" in data:
+    if data.get("enableSkewProtection") is not None:
         out["enable_skew_protection"] = data["enableSkewProtection"]
-    if "customDomains" in data:
+    if data.get("customDomains") is not None:
         import capo_amplify.types.custom_domains
 
         out["custom_domains"] = capo_amplify.types.custom_domains.deserialize_json(
@@ -266,35 +266,35 @@ def deserialize_json(data: dict) -> Branch:
         )
     else:
         raise DeserializationError("Branch.custom_domains required")
-    if "framework" in data:
+    if data.get("framework") is not None:
         out["framework"] = data["framework"]
     else:
         raise DeserializationError("Branch.framework required")
-    if "activeJobId" in data:
+    if data.get("activeJobId") is not None:
         out["active_job_id"] = data["activeJobId"]
     else:
         raise DeserializationError("Branch.active_job_id required")
-    if "totalNumberOfJobs" in data:
+    if data.get("totalNumberOfJobs") is not None:
         out["total_number_of_jobs"] = data["totalNumberOfJobs"]
     else:
         raise DeserializationError("Branch.total_number_of_jobs required")
-    if "enableBasicAuth" in data:
+    if data.get("enableBasicAuth") is not None:
         out["enable_basic_auth"] = data["enableBasicAuth"]
     else:
         raise DeserializationError("Branch.enable_basic_auth required")
-    if "enablePerformanceMode" in data:
+    if data.get("enablePerformanceMode") is not None:
         out["enable_performance_mode"] = data["enablePerformanceMode"]
-    if "thumbnailUrl" in data:
+    if data.get("thumbnailUrl") is not None:
         out["thumbnail_url"] = data["thumbnailUrl"]
-    if "basicAuthCredentials" in data:
+    if data.get("basicAuthCredentials") is not None:
         out["basic_auth_credentials"] = data["basicAuthCredentials"]
-    if "buildSpec" in data:
+    if data.get("buildSpec") is not None:
         out["build_spec"] = data["buildSpec"]
-    if "ttl" in data:
+    if data.get("ttl") is not None:
         out["ttl"] = data["ttl"]
     else:
         raise DeserializationError("Branch.ttl required")
-    if "associatedResources" in data:
+    if data.get("associatedResources") is not None:
         import capo_amplify.types.associated_resources
 
         out["associated_resources"] = (
@@ -302,22 +302,22 @@ def deserialize_json(data: dict) -> Branch:
                 data["associatedResources"]
             )
         )
-    if "enablePullRequestPreview" in data:
+    if data.get("enablePullRequestPreview") is not None:
         out["enable_pull_request_preview"] = data["enablePullRequestPreview"]
     else:
         raise DeserializationError("Branch.enable_pull_request_preview required")
-    if "pullRequestEnvironmentName" in data:
+    if data.get("pullRequestEnvironmentName") is not None:
         out["pull_request_environment_name"] = data["pullRequestEnvironmentName"]
-    if "destinationBranch" in data:
+    if data.get("destinationBranch") is not None:
         out["destination_branch"] = data["destinationBranch"]
-    if "sourceBranch" in data:
+    if data.get("sourceBranch") is not None:
         out["source_branch"] = data["sourceBranch"]
-    if "backendEnvironmentArn" in data:
+    if data.get("backendEnvironmentArn") is not None:
         out["backend_environment_arn"] = data["backendEnvironmentArn"]
-    if "backend" in data:
+    if data.get("backend") is not None:
         import capo_amplify.types.backend
 
         out["backend"] = capo_amplify.types.backend.deserialize_json(data["backend"])
-    if "computeRoleArn" in data:
+    if data.get("computeRoleArn") is not None:
         out["compute_role_arn"] = data["computeRoleArn"]
     return out

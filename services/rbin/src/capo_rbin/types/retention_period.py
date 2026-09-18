@@ -34,11 +34,11 @@ def serialize_json(value: RetentionPeriod) -> dict:
 
 def deserialize_json(data: dict) -> RetentionPeriod:
     out: RetentionPeriod = {}  # type: ignore[typeddict-item]
-    if "RetentionPeriodValue" in data:
+    if data.get("RetentionPeriodValue") is not None:
         out["retention_period_value"] = data["RetentionPeriodValue"]
     else:
         raise DeserializationError("RetentionPeriod.retention_period_value required")
-    if "RetentionPeriodUnit" in data:
+    if data.get("RetentionPeriodUnit") is not None:
         import capo_rbin.types.retention_period_unit
 
         out["retention_period_unit"] = (

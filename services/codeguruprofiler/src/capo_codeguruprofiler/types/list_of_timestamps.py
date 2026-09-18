@@ -25,6 +25,8 @@ def deserialize_json(data: list) -> ListOfTimestamps:
 
     out: ListOfTimestamps = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_codeguruprofiler.types.timestamp_structure.deserialize_json(item)
         )

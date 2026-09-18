@@ -70,33 +70,33 @@ def serialize_aws_json_1_0(value: CreateServiceInput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CreateServiceInput:
     out: CreateServiceInput = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("CreateServiceInput.name required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "templateName" in data:
+    if data.get("templateName") is not None:
         out["template_name"] = data["templateName"]
     else:
         raise DeserializationError("CreateServiceInput.template_name required")
-    if "templateMajorVersion" in data:
+    if data.get("templateMajorVersion") is not None:
         out["template_major_version"] = data["templateMajorVersion"]
     else:
         raise DeserializationError("CreateServiceInput.template_major_version required")
-    if "templateMinorVersion" in data:
+    if data.get("templateMinorVersion") is not None:
         out["template_minor_version"] = data["templateMinorVersion"]
-    if "spec" in data:
+    if data.get("spec") is not None:
         out["spec"] = data["spec"]
     else:
         raise DeserializationError("CreateServiceInput.spec required")
-    if "repositoryConnectionArn" in data:
+    if data.get("repositoryConnectionArn") is not None:
         out["repository_connection_arn"] = data["repositoryConnectionArn"]
-    if "repositoryId" in data:
+    if data.get("repositoryId") is not None:
         out["repository_id"] = data["repositoryId"]
-    if "branchName" in data:
+    if data.get("branchName") is not None:
         out["branch_name"] = data["branchName"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_proton.types.tag_list
 
         out["tags"] = capo_proton.types.tag_list.deserialize_aws_json_1_0(data["tags"])

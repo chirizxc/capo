@@ -28,12 +28,12 @@ def serialize_json(value: ProtectedJobS3OutputConfigurationOutput) -> dict:
 
 def deserialize_json(data: dict) -> ProtectedJobS3OutputConfigurationOutput:
     out: ProtectedJobS3OutputConfigurationOutput = {}  # type: ignore[typeddict-item]
-    if "bucket" in data:
+    if data.get("bucket") is not None:
         out["bucket"] = data["bucket"]
     else:
         raise DeserializationError(
             "ProtectedJobS3OutputConfigurationOutput.bucket required"
         )
-    if "keyPrefix" in data:
+    if data.get("keyPrefix") is not None:
         out["key_prefix"] = data["keyPrefix"]
     return out

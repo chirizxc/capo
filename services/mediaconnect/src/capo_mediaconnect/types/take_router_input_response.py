@@ -50,7 +50,7 @@ def serialize_json(value: TakeRouterInputResponse) -> dict:
 
 def deserialize_json(data: dict) -> TakeRouterInputResponse:
     out: TakeRouterInputResponse = {}  # type: ignore[typeddict-item]
-    if "routedState" in data:
+    if data.get("routedState") is not None:
         import capo_mediaconnect.types.router_output_routed_state
 
         out["routed_state"] = (
@@ -60,18 +60,18 @@ def deserialize_json(data: dict) -> TakeRouterInputResponse:
         )
     else:
         raise DeserializationError("TakeRouterInputResponse.routed_state required")
-    if "routerOutputArn" in data:
+    if data.get("routerOutputArn") is not None:
         out["router_output_arn"] = data["routerOutputArn"]
     else:
         raise DeserializationError("TakeRouterInputResponse.router_output_arn required")
-    if "routerOutputName" in data:
+    if data.get("routerOutputName") is not None:
         out["router_output_name"] = data["routerOutputName"]
     else:
         raise DeserializationError(
             "TakeRouterInputResponse.router_output_name required"
         )
-    if "routerInputArn" in data:
+    if data.get("routerInputArn") is not None:
         out["router_input_arn"] = data["routerInputArn"]
-    if "routerInputName" in data:
+    if data.get("routerInputName") is not None:
         out["router_input_name"] = data["routerInputName"]
     return out

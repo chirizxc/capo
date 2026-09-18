@@ -32,7 +32,7 @@ def serialize_json(value: PutGroupingConfigurationOutput) -> dict:
 
 def deserialize_json(data: dict) -> PutGroupingConfigurationOutput:
     out: PutGroupingConfigurationOutput = {}  # type: ignore[typeddict-item]
-    if "GroupingConfiguration" in data:
+    if data.get("GroupingConfiguration") is not None:
         import capo_application_signals.types.grouping_configuration
 
         out["grouping_configuration"] = (

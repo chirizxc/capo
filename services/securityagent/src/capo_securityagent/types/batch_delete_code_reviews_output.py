@@ -42,13 +42,13 @@ def serialize_json(value: BatchDeleteCodeReviewsOutput) -> dict:
 
 def deserialize_json(data: dict) -> BatchDeleteCodeReviewsOutput:
     out: BatchDeleteCodeReviewsOutput = {}  # type: ignore[typeddict-item]
-    if "deleted" in data:
+    if data.get("deleted") is not None:
         import capo_securityagent.types.code_review_id_list
 
         out["deleted"] = capo_securityagent.types.code_review_id_list.deserialize_json(
             data["deleted"]
         )
-    if "failed" in data:
+    if data.get("failed") is not None:
         import capo_securityagent.types.delete_code_review_failure_list
 
         out["failed"] = (

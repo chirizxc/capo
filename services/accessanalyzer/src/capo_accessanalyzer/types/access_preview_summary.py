@@ -52,15 +52,15 @@ def serialize_json(value: AccessPreviewSummary) -> dict:
 
 def deserialize_json(data: dict) -> AccessPreviewSummary:
     out: AccessPreviewSummary = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("AccessPreviewSummary.id required")
-    if "analyzerArn" in data:
+    if data.get("analyzerArn") is not None:
         out["analyzer_arn"] = data["analyzerArn"]
     else:
         raise DeserializationError("AccessPreviewSummary.analyzer_arn required")
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_accessanalyzer.types.timestamp
 
         out["created_at"] = capo_accessanalyzer.types.timestamp.deserialize_json(
@@ -68,11 +68,11 @@ def deserialize_json(data: dict) -> AccessPreviewSummary:
         )
     else:
         raise DeserializationError("AccessPreviewSummary.created_at required")
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
     else:
         raise DeserializationError("AccessPreviewSummary.status required")
-    if "statusReason" in data:
+    if data.get("statusReason") is not None:
         import capo_accessanalyzer.types.access_preview_status_reason
 
         out["status_reason"] = (

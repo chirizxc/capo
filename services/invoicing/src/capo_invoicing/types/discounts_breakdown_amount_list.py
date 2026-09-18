@@ -27,6 +27,8 @@ def deserialize_aws_json_1_0(data: list) -> DiscountsBreakdownAmountList:
 
     out: DiscountsBreakdownAmountList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_invoicing.types.discounts_breakdown_amount.deserialize_aws_json_1_0(
                 item

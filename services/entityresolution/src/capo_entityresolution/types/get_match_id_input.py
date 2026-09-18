@@ -34,7 +34,7 @@ def serialize_json(value: GetMatchIdInput) -> dict:
 
 def deserialize_json(data: dict) -> GetMatchIdInput:
     out: GetMatchIdInput = {}  # type: ignore[typeddict-item]
-    if "record" in data:
+    if data.get("record") is not None:
         import capo_entityresolution.types.record_attribute_map
 
         out["record"] = (
@@ -44,7 +44,7 @@ def deserialize_json(data: dict) -> GetMatchIdInput:
         )
     else:
         raise DeserializationError("GetMatchIdInput.record required")
-    if "applyNormalization" in data:
+    if data.get("applyNormalization") is not None:
         out["apply_normalization"] = data["applyNormalization"]
     else:
         out["apply_normalization"] = True

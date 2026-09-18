@@ -43,13 +43,13 @@ def serialize_json(value: CreateConfigurationSetEventDestinationRequest) -> dict
 
 def deserialize_json(data: dict) -> CreateConfigurationSetEventDestinationRequest:
     out: CreateConfigurationSetEventDestinationRequest = {}  # type: ignore[typeddict-item]
-    if "EventDestinationName" in data:
+    if data.get("EventDestinationName") is not None:
         out["event_destination_name"] = data["EventDestinationName"]
     else:
         raise DeserializationError(
             "CreateConfigurationSetEventDestinationRequest.event_destination_name required"
         )
-    if "EventDestination" in data:
+    if data.get("EventDestination") is not None:
         import capo_sesv2.types.event_destination_definition
 
         out["event_destination"] = (

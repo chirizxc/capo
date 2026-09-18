@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> InstanceProperties:
 
     out: InstanceProperties = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_rolesanywhere.types.instance_property.deserialize_json(item))
     return out

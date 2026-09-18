@@ -26,7 +26,7 @@ def serialize_aws_json_1_1(value: PasswordHistoryPolicyViolationException_) -> d
 
 def deserialize_aws_json_1_1(data: dict) -> PasswordHistoryPolicyViolationException_:
     out: PasswordHistoryPolicyViolationException_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     return out
 
@@ -36,15 +36,20 @@ class PasswordHistoryPolicyViolationException(ServiceError):
 
     code: str | None = "PasswordHistoryPolicyViolationException"
 
-    def __init__(self, data: PasswordHistoryPolicyViolationException_):
+    def __init__(
+        self, data: PasswordHistoryPolicyViolationException_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="PasswordHistoryPolicyViolationException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "PasswordHistoryPolicyViolationException":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "PasswordHistoryPolicyViolationException":
+        return cls(deserialize_aws_json_1_1(data), message)

@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: RemoveRegionRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RemoveRegionRequest:
     out: RemoveRegionRequest = {}  # type: ignore[typeddict-item]
-    if "DirectoryId" in data:
+    if data.get("DirectoryId") is not None:
         out["directory_id"] = data["DirectoryId"]
     else:
         raise DeserializationError("RemoveRegionRequest.directory_id required")

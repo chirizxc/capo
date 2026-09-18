@@ -99,19 +99,19 @@ def serialize_aws_json_1_1(value: BatchSegmentJob) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> BatchSegmentJob:
     out: BatchSegmentJob = {}  # type: ignore[typeddict-item]
-    if "jobName" in data:
+    if data.get("jobName") is not None:
         out["job_name"] = data["jobName"]
-    if "batchSegmentJobArn" in data:
+    if data.get("batchSegmentJobArn") is not None:
         out["batch_segment_job_arn"] = data["batchSegmentJobArn"]
-    if "filterArn" in data:
+    if data.get("filterArn") is not None:
         out["filter_arn"] = data["filterArn"]
-    if "failureReason" in data:
+    if data.get("failureReason") is not None:
         out["failure_reason"] = data["failureReason"]
-    if "solutionVersionArn" in data:
+    if data.get("solutionVersionArn") is not None:
         out["solution_version_arn"] = data["solutionVersionArn"]
-    if "numResults" in data:
+    if data.get("numResults") is not None:
         out["num_results"] = data["numResults"]
-    if "jobInput" in data:
+    if data.get("jobInput") is not None:
         import capo_personalize.types.batch_segment_job_input
 
         out["job_input"] = (
@@ -119,7 +119,7 @@ def deserialize_aws_json_1_1(data: dict) -> BatchSegmentJob:
                 data["jobInput"]
             )
         )
-    if "jobOutput" in data:
+    if data.get("jobOutput") is not None:
         import capo_personalize.types.batch_segment_job_output
 
         out["job_output"] = (
@@ -127,11 +127,11 @@ def deserialize_aws_json_1_1(data: dict) -> BatchSegmentJob:
                 data["jobOutput"]
             )
         )
-    if "roleArn" in data:
+    if data.get("roleArn") is not None:
         out["role_arn"] = data["roleArn"]
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
-    if "creationDateTime" in data:
+    if data.get("creationDateTime") is not None:
         import capo_personalize.types.date
 
         out["creation_date_time"] = (
@@ -139,7 +139,7 @@ def deserialize_aws_json_1_1(data: dict) -> BatchSegmentJob:
                 data["creationDateTime"]
             )
         )
-    if "lastUpdatedDateTime" in data:
+    if data.get("lastUpdatedDateTime") is not None:
         import capo_personalize.types.date
 
         out["last_updated_date_time"] = (

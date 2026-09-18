@@ -29,9 +29,9 @@ def serialize_aws_json_1_1(value: InvalidAccessPoint_) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> InvalidAccessPoint_:
     out: InvalidAccessPoint_ = {}  # type: ignore[typeddict-item]
-    if "ErrorCode" in data:
+    if data.get("ErrorCode") is not None:
         out["error_code"] = data["ErrorCode"]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     return out
 
@@ -41,15 +41,18 @@ class InvalidAccessPoint(ServiceError):
 
     code: str | None = "InvalidAccessPoint"
 
-    def __init__(self, data: InvalidAccessPoint_):
+    def __init__(self, data: InvalidAccessPoint_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="InvalidAccessPoint",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "InvalidAccessPoint":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "InvalidAccessPoint":
+        return cls(deserialize_aws_json_1_1(data), message)

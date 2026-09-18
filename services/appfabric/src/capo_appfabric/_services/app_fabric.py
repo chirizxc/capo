@@ -1,5 +1,6 @@
 """Generated from Smithy shape ``com.amazonaws.appfabric#FabricFrontEndService``."""
 
+import uuid
 import warnings
 from collections.abc import Iterator
 from typing import TYPE_CHECKING, Any, Iterable, Optional
@@ -235,15 +236,17 @@ class AppFabricClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appfabric.types.batch_get_user_access_tasks_request.BatchGetUserAccessTasksRequest = {}  # type: ignore[typeddict-item]
-        input_["app_bundle_identifier"] = app_bundle_identifier
-        input_["task_id_list"] = task_id_list
+        input_: capo_appfabric.types.batch_get_user_access_tasks_request.BatchGetUserAccessTasksRequest = {
+            "app_bundle_identifier": app_bundle_identifier,
+            "task_id_list": task_id_list,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def connect_app_authorization(
@@ -285,9 +288,10 @@ class AppFabricClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appfabric.types.connect_app_authorization_request.ConnectAppAuthorizationRequest = {}  # type: ignore[typeddict-item]
-        input_["app_bundle_identifier"] = app_bundle_identifier
-        input_["app_authorization_identifier"] = app_authorization_identifier
+        input_: capo_appfabric.types.connect_app_authorization_request.ConnectAppAuthorizationRequest = {
+            "app_bundle_identifier": app_bundle_identifier,
+            "app_authorization_identifier": app_authorization_identifier,
+        }
         if auth_request is not None:
             input_["auth_request"] = auth_request
 
@@ -296,6 +300,7 @@ class AppFabricClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_app_authorization(
@@ -347,14 +352,16 @@ class AppFabricClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appfabric.types.create_app_authorization_request.CreateAppAuthorizationRequest = {}  # type: ignore[typeddict-item]
-        input_["app_bundle_identifier"] = app_bundle_identifier
-        input_["app"] = app
-        input_["credential"] = credential
-        input_["tenant"] = tenant
-        input_["auth_type"] = auth_type
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_appfabric.types.create_app_authorization_request.CreateAppAuthorizationRequest = {
+            "app_bundle_identifier": app_bundle_identifier,
+            "app": app,
+            "credential": credential,
+            "tenant": tenant,
+            "auth_type": auth_type,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if tags is not None:
             input_["tags"] = tags
 
@@ -363,6 +370,7 @@ class AppFabricClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_app_bundle(
@@ -407,9 +415,10 @@ class AppFabricClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appfabric.types.create_app_bundle_request.CreateAppBundleRequest = {}  # type: ignore[typeddict-item]
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_appfabric.types.create_app_bundle_request.CreateAppBundleRequest = {}
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if customer_managed_key_identifier is not None:
             input_["customer_managed_key_identifier"] = customer_managed_key_identifier
         if tags is not None:
@@ -420,6 +429,7 @@ class AppFabricClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_ingestion(
@@ -468,13 +478,15 @@ class AppFabricClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appfabric.types.create_ingestion_request.CreateIngestionRequest = {}  # type: ignore[typeddict-item]
-        input_["app_bundle_identifier"] = app_bundle_identifier
-        input_["app"] = app
-        input_["tenant_id"] = tenant_id
-        input_["ingestion_type"] = ingestion_type
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_appfabric.types.create_ingestion_request.CreateIngestionRequest = {
+            "app_bundle_identifier": app_bundle_identifier,
+            "app": app,
+            "tenant_id": tenant_id,
+            "ingestion_type": ingestion_type,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if tags is not None:
             input_["tags"] = tags
 
@@ -483,6 +495,7 @@ class AppFabricClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_ingestion_destination(
@@ -531,13 +544,15 @@ class AppFabricClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appfabric.types.create_ingestion_destination_request.CreateIngestionDestinationRequest = {}  # type: ignore[typeddict-item]
-        input_["app_bundle_identifier"] = app_bundle_identifier
-        input_["ingestion_identifier"] = ingestion_identifier
-        input_["processing_configuration"] = processing_configuration
-        input_["destination_configuration"] = destination_configuration
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_appfabric.types.create_ingestion_destination_request.CreateIngestionDestinationRequest = {
+            "app_bundle_identifier": app_bundle_identifier,
+            "ingestion_identifier": ingestion_identifier,
+            "processing_configuration": processing_configuration,
+            "destination_configuration": destination_configuration,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if tags is not None:
             input_["tags"] = tags
 
@@ -546,6 +561,7 @@ class AppFabricClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_app_authorization(
@@ -585,15 +601,17 @@ class AppFabricClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appfabric.types.delete_app_authorization_request.DeleteAppAuthorizationRequest = {}  # type: ignore[typeddict-item]
-        input_["app_bundle_identifier"] = app_bundle_identifier
-        input_["app_authorization_identifier"] = app_authorization_identifier
+        input_: capo_appfabric.types.delete_app_authorization_request.DeleteAppAuthorizationRequest = {
+            "app_bundle_identifier": app_bundle_identifier,
+            "app_authorization_identifier": app_authorization_identifier,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_app_bundle(
@@ -631,14 +649,16 @@ class AppFabricClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appfabric.types.delete_app_bundle_request.DeleteAppBundleRequest = {}  # type: ignore[typeddict-item]
-        input_["app_bundle_identifier"] = app_bundle_identifier
+        input_: capo_appfabric.types.delete_app_bundle_request.DeleteAppBundleRequest = {
+            "app_bundle_identifier": app_bundle_identifier
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_ingestion(
@@ -678,15 +698,17 @@ class AppFabricClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appfabric.types.delete_ingestion_request.DeleteIngestionRequest = {}  # type: ignore[typeddict-item]
-        input_["app_bundle_identifier"] = app_bundle_identifier
-        input_["ingestion_identifier"] = ingestion_identifier
+        input_: capo_appfabric.types.delete_ingestion_request.DeleteIngestionRequest = {
+            "app_bundle_identifier": app_bundle_identifier,
+            "ingestion_identifier": ingestion_identifier,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_ingestion_destination(
@@ -728,16 +750,18 @@ class AppFabricClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appfabric.types.delete_ingestion_destination_request.DeleteIngestionDestinationRequest = {}  # type: ignore[typeddict-item]
-        input_["app_bundle_identifier"] = app_bundle_identifier
-        input_["ingestion_identifier"] = ingestion_identifier
-        input_["ingestion_destination_identifier"] = ingestion_destination_identifier
+        input_: capo_appfabric.types.delete_ingestion_destination_request.DeleteIngestionDestinationRequest = {
+            "app_bundle_identifier": app_bundle_identifier,
+            "ingestion_identifier": ingestion_identifier,
+            "ingestion_destination_identifier": ingestion_destination_identifier,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_app_authorization(
@@ -777,15 +801,17 @@ class AppFabricClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appfabric.types.get_app_authorization_request.GetAppAuthorizationRequest = {}  # type: ignore[typeddict-item]
-        input_["app_bundle_identifier"] = app_bundle_identifier
-        input_["app_authorization_identifier"] = app_authorization_identifier
+        input_: capo_appfabric.types.get_app_authorization_request.GetAppAuthorizationRequest = {
+            "app_bundle_identifier": app_bundle_identifier,
+            "app_authorization_identifier": app_authorization_identifier,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_app_bundle(
@@ -823,14 +849,16 @@ class AppFabricClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appfabric.types.get_app_bundle_request.GetAppBundleRequest = {}  # type: ignore[typeddict-item]
-        input_["app_bundle_identifier"] = app_bundle_identifier
+        input_: capo_appfabric.types.get_app_bundle_request.GetAppBundleRequest = {
+            "app_bundle_identifier": app_bundle_identifier
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_ingestion(
@@ -870,15 +898,17 @@ class AppFabricClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appfabric.types.get_ingestion_request.GetIngestionRequest = {}  # type: ignore[typeddict-item]
-        input_["app_bundle_identifier"] = app_bundle_identifier
-        input_["ingestion_identifier"] = ingestion_identifier
+        input_: capo_appfabric.types.get_ingestion_request.GetIngestionRequest = {
+            "app_bundle_identifier": app_bundle_identifier,
+            "ingestion_identifier": ingestion_identifier,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_ingestion_destination(
@@ -920,16 +950,18 @@ class AppFabricClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appfabric.types.get_ingestion_destination_request.GetIngestionDestinationRequest = {}  # type: ignore[typeddict-item]
-        input_["app_bundle_identifier"] = app_bundle_identifier
-        input_["ingestion_identifier"] = ingestion_identifier
-        input_["ingestion_destination_identifier"] = ingestion_destination_identifier
+        input_: capo_appfabric.types.get_ingestion_destination_request.GetIngestionDestinationRequest = {
+            "app_bundle_identifier": app_bundle_identifier,
+            "ingestion_identifier": ingestion_identifier,
+            "ingestion_destination_identifier": ingestion_destination_identifier,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_app_authorizations(
@@ -971,8 +1003,9 @@ class AppFabricClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appfabric.types.list_app_authorizations_request.ListAppAuthorizationsRequest = {}  # type: ignore[typeddict-item]
-        input_["app_bundle_identifier"] = app_bundle_identifier
+        input_: capo_appfabric.types.list_app_authorizations_request.ListAppAuthorizationsRequest = {
+            "app_bundle_identifier": app_bundle_identifier
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -983,6 +1016,7 @@ class AppFabricClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_app_authorizations(
@@ -1044,7 +1078,7 @@ class AppFabricClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appfabric.types.list_app_bundles_request.ListAppBundlesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_appfabric.types.list_app_bundles_request.ListAppBundlesRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -1055,6 +1089,7 @@ class AppFabricClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_app_bundles(
@@ -1119,9 +1154,10 @@ class AppFabricClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appfabric.types.list_ingestion_destinations_request.ListIngestionDestinationsRequest = {}  # type: ignore[typeddict-item]
-        input_["app_bundle_identifier"] = app_bundle_identifier
-        input_["ingestion_identifier"] = ingestion_identifier
+        input_: capo_appfabric.types.list_ingestion_destinations_request.ListIngestionDestinationsRequest = {
+            "app_bundle_identifier": app_bundle_identifier,
+            "ingestion_identifier": ingestion_identifier,
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -1132,6 +1168,7 @@ class AppFabricClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_ingestion_destinations(
@@ -1198,8 +1235,9 @@ class AppFabricClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appfabric.types.list_ingestions_request.ListIngestionsRequest = {}  # type: ignore[typeddict-item]
-        input_["app_bundle_identifier"] = app_bundle_identifier
+        input_: capo_appfabric.types.list_ingestions_request.ListIngestionsRequest = {
+            "app_bundle_identifier": app_bundle_identifier
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -1210,6 +1248,7 @@ class AppFabricClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_ingestions(
@@ -1270,14 +1309,16 @@ class AppFabricClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appfabric.types.list_tags_for_resource_request.ListTagsForResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_appfabric.types.list_tags_for_resource_request.ListTagsForResourceRequest = {
+            "resource_arn": resource_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def start_ingestion(
@@ -1318,15 +1359,17 @@ class AppFabricClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appfabric.types.start_ingestion_request.StartIngestionRequest = {}  # type: ignore[typeddict-item]
-        input_["ingestion_identifier"] = ingestion_identifier
-        input_["app_bundle_identifier"] = app_bundle_identifier
+        input_: capo_appfabric.types.start_ingestion_request.StartIngestionRequest = {
+            "ingestion_identifier": ingestion_identifier,
+            "app_bundle_identifier": app_bundle_identifier,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def start_user_access_tasks(
@@ -1366,15 +1409,17 @@ class AppFabricClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appfabric.types.start_user_access_tasks_request.StartUserAccessTasksRequest = {}  # type: ignore[typeddict-item]
-        input_["app_bundle_identifier"] = app_bundle_identifier
-        input_["email"] = email
+        input_: capo_appfabric.types.start_user_access_tasks_request.StartUserAccessTasksRequest = {
+            "app_bundle_identifier": app_bundle_identifier,
+            "email": email,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def stop_ingestion(
@@ -1415,15 +1460,17 @@ class AppFabricClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appfabric.types.stop_ingestion_request.StopIngestionRequest = {}  # type: ignore[typeddict-item]
-        input_["ingestion_identifier"] = ingestion_identifier
-        input_["app_bundle_identifier"] = app_bundle_identifier
+        input_: capo_appfabric.types.stop_ingestion_request.StopIngestionRequest = {
+            "ingestion_identifier": ingestion_identifier,
+            "app_bundle_identifier": app_bundle_identifier,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def tag_resource(
@@ -1463,15 +1510,17 @@ class AppFabricClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appfabric.types.tag_resource_request.TagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tags"] = tags
+        input_: capo_appfabric.types.tag_resource_request.TagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tags": tags,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def untag_resource(
@@ -1511,15 +1560,17 @@ class AppFabricClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appfabric.types.untag_resource_request.UntagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tag_keys"] = tag_keys
+        input_: capo_appfabric.types.untag_resource_request.UntagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tag_keys": tag_keys,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_app_authorization(
@@ -1563,9 +1614,10 @@ class AppFabricClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appfabric.types.update_app_authorization_request.UpdateAppAuthorizationRequest = {}  # type: ignore[typeddict-item]
-        input_["app_bundle_identifier"] = app_bundle_identifier
-        input_["app_authorization_identifier"] = app_authorization_identifier
+        input_: capo_appfabric.types.update_app_authorization_request.UpdateAppAuthorizationRequest = {
+            "app_bundle_identifier": app_bundle_identifier,
+            "app_authorization_identifier": app_authorization_identifier,
+        }
         if credential is not None:
             input_["credential"] = credential
         if tenant is not None:
@@ -1576,6 +1628,7 @@ class AppFabricClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_ingestion_destination(
@@ -1621,17 +1674,19 @@ class AppFabricClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appfabric.types.update_ingestion_destination_request.UpdateIngestionDestinationRequest = {}  # type: ignore[typeddict-item]
-        input_["app_bundle_identifier"] = app_bundle_identifier
-        input_["ingestion_identifier"] = ingestion_identifier
-        input_["ingestion_destination_identifier"] = ingestion_destination_identifier
-        input_["destination_configuration"] = destination_configuration
+        input_: capo_appfabric.types.update_ingestion_destination_request.UpdateIngestionDestinationRequest = {
+            "app_bundle_identifier": app_bundle_identifier,
+            "ingestion_identifier": ingestion_identifier,
+            "ingestion_destination_identifier": ingestion_destination_identifier,
+            "destination_configuration": destination_configuration,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def __enter__(self) -> Self:

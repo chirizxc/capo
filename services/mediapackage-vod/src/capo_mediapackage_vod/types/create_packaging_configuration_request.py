@@ -65,35 +65,35 @@ def serialize_json(value: CreatePackagingConfigurationRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreatePackagingConfigurationRequest:
     out: CreatePackagingConfigurationRequest = {}  # type: ignore[typeddict-item]
-    if "cmafPackage" in data:
+    if data.get("cmafPackage") is not None:
         import capo_mediapackage_vod.types.cmaf_package
 
         out["cmaf_package"] = capo_mediapackage_vod.types.cmaf_package.deserialize_json(
             data["cmafPackage"]
         )
-    if "dashPackage" in data:
+    if data.get("dashPackage") is not None:
         import capo_mediapackage_vod.types.dash_package
 
         out["dash_package"] = capo_mediapackage_vod.types.dash_package.deserialize_json(
             data["dashPackage"]
         )
-    if "hlsPackage" in data:
+    if data.get("hlsPackage") is not None:
         import capo_mediapackage_vod.types.hls_package
 
         out["hls_package"] = capo_mediapackage_vod.types.hls_package.deserialize_json(
             data["hlsPackage"]
         )
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "mssPackage" in data:
+    if data.get("mssPackage") is not None:
         import capo_mediapackage_vod.types.mss_package
 
         out["mss_package"] = capo_mediapackage_vod.types.mss_package.deserialize_json(
             data["mssPackage"]
         )
-    if "packagingGroupId" in data:
+    if data.get("packagingGroupId") is not None:
         out["packaging_group_id"] = data["packagingGroupId"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_mediapackage_vod.types.tags
 
         out["tags"] = capo_mediapackage_vod.types.tags.deserialize_json(data["tags"])

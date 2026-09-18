@@ -64,7 +64,7 @@ def serialize_json(value: MigrationAlert) -> dict:
 
 def deserialize_json(data: dict) -> MigrationAlert:
     out: MigrationAlert = {}  # type: ignore[typeddict-item]
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_lex_model_building_service.types.migration_alert_type
 
         out["type"] = (
@@ -72,9 +72,9 @@ def deserialize_json(data: dict) -> MigrationAlert:
                 data["type"]
             )
         )
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
-    if "details" in data:
+    if data.get("details") is not None:
         import capo_lex_model_building_service.types.migration_alert_details
 
         out["details"] = (
@@ -82,7 +82,7 @@ def deserialize_json(data: dict) -> MigrationAlert:
                 data["details"]
             )
         )
-    if "referenceURLs" in data:
+    if data.get("referenceURLs") is not None:
         import capo_lex_model_building_service.types.migration_alert_reference_ur_ls
 
         out["reference_ur_ls"] = (

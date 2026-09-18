@@ -33,6 +33,8 @@ def deserialize_aws_json_1_1(
 ) -> DirectoryConfigurationSettingRequestDetailedStatus:
     out: DirectoryConfigurationSettingRequestDetailedStatus = {}
     for key, value in data.items():
+        if value is None:
+            continue
         import capo_directory_service.types.directory_configuration_status
 
         out[key] = (

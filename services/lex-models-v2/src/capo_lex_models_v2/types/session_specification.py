@@ -121,17 +121,17 @@ def serialize_json(value: SessionSpecification) -> dict:
 
 def deserialize_json(data: dict) -> SessionSpecification:
     out: SessionSpecification = {}  # type: ignore[typeddict-item]
-    if "botAliasId" in data:
+    if data.get("botAliasId") is not None:
         out["bot_alias_id"] = data["botAliasId"]
-    if "botVersion" in data:
+    if data.get("botVersion") is not None:
         out["bot_version"] = data["botVersion"]
-    if "localeId" in data:
+    if data.get("localeId") is not None:
         out["locale_id"] = data["localeId"]
-    if "channel" in data:
+    if data.get("channel") is not None:
         out["channel"] = data["channel"]
-    if "sessionId" in data:
+    if data.get("sessionId") is not None:
         out["session_id"] = data["sessionId"]
-    if "conversationStartTime" in data:
+    if data.get("conversationStartTime") is not None:
         import capo_lex_models_v2.types.timestamp
 
         out["conversation_start_time"] = (
@@ -139,7 +139,7 @@ def deserialize_json(data: dict) -> SessionSpecification:
                 data["conversationStartTime"]
             )
         )
-    if "conversationEndTime" in data:
+    if data.get("conversationEndTime") is not None:
         import capo_lex_models_v2.types.timestamp
 
         out["conversation_end_time"] = (
@@ -147,9 +147,9 @@ def deserialize_json(data: dict) -> SessionSpecification:
                 data["conversationEndTime"]
             )
         )
-    if "conversationDurationSeconds" in data:
+    if data.get("conversationDurationSeconds") is not None:
         out["conversation_duration_seconds"] = data["conversationDurationSeconds"]
-    if "conversationEndState" in data:
+    if data.get("conversationEndState") is not None:
         import capo_lex_models_v2.types.conversation_end_state
 
         out["conversation_end_state"] = (
@@ -157,15 +157,15 @@ def deserialize_json(data: dict) -> SessionSpecification:
                 data["conversationEndState"]
             )
         )
-    if "mode" in data:
+    if data.get("mode") is not None:
         import capo_lex_models_v2.types.analytics_modality
 
         out["mode"] = capo_lex_models_v2.types.analytics_modality.deserialize_json(
             data["mode"]
         )
-    if "numberOfTurns" in data:
+    if data.get("numberOfTurns") is not None:
         out["number_of_turns"] = data["numberOfTurns"]
-    if "invokedIntentSamples" in data:
+    if data.get("invokedIntentSamples") is not None:
         import capo_lex_models_v2.types.invoked_intent_samples
 
         out["invoked_intent_samples"] = (
@@ -173,6 +173,6 @@ def deserialize_json(data: dict) -> SessionSpecification:
                 data["invokedIntentSamples"]
             )
         )
-    if "originatingRequestId" in data:
+    if data.get("originatingRequestId") is not None:
         out["originating_request_id"] = data["originatingRequestId"]
     return out

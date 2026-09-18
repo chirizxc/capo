@@ -29,11 +29,11 @@ def serialize_json(value: InsightTimeRange) -> dict:
 
 def deserialize_json(data: dict) -> InsightTimeRange:
     out: InsightTimeRange = {}  # type: ignore[typeddict-item]
-    if "From" in data:
+    if data.get("From") is not None:
         out["from"] = data["From"]
     else:
         raise DeserializationError("InsightTimeRange.from required")
-    if "To" in data:
+    if data.get("To") is not None:
         out["to"] = data["To"]
     else:
         raise DeserializationError("InsightTimeRange.to required")

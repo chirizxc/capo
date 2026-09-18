@@ -74,29 +74,29 @@ def serialize_json(value: CoveredResource) -> dict:
 
 def deserialize_json(data: dict) -> CoveredResource:
     out: CoveredResource = {}  # type: ignore[typeddict-item]
-    if "resourceType" in data:
+    if data.get("resourceType") is not None:
         out["resource_type"] = data["resourceType"]
     else:
         raise DeserializationError("CoveredResource.resource_type required")
-    if "resourceId" in data:
+    if data.get("resourceId") is not None:
         out["resource_id"] = data["resourceId"]
     else:
         raise DeserializationError("CoveredResource.resource_id required")
-    if "accountId" in data:
+    if data.get("accountId") is not None:
         out["account_id"] = data["accountId"]
     else:
         raise DeserializationError("CoveredResource.account_id required")
-    if "scanType" in data:
+    if data.get("scanType") is not None:
         out["scan_type"] = data["scanType"]
     else:
         raise DeserializationError("CoveredResource.scan_type required")
-    if "scanStatus" in data:
+    if data.get("scanStatus") is not None:
         import capo_inspector2.types.scan_status
 
         out["scan_status"] = capo_inspector2.types.scan_status.deserialize_json(
             data["scanStatus"]
         )
-    if "resourceMetadata" in data:
+    if data.get("resourceMetadata") is not None:
         import capo_inspector2.types.resource_scan_metadata
 
         out["resource_metadata"] = (
@@ -104,7 +104,7 @@ def deserialize_json(data: dict) -> CoveredResource:
                 data["resourceMetadata"]
             )
         )
-    if "lastScannedAt" in data:
+    if data.get("lastScannedAt") is not None:
         import capo_inspector2.types.date_time_timestamp
 
         out["last_scanned_at"] = (
@@ -112,6 +112,6 @@ def deserialize_json(data: dict) -> CoveredResource:
                 data["lastScannedAt"]
             )
         )
-    if "scanMode" in data:
+    if data.get("scanMode") is not None:
         out["scan_mode"] = data["scanMode"]
     return out

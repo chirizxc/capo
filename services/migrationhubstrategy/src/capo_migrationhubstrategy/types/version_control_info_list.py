@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> VersionControlInfoList:
 
     out: VersionControlInfoList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_migrationhubstrategy.types.version_control_info.deserialize_json(item)
         )

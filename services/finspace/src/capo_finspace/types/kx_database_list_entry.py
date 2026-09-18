@@ -40,15 +40,15 @@ def serialize_json(value: KxDatabaseListEntry) -> dict:
 
 def deserialize_json(data: dict) -> KxDatabaseListEntry:
     out: KxDatabaseListEntry = {}  # type: ignore[typeddict-item]
-    if "databaseName" in data:
+    if data.get("databaseName") is not None:
         out["database_name"] = data["databaseName"]
-    if "createdTimestamp" in data:
+    if data.get("createdTimestamp") is not None:
         import capo_finspace.types.timestamp
 
         out["created_timestamp"] = capo_finspace.types.timestamp.deserialize_json(
             data["createdTimestamp"]
         )
-    if "lastModifiedTimestamp" in data:
+    if data.get("lastModifiedTimestamp") is not None:
         import capo_finspace.types.timestamp
 
         out["last_modified_timestamp"] = capo_finspace.types.timestamp.deserialize_json(

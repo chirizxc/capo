@@ -33,10 +33,10 @@ def serialize_json(value: RegistrationConfig) -> dict:
 
 def deserialize_json(data: dict) -> RegistrationConfig:
     out: RegistrationConfig = {}  # type: ignore[typeddict-item]
-    if "templateBody" in data:
+    if data.get("templateBody") is not None:
         out["template_body"] = data["templateBody"]
-    if "roleArn" in data:
+    if data.get("roleArn") is not None:
         out["role_arn"] = data["roleArn"]
-    if "templateName" in data:
+    if data.get("templateName") is not None:
         out["template_name"] = data["templateName"]
     return out

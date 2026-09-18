@@ -61,21 +61,21 @@ def serialize_json(value: ListenerTimeout) -> dict:
 
 
 def deserialize_json(data: dict) -> ListenerTimeout:
-    if "tcp" in data:
+    if data.get("tcp") is not None:
         import capo_app_mesh.types.tcp_timeout
 
         return {"tcp": capo_app_mesh.types.tcp_timeout.deserialize_json(data["tcp"])}
-    elif "http" in data:
+    elif data.get("http") is not None:
         import capo_app_mesh.types.http_timeout
 
         return {"http": capo_app_mesh.types.http_timeout.deserialize_json(data["http"])}
-    elif "http2" in data:
+    elif data.get("http2") is not None:
         import capo_app_mesh.types.http_timeout
 
         return {
             "http2": capo_app_mesh.types.http_timeout.deserialize_json(data["http2"])
         }
-    elif "grpc" in data:
+    elif data.get("grpc") is not None:
         import capo_app_mesh.types.grpc_timeout
 
         return {"grpc": capo_app_mesh.types.grpc_timeout.deserialize_json(data["grpc"])}

@@ -29,32 +29,48 @@ def serialize_aws_json_1_1(value: IcebergCompactionMetrics) -> dict:
     out: dict = {}
     out["NumberOfBytesCompacted"] = value.get("number_of_bytes_compacted", 0)
     out["NumberOfFilesCompacted"] = value.get("number_of_files_compacted", 0)
-    out["DpuHours"] = value.get("dpu_hours", 0)
+    out["DpuHours"] = (
+        "NaN"
+        if value.get("dpu_hours", 0) != value.get("dpu_hours", 0)
+        else "Infinity"
+        if value.get("dpu_hours", 0) == float("inf")
+        else "-Infinity"
+        if value.get("dpu_hours", 0) == float("-inf")
+        else value.get("dpu_hours", 0)
+    )
     out["NumberOfDpus"] = value.get("number_of_dpus", 0)
-    out["JobDurationInHour"] = value.get("job_duration_in_hour", 0)
+    out["JobDurationInHour"] = (
+        "NaN"
+        if value.get("job_duration_in_hour", 0) != value.get("job_duration_in_hour", 0)
+        else "Infinity"
+        if value.get("job_duration_in_hour", 0) == float("inf")
+        else "-Infinity"
+        if value.get("job_duration_in_hour", 0) == float("-inf")
+        else value.get("job_duration_in_hour", 0)
+    )
     return out
 
 
 def deserialize_aws_json_1_1(data: dict) -> IcebergCompactionMetrics:
     out: IcebergCompactionMetrics = {}  # type: ignore[typeddict-item]
-    if "NumberOfBytesCompacted" in data:
+    if data.get("NumberOfBytesCompacted") is not None:
         out["number_of_bytes_compacted"] = data["NumberOfBytesCompacted"]
     else:
         out["number_of_bytes_compacted"] = 0
-    if "NumberOfFilesCompacted" in data:
+    if data.get("NumberOfFilesCompacted") is not None:
         out["number_of_files_compacted"] = data["NumberOfFilesCompacted"]
     else:
         out["number_of_files_compacted"] = 0
-    if "DpuHours" in data:
-        out["dpu_hours"] = data["DpuHours"]
+    if data.get("DpuHours") is not None:
+        out["dpu_hours"] = float(data["DpuHours"])
     else:
         out["dpu_hours"] = 0
-    if "NumberOfDpus" in data:
+    if data.get("NumberOfDpus") is not None:
         out["number_of_dpus"] = data["NumberOfDpus"]
     else:
         out["number_of_dpus"] = 0
-    if "JobDurationInHour" in data:
-        out["job_duration_in_hour"] = data["JobDurationInHour"]
+    if data.get("JobDurationInHour") is not None:
+        out["job_duration_in_hour"] = float(data["JobDurationInHour"])
     else:
         out["job_duration_in_hour"] = 0
     return out

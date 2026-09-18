@@ -45,11 +45,11 @@ def serialize_json(value: UnaggregatedField) -> dict:
 
 def deserialize_json(data: dict) -> UnaggregatedField:
     out: UnaggregatedField = {}  # type: ignore[typeddict-item]
-    if "FieldId" in data:
+    if data.get("FieldId") is not None:
         out["field_id"] = data["FieldId"]
     else:
         raise DeserializationError("UnaggregatedField.field_id required")
-    if "Column" in data:
+    if data.get("Column") is not None:
         import capo_quicksight.types.column_identifier
 
         out["column"] = capo_quicksight.types.column_identifier.deserialize_json(
@@ -57,7 +57,7 @@ def deserialize_json(data: dict) -> UnaggregatedField:
         )
     else:
         raise DeserializationError("UnaggregatedField.column required")
-    if "FormatConfiguration" in data:
+    if data.get("FormatConfiguration") is not None:
         import capo_quicksight.types.format_configuration
 
         out["format_configuration"] = (

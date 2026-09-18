@@ -40,7 +40,7 @@ def serialize_aws_json_1_1(value: AgentFilter) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AgentFilter:
     out: AgentFilter = {}  # type: ignore[typeddict-item]
-    if "agentHealths" in data:
+    if data.get("agentHealths") is not None:
         import capo_inspector.types.agent_health_list
 
         out["agent_healths"] = (
@@ -50,7 +50,7 @@ def deserialize_aws_json_1_1(data: dict) -> AgentFilter:
         )
     else:
         raise DeserializationError("AgentFilter.agent_healths required")
-    if "agentHealthCodes" in data:
+    if data.get("agentHealthCodes") is not None:
         import capo_inspector.types.agent_health_code_list
 
         out["agent_health_codes"] = (

@@ -74,9 +74,9 @@ def serialize_aws_json_1_0(value: CreateAgreementRequestInput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CreateAgreementRequestInput:
     out: CreateAgreementRequestInput = {}  # type: ignore[typeddict-item]
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
-    if "intent" in data:
+    if data.get("intent") is not None:
         import capo_marketplace_agreement.types.intent
 
         out["intent"] = (
@@ -86,7 +86,7 @@ def deserialize_aws_json_1_0(data: dict) -> CreateAgreementRequestInput:
         )
     else:
         raise DeserializationError("CreateAgreementRequestInput.intent required")
-    if "requestedTerms" in data:
+    if data.get("requestedTerms") is not None:
         import capo_marketplace_agreement.types.requested_term_list
 
         out["requested_terms"] = (
@@ -98,11 +98,11 @@ def deserialize_aws_json_1_0(data: dict) -> CreateAgreementRequestInput:
         raise DeserializationError(
             "CreateAgreementRequestInput.requested_terms required"
         )
-    if "sourceAgreementIdentifier" in data:
+    if data.get("sourceAgreementIdentifier") is not None:
         out["source_agreement_identifier"] = data["sourceAgreementIdentifier"]
-    if "agreementProposalIdentifier" in data:
+    if data.get("agreementProposalIdentifier") is not None:
         out["agreement_proposal_identifier"] = data["agreementProposalIdentifier"]
-    if "taxConfiguration" in data:
+    if data.get("taxConfiguration") is not None:
         import capo_marketplace_agreement.types.tax_configuration
 
         out["tax_configuration"] = (

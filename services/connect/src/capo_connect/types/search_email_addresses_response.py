@@ -41,14 +41,14 @@ def serialize_json(value: SearchEmailAddressesResponse) -> dict:
 
 def deserialize_json(data: dict) -> SearchEmailAddressesResponse:
     out: SearchEmailAddressesResponse = {}  # type: ignore[typeddict-item]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "EmailAddresses" in data:
+    if data.get("EmailAddresses") is not None:
         import capo_connect.types.email_address_list
 
         out["email_addresses"] = capo_connect.types.email_address_list.deserialize_json(
             data["EmailAddresses"]
         )
-    if "ApproximateTotalCount" in data:
+    if data.get("ApproximateTotalCount") is not None:
         out["approximate_total_count"] = data["ApproximateTotalCount"]
     return out

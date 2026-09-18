@@ -25,6 +25,8 @@ def serialize_json(input_to_serialize: VolumeToConversionMap) -> dict:
 def deserialize_json(data: dict) -> VolumeToConversionMap:
     out: VolumeToConversionMap = {}
     for key, value in data.items():
+        if value is None:
+            continue
         import capo_drs.types.conversion_map
 
         out[key] = capo_drs.types.conversion_map.deserialize_json(value)

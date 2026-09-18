@@ -50,15 +50,15 @@ def serialize_json(value: TrustAnchorDetail) -> dict:
     if "enabled" in value:
         out["enabled"] = value["enabled"]
     if "created_at" in value:
-        import capo_rolesanywhere.types._prelude.timestamp
+        import capo_rolesanywhere._protocol.serialize
 
-        out["createdAt"] = capo_rolesanywhere.types._prelude.timestamp.serialize_json(
+        out["createdAt"] = capo_rolesanywhere._protocol.serialize.fmt_date_time(
             value["created_at"]
         )
     if "updated_at" in value:
-        import capo_rolesanywhere.types._prelude.timestamp
+        import capo_rolesanywhere._protocol.serialize
 
-        out["updatedAt"] = capo_rolesanywhere.types._prelude.timestamp.serialize_json(
+        out["updatedAt"] = capo_rolesanywhere._protocol.serialize.fmt_date_time(
             value["updated_at"]
         )
     if "notification_settings" in value:
@@ -74,35 +74,31 @@ def serialize_json(value: TrustAnchorDetail) -> dict:
 
 def deserialize_json(data: dict) -> TrustAnchorDetail:
     out: TrustAnchorDetail = {}  # type: ignore[typeddict-item]
-    if "trustAnchorId" in data:
+    if data.get("trustAnchorId") is not None:
         out["trust_anchor_id"] = data["trustAnchorId"]
-    if "trustAnchorArn" in data:
+    if data.get("trustAnchorArn") is not None:
         out["trust_anchor_arn"] = data["trustAnchorArn"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "source" in data:
+    if data.get("source") is not None:
         import capo_rolesanywhere.types.source
 
         out["source"] = capo_rolesanywhere.types.source.deserialize_json(data["source"])
-    if "enabled" in data:
+    if data.get("enabled") is not None:
         out["enabled"] = data["enabled"]
-    if "createdAt" in data:
-        import capo_rolesanywhere.types._prelude.timestamp
+    if data.get("createdAt") is not None:
+        import datetime
 
-        out["created_at"] = (
-            capo_rolesanywhere.types._prelude.timestamp.deserialize_json(
-                data["createdAt"]
-            )
+        out["created_at"] = datetime.datetime.fromisoformat(
+            data["createdAt"].replace("Z", "+00:00")
         )
-    if "updatedAt" in data:
-        import capo_rolesanywhere.types._prelude.timestamp
+    if data.get("updatedAt") is not None:
+        import datetime
 
-        out["updated_at"] = (
-            capo_rolesanywhere.types._prelude.timestamp.deserialize_json(
-                data["updatedAt"]
-            )
+        out["updated_at"] = datetime.datetime.fromisoformat(
+            data["updatedAt"].replace("Z", "+00:00")
         )
-    if "notificationSettings" in data:
+    if data.get("notificationSettings") is not None:
         import capo_rolesanywhere.types.notification_setting_details
 
         out["notification_settings"] = (

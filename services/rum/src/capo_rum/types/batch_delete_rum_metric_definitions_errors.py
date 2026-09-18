@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> BatchDeleteRumMetricDefinitionsErrors:
 
     out: BatchDeleteRumMetricDefinitionsErrors = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_rum.types.batch_delete_rum_metric_definitions_error.deserialize_json(
                 item

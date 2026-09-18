@@ -40,16 +40,16 @@ def serialize_json(value: AccountAggregationResponse) -> dict:
 
 def deserialize_json(data: dict) -> AccountAggregationResponse:
     out: AccountAggregationResponse = {}  # type: ignore[typeddict-item]
-    if "accountId" in data:
+    if data.get("accountId") is not None:
         out["account_id"] = data["accountId"]
-    if "severityCounts" in data:
+    if data.get("severityCounts") is not None:
         import capo_inspector2.types.severity_counts
 
         out["severity_counts"] = capo_inspector2.types.severity_counts.deserialize_json(
             data["severityCounts"]
         )
-    if "exploitAvailableCount" in data:
+    if data.get("exploitAvailableCount") is not None:
         out["exploit_available_count"] = data["exploitAvailableCount"]
-    if "fixAvailableCount" in data:
+    if data.get("fixAvailableCount") is not None:
         out["fix_available_count"] = data["fixAvailableCount"]
     return out

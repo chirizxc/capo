@@ -16,4 +16,4 @@ def serialize_aws_json_1_1(value: ConfigurationRecorderFilterValues) -> list:
 
 
 def deserialize_aws_json_1_1(data: list) -> ConfigurationRecorderFilterValues:
-    return list(data)
+    return [item for item in data if item is not None]

@@ -44,7 +44,7 @@ def serialize_aws_json_1_1(value: ConfigurationRecorderFilter) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ConfigurationRecorderFilter:
     out: ConfigurationRecorderFilter = {}  # type: ignore[typeddict-item]
-    if "filterName" in data:
+    if data.get("filterName") is not None:
         import capo_config_service.types.configuration_recorder_filter_name
 
         out["filter_name"] = (
@@ -52,7 +52,7 @@ def deserialize_aws_json_1_1(data: dict) -> ConfigurationRecorderFilter:
                 data["filterName"]
             )
         )
-    if "filterValue" in data:
+    if data.get("filterValue") is not None:
         import capo_config_service.types.configuration_recorder_filter_values
 
         out["filter_value"] = (

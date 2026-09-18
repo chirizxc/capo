@@ -57,19 +57,19 @@ def serialize_aws_json_1_1(value: ProvisioningArtifactParameter) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ProvisioningArtifactParameter:
     out: ProvisioningArtifactParameter = {}  # type: ignore[typeddict-item]
-    if "ParameterKey" in data:
+    if data.get("ParameterKey") is not None:
         out["parameter_key"] = data["ParameterKey"]
-    if "DefaultValue" in data:
+    if data.get("DefaultValue") is not None:
         out["default_value"] = data["DefaultValue"]
-    if "ParameterType" in data:
+    if data.get("ParameterType") is not None:
         out["parameter_type"] = data["ParameterType"]
-    if "IsNoEcho" in data:
+    if data.get("IsNoEcho") is not None:
         out["is_no_echo"] = data["IsNoEcho"]
     else:
         out["is_no_echo"] = False
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "ParameterConstraints" in data:
+    if data.get("ParameterConstraints") is not None:
         import capo_service_catalog.types.parameter_constraints
 
         out["parameter_constraints"] = (

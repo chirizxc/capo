@@ -28,13 +28,13 @@ def serialize_json(value: CreateChatResponseConfigurationResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateChatResponseConfigurationResponse:
     out: CreateChatResponseConfigurationResponse = {}  # type: ignore[typeddict-item]
-    if "chatResponseConfigurationId" in data:
+    if data.get("chatResponseConfigurationId") is not None:
         out["chat_response_configuration_id"] = data["chatResponseConfigurationId"]
     else:
         raise DeserializationError(
             "CreateChatResponseConfigurationResponse.chat_response_configuration_id required"
         )
-    if "chatResponseConfigurationArn" in data:
+    if data.get("chatResponseConfigurationArn") is not None:
         out["chat_response_configuration_arn"] = data["chatResponseConfigurationArn"]
     else:
         raise DeserializationError(

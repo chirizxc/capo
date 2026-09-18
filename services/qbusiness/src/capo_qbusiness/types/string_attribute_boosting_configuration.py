@@ -43,7 +43,7 @@ def serialize_json(value: StringAttributeBoostingConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> StringAttributeBoostingConfiguration:
     out: StringAttributeBoostingConfiguration = {}  # type: ignore[typeddict-item]
-    if "boostingLevel" in data:
+    if data.get("boostingLevel") is not None:
         import capo_qbusiness.types.document_attribute_boosting_level
 
         out["boosting_level"] = (
@@ -55,7 +55,7 @@ def deserialize_json(data: dict) -> StringAttributeBoostingConfiguration:
         raise DeserializationError(
             "StringAttributeBoostingConfiguration.boosting_level required"
         )
-    if "attributeValueBoosting" in data:
+    if data.get("attributeValueBoosting") is not None:
         import capo_qbusiness.types.string_attribute_value_boosting
 
         out["attribute_value_boosting"] = (

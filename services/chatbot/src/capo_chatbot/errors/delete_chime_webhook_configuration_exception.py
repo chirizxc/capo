@@ -24,7 +24,7 @@ def serialize_json(value: DeleteChimeWebhookConfigurationException_) -> dict:
 
 def deserialize_json(data: dict) -> DeleteChimeWebhookConfigurationException_:
     out: DeleteChimeWebhookConfigurationException_ = {}  # type: ignore[typeddict-item]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     return out
 
@@ -34,15 +34,22 @@ class DeleteChimeWebhookConfigurationException(ServiceError):
 
     code: str | None = "DeleteChimeWebhookConfigurationException"
 
-    def __init__(self, data: DeleteChimeWebhookConfigurationException_):
+    def __init__(
+        self,
+        data: DeleteChimeWebhookConfigurationException_,
+        message: str | None = None,
+    ):
         super().__init__(
             "server",
             is_throttling_error=False,
             is_retryable=False,
             code="DeleteChimeWebhookConfigurationException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "DeleteChimeWebhookConfigurationException":
-        return cls(deserialize_json(data))
+    def from_json(
+        cls, data: dict, message: str | None = None
+    ) -> "DeleteChimeWebhookConfigurationException":
+        return cls(deserialize_json(data), message)

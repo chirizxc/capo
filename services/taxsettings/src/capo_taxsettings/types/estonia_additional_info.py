@@ -26,7 +26,7 @@ def serialize_json(value: EstoniaAdditionalInfo) -> dict:
 
 def deserialize_json(data: dict) -> EstoniaAdditionalInfo:
     out: EstoniaAdditionalInfo = {}  # type: ignore[typeddict-item]
-    if "registryCommercialCode" in data:
+    if data.get("registryCommercialCode") is not None:
         out["registry_commercial_code"] = data["registryCommercialCode"]
     else:
         raise DeserializationError(

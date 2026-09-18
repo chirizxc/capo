@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: DeleteDevicePoolRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteDevicePoolRequest:
     out: DeleteDevicePoolRequest = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("DeleteDevicePoolRequest.arn required")

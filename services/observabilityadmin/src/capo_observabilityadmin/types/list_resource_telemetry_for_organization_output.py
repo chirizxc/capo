@@ -36,7 +36,7 @@ def serialize_json(value: ListResourceTelemetryForOrganizationOutput) -> dict:
 
 def deserialize_json(data: dict) -> ListResourceTelemetryForOrganizationOutput:
     out: ListResourceTelemetryForOrganizationOutput = {}  # type: ignore[typeddict-item]
-    if "TelemetryConfigurations" in data:
+    if data.get("TelemetryConfigurations") is not None:
         import capo_observabilityadmin.types.telemetry_configurations
 
         out["telemetry_configurations"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> ListResourceTelemetryForOrganizationOutput:
                 data["TelemetryConfigurations"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

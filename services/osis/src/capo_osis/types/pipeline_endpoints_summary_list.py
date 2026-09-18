@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> PipelineEndpointsSummaryList:
 
     out: PipelineEndpointsSummaryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_osis.types.pipeline_endpoint.deserialize_json(item))
     return out

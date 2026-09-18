@@ -106,7 +106,7 @@ def serialize_json(value: SourceLocation) -> dict:
 
 def deserialize_json(data: dict) -> SourceLocation:
     out: SourceLocation = {}  # type: ignore[typeddict-item]
-    if "AccessConfiguration" in data:
+    if data.get("AccessConfiguration") is not None:
         import capo_mediatailor.types.access_configuration
 
         out["access_configuration"] = (
@@ -114,17 +114,17 @@ def deserialize_json(data: dict) -> SourceLocation:
                 data["AccessConfiguration"]
             )
         )
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
     else:
         raise DeserializationError("SourceLocation.arn required")
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_mediatailor.types.__timestamp_unix
 
         out["creation_time"] = capo_mediatailor.types.__timestamp_unix.deserialize_json(
             data["CreationTime"]
         )
-    if "DefaultSegmentDeliveryConfiguration" in data:
+    if data.get("DefaultSegmentDeliveryConfiguration") is not None:
         import capo_mediatailor.types.default_segment_delivery_configuration
 
         out["default_segment_delivery_configuration"] = (
@@ -132,7 +132,7 @@ def deserialize_json(data: dict) -> SourceLocation:
                 data["DefaultSegmentDeliveryConfiguration"]
             )
         )
-    if "HttpConfiguration" in data:
+    if data.get("HttpConfiguration") is not None:
         import capo_mediatailor.types.http_configuration
 
         out["http_configuration"] = (
@@ -142,7 +142,7 @@ def deserialize_json(data: dict) -> SourceLocation:
         )
     else:
         raise DeserializationError("SourceLocation.http_configuration required")
-    if "LastModifiedTime" in data:
+    if data.get("LastModifiedTime") is not None:
         import capo_mediatailor.types.__timestamp_unix
 
         out["last_modified_time"] = (
@@ -150,7 +150,7 @@ def deserialize_json(data: dict) -> SourceLocation:
                 data["LastModifiedTime"]
             )
         )
-    if "SegmentDeliveryConfigurations" in data:
+    if data.get("SegmentDeliveryConfigurations") is not None:
         import capo_mediatailor.types.__list_of_segment_delivery_configuration
 
         out["segment_delivery_configurations"] = (
@@ -158,11 +158,11 @@ def deserialize_json(data: dict) -> SourceLocation:
                 data["SegmentDeliveryConfigurations"]
             )
         )
-    if "SourceLocationName" in data:
+    if data.get("SourceLocationName") is not None:
         out["source_location_name"] = data["SourceLocationName"]
     else:
         raise DeserializationError("SourceLocation.source_location_name required")
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_mediatailor.types.__map_of__string
 
         out["tags"] = capo_mediatailor.types.__map_of__string.deserialize_json(

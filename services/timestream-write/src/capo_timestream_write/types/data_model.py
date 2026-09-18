@@ -80,9 +80,9 @@ def serialize_aws_json_1_0(value: DataModel) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> DataModel:
     out: DataModel = {}  # type: ignore[typeddict-item]
-    if "TimeColumn" in data:
+    if data.get("TimeColumn") is not None:
         out["time_column"] = data["TimeColumn"]
-    if "TimeUnit" in data:
+    if data.get("TimeUnit") is not None:
         import capo_timestream_write.types.time_unit
 
         out["time_unit"] = (
@@ -90,7 +90,7 @@ def deserialize_aws_json_1_0(data: dict) -> DataModel:
                 data["TimeUnit"]
             )
         )
-    if "DimensionMappings" in data:
+    if data.get("DimensionMappings") is not None:
         import capo_timestream_write.types.dimension_mappings
 
         out["dimension_mappings"] = (
@@ -100,7 +100,7 @@ def deserialize_aws_json_1_0(data: dict) -> DataModel:
         )
     else:
         raise DeserializationError("DataModel.dimension_mappings required")
-    if "MultiMeasureMappings" in data:
+    if data.get("MultiMeasureMappings") is not None:
         import capo_timestream_write.types.multi_measure_mappings
 
         out["multi_measure_mappings"] = (
@@ -108,7 +108,7 @@ def deserialize_aws_json_1_0(data: dict) -> DataModel:
                 data["MultiMeasureMappings"]
             )
         )
-    if "MixedMeasureMappings" in data:
+    if data.get("MixedMeasureMappings") is not None:
         import capo_timestream_write.types.mixed_measure_mapping_list
 
         out["mixed_measure_mappings"] = (
@@ -116,6 +116,6 @@ def deserialize_aws_json_1_0(data: dict) -> DataModel:
                 data["MixedMeasureMappings"]
             )
         )
-    if "MeasureNameColumn" in data:
+    if data.get("MeasureNameColumn") is not None:
         out["measure_name_column"] = data["MeasureNameColumn"]
     return out

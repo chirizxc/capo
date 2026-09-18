@@ -25,6 +25,8 @@ def deserialize_aws_json_1_1(data: list) -> SecurityConfigurationList:
 
     out: SecurityConfigurationList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_glue.types.security_configuration.deserialize_aws_json_1_1(item)
         )

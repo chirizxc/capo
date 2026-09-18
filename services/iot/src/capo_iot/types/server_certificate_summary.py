@@ -45,9 +45,9 @@ def serialize_json(value: ServerCertificateSummary) -> dict:
 
 def deserialize_json(data: dict) -> ServerCertificateSummary:
     out: ServerCertificateSummary = {}  # type: ignore[typeddict-item]
-    if "serverCertificateArn" in data:
+    if data.get("serverCertificateArn") is not None:
         out["server_certificate_arn"] = data["serverCertificateArn"]
-    if "serverCertificateStatus" in data:
+    if data.get("serverCertificateStatus") is not None:
         import capo_iot.types.server_certificate_status
 
         out["server_certificate_status"] = (
@@ -55,6 +55,6 @@ def deserialize_json(data: dict) -> ServerCertificateSummary:
                 data["serverCertificateStatus"]
             )
         )
-    if "serverCertificateStatusDetail" in data:
+    if data.get("serverCertificateStatusDetail") is not None:
         out["server_certificate_status_detail"] = data["serverCertificateStatusDetail"]
     return out

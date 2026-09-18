@@ -23,6 +23,6 @@ def serialize_json(value: DeleteTaxRegistrationRequest) -> dict:
 
 def deserialize_json(data: dict) -> DeleteTaxRegistrationRequest:
     out: DeleteTaxRegistrationRequest = {}  # type: ignore[typeddict-item]
-    if "accountId" in data:
+    if data.get("accountId") is not None:
         out["account_id"] = data["accountId"]
     return out

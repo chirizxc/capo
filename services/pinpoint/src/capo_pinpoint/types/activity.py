@@ -129,13 +129,13 @@ def serialize_json(value: Activity) -> dict:
 
 def deserialize_json(data: dict) -> Activity:
     out: Activity = {}  # type: ignore[typeddict-item]
-    if "CUSTOM" in data:
+    if data.get("CUSTOM") is not None:
         import capo_pinpoint.types.custom_message_activity
 
         out["custom"] = capo_pinpoint.types.custom_message_activity.deserialize_json(
             data["CUSTOM"]
         )
-    if "ConditionalSplit" in data:
+    if data.get("ConditionalSplit") is not None:
         import capo_pinpoint.types.conditional_split_activity
 
         out["conditional_split"] = (
@@ -143,21 +143,21 @@ def deserialize_json(data: dict) -> Activity:
                 data["ConditionalSplit"]
             )
         )
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "EMAIL" in data:
+    if data.get("EMAIL") is not None:
         import capo_pinpoint.types.email_message_activity
 
         out["email"] = capo_pinpoint.types.email_message_activity.deserialize_json(
             data["EMAIL"]
         )
-    if "Holdout" in data:
+    if data.get("Holdout") is not None:
         import capo_pinpoint.types.holdout_activity
 
         out["holdout"] = capo_pinpoint.types.holdout_activity.deserialize_json(
             data["Holdout"]
         )
-    if "MultiCondition" in data:
+    if data.get("MultiCondition") is not None:
         import capo_pinpoint.types.multi_conditional_split_activity
 
         out["multi_condition"] = (
@@ -165,13 +165,13 @@ def deserialize_json(data: dict) -> Activity:
                 data["MultiCondition"]
             )
         )
-    if "PUSH" in data:
+    if data.get("PUSH") is not None:
         import capo_pinpoint.types.push_message_activity
 
         out["push"] = capo_pinpoint.types.push_message_activity.deserialize_json(
             data["PUSH"]
         )
-    if "RandomSplit" in data:
+    if data.get("RandomSplit") is not None:
         import capo_pinpoint.types.random_split_activity
 
         out["random_split"] = (
@@ -179,17 +179,17 @@ def deserialize_json(data: dict) -> Activity:
                 data["RandomSplit"]
             )
         )
-    if "SMS" in data:
+    if data.get("SMS") is not None:
         import capo_pinpoint.types.sms_message_activity
 
         out["sms"] = capo_pinpoint.types.sms_message_activity.deserialize_json(
             data["SMS"]
         )
-    if "Wait" in data:
+    if data.get("Wait") is not None:
         import capo_pinpoint.types.wait_activity
 
         out["wait"] = capo_pinpoint.types.wait_activity.deserialize_json(data["Wait"])
-    if "ContactCenter" in data:
+    if data.get("ContactCenter") is not None:
         import capo_pinpoint.types.contact_center_activity
 
         out["contact_center"] = (

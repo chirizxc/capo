@@ -45,7 +45,7 @@ class CloudFrontOriginAccessIdentityInUse(ServiceError):
             is_throttling_error=False,
             is_retryable=False,
             code="CloudFrontOriginAccessIdentityInUse",
-            message=message if message is not None else data.get("message"),
+            message=message,
         )
         self.data = data
 

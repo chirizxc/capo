@@ -43,7 +43,7 @@ def serialize_json(value: StartIdMappingJobInput) -> dict:
 
 def deserialize_json(data: dict) -> StartIdMappingJobInput:
     out: StartIdMappingJobInput = {}  # type: ignore[typeddict-item]
-    if "outputSourceConfig" in data:
+    if data.get("outputSourceConfig") is not None:
         import capo_entityresolution.types.id_mapping_job_output_source_config
 
         out["output_source_config"] = (
@@ -51,7 +51,7 @@ def deserialize_json(data: dict) -> StartIdMappingJobInput:
                 data["outputSourceConfig"]
             )
         )
-    if "jobType" in data:
+    if data.get("jobType") is not None:
         import capo_entityresolution.types.job_type
 
         out["job_type"] = capo_entityresolution.types.job_type.deserialize_json(

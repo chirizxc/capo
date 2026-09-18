@@ -66,7 +66,7 @@ def serialize_json(value: StopCisSessionMessage) -> dict:
 
 def deserialize_json(data: dict) -> StopCisSessionMessage:
     out: StopCisSessionMessage = {}  # type: ignore[typeddict-item]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_inspector2.types.stop_cis_session_status
 
         out["status"] = capo_inspector2.types.stop_cis_session_status.deserialize_json(
@@ -74,9 +74,9 @@ def deserialize_json(data: dict) -> StopCisSessionMessage:
         )
     else:
         raise DeserializationError("StopCisSessionMessage.status required")
-    if "reason" in data:
+    if data.get("reason") is not None:
         out["reason"] = data["reason"]
-    if "progress" in data:
+    if data.get("progress") is not None:
         import capo_inspector2.types.stop_cis_message_progress
 
         out["progress"] = (
@@ -86,7 +86,7 @@ def deserialize_json(data: dict) -> StopCisSessionMessage:
         )
     else:
         raise DeserializationError("StopCisSessionMessage.progress required")
-    if "computePlatform" in data:
+    if data.get("computePlatform") is not None:
         import capo_inspector2.types.compute_platform
 
         out["compute_platform"] = (
@@ -94,8 +94,8 @@ def deserialize_json(data: dict) -> StopCisSessionMessage:
                 data["computePlatform"]
             )
         )
-    if "benchmarkVersion" in data:
+    if data.get("benchmarkVersion") is not None:
         out["benchmark_version"] = data["benchmarkVersion"]
-    if "benchmarkProfile" in data:
+    if data.get("benchmarkProfile") is not None:
         out["benchmark_profile"] = data["benchmarkProfile"]
     return out

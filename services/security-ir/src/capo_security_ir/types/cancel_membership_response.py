@@ -24,7 +24,7 @@ def serialize_json(value: CancelMembershipResponse) -> dict:
 
 def deserialize_json(data: dict) -> CancelMembershipResponse:
     out: CancelMembershipResponse = {}  # type: ignore[typeddict-item]
-    if "membershipId" in data:
+    if data.get("membershipId") is not None:
         out["membership_id"] = data["membershipId"]
     else:
         raise DeserializationError("CancelMembershipResponse.membership_id required")

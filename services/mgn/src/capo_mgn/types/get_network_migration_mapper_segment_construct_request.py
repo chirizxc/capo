@@ -40,25 +40,25 @@ def serialize_json(value: GetNetworkMigrationMapperSegmentConstructRequest) -> d
 
 def deserialize_json(data: dict) -> GetNetworkMigrationMapperSegmentConstructRequest:
     out: GetNetworkMigrationMapperSegmentConstructRequest = {}  # type: ignore[typeddict-item]
-    if "networkMigrationDefinitionID" in data:
+    if data.get("networkMigrationDefinitionID") is not None:
         out["network_migration_definition_id"] = data["networkMigrationDefinitionID"]
     else:
         raise DeserializationError(
             "GetNetworkMigrationMapperSegmentConstructRequest.network_migration_definition_id required"
         )
-    if "networkMigrationExecutionID" in data:
+    if data.get("networkMigrationExecutionID") is not None:
         out["network_migration_execution_id"] = data["networkMigrationExecutionID"]
     else:
         raise DeserializationError(
             "GetNetworkMigrationMapperSegmentConstructRequest.network_migration_execution_id required"
         )
-    if "segmentID" in data:
+    if data.get("segmentID") is not None:
         out["segment_id"] = data["segmentID"]
     else:
         raise DeserializationError(
             "GetNetworkMigrationMapperSegmentConstructRequest.segment_id required"
         )
-    if "constructID" in data:
+    if data.get("constructID") is not None:
         out["construct_id"] = data["constructID"]
     else:
         raise DeserializationError(

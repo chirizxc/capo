@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> RoadSnapNoticeList:
 
     out: RoadSnapNoticeList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_geo_routes.types.road_snap_notice.deserialize_json(item))
     return out

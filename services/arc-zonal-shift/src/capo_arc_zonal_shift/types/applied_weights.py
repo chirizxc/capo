@@ -16,12 +16,22 @@ AppliedWeights: TypeAlias = dict[
 def serialize_json(input_to_serialize: AppliedWeights) -> dict:
     out: dict = {}
     for key, value in input_to_serialize.items():
-        out[key] = value
+        out[key] = (
+            "NaN"
+            if value != value
+            else "Infinity"
+            if value == float("inf")
+            else "-Infinity"
+            if value == float("-inf")
+            else value
+        )
     return out
 
 
 def deserialize_json(data: dict) -> AppliedWeights:
     out: AppliedWeights = {}
     for key, value in data.items():
-        out[key] = value
+        if value is None:
+            continue
+        out[key] = float(value)
     return out

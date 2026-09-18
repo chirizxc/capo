@@ -46,19 +46,19 @@ def serialize_json(value: CreateTemplateGroupAccessControlEntryRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateTemplateGroupAccessControlEntryRequest:
     out: CreateTemplateGroupAccessControlEntryRequest = {}  # type: ignore[typeddict-item]
-    if "GroupSecurityIdentifier" in data:
+    if data.get("GroupSecurityIdentifier") is not None:
         out["group_security_identifier"] = data["GroupSecurityIdentifier"]
     else:
         raise DeserializationError(
             "CreateTemplateGroupAccessControlEntryRequest.group_security_identifier required"
         )
-    if "GroupDisplayName" in data:
+    if data.get("GroupDisplayName") is not None:
         out["group_display_name"] = data["GroupDisplayName"]
     else:
         raise DeserializationError(
             "CreateTemplateGroupAccessControlEntryRequest.group_display_name required"
         )
-    if "AccessRights" in data:
+    if data.get("AccessRights") is not None:
         import capo_pca_connector_ad.types.access_rights
 
         out["access_rights"] = (
@@ -70,6 +70,6 @@ def deserialize_json(data: dict) -> CreateTemplateGroupAccessControlEntryRequest
         raise DeserializationError(
             "CreateTemplateGroupAccessControlEntryRequest.access_rights required"
         )
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
     return out

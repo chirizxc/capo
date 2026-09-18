@@ -181,7 +181,7 @@ def serialize_json(value: CreateInputRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateInputRequest:
     out: CreateInputRequest = {}  # type: ignore[typeddict-item]
-    if "destinations" in data:
+    if data.get("destinations") is not None:
         import capo_medialive.types.__list_of_input_destination_request
 
         out["destinations"] = (
@@ -189,7 +189,7 @@ def deserialize_json(data: dict) -> CreateInputRequest:
                 data["destinations"]
             )
         )
-    if "inputDevices" in data:
+    if data.get("inputDevices") is not None:
         import capo_medialive.types.__list_of_input_device_settings
 
         out["input_devices"] = (
@@ -197,7 +197,7 @@ def deserialize_json(data: dict) -> CreateInputRequest:
                 data["inputDevices"]
             )
         )
-    if "inputSecurityGroups" in data:
+    if data.get("inputSecurityGroups") is not None:
         import capo_medialive.types.__list_of__string
 
         out["input_security_groups"] = (
@@ -205,7 +205,7 @@ def deserialize_json(data: dict) -> CreateInputRequest:
                 data["inputSecurityGroups"]
             )
         )
-    if "mediaConnectFlows" in data:
+    if data.get("mediaConnectFlows") is not None:
         import capo_medialive.types.__list_of_media_connect_flow_request
 
         out["media_connect_flows"] = (
@@ -213,13 +213,13 @@ def deserialize_json(data: dict) -> CreateInputRequest:
                 data["mediaConnectFlows"]
             )
         )
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "requestId" in data:
+    if data.get("requestId") is not None:
         out["request_id"] = data["requestId"]
-    if "roleArn" in data:
+    if data.get("roleArn") is not None:
         out["role_arn"] = data["roleArn"]
-    if "sources" in data:
+    if data.get("sources") is not None:
         import capo_medialive.types.__list_of_input_source_request
 
         out["sources"] = (
@@ -227,21 +227,21 @@ def deserialize_json(data: dict) -> CreateInputRequest:
                 data["sources"]
             )
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_medialive.types.tags
 
         out["tags"] = capo_medialive.types.tags.deserialize_json(data["tags"])
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_medialive.types.input_type
 
         out["type"] = capo_medialive.types.input_type.deserialize_json(data["type"])
-    if "vpc" in data:
+    if data.get("vpc") is not None:
         import capo_medialive.types.input_vpc_request
 
         out["vpc"] = capo_medialive.types.input_vpc_request.deserialize_json(
             data["vpc"]
         )
-    if "srtSettings" in data:
+    if data.get("srtSettings") is not None:
         import capo_medialive.types.srt_settings_request
 
         out["srt_settings"] = (
@@ -249,7 +249,7 @@ def deserialize_json(data: dict) -> CreateInputRequest:
                 data["srtSettings"]
             )
         )
-    if "inputNetworkLocation" in data:
+    if data.get("inputNetworkLocation") is not None:
         import capo_medialive.types.input_network_location
 
         out["input_network_location"] = (
@@ -257,7 +257,7 @@ def deserialize_json(data: dict) -> CreateInputRequest:
                 data["inputNetworkLocation"]
             )
         )
-    if "multicastSettings" in data:
+    if data.get("multicastSettings") is not None:
         import capo_medialive.types.multicast_settings_create_request
 
         out["multicast_settings"] = (
@@ -265,7 +265,7 @@ def deserialize_json(data: dict) -> CreateInputRequest:
                 data["multicastSettings"]
             )
         )
-    if "smpte2110ReceiverGroupSettings" in data:
+    if data.get("smpte2110ReceiverGroupSettings") is not None:
         import capo_medialive.types.smpte2110_receiver_group_settings
 
         out["smpte2110_receiver_group_settings"] = (
@@ -273,13 +273,13 @@ def deserialize_json(data: dict) -> CreateInputRequest:
                 data["smpte2110ReceiverGroupSettings"]
             )
         )
-    if "sdiSources" in data:
+    if data.get("sdiSources") is not None:
         import capo_medialive.types.input_sdi_sources
 
         out["sdi_sources"] = capo_medialive.types.input_sdi_sources.deserialize_json(
             data["sdiSources"]
         )
-    if "routerSettings" in data:
+    if data.get("routerSettings") is not None:
         import capo_medialive.types.router_settings
 
         out["router_settings"] = capo_medialive.types.router_settings.deserialize_json(

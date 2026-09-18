@@ -27,7 +27,7 @@ def serialize_json(value: GetCampaignStateBatchRequest) -> dict:
 
 def deserialize_json(data: dict) -> GetCampaignStateBatchRequest:
     out: GetCampaignStateBatchRequest = {}  # type: ignore[typeddict-item]
-    if "campaignIds" in data:
+    if data.get("campaignIds") is not None:
         import capo_connectcampaignsv2.types.campaign_id_list
 
         out["campaign_ids"] = (

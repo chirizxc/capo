@@ -32,9 +32,9 @@ def serialize_json(value: ListPresetsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListPresetsResponse:
     out: ListPresetsResponse = {}  # type: ignore[typeddict-item]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "presets" in data:
+    if data.get("presets") is not None:
         import capo_mediaconvert.types.__list_of_preset
 
         out["presets"] = capo_mediaconvert.types.__list_of_preset.deserialize_json(

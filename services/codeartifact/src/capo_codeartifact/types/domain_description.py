@@ -67,34 +67,34 @@ def serialize_json(value: DomainDescription) -> dict:
 
 def deserialize_json(data: dict) -> DomainDescription:
     out: DomainDescription = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "owner" in data:
+    if data.get("owner") is not None:
         out["owner"] = data["owner"]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_codeartifact.types.domain_status
 
         out["status"] = capo_codeartifact.types.domain_status.deserialize_json(
             data["status"]
         )
-    if "createdTime" in data:
+    if data.get("createdTime") is not None:
         import capo_codeartifact.types.timestamp
 
         out["created_time"] = capo_codeartifact.types.timestamp.deserialize_json(
             data["createdTime"]
         )
-    if "encryptionKey" in data:
+    if data.get("encryptionKey") is not None:
         out["encryption_key"] = data["encryptionKey"]
-    if "repositoryCount" in data:
+    if data.get("repositoryCount") is not None:
         out["repository_count"] = data["repositoryCount"]
     else:
         out["repository_count"] = 0
-    if "assetSizeBytes" in data:
+    if data.get("assetSizeBytes") is not None:
         out["asset_size_bytes"] = data["assetSizeBytes"]
     else:
         out["asset_size_bytes"] = 0
-    if "s3BucketArn" in data:
+    if data.get("s3BucketArn") is not None:
         out["s3_bucket_arn"] = data["s3BucketArn"]
     return out

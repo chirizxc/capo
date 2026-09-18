@@ -135,17 +135,17 @@ def serialize_aws_json_1_1(value: RedshiftDestinationConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RedshiftDestinationConfiguration:
     out: RedshiftDestinationConfiguration = {}  # type: ignore[typeddict-item]
-    if "RoleARN" in data:
+    if data.get("RoleARN") is not None:
         out["role_arn"] = data["RoleARN"]
     else:
         raise DeserializationError("RedshiftDestinationConfiguration.role_arn required")
-    if "ClusterJDBCURL" in data:
+    if data.get("ClusterJDBCURL") is not None:
         out["cluster_jdbcurl"] = data["ClusterJDBCURL"]
     else:
         raise DeserializationError(
             "RedshiftDestinationConfiguration.cluster_jdbcurl required"
         )
-    if "CopyCommand" in data:
+    if data.get("CopyCommand") is not None:
         import capo_firehose.types.copy_command
 
         out["copy_command"] = capo_firehose.types.copy_command.deserialize_aws_json_1_1(
@@ -155,11 +155,11 @@ def deserialize_aws_json_1_1(data: dict) -> RedshiftDestinationConfiguration:
         raise DeserializationError(
             "RedshiftDestinationConfiguration.copy_command required"
         )
-    if "Username" in data:
+    if data.get("Username") is not None:
         out["username"] = data["Username"]
-    if "Password" in data:
+    if data.get("Password") is not None:
         out["password"] = data["Password"]
-    if "RetryOptions" in data:
+    if data.get("RetryOptions") is not None:
         import capo_firehose.types.redshift_retry_options
 
         out["retry_options"] = (
@@ -167,7 +167,7 @@ def deserialize_aws_json_1_1(data: dict) -> RedshiftDestinationConfiguration:
                 data["RetryOptions"]
             )
         )
-    if "S3Configuration" in data:
+    if data.get("S3Configuration") is not None:
         import capo_firehose.types.s3_destination_configuration
 
         out["s3_configuration"] = (
@@ -179,7 +179,7 @@ def deserialize_aws_json_1_1(data: dict) -> RedshiftDestinationConfiguration:
         raise DeserializationError(
             "RedshiftDestinationConfiguration.s3_configuration required"
         )
-    if "ProcessingConfiguration" in data:
+    if data.get("ProcessingConfiguration") is not None:
         import capo_firehose.types.processing_configuration
 
         out["processing_configuration"] = (
@@ -187,7 +187,7 @@ def deserialize_aws_json_1_1(data: dict) -> RedshiftDestinationConfiguration:
                 data["ProcessingConfiguration"]
             )
         )
-    if "S3BackupMode" in data:
+    if data.get("S3BackupMode") is not None:
         import capo_firehose.types.redshift_s3_backup_mode
 
         out["s3_backup_mode"] = (
@@ -195,7 +195,7 @@ def deserialize_aws_json_1_1(data: dict) -> RedshiftDestinationConfiguration:
                 data["S3BackupMode"]
             )
         )
-    if "S3BackupConfiguration" in data:
+    if data.get("S3BackupConfiguration") is not None:
         import capo_firehose.types.s3_destination_configuration
 
         out["s3_backup_configuration"] = (
@@ -203,7 +203,7 @@ def deserialize_aws_json_1_1(data: dict) -> RedshiftDestinationConfiguration:
                 data["S3BackupConfiguration"]
             )
         )
-    if "CloudWatchLoggingOptions" in data:
+    if data.get("CloudWatchLoggingOptions") is not None:
         import capo_firehose.types.cloud_watch_logging_options
 
         out["cloud_watch_logging_options"] = (
@@ -211,7 +211,7 @@ def deserialize_aws_json_1_1(data: dict) -> RedshiftDestinationConfiguration:
                 data["CloudWatchLoggingOptions"]
             )
         )
-    if "SecretsManagerConfiguration" in data:
+    if data.get("SecretsManagerConfiguration") is not None:
         import capo_firehose.types.secrets_manager_configuration
 
         out["secrets_manager_configuration"] = (

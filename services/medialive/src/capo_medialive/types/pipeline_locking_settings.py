@@ -36,7 +36,7 @@ def serialize_json(value: PipelineLockingSettings) -> dict:
 
 def deserialize_json(data: dict) -> PipelineLockingSettings:
     out: PipelineLockingSettings = {}  # type: ignore[typeddict-item]
-    if "pipelineLockingMethod" in data:
+    if data.get("pipelineLockingMethod") is not None:
         import capo_medialive.types.pipeline_locking_method
 
         out["pipeline_locking_method"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> PipelineLockingSettings:
                 data["pipelineLockingMethod"]
             )
         )
-    if "customEpoch" in data:
+    if data.get("customEpoch") is not None:
         out["custom_epoch"] = data["customEpoch"]
     return out

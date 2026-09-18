@@ -64,7 +64,7 @@ def serialize_json(value: ConfigDetails) -> dict:
 
 
 def deserialize_json(data: dict) -> ConfigDetails:
-    if "endpointDetails" in data:
+    if data.get("endpointDetails") is not None:
         import capo_groundstation.types.endpoint_details
 
         return {
@@ -72,7 +72,7 @@ def deserialize_json(data: dict) -> ConfigDetails:
                 data["endpointDetails"]
             )
         }
-    elif "antennaDemodDecodeDetails" in data:
+    elif data.get("antennaDemodDecodeDetails") is not None:
         import capo_groundstation.types.antenna_demod_decode_details
 
         return {
@@ -80,7 +80,7 @@ def deserialize_json(data: dict) -> ConfigDetails:
                 data["antennaDemodDecodeDetails"]
             )
         }
-    elif "s3RecordingDetails" in data:
+    elif data.get("s3RecordingDetails") is not None:
         import capo_groundstation.types.s3_recording_details
 
         return {

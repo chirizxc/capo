@@ -29,6 +29,8 @@ def deserialize_aws_json_1_1(data: list) -> MultiRegionParameterGroupList:
 
     out: MultiRegionParameterGroupList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_memorydb.types.multi_region_parameter_group.deserialize_aws_json_1_1(
                 item

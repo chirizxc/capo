@@ -30,7 +30,7 @@ def serialize_json(value: GetInAppMessagesResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetInAppMessagesResponse:
     out: GetInAppMessagesResponse = {}  # type: ignore[typeddict-item]
-    if "InAppMessagesResponse" in data:
+    if data.get("InAppMessagesResponse") is not None:
         import capo_pinpoint.types.in_app_messages_response
 
         out["in_app_messages_response"] = (

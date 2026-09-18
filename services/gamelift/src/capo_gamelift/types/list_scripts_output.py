@@ -32,12 +32,12 @@ def serialize_aws_json_1_1(value: ListScriptsOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListScriptsOutput:
     out: ListScriptsOutput = {}  # type: ignore[typeddict-item]
-    if "Scripts" in data:
+    if data.get("Scripts") is not None:
         import capo_gamelift.types.script_list
 
         out["scripts"] = capo_gamelift.types.script_list.deserialize_aws_json_1_1(
             data["Scripts"]
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

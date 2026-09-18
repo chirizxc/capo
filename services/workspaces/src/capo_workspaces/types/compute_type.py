@@ -27,7 +27,7 @@ def serialize_aws_json_1_1(value: ComputeType) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ComputeType:
     out: ComputeType = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         import capo_workspaces.types.compute
 
         out["name"] = capo_workspaces.types.compute.deserialize_aws_json_1_1(

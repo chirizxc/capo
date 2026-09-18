@@ -26,7 +26,7 @@ def serialize_json(value: CreateApplicationInstanceResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateApplicationInstanceResponse:
     out: CreateApplicationInstanceResponse = {}  # type: ignore[typeddict-item]
-    if "ApplicationInstanceId" in data:
+    if data.get("ApplicationInstanceId") is not None:
         out["application_instance_id"] = data["ApplicationInstanceId"]
     else:
         raise DeserializationError(

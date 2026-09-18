@@ -39,13 +39,13 @@ def serialize_json(value: MeshSpec) -> dict:
 
 def deserialize_json(data: dict) -> MeshSpec:
     out: MeshSpec = {}  # type: ignore[typeddict-item]
-    if "egressFilter" in data:
+    if data.get("egressFilter") is not None:
         import capo_app_mesh.types.egress_filter
 
         out["egress_filter"] = capo_app_mesh.types.egress_filter.deserialize_json(
             data["egressFilter"]
         )
-    if "serviceDiscovery" in data:
+    if data.get("serviceDiscovery") is not None:
         import capo_app_mesh.types.mesh_service_discovery
 
         out["service_discovery"] = (

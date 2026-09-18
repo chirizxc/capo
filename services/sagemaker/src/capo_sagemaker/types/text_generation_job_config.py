@@ -61,7 +61,7 @@ def serialize_aws_json_1_1(value: TextGenerationJobConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> TextGenerationJobConfig:
     out: TextGenerationJobConfig = {}  # type: ignore[typeddict-item]
-    if "CompletionCriteria" in data:
+    if data.get("CompletionCriteria") is not None:
         import capo_sagemaker.types.auto_ml_job_completion_criteria
 
         out["completion_criteria"] = (
@@ -69,9 +69,9 @@ def deserialize_aws_json_1_1(data: dict) -> TextGenerationJobConfig:
                 data["CompletionCriteria"]
             )
         )
-    if "BaseModelName" in data:
+    if data.get("BaseModelName") is not None:
         out["base_model_name"] = data["BaseModelName"]
-    if "TextGenerationHyperParameters" in data:
+    if data.get("TextGenerationHyperParameters") is not None:
         import capo_sagemaker.types.text_generation_hyper_parameters
 
         out["text_generation_hyper_parameters"] = (
@@ -79,7 +79,7 @@ def deserialize_aws_json_1_1(data: dict) -> TextGenerationJobConfig:
                 data["TextGenerationHyperParameters"]
             )
         )
-    if "ModelAccessConfig" in data:
+    if data.get("ModelAccessConfig") is not None:
         import capo_sagemaker.types.model_access_config
 
         out["model_access_config"] = (

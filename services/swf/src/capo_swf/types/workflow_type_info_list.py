@@ -25,5 +25,7 @@ def deserialize_aws_json_1_0(data: list) -> WorkflowTypeInfoList:
 
     out: WorkflowTypeInfoList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_swf.types.workflow_type_info.deserialize_aws_json_1_0(item))
     return out

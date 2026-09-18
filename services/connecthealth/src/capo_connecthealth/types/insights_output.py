@@ -24,7 +24,7 @@ def serialize_json(value: InsightsOutput) -> dict:
 
 def deserialize_json(data: dict) -> InsightsOutput:
     out: InsightsOutput = {}  # type: ignore[typeddict-item]
-    if "uri" in data:
+    if data.get("uri") is not None:
         out["uri"] = data["uri"]
     else:
         raise DeserializationError("InsightsOutput.uri required")

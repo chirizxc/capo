@@ -28,11 +28,11 @@ def serialize_json(value: Association) -> dict:
 
 def deserialize_json(data: dict) -> Association:
     out: Association = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("Association.arn required")
-    if "type" in data:
+    if data.get("type") is not None:
         out["type"] = data["type"]
     else:
         raise DeserializationError("Association.type required")

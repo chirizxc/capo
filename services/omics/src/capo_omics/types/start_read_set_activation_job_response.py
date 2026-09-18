@@ -31,9 +31,9 @@ def serialize_json(value: StartReadSetActivationJobResponse) -> dict:
     out["id"] = value["id"]
     out["sequenceStoreId"] = value["sequence_store_id"]
     out["status"] = value["status"]
-    import capo_omics.types._prelude.timestamp
+    import capo_omics._protocol.serialize
 
-    out["creationTime"] = capo_omics.types._prelude.timestamp.serialize_json(
+    out["creationTime"] = capo_omics._protocol.serialize.fmt_date_time(
         value["creation_time"]
     )
     return out
@@ -41,25 +41,25 @@ def serialize_json(value: StartReadSetActivationJobResponse) -> dict:
 
 def deserialize_json(data: dict) -> StartReadSetActivationJobResponse:
     out: StartReadSetActivationJobResponse = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("StartReadSetActivationJobResponse.id required")
-    if "sequenceStoreId" in data:
+    if data.get("sequenceStoreId") is not None:
         out["sequence_store_id"] = data["sequenceStoreId"]
     else:
         raise DeserializationError(
             "StartReadSetActivationJobResponse.sequence_store_id required"
         )
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
     else:
         raise DeserializationError("StartReadSetActivationJobResponse.status required")
-    if "creationTime" in data:
-        import capo_omics.types._prelude.timestamp
+    if data.get("creationTime") is not None:
+        import datetime
 
-        out["creation_time"] = capo_omics.types._prelude.timestamp.deserialize_json(
-            data["creationTime"]
+        out["creation_time"] = datetime.datetime.fromisoformat(
+            data["creationTime"].replace("Z", "+00:00")
         )
     else:
         raise DeserializationError(

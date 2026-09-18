@@ -39,15 +39,20 @@ class CacheSubnetGroupAlreadyExistsFault(ServiceError):
 
     code: str | None = "CacheSubnetGroupAlreadyExistsFault"
 
-    def __init__(self, data: CacheSubnetGroupAlreadyExistsFault_):
+    def __init__(
+        self, data: CacheSubnetGroupAlreadyExistsFault_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="CacheSubnetGroupAlreadyExistsFault",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_query(cls, el: Element) -> "CacheSubnetGroupAlreadyExistsFault":
-        return cls(deserialize_query(el))
+    def from_query(
+        cls, el: Element, message: str | None = None
+    ) -> "CacheSubnetGroupAlreadyExistsFault":
+        return cls(deserialize_query(el), message)

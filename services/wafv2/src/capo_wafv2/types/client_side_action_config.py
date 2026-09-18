@@ -28,7 +28,7 @@ def serialize_aws_json_1_1(value: ClientSideActionConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ClientSideActionConfig:
     out: ClientSideActionConfig = {}  # type: ignore[typeddict-item]
-    if "Challenge" in data:
+    if data.get("Challenge") is not None:
         import capo_wafv2.types.client_side_action
 
         out["challenge"] = capo_wafv2.types.client_side_action.deserialize_aws_json_1_1(

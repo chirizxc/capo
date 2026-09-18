@@ -27,13 +27,13 @@ def serialize_aws_json_1_1(value: UpdateLicenseAssetGroupResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateLicenseAssetGroupResponse:
     out: UpdateLicenseAssetGroupResponse = {}  # type: ignore[typeddict-item]
-    if "LicenseAssetGroupArn" in data:
+    if data.get("LicenseAssetGroupArn") is not None:
         out["license_asset_group_arn"] = data["LicenseAssetGroupArn"]
     else:
         raise DeserializationError(
             "UpdateLicenseAssetGroupResponse.license_asset_group_arn required"
         )
-    if "Status" in data:
+    if data.get("Status") is not None:
         out["status"] = data["Status"]
     else:
         raise DeserializationError("UpdateLicenseAssetGroupResponse.status required")

@@ -51,17 +51,17 @@ def serialize_json(value: CreateLegalHoldInput) -> dict:
 
 def deserialize_json(data: dict) -> CreateLegalHoldInput:
     out: CreateLegalHoldInput = {}  # type: ignore[typeddict-item]
-    if "Title" in data:
+    if data.get("Title") is not None:
         out["title"] = data["Title"]
     else:
         raise DeserializationError("CreateLegalHoldInput.title required")
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
     else:
         raise DeserializationError("CreateLegalHoldInput.description required")
-    if "IdempotencyToken" in data:
+    if data.get("IdempotencyToken") is not None:
         out["idempotency_token"] = data["IdempotencyToken"]
-    if "RecoveryPointSelection" in data:
+    if data.get("RecoveryPointSelection") is not None:
         import capo_backup.types.recovery_point_selection
 
         out["recovery_point_selection"] = (
@@ -69,7 +69,7 @@ def deserialize_json(data: dict) -> CreateLegalHoldInput:
                 data["RecoveryPointSelection"]
             )
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_backup.types.tags
 
         out["tags"] = capo_backup.types.tags.deserialize_json(data["Tags"])

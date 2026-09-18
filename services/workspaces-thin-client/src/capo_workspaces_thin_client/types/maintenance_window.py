@@ -74,7 +74,7 @@ def serialize_json(value: MaintenanceWindow) -> dict:
 
 def deserialize_json(data: dict) -> MaintenanceWindow:
     out: MaintenanceWindow = {}  # type: ignore[typeddict-item]
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_workspaces_thin_client.types.maintenance_window_type
 
         out["type"] = (
@@ -84,15 +84,15 @@ def deserialize_json(data: dict) -> MaintenanceWindow:
         )
     else:
         raise DeserializationError("MaintenanceWindow.type required")
-    if "startTimeHour" in data:
+    if data.get("startTimeHour") is not None:
         out["start_time_hour"] = data["startTimeHour"]
-    if "startTimeMinute" in data:
+    if data.get("startTimeMinute") is not None:
         out["start_time_minute"] = data["startTimeMinute"]
-    if "endTimeHour" in data:
+    if data.get("endTimeHour") is not None:
         out["end_time_hour"] = data["endTimeHour"]
-    if "endTimeMinute" in data:
+    if data.get("endTimeMinute") is not None:
         out["end_time_minute"] = data["endTimeMinute"]
-    if "daysOfTheWeek" in data:
+    if data.get("daysOfTheWeek") is not None:
         import capo_workspaces_thin_client.types.day_of_week_list
 
         out["days_of_the_week"] = (
@@ -100,7 +100,7 @@ def deserialize_json(data: dict) -> MaintenanceWindow:
                 data["daysOfTheWeek"]
             )
         )
-    if "applyTimeOf" in data:
+    if data.get("applyTimeOf") is not None:
         import capo_workspaces_thin_client.types.apply_time_of
 
         out["apply_time_of"] = (

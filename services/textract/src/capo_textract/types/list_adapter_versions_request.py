@@ -52,9 +52,9 @@ def serialize_aws_json_1_1(value: ListAdapterVersionsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListAdapterVersionsRequest:
     out: ListAdapterVersionsRequest = {}  # type: ignore[typeddict-item]
-    if "AdapterId" in data:
+    if data.get("AdapterId") is not None:
         out["adapter_id"] = data["AdapterId"]
-    if "AfterCreationTime" in data:
+    if data.get("AfterCreationTime") is not None:
         import capo_textract.types.date_time
 
         out["after_creation_time"] = (
@@ -62,7 +62,7 @@ def deserialize_aws_json_1_1(data: dict) -> ListAdapterVersionsRequest:
                 data["AfterCreationTime"]
             )
         )
-    if "BeforeCreationTime" in data:
+    if data.get("BeforeCreationTime") is not None:
         import capo_textract.types.date_time
 
         out["before_creation_time"] = (
@@ -70,8 +70,8 @@ def deserialize_aws_json_1_1(data: dict) -> ListAdapterVersionsRequest:
                 data["BeforeCreationTime"]
             )
         )
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

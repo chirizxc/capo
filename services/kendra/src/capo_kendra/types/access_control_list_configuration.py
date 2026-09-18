@@ -23,6 +23,6 @@ def serialize_aws_json_1_1(value: AccessControlListConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AccessControlListConfiguration:
     out: AccessControlListConfiguration = {}  # type: ignore[typeddict-item]
-    if "KeyPath" in data:
+    if data.get("KeyPath") is not None:
         out["key_path"] = data["KeyPath"]
     return out

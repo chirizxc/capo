@@ -29,9 +29,9 @@ def serialize_json(value: EnableRegionRequest) -> dict:
 
 def deserialize_json(data: dict) -> EnableRegionRequest:
     out: EnableRegionRequest = {}  # type: ignore[typeddict-item]
-    if "AccountId" in data:
+    if data.get("AccountId") is not None:
         out["account_id"] = data["AccountId"]
-    if "RegionName" in data:
+    if data.get("RegionName") is not None:
         out["region_name"] = data["RegionName"]
     else:
         raise DeserializationError("EnableRegionRequest.region_name required")

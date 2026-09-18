@@ -31,10 +31,10 @@ def serialize_json(value: ImportFindingsError) -> dict:
 
 def deserialize_json(data: dict) -> ImportFindingsError:
     out: ImportFindingsError = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "ErrorCode" in data:
+    if data.get("ErrorCode") is not None:
         out["error_code"] = data["ErrorCode"]
-    if "ErrorMessage" in data:
+    if data.get("ErrorMessage") is not None:
         out["error_message"] = data["ErrorMessage"]
     return out

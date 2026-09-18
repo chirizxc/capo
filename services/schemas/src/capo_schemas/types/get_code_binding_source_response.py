@@ -24,7 +24,7 @@ def serialize_json(value: GetCodeBindingSourceResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetCodeBindingSourceResponse:
     out: GetCodeBindingSourceResponse = {}  # type: ignore[typeddict-item]
-    if "Body" in data:
+    if data.get("Body") is not None:
         import capo_schemas.types.body
 
         out["body"] = capo_schemas.types.body.deserialize_json(data["Body"])

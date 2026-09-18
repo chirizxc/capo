@@ -27,8 +27,8 @@ def serialize_aws_json_1_1(value: InstanceCredentials) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> InstanceCredentials:
     out: InstanceCredentials = {}  # type: ignore[typeddict-item]
-    if "UserName" in data:
+    if data.get("UserName") is not None:
         out["user_name"] = data["UserName"]
-    if "Secret" in data:
+    if data.get("Secret") is not None:
         out["secret"] = data["Secret"]
     return out

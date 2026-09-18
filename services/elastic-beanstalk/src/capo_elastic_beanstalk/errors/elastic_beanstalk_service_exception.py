@@ -40,15 +40,20 @@ class ElasticBeanstalkServiceException(ServiceError):
 
     code: str | None = "ElasticBeanstalkServiceException"
 
-    def __init__(self, data: ElasticBeanstalkServiceException_):
+    def __init__(
+        self, data: ElasticBeanstalkServiceException_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="ElasticBeanstalkServiceException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_query(cls, el: Element) -> "ElasticBeanstalkServiceException":
-        return cls(deserialize_query(el))
+    def from_query(
+        cls, el: Element, message: str | None = None
+    ) -> "ElasticBeanstalkServiceException":
+        return cls(deserialize_query(el), message)

@@ -41,11 +41,11 @@ def serialize_json(value: LogSource) -> dict:
 
 def deserialize_json(data: dict) -> LogSource:
     out: LogSource = {}  # type: ignore[typeddict-item]
-    if "account" in data:
+    if data.get("account") is not None:
         out["account"] = data["account"]
-    if "region" in data:
+    if data.get("region") is not None:
         out["region"] = data["region"]
-    if "sources" in data:
+    if data.get("sources") is not None:
         import capo_securitylake.types.log_source_resource_list
 
         out["sources"] = (

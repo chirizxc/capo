@@ -35,7 +35,7 @@ def serialize_aws_json_1_1(value: ListDataQualityResultsResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListDataQualityResultsResponse:
     out: ListDataQualityResultsResponse = {}  # type: ignore[typeddict-item]
-    if "Results" in data:
+    if data.get("Results") is not None:
         import capo_glue.types.data_quality_result_description_list
 
         out["results"] = (
@@ -45,6 +45,6 @@ def deserialize_aws_json_1_1(data: dict) -> ListDataQualityResultsResponse:
         )
     else:
         raise DeserializationError("ListDataQualityResultsResponse.results required")
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

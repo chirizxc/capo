@@ -40,7 +40,7 @@ def serialize_aws_json_1_1(value: ClusterCapacityRequirements) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ClusterCapacityRequirements:
     out: ClusterCapacityRequirements = {}  # type: ignore[typeddict-item]
-    if "Spot" in data:
+    if data.get("Spot") is not None:
         import capo_sagemaker.types.cluster_spot_options
 
         out["spot"] = (
@@ -48,7 +48,7 @@ def deserialize_aws_json_1_1(data: dict) -> ClusterCapacityRequirements:
                 data["Spot"]
             )
         )
-    if "OnDemand" in data:
+    if data.get("OnDemand") is not None:
         import capo_sagemaker.types.cluster_on_demand_options
 
         out["on_demand"] = (

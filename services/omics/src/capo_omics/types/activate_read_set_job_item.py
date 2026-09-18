@@ -33,15 +33,15 @@ def serialize_json(value: ActivateReadSetJobItem) -> dict:
     out["id"] = value["id"]
     out["sequenceStoreId"] = value["sequence_store_id"]
     out["status"] = value["status"]
-    import capo_omics.types._prelude.timestamp
+    import capo_omics._protocol.serialize
 
-    out["creationTime"] = capo_omics.types._prelude.timestamp.serialize_json(
+    out["creationTime"] = capo_omics._protocol.serialize.fmt_date_time(
         value["creation_time"]
     )
     if "completion_time" in value:
-        import capo_omics.types._prelude.timestamp
+        import capo_omics._protocol.serialize
 
-        out["completionTime"] = capo_omics.types._prelude.timestamp.serialize_json(
+        out["completionTime"] = capo_omics._protocol.serialize.fmt_date_time(
             value["completion_time"]
         )
     return out
@@ -49,30 +49,30 @@ def serialize_json(value: ActivateReadSetJobItem) -> dict:
 
 def deserialize_json(data: dict) -> ActivateReadSetJobItem:
     out: ActivateReadSetJobItem = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("ActivateReadSetJobItem.id required")
-    if "sequenceStoreId" in data:
+    if data.get("sequenceStoreId") is not None:
         out["sequence_store_id"] = data["sequenceStoreId"]
     else:
         raise DeserializationError("ActivateReadSetJobItem.sequence_store_id required")
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
     else:
         raise DeserializationError("ActivateReadSetJobItem.status required")
-    if "creationTime" in data:
-        import capo_omics.types._prelude.timestamp
+    if data.get("creationTime") is not None:
+        import datetime
 
-        out["creation_time"] = capo_omics.types._prelude.timestamp.deserialize_json(
-            data["creationTime"]
+        out["creation_time"] = datetime.datetime.fromisoformat(
+            data["creationTime"].replace("Z", "+00:00")
         )
     else:
         raise DeserializationError("ActivateReadSetJobItem.creation_time required")
-    if "completionTime" in data:
-        import capo_omics.types._prelude.timestamp
+    if data.get("completionTime") is not None:
+        import datetime
 
-        out["completion_time"] = capo_omics.types._prelude.timestamp.deserialize_json(
-            data["completionTime"]
+        out["completion_time"] = datetime.datetime.fromisoformat(
+            data["completionTime"].replace("Z", "+00:00")
         )
     return out

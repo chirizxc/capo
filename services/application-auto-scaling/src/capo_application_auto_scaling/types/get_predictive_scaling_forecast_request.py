@@ -71,7 +71,7 @@ def serialize_aws_json_1_1(value: GetPredictiveScalingForecastRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetPredictiveScalingForecastRequest:
     out: GetPredictiveScalingForecastRequest = {}  # type: ignore[typeddict-item]
-    if "ServiceNamespace" in data:
+    if data.get("ServiceNamespace") is not None:
         import capo_application_auto_scaling.types.service_namespace
 
         out["service_namespace"] = (
@@ -83,13 +83,13 @@ def deserialize_aws_json_1_1(data: dict) -> GetPredictiveScalingForecastRequest:
         raise DeserializationError(
             "GetPredictiveScalingForecastRequest.service_namespace required"
         )
-    if "ResourceId" in data:
+    if data.get("ResourceId") is not None:
         out["resource_id"] = data["ResourceId"]
     else:
         raise DeserializationError(
             "GetPredictiveScalingForecastRequest.resource_id required"
         )
-    if "ScalableDimension" in data:
+    if data.get("ScalableDimension") is not None:
         import capo_application_auto_scaling.types.scalable_dimension
 
         out["scalable_dimension"] = (
@@ -101,13 +101,13 @@ def deserialize_aws_json_1_1(data: dict) -> GetPredictiveScalingForecastRequest:
         raise DeserializationError(
             "GetPredictiveScalingForecastRequest.scalable_dimension required"
         )
-    if "PolicyName" in data:
+    if data.get("PolicyName") is not None:
         out["policy_name"] = data["PolicyName"]
     else:
         raise DeserializationError(
             "GetPredictiveScalingForecastRequest.policy_name required"
         )
-    if "StartTime" in data:
+    if data.get("StartTime") is not None:
         import capo_application_auto_scaling.types.timestamp_type
 
         out["start_time"] = (
@@ -119,7 +119,7 @@ def deserialize_aws_json_1_1(data: dict) -> GetPredictiveScalingForecastRequest:
         raise DeserializationError(
             "GetPredictiveScalingForecastRequest.start_time required"
         )
-    if "EndTime" in data:
+    if data.get("EndTime") is not None:
         import capo_application_auto_scaling.types.timestamp_type
 
         out["end_time"] = (

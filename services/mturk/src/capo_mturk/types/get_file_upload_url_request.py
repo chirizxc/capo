@@ -28,11 +28,11 @@ def serialize_aws_json_1_1(value: GetFileUploadURLRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetFileUploadURLRequest:
     out: GetFileUploadURLRequest = {}  # type: ignore[typeddict-item]
-    if "AssignmentId" in data:
+    if data.get("AssignmentId") is not None:
         out["assignment_id"] = data["AssignmentId"]
     else:
         raise DeserializationError("GetFileUploadURLRequest.assignment_id required")
-    if "QuestionIdentifier" in data:
+    if data.get("QuestionIdentifier") is not None:
         out["question_identifier"] = data["QuestionIdentifier"]
     else:
         raise DeserializationError(

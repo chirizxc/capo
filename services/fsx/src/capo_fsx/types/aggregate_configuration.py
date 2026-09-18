@@ -34,12 +34,12 @@ def serialize_aws_json_1_1(value: AggregateConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AggregateConfiguration:
     out: AggregateConfiguration = {}  # type: ignore[typeddict-item]
-    if "Aggregates" in data:
+    if data.get("Aggregates") is not None:
         import capo_fsx.types.aggregates
 
         out["aggregates"] = capo_fsx.types.aggregates.deserialize_aws_json_1_1(
             data["Aggregates"]
         )
-    if "TotalConstituents" in data:
+    if data.get("TotalConstituents") is not None:
         out["total_constituents"] = data["TotalConstituents"]
     return out

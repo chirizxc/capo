@@ -31,12 +31,12 @@ def serialize_json(value: UpdateFlowEntitlementResponse) -> dict:
 
 def deserialize_json(data: dict) -> UpdateFlowEntitlementResponse:
     out: UpdateFlowEntitlementResponse = {}  # type: ignore[typeddict-item]
-    if "entitlement" in data:
+    if data.get("entitlement") is not None:
         import capo_mediaconnect.types.entitlement
 
         out["entitlement"] = capo_mediaconnect.types.entitlement.deserialize_json(
             data["entitlement"]
         )
-    if "flowArn" in data:
+    if data.get("flowArn") is not None:
         out["flow_arn"] = data["flowArn"]
     return out

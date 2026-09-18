@@ -59,7 +59,7 @@ def serialize_aws_json_1_1(value: RenewalSummary) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RenewalSummary:
     out: RenewalSummary = {}  # type: ignore[typeddict-item]
-    if "RenewalStatus" in data:
+    if data.get("RenewalStatus") is not None:
         import capo_acm.types.renewal_status
 
         out["renewal_status"] = capo_acm.types.renewal_status.deserialize_aws_json_1_1(
@@ -67,7 +67,7 @@ def deserialize_aws_json_1_1(data: dict) -> RenewalSummary:
         )
     else:
         raise DeserializationError("RenewalSummary.renewal_status required")
-    if "DomainValidationOptions" in data:
+    if data.get("DomainValidationOptions") is not None:
         import capo_acm.types.domain_validation_list
 
         out["domain_validation_options"] = (
@@ -77,7 +77,7 @@ def deserialize_aws_json_1_1(data: dict) -> RenewalSummary:
         )
     else:
         raise DeserializationError("RenewalSummary.domain_validation_options required")
-    if "RenewalStatusReason" in data:
+    if data.get("RenewalStatusReason") is not None:
         import capo_acm.types.failure_reason
 
         out["renewal_status_reason"] = (
@@ -85,7 +85,7 @@ def deserialize_aws_json_1_1(data: dict) -> RenewalSummary:
                 data["RenewalStatusReason"]
             )
         )
-    if "UpdatedAt" in data:
+    if data.get("UpdatedAt") is not None:
         import capo_acm.types.t_stamp
 
         out["updated_at"] = capo_acm.types.t_stamp.deserialize_aws_json_1_1(

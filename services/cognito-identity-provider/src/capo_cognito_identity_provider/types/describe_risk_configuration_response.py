@@ -30,7 +30,7 @@ def serialize_aws_json_1_1(value: DescribeRiskConfigurationResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeRiskConfigurationResponse:
     out: DescribeRiskConfigurationResponse = {}  # type: ignore[typeddict-item]
-    if "RiskConfiguration" in data:
+    if data.get("RiskConfiguration") is not None:
         import capo_cognito_identity_provider.types.risk_configuration_type
 
         out["risk_configuration"] = (

@@ -22,8 +22,8 @@ def serialize_aws_json_1_1(value: UltraServerInfo) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UltraServerInfo:
     out: UltraServerInfo = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "Type" in data:
+    if data.get("Type") is not None:
         out["type"] = data["Type"]
     return out

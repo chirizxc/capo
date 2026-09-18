@@ -32,11 +32,11 @@ def serialize_json(value: Timer) -> dict:
 
 def deserialize_json(data: dict) -> Timer:
     out: Timer = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("Timer.name required")
-    if "timestamp" in data:
+    if data.get("timestamp") is not None:
         import capo_iot_events_data.types.timestamp
 
         out["timestamp"] = capo_iot_events_data.types.timestamp.deserialize_json(

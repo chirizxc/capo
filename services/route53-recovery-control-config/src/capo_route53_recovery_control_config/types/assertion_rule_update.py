@@ -39,10 +39,10 @@ def serialize_json(value: AssertionRuleUpdate) -> dict:
 
 def deserialize_json(data: dict) -> AssertionRuleUpdate:
     out: AssertionRuleUpdate = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "SafetyRuleArn" in data:
+    if data.get("SafetyRuleArn") is not None:
         out["safety_rule_arn"] = data["SafetyRuleArn"]
-    if "WaitPeriodMs" in data:
+    if data.get("WaitPeriodMs") is not None:
         out["wait_period_ms"] = data["WaitPeriodMs"]
     return out

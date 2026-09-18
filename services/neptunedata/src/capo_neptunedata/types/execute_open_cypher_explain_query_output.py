@@ -23,7 +23,7 @@ def serialize_json(value: ExecuteOpenCypherExplainQueryOutput) -> dict:
 
 def deserialize_json(data: dict) -> ExecuteOpenCypherExplainQueryOutput:
     out: ExecuteOpenCypherExplainQueryOutput = {}  # type: ignore[typeddict-item]
-    if "results" in data:
+    if data.get("results") is not None:
         import capo_neptunedata.types._prelude.blob
 
         out["results"] = capo_neptunedata.types._prelude.blob.deserialize_json(

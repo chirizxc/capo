@@ -47,15 +47,15 @@ def serialize_json(value: UpdateLensReviewInput) -> dict:
 
 def deserialize_json(data: dict) -> UpdateLensReviewInput:
     out: UpdateLensReviewInput = {}  # type: ignore[typeddict-item]
-    if "LensNotes" in data:
+    if data.get("LensNotes") is not None:
         out["lens_notes"] = data["LensNotes"]
-    if "PillarNotes" in data:
+    if data.get("PillarNotes") is not None:
         import capo_wellarchitected.types.pillar_notes
 
         out["pillar_notes"] = capo_wellarchitected.types.pillar_notes.deserialize_json(
             data["PillarNotes"]
         )
-    if "JiraConfiguration" in data:
+    if data.get("JiraConfiguration") is not None:
         import capo_wellarchitected.types.jira_selected_question_configuration
 
         out["jira_configuration"] = (

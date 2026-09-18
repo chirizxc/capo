@@ -30,7 +30,7 @@ def serialize_json(value: PhoneNumberValidateRequest) -> dict:
 
 def deserialize_json(data: dict) -> PhoneNumberValidateRequest:
     out: PhoneNumberValidateRequest = {}  # type: ignore[typeddict-item]
-    if "NumberValidateRequest" in data:
+    if data.get("NumberValidateRequest") is not None:
         import capo_pinpoint.types.number_validate_request
 
         out["number_validate_request"] = (

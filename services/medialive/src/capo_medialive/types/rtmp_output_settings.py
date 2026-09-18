@@ -54,7 +54,7 @@ def serialize_json(value: RtmpOutputSettings) -> dict:
 
 def deserialize_json(data: dict) -> RtmpOutputSettings:
     out: RtmpOutputSettings = {}  # type: ignore[typeddict-item]
-    if "certificateMode" in data:
+    if data.get("certificateMode") is not None:
         import capo_medialive.types.rtmp_output_certificate_mode
 
         out["certificate_mode"] = (
@@ -62,14 +62,14 @@ def deserialize_json(data: dict) -> RtmpOutputSettings:
                 data["certificateMode"]
             )
         )
-    if "connectionRetryInterval" in data:
+    if data.get("connectionRetryInterval") is not None:
         out["connection_retry_interval"] = data["connectionRetryInterval"]
-    if "destination" in data:
+    if data.get("destination") is not None:
         import capo_medialive.types.output_location_ref
 
         out["destination"] = capo_medialive.types.output_location_ref.deserialize_json(
             data["destination"]
         )
-    if "numRetries" in data:
+    if data.get("numRetries") is not None:
         out["num_retries"] = data["numRetries"]
     return out

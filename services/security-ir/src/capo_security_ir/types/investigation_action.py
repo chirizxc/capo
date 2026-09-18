@@ -68,11 +68,11 @@ def serialize_json(value: InvestigationAction) -> dict:
 
 def deserialize_json(data: dict) -> InvestigationAction:
     out: InvestigationAction = {}  # type: ignore[typeddict-item]
-    if "investigationId" in data:
+    if data.get("investigationId") is not None:
         out["investigation_id"] = data["investigationId"]
     else:
         raise DeserializationError("InvestigationAction.investigation_id required")
-    if "actionType" in data:
+    if data.get("actionType") is not None:
         import capo_security_ir.types.action_type
 
         out["action_type"] = capo_security_ir.types.action_type.deserialize_json(
@@ -80,15 +80,15 @@ def deserialize_json(data: dict) -> InvestigationAction:
         )
     else:
         raise DeserializationError("InvestigationAction.action_type required")
-    if "title" in data:
+    if data.get("title") is not None:
         out["title"] = data["title"]
     else:
         raise DeserializationError("InvestigationAction.title required")
-    if "content" in data:
+    if data.get("content") is not None:
         out["content"] = data["content"]
     else:
         raise DeserializationError("InvestigationAction.content required")
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_security_ir.types.execution_status
 
         out["status"] = capo_security_ir.types.execution_status.deserialize_json(
@@ -96,7 +96,7 @@ def deserialize_json(data: dict) -> InvestigationAction:
         )
     else:
         raise DeserializationError("InvestigationAction.status required")
-    if "lastUpdated" in data:
+    if data.get("lastUpdated") is not None:
         import capo_security_ir.types._prelude.timestamp
 
         out["last_updated"] = (
@@ -106,7 +106,7 @@ def deserialize_json(data: dict) -> InvestigationAction:
         )
     else:
         raise DeserializationError("InvestigationAction.last_updated required")
-    if "feedback" in data:
+    if data.get("feedback") is not None:
         import capo_security_ir.types.investigation_feedback
 
         out["feedback"] = (

@@ -19,7 +19,7 @@ def serialize_json(value: ScriptBatchJobIdentifier) -> dict:
 
 def deserialize_json(data: dict) -> ScriptBatchJobIdentifier:
     out: ScriptBatchJobIdentifier = {}  # type: ignore[typeddict-item]
-    if "scriptName" in data:
+    if data.get("scriptName") is not None:
         out["script_name"] = data["scriptName"]
     else:
         raise DeserializationError("ScriptBatchJobIdentifier.script_name required")

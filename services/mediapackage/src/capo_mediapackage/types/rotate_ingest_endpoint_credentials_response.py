@@ -73,13 +73,13 @@ def serialize_json(value: RotateIngestEndpointCredentialsResponse) -> dict:
 
 def deserialize_json(data: dict) -> RotateIngestEndpointCredentialsResponse:
     out: RotateIngestEndpointCredentialsResponse = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         out["created_at"] = data["createdAt"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "egressAccessLogs" in data:
+    if data.get("egressAccessLogs") is not None:
         import capo_mediapackage.types.egress_access_logs
 
         out["egress_access_logs"] = (
@@ -87,15 +87,15 @@ def deserialize_json(data: dict) -> RotateIngestEndpointCredentialsResponse:
                 data["egressAccessLogs"]
             )
         )
-    if "hlsIngest" in data:
+    if data.get("hlsIngest") is not None:
         import capo_mediapackage.types.hls_ingest
 
         out["hls_ingest"] = capo_mediapackage.types.hls_ingest.deserialize_json(
             data["hlsIngest"]
         )
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "ingressAccessLogs" in data:
+    if data.get("ingressAccessLogs") is not None:
         import capo_mediapackage.types.ingress_access_logs
 
         out["ingress_access_logs"] = (
@@ -103,7 +103,7 @@ def deserialize_json(data: dict) -> RotateIngestEndpointCredentialsResponse:
                 data["ingressAccessLogs"]
             )
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_mediapackage.types.tags
 
         out["tags"] = capo_mediapackage.types.tags.deserialize_json(data["tags"])

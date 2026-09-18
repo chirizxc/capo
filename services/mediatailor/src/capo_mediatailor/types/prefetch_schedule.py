@@ -91,11 +91,11 @@ def serialize_json(value: PrefetchSchedule) -> dict:
 
 def deserialize_json(data: dict) -> PrefetchSchedule:
     out: PrefetchSchedule = {}  # type: ignore[typeddict-item]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
     else:
         raise DeserializationError("PrefetchSchedule.arn required")
-    if "Consumption" in data:
+    if data.get("Consumption") is not None:
         import capo_mediatailor.types.prefetch_consumption
 
         out["consumption"] = (
@@ -103,23 +103,23 @@ def deserialize_json(data: dict) -> PrefetchSchedule:
                 data["Consumption"]
             )
         )
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("PrefetchSchedule.name required")
-    if "PlaybackConfigurationName" in data:
+    if data.get("PlaybackConfigurationName") is not None:
         out["playback_configuration_name"] = data["PlaybackConfigurationName"]
     else:
         raise DeserializationError(
             "PrefetchSchedule.playback_configuration_name required"
         )
-    if "Retrieval" in data:
+    if data.get("Retrieval") is not None:
         import capo_mediatailor.types.prefetch_retrieval
 
         out["retrieval"] = capo_mediatailor.types.prefetch_retrieval.deserialize_json(
             data["Retrieval"]
         )
-    if "ScheduleType" in data:
+    if data.get("ScheduleType") is not None:
         import capo_mediatailor.types.prefetch_schedule_type
 
         out["schedule_type"] = (
@@ -127,7 +127,7 @@ def deserialize_json(data: dict) -> PrefetchSchedule:
                 data["ScheduleType"]
             )
         )
-    if "RecurringPrefetchConfiguration" in data:
+    if data.get("RecurringPrefetchConfiguration") is not None:
         import capo_mediatailor.types.recurring_prefetch_configuration
 
         out["recurring_prefetch_configuration"] = (
@@ -135,9 +135,9 @@ def deserialize_json(data: dict) -> PrefetchSchedule:
                 data["RecurringPrefetchConfiguration"]
             )
         )
-    if "StreamId" in data:
+    if data.get("StreamId") is not None:
         out["stream_id"] = data["StreamId"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_mediatailor.types.__map_of__string
 
         out["tags"] = capo_mediatailor.types.__map_of__string.deserialize_json(

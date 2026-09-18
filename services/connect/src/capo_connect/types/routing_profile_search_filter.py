@@ -28,7 +28,7 @@ def serialize_json(value: RoutingProfileSearchFilter) -> dict:
 
 def deserialize_json(data: dict) -> RoutingProfileSearchFilter:
     out: RoutingProfileSearchFilter = {}  # type: ignore[typeddict-item]
-    if "TagFilter" in data:
+    if data.get("TagFilter") is not None:
         import capo_connect.types.control_plane_tag_filter
 
         out["tag_filter"] = (

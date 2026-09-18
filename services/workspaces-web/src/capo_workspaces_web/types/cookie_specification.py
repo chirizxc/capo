@@ -34,12 +34,12 @@ def serialize_json(value: CookieSpecification) -> dict:
 
 def deserialize_json(data: dict) -> CookieSpecification:
     out: CookieSpecification = {}  # type: ignore[typeddict-item]
-    if "domain" in data:
+    if data.get("domain") is not None:
         out["domain"] = data["domain"]
     else:
         raise DeserializationError("CookieSpecification.domain required")
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "path" in data:
+    if data.get("path") is not None:
         out["path"] = data["path"]
     return out

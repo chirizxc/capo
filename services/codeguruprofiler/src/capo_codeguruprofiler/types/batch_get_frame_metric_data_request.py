@@ -45,7 +45,7 @@ def serialize_json(value: BatchGetFrameMetricDataRequest) -> dict:
 
 def deserialize_json(data: dict) -> BatchGetFrameMetricDataRequest:
     out: BatchGetFrameMetricDataRequest = {}  # type: ignore[typeddict-item]
-    if "frameMetrics" in data:
+    if data.get("frameMetrics") is not None:
         import capo_codeguruprofiler.types.frame_metrics
 
         out["frame_metrics"] = (

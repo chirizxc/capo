@@ -34,13 +34,13 @@ def serialize_aws_json_1_0(value: RegistrantVerificationResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> RegistrantVerificationResponse:
     out: RegistrantVerificationResponse = {}  # type: ignore[typeddict-item]
-    if "CompletionUrl" in data:
+    if data.get("CompletionUrl") is not None:
         out["completion_url"] = data["CompletionUrl"]
     else:
         raise DeserializationError(
             "RegistrantVerificationResponse.completion_url required"
         )
-    if "CompletionUrlExpiresAt" in data:
+    if data.get("CompletionUrlExpiresAt") is not None:
         import capo_partnercentral_account.types.date_time
 
         out["completion_url_expires_at"] = (

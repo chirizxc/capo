@@ -23,6 +23,6 @@ def serialize_json(value: TermsAggregation) -> dict:
 
 def deserialize_json(data: dict) -> TermsAggregation:
     out: TermsAggregation = {}  # type: ignore[typeddict-item]
-    if "maxBuckets" in data:
+    if data.get("maxBuckets") is not None:
         out["max_buckets"] = data["maxBuckets"]
     return out

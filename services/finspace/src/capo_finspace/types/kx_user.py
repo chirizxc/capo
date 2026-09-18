@@ -50,19 +50,19 @@ def serialize_json(value: KxUser) -> dict:
 
 def deserialize_json(data: dict) -> KxUser:
     out: KxUser = {}  # type: ignore[typeddict-item]
-    if "userArn" in data:
+    if data.get("userArn") is not None:
         out["user_arn"] = data["userArn"]
-    if "userName" in data:
+    if data.get("userName") is not None:
         out["user_name"] = data["userName"]
-    if "iamRole" in data:
+    if data.get("iamRole") is not None:
         out["iam_role"] = data["iamRole"]
-    if "createTimestamp" in data:
+    if data.get("createTimestamp") is not None:
         import capo_finspace.types.timestamp
 
         out["create_timestamp"] = capo_finspace.types.timestamp.deserialize_json(
             data["createTimestamp"]
         )
-    if "updateTimestamp" in data:
+    if data.get("updateTimestamp") is not None:
         import capo_finspace.types.timestamp
 
         out["update_timestamp"] = capo_finspace.types.timestamp.deserialize_json(

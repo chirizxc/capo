@@ -38,9 +38,9 @@ def serialize_aws_json_1_1(value: StreamProcessor) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> StreamProcessor:
     out: StreamProcessor = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_rekognition.types.stream_processor_status
 
         out["status"] = (

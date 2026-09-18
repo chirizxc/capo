@@ -38,9 +38,9 @@ def serialize_json(value: DataProductSummary) -> dict:
 
 def deserialize_json(data: dict) -> DataProductSummary:
     out: DataProductSummary = {}  # type: ignore[typeddict-item]
-    if "ProductTitle" in data:
+    if data.get("ProductTitle") is not None:
         out["product_title"] = data["ProductTitle"]
-    if "Visibility" in data:
+    if data.get("Visibility") is not None:
         import capo_marketplace_catalog.types.data_product_visibility_string
 
         out["visibility"] = (

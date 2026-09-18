@@ -27,20 +27,44 @@ class DetectionFilter(TypedDict, closed=True):
 def serialize_aws_json_1_1(value: DetectionFilter) -> dict:
     out: dict = {}
     if "min_confidence" in value:
-        out["MinConfidence"] = value["min_confidence"]
+        out["MinConfidence"] = (
+            "NaN"
+            if value["min_confidence"] != value["min_confidence"]
+            else "Infinity"
+            if value["min_confidence"] == float("inf")
+            else "-Infinity"
+            if value["min_confidence"] == float("-inf")
+            else value["min_confidence"]
+        )
     if "min_bounding_box_height" in value:
-        out["MinBoundingBoxHeight"] = value["min_bounding_box_height"]
+        out["MinBoundingBoxHeight"] = (
+            "NaN"
+            if value["min_bounding_box_height"] != value["min_bounding_box_height"]
+            else "Infinity"
+            if value["min_bounding_box_height"] == float("inf")
+            else "-Infinity"
+            if value["min_bounding_box_height"] == float("-inf")
+            else value["min_bounding_box_height"]
+        )
     if "min_bounding_box_width" in value:
-        out["MinBoundingBoxWidth"] = value["min_bounding_box_width"]
+        out["MinBoundingBoxWidth"] = (
+            "NaN"
+            if value["min_bounding_box_width"] != value["min_bounding_box_width"]
+            else "Infinity"
+            if value["min_bounding_box_width"] == float("inf")
+            else "-Infinity"
+            if value["min_bounding_box_width"] == float("-inf")
+            else value["min_bounding_box_width"]
+        )
     return out
 
 
 def deserialize_aws_json_1_1(data: dict) -> DetectionFilter:
     out: DetectionFilter = {}  # type: ignore[typeddict-item]
-    if "MinConfidence" in data:
-        out["min_confidence"] = data["MinConfidence"]
-    if "MinBoundingBoxHeight" in data:
-        out["min_bounding_box_height"] = data["MinBoundingBoxHeight"]
-    if "MinBoundingBoxWidth" in data:
-        out["min_bounding_box_width"] = data["MinBoundingBoxWidth"]
+    if data.get("MinConfidence") is not None:
+        out["min_confidence"] = float(data["MinConfidence"])
+    if data.get("MinBoundingBoxHeight") is not None:
+        out["min_bounding_box_height"] = float(data["MinBoundingBoxHeight"])
+    if data.get("MinBoundingBoxWidth") is not None:
+        out["min_bounding_box_width"] = float(data["MinBoundingBoxWidth"])
     return out

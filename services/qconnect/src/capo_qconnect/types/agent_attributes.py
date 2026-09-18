@@ -31,8 +31,8 @@ def serialize_json(value: AgentAttributes) -> dict:
 
 def deserialize_json(data: dict) -> AgentAttributes:
     out: AgentAttributes = {}  # type: ignore[typeddict-item]
-    if "firstName" in data:
+    if data.get("firstName") is not None:
         out["first_name"] = data["firstName"]
-    if "lastName" in data:
+    if data.get("lastName") is not None:
         out["last_name"] = data["lastName"]
     return out

@@ -28,7 +28,7 @@ def serialize_json(value: UpdateSceneResponse) -> dict:
 
 def deserialize_json(data: dict) -> UpdateSceneResponse:
     out: UpdateSceneResponse = {}  # type: ignore[typeddict-item]
-    if "updateDateTime" in data:
+    if data.get("updateDateTime") is not None:
         import capo_iottwinmaker.types.timestamp
 
         out["update_date_time"] = capo_iottwinmaker.types.timestamp.deserialize_json(

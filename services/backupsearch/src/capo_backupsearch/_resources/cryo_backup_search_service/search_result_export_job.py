@@ -84,9 +84,10 @@ class SearchResultExportJob:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_backupsearch.types.start_search_result_export_job_input.StartSearchResultExportJobInput = {}  # type: ignore[typeddict-item]
-        input_["search_job_identifier"] = search_job_identifier
-        input_["export_specification"] = export_specification
+        input_: capo_backupsearch.types.start_search_result_export_job_input.StartSearchResultExportJobInput = {
+            "search_job_identifier": search_job_identifier,
+            "export_specification": export_specification,
+        }
         if client_token is not None:
             input_["client_token"] = client_token
         if tags is not None:
@@ -99,6 +100,7 @@ class SearchResultExportJob:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -136,14 +138,16 @@ class SearchResultExportJob:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_backupsearch.types.get_search_result_export_job_input.GetSearchResultExportJobInput = {}  # type: ignore[typeddict-item]
-        input_["export_job_identifier"] = export_job_identifier
+        input_: capo_backupsearch.types.get_search_result_export_job_input.GetSearchResultExportJobInput = {
+            "export_job_identifier": export_job_identifier
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -192,7 +196,7 @@ class SearchResultExportJob:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_backupsearch.types.list_search_result_export_jobs_input.ListSearchResultExportJobsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_backupsearch.types.list_search_result_export_jobs_input.ListSearchResultExportJobsInput = {}
         if status is not None:
             input_["status"] = status
         if search_job_identifier is not None:
@@ -207,6 +211,7 @@ class SearchResultExportJob:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -260,9 +265,10 @@ class AsyncSearchResultExportJob:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_backupsearch.types.start_search_result_export_job_input.StartSearchResultExportJobInput = {}  # type: ignore[typeddict-item]
-        input_["search_job_identifier"] = search_job_identifier
-        input_["export_specification"] = export_specification
+        input_: capo_backupsearch.types.start_search_result_export_job_input.StartSearchResultExportJobInput = {
+            "search_job_identifier": search_job_identifier,
+            "export_specification": export_specification,
+        }
         if client_token is not None:
             input_["client_token"] = client_token
         if tags is not None:
@@ -275,6 +281,7 @@ class AsyncSearchResultExportJob:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -313,14 +320,16 @@ class AsyncSearchResultExportJob:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_backupsearch.types.get_search_result_export_job_input.GetSearchResultExportJobInput = {}  # type: ignore[typeddict-item]
-        input_["export_job_identifier"] = export_job_identifier
+        input_: capo_backupsearch.types.get_search_result_export_job_input.GetSearchResultExportJobInput = {
+            "export_job_identifier": export_job_identifier
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -370,7 +379,7 @@ class AsyncSearchResultExportJob:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_backupsearch.types.list_search_result_export_jobs_input.ListSearchResultExportJobsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_backupsearch.types.list_search_result_export_jobs_input.ListSearchResultExportJobsInput = {}
         if status is not None:
             input_["status"] = status
         if search_job_identifier is not None:
@@ -385,4 +394,5 @@ class AsyncSearchResultExportJob:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

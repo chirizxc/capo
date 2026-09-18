@@ -55,7 +55,7 @@ def serialize_aws_json_1_1(value: GetSavingsPlansUtilizationDetailsResponse) -> 
 
 def deserialize_aws_json_1_1(data: dict) -> GetSavingsPlansUtilizationDetailsResponse:
     out: GetSavingsPlansUtilizationDetailsResponse = {}  # type: ignore[typeddict-item]
-    if "SavingsPlansUtilizationDetails" in data:
+    if data.get("SavingsPlansUtilizationDetails") is not None:
         import capo_cost_explorer.types.savings_plans_utilization_details
 
         out["savings_plans_utilization_details"] = (
@@ -67,7 +67,7 @@ def deserialize_aws_json_1_1(data: dict) -> GetSavingsPlansUtilizationDetailsRes
         raise DeserializationError(
             "GetSavingsPlansUtilizationDetailsResponse.savings_plans_utilization_details required"
         )
-    if "Total" in data:
+    if data.get("Total") is not None:
         import capo_cost_explorer.types.savings_plans_utilization_aggregates
 
         out["total"] = (
@@ -75,7 +75,7 @@ def deserialize_aws_json_1_1(data: dict) -> GetSavingsPlansUtilizationDetailsRes
                 data["Total"]
             )
         )
-    if "TimePeriod" in data:
+    if data.get("TimePeriod") is not None:
         import capo_cost_explorer.types.date_interval
 
         out["time_period"] = (
@@ -87,6 +87,6 @@ def deserialize_aws_json_1_1(data: dict) -> GetSavingsPlansUtilizationDetailsRes
         raise DeserializationError(
             "GetSavingsPlansUtilizationDetailsResponse.time_period required"
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

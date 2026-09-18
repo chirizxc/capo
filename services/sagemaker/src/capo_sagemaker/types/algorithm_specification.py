@@ -101,11 +101,11 @@ def serialize_aws_json_1_1(value: AlgorithmSpecification) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AlgorithmSpecification:
     out: AlgorithmSpecification = {}  # type: ignore[typeddict-item]
-    if "TrainingImage" in data:
+    if data.get("TrainingImage") is not None:
         out["training_image"] = data["TrainingImage"]
-    if "AlgorithmName" in data:
+    if data.get("AlgorithmName") is not None:
         out["algorithm_name"] = data["AlgorithmName"]
-    if "TrainingInputMode" in data:
+    if data.get("TrainingInputMode") is not None:
         import capo_sagemaker.types.training_input_mode
 
         out["training_input_mode"] = (
@@ -113,7 +113,7 @@ def deserialize_aws_json_1_1(data: dict) -> AlgorithmSpecification:
                 data["TrainingInputMode"]
             )
         )
-    if "MetricDefinitions" in data:
+    if data.get("MetricDefinitions") is not None:
         import capo_sagemaker.types.metric_definition_list
 
         out["metric_definitions"] = (
@@ -121,11 +121,11 @@ def deserialize_aws_json_1_1(data: dict) -> AlgorithmSpecification:
                 data["MetricDefinitions"]
             )
         )
-    if "EnableSageMakerMetricsTimeSeries" in data:
+    if data.get("EnableSageMakerMetricsTimeSeries") is not None:
         out["enable_sage_maker_metrics_time_series"] = data[
             "EnableSageMakerMetricsTimeSeries"
         ]
-    if "ContainerEntrypoint" in data:
+    if data.get("ContainerEntrypoint") is not None:
         import capo_sagemaker.types.training_container_entrypoint
 
         out["container_entrypoint"] = (
@@ -133,7 +133,7 @@ def deserialize_aws_json_1_1(data: dict) -> AlgorithmSpecification:
                 data["ContainerEntrypoint"]
             )
         )
-    if "ContainerArguments" in data:
+    if data.get("ContainerArguments") is not None:
         import capo_sagemaker.types.training_container_arguments
 
         out["container_arguments"] = (
@@ -141,7 +141,7 @@ def deserialize_aws_json_1_1(data: dict) -> AlgorithmSpecification:
                 data["ContainerArguments"]
             )
         )
-    if "TrainingImageConfig" in data:
+    if data.get("TrainingImageConfig") is not None:
         import capo_sagemaker.types.training_image_config
 
         out["training_image_config"] = (

@@ -44,17 +44,17 @@ def serialize_json(value: ApiCallDetails) -> dict:
 
 def deserialize_json(data: dict) -> ApiCallDetails:
     out: ApiCallDetails = {}  # type: ignore[typeddict-item]
-    if "api" in data:
+    if data.get("api") is not None:
         out["api"] = data["api"]
-    if "apiServiceName" in data:
+    if data.get("apiServiceName") is not None:
         out["api_service_name"] = data["apiServiceName"]
-    if "firstSeen" in data:
+    if data.get("firstSeen") is not None:
         import capo_macie2.types.__timestamp_iso8601
 
         out["first_seen"] = capo_macie2.types.__timestamp_iso8601.deserialize_json(
             data["firstSeen"]
         )
-    if "lastSeen" in data:
+    if data.get("lastSeen") is not None:
         import capo_macie2.types.__timestamp_iso8601
 
         out["last_seen"] = capo_macie2.types.__timestamp_iso8601.deserialize_json(

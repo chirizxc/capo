@@ -23,6 +23,6 @@ def serialize_json(value: AwsWafRuleGroupRulesActionDetails) -> dict:
 
 def deserialize_json(data: dict) -> AwsWafRuleGroupRulesActionDetails:
     out: AwsWafRuleGroupRulesActionDetails = {}  # type: ignore[typeddict-item]
-    if "Type" in data:
+    if data.get("Type") is not None:
         out["type"] = data["Type"]
     return out

@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> ScheduleMaintenanceWindowList:
 
     out: ScheduleMaintenanceWindowList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_iot_managed_integrations.types.schedule_maintenance_window.deserialize_json(
                 item

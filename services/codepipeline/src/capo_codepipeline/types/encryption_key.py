@@ -32,11 +32,11 @@ def serialize_aws_json_1_1(value: EncryptionKey) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> EncryptionKey:
     out: EncryptionKey = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("EncryptionKey.id required")
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_codepipeline.types.encryption_key_type
 
         out["type"] = (

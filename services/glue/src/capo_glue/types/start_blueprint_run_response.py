@@ -23,6 +23,6 @@ def serialize_aws_json_1_1(value: StartBlueprintRunResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> StartBlueprintRunResponse:
     out: StartBlueprintRunResponse = {}  # type: ignore[typeddict-item]
-    if "RunId" in data:
+    if data.get("RunId") is not None:
         out["run_id"] = data["RunId"]
     return out

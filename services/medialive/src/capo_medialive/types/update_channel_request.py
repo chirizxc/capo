@@ -193,7 +193,7 @@ def serialize_json(value: UpdateChannelRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateChannelRequest:
     out: UpdateChannelRequest = {}  # type: ignore[typeddict-item]
-    if "cdiInputSpecification" in data:
+    if data.get("cdiInputSpecification") is not None:
         import capo_medialive.types.cdi_input_specification
 
         out["cdi_input_specification"] = (
@@ -201,7 +201,7 @@ def deserialize_json(data: dict) -> UpdateChannelRequest:
                 data["cdiInputSpecification"]
             )
         )
-    if "destinations" in data:
+    if data.get("destinations") is not None:
         import capo_medialive.types.__list_of_output_destination
 
         out["destinations"] = (
@@ -209,7 +209,7 @@ def deserialize_json(data: dict) -> UpdateChannelRequest:
                 data["destinations"]
             )
         )
-    if "encoderSettings" in data:
+    if data.get("encoderSettings") is not None:
         import capo_medialive.types.encoder_settings
 
         out["encoder_settings"] = (
@@ -217,7 +217,7 @@ def deserialize_json(data: dict) -> UpdateChannelRequest:
                 data["encoderSettings"]
             )
         )
-    if "inputAttachments" in data:
+    if data.get("inputAttachments") is not None:
         import capo_medialive.types.__list_of_input_attachment
 
         out["input_attachments"] = (
@@ -225,7 +225,7 @@ def deserialize_json(data: dict) -> UpdateChannelRequest:
                 data["inputAttachments"]
             )
         )
-    if "inputSpecification" in data:
+    if data.get("inputSpecification") is not None:
         import capo_medialive.types.input_specification
 
         out["input_specification"] = (
@@ -233,13 +233,13 @@ def deserialize_json(data: dict) -> UpdateChannelRequest:
                 data["inputSpecification"]
             )
         )
-    if "logLevel" in data:
+    if data.get("logLevel") is not None:
         import capo_medialive.types.log_level
 
         out["log_level"] = capo_medialive.types.log_level.deserialize_json(
             data["logLevel"]
         )
-    if "maintenance" in data:
+    if data.get("maintenance") is not None:
         import capo_medialive.types.maintenance_update_settings
 
         out["maintenance"] = (
@@ -247,11 +247,11 @@ def deserialize_json(data: dict) -> UpdateChannelRequest:
                 data["maintenance"]
             )
         )
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "roleArn" in data:
+    if data.get("roleArn") is not None:
         out["role_arn"] = data["roleArn"]
-    if "channelEngineVersion" in data:
+    if data.get("channelEngineVersion") is not None:
         import capo_medialive.types.channel_engine_version_request
 
         out["channel_engine_version"] = (
@@ -259,9 +259,9 @@ def deserialize_json(data: dict) -> UpdateChannelRequest:
                 data["channelEngineVersion"]
             )
         )
-    if "dryRun" in data:
+    if data.get("dryRun") is not None:
         out["dry_run"] = data["dryRun"]
-    if "anywhereSettings" in data:
+    if data.get("anywhereSettings") is not None:
         import capo_medialive.types.anywhere_settings
 
         out["anywhere_settings"] = (
@@ -269,7 +269,7 @@ def deserialize_json(data: dict) -> UpdateChannelRequest:
                 data["anywhereSettings"]
             )
         )
-    if "linkedChannelSettings" in data:
+    if data.get("linkedChannelSettings") is not None:
         import capo_medialive.types.linked_channel_settings
 
         out["linked_channel_settings"] = (
@@ -277,7 +277,7 @@ def deserialize_json(data: dict) -> UpdateChannelRequest:
                 data["linkedChannelSettings"]
             )
         )
-    if "channelSecurityGroups" in data:
+    if data.get("channelSecurityGroups") is not None:
         import capo_medialive.types.__list_of__string
 
         out["channel_security_groups"] = (
@@ -285,7 +285,7 @@ def deserialize_json(data: dict) -> UpdateChannelRequest:
                 data["channelSecurityGroups"]
             )
         )
-    if "inferenceSettings" in data:
+    if data.get("inferenceSettings") is not None:
         import capo_medialive.types.inference_settings
 
         out["inference_settings"] = (
@@ -293,7 +293,7 @@ def deserialize_json(data: dict) -> UpdateChannelRequest:
                 data["inferenceSettings"]
             )
         )
-    if "specialRouterSettings" in data:
+    if data.get("specialRouterSettings") is not None:
         import capo_medialive.types.special_router_settings
 
         out["special_router_settings"] = (

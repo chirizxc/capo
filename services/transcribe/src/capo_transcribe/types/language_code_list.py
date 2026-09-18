@@ -27,6 +27,8 @@ def deserialize_aws_json_1_1(data: list) -> LanguageCodeList:
 
     out: LanguageCodeList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_transcribe.types.language_code_item.deserialize_aws_json_1_1(item)
         )

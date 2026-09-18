@@ -36,11 +36,11 @@ def serialize_json(value: AttributesResource) -> dict:
 
 def deserialize_json(data: dict) -> AttributesResource:
     out: AttributesResource = {}  # type: ignore[typeddict-item]
-    if "ApplicationId" in data:
+    if data.get("ApplicationId") is not None:
         out["application_id"] = data["ApplicationId"]
-    if "AttributeType" in data:
+    if data.get("AttributeType") is not None:
         out["attribute_type"] = data["AttributeType"]
-    if "Attributes" in data:
+    if data.get("Attributes") is not None:
         import capo_pinpoint.types.list_of__string
 
         out["attributes"] = capo_pinpoint.types.list_of__string.deserialize_json(

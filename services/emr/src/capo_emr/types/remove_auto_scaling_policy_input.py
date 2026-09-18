@@ -28,8 +28,8 @@ def serialize_aws_json_1_1(value: RemoveAutoScalingPolicyInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RemoveAutoScalingPolicyInput:
     out: RemoveAutoScalingPolicyInput = {}  # type: ignore[typeddict-item]
-    if "ClusterId" in data:
+    if data.get("ClusterId") is not None:
         out["cluster_id"] = data["ClusterId"]
-    if "InstanceGroupId" in data:
+    if data.get("InstanceGroupId") is not None:
         out["instance_group_id"] = data["InstanceGroupId"]
     return out

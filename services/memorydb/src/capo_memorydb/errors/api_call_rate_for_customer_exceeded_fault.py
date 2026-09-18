@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: APICallRateForCustomerExceededFault_) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> APICallRateForCustomerExceededFault_:
     out: APICallRateForCustomerExceededFault_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     return out
 
@@ -34,15 +34,20 @@ class APICallRateForCustomerExceededFault(ServiceError):
 
     code: str | None = "APICallRateForCustomerExceededFault"
 
-    def __init__(self, data: APICallRateForCustomerExceededFault_):
+    def __init__(
+        self, data: APICallRateForCustomerExceededFault_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="APICallRateForCustomerExceededFault",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "APICallRateForCustomerExceededFault":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "APICallRateForCustomerExceededFault":
+        return cls(deserialize_aws_json_1_1(data), message)

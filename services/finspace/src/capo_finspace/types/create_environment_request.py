@@ -85,25 +85,25 @@ def serialize_json(value: CreateEnvironmentRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateEnvironmentRequest:
     out: CreateEnvironmentRequest = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("CreateEnvironmentRequest.name required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "kmsKeyId" in data:
+    if data.get("kmsKeyId") is not None:
         out["kms_key_id"] = data["kmsKeyId"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_finspace.types.tag_map
 
         out["tags"] = capo_finspace.types.tag_map.deserialize_json(data["tags"])
-    if "federationMode" in data:
+    if data.get("federationMode") is not None:
         import capo_finspace.types.federation_mode
 
         out["federation_mode"] = capo_finspace.types.federation_mode.deserialize_json(
             data["federationMode"]
         )
-    if "federationParameters" in data:
+    if data.get("federationParameters") is not None:
         import capo_finspace.types.federation_parameters
 
         out["federation_parameters"] = (
@@ -111,7 +111,7 @@ def deserialize_json(data: dict) -> CreateEnvironmentRequest:
                 data["federationParameters"]
             )
         )
-    if "superuserParameters" in data:
+    if data.get("superuserParameters") is not None:
         import capo_finspace.types.superuser_parameters
 
         out["superuser_parameters"] = (
@@ -119,7 +119,7 @@ def deserialize_json(data: dict) -> CreateEnvironmentRequest:
                 data["superuserParameters"]
             )
         )
-    if "dataBundles" in data:
+    if data.get("dataBundles") is not None:
         import capo_finspace.types.data_bundle_arns
 
         out["data_bundles"] = capo_finspace.types.data_bundle_arns.deserialize_json(

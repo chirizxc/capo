@@ -103,7 +103,7 @@ def serialize_aws_json_1_0(value: OpportunitySummaryView) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> OpportunitySummaryView:
     out: OpportunitySummaryView = {}  # type: ignore[typeddict-item]
-    if "OpportunityType" in data:
+    if data.get("OpportunityType") is not None:
         import capo_partnercentral_selling.types.opportunity_type
 
         out["opportunity_type"] = (
@@ -111,7 +111,7 @@ def deserialize_aws_json_1_0(data: dict) -> OpportunitySummaryView:
                 data["OpportunityType"]
             )
         )
-    if "Lifecycle" in data:
+    if data.get("Lifecycle") is not None:
         import capo_partnercentral_selling.types.life_cycle_for_view
 
         out["lifecycle"] = (
@@ -119,7 +119,7 @@ def deserialize_aws_json_1_0(data: dict) -> OpportunitySummaryView:
                 data["Lifecycle"]
             )
         )
-    if "OpportunityTeam" in data:
+    if data.get("OpportunityTeam") is not None:
         import capo_partnercentral_selling.types.partner_opportunity_team_members_list
 
         out["opportunity_team"] = (
@@ -127,7 +127,7 @@ def deserialize_aws_json_1_0(data: dict) -> OpportunitySummaryView:
                 data["OpportunityTeam"]
             )
         )
-    if "PrimaryNeedsFromAws" in data:
+    if data.get("PrimaryNeedsFromAws") is not None:
         import capo_partnercentral_selling.types.primary_needs_from_aws
 
         out["primary_needs_from_aws"] = (
@@ -135,7 +135,7 @@ def deserialize_aws_json_1_0(data: dict) -> OpportunitySummaryView:
                 data["PrimaryNeedsFromAws"]
             )
         )
-    if "Customer" in data:
+    if data.get("Customer") is not None:
         import capo_partnercentral_selling.types.customer
 
         out["customer"] = (
@@ -143,7 +143,7 @@ def deserialize_aws_json_1_0(data: dict) -> OpportunitySummaryView:
                 data["Customer"]
             )
         )
-    if "Project" in data:
+    if data.get("Project") is not None:
         import capo_partnercentral_selling.types.project_view
 
         out["project"] = (
@@ -151,7 +151,7 @@ def deserialize_aws_json_1_0(data: dict) -> OpportunitySummaryView:
                 data["Project"]
             )
         )
-    if "RelatedEntityIdentifiers" in data:
+    if data.get("RelatedEntityIdentifiers") is not None:
         import capo_partnercentral_selling.types.related_entity_identifiers
 
         out["related_entity_identifiers"] = (

@@ -24,7 +24,7 @@ def serialize_json(value: TerminalStateException_) -> dict:
 
 def deserialize_json(data: dict) -> TerminalStateException_:
     out: TerminalStateException_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     return out
 
@@ -34,15 +34,18 @@ class TerminalStateException(ServiceError):
 
     code: str | None = "TerminalStateException"
 
-    def __init__(self, data: TerminalStateException_):
+    def __init__(self, data: TerminalStateException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="TerminalStateException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "TerminalStateException":
-        return cls(deserialize_json(data))
+    def from_json(
+        cls, data: dict, message: str | None = None
+    ) -> "TerminalStateException":
+        return cls(deserialize_json(data), message)

@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: InvalidEncodingException_) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> InvalidEncodingException_:
     out: InvalidEncodingException_ = {}  # type: ignore[typeddict-item]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     return out
 
@@ -34,15 +34,18 @@ class InvalidEncodingException(ServiceError):
 
     code: str | None = "InvalidEncodingException"
 
-    def __init__(self, data: InvalidEncodingException_):
+    def __init__(self, data: InvalidEncodingException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="InvalidEncodingException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "InvalidEncodingException":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "InvalidEncodingException":
+        return cls(deserialize_aws_json_1_1(data), message)

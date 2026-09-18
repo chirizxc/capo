@@ -27,6 +27,8 @@ def deserialize_aws_json_1_1(data: list) -> RuleExecutionDetailList:
 
     out: RuleExecutionDetailList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_codepipeline.types.rule_execution_detail.deserialize_aws_json_1_1(item)
         )

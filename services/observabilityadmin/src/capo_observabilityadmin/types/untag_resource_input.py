@@ -32,11 +32,11 @@ def serialize_json(value: UntagResourceInput) -> dict:
 
 def deserialize_json(data: dict) -> UntagResourceInput:
     out: UntagResourceInput = {}  # type: ignore[typeddict-item]
-    if "ResourceARN" in data:
+    if data.get("ResourceARN") is not None:
         out["resource_arn"] = data["ResourceARN"]
     else:
         raise DeserializationError("UntagResourceInput.resource_arn required")
-    if "TagKeys" in data:
+    if data.get("TagKeys") is not None:
         import capo_observabilityadmin.types.tag_key_list
 
         out["tag_keys"] = capo_observabilityadmin.types.tag_key_list.deserialize_json(

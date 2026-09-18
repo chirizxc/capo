@@ -72,37 +72,37 @@ def serialize_json(value: BatchJobExecutionSummary) -> dict:
 
 def deserialize_json(data: dict) -> BatchJobExecutionSummary:
     out: BatchJobExecutionSummary = {}  # type: ignore[typeddict-item]
-    if "executionId" in data:
+    if data.get("executionId") is not None:
         out["execution_id"] = data["executionId"]
     else:
         raise DeserializationError("BatchJobExecutionSummary.execution_id required")
-    if "applicationId" in data:
+    if data.get("applicationId") is not None:
         out["application_id"] = data["applicationId"]
     else:
         raise DeserializationError("BatchJobExecutionSummary.application_id required")
-    if "jobId" in data:
+    if data.get("jobId") is not None:
         out["job_id"] = data["jobId"]
-    if "jobName" in data:
+    if data.get("jobName") is not None:
         out["job_name"] = data["jobName"]
-    if "jobType" in data:
+    if data.get("jobType") is not None:
         out["job_type"] = data["jobType"]
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
     else:
         raise DeserializationError("BatchJobExecutionSummary.status required")
-    if "startTime" in data:
+    if data.get("startTime") is not None:
         import capo_m2.types.timestamp
 
         out["start_time"] = capo_m2.types.timestamp.deserialize_json(data["startTime"])
     else:
         raise DeserializationError("BatchJobExecutionSummary.start_time required")
-    if "endTime" in data:
+    if data.get("endTime") is not None:
         import capo_m2.types.timestamp
 
         out["end_time"] = capo_m2.types.timestamp.deserialize_json(data["endTime"])
-    if "returnCode" in data:
+    if data.get("returnCode") is not None:
         out["return_code"] = data["returnCode"]
-    if "batchJobIdentifier" in data:
+    if data.get("batchJobIdentifier") is not None:
         import capo_m2.types.batch_job_identifier
 
         out["batch_job_identifier"] = (

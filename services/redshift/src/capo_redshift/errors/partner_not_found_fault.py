@@ -37,15 +37,18 @@ class PartnerNotFoundFault(ServiceError):
 
     code: str | None = "PartnerNotFoundFault"
 
-    def __init__(self, data: PartnerNotFoundFault_):
+    def __init__(self, data: PartnerNotFoundFault_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="PartnerNotFoundFault",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_query(cls, el: Element) -> "PartnerNotFoundFault":
-        return cls(deserialize_query(el))
+    def from_query(
+        cls, el: Element, message: str | None = None
+    ) -> "PartnerNotFoundFault":
+        return cls(deserialize_query(el), message)

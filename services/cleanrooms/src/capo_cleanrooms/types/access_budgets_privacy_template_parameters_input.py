@@ -32,7 +32,7 @@ def serialize_json(value: AccessBudgetsPrivacyTemplateParametersInput) -> dict:
 
 def deserialize_json(data: dict) -> AccessBudgetsPrivacyTemplateParametersInput:
     out: AccessBudgetsPrivacyTemplateParametersInput = {}  # type: ignore[typeddict-item]
-    if "budgetParameters" in data:
+    if data.get("budgetParameters") is not None:
         import capo_cleanrooms.types.budget_parameters
 
         out["budget_parameters"] = (
@@ -44,7 +44,7 @@ def deserialize_json(data: dict) -> AccessBudgetsPrivacyTemplateParametersInput:
         raise DeserializationError(
             "AccessBudgetsPrivacyTemplateParametersInput.budget_parameters required"
         )
-    if "resourceArn" in data:
+    if data.get("resourceArn") is not None:
         out["resource_arn"] = data["resourceArn"]
     else:
         raise DeserializationError(

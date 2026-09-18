@@ -27,11 +27,11 @@ def serialize_aws_json_1_1(value: TerminologyDataLocation) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> TerminologyDataLocation:
     out: TerminologyDataLocation = {}  # type: ignore[typeddict-item]
-    if "RepositoryType" in data:
+    if data.get("RepositoryType") is not None:
         out["repository_type"] = data["RepositoryType"]
     else:
         raise DeserializationError("TerminologyDataLocation.repository_type required")
-    if "Location" in data:
+    if data.get("Location") is not None:
         out["location"] = data["Location"]
     else:
         raise DeserializationError("TerminologyDataLocation.location required")

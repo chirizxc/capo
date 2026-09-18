@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> S3BucketDetails:
 
     out: S3BucketDetails = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_guardduty.types.s3_bucket_detail.deserialize_json(item))
     return out

@@ -29,6 +29,8 @@ def serialize_json(input_to_serialize: ComponentDeploymentSpecifications) -> dic
 def deserialize_json(data: dict) -> ComponentDeploymentSpecifications:
     out: ComponentDeploymentSpecifications = {}
     for key, value in data.items():
+        if value is None:
+            continue
         import capo_greengrassv2.types.component_deployment_specification
 
         out[key] = (

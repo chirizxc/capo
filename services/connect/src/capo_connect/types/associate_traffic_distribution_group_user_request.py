@@ -31,13 +31,13 @@ def serialize_json(value: AssociateTrafficDistributionGroupUserRequest) -> dict:
 
 def deserialize_json(data: dict) -> AssociateTrafficDistributionGroupUserRequest:
     out: AssociateTrafficDistributionGroupUserRequest = {}  # type: ignore[typeddict-item]
-    if "UserId" in data:
+    if data.get("UserId") is not None:
         out["user_id"] = data["UserId"]
     else:
         raise DeserializationError(
             "AssociateTrafficDistributionGroupUserRequest.user_id required"
         )
-    if "InstanceId" in data:
+    if data.get("InstanceId") is not None:
         out["instance_id"] = data["InstanceId"]
     else:
         raise DeserializationError(

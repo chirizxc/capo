@@ -30,16 +30,26 @@ def serialize_aws_json_1_1(value: TrialComponentParameterValue) -> dict:
     if "StringValue" in value:
         return {"StringValue": value["StringValue"]}
     elif "NumberValue" in value:
-        return {"NumberValue": value["NumberValue"]}
+        return {
+            "NumberValue": (
+                "NaN"
+                if value["NumberValue"] != value["NumberValue"]
+                else "Infinity"
+                if value["NumberValue"] == float("inf")
+                else "-Infinity"
+                if value["NumberValue"] == float("-inf")
+                else value["NumberValue"]
+            )
+        }
     else:
         raise SerializationError("TrialComponentParameterValue: no variant present")
 
 
 def deserialize_aws_json_1_1(data: dict) -> TrialComponentParameterValue:
-    if "StringValue" in data:
+    if data.get("StringValue") is not None:
         return {"StringValue": data["StringValue"]}
-    elif "NumberValue" in data:
-        return {"NumberValue": data["NumberValue"]}
+    elif data.get("NumberValue") is not None:
+        return {"NumberValue": float(data["NumberValue"])}
     else:
         raise DeserializationError(
             "TrialComponentParameterValue: no recognized variant key"

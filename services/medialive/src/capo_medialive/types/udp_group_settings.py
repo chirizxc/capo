@@ -51,7 +51,7 @@ def serialize_json(value: UdpGroupSettings) -> dict:
 
 def deserialize_json(data: dict) -> UdpGroupSettings:
     out: UdpGroupSettings = {}  # type: ignore[typeddict-item]
-    if "inputLossAction" in data:
+    if data.get("inputLossAction") is not None:
         import capo_medialive.types.input_loss_action_for_udp_out
 
         out["input_loss_action"] = (
@@ -59,7 +59,7 @@ def deserialize_json(data: dict) -> UdpGroupSettings:
                 data["inputLossAction"]
             )
         )
-    if "timedMetadataId3Frame" in data:
+    if data.get("timedMetadataId3Frame") is not None:
         import capo_medialive.types.udp_timed_metadata_id3_frame
 
         out["timed_metadata_id3_frame"] = (
@@ -67,6 +67,6 @@ def deserialize_json(data: dict) -> UdpGroupSettings:
                 data["timedMetadataId3Frame"]
             )
         )
-    if "timedMetadataId3Period" in data:
+    if data.get("timedMetadataId3Period") is not None:
         out["timed_metadata_id3_period"] = data["timedMetadataId3Period"]
     return out

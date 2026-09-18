@@ -36,13 +36,13 @@ def serialize_aws_json_1_1(value: BatchGetWorkflowsResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> BatchGetWorkflowsResponse:
     out: BatchGetWorkflowsResponse = {}  # type: ignore[typeddict-item]
-    if "Workflows" in data:
+    if data.get("Workflows") is not None:
         import capo_glue.types.workflows
 
         out["workflows"] = capo_glue.types.workflows.deserialize_aws_json_1_1(
             data["Workflows"]
         )
-    if "MissingWorkflows" in data:
+    if data.get("MissingWorkflows") is not None:
         import capo_glue.types.workflow_names
 
         out["missing_workflows"] = (

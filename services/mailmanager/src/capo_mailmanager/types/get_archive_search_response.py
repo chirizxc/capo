@@ -70,9 +70,9 @@ def serialize_aws_json_1_0(value: GetArchiveSearchResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> GetArchiveSearchResponse:
     out: GetArchiveSearchResponse = {}  # type: ignore[typeddict-item]
-    if "ArchiveId" in data:
+    if data.get("ArchiveId") is not None:
         out["archive_id"] = data["ArchiveId"]
-    if "Filters" in data:
+    if data.get("Filters") is not None:
         import capo_mailmanager.types.archive_filters
 
         out["filters"] = (
@@ -80,7 +80,7 @@ def deserialize_aws_json_1_0(data: dict) -> GetArchiveSearchResponse:
                 data["Filters"]
             )
         )
-    if "FromTimestamp" in data:
+    if data.get("FromTimestamp") is not None:
         import capo_mailmanager.types._prelude.timestamp
 
         out["from_timestamp"] = (
@@ -88,7 +88,7 @@ def deserialize_aws_json_1_0(data: dict) -> GetArchiveSearchResponse:
                 data["FromTimestamp"]
             )
         )
-    if "ToTimestamp" in data:
+    if data.get("ToTimestamp") is not None:
         import capo_mailmanager.types._prelude.timestamp
 
         out["to_timestamp"] = (
@@ -96,9 +96,9 @@ def deserialize_aws_json_1_0(data: dict) -> GetArchiveSearchResponse:
                 data["ToTimestamp"]
             )
         )
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_mailmanager.types.search_status
 
         out["status"] = capo_mailmanager.types.search_status.deserialize_aws_json_1_0(

@@ -33,16 +33,12 @@ def serialize_aws_json_1_0(value: ClusterSummary) -> dict:
     out["name"] = value["name"]
     out["id"] = value["id"]
     out["arn"] = value["arn"]
-    import capo_pcs.types._prelude.timestamp
+    import capo_pcs._protocol.serialize
 
-    out["createdAt"] = capo_pcs.types._prelude.timestamp.serialize_aws_json_1_0(
-        value["created_at"]
-    )
-    import capo_pcs.types._prelude.timestamp
+    out["createdAt"] = capo_pcs._protocol.serialize.fmt_date_time(value["created_at"])
+    import capo_pcs._protocol.serialize
 
-    out["modifiedAt"] = capo_pcs.types._prelude.timestamp.serialize_aws_json_1_0(
-        value["modified_at"]
-    )
+    out["modifiedAt"] = capo_pcs._protocol.serialize.fmt_date_time(value["modified_at"])
     import capo_pcs.types.cluster_status
 
     out["status"] = capo_pcs.types.cluster_status.serialize_aws_json_1_0(
@@ -53,35 +49,35 @@ def serialize_aws_json_1_0(value: ClusterSummary) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ClusterSummary:
     out: ClusterSummary = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("ClusterSummary.name required")
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("ClusterSummary.id required")
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("ClusterSummary.arn required")
-    if "createdAt" in data:
-        import capo_pcs.types._prelude.timestamp
+    if data.get("createdAt") is not None:
+        import datetime
 
-        out["created_at"] = capo_pcs.types._prelude.timestamp.deserialize_aws_json_1_0(
-            data["createdAt"]
+        out["created_at"] = datetime.datetime.fromisoformat(
+            data["createdAt"].replace("Z", "+00:00")
         )
     else:
         raise DeserializationError("ClusterSummary.created_at required")
-    if "modifiedAt" in data:
-        import capo_pcs.types._prelude.timestamp
+    if data.get("modifiedAt") is not None:
+        import datetime
 
-        out["modified_at"] = capo_pcs.types._prelude.timestamp.deserialize_aws_json_1_0(
-            data["modifiedAt"]
+        out["modified_at"] = datetime.datetime.fromisoformat(
+            data["modifiedAt"].replace("Z", "+00:00")
         )
     else:
         raise DeserializationError("ClusterSummary.modified_at required")
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_pcs.types.cluster_status
 
         out["status"] = capo_pcs.types.cluster_status.deserialize_aws_json_1_0(

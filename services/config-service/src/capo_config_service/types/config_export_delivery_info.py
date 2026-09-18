@@ -65,7 +65,7 @@ def serialize_aws_json_1_1(value: ConfigExportDeliveryInfo) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ConfigExportDeliveryInfo:
     out: ConfigExportDeliveryInfo = {}  # type: ignore[typeddict-item]
-    if "lastStatus" in data:
+    if data.get("lastStatus") is not None:
         import capo_config_service.types.delivery_status
 
         out["last_status"] = (
@@ -73,11 +73,11 @@ def deserialize_aws_json_1_1(data: dict) -> ConfigExportDeliveryInfo:
                 data["lastStatus"]
             )
         )
-    if "lastErrorCode" in data:
+    if data.get("lastErrorCode") is not None:
         out["last_error_code"] = data["lastErrorCode"]
-    if "lastErrorMessage" in data:
+    if data.get("lastErrorMessage") is not None:
         out["last_error_message"] = data["lastErrorMessage"]
-    if "lastAttemptTime" in data:
+    if data.get("lastAttemptTime") is not None:
         import capo_config_service.types.date
 
         out["last_attempt_time"] = (
@@ -85,7 +85,7 @@ def deserialize_aws_json_1_1(data: dict) -> ConfigExportDeliveryInfo:
                 data["lastAttemptTime"]
             )
         )
-    if "lastSuccessfulTime" in data:
+    if data.get("lastSuccessfulTime") is not None:
         import capo_config_service.types.date
 
         out["last_successful_time"] = (
@@ -93,7 +93,7 @@ def deserialize_aws_json_1_1(data: dict) -> ConfigExportDeliveryInfo:
                 data["lastSuccessfulTime"]
             )
         )
-    if "nextDeliveryTime" in data:
+    if data.get("nextDeliveryTime") is not None:
         import capo_config_service.types.date
 
         out["next_delivery_time"] = (

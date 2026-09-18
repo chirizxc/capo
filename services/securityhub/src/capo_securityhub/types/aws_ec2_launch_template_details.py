@@ -51,11 +51,11 @@ def serialize_json(value: AwsEc2LaunchTemplateDetails) -> dict:
 
 def deserialize_json(data: dict) -> AwsEc2LaunchTemplateDetails:
     out: AwsEc2LaunchTemplateDetails = {}  # type: ignore[typeddict-item]
-    if "LaunchTemplateName" in data:
+    if data.get("LaunchTemplateName") is not None:
         out["launch_template_name"] = data["LaunchTemplateName"]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "LaunchTemplateData" in data:
+    if data.get("LaunchTemplateData") is not None:
         import capo_securityhub.types.aws_ec2_launch_template_data_details
 
         out["launch_template_data"] = (
@@ -63,8 +63,8 @@ def deserialize_json(data: dict) -> AwsEc2LaunchTemplateDetails:
                 data["LaunchTemplateData"]
             )
         )
-    if "DefaultVersionNumber" in data:
+    if data.get("DefaultVersionNumber") is not None:
         out["default_version_number"] = data["DefaultVersionNumber"]
-    if "LatestVersionNumber" in data:
+    if data.get("LatestVersionNumber") is not None:
         out["latest_version_number"] = data["LatestVersionNumber"]
     return out

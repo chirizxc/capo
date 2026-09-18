@@ -40,13 +40,13 @@ def serialize_json(value: WriteOperation) -> dict:
 
 def deserialize_json(data: dict) -> WriteOperation:
     out: WriteOperation = {}  # type: ignore[typeddict-item]
-    if "AddObject" in data:
+    if data.get("AddObject") is not None:
         import capo_lakeformation.types.add_object_input
 
         out["add_object"] = capo_lakeformation.types.add_object_input.deserialize_json(
             data["AddObject"]
         )
-    if "DeleteObject" in data:
+    if data.get("DeleteObject") is not None:
         import capo_lakeformation.types.delete_object_input
 
         out["delete_object"] = (

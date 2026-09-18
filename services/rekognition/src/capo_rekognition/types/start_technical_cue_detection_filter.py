@@ -22,7 +22,15 @@ class StartTechnicalCueDetectionFilter(TypedDict, closed=True):
 def serialize_aws_json_1_1(value: StartTechnicalCueDetectionFilter) -> dict:
     out: dict = {}
     if "min_segment_confidence" in value:
-        out["MinSegmentConfidence"] = value["min_segment_confidence"]
+        out["MinSegmentConfidence"] = (
+            "NaN"
+            if value["min_segment_confidence"] != value["min_segment_confidence"]
+            else "Infinity"
+            if value["min_segment_confidence"] == float("inf")
+            else "-Infinity"
+            if value["min_segment_confidence"] == float("-inf")
+            else value["min_segment_confidence"]
+        )
     if "black_frame" in value:
         import capo_rekognition.types.black_frame
 
@@ -34,9 +42,9 @@ def serialize_aws_json_1_1(value: StartTechnicalCueDetectionFilter) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> StartTechnicalCueDetectionFilter:
     out: StartTechnicalCueDetectionFilter = {}  # type: ignore[typeddict-item]
-    if "MinSegmentConfidence" in data:
-        out["min_segment_confidence"] = data["MinSegmentConfidence"]
-    if "BlackFrame" in data:
+    if data.get("MinSegmentConfidence") is not None:
+        out["min_segment_confidence"] = float(data["MinSegmentConfidence"])
+    if data.get("BlackFrame") is not None:
         import capo_rekognition.types.black_frame
 
         out["black_frame"] = (

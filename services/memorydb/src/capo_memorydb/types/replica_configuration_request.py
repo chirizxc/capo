@@ -22,7 +22,7 @@ def serialize_aws_json_1_1(value: ReplicaConfigurationRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ReplicaConfigurationRequest:
     out: ReplicaConfigurationRequest = {}  # type: ignore[typeddict-item]
-    if "ReplicaCount" in data:
+    if data.get("ReplicaCount") is not None:
         out["replica_count"] = data["ReplicaCount"]
     else:
         out["replica_count"] = 0

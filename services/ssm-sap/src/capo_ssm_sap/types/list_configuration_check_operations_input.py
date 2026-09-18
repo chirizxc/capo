@@ -51,13 +51,13 @@ def serialize_json(value: ListConfigurationCheckOperationsInput) -> dict:
 
 def deserialize_json(data: dict) -> ListConfigurationCheckOperationsInput:
     out: ListConfigurationCheckOperationsInput = {}  # type: ignore[typeddict-item]
-    if "ApplicationId" in data:
+    if data.get("ApplicationId") is not None:
         out["application_id"] = data["ApplicationId"]
     else:
         raise DeserializationError(
             "ListConfigurationCheckOperationsInput.application_id required"
         )
-    if "ListMode" in data:
+    if data.get("ListMode") is not None:
         import capo_ssm_sap.types.configuration_check_operation_listing_mode
 
         out["list_mode"] = (
@@ -67,11 +67,11 @@ def deserialize_json(data: dict) -> ListConfigurationCheckOperationsInput:
         )
     else:
         out["list_mode"] = "LATEST_PER_CHECK"
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "Filters" in data:
+    if data.get("Filters") is not None:
         import capo_ssm_sap.types.filter_list
 
         out["filters"] = capo_ssm_sap.types.filter_list.deserialize_json(

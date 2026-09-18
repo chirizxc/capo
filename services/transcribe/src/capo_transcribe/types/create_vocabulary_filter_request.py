@@ -37,6 +37,7 @@ class CreateVocabularyFilterRequest(TypedDict, closed=True):
 # --- awsJson1_1 ser/de ---
 def serialize_aws_json_1_1(value: CreateVocabularyFilterRequest) -> dict:
     out: dict = {}
+    out["VocabularyFilterName"] = value["vocabulary_filter_name"]
     import capo_transcribe.types.language_code
 
     out["LanguageCode"] = capo_transcribe.types.language_code.serialize_aws_json_1_1(
@@ -63,7 +64,13 @@ def serialize_aws_json_1_1(value: CreateVocabularyFilterRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateVocabularyFilterRequest:
     out: CreateVocabularyFilterRequest = {}  # type: ignore[typeddict-item]
-    if "LanguageCode" in data:
+    if data.get("VocabularyFilterName") is not None:
+        out["vocabulary_filter_name"] = data["VocabularyFilterName"]
+    else:
+        raise DeserializationError(
+            "CreateVocabularyFilterRequest.vocabulary_filter_name required"
+        )
+    if data.get("LanguageCode") is not None:
         import capo_transcribe.types.language_code
 
         out["language_code"] = (
@@ -75,20 +82,20 @@ def deserialize_aws_json_1_1(data: dict) -> CreateVocabularyFilterRequest:
         raise DeserializationError(
             "CreateVocabularyFilterRequest.language_code required"
         )
-    if "Words" in data:
+    if data.get("Words") is not None:
         import capo_transcribe.types.words
 
         out["words"] = capo_transcribe.types.words.deserialize_aws_json_1_1(
             data["Words"]
         )
-    if "VocabularyFilterFileUri" in data:
+    if data.get("VocabularyFilterFileUri") is not None:
         out["vocabulary_filter_file_uri"] = data["VocabularyFilterFileUri"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_transcribe.types.tag_list
 
         out["tags"] = capo_transcribe.types.tag_list.deserialize_aws_json_1_1(
             data["Tags"]
         )
-    if "DataAccessRoleArn" in data:
+    if data.get("DataAccessRoleArn") is not None:
         out["data_access_role_arn"] = data["DataAccessRoleArn"]
     return out

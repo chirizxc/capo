@@ -25,7 +25,7 @@ def serialize_json(value: CreateGroupResult) -> dict:
 
 def deserialize_json(data: dict) -> CreateGroupResult:
     out: CreateGroupResult = {}  # type: ignore[typeddict-item]
-    if "Group" in data:
+    if data.get("Group") is not None:
         import capo_xray.types.group
 
         out["group"] = capo_xray.types.group.deserialize_json(data["Group"])

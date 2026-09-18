@@ -30,13 +30,13 @@ def serialize_aws_json_1_0(value: CreateRegistrationAssociationRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CreateRegistrationAssociationRequest:
     out: CreateRegistrationAssociationRequest = {}  # type: ignore[typeddict-item]
-    if "RegistrationId" in data:
+    if data.get("RegistrationId") is not None:
         out["registration_id"] = data["RegistrationId"]
     else:
         raise DeserializationError(
             "CreateRegistrationAssociationRequest.registration_id required"
         )
-    if "ResourceId" in data:
+    if data.get("ResourceId") is not None:
         out["resource_id"] = data["ResourceId"]
     else:
         raise DeserializationError(

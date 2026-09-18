@@ -50,11 +50,11 @@ def serialize_json(value: Processor) -> dict:
 
 def deserialize_json(data: dict) -> Processor:
     out: Processor = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("Processor.name required")
-    if "Configuration" in data:
+    if data.get("Configuration") is not None:
         import capo_chime_sdk_messaging.types.processor_configuration
 
         out["configuration"] = (
@@ -64,11 +64,11 @@ def deserialize_json(data: dict) -> Processor:
         )
     else:
         raise DeserializationError("Processor.configuration required")
-    if "ExecutionOrder" in data:
+    if data.get("ExecutionOrder") is not None:
         out["execution_order"] = data["ExecutionOrder"]
     else:
         raise DeserializationError("Processor.execution_order required")
-    if "FallbackAction" in data:
+    if data.get("FallbackAction") is not None:
         import capo_chime_sdk_messaging.types.fallback_action
 
         out["fallback_action"] = (

@@ -27,13 +27,13 @@ def serialize_aws_json_1_1(value: AttachCertificateToDistributionRequest) -> dic
 
 def deserialize_aws_json_1_1(data: dict) -> AttachCertificateToDistributionRequest:
     out: AttachCertificateToDistributionRequest = {}  # type: ignore[typeddict-item]
-    if "distributionName" in data:
+    if data.get("distributionName") is not None:
         out["distribution_name"] = data["distributionName"]
     else:
         raise DeserializationError(
             "AttachCertificateToDistributionRequest.distribution_name required"
         )
-    if "certificateName" in data:
+    if data.get("certificateName") is not None:
         out["certificate_name"] = data["certificateName"]
     else:
         raise DeserializationError(

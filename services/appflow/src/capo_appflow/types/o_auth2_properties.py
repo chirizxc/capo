@@ -45,11 +45,11 @@ def serialize_json(value: OAuth2Properties) -> dict:
 
 def deserialize_json(data: dict) -> OAuth2Properties:
     out: OAuth2Properties = {}  # type: ignore[typeddict-item]
-    if "tokenUrl" in data:
+    if data.get("tokenUrl") is not None:
         out["token_url"] = data["tokenUrl"]
     else:
         raise DeserializationError("OAuth2Properties.token_url required")
-    if "oAuth2GrantType" in data:
+    if data.get("oAuth2GrantType") is not None:
         import capo_appflow.types.o_auth2_grant_type
 
         out["o_auth2_grant_type"] = (
@@ -59,7 +59,7 @@ def deserialize_json(data: dict) -> OAuth2Properties:
         )
     else:
         raise DeserializationError("OAuth2Properties.o_auth2_grant_type required")
-    if "tokenUrlCustomProperties" in data:
+    if data.get("tokenUrlCustomProperties") is not None:
         import capo_appflow.types.token_url_custom_properties
 
         out["token_url_custom_properties"] = (

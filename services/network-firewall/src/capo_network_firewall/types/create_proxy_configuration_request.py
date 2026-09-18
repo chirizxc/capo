@@ -74,15 +74,15 @@ def serialize_aws_json_1_0(value: CreateProxyConfigurationRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CreateProxyConfigurationRequest:
     out: CreateProxyConfigurationRequest = {}  # type: ignore[typeddict-item]
-    if "ProxyConfigurationName" in data:
+    if data.get("ProxyConfigurationName") is not None:
         out["proxy_configuration_name"] = data["ProxyConfigurationName"]
     else:
         raise DeserializationError(
             "CreateProxyConfigurationRequest.proxy_configuration_name required"
         )
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "RuleGroupNames" in data:
+    if data.get("RuleGroupNames") is not None:
         import capo_network_firewall.types.resource_name_list
 
         out["rule_group_names"] = (
@@ -90,7 +90,7 @@ def deserialize_aws_json_1_0(data: dict) -> CreateProxyConfigurationRequest:
                 data["RuleGroupNames"]
             )
         )
-    if "RuleGroupArns" in data:
+    if data.get("RuleGroupArns") is not None:
         import capo_network_firewall.types.resource_arn_list
 
         out["rule_group_arns"] = (
@@ -98,7 +98,7 @@ def deserialize_aws_json_1_0(data: dict) -> CreateProxyConfigurationRequest:
                 data["RuleGroupArns"]
             )
         )
-    if "DefaultRulePhaseActions" in data:
+    if data.get("DefaultRulePhaseActions") is not None:
         import capo_network_firewall.types.proxy_config_default_rule_phase_actions_request
 
         out["default_rule_phase_actions"] = (
@@ -110,7 +110,7 @@ def deserialize_aws_json_1_0(data: dict) -> CreateProxyConfigurationRequest:
         raise DeserializationError(
             "CreateProxyConfigurationRequest.default_rule_phase_actions required"
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_network_firewall.types.tag_list
 
         out["tags"] = capo_network_firewall.types.tag_list.deserialize_aws_json_1_0(

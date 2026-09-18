@@ -110,7 +110,7 @@ def serialize_json(value: FileSourceSettings) -> dict:
 
 def deserialize_json(data: dict) -> FileSourceSettings:
     out: FileSourceSettings = {}  # type: ignore[typeddict-item]
-    if "byteRateLimit" in data:
+    if data.get("byteRateLimit") is not None:
         import capo_mediaconvert.types.caption_source_byte_rate_limit
 
         out["byte_rate_limit"] = (
@@ -118,7 +118,7 @@ def deserialize_json(data: dict) -> FileSourceSettings:
                 data["byteRateLimit"]
             )
         )
-    if "convert608To708" in data:
+    if data.get("convert608To708") is not None:
         import capo_mediaconvert.types.file_source_convert608_to708
 
         out["convert608_to708"] = (
@@ -126,7 +126,7 @@ def deserialize_json(data: dict) -> FileSourceSettings:
                 data["convert608To708"]
             )
         )
-    if "convertPaintToPop" in data:
+    if data.get("convertPaintToPop") is not None:
         import capo_mediaconvert.types.caption_source_convert_paint_on_to_pop_on
 
         out["convert_paint_to_pop"] = (
@@ -134,7 +134,7 @@ def deserialize_json(data: dict) -> FileSourceSettings:
                 data["convertPaintToPop"]
             )
         )
-    if "framerate" in data:
+    if data.get("framerate") is not None:
         import capo_mediaconvert.types.caption_source_framerate
 
         out["framerate"] = (
@@ -142,11 +142,11 @@ def deserialize_json(data: dict) -> FileSourceSettings:
                 data["framerate"]
             )
         )
-    if "sourceFile" in data:
+    if data.get("sourceFile") is not None:
         out["source_file"] = data["sourceFile"]
-    if "timeDelta" in data:
+    if data.get("timeDelta") is not None:
         out["time_delta"] = data["timeDelta"]
-    if "timeDeltaUnits" in data:
+    if data.get("timeDeltaUnits") is not None:
         import capo_mediaconvert.types.file_source_time_delta_units
 
         out["time_delta_units"] = (
@@ -154,7 +154,7 @@ def deserialize_json(data: dict) -> FileSourceSettings:
                 data["timeDeltaUnits"]
             )
         )
-    if "upconvertSTLToTeletext" in data:
+    if data.get("upconvertSTLToTeletext") is not None:
         import capo_mediaconvert.types.caption_source_upconvert_stl_to_teletext
 
         out["upconvert_stl_to_teletext"] = (

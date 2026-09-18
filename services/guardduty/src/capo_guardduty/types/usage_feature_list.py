@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> UsageFeatureList:
 
     out: UsageFeatureList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_guardduty.types.usage_feature.deserialize_json(item))
     return out

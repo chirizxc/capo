@@ -42,7 +42,15 @@ def serialize_json(value: MetricValue) -> dict:
 
         out["ports"] = capo_iot.types.ports.serialize_json(value["ports"])
     if "number" in value:
-        out["number"] = value["number"]
+        out["number"] = (
+            "NaN"
+            if value["number"] != value["number"]
+            else "Infinity"
+            if value["number"] == float("inf")
+            else "-Infinity"
+            if value["number"] == float("-inf")
+            else value["number"]
+        )
     if "numbers" in value:
         import capo_iot.types.number_list
 
@@ -56,23 +64,23 @@ def serialize_json(value: MetricValue) -> dict:
 
 def deserialize_json(data: dict) -> MetricValue:
     out: MetricValue = {}  # type: ignore[typeddict-item]
-    if "count" in data:
+    if data.get("count") is not None:
         out["count"] = data["count"]
-    if "cidrs" in data:
+    if data.get("cidrs") is not None:
         import capo_iot.types.cidrs
 
         out["cidrs"] = capo_iot.types.cidrs.deserialize_json(data["cidrs"])
-    if "ports" in data:
+    if data.get("ports") is not None:
         import capo_iot.types.ports
 
         out["ports"] = capo_iot.types.ports.deserialize_json(data["ports"])
-    if "number" in data:
-        out["number"] = data["number"]
-    if "numbers" in data:
+    if data.get("number") is not None:
+        out["number"] = float(data["number"])
+    if data.get("numbers") is not None:
         import capo_iot.types.number_list
 
         out["numbers"] = capo_iot.types.number_list.deserialize_json(data["numbers"])
-    if "strings" in data:
+    if data.get("strings") is not None:
         import capo_iot.types.string_list
 
         out["strings"] = capo_iot.types.string_list.deserialize_json(data["strings"])

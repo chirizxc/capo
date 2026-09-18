@@ -34,12 +34,12 @@ def serialize_json(value: EnablementStatusSummary) -> dict:
 
 def deserialize_json(data: dict) -> EnablementStatusSummary:
     out: EnablementStatusSummary = {}  # type: ignore[typeddict-item]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_controltower.types.enablement_status
 
         out["status"] = capo_controltower.types.enablement_status.deserialize_json(
             data["status"]
         )
-    if "lastOperationIdentifier" in data:
+    if data.get("lastOperationIdentifier") is not None:
         out["last_operation_identifier"] = data["lastOperationIdentifier"]
     return out

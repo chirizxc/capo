@@ -71,7 +71,7 @@ def serialize_json(value: GetNotificationConfigurationResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetNotificationConfigurationResponse:
     out: GetNotificationConfigurationResponse = {}  # type: ignore[typeddict-item]
-    if "EventType" in data:
+    if data.get("EventType") is not None:
         import capo_iot_managed_integrations.types.event_type
 
         out["event_type"] = (
@@ -79,9 +79,9 @@ def deserialize_json(data: dict) -> GetNotificationConfigurationResponse:
                 data["EventType"]
             )
         )
-    if "DestinationName" in data:
+    if data.get("DestinationName") is not None:
         out["destination_name"] = data["DestinationName"]
-    if "CreatedAt" in data:
+    if data.get("CreatedAt") is not None:
         import capo_iot_managed_integrations.types.notification_configuration_created_at
 
         out["created_at"] = (
@@ -89,7 +89,7 @@ def deserialize_json(data: dict) -> GetNotificationConfigurationResponse:
                 data["CreatedAt"]
             )
         )
-    if "UpdatedAt" in data:
+    if data.get("UpdatedAt") is not None:
         import capo_iot_managed_integrations.types.notification_configuration_updated_at
 
         out["updated_at"] = (
@@ -97,7 +97,7 @@ def deserialize_json(data: dict) -> GetNotificationConfigurationResponse:
                 data["UpdatedAt"]
             )
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_iot_managed_integrations.types.tags_map
 
         out["tags"] = capo_iot_managed_integrations.types.tags_map.deserialize_json(

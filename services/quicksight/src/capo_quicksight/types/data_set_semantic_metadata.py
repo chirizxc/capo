@@ -44,7 +44,7 @@ def serialize_json(value: DataSetSemanticMetadata) -> dict:
 
 def deserialize_json(data: dict) -> DataSetSemanticMetadata:
     out: DataSetSemanticMetadata = {}  # type: ignore[typeddict-item]
-    if "Description" in data:
+    if data.get("Description") is not None:
         import capo_quicksight.types.data_set_semantic_description
 
         out["description"] = (
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> DataSetSemanticMetadata:
                 data["Description"]
             )
         )
-    if "CustomInstructions" in data:
+    if data.get("CustomInstructions") is not None:
         import capo_quicksight.types.custom_instruction_list
 
         out["custom_instructions"] = (

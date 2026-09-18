@@ -36,9 +36,9 @@ def serialize_json(value: ListPluginTypeMetadataResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListPluginTypeMetadataResponse:
     out: ListPluginTypeMetadataResponse = {}  # type: ignore[typeddict-item]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "items" in data:
+    if data.get("items") is not None:
         import capo_qbusiness.types.list_plugin_type_metadata_summaries
 
         out["items"] = (

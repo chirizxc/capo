@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> EksAnywhereSubscriptionList:
 
     out: EksAnywhereSubscriptionList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_eks.types.eks_anywhere_subscription.deserialize_json(item))
     return out

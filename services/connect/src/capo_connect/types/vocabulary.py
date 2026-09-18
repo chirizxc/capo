@@ -77,19 +77,19 @@ def serialize_json(value: Vocabulary) -> dict:
 
 def deserialize_json(data: dict) -> Vocabulary:
     out: Vocabulary = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("Vocabulary.name required")
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
     else:
         raise DeserializationError("Vocabulary.id required")
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
     else:
         raise DeserializationError("Vocabulary.arn required")
-    if "LanguageCode" in data:
+    if data.get("LanguageCode") is not None:
         import capo_connect.types.vocabulary_language_code
 
         out["language_code"] = (
@@ -99,7 +99,7 @@ def deserialize_json(data: dict) -> Vocabulary:
         )
     else:
         raise DeserializationError("Vocabulary.language_code required")
-    if "State" in data:
+    if data.get("State") is not None:
         import capo_connect.types.vocabulary_state
 
         out["state"] = capo_connect.types.vocabulary_state.deserialize_json(
@@ -107,7 +107,7 @@ def deserialize_json(data: dict) -> Vocabulary:
         )
     else:
         raise DeserializationError("Vocabulary.state required")
-    if "LastModifiedTime" in data:
+    if data.get("LastModifiedTime") is not None:
         import capo_connect.types.vocabulary_last_modified_time
 
         out["last_modified_time"] = (
@@ -117,11 +117,11 @@ def deserialize_json(data: dict) -> Vocabulary:
         )
     else:
         raise DeserializationError("Vocabulary.last_modified_time required")
-    if "FailureReason" in data:
+    if data.get("FailureReason") is not None:
         out["failure_reason"] = data["FailureReason"]
-    if "Content" in data:
+    if data.get("Content") is not None:
         out["content"] = data["Content"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_connect.types.tag_map
 
         out["tags"] = capo_connect.types.tag_map.deserialize_json(data["Tags"])

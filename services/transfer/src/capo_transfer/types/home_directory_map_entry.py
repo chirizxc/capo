@@ -35,15 +35,15 @@ def serialize_aws_json_1_1(value: HomeDirectoryMapEntry) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> HomeDirectoryMapEntry:
     out: HomeDirectoryMapEntry = {}  # type: ignore[typeddict-item]
-    if "Entry" in data:
+    if data.get("Entry") is not None:
         out["entry"] = data["Entry"]
     else:
         raise DeserializationError("HomeDirectoryMapEntry.entry required")
-    if "Target" in data:
+    if data.get("Target") is not None:
         out["target"] = data["Target"]
     else:
         raise DeserializationError("HomeDirectoryMapEntry.target required")
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_transfer.types.map_type
 
         out["type"] = capo_transfer.types.map_type.deserialize_aws_json_1_1(

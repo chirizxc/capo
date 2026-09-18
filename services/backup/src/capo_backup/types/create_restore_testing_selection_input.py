@@ -36,9 +36,9 @@ def serialize_json(value: CreateRestoreTestingSelectionInput) -> dict:
 
 def deserialize_json(data: dict) -> CreateRestoreTestingSelectionInput:
     out: CreateRestoreTestingSelectionInput = {}  # type: ignore[typeddict-item]
-    if "CreatorRequestId" in data:
+    if data.get("CreatorRequestId") is not None:
         out["creator_request_id"] = data["CreatorRequestId"]
-    if "RestoreTestingSelection" in data:
+    if data.get("RestoreTestingSelection") is not None:
         import capo_backup.types.restore_testing_selection_for_create
 
         out["restore_testing_selection"] = (

@@ -24,6 +24,7 @@ class RegisterContainerImageRequest(TypedDict, closed=True):
 # --- awsJson1_1 ser/de ---
 def serialize_aws_json_1_1(value: RegisterContainerImageRequest) -> dict:
     out: dict = {}
+    out["serviceName"] = value["service_name"]
     out["label"] = value["label"]
     out["digest"] = value["digest"]
     return out
@@ -31,11 +32,17 @@ def serialize_aws_json_1_1(value: RegisterContainerImageRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RegisterContainerImageRequest:
     out: RegisterContainerImageRequest = {}  # type: ignore[typeddict-item]
-    if "label" in data:
+    if data.get("serviceName") is not None:
+        out["service_name"] = data["serviceName"]
+    else:
+        raise DeserializationError(
+            "RegisterContainerImageRequest.service_name required"
+        )
+    if data.get("label") is not None:
         out["label"] = data["label"]
     else:
         raise DeserializationError("RegisterContainerImageRequest.label required")
-    if "digest" in data:
+    if data.get("digest") is not None:
         out["digest"] = data["digest"]
     else:
         raise DeserializationError("RegisterContainerImageRequest.digest required")

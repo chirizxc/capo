@@ -33,13 +33,13 @@ def serialize_aws_json_1_1(value: GetFileInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetFileInput:
     out: GetFileInput = {}  # type: ignore[typeddict-item]
-    if "repositoryName" in data:
+    if data.get("repositoryName") is not None:
         out["repository_name"] = data["repositoryName"]
     else:
         raise DeserializationError("GetFileInput.repository_name required")
-    if "commitSpecifier" in data:
+    if data.get("commitSpecifier") is not None:
         out["commit_specifier"] = data["commitSpecifier"]
-    if "filePath" in data:
+    if data.get("filePath") is not None:
         out["file_path"] = data["filePath"]
     else:
         raise DeserializationError("GetFileInput.file_path required")

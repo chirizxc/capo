@@ -44,18 +44,18 @@ def serialize_json(value: CreateUserProfileInput) -> dict:
 
 def deserialize_json(data: dict) -> CreateUserProfileInput:
     out: CreateUserProfileInput = {}  # type: ignore[typeddict-item]
-    if "userIdentifier" in data:
+    if data.get("userIdentifier") is not None:
         out["user_identifier"] = data["userIdentifier"]
     else:
         raise DeserializationError("CreateUserProfileInput.user_identifier required")
-    if "userType" in data:
+    if data.get("userType") is not None:
         import capo_datazone.types.user_type
 
         out["user_type"] = capo_datazone.types.user_type.deserialize_json(
             data["userType"]
         )
-    if "sessionName" in data:
+    if data.get("sessionName") is not None:
         out["session_name"] = data["sessionName"]
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     return out

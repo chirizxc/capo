@@ -25,6 +25,6 @@ def serialize_json(value: CreateOtaTaskConfigurationResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateOtaTaskConfigurationResponse:
     out: CreateOtaTaskConfigurationResponse = {}  # type: ignore[typeddict-item]
-    if "TaskConfigurationId" in data:
+    if data.get("TaskConfigurationId") is not None:
         out["task_configuration_id"] = data["TaskConfigurationId"]
     return out

@@ -76,13 +76,13 @@ def serialize_aws_json_1_1(value: ModelDashboardModel) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ModelDashboardModel:
     out: ModelDashboardModel = {}  # type: ignore[typeddict-item]
-    if "Model" in data:
+    if data.get("Model") is not None:
         import capo_sagemaker.types.model
 
         out["model"] = capo_sagemaker.types.model.deserialize_aws_json_1_1(
             data["Model"]
         )
-    if "Endpoints" in data:
+    if data.get("Endpoints") is not None:
         import capo_sagemaker.types.model_dashboard_endpoints
 
         out["endpoints"] = (
@@ -90,7 +90,7 @@ def deserialize_aws_json_1_1(data: dict) -> ModelDashboardModel:
                 data["Endpoints"]
             )
         )
-    if "LastBatchTransformJob" in data:
+    if data.get("LastBatchTransformJob") is not None:
         import capo_sagemaker.types.transform_job
 
         out["last_batch_transform_job"] = (
@@ -98,7 +98,7 @@ def deserialize_aws_json_1_1(data: dict) -> ModelDashboardModel:
                 data["LastBatchTransformJob"]
             )
         )
-    if "MonitoringSchedules" in data:
+    if data.get("MonitoringSchedules") is not None:
         import capo_sagemaker.types.model_dashboard_monitoring_schedules
 
         out["monitoring_schedules"] = (
@@ -106,7 +106,7 @@ def deserialize_aws_json_1_1(data: dict) -> ModelDashboardModel:
                 data["MonitoringSchedules"]
             )
         )
-    if "ModelCard" in data:
+    if data.get("ModelCard") is not None:
         import capo_sagemaker.types.model_dashboard_model_card
 
         out["model_card"] = (

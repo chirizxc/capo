@@ -38,9 +38,9 @@ def serialize_aws_json_1_1(value: AuthorizedTokenIssuer) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AuthorizedTokenIssuer:
     out: AuthorizedTokenIssuer = {}  # type: ignore[typeddict-item]
-    if "TrustedTokenIssuerArn" in data:
+    if data.get("TrustedTokenIssuerArn") is not None:
         out["trusted_token_issuer_arn"] = data["TrustedTokenIssuerArn"]
-    if "AuthorizedAudiences" in data:
+    if data.get("AuthorizedAudiences") is not None:
         import capo_sso_admin.types.token_issuer_audiences
 
         out["authorized_audiences"] = (

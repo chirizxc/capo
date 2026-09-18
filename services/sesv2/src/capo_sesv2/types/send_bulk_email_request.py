@@ -101,11 +101,11 @@ def serialize_json(value: SendBulkEmailRequest) -> dict:
 
 def deserialize_json(data: dict) -> SendBulkEmailRequest:
     out: SendBulkEmailRequest = {}  # type: ignore[typeddict-item]
-    if "FromEmailAddress" in data:
+    if data.get("FromEmailAddress") is not None:
         out["from_email_address"] = data["FromEmailAddress"]
-    if "FromEmailAddressIdentityArn" in data:
+    if data.get("FromEmailAddressIdentityArn") is not None:
         out["from_email_address_identity_arn"] = data["FromEmailAddressIdentityArn"]
-    if "ReplyToAddresses" in data:
+    if data.get("ReplyToAddresses") is not None:
         import capo_sesv2.types.email_address_list
 
         out["reply_to_addresses"] = (
@@ -113,21 +113,21 @@ def deserialize_json(data: dict) -> SendBulkEmailRequest:
                 data["ReplyToAddresses"]
             )
         )
-    if "FeedbackForwardingEmailAddress" in data:
+    if data.get("FeedbackForwardingEmailAddress") is not None:
         out["feedback_forwarding_email_address"] = data[
             "FeedbackForwardingEmailAddress"
         ]
-    if "FeedbackForwardingEmailAddressIdentityArn" in data:
+    if data.get("FeedbackForwardingEmailAddressIdentityArn") is not None:
         out["feedback_forwarding_email_address_identity_arn"] = data[
             "FeedbackForwardingEmailAddressIdentityArn"
         ]
-    if "DefaultEmailTags" in data:
+    if data.get("DefaultEmailTags") is not None:
         import capo_sesv2.types.message_tag_list
 
         out["default_email_tags"] = capo_sesv2.types.message_tag_list.deserialize_json(
             data["DefaultEmailTags"]
         )
-    if "DefaultContent" in data:
+    if data.get("DefaultContent") is not None:
         import capo_sesv2.types.bulk_email_content
 
         out["default_content"] = capo_sesv2.types.bulk_email_content.deserialize_json(
@@ -135,7 +135,7 @@ def deserialize_json(data: dict) -> SendBulkEmailRequest:
         )
     else:
         raise DeserializationError("SendBulkEmailRequest.default_content required")
-    if "BulkEmailEntries" in data:
+    if data.get("BulkEmailEntries") is not None:
         import capo_sesv2.types.bulk_email_entry_list
 
         out["bulk_email_entries"] = (
@@ -145,10 +145,10 @@ def deserialize_json(data: dict) -> SendBulkEmailRequest:
         )
     else:
         raise DeserializationError("SendBulkEmailRequest.bulk_email_entries required")
-    if "ConfigurationSetName" in data:
+    if data.get("ConfigurationSetName") is not None:
         out["configuration_set_name"] = data["ConfigurationSetName"]
-    if "EndpointId" in data:
+    if data.get("EndpointId") is not None:
         out["endpoint_id"] = data["EndpointId"]
-    if "TenantName" in data:
+    if data.get("TenantName") is not None:
         out["tenant_name"] = data["TenantName"]
     return out

@@ -58,21 +58,21 @@ def serialize_json(value: GetPackageResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetPackageResponse:
     out: GetPackageResponse = {}  # type: ignore[typeddict-item]
-    if "packageName" in data:
+    if data.get("packageName") is not None:
         out["package_name"] = data["packageName"]
-    if "packageArn" in data:
+    if data.get("packageArn") is not None:
         out["package_arn"] = data["packageArn"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "defaultVersionName" in data:
+    if data.get("defaultVersionName") is not None:
         out["default_version_name"] = data["defaultVersionName"]
-    if "creationDate" in data:
+    if data.get("creationDate") is not None:
         import capo_iot.types.creation_date
 
         out["creation_date"] = capo_iot.types.creation_date.deserialize_json(
             data["creationDate"]
         )
-    if "lastModifiedDate" in data:
+    if data.get("lastModifiedDate") is not None:
         import capo_iot.types.last_modified_date
 
         out["last_modified_date"] = capo_iot.types.last_modified_date.deserialize_json(

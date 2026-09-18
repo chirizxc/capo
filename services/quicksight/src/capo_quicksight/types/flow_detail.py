@@ -81,21 +81,21 @@ def serialize_json(value: FlowDetail) -> dict:
 
 def deserialize_json(data: dict) -> FlowDetail:
     out: FlowDetail = {}  # type: ignore[typeddict-item]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
     else:
         raise DeserializationError("FlowDetail.arn required")
-    if "FlowId" in data:
+    if data.get("FlowId") is not None:
         out["flow_id"] = data["FlowId"]
     else:
         raise DeserializationError("FlowDetail.flow_id required")
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("FlowDetail.name required")
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "PublishState" in data:
+    if data.get("PublishState") is not None:
         import capo_quicksight.types.flow_publish_state
 
         out["publish_state"] = (
@@ -105,7 +105,7 @@ def deserialize_json(data: dict) -> FlowDetail:
         )
     else:
         raise DeserializationError("FlowDetail.publish_state required")
-    if "CreatedTime" in data:
+    if data.get("CreatedTime") is not None:
         import capo_quicksight.types.timestamp
 
         out["created_time"] = capo_quicksight.types.timestamp.deserialize_json(
@@ -113,21 +113,21 @@ def deserialize_json(data: dict) -> FlowDetail:
         )
     else:
         raise DeserializationError("FlowDetail.created_time required")
-    if "CreatedBy" in data:
+    if data.get("CreatedBy") is not None:
         out["created_by"] = data["CreatedBy"]
-    if "LastUpdatedTime" in data:
+    if data.get("LastUpdatedTime") is not None:
         import capo_quicksight.types.timestamp
 
         out["last_updated_time"] = capo_quicksight.types.timestamp.deserialize_json(
             data["LastUpdatedTime"]
         )
-    if "LastUpdatedBy" in data:
+    if data.get("LastUpdatedBy") is not None:
         out["last_updated_by"] = data["LastUpdatedBy"]
-    if "FlowDefinition" in data:
+    if data.get("FlowDefinition") is not None:
         out["flow_definition"] = data["FlowDefinition"]
     else:
         raise DeserializationError("FlowDetail.flow_definition required")
-    if "StepAliases" in data:
+    if data.get("StepAliases") is not None:
         import capo_quicksight.types.step_alias_list
 
         out["step_aliases"] = capo_quicksight.types.step_alias_list.deserialize_json(

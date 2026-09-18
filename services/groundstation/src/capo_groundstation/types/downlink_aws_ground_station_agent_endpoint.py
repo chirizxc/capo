@@ -36,13 +36,13 @@ def serialize_json(value: DownlinkAwsGroundStationAgentEndpoint) -> dict:
 
 def deserialize_json(data: dict) -> DownlinkAwsGroundStationAgentEndpoint:
     out: DownlinkAwsGroundStationAgentEndpoint = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError(
             "DownlinkAwsGroundStationAgentEndpoint.name required"
         )
-    if "dataflowDetails" in data:
+    if data.get("dataflowDetails") is not None:
         import capo_groundstation.types.downlink_dataflow_details
 
         out["dataflow_details"] = (

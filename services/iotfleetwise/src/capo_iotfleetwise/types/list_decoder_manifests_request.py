@@ -27,9 +27,37 @@ class ListDecoderManifestsRequest(TypedDict, closed=True):
 # --- awsJson1_0 ser/de ---
 def serialize_aws_json_1_0(value: ListDecoderManifestsRequest) -> dict:
     out: dict = {}
+    if "model_manifest_arn" in value:
+        out["modelManifestArn"] = value["model_manifest_arn"]
+    if "next_token" in value:
+        out["nextToken"] = value["next_token"]
+    if "max_results" in value:
+        out["maxResults"] = value["max_results"]
+    if "list_response_scope" in value:
+        import capo_iotfleetwise.types.list_response_scope
+
+        out["listResponseScope"] = (
+            capo_iotfleetwise.types.list_response_scope.serialize_aws_json_1_0(
+                value["list_response_scope"]
+            )
+        )
     return out
 
 
 def deserialize_aws_json_1_0(data: dict) -> ListDecoderManifestsRequest:
     out: ListDecoderManifestsRequest = {}  # type: ignore[typeddict-item]
+    if data.get("modelManifestArn") is not None:
+        out["model_manifest_arn"] = data["modelManifestArn"]
+    if data.get("nextToken") is not None:
+        out["next_token"] = data["nextToken"]
+    if data.get("maxResults") is not None:
+        out["max_results"] = data["maxResults"]
+    if data.get("listResponseScope") is not None:
+        import capo_iotfleetwise.types.list_response_scope
+
+        out["list_response_scope"] = (
+            capo_iotfleetwise.types.list_response_scope.deserialize_aws_json_1_0(
+                data["listResponseScope"]
+            )
+        )
     return out

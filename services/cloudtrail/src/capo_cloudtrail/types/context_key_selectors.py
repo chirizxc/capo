@@ -27,6 +27,8 @@ def deserialize_aws_json_1_1(data: list) -> ContextKeySelectors:
 
     out: ContextKeySelectors = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_cloudtrail.types.context_key_selector.deserialize_aws_json_1_1(item)
         )

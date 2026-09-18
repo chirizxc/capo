@@ -25,6 +25,8 @@ def deserialize_json(data: list) -> AwsLogSourceResourceList:
 
     out: AwsLogSourceResourceList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_securitylake.types.aws_log_source_resource.deserialize_json(item)
         )

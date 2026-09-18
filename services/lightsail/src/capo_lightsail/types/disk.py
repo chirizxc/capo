@@ -134,19 +134,19 @@ def serialize_aws_json_1_1(value: Disk) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Disk:
     out: Disk = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "supportCode" in data:
+    if data.get("supportCode") is not None:
         out["support_code"] = data["supportCode"]
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_lightsail.types.iso_date
 
         out["created_at"] = capo_lightsail.types.iso_date.deserialize_aws_json_1_1(
             data["createdAt"]
         )
-    if "location" in data:
+    if data.get("location") is not None:
         import capo_lightsail.types.resource_location
 
         out["location"] = (
@@ -154,7 +154,7 @@ def deserialize_aws_json_1_1(data: dict) -> Disk:
                 data["location"]
             )
         )
-    if "resourceType" in data:
+    if data.get("resourceType") is not None:
         import capo_lightsail.types.resource_type
 
         out["resource_type"] = (
@@ -162,41 +162,41 @@ def deserialize_aws_json_1_1(data: dict) -> Disk:
                 data["resourceType"]
             )
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_lightsail.types.tag_list
 
         out["tags"] = capo_lightsail.types.tag_list.deserialize_aws_json_1_1(
             data["tags"]
         )
-    if "addOns" in data:
+    if data.get("addOns") is not None:
         import capo_lightsail.types.add_on_list
 
         out["add_ons"] = capo_lightsail.types.add_on_list.deserialize_aws_json_1_1(
             data["addOns"]
         )
-    if "sizeInGb" in data:
+    if data.get("sizeInGb") is not None:
         out["size_in_gb"] = data["sizeInGb"]
-    if "isSystemDisk" in data:
+    if data.get("isSystemDisk") is not None:
         out["is_system_disk"] = data["isSystemDisk"]
-    if "iops" in data:
+    if data.get("iops") is not None:
         out["iops"] = data["iops"]
-    if "path" in data:
+    if data.get("path") is not None:
         out["path"] = data["path"]
-    if "state" in data:
+    if data.get("state") is not None:
         import capo_lightsail.types.disk_state
 
         out["state"] = capo_lightsail.types.disk_state.deserialize_aws_json_1_1(
             data["state"]
         )
-    if "attachedTo" in data:
+    if data.get("attachedTo") is not None:
         out["attached_to"] = data["attachedTo"]
-    if "isAttached" in data:
+    if data.get("isAttached") is not None:
         out["is_attached"] = data["isAttached"]
-    if "attachmentState" in data:
+    if data.get("attachmentState") is not None:
         out["attachment_state"] = data["attachmentState"]
-    if "gbInUse" in data:
+    if data.get("gbInUse") is not None:
         out["gb_in_use"] = data["gbInUse"]
-    if "autoMountStatus" in data:
+    if data.get("autoMountStatus") is not None:
         import capo_lightsail.types.auto_mount_status
 
         out["auto_mount_status"] = (

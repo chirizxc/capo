@@ -26,7 +26,15 @@ class TelephonyChannelSubtypeConfig(TypedDict, closed=True):
 def serialize_json(value: TelephonyChannelSubtypeConfig) -> dict:
     out: dict = {}
     if "capacity" in value:
-        out["capacity"] = value["capacity"]
+        out["capacity"] = (
+            "NaN"
+            if value["capacity"] != value["capacity"]
+            else "Infinity"
+            if value["capacity"] == float("inf")
+            else "-Infinity"
+            if value["capacity"] == float("-inf")
+            else value["capacity"]
+        )
     if "connect_queue_id" in value:
         out["connectQueueId"] = value["connect_queue_id"]
     import capo_connectcampaignsv2.types.telephony_outbound_mode
@@ -48,11 +56,11 @@ def serialize_json(value: TelephonyChannelSubtypeConfig) -> dict:
 
 def deserialize_json(data: dict) -> TelephonyChannelSubtypeConfig:
     out: TelephonyChannelSubtypeConfig = {}  # type: ignore[typeddict-item]
-    if "capacity" in data:
-        out["capacity"] = data["capacity"]
-    if "connectQueueId" in data:
+    if data.get("capacity") is not None:
+        out["capacity"] = float(data["capacity"])
+    if data.get("connectQueueId") is not None:
         out["connect_queue_id"] = data["connectQueueId"]
-    if "outboundMode" in data:
+    if data.get("outboundMode") is not None:
         import capo_connectcampaignsv2.types.telephony_outbound_mode
 
         out["outbound_mode"] = (
@@ -64,7 +72,7 @@ def deserialize_json(data: dict) -> TelephonyChannelSubtypeConfig:
         raise DeserializationError(
             "TelephonyChannelSubtypeConfig.outbound_mode required"
         )
-    if "defaultOutboundConfig" in data:
+    if data.get("defaultOutboundConfig") is not None:
         import capo_connectcampaignsv2.types.telephony_outbound_config
 
         out["default_outbound_config"] = (

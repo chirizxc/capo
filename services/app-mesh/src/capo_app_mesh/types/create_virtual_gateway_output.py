@@ -28,7 +28,7 @@ def serialize_json(value: CreateVirtualGatewayOutput) -> dict:
 
 def deserialize_json(data: dict) -> CreateVirtualGatewayOutput:
     out: CreateVirtualGatewayOutput = {}  # type: ignore[typeddict-item]
-    if "virtualGateway" in data:
+    if data.get("virtualGateway") is not None:
         import capo_app_mesh.types.virtual_gateway_data
 
         out["virtual_gateway"] = (

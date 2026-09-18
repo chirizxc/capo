@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> MetricDataQueries:
 
     out: MetricDataQueries = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_application_signals.types.metric_data_query.deserialize_json(item)
         )

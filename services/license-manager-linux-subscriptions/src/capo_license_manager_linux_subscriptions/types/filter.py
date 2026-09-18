@@ -42,9 +42,9 @@ def serialize_json(value: Filter) -> dict:
 
 def deserialize_json(data: dict) -> Filter:
     out: Filter = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Values" in data:
+    if data.get("Values") is not None:
         import capo_license_manager_linux_subscriptions.types.string_list
 
         out["values"] = (
@@ -52,6 +52,6 @@ def deserialize_json(data: dict) -> Filter:
                 data["Values"]
             )
         )
-    if "Operator" in data:
+    if data.get("Operator") is not None:
         out["operator"] = data["Operator"]
     return out

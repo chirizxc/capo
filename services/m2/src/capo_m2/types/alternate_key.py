@@ -33,17 +33,17 @@ def serialize_json(value: AlternateKey) -> dict:
 
 def deserialize_json(data: dict) -> AlternateKey:
     out: AlternateKey = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "offset" in data:
+    if data.get("offset") is not None:
         out["offset"] = data["offset"]
     else:
         out["offset"] = 0
-    if "length" in data:
+    if data.get("length") is not None:
         out["length"] = data["length"]
     else:
         out["length"] = 0
-    if "allowDuplicates" in data:
+    if data.get("allowDuplicates") is not None:
         out["allow_duplicates"] = data["allowDuplicates"]
     else:
         out["allow_duplicates"] = False

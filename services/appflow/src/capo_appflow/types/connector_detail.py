@@ -112,33 +112,33 @@ def serialize_json(value: ConnectorDetail) -> dict:
 
 def deserialize_json(data: dict) -> ConnectorDetail:
     out: ConnectorDetail = {}  # type: ignore[typeddict-item]
-    if "connectorDescription" in data:
+    if data.get("connectorDescription") is not None:
         out["connector_description"] = data["connectorDescription"]
-    if "connectorName" in data:
+    if data.get("connectorName") is not None:
         out["connector_name"] = data["connectorName"]
-    if "connectorOwner" in data:
+    if data.get("connectorOwner") is not None:
         out["connector_owner"] = data["connectorOwner"]
-    if "connectorVersion" in data:
+    if data.get("connectorVersion") is not None:
         out["connector_version"] = data["connectorVersion"]
-    if "applicationType" in data:
+    if data.get("applicationType") is not None:
         out["application_type"] = data["applicationType"]
-    if "connectorType" in data:
+    if data.get("connectorType") is not None:
         import capo_appflow.types.connector_type
 
         out["connector_type"] = capo_appflow.types.connector_type.deserialize_json(
             data["connectorType"]
         )
-    if "connectorLabel" in data:
+    if data.get("connectorLabel") is not None:
         out["connector_label"] = data["connectorLabel"]
-    if "registeredAt" in data:
+    if data.get("registeredAt") is not None:
         import capo_appflow.types.date
 
         out["registered_at"] = capo_appflow.types.date.deserialize_json(
             data["registeredAt"]
         )
-    if "registeredBy" in data:
+    if data.get("registeredBy") is not None:
         out["registered_by"] = data["registeredBy"]
-    if "connectorProvisioningType" in data:
+    if data.get("connectorProvisioningType") is not None:
         import capo_appflow.types.connector_provisioning_type
 
         out["connector_provisioning_type"] = (
@@ -146,7 +146,7 @@ def deserialize_json(data: dict) -> ConnectorDetail:
                 data["connectorProvisioningType"]
             )
         )
-    if "connectorModes" in data:
+    if data.get("connectorModes") is not None:
         import capo_appflow.types.connector_mode_list
 
         out["connector_modes"] = (
@@ -154,7 +154,7 @@ def deserialize_json(data: dict) -> ConnectorDetail:
                 data["connectorModes"]
             )
         )
-    if "supportedDataTransferTypes" in data:
+    if data.get("supportedDataTransferTypes") is not None:
         import capo_appflow.types.supported_data_transfer_type_list
 
         out["supported_data_transfer_types"] = (

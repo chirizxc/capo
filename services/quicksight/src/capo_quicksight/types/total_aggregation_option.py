@@ -36,11 +36,11 @@ def serialize_json(value: TotalAggregationOption) -> dict:
 
 def deserialize_json(data: dict) -> TotalAggregationOption:
     out: TotalAggregationOption = {}  # type: ignore[typeddict-item]
-    if "FieldId" in data:
+    if data.get("FieldId") is not None:
         out["field_id"] = data["FieldId"]
     else:
         raise DeserializationError("TotalAggregationOption.field_id required")
-    if "TotalAggregationFunction" in data:
+    if data.get("TotalAggregationFunction") is not None:
         import capo_quicksight.types.total_aggregation_function
 
         out["total_aggregation_function"] = (

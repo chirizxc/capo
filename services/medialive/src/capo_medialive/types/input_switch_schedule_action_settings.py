@@ -47,9 +47,9 @@ def serialize_json(value: InputSwitchScheduleActionSettings) -> dict:
 
 def deserialize_json(data: dict) -> InputSwitchScheduleActionSettings:
     out: InputSwitchScheduleActionSettings = {}  # type: ignore[typeddict-item]
-    if "inputAttachmentNameReference" in data:
+    if data.get("inputAttachmentNameReference") is not None:
         out["input_attachment_name_reference"] = data["inputAttachmentNameReference"]
-    if "inputClippingSettings" in data:
+    if data.get("inputClippingSettings") is not None:
         import capo_medialive.types.input_clipping_settings
 
         out["input_clipping_settings"] = (
@@ -57,7 +57,7 @@ def deserialize_json(data: dict) -> InputSwitchScheduleActionSettings:
                 data["inputClippingSettings"]
             )
         )
-    if "urlPath" in data:
+    if data.get("urlPath") is not None:
         import capo_medialive.types.__list_of__string
 
         out["url_path"] = capo_medialive.types.__list_of__string.deserialize_json(

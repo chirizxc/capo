@@ -25,6 +25,8 @@ def deserialize_json(data: list) -> EksAnywhereSubscriptionStatusValues:
 
     out: EksAnywhereSubscriptionStatusValues = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_eks.types.eks_anywhere_subscription_status.deserialize_json(item)
         )

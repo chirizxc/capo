@@ -27,11 +27,11 @@ def serialize_json(value: DomainUnitSummary) -> dict:
 
 def deserialize_json(data: dict) -> DomainUnitSummary:
     out: DomainUnitSummary = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("DomainUnitSummary.name required")
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("DomainUnitSummary.id required")

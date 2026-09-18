@@ -55,7 +55,15 @@ def serialize_aws_json_1_1(value: ReservedNode) -> dict:
             value["start_time"]
         )
     out["Duration"] = value.get("duration", 0)
-    out["FixedPrice"] = value.get("fixed_price", 0)
+    out["FixedPrice"] = (
+        "NaN"
+        if value.get("fixed_price", 0) != value.get("fixed_price", 0)
+        else "Infinity"
+        if value.get("fixed_price", 0) == float("inf")
+        else "-Infinity"
+        if value.get("fixed_price", 0) == float("-inf")
+        else value.get("fixed_price", 0)
+    )
     out["NodeCount"] = value.get("node_count", 0)
     if "offering_type" in value:
         out["OfferingType"] = value["offering_type"]
@@ -76,35 +84,35 @@ def serialize_aws_json_1_1(value: ReservedNode) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ReservedNode:
     out: ReservedNode = {}  # type: ignore[typeddict-item]
-    if "ReservationId" in data:
+    if data.get("ReservationId") is not None:
         out["reservation_id"] = data["ReservationId"]
-    if "ReservedNodesOfferingId" in data:
+    if data.get("ReservedNodesOfferingId") is not None:
         out["reserved_nodes_offering_id"] = data["ReservedNodesOfferingId"]
-    if "NodeType" in data:
+    if data.get("NodeType") is not None:
         out["node_type"] = data["NodeType"]
-    if "StartTime" in data:
+    if data.get("StartTime") is not None:
         import capo_memorydb.types.t_stamp
 
         out["start_time"] = capo_memorydb.types.t_stamp.deserialize_aws_json_1_1(
             data["StartTime"]
         )
-    if "Duration" in data:
+    if data.get("Duration") is not None:
         out["duration"] = data["Duration"]
     else:
         out["duration"] = 0
-    if "FixedPrice" in data:
-        out["fixed_price"] = data["FixedPrice"]
+    if data.get("FixedPrice") is not None:
+        out["fixed_price"] = float(data["FixedPrice"])
     else:
         out["fixed_price"] = 0
-    if "NodeCount" in data:
+    if data.get("NodeCount") is not None:
         out["node_count"] = data["NodeCount"]
     else:
         out["node_count"] = 0
-    if "OfferingType" in data:
+    if data.get("OfferingType") is not None:
         out["offering_type"] = data["OfferingType"]
-    if "State" in data:
+    if data.get("State") is not None:
         out["state"] = data["State"]
-    if "RecurringCharges" in data:
+    if data.get("RecurringCharges") is not None:
         import capo_memorydb.types.recurring_charge_list
 
         out["recurring_charges"] = (
@@ -112,6 +120,6 @@ def deserialize_aws_json_1_1(data: dict) -> ReservedNode:
                 data["RecurringCharges"]
             )
         )
-    if "ARN" in data:
+    if data.get("ARN") is not None:
         out["arn"] = data["ARN"]
     return out

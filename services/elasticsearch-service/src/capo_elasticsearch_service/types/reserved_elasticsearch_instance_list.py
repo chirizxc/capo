@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> ReservedElasticsearchInstanceList:
 
     out: ReservedElasticsearchInstanceList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_elasticsearch_service.types.reserved_elasticsearch_instance.deserialize_json(
                 item

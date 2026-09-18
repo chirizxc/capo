@@ -34,11 +34,11 @@ def serialize_aws_json_1_1(value: UnshareDirectoryRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UnshareDirectoryRequest:
     out: UnshareDirectoryRequest = {}  # type: ignore[typeddict-item]
-    if "DirectoryId" in data:
+    if data.get("DirectoryId") is not None:
         out["directory_id"] = data["DirectoryId"]
     else:
         raise DeserializationError("UnshareDirectoryRequest.directory_id required")
-    if "UnshareTarget" in data:
+    if data.get("UnshareTarget") is not None:
         import capo_directory_service.types.unshare_target
 
         out["unshare_target"] = (

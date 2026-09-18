@@ -38,13 +38,13 @@ def serialize_json(value: DocumentAclMembership) -> dict:
 
 def deserialize_json(data: dict) -> DocumentAclMembership:
     out: DocumentAclMembership = {}  # type: ignore[typeddict-item]
-    if "memberRelation" in data:
+    if data.get("memberRelation") is not None:
         import capo_qbusiness.types.member_relation
 
         out["member_relation"] = capo_qbusiness.types.member_relation.deserialize_json(
             data["memberRelation"]
         )
-    if "conditions" in data:
+    if data.get("conditions") is not None:
         import capo_qbusiness.types.document_acl_conditions
 
         out["conditions"] = (

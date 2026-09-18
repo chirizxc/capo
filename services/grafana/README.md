@@ -13,9 +13,9 @@ from capo_grafana import AsyncgrafanaClient
 
 
 async def main():
-    async with AsyncgrafanaClient() as s3:
+    async with AsyncgrafanaClient() as grafana:
         # Example: call the list_tags_for_resource operation
-        response = await s3.list_tags_for_resource()
+        response = await grafana.list_tags_for_resource()
         print(response["tags"])
 ```
 
@@ -28,9 +28,9 @@ from capo_grafana import AsyncgrafanaClient
 
 
 async def main():
-    async with AsyncgrafanaClient() as s3:
+    async with AsyncgrafanaClient() as grafana:
         # Example: paginate over list_versions
-        async for item in s3.iter_list_versions():
+        async for item in grafana.iter_list_versions():
             print(item)
 ```
 
@@ -44,9 +44,9 @@ from capo_grafana.error import AccessDeniedException
 
 
 async def main():
-    async with AsyncgrafanaClient() as s3:
+    async with AsyncgrafanaClient() as grafana:
         try:
-            await s3.list_tags_for_resource()
+            await grafana.list_tags_for_resource()
         except AccessDeniedException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -63,13 +63,13 @@ from capo_grafana import AsyncgrafanaClient
 
 
 async def main():
-    async with AsyncgrafanaClient() as s3:
+    async with AsyncgrafanaClient() as grafana:
         # Default: 3 attempts for every operation
-        response = await s3.list_tags_for_resource()
+        response = await grafana.list_tags_for_resource()
 
         # Override per operation
-        response = await s3.list_tags_for_resource(config_overrides={"retry_max_attempts": 5})
+        response = await grafana.list_tags_for_resource(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.list_tags_for_resource(config_overrides={"retry_max_attempts": 1})
+        response = await grafana.list_tags_for_resource(config_overrides={"retry_max_attempts": 1})
 ```

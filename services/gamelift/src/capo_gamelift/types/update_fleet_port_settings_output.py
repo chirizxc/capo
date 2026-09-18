@@ -28,8 +28,8 @@ def serialize_aws_json_1_1(value: UpdateFleetPortSettingsOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateFleetPortSettingsOutput:
     out: UpdateFleetPortSettingsOutput = {}  # type: ignore[typeddict-item]
-    if "FleetId" in data:
+    if data.get("FleetId") is not None:
         out["fleet_id"] = data["FleetId"]
-    if "FleetArn" in data:
+    if data.get("FleetArn") is not None:
         out["fleet_arn"] = data["FleetArn"]
     return out

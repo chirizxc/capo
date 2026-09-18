@@ -32,11 +32,11 @@ def serialize_json(value: WorkerAttributeCapability) -> dict:
 
 def deserialize_json(data: dict) -> WorkerAttributeCapability:
     out: WorkerAttributeCapability = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("WorkerAttributeCapability.name required")
-    if "values" in data:
+    if data.get("values") is not None:
         import capo_deadline.types.attribute_capability_values_list
 
         out["values"] = (

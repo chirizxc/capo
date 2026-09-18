@@ -31,8 +31,8 @@ def serialize_json(value: UpdateWorkspaceAliasRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateWorkspaceAliasRequest:
     out: UpdateWorkspaceAliasRequest = {}  # type: ignore[typeddict-item]
-    if "alias" in data:
+    if data.get("alias") is not None:
         out["alias"] = data["alias"]
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     return out

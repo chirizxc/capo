@@ -33,10 +33,10 @@ def serialize_json(value: EmailTemplateContent) -> dict:
 
 def deserialize_json(data: dict) -> EmailTemplateContent:
     out: EmailTemplateContent = {}  # type: ignore[typeddict-item]
-    if "Subject" in data:
+    if data.get("Subject") is not None:
         out["subject"] = data["Subject"]
-    if "Text" in data:
+    if data.get("Text") is not None:
         out["text"] = data["Text"]
-    if "Html" in data:
+    if data.get("Html") is not None:
         out["html"] = data["Html"]
     return out

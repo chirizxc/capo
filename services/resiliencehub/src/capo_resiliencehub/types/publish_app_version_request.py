@@ -29,10 +29,10 @@ def serialize_json(value: PublishAppVersionRequest) -> dict:
 
 def deserialize_json(data: dict) -> PublishAppVersionRequest:
     out: PublishAppVersionRequest = {}  # type: ignore[typeddict-item]
-    if "appArn" in data:
+    if data.get("appArn") is not None:
         out["app_arn"] = data["appArn"]
     else:
         raise DeserializationError("PublishAppVersionRequest.app_arn required")
-    if "versionName" in data:
+    if data.get("versionName") is not None:
         out["version_name"] = data["versionName"]
     return out

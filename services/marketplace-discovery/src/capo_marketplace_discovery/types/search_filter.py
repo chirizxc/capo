@@ -40,7 +40,7 @@ def serialize_json(value: SearchFilter) -> dict:
 
 def deserialize_json(data: dict) -> SearchFilter:
     out: SearchFilter = {}  # type: ignore[typeddict-item]
-    if "filterType" in data:
+    if data.get("filterType") is not None:
         import capo_marketplace_discovery.types.search_filter_type
 
         out["filter_type"] = (
@@ -50,7 +50,7 @@ def deserialize_json(data: dict) -> SearchFilter:
         )
     else:
         raise DeserializationError("SearchFilter.filter_type required")
-    if "filterValues" in data:
+    if data.get("filterValues") is not None:
         import capo_marketplace_discovery.types.search_filter_value_list
 
         out["filter_values"] = (

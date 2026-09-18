@@ -47,17 +47,17 @@ def deserialize_aws_json_1_1(
     data: dict,
 ) -> ListResolverQueryLogConfigAssociationsResponse:
     out: ListResolverQueryLogConfigAssociationsResponse = {}  # type: ignore[typeddict-item]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "TotalCount" in data:
+    if data.get("TotalCount") is not None:
         out["total_count"] = data["TotalCount"]
     else:
         out["total_count"] = 0
-    if "TotalFilteredCount" in data:
+    if data.get("TotalFilteredCount") is not None:
         out["total_filtered_count"] = data["TotalFilteredCount"]
     else:
         out["total_filtered_count"] = 0
-    if "ResolverQueryLogConfigAssociations" in data:
+    if data.get("ResolverQueryLogConfigAssociations") is not None:
         import capo_route53resolver.types.resolver_query_log_config_association_list
 
         out["resolver_query_log_config_associations"] = (

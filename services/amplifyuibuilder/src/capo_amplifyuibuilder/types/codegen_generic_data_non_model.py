@@ -30,7 +30,7 @@ def serialize_json(value: CodegenGenericDataNonModel) -> dict:
 
 def deserialize_json(data: dict) -> CodegenGenericDataNonModel:
     out: CodegenGenericDataNonModel = {}  # type: ignore[typeddict-item]
-    if "fields" in data:
+    if data.get("fields") is not None:
         import capo_amplifyuibuilder.types.codegen_generic_data_non_model_fields
 
         out["fields"] = (

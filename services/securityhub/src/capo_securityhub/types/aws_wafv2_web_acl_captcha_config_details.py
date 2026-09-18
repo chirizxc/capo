@@ -31,7 +31,7 @@ def serialize_json(value: AwsWafv2WebAclCaptchaConfigDetails) -> dict:
 
 def deserialize_json(data: dict) -> AwsWafv2WebAclCaptchaConfigDetails:
     out: AwsWafv2WebAclCaptchaConfigDetails = {}  # type: ignore[typeddict-item]
-    if "ImmunityTimeProperty" in data:
+    if data.get("ImmunityTimeProperty") is not None:
         import capo_securityhub.types.aws_wafv2_web_acl_captcha_config_immunity_time_property_details
 
         out["immunity_time_property"] = (

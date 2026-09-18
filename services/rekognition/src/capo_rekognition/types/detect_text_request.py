@@ -37,7 +37,7 @@ def serialize_aws_json_1_1(value: DetectTextRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DetectTextRequest:
     out: DetectTextRequest = {}  # type: ignore[typeddict-item]
-    if "Image" in data:
+    if data.get("Image") is not None:
         import capo_rekognition.types.image
 
         out["image"] = capo_rekognition.types.image.deserialize_aws_json_1_1(
@@ -45,7 +45,7 @@ def deserialize_aws_json_1_1(data: dict) -> DetectTextRequest:
         )
     else:
         raise DeserializationError("DetectTextRequest.image required")
-    if "Filters" in data:
+    if data.get("Filters") is not None:
         import capo_rekognition.types.detect_text_filters
 
         out["filters"] = (

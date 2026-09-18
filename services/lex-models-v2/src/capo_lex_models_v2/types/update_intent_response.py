@@ -236,17 +236,17 @@ def serialize_json(value: UpdateIntentResponse) -> dict:
 
 def deserialize_json(data: dict) -> UpdateIntentResponse:
     out: UpdateIntentResponse = {}  # type: ignore[typeddict-item]
-    if "intentId" in data:
+    if data.get("intentId") is not None:
         out["intent_id"] = data["intentId"]
-    if "intentName" in data:
+    if data.get("intentName") is not None:
         out["intent_name"] = data["intentName"]
-    if "intentDisplayName" in data:
+    if data.get("intentDisplayName") is not None:
         out["intent_display_name"] = data["intentDisplayName"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "parentIntentSignature" in data:
+    if data.get("parentIntentSignature") is not None:
         out["parent_intent_signature"] = data["parentIntentSignature"]
-    if "sampleUtterances" in data:
+    if data.get("sampleUtterances") is not None:
         import capo_lex_models_v2.types.sample_utterances_list
 
         out["sample_utterances"] = (
@@ -254,7 +254,7 @@ def deserialize_json(data: dict) -> UpdateIntentResponse:
                 data["sampleUtterances"]
             )
         )
-    if "dialogCodeHook" in data:
+    if data.get("dialogCodeHook") is not None:
         import capo_lex_models_v2.types.dialog_code_hook_settings
 
         out["dialog_code_hook"] = (
@@ -262,7 +262,7 @@ def deserialize_json(data: dict) -> UpdateIntentResponse:
                 data["dialogCodeHook"]
             )
         )
-    if "fulfillmentCodeHook" in data:
+    if data.get("fulfillmentCodeHook") is not None:
         import capo_lex_models_v2.types.fulfillment_code_hook_settings
 
         out["fulfillment_code_hook"] = (
@@ -270,7 +270,7 @@ def deserialize_json(data: dict) -> UpdateIntentResponse:
                 data["fulfillmentCodeHook"]
             )
         )
-    if "slotPriorities" in data:
+    if data.get("slotPriorities") is not None:
         import capo_lex_models_v2.types.slot_priorities_list
 
         out["slot_priorities"] = (
@@ -278,7 +278,7 @@ def deserialize_json(data: dict) -> UpdateIntentResponse:
                 data["slotPriorities"]
             )
         )
-    if "intentConfirmationSetting" in data:
+    if data.get("intentConfirmationSetting") is not None:
         import capo_lex_models_v2.types.intent_confirmation_setting
 
         out["intent_confirmation_setting"] = (
@@ -286,7 +286,7 @@ def deserialize_json(data: dict) -> UpdateIntentResponse:
                 data["intentConfirmationSetting"]
             )
         )
-    if "intentClosingSetting" in data:
+    if data.get("intentClosingSetting") is not None:
         import capo_lex_models_v2.types.intent_closing_setting
 
         out["intent_closing_setting"] = (
@@ -294,7 +294,7 @@ def deserialize_json(data: dict) -> UpdateIntentResponse:
                 data["intentClosingSetting"]
             )
         )
-    if "inputContexts" in data:
+    if data.get("inputContexts") is not None:
         import capo_lex_models_v2.types.input_contexts_list
 
         out["input_contexts"] = (
@@ -302,7 +302,7 @@ def deserialize_json(data: dict) -> UpdateIntentResponse:
                 data["inputContexts"]
             )
         )
-    if "outputContexts" in data:
+    if data.get("outputContexts") is not None:
         import capo_lex_models_v2.types.output_contexts_list
 
         out["output_contexts"] = (
@@ -310,7 +310,7 @@ def deserialize_json(data: dict) -> UpdateIntentResponse:
                 data["outputContexts"]
             )
         )
-    if "kendraConfiguration" in data:
+    if data.get("kendraConfiguration") is not None:
         import capo_lex_models_v2.types.kendra_configuration
 
         out["kendra_configuration"] = (
@@ -318,19 +318,19 @@ def deserialize_json(data: dict) -> UpdateIntentResponse:
                 data["kendraConfiguration"]
             )
         )
-    if "botId" in data:
+    if data.get("botId") is not None:
         out["bot_id"] = data["botId"]
-    if "botVersion" in data:
+    if data.get("botVersion") is not None:
         out["bot_version"] = data["botVersion"]
-    if "localeId" in data:
+    if data.get("localeId") is not None:
         out["locale_id"] = data["localeId"]
-    if "creationDateTime" in data:
+    if data.get("creationDateTime") is not None:
         import capo_lex_models_v2.types.timestamp
 
         out["creation_date_time"] = capo_lex_models_v2.types.timestamp.deserialize_json(
             data["creationDateTime"]
         )
-    if "lastUpdatedDateTime" in data:
+    if data.get("lastUpdatedDateTime") is not None:
         import capo_lex_models_v2.types.timestamp
 
         out["last_updated_date_time"] = (
@@ -338,7 +338,7 @@ def deserialize_json(data: dict) -> UpdateIntentResponse:
                 data["lastUpdatedDateTime"]
             )
         )
-    if "initialResponseSetting" in data:
+    if data.get("initialResponseSetting") is not None:
         import capo_lex_models_v2.types.initial_response_setting
 
         out["initial_response_setting"] = (
@@ -346,7 +346,7 @@ def deserialize_json(data: dict) -> UpdateIntentResponse:
                 data["initialResponseSetting"]
             )
         )
-    if "qnAIntentConfiguration" in data:
+    if data.get("qnAIntentConfiguration") is not None:
         import capo_lex_models_v2.types.qn_a_intent_configuration
 
         out["qn_a_intent_configuration"] = (
@@ -354,7 +354,7 @@ def deserialize_json(data: dict) -> UpdateIntentResponse:
                 data["qnAIntentConfiguration"]
             )
         )
-    if "qInConnectIntentConfiguration" in data:
+    if data.get("qInConnectIntentConfiguration") is not None:
         import capo_lex_models_v2.types.q_in_connect_intent_configuration
 
         out["q_in_connect_intent_configuration"] = (

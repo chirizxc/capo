@@ -32,7 +32,7 @@ def serialize_aws_json_1_0(value: LoggingConfiguration) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> LoggingConfiguration:
     out: LoggingConfiguration = {}  # type: ignore[typeddict-item]
-    if "LogDestinationConfigs" in data:
+    if data.get("LogDestinationConfigs") is not None:
         import capo_network_firewall.types.log_destination_configs
 
         out["log_destination_configs"] = (

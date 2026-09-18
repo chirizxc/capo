@@ -92,19 +92,19 @@ def serialize_aws_json_1_1(value: DescribeResourceResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeResourceResponse:
     out: DescribeResourceResponse = {}  # type: ignore[typeddict-item]
-    if "ResourceId" in data:
+    if data.get("ResourceId") is not None:
         out["resource_id"] = data["ResourceId"]
-    if "Email" in data:
+    if data.get("Email") is not None:
         out["email"] = data["Email"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_workmail.types.resource_type
 
         out["type"] = capo_workmail.types.resource_type.deserialize_aws_json_1_1(
             data["Type"]
         )
-    if "BookingOptions" in data:
+    if data.get("BookingOptions") is not None:
         import capo_workmail.types.booking_options
 
         out["booking_options"] = (
@@ -112,27 +112,27 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeResourceResponse:
                 data["BookingOptions"]
             )
         )
-    if "State" in data:
+    if data.get("State") is not None:
         import capo_workmail.types.entity_state
 
         out["state"] = capo_workmail.types.entity_state.deserialize_aws_json_1_1(
             data["State"]
         )
-    if "EnabledDate" in data:
+    if data.get("EnabledDate") is not None:
         import capo_workmail.types.timestamp
 
         out["enabled_date"] = capo_workmail.types.timestamp.deserialize_aws_json_1_1(
             data["EnabledDate"]
         )
-    if "DisabledDate" in data:
+    if data.get("DisabledDate") is not None:
         import capo_workmail.types.timestamp
 
         out["disabled_date"] = capo_workmail.types.timestamp.deserialize_aws_json_1_1(
             data["DisabledDate"]
         )
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "HiddenFromGlobalAddressList" in data:
+    if data.get("HiddenFromGlobalAddressList") is not None:
         out["hidden_from_global_address_list"] = data["HiddenFromGlobalAddressList"]
     else:
         out["hidden_from_global_address_list"] = False

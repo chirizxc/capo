@@ -44,11 +44,11 @@ def serialize_json(value: DocumentAttributeCondition) -> dict:
 
 def deserialize_json(data: dict) -> DocumentAttributeCondition:
     out: DocumentAttributeCondition = {}  # type: ignore[typeddict-item]
-    if "key" in data:
+    if data.get("key") is not None:
         out["key"] = data["key"]
     else:
         raise DeserializationError("DocumentAttributeCondition.key required")
-    if "operator" in data:
+    if data.get("operator") is not None:
         import capo_qbusiness.types.document_enrichment_condition_operator
 
         out["operator"] = (
@@ -58,7 +58,7 @@ def deserialize_json(data: dict) -> DocumentAttributeCondition:
         )
     else:
         raise DeserializationError("DocumentAttributeCondition.operator required")
-    if "value" in data:
+    if data.get("value") is not None:
         import capo_qbusiness.types.document_attribute_value
 
         out["value"] = capo_qbusiness.types.document_attribute_value.deserialize_json(

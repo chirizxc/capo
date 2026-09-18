@@ -24,6 +24,8 @@ class ExecuteScheduledReportRequest(TypedDict, closed=True):
 def serialize_aws_json_1_0(value: ExecuteScheduledReportRequest) -> dict:
     out: dict = {}
     out["arn"] = value["arn"]
+    if "client_token" in value:
+        out["clientToken"] = value["client_token"]
     if "dry_run" in value:
         out["dryRun"] = value["dry_run"]
     return out
@@ -31,10 +33,12 @@ def serialize_aws_json_1_0(value: ExecuteScheduledReportRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ExecuteScheduledReportRequest:
     out: ExecuteScheduledReportRequest = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("ExecuteScheduledReportRequest.arn required")
-    if "dryRun" in data:
+    if data.get("clientToken") is not None:
+        out["client_token"] = data["clientToken"]
+    if data.get("dryRun") is not None:
         out["dry_run"] = data["dryRun"]
     return out

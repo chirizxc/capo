@@ -25,5 +25,7 @@ def deserialize_aws_json_1_1(data: list) -> PersistentAppUITypeList:
 
     out: PersistentAppUITypeList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_emr.types.persistent_app_ui_type.deserialize_aws_json_1_1(item))
     return out

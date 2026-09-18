@@ -67,17 +67,17 @@ def serialize_aws_json_1_1(value: FeatureGroupSummary) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> FeatureGroupSummary:
     out: FeatureGroupSummary = {}  # type: ignore[typeddict-item]
-    if "FeatureGroupName" in data:
+    if data.get("FeatureGroupName") is not None:
         out["feature_group_name"] = data["FeatureGroupName"]
-    if "FeatureGroupArn" in data:
+    if data.get("FeatureGroupArn") is not None:
         out["feature_group_arn"] = data["FeatureGroupArn"]
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_sagemaker.types.timestamp
 
         out["creation_time"] = capo_sagemaker.types.timestamp.deserialize_aws_json_1_1(
             data["CreationTime"]
         )
-    if "FeatureGroupStatus" in data:
+    if data.get("FeatureGroupStatus") is not None:
         import capo_sagemaker.types.feature_group_status
 
         out["feature_group_status"] = (
@@ -85,7 +85,7 @@ def deserialize_aws_json_1_1(data: dict) -> FeatureGroupSummary:
                 data["FeatureGroupStatus"]
             )
         )
-    if "OfflineStoreStatus" in data:
+    if data.get("OfflineStoreStatus") is not None:
         import capo_sagemaker.types.offline_store_status
 
         out["offline_store_status"] = (

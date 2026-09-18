@@ -148,9 +148,9 @@ def serialize_aws_json_1_1(value: Bucket) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Bucket:
     out: Bucket = {}  # type: ignore[typeddict-item]
-    if "resourceType" in data:
+    if data.get("resourceType") is not None:
         out["resource_type"] = data["resourceType"]
-    if "accessRules" in data:
+    if data.get("accessRules") is not None:
         import capo_lightsail.types.access_rules
 
         out["access_rules"] = (
@@ -158,19 +158,19 @@ def deserialize_aws_json_1_1(data: dict) -> Bucket:
                 data["accessRules"]
             )
         )
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "bundleId" in data:
+    if data.get("bundleId") is not None:
         out["bundle_id"] = data["bundleId"]
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_lightsail.types.iso_date
 
         out["created_at"] = capo_lightsail.types.iso_date.deserialize_aws_json_1_1(
             data["createdAt"]
         )
-    if "url" in data:
+    if data.get("url") is not None:
         out["url"] = data["url"]
-    if "location" in data:
+    if data.get("location") is not None:
         import capo_lightsail.types.resource_location
 
         out["location"] = (
@@ -178,21 +178,21 @@ def deserialize_aws_json_1_1(data: dict) -> Bucket:
                 data["location"]
             )
         )
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "supportCode" in data:
+    if data.get("supportCode") is not None:
         out["support_code"] = data["supportCode"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_lightsail.types.tag_list
 
         out["tags"] = capo_lightsail.types.tag_list.deserialize_aws_json_1_1(
             data["tags"]
         )
-    if "objectVersioning" in data:
+    if data.get("objectVersioning") is not None:
         out["object_versioning"] = data["objectVersioning"]
-    if "ableToUpdateBundle" in data:
+    if data.get("ableToUpdateBundle") is not None:
         out["able_to_update_bundle"] = data["ableToUpdateBundle"]
-    if "readonlyAccessAccounts" in data:
+    if data.get("readonlyAccessAccounts") is not None:
         import capo_lightsail.types.partner_id_list
 
         out["readonly_access_accounts"] = (
@@ -200,7 +200,7 @@ def deserialize_aws_json_1_1(data: dict) -> Bucket:
                 data["readonlyAccessAccounts"]
             )
         )
-    if "resourcesReceivingAccess" in data:
+    if data.get("resourcesReceivingAccess") is not None:
         import capo_lightsail.types.access_receiver_list
 
         out["resources_receiving_access"] = (
@@ -208,13 +208,13 @@ def deserialize_aws_json_1_1(data: dict) -> Bucket:
                 data["resourcesReceivingAccess"]
             )
         )
-    if "state" in data:
+    if data.get("state") is not None:
         import capo_lightsail.types.bucket_state
 
         out["state"] = capo_lightsail.types.bucket_state.deserialize_aws_json_1_1(
             data["state"]
         )
-    if "accessLogConfig" in data:
+    if data.get("accessLogConfig") is not None:
         import capo_lightsail.types.bucket_access_log_config
 
         out["access_log_config"] = (
@@ -222,7 +222,7 @@ def deserialize_aws_json_1_1(data: dict) -> Bucket:
                 data["accessLogConfig"]
             )
         )
-    if "cors" in data:
+    if data.get("cors") is not None:
         import capo_lightsail.types.bucket_cors_config
 
         out["cors"] = capo_lightsail.types.bucket_cors_config.deserialize_aws_json_1_1(

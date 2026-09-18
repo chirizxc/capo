@@ -49,9 +49,9 @@ def serialize_json(value: AssociationFilters) -> dict:
 
 def deserialize_json(data: dict) -> AssociationFilters:
     out: AssociationFilters = {}  # type: ignore[typeddict-item]
-    if "ConfigurationPolicyId" in data:
+    if data.get("ConfigurationPolicyId") is not None:
         out["configuration_policy_id"] = data["ConfigurationPolicyId"]
-    if "AssociationType" in data:
+    if data.get("AssociationType") is not None:
         import capo_securityhub.types.association_type
 
         out["association_type"] = (
@@ -59,7 +59,7 @@ def deserialize_json(data: dict) -> AssociationFilters:
                 data["AssociationType"]
             )
         )
-    if "AssociationStatus" in data:
+    if data.get("AssociationStatus") is not None:
         import capo_securityhub.types.configuration_policy_association_status
 
         out["association_status"] = (

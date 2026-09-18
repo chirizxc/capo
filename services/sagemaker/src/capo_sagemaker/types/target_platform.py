@@ -49,13 +49,13 @@ def serialize_aws_json_1_1(value: TargetPlatform) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> TargetPlatform:
     out: TargetPlatform = {}  # type: ignore[typeddict-item]
-    if "Os" in data:
+    if data.get("Os") is not None:
         import capo_sagemaker.types.target_platform_os
 
         out["os"] = capo_sagemaker.types.target_platform_os.deserialize_aws_json_1_1(
             data["Os"]
         )
-    if "Arch" in data:
+    if data.get("Arch") is not None:
         import capo_sagemaker.types.target_platform_arch
 
         out["arch"] = (
@@ -63,7 +63,7 @@ def deserialize_aws_json_1_1(data: dict) -> TargetPlatform:
                 data["Arch"]
             )
         )
-    if "Accelerator" in data:
+    if data.get("Accelerator") is not None:
         import capo_sagemaker.types.target_platform_accelerator
 
         out["accelerator"] = (

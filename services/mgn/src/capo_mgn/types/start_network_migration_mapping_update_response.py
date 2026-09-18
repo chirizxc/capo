@@ -23,6 +23,6 @@ def serialize_json(value: StartNetworkMigrationMappingUpdateResponse) -> dict:
 
 def deserialize_json(data: dict) -> StartNetworkMigrationMappingUpdateResponse:
     out: StartNetworkMigrationMappingUpdateResponse = {}  # type: ignore[typeddict-item]
-    if "jobID" in data:
+    if data.get("jobID") is not None:
         out["job_id"] = data["jobID"]
     return out

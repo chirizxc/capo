@@ -36,12 +36,12 @@ def serialize_json(value: EksContainerVolumeMount) -> dict:
 
 def deserialize_json(data: dict) -> EksContainerVolumeMount:
     out: EksContainerVolumeMount = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "mountPath" in data:
+    if data.get("mountPath") is not None:
         out["mount_path"] = data["mountPath"]
-    if "subPath" in data:
+    if data.get("subPath") is not None:
         out["sub_path"] = data["subPath"]
-    if "readOnly" in data:
+    if data.get("readOnly") is not None:
         out["read_only"] = data["readOnly"]
     return out

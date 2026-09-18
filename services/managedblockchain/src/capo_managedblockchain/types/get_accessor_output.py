@@ -27,7 +27,7 @@ def serialize_json(value: GetAccessorOutput) -> dict:
 
 def deserialize_json(data: dict) -> GetAccessorOutput:
     out: GetAccessorOutput = {}  # type: ignore[typeddict-item]
-    if "Accessor" in data:
+    if data.get("Accessor") is not None:
         import capo_managedblockchain.types.accessor
 
         out["accessor"] = capo_managedblockchain.types.accessor.deserialize_json(

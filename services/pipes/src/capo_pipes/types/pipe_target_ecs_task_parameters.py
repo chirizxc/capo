@@ -126,17 +126,17 @@ def serialize_json(value: PipeTargetEcsTaskParameters) -> dict:
 
 def deserialize_json(data: dict) -> PipeTargetEcsTaskParameters:
     out: PipeTargetEcsTaskParameters = {}  # type: ignore[typeddict-item]
-    if "TaskDefinitionArn" in data:
+    if data.get("TaskDefinitionArn") is not None:
         out["task_definition_arn"] = data["TaskDefinitionArn"]
     else:
         raise DeserializationError(
             "PipeTargetEcsTaskParameters.task_definition_arn required"
         )
-    if "TaskCount" in data:
+    if data.get("TaskCount") is not None:
         out["task_count"] = data["TaskCount"]
-    if "LaunchType" in data:
+    if data.get("LaunchType") is not None:
         out["launch_type"] = data["LaunchType"]
-    if "NetworkConfiguration" in data:
+    if data.get("NetworkConfiguration") is not None:
         import capo_pipes.types.network_configuration
 
         out["network_configuration"] = (
@@ -144,11 +144,11 @@ def deserialize_json(data: dict) -> PipeTargetEcsTaskParameters:
                 data["NetworkConfiguration"]
             )
         )
-    if "PlatformVersion" in data:
+    if data.get("PlatformVersion") is not None:
         out["platform_version"] = data["PlatformVersion"]
-    if "Group" in data:
+    if data.get("Group") is not None:
         out["group"] = data["Group"]
-    if "CapacityProviderStrategy" in data:
+    if data.get("CapacityProviderStrategy") is not None:
         import capo_pipes.types.capacity_provider_strategy
 
         out["capacity_provider_strategy"] = (
@@ -156,15 +156,15 @@ def deserialize_json(data: dict) -> PipeTargetEcsTaskParameters:
                 data["CapacityProviderStrategy"]
             )
         )
-    if "EnableECSManagedTags" in data:
+    if data.get("EnableECSManagedTags") is not None:
         out["enable_ecs_managed_tags"] = data["EnableECSManagedTags"]
     else:
         out["enable_ecs_managed_tags"] = False
-    if "EnableExecuteCommand" in data:
+    if data.get("EnableExecuteCommand") is not None:
         out["enable_execute_command"] = data["EnableExecuteCommand"]
     else:
         out["enable_execute_command"] = False
-    if "PlacementConstraints" in data:
+    if data.get("PlacementConstraints") is not None:
         import capo_pipes.types.placement_constraints
 
         out["placement_constraints"] = (
@@ -172,7 +172,7 @@ def deserialize_json(data: dict) -> PipeTargetEcsTaskParameters:
                 data["PlacementConstraints"]
             )
         )
-    if "PlacementStrategy" in data:
+    if data.get("PlacementStrategy") is not None:
         import capo_pipes.types.placement_strategies
 
         out["placement_strategy"] = (
@@ -180,17 +180,17 @@ def deserialize_json(data: dict) -> PipeTargetEcsTaskParameters:
                 data["PlacementStrategy"]
             )
         )
-    if "PropagateTags" in data:
+    if data.get("PropagateTags") is not None:
         out["propagate_tags"] = data["PropagateTags"]
-    if "ReferenceId" in data:
+    if data.get("ReferenceId") is not None:
         out["reference_id"] = data["ReferenceId"]
-    if "Overrides" in data:
+    if data.get("Overrides") is not None:
         import capo_pipes.types.ecs_task_override
 
         out["overrides"] = capo_pipes.types.ecs_task_override.deserialize_json(
             data["Overrides"]
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_pipes.types.tag_list
 
         out["tags"] = capo_pipes.types.tag_list.deserialize_json(data["Tags"])

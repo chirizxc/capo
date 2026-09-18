@@ -36,18 +36,18 @@ def serialize_aws_json_1_0(value: ListEngagementMembersRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ListEngagementMembersRequest:
     out: ListEngagementMembersRequest = {}  # type: ignore[typeddict-item]
-    if "Catalog" in data:
+    if data.get("Catalog") is not None:
         out["catalog"] = data["Catalog"]
     else:
         raise DeserializationError("ListEngagementMembersRequest.catalog required")
-    if "Identifier" in data:
+    if data.get("Identifier") is not None:
         out["identifier"] = data["Identifier"]
     else:
         raise DeserializationError("ListEngagementMembersRequest.identifier required")
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
     else:
         out["max_results"] = 5
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

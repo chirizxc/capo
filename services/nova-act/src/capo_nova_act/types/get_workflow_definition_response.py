@@ -62,15 +62,15 @@ def serialize_json(value: GetWorkflowDefinitionResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetWorkflowDefinitionResponse:
     out: GetWorkflowDefinitionResponse = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("GetWorkflowDefinitionResponse.name required")
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("GetWorkflowDefinitionResponse.arn required")
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_nova_act.types.date_timestamp
 
         out["created_at"] = capo_nova_act.types.date_timestamp.deserialize_json(
@@ -78,9 +78,9 @@ def deserialize_json(data: dict) -> GetWorkflowDefinitionResponse:
         )
     else:
         raise DeserializationError("GetWorkflowDefinitionResponse.created_at required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "exportConfig" in data:
+    if data.get("exportConfig") is not None:
         import capo_nova_act.types.workflow_export_config
 
         out["export_config"] = (
@@ -88,7 +88,7 @@ def deserialize_json(data: dict) -> GetWorkflowDefinitionResponse:
                 data["exportConfig"]
             )
         )
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_nova_act.types.workflow_definition_status
 
         out["status"] = capo_nova_act.types.workflow_definition_status.deserialize_json(

@@ -25,7 +25,7 @@ def serialize_aws_json_1_1(value: ConformancePackTemplateValidationException_) -
 
 def deserialize_aws_json_1_1(data: dict) -> ConformancePackTemplateValidationException_:
     out: ConformancePackTemplateValidationException_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     return out
 
@@ -35,17 +35,22 @@ class ConformancePackTemplateValidationException(ServiceError):
 
     code: str | None = "ConformancePackTemplateValidationException"
 
-    def __init__(self, data: ConformancePackTemplateValidationException_):
+    def __init__(
+        self,
+        data: ConformancePackTemplateValidationException_,
+        message: str | None = None,
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="ConformancePackTemplateValidationException",
+            message=message,
         )
         self.data = data
 
     @classmethod
     def from_aws_json_1_1(
-        cls, data: dict
+        cls, data: dict, message: str | None = None
     ) -> "ConformancePackTemplateValidationException":
-        return cls(deserialize_aws_json_1_1(data))
+        return cls(deserialize_aws_json_1_1(data), message)

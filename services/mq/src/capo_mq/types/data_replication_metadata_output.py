@@ -36,7 +36,7 @@ def serialize_json(value: DataReplicationMetadataOutput) -> dict:
 
 def deserialize_json(data: dict) -> DataReplicationMetadataOutput:
     out: DataReplicationMetadataOutput = {}  # type: ignore[typeddict-item]
-    if "dataReplicationCounterpart" in data:
+    if data.get("dataReplicationCounterpart") is not None:
         import capo_mq.types.data_replication_counterpart
 
         out["data_replication_counterpart"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> DataReplicationMetadataOutput:
                 data["dataReplicationCounterpart"]
             )
         )
-    if "dataReplicationRole" in data:
+    if data.get("dataReplicationRole") is not None:
         out["data_replication_role"] = data["dataReplicationRole"]
     return out

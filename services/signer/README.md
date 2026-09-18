@@ -13,10 +13,25 @@ from capo_signer import AsyncsignerClient
 
 
 async def main():
-    async with AsyncsignerClient() as s3:
+    async with AsyncsignerClient() as signer:
         # Example: call the add_profile_permission operation
-        response = await s3.add_profile_permission()
+        response = await signer.add_profile_permission()
         print(response["revision_id"])
+```
+
+## Pagination
+
+Some operations in this SDK support pagination. If the operation supports pagination it will have an `iter_` prefixed method that returns an async iterator.
+
+```python
+from capo_signer import AsyncsignerClient
+
+
+async def main():
+    async with AsyncsignerClient() as signer:
+        # Example: paginate over list_signing_jobs
+        async for item in signer.iter_list_signing_jobs():
+            print(item)
 ```
 
 ## Error Handling
@@ -29,9 +44,9 @@ from capo_signer.error import AccessDeniedException
 
 
 async def main():
-    async with AsyncsignerClient() as s3:
+    async with AsyncsignerClient() as signer:
         try:
-            await s3.add_profile_permission()
+            await signer.add_profile_permission()
         except AccessDeniedException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -48,13 +63,13 @@ from capo_signer import AsyncsignerClient
 
 
 async def main():
-    async with AsyncsignerClient() as s3:
+    async with AsyncsignerClient() as signer:
         # Default: 3 attempts for every operation
-        response = await s3.add_profile_permission()
+        response = await signer.add_profile_permission()
 
         # Override per operation
-        response = await s3.add_profile_permission(config_overrides={"retry_max_attempts": 5})
+        response = await signer.add_profile_permission(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.add_profile_permission(config_overrides={"retry_max_attempts": 1})
+        response = await signer.add_profile_permission(config_overrides={"retry_max_attempts": 1})
 ```

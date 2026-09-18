@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> ListOfDataSetEntry:
 
     out: ListOfDataSetEntry = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_dataexchange.types.data_set_entry.deserialize_json(item))
     return out

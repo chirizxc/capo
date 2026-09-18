@@ -44,13 +44,13 @@ def serialize_json(value: CreateAssetTypeInput) -> dict:
 
 def deserialize_json(data: dict) -> CreateAssetTypeInput:
     out: CreateAssetTypeInput = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("CreateAssetTypeInput.name required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "formsInput" in data:
+    if data.get("formsInput") is not None:
         import capo_datazone.types.forms_input_map
 
         out["forms_input"] = capo_datazone.types.forms_input_map.deserialize_json(
@@ -58,7 +58,7 @@ def deserialize_json(data: dict) -> CreateAssetTypeInput:
         )
     else:
         raise DeserializationError("CreateAssetTypeInput.forms_input required")
-    if "owningProjectIdentifier" in data:
+    if data.get("owningProjectIdentifier") is not None:
         out["owning_project_identifier"] = data["owningProjectIdentifier"]
     else:
         raise DeserializationError(

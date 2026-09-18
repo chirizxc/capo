@@ -43,7 +43,7 @@ def serialize_json(value: ListFoldersForResourceResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListFoldersForResourceResponse:
     out: ListFoldersForResourceResponse = {}  # type: ignore[typeddict-item]
-    if "Folders" in data:
+    if data.get("Folders") is not None:
         import capo_quicksight.types.folders_for_resource_arn_list
 
         out["folders"] = (
@@ -51,8 +51,8 @@ def deserialize_json(data: dict) -> ListFoldersForResourceResponse:
                 data["Folders"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "RequestId" in data:
+    if data.get("RequestId") is not None:
         out["request_id"] = data["RequestId"]
     return out

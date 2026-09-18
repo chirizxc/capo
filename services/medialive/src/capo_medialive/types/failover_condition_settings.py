@@ -57,7 +57,7 @@ def serialize_json(value: FailoverConditionSettings) -> dict:
 
 def deserialize_json(data: dict) -> FailoverConditionSettings:
     out: FailoverConditionSettings = {}  # type: ignore[typeddict-item]
-    if "audioSilenceSettings" in data:
+    if data.get("audioSilenceSettings") is not None:
         import capo_medialive.types.audio_silence_failover_settings
 
         out["audio_silence_settings"] = (
@@ -65,7 +65,7 @@ def deserialize_json(data: dict) -> FailoverConditionSettings:
                 data["audioSilenceSettings"]
             )
         )
-    if "inputLossSettings" in data:
+    if data.get("inputLossSettings") is not None:
         import capo_medialive.types.input_loss_failover_settings
 
         out["input_loss_settings"] = (
@@ -73,7 +73,7 @@ def deserialize_json(data: dict) -> FailoverConditionSettings:
                 data["inputLossSettings"]
             )
         )
-    if "videoBlackSettings" in data:
+    if data.get("videoBlackSettings") is not None:
         import capo_medialive.types.video_black_failover_settings
 
         out["video_black_settings"] = (

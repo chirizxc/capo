@@ -23,6 +23,6 @@ def serialize_aws_json_1_1(value: UpdateBatchPredictionOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateBatchPredictionOutput:
     out: UpdateBatchPredictionOutput = {}  # type: ignore[typeddict-item]
-    if "BatchPredictionId" in data:
+    if data.get("BatchPredictionId") is not None:
         out["batch_prediction_id"] = data["BatchPredictionId"]
     return out

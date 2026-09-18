@@ -24,7 +24,7 @@ def serialize_json(value: UpdateChannelClassResponse) -> dict:
 
 def deserialize_json(data: dict) -> UpdateChannelClassResponse:
     out: UpdateChannelClassResponse = {}  # type: ignore[typeddict-item]
-    if "channel" in data:
+    if data.get("channel") is not None:
         import capo_medialive.types.channel
 
         out["channel"] = capo_medialive.types.channel.deserialize_json(data["channel"])

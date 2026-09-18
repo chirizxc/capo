@@ -32,7 +32,7 @@ def serialize_aws_json_1_1(value: ConnectorEgressConfig) -> dict:
 
 
 def deserialize_aws_json_1_1(data: dict) -> ConnectorEgressConfig:
-    if "VpcLattice" in data:
+    if data.get("VpcLattice") is not None:
         import capo_transfer.types.connector_vpc_lattice_egress_config
 
         return {

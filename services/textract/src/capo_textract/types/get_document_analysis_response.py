@@ -73,7 +73,7 @@ def serialize_aws_json_1_1(value: GetDocumentAnalysisResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetDocumentAnalysisResponse:
     out: GetDocumentAnalysisResponse = {}  # type: ignore[typeddict-item]
-    if "DocumentMetadata" in data:
+    if data.get("DocumentMetadata") is not None:
         import capo_textract.types.document_metadata
 
         out["document_metadata"] = (
@@ -81,28 +81,28 @@ def deserialize_aws_json_1_1(data: dict) -> GetDocumentAnalysisResponse:
                 data["DocumentMetadata"]
             )
         )
-    if "JobStatus" in data:
+    if data.get("JobStatus") is not None:
         import capo_textract.types.job_status
 
         out["job_status"] = capo_textract.types.job_status.deserialize_aws_json_1_1(
             data["JobStatus"]
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "Blocks" in data:
+    if data.get("Blocks") is not None:
         import capo_textract.types.block_list
 
         out["blocks"] = capo_textract.types.block_list.deserialize_aws_json_1_1(
             data["Blocks"]
         )
-    if "Warnings" in data:
+    if data.get("Warnings") is not None:
         import capo_textract.types.warnings
 
         out["warnings"] = capo_textract.types.warnings.deserialize_aws_json_1_1(
             data["Warnings"]
         )
-    if "StatusMessage" in data:
+    if data.get("StatusMessage") is not None:
         out["status_message"] = data["StatusMessage"]
-    if "AnalyzeDocumentModelVersion" in data:
+    if data.get("AnalyzeDocumentModelVersion") is not None:
         out["analyze_document_model_version"] = data["AnalyzeDocumentModelVersion"]
     return out

@@ -35,10 +35,10 @@ def serialize_json(value: StartImagePipelineExecutionResponse) -> dict:
 
 def deserialize_json(data: dict) -> StartImagePipelineExecutionResponse:
     out: StartImagePipelineExecutionResponse = {}  # type: ignore[typeddict-item]
-    if "requestId" in data:
+    if data.get("requestId") is not None:
         out["request_id"] = data["requestId"]
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
-    if "imageBuildVersionArn" in data:
+    if data.get("imageBuildVersionArn") is not None:
         out["image_build_version_arn"] = data["imageBuildVersionArn"]
     return out

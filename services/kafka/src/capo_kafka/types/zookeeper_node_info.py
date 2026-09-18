@@ -37,7 +37,15 @@ def serialize_json(value: ZookeeperNodeInfo) -> dict:
             value["endpoints"]
         )
     if "zookeeper_id" in value:
-        out["zookeeperId"] = value["zookeeper_id"]
+        out["zookeeperId"] = (
+            "NaN"
+            if value["zookeeper_id"] != value["zookeeper_id"]
+            else "Infinity"
+            if value["zookeeper_id"] == float("inf")
+            else "-Infinity"
+            if value["zookeeper_id"] == float("-inf")
+            else value["zookeeper_id"]
+        )
     if "zookeeper_version" in value:
         out["zookeeperVersion"] = value["zookeeper_version"]
     return out
@@ -45,18 +53,18 @@ def serialize_json(value: ZookeeperNodeInfo) -> dict:
 
 def deserialize_json(data: dict) -> ZookeeperNodeInfo:
     out: ZookeeperNodeInfo = {}  # type: ignore[typeddict-item]
-    if "attachedENIId" in data:
+    if data.get("attachedENIId") is not None:
         out["attached_eni_id"] = data["attachedENIId"]
-    if "clientVpcIpAddress" in data:
+    if data.get("clientVpcIpAddress") is not None:
         out["client_vpc_ip_address"] = data["clientVpcIpAddress"]
-    if "endpoints" in data:
+    if data.get("endpoints") is not None:
         import capo_kafka.types.__list_of__string
 
         out["endpoints"] = capo_kafka.types.__list_of__string.deserialize_json(
             data["endpoints"]
         )
-    if "zookeeperId" in data:
-        out["zookeeper_id"] = data["zookeeperId"]
-    if "zookeeperVersion" in data:
+    if data.get("zookeeperId") is not None:
+        out["zookeeper_id"] = float(data["zookeeperId"])
+    if data.get("zookeeperVersion") is not None:
         out["zookeeper_version"] = data["zookeeperVersion"]
     return out

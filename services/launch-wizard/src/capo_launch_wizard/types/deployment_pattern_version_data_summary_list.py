@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> DeploymentPatternVersionDataSummaryList:
 
     out: DeploymentPatternVersionDataSummaryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_launch_wizard.types.deployment_pattern_version_data_summary.deserialize_json(
                 item

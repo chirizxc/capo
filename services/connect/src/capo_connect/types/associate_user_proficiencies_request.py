@@ -34,7 +34,7 @@ def serialize_json(value: AssociateUserProficienciesRequest) -> dict:
 
 def deserialize_json(data: dict) -> AssociateUserProficienciesRequest:
     out: AssociateUserProficienciesRequest = {}  # type: ignore[typeddict-item]
-    if "UserProficiencies" in data:
+    if data.get("UserProficiencies") is not None:
         import capo_connect.types.user_proficiency_list
 
         out["user_proficiencies"] = (

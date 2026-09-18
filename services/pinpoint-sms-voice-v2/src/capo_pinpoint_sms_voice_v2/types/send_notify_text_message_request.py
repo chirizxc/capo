@@ -79,21 +79,21 @@ def serialize_aws_json_1_0(value: SendNotifyTextMessageRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> SendNotifyTextMessageRequest:
     out: SendNotifyTextMessageRequest = {}  # type: ignore[typeddict-item]
-    if "NotifyConfigurationId" in data:
+    if data.get("NotifyConfigurationId") is not None:
         out["notify_configuration_id"] = data["NotifyConfigurationId"]
     else:
         raise DeserializationError(
             "SendNotifyTextMessageRequest.notify_configuration_id required"
         )
-    if "DestinationPhoneNumber" in data:
+    if data.get("DestinationPhoneNumber") is not None:
         out["destination_phone_number"] = data["DestinationPhoneNumber"]
     else:
         raise DeserializationError(
             "SendNotifyTextMessageRequest.destination_phone_number required"
         )
-    if "TemplateId" in data:
+    if data.get("TemplateId") is not None:
         out["template_id"] = data["TemplateId"]
-    if "TemplateVariables" in data:
+    if data.get("TemplateVariables") is not None:
         import capo_pinpoint_sms_voice_v2.types.template_variable_substitution_map
 
         out["template_variables"] = (
@@ -105,9 +105,9 @@ def deserialize_aws_json_1_0(data: dict) -> SendNotifyTextMessageRequest:
         raise DeserializationError(
             "SendNotifyTextMessageRequest.template_variables required"
         )
-    if "TimeToLive" in data:
+    if data.get("TimeToLive") is not None:
         out["time_to_live"] = data["TimeToLive"]
-    if "Context" in data:
+    if data.get("Context") is not None:
         import capo_pinpoint_sms_voice_v2.types.context_map
 
         out["context"] = (
@@ -115,12 +115,12 @@ def deserialize_aws_json_1_0(data: dict) -> SendNotifyTextMessageRequest:
                 data["Context"]
             )
         )
-    if "ConfigurationSetName" in data:
+    if data.get("ConfigurationSetName") is not None:
         out["configuration_set_name"] = data["ConfigurationSetName"]
-    if "DryRun" in data:
+    if data.get("DryRun") is not None:
         out["dry_run"] = data["DryRun"]
     else:
         out["dry_run"] = False
-    if "MessageFeedbackEnabled" in data:
+    if data.get("MessageFeedbackEnabled") is not None:
         out["message_feedback_enabled"] = data["MessageFeedbackEnabled"]
     return out

@@ -38,16 +38,16 @@ def serialize_json(value: ListAppInputSourcesRequest) -> dict:
 
 def deserialize_json(data: dict) -> ListAppInputSourcesRequest:
     out: ListAppInputSourcesRequest = {}  # type: ignore[typeddict-item]
-    if "appArn" in data:
+    if data.get("appArn") is not None:
         out["app_arn"] = data["appArn"]
     else:
         raise DeserializationError("ListAppInputSourcesRequest.app_arn required")
-    if "appVersion" in data:
+    if data.get("appVersion") is not None:
         out["app_version"] = data["appVersion"]
     else:
         raise DeserializationError("ListAppInputSourcesRequest.app_version required")
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
     return out

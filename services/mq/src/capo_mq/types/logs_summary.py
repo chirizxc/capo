@@ -43,15 +43,15 @@ def serialize_json(value: LogsSummary) -> dict:
 
 def deserialize_json(data: dict) -> LogsSummary:
     out: LogsSummary = {}  # type: ignore[typeddict-item]
-    if "audit" in data:
+    if data.get("audit") is not None:
         out["audit"] = data["audit"]
-    if "auditLogGroup" in data:
+    if data.get("auditLogGroup") is not None:
         out["audit_log_group"] = data["auditLogGroup"]
-    if "general" in data:
+    if data.get("general") is not None:
         out["general"] = data["general"]
-    if "generalLogGroup" in data:
+    if data.get("generalLogGroup") is not None:
         out["general_log_group"] = data["generalLogGroup"]
-    if "pending" in data:
+    if data.get("pending") is not None:
         import capo_mq.types.pending_logs
 
         out["pending"] = capo_mq.types.pending_logs.deserialize_json(data["pending"])

@@ -35,17 +35,17 @@ def serialize_aws_json_1_1(value: CreateCapacityReservationInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateCapacityReservationInput:
     out: CreateCapacityReservationInput = {}  # type: ignore[typeddict-item]
-    if "TargetDpus" in data:
+    if data.get("TargetDpus") is not None:
         out["target_dpus"] = data["TargetDpus"]
     else:
         raise DeserializationError(
             "CreateCapacityReservationInput.target_dpus required"
         )
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("CreateCapacityReservationInput.name required")
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_athena.types.tag_list
 
         out["tags"] = capo_athena.types.tag_list.deserialize_aws_json_1_1(data["Tags"])

@@ -43,11 +43,11 @@ def serialize_aws_json_1_0(value: LegalTerm) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> LegalTerm:
     out: LegalTerm = {}  # type: ignore[typeddict-item]
-    if "type" in data:
+    if data.get("type") is not None:
         out["type"] = data["type"]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "documents" in data:
+    if data.get("documents") is not None:
         import capo_marketplace_agreement.types.document_list
 
         out["documents"] = (

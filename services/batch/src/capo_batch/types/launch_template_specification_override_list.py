@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> LaunchTemplateSpecificationOverrideList:
 
     out: LaunchTemplateSpecificationOverrideList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_batch.types.launch_template_specification_override.deserialize_json(
                 item

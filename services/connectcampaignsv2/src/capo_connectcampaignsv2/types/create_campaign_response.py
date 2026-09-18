@@ -34,11 +34,11 @@ def serialize_json(value: CreateCampaignResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateCampaignResponse:
     out: CreateCampaignResponse = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_connectcampaignsv2.types.tag_map
 
         out["tags"] = capo_connectcampaignsv2.types.tag_map.deserialize_json(

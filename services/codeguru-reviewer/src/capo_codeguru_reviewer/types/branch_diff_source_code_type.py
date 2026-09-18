@@ -27,13 +27,13 @@ def serialize_json(value: BranchDiffSourceCodeType) -> dict:
 
 def deserialize_json(data: dict) -> BranchDiffSourceCodeType:
     out: BranchDiffSourceCodeType = {}  # type: ignore[typeddict-item]
-    if "SourceBranchName" in data:
+    if data.get("SourceBranchName") is not None:
         out["source_branch_name"] = data["SourceBranchName"]
     else:
         raise DeserializationError(
             "BranchDiffSourceCodeType.source_branch_name required"
         )
-    if "DestinationBranchName" in data:
+    if data.get("DestinationBranchName") is not None:
         out["destination_branch_name"] = data["DestinationBranchName"]
     else:
         raise DeserializationError(

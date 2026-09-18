@@ -39,7 +39,7 @@ def deserialize_aws_json_1_0(
     data: dict,
 ) -> ListEngagementByAcceptingInvitationTasksResponse:
     out: ListEngagementByAcceptingInvitationTasksResponse = {}  # type: ignore[typeddict-item]
-    if "TaskSummaries" in data:
+    if data.get("TaskSummaries") is not None:
         import capo_partnercentral_selling.types.list_engagement_by_accepting_invitation_task_summaries
 
         out["task_summaries"] = (
@@ -47,6 +47,6 @@ def deserialize_aws_json_1_0(
                 data["TaskSummaries"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

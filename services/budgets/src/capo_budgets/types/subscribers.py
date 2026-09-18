@@ -23,5 +23,7 @@ def deserialize_aws_json_1_1(data: list) -> Subscribers:
 
     out: Subscribers = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_budgets.types.subscriber.deserialize_aws_json_1_1(item))
     return out

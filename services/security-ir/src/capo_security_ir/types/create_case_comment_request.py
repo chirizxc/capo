@@ -31,9 +31,9 @@ def serialize_json(value: CreateCaseCommentRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateCaseCommentRequest:
     out: CreateCaseCommentRequest = {}  # type: ignore[typeddict-item]
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
-    if "body" in data:
+    if data.get("body") is not None:
         out["body"] = data["body"]
     else:
         raise DeserializationError("CreateCaseCommentRequest.body required")

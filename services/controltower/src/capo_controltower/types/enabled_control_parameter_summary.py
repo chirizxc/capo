@@ -22,11 +22,11 @@ def serialize_json(value: EnabledControlParameterSummary) -> dict:
 
 def deserialize_json(data: dict) -> EnabledControlParameterSummary:
     out: EnabledControlParameterSummary = {}  # type: ignore[typeddict-item]
-    if "key" in data:
+    if data.get("key") is not None:
         out["key"] = data["key"]
     else:
         raise DeserializationError("EnabledControlParameterSummary.key required")
-    if "value" in data:
+    if data.get("value") is not None:
         out["value"] = data["value"]
     else:
         raise DeserializationError("EnabledControlParameterSummary.value required")

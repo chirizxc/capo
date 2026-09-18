@@ -36,12 +36,12 @@ def serialize_aws_json_1_1(value: CopyCommand) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CopyCommand:
     out: CopyCommand = {}  # type: ignore[typeddict-item]
-    if "DataTableName" in data:
+    if data.get("DataTableName") is not None:
         out["data_table_name"] = data["DataTableName"]
     else:
         raise DeserializationError("CopyCommand.data_table_name required")
-    if "DataTableColumns" in data:
+    if data.get("DataTableColumns") is not None:
         out["data_table_columns"] = data["DataTableColumns"]
-    if "CopyOptions" in data:
+    if data.get("CopyOptions") is not None:
         out["copy_options"] = data["CopyOptions"]
     return out

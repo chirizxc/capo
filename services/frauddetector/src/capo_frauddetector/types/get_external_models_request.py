@@ -34,10 +34,10 @@ def serialize_aws_json_1_1(value: GetExternalModelsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetExternalModelsRequest:
     out: GetExternalModelsRequest = {}  # type: ignore[typeddict-item]
-    if "modelEndpoint" in data:
+    if data.get("modelEndpoint") is not None:
         out["model_endpoint"] = data["modelEndpoint"]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
     return out

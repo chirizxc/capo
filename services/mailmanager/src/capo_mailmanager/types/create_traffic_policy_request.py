@@ -67,15 +67,15 @@ def serialize_aws_json_1_0(value: CreateTrafficPolicyRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CreateTrafficPolicyRequest:
     out: CreateTrafficPolicyRequest = {}  # type: ignore[typeddict-item]
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
-    if "TrafficPolicyName" in data:
+    if data.get("TrafficPolicyName") is not None:
         out["traffic_policy_name"] = data["TrafficPolicyName"]
     else:
         raise DeserializationError(
             "CreateTrafficPolicyRequest.traffic_policy_name required"
         )
-    if "PolicyStatements" in data:
+    if data.get("PolicyStatements") is not None:
         import capo_mailmanager.types.policy_statement_list
 
         out["policy_statements"] = (
@@ -87,7 +87,7 @@ def deserialize_aws_json_1_0(data: dict) -> CreateTrafficPolicyRequest:
         raise DeserializationError(
             "CreateTrafficPolicyRequest.policy_statements required"
         )
-    if "DefaultAction" in data:
+    if data.get("DefaultAction") is not None:
         import capo_mailmanager.types.accept_action
 
         out["default_action"] = (
@@ -97,9 +97,9 @@ def deserialize_aws_json_1_0(data: dict) -> CreateTrafficPolicyRequest:
         )
     else:
         raise DeserializationError("CreateTrafficPolicyRequest.default_action required")
-    if "MaxMessageSizeBytes" in data:
+    if data.get("MaxMessageSizeBytes") is not None:
         out["max_message_size_bytes"] = data["MaxMessageSizeBytes"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_mailmanager.types.tag_list
 
         out["tags"] = capo_mailmanager.types.tag_list.deserialize_aws_json_1_0(

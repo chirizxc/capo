@@ -30,19 +30,19 @@ def serialize_json(value: PutConsoleAuthorizationConfigurationOutput) -> dict:
 
 def deserialize_json(data: dict) -> PutConsoleAuthorizationConfigurationOutput:
     out: PutConsoleAuthorizationConfigurationOutput = {}  # type: ignore[typeddict-item]
-    if "targetId" in data:
+    if data.get("targetId") is not None:
         out["target_id"] = data["targetId"]
     else:
         raise DeserializationError(
             "PutConsoleAuthorizationConfigurationOutput.target_id required"
         )
-    if "scope" in data:
+    if data.get("scope") is not None:
         out["scope"] = data["scope"]
     else:
         raise DeserializationError(
             "PutConsoleAuthorizationConfigurationOutput.scope required"
         )
-    if "consoleAuthorizationEnabled" in data:
+    if data.get("consoleAuthorizationEnabled") is not None:
         out["console_authorization_enabled"] = data["consoleAuthorizationEnabled"]
     else:
         raise DeserializationError(

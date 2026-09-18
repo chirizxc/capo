@@ -132,13 +132,13 @@ def serialize_json(value: CreateStreamGroupOutput) -> dict:
 
 def deserialize_json(data: dict) -> CreateStreamGroupOutput:
     out: CreateStreamGroupOutput = {}  # type: ignore[typeddict-item]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
     else:
         raise DeserializationError("CreateStreamGroupOutput.arn required")
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "DefaultApplication" in data:
+    if data.get("DefaultApplication") is not None:
         import capo_gameliftstreams.types.default_application
 
         out["default_application"] = (
@@ -146,7 +146,7 @@ def deserialize_json(data: dict) -> CreateStreamGroupOutput:
                 data["DefaultApplication"]
             )
         )
-    if "LocationStates" in data:
+    if data.get("LocationStates") is not None:
         import capo_gameliftstreams.types.location_states
 
         out["location_states"] = (
@@ -154,21 +154,21 @@ def deserialize_json(data: dict) -> CreateStreamGroupOutput:
                 data["LocationStates"]
             )
         )
-    if "StreamClass" in data:
+    if data.get("StreamClass") is not None:
         import capo_gameliftstreams.types.stream_class
 
         out["stream_class"] = capo_gameliftstreams.types.stream_class.deserialize_json(
             data["StreamClass"]
         )
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_gameliftstreams.types.stream_group_status
 
         out["status"] = capo_gameliftstreams.types.stream_group_status.deserialize_json(
             data["Status"]
         )
-    if "StatusReason" in data:
+    if data.get("StatusReason") is not None:
         import capo_gameliftstreams.types.stream_group_status_reason
 
         out["status_reason"] = (
@@ -176,7 +176,7 @@ def deserialize_json(data: dict) -> CreateStreamGroupOutput:
                 data["StatusReason"]
             )
         )
-    if "LastUpdatedAt" in data:
+    if data.get("LastUpdatedAt") is not None:
         import capo_gameliftstreams.types._prelude.timestamp
 
         out["last_updated_at"] = (
@@ -184,7 +184,7 @@ def deserialize_json(data: dict) -> CreateStreamGroupOutput:
                 data["LastUpdatedAt"]
             )
         )
-    if "CreatedAt" in data:
+    if data.get("CreatedAt") is not None:
         import capo_gameliftstreams.types._prelude.timestamp
 
         out["created_at"] = (
@@ -192,7 +192,7 @@ def deserialize_json(data: dict) -> CreateStreamGroupOutput:
                 data["CreatedAt"]
             )
         )
-    if "ExpiresAt" in data:
+    if data.get("ExpiresAt") is not None:
         import capo_gameliftstreams.types._prelude.timestamp
 
         out["expires_at"] = (
@@ -200,7 +200,7 @@ def deserialize_json(data: dict) -> CreateStreamGroupOutput:
                 data["ExpiresAt"]
             )
         )
-    if "AssociatedApplications" in data:
+    if data.get("AssociatedApplications") is not None:
         import capo_gameliftstreams.types.arn_list
 
         out["associated_applications"] = (

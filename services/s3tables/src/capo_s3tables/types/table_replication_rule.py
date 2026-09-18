@@ -28,7 +28,7 @@ def serialize_json(value: TableReplicationRule) -> dict:
 
 def deserialize_json(data: dict) -> TableReplicationRule:
     out: TableReplicationRule = {}  # type: ignore[typeddict-item]
-    if "destinations" in data:
+    if data.get("destinations") is not None:
         import capo_s3tables.types.replication_destinations
 
         out["destinations"] = (

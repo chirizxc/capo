@@ -45,7 +45,7 @@ def serialize_json(value: Source) -> dict:
 
 
 def deserialize_json(data: dict) -> Source:
-    if "eksConfiguration" in data:
+    if data.get("eksConfiguration") is not None:
         import capo_amp.types.eks_configuration
 
         return {
@@ -53,7 +53,7 @@ def deserialize_json(data: dict) -> Source:
                 data["eksConfiguration"]
             )
         }
-    elif "vpcConfiguration" in data:
+    elif data.get("vpcConfiguration") is not None:
         import capo_amp.types.vpc_configuration
 
         return {

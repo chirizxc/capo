@@ -39,15 +39,22 @@ class InvalidAuthenticationProfileRequestFault(ServiceError):
 
     code: str | None = "InvalidAuthenticationProfileRequestFault"
 
-    def __init__(self, data: InvalidAuthenticationProfileRequestFault_):
+    def __init__(
+        self,
+        data: InvalidAuthenticationProfileRequestFault_,
+        message: str | None = None,
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="InvalidAuthenticationProfileRequestFault",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_query(cls, el: Element) -> "InvalidAuthenticationProfileRequestFault":
-        return cls(deserialize_query(el))
+    def from_query(
+        cls, el: Element, message: str | None = None
+    ) -> "InvalidAuthenticationProfileRequestFault":
+        return cls(deserialize_query(el), message)

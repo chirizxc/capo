@@ -23,6 +23,6 @@ def serialize_json(value: ImageLoggingConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> ImageLoggingConfiguration:
     out: ImageLoggingConfiguration = {}  # type: ignore[typeddict-item]
-    if "logGroupName" in data:
+    if data.get("logGroupName") is not None:
         out["log_group_name"] = data["logGroupName"]
     return out

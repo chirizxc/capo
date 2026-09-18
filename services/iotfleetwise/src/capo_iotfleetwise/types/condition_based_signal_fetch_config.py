@@ -32,13 +32,13 @@ def serialize_aws_json_1_0(value: ConditionBasedSignalFetchConfig) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ConditionBasedSignalFetchConfig:
     out: ConditionBasedSignalFetchConfig = {}  # type: ignore[typeddict-item]
-    if "conditionExpression" in data:
+    if data.get("conditionExpression") is not None:
         out["condition_expression"] = data["conditionExpression"]
     else:
         raise DeserializationError(
             "ConditionBasedSignalFetchConfig.condition_expression required"
         )
-    if "triggerMode" in data:
+    if data.get("triggerMode") is not None:
         import capo_iotfleetwise.types.trigger_mode
 
         out["trigger_mode"] = (

@@ -40,9 +40,9 @@ def serialize_json(value: ListTemplateSharesOutput) -> dict:
 
 def deserialize_json(data: dict) -> ListTemplateSharesOutput:
     out: ListTemplateSharesOutput = {}  # type: ignore[typeddict-item]
-    if "TemplateArn" in data:
+    if data.get("TemplateArn") is not None:
         out["template_arn"] = data["TemplateArn"]
-    if "TemplateShareSummaries" in data:
+    if data.get("TemplateShareSummaries") is not None:
         import capo_wellarchitected.types.template_share_summaries
 
         out["template_share_summaries"] = (
@@ -50,6 +50,6 @@ def deserialize_json(data: dict) -> ListTemplateSharesOutput:
                 data["TemplateShareSummaries"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

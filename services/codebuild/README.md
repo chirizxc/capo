@@ -13,9 +13,9 @@ from capo_codebuild import AsyncCodeBuildClient
 
 
 async def main():
-    async with AsyncCodeBuildClient() as s3:
+    async with AsyncCodeBuildClient() as code_build:
         # Example: call the batch_delete_builds operation
-        response = await s3.batch_delete_builds()
+        response = await code_build.batch_delete_builds()
         print(response["builds_deleted"])
 ```
 
@@ -28,9 +28,9 @@ from capo_codebuild import AsyncCodeBuildClient
 
 
 async def main():
-    async with AsyncCodeBuildClient() as s3:
+    async with AsyncCodeBuildClient() as code_build:
         # Example: paginate over describe_code_coverages
-        async for item in s3.iter_describe_code_coverages():
+        async for item in code_build.iter_describe_code_coverages():
             print(item)
 ```
 
@@ -44,9 +44,9 @@ from capo_codebuild.error import InvalidInputException
 
 
 async def main():
-    async with AsyncCodeBuildClient() as s3:
+    async with AsyncCodeBuildClient() as code_build:
         try:
-            await s3.batch_delete_builds()
+            await code_build.batch_delete_builds()
         except InvalidInputException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -63,13 +63,13 @@ from capo_codebuild import AsyncCodeBuildClient
 
 
 async def main():
-    async with AsyncCodeBuildClient() as s3:
+    async with AsyncCodeBuildClient() as code_build:
         # Default: 3 attempts for every operation
-        response = await s3.batch_delete_builds()
+        response = await code_build.batch_delete_builds()
 
         # Override per operation
-        response = await s3.batch_delete_builds(config_overrides={"retry_max_attempts": 5})
+        response = await code_build.batch_delete_builds(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.batch_delete_builds(config_overrides={"retry_max_attempts": 1})
+        response = await code_build.batch_delete_builds(config_overrides={"retry_max_attempts": 1})
 ```

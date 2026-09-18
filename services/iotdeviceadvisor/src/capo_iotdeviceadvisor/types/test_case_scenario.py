@@ -63,9 +63,9 @@ def serialize_json(value: TestCaseScenario) -> dict:
 
 def deserialize_json(data: dict) -> TestCaseScenario:
     out: TestCaseScenario = {}  # type: ignore[typeddict-item]
-    if "testCaseScenarioId" in data:
+    if data.get("testCaseScenarioId") is not None:
         out["test_case_scenario_id"] = data["testCaseScenarioId"]
-    if "testCaseScenarioType" in data:
+    if data.get("testCaseScenarioType") is not None:
         import capo_iotdeviceadvisor.types.test_case_scenario_type
 
         out["test_case_scenario_type"] = (
@@ -73,7 +73,7 @@ def deserialize_json(data: dict) -> TestCaseScenario:
                 data["testCaseScenarioType"]
             )
         )
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_iotdeviceadvisor.types.test_case_scenario_status
 
         out["status"] = (
@@ -81,8 +81,8 @@ def deserialize_json(data: dict) -> TestCaseScenario:
                 data["status"]
             )
         )
-    if "failure" in data:
+    if data.get("failure") is not None:
         out["failure"] = data["failure"]
-    if "systemMessage" in data:
+    if data.get("systemMessage") is not None:
         out["system_message"] = data["systemMessage"]
     return out

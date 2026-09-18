@@ -65,9 +65,9 @@ def serialize_aws_json_1_1(value: ListReviewPolicyResultsForHITResponse) -> dict
 
 def deserialize_aws_json_1_1(data: dict) -> ListReviewPolicyResultsForHITResponse:
     out: ListReviewPolicyResultsForHITResponse = {}  # type: ignore[typeddict-item]
-    if "HITId" in data:
+    if data.get("HITId") is not None:
         out["hit_id"] = data["HITId"]
-    if "AssignmentReviewPolicy" in data:
+    if data.get("AssignmentReviewPolicy") is not None:
         import capo_mturk.types.review_policy
 
         out["assignment_review_policy"] = (
@@ -75,7 +75,7 @@ def deserialize_aws_json_1_1(data: dict) -> ListReviewPolicyResultsForHITRespons
                 data["AssignmentReviewPolicy"]
             )
         )
-    if "HITReviewPolicy" in data:
+    if data.get("HITReviewPolicy") is not None:
         import capo_mturk.types.review_policy
 
         out["hit_review_policy"] = (
@@ -83,7 +83,7 @@ def deserialize_aws_json_1_1(data: dict) -> ListReviewPolicyResultsForHITRespons
                 data["HITReviewPolicy"]
             )
         )
-    if "AssignmentReviewReport" in data:
+    if data.get("AssignmentReviewReport") is not None:
         import capo_mturk.types.review_report
 
         out["assignment_review_report"] = (
@@ -91,7 +91,7 @@ def deserialize_aws_json_1_1(data: dict) -> ListReviewPolicyResultsForHITRespons
                 data["AssignmentReviewReport"]
             )
         )
-    if "HITReviewReport" in data:
+    if data.get("HITReviewReport") is not None:
         import capo_mturk.types.review_report
 
         out["hit_review_report"] = (
@@ -99,6 +99,6 @@ def deserialize_aws_json_1_1(data: dict) -> ListReviewPolicyResultsForHITRespons
                 data["HITReviewReport"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

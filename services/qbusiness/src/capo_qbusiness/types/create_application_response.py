@@ -28,8 +28,8 @@ def serialize_json(value: CreateApplicationResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateApplicationResponse:
     out: CreateApplicationResponse = {}  # type: ignore[typeddict-item]
-    if "applicationId" in data:
+    if data.get("applicationId") is not None:
         out["application_id"] = data["applicationId"]
-    if "applicationArn" in data:
+    if data.get("applicationArn") is not None:
         out["application_arn"] = data["applicationArn"]
     return out

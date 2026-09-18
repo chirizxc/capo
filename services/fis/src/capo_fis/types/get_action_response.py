@@ -25,7 +25,7 @@ def serialize_json(value: GetActionResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetActionResponse:
     out: GetActionResponse = {}  # type: ignore[typeddict-item]
-    if "action" in data:
+    if data.get("action") is not None:
         import capo_fis.types.action
 
         out["action"] = capo_fis.types.action.deserialize_json(data["action"])

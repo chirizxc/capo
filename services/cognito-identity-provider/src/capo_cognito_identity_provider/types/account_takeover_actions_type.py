@@ -55,7 +55,7 @@ def serialize_aws_json_1_1(value: AccountTakeoverActionsType) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AccountTakeoverActionsType:
     out: AccountTakeoverActionsType = {}  # type: ignore[typeddict-item]
-    if "LowAction" in data:
+    if data.get("LowAction") is not None:
         import capo_cognito_identity_provider.types.account_takeover_action_type
 
         out["low_action"] = (
@@ -63,7 +63,7 @@ def deserialize_aws_json_1_1(data: dict) -> AccountTakeoverActionsType:
                 data["LowAction"]
             )
         )
-    if "MediumAction" in data:
+    if data.get("MediumAction") is not None:
         import capo_cognito_identity_provider.types.account_takeover_action_type
 
         out["medium_action"] = (
@@ -71,7 +71,7 @@ def deserialize_aws_json_1_1(data: dict) -> AccountTakeoverActionsType:
                 data["MediumAction"]
             )
         )
-    if "HighAction" in data:
+    if data.get("HighAction") is not None:
         import capo_cognito_identity_provider.types.account_takeover_action_type
 
         out["high_action"] = (

@@ -50,16 +50,16 @@ def serialize_json(value: BillingGroupCostReportElement) -> dict:
 
 def deserialize_json(data: dict) -> BillingGroupCostReportElement:
     out: BillingGroupCostReportElement = {}  # type: ignore[typeddict-item]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "AWSCost" in data:
+    if data.get("AWSCost") is not None:
         out["aws_cost"] = data["AWSCost"]
-    if "ProformaCost" in data:
+    if data.get("ProformaCost") is not None:
         out["proforma_cost"] = data["ProformaCost"]
-    if "Margin" in data:
+    if data.get("Margin") is not None:
         out["margin"] = data["Margin"]
-    if "MarginPercentage" in data:
+    if data.get("MarginPercentage") is not None:
         out["margin_percentage"] = data["MarginPercentage"]
-    if "Currency" in data:
+    if data.get("Currency") is not None:
         out["currency"] = data["Currency"]
     return out

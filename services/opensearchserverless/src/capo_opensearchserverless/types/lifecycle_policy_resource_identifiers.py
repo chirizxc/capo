@@ -29,6 +29,8 @@ def deserialize_aws_json_1_0(data: list) -> LifecyclePolicyResourceIdentifiers:
 
     out: LifecyclePolicyResourceIdentifiers = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_opensearchserverless.types.lifecycle_policy_resource_identifier.deserialize_aws_json_1_0(
                 item

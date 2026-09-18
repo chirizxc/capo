@@ -29,7 +29,7 @@ def serialize_aws_json_1_1(value: DeleteParameterGroupResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteParameterGroupResponse:
     out: DeleteParameterGroupResponse = {}  # type: ignore[typeddict-item]
-    if "ParameterGroup" in data:
+    if data.get("ParameterGroup") is not None:
         import capo_memorydb.types.parameter_group
 
         out["parameter_group"] = (

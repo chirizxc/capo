@@ -81,19 +81,19 @@ def serialize_aws_json_1_1(value: CreateDirectoryRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateDirectoryRequest:
     out: CreateDirectoryRequest = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("CreateDirectoryRequest.name required")
-    if "ShortName" in data:
+    if data.get("ShortName") is not None:
         out["short_name"] = data["ShortName"]
-    if "Password" in data:
+    if data.get("Password") is not None:
         out["password"] = data["Password"]
     else:
         raise DeserializationError("CreateDirectoryRequest.password required")
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Size" in data:
+    if data.get("Size") is not None:
         import capo_directory_service.types.directory_size
 
         out["size"] = (
@@ -103,7 +103,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateDirectoryRequest:
         )
     else:
         raise DeserializationError("CreateDirectoryRequest.size required")
-    if "VpcSettings" in data:
+    if data.get("VpcSettings") is not None:
         import capo_directory_service.types.directory_vpc_settings
 
         out["vpc_settings"] = (
@@ -111,13 +111,13 @@ def deserialize_aws_json_1_1(data: dict) -> CreateDirectoryRequest:
                 data["VpcSettings"]
             )
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_directory_service.types.tags
 
         out["tags"] = capo_directory_service.types.tags.deserialize_aws_json_1_1(
             data["Tags"]
         )
-    if "NetworkType" in data:
+    if data.get("NetworkType") is not None:
         import capo_directory_service.types.network_type
 
         out["network_type"] = (

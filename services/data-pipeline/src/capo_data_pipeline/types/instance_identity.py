@@ -27,8 +27,8 @@ def serialize_aws_json_1_1(value: InstanceIdentity) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> InstanceIdentity:
     out: InstanceIdentity = {}  # type: ignore[typeddict-item]
-    if "document" in data:
+    if data.get("document") is not None:
         out["document"] = data["document"]
-    if "signature" in data:
+    if data.get("signature") is not None:
         out["signature"] = data["signature"]
     return out

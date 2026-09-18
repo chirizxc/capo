@@ -32,14 +32,14 @@ def serialize_json(value: File) -> dict:
 
 def deserialize_json(data: dict) -> File:
     out: File = {}  # type: ignore[typeddict-item]
-    if "bucket" in data:
+    if data.get("bucket") is not None:
         out["bucket"] = data["bucket"]
     else:
         raise DeserializationError("File.bucket required")
-    if "key" in data:
+    if data.get("key") is not None:
         out["key"] = data["key"]
     else:
         raise DeserializationError("File.key required")
-    if "versionId" in data:
+    if data.get("versionId") is not None:
         out["version_id"] = data["versionId"]
     return out

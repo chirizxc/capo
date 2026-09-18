@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> SummaryMetricQueryResults:
 
     out: SummaryMetricQueryResults = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_iot_wireless.types.summary_metric_query_result.deserialize_json(item)
         )

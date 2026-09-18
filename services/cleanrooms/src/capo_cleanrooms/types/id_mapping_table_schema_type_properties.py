@@ -30,7 +30,7 @@ def serialize_json(value: IdMappingTableSchemaTypeProperties) -> dict:
 
 def deserialize_json(data: dict) -> IdMappingTableSchemaTypeProperties:
     out: IdMappingTableSchemaTypeProperties = {}  # type: ignore[typeddict-item]
-    if "idMappingTableInputSource" in data:
+    if data.get("idMappingTableInputSource") is not None:
         import capo_cleanrooms.types.id_mapping_table_input_source_list
 
         out["id_mapping_table_input_source"] = (

@@ -86,45 +86,45 @@ def serialize_json(value: ConfiguredTableAssociation) -> dict:
 
 def deserialize_json(data: dict) -> ConfiguredTableAssociation:
     out: ConfiguredTableAssociation = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("ConfiguredTableAssociation.arn required")
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("ConfiguredTableAssociation.id required")
-    if "configuredTableId" in data:
+    if data.get("configuredTableId") is not None:
         out["configured_table_id"] = data["configuredTableId"]
     else:
         raise DeserializationError(
             "ConfiguredTableAssociation.configured_table_id required"
         )
-    if "configuredTableArn" in data:
+    if data.get("configuredTableArn") is not None:
         out["configured_table_arn"] = data["configuredTableArn"]
     else:
         raise DeserializationError(
             "ConfiguredTableAssociation.configured_table_arn required"
         )
-    if "membershipId" in data:
+    if data.get("membershipId") is not None:
         out["membership_id"] = data["membershipId"]
     else:
         raise DeserializationError("ConfiguredTableAssociation.membership_id required")
-    if "membershipArn" in data:
+    if data.get("membershipArn") is not None:
         out["membership_arn"] = data["membershipArn"]
     else:
         raise DeserializationError("ConfiguredTableAssociation.membership_arn required")
-    if "roleArn" in data:
+    if data.get("roleArn") is not None:
         out["role_arn"] = data["roleArn"]
     else:
         raise DeserializationError("ConfiguredTableAssociation.role_arn required")
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("ConfiguredTableAssociation.name required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "analysisRuleTypes" in data:
+    if data.get("analysisRuleTypes") is not None:
         import capo_cleanrooms.types.configured_table_association_analysis_rule_type_list
 
         out["analysis_rule_types"] = (
@@ -132,7 +132,7 @@ def deserialize_json(data: dict) -> ConfiguredTableAssociation:
                 data["analysisRuleTypes"]
             )
         )
-    if "createTime" in data:
+    if data.get("createTime") is not None:
         import capo_cleanrooms.types._prelude.timestamp
 
         out["create_time"] = capo_cleanrooms.types._prelude.timestamp.deserialize_json(
@@ -140,7 +140,7 @@ def deserialize_json(data: dict) -> ConfiguredTableAssociation:
         )
     else:
         raise DeserializationError("ConfiguredTableAssociation.create_time required")
-    if "updateTime" in data:
+    if data.get("updateTime") is not None:
         import capo_cleanrooms.types._prelude.timestamp
 
         out["update_time"] = capo_cleanrooms.types._prelude.timestamp.deserialize_json(

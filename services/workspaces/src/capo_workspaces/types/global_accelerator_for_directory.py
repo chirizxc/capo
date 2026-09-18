@@ -43,7 +43,7 @@ def serialize_aws_json_1_1(value: GlobalAcceleratorForDirectory) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GlobalAcceleratorForDirectory:
     out: GlobalAcceleratorForDirectory = {}  # type: ignore[typeddict-item]
-    if "Mode" in data:
+    if data.get("Mode") is not None:
         import capo_workspaces.types.aga_mode_for_directory_enum
 
         out["mode"] = (
@@ -53,7 +53,7 @@ def deserialize_aws_json_1_1(data: dict) -> GlobalAcceleratorForDirectory:
         )
     else:
         raise DeserializationError("GlobalAcceleratorForDirectory.mode required")
-    if "PreferredProtocol" in data:
+    if data.get("PreferredProtocol") is not None:
         import capo_workspaces.types.aga_preferred_protocol_for_directory
 
         out["preferred_protocol"] = (

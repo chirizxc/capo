@@ -64,9 +64,9 @@ def serialize_aws_json_1_0(value: StartServicePeriodHandshakeDetail) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> StartServicePeriodHandshakeDetail:
     out: StartServicePeriodHandshakeDetail = {}  # type: ignore[typeddict-item]
-    if "note" in data:
+    if data.get("note") is not None:
         out["note"] = data["note"]
-    if "servicePeriodType" in data:
+    if data.get("servicePeriodType") is not None:
         import capo_partnercentral_channel.types.service_period_type
 
         out["service_period_type"] = (
@@ -74,9 +74,9 @@ def deserialize_aws_json_1_0(data: dict) -> StartServicePeriodHandshakeDetail:
                 data["servicePeriodType"]
             )
         )
-    if "minimumNoticeDays" in data:
+    if data.get("minimumNoticeDays") is not None:
         out["minimum_notice_days"] = data["minimumNoticeDays"]
-    if "startDate" in data:
+    if data.get("startDate") is not None:
         import capo_partnercentral_channel.types.date_time
 
         out["start_date"] = (
@@ -84,7 +84,7 @@ def deserialize_aws_json_1_0(data: dict) -> StartServicePeriodHandshakeDetail:
                 data["startDate"]
             )
         )
-    if "endDate" in data:
+    if data.get("endDate") is not None:
         import capo_partnercentral_channel.types.date_time
 
         out["end_date"] = (

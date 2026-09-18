@@ -42,14 +42,14 @@ def serialize_json(value: UpdateAssetRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateAssetRequest:
     out: UpdateAssetRequest = {}  # type: ignore[typeddict-item]
-    if "assetExternalId" in data:
+    if data.get("assetExternalId") is not None:
         out["asset_external_id"] = data["assetExternalId"]
-    if "assetName" in data:
+    if data.get("assetName") is not None:
         out["asset_name"] = data["assetName"]
     else:
         raise DeserializationError("UpdateAssetRequest.asset_name required")
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
-    if "assetDescription" in data:
+    if data.get("assetDescription") is not None:
         out["asset_description"] = data["assetDescription"]
     return out

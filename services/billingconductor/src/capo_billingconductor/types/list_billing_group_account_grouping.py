@@ -29,8 +29,8 @@ def serialize_json(value: ListBillingGroupAccountGrouping) -> dict:
 
 def deserialize_json(data: dict) -> ListBillingGroupAccountGrouping:
     out: ListBillingGroupAccountGrouping = {}  # type: ignore[typeddict-item]
-    if "AutoAssociate" in data:
+    if data.get("AutoAssociate") is not None:
         out["auto_associate"] = data["AutoAssociate"]
-    if "ResponsibilityTransferArn" in data:
+    if data.get("ResponsibilityTransferArn") is not None:
         out["responsibility_transfer_arn"] = data["ResponsibilityTransferArn"]
     return out

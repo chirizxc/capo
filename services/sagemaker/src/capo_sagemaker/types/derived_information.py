@@ -25,6 +25,6 @@ def serialize_aws_json_1_1(value: DerivedInformation) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DerivedInformation:
     out: DerivedInformation = {}  # type: ignore[typeddict-item]
-    if "DerivedDataInputConfig" in data:
+    if data.get("DerivedDataInputConfig") is not None:
         out["derived_data_input_config"] = data["DerivedDataInputConfig"]
     return out

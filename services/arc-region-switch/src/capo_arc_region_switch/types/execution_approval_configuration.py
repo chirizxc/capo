@@ -27,11 +27,11 @@ def serialize_aws_json_1_0(value: ExecutionApprovalConfiguration) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ExecutionApprovalConfiguration:
     out: ExecutionApprovalConfiguration = {}  # type: ignore[typeddict-item]
-    if "timeoutMinutes" in data:
+    if data.get("timeoutMinutes") is not None:
         out["timeout_minutes"] = data["timeoutMinutes"]
     else:
         out["timeout_minutes"] = 60
-    if "approvalRole" in data:
+    if data.get("approvalRole") is not None:
         out["approval_role"] = data["approvalRole"]
     else:
         raise DeserializationError(

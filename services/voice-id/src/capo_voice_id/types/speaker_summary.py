@@ -67,27 +67,27 @@ def serialize_aws_json_1_0(value: SpeakerSummary) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> SpeakerSummary:
     out: SpeakerSummary = {}  # type: ignore[typeddict-item]
-    if "DomainId" in data:
+    if data.get("DomainId") is not None:
         out["domain_id"] = data["DomainId"]
-    if "CustomerSpeakerId" in data:
+    if data.get("CustomerSpeakerId") is not None:
         out["customer_speaker_id"] = data["CustomerSpeakerId"]
-    if "GeneratedSpeakerId" in data:
+    if data.get("GeneratedSpeakerId") is not None:
         out["generated_speaker_id"] = data["GeneratedSpeakerId"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         out["status"] = data["Status"]
-    if "CreatedAt" in data:
+    if data.get("CreatedAt") is not None:
         import capo_voice_id.types.timestamp
 
         out["created_at"] = capo_voice_id.types.timestamp.deserialize_aws_json_1_0(
             data["CreatedAt"]
         )
-    if "UpdatedAt" in data:
+    if data.get("UpdatedAt") is not None:
         import capo_voice_id.types.timestamp
 
         out["updated_at"] = capo_voice_id.types.timestamp.deserialize_aws_json_1_0(
             data["UpdatedAt"]
         )
-    if "LastAccessedAt" in data:
+    if data.get("LastAccessedAt") is not None:
         import capo_voice_id.types.timestamp
 
         out["last_accessed_at"] = (

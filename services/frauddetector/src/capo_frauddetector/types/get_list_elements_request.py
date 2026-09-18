@@ -36,12 +36,12 @@ def serialize_aws_json_1_1(value: GetListElementsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetListElementsRequest:
     out: GetListElementsRequest = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("GetListElementsRequest.name required")
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
     return out

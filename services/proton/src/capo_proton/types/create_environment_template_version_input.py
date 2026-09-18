@@ -58,19 +58,19 @@ def serialize_aws_json_1_0(value: CreateEnvironmentTemplateVersionInput) -> dict
 
 def deserialize_aws_json_1_0(data: dict) -> CreateEnvironmentTemplateVersionInput:
     out: CreateEnvironmentTemplateVersionInput = {}  # type: ignore[typeddict-item]
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
-    if "templateName" in data:
+    if data.get("templateName") is not None:
         out["template_name"] = data["templateName"]
     else:
         raise DeserializationError(
             "CreateEnvironmentTemplateVersionInput.template_name required"
         )
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "majorVersion" in data:
+    if data.get("majorVersion") is not None:
         out["major_version"] = data["majorVersion"]
-    if "source" in data:
+    if data.get("source") is not None:
         import capo_proton.types.template_version_source_input
 
         out["source"] = (
@@ -82,7 +82,7 @@ def deserialize_aws_json_1_0(data: dict) -> CreateEnvironmentTemplateVersionInpu
         raise DeserializationError(
             "CreateEnvironmentTemplateVersionInput.source required"
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_proton.types.tag_list
 
         out["tags"] = capo_proton.types.tag_list.deserialize_aws_json_1_0(data["tags"])

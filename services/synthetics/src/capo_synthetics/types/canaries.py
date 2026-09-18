@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> Canaries:
 
     out: Canaries = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_synthetics.types.canary.deserialize_json(item))
     return out

@@ -388,7 +388,7 @@ def serialize_aws_json_1_0(value: ResourceDetails) -> dict:
 
 
 def deserialize_aws_json_1_0(data: dict) -> ResourceDetails:
-    if "lambdaFunction" in data:
+    if data.get("lambdaFunction") is not None:
         import capo_cost_optimization_hub.types.lambda_function
 
         return {
@@ -396,7 +396,7 @@ def deserialize_aws_json_1_0(data: dict) -> ResourceDetails:
                 data["lambdaFunction"]
             )
         }
-    elif "ecsService" in data:
+    elif data.get("ecsService") is not None:
         import capo_cost_optimization_hub.types.ecs_service
 
         return {
@@ -404,7 +404,7 @@ def deserialize_aws_json_1_0(data: dict) -> ResourceDetails:
                 data["ecsService"]
             )
         }
-    elif "ec2Instance" in data:
+    elif data.get("ec2Instance") is not None:
         import capo_cost_optimization_hub.types.ec2_instance
 
         return {
@@ -412,7 +412,7 @@ def deserialize_aws_json_1_0(data: dict) -> ResourceDetails:
                 data["ec2Instance"]
             )
         }
-    elif "ebsVolume" in data:
+    elif data.get("ebsVolume") is not None:
         import capo_cost_optimization_hub.types.ebs_volume
 
         return {
@@ -420,7 +420,7 @@ def deserialize_aws_json_1_0(data: dict) -> ResourceDetails:
                 data["ebsVolume"]
             )
         }
-    elif "ec2AutoScalingGroup" in data:
+    elif data.get("ec2AutoScalingGroup") is not None:
         import capo_cost_optimization_hub.types.ec2_auto_scaling_group
 
         return {
@@ -428,7 +428,7 @@ def deserialize_aws_json_1_0(data: dict) -> ResourceDetails:
                 data["ec2AutoScalingGroup"]
             )
         }
-    elif "ec2ReservedInstances" in data:
+    elif data.get("ec2ReservedInstances") is not None:
         import capo_cost_optimization_hub.types.ec2_reserved_instances
 
         return {
@@ -436,7 +436,7 @@ def deserialize_aws_json_1_0(data: dict) -> ResourceDetails:
                 data["ec2ReservedInstances"]
             )
         }
-    elif "rdsReservedInstances" in data:
+    elif data.get("rdsReservedInstances") is not None:
         import capo_cost_optimization_hub.types.rds_reserved_instances
 
         return {
@@ -444,7 +444,7 @@ def deserialize_aws_json_1_0(data: dict) -> ResourceDetails:
                 data["rdsReservedInstances"]
             )
         }
-    elif "elastiCacheReservedInstances" in data:
+    elif data.get("elastiCacheReservedInstances") is not None:
         import capo_cost_optimization_hub.types.elasti_cache_reserved_instances
 
         return {
@@ -452,7 +452,7 @@ def deserialize_aws_json_1_0(data: dict) -> ResourceDetails:
                 data["elastiCacheReservedInstances"]
             )
         }
-    elif "openSearchReservedInstances" in data:
+    elif data.get("openSearchReservedInstances") is not None:
         import capo_cost_optimization_hub.types.open_search_reserved_instances
 
         return {
@@ -460,7 +460,7 @@ def deserialize_aws_json_1_0(data: dict) -> ResourceDetails:
                 data["openSearchReservedInstances"]
             )
         }
-    elif "redshiftReservedInstances" in data:
+    elif data.get("redshiftReservedInstances") is not None:
         import capo_cost_optimization_hub.types.redshift_reserved_instances
 
         return {
@@ -468,7 +468,7 @@ def deserialize_aws_json_1_0(data: dict) -> ResourceDetails:
                 data["redshiftReservedInstances"]
             )
         }
-    elif "ec2InstanceSavingsPlans" in data:
+    elif data.get("ec2InstanceSavingsPlans") is not None:
         import capo_cost_optimization_hub.types.ec2_instance_savings_plans
 
         return {
@@ -476,7 +476,7 @@ def deserialize_aws_json_1_0(data: dict) -> ResourceDetails:
                 data["ec2InstanceSavingsPlans"]
             )
         }
-    elif "computeSavingsPlans" in data:
+    elif data.get("computeSavingsPlans") is not None:
         import capo_cost_optimization_hub.types.compute_savings_plans
 
         return {
@@ -484,7 +484,7 @@ def deserialize_aws_json_1_0(data: dict) -> ResourceDetails:
                 data["computeSavingsPlans"]
             )
         }
-    elif "sageMakerSavingsPlans" in data:
+    elif data.get("sageMakerSavingsPlans") is not None:
         import capo_cost_optimization_hub.types.sage_maker_savings_plans
 
         return {
@@ -492,7 +492,7 @@ def deserialize_aws_json_1_0(data: dict) -> ResourceDetails:
                 data["sageMakerSavingsPlans"]
             )
         }
-    elif "rdsDbInstance" in data:
+    elif data.get("rdsDbInstance") is not None:
         import capo_cost_optimization_hub.types.rds_db_instance
 
         return {
@@ -500,7 +500,7 @@ def deserialize_aws_json_1_0(data: dict) -> ResourceDetails:
                 data["rdsDbInstance"]
             )
         }
-    elif "rdsDbInstanceStorage" in data:
+    elif data.get("rdsDbInstanceStorage") is not None:
         import capo_cost_optimization_hub.types.rds_db_instance_storage
 
         return {
@@ -508,7 +508,7 @@ def deserialize_aws_json_1_0(data: dict) -> ResourceDetails:
                 data["rdsDbInstanceStorage"]
             )
         }
-    elif "auroraDbClusterStorage" in data:
+    elif data.get("auroraDbClusterStorage") is not None:
         import capo_cost_optimization_hub.types.aurora_db_cluster_storage
 
         return {
@@ -516,7 +516,7 @@ def deserialize_aws_json_1_0(data: dict) -> ResourceDetails:
                 data["auroraDbClusterStorage"]
             )
         }
-    elif "dynamoDbReservedCapacity" in data:
+    elif data.get("dynamoDbReservedCapacity") is not None:
         import capo_cost_optimization_hub.types.dynamo_db_reserved_capacity
 
         return {
@@ -524,7 +524,7 @@ def deserialize_aws_json_1_0(data: dict) -> ResourceDetails:
                 data["dynamoDbReservedCapacity"]
             )
         }
-    elif "memoryDbReservedInstances" in data:
+    elif data.get("memoryDbReservedInstances") is not None:
         import capo_cost_optimization_hub.types.memory_db_reserved_instances
 
         return {
@@ -532,7 +532,7 @@ def deserialize_aws_json_1_0(data: dict) -> ResourceDetails:
                 data["memoryDbReservedInstances"]
             )
         }
-    elif "natGateway" in data:
+    elif data.get("natGateway") is not None:
         import capo_cost_optimization_hub.types.nat_gateway
 
         return {
@@ -540,7 +540,7 @@ def deserialize_aws_json_1_0(data: dict) -> ResourceDetails:
                 data["natGateway"]
             )
         }
-    elif "dynamoDbTable" in data:
+    elif data.get("dynamoDbTable") is not None:
         import capo_cost_optimization_hub.types.dynamo_db_table
 
         return {
@@ -548,7 +548,7 @@ def deserialize_aws_json_1_0(data: dict) -> ResourceDetails:
                 data["dynamoDbTable"]
             )
         }
-    elif "elastiCacheCluster" in data:
+    elif data.get("elastiCacheCluster") is not None:
         import capo_cost_optimization_hub.types.elasti_cache_cluster
 
         return {
@@ -556,7 +556,7 @@ def deserialize_aws_json_1_0(data: dict) -> ResourceDetails:
                 data["elastiCacheCluster"]
             )
         }
-    elif "memoryDbCluster" in data:
+    elif data.get("memoryDbCluster") is not None:
         import capo_cost_optimization_hub.types.memory_db_cluster
 
         return {
@@ -564,7 +564,7 @@ def deserialize_aws_json_1_0(data: dict) -> ResourceDetails:
                 data["memoryDbCluster"]
             )
         }
-    elif "documentDbCluster" in data:
+    elif data.get("documentDbCluster") is not None:
         import capo_cost_optimization_hub.types.document_db_cluster
 
         return {
@@ -572,7 +572,7 @@ def deserialize_aws_json_1_0(data: dict) -> ResourceDetails:
                 data["documentDbCluster"]
             )
         }
-    elif "workSpaces" in data:
+    elif data.get("workSpaces") is not None:
         import capo_cost_optimization_hub.types.work_spaces
 
         return {
@@ -580,7 +580,7 @@ def deserialize_aws_json_1_0(data: dict) -> ResourceDetails:
                 data["workSpaces"]
             )
         }
-    elif "sageMakerEndpoint" in data:
+    elif data.get("sageMakerEndpoint") is not None:
         import capo_cost_optimization_hub.types.sage_maker_endpoint
 
         return {

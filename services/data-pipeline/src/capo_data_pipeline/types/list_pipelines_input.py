@@ -23,6 +23,6 @@ def serialize_aws_json_1_1(value: ListPipelinesInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListPipelinesInput:
     out: ListPipelinesInput = {}  # type: ignore[typeddict-item]
-    if "marker" in data:
+    if data.get("marker") is not None:
         out["marker"] = data["marker"]
     return out

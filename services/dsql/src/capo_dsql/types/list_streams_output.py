@@ -31,9 +31,9 @@ def serialize_json(value: ListStreamsOutput) -> dict:
 
 def deserialize_json(data: dict) -> ListStreamsOutput:
     out: ListStreamsOutput = {}  # type: ignore[typeddict-item]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "streams" in data:
+    if data.get("streams") is not None:
         import capo_dsql.types.stream_list
 
         out["streams"] = capo_dsql.types.stream_list.deserialize_json(data["streams"])

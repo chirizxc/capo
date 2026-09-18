@@ -114,9 +114,9 @@ def serialize_json(value: SavingsPlanOffering) -> dict:
 
 def deserialize_json(data: dict) -> SavingsPlanOffering:
     out: SavingsPlanOffering = {}  # type: ignore[typeddict-item]
-    if "offeringId" in data:
+    if data.get("offeringId") is not None:
         out["offering_id"] = data["offeringId"]
-    if "productTypes" in data:
+    if data.get("productTypes") is not None:
         import capo_savingsplans.types.savings_plan_product_type_list
 
         out["product_types"] = (
@@ -124,15 +124,15 @@ def deserialize_json(data: dict) -> SavingsPlanOffering:
                 data["productTypes"]
             )
         )
-    if "planType" in data:
+    if data.get("planType") is not None:
         import capo_savingsplans.types.savings_plan_type
 
         out["plan_type"] = capo_savingsplans.types.savings_plan_type.deserialize_json(
             data["planType"]
         )
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "paymentOption" in data:
+    if data.get("paymentOption") is not None:
         import capo_savingsplans.types.savings_plan_payment_option
 
         out["payment_option"] = (
@@ -140,23 +140,23 @@ def deserialize_json(data: dict) -> SavingsPlanOffering:
                 data["paymentOption"]
             )
         )
-    if "durationSeconds" in data:
+    if data.get("durationSeconds") is not None:
         out["duration_seconds"] = data["durationSeconds"]
     else:
         out["duration_seconds"] = 0
-    if "currency" in data:
+    if data.get("currency") is not None:
         import capo_savingsplans.types.currency_code
 
         out["currency"] = capo_savingsplans.types.currency_code.deserialize_json(
             data["currency"]
         )
-    if "serviceCode" in data:
+    if data.get("serviceCode") is not None:
         out["service_code"] = data["serviceCode"]
-    if "usageType" in data:
+    if data.get("usageType") is not None:
         out["usage_type"] = data["usageType"]
-    if "operation" in data:
+    if data.get("operation") is not None:
         out["operation"] = data["operation"]
-    if "properties" in data:
+    if data.get("properties") is not None:
         import capo_savingsplans.types.savings_plan_offering_property_list
 
         out["properties"] = (

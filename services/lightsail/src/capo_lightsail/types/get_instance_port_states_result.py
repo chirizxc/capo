@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: GetInstancePortStatesResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetInstancePortStatesResult:
     out: GetInstancePortStatesResult = {}  # type: ignore[typeddict-item]
-    if "portStates" in data:
+    if data.get("portStates") is not None:
         import capo_lightsail.types.instance_port_state_list
 
         out["port_states"] = (

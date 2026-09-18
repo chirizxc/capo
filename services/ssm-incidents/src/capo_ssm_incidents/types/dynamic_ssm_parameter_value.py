@@ -26,7 +26,7 @@ def serialize_json(value: DynamicSsmParameterValue) -> dict:
 
 
 def deserialize_json(data: dict) -> DynamicSsmParameterValue:
-    if "variable" in data:
+    if data.get("variable") is not None:
         return {"variable": data["variable"]}
     else:
         raise DeserializationError(

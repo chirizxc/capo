@@ -31,11 +31,11 @@ def serialize_aws_json_1_1(value: SessionNotFoundException_) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SessionNotFoundException_:
     out: SessionNotFoundException_ = {}  # type: ignore[typeddict-item]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
-    if "Code" in data:
+    if data.get("Code") is not None:
         out["code"] = data["Code"]
-    if "Logref" in data:
+    if data.get("Logref") is not None:
         out["logref"] = data["Logref"]
     return out
 
@@ -45,15 +45,18 @@ class SessionNotFoundException(ServiceError):
 
     code: str | None = "SessionNotFoundException"
 
-    def __init__(self, data: SessionNotFoundException_):
+    def __init__(self, data: SessionNotFoundException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="SessionNotFoundException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "SessionNotFoundException":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "SessionNotFoundException":
+        return cls(deserialize_aws_json_1_1(data), message)

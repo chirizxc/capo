@@ -78,11 +78,11 @@ def serialize_json(value: UpdateDataSourceRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateDataSourceRequest:
     out: UpdateDataSourceRequest = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("UpdateDataSourceRequest.name required")
-    if "DataSourceParameters" in data:
+    if data.get("DataSourceParameters") is not None:
         import capo_quicksight.types.data_source_parameters
 
         out["data_source_parameters"] = (
@@ -90,7 +90,7 @@ def deserialize_json(data: dict) -> UpdateDataSourceRequest:
                 data["DataSourceParameters"]
             )
         )
-    if "Credentials" in data:
+    if data.get("Credentials") is not None:
         import capo_quicksight.types.data_source_credentials
 
         out["credentials"] = (
@@ -98,7 +98,7 @@ def deserialize_json(data: dict) -> UpdateDataSourceRequest:
                 data["Credentials"]
             )
         )
-    if "VpcConnectionProperties" in data:
+    if data.get("VpcConnectionProperties") is not None:
         import capo_quicksight.types.vpc_connection_properties
 
         out["vpc_connection_properties"] = (
@@ -106,7 +106,7 @@ def deserialize_json(data: dict) -> UpdateDataSourceRequest:
                 data["VpcConnectionProperties"]
             )
         )
-    if "SslProperties" in data:
+    if data.get("SslProperties") is not None:
         import capo_quicksight.types.ssl_properties
 
         out["ssl_properties"] = capo_quicksight.types.ssl_properties.deserialize_json(

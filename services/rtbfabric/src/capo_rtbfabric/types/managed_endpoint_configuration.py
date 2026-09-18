@@ -50,7 +50,7 @@ def serialize_json(value: ManagedEndpointConfiguration) -> dict:
 
 
 def deserialize_json(data: dict) -> ManagedEndpointConfiguration:
-    if "autoScalingGroups" in data:
+    if data.get("autoScalingGroups") is not None:
         import capo_rtbfabric.types.auto_scaling_groups_configuration
 
         return {
@@ -58,7 +58,7 @@ def deserialize_json(data: dict) -> ManagedEndpointConfiguration:
                 data["autoScalingGroups"]
             )
         }
-    elif "eksEndpoints" in data:
+    elif data.get("eksEndpoints") is not None:
         import capo_rtbfabric.types.eks_endpoints_configuration
 
         return {

@@ -78,9 +78,9 @@ def serialize_json(value: OtaTaskExecutionSummary) -> dict:
 
 def deserialize_json(data: dict) -> OtaTaskExecutionSummary:
     out: OtaTaskExecutionSummary = {}  # type: ignore[typeddict-item]
-    if "ExecutionNumber" in data:
+    if data.get("ExecutionNumber") is not None:
         out["execution_number"] = data["ExecutionNumber"]
-    if "LastUpdatedAt" in data:
+    if data.get("LastUpdatedAt") is not None:
         import capo_iot_managed_integrations.types.last_updated_at
 
         out["last_updated_at"] = (
@@ -88,7 +88,7 @@ def deserialize_json(data: dict) -> OtaTaskExecutionSummary:
                 data["LastUpdatedAt"]
             )
         )
-    if "QueuedAt" in data:
+    if data.get("QueuedAt") is not None:
         import capo_iot_managed_integrations.types.queued_at
 
         out["queued_at"] = (
@@ -96,9 +96,9 @@ def deserialize_json(data: dict) -> OtaTaskExecutionSummary:
                 data["QueuedAt"]
             )
         )
-    if "RetryAttempt" in data:
+    if data.get("RetryAttempt") is not None:
         out["retry_attempt"] = data["RetryAttempt"]
-    if "StartedAt" in data:
+    if data.get("StartedAt") is not None:
         import capo_iot_managed_integrations.types.started_at
 
         out["started_at"] = (
@@ -106,7 +106,7 @@ def deserialize_json(data: dict) -> OtaTaskExecutionSummary:
                 data["StartedAt"]
             )
         )
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_iot_managed_integrations.types.ota_task_execution_status
 
         out["status"] = (

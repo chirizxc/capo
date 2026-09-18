@@ -26,7 +26,7 @@ def serialize_json(value: EvaluatorUserUnion) -> dict:
 
 
 def deserialize_json(data: dict) -> EvaluatorUserUnion:
-    if "ConnectUserArn" in data:
+    if data.get("ConnectUserArn") is not None:
         return {"ConnectUserArn": data["ConnectUserArn"]}
     else:
         raise DeserializationError("EvaluatorUserUnion: no recognized variant key")

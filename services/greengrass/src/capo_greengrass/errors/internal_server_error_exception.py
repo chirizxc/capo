@@ -34,13 +34,13 @@ def serialize_json(value: InternalServerErrorException_) -> dict:
 
 def deserialize_json(data: dict) -> InternalServerErrorException_:
     out: InternalServerErrorException_ = {}  # type: ignore[typeddict-item]
-    if "ErrorDetails" in data:
+    if data.get("ErrorDetails") is not None:
         import capo_greengrass.types.error_details
 
         out["error_details"] = capo_greengrass.types.error_details.deserialize_json(
             data["ErrorDetails"]
         )
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     return out
 
@@ -50,15 +50,18 @@ class InternalServerErrorException(ServiceError):
 
     code: str | None = "InternalServerErrorException"
 
-    def __init__(self, data: InternalServerErrorException_):
+    def __init__(self, data: InternalServerErrorException_, message: str | None = None):
         super().__init__(
             "server",
             is_throttling_error=False,
             is_retryable=False,
             code="InternalServerErrorException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "InternalServerErrorException":
-        return cls(deserialize_json(data))
+    def from_json(
+        cls, data: dict, message: str | None = None
+    ) -> "InternalServerErrorException":
+        return cls(deserialize_json(data), message)

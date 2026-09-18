@@ -110,19 +110,19 @@ def serialize_aws_json_1_1(value: DescribeArtifactResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeArtifactResponse:
     out: DescribeArtifactResponse = {}  # type: ignore[typeddict-item]
-    if "ArtifactName" in data:
+    if data.get("ArtifactName") is not None:
         out["artifact_name"] = data["ArtifactName"]
-    if "ArtifactArn" in data:
+    if data.get("ArtifactArn") is not None:
         out["artifact_arn"] = data["ArtifactArn"]
-    if "Source" in data:
+    if data.get("Source") is not None:
         import capo_sagemaker.types.artifact_source
 
         out["source"] = capo_sagemaker.types.artifact_source.deserialize_aws_json_1_1(
             data["Source"]
         )
-    if "ArtifactType" in data:
+    if data.get("ArtifactType") is not None:
         out["artifact_type"] = data["ArtifactType"]
-    if "Properties" in data:
+    if data.get("Properties") is not None:
         import capo_sagemaker.types.lineage_entity_parameters
 
         out["properties"] = (
@@ -130,19 +130,19 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeArtifactResponse:
                 data["Properties"]
             )
         )
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_sagemaker.types.timestamp
 
         out["creation_time"] = capo_sagemaker.types.timestamp.deserialize_aws_json_1_1(
             data["CreationTime"]
         )
-    if "CreatedBy" in data:
+    if data.get("CreatedBy") is not None:
         import capo_sagemaker.types.user_context
 
         out["created_by"] = capo_sagemaker.types.user_context.deserialize_aws_json_1_1(
             data["CreatedBy"]
         )
-    if "LastModifiedTime" in data:
+    if data.get("LastModifiedTime") is not None:
         import capo_sagemaker.types.timestamp
 
         out["last_modified_time"] = (
@@ -150,7 +150,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeArtifactResponse:
                 data["LastModifiedTime"]
             )
         )
-    if "LastModifiedBy" in data:
+    if data.get("LastModifiedBy") is not None:
         import capo_sagemaker.types.user_context
 
         out["last_modified_by"] = (
@@ -158,7 +158,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeArtifactResponse:
                 data["LastModifiedBy"]
             )
         )
-    if "MetadataProperties" in data:
+    if data.get("MetadataProperties") is not None:
         import capo_sagemaker.types.metadata_properties
 
         out["metadata_properties"] = (
@@ -166,6 +166,6 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeArtifactResponse:
                 data["MetadataProperties"]
             )
         )
-    if "LineageGroupArn" in data:
+    if data.get("LineageGroupArn") is not None:
         out["lineage_group_arn"] = data["LineageGroupArn"]
     return out

@@ -46,11 +46,11 @@ def serialize_json(value: UpdateFolderRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateFolderRequest:
     out: UpdateFolderRequest = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "ParentFolderId" in data:
+    if data.get("ParentFolderId") is not None:
         out["parent_folder_id"] = data["ParentFolderId"]
-    if "ResourceState" in data:
+    if data.get("ResourceState") is not None:
         import capo_workdocs.types.resource_state_type
 
         out["resource_state"] = (

@@ -75,30 +75,30 @@ def serialize_json(value: UpdateFleetMetricRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateFleetMetricRequest:
     out: UpdateFleetMetricRequest = {}  # type: ignore[typeddict-item]
-    if "queryString" in data:
+    if data.get("queryString") is not None:
         out["query_string"] = data["queryString"]
-    if "aggregationType" in data:
+    if data.get("aggregationType") is not None:
         import capo_iot.types.aggregation_type
 
         out["aggregation_type"] = capo_iot.types.aggregation_type.deserialize_json(
             data["aggregationType"]
         )
-    if "period" in data:
+    if data.get("period") is not None:
         out["period"] = data["period"]
-    if "aggregationField" in data:
+    if data.get("aggregationField") is not None:
         out["aggregation_field"] = data["aggregationField"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "queryVersion" in data:
+    if data.get("queryVersion") is not None:
         out["query_version"] = data["queryVersion"]
-    if "indexName" in data:
+    if data.get("indexName") is not None:
         out["index_name"] = data["indexName"]
     else:
         raise DeserializationError("UpdateFleetMetricRequest.index_name required")
-    if "unit" in data:
+    if data.get("unit") is not None:
         import capo_iot.types.fleet_metric_unit
 
         out["unit"] = capo_iot.types.fleet_metric_unit.deserialize_json(data["unit"])
-    if "expectedVersion" in data:
+    if data.get("expectedVersion") is not None:
         out["expected_version"] = data["expectedVersion"]
     return out

@@ -31,7 +31,7 @@ def serialize_json(value: VersionDifferences) -> dict:
 
 def deserialize_json(data: dict) -> VersionDifferences:
     out: VersionDifferences = {}  # type: ignore[typeddict-item]
-    if "PillarDifferences" in data:
+    if data.get("PillarDifferences") is not None:
         import capo_wellarchitected.types.pillar_differences
 
         out["pillar_differences"] = (

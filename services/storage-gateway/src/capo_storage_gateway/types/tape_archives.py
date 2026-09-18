@@ -23,6 +23,8 @@ def deserialize_aws_json_1_1(data: list) -> TapeArchives:
 
     out: TapeArchives = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_storage_gateway.types.tape_archive.deserialize_aws_json_1_1(item)
         )

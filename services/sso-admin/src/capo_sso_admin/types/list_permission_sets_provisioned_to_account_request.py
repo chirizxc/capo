@@ -55,19 +55,19 @@ def deserialize_aws_json_1_1(
     data: dict,
 ) -> ListPermissionSetsProvisionedToAccountRequest:
     out: ListPermissionSetsProvisionedToAccountRequest = {}  # type: ignore[typeddict-item]
-    if "InstanceArn" in data:
+    if data.get("InstanceArn") is not None:
         out["instance_arn"] = data["InstanceArn"]
     else:
         raise DeserializationError(
             "ListPermissionSetsProvisionedToAccountRequest.instance_arn required"
         )
-    if "AccountId" in data:
+    if data.get("AccountId") is not None:
         out["account_id"] = data["AccountId"]
     else:
         raise DeserializationError(
             "ListPermissionSetsProvisionedToAccountRequest.account_id required"
         )
-    if "ProvisioningStatus" in data:
+    if data.get("ProvisioningStatus") is not None:
         import capo_sso_admin.types.provisioning_status
 
         out["provisioning_status"] = (
@@ -75,8 +75,8 @@ def deserialize_aws_json_1_1(
                 data["ProvisioningStatus"]
             )
         )
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

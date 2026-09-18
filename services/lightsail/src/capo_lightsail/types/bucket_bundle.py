@@ -34,7 +34,15 @@ def serialize_aws_json_1_1(value: BucketBundle) -> dict:
     if "name" in value:
         out["name"] = value["name"]
     if "price" in value:
-        out["price"] = value["price"]
+        out["price"] = (
+            "NaN"
+            if value["price"] != value["price"]
+            else "Infinity"
+            if value["price"] == float("inf")
+            else "-Infinity"
+            if value["price"] == float("-inf")
+            else value["price"]
+        )
     if "storage_per_month_in_gb" in value:
         out["storagePerMonthInGb"] = value["storage_per_month_in_gb"]
     if "transfer_per_month_in_gb" in value:
@@ -46,16 +54,16 @@ def serialize_aws_json_1_1(value: BucketBundle) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> BucketBundle:
     out: BucketBundle = {}  # type: ignore[typeddict-item]
-    if "bundleId" in data:
+    if data.get("bundleId") is not None:
         out["bundle_id"] = data["bundleId"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "price" in data:
-        out["price"] = data["price"]
-    if "storagePerMonthInGb" in data:
+    if data.get("price") is not None:
+        out["price"] = float(data["price"])
+    if data.get("storagePerMonthInGb") is not None:
         out["storage_per_month_in_gb"] = data["storagePerMonthInGb"]
-    if "transferPerMonthInGb" in data:
+    if data.get("transferPerMonthInGb") is not None:
         out["transfer_per_month_in_gb"] = data["transferPerMonthInGb"]
-    if "isActive" in data:
+    if data.get("isActive") is not None:
         out["is_active"] = data["isActive"]
     return out

@@ -32,11 +32,11 @@ def serialize_json(value: ImportDataRule) -> dict:
 
 def deserialize_json(data: dict) -> ImportDataRule:
     out: ImportDataRule = {}  # type: ignore[typeddict-item]
-    if "prefix" in data:
+    if data.get("prefix") is not None:
         out["prefix"] = data["prefix"]
     else:
         raise DeserializationError("ImportDataRule.prefix required")
-    if "trigger" in data:
+    if data.get("trigger") is not None:
         import capo_s3files.types.import_trigger
 
         out["trigger"] = capo_s3files.types.import_trigger.deserialize_json(
@@ -44,7 +44,7 @@ def deserialize_json(data: dict) -> ImportDataRule:
         )
     else:
         raise DeserializationError("ImportDataRule.trigger required")
-    if "sizeLessThan" in data:
+    if data.get("sizeLessThan") is not None:
         out["size_less_than"] = data["sizeLessThan"]
     else:
         raise DeserializationError("ImportDataRule.size_less_than required")

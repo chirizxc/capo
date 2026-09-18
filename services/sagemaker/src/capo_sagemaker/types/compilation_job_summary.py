@@ -138,11 +138,11 @@ def serialize_aws_json_1_1(value: CompilationJobSummary) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CompilationJobSummary:
     out: CompilationJobSummary = {}  # type: ignore[typeddict-item]
-    if "CompilationJobName" in data:
+    if data.get("CompilationJobName") is not None:
         out["compilation_job_name"] = data["CompilationJobName"]
-    if "CompilationJobArn" in data:
+    if data.get("CompilationJobArn") is not None:
         out["compilation_job_arn"] = data["CompilationJobArn"]
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_sagemaker.types.creation_time
 
         out["creation_time"] = (
@@ -150,7 +150,7 @@ def deserialize_aws_json_1_1(data: dict) -> CompilationJobSummary:
                 data["CreationTime"]
             )
         )
-    if "CompilationStartTime" in data:
+    if data.get("CompilationStartTime") is not None:
         import capo_sagemaker.types.timestamp
 
         out["compilation_start_time"] = (
@@ -158,7 +158,7 @@ def deserialize_aws_json_1_1(data: dict) -> CompilationJobSummary:
                 data["CompilationStartTime"]
             )
         )
-    if "CompilationEndTime" in data:
+    if data.get("CompilationEndTime") is not None:
         import capo_sagemaker.types.timestamp
 
         out["compilation_end_time"] = (
@@ -166,7 +166,7 @@ def deserialize_aws_json_1_1(data: dict) -> CompilationJobSummary:
                 data["CompilationEndTime"]
             )
         )
-    if "CompilationTargetDevice" in data:
+    if data.get("CompilationTargetDevice") is not None:
         import capo_sagemaker.types.target_device
 
         out["compilation_target_device"] = (
@@ -174,7 +174,7 @@ def deserialize_aws_json_1_1(data: dict) -> CompilationJobSummary:
                 data["CompilationTargetDevice"]
             )
         )
-    if "CompilationTargetPlatformOs" in data:
+    if data.get("CompilationTargetPlatformOs") is not None:
         import capo_sagemaker.types.target_platform_os
 
         out["compilation_target_platform_os"] = (
@@ -182,7 +182,7 @@ def deserialize_aws_json_1_1(data: dict) -> CompilationJobSummary:
                 data["CompilationTargetPlatformOs"]
             )
         )
-    if "CompilationTargetPlatformArch" in data:
+    if data.get("CompilationTargetPlatformArch") is not None:
         import capo_sagemaker.types.target_platform_arch
 
         out["compilation_target_platform_arch"] = (
@@ -190,7 +190,7 @@ def deserialize_aws_json_1_1(data: dict) -> CompilationJobSummary:
                 data["CompilationTargetPlatformArch"]
             )
         )
-    if "CompilationTargetPlatformAccelerator" in data:
+    if data.get("CompilationTargetPlatformAccelerator") is not None:
         import capo_sagemaker.types.target_platform_accelerator
 
         out["compilation_target_platform_accelerator"] = (
@@ -198,7 +198,7 @@ def deserialize_aws_json_1_1(data: dict) -> CompilationJobSummary:
                 data["CompilationTargetPlatformAccelerator"]
             )
         )
-    if "LastModifiedTime" in data:
+    if data.get("LastModifiedTime") is not None:
         import capo_sagemaker.types.last_modified_time
 
         out["last_modified_time"] = (
@@ -206,7 +206,7 @@ def deserialize_aws_json_1_1(data: dict) -> CompilationJobSummary:
                 data["LastModifiedTime"]
             )
         )
-    if "CompilationJobStatus" in data:
+    if data.get("CompilationJobStatus") is not None:
         import capo_sagemaker.types.compilation_job_status
 
         out["compilation_job_status"] = (

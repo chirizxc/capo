@@ -53,11 +53,11 @@ def serialize_json(value: SessionLoggerSummary) -> dict:
 
 def deserialize_json(data: dict) -> SessionLoggerSummary:
     out: SessionLoggerSummary = {}  # type: ignore[typeddict-item]
-    if "sessionLoggerArn" in data:
+    if data.get("sessionLoggerArn") is not None:
         out["session_logger_arn"] = data["sessionLoggerArn"]
     else:
         raise DeserializationError("SessionLoggerSummary.session_logger_arn required")
-    if "logConfiguration" in data:
+    if data.get("logConfiguration") is not None:
         import capo_workspaces_web.types.log_configuration
 
         out["log_configuration"] = (
@@ -65,9 +65,9 @@ def deserialize_json(data: dict) -> SessionLoggerSummary:
                 data["logConfiguration"]
             )
         )
-    if "displayName" in data:
+    if data.get("displayName") is not None:
         out["display_name"] = data["displayName"]
-    if "creationDate" in data:
+    if data.get("creationDate") is not None:
         import capo_workspaces_web.types.timestamp
 
         out["creation_date"] = capo_workspaces_web.types.timestamp.deserialize_json(

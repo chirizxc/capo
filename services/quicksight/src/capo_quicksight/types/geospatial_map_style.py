@@ -45,7 +45,7 @@ def serialize_json(value: GeospatialMapStyle) -> dict:
 
 def deserialize_json(data: dict) -> GeospatialMapStyle:
     out: GeospatialMapStyle = {}  # type: ignore[typeddict-item]
-    if "BaseMapStyle" in data:
+    if data.get("BaseMapStyle") is not None:
         import capo_quicksight.types.base_map_style_type
 
         out["base_map_style"] = (
@@ -53,9 +53,9 @@ def deserialize_json(data: dict) -> GeospatialMapStyle:
                 data["BaseMapStyle"]
             )
         )
-    if "BackgroundColor" in data:
+    if data.get("BackgroundColor") is not None:
         out["background_color"] = data["BackgroundColor"]
-    if "BaseMapVisibility" in data:
+    if data.get("BaseMapVisibility") is not None:
         import capo_quicksight.types.visibility
 
         out["base_map_visibility"] = capo_quicksight.types.visibility.deserialize_json(

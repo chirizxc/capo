@@ -67,27 +67,27 @@ def serialize_json(value: SegmentDefinitionItem) -> dict:
 
 def deserialize_json(data: dict) -> SegmentDefinitionItem:
     out: SegmentDefinitionItem = {}  # type: ignore[typeddict-item]
-    if "SegmentDefinitionName" in data:
+    if data.get("SegmentDefinitionName") is not None:
         out["segment_definition_name"] = data["SegmentDefinitionName"]
-    if "DisplayName" in data:
+    if data.get("DisplayName") is not None:
         out["display_name"] = data["DisplayName"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "SegmentDefinitionArn" in data:
+    if data.get("SegmentDefinitionArn") is not None:
         out["segment_definition_arn"] = data["SegmentDefinitionArn"]
-    if "CreatedAt" in data:
+    if data.get("CreatedAt") is not None:
         import capo_customer_profiles.types.timestamp
 
         out["created_at"] = capo_customer_profiles.types.timestamp.deserialize_json(
             data["CreatedAt"]
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_customer_profiles.types.tag_map
 
         out["tags"] = capo_customer_profiles.types.tag_map.deserialize_json(
             data["Tags"]
         )
-    if "SegmentType" in data:
+    if data.get("SegmentType") is not None:
         import capo_customer_profiles.types.segment_type
 
         out["segment_type"] = (

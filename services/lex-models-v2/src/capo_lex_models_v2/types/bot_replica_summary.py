@@ -56,15 +56,15 @@ def serialize_json(value: BotReplicaSummary) -> dict:
 
 def deserialize_json(data: dict) -> BotReplicaSummary:
     out: BotReplicaSummary = {}  # type: ignore[typeddict-item]
-    if "replicaRegion" in data:
+    if data.get("replicaRegion") is not None:
         out["replica_region"] = data["replicaRegion"]
-    if "creationDateTime" in data:
+    if data.get("creationDateTime") is not None:
         import capo_lex_models_v2.types.timestamp
 
         out["creation_date_time"] = capo_lex_models_v2.types.timestamp.deserialize_json(
             data["creationDateTime"]
         )
-    if "botReplicaStatus" in data:
+    if data.get("botReplicaStatus") is not None:
         import capo_lex_models_v2.types.bot_replica_status
 
         out["bot_replica_status"] = (
@@ -72,7 +72,7 @@ def deserialize_json(data: dict) -> BotReplicaSummary:
                 data["botReplicaStatus"]
             )
         )
-    if "failureReasons" in data:
+    if data.get("failureReasons") is not None:
         import capo_lex_models_v2.types.failure_reasons
 
         out["failure_reasons"] = (

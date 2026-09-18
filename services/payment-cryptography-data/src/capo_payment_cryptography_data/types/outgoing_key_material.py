@@ -35,7 +35,7 @@ def serialize_json(value: OutgoingKeyMaterial) -> dict:
 
 
 def deserialize_json(data: dict) -> OutgoingKeyMaterial:
-    if "Tr31KeyBlock" in data:
+    if data.get("Tr31KeyBlock") is not None:
         import capo_payment_cryptography_data.types.outgoing_tr31_key_block
 
         return {

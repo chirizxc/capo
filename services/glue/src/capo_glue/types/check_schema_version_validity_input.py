@@ -32,7 +32,7 @@ def serialize_aws_json_1_1(value: CheckSchemaVersionValidityInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CheckSchemaVersionValidityInput:
     out: CheckSchemaVersionValidityInput = {}  # type: ignore[typeddict-item]
-    if "DataFormat" in data:
+    if data.get("DataFormat") is not None:
         import capo_glue.types.data_format
 
         out["data_format"] = capo_glue.types.data_format.deserialize_aws_json_1_1(
@@ -42,7 +42,7 @@ def deserialize_aws_json_1_1(data: dict) -> CheckSchemaVersionValidityInput:
         raise DeserializationError(
             "CheckSchemaVersionValidityInput.data_format required"
         )
-    if "SchemaDefinition" in data:
+    if data.get("SchemaDefinition") is not None:
         out["schema_definition"] = data["SchemaDefinition"]
     else:
         raise DeserializationError(

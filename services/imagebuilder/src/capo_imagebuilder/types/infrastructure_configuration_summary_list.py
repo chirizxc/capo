@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> InfrastructureConfigurationSummaryList:
 
     out: InfrastructureConfigurationSummaryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_imagebuilder.types.infrastructure_configuration_summary.deserialize_json(
                 item

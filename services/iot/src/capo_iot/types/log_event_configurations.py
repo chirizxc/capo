@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> LogEventConfigurations:
 
     out: LogEventConfigurations = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_iot.types.log_event_configuration.deserialize_json(item))
     return out

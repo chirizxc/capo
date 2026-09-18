@@ -31,7 +31,7 @@ def serialize_aws_json_1_0(value: WriteRecordsResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> WriteRecordsResponse:
     out: WriteRecordsResponse = {}  # type: ignore[typeddict-item]
-    if "RecordsIngested" in data:
+    if data.get("RecordsIngested") is not None:
         import capo_timestream_write.types.records_ingested
 
         out["records_ingested"] = (

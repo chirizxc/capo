@@ -29,6 +29,8 @@ def deserialize_aws_json_1_1(data: list) -> StudioLifecycleConfigsList:
 
     out: StudioLifecycleConfigsList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_sagemaker.types.studio_lifecycle_config_details.deserialize_aws_json_1_1(
                 item

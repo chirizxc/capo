@@ -43,11 +43,11 @@ def serialize_json(value: SyncResourceResponse) -> dict:
 
 def deserialize_json(data: dict) -> SyncResourceResponse:
     out: SyncResourceResponse = {}  # type: ignore[typeddict-item]
-    if "applicationArn" in data:
+    if data.get("applicationArn") is not None:
         out["application_arn"] = data["applicationArn"]
-    if "resourceArn" in data:
+    if data.get("resourceArn") is not None:
         out["resource_arn"] = data["resourceArn"]
-    if "actionTaken" in data:
+    if data.get("actionTaken") is not None:
         import capo_service_catalog_appregistry.types.sync_action
 
         out["action_taken"] = (

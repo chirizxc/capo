@@ -37,9 +37,9 @@ def serialize_aws_json_1_1(value: AdvancedEventSelector) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AdvancedEventSelector:
     out: AdvancedEventSelector = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "FieldSelectors" in data:
+    if data.get("FieldSelectors") is not None:
         import capo_cloudtrail.types.advanced_field_selectors
 
         out["field_selectors"] = (

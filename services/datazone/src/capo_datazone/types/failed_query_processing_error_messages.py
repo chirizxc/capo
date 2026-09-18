@@ -11,4 +11,4 @@ def serialize_json(value: FailedQueryProcessingErrorMessages) -> list:
 
 
 def deserialize_json(data: list) -> FailedQueryProcessingErrorMessages:
-    return list(data)
+    return [item for item in data if item is not None]

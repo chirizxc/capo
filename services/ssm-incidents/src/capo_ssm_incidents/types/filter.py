@@ -31,11 +31,11 @@ def serialize_json(value: Filter) -> dict:
 
 def deserialize_json(data: dict) -> Filter:
     out: Filter = {}  # type: ignore[typeddict-item]
-    if "key" in data:
+    if data.get("key") is not None:
         out["key"] = data["key"]
     else:
         raise DeserializationError("Filter.key required")
-    if "condition" in data:
+    if data.get("condition") is not None:
         import capo_ssm_incidents.types.condition
 
         out["condition"] = capo_ssm_incidents.types.condition.deserialize_json(

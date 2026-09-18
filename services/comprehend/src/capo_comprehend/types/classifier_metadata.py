@@ -44,13 +44,13 @@ def serialize_aws_json_1_1(value: ClassifierMetadata) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ClassifierMetadata:
     out: ClassifierMetadata = {}  # type: ignore[typeddict-item]
-    if "NumberOfLabels" in data:
+    if data.get("NumberOfLabels") is not None:
         out["number_of_labels"] = data["NumberOfLabels"]
-    if "NumberOfTrainedDocuments" in data:
+    if data.get("NumberOfTrainedDocuments") is not None:
         out["number_of_trained_documents"] = data["NumberOfTrainedDocuments"]
-    if "NumberOfTestDocuments" in data:
+    if data.get("NumberOfTestDocuments") is not None:
         out["number_of_test_documents"] = data["NumberOfTestDocuments"]
-    if "EvaluationMetrics" in data:
+    if data.get("EvaluationMetrics") is not None:
         import capo_comprehend.types.classifier_evaluation_metrics
 
         out["evaluation_metrics"] = (

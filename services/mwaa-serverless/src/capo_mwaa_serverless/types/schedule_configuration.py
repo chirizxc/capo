@@ -18,6 +18,6 @@ def serialize_aws_json_1_0(value: ScheduleConfiguration) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ScheduleConfiguration:
     out: ScheduleConfiguration = {}  # type: ignore[typeddict-item]
-    if "CronExpression" in data:
+    if data.get("CronExpression") is not None:
         out["cron_expression"] = data["CronExpression"]
     return out

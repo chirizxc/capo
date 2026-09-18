@@ -25,6 +25,6 @@ def serialize_aws_json_1_1(value: CreateLongTermPricingResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateLongTermPricingResult:
     out: CreateLongTermPricingResult = {}  # type: ignore[typeddict-item]
-    if "LongTermPricingId" in data:
+    if data.get("LongTermPricingId") is not None:
         out["long_term_pricing_id"] = data["LongTermPricingId"]
     return out

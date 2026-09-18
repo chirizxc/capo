@@ -1,5 +1,6 @@
 """Generated from Smithy shape ``com.amazonaws.ebs#Ebs``."""
 
+import uuid
 import warnings
 from collections.abc import AsyncGenerator, AsyncIterator
 from contextlib import asynccontextmanager
@@ -19,6 +20,7 @@ from capo_ebs._auth._providers import (
 )
 from capo_ebs._auth._zapros_handler import AuthMiddleware
 from capo_ebs._iter import ensure_async_iterator
+from capo_ebs._pagination import resolve_path as _resolve_path
 from capo_ebs._services._aws_config import aaws_config
 from capo_ebs._services._pipeline import (
     AsyncInterceptor,
@@ -205,9 +207,10 @@ class AsyncEBSClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ebs.types.complete_snapshot_request.CompleteSnapshotRequest = {}  # type: ignore[typeddict-item]
-        input_["snapshot_id"] = snapshot_id
-        input_["changed_blocks_count"] = changed_blocks_count
+        input_: capo_ebs.types.complete_snapshot_request.CompleteSnapshotRequest = {
+            "snapshot_id": snapshot_id,
+            "changed_blocks_count": changed_blocks_count,
+        }
         if checksum is not None:
             input_["checksum"] = checksum
         if checksum_algorithm is not None:
@@ -220,6 +223,7 @@ class AsyncEBSClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     @asynccontextmanager
@@ -264,17 +268,21 @@ class AsyncEBSClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ebs.types.get_snapshot_block_request.GetSnapshotBlockRequest = {}  # type: ignore[typeddict-item]
-        input_["snapshot_id"] = snapshot_id
-        input_["block_index"] = block_index
-        input_["block_token"] = block_token
+        input_: capo_ebs.types.get_snapshot_block_request.GetSnapshotBlockRequest = {
+            "snapshot_id": snapshot_id,
+            "block_index": block_index,
+            "block_token": block_token,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
-        yield response.output
+        try:
+            yield response.output
+        finally:
+            await response.response.aclose()
 
     async def list_changed_blocks(
         self,
@@ -321,10 +329,11 @@ class AsyncEBSClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ebs.types.list_changed_blocks_request.ListChangedBlocksRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_ebs.types.list_changed_blocks_request.ListChangedBlocksRequest = {
+            "second_snapshot_id": second_snapshot_id
+        }
         if first_snapshot_id is not None:
             input_["first_snapshot_id"] = first_snapshot_id
-        input_["second_snapshot_id"] = second_snapshot_id
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -337,7 +346,33 @@ class AsyncEBSClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_changed_blocks(
+        self,
+        second_snapshot_id: "capo_ebs.types.snapshot_id.SnapshotId",
+        *,
+        config_overrides: Optional[AsyncEBSClientConfig] = None,
+        first_snapshot_id: Optional["capo_ebs.types.snapshot_id.SnapshotId"] = None,
+        next_token: Optional["capo_ebs.types.page_token.PageToken"] = None,
+        max_results: Optional["capo_ebs.types.max_results.MaxResults"] = None,
+        starting_block_index: Optional["capo_ebs.types.block_index.BlockIndex"] = None,
+    ) -> "AsyncIterator[capo_ebs.types.list_changed_blocks_response.ListChangedBlocksResponse]":
+        _token = next_token
+        while True:
+            _response = await self.list_changed_blocks(
+                second_snapshot_id,
+                config_overrides=config_overrides,
+                first_snapshot_id=first_snapshot_id,
+                next_token=_token,
+                max_results=max_results,
+                starting_block_index=starting_block_index,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_snapshot_blocks(
         self,
@@ -382,8 +417,9 @@ class AsyncEBSClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ebs.types.list_snapshot_blocks_request.ListSnapshotBlocksRequest = {}  # type: ignore[typeddict-item]
-        input_["snapshot_id"] = snapshot_id
+        input_: capo_ebs.types.list_snapshot_blocks_request.ListSnapshotBlocksRequest = {
+            "snapshot_id": snapshot_id
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -396,7 +432,31 @@ class AsyncEBSClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_snapshot_blocks(
+        self,
+        snapshot_id: "capo_ebs.types.snapshot_id.SnapshotId",
+        *,
+        config_overrides: Optional[AsyncEBSClientConfig] = None,
+        next_token: Optional["capo_ebs.types.page_token.PageToken"] = None,
+        max_results: Optional["capo_ebs.types.max_results.MaxResults"] = None,
+        starting_block_index: Optional["capo_ebs.types.block_index.BlockIndex"] = None,
+    ) -> "AsyncIterator[capo_ebs.types.list_snapshot_blocks_response.ListSnapshotBlocksResponse]":
+        _token = next_token
+        while True:
+            _response = await self.list_snapshot_blocks(
+                snapshot_id,
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+                starting_block_index=starting_block_index,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def put_snapshot_block(
         self,
@@ -447,21 +507,23 @@ class AsyncEBSClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ebs.types.put_snapshot_block_request.PutSnapshotBlockRequest = {}  # type: ignore[typeddict-item]
-        input_["snapshot_id"] = snapshot_id
-        input_["block_index"] = block_index
-        input_["block_data"] = ensure_async_iterator(block_data)
-        input_["data_length"] = data_length
+        input_: capo_ebs.types.put_snapshot_block_request.PutSnapshotBlockRequest = {
+            "snapshot_id": snapshot_id,
+            "block_index": block_index,
+            "block_data": ensure_async_iterator(block_data),
+            "data_length": data_length,
+            "checksum": checksum,
+            "checksum_algorithm": checksum_algorithm,
+        }
         if progress is not None:
             input_["progress"] = progress
-        input_["checksum"] = checksum
-        input_["checksum_algorithm"] = checksum_algorithm
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def start_snapshot(
@@ -519,16 +581,18 @@ class AsyncEBSClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ebs.types.start_snapshot_request.StartSnapshotRequest = {}  # type: ignore[typeddict-item]
-        input_["volume_size"] = volume_size
+        input_: capo_ebs.types.start_snapshot_request.StartSnapshotRequest = {
+            "volume_size": volume_size
+        }
         if parent_snapshot_id is not None:
             input_["parent_snapshot_id"] = parent_snapshot_id
         if tags is not None:
             input_["tags"] = tags
         if description is not None:
             input_["description"] = description
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if encrypted is not None:
             input_["encrypted"] = encrypted
         if kms_key_arn is not None:
@@ -541,6 +605,7 @@ class AsyncEBSClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def __aenter__(self) -> Self:

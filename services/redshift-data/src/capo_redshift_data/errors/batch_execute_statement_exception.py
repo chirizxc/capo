@@ -26,11 +26,11 @@ def serialize_aws_json_1_1(value: BatchExecuteStatementException_) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> BatchExecuteStatementException_:
     out: BatchExecuteStatementException_ = {}  # type: ignore[typeddict-item]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     else:
         raise DeserializationError("BatchExecuteStatementException_.message required")
-    if "StatementId" in data:
+    if data.get("StatementId") is not None:
         out["statement_id"] = data["StatementId"]
     else:
         raise DeserializationError(
@@ -44,15 +44,20 @@ class BatchExecuteStatementException(ServiceError):
 
     code: str | None = "BatchExecuteStatementException"
 
-    def __init__(self, data: BatchExecuteStatementException_):
+    def __init__(
+        self, data: BatchExecuteStatementException_, message: str | None = None
+    ):
         super().__init__(
             "server",
             is_throttling_error=False,
             is_retryable=False,
             code="BatchExecuteStatementException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "BatchExecuteStatementException":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "BatchExecuteStatementException":
+        return cls(deserialize_aws_json_1_1(data), message)

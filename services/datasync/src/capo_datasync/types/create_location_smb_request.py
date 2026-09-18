@@ -152,21 +152,21 @@ def serialize_aws_json_1_1(value: CreateLocationSmbRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateLocationSmbRequest:
     out: CreateLocationSmbRequest = {}  # type: ignore[typeddict-item]
-    if "Subdirectory" in data:
+    if data.get("Subdirectory") is not None:
         out["subdirectory"] = data["Subdirectory"]
     else:
         raise DeserializationError("CreateLocationSmbRequest.subdirectory required")
-    if "ServerHostname" in data:
+    if data.get("ServerHostname") is not None:
         out["server_hostname"] = data["ServerHostname"]
     else:
         raise DeserializationError("CreateLocationSmbRequest.server_hostname required")
-    if "User" in data:
+    if data.get("User") is not None:
         out["user"] = data["User"]
-    if "Domain" in data:
+    if data.get("Domain") is not None:
         out["domain"] = data["Domain"]
-    if "Password" in data:
+    if data.get("Password") is not None:
         out["password"] = data["Password"]
-    if "CmkSecretConfig" in data:
+    if data.get("CmkSecretConfig") is not None:
         import capo_datasync.types.cmk_secret_config
 
         out["cmk_secret_config"] = (
@@ -174,7 +174,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateLocationSmbRequest:
                 data["CmkSecretConfig"]
             )
         )
-    if "CustomSecretConfig" in data:
+    if data.get("CustomSecretConfig") is not None:
         import capo_datasync.types.custom_secret_config
 
         out["custom_secret_config"] = (
@@ -182,7 +182,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateLocationSmbRequest:
                 data["CustomSecretConfig"]
             )
         )
-    if "AgentArns" in data:
+    if data.get("AgentArns") is not None:
         import capo_datasync.types.agent_arn_list
 
         out["agent_arns"] = capo_datasync.types.agent_arn_list.deserialize_aws_json_1_1(
@@ -190,7 +190,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateLocationSmbRequest:
         )
     else:
         raise DeserializationError("CreateLocationSmbRequest.agent_arns required")
-    if "MountOptions" in data:
+    if data.get("MountOptions") is not None:
         import capo_datasync.types.smb_mount_options
 
         out["mount_options"] = (
@@ -198,13 +198,13 @@ def deserialize_aws_json_1_1(data: dict) -> CreateLocationSmbRequest:
                 data["MountOptions"]
             )
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_datasync.types.input_tag_list
 
         out["tags"] = capo_datasync.types.input_tag_list.deserialize_aws_json_1_1(
             data["Tags"]
         )
-    if "AuthenticationType" in data:
+    if data.get("AuthenticationType") is not None:
         import capo_datasync.types.smb_authentication_type
 
         out["authentication_type"] = (
@@ -212,7 +212,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateLocationSmbRequest:
                 data["AuthenticationType"]
             )
         )
-    if "DnsIpAddresses" in data:
+    if data.get("DnsIpAddresses") is not None:
         import capo_datasync.types.dns_ip_list
 
         out["dns_ip_addresses"] = (
@@ -220,9 +220,9 @@ def deserialize_aws_json_1_1(data: dict) -> CreateLocationSmbRequest:
                 data["DnsIpAddresses"]
             )
         )
-    if "KerberosPrincipal" in data:
+    if data.get("KerberosPrincipal") is not None:
         out["kerberos_principal"] = data["KerberosPrincipal"]
-    if "KerberosKeytab" in data:
+    if data.get("KerberosKeytab") is not None:
         import capo_datasync.types.kerberos_keytab_file
 
         out["kerberos_keytab"] = (
@@ -230,7 +230,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateLocationSmbRequest:
                 data["KerberosKeytab"]
             )
         )
-    if "KerberosKrb5Conf" in data:
+    if data.get("KerberosKrb5Conf") is not None:
         import capo_datasync.types.kerberos_krb5_conf_file
 
         out["kerberos_krb5_conf"] = (

@@ -38,12 +38,12 @@ def serialize_aws_json_1_1(value: SmsConfigurationType) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SmsConfigurationType:
     out: SmsConfigurationType = {}  # type: ignore[typeddict-item]
-    if "SnsCallerArn" in data:
+    if data.get("SnsCallerArn") is not None:
         out["sns_caller_arn"] = data["SnsCallerArn"]
     else:
         raise DeserializationError("SmsConfigurationType.sns_caller_arn required")
-    if "ExternalId" in data:
+    if data.get("ExternalId") is not None:
         out["external_id"] = data["ExternalId"]
-    if "SnsRegion" in data:
+    if data.get("SnsRegion") is not None:
         out["sns_region"] = data["SnsRegion"]
     return out

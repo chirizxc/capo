@@ -29,10 +29,10 @@ def serialize_json(value: ThreatActorIp) -> dict:
 
 def deserialize_json(data: dict) -> ThreatActorIp:
     out: ThreatActorIp = {}  # type: ignore[typeddict-item]
-    if "ipAddress" in data:
+    if data.get("ipAddress") is not None:
         out["ip_address"] = data["ipAddress"]
     else:
         raise DeserializationError("ThreatActorIp.ip_address required")
-    if "userAgent" in data:
+    if data.get("userAgent") is not None:
         out["user_agent"] = data["userAgent"]
     return out

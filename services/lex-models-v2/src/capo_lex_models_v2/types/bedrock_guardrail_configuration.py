@@ -30,11 +30,11 @@ def serialize_json(value: BedrockGuardrailConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> BedrockGuardrailConfiguration:
     out: BedrockGuardrailConfiguration = {}  # type: ignore[typeddict-item]
-    if "identifier" in data:
+    if data.get("identifier") is not None:
         out["identifier"] = data["identifier"]
     else:
         raise DeserializationError("BedrockGuardrailConfiguration.identifier required")
-    if "version" in data:
+    if data.get("version") is not None:
         out["version"] = data["version"]
     else:
         raise DeserializationError("BedrockGuardrailConfiguration.version required")

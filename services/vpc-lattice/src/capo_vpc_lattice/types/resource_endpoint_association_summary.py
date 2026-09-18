@@ -79,23 +79,23 @@ def serialize_json(value: ResourceEndpointAssociationSummary) -> dict:
 
 def deserialize_json(data: dict) -> ResourceEndpointAssociationSummary:
     out: ResourceEndpointAssociationSummary = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "resourceConfigurationId" in data:
+    if data.get("resourceConfigurationId") is not None:
         out["resource_configuration_id"] = data["resourceConfigurationId"]
-    if "resourceConfigurationArn" in data:
+    if data.get("resourceConfigurationArn") is not None:
         out["resource_configuration_arn"] = data["resourceConfigurationArn"]
-    if "resourceConfigurationName" in data:
+    if data.get("resourceConfigurationName") is not None:
         out["resource_configuration_name"] = data["resourceConfigurationName"]
-    if "vpcEndpointId" in data:
+    if data.get("vpcEndpointId") is not None:
         out["vpc_endpoint_id"] = data["vpcEndpointId"]
-    if "vpcEndpointOwner" in data:
+    if data.get("vpcEndpointOwner") is not None:
         out["vpc_endpoint_owner"] = data["vpcEndpointOwner"]
-    if "createdBy" in data:
+    if data.get("createdBy") is not None:
         out["created_by"] = data["createdBy"]
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_vpc_lattice.types.timestamp
 
         out["created_at"] = capo_vpc_lattice.types.timestamp.deserialize_json(

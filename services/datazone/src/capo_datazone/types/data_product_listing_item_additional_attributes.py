@@ -32,9 +32,9 @@ def serialize_json(value: DataProductListingItemAdditionalAttributes) -> dict:
 
 def deserialize_json(data: dict) -> DataProductListingItemAdditionalAttributes:
     out: DataProductListingItemAdditionalAttributes = {}  # type: ignore[typeddict-item]
-    if "forms" in data:
+    if data.get("forms") is not None:
         out["forms"] = data["forms"]
-    if "matchRationale" in data:
+    if data.get("matchRationale") is not None:
         import capo_datazone.types.match_rationale
 
         out["match_rationale"] = capo_datazone.types.match_rationale.deserialize_json(

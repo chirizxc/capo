@@ -48,7 +48,7 @@ def deserialize_aws_json_1_1(
     data: dict,
 ) -> GetThirdPartyFirewallAssociationStatusResponse:
     out: GetThirdPartyFirewallAssociationStatusResponse = {}  # type: ignore[typeddict-item]
-    if "ThirdPartyFirewallStatus" in data:
+    if data.get("ThirdPartyFirewallStatus") is not None:
         import capo_fms.types.third_party_firewall_association_status
 
         out["third_party_firewall_status"] = (
@@ -56,7 +56,7 @@ def deserialize_aws_json_1_1(
                 data["ThirdPartyFirewallStatus"]
             )
         )
-    if "MarketplaceOnboardingStatus" in data:
+    if data.get("MarketplaceOnboardingStatus") is not None:
         import capo_fms.types.marketplace_subscription_onboarding_status
 
         out["marketplace_onboarding_status"] = (

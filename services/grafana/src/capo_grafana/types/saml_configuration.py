@@ -69,7 +69,7 @@ def serialize_json(value: SamlConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> SamlConfiguration:
     out: SamlConfiguration = {}  # type: ignore[typeddict-item]
-    if "idpMetadata" in data:
+    if data.get("idpMetadata") is not None:
         import capo_grafana.types.idp_metadata
 
         out["idp_metadata"] = capo_grafana.types.idp_metadata.deserialize_json(
@@ -77,7 +77,7 @@ def deserialize_json(data: dict) -> SamlConfiguration:
         )
     else:
         raise DeserializationError("SamlConfiguration.idp_metadata required")
-    if "assertionAttributes" in data:
+    if data.get("assertionAttributes") is not None:
         import capo_grafana.types.assertion_attributes
 
         out["assertion_attributes"] = (
@@ -85,13 +85,13 @@ def deserialize_json(data: dict) -> SamlConfiguration:
                 data["assertionAttributes"]
             )
         )
-    if "roleValues" in data:
+    if data.get("roleValues") is not None:
         import capo_grafana.types.role_values
 
         out["role_values"] = capo_grafana.types.role_values.deserialize_json(
             data["roleValues"]
         )
-    if "allowedOrganizations" in data:
+    if data.get("allowedOrganizations") is not None:
         import capo_grafana.types.allowed_organizations
 
         out["allowed_organizations"] = (
@@ -99,7 +99,7 @@ def deserialize_json(data: dict) -> SamlConfiguration:
                 data["allowedOrganizations"]
             )
         )
-    if "loginValidityDuration" in data:
+    if data.get("loginValidityDuration") is not None:
         out["login_validity_duration"] = data["loginValidityDuration"]
     else:
         out["login_validity_duration"] = 0

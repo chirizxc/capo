@@ -31,9 +31,9 @@ def serialize_aws_json_1_0(value: StaticPolicyDefinition) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> StaticPolicyDefinition:
     out: StaticPolicyDefinition = {}  # type: ignore[typeddict-item]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "statement" in data:
+    if data.get("statement") is not None:
         out["statement"] = data["statement"]
     else:
         raise DeserializationError("StaticPolicyDefinition.statement required")

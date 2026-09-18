@@ -32,12 +32,12 @@ def serialize_json(value: GetPipelineBlueprintResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetPipelineBlueprintResponse:
     out: GetPipelineBlueprintResponse = {}  # type: ignore[typeddict-item]
-    if "Blueprint" in data:
+    if data.get("Blueprint") is not None:
         import capo_osis.types.pipeline_blueprint
 
         out["blueprint"] = capo_osis.types.pipeline_blueprint.deserialize_json(
             data["Blueprint"]
         )
-    if "Format" in data:
+    if data.get("Format") is not None:
         out["format"] = data["Format"]
     return out

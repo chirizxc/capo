@@ -28,10 +28,10 @@ def serialize_json(value: AppBundle) -> dict:
 
 def deserialize_json(data: dict) -> AppBundle:
     out: AppBundle = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("AppBundle.arn required")
-    if "customerManagedKeyArn" in data:
+    if data.get("customerManagedKeyArn") is not None:
         out["customer_managed_key_arn"] = data["customerManagedKeyArn"]
     return out

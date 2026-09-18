@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> BarSeriesItemList:
 
     out: BarSeriesItemList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_quicksight.types.bar_series_item.deserialize_json(item))
     return out

@@ -23,6 +23,6 @@ def serialize_aws_json_1_0(value: NegateSavingsPlanAction) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> NegateSavingsPlanAction:
     out: NegateSavingsPlanAction = {}  # type: ignore[typeddict-item]
-    if "savingsPlanId" in data:
+    if data.get("savingsPlanId") is not None:
         out["savings_plan_id"] = data["savingsPlanId"]
     return out

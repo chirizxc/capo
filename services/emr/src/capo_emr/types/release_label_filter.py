@@ -27,8 +27,8 @@ def serialize_aws_json_1_1(value: ReleaseLabelFilter) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ReleaseLabelFilter:
     out: ReleaseLabelFilter = {}  # type: ignore[typeddict-item]
-    if "Prefix" in data:
+    if data.get("Prefix") is not None:
         out["prefix"] = data["Prefix"]
-    if "Application" in data:
+    if data.get("Application") is not None:
         out["application"] = data["Application"]
     return out

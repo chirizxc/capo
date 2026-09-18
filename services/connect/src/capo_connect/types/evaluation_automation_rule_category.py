@@ -47,11 +47,11 @@ def serialize_json(value: EvaluationAutomationRuleCategory) -> dict:
 
 def deserialize_json(data: dict) -> EvaluationAutomationRuleCategory:
     out: EvaluationAutomationRuleCategory = {}  # type: ignore[typeddict-item]
-    if "Category" in data:
+    if data.get("Category") is not None:
         out["category"] = data["Category"]
     else:
         raise DeserializationError("EvaluationAutomationRuleCategory.category required")
-    if "Condition" in data:
+    if data.get("Condition") is not None:
         import capo_connect.types.question_rule_category_automation_condition
 
         out["condition"] = (
@@ -63,7 +63,7 @@ def deserialize_json(data: dict) -> EvaluationAutomationRuleCategory:
         raise DeserializationError(
             "EvaluationAutomationRuleCategory.condition required"
         )
-    if "PointsOfInterest" in data:
+    if data.get("PointsOfInterest") is not None:
         import capo_connect.types.evaluation_transcript_points_of_interest
 
         out["points_of_interest"] = (

@@ -132,11 +132,11 @@ def serialize_aws_json_1_1(value: UpdateEventDataStoreResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateEventDataStoreResponse:
     out: UpdateEventDataStoreResponse = {}  # type: ignore[typeddict-item]
-    if "EventDataStoreArn" in data:
+    if data.get("EventDataStoreArn") is not None:
         out["event_data_store_arn"] = data["EventDataStoreArn"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_cloudtrail.types.event_data_store_status
 
         out["status"] = (
@@ -144,7 +144,7 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateEventDataStoreResponse:
                 data["Status"]
             )
         )
-    if "AdvancedEventSelectors" in data:
+    if data.get("AdvancedEventSelectors") is not None:
         import capo_cloudtrail.types.advanced_event_selectors
 
         out["advanced_event_selectors"] = (
@@ -152,29 +152,29 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateEventDataStoreResponse:
                 data["AdvancedEventSelectors"]
             )
         )
-    if "MultiRegionEnabled" in data:
+    if data.get("MultiRegionEnabled") is not None:
         out["multi_region_enabled"] = data["MultiRegionEnabled"]
-    if "OrganizationEnabled" in data:
+    if data.get("OrganizationEnabled") is not None:
         out["organization_enabled"] = data["OrganizationEnabled"]
-    if "RetentionPeriod" in data:
+    if data.get("RetentionPeriod") is not None:
         out["retention_period"] = data["RetentionPeriod"]
-    if "TerminationProtectionEnabled" in data:
+    if data.get("TerminationProtectionEnabled") is not None:
         out["termination_protection_enabled"] = data["TerminationProtectionEnabled"]
-    if "CreatedTimestamp" in data:
+    if data.get("CreatedTimestamp") is not None:
         import capo_cloudtrail.types.date
 
         out["created_timestamp"] = capo_cloudtrail.types.date.deserialize_aws_json_1_1(
             data["CreatedTimestamp"]
         )
-    if "UpdatedTimestamp" in data:
+    if data.get("UpdatedTimestamp") is not None:
         import capo_cloudtrail.types.date
 
         out["updated_timestamp"] = capo_cloudtrail.types.date.deserialize_aws_json_1_1(
             data["UpdatedTimestamp"]
         )
-    if "KmsKeyId" in data:
+    if data.get("KmsKeyId") is not None:
         out["kms_key_id"] = data["KmsKeyId"]
-    if "BillingMode" in data:
+    if data.get("BillingMode") is not None:
         import capo_cloudtrail.types.billing_mode
 
         out["billing_mode"] = (
@@ -182,7 +182,7 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateEventDataStoreResponse:
                 data["BillingMode"]
             )
         )
-    if "FederationStatus" in data:
+    if data.get("FederationStatus") is not None:
         import capo_cloudtrail.types.federation_status
 
         out["federation_status"] = (
@@ -190,6 +190,6 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateEventDataStoreResponse:
                 data["FederationStatus"]
             )
         )
-    if "FederationRoleArn" in data:
+    if data.get("FederationRoleArn") is not None:
         out["federation_role_arn"] = data["FederationRoleArn"]
     return out

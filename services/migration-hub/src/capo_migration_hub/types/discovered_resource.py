@@ -31,10 +31,10 @@ def serialize_aws_json_1_1(value: DiscoveredResource) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DiscoveredResource:
     out: DiscoveredResource = {}  # type: ignore[typeddict-item]
-    if "ConfigurationId" in data:
+    if data.get("ConfigurationId") is not None:
         out["configuration_id"] = data["ConfigurationId"]
     else:
         raise DeserializationError("DiscoveredResource.configuration_id required")
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
     return out

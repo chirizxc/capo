@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import uuid
 from typing import TYPE_CHECKING, Optional
 
 from capo_voice_id._services._pipeline import (
@@ -88,15 +89,15 @@ class DomainResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_voice_id.types.create_domain_request.CreateDomainRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_voice_id.types.create_domain_request.CreateDomainRequest = {
+            "name": name,
+            "server_side_encryption_configuration": server_side_encryption_configuration,
+        }
         if description is not None:
             input_["description"] = description
-        input_["server_side_encryption_configuration"] = (
-            server_side_encryption_configuration
-        )
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if tags is not None:
             input_["tags"] = tags
 
@@ -105,6 +106,7 @@ class DomainResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -142,14 +144,16 @@ class DomainResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_voice_id.types.describe_domain_request.DescribeDomainRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_id"] = domain_id
+        input_: capo_voice_id.types.describe_domain_request.DescribeDomainRequest = {
+            "domain_id": domain_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update(
@@ -194,20 +198,20 @@ class DomainResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_voice_id.types.update_domain_request.UpdateDomainRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_id"] = domain_id
-        input_["name"] = name
+        input_: capo_voice_id.types.update_domain_request.UpdateDomainRequest = {
+            "domain_id": domain_id,
+            "name": name,
+            "server_side_encryption_configuration": server_side_encryption_configuration,
+        }
         if description is not None:
             input_["description"] = description
-        input_["server_side_encryption_configuration"] = (
-            server_side_encryption_configuration
-        )
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -244,14 +248,16 @@ class DomainResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_voice_id.types.delete_domain_request.DeleteDomainRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_id"] = domain_id
+        input_: capo_voice_id.types.delete_domain_request.DeleteDomainRequest = {
+            "domain_id": domain_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -292,7 +298,7 @@ class DomainResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_voice_id.types.list_domains_request.ListDomainsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_voice_id.types.list_domains_request.ListDomainsRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -303,6 +309,7 @@ class DomainResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -358,15 +365,15 @@ class AsyncDomainResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_voice_id.types.create_domain_request.CreateDomainRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_voice_id.types.create_domain_request.CreateDomainRequest = {
+            "name": name,
+            "server_side_encryption_configuration": server_side_encryption_configuration,
+        }
         if description is not None:
             input_["description"] = description
-        input_["server_side_encryption_configuration"] = (
-            server_side_encryption_configuration
-        )
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if tags is not None:
             input_["tags"] = tags
 
@@ -375,6 +382,7 @@ class AsyncDomainResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -413,14 +421,16 @@ class AsyncDomainResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_voice_id.types.describe_domain_request.DescribeDomainRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_id"] = domain_id
+        input_: capo_voice_id.types.describe_domain_request.DescribeDomainRequest = {
+            "domain_id": domain_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update(
@@ -466,20 +476,20 @@ class AsyncDomainResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_voice_id.types.update_domain_request.UpdateDomainRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_id"] = domain_id
-        input_["name"] = name
+        input_: capo_voice_id.types.update_domain_request.UpdateDomainRequest = {
+            "domain_id": domain_id,
+            "name": name,
+            "server_side_encryption_configuration": server_side_encryption_configuration,
+        }
         if description is not None:
             input_["description"] = description
-        input_["server_side_encryption_configuration"] = (
-            server_side_encryption_configuration
-        )
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -517,14 +527,16 @@ class AsyncDomainResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_voice_id.types.delete_domain_request.DeleteDomainRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_id"] = domain_id
+        input_: capo_voice_id.types.delete_domain_request.DeleteDomainRequest = {
+            "domain_id": domain_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -566,7 +578,7 @@ class AsyncDomainResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_voice_id.types.list_domains_request.ListDomainsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_voice_id.types.list_domains_request.ListDomainsRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -577,4 +589,5 @@ class AsyncDomainResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

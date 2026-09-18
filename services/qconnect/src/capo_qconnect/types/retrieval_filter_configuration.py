@@ -190,7 +190,7 @@ def serialize_json(value: RetrievalFilterConfiguration) -> dict:
 
 
 def deserialize_json(data: dict) -> RetrievalFilterConfiguration:
-    if "andAll" in data:
+    if data.get("andAll") is not None:
         import capo_qconnect.types.retrieval_filter_list
 
         return {
@@ -198,7 +198,7 @@ def deserialize_json(data: dict) -> RetrievalFilterConfiguration:
                 data["andAll"]
             )
         }
-    elif "equals" in data:
+    elif data.get("equals") is not None:
         import capo_qconnect.types.filter_attribute
 
         return {
@@ -206,7 +206,7 @@ def deserialize_json(data: dict) -> RetrievalFilterConfiguration:
                 data["equals"]
             )
         }
-    elif "greaterThan" in data:
+    elif data.get("greaterThan") is not None:
         import capo_qconnect.types.filter_attribute
 
         return {
@@ -214,7 +214,7 @@ def deserialize_json(data: dict) -> RetrievalFilterConfiguration:
                 data["greaterThan"]
             )
         }
-    elif "greaterThanOrEquals" in data:
+    elif data.get("greaterThanOrEquals") is not None:
         import capo_qconnect.types.filter_attribute
 
         return {
@@ -222,11 +222,11 @@ def deserialize_json(data: dict) -> RetrievalFilterConfiguration:
                 data["greaterThanOrEquals"]
             )
         }
-    elif "in" in data:
+    elif data.get("in") is not None:
         import capo_qconnect.types.filter_attribute
 
         return {"in": capo_qconnect.types.filter_attribute.deserialize_json(data["in"])}
-    elif "lessThan" in data:
+    elif data.get("lessThan") is not None:
         import capo_qconnect.types.filter_attribute
 
         return {
@@ -234,7 +234,7 @@ def deserialize_json(data: dict) -> RetrievalFilterConfiguration:
                 data["lessThan"]
             )
         }
-    elif "lessThanOrEquals" in data:
+    elif data.get("lessThanOrEquals") is not None:
         import capo_qconnect.types.filter_attribute
 
         return {
@@ -242,7 +242,7 @@ def deserialize_json(data: dict) -> RetrievalFilterConfiguration:
                 data["lessThanOrEquals"]
             )
         }
-    elif "listContains" in data:
+    elif data.get("listContains") is not None:
         import capo_qconnect.types.filter_attribute
 
         return {
@@ -250,7 +250,7 @@ def deserialize_json(data: dict) -> RetrievalFilterConfiguration:
                 data["listContains"]
             )
         }
-    elif "notEquals" in data:
+    elif data.get("notEquals") is not None:
         import capo_qconnect.types.filter_attribute
 
         return {
@@ -258,7 +258,7 @@ def deserialize_json(data: dict) -> RetrievalFilterConfiguration:
                 data["notEquals"]
             )
         }
-    elif "notIn" in data:
+    elif data.get("notIn") is not None:
         import capo_qconnect.types.filter_attribute
 
         return {
@@ -266,7 +266,7 @@ def deserialize_json(data: dict) -> RetrievalFilterConfiguration:
                 data["notIn"]
             )
         }
-    elif "orAll" in data:
+    elif data.get("orAll") is not None:
         import capo_qconnect.types.retrieval_filter_list
 
         return {
@@ -274,7 +274,7 @@ def deserialize_json(data: dict) -> RetrievalFilterConfiguration:
                 data["orAll"]
             )
         }
-    elif "startsWith" in data:
+    elif data.get("startsWith") is not None:
         import capo_qconnect.types.filter_attribute
 
         return {
@@ -282,7 +282,7 @@ def deserialize_json(data: dict) -> RetrievalFilterConfiguration:
                 data["startsWith"]
             )
         }
-    elif "stringContains" in data:
+    elif data.get("stringContains") is not None:
         import capo_qconnect.types.filter_attribute
 
         return {

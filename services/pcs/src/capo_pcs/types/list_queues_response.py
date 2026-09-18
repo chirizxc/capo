@@ -30,7 +30,7 @@ def serialize_aws_json_1_0(value: ListQueuesResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ListQueuesResponse:
     out: ListQueuesResponse = {}  # type: ignore[typeddict-item]
-    if "queues" in data:
+    if data.get("queues") is not None:
         import capo_pcs.types.queue_list
 
         out["queues"] = capo_pcs.types.queue_list.deserialize_aws_json_1_0(
@@ -38,6 +38,6 @@ def deserialize_aws_json_1_0(data: dict) -> ListQueuesResponse:
         )
     else:
         raise DeserializationError("ListQueuesResponse.queues required")
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

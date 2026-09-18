@@ -35,12 +35,12 @@ def serialize_aws_json_1_1(value: GameServerContainerGroupCounts) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GameServerContainerGroupCounts:
     out: GameServerContainerGroupCounts = {}  # type: ignore[typeddict-item]
-    if "PENDING" in data:
+    if data.get("PENDING") is not None:
         out["pending"] = data["PENDING"]
-    if "ACTIVE" in data:
+    if data.get("ACTIVE") is not None:
         out["active"] = data["ACTIVE"]
-    if "IDLE" in data:
+    if data.get("IDLE") is not None:
         out["idle"] = data["IDLE"]
-    if "TERMINATING" in data:
+    if data.get("TERMINATING") is not None:
         out["terminating"] = data["TERMINATING"]
     return out

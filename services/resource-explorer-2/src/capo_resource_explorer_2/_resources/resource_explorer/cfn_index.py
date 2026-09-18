@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import uuid
 from typing import TYPE_CHECKING, Optional
 
 import capo_resource_explorer_2._auth._signers
@@ -77,9 +78,10 @@ class CfnIndex:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_resource_explorer_2.types.create_index_input.CreateIndexInput = {}  # type: ignore[typeddict-item]
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_resource_explorer_2.types.create_index_input.CreateIndexInput = {}
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if tags is not None:
             input_["tags"] = tags
 
@@ -88,6 +90,7 @@ class CfnIndex:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update(
@@ -131,15 +134,17 @@ class CfnIndex:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_resource_explorer_2.types.update_index_type_input.UpdateIndexTypeInput = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
-        input_["type"] = type
+        input_: capo_resource_explorer_2.types.update_index_type_input.UpdateIndexTypeInput = {
+            "arn": arn,
+            "type": type,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -177,14 +182,16 @@ class CfnIndex:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_resource_explorer_2.types.delete_index_input.DeleteIndexInput = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
+        input_: capo_resource_explorer_2.types.delete_index_input.DeleteIndexInput = {
+            "arn": arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -229,7 +236,7 @@ class CfnIndex:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_resource_explorer_2.types.list_indexes_input.ListIndexesInput = {}  # type: ignore[typeddict-item]
+        input_: capo_resource_explorer_2.types.list_indexes_input.ListIndexesInput = {}
         if type is not None:
             input_["type"] = type
         if regions is not None:
@@ -244,6 +251,7 @@ class CfnIndex:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -289,9 +297,10 @@ class AsyncCfnIndex:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_resource_explorer_2.types.create_index_input.CreateIndexInput = {}  # type: ignore[typeddict-item]
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_resource_explorer_2.types.create_index_input.CreateIndexInput = {}
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if tags is not None:
             input_["tags"] = tags
 
@@ -300,6 +309,7 @@ class AsyncCfnIndex:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update(
@@ -344,15 +354,17 @@ class AsyncCfnIndex:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_resource_explorer_2.types.update_index_type_input.UpdateIndexTypeInput = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
-        input_["type"] = type
+        input_: capo_resource_explorer_2.types.update_index_type_input.UpdateIndexTypeInput = {
+            "arn": arn,
+            "type": type,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -391,14 +403,16 @@ class AsyncCfnIndex:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_resource_explorer_2.types.delete_index_input.DeleteIndexInput = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
+        input_: capo_resource_explorer_2.types.delete_index_input.DeleteIndexInput = {
+            "arn": arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -444,7 +458,7 @@ class AsyncCfnIndex:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_resource_explorer_2.types.list_indexes_input.ListIndexesInput = {}  # type: ignore[typeddict-item]
+        input_: capo_resource_explorer_2.types.list_indexes_input.ListIndexesInput = {}
         if type is not None:
             input_["type"] = type
         if regions is not None:
@@ -459,4 +473,5 @@ class AsyncCfnIndex:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

@@ -31,7 +31,7 @@ def serialize_json(value: CustomTemplateResponse) -> dict:
 
 def deserialize_json(data: dict) -> CustomTemplateResponse:
     out: CustomTemplateResponse = {}  # type: ignore[typeddict-item]
-    if "templateType" in data:
+    if data.get("templateType") is not None:
         import capo_connecthealth.types.custom_template_base
 
         out["template_type"] = (

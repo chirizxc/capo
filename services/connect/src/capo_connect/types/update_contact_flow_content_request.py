@@ -30,7 +30,7 @@ def serialize_json(value: UpdateContactFlowContentRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateContactFlowContentRequest:
     out: UpdateContactFlowContentRequest = {}  # type: ignore[typeddict-item]
-    if "Content" in data:
+    if data.get("Content") is not None:
         out["content"] = data["Content"]
     else:
         raise DeserializationError("UpdateContactFlowContentRequest.content required")

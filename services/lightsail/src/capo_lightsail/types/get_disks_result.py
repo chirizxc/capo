@@ -32,12 +32,12 @@ def serialize_aws_json_1_1(value: GetDisksResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetDisksResult:
     out: GetDisksResult = {}  # type: ignore[typeddict-item]
-    if "disks" in data:
+    if data.get("disks") is not None:
         import capo_lightsail.types.disk_list
 
         out["disks"] = capo_lightsail.types.disk_list.deserialize_aws_json_1_1(
             data["disks"]
         )
-    if "nextPageToken" in data:
+    if data.get("nextPageToken") is not None:
         out["next_page_token"] = data["nextPageToken"]
     return out

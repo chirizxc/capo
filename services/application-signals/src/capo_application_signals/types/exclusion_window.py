@@ -60,7 +60,7 @@ def serialize_json(value: ExclusionWindow) -> dict:
 
 def deserialize_json(data: dict) -> ExclusionWindow:
     out: ExclusionWindow = {}  # type: ignore[typeddict-item]
-    if "Window" in data:
+    if data.get("Window") is not None:
         import capo_application_signals.types.window
 
         out["window"] = capo_application_signals.types.window.deserialize_json(
@@ -68,7 +68,7 @@ def deserialize_json(data: dict) -> ExclusionWindow:
         )
     else:
         raise DeserializationError("ExclusionWindow.window required")
-    if "StartTime" in data:
+    if data.get("StartTime") is not None:
         import capo_application_signals.types._prelude.timestamp
 
         out["start_time"] = (
@@ -76,7 +76,7 @@ def deserialize_json(data: dict) -> ExclusionWindow:
                 data["StartTime"]
             )
         )
-    if "RecurrenceRule" in data:
+    if data.get("RecurrenceRule") is not None:
         import capo_application_signals.types.recurrence_rule
 
         out["recurrence_rule"] = (
@@ -84,6 +84,6 @@ def deserialize_json(data: dict) -> ExclusionWindow:
                 data["RecurrenceRule"]
             )
         )
-    if "Reason" in data:
+    if data.get("Reason") is not None:
         out["reason"] = data["Reason"]
     return out

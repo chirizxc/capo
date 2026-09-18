@@ -61,7 +61,7 @@ def serialize_aws_json_1_1(value: CustomDocumentEnrichmentConfiguration) -> dict
 
 def deserialize_aws_json_1_1(data: dict) -> CustomDocumentEnrichmentConfiguration:
     out: CustomDocumentEnrichmentConfiguration = {}  # type: ignore[typeddict-item]
-    if "InlineConfigurations" in data:
+    if data.get("InlineConfigurations") is not None:
         import capo_kendra.types.inline_custom_document_enrichment_configuration_list
 
         out["inline_configurations"] = (
@@ -69,7 +69,7 @@ def deserialize_aws_json_1_1(data: dict) -> CustomDocumentEnrichmentConfiguratio
                 data["InlineConfigurations"]
             )
         )
-    if "PreExtractionHookConfiguration" in data:
+    if data.get("PreExtractionHookConfiguration") is not None:
         import capo_kendra.types.hook_configuration
 
         out["pre_extraction_hook_configuration"] = (
@@ -77,7 +77,7 @@ def deserialize_aws_json_1_1(data: dict) -> CustomDocumentEnrichmentConfiguratio
                 data["PreExtractionHookConfiguration"]
             )
         )
-    if "PostExtractionHookConfiguration" in data:
+    if data.get("PostExtractionHookConfiguration") is not None:
         import capo_kendra.types.hook_configuration
 
         out["post_extraction_hook_configuration"] = (
@@ -85,6 +85,6 @@ def deserialize_aws_json_1_1(data: dict) -> CustomDocumentEnrichmentConfiguratio
                 data["PostExtractionHookConfiguration"]
             )
         )
-    if "RoleArn" in data:
+    if data.get("RoleArn") is not None:
         out["role_arn"] = data["RoleArn"]
     return out

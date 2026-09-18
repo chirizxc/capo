@@ -77,13 +77,13 @@ def serialize_aws_json_1_0(value: ExportJobProperties) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ExportJobProperties:
     out: ExportJobProperties = {}  # type: ignore[typeddict-item]
-    if "JobId" in data:
+    if data.get("JobId") is not None:
         out["job_id"] = data["JobId"]
     else:
         raise DeserializationError("ExportJobProperties.job_id required")
-    if "JobName" in data:
+    if data.get("JobName") is not None:
         out["job_name"] = data["JobName"]
-    if "JobStatus" in data:
+    if data.get("JobStatus") is not None:
         import capo_healthlake.types.job_status
 
         out["job_status"] = capo_healthlake.types.job_status.deserialize_aws_json_1_0(
@@ -91,7 +91,7 @@ def deserialize_aws_json_1_0(data: dict) -> ExportJobProperties:
         )
     else:
         raise DeserializationError("ExportJobProperties.job_status required")
-    if "SubmitTime" in data:
+    if data.get("SubmitTime") is not None:
         import capo_healthlake.types.timestamp
 
         out["submit_time"] = capo_healthlake.types.timestamp.deserialize_aws_json_1_0(
@@ -99,17 +99,17 @@ def deserialize_aws_json_1_0(data: dict) -> ExportJobProperties:
         )
     else:
         raise DeserializationError("ExportJobProperties.submit_time required")
-    if "EndTime" in data:
+    if data.get("EndTime") is not None:
         import capo_healthlake.types.timestamp
 
         out["end_time"] = capo_healthlake.types.timestamp.deserialize_aws_json_1_0(
             data["EndTime"]
         )
-    if "DatastoreId" in data:
+    if data.get("DatastoreId") is not None:
         out["datastore_id"] = data["DatastoreId"]
     else:
         raise DeserializationError("ExportJobProperties.datastore_id required")
-    if "OutputDataConfig" in data:
+    if data.get("OutputDataConfig") is not None:
         import capo_healthlake.types.output_data_config
 
         out["output_data_config"] = (
@@ -119,8 +119,8 @@ def deserialize_aws_json_1_0(data: dict) -> ExportJobProperties:
         )
     else:
         raise DeserializationError("ExportJobProperties.output_data_config required")
-    if "DataAccessRoleArn" in data:
+    if data.get("DataAccessRoleArn") is not None:
         out["data_access_role_arn"] = data["DataAccessRoleArn"]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     return out

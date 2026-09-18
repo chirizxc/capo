@@ -26,7 +26,7 @@ def serialize_json(value: CreateAssetResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateAssetResponse:
     out: CreateAssetResponse = {}  # type: ignore[typeddict-item]
-    if "asset" in data:
+    if data.get("asset") is not None:
         import capo_devops_agent.types.asset
 
         out["asset"] = capo_devops_agent.types.asset.deserialize_json(data["asset"])

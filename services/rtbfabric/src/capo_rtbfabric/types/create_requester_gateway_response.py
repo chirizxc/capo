@@ -36,17 +36,17 @@ def serialize_json(value: CreateRequesterGatewayResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateRequesterGatewayResponse:
     out: CreateRequesterGatewayResponse = {}  # type: ignore[typeddict-item]
-    if "gatewayId" in data:
+    if data.get("gatewayId") is not None:
         out["gateway_id"] = data["gatewayId"]
     else:
         raise DeserializationError("CreateRequesterGatewayResponse.gateway_id required")
-    if "domainName" in data:
+    if data.get("domainName") is not None:
         out["domain_name"] = data["domainName"]
     else:
         raise DeserializationError(
             "CreateRequesterGatewayResponse.domain_name required"
         )
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_rtbfabric.types.requester_gateway_status
 
         out["status"] = capo_rtbfabric.types.requester_gateway_status.deserialize_json(

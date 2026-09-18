@@ -70,7 +70,7 @@ def serialize_json(value: DataProductFilters) -> dict:
 
 def deserialize_json(data: dict) -> DataProductFilters:
     out: DataProductFilters = {}  # type: ignore[typeddict-item]
-    if "EntityId" in data:
+    if data.get("EntityId") is not None:
         import capo_marketplace_catalog.types.data_product_entity_id_filter
 
         out["entity_id"] = (
@@ -78,7 +78,7 @@ def deserialize_json(data: dict) -> DataProductFilters:
                 data["EntityId"]
             )
         )
-    if "ProductTitle" in data:
+    if data.get("ProductTitle") is not None:
         import capo_marketplace_catalog.types.data_product_title_filter
 
         out["product_title"] = (
@@ -86,7 +86,7 @@ def deserialize_json(data: dict) -> DataProductFilters:
                 data["ProductTitle"]
             )
         )
-    if "Visibility" in data:
+    if data.get("Visibility") is not None:
         import capo_marketplace_catalog.types.data_product_visibility_filter
 
         out["visibility"] = (
@@ -94,7 +94,7 @@ def deserialize_json(data: dict) -> DataProductFilters:
                 data["Visibility"]
             )
         )
-    if "LastModifiedDate" in data:
+    if data.get("LastModifiedDate") is not None:
         import capo_marketplace_catalog.types.data_product_last_modified_date_filter
 
         out["last_modified_date"] = (

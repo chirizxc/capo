@@ -28,11 +28,11 @@ def serialize_json(value: PublishWhatsAppFlowInput) -> dict:
 
 def deserialize_json(data: dict) -> PublishWhatsAppFlowInput:
     out: PublishWhatsAppFlowInput = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("PublishWhatsAppFlowInput.id required")
-    if "flowId" in data:
+    if data.get("flowId") is not None:
         out["flow_id"] = data["flowId"]
     else:
         raise DeserializationError("PublishWhatsAppFlowInput.flow_id required")

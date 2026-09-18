@@ -45,9 +45,9 @@ def serialize_json(value: DescribeFlowSourceMetadataResponse) -> dict:
             )
         )
     if "timestamp" in value:
-        import capo_mediaconnect.types._prelude.timestamp
+        import capo_mediaconnect._protocol.serialize
 
-        out["timestamp"] = capo_mediaconnect.types._prelude.timestamp.serialize_json(
+        out["timestamp"] = capo_mediaconnect._protocol.serialize.fmt_date_time(
             value["timestamp"]
         )
     if "transport_media_info" in value:
@@ -71,9 +71,9 @@ def serialize_json(value: DescribeFlowSourceMetadataResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribeFlowSourceMetadataResponse:
     out: DescribeFlowSourceMetadataResponse = {}  # type: ignore[typeddict-item]
-    if "flowArn" in data:
+    if data.get("flowArn") is not None:
         out["flow_arn"] = data["flowArn"]
-    if "messages" in data:
+    if data.get("messages") is not None:
         import capo_mediaconnect.types.__list_of_message_detail
 
         out["messages"] = (
@@ -81,13 +81,13 @@ def deserialize_json(data: dict) -> DescribeFlowSourceMetadataResponse:
                 data["messages"]
             )
         )
-    if "timestamp" in data:
-        import capo_mediaconnect.types._prelude.timestamp
+    if data.get("timestamp") is not None:
+        import datetime
 
-        out["timestamp"] = capo_mediaconnect.types._prelude.timestamp.deserialize_json(
-            data["timestamp"]
+        out["timestamp"] = datetime.datetime.fromisoformat(
+            data["timestamp"].replace("Z", "+00:00")
         )
-    if "transportMediaInfo" in data:
+    if data.get("transportMediaInfo") is not None:
         import capo_mediaconnect.types.transport_media_info
 
         out["transport_media_info"] = (
@@ -95,7 +95,7 @@ def deserialize_json(data: dict) -> DescribeFlowSourceMetadataResponse:
                 data["transportMediaInfo"]
             )
         )
-    if "ndiInfo" in data:
+    if data.get("ndiInfo") is not None:
         import capo_mediaconnect.types.ndi_source_metadata_info
 
         out["ndi_info"] = (

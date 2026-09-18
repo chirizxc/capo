@@ -25,6 +25,8 @@ def serialize_aws_json_1_1(input_to_serialize: OfferingStatusMap) -> dict:
 def deserialize_aws_json_1_1(data: dict) -> OfferingStatusMap:
     out: OfferingStatusMap = {}
     for key, value in data.items():
+        if value is None:
+            continue
         import capo_device_farm.types.offering_status
 
         out[key] = capo_device_farm.types.offering_status.deserialize_aws_json_1_1(

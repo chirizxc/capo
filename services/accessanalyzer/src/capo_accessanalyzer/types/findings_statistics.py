@@ -62,7 +62,7 @@ def serialize_json(value: FindingsStatistics) -> dict:
 
 
 def deserialize_json(data: dict) -> FindingsStatistics:
-    if "externalAccessFindingsStatistics" in data:
+    if data.get("externalAccessFindingsStatistics") is not None:
         import capo_accessanalyzer.types.external_access_findings_statistics
 
         return {
@@ -70,7 +70,7 @@ def deserialize_json(data: dict) -> FindingsStatistics:
                 data["externalAccessFindingsStatistics"]
             )
         }
-    elif "internalAccessFindingsStatistics" in data:
+    elif data.get("internalAccessFindingsStatistics") is not None:
         import capo_accessanalyzer.types.internal_access_findings_statistics
 
         return {
@@ -78,7 +78,7 @@ def deserialize_json(data: dict) -> FindingsStatistics:
                 data["internalAccessFindingsStatistics"]
             )
         }
-    elif "unusedAccessFindingsStatistics" in data:
+    elif data.get("unusedAccessFindingsStatistics") is not None:
         import capo_accessanalyzer.types.unused_access_findings_statistics
 
         return {

@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: InvalidRequestDetail) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> InvalidRequestDetail:
     out: InvalidRequestDetail = {}  # type: ignore[typeddict-item]
-    if "Reason" in data:
+    if data.get("Reason") is not None:
         import capo_comprehend.types.invalid_request_detail_reason
 
         out["reason"] = (

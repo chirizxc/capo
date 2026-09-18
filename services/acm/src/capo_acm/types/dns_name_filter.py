@@ -34,11 +34,11 @@ def serialize_aws_json_1_1(value: DnsNameFilter) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DnsNameFilter:
     out: DnsNameFilter = {}  # type: ignore[typeddict-item]
-    if "Value" in data:
+    if data.get("Value") is not None:
         out["value"] = data["Value"]
     else:
         raise DeserializationError("DnsNameFilter.value required")
-    if "ComparisonOperator" in data:
+    if data.get("ComparisonOperator") is not None:
         import capo_acm.types.comparison_operator
 
         out["comparison_operator"] = (

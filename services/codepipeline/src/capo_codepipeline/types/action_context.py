@@ -30,8 +30,8 @@ def serialize_aws_json_1_1(value: ActionContext) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ActionContext:
     out: ActionContext = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "actionExecutionId" in data:
+    if data.get("actionExecutionId") is not None:
         out["action_execution_id"] = data["actionExecutionId"]
     return out

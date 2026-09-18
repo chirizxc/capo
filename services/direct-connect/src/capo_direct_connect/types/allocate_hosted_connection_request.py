@@ -49,33 +49,33 @@ def serialize_aws_json_1_1(value: AllocateHostedConnectionRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AllocateHostedConnectionRequest:
     out: AllocateHostedConnectionRequest = {}  # type: ignore[typeddict-item]
-    if "connectionId" in data:
+    if data.get("connectionId") is not None:
         out["connection_id"] = data["connectionId"]
     else:
         raise DeserializationError(
             "AllocateHostedConnectionRequest.connection_id required"
         )
-    if "ownerAccount" in data:
+    if data.get("ownerAccount") is not None:
         out["owner_account"] = data["ownerAccount"]
     else:
         raise DeserializationError(
             "AllocateHostedConnectionRequest.owner_account required"
         )
-    if "bandwidth" in data:
+    if data.get("bandwidth") is not None:
         out["bandwidth"] = data["bandwidth"]
     else:
         raise DeserializationError("AllocateHostedConnectionRequest.bandwidth required")
-    if "connectionName" in data:
+    if data.get("connectionName") is not None:
         out["connection_name"] = data["connectionName"]
     else:
         raise DeserializationError(
             "AllocateHostedConnectionRequest.connection_name required"
         )
-    if "vlan" in data:
+    if data.get("vlan") is not None:
         out["vlan"] = data["vlan"]
     else:
         out["vlan"] = 0
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_direct_connect.types.tag_list
 
         out["tags"] = capo_direct_connect.types.tag_list.deserialize_aws_json_1_1(

@@ -38,9 +38,9 @@ def serialize_json(value: UpdateLayoutRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateLayoutRequest:
     out: UpdateLayoutRequest = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "content" in data:
+    if data.get("content") is not None:
         import capo_connectcases.types.layout_content
 
         out["content"] = capo_connectcases.types.layout_content.deserialize_json(

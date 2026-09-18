@@ -44,7 +44,7 @@ def serialize_aws_json_1_0(value: BatchGetEffectiveLifecyclePolicyResponse) -> d
 
 def deserialize_aws_json_1_0(data: dict) -> BatchGetEffectiveLifecyclePolicyResponse:
     out: BatchGetEffectiveLifecyclePolicyResponse = {}  # type: ignore[typeddict-item]
-    if "effectiveLifecyclePolicyDetails" in data:
+    if data.get("effectiveLifecyclePolicyDetails") is not None:
         import capo_opensearchserverless.types.effective_lifecycle_policy_details
 
         out["effective_lifecycle_policy_details"] = (
@@ -52,7 +52,7 @@ def deserialize_aws_json_1_0(data: dict) -> BatchGetEffectiveLifecyclePolicyResp
                 data["effectiveLifecyclePolicyDetails"]
             )
         )
-    if "effectiveLifecyclePolicyErrorDetails" in data:
+    if data.get("effectiveLifecyclePolicyErrorDetails") is not None:
         import capo_opensearchserverless.types.effective_lifecycle_policy_error_details
 
         out["effective_lifecycle_policy_error_details"] = (

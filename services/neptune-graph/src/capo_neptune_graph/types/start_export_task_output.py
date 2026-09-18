@@ -77,19 +77,19 @@ def serialize_json(value: StartExportTaskOutput) -> dict:
 
 def deserialize_json(data: dict) -> StartExportTaskOutput:
     out: StartExportTaskOutput = {}  # type: ignore[typeddict-item]
-    if "graphId" in data:
+    if data.get("graphId") is not None:
         out["graph_id"] = data["graphId"]
     else:
         raise DeserializationError("StartExportTaskOutput.graph_id required")
-    if "roleArn" in data:
+    if data.get("roleArn") is not None:
         out["role_arn"] = data["roleArn"]
     else:
         raise DeserializationError("StartExportTaskOutput.role_arn required")
-    if "taskId" in data:
+    if data.get("taskId") is not None:
         out["task_id"] = data["taskId"]
     else:
         raise DeserializationError("StartExportTaskOutput.task_id required")
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_neptune_graph.types.export_task_status
 
         out["status"] = capo_neptune_graph.types.export_task_status.deserialize_json(
@@ -97,7 +97,7 @@ def deserialize_json(data: dict) -> StartExportTaskOutput:
         )
     else:
         raise DeserializationError("StartExportTaskOutput.status required")
-    if "format" in data:
+    if data.get("format") is not None:
         import capo_neptune_graph.types.export_format
 
         out["format"] = capo_neptune_graph.types.export_format.deserialize_json(
@@ -105,23 +105,23 @@ def deserialize_json(data: dict) -> StartExportTaskOutput:
         )
     else:
         raise DeserializationError("StartExportTaskOutput.format required")
-    if "destination" in data:
+    if data.get("destination") is not None:
         out["destination"] = data["destination"]
     else:
         raise DeserializationError("StartExportTaskOutput.destination required")
-    if "kmsKeyIdentifier" in data:
+    if data.get("kmsKeyIdentifier") is not None:
         out["kms_key_identifier"] = data["kmsKeyIdentifier"]
     else:
         raise DeserializationError("StartExportTaskOutput.kms_key_identifier required")
-    if "parquetType" in data:
+    if data.get("parquetType") is not None:
         import capo_neptune_graph.types.parquet_type
 
         out["parquet_type"] = capo_neptune_graph.types.parquet_type.deserialize_json(
             data["parquetType"]
         )
-    if "statusReason" in data:
+    if data.get("statusReason") is not None:
         out["status_reason"] = data["statusReason"]
-    if "exportFilter" in data:
+    if data.get("exportFilter") is not None:
         import capo_neptune_graph.types.export_filter
 
         out["export_filter"] = capo_neptune_graph.types.export_filter.deserialize_json(

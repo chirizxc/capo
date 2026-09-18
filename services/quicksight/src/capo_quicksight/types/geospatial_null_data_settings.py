@@ -32,7 +32,7 @@ def serialize_json(value: GeospatialNullDataSettings) -> dict:
 
 def deserialize_json(data: dict) -> GeospatialNullDataSettings:
     out: GeospatialNullDataSettings = {}  # type: ignore[typeddict-item]
-    if "SymbolStyle" in data:
+    if data.get("SymbolStyle") is not None:
         import capo_quicksight.types.geospatial_null_symbol_style
 
         out["symbol_style"] = (

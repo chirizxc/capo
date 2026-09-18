@@ -23,6 +23,6 @@ def serialize_aws_json_1_1(value: UpdateRuleGroupResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateRuleGroupResponse:
     out: UpdateRuleGroupResponse = {}  # type: ignore[typeddict-item]
-    if "ChangeToken" in data:
+    if data.get("ChangeToken") is not None:
         out["change_token"] = data["ChangeToken"]
     return out

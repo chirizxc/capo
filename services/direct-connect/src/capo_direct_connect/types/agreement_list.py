@@ -27,6 +27,8 @@ def deserialize_aws_json_1_1(data: list) -> AgreementList:
 
     out: AgreementList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_direct_connect.types.customer_agreement.deserialize_aws_json_1_1(item)
         )

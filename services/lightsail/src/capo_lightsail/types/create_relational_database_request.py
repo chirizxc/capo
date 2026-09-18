@@ -70,47 +70,47 @@ def serialize_aws_json_1_1(value: CreateRelationalDatabaseRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateRelationalDatabaseRequest:
     out: CreateRelationalDatabaseRequest = {}  # type: ignore[typeddict-item]
-    if "relationalDatabaseName" in data:
+    if data.get("relationalDatabaseName") is not None:
         out["relational_database_name"] = data["relationalDatabaseName"]
     else:
         raise DeserializationError(
             "CreateRelationalDatabaseRequest.relational_database_name required"
         )
-    if "availabilityZone" in data:
+    if data.get("availabilityZone") is not None:
         out["availability_zone"] = data["availabilityZone"]
-    if "relationalDatabaseBlueprintId" in data:
+    if data.get("relationalDatabaseBlueprintId") is not None:
         out["relational_database_blueprint_id"] = data["relationalDatabaseBlueprintId"]
     else:
         raise DeserializationError(
             "CreateRelationalDatabaseRequest.relational_database_blueprint_id required"
         )
-    if "relationalDatabaseBundleId" in data:
+    if data.get("relationalDatabaseBundleId") is not None:
         out["relational_database_bundle_id"] = data["relationalDatabaseBundleId"]
     else:
         raise DeserializationError(
             "CreateRelationalDatabaseRequest.relational_database_bundle_id required"
         )
-    if "masterDatabaseName" in data:
+    if data.get("masterDatabaseName") is not None:
         out["master_database_name"] = data["masterDatabaseName"]
     else:
         raise DeserializationError(
             "CreateRelationalDatabaseRequest.master_database_name required"
         )
-    if "masterUsername" in data:
+    if data.get("masterUsername") is not None:
         out["master_username"] = data["masterUsername"]
     else:
         raise DeserializationError(
             "CreateRelationalDatabaseRequest.master_username required"
         )
-    if "masterUserPassword" in data:
+    if data.get("masterUserPassword") is not None:
         out["master_user_password"] = data["masterUserPassword"]
-    if "preferredBackupWindow" in data:
+    if data.get("preferredBackupWindow") is not None:
         out["preferred_backup_window"] = data["preferredBackupWindow"]
-    if "preferredMaintenanceWindow" in data:
+    if data.get("preferredMaintenanceWindow") is not None:
         out["preferred_maintenance_window"] = data["preferredMaintenanceWindow"]
-    if "publiclyAccessible" in data:
+    if data.get("publiclyAccessible") is not None:
         out["publicly_accessible"] = data["publiclyAccessible"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_lightsail.types.tag_list
 
         out["tags"] = capo_lightsail.types.tag_list.deserialize_aws_json_1_1(

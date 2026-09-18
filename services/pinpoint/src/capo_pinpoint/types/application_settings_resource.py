@@ -67,29 +67,29 @@ def serialize_json(value: ApplicationSettingsResource) -> dict:
 
 def deserialize_json(data: dict) -> ApplicationSettingsResource:
     out: ApplicationSettingsResource = {}  # type: ignore[typeddict-item]
-    if "ApplicationId" in data:
+    if data.get("ApplicationId") is not None:
         out["application_id"] = data["ApplicationId"]
-    if "CampaignHook" in data:
+    if data.get("CampaignHook") is not None:
         import capo_pinpoint.types.campaign_hook
 
         out["campaign_hook"] = capo_pinpoint.types.campaign_hook.deserialize_json(
             data["CampaignHook"]
         )
-    if "LastModifiedDate" in data:
+    if data.get("LastModifiedDate") is not None:
         out["last_modified_date"] = data["LastModifiedDate"]
-    if "Limits" in data:
+    if data.get("Limits") is not None:
         import capo_pinpoint.types.campaign_limits
 
         out["limits"] = capo_pinpoint.types.campaign_limits.deserialize_json(
             data["Limits"]
         )
-    if "QuietTime" in data:
+    if data.get("QuietTime") is not None:
         import capo_pinpoint.types.quiet_time
 
         out["quiet_time"] = capo_pinpoint.types.quiet_time.deserialize_json(
             data["QuietTime"]
         )
-    if "JourneyLimits" in data:
+    if data.get("JourneyLimits") is not None:
         import capo_pinpoint.types.application_settings_journey_limits
 
         out["journey_limits"] = (

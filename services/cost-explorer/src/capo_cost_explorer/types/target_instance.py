@@ -78,17 +78,17 @@ def serialize_aws_json_1_1(value: TargetInstance) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> TargetInstance:
     out: TargetInstance = {}  # type: ignore[typeddict-item]
-    if "EstimatedMonthlyCost" in data:
+    if data.get("EstimatedMonthlyCost") is not None:
         out["estimated_monthly_cost"] = data["EstimatedMonthlyCost"]
-    if "EstimatedMonthlySavings" in data:
+    if data.get("EstimatedMonthlySavings") is not None:
         out["estimated_monthly_savings"] = data["EstimatedMonthlySavings"]
-    if "CurrencyCode" in data:
+    if data.get("CurrencyCode") is not None:
         out["currency_code"] = data["CurrencyCode"]
-    if "DefaultTargetInstance" in data:
+    if data.get("DefaultTargetInstance") is not None:
         out["default_target_instance"] = data["DefaultTargetInstance"]
     else:
         out["default_target_instance"] = False
-    if "ResourceDetails" in data:
+    if data.get("ResourceDetails") is not None:
         import capo_cost_explorer.types.resource_details
 
         out["resource_details"] = (
@@ -96,7 +96,7 @@ def deserialize_aws_json_1_1(data: dict) -> TargetInstance:
                 data["ResourceDetails"]
             )
         )
-    if "ExpectedResourceUtilization" in data:
+    if data.get("ExpectedResourceUtilization") is not None:
         import capo_cost_explorer.types.resource_utilization
 
         out["expected_resource_utilization"] = (
@@ -104,7 +104,7 @@ def deserialize_aws_json_1_1(data: dict) -> TargetInstance:
                 data["ExpectedResourceUtilization"]
             )
         )
-    if "PlatformDifferences" in data:
+    if data.get("PlatformDifferences") is not None:
         import capo_cost_explorer.types.platform_differences
 
         out["platform_differences"] = (

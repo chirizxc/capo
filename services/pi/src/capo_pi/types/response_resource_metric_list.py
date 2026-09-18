@@ -25,6 +25,8 @@ def deserialize_aws_json_1_1(data: list) -> ResponseResourceMetricList:
 
     out: ResponseResourceMetricList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_pi.types.response_resource_metric.deserialize_aws_json_1_1(item)
         )

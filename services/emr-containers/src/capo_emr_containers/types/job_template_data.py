@@ -74,15 +74,15 @@ def serialize_json(value: JobTemplateData) -> dict:
 
 def deserialize_json(data: dict) -> JobTemplateData:
     out: JobTemplateData = {}  # type: ignore[typeddict-item]
-    if "executionRoleArn" in data:
+    if data.get("executionRoleArn") is not None:
         out["execution_role_arn"] = data["executionRoleArn"]
     else:
         raise DeserializationError("JobTemplateData.execution_role_arn required")
-    if "releaseLabel" in data:
+    if data.get("releaseLabel") is not None:
         out["release_label"] = data["releaseLabel"]
     else:
         raise DeserializationError("JobTemplateData.release_label required")
-    if "configurationOverrides" in data:
+    if data.get("configurationOverrides") is not None:
         import capo_emr_containers.types.parametric_configuration_overrides
 
         out["configuration_overrides"] = (
@@ -90,7 +90,7 @@ def deserialize_json(data: dict) -> JobTemplateData:
                 data["configurationOverrides"]
             )
         )
-    if "jobDriver" in data:
+    if data.get("jobDriver") is not None:
         import capo_emr_containers.types.job_driver
 
         out["job_driver"] = capo_emr_containers.types.job_driver.deserialize_json(
@@ -98,7 +98,7 @@ def deserialize_json(data: dict) -> JobTemplateData:
         )
     else:
         raise DeserializationError("JobTemplateData.job_driver required")
-    if "parameterConfiguration" in data:
+    if data.get("parameterConfiguration") is not None:
         import capo_emr_containers.types.template_parameter_configuration_map
 
         out["parameter_configuration"] = (
@@ -106,7 +106,7 @@ def deserialize_json(data: dict) -> JobTemplateData:
                 data["parameterConfiguration"]
             )
         )
-    if "jobTags" in data:
+    if data.get("jobTags") is not None:
         import capo_emr_containers.types.tag_map
 
         out["job_tags"] = capo_emr_containers.types.tag_map.deserialize_json(

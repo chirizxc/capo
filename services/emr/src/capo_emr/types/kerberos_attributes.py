@@ -49,16 +49,16 @@ def serialize_aws_json_1_1(value: KerberosAttributes) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> KerberosAttributes:
     out: KerberosAttributes = {}  # type: ignore[typeddict-item]
-    if "Realm" in data:
+    if data.get("Realm") is not None:
         out["realm"] = data["Realm"]
-    if "KdcAdminPassword" in data:
+    if data.get("KdcAdminPassword") is not None:
         out["kdc_admin_password"] = data["KdcAdminPassword"]
-    if "CrossRealmTrustPrincipalPassword" in data:
+    if data.get("CrossRealmTrustPrincipalPassword") is not None:
         out["cross_realm_trust_principal_password"] = data[
             "CrossRealmTrustPrincipalPassword"
         ]
-    if "ADDomainJoinUser" in data:
+    if data.get("ADDomainJoinUser") is not None:
         out["ad_domain_join_user"] = data["ADDomainJoinUser"]
-    if "ADDomainJoinPassword" in data:
+    if data.get("ADDomainJoinPassword") is not None:
         out["ad_domain_join_password"] = data["ADDomainJoinPassword"]
     return out

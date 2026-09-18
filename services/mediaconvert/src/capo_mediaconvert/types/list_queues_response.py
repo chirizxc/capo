@@ -43,16 +43,16 @@ def serialize_json(value: ListQueuesResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListQueuesResponse:
     out: ListQueuesResponse = {}  # type: ignore[typeddict-item]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "queues" in data:
+    if data.get("queues") is not None:
         import capo_mediaconvert.types.__list_of_queue
 
         out["queues"] = capo_mediaconvert.types.__list_of_queue.deserialize_json(
             data["queues"]
         )
-    if "totalConcurrentJobs" in data:
+    if data.get("totalConcurrentJobs") is not None:
         out["total_concurrent_jobs"] = data["totalConcurrentJobs"]
-    if "unallocatedConcurrentJobs" in data:
+    if data.get("unallocatedConcurrentJobs") is not None:
         out["unallocated_concurrent_jobs"] = data["unallocatedConcurrentJobs"]
     return out

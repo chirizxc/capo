@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> UserAccessTasksList:
 
     out: UserAccessTasksList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_appfabric.types.user_access_task_item.deserialize_json(item))
     return out

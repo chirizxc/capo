@@ -42,16 +42,16 @@ def serialize_json(value: Indicator) -> dict:
 
 def deserialize_json(data: dict) -> Indicator:
     out: Indicator = {}  # type: ignore[typeddict-item]
-    if "Key" in data:
+    if data.get("Key") is not None:
         out["key"] = data["Key"]
-    if "Values" in data:
+    if data.get("Values") is not None:
         import capo_securityhub.types.non_empty_string_list
 
         out["values"] = capo_securityhub.types.non_empty_string_list.deserialize_json(
             data["Values"]
         )
-    if "Title" in data:
+    if data.get("Title") is not None:
         out["title"] = data["Title"]
-    if "Type" in data:
+    if data.get("Type") is not None:
         out["type"] = data["Type"]
     return out

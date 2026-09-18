@@ -31,7 +31,7 @@ def serialize_json(value: DateRange) -> dict:
 
 def deserialize_json(data: dict) -> DateRange:
     out: DateRange = {}  # type: ignore[typeddict-item]
-    if "FromDate" in data:
+    if data.get("FromDate") is not None:
         import capo_backup.types.timestamp
 
         out["from_date"] = capo_backup.types.timestamp.deserialize_json(
@@ -39,7 +39,7 @@ def deserialize_json(data: dict) -> DateRange:
         )
     else:
         raise DeserializationError("DateRange.from_date required")
-    if "ToDate" in data:
+    if data.get("ToDate") is not None:
         import capo_backup.types.timestamp
 
         out["to_date"] = capo_backup.types.timestamp.deserialize_json(data["ToDate"])

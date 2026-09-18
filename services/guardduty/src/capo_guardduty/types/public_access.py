@@ -36,7 +36,7 @@ def serialize_json(value: PublicAccess) -> dict:
 
 def deserialize_json(data: dict) -> PublicAccess:
     out: PublicAccess = {}  # type: ignore[typeddict-item]
-    if "permissionConfiguration" in data:
+    if data.get("permissionConfiguration") is not None:
         import capo_guardduty.types.permission_configuration
 
         out["permission_configuration"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> PublicAccess:
                 data["permissionConfiguration"]
             )
         )
-    if "effectivePermission" in data:
+    if data.get("effectivePermission") is not None:
         out["effective_permission"] = data["effectivePermission"]
     return out

@@ -32,9 +32,9 @@ def serialize_json(value: IntervalDetails) -> dict:
 
 def deserialize_json(data: dict) -> IntervalDetails:
     out: IntervalDetails = {}  # type: ignore[typeddict-item]
-    if "TimeZone" in data:
+    if data.get("TimeZone") is not None:
         out["time_zone"] = data["TimeZone"]
-    if "IntervalPeriod" in data:
+    if data.get("IntervalPeriod") is not None:
         import capo_connect.types.interval_period
 
         out["interval_period"] = capo_connect.types.interval_period.deserialize_json(

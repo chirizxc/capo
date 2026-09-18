@@ -38,12 +38,12 @@ def serialize_aws_json_1_1(value: RollbackInfo) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RollbackInfo:
     out: RollbackInfo = {}  # type: ignore[typeddict-item]
-    if "rollbackDeploymentId" in data:
+    if data.get("rollbackDeploymentId") is not None:
         out["rollback_deployment_id"] = data["rollbackDeploymentId"]
-    if "rollbackTriggeringDeploymentId" in data:
+    if data.get("rollbackTriggeringDeploymentId") is not None:
         out["rollback_triggering_deployment_id"] = data[
             "rollbackTriggeringDeploymentId"
         ]
-    if "rollbackMessage" in data:
+    if data.get("rollbackMessage") is not None:
         out["rollback_message"] = data["rollbackMessage"]
     return out

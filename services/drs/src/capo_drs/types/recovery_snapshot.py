@@ -47,21 +47,21 @@ def serialize_json(value: RecoverySnapshot) -> dict:
 
 def deserialize_json(data: dict) -> RecoverySnapshot:
     out: RecoverySnapshot = {}  # type: ignore[typeddict-item]
-    if "snapshotID" in data:
+    if data.get("snapshotID") is not None:
         out["snapshot_id"] = data["snapshotID"]
     else:
         raise DeserializationError("RecoverySnapshot.snapshot_id required")
-    if "sourceServerID" in data:
+    if data.get("sourceServerID") is not None:
         out["source_server_id"] = data["sourceServerID"]
     else:
         raise DeserializationError("RecoverySnapshot.source_server_id required")
-    if "expectedTimestamp" in data:
+    if data.get("expectedTimestamp") is not None:
         out["expected_timestamp"] = data["expectedTimestamp"]
     else:
         raise DeserializationError("RecoverySnapshot.expected_timestamp required")
-    if "timestamp" in data:
+    if data.get("timestamp") is not None:
         out["timestamp"] = data["timestamp"]
-    if "ebsSnapshots" in data:
+    if data.get("ebsSnapshots") is not None:
         import capo_drs.types.ebs_snapshots_list
 
         out["ebs_snapshots"] = capo_drs.types.ebs_snapshots_list.deserialize_json(

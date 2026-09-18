@@ -121,13 +121,13 @@ def serialize_json(value: Slot) -> dict:
 
 def deserialize_json(data: dict) -> Slot:
     out: Slot = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("Slot.name required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "slotConstraint" in data:
+    if data.get("slotConstraint") is not None:
         import capo_lex_model_building_service.types.slot_constraint
 
         out["slot_constraint"] = (
@@ -137,11 +137,11 @@ def deserialize_json(data: dict) -> Slot:
         )
     else:
         raise DeserializationError("Slot.slot_constraint required")
-    if "slotType" in data:
+    if data.get("slotType") is not None:
         out["slot_type"] = data["slotType"]
-    if "slotTypeVersion" in data:
+    if data.get("slotTypeVersion") is not None:
         out["slot_type_version"] = data["slotTypeVersion"]
-    if "valueElicitationPrompt" in data:
+    if data.get("valueElicitationPrompt") is not None:
         import capo_lex_model_building_service.types.prompt
 
         out["value_elicitation_prompt"] = (
@@ -149,9 +149,9 @@ def deserialize_json(data: dict) -> Slot:
                 data["valueElicitationPrompt"]
             )
         )
-    if "priority" in data:
+    if data.get("priority") is not None:
         out["priority"] = data["priority"]
-    if "sampleUtterances" in data:
+    if data.get("sampleUtterances") is not None:
         import capo_lex_model_building_service.types.slot_utterance_list
 
         out["sample_utterances"] = (
@@ -159,9 +159,9 @@ def deserialize_json(data: dict) -> Slot:
                 data["sampleUtterances"]
             )
         )
-    if "responseCard" in data:
+    if data.get("responseCard") is not None:
         out["response_card"] = data["responseCard"]
-    if "obfuscationSetting" in data:
+    if data.get("obfuscationSetting") is not None:
         import capo_lex_model_building_service.types.obfuscation_setting
 
         out["obfuscation_setting"] = (
@@ -169,7 +169,7 @@ def deserialize_json(data: dict) -> Slot:
                 data["obfuscationSetting"]
             )
         )
-    if "defaultValueSpec" in data:
+    if data.get("defaultValueSpec") is not None:
         import capo_lex_model_building_service.types.slot_default_value_spec
 
         out["default_value_spec"] = (

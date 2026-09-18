@@ -32,15 +32,15 @@ def serialize_json(value: CreateDomainResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateDomainResponse:
     out: CreateDomainResponse = {}  # type: ignore[typeddict-item]
-    if "domainId" in data:
+    if data.get("domainId") is not None:
         out["domain_id"] = data["domainId"]
     else:
         raise DeserializationError("CreateDomainResponse.domain_id required")
-    if "domainArn" in data:
+    if data.get("domainArn") is not None:
         out["domain_arn"] = data["domainArn"]
     else:
         raise DeserializationError("CreateDomainResponse.domain_arn required")
-    if "domainStatus" in data:
+    if data.get("domainStatus") is not None:
         out["domain_status"] = data["domainStatus"]
     else:
         raise DeserializationError("CreateDomainResponse.domain_status required")

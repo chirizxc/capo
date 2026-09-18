@@ -67,28 +67,28 @@ def serialize_aws_json_1_1(value: CreateEndpointRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateEndpointRequest:
     out: CreateEndpointRequest = {}  # type: ignore[typeddict-item]
-    if "EndpointName" in data:
+    if data.get("EndpointName") is not None:
         out["endpoint_name"] = data["EndpointName"]
     else:
         raise DeserializationError("CreateEndpointRequest.endpoint_name required")
-    if "ModelArn" in data:
+    if data.get("ModelArn") is not None:
         out["model_arn"] = data["ModelArn"]
-    if "DesiredInferenceUnits" in data:
+    if data.get("DesiredInferenceUnits") is not None:
         out["desired_inference_units"] = data["DesiredInferenceUnits"]
     else:
         raise DeserializationError(
             "CreateEndpointRequest.desired_inference_units required"
         )
-    if "ClientRequestToken" in data:
+    if data.get("ClientRequestToken") is not None:
         out["client_request_token"] = data["ClientRequestToken"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_comprehend.types.tag_list
 
         out["tags"] = capo_comprehend.types.tag_list.deserialize_aws_json_1_1(
             data["Tags"]
         )
-    if "DataAccessRoleArn" in data:
+    if data.get("DataAccessRoleArn") is not None:
         out["data_access_role_arn"] = data["DataAccessRoleArn"]
-    if "FlywheelArn" in data:
+    if data.get("FlywheelArn") is not None:
         out["flywheel_arn"] = data["FlywheelArn"]
     return out

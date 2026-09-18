@@ -55,20 +55,20 @@ def serialize_json(value: ListSlotTypesRequest) -> dict:
 
 def deserialize_json(data: dict) -> ListSlotTypesRequest:
     out: ListSlotTypesRequest = {}  # type: ignore[typeddict-item]
-    if "sortBy" in data:
+    if data.get("sortBy") is not None:
         import capo_lex_models_v2.types.slot_type_sort_by
 
         out["sort_by"] = capo_lex_models_v2.types.slot_type_sort_by.deserialize_json(
             data["sortBy"]
         )
-    if "filters" in data:
+    if data.get("filters") is not None:
         import capo_lex_models_v2.types.slot_type_filters
 
         out["filters"] = capo_lex_models_v2.types.slot_type_filters.deserialize_json(
             data["filters"]
         )
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

@@ -41,15 +41,15 @@ def serialize_json(value: AssetBundleImportJobDataSetOverrideParameters) -> dict
 
 def deserialize_json(data: dict) -> AssetBundleImportJobDataSetOverrideParameters:
     out: AssetBundleImportJobDataSetOverrideParameters = {}  # type: ignore[typeddict-item]
-    if "DataSetId" in data:
+    if data.get("DataSetId") is not None:
         out["data_set_id"] = data["DataSetId"]
     else:
         raise DeserializationError(
             "AssetBundleImportJobDataSetOverrideParameters.data_set_id required"
         )
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "DataSetRefreshProperties" in data:
+    if data.get("DataSetRefreshProperties") is not None:
         import capo_quicksight.types.data_set_refresh_properties
 
         out["data_set_refresh_properties"] = (

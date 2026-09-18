@@ -29,6 +29,8 @@ def deserialize_aws_json_1_0(data: list) -> EngagementContextTypeList:
 
     out: EngagementContextTypeList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_partnercentral_selling.types.engagement_context_type.deserialize_aws_json_1_0(
                 item

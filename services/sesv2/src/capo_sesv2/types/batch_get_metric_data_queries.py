@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> BatchGetMetricDataQueries:
 
     out: BatchGetMetricDataQueries = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_sesv2.types.batch_get_metric_data_query.deserialize_json(item))
     return out

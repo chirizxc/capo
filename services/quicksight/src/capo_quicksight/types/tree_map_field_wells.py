@@ -31,7 +31,7 @@ def serialize_json(value: TreeMapFieldWells) -> dict:
 
 def deserialize_json(data: dict) -> TreeMapFieldWells:
     out: TreeMapFieldWells = {}  # type: ignore[typeddict-item]
-    if "TreeMapAggregatedFieldWells" in data:
+    if data.get("TreeMapAggregatedFieldWells") is not None:
         import capo_quicksight.types.tree_map_aggregated_field_wells
 
         out["tree_map_aggregated_field_wells"] = (

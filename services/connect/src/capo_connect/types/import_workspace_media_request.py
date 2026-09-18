@@ -36,7 +36,7 @@ def serialize_json(value: ImportWorkspaceMediaRequest) -> dict:
 
 def deserialize_json(data: dict) -> ImportWorkspaceMediaRequest:
     out: ImportWorkspaceMediaRequest = {}  # type: ignore[typeddict-item]
-    if "MediaType" in data:
+    if data.get("MediaType") is not None:
         import capo_connect.types.media_type
 
         out["media_type"] = capo_connect.types.media_type.deserialize_json(
@@ -44,7 +44,7 @@ def deserialize_json(data: dict) -> ImportWorkspaceMediaRequest:
         )
     else:
         raise DeserializationError("ImportWorkspaceMediaRequest.media_type required")
-    if "MediaSource" in data:
+    if data.get("MediaSource") is not None:
         out["media_source"] = data["MediaSource"]
     else:
         raise DeserializationError("ImportWorkspaceMediaRequest.media_source required")

@@ -23,6 +23,6 @@ def serialize_json(value: CreatePersistentContactAssociationResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreatePersistentContactAssociationResponse:
     out: CreatePersistentContactAssociationResponse = {}  # type: ignore[typeddict-item]
-    if "ContinuedFromContactId" in data:
+    if data.get("ContinuedFromContactId") is not None:
         out["continued_from_contact_id"] = data["ContinuedFromContactId"]
     return out

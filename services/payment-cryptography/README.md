@@ -13,9 +13,9 @@ from capo_payment_cryptography import AsyncPaymentCryptographyClient
 
 
 async def main():
-    async with AsyncPaymentCryptographyClient() as s3:
+    async with AsyncPaymentCryptographyClient() as payment_cryptography:
         # Example: call the associate_mpa_team operation
-        response = await s3.associate_mpa_team()
+        response = await payment_cryptography.associate_mpa_team()
         print(response["mpa_team_association"])
 ```
 
@@ -28,9 +28,9 @@ from capo_payment_cryptography import AsyncPaymentCryptographyClient
 
 
 async def main():
-    async with AsyncPaymentCryptographyClient() as s3:
+    async with AsyncPaymentCryptographyClient() as payment_cryptography:
         # Example: paginate over list_tags_for_resource
-        async for item in s3.iter_list_tags_for_resource():
+        async for item in payment_cryptography.iter_list_tags_for_resource():
             print(item)
 ```
 
@@ -44,9 +44,9 @@ from capo_payment_cryptography.error import AccessDeniedException
 
 
 async def main():
-    async with AsyncPaymentCryptographyClient() as s3:
+    async with AsyncPaymentCryptographyClient() as payment_cryptography:
         try:
-            await s3.associate_mpa_team()
+            await payment_cryptography.associate_mpa_team()
         except AccessDeniedException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -63,13 +63,13 @@ from capo_payment_cryptography import AsyncPaymentCryptographyClient
 
 
 async def main():
-    async with AsyncPaymentCryptographyClient() as s3:
+    async with AsyncPaymentCryptographyClient() as payment_cryptography:
         # Default: 3 attempts for every operation
-        response = await s3.associate_mpa_team()
+        response = await payment_cryptography.associate_mpa_team()
 
         # Override per operation
-        response = await s3.associate_mpa_team(config_overrides={"retry_max_attempts": 5})
+        response = await payment_cryptography.associate_mpa_team(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.associate_mpa_team(config_overrides={"retry_max_attempts": 1})
+        response = await payment_cryptography.associate_mpa_team(config_overrides={"retry_max_attempts": 1})
 ```

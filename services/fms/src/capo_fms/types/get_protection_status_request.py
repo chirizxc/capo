@@ -58,26 +58,26 @@ def serialize_aws_json_1_1(value: GetProtectionStatusRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetProtectionStatusRequest:
     out: GetProtectionStatusRequest = {}  # type: ignore[typeddict-item]
-    if "PolicyId" in data:
+    if data.get("PolicyId") is not None:
         out["policy_id"] = data["PolicyId"]
     else:
         raise DeserializationError("GetProtectionStatusRequest.policy_id required")
-    if "MemberAccountId" in data:
+    if data.get("MemberAccountId") is not None:
         out["member_account_id"] = data["MemberAccountId"]
-    if "StartTime" in data:
+    if data.get("StartTime") is not None:
         import capo_fms.types.time_stamp
 
         out["start_time"] = capo_fms.types.time_stamp.deserialize_aws_json_1_1(
             data["StartTime"]
         )
-    if "EndTime" in data:
+    if data.get("EndTime") is not None:
         import capo_fms.types.time_stamp
 
         out["end_time"] = capo_fms.types.time_stamp.deserialize_aws_json_1_1(
             data["EndTime"]
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
     return out

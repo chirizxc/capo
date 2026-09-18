@@ -28,7 +28,7 @@ def serialize_json(value: DeactivateEvaluationFormRequest) -> dict:
 
 def deserialize_json(data: dict) -> DeactivateEvaluationFormRequest:
     out: DeactivateEvaluationFormRequest = {}  # type: ignore[typeddict-item]
-    if "EvaluationFormVersion" in data:
+    if data.get("EvaluationFormVersion") is not None:
         out["evaluation_form_version"] = data["EvaluationFormVersion"]
     else:
         out["evaluation_form_version"] = 0

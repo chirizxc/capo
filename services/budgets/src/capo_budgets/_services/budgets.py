@@ -252,9 +252,10 @@ class BudgetsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_budgets.types.create_budget_request.CreateBudgetRequest = {}  # type: ignore[typeddict-item]
-        input_["account_id"] = account_id
-        input_["budget"] = budget
+        input_: capo_budgets.types.create_budget_request.CreateBudgetRequest = {
+            "account_id": account_id,
+            "budget": budget,
+        }
         if notifications_with_subscribers is not None:
             input_["notifications_with_subscribers"] = notifications_with_subscribers
         if resource_tags is not None:
@@ -265,6 +266,7 @@ class BudgetsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_budget_action(
@@ -319,16 +321,17 @@ class BudgetsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_budgets.types.create_budget_action_request.CreateBudgetActionRequest = {}  # type: ignore[typeddict-item]
-        input_["account_id"] = account_id
-        input_["budget_name"] = budget_name
-        input_["notification_type"] = notification_type
-        input_["action_type"] = action_type
-        input_["action_threshold"] = action_threshold
-        input_["definition"] = definition
-        input_["execution_role_arn"] = execution_role_arn
-        input_["approval_model"] = approval_model
-        input_["subscribers"] = subscribers
+        input_: capo_budgets.types.create_budget_action_request.CreateBudgetActionRequest = {
+            "account_id": account_id,
+            "budget_name": budget_name,
+            "notification_type": notification_type,
+            "action_type": action_type,
+            "action_threshold": action_threshold,
+            "definition": definition,
+            "execution_role_arn": execution_role_arn,
+            "approval_model": approval_model,
+            "subscribers": subscribers,
+        }
         if resource_tags is not None:
             input_["resource_tags"] = resource_tags
 
@@ -337,6 +340,7 @@ class BudgetsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_notification(
@@ -382,17 +386,19 @@ class BudgetsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_budgets.types.create_notification_request.CreateNotificationRequest = {}  # type: ignore[typeddict-item]
-        input_["account_id"] = account_id
-        input_["budget_name"] = budget_name
-        input_["notification"] = notification
-        input_["subscribers"] = subscribers
+        input_: capo_budgets.types.create_notification_request.CreateNotificationRequest = {
+            "account_id": account_id,
+            "budget_name": budget_name,
+            "notification": notification,
+            "subscribers": subscribers,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_subscriber(
@@ -438,17 +444,19 @@ class BudgetsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_budgets.types.create_subscriber_request.CreateSubscriberRequest = {}  # type: ignore[typeddict-item]
-        input_["account_id"] = account_id
-        input_["budget_name"] = budget_name
-        input_["notification"] = notification
-        input_["subscriber"] = subscriber
+        input_: capo_budgets.types.create_subscriber_request.CreateSubscriberRequest = {
+            "account_id": account_id,
+            "budget_name": budget_name,
+            "notification": notification,
+            "subscriber": subscriber,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_budget(
@@ -488,15 +496,17 @@ class BudgetsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_budgets.types.delete_budget_request.DeleteBudgetRequest = {}  # type: ignore[typeddict-item]
-        input_["account_id"] = account_id
-        input_["budget_name"] = budget_name
+        input_: capo_budgets.types.delete_budget_request.DeleteBudgetRequest = {
+            "account_id": account_id,
+            "budget_name": budget_name,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_budget_action(
@@ -537,16 +547,18 @@ class BudgetsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_budgets.types.delete_budget_action_request.DeleteBudgetActionRequest = {}  # type: ignore[typeddict-item]
-        input_["account_id"] = account_id
-        input_["budget_name"] = budget_name
-        input_["action_id"] = action_id
+        input_: capo_budgets.types.delete_budget_action_request.DeleteBudgetActionRequest = {
+            "account_id": account_id,
+            "budget_name": budget_name,
+            "action_id": action_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_notification(
@@ -588,16 +600,18 @@ class BudgetsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_budgets.types.delete_notification_request.DeleteNotificationRequest = {}  # type: ignore[typeddict-item]
-        input_["account_id"] = account_id
-        input_["budget_name"] = budget_name
-        input_["notification"] = notification
+        input_: capo_budgets.types.delete_notification_request.DeleteNotificationRequest = {
+            "account_id": account_id,
+            "budget_name": budget_name,
+            "notification": notification,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_subscriber(
@@ -641,17 +655,19 @@ class BudgetsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_budgets.types.delete_subscriber_request.DeleteSubscriberRequest = {}  # type: ignore[typeddict-item]
-        input_["account_id"] = account_id
-        input_["budget_name"] = budget_name
-        input_["notification"] = notification
-        input_["subscriber"] = subscriber
+        input_: capo_budgets.types.delete_subscriber_request.DeleteSubscriberRequest = {
+            "account_id": account_id,
+            "budget_name": budget_name,
+            "notification": notification,
+            "subscriber": subscriber,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_budget(
@@ -695,9 +711,10 @@ class BudgetsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_budgets.types.describe_budget_request.DescribeBudgetRequest = {}  # type: ignore[typeddict-item]
-        input_["account_id"] = account_id
-        input_["budget_name"] = budget_name
+        input_: capo_budgets.types.describe_budget_request.DescribeBudgetRequest = {
+            "account_id": account_id,
+            "budget_name": budget_name,
+        }
         if show_filter_expression is not None:
             input_["show_filter_expression"] = show_filter_expression
 
@@ -706,6 +723,7 @@ class BudgetsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_budget_action(
@@ -745,16 +763,18 @@ class BudgetsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_budgets.types.describe_budget_action_request.DescribeBudgetActionRequest = {}  # type: ignore[typeddict-item]
-        input_["account_id"] = account_id
-        input_["budget_name"] = budget_name
-        input_["action_id"] = action_id
+        input_: capo_budgets.types.describe_budget_action_request.DescribeBudgetActionRequest = {
+            "account_id": account_id,
+            "budget_name": budget_name,
+            "action_id": action_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_budget_action_histories(
@@ -798,10 +818,11 @@ class BudgetsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_budgets.types.describe_budget_action_histories_request.DescribeBudgetActionHistoriesRequest = {}  # type: ignore[typeddict-item]
-        input_["account_id"] = account_id
-        input_["budget_name"] = budget_name
-        input_["action_id"] = action_id
+        input_: capo_budgets.types.describe_budget_action_histories_request.DescribeBudgetActionHistoriesRequest = {
+            "account_id": account_id,
+            "budget_name": budget_name,
+            "action_id": action_id,
+        }
         if time_period is not None:
             input_["time_period"] = time_period
         if max_results is not None:
@@ -814,6 +835,7 @@ class BudgetsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_describe_budget_action_histories(
@@ -879,8 +901,9 @@ class BudgetsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_budgets.types.describe_budget_actions_for_account_request.DescribeBudgetActionsForAccountRequest = {}  # type: ignore[typeddict-item]
-        input_["account_id"] = account_id
+        input_: capo_budgets.types.describe_budget_actions_for_account_request.DescribeBudgetActionsForAccountRequest = {
+            "account_id": account_id
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -891,6 +914,7 @@ class BudgetsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_describe_budget_actions_for_account(
@@ -952,9 +976,10 @@ class BudgetsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_budgets.types.describe_budget_actions_for_budget_request.DescribeBudgetActionsForBudgetRequest = {}  # type: ignore[typeddict-item]
-        input_["account_id"] = account_id
-        input_["budget_name"] = budget_name
+        input_: capo_budgets.types.describe_budget_actions_for_budget_request.DescribeBudgetActionsForBudgetRequest = {
+            "account_id": account_id,
+            "budget_name": budget_name,
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -965,6 +990,7 @@ class BudgetsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_describe_budget_actions_for_budget(
@@ -1033,8 +1059,9 @@ class BudgetsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_budgets.types.describe_budget_notifications_for_account_request.DescribeBudgetNotificationsForAccountRequest = {}  # type: ignore[typeddict-item]
-        input_["account_id"] = account_id
+        input_: capo_budgets.types.describe_budget_notifications_for_account_request.DescribeBudgetNotificationsForAccountRequest = {
+            "account_id": account_id
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -1045,6 +1072,7 @@ class BudgetsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_describe_budget_notifications_for_account(
@@ -1114,9 +1142,10 @@ class BudgetsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_budgets.types.describe_budget_performance_history_request.DescribeBudgetPerformanceHistoryRequest = {}  # type: ignore[typeddict-item]
-        input_["account_id"] = account_id
-        input_["budget_name"] = budget_name
+        input_: capo_budgets.types.describe_budget_performance_history_request.DescribeBudgetPerformanceHistoryRequest = {
+            "account_id": account_id,
+            "budget_name": budget_name,
+        }
         if time_period is not None:
             input_["time_period"] = time_period
         if max_results is not None:
@@ -1129,7 +1158,33 @@ class BudgetsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_describe_budget_performance_history(
+        self,
+        account_id: "capo_budgets.types.account_id.AccountId",
+        budget_name: "capo_budgets.types.budget_name.BudgetName",
+        *,
+        config_overrides: Optional[BudgetsClientConfig] = None,
+        time_period: Optional["capo_budgets.types.time_period.TimePeriod"] = None,
+        max_results: Optional["capo_budgets.types.max_results.MaxResults"] = None,
+        next_token: Optional["capo_budgets.types.generic_string.GenericString"] = None,
+    ) -> "Iterator[capo_budgets.types.describe_budget_performance_history_response.DescribeBudgetPerformanceHistoryResponse]":
+        _token = next_token
+        while True:
+            _response = self.describe_budget_performance_history(
+                account_id,
+                budget_name,
+                config_overrides=config_overrides,
+                time_period=time_period,
+                max_results=max_results,
+                next_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def describe_budgets(
         self,
@@ -1178,8 +1233,9 @@ class BudgetsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_budgets.types.describe_budgets_request.DescribeBudgetsRequest = {}  # type: ignore[typeddict-item]
-        input_["account_id"] = account_id
+        input_: capo_budgets.types.describe_budgets_request.DescribeBudgetsRequest = {
+            "account_id": account_id
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -1192,6 +1248,7 @@ class BudgetsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_describe_budgets(
@@ -1266,9 +1323,10 @@ class BudgetsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_budgets.types.describe_notifications_for_budget_request.DescribeNotificationsForBudgetRequest = {}  # type: ignore[typeddict-item]
-        input_["account_id"] = account_id
-        input_["budget_name"] = budget_name
+        input_: capo_budgets.types.describe_notifications_for_budget_request.DescribeNotificationsForBudgetRequest = {
+            "account_id": account_id,
+            "budget_name": budget_name,
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -1279,6 +1337,7 @@ class BudgetsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_describe_notifications_for_budget(
@@ -1351,10 +1410,11 @@ class BudgetsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_budgets.types.describe_subscribers_for_notification_request.DescribeSubscribersForNotificationRequest = {}  # type: ignore[typeddict-item]
-        input_["account_id"] = account_id
-        input_["budget_name"] = budget_name
-        input_["notification"] = notification
+        input_: capo_budgets.types.describe_subscribers_for_notification_request.DescribeSubscribersForNotificationRequest = {
+            "account_id": account_id,
+            "budget_name": budget_name,
+            "notification": notification,
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -1365,6 +1425,7 @@ class BudgetsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_describe_subscribers_for_notification(
@@ -1436,17 +1497,19 @@ class BudgetsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_budgets.types.execute_budget_action_request.ExecuteBudgetActionRequest = {}  # type: ignore[typeddict-item]
-        input_["account_id"] = account_id
-        input_["budget_name"] = budget_name
-        input_["action_id"] = action_id
-        input_["execution_type"] = execution_type
+        input_: capo_budgets.types.execute_budget_action_request.ExecuteBudgetActionRequest = {
+            "account_id": account_id,
+            "budget_name": budget_name,
+            "action_id": action_id,
+            "execution_type": execution_type,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_tags_for_resource(
@@ -1486,14 +1549,16 @@ class BudgetsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_budgets.types.list_tags_for_resource_request.ListTagsForResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_budgets.types.list_tags_for_resource_request.ListTagsForResourceRequest = {
+            "resource_arn": resource_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def tag_resource(
@@ -1534,15 +1599,17 @@ class BudgetsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_budgets.types.tag_resource_request.TagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["resource_tags"] = resource_tags
+        input_: capo_budgets.types.tag_resource_request.TagResourceRequest = {
+            "resource_arn": resource_arn,
+            "resource_tags": resource_tags,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def untag_resource(
@@ -1582,15 +1649,17 @@ class BudgetsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_budgets.types.untag_resource_request.UntagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["resource_tag_keys"] = resource_tag_keys
+        input_: capo_budgets.types.untag_resource_request.UntagResourceRequest = {
+            "resource_arn": resource_arn,
+            "resource_tag_keys": resource_tag_keys,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_budget(
@@ -1632,15 +1701,17 @@ class BudgetsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_budgets.types.update_budget_request.UpdateBudgetRequest = {}  # type: ignore[typeddict-item]
-        input_["account_id"] = account_id
-        input_["new_budget"] = new_budget
+        input_: capo_budgets.types.update_budget_request.UpdateBudgetRequest = {
+            "account_id": account_id,
+            "new_budget": new_budget,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_budget_action(
@@ -1695,10 +1766,11 @@ class BudgetsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_budgets.types.update_budget_action_request.UpdateBudgetActionRequest = {}  # type: ignore[typeddict-item]
-        input_["account_id"] = account_id
-        input_["budget_name"] = budget_name
-        input_["action_id"] = action_id
+        input_: capo_budgets.types.update_budget_action_request.UpdateBudgetActionRequest = {
+            "account_id": account_id,
+            "budget_name": budget_name,
+            "action_id": action_id,
+        }
         if notification_type is not None:
             input_["notification_type"] = notification_type
         if action_threshold is not None:
@@ -1717,6 +1789,7 @@ class BudgetsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_notification(
@@ -1761,17 +1834,19 @@ class BudgetsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_budgets.types.update_notification_request.UpdateNotificationRequest = {}  # type: ignore[typeddict-item]
-        input_["account_id"] = account_id
-        input_["budget_name"] = budget_name
-        input_["old_notification"] = old_notification
-        input_["new_notification"] = new_notification
+        input_: capo_budgets.types.update_notification_request.UpdateNotificationRequest = {
+            "account_id": account_id,
+            "budget_name": budget_name,
+            "old_notification": old_notification,
+            "new_notification": new_notification,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_subscriber(
@@ -1818,18 +1893,20 @@ class BudgetsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_budgets.types.update_subscriber_request.UpdateSubscriberRequest = {}  # type: ignore[typeddict-item]
-        input_["account_id"] = account_id
-        input_["budget_name"] = budget_name
-        input_["notification"] = notification
-        input_["old_subscriber"] = old_subscriber
-        input_["new_subscriber"] = new_subscriber
+        input_: capo_budgets.types.update_subscriber_request.UpdateSubscriberRequest = {
+            "account_id": account_id,
+            "budget_name": budget_name,
+            "notification": notification,
+            "old_subscriber": old_subscriber,
+            "new_subscriber": new_subscriber,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def __enter__(self) -> Self:

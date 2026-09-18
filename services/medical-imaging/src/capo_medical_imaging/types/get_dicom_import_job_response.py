@@ -30,7 +30,7 @@ def serialize_json(value: GetDICOMImportJobResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetDICOMImportJobResponse:
     out: GetDICOMImportJobResponse = {}  # type: ignore[typeddict-item]
-    if "jobProperties" in data:
+    if data.get("jobProperties") is not None:
         import capo_medical_imaging.types.dicom_import_job_properties
 
         out["job_properties"] = (

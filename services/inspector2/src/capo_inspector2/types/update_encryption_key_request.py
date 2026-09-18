@@ -32,15 +32,15 @@ def serialize_json(value: UpdateEncryptionKeyRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateEncryptionKeyRequest:
     out: UpdateEncryptionKeyRequest = {}  # type: ignore[typeddict-item]
-    if "kmsKeyId" in data:
+    if data.get("kmsKeyId") is not None:
         out["kms_key_id"] = data["kmsKeyId"]
     else:
         raise DeserializationError("UpdateEncryptionKeyRequest.kms_key_id required")
-    if "scanType" in data:
+    if data.get("scanType") is not None:
         out["scan_type"] = data["scanType"]
     else:
         raise DeserializationError("UpdateEncryptionKeyRequest.scan_type required")
-    if "resourceType" in data:
+    if data.get("resourceType") is not None:
         out["resource_type"] = data["resourceType"]
     else:
         raise DeserializationError("UpdateEncryptionKeyRequest.resource_type required")

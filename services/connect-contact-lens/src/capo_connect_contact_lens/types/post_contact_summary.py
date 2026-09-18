@@ -51,9 +51,9 @@ def serialize_json(value: PostContactSummary) -> dict:
 
 def deserialize_json(data: dict) -> PostContactSummary:
     out: PostContactSummary = {}  # type: ignore[typeddict-item]
-    if "Content" in data:
+    if data.get("Content") is not None:
         out["content"] = data["Content"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_connect_contact_lens.types.post_contact_summary_status
 
         out["status"] = (
@@ -61,7 +61,7 @@ def deserialize_json(data: dict) -> PostContactSummary:
                 data["Status"]
             )
         )
-    if "FailureCode" in data:
+    if data.get("FailureCode") is not None:
         import capo_connect_contact_lens.types.post_contact_summary_failure_code
 
         out["failure_code"] = (

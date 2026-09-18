@@ -36,7 +36,7 @@ def serialize_json(value: ListAppInstanceUserEndpointsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListAppInstanceUserEndpointsResponse:
     out: ListAppInstanceUserEndpointsResponse = {}  # type: ignore[typeddict-item]
-    if "AppInstanceUserEndpoints" in data:
+    if data.get("AppInstanceUserEndpoints") is not None:
         import capo_chime_sdk_identity.types.app_instance_user_endpoint_summary_list
 
         out["app_instance_user_endpoints"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> ListAppInstanceUserEndpointsResponse:
                 data["AppInstanceUserEndpoints"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

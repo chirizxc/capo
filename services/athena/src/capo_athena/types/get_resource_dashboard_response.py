@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: GetResourceDashboardResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetResourceDashboardResponse:
     out: GetResourceDashboardResponse = {}  # type: ignore[typeddict-item]
-    if "Url" in data:
+    if data.get("Url") is not None:
         out["url"] = data["Url"]
     else:
         raise DeserializationError("GetResourceDashboardResponse.url required")

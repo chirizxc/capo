@@ -36,7 +36,7 @@ def serialize_json(value: ListAssetsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListAssetsResponse:
     out: ListAssetsResponse = {}  # type: ignore[typeddict-item]
-    if "assets" in data:
+    if data.get("assets") is not None:
         import capo_mediapackage_vod.types.__list_of_asset_shallow
 
         out["assets"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> ListAssetsResponse:
                 data["assets"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

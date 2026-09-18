@@ -32,11 +32,11 @@ def serialize_aws_json_1_1(value: DisassociateIpGroupsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DisassociateIpGroupsRequest:
     out: DisassociateIpGroupsRequest = {}  # type: ignore[typeddict-item]
-    if "DirectoryId" in data:
+    if data.get("DirectoryId") is not None:
         out["directory_id"] = data["DirectoryId"]
     else:
         raise DeserializationError("DisassociateIpGroupsRequest.directory_id required")
-    if "GroupIds" in data:
+    if data.get("GroupIds") is not None:
         import capo_workspaces.types.ip_group_id_list
 
         out["group_ids"] = (

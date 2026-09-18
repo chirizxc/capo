@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> DomainDeliverabilityTrackingOptions:
 
     out: DomainDeliverabilityTrackingOptions = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_sesv2.types.domain_deliverability_tracking_option.deserialize_json(
                 item

@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: JobBookmarksEncryption) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> JobBookmarksEncryption:
     out: JobBookmarksEncryption = {}  # type: ignore[typeddict-item]
-    if "JobBookmarksEncryptionMode" in data:
+    if data.get("JobBookmarksEncryptionMode") is not None:
         import capo_glue.types.job_bookmarks_encryption_mode
 
         out["job_bookmarks_encryption_mode"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_1(data: dict) -> JobBookmarksEncryption:
                 data["JobBookmarksEncryptionMode"]
             )
         )
-    if "KmsKeyArn" in data:
+    if data.get("KmsKeyArn") is not None:
         out["kms_key_arn"] = data["KmsKeyArn"]
     return out

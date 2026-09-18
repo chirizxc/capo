@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> CompatibleElasticsearchVersionsList:
 
     out: CompatibleElasticsearchVersionsList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_elasticsearch_service.types.compatible_versions_map.deserialize_json(
                 item

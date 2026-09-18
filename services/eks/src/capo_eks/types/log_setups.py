@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> LogSetups:
 
     out: LogSetups = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_eks.types.log_setup.deserialize_json(item))
     return out

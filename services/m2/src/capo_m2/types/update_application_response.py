@@ -24,7 +24,7 @@ def serialize_json(value: UpdateApplicationResponse) -> dict:
 
 def deserialize_json(data: dict) -> UpdateApplicationResponse:
     out: UpdateApplicationResponse = {}  # type: ignore[typeddict-item]
-    if "applicationVersion" in data:
+    if data.get("applicationVersion") is not None:
         out["application_version"] = data["applicationVersion"]
     else:
         raise DeserializationError(

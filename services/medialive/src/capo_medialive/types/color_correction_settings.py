@@ -31,7 +31,7 @@ def serialize_json(value: ColorCorrectionSettings) -> dict:
 
 def deserialize_json(data: dict) -> ColorCorrectionSettings:
     out: ColorCorrectionSettings = {}  # type: ignore[typeddict-item]
-    if "globalColorCorrections" in data:
+    if data.get("globalColorCorrections") is not None:
         import capo_medialive.types.__list_of_color_correction
 
         out["global_color_corrections"] = (

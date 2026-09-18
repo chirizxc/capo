@@ -25,5 +25,7 @@ def deserialize_aws_json_1_1(data: list) -> Ec2AmiResourceList:
 
     out: Ec2AmiResourceList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_snowball.types.ec2_ami_resource.deserialize_aws_json_1_1(item))
     return out

@@ -36,9 +36,9 @@ def serialize_json(value: ListPipelineEndpointConnectionsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListPipelineEndpointConnectionsResponse:
     out: ListPipelineEndpointConnectionsResponse = {}  # type: ignore[typeddict-item]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "PipelineEndpointConnections" in data:
+    if data.get("PipelineEndpointConnections") is not None:
         import capo_osis.types.pipeline_endpoint_connections_summary_list
 
         out["pipeline_endpoint_connections"] = (

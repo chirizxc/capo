@@ -71,39 +71,39 @@ def serialize_aws_json_1_0(value: EnvironmentTemplateVersionSummary) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> EnvironmentTemplateVersionSummary:
     out: EnvironmentTemplateVersionSummary = {}  # type: ignore[typeddict-item]
-    if "templateName" in data:
+    if data.get("templateName") is not None:
         out["template_name"] = data["templateName"]
     else:
         raise DeserializationError(
             "EnvironmentTemplateVersionSummary.template_name required"
         )
-    if "majorVersion" in data:
+    if data.get("majorVersion") is not None:
         out["major_version"] = data["majorVersion"]
     else:
         raise DeserializationError(
             "EnvironmentTemplateVersionSummary.major_version required"
         )
-    if "minorVersion" in data:
+    if data.get("minorVersion") is not None:
         out["minor_version"] = data["minorVersion"]
     else:
         raise DeserializationError(
             "EnvironmentTemplateVersionSummary.minor_version required"
         )
-    if "recommendedMinorVersion" in data:
+    if data.get("recommendedMinorVersion") is not None:
         out["recommended_minor_version"] = data["recommendedMinorVersion"]
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
     else:
         raise DeserializationError("EnvironmentTemplateVersionSummary.status required")
-    if "statusMessage" in data:
+    if data.get("statusMessage") is not None:
         out["status_message"] = data["statusMessage"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("EnvironmentTemplateVersionSummary.arn required")
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_proton.types._prelude.timestamp
 
         out["created_at"] = (
@@ -115,7 +115,7 @@ def deserialize_aws_json_1_0(data: dict) -> EnvironmentTemplateVersionSummary:
         raise DeserializationError(
             "EnvironmentTemplateVersionSummary.created_at required"
         )
-    if "lastModifiedAt" in data:
+    if data.get("lastModifiedAt") is not None:
         import capo_proton.types._prelude.timestamp
 
         out["last_modified_at"] = (

@@ -80,17 +80,17 @@ def serialize_aws_json_1_1(value: TrackingServerSummary) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> TrackingServerSummary:
     out: TrackingServerSummary = {}  # type: ignore[typeddict-item]
-    if "TrackingServerArn" in data:
+    if data.get("TrackingServerArn") is not None:
         out["tracking_server_arn"] = data["TrackingServerArn"]
-    if "TrackingServerName" in data:
+    if data.get("TrackingServerName") is not None:
         out["tracking_server_name"] = data["TrackingServerName"]
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_sagemaker.types.timestamp
 
         out["creation_time"] = capo_sagemaker.types.timestamp.deserialize_aws_json_1_1(
             data["CreationTime"]
         )
-    if "LastModifiedTime" in data:
+    if data.get("LastModifiedTime") is not None:
         import capo_sagemaker.types.timestamp
 
         out["last_modified_time"] = (
@@ -98,7 +98,7 @@ def deserialize_aws_json_1_1(data: dict) -> TrackingServerSummary:
                 data["LastModifiedTime"]
             )
         )
-    if "TrackingServerStatus" in data:
+    if data.get("TrackingServerStatus") is not None:
         import capo_sagemaker.types.tracking_server_status
 
         out["tracking_server_status"] = (
@@ -106,7 +106,7 @@ def deserialize_aws_json_1_1(data: dict) -> TrackingServerSummary:
                 data["TrackingServerStatus"]
             )
         )
-    if "IsActive" in data:
+    if data.get("IsActive") is not None:
         import capo_sagemaker.types.is_tracking_server_active
 
         out["is_active"] = (
@@ -114,6 +114,6 @@ def deserialize_aws_json_1_1(data: dict) -> TrackingServerSummary:
                 data["IsActive"]
             )
         )
-    if "MlflowVersion" in data:
+    if data.get("MlflowVersion") is not None:
         out["mlflow_version"] = data["MlflowVersion"]
     return out

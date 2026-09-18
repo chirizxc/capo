@@ -29,13 +29,13 @@ def serialize_json(value: ImportFirewallDomainsInput) -> dict:
 
 def deserialize_json(data: dict) -> ImportFirewallDomainsInput:
     out: ImportFirewallDomainsInput = {}  # type: ignore[typeddict-item]
-    if "domainFileUrl" in data:
+    if data.get("domainFileUrl") is not None:
         out["domain_file_url"] = data["domainFileUrl"]
     else:
         raise DeserializationError(
             "ImportFirewallDomainsInput.domain_file_url required"
         )
-    if "operation" in data:
+    if data.get("operation") is not None:
         out["operation"] = data["operation"]
     else:
         raise DeserializationError("ImportFirewallDomainsInput.operation required")

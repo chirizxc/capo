@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> ProviderServiceList:
 
     out: ProviderServiceList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_entityresolution.types.provider_service_summary.deserialize_json(item)
         )

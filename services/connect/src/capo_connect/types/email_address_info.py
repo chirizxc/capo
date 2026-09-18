@@ -31,10 +31,10 @@ def serialize_json(value: EmailAddressInfo) -> dict:
 
 def deserialize_json(data: dict) -> EmailAddressInfo:
     out: EmailAddressInfo = {}  # type: ignore[typeddict-item]
-    if "EmailAddress" in data:
+    if data.get("EmailAddress") is not None:
         out["email_address"] = data["EmailAddress"]
     else:
         raise DeserializationError("EmailAddressInfo.email_address required")
-    if "DisplayName" in data:
+    if data.get("DisplayName") is not None:
         out["display_name"] = data["DisplayName"]
     return out

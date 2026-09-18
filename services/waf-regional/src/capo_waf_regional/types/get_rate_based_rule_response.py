@@ -27,7 +27,7 @@ def serialize_aws_json_1_1(value: GetRateBasedRuleResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetRateBasedRuleResponse:
     out: GetRateBasedRuleResponse = {}  # type: ignore[typeddict-item]
-    if "Rule" in data:
+    if data.get("Rule") is not None:
         import capo_waf_regional.types.rate_based_rule
 
         out["rule"] = capo_waf_regional.types.rate_based_rule.deserialize_aws_json_1_1(

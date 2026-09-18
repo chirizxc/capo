@@ -81,17 +81,17 @@ def serialize_json(value: CreateActionConnectorRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateActionConnectorRequest:
     out: CreateActionConnectorRequest = {}  # type: ignore[typeddict-item]
-    if "ActionConnectorId" in data:
+    if data.get("ActionConnectorId") is not None:
         out["action_connector_id"] = data["ActionConnectorId"]
     else:
         raise DeserializationError(
             "CreateActionConnectorRequest.action_connector_id required"
         )
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("CreateActionConnectorRequest.name required")
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_quicksight.types.action_connector_type
 
         out["type"] = capo_quicksight.types.action_connector_type.deserialize_json(
@@ -99,7 +99,7 @@ def deserialize_json(data: dict) -> CreateActionConnectorRequest:
         )
     else:
         raise DeserializationError("CreateActionConnectorRequest.type required")
-    if "AuthenticationConfig" in data:
+    if data.get("AuthenticationConfig") is not None:
         import capo_quicksight.types.auth_config
 
         out["authentication_config"] = (
@@ -111,9 +111,9 @@ def deserialize_json(data: dict) -> CreateActionConnectorRequest:
         raise DeserializationError(
             "CreateActionConnectorRequest.authentication_config required"
         )
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Permissions" in data:
+    if data.get("Permissions") is not None:
         import capo_quicksight.types.resource_permission_list
 
         out["permissions"] = (
@@ -121,9 +121,9 @@ def deserialize_json(data: dict) -> CreateActionConnectorRequest:
                 data["Permissions"]
             )
         )
-    if "VpcConnectionArn" in data:
+    if data.get("VpcConnectionArn") is not None:
         out["vpc_connection_arn"] = data["VpcConnectionArn"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_quicksight.types.tag_list
 
         out["tags"] = capo_quicksight.types.tag_list.deserialize_json(data["Tags"])

@@ -85,7 +85,7 @@ def serialize_json(value: DataSourcesFreeTrial) -> dict:
 
 def deserialize_json(data: dict) -> DataSourcesFreeTrial:
     out: DataSourcesFreeTrial = {}  # type: ignore[typeddict-item]
-    if "cloudTrail" in data:
+    if data.get("cloudTrail") is not None:
         import capo_guardduty.types.data_source_free_trial
 
         out["cloud_trail"] = (
@@ -93,25 +93,25 @@ def deserialize_json(data: dict) -> DataSourcesFreeTrial:
                 data["cloudTrail"]
             )
         )
-    if "dnsLogs" in data:
+    if data.get("dnsLogs") is not None:
         import capo_guardduty.types.data_source_free_trial
 
         out["dns_logs"] = capo_guardduty.types.data_source_free_trial.deserialize_json(
             data["dnsLogs"]
         )
-    if "flowLogs" in data:
+    if data.get("flowLogs") is not None:
         import capo_guardduty.types.data_source_free_trial
 
         out["flow_logs"] = capo_guardduty.types.data_source_free_trial.deserialize_json(
             data["flowLogs"]
         )
-    if "s3Logs" in data:
+    if data.get("s3Logs") is not None:
         import capo_guardduty.types.data_source_free_trial
 
         out["s3_logs"] = capo_guardduty.types.data_source_free_trial.deserialize_json(
             data["s3Logs"]
         )
-    if "kubernetes" in data:
+    if data.get("kubernetes") is not None:
         import capo_guardduty.types.kubernetes_data_source_free_trial
 
         out["kubernetes"] = (
@@ -119,7 +119,7 @@ def deserialize_json(data: dict) -> DataSourcesFreeTrial:
                 data["kubernetes"]
             )
         )
-    if "malwareProtection" in data:
+    if data.get("malwareProtection") is not None:
         import capo_guardduty.types.malware_protection_data_source_free_trial
 
         out["malware_protection"] = (

@@ -51,23 +51,23 @@ def serialize_json(value: PolicyStatement) -> dict:
 
 def deserialize_json(data: dict) -> PolicyStatement:
     out: PolicyStatement = {}  # type: ignore[typeddict-item]
-    if "Effect" in data:
+    if data.get("Effect") is not None:
         out["effect"] = data["Effect"]
-    if "Principal" in data:
+    if data.get("Principal") is not None:
         import capo_signin.types.principal
 
         out["principal"] = capo_signin.types.principal.deserialize_json(
             data["Principal"]
         )
-    if "Action" in data:
+    if data.get("Action") is not None:
         import capo_signin.types.policy_actions
 
         out["action"] = capo_signin.types.policy_actions.deserialize_json(
             data["Action"]
         )
-    if "Resource" in data:
+    if data.get("Resource") is not None:
         out["resource"] = data["Resource"]
-    if "Condition" in data:
+    if data.get("Condition") is not None:
         import capo_signin.types.condition_block
 
         out["condition"] = capo_signin.types.condition_block.deserialize_json(

@@ -28,11 +28,11 @@ def serialize_aws_json_1_0(value: GetProfileVisibilityRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> GetProfileVisibilityRequest:
     out: GetProfileVisibilityRequest = {}  # type: ignore[typeddict-item]
-    if "Catalog" in data:
+    if data.get("Catalog") is not None:
         out["catalog"] = data["Catalog"]
     else:
         raise DeserializationError("GetProfileVisibilityRequest.catalog required")
-    if "Identifier" in data:
+    if data.get("Identifier") is not None:
         out["identifier"] = data["Identifier"]
     else:
         raise DeserializationError("GetProfileVisibilityRequest.identifier required")

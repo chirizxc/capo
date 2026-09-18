@@ -31,15 +31,15 @@ def serialize_json(value: FieldOption) -> dict:
 
 def deserialize_json(data: dict) -> FieldOption:
     out: FieldOption = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("FieldOption.name required")
-    if "value" in data:
+    if data.get("value") is not None:
         out["value"] = data["value"]
     else:
         raise DeserializationError("FieldOption.value required")
-    if "active" in data:
+    if data.get("active") is not None:
         out["active"] = data["active"]
     else:
         raise DeserializationError("FieldOption.active required")

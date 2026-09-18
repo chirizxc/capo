@@ -288,19 +288,19 @@ def serialize_aws_json_1_1(value: RunJobFlowInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RunJobFlowInput:
     out: RunJobFlowInput = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "LogUri" in data:
+    if data.get("LogUri") is not None:
         out["log_uri"] = data["LogUri"]
-    if "LogEncryptionKmsKeyId" in data:
+    if data.get("LogEncryptionKmsKeyId") is not None:
         out["log_encryption_kms_key_id"] = data["LogEncryptionKmsKeyId"]
-    if "AdditionalInfo" in data:
+    if data.get("AdditionalInfo") is not None:
         out["additional_info"] = data["AdditionalInfo"]
-    if "AmiVersion" in data:
+    if data.get("AmiVersion") is not None:
         out["ami_version"] = data["AmiVersion"]
-    if "ReleaseLabel" in data:
+    if data.get("ReleaseLabel") is not None:
         out["release_label"] = data["ReleaseLabel"]
-    if "Instances" in data:
+    if data.get("Instances") is not None:
         import capo_emr.types.job_flow_instances_config
 
         out["instances"] = (
@@ -308,15 +308,15 @@ def deserialize_aws_json_1_1(data: dict) -> RunJobFlowInput:
                 data["Instances"]
             )
         )
-    if "Steps" in data:
+    if data.get("Steps") is not None:
         import capo_emr.types.step_config_list
 
         out["steps"] = capo_emr.types.step_config_list.deserialize_aws_json_1_1(
             data["Steps"]
         )
-    if "StepExecutionRoleArn" in data:
+    if data.get("StepExecutionRoleArn") is not None:
         out["step_execution_role_arn"] = data["StepExecutionRoleArn"]
-    if "BootstrapActions" in data:
+    if data.get("BootstrapActions") is not None:
         import capo_emr.types.bootstrap_action_config_list
 
         out["bootstrap_actions"] = (
@@ -324,7 +324,7 @@ def deserialize_aws_json_1_1(data: dict) -> RunJobFlowInput:
                 data["BootstrapActions"]
             )
         )
-    if "SupportedProducts" in data:
+    if data.get("SupportedProducts") is not None:
         import capo_emr.types.supported_products_list
 
         out["supported_products"] = (
@@ -332,7 +332,7 @@ def deserialize_aws_json_1_1(data: dict) -> RunJobFlowInput:
                 data["SupportedProducts"]
             )
         )
-    if "NewSupportedProducts" in data:
+    if data.get("NewSupportedProducts") is not None:
         import capo_emr.types.new_supported_products_list
 
         out["new_supported_products"] = (
@@ -340,13 +340,13 @@ def deserialize_aws_json_1_1(data: dict) -> RunJobFlowInput:
                 data["NewSupportedProducts"]
             )
         )
-    if "Applications" in data:
+    if data.get("Applications") is not None:
         import capo_emr.types.application_list
 
         out["applications"] = capo_emr.types.application_list.deserialize_aws_json_1_1(
             data["Applications"]
         )
-    if "Configurations" in data:
+    if data.get("Configurations") is not None:
         import capo_emr.types.configuration_list
 
         out["configurations"] = (
@@ -354,21 +354,21 @@ def deserialize_aws_json_1_1(data: dict) -> RunJobFlowInput:
                 data["Configurations"]
             )
         )
-    if "VisibleToAllUsers" in data:
+    if data.get("VisibleToAllUsers") is not None:
         out["visible_to_all_users"] = data["VisibleToAllUsers"]
-    if "JobFlowRole" in data:
+    if data.get("JobFlowRole") is not None:
         out["job_flow_role"] = data["JobFlowRole"]
-    if "ServiceRole" in data:
+    if data.get("ServiceRole") is not None:
         out["service_role"] = data["ServiceRole"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_emr.types.tag_list
 
         out["tags"] = capo_emr.types.tag_list.deserialize_aws_json_1_1(data["Tags"])
-    if "SecurityConfiguration" in data:
+    if data.get("SecurityConfiguration") is not None:
         out["security_configuration"] = data["SecurityConfiguration"]
-    if "AutoScalingRole" in data:
+    if data.get("AutoScalingRole") is not None:
         out["auto_scaling_role"] = data["AutoScalingRole"]
-    if "ScaleDownBehavior" in data:
+    if data.get("ScaleDownBehavior") is not None:
         import capo_emr.types.scale_down_behavior
 
         out["scale_down_behavior"] = (
@@ -376,11 +376,11 @@ def deserialize_aws_json_1_1(data: dict) -> RunJobFlowInput:
                 data["ScaleDownBehavior"]
             )
         )
-    if "CustomAmiId" in data:
+    if data.get("CustomAmiId") is not None:
         out["custom_ami_id"] = data["CustomAmiId"]
-    if "EbsRootVolumeSize" in data:
+    if data.get("EbsRootVolumeSize") is not None:
         out["ebs_root_volume_size"] = data["EbsRootVolumeSize"]
-    if "RepoUpgradeOnBoot" in data:
+    if data.get("RepoUpgradeOnBoot") is not None:
         import capo_emr.types.repo_upgrade_on_boot
 
         out["repo_upgrade_on_boot"] = (
@@ -388,7 +388,7 @@ def deserialize_aws_json_1_1(data: dict) -> RunJobFlowInput:
                 data["RepoUpgradeOnBoot"]
             )
         )
-    if "KerberosAttributes" in data:
+    if data.get("KerberosAttributes") is not None:
         import capo_emr.types.kerberos_attributes
 
         out["kerberos_attributes"] = (
@@ -396,9 +396,9 @@ def deserialize_aws_json_1_1(data: dict) -> RunJobFlowInput:
                 data["KerberosAttributes"]
             )
         )
-    if "StepConcurrencyLevel" in data:
+    if data.get("StepConcurrencyLevel") is not None:
         out["step_concurrency_level"] = data["StepConcurrencyLevel"]
-    if "ManagedScalingPolicy" in data:
+    if data.get("ManagedScalingPolicy") is not None:
         import capo_emr.types.managed_scaling_policy
 
         out["managed_scaling_policy"] = (
@@ -406,7 +406,7 @@ def deserialize_aws_json_1_1(data: dict) -> RunJobFlowInput:
                 data["ManagedScalingPolicy"]
             )
         )
-    if "PlacementGroupConfigs" in data:
+    if data.get("PlacementGroupConfigs") is not None:
         import capo_emr.types.placement_group_config_list
 
         out["placement_group_configs"] = (
@@ -414,7 +414,7 @@ def deserialize_aws_json_1_1(data: dict) -> RunJobFlowInput:
                 data["PlacementGroupConfigs"]
             )
         )
-    if "AutoTerminationPolicy" in data:
+    if data.get("AutoTerminationPolicy") is not None:
         import capo_emr.types.auto_termination_policy
 
         out["auto_termination_policy"] = (
@@ -422,15 +422,15 @@ def deserialize_aws_json_1_1(data: dict) -> RunJobFlowInput:
                 data["AutoTerminationPolicy"]
             )
         )
-    if "OSReleaseLabel" in data:
+    if data.get("OSReleaseLabel") is not None:
         out["os_release_label"] = data["OSReleaseLabel"]
-    if "EbsRootVolumeIops" in data:
+    if data.get("EbsRootVolumeIops") is not None:
         out["ebs_root_volume_iops"] = data["EbsRootVolumeIops"]
-    if "EbsRootVolumeThroughput" in data:
+    if data.get("EbsRootVolumeThroughput") is not None:
         out["ebs_root_volume_throughput"] = data["EbsRootVolumeThroughput"]
-    if "ExtendedSupport" in data:
+    if data.get("ExtendedSupport") is not None:
         out["extended_support"] = data["ExtendedSupport"]
-    if "MonitoringConfiguration" in data:
+    if data.get("MonitoringConfiguration") is not None:
         import capo_emr.types.monitoring_configuration
 
         out["monitoring_configuration"] = (
@@ -438,6 +438,6 @@ def deserialize_aws_json_1_1(data: dict) -> RunJobFlowInput:
                 data["MonitoringConfiguration"]
             )
         )
-    if "SessionEnabled" in data:
+    if data.get("SessionEnabled") is not None:
         out["session_enabled"] = data["SessionEnabled"]
     return out

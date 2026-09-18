@@ -44,11 +44,11 @@ def serialize_json(value: ListComponentTypesFilter) -> dict:
 
 
 def deserialize_json(data: dict) -> ListComponentTypesFilter:
-    if "extendsFrom" in data:
+    if data.get("extendsFrom") is not None:
         return {"extendsFrom": data["extendsFrom"]}
-    elif "namespace" in data:
+    elif data.get("namespace") is not None:
         return {"namespace": data["namespace"]}
-    elif "isAbstract" in data:
+    elif data.get("isAbstract") is not None:
         return {"isAbstract": data["isAbstract"]}
     else:
         raise DeserializationError(

@@ -68,21 +68,21 @@ def serialize_aws_json_1_1(value: CreateBatchSegmentJobRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateBatchSegmentJobRequest:
     out: CreateBatchSegmentJobRequest = {}  # type: ignore[typeddict-item]
-    if "jobName" in data:
+    if data.get("jobName") is not None:
         out["job_name"] = data["jobName"]
     else:
         raise DeserializationError("CreateBatchSegmentJobRequest.job_name required")
-    if "solutionVersionArn" in data:
+    if data.get("solutionVersionArn") is not None:
         out["solution_version_arn"] = data["solutionVersionArn"]
     else:
         raise DeserializationError(
             "CreateBatchSegmentJobRequest.solution_version_arn required"
         )
-    if "filterArn" in data:
+    if data.get("filterArn") is not None:
         out["filter_arn"] = data["filterArn"]
-    if "numResults" in data:
+    if data.get("numResults") is not None:
         out["num_results"] = data["numResults"]
-    if "jobInput" in data:
+    if data.get("jobInput") is not None:
         import capo_personalize.types.batch_segment_job_input
 
         out["job_input"] = (
@@ -92,7 +92,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateBatchSegmentJobRequest:
         )
     else:
         raise DeserializationError("CreateBatchSegmentJobRequest.job_input required")
-    if "jobOutput" in data:
+    if data.get("jobOutput") is not None:
         import capo_personalize.types.batch_segment_job_output
 
         out["job_output"] = (
@@ -102,11 +102,11 @@ def deserialize_aws_json_1_1(data: dict) -> CreateBatchSegmentJobRequest:
         )
     else:
         raise DeserializationError("CreateBatchSegmentJobRequest.job_output required")
-    if "roleArn" in data:
+    if data.get("roleArn") is not None:
         out["role_arn"] = data["roleArn"]
     else:
         raise DeserializationError("CreateBatchSegmentJobRequest.role_arn required")
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_personalize.types.tags
 
         out["tags"] = capo_personalize.types.tags.deserialize_aws_json_1_1(data["tags"])

@@ -138,7 +138,15 @@ def serialize_aws_json_1_0(value: CloudExadataInfrastructureSummary) -> dict:
             )
         )
     if "data_storage_size_in_t_bs" in value:
-        out["dataStorageSizeInTBs"] = value["data_storage_size_in_t_bs"]
+        out["dataStorageSizeInTBs"] = (
+            "NaN"
+            if value["data_storage_size_in_t_bs"] != value["data_storage_size_in_t_bs"]
+            else "Infinity"
+            if value["data_storage_size_in_t_bs"] == float("inf")
+            else "-Infinity"
+            if value["data_storage_size_in_t_bs"] == float("-inf")
+            else value["data_storage_size_in_t_bs"]
+        )
     if "db_node_storage_size_in_g_bs" in value:
         out["dbNodeStorageSizeInGBs"] = value["db_node_storage_size_in_g_bs"]
     if "db_server_version" in value:
@@ -156,7 +164,15 @@ def serialize_aws_json_1_0(value: CloudExadataInfrastructureSummary) -> dict:
     if "max_cpu_count" in value:
         out["maxCpuCount"] = value["max_cpu_count"]
     if "max_data_storage_in_t_bs" in value:
-        out["maxDataStorageInTBs"] = value["max_data_storage_in_t_bs"]
+        out["maxDataStorageInTBs"] = (
+            "NaN"
+            if value["max_data_storage_in_t_bs"] != value["max_data_storage_in_t_bs"]
+            else "Infinity"
+            if value["max_data_storage_in_t_bs"] == float("inf")
+            else "-Infinity"
+            if value["max_data_storage_in_t_bs"] == float("-inf")
+            else value["max_data_storage_in_t_bs"]
+        )
     if "max_db_node_storage_size_in_g_bs" in value:
         out["maxDbNodeStorageSizeInGBs"] = value["max_db_node_storage_size_in_g_bs"]
     if "max_memory_in_g_bs" in value:
@@ -182,15 +198,23 @@ def serialize_aws_json_1_0(value: CloudExadataInfrastructureSummary) -> dict:
     if "storage_server_version" in value:
         out["storageServerVersion"] = value["storage_server_version"]
     if "created_at" in value:
-        import capo_odb.types._prelude.timestamp
+        import capo_odb._protocol.serialize
 
-        out["createdAt"] = capo_odb.types._prelude.timestamp.serialize_aws_json_1_0(
+        out["createdAt"] = capo_odb._protocol.serialize.fmt_date_time(
             value["created_at"]
         )
     if "total_storage_size_in_g_bs" in value:
         out["totalStorageSizeInGBs"] = value["total_storage_size_in_g_bs"]
     if "percent_progress" in value:
-        out["percentProgress"] = value["percent_progress"]
+        out["percentProgress"] = (
+            "NaN"
+            if value["percent_progress"] != value["percent_progress"]
+            else "Infinity"
+            if value["percent_progress"] == float("inf")
+            else "-Infinity"
+            if value["percent_progress"] == float("-inf")
+            else value["percent_progress"]
+        )
     if "database_server_type" in value:
         out["databaseServerType"] = value["database_server_type"]
     if "storage_server_type" in value:
@@ -206,39 +230,39 @@ def serialize_aws_json_1_0(value: CloudExadataInfrastructureSummary) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CloudExadataInfrastructureSummary:
     out: CloudExadataInfrastructureSummary = {}  # type: ignore[typeddict-item]
-    if "cloudExadataInfrastructureId" in data:
+    if data.get("cloudExadataInfrastructureId") is not None:
         out["cloud_exadata_infrastructure_id"] = data["cloudExadataInfrastructureId"]
     else:
         raise DeserializationError(
             "CloudExadataInfrastructureSummary.cloud_exadata_infrastructure_id required"
         )
-    if "displayName" in data:
+    if data.get("displayName") is not None:
         out["display_name"] = data["displayName"]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_odb.types.resource_status
 
         out["status"] = capo_odb.types.resource_status.deserialize_aws_json_1_0(
             data["status"]
         )
-    if "statusReason" in data:
+    if data.get("statusReason") is not None:
         out["status_reason"] = data["statusReason"]
-    if "cloudExadataInfrastructureArn" in data:
+    if data.get("cloudExadataInfrastructureArn") is not None:
         out["cloud_exadata_infrastructure_arn"] = data["cloudExadataInfrastructureArn"]
-    if "activatedStorageCount" in data:
+    if data.get("activatedStorageCount") is not None:
         out["activated_storage_count"] = data["activatedStorageCount"]
-    if "additionalStorageCount" in data:
+    if data.get("additionalStorageCount") is not None:
         out["additional_storage_count"] = data["additionalStorageCount"]
-    if "availableStorageSizeInGBs" in data:
+    if data.get("availableStorageSizeInGBs") is not None:
         out["available_storage_size_in_g_bs"] = data["availableStorageSizeInGBs"]
-    if "availabilityZone" in data:
+    if data.get("availabilityZone") is not None:
         out["availability_zone"] = data["availabilityZone"]
-    if "availabilityZoneId" in data:
+    if data.get("availabilityZoneId") is not None:
         out["availability_zone_id"] = data["availabilityZoneId"]
-    if "computeCount" in data:
+    if data.get("computeCount") is not None:
         out["compute_count"] = data["computeCount"]
-    if "cpuCount" in data:
+    if data.get("cpuCount") is not None:
         out["cpu_count"] = data["cpuCount"]
-    if "customerContactsToSendToOCI" in data:
+    if data.get("customerContactsToSendToOCI") is not None:
         import capo_odb.types.customer_contacts
 
         out["customer_contacts_to_send_to_oci"] = (
@@ -246,15 +270,15 @@ def deserialize_aws_json_1_0(data: dict) -> CloudExadataInfrastructureSummary:
                 data["customerContactsToSendToOCI"]
             )
         )
-    if "dataStorageSizeInTBs" in data:
-        out["data_storage_size_in_t_bs"] = data["dataStorageSizeInTBs"]
-    if "dbNodeStorageSizeInGBs" in data:
+    if data.get("dataStorageSizeInTBs") is not None:
+        out["data_storage_size_in_t_bs"] = float(data["dataStorageSizeInTBs"])
+    if data.get("dbNodeStorageSizeInGBs") is not None:
         out["db_node_storage_size_in_g_bs"] = data["dbNodeStorageSizeInGBs"]
-    if "dbServerVersion" in data:
+    if data.get("dbServerVersion") is not None:
         out["db_server_version"] = data["dbServerVersion"]
-    if "lastMaintenanceRunId" in data:
+    if data.get("lastMaintenanceRunId") is not None:
         out["last_maintenance_run_id"] = data["lastMaintenanceRunId"]
-    if "maintenanceWindow" in data:
+    if data.get("maintenanceWindow") is not None:
         import capo_odb.types.maintenance_window
 
         out["maintenance_window"] = (
@@ -262,49 +286,49 @@ def deserialize_aws_json_1_0(data: dict) -> CloudExadataInfrastructureSummary:
                 data["maintenanceWindow"]
             )
         )
-    if "maxCpuCount" in data:
+    if data.get("maxCpuCount") is not None:
         out["max_cpu_count"] = data["maxCpuCount"]
-    if "maxDataStorageInTBs" in data:
-        out["max_data_storage_in_t_bs"] = data["maxDataStorageInTBs"]
-    if "maxDbNodeStorageSizeInGBs" in data:
+    if data.get("maxDataStorageInTBs") is not None:
+        out["max_data_storage_in_t_bs"] = float(data["maxDataStorageInTBs"])
+    if data.get("maxDbNodeStorageSizeInGBs") is not None:
         out["max_db_node_storage_size_in_g_bs"] = data["maxDbNodeStorageSizeInGBs"]
-    if "maxMemoryInGBs" in data:
+    if data.get("maxMemoryInGBs") is not None:
         out["max_memory_in_g_bs"] = data["maxMemoryInGBs"]
-    if "memorySizeInGBs" in data:
+    if data.get("memorySizeInGBs") is not None:
         out["memory_size_in_g_bs"] = data["memorySizeInGBs"]
-    if "monthlyDbServerVersion" in data:
+    if data.get("monthlyDbServerVersion") is not None:
         out["monthly_db_server_version"] = data["monthlyDbServerVersion"]
-    if "monthlyStorageServerVersion" in data:
+    if data.get("monthlyStorageServerVersion") is not None:
         out["monthly_storage_server_version"] = data["monthlyStorageServerVersion"]
-    if "nextMaintenanceRunId" in data:
+    if data.get("nextMaintenanceRunId") is not None:
         out["next_maintenance_run_id"] = data["nextMaintenanceRunId"]
-    if "ociResourceAnchorName" in data:
+    if data.get("ociResourceAnchorName") is not None:
         out["oci_resource_anchor_name"] = data["ociResourceAnchorName"]
-    if "ociUrl" in data:
+    if data.get("ociUrl") is not None:
         out["oci_url"] = data["ociUrl"]
-    if "ocid" in data:
+    if data.get("ocid") is not None:
         out["ocid"] = data["ocid"]
-    if "shape" in data:
+    if data.get("shape") is not None:
         out["shape"] = data["shape"]
-    if "storageCount" in data:
+    if data.get("storageCount") is not None:
         out["storage_count"] = data["storageCount"]
-    if "storageServerVersion" in data:
+    if data.get("storageServerVersion") is not None:
         out["storage_server_version"] = data["storageServerVersion"]
-    if "createdAt" in data:
-        import capo_odb.types._prelude.timestamp
+    if data.get("createdAt") is not None:
+        import datetime
 
-        out["created_at"] = capo_odb.types._prelude.timestamp.deserialize_aws_json_1_0(
-            data["createdAt"]
+        out["created_at"] = datetime.datetime.fromisoformat(
+            data["createdAt"].replace("Z", "+00:00")
         )
-    if "totalStorageSizeInGBs" in data:
+    if data.get("totalStorageSizeInGBs") is not None:
         out["total_storage_size_in_g_bs"] = data["totalStorageSizeInGBs"]
-    if "percentProgress" in data:
-        out["percent_progress"] = data["percentProgress"]
-    if "databaseServerType" in data:
+    if data.get("percentProgress") is not None:
+        out["percent_progress"] = float(data["percentProgress"])
+    if data.get("databaseServerType") is not None:
         out["database_server_type"] = data["databaseServerType"]
-    if "storageServerType" in data:
+    if data.get("storageServerType") is not None:
         out["storage_server_type"] = data["storageServerType"]
-    if "computeModel" in data:
+    if data.get("computeModel") is not None:
         import capo_odb.types.compute_model
 
         out["compute_model"] = capo_odb.types.compute_model.deserialize_aws_json_1_0(

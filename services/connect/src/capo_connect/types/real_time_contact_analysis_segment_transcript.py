@@ -88,19 +88,19 @@ def serialize_json(value: RealTimeContactAnalysisSegmentTranscript) -> dict:
 
 def deserialize_json(data: dict) -> RealTimeContactAnalysisSegmentTranscript:
     out: RealTimeContactAnalysisSegmentTranscript = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
     else:
         raise DeserializationError(
             "RealTimeContactAnalysisSegmentTranscript.id required"
         )
-    if "ParticipantId" in data:
+    if data.get("ParticipantId") is not None:
         out["participant_id"] = data["ParticipantId"]
     else:
         raise DeserializationError(
             "RealTimeContactAnalysisSegmentTranscript.participant_id required"
         )
-    if "ParticipantRole" in data:
+    if data.get("ParticipantRole") is not None:
         import capo_connect.types.participant_role
 
         out["participant_role"] = capo_connect.types.participant_role.deserialize_json(
@@ -110,17 +110,17 @@ def deserialize_json(data: dict) -> RealTimeContactAnalysisSegmentTranscript:
         raise DeserializationError(
             "RealTimeContactAnalysisSegmentTranscript.participant_role required"
         )
-    if "DisplayName" in data:
+    if data.get("DisplayName") is not None:
         out["display_name"] = data["DisplayName"]
-    if "Content" in data:
+    if data.get("Content") is not None:
         out["content"] = data["Content"]
     else:
         raise DeserializationError(
             "RealTimeContactAnalysisSegmentTranscript.content required"
         )
-    if "ContentType" in data:
+    if data.get("ContentType") is not None:
         out["content_type"] = data["ContentType"]
-    if "Time" in data:
+    if data.get("Time") is not None:
         import capo_connect.types.real_time_contact_analysis_time_data
 
         out["time"] = (
@@ -132,7 +132,7 @@ def deserialize_json(data: dict) -> RealTimeContactAnalysisSegmentTranscript:
         raise DeserializationError(
             "RealTimeContactAnalysisSegmentTranscript.time required"
         )
-    if "Redaction" in data:
+    if data.get("Redaction") is not None:
         import capo_connect.types.real_time_contact_analysis_transcript_item_redaction
 
         out["redaction"] = (
@@ -140,7 +140,7 @@ def deserialize_json(data: dict) -> RealTimeContactAnalysisSegmentTranscript:
                 data["Redaction"]
             )
         )
-    if "Sentiment" in data:
+    if data.get("Sentiment") is not None:
         import capo_connect.types.real_time_contact_analysis_sentiment_label
 
         out["sentiment"] = (

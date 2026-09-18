@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> ExtensionAssociationSummaries:
 
     out: ExtensionAssociationSummaries = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_appconfig.types.extension_association_summary.deserialize_json(item)
         )

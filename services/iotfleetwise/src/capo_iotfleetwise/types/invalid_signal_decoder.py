@@ -41,9 +41,9 @@ def serialize_aws_json_1_0(value: InvalidSignalDecoder) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> InvalidSignalDecoder:
     out: InvalidSignalDecoder = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "reason" in data:
+    if data.get("reason") is not None:
         import capo_iotfleetwise.types.signal_decoder_failure_reason
 
         out["reason"] = (
@@ -51,6 +51,6 @@ def deserialize_aws_json_1_0(data: dict) -> InvalidSignalDecoder:
                 data["reason"]
             )
         )
-    if "hint" in data:
+    if data.get("hint") is not None:
         out["hint"] = data["hint"]
     return out

@@ -34,7 +34,7 @@ def serialize_json(value: BatchPutFieldOptionsRequest) -> dict:
 
 def deserialize_json(data: dict) -> BatchPutFieldOptionsRequest:
     out: BatchPutFieldOptionsRequest = {}  # type: ignore[typeddict-item]
-    if "options" in data:
+    if data.get("options") is not None:
         import capo_connectcases.types.field_options_list
 
         out["options"] = capo_connectcases.types.field_options_list.deserialize_json(

@@ -200,14 +200,16 @@ class AsyncMarketplaceDiscoveryClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_marketplace_discovery.types.get_listing_input.GetListingInput = {}  # type: ignore[typeddict-item]
-        input_["listing_id"] = listing_id
+        input_: capo_marketplace_discovery.types.get_listing_input.GetListingInput = {
+            "listing_id": listing_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_offer(
@@ -260,14 +262,16 @@ class AsyncMarketplaceDiscoveryClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_marketplace_discovery.types.get_offer_input.GetOfferInput = {}  # type: ignore[typeddict-item]
-        input_["offer_id"] = offer_id
+        input_: capo_marketplace_discovery.types.get_offer_input.GetOfferInput = {
+            "offer_id": offer_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_offer_set(
@@ -311,14 +315,16 @@ class AsyncMarketplaceDiscoveryClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_marketplace_discovery.types.get_offer_set_input.GetOfferSetInput = {}  # type: ignore[typeddict-item]
-        input_["offer_set_id"] = offer_set_id
+        input_: capo_marketplace_discovery.types.get_offer_set_input.GetOfferSetInput = {
+            "offer_set_id": offer_set_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_offer_terms(
@@ -392,8 +398,9 @@ class AsyncMarketplaceDiscoveryClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_marketplace_discovery.types.get_offer_terms_input.GetOfferTermsInput = {}  # type: ignore[typeddict-item]
-        input_["offer_id"] = offer_id
+        input_: capo_marketplace_discovery.types.get_offer_terms_input.GetOfferTermsInput = {
+            "offer_id": offer_id
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -404,6 +411,7 @@ class AsyncMarketplaceDiscoveryClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_get_offer_terms(
@@ -478,14 +486,16 @@ class AsyncMarketplaceDiscoveryClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_marketplace_discovery.types.get_product_input.GetProductInput = {}  # type: ignore[typeddict-item]
-        input_["product_id"] = product_id
+        input_: capo_marketplace_discovery.types.get_product_input.GetProductInput = {
+            "product_id": product_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_fulfillment_options(
@@ -568,8 +578,9 @@ class AsyncMarketplaceDiscoveryClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_marketplace_discovery.types.list_fulfillment_options_input.ListFulfillmentOptionsInput = {}  # type: ignore[typeddict-item]
-        input_["product_id"] = product_id
+        input_: capo_marketplace_discovery.types.list_fulfillment_options_input.ListFulfillmentOptionsInput = {
+            "product_id": product_id
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -580,6 +591,7 @@ class AsyncMarketplaceDiscoveryClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_fulfillment_options(
@@ -660,7 +672,7 @@ class AsyncMarketplaceDiscoveryClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_marketplace_discovery.types.list_purchase_options_input.ListPurchaseOptionsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_marketplace_discovery.types.list_purchase_options_input.ListPurchaseOptionsInput = {}
         if filters is not None:
             input_["filters"] = filters
         if max_results is not None:
@@ -673,6 +685,7 @@ class AsyncMarketplaceDiscoveryClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_purchase_options(
@@ -763,7 +776,7 @@ class AsyncMarketplaceDiscoveryClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_marketplace_discovery.types.search_facets_input.SearchFacetsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_marketplace_discovery.types.search_facets_input.SearchFacetsInput = {}
         if search_text is not None:
             input_["search_text"] = search_text
         if filters is not None:
@@ -778,6 +791,7 @@ class AsyncMarketplaceDiscoveryClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_search_facets(
@@ -876,7 +890,7 @@ class AsyncMarketplaceDiscoveryClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_marketplace_discovery.types.search_listings_input.SearchListingsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_marketplace_discovery.types.search_listings_input.SearchListingsInput = {}
         if search_text is not None:
             input_["search_text"] = search_text
         if filters is not None:
@@ -895,6 +909,7 @@ class AsyncMarketplaceDiscoveryClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_search_listings(

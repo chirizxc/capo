@@ -34,10 +34,10 @@ def serialize_json(value: DataSource) -> dict:
 
 def deserialize_json(data: dict) -> DataSource:
     out: DataSource = {}  # type: ignore[typeddict-item]
-    if "dataSourceArn" in data:
+    if data.get("dataSourceArn") is not None:
         out["data_source_arn"] = data["dataSourceArn"]
-    if "dataSourceDescription" in data:
+    if data.get("dataSourceDescription") is not None:
         out["data_source_description"] = data["dataSourceDescription"]
-    if "iamRoleForDataSourceArn" in data:
+    if data.get("iamRoleForDataSourceArn") is not None:
         out["iam_role_for_data_source_arn"] = data["iamRoleForDataSourceArn"]
     return out

@@ -85,11 +85,11 @@ def serialize_aws_json_1_1(value: CreateAlgorithmInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateAlgorithmInput:
     out: CreateAlgorithmInput = {}  # type: ignore[typeddict-item]
-    if "AlgorithmName" in data:
+    if data.get("AlgorithmName") is not None:
         out["algorithm_name"] = data["AlgorithmName"]
-    if "AlgorithmDescription" in data:
+    if data.get("AlgorithmDescription") is not None:
         out["algorithm_description"] = data["AlgorithmDescription"]
-    if "TrainingSpecification" in data:
+    if data.get("TrainingSpecification") is not None:
         import capo_sagemaker.types.training_specification
 
         out["training_specification"] = (
@@ -97,7 +97,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateAlgorithmInput:
                 data["TrainingSpecification"]
             )
         )
-    if "InferenceSpecification" in data:
+    if data.get("InferenceSpecification") is not None:
         import capo_sagemaker.types.inference_specification
 
         out["inference_specification"] = (
@@ -105,7 +105,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateAlgorithmInput:
                 data["InferenceSpecification"]
             )
         )
-    if "ValidationSpecification" in data:
+    if data.get("ValidationSpecification") is not None:
         import capo_sagemaker.types.algorithm_validation_specification
 
         out["validation_specification"] = (
@@ -113,9 +113,9 @@ def deserialize_aws_json_1_1(data: dict) -> CreateAlgorithmInput:
                 data["ValidationSpecification"]
             )
         )
-    if "CertifyForMarketplace" in data:
+    if data.get("CertifyForMarketplace") is not None:
         out["certify_for_marketplace"] = data["CertifyForMarketplace"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_sagemaker.types.tag_list
 
         out["tags"] = capo_sagemaker.types.tag_list.deserialize_aws_json_1_1(

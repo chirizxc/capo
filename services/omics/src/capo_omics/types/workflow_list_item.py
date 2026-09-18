@@ -66,25 +66,25 @@ def serialize_json(value: WorkflowListItem) -> dict:
 
 def deserialize_json(data: dict) -> WorkflowListItem:
     out: WorkflowListItem = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
-    if "type" in data:
+    if data.get("type") is not None:
         out["type"] = data["type"]
-    if "digest" in data:
+    if data.get("digest") is not None:
         out["digest"] = data["digest"]
-    if "creationTime" in data:
+    if data.get("creationTime") is not None:
         import capo_omics.types.workflow_timestamp
 
         out["creation_time"] = capo_omics.types.workflow_timestamp.deserialize_json(
             data["creationTime"]
         )
-    if "metadata" in data:
+    if data.get("metadata") is not None:
         import capo_omics.types.workflow_metadata
 
         out["metadata"] = capo_omics.types.workflow_metadata.deserialize_json(

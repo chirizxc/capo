@@ -93,21 +93,21 @@ def serialize_aws_json_1_1(value: GatewayInfo) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GatewayInfo:
     out: GatewayInfo = {}  # type: ignore[typeddict-item]
-    if "GatewayId" in data:
+    if data.get("GatewayId") is not None:
         out["gateway_id"] = data["GatewayId"]
-    if "GatewayARN" in data:
+    if data.get("GatewayARN") is not None:
         out["gateway_arn"] = data["GatewayARN"]
-    if "GatewayType" in data:
+    if data.get("GatewayType") is not None:
         out["gateway_type"] = data["GatewayType"]
-    if "GatewayOperationalState" in data:
+    if data.get("GatewayOperationalState") is not None:
         out["gateway_operational_state"] = data["GatewayOperationalState"]
-    if "GatewayName" in data:
+    if data.get("GatewayName") is not None:
         out["gateway_name"] = data["GatewayName"]
-    if "Ec2InstanceId" in data:
+    if data.get("Ec2InstanceId") is not None:
         out["ec2_instance_id"] = data["Ec2InstanceId"]
-    if "Ec2InstanceRegion" in data:
+    if data.get("Ec2InstanceRegion") is not None:
         out["ec2_instance_region"] = data["Ec2InstanceRegion"]
-    if "HostEnvironment" in data:
+    if data.get("HostEnvironment") is not None:
         import capo_storage_gateway.types.host_environment
 
         out["host_environment"] = (
@@ -115,10 +115,10 @@ def deserialize_aws_json_1_1(data: dict) -> GatewayInfo:
                 data["HostEnvironment"]
             )
         )
-    if "HostEnvironmentId" in data:
+    if data.get("HostEnvironmentId") is not None:
         out["host_environment_id"] = data["HostEnvironmentId"]
-    if "DeprecationDate" in data:
+    if data.get("DeprecationDate") is not None:
         out["deprecation_date"] = data["DeprecationDate"]
-    if "SoftwareVersion" in data:
+    if data.get("SoftwareVersion") is not None:
         out["software_version"] = data["SoftwareVersion"]
     return out

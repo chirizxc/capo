@@ -41,22 +41,22 @@ def serialize_aws_json_1_1(value: RulesPackage) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RulesPackage:
     out: RulesPackage = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("RulesPackage.arn required")
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("RulesPackage.name required")
-    if "version" in data:
+    if data.get("version") is not None:
         out["version"] = data["version"]
     else:
         raise DeserializationError("RulesPackage.version required")
-    if "provider" in data:
+    if data.get("provider") is not None:
         out["provider"] = data["provider"]
     else:
         raise DeserializationError("RulesPackage.provider required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
     return out

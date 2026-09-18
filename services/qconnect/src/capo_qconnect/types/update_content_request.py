@@ -56,20 +56,20 @@ def serialize_json(value: UpdateContentRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateContentRequest:
     out: UpdateContentRequest = {}  # type: ignore[typeddict-item]
-    if "revisionId" in data:
+    if data.get("revisionId") is not None:
         out["revision_id"] = data["revisionId"]
-    if "title" in data:
+    if data.get("title") is not None:
         out["title"] = data["title"]
-    if "overrideLinkOutUri" in data:
+    if data.get("overrideLinkOutUri") is not None:
         out["override_link_out_uri"] = data["overrideLinkOutUri"]
-    if "removeOverrideLinkOutUri" in data:
+    if data.get("removeOverrideLinkOutUri") is not None:
         out["remove_override_link_out_uri"] = data["removeOverrideLinkOutUri"]
-    if "metadata" in data:
+    if data.get("metadata") is not None:
         import capo_qconnect.types.content_metadata
 
         out["metadata"] = capo_qconnect.types.content_metadata.deserialize_json(
             data["metadata"]
         )
-    if "uploadId" in data:
+    if data.get("uploadId") is not None:
         out["upload_id"] = data["uploadId"]
     return out

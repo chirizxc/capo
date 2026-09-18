@@ -63,7 +63,7 @@ def serialize_aws_json_1_1(value: AttributeSuggestionsGetConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AttributeSuggestionsGetConfig:
     out: AttributeSuggestionsGetConfig = {}  # type: ignore[typeddict-item]
-    if "SuggestionAttributes" in data:
+    if data.get("SuggestionAttributes") is not None:
         import capo_kendra.types.document_attribute_key_list
 
         out["suggestion_attributes"] = (
@@ -71,7 +71,7 @@ def deserialize_aws_json_1_1(data: dict) -> AttributeSuggestionsGetConfig:
                 data["SuggestionAttributes"]
             )
         )
-    if "AdditionalResponseAttributes" in data:
+    if data.get("AdditionalResponseAttributes") is not None:
         import capo_kendra.types.document_attribute_key_list
 
         out["additional_response_attributes"] = (
@@ -79,7 +79,7 @@ def deserialize_aws_json_1_1(data: dict) -> AttributeSuggestionsGetConfig:
                 data["AdditionalResponseAttributes"]
             )
         )
-    if "AttributeFilter" in data:
+    if data.get("AttributeFilter") is not None:
         import capo_kendra.types.attribute_filter
 
         out["attribute_filter"] = (
@@ -87,7 +87,7 @@ def deserialize_aws_json_1_1(data: dict) -> AttributeSuggestionsGetConfig:
                 data["AttributeFilter"]
             )
         )
-    if "UserContext" in data:
+    if data.get("UserContext") is not None:
         import capo_kendra.types.user_context
 
         out["user_context"] = capo_kendra.types.user_context.deserialize_aws_json_1_1(

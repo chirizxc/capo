@@ -55,7 +55,7 @@ def serialize_aws_json_1_1(value: AttackVolume) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AttackVolume:
     out: AttackVolume = {}  # type: ignore[typeddict-item]
-    if "BitsPerSecond" in data:
+    if data.get("BitsPerSecond") is not None:
         import capo_shield.types.attack_volume_statistics
 
         out["bits_per_second"] = (
@@ -63,7 +63,7 @@ def deserialize_aws_json_1_1(data: dict) -> AttackVolume:
                 data["BitsPerSecond"]
             )
         )
-    if "PacketsPerSecond" in data:
+    if data.get("PacketsPerSecond") is not None:
         import capo_shield.types.attack_volume_statistics
 
         out["packets_per_second"] = (
@@ -71,7 +71,7 @@ def deserialize_aws_json_1_1(data: dict) -> AttackVolume:
                 data["PacketsPerSecond"]
             )
         )
-    if "RequestsPerSecond" in data:
+    if data.get("RequestsPerSecond") is not None:
         import capo_shield.types.attack_volume_statistics
 
         out["requests_per_second"] = (

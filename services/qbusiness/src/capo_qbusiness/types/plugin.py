@@ -75,33 +75,33 @@ def serialize_json(value: Plugin) -> dict:
 
 def deserialize_json(data: dict) -> Plugin:
     out: Plugin = {}  # type: ignore[typeddict-item]
-    if "pluginId" in data:
+    if data.get("pluginId") is not None:
         out["plugin_id"] = data["pluginId"]
-    if "displayName" in data:
+    if data.get("displayName") is not None:
         out["display_name"] = data["displayName"]
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_qbusiness.types.plugin_type
 
         out["type"] = capo_qbusiness.types.plugin_type.deserialize_json(data["type"])
-    if "serverUrl" in data:
+    if data.get("serverUrl") is not None:
         out["server_url"] = data["serverUrl"]
-    if "state" in data:
+    if data.get("state") is not None:
         import capo_qbusiness.types.plugin_state
 
         out["state"] = capo_qbusiness.types.plugin_state.deserialize_json(data["state"])
-    if "buildStatus" in data:
+    if data.get("buildStatus") is not None:
         import capo_qbusiness.types.plugin_build_status
 
         out["build_status"] = capo_qbusiness.types.plugin_build_status.deserialize_json(
             data["buildStatus"]
         )
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_qbusiness.types.timestamp
 
         out["created_at"] = capo_qbusiness.types.timestamp.deserialize_json(
             data["createdAt"]
         )
-    if "updatedAt" in data:
+    if data.get("updatedAt") is not None:
         import capo_qbusiness.types.timestamp
 
         out["updated_at"] = capo_qbusiness.types.timestamp.deserialize_json(

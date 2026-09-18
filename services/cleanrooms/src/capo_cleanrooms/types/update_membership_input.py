@@ -88,7 +88,7 @@ def serialize_json(value: UpdateMembershipInput) -> dict:
 
 def deserialize_json(data: dict) -> UpdateMembershipInput:
     out: UpdateMembershipInput = {}  # type: ignore[typeddict-item]
-    if "queryLogStatus" in data:
+    if data.get("queryLogStatus") is not None:
         import capo_cleanrooms.types.membership_query_log_status
 
         out["query_log_status"] = (
@@ -96,7 +96,7 @@ def deserialize_json(data: dict) -> UpdateMembershipInput:
                 data["queryLogStatus"]
             )
         )
-    if "jobLogStatus" in data:
+    if data.get("jobLogStatus") is not None:
         import capo_cleanrooms.types.membership_job_log_status
 
         out["job_log_status"] = (
@@ -104,7 +104,7 @@ def deserialize_json(data: dict) -> UpdateMembershipInput:
                 data["jobLogStatus"]
             )
         )
-    if "defaultResultConfiguration" in data:
+    if data.get("defaultResultConfiguration") is not None:
         import capo_cleanrooms.types.membership_protected_query_result_configuration
 
         out["default_result_configuration"] = (
@@ -112,7 +112,7 @@ def deserialize_json(data: dict) -> UpdateMembershipInput:
                 data["defaultResultConfiguration"]
             )
         )
-    if "defaultJobResultConfiguration" in data:
+    if data.get("defaultJobResultConfiguration") is not None:
         import capo_cleanrooms.types.membership_protected_job_result_configuration
 
         out["default_job_result_configuration"] = (
@@ -120,7 +120,7 @@ def deserialize_json(data: dict) -> UpdateMembershipInput:
                 data["defaultJobResultConfiguration"]
             )
         )
-    if "membershipPaymentConfiguration" in data:
+    if data.get("membershipPaymentConfiguration") is not None:
         import capo_cleanrooms.types.update_membership_payment_configuration
 
         out["membership_payment_configuration"] = (

@@ -69,11 +69,11 @@ def serialize_aws_json_1_1(value: ExpandedResultItem) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ExpandedResultItem:
     out: ExpandedResultItem = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "DocumentId" in data:
+    if data.get("DocumentId") is not None:
         out["document_id"] = data["DocumentId"]
-    if "DocumentTitle" in data:
+    if data.get("DocumentTitle") is not None:
         import capo_kendra.types.text_with_highlights
 
         out["document_title"] = (
@@ -81,7 +81,7 @@ def deserialize_aws_json_1_1(data: dict) -> ExpandedResultItem:
                 data["DocumentTitle"]
             )
         )
-    if "DocumentExcerpt" in data:
+    if data.get("DocumentExcerpt") is not None:
         import capo_kendra.types.text_with_highlights
 
         out["document_excerpt"] = (
@@ -89,9 +89,9 @@ def deserialize_aws_json_1_1(data: dict) -> ExpandedResultItem:
                 data["DocumentExcerpt"]
             )
         )
-    if "DocumentURI" in data:
+    if data.get("DocumentURI") is not None:
         out["document_uri"] = data["DocumentURI"]
-    if "DocumentAttributes" in data:
+    if data.get("DocumentAttributes") is not None:
         import capo_kendra.types.document_attribute_list
 
         out["document_attributes"] = (

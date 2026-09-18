@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: ListExecutionsResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListExecutionsResponse:
     out: ListExecutionsResponse = {}  # type: ignore[typeddict-item]
-    if "Executions" in data:
+    if data.get("Executions") is not None:
         import capo_bcm_data_exports.types.execution_reference_list
 
         out["executions"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_1(data: dict) -> ListExecutionsResponse:
                 data["Executions"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

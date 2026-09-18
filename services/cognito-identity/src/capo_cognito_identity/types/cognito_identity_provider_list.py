@@ -29,6 +29,8 @@ def deserialize_aws_json_1_1(data: list) -> CognitoIdentityProviderList:
 
     out: CognitoIdentityProviderList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_cognito_identity.types.cognito_identity_provider.deserialize_aws_json_1_1(
                 item

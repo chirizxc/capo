@@ -124,13 +124,13 @@ def serialize_json(value: UpdateSlotTypeResponse) -> dict:
 
 def deserialize_json(data: dict) -> UpdateSlotTypeResponse:
     out: UpdateSlotTypeResponse = {}  # type: ignore[typeddict-item]
-    if "slotTypeId" in data:
+    if data.get("slotTypeId") is not None:
         out["slot_type_id"] = data["slotTypeId"]
-    if "slotTypeName" in data:
+    if data.get("slotTypeName") is not None:
         out["slot_type_name"] = data["slotTypeName"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "slotTypeValues" in data:
+    if data.get("slotTypeValues") is not None:
         import capo_lex_models_v2.types.slot_type_values
 
         out["slot_type_values"] = (
@@ -138,7 +138,7 @@ def deserialize_json(data: dict) -> UpdateSlotTypeResponse:
                 data["slotTypeValues"]
             )
         )
-    if "valueSelectionSetting" in data:
+    if data.get("valueSelectionSetting") is not None:
         import capo_lex_models_v2.types.slot_value_selection_setting
 
         out["value_selection_setting"] = (
@@ -146,21 +146,21 @@ def deserialize_json(data: dict) -> UpdateSlotTypeResponse:
                 data["valueSelectionSetting"]
             )
         )
-    if "parentSlotTypeSignature" in data:
+    if data.get("parentSlotTypeSignature") is not None:
         out["parent_slot_type_signature"] = data["parentSlotTypeSignature"]
-    if "botId" in data:
+    if data.get("botId") is not None:
         out["bot_id"] = data["botId"]
-    if "botVersion" in data:
+    if data.get("botVersion") is not None:
         out["bot_version"] = data["botVersion"]
-    if "localeId" in data:
+    if data.get("localeId") is not None:
         out["locale_id"] = data["localeId"]
-    if "creationDateTime" in data:
+    if data.get("creationDateTime") is not None:
         import capo_lex_models_v2.types.timestamp
 
         out["creation_date_time"] = capo_lex_models_v2.types.timestamp.deserialize_json(
             data["creationDateTime"]
         )
-    if "lastUpdatedDateTime" in data:
+    if data.get("lastUpdatedDateTime") is not None:
         import capo_lex_models_v2.types.timestamp
 
         out["last_updated_date_time"] = (
@@ -168,7 +168,7 @@ def deserialize_json(data: dict) -> UpdateSlotTypeResponse:
                 data["lastUpdatedDateTime"]
             )
         )
-    if "externalSourceSetting" in data:
+    if data.get("externalSourceSetting") is not None:
         import capo_lex_models_v2.types.external_source_setting
 
         out["external_source_setting"] = (
@@ -176,7 +176,7 @@ def deserialize_json(data: dict) -> UpdateSlotTypeResponse:
                 data["externalSourceSetting"]
             )
         )
-    if "compositeSlotTypeSetting" in data:
+    if data.get("compositeSlotTypeSetting") is not None:
         import capo_lex_models_v2.types.composite_slot_type_setting
 
         out["composite_slot_type_setting"] = (

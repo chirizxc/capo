@@ -35,7 +35,7 @@ def serialize_json(value: Statement) -> dict:
 
 def deserialize_json(data: dict) -> Statement:
     out: Statement = {}  # type: ignore[typeddict-item]
-    if "messages" in data:
+    if data.get("messages") is not None:
         import capo_lex_model_building_service.types.message_list
 
         out["messages"] = (
@@ -45,6 +45,6 @@ def deserialize_json(data: dict) -> Statement:
         )
     else:
         raise DeserializationError("Statement.messages required")
-    if "responseCard" in data:
+    if data.get("responseCard") is not None:
         out["response_card"] = data["responseCard"]
     return out

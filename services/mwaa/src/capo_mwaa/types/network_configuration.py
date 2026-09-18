@@ -38,13 +38,13 @@ def serialize_json(value: NetworkConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> NetworkConfiguration:
     out: NetworkConfiguration = {}  # type: ignore[typeddict-item]
-    if "SubnetIds" in data:
+    if data.get("SubnetIds") is not None:
         import capo_mwaa.types.subnet_list
 
         out["subnet_ids"] = capo_mwaa.types.subnet_list.deserialize_json(
             data["SubnetIds"]
         )
-    if "SecurityGroupIds" in data:
+    if data.get("SecurityGroupIds") is not None:
         import capo_mwaa.types.security_group_list
 
         out["security_group_ids"] = (

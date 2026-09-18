@@ -242,7 +242,7 @@ class Route53RecoveryReadinessClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_route53_recovery_readiness.types.create_cell_request.CreateCellRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_route53_recovery_readiness.types.create_cell_request.CreateCellRequest = {}
         if cell_name is not None:
             input_["cell_name"] = cell_name
         if cells is not None:
@@ -255,6 +255,7 @@ class Route53RecoveryReadinessClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_cross_account_authorization(
@@ -294,7 +295,7 @@ class Route53RecoveryReadinessClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_route53_recovery_readiness.types.create_cross_account_authorization_request.CreateCrossAccountAuthorizationRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_route53_recovery_readiness.types.create_cross_account_authorization_request.CreateCrossAccountAuthorizationRequest = {}
         if cross_account_authorization is not None:
             input_["cross_account_authorization"] = cross_account_authorization
 
@@ -303,6 +304,7 @@ class Route53RecoveryReadinessClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_readiness_check(
@@ -347,7 +349,7 @@ class Route53RecoveryReadinessClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_route53_recovery_readiness.types.create_readiness_check_request.CreateReadinessCheckRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_route53_recovery_readiness.types.create_readiness_check_request.CreateReadinessCheckRequest = {}
         if readiness_check_name is not None:
             input_["readiness_check_name"] = readiness_check_name
         if resource_set_name is not None:
@@ -360,6 +362,7 @@ class Route53RecoveryReadinessClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_recovery_group(
@@ -404,7 +407,7 @@ class Route53RecoveryReadinessClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_route53_recovery_readiness.types.create_recovery_group_request.CreateRecoveryGroupRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_route53_recovery_readiness.types.create_recovery_group_request.CreateRecoveryGroupRequest = {}
         if cells is not None:
             input_["cells"] = cells
         if recovery_group_name is not None:
@@ -417,6 +420,7 @@ class Route53RecoveryReadinessClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_resource_set(
@@ -466,7 +470,7 @@ class Route53RecoveryReadinessClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_route53_recovery_readiness.types.create_resource_set_request.CreateResourceSetRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_route53_recovery_readiness.types.create_resource_set_request.CreateResourceSetRequest = {}
         if resource_set_name is not None:
             input_["resource_set_name"] = resource_set_name
         if resource_set_type is not None:
@@ -481,6 +485,7 @@ class Route53RecoveryReadinessClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_cell(
@@ -516,14 +521,16 @@ class Route53RecoveryReadinessClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_route53_recovery_readiness.types.delete_cell_request.DeleteCellRequest = {}  # type: ignore[typeddict-item]
-        input_["cell_name"] = cell_name
+        input_: capo_route53_recovery_readiness.types.delete_cell_request.DeleteCellRequest = {
+            "cell_name": cell_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_cross_account_authorization(
@@ -560,14 +567,16 @@ class Route53RecoveryReadinessClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_route53_recovery_readiness.types.delete_cross_account_authorization_request.DeleteCrossAccountAuthorizationRequest = {}  # type: ignore[typeddict-item]
-        input_["cross_account_authorization"] = cross_account_authorization
+        input_: capo_route53_recovery_readiness.types.delete_cross_account_authorization_request.DeleteCrossAccountAuthorizationRequest = {
+            "cross_account_authorization": cross_account_authorization
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_readiness_check(
@@ -603,14 +612,16 @@ class Route53RecoveryReadinessClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_route53_recovery_readiness.types.delete_readiness_check_request.DeleteReadinessCheckRequest = {}  # type: ignore[typeddict-item]
-        input_["readiness_check_name"] = readiness_check_name
+        input_: capo_route53_recovery_readiness.types.delete_readiness_check_request.DeleteReadinessCheckRequest = {
+            "readiness_check_name": readiness_check_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_recovery_group(
@@ -646,14 +657,16 @@ class Route53RecoveryReadinessClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_route53_recovery_readiness.types.delete_recovery_group_request.DeleteRecoveryGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["recovery_group_name"] = recovery_group_name
+        input_: capo_route53_recovery_readiness.types.delete_recovery_group_request.DeleteRecoveryGroupRequest = {
+            "recovery_group_name": recovery_group_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_resource_set(
@@ -689,14 +702,16 @@ class Route53RecoveryReadinessClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_route53_recovery_readiness.types.delete_resource_set_request.DeleteResourceSetRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_set_name"] = resource_set_name
+        input_: capo_route53_recovery_readiness.types.delete_resource_set_request.DeleteResourceSetRequest = {
+            "resource_set_name": resource_set_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_architecture_recommendations(
@@ -742,18 +757,20 @@ class Route53RecoveryReadinessClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_route53_recovery_readiness.types.get_architecture_recommendations_request.GetArchitectureRecommendationsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_route53_recovery_readiness.types.get_architecture_recommendations_request.GetArchitectureRecommendationsRequest = {
+            "recovery_group_name": recovery_group_name
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
             input_["next_token"] = next_token
-        input_["recovery_group_name"] = recovery_group_name
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_cell(
@@ -791,14 +808,16 @@ class Route53RecoveryReadinessClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_route53_recovery_readiness.types.get_cell_request.GetCellRequest = {}  # type: ignore[typeddict-item]
-        input_["cell_name"] = cell_name
+        input_: capo_route53_recovery_readiness.types.get_cell_request.GetCellRequest = {
+            "cell_name": cell_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_cell_readiness_summary(
@@ -844,8 +863,9 @@ class Route53RecoveryReadinessClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_route53_recovery_readiness.types.get_cell_readiness_summary_request.GetCellReadinessSummaryRequest = {}  # type: ignore[typeddict-item]
-        input_["cell_name"] = cell_name
+        input_: capo_route53_recovery_readiness.types.get_cell_readiness_summary_request.GetCellReadinessSummaryRequest = {
+            "cell_name": cell_name
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -856,6 +876,7 @@ class Route53RecoveryReadinessClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_get_cell_readiness_summary(
@@ -920,14 +941,16 @@ class Route53RecoveryReadinessClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_route53_recovery_readiness.types.get_readiness_check_request.GetReadinessCheckRequest = {}  # type: ignore[typeddict-item]
-        input_["readiness_check_name"] = readiness_check_name
+        input_: capo_route53_recovery_readiness.types.get_readiness_check_request.GetReadinessCheckRequest = {
+            "readiness_check_name": readiness_check_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_readiness_check_resource_status(
@@ -975,19 +998,21 @@ class Route53RecoveryReadinessClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_route53_recovery_readiness.types.get_readiness_check_resource_status_request.GetReadinessCheckResourceStatusRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_route53_recovery_readiness.types.get_readiness_check_resource_status_request.GetReadinessCheckResourceStatusRequest = {
+            "readiness_check_name": readiness_check_name,
+            "resource_identifier": resource_identifier,
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
             input_["next_token"] = next_token
-        input_["readiness_check_name"] = readiness_check_name
-        input_["resource_identifier"] = resource_identifier
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_get_readiness_check_resource_status(
@@ -1062,18 +1087,20 @@ class Route53RecoveryReadinessClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_route53_recovery_readiness.types.get_readiness_check_status_request.GetReadinessCheckStatusRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_route53_recovery_readiness.types.get_readiness_check_status_request.GetReadinessCheckStatusRequest = {
+            "readiness_check_name": readiness_check_name
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
             input_["next_token"] = next_token
-        input_["readiness_check_name"] = readiness_check_name
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_get_readiness_check_status(
@@ -1140,14 +1167,16 @@ class Route53RecoveryReadinessClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_route53_recovery_readiness.types.get_recovery_group_request.GetRecoveryGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["recovery_group_name"] = recovery_group_name
+        input_: capo_route53_recovery_readiness.types.get_recovery_group_request.GetRecoveryGroupRequest = {
+            "recovery_group_name": recovery_group_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_recovery_group_readiness_summary(
@@ -1193,18 +1222,20 @@ class Route53RecoveryReadinessClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_route53_recovery_readiness.types.get_recovery_group_readiness_summary_request.GetRecoveryGroupReadinessSummaryRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_route53_recovery_readiness.types.get_recovery_group_readiness_summary_request.GetRecoveryGroupReadinessSummaryRequest = {
+            "recovery_group_name": recovery_group_name
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
             input_["next_token"] = next_token
-        input_["recovery_group_name"] = recovery_group_name
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_get_recovery_group_readiness_summary(
@@ -1269,14 +1300,16 @@ class Route53RecoveryReadinessClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_route53_recovery_readiness.types.get_resource_set_request.GetResourceSetRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_set_name"] = resource_set_name
+        input_: capo_route53_recovery_readiness.types.get_resource_set_request.GetResourceSetRequest = {
+            "resource_set_name": resource_set_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_cells(
@@ -1319,7 +1352,7 @@ class Route53RecoveryReadinessClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_route53_recovery_readiness.types.list_cells_request.ListCellsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_route53_recovery_readiness.types.list_cells_request.ListCellsRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -1330,6 +1363,7 @@ class Route53RecoveryReadinessClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_cells(
@@ -1397,7 +1431,7 @@ class Route53RecoveryReadinessClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_route53_recovery_readiness.types.list_cross_account_authorizations_request.ListCrossAccountAuthorizationsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_route53_recovery_readiness.types.list_cross_account_authorizations_request.ListCrossAccountAuthorizationsRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -1408,6 +1442,7 @@ class Route53RecoveryReadinessClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_cross_account_authorizations(
@@ -1475,7 +1510,7 @@ class Route53RecoveryReadinessClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_route53_recovery_readiness.types.list_readiness_checks_request.ListReadinessChecksRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_route53_recovery_readiness.types.list_readiness_checks_request.ListReadinessChecksRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -1486,6 +1521,7 @@ class Route53RecoveryReadinessClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_readiness_checks(
@@ -1553,7 +1589,7 @@ class Route53RecoveryReadinessClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_route53_recovery_readiness.types.list_recovery_groups_request.ListRecoveryGroupsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_route53_recovery_readiness.types.list_recovery_groups_request.ListRecoveryGroupsRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -1564,6 +1600,7 @@ class Route53RecoveryReadinessClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_recovery_groups(
@@ -1631,7 +1668,7 @@ class Route53RecoveryReadinessClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_route53_recovery_readiness.types.list_resource_sets_request.ListResourceSetsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_route53_recovery_readiness.types.list_resource_sets_request.ListResourceSetsRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -1642,6 +1679,7 @@ class Route53RecoveryReadinessClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_resource_sets(
@@ -1713,7 +1751,7 @@ class Route53RecoveryReadinessClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_route53_recovery_readiness.types.list_rules_request.ListRulesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_route53_recovery_readiness.types.list_rules_request.ListRulesRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -1726,6 +1764,7 @@ class Route53RecoveryReadinessClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_rules(
@@ -1790,14 +1829,16 @@ class Route53RecoveryReadinessClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_route53_recovery_readiness.types.list_tags_for_resources_request.ListTagsForResourcesRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_route53_recovery_readiness.types.list_tags_for_resources_request.ListTagsForResourcesRequest = {
+            "resource_arn": resource_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def tag_resource(
@@ -1835,8 +1876,9 @@ class Route53RecoveryReadinessClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_route53_recovery_readiness.types.tag_resource_request.TagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_route53_recovery_readiness.types.tag_resource_request.TagResourceRequest = {
+            "resource_arn": resource_arn
+        }
         if tags is not None:
             input_["tags"] = tags
 
@@ -1845,6 +1887,7 @@ class Route53RecoveryReadinessClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def untag_resource(
@@ -1882,8 +1925,9 @@ class Route53RecoveryReadinessClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_route53_recovery_readiness.types.untag_resource_request.UntagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_route53_recovery_readiness.types.untag_resource_request.UntagResourceRequest = {
+            "resource_arn": resource_arn
+        }
         if tag_keys is not None:
             input_["tag_keys"] = tag_keys
 
@@ -1892,6 +1936,7 @@ class Route53RecoveryReadinessClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_cell(
@@ -1935,8 +1980,9 @@ class Route53RecoveryReadinessClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_route53_recovery_readiness.types.update_cell_request.UpdateCellRequest = {}  # type: ignore[typeddict-item]
-        input_["cell_name"] = cell_name
+        input_: capo_route53_recovery_readiness.types.update_cell_request.UpdateCellRequest = {
+            "cell_name": cell_name
+        }
         if cells is not None:
             input_["cells"] = cells
 
@@ -1945,6 +1991,7 @@ class Route53RecoveryReadinessClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_readiness_check(
@@ -1986,8 +2033,9 @@ class Route53RecoveryReadinessClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_route53_recovery_readiness.types.update_readiness_check_request.UpdateReadinessCheckRequest = {}  # type: ignore[typeddict-item]
-        input_["readiness_check_name"] = readiness_check_name
+        input_: capo_route53_recovery_readiness.types.update_readiness_check_request.UpdateReadinessCheckRequest = {
+            "readiness_check_name": readiness_check_name
+        }
         if resource_set_name is not None:
             input_["resource_set_name"] = resource_set_name
 
@@ -1996,6 +2044,7 @@ class Route53RecoveryReadinessClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_recovery_group(
@@ -2037,16 +2086,18 @@ class Route53RecoveryReadinessClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_route53_recovery_readiness.types.update_recovery_group_request.UpdateRecoveryGroupRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_route53_recovery_readiness.types.update_recovery_group_request.UpdateRecoveryGroupRequest = {
+            "recovery_group_name": recovery_group_name
+        }
         if cells is not None:
             input_["cells"] = cells
-        input_["recovery_group_name"] = recovery_group_name
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_resource_set(
@@ -2092,8 +2143,9 @@ class Route53RecoveryReadinessClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_route53_recovery_readiness.types.update_resource_set_request.UpdateResourceSetRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_set_name"] = resource_set_name
+        input_: capo_route53_recovery_readiness.types.update_resource_set_request.UpdateResourceSetRequest = {
+            "resource_set_name": resource_set_name
+        }
         if resource_set_type is not None:
             input_["resource_set_type"] = resource_set_type
         if resources is not None:
@@ -2104,6 +2156,7 @@ class Route53RecoveryReadinessClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def __enter__(self) -> Self:

@@ -40,7 +40,7 @@ def serialize_json(value: ExportDataSource) -> dict:
 
 def deserialize_json(data: dict) -> ExportDataSource:
     out: ExportDataSource = {}  # type: ignore[typeddict-item]
-    if "MetricsDataSource" in data:
+    if data.get("MetricsDataSource") is not None:
         import capo_sesv2.types.metrics_data_source
 
         out["metrics_data_source"] = (
@@ -48,7 +48,7 @@ def deserialize_json(data: dict) -> ExportDataSource:
                 data["MetricsDataSource"]
             )
         )
-    if "MessageInsightsDataSource" in data:
+    if data.get("MessageInsightsDataSource") is not None:
         import capo_sesv2.types.message_insights_data_source
 
         out["message_insights_data_source"] = (

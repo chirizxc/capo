@@ -25,7 +25,7 @@ def serialize_json(value: DescribeBridgeResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribeBridgeResponse:
     out: DescribeBridgeResponse = {}  # type: ignore[typeddict-item]
-    if "bridge" in data:
+    if data.get("bridge") is not None:
         import capo_mediaconnect.types.bridge
 
         out["bridge"] = capo_mediaconnect.types.bridge.deserialize_json(data["bridge"])

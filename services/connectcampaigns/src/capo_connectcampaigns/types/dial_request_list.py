@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> DialRequestList:
 
     out: DialRequestList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_connectcampaigns.types.dial_request.deserialize_json(item))
     return out

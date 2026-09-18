@@ -40,15 +40,15 @@ def serialize_json(value: RelationalFilterConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> RelationalFilterConfiguration:
     out: RelationalFilterConfiguration = {}  # type: ignore[typeddict-item]
-    if "databaseName" in data:
+    if data.get("databaseName") is not None:
         out["database_name"] = data["databaseName"]
     else:
         raise DeserializationError(
             "RelationalFilterConfiguration.database_name required"
         )
-    if "schemaName" in data:
+    if data.get("schemaName") is not None:
         out["schema_name"] = data["schemaName"]
-    if "filterExpressions" in data:
+    if data.get("filterExpressions") is not None:
         import capo_datazone.types.filter_expressions
 
         out["filter_expressions"] = (

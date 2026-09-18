@@ -47,7 +47,7 @@ def serialize_aws_json_1_1(value: BlueGreenUpdatePolicy) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> BlueGreenUpdatePolicy:
     out: BlueGreenUpdatePolicy = {}  # type: ignore[typeddict-item]
-    if "TrafficRoutingConfiguration" in data:
+    if data.get("TrafficRoutingConfiguration") is not None:
         import capo_sagemaker.types.traffic_routing_config
 
         out["traffic_routing_configuration"] = (
@@ -55,9 +55,9 @@ def deserialize_aws_json_1_1(data: dict) -> BlueGreenUpdatePolicy:
                 data["TrafficRoutingConfiguration"]
             )
         )
-    if "TerminationWaitInSeconds" in data:
+    if data.get("TerminationWaitInSeconds") is not None:
         out["termination_wait_in_seconds"] = data["TerminationWaitInSeconds"]
-    if "MaximumExecutionTimeoutInSeconds" in data:
+    if data.get("MaximumExecutionTimeoutInSeconds") is not None:
         out["maximum_execution_timeout_in_seconds"] = data[
             "MaximumExecutionTimeoutInSeconds"
         ]

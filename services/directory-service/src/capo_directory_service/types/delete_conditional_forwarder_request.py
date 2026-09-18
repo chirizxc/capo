@@ -30,13 +30,13 @@ def serialize_aws_json_1_1(value: DeleteConditionalForwarderRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteConditionalForwarderRequest:
     out: DeleteConditionalForwarderRequest = {}  # type: ignore[typeddict-item]
-    if "DirectoryId" in data:
+    if data.get("DirectoryId") is not None:
         out["directory_id"] = data["DirectoryId"]
     else:
         raise DeserializationError(
             "DeleteConditionalForwarderRequest.directory_id required"
         )
-    if "RemoteDomainName" in data:
+    if data.get("RemoteDomainName") is not None:
         out["remote_domain_name"] = data["RemoteDomainName"]
     else:
         raise DeserializationError(

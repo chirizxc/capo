@@ -39,12 +39,12 @@ def serialize_json(value: FilterByAssetModel) -> dict:
 
 def deserialize_json(data: dict) -> FilterByAssetModel:
     out: FilterByAssetModel = {}  # type: ignore[typeddict-item]
-    if "assetModelId" in data:
+    if data.get("assetModelId") is not None:
         out["asset_model_id"] = data["assetModelId"]
-    if "assetModelExternalId" in data:
+    if data.get("assetModelExternalId") is not None:
         out["asset_model_external_id"] = data["assetModelExternalId"]
-    if "includeOffspring" in data:
+    if data.get("includeOffspring") is not None:
         out["include_offspring"] = data["includeOffspring"]
-    if "includeAssets" in data:
+    if data.get("includeAssets") is not None:
         out["include_assets"] = data["includeAssets"]
     return out

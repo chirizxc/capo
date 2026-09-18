@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> FirewallRules:
 
     out: FirewallRules = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_route53globalresolver.types.firewall_rules_item.deserialize_json(item)
         )

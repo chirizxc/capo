@@ -25,6 +25,8 @@ def deserialize_json(data: list) -> SlackChannelConfigurationList:
 
     out: SlackChannelConfigurationList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_chatbot.types.slack_channel_configuration.deserialize_json(item)
         )

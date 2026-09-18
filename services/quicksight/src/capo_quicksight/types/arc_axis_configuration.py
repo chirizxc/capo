@@ -33,13 +33,13 @@ def serialize_json(value: ArcAxisConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> ArcAxisConfiguration:
     out: ArcAxisConfiguration = {}  # type: ignore[typeddict-item]
-    if "Range" in data:
+    if data.get("Range") is not None:
         import capo_quicksight.types.arc_axis_display_range
 
         out["range"] = capo_quicksight.types.arc_axis_display_range.deserialize_json(
             data["Range"]
         )
-    if "ReserveRange" in data:
+    if data.get("ReserveRange") is not None:
         out["reserve_range"] = data["ReserveRange"]
     else:
         out["reserve_range"] = 0

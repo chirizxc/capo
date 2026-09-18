@@ -36,9 +36,9 @@ def serialize_aws_json_1_1(value: ListCallAnalyticsCategoriesResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListCallAnalyticsCategoriesResponse:
     out: ListCallAnalyticsCategoriesResponse = {}  # type: ignore[typeddict-item]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "Categories" in data:
+    if data.get("Categories") is not None:
         import capo_transcribe.types.category_properties_list
 
         out["categories"] = (

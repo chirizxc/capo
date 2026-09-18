@@ -37,9 +37,9 @@ def serialize_aws_json_1_0(value: ListPolicyStoreAliasesOutput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ListPolicyStoreAliasesOutput:
     out: ListPolicyStoreAliasesOutput = {}  # type: ignore[typeddict-item]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "policyStoreAliases" in data:
+    if data.get("policyStoreAliases") is not None:
         import capo_verifiedpermissions.types.policy_store_alias_list
 
         out["policy_store_aliases"] = (

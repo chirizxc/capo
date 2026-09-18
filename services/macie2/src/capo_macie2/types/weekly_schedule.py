@@ -27,7 +27,7 @@ def serialize_json(value: WeeklySchedule) -> dict:
 
 def deserialize_json(data: dict) -> WeeklySchedule:
     out: WeeklySchedule = {}  # type: ignore[typeddict-item]
-    if "dayOfWeek" in data:
+    if data.get("dayOfWeek") is not None:
         import capo_macie2.types.day_of_week
 
         out["day_of_week"] = capo_macie2.types.day_of_week.deserialize_json(

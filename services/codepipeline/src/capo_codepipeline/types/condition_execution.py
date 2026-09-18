@@ -47,7 +47,7 @@ def serialize_aws_json_1_1(value: ConditionExecution) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ConditionExecution:
     out: ConditionExecution = {}  # type: ignore[typeddict-item]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_codepipeline.types.condition_execution_status
 
         out["status"] = (
@@ -55,9 +55,9 @@ def deserialize_aws_json_1_1(data: dict) -> ConditionExecution:
                 data["status"]
             )
         )
-    if "summary" in data:
+    if data.get("summary") is not None:
         out["summary"] = data["summary"]
-    if "lastStatusChange" in data:
+    if data.get("lastStatusChange") is not None:
         import capo_codepipeline.types.timestamp
 
         out["last_status_change"] = (

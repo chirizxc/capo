@@ -1,5 +1,6 @@
 """Generated from Smithy shape ``com.amazonaws.finspacedata#AWSHabaneroPublicAPI``."""
 
+import uuid
 import warnings
 from collections.abc import Iterator
 from typing import TYPE_CHECKING, Any, Iterable, Optional
@@ -269,17 +270,20 @@ class finspacedataClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_finspace_data.types.associate_user_to_permission_group_request.AssociateUserToPermissionGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["permission_group_id"] = permission_group_id
-        input_["user_id"] = user_id
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_finspace_data.types.associate_user_to_permission_group_request.AssociateUserToPermissionGroupRequest = {
+            "permission_group_id": permission_group_id,
+            "user_id": user_id,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_changeset(
@@ -329,19 +333,22 @@ class finspacedataClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_finspace_data.types.create_changeset_request.CreateChangesetRequest = {}  # type: ignore[typeddict-item]
-        if client_token is not None:
-            input_["client_token"] = client_token
-        input_["dataset_id"] = dataset_id
-        input_["change_type"] = change_type
-        input_["source_params"] = source_params
-        input_["format_params"] = format_params
+        input_: capo_finspace_data.types.create_changeset_request.CreateChangesetRequest = {
+            "dataset_id": dataset_id,
+            "change_type": change_type,
+            "source_params": source_params,
+            "format_params": format_params,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_dataset(
@@ -403,16 +410,18 @@ class finspacedataClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_finspace_data.types.create_dataset_request.CreateDatasetRequest = {}  # type: ignore[typeddict-item]
-        if client_token is not None:
-            input_["client_token"] = client_token
-        input_["dataset_title"] = dataset_title
-        input_["kind"] = kind
+        input_: capo_finspace_data.types.create_dataset_request.CreateDatasetRequest = {
+            "dataset_title": dataset_title,
+            "kind": kind,
+            "permission_group_params": permission_group_params,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if dataset_description is not None:
             input_["dataset_description"] = dataset_description
         if owner_info is not None:
             input_["owner_info"] = owner_info
-        input_["permission_group_params"] = permission_group_params
         if alias is not None:
             input_["alias"] = alias
         if schema_definition is not None:
@@ -423,6 +432,7 @@ class finspacedataClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_data_view(
@@ -481,10 +491,13 @@ class finspacedataClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_finspace_data.types.create_data_view_request.CreateDataViewRequest = {}  # type: ignore[typeddict-item]
-        if client_token is not None:
-            input_["client_token"] = client_token
-        input_["dataset_id"] = dataset_id
+        input_: capo_finspace_data.types.create_data_view_request.CreateDataViewRequest = {
+            "dataset_id": dataset_id,
+            "destination_type_params": destination_type_params,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if auto_update is not None:
             input_["auto_update"] = auto_update
         if sort_columns is not None:
@@ -493,13 +506,13 @@ class finspacedataClient:
             input_["partition_columns"] = partition_columns
         if as_of_timestamp is not None:
             input_["as_of_timestamp"] = as_of_timestamp
-        input_["destination_type_params"] = destination_type_params
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_permission_group(
@@ -548,19 +561,22 @@ class finspacedataClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_finspace_data.types.create_permission_group_request.CreatePermissionGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_finspace_data.types.create_permission_group_request.CreatePermissionGroupRequest = {
+            "name": name,
+            "application_permissions": application_permissions,
+        }
         if description is not None:
             input_["description"] = description
-        input_["application_permissions"] = application_permissions
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_user(
@@ -615,9 +631,10 @@ class finspacedataClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_finspace_data.types.create_user_request.CreateUserRequest = {}  # type: ignore[typeddict-item]
-        input_["email_address"] = email_address
-        input_["type"] = type
+        input_: capo_finspace_data.types.create_user_request.CreateUserRequest = {
+            "email_address": email_address,
+            "type": type,
+        }
         if first_name is not None:
             input_["first_name"] = first_name
         if last_name is not None:
@@ -626,14 +643,16 @@ class finspacedataClient:
             input_["api_access"] = api_access
         if api_access_principal_arn is not None:
             input_["api_access_principal_arn"] = api_access_principal_arn
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_dataset(
@@ -677,16 +696,19 @@ class finspacedataClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_finspace_data.types.delete_dataset_request.DeleteDatasetRequest = {}  # type: ignore[typeddict-item]
-        if client_token is not None:
-            input_["client_token"] = client_token
-        input_["dataset_id"] = dataset_id
+        input_: capo_finspace_data.types.delete_dataset_request.DeleteDatasetRequest = {
+            "dataset_id": dataset_id
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_permission_group(
@@ -730,16 +752,19 @@ class finspacedataClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_finspace_data.types.delete_permission_group_request.DeletePermissionGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["permission_group_id"] = permission_group_id
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_finspace_data.types.delete_permission_group_request.DeletePermissionGroupRequest = {
+            "permission_group_id": permission_group_id
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def disable_user(
@@ -782,16 +807,19 @@ class finspacedataClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_finspace_data.types.disable_user_request.DisableUserRequest = {}  # type: ignore[typeddict-item]
-        input_["user_id"] = user_id
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_finspace_data.types.disable_user_request.DisableUserRequest = {
+            "user_id": user_id
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def disassociate_user_from_permission_group(
@@ -836,17 +864,20 @@ class finspacedataClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_finspace_data.types.disassociate_user_from_permission_group_request.DisassociateUserFromPermissionGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["permission_group_id"] = permission_group_id
-        input_["user_id"] = user_id
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_finspace_data.types.disassociate_user_from_permission_group_request.DisassociateUserFromPermissionGroupRequest = {
+            "permission_group_id": permission_group_id,
+            "user_id": user_id,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def enable_user(
@@ -890,16 +921,19 @@ class finspacedataClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_finspace_data.types.enable_user_request.EnableUserRequest = {}  # type: ignore[typeddict-item]
-        input_["user_id"] = user_id
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_finspace_data.types.enable_user_request.EnableUserRequest = {
+            "user_id": user_id
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_changeset(
@@ -940,15 +974,17 @@ class finspacedataClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_finspace_data.types.get_changeset_request.GetChangesetRequest = {}  # type: ignore[typeddict-item]
-        input_["dataset_id"] = dataset_id
-        input_["changeset_id"] = changeset_id
+        input_: capo_finspace_data.types.get_changeset_request.GetChangesetRequest = {
+            "dataset_id": dataset_id,
+            "changeset_id": changeset_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_dataset(
@@ -987,14 +1023,16 @@ class finspacedataClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_finspace_data.types.get_dataset_request.GetDatasetRequest = {}  # type: ignore[typeddict-item]
-        input_["dataset_id"] = dataset_id
+        input_: capo_finspace_data.types.get_dataset_request.GetDatasetRequest = {
+            "dataset_id": dataset_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_data_view(
@@ -1034,15 +1072,17 @@ class finspacedataClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_finspace_data.types.get_data_view_request.GetDataViewRequest = {}  # type: ignore[typeddict-item]
-        input_["data_view_id"] = data_view_id
-        input_["dataset_id"] = dataset_id
+        input_: capo_finspace_data.types.get_data_view_request.GetDataViewRequest = {
+            "data_view_id": data_view_id,
+            "dataset_id": dataset_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_external_data_view_access_details(
@@ -1082,15 +1122,17 @@ class finspacedataClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_finspace_data.types.get_external_data_view_access_details_request.GetExternalDataViewAccessDetailsRequest = {}  # type: ignore[typeddict-item]
-        input_["data_view_id"] = data_view_id
-        input_["dataset_id"] = dataset_id
+        input_: capo_finspace_data.types.get_external_data_view_access_details_request.GetExternalDataViewAccessDetailsRequest = {
+            "data_view_id": data_view_id,
+            "dataset_id": dataset_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_permission_group(
@@ -1128,14 +1170,16 @@ class finspacedataClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_finspace_data.types.get_permission_group_request.GetPermissionGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["permission_group_id"] = permission_group_id
+        input_: capo_finspace_data.types.get_permission_group_request.GetPermissionGroupRequest = {
+            "permission_group_id": permission_group_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_programmatic_access_credentials(
@@ -1176,16 +1220,18 @@ class finspacedataClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_finspace_data.types.get_programmatic_access_credentials_request.GetProgrammaticAccessCredentialsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_finspace_data.types.get_programmatic_access_credentials_request.GetProgrammaticAccessCredentialsRequest = {
+            "environment_id": environment_id
+        }
         if duration_in_minutes is not None:
             input_["duration_in_minutes"] = duration_in_minutes
-        input_["environment_id"] = environment_id
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_user(
@@ -1223,14 +1269,16 @@ class finspacedataClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_finspace_data.types.get_user_request.GetUserRequest = {}  # type: ignore[typeddict-item]
-        input_["user_id"] = user_id
+        input_: capo_finspace_data.types.get_user_request.GetUserRequest = {
+            "user_id": user_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_working_location(
@@ -1269,7 +1317,7 @@ class finspacedataClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_finspace_data.types.get_working_location_request.GetWorkingLocationRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_finspace_data.types.get_working_location_request.GetWorkingLocationRequest = {}
         if location_type is not None:
             input_["location_type"] = location_type
 
@@ -1278,6 +1326,7 @@ class finspacedataClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_changesets(
@@ -1324,8 +1373,9 @@ class finspacedataClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_finspace_data.types.list_changesets_request.ListChangesetsRequest = {}  # type: ignore[typeddict-item]
-        input_["dataset_id"] = dataset_id
+        input_: capo_finspace_data.types.list_changesets_request.ListChangesetsRequest = {
+            "dataset_id": dataset_id
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -1336,6 +1386,7 @@ class finspacedataClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_changesets(
@@ -1406,7 +1457,7 @@ class finspacedataClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_finspace_data.types.list_datasets_request.ListDatasetsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_finspace_data.types.list_datasets_request.ListDatasetsRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -1417,6 +1468,7 @@ class finspacedataClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_datasets(
@@ -1487,8 +1539,9 @@ class finspacedataClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_finspace_data.types.list_data_views_request.ListDataViewsRequest = {}  # type: ignore[typeddict-item]
-        input_["dataset_id"] = dataset_id
+        input_: capo_finspace_data.types.list_data_views_request.ListDataViewsRequest = {
+            "dataset_id": dataset_id
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -1499,6 +1552,7 @@ class finspacedataClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_data_views(
@@ -1566,16 +1620,18 @@ class finspacedataClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_finspace_data.types.list_permission_groups_request.ListPermissionGroupsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_finspace_data.types.list_permission_groups_request.ListPermissionGroupsRequest = {
+            "max_results": max_results
+        }
         if next_token is not None:
             input_["next_token"] = next_token
-        input_["max_results"] = max_results
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_permission_groups(
@@ -1642,17 +1698,19 @@ class finspacedataClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_finspace_data.types.list_permission_groups_by_user_request.ListPermissionGroupsByUserRequest = {}  # type: ignore[typeddict-item]
-        input_["user_id"] = user_id
+        input_: capo_finspace_data.types.list_permission_groups_by_user_request.ListPermissionGroupsByUserRequest = {
+            "user_id": user_id,
+            "max_results": max_results,
+        }
         if next_token is not None:
             input_["next_token"] = next_token
-        input_["max_results"] = max_results
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_users(
@@ -1693,16 +1751,18 @@ class finspacedataClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_finspace_data.types.list_users_request.ListUsersRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_finspace_data.types.list_users_request.ListUsersRequest = {
+            "max_results": max_results
+        }
         if next_token is not None:
             input_["next_token"] = next_token
-        input_["max_results"] = max_results
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_users(
@@ -1769,17 +1829,19 @@ class finspacedataClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_finspace_data.types.list_users_by_permission_group_request.ListUsersByPermissionGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["permission_group_id"] = permission_group_id
+        input_: capo_finspace_data.types.list_users_by_permission_group_request.ListUsersByPermissionGroupRequest = {
+            "permission_group_id": permission_group_id,
+            "max_results": max_results,
+        }
         if next_token is not None:
             input_["next_token"] = next_token
-        input_["max_results"] = max_results
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def reset_user_password(
@@ -1822,16 +1884,19 @@ class finspacedataClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_finspace_data.types.reset_user_password_request.ResetUserPasswordRequest = {}  # type: ignore[typeddict-item]
-        input_["user_id"] = user_id
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_finspace_data.types.reset_user_password_request.ResetUserPasswordRequest = {
+            "user_id": user_id
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_changeset(
@@ -1880,19 +1945,22 @@ class finspacedataClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_finspace_data.types.update_changeset_request.UpdateChangesetRequest = {}  # type: ignore[typeddict-item]
-        if client_token is not None:
-            input_["client_token"] = client_token
-        input_["dataset_id"] = dataset_id
-        input_["changeset_id"] = changeset_id
-        input_["source_params"] = source_params
-        input_["format_params"] = format_params
+        input_: capo_finspace_data.types.update_changeset_request.UpdateChangesetRequest = {
+            "dataset_id": dataset_id,
+            "changeset_id": changeset_id,
+            "source_params": source_params,
+            "format_params": format_params,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_dataset(
@@ -1949,12 +2017,14 @@ class finspacedataClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_finspace_data.types.update_dataset_request.UpdateDatasetRequest = {}  # type: ignore[typeddict-item]
-        if client_token is not None:
-            input_["client_token"] = client_token
-        input_["dataset_id"] = dataset_id
-        input_["dataset_title"] = dataset_title
-        input_["kind"] = kind
+        input_: capo_finspace_data.types.update_dataset_request.UpdateDatasetRequest = {
+            "dataset_id": dataset_id,
+            "dataset_title": dataset_title,
+            "kind": kind,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if dataset_description is not None:
             input_["dataset_description"] = dataset_description
         if alias is not None:
@@ -1967,6 +2037,7 @@ class finspacedataClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_permission_group(
@@ -2021,22 +2092,25 @@ class finspacedataClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_finspace_data.types.update_permission_group_request.UpdatePermissionGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["permission_group_id"] = permission_group_id
+        input_: capo_finspace_data.types.update_permission_group_request.UpdatePermissionGroupRequest = {
+            "permission_group_id": permission_group_id
+        }
         if name is not None:
             input_["name"] = name
         if description is not None:
             input_["description"] = description
         if application_permissions is not None:
             input_["application_permissions"] = application_permissions
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_user(
@@ -2091,8 +2165,9 @@ class finspacedataClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_finspace_data.types.update_user_request.UpdateUserRequest = {}  # type: ignore[typeddict-item]
-        input_["user_id"] = user_id
+        input_: capo_finspace_data.types.update_user_request.UpdateUserRequest = {
+            "user_id": user_id
+        }
         if type is not None:
             input_["type"] = type
         if first_name is not None:
@@ -2103,14 +2178,16 @@ class finspacedataClient:
             input_["api_access"] = api_access
         if api_access_principal_arn is not None:
             input_["api_access_principal_arn"] = api_access_principal_arn
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def __enter__(self) -> Self:

@@ -32,10 +32,10 @@ def serialize_json(value: AwsCodeBuildProjectLogsConfigS3LogsDetails) -> dict:
 
 def deserialize_json(data: dict) -> AwsCodeBuildProjectLogsConfigS3LogsDetails:
     out: AwsCodeBuildProjectLogsConfigS3LogsDetails = {}  # type: ignore[typeddict-item]
-    if "EncryptionDisabled" in data:
+    if data.get("EncryptionDisabled") is not None:
         out["encryption_disabled"] = data["EncryptionDisabled"]
-    if "Location" in data:
+    if data.get("Location") is not None:
         out["location"] = data["Location"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         out["status"] = data["Status"]
     return out

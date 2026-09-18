@@ -43,11 +43,11 @@ def serialize_json(value: CreateManagedThingResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateManagedThingResponse:
     out: CreateManagedThingResponse = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "CreatedAt" in data:
+    if data.get("CreatedAt") is not None:
         import capo_iot_managed_integrations.types.created_at
 
         out["created_at"] = (

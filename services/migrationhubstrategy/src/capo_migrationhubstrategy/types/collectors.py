@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> Collectors:
 
     out: Collectors = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_migrationhubstrategy.types.collector.deserialize_json(item))
     return out

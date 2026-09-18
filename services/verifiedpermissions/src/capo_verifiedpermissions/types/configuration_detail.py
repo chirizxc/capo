@@ -48,7 +48,7 @@ def serialize_aws_json_1_0(value: ConfigurationDetail) -> dict:
 
 
 def deserialize_aws_json_1_0(data: dict) -> ConfigurationDetail:
-    if "cognitoUserPoolConfiguration" in data:
+    if data.get("cognitoUserPoolConfiguration") is not None:
         import capo_verifiedpermissions.types.cognito_user_pool_configuration_detail
 
         return {
@@ -56,7 +56,7 @@ def deserialize_aws_json_1_0(data: dict) -> ConfigurationDetail:
                 data["cognitoUserPoolConfiguration"]
             )
         }
-    elif "openIdConnectConfiguration" in data:
+    elif data.get("openIdConnectConfiguration") is not None:
         import capo_verifiedpermissions.types.open_id_connect_configuration_detail
 
         return {

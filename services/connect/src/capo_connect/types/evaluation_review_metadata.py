@@ -63,17 +63,17 @@ def serialize_json(value: EvaluationReviewMetadata) -> dict:
 
 def deserialize_json(data: dict) -> EvaluationReviewMetadata:
     out: EvaluationReviewMetadata = {}  # type: ignore[typeddict-item]
-    if "ReviewId" in data:
+    if data.get("ReviewId") is not None:
         out["review_id"] = data["ReviewId"]
-    if "RequestedTime" in data:
+    if data.get("RequestedTime") is not None:
         import capo_connect.types.timestamp
 
         out["requested_time"] = capo_connect.types.timestamp.deserialize_json(
             data["RequestedTime"]
         )
-    if "RequestedBy" in data:
+    if data.get("RequestedBy") is not None:
         out["requested_by"] = data["RequestedBy"]
-    if "CreatedTime" in data:
+    if data.get("CreatedTime") is not None:
         import capo_connect.types.timestamp
 
         out["created_time"] = capo_connect.types.timestamp.deserialize_json(
@@ -85,11 +85,11 @@ def deserialize_json(data: dict) -> EvaluationReviewMetadata:
         out["created_time"] = datetime.datetime.fromtimestamp(
             0, tz=datetime.timezone.utc
         )
-    if "CreatedBy" in data:
+    if data.get("CreatedBy") is not None:
         out["created_by"] = data["CreatedBy"]
     else:
         out["created_by"] = "n/a"
-    if "ReviewRequestComments" in data:
+    if data.get("ReviewRequestComments") is not None:
         import capo_connect.types.evaluation_review_request_comment_list
 
         out["review_request_comments"] = (

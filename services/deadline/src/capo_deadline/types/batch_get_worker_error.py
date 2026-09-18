@@ -44,19 +44,19 @@ def serialize_json(value: BatchGetWorkerError) -> dict:
 
 def deserialize_json(data: dict) -> BatchGetWorkerError:
     out: BatchGetWorkerError = {}  # type: ignore[typeddict-item]
-    if "farmId" in data:
+    if data.get("farmId") is not None:
         out["farm_id"] = data["farmId"]
     else:
         raise DeserializationError("BatchGetWorkerError.farm_id required")
-    if "fleetId" in data:
+    if data.get("fleetId") is not None:
         out["fleet_id"] = data["fleetId"]
     else:
         raise DeserializationError("BatchGetWorkerError.fleet_id required")
-    if "workerId" in data:
+    if data.get("workerId") is not None:
         out["worker_id"] = data["workerId"]
     else:
         raise DeserializationError("BatchGetWorkerError.worker_id required")
-    if "code" in data:
+    if data.get("code") is not None:
         import capo_deadline.types.batch_get_worker_error_code
 
         out["code"] = capo_deadline.types.batch_get_worker_error_code.deserialize_json(
@@ -64,7 +64,7 @@ def deserialize_json(data: dict) -> BatchGetWorkerError:
         )
     else:
         raise DeserializationError("BatchGetWorkerError.code required")
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     else:
         raise DeserializationError("BatchGetWorkerError.message required")

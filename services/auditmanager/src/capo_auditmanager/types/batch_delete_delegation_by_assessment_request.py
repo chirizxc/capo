@@ -31,7 +31,7 @@ def serialize_json(value: BatchDeleteDelegationByAssessmentRequest) -> dict:
 
 def deserialize_json(data: dict) -> BatchDeleteDelegationByAssessmentRequest:
     out: BatchDeleteDelegationByAssessmentRequest = {}  # type: ignore[typeddict-item]
-    if "delegationIds" in data:
+    if data.get("delegationIds") is not None:
         import capo_auditmanager.types.delegation_ids
 
         out["delegation_ids"] = capo_auditmanager.types.delegation_ids.deserialize_json(

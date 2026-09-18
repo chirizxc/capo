@@ -65,11 +65,11 @@ def serialize_aws_json_1_1(value: StartFileTransferRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> StartFileTransferRequest:
     out: StartFileTransferRequest = {}  # type: ignore[typeddict-item]
-    if "ConnectorId" in data:
+    if data.get("ConnectorId") is not None:
         out["connector_id"] = data["ConnectorId"]
     else:
         raise DeserializationError("StartFileTransferRequest.connector_id required")
-    if "SendFilePaths" in data:
+    if data.get("SendFilePaths") is not None:
         import capo_transfer.types.file_paths
 
         out["send_file_paths"] = (
@@ -77,7 +77,7 @@ def deserialize_aws_json_1_1(data: dict) -> StartFileTransferRequest:
                 data["SendFilePaths"]
             )
         )
-    if "RetrieveFilePaths" in data:
+    if data.get("RetrieveFilePaths") is not None:
         import capo_transfer.types.file_paths
 
         out["retrieve_file_paths"] = (
@@ -85,11 +85,11 @@ def deserialize_aws_json_1_1(data: dict) -> StartFileTransferRequest:
                 data["RetrieveFilePaths"]
             )
         )
-    if "LocalDirectoryPath" in data:
+    if data.get("LocalDirectoryPath") is not None:
         out["local_directory_path"] = data["LocalDirectoryPath"]
-    if "RemoteDirectoryPath" in data:
+    if data.get("RemoteDirectoryPath") is not None:
         out["remote_directory_path"] = data["RemoteDirectoryPath"]
-    if "CustomHttpHeaders" in data:
+    if data.get("CustomHttpHeaders") is not None:
         import capo_transfer.types.custom_http_headers
 
         out["custom_http_headers"] = (

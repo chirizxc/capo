@@ -37,7 +37,7 @@ def serialize_json(value: StartFailbackLaunchRequest) -> dict:
 
 def deserialize_json(data: dict) -> StartFailbackLaunchRequest:
     out: StartFailbackLaunchRequest = {}  # type: ignore[typeddict-item]
-    if "recoveryInstanceIDs" in data:
+    if data.get("recoveryInstanceIDs") is not None:
         import capo_drs.types.start_failback_request_recovery_instance_i_ds
 
         out["recovery_instance_i_ds"] = (
@@ -49,7 +49,7 @@ def deserialize_json(data: dict) -> StartFailbackLaunchRequest:
         raise DeserializationError(
             "StartFailbackLaunchRequest.recovery_instance_i_ds required"
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_drs.types.tags_map
 
         out["tags"] = capo_drs.types.tags_map.deserialize_json(data["tags"])

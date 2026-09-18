@@ -34,12 +34,12 @@ def serialize_json(value: ListStreamSessionsRequest) -> dict:
 
 def deserialize_json(data: dict) -> ListStreamSessionsRequest:
     out: ListStreamSessionsRequest = {}  # type: ignore[typeddict-item]
-    if "channelArn" in data:
+    if data.get("channelArn") is not None:
         out["channel_arn"] = data["channelArn"]
     else:
         raise DeserializationError("ListStreamSessionsRequest.channel_arn required")
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
     return out

@@ -49,9 +49,9 @@ def serialize_json(value: SAPODataSourceProperties) -> dict:
 
 def deserialize_json(data: dict) -> SAPODataSourceProperties:
     out: SAPODataSourceProperties = {}  # type: ignore[typeddict-item]
-    if "objectPath" in data:
+    if data.get("objectPath") is not None:
         out["object_path"] = data["objectPath"]
-    if "parallelismConfig" in data:
+    if data.get("parallelismConfig") is not None:
         import capo_appflow.types.sapo_data_parallelism_config
 
         out["parallelism_config"] = (
@@ -59,7 +59,7 @@ def deserialize_json(data: dict) -> SAPODataSourceProperties:
                 data["parallelismConfig"]
             )
         )
-    if "paginationConfig" in data:
+    if data.get("paginationConfig") is not None:
         import capo_appflow.types.sapo_data_pagination_config
 
         out["pagination_config"] = (

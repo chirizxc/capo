@@ -51,9 +51,9 @@ def serialize_json(value: ParticipantThumbnailConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> ParticipantThumbnailConfiguration:
     out: ParticipantThumbnailConfiguration = {}  # type: ignore[typeddict-item]
-    if "targetIntervalSeconds" in data:
+    if data.get("targetIntervalSeconds") is not None:
         out["target_interval_seconds"] = data["targetIntervalSeconds"]
-    if "storage" in data:
+    if data.get("storage") is not None:
         import capo_ivs_realtime.types.thumbnail_storage_type_list
 
         out["storage"] = (
@@ -61,7 +61,7 @@ def deserialize_json(data: dict) -> ParticipantThumbnailConfiguration:
                 data["storage"]
             )
         )
-    if "recordingMode" in data:
+    if data.get("recordingMode") is not None:
         import capo_ivs_realtime.types.thumbnail_recording_mode
 
         out["recording_mode"] = (

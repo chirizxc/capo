@@ -36,7 +36,7 @@ def serialize_json(value: ListLifecyclePoliciesResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListLifecyclePoliciesResponse:
     out: ListLifecyclePoliciesResponse = {}  # type: ignore[typeddict-item]
-    if "lifecyclePolicySummaryList" in data:
+    if data.get("lifecyclePolicySummaryList") is not None:
         import capo_imagebuilder.types.lifecycle_policy_summary_list
 
         out["lifecycle_policy_summary_list"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> ListLifecyclePoliciesResponse:
                 data["lifecyclePolicySummaryList"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

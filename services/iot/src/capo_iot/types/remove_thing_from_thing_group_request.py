@@ -38,12 +38,12 @@ def serialize_json(value: RemoveThingFromThingGroupRequest) -> dict:
 
 def deserialize_json(data: dict) -> RemoveThingFromThingGroupRequest:
     out: RemoveThingFromThingGroupRequest = {}  # type: ignore[typeddict-item]
-    if "thingGroupName" in data:
+    if data.get("thingGroupName") is not None:
         out["thing_group_name"] = data["thingGroupName"]
-    if "thingGroupArn" in data:
+    if data.get("thingGroupArn") is not None:
         out["thing_group_arn"] = data["thingGroupArn"]
-    if "thingName" in data:
+    if data.get("thingName") is not None:
         out["thing_name"] = data["thingName"]
-    if "thingArn" in data:
+    if data.get("thingArn") is not None:
         out["thing_arn"] = data["thingArn"]
     return out

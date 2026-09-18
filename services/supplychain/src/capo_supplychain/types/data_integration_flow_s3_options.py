@@ -31,7 +31,7 @@ def serialize_json(value: DataIntegrationFlowS3Options) -> dict:
 
 def deserialize_json(data: dict) -> DataIntegrationFlowS3Options:
     out: DataIntegrationFlowS3Options = {}  # type: ignore[typeddict-item]
-    if "fileType" in data:
+    if data.get("fileType") is not None:
         import capo_supplychain.types.data_integration_flow_file_type
 
         out["file_type"] = (

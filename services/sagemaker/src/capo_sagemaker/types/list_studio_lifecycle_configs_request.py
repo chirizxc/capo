@@ -111,13 +111,13 @@ def serialize_aws_json_1_1(value: ListStudioLifecycleConfigsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListStudioLifecycleConfigsRequest:
     out: ListStudioLifecycleConfigsRequest = {}  # type: ignore[typeddict-item]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "NameContains" in data:
+    if data.get("NameContains") is not None:
         out["name_contains"] = data["NameContains"]
-    if "AppTypeEquals" in data:
+    if data.get("AppTypeEquals") is not None:
         import capo_sagemaker.types.studio_lifecycle_config_app_type
 
         out["app_type_equals"] = (
@@ -125,7 +125,7 @@ def deserialize_aws_json_1_1(data: dict) -> ListStudioLifecycleConfigsRequest:
                 data["AppTypeEquals"]
             )
         )
-    if "CreationTimeBefore" in data:
+    if data.get("CreationTimeBefore") is not None:
         import capo_sagemaker.types.timestamp
 
         out["creation_time_before"] = (
@@ -133,7 +133,7 @@ def deserialize_aws_json_1_1(data: dict) -> ListStudioLifecycleConfigsRequest:
                 data["CreationTimeBefore"]
             )
         )
-    if "CreationTimeAfter" in data:
+    if data.get("CreationTimeAfter") is not None:
         import capo_sagemaker.types.timestamp
 
         out["creation_time_after"] = (
@@ -141,7 +141,7 @@ def deserialize_aws_json_1_1(data: dict) -> ListStudioLifecycleConfigsRequest:
                 data["CreationTimeAfter"]
             )
         )
-    if "ModifiedTimeBefore" in data:
+    if data.get("ModifiedTimeBefore") is not None:
         import capo_sagemaker.types.timestamp
 
         out["modified_time_before"] = (
@@ -149,7 +149,7 @@ def deserialize_aws_json_1_1(data: dict) -> ListStudioLifecycleConfigsRequest:
                 data["ModifiedTimeBefore"]
             )
         )
-    if "ModifiedTimeAfter" in data:
+    if data.get("ModifiedTimeAfter") is not None:
         import capo_sagemaker.types.timestamp
 
         out["modified_time_after"] = (
@@ -157,7 +157,7 @@ def deserialize_aws_json_1_1(data: dict) -> ListStudioLifecycleConfigsRequest:
                 data["ModifiedTimeAfter"]
             )
         )
-    if "SortBy" in data:
+    if data.get("SortBy") is not None:
         import capo_sagemaker.types.studio_lifecycle_config_sort_key
 
         out["sort_by"] = (
@@ -165,7 +165,7 @@ def deserialize_aws_json_1_1(data: dict) -> ListStudioLifecycleConfigsRequest:
                 data["SortBy"]
             )
         )
-    if "SortOrder" in data:
+    if data.get("SortOrder") is not None:
         import capo_sagemaker.types.sort_order
 
         out["sort_order"] = capo_sagemaker.types.sort_order.deserialize_aws_json_1_1(

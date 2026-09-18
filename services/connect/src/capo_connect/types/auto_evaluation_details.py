@@ -35,11 +35,11 @@ def serialize_json(value: AutoEvaluationDetails) -> dict:
 
 def deserialize_json(data: dict) -> AutoEvaluationDetails:
     out: AutoEvaluationDetails = {}  # type: ignore[typeddict-item]
-    if "AutoEvaluationEnabled" in data:
+    if data.get("AutoEvaluationEnabled") is not None:
         out["auto_evaluation_enabled"] = data["AutoEvaluationEnabled"]
     else:
         out["auto_evaluation_enabled"] = False
-    if "AutoEvaluationStatus" in data:
+    if data.get("AutoEvaluationStatus") is not None:
         import capo_connect.types.auto_evaluation_status
 
         out["auto_evaluation_status"] = (

@@ -23,6 +23,6 @@ def serialize_aws_json_1_1(value: StartWorkflowRunResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> StartWorkflowRunResponse:
     out: StartWorkflowRunResponse = {}  # type: ignore[typeddict-item]
-    if "RunId" in data:
+    if data.get("RunId") is not None:
         out["run_id"] = data["RunId"]
     return out

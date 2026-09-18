@@ -34,12 +34,12 @@ def serialize_json(value: ListNotificationsOutput) -> dict:
 
 def deserialize_json(data: dict) -> ListNotificationsOutput:
     out: ListNotificationsOutput = {}  # type: ignore[typeddict-item]
-    if "notifications" in data:
+    if data.get("notifications") is not None:
         import capo_datazone.types.notifications_list
 
         out["notifications"] = capo_datazone.types.notifications_list.deserialize_json(
             data["notifications"]
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

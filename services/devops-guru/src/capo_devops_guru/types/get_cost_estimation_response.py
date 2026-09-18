@@ -67,7 +67,15 @@ def serialize_json(value: GetCostEstimationResponse) -> dict:
                 value["time_range"]
             )
         )
-    out["TotalCost"] = value.get("total_cost", 0)
+    out["TotalCost"] = (
+        "NaN"
+        if value.get("total_cost", 0) != value.get("total_cost", 0)
+        else "Infinity"
+        if value.get("total_cost", 0) == float("inf")
+        else "-Infinity"
+        if value.get("total_cost", 0) == float("-inf")
+        else value.get("total_cost", 0)
+    )
     if "next_token" in value:
         out["NextToken"] = value["next_token"]
     return out
@@ -75,7 +83,7 @@ def serialize_json(value: GetCostEstimationResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetCostEstimationResponse:
     out: GetCostEstimationResponse = {}  # type: ignore[typeddict-item]
-    if "ResourceCollection" in data:
+    if data.get("ResourceCollection") is not None:
         import capo_devops_guru.types.cost_estimation_resource_collection_filter
 
         out["resource_collection"] = (
@@ -83,19 +91,19 @@ def deserialize_json(data: dict) -> GetCostEstimationResponse:
                 data["ResourceCollection"]
             )
         )
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_devops_guru.types.cost_estimation_status
 
         out["status"] = capo_devops_guru.types.cost_estimation_status.deserialize_json(
             data["Status"]
         )
-    if "Costs" in data:
+    if data.get("Costs") is not None:
         import capo_devops_guru.types.service_resource_costs
 
         out["costs"] = capo_devops_guru.types.service_resource_costs.deserialize_json(
             data["Costs"]
         )
-    if "TimeRange" in data:
+    if data.get("TimeRange") is not None:
         import capo_devops_guru.types.cost_estimation_time_range
 
         out["time_range"] = (
@@ -103,10 +111,10 @@ def deserialize_json(data: dict) -> GetCostEstimationResponse:
                 data["TimeRange"]
             )
         )
-    if "TotalCost" in data:
-        out["total_cost"] = data["TotalCost"]
+    if data.get("TotalCost") is not None:
+        out["total_cost"] = float(data["TotalCost"])
     else:
         out["total_cost"] = 0
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

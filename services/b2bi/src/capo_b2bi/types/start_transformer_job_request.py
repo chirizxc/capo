@@ -43,7 +43,7 @@ def serialize_aws_json_1_0(value: StartTransformerJobRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> StartTransformerJobRequest:
     out: StartTransformerJobRequest = {}  # type: ignore[typeddict-item]
-    if "inputFile" in data:
+    if data.get("inputFile") is not None:
         import capo_b2bi.types.s3_location
 
         out["input_file"] = capo_b2bi.types.s3_location.deserialize_aws_json_1_0(
@@ -51,7 +51,7 @@ def deserialize_aws_json_1_0(data: dict) -> StartTransformerJobRequest:
         )
     else:
         raise DeserializationError("StartTransformerJobRequest.input_file required")
-    if "outputLocation" in data:
+    if data.get("outputLocation") is not None:
         import capo_b2bi.types.s3_location
 
         out["output_location"] = capo_b2bi.types.s3_location.deserialize_aws_json_1_0(
@@ -61,10 +61,10 @@ def deserialize_aws_json_1_0(data: dict) -> StartTransformerJobRequest:
         raise DeserializationError(
             "StartTransformerJobRequest.output_location required"
         )
-    if "transformerId" in data:
+    if data.get("transformerId") is not None:
         out["transformer_id"] = data["transformerId"]
     else:
         raise DeserializationError("StartTransformerJobRequest.transformer_id required")
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     return out

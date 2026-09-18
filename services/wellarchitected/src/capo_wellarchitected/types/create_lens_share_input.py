@@ -30,8 +30,8 @@ def serialize_json(value: CreateLensShareInput) -> dict:
 
 def deserialize_json(data: dict) -> CreateLensShareInput:
     out: CreateLensShareInput = {}  # type: ignore[typeddict-item]
-    if "SharedWith" in data:
+    if data.get("SharedWith") is not None:
         out["shared_with"] = data["SharedWith"]
-    if "ClientRequestToken" in data:
+    if data.get("ClientRequestToken") is not None:
         out["client_request_token"] = data["ClientRequestToken"]
     return out

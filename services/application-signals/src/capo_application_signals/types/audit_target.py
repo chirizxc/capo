@@ -31,11 +31,11 @@ def serialize_json(value: AuditTarget) -> dict:
 
 def deserialize_json(data: dict) -> AuditTarget:
     out: AuditTarget = {}  # type: ignore[typeddict-item]
-    if "Type" in data:
+    if data.get("Type") is not None:
         out["type"] = data["Type"]
     else:
         raise DeserializationError("AuditTarget.type required")
-    if "Data" in data:
+    if data.get("Data") is not None:
         import capo_application_signals.types.audit_target_entity
 
         out["data"] = (

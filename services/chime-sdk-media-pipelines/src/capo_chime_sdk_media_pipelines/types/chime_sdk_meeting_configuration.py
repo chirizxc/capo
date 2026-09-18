@@ -44,7 +44,7 @@ def serialize_json(value: ChimeSdkMeetingConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> ChimeSdkMeetingConfiguration:
     out: ChimeSdkMeetingConfiguration = {}  # type: ignore[typeddict-item]
-    if "SourceConfiguration" in data:
+    if data.get("SourceConfiguration") is not None:
         import capo_chime_sdk_media_pipelines.types.source_configuration
 
         out["source_configuration"] = (
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> ChimeSdkMeetingConfiguration:
                 data["SourceConfiguration"]
             )
         )
-    if "ArtifactsConfiguration" in data:
+    if data.get("ArtifactsConfiguration") is not None:
         import capo_chime_sdk_media_pipelines.types.artifacts_configuration
 
         out["artifacts_configuration"] = (

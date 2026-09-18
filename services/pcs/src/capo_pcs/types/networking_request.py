@@ -49,13 +49,13 @@ def serialize_aws_json_1_0(value: NetworkingRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> NetworkingRequest:
     out: NetworkingRequest = {}  # type: ignore[typeddict-item]
-    if "subnetIds" in data:
+    if data.get("subnetIds") is not None:
         import capo_pcs.types.subnet_id_list
 
         out["subnet_ids"] = capo_pcs.types.subnet_id_list.deserialize_aws_json_1_0(
             data["subnetIds"]
         )
-    if "securityGroupIds" in data:
+    if data.get("securityGroupIds") is not None:
         import capo_pcs.types.security_group_id_list
 
         out["security_group_ids"] = (
@@ -63,7 +63,7 @@ def deserialize_aws_json_1_0(data: dict) -> NetworkingRequest:
                 data["securityGroupIds"]
             )
         )
-    if "networkType" in data:
+    if data.get("networkType") is not None:
         import capo_pcs.types.network_type
 
         out["network_type"] = capo_pcs.types.network_type.deserialize_aws_json_1_0(

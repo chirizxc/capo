@@ -37,16 +37,16 @@ def serialize_json(value: AutoAcceptConfig) -> dict:
 
 def deserialize_json(data: dict) -> AutoAcceptConfig:
     out: AutoAcceptConfig = {}  # type: ignore[typeddict-item]
-    if "Channel" in data:
+    if data.get("Channel") is not None:
         import capo_connect.types.channel
 
         out["channel"] = capo_connect.types.channel.deserialize_json(data["Channel"])
     else:
         raise DeserializationError("AutoAcceptConfig.channel required")
-    if "AutoAccept" in data:
+    if data.get("AutoAccept") is not None:
         out["auto_accept"] = data["AutoAccept"]
     else:
         out["auto_accept"] = False
-    if "AgentFirstCallbackAutoAccept" in data:
+    if data.get("AgentFirstCallbackAutoAccept") is not None:
         out["agent_first_callback_auto_accept"] = data["AgentFirstCallbackAutoAccept"]
     return out

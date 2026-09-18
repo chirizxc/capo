@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> ProfileQuestionUpdates:
 
     out: ProfileQuestionUpdates = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_wellarchitected.types.profile_question_update.deserialize_json(item)
         )

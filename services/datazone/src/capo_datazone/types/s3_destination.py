@@ -23,6 +23,6 @@ def serialize_json(value: S3Destination) -> dict:
 
 def deserialize_json(data: dict) -> S3Destination:
     out: S3Destination = {}  # type: ignore[typeddict-item]
-    if "uri" in data:
+    if data.get("uri") is not None:
         out["uri"] = data["uri"]
     return out

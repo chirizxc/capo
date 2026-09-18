@@ -14,4 +14,4 @@ def serialize_json(value: ReferenceIdList) -> list:
 
 
 def deserialize_json(data: list) -> ReferenceIdList:
-    return list(data)
+    return [item for item in data if item is not None]

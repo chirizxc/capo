@@ -33,10 +33,10 @@ def serialize_json(value: TransferInputDeviceRequest) -> dict:
 
 def deserialize_json(data: dict) -> TransferInputDeviceRequest:
     out: TransferInputDeviceRequest = {}  # type: ignore[typeddict-item]
-    if "targetCustomerId" in data:
+    if data.get("targetCustomerId") is not None:
         out["target_customer_id"] = data["targetCustomerId"]
-    if "targetRegion" in data:
+    if data.get("targetRegion") is not None:
         out["target_region"] = data["targetRegion"]
-    if "transferMessage" in data:
+    if data.get("transferMessage") is not None:
         out["transfer_message"] = data["transferMessage"]
     return out

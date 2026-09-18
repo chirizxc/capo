@@ -63,26 +63,26 @@ def serialize_json(value: LdapServerMetadataOutput) -> dict:
 
 def deserialize_json(data: dict) -> LdapServerMetadataOutput:
     out: LdapServerMetadataOutput = {}  # type: ignore[typeddict-item]
-    if "hosts" in data:
+    if data.get("hosts") is not None:
         import capo_mq.types.__list_of__string
 
         out["hosts"] = capo_mq.types.__list_of__string.deserialize_json(data["hosts"])
-    if "roleBase" in data:
+    if data.get("roleBase") is not None:
         out["role_base"] = data["roleBase"]
-    if "roleName" in data:
+    if data.get("roleName") is not None:
         out["role_name"] = data["roleName"]
-    if "roleSearchMatching" in data:
+    if data.get("roleSearchMatching") is not None:
         out["role_search_matching"] = data["roleSearchMatching"]
-    if "roleSearchSubtree" in data:
+    if data.get("roleSearchSubtree") is not None:
         out["role_search_subtree"] = data["roleSearchSubtree"]
-    if "serviceAccountUsername" in data:
+    if data.get("serviceAccountUsername") is not None:
         out["service_account_username"] = data["serviceAccountUsername"]
-    if "userBase" in data:
+    if data.get("userBase") is not None:
         out["user_base"] = data["userBase"]
-    if "userRoleName" in data:
+    if data.get("userRoleName") is not None:
         out["user_role_name"] = data["userRoleName"]
-    if "userSearchMatching" in data:
+    if data.get("userSearchMatching") is not None:
         out["user_search_matching"] = data["userSearchMatching"]
-    if "userSearchSubtree" in data:
+    if data.get("userSearchSubtree") is not None:
         out["user_search_subtree"] = data["userSearchSubtree"]
     return out

@@ -40,7 +40,7 @@ def serialize_json(value: FunctionExecutionConfig) -> dict:
 
 def deserialize_json(data: dict) -> FunctionExecutionConfig:
     out: FunctionExecutionConfig = {}  # type: ignore[typeddict-item]
-    if "IsolationMode" in data:
+    if data.get("IsolationMode") is not None:
         import capo_greengrass.types.function_isolation_mode
 
         out["isolation_mode"] = (
@@ -48,7 +48,7 @@ def deserialize_json(data: dict) -> FunctionExecutionConfig:
                 data["IsolationMode"]
             )
         )
-    if "RunAs" in data:
+    if data.get("RunAs") is not None:
         import capo_greengrass.types.function_run_as_config
 
         out["run_as"] = capo_greengrass.types.function_run_as_config.deserialize_json(

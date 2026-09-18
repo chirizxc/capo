@@ -68,7 +68,7 @@ def deserialize_aws_json_1_1(
     data: dict,
 ) -> InviteOrganizationToTransferResponsibilityRequest:
     out: InviteOrganizationToTransferResponsibilityRequest = {}  # type: ignore[typeddict-item]
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_organizations.types.responsibility_transfer_type
 
         out["type"] = (
@@ -80,7 +80,7 @@ def deserialize_aws_json_1_1(
         raise DeserializationError(
             "InviteOrganizationToTransferResponsibilityRequest.type required"
         )
-    if "Target" in data:
+    if data.get("Target") is not None:
         import capo_organizations.types.handshake_party
 
         out["target"] = (
@@ -92,9 +92,9 @@ def deserialize_aws_json_1_1(
         raise DeserializationError(
             "InviteOrganizationToTransferResponsibilityRequest.target required"
         )
-    if "Notes" in data:
+    if data.get("Notes") is not None:
         out["notes"] = data["Notes"]
-    if "StartTimestamp" in data:
+    if data.get("StartTimestamp") is not None:
         import capo_organizations.types.timestamp
 
         out["start_timestamp"] = (
@@ -106,13 +106,13 @@ def deserialize_aws_json_1_1(
         raise DeserializationError(
             "InviteOrganizationToTransferResponsibilityRequest.start_timestamp required"
         )
-    if "SourceName" in data:
+    if data.get("SourceName") is not None:
         out["source_name"] = data["SourceName"]
     else:
         raise DeserializationError(
             "InviteOrganizationToTransferResponsibilityRequest.source_name required"
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_organizations.types.tags
 
         out["tags"] = capo_organizations.types.tags.deserialize_aws_json_1_1(

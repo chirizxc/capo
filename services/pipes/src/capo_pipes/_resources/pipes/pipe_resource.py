@@ -132,23 +132,24 @@ class PipeResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_pipes.types.create_pipe_request.CreatePipeRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_pipes.types.create_pipe_request.CreatePipeRequest = {
+            "name": name,
+            "source": source,
+            "target": target,
+            "role_arn": role_arn,
+        }
         if description is not None:
             input_["description"] = description
         if desired_state is not None:
             input_["desired_state"] = desired_state
-        input_["source"] = source
         if source_parameters is not None:
             input_["source_parameters"] = source_parameters
         if enrichment is not None:
             input_["enrichment"] = enrichment
         if enrichment_parameters is not None:
             input_["enrichment_parameters"] = enrichment_parameters
-        input_["target"] = target
         if target_parameters is not None:
             input_["target_parameters"] = target_parameters
-        input_["role_arn"] = role_arn
         if tags is not None:
             input_["tags"] = tags
         if log_configuration is not None:
@@ -161,6 +162,7 @@ class PipeResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -197,14 +199,16 @@ class PipeResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_pipes.types.describe_pipe_request.DescribePipeRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_pipes.types.describe_pipe_request.DescribePipeRequest = {
+            "name": name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update(
@@ -276,8 +280,10 @@ class PipeResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_pipes.types.update_pipe_request.UpdatePipeRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_pipes.types.update_pipe_request.UpdatePipeRequest = {
+            "name": name,
+            "role_arn": role_arn,
+        }
         if description is not None:
             input_["description"] = description
         if desired_state is not None:
@@ -292,7 +298,6 @@ class PipeResource:
             input_["target"] = target
         if target_parameters is not None:
             input_["target_parameters"] = target_parameters
-        input_["role_arn"] = role_arn
         if log_configuration is not None:
             input_["log_configuration"] = log_configuration
         if kms_key_identifier is not None:
@@ -303,6 +308,7 @@ class PipeResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -340,14 +346,14 @@ class PipeResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_pipes.types.delete_pipe_request.DeletePipeRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_pipes.types.delete_pipe_request.DeletePipeRequest = {"name": name}
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -395,7 +401,7 @@ class PipeResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_pipes.types.list_pipes_request.ListPipesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_pipes.types.list_pipes_request.ListPipesRequest = {}
         if name_prefix is not None:
             input_["name_prefix"] = name_prefix
         if desired_state is not None:
@@ -416,6 +422,7 @@ class PipeResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def start_pipe(
@@ -451,14 +458,14 @@ class PipeResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_pipes.types.start_pipe_request.StartPipeRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_pipes.types.start_pipe_request.StartPipeRequest = {"name": name}
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def stop_pipe(
@@ -492,14 +499,14 @@ class PipeResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_pipes.types.stop_pipe_request.StopPipeRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_pipes.types.stop_pipe_request.StopPipeRequest = {"name": name}
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -582,23 +589,24 @@ class AsyncPipeResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_pipes.types.create_pipe_request.CreatePipeRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_pipes.types.create_pipe_request.CreatePipeRequest = {
+            "name": name,
+            "source": source,
+            "target": target,
+            "role_arn": role_arn,
+        }
         if description is not None:
             input_["description"] = description
         if desired_state is not None:
             input_["desired_state"] = desired_state
-        input_["source"] = source
         if source_parameters is not None:
             input_["source_parameters"] = source_parameters
         if enrichment is not None:
             input_["enrichment"] = enrichment
         if enrichment_parameters is not None:
             input_["enrichment_parameters"] = enrichment_parameters
-        input_["target"] = target
         if target_parameters is not None:
             input_["target_parameters"] = target_parameters
-        input_["role_arn"] = role_arn
         if tags is not None:
             input_["tags"] = tags
         if log_configuration is not None:
@@ -611,6 +619,7 @@ class AsyncPipeResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -648,14 +657,16 @@ class AsyncPipeResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_pipes.types.describe_pipe_request.DescribePipeRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_pipes.types.describe_pipe_request.DescribePipeRequest = {
+            "name": name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update(
@@ -728,8 +739,10 @@ class AsyncPipeResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_pipes.types.update_pipe_request.UpdatePipeRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_pipes.types.update_pipe_request.UpdatePipeRequest = {
+            "name": name,
+            "role_arn": role_arn,
+        }
         if description is not None:
             input_["description"] = description
         if desired_state is not None:
@@ -744,7 +757,6 @@ class AsyncPipeResource:
             input_["target"] = target
         if target_parameters is not None:
             input_["target_parameters"] = target_parameters
-        input_["role_arn"] = role_arn
         if log_configuration is not None:
             input_["log_configuration"] = log_configuration
         if kms_key_identifier is not None:
@@ -755,6 +767,7 @@ class AsyncPipeResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -793,14 +806,14 @@ class AsyncPipeResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_pipes.types.delete_pipe_request.DeletePipeRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_pipes.types.delete_pipe_request.DeletePipeRequest = {"name": name}
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -851,7 +864,7 @@ class AsyncPipeResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_pipes.types.list_pipes_request.ListPipesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_pipes.types.list_pipes_request.ListPipesRequest = {}
         if name_prefix is not None:
             input_["name_prefix"] = name_prefix
         if desired_state is not None:
@@ -872,6 +885,7 @@ class AsyncPipeResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def start_pipe(
@@ -910,14 +924,14 @@ class AsyncPipeResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_pipes.types.start_pipe_request.StartPipeRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_pipes.types.start_pipe_request.StartPipeRequest = {"name": name}
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def stop_pipe(
@@ -956,12 +970,12 @@ class AsyncPipeResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_pipes.types.stop_pipe_request.StopPipeRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_pipes.types.stop_pipe_request.StopPipeRequest = {"name": name}
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

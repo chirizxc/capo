@@ -23,6 +23,6 @@ def serialize_aws_json_1_1(value: GetShardIteratorOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetShardIteratorOutput:
     out: GetShardIteratorOutput = {}  # type: ignore[typeddict-item]
-    if "ShardIterator" in data:
+    if data.get("ShardIterator") is not None:
         out["shard_iterator"] = data["ShardIterator"]
     return out

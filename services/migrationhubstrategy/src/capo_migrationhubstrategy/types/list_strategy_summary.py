@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> ListStrategySummary:
 
     out: ListStrategySummary = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_migrationhubstrategy.types.strategy_summary.deserialize_json(item)
         )

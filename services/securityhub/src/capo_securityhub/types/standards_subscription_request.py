@@ -36,9 +36,9 @@ def serialize_json(value: StandardsSubscriptionRequest) -> dict:
 
 def deserialize_json(data: dict) -> StandardsSubscriptionRequest:
     out: StandardsSubscriptionRequest = {}  # type: ignore[typeddict-item]
-    if "StandardsArn" in data:
+    if data.get("StandardsArn") is not None:
         out["standards_arn"] = data["StandardsArn"]
-    if "StandardsInput" in data:
+    if data.get("StandardsInput") is not None:
         import capo_securityhub.types.standards_input_parameter_map
 
         out["standards_input"] = (

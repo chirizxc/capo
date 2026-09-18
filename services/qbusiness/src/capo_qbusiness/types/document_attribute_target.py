@@ -47,17 +47,17 @@ def serialize_json(value: DocumentAttributeTarget) -> dict:
 
 def deserialize_json(data: dict) -> DocumentAttributeTarget:
     out: DocumentAttributeTarget = {}  # type: ignore[typeddict-item]
-    if "key" in data:
+    if data.get("key") is not None:
         out["key"] = data["key"]
     else:
         raise DeserializationError("DocumentAttributeTarget.key required")
-    if "value" in data:
+    if data.get("value") is not None:
         import capo_qbusiness.types.document_attribute_value
 
         out["value"] = capo_qbusiness.types.document_attribute_value.deserialize_json(
             data["value"]
         )
-    if "attributeValueOperator" in data:
+    if data.get("attributeValueOperator") is not None:
         import capo_qbusiness.types.attribute_value_operator
 
         out["attribute_value_operator"] = (

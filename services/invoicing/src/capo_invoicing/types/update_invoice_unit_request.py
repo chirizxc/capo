@@ -56,20 +56,20 @@ def serialize_aws_json_1_0(value: UpdateInvoiceUnitRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> UpdateInvoiceUnitRequest:
     out: UpdateInvoiceUnitRequest = {}  # type: ignore[typeddict-item]
-    if "InvoiceUnitArn" in data:
+    if data.get("InvoiceUnitArn") is not None:
         out["invoice_unit_arn"] = data["InvoiceUnitArn"]
     else:
         raise DeserializationError("UpdateInvoiceUnitRequest.invoice_unit_arn required")
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "TaxInheritanceDisabled" in data:
+    if data.get("TaxInheritanceDisabled") is not None:
         out["tax_inheritance_disabled"] = data["TaxInheritanceDisabled"]
-    if "Rule" in data:
+    if data.get("Rule") is not None:
         import capo_invoicing.types.invoice_unit_rule
 
         out["rule"] = capo_invoicing.types.invoice_unit_rule.deserialize_aws_json_1_0(
             data["Rule"]
         )
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
     return out

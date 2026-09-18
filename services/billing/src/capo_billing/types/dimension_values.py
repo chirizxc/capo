@@ -32,13 +32,13 @@ def serialize_aws_json_1_0(value: DimensionValues) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> DimensionValues:
     out: DimensionValues = {}  # type: ignore[typeddict-item]
-    if "key" in data:
+    if data.get("key") is not None:
         import capo_billing.types.dimension
 
         out["key"] = capo_billing.types.dimension.deserialize_aws_json_1_0(data["key"])
     else:
         raise DeserializationError("DimensionValues.key required")
-    if "values" in data:
+    if data.get("values") is not None:
         import capo_billing.types.values
 
         out["values"] = capo_billing.types.values.deserialize_aws_json_1_0(

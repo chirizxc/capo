@@ -26,7 +26,7 @@ def serialize_aws_json_1_1(value: PutKMSEncryptionKeyRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PutKMSEncryptionKeyRequest:
     out: PutKMSEncryptionKeyRequest = {}  # type: ignore[typeddict-item]
-    if "kmsEncryptionKeyArn" in data:
+    if data.get("kmsEncryptionKeyArn") is not None:
         out["kms_encryption_key_arn"] = data["kmsEncryptionKeyArn"]
     else:
         raise DeserializationError(

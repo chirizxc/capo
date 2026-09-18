@@ -57,11 +57,11 @@ def serialize_aws_json_1_1(value: PutFileEntry) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PutFileEntry:
     out: PutFileEntry = {}  # type: ignore[typeddict-item]
-    if "filePath" in data:
+    if data.get("filePath") is not None:
         out["file_path"] = data["filePath"]
     else:
         raise DeserializationError("PutFileEntry.file_path required")
-    if "fileMode" in data:
+    if data.get("fileMode") is not None:
         import capo_codecommit.types.file_mode_type_enum
 
         out["file_mode"] = (
@@ -69,7 +69,7 @@ def deserialize_aws_json_1_1(data: dict) -> PutFileEntry:
                 data["fileMode"]
             )
         )
-    if "fileContent" in data:
+    if data.get("fileContent") is not None:
         import capo_codecommit.types.file_content
 
         out["file_content"] = (
@@ -77,7 +77,7 @@ def deserialize_aws_json_1_1(data: dict) -> PutFileEntry:
                 data["fileContent"]
             )
         )
-    if "sourceFile" in data:
+    if data.get("sourceFile") is not None:
         import capo_codecommit.types.source_file_specifier
 
         out["source_file"] = (

@@ -25,6 +25,8 @@ def deserialize_json(data: list) -> GrpcGatewayRouteMetadataList:
 
     out: GrpcGatewayRouteMetadataList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_app_mesh.types.grpc_gateway_route_metadata.deserialize_json(item)
         )

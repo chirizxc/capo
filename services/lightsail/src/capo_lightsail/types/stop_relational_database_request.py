@@ -32,13 +32,13 @@ def serialize_aws_json_1_1(value: StopRelationalDatabaseRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> StopRelationalDatabaseRequest:
     out: StopRelationalDatabaseRequest = {}  # type: ignore[typeddict-item]
-    if "relationalDatabaseName" in data:
+    if data.get("relationalDatabaseName") is not None:
         out["relational_database_name"] = data["relationalDatabaseName"]
     else:
         raise DeserializationError(
             "StopRelationalDatabaseRequest.relational_database_name required"
         )
-    if "relationalDatabaseSnapshotName" in data:
+    if data.get("relationalDatabaseSnapshotName") is not None:
         out["relational_database_snapshot_name"] = data[
             "relationalDatabaseSnapshotName"
         ]

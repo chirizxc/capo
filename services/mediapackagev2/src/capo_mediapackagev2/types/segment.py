@@ -53,21 +53,21 @@ def serialize_json(value: Segment) -> dict:
 
 def deserialize_json(data: dict) -> Segment:
     out: Segment = {}  # type: ignore[typeddict-item]
-    if "SegmentDurationSeconds" in data:
+    if data.get("SegmentDurationSeconds") is not None:
         out["segment_duration_seconds"] = data["SegmentDurationSeconds"]
-    if "SegmentName" in data:
+    if data.get("SegmentName") is not None:
         out["segment_name"] = data["SegmentName"]
-    if "TsUseAudioRenditionGroup" in data:
+    if data.get("TsUseAudioRenditionGroup") is not None:
         out["ts_use_audio_rendition_group"] = data["TsUseAudioRenditionGroup"]
-    if "IncludeIframeOnlyStreams" in data:
+    if data.get("IncludeIframeOnlyStreams") is not None:
         out["include_iframe_only_streams"] = data["IncludeIframeOnlyStreams"]
-    if "TsIncludeDvbSubtitles" in data:
+    if data.get("TsIncludeDvbSubtitles") is not None:
         out["ts_include_dvb_subtitles"] = data["TsIncludeDvbSubtitles"]
-    if "Scte" in data:
+    if data.get("Scte") is not None:
         import capo_mediapackagev2.types.scte
 
         out["scte"] = capo_mediapackagev2.types.scte.deserialize_json(data["Scte"])
-    if "Encryption" in data:
+    if data.get("Encryption") is not None:
         import capo_mediapackagev2.types.encryption
 
         out["encryption"] = capo_mediapackagev2.types.encryption.deserialize_json(

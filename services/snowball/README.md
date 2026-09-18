@@ -13,9 +13,9 @@ from capo_snowball import AsyncSnowballClient
 
 
 async def main():
-    async with AsyncSnowballClient() as s3:
+    async with AsyncSnowballClient() as snowball:
         # Example: call the cancel_cluster operation
-        response = await s3.cancel_cluster()
+        response = await snowball.cancel_cluster()
         print(response)
 ```
 
@@ -28,9 +28,9 @@ from capo_snowball import AsyncSnowballClient
 
 
 async def main():
-    async with AsyncSnowballClient() as s3:
+    async with AsyncSnowballClient() as snowball:
         # Example: paginate over describe_addresses
-        async for item in s3.iter_describe_addresses():
+        async for item in snowball.iter_describe_addresses():
             print(item)
 ```
 
@@ -44,9 +44,9 @@ from capo_snowball.error import InvalidJobStateException
 
 
 async def main():
-    async with AsyncSnowballClient() as s3:
+    async with AsyncSnowballClient() as snowball:
         try:
-            await s3.cancel_cluster()
+            await snowball.cancel_cluster()
         except InvalidJobStateException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -63,13 +63,13 @@ from capo_snowball import AsyncSnowballClient
 
 
 async def main():
-    async with AsyncSnowballClient() as s3:
+    async with AsyncSnowballClient() as snowball:
         # Default: 3 attempts for every operation
-        response = await s3.cancel_cluster()
+        response = await snowball.cancel_cluster()
 
         # Override per operation
-        response = await s3.cancel_cluster(config_overrides={"retry_max_attempts": 5})
+        response = await snowball.cancel_cluster(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.cancel_cluster(config_overrides={"retry_max_attempts": 1})
+        response = await snowball.cancel_cluster(config_overrides={"retry_max_attempts": 1})
 ```

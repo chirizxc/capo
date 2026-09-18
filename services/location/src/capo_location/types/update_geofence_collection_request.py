@@ -37,10 +37,10 @@ def serialize_json(value: UpdateGeofenceCollectionRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateGeofenceCollectionRequest:
     out: UpdateGeofenceCollectionRequest = {}  # type: ignore[typeddict-item]
-    if "PricingPlan" in data:
+    if data.get("PricingPlan") is not None:
         out["pricing_plan"] = data["PricingPlan"]
-    if "PricingPlanDataSource" in data:
+    if data.get("PricingPlanDataSource") is not None:
         out["pricing_plan_data_source"] = data["PricingPlanDataSource"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
     return out

@@ -35,7 +35,7 @@ def serialize_json(value: UpdateTemplateAliasRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateTemplateAliasRequest:
     out: UpdateTemplateAliasRequest = {}  # type: ignore[typeddict-item]
-    if "TemplateVersionNumber" in data:
+    if data.get("TemplateVersionNumber") is not None:
         out["template_version_number"] = data["TemplateVersionNumber"]
     else:
         raise DeserializationError(

@@ -36,9 +36,9 @@ def serialize_aws_json_1_1(value: DisassociateMacSecKeyResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DisassociateMacSecKeyResponse:
     out: DisassociateMacSecKeyResponse = {}  # type: ignore[typeddict-item]
-    if "connectionId" in data:
+    if data.get("connectionId") is not None:
         out["connection_id"] = data["connectionId"]
-    if "macSecKeys" in data:
+    if data.get("macSecKeys") is not None:
         import capo_direct_connect.types.mac_sec_key_list
 
         out["mac_sec_keys"] = (

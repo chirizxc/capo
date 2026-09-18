@@ -60,11 +60,11 @@ def serialize_aws_json_1_0(value: CreateHostInput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CreateHostInput:
     out: CreateHostInput = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("CreateHostInput.name required")
-    if "ProviderType" in data:
+    if data.get("ProviderType") is not None:
         import capo_codestar_connections.types.provider_type
 
         out["provider_type"] = (
@@ -74,11 +74,11 @@ def deserialize_aws_json_1_0(data: dict) -> CreateHostInput:
         )
     else:
         raise DeserializationError("CreateHostInput.provider_type required")
-    if "ProviderEndpoint" in data:
+    if data.get("ProviderEndpoint") is not None:
         out["provider_endpoint"] = data["ProviderEndpoint"]
     else:
         raise DeserializationError("CreateHostInput.provider_endpoint required")
-    if "VpcConfiguration" in data:
+    if data.get("VpcConfiguration") is not None:
         import capo_codestar_connections.types.vpc_configuration
 
         out["vpc_configuration"] = (
@@ -86,7 +86,7 @@ def deserialize_aws_json_1_0(data: dict) -> CreateHostInput:
                 data["VpcConfiguration"]
             )
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_codestar_connections.types.tag_list
 
         out["tags"] = capo_codestar_connections.types.tag_list.deserialize_aws_json_1_0(

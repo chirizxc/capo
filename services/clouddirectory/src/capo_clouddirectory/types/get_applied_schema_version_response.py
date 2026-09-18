@@ -23,6 +23,6 @@ def serialize_json(value: GetAppliedSchemaVersionResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetAppliedSchemaVersionResponse:
     out: GetAppliedSchemaVersionResponse = {}  # type: ignore[typeddict-item]
-    if "AppliedSchemaArn" in data:
+    if data.get("AppliedSchemaArn") is not None:
         out["applied_schema_arn"] = data["AppliedSchemaArn"]
     return out

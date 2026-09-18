@@ -31,7 +31,7 @@ def serialize_json(value: CreateDataLakeResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateDataLakeResponse:
     out: CreateDataLakeResponse = {}  # type: ignore[typeddict-item]
-    if "dataLakes" in data:
+    if data.get("dataLakes") is not None:
         import capo_securitylake.types.data_lake_resource_list
 
         out["data_lakes"] = (

@@ -59,24 +59,24 @@ def serialize_json(value: CreateRunCacheRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateRunCacheRequest:
     out: CreateRunCacheRequest = {}  # type: ignore[typeddict-item]
-    if "cacheBehavior" in data:
+    if data.get("cacheBehavior") is not None:
         out["cache_behavior"] = data["cacheBehavior"]
-    if "cacheS3Location" in data:
+    if data.get("cacheS3Location") is not None:
         out["cache_s3_location"] = data["cacheS3Location"]
     else:
         raise DeserializationError("CreateRunCacheRequest.cache_s3_location required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "requestId" in data:
+    if data.get("requestId") is not None:
         out["request_id"] = data["requestId"]
     else:
         raise DeserializationError("CreateRunCacheRequest.request_id required")
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_omics.types.tag_map
 
         out["tags"] = capo_omics.types.tag_map.deserialize_json(data["tags"])
-    if "cacheBucketOwnerId" in data:
+    if data.get("cacheBucketOwnerId") is not None:
         out["cache_bucket_owner_id"] = data["cacheBucketOwnerId"]
     return out

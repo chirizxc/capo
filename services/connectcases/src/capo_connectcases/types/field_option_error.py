@@ -30,15 +30,15 @@ def serialize_json(value: FieldOptionError) -> dict:
 
 def deserialize_json(data: dict) -> FieldOptionError:
     out: FieldOptionError = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     else:
         raise DeserializationError("FieldOptionError.message required")
-    if "errorCode" in data:
+    if data.get("errorCode") is not None:
         out["error_code"] = data["errorCode"]
     else:
         raise DeserializationError("FieldOptionError.error_code required")
-    if "value" in data:
+    if data.get("value") is not None:
         out["value"] = data["value"]
     else:
         raise DeserializationError("FieldOptionError.value required")

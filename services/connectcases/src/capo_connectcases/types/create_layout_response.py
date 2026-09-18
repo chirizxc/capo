@@ -28,11 +28,11 @@ def serialize_json(value: CreateLayoutResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateLayoutResponse:
     out: CreateLayoutResponse = {}  # type: ignore[typeddict-item]
-    if "layoutId" in data:
+    if data.get("layoutId") is not None:
         out["layout_id"] = data["layoutId"]
     else:
         raise DeserializationError("CreateLayoutResponse.layout_id required")
-    if "layoutArn" in data:
+    if data.get("layoutArn") is not None:
         out["layout_arn"] = data["layoutArn"]
     else:
         raise DeserializationError("CreateLayoutResponse.layout_arn required")

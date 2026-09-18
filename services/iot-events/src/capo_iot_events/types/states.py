@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> States:
 
     out: States = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_iot_events.types.state.deserialize_json(item))
     return out

@@ -27,7 +27,7 @@ def serialize_json(value: BrowserConfig) -> dict:
 
 def deserialize_json(data: dict) -> BrowserConfig:
     out: BrowserConfig = {}  # type: ignore[typeddict-item]
-    if "BrowserType" in data:
+    if data.get("BrowserType") is not None:
         import capo_synthetics.types.browser_type
 
         out["browser_type"] = capo_synthetics.types.browser_type.deserialize_json(

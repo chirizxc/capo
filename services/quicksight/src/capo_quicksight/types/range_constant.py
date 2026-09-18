@@ -27,8 +27,8 @@ def serialize_json(value: RangeConstant) -> dict:
 
 def deserialize_json(data: dict) -> RangeConstant:
     out: RangeConstant = {}  # type: ignore[typeddict-item]
-    if "Minimum" in data:
+    if data.get("Minimum") is not None:
         out["minimum"] = data["Minimum"]
-    if "Maximum" in data:
+    if data.get("Maximum") is not None:
         out["maximum"] = data["Maximum"]
     return out

@@ -28,7 +28,7 @@ def serialize_aws_json_1_0(value: AddKeyReplicationRegionsOutput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> AddKeyReplicationRegionsOutput:
     out: AddKeyReplicationRegionsOutput = {}  # type: ignore[typeddict-item]
-    if "Key" in data:
+    if data.get("Key") is not None:
         import capo_payment_cryptography.types.key
 
         out["key"] = capo_payment_cryptography.types.key.deserialize_aws_json_1_0(

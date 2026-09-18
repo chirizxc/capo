@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> ApplicationCredentialList:
 
     out: ApplicationCredentialList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_ssm_sap.types.application_credential.deserialize_json(item))
     return out

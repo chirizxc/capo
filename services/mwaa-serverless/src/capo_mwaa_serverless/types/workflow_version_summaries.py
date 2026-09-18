@@ -29,6 +29,8 @@ def deserialize_aws_json_1_0(data: list) -> WorkflowVersionSummaries:
 
     out: WorkflowVersionSummaries = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_mwaa_serverless.types.workflow_version_summary.deserialize_aws_json_1_0(
                 item

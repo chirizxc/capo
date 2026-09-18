@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: TrustedAdvisorCategorySpecificSummary) -> dict
 
 def deserialize_aws_json_1_1(data: dict) -> TrustedAdvisorCategorySpecificSummary:
     out: TrustedAdvisorCategorySpecificSummary = {}  # type: ignore[typeddict-item]
-    if "costOptimizing" in data:
+    if data.get("costOptimizing") is not None:
         import capo_support.types.trusted_advisor_cost_optimizing_summary
 
         out["cost_optimizing"] = (

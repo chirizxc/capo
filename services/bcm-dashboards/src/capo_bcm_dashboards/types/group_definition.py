@@ -33,11 +33,11 @@ def serialize_aws_json_1_0(value: GroupDefinition) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> GroupDefinition:
     out: GroupDefinition = {}  # type: ignore[typeddict-item]
-    if "key" in data:
+    if data.get("key") is not None:
         out["key"] = data["key"]
     else:
         raise DeserializationError("GroupDefinition.key required")
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_bcm_dashboards.types.group_definition_type
 
         out["type"] = (

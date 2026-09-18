@@ -44,7 +44,7 @@ def serialize_aws_json_1_0(value: BatchGetVpcEndpointResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> BatchGetVpcEndpointResponse:
     out: BatchGetVpcEndpointResponse = {}  # type: ignore[typeddict-item]
-    if "vpcEndpointDetails" in data:
+    if data.get("vpcEndpointDetails") is not None:
         import capo_opensearchserverless.types.vpc_endpoint_details
 
         out["vpc_endpoint_details"] = (
@@ -52,7 +52,7 @@ def deserialize_aws_json_1_0(data: dict) -> BatchGetVpcEndpointResponse:
                 data["vpcEndpointDetails"]
             )
         )
-    if "vpcEndpointErrorDetails" in data:
+    if data.get("vpcEndpointErrorDetails") is not None:
         import capo_opensearchserverless.types.vpc_endpoint_error_details
 
         out["vpc_endpoint_error_details"] = (

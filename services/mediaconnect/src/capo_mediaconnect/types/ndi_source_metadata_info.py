@@ -62,13 +62,13 @@ def serialize_json(value: NdiSourceMetadataInfo) -> dict:
 
 def deserialize_json(data: dict) -> NdiSourceMetadataInfo:
     out: NdiSourceMetadataInfo = {}  # type: ignore[typeddict-item]
-    if "activeSource" in data:
+    if data.get("activeSource") is not None:
         import capo_mediaconnect.types.ndi_source_info
 
         out["active_source"] = capo_mediaconnect.types.ndi_source_info.deserialize_json(
             data["activeSource"]
         )
-    if "discoveredSources" in data:
+    if data.get("discoveredSources") is not None:
         import capo_mediaconnect.types.__list_of_ndi_source_info
 
         out["discovered_sources"] = (
@@ -76,13 +76,13 @@ def deserialize_json(data: dict) -> NdiSourceMetadataInfo:
                 data["discoveredSources"]
             )
         )
-    if "mediaInfo" in data:
+    if data.get("mediaInfo") is not None:
         import capo_mediaconnect.types.ndi_media_info
 
         out["media_info"] = capo_mediaconnect.types.ndi_media_info.deserialize_json(
             data["mediaInfo"]
         )
-    if "messages" in data:
+    if data.get("messages") is not None:
         import capo_mediaconnect.types.__list_of_message_detail
 
         out["messages"] = (

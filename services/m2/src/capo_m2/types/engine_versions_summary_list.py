@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> EngineVersionsSummaryList:
 
     out: EngineVersionsSummaryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_m2.types.engine_versions_summary.deserialize_json(item))
     return out

@@ -32,17 +32,17 @@ def serialize_aws_json_1_1(value: SendSerialConsoleSSHPublicKeyRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SendSerialConsoleSSHPublicKeyRequest:
     out: SendSerialConsoleSSHPublicKeyRequest = {}  # type: ignore[typeddict-item]
-    if "InstanceId" in data:
+    if data.get("InstanceId") is not None:
         out["instance_id"] = data["InstanceId"]
     else:
         raise DeserializationError(
             "SendSerialConsoleSSHPublicKeyRequest.instance_id required"
         )
-    if "SerialPort" in data:
+    if data.get("SerialPort") is not None:
         out["serial_port"] = data["SerialPort"]
     else:
         out["serial_port"] = 0
-    if "SSHPublicKey" in data:
+    if data.get("SSHPublicKey") is not None:
         out["ssh_public_key"] = data["SSHPublicKey"]
     else:
         raise DeserializationError(

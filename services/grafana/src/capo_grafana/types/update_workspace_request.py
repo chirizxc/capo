@@ -138,15 +138,15 @@ def serialize_json(value: UpdateWorkspaceRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateWorkspaceRequest:
     out: UpdateWorkspaceRequest = {}  # type: ignore[typeddict-item]
-    if "accountAccessType" in data:
+    if data.get("accountAccessType") is not None:
         out["account_access_type"] = data["accountAccessType"]
-    if "organizationRoleName" in data:
+    if data.get("organizationRoleName") is not None:
         out["organization_role_name"] = data["organizationRoleName"]
-    if "permissionType" in data:
+    if data.get("permissionType") is not None:
         out["permission_type"] = data["permissionType"]
-    if "stackSetName" in data:
+    if data.get("stackSetName") is not None:
         out["stack_set_name"] = data["stackSetName"]
-    if "workspaceDataSources" in data:
+    if data.get("workspaceDataSources") is not None:
         import capo_grafana.types.data_source_types_list
 
         out["workspace_data_sources"] = (
@@ -154,11 +154,11 @@ def deserialize_json(data: dict) -> UpdateWorkspaceRequest:
                 data["workspaceDataSources"]
             )
         )
-    if "workspaceDescription" in data:
+    if data.get("workspaceDescription") is not None:
         out["workspace_description"] = data["workspaceDescription"]
-    if "workspaceName" in data:
+    if data.get("workspaceName") is not None:
         out["workspace_name"] = data["workspaceName"]
-    if "workspaceNotificationDestinations" in data:
+    if data.get("workspaceNotificationDestinations") is not None:
         import capo_grafana.types.notification_destinations_list
 
         out["workspace_notification_destinations"] = (
@@ -166,7 +166,7 @@ def deserialize_json(data: dict) -> UpdateWorkspaceRequest:
                 data["workspaceNotificationDestinations"]
             )
         )
-    if "workspaceOrganizationalUnits" in data:
+    if data.get("workspaceOrganizationalUnits") is not None:
         import capo_grafana.types.organizational_unit_list
 
         out["workspace_organizational_units"] = (
@@ -174,9 +174,9 @@ def deserialize_json(data: dict) -> UpdateWorkspaceRequest:
                 data["workspaceOrganizationalUnits"]
             )
         )
-    if "workspaceRoleArn" in data:
+    if data.get("workspaceRoleArn") is not None:
         out["workspace_role_arn"] = data["workspaceRoleArn"]
-    if "vpcConfiguration" in data:
+    if data.get("vpcConfiguration") is not None:
         import capo_grafana.types.vpc_configuration
 
         out["vpc_configuration"] = (
@@ -184,9 +184,9 @@ def deserialize_json(data: dict) -> UpdateWorkspaceRequest:
                 data["vpcConfiguration"]
             )
         )
-    if "removeVpcConfiguration" in data:
+    if data.get("removeVpcConfiguration") is not None:
         out["remove_vpc_configuration"] = data["removeVpcConfiguration"]
-    if "networkAccessControl" in data:
+    if data.get("networkAccessControl") is not None:
         import capo_grafana.types.network_access_configuration
 
         out["network_access_control"] = (
@@ -194,10 +194,10 @@ def deserialize_json(data: dict) -> UpdateWorkspaceRequest:
                 data["networkAccessControl"]
             )
         )
-    if "removeNetworkAccessConfiguration" in data:
+    if data.get("removeNetworkAccessConfiguration") is not None:
         out["remove_network_access_configuration"] = data[
             "removeNetworkAccessConfiguration"
         ]
-    if "ipAddressType" in data:
+    if data.get("ipAddressType") is not None:
         out["ip_address_type"] = data["ipAddressType"]
     return out

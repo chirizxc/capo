@@ -27,6 +27,8 @@ def deserialize_aws_json_1_1(data: list) -> PolicyTypes:
 
     out: PolicyTypes = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_organizations.types.policy_type_summary.deserialize_aws_json_1_1(item)
         )

@@ -31,10 +31,10 @@ def serialize_aws_json_1_1(value: MonitorDataSource) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> MonitorDataSource:
     out: MonitorDataSource = {}  # type: ignore[typeddict-item]
-    if "DatasetImportJobArn" in data:
+    if data.get("DatasetImportJobArn") is not None:
         out["dataset_import_job_arn"] = data["DatasetImportJobArn"]
-    if "ForecastArn" in data:
+    if data.get("ForecastArn") is not None:
         out["forecast_arn"] = data["ForecastArn"]
-    if "PredictorArn" in data:
+    if data.get("PredictorArn") is not None:
         out["predictor_arn"] = data["PredictorArn"]
     return out

@@ -43,7 +43,7 @@ def serialize_aws_json_1_1(value: DescribeMatchmakingRuleSetsInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeMatchmakingRuleSetsInput:
     out: DescribeMatchmakingRuleSetsInput = {}  # type: ignore[typeddict-item]
-    if "Names" in data:
+    if data.get("Names") is not None:
         import capo_gamelift.types.matchmaking_rule_set_name_list
 
         out["names"] = (
@@ -51,8 +51,8 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeMatchmakingRuleSetsInput:
                 data["Names"]
             )
         )
-    if "Limit" in data:
+    if data.get("Limit") is not None:
         out["limit"] = data["Limit"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

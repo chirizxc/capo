@@ -30,8 +30,8 @@ def serialize_json(value: DetailedGlossaryTerm) -> dict:
 
 def deserialize_json(data: dict) -> DetailedGlossaryTerm:
     out: DetailedGlossaryTerm = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "shortDescription" in data:
+    if data.get("shortDescription") is not None:
         out["short_description"] = data["shortDescription"]
     return out

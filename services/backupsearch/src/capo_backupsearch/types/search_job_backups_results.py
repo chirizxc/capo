@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> SearchJobBackupsResults:
 
     out: SearchJobBackupsResults = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_backupsearch.types.search_job_backups_result.deserialize_json(item)
         )

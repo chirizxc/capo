@@ -34,9 +34,9 @@ def serialize_json(value: EcrConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> EcrConfiguration:
     out: EcrConfiguration = {}  # type: ignore[typeddict-item]
-    if "repositoryName" in data:
+    if data.get("repositoryName") is not None:
         out["repository_name"] = data["repositoryName"]
-    if "containerTags" in data:
+    if data.get("containerTags") is not None:
         import capo_imagebuilder.types.string_list
 
         out["container_tags"] = capo_imagebuilder.types.string_list.deserialize_json(

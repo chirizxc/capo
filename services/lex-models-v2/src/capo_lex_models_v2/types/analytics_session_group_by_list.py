@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> AnalyticsSessionGroupByList:
 
     out: AnalyticsSessionGroupByList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_lex_models_v2.types.analytics_session_group_by_specification.deserialize_json(
                 item

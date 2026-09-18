@@ -32,7 +32,7 @@ def serialize_json(value: RelativeAggregationDuration) -> dict:
 
 def deserialize_json(data: dict) -> RelativeAggregationDuration:
     out: RelativeAggregationDuration = {}  # type: ignore[typeddict-item]
-    if "timeDimension" in data:
+    if data.get("timeDimension") is not None:
         import capo_lex_models_v2.types.time_dimension
 
         out["time_dimension"] = (
@@ -44,7 +44,7 @@ def deserialize_json(data: dict) -> RelativeAggregationDuration:
         raise DeserializationError(
             "RelativeAggregationDuration.time_dimension required"
         )
-    if "timeValue" in data:
+    if data.get("timeValue") is not None:
         out["time_value"] = data["timeValue"]
     else:
         raise DeserializationError("RelativeAggregationDuration.time_value required")

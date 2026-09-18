@@ -117,15 +117,15 @@ def serialize_aws_json_1_1(value: ReplicationConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ReplicationConfig:
     out: ReplicationConfig = {}  # type: ignore[typeddict-item]
-    if "ReplicationConfigIdentifier" in data:
+    if data.get("ReplicationConfigIdentifier") is not None:
         out["replication_config_identifier"] = data["ReplicationConfigIdentifier"]
-    if "ReplicationConfigArn" in data:
+    if data.get("ReplicationConfigArn") is not None:
         out["replication_config_arn"] = data["ReplicationConfigArn"]
-    if "SourceEndpointArn" in data:
+    if data.get("SourceEndpointArn") is not None:
         out["source_endpoint_arn"] = data["SourceEndpointArn"]
-    if "TargetEndpointArn" in data:
+    if data.get("TargetEndpointArn") is not None:
         out["target_endpoint_arn"] = data["TargetEndpointArn"]
-    if "ReplicationType" in data:
+    if data.get("ReplicationType") is not None:
         import capo_database_migration_service.types.migration_type_value
 
         out["replication_type"] = (
@@ -133,7 +133,7 @@ def deserialize_aws_json_1_1(data: dict) -> ReplicationConfig:
                 data["ReplicationType"]
             )
         )
-    if "ComputeConfig" in data:
+    if data.get("ComputeConfig") is not None:
         import capo_database_migration_service.types.compute_config
 
         out["compute_config"] = (
@@ -141,13 +141,13 @@ def deserialize_aws_json_1_1(data: dict) -> ReplicationConfig:
                 data["ComputeConfig"]
             )
         )
-    if "ReplicationSettings" in data:
+    if data.get("ReplicationSettings") is not None:
         out["replication_settings"] = data["ReplicationSettings"]
-    if "SupplementalSettings" in data:
+    if data.get("SupplementalSettings") is not None:
         out["supplemental_settings"] = data["SupplementalSettings"]
-    if "TableMappings" in data:
+    if data.get("TableMappings") is not None:
         out["table_mappings"] = data["TableMappings"]
-    if "ReplicationConfigCreateTime" in data:
+    if data.get("ReplicationConfigCreateTime") is not None:
         import capo_database_migration_service.types.t_stamp
 
         out["replication_config_create_time"] = (
@@ -155,7 +155,7 @@ def deserialize_aws_json_1_1(data: dict) -> ReplicationConfig:
                 data["ReplicationConfigCreateTime"]
             )
         )
-    if "ReplicationConfigUpdateTime" in data:
+    if data.get("ReplicationConfigUpdateTime") is not None:
         import capo_database_migration_service.types.t_stamp
 
         out["replication_config_update_time"] = (
@@ -163,6 +163,6 @@ def deserialize_aws_json_1_1(data: dict) -> ReplicationConfig:
                 data["ReplicationConfigUpdateTime"]
             )
         )
-    if "IsReadOnly" in data:
+    if data.get("IsReadOnly") is not None:
         out["is_read_only"] = data["IsReadOnly"]
     return out

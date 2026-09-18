@@ -55,9 +55,9 @@ def serialize_aws_json_1_1(value: CreateFileCacheLustreConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateFileCacheLustreConfiguration:
     out: CreateFileCacheLustreConfiguration = {}  # type: ignore[typeddict-item]
-    if "PerUnitStorageThroughput" in data:
+    if data.get("PerUnitStorageThroughput") is not None:
         out["per_unit_storage_throughput"] = data["PerUnitStorageThroughput"]
-    if "DeploymentType" in data:
+    if data.get("DeploymentType") is not None:
         import capo_fsx.types.file_cache_lustre_deployment_type
 
         out["deployment_type"] = (
@@ -65,9 +65,9 @@ def deserialize_aws_json_1_1(data: dict) -> CreateFileCacheLustreConfiguration:
                 data["DeploymentType"]
             )
         )
-    if "WeeklyMaintenanceStartTime" in data:
+    if data.get("WeeklyMaintenanceStartTime") is not None:
         out["weekly_maintenance_start_time"] = data["WeeklyMaintenanceStartTime"]
-    if "MetadataConfiguration" in data:
+    if data.get("MetadataConfiguration") is not None:
         import capo_fsx.types.file_cache_lustre_metadata_configuration
 
         out["metadata_configuration"] = (

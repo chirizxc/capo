@@ -30,11 +30,11 @@ def serialize_json(value: AttributeInput) -> dict:
 
 def deserialize_json(data: dict) -> AttributeInput:
     out: AttributeInput = {}  # type: ignore[typeddict-item]
-    if "attributeIdentifier" in data:
+    if data.get("attributeIdentifier") is not None:
         out["attribute_identifier"] = data["attributeIdentifier"]
     else:
         raise DeserializationError("AttributeInput.attribute_identifier required")
-    if "forms" in data:
+    if data.get("forms") is not None:
         import capo_datazone.types.form_input_list
 
         out["forms"] = capo_datazone.types.form_input_list.deserialize_json(

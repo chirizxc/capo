@@ -83,42 +83,42 @@ def serialize_json(value: EcsTaskDetails) -> dict:
 
 def deserialize_json(data: dict) -> EcsTaskDetails:
     out: EcsTaskDetails = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "definitionArn" in data:
+    if data.get("definitionArn") is not None:
         out["definition_arn"] = data["definitionArn"]
-    if "version" in data:
+    if data.get("version") is not None:
         out["version"] = data["version"]
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_guardduty.types.timestamp
 
         out["task_created_at"] = capo_guardduty.types.timestamp.deserialize_json(
             data["createdAt"]
         )
-    if "startedAt" in data:
+    if data.get("startedAt") is not None:
         import capo_guardduty.types.timestamp
 
         out["started_at"] = capo_guardduty.types.timestamp.deserialize_json(
             data["startedAt"]
         )
-    if "startedBy" in data:
+    if data.get("startedBy") is not None:
         out["started_by"] = data["startedBy"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_guardduty.types.tags
 
         out["tags"] = capo_guardduty.types.tags.deserialize_json(data["tags"])
-    if "volumes" in data:
+    if data.get("volumes") is not None:
         import capo_guardduty.types.volumes
 
         out["volumes"] = capo_guardduty.types.volumes.deserialize_json(data["volumes"])
-    if "containers" in data:
+    if data.get("containers") is not None:
         import capo_guardduty.types.containers
 
         out["containers"] = capo_guardduty.types.containers.deserialize_json(
             data["containers"]
         )
-    if "group" in data:
+    if data.get("group") is not None:
         out["group"] = data["group"]
-    if "launchType" in data:
+    if data.get("launchType") is not None:
         out["launch_type"] = data["launchType"]
     return out

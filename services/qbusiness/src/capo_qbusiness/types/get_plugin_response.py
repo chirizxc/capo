@@ -110,19 +110,19 @@ def serialize_json(value: GetPluginResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetPluginResponse:
     out: GetPluginResponse = {}  # type: ignore[typeddict-item]
-    if "applicationId" in data:
+    if data.get("applicationId") is not None:
         out["application_id"] = data["applicationId"]
-    if "pluginId" in data:
+    if data.get("pluginId") is not None:
         out["plugin_id"] = data["pluginId"]
-    if "displayName" in data:
+    if data.get("displayName") is not None:
         out["display_name"] = data["displayName"]
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_qbusiness.types.plugin_type
 
         out["type"] = capo_qbusiness.types.plugin_type.deserialize_json(data["type"])
-    if "serverUrl" in data:
+    if data.get("serverUrl") is not None:
         out["server_url"] = data["serverUrl"]
-    if "authConfiguration" in data:
+    if data.get("authConfiguration") is not None:
         import capo_qbusiness.types.plugin_auth_configuration
 
         out["auth_configuration"] = (
@@ -130,7 +130,7 @@ def deserialize_json(data: dict) -> GetPluginResponse:
                 data["authConfiguration"]
             )
         )
-    if "customPluginConfiguration" in data:
+    if data.get("customPluginConfiguration") is not None:
         import capo_qbusiness.types.custom_plugin_configuration
 
         out["custom_plugin_configuration"] = (
@@ -138,25 +138,25 @@ def deserialize_json(data: dict) -> GetPluginResponse:
                 data["customPluginConfiguration"]
             )
         )
-    if "buildStatus" in data:
+    if data.get("buildStatus") is not None:
         import capo_qbusiness.types.plugin_build_status
 
         out["build_status"] = capo_qbusiness.types.plugin_build_status.deserialize_json(
             data["buildStatus"]
         )
-    if "pluginArn" in data:
+    if data.get("pluginArn") is not None:
         out["plugin_arn"] = data["pluginArn"]
-    if "state" in data:
+    if data.get("state") is not None:
         import capo_qbusiness.types.plugin_state
 
         out["state"] = capo_qbusiness.types.plugin_state.deserialize_json(data["state"])
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_qbusiness.types.timestamp
 
         out["created_at"] = capo_qbusiness.types.timestamp.deserialize_json(
             data["createdAt"]
         )
-    if "updatedAt" in data:
+    if data.get("updatedAt") is not None:
         import capo_qbusiness.types.timestamp
 
         out["updated_at"] = capo_qbusiness.types.timestamp.deserialize_json(

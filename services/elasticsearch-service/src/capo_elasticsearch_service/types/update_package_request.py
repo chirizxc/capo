@@ -47,11 +47,11 @@ def serialize_json(value: UpdatePackageRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdatePackageRequest:
     out: UpdatePackageRequest = {}  # type: ignore[typeddict-item]
-    if "PackageID" in data:
+    if data.get("PackageID") is not None:
         out["package_id"] = data["PackageID"]
     else:
         raise DeserializationError("UpdatePackageRequest.package_id required")
-    if "PackageSource" in data:
+    if data.get("PackageSource") is not None:
         import capo_elasticsearch_service.types.package_source
 
         out["package_source"] = (
@@ -61,8 +61,8 @@ def deserialize_json(data: dict) -> UpdatePackageRequest:
         )
     else:
         raise DeserializationError("UpdatePackageRequest.package_source required")
-    if "PackageDescription" in data:
+    if data.get("PackageDescription") is not None:
         out["package_description"] = data["PackageDescription"]
-    if "CommitMessage" in data:
+    if data.get("CommitMessage") is not None:
         out["commit_message"] = data["CommitMessage"]
     return out

@@ -32,12 +32,12 @@ def serialize_json(value: ListSubCheckRuleResultsOutput) -> dict:
 
 def deserialize_json(data: dict) -> ListSubCheckRuleResultsOutput:
     out: ListSubCheckRuleResultsOutput = {}  # type: ignore[typeddict-item]
-    if "RuleResults" in data:
+    if data.get("RuleResults") is not None:
         import capo_ssm_sap.types.rule_result_list
 
         out["rule_results"] = capo_ssm_sap.types.rule_result_list.deserialize_json(
             data["RuleResults"]
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

@@ -46,13 +46,13 @@ def serialize_json(value: BatchDisassociateResourcesFromCustomLineItemInput) -> 
 
 def deserialize_json(data: dict) -> BatchDisassociateResourcesFromCustomLineItemInput:
     out: BatchDisassociateResourcesFromCustomLineItemInput = {}  # type: ignore[typeddict-item]
-    if "TargetArn" in data:
+    if data.get("TargetArn") is not None:
         out["target_arn"] = data["TargetArn"]
     else:
         raise DeserializationError(
             "BatchDisassociateResourcesFromCustomLineItemInput.target_arn required"
         )
-    if "ResourceArns" in data:
+    if data.get("ResourceArns") is not None:
         import capo_billingconductor.types.custom_line_item_batch_disassociations_list
 
         out["resource_arns"] = (
@@ -64,7 +64,7 @@ def deserialize_json(data: dict) -> BatchDisassociateResourcesFromCustomLineItem
         raise DeserializationError(
             "BatchDisassociateResourcesFromCustomLineItemInput.resource_arns required"
         )
-    if "BillingPeriodRange" in data:
+    if data.get("BillingPeriodRange") is not None:
         import capo_billingconductor.types.custom_line_item_billing_period_range
 
         out["billing_period_range"] = (

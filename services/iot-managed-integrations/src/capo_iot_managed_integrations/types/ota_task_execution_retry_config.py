@@ -31,7 +31,7 @@ def serialize_json(value: OtaTaskExecutionRetryConfig) -> dict:
 
 def deserialize_json(data: dict) -> OtaTaskExecutionRetryConfig:
     out: OtaTaskExecutionRetryConfig = {}  # type: ignore[typeddict-item]
-    if "RetryConfigCriteria" in data:
+    if data.get("RetryConfigCriteria") is not None:
         import capo_iot_managed_integrations.types.retry_config_criteria_list
 
         out["retry_config_criteria"] = (

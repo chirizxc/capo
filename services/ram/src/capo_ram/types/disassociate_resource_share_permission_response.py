@@ -28,8 +28,8 @@ def serialize_json(value: DisassociateResourceSharePermissionResponse) -> dict:
 
 def deserialize_json(data: dict) -> DisassociateResourceSharePermissionResponse:
     out: DisassociateResourceSharePermissionResponse = {}  # type: ignore[typeddict-item]
-    if "returnValue" in data:
+    if data.get("returnValue") is not None:
         out["return_value"] = data["returnValue"]
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     return out

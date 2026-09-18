@@ -29,6 +29,8 @@ def deserialize_aws_json_1_1(data: list) -> ApplicationAssignmentListForPrincipa
 
     out: ApplicationAssignmentListForPrincipal = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_sso_admin.types.application_assignment_for_principal.deserialize_aws_json_1_1(
                 item

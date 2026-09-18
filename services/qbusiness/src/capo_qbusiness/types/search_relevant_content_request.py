@@ -54,11 +54,11 @@ def serialize_json(value: SearchRelevantContentRequest) -> dict:
 
 def deserialize_json(data: dict) -> SearchRelevantContentRequest:
     out: SearchRelevantContentRequest = {}  # type: ignore[typeddict-item]
-    if "queryText" in data:
+    if data.get("queryText") is not None:
         out["query_text"] = data["queryText"]
     else:
         raise DeserializationError("SearchRelevantContentRequest.query_text required")
-    if "contentSource" in data:
+    if data.get("contentSource") is not None:
         import capo_qbusiness.types.content_source
 
         out["content_source"] = capo_qbusiness.types.content_source.deserialize_json(
@@ -68,7 +68,7 @@ def deserialize_json(data: dict) -> SearchRelevantContentRequest:
         raise DeserializationError(
             "SearchRelevantContentRequest.content_source required"
         )
-    if "attributeFilter" in data:
+    if data.get("attributeFilter") is not None:
         import capo_qbusiness.types.attribute_filter
 
         out["attribute_filter"] = (
@@ -76,10 +76,10 @@ def deserialize_json(data: dict) -> SearchRelevantContentRequest:
                 data["attributeFilter"]
             )
         )
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
     else:
         out["max_results"] = 10
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

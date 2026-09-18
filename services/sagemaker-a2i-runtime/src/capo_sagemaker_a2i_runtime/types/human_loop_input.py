@@ -25,6 +25,6 @@ def serialize_json(value: HumanLoopInput) -> dict:
 
 def deserialize_json(data: dict) -> HumanLoopInput:
     out: HumanLoopInput = {}  # type: ignore[typeddict-item]
-    if "InputContent" in data:
+    if data.get("InputContent") is not None:
         out["input_content"] = data["InputContent"]
     return out

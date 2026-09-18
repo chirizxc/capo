@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> RealTimeAlertRuleList:
 
     out: RealTimeAlertRuleList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_chime_sdk_media_pipelines.types.real_time_alert_rule.deserialize_json(
                 item

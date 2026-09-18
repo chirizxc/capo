@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> MultiLinearRings:
 
     out: MultiLinearRings = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_location.types.linear_rings.deserialize_json(item))
     return out

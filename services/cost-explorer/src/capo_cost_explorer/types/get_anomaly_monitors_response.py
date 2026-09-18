@@ -37,7 +37,7 @@ def serialize_aws_json_1_1(value: GetAnomalyMonitorsResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetAnomalyMonitorsResponse:
     out: GetAnomalyMonitorsResponse = {}  # type: ignore[typeddict-item]
-    if "AnomalyMonitors" in data:
+    if data.get("AnomalyMonitors") is not None:
         import capo_cost_explorer.types.anomaly_monitors
 
         out["anomaly_monitors"] = (
@@ -49,6 +49,6 @@ def deserialize_aws_json_1_1(data: dict) -> GetAnomalyMonitorsResponse:
         raise DeserializationError(
             "GetAnomalyMonitorsResponse.anomaly_monitors required"
         )
-    if "NextPageToken" in data:
+    if data.get("NextPageToken") is not None:
         out["next_page_token"] = data["NextPageToken"]
     return out

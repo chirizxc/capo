@@ -58,11 +58,11 @@ def serialize_json(value: ListCommentsItem) -> dict:
 
 def deserialize_json(data: dict) -> ListCommentsItem:
     out: ListCommentsItem = {}  # type: ignore[typeddict-item]
-    if "commentId" in data:
+    if data.get("commentId") is not None:
         out["comment_id"] = data["commentId"]
     else:
         raise DeserializationError("ListCommentsItem.comment_id required")
-    if "createdDate" in data:
+    if data.get("createdDate") is not None:
         import capo_security_ir.types._prelude.timestamp
 
         out["created_date"] = (
@@ -70,7 +70,7 @@ def deserialize_json(data: dict) -> ListCommentsItem:
                 data["createdDate"]
             )
         )
-    if "lastUpdatedDate" in data:
+    if data.get("lastUpdatedDate") is not None:
         import capo_security_ir.types._prelude.timestamp
 
         out["last_updated_date"] = (
@@ -78,10 +78,10 @@ def deserialize_json(data: dict) -> ListCommentsItem:
                 data["lastUpdatedDate"]
             )
         )
-    if "creator" in data:
+    if data.get("creator") is not None:
         out["creator"] = data["creator"]
-    if "lastUpdatedBy" in data:
+    if data.get("lastUpdatedBy") is not None:
         out["last_updated_by"] = data["lastUpdatedBy"]
-    if "body" in data:
+    if data.get("body") is not None:
         out["body"] = data["body"]
     return out

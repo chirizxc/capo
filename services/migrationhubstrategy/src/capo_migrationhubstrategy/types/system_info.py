@@ -49,15 +49,15 @@ def serialize_json(value: SystemInfo) -> dict:
 
 def deserialize_json(data: dict) -> SystemInfo:
     out: SystemInfo = {}  # type: ignore[typeddict-item]
-    if "osInfo" in data:
+    if data.get("osInfo") is not None:
         import capo_migrationhubstrategy.types.os_info
 
         out["os_info"] = capo_migrationhubstrategy.types.os_info.deserialize_json(
             data["osInfo"]
         )
-    if "fileSystemType" in data:
+    if data.get("fileSystemType") is not None:
         out["file_system_type"] = data["fileSystemType"]
-    if "networkInfoList" in data:
+    if data.get("networkInfoList") is not None:
         import capo_migrationhubstrategy.types.network_info_list
 
         out["network_info_list"] = (
@@ -65,6 +65,6 @@ def deserialize_json(data: dict) -> SystemInfo:
                 data["networkInfoList"]
             )
         )
-    if "cpuArchitecture" in data:
+    if data.get("cpuArchitecture") is not None:
         out["cpu_architecture"] = data["cpuArchitecture"]
     return out

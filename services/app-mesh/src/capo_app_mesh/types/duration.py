@@ -28,8 +28,8 @@ def serialize_json(value: Duration) -> dict:
 
 def deserialize_json(data: dict) -> Duration:
     out: Duration = {}  # type: ignore[typeddict-item]
-    if "value" in data:
+    if data.get("value") is not None:
         out["value"] = data["value"]
-    if "unit" in data:
+    if data.get("unit") is not None:
         out["unit"] = data["unit"]
     return out

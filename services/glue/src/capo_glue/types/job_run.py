@@ -168,7 +168,15 @@ def serialize_aws_json_1_1(value: JobRun) -> dict:
     if "timeout" in value:
         out["Timeout"] = value["timeout"]
     if "max_capacity" in value:
-        out["MaxCapacity"] = value["max_capacity"]
+        out["MaxCapacity"] = (
+            "NaN"
+            if value["max_capacity"] != value["max_capacity"]
+            else "Infinity"
+            if value["max_capacity"] == float("inf")
+            else "-Infinity"
+            if value["max_capacity"] == float("-inf")
+            else value["max_capacity"]
+        )
     if "worker_type" in value:
         import capo_glue.types.worker_type
 
@@ -192,7 +200,15 @@ def serialize_aws_json_1_1(value: JobRun) -> dict:
     if "glue_version" in value:
         out["GlueVersion"] = value["glue_version"]
     if "dpu_seconds" in value:
-        out["DPUSeconds"] = value["dpu_seconds"]
+        out["DPUSeconds"] = (
+            "NaN"
+            if value["dpu_seconds"] != value["dpu_seconds"]
+            else "Infinity"
+            if value["dpu_seconds"] == float("inf")
+            else "-Infinity"
+            if value["dpu_seconds"] == float("-inf")
+            else value["dpu_seconds"]
+        )
     if "execution_class" in value:
         import capo_glue.types.execution_class
 
@@ -212,33 +228,33 @@ def serialize_aws_json_1_1(value: JobRun) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> JobRun:
     out: JobRun = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "Attempt" in data:
+    if data.get("Attempt") is not None:
         out["attempt"] = data["Attempt"]
     else:
         out["attempt"] = 0
-    if "PreviousRunId" in data:
+    if data.get("PreviousRunId") is not None:
         out["previous_run_id"] = data["PreviousRunId"]
-    if "TriggerName" in data:
+    if data.get("TriggerName") is not None:
         out["trigger_name"] = data["TriggerName"]
-    if "JobName" in data:
+    if data.get("JobName") is not None:
         out["job_name"] = data["JobName"]
-    if "JobMode" in data:
+    if data.get("JobMode") is not None:
         import capo_glue.types.job_mode
 
         out["job_mode"] = capo_glue.types.job_mode.deserialize_aws_json_1_1(
             data["JobMode"]
         )
-    if "JobRunQueuingEnabled" in data:
+    if data.get("JobRunQueuingEnabled") is not None:
         out["job_run_queuing_enabled"] = data["JobRunQueuingEnabled"]
-    if "StartedOn" in data:
+    if data.get("StartedOn") is not None:
         import capo_glue.types.timestamp_value
 
         out["started_on"] = capo_glue.types.timestamp_value.deserialize_aws_json_1_1(
             data["StartedOn"]
         )
-    if "LastModifiedOn" in data:
+    if data.get("LastModifiedOn") is not None:
         import capo_glue.types.timestamp_value
 
         out["last_modified_on"] = (
@@ -246,27 +262,27 @@ def deserialize_aws_json_1_1(data: dict) -> JobRun:
                 data["LastModifiedOn"]
             )
         )
-    if "CompletedOn" in data:
+    if data.get("CompletedOn") is not None:
         import capo_glue.types.timestamp_value
 
         out["completed_on"] = capo_glue.types.timestamp_value.deserialize_aws_json_1_1(
             data["CompletedOn"]
         )
-    if "JobRunState" in data:
+    if data.get("JobRunState") is not None:
         import capo_glue.types.job_run_state
 
         out["job_run_state"] = capo_glue.types.job_run_state.deserialize_aws_json_1_1(
             data["JobRunState"]
         )
-    if "Arguments" in data:
+    if data.get("Arguments") is not None:
         import capo_glue.types.generic_map
 
         out["arguments"] = capo_glue.types.generic_map.deserialize_aws_json_1_1(
             data["Arguments"]
         )
-    if "ErrorMessage" in data:
+    if data.get("ErrorMessage") is not None:
         out["error_message"] = data["ErrorMessage"]
-    if "PredecessorRuns" in data:
+    if data.get("PredecessorRuns") is not None:
         import capo_glue.types.predecessor_list
 
         out["predecessor_runs"] = (
@@ -274,31 +290,31 @@ def deserialize_aws_json_1_1(data: dict) -> JobRun:
                 data["PredecessorRuns"]
             )
         )
-    if "AllocatedCapacity" in data:
+    if data.get("AllocatedCapacity") is not None:
         out["allocated_capacity"] = data["AllocatedCapacity"]
     else:
         out["allocated_capacity"] = 0
-    if "ExecutionTime" in data:
+    if data.get("ExecutionTime") is not None:
         out["execution_time"] = data["ExecutionTime"]
     else:
         out["execution_time"] = 0
-    if "Timeout" in data:
+    if data.get("Timeout") is not None:
         out["timeout"] = data["Timeout"]
-    if "MaxCapacity" in data:
-        out["max_capacity"] = data["MaxCapacity"]
-    if "WorkerType" in data:
+    if data.get("MaxCapacity") is not None:
+        out["max_capacity"] = float(data["MaxCapacity"])
+    if data.get("WorkerType") is not None:
         import capo_glue.types.worker_type
 
         out["worker_type"] = capo_glue.types.worker_type.deserialize_aws_json_1_1(
             data["WorkerType"]
         )
-    if "NumberOfWorkers" in data:
+    if data.get("NumberOfWorkers") is not None:
         out["number_of_workers"] = data["NumberOfWorkers"]
-    if "SecurityConfiguration" in data:
+    if data.get("SecurityConfiguration") is not None:
         out["security_configuration"] = data["SecurityConfiguration"]
-    if "LogGroupName" in data:
+    if data.get("LogGroupName") is not None:
         out["log_group_name"] = data["LogGroupName"]
-    if "NotificationProperty" in data:
+    if data.get("NotificationProperty") is not None:
         import capo_glue.types.notification_property
 
         out["notification_property"] = (
@@ -306,11 +322,11 @@ def deserialize_aws_json_1_1(data: dict) -> JobRun:
                 data["NotificationProperty"]
             )
         )
-    if "GlueVersion" in data:
+    if data.get("GlueVersion") is not None:
         out["glue_version"] = data["GlueVersion"]
-    if "DPUSeconds" in data:
-        out["dpu_seconds"] = data["DPUSeconds"]
-    if "ExecutionClass" in data:
+    if data.get("DPUSeconds") is not None:
+        out["dpu_seconds"] = float(data["DPUSeconds"])
+    if data.get("ExecutionClass") is not None:
         import capo_glue.types.execution_class
 
         out["execution_class"] = (
@@ -318,12 +334,12 @@ def deserialize_aws_json_1_1(data: dict) -> JobRun:
                 data["ExecutionClass"]
             )
         )
-    if "MaintenanceWindow" in data:
+    if data.get("MaintenanceWindow") is not None:
         out["maintenance_window"] = data["MaintenanceWindow"]
-    if "ProfileName" in data:
+    if data.get("ProfileName") is not None:
         out["profile_name"] = data["ProfileName"]
-    if "StateDetail" in data:
+    if data.get("StateDetail") is not None:
         out["state_detail"] = data["StateDetail"]
-    if "ExecutionRoleSessionPolicy" in data:
+    if data.get("ExecutionRoleSessionPolicy") is not None:
         out["execution_role_session_policy"] = data["ExecutionRoleSessionPolicy"]
     return out

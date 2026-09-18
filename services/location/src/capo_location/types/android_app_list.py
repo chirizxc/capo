@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> AndroidAppList:
 
     out: AndroidAppList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_location.types.android_app.deserialize_json(item))
     return out

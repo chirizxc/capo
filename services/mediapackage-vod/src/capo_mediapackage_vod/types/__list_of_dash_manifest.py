@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> __listOfDashManifest:
 
     out: __listOfDashManifest = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_mediapackage_vod.types.dash_manifest.deserialize_json(item))
     return out

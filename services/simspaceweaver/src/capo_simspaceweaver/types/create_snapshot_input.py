@@ -32,11 +32,11 @@ def serialize_json(value: CreateSnapshotInput) -> dict:
 
 def deserialize_json(data: dict) -> CreateSnapshotInput:
     out: CreateSnapshotInput = {}  # type: ignore[typeddict-item]
-    if "Simulation" in data:
+    if data.get("Simulation") is not None:
         out["simulation"] = data["Simulation"]
     else:
         raise DeserializationError("CreateSnapshotInput.simulation required")
-    if "Destination" in data:
+    if data.get("Destination") is not None:
         import capo_simspaceweaver.types.s3_destination
 
         out["destination"] = capo_simspaceweaver.types.s3_destination.deserialize_json(

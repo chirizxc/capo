@@ -32,7 +32,7 @@ def serialize_json(value: CreateProductPageRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateProductPageRequest:
     out: CreateProductPageRequest = {}  # type: ignore[typeddict-item]
-    if "displayContent" in data:
+    if data.get("displayContent") is not None:
         import capo_apigatewayv2.types.display_content
 
         out["display_content"] = (

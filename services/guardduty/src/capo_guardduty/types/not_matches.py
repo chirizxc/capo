@@ -14,4 +14,4 @@ def serialize_json(value: NotMatches) -> list:
 
 
 def deserialize_json(data: list) -> NotMatches:
-    return list(data)
+    return [item for item in data if item is not None]

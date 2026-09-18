@@ -70,13 +70,13 @@ def serialize_json(value: CreateRoomRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateRoomRequest:
     out: CreateRoomRequest = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "maximumMessageRatePerSecond" in data:
+    if data.get("maximumMessageRatePerSecond") is not None:
         out["maximum_message_rate_per_second"] = data["maximumMessageRatePerSecond"]
-    if "maximumMessageLength" in data:
+    if data.get("maximumMessageLength") is not None:
         out["maximum_message_length"] = data["maximumMessageLength"]
-    if "messageReviewHandler" in data:
+    if data.get("messageReviewHandler") is not None:
         import capo_ivschat.types.message_review_handler
 
         out["message_review_handler"] = (
@@ -84,11 +84,11 @@ def deserialize_json(data: dict) -> CreateRoomRequest:
                 data["messageReviewHandler"]
             )
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_ivschat.types.tags
 
         out["tags"] = capo_ivschat.types.tags.deserialize_json(data["tags"])
-    if "loggingConfigurationIdentifiers" in data:
+    if data.get("loggingConfigurationIdentifiers") is not None:
         import capo_ivschat.types.logging_configuration_identifier_list
 
         out["logging_configuration_identifiers"] = (

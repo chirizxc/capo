@@ -62,19 +62,19 @@ def serialize_json(value: LaunchPermissionConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> LaunchPermissionConfiguration:
     out: LaunchPermissionConfiguration = {}  # type: ignore[typeddict-item]
-    if "userIds" in data:
+    if data.get("userIds") is not None:
         import capo_imagebuilder.types.account_list
 
         out["user_ids"] = capo_imagebuilder.types.account_list.deserialize_json(
             data["userIds"]
         )
-    if "userGroups" in data:
+    if data.get("userGroups") is not None:
         import capo_imagebuilder.types.string_list
 
         out["user_groups"] = capo_imagebuilder.types.string_list.deserialize_json(
             data["userGroups"]
         )
-    if "organizationArns" in data:
+    if data.get("organizationArns") is not None:
         import capo_imagebuilder.types.organization_arn_list
 
         out["organization_arns"] = (
@@ -82,7 +82,7 @@ def deserialize_json(data: dict) -> LaunchPermissionConfiguration:
                 data["organizationArns"]
             )
         )
-    if "organizationalUnitArns" in data:
+    if data.get("organizationalUnitArns") is not None:
         import capo_imagebuilder.types.organizational_unit_arn_list
 
         out["organizational_unit_arns"] = (

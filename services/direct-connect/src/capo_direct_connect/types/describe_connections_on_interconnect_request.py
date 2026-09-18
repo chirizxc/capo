@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: DescribeConnectionsOnInterconnectRequest) -> d
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeConnectionsOnInterconnectRequest:
     out: DescribeConnectionsOnInterconnectRequest = {}  # type: ignore[typeddict-item]
-    if "interconnectId" in data:
+    if data.get("interconnectId") is not None:
         out["interconnect_id"] = data["interconnectId"]
     else:
         raise DeserializationError(

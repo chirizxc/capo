@@ -48,9 +48,9 @@ def serialize_json(value: NetworkHeader) -> dict:
 
 def deserialize_json(data: dict) -> NetworkHeader:
     out: NetworkHeader = {}  # type: ignore[typeddict-item]
-    if "Protocol" in data:
+    if data.get("Protocol") is not None:
         out["protocol"] = data["Protocol"]
-    if "Destination" in data:
+    if data.get("Destination") is not None:
         import capo_securityhub.types.network_path_component_details
 
         out["destination"] = (
@@ -58,7 +58,7 @@ def deserialize_json(data: dict) -> NetworkHeader:
                 data["Destination"]
             )
         )
-    if "Source" in data:
+    if data.get("Source") is not None:
         import capo_securityhub.types.network_path_component_details
 
         out["source"] = (

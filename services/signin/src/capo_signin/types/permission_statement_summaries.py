@@ -25,6 +25,8 @@ def deserialize_json(data: list) -> PermissionStatementSummaries:
 
     out: PermissionStatementSummaries = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_signin.types.permission_statement_summary.deserialize_json(item)
         )

@@ -79,11 +79,11 @@ def serialize_aws_json_1_1(value: ResultConfigurationUpdates) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ResultConfigurationUpdates:
     out: ResultConfigurationUpdates = {}  # type: ignore[typeddict-item]
-    if "OutputLocation" in data:
+    if data.get("OutputLocation") is not None:
         out["output_location"] = data["OutputLocation"]
-    if "RemoveOutputLocation" in data:
+    if data.get("RemoveOutputLocation") is not None:
         out["remove_output_location"] = data["RemoveOutputLocation"]
-    if "EncryptionConfiguration" in data:
+    if data.get("EncryptionConfiguration") is not None:
         import capo_athena.types.encryption_configuration
 
         out["encryption_configuration"] = (
@@ -91,13 +91,13 @@ def deserialize_aws_json_1_1(data: dict) -> ResultConfigurationUpdates:
                 data["EncryptionConfiguration"]
             )
         )
-    if "RemoveEncryptionConfiguration" in data:
+    if data.get("RemoveEncryptionConfiguration") is not None:
         out["remove_encryption_configuration"] = data["RemoveEncryptionConfiguration"]
-    if "ExpectedBucketOwner" in data:
+    if data.get("ExpectedBucketOwner") is not None:
         out["expected_bucket_owner"] = data["ExpectedBucketOwner"]
-    if "RemoveExpectedBucketOwner" in data:
+    if data.get("RemoveExpectedBucketOwner") is not None:
         out["remove_expected_bucket_owner"] = data["RemoveExpectedBucketOwner"]
-    if "AclConfiguration" in data:
+    if data.get("AclConfiguration") is not None:
         import capo_athena.types.acl_configuration
 
         out["acl_configuration"] = (
@@ -105,6 +105,6 @@ def deserialize_aws_json_1_1(data: dict) -> ResultConfigurationUpdates:
                 data["AclConfiguration"]
             )
         )
-    if "RemoveAclConfiguration" in data:
+    if data.get("RemoveAclConfiguration") is not None:
         out["remove_acl_configuration"] = data["RemoveAclConfiguration"]
     return out

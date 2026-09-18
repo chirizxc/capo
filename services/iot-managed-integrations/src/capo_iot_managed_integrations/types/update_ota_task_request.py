@@ -35,8 +35,8 @@ def serialize_json(value: UpdateOtaTaskRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateOtaTaskRequest:
     out: UpdateOtaTaskRequest = {}  # type: ignore[typeddict-item]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "TaskConfigurationId" in data:
+    if data.get("TaskConfigurationId") is not None:
         out["task_configuration_id"] = data["TaskConfigurationId"]
     return out

@@ -25,6 +25,8 @@ def serialize_json(input_to_serialize: LogicalTableMap) -> dict:
 def deserialize_json(data: dict) -> LogicalTableMap:
     out: LogicalTableMap = {}
     for key, value in data.items():
+        if value is None:
+            continue
         import capo_quicksight.types.logical_table
 
         out[key] = capo_quicksight.types.logical_table.deserialize_json(value)

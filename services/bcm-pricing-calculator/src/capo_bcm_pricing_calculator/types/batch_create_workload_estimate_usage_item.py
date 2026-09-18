@@ -82,7 +82,15 @@ def serialize_aws_json_1_0(value: BatchCreateWorkloadEstimateUsageItem) -> dict:
             )
         )
     if "cost" in value:
-        out["cost"] = value["cost"]
+        out["cost"] = (
+            "NaN"
+            if value["cost"] != value["cost"]
+            else "Infinity"
+            if value["cost"] == float("inf")
+            else "-Infinity"
+            if value["cost"] == float("-inf")
+            else value["cost"]
+        )
     if "currency" in value:
         import capo_bcm_pricing_calculator.types.currency_code
 
@@ -114,33 +122,33 @@ def serialize_aws_json_1_0(value: BatchCreateWorkloadEstimateUsageItem) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> BatchCreateWorkloadEstimateUsageItem:
     out: BatchCreateWorkloadEstimateUsageItem = {}  # type: ignore[typeddict-item]
-    if "serviceCode" in data:
+    if data.get("serviceCode") is not None:
         out["service_code"] = data["serviceCode"]
     else:
         raise DeserializationError(
             "BatchCreateWorkloadEstimateUsageItem.service_code required"
         )
-    if "usageType" in data:
+    if data.get("usageType") is not None:
         out["usage_type"] = data["usageType"]
     else:
         raise DeserializationError(
             "BatchCreateWorkloadEstimateUsageItem.usage_type required"
         )
-    if "operation" in data:
+    if data.get("operation") is not None:
         out["operation"] = data["operation"]
     else:
         raise DeserializationError(
             "BatchCreateWorkloadEstimateUsageItem.operation required"
         )
-    if "location" in data:
+    if data.get("location") is not None:
         out["location"] = data["location"]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "usageAccountId" in data:
+    if data.get("usageAccountId") is not None:
         out["usage_account_id"] = data["usageAccountId"]
-    if "group" in data:
+    if data.get("group") is not None:
         out["group"] = data["group"]
-    if "quantity" in data:
+    if data.get("quantity") is not None:
         import capo_bcm_pricing_calculator.types.workload_estimate_usage_quantity
 
         out["quantity"] = (
@@ -148,9 +156,9 @@ def deserialize_aws_json_1_0(data: dict) -> BatchCreateWorkloadEstimateUsageItem
                 data["quantity"]
             )
         )
-    if "cost" in data:
-        out["cost"] = data["cost"]
-    if "currency" in data:
+    if data.get("cost") is not None:
+        out["cost"] = float(data["cost"])
+    if data.get("currency") is not None:
         import capo_bcm_pricing_calculator.types.currency_code
 
         out["currency"] = (
@@ -158,7 +166,7 @@ def deserialize_aws_json_1_0(data: dict) -> BatchCreateWorkloadEstimateUsageItem
                 data["currency"]
             )
         )
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_bcm_pricing_calculator.types.workload_estimate_cost_status
 
         out["status"] = (
@@ -166,7 +174,7 @@ def deserialize_aws_json_1_0(data: dict) -> BatchCreateWorkloadEstimateUsageItem
                 data["status"]
             )
         )
-    if "historicalUsage" in data:
+    if data.get("historicalUsage") is not None:
         import capo_bcm_pricing_calculator.types.historical_usage_entity
 
         out["historical_usage"] = (
@@ -174,6 +182,6 @@ def deserialize_aws_json_1_0(data: dict) -> BatchCreateWorkloadEstimateUsageItem
                 data["historicalUsage"]
             )
         )
-    if "key" in data:
+    if data.get("key") is not None:
         out["key"] = data["key"]
     return out

@@ -26,7 +26,7 @@ def serialize_json(value: RegisterCustomEndpointResponse) -> dict:
 
 def deserialize_json(data: dict) -> RegisterCustomEndpointResponse:
     out: RegisterCustomEndpointResponse = {}  # type: ignore[typeddict-item]
-    if "EndpointAddress" in data:
+    if data.get("EndpointAddress") is not None:
         out["endpoint_address"] = data["EndpointAddress"]
     else:
         raise DeserializationError(

@@ -32,19 +32,19 @@ def serialize_aws_json_1_1(value: DetachManagedPolicyFromPermissionSetRequest) -
 
 def deserialize_aws_json_1_1(data: dict) -> DetachManagedPolicyFromPermissionSetRequest:
     out: DetachManagedPolicyFromPermissionSetRequest = {}  # type: ignore[typeddict-item]
-    if "InstanceArn" in data:
+    if data.get("InstanceArn") is not None:
         out["instance_arn"] = data["InstanceArn"]
     else:
         raise DeserializationError(
             "DetachManagedPolicyFromPermissionSetRequest.instance_arn required"
         )
-    if "PermissionSetArn" in data:
+    if data.get("PermissionSetArn") is not None:
         out["permission_set_arn"] = data["PermissionSetArn"]
     else:
         raise DeserializationError(
             "DetachManagedPolicyFromPermissionSetRequest.permission_set_arn required"
         )
-    if "ManagedPolicyArn" in data:
+    if data.get("ManagedPolicyArn") is not None:
         out["managed_policy_arn"] = data["ManagedPolicyArn"]
     else:
         raise DeserializationError(

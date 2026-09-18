@@ -28,8 +28,8 @@ def serialize_aws_json_1_1(value: TransferParticipant) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> TransferParticipant:
     out: TransferParticipant = {}  # type: ignore[typeddict-item]
-    if "ManagementAccountId" in data:
+    if data.get("ManagementAccountId") is not None:
         out["management_account_id"] = data["ManagementAccountId"]
-    if "ManagementAccountEmail" in data:
+    if data.get("ManagementAccountEmail") is not None:
         out["management_account_email"] = data["ManagementAccountEmail"]
     return out

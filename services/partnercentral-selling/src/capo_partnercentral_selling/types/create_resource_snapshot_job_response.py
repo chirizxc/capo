@@ -32,8 +32,8 @@ def serialize_aws_json_1_0(value: CreateResourceSnapshotJobResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CreateResourceSnapshotJobResponse:
     out: CreateResourceSnapshotJobResponse = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
     return out

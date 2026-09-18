@@ -26,7 +26,7 @@ def serialize_aws_json_1_1(value: DescribeTrustedTokenIssuerRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeTrustedTokenIssuerRequest:
     out: DescribeTrustedTokenIssuerRequest = {}  # type: ignore[typeddict-item]
-    if "TrustedTokenIssuerArn" in data:
+    if data.get("TrustedTokenIssuerArn") is not None:
         out["trusted_token_issuer_arn"] = data["TrustedTokenIssuerArn"]
     else:
         raise DeserializationError(

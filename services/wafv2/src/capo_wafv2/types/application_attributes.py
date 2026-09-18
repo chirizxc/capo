@@ -25,6 +25,8 @@ def deserialize_aws_json_1_1(data: list) -> ApplicationAttributes:
 
     out: ApplicationAttributes = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_wafv2.types.application_attribute.deserialize_aws_json_1_1(item)
         )

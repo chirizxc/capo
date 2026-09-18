@@ -30,8 +30,8 @@ def serialize_aws_json_1_1(value: JobExecutionSettings) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> JobExecutionSettings:
     out: JobExecutionSettings = {}  # type: ignore[typeddict-item]
-    if "AllowDeferredExecution" in data:
+    if data.get("AllowDeferredExecution") is not None:
         out["allow_deferred_execution"] = data["AllowDeferredExecution"]
-    if "DataAccessRoleArn" in data:
+    if data.get("DataAccessRoleArn") is not None:
         out["data_access_role_arn"] = data["DataAccessRoleArn"]
     return out

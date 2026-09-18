@@ -46,29 +46,37 @@ def serialize_json(value: RouteTollPrice) -> dict:
                 value["range_value"]
             )
         )
-    out["Value"] = value["value"]
+    out["Value"] = (
+        "NaN"
+        if value["value"] != value["value"]
+        else "Infinity"
+        if value["value"] == float("inf")
+        else "-Infinity"
+        if value["value"] == float("-inf")
+        else value["value"]
+    )
     return out
 
 
 def deserialize_json(data: dict) -> RouteTollPrice:
     out: RouteTollPrice = {}  # type: ignore[typeddict-item]
-    if "Currency" in data:
+    if data.get("Currency") is not None:
         out["currency"] = data["Currency"]
     else:
         raise DeserializationError("RouteTollPrice.currency required")
-    if "Estimate" in data:
+    if data.get("Estimate") is not None:
         out["estimate"] = data["Estimate"]
     else:
         raise DeserializationError("RouteTollPrice.estimate required")
-    if "PerDuration" in data:
+    if data.get("PerDuration") is not None:
         out["per_duration"] = data["PerDuration"]
     else:
         out["per_duration"] = 0
-    if "Range" in data:
+    if data.get("Range") is not None:
         out["range"] = data["Range"]
     else:
         raise DeserializationError("RouteTollPrice.range required")
-    if "RangeValue" in data:
+    if data.get("RangeValue") is not None:
         import capo_geo_routes.types.route_toll_price_value_range
 
         out["range_value"] = (
@@ -76,8 +84,8 @@ def deserialize_json(data: dict) -> RouteTollPrice:
                 data["RangeValue"]
             )
         )
-    if "Value" in data:
-        out["value"] = data["Value"]
+    if data.get("Value") is not None:
+        out["value"] = float(data["Value"])
     else:
         raise DeserializationError("RouteTollPrice.value required")
     return out

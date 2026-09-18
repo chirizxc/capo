@@ -24,7 +24,7 @@ def serialize_json(value: InvalidS3BucketException_) -> dict:
 
 def deserialize_json(data: dict) -> InvalidS3BucketException_:
     out: InvalidS3BucketException_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     return out
 
@@ -34,15 +34,18 @@ class InvalidS3BucketException(ServiceError):
 
     code: str | None = "InvalidS3BucketException"
 
-    def __init__(self, data: InvalidS3BucketException_):
+    def __init__(self, data: InvalidS3BucketException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="InvalidS3BucketException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "InvalidS3BucketException":
-        return cls(deserialize_json(data))
+    def from_json(
+        cls, data: dict, message: str | None = None
+    ) -> "InvalidS3BucketException":
+        return cls(deserialize_json(data), message)

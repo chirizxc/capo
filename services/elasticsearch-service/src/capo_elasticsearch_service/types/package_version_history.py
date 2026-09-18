@@ -41,11 +41,11 @@ def serialize_json(value: PackageVersionHistory) -> dict:
 
 def deserialize_json(data: dict) -> PackageVersionHistory:
     out: PackageVersionHistory = {}  # type: ignore[typeddict-item]
-    if "PackageVersion" in data:
+    if data.get("PackageVersion") is not None:
         out["package_version"] = data["PackageVersion"]
-    if "CommitMessage" in data:
+    if data.get("CommitMessage") is not None:
         out["commit_message"] = data["CommitMessage"]
-    if "CreatedAt" in data:
+    if data.get("CreatedAt") is not None:
         import capo_elasticsearch_service.types.created_at
 
         out["created_at"] = (

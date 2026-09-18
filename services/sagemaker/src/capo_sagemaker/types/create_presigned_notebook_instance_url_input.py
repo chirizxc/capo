@@ -34,9 +34,9 @@ def serialize_aws_json_1_1(value: CreatePresignedNotebookInstanceUrlInput) -> di
 
 def deserialize_aws_json_1_1(data: dict) -> CreatePresignedNotebookInstanceUrlInput:
     out: CreatePresignedNotebookInstanceUrlInput = {}  # type: ignore[typeddict-item]
-    if "NotebookInstanceName" in data:
+    if data.get("NotebookInstanceName") is not None:
         out["notebook_instance_name"] = data["NotebookInstanceName"]
-    if "SessionExpirationDurationInSeconds" in data:
+    if data.get("SessionExpirationDurationInSeconds") is not None:
         out["session_expiration_duration_in_seconds"] = data[
             "SessionExpirationDurationInSeconds"
         ]

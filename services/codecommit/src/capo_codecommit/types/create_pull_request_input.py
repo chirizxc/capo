@@ -44,13 +44,13 @@ def serialize_aws_json_1_1(value: CreatePullRequestInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreatePullRequestInput:
     out: CreatePullRequestInput = {}  # type: ignore[typeddict-item]
-    if "title" in data:
+    if data.get("title") is not None:
         out["title"] = data["title"]
     else:
         raise DeserializationError("CreatePullRequestInput.title required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "targets" in data:
+    if data.get("targets") is not None:
         import capo_codecommit.types.target_list
 
         out["targets"] = capo_codecommit.types.target_list.deserialize_aws_json_1_1(
@@ -58,6 +58,6 @@ def deserialize_aws_json_1_1(data: dict) -> CreatePullRequestInput:
         )
     else:
         raise DeserializationError("CreatePullRequestInput.targets required")
-    if "clientRequestToken" in data:
+    if data.get("clientRequestToken") is not None:
         out["client_request_token"] = data["clientRequestToken"]
     return out

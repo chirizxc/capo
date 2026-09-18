@@ -30,8 +30,8 @@ def serialize_json(value: AccessLogSettings) -> dict:
 
 def deserialize_json(data: dict) -> AccessLogSettings:
     out: AccessLogSettings = {}  # type: ignore[typeddict-item]
-    if "destinationArn" in data:
+    if data.get("destinationArn") is not None:
         out["destination_arn"] = data["destinationArn"]
-    if "format" in data:
+    if data.get("format") is not None:
         out["format"] = data["format"]
     return out

@@ -38,7 +38,7 @@ def serialize_aws_json_1_1(value: CapacitySizeConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CapacitySizeConfig:
     out: CapacitySizeConfig = {}  # type: ignore[typeddict-item]
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_sagemaker.types.node_unavailability_type
 
         out["type"] = (
@@ -46,6 +46,6 @@ def deserialize_aws_json_1_1(data: dict) -> CapacitySizeConfig:
                 data["Type"]
             )
         )
-    if "Value" in data:
+    if data.get("Value") is not None:
         out["value"] = data["Value"]
     return out

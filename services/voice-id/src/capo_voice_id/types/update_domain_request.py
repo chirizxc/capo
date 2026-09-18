@@ -43,17 +43,17 @@ def serialize_aws_json_1_0(value: UpdateDomainRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> UpdateDomainRequest:
     out: UpdateDomainRequest = {}  # type: ignore[typeddict-item]
-    if "DomainId" in data:
+    if data.get("DomainId") is not None:
         out["domain_id"] = data["DomainId"]
     else:
         raise DeserializationError("UpdateDomainRequest.domain_id required")
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("UpdateDomainRequest.name required")
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "ServerSideEncryptionConfiguration" in data:
+    if data.get("ServerSideEncryptionConfiguration") is not None:
         import capo_voice_id.types.server_side_encryption_configuration
 
         out["server_side_encryption_configuration"] = (

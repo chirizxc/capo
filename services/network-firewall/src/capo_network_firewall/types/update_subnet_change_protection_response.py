@@ -37,13 +37,13 @@ def serialize_aws_json_1_0(value: UpdateSubnetChangeProtectionResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> UpdateSubnetChangeProtectionResponse:
     out: UpdateSubnetChangeProtectionResponse = {}  # type: ignore[typeddict-item]
-    if "UpdateToken" in data:
+    if data.get("UpdateToken") is not None:
         out["update_token"] = data["UpdateToken"]
-    if "FirewallArn" in data:
+    if data.get("FirewallArn") is not None:
         out["firewall_arn"] = data["FirewallArn"]
-    if "FirewallName" in data:
+    if data.get("FirewallName") is not None:
         out["firewall_name"] = data["FirewallName"]
-    if "SubnetChangeProtection" in data:
+    if data.get("SubnetChangeProtection") is not None:
         out["subnet_change_protection"] = data["SubnetChangeProtection"]
     else:
         out["subnet_change_protection"] = False

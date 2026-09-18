@@ -32,11 +32,11 @@ def serialize_json(value: CustomActionURLOperation) -> dict:
 
 def deserialize_json(data: dict) -> CustomActionURLOperation:
     out: CustomActionURLOperation = {}  # type: ignore[typeddict-item]
-    if "URLTemplate" in data:
+    if data.get("URLTemplate") is not None:
         out["url_template"] = data["URLTemplate"]
     else:
         raise DeserializationError("CustomActionURLOperation.url_template required")
-    if "URLTarget" in data:
+    if data.get("URLTarget") is not None:
         import capo_quicksight.types.url_target_configuration
 
         out["url_target"] = (

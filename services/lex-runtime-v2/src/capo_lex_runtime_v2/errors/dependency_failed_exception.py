@@ -24,7 +24,7 @@ def serialize_json(value: DependencyFailedException_) -> dict:
 
 def deserialize_json(data: dict) -> DependencyFailedException_:
     out: DependencyFailedException_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     else:
         raise DeserializationError("DependencyFailedException_.message required")
@@ -36,18 +36,21 @@ class DependencyFailedException(ServiceError):
 
     code: str | None = "DependencyFailedException"
 
-    def __init__(self, data: DependencyFailedException_):
+    def __init__(self, data: DependencyFailedException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="DependencyFailedException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "DependencyFailedException":
-        return cls(deserialize_json(data))
+    def from_json(
+        cls, data: dict, message: str | None = None
+    ) -> "DependencyFailedException":
+        return cls(deserialize_json(data), message)
 
 
 def serialize_event_json(value: DependencyFailedException_) -> bytes:

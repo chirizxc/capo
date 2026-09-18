@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> SummarizationDimensionDetails:
 
     out: SummarizationDimensionDetails = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_notifications.types.summarization_dimension_detail.deserialize_json(
                 item

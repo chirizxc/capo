@@ -35,7 +35,7 @@ def serialize_json(value: ParameterSpace) -> dict:
 
 def deserialize_json(data: dict) -> ParameterSpace:
     out: ParameterSpace = {}  # type: ignore[typeddict-item]
-    if "parameters" in data:
+    if data.get("parameters") is not None:
         import capo_deadline.types.step_parameter_list
 
         out["parameters"] = capo_deadline.types.step_parameter_list.deserialize_json(
@@ -43,6 +43,6 @@ def deserialize_json(data: dict) -> ParameterSpace:
         )
     else:
         raise DeserializationError("ParameterSpace.parameters required")
-    if "combination" in data:
+    if data.get("combination") is not None:
         out["combination"] = data["combination"]
     return out

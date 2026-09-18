@@ -62,13 +62,13 @@ def serialize_aws_json_1_0(value: DescribeOptedOutNumbersRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> DescribeOptedOutNumbersRequest:
     out: DescribeOptedOutNumbersRequest = {}  # type: ignore[typeddict-item]
-    if "OptOutListName" in data:
+    if data.get("OptOutListName") is not None:
         out["opt_out_list_name"] = data["OptOutListName"]
     else:
         raise DeserializationError(
             "DescribeOptedOutNumbersRequest.opt_out_list_name required"
         )
-    if "OptedOutNumbers" in data:
+    if data.get("OptedOutNumbers") is not None:
         import capo_pinpoint_sms_voice_v2.types.opted_out_number_list
 
         out["opted_out_numbers"] = (
@@ -76,7 +76,7 @@ def deserialize_aws_json_1_0(data: dict) -> DescribeOptedOutNumbersRequest:
                 data["OptedOutNumbers"]
             )
         )
-    if "Filters" in data:
+    if data.get("Filters") is not None:
         import capo_pinpoint_sms_voice_v2.types.opted_out_filter_list
 
         out["filters"] = (
@@ -84,8 +84,8 @@ def deserialize_aws_json_1_0(data: dict) -> DescribeOptedOutNumbersRequest:
                 data["Filters"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
     return out

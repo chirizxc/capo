@@ -24,7 +24,15 @@ class RecurringCharge(TypedDict, closed=True):
 def serialize_json(value: RecurringCharge) -> dict:
     out: dict = {}
     if "recurring_charge_amount" in value:
-        out["RecurringChargeAmount"] = value["recurring_charge_amount"]
+        out["RecurringChargeAmount"] = (
+            "NaN"
+            if value["recurring_charge_amount"] != value["recurring_charge_amount"]
+            else "Infinity"
+            if value["recurring_charge_amount"] == float("inf")
+            else "-Infinity"
+            if value["recurring_charge_amount"] == float("-inf")
+            else value["recurring_charge_amount"]
+        )
     if "recurring_charge_frequency" in value:
         out["RecurringChargeFrequency"] = value["recurring_charge_frequency"]
     return out
@@ -32,8 +40,8 @@ def serialize_json(value: RecurringCharge) -> dict:
 
 def deserialize_json(data: dict) -> RecurringCharge:
     out: RecurringCharge = {}  # type: ignore[typeddict-item]
-    if "RecurringChargeAmount" in data:
-        out["recurring_charge_amount"] = data["RecurringChargeAmount"]
-    if "RecurringChargeFrequency" in data:
+    if data.get("RecurringChargeAmount") is not None:
+        out["recurring_charge_amount"] = float(data["RecurringChargeAmount"])
+    if data.get("RecurringChargeFrequency") is not None:
         out["recurring_charge_frequency"] = data["RecurringChargeFrequency"]
     return out

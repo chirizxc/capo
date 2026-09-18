@@ -66,30 +66,30 @@ def serialize_aws_json_1_0(value: ElastiCacheReservedInstancesConfiguration) -> 
 
 def deserialize_aws_json_1_0(data: dict) -> ElastiCacheReservedInstancesConfiguration:
     out: ElastiCacheReservedInstancesConfiguration = {}  # type: ignore[typeddict-item]
-    if "accountScope" in data:
+    if data.get("accountScope") is not None:
         out["account_scope"] = data["accountScope"]
-    if "service" in data:
+    if data.get("service") is not None:
         out["service"] = data["service"]
-    if "term" in data:
+    if data.get("term") is not None:
         out["term"] = data["term"]
-    if "paymentOption" in data:
+    if data.get("paymentOption") is not None:
         out["payment_option"] = data["paymentOption"]
-    if "reservedInstancesRegion" in data:
+    if data.get("reservedInstancesRegion") is not None:
         out["reserved_instances_region"] = data["reservedInstancesRegion"]
-    if "upfrontCost" in data:
+    if data.get("upfrontCost") is not None:
         out["upfront_cost"] = data["upfrontCost"]
-    if "monthlyRecurringCost" in data:
+    if data.get("monthlyRecurringCost") is not None:
         out["monthly_recurring_cost"] = data["monthlyRecurringCost"]
-    if "normalizedUnitsToPurchase" in data:
+    if data.get("normalizedUnitsToPurchase") is not None:
         out["normalized_units_to_purchase"] = data["normalizedUnitsToPurchase"]
-    if "numberOfInstancesToPurchase" in data:
+    if data.get("numberOfInstancesToPurchase") is not None:
         out["number_of_instances_to_purchase"] = data["numberOfInstancesToPurchase"]
-    if "instanceFamily" in data:
+    if data.get("instanceFamily") is not None:
         out["instance_family"] = data["instanceFamily"]
-    if "instanceType" in data:
+    if data.get("instanceType") is not None:
         out["instance_type"] = data["instanceType"]
-    if "currentGeneration" in data:
+    if data.get("currentGeneration") is not None:
         out["current_generation"] = data["currentGeneration"]
-    if "sizeFlexEligible" in data:
+    if data.get("sizeFlexEligible") is not None:
         out["size_flex_eligible"] = data["sizeFlexEligible"]
     return out

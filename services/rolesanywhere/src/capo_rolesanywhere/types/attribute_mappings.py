@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> AttributeMappings:
 
     out: AttributeMappings = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_rolesanywhere.types.attribute_mapping.deserialize_json(item))
     return out

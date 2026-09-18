@@ -28,7 +28,7 @@ def serialize_json(value: DeleteGatewayRouteOutput) -> dict:
 
 def deserialize_json(data: dict) -> DeleteGatewayRouteOutput:
     out: DeleteGatewayRouteOutput = {}  # type: ignore[typeddict-item]
-    if "gatewayRoute" in data:
+    if data.get("gatewayRoute") is not None:
         import capo_app_mesh.types.gateway_route_data
 
         out["gateway_route"] = capo_app_mesh.types.gateway_route_data.deserialize_json(

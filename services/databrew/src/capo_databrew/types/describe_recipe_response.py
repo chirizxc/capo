@@ -100,50 +100,50 @@ def serialize_json(value: DescribeRecipeResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribeRecipeResponse:
     out: DescribeRecipeResponse = {}  # type: ignore[typeddict-item]
-    if "CreatedBy" in data:
+    if data.get("CreatedBy") is not None:
         out["created_by"] = data["CreatedBy"]
-    if "CreateDate" in data:
+    if data.get("CreateDate") is not None:
         import capo_databrew.types.date
 
         out["create_date"] = capo_databrew.types.date.deserialize_json(
             data["CreateDate"]
         )
-    if "LastModifiedBy" in data:
+    if data.get("LastModifiedBy") is not None:
         out["last_modified_by"] = data["LastModifiedBy"]
-    if "LastModifiedDate" in data:
+    if data.get("LastModifiedDate") is not None:
         import capo_databrew.types.date
 
         out["last_modified_date"] = capo_databrew.types.date.deserialize_json(
             data["LastModifiedDate"]
         )
-    if "ProjectName" in data:
+    if data.get("ProjectName") is not None:
         out["project_name"] = data["ProjectName"]
-    if "PublishedBy" in data:
+    if data.get("PublishedBy") is not None:
         out["published_by"] = data["PublishedBy"]
-    if "PublishedDate" in data:
+    if data.get("PublishedDate") is not None:
         import capo_databrew.types.date
 
         out["published_date"] = capo_databrew.types.date.deserialize_json(
             data["PublishedDate"]
         )
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("DescribeRecipeResponse.name required")
-    if "Steps" in data:
+    if data.get("Steps") is not None:
         import capo_databrew.types.recipe_step_list
 
         out["steps"] = capo_databrew.types.recipe_step_list.deserialize_json(
             data["Steps"]
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_databrew.types.tag_map
 
         out["tags"] = capo_databrew.types.tag_map.deserialize_json(data["Tags"])
-    if "ResourceArn" in data:
+    if data.get("ResourceArn") is not None:
         out["resource_arn"] = data["ResourceArn"]
-    if "RecipeVersion" in data:
+    if data.get("RecipeVersion") is not None:
         out["recipe_version"] = data["RecipeVersion"]
     return out

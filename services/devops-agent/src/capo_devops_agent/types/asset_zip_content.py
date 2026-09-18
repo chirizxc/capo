@@ -28,7 +28,7 @@ def serialize_json(value: AssetZipContent) -> dict:
 
 def deserialize_json(data: dict) -> AssetZipContent:
     out: AssetZipContent = {}  # type: ignore[typeddict-item]
-    if "zipFile" in data:
+    if data.get("zipFile") is not None:
         import capo_devops_agent.types.asset_zip_bytes
 
         out["zip_file"] = capo_devops_agent.types.asset_zip_bytes.deserialize_json(

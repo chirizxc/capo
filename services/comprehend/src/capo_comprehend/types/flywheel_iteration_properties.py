@@ -109,23 +109,23 @@ def serialize_aws_json_1_1(value: FlywheelIterationProperties) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> FlywheelIterationProperties:
     out: FlywheelIterationProperties = {}  # type: ignore[typeddict-item]
-    if "FlywheelArn" in data:
+    if data.get("FlywheelArn") is not None:
         out["flywheel_arn"] = data["FlywheelArn"]
-    if "FlywheelIterationId" in data:
+    if data.get("FlywheelIterationId") is not None:
         out["flywheel_iteration_id"] = data["FlywheelIterationId"]
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_comprehend.types.timestamp
 
         out["creation_time"] = capo_comprehend.types.timestamp.deserialize_aws_json_1_1(
             data["CreationTime"]
         )
-    if "EndTime" in data:
+    if data.get("EndTime") is not None:
         import capo_comprehend.types.timestamp
 
         out["end_time"] = capo_comprehend.types.timestamp.deserialize_aws_json_1_1(
             data["EndTime"]
         )
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_comprehend.types.flywheel_iteration_status
 
         out["status"] = (
@@ -133,11 +133,11 @@ def deserialize_aws_json_1_1(data: dict) -> FlywheelIterationProperties:
                 data["Status"]
             )
         )
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
-    if "EvaluatedModelArn" in data:
+    if data.get("EvaluatedModelArn") is not None:
         out["evaluated_model_arn"] = data["EvaluatedModelArn"]
-    if "EvaluatedModelMetrics" in data:
+    if data.get("EvaluatedModelMetrics") is not None:
         import capo_comprehend.types.flywheel_model_evaluation_metrics
 
         out["evaluated_model_metrics"] = (
@@ -145,9 +145,9 @@ def deserialize_aws_json_1_1(data: dict) -> FlywheelIterationProperties:
                 data["EvaluatedModelMetrics"]
             )
         )
-    if "TrainedModelArn" in data:
+    if data.get("TrainedModelArn") is not None:
         out["trained_model_arn"] = data["TrainedModelArn"]
-    if "TrainedModelMetrics" in data:
+    if data.get("TrainedModelMetrics") is not None:
         import capo_comprehend.types.flywheel_model_evaluation_metrics
 
         out["trained_model_metrics"] = (
@@ -155,6 +155,6 @@ def deserialize_aws_json_1_1(data: dict) -> FlywheelIterationProperties:
                 data["TrainedModelMetrics"]
             )
         )
-    if "EvaluationManifestS3Prefix" in data:
+    if data.get("EvaluationManifestS3Prefix") is not None:
         out["evaluation_manifest_s3_prefix"] = data["EvaluationManifestS3Prefix"]
     return out

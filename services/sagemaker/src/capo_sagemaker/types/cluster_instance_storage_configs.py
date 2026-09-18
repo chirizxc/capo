@@ -29,6 +29,8 @@ def deserialize_aws_json_1_1(data: list) -> ClusterInstanceStorageConfigs:
 
     out: ClusterInstanceStorageConfigs = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_sagemaker.types.cluster_instance_storage_config.deserialize_aws_json_1_1(
                 item

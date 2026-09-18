@@ -22,8 +22,8 @@ def serialize_json(value: BasicAuthenticationCredentials) -> dict:
 
 def deserialize_json(data: dict) -> BasicAuthenticationCredentials:
     out: BasicAuthenticationCredentials = {}  # type: ignore[typeddict-item]
-    if "userName" in data:
+    if data.get("userName") is not None:
         out["user_name"] = data["userName"]
-    if "password" in data:
+    if data.get("password") is not None:
         out["password"] = data["password"]
     return out

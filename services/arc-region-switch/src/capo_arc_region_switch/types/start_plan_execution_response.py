@@ -40,14 +40,14 @@ def serialize_aws_json_1_0(value: StartPlanExecutionResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> StartPlanExecutionResponse:
     out: StartPlanExecutionResponse = {}  # type: ignore[typeddict-item]
-    if "executionId" in data:
+    if data.get("executionId") is not None:
         out["execution_id"] = data["executionId"]
-    if "plan" in data:
+    if data.get("plan") is not None:
         out["plan"] = data["plan"]
-    if "planVersion" in data:
+    if data.get("planVersion") is not None:
         out["plan_version"] = data["planVersion"]
-    if "activateRegion" in data:
+    if data.get("activateRegion") is not None:
         out["activate_region"] = data["activateRegion"]
-    if "deactivateRegion" in data:
+    if data.get("deactivateRegion") is not None:
         out["deactivate_region"] = data["deactivateRegion"]
     return out

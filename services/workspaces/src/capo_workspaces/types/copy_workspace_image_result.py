@@ -23,6 +23,6 @@ def serialize_aws_json_1_1(value: CopyWorkspaceImageResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CopyWorkspaceImageResult:
     out: CopyWorkspaceImageResult = {}  # type: ignore[typeddict-item]
-    if "ImageId" in data:
+    if data.get("ImageId") is not None:
         out["image_id"] = data["ImageId"]
     return out

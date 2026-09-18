@@ -51,35 +51,35 @@ def serialize_aws_json_1_0(value: BandwidthRateLimitInterval) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> BandwidthRateLimitInterval:
     out: BandwidthRateLimitInterval = {}  # type: ignore[typeddict-item]
-    if "AverageUploadRateLimitInBitsPerSec" in data:
+    if data.get("AverageUploadRateLimitInBitsPerSec") is not None:
         out["average_upload_rate_limit_in_bits_per_sec"] = data[
             "AverageUploadRateLimitInBitsPerSec"
         ]
-    if "StartHourOfDay" in data:
+    if data.get("StartHourOfDay") is not None:
         out["start_hour_of_day"] = data["StartHourOfDay"]
     else:
         raise DeserializationError(
             "BandwidthRateLimitInterval.start_hour_of_day required"
         )
-    if "EndHourOfDay" in data:
+    if data.get("EndHourOfDay") is not None:
         out["end_hour_of_day"] = data["EndHourOfDay"]
     else:
         raise DeserializationError(
             "BandwidthRateLimitInterval.end_hour_of_day required"
         )
-    if "StartMinuteOfHour" in data:
+    if data.get("StartMinuteOfHour") is not None:
         out["start_minute_of_hour"] = data["StartMinuteOfHour"]
     else:
         raise DeserializationError(
             "BandwidthRateLimitInterval.start_minute_of_hour required"
         )
-    if "EndMinuteOfHour" in data:
+    if data.get("EndMinuteOfHour") is not None:
         out["end_minute_of_hour"] = data["EndMinuteOfHour"]
     else:
         raise DeserializationError(
             "BandwidthRateLimitInterval.end_minute_of_hour required"
         )
-    if "DaysOfWeek" in data:
+    if data.get("DaysOfWeek") is not None:
         import capo_backup_gateway.types.days_of_week
 
         out["days_of_week"] = (

@@ -73,23 +73,23 @@ def serialize_aws_json_1_1(value: PipelineSummary) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PipelineSummary:
     out: PipelineSummary = {}  # type: ignore[typeddict-item]
-    if "PipelineArn" in data:
+    if data.get("PipelineArn") is not None:
         out["pipeline_arn"] = data["PipelineArn"]
-    if "PipelineName" in data:
+    if data.get("PipelineName") is not None:
         out["pipeline_name"] = data["PipelineName"]
-    if "PipelineDisplayName" in data:
+    if data.get("PipelineDisplayName") is not None:
         out["pipeline_display_name"] = data["PipelineDisplayName"]
-    if "PipelineDescription" in data:
+    if data.get("PipelineDescription") is not None:
         out["pipeline_description"] = data["PipelineDescription"]
-    if "RoleArn" in data:
+    if data.get("RoleArn") is not None:
         out["role_arn"] = data["RoleArn"]
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_sagemaker.types.timestamp
 
         out["creation_time"] = capo_sagemaker.types.timestamp.deserialize_aws_json_1_1(
             data["CreationTime"]
         )
-    if "LastModifiedTime" in data:
+    if data.get("LastModifiedTime") is not None:
         import capo_sagemaker.types.timestamp
 
         out["last_modified_time"] = (
@@ -97,7 +97,7 @@ def deserialize_aws_json_1_1(data: dict) -> PipelineSummary:
                 data["LastModifiedTime"]
             )
         )
-    if "LastExecutionTime" in data:
+    if data.get("LastExecutionTime") is not None:
         import capo_sagemaker.types.timestamp
 
         out["last_execution_time"] = (

@@ -27,8 +27,8 @@ def serialize_aws_json_1_1(value: ParameterGroup) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ParameterGroup:
     out: ParameterGroup = {}  # type: ignore[typeddict-item]
-    if "ParameterGroupName" in data:
+    if data.get("ParameterGroupName") is not None:
         out["parameter_group_name"] = data["ParameterGroupName"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
     return out

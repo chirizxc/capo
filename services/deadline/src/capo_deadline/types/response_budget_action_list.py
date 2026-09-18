@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> ResponseBudgetActionList:
 
     out: ResponseBudgetActionList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_deadline.types.response_budget_action.deserialize_json(item))
     return out

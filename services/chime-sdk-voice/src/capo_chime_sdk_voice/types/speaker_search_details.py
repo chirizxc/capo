@@ -38,7 +38,7 @@ def serialize_json(value: SpeakerSearchDetails) -> dict:
 
 def deserialize_json(data: dict) -> SpeakerSearchDetails:
     out: SpeakerSearchDetails = {}  # type: ignore[typeddict-item]
-    if "Results" in data:
+    if data.get("Results") is not None:
         import capo_chime_sdk_voice.types.speaker_search_result_list
 
         out["results"] = (
@@ -46,6 +46,6 @@ def deserialize_json(data: dict) -> SpeakerSearchDetails:
                 data["Results"]
             )
         )
-    if "VoiceprintGenerationStatus" in data:
+    if data.get("VoiceprintGenerationStatus") is not None:
         out["voiceprint_generation_status"] = data["VoiceprintGenerationStatus"]
     return out

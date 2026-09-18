@@ -36,9 +36,9 @@ def serialize_aws_json_1_1(value: ContinueDeploymentInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ContinueDeploymentInput:
     out: ContinueDeploymentInput = {}  # type: ignore[typeddict-item]
-    if "deploymentId" in data:
+    if data.get("deploymentId") is not None:
         out["deployment_id"] = data["deploymentId"]
-    if "deploymentWaitType" in data:
+    if data.get("deploymentWaitType") is not None:
         import capo_codedeploy.types.deployment_wait_type
 
         out["deployment_wait_type"] = (

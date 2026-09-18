@@ -13,9 +13,9 @@ from capo_cloudformation import AsyncCloudFormationClient
 
 
 async def main():
-    async with AsyncCloudFormationClient() as s3:
+    async with AsyncCloudFormationClient() as cloud_formation:
         # Example: call the activate_organizations_access operation
-        response = await s3.activate_organizations_access()
+        response = await cloud_formation.activate_organizations_access()
         print(response)
 ```
 
@@ -28,9 +28,9 @@ from capo_cloudformation import AsyncCloudFormationClient
 
 
 async def main():
-    async with AsyncCloudFormationClient() as s3:
+    async with AsyncCloudFormationClient() as cloud_formation:
         # Example: paginate over describe_account_limits
-        async for item in s3.iter_describe_account_limits():
+        async for item in cloud_formation.iter_describe_account_limits():
             print(item)
 ```
 
@@ -43,9 +43,9 @@ from capo_cloudformation import AsyncCloudFormationClient
 
 
 async def main():
-    async with AsyncCloudFormationClient() as s3:
+    async with AsyncCloudFormationClient() as cloud_formation:
         # Example: wait for stack_exists
-        await s3.wait_until_stack_exists(max_wait_time=300)
+        await cloud_formation.wait_until_stack_exists(max_wait_time=300)
 ```
 
 ## Error Handling
@@ -58,9 +58,9 @@ from capo_cloudformation.error import InvalidOperationException
 
 
 async def main():
-    async with AsyncCloudFormationClient() as s3:
+    async with AsyncCloudFormationClient() as cloud_formation:
         try:
-            await s3.activate_organizations_access()
+            await cloud_formation.activate_organizations_access()
         except InvalidOperationException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -77,13 +77,13 @@ from capo_cloudformation import AsyncCloudFormationClient
 
 
 async def main():
-    async with AsyncCloudFormationClient() as s3:
+    async with AsyncCloudFormationClient() as cloud_formation:
         # Default: 3 attempts for every operation
-        response = await s3.activate_organizations_access()
+        response = await cloud_formation.activate_organizations_access()
 
         # Override per operation
-        response = await s3.activate_organizations_access(config_overrides={"retry_max_attempts": 5})
+        response = await cloud_formation.activate_organizations_access(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.activate_organizations_access(config_overrides={"retry_max_attempts": 1})
+        response = await cloud_formation.activate_organizations_access(config_overrides={"retry_max_attempts": 1})
 ```

@@ -27,8 +27,8 @@ def serialize_aws_json_1_1(value: SuggestionHighlight) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SuggestionHighlight:
     out: SuggestionHighlight = {}  # type: ignore[typeddict-item]
-    if "BeginOffset" in data:
+    if data.get("BeginOffset") is not None:
         out["begin_offset"] = data["BeginOffset"]
-    if "EndOffset" in data:
+    if data.get("EndOffset") is not None:
         out["end_offset"] = data["EndOffset"]
     return out

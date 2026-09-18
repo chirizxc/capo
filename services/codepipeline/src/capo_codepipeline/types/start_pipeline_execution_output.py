@@ -25,6 +25,6 @@ def serialize_aws_json_1_1(value: StartPipelineExecutionOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> StartPipelineExecutionOutput:
     out: StartPipelineExecutionOutput = {}  # type: ignore[typeddict-item]
-    if "pipelineExecutionId" in data:
+    if data.get("pipelineExecutionId") is not None:
         out["pipeline_execution_id"] = data["pipelineExecutionId"]
     return out

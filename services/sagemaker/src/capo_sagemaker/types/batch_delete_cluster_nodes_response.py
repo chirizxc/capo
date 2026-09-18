@@ -68,7 +68,7 @@ def serialize_aws_json_1_1(value: BatchDeleteClusterNodesResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> BatchDeleteClusterNodesResponse:
     out: BatchDeleteClusterNodesResponse = {}  # type: ignore[typeddict-item]
-    if "Failed" in data:
+    if data.get("Failed") is not None:
         import capo_sagemaker.types.batch_delete_cluster_nodes_error_list
 
         out["failed"] = (
@@ -76,7 +76,7 @@ def deserialize_aws_json_1_1(data: dict) -> BatchDeleteClusterNodesResponse:
                 data["Failed"]
             )
         )
-    if "Successful" in data:
+    if data.get("Successful") is not None:
         import capo_sagemaker.types.cluster_node_ids
 
         out["successful"] = (
@@ -84,7 +84,7 @@ def deserialize_aws_json_1_1(data: dict) -> BatchDeleteClusterNodesResponse:
                 data["Successful"]
             )
         )
-    if "FailedNodeLogicalIds" in data:
+    if data.get("FailedNodeLogicalIds") is not None:
         import capo_sagemaker.types.batch_delete_cluster_node_logical_ids_error_list
 
         out["failed_node_logical_ids"] = (
@@ -92,7 +92,7 @@ def deserialize_aws_json_1_1(data: dict) -> BatchDeleteClusterNodesResponse:
                 data["FailedNodeLogicalIds"]
             )
         )
-    if "SuccessfulNodeLogicalIds" in data:
+    if data.get("SuccessfulNodeLogicalIds") is not None:
         import capo_sagemaker.types.cluster_node_logical_id_list
 
         out["successful_node_logical_ids"] = (

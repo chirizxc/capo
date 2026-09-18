@@ -50,9 +50,9 @@ def serialize_json(value: ListQueueQuickConnectsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListQueueQuickConnectsResponse:
     out: ListQueueQuickConnectsResponse = {}  # type: ignore[typeddict-item]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "QuickConnectSummaryList" in data:
+    if data.get("QuickConnectSummaryList") is not None:
         import capo_connect.types.quick_connect_summary_list
 
         out["quick_connect_summary_list"] = (
@@ -60,12 +60,12 @@ def deserialize_json(data: dict) -> ListQueueQuickConnectsResponse:
                 data["QuickConnectSummaryList"]
             )
         )
-    if "LastModifiedTime" in data:
+    if data.get("LastModifiedTime") is not None:
         import capo_connect.types.timestamp
 
         out["last_modified_time"] = capo_connect.types.timestamp.deserialize_json(
             data["LastModifiedTime"]
         )
-    if "LastModifiedRegion" in data:
+    if data.get("LastModifiedRegion") is not None:
         out["last_modified_region"] = data["LastModifiedRegion"]
     return out

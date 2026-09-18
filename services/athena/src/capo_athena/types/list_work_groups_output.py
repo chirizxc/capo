@@ -32,7 +32,7 @@ def serialize_aws_json_1_1(value: ListWorkGroupsOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListWorkGroupsOutput:
     out: ListWorkGroupsOutput = {}  # type: ignore[typeddict-item]
-    if "WorkGroups" in data:
+    if data.get("WorkGroups") is not None:
         import capo_athena.types.work_groups_list
 
         out["work_groups"] = (
@@ -40,6 +40,6 @@ def deserialize_aws_json_1_1(data: dict) -> ListWorkGroupsOutput:
                 data["WorkGroups"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

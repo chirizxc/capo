@@ -218,14 +218,16 @@ class CloudSearchClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudsearch.types.build_suggesters_request.BuildSuggestersRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
+        input_: capo_cloudsearch.types.build_suggesters_request.BuildSuggestersRequest = {
+            "domain_name": domain_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_domain(
@@ -263,14 +265,16 @@ class CloudSearchClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudsearch.types.create_domain_request.CreateDomainRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
+        input_: capo_cloudsearch.types.create_domain_request.CreateDomainRequest = {
+            "domain_name": domain_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def define_analysis_scheme(
@@ -307,15 +311,17 @@ class CloudSearchClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudsearch.types.define_analysis_scheme_request.DefineAnalysisSchemeRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
-        input_["analysis_scheme"] = analysis_scheme
+        input_: capo_cloudsearch.types.define_analysis_scheme_request.DefineAnalysisSchemeRequest = {
+            "domain_name": domain_name,
+            "analysis_scheme": analysis_scheme,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def define_expression(
@@ -352,15 +358,17 @@ class CloudSearchClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudsearch.types.define_expression_request.DefineExpressionRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
-        input_["expression"] = expression
+        input_: capo_cloudsearch.types.define_expression_request.DefineExpressionRequest = {
+            "domain_name": domain_name,
+            "expression": expression,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def define_index_field(
@@ -400,15 +408,17 @@ class CloudSearchClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudsearch.types.define_index_field_request.DefineIndexFieldRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
-        input_["index_field"] = index_field
+        input_: capo_cloudsearch.types.define_index_field_request.DefineIndexFieldRequest = {
+            "domain_name": domain_name,
+            "index_field": index_field,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def define_suggester(
@@ -445,15 +455,17 @@ class CloudSearchClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudsearch.types.define_suggester_request.DefineSuggesterRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
-        input_["suggester"] = suggester
+        input_: capo_cloudsearch.types.define_suggester_request.DefineSuggesterRequest = {
+            "domain_name": domain_name,
+            "suggester": suggester,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_analysis_scheme(
@@ -492,15 +504,17 @@ class CloudSearchClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudsearch.types.delete_analysis_scheme_request.DeleteAnalysisSchemeRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
-        input_["analysis_scheme_name"] = analysis_scheme_name
+        input_: capo_cloudsearch.types.delete_analysis_scheme_request.DeleteAnalysisSchemeRequest = {
+            "domain_name": domain_name,
+            "analysis_scheme_name": analysis_scheme_name,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_domain(
@@ -535,14 +549,16 @@ class CloudSearchClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudsearch.types.delete_domain_request.DeleteDomainRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
+        input_: capo_cloudsearch.types.delete_domain_request.DeleteDomainRequest = {
+            "domain_name": domain_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_expression(
@@ -581,15 +597,17 @@ class CloudSearchClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudsearch.types.delete_expression_request.DeleteExpressionRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
-        input_["expression_name"] = expression_name
+        input_: capo_cloudsearch.types.delete_expression_request.DeleteExpressionRequest = {
+            "domain_name": domain_name,
+            "expression_name": expression_name,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_index_field(
@@ -628,15 +646,17 @@ class CloudSearchClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudsearch.types.delete_index_field_request.DeleteIndexFieldRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
-        input_["index_field_name"] = index_field_name
+        input_: capo_cloudsearch.types.delete_index_field_request.DeleteIndexFieldRequest = {
+            "domain_name": domain_name,
+            "index_field_name": index_field_name,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_suggester(
@@ -675,15 +695,17 @@ class CloudSearchClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudsearch.types.delete_suggester_request.DeleteSuggesterRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
-        input_["suggester_name"] = suggester_name
+        input_: capo_cloudsearch.types.delete_suggester_request.DeleteSuggesterRequest = {
+            "domain_name": domain_name,
+            "suggester_name": suggester_name,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_analysis_schemes(
@@ -725,8 +747,9 @@ class CloudSearchClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudsearch.types.describe_analysis_schemes_request.DescribeAnalysisSchemesRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
+        input_: capo_cloudsearch.types.describe_analysis_schemes_request.DescribeAnalysisSchemesRequest = {
+            "domain_name": domain_name
+        }
         if analysis_scheme_names is not None:
             input_["analysis_scheme_names"] = analysis_scheme_names
         if deployed is not None:
@@ -737,6 +760,7 @@ class CloudSearchClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_availability_options(
@@ -777,8 +801,9 @@ class CloudSearchClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudsearch.types.describe_availability_options_request.DescribeAvailabilityOptionsRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
+        input_: capo_cloudsearch.types.describe_availability_options_request.DescribeAvailabilityOptionsRequest = {
+            "domain_name": domain_name
+        }
         if deployed is not None:
             input_["deployed"] = deployed
 
@@ -787,6 +812,7 @@ class CloudSearchClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_domain_endpoint_options(
@@ -826,8 +852,9 @@ class CloudSearchClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudsearch.types.describe_domain_endpoint_options_request.DescribeDomainEndpointOptionsRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
+        input_: capo_cloudsearch.types.describe_domain_endpoint_options_request.DescribeDomainEndpointOptionsRequest = {
+            "domain_name": domain_name
+        }
         if deployed is not None:
             input_["deployed"] = deployed
 
@@ -836,6 +863,7 @@ class CloudSearchClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_domains(
@@ -872,7 +900,7 @@ class CloudSearchClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudsearch.types.describe_domains_request.DescribeDomainsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_cloudsearch.types.describe_domains_request.DescribeDomainsRequest = {}
         if domain_names is not None:
             input_["domain_names"] = domain_names
 
@@ -881,6 +909,7 @@ class CloudSearchClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_expressions(
@@ -922,8 +951,9 @@ class CloudSearchClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudsearch.types.describe_expressions_request.DescribeExpressionsRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
+        input_: capo_cloudsearch.types.describe_expressions_request.DescribeExpressionsRequest = {
+            "domain_name": domain_name
+        }
         if expression_names is not None:
             input_["expression_names"] = expression_names
         if deployed is not None:
@@ -934,6 +964,7 @@ class CloudSearchClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_index_fields(
@@ -975,8 +1006,9 @@ class CloudSearchClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudsearch.types.describe_index_fields_request.DescribeIndexFieldsRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
+        input_: capo_cloudsearch.types.describe_index_fields_request.DescribeIndexFieldsRequest = {
+            "domain_name": domain_name
+        }
         if field_names is not None:
             input_["field_names"] = field_names
         if deployed is not None:
@@ -987,6 +1019,7 @@ class CloudSearchClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_scaling_parameters(
@@ -1019,14 +1052,16 @@ class CloudSearchClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudsearch.types.describe_scaling_parameters_request.DescribeScalingParametersRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
+        input_: capo_cloudsearch.types.describe_scaling_parameters_request.DescribeScalingParametersRequest = {
+            "domain_name": domain_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_service_access_policies(
@@ -1064,8 +1099,9 @@ class CloudSearchClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudsearch.types.describe_service_access_policies_request.DescribeServiceAccessPoliciesRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
+        input_: capo_cloudsearch.types.describe_service_access_policies_request.DescribeServiceAccessPoliciesRequest = {
+            "domain_name": domain_name
+        }
         if deployed is not None:
             input_["deployed"] = deployed
 
@@ -1074,6 +1110,7 @@ class CloudSearchClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_suggesters(
@@ -1117,8 +1154,9 @@ class CloudSearchClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudsearch.types.describe_suggesters_request.DescribeSuggestersRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
+        input_: capo_cloudsearch.types.describe_suggesters_request.DescribeSuggestersRequest = {
+            "domain_name": domain_name
+        }
         if suggester_names is not None:
             input_["suggester_names"] = suggester_names
         if deployed is not None:
@@ -1129,6 +1167,7 @@ class CloudSearchClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def index_documents(
@@ -1162,14 +1201,16 @@ class CloudSearchClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudsearch.types.index_documents_request.IndexDocumentsRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
+        input_: capo_cloudsearch.types.index_documents_request.IndexDocumentsRequest = {
+            "domain_name": domain_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_domain_names(
@@ -1203,6 +1244,7 @@ class CloudSearchClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_availability_options(
@@ -1243,15 +1285,17 @@ class CloudSearchClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudsearch.types.update_availability_options_request.UpdateAvailabilityOptionsRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
-        input_["multi_az"] = multi_az
+        input_: capo_cloudsearch.types.update_availability_options_request.UpdateAvailabilityOptionsRequest = {
+            "domain_name": domain_name,
+            "multi_az": multi_az,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_domain_endpoint_options(
@@ -1293,15 +1337,17 @@ class CloudSearchClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudsearch.types.update_domain_endpoint_options_request.UpdateDomainEndpointOptionsRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
-        input_["domain_endpoint_options"] = domain_endpoint_options
+        input_: capo_cloudsearch.types.update_domain_endpoint_options_request.UpdateDomainEndpointOptionsRequest = {
+            "domain_name": domain_name,
+            "domain_endpoint_options": domain_endpoint_options,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_scaling_parameters(
@@ -1338,15 +1384,17 @@ class CloudSearchClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudsearch.types.update_scaling_parameters_request.UpdateScalingParametersRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
-        input_["scaling_parameters"] = scaling_parameters
+        input_: capo_cloudsearch.types.update_scaling_parameters_request.UpdateScalingParametersRequest = {
+            "domain_name": domain_name,
+            "scaling_parameters": scaling_parameters,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_service_access_policies(
@@ -1386,15 +1434,17 @@ class CloudSearchClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudsearch.types.update_service_access_policies_request.UpdateServiceAccessPoliciesRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
-        input_["access_policies"] = access_policies
+        input_: capo_cloudsearch.types.update_service_access_policies_request.UpdateServiceAccessPoliciesRequest = {
+            "domain_name": domain_name,
+            "access_policies": access_policies,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def __enter__(self) -> Self:

@@ -25,6 +25,6 @@ def serialize_aws_json_1_1(value: SftpConnectorConnectionDetails) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SftpConnectorConnectionDetails:
     out: SftpConnectorConnectionDetails = {}  # type: ignore[typeddict-item]
-    if "HostKey" in data:
+    if data.get("HostKey") is not None:
         out["host_key"] = data["HostKey"]
     return out

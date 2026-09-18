@@ -34,13 +34,13 @@ def serialize_aws_json_1_1(value: DescribeWorkspaceAssociationsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeWorkspaceAssociationsRequest:
     out: DescribeWorkspaceAssociationsRequest = {}  # type: ignore[typeddict-item]
-    if "WorkspaceId" in data:
+    if data.get("WorkspaceId") is not None:
         out["workspace_id"] = data["WorkspaceId"]
     else:
         raise DeserializationError(
             "DescribeWorkspaceAssociationsRequest.workspace_id required"
         )
-    if "AssociatedResourceTypes" in data:
+    if data.get("AssociatedResourceTypes") is not None:
         import capo_workspaces.types.work_space_associated_resource_type_list
 
         out["associated_resource_types"] = (

@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> __listOfUnavailabilityReasonCode:
 
     out: __listOfUnavailabilityReasonCode = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_macie2.types.unavailability_reason_code.deserialize_json(item))
     return out

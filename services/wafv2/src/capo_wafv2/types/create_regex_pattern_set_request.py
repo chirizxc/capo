@@ -54,19 +54,19 @@ def serialize_aws_json_1_1(value: CreateRegexPatternSetRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateRegexPatternSetRequest:
     out: CreateRegexPatternSetRequest = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("CreateRegexPatternSetRequest.name required")
-    if "Scope" in data:
+    if data.get("Scope") is not None:
         import capo_wafv2.types.scope
 
         out["scope"] = capo_wafv2.types.scope.deserialize_aws_json_1_1(data["Scope"])
     else:
         raise DeserializationError("CreateRegexPatternSetRequest.scope required")
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "RegularExpressionList" in data:
+    if data.get("RegularExpressionList") is not None:
         import capo_wafv2.types.regular_expression_list
 
         out["regular_expression_list"] = (
@@ -78,7 +78,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateRegexPatternSetRequest:
         raise DeserializationError(
             "CreateRegexPatternSetRequest.regular_expression_list required"
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_wafv2.types.tag_list
 
         out["tags"] = capo_wafv2.types.tag_list.deserialize_aws_json_1_1(data["Tags"])

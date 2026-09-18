@@ -25,6 +25,8 @@ def deserialize_json(data: list) -> AwsIamInstanceProfileList:
 
     out: AwsIamInstanceProfileList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_securityhub.types.aws_iam_instance_profile.deserialize_json(item)
         )

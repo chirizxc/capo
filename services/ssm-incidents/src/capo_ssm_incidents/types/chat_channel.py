@@ -45,7 +45,7 @@ def serialize_json(value: ChatChannel) -> dict:
 
 
 def deserialize_json(data: dict) -> ChatChannel:
-    if "empty" in data:
+    if data.get("empty") is not None:
         import capo_ssm_incidents.types.empty_chat_channel
 
         return {
@@ -53,7 +53,7 @@ def deserialize_json(data: dict) -> ChatChannel:
                 data["empty"]
             )
         }
-    elif "chatbotSns" in data:
+    elif data.get("chatbotSns") is not None:
         import capo_ssm_incidents.types.chatbot_sns_configuration_set
 
         return {

@@ -52,13 +52,13 @@ def serialize_aws_json_1_1(value: CreateLocationFsxLustreRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateLocationFsxLustreRequest:
     out: CreateLocationFsxLustreRequest = {}  # type: ignore[typeddict-item]
-    if "FsxFilesystemArn" in data:
+    if data.get("FsxFilesystemArn") is not None:
         out["fsx_filesystem_arn"] = data["FsxFilesystemArn"]
     else:
         raise DeserializationError(
             "CreateLocationFsxLustreRequest.fsx_filesystem_arn required"
         )
-    if "SecurityGroupArns" in data:
+    if data.get("SecurityGroupArns") is not None:
         import capo_datasync.types.ec2_security_group_arn_list
 
         out["security_group_arns"] = (
@@ -70,9 +70,9 @@ def deserialize_aws_json_1_1(data: dict) -> CreateLocationFsxLustreRequest:
         raise DeserializationError(
             "CreateLocationFsxLustreRequest.security_group_arns required"
         )
-    if "Subdirectory" in data:
+    if data.get("Subdirectory") is not None:
         out["subdirectory"] = data["Subdirectory"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_datasync.types.input_tag_list
 
         out["tags"] = capo_datasync.types.input_tag_list.deserialize_aws_json_1_1(

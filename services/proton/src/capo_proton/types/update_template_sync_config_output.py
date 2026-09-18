@@ -31,7 +31,7 @@ def serialize_aws_json_1_0(value: UpdateTemplateSyncConfigOutput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> UpdateTemplateSyncConfigOutput:
     out: UpdateTemplateSyncConfigOutput = {}  # type: ignore[typeddict-item]
-    if "templateSyncConfig" in data:
+    if data.get("templateSyncConfig") is not None:
         import capo_proton.types.template_sync_config
 
         out["template_sync_config"] = (

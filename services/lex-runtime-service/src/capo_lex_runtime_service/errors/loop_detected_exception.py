@@ -24,7 +24,7 @@ def serialize_json(value: LoopDetectedException_) -> dict:
 
 def deserialize_json(data: dict) -> LoopDetectedException_:
     out: LoopDetectedException_ = {}  # type: ignore[typeddict-item]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     return out
 
@@ -34,15 +34,18 @@ class LoopDetectedException(ServiceError):
 
     code: str | None = "LoopDetectedException"
 
-    def __init__(self, data: LoopDetectedException_):
+    def __init__(self, data: LoopDetectedException_, message: str | None = None):
         super().__init__(
             "server",
             is_throttling_error=False,
             is_retryable=False,
             code="LoopDetectedException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "LoopDetectedException":
-        return cls(deserialize_json(data))
+    def from_json(
+        cls, data: dict, message: str | None = None
+    ) -> "LoopDetectedException":
+        return cls(deserialize_json(data), message)

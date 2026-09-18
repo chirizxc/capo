@@ -40,9 +40,9 @@ def deserialize_aws_json_1_1(
     data: dict,
 ) -> DescribeReplicationTaskAssessmentRunsResponse:
     out: DescribeReplicationTaskAssessmentRunsResponse = {}  # type: ignore[typeddict-item]
-    if "Marker" in data:
+    if data.get("Marker") is not None:
         out["marker"] = data["Marker"]
-    if "ReplicationTaskAssessmentRuns" in data:
+    if data.get("ReplicationTaskAssessmentRuns") is not None:
         import capo_database_migration_service.types.replication_task_assessment_run_list
 
         out["replication_task_assessment_runs"] = (

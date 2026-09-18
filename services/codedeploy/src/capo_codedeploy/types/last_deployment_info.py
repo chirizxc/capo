@@ -49,9 +49,9 @@ def serialize_aws_json_1_1(value: LastDeploymentInfo) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> LastDeploymentInfo:
     out: LastDeploymentInfo = {}  # type: ignore[typeddict-item]
-    if "deploymentId" in data:
+    if data.get("deploymentId") is not None:
         out["deployment_id"] = data["deploymentId"]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_codedeploy.types.deployment_status
 
         out["status"] = (
@@ -59,13 +59,13 @@ def deserialize_aws_json_1_1(data: dict) -> LastDeploymentInfo:
                 data["status"]
             )
         )
-    if "endTime" in data:
+    if data.get("endTime") is not None:
         import capo_codedeploy.types.timestamp
 
         out["end_time"] = capo_codedeploy.types.timestamp.deserialize_aws_json_1_1(
             data["endTime"]
         )
-    if "createTime" in data:
+    if data.get("createTime") is not None:
         import capo_codedeploy.types.timestamp
 
         out["create_time"] = capo_codedeploy.types.timestamp.deserialize_aws_json_1_1(

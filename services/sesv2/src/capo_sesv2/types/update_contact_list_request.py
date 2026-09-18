@@ -33,10 +33,10 @@ def serialize_json(value: UpdateContactListRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateContactListRequest:
     out: UpdateContactListRequest = {}  # type: ignore[typeddict-item]
-    if "Topics" in data:
+    if data.get("Topics") is not None:
         import capo_sesv2.types.topics
 
         out["topics"] = capo_sesv2.types.topics.deserialize_json(data["Topics"])
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
     return out

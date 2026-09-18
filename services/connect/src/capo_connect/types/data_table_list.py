@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> DataTableList:
 
     out: DataTableList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_connect.types.data_table.deserialize_json(item))
     return out

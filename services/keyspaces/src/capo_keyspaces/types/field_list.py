@@ -23,5 +23,7 @@ def deserialize_aws_json_1_0(data: list) -> FieldList:
 
     out: FieldList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_keyspaces.types.field_definition.deserialize_aws_json_1_0(item))
     return out

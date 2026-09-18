@@ -71,7 +71,7 @@ def serialize_aws_json_1_1(value: NetworkAclEntry) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> NetworkAclEntry:
     out: NetworkAclEntry = {}  # type: ignore[typeddict-item]
-    if "IcmpTypeCode" in data:
+    if data.get("IcmpTypeCode") is not None:
         import capo_fms.types.network_acl_icmp_type_code
 
         out["icmp_type_code"] = (
@@ -79,11 +79,11 @@ def deserialize_aws_json_1_1(data: dict) -> NetworkAclEntry:
                 data["IcmpTypeCode"]
             )
         )
-    if "Protocol" in data:
+    if data.get("Protocol") is not None:
         out["protocol"] = data["Protocol"]
     else:
         raise DeserializationError("NetworkAclEntry.protocol required")
-    if "PortRange" in data:
+    if data.get("PortRange") is not None:
         import capo_fms.types.network_acl_port_range
 
         out["port_range"] = (
@@ -91,11 +91,11 @@ def deserialize_aws_json_1_1(data: dict) -> NetworkAclEntry:
                 data["PortRange"]
             )
         )
-    if "CidrBlock" in data:
+    if data.get("CidrBlock") is not None:
         out["cidr_block"] = data["CidrBlock"]
-    if "Ipv6CidrBlock" in data:
+    if data.get("Ipv6CidrBlock") is not None:
         out["ipv6_cidr_block"] = data["Ipv6CidrBlock"]
-    if "RuleAction" in data:
+    if data.get("RuleAction") is not None:
         import capo_fms.types.network_acl_rule_action
 
         out["rule_action"] = (
@@ -105,7 +105,7 @@ def deserialize_aws_json_1_1(data: dict) -> NetworkAclEntry:
         )
     else:
         raise DeserializationError("NetworkAclEntry.rule_action required")
-    if "Egress" in data:
+    if data.get("Egress") is not None:
         out["egress"] = data["Egress"]
     else:
         raise DeserializationError("NetworkAclEntry.egress required")

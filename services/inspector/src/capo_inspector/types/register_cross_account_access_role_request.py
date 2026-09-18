@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: RegisterCrossAccountAccessRoleRequest) -> dict
 
 def deserialize_aws_json_1_1(data: dict) -> RegisterCrossAccountAccessRoleRequest:
     out: RegisterCrossAccountAccessRoleRequest = {}  # type: ignore[typeddict-item]
-    if "roleArn" in data:
+    if data.get("roleArn") is not None:
         out["role_arn"] = data["roleArn"]
     else:
         raise DeserializationError(

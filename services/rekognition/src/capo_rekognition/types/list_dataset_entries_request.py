@@ -64,11 +64,11 @@ def serialize_aws_json_1_1(value: ListDatasetEntriesRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListDatasetEntriesRequest:
     out: ListDatasetEntriesRequest = {}  # type: ignore[typeddict-item]
-    if "DatasetArn" in data:
+    if data.get("DatasetArn") is not None:
         out["dataset_arn"] = data["DatasetArn"]
     else:
         raise DeserializationError("ListDatasetEntriesRequest.dataset_arn required")
-    if "ContainsLabels" in data:
+    if data.get("ContainsLabels") is not None:
         import capo_rekognition.types.dataset_labels
 
         out["contains_labels"] = (
@@ -76,14 +76,14 @@ def deserialize_aws_json_1_1(data: dict) -> ListDatasetEntriesRequest:
                 data["ContainsLabels"]
             )
         )
-    if "Labeled" in data:
+    if data.get("Labeled") is not None:
         out["labeled"] = data["Labeled"]
-    if "SourceRefContains" in data:
+    if data.get("SourceRefContains") is not None:
         out["source_ref_contains"] = data["SourceRefContains"]
-    if "HasErrors" in data:
+    if data.get("HasErrors") is not None:
         out["has_errors"] = data["HasErrors"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
     return out

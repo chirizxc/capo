@@ -91,41 +91,41 @@ def serialize_json(value: DescribeNodeResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribeNodeResponse:
     out: DescribeNodeResponse = {}  # type: ignore[typeddict-item]
-    if "NodeId" in data:
+    if data.get("NodeId") is not None:
         out["node_id"] = data["NodeId"]
     else:
         raise DeserializationError("DescribeNodeResponse.node_id required")
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("DescribeNodeResponse.name required")
-    if "Category" in data:
+    if data.get("Category") is not None:
         out["category"] = data["Category"]
     else:
         raise DeserializationError("DescribeNodeResponse.category required")
-    if "OwnerAccount" in data:
+    if data.get("OwnerAccount") is not None:
         out["owner_account"] = data["OwnerAccount"]
     else:
         raise DeserializationError("DescribeNodeResponse.owner_account required")
-    if "PackageName" in data:
+    if data.get("PackageName") is not None:
         out["package_name"] = data["PackageName"]
     else:
         raise DeserializationError("DescribeNodeResponse.package_name required")
-    if "PackageId" in data:
+    if data.get("PackageId") is not None:
         out["package_id"] = data["PackageId"]
     else:
         raise DeserializationError("DescribeNodeResponse.package_id required")
-    if "PackageArn" in data:
+    if data.get("PackageArn") is not None:
         out["package_arn"] = data["PackageArn"]
-    if "PackageVersion" in data:
+    if data.get("PackageVersion") is not None:
         out["package_version"] = data["PackageVersion"]
     else:
         raise DeserializationError("DescribeNodeResponse.package_version required")
-    if "PatchVersion" in data:
+    if data.get("PatchVersion") is not None:
         out["patch_version"] = data["PatchVersion"]
     else:
         raise DeserializationError("DescribeNodeResponse.patch_version required")
-    if "NodeInterface" in data:
+    if data.get("NodeInterface") is not None:
         import capo_panorama.types.node_interface
 
         out["node_interface"] = capo_panorama.types.node_interface.deserialize_json(
@@ -133,13 +133,13 @@ def deserialize_json(data: dict) -> DescribeNodeResponse:
         )
     else:
         raise DeserializationError("DescribeNodeResponse.node_interface required")
-    if "AssetName" in data:
+    if data.get("AssetName") is not None:
         out["asset_name"] = data["AssetName"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
     else:
         raise DeserializationError("DescribeNodeResponse.description required")
-    if "CreatedTime" in data:
+    if data.get("CreatedTime") is not None:
         import capo_panorama.types.time_stamp
 
         out["created_time"] = capo_panorama.types.time_stamp.deserialize_json(
@@ -147,7 +147,7 @@ def deserialize_json(data: dict) -> DescribeNodeResponse:
         )
     else:
         raise DeserializationError("DescribeNodeResponse.created_time required")
-    if "LastUpdatedTime" in data:
+    if data.get("LastUpdatedTime") is not None:
         import capo_panorama.types.time_stamp
 
         out["last_updated_time"] = capo_panorama.types.time_stamp.deserialize_json(

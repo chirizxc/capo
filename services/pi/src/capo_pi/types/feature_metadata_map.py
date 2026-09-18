@@ -24,6 +24,8 @@ def serialize_aws_json_1_1(input_to_serialize: FeatureMetadataMap) -> dict:
 def deserialize_aws_json_1_1(data: dict) -> FeatureMetadataMap:
     out: FeatureMetadataMap = {}
     for key, value in data.items():
+        if value is None:
+            continue
         import capo_pi.types.feature_metadata
 
         out[key] = capo_pi.types.feature_metadata.deserialize_aws_json_1_1(value)

@@ -48,18 +48,18 @@ def serialize_aws_json_1_1(value: ListUsersFilters) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListUsersFilters:
     out: ListUsersFilters = {}  # type: ignore[typeddict-item]
-    if "UsernamePrefix" in data:
+    if data.get("UsernamePrefix") is not None:
         out["username_prefix"] = data["UsernamePrefix"]
-    if "DisplayNamePrefix" in data:
+    if data.get("DisplayNamePrefix") is not None:
         out["display_name_prefix"] = data["DisplayNamePrefix"]
-    if "PrimaryEmailPrefix" in data:
+    if data.get("PrimaryEmailPrefix") is not None:
         out["primary_email_prefix"] = data["PrimaryEmailPrefix"]
-    if "State" in data:
+    if data.get("State") is not None:
         import capo_workmail.types.entity_state
 
         out["state"] = capo_workmail.types.entity_state.deserialize_aws_json_1_1(
             data["State"]
         )
-    if "IdentityProviderUserIdPrefix" in data:
+    if data.get("IdentityProviderUserIdPrefix") is not None:
         out["identity_provider_user_id_prefix"] = data["IdentityProviderUserIdPrefix"]
     return out

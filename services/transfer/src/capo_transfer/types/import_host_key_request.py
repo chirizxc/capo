@@ -42,17 +42,17 @@ def serialize_aws_json_1_1(value: ImportHostKeyRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ImportHostKeyRequest:
     out: ImportHostKeyRequest = {}  # type: ignore[typeddict-item]
-    if "ServerId" in data:
+    if data.get("ServerId") is not None:
         out["server_id"] = data["ServerId"]
     else:
         raise DeserializationError("ImportHostKeyRequest.server_id required")
-    if "HostKeyBody" in data:
+    if data.get("HostKeyBody") is not None:
         out["host_key_body"] = data["HostKeyBody"]
     else:
         raise DeserializationError("ImportHostKeyRequest.host_key_body required")
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_transfer.types.tags
 
         out["tags"] = capo_transfer.types.tags.deserialize_aws_json_1_1(data["Tags"])

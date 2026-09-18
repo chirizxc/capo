@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> AWSServices:
 
     out: AWSServices = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_auditmanager.types.aws_service.deserialize_json(item))
     return out

@@ -133,10 +133,11 @@ class SourceServerResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mgn.types.update_source_server_request.UpdateSourceServerRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_mgn.types.update_source_server_request.UpdateSourceServerRequest = {
+            "source_server_id": source_server_id
+        }
         if account_id is not None:
             input_["account_id"] = account_id
-        input_["source_server_id"] = source_server_id
         if connector_action is not None:
             input_["connector_action"] = connector_action
 
@@ -145,6 +146,7 @@ class SourceServerResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -182,8 +184,9 @@ class SourceServerResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mgn.types.delete_source_server_request.DeleteSourceServerRequest = {}  # type: ignore[typeddict-item]
-        input_["source_server_id"] = source_server_id
+        input_: capo_mgn.types.delete_source_server_request.DeleteSourceServerRequest = {
+            "source_server_id": source_server_id
+        }
         if account_id is not None:
             input_["account_id"] = account_id
 
@@ -192,6 +195,7 @@ class SourceServerResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -236,7 +240,7 @@ class SourceServerResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mgn.types.describe_source_servers_request.DescribeSourceServersRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_mgn.types.describe_source_servers_request.DescribeSourceServersRequest = {}
         if filters is not None:
             input_["filters"] = filters
         if max_results is not None:
@@ -251,6 +255,7 @@ class SourceServerResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def change_server_life_cycle_state(
@@ -289,9 +294,10 @@ class SourceServerResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mgn.types.change_server_life_cycle_state_request.ChangeServerLifeCycleStateRequest = {}  # type: ignore[typeddict-item]
-        input_["source_server_id"] = source_server_id
-        input_["life_cycle"] = life_cycle
+        input_: capo_mgn.types.change_server_life_cycle_state_request.ChangeServerLifeCycleStateRequest = {
+            "source_server_id": source_server_id,
+            "life_cycle": life_cycle,
+        }
         if account_id is not None:
             input_["account_id"] = account_id
 
@@ -300,6 +306,7 @@ class SourceServerResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def disconnect_from_service(
@@ -335,8 +342,9 @@ class SourceServerResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mgn.types.disconnect_from_service_request.DisconnectFromServiceRequest = {}  # type: ignore[typeddict-item]
-        input_["source_server_id"] = source_server_id
+        input_: capo_mgn.types.disconnect_from_service_request.DisconnectFromServiceRequest = {
+            "source_server_id": source_server_id
+        }
         if account_id is not None:
             input_["account_id"] = account_id
 
@@ -345,6 +353,7 @@ class SourceServerResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def finalize_cutover(
@@ -381,8 +390,9 @@ class SourceServerResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mgn.types.finalize_cutover_request.FinalizeCutoverRequest = {}  # type: ignore[typeddict-item]
-        input_["source_server_id"] = source_server_id
+        input_: capo_mgn.types.finalize_cutover_request.FinalizeCutoverRequest = {
+            "source_server_id": source_server_id
+        }
         if account_id is not None:
             input_["account_id"] = account_id
 
@@ -391,6 +401,7 @@ class SourceServerResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_launch_configuration(
@@ -427,8 +438,9 @@ class SourceServerResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mgn.types.get_launch_configuration_request.GetLaunchConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["source_server_id"] = source_server_id
+        input_: capo_mgn.types.get_launch_configuration_request.GetLaunchConfigurationRequest = {
+            "source_server_id": source_server_id
+        }
         if account_id is not None:
             input_["account_id"] = account_id
 
@@ -437,6 +449,7 @@ class SourceServerResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_replication_configuration(
@@ -473,8 +486,9 @@ class SourceServerResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mgn.types.get_replication_configuration_request.GetReplicationConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["source_server_id"] = source_server_id
+        input_: capo_mgn.types.get_replication_configuration_request.GetReplicationConfigurationRequest = {
+            "source_server_id": source_server_id
+        }
         if account_id is not None:
             input_["account_id"] = account_id
 
@@ -483,6 +497,7 @@ class SourceServerResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_source_server_actions(
@@ -527,8 +542,9 @@ class SourceServerResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mgn.types.list_source_server_actions_request.ListSourceServerActionsRequest = {}  # type: ignore[typeddict-item]
-        input_["source_server_id"] = source_server_id
+        input_: capo_mgn.types.list_source_server_actions_request.ListSourceServerActionsRequest = {
+            "source_server_id": source_server_id
+        }
         if filters is not None:
             input_["filters"] = filters
         if max_results is not None:
@@ -543,6 +559,7 @@ class SourceServerResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def mark_as_archived(
@@ -578,8 +595,9 @@ class SourceServerResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mgn.types.mark_as_archived_request.MarkAsArchivedRequest = {}  # type: ignore[typeddict-item]
-        input_["source_server_id"] = source_server_id
+        input_: capo_mgn.types.mark_as_archived_request.MarkAsArchivedRequest = {
+            "source_server_id": source_server_id
+        }
         if account_id is not None:
             input_["account_id"] = account_id
 
@@ -588,6 +606,7 @@ class SourceServerResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def pause_replication(
@@ -625,8 +644,9 @@ class SourceServerResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mgn.types.pause_replication_request.PauseReplicationRequest = {}  # type: ignore[typeddict-item]
-        input_["source_server_id"] = source_server_id
+        input_: capo_mgn.types.pause_replication_request.PauseReplicationRequest = {
+            "source_server_id": source_server_id
+        }
         if account_id is not None:
             input_["account_id"] = account_id
 
@@ -635,6 +655,7 @@ class SourceServerResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def put_source_server_action(
@@ -707,12 +728,13 @@ class SourceServerResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mgn.types.put_source_server_action_request.PutSourceServerActionRequest = {}  # type: ignore[typeddict-item]
-        input_["source_server_id"] = source_server_id
-        input_["action_name"] = action_name
-        input_["document_identifier"] = document_identifier
-        input_["order"] = order
-        input_["action_id"] = action_id
+        input_: capo_mgn.types.put_source_server_action_request.PutSourceServerActionRequest = {
+            "source_server_id": source_server_id,
+            "action_name": action_name,
+            "document_identifier": document_identifier,
+            "order": order,
+            "action_id": action_id,
+        }
         if document_version is not None:
             input_["document_version"] = document_version
         if active is not None:
@@ -737,6 +759,7 @@ class SourceServerResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def remove_source_server_action(
@@ -776,9 +799,10 @@ class SourceServerResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mgn.types.remove_source_server_action_request.RemoveSourceServerActionRequest = {}  # type: ignore[typeddict-item]
-        input_["source_server_id"] = source_server_id
-        input_["action_id"] = action_id
+        input_: capo_mgn.types.remove_source_server_action_request.RemoveSourceServerActionRequest = {
+            "source_server_id": source_server_id,
+            "action_id": action_id,
+        }
         if account_id is not None:
             input_["account_id"] = account_id
 
@@ -787,6 +811,7 @@ class SourceServerResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def resume_replication(
@@ -824,8 +849,9 @@ class SourceServerResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mgn.types.resume_replication_request.ResumeReplicationRequest = {}  # type: ignore[typeddict-item]
-        input_["source_server_id"] = source_server_id
+        input_: capo_mgn.types.resume_replication_request.ResumeReplicationRequest = {
+            "source_server_id": source_server_id
+        }
         if account_id is not None:
             input_["account_id"] = account_id
 
@@ -834,6 +860,7 @@ class SourceServerResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def retry_data_replication(
@@ -869,8 +896,9 @@ class SourceServerResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mgn.types.retry_data_replication_request.RetryDataReplicationRequest = {}  # type: ignore[typeddict-item]
-        input_["source_server_id"] = source_server_id
+        input_: capo_mgn.types.retry_data_replication_request.RetryDataReplicationRequest = {
+            "source_server_id": source_server_id
+        }
         if account_id is not None:
             input_["account_id"] = account_id
 
@@ -879,6 +907,7 @@ class SourceServerResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def start_replication(
@@ -916,8 +945,9 @@ class SourceServerResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mgn.types.start_replication_request.StartReplicationRequest = {}  # type: ignore[typeddict-item]
-        input_["source_server_id"] = source_server_id
+        input_: capo_mgn.types.start_replication_request.StartReplicationRequest = {
+            "source_server_id": source_server_id
+        }
         if account_id is not None:
             input_["account_id"] = account_id
 
@@ -926,6 +956,7 @@ class SourceServerResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def stop_replication(
@@ -963,8 +994,9 @@ class SourceServerResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mgn.types.stop_replication_request.StopReplicationRequest = {}  # type: ignore[typeddict-item]
-        input_["source_server_id"] = source_server_id
+        input_: capo_mgn.types.stop_replication_request.StopReplicationRequest = {
+            "source_server_id": source_server_id
+        }
         if account_id is not None:
             input_["account_id"] = account_id
 
@@ -973,6 +1005,7 @@ class SourceServerResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_launch_configuration(
@@ -1036,8 +1069,9 @@ class SourceServerResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mgn.types.update_launch_configuration_request.UpdateLaunchConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["source_server_id"] = source_server_id
+        input_: capo_mgn.types.update_launch_configuration_request.UpdateLaunchConfigurationRequest = {
+            "source_server_id": source_server_id
+        }
         if name is not None:
             input_["name"] = name
         if launch_disposition is not None:
@@ -1068,6 +1102,7 @@ class SourceServerResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_replication_configuration(
@@ -1157,8 +1192,9 @@ class SourceServerResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mgn.types.update_replication_configuration_request.UpdateReplicationConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["source_server_id"] = source_server_id
+        input_: capo_mgn.types.update_replication_configuration_request.UpdateReplicationConfigurationRequest = {
+            "source_server_id": source_server_id
+        }
         if name is not None:
             input_["name"] = name
         if staging_area_subnet_id is not None:
@@ -1209,6 +1245,7 @@ class SourceServerResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_source_server_replication_type(
@@ -1247,9 +1284,10 @@ class SourceServerResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mgn.types.update_source_server_replication_type_request.UpdateSourceServerReplicationTypeRequest = {}  # type: ignore[typeddict-item]
-        input_["source_server_id"] = source_server_id
-        input_["replication_type"] = replication_type
+        input_: capo_mgn.types.update_source_server_replication_type_request.UpdateSourceServerReplicationTypeRequest = {
+            "source_server_id": source_server_id,
+            "replication_type": replication_type,
+        }
         if account_id is not None:
             input_["account_id"] = account_id
 
@@ -1258,6 +1296,7 @@ class SourceServerResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def start_cutover(
@@ -1297,8 +1336,9 @@ class SourceServerResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mgn.types.start_cutover_request.StartCutoverRequest = {}  # type: ignore[typeddict-item]
-        input_["source_server_i_ds"] = source_server_i_ds
+        input_: capo_mgn.types.start_cutover_request.StartCutoverRequest = {
+            "source_server_i_ds": source_server_i_ds
+        }
         if tags is not None:
             input_["tags"] = tags
         if account_id is not None:
@@ -1309,6 +1349,7 @@ class SourceServerResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def start_test(
@@ -1346,8 +1387,9 @@ class SourceServerResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mgn.types.start_test_request.StartTestRequest = {}  # type: ignore[typeddict-item]
-        input_["source_server_i_ds"] = source_server_i_ds
+        input_: capo_mgn.types.start_test_request.StartTestRequest = {
+            "source_server_i_ds": source_server_i_ds
+        }
         if tags is not None:
             input_["tags"] = tags
         if account_id is not None:
@@ -1358,6 +1400,7 @@ class SourceServerResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def terminate_target_instances(
@@ -1397,8 +1440,9 @@ class SourceServerResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mgn.types.terminate_target_instances_request.TerminateTargetInstancesRequest = {}  # type: ignore[typeddict-item]
-        input_["source_server_i_ds"] = source_server_i_ds
+        input_: capo_mgn.types.terminate_target_instances_request.TerminateTargetInstancesRequest = {
+            "source_server_i_ds": source_server_i_ds
+        }
         if tags is not None:
             input_["tags"] = tags
         if account_id is not None:
@@ -1409,6 +1453,7 @@ class SourceServerResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -1454,10 +1499,11 @@ class AsyncSourceServerResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mgn.types.update_source_server_request.UpdateSourceServerRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_mgn.types.update_source_server_request.UpdateSourceServerRequest = {
+            "source_server_id": source_server_id
+        }
         if account_id is not None:
             input_["account_id"] = account_id
-        input_["source_server_id"] = source_server_id
         if connector_action is not None:
             input_["connector_action"] = connector_action
 
@@ -1466,6 +1512,7 @@ class AsyncSourceServerResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -1504,8 +1551,9 @@ class AsyncSourceServerResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mgn.types.delete_source_server_request.DeleteSourceServerRequest = {}  # type: ignore[typeddict-item]
-        input_["source_server_id"] = source_server_id
+        input_: capo_mgn.types.delete_source_server_request.DeleteSourceServerRequest = {
+            "source_server_id": source_server_id
+        }
         if account_id is not None:
             input_["account_id"] = account_id
 
@@ -1514,6 +1562,7 @@ class AsyncSourceServerResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -1559,7 +1608,7 @@ class AsyncSourceServerResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mgn.types.describe_source_servers_request.DescribeSourceServersRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_mgn.types.describe_source_servers_request.DescribeSourceServersRequest = {}
         if filters is not None:
             input_["filters"] = filters
         if max_results is not None:
@@ -1574,6 +1623,7 @@ class AsyncSourceServerResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def change_server_life_cycle_state(
@@ -1613,9 +1663,10 @@ class AsyncSourceServerResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mgn.types.change_server_life_cycle_state_request.ChangeServerLifeCycleStateRequest = {}  # type: ignore[typeddict-item]
-        input_["source_server_id"] = source_server_id
-        input_["life_cycle"] = life_cycle
+        input_: capo_mgn.types.change_server_life_cycle_state_request.ChangeServerLifeCycleStateRequest = {
+            "source_server_id": source_server_id,
+            "life_cycle": life_cycle,
+        }
         if account_id is not None:
             input_["account_id"] = account_id
 
@@ -1624,6 +1675,7 @@ class AsyncSourceServerResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def disconnect_from_service(
@@ -1660,8 +1712,9 @@ class AsyncSourceServerResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mgn.types.disconnect_from_service_request.DisconnectFromServiceRequest = {}  # type: ignore[typeddict-item]
-        input_["source_server_id"] = source_server_id
+        input_: capo_mgn.types.disconnect_from_service_request.DisconnectFromServiceRequest = {
+            "source_server_id": source_server_id
+        }
         if account_id is not None:
             input_["account_id"] = account_id
 
@@ -1670,6 +1723,7 @@ class AsyncSourceServerResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def finalize_cutover(
@@ -1707,8 +1761,9 @@ class AsyncSourceServerResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mgn.types.finalize_cutover_request.FinalizeCutoverRequest = {}  # type: ignore[typeddict-item]
-        input_["source_server_id"] = source_server_id
+        input_: capo_mgn.types.finalize_cutover_request.FinalizeCutoverRequest = {
+            "source_server_id": source_server_id
+        }
         if account_id is not None:
             input_["account_id"] = account_id
 
@@ -1717,6 +1772,7 @@ class AsyncSourceServerResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_launch_configuration(
@@ -1754,8 +1810,9 @@ class AsyncSourceServerResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mgn.types.get_launch_configuration_request.GetLaunchConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["source_server_id"] = source_server_id
+        input_: capo_mgn.types.get_launch_configuration_request.GetLaunchConfigurationRequest = {
+            "source_server_id": source_server_id
+        }
         if account_id is not None:
             input_["account_id"] = account_id
 
@@ -1764,6 +1821,7 @@ class AsyncSourceServerResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_replication_configuration(
@@ -1801,8 +1859,9 @@ class AsyncSourceServerResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mgn.types.get_replication_configuration_request.GetReplicationConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["source_server_id"] = source_server_id
+        input_: capo_mgn.types.get_replication_configuration_request.GetReplicationConfigurationRequest = {
+            "source_server_id": source_server_id
+        }
         if account_id is not None:
             input_["account_id"] = account_id
 
@@ -1811,6 +1870,7 @@ class AsyncSourceServerResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_source_server_actions(
@@ -1856,8 +1916,9 @@ class AsyncSourceServerResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mgn.types.list_source_server_actions_request.ListSourceServerActionsRequest = {}  # type: ignore[typeddict-item]
-        input_["source_server_id"] = source_server_id
+        input_: capo_mgn.types.list_source_server_actions_request.ListSourceServerActionsRequest = {
+            "source_server_id": source_server_id
+        }
         if filters is not None:
             input_["filters"] = filters
         if max_results is not None:
@@ -1872,6 +1933,7 @@ class AsyncSourceServerResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def mark_as_archived(
@@ -1908,8 +1970,9 @@ class AsyncSourceServerResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mgn.types.mark_as_archived_request.MarkAsArchivedRequest = {}  # type: ignore[typeddict-item]
-        input_["source_server_id"] = source_server_id
+        input_: capo_mgn.types.mark_as_archived_request.MarkAsArchivedRequest = {
+            "source_server_id": source_server_id
+        }
         if account_id is not None:
             input_["account_id"] = account_id
 
@@ -1918,6 +1981,7 @@ class AsyncSourceServerResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def pause_replication(
@@ -1956,8 +2020,9 @@ class AsyncSourceServerResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mgn.types.pause_replication_request.PauseReplicationRequest = {}  # type: ignore[typeddict-item]
-        input_["source_server_id"] = source_server_id
+        input_: capo_mgn.types.pause_replication_request.PauseReplicationRequest = {
+            "source_server_id": source_server_id
+        }
         if account_id is not None:
             input_["account_id"] = account_id
 
@@ -1966,6 +2031,7 @@ class AsyncSourceServerResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def put_source_server_action(
@@ -2039,12 +2105,13 @@ class AsyncSourceServerResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mgn.types.put_source_server_action_request.PutSourceServerActionRequest = {}  # type: ignore[typeddict-item]
-        input_["source_server_id"] = source_server_id
-        input_["action_name"] = action_name
-        input_["document_identifier"] = document_identifier
-        input_["order"] = order
-        input_["action_id"] = action_id
+        input_: capo_mgn.types.put_source_server_action_request.PutSourceServerActionRequest = {
+            "source_server_id": source_server_id,
+            "action_name": action_name,
+            "document_identifier": document_identifier,
+            "order": order,
+            "action_id": action_id,
+        }
         if document_version is not None:
             input_["document_version"] = document_version
         if active is not None:
@@ -2069,6 +2136,7 @@ class AsyncSourceServerResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def remove_source_server_action(
@@ -2109,9 +2177,10 @@ class AsyncSourceServerResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mgn.types.remove_source_server_action_request.RemoveSourceServerActionRequest = {}  # type: ignore[typeddict-item]
-        input_["source_server_id"] = source_server_id
-        input_["action_id"] = action_id
+        input_: capo_mgn.types.remove_source_server_action_request.RemoveSourceServerActionRequest = {
+            "source_server_id": source_server_id,
+            "action_id": action_id,
+        }
         if account_id is not None:
             input_["account_id"] = account_id
 
@@ -2120,6 +2189,7 @@ class AsyncSourceServerResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def resume_replication(
@@ -2158,8 +2228,9 @@ class AsyncSourceServerResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mgn.types.resume_replication_request.ResumeReplicationRequest = {}  # type: ignore[typeddict-item]
-        input_["source_server_id"] = source_server_id
+        input_: capo_mgn.types.resume_replication_request.ResumeReplicationRequest = {
+            "source_server_id": source_server_id
+        }
         if account_id is not None:
             input_["account_id"] = account_id
 
@@ -2168,6 +2239,7 @@ class AsyncSourceServerResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def retry_data_replication(
@@ -2204,8 +2276,9 @@ class AsyncSourceServerResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mgn.types.retry_data_replication_request.RetryDataReplicationRequest = {}  # type: ignore[typeddict-item]
-        input_["source_server_id"] = source_server_id
+        input_: capo_mgn.types.retry_data_replication_request.RetryDataReplicationRequest = {
+            "source_server_id": source_server_id
+        }
         if account_id is not None:
             input_["account_id"] = account_id
 
@@ -2214,6 +2287,7 @@ class AsyncSourceServerResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def start_replication(
@@ -2252,8 +2326,9 @@ class AsyncSourceServerResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mgn.types.start_replication_request.StartReplicationRequest = {}  # type: ignore[typeddict-item]
-        input_["source_server_id"] = source_server_id
+        input_: capo_mgn.types.start_replication_request.StartReplicationRequest = {
+            "source_server_id": source_server_id
+        }
         if account_id is not None:
             input_["account_id"] = account_id
 
@@ -2262,6 +2337,7 @@ class AsyncSourceServerResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def stop_replication(
@@ -2300,8 +2376,9 @@ class AsyncSourceServerResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mgn.types.stop_replication_request.StopReplicationRequest = {}  # type: ignore[typeddict-item]
-        input_["source_server_id"] = source_server_id
+        input_: capo_mgn.types.stop_replication_request.StopReplicationRequest = {
+            "source_server_id": source_server_id
+        }
         if account_id is not None:
             input_["account_id"] = account_id
 
@@ -2310,6 +2387,7 @@ class AsyncSourceServerResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_launch_configuration(
@@ -2374,8 +2452,9 @@ class AsyncSourceServerResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mgn.types.update_launch_configuration_request.UpdateLaunchConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["source_server_id"] = source_server_id
+        input_: capo_mgn.types.update_launch_configuration_request.UpdateLaunchConfigurationRequest = {
+            "source_server_id": source_server_id
+        }
         if name is not None:
             input_["name"] = name
         if launch_disposition is not None:
@@ -2406,6 +2485,7 @@ class AsyncSourceServerResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_replication_configuration(
@@ -2496,8 +2576,9 @@ class AsyncSourceServerResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mgn.types.update_replication_configuration_request.UpdateReplicationConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["source_server_id"] = source_server_id
+        input_: capo_mgn.types.update_replication_configuration_request.UpdateReplicationConfigurationRequest = {
+            "source_server_id": source_server_id
+        }
         if name is not None:
             input_["name"] = name
         if staging_area_subnet_id is not None:
@@ -2548,6 +2629,7 @@ class AsyncSourceServerResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_source_server_replication_type(
@@ -2587,9 +2669,10 @@ class AsyncSourceServerResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mgn.types.update_source_server_replication_type_request.UpdateSourceServerReplicationTypeRequest = {}  # type: ignore[typeddict-item]
-        input_["source_server_id"] = source_server_id
-        input_["replication_type"] = replication_type
+        input_: capo_mgn.types.update_source_server_replication_type_request.UpdateSourceServerReplicationTypeRequest = {
+            "source_server_id": source_server_id,
+            "replication_type": replication_type,
+        }
         if account_id is not None:
             input_["account_id"] = account_id
 
@@ -2598,6 +2681,7 @@ class AsyncSourceServerResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def start_cutover(
@@ -2638,8 +2722,9 @@ class AsyncSourceServerResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mgn.types.start_cutover_request.StartCutoverRequest = {}  # type: ignore[typeddict-item]
-        input_["source_server_i_ds"] = source_server_i_ds
+        input_: capo_mgn.types.start_cutover_request.StartCutoverRequest = {
+            "source_server_i_ds": source_server_i_ds
+        }
         if tags is not None:
             input_["tags"] = tags
         if account_id is not None:
@@ -2650,6 +2735,7 @@ class AsyncSourceServerResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def start_test(
@@ -2690,8 +2776,9 @@ class AsyncSourceServerResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mgn.types.start_test_request.StartTestRequest = {}  # type: ignore[typeddict-item]
-        input_["source_server_i_ds"] = source_server_i_ds
+        input_: capo_mgn.types.start_test_request.StartTestRequest = {
+            "source_server_i_ds": source_server_i_ds
+        }
         if tags is not None:
             input_["tags"] = tags
         if account_id is not None:
@@ -2702,6 +2789,7 @@ class AsyncSourceServerResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def terminate_target_instances(
@@ -2742,8 +2830,9 @@ class AsyncSourceServerResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mgn.types.terminate_target_instances_request.TerminateTargetInstancesRequest = {}  # type: ignore[typeddict-item]
-        input_["source_server_i_ds"] = source_server_i_ds
+        input_: capo_mgn.types.terminate_target_instances_request.TerminateTargetInstancesRequest = {
+            "source_server_i_ds": source_server_i_ds
+        }
         if tags is not None:
             input_["tags"] = tags
         if account_id is not None:
@@ -2754,4 +2843,5 @@ class AsyncSourceServerResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

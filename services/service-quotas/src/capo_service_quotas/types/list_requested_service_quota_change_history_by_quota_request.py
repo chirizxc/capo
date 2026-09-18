@@ -64,19 +64,19 @@ def deserialize_aws_json_1_1(
     data: dict,
 ) -> ListRequestedServiceQuotaChangeHistoryByQuotaRequest:
     out: ListRequestedServiceQuotaChangeHistoryByQuotaRequest = {}  # type: ignore[typeddict-item]
-    if "ServiceCode" in data:
+    if data.get("ServiceCode") is not None:
         out["service_code"] = data["ServiceCode"]
     else:
         raise DeserializationError(
             "ListRequestedServiceQuotaChangeHistoryByQuotaRequest.service_code required"
         )
-    if "QuotaCode" in data:
+    if data.get("QuotaCode") is not None:
         out["quota_code"] = data["QuotaCode"]
     else:
         raise DeserializationError(
             "ListRequestedServiceQuotaChangeHistoryByQuotaRequest.quota_code required"
         )
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_service_quotas.types.request_status
 
         out["status"] = (
@@ -84,11 +84,11 @@ def deserialize_aws_json_1_1(
                 data["Status"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "QuotaRequestedAtLevel" in data:
+    if data.get("QuotaRequestedAtLevel") is not None:
         import capo_service_quotas.types.applied_level_enum
 
         out["quota_requested_at_level"] = (

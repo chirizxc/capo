@@ -26,7 +26,7 @@ def serialize_json(value: GetSessionResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetSessionResponse:
     out: GetSessionResponse = {}  # type: ignore[typeddict-item]
-    if "session" in data:
+    if data.get("session") is not None:
         import capo_emr_serverless.types.session
 
         out["session"] = capo_emr_serverless.types.session.deserialize_json(

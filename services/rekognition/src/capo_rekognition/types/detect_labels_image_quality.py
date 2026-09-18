@@ -21,20 +21,44 @@ class DetectLabelsImageQuality(TypedDict, closed=True):
 def serialize_aws_json_1_1(value: DetectLabelsImageQuality) -> dict:
     out: dict = {}
     if "brightness" in value:
-        out["Brightness"] = value["brightness"]
+        out["Brightness"] = (
+            "NaN"
+            if value["brightness"] != value["brightness"]
+            else "Infinity"
+            if value["brightness"] == float("inf")
+            else "-Infinity"
+            if value["brightness"] == float("-inf")
+            else value["brightness"]
+        )
     if "sharpness" in value:
-        out["Sharpness"] = value["sharpness"]
+        out["Sharpness"] = (
+            "NaN"
+            if value["sharpness"] != value["sharpness"]
+            else "Infinity"
+            if value["sharpness"] == float("inf")
+            else "-Infinity"
+            if value["sharpness"] == float("-inf")
+            else value["sharpness"]
+        )
     if "contrast" in value:
-        out["Contrast"] = value["contrast"]
+        out["Contrast"] = (
+            "NaN"
+            if value["contrast"] != value["contrast"]
+            else "Infinity"
+            if value["contrast"] == float("inf")
+            else "-Infinity"
+            if value["contrast"] == float("-inf")
+            else value["contrast"]
+        )
     return out
 
 
 def deserialize_aws_json_1_1(data: dict) -> DetectLabelsImageQuality:
     out: DetectLabelsImageQuality = {}  # type: ignore[typeddict-item]
-    if "Brightness" in data:
-        out["brightness"] = data["Brightness"]
-    if "Sharpness" in data:
-        out["sharpness"] = data["Sharpness"]
-    if "Contrast" in data:
-        out["contrast"] = data["Contrast"]
+    if data.get("Brightness") is not None:
+        out["brightness"] = float(data["Brightness"])
+    if data.get("Sharpness") is not None:
+        out["sharpness"] = float(data["Sharpness"])
+    if data.get("Contrast") is not None:
+        out["contrast"] = float(data["Contrast"])
     return out

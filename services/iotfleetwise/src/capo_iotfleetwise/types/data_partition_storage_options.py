@@ -46,7 +46,7 @@ def serialize_aws_json_1_0(value: DataPartitionStorageOptions) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> DataPartitionStorageOptions:
     out: DataPartitionStorageOptions = {}  # type: ignore[typeddict-item]
-    if "maximumSize" in data:
+    if data.get("maximumSize") is not None:
         import capo_iotfleetwise.types.storage_maximum_size
 
         out["maximum_size"] = (
@@ -56,13 +56,13 @@ def deserialize_aws_json_1_0(data: dict) -> DataPartitionStorageOptions:
         )
     else:
         raise DeserializationError("DataPartitionStorageOptions.maximum_size required")
-    if "storageLocation" in data:
+    if data.get("storageLocation") is not None:
         out["storage_location"] = data["storageLocation"]
     else:
         raise DeserializationError(
             "DataPartitionStorageOptions.storage_location required"
         )
-    if "minimumTimeToLive" in data:
+    if data.get("minimumTimeToLive") is not None:
         import capo_iotfleetwise.types.storage_minimum_time_to_live
 
         out["minimum_time_to_live"] = (

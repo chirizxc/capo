@@ -56,7 +56,7 @@ def serialize_json(value: CreateProductRestEndpointPageRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateProductRestEndpointPageRequest:
     out: CreateProductRestEndpointPageRequest = {}  # type: ignore[typeddict-item]
-    if "displayContent" in data:
+    if data.get("displayContent") is not None:
         import capo_apigatewayv2.types.endpoint_display_content
 
         out["display_content"] = (
@@ -64,7 +64,7 @@ def deserialize_json(data: dict) -> CreateProductRestEndpointPageRequest:
                 data["displayContent"]
             )
         )
-    if "restEndpointIdentifier" in data:
+    if data.get("restEndpointIdentifier") is not None:
         import capo_apigatewayv2.types.rest_endpoint_identifier
 
         out["rest_endpoint_identifier"] = (
@@ -72,7 +72,7 @@ def deserialize_json(data: dict) -> CreateProductRestEndpointPageRequest:
                 data["restEndpointIdentifier"]
             )
         )
-    if "tryItState" in data:
+    if data.get("tryItState") is not None:
         import capo_apigatewayv2.types.try_it_state
 
         out["try_it_state"] = capo_apigatewayv2.types.try_it_state.deserialize_json(

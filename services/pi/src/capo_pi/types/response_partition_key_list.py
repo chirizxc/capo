@@ -25,5 +25,7 @@ def deserialize_aws_json_1_1(data: list) -> ResponsePartitionKeyList:
 
     out: ResponsePartitionKeyList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_pi.types.response_partition_key.deserialize_aws_json_1_1(item))
     return out

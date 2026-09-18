@@ -39,21 +39,21 @@ def serialize_aws_json_1_1(value: UpdatePullRequestApprovalRuleContentInput) -> 
 
 def deserialize_aws_json_1_1(data: dict) -> UpdatePullRequestApprovalRuleContentInput:
     out: UpdatePullRequestApprovalRuleContentInput = {}  # type: ignore[typeddict-item]
-    if "pullRequestId" in data:
+    if data.get("pullRequestId") is not None:
         out["pull_request_id"] = data["pullRequestId"]
     else:
         raise DeserializationError(
             "UpdatePullRequestApprovalRuleContentInput.pull_request_id required"
         )
-    if "approvalRuleName" in data:
+    if data.get("approvalRuleName") is not None:
         out["approval_rule_name"] = data["approvalRuleName"]
     else:
         raise DeserializationError(
             "UpdatePullRequestApprovalRuleContentInput.approval_rule_name required"
         )
-    if "existingRuleContentSha256" in data:
+    if data.get("existingRuleContentSha256") is not None:
         out["existing_rule_content_sha256"] = data["existingRuleContentSha256"]
-    if "newRuleContent" in data:
+    if data.get("newRuleContent") is not None:
         out["new_rule_content"] = data["newRuleContent"]
     else:
         raise DeserializationError(

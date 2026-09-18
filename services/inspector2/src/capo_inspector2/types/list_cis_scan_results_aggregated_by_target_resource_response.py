@@ -38,7 +38,7 @@ def deserialize_json(
     data: dict,
 ) -> ListCisScanResultsAggregatedByTargetResourceResponse:
     out: ListCisScanResultsAggregatedByTargetResourceResponse = {}  # type: ignore[typeddict-item]
-    if "targetResourceAggregations" in data:
+    if data.get("targetResourceAggregations") is not None:
         import capo_inspector2.types.cis_target_resource_aggregation_list
 
         out["target_resource_aggregations"] = (
@@ -46,6 +46,6 @@ def deserialize_json(
                 data["targetResourceAggregations"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

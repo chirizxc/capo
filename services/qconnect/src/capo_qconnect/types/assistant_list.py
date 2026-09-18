@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> AssistantList:
 
     out: AssistantList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_qconnect.types.assistant_summary.deserialize_json(item))
     return out

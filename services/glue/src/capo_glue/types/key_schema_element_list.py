@@ -25,5 +25,7 @@ def deserialize_aws_json_1_1(data: list) -> KeySchemaElementList:
 
     out: KeySchemaElementList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_glue.types.key_schema_element.deserialize_aws_json_1_1(item))
     return out

@@ -65,21 +65,21 @@ def serialize_aws_json_1_1(value: Address) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Address:
     out: Address = {}  # type: ignore[typeddict-item]
-    if "StreetAddress" in data:
+    if data.get("StreetAddress") is not None:
         out["street_address"] = data["StreetAddress"]
-    if "Locality" in data:
+    if data.get("Locality") is not None:
         out["locality"] = data["Locality"]
-    if "Region" in data:
+    if data.get("Region") is not None:
         out["region"] = data["Region"]
-    if "PostalCode" in data:
+    if data.get("PostalCode") is not None:
         out["postal_code"] = data["PostalCode"]
-    if "Country" in data:
+    if data.get("Country") is not None:
         out["country"] = data["Country"]
-    if "Formatted" in data:
+    if data.get("Formatted") is not None:
         out["formatted"] = data["Formatted"]
-    if "Type" in data:
+    if data.get("Type") is not None:
         out["type"] = data["Type"]
-    if "Primary" in data:
+    if data.get("Primary") is not None:
         out["primary"] = data["Primary"]
     else:
         out["primary"] = False

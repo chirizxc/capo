@@ -13,9 +13,9 @@ from capo_timestream_query import AsyncTimestreamQueryClient
 
 
 async def main():
-    async with AsyncTimestreamQueryClient() as s3:
+    async with AsyncTimestreamQueryClient() as timestream_query:
         # Example: call the cancel_query operation
-        response = await s3.cancel_query()
+        response = await timestream_query.cancel_query()
         print(response["cancellation_message"])
 ```
 
@@ -28,9 +28,9 @@ from capo_timestream_query import AsyncTimestreamQueryClient
 
 
 async def main():
-    async with AsyncTimestreamQueryClient() as s3:
+    async with AsyncTimestreamQueryClient() as timestream_query:
         # Example: paginate over list_scheduled_queries
-        async for item in s3.iter_list_scheduled_queries():
+        async for item in timestream_query.iter_list_scheduled_queries():
             print(item)
 ```
 
@@ -44,9 +44,9 @@ from capo_timestream_query.error import AccessDeniedException
 
 
 async def main():
-    async with AsyncTimestreamQueryClient() as s3:
+    async with AsyncTimestreamQueryClient() as timestream_query:
         try:
-            await s3.cancel_query()
+            await timestream_query.cancel_query()
         except AccessDeniedException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -63,13 +63,13 @@ from capo_timestream_query import AsyncTimestreamQueryClient
 
 
 async def main():
-    async with AsyncTimestreamQueryClient() as s3:
+    async with AsyncTimestreamQueryClient() as timestream_query:
         # Default: 3 attempts for every operation
-        response = await s3.cancel_query()
+        response = await timestream_query.cancel_query()
 
         # Override per operation
-        response = await s3.cancel_query(config_overrides={"retry_max_attempts": 5})
+        response = await timestream_query.cancel_query(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.cancel_query(config_overrides={"retry_max_attempts": 1})
+        response = await timestream_query.cancel_query(config_overrides={"retry_max_attempts": 1})
 ```

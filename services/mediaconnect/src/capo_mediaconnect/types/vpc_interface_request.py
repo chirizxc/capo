@@ -69,9 +69,9 @@ def serialize_json(value: VpcInterfaceRequest) -> dict:
 
 def deserialize_json(data: dict) -> VpcInterfaceRequest:
     out: VpcInterfaceRequest = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "networkInterfaceType" in data:
+    if data.get("networkInterfaceType") is not None:
         import capo_mediaconnect.types.network_interface_type
 
         out["network_interface_type"] = (
@@ -79,9 +79,9 @@ def deserialize_json(data: dict) -> VpcInterfaceRequest:
                 data["networkInterfaceType"]
             )
         )
-    if "roleArn" in data:
+    if data.get("roleArn") is not None:
         out["role_arn"] = data["roleArn"]
-    if "securityGroupIds" in data:
+    if data.get("securityGroupIds") is not None:
         import capo_mediaconnect.types.__list_of_string
 
         out["security_group_ids"] = (
@@ -89,9 +89,9 @@ def deserialize_json(data: dict) -> VpcInterfaceRequest:
                 data["securityGroupIds"]
             )
         )
-    if "subnetId" in data:
+    if data.get("subnetId") is not None:
         out["subnet_id"] = data["subnetId"]
-    if "vpcInterfaceTags" in data:
+    if data.get("vpcInterfaceTags") is not None:
         import capo_mediaconnect.types.__map_of_string
 
         out["vpc_interface_tags"] = (

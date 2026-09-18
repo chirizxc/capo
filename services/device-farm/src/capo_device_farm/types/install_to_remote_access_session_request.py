@@ -29,13 +29,13 @@ def serialize_aws_json_1_1(value: InstallToRemoteAccessSessionRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> InstallToRemoteAccessSessionRequest:
     out: InstallToRemoteAccessSessionRequest = {}  # type: ignore[typeddict-item]
-    if "remoteAccessSessionArn" in data:
+    if data.get("remoteAccessSessionArn") is not None:
         out["remote_access_session_arn"] = data["remoteAccessSessionArn"]
     else:
         raise DeserializationError(
             "InstallToRemoteAccessSessionRequest.remote_access_session_arn required"
         )
-    if "appArn" in data:
+    if data.get("appArn") is not None:
         out["app_arn"] = data["appArn"]
     else:
         raise DeserializationError(

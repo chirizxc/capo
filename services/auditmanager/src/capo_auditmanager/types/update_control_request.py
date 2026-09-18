@@ -67,19 +67,19 @@ def serialize_json(value: UpdateControlRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateControlRequest:
     out: UpdateControlRequest = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("UpdateControlRequest.name required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "testingInformation" in data:
+    if data.get("testingInformation") is not None:
         out["testing_information"] = data["testingInformation"]
-    if "actionPlanTitle" in data:
+    if data.get("actionPlanTitle") is not None:
         out["action_plan_title"] = data["actionPlanTitle"]
-    if "actionPlanInstructions" in data:
+    if data.get("actionPlanInstructions") is not None:
         out["action_plan_instructions"] = data["actionPlanInstructions"]
-    if "controlMappingSources" in data:
+    if data.get("controlMappingSources") is not None:
         import capo_auditmanager.types.control_mapping_sources
 
         out["control_mapping_sources"] = (

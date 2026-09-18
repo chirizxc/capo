@@ -76,17 +76,17 @@ def serialize_json(value: CreateAccessTokenOutput) -> dict:
 
 def deserialize_json(data: dict) -> CreateAccessTokenOutput:
     out: CreateAccessTokenOutput = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("CreateAccessTokenOutput.id required")
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("CreateAccessTokenOutput.arn required")
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_route53globalresolver.types.iso8601_time_string
 
         out["created_at"] = (
@@ -96,11 +96,11 @@ def deserialize_json(data: dict) -> CreateAccessTokenOutput:
         )
     else:
         raise DeserializationError("CreateAccessTokenOutput.created_at required")
-    if "dnsViewId" in data:
+    if data.get("dnsViewId") is not None:
         out["dns_view_id"] = data["dnsViewId"]
     else:
         raise DeserializationError("CreateAccessTokenOutput.dns_view_id required")
-    if "expiresAt" in data:
+    if data.get("expiresAt") is not None:
         import capo_route53globalresolver.types.iso8601_time_string
 
         out["expires_at"] = (
@@ -110,9 +110,9 @@ def deserialize_json(data: dict) -> CreateAccessTokenOutput:
         )
     else:
         raise DeserializationError("CreateAccessTokenOutput.expires_at required")
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_route53globalresolver.types.token_status
 
         out["status"] = capo_route53globalresolver.types.token_status.deserialize_json(
@@ -120,7 +120,7 @@ def deserialize_json(data: dict) -> CreateAccessTokenOutput:
         )
     else:
         raise DeserializationError("CreateAccessTokenOutput.status required")
-    if "value" in data:
+    if data.get("value") is not None:
         out["value"] = data["value"]
     else:
         raise DeserializationError("CreateAccessTokenOutput.value required")

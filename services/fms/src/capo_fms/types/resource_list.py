@@ -23,5 +23,7 @@ def deserialize_aws_json_1_1(data: list) -> ResourceList:
 
     out: ResourceList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_fms.types.resource.deserialize_aws_json_1_1(item))
     return out

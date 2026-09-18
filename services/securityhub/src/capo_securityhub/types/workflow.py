@@ -27,7 +27,7 @@ def serialize_json(value: Workflow) -> dict:
 
 def deserialize_json(data: dict) -> Workflow:
     out: Workflow = {}  # type: ignore[typeddict-item]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_securityhub.types.workflow_status
 
         out["status"] = capo_securityhub.types.workflow_status.deserialize_json(

@@ -43,7 +43,7 @@ def serialize_json(value: DiscoveryData) -> dict:
 
 def deserialize_json(data: dict) -> DiscoveryData:
     out: DiscoveryData = {}  # type: ignore[typeddict-item]
-    if "publicIpAddresses" in data:
+    if data.get("publicIpAddresses") is not None:
         import capo_groundstation.types.ip_address_list
 
         out["public_ip_addresses"] = (
@@ -53,7 +53,7 @@ def deserialize_json(data: dict) -> DiscoveryData:
         )
     else:
         raise DeserializationError("DiscoveryData.public_ip_addresses required")
-    if "privateIpAddresses" in data:
+    if data.get("privateIpAddresses") is not None:
         import capo_groundstation.types.ip_address_list
 
         out["private_ip_addresses"] = (
@@ -63,7 +63,7 @@ def deserialize_json(data: dict) -> DiscoveryData:
         )
     else:
         raise DeserializationError("DiscoveryData.private_ip_addresses required")
-    if "capabilityArns" in data:
+    if data.get("capabilityArns") is not None:
         import capo_groundstation.types.capability_arn_list
 
         out["capability_arns"] = (

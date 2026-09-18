@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: InstanceStateChangeReason) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> InstanceStateChangeReason:
     out: InstanceStateChangeReason = {}  # type: ignore[typeddict-item]
-    if "Code" in data:
+    if data.get("Code") is not None:
         import capo_emr.types.instance_state_change_reason_code
 
         out["code"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_1(data: dict) -> InstanceStateChangeReason:
                 data["Code"]
             )
         )
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     return out

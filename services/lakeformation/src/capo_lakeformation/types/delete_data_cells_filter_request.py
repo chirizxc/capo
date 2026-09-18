@@ -38,12 +38,12 @@ def serialize_json(value: DeleteDataCellsFilterRequest) -> dict:
 
 def deserialize_json(data: dict) -> DeleteDataCellsFilterRequest:
     out: DeleteDataCellsFilterRequest = {}  # type: ignore[typeddict-item]
-    if "TableCatalogId" in data:
+    if data.get("TableCatalogId") is not None:
         out["table_catalog_id"] = data["TableCatalogId"]
-    if "DatabaseName" in data:
+    if data.get("DatabaseName") is not None:
         out["database_name"] = data["DatabaseName"]
-    if "TableName" in data:
+    if data.get("TableName") is not None:
         out["table_name"] = data["TableName"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     return out

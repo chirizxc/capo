@@ -27,7 +27,7 @@ def serialize_json(value: ServiceCollection) -> dict:
 
 def deserialize_json(data: dict) -> ServiceCollection:
     out: ServiceCollection = {}  # type: ignore[typeddict-item]
-    if "ServiceNames" in data:
+    if data.get("ServiceNames") is not None:
         import capo_devops_guru.types.service_names
 
         out["service_names"] = capo_devops_guru.types.service_names.deserialize_json(

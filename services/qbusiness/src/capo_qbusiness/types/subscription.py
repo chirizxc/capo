@@ -66,17 +66,17 @@ def serialize_json(value: Subscription) -> dict:
 
 def deserialize_json(data: dict) -> Subscription:
     out: Subscription = {}  # type: ignore[typeddict-item]
-    if "subscriptionId" in data:
+    if data.get("subscriptionId") is not None:
         out["subscription_id"] = data["subscriptionId"]
-    if "subscriptionArn" in data:
+    if data.get("subscriptionArn") is not None:
         out["subscription_arn"] = data["subscriptionArn"]
-    if "principal" in data:
+    if data.get("principal") is not None:
         import capo_qbusiness.types.subscription_principal
 
         out["principal"] = capo_qbusiness.types.subscription_principal.deserialize_json(
             data["principal"]
         )
-    if "currentSubscription" in data:
+    if data.get("currentSubscription") is not None:
         import capo_qbusiness.types.subscription_details
 
         out["current_subscription"] = (
@@ -84,7 +84,7 @@ def deserialize_json(data: dict) -> Subscription:
                 data["currentSubscription"]
             )
         )
-    if "nextSubscription" in data:
+    if data.get("nextSubscription") is not None:
         import capo_qbusiness.types.subscription_details
 
         out["next_subscription"] = (

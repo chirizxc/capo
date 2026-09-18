@@ -38,7 +38,7 @@ def serialize_aws_json_1_1(value: DescribeGameSessionDetailsOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeGameSessionDetailsOutput:
     out: DescribeGameSessionDetailsOutput = {}  # type: ignore[typeddict-item]
-    if "GameSessionDetails" in data:
+    if data.get("GameSessionDetails") is not None:
         import capo_gamelift.types.game_session_detail_list
 
         out["game_session_details"] = (
@@ -46,6 +46,6 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeGameSessionDetailsOutput:
                 data["GameSessionDetails"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

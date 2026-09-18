@@ -28,11 +28,11 @@ def serialize_json(value: CreateMonitorResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateMonitorResponse:
     out: CreateMonitorResponse = {}  # type: ignore[typeddict-item]
-    if "monitorId" in data:
+    if data.get("monitorId") is not None:
         out["monitor_id"] = data["monitorId"]
     else:
         raise DeserializationError("CreateMonitorResponse.monitor_id required")
-    if "identityCenterApplicationArn" in data:
+    if data.get("identityCenterApplicationArn") is not None:
         out["identity_center_application_arn"] = data["identityCenterApplicationArn"]
     else:
         raise DeserializationError(

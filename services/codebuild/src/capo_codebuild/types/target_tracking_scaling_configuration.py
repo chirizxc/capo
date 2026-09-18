@@ -30,13 +30,21 @@ def serialize_aws_json_1_1(value: TargetTrackingScalingConfiguration) -> dict:
             )
         )
     if "target_value" in value:
-        out["targetValue"] = value["target_value"]
+        out["targetValue"] = (
+            "NaN"
+            if value["target_value"] != value["target_value"]
+            else "Infinity"
+            if value["target_value"] == float("inf")
+            else "-Infinity"
+            if value["target_value"] == float("-inf")
+            else value["target_value"]
+        )
     return out
 
 
 def deserialize_aws_json_1_1(data: dict) -> TargetTrackingScalingConfiguration:
     out: TargetTrackingScalingConfiguration = {}  # type: ignore[typeddict-item]
-    if "metricType" in data:
+    if data.get("metricType") is not None:
         import capo_codebuild.types.fleet_scaling_metric_type
 
         out["metric_type"] = (
@@ -44,6 +52,6 @@ def deserialize_aws_json_1_1(data: dict) -> TargetTrackingScalingConfiguration:
                 data["metricType"]
             )
         )
-    if "targetValue" in data:
-        out["target_value"] = data["targetValue"]
+    if data.get("targetValue") is not None:
+        out["target_value"] = float(data["targetValue"])
     return out

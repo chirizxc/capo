@@ -85,37 +85,37 @@ def serialize_aws_json_1_1(value: Address) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Address:
     out: Address = {}  # type: ignore[typeddict-item]
-    if "AddressId" in data:
+    if data.get("AddressId") is not None:
         out["address_id"] = data["AddressId"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Company" in data:
+    if data.get("Company") is not None:
         out["company"] = data["Company"]
-    if "Street1" in data:
+    if data.get("Street1") is not None:
         out["street1"] = data["Street1"]
-    if "Street2" in data:
+    if data.get("Street2") is not None:
         out["street2"] = data["Street2"]
-    if "Street3" in data:
+    if data.get("Street3") is not None:
         out["street3"] = data["Street3"]
-    if "City" in data:
+    if data.get("City") is not None:
         out["city"] = data["City"]
-    if "StateOrProvince" in data:
+    if data.get("StateOrProvince") is not None:
         out["state_or_province"] = data["StateOrProvince"]
-    if "PrefectureOrDistrict" in data:
+    if data.get("PrefectureOrDistrict") is not None:
         out["prefecture_or_district"] = data["PrefectureOrDistrict"]
-    if "Landmark" in data:
+    if data.get("Landmark") is not None:
         out["landmark"] = data["Landmark"]
-    if "Country" in data:
+    if data.get("Country") is not None:
         out["country"] = data["Country"]
-    if "PostalCode" in data:
+    if data.get("PostalCode") is not None:
         out["postal_code"] = data["PostalCode"]
-    if "PhoneNumber" in data:
+    if data.get("PhoneNumber") is not None:
         out["phone_number"] = data["PhoneNumber"]
-    if "IsRestricted" in data:
+    if data.get("IsRestricted") is not None:
         out["is_restricted"] = data["IsRestricted"]
     else:
         out["is_restricted"] = False
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_snowball.types.address_type
 
         out["type"] = capo_snowball.types.address_type.deserialize_aws_json_1_1(

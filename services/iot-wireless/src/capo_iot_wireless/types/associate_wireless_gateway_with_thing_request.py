@@ -27,7 +27,7 @@ def serialize_json(value: AssociateWirelessGatewayWithThingRequest) -> dict:
 
 def deserialize_json(data: dict) -> AssociateWirelessGatewayWithThingRequest:
     out: AssociateWirelessGatewayWithThingRequest = {}  # type: ignore[typeddict-item]
-    if "ThingArn" in data:
+    if data.get("ThingArn") is not None:
         out["thing_arn"] = data["ThingArn"]
     else:
         raise DeserializationError(

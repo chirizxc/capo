@@ -54,13 +54,13 @@ def serialize_json(value: TelephonyChannelSubtypeParameters) -> dict:
 
 def deserialize_json(data: dict) -> TelephonyChannelSubtypeParameters:
     out: TelephonyChannelSubtypeParameters = {}  # type: ignore[typeddict-item]
-    if "destinationPhoneNumber" in data:
+    if data.get("destinationPhoneNumber") is not None:
         out["destination_phone_number"] = data["destinationPhoneNumber"]
     else:
         raise DeserializationError(
             "TelephonyChannelSubtypeParameters.destination_phone_number required"
         )
-    if "attributes" in data:
+    if data.get("attributes") is not None:
         import capo_connectcampaignsv2.types.attributes
 
         out["attributes"] = capo_connectcampaignsv2.types.attributes.deserialize_json(
@@ -70,9 +70,9 @@ def deserialize_json(data: dict) -> TelephonyChannelSubtypeParameters:
         raise DeserializationError(
             "TelephonyChannelSubtypeParameters.attributes required"
         )
-    if "connectSourcePhoneNumber" in data:
+    if data.get("connectSourcePhoneNumber") is not None:
         out["connect_source_phone_number"] = data["connectSourcePhoneNumber"]
-    if "answerMachineDetectionConfig" in data:
+    if data.get("answerMachineDetectionConfig") is not None:
         import capo_connectcampaignsv2.types.answer_machine_detection_config
 
         out["answer_machine_detection_config"] = (
@@ -80,6 +80,6 @@ def deserialize_json(data: dict) -> TelephonyChannelSubtypeParameters:
                 data["answerMachineDetectionConfig"]
             )
         )
-    if "ringTimeout" in data:
+    if data.get("ringTimeout") is not None:
         out["ring_timeout"] = data["ringTimeout"]
     return out

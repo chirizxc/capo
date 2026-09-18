@@ -21,5 +21,7 @@ def serialize_json(input_to_serialize: LogParameters) -> dict:
 def deserialize_json(data: dict) -> LogParameters:
     out: LogParameters = {}
     for key, value in data.items():
+        if value is None:
+            continue
         out[key] = value
     return out

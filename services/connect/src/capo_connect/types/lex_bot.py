@@ -28,11 +28,11 @@ def serialize_json(value: LexBot) -> dict:
 
 def deserialize_json(data: dict) -> LexBot:
     out: LexBot = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("LexBot.name required")
-    if "LexRegion" in data:
+    if data.get("LexRegion") is not None:
         out["lex_region"] = data["LexRegion"]
     else:
         raise DeserializationError("LexBot.lex_region required")

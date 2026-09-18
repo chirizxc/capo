@@ -81,7 +81,7 @@ def serialize_json(value: ListResourcesRequest) -> dict:
 
 def deserialize_json(data: dict) -> ListResourcesRequest:
     out: ListResourcesRequest = {}  # type: ignore[typeddict-item]
-    if "resourceOwner" in data:
+    if data.get("resourceOwner") is not None:
         import capo_ram.types.resource_owner
 
         out["resource_owner"] = capo_ram.types.resource_owner.deserialize_json(
@@ -89,17 +89,17 @@ def deserialize_json(data: dict) -> ListResourcesRequest:
         )
     else:
         raise DeserializationError("ListResourcesRequest.resource_owner required")
-    if "principal" in data:
+    if data.get("principal") is not None:
         out["principal"] = data["principal"]
-    if "resourceType" in data:
+    if data.get("resourceType") is not None:
         out["resource_type"] = data["resourceType"]
-    if "resourceArns" in data:
+    if data.get("resourceArns") is not None:
         import capo_ram.types.resource_arn_list
 
         out["resource_arns"] = capo_ram.types.resource_arn_list.deserialize_json(
             data["resourceArns"]
         )
-    if "resourceShareArns" in data:
+    if data.get("resourceShareArns") is not None:
         import capo_ram.types.resource_share_arn_list
 
         out["resource_share_arns"] = (
@@ -107,11 +107,11 @@ def deserialize_json(data: dict) -> ListResourcesRequest:
                 data["resourceShareArns"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
-    if "resourceRegionScope" in data:
+    if data.get("resourceRegionScope") is not None:
         import capo_ram.types.resource_region_scope_filter
 
         out["resource_region_scope"] = (

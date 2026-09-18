@@ -114,7 +114,7 @@ def serialize_json(value: PostDialogCodeHookInvocationSpecification) -> dict:
 
 def deserialize_json(data: dict) -> PostDialogCodeHookInvocationSpecification:
     out: PostDialogCodeHookInvocationSpecification = {}  # type: ignore[typeddict-item]
-    if "successResponse" in data:
+    if data.get("successResponse") is not None:
         import capo_lex_models_v2.types.response_specification
 
         out["success_response"] = (
@@ -122,7 +122,7 @@ def deserialize_json(data: dict) -> PostDialogCodeHookInvocationSpecification:
                 data["successResponse"]
             )
         )
-    if "successNextStep" in data:
+    if data.get("successNextStep") is not None:
         import capo_lex_models_v2.types.dialog_state
 
         out["success_next_step"] = (
@@ -130,7 +130,7 @@ def deserialize_json(data: dict) -> PostDialogCodeHookInvocationSpecification:
                 data["successNextStep"]
             )
         )
-    if "successConditional" in data:
+    if data.get("successConditional") is not None:
         import capo_lex_models_v2.types.conditional_specification
 
         out["success_conditional"] = (
@@ -138,7 +138,7 @@ def deserialize_json(data: dict) -> PostDialogCodeHookInvocationSpecification:
                 data["successConditional"]
             )
         )
-    if "failureResponse" in data:
+    if data.get("failureResponse") is not None:
         import capo_lex_models_v2.types.response_specification
 
         out["failure_response"] = (
@@ -146,7 +146,7 @@ def deserialize_json(data: dict) -> PostDialogCodeHookInvocationSpecification:
                 data["failureResponse"]
             )
         )
-    if "failureNextStep" in data:
+    if data.get("failureNextStep") is not None:
         import capo_lex_models_v2.types.dialog_state
 
         out["failure_next_step"] = (
@@ -154,7 +154,7 @@ def deserialize_json(data: dict) -> PostDialogCodeHookInvocationSpecification:
                 data["failureNextStep"]
             )
         )
-    if "failureConditional" in data:
+    if data.get("failureConditional") is not None:
         import capo_lex_models_v2.types.conditional_specification
 
         out["failure_conditional"] = (
@@ -162,7 +162,7 @@ def deserialize_json(data: dict) -> PostDialogCodeHookInvocationSpecification:
                 data["failureConditional"]
             )
         )
-    if "timeoutResponse" in data:
+    if data.get("timeoutResponse") is not None:
         import capo_lex_models_v2.types.response_specification
 
         out["timeout_response"] = (
@@ -170,7 +170,7 @@ def deserialize_json(data: dict) -> PostDialogCodeHookInvocationSpecification:
                 data["timeoutResponse"]
             )
         )
-    if "timeoutNextStep" in data:
+    if data.get("timeoutNextStep") is not None:
         import capo_lex_models_v2.types.dialog_state
 
         out["timeout_next_step"] = (
@@ -178,7 +178,7 @@ def deserialize_json(data: dict) -> PostDialogCodeHookInvocationSpecification:
                 data["timeoutNextStep"]
             )
         )
-    if "timeoutConditional" in data:
+    if data.get("timeoutConditional") is not None:
         import capo_lex_models_v2.types.conditional_specification
 
         out["timeout_conditional"] = (

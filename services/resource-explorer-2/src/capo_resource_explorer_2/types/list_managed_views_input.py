@@ -26,10 +26,10 @@ def serialize_json(value: ListManagedViewsInput) -> dict:
 
 def deserialize_json(data: dict) -> ListManagedViewsInput:
     out: ListManagedViewsInput = {}  # type: ignore[typeddict-item]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "ServicePrincipal" in data:
+    if data.get("ServicePrincipal") is not None:
         out["service_principal"] = data["ServicePrincipal"]
     return out

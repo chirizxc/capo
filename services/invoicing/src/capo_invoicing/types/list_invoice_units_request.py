@@ -45,19 +45,19 @@ def serialize_aws_json_1_0(value: ListInvoiceUnitsRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ListInvoiceUnitsRequest:
     out: ListInvoiceUnitsRequest = {}  # type: ignore[typeddict-item]
-    if "Filters" in data:
+    if data.get("Filters") is not None:
         import capo_invoicing.types.filters
 
         out["filters"] = capo_invoicing.types.filters.deserialize_aws_json_1_0(
             data["Filters"]
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
     else:
         out["max_results"] = 500
-    if "AsOf" in data:
+    if data.get("AsOf") is not None:
         import capo_invoicing.types.as_of_timestamp
 
         out["as_of"] = capo_invoicing.types.as_of_timestamp.deserialize_aws_json_1_0(

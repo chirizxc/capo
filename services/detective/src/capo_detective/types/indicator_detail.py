@@ -118,7 +118,7 @@ def serialize_json(value: IndicatorDetail) -> dict:
 
 def deserialize_json(data: dict) -> IndicatorDetail:
     out: IndicatorDetail = {}  # type: ignore[typeddict-item]
-    if "TTPsObservedDetail" in data:
+    if data.get("TTPsObservedDetail") is not None:
         import capo_detective.types.tt_ps_observed_detail
 
         out["tt_ps_observed_detail"] = (
@@ -126,7 +126,7 @@ def deserialize_json(data: dict) -> IndicatorDetail:
                 data["TTPsObservedDetail"]
             )
         )
-    if "ImpossibleTravelDetail" in data:
+    if data.get("ImpossibleTravelDetail") is not None:
         import capo_detective.types.impossible_travel_detail
 
         out["impossible_travel_detail"] = (
@@ -134,7 +134,7 @@ def deserialize_json(data: dict) -> IndicatorDetail:
                 data["ImpossibleTravelDetail"]
             )
         )
-    if "FlaggedIpAddressDetail" in data:
+    if data.get("FlaggedIpAddressDetail") is not None:
         import capo_detective.types.flagged_ip_address_detail
 
         out["flagged_ip_address_detail"] = (
@@ -142,7 +142,7 @@ def deserialize_json(data: dict) -> IndicatorDetail:
                 data["FlaggedIpAddressDetail"]
             )
         )
-    if "NewGeolocationDetail" in data:
+    if data.get("NewGeolocationDetail") is not None:
         import capo_detective.types.new_geolocation_detail
 
         out["new_geolocation_detail"] = (
@@ -150,13 +150,13 @@ def deserialize_json(data: dict) -> IndicatorDetail:
                 data["NewGeolocationDetail"]
             )
         )
-    if "NewAsoDetail" in data:
+    if data.get("NewAsoDetail") is not None:
         import capo_detective.types.new_aso_detail
 
         out["new_aso_detail"] = capo_detective.types.new_aso_detail.deserialize_json(
             data["NewAsoDetail"]
         )
-    if "NewUserAgentDetail" in data:
+    if data.get("NewUserAgentDetail") is not None:
         import capo_detective.types.new_user_agent_detail
 
         out["new_user_agent_detail"] = (
@@ -164,7 +164,7 @@ def deserialize_json(data: dict) -> IndicatorDetail:
                 data["NewUserAgentDetail"]
             )
         )
-    if "RelatedFindingDetail" in data:
+    if data.get("RelatedFindingDetail") is not None:
         import capo_detective.types.related_finding_detail
 
         out["related_finding_detail"] = (
@@ -172,7 +172,7 @@ def deserialize_json(data: dict) -> IndicatorDetail:
                 data["RelatedFindingDetail"]
             )
         )
-    if "RelatedFindingGroupDetail" in data:
+    if data.get("RelatedFindingGroupDetail") is not None:
         import capo_detective.types.related_finding_group_detail
 
         out["related_finding_group_detail"] = (

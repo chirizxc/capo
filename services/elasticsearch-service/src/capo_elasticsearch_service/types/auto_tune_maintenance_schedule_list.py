@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> AutoTuneMaintenanceScheduleList:
 
     out: AutoTuneMaintenanceScheduleList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_elasticsearch_service.types.auto_tune_maintenance_schedule.deserialize_json(
                 item

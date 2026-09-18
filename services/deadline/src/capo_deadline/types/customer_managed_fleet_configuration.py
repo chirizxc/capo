@@ -69,7 +69,7 @@ def serialize_json(value: CustomerManagedFleetConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> CustomerManagedFleetConfiguration:
     out: CustomerManagedFleetConfiguration = {}  # type: ignore[typeddict-item]
-    if "mode" in data:
+    if data.get("mode") is not None:
         import capo_deadline.types.auto_scaling_mode
 
         out["mode"] = capo_deadline.types.auto_scaling_mode.deserialize_json(
@@ -77,7 +77,7 @@ def deserialize_json(data: dict) -> CustomerManagedFleetConfiguration:
         )
     else:
         raise DeserializationError("CustomerManagedFleetConfiguration.mode required")
-    if "autoScalingConfiguration" in data:
+    if data.get("autoScalingConfiguration") is not None:
         import capo_deadline.types.customer_managed_auto_scaling_configuration
 
         out["auto_scaling_configuration"] = (
@@ -85,7 +85,7 @@ def deserialize_json(data: dict) -> CustomerManagedFleetConfiguration:
                 data["autoScalingConfiguration"]
             )
         )
-    if "workerCapabilities" in data:
+    if data.get("workerCapabilities") is not None:
         import capo_deadline.types.customer_managed_worker_capabilities
 
         out["worker_capabilities"] = (
@@ -97,9 +97,9 @@ def deserialize_json(data: dict) -> CustomerManagedFleetConfiguration:
         raise DeserializationError(
             "CustomerManagedFleetConfiguration.worker_capabilities required"
         )
-    if "storageProfileId" in data:
+    if data.get("storageProfileId") is not None:
         out["storage_profile_id"] = data["storageProfileId"]
-    if "tagPropagationMode" in data:
+    if data.get("tagPropagationMode") is not None:
         import capo_deadline.types.tag_propagation_mode
 
         out["tag_propagation_mode"] = (

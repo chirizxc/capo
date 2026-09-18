@@ -73,13 +73,13 @@ def serialize_aws_json_1_1(value: Entitlement) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Entitlement:
     out: Entitlement = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "StackName" in data:
+    if data.get("StackName") is not None:
         out["stack_name"] = data["StackName"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "AppVisibility" in data:
+    if data.get("AppVisibility") is not None:
         import capo_appstream.types.app_visibility
 
         out["app_visibility"] = (
@@ -87,7 +87,7 @@ def deserialize_aws_json_1_1(data: dict) -> Entitlement:
                 data["AppVisibility"]
             )
         )
-    if "Attributes" in data:
+    if data.get("Attributes") is not None:
         import capo_appstream.types.entitlement_attribute_list
 
         out["attributes"] = (
@@ -95,13 +95,13 @@ def deserialize_aws_json_1_1(data: dict) -> Entitlement:
                 data["Attributes"]
             )
         )
-    if "CreatedTime" in data:
+    if data.get("CreatedTime") is not None:
         import capo_appstream.types.timestamp
 
         out["created_time"] = capo_appstream.types.timestamp.deserialize_aws_json_1_1(
             data["CreatedTime"]
         )
-    if "LastModifiedTime" in data:
+    if data.get("LastModifiedTime") is not None:
         import capo_appstream.types.timestamp
 
         out["last_modified_time"] = (

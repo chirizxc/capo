@@ -30,9 +30,9 @@ def serialize_json(value: KeyValuesPair) -> dict:
 
 def deserialize_json(data: dict) -> KeyValuesPair:
     out: KeyValuesPair = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "values" in data:
+    if data.get("values") is not None:
         import capo_batch.types.string_list
 
         out["values"] = capo_batch.types.string_list.deserialize_json(data["values"])

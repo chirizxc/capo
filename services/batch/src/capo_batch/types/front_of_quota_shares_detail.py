@@ -36,7 +36,7 @@ def serialize_json(value: FrontOfQuotaSharesDetail) -> dict:
 
 def deserialize_json(data: dict) -> FrontOfQuotaSharesDetail:
     out: FrontOfQuotaSharesDetail = {}  # type: ignore[typeddict-item]
-    if "quotaShares" in data:
+    if data.get("quotaShares") is not None:
         import capo_batch.types.front_of_quota_shares_job_summary_map
 
         out["quota_shares"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> FrontOfQuotaSharesDetail:
                 data["quotaShares"]
             )
         )
-    if "lastUpdatedAt" in data:
+    if data.get("lastUpdatedAt") is not None:
         out["last_updated_at"] = data["lastUpdatedAt"]
     return out

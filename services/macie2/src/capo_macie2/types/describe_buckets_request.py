@@ -48,17 +48,17 @@ def serialize_json(value: DescribeBucketsRequest) -> dict:
 
 def deserialize_json(data: dict) -> DescribeBucketsRequest:
     out: DescribeBucketsRequest = {}  # type: ignore[typeddict-item]
-    if "criteria" in data:
+    if data.get("criteria") is not None:
         import capo_macie2.types.bucket_criteria
 
         out["criteria"] = capo_macie2.types.bucket_criteria.deserialize_json(
             data["criteria"]
         )
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "sortCriteria" in data:
+    if data.get("sortCriteria") is not None:
         import capo_macie2.types.bucket_sort_criteria
 
         out["sort_criteria"] = capo_macie2.types.bucket_sort_criteria.deserialize_json(

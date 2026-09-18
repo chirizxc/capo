@@ -94,35 +94,35 @@ def serialize_aws_json_1_1(value: GetUnfilteredPartitionsMetadataRequest) -> dic
 
 def deserialize_aws_json_1_1(data: dict) -> GetUnfilteredPartitionsMetadataRequest:
     out: GetUnfilteredPartitionsMetadataRequest = {}  # type: ignore[typeddict-item]
-    if "Region" in data:
+    if data.get("Region") is not None:
         out["region"] = data["Region"]
-    if "CatalogId" in data:
+    if data.get("CatalogId") is not None:
         out["catalog_id"] = data["CatalogId"]
     else:
         raise DeserializationError(
             "GetUnfilteredPartitionsMetadataRequest.catalog_id required"
         )
-    if "DatabaseName" in data:
+    if data.get("DatabaseName") is not None:
         out["database_name"] = data["DatabaseName"]
     else:
         raise DeserializationError(
             "GetUnfilteredPartitionsMetadataRequest.database_name required"
         )
-    if "TableName" in data:
+    if data.get("TableName") is not None:
         out["table_name"] = data["TableName"]
     else:
         raise DeserializationError(
             "GetUnfilteredPartitionsMetadataRequest.table_name required"
         )
-    if "Expression" in data:
+    if data.get("Expression") is not None:
         out["expression"] = data["Expression"]
-    if "AuditContext" in data:
+    if data.get("AuditContext") is not None:
         import capo_glue.types.audit_context
 
         out["audit_context"] = capo_glue.types.audit_context.deserialize_aws_json_1_1(
             data["AuditContext"]
         )
-    if "SupportedPermissionTypes" in data:
+    if data.get("SupportedPermissionTypes") is not None:
         import capo_glue.types.permission_type_list
 
         out["supported_permission_types"] = (
@@ -134,17 +134,17 @@ def deserialize_aws_json_1_1(data: dict) -> GetUnfilteredPartitionsMetadataReque
         raise DeserializationError(
             "GetUnfilteredPartitionsMetadataRequest.supported_permission_types required"
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "Segment" in data:
+    if data.get("Segment") is not None:
         import capo_glue.types.segment
 
         out["segment"] = capo_glue.types.segment.deserialize_aws_json_1_1(
             data["Segment"]
         )
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "QuerySessionContext" in data:
+    if data.get("QuerySessionContext") is not None:
         import capo_glue.types.query_session_context
 
         out["query_session_context"] = (

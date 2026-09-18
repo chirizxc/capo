@@ -48,19 +48,19 @@ def serialize_json(value: ChartAxisLabelOptions) -> dict:
 
 def deserialize_json(data: dict) -> ChartAxisLabelOptions:
     out: ChartAxisLabelOptions = {}  # type: ignore[typeddict-item]
-    if "Visibility" in data:
+    if data.get("Visibility") is not None:
         import capo_quicksight.types.visibility
 
         out["visibility"] = capo_quicksight.types.visibility.deserialize_json(
             data["Visibility"]
         )
-    if "SortIconVisibility" in data:
+    if data.get("SortIconVisibility") is not None:
         import capo_quicksight.types.visibility
 
         out["sort_icon_visibility"] = capo_quicksight.types.visibility.deserialize_json(
             data["SortIconVisibility"]
         )
-    if "AxisLabelOptions" in data:
+    if data.get("AxisLabelOptions") is not None:
         import capo_quicksight.types.axis_label_options_list
 
         out["axis_label_options"] = (

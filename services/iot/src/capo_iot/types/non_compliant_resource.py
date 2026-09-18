@@ -47,13 +47,13 @@ def serialize_json(value: NonCompliantResource) -> dict:
 
 def deserialize_json(data: dict) -> NonCompliantResource:
     out: NonCompliantResource = {}  # type: ignore[typeddict-item]
-    if "resourceType" in data:
+    if data.get("resourceType") is not None:
         import capo_iot.types.resource_type
 
         out["resource_type"] = capo_iot.types.resource_type.deserialize_json(
             data["resourceType"]
         )
-    if "resourceIdentifier" in data:
+    if data.get("resourceIdentifier") is not None:
         import capo_iot.types.resource_identifier
 
         out["resource_identifier"] = (
@@ -61,7 +61,7 @@ def deserialize_json(data: dict) -> NonCompliantResource:
                 data["resourceIdentifier"]
             )
         )
-    if "additionalInfo" in data:
+    if data.get("additionalInfo") is not None:
         import capo_iot.types.string_map
 
         out["additional_info"] = capo_iot.types.string_map.deserialize_json(

@@ -46,15 +46,15 @@ def serialize_json(value: IdMappingWorkflowSummary) -> dict:
 
 def deserialize_json(data: dict) -> IdMappingWorkflowSummary:
     out: IdMappingWorkflowSummary = {}  # type: ignore[typeddict-item]
-    if "workflowName" in data:
+    if data.get("workflowName") is not None:
         out["workflow_name"] = data["workflowName"]
     else:
         raise DeserializationError("IdMappingWorkflowSummary.workflow_name required")
-    if "workflowArn" in data:
+    if data.get("workflowArn") is not None:
         out["workflow_arn"] = data["workflowArn"]
     else:
         raise DeserializationError("IdMappingWorkflowSummary.workflow_arn required")
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_entityresolution.types._prelude.timestamp
 
         out["created_at"] = (
@@ -64,7 +64,7 @@ def deserialize_json(data: dict) -> IdMappingWorkflowSummary:
         )
     else:
         raise DeserializationError("IdMappingWorkflowSummary.created_at required")
-    if "updatedAt" in data:
+    if data.get("updatedAt") is not None:
         import capo_entityresolution.types._prelude.timestamp
 
         out["updated_at"] = (

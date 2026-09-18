@@ -40,13 +40,13 @@ def serialize_aws_json_1_1(value: DataSource) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DataSource:
     out: DataSource = {}  # type: ignore[typeddict-item]
-    if "GlueTable" in data:
+    if data.get("GlueTable") is not None:
         import capo_glue.types.glue_table
 
         out["glue_table"] = capo_glue.types.glue_table.deserialize_aws_json_1_1(
             data["GlueTable"]
         )
-    if "DataQualityGlueTable" in data:
+    if data.get("DataQualityGlueTable") is not None:
         import capo_glue.types.data_quality_glue_table
 
         out["data_quality_glue_table"] = (

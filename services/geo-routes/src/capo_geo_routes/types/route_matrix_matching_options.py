@@ -39,17 +39,17 @@ def serialize_json(value: RouteMatrixMatchingOptions) -> dict:
 
 def deserialize_json(data: dict) -> RouteMatrixMatchingOptions:
     out: RouteMatrixMatchingOptions = {}  # type: ignore[typeddict-item]
-    if "NameHint" in data:
+    if data.get("NameHint") is not None:
         out["name_hint"] = data["NameHint"]
-    if "OnRoadThreshold" in data:
+    if data.get("OnRoadThreshold") is not None:
         out["on_road_threshold"] = data["OnRoadThreshold"]
     else:
         out["on_road_threshold"] = 0
-    if "Radius" in data:
+    if data.get("Radius") is not None:
         out["radius"] = data["Radius"]
     else:
         out["radius"] = 0
-    if "Strategy" in data:
+    if data.get("Strategy") is not None:
         import capo_geo_routes.types.matching_strategy
 
         out["strategy"] = capo_geo_routes.types.matching_strategy.deserialize_json(

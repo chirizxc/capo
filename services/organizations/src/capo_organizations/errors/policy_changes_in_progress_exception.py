@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: PolicyChangesInProgressException_) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PolicyChangesInProgressException_:
     out: PolicyChangesInProgressException_ = {}  # type: ignore[typeddict-item]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     return out
 
@@ -34,15 +34,20 @@ class PolicyChangesInProgressException(ServiceError):
 
     code: str | None = "PolicyChangesInProgressException"
 
-    def __init__(self, data: PolicyChangesInProgressException_):
+    def __init__(
+        self, data: PolicyChangesInProgressException_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="PolicyChangesInProgressException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "PolicyChangesInProgressException":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "PolicyChangesInProgressException":
+        return cls(deserialize_aws_json_1_1(data), message)

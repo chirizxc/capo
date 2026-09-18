@@ -90,15 +90,15 @@ def serialize_aws_json_1_1(value: DelegatedAdministrator) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DelegatedAdministrator:
     out: DelegatedAdministrator = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "Email" in data:
+    if data.get("Email") is not None:
         out["email"] = data["Email"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_organizations.types.account_status
 
         out["status"] = (
@@ -106,13 +106,13 @@ def deserialize_aws_json_1_1(data: dict) -> DelegatedAdministrator:
                 data["Status"]
             )
         )
-    if "State" in data:
+    if data.get("State") is not None:
         import capo_organizations.types.account_state
 
         out["state"] = capo_organizations.types.account_state.deserialize_aws_json_1_1(
             data["State"]
         )
-    if "JoinedMethod" in data:
+    if data.get("JoinedMethod") is not None:
         import capo_organizations.types.account_joined_method
 
         out["joined_method"] = (
@@ -120,7 +120,7 @@ def deserialize_aws_json_1_1(data: dict) -> DelegatedAdministrator:
                 data["JoinedMethod"]
             )
         )
-    if "JoinedTimestamp" in data:
+    if data.get("JoinedTimestamp") is not None:
         import capo_organizations.types.timestamp
 
         out["joined_timestamp"] = (
@@ -128,7 +128,7 @@ def deserialize_aws_json_1_1(data: dict) -> DelegatedAdministrator:
                 data["JoinedTimestamp"]
             )
         )
-    if "DelegationEnabledDate" in data:
+    if data.get("DelegationEnabledDate") is not None:
         import capo_organizations.types.timestamp
 
         out["delegation_enabled_date"] = (

@@ -84,9 +84,9 @@ def serialize_aws_json_1_1(value: UpdateInferenceExperimentRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateInferenceExperimentRequest:
     out: UpdateInferenceExperimentRequest = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Schedule" in data:
+    if data.get("Schedule") is not None:
         import capo_sagemaker.types.inference_experiment_schedule
 
         out["schedule"] = (
@@ -94,9 +94,9 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateInferenceExperimentRequest:
                 data["Schedule"]
             )
         )
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "ModelVariants" in data:
+    if data.get("ModelVariants") is not None:
         import capo_sagemaker.types.model_variant_config_list
 
         out["model_variants"] = (
@@ -104,7 +104,7 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateInferenceExperimentRequest:
                 data["ModelVariants"]
             )
         )
-    if "DataStorageConfig" in data:
+    if data.get("DataStorageConfig") is not None:
         import capo_sagemaker.types.inference_experiment_data_storage_config
 
         out["data_storage_config"] = (
@@ -112,7 +112,7 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateInferenceExperimentRequest:
                 data["DataStorageConfig"]
             )
         )
-    if "ShadowModeConfig" in data:
+    if data.get("ShadowModeConfig") is not None:
         import capo_sagemaker.types.shadow_mode_config
 
         out["shadow_mode_config"] = (

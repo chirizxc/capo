@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: CreateReplicationConfigResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateReplicationConfigResponse:
     out: CreateReplicationConfigResponse = {}  # type: ignore[typeddict-item]
-    if "ReplicationConfig" in data:
+    if data.get("ReplicationConfig") is not None:
         import capo_database_migration_service.types.replication_config
 
         out["replication_config"] = (

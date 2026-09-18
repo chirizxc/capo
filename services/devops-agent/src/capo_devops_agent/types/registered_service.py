@@ -75,11 +75,11 @@ def serialize_json(value: RegisteredService) -> dict:
 
 def deserialize_json(data: dict) -> RegisteredService:
     out: RegisteredService = {}  # type: ignore[typeddict-item]
-    if "serviceId" in data:
+    if data.get("serviceId") is not None:
         out["service_id"] = data["serviceId"]
     else:
         raise DeserializationError("RegisteredService.service_id required")
-    if "serviceType" in data:
+    if data.get("serviceType") is not None:
         import capo_devops_agent.types.service
 
         out["service_type"] = capo_devops_agent.types.service.deserialize_json(
@@ -87,9 +87,9 @@ def deserialize_json(data: dict) -> RegisteredService:
         )
     else:
         raise DeserializationError("RegisteredService.service_type required")
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "accessibleResources" in data:
+    if data.get("accessibleResources") is not None:
         import capo_devops_agent.types.document_list
 
         out["accessible_resources"] = (
@@ -97,7 +97,7 @@ def deserialize_json(data: dict) -> RegisteredService:
                 data["accessibleResources"]
             )
         )
-    if "additionalServiceDetails" in data:
+    if data.get("additionalServiceDetails") is not None:
         import capo_devops_agent.types.additional_service_details
 
         out["additional_service_details"] = (
@@ -105,8 +105,8 @@ def deserialize_json(data: dict) -> RegisteredService:
                 data["additionalServiceDetails"]
             )
         )
-    if "kmsKeyArn" in data:
+    if data.get("kmsKeyArn") is not None:
         out["kms_key_arn"] = data["kmsKeyArn"]
-    if "privateConnectionName" in data:
+    if data.get("privateConnectionName") is not None:
         out["private_connection_name"] = data["privateConnectionName"]
     return out

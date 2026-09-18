@@ -67,34 +67,34 @@ def serialize_aws_json_1_1(value: CreateUserRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateUserRequest:
     out: CreateUserRequest = {}  # type: ignore[typeddict-item]
-    if "OrganizationId" in data:
+    if data.get("OrganizationId") is not None:
         out["organization_id"] = data["OrganizationId"]
     else:
         raise DeserializationError("CreateUserRequest.organization_id required")
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("CreateUserRequest.name required")
-    if "DisplayName" in data:
+    if data.get("DisplayName") is not None:
         out["display_name"] = data["DisplayName"]
     else:
         raise DeserializationError("CreateUserRequest.display_name required")
-    if "Password" in data:
+    if data.get("Password") is not None:
         out["password"] = data["Password"]
-    if "Role" in data:
+    if data.get("Role") is not None:
         import capo_workmail.types.user_role
 
         out["role"] = capo_workmail.types.user_role.deserialize_aws_json_1_1(
             data["Role"]
         )
-    if "FirstName" in data:
+    if data.get("FirstName") is not None:
         out["first_name"] = data["FirstName"]
-    if "LastName" in data:
+    if data.get("LastName") is not None:
         out["last_name"] = data["LastName"]
-    if "HiddenFromGlobalAddressList" in data:
+    if data.get("HiddenFromGlobalAddressList") is not None:
         out["hidden_from_global_address_list"] = data["HiddenFromGlobalAddressList"]
     else:
         out["hidden_from_global_address_list"] = False
-    if "IdentityProviderUserId" in data:
+    if data.get("IdentityProviderUserId") is not None:
         out["identity_provider_user_id"] = data["IdentityProviderUserId"]
     return out

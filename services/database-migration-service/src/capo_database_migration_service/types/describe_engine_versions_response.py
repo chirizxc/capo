@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: DescribeEngineVersionsResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeEngineVersionsResponse:
     out: DescribeEngineVersionsResponse = {}  # type: ignore[typeddict-item]
-    if "EngineVersions" in data:
+    if data.get("EngineVersions") is not None:
         import capo_database_migration_service.types.engine_version_list
 
         out["engine_versions"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeEngineVersionsResponse:
                 data["EngineVersions"]
             )
         )
-    if "Marker" in data:
+    if data.get("Marker") is not None:
         out["marker"] = data["Marker"]
     return out

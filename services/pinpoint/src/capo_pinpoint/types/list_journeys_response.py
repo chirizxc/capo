@@ -28,7 +28,7 @@ def serialize_json(value: ListJourneysResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListJourneysResponse:
     out: ListJourneysResponse = {}  # type: ignore[typeddict-item]
-    if "JourneysResponse" in data:
+    if data.get("JourneysResponse") is not None:
         import capo_pinpoint.types.journeys_response
 
         out["journeys_response"] = (

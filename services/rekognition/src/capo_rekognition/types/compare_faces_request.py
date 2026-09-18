@@ -37,7 +37,15 @@ def serialize_aws_json_1_1(value: CompareFacesRequest) -> dict:
         value["target_image"]
     )
     if "similarity_threshold" in value:
-        out["SimilarityThreshold"] = value["similarity_threshold"]
+        out["SimilarityThreshold"] = (
+            "NaN"
+            if value["similarity_threshold"] != value["similarity_threshold"]
+            else "Infinity"
+            if value["similarity_threshold"] == float("inf")
+            else "-Infinity"
+            if value["similarity_threshold"] == float("-inf")
+            else value["similarity_threshold"]
+        )
     if "quality_filter" in value:
         import capo_rekognition.types.quality_filter
 
@@ -51,7 +59,7 @@ def serialize_aws_json_1_1(value: CompareFacesRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CompareFacesRequest:
     out: CompareFacesRequest = {}  # type: ignore[typeddict-item]
-    if "SourceImage" in data:
+    if data.get("SourceImage") is not None:
         import capo_rekognition.types.image
 
         out["source_image"] = capo_rekognition.types.image.deserialize_aws_json_1_1(
@@ -59,7 +67,7 @@ def deserialize_aws_json_1_1(data: dict) -> CompareFacesRequest:
         )
     else:
         raise DeserializationError("CompareFacesRequest.source_image required")
-    if "TargetImage" in data:
+    if data.get("TargetImage") is not None:
         import capo_rekognition.types.image
 
         out["target_image"] = capo_rekognition.types.image.deserialize_aws_json_1_1(
@@ -67,9 +75,9 @@ def deserialize_aws_json_1_1(data: dict) -> CompareFacesRequest:
         )
     else:
         raise DeserializationError("CompareFacesRequest.target_image required")
-    if "SimilarityThreshold" in data:
-        out["similarity_threshold"] = data["SimilarityThreshold"]
-    if "QualityFilter" in data:
+    if data.get("SimilarityThreshold") is not None:
+        out["similarity_threshold"] = float(data["SimilarityThreshold"])
+    if data.get("QualityFilter") is not None:
         import capo_rekognition.types.quality_filter
 
         out["quality_filter"] = (

@@ -69,19 +69,19 @@ def serialize_aws_json_1_1(value: DomainDetails) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DomainDetails:
     out: DomainDetails = {}  # type: ignore[typeddict-item]
-    if "DomainArn" in data:
+    if data.get("DomainArn") is not None:
         out["domain_arn"] = data["DomainArn"]
-    if "DomainId" in data:
+    if data.get("DomainId") is not None:
         out["domain_id"] = data["DomainId"]
-    if "DomainName" in data:
+    if data.get("DomainName") is not None:
         out["domain_name"] = data["DomainName"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_sagemaker.types.domain_status
 
         out["status"] = capo_sagemaker.types.domain_status.deserialize_aws_json_1_1(
             data["Status"]
         )
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_sagemaker.types.creation_time
 
         out["creation_time"] = (
@@ -89,7 +89,7 @@ def deserialize_aws_json_1_1(data: dict) -> DomainDetails:
                 data["CreationTime"]
             )
         )
-    if "LastModifiedTime" in data:
+    if data.get("LastModifiedTime") is not None:
         import capo_sagemaker.types.last_modified_time
 
         out["last_modified_time"] = (
@@ -97,6 +97,6 @@ def deserialize_aws_json_1_1(data: dict) -> DomainDetails:
                 data["LastModifiedTime"]
             )
         )
-    if "Url" in data:
+    if data.get("Url") is not None:
         out["url"] = data["Url"]
     return out

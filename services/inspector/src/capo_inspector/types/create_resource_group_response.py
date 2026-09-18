@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: CreateResourceGroupResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateResourceGroupResponse:
     out: CreateResourceGroupResponse = {}  # type: ignore[typeddict-item]
-    if "resourceGroupArn" in data:
+    if data.get("resourceGroupArn") is not None:
         out["resource_group_arn"] = data["resourceGroupArn"]
     else:
         raise DeserializationError(

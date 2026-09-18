@@ -61,7 +61,7 @@ def serialize_json(value: CreateIngestionDestinationRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateIngestionDestinationRequest:
     out: CreateIngestionDestinationRequest = {}  # type: ignore[typeddict-item]
-    if "processingConfiguration" in data:
+    if data.get("processingConfiguration") is not None:
         import capo_appfabric.types.processing_configuration
 
         out["processing_configuration"] = (
@@ -73,7 +73,7 @@ def deserialize_json(data: dict) -> CreateIngestionDestinationRequest:
         raise DeserializationError(
             "CreateIngestionDestinationRequest.processing_configuration required"
         )
-    if "destinationConfiguration" in data:
+    if data.get("destinationConfiguration") is not None:
         import capo_appfabric.types.destination_configuration
 
         out["destination_configuration"] = (
@@ -85,9 +85,9 @@ def deserialize_json(data: dict) -> CreateIngestionDestinationRequest:
         raise DeserializationError(
             "CreateIngestionDestinationRequest.destination_configuration required"
         )
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_appfabric.types.tag_list
 
         out["tags"] = capo_appfabric.types.tag_list.deserialize_json(data["tags"])

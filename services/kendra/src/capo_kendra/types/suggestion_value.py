@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: SuggestionValue) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SuggestionValue:
     out: SuggestionValue = {}  # type: ignore[typeddict-item]
-    if "Text" in data:
+    if data.get("Text") is not None:
         import capo_kendra.types.suggestion_text_with_highlights
 
         out["text"] = (

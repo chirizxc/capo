@@ -31,8 +31,8 @@ def serialize_json(value: AwsDynamoDbTableAttributeDefinition) -> dict:
 
 def deserialize_json(data: dict) -> AwsDynamoDbTableAttributeDefinition:
     out: AwsDynamoDbTableAttributeDefinition = {}  # type: ignore[typeddict-item]
-    if "AttributeName" in data:
+    if data.get("AttributeName") is not None:
         out["attribute_name"] = data["AttributeName"]
-    if "AttributeType" in data:
+    if data.get("AttributeType") is not None:
         out["attribute_type"] = data["AttributeType"]
     return out

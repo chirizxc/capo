@@ -27,5 +27,7 @@ def deserialize_json(data: dict) -> FunctionMapping:
     for key, value in data.items():
         import capo_mediatailor.types.event_name
 
+        if value is None:
+            continue
         out[capo_mediatailor.types.event_name.deserialize_json(key)] = value
     return out

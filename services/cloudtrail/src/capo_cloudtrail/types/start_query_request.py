@@ -53,13 +53,13 @@ def serialize_aws_json_1_1(value: StartQueryRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> StartQueryRequest:
     out: StartQueryRequest = {}  # type: ignore[typeddict-item]
-    if "QueryStatement" in data:
+    if data.get("QueryStatement") is not None:
         out["query_statement"] = data["QueryStatement"]
-    if "DeliveryS3Uri" in data:
+    if data.get("DeliveryS3Uri") is not None:
         out["delivery_s3_uri"] = data["DeliveryS3Uri"]
-    if "QueryAlias" in data:
+    if data.get("QueryAlias") is not None:
         out["query_alias"] = data["QueryAlias"]
-    if "QueryParameters" in data:
+    if data.get("QueryParameters") is not None:
         import capo_cloudtrail.types.query_parameters
 
         out["query_parameters"] = (
@@ -67,6 +67,6 @@ def deserialize_aws_json_1_1(data: dict) -> StartQueryRequest:
                 data["QueryParameters"]
             )
         )
-    if "EventDataStoreOwnerAccountId" in data:
+    if data.get("EventDataStoreOwnerAccountId") is not None:
         out["event_data_store_owner_account_id"] = data["EventDataStoreOwnerAccountId"]
     return out

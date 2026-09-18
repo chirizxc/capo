@@ -28,8 +28,8 @@ def serialize_json(value: ControlInputParameter) -> dict:
 
 def deserialize_json(data: dict) -> ControlInputParameter:
     out: ControlInputParameter = {}  # type: ignore[typeddict-item]
-    if "ParameterName" in data:
+    if data.get("ParameterName") is not None:
         out["parameter_name"] = data["ParameterName"]
-    if "ParameterValue" in data:
+    if data.get("ParameterValue") is not None:
         out["parameter_value"] = data["ParameterValue"]
     return out

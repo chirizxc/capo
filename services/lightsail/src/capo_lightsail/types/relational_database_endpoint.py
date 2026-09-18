@@ -28,8 +28,8 @@ def serialize_aws_json_1_1(value: RelationalDatabaseEndpoint) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RelationalDatabaseEndpoint:
     out: RelationalDatabaseEndpoint = {}  # type: ignore[typeddict-item]
-    if "port" in data:
+    if data.get("port") is not None:
         out["port"] = data["port"]
-    if "address" in data:
+    if data.get("address") is not None:
         out["address"] = data["address"]
     return out

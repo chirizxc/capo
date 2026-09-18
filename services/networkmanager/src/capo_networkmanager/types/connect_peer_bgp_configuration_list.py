@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> ConnectPeerBgpConfigurationList:
 
     out: ConnectPeerBgpConfigurationList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_networkmanager.types.connect_peer_bgp_configuration.deserialize_json(
                 item

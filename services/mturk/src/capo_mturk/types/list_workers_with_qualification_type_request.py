@@ -43,20 +43,20 @@ def serialize_aws_json_1_1(value: ListWorkersWithQualificationTypeRequest) -> di
 
 def deserialize_aws_json_1_1(data: dict) -> ListWorkersWithQualificationTypeRequest:
     out: ListWorkersWithQualificationTypeRequest = {}  # type: ignore[typeddict-item]
-    if "QualificationTypeId" in data:
+    if data.get("QualificationTypeId") is not None:
         out["qualification_type_id"] = data["QualificationTypeId"]
     else:
         raise DeserializationError(
             "ListWorkersWithQualificationTypeRequest.qualification_type_id required"
         )
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_mturk.types.qualification_status
 
         out["status"] = capo_mturk.types.qualification_status.deserialize_aws_json_1_1(
             data["Status"]
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
     return out

@@ -56,7 +56,7 @@ def serialize_aws_json_1_0(value: SupplementalDocument) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> SupplementalDocument:
     out: SupplementalDocument = {}  # type: ignore[typeddict-item]
-    if "DocumentType" in data:
+    if data.get("DocumentType") is not None:
         import capo_invoicing.types.supplemental_document_type
 
         out["document_type"] = (
@@ -64,11 +64,11 @@ def deserialize_aws_json_1_0(data: dict) -> SupplementalDocument:
                 data["DocumentType"]
             )
         )
-    if "DocumentId" in data:
+    if data.get("DocumentId") is not None:
         out["document_id"] = data["DocumentId"]
-    if "DocumentUrl" in data:
+    if data.get("DocumentUrl") is not None:
         out["document_url"] = data["DocumentUrl"]
-    if "DocumentUrlExpirationDate" in data:
+    if data.get("DocumentUrlExpirationDate") is not None:
         import capo_invoicing.types._prelude.timestamp
 
         out["document_url_expiration_date"] = (

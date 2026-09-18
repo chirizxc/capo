@@ -27,18 +27,26 @@ def serialize_json(value: SpaceContributor) -> dict:
         out["userName"] = value["user_name"]
     out["rawFileSizeBytes"] = value["raw_file_size_bytes"]
     if "percentage" in value:
-        out["percentage"] = value["percentage"]
+        out["percentage"] = (
+            "NaN"
+            if value["percentage"] != value["percentage"]
+            else "Infinity"
+            if value["percentage"] == float("inf")
+            else "-Infinity"
+            if value["percentage"] == float("-inf")
+            else value["percentage"]
+        )
     return out
 
 
 def deserialize_json(data: dict) -> SpaceContributor:
     out: SpaceContributor = {}  # type: ignore[typeddict-item]
-    if "userName" in data:
+    if data.get("userName") is not None:
         out["user_name"] = data["userName"]
-    if "rawFileSizeBytes" in data:
+    if data.get("rawFileSizeBytes") is not None:
         out["raw_file_size_bytes"] = data["rawFileSizeBytes"]
     else:
         raise DeserializationError("SpaceContributor.raw_file_size_bytes required")
-    if "percentage" in data:
-        out["percentage"] = data["percentage"]
+    if data.get("percentage") is not None:
+        out["percentage"] = float(data["percentage"])
     return out

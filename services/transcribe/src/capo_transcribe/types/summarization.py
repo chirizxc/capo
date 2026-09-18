@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: Summarization) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Summarization:
     out: Summarization = {}  # type: ignore[typeddict-item]
-    if "GenerateAbstractiveSummary" in data:
+    if data.get("GenerateAbstractiveSummary") is not None:
         out["generate_abstractive_summary"] = data["GenerateAbstractiveSummary"]
     else:
         raise DeserializationError(

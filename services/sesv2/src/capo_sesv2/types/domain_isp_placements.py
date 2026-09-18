@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> DomainIspPlacements:
 
     out: DomainIspPlacements = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_sesv2.types.domain_isp_placement.deserialize_json(item))
     return out

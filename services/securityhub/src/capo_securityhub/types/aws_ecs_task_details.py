@@ -75,21 +75,21 @@ def serialize_json(value: AwsEcsTaskDetails) -> dict:
 
 def deserialize_json(data: dict) -> AwsEcsTaskDetails:
     out: AwsEcsTaskDetails = {}  # type: ignore[typeddict-item]
-    if "ClusterArn" in data:
+    if data.get("ClusterArn") is not None:
         out["cluster_arn"] = data["ClusterArn"]
-    if "TaskDefinitionArn" in data:
+    if data.get("TaskDefinitionArn") is not None:
         out["task_definition_arn"] = data["TaskDefinitionArn"]
-    if "Version" in data:
+    if data.get("Version") is not None:
         out["version"] = data["Version"]
-    if "CreatedAt" in data:
+    if data.get("CreatedAt") is not None:
         out["created_at"] = data["CreatedAt"]
-    if "StartedAt" in data:
+    if data.get("StartedAt") is not None:
         out["started_at"] = data["StartedAt"]
-    if "StartedBy" in data:
+    if data.get("StartedBy") is not None:
         out["started_by"] = data["StartedBy"]
-    if "Group" in data:
+    if data.get("Group") is not None:
         out["group"] = data["Group"]
-    if "Volumes" in data:
+    if data.get("Volumes") is not None:
         import capo_securityhub.types.aws_ecs_task_volume_details_list
 
         out["volumes"] = (
@@ -97,7 +97,7 @@ def deserialize_json(data: dict) -> AwsEcsTaskDetails:
                 data["Volumes"]
             )
         )
-    if "Containers" in data:
+    if data.get("Containers") is not None:
         import capo_securityhub.types.aws_ecs_container_details_list
 
         out["containers"] = (

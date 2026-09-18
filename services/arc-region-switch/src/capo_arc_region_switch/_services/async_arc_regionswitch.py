@@ -37,8 +37,13 @@ if TYPE_CHECKING:
     import capo_arc_region_switch.types.approval
     import capo_arc_region_switch.types.approve_plan_execution_step_request
     import capo_arc_region_switch.types.approve_plan_execution_step_response
+    import capo_arc_region_switch.types.associated_alarm_map
     import capo_arc_region_switch.types.cancel_plan_execution_request
     import capo_arc_region_switch.types.cancel_plan_execution_response
+    import capo_arc_region_switch.types.create_plan_request
+    import capo_arc_region_switch.types.create_plan_response
+    import capo_arc_region_switch.types.delete_plan_request
+    import capo_arc_region_switch.types.delete_plan_response
     import capo_arc_region_switch.types.execution_action
     import capo_arc_region_switch.types.execution_comment
     import capo_arc_region_switch.types.execution_event
@@ -52,6 +57,9 @@ if TYPE_CHECKING:
     import capo_arc_region_switch.types.get_plan_execution_step_states_max_results
     import capo_arc_region_switch.types.get_plan_in_region_request
     import capo_arc_region_switch.types.get_plan_in_region_response
+    import capo_arc_region_switch.types.get_plan_request
+    import capo_arc_region_switch.types.get_plan_response
+    import capo_arc_region_switch.types.iam_role_arn
     import capo_arc_region_switch.types.list_execution_events_max_results
     import capo_arc_region_switch.types.list_executions_max_results
     import capo_arc_region_switch.types.list_plan_execution_events_request
@@ -60,14 +68,23 @@ if TYPE_CHECKING:
     import capo_arc_region_switch.types.list_plan_executions_response
     import capo_arc_region_switch.types.list_plans_in_region_request
     import capo_arc_region_switch.types.list_plans_in_region_response
+    import capo_arc_region_switch.types.list_plans_request
+    import capo_arc_region_switch.types.list_plans_response
     import capo_arc_region_switch.types.list_route53_health_checks_in_region_request
     import capo_arc_region_switch.types.list_route53_health_checks_in_region_response
     import capo_arc_region_switch.types.list_route53_health_checks_request
     import capo_arc_region_switch.types.list_route53_health_checks_response
+    import capo_arc_region_switch.types.list_tags_for_resource_request
+    import capo_arc_region_switch.types.list_tags_for_resource_response
     import capo_arc_region_switch.types.max_results
     import capo_arc_region_switch.types.next_token
     import capo_arc_region_switch.types.plan_arn
+    import capo_arc_region_switch.types.plan_name
+    import capo_arc_region_switch.types.recovery_approach
     import capo_arc_region_switch.types.recovery_execution_id
+    import capo_arc_region_switch.types.region
+    import capo_arc_region_switch.types.region_list
+    import capo_arc_region_switch.types.report_configuration
     import capo_arc_region_switch.types.resource_warning
     import capo_arc_region_switch.types.route53_health_check
     import capo_arc_region_switch.types.route53_hosted_zone_id
@@ -76,12 +93,22 @@ if TYPE_CHECKING:
     import capo_arc_region_switch.types.start_plan_execution_response
     import capo_arc_region_switch.types.step_name
     import capo_arc_region_switch.types.step_state
+    import capo_arc_region_switch.types.tag_keys
+    import capo_arc_region_switch.types.tag_resource_request
+    import capo_arc_region_switch.types.tag_resource_response
+    import capo_arc_region_switch.types.tags
+    import capo_arc_region_switch.types.trigger_list
+    import capo_arc_region_switch.types.untag_resource_request
+    import capo_arc_region_switch.types.untag_resource_response
     import capo_arc_region_switch.types.update_plan_execution_action
     import capo_arc_region_switch.types.update_plan_execution_request
     import capo_arc_region_switch.types.update_plan_execution_response
     import capo_arc_region_switch.types.update_plan_execution_step_action
     import capo_arc_region_switch.types.update_plan_execution_step_request
     import capo_arc_region_switch.types.update_plan_execution_step_response
+    import capo_arc_region_switch.types.update_plan_request
+    import capo_arc_region_switch.types.update_plan_response
+    import capo_arc_region_switch.types.workflow_list
 
 
 class AsyncARCRegionswitchClientConfig(TypedDict, total=False, closed=True):
@@ -216,11 +243,12 @@ class AsyncARCRegionswitchClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_arc_region_switch.types.approve_plan_execution_step_request.ApprovePlanExecutionStepRequest = {}  # type: ignore[typeddict-item]
-        input_["plan_arn"] = plan_arn
-        input_["execution_id"] = execution_id
-        input_["step_name"] = step_name
-        input_["approval"] = approval
+        input_: capo_arc_region_switch.types.approve_plan_execution_step_request.ApprovePlanExecutionStepRequest = {
+            "plan_arn": plan_arn,
+            "execution_id": execution_id,
+            "step_name": step_name,
+            "approval": approval,
+        }
         if comment is not None:
             input_["comment"] = comment
 
@@ -229,6 +257,7 @@ class AsyncARCRegionswitchClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def cancel_plan_execution(
@@ -270,9 +299,10 @@ class AsyncARCRegionswitchClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_arc_region_switch.types.cancel_plan_execution_request.CancelPlanExecutionRequest = {}  # type: ignore[typeddict-item]
-        input_["plan_arn"] = plan_arn
-        input_["execution_id"] = execution_id
+        input_: capo_arc_region_switch.types.cancel_plan_execution_request.CancelPlanExecutionRequest = {
+            "plan_arn": plan_arn,
+            "execution_id": execution_id,
+        }
         if comment is not None:
             input_["comment"] = comment
 
@@ -281,6 +311,7 @@ class AsyncARCRegionswitchClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_plan_evaluation_status(
@@ -324,8 +355,9 @@ class AsyncARCRegionswitchClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_arc_region_switch.types.get_plan_evaluation_status_request.GetPlanEvaluationStatusRequest = {}  # type: ignore[typeddict-item]
-        input_["plan_arn"] = plan_arn
+        input_: capo_arc_region_switch.types.get_plan_evaluation_status_request.GetPlanEvaluationStatusRequest = {
+            "plan_arn": plan_arn
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -336,6 +368,7 @@ class AsyncARCRegionswitchClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_get_plan_evaluation_status(
@@ -406,9 +439,10 @@ class AsyncARCRegionswitchClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_arc_region_switch.types.get_plan_execution_request.GetPlanExecutionRequest = {}  # type: ignore[typeddict-item]
-        input_["plan_arn"] = plan_arn
-        input_["execution_id"] = execution_id
+        input_: capo_arc_region_switch.types.get_plan_execution_request.GetPlanExecutionRequest = {
+            "plan_arn": plan_arn,
+            "execution_id": execution_id,
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -419,6 +453,7 @@ class AsyncARCRegionswitchClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_get_plan_execution(
@@ -481,14 +516,16 @@ class AsyncARCRegionswitchClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_arc_region_switch.types.get_plan_in_region_request.GetPlanInRegionRequest = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
+        input_: capo_arc_region_switch.types.get_plan_in_region_request.GetPlanInRegionRequest = {
+            "arn": arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_plan_execution_events(
@@ -534,9 +571,10 @@ class AsyncARCRegionswitchClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_arc_region_switch.types.list_plan_execution_events_request.ListPlanExecutionEventsRequest = {}  # type: ignore[typeddict-item]
-        input_["plan_arn"] = plan_arn
-        input_["execution_id"] = execution_id
+        input_: capo_arc_region_switch.types.list_plan_execution_events_request.ListPlanExecutionEventsRequest = {
+            "plan_arn": plan_arn,
+            "execution_id": execution_id,
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -549,6 +587,7 @@ class AsyncARCRegionswitchClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_plan_execution_events(
@@ -623,8 +662,9 @@ class AsyncARCRegionswitchClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_arc_region_switch.types.list_plan_executions_request.ListPlanExecutionsRequest = {}  # type: ignore[typeddict-item]
-        input_["plan_arn"] = plan_arn
+        input_: capo_arc_region_switch.types.list_plan_executions_request.ListPlanExecutionsRequest = {
+            "plan_arn": plan_arn
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -637,6 +677,7 @@ class AsyncARCRegionswitchClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_plan_executions(
@@ -706,7 +747,7 @@ class AsyncARCRegionswitchClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_arc_region_switch.types.list_plans_in_region_request.ListPlansInRegionRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_arc_region_switch.types.list_plans_in_region_request.ListPlansInRegionRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -717,6 +758,7 @@ class AsyncARCRegionswitchClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_plans_in_region(
@@ -795,8 +837,9 @@ class AsyncARCRegionswitchClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_arc_region_switch.types.list_route53_health_checks_request.ListRoute53HealthChecksRequest = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
+        input_: capo_arc_region_switch.types.list_route53_health_checks_request.ListRoute53HealthChecksRequest = {
+            "arn": arn
+        }
         if hosted_zone_id is not None:
             input_["hosted_zone_id"] = hosted_zone_id
         if record_name is not None:
@@ -811,6 +854,7 @@ class AsyncARCRegionswitchClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_route53_health_checks(
@@ -904,8 +948,9 @@ class AsyncARCRegionswitchClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_arc_region_switch.types.list_route53_health_checks_in_region_request.ListRoute53HealthChecksInRegionRequest = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
+        input_: capo_arc_region_switch.types.list_route53_health_checks_in_region_request.ListRoute53HealthChecksInRegionRequest = {
+            "arn": arn
+        }
         if hosted_zone_id is not None:
             input_["hosted_zone_id"] = hosted_zone_id
         if record_name is not None:
@@ -920,6 +965,7 @@ class AsyncARCRegionswitchClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_route53_health_checks_in_region(
@@ -1010,10 +1056,11 @@ class AsyncARCRegionswitchClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_arc_region_switch.types.start_plan_execution_request.StartPlanExecutionRequest = {}  # type: ignore[typeddict-item]
-        input_["plan_arn"] = plan_arn
-        input_["target_region"] = target_region
-        input_["action"] = action
+        input_: capo_arc_region_switch.types.start_plan_execution_request.StartPlanExecutionRequest = {
+            "plan_arn": plan_arn,
+            "target_region": target_region,
+            "action": action,
+        }
         if mode is not None:
             input_["mode"] = mode
         if comment is not None:
@@ -1028,6 +1075,7 @@ class AsyncARCRegionswitchClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_plan_execution(
@@ -1072,10 +1120,11 @@ class AsyncARCRegionswitchClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_arc_region_switch.types.update_plan_execution_request.UpdatePlanExecutionRequest = {}  # type: ignore[typeddict-item]
-        input_["plan_arn"] = plan_arn
-        input_["execution_id"] = execution_id
-        input_["action"] = action
+        input_: capo_arc_region_switch.types.update_plan_execution_request.UpdatePlanExecutionRequest = {
+            "plan_arn": plan_arn,
+            "execution_id": execution_id,
+            "action": action,
+        }
         if comment is not None:
             input_["comment"] = comment
 
@@ -1084,6 +1133,7 @@ class AsyncARCRegionswitchClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_plan_execution_step(
@@ -1127,18 +1177,490 @@ class AsyncARCRegionswitchClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_arc_region_switch.types.update_plan_execution_step_request.UpdatePlanExecutionStepRequest = {}  # type: ignore[typeddict-item]
-        input_["plan_arn"] = plan_arn
-        input_["execution_id"] = execution_id
-        input_["comment"] = comment
-        input_["step_name"] = step_name
-        input_["action_to_take"] = action_to_take
+        input_: capo_arc_region_switch.types.update_plan_execution_step_request.UpdatePlanExecutionStepRequest = {
+            "plan_arn": plan_arn,
+            "execution_id": execution_id,
+            "comment": comment,
+            "step_name": step_name,
+            "action_to_take": action_to_take,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
+        return response.output
+
+    async def create_plan(
+        self,
+        workflows: "capo_arc_region_switch.types.workflow_list.WorkflowList",
+        execution_role: "capo_arc_region_switch.types.iam_role_arn.IamRoleArn",
+        name: "capo_arc_region_switch.types.plan_name.PlanName",
+        regions: "capo_arc_region_switch.types.region_list.RegionList",
+        recovery_approach: "capo_arc_region_switch.types.recovery_approach.RecoveryApproach",
+        *,
+        config_overrides: Optional[AsyncARCRegionswitchClientConfig] = None,
+        description: Optional[str] = None,
+        recovery_time_objective_minutes: Optional[int] = None,
+        associated_alarms: Optional[
+            "capo_arc_region_switch.types.associated_alarm_map.AssociatedAlarmMap"
+        ] = None,
+        triggers: Optional[
+            "capo_arc_region_switch.types.trigger_list.TriggerList"
+        ] = None,
+        report_configuration: Optional[
+            "capo_arc_region_switch.types.report_configuration.ReportConfiguration"
+        ] = None,
+        primary_region: Optional["capo_arc_region_switch.types.region.Region"] = None,
+        tags: Optional["capo_arc_region_switch.types.tags.Tags"] = None,
+    ) -> "capo_arc_region_switch.types.create_plan_response.CreatePlanResponse":
+        """<p>Creates a new Region switch plan. A plan defines the steps required to shift traffic from one Amazon Web Services Region to another.</p> <p>You must specify a name for the plan, the primary Region, and at least one additional Region. You can also provide a description, execution role, recovery time objective, associated alarms, triggers, and workflows that define the steps to execute during a Region switch.</p>
+
+        Args:
+            description: <p>The description of a Region switch plan.</p>
+            workflows: <p>An array of workflows included in a Region switch plan.</p>
+            execution_role: <p>An execution role is a way to categorize a Region switch plan.</p>
+            recovery_time_objective_minutes: <p>Optionally, you can specify an recovery time objective for a Region switch plan, in minutes.</p>
+            associated_alarms: <p>The alarms associated with a Region switch plan.</p>
+            triggers: <p>The triggers associated with a Region switch plan.</p>
+            name: <p>The name of a Region switch plan.</p>
+            regions: <p>An array that specifies the Amazon Web Services Regions for a Region switch plan. Specify two Regions.</p>
+            recovery_approach: <p>The recovery approach for a Region switch plan, which can be active/active (activeActive) or active/passive (activePassive).</p>
+            primary_region: <p>The primary Amazon Web Services Region for the application. This is the Region where the application normally runs before any Region switch occurs.</p>
+            tags: <p>The tags to apply to the Region switch plan.</p>
+
+        Raises:
+            capo_arc_region_switch.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_arc_region_switch.types.create_plan_request.CreatePlanRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_arc_region_switch.types.create_plan_response.CreatePlanResponse"
+        ]:
+            import capo_arc_region_switch._operations.arc_region_switch.create_plan
+
+            (
+                output,
+                http_response,
+            ) = await capo_arc_region_switch._operations.arc_region_switch.create_plan.async_create_plan(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_arc_region_switch.types.create_plan_request.CreatePlanRequest = {
+            "workflows": workflows,
+            "execution_role": execution_role,
+            "name": name,
+            "regions": regions,
+            "recovery_approach": recovery_approach,
+        }
+        if description is not None:
+            input_["description"] = description
+        if recovery_time_objective_minutes is not None:
+            input_["recovery_time_objective_minutes"] = recovery_time_objective_minutes
+        if associated_alarms is not None:
+            input_["associated_alarms"] = associated_alarms
+        if triggers is not None:
+            input_["triggers"] = triggers
+        if report_configuration is not None:
+            input_["report_configuration"] = report_configuration
+        if primary_region is not None:
+            input_["primary_region"] = primary_region
+        if tags is not None:
+            input_["tags"] = tags
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def get_plan(
+        self,
+        arn: "capo_arc_region_switch.types.plan_arn.PlanArn",
+        *,
+        config_overrides: Optional[AsyncARCRegionswitchClientConfig] = None,
+    ) -> "capo_arc_region_switch.types.get_plan_response.GetPlanResponse":
+        """<p>Retrieves detailed information about a Region switch plan. You must specify the ARN of the plan.</p>
+
+        Args:
+            arn: <p>The Amazon Resource Name (ARN) of the plan.</p>
+
+        Raises:
+            capo_arc_region_switch.errors.resource_not_found_exception.ResourceNotFoundException: <p>The specified resource was not found.</p> <p>HTTP Status Code: 404</p>
+            capo_arc_region_switch.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_arc_region_switch.types.get_plan_request.GetPlanRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_arc_region_switch.types.get_plan_response.GetPlanResponse"
+        ]:
+            import capo_arc_region_switch._operations.arc_region_switch.get_plan
+
+            (
+                output,
+                http_response,
+            ) = await capo_arc_region_switch._operations.arc_region_switch.get_plan.async_get_plan(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_arc_region_switch.types.get_plan_request.GetPlanRequest = {
+            "arn": arn
+        }
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def update_plan(
+        self,
+        arn: "capo_arc_region_switch.types.plan_arn.PlanArn",
+        workflows: "capo_arc_region_switch.types.workflow_list.WorkflowList",
+        execution_role: "capo_arc_region_switch.types.iam_role_arn.IamRoleArn",
+        *,
+        config_overrides: Optional[AsyncARCRegionswitchClientConfig] = None,
+        description: Optional[str] = None,
+        recovery_time_objective_minutes: Optional[int] = None,
+        associated_alarms: Optional[
+            "capo_arc_region_switch.types.associated_alarm_map.AssociatedAlarmMap"
+        ] = None,
+        triggers: Optional[
+            "capo_arc_region_switch.types.trigger_list.TriggerList"
+        ] = None,
+        report_configuration: Optional[
+            "capo_arc_region_switch.types.report_configuration.ReportConfiguration"
+        ] = None,
+    ) -> "capo_arc_region_switch.types.update_plan_response.UpdatePlanResponse":
+        """<p>Updates an existing Region switch plan. You can modify the plan's description, workflows, execution role, recovery time objective, associated alarms, and triggers.</p>
+
+        Args:
+            arn: <p>The Amazon Resource Name (ARN) of the plan.</p>
+            description: <p>The updated description for the Region switch plan.</p>
+            workflows: <p>The updated workflows for the Region switch plan.</p>
+            execution_role: <p>The updated IAM role ARN that grants Region switch the permissions needed to execute the plan steps.</p>
+            recovery_time_objective_minutes: <p>The updated target recovery time objective (RTO) in minutes for the plan.</p>
+            associated_alarms: <p>The updated CloudWatch alarms associated with the plan.</p>
+            triggers: <p>The updated conditions that can automatically trigger the execution of the plan.</p>
+            report_configuration: <p>The updated report configuration for the plan.</p>
+
+        Raises:
+            capo_arc_region_switch.errors.resource_not_found_exception.ResourceNotFoundException: <p>The specified resource was not found.</p> <p>HTTP Status Code: 404</p>
+            capo_arc_region_switch.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_arc_region_switch.types.update_plan_request.UpdatePlanRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_arc_region_switch.types.update_plan_response.UpdatePlanResponse"
+        ]:
+            import capo_arc_region_switch._operations.arc_region_switch.update_plan
+
+            (
+                output,
+                http_response,
+            ) = await capo_arc_region_switch._operations.arc_region_switch.update_plan.async_update_plan(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_arc_region_switch.types.update_plan_request.UpdatePlanRequest = {
+            "arn": arn,
+            "workflows": workflows,
+            "execution_role": execution_role,
+        }
+        if description is not None:
+            input_["description"] = description
+        if recovery_time_objective_minutes is not None:
+            input_["recovery_time_objective_minutes"] = recovery_time_objective_minutes
+        if associated_alarms is not None:
+            input_["associated_alarms"] = associated_alarms
+        if triggers is not None:
+            input_["triggers"] = triggers
+        if report_configuration is not None:
+            input_["report_configuration"] = report_configuration
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def delete_plan(
+        self,
+        arn: "capo_arc_region_switch.types.plan_arn.PlanArn",
+        *,
+        config_overrides: Optional[AsyncARCRegionswitchClientConfig] = None,
+    ) -> "capo_arc_region_switch.types.delete_plan_response.DeletePlanResponse":
+        """<p>Deletes a Region switch plan. You must specify the ARN of the plan to delete.</p> <p>You cannot delete a plan that has an active execution in progress.</p>
+
+        Args:
+            arn: <p>The Amazon Resource Name (ARN) of the plan.</p>
+
+        Raises:
+            capo_arc_region_switch.errors.illegal_state_exception.IllegalStateException: <p>The operation failed because the current state of the resource doesn't allow the operation to proceed.</p> <p>HTTP Status Code: 400</p>
+            capo_arc_region_switch.errors.resource_not_found_exception.ResourceNotFoundException: <p>The specified resource was not found.</p> <p>HTTP Status Code: 404</p>
+            capo_arc_region_switch.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_arc_region_switch.types.delete_plan_request.DeletePlanRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_arc_region_switch.types.delete_plan_response.DeletePlanResponse"
+        ]:
+            import capo_arc_region_switch._operations.arc_region_switch.delete_plan
+
+            (
+                output,
+                http_response,
+            ) = await capo_arc_region_switch._operations.arc_region_switch.delete_plan.async_delete_plan(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_arc_region_switch.types.delete_plan_request.DeletePlanRequest = {
+            "arn": arn
+        }
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def list_plans(
+        self,
+        *,
+        config_overrides: Optional[AsyncARCRegionswitchClientConfig] = None,
+        max_results: Optional[
+            "capo_arc_region_switch.types.max_results.MaxResults"
+        ] = None,
+        next_token: Optional[
+            "capo_arc_region_switch.types.next_token.NextToken"
+        ] = None,
+    ) -> "capo_arc_region_switch.types.list_plans_response.ListPlansResponse":
+        """<p>Lists all Region switch plans in your Amazon Web Services account.</p>
+
+        Args:
+            max_results: <p>The number of objects that you want to return with this call.</p>
+            next_token: <p>Specifies that you want to receive the next page of results. Valid only if you received a <code>nextToken</code> response in the previous request. If you did, it indicates that more output is available. Set this parameter to the value provided by the previous call's <code>nextToken</code> response to request the next page of results.</p>
+
+        Raises:
+            capo_arc_region_switch.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_arc_region_switch.types.list_plans_request.ListPlansRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_arc_region_switch.types.list_plans_response.ListPlansResponse"
+        ]:
+            import capo_arc_region_switch._operations.arc_region_switch.list_plans
+
+            (
+                output,
+                http_response,
+            ) = await capo_arc_region_switch._operations.arc_region_switch.list_plans.async_list_plans(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_arc_region_switch.types.list_plans_request.ListPlansRequest = {}
+        if max_results is not None:
+            input_["max_results"] = max_results
+        if next_token is not None:
+            input_["next_token"] = next_token
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def iter_list_plans(
+        self,
+        *,
+        config_overrides: Optional[AsyncARCRegionswitchClientConfig] = None,
+        max_results: Optional[
+            "capo_arc_region_switch.types.max_results.MaxResults"
+        ] = None,
+        next_token: Optional[
+            "capo_arc_region_switch.types.next_token.NextToken"
+        ] = None,
+    ) -> "AsyncIterator[capo_arc_region_switch.types.abbreviated_plan.AbbreviatedPlan]":
+        _token = next_token
+        while True:
+            _response = await self.list_plans(
+                config_overrides=config_overrides,
+                max_results=max_results,
+                next_token=_token,
+            )
+            _page = _resolve_path(_response, ("plans",))
+            for _item in _page or []:
+                yield _item
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
+
+    async def list_tags_for_resource(
+        self,
+        arn: "capo_arc_region_switch.types.plan_arn.PlanArn",
+        *,
+        config_overrides: Optional[AsyncARCRegionswitchClientConfig] = None,
+    ) -> "capo_arc_region_switch.types.list_tags_for_resource_response.ListTagsForResourceResponse":
+        """<p>Lists the tags attached to a Region switch resource.</p>
+
+        Args:
+            arn: <p>The Amazon Resource Name (ARN) of the resource.</p>
+
+        Raises:
+            capo_arc_region_switch.errors.internal_server_exception.InternalServerException: <p>The request processing has failed because of an unknown error, exception, or failure.</p> <p>HTTP Status Code: 500</p>
+            capo_arc_region_switch.errors.resource_not_found_exception.ResourceNotFoundException: <p>The specified resource was not found.</p> <p>HTTP Status Code: 404</p>
+            capo_arc_region_switch.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_arc_region_switch.types.list_tags_for_resource_request.ListTagsForResourceRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_arc_region_switch.types.list_tags_for_resource_response.ListTagsForResourceResponse"
+        ]:
+            import capo_arc_region_switch._operations.arc_region_switch.list_tags_for_resource
+
+            (
+                output,
+                http_response,
+            ) = await capo_arc_region_switch._operations.arc_region_switch.list_tags_for_resource.async_list_tags_for_resource(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_arc_region_switch.types.list_tags_for_resource_request.ListTagsForResourceRequest = {
+            "arn": arn
+        }
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def tag_resource(
+        self,
+        arn: "capo_arc_region_switch.types.plan_arn.PlanArn",
+        tags: "capo_arc_region_switch.types.tags.Tags",
+        *,
+        config_overrides: Optional[AsyncARCRegionswitchClientConfig] = None,
+    ) -> "capo_arc_region_switch.types.tag_resource_response.TagResourceResponse":
+        """<p>Adds or updates tags for a Region switch resource. You can assign metadata to your resources in the form of tags, which are key-value pairs.</p>
+
+        Args:
+            arn: <p>The Amazon Resource Name (ARN) for a tag that you add to a resource.</p>
+            tags: <p>Tags that you add to a resource. You can add a maximum of 50 tags in Region switch.</p>
+
+        Raises:
+            capo_arc_region_switch.errors.internal_server_exception.InternalServerException: <p>The request processing has failed because of an unknown error, exception, or failure.</p> <p>HTTP Status Code: 500</p>
+            capo_arc_region_switch.errors.resource_not_found_exception.ResourceNotFoundException: <p>The specified resource was not found.</p> <p>HTTP Status Code: 404</p>
+            capo_arc_region_switch.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_arc_region_switch.types.tag_resource_request.TagResourceRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_arc_region_switch.types.tag_resource_response.TagResourceResponse"
+        ]:
+            import capo_arc_region_switch._operations.arc_region_switch.tag_resource
+
+            (
+                output,
+                http_response,
+            ) = await capo_arc_region_switch._operations.arc_region_switch.tag_resource.async_tag_resource(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_arc_region_switch.types.tag_resource_request.TagResourceRequest = {
+            "arn": arn,
+            "tags": tags,
+        }
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def untag_resource(
+        self,
+        arn: "capo_arc_region_switch.types.plan_arn.PlanArn",
+        resource_tag_keys: "capo_arc_region_switch.types.tag_keys.TagKeys",
+        *,
+        config_overrides: Optional[AsyncARCRegionswitchClientConfig] = None,
+    ) -> "capo_arc_region_switch.types.untag_resource_response.UntagResourceResponse":
+        """<p>Removes tags from a Region switch resource.</p>
+
+        Args:
+            arn: <p>The Amazon Resource Name (ARN) for a tag you remove a resource from.</p>
+            resource_tag_keys: <p>Tag keys that you remove from a resource.</p>
+
+        Raises:
+            capo_arc_region_switch.errors.internal_server_exception.InternalServerException: <p>The request processing has failed because of an unknown error, exception, or failure.</p> <p>HTTP Status Code: 500</p>
+            capo_arc_region_switch.errors.resource_not_found_exception.ResourceNotFoundException: <p>The specified resource was not found.</p> <p>HTTP Status Code: 404</p>
+            capo_arc_region_switch.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_arc_region_switch.types.untag_resource_request.UntagResourceRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_arc_region_switch.types.untag_resource_response.UntagResourceResponse"
+        ]:
+            import capo_arc_region_switch._operations.arc_region_switch.untag_resource
+
+            (
+                output,
+                http_response,
+            ) = await capo_arc_region_switch._operations.arc_region_switch.untag_resource.async_untag_resource(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_arc_region_switch.types.untag_resource_request.UntagResourceRequest = {
+            "arn": arn,
+            "resource_tag_keys": resource_tag_keys,
+        }
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
         return response.output
 
     async def __aenter__(self) -> Self:

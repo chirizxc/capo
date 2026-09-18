@@ -31,10 +31,10 @@ def serialize_json(value: AwsAmazonMqBrokerMaintenanceWindowStartTimeDetails) ->
 
 def deserialize_json(data: dict) -> AwsAmazonMqBrokerMaintenanceWindowStartTimeDetails:
     out: AwsAmazonMqBrokerMaintenanceWindowStartTimeDetails = {}  # type: ignore[typeddict-item]
-    if "DayOfWeek" in data:
+    if data.get("DayOfWeek") is not None:
         out["day_of_week"] = data["DayOfWeek"]
-    if "TimeOfDay" in data:
+    if data.get("TimeOfDay") is not None:
         out["time_of_day"] = data["TimeOfDay"]
-    if "TimeZone" in data:
+    if data.get("TimeZone") is not None:
         out["time_zone"] = data["TimeZone"]
     return out

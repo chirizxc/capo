@@ -36,11 +36,11 @@ def serialize_json(value: ScopeSummary) -> dict:
 
 def deserialize_json(data: dict) -> ScopeSummary:
     out: ScopeSummary = {}  # type: ignore[typeddict-item]
-    if "scopeId" in data:
+    if data.get("scopeId") is not None:
         out["scope_id"] = data["scopeId"]
     else:
         raise DeserializationError("ScopeSummary.scope_id required")
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_networkflowmonitor.types.scope_status
 
         out["status"] = capo_networkflowmonitor.types.scope_status.deserialize_json(
@@ -48,7 +48,7 @@ def deserialize_json(data: dict) -> ScopeSummary:
         )
     else:
         raise DeserializationError("ScopeSummary.status required")
-    if "scopeArn" in data:
+    if data.get("scopeArn") is not None:
         out["scope_arn"] = data["scopeArn"]
     else:
         raise DeserializationError("ScopeSummary.scope_arn required")

@@ -37,11 +37,11 @@ def serialize_json(value: Field) -> dict:
 
 def deserialize_json(data: dict) -> Field:
     out: Field = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("Field.name required")
-    if "aggregation" in data:
+    if data.get("aggregation") is not None:
         import capo_resiliencehub.types.field_aggregation_type
 
         out["aggregation"] = (

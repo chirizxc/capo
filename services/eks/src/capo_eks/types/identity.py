@@ -25,7 +25,7 @@ def serialize_json(value: Identity) -> dict:
 
 def deserialize_json(data: dict) -> Identity:
     out: Identity = {}  # type: ignore[typeddict-item]
-    if "oidc" in data:
+    if data.get("oidc") is not None:
         import capo_eks.types.oidc
 
         out["oidc"] = capo_eks.types.oidc.deserialize_json(data["oidc"])

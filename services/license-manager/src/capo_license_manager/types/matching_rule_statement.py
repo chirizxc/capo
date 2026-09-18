@@ -35,15 +35,15 @@ def serialize_aws_json_1_1(value: MatchingRuleStatement) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> MatchingRuleStatement:
     out: MatchingRuleStatement = {}  # type: ignore[typeddict-item]
-    if "KeyToMatch" in data:
+    if data.get("KeyToMatch") is not None:
         out["key_to_match"] = data["KeyToMatch"]
     else:
         raise DeserializationError("MatchingRuleStatement.key_to_match required")
-    if "Constraint" in data:
+    if data.get("Constraint") is not None:
         out["constraint"] = data["Constraint"]
     else:
         raise DeserializationError("MatchingRuleStatement.constraint required")
-    if "ValueToMatch" in data:
+    if data.get("ValueToMatch") is not None:
         import capo_license_manager.types.string_list
 
         out["value_to_match"] = (

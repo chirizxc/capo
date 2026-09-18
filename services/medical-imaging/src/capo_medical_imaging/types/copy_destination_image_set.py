@@ -28,11 +28,11 @@ def serialize_json(value: CopyDestinationImageSet) -> dict:
 
 def deserialize_json(data: dict) -> CopyDestinationImageSet:
     out: CopyDestinationImageSet = {}  # type: ignore[typeddict-item]
-    if "imageSetId" in data:
+    if data.get("imageSetId") is not None:
         out["image_set_id"] = data["imageSetId"]
     else:
         raise DeserializationError("CopyDestinationImageSet.image_set_id required")
-    if "latestVersionId" in data:
+    if data.get("latestVersionId") is not None:
         out["latest_version_id"] = data["latestVersionId"]
     else:
         raise DeserializationError("CopyDestinationImageSet.latest_version_id required")

@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import uuid
 from typing import TYPE_CHECKING, Optional
 
 from capo_opensearchserverless._services._pipeline import (
@@ -76,15 +77,17 @@ class SecurityPolicy:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_opensearchserverless.types.get_security_policy_request.GetSecurityPolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["type"] = type
-        input_["name"] = name
+        input_: capo_opensearchserverless.types.get_security_policy_request.GetSecurityPolicyRequest = {
+            "type": type,
+            "name": name,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update(
@@ -138,22 +141,25 @@ class SecurityPolicy:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_opensearchserverless.types.update_security_policy_request.UpdateSecurityPolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["type"] = type
-        input_["name"] = name
-        input_["policy_version"] = policy_version
+        input_: capo_opensearchserverless.types.update_security_policy_request.UpdateSecurityPolicyRequest = {
+            "type": type,
+            "name": name,
+            "policy_version": policy_version,
+        }
         if description is not None:
             input_["description"] = description
         if policy is not None:
             input_["policy"] = policy
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -196,17 +202,20 @@ class SecurityPolicy:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_opensearchserverless.types.delete_security_policy_request.DeleteSecurityPolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["type"] = type
-        input_["name"] = name
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_opensearchserverless.types.delete_security_policy_request.DeleteSecurityPolicyRequest = {
+            "type": type,
+            "name": name,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -249,8 +258,9 @@ class SecurityPolicy:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_opensearchserverless.types.list_security_policies_request.ListSecurityPoliciesRequest = {}  # type: ignore[typeddict-item]
-        input_["type"] = type
+        input_: capo_opensearchserverless.types.list_security_policies_request.ListSecurityPoliciesRequest = {
+            "type": type
+        }
         if resource is not None:
             input_["resource"] = resource
         if next_token is not None:
@@ -263,6 +273,7 @@ class SecurityPolicy:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -306,15 +317,17 @@ class AsyncSecurityPolicy:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_opensearchserverless.types.get_security_policy_request.GetSecurityPolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["type"] = type
-        input_["name"] = name
+        input_: capo_opensearchserverless.types.get_security_policy_request.GetSecurityPolicyRequest = {
+            "type": type,
+            "name": name,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update(
@@ -369,22 +382,25 @@ class AsyncSecurityPolicy:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_opensearchserverless.types.update_security_policy_request.UpdateSecurityPolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["type"] = type
-        input_["name"] = name
-        input_["policy_version"] = policy_version
+        input_: capo_opensearchserverless.types.update_security_policy_request.UpdateSecurityPolicyRequest = {
+            "type": type,
+            "name": name,
+            "policy_version": policy_version,
+        }
         if description is not None:
             input_["description"] = description
         if policy is not None:
             input_["policy"] = policy
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -428,17 +444,20 @@ class AsyncSecurityPolicy:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_opensearchserverless.types.delete_security_policy_request.DeleteSecurityPolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["type"] = type
-        input_["name"] = name
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_opensearchserverless.types.delete_security_policy_request.DeleteSecurityPolicyRequest = {
+            "type": type,
+            "name": name,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -482,8 +501,9 @@ class AsyncSecurityPolicy:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_opensearchserverless.types.list_security_policies_request.ListSecurityPoliciesRequest = {}  # type: ignore[typeddict-item]
-        input_["type"] = type
+        input_: capo_opensearchserverless.types.list_security_policies_request.ListSecurityPoliciesRequest = {
+            "type": type
+        }
         if resource is not None:
             input_["resource"] = resource
         if next_token is not None:
@@ -496,4 +516,5 @@ class AsyncSecurityPolicy:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

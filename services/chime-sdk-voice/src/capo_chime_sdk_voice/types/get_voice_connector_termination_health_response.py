@@ -31,7 +31,7 @@ def serialize_json(value: GetVoiceConnectorTerminationHealthResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetVoiceConnectorTerminationHealthResponse:
     out: GetVoiceConnectorTerminationHealthResponse = {}  # type: ignore[typeddict-item]
-    if "TerminationHealth" in data:
+    if data.get("TerminationHealth") is not None:
         import capo_chime_sdk_voice.types.termination_health
 
         out["termination_health"] = (

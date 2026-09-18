@@ -35,12 +35,12 @@ def serialize_json(value: CreateTokenResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateTokenResponse:
     out: CreateTokenResponse = {}  # type: ignore[typeddict-item]
-    if "appId" in data:
+    if data.get("appId") is not None:
         out["app_id"] = data["appId"]
-    if "challengeCode" in data:
+    if data.get("challengeCode") is not None:
         out["challenge_code"] = data["challengeCode"]
-    if "sessionId" in data:
+    if data.get("sessionId") is not None:
         out["session_id"] = data["sessionId"]
-    if "ttl" in data:
+    if data.get("ttl") is not None:
         out["ttl"] = data["ttl"]
     return out

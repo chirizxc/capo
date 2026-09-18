@@ -34,9 +34,9 @@ def serialize_aws_json_1_0(value: ListAutonomousDatabaseCharacterSetsOutput) -> 
 
 def deserialize_aws_json_1_0(data: dict) -> ListAutonomousDatabaseCharacterSetsOutput:
     out: ListAutonomousDatabaseCharacterSetsOutput = {}  # type: ignore[typeddict-item]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "autonomousDatabaseCharacterSets" in data:
+    if data.get("autonomousDatabaseCharacterSets") is not None:
         import capo_odb.types.autonomous_database_character_set_list
 
         out["autonomous_database_character_sets"] = (

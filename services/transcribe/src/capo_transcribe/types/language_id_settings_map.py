@@ -29,6 +29,9 @@ def deserialize_aws_json_1_1(data: dict) -> LanguageIdSettingsMap:
     out: LanguageIdSettingsMap = {}
     for key, value in data.items():
         import capo_transcribe.types.language_code
+
+        if value is None:
+            continue
         import capo_transcribe.types.language_id_settings
 
         out[capo_transcribe.types.language_code.deserialize_aws_json_1_1(key)] = (

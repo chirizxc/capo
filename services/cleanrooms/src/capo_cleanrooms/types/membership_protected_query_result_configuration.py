@@ -35,7 +35,7 @@ def serialize_json(value: MembershipProtectedQueryResultConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> MembershipProtectedQueryResultConfiguration:
     out: MembershipProtectedQueryResultConfiguration = {}  # type: ignore[typeddict-item]
-    if "outputConfiguration" in data:
+    if data.get("outputConfiguration") is not None:
         import capo_cleanrooms.types.membership_protected_query_output_configuration
 
         out["output_configuration"] = (
@@ -47,6 +47,6 @@ def deserialize_json(data: dict) -> MembershipProtectedQueryResultConfiguration:
         raise DeserializationError(
             "MembershipProtectedQueryResultConfiguration.output_configuration required"
         )
-    if "roleArn" in data:
+    if data.get("roleArn") is not None:
         out["role_arn"] = data["roleArn"]
     return out

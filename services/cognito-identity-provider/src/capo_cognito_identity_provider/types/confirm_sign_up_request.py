@@ -91,25 +91,25 @@ def serialize_aws_json_1_1(value: ConfirmSignUpRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ConfirmSignUpRequest:
     out: ConfirmSignUpRequest = {}  # type: ignore[typeddict-item]
-    if "ClientId" in data:
+    if data.get("ClientId") is not None:
         out["client_id"] = data["ClientId"]
     else:
         raise DeserializationError("ConfirmSignUpRequest.client_id required")
-    if "SecretHash" in data:
+    if data.get("SecretHash") is not None:
         out["secret_hash"] = data["SecretHash"]
-    if "Username" in data:
+    if data.get("Username") is not None:
         out["username"] = data["Username"]
     else:
         raise DeserializationError("ConfirmSignUpRequest.username required")
-    if "ConfirmationCode" in data:
+    if data.get("ConfirmationCode") is not None:
         out["confirmation_code"] = data["ConfirmationCode"]
     else:
         raise DeserializationError("ConfirmSignUpRequest.confirmation_code required")
-    if "ForceAliasCreation" in data:
+    if data.get("ForceAliasCreation") is not None:
         out["force_alias_creation"] = data["ForceAliasCreation"]
     else:
         out["force_alias_creation"] = False
-    if "AnalyticsMetadata" in data:
+    if data.get("AnalyticsMetadata") is not None:
         import capo_cognito_identity_provider.types.analytics_metadata_type
 
         out["analytics_metadata"] = (
@@ -117,7 +117,7 @@ def deserialize_aws_json_1_1(data: dict) -> ConfirmSignUpRequest:
                 data["AnalyticsMetadata"]
             )
         )
-    if "UserContextData" in data:
+    if data.get("UserContextData") is not None:
         import capo_cognito_identity_provider.types.user_context_data_type
 
         out["user_context_data"] = (
@@ -125,7 +125,7 @@ def deserialize_aws_json_1_1(data: dict) -> ConfirmSignUpRequest:
                 data["UserContextData"]
             )
         )
-    if "ClientMetadata" in data:
+    if data.get("ClientMetadata") is not None:
         import capo_cognito_identity_provider.types.client_metadata_type
 
         out["client_metadata"] = (
@@ -133,6 +133,6 @@ def deserialize_aws_json_1_1(data: dict) -> ConfirmSignUpRequest:
                 data["ClientMetadata"]
             )
         )
-    if "Session" in data:
+    if data.get("Session") is not None:
         out["session"] = data["Session"]
     return out

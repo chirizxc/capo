@@ -36,7 +36,7 @@ def serialize_json(value: ListObjectPoliciesResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListObjectPoliciesResponse:
     out: ListObjectPoliciesResponse = {}  # type: ignore[typeddict-item]
-    if "AttachedPolicyIds" in data:
+    if data.get("AttachedPolicyIds") is not None:
         import capo_clouddirectory.types.object_identifier_list
 
         out["attached_policy_ids"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> ListObjectPoliciesResponse:
                 data["AttachedPolicyIds"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

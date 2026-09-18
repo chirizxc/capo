@@ -25,8 +25,8 @@ def serialize_aws_json_1_1(value: GetAccountBalanceResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetAccountBalanceResponse:
     out: GetAccountBalanceResponse = {}  # type: ignore[typeddict-item]
-    if "AvailableBalance" in data:
+    if data.get("AvailableBalance") is not None:
         out["available_balance"] = data["AvailableBalance"]
-    if "OnHoldBalance" in data:
+    if data.get("OnHoldBalance") is not None:
         out["on_hold_balance"] = data["OnHoldBalance"]
     return out

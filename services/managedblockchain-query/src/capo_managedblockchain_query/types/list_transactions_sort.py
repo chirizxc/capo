@@ -30,8 +30,8 @@ def serialize_json(value: ListTransactionsSort) -> dict:
 
 def deserialize_json(data: dict) -> ListTransactionsSort:
     out: ListTransactionsSort = {}  # type: ignore[typeddict-item]
-    if "sortBy" in data:
+    if data.get("sortBy") is not None:
         out["sort_by"] = data["sortBy"]
-    if "sortOrder" in data:
+    if data.get("sortOrder") is not None:
         out["sort_order"] = data["sortOrder"]
     return out

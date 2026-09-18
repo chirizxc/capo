@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> PackageVersionHistoryList:
 
     out: PackageVersionHistoryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_elasticsearch_service.types.package_version_history.deserialize_json(
                 item

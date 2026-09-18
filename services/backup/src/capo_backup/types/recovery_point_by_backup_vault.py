@@ -206,55 +206,55 @@ def serialize_json(value: RecoveryPointByBackupVault) -> dict:
 
 def deserialize_json(data: dict) -> RecoveryPointByBackupVault:
     out: RecoveryPointByBackupVault = {}  # type: ignore[typeddict-item]
-    if "RecoveryPointArn" in data:
+    if data.get("RecoveryPointArn") is not None:
         out["recovery_point_arn"] = data["RecoveryPointArn"]
-    if "BackupVaultName" in data:
+    if data.get("BackupVaultName") is not None:
         out["backup_vault_name"] = data["BackupVaultName"]
-    if "BackupVaultArn" in data:
+    if data.get("BackupVaultArn") is not None:
         out["backup_vault_arn"] = data["BackupVaultArn"]
-    if "SourceBackupVaultArn" in data:
+    if data.get("SourceBackupVaultArn") is not None:
         out["source_backup_vault_arn"] = data["SourceBackupVaultArn"]
-    if "ResourceArn" in data:
+    if data.get("ResourceArn") is not None:
         out["resource_arn"] = data["ResourceArn"]
-    if "ResourceType" in data:
+    if data.get("ResourceType") is not None:
         out["resource_type"] = data["ResourceType"]
-    if "CreatedBy" in data:
+    if data.get("CreatedBy") is not None:
         import capo_backup.types.recovery_point_creator
 
         out["created_by"] = capo_backup.types.recovery_point_creator.deserialize_json(
             data["CreatedBy"]
         )
-    if "IamRoleArn" in data:
+    if data.get("IamRoleArn") is not None:
         out["iam_role_arn"] = data["IamRoleArn"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_backup.types.recovery_point_status
 
         out["status"] = capo_backup.types.recovery_point_status.deserialize_json(
             data["Status"]
         )
-    if "StatusMessage" in data:
+    if data.get("StatusMessage") is not None:
         out["status_message"] = data["StatusMessage"]
-    if "CreationDate" in data:
+    if data.get("CreationDate") is not None:
         import capo_backup.types.timestamp
 
         out["creation_date"] = capo_backup.types.timestamp.deserialize_json(
             data["CreationDate"]
         )
-    if "InitiationDate" in data:
+    if data.get("InitiationDate") is not None:
         import capo_backup.types.timestamp
 
         out["initiation_date"] = capo_backup.types.timestamp.deserialize_json(
             data["InitiationDate"]
         )
-    if "CompletionDate" in data:
+    if data.get("CompletionDate") is not None:
         import capo_backup.types.timestamp
 
         out["completion_date"] = capo_backup.types.timestamp.deserialize_json(
             data["CompletionDate"]
         )
-    if "BackupSizeInBytes" in data:
+    if data.get("BackupSizeInBytes") is not None:
         out["backup_size_in_bytes"] = data["BackupSizeInBytes"]
-    if "CalculatedLifecycle" in data:
+    if data.get("CalculatedLifecycle") is not None:
         import capo_backup.types.calculated_lifecycle
 
         out["calculated_lifecycle"] = (
@@ -262,49 +262,49 @@ def deserialize_json(data: dict) -> RecoveryPointByBackupVault:
                 data["CalculatedLifecycle"]
             )
         )
-    if "Lifecycle" in data:
+    if data.get("Lifecycle") is not None:
         import capo_backup.types.lifecycle
 
         out["lifecycle"] = capo_backup.types.lifecycle.deserialize_json(
             data["Lifecycle"]
         )
-    if "EncryptionKeyArn" in data:
+    if data.get("EncryptionKeyArn") is not None:
         out["encryption_key_arn"] = data["EncryptionKeyArn"]
-    if "IsEncrypted" in data:
+    if data.get("IsEncrypted") is not None:
         out["is_encrypted"] = data["IsEncrypted"]
     else:
         out["is_encrypted"] = False
-    if "LastRestoreTime" in data:
+    if data.get("LastRestoreTime") is not None:
         import capo_backup.types.timestamp
 
         out["last_restore_time"] = capo_backup.types.timestamp.deserialize_json(
             data["LastRestoreTime"]
         )
-    if "ParentRecoveryPointArn" in data:
+    if data.get("ParentRecoveryPointArn") is not None:
         out["parent_recovery_point_arn"] = data["ParentRecoveryPointArn"]
-    if "CompositeMemberIdentifier" in data:
+    if data.get("CompositeMemberIdentifier") is not None:
         out["composite_member_identifier"] = data["CompositeMemberIdentifier"]
-    if "IsParent" in data:
+    if data.get("IsParent") is not None:
         out["is_parent"] = data["IsParent"]
     else:
         out["is_parent"] = False
-    if "ResourceName" in data:
+    if data.get("ResourceName") is not None:
         out["resource_name"] = data["ResourceName"]
-    if "VaultType" in data:
+    if data.get("VaultType") is not None:
         import capo_backup.types.vault_type
 
         out["vault_type"] = capo_backup.types.vault_type.deserialize_json(
             data["VaultType"]
         )
-    if "IndexStatus" in data:
+    if data.get("IndexStatus") is not None:
         import capo_backup.types.index_status
 
         out["index_status"] = capo_backup.types.index_status.deserialize_json(
             data["IndexStatus"]
         )
-    if "IndexStatusMessage" in data:
+    if data.get("IndexStatusMessage") is not None:
         out["index_status_message"] = data["IndexStatusMessage"]
-    if "EncryptionKeyType" in data:
+    if data.get("EncryptionKeyType") is not None:
         import capo_backup.types.encryption_key_type
 
         out["encryption_key_type"] = (
@@ -312,7 +312,7 @@ def deserialize_json(data: dict) -> RecoveryPointByBackupVault:
                 data["EncryptionKeyType"]
             )
         )
-    if "AggregatedScanResult" in data:
+    if data.get("AggregatedScanResult") is not None:
         import capo_backup.types.aggregated_scan_result
 
         out["aggregated_scan_result"] = (

@@ -32,9 +32,9 @@ def serialize_json(value: Duration) -> dict:
 
 def deserialize_json(data: dict) -> Duration:
     out: Duration = {}  # type: ignore[typeddict-item]
-    if "Value" in data:
+    if data.get("Value") is not None:
         out["value"] = data["Value"]
-    if "Unit" in data:
+    if data.get("Unit") is not None:
         import capo_elasticsearch_service.types.time_unit
 
         out["unit"] = capo_elasticsearch_service.types.time_unit.deserialize_json(

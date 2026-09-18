@@ -52,9 +52,9 @@ def serialize_json(value: GetMatchesResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetMatchesResponse:
     out: GetMatchesResponse = {}  # type: ignore[typeddict-item]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "MatchGenerationDate" in data:
+    if data.get("MatchGenerationDate") is not None:
         import capo_customer_profiles.types.timestamp
 
         out["match_generation_date"] = (
@@ -62,9 +62,9 @@ def deserialize_json(data: dict) -> GetMatchesResponse:
                 data["MatchGenerationDate"]
             )
         )
-    if "PotentialMatches" in data:
+    if data.get("PotentialMatches") is not None:
         out["potential_matches"] = data["PotentialMatches"]
-    if "Matches" in data:
+    if data.get("Matches") is not None:
         import capo_customer_profiles.types.matches_list
 
         out["matches"] = capo_customer_profiles.types.matches_list.deserialize_json(

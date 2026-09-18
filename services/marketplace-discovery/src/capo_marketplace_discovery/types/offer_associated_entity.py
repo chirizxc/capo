@@ -43,7 +43,7 @@ def serialize_json(value: OfferAssociatedEntity) -> dict:
 
 def deserialize_json(data: dict) -> OfferAssociatedEntity:
     out: OfferAssociatedEntity = {}  # type: ignore[typeddict-item]
-    if "product" in data:
+    if data.get("product") is not None:
         import capo_marketplace_discovery.types.product_information
 
         out["product"] = (
@@ -53,7 +53,7 @@ def deserialize_json(data: dict) -> OfferAssociatedEntity:
         )
     else:
         raise DeserializationError("OfferAssociatedEntity.product required")
-    if "offerSet" in data:
+    if data.get("offerSet") is not None:
         import capo_marketplace_discovery.types.offer_set_information
 
         out["offer_set"] = (

@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> VaultList:
 
     out: VaultList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_glacier.types.describe_vault_output.deserialize_json(item))
     return out

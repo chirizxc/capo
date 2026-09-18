@@ -26,10 +26,10 @@ def serialize_json(value: SendMessageContext) -> dict:
 
 def deserialize_json(data: dict) -> SendMessageContext:
     out: SendMessageContext = {}  # type: ignore[typeddict-item]
-    if "currentPage" in data:
+    if data.get("currentPage") is not None:
         out["current_page"] = data["currentPage"]
-    if "lastMessage" in data:
+    if data.get("lastMessage") is not None:
         out["last_message"] = data["lastMessage"]
-    if "userActionResponse" in data:
+    if data.get("userActionResponse") is not None:
         out["user_action_response"] = data["userActionResponse"]
     return out

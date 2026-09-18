@@ -46,17 +46,17 @@ def serialize_json(value: Actor) -> dict:
 
 def deserialize_json(data: dict) -> Actor:
     out: Actor = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "user" in data:
+    if data.get("user") is not None:
         import capo_guardduty.types.user
 
         out["user"] = capo_guardduty.types.user.deserialize_json(data["user"])
-    if "session" in data:
+    if data.get("session") is not None:
         import capo_guardduty.types.session
 
         out["session"] = capo_guardduty.types.session.deserialize_json(data["session"])
-    if "process" in data:
+    if data.get("process") is not None:
         import capo_guardduty.types.actor_process
 
         out["process"] = capo_guardduty.types.actor_process.deserialize_json(

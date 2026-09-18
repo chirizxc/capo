@@ -79,21 +79,21 @@ def serialize_json(value: CreateQueueRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateQueueRequest:
     out: CreateQueueRequest = {}  # type: ignore[typeddict-item]
-    if "concurrentJobs" in data:
+    if data.get("concurrentJobs") is not None:
         out["concurrent_jobs"] = data["concurrentJobs"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "maximumConcurrentFeeds" in data:
+    if data.get("maximumConcurrentFeeds") is not None:
         out["maximum_concurrent_feeds"] = data["maximumConcurrentFeeds"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "pricingPlan" in data:
+    if data.get("pricingPlan") is not None:
         import capo_mediaconvert.types.pricing_plan
 
         out["pricing_plan"] = capo_mediaconvert.types.pricing_plan.deserialize_json(
             data["pricingPlan"]
         )
-    if "reservationPlanSettings" in data:
+    if data.get("reservationPlanSettings") is not None:
         import capo_mediaconvert.types.reservation_plan_settings
 
         out["reservation_plan_settings"] = (
@@ -101,13 +101,13 @@ def deserialize_json(data: dict) -> CreateQueueRequest:
                 data["reservationPlanSettings"]
             )
         )
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_mediaconvert.types.queue_status
 
         out["status"] = capo_mediaconvert.types.queue_status.deserialize_json(
             data["status"]
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_mediaconvert.types.__map_of__string
 
         out["tags"] = capo_mediaconvert.types.__map_of__string.deserialize_json(

@@ -26,7 +26,7 @@ def serialize_json(value: GroupPolicyGrantPrincipal) -> dict:
 
 
 def deserialize_json(data: dict) -> GroupPolicyGrantPrincipal:
-    if "groupIdentifier" in data:
+    if data.get("groupIdentifier") is not None:
         return {"groupIdentifier": data["groupIdentifier"]}
     else:
         raise DeserializationError(

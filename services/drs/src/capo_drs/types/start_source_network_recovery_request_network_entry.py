@@ -29,12 +29,12 @@ def serialize_json(value: StartSourceNetworkRecoveryRequestNetworkEntry) -> dict
 
 def deserialize_json(data: dict) -> StartSourceNetworkRecoveryRequestNetworkEntry:
     out: StartSourceNetworkRecoveryRequestNetworkEntry = {}  # type: ignore[typeddict-item]
-    if "sourceNetworkID" in data:
+    if data.get("sourceNetworkID") is not None:
         out["source_network_id"] = data["sourceNetworkID"]
     else:
         raise DeserializationError(
             "StartSourceNetworkRecoveryRequestNetworkEntry.source_network_id required"
         )
-    if "cfnStackName" in data:
+    if data.get("cfnStackName") is not None:
         out["cfn_stack_name"] = data["cfnStackName"]
     return out

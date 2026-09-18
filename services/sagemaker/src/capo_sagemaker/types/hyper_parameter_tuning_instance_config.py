@@ -45,7 +45,7 @@ def serialize_aws_json_1_1(value: HyperParameterTuningInstanceConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> HyperParameterTuningInstanceConfig:
     out: HyperParameterTuningInstanceConfig = {}  # type: ignore[typeddict-item]
-    if "InstanceType" in data:
+    if data.get("InstanceType") is not None:
         import capo_sagemaker.types.training_instance_type
 
         out["instance_type"] = (
@@ -53,8 +53,8 @@ def deserialize_aws_json_1_1(data: dict) -> HyperParameterTuningInstanceConfig:
                 data["InstanceType"]
             )
         )
-    if "InstanceCount" in data:
+    if data.get("InstanceCount") is not None:
         out["instance_count"] = data["InstanceCount"]
-    if "VolumeSizeInGB" in data:
+    if data.get("VolumeSizeInGB") is not None:
         out["volume_size_in_gb"] = data["VolumeSizeInGB"]
     return out

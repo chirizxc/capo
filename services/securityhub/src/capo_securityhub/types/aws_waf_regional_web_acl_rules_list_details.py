@@ -58,7 +58,7 @@ def serialize_json(value: AwsWafRegionalWebAclRulesListDetails) -> dict:
 
 def deserialize_json(data: dict) -> AwsWafRegionalWebAclRulesListDetails:
     out: AwsWafRegionalWebAclRulesListDetails = {}  # type: ignore[typeddict-item]
-    if "Action" in data:
+    if data.get("Action") is not None:
         import capo_securityhub.types.aws_waf_regional_web_acl_rules_list_action_details
 
         out["action"] = (
@@ -66,7 +66,7 @@ def deserialize_json(data: dict) -> AwsWafRegionalWebAclRulesListDetails:
                 data["Action"]
             )
         )
-    if "OverrideAction" in data:
+    if data.get("OverrideAction") is not None:
         import capo_securityhub.types.aws_waf_regional_web_acl_rules_list_override_action_details
 
         out["override_action"] = (
@@ -74,10 +74,10 @@ def deserialize_json(data: dict) -> AwsWafRegionalWebAclRulesListDetails:
                 data["OverrideAction"]
             )
         )
-    if "Priority" in data:
+    if data.get("Priority") is not None:
         out["priority"] = data["Priority"]
-    if "RuleId" in data:
+    if data.get("RuleId") is not None:
         out["rule_id"] = data["RuleId"]
-    if "Type" in data:
+    if data.get("Type") is not None:
         out["type"] = data["Type"]
     return out

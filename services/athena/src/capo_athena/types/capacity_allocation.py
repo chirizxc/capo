@@ -51,7 +51,7 @@ def serialize_aws_json_1_1(value: CapacityAllocation) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CapacityAllocation:
     out: CapacityAllocation = {}  # type: ignore[typeddict-item]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_athena.types.capacity_allocation_status
 
         out["status"] = (
@@ -61,9 +61,9 @@ def deserialize_aws_json_1_1(data: dict) -> CapacityAllocation:
         )
     else:
         raise DeserializationError("CapacityAllocation.status required")
-    if "StatusMessage" in data:
+    if data.get("StatusMessage") is not None:
         out["status_message"] = data["StatusMessage"]
-    if "RequestTime" in data:
+    if data.get("RequestTime") is not None:
         import capo_athena.types.timestamp
 
         out["request_time"] = capo_athena.types.timestamp.deserialize_aws_json_1_1(
@@ -71,7 +71,7 @@ def deserialize_aws_json_1_1(data: dict) -> CapacityAllocation:
         )
     else:
         raise DeserializationError("CapacityAllocation.request_time required")
-    if "RequestCompletionTime" in data:
+    if data.get("RequestCompletionTime") is not None:
         import capo_athena.types.timestamp
 
         out["request_completion_time"] = (

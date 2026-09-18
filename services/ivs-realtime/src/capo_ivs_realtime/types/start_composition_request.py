@@ -59,19 +59,19 @@ def serialize_json(value: StartCompositionRequest) -> dict:
 
 def deserialize_json(data: dict) -> StartCompositionRequest:
     out: StartCompositionRequest = {}  # type: ignore[typeddict-item]
-    if "stageArn" in data:
+    if data.get("stageArn") is not None:
         out["stage_arn"] = data["stageArn"]
     else:
         raise DeserializationError("StartCompositionRequest.stage_arn required")
-    if "idempotencyToken" in data:
+    if data.get("idempotencyToken") is not None:
         out["idempotency_token"] = data["idempotencyToken"]
-    if "layout" in data:
+    if data.get("layout") is not None:
         import capo_ivs_realtime.types.layout_configuration
 
         out["layout"] = capo_ivs_realtime.types.layout_configuration.deserialize_json(
             data["layout"]
         )
-    if "destinations" in data:
+    if data.get("destinations") is not None:
         import capo_ivs_realtime.types.destination_configuration_list
 
         out["destinations"] = (
@@ -81,7 +81,7 @@ def deserialize_json(data: dict) -> StartCompositionRequest:
         )
     else:
         raise DeserializationError("StartCompositionRequest.destinations required")
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_ivs_realtime.types.tags
 
         out["tags"] = capo_ivs_realtime.types.tags.deserialize_json(data["tags"])

@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> QuotaShareList:
 
     out: QuotaShareList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_batch.types.quota_share_detail.deserialize_json(item))
     return out

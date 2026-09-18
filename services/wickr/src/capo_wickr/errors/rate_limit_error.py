@@ -24,7 +24,7 @@ def serialize_json(value: RateLimitError_) -> dict:
 
 def deserialize_json(data: dict) -> RateLimitError_:
     out: RateLimitError_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     else:
         out["message"] = "Too many requests sent"
@@ -36,15 +36,16 @@ class RateLimitError(ServiceError):
 
     code: str | None = "RateLimitError"
 
-    def __init__(self, data: RateLimitError_):
+    def __init__(self, data: RateLimitError_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="RateLimitError",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "RateLimitError":
-        return cls(deserialize_json(data))
+    def from_json(cls, data: dict, message: str | None = None) -> "RateLimitError":
+        return cls(deserialize_json(data), message)

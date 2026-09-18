@@ -30,12 +30,12 @@ def serialize_aws_json_1_1(value: Resource) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Resource:
     out: Resource = {}  # type: ignore[typeddict-item]
-    if "EndpointId" in data:
+    if data.get("EndpointId") is not None:
         out["endpoint_id"] = data["EndpointId"]
     else:
         out["endpoint_id"] = ""
-    if "Cidr" in data:
+    if data.get("Cidr") is not None:
         out["cidr"] = data["Cidr"]
-    if "Region" in data:
+    if data.get("Region") is not None:
         out["region"] = data["Region"]
     return out

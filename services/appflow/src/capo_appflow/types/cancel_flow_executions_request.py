@@ -33,11 +33,11 @@ def serialize_json(value: CancelFlowExecutionsRequest) -> dict:
 
 def deserialize_json(data: dict) -> CancelFlowExecutionsRequest:
     out: CancelFlowExecutionsRequest = {}  # type: ignore[typeddict-item]
-    if "flowName" in data:
+    if data.get("flowName") is not None:
         out["flow_name"] = data["flowName"]
     else:
         raise DeserializationError("CancelFlowExecutionsRequest.flow_name required")
-    if "executionIds" in data:
+    if data.get("executionIds") is not None:
         import capo_appflow.types.execution_ids
 
         out["execution_ids"] = capo_appflow.types.execution_ids.deserialize_json(

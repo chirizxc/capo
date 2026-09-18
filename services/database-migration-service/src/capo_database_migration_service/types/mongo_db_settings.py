@@ -127,17 +127,17 @@ def serialize_aws_json_1_1(value: MongoDbSettings) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> MongoDbSettings:
     out: MongoDbSettings = {}  # type: ignore[typeddict-item]
-    if "Username" in data:
+    if data.get("Username") is not None:
         out["username"] = data["Username"]
-    if "Password" in data:
+    if data.get("Password") is not None:
         out["password"] = data["Password"]
-    if "ServerName" in data:
+    if data.get("ServerName") is not None:
         out["server_name"] = data["ServerName"]
-    if "Port" in data:
+    if data.get("Port") is not None:
         out["port"] = data["Port"]
-    if "DatabaseName" in data:
+    if data.get("DatabaseName") is not None:
         out["database_name"] = data["DatabaseName"]
-    if "AuthType" in data:
+    if data.get("AuthType") is not None:
         import capo_database_migration_service.types.auth_type_value
 
         out["auth_type"] = (
@@ -145,7 +145,7 @@ def deserialize_aws_json_1_1(data: dict) -> MongoDbSettings:
                 data["AuthType"]
             )
         )
-    if "AuthMechanism" in data:
+    if data.get("AuthMechanism") is not None:
         import capo_database_migration_service.types.auth_mechanism_value
 
         out["auth_mechanism"] = (
@@ -153,7 +153,7 @@ def deserialize_aws_json_1_1(data: dict) -> MongoDbSettings:
                 data["AuthMechanism"]
             )
         )
-    if "NestingLevel" in data:
+    if data.get("NestingLevel") is not None:
         import capo_database_migration_service.types.nesting_level_value
 
         out["nesting_level"] = (
@@ -161,20 +161,20 @@ def deserialize_aws_json_1_1(data: dict) -> MongoDbSettings:
                 data["NestingLevel"]
             )
         )
-    if "ExtractDocId" in data:
+    if data.get("ExtractDocId") is not None:
         out["extract_doc_id"] = data["ExtractDocId"]
-    if "DocsToInvestigate" in data:
+    if data.get("DocsToInvestigate") is not None:
         out["docs_to_investigate"] = data["DocsToInvestigate"]
-    if "AuthSource" in data:
+    if data.get("AuthSource") is not None:
         out["auth_source"] = data["AuthSource"]
-    if "KmsKeyId" in data:
+    if data.get("KmsKeyId") is not None:
         out["kms_key_id"] = data["KmsKeyId"]
-    if "SecretsManagerAccessRoleArn" in data:
+    if data.get("SecretsManagerAccessRoleArn") is not None:
         out["secrets_manager_access_role_arn"] = data["SecretsManagerAccessRoleArn"]
-    if "SecretsManagerSecretId" in data:
+    if data.get("SecretsManagerSecretId") is not None:
         out["secrets_manager_secret_id"] = data["SecretsManagerSecretId"]
-    if "UseUpdateLookUp" in data:
+    if data.get("UseUpdateLookUp") is not None:
         out["use_update_look_up"] = data["UseUpdateLookUp"]
-    if "ReplicateShardCollections" in data:
+    if data.get("ReplicateShardCollections") is not None:
         out["replicate_shard_collections"] = data["ReplicateShardCollections"]
     return out

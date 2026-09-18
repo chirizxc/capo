@@ -64,11 +64,11 @@ def serialize_json(value: CreateStreamGroupInput) -> dict:
 
 def deserialize_json(data: dict) -> CreateStreamGroupInput:
     out: CreateStreamGroupInput = {}  # type: ignore[typeddict-item]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
     else:
         raise DeserializationError("CreateStreamGroupInput.description required")
-    if "StreamClass" in data:
+    if data.get("StreamClass") is not None:
         import capo_gameliftstreams.types.stream_class
 
         out["stream_class"] = capo_gameliftstreams.types.stream_class.deserialize_json(
@@ -76,9 +76,9 @@ def deserialize_json(data: dict) -> CreateStreamGroupInput:
         )
     else:
         raise DeserializationError("CreateStreamGroupInput.stream_class required")
-    if "DefaultApplicationIdentifier" in data:
+    if data.get("DefaultApplicationIdentifier") is not None:
         out["default_application_identifier"] = data["DefaultApplicationIdentifier"]
-    if "LocationConfigurations" in data:
+    if data.get("LocationConfigurations") is not None:
         import capo_gameliftstreams.types.location_configurations
 
         out["location_configurations"] = (
@@ -86,10 +86,10 @@ def deserialize_json(data: dict) -> CreateStreamGroupInput:
                 data["LocationConfigurations"]
             )
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_gameliftstreams.types.tags
 
         out["tags"] = capo_gameliftstreams.types.tags.deserialize_json(data["Tags"])
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
     return out

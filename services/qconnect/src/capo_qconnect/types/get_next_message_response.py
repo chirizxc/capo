@@ -66,11 +66,11 @@ def serialize_json(value: GetNextMessageResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetNextMessageResponse:
     out: GetNextMessageResponse = {}  # type: ignore[typeddict-item]
-    if "type" in data:
+    if data.get("type") is not None:
         out["type"] = data["type"]
     else:
         raise DeserializationError("GetNextMessageResponse.type required")
-    if "response" in data:
+    if data.get("response") is not None:
         import capo_qconnect.types.message_output
 
         out["response"] = capo_qconnect.types.message_output.deserialize_json(
@@ -78,11 +78,11 @@ def deserialize_json(data: dict) -> GetNextMessageResponse:
         )
     else:
         raise DeserializationError("GetNextMessageResponse.response required")
-    if "requestMessageId" in data:
+    if data.get("requestMessageId") is not None:
         out["request_message_id"] = data["requestMessageId"]
     else:
         raise DeserializationError("GetNextMessageResponse.request_message_id required")
-    if "conversationState" in data:
+    if data.get("conversationState") is not None:
         import capo_qconnect.types.conversation_state
 
         out["conversation_state"] = (
@@ -92,9 +92,9 @@ def deserialize_json(data: dict) -> GetNextMessageResponse:
         )
     else:
         raise DeserializationError("GetNextMessageResponse.conversation_state required")
-    if "nextMessageToken" in data:
+    if data.get("nextMessageToken") is not None:
         out["next_message_token"] = data["nextMessageToken"]
-    if "conversationSessionData" in data:
+    if data.get("conversationSessionData") is not None:
         import capo_qconnect.types.runtime_session_data_list
 
         out["conversation_session_data"] = (
@@ -102,6 +102,6 @@ def deserialize_json(data: dict) -> GetNextMessageResponse:
                 data["conversationSessionData"]
             )
         )
-    if "chunkedResponseTerminated" in data:
+    if data.get("chunkedResponseTerminated") is not None:
         out["chunked_response_terminated"] = data["chunkedResponseTerminated"]
     return out

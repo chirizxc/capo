@@ -23,6 +23,6 @@ def serialize_json(value: UpdateTelemetryRuleOutput) -> dict:
 
 def deserialize_json(data: dict) -> UpdateTelemetryRuleOutput:
     out: UpdateTelemetryRuleOutput = {}  # type: ignore[typeddict-item]
-    if "RuleArn" in data:
+    if data.get("RuleArn") is not None:
         out["rule_arn"] = data["RuleArn"]
     return out

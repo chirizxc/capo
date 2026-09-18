@@ -25,7 +25,15 @@ def serialize_aws_json_1_1(value: CustomLabel) -> dict:
     if "name" in value:
         out["Name"] = value["name"]
     if "confidence" in value:
-        out["Confidence"] = value["confidence"]
+        out["Confidence"] = (
+            "NaN"
+            if value["confidence"] != value["confidence"]
+            else "Infinity"
+            if value["confidence"] == float("inf")
+            else "-Infinity"
+            if value["confidence"] == float("-inf")
+            else value["confidence"]
+        )
     if "geometry" in value:
         import capo_rekognition.types.geometry
 
@@ -37,11 +45,11 @@ def serialize_aws_json_1_1(value: CustomLabel) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CustomLabel:
     out: CustomLabel = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Confidence" in data:
-        out["confidence"] = data["Confidence"]
-    if "Geometry" in data:
+    if data.get("Confidence") is not None:
+        out["confidence"] = float(data["Confidence"])
+    if data.get("Geometry") is not None:
         import capo_rekognition.types.geometry
 
         out["geometry"] = capo_rekognition.types.geometry.deserialize_aws_json_1_1(

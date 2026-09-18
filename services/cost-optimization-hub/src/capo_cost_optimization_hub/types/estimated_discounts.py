@@ -16,20 +16,45 @@ class EstimatedDiscounts(TypedDict, closed=True):
 def serialize_aws_json_1_0(value: EstimatedDiscounts) -> dict:
     out: dict = {}
     if "savings_plans_discount" in value:
-        out["savingsPlansDiscount"] = value["savings_plans_discount"]
+        out["savingsPlansDiscount"] = (
+            "NaN"
+            if value["savings_plans_discount"] != value["savings_plans_discount"]
+            else "Infinity"
+            if value["savings_plans_discount"] == float("inf")
+            else "-Infinity"
+            if value["savings_plans_discount"] == float("-inf")
+            else value["savings_plans_discount"]
+        )
     if "reserved_instances_discount" in value:
-        out["reservedInstancesDiscount"] = value["reserved_instances_discount"]
+        out["reservedInstancesDiscount"] = (
+            "NaN"
+            if value["reserved_instances_discount"]
+            != value["reserved_instances_discount"]
+            else "Infinity"
+            if value["reserved_instances_discount"] == float("inf")
+            else "-Infinity"
+            if value["reserved_instances_discount"] == float("-inf")
+            else value["reserved_instances_discount"]
+        )
     if "other_discount" in value:
-        out["otherDiscount"] = value["other_discount"]
+        out["otherDiscount"] = (
+            "NaN"
+            if value["other_discount"] != value["other_discount"]
+            else "Infinity"
+            if value["other_discount"] == float("inf")
+            else "-Infinity"
+            if value["other_discount"] == float("-inf")
+            else value["other_discount"]
+        )
     return out
 
 
 def deserialize_aws_json_1_0(data: dict) -> EstimatedDiscounts:
     out: EstimatedDiscounts = {}  # type: ignore[typeddict-item]
-    if "savingsPlansDiscount" in data:
-        out["savings_plans_discount"] = data["savingsPlansDiscount"]
-    if "reservedInstancesDiscount" in data:
-        out["reserved_instances_discount"] = data["reservedInstancesDiscount"]
-    if "otherDiscount" in data:
-        out["other_discount"] = data["otherDiscount"]
+    if data.get("savingsPlansDiscount") is not None:
+        out["savings_plans_discount"] = float(data["savingsPlansDiscount"])
+    if data.get("reservedInstancesDiscount") is not None:
+        out["reserved_instances_discount"] = float(data["reservedInstancesDiscount"])
+    if data.get("otherDiscount") is not None:
+        out["other_discount"] = float(data["otherDiscount"])
     return out

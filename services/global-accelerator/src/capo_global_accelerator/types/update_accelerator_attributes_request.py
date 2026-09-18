@@ -43,16 +43,16 @@ def serialize_aws_json_1_1(value: UpdateAcceleratorAttributesRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateAcceleratorAttributesRequest:
     out: UpdateAcceleratorAttributesRequest = {}  # type: ignore[typeddict-item]
-    if "AcceleratorArn" in data:
+    if data.get("AcceleratorArn") is not None:
         out["accelerator_arn"] = data["AcceleratorArn"]
     else:
         raise DeserializationError(
             "UpdateAcceleratorAttributesRequest.accelerator_arn required"
         )
-    if "FlowLogsEnabled" in data:
+    if data.get("FlowLogsEnabled") is not None:
         out["flow_logs_enabled"] = data["FlowLogsEnabled"]
-    if "FlowLogsS3Bucket" in data:
+    if data.get("FlowLogsS3Bucket") is not None:
         out["flow_logs_s3_bucket"] = data["FlowLogsS3Bucket"]
-    if "FlowLogsS3Prefix" in data:
+    if data.get("FlowLogsS3Prefix") is not None:
         out["flow_logs_s3_prefix"] = data["FlowLogsS3Prefix"]
     return out

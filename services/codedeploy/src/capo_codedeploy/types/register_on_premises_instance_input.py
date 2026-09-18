@@ -34,14 +34,14 @@ def serialize_aws_json_1_1(value: RegisterOnPremisesInstanceInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RegisterOnPremisesInstanceInput:
     out: RegisterOnPremisesInstanceInput = {}  # type: ignore[typeddict-item]
-    if "instanceName" in data:
+    if data.get("instanceName") is not None:
         out["instance_name"] = data["instanceName"]
     else:
         raise DeserializationError(
             "RegisterOnPremisesInstanceInput.instance_name required"
         )
-    if "iamSessionArn" in data:
+    if data.get("iamSessionArn") is not None:
         out["iam_session_arn"] = data["iamSessionArn"]
-    if "iamUserArn" in data:
+    if data.get("iamUserArn") is not None:
         out["iam_user_arn"] = data["iamUserArn"]
     return out

@@ -39,14 +39,14 @@ def serialize_json(value: GetTranscriptResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetTranscriptResponse:
     out: GetTranscriptResponse = {}  # type: ignore[typeddict-item]
-    if "InitialContactId" in data:
+    if data.get("InitialContactId") is not None:
         out["initial_contact_id"] = data["InitialContactId"]
-    if "Transcript" in data:
+    if data.get("Transcript") is not None:
         import capo_connectparticipant.types.transcript
 
         out["transcript"] = capo_connectparticipant.types.transcript.deserialize_json(
             data["Transcript"]
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

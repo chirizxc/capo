@@ -25,6 +25,8 @@ def deserialize_json(data: list) -> RecommenderFilters:
 
     out: RecommenderFilters = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_customer_profiles.types.recommender_filter.deserialize_json(item)
         )

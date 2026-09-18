@@ -28,10 +28,10 @@ def serialize_aws_json_1_1(value: EntityRecognizerAnnotations) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> EntityRecognizerAnnotations:
     out: EntityRecognizerAnnotations = {}  # type: ignore[typeddict-item]
-    if "S3Uri" in data:
+    if data.get("S3Uri") is not None:
         out["s3_uri"] = data["S3Uri"]
     else:
         raise DeserializationError("EntityRecognizerAnnotations.s3_uri required")
-    if "TestS3Uri" in data:
+    if data.get("TestS3Uri") is not None:
         out["test_s3_uri"] = data["TestS3Uri"]
     return out

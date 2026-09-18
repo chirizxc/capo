@@ -36,11 +36,11 @@ def serialize_json(value: MedicalScribeChannelDefinition) -> dict:
 
 def deserialize_json(data: dict) -> MedicalScribeChannelDefinition:
     out: MedicalScribeChannelDefinition = {}  # type: ignore[typeddict-item]
-    if "channelId" in data:
+    if data.get("channelId") is not None:
         out["channel_id"] = data["channelId"]
     else:
         raise DeserializationError("MedicalScribeChannelDefinition.channel_id required")
-    if "participantRole" in data:
+    if data.get("participantRole") is not None:
         import capo_connecthealth.types.medical_scribe_participant_role
 
         out["participant_role"] = (

@@ -82,7 +82,7 @@ def serialize_aws_json_1_1(value: StartExportTaskRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> StartExportTaskRequest:
     out: StartExportTaskRequest = {}  # type: ignore[typeddict-item]
-    if "exportDataFormat" in data:
+    if data.get("exportDataFormat") is not None:
         import capo_application_discovery_service.types.export_data_formats
 
         out["export_data_format"] = (
@@ -90,7 +90,7 @@ def deserialize_aws_json_1_1(data: dict) -> StartExportTaskRequest:
                 data["exportDataFormat"]
             )
         )
-    if "filters" in data:
+    if data.get("filters") is not None:
         import capo_application_discovery_service.types.export_filters
 
         out["filters"] = (
@@ -98,7 +98,7 @@ def deserialize_aws_json_1_1(data: dict) -> StartExportTaskRequest:
                 data["filters"]
             )
         )
-    if "startTime" in data:
+    if data.get("startTime") is not None:
         import capo_application_discovery_service.types.time_stamp
 
         out["start_time"] = (
@@ -106,7 +106,7 @@ def deserialize_aws_json_1_1(data: dict) -> StartExportTaskRequest:
                 data["startTime"]
             )
         )
-    if "endTime" in data:
+    if data.get("endTime") is not None:
         import capo_application_discovery_service.types.time_stamp
 
         out["end_time"] = (
@@ -114,7 +114,7 @@ def deserialize_aws_json_1_1(data: dict) -> StartExportTaskRequest:
                 data["endTime"]
             )
         )
-    if "preferences" in data:
+    if data.get("preferences") is not None:
         import capo_application_discovery_service.types.export_preferences
 
         out["preferences"] = (

@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: DriftCheckExplainability) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DriftCheckExplainability:
     out: DriftCheckExplainability = {}  # type: ignore[typeddict-item]
-    if "Constraints" in data:
+    if data.get("Constraints") is not None:
         import capo_sagemaker.types.metrics_source
 
         out["constraints"] = (
@@ -44,7 +44,7 @@ def deserialize_aws_json_1_1(data: dict) -> DriftCheckExplainability:
                 data["Constraints"]
             )
         )
-    if "ConfigFile" in data:
+    if data.get("ConfigFile") is not None:
         import capo_sagemaker.types.file_source
 
         out["config_file"] = capo_sagemaker.types.file_source.deserialize_aws_json_1_1(

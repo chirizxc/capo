@@ -38,9 +38,9 @@ def serialize_aws_json_1_1(value: GetResourcesOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetResourcesOutput:
     out: GetResourcesOutput = {}  # type: ignore[typeddict-item]
-    if "PaginationToken" in data:
+    if data.get("PaginationToken") is not None:
         out["pagination_token"] = data["PaginationToken"]
-    if "ResourceTagMappingList" in data:
+    if data.get("ResourceTagMappingList") is not None:
         import capo_resource_groups_tagging_api.types.resource_tag_mapping_list
 
         out["resource_tag_mapping_list"] = (

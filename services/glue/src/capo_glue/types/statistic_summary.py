@@ -67,7 +67,15 @@ def serialize_aws_json_1_1(value: StatisticSummary) -> dict:
         )
     if "statistic_name" in value:
         out["StatisticName"] = value["statistic_name"]
-    out["DoubleValue"] = value.get("double_value", 0)
+    out["DoubleValue"] = (
+        "NaN"
+        if value.get("double_value", 0) != value.get("double_value", 0)
+        else "Infinity"
+        if value.get("double_value", 0) == float("inf")
+        else "-Infinity"
+        if value.get("double_value", 0) == float("-inf")
+        else value.get("double_value", 0)
+    )
     if "evaluation_level" in value:
         import capo_glue.types.statistic_evaluation_level
 
@@ -119,23 +127,23 @@ def serialize_aws_json_1_1(value: StatisticSummary) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> StatisticSummary:
     out: StatisticSummary = {}  # type: ignore[typeddict-item]
-    if "StatisticId" in data:
+    if data.get("StatisticId") is not None:
         out["statistic_id"] = data["StatisticId"]
-    if "ProfileId" in data:
+    if data.get("ProfileId") is not None:
         out["profile_id"] = data["ProfileId"]
-    if "RunIdentifier" in data:
+    if data.get("RunIdentifier") is not None:
         import capo_glue.types.run_identifier
 
         out["run_identifier"] = capo_glue.types.run_identifier.deserialize_aws_json_1_1(
             data["RunIdentifier"]
         )
-    if "StatisticName" in data:
+    if data.get("StatisticName") is not None:
         out["statistic_name"] = data["StatisticName"]
-    if "DoubleValue" in data:
-        out["double_value"] = data["DoubleValue"]
+    if data.get("DoubleValue") is not None:
+        out["double_value"] = float(data["DoubleValue"])
     else:
         out["double_value"] = 0
-    if "EvaluationLevel" in data:
+    if data.get("EvaluationLevel") is not None:
         import capo_glue.types.statistic_evaluation_level
 
         out["evaluation_level"] = (
@@ -143,7 +151,7 @@ def deserialize_aws_json_1_1(data: dict) -> StatisticSummary:
                 data["EvaluationLevel"]
             )
         )
-    if "ColumnsReferenced" in data:
+    if data.get("ColumnsReferenced") is not None:
         import capo_glue.types.column_name_list
 
         out["columns_referenced"] = (
@@ -151,7 +159,7 @@ def deserialize_aws_json_1_1(data: dict) -> StatisticSummary:
                 data["ColumnsReferenced"]
             )
         )
-    if "ReferencedDatasets" in data:
+    if data.get("ReferencedDatasets") is not None:
         import capo_glue.types.reference_datasets_list
 
         out["referenced_datasets"] = (
@@ -159,7 +167,7 @@ def deserialize_aws_json_1_1(data: dict) -> StatisticSummary:
                 data["ReferencedDatasets"]
             )
         )
-    if "StatisticProperties" in data:
+    if data.get("StatisticProperties") is not None:
         import capo_glue.types.statistic_properties_map
 
         out["statistic_properties"] = (
@@ -167,13 +175,13 @@ def deserialize_aws_json_1_1(data: dict) -> StatisticSummary:
                 data["StatisticProperties"]
             )
         )
-    if "RecordedOn" in data:
+    if data.get("RecordedOn") is not None:
         import capo_glue.types.timestamp
 
         out["recorded_on"] = capo_glue.types.timestamp.deserialize_aws_json_1_1(
             data["RecordedOn"]
         )
-    if "InclusionAnnotation" in data:
+    if data.get("InclusionAnnotation") is not None:
         import capo_glue.types.timestamped_inclusion_annotation
 
         out["inclusion_annotation"] = (

@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> AnalyticsSessionMetrics:
 
     out: AnalyticsSessionMetrics = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_lex_models_v2.types.analytics_session_metric.deserialize_json(item)
         )

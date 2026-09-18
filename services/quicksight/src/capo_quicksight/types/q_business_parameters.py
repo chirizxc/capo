@@ -24,7 +24,7 @@ def serialize_json(value: QBusinessParameters) -> dict:
 
 def deserialize_json(data: dict) -> QBusinessParameters:
     out: QBusinessParameters = {}  # type: ignore[typeddict-item]
-    if "ApplicationArn" in data:
+    if data.get("ApplicationArn") is not None:
         out["application_arn"] = data["ApplicationArn"]
     else:
         raise DeserializationError("QBusinessParameters.application_arn required")

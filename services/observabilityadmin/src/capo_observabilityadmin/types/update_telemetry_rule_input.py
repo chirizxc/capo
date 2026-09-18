@@ -32,11 +32,11 @@ def serialize_json(value: UpdateTelemetryRuleInput) -> dict:
 
 def deserialize_json(data: dict) -> UpdateTelemetryRuleInput:
     out: UpdateTelemetryRuleInput = {}  # type: ignore[typeddict-item]
-    if "RuleIdentifier" in data:
+    if data.get("RuleIdentifier") is not None:
         out["rule_identifier"] = data["RuleIdentifier"]
     else:
         raise DeserializationError("UpdateTelemetryRuleInput.rule_identifier required")
-    if "Rule" in data:
+    if data.get("Rule") is not None:
         import capo_observabilityadmin.types.telemetry_rule
 
         out["rule"] = capo_observabilityadmin.types.telemetry_rule.deserialize_json(

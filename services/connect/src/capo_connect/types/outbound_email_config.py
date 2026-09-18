@@ -25,6 +25,6 @@ def serialize_json(value: OutboundEmailConfig) -> dict:
 
 def deserialize_json(data: dict) -> OutboundEmailConfig:
     out: OutboundEmailConfig = {}  # type: ignore[typeddict-item]
-    if "OutboundEmailAddressId" in data:
+    if data.get("OutboundEmailAddressId") is not None:
         out["outbound_email_address_id"] = data["OutboundEmailAddressId"]
     return out

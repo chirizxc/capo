@@ -48,7 +48,7 @@ def deserialize_aws_json_1_1(
     data: dict,
 ) -> BatchDisassociateApprovalRuleTemplateFromRepositoriesOutput:
     out: BatchDisassociateApprovalRuleTemplateFromRepositoriesOutput = {}  # type: ignore[typeddict-item]
-    if "disassociatedRepositoryNames" in data:
+    if data.get("disassociatedRepositoryNames") is not None:
         import capo_codecommit.types.repository_name_list
 
         out["disassociated_repository_names"] = (
@@ -60,7 +60,7 @@ def deserialize_aws_json_1_1(
         raise DeserializationError(
             "BatchDisassociateApprovalRuleTemplateFromRepositoriesOutput.disassociated_repository_names required"
         )
-    if "errors" in data:
+    if data.get("errors") is not None:
         import capo_codecommit.types.batch_disassociate_approval_rule_template_from_repositories_errors_list
 
         out["errors"] = (

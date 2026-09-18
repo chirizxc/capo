@@ -32,13 +32,13 @@ def serialize_json(value: ResourcesAffected) -> dict:
 
 def deserialize_json(data: dict) -> ResourcesAffected:
     out: ResourcesAffected = {}  # type: ignore[typeddict-item]
-    if "s3Bucket" in data:
+    if data.get("s3Bucket") is not None:
         import capo_macie2.types.s3_bucket
 
         out["s3_bucket"] = capo_macie2.types.s3_bucket.deserialize_json(
             data["s3Bucket"]
         )
-    if "s3Object" in data:
+    if data.get("s3Object") is not None:
         import capo_macie2.types.s3_object
 
         out["s3_object"] = capo_macie2.types.s3_object.deserialize_json(

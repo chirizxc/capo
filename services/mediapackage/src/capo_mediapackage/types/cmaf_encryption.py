@@ -56,9 +56,9 @@ def serialize_json(value: CmafEncryption) -> dict:
 
 def deserialize_json(data: dict) -> CmafEncryption:
     out: CmafEncryption = {}  # type: ignore[typeddict-item]
-    if "constantInitializationVector" in data:
+    if data.get("constantInitializationVector") is not None:
         out["constant_initialization_vector"] = data["constantInitializationVector"]
-    if "encryptionMethod" in data:
+    if data.get("encryptionMethod") is not None:
         import capo_mediapackage.types.cmaf_encryption_method
 
         out["encryption_method"] = (
@@ -66,9 +66,9 @@ def deserialize_json(data: dict) -> CmafEncryption:
                 data["encryptionMethod"]
             )
         )
-    if "keyRotationIntervalSeconds" in data:
+    if data.get("keyRotationIntervalSeconds") is not None:
         out["key_rotation_interval_seconds"] = data["keyRotationIntervalSeconds"]
-    if "spekeKeyProvider" in data:
+    if data.get("spekeKeyProvider") is not None:
         import capo_mediapackage.types.speke_key_provider
 
         out["speke_key_provider"] = (

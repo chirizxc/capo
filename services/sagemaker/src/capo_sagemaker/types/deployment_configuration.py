@@ -51,7 +51,7 @@ def serialize_aws_json_1_1(value: DeploymentConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeploymentConfiguration:
     out: DeploymentConfiguration = {}  # type: ignore[typeddict-item]
-    if "RollingUpdatePolicy" in data:
+    if data.get("RollingUpdatePolicy") is not None:
         import capo_sagemaker.types.rolling_deployment_policy
 
         out["rolling_update_policy"] = (
@@ -59,9 +59,9 @@ def deserialize_aws_json_1_1(data: dict) -> DeploymentConfiguration:
                 data["RollingUpdatePolicy"]
             )
         )
-    if "WaitIntervalInSeconds" in data:
+    if data.get("WaitIntervalInSeconds") is not None:
         out["wait_interval_in_seconds"] = data["WaitIntervalInSeconds"]
-    if "AutoRollbackConfiguration" in data:
+    if data.get("AutoRollbackConfiguration") is not None:
         import capo_sagemaker.types.auto_rollback_alarms
 
         out["auto_rollback_configuration"] = (

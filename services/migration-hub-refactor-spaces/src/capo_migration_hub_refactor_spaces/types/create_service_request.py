@@ -92,19 +92,19 @@ def serialize_json(value: CreateServiceRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateServiceRequest:
     out: CreateServiceRequest = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("CreateServiceRequest.name required")
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "VpcId" in data:
+    if data.get("VpcId") is not None:
         out["vpc_id"] = data["VpcId"]
-    if "EndpointType" in data:
+    if data.get("EndpointType") is not None:
         out["endpoint_type"] = data["EndpointType"]
     else:
         raise DeserializationError("CreateServiceRequest.endpoint_type required")
-    if "UrlEndpoint" in data:
+    if data.get("UrlEndpoint") is not None:
         import capo_migration_hub_refactor_spaces.types.url_endpoint_input
 
         out["url_endpoint"] = (
@@ -112,7 +112,7 @@ def deserialize_json(data: dict) -> CreateServiceRequest:
                 data["UrlEndpoint"]
             )
         )
-    if "LambdaEndpoint" in data:
+    if data.get("LambdaEndpoint") is not None:
         import capo_migration_hub_refactor_spaces.types.lambda_endpoint_input
 
         out["lambda_endpoint"] = (
@@ -120,12 +120,12 @@ def deserialize_json(data: dict) -> CreateServiceRequest:
                 data["LambdaEndpoint"]
             )
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_migration_hub_refactor_spaces.types.tag_map
 
         out["tags"] = capo_migration_hub_refactor_spaces.types.tag_map.deserialize_json(
             data["Tags"]
         )
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
     return out

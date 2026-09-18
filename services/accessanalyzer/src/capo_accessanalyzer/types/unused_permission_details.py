@@ -43,17 +43,17 @@ def serialize_json(value: UnusedPermissionDetails) -> dict:
 
 def deserialize_json(data: dict) -> UnusedPermissionDetails:
     out: UnusedPermissionDetails = {}  # type: ignore[typeddict-item]
-    if "actions" in data:
+    if data.get("actions") is not None:
         import capo_accessanalyzer.types.unused_action_list
 
         out["actions"] = capo_accessanalyzer.types.unused_action_list.deserialize_json(
             data["actions"]
         )
-    if "serviceNamespace" in data:
+    if data.get("serviceNamespace") is not None:
         out["service_namespace"] = data["serviceNamespace"]
     else:
         raise DeserializationError("UnusedPermissionDetails.service_namespace required")
-    if "lastAccessed" in data:
+    if data.get("lastAccessed") is not None:
         import capo_accessanalyzer.types.timestamp
 
         out["last_accessed"] = capo_accessanalyzer.types.timestamp.deserialize_json(

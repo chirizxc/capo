@@ -27,11 +27,11 @@ def serialize_aws_json_1_1(value: DomainValidationOption) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DomainValidationOption:
     out: DomainValidationOption = {}  # type: ignore[typeddict-item]
-    if "DomainName" in data:
+    if data.get("DomainName") is not None:
         out["domain_name"] = data["DomainName"]
     else:
         raise DeserializationError("DomainValidationOption.domain_name required")
-    if "ValidationDomain" in data:
+    if data.get("ValidationDomain") is not None:
         out["validation_domain"] = data["ValidationDomain"]
     else:
         raise DeserializationError("DomainValidationOption.validation_domain required")

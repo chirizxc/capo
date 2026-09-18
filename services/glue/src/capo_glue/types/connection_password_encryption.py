@@ -29,12 +29,12 @@ def serialize_aws_json_1_1(value: ConnectionPasswordEncryption) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ConnectionPasswordEncryption:
     out: ConnectionPasswordEncryption = {}  # type: ignore[typeddict-item]
-    if "ReturnConnectionPasswordEncrypted" in data:
+    if data.get("ReturnConnectionPasswordEncrypted") is not None:
         out["return_connection_password_encrypted"] = data[
             "ReturnConnectionPasswordEncrypted"
         ]
     else:
         out["return_connection_password_encrypted"] = False
-    if "AwsKmsKeyId" in data:
+    if data.get("AwsKmsKeyId") is not None:
         out["aws_kms_key_id"] = data["AwsKmsKeyId"]
     return out

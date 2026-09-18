@@ -33,10 +33,10 @@ def serialize_json(value: ListTagsForStreamInput) -> dict:
 
 def deserialize_json(data: dict) -> ListTagsForStreamInput:
     out: ListTagsForStreamInput = {}  # type: ignore[typeddict-item]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "StreamARN" in data:
+    if data.get("StreamARN") is not None:
         out["stream_arn"] = data["StreamARN"]
-    if "StreamName" in data:
+    if data.get("StreamName") is not None:
         out["stream_name"] = data["StreamName"]
     return out

@@ -37,7 +37,7 @@ def serialize_aws_json_1_0(value: ListWorkspaceInstancesResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ListWorkspaceInstancesResponse:
     out: ListWorkspaceInstancesResponse = {}  # type: ignore[typeddict-item]
-    if "WorkspaceInstances" in data:
+    if data.get("WorkspaceInstances") is not None:
         import capo_workspaces_instances.types.workspace_instances
 
         out["workspace_instances"] = (
@@ -49,6 +49,6 @@ def deserialize_aws_json_1_0(data: dict) -> ListWorkspaceInstancesResponse:
         raise DeserializationError(
             "ListWorkspaceInstancesResponse.workspace_instances required"
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

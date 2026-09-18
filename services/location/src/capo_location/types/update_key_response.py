@@ -36,15 +36,15 @@ def serialize_json(value: UpdateKeyResponse) -> dict:
 
 def deserialize_json(data: dict) -> UpdateKeyResponse:
     out: UpdateKeyResponse = {}  # type: ignore[typeddict-item]
-    if "KeyArn" in data:
+    if data.get("KeyArn") is not None:
         out["key_arn"] = data["KeyArn"]
     else:
         raise DeserializationError("UpdateKeyResponse.key_arn required")
-    if "KeyName" in data:
+    if data.get("KeyName") is not None:
         out["key_name"] = data["KeyName"]
     else:
         raise DeserializationError("UpdateKeyResponse.key_name required")
-    if "UpdateTime" in data:
+    if data.get("UpdateTime") is not None:
         import capo_location.types.timestamp
 
         out["update_time"] = capo_location.types.timestamp.deserialize_json(

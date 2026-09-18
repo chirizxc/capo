@@ -26,7 +26,7 @@ def serialize_json(value: BatchPutPropertyErrorEntry) -> dict:
 
 def deserialize_json(data: dict) -> BatchPutPropertyErrorEntry:
     out: BatchPutPropertyErrorEntry = {}  # type: ignore[typeddict-item]
-    if "errors" in data:
+    if data.get("errors") is not None:
         import capo_iottwinmaker.types.errors
 
         out["errors"] = capo_iottwinmaker.types.errors.deserialize_json(data["errors"])

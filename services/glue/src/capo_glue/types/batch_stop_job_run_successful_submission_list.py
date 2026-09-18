@@ -29,6 +29,8 @@ def deserialize_aws_json_1_1(data: list) -> BatchStopJobRunSuccessfulSubmissionL
 
     out: BatchStopJobRunSuccessfulSubmissionList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_glue.types.batch_stop_job_run_successful_submission.deserialize_aws_json_1_1(
                 item

@@ -43,7 +43,7 @@ def serialize_json(value: UpdateUserNotificationStatusRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateUserNotificationStatusRequest:
     out: UpdateUserNotificationStatusRequest = {}  # type: ignore[typeddict-item]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_connect.types.notification_status
 
         out["status"] = capo_connect.types.notification_status.deserialize_json(

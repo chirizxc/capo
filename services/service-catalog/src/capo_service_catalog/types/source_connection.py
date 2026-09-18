@@ -39,13 +39,13 @@ def serialize_aws_json_1_1(value: SourceConnection) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SourceConnection:
     out: SourceConnection = {}  # type: ignore[typeddict-item]
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_service_catalog.types.source_type
 
         out["type"] = capo_service_catalog.types.source_type.deserialize_aws_json_1_1(
             data["Type"]
         )
-    if "ConnectionParameters" in data:
+    if data.get("ConnectionParameters") is not None:
         import capo_service_catalog.types.source_connection_parameters
 
         out["connection_parameters"] = (

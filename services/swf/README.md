@@ -13,9 +13,9 @@ from capo_swf import AsyncSWFClient
 
 
 async def main():
-    async with AsyncSWFClient() as s3:
+    async with AsyncSWFClient() as swf:
         # Example: call the count_closed_workflow_executions operation
-        response = await s3.count_closed_workflow_executions()
+        response = await swf.count_closed_workflow_executions()
         print(response["count"])
 ```
 
@@ -28,9 +28,9 @@ from capo_swf import AsyncSWFClient
 
 
 async def main():
-    async with AsyncSWFClient() as s3:
+    async with AsyncSWFClient() as swf:
         # Example: paginate over get_workflow_execution_history
-        async for item in s3.iter_get_workflow_execution_history():
+        async for item in swf.iter_get_workflow_execution_history():
             print(item)
 ```
 
@@ -44,9 +44,9 @@ from capo_swf.error import OperationNotPermittedFault
 
 
 async def main():
-    async with AsyncSWFClient() as s3:
+    async with AsyncSWFClient() as swf:
         try:
-            await s3.count_closed_workflow_executions()
+            await swf.count_closed_workflow_executions()
         except OperationNotPermittedFault as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -63,13 +63,13 @@ from capo_swf import AsyncSWFClient
 
 
 async def main():
-    async with AsyncSWFClient() as s3:
+    async with AsyncSWFClient() as swf:
         # Default: 3 attempts for every operation
-        response = await s3.count_closed_workflow_executions()
+        response = await swf.count_closed_workflow_executions()
 
         # Override per operation
-        response = await s3.count_closed_workflow_executions(config_overrides={"retry_max_attempts": 5})
+        response = await swf.count_closed_workflow_executions(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.count_closed_workflow_executions(config_overrides={"retry_max_attempts": 1})
+        response = await swf.count_closed_workflow_executions(config_overrides={"retry_max_attempts": 1})
 ```

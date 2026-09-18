@@ -13,9 +13,9 @@ from capo_cloudcontrol import AsyncCloudControlClient
 
 
 async def main():
-    async with AsyncCloudControlClient() as s3:
+    async with AsyncCloudControlClient() as cloud_control:
         # Example: call the cancel_resource_request operation
-        response = await s3.cancel_resource_request()
+        response = await cloud_control.cancel_resource_request()
         print(response["progress_event"])
 ```
 
@@ -28,9 +28,9 @@ from capo_cloudcontrol import AsyncCloudControlClient
 
 
 async def main():
-    async with AsyncCloudControlClient() as s3:
+    async with AsyncCloudControlClient() as cloud_control:
         # Example: paginate over list_resource_requests
-        async for item in s3.iter_list_resource_requests():
+        async for item in cloud_control.iter_list_resource_requests():
             print(item)
 ```
 
@@ -44,9 +44,9 @@ from capo_cloudcontrol.error import ConcurrentModificationException
 
 
 async def main():
-    async with AsyncCloudControlClient() as s3:
+    async with AsyncCloudControlClient() as cloud_control:
         try:
-            await s3.cancel_resource_request()
+            await cloud_control.cancel_resource_request()
         except ConcurrentModificationException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -63,13 +63,13 @@ from capo_cloudcontrol import AsyncCloudControlClient
 
 
 async def main():
-    async with AsyncCloudControlClient() as s3:
+    async with AsyncCloudControlClient() as cloud_control:
         # Default: 3 attempts for every operation
-        response = await s3.cancel_resource_request()
+        response = await cloud_control.cancel_resource_request()
 
         # Override per operation
-        response = await s3.cancel_resource_request(config_overrides={"retry_max_attempts": 5})
+        response = await cloud_control.cancel_resource_request(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.cancel_resource_request(config_overrides={"retry_max_attempts": 1})
+        response = await cloud_control.cancel_resource_request(config_overrides={"retry_max_attempts": 1})
 ```

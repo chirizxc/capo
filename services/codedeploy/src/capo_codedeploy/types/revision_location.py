@@ -75,7 +75,7 @@ def serialize_aws_json_1_1(value: RevisionLocation) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RevisionLocation:
     out: RevisionLocation = {}  # type: ignore[typeddict-item]
-    if "revisionType" in data:
+    if data.get("revisionType") is not None:
         import capo_codedeploy.types.revision_location_type
 
         out["revision_type"] = (
@@ -83,13 +83,13 @@ def deserialize_aws_json_1_1(data: dict) -> RevisionLocation:
                 data["revisionType"]
             )
         )
-    if "s3Location" in data:
+    if data.get("s3Location") is not None:
         import capo_codedeploy.types.s3_location
 
         out["s3_location"] = capo_codedeploy.types.s3_location.deserialize_aws_json_1_1(
             data["s3Location"]
         )
-    if "gitHubLocation" in data:
+    if data.get("gitHubLocation") is not None:
         import capo_codedeploy.types.git_hub_location
 
         out["git_hub_location"] = (
@@ -97,13 +97,13 @@ def deserialize_aws_json_1_1(data: dict) -> RevisionLocation:
                 data["gitHubLocation"]
             )
         )
-    if "string" in data:
+    if data.get("string") is not None:
         import capo_codedeploy.types.raw_string
 
         out["string"] = capo_codedeploy.types.raw_string.deserialize_aws_json_1_1(
             data["string"]
         )
-    if "appSpecContent" in data:
+    if data.get("appSpecContent") is not None:
         import capo_codedeploy.types.app_spec_content
 
         out["app_spec_content"] = (

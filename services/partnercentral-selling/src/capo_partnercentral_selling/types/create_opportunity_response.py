@@ -41,13 +41,13 @@ def serialize_aws_json_1_0(value: CreateOpportunityResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CreateOpportunityResponse:
     out: CreateOpportunityResponse = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
     else:
         raise DeserializationError("CreateOpportunityResponse.id required")
-    if "PartnerOpportunityIdentifier" in data:
+    if data.get("PartnerOpportunityIdentifier") is not None:
         out["partner_opportunity_identifier"] = data["PartnerOpportunityIdentifier"]
-    if "LastModifiedDate" in data:
+    if data.get("LastModifiedDate") is not None:
         import capo_partnercentral_selling.types.date_time
 
         out["last_modified_date"] = (

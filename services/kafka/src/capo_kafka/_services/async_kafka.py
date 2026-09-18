@@ -328,8 +328,9 @@ class AsyncKafkaClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kafka.types.batch_associate_scram_secret_request.BatchAssociateScramSecretRequest = {}  # type: ignore[typeddict-item]
-        input_["cluster_arn"] = cluster_arn
+        input_: capo_kafka.types.batch_associate_scram_secret_request.BatchAssociateScramSecretRequest = {
+            "cluster_arn": cluster_arn
+        }
         if secret_arn_list is not None:
             input_["secret_arn_list"] = secret_arn_list
 
@@ -338,6 +339,7 @@ class AsyncKafkaClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def batch_disassociate_scram_secret(
@@ -382,8 +384,9 @@ class AsyncKafkaClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kafka.types.batch_disassociate_scram_secret_request.BatchDisassociateScramSecretRequest = {}  # type: ignore[typeddict-item]
-        input_["cluster_arn"] = cluster_arn
+        input_: capo_kafka.types.batch_disassociate_scram_secret_request.BatchDisassociateScramSecretRequest = {
+            "cluster_arn": cluster_arn
+        }
         if secret_arn_list is not None:
             input_["secret_arn_list"] = secret_arn_list
 
@@ -392,6 +395,7 @@ class AsyncKafkaClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_cluster(
@@ -473,7 +477,7 @@ class AsyncKafkaClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kafka.types.create_cluster_request.CreateClusterRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_kafka.types.create_cluster_request.CreateClusterRequest = {}
         if broker_node_group_info is not None:
             input_["broker_node_group_info"] = broker_node_group_info
         if rebalancing is not None:
@@ -506,6 +510,7 @@ class AsyncKafkaClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_cluster_v2(
@@ -558,7 +563,7 @@ class AsyncKafkaClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kafka.types.create_cluster_v2_request.CreateClusterV2Request = {}  # type: ignore[typeddict-item]
+        input_: capo_kafka.types.create_cluster_v2_request.CreateClusterV2Request = {}
         if cluster_name is not None:
             input_["cluster_name"] = cluster_name
         if tags is not None:
@@ -573,6 +578,7 @@ class AsyncKafkaClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_configuration(
@@ -621,7 +627,7 @@ class AsyncKafkaClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kafka.types.create_configuration_request.CreateConfigurationRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_kafka.types.create_configuration_request.CreateConfigurationRequest = {}
         if description is not None:
             input_["description"] = description
         if kafka_versions is not None:
@@ -636,6 +642,7 @@ class AsyncKafkaClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_replicator(
@@ -699,7 +706,7 @@ class AsyncKafkaClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kafka.types.create_replicator_request.CreateReplicatorRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_kafka.types.create_replicator_request.CreateReplicatorRequest = {}
         if description is not None:
             input_["description"] = description
         if kafka_clusters is not None:
@@ -720,6 +727,7 @@ class AsyncKafkaClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_topic(
@@ -781,8 +789,9 @@ class AsyncKafkaClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kafka.types.create_topic_request.CreateTopicRequest = {}  # type: ignore[typeddict-item]
-        input_["cluster_arn"] = cluster_arn
+        input_: capo_kafka.types.create_topic_request.CreateTopicRequest = {
+            "cluster_arn": cluster_arn
+        }
         if topic_name is not None:
             input_["topic_name"] = topic_name
         if partition_count is not None:
@@ -797,6 +806,7 @@ class AsyncKafkaClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_vpc_connection(
@@ -850,7 +860,7 @@ class AsyncKafkaClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kafka.types.create_vpc_connection_request.CreateVpcConnectionRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_kafka.types.create_vpc_connection_request.CreateVpcConnectionRequest = {}
         if target_cluster_arn is not None:
             input_["target_cluster_arn"] = target_cluster_arn
         if authentication is not None:
@@ -869,6 +879,7 @@ class AsyncKafkaClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_cluster(
@@ -908,8 +919,9 @@ class AsyncKafkaClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kafka.types.delete_cluster_request.DeleteClusterRequest = {}  # type: ignore[typeddict-item]
-        input_["cluster_arn"] = cluster_arn
+        input_: capo_kafka.types.delete_cluster_request.DeleteClusterRequest = {
+            "cluster_arn": cluster_arn
+        }
         if current_version is not None:
             input_["current_version"] = current_version
 
@@ -918,6 +930,7 @@ class AsyncKafkaClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_cluster_policy(
@@ -955,14 +968,16 @@ class AsyncKafkaClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kafka.types.delete_cluster_policy_request.DeleteClusterPolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["cluster_arn"] = cluster_arn
+        input_: capo_kafka.types.delete_cluster_policy_request.DeleteClusterPolicyRequest = {
+            "cluster_arn": cluster_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_configuration(
@@ -1000,14 +1015,16 @@ class AsyncKafkaClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kafka.types.delete_configuration_request.DeleteConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
+        input_: capo_kafka.types.delete_configuration_request.DeleteConfigurationRequest = {
+            "arn": arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_replicator(
@@ -1050,16 +1067,18 @@ class AsyncKafkaClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kafka.types.delete_replicator_request.DeleteReplicatorRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_kafka.types.delete_replicator_request.DeleteReplicatorRequest = {
+            "replicator_arn": replicator_arn
+        }
         if current_version is not None:
             input_["current_version"] = current_version
-        input_["replicator_arn"] = replicator_arn
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_topic(
@@ -1107,15 +1126,17 @@ class AsyncKafkaClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kafka.types.delete_topic_request.DeleteTopicRequest = {}  # type: ignore[typeddict-item]
-        input_["cluster_arn"] = cluster_arn
-        input_["topic_name"] = topic_name
+        input_: capo_kafka.types.delete_topic_request.DeleteTopicRequest = {
+            "cluster_arn": cluster_arn,
+            "topic_name": topic_name,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_vpc_connection(
@@ -1153,14 +1174,16 @@ class AsyncKafkaClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kafka.types.delete_vpc_connection_request.DeleteVpcConnectionRequest = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
+        input_: capo_kafka.types.delete_vpc_connection_request.DeleteVpcConnectionRequest = {
+            "arn": arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_cluster(
@@ -1199,14 +1222,16 @@ class AsyncKafkaClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kafka.types.describe_cluster_request.DescribeClusterRequest = {}  # type: ignore[typeddict-item]
-        input_["cluster_arn"] = cluster_arn
+        input_: capo_kafka.types.describe_cluster_request.DescribeClusterRequest = {
+            "cluster_arn": cluster_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_cluster_operation(
@@ -1245,14 +1270,16 @@ class AsyncKafkaClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kafka.types.describe_cluster_operation_request.DescribeClusterOperationRequest = {}  # type: ignore[typeddict-item]
-        input_["cluster_operation_arn"] = cluster_operation_arn
+        input_: capo_kafka.types.describe_cluster_operation_request.DescribeClusterOperationRequest = {
+            "cluster_operation_arn": cluster_operation_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_cluster_operation_v2(
@@ -1293,14 +1320,16 @@ class AsyncKafkaClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kafka.types.describe_cluster_operation_v2_request.DescribeClusterOperationV2Request = {}  # type: ignore[typeddict-item]
-        input_["cluster_operation_arn"] = cluster_operation_arn
+        input_: capo_kafka.types.describe_cluster_operation_v2_request.DescribeClusterOperationV2Request = {
+            "cluster_operation_arn": cluster_operation_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_cluster_v2(
@@ -1339,14 +1368,16 @@ class AsyncKafkaClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kafka.types.describe_cluster_v2_request.DescribeClusterV2Request = {}  # type: ignore[typeddict-item]
-        input_["cluster_arn"] = cluster_arn
+        input_: capo_kafka.types.describe_cluster_v2_request.DescribeClusterV2Request = {
+            "cluster_arn": cluster_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_configuration(
@@ -1388,14 +1419,16 @@ class AsyncKafkaClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kafka.types.describe_configuration_request.DescribeConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
+        input_: capo_kafka.types.describe_configuration_request.DescribeConfigurationRequest = {
+            "arn": arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_configuration_revision(
@@ -1437,15 +1470,17 @@ class AsyncKafkaClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kafka.types.describe_configuration_revision_request.DescribeConfigurationRevisionRequest = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
-        input_["revision"] = revision
+        input_: capo_kafka.types.describe_configuration_revision_request.DescribeConfigurationRevisionRequest = {
+            "arn": arn,
+            "revision": revision,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_replicator(
@@ -1486,14 +1521,16 @@ class AsyncKafkaClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kafka.types.describe_replicator_request.DescribeReplicatorRequest = {}  # type: ignore[typeddict-item]
-        input_["replicator_arn"] = replicator_arn
+        input_: capo_kafka.types.describe_replicator_request.DescribeReplicatorRequest = {
+            "replicator_arn": replicator_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_topic(
@@ -1534,15 +1571,17 @@ class AsyncKafkaClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kafka.types.describe_topic_request.DescribeTopicRequest = {}  # type: ignore[typeddict-item]
-        input_["cluster_arn"] = cluster_arn
-        input_["topic_name"] = topic_name
+        input_: capo_kafka.types.describe_topic_request.DescribeTopicRequest = {
+            "cluster_arn": cluster_arn,
+            "topic_name": topic_name,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_topic_partitions(
@@ -1587,9 +1626,10 @@ class AsyncKafkaClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kafka.types.describe_topic_partitions_request.DescribeTopicPartitionsRequest = {}  # type: ignore[typeddict-item]
-        input_["cluster_arn"] = cluster_arn
-        input_["topic_name"] = topic_name
+        input_: capo_kafka.types.describe_topic_partitions_request.DescribeTopicPartitionsRequest = {
+            "cluster_arn": cluster_arn,
+            "topic_name": topic_name,
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -1600,6 +1640,7 @@ class AsyncKafkaClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_describe_topic_partitions(
@@ -1664,14 +1705,16 @@ class AsyncKafkaClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kafka.types.describe_vpc_connection_request.DescribeVpcConnectionRequest = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
+        input_: capo_kafka.types.describe_vpc_connection_request.DescribeVpcConnectionRequest = {
+            "arn": arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_bootstrap_brokers(
@@ -1710,14 +1753,16 @@ class AsyncKafkaClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kafka.types.get_bootstrap_brokers_request.GetBootstrapBrokersRequest = {}  # type: ignore[typeddict-item]
-        input_["cluster_arn"] = cluster_arn
+        input_: capo_kafka.types.get_bootstrap_brokers_request.GetBootstrapBrokersRequest = {
+            "cluster_arn": cluster_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_cluster_policy(
@@ -1755,14 +1800,16 @@ class AsyncKafkaClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kafka.types.get_cluster_policy_request.GetClusterPolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["cluster_arn"] = cluster_arn
+        input_: capo_kafka.types.get_cluster_policy_request.GetClusterPolicyRequest = {
+            "cluster_arn": cluster_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_compatible_kafka_versions(
@@ -1803,7 +1850,7 @@ class AsyncKafkaClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kafka.types.get_compatible_kafka_versions_request.GetCompatibleKafkaVersionsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_kafka.types.get_compatible_kafka_versions_request.GetCompatibleKafkaVersionsRequest = {}
         if cluster_arn is not None:
             input_["cluster_arn"] = cluster_arn
 
@@ -1812,6 +1859,7 @@ class AsyncKafkaClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_client_vpc_connections(
@@ -1854,8 +1902,9 @@ class AsyncKafkaClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kafka.types.list_client_vpc_connections_request.ListClientVpcConnectionsRequest = {}  # type: ignore[typeddict-item]
-        input_["cluster_arn"] = cluster_arn
+        input_: capo_kafka.types.list_client_vpc_connections_request.ListClientVpcConnectionsRequest = {
+            "cluster_arn": cluster_arn
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -1866,6 +1915,7 @@ class AsyncKafkaClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_client_vpc_connections(
@@ -1930,8 +1980,9 @@ class AsyncKafkaClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kafka.types.list_cluster_operations_request.ListClusterOperationsRequest = {}  # type: ignore[typeddict-item]
-        input_["cluster_arn"] = cluster_arn
+        input_: capo_kafka.types.list_cluster_operations_request.ListClusterOperationsRequest = {
+            "cluster_arn": cluster_arn
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -1942,6 +1993,7 @@ class AsyncKafkaClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_cluster_operations(
@@ -2009,8 +2061,9 @@ class AsyncKafkaClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kafka.types.list_cluster_operations_v2_request.ListClusterOperationsV2Request = {}  # type: ignore[typeddict-item]
-        input_["cluster_arn"] = cluster_arn
+        input_: capo_kafka.types.list_cluster_operations_v2_request.ListClusterOperationsV2Request = {
+            "cluster_arn": cluster_arn
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -2021,6 +2074,7 @@ class AsyncKafkaClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_cluster_operations_v2(
@@ -2085,7 +2139,7 @@ class AsyncKafkaClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kafka.types.list_clusters_request.ListClustersRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_kafka.types.list_clusters_request.ListClustersRequest = {}
         if cluster_name_filter is not None:
             input_["cluster_name_filter"] = cluster_name_filter
         if max_results is not None:
@@ -2098,6 +2152,7 @@ class AsyncKafkaClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_clusters(
@@ -2164,7 +2219,7 @@ class AsyncKafkaClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kafka.types.list_clusters_v2_request.ListClustersV2Request = {}  # type: ignore[typeddict-item]
+        input_: capo_kafka.types.list_clusters_v2_request.ListClustersV2Request = {}
         if cluster_name_filter is not None:
             input_["cluster_name_filter"] = cluster_name_filter
         if cluster_type_filter is not None:
@@ -2179,6 +2234,7 @@ class AsyncKafkaClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_clusters_v2(
@@ -2247,8 +2303,9 @@ class AsyncKafkaClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kafka.types.list_configuration_revisions_request.ListConfigurationRevisionsRequest = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
+        input_: capo_kafka.types.list_configuration_revisions_request.ListConfigurationRevisionsRequest = {
+            "arn": arn
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -2259,6 +2316,7 @@ class AsyncKafkaClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_configuration_revisions(
@@ -2322,7 +2380,7 @@ class AsyncKafkaClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kafka.types.list_configurations_request.ListConfigurationsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_kafka.types.list_configurations_request.ListConfigurationsRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -2333,6 +2391,7 @@ class AsyncKafkaClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_configurations(
@@ -2393,7 +2452,7 @@ class AsyncKafkaClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kafka.types.list_kafka_versions_request.ListKafkaVersionsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_kafka.types.list_kafka_versions_request.ListKafkaVersionsRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -2404,6 +2463,7 @@ class AsyncKafkaClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_kafka_versions(
@@ -2466,8 +2526,9 @@ class AsyncKafkaClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kafka.types.list_nodes_request.ListNodesRequest = {}  # type: ignore[typeddict-item]
-        input_["cluster_arn"] = cluster_arn
+        input_: capo_kafka.types.list_nodes_request.ListNodesRequest = {
+            "cluster_arn": cluster_arn
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -2478,6 +2539,7 @@ class AsyncKafkaClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_nodes(
@@ -2545,7 +2607,7 @@ class AsyncKafkaClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kafka.types.list_replicators_request.ListReplicatorsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_kafka.types.list_replicators_request.ListReplicatorsRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -2558,6 +2620,7 @@ class AsyncKafkaClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_replicators(
@@ -2625,8 +2688,9 @@ class AsyncKafkaClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kafka.types.list_scram_secrets_request.ListScramSecretsRequest = {}  # type: ignore[typeddict-item]
-        input_["cluster_arn"] = cluster_arn
+        input_: capo_kafka.types.list_scram_secrets_request.ListScramSecretsRequest = {
+            "cluster_arn": cluster_arn
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -2637,6 +2701,7 @@ class AsyncKafkaClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_scram_secrets(
@@ -2696,14 +2761,16 @@ class AsyncKafkaClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kafka.types.list_tags_for_resource_request.ListTagsForResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_kafka.types.list_tags_for_resource_request.ListTagsForResourceRequest = {
+            "resource_arn": resource_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_topics(
@@ -2748,8 +2815,9 @@ class AsyncKafkaClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kafka.types.list_topics_request.ListTopicsRequest = {}  # type: ignore[typeddict-item]
-        input_["cluster_arn"] = cluster_arn
+        input_: capo_kafka.types.list_topics_request.ListTopicsRequest = {
+            "cluster_arn": cluster_arn
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -2762,6 +2830,7 @@ class AsyncKafkaClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_topics(
@@ -2827,7 +2896,7 @@ class AsyncKafkaClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kafka.types.list_vpc_connections_request.ListVpcConnectionsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_kafka.types.list_vpc_connections_request.ListVpcConnectionsRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -2838,6 +2907,7 @@ class AsyncKafkaClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_vpc_connections(
@@ -2899,8 +2969,9 @@ class AsyncKafkaClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kafka.types.put_cluster_policy_request.PutClusterPolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["cluster_arn"] = cluster_arn
+        input_: capo_kafka.types.put_cluster_policy_request.PutClusterPolicyRequest = {
+            "cluster_arn": cluster_arn
+        }
         if current_version is not None:
             input_["current_version"] = current_version
         if policy is not None:
@@ -2911,6 +2982,7 @@ class AsyncKafkaClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def reboot_broker(
@@ -2955,16 +3027,18 @@ class AsyncKafkaClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kafka.types.reboot_broker_request.RebootBrokerRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_kafka.types.reboot_broker_request.RebootBrokerRequest = {
+            "cluster_arn": cluster_arn
+        }
         if broker_ids is not None:
             input_["broker_ids"] = broker_ids
-        input_["cluster_arn"] = cluster_arn
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def reject_client_vpc_connection(
@@ -3005,8 +3079,9 @@ class AsyncKafkaClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kafka.types.reject_client_vpc_connection_request.RejectClientVpcConnectionRequest = {}  # type: ignore[typeddict-item]
-        input_["cluster_arn"] = cluster_arn
+        input_: capo_kafka.types.reject_client_vpc_connection_request.RejectClientVpcConnectionRequest = {
+            "cluster_arn": cluster_arn
+        }
         if vpc_connection_arn is not None:
             input_["vpc_connection_arn"] = vpc_connection_arn
 
@@ -3015,6 +3090,7 @@ class AsyncKafkaClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def tag_resource(
@@ -3051,8 +3127,9 @@ class AsyncKafkaClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kafka.types.tag_resource_request.TagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_kafka.types.tag_resource_request.TagResourceRequest = {
+            "resource_arn": resource_arn
+        }
         if tags is not None:
             input_["tags"] = tags
 
@@ -3061,6 +3138,7 @@ class AsyncKafkaClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def untag_resource(
@@ -3099,8 +3177,9 @@ class AsyncKafkaClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kafka.types.untag_resource_request.UntagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_kafka.types.untag_resource_request.UntagResourceRequest = {
+            "resource_arn": resource_arn
+        }
         if tag_keys is not None:
             input_["tag_keys"] = tag_keys
 
@@ -3109,6 +3188,7 @@ class AsyncKafkaClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_broker_count(
@@ -3153,8 +3233,9 @@ class AsyncKafkaClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kafka.types.update_broker_count_request.UpdateBrokerCountRequest = {}  # type: ignore[typeddict-item]
-        input_["cluster_arn"] = cluster_arn
+        input_: capo_kafka.types.update_broker_count_request.UpdateBrokerCountRequest = {
+            "cluster_arn": cluster_arn
+        }
         if current_version is not None:
             input_["current_version"] = current_version
         if target_number_of_broker_nodes is not None:
@@ -3165,6 +3246,7 @@ class AsyncKafkaClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_broker_storage(
@@ -3209,8 +3291,9 @@ class AsyncKafkaClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kafka.types.update_broker_storage_request.UpdateBrokerStorageRequest = {}  # type: ignore[typeddict-item]
-        input_["cluster_arn"] = cluster_arn
+        input_: capo_kafka.types.update_broker_storage_request.UpdateBrokerStorageRequest = {
+            "cluster_arn": cluster_arn
+        }
         if current_version is not None:
             input_["current_version"] = current_version
         if target_broker_ebs_volume_info is not None:
@@ -3221,6 +3304,7 @@ class AsyncKafkaClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_broker_type(
@@ -3265,8 +3349,9 @@ class AsyncKafkaClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kafka.types.update_broker_type_request.UpdateBrokerTypeRequest = {}  # type: ignore[typeddict-item]
-        input_["cluster_arn"] = cluster_arn
+        input_: capo_kafka.types.update_broker_type_request.UpdateBrokerTypeRequest = {
+            "cluster_arn": cluster_arn
+        }
         if current_version is not None:
             input_["current_version"] = current_version
         if target_instance_type is not None:
@@ -3277,6 +3362,7 @@ class AsyncKafkaClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_cluster_configuration(
@@ -3322,8 +3408,9 @@ class AsyncKafkaClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kafka.types.update_cluster_configuration_request.UpdateClusterConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["cluster_arn"] = cluster_arn
+        input_: capo_kafka.types.update_cluster_configuration_request.UpdateClusterConfigurationRequest = {
+            "cluster_arn": cluster_arn
+        }
         if configuration_info is not None:
             input_["configuration_info"] = configuration_info
         if current_version is not None:
@@ -3334,6 +3421,7 @@ class AsyncKafkaClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_cluster_kafka_version(
@@ -3382,8 +3470,9 @@ class AsyncKafkaClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kafka.types.update_cluster_kafka_version_request.UpdateClusterKafkaVersionRequest = {}  # type: ignore[typeddict-item]
-        input_["cluster_arn"] = cluster_arn
+        input_: capo_kafka.types.update_cluster_kafka_version_request.UpdateClusterKafkaVersionRequest = {
+            "cluster_arn": cluster_arn
+        }
         if configuration_info is not None:
             input_["configuration_info"] = configuration_info
         if current_version is not None:
@@ -3396,6 +3485,7 @@ class AsyncKafkaClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_configuration(
@@ -3439,8 +3529,9 @@ class AsyncKafkaClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kafka.types.update_configuration_request.UpdateConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
+        input_: capo_kafka.types.update_configuration_request.UpdateConfigurationRequest = {
+            "arn": arn
+        }
         if description is not None:
             input_["description"] = description
         if server_properties is not None:
@@ -3451,6 +3542,7 @@ class AsyncKafkaClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_connectivity(
@@ -3500,8 +3592,9 @@ class AsyncKafkaClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kafka.types.update_connectivity_request.UpdateConnectivityRequest = {}  # type: ignore[typeddict-item]
-        input_["cluster_arn"] = cluster_arn
+        input_: capo_kafka.types.update_connectivity_request.UpdateConnectivityRequest = {
+            "cluster_arn": cluster_arn
+        }
         if connectivity_info is not None:
             input_["connectivity_info"] = connectivity_info
         if current_version is not None:
@@ -3514,6 +3607,7 @@ class AsyncKafkaClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_monitoring(
@@ -3563,8 +3657,9 @@ class AsyncKafkaClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kafka.types.update_monitoring_request.UpdateMonitoringRequest = {}  # type: ignore[typeddict-item]
-        input_["cluster_arn"] = cluster_arn
+        input_: capo_kafka.types.update_monitoring_request.UpdateMonitoringRequest = {
+            "cluster_arn": cluster_arn
+        }
         if current_version is not None:
             input_["current_version"] = current_version
         if enhanced_monitoring is not None:
@@ -3579,6 +3674,7 @@ class AsyncKafkaClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_rebalancing(
@@ -3623,8 +3719,9 @@ class AsyncKafkaClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kafka.types.update_rebalancing_request.UpdateRebalancingRequest = {}  # type: ignore[typeddict-item]
-        input_["cluster_arn"] = cluster_arn
+        input_: capo_kafka.types.update_rebalancing_request.UpdateRebalancingRequest = {
+            "cluster_arn": cluster_arn
+        }
         if current_version is not None:
             input_["current_version"] = current_version
         if rebalancing is not None:
@@ -3635,6 +3732,7 @@ class AsyncKafkaClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_replication_info(
@@ -3695,12 +3793,13 @@ class AsyncKafkaClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kafka.types.update_replication_info_request.UpdateReplicationInfoRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_kafka.types.update_replication_info_request.UpdateReplicationInfoRequest = {
+            "replicator_arn": replicator_arn
+        }
         if consumer_group_replication is not None:
             input_["consumer_group_replication"] = consumer_group_replication
         if current_version is not None:
             input_["current_version"] = current_version
-        input_["replicator_arn"] = replicator_arn
         if source_kafka_cluster_arn is not None:
             input_["source_kafka_cluster_arn"] = source_kafka_cluster_arn
         if source_kafka_cluster_id is not None:
@@ -3719,6 +3818,7 @@ class AsyncKafkaClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_security(
@@ -3769,10 +3869,11 @@ class AsyncKafkaClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kafka.types.update_security_request.UpdateSecurityRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_kafka.types.update_security_request.UpdateSecurityRequest = {
+            "cluster_arn": cluster_arn
+        }
         if client_authentication is not None:
             input_["client_authentication"] = client_authentication
-        input_["cluster_arn"] = cluster_arn
         if current_version is not None:
             input_["current_version"] = current_version
         if encryption_info is not None:
@@ -3783,6 +3884,7 @@ class AsyncKafkaClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_storage(
@@ -3833,8 +3935,9 @@ class AsyncKafkaClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kafka.types.update_storage_request.UpdateStorageRequest = {}  # type: ignore[typeddict-item]
-        input_["cluster_arn"] = cluster_arn
+        input_: capo_kafka.types.update_storage_request.UpdateStorageRequest = {
+            "cluster_arn": cluster_arn
+        }
         if current_version is not None:
             input_["current_version"] = current_version
         if provisioned_throughput is not None:
@@ -3849,6 +3952,7 @@ class AsyncKafkaClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_topic(
@@ -3902,9 +4006,10 @@ class AsyncKafkaClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kafka.types.update_topic_request.UpdateTopicRequest = {}  # type: ignore[typeddict-item]
-        input_["cluster_arn"] = cluster_arn
-        input_["topic_name"] = topic_name
+        input_: capo_kafka.types.update_topic_request.UpdateTopicRequest = {
+            "cluster_arn": cluster_arn,
+            "topic_name": topic_name,
+        }
         if configs is not None:
             input_["configs"] = configs
         if partition_count is not None:
@@ -3915,6 +4020,7 @@ class AsyncKafkaClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def __aenter__(self) -> Self:

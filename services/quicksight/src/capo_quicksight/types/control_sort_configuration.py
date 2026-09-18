@@ -44,7 +44,7 @@ def serialize_json(value: ControlSortConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> ControlSortConfiguration:
     out: ControlSortConfiguration = {}  # type: ignore[typeddict-item]
-    if "SelectableValuesSort" in data:
+    if data.get("SelectableValuesSort") is not None:
         import capo_quicksight.types.selectable_values_sort
 
         out["selectable_values_sort"] = (
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> ControlSortConfiguration:
                 data["SelectableValuesSort"]
             )
         )
-    if "ControlColumnSort" in data:
+    if data.get("ControlColumnSort") is not None:
         import capo_quicksight.types.aggregation_sort_configuration
 
         out["control_column_sort"] = (

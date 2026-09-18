@@ -35,12 +35,12 @@ def serialize_json(value: SpliceInsertMessage) -> dict:
 
 def deserialize_json(data: dict) -> SpliceInsertMessage:
     out: SpliceInsertMessage = {}  # type: ignore[typeddict-item]
-    if "AvailNum" in data:
+    if data.get("AvailNum") is not None:
         out["avail_num"] = data["AvailNum"]
-    if "AvailsExpected" in data:
+    if data.get("AvailsExpected") is not None:
         out["avails_expected"] = data["AvailsExpected"]
-    if "SpliceEventId" in data:
+    if data.get("SpliceEventId") is not None:
         out["splice_event_id"] = data["SpliceEventId"]
-    if "UniqueProgramId" in data:
+    if data.get("UniqueProgramId") is not None:
         out["unique_program_id"] = data["UniqueProgramId"]
     return out

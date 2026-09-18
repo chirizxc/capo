@@ -73,25 +73,25 @@ def serialize_aws_json_1_1(value: Project) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Project:
     out: Project = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "defaultJobTimeoutMinutes" in data:
+    if data.get("defaultJobTimeoutMinutes") is not None:
         out["default_job_timeout_minutes"] = data["defaultJobTimeoutMinutes"]
-    if "created" in data:
+    if data.get("created") is not None:
         import capo_device_farm.types.date_time
 
         out["created"] = capo_device_farm.types.date_time.deserialize_aws_json_1_1(
             data["created"]
         )
-    if "vpcConfig" in data:
+    if data.get("vpcConfig") is not None:
         import capo_device_farm.types.vpc_config
 
         out["vpc_config"] = capo_device_farm.types.vpc_config.deserialize_aws_json_1_1(
             data["vpcConfig"]
         )
-    if "environmentVariables" in data:
+    if data.get("environmentVariables") is not None:
         import capo_device_farm.types.environment_variables
 
         out["environment_variables"] = (
@@ -99,6 +99,6 @@ def deserialize_aws_json_1_1(data: dict) -> Project:
                 data["environmentVariables"]
             )
         )
-    if "executionRoleArn" in data:
+    if data.get("executionRoleArn") is not None:
         out["execution_role_arn"] = data["executionRoleArn"]
     return out

@@ -34,10 +34,10 @@ def serialize_json(value: Receipt) -> dict:
 
 def deserialize_json(data: dict) -> Receipt:
     out: Receipt = {}  # type: ignore[typeddict-item]
-    if "DeliveredTimestamp" in data:
+    if data.get("DeliveredTimestamp") is not None:
         out["delivered_timestamp"] = data["DeliveredTimestamp"]
-    if "ReadTimestamp" in data:
+    if data.get("ReadTimestamp") is not None:
         out["read_timestamp"] = data["ReadTimestamp"]
-    if "RecipientParticipantId" in data:
+    if data.get("RecipientParticipantId") is not None:
         out["recipient_participant_id"] = data["RecipientParticipantId"]
     return out

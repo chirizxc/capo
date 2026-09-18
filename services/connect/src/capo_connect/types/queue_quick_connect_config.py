@@ -28,11 +28,11 @@ def serialize_json(value: QueueQuickConnectConfig) -> dict:
 
 def deserialize_json(data: dict) -> QueueQuickConnectConfig:
     out: QueueQuickConnectConfig = {}  # type: ignore[typeddict-item]
-    if "QueueId" in data:
+    if data.get("QueueId") is not None:
         out["queue_id"] = data["QueueId"]
     else:
         raise DeserializationError("QueueQuickConnectConfig.queue_id required")
-    if "ContactFlowId" in data:
+    if data.get("ContactFlowId") is not None:
         out["contact_flow_id"] = data["ContactFlowId"]
     else:
         raise DeserializationError("QueueQuickConnectConfig.contact_flow_id required")

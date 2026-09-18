@@ -24,7 +24,7 @@ def serialize_json(value: DeleteQueuedSavingsPlanRequest) -> dict:
 
 def deserialize_json(data: dict) -> DeleteQueuedSavingsPlanRequest:
     out: DeleteQueuedSavingsPlanRequest = {}  # type: ignore[typeddict-item]
-    if "savingsPlanId" in data:
+    if data.get("savingsPlanId") is not None:
         out["savings_plan_id"] = data["savingsPlanId"]
     else:
         raise DeserializationError(

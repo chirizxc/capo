@@ -13,9 +13,9 @@ from capo_sagemaker import AsyncSageMakerClient
 
 
 async def main():
-    async with AsyncSageMakerClient() as s3:
+    async with AsyncSageMakerClient() as sage_maker:
         # Example: call the add_association operation
-        response = await s3.add_association()
+        response = await sage_maker.add_association()
         print(response["source_arn"])
 ```
 
@@ -28,9 +28,9 @@ from capo_sagemaker import AsyncSageMakerClient
 
 
 async def main():
-    async with AsyncSageMakerClient() as s3:
+    async with AsyncSageMakerClient() as sage_maker:
         # Example: paginate over create_hub_content_presigned_urls
-        async for item in s3.iter_create_hub_content_presigned_urls():
+        async for item in sage_maker.iter_create_hub_content_presigned_urls():
             print(item)
 ```
 
@@ -44,9 +44,9 @@ from capo_sagemaker.error import ResourceLimitExceeded
 
 
 async def main():
-    async with AsyncSageMakerClient() as s3:
+    async with AsyncSageMakerClient() as sage_maker:
         try:
-            await s3.add_association()
+            await sage_maker.add_association()
         except ResourceLimitExceeded as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -63,13 +63,13 @@ from capo_sagemaker import AsyncSageMakerClient
 
 
 async def main():
-    async with AsyncSageMakerClient() as s3:
+    async with AsyncSageMakerClient() as sage_maker:
         # Default: 3 attempts for every operation
-        response = await s3.add_association()
+        response = await sage_maker.add_association()
 
         # Override per operation
-        response = await s3.add_association(config_overrides={"retry_max_attempts": 5})
+        response = await sage_maker.add_association(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.add_association(config_overrides={"retry_max_attempts": 1})
+        response = await sage_maker.add_association(config_overrides={"retry_max_attempts": 1})
 ```

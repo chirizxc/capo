@@ -32,10 +32,10 @@ def serialize_json(value: AssetBundleImportJobError) -> dict:
 
 def deserialize_json(data: dict) -> AssetBundleImportJobError:
     out: AssetBundleImportJobError = {}  # type: ignore[typeddict-item]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "Type" in data:
+    if data.get("Type") is not None:
         out["type"] = data["Type"]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     return out

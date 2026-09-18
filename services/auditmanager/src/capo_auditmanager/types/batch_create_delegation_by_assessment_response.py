@@ -40,13 +40,13 @@ def serialize_json(value: BatchCreateDelegationByAssessmentResponse) -> dict:
 
 def deserialize_json(data: dict) -> BatchCreateDelegationByAssessmentResponse:
     out: BatchCreateDelegationByAssessmentResponse = {}  # type: ignore[typeddict-item]
-    if "delegations" in data:
+    if data.get("delegations") is not None:
         import capo_auditmanager.types.delegations
 
         out["delegations"] = capo_auditmanager.types.delegations.deserialize_json(
             data["delegations"]
         )
-    if "errors" in data:
+    if data.get("errors") is not None:
         import capo_auditmanager.types.batch_create_delegation_by_assessment_errors
 
         out["errors"] = (

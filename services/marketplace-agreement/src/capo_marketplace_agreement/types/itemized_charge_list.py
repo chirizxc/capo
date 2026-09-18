@@ -29,6 +29,8 @@ def deserialize_aws_json_1_0(data: list) -> ItemizedChargeList:
 
     out: ItemizedChargeList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_marketplace_agreement.types.itemized_charge.deserialize_aws_json_1_0(
                 item

@@ -32,7 +32,7 @@ def serialize_aws_json_1_1(value: TransformS3DataSource) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> TransformS3DataSource:
     out: TransformS3DataSource = {}  # type: ignore[typeddict-item]
-    if "S3DataType" in data:
+    if data.get("S3DataType") is not None:
         import capo_sagemaker.types.s3_data_type
 
         out["s3_data_type"] = (
@@ -40,6 +40,6 @@ def deserialize_aws_json_1_1(data: dict) -> TransformS3DataSource:
                 data["S3DataType"]
             )
         )
-    if "S3Uri" in data:
+    if data.get("S3Uri") is not None:
         out["s3_uri"] = data["S3Uri"]
     return out

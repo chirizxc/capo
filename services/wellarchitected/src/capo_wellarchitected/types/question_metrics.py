@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> QuestionMetrics:
 
     out: QuestionMetrics = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_wellarchitected.types.question_metric.deserialize_json(item))
     return out

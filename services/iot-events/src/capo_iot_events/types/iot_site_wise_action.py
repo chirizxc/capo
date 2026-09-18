@@ -55,15 +55,15 @@ def serialize_json(value: IotSiteWiseAction) -> dict:
 
 def deserialize_json(data: dict) -> IotSiteWiseAction:
     out: IotSiteWiseAction = {}  # type: ignore[typeddict-item]
-    if "entryId" in data:
+    if data.get("entryId") is not None:
         out["entry_id"] = data["entryId"]
-    if "assetId" in data:
+    if data.get("assetId") is not None:
         out["asset_id"] = data["assetId"]
-    if "propertyId" in data:
+    if data.get("propertyId") is not None:
         out["property_id"] = data["propertyId"]
-    if "propertyAlias" in data:
+    if data.get("propertyAlias") is not None:
         out["property_alias"] = data["propertyAlias"]
-    if "propertyValue" in data:
+    if data.get("propertyValue") is not None:
         import capo_iot_events.types.asset_property_value
 
         out["property_value"] = (

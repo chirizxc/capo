@@ -35,7 +35,7 @@ def deserialize_json(
     data: dict,
 ) -> PutVoiceConnectorExternalSystemsConfigurationResponse:
     out: PutVoiceConnectorExternalSystemsConfigurationResponse = {}  # type: ignore[typeddict-item]
-    if "ExternalSystemsConfiguration" in data:
+    if data.get("ExternalSystemsConfiguration") is not None:
         import capo_chime_sdk_voice.types.external_systems_configuration
 
         out["external_systems_configuration"] = (

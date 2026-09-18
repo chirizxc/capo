@@ -22,7 +22,7 @@ def serialize_json(value: JsonOptions) -> dict:
 
 def deserialize_json(data: dict) -> JsonOptions:
     out: JsonOptions = {}  # type: ignore[typeddict-item]
-    if "MultiLine" in data:
+    if data.get("MultiLine") is not None:
         out["multi_line"] = data["MultiLine"]
     else:
         out["multi_line"] = False

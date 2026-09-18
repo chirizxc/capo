@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: UnsupportedCommandException_) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UnsupportedCommandException_:
     out: UnsupportedCommandException_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     return out
 
@@ -34,15 +34,18 @@ class UnsupportedCommandException(ServiceError):
 
     code: str | None = "UnsupportedCommandException"
 
-    def __init__(self, data: UnsupportedCommandException_):
+    def __init__(self, data: UnsupportedCommandException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="UnsupportedCommandException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "UnsupportedCommandException":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "UnsupportedCommandException":
+        return cls(deserialize_aws_json_1_1(data), message)

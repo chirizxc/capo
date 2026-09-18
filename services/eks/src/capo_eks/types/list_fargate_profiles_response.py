@@ -32,12 +32,12 @@ def serialize_json(value: ListFargateProfilesResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListFargateProfilesResponse:
     out: ListFargateProfilesResponse = {}  # type: ignore[typeddict-item]
-    if "fargateProfileNames" in data:
+    if data.get("fargateProfileNames") is not None:
         import capo_eks.types.string_list
 
         out["fargate_profile_names"] = capo_eks.types.string_list.deserialize_json(
             data["fargateProfileNames"]
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

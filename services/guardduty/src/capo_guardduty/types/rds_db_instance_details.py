@@ -50,19 +50,19 @@ def serialize_json(value: RdsDbInstanceDetails) -> dict:
 
 def deserialize_json(data: dict) -> RdsDbInstanceDetails:
     out: RdsDbInstanceDetails = {}  # type: ignore[typeddict-item]
-    if "dbInstanceIdentifier" in data:
+    if data.get("dbInstanceIdentifier") is not None:
         out["db_instance_identifier"] = data["dbInstanceIdentifier"]
-    if "engine" in data:
+    if data.get("engine") is not None:
         out["engine"] = data["engine"]
-    if "engineVersion" in data:
+    if data.get("engineVersion") is not None:
         out["engine_version"] = data["engineVersion"]
-    if "dbClusterIdentifier" in data:
+    if data.get("dbClusterIdentifier") is not None:
         out["db_cluster_identifier"] = data["dbClusterIdentifier"]
-    if "dbInstanceArn" in data:
+    if data.get("dbInstanceArn") is not None:
         out["db_instance_arn"] = data["dbInstanceArn"]
-    if "dbiResourceId" in data:
+    if data.get("dbiResourceId") is not None:
         out["dbi_resource_id"] = data["dbiResourceId"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_guardduty.types.tags
 
         out["tags"] = capo_guardduty.types.tags.deserialize_json(data["tags"])

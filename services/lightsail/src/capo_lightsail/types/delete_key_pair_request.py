@@ -29,10 +29,10 @@ def serialize_aws_json_1_1(value: DeleteKeyPairRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteKeyPairRequest:
     out: DeleteKeyPairRequest = {}  # type: ignore[typeddict-item]
-    if "keyPairName" in data:
+    if data.get("keyPairName") is not None:
         out["key_pair_name"] = data["keyPairName"]
     else:
         raise DeserializationError("DeleteKeyPairRequest.key_pair_name required")
-    if "expectedFingerprint" in data:
+    if data.get("expectedFingerprint") is not None:
         out["expected_fingerprint"] = data["expectedFingerprint"]
     return out

@@ -38,7 +38,7 @@ def serialize_json(value: InviteUsersRequest) -> dict:
 
 def deserialize_json(data: dict) -> InviteUsersRequest:
     out: InviteUsersRequest = {}  # type: ignore[typeddict-item]
-    if "UserEmailList" in data:
+    if data.get("UserEmailList") is not None:
         import capo_chime.types.user_email_list
 
         out["user_email_list"] = capo_chime.types.user_email_list.deserialize_json(
@@ -46,7 +46,7 @@ def deserialize_json(data: dict) -> InviteUsersRequest:
         )
     else:
         raise DeserializationError("InviteUsersRequest.user_email_list required")
-    if "UserType" in data:
+    if data.get("UserType") is not None:
         import capo_chime.types.user_type
 
         out["user_type"] = capo_chime.types.user_type.deserialize_json(data["UserType"])

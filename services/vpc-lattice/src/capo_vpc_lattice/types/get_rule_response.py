@@ -76,33 +76,33 @@ def serialize_json(value: GetRuleResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetRuleResponse:
     out: GetRuleResponse = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "isDefault" in data:
+    if data.get("isDefault") is not None:
         out["is_default"] = data["isDefault"]
-    if "match" in data:
+    if data.get("match") is not None:
         import capo_vpc_lattice.types.rule_match
 
         out["match"] = capo_vpc_lattice.types.rule_match.deserialize_json(data["match"])
-    if "priority" in data:
+    if data.get("priority") is not None:
         out["priority"] = data["priority"]
-    if "action" in data:
+    if data.get("action") is not None:
         import capo_vpc_lattice.types.rule_action
 
         out["action"] = capo_vpc_lattice.types.rule_action.deserialize_json(
             data["action"]
         )
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_vpc_lattice.types.timestamp
 
         out["created_at"] = capo_vpc_lattice.types.timestamp.deserialize_json(
             data["createdAt"]
         )
-    if "lastUpdatedAt" in data:
+    if data.get("lastUpdatedAt") is not None:
         import capo_vpc_lattice.types.timestamp
 
         out["last_updated_at"] = capo_vpc_lattice.types.timestamp.deserialize_json(

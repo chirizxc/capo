@@ -28,8 +28,8 @@ def serialize_json(value: AwsLambdaFunctionLayer) -> dict:
 
 def deserialize_json(data: dict) -> AwsLambdaFunctionLayer:
     out: AwsLambdaFunctionLayer = {}  # type: ignore[typeddict-item]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "CodeSize" in data:
+    if data.get("CodeSize") is not None:
         out["code_size"] = data["CodeSize"]
     return out

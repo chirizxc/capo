@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: ListPipelineParametersForExecutionResponse) ->
 
 def deserialize_aws_json_1_1(data: dict) -> ListPipelineParametersForExecutionResponse:
     out: ListPipelineParametersForExecutionResponse = {}  # type: ignore[typeddict-item]
-    if "PipelineParameters" in data:
+    if data.get("PipelineParameters") is not None:
         import capo_sagemaker.types.parameter_list
 
         out["pipeline_parameters"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_1(data: dict) -> ListPipelineParametersForExecutionRe
                 data["PipelineParameters"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

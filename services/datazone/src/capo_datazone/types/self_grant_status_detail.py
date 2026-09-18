@@ -39,13 +39,13 @@ def serialize_json(value: SelfGrantStatusDetail) -> dict:
 
 def deserialize_json(data: dict) -> SelfGrantStatusDetail:
     out: SelfGrantStatusDetail = {}  # type: ignore[typeddict-item]
-    if "databaseName" in data:
+    if data.get("databaseName") is not None:
         out["database_name"] = data["databaseName"]
     else:
         raise DeserializationError("SelfGrantStatusDetail.database_name required")
-    if "schemaName" in data:
+    if data.get("schemaName") is not None:
         out["schema_name"] = data["schemaName"]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_datazone.types.self_grant_status
 
         out["status"] = capo_datazone.types.self_grant_status.deserialize_json(
@@ -53,6 +53,6 @@ def deserialize_json(data: dict) -> SelfGrantStatusDetail:
         )
     else:
         raise DeserializationError("SelfGrantStatusDetail.status required")
-    if "failureCause" in data:
+    if data.get("failureCause") is not None:
         out["failure_cause"] = data["failureCause"]
     return out

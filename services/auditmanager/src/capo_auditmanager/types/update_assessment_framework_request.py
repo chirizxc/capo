@@ -51,15 +51,15 @@ def serialize_json(value: UpdateAssessmentFrameworkRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateAssessmentFrameworkRequest:
     out: UpdateAssessmentFrameworkRequest = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("UpdateAssessmentFrameworkRequest.name required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "complianceType" in data:
+    if data.get("complianceType") is not None:
         out["compliance_type"] = data["complianceType"]
-    if "controlSets" in data:
+    if data.get("controlSets") is not None:
         import capo_auditmanager.types.update_assessment_framework_control_sets
 
         out["control_sets"] = (

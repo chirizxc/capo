@@ -27,7 +27,7 @@ def serialize_json(value: BucketInfo) -> dict:
 
 def deserialize_json(data: dict) -> BucketInfo:
     out: BucketInfo = {}  # type: ignore[typeddict-item]
-    if "buckets" in data:
+    if data.get("buckets") is not None:
         import capo_cloudsearch_domain.types.bucket_list
 
         out["buckets"] = capo_cloudsearch_domain.types.bucket_list.deserialize_json(

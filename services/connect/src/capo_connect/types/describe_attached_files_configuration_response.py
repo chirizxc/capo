@@ -32,7 +32,7 @@ def serialize_json(value: DescribeAttachedFilesConfigurationResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribeAttachedFilesConfigurationResponse:
     out: DescribeAttachedFilesConfigurationResponse = {}  # type: ignore[typeddict-item]
-    if "AttachedFilesConfiguration" in data:
+    if data.get("AttachedFilesConfiguration") is not None:
         import capo_connect.types.attached_files_configuration
 
         out["attached_files_configuration"] = (

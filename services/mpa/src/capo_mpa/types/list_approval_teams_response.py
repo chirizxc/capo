@@ -36,9 +36,9 @@ def serialize_json(value: ListApprovalTeamsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListApprovalTeamsResponse:
     out: ListApprovalTeamsResponse = {}  # type: ignore[typeddict-item]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "ApprovalTeams" in data:
+    if data.get("ApprovalTeams") is not None:
         import capo_mpa.types.list_approval_teams_response_approval_teams
 
         out["approval_teams"] = (

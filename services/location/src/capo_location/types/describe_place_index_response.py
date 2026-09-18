@@ -74,21 +74,21 @@ def serialize_json(value: DescribePlaceIndexResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribePlaceIndexResponse:
     out: DescribePlaceIndexResponse = {}  # type: ignore[typeddict-item]
-    if "IndexName" in data:
+    if data.get("IndexName") is not None:
         out["index_name"] = data["IndexName"]
     else:
         raise DeserializationError("DescribePlaceIndexResponse.index_name required")
-    if "IndexArn" in data:
+    if data.get("IndexArn") is not None:
         out["index_arn"] = data["IndexArn"]
     else:
         raise DeserializationError("DescribePlaceIndexResponse.index_arn required")
-    if "PricingPlan" in data:
+    if data.get("PricingPlan") is not None:
         out["pricing_plan"] = data["PricingPlan"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
     else:
         raise DeserializationError("DescribePlaceIndexResponse.description required")
-    if "CreateTime" in data:
+    if data.get("CreateTime") is not None:
         import capo_location.types.timestamp
 
         out["create_time"] = capo_location.types.timestamp.deserialize_json(
@@ -96,7 +96,7 @@ def deserialize_json(data: dict) -> DescribePlaceIndexResponse:
         )
     else:
         raise DeserializationError("DescribePlaceIndexResponse.create_time required")
-    if "UpdateTime" in data:
+    if data.get("UpdateTime") is not None:
         import capo_location.types.timestamp
 
         out["update_time"] = capo_location.types.timestamp.deserialize_json(
@@ -104,11 +104,11 @@ def deserialize_json(data: dict) -> DescribePlaceIndexResponse:
         )
     else:
         raise DeserializationError("DescribePlaceIndexResponse.update_time required")
-    if "DataSource" in data:
+    if data.get("DataSource") is not None:
         out["data_source"] = data["DataSource"]
     else:
         raise DeserializationError("DescribePlaceIndexResponse.data_source required")
-    if "DataSourceConfiguration" in data:
+    if data.get("DataSourceConfiguration") is not None:
         import capo_location.types.data_source_configuration
 
         out["data_source_configuration"] = (
@@ -120,7 +120,7 @@ def deserialize_json(data: dict) -> DescribePlaceIndexResponse:
         raise DeserializationError(
             "DescribePlaceIndexResponse.data_source_configuration required"
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_location.types.tag_map
 
         out["tags"] = capo_location.types.tag_map.deserialize_json(data["Tags"])

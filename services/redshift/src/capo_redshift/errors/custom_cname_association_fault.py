@@ -37,15 +37,18 @@ class CustomCnameAssociationFault(ServiceError):
 
     code: str | None = "CustomCnameAssociationFault"
 
-    def __init__(self, data: CustomCnameAssociationFault_):
+    def __init__(self, data: CustomCnameAssociationFault_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="CustomCnameAssociationFault",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_query(cls, el: Element) -> "CustomCnameAssociationFault":
-        return cls(deserialize_query(el))
+    def from_query(
+        cls, el: Element, message: str | None = None
+    ) -> "CustomCnameAssociationFault":
+        return cls(deserialize_query(el), message)

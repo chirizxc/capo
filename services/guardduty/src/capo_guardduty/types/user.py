@@ -42,15 +42,15 @@ def serialize_json(value: User) -> dict:
 
 def deserialize_json(data: dict) -> User:
     out: User = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "uid" in data:
+    if data.get("uid") is not None:
         out["uid"] = data["uid"]
-    if "type" in data:
+    if data.get("type") is not None:
         out["type"] = data["type"]
-    if "credentialUid" in data:
+    if data.get("credentialUid") is not None:
         out["credential_uid"] = data["credentialUid"]
-    if "account" in data:
+    if data.get("account") is not None:
         import capo_guardduty.types.account
 
         out["account"] = capo_guardduty.types.account.deserialize_json(data["account"])

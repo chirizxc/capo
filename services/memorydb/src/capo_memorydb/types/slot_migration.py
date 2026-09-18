@@ -16,14 +16,22 @@ class SlotMigration(TypedDict, closed=True):
 # --- awsJson1_1 ser/de ---
 def serialize_aws_json_1_1(value: SlotMigration) -> dict:
     out: dict = {}
-    out["ProgressPercentage"] = value.get("progress_percentage", 0)
+    out["ProgressPercentage"] = (
+        "NaN"
+        if value.get("progress_percentage", 0) != value.get("progress_percentage", 0)
+        else "Infinity"
+        if value.get("progress_percentage", 0) == float("inf")
+        else "-Infinity"
+        if value.get("progress_percentage", 0) == float("-inf")
+        else value.get("progress_percentage", 0)
+    )
     return out
 
 
 def deserialize_aws_json_1_1(data: dict) -> SlotMigration:
     out: SlotMigration = {}  # type: ignore[typeddict-item]
-    if "ProgressPercentage" in data:
-        out["progress_percentage"] = data["ProgressPercentage"]
+    if data.get("ProgressPercentage") is not None:
+        out["progress_percentage"] = float(data["ProgressPercentage"])
     else:
         out["progress_percentage"] = 0
     return out

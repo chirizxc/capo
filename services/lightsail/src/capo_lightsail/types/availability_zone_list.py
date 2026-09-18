@@ -25,6 +25,8 @@ def deserialize_aws_json_1_1(data: list) -> AvailabilityZoneList:
 
     out: AvailabilityZoneList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_lightsail.types.availability_zone.deserialize_aws_json_1_1(item)
         )

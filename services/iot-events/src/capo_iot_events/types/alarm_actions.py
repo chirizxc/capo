@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> AlarmActions:
 
     out: AlarmActions = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_iot_events.types.alarm_action.deserialize_json(item))
     return out

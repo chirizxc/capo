@@ -26,7 +26,7 @@ def serialize_json(value: UpdateSystemResponse) -> dict:
 
 def deserialize_json(data: dict) -> UpdateSystemResponse:
     out: UpdateSystemResponse = {}  # type: ignore[typeddict-item]
-    if "system" in data:
+    if data.get("system") is not None:
         import capo_resiliencehubv2.types.system
 
         out["system"] = capo_resiliencehubv2.types.system.deserialize_json(

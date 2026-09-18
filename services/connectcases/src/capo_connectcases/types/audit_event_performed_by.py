@@ -30,11 +30,11 @@ def serialize_json(value: AuditEventPerformedBy) -> dict:
 
 def deserialize_json(data: dict) -> AuditEventPerformedBy:
     out: AuditEventPerformedBy = {}  # type: ignore[typeddict-item]
-    if "user" in data:
+    if data.get("user") is not None:
         import capo_connectcases.types.user_union
 
         out["user"] = capo_connectcases.types.user_union.deserialize_json(data["user"])
-    if "iamPrincipalArn" in data:
+    if data.get("iamPrincipalArn") is not None:
         out["iam_principal_arn"] = data["iamPrincipalArn"]
     else:
         raise DeserializationError("AuditEventPerformedBy.iam_principal_arn required")

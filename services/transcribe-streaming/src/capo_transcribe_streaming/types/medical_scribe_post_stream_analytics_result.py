@@ -31,7 +31,7 @@ def serialize_json(value: MedicalScribePostStreamAnalyticsResult) -> dict:
 
 def deserialize_json(data: dict) -> MedicalScribePostStreamAnalyticsResult:
     out: MedicalScribePostStreamAnalyticsResult = {}  # type: ignore[typeddict-item]
-    if "ClinicalNoteGenerationResult" in data:
+    if data.get("ClinicalNoteGenerationResult") is not None:
         import capo_transcribe_streaming.types.clinical_note_generation_result
 
         out["clinical_note_generation_result"] = (

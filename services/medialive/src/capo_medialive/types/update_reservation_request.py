@@ -36,9 +36,9 @@ def serialize_json(value: UpdateReservationRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateReservationRequest:
     out: UpdateReservationRequest = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "renewalSettings" in data:
+    if data.get("renewalSettings") is not None:
         import capo_medialive.types.renewal_settings
 
         out["renewal_settings"] = (

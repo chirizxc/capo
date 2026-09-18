@@ -25,6 +25,8 @@ def deserialize_json(data: list) -> foundByList:
 
     out: foundByList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_customer_profiles.types.found_by_key_value.deserialize_json(item)
         )

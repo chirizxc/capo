@@ -28,11 +28,11 @@ def serialize_aws_json_1_1(value: Order) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Order:
     out: Order = {}  # type: ignore[typeddict-item]
-    if "Column" in data:
+    if data.get("Column") is not None:
         out["column"] = data["Column"]
     else:
         raise DeserializationError("Order.column required")
-    if "SortOrder" in data:
+    if data.get("SortOrder") is not None:
         out["sort_order"] = data["SortOrder"]
     else:
         out["sort_order"] = 0

@@ -60,13 +60,13 @@ def serialize_json(value: ManifestProperties) -> dict:
 
 def deserialize_json(data: dict) -> ManifestProperties:
     out: ManifestProperties = {}  # type: ignore[typeddict-item]
-    if "fileSystemLocationName" in data:
+    if data.get("fileSystemLocationName") is not None:
         out["file_system_location_name"] = data["fileSystemLocationName"]
-    if "rootPath" in data:
+    if data.get("rootPath") is not None:
         out["root_path"] = data["rootPath"]
     else:
         raise DeserializationError("ManifestProperties.root_path required")
-    if "rootPathFormat" in data:
+    if data.get("rootPathFormat") is not None:
         import capo_deadline.types.path_format
 
         out["root_path_format"] = capo_deadline.types.path_format.deserialize_json(
@@ -74,7 +74,7 @@ def deserialize_json(data: dict) -> ManifestProperties:
         )
     else:
         raise DeserializationError("ManifestProperties.root_path_format required")
-    if "outputRelativeDirectories" in data:
+    if data.get("outputRelativeDirectories") is not None:
         import capo_deadline.types.output_relative_directories_list
 
         out["output_relative_directories"] = (
@@ -82,8 +82,8 @@ def deserialize_json(data: dict) -> ManifestProperties:
                 data["outputRelativeDirectories"]
             )
         )
-    if "inputManifestPath" in data:
+    if data.get("inputManifestPath") is not None:
         out["input_manifest_path"] = data["inputManifestPath"]
-    if "inputManifestHash" in data:
+    if data.get("inputManifestHash") is not None:
         out["input_manifest_hash"] = data["inputManifestHash"]
     return out

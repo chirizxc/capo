@@ -34,12 +34,12 @@ def serialize_json(value: AssociateBackupVaultMpaApprovalTeamInput) -> dict:
 
 def deserialize_json(data: dict) -> AssociateBackupVaultMpaApprovalTeamInput:
     out: AssociateBackupVaultMpaApprovalTeamInput = {}  # type: ignore[typeddict-item]
-    if "MpaApprovalTeamArn" in data:
+    if data.get("MpaApprovalTeamArn") is not None:
         out["mpa_approval_team_arn"] = data["MpaApprovalTeamArn"]
     else:
         raise DeserializationError(
             "AssociateBackupVaultMpaApprovalTeamInput.mpa_approval_team_arn required"
         )
-    if "RequesterComment" in data:
+    if data.get("RequesterComment") is not None:
         out["requester_comment"] = data["RequesterComment"]
     return out

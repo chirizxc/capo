@@ -69,43 +69,43 @@ def serialize_json(value: ContentSummary) -> dict:
 
 def deserialize_json(data: dict) -> ContentSummary:
     out: ContentSummary = {}  # type: ignore[typeddict-item]
-    if "contentArn" in data:
+    if data.get("contentArn") is not None:
         out["content_arn"] = data["contentArn"]
     else:
         raise DeserializationError("ContentSummary.content_arn required")
-    if "contentId" in data:
+    if data.get("contentId") is not None:
         out["content_id"] = data["contentId"]
     else:
         raise DeserializationError("ContentSummary.content_id required")
-    if "knowledgeBaseArn" in data:
+    if data.get("knowledgeBaseArn") is not None:
         out["knowledge_base_arn"] = data["knowledgeBaseArn"]
     else:
         raise DeserializationError("ContentSummary.knowledge_base_arn required")
-    if "knowledgeBaseId" in data:
+    if data.get("knowledgeBaseId") is not None:
         out["knowledge_base_id"] = data["knowledgeBaseId"]
     else:
         raise DeserializationError("ContentSummary.knowledge_base_id required")
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("ContentSummary.name required")
-    if "revisionId" in data:
+    if data.get("revisionId") is not None:
         out["revision_id"] = data["revisionId"]
     else:
         raise DeserializationError("ContentSummary.revision_id required")
-    if "title" in data:
+    if data.get("title") is not None:
         out["title"] = data["title"]
     else:
         raise DeserializationError("ContentSummary.title required")
-    if "contentType" in data:
+    if data.get("contentType") is not None:
         out["content_type"] = data["contentType"]
     else:
         raise DeserializationError("ContentSummary.content_type required")
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
     else:
         raise DeserializationError("ContentSummary.status required")
-    if "metadata" in data:
+    if data.get("metadata") is not None:
         import capo_qconnect.types.content_metadata
 
         out["metadata"] = capo_qconnect.types.content_metadata.deserialize_json(
@@ -113,7 +113,7 @@ def deserialize_json(data: dict) -> ContentSummary:
         )
     else:
         raise DeserializationError("ContentSummary.metadata required")
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_qconnect.types.tags
 
         out["tags"] = capo_qconnect.types.tags.deserialize_json(data["tags"])

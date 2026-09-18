@@ -63,23 +63,23 @@ def serialize_json(value: ContainerOverrides) -> dict:
 
 def deserialize_json(data: dict) -> ContainerOverrides:
     out: ContainerOverrides = {}  # type: ignore[typeddict-item]
-    if "vcpus" in data:
+    if data.get("vcpus") is not None:
         out["vcpus"] = data["vcpus"]
-    if "memory" in data:
+    if data.get("memory") is not None:
         out["memory"] = data["memory"]
-    if "command" in data:
+    if data.get("command") is not None:
         import capo_batch.types.string_list
 
         out["command"] = capo_batch.types.string_list.deserialize_json(data["command"])
-    if "instanceType" in data:
+    if data.get("instanceType") is not None:
         out["instance_type"] = data["instanceType"]
-    if "environment" in data:
+    if data.get("environment") is not None:
         import capo_batch.types.environment_variables
 
         out["environment"] = capo_batch.types.environment_variables.deserialize_json(
             data["environment"]
         )
-    if "resourceRequirements" in data:
+    if data.get("resourceRequirements") is not None:
         import capo_batch.types.resource_requirements
 
         out["resource_requirements"] = (

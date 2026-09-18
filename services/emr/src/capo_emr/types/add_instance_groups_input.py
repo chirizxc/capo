@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: AddInstanceGroupsInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AddInstanceGroupsInput:
     out: AddInstanceGroupsInput = {}  # type: ignore[typeddict-item]
-    if "InstanceGroups" in data:
+    if data.get("InstanceGroups") is not None:
         import capo_emr.types.instance_group_config_list
 
         out["instance_groups"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_1(data: dict) -> AddInstanceGroupsInput:
                 data["InstanceGroups"]
             )
         )
-    if "JobFlowId" in data:
+    if data.get("JobFlowId") is not None:
         out["job_flow_id"] = data["JobFlowId"]
     return out

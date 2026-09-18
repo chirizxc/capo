@@ -28,11 +28,11 @@ def serialize_aws_json_1_1(value: DeleteRuleGroupRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteRuleGroupRequest:
     out: DeleteRuleGroupRequest = {}  # type: ignore[typeddict-item]
-    if "RuleGroupId" in data:
+    if data.get("RuleGroupId") is not None:
         out["rule_group_id"] = data["RuleGroupId"]
     else:
         raise DeserializationError("DeleteRuleGroupRequest.rule_group_id required")
-    if "ChangeToken" in data:
+    if data.get("ChangeToken") is not None:
         out["change_token"] = data["ChangeToken"]
     else:
         raise DeserializationError("DeleteRuleGroupRequest.change_token required")

@@ -53,7 +53,7 @@ def serialize_aws_json_1_0(value: GetResourceSyncStatusOutput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> GetResourceSyncStatusOutput:
     out: GetResourceSyncStatusOutput = {}  # type: ignore[typeddict-item]
-    if "DesiredState" in data:
+    if data.get("DesiredState") is not None:
         import capo_codeconnections.types.revision
 
         out["desired_state"] = (
@@ -61,7 +61,7 @@ def deserialize_aws_json_1_0(data: dict) -> GetResourceSyncStatusOutput:
                 data["DesiredState"]
             )
         )
-    if "LatestSuccessfulSync" in data:
+    if data.get("LatestSuccessfulSync") is not None:
         import capo_codeconnections.types.resource_sync_attempt
 
         out["latest_successful_sync"] = (
@@ -69,7 +69,7 @@ def deserialize_aws_json_1_0(data: dict) -> GetResourceSyncStatusOutput:
                 data["LatestSuccessfulSync"]
             )
         )
-    if "LatestSync" in data:
+    if data.get("LatestSync") is not None:
         import capo_codeconnections.types.resource_sync_attempt
 
         out["latest_sync"] = (

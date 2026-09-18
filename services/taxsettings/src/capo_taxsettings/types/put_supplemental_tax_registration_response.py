@@ -32,13 +32,13 @@ def serialize_json(value: PutSupplementalTaxRegistrationResponse) -> dict:
 
 def deserialize_json(data: dict) -> PutSupplementalTaxRegistrationResponse:
     out: PutSupplementalTaxRegistrationResponse = {}  # type: ignore[typeddict-item]
-    if "authorityId" in data:
+    if data.get("authorityId") is not None:
         out["authority_id"] = data["authorityId"]
     else:
         raise DeserializationError(
             "PutSupplementalTaxRegistrationResponse.authority_id required"
         )
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_taxsettings.types.tax_registration_status
 
         out["status"] = capo_taxsettings.types.tax_registration_status.deserialize_json(

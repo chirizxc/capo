@@ -39,11 +39,11 @@ def serialize_json(value: SearchRasterDataCollectionInput) -> dict:
 
 def deserialize_json(data: dict) -> SearchRasterDataCollectionInput:
     out: SearchRasterDataCollectionInput = {}  # type: ignore[typeddict-item]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
     else:
         raise DeserializationError("SearchRasterDataCollectionInput.arn required")
-    if "RasterDataCollectionQuery" in data:
+    if data.get("RasterDataCollectionQuery") is not None:
         import capo_sagemaker_geospatial.types.raster_data_collection_query_with_band_filter_input
 
         out["raster_data_collection_query"] = (
@@ -55,6 +55,6 @@ def deserialize_json(data: dict) -> SearchRasterDataCollectionInput:
         raise DeserializationError(
             "SearchRasterDataCollectionInput.raster_data_collection_query required"
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

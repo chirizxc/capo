@@ -27,6 +27,8 @@ def deserialize_aws_json_1_0(data: list) -> PartitionKeyList:
 
     out: PartitionKeyList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_timestream_write.types.partition_key.deserialize_aws_json_1_0(item)
         )

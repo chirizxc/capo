@@ -24,7 +24,7 @@ def serialize_json(value: DeleteConnectorRequest) -> dict:
 
 def deserialize_json(data: dict) -> DeleteConnectorRequest:
     out: DeleteConnectorRequest = {}  # type: ignore[typeddict-item]
-    if "connectorID" in data:
+    if data.get("connectorID") is not None:
         out["connector_id"] = data["connectorID"]
     else:
         raise DeserializationError("DeleteConnectorRequest.connector_id required")

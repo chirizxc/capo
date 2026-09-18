@@ -32,12 +32,12 @@ def serialize_json(value: ListOperationsOutput) -> dict:
 
 def deserialize_json(data: dict) -> ListOperationsOutput:
     out: ListOperationsOutput = {}  # type: ignore[typeddict-item]
-    if "Operations" in data:
+    if data.get("Operations") is not None:
         import capo_ssm_sap.types.operation_list
 
         out["operations"] = capo_ssm_sap.types.operation_list.deserialize_json(
             data["Operations"]
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

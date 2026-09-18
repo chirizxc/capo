@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: GetDirectoryLimitsResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetDirectoryLimitsResult:
     out: GetDirectoryLimitsResult = {}  # type: ignore[typeddict-item]
-    if "DirectoryLimits" in data:
+    if data.get("DirectoryLimits") is not None:
         import capo_directory_service.types.directory_limits
 
         out["directory_limits"] = (

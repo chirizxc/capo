@@ -62,9 +62,9 @@ def serialize_json(value: FilterOperation) -> dict:
 
 def deserialize_json(data: dict) -> FilterOperation:
     out: FilterOperation = {}  # type: ignore[typeddict-item]
-    if "ConditionExpression" in data:
+    if data.get("ConditionExpression") is not None:
         out["condition_expression"] = data["ConditionExpression"]
-    if "StringFilterCondition" in data:
+    if data.get("StringFilterCondition") is not None:
         import capo_quicksight.types.data_set_string_filter_condition
 
         out["string_filter_condition"] = (
@@ -72,7 +72,7 @@ def deserialize_json(data: dict) -> FilterOperation:
                 data["StringFilterCondition"]
             )
         )
-    if "NumericFilterCondition" in data:
+    if data.get("NumericFilterCondition") is not None:
         import capo_quicksight.types.data_set_numeric_filter_condition
 
         out["numeric_filter_condition"] = (
@@ -80,7 +80,7 @@ def deserialize_json(data: dict) -> FilterOperation:
                 data["NumericFilterCondition"]
             )
         )
-    if "DateFilterCondition" in data:
+    if data.get("DateFilterCondition") is not None:
         import capo_quicksight.types.data_set_date_filter_condition
 
         out["date_filter_condition"] = (

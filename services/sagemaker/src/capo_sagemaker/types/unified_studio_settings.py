@@ -74,7 +74,7 @@ def serialize_aws_json_1_1(value: UnifiedStudioSettings) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UnifiedStudioSettings:
     out: UnifiedStudioSettings = {}  # type: ignore[typeddict-item]
-    if "StudioWebPortalAccess" in data:
+    if data.get("StudioWebPortalAccess") is not None:
         import capo_sagemaker.types.feature_status
 
         out["studio_web_portal_access"] = (
@@ -82,18 +82,18 @@ def deserialize_aws_json_1_1(data: dict) -> UnifiedStudioSettings:
                 data["StudioWebPortalAccess"]
             )
         )
-    if "DomainAccountId" in data:
+    if data.get("DomainAccountId") is not None:
         out["domain_account_id"] = data["DomainAccountId"]
-    if "DomainRegion" in data:
+    if data.get("DomainRegion") is not None:
         out["domain_region"] = data["DomainRegion"]
-    if "DomainId" in data:
+    if data.get("DomainId") is not None:
         out["domain_id"] = data["DomainId"]
-    if "ProjectId" in data:
+    if data.get("ProjectId") is not None:
         out["project_id"] = data["ProjectId"]
-    if "EnvironmentId" in data:
+    if data.get("EnvironmentId") is not None:
         out["environment_id"] = data["EnvironmentId"]
-    if "ProjectS3Path" in data:
+    if data.get("ProjectS3Path") is not None:
         out["project_s3_path"] = data["ProjectS3Path"]
-    if "SingleSignOnApplicationArn" in data:
+    if data.get("SingleSignOnApplicationArn") is not None:
         out["single_sign_on_application_arn"] = data["SingleSignOnApplicationArn"]
     return out

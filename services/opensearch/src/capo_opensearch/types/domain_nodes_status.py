@@ -80,17 +80,17 @@ def serialize_json(value: DomainNodesStatus) -> dict:
 
 def deserialize_json(data: dict) -> DomainNodesStatus:
     out: DomainNodesStatus = {}  # type: ignore[typeddict-item]
-    if "NodeId" in data:
+    if data.get("NodeId") is not None:
         out["node_id"] = data["NodeId"]
-    if "NodeType" in data:
+    if data.get("NodeType") is not None:
         import capo_opensearch.types.node_type
 
         out["node_type"] = capo_opensearch.types.node_type.deserialize_json(
             data["NodeType"]
         )
-    if "AvailabilityZone" in data:
+    if data.get("AvailabilityZone") is not None:
         out["availability_zone"] = data["AvailabilityZone"]
-    if "InstanceType" in data:
+    if data.get("InstanceType") is not None:
         import capo_opensearch.types.open_search_partition_instance_type
 
         out["instance_type"] = (
@@ -98,20 +98,20 @@ def deserialize_json(data: dict) -> DomainNodesStatus:
                 data["InstanceType"]
             )
         )
-    if "NodeStatus" in data:
+    if data.get("NodeStatus") is not None:
         import capo_opensearch.types.node_status
 
         out["node_status"] = capo_opensearch.types.node_status.deserialize_json(
             data["NodeStatus"]
         )
-    if "StorageType" in data:
+    if data.get("StorageType") is not None:
         out["storage_type"] = data["StorageType"]
-    if "StorageVolumeType" in data:
+    if data.get("StorageVolumeType") is not None:
         import capo_opensearch.types.volume_type
 
         out["storage_volume_type"] = capo_opensearch.types.volume_type.deserialize_json(
             data["StorageVolumeType"]
         )
-    if "StorageSize" in data:
+    if data.get("StorageSize") is not None:
         out["storage_size"] = data["StorageSize"]
     return out

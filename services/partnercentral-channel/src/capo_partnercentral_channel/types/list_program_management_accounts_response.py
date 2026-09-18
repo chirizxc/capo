@@ -36,7 +36,7 @@ def serialize_aws_json_1_0(value: ListProgramManagementAccountsResponse) -> dict
 
 def deserialize_aws_json_1_0(data: dict) -> ListProgramManagementAccountsResponse:
     out: ListProgramManagementAccountsResponse = {}  # type: ignore[typeddict-item]
-    if "items" in data:
+    if data.get("items") is not None:
         import capo_partnercentral_channel.types.program_management_account_summaries
 
         out["items"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_0(data: dict) -> ListProgramManagementAccountsRespons
                 data["items"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

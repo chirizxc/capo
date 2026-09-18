@@ -34,13 +34,13 @@ def serialize_json(value: CustomerProfilesIntegrationSummary) -> dict:
 
 def deserialize_json(data: dict) -> CustomerProfilesIntegrationSummary:
     out: CustomerProfilesIntegrationSummary = {}  # type: ignore[typeddict-item]
-    if "domainArn" in data:
+    if data.get("domainArn") is not None:
         out["domain_arn"] = data["domainArn"]
     else:
         raise DeserializationError(
             "CustomerProfilesIntegrationSummary.domain_arn required"
         )
-    if "objectTypeNames" in data:
+    if data.get("objectTypeNames") is not None:
         import capo_connectcampaignsv2.types.object_type_names_map
 
         out["object_type_names"] = (

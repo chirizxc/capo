@@ -25,6 +25,8 @@ def deserialize_json(data: list) -> ConfiguredTableSummaryList:
 
     out: ConfiguredTableSummaryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_cleanrooms.types.configured_table_summary.deserialize_json(item)
         )

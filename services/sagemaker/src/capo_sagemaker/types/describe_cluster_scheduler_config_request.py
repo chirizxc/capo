@@ -32,8 +32,8 @@ def serialize_aws_json_1_1(value: DescribeClusterSchedulerConfigRequest) -> dict
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeClusterSchedulerConfigRequest:
     out: DescribeClusterSchedulerConfigRequest = {}  # type: ignore[typeddict-item]
-    if "ClusterSchedulerConfigId" in data:
+    if data.get("ClusterSchedulerConfigId") is not None:
         out["cluster_scheduler_config_id"] = data["ClusterSchedulerConfigId"]
-    if "ClusterSchedulerConfigVersion" in data:
+    if data.get("ClusterSchedulerConfigVersion") is not None:
         out["cluster_scheduler_config_version"] = data["ClusterSchedulerConfigVersion"]
     return out

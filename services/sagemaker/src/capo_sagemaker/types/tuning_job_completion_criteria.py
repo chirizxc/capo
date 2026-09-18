@@ -29,7 +29,16 @@ class TuningJobCompletionCriteria(TypedDict, closed=True):
 def serialize_aws_json_1_1(value: TuningJobCompletionCriteria) -> dict:
     out: dict = {}
     if "target_objective_metric_value" in value:
-        out["TargetObjectiveMetricValue"] = value["target_objective_metric_value"]
+        out["TargetObjectiveMetricValue"] = (
+            "NaN"
+            if value["target_objective_metric_value"]
+            != value["target_objective_metric_value"]
+            else "Infinity"
+            if value["target_objective_metric_value"] == float("inf")
+            else "-Infinity"
+            if value["target_objective_metric_value"] == float("-inf")
+            else value["target_objective_metric_value"]
+        )
     if "best_objective_not_improving" in value:
         import capo_sagemaker.types.best_objective_not_improving
 
@@ -51,9 +60,9 @@ def serialize_aws_json_1_1(value: TuningJobCompletionCriteria) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> TuningJobCompletionCriteria:
     out: TuningJobCompletionCriteria = {}  # type: ignore[typeddict-item]
-    if "TargetObjectiveMetricValue" in data:
-        out["target_objective_metric_value"] = data["TargetObjectiveMetricValue"]
-    if "BestObjectiveNotImproving" in data:
+    if data.get("TargetObjectiveMetricValue") is not None:
+        out["target_objective_metric_value"] = float(data["TargetObjectiveMetricValue"])
+    if data.get("BestObjectiveNotImproving") is not None:
         import capo_sagemaker.types.best_objective_not_improving
 
         out["best_objective_not_improving"] = (
@@ -61,7 +70,7 @@ def deserialize_aws_json_1_1(data: dict) -> TuningJobCompletionCriteria:
                 data["BestObjectiveNotImproving"]
             )
         )
-    if "ConvergenceDetected" in data:
+    if data.get("ConvergenceDetected") is not None:
         import capo_sagemaker.types.convergence_detected
 
         out["convergence_detected"] = (

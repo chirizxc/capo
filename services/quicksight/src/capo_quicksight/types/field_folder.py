@@ -34,9 +34,9 @@ def serialize_json(value: FieldFolder) -> dict:
 
 def deserialize_json(data: dict) -> FieldFolder:
     out: FieldFolder = {}  # type: ignore[typeddict-item]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "columns" in data:
+    if data.get("columns") is not None:
         import capo_quicksight.types.folder_column_list
 
         out["columns"] = capo_quicksight.types.folder_column_list.deserialize_json(

@@ -41,15 +41,15 @@ def serialize_json(value: SearchSchemaVersionSummary) -> dict:
 
 def deserialize_json(data: dict) -> SearchSchemaVersionSummary:
     out: SearchSchemaVersionSummary = {}  # type: ignore[typeddict-item]
-    if "CreatedDate" in data:
+    if data.get("CreatedDate") is not None:
         import capo_schemas.types.__timestamp_iso8601
 
         out["created_date"] = capo_schemas.types.__timestamp_iso8601.deserialize_json(
             data["CreatedDate"]
         )
-    if "SchemaVersion" in data:
+    if data.get("SchemaVersion") is not None:
         out["schema_version"] = data["SchemaVersion"]
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_schemas.types.type
 
         out["type"] = capo_schemas.types.type.deserialize_json(data["Type"])

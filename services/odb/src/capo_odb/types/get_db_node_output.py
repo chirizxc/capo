@@ -24,7 +24,7 @@ def serialize_aws_json_1_0(value: GetDbNodeOutput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> GetDbNodeOutput:
     out: GetDbNodeOutput = {}  # type: ignore[typeddict-item]
-    if "dbNode" in data:
+    if data.get("dbNode") is not None:
         import capo_odb.types.db_node
 
         out["db_node"] = capo_odb.types.db_node.deserialize_aws_json_1_0(data["dbNode"])

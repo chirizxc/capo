@@ -51,7 +51,7 @@ def serialize_aws_json_1_0(value: WorkspaceInstance) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> WorkspaceInstance:
     out: WorkspaceInstance = {}  # type: ignore[typeddict-item]
-    if "ProvisionState" in data:
+    if data.get("ProvisionState") is not None:
         import capo_workspaces_instances.types.provision_state_enum
 
         out["provision_state"] = (
@@ -59,9 +59,9 @@ def deserialize_aws_json_1_0(data: dict) -> WorkspaceInstance:
                 data["ProvisionState"]
             )
         )
-    if "WorkspaceInstanceId" in data:
+    if data.get("WorkspaceInstanceId") is not None:
         out["workspace_instance_id"] = data["WorkspaceInstanceId"]
-    if "EC2ManagedInstance" in data:
+    if data.get("EC2ManagedInstance") is not None:
         import capo_workspaces_instances.types.ec2_managed_instance
 
         out["ec2_managed_instance"] = (

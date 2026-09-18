@@ -13,9 +13,9 @@ from capo_comprehendmedical import AsyncComprehendMedicalClient
 
 
 async def main():
-    async with AsyncComprehendMedicalClient() as s3:
+    async with AsyncComprehendMedicalClient() as comprehend_medical:
         # Example: call the describe_entities_detection_v2_job operation
-        response = await s3.describe_entities_detection_v2_job()
+        response = await comprehend_medical.describe_entities_detection_v2_job()
         print(response["comprehend_medical_async_job_properties"])
 ```
 
@@ -29,9 +29,9 @@ from capo_comprehendmedical.error import InternalServerException
 
 
 async def main():
-    async with AsyncComprehendMedicalClient() as s3:
+    async with AsyncComprehendMedicalClient() as comprehend_medical:
         try:
-            await s3.describe_entities_detection_v2_job()
+            await comprehend_medical.describe_entities_detection_v2_job()
         except InternalServerException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -48,13 +48,13 @@ from capo_comprehendmedical import AsyncComprehendMedicalClient
 
 
 async def main():
-    async with AsyncComprehendMedicalClient() as s3:
+    async with AsyncComprehendMedicalClient() as comprehend_medical:
         # Default: 3 attempts for every operation
-        response = await s3.describe_entities_detection_v2_job()
+        response = await comprehend_medical.describe_entities_detection_v2_job()
 
         # Override per operation
-        response = await s3.describe_entities_detection_v2_job(config_overrides={"retry_max_attempts": 5})
+        response = await comprehend_medical.describe_entities_detection_v2_job(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.describe_entities_detection_v2_job(config_overrides={"retry_max_attempts": 1})
+        response = await comprehend_medical.describe_entities_detection_v2_job(config_overrides={"retry_max_attempts": 1})
 ```

@@ -32,12 +32,12 @@ def serialize_json(value: GetLinksResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetLinksResponse:
     out: GetLinksResponse = {}  # type: ignore[typeddict-item]
-    if "Links" in data:
+    if data.get("Links") is not None:
         import capo_networkmanager.types.link_list
 
         out["links"] = capo_networkmanager.types.link_list.deserialize_json(
             data["Links"]
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

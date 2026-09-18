@@ -42,7 +42,7 @@ def serialize_aws_json_1_0(value: ActivityTaskTimedOutEventAttributes) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ActivityTaskTimedOutEventAttributes:
     out: ActivityTaskTimedOutEventAttributes = {}  # type: ignore[typeddict-item]
-    if "timeoutType" in data:
+    if data.get("timeoutType") is not None:
         import capo_swf.types.activity_task_timeout_type
 
         out["timeout_type"] = (
@@ -54,14 +54,14 @@ def deserialize_aws_json_1_0(data: dict) -> ActivityTaskTimedOutEventAttributes:
         raise DeserializationError(
             "ActivityTaskTimedOutEventAttributes.timeout_type required"
         )
-    if "scheduledEventId" in data:
+    if data.get("scheduledEventId") is not None:
         out["scheduled_event_id"] = data["scheduledEventId"]
     else:
         out["scheduled_event_id"] = 0
-    if "startedEventId" in data:
+    if data.get("startedEventId") is not None:
         out["started_event_id"] = data["startedEventId"]
     else:
         out["started_event_id"] = 0
-    if "details" in data:
+    if data.get("details") is not None:
         out["details"] = data["details"]
     return out

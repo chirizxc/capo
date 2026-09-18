@@ -30,11 +30,11 @@ def serialize_aws_json_1_1(value: CustomAttribute) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CustomAttribute:
     out: CustomAttribute = {}  # type: ignore[typeddict-item]
-    if "ObjectIdentifier" in data:
+    if data.get("ObjectIdentifier") is not None:
         out["object_identifier"] = data["ObjectIdentifier"]
     else:
         raise DeserializationError("CustomAttribute.object_identifier required")
-    if "Value" in data:
+    if data.get("Value") is not None:
         out["value"] = data["Value"]
     else:
         raise DeserializationError("CustomAttribute.value required")

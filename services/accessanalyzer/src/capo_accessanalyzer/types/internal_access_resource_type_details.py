@@ -26,10 +26,10 @@ def serialize_json(value: InternalAccessResourceTypeDetails) -> dict:
 
 def deserialize_json(data: dict) -> InternalAccessResourceTypeDetails:
     out: InternalAccessResourceTypeDetails = {}  # type: ignore[typeddict-item]
-    if "totalActiveFindings" in data:
+    if data.get("totalActiveFindings") is not None:
         out["total_active_findings"] = data["totalActiveFindings"]
-    if "totalResolvedFindings" in data:
+    if data.get("totalResolvedFindings") is not None:
         out["total_resolved_findings"] = data["totalResolvedFindings"]
-    if "totalArchivedFindings" in data:
+    if data.get("totalArchivedFindings") is not None:
         out["total_archived_findings"] = data["totalArchivedFindings"]
     return out

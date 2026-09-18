@@ -116,17 +116,17 @@ def serialize_json(value: SearchByAttributeValue) -> dict:
 
 
 def deserialize_json(data: dict) -> SearchByAttributeValue:
-    if "DICOMPatientId" in data:
+    if data.get("DICOMPatientId") is not None:
         return {"DICOMPatientId": data["DICOMPatientId"]}
-    elif "DICOMAccessionNumber" in data:
+    elif data.get("DICOMAccessionNumber") is not None:
         return {"DICOMAccessionNumber": data["DICOMAccessionNumber"]}
-    elif "DICOMStudyId" in data:
+    elif data.get("DICOMStudyId") is not None:
         return {"DICOMStudyId": data["DICOMStudyId"]}
-    elif "DICOMStudyInstanceUID" in data:
+    elif data.get("DICOMStudyInstanceUID") is not None:
         return {"DICOMStudyInstanceUID": data["DICOMStudyInstanceUID"]}
-    elif "DICOMSeriesInstanceUID" in data:
+    elif data.get("DICOMSeriesInstanceUID") is not None:
         return {"DICOMSeriesInstanceUID": data["DICOMSeriesInstanceUID"]}
-    elif "createdAt" in data:
+    elif data.get("createdAt") is not None:
         import capo_medical_imaging.types.date
 
         return {
@@ -134,7 +134,7 @@ def deserialize_json(data: dict) -> SearchByAttributeValue:
                 data["createdAt"]
             )
         }
-    elif "updatedAt" in data:
+    elif data.get("updatedAt") is not None:
         import capo_medical_imaging.types.date
 
         return {
@@ -142,7 +142,7 @@ def deserialize_json(data: dict) -> SearchByAttributeValue:
                 data["updatedAt"]
             )
         }
-    elif "DICOMStudyDateAndTime" in data:
+    elif data.get("DICOMStudyDateAndTime") is not None:
         import capo_medical_imaging.types.dicom_study_date_and_time
 
         return {
@@ -150,7 +150,7 @@ def deserialize_json(data: dict) -> SearchByAttributeValue:
                 data["DICOMStudyDateAndTime"]
             )
         }
-    elif "isPrimary" in data:
+    elif data.get("isPrimary") is not None:
         return {"isPrimary": data["isPrimary"]}
     else:
         raise DeserializationError("SearchByAttributeValue: no recognized variant key")

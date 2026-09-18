@@ -87,15 +87,15 @@ def serialize_json(value: DisplayFormatOptions) -> dict:
 
 def deserialize_json(data: dict) -> DisplayFormatOptions:
     out: DisplayFormatOptions = {}  # type: ignore[typeddict-item]
-    if "UseBlankCellFormat" in data:
+    if data.get("UseBlankCellFormat") is not None:
         out["use_blank_cell_format"] = data["UseBlankCellFormat"]
     else:
         out["use_blank_cell_format"] = False
-    if "BlankCellFormat" in data:
+    if data.get("BlankCellFormat") is not None:
         out["blank_cell_format"] = data["BlankCellFormat"]
-    if "DateFormat" in data:
+    if data.get("DateFormat") is not None:
         out["date_format"] = data["DateFormat"]
-    if "DecimalSeparator" in data:
+    if data.get("DecimalSeparator") is not None:
         import capo_quicksight.types.topic_numeric_separator_symbol
 
         out["decimal_separator"] = (
@@ -103,32 +103,32 @@ def deserialize_json(data: dict) -> DisplayFormatOptions:
                 data["DecimalSeparator"]
             )
         )
-    if "GroupingSeparator" in data:
+    if data.get("GroupingSeparator") is not None:
         out["grouping_separator"] = data["GroupingSeparator"]
-    if "UseGrouping" in data:
+    if data.get("UseGrouping") is not None:
         out["use_grouping"] = data["UseGrouping"]
     else:
         out["use_grouping"] = False
-    if "FractionDigits" in data:
+    if data.get("FractionDigits") is not None:
         out["fraction_digits"] = data["FractionDigits"]
     else:
         out["fraction_digits"] = 0
-    if "Prefix" in data:
+    if data.get("Prefix") is not None:
         out["prefix"] = data["Prefix"]
-    if "Suffix" in data:
+    if data.get("Suffix") is not None:
         out["suffix"] = data["Suffix"]
-    if "UnitScaler" in data:
+    if data.get("UnitScaler") is not None:
         import capo_quicksight.types.number_scale
 
         out["unit_scaler"] = capo_quicksight.types.number_scale.deserialize_json(
             data["UnitScaler"]
         )
-    if "NegativeFormat" in data:
+    if data.get("NegativeFormat") is not None:
         import capo_quicksight.types.negative_format
 
         out["negative_format"] = capo_quicksight.types.negative_format.deserialize_json(
             data["NegativeFormat"]
         )
-    if "CurrencySymbol" in data:
+    if data.get("CurrencySymbol") is not None:
         out["currency_symbol"] = data["CurrencySymbol"]
     return out

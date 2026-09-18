@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> __listOfBucketMetadata:
 
     out: __listOfBucketMetadata = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_macie2.types.bucket_metadata.deserialize_json(item))
     return out

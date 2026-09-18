@@ -27,8 +27,8 @@ def serialize_json(value: FaultStatistics) -> dict:
 
 def deserialize_json(data: dict) -> FaultStatistics:
     out: FaultStatistics = {}  # type: ignore[typeddict-item]
-    if "OtherCount" in data:
+    if data.get("OtherCount") is not None:
         out["other_count"] = data["OtherCount"]
-    if "TotalCount" in data:
+    if data.get("TotalCount") is not None:
         out["total_count"] = data["TotalCount"]
     return out

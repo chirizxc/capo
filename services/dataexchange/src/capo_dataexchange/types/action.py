@@ -31,7 +31,7 @@ def serialize_json(value: Action) -> dict:
 
 def deserialize_json(data: dict) -> Action:
     out: Action = {}  # type: ignore[typeddict-item]
-    if "ExportRevisionToS3" in data:
+    if data.get("ExportRevisionToS3") is not None:
         import capo_dataexchange.types.auto_export_revision_to_s3_request_details
 
         out["export_revision_to_s3"] = (

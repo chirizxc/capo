@@ -25,6 +25,8 @@ def deserialize_json(data: list) -> ApplicationPolicyList:
 
     out: ApplicationPolicyList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_pca_connector_ad.types.application_policy.deserialize_json(item)
         )

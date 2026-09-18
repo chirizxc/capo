@@ -45,15 +45,15 @@ def serialize_aws_json_1_0(value: UpdatePlanExecutionRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> UpdatePlanExecutionRequest:
     out: UpdatePlanExecutionRequest = {}  # type: ignore[typeddict-item]
-    if "planArn" in data:
+    if data.get("planArn") is not None:
         out["plan_arn"] = data["planArn"]
     else:
         raise DeserializationError("UpdatePlanExecutionRequest.plan_arn required")
-    if "executionId" in data:
+    if data.get("executionId") is not None:
         out["execution_id"] = data["executionId"]
     else:
         raise DeserializationError("UpdatePlanExecutionRequest.execution_id required")
-    if "action" in data:
+    if data.get("action") is not None:
         import capo_arc_region_switch.types.update_plan_execution_action
 
         out["action"] = (
@@ -63,6 +63,6 @@ def deserialize_aws_json_1_0(data: dict) -> UpdatePlanExecutionRequest:
         )
     else:
         raise DeserializationError("UpdatePlanExecutionRequest.action required")
-    if "comment" in data:
+    if data.get("comment") is not None:
         out["comment"] = data["comment"]
     return out

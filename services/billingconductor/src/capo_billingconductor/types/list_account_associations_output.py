@@ -36,7 +36,7 @@ def serialize_json(value: ListAccountAssociationsOutput) -> dict:
 
 def deserialize_json(data: dict) -> ListAccountAssociationsOutput:
     out: ListAccountAssociationsOutput = {}  # type: ignore[typeddict-item]
-    if "LinkedAccounts" in data:
+    if data.get("LinkedAccounts") is not None:
         import capo_billingconductor.types.account_associations_list
 
         out["linked_accounts"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> ListAccountAssociationsOutput:
                 data["LinkedAccounts"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

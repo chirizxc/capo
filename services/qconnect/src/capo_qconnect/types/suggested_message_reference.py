@@ -28,11 +28,11 @@ def serialize_json(value: SuggestedMessageReference) -> dict:
 
 def deserialize_json(data: dict) -> SuggestedMessageReference:
     out: SuggestedMessageReference = {}  # type: ignore[typeddict-item]
-    if "aiAgentId" in data:
+    if data.get("aiAgentId") is not None:
         out["ai_agent_id"] = data["aiAgentId"]
     else:
         raise DeserializationError("SuggestedMessageReference.ai_agent_id required")
-    if "aiAgentArn" in data:
+    if data.get("aiAgentArn") is not None:
         out["ai_agent_arn"] = data["aiAgentArn"]
     else:
         raise DeserializationError("SuggestedMessageReference.ai_agent_arn required")

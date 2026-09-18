@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> SyncResourceFilters:
 
     out: SyncResourceFilters = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_iottwinmaker.types.sync_resource_filter.deserialize_json(item))
     return out

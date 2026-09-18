@@ -53,26 +53,26 @@ def serialize_json(value: StartImportFileTaskRequest) -> dict:
 
 def deserialize_json(data: dict) -> StartImportFileTaskRequest:
     out: StartImportFileTaskRequest = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("StartImportFileTaskRequest.name required")
-    if "S3Bucket" in data:
+    if data.get("S3Bucket") is not None:
         out["s3_bucket"] = data["S3Bucket"]
     else:
         raise DeserializationError("StartImportFileTaskRequest.s3_bucket required")
-    if "s3key" in data:
+    if data.get("s3key") is not None:
         out["s3key"] = data["s3key"]
     else:
         raise DeserializationError("StartImportFileTaskRequest.s3key required")
-    if "dataSourceType" in data:
+    if data.get("dataSourceType") is not None:
         out["data_source_type"] = data["dataSourceType"]
-    if "groupId" in data:
+    if data.get("groupId") is not None:
         import capo_migrationhubstrategy.types.group_ids
 
         out["group_id"] = capo_migrationhubstrategy.types.group_ids.deserialize_json(
             data["groupId"]
         )
-    if "s3bucketForReportData" in data:
+    if data.get("s3bucketForReportData") is not None:
         out["s3bucket_for_report_data"] = data["s3bucketForReportData"]
     return out

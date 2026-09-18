@@ -46,7 +46,7 @@ def serialize_json(value: SlotTypeFilter) -> dict:
 
 def deserialize_json(data: dict) -> SlotTypeFilter:
     out: SlotTypeFilter = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         import capo_lex_models_v2.types.slot_type_filter_name
 
         out["name"] = capo_lex_models_v2.types.slot_type_filter_name.deserialize_json(
@@ -54,7 +54,7 @@ def deserialize_json(data: dict) -> SlotTypeFilter:
         )
     else:
         raise DeserializationError("SlotTypeFilter.name required")
-    if "values" in data:
+    if data.get("values") is not None:
         import capo_lex_models_v2.types.filter_values
 
         out["values"] = capo_lex_models_v2.types.filter_values.deserialize_json(
@@ -62,7 +62,7 @@ def deserialize_json(data: dict) -> SlotTypeFilter:
         )
     else:
         raise DeserializationError("SlotTypeFilter.values required")
-    if "operator" in data:
+    if data.get("operator") is not None:
         import capo_lex_models_v2.types.slot_type_filter_operator
 
         out["operator"] = (

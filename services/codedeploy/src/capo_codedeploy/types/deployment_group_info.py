@@ -269,15 +269,15 @@ def serialize_aws_json_1_1(value: DeploymentGroupInfo) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeploymentGroupInfo:
     out: DeploymentGroupInfo = {}  # type: ignore[typeddict-item]
-    if "applicationName" in data:
+    if data.get("applicationName") is not None:
         out["application_name"] = data["applicationName"]
-    if "deploymentGroupId" in data:
+    if data.get("deploymentGroupId") is not None:
         out["deployment_group_id"] = data["deploymentGroupId"]
-    if "deploymentGroupName" in data:
+    if data.get("deploymentGroupName") is not None:
         out["deployment_group_name"] = data["deploymentGroupName"]
-    if "deploymentConfigName" in data:
+    if data.get("deploymentConfigName") is not None:
         out["deployment_config_name"] = data["deploymentConfigName"]
-    if "ec2TagFilters" in data:
+    if data.get("ec2TagFilters") is not None:
         import capo_codedeploy.types.ec2_tag_filter_list
 
         out["ec2_tag_filters"] = (
@@ -285,7 +285,7 @@ def deserialize_aws_json_1_1(data: dict) -> DeploymentGroupInfo:
                 data["ec2TagFilters"]
             )
         )
-    if "onPremisesInstanceTagFilters" in data:
+    if data.get("onPremisesInstanceTagFilters") is not None:
         import capo_codedeploy.types.tag_filter_list
 
         out["on_premises_instance_tag_filters"] = (
@@ -293,7 +293,7 @@ def deserialize_aws_json_1_1(data: dict) -> DeploymentGroupInfo:
                 data["onPremisesInstanceTagFilters"]
             )
         )
-    if "autoScalingGroups" in data:
+    if data.get("autoScalingGroups") is not None:
         import capo_codedeploy.types.auto_scaling_group_list
 
         out["auto_scaling_groups"] = (
@@ -301,9 +301,9 @@ def deserialize_aws_json_1_1(data: dict) -> DeploymentGroupInfo:
                 data["autoScalingGroups"]
             )
         )
-    if "serviceRoleArn" in data:
+    if data.get("serviceRoleArn") is not None:
         out["service_role_arn"] = data["serviceRoleArn"]
-    if "targetRevision" in data:
+    if data.get("targetRevision") is not None:
         import capo_codedeploy.types.revision_location
 
         out["target_revision"] = (
@@ -311,7 +311,7 @@ def deserialize_aws_json_1_1(data: dict) -> DeploymentGroupInfo:
                 data["targetRevision"]
             )
         )
-    if "triggerConfigurations" in data:
+    if data.get("triggerConfigurations") is not None:
         import capo_codedeploy.types.trigger_config_list
 
         out["trigger_configurations"] = (
@@ -319,7 +319,7 @@ def deserialize_aws_json_1_1(data: dict) -> DeploymentGroupInfo:
                 data["triggerConfigurations"]
             )
         )
-    if "alarmConfiguration" in data:
+    if data.get("alarmConfiguration") is not None:
         import capo_codedeploy.types.alarm_configuration
 
         out["alarm_configuration"] = (
@@ -327,7 +327,7 @@ def deserialize_aws_json_1_1(data: dict) -> DeploymentGroupInfo:
                 data["alarmConfiguration"]
             )
         )
-    if "autoRollbackConfiguration" in data:
+    if data.get("autoRollbackConfiguration") is not None:
         import capo_codedeploy.types.auto_rollback_configuration
 
         out["auto_rollback_configuration"] = (
@@ -335,7 +335,7 @@ def deserialize_aws_json_1_1(data: dict) -> DeploymentGroupInfo:
                 data["autoRollbackConfiguration"]
             )
         )
-    if "deploymentStyle" in data:
+    if data.get("deploymentStyle") is not None:
         import capo_codedeploy.types.deployment_style
 
         out["deployment_style"] = (
@@ -343,7 +343,7 @@ def deserialize_aws_json_1_1(data: dict) -> DeploymentGroupInfo:
                 data["deploymentStyle"]
             )
         )
-    if "outdatedInstancesStrategy" in data:
+    if data.get("outdatedInstancesStrategy") is not None:
         import capo_codedeploy.types.outdated_instances_strategy
 
         out["outdated_instances_strategy"] = (
@@ -351,7 +351,7 @@ def deserialize_aws_json_1_1(data: dict) -> DeploymentGroupInfo:
                 data["outdatedInstancesStrategy"]
             )
         )
-    if "blueGreenDeploymentConfiguration" in data:
+    if data.get("blueGreenDeploymentConfiguration") is not None:
         import capo_codedeploy.types.blue_green_deployment_configuration
 
         out["blue_green_deployment_configuration"] = (
@@ -359,7 +359,7 @@ def deserialize_aws_json_1_1(data: dict) -> DeploymentGroupInfo:
                 data["blueGreenDeploymentConfiguration"]
             )
         )
-    if "loadBalancerInfo" in data:
+    if data.get("loadBalancerInfo") is not None:
         import capo_codedeploy.types.load_balancer_info
 
         out["load_balancer_info"] = (
@@ -367,7 +367,7 @@ def deserialize_aws_json_1_1(data: dict) -> DeploymentGroupInfo:
                 data["loadBalancerInfo"]
             )
         )
-    if "lastSuccessfulDeployment" in data:
+    if data.get("lastSuccessfulDeployment") is not None:
         import capo_codedeploy.types.last_deployment_info
 
         out["last_successful_deployment"] = (
@@ -375,7 +375,7 @@ def deserialize_aws_json_1_1(data: dict) -> DeploymentGroupInfo:
                 data["lastSuccessfulDeployment"]
             )
         )
-    if "lastAttemptedDeployment" in data:
+    if data.get("lastAttemptedDeployment") is not None:
         import capo_codedeploy.types.last_deployment_info
 
         out["last_attempted_deployment"] = (
@@ -383,13 +383,13 @@ def deserialize_aws_json_1_1(data: dict) -> DeploymentGroupInfo:
                 data["lastAttemptedDeployment"]
             )
         )
-    if "ec2TagSet" in data:
+    if data.get("ec2TagSet") is not None:
         import capo_codedeploy.types.ec2_tag_set
 
         out["ec2_tag_set"] = capo_codedeploy.types.ec2_tag_set.deserialize_aws_json_1_1(
             data["ec2TagSet"]
         )
-    if "onPremisesTagSet" in data:
+    if data.get("onPremisesTagSet") is not None:
         import capo_codedeploy.types.on_premises_tag_set
 
         out["on_premises_tag_set"] = (
@@ -397,7 +397,7 @@ def deserialize_aws_json_1_1(data: dict) -> DeploymentGroupInfo:
                 data["onPremisesTagSet"]
             )
         )
-    if "computePlatform" in data:
+    if data.get("computePlatform") is not None:
         import capo_codedeploy.types.compute_platform
 
         out["compute_platform"] = (
@@ -405,7 +405,7 @@ def deserialize_aws_json_1_1(data: dict) -> DeploymentGroupInfo:
                 data["computePlatform"]
             )
         )
-    if "ecsServices" in data:
+    if data.get("ecsServices") is not None:
         import capo_codedeploy.types.ecs_service_list
 
         out["ecs_services"] = (
@@ -413,7 +413,7 @@ def deserialize_aws_json_1_1(data: dict) -> DeploymentGroupInfo:
                 data["ecsServices"]
             )
         )
-    if "terminationHookEnabled" in data:
+    if data.get("terminationHookEnabled") is not None:
         out["termination_hook_enabled"] = data["terminationHookEnabled"]
     else:
         out["termination_hook_enabled"] = False

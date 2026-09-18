@@ -28,11 +28,11 @@ def serialize_aws_json_1_1(value: UpdateDefaultBranchInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateDefaultBranchInput:
     out: UpdateDefaultBranchInput = {}  # type: ignore[typeddict-item]
-    if "repositoryName" in data:
+    if data.get("repositoryName") is not None:
         out["repository_name"] = data["repositoryName"]
     else:
         raise DeserializationError("UpdateDefaultBranchInput.repository_name required")
-    if "defaultBranchName" in data:
+    if data.get("defaultBranchName") is not None:
         out["default_branch_name"] = data["defaultBranchName"]
     else:
         raise DeserializationError(

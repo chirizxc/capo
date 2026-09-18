@@ -30,7 +30,7 @@ def serialize_aws_json_1_1(value: DescribeTagsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeTagsRequest:
     out: DescribeTagsRequest = {}  # type: ignore[typeddict-item]
-    if "resourceArns" in data:
+    if data.get("resourceArns") is not None:
         import capo_direct_connect.types.resource_arn_list
 
         out["resource_arns"] = (

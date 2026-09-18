@@ -35,7 +35,7 @@ def serialize_json(value: ListGroundStationReservationsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListGroundStationReservationsResponse:
     out: ListGroundStationReservationsResponse = {}  # type: ignore[typeddict-item]
-    if "reservationList" in data:
+    if data.get("reservationList") is not None:
         import capo_groundstation.types.ground_station_reservation_list
 
         out["reservation_list"] = (
@@ -47,6 +47,6 @@ def deserialize_json(data: dict) -> ListGroundStationReservationsResponse:
         raise DeserializationError(
             "ListGroundStationReservationsResponse.reservation_list required"
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

@@ -35,10 +35,10 @@ def serialize_aws_json_1_1(value: ListPipelineParametersForExecutionRequest) -> 
 
 def deserialize_aws_json_1_1(data: dict) -> ListPipelineParametersForExecutionRequest:
     out: ListPipelineParametersForExecutionRequest = {}  # type: ignore[typeddict-item]
-    if "PipelineExecutionArn" in data:
+    if data.get("PipelineExecutionArn") is not None:
         out["pipeline_execution_arn"] = data["PipelineExecutionArn"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
     return out

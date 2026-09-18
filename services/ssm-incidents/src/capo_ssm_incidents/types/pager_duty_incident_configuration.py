@@ -19,7 +19,7 @@ def serialize_json(value: PagerDutyIncidentConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> PagerDutyIncidentConfiguration:
     out: PagerDutyIncidentConfiguration = {}  # type: ignore[typeddict-item]
-    if "serviceId" in data:
+    if data.get("serviceId") is not None:
         out["service_id"] = data["serviceId"]
     else:
         raise DeserializationError("PagerDutyIncidentConfiguration.service_id required")

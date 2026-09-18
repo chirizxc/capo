@@ -23,6 +23,6 @@ def serialize_json(value: AwsEcsTaskVolumeHostDetails) -> dict:
 
 def deserialize_json(data: dict) -> AwsEcsTaskVolumeHostDetails:
     out: AwsEcsTaskVolumeHostDetails = {}  # type: ignore[typeddict-item]
-    if "SourcePath" in data:
+    if data.get("SourcePath") is not None:
         out["source_path"] = data["SourcePath"]
     return out

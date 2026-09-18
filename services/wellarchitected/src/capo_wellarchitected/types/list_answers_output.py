@@ -53,15 +53,15 @@ def serialize_json(value: ListAnswersOutput) -> dict:
 
 def deserialize_json(data: dict) -> ListAnswersOutput:
     out: ListAnswersOutput = {}  # type: ignore[typeddict-item]
-    if "WorkloadId" in data:
+    if data.get("WorkloadId") is not None:
         out["workload_id"] = data["WorkloadId"]
-    if "MilestoneNumber" in data:
+    if data.get("MilestoneNumber") is not None:
         out["milestone_number"] = data["MilestoneNumber"]
-    if "LensAlias" in data:
+    if data.get("LensAlias") is not None:
         out["lens_alias"] = data["LensAlias"]
-    if "LensArn" in data:
+    if data.get("LensArn") is not None:
         out["lens_arn"] = data["LensArn"]
-    if "AnswerSummaries" in data:
+    if data.get("AnswerSummaries") is not None:
         import capo_wellarchitected.types.answer_summaries
 
         out["answer_summaries"] = (
@@ -69,6 +69,6 @@ def deserialize_json(data: dict) -> ListAnswersOutput:
                 data["AnswerSummaries"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

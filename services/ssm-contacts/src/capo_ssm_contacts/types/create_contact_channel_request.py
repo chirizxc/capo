@@ -62,15 +62,15 @@ def serialize_aws_json_1_1(value: CreateContactChannelRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateContactChannelRequest:
     out: CreateContactChannelRequest = {}  # type: ignore[typeddict-item]
-    if "ContactId" in data:
+    if data.get("ContactId") is not None:
         out["contact_id"] = data["ContactId"]
     else:
         raise DeserializationError("CreateContactChannelRequest.contact_id required")
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("CreateContactChannelRequest.name required")
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_ssm_contacts.types.channel_type
 
         out["type"] = capo_ssm_contacts.types.channel_type.deserialize_aws_json_1_1(
@@ -78,7 +78,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateContactChannelRequest:
         )
     else:
         raise DeserializationError("CreateContactChannelRequest.type required")
-    if "DeliveryAddress" in data:
+    if data.get("DeliveryAddress") is not None:
         import capo_ssm_contacts.types.contact_channel_address
 
         out["delivery_address"] = (
@@ -90,8 +90,8 @@ def deserialize_aws_json_1_1(data: dict) -> CreateContactChannelRequest:
         raise DeserializationError(
             "CreateContactChannelRequest.delivery_address required"
         )
-    if "DeferActivation" in data:
+    if data.get("DeferActivation") is not None:
         out["defer_activation"] = data["DeferActivation"]
-    if "IdempotencyToken" in data:
+    if data.get("IdempotencyToken") is not None:
         out["idempotency_token"] = data["IdempotencyToken"]
     return out

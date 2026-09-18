@@ -10,6 +10,7 @@ from typing_extensions import Never
 
 import capo_transfer._auth._signers
 import capo_transfer._auth._sigv4
+import capo_transfer._protocol.eventstream
 import capo_transfer.errors.internal_service_error
 import capo_transfer.errors.invalid_request_exception
 import capo_transfer.errors.resource_not_found_exception
@@ -28,23 +29,23 @@ def handle_error(response: zapros.Response) -> Never:
     match code:
         case "InternalServiceError":
             raise capo_transfer.errors.internal_service_error.InternalServiceError.from_aws_json_1_1(
-                data
+                data, message
             )
         case "InvalidRequestException":
             raise capo_transfer.errors.invalid_request_exception.InvalidRequestException.from_aws_json_1_1(
-                data
+                data, message
             )
         case "ResourceNotFoundException":
             raise capo_transfer.errors.resource_not_found_exception.ResourceNotFoundException.from_aws_json_1_1(
-                data
+                data, message
             )
         case "ServiceUnavailableException":
             raise capo_transfer.errors.service_unavailable_exception.ServiceUnavailableException.from_aws_json_1_1(
-                data
+                data, message
             )
         case "ThrottlingException":
             raise capo_transfer.errors.throttling_exception.ThrottlingException.from_aws_json_1_1(
-                data
+                data, message
             )
         case _:
             raise UnknownServiceError(code=code, message=message, response=response)
@@ -55,19 +56,26 @@ def get_signer(
     auth_schemes: list[dict[str, Any]] | None = None,
 ) -> capo_transfer._auth._signers.Signer | None:
     name_to_schema = {s["name"]: s for s in (auth_schemes or [])}  # noqa: F841
-    if options.credentials_provider is not None:
-        sigv4_config = (
-            name_to_schema.get("sigv4")
-            or name_to_schema.get("sigv4a")
-            or name_to_schema.get("sigv4-s3express")
-            or capo_transfer._auth._sigv4.build_sigv4_auth_scheme(
-                "transfer", options.region
-            )
+    if (
+        options.credentials_provider is not None
+        and name_to_schema
+        and not name_to_schema.keys() & {"sigv4", "sigv4-s3express"}
+    ):
+        raise RuntimeError(
+            "Endpoint requires an unsupported auth scheme: " + ", ".join(name_to_schema)
         )
-        if sigv4_config is not None:
-            return capo_transfer._auth._signers.SigV4Signer(
-                options.credentials_provider, auth_scheme=sigv4_config
+    if options.credentials_provider is not None:
+        endpoint_scheme = name_to_schema.get("sigv4") or name_to_schema.get(
+            "sigv4-s3express"
+        )
+        if endpoint_scheme is not None or not name_to_schema:
+            sigv4_config = capo_transfer._auth._sigv4.build_sigv4_auth_scheme(
+                "transfer", options.region, endpoint_scheme
             )
+            if sigv4_config is not None:
+                return capo_transfer._auth._signers.SigV4Signer(
+                    options.credentials_provider, auth_scheme=sigv4_config
+                )
     raise RuntimeError("Auth was not resolved")
 
 
@@ -84,16 +92,18 @@ def build_request(
         )
     )  # noqa: F841
     url = endpoint.url.rstrip("/") + ""
-    params: dict[str, str] = {}
+    params: list[tuple[str, str]] = []
     headers: dict[str, str] = {k: ", ".join(v) for k, v in endpoint.headers.items()}
     headers["X-Amz-Target"] = "TransferService.StopServer"
     body: bytes | None = json.dumps(
-        capo_transfer.types.stop_server_request.serialize_aws_json_1_1(input_)
+        capo_transfer.types.stop_server_request.serialize_aws_json_1_1(input_),
+        allow_nan=False,
     ).encode()
     headers["content-type"] = "application/x-amz-json-1.1"
     signer = get_signer(options, auth_schemes=endpoint.properties.get("authSchemes"))
     normalized_url = zapros.URL(url)
-    normalized_url.search_params.update(params)
+    for k, v in params:
+        normalized_url.search_params.append(k, v)
     return zapros.Request(
         normalized_url, "POST", headers=headers, body=body, context={"signer": signer}
     )
@@ -105,7 +115,7 @@ def stop_server(
 ) -> tuple[None, zapros.Response]:
     response = options.client.handler.handle(build_request(options, input_))
     try:
-        if response.status >= 400:
+        if response.status >= 300:
             response.read()
             handle_error(response)
         return None, response
@@ -120,7 +130,7 @@ async def async_stop_server(
 ) -> tuple[None, zapros.Response]:
     response = await options.client.handler.ahandle(build_request(options, input_))
     try:
-        if response.status >= 400:
+        if response.status >= 300:
             await response.aread()
             handle_error(response)
         return None, response

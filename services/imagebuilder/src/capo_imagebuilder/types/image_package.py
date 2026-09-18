@@ -29,8 +29,8 @@ def serialize_json(value: ImagePackage) -> dict:
 
 def deserialize_json(data: dict) -> ImagePackage:
     out: ImagePackage = {}  # type: ignore[typeddict-item]
-    if "packageName" in data:
+    if data.get("packageName") is not None:
         out["package_name"] = data["packageName"]
-    if "packageVersion" in data:
+    if data.get("packageVersion") is not None:
         out["package_version"] = data["packageVersion"]
     return out

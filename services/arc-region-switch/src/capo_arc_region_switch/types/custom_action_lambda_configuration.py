@@ -36,7 +36,15 @@ def serialize_aws_json_1_0(value: CustomActionLambdaConfiguration) -> dict:
     out["lambdas"] = capo_arc_region_switch.types.lambda_list.serialize_aws_json_1_0(
         value["lambdas"]
     )
-    out["retryIntervalMinutes"] = value["retry_interval_minutes"]
+    out["retryIntervalMinutes"] = (
+        "NaN"
+        if value["retry_interval_minutes"] != value["retry_interval_minutes"]
+        else "Infinity"
+        if value["retry_interval_minutes"] == float("inf")
+        else "-Infinity"
+        if value["retry_interval_minutes"] == float("-inf")
+        else value["retry_interval_minutes"]
+    )
     import capo_arc_region_switch.types.region_to_run_in
 
     out["regionToRun"] = (
@@ -57,11 +65,11 @@ def serialize_aws_json_1_0(value: CustomActionLambdaConfiguration) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CustomActionLambdaConfiguration:
     out: CustomActionLambdaConfiguration = {}  # type: ignore[typeddict-item]
-    if "timeoutMinutes" in data:
+    if data.get("timeoutMinutes") is not None:
         out["timeout_minutes"] = data["timeoutMinutes"]
     else:
         out["timeout_minutes"] = 60
-    if "lambdas" in data:
+    if data.get("lambdas") is not None:
         import capo_arc_region_switch.types.lambda_list
 
         out["lambdas"] = (
@@ -71,13 +79,13 @@ def deserialize_aws_json_1_0(data: dict) -> CustomActionLambdaConfiguration:
         )
     else:
         raise DeserializationError("CustomActionLambdaConfiguration.lambdas required")
-    if "retryIntervalMinutes" in data:
-        out["retry_interval_minutes"] = data["retryIntervalMinutes"]
+    if data.get("retryIntervalMinutes") is not None:
+        out["retry_interval_minutes"] = float(data["retryIntervalMinutes"])
     else:
         raise DeserializationError(
             "CustomActionLambdaConfiguration.retry_interval_minutes required"
         )
-    if "regionToRun" in data:
+    if data.get("regionToRun") is not None:
         import capo_arc_region_switch.types.region_to_run_in
 
         out["region_to_run"] = (
@@ -89,7 +97,7 @@ def deserialize_aws_json_1_0(data: dict) -> CustomActionLambdaConfiguration:
         raise DeserializationError(
             "CustomActionLambdaConfiguration.region_to_run required"
         )
-    if "ungraceful" in data:
+    if data.get("ungraceful") is not None:
         import capo_arc_region_switch.types.lambda_ungraceful
 
         out["ungraceful"] = (

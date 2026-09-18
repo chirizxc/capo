@@ -43,7 +43,7 @@ def serialize_aws_json_1_1(value: ArtifactStore) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ArtifactStore:
     out: ArtifactStore = {}  # type: ignore[typeddict-item]
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_codepipeline.types.artifact_store_type
 
         out["type"] = (
@@ -53,11 +53,11 @@ def deserialize_aws_json_1_1(data: dict) -> ArtifactStore:
         )
     else:
         raise DeserializationError("ArtifactStore.type required")
-    if "location" in data:
+    if data.get("location") is not None:
         out["location"] = data["location"]
     else:
         raise DeserializationError("ArtifactStore.location required")
-    if "encryptionKey" in data:
+    if data.get("encryptionKey") is not None:
         import capo_codepipeline.types.encryption_key
 
         out["encryption_key"] = (

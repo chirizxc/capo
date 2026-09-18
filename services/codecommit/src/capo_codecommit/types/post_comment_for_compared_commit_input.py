@@ -52,30 +52,30 @@ def serialize_aws_json_1_1(value: PostCommentForComparedCommitInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PostCommentForComparedCommitInput:
     out: PostCommentForComparedCommitInput = {}  # type: ignore[typeddict-item]
-    if "repositoryName" in data:
+    if data.get("repositoryName") is not None:
         out["repository_name"] = data["repositoryName"]
     else:
         raise DeserializationError(
             "PostCommentForComparedCommitInput.repository_name required"
         )
-    if "beforeCommitId" in data:
+    if data.get("beforeCommitId") is not None:
         out["before_commit_id"] = data["beforeCommitId"]
-    if "afterCommitId" in data:
+    if data.get("afterCommitId") is not None:
         out["after_commit_id"] = data["afterCommitId"]
     else:
         raise DeserializationError(
             "PostCommentForComparedCommitInput.after_commit_id required"
         )
-    if "location" in data:
+    if data.get("location") is not None:
         import capo_codecommit.types.location
 
         out["location"] = capo_codecommit.types.location.deserialize_aws_json_1_1(
             data["location"]
         )
-    if "content" in data:
+    if data.get("content") is not None:
         out["content"] = data["content"]
     else:
         raise DeserializationError("PostCommentForComparedCommitInput.content required")
-    if "clientRequestToken" in data:
+    if data.get("clientRequestToken") is not None:
         out["client_request_token"] = data["clientRequestToken"]
     return out

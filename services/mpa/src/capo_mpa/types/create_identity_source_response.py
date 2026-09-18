@@ -43,7 +43,7 @@ def serialize_json(value: CreateIdentitySourceResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateIdentitySourceResponse:
     out: CreateIdentitySourceResponse = {}  # type: ignore[typeddict-item]
-    if "IdentitySourceType" in data:
+    if data.get("IdentitySourceType") is not None:
         import capo_mpa.types.identity_source_type
 
         out["identity_source_type"] = (
@@ -51,9 +51,9 @@ def deserialize_json(data: dict) -> CreateIdentitySourceResponse:
                 data["IdentitySourceType"]
             )
         )
-    if "IdentitySourceArn" in data:
+    if data.get("IdentitySourceArn") is not None:
         out["identity_source_arn"] = data["IdentitySourceArn"]
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_mpa.types.iso_timestamp
 
         out["creation_time"] = capo_mpa.types.iso_timestamp.deserialize_json(

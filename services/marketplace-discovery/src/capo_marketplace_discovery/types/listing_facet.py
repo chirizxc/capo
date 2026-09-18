@@ -38,17 +38,17 @@ def serialize_json(value: ListingFacet) -> dict:
 
 def deserialize_json(data: dict) -> ListingFacet:
     out: ListingFacet = {}  # type: ignore[typeddict-item]
-    if "value" in data:
+    if data.get("value") is not None:
         out["value"] = data["value"]
     else:
         raise DeserializationError("ListingFacet.value required")
-    if "displayName" in data:
+    if data.get("displayName") is not None:
         out["display_name"] = data["displayName"]
     else:
         raise DeserializationError("ListingFacet.display_name required")
-    if "parent" in data:
+    if data.get("parent") is not None:
         out["parent"] = data["parent"]
-    if "count" in data:
+    if data.get("count") is not None:
         out["count"] = data["count"]
     else:
         raise DeserializationError("ListingFacet.count required")

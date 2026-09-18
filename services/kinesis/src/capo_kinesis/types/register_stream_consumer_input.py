@@ -40,17 +40,17 @@ def serialize_aws_json_1_1(value: RegisterStreamConsumerInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RegisterStreamConsumerInput:
     out: RegisterStreamConsumerInput = {}  # type: ignore[typeddict-item]
-    if "StreamARN" in data:
+    if data.get("StreamARN") is not None:
         out["stream_arn"] = data["StreamARN"]
     else:
         raise DeserializationError("RegisterStreamConsumerInput.stream_arn required")
-    if "ConsumerName" in data:
+    if data.get("ConsumerName") is not None:
         out["consumer_name"] = data["ConsumerName"]
     else:
         raise DeserializationError("RegisterStreamConsumerInput.consumer_name required")
-    if "StreamId" in data:
+    if data.get("StreamId") is not None:
         out["stream_id"] = data["StreamId"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_kinesis.types.tag_map
 
         out["tags"] = capo_kinesis.types.tag_map.deserialize_aws_json_1_1(data["Tags"])

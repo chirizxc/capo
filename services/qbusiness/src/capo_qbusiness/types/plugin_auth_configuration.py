@@ -84,7 +84,7 @@ def serialize_json(value: PluginAuthConfiguration) -> dict:
 
 
 def deserialize_json(data: dict) -> PluginAuthConfiguration:
-    if "basicAuthConfiguration" in data:
+    if data.get("basicAuthConfiguration") is not None:
         import capo_qbusiness.types.basic_auth_configuration
 
         return {
@@ -92,7 +92,7 @@ def deserialize_json(data: dict) -> PluginAuthConfiguration:
                 data["basicAuthConfiguration"]
             )
         }
-    elif "oAuth2ClientCredentialConfiguration" in data:
+    elif data.get("oAuth2ClientCredentialConfiguration") is not None:
         import capo_qbusiness.types.o_auth2_client_credential_configuration
 
         return {
@@ -100,7 +100,7 @@ def deserialize_json(data: dict) -> PluginAuthConfiguration:
                 data["oAuth2ClientCredentialConfiguration"]
             )
         }
-    elif "noAuthConfiguration" in data:
+    elif data.get("noAuthConfiguration") is not None:
         import capo_qbusiness.types.no_auth_configuration
 
         return {
@@ -108,7 +108,7 @@ def deserialize_json(data: dict) -> PluginAuthConfiguration:
                 data["noAuthConfiguration"]
             )
         }
-    elif "idcAuthConfiguration" in data:
+    elif data.get("idcAuthConfiguration") is not None:
         import capo_qbusiness.types.idc_auth_configuration
 
         return {

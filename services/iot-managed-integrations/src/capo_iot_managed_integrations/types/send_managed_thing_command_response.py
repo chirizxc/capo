@@ -23,6 +23,6 @@ def serialize_json(value: SendManagedThingCommandResponse) -> dict:
 
 def deserialize_json(data: dict) -> SendManagedThingCommandResponse:
     out: SendManagedThingCommandResponse = {}  # type: ignore[typeddict-item]
-    if "TraceId" in data:
+    if data.get("TraceId") is not None:
         out["trace_id"] = data["TraceId"]
     return out

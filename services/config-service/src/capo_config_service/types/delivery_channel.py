@@ -53,17 +53,17 @@ def serialize_aws_json_1_1(value: DeliveryChannel) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeliveryChannel:
     out: DeliveryChannel = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "s3BucketName" in data:
+    if data.get("s3BucketName") is not None:
         out["s3_bucket_name"] = data["s3BucketName"]
-    if "s3KeyPrefix" in data:
+    if data.get("s3KeyPrefix") is not None:
         out["s3_key_prefix"] = data["s3KeyPrefix"]
-    if "s3KmsKeyArn" in data:
+    if data.get("s3KmsKeyArn") is not None:
         out["s3_kms_key_arn"] = data["s3KmsKeyArn"]
-    if "snsTopicARN" in data:
+    if data.get("snsTopicARN") is not None:
         out["sns_topic_arn"] = data["snsTopicARN"]
-    if "configSnapshotDeliveryProperties" in data:
+    if data.get("configSnapshotDeliveryProperties") is not None:
         import capo_config_service.types.config_snapshot_delivery_properties
 
         out["config_snapshot_delivery_properties"] = (

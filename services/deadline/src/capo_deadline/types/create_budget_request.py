@@ -55,7 +55,15 @@ def serialize_json(value: CreateBudgetRequest) -> dict:
             value["usage_tracking_resource"]
         )
     )
-    out["approximateDollarLimit"] = value["approximate_dollar_limit"]
+    out["approximateDollarLimit"] = (
+        "NaN"
+        if value["approximate_dollar_limit"] != value["approximate_dollar_limit"]
+        else "Infinity"
+        if value["approximate_dollar_limit"] == float("inf")
+        else "-Infinity"
+        if value["approximate_dollar_limit"] == float("-inf")
+        else value["approximate_dollar_limit"]
+    )
     import capo_deadline.types.budget_actions_to_add
 
     out["actions"] = capo_deadline.types.budget_actions_to_add.serialize_json(
@@ -75,15 +83,15 @@ def serialize_json(value: CreateBudgetRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateBudgetRequest:
     out: CreateBudgetRequest = {}  # type: ignore[typeddict-item]
-    if "displayName" in data:
+    if data.get("displayName") is not None:
         out["display_name"] = data["displayName"]
     else:
         raise DeserializationError("CreateBudgetRequest.display_name required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
     else:
         out["description"] = ""
-    if "usageTrackingResource" in data:
+    if data.get("usageTrackingResource") is not None:
         import capo_deadline.types.usage_tracking_resource
 
         out["usage_tracking_resource"] = (
@@ -95,13 +103,13 @@ def deserialize_json(data: dict) -> CreateBudgetRequest:
         raise DeserializationError(
             "CreateBudgetRequest.usage_tracking_resource required"
         )
-    if "approximateDollarLimit" in data:
-        out["approximate_dollar_limit"] = data["approximateDollarLimit"]
+    if data.get("approximateDollarLimit") is not None:
+        out["approximate_dollar_limit"] = float(data["approximateDollarLimit"])
     else:
         raise DeserializationError(
             "CreateBudgetRequest.approximate_dollar_limit required"
         )
-    if "actions" in data:
+    if data.get("actions") is not None:
         import capo_deadline.types.budget_actions_to_add
 
         out["actions"] = capo_deadline.types.budget_actions_to_add.deserialize_json(
@@ -109,7 +117,7 @@ def deserialize_json(data: dict) -> CreateBudgetRequest:
         )
     else:
         raise DeserializationError("CreateBudgetRequest.actions required")
-    if "schedule" in data:
+    if data.get("schedule") is not None:
         import capo_deadline.types.budget_schedule
 
         out["schedule"] = capo_deadline.types.budget_schedule.deserialize_json(
@@ -117,7 +125,7 @@ def deserialize_json(data: dict) -> CreateBudgetRequest:
         )
     else:
         raise DeserializationError("CreateBudgetRequest.schedule required")
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_deadline.types.tags
 
         out["tags"] = capo_deadline.types.tags.deserialize_json(data["tags"])

@@ -1,5 +1,6 @@
 """Generated from Smithy shape ``com.amazonaws.opensearch#AmazonOpenSearchService``."""
 
+import uuid
 import warnings
 from collections.abc import Iterator
 from typing import TYPE_CHECKING, Any, Iterable, Optional
@@ -430,14 +431,16 @@ class OpenSearchClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_opensearch.types.accept_inbound_connection_request.AcceptInboundConnectionRequest = {}  # type: ignore[typeddict-item]
-        input_["connection_id"] = connection_id
+        input_: capo_opensearch.types.accept_inbound_connection_request.AcceptInboundConnectionRequest = {
+            "connection_id": connection_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def add_data_source(
@@ -485,10 +488,11 @@ class OpenSearchClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_opensearch.types.add_data_source_request.AddDataSourceRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
-        input_["name"] = name
-        input_["data_source_type"] = data_source_type
+        input_: capo_opensearch.types.add_data_source_request.AddDataSourceRequest = {
+            "domain_name": domain_name,
+            "name": name,
+            "data_source_type": data_source_type,
+        }
         if description is not None:
             input_["description"] = description
 
@@ -497,6 +501,7 @@ class OpenSearchClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def add_direct_query_data_source(
@@ -550,9 +555,10 @@ class OpenSearchClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_opensearch.types.add_direct_query_data_source_request.AddDirectQueryDataSourceRequest = {}  # type: ignore[typeddict-item]
-        input_["data_source_name"] = data_source_name
-        input_["data_source_type"] = data_source_type
+        input_: capo_opensearch.types.add_direct_query_data_source_request.AddDirectQueryDataSourceRequest = {
+            "data_source_name": data_source_name,
+            "data_source_type": data_source_type,
+        }
         if description is not None:
             input_["description"] = description
         if open_search_arns is not None:
@@ -567,6 +573,7 @@ class OpenSearchClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def add_tags(
@@ -603,15 +610,17 @@ class OpenSearchClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_opensearch.types.add_tags_request.AddTagsRequest = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
-        input_["tag_list"] = tag_list
+        input_: capo_opensearch.types.add_tags_request.AddTagsRequest = {
+            "arn": arn,
+            "tag_list": tag_list,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def associate_package(
@@ -660,9 +669,10 @@ class OpenSearchClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_opensearch.types.associate_package_request.AssociatePackageRequest = {}  # type: ignore[typeddict-item]
-        input_["package_id"] = package_id
-        input_["domain_name"] = domain_name
+        input_: capo_opensearch.types.associate_package_request.AssociatePackageRequest = {
+            "package_id": package_id,
+            "domain_name": domain_name,
+        }
         if prerequisite_package_id_list is not None:
             input_["prerequisite_package_id_list"] = prerequisite_package_id_list
         if association_configuration is not None:
@@ -673,6 +683,7 @@ class OpenSearchClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def associate_packages(
@@ -712,15 +723,17 @@ class OpenSearchClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_opensearch.types.associate_packages_request.AssociatePackagesRequest = {}  # type: ignore[typeddict-item]
-        input_["package_list"] = package_list
-        input_["domain_name"] = domain_name
+        input_: capo_opensearch.types.associate_packages_request.AssociatePackagesRequest = {
+            "package_list": package_list,
+            "domain_name": domain_name,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def authorize_vpc_endpoint_access(
@@ -769,8 +782,9 @@ class OpenSearchClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_opensearch.types.authorize_vpc_endpoint_access_request.AuthorizeVpcEndpointAccessRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
+        input_: capo_opensearch.types.authorize_vpc_endpoint_access_request.AuthorizeVpcEndpointAccessRequest = {
+            "domain_name": domain_name
+        }
         if account is not None:
             input_["account"] = account
         if service is not None:
@@ -783,6 +797,7 @@ class OpenSearchClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def cancel_domain_config_change(
@@ -821,8 +836,9 @@ class OpenSearchClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_opensearch.types.cancel_domain_config_change_request.CancelDomainConfigChangeRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
+        input_: capo_opensearch.types.cancel_domain_config_change_request.CancelDomainConfigChangeRequest = {
+            "domain_name": domain_name
+        }
         if dry_run is not None:
             input_["dry_run"] = dry_run
 
@@ -831,6 +847,7 @@ class OpenSearchClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def cancel_service_software_update(
@@ -867,14 +884,16 @@ class OpenSearchClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_opensearch.types.cancel_service_software_update_request.CancelServiceSoftwareUpdateRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
+        input_: capo_opensearch.types.cancel_service_software_update_request.CancelServiceSoftwareUpdateRequest = {
+            "domain_name": domain_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_application(
@@ -926,10 +945,12 @@ class OpenSearchClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_opensearch.types.create_application_request.CreateApplicationRequest = {}  # type: ignore[typeddict-item]
-        if client_token is not None:
-            input_["client_token"] = client_token
-        input_["name"] = name
+        input_: capo_opensearch.types.create_application_request.CreateApplicationRequest = {
+            "name": name
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if data_sources is not None:
             input_["data_sources"] = data_sources
         if iam_identity_center_options is not None:
@@ -946,6 +967,7 @@ class OpenSearchClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_domain(
@@ -1067,8 +1089,9 @@ class OpenSearchClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_opensearch.types.create_domain_request.CreateDomainRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
+        input_: capo_opensearch.types.create_domain_request.CreateDomainRequest = {
+            "domain_name": domain_name
+        }
         if engine_version is not None:
             input_["engine_version"] = engine_version
         if cluster_config is not None:
@@ -1121,6 +1144,7 @@ class OpenSearchClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_index(
@@ -1164,16 +1188,18 @@ class OpenSearchClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_opensearch.types.create_index_request.CreateIndexRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
-        input_["index_name"] = index_name
-        input_["index_schema"] = index_schema
+        input_: capo_opensearch.types.create_index_request.CreateIndexRequest = {
+            "domain_name": domain_name,
+            "index_name": index_name,
+            "index_schema": index_schema,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_outbound_connection(
@@ -1222,10 +1248,11 @@ class OpenSearchClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_opensearch.types.create_outbound_connection_request.CreateOutboundConnectionRequest = {}  # type: ignore[typeddict-item]
-        input_["local_domain_info"] = local_domain_info
-        input_["remote_domain_info"] = remote_domain_info
-        input_["connection_alias"] = connection_alias
+        input_: capo_opensearch.types.create_outbound_connection_request.CreateOutboundConnectionRequest = {
+            "local_domain_info": local_domain_info,
+            "remote_domain_info": remote_domain_info,
+            "connection_alias": connection_alias,
+        }
         if connection_mode is not None:
             input_["connection_mode"] = connection_mode
         if connection_properties is not None:
@@ -1236,6 +1263,7 @@ class OpenSearchClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_package(
@@ -1299,12 +1327,13 @@ class OpenSearchClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_opensearch.types.create_package_request.CreatePackageRequest = {}  # type: ignore[typeddict-item]
-        input_["package_name"] = package_name
-        input_["package_type"] = package_type
+        input_: capo_opensearch.types.create_package_request.CreatePackageRequest = {
+            "package_name": package_name,
+            "package_type": package_type,
+            "package_source": package_source,
+        }
         if package_description is not None:
             input_["package_description"] = package_description
-        input_["package_source"] = package_source
         if package_configuration is not None:
             input_["package_configuration"] = package_configuration
         if engine_version is not None:
@@ -1319,6 +1348,7 @@ class OpenSearchClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_vpc_endpoint(
@@ -1361,9 +1391,10 @@ class OpenSearchClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_opensearch.types.create_vpc_endpoint_request.CreateVpcEndpointRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_arn"] = domain_arn
-        input_["vpc_options"] = vpc_options
+        input_: capo_opensearch.types.create_vpc_endpoint_request.CreateVpcEndpointRequest = {
+            "domain_arn": domain_arn,
+            "vpc_options": vpc_options,
+        }
         if client_token is not None:
             input_["client_token"] = client_token
 
@@ -1372,6 +1403,7 @@ class OpenSearchClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_application(
@@ -1411,14 +1443,16 @@ class OpenSearchClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_opensearch.types.delete_application_request.DeleteApplicationRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_opensearch.types.delete_application_request.DeleteApplicationRequest = {
+            "id": id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_data_source(
@@ -1459,15 +1493,17 @@ class OpenSearchClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_opensearch.types.delete_data_source_request.DeleteDataSourceRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
-        input_["name"] = name
+        input_: capo_opensearch.types.delete_data_source_request.DeleteDataSourceRequest = {
+            "domain_name": domain_name,
+            "name": name,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_direct_query_data_source(
@@ -1503,14 +1539,16 @@ class OpenSearchClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_opensearch.types.delete_direct_query_data_source_request.DeleteDirectQueryDataSourceRequest = {}  # type: ignore[typeddict-item]
-        input_["data_source_name"] = data_source_name
+        input_: capo_opensearch.types.delete_direct_query_data_source_request.DeleteDirectQueryDataSourceRequest = {
+            "data_source_name": data_source_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_domain(
@@ -1547,14 +1585,16 @@ class OpenSearchClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_opensearch.types.delete_domain_request.DeleteDomainRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
+        input_: capo_opensearch.types.delete_domain_request.DeleteDomainRequest = {
+            "domain_name": domain_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_inbound_connection(
@@ -1589,14 +1629,16 @@ class OpenSearchClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_opensearch.types.delete_inbound_connection_request.DeleteInboundConnectionRequest = {}  # type: ignore[typeddict-item]
-        input_["connection_id"] = connection_id
+        input_: capo_opensearch.types.delete_inbound_connection_request.DeleteInboundConnectionRequest = {
+            "connection_id": connection_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_index(
@@ -1637,15 +1679,17 @@ class OpenSearchClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_opensearch.types.delete_index_request.DeleteIndexRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
-        input_["index_name"] = index_name
+        input_: capo_opensearch.types.delete_index_request.DeleteIndexRequest = {
+            "domain_name": domain_name,
+            "index_name": index_name,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_outbound_connection(
@@ -1680,14 +1724,16 @@ class OpenSearchClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_opensearch.types.delete_outbound_connection_request.DeleteOutboundConnectionRequest = {}  # type: ignore[typeddict-item]
-        input_["connection_id"] = connection_id
+        input_: capo_opensearch.types.delete_outbound_connection_request.DeleteOutboundConnectionRequest = {
+            "connection_id": connection_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_package(
@@ -1726,14 +1772,16 @@ class OpenSearchClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_opensearch.types.delete_package_request.DeletePackageRequest = {}  # type: ignore[typeddict-item]
-        input_["package_id"] = package_id
+        input_: capo_opensearch.types.delete_package_request.DeletePackageRequest = {
+            "package_id": package_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_vpc_endpoint(
@@ -1770,14 +1818,16 @@ class OpenSearchClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_opensearch.types.delete_vpc_endpoint_request.DeleteVpcEndpointRequest = {}  # type: ignore[typeddict-item]
-        input_["vpc_endpoint_id"] = vpc_endpoint_id
+        input_: capo_opensearch.types.delete_vpc_endpoint_request.DeleteVpcEndpointRequest = {
+            "vpc_endpoint_id": vpc_endpoint_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def deregister_capability(
@@ -1818,15 +1868,17 @@ class OpenSearchClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_opensearch.types.deregister_capability_request.DeregisterCapabilityRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
-        input_["capability_name"] = capability_name
+        input_: capo_opensearch.types.deregister_capability_request.DeregisterCapabilityRequest = {
+            "application_id": application_id,
+            "capability_name": capability_name,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_domain(
@@ -1863,14 +1915,16 @@ class OpenSearchClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_opensearch.types.describe_domain_request.DescribeDomainRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
+        input_: capo_opensearch.types.describe_domain_request.DescribeDomainRequest = {
+            "domain_name": domain_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_domain_auto_tunes(
@@ -1911,8 +1965,9 @@ class OpenSearchClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_opensearch.types.describe_domain_auto_tunes_request.DescribeDomainAutoTunesRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
+        input_: capo_opensearch.types.describe_domain_auto_tunes_request.DescribeDomainAutoTunesRequest = {
+            "domain_name": domain_name
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -1923,7 +1978,29 @@ class OpenSearchClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_describe_domain_auto_tunes(
+        self,
+        domain_name: "capo_opensearch.types.domain_name.DomainName",
+        *,
+        config_overrides: Optional[OpenSearchClientConfig] = None,
+        max_results: Optional["capo_opensearch.types.max_results.MaxResults"] = None,
+        next_token: Optional["capo_opensearch.types.next_token.NextToken"] = None,
+    ) -> "Iterator[capo_opensearch.types.describe_domain_auto_tunes_response.DescribeDomainAutoTunesResponse]":
+        _token = next_token
+        while True:
+            _response = self.describe_domain_auto_tunes(
+                domain_name,
+                config_overrides=config_overrides,
+                max_results=max_results,
+                next_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def describe_domain_change_progress(
         self,
@@ -1961,8 +2038,9 @@ class OpenSearchClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_opensearch.types.describe_domain_change_progress_request.DescribeDomainChangeProgressRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
+        input_: capo_opensearch.types.describe_domain_change_progress_request.DescribeDomainChangeProgressRequest = {
+            "domain_name": domain_name
+        }
         if change_id is not None:
             input_["change_id"] = change_id
 
@@ -1971,6 +2049,7 @@ class OpenSearchClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_domain_config(
@@ -2007,14 +2086,16 @@ class OpenSearchClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_opensearch.types.describe_domain_config_request.DescribeDomainConfigRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
+        input_: capo_opensearch.types.describe_domain_config_request.DescribeDomainConfigRequest = {
+            "domain_name": domain_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_domain_health(
@@ -2052,14 +2133,16 @@ class OpenSearchClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_opensearch.types.describe_domain_health_request.DescribeDomainHealthRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
+        input_: capo_opensearch.types.describe_domain_health_request.DescribeDomainHealthRequest = {
+            "domain_name": domain_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_domain_nodes(
@@ -2098,14 +2181,16 @@ class OpenSearchClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_opensearch.types.describe_domain_nodes_request.DescribeDomainNodesRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
+        input_: capo_opensearch.types.describe_domain_nodes_request.DescribeDomainNodesRequest = {
+            "domain_name": domain_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_domains(
@@ -2141,14 +2226,16 @@ class OpenSearchClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_opensearch.types.describe_domains_request.DescribeDomainsRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_names"] = domain_names
+        input_: capo_opensearch.types.describe_domains_request.DescribeDomainsRequest = {
+            "domain_names": domain_names
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_dry_run_progress(
@@ -2190,8 +2277,9 @@ class OpenSearchClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_opensearch.types.describe_dry_run_progress_request.DescribeDryRunProgressRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
+        input_: capo_opensearch.types.describe_dry_run_progress_request.DescribeDryRunProgressRequest = {
+            "domain_name": domain_name
+        }
         if dry_run_id is not None:
             input_["dry_run_id"] = dry_run_id
         if load_dry_run_config is not None:
@@ -2202,6 +2290,7 @@ class OpenSearchClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_inbound_connections(
@@ -2240,7 +2329,7 @@ class OpenSearchClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_opensearch.types.describe_inbound_connections_request.DescribeInboundConnectionsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_opensearch.types.describe_inbound_connections_request.DescribeInboundConnectionsRequest = {}
         if filters is not None:
             input_["filters"] = filters
         if max_results is not None:
@@ -2253,7 +2342,29 @@ class OpenSearchClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_describe_inbound_connections(
+        self,
+        *,
+        config_overrides: Optional[OpenSearchClientConfig] = None,
+        filters: Optional["capo_opensearch.types.filter_list.FilterList"] = None,
+        max_results: Optional["capo_opensearch.types.max_results.MaxResults"] = None,
+        next_token: Optional["capo_opensearch.types.next_token.NextToken"] = None,
+    ) -> "Iterator[capo_opensearch.types.describe_inbound_connections_response.DescribeInboundConnectionsResponse]":
+        _token = next_token
+        while True:
+            _response = self.describe_inbound_connections(
+                config_overrides=config_overrides,
+                filters=filters,
+                max_results=max_results,
+                next_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def describe_insight_details(
         self,
@@ -2295,9 +2406,10 @@ class OpenSearchClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_opensearch.types.describe_insight_details_request.DescribeInsightDetailsRequest = {}  # type: ignore[typeddict-item]
-        input_["entity"] = entity
-        input_["insight_id"] = insight_id
+        input_: capo_opensearch.types.describe_insight_details_request.DescribeInsightDetailsRequest = {
+            "entity": entity,
+            "insight_id": insight_id,
+        }
         if show_html_content is not None:
             input_["show_html_content"] = show_html_content
 
@@ -2306,6 +2418,7 @@ class OpenSearchClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_instance_type_limits(
@@ -2348,17 +2461,19 @@ class OpenSearchClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_opensearch.types.describe_instance_type_limits_request.DescribeInstanceTypeLimitsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_opensearch.types.describe_instance_type_limits_request.DescribeInstanceTypeLimitsRequest = {
+            "instance_type": instance_type,
+            "engine_version": engine_version,
+        }
         if domain_name is not None:
             input_["domain_name"] = domain_name
-        input_["instance_type"] = instance_type
-        input_["engine_version"] = engine_version
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_outbound_connections(
@@ -2397,7 +2512,7 @@ class OpenSearchClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_opensearch.types.describe_outbound_connections_request.DescribeOutboundConnectionsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_opensearch.types.describe_outbound_connections_request.DescribeOutboundConnectionsRequest = {}
         if filters is not None:
             input_["filters"] = filters
         if max_results is not None:
@@ -2410,7 +2525,29 @@ class OpenSearchClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_describe_outbound_connections(
+        self,
+        *,
+        config_overrides: Optional[OpenSearchClientConfig] = None,
+        filters: Optional["capo_opensearch.types.filter_list.FilterList"] = None,
+        max_results: Optional["capo_opensearch.types.max_results.MaxResults"] = None,
+        next_token: Optional["capo_opensearch.types.next_token.NextToken"] = None,
+    ) -> "Iterator[capo_opensearch.types.describe_outbound_connections_response.DescribeOutboundConnectionsResponse]":
+        _token = next_token
+        while True:
+            _response = self.describe_outbound_connections(
+                config_overrides=config_overrides,
+                filters=filters,
+                max_results=max_results,
+                next_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def describe_packages(
         self,
@@ -2453,7 +2590,7 @@ class OpenSearchClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_opensearch.types.describe_packages_request.DescribePackagesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_opensearch.types.describe_packages_request.DescribePackagesRequest = {}
         if filters is not None:
             input_["filters"] = filters
         if max_results is not None:
@@ -2466,7 +2603,31 @@ class OpenSearchClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_describe_packages(
+        self,
+        *,
+        config_overrides: Optional[OpenSearchClientConfig] = None,
+        filters: Optional[
+            "capo_opensearch.types.describe_packages_filter_list.DescribePackagesFilterList"
+        ] = None,
+        max_results: Optional["capo_opensearch.types.max_results.MaxResults"] = None,
+        next_token: Optional["capo_opensearch.types.next_token.NextToken"] = None,
+    ) -> "Iterator[capo_opensearch.types.describe_packages_response.DescribePackagesResponse]":
+        _token = next_token
+        while True:
+            _response = self.describe_packages(
+                config_overrides=config_overrides,
+                filters=filters,
+                max_results=max_results,
+                next_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def describe_reserved_instance_offerings(
         self,
@@ -2508,7 +2669,7 @@ class OpenSearchClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_opensearch.types.describe_reserved_instance_offerings_request.DescribeReservedInstanceOfferingsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_opensearch.types.describe_reserved_instance_offerings_request.DescribeReservedInstanceOfferingsRequest = {}
         if reserved_instance_offering_id is not None:
             input_["reserved_instance_offering_id"] = reserved_instance_offering_id
         if max_results is not None:
@@ -2521,7 +2682,31 @@ class OpenSearchClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_describe_reserved_instance_offerings(
+        self,
+        *,
+        config_overrides: Optional[OpenSearchClientConfig] = None,
+        reserved_instance_offering_id: Optional[
+            "capo_opensearch.types.guid.GUID"
+        ] = None,
+        max_results: Optional["capo_opensearch.types.max_results.MaxResults"] = None,
+        next_token: Optional["capo_opensearch.types.next_token.NextToken"] = None,
+    ) -> "Iterator[capo_opensearch.types.describe_reserved_instance_offerings_response.DescribeReservedInstanceOfferingsResponse]":
+        _token = next_token
+        while True:
+            _response = self.describe_reserved_instance_offerings(
+                config_overrides=config_overrides,
+                reserved_instance_offering_id=reserved_instance_offering_id,
+                max_results=max_results,
+                next_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def describe_reserved_instances(
         self,
@@ -2561,7 +2746,7 @@ class OpenSearchClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_opensearch.types.describe_reserved_instances_request.DescribeReservedInstancesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_opensearch.types.describe_reserved_instances_request.DescribeReservedInstancesRequest = {}
         if reserved_instance_id is not None:
             input_["reserved_instance_id"] = reserved_instance_id
         if max_results is not None:
@@ -2574,7 +2759,29 @@ class OpenSearchClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_describe_reserved_instances(
+        self,
+        *,
+        config_overrides: Optional[OpenSearchClientConfig] = None,
+        reserved_instance_id: Optional["capo_opensearch.types.guid.GUID"] = None,
+        max_results: Optional["capo_opensearch.types.max_results.MaxResults"] = None,
+        next_token: Optional["capo_opensearch.types.next_token.NextToken"] = None,
+    ) -> "Iterator[capo_opensearch.types.describe_reserved_instances_response.DescribeReservedInstancesResponse]":
+        _token = next_token
+        while True:
+            _response = self.describe_reserved_instances(
+                config_overrides=config_overrides,
+                reserved_instance_id=reserved_instance_id,
+                max_results=max_results,
+                next_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def describe_vpc_endpoints(
         self,
@@ -2610,14 +2817,16 @@ class OpenSearchClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_opensearch.types.describe_vpc_endpoints_request.DescribeVpcEndpointsRequest = {}  # type: ignore[typeddict-item]
-        input_["vpc_endpoint_ids"] = vpc_endpoint_ids
+        input_: capo_opensearch.types.describe_vpc_endpoints_request.DescribeVpcEndpointsRequest = {
+            "vpc_endpoint_ids": vpc_endpoint_ids
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def dissociate_package(
@@ -2658,15 +2867,17 @@ class OpenSearchClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_opensearch.types.dissociate_package_request.DissociatePackageRequest = {}  # type: ignore[typeddict-item]
-        input_["package_id"] = package_id
-        input_["domain_name"] = domain_name
+        input_: capo_opensearch.types.dissociate_package_request.DissociatePackageRequest = {
+            "package_id": package_id,
+            "domain_name": domain_name,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def dissociate_packages(
@@ -2708,15 +2919,17 @@ class OpenSearchClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_opensearch.types.dissociate_packages_request.DissociatePackagesRequest = {}  # type: ignore[typeddict-item]
-        input_["package_list"] = package_list
-        input_["domain_name"] = domain_name
+        input_: capo_opensearch.types.dissociate_packages_request.DissociatePackagesRequest = {
+            "package_list": package_list,
+            "domain_name": domain_name,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_application(
@@ -2755,14 +2968,16 @@ class OpenSearchClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_opensearch.types.get_application_request.GetApplicationRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_opensearch.types.get_application_request.GetApplicationRequest = {
+            "id": id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_capability(
@@ -2802,15 +3017,17 @@ class OpenSearchClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_opensearch.types.get_capability_request.GetCapabilityRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
-        input_["capability_name"] = capability_name
+        input_: capo_opensearch.types.get_capability_request.GetCapabilityRequest = {
+            "application_id": application_id,
+            "capability_name": capability_name,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_compatible_versions(
@@ -2848,7 +3065,7 @@ class OpenSearchClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_opensearch.types.get_compatible_versions_request.GetCompatibleVersionsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_opensearch.types.get_compatible_versions_request.GetCompatibleVersionsRequest = {}
         if domain_name is not None:
             input_["domain_name"] = domain_name
 
@@ -2857,6 +3074,7 @@ class OpenSearchClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_data_source(
@@ -2897,15 +3115,17 @@ class OpenSearchClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_opensearch.types.get_data_source_request.GetDataSourceRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
-        input_["name"] = name
+        input_: capo_opensearch.types.get_data_source_request.GetDataSourceRequest = {
+            "domain_name": domain_name,
+            "name": name,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_default_application_setting(
@@ -2936,13 +3156,14 @@ class OpenSearchClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_opensearch.types.get_default_application_setting_request.GetDefaultApplicationSettingRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_opensearch.types.get_default_application_setting_request.GetDefaultApplicationSettingRequest = {}
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_direct_query_data_source(
@@ -2980,14 +3201,16 @@ class OpenSearchClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_opensearch.types.get_direct_query_data_source_request.GetDirectQueryDataSourceRequest = {}  # type: ignore[typeddict-item]
-        input_["data_source_name"] = data_source_name
+        input_: capo_opensearch.types.get_direct_query_data_source_request.GetDirectQueryDataSourceRequest = {
+            "data_source_name": data_source_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_domain_maintenance_status(
@@ -3027,15 +3250,17 @@ class OpenSearchClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_opensearch.types.get_domain_maintenance_status_request.GetDomainMaintenanceStatusRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
-        input_["maintenance_id"] = maintenance_id
+        input_: capo_opensearch.types.get_domain_maintenance_status_request.GetDomainMaintenanceStatusRequest = {
+            "domain_name": domain_name,
+            "maintenance_id": maintenance_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_index(
@@ -3076,15 +3301,17 @@ class OpenSearchClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_opensearch.types.get_index_request.GetIndexRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
-        input_["index_name"] = index_name
+        input_: capo_opensearch.types.get_index_request.GetIndexRequest = {
+            "domain_name": domain_name,
+            "index_name": index_name,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_package_version_history(
@@ -3126,8 +3353,9 @@ class OpenSearchClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_opensearch.types.get_package_version_history_request.GetPackageVersionHistoryRequest = {}  # type: ignore[typeddict-item]
-        input_["package_id"] = package_id
+        input_: capo_opensearch.types.get_package_version_history_request.GetPackageVersionHistoryRequest = {
+            "package_id": package_id
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -3138,7 +3366,29 @@ class OpenSearchClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_get_package_version_history(
+        self,
+        package_id: "capo_opensearch.types.package_id.PackageID",
+        *,
+        config_overrides: Optional[OpenSearchClientConfig] = None,
+        max_results: Optional["capo_opensearch.types.max_results.MaxResults"] = None,
+        next_token: Optional["capo_opensearch.types.next_token.NextToken"] = None,
+    ) -> "Iterator[capo_opensearch.types.get_package_version_history_response.GetPackageVersionHistoryResponse]":
+        _token = next_token
+        while True:
+            _response = self.get_package_version_history(
+                package_id,
+                config_overrides=config_overrides,
+                max_results=max_results,
+                next_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def get_upgrade_history(
         self,
@@ -3179,8 +3429,9 @@ class OpenSearchClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_opensearch.types.get_upgrade_history_request.GetUpgradeHistoryRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
+        input_: capo_opensearch.types.get_upgrade_history_request.GetUpgradeHistoryRequest = {
+            "domain_name": domain_name
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -3191,7 +3442,29 @@ class OpenSearchClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_get_upgrade_history(
+        self,
+        domain_name: "capo_opensearch.types.domain_name.DomainName",
+        *,
+        config_overrides: Optional[OpenSearchClientConfig] = None,
+        max_results: Optional["capo_opensearch.types.max_results.MaxResults"] = None,
+        next_token: Optional["capo_opensearch.types.next_token.NextToken"] = None,
+    ) -> "Iterator[capo_opensearch.types.get_upgrade_history_response.GetUpgradeHistoryResponse]":
+        _token = next_token
+        while True:
+            _response = self.get_upgrade_history(
+                domain_name,
+                config_overrides=config_overrides,
+                max_results=max_results,
+                next_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def get_upgrade_status(
         self,
@@ -3228,14 +3501,16 @@ class OpenSearchClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_opensearch.types.get_upgrade_status_request.GetUpgradeStatusRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
+        input_: capo_opensearch.types.get_upgrade_status_request.GetUpgradeStatusRequest = {
+            "domain_name": domain_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_applications(
@@ -3278,7 +3553,7 @@ class OpenSearchClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_opensearch.types.list_applications_request.ListApplicationsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_opensearch.types.list_applications_request.ListApplicationsRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if statuses is not None:
@@ -3291,6 +3566,7 @@ class OpenSearchClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_applications(
@@ -3354,14 +3630,16 @@ class OpenSearchClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_opensearch.types.list_data_sources_request.ListDataSourcesRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
+        input_: capo_opensearch.types.list_data_sources_request.ListDataSourcesRequest = {
+            "domain_name": domain_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_direct_query_data_sources(
@@ -3396,7 +3674,7 @@ class OpenSearchClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_opensearch.types.list_direct_query_data_sources_request.ListDirectQueryDataSourcesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_opensearch.types.list_direct_query_data_sources_request.ListDirectQueryDataSourcesRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
 
@@ -3405,6 +3683,7 @@ class OpenSearchClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_domain_maintenances(
@@ -3454,8 +3733,9 @@ class OpenSearchClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_opensearch.types.list_domain_maintenances_request.ListDomainMaintenancesRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
+        input_: capo_opensearch.types.list_domain_maintenances_request.ListDomainMaintenancesRequest = {
+            "domain_name": domain_name
+        }
         if action is not None:
             input_["action"] = action
         if status is not None:
@@ -3470,7 +3750,37 @@ class OpenSearchClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_domain_maintenances(
+        self,
+        domain_name: "capo_opensearch.types.domain_name.DomainName",
+        *,
+        config_overrides: Optional[OpenSearchClientConfig] = None,
+        action: Optional[
+            "capo_opensearch.types.maintenance_type.MaintenanceType"
+        ] = None,
+        status: Optional[
+            "capo_opensearch.types.maintenance_status.MaintenanceStatus"
+        ] = None,
+        max_results: Optional["capo_opensearch.types.max_results.MaxResults"] = None,
+        next_token: Optional["capo_opensearch.types.next_token.NextToken"] = None,
+    ) -> "Iterator[capo_opensearch.types.list_domain_maintenances_response.ListDomainMaintenancesResponse]":
+        _token = next_token
+        while True:
+            _response = self.list_domain_maintenances(
+                domain_name,
+                config_overrides=config_overrides,
+                action=action,
+                status=status,
+                max_results=max_results,
+                next_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def list_domain_names(
         self,
@@ -3504,7 +3814,7 @@ class OpenSearchClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_opensearch.types.list_domain_names_request.ListDomainNamesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_opensearch.types.list_domain_names_request.ListDomainNamesRequest = {}
         if engine_type is not None:
             input_["engine_type"] = engine_type
 
@@ -3513,6 +3823,7 @@ class OpenSearchClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_domains_for_package(
@@ -3554,8 +3865,9 @@ class OpenSearchClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_opensearch.types.list_domains_for_package_request.ListDomainsForPackageRequest = {}  # type: ignore[typeddict-item]
-        input_["package_id"] = package_id
+        input_: capo_opensearch.types.list_domains_for_package_request.ListDomainsForPackageRequest = {
+            "package_id": package_id
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -3566,7 +3878,29 @@ class OpenSearchClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_domains_for_package(
+        self,
+        package_id: "capo_opensearch.types.package_id.PackageID",
+        *,
+        config_overrides: Optional[OpenSearchClientConfig] = None,
+        max_results: Optional["capo_opensearch.types.max_results.MaxResults"] = None,
+        next_token: Optional["capo_opensearch.types.next_token.NextToken"] = None,
+    ) -> "Iterator[capo_opensearch.types.list_domains_for_package_response.ListDomainsForPackageResponse]":
+        _token = next_token
+        while True:
+            _response = self.list_domains_for_package(
+                package_id,
+                config_overrides=config_overrides,
+                max_results=max_results,
+                next_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def list_insights(
         self,
@@ -3618,8 +3952,9 @@ class OpenSearchClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_opensearch.types.list_insights_request.ListInsightsRequest = {}  # type: ignore[typeddict-item]
-        input_["entity"] = entity
+        input_: capo_opensearch.types.list_insights_request.ListInsightsRequest = {
+            "entity": entity
+        }
         if time_range is not None:
             input_["time_range"] = time_range
         if sort_order is not None:
@@ -3634,6 +3969,7 @@ class OpenSearchClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_instance_type_details(
@@ -3682,8 +4018,9 @@ class OpenSearchClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_opensearch.types.list_instance_type_details_request.ListInstanceTypeDetailsRequest = {}  # type: ignore[typeddict-item]
-        input_["engine_version"] = engine_version
+        input_: capo_opensearch.types.list_instance_type_details_request.ListInstanceTypeDetailsRequest = {
+            "engine_version": engine_version
+        }
         if domain_name is not None:
             input_["domain_name"] = domain_name
         if max_results is not None:
@@ -3700,7 +4037,37 @@ class OpenSearchClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_instance_type_details(
+        self,
+        engine_version: "capo_opensearch.types.version_string.VersionString",
+        *,
+        config_overrides: Optional[OpenSearchClientConfig] = None,
+        domain_name: Optional["capo_opensearch.types.domain_name.DomainName"] = None,
+        max_results: Optional["capo_opensearch.types.max_results.MaxResults"] = None,
+        next_token: Optional["capo_opensearch.types.next_token.NextToken"] = None,
+        retrieve_a_zs: Optional["capo_opensearch.types.boolean.Boolean"] = None,
+        instance_type: Optional[
+            "capo_opensearch.types.instance_type_string.InstanceTypeString"
+        ] = None,
+    ) -> "Iterator[capo_opensearch.types.list_instance_type_details_response.ListInstanceTypeDetailsResponse]":
+        _token = next_token
+        while True:
+            _response = self.list_instance_type_details(
+                engine_version,
+                config_overrides=config_overrides,
+                domain_name=domain_name,
+                max_results=max_results,
+                next_token=_token,
+                retrieve_a_zs=retrieve_a_zs,
+                instance_type=instance_type,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def list_packages_for_domain(
         self,
@@ -3741,8 +4108,9 @@ class OpenSearchClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_opensearch.types.list_packages_for_domain_request.ListPackagesForDomainRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
+        input_: capo_opensearch.types.list_packages_for_domain_request.ListPackagesForDomainRequest = {
+            "domain_name": domain_name
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -3753,7 +4121,29 @@ class OpenSearchClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_packages_for_domain(
+        self,
+        domain_name: "capo_opensearch.types.domain_name.DomainName",
+        *,
+        config_overrides: Optional[OpenSearchClientConfig] = None,
+        max_results: Optional["capo_opensearch.types.max_results.MaxResults"] = None,
+        next_token: Optional["capo_opensearch.types.next_token.NextToken"] = None,
+    ) -> "Iterator[capo_opensearch.types.list_packages_for_domain_response.ListPackagesForDomainResponse]":
+        _token = next_token
+        while True:
+            _response = self.list_packages_for_domain(
+                domain_name,
+                config_overrides=config_overrides,
+                max_results=max_results,
+                next_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def list_scheduled_actions(
         self,
@@ -3794,8 +4184,9 @@ class OpenSearchClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_opensearch.types.list_scheduled_actions_request.ListScheduledActionsRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
+        input_: capo_opensearch.types.list_scheduled_actions_request.ListScheduledActionsRequest = {
+            "domain_name": domain_name
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -3806,7 +4197,29 @@ class OpenSearchClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_scheduled_actions(
+        self,
+        domain_name: "capo_opensearch.types.domain_name.DomainName",
+        *,
+        config_overrides: Optional[OpenSearchClientConfig] = None,
+        max_results: Optional["capo_opensearch.types.max_results.MaxResults"] = None,
+        next_token: Optional["capo_opensearch.types.next_token.NextToken"] = None,
+    ) -> "Iterator[capo_opensearch.types.list_scheduled_actions_response.ListScheduledActionsResponse]":
+        _token = next_token
+        while True:
+            _response = self.list_scheduled_actions(
+                domain_name,
+                config_overrides=config_overrides,
+                max_results=max_results,
+                next_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def list_tags(
         self,
@@ -3842,14 +4255,14 @@ class OpenSearchClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_opensearch.types.list_tags_request.ListTagsRequest = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
+        input_: capo_opensearch.types.list_tags_request.ListTagsRequest = {"arn": arn}
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_versions(
@@ -3888,7 +4301,7 @@ class OpenSearchClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_opensearch.types.list_versions_request.ListVersionsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_opensearch.types.list_versions_request.ListVersionsRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -3899,7 +4312,27 @@ class OpenSearchClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_versions(
+        self,
+        *,
+        config_overrides: Optional[OpenSearchClientConfig] = None,
+        max_results: Optional["capo_opensearch.types.max_results.MaxResults"] = None,
+        next_token: Optional["capo_opensearch.types.next_token.NextToken"] = None,
+    ) -> "Iterator[capo_opensearch.types.list_versions_response.ListVersionsResponse]":
+        _token = next_token
+        while True:
+            _response = self.list_versions(
+                config_overrides=config_overrides,
+                max_results=max_results,
+                next_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def list_vpc_endpoint_access(
         self,
@@ -3937,8 +4370,9 @@ class OpenSearchClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_opensearch.types.list_vpc_endpoint_access_request.ListVpcEndpointAccessRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
+        input_: capo_opensearch.types.list_vpc_endpoint_access_request.ListVpcEndpointAccessRequest = {
+            "domain_name": domain_name
+        }
         if next_token is not None:
             input_["next_token"] = next_token
 
@@ -3947,6 +4381,7 @@ class OpenSearchClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_vpc_endpoints(
@@ -3982,7 +4417,7 @@ class OpenSearchClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_opensearch.types.list_vpc_endpoints_request.ListVpcEndpointsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_opensearch.types.list_vpc_endpoints_request.ListVpcEndpointsRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
 
@@ -3991,6 +4426,7 @@ class OpenSearchClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_vpc_endpoints_for_domain(
@@ -4029,8 +4465,9 @@ class OpenSearchClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_opensearch.types.list_vpc_endpoints_for_domain_request.ListVpcEndpointsForDomainRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
+        input_: capo_opensearch.types.list_vpc_endpoints_for_domain_request.ListVpcEndpointsForDomainRequest = {
+            "domain_name": domain_name
+        }
         if next_token is not None:
             input_["next_token"] = next_token
 
@@ -4039,6 +4476,7 @@ class OpenSearchClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def purchase_reserved_instance_offering(
@@ -4083,9 +4521,10 @@ class OpenSearchClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_opensearch.types.purchase_reserved_instance_offering_request.PurchaseReservedInstanceOfferingRequest = {}  # type: ignore[typeddict-item]
-        input_["reserved_instance_offering_id"] = reserved_instance_offering_id
-        input_["reservation_name"] = reservation_name
+        input_: capo_opensearch.types.purchase_reserved_instance_offering_request.PurchaseReservedInstanceOfferingRequest = {
+            "reserved_instance_offering_id": reserved_instance_offering_id,
+            "reservation_name": reservation_name,
+        }
         if instance_count is not None:
             input_["instance_count"] = instance_count
 
@@ -4094,6 +4533,7 @@ class OpenSearchClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def put_default_application_setting(
@@ -4131,15 +4571,17 @@ class OpenSearchClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_opensearch.types.put_default_application_setting_request.PutDefaultApplicationSettingRequest = {}  # type: ignore[typeddict-item]
-        input_["application_arn"] = application_arn
-        input_["set_as_default"] = set_as_default
+        input_: capo_opensearch.types.put_default_application_setting_request.PutDefaultApplicationSettingRequest = {
+            "application_arn": application_arn,
+            "set_as_default": set_as_default,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def register_capability(
@@ -4185,16 +4627,18 @@ class OpenSearchClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_opensearch.types.register_capability_request.RegisterCapabilityRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
-        input_["capability_name"] = capability_name
-        input_["capability_config"] = capability_config
+        input_: capo_opensearch.types.register_capability_request.RegisterCapabilityRequest = {
+            "application_id": application_id,
+            "capability_name": capability_name,
+            "capability_config": capability_config,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def reject_inbound_connection(
@@ -4229,14 +4673,16 @@ class OpenSearchClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_opensearch.types.reject_inbound_connection_request.RejectInboundConnectionRequest = {}  # type: ignore[typeddict-item]
-        input_["connection_id"] = connection_id
+        input_: capo_opensearch.types.reject_inbound_connection_request.RejectInboundConnectionRequest = {
+            "connection_id": connection_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def remove_tags(
@@ -4272,15 +4718,17 @@ class OpenSearchClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_opensearch.types.remove_tags_request.RemoveTagsRequest = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
-        input_["tag_keys"] = tag_keys
+        input_: capo_opensearch.types.remove_tags_request.RemoveTagsRequest = {
+            "arn": arn,
+            "tag_keys": tag_keys,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def revoke_vpc_endpoint_access(
@@ -4328,8 +4776,9 @@ class OpenSearchClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_opensearch.types.revoke_vpc_endpoint_access_request.RevokeVpcEndpointAccessRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
+        input_: capo_opensearch.types.revoke_vpc_endpoint_access_request.RevokeVpcEndpointAccessRequest = {
+            "domain_name": domain_name
+        }
         if account is not None:
             input_["account"] = account
         if service is not None:
@@ -4342,6 +4791,7 @@ class OpenSearchClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def rollback_service_software_update(
@@ -4379,14 +4829,16 @@ class OpenSearchClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_opensearch.types.rollback_service_software_update_request.RollbackServiceSoftwareUpdateRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
+        input_: capo_opensearch.types.rollback_service_software_update_request.RollbackServiceSoftwareUpdateRequest = {
+            "domain_name": domain_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def start_domain_maintenance(
@@ -4428,9 +4880,10 @@ class OpenSearchClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_opensearch.types.start_domain_maintenance_request.StartDomainMaintenanceRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
-        input_["action"] = action
+        input_: capo_opensearch.types.start_domain_maintenance_request.StartDomainMaintenanceRequest = {
+            "domain_name": domain_name,
+            "action": action,
+        }
         if node_id is not None:
             input_["node_id"] = node_id
 
@@ -4439,6 +4892,7 @@ class OpenSearchClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def start_service_software_update(
@@ -4479,8 +4933,9 @@ class OpenSearchClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_opensearch.types.start_service_software_update_request.StartServiceSoftwareUpdateRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
+        input_: capo_opensearch.types.start_service_software_update_request.StartServiceSoftwareUpdateRequest = {
+            "domain_name": domain_name
+        }
         if schedule_at is not None:
             input_["schedule_at"] = schedule_at
         if desired_start_time is not None:
@@ -4491,6 +4946,7 @@ class OpenSearchClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_application(
@@ -4534,8 +4990,9 @@ class OpenSearchClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_opensearch.types.update_application_request.UpdateApplicationRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_opensearch.types.update_application_request.UpdateApplicationRequest = {
+            "id": id
+        }
         if data_sources is not None:
             input_["data_sources"] = data_sources
         if app_configs is not None:
@@ -4546,6 +5003,7 @@ class OpenSearchClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_data_source(
@@ -4596,10 +5054,11 @@ class OpenSearchClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_opensearch.types.update_data_source_request.UpdateDataSourceRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
-        input_["name"] = name
-        input_["data_source_type"] = data_source_type
+        input_: capo_opensearch.types.update_data_source_request.UpdateDataSourceRequest = {
+            "domain_name": domain_name,
+            "name": name,
+            "data_source_type": data_source_type,
+        }
         if description is not None:
             input_["description"] = description
         if status is not None:
@@ -4610,6 +5069,7 @@ class OpenSearchClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_direct_query_data_source(
@@ -4662,9 +5122,10 @@ class OpenSearchClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_opensearch.types.update_direct_query_data_source_request.UpdateDirectQueryDataSourceRequest = {}  # type: ignore[typeddict-item]
-        input_["data_source_name"] = data_source_name
-        input_["data_source_type"] = data_source_type
+        input_: capo_opensearch.types.update_direct_query_data_source_request.UpdateDirectQueryDataSourceRequest = {
+            "data_source_name": data_source_name,
+            "data_source_type": data_source_type,
+        }
         if description is not None:
             input_["description"] = description
         if open_search_arns is not None:
@@ -4677,6 +5138,7 @@ class OpenSearchClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_domain_config(
@@ -4796,8 +5258,9 @@ class OpenSearchClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_opensearch.types.update_domain_config_request.UpdateDomainConfigRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
+        input_: capo_opensearch.types.update_domain_config_request.UpdateDomainConfigRequest = {
+            "domain_name": domain_name
+        }
         if cluster_config is not None:
             input_["cluster_config"] = cluster_config
         if ebs_options is not None:
@@ -4850,6 +5313,7 @@ class OpenSearchClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_index(
@@ -4892,16 +5356,18 @@ class OpenSearchClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_opensearch.types.update_index_request.UpdateIndexRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
-        input_["index_name"] = index_name
-        input_["index_schema"] = index_schema
+        input_: capo_opensearch.types.update_index_request.UpdateIndexRequest = {
+            "domain_name": domain_name,
+            "index_name": index_name,
+            "index_schema": index_schema,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_package(
@@ -4958,9 +5424,10 @@ class OpenSearchClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_opensearch.types.update_package_request.UpdatePackageRequest = {}  # type: ignore[typeddict-item]
-        input_["package_id"] = package_id
-        input_["package_source"] = package_source
+        input_: capo_opensearch.types.update_package_request.UpdatePackageRequest = {
+            "package_id": package_id,
+            "package_source": package_source,
+        }
         if package_description is not None:
             input_["package_description"] = package_description
         if commit_message is not None:
@@ -4975,6 +5442,7 @@ class OpenSearchClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_package_scope(
@@ -5018,16 +5486,18 @@ class OpenSearchClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_opensearch.types.update_package_scope_request.UpdatePackageScopeRequest = {}  # type: ignore[typeddict-item]
-        input_["package_id"] = package_id
-        input_["operation"] = operation
-        input_["package_user_list"] = package_user_list
+        input_: capo_opensearch.types.update_package_scope_request.UpdatePackageScopeRequest = {
+            "package_id": package_id,
+            "operation": operation,
+            "package_user_list": package_user_list,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_scheduled_action(
@@ -5075,11 +5545,12 @@ class OpenSearchClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_opensearch.types.update_scheduled_action_request.UpdateScheduledActionRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
-        input_["action_id"] = action_id
-        input_["action_type"] = action_type
-        input_["schedule_at"] = schedule_at
+        input_: capo_opensearch.types.update_scheduled_action_request.UpdateScheduledActionRequest = {
+            "domain_name": domain_name,
+            "action_id": action_id,
+            "action_type": action_type,
+            "schedule_at": schedule_at,
+        }
         if desired_start_time is not None:
             input_["desired_start_time"] = desired_start_time
 
@@ -5088,6 +5559,7 @@ class OpenSearchClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_vpc_endpoint(
@@ -5128,15 +5600,17 @@ class OpenSearchClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_opensearch.types.update_vpc_endpoint_request.UpdateVpcEndpointRequest = {}  # type: ignore[typeddict-item]
-        input_["vpc_endpoint_id"] = vpc_endpoint_id
-        input_["vpc_options"] = vpc_options
+        input_: capo_opensearch.types.update_vpc_endpoint_request.UpdateVpcEndpointRequest = {
+            "vpc_endpoint_id": vpc_endpoint_id,
+            "vpc_options": vpc_options,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def upgrade_domain(
@@ -5183,9 +5657,10 @@ class OpenSearchClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_opensearch.types.upgrade_domain_request.UpgradeDomainRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
-        input_["target_version"] = target_version
+        input_: capo_opensearch.types.upgrade_domain_request.UpgradeDomainRequest = {
+            "domain_name": domain_name,
+            "target_version": target_version,
+        }
         if perform_check_only is not None:
             input_["perform_check_only"] = perform_check_only
         if advanced_options is not None:
@@ -5196,6 +5671,7 @@ class OpenSearchClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def __enter__(self) -> Self:

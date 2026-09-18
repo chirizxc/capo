@@ -31,7 +31,7 @@ def serialize_json(value: VpcConnectivity) -> dict:
 
 def deserialize_json(data: dict) -> VpcConnectivity:
     out: VpcConnectivity = {}  # type: ignore[typeddict-item]
-    if "clientAuthentication" in data:
+    if data.get("clientAuthentication") is not None:
         import capo_kafka.types.vpc_connectivity_client_authentication
 
         out["client_authentication"] = (

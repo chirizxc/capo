@@ -41,13 +41,13 @@ def serialize_json(value: Principal) -> dict:
 
 
 def deserialize_json(data: dict) -> Principal:
-    if "user" in data:
+    if data.get("user") is not None:
         import capo_qbusiness.types.principal_user
 
         return {
             "user": capo_qbusiness.types.principal_user.deserialize_json(data["user"])
         }
-    elif "group" in data:
+    elif data.get("group") is not None:
         import capo_qbusiness.types.principal_group
 
         return {

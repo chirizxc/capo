@@ -27,8 +27,8 @@ def serialize_json(value: CreateTemplateShareOutput) -> dict:
 
 def deserialize_json(data: dict) -> CreateTemplateShareOutput:
     out: CreateTemplateShareOutput = {}  # type: ignore[typeddict-item]
-    if "TemplateArn" in data:
+    if data.get("TemplateArn") is not None:
         out["template_arn"] = data["TemplateArn"]
-    if "ShareId" in data:
+    if data.get("ShareId") is not None:
         out["share_id"] = data["ShareId"]
     return out

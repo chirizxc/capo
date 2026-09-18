@@ -41,14 +41,14 @@ def serialize_aws_json_1_1(value: SourceRevision) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SourceRevision:
     out: SourceRevision = {}  # type: ignore[typeddict-item]
-    if "actionName" in data:
+    if data.get("actionName") is not None:
         out["action_name"] = data["actionName"]
     else:
         raise DeserializationError("SourceRevision.action_name required")
-    if "revisionId" in data:
+    if data.get("revisionId") is not None:
         out["revision_id"] = data["revisionId"]
-    if "revisionSummary" in data:
+    if data.get("revisionSummary") is not None:
         out["revision_summary"] = data["revisionSummary"]
-    if "revisionUrl" in data:
+    if data.get("revisionUrl") is not None:
         out["revision_url"] = data["revisionUrl"]
     return out

@@ -37,15 +37,20 @@ class SubscriptionSeverityNotFoundFault(ServiceError):
 
     code: str | None = "SubscriptionSeverityNotFoundFault"
 
-    def __init__(self, data: SubscriptionSeverityNotFoundFault_):
+    def __init__(
+        self, data: SubscriptionSeverityNotFoundFault_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="SubscriptionSeverityNotFoundFault",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_query(cls, el: Element) -> "SubscriptionSeverityNotFoundFault":
-        return cls(deserialize_query(el))
+    def from_query(
+        cls, el: Element, message: str | None = None
+    ) -> "SubscriptionSeverityNotFoundFault":
+        return cls(deserialize_query(el), message)

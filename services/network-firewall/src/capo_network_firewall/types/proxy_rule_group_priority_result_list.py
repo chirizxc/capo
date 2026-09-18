@@ -29,6 +29,8 @@ def deserialize_aws_json_1_0(data: list) -> ProxyRuleGroupPriorityResultList:
 
     out: ProxyRuleGroupPriorityResultList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_network_firewall.types.proxy_rule_group_priority_result.deserialize_aws_json_1_0(
                 item

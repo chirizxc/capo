@@ -199,9 +199,9 @@ def serialize_aws_json_1_1(value: ReservationPurchaseRecommendationDetail) -> di
 
 def deserialize_aws_json_1_1(data: dict) -> ReservationPurchaseRecommendationDetail:
     out: ReservationPurchaseRecommendationDetail = {}  # type: ignore[typeddict-item]
-    if "AccountId" in data:
+    if data.get("AccountId") is not None:
         out["account_id"] = data["AccountId"]
-    if "InstanceDetails" in data:
+    if data.get("InstanceDetails") is not None:
         import capo_cost_explorer.types.instance_details
 
         out["instance_details"] = (
@@ -209,61 +209,61 @@ def deserialize_aws_json_1_1(data: dict) -> ReservationPurchaseRecommendationDet
                 data["InstanceDetails"]
             )
         )
-    if "RecommendedNumberOfInstancesToPurchase" in data:
+    if data.get("RecommendedNumberOfInstancesToPurchase") is not None:
         out["recommended_number_of_instances_to_purchase"] = data[
             "RecommendedNumberOfInstancesToPurchase"
         ]
-    if "RecommendedNormalizedUnitsToPurchase" in data:
+    if data.get("RecommendedNormalizedUnitsToPurchase") is not None:
         out["recommended_normalized_units_to_purchase"] = data[
             "RecommendedNormalizedUnitsToPurchase"
         ]
-    if "MinimumNumberOfInstancesUsedPerHour" in data:
+    if data.get("MinimumNumberOfInstancesUsedPerHour") is not None:
         out["minimum_number_of_instances_used_per_hour"] = data[
             "MinimumNumberOfInstancesUsedPerHour"
         ]
-    if "MinimumNormalizedUnitsUsedPerHour" in data:
+    if data.get("MinimumNormalizedUnitsUsedPerHour") is not None:
         out["minimum_normalized_units_used_per_hour"] = data[
             "MinimumNormalizedUnitsUsedPerHour"
         ]
-    if "MaximumNumberOfInstancesUsedPerHour" in data:
+    if data.get("MaximumNumberOfInstancesUsedPerHour") is not None:
         out["maximum_number_of_instances_used_per_hour"] = data[
             "MaximumNumberOfInstancesUsedPerHour"
         ]
-    if "MaximumNormalizedUnitsUsedPerHour" in data:
+    if data.get("MaximumNormalizedUnitsUsedPerHour") is not None:
         out["maximum_normalized_units_used_per_hour"] = data[
             "MaximumNormalizedUnitsUsedPerHour"
         ]
-    if "AverageNumberOfInstancesUsedPerHour" in data:
+    if data.get("AverageNumberOfInstancesUsedPerHour") is not None:
         out["average_number_of_instances_used_per_hour"] = data[
             "AverageNumberOfInstancesUsedPerHour"
         ]
-    if "AverageNormalizedUnitsUsedPerHour" in data:
+    if data.get("AverageNormalizedUnitsUsedPerHour") is not None:
         out["average_normalized_units_used_per_hour"] = data[
             "AverageNormalizedUnitsUsedPerHour"
         ]
-    if "AverageUtilization" in data:
+    if data.get("AverageUtilization") is not None:
         out["average_utilization"] = data["AverageUtilization"]
-    if "EstimatedBreakEvenInMonths" in data:
+    if data.get("EstimatedBreakEvenInMonths") is not None:
         out["estimated_break_even_in_months"] = data["EstimatedBreakEvenInMonths"]
-    if "CurrencyCode" in data:
+    if data.get("CurrencyCode") is not None:
         out["currency_code"] = data["CurrencyCode"]
-    if "EstimatedMonthlySavingsAmount" in data:
+    if data.get("EstimatedMonthlySavingsAmount") is not None:
         out["estimated_monthly_savings_amount"] = data["EstimatedMonthlySavingsAmount"]
-    if "EstimatedMonthlySavingsPercentage" in data:
+    if data.get("EstimatedMonthlySavingsPercentage") is not None:
         out["estimated_monthly_savings_percentage"] = data[
             "EstimatedMonthlySavingsPercentage"
         ]
-    if "EstimatedMonthlyOnDemandCost" in data:
+    if data.get("EstimatedMonthlyOnDemandCost") is not None:
         out["estimated_monthly_on_demand_cost"] = data["EstimatedMonthlyOnDemandCost"]
-    if "EstimatedReservationCostForLookbackPeriod" in data:
+    if data.get("EstimatedReservationCostForLookbackPeriod") is not None:
         out["estimated_reservation_cost_for_lookback_period"] = data[
             "EstimatedReservationCostForLookbackPeriod"
         ]
-    if "UpfrontCost" in data:
+    if data.get("UpfrontCost") is not None:
         out["upfront_cost"] = data["UpfrontCost"]
-    if "RecurringStandardMonthlyCost" in data:
+    if data.get("RecurringStandardMonthlyCost") is not None:
         out["recurring_standard_monthly_cost"] = data["RecurringStandardMonthlyCost"]
-    if "ReservedCapacityDetails" in data:
+    if data.get("ReservedCapacityDetails") is not None:
         import capo_cost_explorer.types.reserved_capacity_details
 
         out["reserved_capacity_details"] = (
@@ -271,19 +271,19 @@ def deserialize_aws_json_1_1(data: dict) -> ReservationPurchaseRecommendationDet
                 data["ReservedCapacityDetails"]
             )
         )
-    if "RecommendedNumberOfCapacityUnitsToPurchase" in data:
+    if data.get("RecommendedNumberOfCapacityUnitsToPurchase") is not None:
         out["recommended_number_of_capacity_units_to_purchase"] = data[
             "RecommendedNumberOfCapacityUnitsToPurchase"
         ]
-    if "MinimumNumberOfCapacityUnitsUsedPerHour" in data:
+    if data.get("MinimumNumberOfCapacityUnitsUsedPerHour") is not None:
         out["minimum_number_of_capacity_units_used_per_hour"] = data[
             "MinimumNumberOfCapacityUnitsUsedPerHour"
         ]
-    if "MaximumNumberOfCapacityUnitsUsedPerHour" in data:
+    if data.get("MaximumNumberOfCapacityUnitsUsedPerHour") is not None:
         out["maximum_number_of_capacity_units_used_per_hour"] = data[
             "MaximumNumberOfCapacityUnitsUsedPerHour"
         ]
-    if "AverageNumberOfCapacityUnitsUsedPerHour" in data:
+    if data.get("AverageNumberOfCapacityUnitsUsedPerHour") is not None:
         out["average_number_of_capacity_units_used_per_hour"] = data[
             "AverageNumberOfCapacityUnitsUsedPerHour"
         ]

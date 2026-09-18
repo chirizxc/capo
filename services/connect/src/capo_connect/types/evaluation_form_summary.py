@@ -73,19 +73,19 @@ def serialize_json(value: EvaluationFormSummary) -> dict:
 
 def deserialize_json(data: dict) -> EvaluationFormSummary:
     out: EvaluationFormSummary = {}  # type: ignore[typeddict-item]
-    if "EvaluationFormId" in data:
+    if data.get("EvaluationFormId") is not None:
         out["evaluation_form_id"] = data["EvaluationFormId"]
     else:
         raise DeserializationError("EvaluationFormSummary.evaluation_form_id required")
-    if "EvaluationFormArn" in data:
+    if data.get("EvaluationFormArn") is not None:
         out["evaluation_form_arn"] = data["EvaluationFormArn"]
     else:
         raise DeserializationError("EvaluationFormSummary.evaluation_form_arn required")
-    if "Title" in data:
+    if data.get("Title") is not None:
         out["title"] = data["Title"]
     else:
         raise DeserializationError("EvaluationFormSummary.title required")
-    if "CreatedTime" in data:
+    if data.get("CreatedTime") is not None:
         import capo_connect.types.timestamp
 
         out["created_time"] = capo_connect.types.timestamp.deserialize_json(
@@ -93,11 +93,11 @@ def deserialize_json(data: dict) -> EvaluationFormSummary:
         )
     else:
         raise DeserializationError("EvaluationFormSummary.created_time required")
-    if "CreatedBy" in data:
+    if data.get("CreatedBy") is not None:
         out["created_by"] = data["CreatedBy"]
     else:
         raise DeserializationError("EvaluationFormSummary.created_by required")
-    if "LastModifiedTime" in data:
+    if data.get("LastModifiedTime") is not None:
         import capo_connect.types.timestamp
 
         out["last_modified_time"] = capo_connect.types.timestamp.deserialize_json(
@@ -105,22 +105,22 @@ def deserialize_json(data: dict) -> EvaluationFormSummary:
         )
     else:
         raise DeserializationError("EvaluationFormSummary.last_modified_time required")
-    if "LastModifiedBy" in data:
+    if data.get("LastModifiedBy") is not None:
         out["last_modified_by"] = data["LastModifiedBy"]
     else:
         raise DeserializationError("EvaluationFormSummary.last_modified_by required")
-    if "LastActivatedTime" in data:
+    if data.get("LastActivatedTime") is not None:
         import capo_connect.types.timestamp
 
         out["last_activated_time"] = capo_connect.types.timestamp.deserialize_json(
             data["LastActivatedTime"]
         )
-    if "LastActivatedBy" in data:
+    if data.get("LastActivatedBy") is not None:
         out["last_activated_by"] = data["LastActivatedBy"]
-    if "LatestVersion" in data:
+    if data.get("LatestVersion") is not None:
         out["latest_version"] = data["LatestVersion"]
     else:
         out["latest_version"] = 0
-    if "ActiveVersion" in data:
+    if data.get("ActiveVersion") is not None:
         out["active_version"] = data["ActiveVersion"]
     return out

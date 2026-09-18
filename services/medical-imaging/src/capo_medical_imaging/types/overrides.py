@@ -18,6 +18,6 @@ def serialize_json(value: Overrides) -> dict:
 
 def deserialize_json(data: dict) -> Overrides:
     out: Overrides = {}  # type: ignore[typeddict-item]
-    if "forced" in data:
+    if data.get("forced") is not None:
         out["forced"] = data["forced"]
     return out

@@ -72,21 +72,21 @@ def serialize_json(value: GetQueueEnvironmentResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetQueueEnvironmentResponse:
     out: GetQueueEnvironmentResponse = {}  # type: ignore[typeddict-item]
-    if "queueEnvironmentId" in data:
+    if data.get("queueEnvironmentId") is not None:
         out["queue_environment_id"] = data["queueEnvironmentId"]
     else:
         raise DeserializationError(
             "GetQueueEnvironmentResponse.queue_environment_id required"
         )
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("GetQueueEnvironmentResponse.name required")
-    if "priority" in data:
+    if data.get("priority") is not None:
         out["priority"] = data["priority"]
     else:
         raise DeserializationError("GetQueueEnvironmentResponse.priority required")
-    if "templateType" in data:
+    if data.get("templateType") is not None:
         import capo_deadline.types.environment_template_type
 
         out["template_type"] = (
@@ -96,11 +96,11 @@ def deserialize_json(data: dict) -> GetQueueEnvironmentResponse:
         )
     else:
         raise DeserializationError("GetQueueEnvironmentResponse.template_type required")
-    if "template" in data:
+    if data.get("template") is not None:
         out["template"] = data["template"]
     else:
         raise DeserializationError("GetQueueEnvironmentResponse.template required")
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_deadline.types.created_at
 
         out["created_at"] = capo_deadline.types.created_at.deserialize_json(
@@ -108,16 +108,16 @@ def deserialize_json(data: dict) -> GetQueueEnvironmentResponse:
         )
     else:
         raise DeserializationError("GetQueueEnvironmentResponse.created_at required")
-    if "createdBy" in data:
+    if data.get("createdBy") is not None:
         out["created_by"] = data["createdBy"]
     else:
         raise DeserializationError("GetQueueEnvironmentResponse.created_by required")
-    if "updatedAt" in data:
+    if data.get("updatedAt") is not None:
         import capo_deadline.types.updated_at
 
         out["updated_at"] = capo_deadline.types.updated_at.deserialize_json(
             data["updatedAt"]
         )
-    if "updatedBy" in data:
+    if data.get("updatedBy") is not None:
         out["updated_by"] = data["updatedBy"]
     return out

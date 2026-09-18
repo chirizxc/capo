@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> WorkloadInsightsTopContributorsRowList:
 
     out: WorkloadInsightsTopContributorsRowList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_networkflowmonitor.types.workload_insights_top_contributors_row.deserialize_json(
                 item

@@ -53,19 +53,19 @@ def serialize_aws_json_1_0(value: ListConnectionsRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ListConnectionsRequest:
     out: ListConnectionsRequest = {}  # type: ignore[typeddict-item]
-    if "Catalog" in data:
+    if data.get("Catalog") is not None:
         out["catalog"] = data["Catalog"]
     else:
         raise DeserializationError("ListConnectionsRequest.catalog required")
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "ConnectionType" in data:
+    if data.get("ConnectionType") is not None:
         out["connection_type"] = data["ConnectionType"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
     else:
         out["max_results"] = 20
-    if "OtherParticipantIdentifiers" in data:
+    if data.get("OtherParticipantIdentifiers") is not None:
         import capo_partnercentral_account.types.participant_identifier_list
 
         out["other_participant_identifiers"] = (

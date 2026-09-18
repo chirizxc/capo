@@ -44,7 +44,7 @@ def serialize_json(value: TableFieldLinkContentConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> TableFieldLinkContentConfiguration:
     out: TableFieldLinkContentConfiguration = {}  # type: ignore[typeddict-item]
-    if "CustomTextContent" in data:
+    if data.get("CustomTextContent") is not None:
         import capo_quicksight.types.table_field_custom_text_content
 
         out["custom_text_content"] = (
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> TableFieldLinkContentConfiguration:
                 data["CustomTextContent"]
             )
         )
-    if "CustomIconContent" in data:
+    if data.get("CustomIconContent") is not None:
         import capo_quicksight.types.table_field_custom_icon_content
 
         out["custom_icon_content"] = (

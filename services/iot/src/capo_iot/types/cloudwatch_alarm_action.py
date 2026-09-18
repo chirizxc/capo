@@ -36,19 +36,19 @@ def serialize_json(value: CloudwatchAlarmAction) -> dict:
 
 def deserialize_json(data: dict) -> CloudwatchAlarmAction:
     out: CloudwatchAlarmAction = {}  # type: ignore[typeddict-item]
-    if "roleArn" in data:
+    if data.get("roleArn") is not None:
         out["role_arn"] = data["roleArn"]
     else:
         raise DeserializationError("CloudwatchAlarmAction.role_arn required")
-    if "alarmName" in data:
+    if data.get("alarmName") is not None:
         out["alarm_name"] = data["alarmName"]
     else:
         raise DeserializationError("CloudwatchAlarmAction.alarm_name required")
-    if "stateReason" in data:
+    if data.get("stateReason") is not None:
         out["state_reason"] = data["stateReason"]
     else:
         raise DeserializationError("CloudwatchAlarmAction.state_reason required")
-    if "stateValue" in data:
+    if data.get("stateValue") is not None:
         out["state_value"] = data["stateValue"]
     else:
         raise DeserializationError("CloudwatchAlarmAction.state_value required")

@@ -45,11 +45,11 @@ def serialize_aws_json_1_1(value: AddApplicationReferenceDataSourceResponse) -> 
 
 def deserialize_aws_json_1_1(data: dict) -> AddApplicationReferenceDataSourceResponse:
     out: AddApplicationReferenceDataSourceResponse = {}  # type: ignore[typeddict-item]
-    if "ApplicationARN" in data:
+    if data.get("ApplicationARN") is not None:
         out["application_arn"] = data["ApplicationARN"]
-    if "ApplicationVersionId" in data:
+    if data.get("ApplicationVersionId") is not None:
         out["application_version_id"] = data["ApplicationVersionId"]
-    if "ReferenceDataSourceDescriptions" in data:
+    if data.get("ReferenceDataSourceDescriptions") is not None:
         import capo_kinesis_analytics_v2.types.reference_data_source_descriptions
 
         out["reference_data_source_descriptions"] = (

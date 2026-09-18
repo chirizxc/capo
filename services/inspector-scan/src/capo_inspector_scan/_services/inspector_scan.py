@@ -169,8 +169,9 @@ class InspectorScanClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_inspector_scan.types.scan_sbom_request.ScanSbomRequest = {}  # type: ignore[typeddict-item]
-        input_["sbom"] = sbom
+        input_: capo_inspector_scan.types.scan_sbom_request.ScanSbomRequest = {
+            "sbom": sbom
+        }
         if output_format is not None:
             input_["output_format"] = output_format
 
@@ -179,6 +180,7 @@ class InspectorScanClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def __enter__(self) -> Self:

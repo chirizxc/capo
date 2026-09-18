@@ -25,6 +25,8 @@ def deserialize_json(data: list) -> ListOfBackendAPIAuthType:
 
     out: ListOfBackendAPIAuthType = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_amplifybackend.types.backend_api_auth_type.deserialize_json(item)
         )

@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> LoRaWANPublicGatewayMetadataList:
 
     out: LoRaWANPublicGatewayMetadataList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_iot_wireless.types.lo_ra_wan_public_gateway_metadata.deserialize_json(
                 item

@@ -30,15 +30,15 @@ def serialize_aws_json_1_0(value: X12ElementLengthValidationRule) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> X12ElementLengthValidationRule:
     out: X12ElementLengthValidationRule = {}  # type: ignore[typeddict-item]
-    if "elementId" in data:
+    if data.get("elementId") is not None:
         out["element_id"] = data["elementId"]
     else:
         raise DeserializationError("X12ElementLengthValidationRule.element_id required")
-    if "maxLength" in data:
+    if data.get("maxLength") is not None:
         out["max_length"] = data["maxLength"]
     else:
         raise DeserializationError("X12ElementLengthValidationRule.max_length required")
-    if "minLength" in data:
+    if data.get("minLength") is not None:
         out["min_length"] = data["minLength"]
     else:
         raise DeserializationError("X12ElementLengthValidationRule.min_length required")

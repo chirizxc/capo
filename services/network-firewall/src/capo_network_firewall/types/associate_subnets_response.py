@@ -46,11 +46,11 @@ def serialize_aws_json_1_0(value: AssociateSubnetsResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> AssociateSubnetsResponse:
     out: AssociateSubnetsResponse = {}  # type: ignore[typeddict-item]
-    if "FirewallArn" in data:
+    if data.get("FirewallArn") is not None:
         out["firewall_arn"] = data["FirewallArn"]
-    if "FirewallName" in data:
+    if data.get("FirewallName") is not None:
         out["firewall_name"] = data["FirewallName"]
-    if "SubnetMappings" in data:
+    if data.get("SubnetMappings") is not None:
         import capo_network_firewall.types.subnet_mappings
 
         out["subnet_mappings"] = (
@@ -58,6 +58,6 @@ def deserialize_aws_json_1_0(data: dict) -> AssociateSubnetsResponse:
                 data["SubnetMappings"]
             )
         )
-    if "UpdateToken" in data:
+    if data.get("UpdateToken") is not None:
         out["update_token"] = data["UpdateToken"]
     return out

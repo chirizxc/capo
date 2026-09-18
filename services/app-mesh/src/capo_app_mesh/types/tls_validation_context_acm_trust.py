@@ -32,7 +32,7 @@ def serialize_json(value: TlsValidationContextAcmTrust) -> dict:
 
 def deserialize_json(data: dict) -> TlsValidationContextAcmTrust:
     out: TlsValidationContextAcmTrust = {}  # type: ignore[typeddict-item]
-    if "certificateAuthorityArns" in data:
+    if data.get("certificateAuthorityArns") is not None:
         import capo_app_mesh.types.certificate_authority_arns
 
         out["certificate_authority_arns"] = (

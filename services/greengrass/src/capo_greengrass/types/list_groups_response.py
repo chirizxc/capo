@@ -36,7 +36,7 @@ def serialize_json(value: ListGroupsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListGroupsResponse:
     out: ListGroupsResponse = {}  # type: ignore[typeddict-item]
-    if "Groups" in data:
+    if data.get("Groups") is not None:
         import capo_greengrass.types.__list_of_group_information
 
         out["groups"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> ListGroupsResponse:
                 data["Groups"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

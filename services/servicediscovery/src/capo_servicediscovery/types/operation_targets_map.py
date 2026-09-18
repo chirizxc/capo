@@ -31,6 +31,8 @@ def deserialize_aws_json_1_1(data: dict) -> OperationTargetsMap:
     for key, value in data.items():
         import capo_servicediscovery.types.operation_target_type
 
+        if value is None:
+            continue
         out[
             capo_servicediscovery.types.operation_target_type.deserialize_aws_json_1_1(
                 key

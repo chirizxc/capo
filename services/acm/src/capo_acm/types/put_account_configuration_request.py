@@ -37,7 +37,7 @@ def serialize_aws_json_1_1(value: PutAccountConfigurationRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PutAccountConfigurationRequest:
     out: PutAccountConfigurationRequest = {}  # type: ignore[typeddict-item]
-    if "ExpiryEvents" in data:
+    if data.get("ExpiryEvents") is not None:
         import capo_acm.types.expiry_events_configuration
 
         out["expiry_events"] = (
@@ -45,7 +45,7 @@ def deserialize_aws_json_1_1(data: dict) -> PutAccountConfigurationRequest:
                 data["ExpiryEvents"]
             )
         )
-    if "IdempotencyToken" in data:
+    if data.get("IdempotencyToken") is not None:
         out["idempotency_token"] = data["IdempotencyToken"]
     else:
         raise DeserializationError(

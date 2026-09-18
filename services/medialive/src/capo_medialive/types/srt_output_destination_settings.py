@@ -49,18 +49,18 @@ def serialize_json(value: SrtOutputDestinationSettings) -> dict:
 
 def deserialize_json(data: dict) -> SrtOutputDestinationSettings:
     out: SrtOutputDestinationSettings = {}  # type: ignore[typeddict-item]
-    if "encryptionPassphraseSecretArn" in data:
+    if data.get("encryptionPassphraseSecretArn") is not None:
         out["encryption_passphrase_secret_arn"] = data["encryptionPassphraseSecretArn"]
-    if "streamId" in data:
+    if data.get("streamId") is not None:
         out["stream_id"] = data["streamId"]
-    if "url" in data:
+    if data.get("url") is not None:
         out["url"] = data["url"]
-    if "connectionMode" in data:
+    if data.get("connectionMode") is not None:
         import capo_medialive.types.connection_mode
 
         out["connection_mode"] = capo_medialive.types.connection_mode.deserialize_json(
             data["connectionMode"]
         )
-    if "listenerPort" in data:
+    if data.get("listenerPort") is not None:
         out["listener_port"] = data["listenerPort"]
     return out

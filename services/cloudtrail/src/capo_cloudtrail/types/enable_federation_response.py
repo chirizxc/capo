@@ -45,9 +45,9 @@ def serialize_aws_json_1_1(value: EnableFederationResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> EnableFederationResponse:
     out: EnableFederationResponse = {}  # type: ignore[typeddict-item]
-    if "EventDataStoreArn" in data:
+    if data.get("EventDataStoreArn") is not None:
         out["event_data_store_arn"] = data["EventDataStoreArn"]
-    if "FederationStatus" in data:
+    if data.get("FederationStatus") is not None:
         import capo_cloudtrail.types.federation_status
 
         out["federation_status"] = (
@@ -55,6 +55,6 @@ def deserialize_aws_json_1_1(data: dict) -> EnableFederationResponse:
                 data["FederationStatus"]
             )
         )
-    if "FederationRoleArn" in data:
+    if data.get("FederationRoleArn") is not None:
         out["federation_role_arn"] = data["FederationRoleArn"]
     return out

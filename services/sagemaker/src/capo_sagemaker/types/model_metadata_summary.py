@@ -39,14 +39,14 @@ def serialize_aws_json_1_1(value: ModelMetadataSummary) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ModelMetadataSummary:
     out: ModelMetadataSummary = {}  # type: ignore[typeddict-item]
-    if "Domain" in data:
+    if data.get("Domain") is not None:
         out["domain"] = data["Domain"]
-    if "Framework" in data:
+    if data.get("Framework") is not None:
         out["framework"] = data["Framework"]
-    if "Task" in data:
+    if data.get("Task") is not None:
         out["task"] = data["Task"]
-    if "Model" in data:
+    if data.get("Model") is not None:
         out["model"] = data["Model"]
-    if "FrameworkVersion" in data:
+    if data.get("FrameworkVersion") is not None:
         out["framework_version"] = data["FrameworkVersion"]
     return out

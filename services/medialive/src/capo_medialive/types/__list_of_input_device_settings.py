@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> __listOfInputDeviceSettings:
 
     out: __listOfInputDeviceSettings = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_medialive.types.input_device_settings.deserialize_json(item))
     return out

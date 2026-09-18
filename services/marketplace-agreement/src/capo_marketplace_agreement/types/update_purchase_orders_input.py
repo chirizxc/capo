@@ -30,7 +30,7 @@ def serialize_aws_json_1_0(value: UpdatePurchaseOrdersInput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> UpdatePurchaseOrdersInput:
     out: UpdatePurchaseOrdersInput = {}  # type: ignore[typeddict-item]
-    if "purchaseOrders" in data:
+    if data.get("purchaseOrders") is not None:
         import capo_marketplace_agreement.types.purchase_orders
 
         out["purchase_orders"] = (

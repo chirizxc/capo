@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> OAuthClientApplicationSummaryList:
 
     out: OAuthClientApplicationSummaryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_quicksight.types.o_auth_client_application_summary.deserialize_json(
                 item

@@ -40,7 +40,7 @@ def serialize_json(value: CreateTrustStoreRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateTrustStoreRequest:
     out: CreateTrustStoreRequest = {}  # type: ignore[typeddict-item]
-    if "certificateList" in data:
+    if data.get("certificateList") is not None:
         import capo_workspaces_web.types.certificate_list
 
         out["certificate_list"] = (
@@ -50,10 +50,10 @@ def deserialize_json(data: dict) -> CreateTrustStoreRequest:
         )
     else:
         raise DeserializationError("CreateTrustStoreRequest.certificate_list required")
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_workspaces_web.types.tag_list
 
         out["tags"] = capo_workspaces_web.types.tag_list.deserialize_json(data["tags"])
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     return out

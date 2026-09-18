@@ -55,21 +55,21 @@ def serialize_json(value: Environment) -> dict:
 
 def deserialize_json(data: dict) -> Environment:
     out: Environment = {}  # type: ignore[typeddict-item]
-    if "ApplicationId" in data:
+    if data.get("ApplicationId") is not None:
         out["application_id"] = data["ApplicationId"]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "State" in data:
+    if data.get("State") is not None:
         import capo_appconfig.types.environment_state
 
         out["state"] = capo_appconfig.types.environment_state.deserialize_json(
             data["State"]
         )
-    if "Monitors" in data:
+    if data.get("Monitors") is not None:
         import capo_appconfig.types.monitor_list
 
         out["monitors"] = capo_appconfig.types.monitor_list.deserialize_json(

@@ -44,13 +44,13 @@ def serialize_json(value: ViewStatus) -> dict:
 
 def deserialize_json(data: dict) -> ViewStatus:
     out: ViewStatus = {}  # type: ignore[typeddict-item]
-    if "Status" in data:
+    if data.get("Status") is not None:
         out["status"] = data["Status"]
-    if "View" in data:
+    if data.get("View") is not None:
         import capo_resource_explorer_2.types.view
 
         out["view"] = capo_resource_explorer_2.types.view.deserialize_json(data["View"])
-    if "ErrorDetails" in data:
+    if data.get("ErrorDetails") is not None:
         import capo_resource_explorer_2.types.error_details
 
         out["error_details"] = (

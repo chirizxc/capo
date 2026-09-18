@@ -38,18 +38,18 @@ def serialize_json(value: StartServiceSoftwareUpdateRequest) -> dict:
 
 def deserialize_json(data: dict) -> StartServiceSoftwareUpdateRequest:
     out: StartServiceSoftwareUpdateRequest = {}  # type: ignore[typeddict-item]
-    if "DomainName" in data:
+    if data.get("DomainName") is not None:
         out["domain_name"] = data["DomainName"]
     else:
         raise DeserializationError(
             "StartServiceSoftwareUpdateRequest.domain_name required"
         )
-    if "ScheduleAt" in data:
+    if data.get("ScheduleAt") is not None:
         import capo_opensearch.types.schedule_at
 
         out["schedule_at"] = capo_opensearch.types.schedule_at.deserialize_json(
             data["ScheduleAt"]
         )
-    if "DesiredStartTime" in data:
+    if data.get("DesiredStartTime") is not None:
         out["desired_start_time"] = data["DesiredStartTime"]
     return out

@@ -32,12 +32,12 @@ def serialize_aws_json_1_1(value: GetJobRunsResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetJobRunsResponse:
     out: GetJobRunsResponse = {}  # type: ignore[typeddict-item]
-    if "JobRuns" in data:
+    if data.get("JobRuns") is not None:
         import capo_glue.types.job_run_list
 
         out["job_runs"] = capo_glue.types.job_run_list.deserialize_aws_json_1_1(
             data["JobRuns"]
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

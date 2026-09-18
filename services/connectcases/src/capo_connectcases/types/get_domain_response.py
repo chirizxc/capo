@@ -51,19 +51,19 @@ def serialize_json(value: GetDomainResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetDomainResponse:
     out: GetDomainResponse = {}  # type: ignore[typeddict-item]
-    if "domainId" in data:
+    if data.get("domainId") is not None:
         out["domain_id"] = data["domainId"]
     else:
         raise DeserializationError("GetDomainResponse.domain_id required")
-    if "domainArn" in data:
+    if data.get("domainArn") is not None:
         out["domain_arn"] = data["domainArn"]
     else:
         raise DeserializationError("GetDomainResponse.domain_arn required")
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("GetDomainResponse.name required")
-    if "createdTime" in data:
+    if data.get("createdTime") is not None:
         import capo_connectcases.types.created_time
 
         out["created_time"] = capo_connectcases.types.created_time.deserialize_json(
@@ -71,11 +71,11 @@ def deserialize_json(data: dict) -> GetDomainResponse:
         )
     else:
         raise DeserializationError("GetDomainResponse.created_time required")
-    if "domainStatus" in data:
+    if data.get("domainStatus") is not None:
         out["domain_status"] = data["domainStatus"]
     else:
         raise DeserializationError("GetDomainResponse.domain_status required")
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_connectcases.types.tags
 
         out["tags"] = capo_connectcases.types.tags.deserialize_json(data["tags"])

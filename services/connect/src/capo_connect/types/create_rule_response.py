@@ -28,11 +28,11 @@ def serialize_json(value: CreateRuleResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateRuleResponse:
     out: CreateRuleResponse = {}  # type: ignore[typeddict-item]
-    if "RuleArn" in data:
+    if data.get("RuleArn") is not None:
         out["rule_arn"] = data["RuleArn"]
     else:
         raise DeserializationError("CreateRuleResponse.rule_arn required")
-    if "RuleId" in data:
+    if data.get("RuleId") is not None:
         out["rule_id"] = data["RuleId"]
     else:
         raise DeserializationError("CreateRuleResponse.rule_id required")

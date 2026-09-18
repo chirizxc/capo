@@ -27,12 +27,12 @@ def serialize_json(value: ActionMetadata) -> dict:
 
 def deserialize_json(data: dict) -> ActionMetadata:
     out: ActionMetadata = {}  # type: ignore[typeddict-item]
-    if "actionType" in data:
+    if data.get("actionType") is not None:
         out["action_type"] = data["actionType"]
     else:
         raise DeserializationError("ActionMetadata.action_type required")
-    if "programCount" in data:
+    if data.get("programCount") is not None:
         out["program_count"] = data["programCount"]
-    if "executableCount" in data:
+    if data.get("executableCount") is not None:
         out["executable_count"] = data["executableCount"]
     return out

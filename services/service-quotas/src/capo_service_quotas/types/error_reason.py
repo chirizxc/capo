@@ -32,7 +32,7 @@ def serialize_aws_json_1_1(value: ErrorReason) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ErrorReason:
     out: ErrorReason = {}  # type: ignore[typeddict-item]
-    if "ErrorCode" in data:
+    if data.get("ErrorCode") is not None:
         import capo_service_quotas.types.error_code
 
         out["error_code"] = (
@@ -40,6 +40,6 @@ def deserialize_aws_json_1_1(data: dict) -> ErrorReason:
                 data["ErrorCode"]
             )
         )
-    if "ErrorMessage" in data:
+    if data.get("ErrorMessage") is not None:
         out["error_message"] = data["ErrorMessage"]
     return out

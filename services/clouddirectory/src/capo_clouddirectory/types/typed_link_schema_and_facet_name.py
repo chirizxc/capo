@@ -28,11 +28,11 @@ def serialize_json(value: TypedLinkSchemaAndFacetName) -> dict:
 
 def deserialize_json(data: dict) -> TypedLinkSchemaAndFacetName:
     out: TypedLinkSchemaAndFacetName = {}  # type: ignore[typeddict-item]
-    if "SchemaArn" in data:
+    if data.get("SchemaArn") is not None:
         out["schema_arn"] = data["SchemaArn"]
     else:
         raise DeserializationError("TypedLinkSchemaAndFacetName.schema_arn required")
-    if "TypedLinkName" in data:
+    if data.get("TypedLinkName") is not None:
         out["typed_link_name"] = data["TypedLinkName"]
     else:
         raise DeserializationError(

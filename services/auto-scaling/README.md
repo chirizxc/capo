@@ -13,9 +13,9 @@ from capo_auto_scaling import AsyncAutoScalingClient
 
 
 async def main():
-    async with AsyncAutoScalingClient() as s3:
+    async with AsyncAutoScalingClient() as auto_scaling:
         # Example: call the attach_instances operation
-        response = await s3.attach_instances()
+        response = await auto_scaling.attach_instances()
         print(response)
 ```
 
@@ -28,9 +28,9 @@ from capo_auto_scaling import AsyncAutoScalingClient
 
 
 async def main():
-    async with AsyncAutoScalingClient() as s3:
+    async with AsyncAutoScalingClient() as auto_scaling:
         # Example: paginate over describe_auto_scaling_groups
-        async for item in s3.iter_describe_auto_scaling_groups():
+        async for item in auto_scaling.iter_describe_auto_scaling_groups():
             print(item)
 ```
 
@@ -44,9 +44,9 @@ from capo_auto_scaling.error import ResourceContentionFault
 
 
 async def main():
-    async with AsyncAutoScalingClient() as s3:
+    async with AsyncAutoScalingClient() as auto_scaling:
         try:
-            await s3.attach_instances()
+            await auto_scaling.attach_instances()
         except ResourceContentionFault as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -63,13 +63,13 @@ from capo_auto_scaling import AsyncAutoScalingClient
 
 
 async def main():
-    async with AsyncAutoScalingClient() as s3:
+    async with AsyncAutoScalingClient() as auto_scaling:
         # Default: 3 attempts for every operation
-        response = await s3.attach_instances()
+        response = await auto_scaling.attach_instances()
 
         # Override per operation
-        response = await s3.attach_instances(config_overrides={"retry_max_attempts": 5})
+        response = await auto_scaling.attach_instances(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.attach_instances(config_overrides={"retry_max_attempts": 1})
+        response = await auto_scaling.attach_instances(config_overrides={"retry_max_attempts": 1})
 ```

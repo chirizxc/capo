@@ -46,19 +46,19 @@ def deserialize_aws_json_1_1(
     data: dict,
 ) -> ListAvailableManagedRuleGroupVersionsRequest:
     out: ListAvailableManagedRuleGroupVersionsRequest = {}  # type: ignore[typeddict-item]
-    if "VendorName" in data:
+    if data.get("VendorName") is not None:
         out["vendor_name"] = data["VendorName"]
     else:
         raise DeserializationError(
             "ListAvailableManagedRuleGroupVersionsRequest.vendor_name required"
         )
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError(
             "ListAvailableManagedRuleGroupVersionsRequest.name required"
         )
-    if "Scope" in data:
+    if data.get("Scope") is not None:
         import capo_wafv2.types.scope
 
         out["scope"] = capo_wafv2.types.scope.deserialize_aws_json_1_1(data["Scope"])
@@ -66,8 +66,8 @@ def deserialize_aws_json_1_1(
         raise DeserializationError(
             "ListAvailableManagedRuleGroupVersionsRequest.scope required"
         )
-    if "NextMarker" in data:
+    if data.get("NextMarker") is not None:
         out["next_marker"] = data["NextMarker"]
-    if "Limit" in data:
+    if data.get("Limit") is not None:
         out["limit"] = data["Limit"]
     return out

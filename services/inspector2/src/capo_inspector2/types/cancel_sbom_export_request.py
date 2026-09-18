@@ -24,7 +24,7 @@ def serialize_json(value: CancelSbomExportRequest) -> dict:
 
 def deserialize_json(data: dict) -> CancelSbomExportRequest:
     out: CancelSbomExportRequest = {}  # type: ignore[typeddict-item]
-    if "reportId" in data:
+    if data.get("reportId") is not None:
         out["report_id"] = data["reportId"]
     else:
         raise DeserializationError("CancelSbomExportRequest.report_id required")

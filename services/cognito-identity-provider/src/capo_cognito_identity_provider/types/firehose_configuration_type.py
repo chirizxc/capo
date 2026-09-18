@@ -23,6 +23,6 @@ def serialize_aws_json_1_1(value: FirehoseConfigurationType) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> FirehoseConfigurationType:
     out: FirehoseConfigurationType = {}  # type: ignore[typeddict-item]
-    if "StreamArn" in data:
+    if data.get("StreamArn") is not None:
         out["stream_arn"] = data["StreamArn"]
     return out

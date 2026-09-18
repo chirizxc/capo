@@ -91,9 +91,9 @@ def serialize_aws_json_1_1(value: CreateFlowDefinitionRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateFlowDefinitionRequest:
     out: CreateFlowDefinitionRequest = {}  # type: ignore[typeddict-item]
-    if "FlowDefinitionName" in data:
+    if data.get("FlowDefinitionName") is not None:
         out["flow_definition_name"] = data["FlowDefinitionName"]
-    if "HumanLoopRequestSource" in data:
+    if data.get("HumanLoopRequestSource") is not None:
         import capo_sagemaker.types.human_loop_request_source
 
         out["human_loop_request_source"] = (
@@ -101,7 +101,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateFlowDefinitionRequest:
                 data["HumanLoopRequestSource"]
             )
         )
-    if "HumanLoopActivationConfig" in data:
+    if data.get("HumanLoopActivationConfig") is not None:
         import capo_sagemaker.types.human_loop_activation_config
 
         out["human_loop_activation_config"] = (
@@ -109,7 +109,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateFlowDefinitionRequest:
                 data["HumanLoopActivationConfig"]
             )
         )
-    if "HumanLoopConfig" in data:
+    if data.get("HumanLoopConfig") is not None:
         import capo_sagemaker.types.human_loop_config
 
         out["human_loop_config"] = (
@@ -117,7 +117,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateFlowDefinitionRequest:
                 data["HumanLoopConfig"]
             )
         )
-    if "OutputConfig" in data:
+    if data.get("OutputConfig") is not None:
         import capo_sagemaker.types.flow_definition_output_config
 
         out["output_config"] = (
@@ -125,9 +125,9 @@ def deserialize_aws_json_1_1(data: dict) -> CreateFlowDefinitionRequest:
                 data["OutputConfig"]
             )
         )
-    if "RoleArn" in data:
+    if data.get("RoleArn") is not None:
         out["role_arn"] = data["RoleArn"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_sagemaker.types.tag_list
 
         out["tags"] = capo_sagemaker.types.tag_list.deserialize_aws_json_1_1(

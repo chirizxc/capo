@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> ReplicationConfigurationTemplates:
 
     out: ReplicationConfigurationTemplates = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_mgn.types.replication_configuration_template.deserialize_json(item)
         )

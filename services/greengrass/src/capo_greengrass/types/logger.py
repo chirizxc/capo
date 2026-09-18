@@ -51,23 +51,23 @@ def serialize_json(value: Logger) -> dict:
 
 def deserialize_json(data: dict) -> Logger:
     out: Logger = {}  # type: ignore[typeddict-item]
-    if "Component" in data:
+    if data.get("Component") is not None:
         import capo_greengrass.types.logger_component
 
         out["component"] = capo_greengrass.types.logger_component.deserialize_json(
             data["Component"]
         )
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "Level" in data:
+    if data.get("Level") is not None:
         import capo_greengrass.types.logger_level
 
         out["level"] = capo_greengrass.types.logger_level.deserialize_json(
             data["Level"]
         )
-    if "Space" in data:
+    if data.get("Space") is not None:
         out["space"] = data["Space"]
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_greengrass.types.logger_type
 
         out["type"] = capo_greengrass.types.logger_type.deserialize_json(data["Type"])

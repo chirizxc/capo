@@ -38,7 +38,7 @@ def serialize_json(value: BatchGetIncidentFindingsOutput) -> dict:
 
 def deserialize_json(data: dict) -> BatchGetIncidentFindingsOutput:
     out: BatchGetIncidentFindingsOutput = {}  # type: ignore[typeddict-item]
-    if "findings" in data:
+    if data.get("findings") is not None:
         import capo_ssm_incidents.types.finding_list
 
         out["findings"] = capo_ssm_incidents.types.finding_list.deserialize_json(
@@ -46,7 +46,7 @@ def deserialize_json(data: dict) -> BatchGetIncidentFindingsOutput:
         )
     else:
         raise DeserializationError("BatchGetIncidentFindingsOutput.findings required")
-    if "errors" in data:
+    if data.get("errors") is not None:
         import capo_ssm_incidents.types.batch_get_incident_findings_error_list
 
         out["errors"] = (

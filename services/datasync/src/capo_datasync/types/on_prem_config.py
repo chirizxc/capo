@@ -28,7 +28,7 @@ def serialize_aws_json_1_1(value: OnPremConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> OnPremConfig:
     out: OnPremConfig = {}  # type: ignore[typeddict-item]
-    if "AgentArns" in data:
+    if data.get("AgentArns") is not None:
         import capo_datasync.types.agent_arn_list
 
         out["agent_arns"] = capo_datasync.types.agent_arn_list.deserialize_aws_json_1_1(

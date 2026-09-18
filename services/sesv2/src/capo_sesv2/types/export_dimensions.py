@@ -28,8 +28,11 @@ def serialize_json(input_to_serialize: ExportDimensions) -> dict:
 def deserialize_json(data: dict) -> ExportDimensions:
     out: ExportDimensions = {}
     for key, value in data.items():
-        import capo_sesv2.types.export_dimension_value
         import capo_sesv2.types.metric_dimension_name
+
+        if value is None:
+            continue
+        import capo_sesv2.types.export_dimension_value
 
         out[capo_sesv2.types.metric_dimension_name.deserialize_json(key)] = (
             capo_sesv2.types.export_dimension_value.deserialize_json(value)

@@ -45,7 +45,7 @@ def serialize_aws_json_1_1(value: SetIpAddressTypeRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SetIpAddressTypeRequest:
     out: SetIpAddressTypeRequest = {}  # type: ignore[typeddict-item]
-    if "resourceType" in data:
+    if data.get("resourceType") is not None:
         import capo_lightsail.types.resource_type
 
         out["resource_type"] = (
@@ -55,11 +55,11 @@ def deserialize_aws_json_1_1(data: dict) -> SetIpAddressTypeRequest:
         )
     else:
         raise DeserializationError("SetIpAddressTypeRequest.resource_type required")
-    if "resourceName" in data:
+    if data.get("resourceName") is not None:
         out["resource_name"] = data["resourceName"]
     else:
         raise DeserializationError("SetIpAddressTypeRequest.resource_name required")
-    if "ipAddressType" in data:
+    if data.get("ipAddressType") is not None:
         import capo_lightsail.types.ip_address_type
 
         out["ip_address_type"] = (
@@ -69,6 +69,6 @@ def deserialize_aws_json_1_1(data: dict) -> SetIpAddressTypeRequest:
         )
     else:
         raise DeserializationError("SetIpAddressTypeRequest.ip_address_type required")
-    if "acceptBundleUpdate" in data:
+    if data.get("acceptBundleUpdate") is not None:
         out["accept_bundle_update"] = data["acceptBundleUpdate"]
     return out

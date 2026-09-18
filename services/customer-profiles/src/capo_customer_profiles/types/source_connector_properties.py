@@ -81,7 +81,7 @@ def serialize_json(value: SourceConnectorProperties) -> dict:
 
 def deserialize_json(data: dict) -> SourceConnectorProperties:
     out: SourceConnectorProperties = {}  # type: ignore[typeddict-item]
-    if "Marketo" in data:
+    if data.get("Marketo") is not None:
         import capo_customer_profiles.types.marketo_source_properties
 
         out["marketo"] = (
@@ -89,13 +89,13 @@ def deserialize_json(data: dict) -> SourceConnectorProperties:
                 data["Marketo"]
             )
         )
-    if "S3" in data:
+    if data.get("S3") is not None:
         import capo_customer_profiles.types.s3_source_properties
 
         out["s3"] = capo_customer_profiles.types.s3_source_properties.deserialize_json(
             data["S3"]
         )
-    if "Salesforce" in data:
+    if data.get("Salesforce") is not None:
         import capo_customer_profiles.types.salesforce_source_properties
 
         out["salesforce"] = (
@@ -103,7 +103,7 @@ def deserialize_json(data: dict) -> SourceConnectorProperties:
                 data["Salesforce"]
             )
         )
-    if "ServiceNow" in data:
+    if data.get("ServiceNow") is not None:
         import capo_customer_profiles.types.service_now_source_properties
 
         out["service_now"] = (
@@ -111,7 +111,7 @@ def deserialize_json(data: dict) -> SourceConnectorProperties:
                 data["ServiceNow"]
             )
         )
-    if "Zendesk" in data:
+    if data.get("Zendesk") is not None:
         import capo_customer_profiles.types.zendesk_source_properties
 
         out["zendesk"] = (

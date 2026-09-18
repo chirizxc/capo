@@ -59,13 +59,13 @@ def serialize_json(value: TestInvokeMethodResponse) -> dict:
 
 def deserialize_json(data: dict) -> TestInvokeMethodResponse:
     out: TestInvokeMethodResponse = {}  # type: ignore[typeddict-item]
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
     else:
         out["status"] = 0
-    if "body" in data:
+    if data.get("body") is not None:
         out["body"] = data["body"]
-    if "headers" in data:
+    if data.get("headers") is not None:
         import capo_api_gateway.types.map_of_string_to_string
 
         out["headers"] = (
@@ -73,7 +73,7 @@ def deserialize_json(data: dict) -> TestInvokeMethodResponse:
                 data["headers"]
             )
         )
-    if "multiValueHeaders" in data:
+    if data.get("multiValueHeaders") is not None:
         import capo_api_gateway.types.map_of_string_to_list
 
         out["multi_value_headers"] = (
@@ -81,9 +81,9 @@ def deserialize_json(data: dict) -> TestInvokeMethodResponse:
                 data["multiValueHeaders"]
             )
         )
-    if "log" in data:
+    if data.get("log") is not None:
         out["log"] = data["log"]
-    if "latency" in data:
+    if data.get("latency") is not None:
         out["latency"] = data["latency"]
     else:
         out["latency"] = 0

@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> AssetInDataProductListingItems:
 
     out: AssetInDataProductListingItems = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_datazone.types.asset_in_data_product_listing_item.deserialize_json(
                 item

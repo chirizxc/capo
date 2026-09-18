@@ -72,9 +72,10 @@ class ServiceInstanceOutputResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_proton.types.list_service_instance_outputs_input.ListServiceInstanceOutputsInput = {}  # type: ignore[typeddict-item]
-        input_["service_instance_name"] = service_instance_name
-        input_["service_name"] = service_name
+        input_: capo_proton.types.list_service_instance_outputs_input.ListServiceInstanceOutputsInput = {
+            "service_instance_name": service_instance_name,
+            "service_name": service_name,
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if deployment_id is not None:
@@ -85,6 +86,7 @@ class ServiceInstanceOutputResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -136,9 +138,10 @@ class AsyncServiceInstanceOutputResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_proton.types.list_service_instance_outputs_input.ListServiceInstanceOutputsInput = {}  # type: ignore[typeddict-item]
-        input_["service_instance_name"] = service_instance_name
-        input_["service_name"] = service_name
+        input_: capo_proton.types.list_service_instance_outputs_input.ListServiceInstanceOutputsInput = {
+            "service_instance_name": service_instance_name,
+            "service_name": service_name,
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if deployment_id is not None:
@@ -149,4 +152,5 @@ class AsyncServiceInstanceOutputResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

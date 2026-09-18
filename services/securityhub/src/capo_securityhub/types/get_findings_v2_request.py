@@ -57,26 +57,26 @@ def serialize_json(value: GetFindingsV2Request) -> dict:
 
 def deserialize_json(data: dict) -> GetFindingsV2Request:
     out: GetFindingsV2Request = {}  # type: ignore[typeddict-item]
-    if "Filters" in data:
+    if data.get("Filters") is not None:
         import capo_securityhub.types.ocsf_finding_filters
 
         out["filters"] = capo_securityhub.types.ocsf_finding_filters.deserialize_json(
             data["Filters"]
         )
-    if "Scopes" in data:
+    if data.get("Scopes") is not None:
         import capo_securityhub.types.finding_scopes
 
         out["scopes"] = capo_securityhub.types.finding_scopes.deserialize_json(
             data["Scopes"]
         )
-    if "SortCriteria" in data:
+    if data.get("SortCriteria") is not None:
         import capo_securityhub.types.sort_criteria
 
         out["sort_criteria"] = capo_securityhub.types.sort_criteria.deserialize_json(
             data["SortCriteria"]
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
     return out

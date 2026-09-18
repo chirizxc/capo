@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> SupportedWriteOperationList:
 
     out: SupportedWriteOperationList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_appflow.types.write_operation_type.deserialize_json(item))
     return out

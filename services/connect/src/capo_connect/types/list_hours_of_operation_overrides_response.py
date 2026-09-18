@@ -50,9 +50,9 @@ def serialize_json(value: ListHoursOfOperationOverridesResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListHoursOfOperationOverridesResponse:
     out: ListHoursOfOperationOverridesResponse = {}  # type: ignore[typeddict-item]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "HoursOfOperationOverrideList" in data:
+    if data.get("HoursOfOperationOverrideList") is not None:
         import capo_connect.types.hours_of_operation_override_list
 
         out["hours_of_operation_override_list"] = (
@@ -60,9 +60,9 @@ def deserialize_json(data: dict) -> ListHoursOfOperationOverridesResponse:
                 data["HoursOfOperationOverrideList"]
             )
         )
-    if "LastModifiedRegion" in data:
+    if data.get("LastModifiedRegion") is not None:
         out["last_modified_region"] = data["LastModifiedRegion"]
-    if "LastModifiedTime" in data:
+    if data.get("LastModifiedTime") is not None:
         import capo_connect.types.timestamp
 
         out["last_modified_time"] = capo_connect.types.timestamp.deserialize_json(

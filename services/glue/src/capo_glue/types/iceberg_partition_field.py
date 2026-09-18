@@ -35,19 +35,19 @@ def serialize_aws_json_1_1(value: IcebergPartitionField) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> IcebergPartitionField:
     out: IcebergPartitionField = {}  # type: ignore[typeddict-item]
-    if "SourceId" in data:
+    if data.get("SourceId") is not None:
         out["source_id"] = data["SourceId"]
     else:
         out["source_id"] = 0
-    if "Transform" in data:
+    if data.get("Transform") is not None:
         out["transform"] = data["Transform"]
     else:
         raise DeserializationError("IcebergPartitionField.transform required")
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("IcebergPartitionField.name required")
-    if "FieldId" in data:
+    if data.get("FieldId") is not None:
         out["field_id"] = data["FieldId"]
     else:
         out["field_id"] = 0

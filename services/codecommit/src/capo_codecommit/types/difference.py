@@ -46,7 +46,7 @@ def serialize_aws_json_1_1(value: Difference) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Difference:
     out: Difference = {}  # type: ignore[typeddict-item]
-    if "beforeBlob" in data:
+    if data.get("beforeBlob") is not None:
         import capo_codecommit.types.blob_metadata
 
         out["before_blob"] = (
@@ -54,7 +54,7 @@ def deserialize_aws_json_1_1(data: dict) -> Difference:
                 data["beforeBlob"]
             )
         )
-    if "afterBlob" in data:
+    if data.get("afterBlob") is not None:
         import capo_codecommit.types.blob_metadata
 
         out["after_blob"] = (
@@ -62,7 +62,7 @@ def deserialize_aws_json_1_1(data: dict) -> Difference:
                 data["afterBlob"]
             )
         )
-    if "changeType" in data:
+    if data.get("changeType") is not None:
         import capo_codecommit.types.change_type_enum
 
         out["change_type"] = (

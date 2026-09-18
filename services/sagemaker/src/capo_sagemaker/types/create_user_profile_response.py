@@ -25,6 +25,6 @@ def serialize_aws_json_1_1(value: CreateUserProfileResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateUserProfileResponse:
     out: CreateUserProfileResponse = {}  # type: ignore[typeddict-item]
-    if "UserProfileArn" in data:
+    if data.get("UserProfileArn") is not None:
         out["user_profile_arn"] = data["UserProfileArn"]
     return out

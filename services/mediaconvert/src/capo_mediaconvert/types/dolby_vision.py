@@ -77,7 +77,7 @@ def serialize_json(value: DolbyVision) -> dict:
 
 def deserialize_json(data: dict) -> DolbyVision:
     out: DolbyVision = {}  # type: ignore[typeddict-item]
-    if "compatibility" in data:
+    if data.get("compatibility") is not None:
         import capo_mediaconvert.types.dolby_vision_compatibility
 
         out["compatibility"] = (
@@ -85,7 +85,7 @@ def deserialize_json(data: dict) -> DolbyVision:
                 data["compatibility"]
             )
         )
-    if "l6Metadata" in data:
+    if data.get("l6Metadata") is not None:
         import capo_mediaconvert.types.dolby_vision_level6_metadata
 
         out["l6_metadata"] = (
@@ -93,7 +93,7 @@ def deserialize_json(data: dict) -> DolbyVision:
                 data["l6Metadata"]
             )
         )
-    if "l6Mode" in data:
+    if data.get("l6Mode") is not None:
         import capo_mediaconvert.types.dolby_vision_level6_mode
 
         out["l6_mode"] = (
@@ -101,13 +101,13 @@ def deserialize_json(data: dict) -> DolbyVision:
                 data["l6Mode"]
             )
         )
-    if "mapping" in data:
+    if data.get("mapping") is not None:
         import capo_mediaconvert.types.dolby_vision_mapping
 
         out["mapping"] = capo_mediaconvert.types.dolby_vision_mapping.deserialize_json(
             data["mapping"]
         )
-    if "profile" in data:
+    if data.get("profile") is not None:
         import capo_mediaconvert.types.dolby_vision_profile
 
         out["profile"] = capo_mediaconvert.types.dolby_vision_profile.deserialize_json(

@@ -23,5 +23,7 @@ def deserialize_aws_json_1_1(data: list) -> CrawlerHistoryList:
 
     out: CrawlerHistoryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_glue.types.crawler_history.deserialize_aws_json_1_1(item))
     return out

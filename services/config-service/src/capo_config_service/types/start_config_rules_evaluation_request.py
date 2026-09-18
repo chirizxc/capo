@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: StartConfigRulesEvaluationRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> StartConfigRulesEvaluationRequest:
     out: StartConfigRulesEvaluationRequest = {}  # type: ignore[typeddict-item]
-    if "ConfigRuleNames" in data:
+    if data.get("ConfigRuleNames") is not None:
         import capo_config_service.types.reevaluate_config_rule_names
 
         out["config_rule_names"] = (

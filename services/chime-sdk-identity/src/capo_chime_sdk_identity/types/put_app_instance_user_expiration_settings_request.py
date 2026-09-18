@@ -34,7 +34,7 @@ def serialize_json(value: PutAppInstanceUserExpirationSettingsRequest) -> dict:
 
 def deserialize_json(data: dict) -> PutAppInstanceUserExpirationSettingsRequest:
     out: PutAppInstanceUserExpirationSettingsRequest = {}  # type: ignore[typeddict-item]
-    if "ExpirationSettings" in data:
+    if data.get("ExpirationSettings") is not None:
         import capo_chime_sdk_identity.types.expiration_settings
 
         out["expiration_settings"] = (

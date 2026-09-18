@@ -66,19 +66,19 @@ def serialize_aws_json_1_0(value: FileDetail) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> FileDetail:
     out: FileDetail = {}  # type: ignore[typeddict-item]
-    if "FileURI" in data:
+    if data.get("FileURI") is not None:
         out["file_uri"] = data["FileURI"]
     else:
         raise DeserializationError("FileDetail.file_uri required")
-    if "BusinessUseCase" in data:
+    if data.get("BusinessUseCase") is not None:
         out["business_use_case"] = data["BusinessUseCase"]
-    if "FileName" in data:
+    if data.get("FileName") is not None:
         out["file_name"] = data["FileName"]
-    if "FileStatus" in data:
+    if data.get("FileStatus") is not None:
         out["file_status"] = data["FileStatus"]
-    if "FileStatusReason" in data:
+    if data.get("FileStatusReason") is not None:
         out["file_status_reason"] = data["FileStatusReason"]
-    if "FileType" in data:
+    if data.get("FileType") is not None:
         import capo_partnercentral_benefits.types.file_type
 
         out["file_type"] = (
@@ -86,9 +86,9 @@ def deserialize_aws_json_1_0(data: dict) -> FileDetail:
                 data["FileType"]
             )
         )
-    if "CreatedBy" in data:
+    if data.get("CreatedBy") is not None:
         out["created_by"] = data["CreatedBy"]
-    if "CreatedAt" in data:
+    if data.get("CreatedAt") is not None:
         import capo_partnercentral_benefits.types.timestamp
 
         out["created_at"] = (

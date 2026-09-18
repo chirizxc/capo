@@ -23,6 +23,6 @@ def serialize_json(value: City) -> dict:
 
 def deserialize_json(data: dict) -> City:
     out: City = {}  # type: ignore[typeddict-item]
-    if "cityName" in data:
+    if data.get("cityName") is not None:
         out["city_name"] = data["cityName"]
     return out

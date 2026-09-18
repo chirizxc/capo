@@ -43,7 +43,7 @@ def serialize_aws_json_1_0(value: StatelessRulesAndCustomActions) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> StatelessRulesAndCustomActions:
     out: StatelessRulesAndCustomActions = {}  # type: ignore[typeddict-item]
-    if "StatelessRules" in data:
+    if data.get("StatelessRules") is not None:
         import capo_network_firewall.types.stateless_rules
 
         out["stateless_rules"] = (
@@ -55,7 +55,7 @@ def deserialize_aws_json_1_0(data: dict) -> StatelessRulesAndCustomActions:
         raise DeserializationError(
             "StatelessRulesAndCustomActions.stateless_rules required"
         )
-    if "CustomActions" in data:
+    if data.get("CustomActions") is not None:
         import capo_network_firewall.types.custom_actions
 
         out["custom_actions"] = (

@@ -23,6 +23,6 @@ def serialize_json(value: Metadata) -> dict:
 
 def deserialize_json(data: dict) -> Metadata:
     out: Metadata = {}  # type: ignore[typeddict-item]
-    if "SourceArn" in data:
+    if data.get("SourceArn") is not None:
         out["source_arn"] = data["SourceArn"]
     return out

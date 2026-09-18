@@ -43,15 +43,15 @@ def serialize_aws_json_1_1(value: Application) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Application:
     out: Application = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Version" in data:
+    if data.get("Version") is not None:
         out["version"] = data["Version"]
-    if "Args" in data:
+    if data.get("Args") is not None:
         import capo_emr.types.string_list
 
         out["args"] = capo_emr.types.string_list.deserialize_aws_json_1_1(data["Args"])
-    if "AdditionalInfo" in data:
+    if data.get("AdditionalInfo") is not None:
         import capo_emr.types.string_map
 
         out["additional_info"] = capo_emr.types.string_map.deserialize_aws_json_1_1(

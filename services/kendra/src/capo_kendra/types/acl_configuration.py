@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: AclConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AclConfiguration:
     out: AclConfiguration = {}  # type: ignore[typeddict-item]
-    if "AllowedGroupsColumnName" in data:
+    if data.get("AllowedGroupsColumnName") is not None:
         out["allowed_groups_column_name"] = data["AllowedGroupsColumnName"]
     else:
         raise DeserializationError(

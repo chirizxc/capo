@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> ListOfUtterance:
 
     out: ListOfUtterance = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_lex_model_building_service.types.utterance_data.deserialize_json(item)
         )

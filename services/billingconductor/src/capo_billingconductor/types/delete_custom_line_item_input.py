@@ -36,11 +36,11 @@ def serialize_json(value: DeleteCustomLineItemInput) -> dict:
 
 def deserialize_json(data: dict) -> DeleteCustomLineItemInput:
     out: DeleteCustomLineItemInput = {}  # type: ignore[typeddict-item]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
     else:
         raise DeserializationError("DeleteCustomLineItemInput.arn required")
-    if "BillingPeriodRange" in data:
+    if data.get("BillingPeriodRange") is not None:
         import capo_billingconductor.types.custom_line_item_billing_period_range
 
         out["billing_period_range"] = (

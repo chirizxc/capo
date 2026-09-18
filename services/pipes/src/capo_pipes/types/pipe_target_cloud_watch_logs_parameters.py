@@ -28,8 +28,8 @@ def serialize_json(value: PipeTargetCloudWatchLogsParameters) -> dict:
 
 def deserialize_json(data: dict) -> PipeTargetCloudWatchLogsParameters:
     out: PipeTargetCloudWatchLogsParameters = {}  # type: ignore[typeddict-item]
-    if "LogStreamName" in data:
+    if data.get("LogStreamName") is not None:
         out["log_stream_name"] = data["LogStreamName"]
-    if "Timestamp" in data:
+    if data.get("Timestamp") is not None:
         out["timestamp"] = data["Timestamp"]
     return out

@@ -57,13 +57,13 @@ def serialize_aws_json_1_1(value: AlgorithmSummary) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AlgorithmSummary:
     out: AlgorithmSummary = {}  # type: ignore[typeddict-item]
-    if "AlgorithmName" in data:
+    if data.get("AlgorithmName") is not None:
         out["algorithm_name"] = data["AlgorithmName"]
-    if "AlgorithmArn" in data:
+    if data.get("AlgorithmArn") is not None:
         out["algorithm_arn"] = data["AlgorithmArn"]
-    if "AlgorithmDescription" in data:
+    if data.get("AlgorithmDescription") is not None:
         out["algorithm_description"] = data["AlgorithmDescription"]
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_sagemaker.types.creation_time
 
         out["creation_time"] = (
@@ -71,7 +71,7 @@ def deserialize_aws_json_1_1(data: dict) -> AlgorithmSummary:
                 data["CreationTime"]
             )
         )
-    if "AlgorithmStatus" in data:
+    if data.get("AlgorithmStatus") is not None:
         import capo_sagemaker.types.algorithm_status
 
         out["algorithm_status"] = (

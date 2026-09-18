@@ -49,17 +49,17 @@ def serialize_json(value: GetActionRecommendationsRequest) -> dict:
 
 def deserialize_json(data: dict) -> GetActionRecommendationsRequest:
     out: GetActionRecommendationsRequest = {}  # type: ignore[typeddict-item]
-    if "campaignArn" in data:
+    if data.get("campaignArn") is not None:
         out["campaign_arn"] = data["campaignArn"]
-    if "userId" in data:
+    if data.get("userId") is not None:
         out["user_id"] = data["userId"]
-    if "numResults" in data:
+    if data.get("numResults") is not None:
         out["num_results"] = data["numResults"]
     else:
         out["num_results"] = 0
-    if "filterArn" in data:
+    if data.get("filterArn") is not None:
         out["filter_arn"] = data["filterArn"]
-    if "filterValues" in data:
+    if data.get("filterValues") is not None:
         import capo_personalize_runtime.types.filter_values
 
         out["filter_values"] = (

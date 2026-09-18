@@ -33,10 +33,10 @@ def serialize_aws_json_1_1(value: PipelineDefinitionS3Location) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PipelineDefinitionS3Location:
     out: PipelineDefinitionS3Location = {}  # type: ignore[typeddict-item]
-    if "Bucket" in data:
+    if data.get("Bucket") is not None:
         out["bucket"] = data["Bucket"]
-    if "ObjectKey" in data:
+    if data.get("ObjectKey") is not None:
         out["object_key"] = data["ObjectKey"]
-    if "VersionId" in data:
+    if data.get("VersionId") is not None:
         out["version_id"] = data["VersionId"]
     return out

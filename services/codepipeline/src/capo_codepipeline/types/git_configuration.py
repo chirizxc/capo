@@ -48,11 +48,11 @@ def serialize_aws_json_1_1(value: GitConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GitConfiguration:
     out: GitConfiguration = {}  # type: ignore[typeddict-item]
-    if "sourceActionName" in data:
+    if data.get("sourceActionName") is not None:
         out["source_action_name"] = data["sourceActionName"]
     else:
         raise DeserializationError("GitConfiguration.source_action_name required")
-    if "push" in data:
+    if data.get("push") is not None:
         import capo_codepipeline.types.git_push_filter_list
 
         out["push"] = (
@@ -60,7 +60,7 @@ def deserialize_aws_json_1_1(data: dict) -> GitConfiguration:
                 data["push"]
             )
         )
-    if "pullRequest" in data:
+    if data.get("pullRequest") is not None:
         import capo_codepipeline.types.git_pull_request_filter_list
 
         out["pull_request"] = (

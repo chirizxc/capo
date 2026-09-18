@@ -35,9 +35,9 @@ def serialize_json(value: AuthenticationConfigurationPatch) -> dict:
 
 def deserialize_json(data: dict) -> AuthenticationConfigurationPatch:
     out: AuthenticationConfigurationPatch = {}  # type: ignore[typeddict-item]
-    if "secretArn" in data:
+    if data.get("secretArn") is not None:
         out["secret_arn"] = data["secretArn"]
-    if "basicAuthenticationCredentials" in data:
+    if data.get("basicAuthenticationCredentials") is not None:
         import capo_datazone.types.basic_authentication_credentials
 
         out["basic_authentication_credentials"] = (

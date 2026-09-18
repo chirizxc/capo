@@ -57,27 +57,27 @@ def deserialize_aws_json_1_0(
     data: dict,
 ) -> PutProtectConfigurationRuleSetNumberOverrideRequest:
     out: PutProtectConfigurationRuleSetNumberOverrideRequest = {}  # type: ignore[typeddict-item]
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
-    if "ProtectConfigurationId" in data:
+    if data.get("ProtectConfigurationId") is not None:
         out["protect_configuration_id"] = data["ProtectConfigurationId"]
     else:
         raise DeserializationError(
             "PutProtectConfigurationRuleSetNumberOverrideRequest.protect_configuration_id required"
         )
-    if "DestinationPhoneNumber" in data:
+    if data.get("DestinationPhoneNumber") is not None:
         out["destination_phone_number"] = data["DestinationPhoneNumber"]
     else:
         raise DeserializationError(
             "PutProtectConfigurationRuleSetNumberOverrideRequest.destination_phone_number required"
         )
-    if "Action" in data:
+    if data.get("Action") is not None:
         out["action"] = data["Action"]
     else:
         raise DeserializationError(
             "PutProtectConfigurationRuleSetNumberOverrideRequest.action required"
         )
-    if "ExpirationTimestamp" in data:
+    if data.get("ExpirationTimestamp") is not None:
         import capo_pinpoint_sms_voice_v2.types._prelude.timestamp
 
         out["expiration_timestamp"] = (

@@ -24,7 +24,7 @@ def serialize_json(value: NotIndexException_) -> dict:
 
 def deserialize_json(data: dict) -> NotIndexException_:
     out: NotIndexException_ = {}  # type: ignore[typeddict-item]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     return out
 
@@ -34,15 +34,16 @@ class NotIndexException(ServiceError):
 
     code: str | None = "NotIndexException"
 
-    def __init__(self, data: NotIndexException_):
+    def __init__(self, data: NotIndexException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="NotIndexException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "NotIndexException":
-        return cls(deserialize_json(data))
+    def from_json(cls, data: dict, message: str | None = None) -> "NotIndexException":
+        return cls(deserialize_json(data), message)

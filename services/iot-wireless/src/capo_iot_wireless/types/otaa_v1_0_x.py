@@ -38,12 +38,12 @@ def serialize_json(value: OtaaV1_0_x) -> dict:
 
 def deserialize_json(data: dict) -> OtaaV1_0_x:
     out: OtaaV1_0_x = {}  # type: ignore[typeddict-item]
-    if "AppKey" in data:
+    if data.get("AppKey") is not None:
         out["app_key"] = data["AppKey"]
-    if "AppEui" in data:
+    if data.get("AppEui") is not None:
         out["app_eui"] = data["AppEui"]
-    if "JoinEui" in data:
+    if data.get("JoinEui") is not None:
         out["join_eui"] = data["JoinEui"]
-    if "GenAppKey" in data:
+    if data.get("GenAppKey") is not None:
         out["gen_app_key"] = data["GenAppKey"]
     return out

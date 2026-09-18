@@ -31,11 +31,11 @@ def serialize_json(value: SNSTopicPublishAction) -> dict:
 
 def deserialize_json(data: dict) -> SNSTopicPublishAction:
     out: SNSTopicPublishAction = {}  # type: ignore[typeddict-item]
-    if "targetArn" in data:
+    if data.get("targetArn") is not None:
         out["target_arn"] = data["targetArn"]
     else:
         raise DeserializationError("SNSTopicPublishAction.target_arn required")
-    if "payload" in data:
+    if data.get("payload") is not None:
         import capo_iot_events.types.payload
 
         out["payload"] = capo_iot_events.types.payload.deserialize_json(data["payload"])

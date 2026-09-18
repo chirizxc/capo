@@ -69,17 +69,17 @@ def serialize_aws_json_1_1(value: ResourceSet) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ResourceSet:
     out: ResourceSet = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("ResourceSet.name required")
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "UpdateToken" in data:
+    if data.get("UpdateToken") is not None:
         out["update_token"] = data["UpdateToken"]
-    if "ResourceTypeList" in data:
+    if data.get("ResourceTypeList") is not None:
         import capo_fms.types.resource_type_list
 
         out["resource_type_list"] = (
@@ -89,13 +89,13 @@ def deserialize_aws_json_1_1(data: dict) -> ResourceSet:
         )
     else:
         raise DeserializationError("ResourceSet.resource_type_list required")
-    if "LastUpdateTime" in data:
+    if data.get("LastUpdateTime") is not None:
         import capo_fms.types.time_stamp
 
         out["last_update_time"] = capo_fms.types.time_stamp.deserialize_aws_json_1_1(
             data["LastUpdateTime"]
         )
-    if "ResourceSetStatus" in data:
+    if data.get("ResourceSetStatus") is not None:
         import capo_fms.types.resource_set_status
 
         out["resource_set_status"] = (

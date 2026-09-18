@@ -29,12 +29,12 @@ def serialize_aws_json_1_1(value: CheckDomainAvailabilityRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CheckDomainAvailabilityRequest:
     out: CheckDomainAvailabilityRequest = {}  # type: ignore[typeddict-item]
-    if "DomainName" in data:
+    if data.get("DomainName") is not None:
         out["domain_name"] = data["DomainName"]
     else:
         raise DeserializationError(
             "CheckDomainAvailabilityRequest.domain_name required"
         )
-    if "IdnLangCode" in data:
+    if data.get("IdnLangCode") is not None:
         out["idn_lang_code"] = data["IdnLangCode"]
     return out

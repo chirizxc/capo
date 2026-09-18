@@ -49,15 +49,15 @@ def serialize_aws_json_1_1(value: SyntaxToken) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SyntaxToken:
     out: SyntaxToken = {}  # type: ignore[typeddict-item]
-    if "TokenId" in data:
+    if data.get("TokenId") is not None:
         out["token_id"] = data["TokenId"]
-    if "Text" in data:
+    if data.get("Text") is not None:
         out["text"] = data["Text"]
-    if "BeginOffset" in data:
+    if data.get("BeginOffset") is not None:
         out["begin_offset"] = data["BeginOffset"]
-    if "EndOffset" in data:
+    if data.get("EndOffset") is not None:
         out["end_offset"] = data["EndOffset"]
-    if "PartOfSpeech" in data:
+    if data.get("PartOfSpeech") is not None:
         import capo_comprehend.types.part_of_speech_tag
 
         out["part_of_speech"] = (

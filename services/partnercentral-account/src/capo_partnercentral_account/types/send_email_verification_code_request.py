@@ -28,11 +28,11 @@ def serialize_aws_json_1_0(value: SendEmailVerificationCodeRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> SendEmailVerificationCodeRequest:
     out: SendEmailVerificationCodeRequest = {}  # type: ignore[typeddict-item]
-    if "Catalog" in data:
+    if data.get("Catalog") is not None:
         out["catalog"] = data["Catalog"]
     else:
         raise DeserializationError("SendEmailVerificationCodeRequest.catalog required")
-    if "Email" in data:
+    if data.get("Email") is not None:
         out["email"] = data["Email"]
     else:
         raise DeserializationError("SendEmailVerificationCodeRequest.email required")

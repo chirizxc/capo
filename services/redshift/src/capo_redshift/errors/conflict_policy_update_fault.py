@@ -37,15 +37,18 @@ class ConflictPolicyUpdateFault(ServiceError):
 
     code: str | None = "ConflictPolicyUpdateFault"
 
-    def __init__(self, data: ConflictPolicyUpdateFault_):
+    def __init__(self, data: ConflictPolicyUpdateFault_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="ConflictPolicyUpdateFault",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_query(cls, el: Element) -> "ConflictPolicyUpdateFault":
-        return cls(deserialize_query(el))
+    def from_query(
+        cls, el: Element, message: str | None = None
+    ) -> "ConflictPolicyUpdateFault":
+        return cls(deserialize_query(el), message)

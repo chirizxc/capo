@@ -25,6 +25,6 @@ def serialize_json(value: SnapshotOptions) -> dict:
 
 def deserialize_json(data: dict) -> SnapshotOptions:
     out: SnapshotOptions = {}  # type: ignore[typeddict-item]
-    if "AutomatedSnapshotStartHour" in data:
+    if data.get("AutomatedSnapshotStartHour") is not None:
         out["automated_snapshot_start_hour"] = data["AutomatedSnapshotStartHour"]
     return out

@@ -32,9 +32,9 @@ def serialize_aws_json_1_1(value: GetDistributionLatestCacheResetResult) -> dict
 
 def deserialize_aws_json_1_1(data: dict) -> GetDistributionLatestCacheResetResult:
     out: GetDistributionLatestCacheResetResult = {}  # type: ignore[typeddict-item]
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
-    if "createTime" in data:
+    if data.get("createTime") is not None:
         import capo_lightsail.types.iso_date
 
         out["create_time"] = capo_lightsail.types.iso_date.deserialize_aws_json_1_1(

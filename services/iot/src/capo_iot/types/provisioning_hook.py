@@ -29,9 +29,9 @@ def serialize_json(value: ProvisioningHook) -> dict:
 
 def deserialize_json(data: dict) -> ProvisioningHook:
     out: ProvisioningHook = {}  # type: ignore[typeddict-item]
-    if "payloadVersion" in data:
+    if data.get("payloadVersion") is not None:
         out["payload_version"] = data["payloadVersion"]
-    if "targetArn" in data:
+    if data.get("targetArn") is not None:
         out["target_arn"] = data["targetArn"]
     else:
         raise DeserializationError("ProvisioningHook.target_arn required")

@@ -30,7 +30,7 @@ def serialize_json(value: DeleteGcmChannelResponse) -> dict:
 
 def deserialize_json(data: dict) -> DeleteGcmChannelResponse:
     out: DeleteGcmChannelResponse = {}  # type: ignore[typeddict-item]
-    if "GCMChannelResponse" in data:
+    if data.get("GCMChannelResponse") is not None:
         import capo_pinpoint.types.gcm_channel_response
 
         out["gcm_channel_response"] = (

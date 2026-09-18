@@ -37,17 +37,17 @@ def serialize_aws_json_1_1(value: ListIdentitiesInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListIdentitiesInput:
     out: ListIdentitiesInput = {}  # type: ignore[typeddict-item]
-    if "IdentityPoolId" in data:
+    if data.get("IdentityPoolId") is not None:
         out["identity_pool_id"] = data["IdentityPoolId"]
     else:
         raise DeserializationError("ListIdentitiesInput.identity_pool_id required")
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
     else:
         raise DeserializationError("ListIdentitiesInput.max_results required")
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "HideDisabled" in data:
+    if data.get("HideDisabled") is not None:
         out["hide_disabled"] = data["HideDisabled"]
     else:
         out["hide_disabled"] = False

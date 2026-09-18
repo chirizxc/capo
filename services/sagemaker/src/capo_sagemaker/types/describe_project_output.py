@@ -126,15 +126,15 @@ def serialize_aws_json_1_1(value: DescribeProjectOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeProjectOutput:
     out: DescribeProjectOutput = {}  # type: ignore[typeddict-item]
-    if "ProjectArn" in data:
+    if data.get("ProjectArn") is not None:
         out["project_arn"] = data["ProjectArn"]
-    if "ProjectName" in data:
+    if data.get("ProjectName") is not None:
         out["project_name"] = data["ProjectName"]
-    if "ProjectId" in data:
+    if data.get("ProjectId") is not None:
         out["project_id"] = data["ProjectId"]
-    if "ProjectDescription" in data:
+    if data.get("ProjectDescription") is not None:
         out["project_description"] = data["ProjectDescription"]
-    if "ServiceCatalogProvisioningDetails" in data:
+    if data.get("ServiceCatalogProvisioningDetails") is not None:
         import capo_sagemaker.types.service_catalog_provisioning_details
 
         out["service_catalog_provisioning_details"] = (
@@ -142,7 +142,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeProjectOutput:
                 data["ServiceCatalogProvisioningDetails"]
             )
         )
-    if "ServiceCatalogProvisionedProductDetails" in data:
+    if data.get("ServiceCatalogProvisionedProductDetails") is not None:
         import capo_sagemaker.types.service_catalog_provisioned_product_details
 
         out["service_catalog_provisioned_product_details"] = (
@@ -150,7 +150,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeProjectOutput:
                 data["ServiceCatalogProvisionedProductDetails"]
             )
         )
-    if "ProjectStatus" in data:
+    if data.get("ProjectStatus") is not None:
         import capo_sagemaker.types.project_status
 
         out["project_status"] = (
@@ -158,7 +158,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeProjectOutput:
                 data["ProjectStatus"]
             )
         )
-    if "TemplateProviderDetails" in data:
+    if data.get("TemplateProviderDetails") is not None:
         import capo_sagemaker.types.template_provider_detail_list
 
         out["template_provider_details"] = (
@@ -166,19 +166,19 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeProjectOutput:
                 data["TemplateProviderDetails"]
             )
         )
-    if "CreatedBy" in data:
+    if data.get("CreatedBy") is not None:
         import capo_sagemaker.types.user_context
 
         out["created_by"] = capo_sagemaker.types.user_context.deserialize_aws_json_1_1(
             data["CreatedBy"]
         )
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_sagemaker.types.timestamp
 
         out["creation_time"] = capo_sagemaker.types.timestamp.deserialize_aws_json_1_1(
             data["CreationTime"]
         )
-    if "LastModifiedTime" in data:
+    if data.get("LastModifiedTime") is not None:
         import capo_sagemaker.types.timestamp
 
         out["last_modified_time"] = (
@@ -186,7 +186,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeProjectOutput:
                 data["LastModifiedTime"]
             )
         )
-    if "LastModifiedBy" in data:
+    if data.get("LastModifiedBy") is not None:
         import capo_sagemaker.types.user_context
 
         out["last_modified_by"] = (

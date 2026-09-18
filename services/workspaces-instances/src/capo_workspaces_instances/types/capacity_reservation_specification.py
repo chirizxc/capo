@@ -44,7 +44,7 @@ def serialize_aws_json_1_0(value: CapacityReservationSpecification) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CapacityReservationSpecification:
     out: CapacityReservationSpecification = {}  # type: ignore[typeddict-item]
-    if "CapacityReservationPreference" in data:
+    if data.get("CapacityReservationPreference") is not None:
         import capo_workspaces_instances.types.capacity_reservation_preference_enum
 
         out["capacity_reservation_preference"] = (
@@ -52,7 +52,7 @@ def deserialize_aws_json_1_0(data: dict) -> CapacityReservationSpecification:
                 data["CapacityReservationPreference"]
             )
         )
-    if "CapacityReservationTarget" in data:
+    if data.get("CapacityReservationTarget") is not None:
         import capo_workspaces_instances.types.capacity_reservation_target
 
         out["capacity_reservation_target"] = (

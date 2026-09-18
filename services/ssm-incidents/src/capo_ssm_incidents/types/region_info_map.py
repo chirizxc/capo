@@ -25,6 +25,8 @@ def serialize_json(input_to_serialize: RegionInfoMap) -> dict:
 def deserialize_json(data: dict) -> RegionInfoMap:
     out: RegionInfoMap = {}
     for key, value in data.items():
+        if value is None:
+            continue
         import capo_ssm_incidents.types.region_info
 
         out[key] = capo_ssm_incidents.types.region_info.deserialize_json(value)

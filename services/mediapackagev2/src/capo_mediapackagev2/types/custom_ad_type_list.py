@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> CustomAdTypeList:
 
     out: CustomAdTypeList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_mediapackagev2.types.custom_ad_type.deserialize_json(item))
     return out

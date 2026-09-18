@@ -79,11 +79,11 @@ def serialize_json(value: CoreNetworkChangeEventValues) -> dict:
 
 def deserialize_json(data: dict) -> CoreNetworkChangeEventValues:
     out: CoreNetworkChangeEventValues = {}  # type: ignore[typeddict-item]
-    if "EdgeLocation" in data:
+    if data.get("EdgeLocation") is not None:
         out["edge_location"] = data["EdgeLocation"]
-    if "PeerEdgeLocation" in data:
+    if data.get("PeerEdgeLocation") is not None:
         out["peer_edge_location"] = data["PeerEdgeLocation"]
-    if "RoutingPolicyDirection" in data:
+    if data.get("RoutingPolicyDirection") is not None:
         import capo_networkmanager.types.routing_policy_direction
 
         out["routing_policy_direction"] = (
@@ -91,15 +91,15 @@ def deserialize_json(data: dict) -> CoreNetworkChangeEventValues:
                 data["RoutingPolicyDirection"]
             )
         )
-    if "SegmentName" in data:
+    if data.get("SegmentName") is not None:
         out["segment_name"] = data["SegmentName"]
-    if "NetworkFunctionGroupName" in data:
+    if data.get("NetworkFunctionGroupName") is not None:
         out["network_function_group_name"] = data["NetworkFunctionGroupName"]
-    if "AttachmentId" in data:
+    if data.get("AttachmentId") is not None:
         out["attachment_id"] = data["AttachmentId"]
-    if "Cidr" in data:
+    if data.get("Cidr") is not None:
         out["cidr"] = data["Cidr"]
-    if "RoutingPolicyAssociationDetails" in data:
+    if data.get("RoutingPolicyAssociationDetails") is not None:
         import capo_networkmanager.types.routing_policy_association_details_list
 
         out["routing_policy_association_details"] = (

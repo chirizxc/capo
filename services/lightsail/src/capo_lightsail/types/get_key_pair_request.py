@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: GetKeyPairRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetKeyPairRequest:
     out: GetKeyPairRequest = {}  # type: ignore[typeddict-item]
-    if "keyPairName" in data:
+    if data.get("keyPairName") is not None:
         out["key_pair_name"] = data["keyPairName"]
     else:
         raise DeserializationError("GetKeyPairRequest.key_pair_name required")

@@ -37,7 +37,7 @@ def serialize_aws_json_1_0(value: ListAttachPointsResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ListAttachPointsResponse:
     out: ListAttachPointsResponse = {}  # type: ignore[typeddict-item]
-    if "attachPoints" in data:
+    if data.get("attachPoints") is not None:
         import capo_interconnect.types.attach_point_descriptor_list
 
         out["attach_points"] = (
@@ -47,6 +47,6 @@ def deserialize_aws_json_1_0(data: dict) -> ListAttachPointsResponse:
         )
     else:
         raise DeserializationError("ListAttachPointsResponse.attach_points required")
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

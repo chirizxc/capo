@@ -52,17 +52,17 @@ def serialize_aws_json_1_0(value: Fraudster) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> Fraudster:
     out: Fraudster = {}  # type: ignore[typeddict-item]
-    if "DomainId" in data:
+    if data.get("DomainId") is not None:
         out["domain_id"] = data["DomainId"]
-    if "GeneratedFraudsterId" in data:
+    if data.get("GeneratedFraudsterId") is not None:
         out["generated_fraudster_id"] = data["GeneratedFraudsterId"]
-    if "CreatedAt" in data:
+    if data.get("CreatedAt") is not None:
         import capo_voice_id.types.timestamp
 
         out["created_at"] = capo_voice_id.types.timestamp.deserialize_aws_json_1_0(
             data["CreatedAt"]
         )
-    if "WatchlistIds" in data:
+    if data.get("WatchlistIds") is not None:
         import capo_voice_id.types.response_watchlist_ids
 
         out["watchlist_ids"] = (

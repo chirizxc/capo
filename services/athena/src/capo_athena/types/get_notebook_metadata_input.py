@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: GetNotebookMetadataInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetNotebookMetadataInput:
     out: GetNotebookMetadataInput = {}  # type: ignore[typeddict-item]
-    if "NotebookId" in data:
+    if data.get("NotebookId") is not None:
         out["notebook_id"] = data["NotebookId"]
     else:
         raise DeserializationError("GetNotebookMetadataInput.notebook_id required")

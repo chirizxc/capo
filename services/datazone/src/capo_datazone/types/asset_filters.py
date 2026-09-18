@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> AssetFilters:
 
     out: AssetFilters = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_datazone.types.asset_filter_summary.deserialize_json(item))
     return out

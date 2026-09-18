@@ -34,11 +34,11 @@ def serialize_json(value: AssetFileContent) -> dict:
 
 def deserialize_json(data: dict) -> AssetFileContent:
     out: AssetFileContent = {}  # type: ignore[typeddict-item]
-    if "path" in data:
+    if data.get("path") is not None:
         out["path"] = data["path"]
     else:
         raise DeserializationError("AssetFileContent.path required")
-    if "body" in data:
+    if data.get("body") is not None:
         import capo_devops_agent.types.asset_file_body
 
         out["body"] = capo_devops_agent.types.asset_file_body.deserialize_json(
@@ -46,6 +46,6 @@ def deserialize_json(data: dict) -> AssetFileContent:
         )
     else:
         raise DeserializationError("AssetFileContent.body required")
-    if "metadata" in data:
+    if data.get("metadata") is not None:
         out["metadata"] = data["metadata"]
     return out

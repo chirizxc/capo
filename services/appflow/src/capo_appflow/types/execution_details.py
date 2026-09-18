@@ -47,15 +47,15 @@ def serialize_json(value: ExecutionDetails) -> dict:
 
 def deserialize_json(data: dict) -> ExecutionDetails:
     out: ExecutionDetails = {}  # type: ignore[typeddict-item]
-    if "mostRecentExecutionMessage" in data:
+    if data.get("mostRecentExecutionMessage") is not None:
         out["most_recent_execution_message"] = data["mostRecentExecutionMessage"]
-    if "mostRecentExecutionTime" in data:
+    if data.get("mostRecentExecutionTime") is not None:
         import capo_appflow.types.date
 
         out["most_recent_execution_time"] = capo_appflow.types.date.deserialize_json(
             data["mostRecentExecutionTime"]
         )
-    if "mostRecentExecutionStatus" in data:
+    if data.get("mostRecentExecutionStatus") is not None:
         import capo_appflow.types.execution_status
 
         out["most_recent_execution_status"] = (

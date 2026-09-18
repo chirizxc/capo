@@ -148,7 +148,7 @@ def serialize_aws_json_1_1(value: ApplicationConfigurationDescription) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ApplicationConfigurationDescription:
     out: ApplicationConfigurationDescription = {}  # type: ignore[typeddict-item]
-    if "SqlApplicationConfigurationDescription" in data:
+    if data.get("SqlApplicationConfigurationDescription") is not None:
         import capo_kinesis_analytics_v2.types.sql_application_configuration_description
 
         out["sql_application_configuration_description"] = (
@@ -156,7 +156,7 @@ def deserialize_aws_json_1_1(data: dict) -> ApplicationConfigurationDescription:
                 data["SqlApplicationConfigurationDescription"]
             )
         )
-    if "ApplicationCodeConfigurationDescription" in data:
+    if data.get("ApplicationCodeConfigurationDescription") is not None:
         import capo_kinesis_analytics_v2.types.application_code_configuration_description
 
         out["application_code_configuration_description"] = (
@@ -164,7 +164,7 @@ def deserialize_aws_json_1_1(data: dict) -> ApplicationConfigurationDescription:
                 data["ApplicationCodeConfigurationDescription"]
             )
         )
-    if "RunConfigurationDescription" in data:
+    if data.get("RunConfigurationDescription") is not None:
         import capo_kinesis_analytics_v2.types.run_configuration_description
 
         out["run_configuration_description"] = (
@@ -172,7 +172,7 @@ def deserialize_aws_json_1_1(data: dict) -> ApplicationConfigurationDescription:
                 data["RunConfigurationDescription"]
             )
         )
-    if "FlinkApplicationConfigurationDescription" in data:
+    if data.get("FlinkApplicationConfigurationDescription") is not None:
         import capo_kinesis_analytics_v2.types.flink_application_configuration_description
 
         out["flink_application_configuration_description"] = (
@@ -180,7 +180,7 @@ def deserialize_aws_json_1_1(data: dict) -> ApplicationConfigurationDescription:
                 data["FlinkApplicationConfigurationDescription"]
             )
         )
-    if "EnvironmentPropertyDescriptions" in data:
+    if data.get("EnvironmentPropertyDescriptions") is not None:
         import capo_kinesis_analytics_v2.types.environment_property_descriptions
 
         out["environment_property_descriptions"] = (
@@ -188,7 +188,7 @@ def deserialize_aws_json_1_1(data: dict) -> ApplicationConfigurationDescription:
                 data["EnvironmentPropertyDescriptions"]
             )
         )
-    if "ApplicationSnapshotConfigurationDescription" in data:
+    if data.get("ApplicationSnapshotConfigurationDescription") is not None:
         import capo_kinesis_analytics_v2.types.application_snapshot_configuration_description
 
         out["application_snapshot_configuration_description"] = (
@@ -196,7 +196,7 @@ def deserialize_aws_json_1_1(data: dict) -> ApplicationConfigurationDescription:
                 data["ApplicationSnapshotConfigurationDescription"]
             )
         )
-    if "ApplicationSystemRollbackConfigurationDescription" in data:
+    if data.get("ApplicationSystemRollbackConfigurationDescription") is not None:
         import capo_kinesis_analytics_v2.types.application_system_rollback_configuration_description
 
         out["application_system_rollback_configuration_description"] = (
@@ -204,7 +204,7 @@ def deserialize_aws_json_1_1(data: dict) -> ApplicationConfigurationDescription:
                 data["ApplicationSystemRollbackConfigurationDescription"]
             )
         )
-    if "VpcConfigurationDescriptions" in data:
+    if data.get("VpcConfigurationDescriptions") is not None:
         import capo_kinesis_analytics_v2.types.vpc_configuration_descriptions
 
         out["vpc_configuration_descriptions"] = (
@@ -212,7 +212,7 @@ def deserialize_aws_json_1_1(data: dict) -> ApplicationConfigurationDescription:
                 data["VpcConfigurationDescriptions"]
             )
         )
-    if "ZeppelinApplicationConfigurationDescription" in data:
+    if data.get("ZeppelinApplicationConfigurationDescription") is not None:
         import capo_kinesis_analytics_v2.types.zeppelin_application_configuration_description
 
         out["zeppelin_application_configuration_description"] = (
@@ -220,7 +220,7 @@ def deserialize_aws_json_1_1(data: dict) -> ApplicationConfigurationDescription:
                 data["ZeppelinApplicationConfigurationDescription"]
             )
         )
-    if "ApplicationEncryptionConfigurationDescription" in data:
+    if data.get("ApplicationEncryptionConfigurationDescription") is not None:
         import capo_kinesis_analytics_v2.types.application_encryption_configuration_description
 
         out["application_encryption_configuration_description"] = (

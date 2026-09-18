@@ -32,7 +32,7 @@ def serialize_json(value: Role) -> dict:
 
 def deserialize_json(data: dict) -> Role:
     out: Role = {}  # type: ignore[typeddict-item]
-    if "roleType" in data:
+    if data.get("roleType") is not None:
         import capo_auditmanager.types.role_type
 
         out["role_type"] = capo_auditmanager.types.role_type.deserialize_json(
@@ -40,7 +40,7 @@ def deserialize_json(data: dict) -> Role:
         )
     else:
         raise DeserializationError("Role.role_type required")
-    if "roleArn" in data:
+    if data.get("roleArn") is not None:
         out["role_arn"] = data["roleArn"]
     else:
         raise DeserializationError("Role.role_arn required")

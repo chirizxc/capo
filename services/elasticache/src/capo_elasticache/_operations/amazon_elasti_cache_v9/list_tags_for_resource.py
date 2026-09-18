@@ -10,6 +10,7 @@ from typing_extensions import Never
 
 import capo_elasticache._auth._signers
 import capo_elasticache._auth._sigv4
+import capo_elasticache._protocol.eventstream
 import capo_elasticache.errors.cache_cluster_not_found_fault
 import capo_elasticache.errors.cache_parameter_group_not_found_fault
 import capo_elasticache.errors.cache_security_group_not_found_fault
@@ -28,7 +29,7 @@ import capo_elasticache.errors.user_not_found_fault
 import capo_elasticache.types.list_tags_for_resource_message
 import capo_elasticache.types.tag_list
 import capo_elasticache.types.tag_list_message
-from capo_elasticache._protocol.errors import parse_error_metadata
+from capo_elasticache._protocol.errors import find_error_element, parse_error_metadata
 from capo_elasticache._protocol.xml import fromstring
 from capo_elasticache._rule_engine._endpoint_rule_set import EndpointParams, resolve
 from capo_elasticache._services._pipeline import AsyncOperationOptions, OperationOptions
@@ -38,66 +39,67 @@ from capo_elasticache.errors import UnknownServiceError
 def handle_error(response: zapros.Response) -> Never:
     root = fromstring(response.read())
     code, message = parse_error_metadata(root)
+    error_el = find_error_element(root)
     match code:
-        case "CacheClusterNotFoundFault":
+        case "CacheClusterNotFound":
             raise capo_elasticache.errors.cache_cluster_not_found_fault.CacheClusterNotFoundFault.from_query(
-                root
+                error_el, message
             )
-        case "CacheParameterGroupNotFoundFault":
+        case "CacheParameterGroupNotFound":
             raise capo_elasticache.errors.cache_parameter_group_not_found_fault.CacheParameterGroupNotFoundFault.from_query(
-                root
+                error_el, message
             )
-        case "CacheSecurityGroupNotFoundFault":
+        case "CacheSecurityGroupNotFound":
             raise capo_elasticache.errors.cache_security_group_not_found_fault.CacheSecurityGroupNotFoundFault.from_query(
-                root
+                error_el, message
             )
         case "CacheSubnetGroupNotFoundFault":
             raise capo_elasticache.errors.cache_subnet_group_not_found_fault.CacheSubnetGroupNotFoundFault.from_query(
-                root
+                error_el, message
             )
-        case "InvalidARNFault":
+        case "InvalidARN":
             raise capo_elasticache.errors.invalid_arn_fault.InvalidARNFault.from_query(
-                root
+                error_el, message
             )
-        case "InvalidReplicationGroupStateFault":
+        case "InvalidReplicationGroupState":
             raise capo_elasticache.errors.invalid_replication_group_state_fault.InvalidReplicationGroupStateFault.from_query(
-                root
+                error_el, message
             )
         case "InvalidServerlessCacheSnapshotStateFault":
             raise capo_elasticache.errors.invalid_serverless_cache_snapshot_state_fault.InvalidServerlessCacheSnapshotStateFault.from_query(
-                root
+                error_el, message
             )
         case "InvalidServerlessCacheStateFault":
             raise capo_elasticache.errors.invalid_serverless_cache_state_fault.InvalidServerlessCacheStateFault.from_query(
-                root
+                error_el, message
             )
         case "ReplicationGroupNotFoundFault":
             raise capo_elasticache.errors.replication_group_not_found_fault.ReplicationGroupNotFoundFault.from_query(
-                root
+                error_el, message
             )
-        case "ReservedCacheNodeNotFoundFault":
+        case "ReservedCacheNodeNotFound":
             raise capo_elasticache.errors.reserved_cache_node_not_found_fault.ReservedCacheNodeNotFoundFault.from_query(
-                root
+                error_el, message
             )
         case "ServerlessCacheNotFoundFault":
             raise capo_elasticache.errors.serverless_cache_not_found_fault.ServerlessCacheNotFoundFault.from_query(
-                root
+                error_el, message
             )
         case "ServerlessCacheSnapshotNotFoundFault":
             raise capo_elasticache.errors.serverless_cache_snapshot_not_found_fault.ServerlessCacheSnapshotNotFoundFault.from_query(
-                root
+                error_el, message
             )
         case "SnapshotNotFoundFault":
             raise capo_elasticache.errors.snapshot_not_found_fault.SnapshotNotFoundFault.from_query(
-                root
+                error_el, message
             )
-        case "UserGroupNotFoundFault":
+        case "UserGroupNotFound":
             raise capo_elasticache.errors.user_group_not_found_fault.UserGroupNotFoundFault.from_query(
-                root
+                error_el, message
             )
-        case "UserNotFoundFault":
+        case "UserNotFound":
             raise capo_elasticache.errors.user_not_found_fault.UserNotFoundFault.from_query(
-                root
+                error_el, message
             )
         case _:
             raise UnknownServiceError(code=code, message=message, response=response)
@@ -134,19 +136,26 @@ def get_signer(
     auth_schemes: list[dict[str, Any]] | None = None,
 ) -> capo_elasticache._auth._signers.Signer | None:
     name_to_schema = {s["name"]: s for s in (auth_schemes or [])}  # noqa: F841
-    if options.credentials_provider is not None:
-        sigv4_config = (
-            name_to_schema.get("sigv4")
-            or name_to_schema.get("sigv4a")
-            or name_to_schema.get("sigv4-s3express")
-            or capo_elasticache._auth._sigv4.build_sigv4_auth_scheme(
-                "elasticache", options.region
-            )
+    if (
+        options.credentials_provider is not None
+        and name_to_schema
+        and not name_to_schema.keys() & {"sigv4", "sigv4-s3express"}
+    ):
+        raise RuntimeError(
+            "Endpoint requires an unsupported auth scheme: " + ", ".join(name_to_schema)
         )
-        if sigv4_config is not None:
-            return capo_elasticache._auth._signers.SigV4Signer(
-                options.credentials_provider, auth_scheme=sigv4_config
+    if options.credentials_provider is not None:
+        endpoint_scheme = name_to_schema.get("sigv4") or name_to_schema.get(
+            "sigv4-s3express"
+        )
+        if endpoint_scheme is not None or not name_to_schema:
+            sigv4_config = capo_elasticache._auth._sigv4.build_sigv4_auth_scheme(
+                "elasticache", options.region, endpoint_scheme
             )
+            if sigv4_config is not None:
+                return capo_elasticache._auth._signers.SigV4Signer(
+                    options.credentials_provider, auth_scheme=sigv4_config
+                )
     raise RuntimeError("Auth was not resolved")
 
 
@@ -163,7 +172,7 @@ def build_request(
         )
     )  # noqa: F841
     url = endpoint.url.rstrip("/") + ""
-    params: dict[str, str] = {}
+    params: list[tuple[str, str]] = []
     headers: dict[str, str] = {k: ", ".join(v) for k, v in endpoint.headers.items()}
     pairs: list[tuple[str, str]] = []
     pairs.append(("Action", "ListTagsForResource"))
@@ -175,7 +184,8 @@ def build_request(
     headers["content-type"] = "application/x-www-form-urlencoded"
     signer = get_signer(options, auth_schemes=endpoint.properties.get("authSchemes"))
     normalized_url = zapros.URL(url)
-    normalized_url.search_params.update(params)
+    for k, v in params:
+        normalized_url.search_params.append(k, v)
     return zapros.Request(
         normalized_url, "POST", headers=headers, body=body, context={"signer": signer}
     )
@@ -187,7 +197,7 @@ def list_tags_for_resource(
 ) -> tuple[capo_elasticache.types.tag_list_message.TagListMessage, zapros.Response]:
     response = options.client.handler.handle(build_request(options, input_))
     try:
-        if response.status >= 400:
+        if response.status >= 300:
             response.read()
             handle_error(response)
         return handle_response(response), response
@@ -202,7 +212,7 @@ async def async_list_tags_for_resource(
 ) -> tuple[capo_elasticache.types.tag_list_message.TagListMessage, zapros.Response]:
     response = await options.client.handler.ahandle(build_request(options, input_))
     try:
-        if response.status >= 400:
+        if response.status >= 300:
             await response.aread()
             handle_error(response)
         return await async_handle_response(response), response

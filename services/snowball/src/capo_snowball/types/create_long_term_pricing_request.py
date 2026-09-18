@@ -47,7 +47,7 @@ def serialize_aws_json_1_1(value: CreateLongTermPricingRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateLongTermPricingRequest:
     out: CreateLongTermPricingRequest = {}  # type: ignore[typeddict-item]
-    if "LongTermPricingType" in data:
+    if data.get("LongTermPricingType") is not None:
         import capo_snowball.types.long_term_pricing_type
 
         out["long_term_pricing_type"] = (
@@ -59,9 +59,9 @@ def deserialize_aws_json_1_1(data: dict) -> CreateLongTermPricingRequest:
         raise DeserializationError(
             "CreateLongTermPricingRequest.long_term_pricing_type required"
         )
-    if "IsLongTermPricingAutoRenew" in data:
+    if data.get("IsLongTermPricingAutoRenew") is not None:
         out["is_long_term_pricing_auto_renew"] = data["IsLongTermPricingAutoRenew"]
-    if "SnowballType" in data:
+    if data.get("SnowballType") is not None:
         import capo_snowball.types.snowball_type
 
         out["snowball_type"] = (

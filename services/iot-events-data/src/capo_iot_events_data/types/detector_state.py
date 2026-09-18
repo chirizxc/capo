@@ -38,11 +38,11 @@ def serialize_json(value: DetectorState) -> dict:
 
 def deserialize_json(data: dict) -> DetectorState:
     out: DetectorState = {}  # type: ignore[typeddict-item]
-    if "stateName" in data:
+    if data.get("stateName") is not None:
         out["state_name"] = data["stateName"]
     else:
         raise DeserializationError("DetectorState.state_name required")
-    if "variables" in data:
+    if data.get("variables") is not None:
         import capo_iot_events_data.types.variables
 
         out["variables"] = capo_iot_events_data.types.variables.deserialize_json(
@@ -50,7 +50,7 @@ def deserialize_json(data: dict) -> DetectorState:
         )
     else:
         raise DeserializationError("DetectorState.variables required")
-    if "timers" in data:
+    if data.get("timers") is not None:
         import capo_iot_events_data.types.timers
 
         out["timers"] = capo_iot_events_data.types.timers.deserialize_json(

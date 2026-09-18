@@ -125,9 +125,9 @@ def serialize_aws_json_1_1(value: BatchDeleteConfigurationTask) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> BatchDeleteConfigurationTask:
     out: BatchDeleteConfigurationTask = {}  # type: ignore[typeddict-item]
-    if "taskId" in data:
+    if data.get("taskId") is not None:
         out["task_id"] = data["taskId"]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_application_discovery_service.types.batch_delete_configuration_task_status
 
         out["status"] = (
@@ -135,7 +135,7 @@ def deserialize_aws_json_1_1(data: dict) -> BatchDeleteConfigurationTask:
                 data["status"]
             )
         )
-    if "startTime" in data:
+    if data.get("startTime") is not None:
         import capo_application_discovery_service.types.time_stamp
 
         out["start_time"] = (
@@ -143,7 +143,7 @@ def deserialize_aws_json_1_1(data: dict) -> BatchDeleteConfigurationTask:
                 data["startTime"]
             )
         )
-    if "endTime" in data:
+    if data.get("endTime") is not None:
         import capo_application_discovery_service.types.time_stamp
 
         out["end_time"] = (
@@ -151,7 +151,7 @@ def deserialize_aws_json_1_1(data: dict) -> BatchDeleteConfigurationTask:
                 data["endTime"]
             )
         )
-    if "configurationType" in data:
+    if data.get("configurationType") is not None:
         import capo_application_discovery_service.types.deletion_configuration_item_type
 
         out["configuration_type"] = (
@@ -159,7 +159,7 @@ def deserialize_aws_json_1_1(data: dict) -> BatchDeleteConfigurationTask:
                 data["configurationType"]
             )
         )
-    if "requestedConfigurations" in data:
+    if data.get("requestedConfigurations") is not None:
         import capo_application_discovery_service.types.configuration_id_list
 
         out["requested_configurations"] = (
@@ -167,7 +167,7 @@ def deserialize_aws_json_1_1(data: dict) -> BatchDeleteConfigurationTask:
                 data["requestedConfigurations"]
             )
         )
-    if "deletedConfigurations" in data:
+    if data.get("deletedConfigurations") is not None:
         import capo_application_discovery_service.types.configuration_id_list
 
         out["deleted_configurations"] = (
@@ -175,7 +175,7 @@ def deserialize_aws_json_1_1(data: dict) -> BatchDeleteConfigurationTask:
                 data["deletedConfigurations"]
             )
         )
-    if "failedConfigurations" in data:
+    if data.get("failedConfigurations") is not None:
         import capo_application_discovery_service.types.failed_configuration_list
 
         out["failed_configurations"] = (
@@ -183,7 +183,7 @@ def deserialize_aws_json_1_1(data: dict) -> BatchDeleteConfigurationTask:
                 data["failedConfigurations"]
             )
         )
-    if "deletionWarnings" in data:
+    if data.get("deletionWarnings") is not None:
         import capo_application_discovery_service.types.deletion_warnings_list
 
         out["deletion_warnings"] = (

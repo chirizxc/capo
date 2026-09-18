@@ -38,11 +38,11 @@ def serialize_json(value: SentimentConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> SentimentConfiguration:
     out: SentimentConfiguration = {}  # type: ignore[typeddict-item]
-    if "RuleName" in data:
+    if data.get("RuleName") is not None:
         out["rule_name"] = data["RuleName"]
     else:
         raise DeserializationError("SentimentConfiguration.rule_name required")
-    if "SentimentType" in data:
+    if data.get("SentimentType") is not None:
         import capo_chime_sdk_media_pipelines.types.sentiment_type
 
         out["sentiment_type"] = (
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> SentimentConfiguration:
         )
     else:
         raise DeserializationError("SentimentConfiguration.sentiment_type required")
-    if "TimePeriod" in data:
+    if data.get("TimePeriod") is not None:
         out["time_period"] = data["TimePeriod"]
     else:
         raise DeserializationError("SentimentConfiguration.time_period required")

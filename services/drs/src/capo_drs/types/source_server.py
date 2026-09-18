@@ -126,19 +126,19 @@ def serialize_json(value: SourceServer) -> dict:
 
 def deserialize_json(data: dict) -> SourceServer:
     out: SourceServer = {}  # type: ignore[typeddict-item]
-    if "sourceServerID" in data:
+    if data.get("sourceServerID") is not None:
         out["source_server_id"] = data["sourceServerID"]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_drs.types.tags_map
 
         out["tags"] = capo_drs.types.tags_map.deserialize_json(data["tags"])
-    if "recoveryInstanceId" in data:
+    if data.get("recoveryInstanceId") is not None:
         out["recovery_instance_id"] = data["recoveryInstanceId"]
-    if "lastLaunchResult" in data:
+    if data.get("lastLaunchResult") is not None:
         out["last_launch_result"] = data["lastLaunchResult"]
-    if "dataReplicationInfo" in data:
+    if data.get("dataReplicationInfo") is not None:
         import capo_drs.types.data_replication_info
 
         out["data_replication_info"] = (
@@ -146,25 +146,25 @@ def deserialize_json(data: dict) -> SourceServer:
                 data["dataReplicationInfo"]
             )
         )
-    if "lifeCycle" in data:
+    if data.get("lifeCycle") is not None:
         import capo_drs.types.life_cycle
 
         out["life_cycle"] = capo_drs.types.life_cycle.deserialize_json(
             data["lifeCycle"]
         )
-    if "sourceProperties" in data:
+    if data.get("sourceProperties") is not None:
         import capo_drs.types.source_properties
 
         out["source_properties"] = capo_drs.types.source_properties.deserialize_json(
             data["sourceProperties"]
         )
-    if "stagingArea" in data:
+    if data.get("stagingArea") is not None:
         import capo_drs.types.staging_area
 
         out["staging_area"] = capo_drs.types.staging_area.deserialize_json(
             data["stagingArea"]
         )
-    if "sourceCloudProperties" in data:
+    if data.get("sourceCloudProperties") is not None:
         import capo_drs.types.source_cloud_properties
 
         out["source_cloud_properties"] = (
@@ -172,14 +172,14 @@ def deserialize_json(data: dict) -> SourceServer:
                 data["sourceCloudProperties"]
             )
         )
-    if "replicationDirection" in data:
+    if data.get("replicationDirection") is not None:
         out["replication_direction"] = data["replicationDirection"]
-    if "reversedDirectionSourceServerArn" in data:
+    if data.get("reversedDirectionSourceServerArn") is not None:
         out["reversed_direction_source_server_arn"] = data[
             "reversedDirectionSourceServerArn"
         ]
-    if "sourceNetworkID" in data:
+    if data.get("sourceNetworkID") is not None:
         out["source_network_id"] = data["sourceNetworkID"]
-    if "agentVersion" in data:
+    if data.get("agentVersion") is not None:
         out["agent_version"] = data["agentVersion"]
     return out

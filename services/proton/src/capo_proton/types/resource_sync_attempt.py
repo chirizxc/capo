@@ -59,7 +59,7 @@ def serialize_aws_json_1_0(value: ResourceSyncAttempt) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ResourceSyncAttempt:
     out: ResourceSyncAttempt = {}  # type: ignore[typeddict-item]
-    if "initialRevision" in data:
+    if data.get("initialRevision") is not None:
         import capo_proton.types.revision
 
         out["initial_revision"] = capo_proton.types.revision.deserialize_aws_json_1_0(
@@ -67,7 +67,7 @@ def deserialize_aws_json_1_0(data: dict) -> ResourceSyncAttempt:
         )
     else:
         raise DeserializationError("ResourceSyncAttempt.initial_revision required")
-    if "targetRevision" in data:
+    if data.get("targetRevision") is not None:
         import capo_proton.types.revision
 
         out["target_revision"] = capo_proton.types.revision.deserialize_aws_json_1_0(
@@ -75,11 +75,11 @@ def deserialize_aws_json_1_0(data: dict) -> ResourceSyncAttempt:
         )
     else:
         raise DeserializationError("ResourceSyncAttempt.target_revision required")
-    if "target" in data:
+    if data.get("target") is not None:
         out["target"] = data["target"]
     else:
         raise DeserializationError("ResourceSyncAttempt.target required")
-    if "startedAt" in data:
+    if data.get("startedAt") is not None:
         import capo_proton.types._prelude.timestamp
 
         out["started_at"] = (
@@ -89,11 +89,11 @@ def deserialize_aws_json_1_0(data: dict) -> ResourceSyncAttempt:
         )
     else:
         raise DeserializationError("ResourceSyncAttempt.started_at required")
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
     else:
         raise DeserializationError("ResourceSyncAttempt.status required")
-    if "events" in data:
+    if data.get("events") is not None:
         import capo_proton.types.resource_sync_events
 
         out["events"] = capo_proton.types.resource_sync_events.deserialize_aws_json_1_0(

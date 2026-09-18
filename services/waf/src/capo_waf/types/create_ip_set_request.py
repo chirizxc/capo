@@ -28,11 +28,11 @@ def serialize_aws_json_1_1(value: CreateIPSetRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateIPSetRequest:
     out: CreateIPSetRequest = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("CreateIPSetRequest.name required")
-    if "ChangeToken" in data:
+    if data.get("ChangeToken") is not None:
         out["change_token"] = data["ChangeToken"]
     else:
         raise DeserializationError("CreateIPSetRequest.change_token required")

@@ -28,8 +28,8 @@ def serialize_aws_json_1_1(value: PutModelPackageGroupPolicyInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PutModelPackageGroupPolicyInput:
     out: PutModelPackageGroupPolicyInput = {}  # type: ignore[typeddict-item]
-    if "ModelPackageGroupName" in data:
+    if data.get("ModelPackageGroupName") is not None:
         out["model_package_group_name"] = data["ModelPackageGroupName"]
-    if "ResourcePolicy" in data:
+    if data.get("ResourcePolicy") is not None:
         out["resource_policy"] = data["ResourcePolicy"]
     return out

@@ -150,7 +150,7 @@ def serialize_json(value: SystemEventMetadata) -> dict:
 
 
 def deserialize_json(data: dict) -> SystemEventMetadata:
-    if "systemCreated" in data:
+    if data.get("systemCreated") is not None:
         import capo_resiliencehubv2.types.system_created_metadata
 
         return {
@@ -158,7 +158,7 @@ def deserialize_json(data: dict) -> SystemEventMetadata:
                 data["systemCreated"]
             )
         }
-    elif "systemDeleted" in data:
+    elif data.get("systemDeleted") is not None:
         import capo_resiliencehubv2.types.system_deleted_metadata
 
         return {
@@ -166,7 +166,7 @@ def deserialize_json(data: dict) -> SystemEventMetadata:
                 data["systemDeleted"]
             )
         }
-    elif "systemUserJourneyCreated" in data:
+    elif data.get("systemUserJourneyCreated") is not None:
         import capo_resiliencehubv2.types.system_user_journey_created_metadata
 
         return {
@@ -174,7 +174,7 @@ def deserialize_json(data: dict) -> SystemEventMetadata:
                 data["systemUserJourneyCreated"]
             )
         }
-    elif "systemUserJourneyUpdated" in data:
+    elif data.get("systemUserJourneyUpdated") is not None:
         import capo_resiliencehubv2.types.system_user_journey_updated_metadata
 
         return {
@@ -182,7 +182,7 @@ def deserialize_json(data: dict) -> SystemEventMetadata:
                 data["systemUserJourneyUpdated"]
             )
         }
-    elif "systemUserJourneyDeleted" in data:
+    elif data.get("systemUserJourneyDeleted") is not None:
         import capo_resiliencehubv2.types.system_user_journey_deleted_metadata
 
         return {
@@ -190,7 +190,7 @@ def deserialize_json(data: dict) -> SystemEventMetadata:
                 data["systemUserJourneyDeleted"]
             )
         }
-    elif "systemServiceAssociated" in data:
+    elif data.get("systemServiceAssociated") is not None:
         import capo_resiliencehubv2.types.system_service_associated_metadata
 
         return {
@@ -198,7 +198,7 @@ def deserialize_json(data: dict) -> SystemEventMetadata:
                 data["systemServiceAssociated"]
             )
         }
-    elif "systemServiceDisassociated" in data:
+    elif data.get("systemServiceDisassociated") is not None:
         import capo_resiliencehubv2.types.system_service_disassociated_metadata
 
         return {
@@ -206,7 +206,7 @@ def deserialize_json(data: dict) -> SystemEventMetadata:
                 data["systemServiceDisassociated"]
             )
         }
-    elif "systemPolicyAssociated" in data:
+    elif data.get("systemPolicyAssociated") is not None:
         import capo_resiliencehubv2.types.system_policy_associated_metadata
 
         return {
@@ -214,7 +214,7 @@ def deserialize_json(data: dict) -> SystemEventMetadata:
                 data["systemPolicyAssociated"]
             )
         }
-    elif "systemPolicyDisassociated" in data:
+    elif data.get("systemPolicyDisassociated") is not None:
         import capo_resiliencehubv2.types.system_policy_disassociated_metadata
 
         return {

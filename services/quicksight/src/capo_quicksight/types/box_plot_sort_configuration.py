@@ -44,7 +44,7 @@ def serialize_json(value: BoxPlotSortConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> BoxPlotSortConfiguration:
     out: BoxPlotSortConfiguration = {}  # type: ignore[typeddict-item]
-    if "CategorySort" in data:
+    if data.get("CategorySort") is not None:
         import capo_quicksight.types.field_sort_options_list
 
         out["category_sort"] = (
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> BoxPlotSortConfiguration:
                 data["CategorySort"]
             )
         )
-    if "PaginationConfiguration" in data:
+    if data.get("PaginationConfiguration") is not None:
         import capo_quicksight.types.pagination_configuration
 
         out["pagination_configuration"] = (

@@ -23,6 +23,6 @@ def serialize_aws_json_1_1(value: StartExportLabelsTaskRunResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> StartExportLabelsTaskRunResponse:
     out: StartExportLabelsTaskRunResponse = {}  # type: ignore[typeddict-item]
-    if "TaskRunId" in data:
+    if data.get("TaskRunId") is not None:
         out["task_run_id"] = data["TaskRunId"]
     return out

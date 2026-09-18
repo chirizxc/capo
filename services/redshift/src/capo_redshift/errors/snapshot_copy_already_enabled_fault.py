@@ -37,15 +37,20 @@ class SnapshotCopyAlreadyEnabledFault(ServiceError):
 
     code: str | None = "SnapshotCopyAlreadyEnabledFault"
 
-    def __init__(self, data: SnapshotCopyAlreadyEnabledFault_):
+    def __init__(
+        self, data: SnapshotCopyAlreadyEnabledFault_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="SnapshotCopyAlreadyEnabledFault",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_query(cls, el: Element) -> "SnapshotCopyAlreadyEnabledFault":
-        return cls(deserialize_query(el))
+    def from_query(
+        cls, el: Element, message: str | None = None
+    ) -> "SnapshotCopyAlreadyEnabledFault":
+        return cls(deserialize_query(el), message)

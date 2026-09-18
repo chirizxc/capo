@@ -27,7 +27,7 @@ def serialize_json(value: StartCompositionResponse) -> dict:
 
 def deserialize_json(data: dict) -> StartCompositionResponse:
     out: StartCompositionResponse = {}  # type: ignore[typeddict-item]
-    if "composition" in data:
+    if data.get("composition") is not None:
         import capo_ivs_realtime.types.composition
 
         out["composition"] = capo_ivs_realtime.types.composition.deserialize_json(

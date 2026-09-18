@@ -34,12 +34,12 @@ def serialize_json(value: JourneyRunsResponse) -> dict:
 
 def deserialize_json(data: dict) -> JourneyRunsResponse:
     out: JourneyRunsResponse = {}  # type: ignore[typeddict-item]
-    if "Item" in data:
+    if data.get("Item") is not None:
         import capo_pinpoint.types.list_of_journey_run_response
 
         out["item"] = capo_pinpoint.types.list_of_journey_run_response.deserialize_json(
             data["Item"]
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

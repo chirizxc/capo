@@ -27,7 +27,7 @@ def serialize_json(value: PutConfigurationSetSendingOptionsRequest) -> dict:
 
 def deserialize_json(data: dict) -> PutConfigurationSetSendingOptionsRequest:
     out: PutConfigurationSetSendingOptionsRequest = {}  # type: ignore[typeddict-item]
-    if "SendingEnabled" in data:
+    if data.get("SendingEnabled") is not None:
         out["sending_enabled"] = data["SendingEnabled"]
     else:
         out["sending_enabled"] = False

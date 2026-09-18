@@ -30,8 +30,8 @@ def serialize_json(value: CreateUserHierarchyGroupResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateUserHierarchyGroupResponse:
     out: CreateUserHierarchyGroupResponse = {}  # type: ignore[typeddict-item]
-    if "HierarchyGroupId" in data:
+    if data.get("HierarchyGroupId") is not None:
         out["hierarchy_group_id"] = data["HierarchyGroupId"]
-    if "HierarchyGroupArn" in data:
+    if data.get("HierarchyGroupArn") is not None:
         out["hierarchy_group_arn"] = data["HierarchyGroupArn"]
     return out

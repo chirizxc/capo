@@ -36,11 +36,11 @@ def serialize_json(value: PermissionModel) -> dict:
 
 def deserialize_json(data: dict) -> PermissionModel:
     out: PermissionModel = {}  # type: ignore[typeddict-item]
-    if "invokerRoleName" in data:
+    if data.get("invokerRoleName") is not None:
         out["invoker_role_name"] = data["invokerRoleName"]
     else:
         raise DeserializationError("PermissionModel.invoker_role_name required")
-    if "crossAccountRoles" in data:
+    if data.get("crossAccountRoles") is not None:
         import capo_resiliencehubv2.types.cross_account_role_list
 
         out["cross_account_roles"] = (

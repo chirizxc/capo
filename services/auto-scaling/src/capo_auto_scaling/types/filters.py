@@ -14,6 +14,9 @@ Filters: TypeAlias = list["capo_auto_scaling.types.filter.Filter"]
 def serialize_query(value: Filters, pairs: list[tuple[str, str]], prefix: str) -> None:
     import capo_auto_scaling.types.filter
 
+    if not value:
+        pairs.append((prefix, ""))
+        return
     for n, item in enumerate(value, 1):
         capo_auto_scaling.types.filter.serialize_query(
             item, pairs, f"{prefix}.member.{n}"
@@ -34,6 +37,9 @@ def serialize_query_flat(
 ) -> None:
     import capo_auto_scaling.types.filter
 
+    if not value:
+        pairs.append((prefix, ""))
+        return
     for n, item in enumerate(value, 1):
         capo_auto_scaling.types.filter.serialize_query(item, pairs, f"{prefix}.{n}")
 

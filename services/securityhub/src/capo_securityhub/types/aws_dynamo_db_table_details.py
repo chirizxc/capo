@@ -200,7 +200,7 @@ def serialize_json(value: AwsDynamoDbTableDetails) -> dict:
 
 def deserialize_json(data: dict) -> AwsDynamoDbTableDetails:
     out: AwsDynamoDbTableDetails = {}  # type: ignore[typeddict-item]
-    if "AttributeDefinitions" in data:
+    if data.get("AttributeDefinitions") is not None:
         import capo_securityhub.types.aws_dynamo_db_table_attribute_definition_list
 
         out["attribute_definitions"] = (
@@ -208,7 +208,7 @@ def deserialize_json(data: dict) -> AwsDynamoDbTableDetails:
                 data["AttributeDefinitions"]
             )
         )
-    if "BillingModeSummary" in data:
+    if data.get("BillingModeSummary") is not None:
         import capo_securityhub.types.aws_dynamo_db_table_billing_mode_summary
 
         out["billing_mode_summary"] = (
@@ -216,9 +216,9 @@ def deserialize_json(data: dict) -> AwsDynamoDbTableDetails:
                 data["BillingModeSummary"]
             )
         )
-    if "CreationDateTime" in data:
+    if data.get("CreationDateTime") is not None:
         out["creation_date_time"] = data["CreationDateTime"]
-    if "GlobalSecondaryIndexes" in data:
+    if data.get("GlobalSecondaryIndexes") is not None:
         import capo_securityhub.types.aws_dynamo_db_table_global_secondary_index_list
 
         out["global_secondary_indexes"] = (
@@ -226,11 +226,11 @@ def deserialize_json(data: dict) -> AwsDynamoDbTableDetails:
                 data["GlobalSecondaryIndexes"]
             )
         )
-    if "GlobalTableVersion" in data:
+    if data.get("GlobalTableVersion") is not None:
         out["global_table_version"] = data["GlobalTableVersion"]
-    if "ItemCount" in data:
+    if data.get("ItemCount") is not None:
         out["item_count"] = data["ItemCount"]
-    if "KeySchema" in data:
+    if data.get("KeySchema") is not None:
         import capo_securityhub.types.aws_dynamo_db_table_key_schema_list
 
         out["key_schema"] = (
@@ -238,11 +238,11 @@ def deserialize_json(data: dict) -> AwsDynamoDbTableDetails:
                 data["KeySchema"]
             )
         )
-    if "LatestStreamArn" in data:
+    if data.get("LatestStreamArn") is not None:
         out["latest_stream_arn"] = data["LatestStreamArn"]
-    if "LatestStreamLabel" in data:
+    if data.get("LatestStreamLabel") is not None:
         out["latest_stream_label"] = data["LatestStreamLabel"]
-    if "LocalSecondaryIndexes" in data:
+    if data.get("LocalSecondaryIndexes") is not None:
         import capo_securityhub.types.aws_dynamo_db_table_local_secondary_index_list
 
         out["local_secondary_indexes"] = (
@@ -250,7 +250,7 @@ def deserialize_json(data: dict) -> AwsDynamoDbTableDetails:
                 data["LocalSecondaryIndexes"]
             )
         )
-    if "ProvisionedThroughput" in data:
+    if data.get("ProvisionedThroughput") is not None:
         import capo_securityhub.types.aws_dynamo_db_table_provisioned_throughput
 
         out["provisioned_throughput"] = (
@@ -258,7 +258,7 @@ def deserialize_json(data: dict) -> AwsDynamoDbTableDetails:
                 data["ProvisionedThroughput"]
             )
         )
-    if "Replicas" in data:
+    if data.get("Replicas") is not None:
         import capo_securityhub.types.aws_dynamo_db_table_replica_list
 
         out["replicas"] = (
@@ -266,7 +266,7 @@ def deserialize_json(data: dict) -> AwsDynamoDbTableDetails:
                 data["Replicas"]
             )
         )
-    if "RestoreSummary" in data:
+    if data.get("RestoreSummary") is not None:
         import capo_securityhub.types.aws_dynamo_db_table_restore_summary
 
         out["restore_summary"] = (
@@ -274,7 +274,7 @@ def deserialize_json(data: dict) -> AwsDynamoDbTableDetails:
                 data["RestoreSummary"]
             )
         )
-    if "SseDescription" in data:
+    if data.get("SseDescription") is not None:
         import capo_securityhub.types.aws_dynamo_db_table_sse_description
 
         out["sse_description"] = (
@@ -282,7 +282,7 @@ def deserialize_json(data: dict) -> AwsDynamoDbTableDetails:
                 data["SseDescription"]
             )
         )
-    if "StreamSpecification" in data:
+    if data.get("StreamSpecification") is not None:
         import capo_securityhub.types.aws_dynamo_db_table_stream_specification
 
         out["stream_specification"] = (
@@ -290,14 +290,14 @@ def deserialize_json(data: dict) -> AwsDynamoDbTableDetails:
                 data["StreamSpecification"]
             )
         )
-    if "TableId" in data:
+    if data.get("TableId") is not None:
         out["table_id"] = data["TableId"]
-    if "TableName" in data:
+    if data.get("TableName") is not None:
         out["table_name"] = data["TableName"]
-    if "TableSizeBytes" in data:
+    if data.get("TableSizeBytes") is not None:
         out["table_size_bytes"] = data["TableSizeBytes"]
-    if "TableStatus" in data:
+    if data.get("TableStatus") is not None:
         out["table_status"] = data["TableStatus"]
-    if "DeletionProtectionEnabled" in data:
+    if data.get("DeletionProtectionEnabled") is not None:
         out["deletion_protection_enabled"] = data["DeletionProtectionEnabled"]
     return out

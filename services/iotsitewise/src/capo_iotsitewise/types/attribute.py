@@ -23,6 +23,6 @@ def serialize_json(value: Attribute) -> dict:
 
 def deserialize_json(data: dict) -> Attribute:
     out: Attribute = {}  # type: ignore[typeddict-item]
-    if "defaultValue" in data:
+    if data.get("defaultValue") is not None:
         out["default_value"] = data["defaultValue"]
     return out

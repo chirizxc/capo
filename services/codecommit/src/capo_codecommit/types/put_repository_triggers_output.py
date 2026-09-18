@@ -25,6 +25,6 @@ def serialize_aws_json_1_1(value: PutRepositoryTriggersOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PutRepositoryTriggersOutput:
     out: PutRepositoryTriggersOutput = {}  # type: ignore[typeddict-item]
-    if "configurationId" in data:
+    if data.get("configurationId") is not None:
         out["configuration_id"] = data["configurationId"]
     return out

@@ -36,7 +36,7 @@ def serialize_json(value: ListHumanLoopsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListHumanLoopsResponse:
     out: ListHumanLoopsResponse = {}  # type: ignore[typeddict-item]
-    if "HumanLoopSummaries" in data:
+    if data.get("HumanLoopSummaries") is not None:
         import capo_sagemaker_a2i_runtime.types.human_loop_summaries
 
         out["human_loop_summaries"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> ListHumanLoopsResponse:
                 data["HumanLoopSummaries"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

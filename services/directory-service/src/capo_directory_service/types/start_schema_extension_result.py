@@ -25,6 +25,6 @@ def serialize_aws_json_1_1(value: StartSchemaExtensionResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> StartSchemaExtensionResult:
     out: StartSchemaExtensionResult = {}  # type: ignore[typeddict-item]
-    if "SchemaExtensionId" in data:
+    if data.get("SchemaExtensionId") is not None:
         out["schema_extension_id"] = data["SchemaExtensionId"]
     return out

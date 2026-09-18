@@ -32,8 +32,8 @@ def serialize_aws_json_1_1(value: DescribePipelineRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribePipelineRequest:
     out: DescribePipelineRequest = {}  # type: ignore[typeddict-item]
-    if "PipelineName" in data:
+    if data.get("PipelineName") is not None:
         out["pipeline_name"] = data["PipelineName"]
-    if "PipelineVersionId" in data:
+    if data.get("PipelineVersionId") is not None:
         out["pipeline_version_id"] = data["PipelineVersionId"]
     return out

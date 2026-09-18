@@ -27,6 +27,8 @@ def deserialize_aws_json_1_0(data: list) -> PurchaseOrders:
 
     out: PurchaseOrders = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_marketplace_agreement.types.purchase_order.deserialize_aws_json_1_0(
                 item

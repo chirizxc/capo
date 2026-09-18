@@ -27,6 +27,8 @@ def deserialize_aws_json_1_1(data: list) -> Schemas:
 
     out: Schemas = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_personalize.types.dataset_schema_summary.deserialize_aws_json_1_1(item)
         )

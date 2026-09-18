@@ -115,17 +115,17 @@ def serialize_aws_json_1_0(value: OpportunitySummary) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> OpportunitySummary:
     out: OpportunitySummary = {}  # type: ignore[typeddict-item]
-    if "Catalog" in data:
+    if data.get("Catalog") is not None:
         out["catalog"] = data["Catalog"]
     else:
         raise DeserializationError("OpportunitySummary.catalog required")
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "PartnerOpportunityIdentifier" in data:
+    if data.get("PartnerOpportunityIdentifier") is not None:
         out["partner_opportunity_identifier"] = data["PartnerOpportunityIdentifier"]
-    if "OpportunityType" in data:
+    if data.get("OpportunityType") is not None:
         import capo_partnercentral_selling.types.opportunity_type
 
         out["opportunity_type"] = (
@@ -133,7 +133,7 @@ def deserialize_aws_json_1_0(data: dict) -> OpportunitySummary:
                 data["OpportunityType"]
             )
         )
-    if "LastModifiedDate" in data:
+    if data.get("LastModifiedDate") is not None:
         import capo_partnercentral_selling.types.date_time
 
         out["last_modified_date"] = (
@@ -141,7 +141,7 @@ def deserialize_aws_json_1_0(data: dict) -> OpportunitySummary:
                 data["LastModifiedDate"]
             )
         )
-    if "CreatedDate" in data:
+    if data.get("CreatedDate") is not None:
         import capo_partnercentral_selling.types.date_time
 
         out["created_date"] = (
@@ -149,7 +149,7 @@ def deserialize_aws_json_1_0(data: dict) -> OpportunitySummary:
                 data["CreatedDate"]
             )
         )
-    if "LifeCycle" in data:
+    if data.get("LifeCycle") is not None:
         import capo_partnercentral_selling.types.life_cycle_summary
 
         out["life_cycle"] = (
@@ -157,7 +157,7 @@ def deserialize_aws_json_1_0(data: dict) -> OpportunitySummary:
                 data["LifeCycle"]
             )
         )
-    if "Customer" in data:
+    if data.get("Customer") is not None:
         import capo_partnercentral_selling.types.customer_summary
 
         out["customer"] = (
@@ -165,7 +165,7 @@ def deserialize_aws_json_1_0(data: dict) -> OpportunitySummary:
                 data["Customer"]
             )
         )
-    if "Project" in data:
+    if data.get("Project") is not None:
         import capo_partnercentral_selling.types.project_summary
 
         out["project"] = (

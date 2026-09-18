@@ -33,11 +33,11 @@ def serialize_aws_json_1_1(value: OutputArtifact) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> OutputArtifact:
     out: OutputArtifact = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("OutputArtifact.name required")
-    if "files" in data:
+    if data.get("files") is not None:
         import capo_codepipeline.types.file_path_list
 
         out["files"] = capo_codepipeline.types.file_path_list.deserialize_aws_json_1_1(

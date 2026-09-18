@@ -32,7 +32,7 @@ def serialize_json(value: KafkaCluster) -> dict:
 
 def deserialize_json(data: dict) -> KafkaCluster:
     out: KafkaCluster = {}  # type: ignore[typeddict-item]
-    if "apacheKafkaCluster" in data:
+    if data.get("apacheKafkaCluster") is not None:
         import capo_kafkaconnect.types.apache_kafka_cluster
 
         out["apache_kafka_cluster"] = (

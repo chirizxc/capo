@@ -27,7 +27,7 @@ def serialize_json(value: MatchingResource) -> dict:
 
 def deserialize_json(data: dict) -> MatchingResource:
     out: MatchingResource = {}  # type: ignore[typeddict-item]
-    if "matchingBucket" in data:
+    if data.get("matchingBucket") is not None:
         import capo_macie2.types.matching_bucket
 
         out["matching_bucket"] = capo_macie2.types.matching_bucket.deserialize_json(

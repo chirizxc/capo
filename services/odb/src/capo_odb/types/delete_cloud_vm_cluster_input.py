@@ -4,6 +4,8 @@ from typing import TYPE_CHECKING
 
 from typing_extensions import TypedDict
 
+from capo_odb.errors import DeserializationError
+
 if TYPE_CHECKING:
     import capo_odb.types.resource_id
 
@@ -16,9 +18,16 @@ class DeleteCloudVmClusterInput(TypedDict, closed=True):
 # --- awsJson1_0 ser/de ---
 def serialize_aws_json_1_0(value: DeleteCloudVmClusterInput) -> dict:
     out: dict = {}
+    out["cloudVmClusterId"] = value["cloud_vm_cluster_id"]
     return out
 
 
 def deserialize_aws_json_1_0(data: dict) -> DeleteCloudVmClusterInput:
     out: DeleteCloudVmClusterInput = {}  # type: ignore[typeddict-item]
+    if data.get("cloudVmClusterId") is not None:
+        out["cloud_vm_cluster_id"] = data["cloudVmClusterId"]
+    else:
+        raise DeserializationError(
+            "DeleteCloudVmClusterInput.cloud_vm_cluster_id required"
+        )
     return out

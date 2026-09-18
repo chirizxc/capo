@@ -30,15 +30,15 @@ def serialize_json(value: SourceFieldProperties) -> dict:
 
 def deserialize_json(data: dict) -> SourceFieldProperties:
     out: SourceFieldProperties = {}  # type: ignore[typeddict-item]
-    if "isRetrievable" in data:
+    if data.get("isRetrievable") is not None:
         out["is_retrievable"] = data["isRetrievable"]
     else:
         out["is_retrievable"] = False
-    if "isQueryable" in data:
+    if data.get("isQueryable") is not None:
         out["is_queryable"] = data["isQueryable"]
     else:
         out["is_queryable"] = False
-    if "isTimestampFieldForIncrementalQueries" in data:
+    if data.get("isTimestampFieldForIncrementalQueries") is not None:
         out["is_timestamp_field_for_incremental_queries"] = data[
             "isTimestampFieldForIncrementalQueries"
         ]

@@ -37,7 +37,7 @@ def serialize_json(value: ListResponsePlansOutput) -> dict:
 
 def deserialize_json(data: dict) -> ListResponsePlansOutput:
     out: ListResponsePlansOutput = {}  # type: ignore[typeddict-item]
-    if "responsePlanSummaries" in data:
+    if data.get("responsePlanSummaries") is not None:
         import capo_ssm_incidents.types.response_plan_summary_list
 
         out["response_plan_summaries"] = (
@@ -49,6 +49,6 @@ def deserialize_json(data: dict) -> ListResponsePlansOutput:
         raise DeserializationError(
             "ListResponsePlansOutput.response_plan_summaries required"
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

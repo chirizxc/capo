@@ -28,10 +28,10 @@ def serialize_json(value: SecondaryAddressComponent) -> dict:
 
 def deserialize_json(data: dict) -> SecondaryAddressComponent:
     out: SecondaryAddressComponent = {}  # type: ignore[typeddict-item]
-    if "Number" in data:
+    if data.get("Number") is not None:
         out["number"] = data["Number"]
     else:
         raise DeserializationError("SecondaryAddressComponent.number required")
-    if "Designator" in data:
+    if data.get("Designator") is not None:
         out["designator"] = data["Designator"]
     return out

@@ -31,7 +31,7 @@ def serialize_json(value: DefaultPaginatedLayoutConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> DefaultPaginatedLayoutConfiguration:
     out: DefaultPaginatedLayoutConfiguration = {}  # type: ignore[typeddict-item]
-    if "SectionBased" in data:
+    if data.get("SectionBased") is not None:
         import capo_quicksight.types.default_section_based_layout_configuration
 
         out["section_based"] = (

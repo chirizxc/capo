@@ -1,6 +1,8 @@
 """Generated from Smithy shape ``com.amazonaws.servicecatalog#AWS242ServiceCatalogService``."""
 
+import uuid
 import warnings
+from collections.abc import Iterator
 from typing import TYPE_CHECKING, Any, Iterable, Optional
 
 from typing_extensions import Self, TypedDict
@@ -16,6 +18,7 @@ from capo_service_catalog._auth._providers import (
     default_aws_credentials_chain,
 )
 from capo_service_catalog._auth._zapros_handler import AuthMiddleware
+from capo_service_catalog._pagination import resolve_path as _resolve_path
 from capo_service_catalog._services._aws_config import aws_config
 from capo_service_catalog._services._pipeline import (
     Interceptor,
@@ -426,10 +429,11 @@ class ServiceCatalogClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_service_catalog.types.accept_portfolio_share_input.AcceptPortfolioShareInput = {}  # type: ignore[typeddict-item]
+        input_: capo_service_catalog.types.accept_portfolio_share_input.AcceptPortfolioShareInput = {
+            "portfolio_id": portfolio_id
+        }
         if accept_language is not None:
             input_["accept_language"] = accept_language
-        input_["portfolio_id"] = portfolio_id
         if portfolio_share_type is not None:
             input_["portfolio_share_type"] = portfolio_share_type
 
@@ -438,6 +442,7 @@ class ServiceCatalogClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def associate_budget_with_resource(
@@ -476,15 +481,17 @@ class ServiceCatalogClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_service_catalog.types.associate_budget_with_resource_input.AssociateBudgetWithResourceInput = {}  # type: ignore[typeddict-item]
-        input_["budget_name"] = budget_name
-        input_["resource_id"] = resource_id
+        input_: capo_service_catalog.types.associate_budget_with_resource_input.AssociateBudgetWithResourceInput = {
+            "budget_name": budget_name,
+            "resource_id": resource_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def associate_principal_with_portfolio(
@@ -528,18 +535,20 @@ class ServiceCatalogClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_service_catalog.types.associate_principal_with_portfolio_input.AssociatePrincipalWithPortfolioInput = {}  # type: ignore[typeddict-item]
+        input_: capo_service_catalog.types.associate_principal_with_portfolio_input.AssociatePrincipalWithPortfolioInput = {
+            "portfolio_id": portfolio_id,
+            "principal_arn": principal_arn,
+            "principal_type": principal_type,
+        }
         if accept_language is not None:
             input_["accept_language"] = accept_language
-        input_["portfolio_id"] = portfolio_id
-        input_["principal_arn"] = principal_arn
-        input_["principal_type"] = principal_type
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def associate_product_with_portfolio(
@@ -583,11 +592,12 @@ class ServiceCatalogClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_service_catalog.types.associate_product_with_portfolio_input.AssociateProductWithPortfolioInput = {}  # type: ignore[typeddict-item]
+        input_: capo_service_catalog.types.associate_product_with_portfolio_input.AssociateProductWithPortfolioInput = {
+            "product_id": product_id,
+            "portfolio_id": portfolio_id,
+        }
         if accept_language is not None:
             input_["accept_language"] = accept_language
-        input_["product_id"] = product_id
-        input_["portfolio_id"] = portfolio_id
         if source_portfolio_id is not None:
             input_["source_portfolio_id"] = source_portfolio_id
 
@@ -596,6 +606,7 @@ class ServiceCatalogClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def associate_service_action_with_provisioning_artifact(
@@ -644,20 +655,23 @@ class ServiceCatalogClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_service_catalog.types.associate_service_action_with_provisioning_artifact_input.AssociateServiceActionWithProvisioningArtifactInput = {}  # type: ignore[typeddict-item]
-        input_["product_id"] = product_id
-        input_["provisioning_artifact_id"] = provisioning_artifact_id
-        input_["service_action_id"] = service_action_id
+        input_: capo_service_catalog.types.associate_service_action_with_provisioning_artifact_input.AssociateServiceActionWithProvisioningArtifactInput = {
+            "product_id": product_id,
+            "provisioning_artifact_id": provisioning_artifact_id,
+            "service_action_id": service_action_id,
+        }
         if accept_language is not None:
             input_["accept_language"] = accept_language
-        if idempotency_token is not None:
-            input_["idempotency_token"] = idempotency_token
+        if idempotency_token is None:
+            idempotency_token = str(uuid.uuid4())
+        input_["idempotency_token"] = idempotency_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def associate_tag_option_with_resource(
@@ -698,15 +712,17 @@ class ServiceCatalogClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_service_catalog.types.associate_tag_option_with_resource_input.AssociateTagOptionWithResourceInput = {}  # type: ignore[typeddict-item]
-        input_["resource_id"] = resource_id
-        input_["tag_option_id"] = tag_option_id
+        input_: capo_service_catalog.types.associate_tag_option_with_resource_input.AssociateTagOptionWithResourceInput = {
+            "resource_id": resource_id,
+            "tag_option_id": tag_option_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def batch_associate_service_action_with_provisioning_artifact(
@@ -744,8 +760,9 @@ class ServiceCatalogClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_service_catalog.types.batch_associate_service_action_with_provisioning_artifact_input.BatchAssociateServiceActionWithProvisioningArtifactInput = {}  # type: ignore[typeddict-item]
-        input_["service_action_associations"] = service_action_associations
+        input_: capo_service_catalog.types.batch_associate_service_action_with_provisioning_artifact_input.BatchAssociateServiceActionWithProvisioningArtifactInput = {
+            "service_action_associations": service_action_associations
+        }
         if accept_language is not None:
             input_["accept_language"] = accept_language
 
@@ -754,6 +771,7 @@ class ServiceCatalogClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def batch_disassociate_service_action_from_provisioning_artifact(
@@ -791,8 +809,9 @@ class ServiceCatalogClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_service_catalog.types.batch_disassociate_service_action_from_provisioning_artifact_input.BatchDisassociateServiceActionFromProvisioningArtifactInput = {}  # type: ignore[typeddict-item]
-        input_["service_action_associations"] = service_action_associations
+        input_: capo_service_catalog.types.batch_disassociate_service_action_from_provisioning_artifact_input.BatchDisassociateServiceActionFromProvisioningArtifactInput = {
+            "service_action_associations": service_action_associations
+        }
         if accept_language is not None:
             input_["accept_language"] = accept_language
 
@@ -801,6 +820,7 @@ class ServiceCatalogClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def copy_product(
@@ -855,10 +875,12 @@ class ServiceCatalogClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_service_catalog.types.copy_product_input.CopyProductInput = {}  # type: ignore[typeddict-item]
+        input_: capo_service_catalog.types.copy_product_input.CopyProductInput = {
+            "source_product_arn": source_product_arn,
+            "idempotency_token": idempotency_token,
+        }
         if accept_language is not None:
             input_["accept_language"] = accept_language
-        input_["source_product_arn"] = source_product_arn
         if target_product_id is not None:
             input_["target_product_id"] = target_product_id
         if target_product_name is not None:
@@ -869,13 +891,13 @@ class ServiceCatalogClient:
             )
         if copy_options is not None:
             input_["copy_options"] = copy_options
-        input_["idempotency_token"] = idempotency_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_constraint(
@@ -928,22 +950,24 @@ class ServiceCatalogClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_service_catalog.types.create_constraint_input.CreateConstraintInput = {}  # type: ignore[typeddict-item]
+        input_: capo_service_catalog.types.create_constraint_input.CreateConstraintInput = {
+            "portfolio_id": portfolio_id,
+            "product_id": product_id,
+            "parameters": parameters,
+            "type": type,
+            "idempotency_token": idempotency_token,
+        }
         if accept_language is not None:
             input_["accept_language"] = accept_language
-        input_["portfolio_id"] = portfolio_id
-        input_["product_id"] = product_id
-        input_["parameters"] = parameters
-        input_["type"] = type
         if description is not None:
             input_["description"] = description
-        input_["idempotency_token"] = idempotency_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_portfolio(
@@ -993,22 +1017,24 @@ class ServiceCatalogClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_service_catalog.types.create_portfolio_input.CreatePortfolioInput = {}  # type: ignore[typeddict-item]
+        input_: capo_service_catalog.types.create_portfolio_input.CreatePortfolioInput = {
+            "display_name": display_name,
+            "provider_name": provider_name,
+            "idempotency_token": idempotency_token,
+        }
         if accept_language is not None:
             input_["accept_language"] = accept_language
-        input_["display_name"] = display_name
         if description is not None:
             input_["description"] = description
-        input_["provider_name"] = provider_name
         if tags is not None:
             input_["tags"] = tags
-        input_["idempotency_token"] = idempotency_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_portfolio_share(
@@ -1062,10 +1088,11 @@ class ServiceCatalogClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_service_catalog.types.create_portfolio_share_input.CreatePortfolioShareInput = {}  # type: ignore[typeddict-item]
+        input_: capo_service_catalog.types.create_portfolio_share_input.CreatePortfolioShareInput = {
+            "portfolio_id": portfolio_id
+        }
         if accept_language is not None:
             input_["accept_language"] = accept_language
-        input_["portfolio_id"] = portfolio_id
         if account_id is not None:
             input_["account_id"] = account_id
         if organization_node is not None:
@@ -1080,6 +1107,7 @@ class ServiceCatalogClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_product(
@@ -1155,11 +1183,14 @@ class ServiceCatalogClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_service_catalog.types.create_product_input.CreateProductInput = {}  # type: ignore[typeddict-item]
+        input_: capo_service_catalog.types.create_product_input.CreateProductInput = {
+            "name": name,
+            "owner": owner,
+            "product_type": product_type,
+            "idempotency_token": idempotency_token,
+        }
         if accept_language is not None:
             input_["accept_language"] = accept_language
-        input_["name"] = name
-        input_["owner"] = owner
         if description is not None:
             input_["description"] = description
         if distributor is not None:
@@ -1170,14 +1201,12 @@ class ServiceCatalogClient:
             input_["support_email"] = support_email
         if support_url is not None:
             input_["support_url"] = support_url
-        input_["product_type"] = product_type
         if tags is not None:
             input_["tags"] = tags
         if provisioning_artifact_parameters is not None:
             input_["provisioning_artifact_parameters"] = (
                 provisioning_artifact_parameters
             )
-        input_["idempotency_token"] = idempotency_token
         if source_connection is not None:
             input_["source_connection"] = source_connection
 
@@ -1186,6 +1215,7 @@ class ServiceCatalogClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_provisioned_product_plan(
@@ -1247,21 +1277,22 @@ class ServiceCatalogClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_service_catalog.types.create_provisioned_product_plan_input.CreateProvisionedProductPlanInput = {}  # type: ignore[typeddict-item]
+        input_: capo_service_catalog.types.create_provisioned_product_plan_input.CreateProvisionedProductPlanInput = {
+            "plan_name": plan_name,
+            "plan_type": plan_type,
+            "product_id": product_id,
+            "provisioned_product_name": provisioned_product_name,
+            "provisioning_artifact_id": provisioning_artifact_id,
+            "idempotency_token": idempotency_token,
+        }
         if accept_language is not None:
             input_["accept_language"] = accept_language
-        input_["plan_name"] = plan_name
-        input_["plan_type"] = plan_type
         if notification_arns is not None:
             input_["notification_arns"] = notification_arns
         if path_id is not None:
             input_["path_id"] = path_id
-        input_["product_id"] = product_id
-        input_["provisioned_product_name"] = provisioned_product_name
-        input_["provisioning_artifact_id"] = provisioning_artifact_id
         if provisioning_parameters is not None:
             input_["provisioning_parameters"] = provisioning_parameters
-        input_["idempotency_token"] = idempotency_token
         if tags is not None:
             input_["tags"] = tags
 
@@ -1270,6 +1301,7 @@ class ServiceCatalogClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_provisioning_artifact(
@@ -1313,18 +1345,20 @@ class ServiceCatalogClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_service_catalog.types.create_provisioning_artifact_input.CreateProvisioningArtifactInput = {}  # type: ignore[typeddict-item]
+        input_: capo_service_catalog.types.create_provisioning_artifact_input.CreateProvisioningArtifactInput = {
+            "product_id": product_id,
+            "parameters": parameters,
+            "idempotency_token": idempotency_token,
+        }
         if accept_language is not None:
             input_["accept_language"] = accept_language
-        input_["product_id"] = product_id
-        input_["parameters"] = parameters
-        input_["idempotency_token"] = idempotency_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_service_action(
@@ -1373,21 +1407,23 @@ class ServiceCatalogClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_service_catalog.types.create_service_action_input.CreateServiceActionInput = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        input_["definition_type"] = definition_type
-        input_["definition"] = definition
+        input_: capo_service_catalog.types.create_service_action_input.CreateServiceActionInput = {
+            "name": name,
+            "definition_type": definition_type,
+            "definition": definition,
+            "idempotency_token": idempotency_token,
+        }
         if description is not None:
             input_["description"] = description
         if accept_language is not None:
             input_["accept_language"] = accept_language
-        input_["idempotency_token"] = idempotency_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_tag_option(
@@ -1425,15 +1461,17 @@ class ServiceCatalogClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_service_catalog.types.create_tag_option_input.CreateTagOptionInput = {}  # type: ignore[typeddict-item]
-        input_["key"] = key
-        input_["value"] = value
+        input_: capo_service_catalog.types.create_tag_option_input.CreateTagOptionInput = {
+            "key": key,
+            "value": value,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_constraint(
@@ -1472,16 +1510,18 @@ class ServiceCatalogClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_service_catalog.types.delete_constraint_input.DeleteConstraintInput = {}  # type: ignore[typeddict-item]
+        input_: capo_service_catalog.types.delete_constraint_input.DeleteConstraintInput = {
+            "id": id
+        }
         if accept_language is not None:
             input_["accept_language"] = accept_language
-        input_["id"] = id
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_portfolio(
@@ -1522,16 +1562,18 @@ class ServiceCatalogClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_service_catalog.types.delete_portfolio_input.DeletePortfolioInput = {}  # type: ignore[typeddict-item]
+        input_: capo_service_catalog.types.delete_portfolio_input.DeletePortfolioInput = {
+            "id": id
+        }
         if accept_language is not None:
             input_["accept_language"] = accept_language
-        input_["id"] = id
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_portfolio_share(
@@ -1578,10 +1620,11 @@ class ServiceCatalogClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_service_catalog.types.delete_portfolio_share_input.DeletePortfolioShareInput = {}  # type: ignore[typeddict-item]
+        input_: capo_service_catalog.types.delete_portfolio_share_input.DeletePortfolioShareInput = {
+            "portfolio_id": portfolio_id
+        }
         if accept_language is not None:
             input_["accept_language"] = accept_language
-        input_["portfolio_id"] = portfolio_id
         if account_id is not None:
             input_["account_id"] = account_id
         if organization_node is not None:
@@ -1592,6 +1635,7 @@ class ServiceCatalogClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_product(
@@ -1632,16 +1676,18 @@ class ServiceCatalogClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_service_catalog.types.delete_product_input.DeleteProductInput = {}  # type: ignore[typeddict-item]
+        input_: capo_service_catalog.types.delete_product_input.DeleteProductInput = {
+            "id": id
+        }
         if accept_language is not None:
             input_["accept_language"] = accept_language
-        input_["id"] = id
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_provisioned_product_plan(
@@ -1684,10 +1730,11 @@ class ServiceCatalogClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_service_catalog.types.delete_provisioned_product_plan_input.DeleteProvisionedProductPlanInput = {}  # type: ignore[typeddict-item]
+        input_: capo_service_catalog.types.delete_provisioned_product_plan_input.DeleteProvisionedProductPlanInput = {
+            "plan_id": plan_id
+        }
         if accept_language is not None:
             input_["accept_language"] = accept_language
-        input_["plan_id"] = plan_id
         if ignore_errors is not None:
             input_["ignore_errors"] = ignore_errors
 
@@ -1696,6 +1743,7 @@ class ServiceCatalogClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_provisioning_artifact(
@@ -1737,17 +1785,19 @@ class ServiceCatalogClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_service_catalog.types.delete_provisioning_artifact_input.DeleteProvisioningArtifactInput = {}  # type: ignore[typeddict-item]
+        input_: capo_service_catalog.types.delete_provisioning_artifact_input.DeleteProvisioningArtifactInput = {
+            "product_id": product_id,
+            "provisioning_artifact_id": provisioning_artifact_id,
+        }
         if accept_language is not None:
             input_["accept_language"] = accept_language
-        input_["product_id"] = product_id
-        input_["provisioning_artifact_id"] = provisioning_artifact_id
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_service_action(
@@ -1791,18 +1841,21 @@ class ServiceCatalogClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_service_catalog.types.delete_service_action_input.DeleteServiceActionInput = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_service_catalog.types.delete_service_action_input.DeleteServiceActionInput = {
+            "id": id
+        }
         if accept_language is not None:
             input_["accept_language"] = accept_language
-        if idempotency_token is not None:
-            input_["idempotency_token"] = idempotency_token
+        if idempotency_token is None:
+            idempotency_token = str(uuid.uuid4())
+        input_["idempotency_token"] = idempotency_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_tag_option(
@@ -1838,14 +1891,16 @@ class ServiceCatalogClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_service_catalog.types.delete_tag_option_input.DeleteTagOptionInput = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_service_catalog.types.delete_tag_option_input.DeleteTagOptionInput = {
+            "id": id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_constraint(
@@ -1885,16 +1940,18 @@ class ServiceCatalogClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_service_catalog.types.describe_constraint_input.DescribeConstraintInput = {}  # type: ignore[typeddict-item]
+        input_: capo_service_catalog.types.describe_constraint_input.DescribeConstraintInput = {
+            "id": id
+        }
         if accept_language is not None:
             input_["accept_language"] = accept_language
-        input_["id"] = id
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_copy_product_status(
@@ -1932,16 +1989,18 @@ class ServiceCatalogClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_service_catalog.types.describe_copy_product_status_input.DescribeCopyProductStatusInput = {}  # type: ignore[typeddict-item]
+        input_: capo_service_catalog.types.describe_copy_product_status_input.DescribeCopyProductStatusInput = {
+            "copy_product_token": copy_product_token
+        }
         if accept_language is not None:
             input_["accept_language"] = accept_language
-        input_["copy_product_token"] = copy_product_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_portfolio(
@@ -1979,16 +2038,18 @@ class ServiceCatalogClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_service_catalog.types.describe_portfolio_input.DescribePortfolioInput = {}  # type: ignore[typeddict-item]
+        input_: capo_service_catalog.types.describe_portfolio_input.DescribePortfolioInput = {
+            "id": id
+        }
         if accept_language is not None:
             input_["accept_language"] = accept_language
-        input_["id"] = id
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_portfolio_shares(
@@ -2031,9 +2092,10 @@ class ServiceCatalogClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_service_catalog.types.describe_portfolio_shares_input.DescribePortfolioSharesInput = {}  # type: ignore[typeddict-item]
-        input_["portfolio_id"] = portfolio_id
-        input_["type"] = type
+        input_: capo_service_catalog.types.describe_portfolio_shares_input.DescribePortfolioSharesInput = {
+            "portfolio_id": portfolio_id,
+            "type": type,
+        }
         if page_token is not None:
             input_["page_token"] = page_token
         if page_size is not None:
@@ -2044,7 +2106,33 @@ class ServiceCatalogClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_describe_portfolio_shares(
+        self,
+        portfolio_id: "capo_service_catalog.types.id.Id",
+        type: "capo_service_catalog.types.describe_portfolio_share_type.DescribePortfolioShareType",
+        *,
+        config_overrides: Optional[ServiceCatalogClientConfig] = None,
+        page_token: Optional["capo_service_catalog.types.page_token.PageToken"] = None,
+        page_size: Optional[
+            "capo_service_catalog.types.page_size_max100.PageSizeMax100"
+        ] = None,
+    ) -> "Iterator[capo_service_catalog.types.describe_portfolio_shares_output.DescribePortfolioSharesOutput]":
+        _token = page_token
+        while True:
+            _response = self.describe_portfolio_shares(
+                portfolio_id,
+                type,
+                config_overrides=config_overrides,
+                page_token=_token,
+                page_size=page_size,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_page_token",))
+            if not _token:
+                break
 
     def describe_portfolio_share_status(
         self,
@@ -2079,14 +2167,16 @@ class ServiceCatalogClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_service_catalog.types.describe_portfolio_share_status_input.DescribePortfolioShareStatusInput = {}  # type: ignore[typeddict-item]
-        input_["portfolio_share_token"] = portfolio_share_token
+        input_: capo_service_catalog.types.describe_portfolio_share_status_input.DescribePortfolioShareStatusInput = {
+            "portfolio_share_token": portfolio_share_token
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_product(
@@ -2129,7 +2219,7 @@ class ServiceCatalogClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_service_catalog.types.describe_product_input.DescribeProductInput = {}  # type: ignore[typeddict-item]
+        input_: capo_service_catalog.types.describe_product_input.DescribeProductInput = {}
         if accept_language is not None:
             input_["accept_language"] = accept_language
         if id is not None:
@@ -2142,6 +2232,7 @@ class ServiceCatalogClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_product_as_admin(
@@ -2186,7 +2277,7 @@ class ServiceCatalogClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_service_catalog.types.describe_product_as_admin_input.DescribeProductAsAdminInput = {}  # type: ignore[typeddict-item]
+        input_: capo_service_catalog.types.describe_product_as_admin_input.DescribeProductAsAdminInput = {}
         if accept_language is not None:
             input_["accept_language"] = accept_language
         if id is not None:
@@ -2201,6 +2292,7 @@ class ServiceCatalogClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_product_view(
@@ -2239,16 +2331,18 @@ class ServiceCatalogClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_service_catalog.types.describe_product_view_input.DescribeProductViewInput = {}  # type: ignore[typeddict-item]
+        input_: capo_service_catalog.types.describe_product_view_input.DescribeProductViewInput = {
+            "id": id
+        }
         if accept_language is not None:
             input_["accept_language"] = accept_language
-        input_["id"] = id
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_provisioned_product(
@@ -2291,7 +2385,7 @@ class ServiceCatalogClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_service_catalog.types.describe_provisioned_product_input.DescribeProvisionedProductInput = {}  # type: ignore[typeddict-item]
+        input_: capo_service_catalog.types.describe_provisioned_product_input.DescribeProvisionedProductInput = {}
         if accept_language is not None:
             input_["accept_language"] = accept_language
         if id is not None:
@@ -2304,6 +2398,7 @@ class ServiceCatalogClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_provisioned_product_plan(
@@ -2346,10 +2441,11 @@ class ServiceCatalogClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_service_catalog.types.describe_provisioned_product_plan_input.DescribeProvisionedProductPlanInput = {}  # type: ignore[typeddict-item]
+        input_: capo_service_catalog.types.describe_provisioned_product_plan_input.DescribeProvisionedProductPlanInput = {
+            "plan_id": plan_id
+        }
         if accept_language is not None:
             input_["accept_language"] = accept_language
-        input_["plan_id"] = plan_id
         if page_size is not None:
             input_["page_size"] = page_size
         if page_token is not None:
@@ -2360,6 +2456,7 @@ class ServiceCatalogClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_provisioning_artifact(
@@ -2414,7 +2511,7 @@ class ServiceCatalogClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_service_catalog.types.describe_provisioning_artifact_input.DescribeProvisioningArtifactInput = {}  # type: ignore[typeddict-item]
+        input_: capo_service_catalog.types.describe_provisioning_artifact_input.DescribeProvisioningArtifactInput = {}
         if accept_language is not None:
             input_["accept_language"] = accept_language
         if provisioning_artifact_id is not None:
@@ -2437,6 +2534,7 @@ class ServiceCatalogClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_provisioning_parameters(
@@ -2491,7 +2589,7 @@ class ServiceCatalogClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_service_catalog.types.describe_provisioning_parameters_input.DescribeProvisioningParametersInput = {}  # type: ignore[typeddict-item]
+        input_: capo_service_catalog.types.describe_provisioning_parameters_input.DescribeProvisioningParametersInput = {}
         if accept_language is not None:
             input_["accept_language"] = accept_language
         if product_id is not None:
@@ -2512,6 +2610,7 @@ class ServiceCatalogClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_record(
@@ -2553,10 +2652,11 @@ class ServiceCatalogClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_service_catalog.types.describe_record_input.DescribeRecordInput = {}  # type: ignore[typeddict-item]
+        input_: capo_service_catalog.types.describe_record_input.DescribeRecordInput = {
+            "id": id
+        }
         if accept_language is not None:
             input_["accept_language"] = accept_language
-        input_["id"] = id
         if page_token is not None:
             input_["page_token"] = page_token
         if page_size is not None:
@@ -2567,6 +2667,7 @@ class ServiceCatalogClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_service_action(
@@ -2604,8 +2705,9 @@ class ServiceCatalogClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_service_catalog.types.describe_service_action_input.DescribeServiceActionInput = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_service_catalog.types.describe_service_action_input.DescribeServiceActionInput = {
+            "id": id
+        }
         if accept_language is not None:
             input_["accept_language"] = accept_language
 
@@ -2614,6 +2716,7 @@ class ServiceCatalogClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_service_action_execution_parameters(
@@ -2654,9 +2757,10 @@ class ServiceCatalogClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_service_catalog.types.describe_service_action_execution_parameters_input.DescribeServiceActionExecutionParametersInput = {}  # type: ignore[typeddict-item]
-        input_["provisioned_product_id"] = provisioned_product_id
-        input_["service_action_id"] = service_action_id
+        input_: capo_service_catalog.types.describe_service_action_execution_parameters_input.DescribeServiceActionExecutionParametersInput = {
+            "provisioned_product_id": provisioned_product_id,
+            "service_action_id": service_action_id,
+        }
         if accept_language is not None:
             input_["accept_language"] = accept_language
 
@@ -2665,6 +2769,7 @@ class ServiceCatalogClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_tag_option(
@@ -2701,14 +2806,16 @@ class ServiceCatalogClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_service_catalog.types.describe_tag_option_input.DescribeTagOptionInput = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_service_catalog.types.describe_tag_option_input.DescribeTagOptionInput = {
+            "id": id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def disable_aws_organizations_access(
@@ -2738,13 +2845,14 @@ class ServiceCatalogClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_service_catalog.types.disable_aws_organizations_access_input.DisableAWSOrganizationsAccessInput = {}  # type: ignore[typeddict-item]
+        input_: capo_service_catalog.types.disable_aws_organizations_access_input.DisableAWSOrganizationsAccessInput = {}
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def disassociate_budget_from_resource(
@@ -2780,15 +2888,17 @@ class ServiceCatalogClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_service_catalog.types.disassociate_budget_from_resource_input.DisassociateBudgetFromResourceInput = {}  # type: ignore[typeddict-item]
-        input_["budget_name"] = budget_name
-        input_["resource_id"] = resource_id
+        input_: capo_service_catalog.types.disassociate_budget_from_resource_input.DisassociateBudgetFromResourceInput = {
+            "budget_name": budget_name,
+            "resource_id": resource_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def disassociate_principal_from_portfolio(
@@ -2833,11 +2943,12 @@ class ServiceCatalogClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_service_catalog.types.disassociate_principal_from_portfolio_input.DisassociatePrincipalFromPortfolioInput = {}  # type: ignore[typeddict-item]
+        input_: capo_service_catalog.types.disassociate_principal_from_portfolio_input.DisassociatePrincipalFromPortfolioInput = {
+            "portfolio_id": portfolio_id,
+            "principal_arn": principal_arn,
+        }
         if accept_language is not None:
             input_["accept_language"] = accept_language
-        input_["portfolio_id"] = portfolio_id
-        input_["principal_arn"] = principal_arn
         if principal_type is not None:
             input_["principal_type"] = principal_type
 
@@ -2846,6 +2957,7 @@ class ServiceCatalogClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def disassociate_product_from_portfolio(
@@ -2887,17 +2999,19 @@ class ServiceCatalogClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_service_catalog.types.disassociate_product_from_portfolio_input.DisassociateProductFromPortfolioInput = {}  # type: ignore[typeddict-item]
+        input_: capo_service_catalog.types.disassociate_product_from_portfolio_input.DisassociateProductFromPortfolioInput = {
+            "product_id": product_id,
+            "portfolio_id": portfolio_id,
+        }
         if accept_language is not None:
             input_["accept_language"] = accept_language
-        input_["product_id"] = product_id
-        input_["portfolio_id"] = portfolio_id
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def disassociate_service_action_from_provisioning_artifact(
@@ -2944,20 +3058,23 @@ class ServiceCatalogClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_service_catalog.types.disassociate_service_action_from_provisioning_artifact_input.DisassociateServiceActionFromProvisioningArtifactInput = {}  # type: ignore[typeddict-item]
-        input_["product_id"] = product_id
-        input_["provisioning_artifact_id"] = provisioning_artifact_id
-        input_["service_action_id"] = service_action_id
+        input_: capo_service_catalog.types.disassociate_service_action_from_provisioning_artifact_input.DisassociateServiceActionFromProvisioningArtifactInput = {
+            "product_id": product_id,
+            "provisioning_artifact_id": provisioning_artifact_id,
+            "service_action_id": service_action_id,
+        }
         if accept_language is not None:
             input_["accept_language"] = accept_language
-        if idempotency_token is not None:
-            input_["idempotency_token"] = idempotency_token
+        if idempotency_token is None:
+            idempotency_token = str(uuid.uuid4())
+        input_["idempotency_token"] = idempotency_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def disassociate_tag_option_from_resource(
@@ -2994,15 +3111,17 @@ class ServiceCatalogClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_service_catalog.types.disassociate_tag_option_from_resource_input.DisassociateTagOptionFromResourceInput = {}  # type: ignore[typeddict-item]
-        input_["resource_id"] = resource_id
-        input_["tag_option_id"] = tag_option_id
+        input_: capo_service_catalog.types.disassociate_tag_option_from_resource_input.DisassociateTagOptionFromResourceInput = {
+            "resource_id": resource_id,
+            "tag_option_id": tag_option_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def enable_aws_organizations_access(
@@ -3032,13 +3151,14 @@ class ServiceCatalogClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_service_catalog.types.enable_aws_organizations_access_input.EnableAWSOrganizationsAccessInput = {}  # type: ignore[typeddict-item]
+        input_: capo_service_catalog.types.enable_aws_organizations_access_input.EnableAWSOrganizationsAccessInput = {}
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def execute_provisioned_product_plan(
@@ -3080,17 +3200,19 @@ class ServiceCatalogClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_service_catalog.types.execute_provisioned_product_plan_input.ExecuteProvisionedProductPlanInput = {}  # type: ignore[typeddict-item]
+        input_: capo_service_catalog.types.execute_provisioned_product_plan_input.ExecuteProvisionedProductPlanInput = {
+            "plan_id": plan_id,
+            "idempotency_token": idempotency_token,
+        }
         if accept_language is not None:
             input_["accept_language"] = accept_language
-        input_["plan_id"] = plan_id
-        input_["idempotency_token"] = idempotency_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def execute_provisioned_product_service_action(
@@ -3138,10 +3260,11 @@ class ServiceCatalogClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_service_catalog.types.execute_provisioned_product_service_action_input.ExecuteProvisionedProductServiceActionInput = {}  # type: ignore[typeddict-item]
-        input_["provisioned_product_id"] = provisioned_product_id
-        input_["service_action_id"] = service_action_id
-        input_["execute_token"] = execute_token
+        input_: capo_service_catalog.types.execute_provisioned_product_service_action_input.ExecuteProvisionedProductServiceActionInput = {
+            "provisioned_product_id": provisioned_product_id,
+            "service_action_id": service_action_id,
+            "execute_token": execute_token,
+        }
         if accept_language is not None:
             input_["accept_language"] = accept_language
         if parameters is not None:
@@ -3152,6 +3275,7 @@ class ServiceCatalogClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_aws_organizations_access_status(
@@ -3180,13 +3304,14 @@ class ServiceCatalogClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_service_catalog.types.get_aws_organizations_access_status_input.GetAWSOrganizationsAccessStatusInput = {}  # type: ignore[typeddict-item]
+        input_: capo_service_catalog.types.get_aws_organizations_access_status_input.GetAWSOrganizationsAccessStatusInput = {}
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_provisioned_product_outputs(
@@ -3237,7 +3362,7 @@ class ServiceCatalogClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_service_catalog.types.get_provisioned_product_outputs_input.GetProvisionedProductOutputsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_service_catalog.types.get_provisioned_product_outputs_input.GetProvisionedProductOutputsInput = {}
         if accept_language is not None:
             input_["accept_language"] = accept_language
         if provisioned_product_id is not None:
@@ -3256,7 +3381,41 @@ class ServiceCatalogClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_get_provisioned_product_outputs(
+        self,
+        *,
+        config_overrides: Optional[ServiceCatalogClientConfig] = None,
+        accept_language: Optional[
+            "capo_service_catalog.types.accept_language.AcceptLanguage"
+        ] = None,
+        provisioned_product_id: Optional["capo_service_catalog.types.id.Id"] = None,
+        provisioned_product_name: Optional[
+            "capo_service_catalog.types.provisioned_product_name.ProvisionedProductName"
+        ] = None,
+        output_keys: Optional[
+            "capo_service_catalog.types.output_keys.OutputKeys"
+        ] = None,
+        page_size: Optional["capo_service_catalog.types.page_size.PageSize"] = None,
+        page_token: Optional["capo_service_catalog.types.page_token.PageToken"] = None,
+    ) -> "Iterator[capo_service_catalog.types.get_provisioned_product_outputs_output.GetProvisionedProductOutputsOutput]":
+        _token = page_token
+        while True:
+            _response = self.get_provisioned_product_outputs(
+                config_overrides=config_overrides,
+                accept_language=accept_language,
+                provisioned_product_id=provisioned_product_id,
+                provisioned_product_name=provisioned_product_name,
+                output_keys=output_keys,
+                page_size=page_size,
+                page_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_page_token",))
+            if not _token:
+                break
 
     def import_as_provisioned_product(
         self,
@@ -3304,20 +3463,22 @@ class ServiceCatalogClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_service_catalog.types.import_as_provisioned_product_input.ImportAsProvisionedProductInput = {}  # type: ignore[typeddict-item]
+        input_: capo_service_catalog.types.import_as_provisioned_product_input.ImportAsProvisionedProductInput = {
+            "product_id": product_id,
+            "provisioning_artifact_id": provisioning_artifact_id,
+            "provisioned_product_name": provisioned_product_name,
+            "physical_id": physical_id,
+            "idempotency_token": idempotency_token,
+        }
         if accept_language is not None:
             input_["accept_language"] = accept_language
-        input_["product_id"] = product_id
-        input_["provisioning_artifact_id"] = provisioning_artifact_id
-        input_["provisioned_product_name"] = provisioned_product_name
-        input_["physical_id"] = physical_id
-        input_["idempotency_token"] = idempotency_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_accepted_portfolio_shares(
@@ -3364,7 +3525,7 @@ class ServiceCatalogClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_service_catalog.types.list_accepted_portfolio_shares_input.ListAcceptedPortfolioSharesInput = {}  # type: ignore[typeddict-item]
+        input_: capo_service_catalog.types.list_accepted_portfolio_shares_input.ListAcceptedPortfolioSharesInput = {}
         if accept_language is not None:
             input_["accept_language"] = accept_language
         if page_token is not None:
@@ -3379,7 +3540,37 @@ class ServiceCatalogClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_accepted_portfolio_shares(
+        self,
+        *,
+        config_overrides: Optional[ServiceCatalogClientConfig] = None,
+        accept_language: Optional[
+            "capo_service_catalog.types.accept_language.AcceptLanguage"
+        ] = None,
+        page_token: Optional["capo_service_catalog.types.page_token.PageToken"] = None,
+        page_size: Optional[
+            "capo_service_catalog.types.page_size_max100.PageSizeMax100"
+        ] = None,
+        portfolio_share_type: Optional[
+            "capo_service_catalog.types.portfolio_share_type.PortfolioShareType"
+        ] = None,
+    ) -> "Iterator[capo_service_catalog.types.list_accepted_portfolio_shares_output.ListAcceptedPortfolioSharesOutput]":
+        _token = page_token
+        while True:
+            _response = self.list_accepted_portfolio_shares(
+                config_overrides=config_overrides,
+                accept_language=accept_language,
+                page_token=_token,
+                page_size=page_size,
+                portfolio_share_type=portfolio_share_type,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_page_token",))
+            if not _token:
+                break
 
     def list_budgets_for_resource(
         self,
@@ -3421,10 +3612,11 @@ class ServiceCatalogClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_service_catalog.types.list_budgets_for_resource_input.ListBudgetsForResourceInput = {}  # type: ignore[typeddict-item]
+        input_: capo_service_catalog.types.list_budgets_for_resource_input.ListBudgetsForResourceInput = {
+            "resource_id": resource_id
+        }
         if accept_language is not None:
             input_["accept_language"] = accept_language
-        input_["resource_id"] = resource_id
         if page_size is not None:
             input_["page_size"] = page_size
         if page_token is not None:
@@ -3435,7 +3627,33 @@ class ServiceCatalogClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_budgets_for_resource(
+        self,
+        resource_id: "capo_service_catalog.types.id.Id",
+        *,
+        config_overrides: Optional[ServiceCatalogClientConfig] = None,
+        accept_language: Optional[
+            "capo_service_catalog.types.accept_language.AcceptLanguage"
+        ] = None,
+        page_size: Optional["capo_service_catalog.types.page_size.PageSize"] = None,
+        page_token: Optional["capo_service_catalog.types.page_token.PageToken"] = None,
+    ) -> "Iterator[capo_service_catalog.types.list_budgets_for_resource_output.ListBudgetsForResourceOutput]":
+        _token = page_token
+        while True:
+            _response = self.list_budgets_for_resource(
+                resource_id,
+                config_overrides=config_overrides,
+                accept_language=accept_language,
+                page_size=page_size,
+                page_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_page_token",))
+            if not _token:
+                break
 
     def list_constraints_for_portfolio(
         self,
@@ -3479,10 +3697,11 @@ class ServiceCatalogClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_service_catalog.types.list_constraints_for_portfolio_input.ListConstraintsForPortfolioInput = {}  # type: ignore[typeddict-item]
+        input_: capo_service_catalog.types.list_constraints_for_portfolio_input.ListConstraintsForPortfolioInput = {
+            "portfolio_id": portfolio_id
+        }
         if accept_language is not None:
             input_["accept_language"] = accept_language
-        input_["portfolio_id"] = portfolio_id
         if product_id is not None:
             input_["product_id"] = product_id
         if page_size is not None:
@@ -3495,7 +3714,35 @@ class ServiceCatalogClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_constraints_for_portfolio(
+        self,
+        portfolio_id: "capo_service_catalog.types.id.Id",
+        *,
+        config_overrides: Optional[ServiceCatalogClientConfig] = None,
+        accept_language: Optional[
+            "capo_service_catalog.types.accept_language.AcceptLanguage"
+        ] = None,
+        product_id: Optional["capo_service_catalog.types.id.Id"] = None,
+        page_size: Optional["capo_service_catalog.types.page_size.PageSize"] = None,
+        page_token: Optional["capo_service_catalog.types.page_token.PageToken"] = None,
+    ) -> "Iterator[capo_service_catalog.types.list_constraints_for_portfolio_output.ListConstraintsForPortfolioOutput]":
+        _token = page_token
+        while True:
+            _response = self.list_constraints_for_portfolio(
+                portfolio_id,
+                config_overrides=config_overrides,
+                accept_language=accept_language,
+                product_id=product_id,
+                page_size=page_size,
+                page_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_page_token",))
+            if not _token:
+                break
 
     def list_launch_paths(
         self,
@@ -3537,10 +3784,11 @@ class ServiceCatalogClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_service_catalog.types.list_launch_paths_input.ListLaunchPathsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_service_catalog.types.list_launch_paths_input.ListLaunchPathsInput = {
+            "product_id": product_id
+        }
         if accept_language is not None:
             input_["accept_language"] = accept_language
-        input_["product_id"] = product_id
         if page_size is not None:
             input_["page_size"] = page_size
         if page_token is not None:
@@ -3551,7 +3799,33 @@ class ServiceCatalogClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_launch_paths(
+        self,
+        product_id: "capo_service_catalog.types.id.Id",
+        *,
+        config_overrides: Optional[ServiceCatalogClientConfig] = None,
+        accept_language: Optional[
+            "capo_service_catalog.types.accept_language.AcceptLanguage"
+        ] = None,
+        page_size: Optional["capo_service_catalog.types.page_size.PageSize"] = None,
+        page_token: Optional["capo_service_catalog.types.page_token.PageToken"] = None,
+    ) -> "Iterator[capo_service_catalog.types.list_launch_paths_output.ListLaunchPathsOutput]":
+        _token = page_token
+        while True:
+            _response = self.list_launch_paths(
+                product_id,
+                config_overrides=config_overrides,
+                accept_language=accept_language,
+                page_size=page_size,
+                page_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_page_token",))
+            if not _token:
+                break
 
     def list_organization_portfolio_access(
         self,
@@ -3596,11 +3870,12 @@ class ServiceCatalogClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_service_catalog.types.list_organization_portfolio_access_input.ListOrganizationPortfolioAccessInput = {}  # type: ignore[typeddict-item]
+        input_: capo_service_catalog.types.list_organization_portfolio_access_input.ListOrganizationPortfolioAccessInput = {
+            "portfolio_id": portfolio_id,
+            "organization_node_type": organization_node_type,
+        }
         if accept_language is not None:
             input_["accept_language"] = accept_language
-        input_["portfolio_id"] = portfolio_id
-        input_["organization_node_type"] = organization_node_type
         if page_token is not None:
             input_["page_token"] = page_token
         if page_size is not None:
@@ -3611,7 +3886,35 @@ class ServiceCatalogClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_organization_portfolio_access(
+        self,
+        portfolio_id: "capo_service_catalog.types.id.Id",
+        organization_node_type: "capo_service_catalog.types.organization_node_type.OrganizationNodeType",
+        *,
+        config_overrides: Optional[ServiceCatalogClientConfig] = None,
+        accept_language: Optional[
+            "capo_service_catalog.types.accept_language.AcceptLanguage"
+        ] = None,
+        page_token: Optional["capo_service_catalog.types.page_token.PageToken"] = None,
+        page_size: Optional["capo_service_catalog.types.page_size.PageSize"] = None,
+    ) -> "Iterator[capo_service_catalog.types.list_organization_portfolio_access_output.ListOrganizationPortfolioAccessOutput]":
+        _token = page_token
+        while True:
+            _response = self.list_organization_portfolio_access(
+                portfolio_id,
+                organization_node_type,
+                config_overrides=config_overrides,
+                accept_language=accept_language,
+                page_token=_token,
+                page_size=page_size,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_page_token",))
+            if not _token:
+                break
 
     def list_portfolio_access(
         self,
@@ -3657,10 +3960,11 @@ class ServiceCatalogClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_service_catalog.types.list_portfolio_access_input.ListPortfolioAccessInput = {}  # type: ignore[typeddict-item]
+        input_: capo_service_catalog.types.list_portfolio_access_input.ListPortfolioAccessInput = {
+            "portfolio_id": portfolio_id
+        }
         if accept_language is not None:
             input_["accept_language"] = accept_language
-        input_["portfolio_id"] = portfolio_id
         if organization_parent_id is not None:
             input_["organization_parent_id"] = organization_parent_id
         if page_token is not None:
@@ -3673,7 +3977,37 @@ class ServiceCatalogClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_portfolio_access(
+        self,
+        portfolio_id: "capo_service_catalog.types.id.Id",
+        *,
+        config_overrides: Optional[ServiceCatalogClientConfig] = None,
+        accept_language: Optional[
+            "capo_service_catalog.types.accept_language.AcceptLanguage"
+        ] = None,
+        organization_parent_id: Optional["capo_service_catalog.types.id.Id"] = None,
+        page_token: Optional["capo_service_catalog.types.page_token.PageToken"] = None,
+        page_size: Optional[
+            "capo_service_catalog.types.page_size_max100.PageSizeMax100"
+        ] = None,
+    ) -> "Iterator[capo_service_catalog.types.list_portfolio_access_output.ListPortfolioAccessOutput]":
+        _token = page_token
+        while True:
+            _response = self.list_portfolio_access(
+                portfolio_id,
+                config_overrides=config_overrides,
+                accept_language=accept_language,
+                organization_parent_id=organization_parent_id,
+                page_token=_token,
+                page_size=page_size,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_page_token",))
+            if not _token:
+                break
 
     def list_portfolios(
         self,
@@ -3714,7 +4048,7 @@ class ServiceCatalogClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_service_catalog.types.list_portfolios_input.ListPortfoliosInput = {}  # type: ignore[typeddict-item]
+        input_: capo_service_catalog.types.list_portfolios_input.ListPortfoliosInput = {}
         if accept_language is not None:
             input_["accept_language"] = accept_language
         if page_token is not None:
@@ -3727,7 +4061,33 @@ class ServiceCatalogClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_portfolios(
+        self,
+        *,
+        config_overrides: Optional[ServiceCatalogClientConfig] = None,
+        accept_language: Optional[
+            "capo_service_catalog.types.accept_language.AcceptLanguage"
+        ] = None,
+        page_token: Optional["capo_service_catalog.types.page_token.PageToken"] = None,
+        page_size: Optional[
+            "capo_service_catalog.types.page_size_max100.PageSizeMax100"
+        ] = None,
+    ) -> "Iterator[capo_service_catalog.types.list_portfolios_output.ListPortfoliosOutput]":
+        _token = page_token
+        while True:
+            _response = self.list_portfolios(
+                config_overrides=config_overrides,
+                accept_language=accept_language,
+                page_token=_token,
+                page_size=page_size,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_page_token",))
+            if not _token:
+                break
 
     def list_portfolios_for_product(
         self,
@@ -3771,10 +4131,11 @@ class ServiceCatalogClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_service_catalog.types.list_portfolios_for_product_input.ListPortfoliosForProductInput = {}  # type: ignore[typeddict-item]
+        input_: capo_service_catalog.types.list_portfolios_for_product_input.ListPortfoliosForProductInput = {
+            "product_id": product_id
+        }
         if accept_language is not None:
             input_["accept_language"] = accept_language
-        input_["product_id"] = product_id
         if page_token is not None:
             input_["page_token"] = page_token
         if page_size is not None:
@@ -3785,7 +4146,35 @@ class ServiceCatalogClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_portfolios_for_product(
+        self,
+        product_id: "capo_service_catalog.types.id.Id",
+        *,
+        config_overrides: Optional[ServiceCatalogClientConfig] = None,
+        accept_language: Optional[
+            "capo_service_catalog.types.accept_language.AcceptLanguage"
+        ] = None,
+        page_token: Optional["capo_service_catalog.types.page_token.PageToken"] = None,
+        page_size: Optional[
+            "capo_service_catalog.types.page_size_max100.PageSizeMax100"
+        ] = None,
+    ) -> "Iterator[capo_service_catalog.types.list_portfolios_for_product_output.ListPortfoliosForProductOutput]":
+        _token = page_token
+        while True:
+            _response = self.list_portfolios_for_product(
+                product_id,
+                config_overrides=config_overrides,
+                accept_language=accept_language,
+                page_token=_token,
+                page_size=page_size,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_page_token",))
+            if not _token:
+                break
 
     def list_principals_for_portfolio(
         self,
@@ -3827,10 +4216,11 @@ class ServiceCatalogClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_service_catalog.types.list_principals_for_portfolio_input.ListPrincipalsForPortfolioInput = {}  # type: ignore[typeddict-item]
+        input_: capo_service_catalog.types.list_principals_for_portfolio_input.ListPrincipalsForPortfolioInput = {
+            "portfolio_id": portfolio_id
+        }
         if accept_language is not None:
             input_["accept_language"] = accept_language
-        input_["portfolio_id"] = portfolio_id
         if page_size is not None:
             input_["page_size"] = page_size
         if page_token is not None:
@@ -3841,7 +4231,33 @@ class ServiceCatalogClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_principals_for_portfolio(
+        self,
+        portfolio_id: "capo_service_catalog.types.id.Id",
+        *,
+        config_overrides: Optional[ServiceCatalogClientConfig] = None,
+        accept_language: Optional[
+            "capo_service_catalog.types.accept_language.AcceptLanguage"
+        ] = None,
+        page_size: Optional["capo_service_catalog.types.page_size.PageSize"] = None,
+        page_token: Optional["capo_service_catalog.types.page_token.PageToken"] = None,
+    ) -> "Iterator[capo_service_catalog.types.list_principals_for_portfolio_output.ListPrincipalsForPortfolioOutput]":
+        _token = page_token
+        while True:
+            _response = self.list_principals_for_portfolio(
+                portfolio_id,
+                config_overrides=config_overrides,
+                accept_language=accept_language,
+                page_size=page_size,
+                page_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_page_token",))
+            if not _token:
+                break
 
     def list_provisioned_product_plans(
         self,
@@ -3887,7 +4303,7 @@ class ServiceCatalogClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_service_catalog.types.list_provisioned_product_plans_input.ListProvisionedProductPlansInput = {}  # type: ignore[typeddict-item]
+        input_: capo_service_catalog.types.list_provisioned_product_plans_input.ListProvisionedProductPlansInput = {}
         if accept_language is not None:
             input_["accept_language"] = accept_language
         if provision_product_id is not None:
@@ -3904,6 +4320,7 @@ class ServiceCatalogClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_provisioning_artifacts(
@@ -3942,16 +4359,18 @@ class ServiceCatalogClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_service_catalog.types.list_provisioning_artifacts_input.ListProvisioningArtifactsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_service_catalog.types.list_provisioning_artifacts_input.ListProvisioningArtifactsInput = {
+            "product_id": product_id
+        }
         if accept_language is not None:
             input_["accept_language"] = accept_language
-        input_["product_id"] = product_id
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_provisioning_artifacts_for_service_action(
@@ -3994,8 +4413,9 @@ class ServiceCatalogClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_service_catalog.types.list_provisioning_artifacts_for_service_action_input.ListProvisioningArtifactsForServiceActionInput = {}  # type: ignore[typeddict-item]
-        input_["service_action_id"] = service_action_id
+        input_: capo_service_catalog.types.list_provisioning_artifacts_for_service_action_input.ListProvisioningArtifactsForServiceActionInput = {
+            "service_action_id": service_action_id
+        }
         if page_size is not None:
             input_["page_size"] = page_size
         if page_token is not None:
@@ -4008,7 +4428,33 @@ class ServiceCatalogClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_provisioning_artifacts_for_service_action(
+        self,
+        service_action_id: "capo_service_catalog.types.id.Id",
+        *,
+        config_overrides: Optional[ServiceCatalogClientConfig] = None,
+        page_size: Optional["capo_service_catalog.types.page_size.PageSize"] = None,
+        page_token: Optional["capo_service_catalog.types.page_token.PageToken"] = None,
+        accept_language: Optional[
+            "capo_service_catalog.types.accept_language.AcceptLanguage"
+        ] = None,
+    ) -> "Iterator[capo_service_catalog.types.list_provisioning_artifacts_for_service_action_output.ListProvisioningArtifactsForServiceActionOutput]":
+        _token = page_token
+        while True:
+            _response = self.list_provisioning_artifacts_for_service_action(
+                service_action_id,
+                config_overrides=config_overrides,
+                page_size=page_size,
+                page_token=_token,
+                accept_language=accept_language,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_page_token",))
+            if not _token:
+                break
 
     def list_record_history(
         self,
@@ -4057,7 +4503,7 @@ class ServiceCatalogClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_service_catalog.types.list_record_history_input.ListRecordHistoryInput = {}  # type: ignore[typeddict-item]
+        input_: capo_service_catalog.types.list_record_history_input.ListRecordHistoryInput = {}
         if accept_language is not None:
             input_["accept_language"] = accept_language
         if access_level_filter is not None:
@@ -4074,6 +4520,7 @@ class ServiceCatalogClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_resources_for_tag_option(
@@ -4117,8 +4564,9 @@ class ServiceCatalogClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_service_catalog.types.list_resources_for_tag_option_input.ListResourcesForTagOptionInput = {}  # type: ignore[typeddict-item]
-        input_["tag_option_id"] = tag_option_id
+        input_: capo_service_catalog.types.list_resources_for_tag_option_input.ListResourcesForTagOptionInput = {
+            "tag_option_id": tag_option_id
+        }
         if resource_type is not None:
             input_["resource_type"] = resource_type
         if page_size is not None:
@@ -4131,7 +4579,33 @@ class ServiceCatalogClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_resources_for_tag_option(
+        self,
+        tag_option_id: "capo_service_catalog.types.tag_option_id.TagOptionId",
+        *,
+        config_overrides: Optional[ServiceCatalogClientConfig] = None,
+        resource_type: Optional[
+            "capo_service_catalog.types.resource_type.ResourceType"
+        ] = None,
+        page_size: Optional["capo_service_catalog.types.page_size.PageSize"] = None,
+        page_token: Optional["capo_service_catalog.types.page_token.PageToken"] = None,
+    ) -> "Iterator[capo_service_catalog.types.list_resources_for_tag_option_output.ListResourcesForTagOptionOutput]":
+        _token = page_token
+        while True:
+            _response = self.list_resources_for_tag_option(
+                tag_option_id,
+                config_overrides=config_overrides,
+                resource_type=resource_type,
+                page_size=page_size,
+                page_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("page_token",))
+            if not _token:
+                break
 
     def list_service_actions(
         self,
@@ -4170,7 +4644,7 @@ class ServiceCatalogClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_service_catalog.types.list_service_actions_input.ListServiceActionsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_service_catalog.types.list_service_actions_input.ListServiceActionsInput = {}
         if accept_language is not None:
             input_["accept_language"] = accept_language
         if page_size is not None:
@@ -4183,7 +4657,31 @@ class ServiceCatalogClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_service_actions(
+        self,
+        *,
+        config_overrides: Optional[ServiceCatalogClientConfig] = None,
+        accept_language: Optional[
+            "capo_service_catalog.types.accept_language.AcceptLanguage"
+        ] = None,
+        page_size: Optional["capo_service_catalog.types.page_size.PageSize"] = None,
+        page_token: Optional["capo_service_catalog.types.page_token.PageToken"] = None,
+    ) -> "Iterator[capo_service_catalog.types.list_service_actions_output.ListServiceActionsOutput]":
+        _token = page_token
+        while True:
+            _response = self.list_service_actions(
+                config_overrides=config_overrides,
+                accept_language=accept_language,
+                page_size=page_size,
+                page_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_page_token",))
+            if not _token:
+                break
 
     def list_service_actions_for_provisioning_artifact(
         self,
@@ -4227,9 +4725,10 @@ class ServiceCatalogClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_service_catalog.types.list_service_actions_for_provisioning_artifact_input.ListServiceActionsForProvisioningArtifactInput = {}  # type: ignore[typeddict-item]
-        input_["product_id"] = product_id
-        input_["provisioning_artifact_id"] = provisioning_artifact_id
+        input_: capo_service_catalog.types.list_service_actions_for_provisioning_artifact_input.ListServiceActionsForProvisioningArtifactInput = {
+            "product_id": product_id,
+            "provisioning_artifact_id": provisioning_artifact_id,
+        }
         if page_size is not None:
             input_["page_size"] = page_size
         if page_token is not None:
@@ -4242,7 +4741,35 @@ class ServiceCatalogClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_service_actions_for_provisioning_artifact(
+        self,
+        product_id: "capo_service_catalog.types.id.Id",
+        provisioning_artifact_id: "capo_service_catalog.types.id.Id",
+        *,
+        config_overrides: Optional[ServiceCatalogClientConfig] = None,
+        page_size: Optional["capo_service_catalog.types.page_size.PageSize"] = None,
+        page_token: Optional["capo_service_catalog.types.page_token.PageToken"] = None,
+        accept_language: Optional[
+            "capo_service_catalog.types.accept_language.AcceptLanguage"
+        ] = None,
+    ) -> "Iterator[capo_service_catalog.types.list_service_actions_for_provisioning_artifact_output.ListServiceActionsForProvisioningArtifactOutput]":
+        _token = page_token
+        while True:
+            _response = self.list_service_actions_for_provisioning_artifact(
+                product_id,
+                provisioning_artifact_id,
+                config_overrides=config_overrides,
+                page_size=page_size,
+                page_token=_token,
+                accept_language=accept_language,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_page_token",))
+            if not _token:
+                break
 
     def list_stack_instances_for_provisioned_product(
         self,
@@ -4284,10 +4811,11 @@ class ServiceCatalogClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_service_catalog.types.list_stack_instances_for_provisioned_product_input.ListStackInstancesForProvisionedProductInput = {}  # type: ignore[typeddict-item]
+        input_: capo_service_catalog.types.list_stack_instances_for_provisioned_product_input.ListStackInstancesForProvisionedProductInput = {
+            "provisioned_product_id": provisioned_product_id
+        }
         if accept_language is not None:
             input_["accept_language"] = accept_language
-        input_["provisioned_product_id"] = provisioned_product_id
         if page_token is not None:
             input_["page_token"] = page_token
         if page_size is not None:
@@ -4298,6 +4826,7 @@ class ServiceCatalogClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_tag_options(
@@ -4338,7 +4867,7 @@ class ServiceCatalogClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_service_catalog.types.list_tag_options_input.ListTagOptionsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_service_catalog.types.list_tag_options_input.ListTagOptionsInput = {}
         if filters is not None:
             input_["filters"] = filters
         if page_size is not None:
@@ -4351,7 +4880,31 @@ class ServiceCatalogClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_tag_options(
+        self,
+        *,
+        config_overrides: Optional[ServiceCatalogClientConfig] = None,
+        filters: Optional[
+            "capo_service_catalog.types.list_tag_options_filters.ListTagOptionsFilters"
+        ] = None,
+        page_size: Optional["capo_service_catalog.types.page_size.PageSize"] = None,
+        page_token: Optional["capo_service_catalog.types.page_token.PageToken"] = None,
+    ) -> "Iterator[capo_service_catalog.types.list_tag_options_output.ListTagOptionsOutput]":
+        _token = page_token
+        while True:
+            _response = self.list_tag_options(
+                config_overrides=config_overrides,
+                filters=filters,
+                page_size=page_size,
+                page_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("page_token",))
+            if not _token:
+                break
 
     def notify_provision_product_engine_workflow_result(
         self,
@@ -4403,23 +4956,25 @@ class ServiceCatalogClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_service_catalog.types.notify_provision_product_engine_workflow_result_input.NotifyProvisionProductEngineWorkflowResultInput = {}  # type: ignore[typeddict-item]
-        input_["workflow_token"] = workflow_token
-        input_["record_id"] = record_id
-        input_["status"] = status
+        input_: capo_service_catalog.types.notify_provision_product_engine_workflow_result_input.NotifyProvisionProductEngineWorkflowResultInput = {
+            "workflow_token": workflow_token,
+            "record_id": record_id,
+            "status": status,
+            "idempotency_token": idempotency_token,
+        }
         if failure_reason is not None:
             input_["failure_reason"] = failure_reason
         if resource_identifier is not None:
             input_["resource_identifier"] = resource_identifier
         if outputs is not None:
             input_["outputs"] = outputs
-        input_["idempotency_token"] = idempotency_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def notify_terminate_provisioned_product_engine_workflow_result(
@@ -4464,19 +5019,21 @@ class ServiceCatalogClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_service_catalog.types.notify_terminate_provisioned_product_engine_workflow_result_input.NotifyTerminateProvisionedProductEngineWorkflowResultInput = {}  # type: ignore[typeddict-item]
-        input_["workflow_token"] = workflow_token
-        input_["record_id"] = record_id
-        input_["status"] = status
+        input_: capo_service_catalog.types.notify_terminate_provisioned_product_engine_workflow_result_input.NotifyTerminateProvisionedProductEngineWorkflowResultInput = {
+            "workflow_token": workflow_token,
+            "record_id": record_id,
+            "status": status,
+            "idempotency_token": idempotency_token,
+        }
         if failure_reason is not None:
             input_["failure_reason"] = failure_reason
-        input_["idempotency_token"] = idempotency_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def notify_update_provisioned_product_engine_workflow_result(
@@ -4525,21 +5082,23 @@ class ServiceCatalogClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_service_catalog.types.notify_update_provisioned_product_engine_workflow_result_input.NotifyUpdateProvisionedProductEngineWorkflowResultInput = {}  # type: ignore[typeddict-item]
-        input_["workflow_token"] = workflow_token
-        input_["record_id"] = record_id
-        input_["status"] = status
+        input_: capo_service_catalog.types.notify_update_provisioned_product_engine_workflow_result_input.NotifyUpdateProvisionedProductEngineWorkflowResultInput = {
+            "workflow_token": workflow_token,
+            "record_id": record_id,
+            "status": status,
+            "idempotency_token": idempotency_token,
+        }
         if failure_reason is not None:
             input_["failure_reason"] = failure_reason
         if outputs is not None:
             input_["outputs"] = outputs
-        input_["idempotency_token"] = idempotency_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def provision_product(
@@ -4613,7 +5172,10 @@ class ServiceCatalogClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_service_catalog.types.provision_product_input.ProvisionProductInput = {}  # type: ignore[typeddict-item]
+        input_: capo_service_catalog.types.provision_product_input.ProvisionProductInput = {
+            "provisioned_product_name": provisioned_product_name,
+            "provision_token": provision_token,
+        }
         if accept_language is not None:
             input_["accept_language"] = accept_language
         if product_id is not None:
@@ -4628,7 +5190,6 @@ class ServiceCatalogClient:
             input_["path_id"] = path_id
         if path_name is not None:
             input_["path_name"] = path_name
-        input_["provisioned_product_name"] = provisioned_product_name
         if provisioning_parameters is not None:
             input_["provisioning_parameters"] = provisioning_parameters
         if provisioning_preferences is not None:
@@ -4637,13 +5198,13 @@ class ServiceCatalogClient:
             input_["tags"] = tags
         if notification_arns is not None:
             input_["notification_arns"] = notification_arns
-        input_["provision_token"] = provision_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def reject_portfolio_share(
@@ -4685,10 +5246,11 @@ class ServiceCatalogClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_service_catalog.types.reject_portfolio_share_input.RejectPortfolioShareInput = {}  # type: ignore[typeddict-item]
+        input_: capo_service_catalog.types.reject_portfolio_share_input.RejectPortfolioShareInput = {
+            "portfolio_id": portfolio_id
+        }
         if accept_language is not None:
             input_["accept_language"] = accept_language
-        input_["portfolio_id"] = portfolio_id
         if portfolio_share_type is not None:
             input_["portfolio_share_type"] = portfolio_share_type
 
@@ -4697,6 +5259,7 @@ class ServiceCatalogClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def scan_provisioned_products(
@@ -4740,7 +5303,7 @@ class ServiceCatalogClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_service_catalog.types.scan_provisioned_products_input.ScanProvisionedProductsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_service_catalog.types.scan_provisioned_products_input.ScanProvisionedProductsInput = {}
         if accept_language is not None:
             input_["accept_language"] = accept_language
         if access_level_filter is not None:
@@ -4755,6 +5318,7 @@ class ServiceCatalogClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def search_products(
@@ -4806,7 +5370,7 @@ class ServiceCatalogClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_service_catalog.types.search_products_input.SearchProductsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_service_catalog.types.search_products_input.SearchProductsInput = {}
         if accept_language is not None:
             input_["accept_language"] = accept_language
         if filters is not None:
@@ -4825,7 +5389,43 @@ class ServiceCatalogClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_search_products(
+        self,
+        *,
+        config_overrides: Optional[ServiceCatalogClientConfig] = None,
+        accept_language: Optional[
+            "capo_service_catalog.types.accept_language.AcceptLanguage"
+        ] = None,
+        filters: Optional[
+            "capo_service_catalog.types.product_view_filters.ProductViewFilters"
+        ] = None,
+        page_size: Optional[
+            "capo_service_catalog.types.page_size_max100.PageSizeMax100"
+        ] = None,
+        sort_by: Optional[
+            "capo_service_catalog.types.product_view_sort_by.ProductViewSortBy"
+        ] = None,
+        sort_order: Optional["capo_service_catalog.types.sort_order.SortOrder"] = None,
+        page_token: Optional["capo_service_catalog.types.page_token.PageToken"] = None,
+    ) -> "Iterator[capo_service_catalog.types.search_products_output.SearchProductsOutput]":
+        _token = page_token
+        while True:
+            _response = self.search_products(
+                config_overrides=config_overrides,
+                accept_language=accept_language,
+                filters=filters,
+                page_size=page_size,
+                sort_by=sort_by,
+                sort_order=sort_order,
+                page_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_page_token",))
+            if not _token:
+                break
 
     def search_products_as_admin(
         self,
@@ -4881,7 +5481,7 @@ class ServiceCatalogClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_service_catalog.types.search_products_as_admin_input.SearchProductsAsAdminInput = {}  # type: ignore[typeddict-item]
+        input_: capo_service_catalog.types.search_products_as_admin_input.SearchProductsAsAdminInput = {}
         if accept_language is not None:
             input_["accept_language"] = accept_language
         if portfolio_id is not None:
@@ -4904,7 +5504,47 @@ class ServiceCatalogClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_search_products_as_admin(
+        self,
+        *,
+        config_overrides: Optional[ServiceCatalogClientConfig] = None,
+        accept_language: Optional[
+            "capo_service_catalog.types.accept_language.AcceptLanguage"
+        ] = None,
+        portfolio_id: Optional["capo_service_catalog.types.id.Id"] = None,
+        filters: Optional[
+            "capo_service_catalog.types.product_view_filters.ProductViewFilters"
+        ] = None,
+        sort_by: Optional[
+            "capo_service_catalog.types.product_view_sort_by.ProductViewSortBy"
+        ] = None,
+        sort_order: Optional["capo_service_catalog.types.sort_order.SortOrder"] = None,
+        page_token: Optional["capo_service_catalog.types.page_token.PageToken"] = None,
+        page_size: Optional["capo_service_catalog.types.page_size.PageSize"] = None,
+        product_source: Optional[
+            "capo_service_catalog.types.product_source.ProductSource"
+        ] = None,
+    ) -> "Iterator[capo_service_catalog.types.search_products_as_admin_output.SearchProductsAsAdminOutput]":
+        _token = page_token
+        while True:
+            _response = self.search_products_as_admin(
+                config_overrides=config_overrides,
+                accept_language=accept_language,
+                portfolio_id=portfolio_id,
+                filters=filters,
+                sort_by=sort_by,
+                sort_order=sort_order,
+                page_token=_token,
+                page_size=page_size,
+                product_source=product_source,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_page_token",))
+            if not _token:
+                break
 
     def search_provisioned_products(
         self,
@@ -4957,7 +5597,7 @@ class ServiceCatalogClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_service_catalog.types.search_provisioned_products_input.SearchProvisionedProductsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_service_catalog.types.search_provisioned_products_input.SearchProvisionedProductsInput = {}
         if accept_language is not None:
             input_["accept_language"] = accept_language
         if access_level_filter is not None:
@@ -4978,7 +5618,45 @@ class ServiceCatalogClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_search_provisioned_products(
+        self,
+        *,
+        config_overrides: Optional[ServiceCatalogClientConfig] = None,
+        accept_language: Optional[
+            "capo_service_catalog.types.accept_language.AcceptLanguage"
+        ] = None,
+        access_level_filter: Optional[
+            "capo_service_catalog.types.access_level_filter.AccessLevelFilter"
+        ] = None,
+        filters: Optional[
+            "capo_service_catalog.types.provisioned_product_filters.ProvisionedProductFilters"
+        ] = None,
+        sort_by: Optional["capo_service_catalog.types.sort_field.SortField"] = None,
+        sort_order: Optional["capo_service_catalog.types.sort_order.SortOrder"] = None,
+        page_size: Optional[
+            "capo_service_catalog.types.search_provisioned_products_page_size.SearchProvisionedProductsPageSize"
+        ] = None,
+        page_token: Optional["capo_service_catalog.types.page_token.PageToken"] = None,
+    ) -> "Iterator[capo_service_catalog.types.search_provisioned_products_output.SearchProvisionedProductsOutput]":
+        _token = page_token
+        while True:
+            _response = self.search_provisioned_products(
+                config_overrides=config_overrides,
+                accept_language=accept_language,
+                access_level_filter=access_level_filter,
+                filters=filters,
+                sort_by=sort_by,
+                sort_order=sort_order,
+                page_size=page_size,
+                page_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_page_token",))
+            if not _token:
+                break
 
     def terminate_provisioned_product(
         self,
@@ -5029,12 +5707,13 @@ class ServiceCatalogClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_service_catalog.types.terminate_provisioned_product_input.TerminateProvisionedProductInput = {}  # type: ignore[typeddict-item]
+        input_: capo_service_catalog.types.terminate_provisioned_product_input.TerminateProvisionedProductInput = {
+            "terminate_token": terminate_token
+        }
         if provisioned_product_name is not None:
             input_["provisioned_product_name"] = provisioned_product_name
         if provisioned_product_id is not None:
             input_["provisioned_product_id"] = provisioned_product_id
-        input_["terminate_token"] = terminate_token
         if ignore_errors is not None:
             input_["ignore_errors"] = ignore_errors
         if accept_language is not None:
@@ -5047,6 +5726,7 @@ class ServiceCatalogClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_constraint(
@@ -5093,10 +5773,11 @@ class ServiceCatalogClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_service_catalog.types.update_constraint_input.UpdateConstraintInput = {}  # type: ignore[typeddict-item]
+        input_: capo_service_catalog.types.update_constraint_input.UpdateConstraintInput = {
+            "id": id
+        }
         if accept_language is not None:
             input_["accept_language"] = accept_language
-        input_["id"] = id
         if description is not None:
             input_["description"] = description
         if parameters is not None:
@@ -5107,6 +5788,7 @@ class ServiceCatalogClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_portfolio(
@@ -5163,10 +5845,11 @@ class ServiceCatalogClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_service_catalog.types.update_portfolio_input.UpdatePortfolioInput = {}  # type: ignore[typeddict-item]
+        input_: capo_service_catalog.types.update_portfolio_input.UpdatePortfolioInput = {
+            "id": id
+        }
         if accept_language is not None:
             input_["accept_language"] = accept_language
-        input_["id"] = id
         if display_name is not None:
             input_["display_name"] = display_name
         if description is not None:
@@ -5183,6 +5866,7 @@ class ServiceCatalogClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_portfolio_share(
@@ -5236,10 +5920,11 @@ class ServiceCatalogClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_service_catalog.types.update_portfolio_share_input.UpdatePortfolioShareInput = {}  # type: ignore[typeddict-item]
+        input_: capo_service_catalog.types.update_portfolio_share_input.UpdatePortfolioShareInput = {
+            "portfolio_id": portfolio_id
+        }
         if accept_language is not None:
             input_["accept_language"] = accept_language
-        input_["portfolio_id"] = portfolio_id
         if account_id is not None:
             input_["account_id"] = account_id
         if organization_node is not None:
@@ -5254,6 +5939,7 @@ class ServiceCatalogClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_product(
@@ -5329,10 +6015,11 @@ class ServiceCatalogClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_service_catalog.types.update_product_input.UpdateProductInput = {}  # type: ignore[typeddict-item]
+        input_: capo_service_catalog.types.update_product_input.UpdateProductInput = {
+            "id": id
+        }
         if accept_language is not None:
             input_["accept_language"] = accept_language
-        input_["id"] = id
         if name is not None:
             input_["name"] = name
         if owner is not None:
@@ -5359,6 +6046,7 @@ class ServiceCatalogClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_provisioned_product(
@@ -5431,7 +6119,9 @@ class ServiceCatalogClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_service_catalog.types.update_provisioned_product_input.UpdateProvisionedProductInput = {}  # type: ignore[typeddict-item]
+        input_: capo_service_catalog.types.update_provisioned_product_input.UpdateProvisionedProductInput = {
+            "update_token": update_token
+        }
         if accept_language is not None:
             input_["accept_language"] = accept_language
         if provisioned_product_name is not None:
@@ -5456,13 +6146,13 @@ class ServiceCatalogClient:
             input_["provisioning_preferences"] = provisioning_preferences
         if tags is not None:
             input_["tags"] = tags
-        input_["update_token"] = update_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_provisioned_product_properties(
@@ -5506,18 +6196,20 @@ class ServiceCatalogClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_service_catalog.types.update_provisioned_product_properties_input.UpdateProvisionedProductPropertiesInput = {}  # type: ignore[typeddict-item]
+        input_: capo_service_catalog.types.update_provisioned_product_properties_input.UpdateProvisionedProductPropertiesInput = {
+            "provisioned_product_id": provisioned_product_id,
+            "provisioned_product_properties": provisioned_product_properties,
+            "idempotency_token": idempotency_token,
+        }
         if accept_language is not None:
             input_["accept_language"] = accept_language
-        input_["provisioned_product_id"] = provisioned_product_id
-        input_["provisioned_product_properties"] = provisioned_product_properties
-        input_["idempotency_token"] = idempotency_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_provisioning_artifact(
@@ -5574,11 +6266,12 @@ class ServiceCatalogClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_service_catalog.types.update_provisioning_artifact_input.UpdateProvisioningArtifactInput = {}  # type: ignore[typeddict-item]
+        input_: capo_service_catalog.types.update_provisioning_artifact_input.UpdateProvisioningArtifactInput = {
+            "product_id": product_id,
+            "provisioning_artifact_id": provisioning_artifact_id,
+        }
         if accept_language is not None:
             input_["accept_language"] = accept_language
-        input_["product_id"] = product_id
-        input_["provisioning_artifact_id"] = provisioning_artifact_id
         if name is not None:
             input_["name"] = name
         if description is not None:
@@ -5593,6 +6286,7 @@ class ServiceCatalogClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_service_action(
@@ -5643,8 +6337,9 @@ class ServiceCatalogClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_service_catalog.types.update_service_action_input.UpdateServiceActionInput = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_service_catalog.types.update_service_action_input.UpdateServiceActionInput = {
+            "id": id
+        }
         if name is not None:
             input_["name"] = name
         if definition is not None:
@@ -5659,6 +6354,7 @@ class ServiceCatalogClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_tag_option(
@@ -5703,8 +6399,9 @@ class ServiceCatalogClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_service_catalog.types.update_tag_option_input.UpdateTagOptionInput = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_service_catalog.types.update_tag_option_input.UpdateTagOptionInput = {
+            "id": id
+        }
         if value is not None:
             input_["value"] = value
         if active is not None:
@@ -5715,6 +6412,7 @@ class ServiceCatalogClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def __enter__(self) -> Self:

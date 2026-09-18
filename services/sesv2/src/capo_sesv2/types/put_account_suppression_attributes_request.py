@@ -44,7 +44,7 @@ def serialize_json(value: PutAccountSuppressionAttributesRequest) -> dict:
 
 def deserialize_json(data: dict) -> PutAccountSuppressionAttributesRequest:
     out: PutAccountSuppressionAttributesRequest = {}  # type: ignore[typeddict-item]
-    if "SuppressedReasons" in data:
+    if data.get("SuppressedReasons") is not None:
         import capo_sesv2.types.suppression_list_reasons
 
         out["suppressed_reasons"] = (
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> PutAccountSuppressionAttributesRequest:
                 data["SuppressedReasons"]
             )
         )
-    if "ValidationAttributes" in data:
+    if data.get("ValidationAttributes") is not None:
         import capo_sesv2.types.suppression_validation_attributes
 
         out["validation_attributes"] = (

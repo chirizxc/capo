@@ -49,13 +49,13 @@ def serialize_json(value: AutomatedSnapshotPauseRequestOptions) -> dict:
 
 def deserialize_json(data: dict) -> AutomatedSnapshotPauseRequestOptions:
     out: AutomatedSnapshotPauseRequestOptions = {}  # type: ignore[typeddict-item]
-    if "Enabled" in data:
+    if data.get("Enabled") is not None:
         out["enabled"] = data["Enabled"]
     else:
         raise DeserializationError(
             "AutomatedSnapshotPauseRequestOptions.enabled required"
         )
-    if "StartTime" in data:
+    if data.get("StartTime") is not None:
         import capo_elasticsearch_service.types.update_timestamp
 
         out["start_time"] = (
@@ -63,7 +63,7 @@ def deserialize_json(data: dict) -> AutomatedSnapshotPauseRequestOptions:
                 data["StartTime"]
             )
         )
-    if "EndTime" in data:
+    if data.get("EndTime") is not None:
         import capo_elasticsearch_service.types.update_timestamp
 
         out["end_time"] = (

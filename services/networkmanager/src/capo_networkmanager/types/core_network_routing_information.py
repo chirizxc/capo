@@ -73,9 +73,9 @@ def serialize_json(value: CoreNetworkRoutingInformation) -> dict:
 
 def deserialize_json(data: dict) -> CoreNetworkRoutingInformation:
     out: CoreNetworkRoutingInformation = {}  # type: ignore[typeddict-item]
-    if "Prefix" in data:
+    if data.get("Prefix") is not None:
         out["prefix"] = data["Prefix"]
-    if "NextHop" in data:
+    if data.get("NextHop") is not None:
         import capo_networkmanager.types.routing_information_next_hop
 
         out["next_hop"] = (
@@ -83,11 +83,11 @@ def deserialize_json(data: dict) -> CoreNetworkRoutingInformation:
                 data["NextHop"]
             )
         )
-    if "LocalPreference" in data:
+    if data.get("LocalPreference") is not None:
         out["local_preference"] = data["LocalPreference"]
-    if "Med" in data:
+    if data.get("Med") is not None:
         out["med"] = data["Med"]
-    if "AsPath" in data:
+    if data.get("AsPath") is not None:
         import capo_networkmanager.types.constrained_string_list
 
         out["as_path"] = (
@@ -95,7 +95,7 @@ def deserialize_json(data: dict) -> CoreNetworkRoutingInformation:
                 data["AsPath"]
             )
         )
-    if "Communities" in data:
+    if data.get("Communities") is not None:
         import capo_networkmanager.types.constrained_string_list
 
         out["communities"] = (

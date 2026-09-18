@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: DirectConnectServerException_) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DirectConnectServerException_:
     out: DirectConnectServerException_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     return out
 
@@ -34,15 +34,18 @@ class DirectConnectServerException(ServiceError):
 
     code: str | None = "DirectConnectServerException"
 
-    def __init__(self, data: DirectConnectServerException_):
+    def __init__(self, data: DirectConnectServerException_, message: str | None = None):
         super().__init__(
             "server",
             is_throttling_error=False,
             is_retryable=False,
             code="DirectConnectServerException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "DirectConnectServerException":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "DirectConnectServerException":
+        return cls(deserialize_aws_json_1_1(data), message)

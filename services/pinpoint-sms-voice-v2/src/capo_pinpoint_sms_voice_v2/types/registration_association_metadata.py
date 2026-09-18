@@ -43,26 +43,26 @@ def serialize_aws_json_1_0(value: RegistrationAssociationMetadata) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> RegistrationAssociationMetadata:
     out: RegistrationAssociationMetadata = {}  # type: ignore[typeddict-item]
-    if "ResourceArn" in data:
+    if data.get("ResourceArn") is not None:
         out["resource_arn"] = data["ResourceArn"]
     else:
         raise DeserializationError(
             "RegistrationAssociationMetadata.resource_arn required"
         )
-    if "ResourceId" in data:
+    if data.get("ResourceId") is not None:
         out["resource_id"] = data["ResourceId"]
     else:
         raise DeserializationError(
             "RegistrationAssociationMetadata.resource_id required"
         )
-    if "ResourceType" in data:
+    if data.get("ResourceType") is not None:
         out["resource_type"] = data["ResourceType"]
     else:
         raise DeserializationError(
             "RegistrationAssociationMetadata.resource_type required"
         )
-    if "IsoCountryCode" in data:
+    if data.get("IsoCountryCode") is not None:
         out["iso_country_code"] = data["IsoCountryCode"]
-    if "PhoneNumber" in data:
+    if data.get("PhoneNumber") is not None:
         out["phone_number"] = data["PhoneNumber"]
     return out

@@ -23,5 +23,7 @@ def serialize_json(input_to_serialize: BatchJobParametersMap) -> dict:
 def deserialize_json(data: dict) -> BatchJobParametersMap:
     out: BatchJobParametersMap = {}
     for key, value in data.items():
+        if value is None:
+            continue
         out[key] = value
     return out

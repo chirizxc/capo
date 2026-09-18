@@ -86,7 +86,7 @@ def serialize_aws_json_1_0(value: EinvoiceDeliveryPreference) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> EinvoiceDeliveryPreference:
     out: EinvoiceDeliveryPreference = {}  # type: ignore[typeddict-item]
-    if "EinvoiceDeliveryDocumentTypes" in data:
+    if data.get("EinvoiceDeliveryDocumentTypes") is not None:
         import capo_invoicing.types.einvoice_delivery_document_types
 
         out["einvoice_delivery_document_types"] = (
@@ -98,7 +98,7 @@ def deserialize_aws_json_1_0(data: dict) -> EinvoiceDeliveryPreference:
         raise DeserializationError(
             "EinvoiceDeliveryPreference.einvoice_delivery_document_types required"
         )
-    if "EinvoiceDeliveryAttachmentTypes" in data:
+    if data.get("EinvoiceDeliveryAttachmentTypes") is not None:
         import capo_invoicing.types.einvoice_delivery_attachment_types
 
         out["einvoice_delivery_attachment_types"] = (
@@ -106,7 +106,7 @@ def deserialize_aws_json_1_0(data: dict) -> EinvoiceDeliveryPreference:
                 data["EinvoiceDeliveryAttachmentTypes"]
             )
         )
-    if "Protocol" in data:
+    if data.get("Protocol") is not None:
         import capo_invoicing.types.protocol
 
         out["protocol"] = capo_invoicing.types.protocol.deserialize_aws_json_1_0(
@@ -114,7 +114,7 @@ def deserialize_aws_json_1_0(data: dict) -> EinvoiceDeliveryPreference:
         )
     else:
         raise DeserializationError("EinvoiceDeliveryPreference.protocol required")
-    if "PurchaseOrderDataSources" in data:
+    if data.get("PurchaseOrderDataSources") is not None:
         import capo_invoicing.types.purchase_order_data_sources
 
         out["purchase_order_data_sources"] = (
@@ -126,7 +126,7 @@ def deserialize_aws_json_1_0(data: dict) -> EinvoiceDeliveryPreference:
         raise DeserializationError(
             "EinvoiceDeliveryPreference.purchase_order_data_sources required"
         )
-    if "ConnectionTestingMethod" in data:
+    if data.get("ConnectionTestingMethod") is not None:
         import capo_invoicing.types.connection_testing_method
 
         out["connection_testing_method"] = (
@@ -138,7 +138,7 @@ def deserialize_aws_json_1_0(data: dict) -> EinvoiceDeliveryPreference:
         raise DeserializationError(
             "EinvoiceDeliveryPreference.connection_testing_method required"
         )
-    if "EinvoiceDeliveryActivationDate" in data:
+    if data.get("EinvoiceDeliveryActivationDate") is not None:
         import capo_invoicing.types._prelude.timestamp
 
         out["einvoice_delivery_activation_date"] = (

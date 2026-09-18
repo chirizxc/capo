@@ -147,25 +147,25 @@ def serialize_aws_json_1_1(value: UpdateMobileDeviceAccessRuleRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateMobileDeviceAccessRuleRequest:
     out: UpdateMobileDeviceAccessRuleRequest = {}  # type: ignore[typeddict-item]
-    if "OrganizationId" in data:
+    if data.get("OrganizationId") is not None:
         out["organization_id"] = data["OrganizationId"]
     else:
         raise DeserializationError(
             "UpdateMobileDeviceAccessRuleRequest.organization_id required"
         )
-    if "MobileDeviceAccessRuleId" in data:
+    if data.get("MobileDeviceAccessRuleId") is not None:
         out["mobile_device_access_rule_id"] = data["MobileDeviceAccessRuleId"]
     else:
         raise DeserializationError(
             "UpdateMobileDeviceAccessRuleRequest.mobile_device_access_rule_id required"
         )
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("UpdateMobileDeviceAccessRuleRequest.name required")
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Effect" in data:
+    if data.get("Effect") is not None:
         import capo_workmail.types.mobile_device_access_rule_effect
 
         out["effect"] = (
@@ -177,7 +177,7 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateMobileDeviceAccessRuleRequest:
         raise DeserializationError(
             "UpdateMobileDeviceAccessRuleRequest.effect required"
         )
-    if "DeviceTypes" in data:
+    if data.get("DeviceTypes") is not None:
         import capo_workmail.types.device_type_list
 
         out["device_types"] = (
@@ -185,7 +185,7 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateMobileDeviceAccessRuleRequest:
                 data["DeviceTypes"]
             )
         )
-    if "NotDeviceTypes" in data:
+    if data.get("NotDeviceTypes") is not None:
         import capo_workmail.types.device_type_list
 
         out["not_device_types"] = (
@@ -193,7 +193,7 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateMobileDeviceAccessRuleRequest:
                 data["NotDeviceTypes"]
             )
         )
-    if "DeviceModels" in data:
+    if data.get("DeviceModels") is not None:
         import capo_workmail.types.device_model_list
 
         out["device_models"] = (
@@ -201,7 +201,7 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateMobileDeviceAccessRuleRequest:
                 data["DeviceModels"]
             )
         )
-    if "NotDeviceModels" in data:
+    if data.get("NotDeviceModels") is not None:
         import capo_workmail.types.device_model_list
 
         out["not_device_models"] = (
@@ -209,7 +209,7 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateMobileDeviceAccessRuleRequest:
                 data["NotDeviceModels"]
             )
         )
-    if "DeviceOperatingSystems" in data:
+    if data.get("DeviceOperatingSystems") is not None:
         import capo_workmail.types.device_operating_system_list
 
         out["device_operating_systems"] = (
@@ -217,7 +217,7 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateMobileDeviceAccessRuleRequest:
                 data["DeviceOperatingSystems"]
             )
         )
-    if "NotDeviceOperatingSystems" in data:
+    if data.get("NotDeviceOperatingSystems") is not None:
         import capo_workmail.types.device_operating_system_list
 
         out["not_device_operating_systems"] = (
@@ -225,7 +225,7 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateMobileDeviceAccessRuleRequest:
                 data["NotDeviceOperatingSystems"]
             )
         )
-    if "DeviceUserAgents" in data:
+    if data.get("DeviceUserAgents") is not None:
         import capo_workmail.types.device_user_agent_list
 
         out["device_user_agents"] = (
@@ -233,7 +233,7 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateMobileDeviceAccessRuleRequest:
                 data["DeviceUserAgents"]
             )
         )
-    if "NotDeviceUserAgents" in data:
+    if data.get("NotDeviceUserAgents") is not None:
         import capo_workmail.types.device_user_agent_list
 
         out["not_device_user_agents"] = (

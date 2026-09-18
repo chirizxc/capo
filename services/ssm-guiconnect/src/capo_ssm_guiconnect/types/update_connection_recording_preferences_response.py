@@ -36,9 +36,9 @@ def serialize_json(value: UpdateConnectionRecordingPreferencesResponse) -> dict:
 
 def deserialize_json(data: dict) -> UpdateConnectionRecordingPreferencesResponse:
     out: UpdateConnectionRecordingPreferencesResponse = {}  # type: ignore[typeddict-item]
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
-    if "ConnectionRecordingPreferences" in data:
+    if data.get("ConnectionRecordingPreferences") is not None:
         import capo_ssm_guiconnect.types.connection_recording_preferences
 
         out["connection_recording_preferences"] = (

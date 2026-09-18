@@ -52,23 +52,23 @@ def serialize_aws_json_1_1(value: EC2InstanceDetails) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> EC2InstanceDetails:
     out: EC2InstanceDetails = {}  # type: ignore[typeddict-item]
-    if "Family" in data:
+    if data.get("Family") is not None:
         out["family"] = data["Family"]
-    if "InstanceType" in data:
+    if data.get("InstanceType") is not None:
         out["instance_type"] = data["InstanceType"]
-    if "Region" in data:
+    if data.get("Region") is not None:
         out["region"] = data["Region"]
-    if "AvailabilityZone" in data:
+    if data.get("AvailabilityZone") is not None:
         out["availability_zone"] = data["AvailabilityZone"]
-    if "Platform" in data:
+    if data.get("Platform") is not None:
         out["platform"] = data["Platform"]
-    if "Tenancy" in data:
+    if data.get("Tenancy") is not None:
         out["tenancy"] = data["Tenancy"]
-    if "CurrentGeneration" in data:
+    if data.get("CurrentGeneration") is not None:
         out["current_generation"] = data["CurrentGeneration"]
     else:
         out["current_generation"] = False
-    if "SizeFlexEligible" in data:
+    if data.get("SizeFlexEligible") is not None:
         out["size_flex_eligible"] = data["SizeFlexEligible"]
     else:
         out["size_flex_eligible"] = False

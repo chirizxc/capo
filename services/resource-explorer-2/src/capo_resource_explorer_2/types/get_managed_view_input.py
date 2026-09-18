@@ -19,7 +19,7 @@ def serialize_json(value: GetManagedViewInput) -> dict:
 
 def deserialize_json(data: dict) -> GetManagedViewInput:
     out: GetManagedViewInput = {}  # type: ignore[typeddict-item]
-    if "ManagedViewArn" in data:
+    if data.get("ManagedViewArn") is not None:
         out["managed_view_arn"] = data["ManagedViewArn"]
     else:
         raise DeserializationError("GetManagedViewInput.managed_view_arn required")

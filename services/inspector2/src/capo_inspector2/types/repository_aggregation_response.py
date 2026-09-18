@@ -42,18 +42,18 @@ def serialize_json(value: RepositoryAggregationResponse) -> dict:
 
 def deserialize_json(data: dict) -> RepositoryAggregationResponse:
     out: RepositoryAggregationResponse = {}  # type: ignore[typeddict-item]
-    if "repository" in data:
+    if data.get("repository") is not None:
         out["repository"] = data["repository"]
     else:
         raise DeserializationError("RepositoryAggregationResponse.repository required")
-    if "accountId" in data:
+    if data.get("accountId") is not None:
         out["account_id"] = data["accountId"]
-    if "severityCounts" in data:
+    if data.get("severityCounts") is not None:
         import capo_inspector2.types.severity_counts
 
         out["severity_counts"] = capo_inspector2.types.severity_counts.deserialize_json(
             data["severityCounts"]
         )
-    if "affectedImages" in data:
+    if data.get("affectedImages") is not None:
         out["affected_images"] = data["affectedImages"]
     return out

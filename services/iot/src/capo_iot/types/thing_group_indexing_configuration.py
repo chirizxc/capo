@@ -49,7 +49,7 @@ def serialize_json(value: ThingGroupIndexingConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> ThingGroupIndexingConfiguration:
     out: ThingGroupIndexingConfiguration = {}  # type: ignore[typeddict-item]
-    if "thingGroupIndexingMode" in data:
+    if data.get("thingGroupIndexingMode") is not None:
         import capo_iot.types.thing_group_indexing_mode
 
         out["thing_group_indexing_mode"] = (
@@ -61,13 +61,13 @@ def deserialize_json(data: dict) -> ThingGroupIndexingConfiguration:
         raise DeserializationError(
             "ThingGroupIndexingConfiguration.thing_group_indexing_mode required"
         )
-    if "managedFields" in data:
+    if data.get("managedFields") is not None:
         import capo_iot.types.fields
 
         out["managed_fields"] = capo_iot.types.fields.deserialize_json(
             data["managedFields"]
         )
-    if "customFields" in data:
+    if data.get("customFields") is not None:
         import capo_iot.types.fields
 
         out["custom_fields"] = capo_iot.types.fields.deserialize_json(

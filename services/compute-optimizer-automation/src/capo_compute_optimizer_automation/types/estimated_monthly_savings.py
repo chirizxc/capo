@@ -25,8 +25,24 @@ class EstimatedMonthlySavings(TypedDict, closed=True):
 def serialize_aws_json_1_0(value: EstimatedMonthlySavings) -> dict:
     out: dict = {}
     out["currency"] = value["currency"]
-    out["beforeDiscountSavings"] = value["before_discount_savings"]
-    out["afterDiscountSavings"] = value["after_discount_savings"]
+    out["beforeDiscountSavings"] = (
+        "NaN"
+        if value["before_discount_savings"] != value["before_discount_savings"]
+        else "Infinity"
+        if value["before_discount_savings"] == float("inf")
+        else "-Infinity"
+        if value["before_discount_savings"] == float("-inf")
+        else value["before_discount_savings"]
+    )
+    out["afterDiscountSavings"] = (
+        "NaN"
+        if value["after_discount_savings"] != value["after_discount_savings"]
+        else "Infinity"
+        if value["after_discount_savings"] == float("inf")
+        else "-Infinity"
+        if value["after_discount_savings"] == float("-inf")
+        else value["after_discount_savings"]
+    )
     import capo_compute_optimizer_automation.types.savings_estimation_mode
 
     out["savingsEstimationMode"] = (
@@ -39,23 +55,23 @@ def serialize_aws_json_1_0(value: EstimatedMonthlySavings) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> EstimatedMonthlySavings:
     out: EstimatedMonthlySavings = {}  # type: ignore[typeddict-item]
-    if "currency" in data:
+    if data.get("currency") is not None:
         out["currency"] = data["currency"]
     else:
         raise DeserializationError("EstimatedMonthlySavings.currency required")
-    if "beforeDiscountSavings" in data:
-        out["before_discount_savings"] = data["beforeDiscountSavings"]
+    if data.get("beforeDiscountSavings") is not None:
+        out["before_discount_savings"] = float(data["beforeDiscountSavings"])
     else:
         raise DeserializationError(
             "EstimatedMonthlySavings.before_discount_savings required"
         )
-    if "afterDiscountSavings" in data:
-        out["after_discount_savings"] = data["afterDiscountSavings"]
+    if data.get("afterDiscountSavings") is not None:
+        out["after_discount_savings"] = float(data["afterDiscountSavings"])
     else:
         raise DeserializationError(
             "EstimatedMonthlySavings.after_discount_savings required"
         )
-    if "savingsEstimationMode" in data:
+    if data.get("savingsEstimationMode") is not None:
         import capo_compute_optimizer_automation.types.savings_estimation_mode
 
         out["savings_estimation_mode"] = (

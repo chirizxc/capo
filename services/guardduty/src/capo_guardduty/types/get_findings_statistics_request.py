@@ -66,7 +66,7 @@ def serialize_json(value: GetFindingsStatisticsRequest) -> dict:
 
 def deserialize_json(data: dict) -> GetFindingsStatisticsRequest:
     out: GetFindingsStatisticsRequest = {}  # type: ignore[typeddict-item]
-    if "findingStatisticTypes" in data:
+    if data.get("findingStatisticTypes") is not None:
         import capo_guardduty.types.finding_statistic_types
 
         out["finding_statistic_types"] = (
@@ -74,7 +74,7 @@ def deserialize_json(data: dict) -> GetFindingsStatisticsRequest:
                 data["findingStatisticTypes"]
             )
         )
-    if "findingCriteria" in data:
+    if data.get("findingCriteria") is not None:
         import capo_guardduty.types.finding_criteria
 
         out["finding_criteria"] = (
@@ -82,18 +82,18 @@ def deserialize_json(data: dict) -> GetFindingsStatisticsRequest:
                 data["findingCriteria"]
             )
         )
-    if "groupBy" in data:
+    if data.get("groupBy") is not None:
         import capo_guardduty.types.group_by_type
 
         out["group_by"] = capo_guardduty.types.group_by_type.deserialize_json(
             data["groupBy"]
         )
-    if "orderBy" in data:
+    if data.get("orderBy") is not None:
         import capo_guardduty.types.order_by
 
         out["order_by"] = capo_guardduty.types.order_by.deserialize_json(
             data["orderBy"]
         )
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
     return out

@@ -25,6 +25,8 @@ def deserialize_json(data: list) -> SearchSpendingLimitsFilterList:
 
     out: SearchSpendingLimitsFilterList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_braket.types.search_spending_limits_filter.deserialize_json(item)
         )

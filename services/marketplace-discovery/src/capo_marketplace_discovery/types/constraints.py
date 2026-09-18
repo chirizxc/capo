@@ -39,7 +39,7 @@ def serialize_json(value: Constraints) -> dict:
 
 def deserialize_json(data: dict) -> Constraints:
     out: Constraints = {}  # type: ignore[typeddict-item]
-    if "multipleDimensionSelection" in data:
+    if data.get("multipleDimensionSelection") is not None:
         import capo_marketplace_discovery.types.rate_card_constraint_type
 
         out["multiple_dimension_selection"] = (
@@ -49,7 +49,7 @@ def deserialize_json(data: dict) -> Constraints:
         )
     else:
         raise DeserializationError("Constraints.multiple_dimension_selection required")
-    if "quantityConfiguration" in data:
+    if data.get("quantityConfiguration") is not None:
         import capo_marketplace_discovery.types.rate_card_constraint_type
 
         out["quantity_configuration"] = (

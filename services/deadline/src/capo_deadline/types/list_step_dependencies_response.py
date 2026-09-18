@@ -33,7 +33,7 @@ def serialize_json(value: ListStepDependenciesResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListStepDependenciesResponse:
     out: ListStepDependenciesResponse = {}  # type: ignore[typeddict-item]
-    if "dependencies" in data:
+    if data.get("dependencies") is not None:
         import capo_deadline.types.step_dependencies
 
         out["dependencies"] = capo_deadline.types.step_dependencies.deserialize_json(
@@ -41,6 +41,6 @@ def deserialize_json(data: dict) -> ListStepDependenciesResponse:
         )
     else:
         raise DeserializationError("ListStepDependenciesResponse.dependencies required")
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

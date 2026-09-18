@@ -19,6 +19,57 @@ async def main():
         print(response["status_code"])
 ```
 
+## Pagination
+
+Some operations in this SDK support pagination. If the operation supports pagination it will have an `iter_` prefixed method that returns an async iterator.
+
+```python
+from capo_lambda import AsyncLambdaClient
+
+
+async def main():
+    async with AsyncLambdaClient() as lambda_:
+        # Example: paginate over list_capacity_providers
+        async for item in lambda_.iter_list_capacity_providers():
+            print(item)
+```
+
+## Streaming Request
+
+Some operations accept a streaming request body. Pass an async iterator of `bytes` chunks, or the whole body as `bytes`, for the streaming parameter.
+
+```python
+from capo_lambda import AsyncLambdaClient
+
+
+async def main():
+    async with AsyncLambdaClient() as lambda_:
+        # Example: call invoke_async with a streaming request body
+        async def chunks():
+            yield b'Hello, World!'
+
+        response = await lambda_.invoke_async(invoke_args=chunks())
+        print(response)
+
+        # Or pass the whole body as bytes
+        response = await lambda_.invoke_async(invoke_args=b'Hello, World!')
+        print(response)
+```
+
+## Waiters
+
+Waiters poll an operation until a resource reaches a desired state. If the operation supports waiters it will have a `wait_until_` prefixed method.
+
+```python
+from capo_lambda import AsyncLambdaClient
+
+
+async def main():
+    async with AsyncLambdaClient() as lambda_:
+        # Example: wait for function_exists
+        await lambda_.wait_until_function_exists(max_wait_time=300)
+```
+
 ## Error Handling
 
 The SDK raises exceptions for errors returned by the API. Catch them to handle failures gracefully.

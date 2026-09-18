@@ -52,7 +52,7 @@ def serialize_json(value: NetworkConfig) -> dict:
 
 def deserialize_json(data: dict) -> NetworkConfig:
     out: NetworkConfig = {}  # type: ignore[typeddict-item]
-    if "networkAccessType" in data:
+    if data.get("networkAccessType") is not None:
         import capo_datazone.types.network_access_type
 
         out["network_access_type"] = (
@@ -62,15 +62,15 @@ def deserialize_json(data: dict) -> NetworkConfig:
         )
     else:
         raise DeserializationError("NetworkConfig.network_access_type required")
-    if "vpcId" in data:
+    if data.get("vpcId") is not None:
         out["vpc_id"] = data["vpcId"]
-    if "subnetIds" in data:
+    if data.get("subnetIds") is not None:
         import capo_datazone.types.subnet_ids
 
         out["subnet_ids"] = capo_datazone.types.subnet_ids.deserialize_json(
             data["subnetIds"]
         )
-    if "securityGroupIds" in data:
+    if data.get("securityGroupIds") is not None:
         import capo_datazone.types.security_group_ids
 
         out["security_group_ids"] = (

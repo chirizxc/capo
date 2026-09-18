@@ -28,7 +28,7 @@ def serialize_json(value: TagResourceInput) -> dict:
 
 def deserialize_json(data: dict) -> TagResourceInput:
     out: TagResourceInput = {}  # type: ignore[typeddict-item]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_ssm_quicksetup.types.tags_map
 
         out["tags"] = capo_ssm_quicksetup.types.tags_map.deserialize_json(data["Tags"])

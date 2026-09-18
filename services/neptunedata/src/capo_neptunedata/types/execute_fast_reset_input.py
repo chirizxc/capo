@@ -30,12 +30,12 @@ def serialize_json(value: ExecuteFastResetInput) -> dict:
 
 def deserialize_json(data: dict) -> ExecuteFastResetInput:
     out: ExecuteFastResetInput = {}  # type: ignore[typeddict-item]
-    if "action" in data:
+    if data.get("action") is not None:
         import capo_neptunedata.types.action
 
         out["action"] = capo_neptunedata.types.action.deserialize_json(data["action"])
     else:
         raise DeserializationError("ExecuteFastResetInput.action required")
-    if "token" in data:
+    if data.get("token") is not None:
         out["token"] = data["token"]
     return out

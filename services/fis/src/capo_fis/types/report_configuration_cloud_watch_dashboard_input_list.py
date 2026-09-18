@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> ReportConfigurationCloudWatchDashboardInputL
 
     out: ReportConfigurationCloudWatchDashboardInputList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_fis.types.report_configuration_cloud_watch_dashboard_input.deserialize_json(
                 item

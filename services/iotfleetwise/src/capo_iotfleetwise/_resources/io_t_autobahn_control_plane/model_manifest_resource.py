@@ -96,12 +96,13 @@ class ModelManifestResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_iotfleetwise.types.create_model_manifest_request.CreateModelManifestRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_iotfleetwise.types.create_model_manifest_request.CreateModelManifestRequest = {
+            "name": name,
+            "nodes": nodes,
+            "signal_catalog_arn": signal_catalog_arn,
+        }
         if description is not None:
             input_["description"] = description
-        input_["nodes"] = nodes
-        input_["signal_catalog_arn"] = signal_catalog_arn
         if tags is not None:
             input_["tags"] = tags
 
@@ -110,6 +111,7 @@ class ModelManifestResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -147,14 +149,16 @@ class ModelManifestResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_iotfleetwise.types.get_model_manifest_request.GetModelManifestRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_iotfleetwise.types.get_model_manifest_request.GetModelManifestRequest = {
+            "name": name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update(
@@ -206,8 +210,9 @@ class ModelManifestResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_iotfleetwise.types.update_model_manifest_request.UpdateModelManifestRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_iotfleetwise.types.update_model_manifest_request.UpdateModelManifestRequest = {
+            "name": name
+        }
         if description is not None:
             input_["description"] = description
         if nodes_to_add is not None:
@@ -222,6 +227,7 @@ class ModelManifestResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -259,14 +265,16 @@ class ModelManifestResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_iotfleetwise.types.delete_model_manifest_request.DeleteModelManifestRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_iotfleetwise.types.delete_model_manifest_request.DeleteModelManifestRequest = {
+            "name": name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -311,7 +319,7 @@ class ModelManifestResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_iotfleetwise.types.list_model_manifests_request.ListModelManifestsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_iotfleetwise.types.list_model_manifests_request.ListModelManifestsRequest = {}
         if signal_catalog_arn is not None:
             input_["signal_catalog_arn"] = signal_catalog_arn
         if next_token is not None:
@@ -326,6 +334,7 @@ class ModelManifestResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_model_manifest_nodes(
@@ -368,8 +377,9 @@ class ModelManifestResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_iotfleetwise.types.list_model_manifest_nodes_request.ListModelManifestNodesRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_iotfleetwise.types.list_model_manifest_nodes_request.ListModelManifestNodesRequest = {
+            "name": name
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -380,6 +390,7 @@ class ModelManifestResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -434,12 +445,13 @@ class AsyncModelManifestResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_iotfleetwise.types.create_model_manifest_request.CreateModelManifestRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_iotfleetwise.types.create_model_manifest_request.CreateModelManifestRequest = {
+            "name": name,
+            "nodes": nodes,
+            "signal_catalog_arn": signal_catalog_arn,
+        }
         if description is not None:
             input_["description"] = description
-        input_["nodes"] = nodes
-        input_["signal_catalog_arn"] = signal_catalog_arn
         if tags is not None:
             input_["tags"] = tags
 
@@ -448,6 +460,7 @@ class AsyncModelManifestResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -486,14 +499,16 @@ class AsyncModelManifestResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_iotfleetwise.types.get_model_manifest_request.GetModelManifestRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_iotfleetwise.types.get_model_manifest_request.GetModelManifestRequest = {
+            "name": name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update(
@@ -546,8 +561,9 @@ class AsyncModelManifestResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_iotfleetwise.types.update_model_manifest_request.UpdateModelManifestRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_iotfleetwise.types.update_model_manifest_request.UpdateModelManifestRequest = {
+            "name": name
+        }
         if description is not None:
             input_["description"] = description
         if nodes_to_add is not None:
@@ -562,6 +578,7 @@ class AsyncModelManifestResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -600,14 +617,16 @@ class AsyncModelManifestResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_iotfleetwise.types.delete_model_manifest_request.DeleteModelManifestRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_iotfleetwise.types.delete_model_manifest_request.DeleteModelManifestRequest = {
+            "name": name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -653,7 +672,7 @@ class AsyncModelManifestResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_iotfleetwise.types.list_model_manifests_request.ListModelManifestsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_iotfleetwise.types.list_model_manifests_request.ListModelManifestsRequest = {}
         if signal_catalog_arn is not None:
             input_["signal_catalog_arn"] = signal_catalog_arn
         if next_token is not None:
@@ -668,6 +687,7 @@ class AsyncModelManifestResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_model_manifest_nodes(
@@ -711,8 +731,9 @@ class AsyncModelManifestResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_iotfleetwise.types.list_model_manifest_nodes_request.ListModelManifestNodesRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_iotfleetwise.types.list_model_manifest_nodes_request.ListModelManifestNodesRequest = {
+            "name": name
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -723,4 +744,5 @@ class AsyncModelManifestResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

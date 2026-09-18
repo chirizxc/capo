@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: ListFlywheelIterationHistoryResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListFlywheelIterationHistoryResponse:
     out: ListFlywheelIterationHistoryResponse = {}  # type: ignore[typeddict-item]
-    if "FlywheelIterationPropertiesList" in data:
+    if data.get("FlywheelIterationPropertiesList") is not None:
         import capo_comprehend.types.flywheel_iteration_properties_list
 
         out["flywheel_iteration_properties_list"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_1(data: dict) -> ListFlywheelIterationHistoryResponse
                 data["FlywheelIterationPropertiesList"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

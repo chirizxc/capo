@@ -27,8 +27,8 @@ def serialize_json(value: LicenseInfo) -> dict:
 
 def deserialize_json(data: dict) -> LicenseInfo:
     out: LicenseInfo = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "url" in data:
+    if data.get("url") is not None:
         out["url"] = data["url"]
     return out

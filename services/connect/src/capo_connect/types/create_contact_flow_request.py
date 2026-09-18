@@ -60,11 +60,11 @@ def serialize_json(value: CreateContactFlowRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateContactFlowRequest:
     out: CreateContactFlowRequest = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("CreateContactFlowRequest.name required")
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_connect.types.contact_flow_type
 
         out["type"] = capo_connect.types.contact_flow_type.deserialize_json(
@@ -72,19 +72,19 @@ def deserialize_json(data: dict) -> CreateContactFlowRequest:
         )
     else:
         raise DeserializationError("CreateContactFlowRequest.type required")
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Content" in data:
+    if data.get("Content") is not None:
         out["content"] = data["Content"]
     else:
         raise DeserializationError("CreateContactFlowRequest.content required")
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_connect.types.contact_flow_status
 
         out["status"] = capo_connect.types.contact_flow_status.deserialize_json(
             data["Status"]
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_connect.types.tag_map
 
         out["tags"] = capo_connect.types.tag_map.deserialize_json(data["Tags"])

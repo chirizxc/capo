@@ -75,37 +75,37 @@ def serialize_json(value: CreateVpcConnectionResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateVpcConnectionResponse:
     out: CreateVpcConnectionResponse = {}  # type: ignore[typeddict-item]
-    if "vpcConnectionArn" in data:
+    if data.get("vpcConnectionArn") is not None:
         out["vpc_connection_arn"] = data["vpcConnectionArn"]
-    if "state" in data:
+    if data.get("state") is not None:
         import capo_kafka.types.vpc_connection_state
 
         out["state"] = capo_kafka.types.vpc_connection_state.deserialize_json(
             data["state"]
         )
-    if "authentication" in data:
+    if data.get("authentication") is not None:
         out["authentication"] = data["authentication"]
-    if "vpcId" in data:
+    if data.get("vpcId") is not None:
         out["vpc_id"] = data["vpcId"]
-    if "clientSubnets" in data:
+    if data.get("clientSubnets") is not None:
         import capo_kafka.types.__list_of__string
 
         out["client_subnets"] = capo_kafka.types.__list_of__string.deserialize_json(
             data["clientSubnets"]
         )
-    if "securityGroups" in data:
+    if data.get("securityGroups") is not None:
         import capo_kafka.types.__list_of__string
 
         out["security_groups"] = capo_kafka.types.__list_of__string.deserialize_json(
             data["securityGroups"]
         )
-    if "creationTime" in data:
+    if data.get("creationTime") is not None:
         import capo_kafka.types.__timestamp_iso8601
 
         out["creation_time"] = capo_kafka.types.__timestamp_iso8601.deserialize_json(
             data["creationTime"]
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_kafka.types.__map_of__string
 
         out["tags"] = capo_kafka.types.__map_of__string.deserialize_json(data["tags"])

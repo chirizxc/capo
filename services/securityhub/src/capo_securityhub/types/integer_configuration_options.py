@@ -31,10 +31,10 @@ def serialize_json(value: IntegerConfigurationOptions) -> dict:
 
 def deserialize_json(data: dict) -> IntegerConfigurationOptions:
     out: IntegerConfigurationOptions = {}  # type: ignore[typeddict-item]
-    if "DefaultValue" in data:
+    if data.get("DefaultValue") is not None:
         out["default_value"] = data["DefaultValue"]
-    if "Min" in data:
+    if data.get("Min") is not None:
         out["min"] = data["Min"]
-    if "Max" in data:
+    if data.get("Max") is not None:
         out["max"] = data["Max"]
     return out

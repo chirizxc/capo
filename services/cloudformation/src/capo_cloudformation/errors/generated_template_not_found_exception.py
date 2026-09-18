@@ -39,15 +39,20 @@ class GeneratedTemplateNotFoundException(ServiceError):
 
     code: str | None = "GeneratedTemplateNotFoundException"
 
-    def __init__(self, data: GeneratedTemplateNotFoundException_):
+    def __init__(
+        self, data: GeneratedTemplateNotFoundException_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="GeneratedTemplateNotFoundException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_query(cls, el: Element) -> "GeneratedTemplateNotFoundException":
-        return cls(deserialize_query(el))
+    def from_query(
+        cls, el: Element, message: str | None = None
+    ) -> "GeneratedTemplateNotFoundException":
+        return cls(deserialize_query(el), message)

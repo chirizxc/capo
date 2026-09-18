@@ -31,7 +31,7 @@ def serialize_json(value: AwsSsmPatch) -> dict:
 
 def deserialize_json(data: dict) -> AwsSsmPatch:
     out: AwsSsmPatch = {}  # type: ignore[typeddict-item]
-    if "ComplianceSummary" in data:
+    if data.get("ComplianceSummary") is not None:
         import capo_securityhub.types.aws_ssm_compliance_summary
 
         out["compliance_summary"] = (

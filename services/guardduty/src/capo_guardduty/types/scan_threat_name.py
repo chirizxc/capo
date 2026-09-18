@@ -41,13 +41,13 @@ def serialize_json(value: ScanThreatName) -> dict:
 
 def deserialize_json(data: dict) -> ScanThreatName:
     out: ScanThreatName = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "severity" in data:
+    if data.get("severity") is not None:
         out["severity"] = data["severity"]
-    if "itemCount" in data:
+    if data.get("itemCount") is not None:
         out["item_count"] = data["itemCount"]
-    if "filePaths" in data:
+    if data.get("filePaths") is not None:
         import capo_guardduty.types.file_paths
 
         out["file_paths"] = capo_guardduty.types.file_paths.deserialize_json(

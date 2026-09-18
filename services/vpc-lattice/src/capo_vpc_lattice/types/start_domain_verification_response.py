@@ -49,25 +49,25 @@ def serialize_json(value: StartDomainVerificationResponse) -> dict:
 
 def deserialize_json(data: dict) -> StartDomainVerificationResponse:
     out: StartDomainVerificationResponse = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("StartDomainVerificationResponse.id required")
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("StartDomainVerificationResponse.arn required")
-    if "domainName" in data:
+    if data.get("domainName") is not None:
         out["domain_name"] = data["domainName"]
     else:
         raise DeserializationError(
             "StartDomainVerificationResponse.domain_name required"
         )
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
     else:
         raise DeserializationError("StartDomainVerificationResponse.status required")
-    if "txtMethodConfig" in data:
+    if data.get("txtMethodConfig") is not None:
         import capo_vpc_lattice.types.txt_method_config
 
         out["txt_method_config"] = (

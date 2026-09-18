@@ -27,8 +27,8 @@ def serialize_json(value: DeleteSamplingRuleRequest) -> dict:
 
 def deserialize_json(data: dict) -> DeleteSamplingRuleRequest:
     out: DeleteSamplingRuleRequest = {}  # type: ignore[typeddict-item]
-    if "RuleName" in data:
+    if data.get("RuleName") is not None:
         out["rule_name"] = data["RuleName"]
-    if "RuleARN" in data:
+    if data.get("RuleARN") is not None:
         out["rule_arn"] = data["RuleARN"]
     return out

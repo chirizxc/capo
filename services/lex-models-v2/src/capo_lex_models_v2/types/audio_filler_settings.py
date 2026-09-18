@@ -58,23 +58,23 @@ def serialize_json(value: AudioFillerSettings) -> dict:
 
 def deserialize_json(data: dict) -> AudioFillerSettings:
     out: AudioFillerSettings = {}  # type: ignore[typeddict-item]
-    if "enabled" in data:
+    if data.get("enabled") is not None:
         out["enabled"] = data["enabled"]
     else:
         out["enabled"] = False
-    if "audioType" in data:
+    if data.get("audioType") is not None:
         import capo_lex_models_v2.types.audio_filler_type
 
         out["audio_type"] = capo_lex_models_v2.types.audio_filler_type.deserialize_json(
             data["audioType"]
         )
-    if "startDelayInMilliseconds" in data:
+    if data.get("startDelayInMilliseconds") is not None:
         out["start_delay_in_milliseconds"] = data["startDelayInMilliseconds"]
-    if "minimumPlayDurationInMilliseconds" in data:
+    if data.get("minimumPlayDurationInMilliseconds") is not None:
         out["minimum_play_duration_in_milliseconds"] = data[
             "minimumPlayDurationInMilliseconds"
         ]
-    if "responseDeliveryDelayInMilliseconds" in data:
+    if data.get("responseDeliveryDelayInMilliseconds") is not None:
         out["response_delivery_delay_in_milliseconds"] = data[
             "responseDeliveryDelayInMilliseconds"
         ]

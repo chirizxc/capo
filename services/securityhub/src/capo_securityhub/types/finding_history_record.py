@@ -75,7 +75,7 @@ def serialize_json(value: FindingHistoryRecord) -> dict:
 
 def deserialize_json(data: dict) -> FindingHistoryRecord:
     out: FindingHistoryRecord = {}  # type: ignore[typeddict-item]
-    if "FindingIdentifier" in data:
+    if data.get("FindingIdentifier") is not None:
         import capo_securityhub.types.aws_security_finding_identifier
 
         out["finding_identifier"] = (
@@ -83,15 +83,15 @@ def deserialize_json(data: dict) -> FindingHistoryRecord:
                 data["FindingIdentifier"]
             )
         )
-    if "UpdateTime" in data:
+    if data.get("UpdateTime") is not None:
         import capo_securityhub.types.timestamp
 
         out["update_time"] = capo_securityhub.types.timestamp.deserialize_json(
             data["UpdateTime"]
         )
-    if "FindingCreated" in data:
+    if data.get("FindingCreated") is not None:
         out["finding_created"] = data["FindingCreated"]
-    if "UpdateSource" in data:
+    if data.get("UpdateSource") is not None:
         import capo_securityhub.types.finding_history_update_source
 
         out["update_source"] = (
@@ -99,7 +99,7 @@ def deserialize_json(data: dict) -> FindingHistoryRecord:
                 data["UpdateSource"]
             )
         )
-    if "Updates" in data:
+    if data.get("Updates") is not None:
         import capo_securityhub.types.finding_history_updates_list
 
         out["updates"] = (
@@ -107,6 +107,6 @@ def deserialize_json(data: dict) -> FindingHistoryRecord:
                 data["Updates"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

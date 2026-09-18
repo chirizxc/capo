@@ -39,14 +39,14 @@ def serialize_json(value: InvalidConfigurationDetail) -> dict:
 
 def deserialize_json(data: dict) -> InvalidConfigurationDetail:
     out: InvalidConfigurationDetail = {}  # type: ignore[typeddict-item]
-    if "Constraint" in data:
+    if data.get("Constraint") is not None:
         out["constraint"] = data["Constraint"]
-    if "Location" in data:
+    if data.get("Location") is not None:
         out["location"] = data["Location"]
-    if "Reason" in data:
+    if data.get("Reason") is not None:
         out["reason"] = data["Reason"]
-    if "Type" in data:
+    if data.get("Type") is not None:
         out["type"] = data["Type"]
-    if "Value" in data:
+    if data.get("Value") is not None:
         out["value"] = data["Value"]
     return out

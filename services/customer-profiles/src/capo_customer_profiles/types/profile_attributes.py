@@ -280,7 +280,7 @@ def serialize_json(value: ProfileAttributes) -> dict:
 
 def deserialize_json(data: dict) -> ProfileAttributes:
     out: ProfileAttributes = {}  # type: ignore[typeddict-item]
-    if "AccountNumber" in data:
+    if data.get("AccountNumber") is not None:
         import capo_customer_profiles.types.profile_dimension
 
         out["account_number"] = (
@@ -288,7 +288,7 @@ def deserialize_json(data: dict) -> ProfileAttributes:
                 data["AccountNumber"]
             )
         )
-    if "AdditionalInformation" in data:
+    if data.get("AdditionalInformation") is not None:
         import capo_customer_profiles.types.extra_length_value_profile_dimension
 
         out["additional_information"] = (
@@ -296,7 +296,7 @@ def deserialize_json(data: dict) -> ProfileAttributes:
                 data["AdditionalInformation"]
             )
         )
-    if "FirstName" in data:
+    if data.get("FirstName") is not None:
         import capo_customer_profiles.types.profile_dimension
 
         out["first_name"] = (
@@ -304,7 +304,7 @@ def deserialize_json(data: dict) -> ProfileAttributes:
                 data["FirstName"]
             )
         )
-    if "LastName" in data:
+    if data.get("LastName") is not None:
         import capo_customer_profiles.types.profile_dimension
 
         out["last_name"] = (
@@ -312,7 +312,7 @@ def deserialize_json(data: dict) -> ProfileAttributes:
                 data["LastName"]
             )
         )
-    if "MiddleName" in data:
+    if data.get("MiddleName") is not None:
         import capo_customer_profiles.types.profile_dimension
 
         out["middle_name"] = (
@@ -320,7 +320,7 @@ def deserialize_json(data: dict) -> ProfileAttributes:
                 data["MiddleName"]
             )
         )
-    if "GenderString" in data:
+    if data.get("GenderString") is not None:
         import capo_customer_profiles.types.profile_dimension
 
         out["gender_string"] = (
@@ -328,7 +328,7 @@ def deserialize_json(data: dict) -> ProfileAttributes:
                 data["GenderString"]
             )
         )
-    if "PartyTypeString" in data:
+    if data.get("PartyTypeString") is not None:
         import capo_customer_profiles.types.profile_dimension
 
         out["party_type_string"] = (
@@ -336,7 +336,7 @@ def deserialize_json(data: dict) -> ProfileAttributes:
                 data["PartyTypeString"]
             )
         )
-    if "BirthDate" in data:
+    if data.get("BirthDate") is not None:
         import capo_customer_profiles.types.date_dimension
 
         out["birth_date"] = (
@@ -344,7 +344,7 @@ def deserialize_json(data: dict) -> ProfileAttributes:
                 data["BirthDate"]
             )
         )
-    if "PhoneNumber" in data:
+    if data.get("PhoneNumber") is not None:
         import capo_customer_profiles.types.profile_dimension
 
         out["phone_number"] = (
@@ -352,7 +352,7 @@ def deserialize_json(data: dict) -> ProfileAttributes:
                 data["PhoneNumber"]
             )
         )
-    if "BusinessName" in data:
+    if data.get("BusinessName") is not None:
         import capo_customer_profiles.types.profile_dimension
 
         out["business_name"] = (
@@ -360,7 +360,7 @@ def deserialize_json(data: dict) -> ProfileAttributes:
                 data["BusinessName"]
             )
         )
-    if "BusinessPhoneNumber" in data:
+    if data.get("BusinessPhoneNumber") is not None:
         import capo_customer_profiles.types.profile_dimension
 
         out["business_phone_number"] = (
@@ -368,7 +368,7 @@ def deserialize_json(data: dict) -> ProfileAttributes:
                 data["BusinessPhoneNumber"]
             )
         )
-    if "HomePhoneNumber" in data:
+    if data.get("HomePhoneNumber") is not None:
         import capo_customer_profiles.types.profile_dimension
 
         out["home_phone_number"] = (
@@ -376,7 +376,7 @@ def deserialize_json(data: dict) -> ProfileAttributes:
                 data["HomePhoneNumber"]
             )
         )
-    if "MobilePhoneNumber" in data:
+    if data.get("MobilePhoneNumber") is not None:
         import capo_customer_profiles.types.profile_dimension
 
         out["mobile_phone_number"] = (
@@ -384,7 +384,7 @@ def deserialize_json(data: dict) -> ProfileAttributes:
                 data["MobilePhoneNumber"]
             )
         )
-    if "EmailAddress" in data:
+    if data.get("EmailAddress") is not None:
         import capo_customer_profiles.types.profile_dimension
 
         out["email_address"] = (
@@ -392,7 +392,7 @@ def deserialize_json(data: dict) -> ProfileAttributes:
                 data["EmailAddress"]
             )
         )
-    if "PersonalEmailAddress" in data:
+    if data.get("PersonalEmailAddress") is not None:
         import capo_customer_profiles.types.profile_dimension
 
         out["personal_email_address"] = (
@@ -400,7 +400,7 @@ def deserialize_json(data: dict) -> ProfileAttributes:
                 data["PersonalEmailAddress"]
             )
         )
-    if "BusinessEmailAddress" in data:
+    if data.get("BusinessEmailAddress") is not None:
         import capo_customer_profiles.types.profile_dimension
 
         out["business_email_address"] = (
@@ -408,7 +408,7 @@ def deserialize_json(data: dict) -> ProfileAttributes:
                 data["BusinessEmailAddress"]
             )
         )
-    if "Address" in data:
+    if data.get("Address") is not None:
         import capo_customer_profiles.types.address_dimension
 
         out["address"] = (
@@ -416,7 +416,7 @@ def deserialize_json(data: dict) -> ProfileAttributes:
                 data["Address"]
             )
         )
-    if "ShippingAddress" in data:
+    if data.get("ShippingAddress") is not None:
         import capo_customer_profiles.types.address_dimension
 
         out["shipping_address"] = (
@@ -424,7 +424,7 @@ def deserialize_json(data: dict) -> ProfileAttributes:
                 data["ShippingAddress"]
             )
         )
-    if "MailingAddress" in data:
+    if data.get("MailingAddress") is not None:
         import capo_customer_profiles.types.address_dimension
 
         out["mailing_address"] = (
@@ -432,7 +432,7 @@ def deserialize_json(data: dict) -> ProfileAttributes:
                 data["MailingAddress"]
             )
         )
-    if "BillingAddress" in data:
+    if data.get("BillingAddress") is not None:
         import capo_customer_profiles.types.address_dimension
 
         out["billing_address"] = (
@@ -440,7 +440,7 @@ def deserialize_json(data: dict) -> ProfileAttributes:
                 data["BillingAddress"]
             )
         )
-    if "Attributes" in data:
+    if data.get("Attributes") is not None:
         import capo_customer_profiles.types.custom_attributes
 
         out["attributes"] = (
@@ -448,7 +448,7 @@ def deserialize_json(data: dict) -> ProfileAttributes:
                 data["Attributes"]
             )
         )
-    if "ProfileType" in data:
+    if data.get("ProfileType") is not None:
         import capo_customer_profiles.types.profile_type_dimension
 
         out["profile_type"] = (

@@ -44,7 +44,7 @@ def serialize_aws_json_1_0(value: RuleIpExpression) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> RuleIpExpression:
     out: RuleIpExpression = {}  # type: ignore[typeddict-item]
-    if "Evaluate" in data:
+    if data.get("Evaluate") is not None:
         import capo_mailmanager.types.rule_ip_to_evaluate
 
         out["evaluate"] = (
@@ -54,7 +54,7 @@ def deserialize_aws_json_1_0(data: dict) -> RuleIpExpression:
         )
     else:
         raise DeserializationError("RuleIpExpression.evaluate required")
-    if "Operator" in data:
+    if data.get("Operator") is not None:
         import capo_mailmanager.types.rule_ip_operator
 
         out["operator"] = (
@@ -64,7 +64,7 @@ def deserialize_aws_json_1_0(data: dict) -> RuleIpExpression:
         )
     else:
         raise DeserializationError("RuleIpExpression.operator required")
-    if "Values" in data:
+    if data.get("Values") is not None:
         import capo_mailmanager.types.rule_ip_value_list
 
         out["values"] = (

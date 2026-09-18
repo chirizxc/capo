@@ -31,7 +31,7 @@ def serialize_json(value: StartSchemaMergeResponse) -> dict:
 
 def deserialize_json(data: dict) -> StartSchemaMergeResponse:
     out: StartSchemaMergeResponse = {}  # type: ignore[typeddict-item]
-    if "sourceApiAssociationStatus" in data:
+    if data.get("sourceApiAssociationStatus") is not None:
         import capo_appsync.types.source_api_association_status
 
         out["source_api_association_status"] = (

@@ -30,8 +30,8 @@ def serialize_json(value: Target) -> dict:
 
 def deserialize_json(data: dict) -> Target:
     out: Target = {}  # type: ignore[typeddict-item]
-    if "TargetType" in data:
+    if data.get("TargetType") is not None:
         out["target_type"] = data["TargetType"]
-    if "TargetAddress" in data:
+    if data.get("TargetAddress") is not None:
         out["target_address"] = data["TargetAddress"]
     return out

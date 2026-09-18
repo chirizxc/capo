@@ -40,13 +40,13 @@ def serialize_aws_json_1_1(value: HeaderObject) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> HeaderObject:
     out: HeaderObject = {}  # type: ignore[typeddict-item]
-    if "option" in data:
+    if data.get("option") is not None:
         import capo_lightsail.types.forward_values
 
         out["option"] = capo_lightsail.types.forward_values.deserialize_aws_json_1_1(
             data["option"]
         )
-    if "headersAllowList" in data:
+    if data.get("headersAllowList") is not None:
         import capo_lightsail.types.header_forward_list
 
         out["headers_allow_list"] = (

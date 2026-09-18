@@ -56,7 +56,7 @@ def serialize_aws_json_1_1(value: ByteMatchStatement) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ByteMatchStatement:
     out: ByteMatchStatement = {}  # type: ignore[typeddict-item]
-    if "SearchString" in data:
+    if data.get("SearchString") is not None:
         import capo_wafv2.types.search_string
 
         out["search_string"] = capo_wafv2.types.search_string.deserialize_aws_json_1_1(
@@ -64,7 +64,7 @@ def deserialize_aws_json_1_1(data: dict) -> ByteMatchStatement:
         )
     else:
         raise DeserializationError("ByteMatchStatement.search_string required")
-    if "FieldToMatch" in data:
+    if data.get("FieldToMatch") is not None:
         import capo_wafv2.types.field_to_match
 
         out["field_to_match"] = (
@@ -74,7 +74,7 @@ def deserialize_aws_json_1_1(data: dict) -> ByteMatchStatement:
         )
     else:
         raise DeserializationError("ByteMatchStatement.field_to_match required")
-    if "TextTransformations" in data:
+    if data.get("TextTransformations") is not None:
         import capo_wafv2.types.text_transformations
 
         out["text_transformations"] = (
@@ -84,7 +84,7 @@ def deserialize_aws_json_1_1(data: dict) -> ByteMatchStatement:
         )
     else:
         raise DeserializationError("ByteMatchStatement.text_transformations required")
-    if "PositionalConstraint" in data:
+    if data.get("PositionalConstraint") is not None:
         import capo_wafv2.types.positional_constraint
 
         out["positional_constraint"] = (

@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> AwsEksWorkloadInfoList:
 
     out: AwsEksWorkloadInfoList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_inspector2.types.aws_eks_workload_info.deserialize_json(item))
     return out

@@ -33,14 +33,14 @@ def serialize_aws_json_1_1(value: ReportTaskRunnerHeartbeatInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ReportTaskRunnerHeartbeatInput:
     out: ReportTaskRunnerHeartbeatInput = {}  # type: ignore[typeddict-item]
-    if "taskrunnerId" in data:
+    if data.get("taskrunnerId") is not None:
         out["taskrunner_id"] = data["taskrunnerId"]
     else:
         raise DeserializationError(
             "ReportTaskRunnerHeartbeatInput.taskrunner_id required"
         )
-    if "workerGroup" in data:
+    if data.get("workerGroup") is not None:
         out["worker_group"] = data["workerGroup"]
-    if "hostname" in data:
+    if data.get("hostname") is not None:
         out["hostname"] = data["hostname"]
     return out

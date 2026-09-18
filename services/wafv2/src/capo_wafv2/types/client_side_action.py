@@ -50,7 +50,7 @@ def serialize_aws_json_1_1(value: ClientSideAction) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ClientSideAction:
     out: ClientSideAction = {}  # type: ignore[typeddict-item]
-    if "UsageOfAction" in data:
+    if data.get("UsageOfAction") is not None:
         import capo_wafv2.types.usage_of_action
 
         out["usage_of_action"] = (
@@ -60,7 +60,7 @@ def deserialize_aws_json_1_1(data: dict) -> ClientSideAction:
         )
     else:
         raise DeserializationError("ClientSideAction.usage_of_action required")
-    if "Sensitivity" in data:
+    if data.get("Sensitivity") is not None:
         import capo_wafv2.types.sensitivity_to_act
 
         out["sensitivity"] = (
@@ -68,7 +68,7 @@ def deserialize_aws_json_1_1(data: dict) -> ClientSideAction:
                 data["Sensitivity"]
             )
         )
-    if "ExemptUriRegularExpressions" in data:
+    if data.get("ExemptUriRegularExpressions") is not None:
         import capo_wafv2.types.regular_expression_list
 
         out["exempt_uri_regular_expressions"] = (

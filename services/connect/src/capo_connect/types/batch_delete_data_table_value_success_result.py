@@ -40,7 +40,7 @@ def serialize_json(value: BatchDeleteDataTableValueSuccessResult) -> dict:
 
 def deserialize_json(data: dict) -> BatchDeleteDataTableValueSuccessResult:
     out: BatchDeleteDataTableValueSuccessResult = {}  # type: ignore[typeddict-item]
-    if "PrimaryValues" in data:
+    if data.get("PrimaryValues") is not None:
         import capo_connect.types.primary_values_set
 
         out["primary_values"] = capo_connect.types.primary_values_set.deserialize_json(
@@ -50,13 +50,13 @@ def deserialize_json(data: dict) -> BatchDeleteDataTableValueSuccessResult:
         raise DeserializationError(
             "BatchDeleteDataTableValueSuccessResult.primary_values required"
         )
-    if "AttributeName" in data:
+    if data.get("AttributeName") is not None:
         out["attribute_name"] = data["AttributeName"]
     else:
         raise DeserializationError(
             "BatchDeleteDataTableValueSuccessResult.attribute_name required"
         )
-    if "LockVersion" in data:
+    if data.get("LockVersion") is not None:
         import capo_connect.types.data_table_lock_version
 
         out["lock_version"] = (

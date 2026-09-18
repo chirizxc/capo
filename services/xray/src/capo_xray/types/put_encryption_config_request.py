@@ -31,9 +31,9 @@ def serialize_json(value: PutEncryptionConfigRequest) -> dict:
 
 def deserialize_json(data: dict) -> PutEncryptionConfigRequest:
     out: PutEncryptionConfigRequest = {}  # type: ignore[typeddict-item]
-    if "KeyId" in data:
+    if data.get("KeyId") is not None:
         out["key_id"] = data["KeyId"]
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_xray.types.encryption_type
 
         out["type"] = capo_xray.types.encryption_type.deserialize_json(data["Type"])

@@ -36,9 +36,9 @@ def serialize_aws_json_1_0(value: RescoreResult) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> RescoreResult:
     out: RescoreResult = {}  # type: ignore[typeddict-item]
-    if "RescoreId" in data:
+    if data.get("RescoreId") is not None:
         out["rescore_id"] = data["RescoreId"]
-    if "ResultItems" in data:
+    if data.get("ResultItems") is not None:
         import capo_kendra_ranking.types.rescore_result_item_list
 
         out["result_items"] = (

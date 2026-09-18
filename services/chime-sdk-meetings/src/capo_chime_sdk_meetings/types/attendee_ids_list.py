@@ -25,6 +25,8 @@ def deserialize_json(data: list) -> AttendeeIdsList:
 
     out: AttendeeIdsList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_chime_sdk_meetings.types.attendee_id_item.deserialize_json(item)
         )

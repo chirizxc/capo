@@ -38,19 +38,19 @@ def serialize_json(value: IngestionSummary) -> dict:
 
 def deserialize_json(data: dict) -> IngestionSummary:
     out: IngestionSummary = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("IngestionSummary.arn required")
-    if "app" in data:
+    if data.get("app") is not None:
         out["app"] = data["app"]
     else:
         raise DeserializationError("IngestionSummary.app required")
-    if "tenantId" in data:
+    if data.get("tenantId") is not None:
         out["tenant_id"] = data["tenantId"]
     else:
         raise DeserializationError("IngestionSummary.tenant_id required")
-    if "state" in data:
+    if data.get("state") is not None:
         import capo_appfabric.types.ingestion_state
 
         out["state"] = capo_appfabric.types.ingestion_state.deserialize_json(

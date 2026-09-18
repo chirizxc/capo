@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> __listOfHlsManifestCreateOrUpdateParameters:
 
     out: __listOfHlsManifestCreateOrUpdateParameters = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_mediapackage.types.hls_manifest_create_or_update_parameters.deserialize_json(
                 item

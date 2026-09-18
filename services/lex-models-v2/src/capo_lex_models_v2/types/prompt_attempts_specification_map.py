@@ -29,6 +29,9 @@ def deserialize_json(data: dict) -> PromptAttemptsSpecificationMap:
     out: PromptAttemptsSpecificationMap = {}
     for key, value in data.items():
         import capo_lex_models_v2.types.prompt_attempt
+
+        if value is None:
+            continue
         import capo_lex_models_v2.types.prompt_attempt_specification
 
         out[capo_lex_models_v2.types.prompt_attempt.deserialize_json(key)] = (

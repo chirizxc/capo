@@ -4,6 +4,8 @@ from typing import TYPE_CHECKING
 
 from typing_extensions import TypedDict
 
+from capo_transcribe.errors import DeserializationError
+
 if TYPE_CHECKING:
     import capo_transcribe.types.category_name
 
@@ -16,9 +18,16 @@ class DeleteCallAnalyticsCategoryRequest(TypedDict, closed=True):
 # --- awsJson1_1 ser/de ---
 def serialize_aws_json_1_1(value: DeleteCallAnalyticsCategoryRequest) -> dict:
     out: dict = {}
+    out["CategoryName"] = value["category_name"]
     return out
 
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteCallAnalyticsCategoryRequest:
     out: DeleteCallAnalyticsCategoryRequest = {}  # type: ignore[typeddict-item]
+    if data.get("CategoryName") is not None:
+        out["category_name"] = data["CategoryName"]
+    else:
+        raise DeserializationError(
+            "DeleteCallAnalyticsCategoryRequest.category_name required"
+        )
     return out

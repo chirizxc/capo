@@ -29,6 +29,8 @@ def serialize_aws_json_1_1(input_to_serialize: ModelPackageSummaries) -> dict:
 def deserialize_aws_json_1_1(data: dict) -> ModelPackageSummaries:
     out: ModelPackageSummaries = {}
     for key, value in data.items():
+        if value is None:
+            continue
         import capo_sagemaker.types.batch_describe_model_package_summary
 
         out[key] = (

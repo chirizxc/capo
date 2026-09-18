@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import uuid
 from typing import TYPE_CHECKING, Optional
 
 import capo_codeguruprofiler._auth._signers
@@ -138,11 +139,12 @@ class ProfilingGroup:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_codeguruprofiler.types.create_profiling_group_request.CreateProfilingGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["profiling_group_name"] = profiling_group_name
+        input_: capo_codeguruprofiler.types.create_profiling_group_request.CreateProfilingGroupRequest = {
+            "profiling_group_name": profiling_group_name,
+            "client_token": client_token,
+        }
         if compute_platform is not None:
             input_["compute_platform"] = compute_platform
-        input_["client_token"] = client_token
         if agent_orchestration_config is not None:
             input_["agent_orchestration_config"] = agent_orchestration_config
         if tags is not None:
@@ -153,6 +155,7 @@ class ProfilingGroup:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -189,14 +192,16 @@ class ProfilingGroup:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_codeguruprofiler.types.describe_profiling_group_request.DescribeProfilingGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["profiling_group_name"] = profiling_group_name
+        input_: capo_codeguruprofiler.types.describe_profiling_group_request.DescribeProfilingGroupRequest = {
+            "profiling_group_name": profiling_group_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update(
@@ -236,15 +241,17 @@ class ProfilingGroup:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_codeguruprofiler.types.update_profiling_group_request.UpdateProfilingGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["profiling_group_name"] = profiling_group_name
-        input_["agent_orchestration_config"] = agent_orchestration_config
+        input_: capo_codeguruprofiler.types.update_profiling_group_request.UpdateProfilingGroupRequest = {
+            "profiling_group_name": profiling_group_name,
+            "agent_orchestration_config": agent_orchestration_config,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -282,14 +289,16 @@ class ProfilingGroup:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_codeguruprofiler.types.delete_profiling_group_request.DeleteProfilingGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["profiling_group_name"] = profiling_group_name
+        input_: capo_codeguruprofiler.types.delete_profiling_group_request.DeleteProfilingGroupRequest = {
+            "profiling_group_name": profiling_group_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -332,7 +341,7 @@ class ProfilingGroup:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_codeguruprofiler.types.list_profiling_groups_request.ListProfilingGroupsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_codeguruprofiler.types.list_profiling_groups_request.ListProfilingGroupsRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -345,6 +354,7 @@ class ProfilingGroup:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def add_notification_channels(
@@ -385,15 +395,17 @@ class ProfilingGroup:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_codeguruprofiler.types.add_notification_channels_request.AddNotificationChannelsRequest = {}  # type: ignore[typeddict-item]
-        input_["profiling_group_name"] = profiling_group_name
-        input_["channels"] = channels
+        input_: capo_codeguruprofiler.types.add_notification_channels_request.AddNotificationChannelsRequest = {
+            "profiling_group_name": profiling_group_name,
+            "channels": channels,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def batch_get_frame_metric_data(
@@ -444,8 +456,9 @@ class ProfilingGroup:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_codeguruprofiler.types.batch_get_frame_metric_data_request.BatchGetFrameMetricDataRequest = {}  # type: ignore[typeddict-item]
-        input_["profiling_group_name"] = profiling_group_name
+        input_: capo_codeguruprofiler.types.batch_get_frame_metric_data_request.BatchGetFrameMetricDataRequest = {
+            "profiling_group_name": profiling_group_name
+        }
         if start_time is not None:
             input_["start_time"] = start_time
         if end_time is not None:
@@ -462,6 +475,7 @@ class ProfilingGroup:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def configure_agent(
@@ -504,8 +518,9 @@ class ProfilingGroup:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_codeguruprofiler.types.configure_agent_request.ConfigureAgentRequest = {}  # type: ignore[typeddict-item]
-        input_["profiling_group_name"] = profiling_group_name
+        input_: capo_codeguruprofiler.types.configure_agent_request.ConfigureAgentRequest = {
+            "profiling_group_name": profiling_group_name
+        }
         if fleet_instance_id is not None:
             input_["fleet_instance_id"] = fleet_instance_id
         if metadata is not None:
@@ -516,6 +531,7 @@ class ProfilingGroup:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_notification_configuration(
@@ -552,14 +568,16 @@ class ProfilingGroup:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_codeguruprofiler.types.get_notification_configuration_request.GetNotificationConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["profiling_group_name"] = profiling_group_name
+        input_: capo_codeguruprofiler.types.get_notification_configuration_request.GetNotificationConfigurationRequest = {
+            "profiling_group_name": profiling_group_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_policy(
@@ -595,14 +613,16 @@ class ProfilingGroup:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_codeguruprofiler.types.get_policy_request.GetPolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["profiling_group_name"] = profiling_group_name
+        input_: capo_codeguruprofiler.types.get_policy_request.GetPolicyRequest = {
+            "profiling_group_name": profiling_group_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_profile(
@@ -649,8 +669,9 @@ class ProfilingGroup:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_codeguruprofiler.types.get_profile_request.GetProfileRequest = {}  # type: ignore[typeddict-item]
-        input_["profiling_group_name"] = profiling_group_name
+        input_: capo_codeguruprofiler.types.get_profile_request.GetProfileRequest = {
+            "profiling_group_name": profiling_group_name
+        }
         if start_time is not None:
             input_["start_time"] = start_time
         if period is not None:
@@ -667,6 +688,7 @@ class ProfilingGroup:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_recommendations(
@@ -709,10 +731,11 @@ class ProfilingGroup:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_codeguruprofiler.types.get_recommendations_request.GetRecommendationsRequest = {}  # type: ignore[typeddict-item]
-        input_["profiling_group_name"] = profiling_group_name
-        input_["start_time"] = start_time
-        input_["end_time"] = end_time
+        input_: capo_codeguruprofiler.types.get_recommendations_request.GetRecommendationsRequest = {
+            "profiling_group_name": profiling_group_name,
+            "start_time": start_time,
+            "end_time": end_time,
+        }
         if locale is not None:
             input_["locale"] = locale
 
@@ -721,6 +744,7 @@ class ProfilingGroup:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_findings_reports(
@@ -771,10 +795,11 @@ class ProfilingGroup:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_codeguruprofiler.types.list_findings_reports_request.ListFindingsReportsRequest = {}  # type: ignore[typeddict-item]
-        input_["profiling_group_name"] = profiling_group_name
-        input_["start_time"] = start_time
-        input_["end_time"] = end_time
+        input_: capo_codeguruprofiler.types.list_findings_reports_request.ListFindingsReportsRequest = {
+            "profiling_group_name": profiling_group_name,
+            "start_time": start_time,
+            "end_time": end_time,
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -787,6 +812,7 @@ class ProfilingGroup:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_profile_times(
@@ -839,11 +865,12 @@ class ProfilingGroup:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_codeguruprofiler.types.list_profile_times_request.ListProfileTimesRequest = {}  # type: ignore[typeddict-item]
-        input_["profiling_group_name"] = profiling_group_name
-        input_["start_time"] = start_time
-        input_["end_time"] = end_time
-        input_["period"] = period
+        input_: capo_codeguruprofiler.types.list_profile_times_request.ListProfileTimesRequest = {
+            "profiling_group_name": profiling_group_name,
+            "start_time": start_time,
+            "end_time": end_time,
+            "period": period,
+        }
         if order_by is not None:
             input_["order_by"] = order_by
         if max_results is not None:
@@ -856,6 +883,7 @@ class ProfilingGroup:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def post_agent_profile(
@@ -900,18 +928,21 @@ class ProfilingGroup:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_codeguruprofiler.types.post_agent_profile_request.PostAgentProfileRequest = {}  # type: ignore[typeddict-item]
-        input_["profiling_group_name"] = profiling_group_name
-        input_["agent_profile"] = agent_profile
-        if profile_token is not None:
-            input_["profile_token"] = profile_token
-        input_["content_type"] = content_type
+        input_: capo_codeguruprofiler.types.post_agent_profile_request.PostAgentProfileRequest = {
+            "profiling_group_name": profiling_group_name,
+            "agent_profile": agent_profile,
+            "content_type": content_type,
+        }
+        if profile_token is None:
+            profile_token = str(uuid.uuid4())
+        input_["profile_token"] = profile_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def put_permission(
@@ -957,10 +988,11 @@ class ProfilingGroup:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_codeguruprofiler.types.put_permission_request.PutPermissionRequest = {}  # type: ignore[typeddict-item]
-        input_["profiling_group_name"] = profiling_group_name
-        input_["action_group"] = action_group
-        input_["principals"] = principals
+        input_: capo_codeguruprofiler.types.put_permission_request.PutPermissionRequest = {
+            "profiling_group_name": profiling_group_name,
+            "action_group": action_group,
+            "principals": principals,
+        }
         if revision_id is not None:
             input_["revision_id"] = revision_id
 
@@ -969,6 +1001,7 @@ class ProfilingGroup:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def remove_notification_channel(
@@ -1007,15 +1040,17 @@ class ProfilingGroup:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_codeguruprofiler.types.remove_notification_channel_request.RemoveNotificationChannelRequest = {}  # type: ignore[typeddict-item]
-        input_["profiling_group_name"] = profiling_group_name
-        input_["channel_id"] = channel_id
+        input_: capo_codeguruprofiler.types.remove_notification_channel_request.RemoveNotificationChannelRequest = {
+            "profiling_group_name": profiling_group_name,
+            "channel_id": channel_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def remove_permission(
@@ -1057,16 +1092,18 @@ class ProfilingGroup:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_codeguruprofiler.types.remove_permission_request.RemovePermissionRequest = {}  # type: ignore[typeddict-item]
-        input_["profiling_group_name"] = profiling_group_name
-        input_["action_group"] = action_group
-        input_["revision_id"] = revision_id
+        input_: capo_codeguruprofiler.types.remove_permission_request.RemovePermissionRequest = {
+            "profiling_group_name": profiling_group_name,
+            "action_group": action_group,
+            "revision_id": revision_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def submit_feedback(
@@ -1109,10 +1146,11 @@ class ProfilingGroup:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_codeguruprofiler.types.submit_feedback_request.SubmitFeedbackRequest = {}  # type: ignore[typeddict-item]
-        input_["profiling_group_name"] = profiling_group_name
-        input_["anomaly_instance_id"] = anomaly_instance_id
-        input_["type"] = type
+        input_: capo_codeguruprofiler.types.submit_feedback_request.SubmitFeedbackRequest = {
+            "profiling_group_name": profiling_group_name,
+            "anomaly_instance_id": anomaly_instance_id,
+            "type": type,
+        }
         if comment is not None:
             input_["comment"] = comment
 
@@ -1121,6 +1159,7 @@ class ProfilingGroup:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -1176,11 +1215,12 @@ class AsyncProfilingGroup:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_codeguruprofiler.types.create_profiling_group_request.CreateProfilingGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["profiling_group_name"] = profiling_group_name
+        input_: capo_codeguruprofiler.types.create_profiling_group_request.CreateProfilingGroupRequest = {
+            "profiling_group_name": profiling_group_name,
+            "client_token": client_token,
+        }
         if compute_platform is not None:
             input_["compute_platform"] = compute_platform
-        input_["client_token"] = client_token
         if agent_orchestration_config is not None:
             input_["agent_orchestration_config"] = agent_orchestration_config
         if tags is not None:
@@ -1191,6 +1231,7 @@ class AsyncProfilingGroup:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -1228,14 +1269,16 @@ class AsyncProfilingGroup:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_codeguruprofiler.types.describe_profiling_group_request.DescribeProfilingGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["profiling_group_name"] = profiling_group_name
+        input_: capo_codeguruprofiler.types.describe_profiling_group_request.DescribeProfilingGroupRequest = {
+            "profiling_group_name": profiling_group_name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update(
@@ -1276,15 +1319,17 @@ class AsyncProfilingGroup:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_codeguruprofiler.types.update_profiling_group_request.UpdateProfilingGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["profiling_group_name"] = profiling_group_name
-        input_["agent_orchestration_config"] = agent_orchestration_config
+        input_: capo_codeguruprofiler.types.update_profiling_group_request.UpdateProfilingGroupRequest = {
+            "profiling_group_name": profiling_group_name,
+            "agent_orchestration_config": agent_orchestration_config,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -1323,14 +1368,16 @@ class AsyncProfilingGroup:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_codeguruprofiler.types.delete_profiling_group_request.DeleteProfilingGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["profiling_group_name"] = profiling_group_name
+        input_: capo_codeguruprofiler.types.delete_profiling_group_request.DeleteProfilingGroupRequest = {
+            "profiling_group_name": profiling_group_name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -1374,7 +1421,7 @@ class AsyncProfilingGroup:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_codeguruprofiler.types.list_profiling_groups_request.ListProfilingGroupsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_codeguruprofiler.types.list_profiling_groups_request.ListProfilingGroupsRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -1387,6 +1434,7 @@ class AsyncProfilingGroup:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def add_notification_channels(
@@ -1428,15 +1476,17 @@ class AsyncProfilingGroup:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_codeguruprofiler.types.add_notification_channels_request.AddNotificationChannelsRequest = {}  # type: ignore[typeddict-item]
-        input_["profiling_group_name"] = profiling_group_name
-        input_["channels"] = channels
+        input_: capo_codeguruprofiler.types.add_notification_channels_request.AddNotificationChannelsRequest = {
+            "profiling_group_name": profiling_group_name,
+            "channels": channels,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def batch_get_frame_metric_data(
@@ -1488,8 +1538,9 @@ class AsyncProfilingGroup:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_codeguruprofiler.types.batch_get_frame_metric_data_request.BatchGetFrameMetricDataRequest = {}  # type: ignore[typeddict-item]
-        input_["profiling_group_name"] = profiling_group_name
+        input_: capo_codeguruprofiler.types.batch_get_frame_metric_data_request.BatchGetFrameMetricDataRequest = {
+            "profiling_group_name": profiling_group_name
+        }
         if start_time is not None:
             input_["start_time"] = start_time
         if end_time is not None:
@@ -1506,6 +1557,7 @@ class AsyncProfilingGroup:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def configure_agent(
@@ -1549,8 +1601,9 @@ class AsyncProfilingGroup:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_codeguruprofiler.types.configure_agent_request.ConfigureAgentRequest = {}  # type: ignore[typeddict-item]
-        input_["profiling_group_name"] = profiling_group_name
+        input_: capo_codeguruprofiler.types.configure_agent_request.ConfigureAgentRequest = {
+            "profiling_group_name": profiling_group_name
+        }
         if fleet_instance_id is not None:
             input_["fleet_instance_id"] = fleet_instance_id
         if metadata is not None:
@@ -1561,6 +1614,7 @@ class AsyncProfilingGroup:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_notification_configuration(
@@ -1598,14 +1652,16 @@ class AsyncProfilingGroup:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_codeguruprofiler.types.get_notification_configuration_request.GetNotificationConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["profiling_group_name"] = profiling_group_name
+        input_: capo_codeguruprofiler.types.get_notification_configuration_request.GetNotificationConfigurationRequest = {
+            "profiling_group_name": profiling_group_name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_policy(
@@ -1642,14 +1698,16 @@ class AsyncProfilingGroup:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_codeguruprofiler.types.get_policy_request.GetPolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["profiling_group_name"] = profiling_group_name
+        input_: capo_codeguruprofiler.types.get_policy_request.GetPolicyRequest = {
+            "profiling_group_name": profiling_group_name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_profile(
@@ -1697,8 +1755,9 @@ class AsyncProfilingGroup:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_codeguruprofiler.types.get_profile_request.GetProfileRequest = {}  # type: ignore[typeddict-item]
-        input_["profiling_group_name"] = profiling_group_name
+        input_: capo_codeguruprofiler.types.get_profile_request.GetProfileRequest = {
+            "profiling_group_name": profiling_group_name
+        }
         if start_time is not None:
             input_["start_time"] = start_time
         if period is not None:
@@ -1715,6 +1774,7 @@ class AsyncProfilingGroup:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_recommendations(
@@ -1758,10 +1818,11 @@ class AsyncProfilingGroup:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_codeguruprofiler.types.get_recommendations_request.GetRecommendationsRequest = {}  # type: ignore[typeddict-item]
-        input_["profiling_group_name"] = profiling_group_name
-        input_["start_time"] = start_time
-        input_["end_time"] = end_time
+        input_: capo_codeguruprofiler.types.get_recommendations_request.GetRecommendationsRequest = {
+            "profiling_group_name": profiling_group_name,
+            "start_time": start_time,
+            "end_time": end_time,
+        }
         if locale is not None:
             input_["locale"] = locale
 
@@ -1770,6 +1831,7 @@ class AsyncProfilingGroup:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_findings_reports(
@@ -1821,10 +1883,11 @@ class AsyncProfilingGroup:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_codeguruprofiler.types.list_findings_reports_request.ListFindingsReportsRequest = {}  # type: ignore[typeddict-item]
-        input_["profiling_group_name"] = profiling_group_name
-        input_["start_time"] = start_time
-        input_["end_time"] = end_time
+        input_: capo_codeguruprofiler.types.list_findings_reports_request.ListFindingsReportsRequest = {
+            "profiling_group_name": profiling_group_name,
+            "start_time": start_time,
+            "end_time": end_time,
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -1837,6 +1900,7 @@ class AsyncProfilingGroup:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_profile_times(
@@ -1890,11 +1954,12 @@ class AsyncProfilingGroup:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_codeguruprofiler.types.list_profile_times_request.ListProfileTimesRequest = {}  # type: ignore[typeddict-item]
-        input_["profiling_group_name"] = profiling_group_name
-        input_["start_time"] = start_time
-        input_["end_time"] = end_time
-        input_["period"] = period
+        input_: capo_codeguruprofiler.types.list_profile_times_request.ListProfileTimesRequest = {
+            "profiling_group_name": profiling_group_name,
+            "start_time": start_time,
+            "end_time": end_time,
+            "period": period,
+        }
         if order_by is not None:
             input_["order_by"] = order_by
         if max_results is not None:
@@ -1907,6 +1972,7 @@ class AsyncProfilingGroup:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def post_agent_profile(
@@ -1952,18 +2018,21 @@ class AsyncProfilingGroup:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_codeguruprofiler.types.post_agent_profile_request.PostAgentProfileRequest = {}  # type: ignore[typeddict-item]
-        input_["profiling_group_name"] = profiling_group_name
-        input_["agent_profile"] = agent_profile
-        if profile_token is not None:
-            input_["profile_token"] = profile_token
-        input_["content_type"] = content_type
+        input_: capo_codeguruprofiler.types.post_agent_profile_request.PostAgentProfileRequest = {
+            "profiling_group_name": profiling_group_name,
+            "agent_profile": agent_profile,
+            "content_type": content_type,
+        }
+        if profile_token is None:
+            profile_token = str(uuid.uuid4())
+        input_["profile_token"] = profile_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def put_permission(
@@ -2010,10 +2079,11 @@ class AsyncProfilingGroup:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_codeguruprofiler.types.put_permission_request.PutPermissionRequest = {}  # type: ignore[typeddict-item]
-        input_["profiling_group_name"] = profiling_group_name
-        input_["action_group"] = action_group
-        input_["principals"] = principals
+        input_: capo_codeguruprofiler.types.put_permission_request.PutPermissionRequest = {
+            "profiling_group_name": profiling_group_name,
+            "action_group": action_group,
+            "principals": principals,
+        }
         if revision_id is not None:
             input_["revision_id"] = revision_id
 
@@ -2022,6 +2092,7 @@ class AsyncProfilingGroup:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def remove_notification_channel(
@@ -2061,15 +2132,17 @@ class AsyncProfilingGroup:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_codeguruprofiler.types.remove_notification_channel_request.RemoveNotificationChannelRequest = {}  # type: ignore[typeddict-item]
-        input_["profiling_group_name"] = profiling_group_name
-        input_["channel_id"] = channel_id
+        input_: capo_codeguruprofiler.types.remove_notification_channel_request.RemoveNotificationChannelRequest = {
+            "profiling_group_name": profiling_group_name,
+            "channel_id": channel_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def remove_permission(
@@ -2112,16 +2185,18 @@ class AsyncProfilingGroup:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_codeguruprofiler.types.remove_permission_request.RemovePermissionRequest = {}  # type: ignore[typeddict-item]
-        input_["profiling_group_name"] = profiling_group_name
-        input_["action_group"] = action_group
-        input_["revision_id"] = revision_id
+        input_: capo_codeguruprofiler.types.remove_permission_request.RemovePermissionRequest = {
+            "profiling_group_name": profiling_group_name,
+            "action_group": action_group,
+            "revision_id": revision_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def submit_feedback(
@@ -2165,10 +2240,11 @@ class AsyncProfilingGroup:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_codeguruprofiler.types.submit_feedback_request.SubmitFeedbackRequest = {}  # type: ignore[typeddict-item]
-        input_["profiling_group_name"] = profiling_group_name
-        input_["anomaly_instance_id"] = anomaly_instance_id
-        input_["type"] = type
+        input_: capo_codeguruprofiler.types.submit_feedback_request.SubmitFeedbackRequest = {
+            "profiling_group_name": profiling_group_name,
+            "anomaly_instance_id": anomaly_instance_id,
+            "type": type,
+        }
         if comment is not None:
             input_["comment"] = comment
 
@@ -2177,4 +2253,5 @@ class AsyncProfilingGroup:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

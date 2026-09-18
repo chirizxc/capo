@@ -86,7 +86,7 @@ def serialize_json(value: UpdateFlowRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateFlowRequest:
     out: UpdateFlowRequest = {}  # type: ignore[typeddict-item]
-    if "sourceFailoverConfig" in data:
+    if data.get("sourceFailoverConfig") is not None:
         import capo_mediaconnect.types.update_failover_config
 
         out["source_failover_config"] = (
@@ -94,7 +94,7 @@ def deserialize_json(data: dict) -> UpdateFlowRequest:
                 data["sourceFailoverConfig"]
             )
         )
-    if "maintenance" in data:
+    if data.get("maintenance") is not None:
         import capo_mediaconnect.types.update_maintenance
 
         out["maintenance"] = (
@@ -102,7 +102,7 @@ def deserialize_json(data: dict) -> UpdateFlowRequest:
                 data["maintenance"]
             )
         )
-    if "sourceMonitoringConfig" in data:
+    if data.get("sourceMonitoringConfig") is not None:
         import capo_mediaconnect.types.monitoring_config
 
         out["source_monitoring_config"] = (
@@ -110,19 +110,19 @@ def deserialize_json(data: dict) -> UpdateFlowRequest:
                 data["sourceMonitoringConfig"]
             )
         )
-    if "ndiConfig" in data:
+    if data.get("ndiConfig") is not None:
         import capo_mediaconnect.types.ndi_config
 
         out["ndi_config"] = capo_mediaconnect.types.ndi_config.deserialize_json(
             data["ndiConfig"]
         )
-    if "flowSize" in data:
+    if data.get("flowSize") is not None:
         import capo_mediaconnect.types.flow_size
 
         out["flow_size"] = capo_mediaconnect.types.flow_size.deserialize_json(
             data["flowSize"]
         )
-    if "encodingConfig" in data:
+    if data.get("encodingConfig") is not None:
         import capo_mediaconnect.types.encoding_config
 
         out["encoding_config"] = (

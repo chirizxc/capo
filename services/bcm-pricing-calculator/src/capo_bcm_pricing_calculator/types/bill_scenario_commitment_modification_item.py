@@ -48,13 +48,13 @@ def serialize_aws_json_1_0(value: BillScenarioCommitmentModificationItem) -> dic
 
 def deserialize_aws_json_1_0(data: dict) -> BillScenarioCommitmentModificationItem:
     out: BillScenarioCommitmentModificationItem = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "usageAccountId" in data:
+    if data.get("usageAccountId") is not None:
         out["usage_account_id"] = data["usageAccountId"]
-    if "group" in data:
+    if data.get("group") is not None:
         out["group"] = data["group"]
-    if "commitmentAction" in data:
+    if data.get("commitmentAction") is not None:
         import capo_bcm_pricing_calculator.types.bill_scenario_commitment_modification_action
 
         out["commitment_action"] = (

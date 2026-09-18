@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> CodeReviewList:
 
     out: CodeReviewList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_securityagent.types.code_review.deserialize_json(item))
     return out

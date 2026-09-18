@@ -32,10 +32,10 @@ def serialize_json(value: AwsIamPolicyVersion) -> dict:
 
 def deserialize_json(data: dict) -> AwsIamPolicyVersion:
     out: AwsIamPolicyVersion = {}  # type: ignore[typeddict-item]
-    if "VersionId" in data:
+    if data.get("VersionId") is not None:
         out["version_id"] = data["VersionId"]
-    if "IsDefaultVersion" in data:
+    if data.get("IsDefaultVersion") is not None:
         out["is_default_version"] = data["IsDefaultVersion"]
-    if "CreateDate" in data:
+    if data.get("CreateDate") is not None:
         out["create_date"] = data["CreateDate"]
     return out

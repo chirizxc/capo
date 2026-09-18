@@ -50,15 +50,15 @@ def serialize_json(value: AudioSourceDetails) -> dict:
 
 def deserialize_json(data: dict) -> AudioSourceDetails:
     out: AudioSourceDetails = {}  # type: ignore[typeddict-item]
-    if "mediaId" in data:
+    if data.get("mediaId") is not None:
         out["media_id"] = data["mediaId"]
-    if "mediaMimeType" in data:
+    if data.get("mediaMimeType") is not None:
         out["media_mime_type"] = data["mediaMimeType"]
-    if "startTimeMilliseconds" in data:
+    if data.get("startTimeMilliseconds") is not None:
         out["start_time_milliseconds"] = data["startTimeMilliseconds"]
-    if "endTimeMilliseconds" in data:
+    if data.get("endTimeMilliseconds") is not None:
         out["end_time_milliseconds"] = data["endTimeMilliseconds"]
-    if "audioExtractionType" in data:
+    if data.get("audioExtractionType") is not None:
         import capo_qbusiness.types.audio_extraction_type
 
         out["audio_extraction_type"] = (

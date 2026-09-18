@@ -44,7 +44,7 @@ def serialize_json(value: ResaleAuthorizationAvailabilityEndDateFilter) -> dict:
 
 def deserialize_json(data: dict) -> ResaleAuthorizationAvailabilityEndDateFilter:
     out: ResaleAuthorizationAvailabilityEndDateFilter = {}  # type: ignore[typeddict-item]
-    if "DateRange" in data:
+    if data.get("DateRange") is not None:
         import capo_marketplace_catalog.types.resale_authorization_availability_end_date_filter_date_range
 
         out["date_range"] = (
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> ResaleAuthorizationAvailabilityEndDateFilter
                 data["DateRange"]
             )
         )
-    if "ValueList" in data:
+    if data.get("ValueList") is not None:
         import capo_marketplace_catalog.types.resale_authorization_availability_end_date_filter_value_list
 
         out["value_list"] = (

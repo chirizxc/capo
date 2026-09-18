@@ -41,11 +41,11 @@ def serialize_aws_json_1_1(value: RetryBuildBatchInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RetryBuildBatchInput:
     out: RetryBuildBatchInput = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "idempotencyToken" in data:
+    if data.get("idempotencyToken") is not None:
         out["idempotency_token"] = data["idempotencyToken"]
-    if "retryType" in data:
+    if data.get("retryType") is not None:
         import capo_codebuild.types.retry_build_batch_type
 
         out["retry_type"] = (

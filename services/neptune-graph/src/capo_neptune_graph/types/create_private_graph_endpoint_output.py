@@ -49,11 +49,11 @@ def serialize_json(value: CreatePrivateGraphEndpointOutput) -> dict:
 
 def deserialize_json(data: dict) -> CreatePrivateGraphEndpointOutput:
     out: CreatePrivateGraphEndpointOutput = {}  # type: ignore[typeddict-item]
-    if "vpcId" in data:
+    if data.get("vpcId") is not None:
         out["vpc_id"] = data["vpcId"]
     else:
         raise DeserializationError("CreatePrivateGraphEndpointOutput.vpc_id required")
-    if "subnetIds" in data:
+    if data.get("subnetIds") is not None:
         import capo_neptune_graph.types.subnet_ids
 
         out["subnet_ids"] = capo_neptune_graph.types.subnet_ids.deserialize_json(
@@ -63,7 +63,7 @@ def deserialize_json(data: dict) -> CreatePrivateGraphEndpointOutput:
         raise DeserializationError(
             "CreatePrivateGraphEndpointOutput.subnet_ids required"
         )
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_neptune_graph.types.private_graph_endpoint_status
 
         out["status"] = (
@@ -73,6 +73,6 @@ def deserialize_json(data: dict) -> CreatePrivateGraphEndpointOutput:
         )
     else:
         raise DeserializationError("CreatePrivateGraphEndpointOutput.status required")
-    if "vpcEndpointId" in data:
+    if data.get("vpcEndpointId") is not None:
         out["vpc_endpoint_id"] = data["vpcEndpointId"]
     return out

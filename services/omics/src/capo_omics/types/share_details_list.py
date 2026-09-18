@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> ShareDetailsList:
 
     out: ShareDetailsList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_omics.types.share_details.deserialize_json(item))
     return out

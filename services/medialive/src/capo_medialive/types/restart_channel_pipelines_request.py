@@ -34,7 +34,7 @@ def serialize_json(value: RestartChannelPipelinesRequest) -> dict:
 
 def deserialize_json(data: dict) -> RestartChannelPipelinesRequest:
     out: RestartChannelPipelinesRequest = {}  # type: ignore[typeddict-item]
-    if "pipelineIds" in data:
+    if data.get("pipelineIds") is not None:
         import capo_medialive.types.__list_of_channel_pipeline_id_to_restart
 
         out["pipeline_ids"] = (

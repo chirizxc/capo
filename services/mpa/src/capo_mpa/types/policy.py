@@ -38,15 +38,15 @@ def serialize_json(value: Policy) -> dict:
 
 def deserialize_json(data: dict) -> Policy:
     out: Policy = {}  # type: ignore[typeddict-item]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
     else:
         raise DeserializationError("Policy.arn required")
-    if "DefaultVersion" in data:
+    if data.get("DefaultVersion") is not None:
         out["default_version"] = data["DefaultVersion"]
     else:
         raise DeserializationError("Policy.default_version required")
-    if "PolicyType" in data:
+    if data.get("PolicyType") is not None:
         import capo_mpa.types.policy_type
 
         out["policy_type"] = capo_mpa.types.policy_type.deserialize_json(
@@ -54,7 +54,7 @@ def deserialize_json(data: dict) -> Policy:
         )
     else:
         raise DeserializationError("Policy.policy_type required")
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("Policy.name required")

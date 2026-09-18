@@ -50,9 +50,9 @@ def serialize_json(value: RealTimeContactAnalysisSegmentPostContactSummary) -> d
 
 def deserialize_json(data: dict) -> RealTimeContactAnalysisSegmentPostContactSummary:
     out: RealTimeContactAnalysisSegmentPostContactSummary = {}  # type: ignore[typeddict-item]
-    if "Content" in data:
+    if data.get("Content") is not None:
         out["content"] = data["Content"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_connect.types.real_time_contact_analysis_post_contact_summary_status
 
         out["status"] = (
@@ -64,7 +64,7 @@ def deserialize_json(data: dict) -> RealTimeContactAnalysisSegmentPostContactSum
         raise DeserializationError(
             "RealTimeContactAnalysisSegmentPostContactSummary.status required"
         )
-    if "FailureCode" in data:
+    if data.get("FailureCode") is not None:
         import capo_connect.types.real_time_contact_analysis_post_contact_summary_failure_code
 
         out["failure_code"] = (

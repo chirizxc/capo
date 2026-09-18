@@ -1,5 +1,6 @@
 """Generated from Smithy shape ``com.amazonaws.applicationdiscoveryservice#AWSPoseidonService_V2015_11_01``."""
 
+import uuid
 import warnings
 from collections.abc import Iterator
 from typing import TYPE_CHECKING, Any, Iterable, Optional
@@ -256,15 +257,17 @@ class ApplicationDiscoveryServiceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_application_discovery_service.types.associate_configuration_items_to_application_request.AssociateConfigurationItemsToApplicationRequest = {}  # type: ignore[typeddict-item]
-        input_["application_configuration_id"] = application_configuration_id
-        input_["configuration_ids"] = configuration_ids
+        input_: capo_application_discovery_service.types.associate_configuration_items_to_application_request.AssociateConfigurationItemsToApplicationRequest = {
+            "application_configuration_id": application_configuration_id,
+            "configuration_ids": configuration_ids,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def batch_delete_agents(
@@ -301,14 +304,16 @@ class ApplicationDiscoveryServiceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_application_discovery_service.types.batch_delete_agents_request.BatchDeleteAgentsRequest = {}  # type: ignore[typeddict-item]
-        input_["delete_agents"] = delete_agents
+        input_: capo_application_discovery_service.types.batch_delete_agents_request.BatchDeleteAgentsRequest = {
+            "delete_agents": delete_agents
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def batch_delete_import_data(
@@ -350,8 +355,9 @@ class ApplicationDiscoveryServiceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_application_discovery_service.types.batch_delete_import_data_request.BatchDeleteImportDataRequest = {}  # type: ignore[typeddict-item]
-        input_["import_task_ids"] = import_task_ids
+        input_: capo_application_discovery_service.types.batch_delete_import_data_request.BatchDeleteImportDataRequest = {
+            "import_task_ids": import_task_ids
+        }
         if delete_history is not None:
             input_["delete_history"] = delete_history
 
@@ -360,6 +366,7 @@ class ApplicationDiscoveryServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_application(
@@ -405,8 +412,9 @@ class ApplicationDiscoveryServiceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_application_discovery_service.types.create_application_request.CreateApplicationRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_application_discovery_service.types.create_application_request.CreateApplicationRequest = {
+            "name": name
+        }
         if description is not None:
             input_["description"] = description
         if wave is not None:
@@ -417,6 +425,7 @@ class ApplicationDiscoveryServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_tags(
@@ -457,15 +466,17 @@ class ApplicationDiscoveryServiceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_application_discovery_service.types.create_tags_request.CreateTagsRequest = {}  # type: ignore[typeddict-item]
-        input_["configuration_ids"] = configuration_ids
-        input_["tags"] = tags
+        input_: capo_application_discovery_service.types.create_tags_request.CreateTagsRequest = {
+            "configuration_ids": configuration_ids,
+            "tags": tags,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_applications(
@@ -503,14 +514,16 @@ class ApplicationDiscoveryServiceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_application_discovery_service.types.delete_applications_request.DeleteApplicationsRequest = {}  # type: ignore[typeddict-item]
-        input_["configuration_ids"] = configuration_ids
+        input_: capo_application_discovery_service.types.delete_applications_request.DeleteApplicationsRequest = {
+            "configuration_ids": configuration_ids
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_tags(
@@ -553,8 +566,9 @@ class ApplicationDiscoveryServiceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_application_discovery_service.types.delete_tags_request.DeleteTagsRequest = {}  # type: ignore[typeddict-item]
-        input_["configuration_ids"] = configuration_ids
+        input_: capo_application_discovery_service.types.delete_tags_request.DeleteTagsRequest = {
+            "configuration_ids": configuration_ids
+        }
         if tags is not None:
             input_["tags"] = tags
 
@@ -563,6 +577,7 @@ class ApplicationDiscoveryServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_agents(
@@ -614,7 +629,7 @@ class ApplicationDiscoveryServiceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_application_discovery_service.types.describe_agents_request.DescribeAgentsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_application_discovery_service.types.describe_agents_request.DescribeAgentsRequest = {}
         if agent_ids is not None:
             input_["agent_ids"] = agent_ids
         if filters is not None:
@@ -629,6 +644,7 @@ class ApplicationDiscoveryServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_describe_agents(
@@ -698,14 +714,16 @@ class ApplicationDiscoveryServiceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_application_discovery_service.types.describe_batch_delete_configuration_task_request.DescribeBatchDeleteConfigurationTaskRequest = {}  # type: ignore[typeddict-item]
-        input_["task_id"] = task_id
+        input_: capo_application_discovery_service.types.describe_batch_delete_configuration_task_request.DescribeBatchDeleteConfigurationTaskRequest = {
+            "task_id": task_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_configurations(
@@ -743,14 +761,16 @@ class ApplicationDiscoveryServiceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_application_discovery_service.types.describe_configurations_request.DescribeConfigurationsRequest = {}  # type: ignore[typeddict-item]
-        input_["configuration_ids"] = configuration_ids
+        input_: capo_application_discovery_service.types.describe_configurations_request.DescribeConfigurationsRequest = {
+            "configuration_ids": configuration_ids
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_continuous_exports(
@@ -800,7 +820,7 @@ class ApplicationDiscoveryServiceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_application_discovery_service.types.describe_continuous_exports_request.DescribeContinuousExportsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_application_discovery_service.types.describe_continuous_exports_request.DescribeContinuousExportsRequest = {}
         if export_ids is not None:
             input_["export_ids"] = export_ids
         if max_results is not None:
@@ -813,6 +833,7 @@ class ApplicationDiscoveryServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_describe_continuous_exports(
@@ -890,7 +911,7 @@ class ApplicationDiscoveryServiceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_application_discovery_service.types.describe_export_configurations_request.DescribeExportConfigurationsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_application_discovery_service.types.describe_export_configurations_request.DescribeExportConfigurationsRequest = {}
         if export_ids is not None:
             input_["export_ids"] = export_ids
         if max_results is not None:
@@ -903,6 +924,7 @@ class ApplicationDiscoveryServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_describe_export_configurations(
@@ -983,7 +1005,7 @@ class ApplicationDiscoveryServiceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_application_discovery_service.types.describe_export_tasks_request.DescribeExportTasksRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_application_discovery_service.types.describe_export_tasks_request.DescribeExportTasksRequest = {}
         if export_ids is not None:
             input_["export_ids"] = export_ids
         if filters is not None:
@@ -998,6 +1020,7 @@ class ApplicationDiscoveryServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_describe_export_tasks(
@@ -1078,7 +1101,7 @@ class ApplicationDiscoveryServiceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_application_discovery_service.types.describe_import_tasks_request.DescribeImportTasksRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_application_discovery_service.types.describe_import_tasks_request.DescribeImportTasksRequest = {}
         if filters is not None:
             input_["filters"] = filters
         if max_results is not None:
@@ -1091,6 +1114,7 @@ class ApplicationDiscoveryServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_describe_import_tasks(
@@ -1168,7 +1192,7 @@ class ApplicationDiscoveryServiceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_application_discovery_service.types.describe_tags_request.DescribeTagsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_application_discovery_service.types.describe_tags_request.DescribeTagsRequest = {}
         if filters is not None:
             input_["filters"] = filters
         if max_results is not None:
@@ -1181,6 +1205,7 @@ class ApplicationDiscoveryServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_describe_tags(
@@ -1249,15 +1274,17 @@ class ApplicationDiscoveryServiceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_application_discovery_service.types.disassociate_configuration_items_from_application_request.DisassociateConfigurationItemsFromApplicationRequest = {}  # type: ignore[typeddict-item]
-        input_["application_configuration_id"] = application_configuration_id
-        input_["configuration_ids"] = configuration_ids
+        input_: capo_application_discovery_service.types.disassociate_configuration_items_from_application_request.DisassociateConfigurationItemsFromApplicationRequest = {
+            "application_configuration_id": application_configuration_id,
+            "configuration_ids": configuration_ids,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def export_configurations(
@@ -1298,6 +1325,7 @@ class ApplicationDiscoveryServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_discovery_summary(
@@ -1331,13 +1359,14 @@ class ApplicationDiscoveryServiceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_application_discovery_service.types.get_discovery_summary_request.GetDiscoverySummaryRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_application_discovery_service.types.get_discovery_summary_request.GetDiscoverySummaryRequest = {}
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_configurations(
@@ -1392,8 +1421,9 @@ class ApplicationDiscoveryServiceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_application_discovery_service.types.list_configurations_request.ListConfigurationsRequest = {}  # type: ignore[typeddict-item]
-        input_["configuration_type"] = configuration_type
+        input_: capo_application_discovery_service.types.list_configurations_request.ListConfigurationsRequest = {
+            "configuration_type": configuration_type
+        }
         if filters is not None:
             input_["filters"] = filters
         if max_results is not None:
@@ -1408,6 +1438,7 @@ class ApplicationDiscoveryServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_configurations(
@@ -1498,8 +1529,9 @@ class ApplicationDiscoveryServiceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_application_discovery_service.types.list_server_neighbors_request.ListServerNeighborsRequest = {}  # type: ignore[typeddict-item]
-        input_["configuration_id"] = configuration_id
+        input_: capo_application_discovery_service.types.list_server_neighbors_request.ListServerNeighborsRequest = {
+            "configuration_id": configuration_id
+        }
         if port_information_needed is not None:
             input_["port_information_needed"] = port_information_needed
         if neighbor_configuration_ids is not None:
@@ -1514,6 +1546,7 @@ class ApplicationDiscoveryServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def start_batch_delete_configuration_task(
@@ -1555,15 +1588,17 @@ class ApplicationDiscoveryServiceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_application_discovery_service.types.start_batch_delete_configuration_task_request.StartBatchDeleteConfigurationTaskRequest = {}  # type: ignore[typeddict-item]
-        input_["configuration_type"] = configuration_type
-        input_["configuration_ids"] = configuration_ids
+        input_: capo_application_discovery_service.types.start_batch_delete_configuration_task_request.StartBatchDeleteConfigurationTaskRequest = {
+            "configuration_type": configuration_type,
+            "configuration_ids": configuration_ids,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def start_continuous_export(
@@ -1600,13 +1635,14 @@ class ApplicationDiscoveryServiceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_application_discovery_service.types.start_continuous_export_request.StartContinuousExportRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_application_discovery_service.types.start_continuous_export_request.StartContinuousExportRequest = {}
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def start_data_collection_by_agent_ids(
@@ -1644,14 +1680,16 @@ class ApplicationDiscoveryServiceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_application_discovery_service.types.start_data_collection_by_agent_ids_request.StartDataCollectionByAgentIdsRequest = {}  # type: ignore[typeddict-item]
-        input_["agent_ids"] = agent_ids
+        input_: capo_application_discovery_service.types.start_data_collection_by_agent_ids_request.StartDataCollectionByAgentIdsRequest = {
+            "agent_ids": agent_ids
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def start_export_task(
@@ -1708,7 +1746,7 @@ class ApplicationDiscoveryServiceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_application_discovery_service.types.start_export_task_request.StartExportTaskRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_application_discovery_service.types.start_export_task_request.StartExportTaskRequest = {}
         if export_data_format is not None:
             input_["export_data_format"] = export_data_format
         if filters is not None:
@@ -1725,6 +1763,7 @@ class ApplicationDiscoveryServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def start_import_task(
@@ -1769,17 +1808,20 @@ class ApplicationDiscoveryServiceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_application_discovery_service.types.start_import_task_request.StartImportTaskRequest = {}  # type: ignore[typeddict-item]
-        if client_request_token is not None:
-            input_["client_request_token"] = client_request_token
-        input_["name"] = name
-        input_["import_url"] = import_url
+        input_: capo_application_discovery_service.types.start_import_task_request.StartImportTaskRequest = {
+            "name": name,
+            "import_url": import_url,
+        }
+        if client_request_token is None:
+            client_request_token = str(uuid.uuid4())
+        input_["client_request_token"] = client_request_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def stop_continuous_export(
@@ -1820,14 +1862,16 @@ class ApplicationDiscoveryServiceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_application_discovery_service.types.stop_continuous_export_request.StopContinuousExportRequest = {}  # type: ignore[typeddict-item]
-        input_["export_id"] = export_id
+        input_: capo_application_discovery_service.types.stop_continuous_export_request.StopContinuousExportRequest = {
+            "export_id": export_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def stop_data_collection_by_agent_ids(
@@ -1865,14 +1909,16 @@ class ApplicationDiscoveryServiceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_application_discovery_service.types.stop_data_collection_by_agent_ids_request.StopDataCollectionByAgentIdsRequest = {}  # type: ignore[typeddict-item]
-        input_["agent_ids"] = agent_ids
+        input_: capo_application_discovery_service.types.stop_data_collection_by_agent_ids_request.StopDataCollectionByAgentIdsRequest = {
+            "agent_ids": agent_ids
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_application(
@@ -1922,8 +1968,9 @@ class ApplicationDiscoveryServiceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_application_discovery_service.types.update_application_request.UpdateApplicationRequest = {}  # type: ignore[typeddict-item]
-        input_["configuration_id"] = configuration_id
+        input_: capo_application_discovery_service.types.update_application_request.UpdateApplicationRequest = {
+            "configuration_id": configuration_id
+        }
         if name is not None:
             input_["name"] = name
         if description is not None:
@@ -1936,6 +1983,7 @@ class ApplicationDiscoveryServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def __enter__(self) -> Self:

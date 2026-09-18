@@ -46,13 +46,13 @@ def serialize_json(value: EnableRequest) -> dict:
 
 def deserialize_json(data: dict) -> EnableRequest:
     out: EnableRequest = {}  # type: ignore[typeddict-item]
-    if "accountIds" in data:
+    if data.get("accountIds") is not None:
         import capo_inspector2.types.account_id_set
 
         out["account_ids"] = capo_inspector2.types.account_id_set.deserialize_json(
             data["accountIds"]
         )
-    if "resourceTypes" in data:
+    if data.get("resourceTypes") is not None:
         import capo_inspector2.types.enable_resource_type_list
 
         out["resource_types"] = (
@@ -62,6 +62,6 @@ def deserialize_json(data: dict) -> EnableRequest:
         )
     else:
         raise DeserializationError("EnableRequest.resource_types required")
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     return out

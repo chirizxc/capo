@@ -62,27 +62,27 @@ def serialize_json(value: DescribeRouteCalculatorResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribeRouteCalculatorResponse:
     out: DescribeRouteCalculatorResponse = {}  # type: ignore[typeddict-item]
-    if "CalculatorName" in data:
+    if data.get("CalculatorName") is not None:
         out["calculator_name"] = data["CalculatorName"]
     else:
         raise DeserializationError(
             "DescribeRouteCalculatorResponse.calculator_name required"
         )
-    if "CalculatorArn" in data:
+    if data.get("CalculatorArn") is not None:
         out["calculator_arn"] = data["CalculatorArn"]
     else:
         raise DeserializationError(
             "DescribeRouteCalculatorResponse.calculator_arn required"
         )
-    if "PricingPlan" in data:
+    if data.get("PricingPlan") is not None:
         out["pricing_plan"] = data["PricingPlan"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
     else:
         raise DeserializationError(
             "DescribeRouteCalculatorResponse.description required"
         )
-    if "CreateTime" in data:
+    if data.get("CreateTime") is not None:
         import capo_location.types.timestamp
 
         out["create_time"] = capo_location.types.timestamp.deserialize_json(
@@ -92,7 +92,7 @@ def deserialize_json(data: dict) -> DescribeRouteCalculatorResponse:
         raise DeserializationError(
             "DescribeRouteCalculatorResponse.create_time required"
         )
-    if "UpdateTime" in data:
+    if data.get("UpdateTime") is not None:
         import capo_location.types.timestamp
 
         out["update_time"] = capo_location.types.timestamp.deserialize_json(
@@ -102,13 +102,13 @@ def deserialize_json(data: dict) -> DescribeRouteCalculatorResponse:
         raise DeserializationError(
             "DescribeRouteCalculatorResponse.update_time required"
         )
-    if "DataSource" in data:
+    if data.get("DataSource") is not None:
         out["data_source"] = data["DataSource"]
     else:
         raise DeserializationError(
             "DescribeRouteCalculatorResponse.data_source required"
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_location.types.tag_map
 
         out["tags"] = capo_location.types.tag_map.deserialize_json(data["Tags"])

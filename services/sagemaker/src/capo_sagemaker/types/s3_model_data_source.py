@@ -86,9 +86,9 @@ def serialize_aws_json_1_1(value: S3ModelDataSource) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> S3ModelDataSource:
     out: S3ModelDataSource = {}  # type: ignore[typeddict-item]
-    if "S3Uri" in data:
+    if data.get("S3Uri") is not None:
         out["s3_uri"] = data["S3Uri"]
-    if "S3DataType" in data:
+    if data.get("S3DataType") is not None:
         import capo_sagemaker.types.s3_model_data_type
 
         out["s3_data_type"] = (
@@ -96,7 +96,7 @@ def deserialize_aws_json_1_1(data: dict) -> S3ModelDataSource:
                 data["S3DataType"]
             )
         )
-    if "CompressionType" in data:
+    if data.get("CompressionType") is not None:
         import capo_sagemaker.types.model_compression_type
 
         out["compression_type"] = (
@@ -104,7 +104,7 @@ def deserialize_aws_json_1_1(data: dict) -> S3ModelDataSource:
                 data["CompressionType"]
             )
         )
-    if "ModelAccessConfig" in data:
+    if data.get("ModelAccessConfig") is not None:
         import capo_sagemaker.types.model_access_config
 
         out["model_access_config"] = (
@@ -112,7 +112,7 @@ def deserialize_aws_json_1_1(data: dict) -> S3ModelDataSource:
                 data["ModelAccessConfig"]
             )
         )
-    if "HubAccessConfig" in data:
+    if data.get("HubAccessConfig") is not None:
         import capo_sagemaker.types.inference_hub_access_config
 
         out["hub_access_config"] = (
@@ -120,10 +120,10 @@ def deserialize_aws_json_1_1(data: dict) -> S3ModelDataSource:
                 data["HubAccessConfig"]
             )
         )
-    if "ManifestS3Uri" in data:
+    if data.get("ManifestS3Uri") is not None:
         out["manifest_s3_uri"] = data["ManifestS3Uri"]
-    if "ETag" in data:
+    if data.get("ETag") is not None:
         out["e_tag"] = data["ETag"]
-    if "ManifestEtag" in data:
+    if data.get("ManifestEtag") is not None:
         out["manifest_etag"] = data["ManifestEtag"]
     return out

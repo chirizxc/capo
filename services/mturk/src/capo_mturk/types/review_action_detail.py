@@ -62,28 +62,28 @@ def serialize_aws_json_1_1(value: ReviewActionDetail) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ReviewActionDetail:
     out: ReviewActionDetail = {}  # type: ignore[typeddict-item]
-    if "ActionId" in data:
+    if data.get("ActionId") is not None:
         out["action_id"] = data["ActionId"]
-    if "ActionName" in data:
+    if data.get("ActionName") is not None:
         out["action_name"] = data["ActionName"]
-    if "TargetId" in data:
+    if data.get("TargetId") is not None:
         out["target_id"] = data["TargetId"]
-    if "TargetType" in data:
+    if data.get("TargetType") is not None:
         out["target_type"] = data["TargetType"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_mturk.types.review_action_status
 
         out["status"] = capo_mturk.types.review_action_status.deserialize_aws_json_1_1(
             data["Status"]
         )
-    if "CompleteTime" in data:
+    if data.get("CompleteTime") is not None:
         import capo_mturk.types.timestamp
 
         out["complete_time"] = capo_mturk.types.timestamp.deserialize_aws_json_1_1(
             data["CompleteTime"]
         )
-    if "Result" in data:
+    if data.get("Result") is not None:
         out["result"] = data["Result"]
-    if "ErrorCode" in data:
+    if data.get("ErrorCode") is not None:
         out["error_code"] = data["ErrorCode"]
     return out

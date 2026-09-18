@@ -28,8 +28,8 @@ def serialize_aws_json_1_1(value: GetSessionInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetSessionInput:
     out: GetSessionInput = {}  # type: ignore[typeddict-item]
-    if "ClusterId" in data:
+    if data.get("ClusterId") is not None:
         out["cluster_id"] = data["ClusterId"]
-    if "SessionId" in data:
+    if data.get("SessionId") is not None:
         out["session_id"] = data["SessionId"]
     return out

@@ -36,7 +36,7 @@ def serialize_json(value: AssociateHoursOfOperationsRequest) -> dict:
 
 def deserialize_json(data: dict) -> AssociateHoursOfOperationsRequest:
     out: AssociateHoursOfOperationsRequest = {}  # type: ignore[typeddict-item]
-    if "ParentHoursOfOperationConfigs" in data:
+    if data.get("ParentHoursOfOperationConfigs") is not None:
         import capo_connect.types.parent_hours_of_operation_config_list
 
         out["parent_hours_of_operation_configs"] = (

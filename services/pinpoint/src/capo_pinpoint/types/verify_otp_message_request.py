@@ -33,7 +33,7 @@ def serialize_json(value: VerifyOTPMessageRequest) -> dict:
 
 def deserialize_json(data: dict) -> VerifyOTPMessageRequest:
     out: VerifyOTPMessageRequest = {}  # type: ignore[typeddict-item]
-    if "VerifyOTPMessageRequestParameters" in data:
+    if data.get("VerifyOTPMessageRequestParameters") is not None:
         import capo_pinpoint.types.verify_otp_message_request_parameters
 
         out["verify_otp_message_request_parameters"] = (

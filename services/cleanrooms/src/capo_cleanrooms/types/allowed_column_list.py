@@ -14,4 +14,4 @@ def serialize_json(value: AllowedColumnList) -> list:
 
 
 def deserialize_json(data: list) -> AllowedColumnList:
-    return list(data)
+    return [item for item in data if item is not None]

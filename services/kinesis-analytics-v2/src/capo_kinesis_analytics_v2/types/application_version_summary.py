@@ -38,13 +38,13 @@ def serialize_aws_json_1_1(value: ApplicationVersionSummary) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ApplicationVersionSummary:
     out: ApplicationVersionSummary = {}  # type: ignore[typeddict-item]
-    if "ApplicationVersionId" in data:
+    if data.get("ApplicationVersionId") is not None:
         out["application_version_id"] = data["ApplicationVersionId"]
     else:
         raise DeserializationError(
             "ApplicationVersionSummary.application_version_id required"
         )
-    if "ApplicationStatus" in data:
+    if data.get("ApplicationStatus") is not None:
         import capo_kinesis_analytics_v2.types.application_status
 
         out["application_status"] = (

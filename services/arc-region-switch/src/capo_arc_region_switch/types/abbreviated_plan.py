@@ -90,19 +90,19 @@ def serialize_aws_json_1_0(value: AbbreviatedPlan) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> AbbreviatedPlan:
     out: AbbreviatedPlan = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("AbbreviatedPlan.arn required")
-    if "owner" in data:
+    if data.get("owner") is not None:
         out["owner"] = data["owner"]
     else:
         raise DeserializationError("AbbreviatedPlan.owner required")
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("AbbreviatedPlan.name required")
-    if "regions" in data:
+    if data.get("regions") is not None:
         import capo_arc_region_switch.types.region_list
 
         out["regions"] = (
@@ -112,7 +112,7 @@ def deserialize_aws_json_1_0(data: dict) -> AbbreviatedPlan:
         )
     else:
         raise DeserializationError("AbbreviatedPlan.regions required")
-    if "recoveryApproach" in data:
+    if data.get("recoveryApproach") is not None:
         import capo_arc_region_switch.types.recovery_approach
 
         out["recovery_approach"] = (
@@ -122,11 +122,11 @@ def deserialize_aws_json_1_0(data: dict) -> AbbreviatedPlan:
         )
     else:
         raise DeserializationError("AbbreviatedPlan.recovery_approach required")
-    if "primaryRegion" in data:
+    if data.get("primaryRegion") is not None:
         out["primary_region"] = data["primaryRegion"]
-    if "version" in data:
+    if data.get("version") is not None:
         out["version"] = data["version"]
-    if "updatedAt" in data:
+    if data.get("updatedAt") is not None:
         import capo_arc_region_switch.types._prelude.timestamp
 
         out["updated_at"] = (
@@ -134,12 +134,12 @@ def deserialize_aws_json_1_0(data: dict) -> AbbreviatedPlan:
                 data["updatedAt"]
             )
         )
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "executionRole" in data:
+    if data.get("executionRole") is not None:
         out["execution_role"] = data["executionRole"]
-    if "activePlanExecution" in data:
+    if data.get("activePlanExecution") is not None:
         out["active_plan_execution"] = data["activePlanExecution"]
-    if "recoveryTimeObjectiveMinutes" in data:
+    if data.get("recoveryTimeObjectiveMinutes") is not None:
         out["recovery_time_objective_minutes"] = data["recoveryTimeObjectiveMinutes"]
     return out

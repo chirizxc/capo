@@ -22,7 +22,15 @@ class TFIModelPerformance(TypedDict, closed=True):
 def serialize_aws_json_1_1(value: TFIModelPerformance) -> dict:
     out: dict = {}
     if "auc" in value:
-        out["auc"] = value["auc"]
+        out["auc"] = (
+            "NaN"
+            if value["auc"] != value["auc"]
+            else "Infinity"
+            if value["auc"] == float("inf")
+            else "-Infinity"
+            if value["auc"] == float("-inf")
+            else value["auc"]
+        )
     if "uncertainty_range" in value:
         import capo_frauddetector.types.uncertainty_range
 
@@ -36,9 +44,9 @@ def serialize_aws_json_1_1(value: TFIModelPerformance) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> TFIModelPerformance:
     out: TFIModelPerformance = {}  # type: ignore[typeddict-item]
-    if "auc" in data:
-        out["auc"] = data["auc"]
-    if "uncertaintyRange" in data:
+    if data.get("auc") is not None:
+        out["auc"] = float(data["auc"])
+    if data.get("uncertaintyRange") is not None:
         import capo_frauddetector.types.uncertainty_range
 
         out["uncertainty_range"] = (

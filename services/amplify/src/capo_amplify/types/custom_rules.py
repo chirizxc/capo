@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> CustomRules:
 
     out: CustomRules = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_amplify.types.custom_rule.deserialize_json(item))
     return out

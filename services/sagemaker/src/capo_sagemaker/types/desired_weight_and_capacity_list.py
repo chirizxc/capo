@@ -29,6 +29,8 @@ def deserialize_aws_json_1_1(data: list) -> DesiredWeightAndCapacityList:
 
     out: DesiredWeightAndCapacityList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_sagemaker.types.desired_weight_and_capacity.deserialize_aws_json_1_1(
                 item

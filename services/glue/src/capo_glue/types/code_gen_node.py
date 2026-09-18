@@ -40,15 +40,15 @@ def serialize_aws_json_1_1(value: CodeGenNode) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CodeGenNode:
     out: CodeGenNode = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
     else:
         raise DeserializationError("CodeGenNode.id required")
-    if "NodeType" in data:
+    if data.get("NodeType") is not None:
         out["node_type"] = data["NodeType"]
     else:
         raise DeserializationError("CodeGenNode.node_type required")
-    if "Args" in data:
+    if data.get("Args") is not None:
         import capo_glue.types.code_gen_node_args
 
         out["args"] = capo_glue.types.code_gen_node_args.deserialize_aws_json_1_1(
@@ -56,7 +56,7 @@ def deserialize_aws_json_1_1(data: dict) -> CodeGenNode:
         )
     else:
         raise DeserializationError("CodeGenNode.args required")
-    if "LineNumber" in data:
+    if data.get("LineNumber") is not None:
         out["line_number"] = data["LineNumber"]
     else:
         out["line_number"] = 0

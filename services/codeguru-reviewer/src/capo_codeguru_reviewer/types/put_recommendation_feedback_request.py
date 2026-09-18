@@ -36,19 +36,19 @@ def serialize_json(value: PutRecommendationFeedbackRequest) -> dict:
 
 def deserialize_json(data: dict) -> PutRecommendationFeedbackRequest:
     out: PutRecommendationFeedbackRequest = {}  # type: ignore[typeddict-item]
-    if "CodeReviewArn" in data:
+    if data.get("CodeReviewArn") is not None:
         out["code_review_arn"] = data["CodeReviewArn"]
     else:
         raise DeserializationError(
             "PutRecommendationFeedbackRequest.code_review_arn required"
         )
-    if "RecommendationId" in data:
+    if data.get("RecommendationId") is not None:
         out["recommendation_id"] = data["RecommendationId"]
     else:
         raise DeserializationError(
             "PutRecommendationFeedbackRequest.recommendation_id required"
         )
-    if "Reactions" in data:
+    if data.get("Reactions") is not None:
         import capo_codeguru_reviewer.types.reactions
 
         out["reactions"] = capo_codeguru_reviewer.types.reactions.deserialize_json(

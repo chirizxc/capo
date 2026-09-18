@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> MatchingWorkflowList:
 
     out: MatchingWorkflowList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_entityresolution.types.matching_workflow_summary.deserialize_json(item)
         )

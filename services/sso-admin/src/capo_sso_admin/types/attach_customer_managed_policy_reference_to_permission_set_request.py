@@ -44,19 +44,19 @@ def deserialize_aws_json_1_1(
     data: dict,
 ) -> AttachCustomerManagedPolicyReferenceToPermissionSetRequest:
     out: AttachCustomerManagedPolicyReferenceToPermissionSetRequest = {}  # type: ignore[typeddict-item]
-    if "InstanceArn" in data:
+    if data.get("InstanceArn") is not None:
         out["instance_arn"] = data["InstanceArn"]
     else:
         raise DeserializationError(
             "AttachCustomerManagedPolicyReferenceToPermissionSetRequest.instance_arn required"
         )
-    if "PermissionSetArn" in data:
+    if data.get("PermissionSetArn") is not None:
         out["permission_set_arn"] = data["PermissionSetArn"]
     else:
         raise DeserializationError(
             "AttachCustomerManagedPolicyReferenceToPermissionSetRequest.permission_set_arn required"
         )
-    if "CustomerManagedPolicyReference" in data:
+    if data.get("CustomerManagedPolicyReference") is not None:
         import capo_sso_admin.types.customer_managed_policy_reference
 
         out["customer_managed_policy_reference"] = (

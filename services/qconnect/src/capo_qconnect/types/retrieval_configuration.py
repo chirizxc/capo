@@ -54,7 +54,7 @@ def serialize_json(value: RetrievalConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> RetrievalConfiguration:
     out: RetrievalConfiguration = {}  # type: ignore[typeddict-item]
-    if "knowledgeSource" in data:
+    if data.get("knowledgeSource") is not None:
         import capo_qconnect.types.knowledge_source
 
         out["knowledge_source"] = capo_qconnect.types.knowledge_source.deserialize_json(
@@ -62,7 +62,7 @@ def deserialize_json(data: dict) -> RetrievalConfiguration:
         )
     else:
         raise DeserializationError("RetrievalConfiguration.knowledge_source required")
-    if "filter" in data:
+    if data.get("filter") is not None:
         import capo_qconnect.types.retrieval_filter_configuration
 
         out["filter"] = (
@@ -70,9 +70,9 @@ def deserialize_json(data: dict) -> RetrievalConfiguration:
                 data["filter"]
             )
         )
-    if "numberOfResults" in data:
+    if data.get("numberOfResults") is not None:
         out["number_of_results"] = data["numberOfResults"]
-    if "overrideKnowledgeBaseSearchType" in data:
+    if data.get("overrideKnowledgeBaseSearchType") is not None:
         out["override_knowledge_base_search_type"] = data[
             "overrideKnowledgeBaseSearchType"
         ]

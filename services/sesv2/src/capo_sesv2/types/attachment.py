@@ -79,7 +79,7 @@ def serialize_json(value: Attachment) -> dict:
 
 def deserialize_json(data: dict) -> Attachment:
     out: Attachment = {}  # type: ignore[typeddict-item]
-    if "RawContent" in data:
+    if data.get("RawContent") is not None:
         import capo_sesv2.types.raw_attachment_data
 
         out["raw_content"] = capo_sesv2.types.raw_attachment_data.deserialize_json(
@@ -87,7 +87,7 @@ def deserialize_json(data: dict) -> Attachment:
         )
     else:
         raise DeserializationError("Attachment.raw_content required")
-    if "ContentDisposition" in data:
+    if data.get("ContentDisposition") is not None:
         import capo_sesv2.types.attachment_content_disposition
 
         out["content_disposition"] = (
@@ -95,15 +95,15 @@ def deserialize_json(data: dict) -> Attachment:
                 data["ContentDisposition"]
             )
         )
-    if "FileName" in data:
+    if data.get("FileName") is not None:
         out["file_name"] = data["FileName"]
     else:
         raise DeserializationError("Attachment.file_name required")
-    if "ContentDescription" in data:
+    if data.get("ContentDescription") is not None:
         out["content_description"] = data["ContentDescription"]
-    if "ContentId" in data:
+    if data.get("ContentId") is not None:
         out["content_id"] = data["ContentId"]
-    if "ContentTransferEncoding" in data:
+    if data.get("ContentTransferEncoding") is not None:
         import capo_sesv2.types.attachment_content_transfer_encoding
 
         out["content_transfer_encoding"] = (
@@ -111,6 +111,6 @@ def deserialize_json(data: dict) -> Attachment:
                 data["ContentTransferEncoding"]
             )
         )
-    if "ContentType" in data:
+    if data.get("ContentType") is not None:
         out["content_type"] = data["ContentType"]
     return out

@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: DiscoverInstancesResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DiscoverInstancesResponse:
     out: DiscoverInstancesResponse = {}  # type: ignore[typeddict-item]
-    if "Instances" in data:
+    if data.get("Instances") is not None:
         import capo_servicediscovery.types.http_instance_summary_list
 
         out["instances"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_1(data: dict) -> DiscoverInstancesResponse:
                 data["Instances"]
             )
         )
-    if "InstancesRevision" in data:
+    if data.get("InstancesRevision") is not None:
         out["instances_revision"] = data["InstancesRevision"]
     return out

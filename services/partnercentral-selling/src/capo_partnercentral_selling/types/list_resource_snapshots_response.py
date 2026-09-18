@@ -34,7 +34,7 @@ def serialize_aws_json_1_0(value: ListResourceSnapshotsResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ListResourceSnapshotsResponse:
     out: ListResourceSnapshotsResponse = {}  # type: ignore[typeddict-item]
-    if "ResourceSnapshotSummaries" in data:
+    if data.get("ResourceSnapshotSummaries") is not None:
         import capo_partnercentral_selling.types.resource_snapshot_summary_list
 
         out["resource_snapshot_summaries"] = (
@@ -46,6 +46,6 @@ def deserialize_aws_json_1_0(data: dict) -> ListResourceSnapshotsResponse:
         raise DeserializationError(
             "ListResourceSnapshotsResponse.resource_snapshot_summaries required"
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

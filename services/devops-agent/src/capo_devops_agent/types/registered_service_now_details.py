@@ -25,6 +25,6 @@ def serialize_json(value: RegisteredServiceNowDetails) -> dict:
 
 def deserialize_json(data: dict) -> RegisteredServiceNowDetails:
     out: RegisteredServiceNowDetails = {}  # type: ignore[typeddict-item]
-    if "instanceUrl" in data:
+    if data.get("instanceUrl") is not None:
         out["instance_url"] = data["instanceUrl"]
     return out

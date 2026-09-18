@@ -34,12 +34,12 @@ def serialize_json(value: AllowListStatus) -> dict:
 
 def deserialize_json(data: dict) -> AllowListStatus:
     out: AllowListStatus = {}  # type: ignore[typeddict-item]
-    if "code" in data:
+    if data.get("code") is not None:
         import capo_macie2.types.allow_list_status_code
 
         out["code"] = capo_macie2.types.allow_list_status_code.deserialize_json(
             data["code"]
         )
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
     return out

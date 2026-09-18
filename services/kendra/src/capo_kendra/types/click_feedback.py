@@ -32,11 +32,11 @@ def serialize_aws_json_1_1(value: ClickFeedback) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ClickFeedback:
     out: ClickFeedback = {}  # type: ignore[typeddict-item]
-    if "ResultId" in data:
+    if data.get("ResultId") is not None:
         out["result_id"] = data["ResultId"]
     else:
         raise DeserializationError("ClickFeedback.result_id required")
-    if "ClickTime" in data:
+    if data.get("ClickTime") is not None:
         import capo_kendra.types.timestamp
 
         out["click_time"] = capo_kendra.types.timestamp.deserialize_aws_json_1_1(

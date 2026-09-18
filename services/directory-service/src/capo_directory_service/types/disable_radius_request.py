@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: DisableRadiusRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DisableRadiusRequest:
     out: DisableRadiusRequest = {}  # type: ignore[typeddict-item]
-    if "DirectoryId" in data:
+    if data.get("DirectoryId") is not None:
         out["directory_id"] = data["DirectoryId"]
     else:
         raise DeserializationError("DisableRadiusRequest.directory_id required")

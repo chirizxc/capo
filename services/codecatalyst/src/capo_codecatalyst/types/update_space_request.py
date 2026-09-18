@@ -28,6 +28,6 @@ def serialize_json(value: UpdateSpaceRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateSpaceRequest:
     out: UpdateSpaceRequest = {}  # type: ignore[typeddict-item]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
     return out

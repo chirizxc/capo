@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: DeleteCacheReportInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteCacheReportInput:
     out: DeleteCacheReportInput = {}  # type: ignore[typeddict-item]
-    if "CacheReportARN" in data:
+    if data.get("CacheReportARN") is not None:
         out["cache_report_arn"] = data["CacheReportARN"]
     else:
         raise DeserializationError("DeleteCacheReportInput.cache_report_arn required")

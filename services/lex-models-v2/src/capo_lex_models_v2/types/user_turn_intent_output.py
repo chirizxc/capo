@@ -37,11 +37,11 @@ def serialize_json(value: UserTurnIntentOutput) -> dict:
 
 def deserialize_json(data: dict) -> UserTurnIntentOutput:
     out: UserTurnIntentOutput = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("UserTurnIntentOutput.name required")
-    if "slots" in data:
+    if data.get("slots") is not None:
         import capo_lex_models_v2.types.user_turn_slot_output_map
 
         out["slots"] = (

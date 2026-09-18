@@ -41,7 +41,7 @@ def serialize_json(value: QuickResponseContents) -> dict:
 
 def deserialize_json(data: dict) -> QuickResponseContents:
     out: QuickResponseContents = {}  # type: ignore[typeddict-item]
-    if "plainText" in data:
+    if data.get("plainText") is not None:
         import capo_qconnect.types.quick_response_content_provider
 
         out["plain_text"] = (
@@ -49,7 +49,7 @@ def deserialize_json(data: dict) -> QuickResponseContents:
                 data["plainText"]
             )
         )
-    if "markdown" in data:
+    if data.get("markdown") is not None:
         import capo_qconnect.types.quick_response_content_provider
 
         out["markdown"] = (

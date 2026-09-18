@@ -23,5 +23,7 @@ def deserialize_aws_json_1_1(data: list) -> Predicates:
 
     out: Predicates = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_waf.types.predicate.deserialize_aws_json_1_1(item))
     return out

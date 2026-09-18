@@ -54,21 +54,21 @@ def serialize_json(value: Threat) -> dict:
 
 def deserialize_json(data: dict) -> Threat:
     out: Threat = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "source" in data:
+    if data.get("source") is not None:
         out["source"] = data["source"]
-    if "itemPaths" in data:
+    if data.get("itemPaths") is not None:
         import capo_guardduty.types.item_paths
 
         out["item_paths"] = capo_guardduty.types.item_paths.deserialize_json(
             data["itemPaths"]
         )
-    if "count" in data:
+    if data.get("count") is not None:
         out["count"] = data["count"]
-    if "hash" in data:
+    if data.get("hash") is not None:
         out["hash"] = data["hash"]
-    if "itemDetails" in data:
+    if data.get("itemDetails") is not None:
         import capo_guardduty.types.item_details_list
 
         out["item_details"] = capo_guardduty.types.item_details_list.deserialize_json(

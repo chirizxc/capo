@@ -69,11 +69,11 @@ def serialize_aws_json_1_1(value: GetUserResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetUserResponse:
     out: GetUserResponse = {}  # type: ignore[typeddict-item]
-    if "Username" in data:
+    if data.get("Username") is not None:
         out["username"] = data["Username"]
     else:
         raise DeserializationError("GetUserResponse.username required")
-    if "UserAttributes" in data:
+    if data.get("UserAttributes") is not None:
         import capo_cognito_identity_provider.types.attribute_list_type
 
         out["user_attributes"] = (
@@ -83,7 +83,7 @@ def deserialize_aws_json_1_1(data: dict) -> GetUserResponse:
         )
     else:
         raise DeserializationError("GetUserResponse.user_attributes required")
-    if "MFAOptions" in data:
+    if data.get("MFAOptions") is not None:
         import capo_cognito_identity_provider.types.mfa_option_list_type
 
         out["mfa_options"] = (
@@ -91,9 +91,9 @@ def deserialize_aws_json_1_1(data: dict) -> GetUserResponse:
                 data["MFAOptions"]
             )
         )
-    if "PreferredMfaSetting" in data:
+    if data.get("PreferredMfaSetting") is not None:
         out["preferred_mfa_setting"] = data["PreferredMfaSetting"]
-    if "UserMFASettingList" in data:
+    if data.get("UserMFASettingList") is not None:
         import capo_cognito_identity_provider.types.user_mfa_setting_list_type
 
         out["user_mfa_setting_list"] = (

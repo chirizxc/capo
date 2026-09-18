@@ -37,7 +37,7 @@ def serialize_json(value: ListDeliverabilityTestReportsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListDeliverabilityTestReportsResponse:
     out: ListDeliverabilityTestReportsResponse = {}  # type: ignore[typeddict-item]
-    if "DeliverabilityTestReports" in data:
+    if data.get("DeliverabilityTestReports") is not None:
         import capo_sesv2.types.deliverability_test_reports
 
         out["deliverability_test_reports"] = (
@@ -49,6 +49,6 @@ def deserialize_json(data: dict) -> ListDeliverabilityTestReportsResponse:
         raise DeserializationError(
             "ListDeliverabilityTestReportsResponse.deliverability_test_reports required"
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

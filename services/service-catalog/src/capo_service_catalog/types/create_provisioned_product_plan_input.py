@@ -97,15 +97,15 @@ def serialize_aws_json_1_1(value: CreateProvisionedProductPlanInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateProvisionedProductPlanInput:
     out: CreateProvisionedProductPlanInput = {}  # type: ignore[typeddict-item]
-    if "AcceptLanguage" in data:
+    if data.get("AcceptLanguage") is not None:
         out["accept_language"] = data["AcceptLanguage"]
-    if "PlanName" in data:
+    if data.get("PlanName") is not None:
         out["plan_name"] = data["PlanName"]
     else:
         raise DeserializationError(
             "CreateProvisionedProductPlanInput.plan_name required"
         )
-    if "PlanType" in data:
+    if data.get("PlanType") is not None:
         import capo_service_catalog.types.provisioned_product_plan_type
 
         out["plan_type"] = (
@@ -117,7 +117,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateProvisionedProductPlanInput:
         raise DeserializationError(
             "CreateProvisionedProductPlanInput.plan_type required"
         )
-    if "NotificationArns" in data:
+    if data.get("NotificationArns") is not None:
         import capo_service_catalog.types.notification_arns
 
         out["notification_arns"] = (
@@ -125,27 +125,27 @@ def deserialize_aws_json_1_1(data: dict) -> CreateProvisionedProductPlanInput:
                 data["NotificationArns"]
             )
         )
-    if "PathId" in data:
+    if data.get("PathId") is not None:
         out["path_id"] = data["PathId"]
-    if "ProductId" in data:
+    if data.get("ProductId") is not None:
         out["product_id"] = data["ProductId"]
     else:
         raise DeserializationError(
             "CreateProvisionedProductPlanInput.product_id required"
         )
-    if "ProvisionedProductName" in data:
+    if data.get("ProvisionedProductName") is not None:
         out["provisioned_product_name"] = data["ProvisionedProductName"]
     else:
         raise DeserializationError(
             "CreateProvisionedProductPlanInput.provisioned_product_name required"
         )
-    if "ProvisioningArtifactId" in data:
+    if data.get("ProvisioningArtifactId") is not None:
         out["provisioning_artifact_id"] = data["ProvisioningArtifactId"]
     else:
         raise DeserializationError(
             "CreateProvisionedProductPlanInput.provisioning_artifact_id required"
         )
-    if "ProvisioningParameters" in data:
+    if data.get("ProvisioningParameters") is not None:
         import capo_service_catalog.types.update_provisioning_parameters
 
         out["provisioning_parameters"] = (
@@ -153,13 +153,13 @@ def deserialize_aws_json_1_1(data: dict) -> CreateProvisionedProductPlanInput:
                 data["ProvisioningParameters"]
             )
         )
-    if "IdempotencyToken" in data:
+    if data.get("IdempotencyToken") is not None:
         out["idempotency_token"] = data["IdempotencyToken"]
     else:
         raise DeserializationError(
             "CreateProvisionedProductPlanInput.idempotency_token required"
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_service_catalog.types.tags
 
         out["tags"] = capo_service_catalog.types.tags.deserialize_aws_json_1_1(

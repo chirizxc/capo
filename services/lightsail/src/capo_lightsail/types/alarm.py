@@ -130,7 +130,15 @@ def serialize_aws_json_1_1(value: Alarm) -> dict:
     if "period" in value:
         out["period"] = value["period"]
     if "threshold" in value:
-        out["threshold"] = value["threshold"]
+        out["threshold"] = (
+            "NaN"
+            if value["threshold"] != value["threshold"]
+            else "Infinity"
+            if value["threshold"] == float("inf")
+            else "-Infinity"
+            if value["threshold"] == float("-inf")
+            else value["threshold"]
+        )
     if "datapoints_to_alarm" in value:
         out["datapointsToAlarm"] = value["datapoints_to_alarm"]
     if "treat_missing_data" in value:
@@ -194,17 +202,17 @@ def serialize_aws_json_1_1(value: Alarm) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Alarm:
     out: Alarm = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_lightsail.types.iso_date
 
         out["created_at"] = capo_lightsail.types.iso_date.deserialize_aws_json_1_1(
             data["createdAt"]
         )
-    if "location" in data:
+    if data.get("location") is not None:
         import capo_lightsail.types.resource_location
 
         out["location"] = (
@@ -212,7 +220,7 @@ def deserialize_aws_json_1_1(data: dict) -> Alarm:
                 data["location"]
             )
         )
-    if "resourceType" in data:
+    if data.get("resourceType") is not None:
         import capo_lightsail.types.resource_type
 
         out["resource_type"] = (
@@ -220,9 +228,9 @@ def deserialize_aws_json_1_1(data: dict) -> Alarm:
                 data["resourceType"]
             )
         )
-    if "supportCode" in data:
+    if data.get("supportCode") is not None:
         out["support_code"] = data["supportCode"]
-    if "monitoredResourceInfo" in data:
+    if data.get("monitoredResourceInfo") is not None:
         import capo_lightsail.types.monitored_resource_info
 
         out["monitored_resource_info"] = (
@@ -230,7 +238,7 @@ def deserialize_aws_json_1_1(data: dict) -> Alarm:
                 data["monitoredResourceInfo"]
             )
         )
-    if "comparisonOperator" in data:
+    if data.get("comparisonOperator") is not None:
         import capo_lightsail.types.comparison_operator
 
         out["comparison_operator"] = (
@@ -238,15 +246,15 @@ def deserialize_aws_json_1_1(data: dict) -> Alarm:
                 data["comparisonOperator"]
             )
         )
-    if "evaluationPeriods" in data:
+    if data.get("evaluationPeriods") is not None:
         out["evaluation_periods"] = data["evaluationPeriods"]
-    if "period" in data:
+    if data.get("period") is not None:
         out["period"] = data["period"]
-    if "threshold" in data:
-        out["threshold"] = data["threshold"]
-    if "datapointsToAlarm" in data:
+    if data.get("threshold") is not None:
+        out["threshold"] = float(data["threshold"])
+    if data.get("datapointsToAlarm") is not None:
         out["datapoints_to_alarm"] = data["datapointsToAlarm"]
-    if "treatMissingData" in data:
+    if data.get("treatMissingData") is not None:
         import capo_lightsail.types.treat_missing_data
 
         out["treat_missing_data"] = (
@@ -254,7 +262,7 @@ def deserialize_aws_json_1_1(data: dict) -> Alarm:
                 data["treatMissingData"]
             )
         )
-    if "statistic" in data:
+    if data.get("statistic") is not None:
         import capo_lightsail.types.metric_statistic
 
         out["statistic"] = (
@@ -262,25 +270,25 @@ def deserialize_aws_json_1_1(data: dict) -> Alarm:
                 data["statistic"]
             )
         )
-    if "metricName" in data:
+    if data.get("metricName") is not None:
         import capo_lightsail.types.metric_name
 
         out["metric_name"] = capo_lightsail.types.metric_name.deserialize_aws_json_1_1(
             data["metricName"]
         )
-    if "state" in data:
+    if data.get("state") is not None:
         import capo_lightsail.types.alarm_state
 
         out["state"] = capo_lightsail.types.alarm_state.deserialize_aws_json_1_1(
             data["state"]
         )
-    if "unit" in data:
+    if data.get("unit") is not None:
         import capo_lightsail.types.metric_unit
 
         out["unit"] = capo_lightsail.types.metric_unit.deserialize_aws_json_1_1(
             data["unit"]
         )
-    if "contactProtocols" in data:
+    if data.get("contactProtocols") is not None:
         import capo_lightsail.types.contact_protocols_list
 
         out["contact_protocols"] = (
@@ -288,7 +296,7 @@ def deserialize_aws_json_1_1(data: dict) -> Alarm:
                 data["contactProtocols"]
             )
         )
-    if "notificationTriggers" in data:
+    if data.get("notificationTriggers") is not None:
         import capo_lightsail.types.notification_trigger_list
 
         out["notification_triggers"] = (
@@ -296,9 +304,9 @@ def deserialize_aws_json_1_1(data: dict) -> Alarm:
                 data["notificationTriggers"]
             )
         )
-    if "notificationEnabled" in data:
+    if data.get("notificationEnabled") is not None:
         out["notification_enabled"] = data["notificationEnabled"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_lightsail.types.tag_list
 
         out["tags"] = capo_lightsail.types.tag_list.deserialize_aws_json_1_1(

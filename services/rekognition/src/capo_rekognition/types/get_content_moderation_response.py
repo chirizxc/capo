@@ -99,7 +99,7 @@ def serialize_aws_json_1_1(value: GetContentModerationResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetContentModerationResponse:
     out: GetContentModerationResponse = {}  # type: ignore[typeddict-item]
-    if "JobStatus" in data:
+    if data.get("JobStatus") is not None:
         import capo_rekognition.types.video_job_status
 
         out["job_status"] = (
@@ -107,9 +107,9 @@ def deserialize_aws_json_1_1(data: dict) -> GetContentModerationResponse:
                 data["JobStatus"]
             )
         )
-    if "StatusMessage" in data:
+    if data.get("StatusMessage") is not None:
         out["status_message"] = data["StatusMessage"]
-    if "VideoMetadata" in data:
+    if data.get("VideoMetadata") is not None:
         import capo_rekognition.types.video_metadata
 
         out["video_metadata"] = (
@@ -117,7 +117,7 @@ def deserialize_aws_json_1_1(data: dict) -> GetContentModerationResponse:
                 data["VideoMetadata"]
             )
         )
-    if "ModerationLabels" in data:
+    if data.get("ModerationLabels") is not None:
         import capo_rekognition.types.content_moderation_detections
 
         out["moderation_labels"] = (
@@ -125,21 +125,21 @@ def deserialize_aws_json_1_1(data: dict) -> GetContentModerationResponse:
                 data["ModerationLabels"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "ModerationModelVersion" in data:
+    if data.get("ModerationModelVersion") is not None:
         out["moderation_model_version"] = data["ModerationModelVersion"]
-    if "JobId" in data:
+    if data.get("JobId") is not None:
         out["job_id"] = data["JobId"]
-    if "Video" in data:
+    if data.get("Video") is not None:
         import capo_rekognition.types.video
 
         out["video"] = capo_rekognition.types.video.deserialize_aws_json_1_1(
             data["Video"]
         )
-    if "JobTag" in data:
+    if data.get("JobTag") is not None:
         out["job_tag"] = data["JobTag"]
-    if "GetRequestMetadata" in data:
+    if data.get("GetRequestMetadata") is not None:
         import capo_rekognition.types.get_content_moderation_request_metadata
 
         out["get_request_metadata"] = (

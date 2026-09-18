@@ -51,11 +51,11 @@ def serialize_aws_json_1_1(value: CreateEndpointInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateEndpointInput:
     out: CreateEndpointInput = {}  # type: ignore[typeddict-item]
-    if "EndpointName" in data:
+    if data.get("EndpointName") is not None:
         out["endpoint_name"] = data["EndpointName"]
-    if "EndpointConfigName" in data:
+    if data.get("EndpointConfigName") is not None:
         out["endpoint_config_name"] = data["EndpointConfigName"]
-    if "DeploymentConfig" in data:
+    if data.get("DeploymentConfig") is not None:
         import capo_sagemaker.types.deployment_config
 
         out["deployment_config"] = (
@@ -63,7 +63,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateEndpointInput:
                 data["DeploymentConfig"]
             )
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_sagemaker.types.tag_list
 
         out["tags"] = capo_sagemaker.types.tag_list.deserialize_aws_json_1_1(

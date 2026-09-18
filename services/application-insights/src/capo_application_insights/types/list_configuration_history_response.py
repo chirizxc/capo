@@ -38,7 +38,7 @@ def serialize_aws_json_1_1(value: ListConfigurationHistoryResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListConfigurationHistoryResponse:
     out: ListConfigurationHistoryResponse = {}  # type: ignore[typeddict-item]
-    if "EventList" in data:
+    if data.get("EventList") is not None:
         import capo_application_insights.types.configuration_event_list
 
         out["event_list"] = (
@@ -46,6 +46,6 @@ def deserialize_aws_json_1_1(data: dict) -> ListConfigurationHistoryResponse:
                 data["EventList"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

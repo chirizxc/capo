@@ -35,10 +35,10 @@ def serialize_json(value: HopDestination) -> dict:
 
 def deserialize_json(data: dict) -> HopDestination:
     out: HopDestination = {}  # type: ignore[typeddict-item]
-    if "priority" in data:
+    if data.get("priority") is not None:
         out["priority"] = data["priority"]
-    if "queue" in data:
+    if data.get("queue") is not None:
         out["queue"] = data["queue"]
-    if "waitMinutes" in data:
+    if data.get("waitMinutes") is not None:
         out["wait_minutes"] = data["waitMinutes"]
     return out

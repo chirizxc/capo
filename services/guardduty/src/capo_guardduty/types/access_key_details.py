@@ -35,12 +35,12 @@ def serialize_json(value: AccessKeyDetails) -> dict:
 
 def deserialize_json(data: dict) -> AccessKeyDetails:
     out: AccessKeyDetails = {}  # type: ignore[typeddict-item]
-    if "accessKeyId" in data:
+    if data.get("accessKeyId") is not None:
         out["access_key_id"] = data["accessKeyId"]
-    if "principalId" in data:
+    if data.get("principalId") is not None:
         out["principal_id"] = data["principalId"]
-    if "userName" in data:
+    if data.get("userName") is not None:
         out["user_name"] = data["userName"]
-    if "userType" in data:
+    if data.get("userType") is not None:
         out["user_type"] = data["userType"]
     return out

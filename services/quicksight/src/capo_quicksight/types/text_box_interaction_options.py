@@ -31,7 +31,7 @@ def serialize_json(value: TextBoxInteractionOptions) -> dict:
 
 def deserialize_json(data: dict) -> TextBoxInteractionOptions:
     out: TextBoxInteractionOptions = {}  # type: ignore[typeddict-item]
-    if "TextBoxMenuOption" in data:
+    if data.get("TextBoxMenuOption") is not None:
         import capo_quicksight.types.text_box_menu_option
 
         out["text_box_menu_option"] = (

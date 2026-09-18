@@ -38,7 +38,7 @@ def serialize_json(value: Aggregation) -> dict:
 
 def deserialize_json(data: dict) -> Aggregation:
     out: Aggregation = {}  # type: ignore[typeddict-item]
-    if "AggregationFunction" in data:
+    if data.get("AggregationFunction") is not None:
         import capo_quicksight.types.data_prep_aggregation_function
 
         out["aggregation_function"] = (
@@ -48,11 +48,11 @@ def deserialize_json(data: dict) -> Aggregation:
         )
     else:
         raise DeserializationError("Aggregation.aggregation_function required")
-    if "NewColumnName" in data:
+    if data.get("NewColumnName") is not None:
         out["new_column_name"] = data["NewColumnName"]
     else:
         raise DeserializationError("Aggregation.new_column_name required")
-    if "NewColumnId" in data:
+    if data.get("NewColumnId") is not None:
         out["new_column_id"] = data["NewColumnId"]
     else:
         raise DeserializationError("Aggregation.new_column_id required")

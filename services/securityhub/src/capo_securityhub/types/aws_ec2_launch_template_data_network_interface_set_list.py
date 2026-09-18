@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> AwsEc2LaunchTemplateDataNetworkInterfaceSetL
 
     out: AwsEc2LaunchTemplateDataNetworkInterfaceSetList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_securityhub.types.aws_ec2_launch_template_data_network_interface_set_details.deserialize_json(
                 item

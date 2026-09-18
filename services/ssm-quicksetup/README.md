@@ -13,9 +13,9 @@ from capo_ssm_quicksetup import AsyncSSMQuickSetupClient
 
 
 async def main():
-    async with AsyncSSMQuickSetupClient() as s3:
+    async with AsyncSSMQuickSetupClient() as ssm_quick_setup:
         # Example: call the create_configuration_manager operation
-        response = await s3.create_configuration_manager()
+        response = await ssm_quick_setup.create_configuration_manager()
         print(response["manager_arn"])
 ```
 
@@ -28,9 +28,9 @@ from capo_ssm_quicksetup import AsyncSSMQuickSetupClient
 
 
 async def main():
-    async with AsyncSSMQuickSetupClient() as s3:
+    async with AsyncSSMQuickSetupClient() as ssm_quick_setup:
         # Example: paginate over list_configuration_managers
-        async for item in s3.iter_list_configuration_managers():
+        async for item in ssm_quick_setup.iter_list_configuration_managers():
             print(item)
 ```
 
@@ -44,9 +44,9 @@ from capo_ssm_quicksetup.error import AccessDeniedException
 
 
 async def main():
-    async with AsyncSSMQuickSetupClient() as s3:
+    async with AsyncSSMQuickSetupClient() as ssm_quick_setup:
         try:
-            await s3.create_configuration_manager()
+            await ssm_quick_setup.create_configuration_manager()
         except AccessDeniedException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -63,13 +63,13 @@ from capo_ssm_quicksetup import AsyncSSMQuickSetupClient
 
 
 async def main():
-    async with AsyncSSMQuickSetupClient() as s3:
+    async with AsyncSSMQuickSetupClient() as ssm_quick_setup:
         # Default: 3 attempts for every operation
-        response = await s3.create_configuration_manager()
+        response = await ssm_quick_setup.create_configuration_manager()
 
         # Override per operation
-        response = await s3.create_configuration_manager(config_overrides={"retry_max_attempts": 5})
+        response = await ssm_quick_setup.create_configuration_manager(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.create_configuration_manager(config_overrides={"retry_max_attempts": 1})
+        response = await ssm_quick_setup.create_configuration_manager(config_overrides={"retry_max_attempts": 1})
 ```

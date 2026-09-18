@@ -27,7 +27,7 @@ def serialize_aws_json_1_1(value: DescribeRecommenderResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeRecommenderResponse:
     out: DescribeRecommenderResponse = {}  # type: ignore[typeddict-item]
-    if "recommender" in data:
+    if data.get("recommender") is not None:
         import capo_personalize.types.recommender
 
         out["recommender"] = (

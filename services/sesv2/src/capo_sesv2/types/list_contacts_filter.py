@@ -38,13 +38,13 @@ def serialize_json(value: ListContactsFilter) -> dict:
 
 def deserialize_json(data: dict) -> ListContactsFilter:
     out: ListContactsFilter = {}  # type: ignore[typeddict-item]
-    if "FilteredStatus" in data:
+    if data.get("FilteredStatus") is not None:
         import capo_sesv2.types.subscription_status
 
         out["filtered_status"] = capo_sesv2.types.subscription_status.deserialize_json(
             data["FilteredStatus"]
         )
-    if "TopicFilter" in data:
+    if data.get("TopicFilter") is not None:
         import capo_sesv2.types.topic_filter
 
         out["topic_filter"] = capo_sesv2.types.topic_filter.deserialize_json(

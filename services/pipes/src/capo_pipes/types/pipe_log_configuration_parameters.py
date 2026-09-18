@@ -76,7 +76,7 @@ def serialize_json(value: PipeLogConfigurationParameters) -> dict:
 
 def deserialize_json(data: dict) -> PipeLogConfigurationParameters:
     out: PipeLogConfigurationParameters = {}  # type: ignore[typeddict-item]
-    if "S3LogDestination" in data:
+    if data.get("S3LogDestination") is not None:
         import capo_pipes.types.s3_log_destination_parameters
 
         out["s3_log_destination"] = (
@@ -84,7 +84,7 @@ def deserialize_json(data: dict) -> PipeLogConfigurationParameters:
                 data["S3LogDestination"]
             )
         )
-    if "FirehoseLogDestination" in data:
+    if data.get("FirehoseLogDestination") is not None:
         import capo_pipes.types.firehose_log_destination_parameters
 
         out["firehose_log_destination"] = (
@@ -92,7 +92,7 @@ def deserialize_json(data: dict) -> PipeLogConfigurationParameters:
                 data["FirehoseLogDestination"]
             )
         )
-    if "CloudwatchLogsLogDestination" in data:
+    if data.get("CloudwatchLogsLogDestination") is not None:
         import capo_pipes.types.cloudwatch_logs_log_destination_parameters
 
         out["cloudwatch_logs_log_destination"] = (
@@ -100,11 +100,11 @@ def deserialize_json(data: dict) -> PipeLogConfigurationParameters:
                 data["CloudwatchLogsLogDestination"]
             )
         )
-    if "Level" in data:
+    if data.get("Level") is not None:
         out["level"] = data["Level"]
     else:
         raise DeserializationError("PipeLogConfigurationParameters.level required")
-    if "IncludeExecutionData" in data:
+    if data.get("IncludeExecutionData") is not None:
         import capo_pipes.types.include_execution_data
 
         out["include_execution_data"] = (

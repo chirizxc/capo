@@ -50,19 +50,19 @@ def serialize_json(value: RelationalTable) -> dict:
 
 def deserialize_json(data: dict) -> RelationalTable:
     out: RelationalTable = {}  # type: ignore[typeddict-item]
-    if "DataSourceArn" in data:
+    if data.get("DataSourceArn") is not None:
         out["data_source_arn"] = data["DataSourceArn"]
     else:
         raise DeserializationError("RelationalTable.data_source_arn required")
-    if "Catalog" in data:
+    if data.get("Catalog") is not None:
         out["catalog"] = data["Catalog"]
-    if "Schema" in data:
+    if data.get("Schema") is not None:
         out["schema"] = data["Schema"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("RelationalTable.name required")
-    if "InputColumns" in data:
+    if data.get("InputColumns") is not None:
         import capo_quicksight.types.input_column_list
 
         out["input_columns"] = capo_quicksight.types.input_column_list.deserialize_json(

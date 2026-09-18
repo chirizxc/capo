@@ -35,14 +35,14 @@ def serialize_aws_json_1_0(value: DeleteSecurityPolicyRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> DeleteSecurityPolicyRequest:
     out: DeleteSecurityPolicyRequest = {}  # type: ignore[typeddict-item]
-    if "type" in data:
+    if data.get("type") is not None:
         out["type"] = data["type"]
     else:
         raise DeserializationError("DeleteSecurityPolicyRequest.type required")
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("DeleteSecurityPolicyRequest.name required")
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     return out

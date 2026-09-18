@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> RelatedItemFilterList:
 
     out: RelatedItemFilterList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_connectcases.types.related_item_type_filter.deserialize_json(item)
         )

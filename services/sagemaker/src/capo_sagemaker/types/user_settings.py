@@ -236,9 +236,9 @@ def serialize_aws_json_1_1(value: UserSettings) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UserSettings:
     out: UserSettings = {}  # type: ignore[typeddict-item]
-    if "ExecutionRole" in data:
+    if data.get("ExecutionRole") is not None:
         out["execution_role"] = data["ExecutionRole"]
-    if "SecurityGroups" in data:
+    if data.get("SecurityGroups") is not None:
         import capo_sagemaker.types.security_group_ids
 
         out["security_groups"] = (
@@ -246,7 +246,7 @@ def deserialize_aws_json_1_1(data: dict) -> UserSettings:
                 data["SecurityGroups"]
             )
         )
-    if "SharingSettings" in data:
+    if data.get("SharingSettings") is not None:
         import capo_sagemaker.types.sharing_settings
 
         out["sharing_settings"] = (
@@ -254,7 +254,7 @@ def deserialize_aws_json_1_1(data: dict) -> UserSettings:
                 data["SharingSettings"]
             )
         )
-    if "JupyterServerAppSettings" in data:
+    if data.get("JupyterServerAppSettings") is not None:
         import capo_sagemaker.types.jupyter_server_app_settings
 
         out["jupyter_server_app_settings"] = (
@@ -262,7 +262,7 @@ def deserialize_aws_json_1_1(data: dict) -> UserSettings:
                 data["JupyterServerAppSettings"]
             )
         )
-    if "KernelGatewayAppSettings" in data:
+    if data.get("KernelGatewayAppSettings") is not None:
         import capo_sagemaker.types.kernel_gateway_app_settings
 
         out["kernel_gateway_app_settings"] = (
@@ -270,7 +270,7 @@ def deserialize_aws_json_1_1(data: dict) -> UserSettings:
                 data["KernelGatewayAppSettings"]
             )
         )
-    if "TensorBoardAppSettings" in data:
+    if data.get("TensorBoardAppSettings") is not None:
         import capo_sagemaker.types.tensor_board_app_settings
 
         out["tensor_board_app_settings"] = (
@@ -278,7 +278,7 @@ def deserialize_aws_json_1_1(data: dict) -> UserSettings:
                 data["TensorBoardAppSettings"]
             )
         )
-    if "RStudioServerProAppSettings" in data:
+    if data.get("RStudioServerProAppSettings") is not None:
         import capo_sagemaker.types.r_studio_server_pro_app_settings
 
         out["r_studio_server_pro_app_settings"] = (
@@ -286,7 +286,7 @@ def deserialize_aws_json_1_1(data: dict) -> UserSettings:
                 data["RStudioServerProAppSettings"]
             )
         )
-    if "RSessionAppSettings" in data:
+    if data.get("RSessionAppSettings") is not None:
         import capo_sagemaker.types.r_session_app_settings
 
         out["r_session_app_settings"] = (
@@ -294,7 +294,7 @@ def deserialize_aws_json_1_1(data: dict) -> UserSettings:
                 data["RSessionAppSettings"]
             )
         )
-    if "CanvasAppSettings" in data:
+    if data.get("CanvasAppSettings") is not None:
         import capo_sagemaker.types.canvas_app_settings
 
         out["canvas_app_settings"] = (
@@ -302,7 +302,7 @@ def deserialize_aws_json_1_1(data: dict) -> UserSettings:
                 data["CanvasAppSettings"]
             )
         )
-    if "CodeEditorAppSettings" in data:
+    if data.get("CodeEditorAppSettings") is not None:
         import capo_sagemaker.types.code_editor_app_settings
 
         out["code_editor_app_settings"] = (
@@ -310,7 +310,7 @@ def deserialize_aws_json_1_1(data: dict) -> UserSettings:
                 data["CodeEditorAppSettings"]
             )
         )
-    if "JupyterLabAppSettings" in data:
+    if data.get("JupyterLabAppSettings") is not None:
         import capo_sagemaker.types.jupyter_lab_app_settings
 
         out["jupyter_lab_app_settings"] = (
@@ -318,7 +318,7 @@ def deserialize_aws_json_1_1(data: dict) -> UserSettings:
                 data["JupyterLabAppSettings"]
             )
         )
-    if "SpaceStorageSettings" in data:
+    if data.get("SpaceStorageSettings") is not None:
         import capo_sagemaker.types.default_space_storage_settings
 
         out["space_storage_settings"] = (
@@ -326,9 +326,9 @@ def deserialize_aws_json_1_1(data: dict) -> UserSettings:
                 data["SpaceStorageSettings"]
             )
         )
-    if "DefaultLandingUri" in data:
+    if data.get("DefaultLandingUri") is not None:
         out["default_landing_uri"] = data["DefaultLandingUri"]
-    if "StudioWebPortal" in data:
+    if data.get("StudioWebPortal") is not None:
         import capo_sagemaker.types.studio_web_portal
 
         out["studio_web_portal"] = (
@@ -336,7 +336,7 @@ def deserialize_aws_json_1_1(data: dict) -> UserSettings:
                 data["StudioWebPortal"]
             )
         )
-    if "CustomPosixUserConfig" in data:
+    if data.get("CustomPosixUserConfig") is not None:
         import capo_sagemaker.types.custom_posix_user_config
 
         out["custom_posix_user_config"] = (
@@ -344,7 +344,7 @@ def deserialize_aws_json_1_1(data: dict) -> UserSettings:
                 data["CustomPosixUserConfig"]
             )
         )
-    if "CustomFileSystemConfigs" in data:
+    if data.get("CustomFileSystemConfigs") is not None:
         import capo_sagemaker.types.custom_file_system_configs
 
         out["custom_file_system_configs"] = (
@@ -352,7 +352,7 @@ def deserialize_aws_json_1_1(data: dict) -> UserSettings:
                 data["CustomFileSystemConfigs"]
             )
         )
-    if "StudioWebPortalSettings" in data:
+    if data.get("StudioWebPortalSettings") is not None:
         import capo_sagemaker.types.studio_web_portal_settings
 
         out["studio_web_portal_settings"] = (
@@ -360,7 +360,7 @@ def deserialize_aws_json_1_1(data: dict) -> UserSettings:
                 data["StudioWebPortalSettings"]
             )
         )
-    if "AutoMountHomeEFS" in data:
+    if data.get("AutoMountHomeEFS") is not None:
         import capo_sagemaker.types.auto_mount_home_efs
 
         out["auto_mount_home_efs"] = (

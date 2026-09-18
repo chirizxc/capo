@@ -51,22 +51,22 @@ def serialize_json(value: ClientVpcConnection) -> dict:
 
 def deserialize_json(data: dict) -> ClientVpcConnection:
     out: ClientVpcConnection = {}  # type: ignore[typeddict-item]
-    if "authentication" in data:
+    if data.get("authentication") is not None:
         out["authentication"] = data["authentication"]
-    if "creationTime" in data:
+    if data.get("creationTime") is not None:
         import capo_kafka.types.__timestamp_iso8601
 
         out["creation_time"] = capo_kafka.types.__timestamp_iso8601.deserialize_json(
             data["creationTime"]
         )
-    if "state" in data:
+    if data.get("state") is not None:
         import capo_kafka.types.vpc_connection_state
 
         out["state"] = capo_kafka.types.vpc_connection_state.deserialize_json(
             data["state"]
         )
-    if "vpcConnectionArn" in data:
+    if data.get("vpcConnectionArn") is not None:
         out["vpc_connection_arn"] = data["vpcConnectionArn"]
-    if "owner" in data:
+    if data.get("owner") is not None:
         out["owner"] = data["owner"]
     return out

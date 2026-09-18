@@ -49,9 +49,9 @@ def serialize_json(value: GetServerDetailsResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetServerDetailsResponse:
     out: GetServerDetailsResponse = {}  # type: ignore[typeddict-item]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "serverDetail" in data:
+    if data.get("serverDetail") is not None:
         import capo_migrationhubstrategy.types.server_detail
 
         out["server_detail"] = (
@@ -59,7 +59,7 @@ def deserialize_json(data: dict) -> GetServerDetailsResponse:
                 data["serverDetail"]
             )
         )
-    if "associatedApplications" in data:
+    if data.get("associatedApplications") is not None:
         import capo_migrationhubstrategy.types.associated_applications
 
         out["associated_applications"] = (

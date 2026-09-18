@@ -30,8 +30,8 @@ def serialize_json(value: SnoozeActionConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> SnoozeActionConfiguration:
     out: SnoozeActionConfiguration = {}  # type: ignore[typeddict-item]
-    if "snoozeDuration" in data:
+    if data.get("snoozeDuration") is not None:
         out["snooze_duration"] = data["snoozeDuration"]
-    if "note" in data:
+    if data.get("note") is not None:
         out["note"] = data["note"]
     return out

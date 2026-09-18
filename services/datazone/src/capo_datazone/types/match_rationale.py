@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> MatchRationale:
 
     out: MatchRationale = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_datazone.types.match_rationale_item.deserialize_json(item))
     return out

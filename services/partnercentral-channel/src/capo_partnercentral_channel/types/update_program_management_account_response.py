@@ -31,7 +31,7 @@ def serialize_aws_json_1_0(value: UpdateProgramManagementAccountResponse) -> dic
 
 def deserialize_aws_json_1_0(data: dict) -> UpdateProgramManagementAccountResponse:
     out: UpdateProgramManagementAccountResponse = {}  # type: ignore[typeddict-item]
-    if "programManagementAccountDetail" in data:
+    if data.get("programManagementAccountDetail") is not None:
         import capo_partnercentral_channel.types.update_program_management_account_detail
 
         out["program_management_account_detail"] = (

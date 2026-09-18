@@ -52,13 +52,13 @@ def serialize_json(value: StartSearchResultExportJobInput) -> dict:
 
 def deserialize_json(data: dict) -> StartSearchResultExportJobInput:
     out: StartSearchResultExportJobInput = {}  # type: ignore[typeddict-item]
-    if "SearchJobIdentifier" in data:
+    if data.get("SearchJobIdentifier") is not None:
         out["search_job_identifier"] = data["SearchJobIdentifier"]
     else:
         raise DeserializationError(
             "StartSearchResultExportJobInput.search_job_identifier required"
         )
-    if "ExportSpecification" in data:
+    if data.get("ExportSpecification") is not None:
         import capo_backupsearch.types.export_specification
 
         out["export_specification"] = (
@@ -70,12 +70,12 @@ def deserialize_json(data: dict) -> StartSearchResultExportJobInput:
         raise DeserializationError(
             "StartSearchResultExportJobInput.export_specification required"
         )
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_backupsearch.types.tag_map
 
         out["tags"] = capo_backupsearch.types.tag_map.deserialize_json(data["Tags"])
-    if "RoleArn" in data:
+    if data.get("RoleArn") is not None:
         out["role_arn"] = data["RoleArn"]
     return out

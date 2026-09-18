@@ -44,7 +44,7 @@ def serialize_json(value: VideoOverlayTransition) -> dict:
 
 def deserialize_json(data: dict) -> VideoOverlayTransition:
     out: VideoOverlayTransition = {}  # type: ignore[typeddict-item]
-    if "endPosition" in data:
+    if data.get("endPosition") is not None:
         import capo_mediaconvert.types.video_overlay_position
 
         out["end_position"] = (
@@ -52,8 +52,8 @@ def deserialize_json(data: dict) -> VideoOverlayTransition:
                 data["endPosition"]
             )
         )
-    if "endTimecode" in data:
+    if data.get("endTimecode") is not None:
         out["end_timecode"] = data["endTimecode"]
-    if "startTimecode" in data:
+    if data.get("startTimecode") is not None:
         out["start_timecode"] = data["startTimecode"]
     return out

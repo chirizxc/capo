@@ -30,10 +30,10 @@ def serialize_json(value: ReviewDetails) -> dict:
 
 def deserialize_json(data: dict) -> ReviewDetails:
     out: ReviewDetails = {}  # type: ignore[typeddict-item]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_sesv2.types.review_status
 
         out["status"] = capo_sesv2.types.review_status.deserialize_json(data["Status"])
-    if "CaseId" in data:
+    if data.get("CaseId") is not None:
         out["case_id"] = data["CaseId"]
     return out

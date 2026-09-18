@@ -61,21 +61,21 @@ def serialize_aws_json_1_1(value: CreateAvailabilityConfigurationRequest) -> dic
 
 def deserialize_aws_json_1_1(data: dict) -> CreateAvailabilityConfigurationRequest:
     out: CreateAvailabilityConfigurationRequest = {}  # type: ignore[typeddict-item]
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
-    if "OrganizationId" in data:
+    if data.get("OrganizationId") is not None:
         out["organization_id"] = data["OrganizationId"]
     else:
         raise DeserializationError(
             "CreateAvailabilityConfigurationRequest.organization_id required"
         )
-    if "DomainName" in data:
+    if data.get("DomainName") is not None:
         out["domain_name"] = data["DomainName"]
     else:
         raise DeserializationError(
             "CreateAvailabilityConfigurationRequest.domain_name required"
         )
-    if "EwsProvider" in data:
+    if data.get("EwsProvider") is not None:
         import capo_workmail.types.ews_availability_provider
 
         out["ews_provider"] = (
@@ -83,7 +83,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateAvailabilityConfigurationReque
                 data["EwsProvider"]
             )
         )
-    if "LambdaProvider" in data:
+    if data.get("LambdaProvider") is not None:
         import capo_workmail.types.lambda_availability_provider
 
         out["lambda_provider"] = (

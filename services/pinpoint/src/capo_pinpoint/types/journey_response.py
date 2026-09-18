@@ -167,65 +167,65 @@ def serialize_json(value: JourneyResponse) -> dict:
 
 def deserialize_json(data: dict) -> JourneyResponse:
     out: JourneyResponse = {}  # type: ignore[typeddict-item]
-    if "Activities" in data:
+    if data.get("Activities") is not None:
         import capo_pinpoint.types.map_of_activity
 
         out["activities"] = capo_pinpoint.types.map_of_activity.deserialize_json(
             data["Activities"]
         )
-    if "ApplicationId" in data:
+    if data.get("ApplicationId") is not None:
         out["application_id"] = data["ApplicationId"]
-    if "CreationDate" in data:
+    if data.get("CreationDate") is not None:
         out["creation_date"] = data["CreationDate"]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "LastModifiedDate" in data:
+    if data.get("LastModifiedDate") is not None:
         out["last_modified_date"] = data["LastModifiedDate"]
-    if "Limits" in data:
+    if data.get("Limits") is not None:
         import capo_pinpoint.types.journey_limits
 
         out["limits"] = capo_pinpoint.types.journey_limits.deserialize_json(
             data["Limits"]
         )
-    if "LocalTime" in data:
+    if data.get("LocalTime") is not None:
         out["local_time"] = data["LocalTime"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "QuietTime" in data:
+    if data.get("QuietTime") is not None:
         import capo_pinpoint.types.quiet_time
 
         out["quiet_time"] = capo_pinpoint.types.quiet_time.deserialize_json(
             data["QuietTime"]
         )
-    if "RefreshFrequency" in data:
+    if data.get("RefreshFrequency") is not None:
         out["refresh_frequency"] = data["RefreshFrequency"]
-    if "Schedule" in data:
+    if data.get("Schedule") is not None:
         import capo_pinpoint.types.journey_schedule
 
         out["schedule"] = capo_pinpoint.types.journey_schedule.deserialize_json(
             data["Schedule"]
         )
-    if "StartActivity" in data:
+    if data.get("StartActivity") is not None:
         out["start_activity"] = data["StartActivity"]
-    if "StartCondition" in data:
+    if data.get("StartCondition") is not None:
         import capo_pinpoint.types.start_condition
 
         out["start_condition"] = capo_pinpoint.types.start_condition.deserialize_json(
             data["StartCondition"]
         )
-    if "State" in data:
+    if data.get("State") is not None:
         import capo_pinpoint.types.state
 
         out["state"] = capo_pinpoint.types.state.deserialize_json(data["State"])
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_pinpoint.types.map_of__string
 
         out["tags"] = capo_pinpoint.types.map_of__string.deserialize_json(data["tags"])
-    if "WaitForQuietTime" in data:
+    if data.get("WaitForQuietTime") is not None:
         out["wait_for_quiet_time"] = data["WaitForQuietTime"]
-    if "RefreshOnSegmentUpdate" in data:
+    if data.get("RefreshOnSegmentUpdate") is not None:
         out["refresh_on_segment_update"] = data["RefreshOnSegmentUpdate"]
-    if "JourneyChannelSettings" in data:
+    if data.get("JourneyChannelSettings") is not None:
         import capo_pinpoint.types.journey_channel_settings
 
         out["journey_channel_settings"] = (
@@ -233,21 +233,21 @@ def deserialize_json(data: dict) -> JourneyResponse:
                 data["JourneyChannelSettings"]
             )
         )
-    if "SendingSchedule" in data:
+    if data.get("SendingSchedule") is not None:
         out["sending_schedule"] = data["SendingSchedule"]
-    if "OpenHours" in data:
+    if data.get("OpenHours") is not None:
         import capo_pinpoint.types.open_hours
 
         out["open_hours"] = capo_pinpoint.types.open_hours.deserialize_json(
             data["OpenHours"]
         )
-    if "ClosedDays" in data:
+    if data.get("ClosedDays") is not None:
         import capo_pinpoint.types.closed_days
 
         out["closed_days"] = capo_pinpoint.types.closed_days.deserialize_json(
             data["ClosedDays"]
         )
-    if "TimezoneEstimationMethods" in data:
+    if data.get("TimezoneEstimationMethods") is not None:
         import capo_pinpoint.types.list_of__timezone_estimation_methods_element
 
         out["timezone_estimation_methods"] = (

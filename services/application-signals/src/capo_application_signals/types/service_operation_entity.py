@@ -35,14 +35,14 @@ def serialize_json(value: ServiceOperationEntity) -> dict:
 
 def deserialize_json(data: dict) -> ServiceOperationEntity:
     out: ServiceOperationEntity = {}  # type: ignore[typeddict-item]
-    if "Service" in data:
+    if data.get("Service") is not None:
         import capo_application_signals.types.service_entity
 
         out["service"] = capo_application_signals.types.service_entity.deserialize_json(
             data["Service"]
         )
-    if "Operation" in data:
+    if data.get("Operation") is not None:
         out["operation"] = data["Operation"]
-    if "MetricType" in data:
+    if data.get("MetricType") is not None:
         out["metric_type"] = data["MetricType"]
     return out

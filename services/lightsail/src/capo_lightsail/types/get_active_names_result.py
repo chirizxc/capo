@@ -32,12 +32,12 @@ def serialize_aws_json_1_1(value: GetActiveNamesResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetActiveNamesResult:
     out: GetActiveNamesResult = {}  # type: ignore[typeddict-item]
-    if "activeNames" in data:
+    if data.get("activeNames") is not None:
         import capo_lightsail.types.string_list
 
         out["active_names"] = capo_lightsail.types.string_list.deserialize_aws_json_1_1(
             data["activeNames"]
         )
-    if "nextPageToken" in data:
+    if data.get("nextPageToken") is not None:
         out["next_page_token"] = data["nextPageToken"]
     return out

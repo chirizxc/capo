@@ -45,11 +45,11 @@ def serialize_aws_json_1_1(value: AIRecommendationModelDetails) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AIRecommendationModelDetails:
     out: AIRecommendationModelDetails = {}  # type: ignore[typeddict-item]
-    if "ModelPackageArn" in data:
+    if data.get("ModelPackageArn") is not None:
         out["model_package_arn"] = data["ModelPackageArn"]
-    if "InferenceSpecificationName" in data:
+    if data.get("InferenceSpecificationName") is not None:
         out["inference_specification_name"] = data["InferenceSpecificationName"]
-    if "InstanceDetails" in data:
+    if data.get("InstanceDetails") is not None:
         import capo_sagemaker.types.ai_recommendation_instance_detail_list
 
         out["instance_details"] = (

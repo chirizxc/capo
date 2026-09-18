@@ -58,7 +58,7 @@ def serialize_aws_json_1_1(value: EventSelector) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> EventSelector:
     out: EventSelector = {}  # type: ignore[typeddict-item]
-    if "ReadWriteType" in data:
+    if data.get("ReadWriteType") is not None:
         import capo_cloudtrail.types.read_write_type
 
         out["read_write_type"] = (
@@ -66,9 +66,9 @@ def deserialize_aws_json_1_1(data: dict) -> EventSelector:
                 data["ReadWriteType"]
             )
         )
-    if "IncludeManagementEvents" in data:
+    if data.get("IncludeManagementEvents") is not None:
         out["include_management_events"] = data["IncludeManagementEvents"]
-    if "DataResources" in data:
+    if data.get("DataResources") is not None:
         import capo_cloudtrail.types.data_resources
 
         out["data_resources"] = (
@@ -76,7 +76,7 @@ def deserialize_aws_json_1_1(data: dict) -> EventSelector:
                 data["DataResources"]
             )
         )
-    if "ExcludeManagementEventSources" in data:
+    if data.get("ExcludeManagementEventSources") is not None:
         import capo_cloudtrail.types.exclude_management_event_sources
 
         out["exclude_management_event_sources"] = (

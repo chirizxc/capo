@@ -58,7 +58,7 @@ def serialize_json(value: CreateScheduledAuditRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateScheduledAuditRequest:
     out: CreateScheduledAuditRequest = {}  # type: ignore[typeddict-item]
-    if "frequency" in data:
+    if data.get("frequency") is not None:
         import capo_iot.types.audit_frequency
 
         out["frequency"] = capo_iot.types.audit_frequency.deserialize_json(
@@ -66,15 +66,15 @@ def deserialize_json(data: dict) -> CreateScheduledAuditRequest:
         )
     else:
         raise DeserializationError("CreateScheduledAuditRequest.frequency required")
-    if "dayOfMonth" in data:
+    if data.get("dayOfMonth") is not None:
         out["day_of_month"] = data["dayOfMonth"]
-    if "dayOfWeek" in data:
+    if data.get("dayOfWeek") is not None:
         import capo_iot.types.day_of_week
 
         out["day_of_week"] = capo_iot.types.day_of_week.deserialize_json(
             data["dayOfWeek"]
         )
-    if "targetCheckNames" in data:
+    if data.get("targetCheckNames") is not None:
         import capo_iot.types.target_audit_check_names
 
         out["target_check_names"] = (
@@ -86,7 +86,7 @@ def deserialize_json(data: dict) -> CreateScheduledAuditRequest:
         raise DeserializationError(
             "CreateScheduledAuditRequest.target_check_names required"
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_iot.types.tag_list
 
         out["tags"] = capo_iot.types.tag_list.deserialize_json(data["tags"])

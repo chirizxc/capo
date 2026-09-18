@@ -30,13 +30,13 @@ def serialize_json(value: ConfigurationErrorDetails) -> dict:
 
 def deserialize_json(data: dict) -> ConfigurationErrorDetails:
     out: ConfigurationErrorDetails = {}  # type: ignore[typeddict-item]
-    if "code" in data:
+    if data.get("code") is not None:
         import capo_iotsitewise.types.error_code
 
         out["code"] = capo_iotsitewise.types.error_code.deserialize_json(data["code"])
     else:
         raise DeserializationError("ConfigurationErrorDetails.code required")
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     else:
         raise DeserializationError("ConfigurationErrorDetails.message required")

@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import uuid
 from typing import TYPE_CHECKING, Optional
 
 import capo_qbusiness._auth._signers
@@ -138,8 +139,9 @@ class ApplicationResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_qbusiness.types.create_application_request.CreateApplicationRequest = {}  # type: ignore[typeddict-item]
-        input_["display_name"] = display_name
+        input_: capo_qbusiness.types.create_application_request.CreateApplicationRequest = {
+            "display_name": display_name
+        }
         if role_arn is not None:
             input_["role_arn"] = role_arn
         if identity_type is not None:
@@ -156,8 +158,9 @@ class ApplicationResource:
             input_["encryption_configuration"] = encryption_configuration
         if tags is not None:
             input_["tags"] = tags
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if attachments_configuration is not None:
             input_["attachments_configuration"] = attachments_configuration
         if q_apps_configuration is not None:
@@ -172,6 +175,7 @@ class ApplicationResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -209,14 +213,16 @@ class ApplicationResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_qbusiness.types.get_application_request.GetApplicationRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
+        input_: capo_qbusiness.types.get_application_request.GetApplicationRequest = {
+            "application_id": application_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update(
@@ -283,8 +289,9 @@ class ApplicationResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_qbusiness.types.update_application_request.UpdateApplicationRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
+        input_: capo_qbusiness.types.update_application_request.UpdateApplicationRequest = {
+            "application_id": application_id
+        }
         if identity_center_instance_arn is not None:
             input_["identity_center_instance_arn"] = identity_center_instance_arn
         if display_name is not None:
@@ -307,6 +314,7 @@ class ApplicationResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -345,14 +353,16 @@ class ApplicationResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_qbusiness.types.delete_application_request.DeleteApplicationRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
+        input_: capo_qbusiness.types.delete_application_request.DeleteApplicationRequest = {
+            "application_id": application_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -393,7 +403,7 @@ class ApplicationResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_qbusiness.types.list_applications_request.ListApplicationsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_qbusiness.types.list_applications_request.ListApplicationsRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -404,6 +414,7 @@ class ApplicationResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -493,8 +504,9 @@ class AsyncApplicationResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_qbusiness.types.create_application_request.CreateApplicationRequest = {}  # type: ignore[typeddict-item]
-        input_["display_name"] = display_name
+        input_: capo_qbusiness.types.create_application_request.CreateApplicationRequest = {
+            "display_name": display_name
+        }
         if role_arn is not None:
             input_["role_arn"] = role_arn
         if identity_type is not None:
@@ -511,8 +523,9 @@ class AsyncApplicationResource:
             input_["encryption_configuration"] = encryption_configuration
         if tags is not None:
             input_["tags"] = tags
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if attachments_configuration is not None:
             input_["attachments_configuration"] = attachments_configuration
         if q_apps_configuration is not None:
@@ -527,6 +540,7 @@ class AsyncApplicationResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -565,14 +579,16 @@ class AsyncApplicationResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_qbusiness.types.get_application_request.GetApplicationRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
+        input_: capo_qbusiness.types.get_application_request.GetApplicationRequest = {
+            "application_id": application_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update(
@@ -640,8 +656,9 @@ class AsyncApplicationResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_qbusiness.types.update_application_request.UpdateApplicationRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
+        input_: capo_qbusiness.types.update_application_request.UpdateApplicationRequest = {
+            "application_id": application_id
+        }
         if identity_center_instance_arn is not None:
             input_["identity_center_instance_arn"] = identity_center_instance_arn
         if display_name is not None:
@@ -664,6 +681,7 @@ class AsyncApplicationResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -703,14 +721,16 @@ class AsyncApplicationResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_qbusiness.types.delete_application_request.DeleteApplicationRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
+        input_: capo_qbusiness.types.delete_application_request.DeleteApplicationRequest = {
+            "application_id": application_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -752,7 +772,7 @@ class AsyncApplicationResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_qbusiness.types.list_applications_request.ListApplicationsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_qbusiness.types.list_applications_request.ListApplicationsRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -763,4 +783,5 @@ class AsyncApplicationResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

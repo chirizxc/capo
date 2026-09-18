@@ -45,11 +45,11 @@ def deserialize_aws_json_1_1(
     data: dict,
 ) -> CreatePresignedMlflowTrackingServerUrlRequest:
     out: CreatePresignedMlflowTrackingServerUrlRequest = {}  # type: ignore[typeddict-item]
-    if "TrackingServerName" in data:
+    if data.get("TrackingServerName") is not None:
         out["tracking_server_name"] = data["TrackingServerName"]
-    if "ExpiresInSeconds" in data:
+    if data.get("ExpiresInSeconds") is not None:
         out["expires_in_seconds"] = data["ExpiresInSeconds"]
-    if "SessionExpirationDurationInSeconds" in data:
+    if data.get("SessionExpirationDurationInSeconds") is not None:
         out["session_expiration_duration_in_seconds"] = data[
             "SessionExpirationDurationInSeconds"
         ]

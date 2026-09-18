@@ -39,9 +39,9 @@ def serialize_json(value: Source) -> dict:
 
 
 def deserialize_json(data: dict) -> Source:
-    if "customerProfilesSegmentArn" in data:
+    if data.get("customerProfilesSegmentArn") is not None:
         return {"customerProfilesSegmentArn": data["customerProfilesSegmentArn"]}
-    elif "eventTrigger" in data:
+    elif data.get("eventTrigger") is not None:
         import capo_connectcampaignsv2.types.event_trigger
 
         return {

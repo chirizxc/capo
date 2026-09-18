@@ -68,7 +68,7 @@ def serialize_json(value: SubSlotValueElicitationSetting) -> dict:
 
 def deserialize_json(data: dict) -> SubSlotValueElicitationSetting:
     out: SubSlotValueElicitationSetting = {}  # type: ignore[typeddict-item]
-    if "defaultValueSpecification" in data:
+    if data.get("defaultValueSpecification") is not None:
         import capo_lex_models_v2.types.slot_default_value_specification
 
         out["default_value_specification"] = (
@@ -76,7 +76,7 @@ def deserialize_json(data: dict) -> SubSlotValueElicitationSetting:
                 data["defaultValueSpecification"]
             )
         )
-    if "promptSpecification" in data:
+    if data.get("promptSpecification") is not None:
         import capo_lex_models_v2.types.prompt_specification
 
         out["prompt_specification"] = (
@@ -88,7 +88,7 @@ def deserialize_json(data: dict) -> SubSlotValueElicitationSetting:
         raise DeserializationError(
             "SubSlotValueElicitationSetting.prompt_specification required"
         )
-    if "sampleUtterances" in data:
+    if data.get("sampleUtterances") is not None:
         import capo_lex_models_v2.types.sample_utterances_list
 
         out["sample_utterances"] = (
@@ -96,7 +96,7 @@ def deserialize_json(data: dict) -> SubSlotValueElicitationSetting:
                 data["sampleUtterances"]
             )
         )
-    if "waitAndContinueSpecification" in data:
+    if data.get("waitAndContinueSpecification") is not None:
         import capo_lex_models_v2.types.wait_and_continue_specification
 
         out["wait_and_continue_specification"] = (

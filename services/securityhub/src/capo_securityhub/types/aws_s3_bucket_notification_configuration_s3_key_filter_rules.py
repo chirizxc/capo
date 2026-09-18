@@ -31,6 +31,8 @@ def deserialize_json(
 
     out: AwsS3BucketNotificationConfigurationS3KeyFilterRules = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_securityhub.types.aws_s3_bucket_notification_configuration_s3_key_filter_rule.deserialize_json(
                 item

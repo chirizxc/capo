@@ -45,17 +45,17 @@ def serialize_aws_json_1_0(value: MultiMeasureAttributeMapping) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> MultiMeasureAttributeMapping:
     out: MultiMeasureAttributeMapping = {}  # type: ignore[typeddict-item]
-    if "SourceColumn" in data:
+    if data.get("SourceColumn") is not None:
         out["source_column"] = data["SourceColumn"]
     else:
         raise DeserializationError(
             "MultiMeasureAttributeMapping.source_column required"
         )
-    if "TargetMultiMeasureAttributeName" in data:
+    if data.get("TargetMultiMeasureAttributeName") is not None:
         out["target_multi_measure_attribute_name"] = data[
             "TargetMultiMeasureAttributeName"
         ]
-    if "MeasureValueType" in data:
+    if data.get("MeasureValueType") is not None:
         import capo_timestream_write.types.scalar_measure_value_type
 
         out["measure_value_type"] = (

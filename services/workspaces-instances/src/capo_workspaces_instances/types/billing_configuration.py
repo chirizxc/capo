@@ -30,7 +30,7 @@ def serialize_aws_json_1_0(value: BillingConfiguration) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> BillingConfiguration:
     out: BillingConfiguration = {}  # type: ignore[typeddict-item]
-    if "BillingMode" in data:
+    if data.get("BillingMode") is not None:
         import capo_workspaces_instances.types.billing_mode
 
         out["billing_mode"] = (

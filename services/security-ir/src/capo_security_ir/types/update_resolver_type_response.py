@@ -42,17 +42,17 @@ def serialize_json(value: UpdateResolverTypeResponse) -> dict:
 
 def deserialize_json(data: dict) -> UpdateResolverTypeResponse:
     out: UpdateResolverTypeResponse = {}  # type: ignore[typeddict-item]
-    if "caseId" in data:
+    if data.get("caseId") is not None:
         out["case_id"] = data["caseId"]
     else:
         raise DeserializationError("UpdateResolverTypeResponse.case_id required")
-    if "caseStatus" in data:
+    if data.get("caseStatus") is not None:
         import capo_security_ir.types.case_status
 
         out["case_status"] = capo_security_ir.types.case_status.deserialize_json(
             data["caseStatus"]
         )
-    if "resolverType" in data:
+    if data.get("resolverType") is not None:
         import capo_security_ir.types.resolver_type
 
         out["resolver_type"] = capo_security_ir.types.resolver_type.deserialize_json(

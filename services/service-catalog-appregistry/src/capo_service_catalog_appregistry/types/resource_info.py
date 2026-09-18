@@ -65,11 +65,11 @@ def serialize_json(value: ResourceInfo) -> dict:
 
 def deserialize_json(data: dict) -> ResourceInfo:
     out: ResourceInfo = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "resourceType" in data:
+    if data.get("resourceType") is not None:
         import capo_service_catalog_appregistry.types.resource_type
 
         out["resource_type"] = (
@@ -77,7 +77,7 @@ def deserialize_json(data: dict) -> ResourceInfo:
                 data["resourceType"]
             )
         )
-    if "resourceDetails" in data:
+    if data.get("resourceDetails") is not None:
         import capo_service_catalog_appregistry.types.resource_details
 
         out["resource_details"] = (
@@ -85,7 +85,7 @@ def deserialize_json(data: dict) -> ResourceInfo:
                 data["resourceDetails"]
             )
         )
-    if "options" in data:
+    if data.get("options") is not None:
         import capo_service_catalog_appregistry.types.options
 
         out["options"] = (

@@ -74,9 +74,9 @@ def serialize_json(value: AwsEc2VpcPeeringConnectionVpcInfoDetails) -> dict:
 
 def deserialize_json(data: dict) -> AwsEc2VpcPeeringConnectionVpcInfoDetails:
     out: AwsEc2VpcPeeringConnectionVpcInfoDetails = {}  # type: ignore[typeddict-item]
-    if "CidrBlock" in data:
+    if data.get("CidrBlock") is not None:
         out["cidr_block"] = data["CidrBlock"]
-    if "CidrBlockSet" in data:
+    if data.get("CidrBlockSet") is not None:
         import capo_securityhub.types.vpc_info_cidr_block_set_list
 
         out["cidr_block_set"] = (
@@ -84,7 +84,7 @@ def deserialize_json(data: dict) -> AwsEc2VpcPeeringConnectionVpcInfoDetails:
                 data["CidrBlockSet"]
             )
         )
-    if "Ipv6CidrBlockSet" in data:
+    if data.get("Ipv6CidrBlockSet") is not None:
         import capo_securityhub.types.vpc_info_ipv6_cidr_block_set_list
 
         out["ipv6_cidr_block_set"] = (
@@ -92,9 +92,9 @@ def deserialize_json(data: dict) -> AwsEc2VpcPeeringConnectionVpcInfoDetails:
                 data["Ipv6CidrBlockSet"]
             )
         )
-    if "OwnerId" in data:
+    if data.get("OwnerId") is not None:
         out["owner_id"] = data["OwnerId"]
-    if "PeeringOptions" in data:
+    if data.get("PeeringOptions") is not None:
         import capo_securityhub.types.vpc_info_peering_options_details
 
         out["peering_options"] = (
@@ -102,8 +102,8 @@ def deserialize_json(data: dict) -> AwsEc2VpcPeeringConnectionVpcInfoDetails:
                 data["PeeringOptions"]
             )
         )
-    if "Region" in data:
+    if data.get("Region") is not None:
         out["region"] = data["Region"]
-    if "VpcId" in data:
+    if data.get("VpcId") is not None:
         out["vpc_id"] = data["VpcId"]
     return out

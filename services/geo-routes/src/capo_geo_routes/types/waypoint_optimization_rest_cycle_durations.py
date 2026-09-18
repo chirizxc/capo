@@ -25,11 +25,11 @@ def serialize_json(value: WaypointOptimizationRestCycleDurations) -> dict:
 
 def deserialize_json(data: dict) -> WaypointOptimizationRestCycleDurations:
     out: WaypointOptimizationRestCycleDurations = {}  # type: ignore[typeddict-item]
-    if "RestDuration" in data:
+    if data.get("RestDuration") is not None:
         out["rest_duration"] = data["RestDuration"]
     else:
         out["rest_duration"] = 0
-    if "WorkDuration" in data:
+    if data.get("WorkDuration") is not None:
         out["work_duration"] = data["WorkDuration"]
     else:
         out["work_duration"] = 0

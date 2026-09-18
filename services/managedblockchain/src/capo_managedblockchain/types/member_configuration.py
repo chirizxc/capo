@@ -68,13 +68,13 @@ def serialize_json(value: MemberConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> MemberConfiguration:
     out: MemberConfiguration = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("MemberConfiguration.name required")
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "FrameworkConfiguration" in data:
+    if data.get("FrameworkConfiguration") is not None:
         import capo_managedblockchain.types.member_framework_configuration
 
         out["framework_configuration"] = (
@@ -86,7 +86,7 @@ def deserialize_json(data: dict) -> MemberConfiguration:
         raise DeserializationError(
             "MemberConfiguration.framework_configuration required"
         )
-    if "LogPublishingConfiguration" in data:
+    if data.get("LogPublishingConfiguration") is not None:
         import capo_managedblockchain.types.member_log_publishing_configuration
 
         out["log_publishing_configuration"] = (
@@ -94,12 +94,12 @@ def deserialize_json(data: dict) -> MemberConfiguration:
                 data["LogPublishingConfiguration"]
             )
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_managedblockchain.types.input_tag_map
 
         out["tags"] = capo_managedblockchain.types.input_tag_map.deserialize_json(
             data["Tags"]
         )
-    if "KmsKeyArn" in data:
+    if data.get("KmsKeyArn") is not None:
         out["kms_key_arn"] = data["KmsKeyArn"]
     return out

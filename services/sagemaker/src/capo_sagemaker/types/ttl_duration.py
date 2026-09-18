@@ -32,12 +32,12 @@ def serialize_aws_json_1_1(value: TtlDuration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> TtlDuration:
     out: TtlDuration = {}  # type: ignore[typeddict-item]
-    if "Unit" in data:
+    if data.get("Unit") is not None:
         import capo_sagemaker.types.ttl_duration_unit
 
         out["unit"] = capo_sagemaker.types.ttl_duration_unit.deserialize_aws_json_1_1(
             data["Unit"]
         )
-    if "Value" in data:
+    if data.get("Value") is not None:
         out["value"] = data["Value"]
     return out

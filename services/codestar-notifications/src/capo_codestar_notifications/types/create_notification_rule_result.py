@@ -25,6 +25,6 @@ def serialize_json(value: CreateNotificationRuleResult) -> dict:
 
 def deserialize_json(data: dict) -> CreateNotificationRuleResult:
     out: CreateNotificationRuleResult = {}  # type: ignore[typeddict-item]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
     return out

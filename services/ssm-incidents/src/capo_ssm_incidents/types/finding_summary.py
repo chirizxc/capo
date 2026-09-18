@@ -35,11 +35,11 @@ def serialize_json(value: FindingSummary) -> dict:
 
 def deserialize_json(data: dict) -> FindingSummary:
     out: FindingSummary = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("FindingSummary.id required")
-    if "lastModifiedTime" in data:
+    if data.get("lastModifiedTime") is not None:
         import capo_ssm_incidents.types._prelude.timestamp
 
         out["last_modified_time"] = (

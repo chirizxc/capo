@@ -31,17 +31,17 @@ def serialize_json(value: DeleteSourceRepositoryResponse) -> dict:
 
 def deserialize_json(data: dict) -> DeleteSourceRepositoryResponse:
     out: DeleteSourceRepositoryResponse = {}  # type: ignore[typeddict-item]
-    if "spaceName" in data:
+    if data.get("spaceName") is not None:
         out["space_name"] = data["spaceName"]
     else:
         raise DeserializationError("DeleteSourceRepositoryResponse.space_name required")
-    if "projectName" in data:
+    if data.get("projectName") is not None:
         out["project_name"] = data["projectName"]
     else:
         raise DeserializationError(
             "DeleteSourceRepositoryResponse.project_name required"
         )
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("DeleteSourceRepositoryResponse.name required")

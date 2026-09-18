@@ -30,15 +30,15 @@ def serialize_json(value: GuestUser) -> dict:
 
 def deserialize_json(data: dict) -> GuestUser:
     out: GuestUser = {}  # type: ignore[typeddict-item]
-    if "billingPeriod" in data:
+    if data.get("billingPeriod") is not None:
         out["billing_period"] = data["billingPeriod"]
     else:
         raise DeserializationError("GuestUser.billing_period required")
-    if "username" in data:
+    if data.get("username") is not None:
         out["username"] = data["username"]
     else:
         raise DeserializationError("GuestUser.username required")
-    if "usernameHash" in data:
+    if data.get("usernameHash") is not None:
         out["username_hash"] = data["usernameHash"]
     else:
         raise DeserializationError("GuestUser.username_hash required")

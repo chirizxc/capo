@@ -48,14 +48,14 @@ class GetConfiguredModelAlgorithmAssociationResponse(TypedDict, closed=True):
 # --- restJson1 ser/de ---
 def serialize_json(value: GetConfiguredModelAlgorithmAssociationResponse) -> dict:
     out: dict = {}
-    import capo_cleanroomsml.types._prelude.timestamp
+    import capo_cleanroomsml._protocol.serialize
 
-    out["createTime"] = capo_cleanroomsml.types._prelude.timestamp.serialize_json(
+    out["createTime"] = capo_cleanroomsml._protocol.serialize.fmt_date_time(
         value["create_time"]
     )
-    import capo_cleanroomsml.types._prelude.timestamp
+    import capo_cleanroomsml._protocol.serialize
 
-    out["updateTime"] = capo_cleanroomsml.types._prelude.timestamp.serialize_json(
+    out["updateTime"] = capo_cleanroomsml._protocol.serialize.fmt_date_time(
         value["update_time"]
     )
     out["configuredModelAlgorithmAssociationArn"] = value[
@@ -84,31 +84,27 @@ def serialize_json(value: GetConfiguredModelAlgorithmAssociationResponse) -> dic
 
 def deserialize_json(data: dict) -> GetConfiguredModelAlgorithmAssociationResponse:
     out: GetConfiguredModelAlgorithmAssociationResponse = {}  # type: ignore[typeddict-item]
-    if "createTime" in data:
-        import capo_cleanroomsml.types._prelude.timestamp
+    if data.get("createTime") is not None:
+        import datetime
 
-        out["create_time"] = (
-            capo_cleanroomsml.types._prelude.timestamp.deserialize_json(
-                data["createTime"]
-            )
+        out["create_time"] = datetime.datetime.fromisoformat(
+            data["createTime"].replace("Z", "+00:00")
         )
     else:
         raise DeserializationError(
             "GetConfiguredModelAlgorithmAssociationResponse.create_time required"
         )
-    if "updateTime" in data:
-        import capo_cleanroomsml.types._prelude.timestamp
+    if data.get("updateTime") is not None:
+        import datetime
 
-        out["update_time"] = (
-            capo_cleanroomsml.types._prelude.timestamp.deserialize_json(
-                data["updateTime"]
-            )
+        out["update_time"] = datetime.datetime.fromisoformat(
+            data["updateTime"].replace("Z", "+00:00")
         )
     else:
         raise DeserializationError(
             "GetConfiguredModelAlgorithmAssociationResponse.update_time required"
         )
-    if "configuredModelAlgorithmAssociationArn" in data:
+    if data.get("configuredModelAlgorithmAssociationArn") is not None:
         out["configured_model_algorithm_association_arn"] = data[
             "configuredModelAlgorithmAssociationArn"
         ]
@@ -116,31 +112,31 @@ def deserialize_json(data: dict) -> GetConfiguredModelAlgorithmAssociationRespon
         raise DeserializationError(
             "GetConfiguredModelAlgorithmAssociationResponse.configured_model_algorithm_association_arn required"
         )
-    if "membershipIdentifier" in data:
+    if data.get("membershipIdentifier") is not None:
         out["membership_identifier"] = data["membershipIdentifier"]
     else:
         raise DeserializationError(
             "GetConfiguredModelAlgorithmAssociationResponse.membership_identifier required"
         )
-    if "collaborationIdentifier" in data:
+    if data.get("collaborationIdentifier") is not None:
         out["collaboration_identifier"] = data["collaborationIdentifier"]
     else:
         raise DeserializationError(
             "GetConfiguredModelAlgorithmAssociationResponse.collaboration_identifier required"
         )
-    if "configuredModelAlgorithmArn" in data:
+    if data.get("configuredModelAlgorithmArn") is not None:
         out["configured_model_algorithm_arn"] = data["configuredModelAlgorithmArn"]
     else:
         raise DeserializationError(
             "GetConfiguredModelAlgorithmAssociationResponse.configured_model_algorithm_arn required"
         )
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError(
             "GetConfiguredModelAlgorithmAssociationResponse.name required"
         )
-    if "privacyConfiguration" in data:
+    if data.get("privacyConfiguration") is not None:
         import capo_cleanroomsml.types.privacy_configuration
 
         out["privacy_configuration"] = (
@@ -148,9 +144,9 @@ def deserialize_json(data: dict) -> GetConfiguredModelAlgorithmAssociationRespon
                 data["privacyConfiguration"]
             )
         )
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_cleanroomsml.types.tag_map
 
         out["tags"] = capo_cleanroomsml.types.tag_map.deserialize_json(data["tags"])

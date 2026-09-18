@@ -34,19 +34,19 @@ def serialize_aws_json_1_1(value: DeleteApplicationOutputRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteApplicationOutputRequest:
     out: DeleteApplicationOutputRequest = {}  # type: ignore[typeddict-item]
-    if "ApplicationName" in data:
+    if data.get("ApplicationName") is not None:
         out["application_name"] = data["ApplicationName"]
     else:
         raise DeserializationError(
             "DeleteApplicationOutputRequest.application_name required"
         )
-    if "CurrentApplicationVersionId" in data:
+    if data.get("CurrentApplicationVersionId") is not None:
         out["current_application_version_id"] = data["CurrentApplicationVersionId"]
     else:
         raise DeserializationError(
             "DeleteApplicationOutputRequest.current_application_version_id required"
         )
-    if "OutputId" in data:
+    if data.get("OutputId") is not None:
         out["output_id"] = data["OutputId"]
     else:
         raise DeserializationError("DeleteApplicationOutputRequest.output_id required")

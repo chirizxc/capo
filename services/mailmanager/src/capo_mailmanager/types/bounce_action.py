@@ -58,7 +58,7 @@ def serialize_aws_json_1_0(value: BounceAction) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> BounceAction:
     out: BounceAction = {}  # type: ignore[typeddict-item]
-    if "ActionFailurePolicy" in data:
+    if data.get("ActionFailurePolicy") is not None:
         import capo_mailmanager.types.action_failure_policy
 
         out["action_failure_policy"] = (
@@ -66,26 +66,26 @@ def deserialize_aws_json_1_0(data: dict) -> BounceAction:
                 data["ActionFailurePolicy"]
             )
         )
-    if "RoleArn" in data:
+    if data.get("RoleArn") is not None:
         out["role_arn"] = data["RoleArn"]
     else:
         raise DeserializationError("BounceAction.role_arn required")
-    if "Sender" in data:
+    if data.get("Sender") is not None:
         out["sender"] = data["Sender"]
     else:
         raise DeserializationError("BounceAction.sender required")
-    if "StatusCode" in data:
+    if data.get("StatusCode") is not None:
         out["status_code"] = data["StatusCode"]
     else:
         raise DeserializationError("BounceAction.status_code required")
-    if "SmtpReplyCode" in data:
+    if data.get("SmtpReplyCode") is not None:
         out["smtp_reply_code"] = data["SmtpReplyCode"]
     else:
         raise DeserializationError("BounceAction.smtp_reply_code required")
-    if "DiagnosticMessage" in data:
+    if data.get("DiagnosticMessage") is not None:
         out["diagnostic_message"] = data["DiagnosticMessage"]
     else:
         raise DeserializationError("BounceAction.diagnostic_message required")
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     return out

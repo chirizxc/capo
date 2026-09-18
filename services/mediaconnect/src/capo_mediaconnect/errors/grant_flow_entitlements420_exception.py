@@ -19,7 +19,7 @@ def serialize_json(value: GrantFlowEntitlements420Exception_) -> dict:
 
 def deserialize_json(data: dict) -> GrantFlowEntitlements420Exception_:
     out: GrantFlowEntitlements420Exception_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     return out
 
@@ -29,15 +29,20 @@ class GrantFlowEntitlements420Exception(ServiceError):
 
     code: str | None = "GrantFlowEntitlements420Exception"
 
-    def __init__(self, data: GrantFlowEntitlements420Exception_):
+    def __init__(
+        self, data: GrantFlowEntitlements420Exception_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="GrantFlowEntitlements420Exception",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "GrantFlowEntitlements420Exception":
-        return cls(deserialize_json(data))
+    def from_json(
+        cls, data: dict, message: str | None = None
+    ) -> "GrantFlowEntitlements420Exception":
+        return cls(deserialize_json(data), message)

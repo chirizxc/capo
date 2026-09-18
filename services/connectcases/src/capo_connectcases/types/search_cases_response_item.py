@@ -43,15 +43,15 @@ def serialize_json(value: SearchCasesResponseItem) -> dict:
 
 def deserialize_json(data: dict) -> SearchCasesResponseItem:
     out: SearchCasesResponseItem = {}  # type: ignore[typeddict-item]
-    if "caseId" in data:
+    if data.get("caseId") is not None:
         out["case_id"] = data["caseId"]
     else:
         raise DeserializationError("SearchCasesResponseItem.case_id required")
-    if "templateId" in data:
+    if data.get("templateId") is not None:
         out["template_id"] = data["templateId"]
     else:
         raise DeserializationError("SearchCasesResponseItem.template_id required")
-    if "fields" in data:
+    if data.get("fields") is not None:
         import capo_connectcases.types.field_value_list
 
         out["fields"] = capo_connectcases.types.field_value_list.deserialize_json(
@@ -59,7 +59,7 @@ def deserialize_json(data: dict) -> SearchCasesResponseItem:
         )
     else:
         raise DeserializationError("SearchCasesResponseItem.fields required")
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_connectcases.types.tags
 
         out["tags"] = capo_connectcases.types.tags.deserialize_json(data["tags"])

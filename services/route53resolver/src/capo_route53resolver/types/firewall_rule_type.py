@@ -57,7 +57,7 @@ def serialize_aws_json_1_1(value: FirewallRuleType) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> FirewallRuleType:
     out: FirewallRuleType = {}  # type: ignore[typeddict-item]
-    if "FirewallAdvancedContentCategory" in data:
+    if data.get("FirewallAdvancedContentCategory") is not None:
         import capo_route53resolver.types.firewall_advanced_content_category_config
 
         out["firewall_advanced_content_category"] = (
@@ -65,7 +65,7 @@ def deserialize_aws_json_1_1(data: dict) -> FirewallRuleType:
                 data["FirewallAdvancedContentCategory"]
             )
         )
-    if "FirewallAdvancedThreatCategory" in data:
+    if data.get("FirewallAdvancedThreatCategory") is not None:
         import capo_route53resolver.types.firewall_advanced_threat_category_config
 
         out["firewall_advanced_threat_category"] = (
@@ -73,7 +73,7 @@ def deserialize_aws_json_1_1(data: dict) -> FirewallRuleType:
                 data["FirewallAdvancedThreatCategory"]
             )
         )
-    if "DnsThreatProtection" in data:
+    if data.get("DnsThreatProtection") is not None:
         import capo_route53resolver.types.dns_threat_protection_rule_type_config
 
         out["dns_threat_protection"] = (

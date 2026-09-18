@@ -45,9 +45,9 @@ def serialize_aws_json_1_0(value: BlockDeviceMappingRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> BlockDeviceMappingRequest:
     out: BlockDeviceMappingRequest = {}  # type: ignore[typeddict-item]
-    if "DeviceName" in data:
+    if data.get("DeviceName") is not None:
         out["device_name"] = data["DeviceName"]
-    if "Ebs" in data:
+    if data.get("Ebs") is not None:
         import capo_workspaces_instances.types.ebs_block_device
 
         out["ebs"] = (
@@ -55,8 +55,8 @@ def deserialize_aws_json_1_0(data: dict) -> BlockDeviceMappingRequest:
                 data["Ebs"]
             )
         )
-    if "NoDevice" in data:
+    if data.get("NoDevice") is not None:
         out["no_device"] = data["NoDevice"]
-    if "VirtualName" in data:
+    if data.get("VirtualName") is not None:
         out["virtual_name"] = data["VirtualName"]
     return out

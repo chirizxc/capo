@@ -36,7 +36,7 @@ def serialize_json(value: UpdateQueryLoggingConfigurationRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateQueryLoggingConfigurationRequest:
     out: UpdateQueryLoggingConfigurationRequest = {}  # type: ignore[typeddict-item]
-    if "destinations" in data:
+    if data.get("destinations") is not None:
         import capo_amp.types.logging_destinations
 
         out["destinations"] = capo_amp.types.logging_destinations.deserialize_json(
@@ -46,6 +46,6 @@ def deserialize_json(data: dict) -> UpdateQueryLoggingConfigurationRequest:
         raise DeserializationError(
             "UpdateQueryLoggingConfigurationRequest.destinations required"
         )
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     return out

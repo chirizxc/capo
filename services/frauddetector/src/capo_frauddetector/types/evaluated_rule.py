@@ -61,15 +61,15 @@ def serialize_aws_json_1_1(value: EvaluatedRule) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> EvaluatedRule:
     out: EvaluatedRule = {}  # type: ignore[typeddict-item]
-    if "ruleId" in data:
+    if data.get("ruleId") is not None:
         out["rule_id"] = data["ruleId"]
-    if "ruleVersion" in data:
+    if data.get("ruleVersion") is not None:
         out["rule_version"] = data["ruleVersion"]
-    if "expression" in data:
+    if data.get("expression") is not None:
         out["expression"] = data["expression"]
-    if "expressionWithValues" in data:
+    if data.get("expressionWithValues") is not None:
         out["expression_with_values"] = data["expressionWithValues"]
-    if "outcomes" in data:
+    if data.get("outcomes") is not None:
         import capo_frauddetector.types.list_of_strings
 
         out["outcomes"] = (
@@ -77,8 +77,8 @@ def deserialize_aws_json_1_1(data: dict) -> EvaluatedRule:
                 data["outcomes"]
             )
         )
-    if "evaluated" in data:
+    if data.get("evaluated") is not None:
         out["evaluated"] = data["evaluated"]
-    if "matched" in data:
+    if data.get("matched") is not None:
         out["matched"] = data["matched"]
     return out

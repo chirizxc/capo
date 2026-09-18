@@ -34,7 +34,7 @@ def deserialize_json(
     data: dict,
 ) -> BatchDisassociateCodeSecurityScanConfigurationRequest:
     out: BatchDisassociateCodeSecurityScanConfigurationRequest = {}  # type: ignore[typeddict-item]
-    if "disassociateConfigurationRequests" in data:
+    if data.get("disassociateConfigurationRequests") is not None:
         import capo_inspector2.types.disassociate_configuration_request_list
 
         out["disassociate_configuration_requests"] = (

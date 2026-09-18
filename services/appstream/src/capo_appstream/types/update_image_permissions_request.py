@@ -41,11 +41,11 @@ def serialize_aws_json_1_1(value: UpdateImagePermissionsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateImagePermissionsRequest:
     out: UpdateImagePermissionsRequest = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "SharedAccountId" in data:
+    if data.get("SharedAccountId") is not None:
         out["shared_account_id"] = data["SharedAccountId"]
-    if "ImagePermissions" in data:
+    if data.get("ImagePermissions") is not None:
         import capo_appstream.types.image_permissions
 
         out["image_permissions"] = (

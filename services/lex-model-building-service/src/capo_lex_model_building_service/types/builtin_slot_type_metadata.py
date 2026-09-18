@@ -38,9 +38,9 @@ def serialize_json(value: BuiltinSlotTypeMetadata) -> dict:
 
 def deserialize_json(data: dict) -> BuiltinSlotTypeMetadata:
     out: BuiltinSlotTypeMetadata = {}  # type: ignore[typeddict-item]
-    if "signature" in data:
+    if data.get("signature") is not None:
         out["signature"] = data["signature"]
-    if "supportedLocales" in data:
+    if data.get("supportedLocales") is not None:
         import capo_lex_model_building_service.types.locale_list
 
         out["supported_locales"] = (

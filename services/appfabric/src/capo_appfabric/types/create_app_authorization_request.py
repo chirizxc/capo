@@ -59,11 +59,11 @@ def serialize_json(value: CreateAppAuthorizationRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateAppAuthorizationRequest:
     out: CreateAppAuthorizationRequest = {}  # type: ignore[typeddict-item]
-    if "app" in data:
+    if data.get("app") is not None:
         out["app"] = data["app"]
     else:
         raise DeserializationError("CreateAppAuthorizationRequest.app required")
-    if "credential" in data:
+    if data.get("credential") is not None:
         import capo_appfabric.types.credential
 
         out["credential"] = capo_appfabric.types.credential.deserialize_json(
@@ -71,13 +71,13 @@ def deserialize_json(data: dict) -> CreateAppAuthorizationRequest:
         )
     else:
         raise DeserializationError("CreateAppAuthorizationRequest.credential required")
-    if "tenant" in data:
+    if data.get("tenant") is not None:
         import capo_appfabric.types.tenant
 
         out["tenant"] = capo_appfabric.types.tenant.deserialize_json(data["tenant"])
     else:
         raise DeserializationError("CreateAppAuthorizationRequest.tenant required")
-    if "authType" in data:
+    if data.get("authType") is not None:
         import capo_appfabric.types.auth_type
 
         out["auth_type"] = capo_appfabric.types.auth_type.deserialize_json(
@@ -85,9 +85,9 @@ def deserialize_json(data: dict) -> CreateAppAuthorizationRequest:
         )
     else:
         raise DeserializationError("CreateAppAuthorizationRequest.auth_type required")
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_appfabric.types.tag_list
 
         out["tags"] = capo_appfabric.types.tag_list.deserialize_json(data["tags"])

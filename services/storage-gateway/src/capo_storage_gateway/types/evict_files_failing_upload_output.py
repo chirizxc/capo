@@ -23,6 +23,6 @@ def serialize_aws_json_1_1(value: EvictFilesFailingUploadOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> EvictFilesFailingUploadOutput:
     out: EvictFilesFailingUploadOutput = {}  # type: ignore[typeddict-item]
-    if "NotificationId" in data:
+    if data.get("NotificationId") is not None:
         out["notification_id"] = data["NotificationId"]
     return out

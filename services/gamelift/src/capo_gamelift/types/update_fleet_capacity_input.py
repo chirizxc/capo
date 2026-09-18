@@ -56,17 +56,17 @@ def serialize_aws_json_1_1(value: UpdateFleetCapacityInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateFleetCapacityInput:
     out: UpdateFleetCapacityInput = {}  # type: ignore[typeddict-item]
-    if "FleetId" in data:
+    if data.get("FleetId") is not None:
         out["fleet_id"] = data["FleetId"]
-    if "DesiredInstances" in data:
+    if data.get("DesiredInstances") is not None:
         out["desired_instances"] = data["DesiredInstances"]
-    if "MinSize" in data:
+    if data.get("MinSize") is not None:
         out["min_size"] = data["MinSize"]
-    if "MaxSize" in data:
+    if data.get("MaxSize") is not None:
         out["max_size"] = data["MaxSize"]
-    if "Location" in data:
+    if data.get("Location") is not None:
         out["location"] = data["Location"]
-    if "ManagedCapacityConfiguration" in data:
+    if data.get("ManagedCapacityConfiguration") is not None:
         import capo_gamelift.types.managed_capacity_configuration
 
         out["managed_capacity_configuration"] = (

@@ -38,7 +38,7 @@ def serialize_json(value: EvaluationTranscriptPointOfInterest) -> dict:
 
 def deserialize_json(data: dict) -> EvaluationTranscriptPointOfInterest:
     out: EvaluationTranscriptPointOfInterest = {}  # type: ignore[typeddict-item]
-    if "MillisecondOffsets" in data:
+    if data.get("MillisecondOffsets") is not None:
         import capo_connect.types.evaluation_suggested_answer_transcript_millisecond_offsets
 
         out["millisecond_offsets"] = (
@@ -46,6 +46,6 @@ def deserialize_json(data: dict) -> EvaluationTranscriptPointOfInterest:
                 data["MillisecondOffsets"]
             )
         )
-    if "TranscriptSegment" in data:
+    if data.get("TranscriptSegment") is not None:
         out["transcript_segment"] = data["TranscriptSegment"]
     return out

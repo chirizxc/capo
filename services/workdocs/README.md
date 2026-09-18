@@ -13,9 +13,9 @@ from capo_workdocs import AsyncWorkDocsClient
 
 
 async def main():
-    async with AsyncWorkDocsClient() as s3:
+    async with AsyncWorkDocsClient() as work_docs:
         # Example: call the abort_document_version_upload operation
-        response = await s3.abort_document_version_upload()
+        response = await work_docs.abort_document_version_upload()
         print(response)
 ```
 
@@ -28,9 +28,9 @@ from capo_workdocs import AsyncWorkDocsClient
 
 
 async def main():
-    async with AsyncWorkDocsClient() as s3:
+    async with AsyncWorkDocsClient() as work_docs:
         # Example: paginate over describe_activities
-        async for item in s3.iter_describe_activities():
+        async for item in work_docs.iter_describe_activities():
             print(item)
 ```
 
@@ -44,9 +44,9 @@ from capo_workdocs.error import ConcurrentModificationException
 
 
 async def main():
-    async with AsyncWorkDocsClient() as s3:
+    async with AsyncWorkDocsClient() as work_docs:
         try:
-            await s3.abort_document_version_upload()
+            await work_docs.abort_document_version_upload()
         except ConcurrentModificationException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -63,13 +63,13 @@ from capo_workdocs import AsyncWorkDocsClient
 
 
 async def main():
-    async with AsyncWorkDocsClient() as s3:
+    async with AsyncWorkDocsClient() as work_docs:
         # Default: 3 attempts for every operation
-        response = await s3.abort_document_version_upload()
+        response = await work_docs.abort_document_version_upload()
 
         # Override per operation
-        response = await s3.abort_document_version_upload(config_overrides={"retry_max_attempts": 5})
+        response = await work_docs.abort_document_version_upload(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.abort_document_version_upload(config_overrides={"retry_max_attempts": 1})
+        response = await work_docs.abort_document_version_upload(config_overrides={"retry_max_attempts": 1})
 ```

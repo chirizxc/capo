@@ -31,9 +31,9 @@ def serialize_aws_json_1_1(value: GetRegionsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetRegionsRequest:
     out: GetRegionsRequest = {}  # type: ignore[typeddict-item]
-    if "includeAvailabilityZones" in data:
+    if data.get("includeAvailabilityZones") is not None:
         out["include_availability_zones"] = data["includeAvailabilityZones"]
-    if "includeRelationalDatabaseAvailabilityZones" in data:
+    if data.get("includeRelationalDatabaseAvailabilityZones") is not None:
         out["include_relational_database_availability_zones"] = data[
             "includeRelationalDatabaseAvailabilityZones"
         ]

@@ -39,7 +39,7 @@ def serialize_aws_json_1_0(value: Bandwidths) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> Bandwidths:
     out: Bandwidths = {}  # type: ignore[typeddict-item]
-    if "available" in data:
+    if data.get("available") is not None:
         import capo_interconnect.types.bandwidth_list
 
         out["available"] = (
@@ -47,7 +47,7 @@ def deserialize_aws_json_1_0(data: dict) -> Bandwidths:
                 data["available"]
             )
         )
-    if "supported" in data:
+    if data.get("supported") is not None:
         import capo_interconnect.types.bandwidth_list
 
         out["supported"] = (

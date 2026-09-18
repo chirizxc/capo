@@ -93,23 +93,23 @@ def serialize_json(value: GetNotebookExportOutput) -> dict:
 
 def deserialize_json(data: dict) -> GetNotebookExportOutput:
     out: GetNotebookExportOutput = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("GetNotebookExportOutput.id required")
-    if "domainId" in data:
+    if data.get("domainId") is not None:
         out["domain_id"] = data["domainId"]
     else:
         raise DeserializationError("GetNotebookExportOutput.domain_id required")
-    if "owningProjectId" in data:
+    if data.get("owningProjectId") is not None:
         out["owning_project_id"] = data["owningProjectId"]
     else:
         raise DeserializationError("GetNotebookExportOutput.owning_project_id required")
-    if "notebookId" in data:
+    if data.get("notebookId") is not None:
         out["notebook_id"] = data["notebookId"]
     else:
         raise DeserializationError("GetNotebookExportOutput.notebook_id required")
-    if "fileFormat" in data:
+    if data.get("fileFormat") is not None:
         import capo_datazone.types.file_format
 
         out["file_format"] = capo_datazone.types.file_format.deserialize_json(
@@ -117,7 +117,7 @@ def deserialize_json(data: dict) -> GetNotebookExportOutput:
         )
     else:
         raise DeserializationError("GetNotebookExportOutput.file_format required")
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_datazone.types.notebook_export_status
 
         out["status"] = capo_datazone.types.notebook_export_status.deserialize_json(
@@ -125,30 +125,30 @@ def deserialize_json(data: dict) -> GetNotebookExportOutput:
         )
     else:
         raise DeserializationError("GetNotebookExportOutput.status required")
-    if "outputLocation" in data:
+    if data.get("outputLocation") is not None:
         import capo_datazone.types.output_location
 
         out["output_location"] = capo_datazone.types.output_location.deserialize_json(
             data["outputLocation"]
         )
-    if "error" in data:
+    if data.get("error") is not None:
         import capo_datazone.types.notebook_export_error
 
         out["error"] = capo_datazone.types.notebook_export_error.deserialize_json(
             data["error"]
         )
-    if "completedAt" in data:
+    if data.get("completedAt") is not None:
         import capo_datazone.types.completed_at
 
         out["completed_at"] = capo_datazone.types.completed_at.deserialize_json(
             data["completedAt"]
         )
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_datazone.types.created_at
 
         out["created_at"] = capo_datazone.types.created_at.deserialize_json(
             data["createdAt"]
         )
-    if "createdBy" in data:
+    if data.get("createdBy") is not None:
         out["created_by"] = data["createdBy"]
     return out

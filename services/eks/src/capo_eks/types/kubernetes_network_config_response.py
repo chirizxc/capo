@@ -47,15 +47,15 @@ def serialize_json(value: KubernetesNetworkConfigResponse) -> dict:
 
 def deserialize_json(data: dict) -> KubernetesNetworkConfigResponse:
     out: KubernetesNetworkConfigResponse = {}  # type: ignore[typeddict-item]
-    if "serviceIpv4Cidr" in data:
+    if data.get("serviceIpv4Cidr") is not None:
         out["service_ipv4_cidr"] = data["serviceIpv4Cidr"]
-    if "serviceIpv6Cidr" in data:
+    if data.get("serviceIpv6Cidr") is not None:
         out["service_ipv6_cidr"] = data["serviceIpv6Cidr"]
-    if "ipFamily" in data:
+    if data.get("ipFamily") is not None:
         import capo_eks.types.ip_family
 
         out["ip_family"] = capo_eks.types.ip_family.deserialize_json(data["ipFamily"])
-    if "elasticLoadBalancing" in data:
+    if data.get("elasticLoadBalancing") is not None:
         import capo_eks.types.elastic_load_balancing
 
         out["elastic_load_balancing"] = (

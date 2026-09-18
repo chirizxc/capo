@@ -36,11 +36,11 @@ def serialize_aws_json_1_1(value: DeleteServiceAttributesRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteServiceAttributesRequest:
     out: DeleteServiceAttributesRequest = {}  # type: ignore[typeddict-item]
-    if "ServiceId" in data:
+    if data.get("ServiceId") is not None:
         out["service_id"] = data["ServiceId"]
     else:
         raise DeserializationError("DeleteServiceAttributesRequest.service_id required")
-    if "Attributes" in data:
+    if data.get("Attributes") is not None:
         import capo_servicediscovery.types.service_attribute_key_list
 
         out["attributes"] = (

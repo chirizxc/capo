@@ -31,7 +31,7 @@ def serialize_json(value: EksPropertiesOverride) -> dict:
 
 def deserialize_json(data: dict) -> EksPropertiesOverride:
     out: EksPropertiesOverride = {}  # type: ignore[typeddict-item]
-    if "podProperties" in data:
+    if data.get("podProperties") is not None:
         import capo_batch.types.eks_pod_properties_override
 
         out["pod_properties"] = (

@@ -97,15 +97,15 @@ def serialize_json(value: EventDestination) -> dict:
 
 def deserialize_json(data: dict) -> EventDestination:
     out: EventDestination = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("EventDestination.name required")
-    if "Enabled" in data:
+    if data.get("Enabled") is not None:
         out["enabled"] = data["Enabled"]
     else:
         out["enabled"] = False
-    if "MatchingEventTypes" in data:
+    if data.get("MatchingEventTypes") is not None:
         import capo_sesv2.types.event_types
 
         out["matching_event_types"] = capo_sesv2.types.event_types.deserialize_json(
@@ -113,7 +113,7 @@ def deserialize_json(data: dict) -> EventDestination:
         )
     else:
         raise DeserializationError("EventDestination.matching_event_types required")
-    if "KinesisFirehoseDestination" in data:
+    if data.get("KinesisFirehoseDestination") is not None:
         import capo_sesv2.types.kinesis_firehose_destination
 
         out["kinesis_firehose_destination"] = (
@@ -121,7 +121,7 @@ def deserialize_json(data: dict) -> EventDestination:
                 data["KinesisFirehoseDestination"]
             )
         )
-    if "CloudWatchDestination" in data:
+    if data.get("CloudWatchDestination") is not None:
         import capo_sesv2.types.cloud_watch_destination
 
         out["cloud_watch_destination"] = (
@@ -129,13 +129,13 @@ def deserialize_json(data: dict) -> EventDestination:
                 data["CloudWatchDestination"]
             )
         )
-    if "SnsDestination" in data:
+    if data.get("SnsDestination") is not None:
         import capo_sesv2.types.sns_destination
 
         out["sns_destination"] = capo_sesv2.types.sns_destination.deserialize_json(
             data["SnsDestination"]
         )
-    if "EventBridgeDestination" in data:
+    if data.get("EventBridgeDestination") is not None:
         import capo_sesv2.types.event_bridge_destination
 
         out["event_bridge_destination"] = (
@@ -143,7 +143,7 @@ def deserialize_json(data: dict) -> EventDestination:
                 data["EventBridgeDestination"]
             )
         )
-    if "PinpointDestination" in data:
+    if data.get("PinpointDestination") is not None:
         import capo_sesv2.types.pinpoint_destination
 
         out["pinpoint_destination"] = (

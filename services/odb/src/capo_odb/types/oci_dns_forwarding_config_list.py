@@ -27,6 +27,8 @@ def deserialize_aws_json_1_0(data: list) -> OciDnsForwardingConfigList:
 
     out: OciDnsForwardingConfigList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_odb.types.oci_dns_forwarding_config.deserialize_aws_json_1_0(item)
         )

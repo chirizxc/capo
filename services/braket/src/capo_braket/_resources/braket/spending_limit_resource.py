@@ -83,10 +83,11 @@ class SpendingLimitResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_braket.types.create_spending_limit_request.CreateSpendingLimitRequest = {}  # type: ignore[typeddict-item]
-        input_["client_token"] = client_token
-        input_["device_arn"] = device_arn
-        input_["spending_limit"] = spending_limit
+        input_: capo_braket.types.create_spending_limit_request.CreateSpendingLimitRequest = {
+            "client_token": client_token,
+            "device_arn": device_arn,
+            "spending_limit": spending_limit,
+        }
         if time_period is not None:
             input_["time_period"] = time_period
         if tags is not None:
@@ -97,6 +98,7 @@ class SpendingLimitResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update(
@@ -140,9 +142,10 @@ class SpendingLimitResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_braket.types.update_spending_limit_request.UpdateSpendingLimitRequest = {}  # type: ignore[typeddict-item]
-        input_["spending_limit_arn"] = spending_limit_arn
-        input_["client_token"] = client_token
+        input_: capo_braket.types.update_spending_limit_request.UpdateSpendingLimitRequest = {
+            "spending_limit_arn": spending_limit_arn,
+            "client_token": client_token,
+        }
         if spending_limit is not None:
             input_["spending_limit"] = spending_limit
         if time_period is not None:
@@ -153,6 +156,7 @@ class SpendingLimitResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -190,14 +194,16 @@ class SpendingLimitResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_braket.types.delete_spending_limit_request.DeleteSpendingLimitRequest = {}  # type: ignore[typeddict-item]
-        input_["spending_limit_arn"] = spending_limit_arn
+        input_: capo_braket.types.delete_spending_limit_request.DeleteSpendingLimitRequest = {
+            "spending_limit_arn": spending_limit_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -242,7 +248,7 @@ class SpendingLimitResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_braket.types.search_spending_limits_request.SearchSpendingLimitsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_braket.types.search_spending_limits_request.SearchSpendingLimitsRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -255,6 +261,7 @@ class SpendingLimitResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -306,10 +313,11 @@ class AsyncSpendingLimitResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_braket.types.create_spending_limit_request.CreateSpendingLimitRequest = {}  # type: ignore[typeddict-item]
-        input_["client_token"] = client_token
-        input_["device_arn"] = device_arn
-        input_["spending_limit"] = spending_limit
+        input_: capo_braket.types.create_spending_limit_request.CreateSpendingLimitRequest = {
+            "client_token": client_token,
+            "device_arn": device_arn,
+            "spending_limit": spending_limit,
+        }
         if time_period is not None:
             input_["time_period"] = time_period
         if tags is not None:
@@ -320,6 +328,7 @@ class AsyncSpendingLimitResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update(
@@ -364,9 +373,10 @@ class AsyncSpendingLimitResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_braket.types.update_spending_limit_request.UpdateSpendingLimitRequest = {}  # type: ignore[typeddict-item]
-        input_["spending_limit_arn"] = spending_limit_arn
-        input_["client_token"] = client_token
+        input_: capo_braket.types.update_spending_limit_request.UpdateSpendingLimitRequest = {
+            "spending_limit_arn": spending_limit_arn,
+            "client_token": client_token,
+        }
         if spending_limit is not None:
             input_["spending_limit"] = spending_limit
         if time_period is not None:
@@ -377,6 +387,7 @@ class AsyncSpendingLimitResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -415,14 +426,16 @@ class AsyncSpendingLimitResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_braket.types.delete_spending_limit_request.DeleteSpendingLimitRequest = {}  # type: ignore[typeddict-item]
-        input_["spending_limit_arn"] = spending_limit_arn
+        input_: capo_braket.types.delete_spending_limit_request.DeleteSpendingLimitRequest = {
+            "spending_limit_arn": spending_limit_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -468,7 +481,7 @@ class AsyncSpendingLimitResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_braket.types.search_spending_limits_request.SearchSpendingLimitsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_braket.types.search_spending_limits_request.SearchSpendingLimitsRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -481,4 +494,5 @@ class AsyncSpendingLimitResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

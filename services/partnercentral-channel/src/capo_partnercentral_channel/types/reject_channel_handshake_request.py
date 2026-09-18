@@ -28,11 +28,11 @@ def serialize_aws_json_1_0(value: RejectChannelHandshakeRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> RejectChannelHandshakeRequest:
     out: RejectChannelHandshakeRequest = {}  # type: ignore[typeddict-item]
-    if "catalog" in data:
+    if data.get("catalog") is not None:
         out["catalog"] = data["catalog"]
     else:
         raise DeserializationError("RejectChannelHandshakeRequest.catalog required")
-    if "identifier" in data:
+    if data.get("identifier") is not None:
         out["identifier"] = data["identifier"]
     else:
         raise DeserializationError("RejectChannelHandshakeRequest.identifier required")

@@ -24,7 +24,7 @@ def serialize_json(value: InvalidSchemaDocException_) -> dict:
 
 def deserialize_json(data: dict) -> InvalidSchemaDocException_:
     out: InvalidSchemaDocException_ = {}  # type: ignore[typeddict-item]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     return out
 
@@ -34,15 +34,18 @@ class InvalidSchemaDocException(ServiceError):
 
     code: str | None = "InvalidSchemaDocException"
 
-    def __init__(self, data: InvalidSchemaDocException_):
+    def __init__(self, data: InvalidSchemaDocException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="InvalidSchemaDocException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "InvalidSchemaDocException":
-        return cls(deserialize_json(data))
+    def from_json(
+        cls, data: dict, message: str | None = None
+    ) -> "InvalidSchemaDocException":
+        return cls(deserialize_json(data), message)

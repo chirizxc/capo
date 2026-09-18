@@ -28,13 +28,13 @@ def serialize_aws_json_1_1(value: UpdateBatchPredictionInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateBatchPredictionInput:
     out: UpdateBatchPredictionInput = {}  # type: ignore[typeddict-item]
-    if "BatchPredictionId" in data:
+    if data.get("BatchPredictionId") is not None:
         out["batch_prediction_id"] = data["BatchPredictionId"]
     else:
         raise DeserializationError(
             "UpdateBatchPredictionInput.batch_prediction_id required"
         )
-    if "BatchPredictionName" in data:
+    if data.get("BatchPredictionName") is not None:
         out["batch_prediction_name"] = data["BatchPredictionName"]
     else:
         raise DeserializationError(

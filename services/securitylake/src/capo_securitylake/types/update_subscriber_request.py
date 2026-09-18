@@ -55,7 +55,7 @@ def serialize_json(value: UpdateSubscriberRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateSubscriberRequest:
     out: UpdateSubscriberRequest = {}  # type: ignore[typeddict-item]
-    if "subscriberIdentity" in data:
+    if data.get("subscriberIdentity") is not None:
         import capo_securitylake.types.aws_identity
 
         out["subscriber_identity"] = (
@@ -63,11 +63,11 @@ def deserialize_json(data: dict) -> UpdateSubscriberRequest:
                 data["subscriberIdentity"]
             )
         )
-    if "subscriberName" in data:
+    if data.get("subscriberName") is not None:
         out["subscriber_name"] = data["subscriberName"]
-    if "subscriberDescription" in data:
+    if data.get("subscriberDescription") is not None:
         out["subscriber_description"] = data["subscriberDescription"]
-    if "sources" in data:
+    if data.get("sources") is not None:
         import capo_securitylake.types.log_source_resource_list
 
         out["sources"] = (

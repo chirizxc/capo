@@ -40,11 +40,11 @@ def serialize_json(value: StringCondition) -> dict:
 
 def deserialize_json(data: dict) -> StringCondition:
     out: StringCondition = {}  # type: ignore[typeddict-item]
-    if "FieldName" in data:
+    if data.get("FieldName") is not None:
         out["field_name"] = data["FieldName"]
-    if "Value" in data:
+    if data.get("Value") is not None:
         out["value"] = data["Value"]
-    if "ComparisonType" in data:
+    if data.get("ComparisonType") is not None:
         import capo_connect.types.string_comparison_type
 
         out["comparison_type"] = (

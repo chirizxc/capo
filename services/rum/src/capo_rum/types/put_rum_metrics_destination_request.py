@@ -37,14 +37,14 @@ def serialize_json(value: PutRumMetricsDestinationRequest) -> dict:
 
 def deserialize_json(data: dict) -> PutRumMetricsDestinationRequest:
     out: PutRumMetricsDestinationRequest = {}  # type: ignore[typeddict-item]
-    if "Destination" in data:
+    if data.get("Destination") is not None:
         out["destination"] = data["Destination"]
     else:
         raise DeserializationError(
             "PutRumMetricsDestinationRequest.destination required"
         )
-    if "DestinationArn" in data:
+    if data.get("DestinationArn") is not None:
         out["destination_arn"] = data["DestinationArn"]
-    if "IamRoleArn" in data:
+    if data.get("IamRoleArn") is not None:
         out["iam_role_arn"] = data["IamRoleArn"]
     return out

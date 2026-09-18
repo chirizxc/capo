@@ -28,15 +28,15 @@ def serialize_aws_json_1_0(value: RecordsIngested) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> RecordsIngested:
     out: RecordsIngested = {}  # type: ignore[typeddict-item]
-    if "Total" in data:
+    if data.get("Total") is not None:
         out["total"] = data["Total"]
     else:
         out["total"] = 0
-    if "MemoryStore" in data:
+    if data.get("MemoryStore") is not None:
         out["memory_store"] = data["MemoryStore"]
     else:
         out["memory_store"] = 0
-    if "MagneticStore" in data:
+    if data.get("MagneticStore") is not None:
         out["magnetic_store"] = data["MagneticStore"]
     else:
         out["magnetic_store"] = 0

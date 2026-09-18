@@ -29,7 +29,7 @@ def serialize_aws_json_1_1(value: CreateGroupResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateGroupResponse:
     out: CreateGroupResponse = {}  # type: ignore[typeddict-item]
-    if "Group" in data:
+    if data.get("Group") is not None:
         import capo_cognito_identity_provider.types.group_type
 
         out["group"] = (

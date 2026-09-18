@@ -31,9 +31,9 @@ def serialize_aws_json_1_1(value: EC2CreateRouteTableAction) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> EC2CreateRouteTableAction:
     out: EC2CreateRouteTableAction = {}  # type: ignore[typeddict-item]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "VpcId" in data:
+    if data.get("VpcId") is not None:
         import capo_fms.types.action_target
 
         out["vpc_id"] = capo_fms.types.action_target.deserialize_aws_json_1_1(

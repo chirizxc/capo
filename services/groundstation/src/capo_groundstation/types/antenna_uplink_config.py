@@ -44,9 +44,9 @@ def serialize_json(value: AntennaUplinkConfig) -> dict:
 
 def deserialize_json(data: dict) -> AntennaUplinkConfig:
     out: AntennaUplinkConfig = {}  # type: ignore[typeddict-item]
-    if "transmitDisabled" in data:
+    if data.get("transmitDisabled") is not None:
         out["transmit_disabled"] = data["transmitDisabled"]
-    if "spectrumConfig" in data:
+    if data.get("spectrumConfig") is not None:
         import capo_groundstation.types.uplink_spectrum_config
 
         out["spectrum_config"] = (
@@ -56,7 +56,7 @@ def deserialize_json(data: dict) -> AntennaUplinkConfig:
         )
     else:
         raise DeserializationError("AntennaUplinkConfig.spectrum_config required")
-    if "targetEirp" in data:
+    if data.get("targetEirp") is not None:
         import capo_groundstation.types.eirp
 
         out["target_eirp"] = capo_groundstation.types.eirp.deserialize_json(

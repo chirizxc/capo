@@ -30,11 +30,11 @@ def serialize_aws_json_1_1(value: GetDetectorVersionRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetDetectorVersionRequest:
     out: GetDetectorVersionRequest = {}  # type: ignore[typeddict-item]
-    if "detectorId" in data:
+    if data.get("detectorId") is not None:
         out["detector_id"] = data["detectorId"]
     else:
         raise DeserializationError("GetDetectorVersionRequest.detector_id required")
-    if "detectorVersionId" in data:
+    if data.get("detectorVersionId") is not None:
         out["detector_version_id"] = data["detectorVersionId"]
     else:
         raise DeserializationError(

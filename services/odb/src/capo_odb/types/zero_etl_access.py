@@ -31,12 +31,12 @@ def serialize_aws_json_1_0(value: ZeroEtlAccess) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ZeroEtlAccess:
     out: ZeroEtlAccess = {}  # type: ignore[typeddict-item]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_odb.types.managed_resource_status
 
         out["status"] = capo_odb.types.managed_resource_status.deserialize_aws_json_1_0(
             data["status"]
         )
-    if "cidr" in data:
+    if data.get("cidr") is not None:
         out["cidr"] = data["cidr"]
     return out

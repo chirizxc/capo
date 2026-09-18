@@ -28,11 +28,11 @@ def serialize_json(value: BasicAuthConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> BasicAuthConfiguration:
     out: BasicAuthConfiguration = {}  # type: ignore[typeddict-item]
-    if "secretArn" in data:
+    if data.get("secretArn") is not None:
         out["secret_arn"] = data["secretArn"]
     else:
         raise DeserializationError("BasicAuthConfiguration.secret_arn required")
-    if "roleArn" in data:
+    if data.get("roleArn") is not None:
         out["role_arn"] = data["roleArn"]
     else:
         raise DeserializationError("BasicAuthConfiguration.role_arn required")

@@ -59,7 +59,7 @@ def deserialize_aws_json_1_0(
     data: dict,
 ) -> ChildWorkflowExecutionTimedOutEventAttributes:
     out: ChildWorkflowExecutionTimedOutEventAttributes = {}  # type: ignore[typeddict-item]
-    if "workflowExecution" in data:
+    if data.get("workflowExecution") is not None:
         import capo_swf.types.workflow_execution
 
         out["workflow_execution"] = (
@@ -71,7 +71,7 @@ def deserialize_aws_json_1_0(
         raise DeserializationError(
             "ChildWorkflowExecutionTimedOutEventAttributes.workflow_execution required"
         )
-    if "workflowType" in data:
+    if data.get("workflowType") is not None:
         import capo_swf.types.workflow_type
 
         out["workflow_type"] = capo_swf.types.workflow_type.deserialize_aws_json_1_0(
@@ -81,7 +81,7 @@ def deserialize_aws_json_1_0(
         raise DeserializationError(
             "ChildWorkflowExecutionTimedOutEventAttributes.workflow_type required"
         )
-    if "timeoutType" in data:
+    if data.get("timeoutType") is not None:
         import capo_swf.types.workflow_execution_timeout_type
 
         out["timeout_type"] = (
@@ -93,11 +93,11 @@ def deserialize_aws_json_1_0(
         raise DeserializationError(
             "ChildWorkflowExecutionTimedOutEventAttributes.timeout_type required"
         )
-    if "initiatedEventId" in data:
+    if data.get("initiatedEventId") is not None:
         out["initiated_event_id"] = data["initiatedEventId"]
     else:
         out["initiated_event_id"] = 0
-    if "startedEventId" in data:
+    if data.get("startedEventId") is not None:
         out["started_event_id"] = data["startedEventId"]
     else:
         out["started_event_id"] = 0

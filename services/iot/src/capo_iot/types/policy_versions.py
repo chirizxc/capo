@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> PolicyVersions:
 
     out: PolicyVersions = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_iot.types.policy_version.deserialize_json(item))
     return out

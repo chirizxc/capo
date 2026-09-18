@@ -50,15 +50,15 @@ def serialize_json(value: CreateTrainingDatasetRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateTrainingDatasetRequest:
     out: CreateTrainingDatasetRequest = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("CreateTrainingDatasetRequest.name required")
-    if "roleArn" in data:
+    if data.get("roleArn") is not None:
         out["role_arn"] = data["roleArn"]
     else:
         raise DeserializationError("CreateTrainingDatasetRequest.role_arn required")
-    if "trainingData" in data:
+    if data.get("trainingData") is not None:
         import capo_cleanroomsml.types.dataset_list
 
         out["training_data"] = capo_cleanroomsml.types.dataset_list.deserialize_json(
@@ -68,10 +68,10 @@ def deserialize_json(data: dict) -> CreateTrainingDatasetRequest:
         raise DeserializationError(
             "CreateTrainingDatasetRequest.training_data required"
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_cleanroomsml.types.tag_map
 
         out["tags"] = capo_cleanroomsml.types.tag_map.deserialize_json(data["tags"])
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
     return out

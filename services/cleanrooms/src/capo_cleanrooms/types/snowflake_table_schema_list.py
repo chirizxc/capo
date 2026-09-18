@@ -25,6 +25,8 @@ def deserialize_json(data: list) -> SnowflakeTableSchemaList:
 
     out: SnowflakeTableSchemaList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_cleanrooms.types.snowflake_table_schema_v1.deserialize_json(item)
         )

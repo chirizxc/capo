@@ -91,7 +91,7 @@ def serialize_aws_json_1_1(value: ListPreviewRotationShiftsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListPreviewRotationShiftsRequest:
     out: ListPreviewRotationShiftsRequest = {}  # type: ignore[typeddict-item]
-    if "RotationStartTime" in data:
+    if data.get("RotationStartTime") is not None:
         import capo_ssm_contacts.types.date_time
 
         out["rotation_start_time"] = (
@@ -99,13 +99,13 @@ def deserialize_aws_json_1_1(data: dict) -> ListPreviewRotationShiftsRequest:
                 data["RotationStartTime"]
             )
         )
-    if "StartTime" in data:
+    if data.get("StartTime") is not None:
         import capo_ssm_contacts.types.date_time
 
         out["start_time"] = capo_ssm_contacts.types.date_time.deserialize_aws_json_1_1(
             data["StartTime"]
         )
-    if "EndTime" in data:
+    if data.get("EndTime") is not None:
         import capo_ssm_contacts.types.date_time
 
         out["end_time"] = capo_ssm_contacts.types.date_time.deserialize_aws_json_1_1(
@@ -113,7 +113,7 @@ def deserialize_aws_json_1_1(data: dict) -> ListPreviewRotationShiftsRequest:
         )
     else:
         raise DeserializationError("ListPreviewRotationShiftsRequest.end_time required")
-    if "Members" in data:
+    if data.get("Members") is not None:
         import capo_ssm_contacts.types.rotation_preview_member_list
 
         out["members"] = (
@@ -123,13 +123,13 @@ def deserialize_aws_json_1_1(data: dict) -> ListPreviewRotationShiftsRequest:
         )
     else:
         raise DeserializationError("ListPreviewRotationShiftsRequest.members required")
-    if "TimeZoneId" in data:
+    if data.get("TimeZoneId") is not None:
         out["time_zone_id"] = data["TimeZoneId"]
     else:
         raise DeserializationError(
             "ListPreviewRotationShiftsRequest.time_zone_id required"
         )
-    if "Recurrence" in data:
+    if data.get("Recurrence") is not None:
         import capo_ssm_contacts.types.recurrence_settings
 
         out["recurrence"] = (
@@ -141,7 +141,7 @@ def deserialize_aws_json_1_1(data: dict) -> ListPreviewRotationShiftsRequest:
         raise DeserializationError(
             "ListPreviewRotationShiftsRequest.recurrence required"
         )
-    if "Overrides" in data:
+    if data.get("Overrides") is not None:
         import capo_ssm_contacts.types.override_list
 
         out["overrides"] = (
@@ -149,8 +149,8 @@ def deserialize_aws_json_1_1(data: dict) -> ListPreviewRotationShiftsRequest:
                 data["Overrides"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
     return out

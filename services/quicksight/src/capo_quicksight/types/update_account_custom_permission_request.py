@@ -29,7 +29,7 @@ def serialize_json(value: UpdateAccountCustomPermissionRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateAccountCustomPermissionRequest:
     out: UpdateAccountCustomPermissionRequest = {}  # type: ignore[typeddict-item]
-    if "CustomPermissionsName" in data:
+    if data.get("CustomPermissionsName") is not None:
         out["custom_permissions_name"] = data["CustomPermissionsName"]
     else:
         raise DeserializationError(

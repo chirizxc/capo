@@ -59,7 +59,7 @@ def serialize_json(value: ListCisScanConfigurationsRequest) -> dict:
 
 def deserialize_json(data: dict) -> ListCisScanConfigurationsRequest:
     out: ListCisScanConfigurationsRequest = {}  # type: ignore[typeddict-item]
-    if "filterCriteria" in data:
+    if data.get("filterCriteria") is not None:
         import capo_inspector2.types.list_cis_scan_configurations_filter_criteria
 
         out["filter_criteria"] = (
@@ -67,7 +67,7 @@ def deserialize_json(data: dict) -> ListCisScanConfigurationsRequest:
                 data["filterCriteria"]
             )
         )
-    if "sortBy" in data:
+    if data.get("sortBy") is not None:
         import capo_inspector2.types.cis_scan_configurations_sort_by
 
         out["sort_by"] = (
@@ -77,15 +77,15 @@ def deserialize_json(data: dict) -> ListCisScanConfigurationsRequest:
         )
     else:
         out["sort_by"] = "SCAN_NAME"
-    if "sortOrder" in data:
+    if data.get("sortOrder") is not None:
         import capo_inspector2.types.cis_sort_order
 
         out["sort_order"] = capo_inspector2.types.cis_sort_order.deserialize_json(
             data["sortOrder"]
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
     else:
         out["max_results"] = 100

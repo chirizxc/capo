@@ -50,16 +50,16 @@ def serialize_json(value: PluginSummary) -> dict:
 
 def deserialize_json(data: dict) -> PluginSummary:
     out: PluginSummary = {}  # type: ignore[typeddict-item]
-    if "pluginId" in data:
+    if data.get("pluginId") is not None:
         out["plugin_id"] = data["pluginId"]
-    if "hostname" in data:
+    if data.get("hostname") is not None:
         out["hostname"] = data["hostname"]
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
-    if "ipAddress" in data:
+    if data.get("ipAddress") is not None:
         out["ip_address"] = data["ipAddress"]
-    if "version" in data:
+    if data.get("version") is not None:
         out["version"] = data["version"]
-    if "registeredTime" in data:
+    if data.get("registeredTime") is not None:
         out["registered_time"] = data["registeredTime"]
     return out

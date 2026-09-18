@@ -28,11 +28,11 @@ def serialize_aws_json_1_0(value: AcceptEngagementInvitationRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> AcceptEngagementInvitationRequest:
     out: AcceptEngagementInvitationRequest = {}  # type: ignore[typeddict-item]
-    if "Catalog" in data:
+    if data.get("Catalog") is not None:
         out["catalog"] = data["Catalog"]
     else:
         raise DeserializationError("AcceptEngagementInvitationRequest.catalog required")
-    if "Identifier" in data:
+    if data.get("Identifier") is not None:
         out["identifier"] = data["Identifier"]
     else:
         raise DeserializationError(

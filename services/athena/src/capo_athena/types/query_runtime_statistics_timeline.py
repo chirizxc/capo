@@ -47,18 +47,18 @@ def serialize_aws_json_1_1(value: QueryRuntimeStatisticsTimeline) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> QueryRuntimeStatisticsTimeline:
     out: QueryRuntimeStatisticsTimeline = {}  # type: ignore[typeddict-item]
-    if "QueryQueueTimeInMillis" in data:
+    if data.get("QueryQueueTimeInMillis") is not None:
         out["query_queue_time_in_millis"] = data["QueryQueueTimeInMillis"]
-    if "ServicePreProcessingTimeInMillis" in data:
+    if data.get("ServicePreProcessingTimeInMillis") is not None:
         out["service_pre_processing_time_in_millis"] = data[
             "ServicePreProcessingTimeInMillis"
         ]
-    if "QueryPlanningTimeInMillis" in data:
+    if data.get("QueryPlanningTimeInMillis") is not None:
         out["query_planning_time_in_millis"] = data["QueryPlanningTimeInMillis"]
-    if "EngineExecutionTimeInMillis" in data:
+    if data.get("EngineExecutionTimeInMillis") is not None:
         out["engine_execution_time_in_millis"] = data["EngineExecutionTimeInMillis"]
-    if "ServiceProcessingTimeInMillis" in data:
+    if data.get("ServiceProcessingTimeInMillis") is not None:
         out["service_processing_time_in_millis"] = data["ServiceProcessingTimeInMillis"]
-    if "TotalExecutionTimeInMillis" in data:
+    if data.get("TotalExecutionTimeInMillis") is not None:
         out["total_execution_time_in_millis"] = data["TotalExecutionTimeInMillis"]
     return out

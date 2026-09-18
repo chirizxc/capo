@@ -64,7 +64,7 @@ def serialize_json(value: InAppMessageButton) -> dict:
 
 def deserialize_json(data: dict) -> InAppMessageButton:
     out: InAppMessageButton = {}  # type: ignore[typeddict-item]
-    if "Android" in data:
+    if data.get("Android") is not None:
         import capo_pinpoint.types.override_button_configuration
 
         out["android"] = (
@@ -72,7 +72,7 @@ def deserialize_json(data: dict) -> InAppMessageButton:
                 data["Android"]
             )
         )
-    if "DefaultConfig" in data:
+    if data.get("DefaultConfig") is not None:
         import capo_pinpoint.types.default_button_configuration
 
         out["default_config"] = (
@@ -80,13 +80,13 @@ def deserialize_json(data: dict) -> InAppMessageButton:
                 data["DefaultConfig"]
             )
         )
-    if "IOS" in data:
+    if data.get("IOS") is not None:
         import capo_pinpoint.types.override_button_configuration
 
         out["ios"] = capo_pinpoint.types.override_button_configuration.deserialize_json(
             data["IOS"]
         )
-    if "Web" in data:
+    if data.get("Web") is not None:
         import capo_pinpoint.types.override_button_configuration
 
         out["web"] = capo_pinpoint.types.override_button_configuration.deserialize_json(

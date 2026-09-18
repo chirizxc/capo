@@ -41,11 +41,11 @@ def serialize_json(value: ListingSummaryItem) -> dict:
 
 def deserialize_json(data: dict) -> ListingSummaryItem:
     out: ListingSummaryItem = {}  # type: ignore[typeddict-item]
-    if "listingId" in data:
+    if data.get("listingId") is not None:
         out["listing_id"] = data["listingId"]
-    if "listingRevision" in data:
+    if data.get("listingRevision") is not None:
         out["listing_revision"] = data["listingRevision"]
-    if "glossaryTerms" in data:
+    if data.get("glossaryTerms") is not None:
         import capo_datazone.types.detailed_glossary_terms
 
         out["glossary_terms"] = (

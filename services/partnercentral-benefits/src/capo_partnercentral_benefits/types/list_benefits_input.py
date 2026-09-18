@@ -69,11 +69,11 @@ def serialize_aws_json_1_0(value: ListBenefitsInput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ListBenefitsInput:
     out: ListBenefitsInput = {}  # type: ignore[typeddict-item]
-    if "Catalog" in data:
+    if data.get("Catalog") is not None:
         out["catalog"] = data["Catalog"]
     else:
         raise DeserializationError("ListBenefitsInput.catalog required")
-    if "Programs" in data:
+    if data.get("Programs") is not None:
         import capo_partnercentral_benefits.types.programs
 
         out["programs"] = (
@@ -81,7 +81,7 @@ def deserialize_aws_json_1_0(data: dict) -> ListBenefitsInput:
                 data["Programs"]
             )
         )
-    if "FulfillmentTypes" in data:
+    if data.get("FulfillmentTypes") is not None:
         import capo_partnercentral_benefits.types.fulfillment_types
 
         out["fulfillment_types"] = (
@@ -89,7 +89,7 @@ def deserialize_aws_json_1_0(data: dict) -> ListBenefitsInput:
                 data["FulfillmentTypes"]
             )
         )
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_partnercentral_benefits.types.benefit_statuses
 
         out["status"] = (
@@ -97,8 +97,8 @@ def deserialize_aws_json_1_0(data: dict) -> ListBenefitsInput:
                 data["Status"]
             )
         )
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

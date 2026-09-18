@@ -105,33 +105,33 @@ def serialize_aws_json_1_0(value: CreateTransformerRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CreateTransformerRequest:
     out: CreateTransformerRequest = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("CreateTransformerRequest.name required")
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_b2bi.types.tag_list
 
         out["tags"] = capo_b2bi.types.tag_list.deserialize_aws_json_1_0(data["tags"])
-    if "fileFormat" in data:
+    if data.get("fileFormat") is not None:
         import capo_b2bi.types.file_format
 
         out["file_format"] = capo_b2bi.types.file_format.deserialize_aws_json_1_0(
             data["fileFormat"]
         )
-    if "mappingTemplate" in data:
+    if data.get("mappingTemplate") is not None:
         out["mapping_template"] = data["mappingTemplate"]
-    if "ediType" in data:
+    if data.get("ediType") is not None:
         import capo_b2bi.types.edi_type
 
         out["edi_type"] = capo_b2bi.types.edi_type.deserialize_aws_json_1_0(
             data["ediType"]
         )
-    if "sampleDocument" in data:
+    if data.get("sampleDocument") is not None:
         out["sample_document"] = data["sampleDocument"]
-    if "inputConversion" in data:
+    if data.get("inputConversion") is not None:
         import capo_b2bi.types.input_conversion
 
         out["input_conversion"] = (
@@ -139,13 +139,13 @@ def deserialize_aws_json_1_0(data: dict) -> CreateTransformerRequest:
                 data["inputConversion"]
             )
         )
-    if "mapping" in data:
+    if data.get("mapping") is not None:
         import capo_b2bi.types.mapping
 
         out["mapping"] = capo_b2bi.types.mapping.deserialize_aws_json_1_0(
             data["mapping"]
         )
-    if "outputConversion" in data:
+    if data.get("outputConversion") is not None:
         import capo_b2bi.types.output_conversion
 
         out["output_conversion"] = (
@@ -153,7 +153,7 @@ def deserialize_aws_json_1_0(data: dict) -> CreateTransformerRequest:
                 data["outputConversion"]
             )
         )
-    if "sampleDocuments" in data:
+    if data.get("sampleDocuments") is not None:
         import capo_b2bi.types.sample_documents
 
         out["sample_documents"] = (

@@ -24,7 +24,7 @@ def serialize_json(value: KafkaClusterEncryptionInTransit) -> dict:
 
 def deserialize_json(data: dict) -> KafkaClusterEncryptionInTransit:
     out: KafkaClusterEncryptionInTransit = {}  # type: ignore[typeddict-item]
-    if "encryptionType" in data:
+    if data.get("encryptionType") is not None:
         out["encryption_type"] = data["encryptionType"]
     else:
         raise DeserializationError(

@@ -37,11 +37,11 @@ def serialize_json(value: UseCase) -> dict:
 
 def deserialize_json(data: dict) -> UseCase:
     out: UseCase = {}  # type: ignore[typeddict-item]
-    if "UseCaseId" in data:
+    if data.get("UseCaseId") is not None:
         out["use_case_id"] = data["UseCaseId"]
-    if "UseCaseArn" in data:
+    if data.get("UseCaseArn") is not None:
         out["use_case_arn"] = data["UseCaseArn"]
-    if "UseCaseType" in data:
+    if data.get("UseCaseType") is not None:
         import capo_connect.types.use_case_type
 
         out["use_case_type"] = capo_connect.types.use_case_type.deserialize_json(

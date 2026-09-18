@@ -27,13 +27,13 @@ def serialize_aws_json_1_1(value: PutNotificationChannelRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PutNotificationChannelRequest:
     out: PutNotificationChannelRequest = {}  # type: ignore[typeddict-item]
-    if "SnsTopicArn" in data:
+    if data.get("SnsTopicArn") is not None:
         out["sns_topic_arn"] = data["SnsTopicArn"]
     else:
         raise DeserializationError(
             "PutNotificationChannelRequest.sns_topic_arn required"
         )
-    if "SnsRoleName" in data:
+    if data.get("SnsRoleName") is not None:
         out["sns_role_name"] = data["SnsRoleName"]
     else:
         raise DeserializationError(

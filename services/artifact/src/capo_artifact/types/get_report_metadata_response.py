@@ -27,7 +27,7 @@ def serialize_json(value: GetReportMetadataResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetReportMetadataResponse:
     out: GetReportMetadataResponse = {}  # type: ignore[typeddict-item]
-    if "reportDetails" in data:
+    if data.get("reportDetails") is not None:
         import capo_artifact.types.report_detail
 
         out["report_details"] = capo_artifact.types.report_detail.deserialize_json(

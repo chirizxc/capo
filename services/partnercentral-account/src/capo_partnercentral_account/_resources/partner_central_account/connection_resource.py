@@ -78,15 +78,17 @@ class ConnectionResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_partnercentral_account.types.get_connection_request.GetConnectionRequest = {}  # type: ignore[typeddict-item]
-        input_["catalog"] = catalog
-        input_["identifier"] = identifier
+        input_: capo_partnercentral_account.types.get_connection_request.GetConnectionRequest = {
+            "catalog": catalog,
+            "identifier": identifier,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -139,8 +141,9 @@ class ConnectionResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_partnercentral_account.types.list_connections_request.ListConnectionsRequest = {}  # type: ignore[typeddict-item]
-        input_["catalog"] = catalog
+        input_: capo_partnercentral_account.types.list_connections_request.ListConnectionsRequest = {
+            "catalog": catalog
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if connection_type is not None:
@@ -155,6 +158,7 @@ class ConnectionResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def cancel_connection(
@@ -201,18 +205,20 @@ class ConnectionResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_partnercentral_account.types.cancel_connection_request.CancelConnectionRequest = {}  # type: ignore[typeddict-item]
-        input_["catalog"] = catalog
-        input_["identifier"] = identifier
-        input_["connection_type"] = connection_type
-        input_["reason"] = reason
-        input_["client_token"] = client_token
+        input_: capo_partnercentral_account.types.cancel_connection_request.CancelConnectionRequest = {
+            "catalog": catalog,
+            "identifier": identifier,
+            "connection_type": connection_type,
+            "reason": reason,
+            "client_token": client_token,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -258,15 +264,17 @@ class AsyncConnectionResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_partnercentral_account.types.get_connection_request.GetConnectionRequest = {}  # type: ignore[typeddict-item]
-        input_["catalog"] = catalog
-        input_["identifier"] = identifier
+        input_: capo_partnercentral_account.types.get_connection_request.GetConnectionRequest = {
+            "catalog": catalog,
+            "identifier": identifier,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -320,8 +328,9 @@ class AsyncConnectionResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_partnercentral_account.types.list_connections_request.ListConnectionsRequest = {}  # type: ignore[typeddict-item]
-        input_["catalog"] = catalog
+        input_: capo_partnercentral_account.types.list_connections_request.ListConnectionsRequest = {
+            "catalog": catalog
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if connection_type is not None:
@@ -336,6 +345,7 @@ class AsyncConnectionResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def cancel_connection(
@@ -383,16 +393,18 @@ class AsyncConnectionResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_partnercentral_account.types.cancel_connection_request.CancelConnectionRequest = {}  # type: ignore[typeddict-item]
-        input_["catalog"] = catalog
-        input_["identifier"] = identifier
-        input_["connection_type"] = connection_type
-        input_["reason"] = reason
-        input_["client_token"] = client_token
+        input_: capo_partnercentral_account.types.cancel_connection_request.CancelConnectionRequest = {
+            "catalog": catalog,
+            "identifier": identifier,
+            "connection_type": connection_type,
+            "reason": reason,
+            "client_token": client_token,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

@@ -41,14 +41,14 @@ def serialize_aws_json_1_1(value: GetRecordsInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetRecordsInput:
     out: GetRecordsInput = {}  # type: ignore[typeddict-item]
-    if "ShardIterator" in data:
+    if data.get("ShardIterator") is not None:
         out["shard_iterator"] = data["ShardIterator"]
     else:
         raise DeserializationError("GetRecordsInput.shard_iterator required")
-    if "Limit" in data:
+    if data.get("Limit") is not None:
         out["limit"] = data["Limit"]
-    if "StreamARN" in data:
+    if data.get("StreamARN") is not None:
         out["stream_arn"] = data["StreamARN"]
-    if "StreamId" in data:
+    if data.get("StreamId") is not None:
         out["stream_id"] = data["StreamId"]
     return out

@@ -24,7 +24,7 @@ def serialize_aws_json_1_0(value: ResumeServiceRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ResumeServiceRequest:
     out: ResumeServiceRequest = {}  # type: ignore[typeddict-item]
-    if "ServiceArn" in data:
+    if data.get("ServiceArn") is not None:
         out["service_arn"] = data["ServiceArn"]
     else:
         raise DeserializationError("ResumeServiceRequest.service_arn required")

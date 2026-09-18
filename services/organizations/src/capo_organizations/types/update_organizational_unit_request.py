@@ -33,12 +33,12 @@ def serialize_aws_json_1_1(value: UpdateOrganizationalUnitRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateOrganizationalUnitRequest:
     out: UpdateOrganizationalUnitRequest = {}  # type: ignore[typeddict-item]
-    if "OrganizationalUnitId" in data:
+    if data.get("OrganizationalUnitId") is not None:
         out["organizational_unit_id"] = data["OrganizationalUnitId"]
     else:
         raise DeserializationError(
             "UpdateOrganizationalUnitRequest.organizational_unit_id required"
         )
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     return out

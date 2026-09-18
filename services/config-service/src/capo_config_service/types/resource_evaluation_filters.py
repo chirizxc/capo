@@ -49,7 +49,7 @@ def serialize_aws_json_1_1(value: ResourceEvaluationFilters) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ResourceEvaluationFilters:
     out: ResourceEvaluationFilters = {}  # type: ignore[typeddict-item]
-    if "EvaluationMode" in data:
+    if data.get("EvaluationMode") is not None:
         import capo_config_service.types.evaluation_mode
 
         out["evaluation_mode"] = (
@@ -57,7 +57,7 @@ def deserialize_aws_json_1_1(data: dict) -> ResourceEvaluationFilters:
                 data["EvaluationMode"]
             )
         )
-    if "TimeWindow" in data:
+    if data.get("TimeWindow") is not None:
         import capo_config_service.types.time_window
 
         out["time_window"] = (
@@ -65,6 +65,6 @@ def deserialize_aws_json_1_1(data: dict) -> ResourceEvaluationFilters:
                 data["TimeWindow"]
             )
         )
-    if "EvaluationContextIdentifier" in data:
+    if data.get("EvaluationContextIdentifier") is not None:
         out["evaluation_context_identifier"] = data["EvaluationContextIdentifier"]
     return out

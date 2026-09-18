@@ -28,8 +28,8 @@ def serialize_json(value: Block) -> dict:
 
 def deserialize_json(data: dict) -> Block:
     out: Block = {}  # type: ignore[typeddict-item]
-    if "BlockIndex" in data:
+    if data.get("BlockIndex") is not None:
         out["block_index"] = data["BlockIndex"]
-    if "BlockToken" in data:
+    if data.get("BlockToken") is not None:
         out["block_token"] = data["BlockToken"]
     return out

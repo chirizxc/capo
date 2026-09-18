@@ -37,15 +37,20 @@ class ClusterSnapshotQuotaExceededFault(ServiceError):
 
     code: str | None = "ClusterSnapshotQuotaExceededFault"
 
-    def __init__(self, data: ClusterSnapshotQuotaExceededFault_):
+    def __init__(
+        self, data: ClusterSnapshotQuotaExceededFault_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="ClusterSnapshotQuotaExceededFault",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_query(cls, el: Element) -> "ClusterSnapshotQuotaExceededFault":
-        return cls(deserialize_query(el))
+    def from_query(
+        cls, el: Element, message: str | None = None
+    ) -> "ClusterSnapshotQuotaExceededFault":
+        return cls(deserialize_query(el), message)

@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> Ipv6CidrBlockAssociationList:
 
     out: Ipv6CidrBlockAssociationList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_securityhub.types.ipv6_cidr_block_association.deserialize_json(item)
         )

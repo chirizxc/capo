@@ -45,9 +45,9 @@ def serialize_aws_json_1_1(value: CodeDeliveryDetailsType) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CodeDeliveryDetailsType:
     out: CodeDeliveryDetailsType = {}  # type: ignore[typeddict-item]
-    if "Destination" in data:
+    if data.get("Destination") is not None:
         out["destination"] = data["Destination"]
-    if "DeliveryMedium" in data:
+    if data.get("DeliveryMedium") is not None:
         import capo_cognito_identity_provider.types.delivery_medium_type
 
         out["delivery_medium"] = (
@@ -55,6 +55,6 @@ def deserialize_aws_json_1_1(data: dict) -> CodeDeliveryDetailsType:
                 data["DeliveryMedium"]
             )
         )
-    if "AttributeName" in data:
+    if data.get("AttributeName") is not None:
         out["attribute_name"] = data["AttributeName"]
     return out

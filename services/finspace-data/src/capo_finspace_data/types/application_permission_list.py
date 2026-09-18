@@ -25,6 +25,8 @@ def deserialize_json(data: list) -> ApplicationPermissionList:
 
     out: ApplicationPermissionList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_finspace_data.types.application_permission.deserialize_json(item)
         )

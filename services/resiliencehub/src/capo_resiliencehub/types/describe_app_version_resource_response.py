@@ -41,19 +41,19 @@ def serialize_json(value: DescribeAppVersionResourceResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribeAppVersionResourceResponse:
     out: DescribeAppVersionResourceResponse = {}  # type: ignore[typeddict-item]
-    if "appArn" in data:
+    if data.get("appArn") is not None:
         out["app_arn"] = data["appArn"]
     else:
         raise DeserializationError(
             "DescribeAppVersionResourceResponse.app_arn required"
         )
-    if "appVersion" in data:
+    if data.get("appVersion") is not None:
         out["app_version"] = data["appVersion"]
     else:
         raise DeserializationError(
             "DescribeAppVersionResourceResponse.app_version required"
         )
-    if "physicalResource" in data:
+    if data.get("physicalResource") is not None:
         import capo_resiliencehub.types.physical_resource
 
         out["physical_resource"] = (

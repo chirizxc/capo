@@ -19,7 +19,7 @@ def serialize_aws_json_1_0(value: LoggingConfiguration) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> LoggingConfiguration:
     out: LoggingConfiguration = {}  # type: ignore[typeddict-item]
-    if "LogGroupName" in data:
+    if data.get("LogGroupName") is not None:
         out["log_group_name"] = data["LogGroupName"]
     else:
         raise DeserializationError("LoggingConfiguration.log_group_name required")

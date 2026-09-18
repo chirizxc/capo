@@ -35,7 +35,7 @@ def serialize_json(value: BatchGetSchemaAnalysisRuleInput) -> dict:
 
 def deserialize_json(data: dict) -> BatchGetSchemaAnalysisRuleInput:
     out: BatchGetSchemaAnalysisRuleInput = {}  # type: ignore[typeddict-item]
-    if "schemaAnalysisRuleRequests" in data:
+    if data.get("schemaAnalysisRuleRequests") is not None:
         import capo_cleanrooms.types.schema_analysis_rule_request_list
 
         out["schema_analysis_rule_requests"] = (

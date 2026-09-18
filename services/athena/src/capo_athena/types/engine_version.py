@@ -27,8 +27,8 @@ def serialize_aws_json_1_1(value: EngineVersion) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> EngineVersion:
     out: EngineVersion = {}  # type: ignore[typeddict-item]
-    if "SelectedEngineVersion" in data:
+    if data.get("SelectedEngineVersion") is not None:
         out["selected_engine_version"] = data["SelectedEngineVersion"]
-    if "EffectiveEngineVersion" in data:
+    if data.get("EffectiveEngineVersion") is not None:
         out["effective_engine_version"] = data["EffectiveEngineVersion"]
     return out

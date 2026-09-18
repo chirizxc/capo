@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> RecommendedIntentSummaryList:
 
     out: RecommendedIntentSummaryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_lex_models_v2.types.recommended_intent_summary.deserialize_json(item)
         )

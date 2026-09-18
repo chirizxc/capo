@@ -27,8 +27,8 @@ def serialize_json(value: CvssScoreAdjustment) -> dict:
 
 def deserialize_json(data: dict) -> CvssScoreAdjustment:
     out: CvssScoreAdjustment = {}  # type: ignore[typeddict-item]
-    if "metric" in data:
+    if data.get("metric") is not None:
         out["metric"] = data["metric"]
-    if "reason" in data:
+    if data.get("reason") is not None:
         out["reason"] = data["reason"]
     return out

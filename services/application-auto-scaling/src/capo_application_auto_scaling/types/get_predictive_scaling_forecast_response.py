@@ -57,7 +57,7 @@ def serialize_aws_json_1_1(value: GetPredictiveScalingForecastResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetPredictiveScalingForecastResponse:
     out: GetPredictiveScalingForecastResponse = {}  # type: ignore[typeddict-item]
-    if "LoadForecast" in data:
+    if data.get("LoadForecast") is not None:
         import capo_application_auto_scaling.types.load_forecasts
 
         out["load_forecast"] = (
@@ -65,7 +65,7 @@ def deserialize_aws_json_1_1(data: dict) -> GetPredictiveScalingForecastResponse
                 data["LoadForecast"]
             )
         )
-    if "CapacityForecast" in data:
+    if data.get("CapacityForecast") is not None:
         import capo_application_auto_scaling.types.capacity_forecast
 
         out["capacity_forecast"] = (
@@ -73,7 +73,7 @@ def deserialize_aws_json_1_1(data: dict) -> GetPredictiveScalingForecastResponse
                 data["CapacityForecast"]
             )
         )
-    if "UpdateTime" in data:
+    if data.get("UpdateTime") is not None:
         import capo_application_auto_scaling.types.timestamp_type
 
         out["update_time"] = (

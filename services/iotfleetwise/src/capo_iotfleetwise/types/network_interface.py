@@ -80,11 +80,11 @@ def serialize_aws_json_1_0(value: NetworkInterface) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> NetworkInterface:
     out: NetworkInterface = {}  # type: ignore[typeddict-item]
-    if "interfaceId" in data:
+    if data.get("interfaceId") is not None:
         out["interface_id"] = data["interfaceId"]
     else:
         raise DeserializationError("NetworkInterface.interface_id required")
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_iotfleetwise.types.network_interface_type
 
         out["type"] = (
@@ -94,7 +94,7 @@ def deserialize_aws_json_1_0(data: dict) -> NetworkInterface:
         )
     else:
         raise DeserializationError("NetworkInterface.type required")
-    if "canInterface" in data:
+    if data.get("canInterface") is not None:
         import capo_iotfleetwise.types.can_interface
 
         out["can_interface"] = (
@@ -102,7 +102,7 @@ def deserialize_aws_json_1_0(data: dict) -> NetworkInterface:
                 data["canInterface"]
             )
         )
-    if "obdInterface" in data:
+    if data.get("obdInterface") is not None:
         import capo_iotfleetwise.types.obd_interface
 
         out["obd_interface"] = (
@@ -110,7 +110,7 @@ def deserialize_aws_json_1_0(data: dict) -> NetworkInterface:
                 data["obdInterface"]
             )
         )
-    if "vehicleMiddleware" in data:
+    if data.get("vehicleMiddleware") is not None:
         import capo_iotfleetwise.types.vehicle_middleware
 
         out["vehicle_middleware"] = (
@@ -118,7 +118,7 @@ def deserialize_aws_json_1_0(data: dict) -> NetworkInterface:
                 data["vehicleMiddleware"]
             )
         )
-    if "customDecodingInterface" in data:
+    if data.get("customDecodingInterface") is not None:
         import capo_iotfleetwise.types.custom_decoding_interface
 
         out["custom_decoding_interface"] = (

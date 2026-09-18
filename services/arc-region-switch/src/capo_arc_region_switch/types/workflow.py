@@ -50,13 +50,13 @@ def serialize_aws_json_1_0(value: Workflow) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> Workflow:
     out: Workflow = {}  # type: ignore[typeddict-item]
-    if "steps" in data:
+    if data.get("steps") is not None:
         import capo_arc_region_switch.types.steps
 
         out["steps"] = capo_arc_region_switch.types.steps.deserialize_aws_json_1_0(
             data["steps"]
         )
-    if "workflowTargetAction" in data:
+    if data.get("workflowTargetAction") is not None:
         import capo_arc_region_switch.types.workflow_target_action
 
         out["workflow_target_action"] = (
@@ -66,8 +66,8 @@ def deserialize_aws_json_1_0(data: dict) -> Workflow:
         )
     else:
         raise DeserializationError("Workflow.workflow_target_action required")
-    if "workflowTargetRegion" in data:
+    if data.get("workflowTargetRegion") is not None:
         out["workflow_target_region"] = data["workflowTargetRegion"]
-    if "workflowDescription" in data:
+    if data.get("workflowDescription") is not None:
         out["workflow_description"] = data["workflowDescription"]
     return out

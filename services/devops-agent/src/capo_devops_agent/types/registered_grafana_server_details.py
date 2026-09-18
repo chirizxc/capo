@@ -34,11 +34,11 @@ def serialize_json(value: RegisteredGrafanaServerDetails) -> dict:
 
 def deserialize_json(data: dict) -> RegisteredGrafanaServerDetails:
     out: RegisteredGrafanaServerDetails = {}  # type: ignore[typeddict-item]
-    if "endpoint" in data:
+    if data.get("endpoint") is not None:
         out["endpoint"] = data["endpoint"]
     else:
         raise DeserializationError("RegisteredGrafanaServerDetails.endpoint required")
-    if "authorizationMethod" in data:
+    if data.get("authorizationMethod") is not None:
         import capo_devops_agent.types.mcp_server_authorization_method
 
         out["authorization_method"] = (

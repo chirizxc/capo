@@ -22,5 +22,7 @@ def serialize_json(input_to_serialize: __mapOf__string) -> dict:
 def deserialize_json(data: dict) -> __mapOf__string:
     out: __mapOf__string = {}
     for key, value in data.items():
+        if value is None:
+            continue
         out[key] = value
     return out

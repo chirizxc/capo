@@ -57,7 +57,7 @@ def deserialize_aws_json_1_1(
     data: dict,
 ) -> DescribeInstanceAccessControlAttributeConfigurationResponse:
     out: DescribeInstanceAccessControlAttributeConfigurationResponse = {}  # type: ignore[typeddict-item]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_sso_admin.types.instance_access_control_attribute_configuration_status
 
         out["status"] = (
@@ -65,9 +65,9 @@ def deserialize_aws_json_1_1(
                 data["Status"]
             )
         )
-    if "StatusReason" in data:
+    if data.get("StatusReason") is not None:
         out["status_reason"] = data["StatusReason"]
-    if "InstanceAccessControlAttributeConfiguration" in data:
+    if data.get("InstanceAccessControlAttributeConfiguration") is not None:
         import capo_sso_admin.types.instance_access_control_attribute_configuration
 
         out["instance_access_control_attribute_configuration"] = (

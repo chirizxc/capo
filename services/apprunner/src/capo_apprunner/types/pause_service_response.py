@@ -33,7 +33,7 @@ def serialize_aws_json_1_0(value: PauseServiceResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> PauseServiceResponse:
     out: PauseServiceResponse = {}  # type: ignore[typeddict-item]
-    if "Service" in data:
+    if data.get("Service") is not None:
         import capo_apprunner.types.service
 
         out["service"] = capo_apprunner.types.service.deserialize_aws_json_1_0(
@@ -41,6 +41,6 @@ def deserialize_aws_json_1_0(data: dict) -> PauseServiceResponse:
         )
     else:
         raise DeserializationError("PauseServiceResponse.service required")
-    if "OperationId" in data:
+    if data.get("OperationId") is not None:
         out["operation_id"] = data["OperationId"]
     return out

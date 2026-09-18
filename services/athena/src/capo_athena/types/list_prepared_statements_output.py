@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: ListPreparedStatementsOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListPreparedStatementsOutput:
     out: ListPreparedStatementsOutput = {}  # type: ignore[typeddict-item]
-    if "PreparedStatements" in data:
+    if data.get("PreparedStatements") is not None:
         import capo_athena.types.prepared_statements_list
 
         out["prepared_statements"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_1(data: dict) -> ListPreparedStatementsOutput:
                 data["PreparedStatements"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

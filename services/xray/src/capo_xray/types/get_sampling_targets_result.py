@@ -65,7 +65,7 @@ def serialize_json(value: GetSamplingTargetsResult) -> dict:
 
 def deserialize_json(data: dict) -> GetSamplingTargetsResult:
     out: GetSamplingTargetsResult = {}  # type: ignore[typeddict-item]
-    if "SamplingTargetDocuments" in data:
+    if data.get("SamplingTargetDocuments") is not None:
         import capo_xray.types.sampling_target_document_list
 
         out["sampling_target_documents"] = (
@@ -73,13 +73,13 @@ def deserialize_json(data: dict) -> GetSamplingTargetsResult:
                 data["SamplingTargetDocuments"]
             )
         )
-    if "LastRuleModification" in data:
+    if data.get("LastRuleModification") is not None:
         import capo_xray.types.timestamp
 
         out["last_rule_modification"] = capo_xray.types.timestamp.deserialize_json(
             data["LastRuleModification"]
         )
-    if "UnprocessedStatistics" in data:
+    if data.get("UnprocessedStatistics") is not None:
         import capo_xray.types.unprocessed_statistics_list
 
         out["unprocessed_statistics"] = (
@@ -87,7 +87,7 @@ def deserialize_json(data: dict) -> GetSamplingTargetsResult:
                 data["UnprocessedStatistics"]
             )
         )
-    if "UnprocessedBoostStatistics" in data:
+    if data.get("UnprocessedBoostStatistics") is not None:
         import capo_xray.types.unprocessed_statistics_list
 
         out["unprocessed_boost_statistics"] = (

@@ -32,13 +32,13 @@ def serialize_json(value: IngestConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> IngestConfiguration:
     out: IngestConfiguration = {}  # type: ignore[typeddict-item]
-    if "video" in data:
+    if data.get("video") is not None:
         import capo_ivs.types.video_configuration
 
         out["video"] = capo_ivs.types.video_configuration.deserialize_json(
             data["video"]
         )
-    if "audio" in data:
+    if data.get("audio") is not None:
         import capo_ivs.types.audio_configuration
 
         out["audio"] = capo_ivs.types.audio_configuration.deserialize_json(

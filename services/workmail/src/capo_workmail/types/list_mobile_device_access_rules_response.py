@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: ListMobileDeviceAccessRulesResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListMobileDeviceAccessRulesResponse:
     out: ListMobileDeviceAccessRulesResponse = {}  # type: ignore[typeddict-item]
-    if "Rules" in data:
+    if data.get("Rules") is not None:
         import capo_workmail.types.mobile_device_access_rules_list
 
         out["rules"] = (

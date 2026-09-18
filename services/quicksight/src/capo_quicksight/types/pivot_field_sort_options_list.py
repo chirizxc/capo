@@ -25,6 +25,8 @@ def deserialize_json(data: list) -> PivotFieldSortOptionsList:
 
     out: PivotFieldSortOptionsList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_quicksight.types.pivot_field_sort_options.deserialize_json(item)
         )

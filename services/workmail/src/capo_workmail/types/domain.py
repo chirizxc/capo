@@ -29,10 +29,10 @@ def serialize_aws_json_1_1(value: Domain) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Domain:
     out: Domain = {}  # type: ignore[typeddict-item]
-    if "DomainName" in data:
+    if data.get("DomainName") is not None:
         out["domain_name"] = data["DomainName"]
     else:
         raise DeserializationError("Domain.domain_name required")
-    if "HostedZoneId" in data:
+    if data.get("HostedZoneId") is not None:
         out["hosted_zone_id"] = data["HostedZoneId"]
     return out

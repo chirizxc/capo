@@ -49,9 +49,25 @@ def serialize_aws_json_1_1(value: RdsConfiguration) -> dict:
     if "instance_type" in value:
         out["InstanceType"] = value["instance_type"]
     if "instance_vcpu" in value:
-        out["InstanceVcpu"] = value["instance_vcpu"]
+        out["InstanceVcpu"] = (
+            "NaN"
+            if value["instance_vcpu"] != value["instance_vcpu"]
+            else "Infinity"
+            if value["instance_vcpu"] == float("inf")
+            else "-Infinity"
+            if value["instance_vcpu"] == float("-inf")
+            else value["instance_vcpu"]
+        )
     if "instance_memory" in value:
-        out["InstanceMemory"] = value["instance_memory"]
+        out["InstanceMemory"] = (
+            "NaN"
+            if value["instance_memory"] != value["instance_memory"]
+            else "Infinity"
+            if value["instance_memory"] == float("inf")
+            else "-Infinity"
+            if value["instance_memory"] == float("-inf")
+            else value["instance_memory"]
+        )
     if "storage_type" in value:
         out["StorageType"] = value["storage_type"]
     if "storage_size" in value:
@@ -67,22 +83,22 @@ def serialize_aws_json_1_1(value: RdsConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RdsConfiguration:
     out: RdsConfiguration = {}  # type: ignore[typeddict-item]
-    if "EngineEdition" in data:
+    if data.get("EngineEdition") is not None:
         out["engine_edition"] = data["EngineEdition"]
-    if "InstanceType" in data:
+    if data.get("InstanceType") is not None:
         out["instance_type"] = data["InstanceType"]
-    if "InstanceVcpu" in data:
-        out["instance_vcpu"] = data["InstanceVcpu"]
-    if "InstanceMemory" in data:
-        out["instance_memory"] = data["InstanceMemory"]
-    if "StorageType" in data:
+    if data.get("InstanceVcpu") is not None:
+        out["instance_vcpu"] = float(data["InstanceVcpu"])
+    if data.get("InstanceMemory") is not None:
+        out["instance_memory"] = float(data["InstanceMemory"])
+    if data.get("StorageType") is not None:
         out["storage_type"] = data["StorageType"]
-    if "StorageSize" in data:
+    if data.get("StorageSize") is not None:
         out["storage_size"] = data["StorageSize"]
-    if "StorageIops" in data:
+    if data.get("StorageIops") is not None:
         out["storage_iops"] = data["StorageIops"]
-    if "DeploymentOption" in data:
+    if data.get("DeploymentOption") is not None:
         out["deployment_option"] = data["DeploymentOption"]
-    if "EngineVersion" in data:
+    if data.get("EngineVersion") is not None:
         out["engine_version"] = data["EngineVersion"]
     return out

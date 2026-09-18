@@ -27,8 +27,8 @@ def serialize_json(value: SubRegion) -> dict:
 
 def deserialize_json(data: dict) -> SubRegion:
     out: SubRegion = {}  # type: ignore[typeddict-item]
-    if "Code" in data:
+    if data.get("Code") is not None:
         out["code"] = data["Code"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     return out

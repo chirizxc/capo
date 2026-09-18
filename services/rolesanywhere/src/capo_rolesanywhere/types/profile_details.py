@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> ProfileDetails:
 
     out: ProfileDetails = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_rolesanywhere.types.profile_detail.deserialize_json(item))
     return out

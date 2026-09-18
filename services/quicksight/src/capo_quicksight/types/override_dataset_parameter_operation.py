@@ -43,15 +43,15 @@ def serialize_json(value: OverrideDatasetParameterOperation) -> dict:
 
 def deserialize_json(data: dict) -> OverrideDatasetParameterOperation:
     out: OverrideDatasetParameterOperation = {}  # type: ignore[typeddict-item]
-    if "ParameterName" in data:
+    if data.get("ParameterName") is not None:
         out["parameter_name"] = data["ParameterName"]
     else:
         raise DeserializationError(
             "OverrideDatasetParameterOperation.parameter_name required"
         )
-    if "NewParameterName" in data:
+    if data.get("NewParameterName") is not None:
         out["new_parameter_name"] = data["NewParameterName"]
-    if "NewDefaultValues" in data:
+    if data.get("NewDefaultValues") is not None:
         import capo_quicksight.types.new_default_values
 
         out["new_default_values"] = (

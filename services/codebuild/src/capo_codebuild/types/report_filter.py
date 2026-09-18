@@ -27,7 +27,7 @@ def serialize_aws_json_1_1(value: ReportFilter) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ReportFilter:
     out: ReportFilter = {}  # type: ignore[typeddict-item]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_codebuild.types.report_status_type
 
         out["status"] = (

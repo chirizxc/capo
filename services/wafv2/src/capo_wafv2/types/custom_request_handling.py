@@ -28,7 +28,7 @@ def serialize_aws_json_1_1(value: CustomRequestHandling) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CustomRequestHandling:
     out: CustomRequestHandling = {}  # type: ignore[typeddict-item]
-    if "InsertHeaders" in data:
+    if data.get("InsertHeaders") is not None:
         import capo_wafv2.types.custom_http_headers
 
         out["insert_headers"] = (

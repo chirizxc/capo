@@ -41,11 +41,11 @@ def serialize_aws_json_1_0(value: StartRetrainingSchedulerResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> StartRetrainingSchedulerResponse:
     out: StartRetrainingSchedulerResponse = {}  # type: ignore[typeddict-item]
-    if "ModelName" in data:
+    if data.get("ModelName") is not None:
         out["model_name"] = data["ModelName"]
-    if "ModelArn" in data:
+    if data.get("ModelArn") is not None:
         out["model_arn"] = data["ModelArn"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_lookoutequipment.types.retraining_scheduler_status
 
         out["status"] = (

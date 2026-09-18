@@ -56,18 +56,18 @@ def serialize_aws_json_1_1(value: WorkspaceCreationProperties) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> WorkspaceCreationProperties:
     out: WorkspaceCreationProperties = {}  # type: ignore[typeddict-item]
-    if "EnableInternetAccess" in data:
+    if data.get("EnableInternetAccess") is not None:
         out["enable_internet_access"] = data["EnableInternetAccess"]
-    if "DefaultOu" in data:
+    if data.get("DefaultOu") is not None:
         out["default_ou"] = data["DefaultOu"]
-    if "CustomSecurityGroupId" in data:
+    if data.get("CustomSecurityGroupId") is not None:
         out["custom_security_group_id"] = data["CustomSecurityGroupId"]
-    if "UserEnabledAsLocalAdministrator" in data:
+    if data.get("UserEnabledAsLocalAdministrator") is not None:
         out["user_enabled_as_local_administrator"] = data[
             "UserEnabledAsLocalAdministrator"
         ]
-    if "EnableMaintenanceMode" in data:
+    if data.get("EnableMaintenanceMode") is not None:
         out["enable_maintenance_mode"] = data["EnableMaintenanceMode"]
-    if "InstanceIamRoleArn" in data:
+    if data.get("InstanceIamRoleArn") is not None:
         out["instance_iam_role_arn"] = data["InstanceIamRoleArn"]
     return out

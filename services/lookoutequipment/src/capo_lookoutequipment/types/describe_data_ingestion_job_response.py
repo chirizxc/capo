@@ -139,11 +139,11 @@ def serialize_aws_json_1_0(value: DescribeDataIngestionJobResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> DescribeDataIngestionJobResponse:
     out: DescribeDataIngestionJobResponse = {}  # type: ignore[typeddict-item]
-    if "JobId" in data:
+    if data.get("JobId") is not None:
         out["job_id"] = data["JobId"]
-    if "DatasetArn" in data:
+    if data.get("DatasetArn") is not None:
         out["dataset_arn"] = data["DatasetArn"]
-    if "IngestionInputConfiguration" in data:
+    if data.get("IngestionInputConfiguration") is not None:
         import capo_lookoutequipment.types.ingestion_input_configuration
 
         out["ingestion_input_configuration"] = (
@@ -151,9 +151,9 @@ def deserialize_aws_json_1_0(data: dict) -> DescribeDataIngestionJobResponse:
                 data["IngestionInputConfiguration"]
             )
         )
-    if "RoleArn" in data:
+    if data.get("RoleArn") is not None:
         out["role_arn"] = data["RoleArn"]
-    if "CreatedAt" in data:
+    if data.get("CreatedAt") is not None:
         import capo_lookoutequipment.types.timestamp
 
         out["created_at"] = (
@@ -161,7 +161,7 @@ def deserialize_aws_json_1_0(data: dict) -> DescribeDataIngestionJobResponse:
                 data["CreatedAt"]
             )
         )
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_lookoutequipment.types.ingestion_job_status
 
         out["status"] = (
@@ -169,9 +169,9 @@ def deserialize_aws_json_1_0(data: dict) -> DescribeDataIngestionJobResponse:
                 data["Status"]
             )
         )
-    if "FailedReason" in data:
+    if data.get("FailedReason") is not None:
         out["failed_reason"] = data["FailedReason"]
-    if "DataQualitySummary" in data:
+    if data.get("DataQualitySummary") is not None:
         import capo_lookoutequipment.types.data_quality_summary
 
         out["data_quality_summary"] = (
@@ -179,7 +179,7 @@ def deserialize_aws_json_1_0(data: dict) -> DescribeDataIngestionJobResponse:
                 data["DataQualitySummary"]
             )
         )
-    if "IngestedFilesSummary" in data:
+    if data.get("IngestedFilesSummary") is not None:
         import capo_lookoutequipment.types.ingested_files_summary
 
         out["ingested_files_summary"] = (
@@ -187,11 +187,11 @@ def deserialize_aws_json_1_0(data: dict) -> DescribeDataIngestionJobResponse:
                 data["IngestedFilesSummary"]
             )
         )
-    if "StatusDetail" in data:
+    if data.get("StatusDetail") is not None:
         out["status_detail"] = data["StatusDetail"]
-    if "IngestedDataSize" in data:
+    if data.get("IngestedDataSize") is not None:
         out["ingested_data_size"] = data["IngestedDataSize"]
-    if "DataStartTime" in data:
+    if data.get("DataStartTime") is not None:
         import capo_lookoutequipment.types.timestamp
 
         out["data_start_time"] = (
@@ -199,7 +199,7 @@ def deserialize_aws_json_1_0(data: dict) -> DescribeDataIngestionJobResponse:
                 data["DataStartTime"]
             )
         )
-    if "DataEndTime" in data:
+    if data.get("DataEndTime") is not None:
         import capo_lookoutequipment.types.timestamp
 
         out["data_end_time"] = (
@@ -207,6 +207,6 @@ def deserialize_aws_json_1_0(data: dict) -> DescribeDataIngestionJobResponse:
                 data["DataEndTime"]
             )
         )
-    if "SourceDatasetArn" in data:
+    if data.get("SourceDatasetArn") is not None:
         out["source_dataset_arn"] = data["SourceDatasetArn"]
     return out

@@ -29,7 +29,7 @@ def serialize_json(value: EcsPropertiesDetail) -> dict:
 
 def deserialize_json(data: dict) -> EcsPropertiesDetail:
     out: EcsPropertiesDetail = {}  # type: ignore[typeddict-item]
-    if "taskProperties" in data:
+    if data.get("taskProperties") is not None:
         import capo_batch.types.list_ecs_task_details
 
         out["task_properties"] = (

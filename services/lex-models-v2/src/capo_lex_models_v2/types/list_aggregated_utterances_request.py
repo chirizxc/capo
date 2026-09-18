@@ -83,15 +83,15 @@ def serialize_json(value: ListAggregatedUtterancesRequest) -> dict:
 
 def deserialize_json(data: dict) -> ListAggregatedUtterancesRequest:
     out: ListAggregatedUtterancesRequest = {}  # type: ignore[typeddict-item]
-    if "botAliasId" in data:
+    if data.get("botAliasId") is not None:
         out["bot_alias_id"] = data["botAliasId"]
-    if "botVersion" in data:
+    if data.get("botVersion") is not None:
         out["bot_version"] = data["botVersion"]
-    if "localeId" in data:
+    if data.get("localeId") is not None:
         out["locale_id"] = data["localeId"]
     else:
         raise DeserializationError("ListAggregatedUtterancesRequest.locale_id required")
-    if "aggregationDuration" in data:
+    if data.get("aggregationDuration") is not None:
         import capo_lex_models_v2.types.utterance_aggregation_duration
 
         out["aggregation_duration"] = (
@@ -103,7 +103,7 @@ def deserialize_json(data: dict) -> ListAggregatedUtterancesRequest:
         raise DeserializationError(
             "ListAggregatedUtterancesRequest.aggregation_duration required"
         )
-    if "sortBy" in data:
+    if data.get("sortBy") is not None:
         import capo_lex_models_v2.types.aggregated_utterances_sort_by
 
         out["sort_by"] = (
@@ -111,7 +111,7 @@ def deserialize_json(data: dict) -> ListAggregatedUtterancesRequest:
                 data["sortBy"]
             )
         )
-    if "filters" in data:
+    if data.get("filters") is not None:
         import capo_lex_models_v2.types.aggregated_utterances_filters
 
         out["filters"] = (
@@ -119,8 +119,8 @@ def deserialize_json(data: dict) -> ListAggregatedUtterancesRequest:
                 data["filters"]
             )
         )
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

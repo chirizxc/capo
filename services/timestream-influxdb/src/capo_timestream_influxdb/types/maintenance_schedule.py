@@ -30,11 +30,11 @@ def serialize_aws_json_1_0(value: MaintenanceSchedule) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> MaintenanceSchedule:
     out: MaintenanceSchedule = {}  # type: ignore[typeddict-item]
-    if "timezone" in data:
+    if data.get("timezone") is not None:
         out["timezone"] = data["timezone"]
     else:
         raise DeserializationError("MaintenanceSchedule.timezone required")
-    if "preferredMaintenanceWindow" in data:
+    if data.get("preferredMaintenanceWindow") is not None:
         out["preferred_maintenance_window"] = data["preferredMaintenanceWindow"]
     else:
         raise DeserializationError(

@@ -54,9 +54,9 @@ def serialize_json(value: AutomaticInputFailoverSettings) -> dict:
 
 def deserialize_json(data: dict) -> AutomaticInputFailoverSettings:
     out: AutomaticInputFailoverSettings = {}  # type: ignore[typeddict-item]
-    if "errorClearTimeMsec" in data:
+    if data.get("errorClearTimeMsec") is not None:
         out["error_clear_time_msec"] = data["errorClearTimeMsec"]
-    if "failoverConditions" in data:
+    if data.get("failoverConditions") is not None:
         import capo_medialive.types.__list_of_failover_condition
 
         out["failover_conditions"] = (
@@ -64,7 +64,7 @@ def deserialize_json(data: dict) -> AutomaticInputFailoverSettings:
                 data["failoverConditions"]
             )
         )
-    if "inputPreference" in data:
+    if data.get("inputPreference") is not None:
         import capo_medialive.types.input_preference
 
         out["input_preference"] = (
@@ -72,6 +72,6 @@ def deserialize_json(data: dict) -> AutomaticInputFailoverSettings:
                 data["inputPreference"]
             )
         )
-    if "secondaryInputId" in data:
+    if data.get("secondaryInputId") is not None:
         out["secondary_input_id"] = data["secondaryInputId"]
     return out

@@ -38,12 +38,12 @@ def serialize_json(value: DeleteSessionResponse) -> dict:
 
 def deserialize_json(data: dict) -> DeleteSessionResponse:
     out: DeleteSessionResponse = {}  # type: ignore[typeddict-item]
-    if "botName" in data:
+    if data.get("botName") is not None:
         out["bot_name"] = data["botName"]
-    if "botAlias" in data:
+    if data.get("botAlias") is not None:
         out["bot_alias"] = data["botAlias"]
-    if "userId" in data:
+    if data.get("userId") is not None:
         out["user_id"] = data["userId"]
-    if "sessionId" in data:
+    if data.get("sessionId") is not None:
         out["session_id"] = data["sessionId"]
     return out

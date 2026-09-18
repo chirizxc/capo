@@ -48,11 +48,11 @@ def serialize_json(value: ConditionalSpecification) -> dict:
 
 def deserialize_json(data: dict) -> ConditionalSpecification:
     out: ConditionalSpecification = {}  # type: ignore[typeddict-item]
-    if "active" in data:
+    if data.get("active") is not None:
         out["active"] = data["active"]
     else:
         raise DeserializationError("ConditionalSpecification.active required")
-    if "conditionalBranches" in data:
+    if data.get("conditionalBranches") is not None:
         import capo_lex_models_v2.types.conditional_branches
 
         out["conditional_branches"] = (
@@ -64,7 +64,7 @@ def deserialize_json(data: dict) -> ConditionalSpecification:
         raise DeserializationError(
             "ConditionalSpecification.conditional_branches required"
         )
-    if "defaultBranch" in data:
+    if data.get("defaultBranch") is not None:
         import capo_lex_models_v2.types.default_conditional_branch
 
         out["default_branch"] = (

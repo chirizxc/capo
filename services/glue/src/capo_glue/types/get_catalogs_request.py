@@ -46,18 +46,18 @@ def serialize_aws_json_1_1(value: GetCatalogsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetCatalogsRequest:
     out: GetCatalogsRequest = {}  # type: ignore[typeddict-item]
-    if "ParentCatalogId" in data:
+    if data.get("ParentCatalogId") is not None:
         out["parent_catalog_id"] = data["ParentCatalogId"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "Recursive" in data:
+    if data.get("Recursive") is not None:
         out["recursive"] = data["Recursive"]
     else:
         out["recursive"] = False
-    if "IncludeRoot" in data:
+    if data.get("IncludeRoot") is not None:
         out["include_root"] = data["IncludeRoot"]
-    if "HasDatabases" in data:
+    if data.get("HasDatabases") is not None:
         out["has_databases"] = data["HasDatabases"]
     return out

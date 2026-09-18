@@ -37,15 +37,18 @@ class StaleRequestException(ServiceError):
 
     code: str | None = "StaleRequestException"
 
-    def __init__(self, data: StaleRequestException_):
+    def __init__(self, data: StaleRequestException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="StaleRequestException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_query(cls, el: Element) -> "StaleRequestException":
-        return cls(deserialize_query(el))
+    def from_query(
+        cls, el: Element, message: str | None = None
+    ) -> "StaleRequestException":
+        return cls(deserialize_query(el), message)

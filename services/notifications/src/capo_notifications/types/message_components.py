@@ -46,13 +46,13 @@ def serialize_json(value: MessageComponents) -> dict:
 
 def deserialize_json(data: dict) -> MessageComponents:
     out: MessageComponents = {}  # type: ignore[typeddict-item]
-    if "headline" in data:
+    if data.get("headline") is not None:
         out["headline"] = data["headline"]
-    if "paragraphSummary" in data:
+    if data.get("paragraphSummary") is not None:
         out["paragraph_summary"] = data["paragraphSummary"]
-    if "completeDescription" in data:
+    if data.get("completeDescription") is not None:
         out["complete_description"] = data["completeDescription"]
-    if "dimensions" in data:
+    if data.get("dimensions") is not None:
         import capo_notifications.types.dimensions
 
         out["dimensions"] = capo_notifications.types.dimensions.deserialize_json(

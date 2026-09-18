@@ -39,11 +39,11 @@ def serialize_json(value: SendMessageResponse) -> dict:
 
 def deserialize_json(data: dict) -> SendMessageResponse:
     out: SendMessageResponse = {}  # type: ignore[typeddict-item]
-    if "requestMessageId" in data:
+    if data.get("requestMessageId") is not None:
         out["request_message_id"] = data["requestMessageId"]
     else:
         raise DeserializationError("SendMessageResponse.request_message_id required")
-    if "configuration" in data:
+    if data.get("configuration") is not None:
         import capo_qconnect.types.message_configuration
 
         out["configuration"] = (
@@ -51,7 +51,7 @@ def deserialize_json(data: dict) -> SendMessageResponse:
                 data["configuration"]
             )
         )
-    if "nextMessageToken" in data:
+    if data.get("nextMessageToken") is not None:
         out["next_message_token"] = data["nextMessageToken"]
     else:
         raise DeserializationError("SendMessageResponse.next_message_token required")

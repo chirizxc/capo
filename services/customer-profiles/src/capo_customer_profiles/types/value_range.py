@@ -28,11 +28,11 @@ def serialize_json(value: ValueRange) -> dict:
 
 def deserialize_json(data: dict) -> ValueRange:
     out: ValueRange = {}  # type: ignore[typeddict-item]
-    if "Start" in data:
+    if data.get("Start") is not None:
         out["start"] = data["Start"]
     else:
         raise DeserializationError("ValueRange.start required")
-    if "End" in data:
+    if data.get("End") is not None:
         out["end"] = data["End"]
     else:
         raise DeserializationError("ValueRange.end required")

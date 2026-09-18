@@ -32,12 +32,12 @@ def serialize_json(value: DescribeGroupsResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribeGroupsResponse:
     out: DescribeGroupsResponse = {}  # type: ignore[typeddict-item]
-    if "Groups" in data:
+    if data.get("Groups") is not None:
         import capo_workdocs.types.group_metadata_list
 
         out["groups"] = capo_workdocs.types.group_metadata_list.deserialize_json(
             data["Groups"]
         )
-    if "Marker" in data:
+    if data.get("Marker") is not None:
         out["marker"] = data["Marker"]
     return out

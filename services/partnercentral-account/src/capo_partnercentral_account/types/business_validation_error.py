@@ -33,11 +33,11 @@ def serialize_aws_json_1_0(value: BusinessValidationError) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> BusinessValidationError:
     out: BusinessValidationError = {}  # type: ignore[typeddict-item]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     else:
         raise DeserializationError("BusinessValidationError.message required")
-    if "Code" in data:
+    if data.get("Code") is not None:
         import capo_partnercentral_account.types.business_validation_code
 
         out["code"] = (

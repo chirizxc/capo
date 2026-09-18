@@ -25,6 +25,6 @@ def serialize_aws_json_1_1(value: Characters) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Characters:
     out: Characters = {}  # type: ignore[typeddict-item]
-    if "OriginalTextCharacters" in data:
+    if data.get("OriginalTextCharacters") is not None:
         out["original_text_characters"] = data["OriginalTextCharacters"]
     return out

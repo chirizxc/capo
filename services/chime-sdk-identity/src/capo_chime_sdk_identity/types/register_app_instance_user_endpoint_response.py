@@ -30,8 +30,8 @@ def serialize_json(value: RegisterAppInstanceUserEndpointResponse) -> dict:
 
 def deserialize_json(data: dict) -> RegisterAppInstanceUserEndpointResponse:
     out: RegisterAppInstanceUserEndpointResponse = {}  # type: ignore[typeddict-item]
-    if "AppInstanceUserArn" in data:
+    if data.get("AppInstanceUserArn") is not None:
         out["app_instance_user_arn"] = data["AppInstanceUserArn"]
-    if "EndpointId" in data:
+    if data.get("EndpointId") is not None:
         out["endpoint_id"] = data["EndpointId"]
     return out

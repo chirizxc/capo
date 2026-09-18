@@ -38,8 +38,8 @@ def serialize_json(value: CreateViewVersionRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateViewVersionRequest:
     out: CreateViewVersionRequest = {}  # type: ignore[typeddict-item]
-    if "VersionDescription" in data:
+    if data.get("VersionDescription") is not None:
         out["version_description"] = data["VersionDescription"]
-    if "ViewContentSha256" in data:
+    if data.get("ViewContentSha256") is not None:
         out["view_content_sha256"] = data["ViewContentSha256"]
     return out

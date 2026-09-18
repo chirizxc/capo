@@ -44,14 +44,14 @@ def serialize_json(value: ListCompositionsRequest) -> dict:
 
 def deserialize_json(data: dict) -> ListCompositionsRequest:
     out: ListCompositionsRequest = {}  # type: ignore[typeddict-item]
-    if "filterByStageArn" in data:
+    if data.get("filterByStageArn") is not None:
         out["filter_by_stage_arn"] = data["filterByStageArn"]
-    if "filterByEncoderConfigurationArn" in data:
+    if data.get("filterByEncoderConfigurationArn") is not None:
         out["filter_by_encoder_configuration_arn"] = data[
             "filterByEncoderConfigurationArn"
         ]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
     return out

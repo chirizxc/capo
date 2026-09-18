@@ -34,13 +34,13 @@ def serialize_json(value: Citation) -> dict:
 
 def deserialize_json(data: dict) -> Citation:
     out: Citation = {}  # type: ignore[typeddict-item]
-    if "reference" in data:
+    if data.get("reference") is not None:
         import capo_iotsitewise.types.reference
 
         out["reference"] = capo_iotsitewise.types.reference.deserialize_json(
             data["reference"]
         )
-    if "content" in data:
+    if data.get("content") is not None:
         import capo_iotsitewise.types.content
 
         out["content"] = capo_iotsitewise.types.content.deserialize_json(

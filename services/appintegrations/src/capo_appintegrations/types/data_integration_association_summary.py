@@ -64,15 +64,15 @@ def serialize_json(value: DataIntegrationAssociationSummary) -> dict:
 
 def deserialize_json(data: dict) -> DataIntegrationAssociationSummary:
     out: DataIntegrationAssociationSummary = {}  # type: ignore[typeddict-item]
-    if "DataIntegrationAssociationArn" in data:
+    if data.get("DataIntegrationAssociationArn") is not None:
         out["data_integration_association_arn"] = data["DataIntegrationAssociationArn"]
-    if "DataIntegrationArn" in data:
+    if data.get("DataIntegrationArn") is not None:
         out["data_integration_arn"] = data["DataIntegrationArn"]
-    if "ClientId" in data:
+    if data.get("ClientId") is not None:
         out["client_id"] = data["ClientId"]
-    if "DestinationURI" in data:
+    if data.get("DestinationURI") is not None:
         out["destination_uri"] = data["DestinationURI"]
-    if "LastExecutionStatus" in data:
+    if data.get("LastExecutionStatus") is not None:
         import capo_appintegrations.types.last_execution_status
 
         out["last_execution_status"] = (
@@ -80,7 +80,7 @@ def deserialize_json(data: dict) -> DataIntegrationAssociationSummary:
                 data["LastExecutionStatus"]
             )
         )
-    if "ExecutionConfiguration" in data:
+    if data.get("ExecutionConfiguration") is not None:
         import capo_appintegrations.types.execution_configuration
 
         out["execution_configuration"] = (

@@ -203,61 +203,61 @@ def serialize_json(value: DescribeJobResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribeJobResponse:
     out: DescribeJobResponse = {}  # type: ignore[typeddict-item]
-    if "CreateDate" in data:
+    if data.get("CreateDate") is not None:
         import capo_databrew.types.date
 
         out["create_date"] = capo_databrew.types.date.deserialize_json(
             data["CreateDate"]
         )
-    if "CreatedBy" in data:
+    if data.get("CreatedBy") is not None:
         out["created_by"] = data["CreatedBy"]
-    if "DatasetName" in data:
+    if data.get("DatasetName") is not None:
         out["dataset_name"] = data["DatasetName"]
-    if "EncryptionKeyArn" in data:
+    if data.get("EncryptionKeyArn") is not None:
         out["encryption_key_arn"] = data["EncryptionKeyArn"]
-    if "EncryptionMode" in data:
+    if data.get("EncryptionMode") is not None:
         import capo_databrew.types.encryption_mode
 
         out["encryption_mode"] = capo_databrew.types.encryption_mode.deserialize_json(
             data["EncryptionMode"]
         )
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("DescribeJobResponse.name required")
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_databrew.types.job_type
 
         out["type"] = capo_databrew.types.job_type.deserialize_json(data["Type"])
-    if "LastModifiedBy" in data:
+    if data.get("LastModifiedBy") is not None:
         out["last_modified_by"] = data["LastModifiedBy"]
-    if "LastModifiedDate" in data:
+    if data.get("LastModifiedDate") is not None:
         import capo_databrew.types.date
 
         out["last_modified_date"] = capo_databrew.types.date.deserialize_json(
             data["LastModifiedDate"]
         )
-    if "LogSubscription" in data:
+    if data.get("LogSubscription") is not None:
         import capo_databrew.types.log_subscription
 
         out["log_subscription"] = capo_databrew.types.log_subscription.deserialize_json(
             data["LogSubscription"]
         )
-    if "MaxCapacity" in data:
+    if data.get("MaxCapacity") is not None:
         out["max_capacity"] = data["MaxCapacity"]
     else:
         out["max_capacity"] = 0
-    if "MaxRetries" in data:
+    if data.get("MaxRetries") is not None:
         out["max_retries"] = data["MaxRetries"]
     else:
         out["max_retries"] = 0
-    if "Outputs" in data:
+    if data.get("Outputs") is not None:
         import capo_databrew.types.output_list
 
         out["outputs"] = capo_databrew.types.output_list.deserialize_json(
             data["Outputs"]
         )
-    if "DataCatalogOutputs" in data:
+    if data.get("DataCatalogOutputs") is not None:
         import capo_databrew.types.data_catalog_output_list
 
         out["data_catalog_outputs"] = (
@@ -265,7 +265,7 @@ def deserialize_json(data: dict) -> DescribeJobResponse:
                 data["DataCatalogOutputs"]
             )
         )
-    if "DatabaseOutputs" in data:
+    if data.get("DatabaseOutputs") is not None:
         import capo_databrew.types.database_output_list
 
         out["database_outputs"] = (
@@ -273,9 +273,9 @@ def deserialize_json(data: dict) -> DescribeJobResponse:
                 data["DatabaseOutputs"]
             )
         )
-    if "ProjectName" in data:
+    if data.get("ProjectName") is not None:
         out["project_name"] = data["ProjectName"]
-    if "ProfileConfiguration" in data:
+    if data.get("ProfileConfiguration") is not None:
         import capo_databrew.types.profile_configuration
 
         out["profile_configuration"] = (
@@ -283,7 +283,7 @@ def deserialize_json(data: dict) -> DescribeJobResponse:
                 data["ProfileConfiguration"]
             )
         )
-    if "ValidationConfigurations" in data:
+    if data.get("ValidationConfigurations") is not None:
         import capo_databrew.types.validation_configuration_list
 
         out["validation_configurations"] = (
@@ -291,25 +291,25 @@ def deserialize_json(data: dict) -> DescribeJobResponse:
                 data["ValidationConfigurations"]
             )
         )
-    if "RecipeReference" in data:
+    if data.get("RecipeReference") is not None:
         import capo_databrew.types.recipe_reference
 
         out["recipe_reference"] = capo_databrew.types.recipe_reference.deserialize_json(
             data["RecipeReference"]
         )
-    if "ResourceArn" in data:
+    if data.get("ResourceArn") is not None:
         out["resource_arn"] = data["ResourceArn"]
-    if "RoleArn" in data:
+    if data.get("RoleArn") is not None:
         out["role_arn"] = data["RoleArn"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_databrew.types.tag_map
 
         out["tags"] = capo_databrew.types.tag_map.deserialize_json(data["Tags"])
-    if "Timeout" in data:
+    if data.get("Timeout") is not None:
         out["timeout"] = data["Timeout"]
     else:
         out["timeout"] = 0
-    if "JobSample" in data:
+    if data.get("JobSample") is not None:
         import capo_databrew.types.job_sample
 
         out["job_sample"] = capo_databrew.types.job_sample.deserialize_json(

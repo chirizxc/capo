@@ -55,11 +55,11 @@ def serialize_json(value: OriginationRoute) -> dict:
 
 def deserialize_json(data: dict) -> OriginationRoute:
     out: OriginationRoute = {}  # type: ignore[typeddict-item]
-    if "Host" in data:
+    if data.get("Host") is not None:
         out["host"] = data["Host"]
-    if "Port" in data:
+    if data.get("Port") is not None:
         out["port"] = data["Port"]
-    if "Protocol" in data:
+    if data.get("Protocol") is not None:
         import capo_chime_sdk_voice.types.origination_route_protocol
 
         out["protocol"] = (
@@ -67,8 +67,8 @@ def deserialize_json(data: dict) -> OriginationRoute:
                 data["Protocol"]
             )
         )
-    if "Priority" in data:
+    if data.get("Priority") is not None:
         out["priority"] = data["Priority"]
-    if "Weight" in data:
+    if data.get("Weight") is not None:
         out["weight"] = data["Weight"]
     return out

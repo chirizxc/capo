@@ -28,11 +28,11 @@ def serialize_aws_json_1_1(value: DeleteChapCredentialsInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteChapCredentialsInput:
     out: DeleteChapCredentialsInput = {}  # type: ignore[typeddict-item]
-    if "TargetARN" in data:
+    if data.get("TargetARN") is not None:
         out["target_arn"] = data["TargetARN"]
     else:
         raise DeserializationError("DeleteChapCredentialsInput.target_arn required")
-    if "InitiatorName" in data:
+    if data.get("InitiatorName") is not None:
         out["initiator_name"] = data["InitiatorName"]
     else:
         raise DeserializationError("DeleteChapCredentialsInput.initiator_name required")

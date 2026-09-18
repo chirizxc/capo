@@ -24,7 +24,7 @@ def serialize_json(value: AccessPreviewStatusReason) -> dict:
 
 def deserialize_json(data: dict) -> AccessPreviewStatusReason:
     out: AccessPreviewStatusReason = {}  # type: ignore[typeddict-item]
-    if "code" in data:
+    if data.get("code") is not None:
         out["code"] = data["code"]
     else:
         raise DeserializationError("AccessPreviewStatusReason.code required")

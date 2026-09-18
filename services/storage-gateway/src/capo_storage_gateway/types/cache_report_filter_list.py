@@ -27,6 +27,8 @@ def deserialize_aws_json_1_1(data: list) -> CacheReportFilterList:
 
     out: CacheReportFilterList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_storage_gateway.types.cache_report_filter.deserialize_aws_json_1_1(
                 item

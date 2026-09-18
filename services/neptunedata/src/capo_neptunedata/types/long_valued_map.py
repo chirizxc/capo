@@ -16,5 +16,7 @@ def serialize_json(input_to_serialize: LongValuedMap) -> dict:
 def deserialize_json(data: dict) -> LongValuedMap:
     out: LongValuedMap = {}
     for key, value in data.items():
+        if value is None:
+            continue
         out[key] = value
     return out

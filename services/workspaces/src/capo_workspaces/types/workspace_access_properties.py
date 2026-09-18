@@ -140,7 +140,7 @@ def serialize_aws_json_1_1(value: WorkspaceAccessProperties) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> WorkspaceAccessProperties:
     out: WorkspaceAccessProperties = {}  # type: ignore[typeddict-item]
-    if "DeviceTypeWindows" in data:
+    if data.get("DeviceTypeWindows") is not None:
         import capo_workspaces.types.access_property_value
 
         out["device_type_windows"] = (
@@ -148,7 +148,7 @@ def deserialize_aws_json_1_1(data: dict) -> WorkspaceAccessProperties:
                 data["DeviceTypeWindows"]
             )
         )
-    if "DeviceTypeOsx" in data:
+    if data.get("DeviceTypeOsx") is not None:
         import capo_workspaces.types.access_property_value
 
         out["device_type_osx"] = (
@@ -156,7 +156,7 @@ def deserialize_aws_json_1_1(data: dict) -> WorkspaceAccessProperties:
                 data["DeviceTypeOsx"]
             )
         )
-    if "DeviceTypeWeb" in data:
+    if data.get("DeviceTypeWeb") is not None:
         import capo_workspaces.types.access_property_value
 
         out["device_type_web"] = (
@@ -164,7 +164,7 @@ def deserialize_aws_json_1_1(data: dict) -> WorkspaceAccessProperties:
                 data["DeviceTypeWeb"]
             )
         )
-    if "DeviceTypeIos" in data:
+    if data.get("DeviceTypeIos") is not None:
         import capo_workspaces.types.access_property_value
 
         out["device_type_ios"] = (
@@ -172,7 +172,7 @@ def deserialize_aws_json_1_1(data: dict) -> WorkspaceAccessProperties:
                 data["DeviceTypeIos"]
             )
         )
-    if "DeviceTypeAndroid" in data:
+    if data.get("DeviceTypeAndroid") is not None:
         import capo_workspaces.types.access_property_value
 
         out["device_type_android"] = (
@@ -180,7 +180,7 @@ def deserialize_aws_json_1_1(data: dict) -> WorkspaceAccessProperties:
                 data["DeviceTypeAndroid"]
             )
         )
-    if "DeviceTypeChromeOs" in data:
+    if data.get("DeviceTypeChromeOs") is not None:
         import capo_workspaces.types.access_property_value
 
         out["device_type_chrome_os"] = (
@@ -188,7 +188,7 @@ def deserialize_aws_json_1_1(data: dict) -> WorkspaceAccessProperties:
                 data["DeviceTypeChromeOs"]
             )
         )
-    if "DeviceTypeZeroClient" in data:
+    if data.get("DeviceTypeZeroClient") is not None:
         import capo_workspaces.types.access_property_value
 
         out["device_type_zero_client"] = (
@@ -196,7 +196,7 @@ def deserialize_aws_json_1_1(data: dict) -> WorkspaceAccessProperties:
                 data["DeviceTypeZeroClient"]
             )
         )
-    if "DeviceTypeLinux" in data:
+    if data.get("DeviceTypeLinux") is not None:
         import capo_workspaces.types.access_property_value
 
         out["device_type_linux"] = (
@@ -204,7 +204,7 @@ def deserialize_aws_json_1_1(data: dict) -> WorkspaceAccessProperties:
                 data["DeviceTypeLinux"]
             )
         )
-    if "DeviceTypeWorkSpacesThinClient" in data:
+    if data.get("DeviceTypeWorkSpacesThinClient") is not None:
         import capo_workspaces.types.access_property_value
 
         out["device_type_work_spaces_thin_client"] = (
@@ -212,7 +212,7 @@ def deserialize_aws_json_1_1(data: dict) -> WorkspaceAccessProperties:
                 data["DeviceTypeWorkSpacesThinClient"]
             )
         )
-    if "AccessEndpointConfig" in data:
+    if data.get("AccessEndpointConfig") is not None:
         import capo_workspaces.types.access_endpoint_config
 
         out["access_endpoint_config"] = (

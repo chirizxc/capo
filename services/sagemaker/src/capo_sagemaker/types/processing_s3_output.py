@@ -43,11 +43,11 @@ def serialize_aws_json_1_1(value: ProcessingS3Output) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ProcessingS3Output:
     out: ProcessingS3Output = {}  # type: ignore[typeddict-item]
-    if "S3Uri" in data:
+    if data.get("S3Uri") is not None:
         out["s3_uri"] = data["S3Uri"]
-    if "LocalPath" in data:
+    if data.get("LocalPath") is not None:
         out["local_path"] = data["LocalPath"]
-    if "S3UploadMode" in data:
+    if data.get("S3UploadMode") is not None:
         import capo_sagemaker.types.processing_s3_upload_mode
 
         out["s3_upload_mode"] = (

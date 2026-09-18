@@ -120,7 +120,7 @@ def serialize_json(value: CaptionSourceSettings) -> dict:
 
 def deserialize_json(data: dict) -> CaptionSourceSettings:
     out: CaptionSourceSettings = {}  # type: ignore[typeddict-item]
-    if "ancillarySourceSettings" in data:
+    if data.get("ancillarySourceSettings") is not None:
         import capo_mediaconvert.types.ancillary_source_settings
 
         out["ancillary_source_settings"] = (
@@ -128,7 +128,7 @@ def deserialize_json(data: dict) -> CaptionSourceSettings:
                 data["ancillarySourceSettings"]
             )
         )
-    if "dvbSubSourceSettings" in data:
+    if data.get("dvbSubSourceSettings") is not None:
         import capo_mediaconvert.types.dvb_sub_source_settings
 
         out["dvb_sub_source_settings"] = (
@@ -136,7 +136,7 @@ def deserialize_json(data: dict) -> CaptionSourceSettings:
                 data["dvbSubSourceSettings"]
             )
         )
-    if "embeddedSourceSettings" in data:
+    if data.get("embeddedSourceSettings") is not None:
         import capo_mediaconvert.types.embedded_source_settings
 
         out["embedded_source_settings"] = (
@@ -144,7 +144,7 @@ def deserialize_json(data: dict) -> CaptionSourceSettings:
                 data["embeddedSourceSettings"]
             )
         )
-    if "fileSourceSettings" in data:
+    if data.get("fileSourceSettings") is not None:
         import capo_mediaconvert.types.file_source_settings
 
         out["file_source_settings"] = (
@@ -152,7 +152,7 @@ def deserialize_json(data: dict) -> CaptionSourceSettings:
                 data["fileSourceSettings"]
             )
         )
-    if "sourceType" in data:
+    if data.get("sourceType") is not None:
         import capo_mediaconvert.types.caption_source_type
 
         out["source_type"] = (
@@ -160,7 +160,7 @@ def deserialize_json(data: dict) -> CaptionSourceSettings:
                 data["sourceType"]
             )
         )
-    if "teletextSourceSettings" in data:
+    if data.get("teletextSourceSettings") is not None:
         import capo_mediaconvert.types.teletext_source_settings
 
         out["teletext_source_settings"] = (
@@ -168,7 +168,7 @@ def deserialize_json(data: dict) -> CaptionSourceSettings:
                 data["teletextSourceSettings"]
             )
         )
-    if "trackSourceSettings" in data:
+    if data.get("trackSourceSettings") is not None:
         import capo_mediaconvert.types.track_source_settings
 
         out["track_source_settings"] = (
@@ -176,7 +176,7 @@ def deserialize_json(data: dict) -> CaptionSourceSettings:
                 data["trackSourceSettings"]
             )
         )
-    if "webvttHlsSourceSettings" in data:
+    if data.get("webvttHlsSourceSettings") is not None:
         import capo_mediaconvert.types.webvtt_hls_source_settings
 
         out["webvtt_hls_source_settings"] = (

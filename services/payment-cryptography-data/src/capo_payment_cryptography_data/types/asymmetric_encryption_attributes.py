@@ -31,7 +31,7 @@ def serialize_json(value: AsymmetricEncryptionAttributes) -> dict:
 
 def deserialize_json(data: dict) -> AsymmetricEncryptionAttributes:
     out: AsymmetricEncryptionAttributes = {}  # type: ignore[typeddict-item]
-    if "PaddingType" in data:
+    if data.get("PaddingType") is not None:
         import capo_payment_cryptography_data.types.padding_type
 
         out["padding_type"] = (

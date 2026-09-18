@@ -101,19 +101,19 @@ def serialize_aws_json_1_1(value: X509Attributes) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> X509Attributes:
     out: X509Attributes = {}  # type: ignore[typeddict-item]
-    if "Issuer" in data:
+    if data.get("Issuer") is not None:
         import capo_acm.types.distinguished_name
 
         out["issuer"] = capo_acm.types.distinguished_name.deserialize_aws_json_1_1(
             data["Issuer"]
         )
-    if "Subject" in data:
+    if data.get("Subject") is not None:
         import capo_acm.types.distinguished_name
 
         out["subject"] = capo_acm.types.distinguished_name.deserialize_aws_json_1_1(
             data["Subject"]
         )
-    if "SubjectAlternativeNames" in data:
+    if data.get("SubjectAlternativeNames") is not None:
         import capo_acm.types.general_name_list
 
         out["subject_alternative_names"] = (
@@ -121,7 +121,7 @@ def deserialize_aws_json_1_1(data: dict) -> X509Attributes:
                 data["SubjectAlternativeNames"]
             )
         )
-    if "ExtendedKeyUsages" in data:
+    if data.get("ExtendedKeyUsages") is not None:
         import capo_acm.types.extended_key_usage_names
 
         out["extended_key_usages"] = (
@@ -129,27 +129,27 @@ def deserialize_aws_json_1_1(data: dict) -> X509Attributes:
                 data["ExtendedKeyUsages"]
             )
         )
-    if "KeyAlgorithm" in data:
+    if data.get("KeyAlgorithm") is not None:
         import capo_acm.types.key_algorithm
 
         out["key_algorithm"] = capo_acm.types.key_algorithm.deserialize_aws_json_1_1(
             data["KeyAlgorithm"]
         )
-    if "KeyUsages" in data:
+    if data.get("KeyUsages") is not None:
         import capo_acm.types.key_usage_names
 
         out["key_usages"] = capo_acm.types.key_usage_names.deserialize_aws_json_1_1(
             data["KeyUsages"]
         )
-    if "SerialNumber" in data:
+    if data.get("SerialNumber") is not None:
         out["serial_number"] = data["SerialNumber"]
-    if "NotAfter" in data:
+    if data.get("NotAfter") is not None:
         import capo_acm.types.t_stamp
 
         out["not_after"] = capo_acm.types.t_stamp.deserialize_aws_json_1_1(
             data["NotAfter"]
         )
-    if "NotBefore" in data:
+    if data.get("NotBefore") is not None:
         import capo_acm.types.t_stamp
 
         out["not_before"] = capo_acm.types.t_stamp.deserialize_aws_json_1_1(

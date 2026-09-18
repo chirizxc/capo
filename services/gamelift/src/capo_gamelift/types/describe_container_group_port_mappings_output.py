@@ -73,13 +73,13 @@ def serialize_aws_json_1_1(value: DescribeContainerGroupPortMappingsOutput) -> d
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeContainerGroupPortMappingsOutput:
     out: DescribeContainerGroupPortMappingsOutput = {}  # type: ignore[typeddict-item]
-    if "FleetId" in data:
+    if data.get("FleetId") is not None:
         out["fleet_id"] = data["FleetId"]
-    if "Location" in data:
+    if data.get("Location") is not None:
         out["location"] = data["Location"]
-    if "ContainerGroupDefinitionArn" in data:
+    if data.get("ContainerGroupDefinitionArn") is not None:
         out["container_group_definition_arn"] = data["ContainerGroupDefinitionArn"]
-    if "ContainerGroupType" in data:
+    if data.get("ContainerGroupType") is not None:
         import capo_gamelift.types.container_group_type
 
         out["container_group_type"] = (
@@ -87,11 +87,11 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeContainerGroupPortMappingsOu
                 data["ContainerGroupType"]
             )
         )
-    if "ComputeName" in data:
+    if data.get("ComputeName") is not None:
         out["compute_name"] = data["ComputeName"]
-    if "InstanceId" in data:
+    if data.get("InstanceId") is not None:
         out["instance_id"] = data["InstanceId"]
-    if "ContainerGroupPortMappings" in data:
+    if data.get("ContainerGroupPortMappings") is not None:
         import capo_gamelift.types.container_group_port_mapping_list
 
         out["container_group_port_mappings"] = (

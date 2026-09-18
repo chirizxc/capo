@@ -100,15 +100,15 @@ def serialize_aws_json_1_0(value: CreateScheduledQueryRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CreateScheduledQueryRequest:
     out: CreateScheduledQueryRequest = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("CreateScheduledQueryRequest.name required")
-    if "QueryString" in data:
+    if data.get("QueryString") is not None:
         out["query_string"] = data["QueryString"]
     else:
         raise DeserializationError("CreateScheduledQueryRequest.query_string required")
-    if "ScheduleConfiguration" in data:
+    if data.get("ScheduleConfiguration") is not None:
         import capo_timestream_query.types.schedule_configuration
 
         out["schedule_configuration"] = (
@@ -120,7 +120,7 @@ def deserialize_aws_json_1_0(data: dict) -> CreateScheduledQueryRequest:
         raise DeserializationError(
             "CreateScheduledQueryRequest.schedule_configuration required"
         )
-    if "NotificationConfiguration" in data:
+    if data.get("NotificationConfiguration") is not None:
         import capo_timestream_query.types.notification_configuration
 
         out["notification_configuration"] = (
@@ -132,7 +132,7 @@ def deserialize_aws_json_1_0(data: dict) -> CreateScheduledQueryRequest:
         raise DeserializationError(
             "CreateScheduledQueryRequest.notification_configuration required"
         )
-    if "TargetConfiguration" in data:
+    if data.get("TargetConfiguration") is not None:
         import capo_timestream_query.types.target_configuration
 
         out["target_configuration"] = (
@@ -140,9 +140,9 @@ def deserialize_aws_json_1_0(data: dict) -> CreateScheduledQueryRequest:
                 data["TargetConfiguration"]
             )
         )
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
-    if "ScheduledQueryExecutionRoleArn" in data:
+    if data.get("ScheduledQueryExecutionRoleArn") is not None:
         out["scheduled_query_execution_role_arn"] = data[
             "ScheduledQueryExecutionRoleArn"
         ]
@@ -150,15 +150,15 @@ def deserialize_aws_json_1_0(data: dict) -> CreateScheduledQueryRequest:
         raise DeserializationError(
             "CreateScheduledQueryRequest.scheduled_query_execution_role_arn required"
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_timestream_query.types.tag_list
 
         out["tags"] = capo_timestream_query.types.tag_list.deserialize_aws_json_1_0(
             data["Tags"]
         )
-    if "KmsKeyId" in data:
+    if data.get("KmsKeyId") is not None:
         out["kms_key_id"] = data["KmsKeyId"]
-    if "ErrorReportConfiguration" in data:
+    if data.get("ErrorReportConfiguration") is not None:
         import capo_timestream_query.types.error_report_configuration
 
         out["error_report_configuration"] = (

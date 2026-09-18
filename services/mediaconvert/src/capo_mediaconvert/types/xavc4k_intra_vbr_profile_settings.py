@@ -31,7 +31,7 @@ def serialize_json(value: Xavc4kIntraVbrProfileSettings) -> dict:
 
 def deserialize_json(data: dict) -> Xavc4kIntraVbrProfileSettings:
     out: Xavc4kIntraVbrProfileSettings = {}  # type: ignore[typeddict-item]
-    if "xavcClass" in data:
+    if data.get("xavcClass") is not None:
         import capo_mediaconvert.types.xavc4k_intra_vbr_profile_class
 
         out["xavc_class"] = (

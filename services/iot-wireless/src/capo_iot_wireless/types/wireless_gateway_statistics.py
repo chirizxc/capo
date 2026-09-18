@@ -56,20 +56,20 @@ def serialize_json(value: WirelessGatewayStatistics) -> dict:
 
 def deserialize_json(data: dict) -> WirelessGatewayStatistics:
     out: WirelessGatewayStatistics = {}  # type: ignore[typeddict-item]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "LoRaWAN" in data:
+    if data.get("LoRaWAN") is not None:
         import capo_iot_wireless.types.lo_ra_wan_gateway
 
         out["lo_ra_wan"] = capo_iot_wireless.types.lo_ra_wan_gateway.deserialize_json(
             data["LoRaWAN"]
         )
-    if "LastUplinkReceivedAt" in data:
+    if data.get("LastUplinkReceivedAt") is not None:
         out["last_uplink_received_at"] = data["LastUplinkReceivedAt"]
     return out

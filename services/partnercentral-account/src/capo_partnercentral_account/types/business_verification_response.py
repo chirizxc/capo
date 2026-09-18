@@ -50,7 +50,7 @@ def serialize_aws_json_1_0(value: BusinessVerificationResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> BusinessVerificationResponse:
     out: BusinessVerificationResponse = {}  # type: ignore[typeddict-item]
-    if "BusinessVerificationDetails" in data:
+    if data.get("BusinessVerificationDetails") is not None:
         import capo_partnercentral_account.types.business_verification_details
 
         out["business_verification_details"] = (
@@ -62,9 +62,9 @@ def deserialize_aws_json_1_0(data: dict) -> BusinessVerificationResponse:
         raise DeserializationError(
             "BusinessVerificationResponse.business_verification_details required"
         )
-    if "CompletionUrl" in data:
+    if data.get("CompletionUrl") is not None:
         out["completion_url"] = data["CompletionUrl"]
-    if "CompletionUrlExpiresAt" in data:
+    if data.get("CompletionUrlExpiresAt") is not None:
         import capo_partnercentral_account.types.date_time
 
         out["completion_url_expires_at"] = (

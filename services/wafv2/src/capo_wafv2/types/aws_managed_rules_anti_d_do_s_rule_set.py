@@ -45,7 +45,7 @@ def serialize_aws_json_1_1(value: AWSManagedRulesAntiDDoSRuleSet) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AWSManagedRulesAntiDDoSRuleSet:
     out: AWSManagedRulesAntiDDoSRuleSet = {}  # type: ignore[typeddict-item]
-    if "ClientSideActionConfig" in data:
+    if data.get("ClientSideActionConfig") is not None:
         import capo_wafv2.types.client_side_action_config
 
         out["client_side_action_config"] = (
@@ -57,7 +57,7 @@ def deserialize_aws_json_1_1(data: dict) -> AWSManagedRulesAntiDDoSRuleSet:
         raise DeserializationError(
             "AWSManagedRulesAntiDDoSRuleSet.client_side_action_config required"
         )
-    if "SensitivityToBlock" in data:
+    if data.get("SensitivityToBlock") is not None:
         import capo_wafv2.types.sensitivity_to_act
 
         out["sensitivity_to_block"] = (

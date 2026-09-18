@@ -27,11 +27,19 @@ def serialize_aws_json_1_1(value: ListSnapshotCopyConfigurationsRequest) -> dict
     out: dict = {}
     if "namespace_name" in value:
         out["namespaceName"] = value["namespace_name"]
+    if "next_token" in value:
+        out["nextToken"] = value["next_token"]
+    if "max_results" in value:
+        out["maxResults"] = value["max_results"]
     return out
 
 
 def deserialize_aws_json_1_1(data: dict) -> ListSnapshotCopyConfigurationsRequest:
     out: ListSnapshotCopyConfigurationsRequest = {}  # type: ignore[typeddict-item]
-    if "namespaceName" in data:
+    if data.get("namespaceName") is not None:
         out["namespace_name"] = data["namespaceName"]
+    if data.get("nextToken") is not None:
+        out["next_token"] = data["nextToken"]
+    if data.get("maxResults") is not None:
+        out["max_results"] = data["maxResults"]
     return out

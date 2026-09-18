@@ -206,37 +206,37 @@ def serialize_aws_json_1_1(value: VirtualInterface) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> VirtualInterface:
     out: VirtualInterface = {}  # type: ignore[typeddict-item]
-    if "ownerAccount" in data:
+    if data.get("ownerAccount") is not None:
         out["owner_account"] = data["ownerAccount"]
-    if "virtualInterfaceId" in data:
+    if data.get("virtualInterfaceId") is not None:
         out["virtual_interface_id"] = data["virtualInterfaceId"]
-    if "location" in data:
+    if data.get("location") is not None:
         out["location"] = data["location"]
-    if "connectionId" in data:
+    if data.get("connectionId") is not None:
         out["connection_id"] = data["connectionId"]
-    if "virtualInterfaceType" in data:
+    if data.get("virtualInterfaceType") is not None:
         out["virtual_interface_type"] = data["virtualInterfaceType"]
-    if "virtualInterfaceName" in data:
+    if data.get("virtualInterfaceName") is not None:
         out["virtual_interface_name"] = data["virtualInterfaceName"]
-    if "vlan" in data:
+    if data.get("vlan") is not None:
         out["vlan"] = data["vlan"]
     else:
         out["vlan"] = 0
-    if "asn" in data:
+    if data.get("asn") is not None:
         out["asn"] = data["asn"]
     else:
         out["asn"] = 0
-    if "asnLong" in data:
+    if data.get("asnLong") is not None:
         out["asn_long"] = data["asnLong"]
-    if "amazonSideAsn" in data:
+    if data.get("amazonSideAsn") is not None:
         out["amazon_side_asn"] = data["amazonSideAsn"]
-    if "authKey" in data:
+    if data.get("authKey") is not None:
         out["auth_key"] = data["authKey"]
-    if "amazonAddress" in data:
+    if data.get("amazonAddress") is not None:
         out["amazon_address"] = data["amazonAddress"]
-    if "customerAddress" in data:
+    if data.get("customerAddress") is not None:
         out["customer_address"] = data["customerAddress"]
-    if "addressFamily" in data:
+    if data.get("addressFamily") is not None:
         import capo_direct_connect.types.address_family
 
         out["address_family"] = (
@@ -244,7 +244,7 @@ def deserialize_aws_json_1_1(data: dict) -> VirtualInterface:
                 data["addressFamily"]
             )
         )
-    if "virtualInterfaceState" in data:
+    if data.get("virtualInterfaceState") is not None:
         import capo_direct_connect.types.virtual_interface_state
 
         out["virtual_interface_state"] = (
@@ -252,17 +252,17 @@ def deserialize_aws_json_1_1(data: dict) -> VirtualInterface:
                 data["virtualInterfaceState"]
             )
         )
-    if "customerRouterConfig" in data:
+    if data.get("customerRouterConfig") is not None:
         out["customer_router_config"] = data["customerRouterConfig"]
-    if "mtu" in data:
+    if data.get("mtu") is not None:
         out["mtu"] = data["mtu"]
-    if "jumboFrameCapable" in data:
+    if data.get("jumboFrameCapable") is not None:
         out["jumbo_frame_capable"] = data["jumboFrameCapable"]
-    if "virtualGatewayId" in data:
+    if data.get("virtualGatewayId") is not None:
         out["virtual_gateway_id"] = data["virtualGatewayId"]
-    if "directConnectGatewayId" in data:
+    if data.get("directConnectGatewayId") is not None:
         out["direct_connect_gateway_id"] = data["directConnectGatewayId"]
-    if "routeFilterPrefixes" in data:
+    if data.get("routeFilterPrefixes") is not None:
         import capo_direct_connect.types.route_filter_prefix_list
 
         out["route_filter_prefixes"] = (
@@ -270,7 +270,7 @@ def deserialize_aws_json_1_1(data: dict) -> VirtualInterface:
                 data["routeFilterPrefixes"]
             )
         )
-    if "bgpPeers" in data:
+    if data.get("bgpPeers") is not None:
         import capo_direct_connect.types.bgp_peer_list
 
         out["bgp_peers"] = (
@@ -278,18 +278,18 @@ def deserialize_aws_json_1_1(data: dict) -> VirtualInterface:
                 data["bgpPeers"]
             )
         )
-    if "region" in data:
+    if data.get("region") is not None:
         out["region"] = data["region"]
-    if "awsDeviceV2" in data:
+    if data.get("awsDeviceV2") is not None:
         out["aws_device_v2"] = data["awsDeviceV2"]
-    if "awsLogicalDeviceId" in data:
+    if data.get("awsLogicalDeviceId") is not None:
         out["aws_logical_device_id"] = data["awsLogicalDeviceId"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_direct_connect.types.tag_list
 
         out["tags"] = capo_direct_connect.types.tag_list.deserialize_aws_json_1_1(
             data["tags"]
         )
-    if "siteLinkEnabled" in data:
+    if data.get("siteLinkEnabled") is not None:
         out["site_link_enabled"] = data["siteLinkEnabled"]
     return out

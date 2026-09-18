@@ -74,9 +74,9 @@ def serialize_json(value: RouteTollRate) -> dict:
 
 def deserialize_json(data: dict) -> RouteTollRate:
     out: RouteTollRate = {}  # type: ignore[typeddict-item]
-    if "ApplicableTimes" in data:
+    if data.get("ApplicableTimes") is not None:
         out["applicable_times"] = data["ApplicableTimes"]
-    if "ConvertedPrice" in data:
+    if data.get("ConvertedPrice") is not None:
         import capo_geo_routes.types.route_toll_price
 
         out["converted_price"] = (
@@ -84,11 +84,11 @@ def deserialize_json(data: dict) -> RouteTollRate:
                 data["ConvertedPrice"]
             )
         )
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
     else:
         raise DeserializationError("RouteTollRate.id required")
-    if "LocalPrice" in data:
+    if data.get("LocalPrice") is not None:
         import capo_geo_routes.types.route_toll_price
 
         out["local_price"] = capo_geo_routes.types.route_toll_price.deserialize_json(
@@ -96,17 +96,17 @@ def deserialize_json(data: dict) -> RouteTollRate:
         )
     else:
         raise DeserializationError("RouteTollRate.local_price required")
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("RouteTollRate.name required")
-    if "Pass" in data:
+    if data.get("Pass") is not None:
         import capo_geo_routes.types.route_toll_pass
 
         out["pass"] = capo_geo_routes.types.route_toll_pass.deserialize_json(
             data["Pass"]
         )
-    if "PaymentMethods" in data:
+    if data.get("PaymentMethods") is not None:
         import capo_geo_routes.types.route_toll_payment_method_list
 
         out["payment_methods"] = (
@@ -116,7 +116,7 @@ def deserialize_json(data: dict) -> RouteTollRate:
         )
     else:
         raise DeserializationError("RouteTollRate.payment_methods required")
-    if "Transponders" in data:
+    if data.get("Transponders") is not None:
         import capo_geo_routes.types.route_transponder_list
 
         out["transponders"] = (

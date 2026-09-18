@@ -42,13 +42,13 @@ def serialize_json(value: DeviceSummary) -> dict:
 
 def deserialize_json(data: dict) -> DeviceSummary:
     out: DeviceSummary = {}  # type: ignore[typeddict-item]
-    if "managedDeviceId" in data:
+    if data.get("managedDeviceId") is not None:
         out["managed_device_id"] = data["managedDeviceId"]
-    if "managedDeviceArn" in data:
+    if data.get("managedDeviceArn") is not None:
         out["managed_device_arn"] = data["managedDeviceArn"]
-    if "associatedWithJob" in data:
+    if data.get("associatedWithJob") is not None:
         out["associated_with_job"] = data["associatedWithJob"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_snow_device_management.types.tag_map
 
         out["tags"] = capo_snow_device_management.types.tag_map.deserialize_json(

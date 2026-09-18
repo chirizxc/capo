@@ -95,10 +95,11 @@ class AudienceGenerationJob:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanroomsml.types.start_audience_generation_job_request.StartAudienceGenerationJobRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        input_["configured_audience_model_arn"] = configured_audience_model_arn
-        input_["seed_audience"] = seed_audience
+        input_: capo_cleanroomsml.types.start_audience_generation_job_request.StartAudienceGenerationJobRequest = {
+            "name": name,
+            "configured_audience_model_arn": configured_audience_model_arn,
+            "seed_audience": seed_audience,
+        }
         if include_seed_in_output is not None:
             input_["include_seed_in_output"] = include_seed_in_output
         if collaboration_id is not None:
@@ -113,6 +114,7 @@ class AudienceGenerationJob:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -148,14 +150,16 @@ class AudienceGenerationJob:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanroomsml.types.get_audience_generation_job_request.GetAudienceGenerationJobRequest = {}  # type: ignore[typeddict-item]
-        input_["audience_generation_job_arn"] = audience_generation_job_arn
+        input_: capo_cleanroomsml.types.get_audience_generation_job_request.GetAudienceGenerationJobRequest = {
+            "audience_generation_job_arn": audience_generation_job_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -190,14 +194,16 @@ class AudienceGenerationJob:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanroomsml.types.delete_audience_generation_job_request.DeleteAudienceGenerationJobRequest = {}  # type: ignore[typeddict-item]
-        input_["audience_generation_job_arn"] = audience_generation_job_arn
+        input_: capo_cleanroomsml.types.delete_audience_generation_job_request.DeleteAudienceGenerationJobRequest = {
+            "audience_generation_job_arn": audience_generation_job_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -240,7 +246,7 @@ class AudienceGenerationJob:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanroomsml.types.list_audience_generation_jobs_request.ListAudienceGenerationJobsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_cleanroomsml.types.list_audience_generation_jobs_request.ListAudienceGenerationJobsRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -255,6 +261,7 @@ class AudienceGenerationJob:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -313,10 +320,11 @@ class AsyncAudienceGenerationJob:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanroomsml.types.start_audience_generation_job_request.StartAudienceGenerationJobRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        input_["configured_audience_model_arn"] = configured_audience_model_arn
-        input_["seed_audience"] = seed_audience
+        input_: capo_cleanroomsml.types.start_audience_generation_job_request.StartAudienceGenerationJobRequest = {
+            "name": name,
+            "configured_audience_model_arn": configured_audience_model_arn,
+            "seed_audience": seed_audience,
+        }
         if include_seed_in_output is not None:
             input_["include_seed_in_output"] = include_seed_in_output
         if collaboration_id is not None:
@@ -331,6 +339,7 @@ class AsyncAudienceGenerationJob:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -367,14 +376,16 @@ class AsyncAudienceGenerationJob:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanroomsml.types.get_audience_generation_job_request.GetAudienceGenerationJobRequest = {}  # type: ignore[typeddict-item]
-        input_["audience_generation_job_arn"] = audience_generation_job_arn
+        input_: capo_cleanroomsml.types.get_audience_generation_job_request.GetAudienceGenerationJobRequest = {
+            "audience_generation_job_arn": audience_generation_job_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -410,14 +421,16 @@ class AsyncAudienceGenerationJob:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanroomsml.types.delete_audience_generation_job_request.DeleteAudienceGenerationJobRequest = {}  # type: ignore[typeddict-item]
-        input_["audience_generation_job_arn"] = audience_generation_job_arn
+        input_: capo_cleanroomsml.types.delete_audience_generation_job_request.DeleteAudienceGenerationJobRequest = {
+            "audience_generation_job_arn": audience_generation_job_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -461,7 +474,7 @@ class AsyncAudienceGenerationJob:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanroomsml.types.list_audience_generation_jobs_request.ListAudienceGenerationJobsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_cleanroomsml.types.list_audience_generation_jobs_request.ListAudienceGenerationJobsRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -476,4 +489,5 @@ class AsyncAudienceGenerationJob:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

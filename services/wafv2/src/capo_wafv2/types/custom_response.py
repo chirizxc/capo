@@ -42,13 +42,13 @@ def serialize_aws_json_1_1(value: CustomResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CustomResponse:
     out: CustomResponse = {}  # type: ignore[typeddict-item]
-    if "ResponseCode" in data:
+    if data.get("ResponseCode") is not None:
         out["response_code"] = data["ResponseCode"]
     else:
         raise DeserializationError("CustomResponse.response_code required")
-    if "CustomResponseBodyKey" in data:
+    if data.get("CustomResponseBodyKey") is not None:
         out["custom_response_body_key"] = data["CustomResponseBodyKey"]
-    if "ResponseHeaders" in data:
+    if data.get("ResponseHeaders") is not None:
         import capo_wafv2.types.custom_http_headers
 
         out["response_headers"] = (

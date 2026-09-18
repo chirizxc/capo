@@ -71,7 +71,7 @@ def serialize_json(value: StartImportTaskInput) -> dict:
 
 def deserialize_json(data: dict) -> StartImportTaskInput:
     out: StartImportTaskInput = {}  # type: ignore[typeddict-item]
-    if "importOptions" in data:
+    if data.get("importOptions") is not None:
         import capo_neptune_graph.types.import_options
 
         out["import_options"] = (
@@ -79,23 +79,23 @@ def deserialize_json(data: dict) -> StartImportTaskInput:
                 data["importOptions"]
             )
         )
-    if "failOnError" in data:
+    if data.get("failOnError") is not None:
         out["fail_on_error"] = data["failOnError"]
-    if "source" in data:
+    if data.get("source") is not None:
         out["source"] = data["source"]
     else:
         raise DeserializationError("StartImportTaskInput.source required")
-    if "format" in data:
+    if data.get("format") is not None:
         import capo_neptune_graph.types.format
 
         out["format"] = capo_neptune_graph.types.format.deserialize_json(data["format"])
-    if "parquetType" in data:
+    if data.get("parquetType") is not None:
         import capo_neptune_graph.types.parquet_type
 
         out["parquet_type"] = capo_neptune_graph.types.parquet_type.deserialize_json(
             data["parquetType"]
         )
-    if "blankNodeHandling" in data:
+    if data.get("blankNodeHandling") is not None:
         import capo_neptune_graph.types.blank_node_handling
 
         out["blank_node_handling"] = (
@@ -103,7 +103,7 @@ def deserialize_json(data: dict) -> StartImportTaskInput:
                 data["blankNodeHandling"]
             )
         )
-    if "roleArn" in data:
+    if data.get("roleArn") is not None:
         out["role_arn"] = data["roleArn"]
     else:
         raise DeserializationError("StartImportTaskInput.role_arn required")

@@ -119,11 +119,11 @@ def serialize_aws_json_1_1(value: OptimizationJobSummary) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> OptimizationJobSummary:
     out: OptimizationJobSummary = {}  # type: ignore[typeddict-item]
-    if "OptimizationJobName" in data:
+    if data.get("OptimizationJobName") is not None:
         out["optimization_job_name"] = data["OptimizationJobName"]
-    if "OptimizationJobArn" in data:
+    if data.get("OptimizationJobArn") is not None:
         out["optimization_job_arn"] = data["OptimizationJobArn"]
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_sagemaker.types.creation_time
 
         out["creation_time"] = (
@@ -131,7 +131,7 @@ def deserialize_aws_json_1_1(data: dict) -> OptimizationJobSummary:
                 data["CreationTime"]
             )
         )
-    if "OptimizationJobStatus" in data:
+    if data.get("OptimizationJobStatus") is not None:
         import capo_sagemaker.types.optimization_job_status
 
         out["optimization_job_status"] = (
@@ -139,7 +139,7 @@ def deserialize_aws_json_1_1(data: dict) -> OptimizationJobSummary:
                 data["OptimizationJobStatus"]
             )
         )
-    if "OptimizationStartTime" in data:
+    if data.get("OptimizationStartTime") is not None:
         import capo_sagemaker.types.timestamp
 
         out["optimization_start_time"] = (
@@ -147,7 +147,7 @@ def deserialize_aws_json_1_1(data: dict) -> OptimizationJobSummary:
                 data["OptimizationStartTime"]
             )
         )
-    if "OptimizationEndTime" in data:
+    if data.get("OptimizationEndTime") is not None:
         import capo_sagemaker.types.timestamp
 
         out["optimization_end_time"] = (
@@ -155,7 +155,7 @@ def deserialize_aws_json_1_1(data: dict) -> OptimizationJobSummary:
                 data["OptimizationEndTime"]
             )
         )
-    if "LastModifiedTime" in data:
+    if data.get("LastModifiedTime") is not None:
         import capo_sagemaker.types.last_modified_time
 
         out["last_modified_time"] = (
@@ -163,7 +163,7 @@ def deserialize_aws_json_1_1(data: dict) -> OptimizationJobSummary:
                 data["LastModifiedTime"]
             )
         )
-    if "DeploymentInstanceType" in data:
+    if data.get("DeploymentInstanceType") is not None:
         import capo_sagemaker.types.optimization_job_deployment_instance_type
 
         out["deployment_instance_type"] = (
@@ -171,9 +171,9 @@ def deserialize_aws_json_1_1(data: dict) -> OptimizationJobSummary:
                 data["DeploymentInstanceType"]
             )
         )
-    if "MaxInstanceCount" in data:
+    if data.get("MaxInstanceCount") is not None:
         out["max_instance_count"] = data["MaxInstanceCount"]
-    if "OptimizationTypes" in data:
+    if data.get("OptimizationTypes") is not None:
         import capo_sagemaker.types.optimization_types
 
         out["optimization_types"] = (

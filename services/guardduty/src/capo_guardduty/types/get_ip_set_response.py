@@ -58,26 +58,26 @@ def serialize_json(value: GetIPSetResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetIPSetResponse:
     out: GetIPSetResponse = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "format" in data:
+    if data.get("format") is not None:
         import capo_guardduty.types.ip_set_format
 
         out["format"] = capo_guardduty.types.ip_set_format.deserialize_json(
             data["format"]
         )
-    if "location" in data:
+    if data.get("location") is not None:
         out["location"] = data["location"]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_guardduty.types.ip_set_status
 
         out["status"] = capo_guardduty.types.ip_set_status.deserialize_json(
             data["status"]
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_guardduty.types.tag_map
 
         out["tags"] = capo_guardduty.types.tag_map.deserialize_json(data["tags"])
-    if "expectedBucketOwner" in data:
+    if data.get("expectedBucketOwner") is not None:
         out["expected_bucket_owner"] = data["expectedBucketOwner"]
     return out

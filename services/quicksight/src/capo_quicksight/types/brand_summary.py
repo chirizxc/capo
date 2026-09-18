@@ -69,27 +69,27 @@ def serialize_json(value: BrandSummary) -> dict:
 
 def deserialize_json(data: dict) -> BrandSummary:
     out: BrandSummary = {}  # type: ignore[typeddict-item]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "BrandId" in data:
+    if data.get("BrandId") is not None:
         out["brand_id"] = data["BrandId"]
-    if "BrandName" in data:
+    if data.get("BrandName") is not None:
         out["brand_name"] = data["BrandName"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "BrandStatus" in data:
+    if data.get("BrandStatus") is not None:
         import capo_quicksight.types.brand_status
 
         out["brand_status"] = capo_quicksight.types.brand_status.deserialize_json(
             data["BrandStatus"]
         )
-    if "CreatedTime" in data:
+    if data.get("CreatedTime") is not None:
         import capo_quicksight.types._prelude.timestamp
 
         out["created_time"] = capo_quicksight.types._prelude.timestamp.deserialize_json(
             data["CreatedTime"]
         )
-    if "LastUpdatedTime" in data:
+    if data.get("LastUpdatedTime") is not None:
         import capo_quicksight.types._prelude.timestamp
 
         out["last_updated_time"] = (

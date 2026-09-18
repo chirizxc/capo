@@ -49,7 +49,7 @@ def serialize_json(value: MemberAdditionalConfigurationResult) -> dict:
 
 def deserialize_json(data: dict) -> MemberAdditionalConfigurationResult:
     out: MemberAdditionalConfigurationResult = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         import capo_guardduty.types.org_feature_additional_configuration
 
         out["name"] = (
@@ -57,13 +57,13 @@ def deserialize_json(data: dict) -> MemberAdditionalConfigurationResult:
                 data["name"]
             )
         )
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_guardduty.types.feature_status
 
         out["status"] = capo_guardduty.types.feature_status.deserialize_json(
             data["status"]
         )
-    if "updatedAt" in data:
+    if data.get("updatedAt") is not None:
         import capo_guardduty.types.timestamp
 
         out["updated_at"] = capo_guardduty.types.timestamp.deserialize_json(

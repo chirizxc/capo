@@ -41,7 +41,7 @@ def serialize_json(value: AttributeAndCondition) -> dict:
 
 def deserialize_json(data: dict) -> AttributeAndCondition:
     out: AttributeAndCondition = {}  # type: ignore[typeddict-item]
-    if "TagConditions" in data:
+    if data.get("TagConditions") is not None:
         import capo_connect.types.tag_and_condition_list
 
         out["tag_conditions"] = (
@@ -49,7 +49,7 @@ def deserialize_json(data: dict) -> AttributeAndCondition:
                 data["TagConditions"]
             )
         )
-    if "HierarchyGroupCondition" in data:
+    if data.get("HierarchyGroupCondition") is not None:
         import capo_connect.types.hierarchy_group_condition
 
         out["hierarchy_group_condition"] = (

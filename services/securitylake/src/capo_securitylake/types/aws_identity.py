@@ -28,11 +28,11 @@ def serialize_json(value: AwsIdentity) -> dict:
 
 def deserialize_json(data: dict) -> AwsIdentity:
     out: AwsIdentity = {}  # type: ignore[typeddict-item]
-    if "principal" in data:
+    if data.get("principal") is not None:
         out["principal"] = data["principal"]
     else:
         raise DeserializationError("AwsIdentity.principal required")
-    if "externalId" in data:
+    if data.get("externalId") is not None:
         out["external_id"] = data["externalId"]
     else:
         raise DeserializationError("AwsIdentity.external_id required")

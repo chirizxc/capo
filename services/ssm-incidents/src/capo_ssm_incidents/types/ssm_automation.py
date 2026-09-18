@@ -60,25 +60,25 @@ def serialize_json(value: SsmAutomation) -> dict:
 
 def deserialize_json(data: dict) -> SsmAutomation:
     out: SsmAutomation = {}  # type: ignore[typeddict-item]
-    if "roleArn" in data:
+    if data.get("roleArn") is not None:
         out["role_arn"] = data["roleArn"]
     else:
         raise DeserializationError("SsmAutomation.role_arn required")
-    if "documentName" in data:
+    if data.get("documentName") is not None:
         out["document_name"] = data["documentName"]
     else:
         raise DeserializationError("SsmAutomation.document_name required")
-    if "documentVersion" in data:
+    if data.get("documentVersion") is not None:
         out["document_version"] = data["documentVersion"]
-    if "targetAccount" in data:
+    if data.get("targetAccount") is not None:
         out["target_account"] = data["targetAccount"]
-    if "parameters" in data:
+    if data.get("parameters") is not None:
         import capo_ssm_incidents.types.ssm_parameters
 
         out["parameters"] = capo_ssm_incidents.types.ssm_parameters.deserialize_json(
             data["parameters"]
         )
-    if "dynamicParameters" in data:
+    if data.get("dynamicParameters") is not None:
         import capo_ssm_incidents.types.dynamic_ssm_parameters
 
         out["dynamic_parameters"] = (

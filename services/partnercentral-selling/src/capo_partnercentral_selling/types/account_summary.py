@@ -57,7 +57,7 @@ def serialize_aws_json_1_0(value: AccountSummary) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> AccountSummary:
     out: AccountSummary = {}  # type: ignore[typeddict-item]
-    if "Industry" in data:
+    if data.get("Industry") is not None:
         import capo_partnercentral_selling.types.industry
 
         out["industry"] = (
@@ -65,15 +65,15 @@ def deserialize_aws_json_1_0(data: dict) -> AccountSummary:
                 data["Industry"]
             )
         )
-    if "OtherIndustry" in data:
+    if data.get("OtherIndustry") is not None:
         out["other_industry"] = data["OtherIndustry"]
-    if "CompanyName" in data:
+    if data.get("CompanyName") is not None:
         out["company_name"] = data["CompanyName"]
     else:
         raise DeserializationError("AccountSummary.company_name required")
-    if "WebsiteUrl" in data:
+    if data.get("WebsiteUrl") is not None:
         out["website_url"] = data["WebsiteUrl"]
-    if "Address" in data:
+    if data.get("Address") is not None:
         import capo_partnercentral_selling.types.address_summary
 
         out["address"] = (

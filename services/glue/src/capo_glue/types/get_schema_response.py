@@ -102,42 +102,42 @@ def serialize_aws_json_1_1(value: GetSchemaResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetSchemaResponse:
     out: GetSchemaResponse = {}  # type: ignore[typeddict-item]
-    if "RegistryName" in data:
+    if data.get("RegistryName") is not None:
         out["registry_name"] = data["RegistryName"]
-    if "RegistryArn" in data:
+    if data.get("RegistryArn") is not None:
         out["registry_arn"] = data["RegistryArn"]
-    if "SchemaName" in data:
+    if data.get("SchemaName") is not None:
         out["schema_name"] = data["SchemaName"]
-    if "SchemaArn" in data:
+    if data.get("SchemaArn") is not None:
         out["schema_arn"] = data["SchemaArn"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "DataFormat" in data:
+    if data.get("DataFormat") is not None:
         import capo_glue.types.data_format
 
         out["data_format"] = capo_glue.types.data_format.deserialize_aws_json_1_1(
             data["DataFormat"]
         )
-    if "Compatibility" in data:
+    if data.get("Compatibility") is not None:
         import capo_glue.types.compatibility
 
         out["compatibility"] = capo_glue.types.compatibility.deserialize_aws_json_1_1(
             data["Compatibility"]
         )
-    if "SchemaCheckpoint" in data:
+    if data.get("SchemaCheckpoint") is not None:
         out["schema_checkpoint"] = data["SchemaCheckpoint"]
-    if "LatestSchemaVersion" in data:
+    if data.get("LatestSchemaVersion") is not None:
         out["latest_schema_version"] = data["LatestSchemaVersion"]
-    if "NextSchemaVersion" in data:
+    if data.get("NextSchemaVersion") is not None:
         out["next_schema_version"] = data["NextSchemaVersion"]
-    if "SchemaStatus" in data:
+    if data.get("SchemaStatus") is not None:
         import capo_glue.types.schema_status
 
         out["schema_status"] = capo_glue.types.schema_status.deserialize_aws_json_1_1(
             data["SchemaStatus"]
         )
-    if "CreatedTime" in data:
+    if data.get("CreatedTime") is not None:
         out["created_time"] = data["CreatedTime"]
-    if "UpdatedTime" in data:
+    if data.get("UpdatedTime") is not None:
         out["updated_time"] = data["UpdatedTime"]
     return out

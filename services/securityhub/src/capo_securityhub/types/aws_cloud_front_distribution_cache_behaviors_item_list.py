@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> AwsCloudFrontDistributionCacheBehaviorsItemL
 
     out: AwsCloudFrontDistributionCacheBehaviorsItemList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_securityhub.types.aws_cloud_front_distribution_cache_behavior.deserialize_json(
                 item

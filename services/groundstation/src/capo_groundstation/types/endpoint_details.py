@@ -103,7 +103,7 @@ def serialize_json(value: EndpointDetails) -> dict:
 
 def deserialize_json(data: dict) -> EndpointDetails:
     out: EndpointDetails = {}  # type: ignore[typeddict-item]
-    if "securityDetails" in data:
+    if data.get("securityDetails") is not None:
         import capo_groundstation.types.security_details
 
         out["security_details"] = (
@@ -111,13 +111,13 @@ def deserialize_json(data: dict) -> EndpointDetails:
                 data["securityDetails"]
             )
         )
-    if "endpoint" in data:
+    if data.get("endpoint") is not None:
         import capo_groundstation.types.dataflow_endpoint
 
         out["endpoint"] = capo_groundstation.types.dataflow_endpoint.deserialize_json(
             data["endpoint"]
         )
-    if "awsGroundStationAgentEndpoint" in data:
+    if data.get("awsGroundStationAgentEndpoint") is not None:
         import capo_groundstation.types.aws_ground_station_agent_endpoint
 
         out["aws_ground_station_agent_endpoint"] = (
@@ -125,7 +125,7 @@ def deserialize_json(data: dict) -> EndpointDetails:
                 data["awsGroundStationAgentEndpoint"]
             )
         )
-    if "uplinkAwsGroundStationAgentEndpoint" in data:
+    if data.get("uplinkAwsGroundStationAgentEndpoint") is not None:
         import capo_groundstation.types.uplink_aws_ground_station_agent_endpoint_details
 
         out["uplink_aws_ground_station_agent_endpoint"] = (
@@ -133,7 +133,7 @@ def deserialize_json(data: dict) -> EndpointDetails:
                 data["uplinkAwsGroundStationAgentEndpoint"]
             )
         )
-    if "downlinkAwsGroundStationAgentEndpoint" in data:
+    if data.get("downlinkAwsGroundStationAgentEndpoint") is not None:
         import capo_groundstation.types.downlink_aws_ground_station_agent_endpoint_details
 
         out["downlink_aws_ground_station_agent_endpoint"] = (
@@ -141,7 +141,7 @@ def deserialize_json(data: dict) -> EndpointDetails:
                 data["downlinkAwsGroundStationAgentEndpoint"]
             )
         )
-    if "healthStatus" in data:
+    if data.get("healthStatus") is not None:
         import capo_groundstation.types.capability_health
 
         out["health_status"] = (
@@ -149,7 +149,7 @@ def deserialize_json(data: dict) -> EndpointDetails:
                 data["healthStatus"]
             )
         )
-    if "healthReasons" in data:
+    if data.get("healthReasons") is not None:
         import capo_groundstation.types.capability_health_reason_list
 
         out["health_reasons"] = (

@@ -31,7 +31,7 @@ def serialize_aws_json_1_0(value: QueryTemporalRange) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> QueryTemporalRange:
     out: QueryTemporalRange = {}  # type: ignore[typeddict-item]
-    if "Max" in data:
+    if data.get("Max") is not None:
         import capo_timestream_query.types.query_temporal_range_max
 
         out["max"] = (

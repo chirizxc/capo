@@ -137,11 +137,11 @@ def serialize_aws_json_1_0(value: Filter) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> Filter:
     out: Filter = {}  # type: ignore[typeddict-item]
-    if "restartNeeded" in data:
+    if data.get("restartNeeded") is not None:
         out["restart_needed"] = data["restartNeeded"]
-    if "rollbackPossible" in data:
+    if data.get("rollbackPossible") is not None:
         out["rollback_possible"] = data["rollbackPossible"]
-    if "implementationEfforts" in data:
+    if data.get("implementationEfforts") is not None:
         import capo_cost_optimization_hub.types.implementation_effort_list
 
         out["implementation_efforts"] = (
@@ -149,7 +149,7 @@ def deserialize_aws_json_1_0(data: dict) -> Filter:
                 data["implementationEfforts"]
             )
         )
-    if "accountIds" in data:
+    if data.get("accountIds") is not None:
         import capo_cost_optimization_hub.types.account_id_list
 
         out["account_ids"] = (
@@ -157,7 +157,7 @@ def deserialize_aws_json_1_0(data: dict) -> Filter:
                 data["accountIds"]
             )
         )
-    if "regions" in data:
+    if data.get("regions") is not None:
         import capo_cost_optimization_hub.types.region_list
 
         out["regions"] = (
@@ -165,7 +165,7 @@ def deserialize_aws_json_1_0(data: dict) -> Filter:
                 data["regions"]
             )
         )
-    if "resourceTypes" in data:
+    if data.get("resourceTypes") is not None:
         import capo_cost_optimization_hub.types.resource_type_list
 
         out["resource_types"] = (
@@ -173,7 +173,7 @@ def deserialize_aws_json_1_0(data: dict) -> Filter:
                 data["resourceTypes"]
             )
         )
-    if "actionTypes" in data:
+    if data.get("actionTypes") is not None:
         import capo_cost_optimization_hub.types.action_type_list
 
         out["action_types"] = (
@@ -181,7 +181,7 @@ def deserialize_aws_json_1_0(data: dict) -> Filter:
                 data["actionTypes"]
             )
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_cost_optimization_hub.types.tag_list
 
         out["tags"] = (
@@ -189,7 +189,7 @@ def deserialize_aws_json_1_0(data: dict) -> Filter:
                 data["tags"]
             )
         )
-    if "resourceIds" in data:
+    if data.get("resourceIds") is not None:
         import capo_cost_optimization_hub.types.resource_id_list
 
         out["resource_ids"] = (
@@ -197,7 +197,7 @@ def deserialize_aws_json_1_0(data: dict) -> Filter:
                 data["resourceIds"]
             )
         )
-    if "resourceArns" in data:
+    if data.get("resourceArns") is not None:
         import capo_cost_optimization_hub.types.resource_arn_list
 
         out["resource_arns"] = (
@@ -205,7 +205,7 @@ def deserialize_aws_json_1_0(data: dict) -> Filter:
                 data["resourceArns"]
             )
         )
-    if "recommendationIds" in data:
+    if data.get("recommendationIds") is not None:
         import capo_cost_optimization_hub.types.recommendation_id_list
 
         out["recommendation_ids"] = (

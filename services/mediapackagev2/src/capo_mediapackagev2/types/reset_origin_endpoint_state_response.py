@@ -42,29 +42,29 @@ def serialize_json(value: ResetOriginEndpointStateResponse) -> dict:
 
 def deserialize_json(data: dict) -> ResetOriginEndpointStateResponse:
     out: ResetOriginEndpointStateResponse = {}  # type: ignore[typeddict-item]
-    if "ChannelGroupName" in data:
+    if data.get("ChannelGroupName") is not None:
         out["channel_group_name"] = data["ChannelGroupName"]
     else:
         raise DeserializationError(
             "ResetOriginEndpointStateResponse.channel_group_name required"
         )
-    if "ChannelName" in data:
+    if data.get("ChannelName") is not None:
         out["channel_name"] = data["ChannelName"]
     else:
         raise DeserializationError(
             "ResetOriginEndpointStateResponse.channel_name required"
         )
-    if "OriginEndpointName" in data:
+    if data.get("OriginEndpointName") is not None:
         out["origin_endpoint_name"] = data["OriginEndpointName"]
     else:
         raise DeserializationError(
             "ResetOriginEndpointStateResponse.origin_endpoint_name required"
         )
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
     else:
         raise DeserializationError("ResetOriginEndpointStateResponse.arn required")
-    if "ResetAt" in data:
+    if data.get("ResetAt") is not None:
         import capo_mediapackagev2.types._prelude.timestamp
 
         out["reset_at"] = capo_mediapackagev2.types._prelude.timestamp.deserialize_json(

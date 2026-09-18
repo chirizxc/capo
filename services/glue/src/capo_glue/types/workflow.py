@@ -92,11 +92,11 @@ def serialize_aws_json_1_1(value: Workflow) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Workflow:
     out: Workflow = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "DefaultRunProperties" in data:
+    if data.get("DefaultRunProperties") is not None:
         import capo_glue.types.workflow_run_properties
 
         out["default_run_properties"] = (
@@ -104,13 +104,13 @@ def deserialize_aws_json_1_1(data: dict) -> Workflow:
                 data["DefaultRunProperties"]
             )
         )
-    if "CreatedOn" in data:
+    if data.get("CreatedOn") is not None:
         import capo_glue.types.timestamp_value
 
         out["created_on"] = capo_glue.types.timestamp_value.deserialize_aws_json_1_1(
             data["CreatedOn"]
         )
-    if "LastModifiedOn" in data:
+    if data.get("LastModifiedOn") is not None:
         import capo_glue.types.timestamp_value
 
         out["last_modified_on"] = (
@@ -118,21 +118,21 @@ def deserialize_aws_json_1_1(data: dict) -> Workflow:
                 data["LastModifiedOn"]
             )
         )
-    if "LastRun" in data:
+    if data.get("LastRun") is not None:
         import capo_glue.types.workflow_run
 
         out["last_run"] = capo_glue.types.workflow_run.deserialize_aws_json_1_1(
             data["LastRun"]
         )
-    if "Graph" in data:
+    if data.get("Graph") is not None:
         import capo_glue.types.workflow_graph
 
         out["graph"] = capo_glue.types.workflow_graph.deserialize_aws_json_1_1(
             data["Graph"]
         )
-    if "MaxConcurrentRuns" in data:
+    if data.get("MaxConcurrentRuns") is not None:
         out["max_concurrent_runs"] = data["MaxConcurrentRuns"]
-    if "BlueprintDetails" in data:
+    if data.get("BlueprintDetails") is not None:
         import capo_glue.types.blueprint_details
 
         out["blueprint_details"] = (

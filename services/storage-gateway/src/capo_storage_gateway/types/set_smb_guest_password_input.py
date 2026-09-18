@@ -28,11 +28,11 @@ def serialize_aws_json_1_1(value: SetSMBGuestPasswordInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SetSMBGuestPasswordInput:
     out: SetSMBGuestPasswordInput = {}  # type: ignore[typeddict-item]
-    if "GatewayARN" in data:
+    if data.get("GatewayARN") is not None:
         out["gateway_arn"] = data["GatewayARN"]
     else:
         raise DeserializationError("SetSMBGuestPasswordInput.gateway_arn required")
-    if "Password" in data:
+    if data.get("Password") is not None:
         out["password"] = data["Password"]
     else:
         raise DeserializationError("SetSMBGuestPasswordInput.password required")

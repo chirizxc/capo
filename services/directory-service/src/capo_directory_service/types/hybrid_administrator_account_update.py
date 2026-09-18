@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: HybridAdministratorAccountUpdate) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> HybridAdministratorAccountUpdate:
     out: HybridAdministratorAccountUpdate = {}  # type: ignore[typeddict-item]
-    if "SecretArn" in data:
+    if data.get("SecretArn") is not None:
         out["secret_arn"] = data["SecretArn"]
     else:
         raise DeserializationError(

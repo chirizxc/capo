@@ -37,11 +37,11 @@ def serialize_json(value: EmailInsights) -> dict:
 
 def deserialize_json(data: dict) -> EmailInsights:
     out: EmailInsights = {}  # type: ignore[typeddict-item]
-    if "Destination" in data:
+    if data.get("Destination") is not None:
         out["destination"] = data["Destination"]
-    if "Isp" in data:
+    if data.get("Isp") is not None:
         out["isp"] = data["Isp"]
-    if "Events" in data:
+    if data.get("Events") is not None:
         import capo_sesv2.types.insights_events
 
         out["events"] = capo_sesv2.types.insights_events.deserialize_json(

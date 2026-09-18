@@ -25,7 +25,7 @@ def serialize_aws_json_1_1(value: InactiveEventDataStoreException_) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> InactiveEventDataStoreException_:
     out: InactiveEventDataStoreException_ = {}  # type: ignore[typeddict-item]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     return out
 
@@ -35,15 +35,20 @@ class InactiveEventDataStoreException(ServiceError):
 
     code: str | None = "InactiveEventDataStoreException"
 
-    def __init__(self, data: InactiveEventDataStoreException_):
+    def __init__(
+        self, data: InactiveEventDataStoreException_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="InactiveEventDataStoreException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "InactiveEventDataStoreException":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "InactiveEventDataStoreException":
+        return cls(deserialize_aws_json_1_1(data), message)

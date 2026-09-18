@@ -49,7 +49,7 @@ def serialize_aws_json_1_1(value: RuntimeConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RuntimeConfiguration:
     out: RuntimeConfiguration = {}  # type: ignore[typeddict-item]
-    if "ServerProcesses" in data:
+    if data.get("ServerProcesses") is not None:
         import capo_gamelift.types.server_process_list
 
         out["server_processes"] = (
@@ -57,11 +57,11 @@ def deserialize_aws_json_1_1(data: dict) -> RuntimeConfiguration:
                 data["ServerProcesses"]
             )
         )
-    if "MaxConcurrentGameSessionActivations" in data:
+    if data.get("MaxConcurrentGameSessionActivations") is not None:
         out["max_concurrent_game_session_activations"] = data[
             "MaxConcurrentGameSessionActivations"
         ]
-    if "GameSessionActivationTimeoutSeconds" in data:
+    if data.get("GameSessionActivationTimeoutSeconds") is not None:
         out["game_session_activation_timeout_seconds"] = data[
             "GameSessionActivationTimeoutSeconds"
         ]

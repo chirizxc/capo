@@ -25,6 +25,8 @@ def serialize_json(input_to_serialize: ActionParameterMap) -> dict:
 def deserialize_json(data: dict) -> ActionParameterMap:
     out: ActionParameterMap = {}
     for key, value in data.items():
+        if value is None:
+            continue
         import capo_fis.types.action_parameter
 
         out[key] = capo_fis.types.action_parameter.deserialize_json(value)

@@ -54,17 +54,17 @@ def serialize_aws_json_1_1(value: Entity) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Entity:
     out: Entity = {}  # type: ignore[typeddict-item]
-    if "EntityName" in data:
+    if data.get("EntityName") is not None:
         out["entity_name"] = data["EntityName"]
-    if "Label" in data:
+    if data.get("Label") is not None:
         out["label"] = data["Label"]
-    if "IsParentEntity" in data:
+    if data.get("IsParentEntity") is not None:
         out["is_parent_entity"] = data["IsParentEntity"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Category" in data:
+    if data.get("Category") is not None:
         out["category"] = data["Category"]
-    if "CustomProperties" in data:
+    if data.get("CustomProperties") is not None:
         import capo_glue.types.custom_properties
 
         out["custom_properties"] = (

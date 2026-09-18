@@ -57,7 +57,7 @@ def serialize_json(value: EncryptionMethod) -> dict:
 
 def deserialize_json(data: dict) -> EncryptionMethod:
     out: EncryptionMethod = {}  # type: ignore[typeddict-item]
-    if "TsEncryptionMethod" in data:
+    if data.get("TsEncryptionMethod") is not None:
         import capo_mediapackagev2.types.ts_encryption_method
 
         out["ts_encryption_method"] = (
@@ -65,7 +65,7 @@ def deserialize_json(data: dict) -> EncryptionMethod:
                 data["TsEncryptionMethod"]
             )
         )
-    if "CmafEncryptionMethod" in data:
+    if data.get("CmafEncryptionMethod") is not None:
         import capo_mediapackagev2.types.cmaf_encryption_method
 
         out["cmaf_encryption_method"] = (
@@ -73,7 +73,7 @@ def deserialize_json(data: dict) -> EncryptionMethod:
                 data["CmafEncryptionMethod"]
             )
         )
-    if "IsmEncryptionMethod" in data:
+    if data.get("IsmEncryptionMethod") is not None:
         import capo_mediapackagev2.types.ism_encryption_method
 
         out["ism_encryption_method"] = (

@@ -64,7 +64,7 @@ def serialize_json(value: Rule) -> dict:
 
 def deserialize_json(data: dict) -> Rule:
     out: Rule = {}  # type: ignore[typeddict-item]
-    if "includedUsersAndGroups" in data:
+    if data.get("includedUsersAndGroups") is not None:
         import capo_qbusiness.types.users_and_groups
 
         out["included_users_and_groups"] = (
@@ -72,7 +72,7 @@ def deserialize_json(data: dict) -> Rule:
                 data["includedUsersAndGroups"]
             )
         )
-    if "excludedUsersAndGroups" in data:
+    if data.get("excludedUsersAndGroups") is not None:
         import capo_qbusiness.types.users_and_groups
 
         out["excluded_users_and_groups"] = (
@@ -80,7 +80,7 @@ def deserialize_json(data: dict) -> Rule:
                 data["excludedUsersAndGroups"]
             )
         )
-    if "ruleType" in data:
+    if data.get("ruleType") is not None:
         import capo_qbusiness.types.rule_type
 
         out["rule_type"] = capo_qbusiness.types.rule_type.deserialize_json(
@@ -88,7 +88,7 @@ def deserialize_json(data: dict) -> Rule:
         )
     else:
         raise DeserializationError("Rule.rule_type required")
-    if "ruleConfiguration" in data:
+    if data.get("ruleConfiguration") is not None:
         import capo_qbusiness.types.rule_configuration
 
         out["rule_configuration"] = (

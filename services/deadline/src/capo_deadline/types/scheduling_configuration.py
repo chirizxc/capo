@@ -62,7 +62,7 @@ def serialize_json(value: SchedulingConfiguration) -> dict:
 
 
 def deserialize_json(data: dict) -> SchedulingConfiguration:
-    if "priorityFifo" in data:
+    if data.get("priorityFifo") is not None:
         import capo_deadline.types.priority_fifo_scheduling_configuration
 
         return {
@@ -70,7 +70,7 @@ def deserialize_json(data: dict) -> SchedulingConfiguration:
                 data["priorityFifo"]
             )
         }
-    elif "priorityBalanced" in data:
+    elif data.get("priorityBalanced") is not None:
         import capo_deadline.types.priority_balanced_scheduling_configuration
 
         return {
@@ -78,7 +78,7 @@ def deserialize_json(data: dict) -> SchedulingConfiguration:
                 data["priorityBalanced"]
             )
         }
-    elif "weightedBalanced" in data:
+    elif data.get("weightedBalanced") is not None:
         import capo_deadline.types.weighted_balanced_scheduling_configuration
 
         return {

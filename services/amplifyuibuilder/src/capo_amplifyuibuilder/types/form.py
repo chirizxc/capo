@@ -100,23 +100,23 @@ def serialize_json(value: Form) -> dict:
 
 def deserialize_json(data: dict) -> Form:
     out: Form = {}  # type: ignore[typeddict-item]
-    if "appId" in data:
+    if data.get("appId") is not None:
         out["app_id"] = data["appId"]
     else:
         raise DeserializationError("Form.app_id required")
-    if "environmentName" in data:
+    if data.get("environmentName") is not None:
         out["environment_name"] = data["environmentName"]
     else:
         raise DeserializationError("Form.environment_name required")
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("Form.id required")
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("Form.name required")
-    if "formActionType" in data:
+    if data.get("formActionType") is not None:
         import capo_amplifyuibuilder.types.form_action_type
 
         out["form_action_type"] = (
@@ -126,7 +126,7 @@ def deserialize_json(data: dict) -> Form:
         )
     else:
         raise DeserializationError("Form.form_action_type required")
-    if "style" in data:
+    if data.get("style") is not None:
         import capo_amplifyuibuilder.types.form_style
 
         out["style"] = capo_amplifyuibuilder.types.form_style.deserialize_json(
@@ -134,7 +134,7 @@ def deserialize_json(data: dict) -> Form:
         )
     else:
         raise DeserializationError("Form.style required")
-    if "dataType" in data:
+    if data.get("dataType") is not None:
         import capo_amplifyuibuilder.types.form_data_type_config
 
         out["data_type"] = (
@@ -144,7 +144,7 @@ def deserialize_json(data: dict) -> Form:
         )
     else:
         raise DeserializationError("Form.data_type required")
-    if "fields" in data:
+    if data.get("fields") is not None:
         import capo_amplifyuibuilder.types.fields_map
 
         out["fields"] = capo_amplifyuibuilder.types.fields_map.deserialize_json(
@@ -152,7 +152,7 @@ def deserialize_json(data: dict) -> Form:
         )
     else:
         raise DeserializationError("Form.fields required")
-    if "sectionalElements" in data:
+    if data.get("sectionalElements") is not None:
         import capo_amplifyuibuilder.types.sectional_element_map
 
         out["sectional_elements"] = (
@@ -162,18 +162,18 @@ def deserialize_json(data: dict) -> Form:
         )
     else:
         raise DeserializationError("Form.sectional_elements required")
-    if "schemaVersion" in data:
+    if data.get("schemaVersion") is not None:
         out["schema_version"] = data["schemaVersion"]
     else:
         raise DeserializationError("Form.schema_version required")
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_amplifyuibuilder.types.tags
 
         out["tags"] = capo_amplifyuibuilder.types.tags.deserialize_json(data["tags"])
-    if "cta" in data:
+    if data.get("cta") is not None:
         import capo_amplifyuibuilder.types.form_cta
 
         out["cta"] = capo_amplifyuibuilder.types.form_cta.deserialize_json(data["cta"])
-    if "labelDecorator" in data:
+    if data.get("labelDecorator") is not None:
         out["label_decorator"] = data["labelDecorator"]
     return out

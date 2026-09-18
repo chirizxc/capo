@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> VersionFailureReasonCodes:
 
     out: VersionFailureReasonCodes = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_groundstation.types.version_failure_reason_code.deserialize_json(item)
         )

@@ -42,13 +42,13 @@ def serialize_json(value: FrameCaptureGroupSettings) -> dict:
 
 def deserialize_json(data: dict) -> FrameCaptureGroupSettings:
     out: FrameCaptureGroupSettings = {}  # type: ignore[typeddict-item]
-    if "destination" in data:
+    if data.get("destination") is not None:
         import capo_medialive.types.output_location_ref
 
         out["destination"] = capo_medialive.types.output_location_ref.deserialize_json(
             data["destination"]
         )
-    if "frameCaptureCdnSettings" in data:
+    if data.get("frameCaptureCdnSettings") is not None:
         import capo_medialive.types.frame_capture_cdn_settings
 
         out["frame_capture_cdn_settings"] = (

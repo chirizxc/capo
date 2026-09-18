@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: StartTranscriptionJobResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> StartTranscriptionJobResponse:
     out: StartTranscriptionJobResponse = {}  # type: ignore[typeddict-item]
-    if "TranscriptionJob" in data:
+    if data.get("TranscriptionJob") is not None:
         import capo_transcribe.types.transcription_job
 
         out["transcription_job"] = (

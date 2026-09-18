@@ -69,15 +69,15 @@ def serialize_json(value: GetEventStreamResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetEventStreamResponse:
     out: GetEventStreamResponse = {}  # type: ignore[typeddict-item]
-    if "DomainName" in data:
+    if data.get("DomainName") is not None:
         out["domain_name"] = data["DomainName"]
     else:
         raise DeserializationError("GetEventStreamResponse.domain_name required")
-    if "EventStreamArn" in data:
+    if data.get("EventStreamArn") is not None:
         out["event_stream_arn"] = data["EventStreamArn"]
     else:
         raise DeserializationError("GetEventStreamResponse.event_stream_arn required")
-    if "CreatedAt" in data:
+    if data.get("CreatedAt") is not None:
         import capo_customer_profiles.types.timestamp
 
         out["created_at"] = capo_customer_profiles.types.timestamp.deserialize_json(
@@ -85,7 +85,7 @@ def deserialize_json(data: dict) -> GetEventStreamResponse:
         )
     else:
         raise DeserializationError("GetEventStreamResponse.created_at required")
-    if "State" in data:
+    if data.get("State") is not None:
         import capo_customer_profiles.types.event_stream_state
 
         out["state"] = capo_customer_profiles.types.event_stream_state.deserialize_json(
@@ -93,13 +93,13 @@ def deserialize_json(data: dict) -> GetEventStreamResponse:
         )
     else:
         raise DeserializationError("GetEventStreamResponse.state required")
-    if "StoppedSince" in data:
+    if data.get("StoppedSince") is not None:
         import capo_customer_profiles.types.timestamp
 
         out["stopped_since"] = capo_customer_profiles.types.timestamp.deserialize_json(
             data["StoppedSince"]
         )
-    if "DestinationDetails" in data:
+    if data.get("DestinationDetails") is not None:
         import capo_customer_profiles.types.event_stream_destination_details
 
         out["destination_details"] = (
@@ -111,7 +111,7 @@ def deserialize_json(data: dict) -> GetEventStreamResponse:
         raise DeserializationError(
             "GetEventStreamResponse.destination_details required"
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_customer_profiles.types.tag_map
 
         out["tags"] = capo_customer_profiles.types.tag_map.deserialize_json(

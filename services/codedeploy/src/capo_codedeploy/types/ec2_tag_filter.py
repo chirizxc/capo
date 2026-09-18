@@ -37,11 +37,11 @@ def serialize_aws_json_1_1(value: EC2TagFilter) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> EC2TagFilter:
     out: EC2TagFilter = {}  # type: ignore[typeddict-item]
-    if "Key" in data:
+    if data.get("Key") is not None:
         out["key"] = data["Key"]
-    if "Value" in data:
+    if data.get("Value") is not None:
         out["value"] = data["Value"]
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_codedeploy.types.ec2_tag_filter_type
 
         out["type"] = (

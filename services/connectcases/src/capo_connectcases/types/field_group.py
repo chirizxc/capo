@@ -30,9 +30,9 @@ def serialize_json(value: FieldGroup) -> dict:
 
 def deserialize_json(data: dict) -> FieldGroup:
     out: FieldGroup = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "fields" in data:
+    if data.get("fields") is not None:
         import capo_connectcases.types.field_list
 
         out["fields"] = capo_connectcases.types.field_list.deserialize_json(

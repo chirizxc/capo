@@ -40,17 +40,17 @@ def serialize_json(value: PutEventsRequest) -> dict:
 
 def deserialize_json(data: dict) -> PutEventsRequest:
     out: PutEventsRequest = {}  # type: ignore[typeddict-item]
-    if "trackingId" in data:
+    if data.get("trackingId") is not None:
         out["tracking_id"] = data["trackingId"]
     else:
         raise DeserializationError("PutEventsRequest.tracking_id required")
-    if "userId" in data:
+    if data.get("userId") is not None:
         out["user_id"] = data["userId"]
-    if "sessionId" in data:
+    if data.get("sessionId") is not None:
         out["session_id"] = data["sessionId"]
     else:
         raise DeserializationError("PutEventsRequest.session_id required")
-    if "eventList" in data:
+    if data.get("eventList") is not None:
         import capo_personalize_events.types.event_list
 
         out["event_list"] = capo_personalize_events.types.event_list.deserialize_json(

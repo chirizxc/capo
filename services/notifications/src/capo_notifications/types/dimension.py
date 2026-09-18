@@ -27,11 +27,11 @@ def serialize_json(value: Dimension) -> dict:
 
 def deserialize_json(data: dict) -> Dimension:
     out: Dimension = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("Dimension.name required")
-    if "value" in data:
+    if data.get("value") is not None:
         out["value"] = data["value"]
     else:
         raise DeserializationError("Dimension.value required")

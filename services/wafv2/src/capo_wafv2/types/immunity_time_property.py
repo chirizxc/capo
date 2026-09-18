@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: ImmunityTimeProperty) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ImmunityTimeProperty:
     out: ImmunityTimeProperty = {}  # type: ignore[typeddict-item]
-    if "ImmunityTime" in data:
+    if data.get("ImmunityTime") is not None:
         out["immunity_time"] = data["ImmunityTime"]
     else:
         raise DeserializationError("ImmunityTimeProperty.immunity_time required")

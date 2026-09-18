@@ -34,17 +34,17 @@ def serialize_json(value: UpdateInvestigationStateRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateInvestigationStateRequest:
     out: UpdateInvestigationStateRequest = {}  # type: ignore[typeddict-item]
-    if "GraphArn" in data:
+    if data.get("GraphArn") is not None:
         out["graph_arn"] = data["GraphArn"]
     else:
         raise DeserializationError("UpdateInvestigationStateRequest.graph_arn required")
-    if "InvestigationId" in data:
+    if data.get("InvestigationId") is not None:
         out["investigation_id"] = data["InvestigationId"]
     else:
         raise DeserializationError(
             "UpdateInvestigationStateRequest.investigation_id required"
         )
-    if "State" in data:
+    if data.get("State") is not None:
         import capo_detective.types.state
 
         out["state"] = capo_detective.types.state.deserialize_json(data["State"])

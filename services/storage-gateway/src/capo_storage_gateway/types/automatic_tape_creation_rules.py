@@ -29,6 +29,8 @@ def deserialize_aws_json_1_1(data: list) -> AutomaticTapeCreationRules:
 
     out: AutomaticTapeCreationRules = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_storage_gateway.types.automatic_tape_creation_rule.deserialize_aws_json_1_1(
                 item

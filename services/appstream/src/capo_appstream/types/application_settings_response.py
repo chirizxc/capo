@@ -33,10 +33,10 @@ def serialize_aws_json_1_1(value: ApplicationSettingsResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ApplicationSettingsResponse:
     out: ApplicationSettingsResponse = {}  # type: ignore[typeddict-item]
-    if "Enabled" in data:
+    if data.get("Enabled") is not None:
         out["enabled"] = data["Enabled"]
-    if "SettingsGroup" in data:
+    if data.get("SettingsGroup") is not None:
         out["settings_group"] = data["SettingsGroup"]
-    if "S3BucketName" in data:
+    if data.get("S3BucketName") is not None:
         out["s3_bucket_name"] = data["S3BucketName"]
     return out

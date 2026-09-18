@@ -25,6 +25,8 @@ def deserialize_json(data: list) -> SearchFilterList:
 
     out: SearchFilterList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_marketplace_discovery.types.search_filter.deserialize_json(item)
         )

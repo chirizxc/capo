@@ -25,19 +25,35 @@ class Coordinate(TypedDict, closed=True):
 # --- restJson1 ser/de ---
 def serialize_json(value: Coordinate) -> dict:
     out: dict = {}
-    out["Latitude"] = value["latitude"]
-    out["Longitude"] = value["longitude"]
+    out["Latitude"] = (
+        "NaN"
+        if value["latitude"] != value["latitude"]
+        else "Infinity"
+        if value["latitude"] == float("inf")
+        else "-Infinity"
+        if value["latitude"] == float("-inf")
+        else value["latitude"]
+    )
+    out["Longitude"] = (
+        "NaN"
+        if value["longitude"] != value["longitude"]
+        else "Infinity"
+        if value["longitude"] == float("inf")
+        else "-Infinity"
+        if value["longitude"] == float("-inf")
+        else value["longitude"]
+    )
     return out
 
 
 def deserialize_json(data: dict) -> Coordinate:
     out: Coordinate = {}  # type: ignore[typeddict-item]
-    if "Latitude" in data:
-        out["latitude"] = data["Latitude"]
+    if data.get("Latitude") is not None:
+        out["latitude"] = float(data["Latitude"])
     else:
         raise DeserializationError("Coordinate.latitude required")
-    if "Longitude" in data:
-        out["longitude"] = data["Longitude"]
+    if data.get("Longitude") is not None:
+        out["longitude"] = float(data["Longitude"])
     else:
         raise DeserializationError("Coordinate.longitude required")
     return out

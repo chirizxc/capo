@@ -29,6 +29,8 @@ def deserialize_aws_json_1_1(data: list) -> BatchDeleteFeaturedResultsSetErrors:
 
     out: BatchDeleteFeaturedResultsSetErrors = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_kendra.types.batch_delete_featured_results_set_error.deserialize_aws_json_1_1(
                 item

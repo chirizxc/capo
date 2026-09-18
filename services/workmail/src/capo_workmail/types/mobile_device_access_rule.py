@@ -163,13 +163,13 @@ def serialize_aws_json_1_1(value: MobileDeviceAccessRule) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> MobileDeviceAccessRule:
     out: MobileDeviceAccessRule = {}  # type: ignore[typeddict-item]
-    if "MobileDeviceAccessRuleId" in data:
+    if data.get("MobileDeviceAccessRuleId") is not None:
         out["mobile_device_access_rule_id"] = data["MobileDeviceAccessRuleId"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Effect" in data:
+    if data.get("Effect") is not None:
         import capo_workmail.types.mobile_device_access_rule_effect
 
         out["effect"] = (
@@ -177,7 +177,7 @@ def deserialize_aws_json_1_1(data: dict) -> MobileDeviceAccessRule:
                 data["Effect"]
             )
         )
-    if "DeviceTypes" in data:
+    if data.get("DeviceTypes") is not None:
         import capo_workmail.types.device_type_list
 
         out["device_types"] = (
@@ -185,7 +185,7 @@ def deserialize_aws_json_1_1(data: dict) -> MobileDeviceAccessRule:
                 data["DeviceTypes"]
             )
         )
-    if "NotDeviceTypes" in data:
+    if data.get("NotDeviceTypes") is not None:
         import capo_workmail.types.device_type_list
 
         out["not_device_types"] = (
@@ -193,7 +193,7 @@ def deserialize_aws_json_1_1(data: dict) -> MobileDeviceAccessRule:
                 data["NotDeviceTypes"]
             )
         )
-    if "DeviceModels" in data:
+    if data.get("DeviceModels") is not None:
         import capo_workmail.types.device_model_list
 
         out["device_models"] = (
@@ -201,7 +201,7 @@ def deserialize_aws_json_1_1(data: dict) -> MobileDeviceAccessRule:
                 data["DeviceModels"]
             )
         )
-    if "NotDeviceModels" in data:
+    if data.get("NotDeviceModels") is not None:
         import capo_workmail.types.device_model_list
 
         out["not_device_models"] = (
@@ -209,7 +209,7 @@ def deserialize_aws_json_1_1(data: dict) -> MobileDeviceAccessRule:
                 data["NotDeviceModels"]
             )
         )
-    if "DeviceOperatingSystems" in data:
+    if data.get("DeviceOperatingSystems") is not None:
         import capo_workmail.types.device_operating_system_list
 
         out["device_operating_systems"] = (
@@ -217,7 +217,7 @@ def deserialize_aws_json_1_1(data: dict) -> MobileDeviceAccessRule:
                 data["DeviceOperatingSystems"]
             )
         )
-    if "NotDeviceOperatingSystems" in data:
+    if data.get("NotDeviceOperatingSystems") is not None:
         import capo_workmail.types.device_operating_system_list
 
         out["not_device_operating_systems"] = (
@@ -225,7 +225,7 @@ def deserialize_aws_json_1_1(data: dict) -> MobileDeviceAccessRule:
                 data["NotDeviceOperatingSystems"]
             )
         )
-    if "DeviceUserAgents" in data:
+    if data.get("DeviceUserAgents") is not None:
         import capo_workmail.types.device_user_agent_list
 
         out["device_user_agents"] = (
@@ -233,7 +233,7 @@ def deserialize_aws_json_1_1(data: dict) -> MobileDeviceAccessRule:
                 data["DeviceUserAgents"]
             )
         )
-    if "NotDeviceUserAgents" in data:
+    if data.get("NotDeviceUserAgents") is not None:
         import capo_workmail.types.device_user_agent_list
 
         out["not_device_user_agents"] = (
@@ -241,13 +241,13 @@ def deserialize_aws_json_1_1(data: dict) -> MobileDeviceAccessRule:
                 data["NotDeviceUserAgents"]
             )
         )
-    if "DateCreated" in data:
+    if data.get("DateCreated") is not None:
         import capo_workmail.types.timestamp
 
         out["date_created"] = capo_workmail.types.timestamp.deserialize_aws_json_1_1(
             data["DateCreated"]
         )
-    if "DateModified" in data:
+    if data.get("DateModified") is not None:
         import capo_workmail.types.timestamp
 
         out["date_modified"] = capo_workmail.types.timestamp.deserialize_aws_json_1_1(

@@ -32,7 +32,7 @@ def serialize_json(value: Permission) -> dict:
 
 def deserialize_json(data: dict) -> Permission:
     out: Permission = {}  # type: ignore[typeddict-item]
-    if "Actions" in data:
+    if data.get("Actions") is not None:
         import capo_quicksight.types.actions_list
 
         out["actions"] = capo_quicksight.types.actions_list.deserialize_json(
@@ -40,7 +40,7 @@ def deserialize_json(data: dict) -> Permission:
         )
     else:
         raise DeserializationError("Permission.actions required")
-    if "Principal" in data:
+    if data.get("Principal") is not None:
         out["principal"] = data["Principal"]
     else:
         raise DeserializationError("Permission.principal required")

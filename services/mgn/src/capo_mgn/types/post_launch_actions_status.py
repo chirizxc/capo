@@ -38,9 +38,9 @@ def serialize_json(value: PostLaunchActionsStatus) -> dict:
 
 def deserialize_json(data: dict) -> PostLaunchActionsStatus:
     out: PostLaunchActionsStatus = {}  # type: ignore[typeddict-item]
-    if "ssmAgentDiscoveryDatetime" in data:
+    if data.get("ssmAgentDiscoveryDatetime") is not None:
         out["ssm_agent_discovery_datetime"] = data["ssmAgentDiscoveryDatetime"]
-    if "postLaunchActionsLaunchStatusList" in data:
+    if data.get("postLaunchActionsLaunchStatusList") is not None:
         import capo_mgn.types.post_launch_actions_launch_status_list
 
         out["post_launch_actions_launch_status_list"] = (

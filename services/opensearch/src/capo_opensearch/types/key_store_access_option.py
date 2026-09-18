@@ -29,9 +29,9 @@ def serialize_json(value: KeyStoreAccessOption) -> dict:
 
 def deserialize_json(data: dict) -> KeyStoreAccessOption:
     out: KeyStoreAccessOption = {}  # type: ignore[typeddict-item]
-    if "KeyAccessRoleArn" in data:
+    if data.get("KeyAccessRoleArn") is not None:
         out["key_access_role_arn"] = data["KeyAccessRoleArn"]
-    if "KeyStoreAccessEnabled" in data:
+    if data.get("KeyStoreAccessEnabled") is not None:
         out["key_store_access_enabled"] = data["KeyStoreAccessEnabled"]
     else:
         raise DeserializationError(

@@ -37,7 +37,7 @@ def serialize_json(value: ListAppBundlesResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListAppBundlesResponse:
     out: ListAppBundlesResponse = {}  # type: ignore[typeddict-item]
-    if "appBundleSummaryList" in data:
+    if data.get("appBundleSummaryList") is not None:
         import capo_appfabric.types.app_bundle_summary_list
 
         out["app_bundle_summary_list"] = (
@@ -49,6 +49,6 @@ def deserialize_json(data: dict) -> ListAppBundlesResponse:
         raise DeserializationError(
             "ListAppBundlesResponse.app_bundle_summary_list required"
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

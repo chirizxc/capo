@@ -28,7 +28,7 @@ def deserialize_aws_json_1_1(
     data: dict,
 ) -> DeleteDirectConnectGatewayAssociationProposalRequest:
     out: DeleteDirectConnectGatewayAssociationProposalRequest = {}  # type: ignore[typeddict-item]
-    if "proposalId" in data:
+    if data.get("proposalId") is not None:
         out["proposal_id"] = data["proposalId"]
     else:
         raise DeserializationError(

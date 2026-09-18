@@ -52,7 +52,7 @@ def serialize_json(value: ListClassificationJobsRequest) -> dict:
 
 def deserialize_json(data: dict) -> ListClassificationJobsRequest:
     out: ListClassificationJobsRequest = {}  # type: ignore[typeddict-item]
-    if "filterCriteria" in data:
+    if data.get("filterCriteria") is not None:
         import capo_macie2.types.list_jobs_filter_criteria
 
         out["filter_criteria"] = (
@@ -60,11 +60,11 @@ def deserialize_json(data: dict) -> ListClassificationJobsRequest:
                 data["filterCriteria"]
             )
         )
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "sortCriteria" in data:
+    if data.get("sortCriteria") is not None:
         import capo_macie2.types.list_jobs_sort_criteria
 
         out["sort_criteria"] = (

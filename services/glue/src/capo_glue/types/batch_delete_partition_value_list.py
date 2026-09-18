@@ -25,5 +25,7 @@ def deserialize_aws_json_1_1(data: list) -> BatchDeletePartitionValueList:
 
     out: BatchDeletePartitionValueList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_glue.types.partition_value_list.deserialize_aws_json_1_1(item))
     return out

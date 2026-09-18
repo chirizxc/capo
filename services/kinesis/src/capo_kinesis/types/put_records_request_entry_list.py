@@ -27,6 +27,8 @@ def deserialize_aws_json_1_1(data: list) -> PutRecordsRequestEntryList:
 
     out: PutRecordsRequestEntryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_kinesis.types.put_records_request_entry.deserialize_aws_json_1_1(item)
         )

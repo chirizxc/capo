@@ -58,20 +58,20 @@ def serialize_json(value: ListChannelsRequest) -> dict:
 
 def deserialize_json(data: dict) -> ListChannelsRequest:
     out: ListChannelsRequest = {}  # type: ignore[typeddict-item]
-    if "filterByName" in data:
+    if data.get("filterByName") is not None:
         out["filter_by_name"] = data["filterByName"]
-    if "filterByRecordingConfigurationArn" in data:
+    if data.get("filterByRecordingConfigurationArn") is not None:
         out["filter_by_recording_configuration_arn"] = data[
             "filterByRecordingConfigurationArn"
         ]
-    if "filterByPlaybackRestrictionPolicyArn" in data:
+    if data.get("filterByPlaybackRestrictionPolicyArn") is not None:
         out["filter_by_playback_restriction_policy_arn"] = data[
             "filterByPlaybackRestrictionPolicyArn"
         ]
-    if "filterByAdConfigurationArn" in data:
+    if data.get("filterByAdConfigurationArn") is not None:
         out["filter_by_ad_configuration_arn"] = data["filterByAdConfigurationArn"]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
     return out

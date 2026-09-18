@@ -81,13 +81,13 @@ def serialize_aws_json_1_1(value: ConfigurationRecorder) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ConfigurationRecorder:
     out: ConfigurationRecorder = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "roleARN" in data:
+    if data.get("roleARN") is not None:
         out["role_arn"] = data["roleARN"]
-    if "recordingGroup" in data:
+    if data.get("recordingGroup") is not None:
         import capo_config_service.types.recording_group
 
         out["recording_group"] = (
@@ -95,7 +95,7 @@ def deserialize_aws_json_1_1(data: dict) -> ConfigurationRecorder:
                 data["recordingGroup"]
             )
         )
-    if "recordingMode" in data:
+    if data.get("recordingMode") is not None:
         import capo_config_service.types.recording_mode
 
         out["recording_mode"] = (
@@ -103,7 +103,7 @@ def deserialize_aws_json_1_1(data: dict) -> ConfigurationRecorder:
                 data["recordingMode"]
             )
         )
-    if "recordingScope" in data:
+    if data.get("recordingScope") is not None:
         import capo_config_service.types.recording_scope
 
         out["recording_scope"] = (
@@ -111,6 +111,6 @@ def deserialize_aws_json_1_1(data: dict) -> ConfigurationRecorder:
                 data["recordingScope"]
             )
         )
-    if "servicePrincipal" in data:
+    if data.get("servicePrincipal") is not None:
         out["service_principal"] = data["servicePrincipal"]
     return out

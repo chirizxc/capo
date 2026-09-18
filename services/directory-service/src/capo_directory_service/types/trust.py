@@ -129,13 +129,13 @@ def serialize_aws_json_1_1(value: Trust) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Trust:
     out: Trust = {}  # type: ignore[typeddict-item]
-    if "DirectoryId" in data:
+    if data.get("DirectoryId") is not None:
         out["directory_id"] = data["DirectoryId"]
-    if "TrustId" in data:
+    if data.get("TrustId") is not None:
         out["trust_id"] = data["TrustId"]
-    if "RemoteDomainName" in data:
+    if data.get("RemoteDomainName") is not None:
         out["remote_domain_name"] = data["RemoteDomainName"]
-    if "TrustType" in data:
+    if data.get("TrustType") is not None:
         import capo_directory_service.types.trust_type
 
         out["trust_type"] = (
@@ -143,7 +143,7 @@ def deserialize_aws_json_1_1(data: dict) -> Trust:
                 data["TrustType"]
             )
         )
-    if "TrustDirection" in data:
+    if data.get("TrustDirection") is not None:
         import capo_directory_service.types.trust_direction
 
         out["trust_direction"] = (
@@ -151,7 +151,7 @@ def deserialize_aws_json_1_1(data: dict) -> Trust:
                 data["TrustDirection"]
             )
         )
-    if "TrustState" in data:
+    if data.get("TrustState") is not None:
         import capo_directory_service.types.trust_state
 
         out["trust_state"] = (
@@ -159,7 +159,7 @@ def deserialize_aws_json_1_1(data: dict) -> Trust:
                 data["TrustState"]
             )
         )
-    if "CreatedDateTime" in data:
+    if data.get("CreatedDateTime") is not None:
         import capo_directory_service.types.created_date_time
 
         out["created_date_time"] = (
@@ -167,7 +167,7 @@ def deserialize_aws_json_1_1(data: dict) -> Trust:
                 data["CreatedDateTime"]
             )
         )
-    if "LastUpdatedDateTime" in data:
+    if data.get("LastUpdatedDateTime") is not None:
         import capo_directory_service.types.last_updated_date_time
 
         out["last_updated_date_time"] = (
@@ -175,7 +175,7 @@ def deserialize_aws_json_1_1(data: dict) -> Trust:
                 data["LastUpdatedDateTime"]
             )
         )
-    if "StateLastUpdatedDateTime" in data:
+    if data.get("StateLastUpdatedDateTime") is not None:
         import capo_directory_service.types.state_last_updated_date_time
 
         out["state_last_updated_date_time"] = (
@@ -183,9 +183,9 @@ def deserialize_aws_json_1_1(data: dict) -> Trust:
                 data["StateLastUpdatedDateTime"]
             )
         )
-    if "TrustStateReason" in data:
+    if data.get("TrustStateReason") is not None:
         out["trust_state_reason"] = data["TrustStateReason"]
-    if "SelectiveAuth" in data:
+    if data.get("SelectiveAuth") is not None:
         import capo_directory_service.types.selective_auth
 
         out["selective_auth"] = (

@@ -40,9 +40,9 @@ def serialize_aws_json_1_1(value: CreateDatabaseRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateDatabaseRequest:
     out: CreateDatabaseRequest = {}  # type: ignore[typeddict-item]
-    if "CatalogId" in data:
+    if data.get("CatalogId") is not None:
         out["catalog_id"] = data["CatalogId"]
-    if "DatabaseInput" in data:
+    if data.get("DatabaseInput") is not None:
         import capo_glue.types.database_input
 
         out["database_input"] = capo_glue.types.database_input.deserialize_aws_json_1_1(
@@ -50,7 +50,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateDatabaseRequest:
         )
     else:
         raise DeserializationError("CreateDatabaseRequest.database_input required")
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_glue.types.tags_map
 
         out["tags"] = capo_glue.types.tags_map.deserialize_aws_json_1_1(data["Tags"])

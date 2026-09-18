@@ -41,25 +41,25 @@ def serialize_json(value: StartNetworkMigrationMappingUpdateConstruct) -> dict:
 
 def deserialize_json(data: dict) -> StartNetworkMigrationMappingUpdateConstruct:
     out: StartNetworkMigrationMappingUpdateConstruct = {}  # type: ignore[typeddict-item]
-    if "segmentID" in data:
+    if data.get("segmentID") is not None:
         out["segment_id"] = data["segmentID"]
     else:
         raise DeserializationError(
             "StartNetworkMigrationMappingUpdateConstruct.segment_id required"
         )
-    if "constructID" in data:
+    if data.get("constructID") is not None:
         out["construct_id"] = data["constructID"]
     else:
         raise DeserializationError(
             "StartNetworkMigrationMappingUpdateConstruct.construct_id required"
         )
-    if "constructType" in data:
+    if data.get("constructType") is not None:
         out["construct_type"] = data["constructType"]
     else:
         raise DeserializationError(
             "StartNetworkMigrationMappingUpdateConstruct.construct_type required"
         )
-    if "operation" in data:
+    if data.get("operation") is not None:
         import capo_mgn.types.operation_union
 
         out["operation"] = capo_mgn.types.operation_union.deserialize_json(

@@ -64,7 +64,7 @@ def serialize_json(value: MxfSettings) -> dict:
 
 def deserialize_json(data: dict) -> MxfSettings:
     out: MxfSettings = {}  # type: ignore[typeddict-item]
-    if "afdSignaling" in data:
+    if data.get("afdSignaling") is not None:
         import capo_mediaconvert.types.mxf_afd_signaling
 
         out["afd_signaling"] = (
@@ -72,13 +72,13 @@ def deserialize_json(data: dict) -> MxfSettings:
                 data["afdSignaling"]
             )
         )
-    if "profile" in data:
+    if data.get("profile") is not None:
         import capo_mediaconvert.types.mxf_profile
 
         out["profile"] = capo_mediaconvert.types.mxf_profile.deserialize_json(
             data["profile"]
         )
-    if "uncompressedAudioWrapping" in data:
+    if data.get("uncompressedAudioWrapping") is not None:
         import capo_mediaconvert.types.mxf_uncompressed_audio_wrapping
 
         out["uncompressed_audio_wrapping"] = (
@@ -86,7 +86,7 @@ def deserialize_json(data: dict) -> MxfSettings:
                 data["uncompressedAudioWrapping"]
             )
         )
-    if "xavcProfileSettings" in data:
+    if data.get("xavcProfileSettings") is not None:
         import capo_mediaconvert.types.mxf_xavc_profile_settings
 
         out["xavc_profile_settings"] = (

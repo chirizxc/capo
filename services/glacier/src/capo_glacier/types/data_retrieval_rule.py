@@ -28,8 +28,8 @@ def serialize_json(value: DataRetrievalRule) -> dict:
 
 def deserialize_json(data: dict) -> DataRetrievalRule:
     out: DataRetrievalRule = {}  # type: ignore[typeddict-item]
-    if "Strategy" in data:
+    if data.get("Strategy") is not None:
         out["strategy"] = data["Strategy"]
-    if "BytesPerHour" in data:
+    if data.get("BytesPerHour") is not None:
         out["bytes_per_hour"] = data["BytesPerHour"]
     return out

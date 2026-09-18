@@ -57,23 +57,23 @@ def serialize_aws_json_1_1(value: GetMergeOptionsInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetMergeOptionsInput:
     out: GetMergeOptionsInput = {}  # type: ignore[typeddict-item]
-    if "repositoryName" in data:
+    if data.get("repositoryName") is not None:
         out["repository_name"] = data["repositoryName"]
     else:
         raise DeserializationError("GetMergeOptionsInput.repository_name required")
-    if "sourceCommitSpecifier" in data:
+    if data.get("sourceCommitSpecifier") is not None:
         out["source_commit_specifier"] = data["sourceCommitSpecifier"]
     else:
         raise DeserializationError(
             "GetMergeOptionsInput.source_commit_specifier required"
         )
-    if "destinationCommitSpecifier" in data:
+    if data.get("destinationCommitSpecifier") is not None:
         out["destination_commit_specifier"] = data["destinationCommitSpecifier"]
     else:
         raise DeserializationError(
             "GetMergeOptionsInput.destination_commit_specifier required"
         )
-    if "conflictDetailLevel" in data:
+    if data.get("conflictDetailLevel") is not None:
         import capo_codecommit.types.conflict_detail_level_type_enum
 
         out["conflict_detail_level"] = (
@@ -81,7 +81,7 @@ def deserialize_aws_json_1_1(data: dict) -> GetMergeOptionsInput:
                 data["conflictDetailLevel"]
             )
         )
-    if "conflictResolutionStrategy" in data:
+    if data.get("conflictResolutionStrategy") is not None:
         import capo_codecommit.types.conflict_resolution_strategy_type_enum
 
         out["conflict_resolution_strategy"] = (

@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> AuditEventResultEntries:
 
     out: AuditEventResultEntries = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_cloudtrail_data.types.audit_event_result_entry.deserialize_json(item)
         )

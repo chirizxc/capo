@@ -42,7 +42,7 @@ def serialize_json(value: StaticFile) -> dict:
 
 def deserialize_json(data: dict) -> StaticFile:
     out: StaticFile = {}  # type: ignore[typeddict-item]
-    if "ImageStaticFile" in data:
+    if data.get("ImageStaticFile") is not None:
         import capo_quicksight.types.image_static_file
 
         out["image_static_file"] = (
@@ -50,7 +50,7 @@ def deserialize_json(data: dict) -> StaticFile:
                 data["ImageStaticFile"]
             )
         )
-    if "SpatialStaticFile" in data:
+    if data.get("SpatialStaticFile") is not None:
         import capo_quicksight.types.spatial_static_file
 
         out["spatial_static_file"] = (

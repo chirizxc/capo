@@ -56,15 +56,15 @@ def serialize_aws_json_1_1(value: FirewallManagerRuleGroup) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> FirewallManagerRuleGroup:
     out: FirewallManagerRuleGroup = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("FirewallManagerRuleGroup.name required")
-    if "Priority" in data:
+    if data.get("Priority") is not None:
         out["priority"] = data["Priority"]
     else:
         out["priority"] = 0
-    if "FirewallManagerStatement" in data:
+    if data.get("FirewallManagerStatement") is not None:
         import capo_wafv2.types.firewall_manager_statement
 
         out["firewall_manager_statement"] = (
@@ -76,7 +76,7 @@ def deserialize_aws_json_1_1(data: dict) -> FirewallManagerRuleGroup:
         raise DeserializationError(
             "FirewallManagerRuleGroup.firewall_manager_statement required"
         )
-    if "OverrideAction" in data:
+    if data.get("OverrideAction") is not None:
         import capo_wafv2.types.override_action
 
         out["override_action"] = (
@@ -86,7 +86,7 @@ def deserialize_aws_json_1_1(data: dict) -> FirewallManagerRuleGroup:
         )
     else:
         raise DeserializationError("FirewallManagerRuleGroup.override_action required")
-    if "VisibilityConfig" in data:
+    if data.get("VisibilityConfig") is not None:
         import capo_wafv2.types.visibility_config
 
         out["visibility_config"] = (

@@ -29,6 +29,8 @@ def deserialize_aws_json_1_0(data: list) -> Route53ResourceRecordSetList:
 
     out: Route53ResourceRecordSetList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_arc_region_switch.types.route53_resource_record_set.deserialize_aws_json_1_0(
                 item

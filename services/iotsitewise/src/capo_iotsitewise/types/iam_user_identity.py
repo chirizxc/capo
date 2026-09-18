@@ -24,7 +24,7 @@ def serialize_json(value: IAMUserIdentity) -> dict:
 
 def deserialize_json(data: dict) -> IAMUserIdentity:
     out: IAMUserIdentity = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("IAMUserIdentity.arn required")

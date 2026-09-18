@@ -36,11 +36,11 @@ def serialize_json(value: ParameterFilterExpression) -> dict:
 
 def deserialize_json(data: dict) -> ParameterFilterExpression:
     out: ParameterFilterExpression = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("ParameterFilterExpression.name required")
-    if "operator" in data:
+    if data.get("operator") is not None:
         import capo_deadline.types.comparison_operator
 
         out["operator"] = capo_deadline.types.comparison_operator.deserialize_json(
@@ -48,7 +48,7 @@ def deserialize_json(data: dict) -> ParameterFilterExpression:
         )
     else:
         raise DeserializationError("ParameterFilterExpression.operator required")
-    if "value" in data:
+    if data.get("value") is not None:
         out["value"] = data["value"]
     else:
         raise DeserializationError("ParameterFilterExpression.value required")

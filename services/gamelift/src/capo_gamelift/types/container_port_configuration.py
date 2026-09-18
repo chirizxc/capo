@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: ContainerPortConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ContainerPortConfiguration:
     out: ContainerPortConfiguration = {}  # type: ignore[typeddict-item]
-    if "ContainerPortRanges" in data:
+    if data.get("ContainerPortRanges") is not None:
         import capo_gamelift.types.container_port_range_list
 
         out["container_port_ranges"] = (

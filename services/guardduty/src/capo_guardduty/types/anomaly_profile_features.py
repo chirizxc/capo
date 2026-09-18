@@ -27,6 +27,8 @@ def serialize_json(input_to_serialize: AnomalyProfileFeatures) -> dict:
 def deserialize_json(data: dict) -> AnomalyProfileFeatures:
     out: AnomalyProfileFeatures = {}
     for key, value in data.items():
+        if value is None:
+            continue
         import capo_guardduty.types.anomaly_profile_feature_objects
 
         out[key] = (

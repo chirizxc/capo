@@ -22,11 +22,11 @@ def serialize_json(value: FormBindingElement) -> dict:
 
 def deserialize_json(data: dict) -> FormBindingElement:
     out: FormBindingElement = {}  # type: ignore[typeddict-item]
-    if "element" in data:
+    if data.get("element") is not None:
         out["element"] = data["element"]
     else:
         raise DeserializationError("FormBindingElement.element required")
-    if "property" in data:
+    if data.get("property") is not None:
         out["property"] = data["property"]
     else:
         raise DeserializationError("FormBindingElement.property required")

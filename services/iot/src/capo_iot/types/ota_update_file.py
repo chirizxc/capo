@@ -62,25 +62,25 @@ def serialize_json(value: OTAUpdateFile) -> dict:
 
 def deserialize_json(data: dict) -> OTAUpdateFile:
     out: OTAUpdateFile = {}  # type: ignore[typeddict-item]
-    if "fileName" in data:
+    if data.get("fileName") is not None:
         out["file_name"] = data["fileName"]
-    if "fileType" in data:
+    if data.get("fileType") is not None:
         out["file_type"] = data["fileType"]
-    if "fileVersion" in data:
+    if data.get("fileVersion") is not None:
         out["file_version"] = data["fileVersion"]
-    if "fileLocation" in data:
+    if data.get("fileLocation") is not None:
         import capo_iot.types.file_location
 
         out["file_location"] = capo_iot.types.file_location.deserialize_json(
             data["fileLocation"]
         )
-    if "codeSigning" in data:
+    if data.get("codeSigning") is not None:
         import capo_iot.types.code_signing
 
         out["code_signing"] = capo_iot.types.code_signing.deserialize_json(
             data["codeSigning"]
         )
-    if "attributes" in data:
+    if data.get("attributes") is not None:
         import capo_iot.types.attributes_map
 
         out["attributes"] = capo_iot.types.attributes_map.deserialize_json(

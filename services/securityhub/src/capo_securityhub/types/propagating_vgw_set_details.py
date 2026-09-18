@@ -23,6 +23,6 @@ def serialize_json(value: PropagatingVgwSetDetails) -> dict:
 
 def deserialize_json(data: dict) -> PropagatingVgwSetDetails:
     out: PropagatingVgwSetDetails = {}  # type: ignore[typeddict-item]
-    if "GatewayId" in data:
+    if data.get("GatewayId") is not None:
         out["gateway_id"] = data["GatewayId"]
     return out

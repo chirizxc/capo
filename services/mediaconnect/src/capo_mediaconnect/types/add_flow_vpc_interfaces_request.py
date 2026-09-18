@@ -34,7 +34,7 @@ def serialize_json(value: AddFlowVpcInterfacesRequest) -> dict:
 
 def deserialize_json(data: dict) -> AddFlowVpcInterfacesRequest:
     out: AddFlowVpcInterfacesRequest = {}  # type: ignore[typeddict-item]
-    if "vpcInterfaces" in data:
+    if data.get("vpcInterfaces") is not None:
         import capo_mediaconnect.types.__list_of_vpc_interface_request
 
         out["vpc_interfaces"] = (

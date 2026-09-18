@@ -57,7 +57,7 @@ def serialize_json(value: ControlMappingFilter) -> dict:
 
 def deserialize_json(data: dict) -> ControlMappingFilter:
     out: ControlMappingFilter = {}  # type: ignore[typeddict-item]
-    if "ControlArns" in data:
+    if data.get("ControlArns") is not None:
         import capo_controlcatalog.types.control_arn_filter_list
 
         out["control_arns"] = (
@@ -65,7 +65,7 @@ def deserialize_json(data: dict) -> ControlMappingFilter:
                 data["ControlArns"]
             )
         )
-    if "CommonControlArns" in data:
+    if data.get("CommonControlArns") is not None:
         import capo_controlcatalog.types.common_control_arn_filter_list
 
         out["common_control_arns"] = (
@@ -73,7 +73,7 @@ def deserialize_json(data: dict) -> ControlMappingFilter:
                 data["CommonControlArns"]
             )
         )
-    if "MappingTypes" in data:
+    if data.get("MappingTypes") is not None:
         import capo_controlcatalog.types.mapping_type_filter_list
 
         out["mapping_types"] = (

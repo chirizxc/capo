@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: DescribeCertificateAuthorityResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeCertificateAuthorityResponse:
     out: DescribeCertificateAuthorityResponse = {}  # type: ignore[typeddict-item]
-    if "CertificateAuthority" in data:
+    if data.get("CertificateAuthority") is not None:
         import capo_acm_pca.types.certificate_authority
 
         out["certificate_authority"] = (

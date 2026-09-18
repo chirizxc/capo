@@ -42,7 +42,7 @@ def serialize_aws_json_1_0(value: Customer) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> Customer:
     out: Customer = {}  # type: ignore[typeddict-item]
-    if "Account" in data:
+    if data.get("Account") is not None:
         import capo_partnercentral_selling.types.account
 
         out["account"] = (
@@ -50,7 +50,7 @@ def deserialize_aws_json_1_0(data: dict) -> Customer:
                 data["Account"]
             )
         )
-    if "Contacts" in data:
+    if data.get("Contacts") is not None:
         import capo_partnercentral_selling.types.customer_contacts_list
 
         out["contacts"] = (

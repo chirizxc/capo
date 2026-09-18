@@ -31,9 +31,9 @@ def serialize_json(value: LFTagExpressionResource) -> dict:
 
 def deserialize_json(data: dict) -> LFTagExpressionResource:
     out: LFTagExpressionResource = {}  # type: ignore[typeddict-item]
-    if "CatalogId" in data:
+    if data.get("CatalogId") is not None:
         out["catalog_id"] = data["CatalogId"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("LFTagExpressionResource.name required")

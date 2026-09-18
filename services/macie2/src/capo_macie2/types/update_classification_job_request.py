@@ -30,7 +30,7 @@ def serialize_json(value: UpdateClassificationJobRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateClassificationJobRequest:
     out: UpdateClassificationJobRequest = {}  # type: ignore[typeddict-item]
-    if "jobStatus" in data:
+    if data.get("jobStatus") is not None:
         import capo_macie2.types.job_status
 
         out["job_status"] = capo_macie2.types.job_status.deserialize_json(

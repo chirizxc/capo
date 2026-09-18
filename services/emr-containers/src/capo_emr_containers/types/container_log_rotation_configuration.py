@@ -28,13 +28,13 @@ def serialize_json(value: ContainerLogRotationConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> ContainerLogRotationConfiguration:
     out: ContainerLogRotationConfiguration = {}  # type: ignore[typeddict-item]
-    if "rotationSize" in data:
+    if data.get("rotationSize") is not None:
         out["rotation_size"] = data["rotationSize"]
     else:
         raise DeserializationError(
             "ContainerLogRotationConfiguration.rotation_size required"
         )
-    if "maxFilesToKeep" in data:
+    if data.get("maxFilesToKeep") is not None:
         out["max_files_to_keep"] = data["maxFilesToKeep"]
     else:
         raise DeserializationError(

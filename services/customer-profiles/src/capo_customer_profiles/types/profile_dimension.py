@@ -38,7 +38,7 @@ def serialize_json(value: ProfileDimension) -> dict:
 
 def deserialize_json(data: dict) -> ProfileDimension:
     out: ProfileDimension = {}  # type: ignore[typeddict-item]
-    if "DimensionType" in data:
+    if data.get("DimensionType") is not None:
         import capo_customer_profiles.types.string_dimension_type
 
         out["dimension_type"] = (
@@ -48,7 +48,7 @@ def deserialize_json(data: dict) -> ProfileDimension:
         )
     else:
         raise DeserializationError("ProfileDimension.dimension_type required")
-    if "Values" in data:
+    if data.get("Values") is not None:
         import capo_customer_profiles.types.values
 
         out["values"] = capo_customer_profiles.types.values.deserialize_json(

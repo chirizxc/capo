@@ -42,13 +42,13 @@ def serialize_json(value: StartReferenceImportJobRequest) -> dict:
 
 def deserialize_json(data: dict) -> StartReferenceImportJobRequest:
     out: StartReferenceImportJobRequest = {}  # type: ignore[typeddict-item]
-    if "roleArn" in data:
+    if data.get("roleArn") is not None:
         out["role_arn"] = data["roleArn"]
     else:
         raise DeserializationError("StartReferenceImportJobRequest.role_arn required")
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
-    if "sources" in data:
+    if data.get("sources") is not None:
         import capo_omics.types.start_reference_import_job_source_list
 
         out["sources"] = (

@@ -100,17 +100,17 @@ def serialize_json(value: StartLoaderJobInput) -> dict:
 
 def deserialize_json(data: dict) -> StartLoaderJobInput:
     out: StartLoaderJobInput = {}  # type: ignore[typeddict-item]
-    if "source" in data:
+    if data.get("source") is not None:
         out["source"] = data["source"]
     else:
         raise DeserializationError("StartLoaderJobInput.source required")
-    if "format" in data:
+    if data.get("format") is not None:
         import capo_neptunedata.types.format
 
         out["format"] = capo_neptunedata.types.format.deserialize_json(data["format"])
     else:
         raise DeserializationError("StartLoaderJobInput.format required")
-    if "region" in data:
+    if data.get("region") is not None:
         import capo_neptunedata.types.s3_bucket_region
 
         out["s3_bucket_region"] = (
@@ -118,23 +118,23 @@ def deserialize_json(data: dict) -> StartLoaderJobInput:
         )
     else:
         raise DeserializationError("StartLoaderJobInput.s3_bucket_region required")
-    if "iamRoleArn" in data:
+    if data.get("iamRoleArn") is not None:
         out["iam_role_arn"] = data["iamRoleArn"]
     else:
         raise DeserializationError("StartLoaderJobInput.iam_role_arn required")
-    if "mode" in data:
+    if data.get("mode") is not None:
         import capo_neptunedata.types.mode
 
         out["mode"] = capo_neptunedata.types.mode.deserialize_json(data["mode"])
-    if "failOnError" in data:
+    if data.get("failOnError") is not None:
         out["fail_on_error"] = data["failOnError"]
-    if "parallelism" in data:
+    if data.get("parallelism") is not None:
         import capo_neptunedata.types.parallelism
 
         out["parallelism"] = capo_neptunedata.types.parallelism.deserialize_json(
             data["parallelism"]
         )
-    if "parserConfiguration" in data:
+    if data.get("parserConfiguration") is not None:
         import capo_neptunedata.types.string_valued_map
 
         out["parser_configuration"] = (
@@ -142,20 +142,20 @@ def deserialize_json(data: dict) -> StartLoaderJobInput:
                 data["parserConfiguration"]
             )
         )
-    if "updateSingleCardinalityProperties" in data:
+    if data.get("updateSingleCardinalityProperties") is not None:
         out["update_single_cardinality_properties"] = data[
             "updateSingleCardinalityProperties"
         ]
-    if "queueRequest" in data:
+    if data.get("queueRequest") is not None:
         out["queue_request"] = data["queueRequest"]
-    if "dependencies" in data:
+    if data.get("dependencies") is not None:
         import capo_neptunedata.types.string_list
 
         out["dependencies"] = capo_neptunedata.types.string_list.deserialize_json(
             data["dependencies"]
         )
-    if "userProvidedEdgeIds" in data:
+    if data.get("userProvidedEdgeIds") is not None:
         out["user_provided_edge_ids"] = data["userProvidedEdgeIds"]
-    if "edgeOnlyLoad" in data:
+    if data.get("edgeOnlyLoad") is not None:
         out["edge_only_load"] = data["edgeOnlyLoad"]
     return out

@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> __listOfAllowListSummary:
 
     out: __listOfAllowListSummary = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_macie2.types.allow_list_summary.deserialize_json(item))
     return out

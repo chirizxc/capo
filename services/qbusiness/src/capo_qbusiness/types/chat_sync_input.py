@@ -113,15 +113,15 @@ def serialize_json(value: ChatSyncInput) -> dict:
 
 def deserialize_json(data: dict) -> ChatSyncInput:
     out: ChatSyncInput = {}  # type: ignore[typeddict-item]
-    if "userMessage" in data:
+    if data.get("userMessage") is not None:
         out["user_message"] = data["userMessage"]
-    if "attachments" in data:
+    if data.get("attachments") is not None:
         import capo_qbusiness.types.attachments_input
 
         out["attachments"] = capo_qbusiness.types.attachments_input.deserialize_json(
             data["attachments"]
         )
-    if "actionExecution" in data:
+    if data.get("actionExecution") is not None:
         import capo_qbusiness.types.action_execution
 
         out["action_execution"] = (
@@ -129,7 +129,7 @@ def deserialize_json(data: dict) -> ChatSyncInput:
                 data["actionExecution"]
             )
         )
-    if "authChallengeResponse" in data:
+    if data.get("authChallengeResponse") is not None:
         import capo_qbusiness.types.auth_challenge_response
 
         out["auth_challenge_response"] = (
@@ -137,11 +137,11 @@ def deserialize_json(data: dict) -> ChatSyncInput:
                 data["authChallengeResponse"]
             )
         )
-    if "conversationId" in data:
+    if data.get("conversationId") is not None:
         out["conversation_id"] = data["conversationId"]
-    if "parentMessageId" in data:
+    if data.get("parentMessageId") is not None:
         out["parent_message_id"] = data["parentMessageId"]
-    if "attributeFilter" in data:
+    if data.get("attributeFilter") is not None:
         import capo_qbusiness.types.attribute_filter
 
         out["attribute_filter"] = (
@@ -149,13 +149,13 @@ def deserialize_json(data: dict) -> ChatSyncInput:
                 data["attributeFilter"]
             )
         )
-    if "chatMode" in data:
+    if data.get("chatMode") is not None:
         import capo_qbusiness.types.chat_mode
 
         out["chat_mode"] = capo_qbusiness.types.chat_mode.deserialize_json(
             data["chatMode"]
         )
-    if "chatModeConfiguration" in data:
+    if data.get("chatModeConfiguration") is not None:
         import capo_qbusiness.types.chat_mode_configuration
 
         out["chat_mode_configuration"] = (
@@ -163,6 +163,6 @@ def deserialize_json(data: dict) -> ChatSyncInput:
                 data["chatModeConfiguration"]
             )
         )
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     return out

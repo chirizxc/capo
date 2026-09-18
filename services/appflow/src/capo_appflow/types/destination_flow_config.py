@@ -50,7 +50,7 @@ def serialize_json(value: DestinationFlowConfig) -> dict:
 
 def deserialize_json(data: dict) -> DestinationFlowConfig:
     out: DestinationFlowConfig = {}  # type: ignore[typeddict-item]
-    if "connectorType" in data:
+    if data.get("connectorType") is not None:
         import capo_appflow.types.connector_type
 
         out["connector_type"] = capo_appflow.types.connector_type.deserialize_json(
@@ -58,11 +58,11 @@ def deserialize_json(data: dict) -> DestinationFlowConfig:
         )
     else:
         raise DeserializationError("DestinationFlowConfig.connector_type required")
-    if "apiVersion" in data:
+    if data.get("apiVersion") is not None:
         out["api_version"] = data["apiVersion"]
-    if "connectorProfileName" in data:
+    if data.get("connectorProfileName") is not None:
         out["connector_profile_name"] = data["connectorProfileName"]
-    if "destinationConnectorProperties" in data:
+    if data.get("destinationConnectorProperties") is not None:
         import capo_appflow.types.destination_connector_properties
 
         out["destination_connector_properties"] = (

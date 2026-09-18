@@ -42,14 +42,14 @@ def serialize_json(value: CreateThingRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateThingRequest:
     out: CreateThingRequest = {}  # type: ignore[typeddict-item]
-    if "thingTypeName" in data:
+    if data.get("thingTypeName") is not None:
         out["thing_type_name"] = data["thingTypeName"]
-    if "attributePayload" in data:
+    if data.get("attributePayload") is not None:
         import capo_iot.types.attribute_payload
 
         out["attribute_payload"] = capo_iot.types.attribute_payload.deserialize_json(
             data["attributePayload"]
         )
-    if "billingGroupName" in data:
+    if data.get("billingGroupName") is not None:
         out["billing_group_name"] = data["billingGroupName"]
     return out

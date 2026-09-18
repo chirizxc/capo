@@ -37,10 +37,10 @@ def serialize_json(value: Ipv6CidrBlockAssociation) -> dict:
 
 def deserialize_json(data: dict) -> Ipv6CidrBlockAssociation:
     out: Ipv6CidrBlockAssociation = {}  # type: ignore[typeddict-item]
-    if "AssociationId" in data:
+    if data.get("AssociationId") is not None:
         out["association_id"] = data["AssociationId"]
-    if "Ipv6CidrBlock" in data:
+    if data.get("Ipv6CidrBlock") is not None:
         out["ipv6_cidr_block"] = data["Ipv6CidrBlock"]
-    if "CidrBlockState" in data:
+    if data.get("CidrBlockState") is not None:
         out["cidr_block_state"] = data["CidrBlockState"]
     return out

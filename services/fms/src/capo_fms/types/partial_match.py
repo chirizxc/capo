@@ -36,9 +36,9 @@ def serialize_aws_json_1_1(value: PartialMatch) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PartialMatch:
     out: PartialMatch = {}  # type: ignore[typeddict-item]
-    if "Reference" in data:
+    if data.get("Reference") is not None:
         out["reference"] = data["Reference"]
-    if "TargetViolationReasons" in data:
+    if data.get("TargetViolationReasons") is not None:
         import capo_fms.types.target_violation_reasons
 
         out["target_violation_reasons"] = (

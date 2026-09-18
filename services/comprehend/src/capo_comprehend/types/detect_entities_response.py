@@ -71,7 +71,7 @@ def serialize_aws_json_1_1(value: DetectEntitiesResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DetectEntitiesResponse:
     out: DetectEntitiesResponse = {}  # type: ignore[typeddict-item]
-    if "Entities" in data:
+    if data.get("Entities") is not None:
         import capo_comprehend.types.list_of_entities
 
         out["entities"] = (
@@ -79,7 +79,7 @@ def deserialize_aws_json_1_1(data: dict) -> DetectEntitiesResponse:
                 data["Entities"]
             )
         )
-    if "DocumentMetadata" in data:
+    if data.get("DocumentMetadata") is not None:
         import capo_comprehend.types.document_metadata
 
         out["document_metadata"] = (
@@ -87,7 +87,7 @@ def deserialize_aws_json_1_1(data: dict) -> DetectEntitiesResponse:
                 data["DocumentMetadata"]
             )
         )
-    if "DocumentType" in data:
+    if data.get("DocumentType") is not None:
         import capo_comprehend.types.list_of_document_type
 
         out["document_type"] = (
@@ -95,13 +95,13 @@ def deserialize_aws_json_1_1(data: dict) -> DetectEntitiesResponse:
                 data["DocumentType"]
             )
         )
-    if "Blocks" in data:
+    if data.get("Blocks") is not None:
         import capo_comprehend.types.list_of_blocks
 
         out["blocks"] = capo_comprehend.types.list_of_blocks.deserialize_aws_json_1_1(
             data["Blocks"]
         )
-    if "Errors" in data:
+    if data.get("Errors") is not None:
         import capo_comprehend.types.list_of_errors
 
         out["errors"] = capo_comprehend.types.list_of_errors.deserialize_aws_json_1_1(

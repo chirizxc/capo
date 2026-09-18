@@ -66,19 +66,19 @@ def serialize_json(value: CreateApplicationRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateApplicationRequest:
     out: CreateApplicationRequest = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("CreateApplicationRequest.name required")
-    if "VpcId" in data:
+    if data.get("VpcId") is not None:
         out["vpc_id"] = data["VpcId"]
     else:
         raise DeserializationError("CreateApplicationRequest.vpc_id required")
-    if "ProxyType" in data:
+    if data.get("ProxyType") is not None:
         out["proxy_type"] = data["ProxyType"]
     else:
         raise DeserializationError("CreateApplicationRequest.proxy_type required")
-    if "ApiGatewayProxy" in data:
+    if data.get("ApiGatewayProxy") is not None:
         import capo_migration_hub_refactor_spaces.types.api_gateway_proxy_input
 
         out["api_gateway_proxy"] = (
@@ -86,12 +86,12 @@ def deserialize_json(data: dict) -> CreateApplicationRequest:
                 data["ApiGatewayProxy"]
             )
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_migration_hub_refactor_spaces.types.tag_map
 
         out["tags"] = capo_migration_hub_refactor_spaces.types.tag_map.deserialize_json(
             data["Tags"]
         )
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
     return out

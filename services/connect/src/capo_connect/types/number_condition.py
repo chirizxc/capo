@@ -49,13 +49,13 @@ def serialize_json(value: NumberCondition) -> dict:
 
 def deserialize_json(data: dict) -> NumberCondition:
     out: NumberCondition = {}  # type: ignore[typeddict-item]
-    if "FieldName" in data:
+    if data.get("FieldName") is not None:
         out["field_name"] = data["FieldName"]
-    if "MinValue" in data:
+    if data.get("MinValue") is not None:
         out["min_value"] = data["MinValue"]
-    if "MaxValue" in data:
+    if data.get("MaxValue") is not None:
         out["max_value"] = data["MaxValue"]
-    if "ComparisonType" in data:
+    if data.get("ComparisonType") is not None:
         import capo_connect.types.number_comparison_type
 
         out["comparison_type"] = (

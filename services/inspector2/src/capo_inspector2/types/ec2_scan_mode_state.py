@@ -30,8 +30,8 @@ def serialize_json(value: Ec2ScanModeState) -> dict:
 
 def deserialize_json(data: dict) -> Ec2ScanModeState:
     out: Ec2ScanModeState = {}  # type: ignore[typeddict-item]
-    if "scanMode" in data:
+    if data.get("scanMode") is not None:
         out["scan_mode"] = data["scanMode"]
-    if "scanModeStatus" in data:
+    if data.get("scanModeStatus") is not None:
         out["scan_mode_status"] = data["scanModeStatus"]
     return out

@@ -40,11 +40,11 @@ def serialize_json(value: HoneycodeConnectorProfileCredentials) -> dict:
 
 def deserialize_json(data: dict) -> HoneycodeConnectorProfileCredentials:
     out: HoneycodeConnectorProfileCredentials = {}  # type: ignore[typeddict-item]
-    if "accessToken" in data:
+    if data.get("accessToken") is not None:
         out["access_token"] = data["accessToken"]
-    if "refreshToken" in data:
+    if data.get("refreshToken") is not None:
         out["refresh_token"] = data["refreshToken"]
-    if "oAuthRequest" in data:
+    if data.get("oAuthRequest") is not None:
         import capo_appflow.types.connector_o_auth_request
 
         out["o_auth_request"] = (

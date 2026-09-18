@@ -35,11 +35,11 @@ def serialize_json(value: CapacityTaskFailure) -> dict:
 
 def deserialize_json(data: dict) -> CapacityTaskFailure:
     out: CapacityTaskFailure = {}  # type: ignore[typeddict-item]
-    if "Reason" in data:
+    if data.get("Reason") is not None:
         out["reason"] = data["Reason"]
     else:
         raise DeserializationError("CapacityTaskFailure.reason required")
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_outposts.types.capacity_task_failure_type
 
         out["type"] = capo_outposts.types.capacity_task_failure_type.deserialize_json(

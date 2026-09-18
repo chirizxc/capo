@@ -45,15 +45,18 @@ class RuleSetDoesNotExistException(ServiceError):
 
     code: str | None = "RuleSetDoesNotExistException"
 
-    def __init__(self, data: RuleSetDoesNotExistException_):
+    def __init__(self, data: RuleSetDoesNotExistException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="RuleSetDoesNotExistException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_query(cls, el: Element) -> "RuleSetDoesNotExistException":
-        return cls(deserialize_query(el))
+    def from_query(
+        cls, el: Element, message: str | None = None
+    ) -> "RuleSetDoesNotExistException":
+        return cls(deserialize_query(el), message)

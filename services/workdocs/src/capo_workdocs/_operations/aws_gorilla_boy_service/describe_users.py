@@ -10,6 +10,7 @@ from typing_extensions import Never
 
 import capo_workdocs._auth._signers
 import capo_workdocs._auth._sigv4
+import capo_workdocs._protocol.eventstream
 import capo_workdocs.errors.entity_not_exists_exception
 import capo_workdocs.errors.failed_dependency_exception
 import capo_workdocs.errors.invalid_argument_exception
@@ -35,31 +36,31 @@ def handle_error(response: zapros.Response) -> Never:
     match code:
         case "EntityNotExistsException":
             raise capo_workdocs.errors.entity_not_exists_exception.EntityNotExistsException.from_json(
-                data
+                data, message
             )
         case "FailedDependencyException":
             raise capo_workdocs.errors.failed_dependency_exception.FailedDependencyException.from_json(
-                data
+                data, message
             )
         case "InvalidArgumentException":
             raise capo_workdocs.errors.invalid_argument_exception.InvalidArgumentException.from_json(
-                data
+                data, message
             )
         case "RequestedEntityTooLargeException":
             raise capo_workdocs.errors.requested_entity_too_large_exception.RequestedEntityTooLargeException.from_json(
-                data
+                data, message
             )
         case "ServiceUnavailableException":
             raise capo_workdocs.errors.service_unavailable_exception.ServiceUnavailableException.from_json(
-                data
+                data, message
             )
         case "UnauthorizedOperationException":
             raise capo_workdocs.errors.unauthorized_operation_exception.UnauthorizedOperationException.from_json(
-                data
+                data, message
             )
         case "UnauthorizedResourceAccessException":
             raise capo_workdocs.errors.unauthorized_resource_access_exception.UnauthorizedResourceAccessException.from_json(
-                data
+                data, message
             )
         case _:
             raise UnknownServiceError(code=code, message=message, response=response)
@@ -92,19 +93,26 @@ def get_signer(
     auth_schemes: list[dict[str, Any]] | None = None,
 ) -> capo_workdocs._auth._signers.Signer | None:
     name_to_schema = {s["name"]: s for s in (auth_schemes or [])}  # noqa: F841
-    if options.credentials_provider is not None:
-        sigv4_config = (
-            name_to_schema.get("sigv4")
-            or name_to_schema.get("sigv4a")
-            or name_to_schema.get("sigv4-s3express")
-            or capo_workdocs._auth._sigv4.build_sigv4_auth_scheme(
-                "workdocs", options.region
-            )
+    if (
+        options.credentials_provider is not None
+        and name_to_schema
+        and not name_to_schema.keys() & {"sigv4", "sigv4-s3express"}
+    ):
+        raise RuntimeError(
+            "Endpoint requires an unsupported auth scheme: " + ", ".join(name_to_schema)
         )
-        if sigv4_config is not None:
-            return capo_workdocs._auth._signers.SigV4Signer(
-                options.credentials_provider, auth_scheme=sigv4_config
+    if options.credentials_provider is not None:
+        endpoint_scheme = name_to_schema.get("sigv4") or name_to_schema.get(
+            "sigv4-s3express"
+        )
+        if endpoint_scheme is not None or not name_to_schema:
+            sigv4_config = capo_workdocs._auth._sigv4.build_sigv4_auth_scheme(
+                "workdocs", options.region, endpoint_scheme
             )
+            if sigv4_config is not None:
+                return capo_workdocs._auth._signers.SigV4Signer(
+                    options.credentials_provider, auth_scheme=sigv4_config
+                )
     raise RuntimeError("Auth was not resolved")
 
 
@@ -120,33 +128,47 @@ def build_request(
             Endpoint=options.endpoint,
         )
     )  # noqa: F841
+    import capo_workdocs.types.order_type
+    import capo_workdocs.types.user_filter_type
+    import capo_workdocs.types.user_sort_type
+
     url = endpoint.url.rstrip("/") + "/api/v1/users"
-    params: dict[str, str] = {}
+    params: list[tuple[str, str]] = []
     if "organization_id" in input_:
-        params["organizationId"] = str(input_["organization_id"])
+        params.append(("organizationId", input_["organization_id"]))
     if "user_ids" in input_:
-        params["userIds"] = str(input_["user_ids"])
+        params.append(("userIds", input_["user_ids"]))
     if "query" in input_:
-        params["query"] = str(input_["query"])
+        params.append(("query", input_["query"]))
     if "include" in input_:
-        params["include"] = str(input_["include"])
+        params.append(
+            (
+                "include",
+                capo_workdocs.types.user_filter_type.serialize_json(input_["include"]),
+            )
+        )
     if "order" in input_:
-        params["order"] = str(input_["order"])
+        params.append(
+            ("order", capo_workdocs.types.order_type.serialize_json(input_["order"]))
+        )
     if "sort" in input_:
-        params["sort"] = str(input_["sort"])
+        params.append(
+            ("sort", capo_workdocs.types.user_sort_type.serialize_json(input_["sort"]))
+        )
     if "marker" in input_:
-        params["marker"] = str(input_["marker"])
+        params.append(("marker", input_["marker"]))
     if "limit" in input_:
-        params["limit"] = str(input_["limit"])
+        params.append(("limit", str(input_["limit"])))
     if "fields" in input_:
-        params["fields"] = str(input_["fields"])
+        params.append(("fields", input_["fields"]))
     headers: dict[str, str] = {k: ", ".join(v) for k, v in endpoint.headers.items()}
     if "authentication_token" in input_:
-        headers["Authentication"] = str(input_["authentication_token"])
+        headers["Authentication"] = input_["authentication_token"]
     body: bytes | None = b""
     signer = get_signer(options, auth_schemes=endpoint.properties.get("authSchemes"))
     normalized_url = zapros.URL(url)
-    normalized_url.search_params.update(params)
+    for k, v in params:
+        normalized_url.search_params.append(k, v)
     return zapros.Request(
         normalized_url, "GET", headers=headers, body=body, context={"signer": signer}
     )
@@ -160,7 +182,7 @@ def describe_users(
 ]:
     response = options.client.handler.handle(build_request(options, input_))
     try:
-        if response.status >= 400:
+        if response.status >= 300:
             response.read()
             handle_error(response)
         return handle_response(response), response
@@ -177,7 +199,7 @@ async def async_describe_users(
 ]:
     response = await options.client.handler.ahandle(build_request(options, input_))
     try:
-        if response.status >= 400:
+        if response.status >= 300:
             await response.aread()
             handle_error(response)
         return await async_handle_response(response), response

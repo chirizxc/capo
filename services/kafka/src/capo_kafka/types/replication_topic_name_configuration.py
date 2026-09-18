@@ -31,7 +31,7 @@ def serialize_json(value: ReplicationTopicNameConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> ReplicationTopicNameConfiguration:
     out: ReplicationTopicNameConfiguration = {}  # type: ignore[typeddict-item]
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_kafka.types.replication_topic_name_configuration_type
 
         out["type"] = (

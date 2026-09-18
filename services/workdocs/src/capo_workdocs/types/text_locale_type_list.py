@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> TextLocaleTypeList:
 
     out: TextLocaleTypeList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_workdocs.types.language_code_type.deserialize_json(item))
     return out

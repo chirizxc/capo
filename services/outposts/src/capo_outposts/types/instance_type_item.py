@@ -27,8 +27,8 @@ def serialize_json(value: InstanceTypeItem) -> dict:
 
 def deserialize_json(data: dict) -> InstanceTypeItem:
     out: InstanceTypeItem = {}  # type: ignore[typeddict-item]
-    if "InstanceType" in data:
+    if data.get("InstanceType") is not None:
         out["instance_type"] = data["InstanceType"]
-    if "VCPUs" in data:
+    if data.get("VCPUs") is not None:
         out["vcp_us"] = data["VCPUs"]
     return out

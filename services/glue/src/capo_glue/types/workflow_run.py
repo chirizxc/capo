@@ -111,13 +111,13 @@ def serialize_aws_json_1_1(value: WorkflowRun) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> WorkflowRun:
     out: WorkflowRun = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "WorkflowRunId" in data:
+    if data.get("WorkflowRunId") is not None:
         out["workflow_run_id"] = data["WorkflowRunId"]
-    if "PreviousRunId" in data:
+    if data.get("PreviousRunId") is not None:
         out["previous_run_id"] = data["PreviousRunId"]
-    if "WorkflowRunProperties" in data:
+    if data.get("WorkflowRunProperties") is not None:
         import capo_glue.types.workflow_run_properties
 
         out["workflow_run_properties"] = (
@@ -125,27 +125,27 @@ def deserialize_aws_json_1_1(data: dict) -> WorkflowRun:
                 data["WorkflowRunProperties"]
             )
         )
-    if "StartedOn" in data:
+    if data.get("StartedOn") is not None:
         import capo_glue.types.timestamp_value
 
         out["started_on"] = capo_glue.types.timestamp_value.deserialize_aws_json_1_1(
             data["StartedOn"]
         )
-    if "CompletedOn" in data:
+    if data.get("CompletedOn") is not None:
         import capo_glue.types.timestamp_value
 
         out["completed_on"] = capo_glue.types.timestamp_value.deserialize_aws_json_1_1(
             data["CompletedOn"]
         )
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_glue.types.workflow_run_status
 
         out["status"] = capo_glue.types.workflow_run_status.deserialize_aws_json_1_1(
             data["Status"]
         )
-    if "ErrorMessage" in data:
+    if data.get("ErrorMessage") is not None:
         out["error_message"] = data["ErrorMessage"]
-    if "Statistics" in data:
+    if data.get("Statistics") is not None:
         import capo_glue.types.workflow_run_statistics
 
         out["statistics"] = (
@@ -153,13 +153,13 @@ def deserialize_aws_json_1_1(data: dict) -> WorkflowRun:
                 data["Statistics"]
             )
         )
-    if "Graph" in data:
+    if data.get("Graph") is not None:
         import capo_glue.types.workflow_graph
 
         out["graph"] = capo_glue.types.workflow_graph.deserialize_aws_json_1_1(
             data["Graph"]
         )
-    if "StartingEventBatchCondition" in data:
+    if data.get("StartingEventBatchCondition") is not None:
         import capo_glue.types.starting_event_batch_condition
 
         out["starting_event_batch_condition"] = (

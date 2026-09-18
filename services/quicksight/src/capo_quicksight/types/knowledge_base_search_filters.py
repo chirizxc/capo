@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> KnowledgeBaseSearchFilters:
 
     out: KnowledgeBaseSearchFilters = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_quicksight.types.knowledge_base_search_filter.deserialize_json(item)
         )

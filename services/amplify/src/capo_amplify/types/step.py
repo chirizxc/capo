@@ -83,11 +83,11 @@ def serialize_json(value: Step) -> dict:
 
 def deserialize_json(data: dict) -> Step:
     out: Step = {}  # type: ignore[typeddict-item]
-    if "stepName" in data:
+    if data.get("stepName") is not None:
         out["step_name"] = data["stepName"]
     else:
         raise DeserializationError("Step.step_name required")
-    if "startTime" in data:
+    if data.get("startTime") is not None:
         import capo_amplify.types.start_time
 
         out["start_time"] = capo_amplify.types.start_time.deserialize_json(
@@ -95,34 +95,34 @@ def deserialize_json(data: dict) -> Step:
         )
     else:
         raise DeserializationError("Step.start_time required")
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_amplify.types.job_status
 
         out["status"] = capo_amplify.types.job_status.deserialize_json(data["status"])
     else:
         raise DeserializationError("Step.status required")
-    if "endTime" in data:
+    if data.get("endTime") is not None:
         import capo_amplify.types.end_time
 
         out["end_time"] = capo_amplify.types.end_time.deserialize_json(data["endTime"])
     else:
         raise DeserializationError("Step.end_time required")
-    if "logUrl" in data:
+    if data.get("logUrl") is not None:
         out["log_url"] = data["logUrl"]
-    if "artifactsUrl" in data:
+    if data.get("artifactsUrl") is not None:
         out["artifacts_url"] = data["artifactsUrl"]
-    if "testArtifactsUrl" in data:
+    if data.get("testArtifactsUrl") is not None:
         out["test_artifacts_url"] = data["testArtifactsUrl"]
-    if "testConfigUrl" in data:
+    if data.get("testConfigUrl") is not None:
         out["test_config_url"] = data["testConfigUrl"]
-    if "screenshots" in data:
+    if data.get("screenshots") is not None:
         import capo_amplify.types.screenshots
 
         out["screenshots"] = capo_amplify.types.screenshots.deserialize_json(
             data["screenshots"]
         )
-    if "statusReason" in data:
+    if data.get("statusReason") is not None:
         out["status_reason"] = data["statusReason"]
-    if "context" in data:
+    if data.get("context") is not None:
         out["context"] = data["context"]
     return out

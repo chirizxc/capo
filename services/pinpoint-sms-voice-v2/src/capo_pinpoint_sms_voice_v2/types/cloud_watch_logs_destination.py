@@ -28,11 +28,11 @@ def serialize_aws_json_1_0(value: CloudWatchLogsDestination) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CloudWatchLogsDestination:
     out: CloudWatchLogsDestination = {}  # type: ignore[typeddict-item]
-    if "IamRoleArn" in data:
+    if data.get("IamRoleArn") is not None:
         out["iam_role_arn"] = data["IamRoleArn"]
     else:
         raise DeserializationError("CloudWatchLogsDestination.iam_role_arn required")
-    if "LogGroupArn" in data:
+    if data.get("LogGroupArn") is not None:
         out["log_group_arn"] = data["LogGroupArn"]
     else:
         raise DeserializationError("CloudWatchLogsDestination.log_group_arn required")

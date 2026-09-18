@@ -64,17 +64,17 @@ def deserialize_json(
     data: dict,
 ) -> AwsElasticsearchDomainElasticsearchClusterConfigDetails:
     out: AwsElasticsearchDomainElasticsearchClusterConfigDetails = {}  # type: ignore[typeddict-item]
-    if "DedicatedMasterCount" in data:
+    if data.get("DedicatedMasterCount") is not None:
         out["dedicated_master_count"] = data["DedicatedMasterCount"]
-    if "DedicatedMasterEnabled" in data:
+    if data.get("DedicatedMasterEnabled") is not None:
         out["dedicated_master_enabled"] = data["DedicatedMasterEnabled"]
-    if "DedicatedMasterType" in data:
+    if data.get("DedicatedMasterType") is not None:
         out["dedicated_master_type"] = data["DedicatedMasterType"]
-    if "InstanceCount" in data:
+    if data.get("InstanceCount") is not None:
         out["instance_count"] = data["InstanceCount"]
-    if "InstanceType" in data:
+    if data.get("InstanceType") is not None:
         out["instance_type"] = data["InstanceType"]
-    if "ZoneAwarenessConfig" in data:
+    if data.get("ZoneAwarenessConfig") is not None:
         import capo_securityhub.types.aws_elasticsearch_domain_elasticsearch_cluster_config_zone_awareness_config_details
 
         out["zone_awareness_config"] = (
@@ -82,6 +82,6 @@ def deserialize_json(
                 data["ZoneAwarenessConfig"]
             )
         )
-    if "ZoneAwarenessEnabled" in data:
+    if data.get("ZoneAwarenessEnabled") is not None:
         out["zone_awareness_enabled"] = data["ZoneAwarenessEnabled"]
     return out

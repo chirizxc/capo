@@ -28,8 +28,8 @@ def serialize_aws_json_1_1(value: FlowDefinitionOutputConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> FlowDefinitionOutputConfig:
     out: FlowDefinitionOutputConfig = {}  # type: ignore[typeddict-item]
-    if "S3OutputPath" in data:
+    if data.get("S3OutputPath") is not None:
         out["s3_output_path"] = data["S3OutputPath"]
-    if "KmsKeyId" in data:
+    if data.get("KmsKeyId") is not None:
         out["kms_key_id"] = data["KmsKeyId"]
     return out

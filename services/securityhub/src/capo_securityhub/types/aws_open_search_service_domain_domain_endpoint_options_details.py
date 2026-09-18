@@ -50,14 +50,14 @@ def deserialize_json(
     data: dict,
 ) -> AwsOpenSearchServiceDomainDomainEndpointOptionsDetails:
     out: AwsOpenSearchServiceDomainDomainEndpointOptionsDetails = {}  # type: ignore[typeddict-item]
-    if "CustomEndpointCertificateArn" in data:
+    if data.get("CustomEndpointCertificateArn") is not None:
         out["custom_endpoint_certificate_arn"] = data["CustomEndpointCertificateArn"]
-    if "CustomEndpointEnabled" in data:
+    if data.get("CustomEndpointEnabled") is not None:
         out["custom_endpoint_enabled"] = data["CustomEndpointEnabled"]
-    if "EnforceHTTPS" in data:
+    if data.get("EnforceHTTPS") is not None:
         out["enforce_https"] = data["EnforceHTTPS"]
-    if "CustomEndpoint" in data:
+    if data.get("CustomEndpoint") is not None:
         out["custom_endpoint"] = data["CustomEndpoint"]
-    if "TLSSecurityPolicy" in data:
+    if data.get("TLSSecurityPolicy") is not None:
         out["tls_security_policy"] = data["TLSSecurityPolicy"]
     return out

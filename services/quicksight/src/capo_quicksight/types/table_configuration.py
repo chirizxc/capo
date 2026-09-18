@@ -129,13 +129,13 @@ def serialize_json(value: TableConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> TableConfiguration:
     out: TableConfiguration = {}  # type: ignore[typeddict-item]
-    if "FieldWells" in data:
+    if data.get("FieldWells") is not None:
         import capo_quicksight.types.table_field_wells
 
         out["field_wells"] = capo_quicksight.types.table_field_wells.deserialize_json(
             data["FieldWells"]
         )
-    if "SortConfiguration" in data:
+    if data.get("SortConfiguration") is not None:
         import capo_quicksight.types.table_sort_configuration
 
         out["sort_configuration"] = (
@@ -143,19 +143,19 @@ def deserialize_json(data: dict) -> TableConfiguration:
                 data["SortConfiguration"]
             )
         )
-    if "TableOptions" in data:
+    if data.get("TableOptions") is not None:
         import capo_quicksight.types.table_options
 
         out["table_options"] = capo_quicksight.types.table_options.deserialize_json(
             data["TableOptions"]
         )
-    if "TotalOptions" in data:
+    if data.get("TotalOptions") is not None:
         import capo_quicksight.types.total_options
 
         out["total_options"] = capo_quicksight.types.total_options.deserialize_json(
             data["TotalOptions"]
         )
-    if "FieldOptions" in data:
+    if data.get("FieldOptions") is not None:
         import capo_quicksight.types.table_field_options
 
         out["field_options"] = (
@@ -163,7 +163,7 @@ def deserialize_json(data: dict) -> TableConfiguration:
                 data["FieldOptions"]
             )
         )
-    if "PaginatedReportOptions" in data:
+    if data.get("PaginatedReportOptions") is not None:
         import capo_quicksight.types.table_paginated_report_options
 
         out["paginated_report_options"] = (
@@ -171,7 +171,7 @@ def deserialize_json(data: dict) -> TableConfiguration:
                 data["PaginatedReportOptions"]
             )
         )
-    if "TableInlineVisualizations" in data:
+    if data.get("TableInlineVisualizations") is not None:
         import capo_quicksight.types.table_inline_visualization_list
 
         out["table_inline_visualizations"] = (
@@ -179,13 +179,13 @@ def deserialize_json(data: dict) -> TableConfiguration:
                 data["TableInlineVisualizations"]
             )
         )
-    if "Tooltip" in data:
+    if data.get("Tooltip") is not None:
         import capo_quicksight.types.tooltip_options
 
         out["tooltip"] = capo_quicksight.types.tooltip_options.deserialize_json(
             data["Tooltip"]
         )
-    if "DashboardCustomizationVisualOptions" in data:
+    if data.get("DashboardCustomizationVisualOptions") is not None:
         import capo_quicksight.types.dashboard_customization_visual_options
 
         out["dashboard_customization_visual_options"] = (
@@ -193,7 +193,7 @@ def deserialize_json(data: dict) -> TableConfiguration:
                 data["DashboardCustomizationVisualOptions"]
             )
         )
-    if "Interactions" in data:
+    if data.get("Interactions") is not None:
         import capo_quicksight.types.visual_interaction_options
 
         out["interactions"] = (

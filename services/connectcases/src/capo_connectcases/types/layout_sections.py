@@ -26,7 +26,7 @@ def serialize_json(value: LayoutSections) -> dict:
 
 def deserialize_json(data: dict) -> LayoutSections:
     out: LayoutSections = {}  # type: ignore[typeddict-item]
-    if "sections" in data:
+    if data.get("sections") is not None:
         import capo_connectcases.types.sections_list
 
         out["sections"] = capo_connectcases.types.sections_list.deserialize_json(

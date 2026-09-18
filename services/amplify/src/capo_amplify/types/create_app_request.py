@@ -181,27 +181,27 @@ def serialize_json(value: CreateAppRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateAppRequest:
     out: CreateAppRequest = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("CreateAppRequest.name required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "repository" in data:
+    if data.get("repository") is not None:
         out["repository"] = data["repository"]
-    if "platform" in data:
+    if data.get("platform") is not None:
         import capo_amplify.types.platform
 
         out["platform"] = capo_amplify.types.platform.deserialize_json(data["platform"])
-    if "computeRoleArn" in data:
+    if data.get("computeRoleArn") is not None:
         out["compute_role_arn"] = data["computeRoleArn"]
-    if "iamServiceRoleArn" in data:
+    if data.get("iamServiceRoleArn") is not None:
         out["iam_service_role_arn"] = data["iamServiceRoleArn"]
-    if "oauthToken" in data:
+    if data.get("oauthToken") is not None:
         out["oauth_token"] = data["oauthToken"]
-    if "accessToken" in data:
+    if data.get("accessToken") is not None:
         out["access_token"] = data["accessToken"]
-    if "environmentVariables" in data:
+    if data.get("environmentVariables") is not None:
         import capo_amplify.types.environment_variables
 
         out["environment_variables"] = (
@@ -209,31 +209,31 @@ def deserialize_json(data: dict) -> CreateAppRequest:
                 data["environmentVariables"]
             )
         )
-    if "enableBranchAutoBuild" in data:
+    if data.get("enableBranchAutoBuild") is not None:
         out["enable_branch_auto_build"] = data["enableBranchAutoBuild"]
-    if "enableBranchAutoDeletion" in data:
+    if data.get("enableBranchAutoDeletion") is not None:
         out["enable_branch_auto_deletion"] = data["enableBranchAutoDeletion"]
-    if "enableBasicAuth" in data:
+    if data.get("enableBasicAuth") is not None:
         out["enable_basic_auth"] = data["enableBasicAuth"]
-    if "basicAuthCredentials" in data:
+    if data.get("basicAuthCredentials") is not None:
         out["basic_auth_credentials"] = data["basicAuthCredentials"]
-    if "customRules" in data:
+    if data.get("customRules") is not None:
         import capo_amplify.types.custom_rules
 
         out["custom_rules"] = capo_amplify.types.custom_rules.deserialize_json(
             data["customRules"]
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_amplify.types.tag_map
 
         out["tags"] = capo_amplify.types.tag_map.deserialize_json(data["tags"])
-    if "buildSpec" in data:
+    if data.get("buildSpec") is not None:
         out["build_spec"] = data["buildSpec"]
-    if "customHeaders" in data:
+    if data.get("customHeaders") is not None:
         out["custom_headers"] = data["customHeaders"]
-    if "enableAutoBranchCreation" in data:
+    if data.get("enableAutoBranchCreation") is not None:
         out["enable_auto_branch_creation"] = data["enableAutoBranchCreation"]
-    if "autoBranchCreationPatterns" in data:
+    if data.get("autoBranchCreationPatterns") is not None:
         import capo_amplify.types.auto_branch_creation_patterns
 
         out["auto_branch_creation_patterns"] = (
@@ -241,7 +241,7 @@ def deserialize_json(data: dict) -> CreateAppRequest:
                 data["autoBranchCreationPatterns"]
             )
         )
-    if "autoBranchCreationConfig" in data:
+    if data.get("autoBranchCreationConfig") is not None:
         import capo_amplify.types.auto_branch_creation_config
 
         out["auto_branch_creation_config"] = (
@@ -249,13 +249,13 @@ def deserialize_json(data: dict) -> CreateAppRequest:
                 data["autoBranchCreationConfig"]
             )
         )
-    if "jobConfig" in data:
+    if data.get("jobConfig") is not None:
         import capo_amplify.types.job_config
 
         out["job_config"] = capo_amplify.types.job_config.deserialize_json(
             data["jobConfig"]
         )
-    if "cacheConfig" in data:
+    if data.get("cacheConfig") is not None:
         import capo_amplify.types.cache_config
 
         out["cache_config"] = capo_amplify.types.cache_config.deserialize_json(

@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> UnprocessedSecurityControls:
 
     out: UnprocessedSecurityControls = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_securityhub.types.unprocessed_security_control.deserialize_json(item)
         )

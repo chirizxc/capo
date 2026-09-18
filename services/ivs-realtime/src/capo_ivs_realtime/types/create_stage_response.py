@@ -38,11 +38,11 @@ def serialize_json(value: CreateStageResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateStageResponse:
     out: CreateStageResponse = {}  # type: ignore[typeddict-item]
-    if "stage" in data:
+    if data.get("stage") is not None:
         import capo_ivs_realtime.types.stage
 
         out["stage"] = capo_ivs_realtime.types.stage.deserialize_json(data["stage"])
-    if "participantTokens" in data:
+    if data.get("participantTokens") is not None:
         import capo_ivs_realtime.types.participant_token_list
 
         out["participant_tokens"] = (

@@ -45,9 +45,9 @@ def serialize_json(value: UpdateRepositoryRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateRepositoryRequest:
     out: UpdateRepositoryRequest = {}  # type: ignore[typeddict-item]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "upstreams" in data:
+    if data.get("upstreams") is not None:
         import capo_codeartifact.types.upstream_repository_list
 
         out["upstreams"] = (

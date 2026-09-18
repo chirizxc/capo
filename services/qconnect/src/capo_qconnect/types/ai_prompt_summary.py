@@ -90,59 +90,59 @@ def serialize_json(value: AIPromptSummary) -> dict:
 
 def deserialize_json(data: dict) -> AIPromptSummary:
     out: AIPromptSummary = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("AIPromptSummary.name required")
-    if "assistantId" in data:
+    if data.get("assistantId") is not None:
         out["assistant_id"] = data["assistantId"]
     else:
         raise DeserializationError("AIPromptSummary.assistant_id required")
-    if "assistantArn" in data:
+    if data.get("assistantArn") is not None:
         out["assistant_arn"] = data["assistantArn"]
     else:
         raise DeserializationError("AIPromptSummary.assistant_arn required")
-    if "aiPromptId" in data:
+    if data.get("aiPromptId") is not None:
         out["ai_prompt_id"] = data["aiPromptId"]
     else:
         raise DeserializationError("AIPromptSummary.ai_prompt_id required")
-    if "type" in data:
+    if data.get("type") is not None:
         out["type"] = data["type"]
     else:
         raise DeserializationError("AIPromptSummary.type required")
-    if "aiPromptArn" in data:
+    if data.get("aiPromptArn") is not None:
         out["ai_prompt_arn"] = data["aiPromptArn"]
     else:
         raise DeserializationError("AIPromptSummary.ai_prompt_arn required")
-    if "modifiedTime" in data:
+    if data.get("modifiedTime") is not None:
         import capo_qconnect.types._prelude.timestamp
 
         out["modified_time"] = capo_qconnect.types._prelude.timestamp.deserialize_json(
             data["modifiedTime"]
         )
-    if "templateType" in data:
+    if data.get("templateType") is not None:
         out["template_type"] = data["templateType"]
     else:
         raise DeserializationError("AIPromptSummary.template_type required")
-    if "modelId" in data:
+    if data.get("modelId") is not None:
         out["model_id"] = data["modelId"]
     else:
         raise DeserializationError("AIPromptSummary.model_id required")
-    if "apiFormat" in data:
+    if data.get("apiFormat") is not None:
         out["api_format"] = data["apiFormat"]
     else:
         raise DeserializationError("AIPromptSummary.api_format required")
-    if "visibilityStatus" in data:
+    if data.get("visibilityStatus") is not None:
         out["visibility_status"] = data["visibilityStatus"]
     else:
         raise DeserializationError("AIPromptSummary.visibility_status required")
-    if "origin" in data:
+    if data.get("origin") is not None:
         out["origin"] = data["origin"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_qconnect.types.tags
 
         out["tags"] = capo_qconnect.types.tags.deserialize_json(data["tags"])

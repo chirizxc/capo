@@ -179,17 +179,19 @@ class EC2InstanceConnectClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ec2_instance_connect.types.send_serial_console_ssh_public_key_request.SendSerialConsoleSSHPublicKeyRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
+        input_: capo_ec2_instance_connect.types.send_serial_console_ssh_public_key_request.SendSerialConsoleSSHPublicKeyRequest = {
+            "instance_id": instance_id,
+            "ssh_public_key": ssh_public_key,
+        }
         if serial_port is not None:
             input_["serial_port"] = serial_port
-        input_["ssh_public_key"] = ssh_public_key
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def send_ssh_public_key(
@@ -243,10 +245,11 @@ class EC2InstanceConnectClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ec2_instance_connect.types.send_ssh_public_key_request.SendSSHPublicKeyRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["instance_os_user"] = instance_os_user
-        input_["ssh_public_key"] = ssh_public_key
+        input_: capo_ec2_instance_connect.types.send_ssh_public_key_request.SendSSHPublicKeyRequest = {
+            "instance_id": instance_id,
+            "instance_os_user": instance_os_user,
+            "ssh_public_key": ssh_public_key,
+        }
         if availability_zone is not None:
             input_["availability_zone"] = availability_zone
 
@@ -255,6 +258,7 @@ class EC2InstanceConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def __enter__(self) -> Self:

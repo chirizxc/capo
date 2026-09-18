@@ -25,6 +25,6 @@ def serialize_json(value: TopicConfigOptions) -> dict:
 
 def deserialize_json(data: dict) -> TopicConfigOptions:
     out: TopicConfigOptions = {}  # type: ignore[typeddict-item]
-    if "QBusinessInsightsEnabled" in data:
+    if data.get("QBusinessInsightsEnabled") is not None:
         out["q_business_insights_enabled"] = data["QBusinessInsightsEnabled"]
     return out

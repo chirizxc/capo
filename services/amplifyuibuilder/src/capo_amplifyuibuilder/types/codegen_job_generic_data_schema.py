@@ -62,7 +62,7 @@ def serialize_json(value: CodegenJobGenericDataSchema) -> dict:
 
 def deserialize_json(data: dict) -> CodegenJobGenericDataSchema:
     out: CodegenJobGenericDataSchema = {}  # type: ignore[typeddict-item]
-    if "dataSourceType" in data:
+    if data.get("dataSourceType") is not None:
         import capo_amplifyuibuilder.types.codegen_job_generic_data_source_type
 
         out["data_source_type"] = (
@@ -74,7 +74,7 @@ def deserialize_json(data: dict) -> CodegenJobGenericDataSchema:
         raise DeserializationError(
             "CodegenJobGenericDataSchema.data_source_type required"
         )
-    if "models" in data:
+    if data.get("models") is not None:
         import capo_amplifyuibuilder.types.codegen_generic_data_models
 
         out["models"] = (
@@ -84,7 +84,7 @@ def deserialize_json(data: dict) -> CodegenJobGenericDataSchema:
         )
     else:
         raise DeserializationError("CodegenJobGenericDataSchema.models required")
-    if "enums" in data:
+    if data.get("enums") is not None:
         import capo_amplifyuibuilder.types.codegen_generic_data_enums
 
         out["enums"] = (
@@ -94,7 +94,7 @@ def deserialize_json(data: dict) -> CodegenJobGenericDataSchema:
         )
     else:
         raise DeserializationError("CodegenJobGenericDataSchema.enums required")
-    if "nonModels" in data:
+    if data.get("nonModels") is not None:
         import capo_amplifyuibuilder.types.codegen_generic_data_non_models
 
         out["non_models"] = (

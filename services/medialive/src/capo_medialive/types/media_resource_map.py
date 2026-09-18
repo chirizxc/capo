@@ -25,6 +25,8 @@ def serialize_json(input_to_serialize: MediaResourceMap) -> dict:
 def deserialize_json(data: dict) -> MediaResourceMap:
     out: MediaResourceMap = {}
     for key, value in data.items():
+        if value is None:
+            continue
         import capo_medialive.types.media_resource
 
         out[key] = capo_medialive.types.media_resource.deserialize_json(value)

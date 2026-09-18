@@ -37,7 +37,7 @@ def serialize_json(value: UpdateSipMediaApplicationCallRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateSipMediaApplicationCallRequest:
     out: UpdateSipMediaApplicationCallRequest = {}  # type: ignore[typeddict-item]
-    if "Arguments" in data:
+    if data.get("Arguments") is not None:
         import capo_chime_sdk_voice.types.sma_update_call_arguments_map
 
         out["arguments"] = (

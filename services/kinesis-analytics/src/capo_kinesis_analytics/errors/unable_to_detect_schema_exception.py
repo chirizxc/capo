@@ -48,9 +48,9 @@ def serialize_aws_json_1_1(value: UnableToDetectSchemaException_) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UnableToDetectSchemaException_:
     out: UnableToDetectSchemaException_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
-    if "RawInputRecords" in data:
+    if data.get("RawInputRecords") is not None:
         import capo_kinesis_analytics.types.raw_input_records
 
         out["raw_input_records"] = (
@@ -58,7 +58,7 @@ def deserialize_aws_json_1_1(data: dict) -> UnableToDetectSchemaException_:
                 data["RawInputRecords"]
             )
         )
-    if "ProcessedInputRecords" in data:
+    if data.get("ProcessedInputRecords") is not None:
         import capo_kinesis_analytics.types.processed_input_records
 
         out["processed_input_records"] = (
@@ -74,15 +74,20 @@ class UnableToDetectSchemaException(ServiceError):
 
     code: str | None = "UnableToDetectSchemaException"
 
-    def __init__(self, data: UnableToDetectSchemaException_):
+    def __init__(
+        self, data: UnableToDetectSchemaException_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="UnableToDetectSchemaException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "UnableToDetectSchemaException":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "UnableToDetectSchemaException":
+        return cls(deserialize_aws_json_1_1(data), message)

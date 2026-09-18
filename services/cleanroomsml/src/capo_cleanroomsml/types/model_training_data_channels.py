@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> ModelTrainingDataChannels:
 
     out: ModelTrainingDataChannels = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_cleanroomsml.types.model_training_data_channel.deserialize_json(item)
         )

@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: DescribeApplicationFleetAssociationsResult) ->
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeApplicationFleetAssociationsResult:
     out: DescribeApplicationFleetAssociationsResult = {}  # type: ignore[typeddict-item]
-    if "ApplicationFleetAssociations" in data:
+    if data.get("ApplicationFleetAssociations") is not None:
         import capo_appstream.types.application_fleet_association_list
 
         out["application_fleet_associations"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeApplicationFleetAssociations
                 data["ApplicationFleetAssociations"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

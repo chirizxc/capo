@@ -24,7 +24,7 @@ def serialize_json(value: UpdateFilterResponse) -> dict:
 
 def deserialize_json(data: dict) -> UpdateFilterResponse:
     out: UpdateFilterResponse = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("UpdateFilterResponse.arn required")

@@ -32,14 +32,14 @@ def serialize_aws_json_1_0(value: UpdateSenderIdRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> UpdateSenderIdRequest:
     out: UpdateSenderIdRequest = {}  # type: ignore[typeddict-item]
-    if "SenderId" in data:
+    if data.get("SenderId") is not None:
         out["sender_id"] = data["SenderId"]
     else:
         raise DeserializationError("UpdateSenderIdRequest.sender_id required")
-    if "IsoCountryCode" in data:
+    if data.get("IsoCountryCode") is not None:
         out["iso_country_code"] = data["IsoCountryCode"]
     else:
         raise DeserializationError("UpdateSenderIdRequest.iso_country_code required")
-    if "DeletionProtectionEnabled" in data:
+    if data.get("DeletionProtectionEnabled") is not None:
         out["deletion_protection_enabled"] = data["DeletionProtectionEnabled"]
     return out

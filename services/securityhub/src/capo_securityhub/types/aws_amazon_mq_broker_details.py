@@ -154,17 +154,17 @@ def serialize_json(value: AwsAmazonMqBrokerDetails) -> dict:
 
 def deserialize_json(data: dict) -> AwsAmazonMqBrokerDetails:
     out: AwsAmazonMqBrokerDetails = {}  # type: ignore[typeddict-item]
-    if "AuthenticationStrategy" in data:
+    if data.get("AuthenticationStrategy") is not None:
         out["authentication_strategy"] = data["AuthenticationStrategy"]
-    if "AutoMinorVersionUpgrade" in data:
+    if data.get("AutoMinorVersionUpgrade") is not None:
         out["auto_minor_version_upgrade"] = data["AutoMinorVersionUpgrade"]
-    if "BrokerArn" in data:
+    if data.get("BrokerArn") is not None:
         out["broker_arn"] = data["BrokerArn"]
-    if "BrokerName" in data:
+    if data.get("BrokerName") is not None:
         out["broker_name"] = data["BrokerName"]
-    if "DeploymentMode" in data:
+    if data.get("DeploymentMode") is not None:
         out["deployment_mode"] = data["DeploymentMode"]
-    if "EncryptionOptions" in data:
+    if data.get("EncryptionOptions") is not None:
         import capo_securityhub.types.aws_amazon_mq_broker_encryption_options_details
 
         out["encryption_options"] = (
@@ -172,15 +172,15 @@ def deserialize_json(data: dict) -> AwsAmazonMqBrokerDetails:
                 data["EncryptionOptions"]
             )
         )
-    if "EngineType" in data:
+    if data.get("EngineType") is not None:
         out["engine_type"] = data["EngineType"]
-    if "EngineVersion" in data:
+    if data.get("EngineVersion") is not None:
         out["engine_version"] = data["EngineVersion"]
-    if "HostInstanceType" in data:
+    if data.get("HostInstanceType") is not None:
         out["host_instance_type"] = data["HostInstanceType"]
-    if "BrokerId" in data:
+    if data.get("BrokerId") is not None:
         out["broker_id"] = data["BrokerId"]
-    if "LdapServerMetadata" in data:
+    if data.get("LdapServerMetadata") is not None:
         import capo_securityhub.types.aws_amazon_mq_broker_ldap_server_metadata_details
 
         out["ldap_server_metadata"] = (
@@ -188,7 +188,7 @@ def deserialize_json(data: dict) -> AwsAmazonMqBrokerDetails:
                 data["LdapServerMetadata"]
             )
         )
-    if "Logs" in data:
+    if data.get("Logs") is not None:
         import capo_securityhub.types.aws_amazon_mq_broker_logs_details
 
         out["logs"] = (
@@ -196,7 +196,7 @@ def deserialize_json(data: dict) -> AwsAmazonMqBrokerDetails:
                 data["Logs"]
             )
         )
-    if "MaintenanceWindowStartTime" in data:
+    if data.get("MaintenanceWindowStartTime") is not None:
         import capo_securityhub.types.aws_amazon_mq_broker_maintenance_window_start_time_details
 
         out["maintenance_window_start_time"] = (
@@ -204,23 +204,23 @@ def deserialize_json(data: dict) -> AwsAmazonMqBrokerDetails:
                 data["MaintenanceWindowStartTime"]
             )
         )
-    if "PubliclyAccessible" in data:
+    if data.get("PubliclyAccessible") is not None:
         out["publicly_accessible"] = data["PubliclyAccessible"]
-    if "SecurityGroups" in data:
+    if data.get("SecurityGroups") is not None:
         import capo_securityhub.types.string_list
 
         out["security_groups"] = capo_securityhub.types.string_list.deserialize_json(
             data["SecurityGroups"]
         )
-    if "StorageType" in data:
+    if data.get("StorageType") is not None:
         out["storage_type"] = data["StorageType"]
-    if "SubnetIds" in data:
+    if data.get("SubnetIds") is not None:
         import capo_securityhub.types.string_list
 
         out["subnet_ids"] = capo_securityhub.types.string_list.deserialize_json(
             data["SubnetIds"]
         )
-    if "Users" in data:
+    if data.get("Users") is not None:
         import capo_securityhub.types.aws_amazon_mq_broker_users_list
 
         out["users"] = (

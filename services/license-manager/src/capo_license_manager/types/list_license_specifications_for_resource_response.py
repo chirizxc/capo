@@ -38,7 +38,7 @@ def deserialize_aws_json_1_1(
     data: dict,
 ) -> ListLicenseSpecificationsForResourceResponse:
     out: ListLicenseSpecificationsForResourceResponse = {}  # type: ignore[typeddict-item]
-    if "LicenseSpecifications" in data:
+    if data.get("LicenseSpecifications") is not None:
         import capo_license_manager.types.license_specifications
 
         out["license_specifications"] = (
@@ -46,6 +46,6 @@ def deserialize_aws_json_1_1(
                 data["LicenseSpecifications"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

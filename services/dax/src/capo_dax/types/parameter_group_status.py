@@ -40,11 +40,11 @@ def serialize_aws_json_1_1(value: ParameterGroupStatus) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ParameterGroupStatus:
     out: ParameterGroupStatus = {}  # type: ignore[typeddict-item]
-    if "ParameterGroupName" in data:
+    if data.get("ParameterGroupName") is not None:
         out["parameter_group_name"] = data["ParameterGroupName"]
-    if "ParameterApplyStatus" in data:
+    if data.get("ParameterApplyStatus") is not None:
         out["parameter_apply_status"] = data["ParameterApplyStatus"]
-    if "NodeIdsToReboot" in data:
+    if data.get("NodeIdsToReboot") is not None:
         import capo_dax.types.node_identifier_list
 
         out["node_ids_to_reboot"] = (

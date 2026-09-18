@@ -47,13 +47,13 @@ def serialize_aws_json_1_1(value: DocumentAttributeCondition) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DocumentAttributeCondition:
     out: DocumentAttributeCondition = {}  # type: ignore[typeddict-item]
-    if "ConditionDocumentAttributeKey" in data:
+    if data.get("ConditionDocumentAttributeKey") is not None:
         out["condition_document_attribute_key"] = data["ConditionDocumentAttributeKey"]
     else:
         raise DeserializationError(
             "DocumentAttributeCondition.condition_document_attribute_key required"
         )
-    if "Operator" in data:
+    if data.get("Operator") is not None:
         import capo_kendra.types.condition_operator
 
         out["operator"] = capo_kendra.types.condition_operator.deserialize_aws_json_1_1(
@@ -61,7 +61,7 @@ def deserialize_aws_json_1_1(data: dict) -> DocumentAttributeCondition:
         )
     else:
         raise DeserializationError("DocumentAttributeCondition.operator required")
-    if "ConditionOnValue" in data:
+    if data.get("ConditionOnValue") is not None:
         import capo_kendra.types.document_attribute_value
 
         out["condition_on_value"] = (

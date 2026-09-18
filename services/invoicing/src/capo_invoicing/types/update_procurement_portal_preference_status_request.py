@@ -77,7 +77,7 @@ def deserialize_aws_json_1_0(
     data: dict,
 ) -> UpdateProcurementPortalPreferenceStatusRequest:
     out: UpdateProcurementPortalPreferenceStatusRequest = {}  # type: ignore[typeddict-item]
-    if "ProcurementPortalPreferenceArn" in data:
+    if data.get("ProcurementPortalPreferenceArn") is not None:
         out["procurement_portal_preference_arn"] = data[
             "ProcurementPortalPreferenceArn"
         ]
@@ -85,7 +85,7 @@ def deserialize_aws_json_1_0(
         raise DeserializationError(
             "UpdateProcurementPortalPreferenceStatusRequest.procurement_portal_preference_arn required"
         )
-    if "EinvoiceDeliveryPreferenceStatus" in data:
+    if data.get("EinvoiceDeliveryPreferenceStatus") is not None:
         import capo_invoicing.types.procurement_portal_preference_status
 
         out["einvoice_delivery_preference_status"] = (
@@ -93,11 +93,11 @@ def deserialize_aws_json_1_0(
                 data["EinvoiceDeliveryPreferenceStatus"]
             )
         )
-    if "EinvoiceDeliveryPreferenceStatusReason" in data:
+    if data.get("EinvoiceDeliveryPreferenceStatusReason") is not None:
         out["einvoice_delivery_preference_status_reason"] = data[
             "EinvoiceDeliveryPreferenceStatusReason"
         ]
-    if "PurchaseOrderRetrievalPreferenceStatus" in data:
+    if data.get("PurchaseOrderRetrievalPreferenceStatus") is not None:
         import capo_invoicing.types.procurement_portal_preference_status
 
         out["purchase_order_retrieval_preference_status"] = (
@@ -105,10 +105,10 @@ def deserialize_aws_json_1_0(
                 data["PurchaseOrderRetrievalPreferenceStatus"]
             )
         )
-    if "PurchaseOrderRetrievalPreferenceStatusReason" in data:
+    if data.get("PurchaseOrderRetrievalPreferenceStatusReason") is not None:
         out["purchase_order_retrieval_preference_status_reason"] = data[
             "PurchaseOrderRetrievalPreferenceStatusReason"
         ]
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
     return out

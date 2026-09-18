@@ -77,9 +77,9 @@ def serialize_json(value: NewGatingRule) -> dict:
 
 def deserialize_json(data: dict) -> NewGatingRule:
     out: NewGatingRule = {}  # type: ignore[typeddict-item]
-    if "ControlPanelArn" in data:
+    if data.get("ControlPanelArn") is not None:
         out["control_panel_arn"] = data["ControlPanelArn"]
-    if "GatingControls" in data:
+    if data.get("GatingControls") is not None:
         import capo_route53_recovery_control_config.types.__list_of__string_min1_max256_pattern_a_za_z09
 
         out["gating_controls"] = (
@@ -87,9 +87,9 @@ def deserialize_json(data: dict) -> NewGatingRule:
                 data["GatingControls"]
             )
         )
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "RuleConfig" in data:
+    if data.get("RuleConfig") is not None:
         import capo_route53_recovery_control_config.types.rule_config
 
         out["rule_config"] = (
@@ -97,7 +97,7 @@ def deserialize_json(data: dict) -> NewGatingRule:
                 data["RuleConfig"]
             )
         )
-    if "TargetControls" in data:
+    if data.get("TargetControls") is not None:
         import capo_route53_recovery_control_config.types.__list_of__string_min1_max256_pattern_a_za_z09
 
         out["target_controls"] = (
@@ -105,6 +105,6 @@ def deserialize_json(data: dict) -> NewGatingRule:
                 data["TargetControls"]
             )
         )
-    if "WaitPeriodMs" in data:
+    if data.get("WaitPeriodMs") is not None:
         out["wait_period_ms"] = data["WaitPeriodMs"]
     return out

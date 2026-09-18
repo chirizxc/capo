@@ -33,13 +33,13 @@ def serialize_aws_json_1_1(value: StopAssessmentRunRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> StopAssessmentRunRequest:
     out: StopAssessmentRunRequest = {}  # type: ignore[typeddict-item]
-    if "assessmentRunArn" in data:
+    if data.get("assessmentRunArn") is not None:
         out["assessment_run_arn"] = data["assessmentRunArn"]
     else:
         raise DeserializationError(
             "StopAssessmentRunRequest.assessment_run_arn required"
         )
-    if "stopAction" in data:
+    if data.get("stopAction") is not None:
         import capo_inspector.types.stop_action
 
         out["stop_action"] = capo_inspector.types.stop_action.deserialize_aws_json_1_1(

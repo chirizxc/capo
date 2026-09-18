@@ -68,11 +68,11 @@ def serialize_json(value: CreateAuthorizerRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateAuthorizerRequest:
     out: CreateAuthorizerRequest = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("CreateAuthorizerRequest.name required")
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_api_gateway.types.authorizer_type
 
         out["type"] = capo_api_gateway.types.authorizer_type.deserialize_json(
@@ -80,22 +80,22 @@ def deserialize_json(data: dict) -> CreateAuthorizerRequest:
         )
     else:
         raise DeserializationError("CreateAuthorizerRequest.type required")
-    if "providerARNs" in data:
+    if data.get("providerARNs") is not None:
         import capo_api_gateway.types.list_of_ar_ns
 
         out["provider_ar_ns"] = capo_api_gateway.types.list_of_ar_ns.deserialize_json(
             data["providerARNs"]
         )
-    if "authType" in data:
+    if data.get("authType") is not None:
         out["auth_type"] = data["authType"]
-    if "authorizerUri" in data:
+    if data.get("authorizerUri") is not None:
         out["authorizer_uri"] = data["authorizerUri"]
-    if "authorizerCredentials" in data:
+    if data.get("authorizerCredentials") is not None:
         out["authorizer_credentials"] = data["authorizerCredentials"]
-    if "identitySource" in data:
+    if data.get("identitySource") is not None:
         out["identity_source"] = data["identitySource"]
-    if "identityValidationExpression" in data:
+    if data.get("identityValidationExpression") is not None:
         out["identity_validation_expression"] = data["identityValidationExpression"]
-    if "authorizerResultTtlInSeconds" in data:
+    if data.get("authorizerResultTtlInSeconds") is not None:
         out["authorizer_result_ttl_in_seconds"] = data["authorizerResultTtlInSeconds"]
     return out

@@ -43,17 +43,17 @@ def serialize_aws_json_1_0(value: ListPlanExecutionsRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ListPlanExecutionsRequest:
     out: ListPlanExecutionsRequest = {}  # type: ignore[typeddict-item]
-    if "planArn" in data:
+    if data.get("planArn") is not None:
         out["plan_arn"] = data["planArn"]
     else:
         raise DeserializationError("ListPlanExecutionsRequest.plan_arn required")
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
     else:
         out["max_results"] = 100
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "state" in data:
+    if data.get("state") is not None:
         import capo_arc_region_switch.types.execution_state
 
         out["state"] = (

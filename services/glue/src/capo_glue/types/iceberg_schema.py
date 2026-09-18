@@ -50,11 +50,11 @@ def serialize_aws_json_1_1(value: IcebergSchema) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> IcebergSchema:
     out: IcebergSchema = {}  # type: ignore[typeddict-item]
-    if "SchemaId" in data:
+    if data.get("SchemaId") is not None:
         out["schema_id"] = data["SchemaId"]
     else:
         out["schema_id"] = 0
-    if "IdentifierFieldIds" in data:
+    if data.get("IdentifierFieldIds") is not None:
         import capo_glue.types.integer_list
 
         out["identifier_field_ids"] = (
@@ -62,13 +62,13 @@ def deserialize_aws_json_1_1(data: dict) -> IcebergSchema:
                 data["IdentifierFieldIds"]
             )
         )
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_glue.types.iceberg_struct_type_enum
 
         out["type"] = capo_glue.types.iceberg_struct_type_enum.deserialize_aws_json_1_1(
             data["Type"]
         )
-    if "Fields" in data:
+    if data.get("Fields") is not None:
         import capo_glue.types.iceberg_struct_field_list
 
         out["fields"] = (

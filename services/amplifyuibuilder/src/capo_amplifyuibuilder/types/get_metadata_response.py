@@ -28,7 +28,7 @@ def serialize_json(value: GetMetadataResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetMetadataResponse:
     out: GetMetadataResponse = {}  # type: ignore[typeddict-item]
-    if "features" in data:
+    if data.get("features") is not None:
         import capo_amplifyuibuilder.types.features_map
 
         out["features"] = capo_amplifyuibuilder.types.features_map.deserialize_json(

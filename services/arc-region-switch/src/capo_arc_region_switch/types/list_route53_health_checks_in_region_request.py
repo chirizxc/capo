@@ -48,18 +48,18 @@ def serialize_aws_json_1_0(value: ListRoute53HealthChecksInRegionRequest) -> dic
 
 def deserialize_aws_json_1_0(data: dict) -> ListRoute53HealthChecksInRegionRequest:
     out: ListRoute53HealthChecksInRegionRequest = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError(
             "ListRoute53HealthChecksInRegionRequest.arn required"
         )
-    if "hostedZoneId" in data:
+    if data.get("hostedZoneId") is not None:
         out["hosted_zone_id"] = data["hostedZoneId"]
-    if "recordName" in data:
+    if data.get("recordName") is not None:
         out["record_name"] = data["recordName"]
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

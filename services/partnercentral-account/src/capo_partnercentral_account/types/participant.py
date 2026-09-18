@@ -62,7 +62,7 @@ def serialize_aws_json_1_0(value: Participant) -> dict:
 
 
 def deserialize_aws_json_1_0(data: dict) -> Participant:
-    if "PartnerProfile" in data:
+    if data.get("PartnerProfile") is not None:
         import capo_partnercentral_account.types.partner_profile_summary
 
         return {
@@ -70,7 +70,7 @@ def deserialize_aws_json_1_0(data: dict) -> Participant:
                 data["PartnerProfile"]
             )
         }
-    elif "SellerProfile" in data:
+    elif data.get("SellerProfile") is not None:
         import capo_partnercentral_account.types.seller_profile_summary
 
         return {
@@ -78,7 +78,7 @@ def deserialize_aws_json_1_0(data: dict) -> Participant:
                 data["SellerProfile"]
             )
         }
-    elif "Account" in data:
+    elif data.get("Account") is not None:
         import capo_partnercentral_account.types.account_summary
 
         return {

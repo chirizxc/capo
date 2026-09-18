@@ -128,13 +128,13 @@ def serialize_aws_json_1_1(value: PipelineExecution) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PipelineExecution:
     out: PipelineExecution = {}  # type: ignore[typeddict-item]
-    if "pipelineName" in data:
+    if data.get("pipelineName") is not None:
         out["pipeline_name"] = data["pipelineName"]
-    if "pipelineVersion" in data:
+    if data.get("pipelineVersion") is not None:
         out["pipeline_version"] = data["pipelineVersion"]
-    if "pipelineExecutionId" in data:
+    if data.get("pipelineExecutionId") is not None:
         out["pipeline_execution_id"] = data["pipelineExecutionId"]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_codepipeline.types.pipeline_execution_status
 
         out["status"] = (
@@ -142,9 +142,9 @@ def deserialize_aws_json_1_1(data: dict) -> PipelineExecution:
                 data["status"]
             )
         )
-    if "statusSummary" in data:
+    if data.get("statusSummary") is not None:
         out["status_summary"] = data["statusSummary"]
-    if "artifactRevisions" in data:
+    if data.get("artifactRevisions") is not None:
         import capo_codepipeline.types.artifact_revision_list
 
         out["artifact_revisions"] = (
@@ -152,7 +152,7 @@ def deserialize_aws_json_1_1(data: dict) -> PipelineExecution:
                 data["artifactRevisions"]
             )
         )
-    if "variables" in data:
+    if data.get("variables") is not None:
         import capo_codepipeline.types.resolved_pipeline_variable_list
 
         out["variables"] = (
@@ -160,7 +160,7 @@ def deserialize_aws_json_1_1(data: dict) -> PipelineExecution:
                 data["variables"]
             )
         )
-    if "trigger" in data:
+    if data.get("trigger") is not None:
         import capo_codepipeline.types.execution_trigger
 
         out["trigger"] = (
@@ -168,7 +168,7 @@ def deserialize_aws_json_1_1(data: dict) -> PipelineExecution:
                 data["trigger"]
             )
         )
-    if "executionMode" in data:
+    if data.get("executionMode") is not None:
         import capo_codepipeline.types.execution_mode
 
         out["execution_mode"] = (
@@ -176,7 +176,7 @@ def deserialize_aws_json_1_1(data: dict) -> PipelineExecution:
                 data["executionMode"]
             )
         )
-    if "executionType" in data:
+    if data.get("executionType") is not None:
         import capo_codepipeline.types.execution_type
 
         out["execution_type"] = (
@@ -184,7 +184,7 @@ def deserialize_aws_json_1_1(data: dict) -> PipelineExecution:
                 data["executionType"]
             )
         )
-    if "rollbackMetadata" in data:
+    if data.get("rollbackMetadata") is not None:
         import capo_codepipeline.types.pipeline_rollback_metadata
 
         out["rollback_metadata"] = (

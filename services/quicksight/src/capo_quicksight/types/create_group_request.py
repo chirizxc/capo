@@ -35,10 +35,10 @@ def serialize_json(value: CreateGroupRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateGroupRequest:
     out: CreateGroupRequest = {}  # type: ignore[typeddict-item]
-    if "GroupName" in data:
+    if data.get("GroupName") is not None:
         out["group_name"] = data["GroupName"]
     else:
         raise DeserializationError("CreateGroupRequest.group_name required")
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
     return out

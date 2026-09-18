@@ -129,41 +129,41 @@ def serialize_json(value: CreateUserSettingsRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateUserSettingsRequest:
     out: CreateUserSettingsRequest = {}  # type: ignore[typeddict-item]
-    if "copyAllowed" in data:
+    if data.get("copyAllowed") is not None:
         out["copy_allowed"] = data["copyAllowed"]
     else:
         raise DeserializationError("CreateUserSettingsRequest.copy_allowed required")
-    if "pasteAllowed" in data:
+    if data.get("pasteAllowed") is not None:
         out["paste_allowed"] = data["pasteAllowed"]
     else:
         raise DeserializationError("CreateUserSettingsRequest.paste_allowed required")
-    if "downloadAllowed" in data:
+    if data.get("downloadAllowed") is not None:
         out["download_allowed"] = data["downloadAllowed"]
     else:
         raise DeserializationError(
             "CreateUserSettingsRequest.download_allowed required"
         )
-    if "uploadAllowed" in data:
+    if data.get("uploadAllowed") is not None:
         out["upload_allowed"] = data["uploadAllowed"]
     else:
         raise DeserializationError("CreateUserSettingsRequest.upload_allowed required")
-    if "printAllowed" in data:
+    if data.get("printAllowed") is not None:
         out["print_allowed"] = data["printAllowed"]
     else:
         raise DeserializationError("CreateUserSettingsRequest.print_allowed required")
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_workspaces_web.types.tag_list
 
         out["tags"] = capo_workspaces_web.types.tag_list.deserialize_json(data["tags"])
-    if "disconnectTimeoutInMinutes" in data:
+    if data.get("disconnectTimeoutInMinutes") is not None:
         out["disconnect_timeout_in_minutes"] = data["disconnectTimeoutInMinutes"]
-    if "idleDisconnectTimeoutInMinutes" in data:
+    if data.get("idleDisconnectTimeoutInMinutes") is not None:
         out["idle_disconnect_timeout_in_minutes"] = data[
             "idleDisconnectTimeoutInMinutes"
         ]
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
-    if "cookieSynchronizationConfiguration" in data:
+    if data.get("cookieSynchronizationConfiguration") is not None:
         import capo_workspaces_web.types.cookie_synchronization_configuration
 
         out["cookie_synchronization_configuration"] = (
@@ -171,9 +171,9 @@ def deserialize_json(data: dict) -> CreateUserSettingsRequest:
                 data["cookieSynchronizationConfiguration"]
             )
         )
-    if "customerManagedKey" in data:
+    if data.get("customerManagedKey") is not None:
         out["customer_managed_key"] = data["customerManagedKey"]
-    if "additionalEncryptionContext" in data:
+    if data.get("additionalEncryptionContext") is not None:
         import capo_workspaces_web.types.encryption_context_map
 
         out["additional_encryption_context"] = (
@@ -181,9 +181,9 @@ def deserialize_json(data: dict) -> CreateUserSettingsRequest:
                 data["additionalEncryptionContext"]
             )
         )
-    if "deepLinkAllowed" in data:
+    if data.get("deepLinkAllowed") is not None:
         out["deep_link_allowed"] = data["deepLinkAllowed"]
-    if "toolbarConfiguration" in data:
+    if data.get("toolbarConfiguration") is not None:
         import capo_workspaces_web.types.toolbar_configuration
 
         out["toolbar_configuration"] = (
@@ -191,7 +191,7 @@ def deserialize_json(data: dict) -> CreateUserSettingsRequest:
                 data["toolbarConfiguration"]
             )
         )
-    if "brandingConfigurationInput" in data:
+    if data.get("brandingConfigurationInput") is not None:
         import capo_workspaces_web.types.branding_configuration_create_input
 
         out["branding_configuration_input"] = (
@@ -199,6 +199,6 @@ def deserialize_json(data: dict) -> CreateUserSettingsRequest:
                 data["brandingConfigurationInput"]
             )
         )
-    if "webAuthnAllowed" in data:
+    if data.get("webAuthnAllowed") is not None:
         out["web_authn_allowed"] = data["webAuthnAllowed"]
     return out

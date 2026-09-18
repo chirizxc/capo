@@ -36,7 +36,7 @@ def serialize_json(value: Settings) -> dict:
 
 def deserialize_json(data: dict) -> Settings:
     out: Settings = {}  # type: ignore[typeddict-item]
-    if "mfaTypes" in data:
+    if data.get("mfaTypes") is not None:
         import capo_amplifybackend.types.list_of_mfa_types_element
 
         out["mfa_types"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> Settings:
                 data["mfaTypes"]
             )
         )
-    if "smsMessage" in data:
+    if data.get("smsMessage") is not None:
         out["sms_message"] = data["smsMessage"]
     return out

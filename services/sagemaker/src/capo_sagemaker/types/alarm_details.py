@@ -23,6 +23,6 @@ def serialize_aws_json_1_1(value: AlarmDetails) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AlarmDetails:
     out: AlarmDetails = {}  # type: ignore[typeddict-item]
-    if "AlarmName" in data:
+    if data.get("AlarmName") is not None:
         out["alarm_name"] = data["AlarmName"]
     return out

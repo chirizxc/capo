@@ -70,31 +70,31 @@ def serialize_json(value: FolderSummary) -> dict:
 
 def deserialize_json(data: dict) -> FolderSummary:
     out: FolderSummary = {}  # type: ignore[typeddict-item]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "FolderId" in data:
+    if data.get("FolderId") is not None:
         out["folder_id"] = data["FolderId"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "FolderType" in data:
+    if data.get("FolderType") is not None:
         import capo_quicksight.types.folder_type
 
         out["folder_type"] = capo_quicksight.types.folder_type.deserialize_json(
             data["FolderType"]
         )
-    if "CreatedTime" in data:
+    if data.get("CreatedTime") is not None:
         import capo_quicksight.types.timestamp
 
         out["created_time"] = capo_quicksight.types.timestamp.deserialize_json(
             data["CreatedTime"]
         )
-    if "LastUpdatedTime" in data:
+    if data.get("LastUpdatedTime") is not None:
         import capo_quicksight.types.timestamp
 
         out["last_updated_time"] = capo_quicksight.types.timestamp.deserialize_json(
             data["LastUpdatedTime"]
         )
-    if "SharingModel" in data:
+    if data.get("SharingModel") is not None:
         import capo_quicksight.types.sharing_model
 
         out["sharing_model"] = capo_quicksight.types.sharing_model.deserialize_json(

@@ -19,7 +19,7 @@ def serialize_json(value: DeleteViewInput) -> dict:
 
 def deserialize_json(data: dict) -> DeleteViewInput:
     out: DeleteViewInput = {}  # type: ignore[typeddict-item]
-    if "ViewArn" in data:
+    if data.get("ViewArn") is not None:
         out["view_arn"] = data["ViewArn"]
     else:
         raise DeserializationError("DeleteViewInput.view_arn required")

@@ -38,7 +38,7 @@ def serialize_json(value: LastExecutionStatus) -> dict:
 
 def deserialize_json(data: dict) -> LastExecutionStatus:
     out: LastExecutionStatus = {}  # type: ignore[typeddict-item]
-    if "ExecutionStatus" in data:
+    if data.get("ExecutionStatus") is not None:
         import capo_appintegrations.types.execution_status
 
         out["execution_status"] = (
@@ -46,6 +46,6 @@ def deserialize_json(data: dict) -> LastExecutionStatus:
                 data["ExecutionStatus"]
             )
         )
-    if "StatusMessage" in data:
+    if data.get("StatusMessage") is not None:
         out["status_message"] = data["StatusMessage"]
     return out

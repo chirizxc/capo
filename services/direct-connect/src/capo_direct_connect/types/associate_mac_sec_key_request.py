@@ -39,14 +39,14 @@ def serialize_aws_json_1_1(value: AssociateMacSecKeyRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AssociateMacSecKeyRequest:
     out: AssociateMacSecKeyRequest = {}  # type: ignore[typeddict-item]
-    if "connectionId" in data:
+    if data.get("connectionId") is not None:
         out["connection_id"] = data["connectionId"]
     else:
         raise DeserializationError("AssociateMacSecKeyRequest.connection_id required")
-    if "secretARN" in data:
+    if data.get("secretARN") is not None:
         out["secret_arn"] = data["secretARN"]
-    if "ckn" in data:
+    if data.get("ckn") is not None:
         out["ckn"] = data["ckn"]
-    if "cak" in data:
+    if data.get("cak") is not None:
         out["cak"] = data["cak"]
     return out

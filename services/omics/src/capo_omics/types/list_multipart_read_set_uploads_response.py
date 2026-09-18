@@ -34,9 +34,9 @@ def serialize_json(value: ListMultipartReadSetUploadsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListMultipartReadSetUploadsResponse:
     out: ListMultipartReadSetUploadsResponse = {}  # type: ignore[typeddict-item]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "uploads" in data:
+    if data.get("uploads") is not None:
         import capo_omics.types.multipart_read_set_upload_list
 
         out["uploads"] = (

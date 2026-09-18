@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import uuid
 from typing import TYPE_CHECKING, Optional
 
 import capo_pca_connector_ad._auth._signers
@@ -80,17 +81,20 @@ class ServicePrincipalNameResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_pca_connector_ad.types.create_service_principal_name_request.CreateServicePrincipalNameRequest = {}  # type: ignore[typeddict-item]
-        input_["directory_registration_arn"] = directory_registration_arn
-        input_["connector_arn"] = connector_arn
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_pca_connector_ad.types.create_service_principal_name_request.CreateServicePrincipalNameRequest = {
+            "directory_registration_arn": directory_registration_arn,
+            "connector_arn": connector_arn,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -130,15 +134,17 @@ class ServicePrincipalNameResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_pca_connector_ad.types.get_service_principal_name_request.GetServicePrincipalNameRequest = {}  # type: ignore[typeddict-item]
-        input_["directory_registration_arn"] = directory_registration_arn
-        input_["connector_arn"] = connector_arn
+        input_: capo_pca_connector_ad.types.get_service_principal_name_request.GetServicePrincipalNameRequest = {
+            "directory_registration_arn": directory_registration_arn,
+            "connector_arn": connector_arn,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -176,15 +182,17 @@ class ServicePrincipalNameResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_pca_connector_ad.types.delete_service_principal_name_request.DeleteServicePrincipalNameRequest = {}  # type: ignore[typeddict-item]
-        input_["directory_registration_arn"] = directory_registration_arn
-        input_["connector_arn"] = connector_arn
+        input_: capo_pca_connector_ad.types.delete_service_principal_name_request.DeleteServicePrincipalNameRequest = {
+            "directory_registration_arn": directory_registration_arn,
+            "connector_arn": connector_arn,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -228,18 +236,20 @@ class ServicePrincipalNameResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_pca_connector_ad.types.list_service_principal_names_request.ListServicePrincipalNamesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_pca_connector_ad.types.list_service_principal_names_request.ListServicePrincipalNamesRequest = {
+            "directory_registration_arn": directory_registration_arn
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
             input_["next_token"] = next_token
-        input_["directory_registration_arn"] = directory_registration_arn
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -288,17 +298,20 @@ class AsyncServicePrincipalNameResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_pca_connector_ad.types.create_service_principal_name_request.CreateServicePrincipalNameRequest = {}  # type: ignore[typeddict-item]
-        input_["directory_registration_arn"] = directory_registration_arn
-        input_["connector_arn"] = connector_arn
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_pca_connector_ad.types.create_service_principal_name_request.CreateServicePrincipalNameRequest = {
+            "directory_registration_arn": directory_registration_arn,
+            "connector_arn": connector_arn,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -339,15 +352,17 @@ class AsyncServicePrincipalNameResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_pca_connector_ad.types.get_service_principal_name_request.GetServicePrincipalNameRequest = {}  # type: ignore[typeddict-item]
-        input_["directory_registration_arn"] = directory_registration_arn
-        input_["connector_arn"] = connector_arn
+        input_: capo_pca_connector_ad.types.get_service_principal_name_request.GetServicePrincipalNameRequest = {
+            "directory_registration_arn": directory_registration_arn,
+            "connector_arn": connector_arn,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -386,15 +401,17 @@ class AsyncServicePrincipalNameResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_pca_connector_ad.types.delete_service_principal_name_request.DeleteServicePrincipalNameRequest = {}  # type: ignore[typeddict-item]
-        input_["directory_registration_arn"] = directory_registration_arn
-        input_["connector_arn"] = connector_arn
+        input_: capo_pca_connector_ad.types.delete_service_principal_name_request.DeleteServicePrincipalNameRequest = {
+            "directory_registration_arn": directory_registration_arn,
+            "connector_arn": connector_arn,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -439,16 +456,18 @@ class AsyncServicePrincipalNameResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_pca_connector_ad.types.list_service_principal_names_request.ListServicePrincipalNamesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_pca_connector_ad.types.list_service_principal_names_request.ListServicePrincipalNamesRequest = {
+            "directory_registration_arn": directory_registration_arn
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
             input_["next_token"] = next_token
-        input_["directory_registration_arn"] = directory_registration_arn
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

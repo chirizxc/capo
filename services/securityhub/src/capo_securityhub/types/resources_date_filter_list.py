@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> ResourcesDateFilterList:
 
     out: ResourcesDateFilterList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_securityhub.types.resources_date_filter.deserialize_json(item))
     return out

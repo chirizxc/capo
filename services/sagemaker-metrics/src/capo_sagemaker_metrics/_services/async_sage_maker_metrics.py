@@ -162,7 +162,7 @@ class AsyncSageMakerMetricsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_sagemaker_metrics.types.batch_get_metrics_request.BatchGetMetricsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_sagemaker_metrics.types.batch_get_metrics_request.BatchGetMetricsRequest = {}
         if metric_queries is not None:
             input_["metric_queries"] = metric_queries
 
@@ -171,6 +171,7 @@ class AsyncSageMakerMetricsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def batch_put_metrics(
@@ -210,7 +211,7 @@ class AsyncSageMakerMetricsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_sagemaker_metrics.types.batch_put_metrics_request.BatchPutMetricsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_sagemaker_metrics.types.batch_put_metrics_request.BatchPutMetricsRequest = {}
         if trial_component_name is not None:
             input_["trial_component_name"] = trial_component_name
         if metric_data is not None:
@@ -221,6 +222,7 @@ class AsyncSageMakerMetricsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def __aenter__(self) -> Self:

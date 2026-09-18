@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: S3Config) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> S3Config:
     out: S3Config = {}  # type: ignore[typeddict-item]
-    if "BucketAccessRoleArn" in data:
+    if data.get("BucketAccessRoleArn") is not None:
         out["bucket_access_role_arn"] = data["BucketAccessRoleArn"]
     else:
         raise DeserializationError("S3Config.bucket_access_role_arn required")

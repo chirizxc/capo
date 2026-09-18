@@ -36,11 +36,11 @@ def serialize_aws_json_1_1(value: PendingMaintenanceAction) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PendingMaintenanceAction:
     out: PendingMaintenanceAction = {}  # type: ignore[typeddict-item]
-    if "action" in data:
+    if data.get("action") is not None:
         out["action"] = data["action"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "currentApplyDate" in data:
+    if data.get("currentApplyDate") is not None:
         import capo_lightsail.types.iso_date
 
         out["current_apply_date"] = (

@@ -65,19 +65,19 @@ def serialize_aws_json_1_1(value: LogsLocation) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> LogsLocation:
     out: LogsLocation = {}  # type: ignore[typeddict-item]
-    if "groupName" in data:
+    if data.get("groupName") is not None:
         out["group_name"] = data["groupName"]
-    if "streamName" in data:
+    if data.get("streamName") is not None:
         out["stream_name"] = data["streamName"]
-    if "deepLink" in data:
+    if data.get("deepLink") is not None:
         out["deep_link"] = data["deepLink"]
-    if "s3DeepLink" in data:
+    if data.get("s3DeepLink") is not None:
         out["s3_deep_link"] = data["s3DeepLink"]
-    if "cloudWatchLogsArn" in data:
+    if data.get("cloudWatchLogsArn") is not None:
         out["cloud_watch_logs_arn"] = data["cloudWatchLogsArn"]
-    if "s3LogsArn" in data:
+    if data.get("s3LogsArn") is not None:
         out["s3_logs_arn"] = data["s3LogsArn"]
-    if "cloudWatchLogs" in data:
+    if data.get("cloudWatchLogs") is not None:
         import capo_codebuild.types.cloud_watch_logs_config
 
         out["cloud_watch_logs"] = (
@@ -85,7 +85,7 @@ def deserialize_aws_json_1_1(data: dict) -> LogsLocation:
                 data["cloudWatchLogs"]
             )
         )
-    if "s3Logs" in data:
+    if data.get("s3Logs") is not None:
         import capo_codebuild.types.s3_logs_config
 
         out["s3_logs"] = capo_codebuild.types.s3_logs_config.deserialize_aws_json_1_1(

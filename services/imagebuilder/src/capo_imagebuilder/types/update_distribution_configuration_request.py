@@ -41,15 +41,15 @@ def serialize_json(value: UpdateDistributionConfigurationRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateDistributionConfigurationRequest:
     out: UpdateDistributionConfigurationRequest = {}  # type: ignore[typeddict-item]
-    if "distributionConfigurationArn" in data:
+    if data.get("distributionConfigurationArn") is not None:
         out["distribution_configuration_arn"] = data["distributionConfigurationArn"]
     else:
         raise DeserializationError(
             "UpdateDistributionConfigurationRequest.distribution_configuration_arn required"
         )
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "distributions" in data:
+    if data.get("distributions") is not None:
         import capo_imagebuilder.types.distribution_list
 
         out["distributions"] = (
@@ -61,7 +61,7 @@ def deserialize_json(data: dict) -> UpdateDistributionConfigurationRequest:
         raise DeserializationError(
             "UpdateDistributionConfigurationRequest.distributions required"
         )
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     else:
         raise DeserializationError(

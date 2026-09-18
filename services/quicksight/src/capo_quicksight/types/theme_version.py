@@ -80,21 +80,21 @@ def serialize_json(value: ThemeVersion) -> dict:
 
 def deserialize_json(data: dict) -> ThemeVersion:
     out: ThemeVersion = {}  # type: ignore[typeddict-item]
-    if "VersionNumber" in data:
+    if data.get("VersionNumber") is not None:
         out["version_number"] = data["VersionNumber"]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "BaseThemeId" in data:
+    if data.get("BaseThemeId") is not None:
         out["base_theme_id"] = data["BaseThemeId"]
-    if "CreatedTime" in data:
+    if data.get("CreatedTime") is not None:
         import capo_quicksight.types.timestamp
 
         out["created_time"] = capo_quicksight.types.timestamp.deserialize_json(
             data["CreatedTime"]
         )
-    if "Configuration" in data:
+    if data.get("Configuration") is not None:
         import capo_quicksight.types.theme_configuration
 
         out["configuration"] = (
@@ -102,13 +102,13 @@ def deserialize_json(data: dict) -> ThemeVersion:
                 data["Configuration"]
             )
         )
-    if "Errors" in data:
+    if data.get("Errors") is not None:
         import capo_quicksight.types.theme_error_list
 
         out["errors"] = capo_quicksight.types.theme_error_list.deserialize_json(
             data["Errors"]
         )
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_quicksight.types.resource_status
 
         out["status"] = capo_quicksight.types.resource_status.deserialize_json(

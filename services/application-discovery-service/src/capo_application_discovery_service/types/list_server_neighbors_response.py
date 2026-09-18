@@ -39,7 +39,7 @@ def serialize_aws_json_1_1(value: ListServerNeighborsResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListServerNeighborsResponse:
     out: ListServerNeighborsResponse = {}  # type: ignore[typeddict-item]
-    if "neighbors" in data:
+    if data.get("neighbors") is not None:
         import capo_application_discovery_service.types.neighbor_details_list
 
         out["neighbors"] = (
@@ -49,9 +49,9 @@ def deserialize_aws_json_1_1(data: dict) -> ListServerNeighborsResponse:
         )
     else:
         raise DeserializationError("ListServerNeighborsResponse.neighbors required")
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "knownDependencyCount" in data:
+    if data.get("knownDependencyCount") is not None:
         out["known_dependency_count"] = data["knownDependencyCount"]
     else:
         out["known_dependency_count"] = 0

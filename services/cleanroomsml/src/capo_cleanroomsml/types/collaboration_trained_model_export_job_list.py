@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> CollaborationTrainedModelExportJobList:
 
     out: CollaborationTrainedModelExportJobList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_cleanroomsml.types.collaboration_trained_model_export_job_summary.deserialize_json(
                 item

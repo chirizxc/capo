@@ -64,21 +64,21 @@ def serialize_json(value: GetChannelGroupResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetChannelGroupResponse:
     out: GetChannelGroupResponse = {}  # type: ignore[typeddict-item]
-    if "ChannelGroupName" in data:
+    if data.get("ChannelGroupName") is not None:
         out["channel_group_name"] = data["ChannelGroupName"]
     else:
         raise DeserializationError(
             "GetChannelGroupResponse.channel_group_name required"
         )
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
     else:
         raise DeserializationError("GetChannelGroupResponse.arn required")
-    if "EgressDomain" in data:
+    if data.get("EgressDomain") is not None:
         out["egress_domain"] = data["EgressDomain"]
     else:
         raise DeserializationError("GetChannelGroupResponse.egress_domain required")
-    if "CreatedAt" in data:
+    if data.get("CreatedAt") is not None:
         import capo_mediapackagev2.types._prelude.timestamp
 
         out["created_at"] = (
@@ -88,7 +88,7 @@ def deserialize_json(data: dict) -> GetChannelGroupResponse:
         )
     else:
         raise DeserializationError("GetChannelGroupResponse.created_at required")
-    if "ModifiedAt" in data:
+    if data.get("ModifiedAt") is not None:
         import capo_mediapackagev2.types._prelude.timestamp
 
         out["modified_at"] = (
@@ -98,11 +98,11 @@ def deserialize_json(data: dict) -> GetChannelGroupResponse:
         )
     else:
         raise DeserializationError("GetChannelGroupResponse.modified_at required")
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "ETag" in data:
+    if data.get("ETag") is not None:
         out["e_tag"] = data["ETag"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_mediapackagev2.types.tag_map
 
         out["tags"] = capo_mediapackagev2.types.tag_map.deserialize_json(data["tags"])

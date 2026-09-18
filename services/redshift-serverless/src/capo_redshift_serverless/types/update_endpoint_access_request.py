@@ -36,11 +36,11 @@ def serialize_aws_json_1_1(value: UpdateEndpointAccessRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateEndpointAccessRequest:
     out: UpdateEndpointAccessRequest = {}  # type: ignore[typeddict-item]
-    if "endpointName" in data:
+    if data.get("endpointName") is not None:
         out["endpoint_name"] = data["endpointName"]
     else:
         raise DeserializationError("UpdateEndpointAccessRequest.endpoint_name required")
-    if "vpcSecurityGroupIds" in data:
+    if data.get("vpcSecurityGroupIds") is not None:
         import capo_redshift_serverless.types.vpc_security_group_id_list
 
         out["vpc_security_group_ids"] = (

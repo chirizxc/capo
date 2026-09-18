@@ -34,7 +34,7 @@ def serialize_json(value: ListReportsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListReportsResponse:
     out: ListReportsResponse = {}  # type: ignore[typeddict-item]
-    if "reportGenerationResults" in data:
+    if data.get("reportGenerationResults") is not None:
         import capo_resiliencehubv2.types.report_generation_result_list
 
         out["report_generation_results"] = (
@@ -46,6 +46,6 @@ def deserialize_json(data: dict) -> ListReportsResponse:
         raise DeserializationError(
             "ListReportsResponse.report_generation_results required"
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

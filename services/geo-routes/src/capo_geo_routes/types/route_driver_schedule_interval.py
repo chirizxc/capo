@@ -25,11 +25,11 @@ def serialize_json(value: RouteDriverScheduleInterval) -> dict:
 
 def deserialize_json(data: dict) -> RouteDriverScheduleInterval:
     out: RouteDriverScheduleInterval = {}  # type: ignore[typeddict-item]
-    if "DriveDuration" in data:
+    if data.get("DriveDuration") is not None:
         out["drive_duration"] = data["DriveDuration"]
     else:
         out["drive_duration"] = 0
-    if "RestDuration" in data:
+    if data.get("RestDuration") is not None:
         out["rest_duration"] = data["RestDuration"]
     else:
         out["rest_duration"] = 0

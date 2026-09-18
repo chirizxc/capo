@@ -87,15 +87,15 @@ def serialize_json(value: GetAccessSourceOutput) -> dict:
 
 def deserialize_json(data: dict) -> GetAccessSourceOutput:
     out: GetAccessSourceOutput = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("GetAccessSourceOutput.arn required")
-    if "cidr" in data:
+    if data.get("cidr") is not None:
         out["cidr"] = data["cidr"]
     else:
         raise DeserializationError("GetAccessSourceOutput.cidr required")
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_route53globalresolver.types.iso8601_time_string
 
         out["created_at"] = (
@@ -105,11 +105,11 @@ def deserialize_json(data: dict) -> GetAccessSourceOutput:
         )
     else:
         raise DeserializationError("GetAccessSourceOutput.created_at required")
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("GetAccessSourceOutput.id required")
-    if "ipAddressType" in data:
+    if data.get("ipAddressType") is not None:
         import capo_route53globalresolver.types.ip_address_type
 
         out["ip_address_type"] = (
@@ -119,13 +119,13 @@ def deserialize_json(data: dict) -> GetAccessSourceOutput:
         )
     else:
         raise DeserializationError("GetAccessSourceOutput.ip_address_type required")
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "dnsViewId" in data:
+    if data.get("dnsViewId") is not None:
         out["dns_view_id"] = data["dnsViewId"]
     else:
         raise DeserializationError("GetAccessSourceOutput.dns_view_id required")
-    if "protocol" in data:
+    if data.get("protocol") is not None:
         import capo_route53globalresolver.types.dns_protocol
 
         out["protocol"] = (
@@ -135,7 +135,7 @@ def deserialize_json(data: dict) -> GetAccessSourceOutput:
         )
     else:
         raise DeserializationError("GetAccessSourceOutput.protocol required")
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_route53globalresolver.types.cr_resource_status
 
         out["status"] = (
@@ -145,7 +145,7 @@ def deserialize_json(data: dict) -> GetAccessSourceOutput:
         )
     else:
         raise DeserializationError("GetAccessSourceOutput.status required")
-    if "updatedAt" in data:
+    if data.get("updatedAt") is not None:
         import capo_route53globalresolver.types.iso8601_time_string
 
         out["updated_at"] = (

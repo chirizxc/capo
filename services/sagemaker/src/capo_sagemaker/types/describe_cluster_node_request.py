@@ -37,10 +37,10 @@ def serialize_aws_json_1_1(value: DescribeClusterNodeRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeClusterNodeRequest:
     out: DescribeClusterNodeRequest = {}  # type: ignore[typeddict-item]
-    if "ClusterName" in data:
+    if data.get("ClusterName") is not None:
         out["cluster_name"] = data["ClusterName"]
-    if "NodeId" in data:
+    if data.get("NodeId") is not None:
         out["node_id"] = data["NodeId"]
-    if "NodeLogicalId" in data:
+    if data.get("NodeLogicalId") is not None:
         out["node_logical_id"] = data["NodeLogicalId"]
     return out

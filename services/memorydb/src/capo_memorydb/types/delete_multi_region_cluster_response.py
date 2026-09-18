@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: DeleteMultiRegionClusterResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteMultiRegionClusterResponse:
     out: DeleteMultiRegionClusterResponse = {}  # type: ignore[typeddict-item]
-    if "MultiRegionCluster" in data:
+    if data.get("MultiRegionCluster") is not None:
         import capo_memorydb.types.multi_region_cluster
 
         out["multi_region_cluster"] = (

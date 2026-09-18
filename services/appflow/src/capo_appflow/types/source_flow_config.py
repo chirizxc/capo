@@ -65,7 +65,7 @@ def serialize_json(value: SourceFlowConfig) -> dict:
 
 def deserialize_json(data: dict) -> SourceFlowConfig:
     out: SourceFlowConfig = {}  # type: ignore[typeddict-item]
-    if "connectorType" in data:
+    if data.get("connectorType") is not None:
         import capo_appflow.types.connector_type
 
         out["connector_type"] = capo_appflow.types.connector_type.deserialize_json(
@@ -73,11 +73,11 @@ def deserialize_json(data: dict) -> SourceFlowConfig:
         )
     else:
         raise DeserializationError("SourceFlowConfig.connector_type required")
-    if "apiVersion" in data:
+    if data.get("apiVersion") is not None:
         out["api_version"] = data["apiVersion"]
-    if "connectorProfileName" in data:
+    if data.get("connectorProfileName") is not None:
         out["connector_profile_name"] = data["connectorProfileName"]
-    if "sourceConnectorProperties" in data:
+    if data.get("sourceConnectorProperties") is not None:
         import capo_appflow.types.source_connector_properties
 
         out["source_connector_properties"] = (
@@ -89,7 +89,7 @@ def deserialize_json(data: dict) -> SourceFlowConfig:
         raise DeserializationError(
             "SourceFlowConfig.source_connector_properties required"
         )
-    if "incrementalPullConfig" in data:
+    if data.get("incrementalPullConfig") is not None:
         import capo_appflow.types.incremental_pull_config
 
         out["incremental_pull_config"] = (

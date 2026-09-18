@@ -70,17 +70,17 @@ def serialize_json(value: ControlPanel) -> dict:
 
 def deserialize_json(data: dict) -> ControlPanel:
     out: ControlPanel = {}  # type: ignore[typeddict-item]
-    if "ClusterArn" in data:
+    if data.get("ClusterArn") is not None:
         out["cluster_arn"] = data["ClusterArn"]
-    if "ControlPanelArn" in data:
+    if data.get("ControlPanelArn") is not None:
         out["control_panel_arn"] = data["ControlPanelArn"]
-    if "DefaultControlPanel" in data:
+    if data.get("DefaultControlPanel") is not None:
         out["default_control_panel"] = data["DefaultControlPanel"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "RoutingControlCount" in data:
+    if data.get("RoutingControlCount") is not None:
         out["routing_control_count"] = data["RoutingControlCount"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_route53_recovery_control_config.types.status
 
         out["status"] = (
@@ -88,6 +88,6 @@ def deserialize_json(data: dict) -> ControlPanel:
                 data["Status"]
             )
         )
-    if "Owner" in data:
+    if data.get("Owner") is not None:
         out["owner"] = data["Owner"]
     return out

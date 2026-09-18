@@ -34,11 +34,11 @@ def serialize_aws_json_1_1(value: TagResourceRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> TagResourceRequest:
     out: TagResourceRequest = {}  # type: ignore[typeddict-item]
-    if "ReportName" in data:
+    if data.get("ReportName") is not None:
         out["report_name"] = data["ReportName"]
     else:
         raise DeserializationError("TagResourceRequest.report_name required")
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_cost_and_usage_report_service.types.tag_list
 
         out["tags"] = (

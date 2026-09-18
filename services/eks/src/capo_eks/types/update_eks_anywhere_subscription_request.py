@@ -29,10 +29,10 @@ def serialize_json(value: UpdateEksAnywhereSubscriptionRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateEksAnywhereSubscriptionRequest:
     out: UpdateEksAnywhereSubscriptionRequest = {}  # type: ignore[typeddict-item]
-    if "autoRenew" in data:
+    if data.get("autoRenew") is not None:
         out["auto_renew"] = data["autoRenew"]
     else:
         out["auto_renew"] = False
-    if "clientRequestToken" in data:
+    if data.get("clientRequestToken") is not None:
         out["client_request_token"] = data["clientRequestToken"]
     return out

@@ -33,18 +33,18 @@ def serialize_json(value: UpdateSourceServerReplicationTypeRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateSourceServerReplicationTypeRequest:
     out: UpdateSourceServerReplicationTypeRequest = {}  # type: ignore[typeddict-item]
-    if "sourceServerID" in data:
+    if data.get("sourceServerID") is not None:
         out["source_server_id"] = data["sourceServerID"]
     else:
         raise DeserializationError(
             "UpdateSourceServerReplicationTypeRequest.source_server_id required"
         )
-    if "replicationType" in data:
+    if data.get("replicationType") is not None:
         out["replication_type"] = data["replicationType"]
     else:
         raise DeserializationError(
             "UpdateSourceServerReplicationTypeRequest.replication_type required"
         )
-    if "accountID" in data:
+    if data.get("accountID") is not None:
         out["account_id"] = data["accountID"]
     return out

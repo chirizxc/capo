@@ -24,7 +24,7 @@ def serialize_json(value: BatchPutAttributeOutput) -> dict:
 
 def deserialize_json(data: dict) -> BatchPutAttributeOutput:
     out: BatchPutAttributeOutput = {}  # type: ignore[typeddict-item]
-    if "attributeIdentifier" in data:
+    if data.get("attributeIdentifier") is not None:
         out["attribute_identifier"] = data["attributeIdentifier"]
     else:
         raise DeserializationError(

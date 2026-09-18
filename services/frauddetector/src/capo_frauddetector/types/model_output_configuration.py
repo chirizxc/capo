@@ -56,7 +56,7 @@ def serialize_aws_json_1_1(value: ModelOutputConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ModelOutputConfiguration:
     out: ModelOutputConfiguration = {}  # type: ignore[typeddict-item]
-    if "format" in data:
+    if data.get("format") is not None:
         import capo_frauddetector.types.model_output_data_format
 
         out["format"] = (
@@ -66,7 +66,7 @@ def deserialize_aws_json_1_1(data: dict) -> ModelOutputConfiguration:
         )
     else:
         raise DeserializationError("ModelOutputConfiguration.format required")
-    if "jsonKeyToVariableMap" in data:
+    if data.get("jsonKeyToVariableMap") is not None:
         import capo_frauddetector.types.json_key_to_variable_map
 
         out["json_key_to_variable_map"] = (
@@ -74,7 +74,7 @@ def deserialize_aws_json_1_1(data: dict) -> ModelOutputConfiguration:
                 data["jsonKeyToVariableMap"]
             )
         )
-    if "csvIndexToVariableMap" in data:
+    if data.get("csvIndexToVariableMap") is not None:
         import capo_frauddetector.types.csv_index_to_variable_map
 
         out["csv_index_to_variable_map"] = (

@@ -25,6 +25,8 @@ def deserialize_json(data: list) -> BatchGetWorkerIdentifiers:
 
     out: BatchGetWorkerIdentifiers = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_deadline.types.batch_get_worker_identifier.deserialize_json(item)
         )

@@ -29,7 +29,7 @@ def serialize_aws_json_1_1(value: CrossRegionDiscoveryStatus) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CrossRegionDiscoveryStatus:
     out: CrossRegionDiscoveryStatus = {}  # type: ignore[typeddict-item]
-    if "Message" in data:
+    if data.get("Message") is not None:
         import capo_license_manager.types.region_status_map
 
         out["message"] = (

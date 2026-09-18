@@ -80,13 +80,13 @@ def serialize_aws_json_1_1(value: CreateInstanceProfileMessage) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateInstanceProfileMessage:
     out: CreateInstanceProfileMessage = {}  # type: ignore[typeddict-item]
-    if "AvailabilityZone" in data:
+    if data.get("AvailabilityZone") is not None:
         out["availability_zone"] = data["AvailabilityZone"]
-    if "KmsKeyArn" in data:
+    if data.get("KmsKeyArn") is not None:
         out["kms_key_arn"] = data["KmsKeyArn"]
-    if "PubliclyAccessible" in data:
+    if data.get("PubliclyAccessible") is not None:
         out["publicly_accessible"] = data["PubliclyAccessible"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_database_migration_service.types.tag_list
 
         out["tags"] = (
@@ -94,15 +94,15 @@ def deserialize_aws_json_1_1(data: dict) -> CreateInstanceProfileMessage:
                 data["Tags"]
             )
         )
-    if "NetworkType" in data:
+    if data.get("NetworkType") is not None:
         out["network_type"] = data["NetworkType"]
-    if "InstanceProfileName" in data:
+    if data.get("InstanceProfileName") is not None:
         out["instance_profile_name"] = data["InstanceProfileName"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "SubnetGroupIdentifier" in data:
+    if data.get("SubnetGroupIdentifier") is not None:
         out["subnet_group_identifier"] = data["SubnetGroupIdentifier"]
-    if "VpcSecurityGroups" in data:
+    if data.get("VpcSecurityGroups") is not None:
         import capo_database_migration_service.types.string_list
 
         out["vpc_security_groups"] = (

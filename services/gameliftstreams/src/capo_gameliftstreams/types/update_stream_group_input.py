@@ -45,7 +45,7 @@ def serialize_json(value: UpdateStreamGroupInput) -> dict:
 
 def deserialize_json(data: dict) -> UpdateStreamGroupInput:
     out: UpdateStreamGroupInput = {}  # type: ignore[typeddict-item]
-    if "LocationConfigurations" in data:
+    if data.get("LocationConfigurations") is not None:
         import capo_gameliftstreams.types.location_configurations
 
         out["location_configurations"] = (
@@ -53,8 +53,8 @@ def deserialize_json(data: dict) -> UpdateStreamGroupInput:
                 data["LocationConfigurations"]
             )
         )
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "DefaultApplicationIdentifier" in data:
+    if data.get("DefaultApplicationIdentifier") is not None:
         out["default_application_identifier"] = data["DefaultApplicationIdentifier"]
     return out

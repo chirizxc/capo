@@ -31,7 +31,7 @@ def serialize_json(value: OfferSetReleaseDateFilter) -> dict:
 
 def deserialize_json(data: dict) -> OfferSetReleaseDateFilter:
     out: OfferSetReleaseDateFilter = {}  # type: ignore[typeddict-item]
-    if "DateRange" in data:
+    if data.get("DateRange") is not None:
         import capo_marketplace_catalog.types.offer_set_release_date_filter_date_range
 
         out["date_range"] = (

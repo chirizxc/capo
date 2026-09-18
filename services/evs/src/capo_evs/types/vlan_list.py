@@ -23,5 +23,7 @@ def deserialize_aws_json_1_0(data: list) -> VlanList:
 
     out: VlanList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_evs.types.vlan.deserialize_aws_json_1_0(item))
     return out

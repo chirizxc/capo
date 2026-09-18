@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: InvalidLicenseException_) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> InvalidLicenseException_:
     out: InvalidLicenseException_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     return out
 
@@ -34,15 +34,18 @@ class InvalidLicenseException(ServiceError):
 
     code: str | None = "InvalidLicenseException"
 
-    def __init__(self, data: InvalidLicenseException_):
+    def __init__(self, data: InvalidLicenseException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="InvalidLicenseException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "InvalidLicenseException":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "InvalidLicenseException":
+        return cls(deserialize_aws_json_1_1(data), message)

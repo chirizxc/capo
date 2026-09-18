@@ -16,4 +16,4 @@ def serialize_json(value: ProfilingGroupNames) -> list:
 
 
 def deserialize_json(data: list) -> ProfilingGroupNames:
-    return list(data)
+    return [item for item in data if item is not None]

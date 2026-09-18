@@ -45,19 +45,19 @@ def serialize_json(value: ConnectivityInfo) -> dict:
 
 def deserialize_json(data: dict) -> ConnectivityInfo:
     out: ConnectivityInfo = {}  # type: ignore[typeddict-item]
-    if "publicAccess" in data:
+    if data.get("publicAccess") is not None:
         import capo_kafka.types.public_access
 
         out["public_access"] = capo_kafka.types.public_access.deserialize_json(
             data["publicAccess"]
         )
-    if "vpcConnectivity" in data:
+    if data.get("vpcConnectivity") is not None:
         import capo_kafka.types.vpc_connectivity
 
         out["vpc_connectivity"] = capo_kafka.types.vpc_connectivity.deserialize_json(
             data["vpcConnectivity"]
         )
-    if "networkType" in data:
+    if data.get("networkType") is not None:
         import capo_kafka.types.network_type
 
         out["network_type"] = capo_kafka.types.network_type.deserialize_json(

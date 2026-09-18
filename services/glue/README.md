@@ -13,9 +13,9 @@ from capo_glue import AsyncGlueClient
 
 
 async def main():
-    async with AsyncGlueClient() as s3:
+    async with AsyncGlueClient() as glue:
         # Example: call the batch_create_partition operation
-        response = await s3.batch_create_partition()
+        response = await glue.batch_create_partition()
         print(response["errors"])
 ```
 
@@ -28,9 +28,9 @@ from capo_glue import AsyncGlueClient
 
 
 async def main():
-    async with AsyncGlueClient() as s3:
+    async with AsyncGlueClient() as glue:
         # Example: paginate over describe_entity
-        async for item in s3.iter_describe_entity():
+        async for item in glue.iter_describe_entity():
             print(item)
 ```
 
@@ -44,9 +44,9 @@ from capo_glue.error import AlreadyExistsException
 
 
 async def main():
-    async with AsyncGlueClient() as s3:
+    async with AsyncGlueClient() as glue:
         try:
-            await s3.batch_create_partition()
+            await glue.batch_create_partition()
         except AlreadyExistsException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -63,13 +63,13 @@ from capo_glue import AsyncGlueClient
 
 
 async def main():
-    async with AsyncGlueClient() as s3:
+    async with AsyncGlueClient() as glue:
         # Default: 3 attempts for every operation
-        response = await s3.batch_create_partition()
+        response = await glue.batch_create_partition()
 
         # Override per operation
-        response = await s3.batch_create_partition(config_overrides={"retry_max_attempts": 5})
+        response = await glue.batch_create_partition(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.batch_create_partition(config_overrides={"retry_max_attempts": 1})
+        response = await glue.batch_create_partition(config_overrides={"retry_max_attempts": 1})
 ```

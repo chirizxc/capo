@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> WorkloadShareSummaries:
 
     out: WorkloadShareSummaries = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_wellarchitected.types.workload_share_summary.deserialize_json(item)
         )

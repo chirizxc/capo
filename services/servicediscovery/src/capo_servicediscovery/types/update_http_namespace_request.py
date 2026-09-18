@@ -41,13 +41,13 @@ def serialize_aws_json_1_1(value: UpdateHttpNamespaceRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateHttpNamespaceRequest:
     out: UpdateHttpNamespaceRequest = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
     else:
         raise DeserializationError("UpdateHttpNamespaceRequest.id required")
-    if "UpdaterRequestId" in data:
+    if data.get("UpdaterRequestId") is not None:
         out["updater_request_id"] = data["UpdaterRequestId"]
-    if "Namespace" in data:
+    if data.get("Namespace") is not None:
         import capo_servicediscovery.types.http_namespace_change
 
         out["namespace"] = (

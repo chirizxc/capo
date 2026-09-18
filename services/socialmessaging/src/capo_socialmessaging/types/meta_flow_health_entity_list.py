@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> MetaFlowHealthEntityList:
 
     out: MetaFlowHealthEntityList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_socialmessaging.types.meta_flow_health_entity.deserialize_json(item)
         )

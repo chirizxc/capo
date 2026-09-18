@@ -63,7 +63,7 @@ def serialize_aws_json_1_1(value: RDSMetadata) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RDSMetadata:
     out: RDSMetadata = {}  # type: ignore[typeddict-item]
-    if "Database" in data:
+    if data.get("Database") is not None:
         import capo_machine_learning.types.rds_database
 
         out["database"] = (
@@ -71,14 +71,14 @@ def deserialize_aws_json_1_1(data: dict) -> RDSMetadata:
                 data["Database"]
             )
         )
-    if "DatabaseUserName" in data:
+    if data.get("DatabaseUserName") is not None:
         out["database_user_name"] = data["DatabaseUserName"]
-    if "SelectSqlQuery" in data:
+    if data.get("SelectSqlQuery") is not None:
         out["select_sql_query"] = data["SelectSqlQuery"]
-    if "ResourceRole" in data:
+    if data.get("ResourceRole") is not None:
         out["resource_role"] = data["ResourceRole"]
-    if "ServiceRole" in data:
+    if data.get("ServiceRole") is not None:
         out["service_role"] = data["ServiceRole"]
-    if "DataPipelineId" in data:
+    if data.get("DataPipelineId") is not None:
         out["data_pipeline_id"] = data["DataPipelineId"]
     return out

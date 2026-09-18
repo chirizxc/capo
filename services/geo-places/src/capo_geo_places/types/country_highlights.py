@@ -31,13 +31,13 @@ def serialize_json(value: CountryHighlights) -> dict:
 
 def deserialize_json(data: dict) -> CountryHighlights:
     out: CountryHighlights = {}  # type: ignore[typeddict-item]
-    if "Code" in data:
+    if data.get("Code") is not None:
         import capo_geo_places.types.highlight_list
 
         out["code"] = capo_geo_places.types.highlight_list.deserialize_json(
             data["Code"]
         )
-    if "Name" in data:
+    if data.get("Name") is not None:
         import capo_geo_places.types.highlight_list
 
         out["name"] = capo_geo_places.types.highlight_list.deserialize_json(

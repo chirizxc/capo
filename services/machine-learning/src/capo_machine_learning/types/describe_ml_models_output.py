@@ -32,12 +32,12 @@ def serialize_aws_json_1_1(value: DescribeMLModelsOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeMLModelsOutput:
     out: DescribeMLModelsOutput = {}  # type: ignore[typeddict-item]
-    if "Results" in data:
+    if data.get("Results") is not None:
         import capo_machine_learning.types.ml_models
 
         out["results"] = capo_machine_learning.types.ml_models.deserialize_aws_json_1_1(
             data["Results"]
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

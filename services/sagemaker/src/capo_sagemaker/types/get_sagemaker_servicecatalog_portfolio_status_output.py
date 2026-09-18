@@ -35,7 +35,7 @@ def deserialize_aws_json_1_1(
     data: dict,
 ) -> GetSagemakerServicecatalogPortfolioStatusOutput:
     out: GetSagemakerServicecatalogPortfolioStatusOutput = {}  # type: ignore[typeddict-item]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_sagemaker.types.sagemaker_servicecatalog_status
 
         out["status"] = (

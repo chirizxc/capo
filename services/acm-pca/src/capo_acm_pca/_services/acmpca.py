@@ -246,13 +246,12 @@ class ACMPCAClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_acm_pca.types.create_certificate_authority_request.CreateCertificateAuthorityRequest = {}  # type: ignore[typeddict-item]
-        input_["certificate_authority_configuration"] = (
-            certificate_authority_configuration
-        )
+        input_: capo_acm_pca.types.create_certificate_authority_request.CreateCertificateAuthorityRequest = {
+            "certificate_authority_configuration": certificate_authority_configuration,
+            "certificate_authority_type": certificate_authority_type,
+        }
         if revocation_configuration is not None:
             input_["revocation_configuration"] = revocation_configuration
-        input_["certificate_authority_type"] = certificate_authority_type
         if idempotency_token is not None:
             input_["idempotency_token"] = idempotency_token
         if key_storage_security_standard is not None:
@@ -267,6 +266,7 @@ class ACMPCAClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_certificate_authority_audit_report(
@@ -309,16 +309,18 @@ class ACMPCAClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_acm_pca.types.create_certificate_authority_audit_report_request.CreateCertificateAuthorityAuditReportRequest = {}  # type: ignore[typeddict-item]
-        input_["certificate_authority_arn"] = certificate_authority_arn
-        input_["s3_bucket_name"] = s3_bucket_name
-        input_["audit_report_response_format"] = audit_report_response_format
+        input_: capo_acm_pca.types.create_certificate_authority_audit_report_request.CreateCertificateAuthorityAuditReportRequest = {
+            "certificate_authority_arn": certificate_authority_arn,
+            "s3_bucket_name": s3_bucket_name,
+            "audit_report_response_format": audit_report_response_format,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_permission(
@@ -361,18 +363,20 @@ class ACMPCAClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_acm_pca.types.create_permission_request.CreatePermissionRequest = {}  # type: ignore[typeddict-item]
-        input_["certificate_authority_arn"] = certificate_authority_arn
-        input_["principal"] = principal
+        input_: capo_acm_pca.types.create_permission_request.CreatePermissionRequest = {
+            "certificate_authority_arn": certificate_authority_arn,
+            "principal": principal,
+            "actions": actions,
+        }
         if source_account is not None:
             input_["source_account"] = source_account
-        input_["actions"] = actions
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_certificate_authority(
@@ -411,8 +415,9 @@ class ACMPCAClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_acm_pca.types.delete_certificate_authority_request.DeleteCertificateAuthorityRequest = {}  # type: ignore[typeddict-item]
-        input_["certificate_authority_arn"] = certificate_authority_arn
+        input_: capo_acm_pca.types.delete_certificate_authority_request.DeleteCertificateAuthorityRequest = {
+            "certificate_authority_arn": certificate_authority_arn
+        }
         if permanent_deletion_time_in_days is not None:
             input_["permanent_deletion_time_in_days"] = permanent_deletion_time_in_days
 
@@ -421,6 +426,7 @@ class ACMPCAClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_permission(
@@ -459,9 +465,10 @@ class ACMPCAClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_acm_pca.types.delete_permission_request.DeletePermissionRequest = {}  # type: ignore[typeddict-item]
-        input_["certificate_authority_arn"] = certificate_authority_arn
-        input_["principal"] = principal
+        input_: capo_acm_pca.types.delete_permission_request.DeletePermissionRequest = {
+            "certificate_authority_arn": certificate_authority_arn,
+            "principal": principal,
+        }
         if source_account is not None:
             input_["source_account"] = source_account
 
@@ -470,6 +477,7 @@ class ACMPCAClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_policy(
@@ -506,14 +514,16 @@ class ACMPCAClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_acm_pca.types.delete_policy_request.DeletePolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_acm_pca.types.delete_policy_request.DeletePolicyRequest = {
+            "resource_arn": resource_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_certificate_authority(
@@ -548,14 +558,16 @@ class ACMPCAClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_acm_pca.types.describe_certificate_authority_request.DescribeCertificateAuthorityRequest = {}  # type: ignore[typeddict-item]
-        input_["certificate_authority_arn"] = certificate_authority_arn
+        input_: capo_acm_pca.types.describe_certificate_authority_request.DescribeCertificateAuthorityRequest = {
+            "certificate_authority_arn": certificate_authority_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_certificate_authority_audit_report(
@@ -593,15 +605,17 @@ class ACMPCAClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_acm_pca.types.describe_certificate_authority_audit_report_request.DescribeCertificateAuthorityAuditReportRequest = {}  # type: ignore[typeddict-item]
-        input_["certificate_authority_arn"] = certificate_authority_arn
-        input_["audit_report_id"] = audit_report_id
+        input_: capo_acm_pca.types.describe_certificate_authority_audit_report_request.DescribeCertificateAuthorityAuditReportRequest = {
+            "certificate_authority_arn": certificate_authority_arn,
+            "audit_report_id": audit_report_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_certificate(
@@ -641,15 +655,17 @@ class ACMPCAClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_acm_pca.types.get_certificate_request.GetCertificateRequest = {}  # type: ignore[typeddict-item]
-        input_["certificate_authority_arn"] = certificate_authority_arn
-        input_["certificate_arn"] = certificate_arn
+        input_: capo_acm_pca.types.get_certificate_request.GetCertificateRequest = {
+            "certificate_authority_arn": certificate_authority_arn,
+            "certificate_arn": certificate_arn,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def wait_until_certificate_issued(
@@ -736,14 +752,16 @@ class ACMPCAClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_acm_pca.types.get_certificate_authority_certificate_request.GetCertificateAuthorityCertificateRequest = {}  # type: ignore[typeddict-item]
-        input_["certificate_authority_arn"] = certificate_authority_arn
+        input_: capo_acm_pca.types.get_certificate_authority_certificate_request.GetCertificateAuthorityCertificateRequest = {
+            "certificate_authority_arn": certificate_authority_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_certificate_authority_csr(
@@ -781,14 +799,16 @@ class ACMPCAClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_acm_pca.types.get_certificate_authority_csr_request.GetCertificateAuthorityCsrRequest = {}  # type: ignore[typeddict-item]
-        input_["certificate_authority_arn"] = certificate_authority_arn
+        input_: capo_acm_pca.types.get_certificate_authority_csr_request.GetCertificateAuthorityCsrRequest = {
+            "certificate_authority_arn": certificate_authority_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def wait_until_certificate_authority_csr_created(
@@ -874,14 +894,16 @@ class ACMPCAClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_acm_pca.types.get_policy_request.GetPolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_acm_pca.types.get_policy_request.GetPolicyRequest = {
+            "resource_arn": resource_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def import_certificate_authority_certificate(
@@ -927,9 +949,10 @@ class ACMPCAClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_acm_pca.types.import_certificate_authority_certificate_request.ImportCertificateAuthorityCertificateRequest = {}  # type: ignore[typeddict-item]
-        input_["certificate_authority_arn"] = certificate_authority_arn
-        input_["certificate"] = certificate
+        input_: capo_acm_pca.types.import_certificate_authority_certificate_request.ImportCertificateAuthorityCertificateRequest = {
+            "certificate_authority_arn": certificate_authority_arn,
+            "certificate": certificate,
+        }
         if certificate_chain is not None:
             input_["certificate_chain"] = certificate_chain
 
@@ -938,6 +961,7 @@ class ACMPCAClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def issue_certificate(
@@ -994,15 +1018,16 @@ class ACMPCAClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_acm_pca.types.issue_certificate_request.IssueCertificateRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_acm_pca.types.issue_certificate_request.IssueCertificateRequest = {
+            "certificate_authority_arn": certificate_authority_arn,
+            "csr": csr,
+            "signing_algorithm": signing_algorithm,
+            "validity": validity,
+        }
         if api_passthrough is not None:
             input_["api_passthrough"] = api_passthrough
-        input_["certificate_authority_arn"] = certificate_authority_arn
-        input_["csr"] = csr
-        input_["signing_algorithm"] = signing_algorithm
         if template_arn is not None:
             input_["template_arn"] = template_arn
-        input_["validity"] = validity
         if validity_not_before is not None:
             input_["validity_not_before"] = validity_not_before
         if idempotency_token is not None:
@@ -1013,6 +1038,7 @@ class ACMPCAClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_certificate_authorities(
@@ -1052,7 +1078,7 @@ class ACMPCAClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_acm_pca.types.list_certificate_authorities_request.ListCertificateAuthoritiesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_acm_pca.types.list_certificate_authorities_request.ListCertificateAuthoritiesRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -1065,6 +1091,7 @@ class ACMPCAClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_certificate_authorities(
@@ -1131,18 +1158,20 @@ class ACMPCAClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_acm_pca.types.list_permissions_request.ListPermissionsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_acm_pca.types.list_permissions_request.ListPermissionsRequest = {
+            "certificate_authority_arn": certificate_authority_arn
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
             input_["next_token"] = next_token
-        input_["certificate_authority_arn"] = certificate_authority_arn
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_permissions(
@@ -1206,18 +1235,20 @@ class ACMPCAClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_acm_pca.types.list_tags_request.ListTagsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_acm_pca.types.list_tags_request.ListTagsRequest = {
+            "certificate_authority_arn": certificate_authority_arn
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
             input_["next_token"] = next_token
-        input_["certificate_authority_arn"] = certificate_authority_arn
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_tags(
@@ -1280,15 +1311,17 @@ class ACMPCAClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_acm_pca.types.put_policy_request.PutPolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["policy"] = policy
+        input_: capo_acm_pca.types.put_policy_request.PutPolicyRequest = {
+            "resource_arn": resource_arn,
+            "policy": policy,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def restore_certificate_authority(
@@ -1322,14 +1355,16 @@ class ACMPCAClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_acm_pca.types.restore_certificate_authority_request.RestoreCertificateAuthorityRequest = {}  # type: ignore[typeddict-item]
-        input_["certificate_authority_arn"] = certificate_authority_arn
+        input_: capo_acm_pca.types.restore_certificate_authority_request.RestoreCertificateAuthorityRequest = {
+            "certificate_authority_arn": certificate_authority_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def revoke_certificate(
@@ -1373,16 +1408,18 @@ class ACMPCAClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_acm_pca.types.revoke_certificate_request.RevokeCertificateRequest = {}  # type: ignore[typeddict-item]
-        input_["certificate_authority_arn"] = certificate_authority_arn
-        input_["certificate_serial"] = certificate_serial
-        input_["revocation_reason"] = revocation_reason
+        input_: capo_acm_pca.types.revoke_certificate_request.RevokeCertificateRequest = {
+            "certificate_authority_arn": certificate_authority_arn,
+            "certificate_serial": certificate_serial,
+            "revocation_reason": revocation_reason,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def tag_certificate_authority(
@@ -1420,15 +1457,17 @@ class ACMPCAClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_acm_pca.types.tag_certificate_authority_request.TagCertificateAuthorityRequest = {}  # type: ignore[typeddict-item]
-        input_["certificate_authority_arn"] = certificate_authority_arn
-        input_["tags"] = tags
+        input_: capo_acm_pca.types.tag_certificate_authority_request.TagCertificateAuthorityRequest = {
+            "certificate_authority_arn": certificate_authority_arn,
+            "tags": tags,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def untag_certificate_authority(
@@ -1465,15 +1504,17 @@ class ACMPCAClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_acm_pca.types.untag_certificate_authority_request.UntagCertificateAuthorityRequest = {}  # type: ignore[typeddict-item]
-        input_["certificate_authority_arn"] = certificate_authority_arn
-        input_["tags"] = tags
+        input_: capo_acm_pca.types.untag_certificate_authority_request.UntagCertificateAuthorityRequest = {
+            "certificate_authority_arn": certificate_authority_arn,
+            "tags": tags,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_certificate_authority(
@@ -1518,8 +1559,9 @@ class ACMPCAClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_acm_pca.types.update_certificate_authority_request.UpdateCertificateAuthorityRequest = {}  # type: ignore[typeddict-item]
-        input_["certificate_authority_arn"] = certificate_authority_arn
+        input_: capo_acm_pca.types.update_certificate_authority_request.UpdateCertificateAuthorityRequest = {
+            "certificate_authority_arn": certificate_authority_arn
+        }
         if revocation_configuration is not None:
             input_["revocation_configuration"] = revocation_configuration
         if status is not None:
@@ -1530,6 +1572,7 @@ class ACMPCAClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def __enter__(self) -> Self:

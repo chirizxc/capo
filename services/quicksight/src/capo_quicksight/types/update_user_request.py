@@ -64,28 +64,28 @@ def serialize_json(value: UpdateUserRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateUserRequest:
     out: UpdateUserRequest = {}  # type: ignore[typeddict-item]
-    if "Email" in data:
+    if data.get("Email") is not None:
         out["email"] = data["Email"]
     else:
         raise DeserializationError("UpdateUserRequest.email required")
-    if "Role" in data:
+    if data.get("Role") is not None:
         import capo_quicksight.types.user_role
 
         out["role"] = capo_quicksight.types.user_role.deserialize_json(data["Role"])
     else:
         raise DeserializationError("UpdateUserRequest.role required")
-    if "CustomPermissionsName" in data:
+    if data.get("CustomPermissionsName") is not None:
         out["custom_permissions_name"] = data["CustomPermissionsName"]
-    if "UnapplyCustomPermissions" in data:
+    if data.get("UnapplyCustomPermissions") is not None:
         out["unapply_custom_permissions"] = data["UnapplyCustomPermissions"]
     else:
         out["unapply_custom_permissions"] = False
-    if "ExternalLoginFederationProviderType" in data:
+    if data.get("ExternalLoginFederationProviderType") is not None:
         out["external_login_federation_provider_type"] = data[
             "ExternalLoginFederationProviderType"
         ]
-    if "CustomFederationProviderUrl" in data:
+    if data.get("CustomFederationProviderUrl") is not None:
         out["custom_federation_provider_url"] = data["CustomFederationProviderUrl"]
-    if "ExternalLoginId" in data:
+    if data.get("ExternalLoginId") is not None:
         out["external_login_id"] = data["ExternalLoginId"]
     return out

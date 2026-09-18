@@ -53,47 +53,41 @@ def serialize_aws_json_1_0(value: DatabaseStandbySummary) -> dict:
     if "maintenance_target_component" in value:
         out["maintenanceTargetComponent"] = value["maintenance_target_component"]
     if "time_data_guard_role_changed" in value:
-        import capo_odb.types._prelude.timestamp
+        import capo_odb._protocol.serialize
 
-        out["timeDataGuardRoleChanged"] = (
-            capo_odb.types._prelude.timestamp.serialize_aws_json_1_0(
-                value["time_data_guard_role_changed"]
-            )
+        out["timeDataGuardRoleChanged"] = capo_odb._protocol.serialize.fmt_date_time(
+            value["time_data_guard_role_changed"]
         )
     if "time_disaster_recovery_role_changed" in value:
-        import capo_odb.types._prelude.timestamp
+        import capo_odb._protocol.serialize
 
         out["timeDisasterRecoveryRoleChanged"] = (
-            capo_odb.types._prelude.timestamp.serialize_aws_json_1_0(
+            capo_odb._protocol.serialize.fmt_date_time(
                 value["time_disaster_recovery_role_changed"]
             )
         )
     if "time_maintenance_begin" in value:
-        import capo_odb.types._prelude.timestamp
+        import capo_odb._protocol.serialize
 
-        out["timeMaintenanceBegin"] = (
-            capo_odb.types._prelude.timestamp.serialize_aws_json_1_0(
-                value["time_maintenance_begin"]
-            )
+        out["timeMaintenanceBegin"] = capo_odb._protocol.serialize.fmt_date_time(
+            value["time_maintenance_begin"]
         )
     if "time_maintenance_end" in value:
-        import capo_odb.types._prelude.timestamp
+        import capo_odb._protocol.serialize
 
-        out["timeMaintenanceEnd"] = (
-            capo_odb.types._prelude.timestamp.serialize_aws_json_1_0(
-                value["time_maintenance_end"]
-            )
+        out["timeMaintenanceEnd"] = capo_odb._protocol.serialize.fmt_date_time(
+            value["time_maintenance_end"]
         )
     return out
 
 
 def deserialize_aws_json_1_0(data: dict) -> DatabaseStandbySummary:
     out: DatabaseStandbySummary = {}  # type: ignore[typeddict-item]
-    if "availabilityDomain" in data:
+    if data.get("availabilityDomain") is not None:
         out["availability_domain"] = data["availabilityDomain"]
-    if "lagTimeInSeconds" in data:
+    if data.get("lagTimeInSeconds") is not None:
         out["lag_time_in_seconds"] = data["lagTimeInSeconds"]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_odb.types.autonomous_database_resource_status
 
         out["status"] = (
@@ -101,40 +95,32 @@ def deserialize_aws_json_1_0(data: dict) -> DatabaseStandbySummary:
                 data["status"]
             )
         )
-    if "statusReason" in data:
+    if data.get("statusReason") is not None:
         out["status_reason"] = data["statusReason"]
-    if "maintenanceTargetComponent" in data:
+    if data.get("maintenanceTargetComponent") is not None:
         out["maintenance_target_component"] = data["maintenanceTargetComponent"]
-    if "timeDataGuardRoleChanged" in data:
-        import capo_odb.types._prelude.timestamp
+    if data.get("timeDataGuardRoleChanged") is not None:
+        import datetime
 
-        out["time_data_guard_role_changed"] = (
-            capo_odb.types._prelude.timestamp.deserialize_aws_json_1_0(
-                data["timeDataGuardRoleChanged"]
-            )
+        out["time_data_guard_role_changed"] = datetime.datetime.fromisoformat(
+            data["timeDataGuardRoleChanged"].replace("Z", "+00:00")
         )
-    if "timeDisasterRecoveryRoleChanged" in data:
-        import capo_odb.types._prelude.timestamp
+    if data.get("timeDisasterRecoveryRoleChanged") is not None:
+        import datetime
 
-        out["time_disaster_recovery_role_changed"] = (
-            capo_odb.types._prelude.timestamp.deserialize_aws_json_1_0(
-                data["timeDisasterRecoveryRoleChanged"]
-            )
+        out["time_disaster_recovery_role_changed"] = datetime.datetime.fromisoformat(
+            data["timeDisasterRecoveryRoleChanged"].replace("Z", "+00:00")
         )
-    if "timeMaintenanceBegin" in data:
-        import capo_odb.types._prelude.timestamp
+    if data.get("timeMaintenanceBegin") is not None:
+        import datetime
 
-        out["time_maintenance_begin"] = (
-            capo_odb.types._prelude.timestamp.deserialize_aws_json_1_0(
-                data["timeMaintenanceBegin"]
-            )
+        out["time_maintenance_begin"] = datetime.datetime.fromisoformat(
+            data["timeMaintenanceBegin"].replace("Z", "+00:00")
         )
-    if "timeMaintenanceEnd" in data:
-        import capo_odb.types._prelude.timestamp
+    if data.get("timeMaintenanceEnd") is not None:
+        import datetime
 
-        out["time_maintenance_end"] = (
-            capo_odb.types._prelude.timestamp.deserialize_aws_json_1_0(
-                data["timeMaintenanceEnd"]
-            )
+        out["time_maintenance_end"] = datetime.datetime.fromisoformat(
+            data["timeMaintenanceEnd"].replace("Z", "+00:00")
         )
     return out

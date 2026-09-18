@@ -569,7 +569,7 @@ class GameLiftClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_gamelift.types.accept_match_input.AcceptMatchInput = {}  # type: ignore[typeddict-item]
+        input_: capo_gamelift.types.accept_match_input.AcceptMatchInput = {}
         if ticket_id is not None:
             input_["ticket_id"] = ticket_id
         if player_ids is not None:
@@ -582,6 +582,7 @@ class GameLiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def claim_game_server(
@@ -634,7 +635,7 @@ class GameLiftClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_gamelift.types.claim_game_server_input.ClaimGameServerInput = {}  # type: ignore[typeddict-item]
+        input_: capo_gamelift.types.claim_game_server_input.ClaimGameServerInput = {}
         if game_server_group_name is not None:
             input_["game_server_group_name"] = game_server_group_name
         if game_server_id is not None:
@@ -649,6 +650,7 @@ class GameLiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_alias(
@@ -699,7 +701,7 @@ class GameLiftClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_gamelift.types.create_alias_input.CreateAliasInput = {}  # type: ignore[typeddict-item]
+        input_: capo_gamelift.types.create_alias_input.CreateAliasInput = {}
         if name is not None:
             input_["name"] = name
         if description is not None:
@@ -714,6 +716,7 @@ class GameLiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_build(
@@ -769,7 +772,7 @@ class GameLiftClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_gamelift.types.create_build_input.CreateBuildInput = {}  # type: ignore[typeddict-item]
+        input_: capo_gamelift.types.create_build_input.CreateBuildInput = {}
         if name is not None:
             input_["name"] = name
         if version is not None:
@@ -788,6 +791,7 @@ class GameLiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_container_fleet(
@@ -885,7 +889,7 @@ class GameLiftClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_gamelift.types.create_container_fleet_input.CreateContainerFleetInput = {}  # type: ignore[typeddict-item]
+        input_: capo_gamelift.types.create_container_fleet_input.CreateContainerFleetInput = {}
         if fleet_role_arn is not None:
             input_["fleet_role_arn"] = fleet_role_arn
         if description is not None:
@@ -934,6 +938,7 @@ class GameLiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_container_group_definition(
@@ -1005,7 +1010,7 @@ class GameLiftClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_gamelift.types.create_container_group_definition_input.CreateContainerGroupDefinitionInput = {}  # type: ignore[typeddict-item]
+        input_: capo_gamelift.types.create_container_group_definition_input.CreateContainerGroupDefinitionInput = {}
         if name is not None:
             input_["name"] = name
         if container_group_type is not None:
@@ -1032,6 +1037,7 @@ class GameLiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_fleet(
@@ -1161,7 +1167,7 @@ class GameLiftClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_gamelift.types.create_fleet_input.CreateFleetInput = {}  # type: ignore[typeddict-item]
+        input_: capo_gamelift.types.create_fleet_input.CreateFleetInput = {}
         if name is not None:
             input_["name"] = name
         if description is not None:
@@ -1222,6 +1228,7 @@ class GameLiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_fleet_locations(
@@ -1267,7 +1274,7 @@ class GameLiftClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_gamelift.types.create_fleet_locations_input.CreateFleetLocationsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_gamelift.types.create_fleet_locations_input.CreateFleetLocationsInput = {}
         if fleet_id is not None:
             input_["fleet_id"] = fleet_id
         if locations is not None:
@@ -1278,6 +1285,7 @@ class GameLiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_game_server_group(
@@ -1349,7 +1357,7 @@ class GameLiftClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_gamelift.types.create_game_server_group_input.CreateGameServerGroupInput = {}  # type: ignore[typeddict-item]
+        input_: capo_gamelift.types.create_game_server_group_input.CreateGameServerGroupInput = {}
         if game_server_group_name is not None:
             input_["game_server_group_name"] = game_server_group_name
         if role_arn is not None:
@@ -1378,6 +1386,7 @@ class GameLiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_game_session(
@@ -1455,7 +1464,7 @@ class GameLiftClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_gamelift.types.create_game_session_input.CreateGameSessionInput = {}  # type: ignore[typeddict-item]
+        input_: capo_gamelift.types.create_game_session_input.CreateGameSessionInput = {}
         if fleet_id is not None:
             input_["fleet_id"] = fleet_id
         if alias_id is not None:
@@ -1482,6 +1491,7 @@ class GameLiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_game_session_queue(
@@ -1552,7 +1562,7 @@ class GameLiftClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_gamelift.types.create_game_session_queue_input.CreateGameSessionQueueInput = {}  # type: ignore[typeddict-item]
+        input_: capo_gamelift.types.create_game_session_queue_input.CreateGameSessionQueueInput = {}
         if name is not None:
             input_["name"] = name
         if timeout_in_seconds is not None:
@@ -1577,6 +1587,7 @@ class GameLiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_location(
@@ -1619,7 +1630,7 @@ class GameLiftClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_gamelift.types.create_location_input.CreateLocationInput = {}  # type: ignore[typeddict-item]
+        input_: capo_gamelift.types.create_location_input.CreateLocationInput = {}
         if location_name is not None:
             input_["location_name"] = location_name
         if tags is not None:
@@ -1630,6 +1641,7 @@ class GameLiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_matchmaking_configuration(
@@ -1724,7 +1736,7 @@ class GameLiftClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_gamelift.types.create_matchmaking_configuration_input.CreateMatchmakingConfigurationInput = {}  # type: ignore[typeddict-item]
+        input_: capo_gamelift.types.create_matchmaking_configuration_input.CreateMatchmakingConfigurationInput = {}
         if name is not None:
             input_["name"] = name
         if description is not None:
@@ -1761,6 +1773,7 @@ class GameLiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_matchmaking_rule_set(
@@ -1804,7 +1817,7 @@ class GameLiftClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_gamelift.types.create_matchmaking_rule_set_input.CreateMatchmakingRuleSetInput = {}  # type: ignore[typeddict-item]
+        input_: capo_gamelift.types.create_matchmaking_rule_set_input.CreateMatchmakingRuleSetInput = {}
         if name is not None:
             input_["name"] = name
         if rule_set_body is not None:
@@ -1817,6 +1830,7 @@ class GameLiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_player_session(
@@ -1862,7 +1876,7 @@ class GameLiftClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_gamelift.types.create_player_session_input.CreatePlayerSessionInput = {}  # type: ignore[typeddict-item]
+        input_: capo_gamelift.types.create_player_session_input.CreatePlayerSessionInput = {}
         if game_session_id is not None:
             input_["game_session_id"] = game_session_id
         if player_id is not None:
@@ -1875,6 +1889,7 @@ class GameLiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_player_sessions(
@@ -1922,7 +1937,7 @@ class GameLiftClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_gamelift.types.create_player_sessions_input.CreatePlayerSessionsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_gamelift.types.create_player_sessions_input.CreatePlayerSessionsInput = {}
         if game_session_id is not None:
             input_["game_session_id"] = game_session_id
         if player_ids is not None:
@@ -1935,6 +1950,7 @@ class GameLiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_script(
@@ -1988,7 +2004,7 @@ class GameLiftClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_gamelift.types.create_script_input.CreateScriptInput = {}  # type: ignore[typeddict-item]
+        input_: capo_gamelift.types.create_script_input.CreateScriptInput = {}
         if name is not None:
             input_["name"] = name
         if version is not None:
@@ -2007,6 +2023,7 @@ class GameLiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_vpc_peering_authorization(
@@ -2049,7 +2066,7 @@ class GameLiftClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_gamelift.types.create_vpc_peering_authorization_input.CreateVpcPeeringAuthorizationInput = {}  # type: ignore[typeddict-item]
+        input_: capo_gamelift.types.create_vpc_peering_authorization_input.CreateVpcPeeringAuthorizationInput = {}
         if game_lift_aws_account_id is not None:
             input_["game_lift_aws_account_id"] = game_lift_aws_account_id
         if peer_vpc_id is not None:
@@ -2060,6 +2077,7 @@ class GameLiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_vpc_peering_connection(
@@ -2104,7 +2122,7 @@ class GameLiftClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_gamelift.types.create_vpc_peering_connection_input.CreateVpcPeeringConnectionInput = {}  # type: ignore[typeddict-item]
+        input_: capo_gamelift.types.create_vpc_peering_connection_input.CreateVpcPeeringConnectionInput = {}
         if fleet_id is not None:
             input_["fleet_id"] = fleet_id
         if peer_vpc_aws_account_id is not None:
@@ -2117,6 +2135,7 @@ class GameLiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_alias(
@@ -2152,7 +2171,7 @@ class GameLiftClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_gamelift.types.delete_alias_input.DeleteAliasInput = {}  # type: ignore[typeddict-item]
+        input_: capo_gamelift.types.delete_alias_input.DeleteAliasInput = {}
         if alias_id is not None:
             input_["alias_id"] = alias_id
 
@@ -2161,6 +2180,7 @@ class GameLiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_build(
@@ -2196,7 +2216,7 @@ class GameLiftClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_gamelift.types.delete_build_input.DeleteBuildInput = {}  # type: ignore[typeddict-item]
+        input_: capo_gamelift.types.delete_build_input.DeleteBuildInput = {}
         if build_id is not None:
             input_["build_id"] = build_id
 
@@ -2205,6 +2225,7 @@ class GameLiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_container_fleet(
@@ -2243,7 +2264,7 @@ class GameLiftClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_gamelift.types.delete_container_fleet_input.DeleteContainerFleetInput = {}  # type: ignore[typeddict-item]
+        input_: capo_gamelift.types.delete_container_fleet_input.DeleteContainerFleetInput = {}
         if fleet_id is not None:
             input_["fleet_id"] = fleet_id
 
@@ -2252,6 +2273,7 @@ class GameLiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_container_group_definition(
@@ -2300,7 +2322,7 @@ class GameLiftClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_gamelift.types.delete_container_group_definition_input.DeleteContainerGroupDefinitionInput = {}  # type: ignore[typeddict-item]
+        input_: capo_gamelift.types.delete_container_group_definition_input.DeleteContainerGroupDefinitionInput = {}
         if name is not None:
             input_["name"] = name
         if version_number is not None:
@@ -2313,6 +2335,7 @@ class GameLiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_fleet(
@@ -2349,7 +2372,7 @@ class GameLiftClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_gamelift.types.delete_fleet_input.DeleteFleetInput = {}  # type: ignore[typeddict-item]
+        input_: capo_gamelift.types.delete_fleet_input.DeleteFleetInput = {}
         if fleet_id is not None:
             input_["fleet_id"] = fleet_id
 
@@ -2358,6 +2381,7 @@ class GameLiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_fleet_locations(
@@ -2397,7 +2421,7 @@ class GameLiftClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_gamelift.types.delete_fleet_locations_input.DeleteFleetLocationsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_gamelift.types.delete_fleet_locations_input.DeleteFleetLocationsInput = {}
         if fleet_id is not None:
             input_["fleet_id"] = fleet_id
         if locations is not None:
@@ -2408,6 +2432,7 @@ class GameLiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_game_server_group(
@@ -2450,7 +2475,7 @@ class GameLiftClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_gamelift.types.delete_game_server_group_input.DeleteGameServerGroupInput = {}  # type: ignore[typeddict-item]
+        input_: capo_gamelift.types.delete_game_server_group_input.DeleteGameServerGroupInput = {}
         if game_server_group_name is not None:
             input_["game_server_group_name"] = game_server_group_name
         if delete_option is not None:
@@ -2461,6 +2486,7 @@ class GameLiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_game_session_queue(
@@ -2500,7 +2526,7 @@ class GameLiftClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_gamelift.types.delete_game_session_queue_input.DeleteGameSessionQueueInput = {}  # type: ignore[typeddict-item]
+        input_: capo_gamelift.types.delete_game_session_queue_input.DeleteGameSessionQueueInput = {}
         if name is not None:
             input_["name"] = name
 
@@ -2509,6 +2535,7 @@ class GameLiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_location(
@@ -2547,7 +2574,7 @@ class GameLiftClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_gamelift.types.delete_location_input.DeleteLocationInput = {}  # type: ignore[typeddict-item]
+        input_: capo_gamelift.types.delete_location_input.DeleteLocationInput = {}
         if location_name is not None:
             input_["location_name"] = location_name
 
@@ -2556,6 +2583,7 @@ class GameLiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_matchmaking_configuration(
@@ -2595,7 +2623,7 @@ class GameLiftClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_gamelift.types.delete_matchmaking_configuration_input.DeleteMatchmakingConfigurationInput = {}  # type: ignore[typeddict-item]
+        input_: capo_gamelift.types.delete_matchmaking_configuration_input.DeleteMatchmakingConfigurationInput = {}
         if name is not None:
             input_["name"] = name
 
@@ -2604,6 +2632,7 @@ class GameLiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_matchmaking_rule_set(
@@ -2643,7 +2672,7 @@ class GameLiftClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_gamelift.types.delete_matchmaking_rule_set_input.DeleteMatchmakingRuleSetInput = {}  # type: ignore[typeddict-item]
+        input_: capo_gamelift.types.delete_matchmaking_rule_set_input.DeleteMatchmakingRuleSetInput = {}
         if name is not None:
             input_["name"] = name
 
@@ -2652,6 +2681,7 @@ class GameLiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_scaling_policy(
@@ -2691,7 +2721,7 @@ class GameLiftClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_gamelift.types.delete_scaling_policy_input.DeleteScalingPolicyInput = {}  # type: ignore[typeddict-item]
+        input_: capo_gamelift.types.delete_scaling_policy_input.DeleteScalingPolicyInput = {}
         if name is not None:
             input_["name"] = name
         if fleet_id is not None:
@@ -2702,6 +2732,7 @@ class GameLiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_script(
@@ -2739,7 +2770,7 @@ class GameLiftClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_gamelift.types.delete_script_input.DeleteScriptInput = {}  # type: ignore[typeddict-item]
+        input_: capo_gamelift.types.delete_script_input.DeleteScriptInput = {}
         if script_id is not None:
             input_["script_id"] = script_id
 
@@ -2748,6 +2779,7 @@ class GameLiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_vpc_peering_authorization(
@@ -2790,7 +2822,7 @@ class GameLiftClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_gamelift.types.delete_vpc_peering_authorization_input.DeleteVpcPeeringAuthorizationInput = {}  # type: ignore[typeddict-item]
+        input_: capo_gamelift.types.delete_vpc_peering_authorization_input.DeleteVpcPeeringAuthorizationInput = {}
         if game_lift_aws_account_id is not None:
             input_["game_lift_aws_account_id"] = game_lift_aws_account_id
         if peer_vpc_id is not None:
@@ -2801,6 +2833,7 @@ class GameLiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_vpc_peering_connection(
@@ -2841,7 +2874,7 @@ class GameLiftClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_gamelift.types.delete_vpc_peering_connection_input.DeleteVpcPeeringConnectionInput = {}  # type: ignore[typeddict-item]
+        input_: capo_gamelift.types.delete_vpc_peering_connection_input.DeleteVpcPeeringConnectionInput = {}
         if fleet_id is not None:
             input_["fleet_id"] = fleet_id
         if vpc_peering_connection_id is not None:
@@ -2852,6 +2885,7 @@ class GameLiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def deregister_compute(
@@ -2892,7 +2926,7 @@ class GameLiftClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_gamelift.types.deregister_compute_input.DeregisterComputeInput = {}  # type: ignore[typeddict-item]
+        input_: capo_gamelift.types.deregister_compute_input.DeregisterComputeInput = {}
         if fleet_id is not None:
             input_["fleet_id"] = fleet_id
         if compute_name is not None:
@@ -2903,6 +2937,7 @@ class GameLiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def deregister_game_server(
@@ -2943,7 +2978,7 @@ class GameLiftClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_gamelift.types.deregister_game_server_input.DeregisterGameServerInput = {}  # type: ignore[typeddict-item]
+        input_: capo_gamelift.types.deregister_game_server_input.DeregisterGameServerInput = {}
         if game_server_group_name is not None:
             input_["game_server_group_name"] = game_server_group_name
         if game_server_id is not None:
@@ -2954,6 +2989,7 @@ class GameLiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_alias(
@@ -2990,7 +3026,7 @@ class GameLiftClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_gamelift.types.describe_alias_input.DescribeAliasInput = {}  # type: ignore[typeddict-item]
+        input_: capo_gamelift.types.describe_alias_input.DescribeAliasInput = {}
         if alias_id is not None:
             input_["alias_id"] = alias_id
 
@@ -2999,6 +3035,7 @@ class GameLiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_build(
@@ -3035,7 +3072,7 @@ class GameLiftClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_gamelift.types.describe_build_input.DescribeBuildInput = {}  # type: ignore[typeddict-item]
+        input_: capo_gamelift.types.describe_build_input.DescribeBuildInput = {}
         if build_id is not None:
             input_["build_id"] = build_id
 
@@ -3044,6 +3081,7 @@ class GameLiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_compute(
@@ -3085,7 +3123,7 @@ class GameLiftClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_gamelift.types.describe_compute_input.DescribeComputeInput = {}  # type: ignore[typeddict-item]
+        input_: capo_gamelift.types.describe_compute_input.DescribeComputeInput = {}
         if fleet_id is not None:
             input_["fleet_id"] = fleet_id
         if compute_name is not None:
@@ -3096,6 +3134,7 @@ class GameLiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_container_fleet(
@@ -3133,7 +3172,7 @@ class GameLiftClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_gamelift.types.describe_container_fleet_input.DescribeContainerFleetInput = {}  # type: ignore[typeddict-item]
+        input_: capo_gamelift.types.describe_container_fleet_input.DescribeContainerFleetInput = {}
         if fleet_id is not None:
             input_["fleet_id"] = fleet_id
 
@@ -3142,6 +3181,7 @@ class GameLiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_container_group_definition(
@@ -3185,7 +3225,7 @@ class GameLiftClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_gamelift.types.describe_container_group_definition_input.DescribeContainerGroupDefinitionInput = {}  # type: ignore[typeddict-item]
+        input_: capo_gamelift.types.describe_container_group_definition_input.DescribeContainerGroupDefinitionInput = {}
         if name is not None:
             input_["name"] = name
         if version_number is not None:
@@ -3196,6 +3236,7 @@ class GameLiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_container_group_port_mappings(
@@ -3248,7 +3289,7 @@ class GameLiftClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_gamelift.types.describe_container_group_port_mappings_input.DescribeContainerGroupPortMappingsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_gamelift.types.describe_container_group_port_mappings_input.DescribeContainerGroupPortMappingsInput = {}
         if fleet_id is not None:
             input_["fleet_id"] = fleet_id
         if container_group_type is not None:
@@ -3265,6 +3306,7 @@ class GameLiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_ec2_instance_limits(
@@ -3307,7 +3349,7 @@ class GameLiftClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_gamelift.types.describe_ec2_instance_limits_input.DescribeEC2InstanceLimitsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_gamelift.types.describe_ec2_instance_limits_input.DescribeEC2InstanceLimitsInput = {}
         if ec2_instance_type is not None:
             input_["ec2_instance_type"] = ec2_instance_type
         if location is not None:
@@ -3318,6 +3360,7 @@ class GameLiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_fleet_attributes(
@@ -3362,7 +3405,7 @@ class GameLiftClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_gamelift.types.describe_fleet_attributes_input.DescribeFleetAttributesInput = {}  # type: ignore[typeddict-item]
+        input_: capo_gamelift.types.describe_fleet_attributes_input.DescribeFleetAttributesInput = {}
         if fleet_ids is not None:
             input_["fleet_ids"] = fleet_ids
         if limit is not None:
@@ -3375,6 +3418,7 @@ class GameLiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_describe_fleet_attributes(
@@ -3449,7 +3493,7 @@ class GameLiftClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_gamelift.types.describe_fleet_capacity_input.DescribeFleetCapacityInput = {}  # type: ignore[typeddict-item]
+        input_: capo_gamelift.types.describe_fleet_capacity_input.DescribeFleetCapacityInput = {}
         if fleet_ids is not None:
             input_["fleet_ids"] = fleet_ids
         if limit is not None:
@@ -3462,6 +3506,7 @@ class GameLiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_describe_fleet_capacity(
@@ -3530,7 +3575,7 @@ class GameLiftClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_gamelift.types.describe_fleet_deployment_input.DescribeFleetDeploymentInput = {}  # type: ignore[typeddict-item]
+        input_: capo_gamelift.types.describe_fleet_deployment_input.DescribeFleetDeploymentInput = {}
         if fleet_id is not None:
             input_["fleet_id"] = fleet_id
         if deployment_id is not None:
@@ -3541,6 +3586,7 @@ class GameLiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_fleet_events(
@@ -3588,7 +3634,7 @@ class GameLiftClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_gamelift.types.describe_fleet_events_input.DescribeFleetEventsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_gamelift.types.describe_fleet_events_input.DescribeFleetEventsInput = {}
         if fleet_id is not None:
             input_["fleet_id"] = fleet_id
         if start_time is not None:
@@ -3605,6 +3651,7 @@ class GameLiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_describe_fleet_events(
@@ -3679,7 +3726,7 @@ class GameLiftClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_gamelift.types.describe_fleet_location_attributes_input.DescribeFleetLocationAttributesInput = {}  # type: ignore[typeddict-item]
+        input_: capo_gamelift.types.describe_fleet_location_attributes_input.DescribeFleetLocationAttributesInput = {}
         if fleet_id is not None:
             input_["fleet_id"] = fleet_id
         if locations is not None:
@@ -3694,7 +3741,33 @@ class GameLiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_describe_fleet_location_attributes(
+        self,
+        *,
+        config_overrides: Optional[GameLiftClientConfig] = None,
+        fleet_id: Optional["capo_gamelift.types.fleet_id_or_arn.FleetIdOrArn"] = None,
+        locations: Optional["capo_gamelift.types.location_list.LocationList"] = None,
+        limit: Optional["capo_gamelift.types.positive_integer.PositiveInteger"] = None,
+        next_token: Optional[
+            "capo_gamelift.types.non_zero_and_max_string.NonZeroAndMaxString"
+        ] = None,
+    ) -> "Iterator[capo_gamelift.types.describe_fleet_location_attributes_output.DescribeFleetLocationAttributesOutput]":
+        _token = next_token
+        while True:
+            _response = self.describe_fleet_location_attributes(
+                config_overrides=config_overrides,
+                fleet_id=fleet_id,
+                locations=locations,
+                limit=limit,
+                next_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def describe_fleet_location_capacity(
         self,
@@ -3735,7 +3808,7 @@ class GameLiftClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_gamelift.types.describe_fleet_location_capacity_input.DescribeFleetLocationCapacityInput = {}  # type: ignore[typeddict-item]
+        input_: capo_gamelift.types.describe_fleet_location_capacity_input.DescribeFleetLocationCapacityInput = {}
         if fleet_id is not None:
             input_["fleet_id"] = fleet_id
         if location is not None:
@@ -3746,6 +3819,7 @@ class GameLiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_fleet_location_utilization(
@@ -3787,7 +3861,7 @@ class GameLiftClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_gamelift.types.describe_fleet_location_utilization_input.DescribeFleetLocationUtilizationInput = {}  # type: ignore[typeddict-item]
+        input_: capo_gamelift.types.describe_fleet_location_utilization_input.DescribeFleetLocationUtilizationInput = {}
         if fleet_id is not None:
             input_["fleet_id"] = fleet_id
         if location is not None:
@@ -3798,6 +3872,7 @@ class GameLiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_fleet_port_settings(
@@ -3839,7 +3914,7 @@ class GameLiftClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_gamelift.types.describe_fleet_port_settings_input.DescribeFleetPortSettingsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_gamelift.types.describe_fleet_port_settings_input.DescribeFleetPortSettingsInput = {}
         if fleet_id is not None:
             input_["fleet_id"] = fleet_id
         if location is not None:
@@ -3850,6 +3925,7 @@ class GameLiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_fleet_utilization(
@@ -3894,7 +3970,7 @@ class GameLiftClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_gamelift.types.describe_fleet_utilization_input.DescribeFleetUtilizationInput = {}  # type: ignore[typeddict-item]
+        input_: capo_gamelift.types.describe_fleet_utilization_input.DescribeFleetUtilizationInput = {}
         if fleet_ids is not None:
             input_["fleet_ids"] = fleet_ids
         if limit is not None:
@@ -3907,6 +3983,7 @@ class GameLiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_describe_fleet_utilization(
@@ -3976,7 +4053,7 @@ class GameLiftClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_gamelift.types.describe_game_server_input.DescribeGameServerInput = {}  # type: ignore[typeddict-item]
+        input_: capo_gamelift.types.describe_game_server_input.DescribeGameServerInput = {}
         if game_server_group_name is not None:
             input_["game_server_group_name"] = game_server_group_name
         if game_server_id is not None:
@@ -3987,6 +4064,7 @@ class GameLiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_game_server_group(
@@ -4025,7 +4103,7 @@ class GameLiftClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_gamelift.types.describe_game_server_group_input.DescribeGameServerGroupInput = {}  # type: ignore[typeddict-item]
+        input_: capo_gamelift.types.describe_game_server_group_input.DescribeGameServerGroupInput = {}
         if game_server_group_name is not None:
             input_["game_server_group_name"] = game_server_group_name
 
@@ -4034,6 +4112,7 @@ class GameLiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_game_server_instances(
@@ -4082,7 +4161,7 @@ class GameLiftClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_gamelift.types.describe_game_server_instances_input.DescribeGameServerInstancesInput = {}  # type: ignore[typeddict-item]
+        input_: capo_gamelift.types.describe_game_server_instances_input.DescribeGameServerInstancesInput = {}
         if game_server_group_name is not None:
             input_["game_server_group_name"] = game_server_group_name
         if instance_ids is not None:
@@ -4097,6 +4176,7 @@ class GameLiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_describe_game_server_instances(
@@ -4186,7 +4266,7 @@ class GameLiftClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_gamelift.types.describe_game_session_details_input.DescribeGameSessionDetailsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_gamelift.types.describe_game_session_details_input.DescribeGameSessionDetailsInput = {}
         if fleet_id is not None:
             input_["fleet_id"] = fleet_id
         if game_session_id is not None:
@@ -4207,6 +4287,7 @@ class GameLiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_describe_game_session_details(
@@ -4284,7 +4365,7 @@ class GameLiftClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_gamelift.types.describe_game_session_placement_input.DescribeGameSessionPlacementInput = {}  # type: ignore[typeddict-item]
+        input_: capo_gamelift.types.describe_game_session_placement_input.DescribeGameSessionPlacementInput = {}
         if placement_id is not None:
             input_["placement_id"] = placement_id
 
@@ -4293,6 +4374,7 @@ class GameLiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_game_session_queues(
@@ -4337,7 +4419,7 @@ class GameLiftClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_gamelift.types.describe_game_session_queues_input.DescribeGameSessionQueuesInput = {}  # type: ignore[typeddict-item]
+        input_: capo_gamelift.types.describe_game_session_queues_input.DescribeGameSessionQueuesInput = {}
         if names is not None:
             input_["names"] = names
         if limit is not None:
@@ -4350,6 +4432,7 @@ class GameLiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_describe_game_session_queues(
@@ -4435,7 +4518,7 @@ class GameLiftClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_gamelift.types.describe_game_sessions_input.DescribeGameSessionsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_gamelift.types.describe_game_sessions_input.DescribeGameSessionsInput = {}
         if fleet_id is not None:
             input_["fleet_id"] = fleet_id
         if game_session_id is not None:
@@ -4456,6 +4539,7 @@ class GameLiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_describe_game_sessions(
@@ -4544,7 +4628,7 @@ class GameLiftClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_gamelift.types.describe_instances_input.DescribeInstancesInput = {}  # type: ignore[typeddict-item]
+        input_: capo_gamelift.types.describe_instances_input.DescribeInstancesInput = {}
         if fleet_id is not None:
             input_["fleet_id"] = fleet_id
         if instance_id is not None:
@@ -4561,6 +4645,7 @@ class GameLiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_describe_instances(
@@ -4629,7 +4714,7 @@ class GameLiftClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_gamelift.types.describe_matchmaking_input.DescribeMatchmakingInput = {}  # type: ignore[typeddict-item]
+        input_: capo_gamelift.types.describe_matchmaking_input.DescribeMatchmakingInput = {}
         if ticket_ids is not None:
             input_["ticket_ids"] = ticket_ids
 
@@ -4638,6 +4723,7 @@ class GameLiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_matchmaking_configurations(
@@ -4685,7 +4771,7 @@ class GameLiftClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_gamelift.types.describe_matchmaking_configurations_input.DescribeMatchmakingConfigurationsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_gamelift.types.describe_matchmaking_configurations_input.DescribeMatchmakingConfigurationsInput = {}
         if names is not None:
             input_["names"] = names
         if rule_set_name is not None:
@@ -4700,6 +4786,7 @@ class GameLiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_describe_matchmaking_configurations(
@@ -4775,7 +4862,7 @@ class GameLiftClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_gamelift.types.describe_matchmaking_rule_sets_input.DescribeMatchmakingRuleSetsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_gamelift.types.describe_matchmaking_rule_sets_input.DescribeMatchmakingRuleSetsInput = {}
         if names is not None:
             input_["names"] = names
         if limit is not None:
@@ -4788,6 +4875,7 @@ class GameLiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_describe_matchmaking_rule_sets(
@@ -4869,7 +4957,7 @@ class GameLiftClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_gamelift.types.describe_player_sessions_input.DescribePlayerSessionsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_gamelift.types.describe_player_sessions_input.DescribePlayerSessionsInput = {}
         if game_session_id is not None:
             input_["game_session_id"] = game_session_id
         if player_id is not None:
@@ -4888,6 +4976,7 @@ class GameLiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_describe_player_sessions(
@@ -4961,7 +5050,7 @@ class GameLiftClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_gamelift.types.describe_runtime_configuration_input.DescribeRuntimeConfigurationInput = {}  # type: ignore[typeddict-item]
+        input_: capo_gamelift.types.describe_runtime_configuration_input.DescribeRuntimeConfigurationInput = {}
         if fleet_id is not None:
             input_["fleet_id"] = fleet_id
 
@@ -4970,6 +5059,7 @@ class GameLiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_scaling_policies(
@@ -5021,7 +5111,7 @@ class GameLiftClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_gamelift.types.describe_scaling_policies_input.DescribeScalingPoliciesInput = {}  # type: ignore[typeddict-item]
+        input_: capo_gamelift.types.describe_scaling_policies_input.DescribeScalingPoliciesInput = {}
         if fleet_id is not None:
             input_["fleet_id"] = fleet_id
         if status_filter is not None:
@@ -5038,6 +5128,7 @@ class GameLiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_describe_scaling_policies(
@@ -5109,7 +5200,7 @@ class GameLiftClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_gamelift.types.describe_script_input.DescribeScriptInput = {}  # type: ignore[typeddict-item]
+        input_: capo_gamelift.types.describe_script_input.DescribeScriptInput = {}
         if script_id is not None:
             input_["script_id"] = script_id
 
@@ -5118,6 +5209,7 @@ class GameLiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_vpc_peering_authorizations(
@@ -5147,13 +5239,14 @@ class GameLiftClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_gamelift.types.describe_vpc_peering_authorizations_input.DescribeVpcPeeringAuthorizationsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_gamelift.types.describe_vpc_peering_authorizations_input.DescribeVpcPeeringAuthorizationsInput = {}
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_vpc_peering_connections(
@@ -5190,7 +5283,7 @@ class GameLiftClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_gamelift.types.describe_vpc_peering_connections_input.DescribeVpcPeeringConnectionsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_gamelift.types.describe_vpc_peering_connections_input.DescribeVpcPeeringConnectionsInput = {}
         if fleet_id is not None:
             input_["fleet_id"] = fleet_id
 
@@ -5199,6 +5292,7 @@ class GameLiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_compute_access(
@@ -5240,7 +5334,7 @@ class GameLiftClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_gamelift.types.get_compute_access_input.GetComputeAccessInput = {}  # type: ignore[typeddict-item]
+        input_: capo_gamelift.types.get_compute_access_input.GetComputeAccessInput = {}
         if fleet_id is not None:
             input_["fleet_id"] = fleet_id
         if compute_name is not None:
@@ -5251,6 +5345,7 @@ class GameLiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_compute_auth_token(
@@ -5292,7 +5387,7 @@ class GameLiftClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_gamelift.types.get_compute_auth_token_input.GetComputeAuthTokenInput = {}  # type: ignore[typeddict-item]
+        input_: capo_gamelift.types.get_compute_auth_token_input.GetComputeAuthTokenInput = {}
         if fleet_id is not None:
             input_["fleet_id"] = fleet_id
         if compute_name is not None:
@@ -5303,6 +5398,7 @@ class GameLiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_game_session_log_url(
@@ -5343,7 +5439,7 @@ class GameLiftClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_gamelift.types.get_game_session_log_url_input.GetGameSessionLogUrlInput = {}  # type: ignore[typeddict-item]
+        input_: capo_gamelift.types.get_game_session_log_url_input.GetGameSessionLogUrlInput = {}
         if game_session_id is not None:
             input_["game_session_id"] = game_session_id
 
@@ -5352,6 +5448,7 @@ class GameLiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_instance_access(
@@ -5390,7 +5487,7 @@ class GameLiftClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_gamelift.types.get_instance_access_input.GetInstanceAccessInput = {}  # type: ignore[typeddict-item]
+        input_: capo_gamelift.types.get_instance_access_input.GetInstanceAccessInput = {}
         if fleet_id is not None:
             input_["fleet_id"] = fleet_id
         if instance_id is not None:
@@ -5401,6 +5498,7 @@ class GameLiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_player_connection_details(
@@ -5444,7 +5542,7 @@ class GameLiftClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_gamelift.types.get_player_connection_details_input.GetPlayerConnectionDetailsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_gamelift.types.get_player_connection_details_input.GetPlayerConnectionDetailsInput = {}
         if game_session_id is not None:
             input_["game_session_id"] = game_session_id
         if player_ids is not None:
@@ -5455,6 +5553,7 @@ class GameLiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_aliases(
@@ -5500,7 +5599,7 @@ class GameLiftClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_gamelift.types.list_aliases_input.ListAliasesInput = {}  # type: ignore[typeddict-item]
+        input_: capo_gamelift.types.list_aliases_input.ListAliasesInput = {}
         if routing_strategy_type is not None:
             input_["routing_strategy_type"] = routing_strategy_type
         if name is not None:
@@ -5515,6 +5614,7 @@ class GameLiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_aliases(
@@ -5585,7 +5685,7 @@ class GameLiftClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_gamelift.types.list_builds_input.ListBuildsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_gamelift.types.list_builds_input.ListBuildsInput = {}
         if status is not None:
             input_["status"] = status
         if limit is not None:
@@ -5598,6 +5698,7 @@ class GameLiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_builds(
@@ -5677,7 +5778,7 @@ class GameLiftClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_gamelift.types.list_compute_input.ListComputeInput = {}  # type: ignore[typeddict-item]
+        input_: capo_gamelift.types.list_compute_input.ListComputeInput = {}
         if fleet_id is not None:
             input_["fleet_id"] = fleet_id
         if location is not None:
@@ -5696,6 +5797,7 @@ class GameLiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_compute(
@@ -5777,7 +5879,7 @@ class GameLiftClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_gamelift.types.list_container_fleets_input.ListContainerFleetsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_gamelift.types.list_container_fleets_input.ListContainerFleetsInput = {}
         if container_group_definition_name is not None:
             input_["container_group_definition_name"] = container_group_definition_name
         if limit is not None:
@@ -5790,6 +5892,7 @@ class GameLiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_container_fleets(
@@ -5863,7 +5966,7 @@ class GameLiftClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_gamelift.types.list_container_group_definitions_input.ListContainerGroupDefinitionsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_gamelift.types.list_container_group_definitions_input.ListContainerGroupDefinitionsInput = {}
         if container_group_type is not None:
             input_["container_group_type"] = container_group_type
         if limit is not None:
@@ -5876,6 +5979,7 @@ class GameLiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_container_group_definitions(
@@ -5952,7 +6056,7 @@ class GameLiftClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_gamelift.types.list_container_group_definition_versions_input.ListContainerGroupDefinitionVersionsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_gamelift.types.list_container_group_definition_versions_input.ListContainerGroupDefinitionVersionsInput = {}
         if name is not None:
             input_["name"] = name
         if limit is not None:
@@ -5965,6 +6069,7 @@ class GameLiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_container_group_definition_versions(
@@ -6037,7 +6142,7 @@ class GameLiftClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_gamelift.types.list_fleet_deployments_input.ListFleetDeploymentsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_gamelift.types.list_fleet_deployments_input.ListFleetDeploymentsInput = {}
         if fleet_id is not None:
             input_["fleet_id"] = fleet_id
         if limit is not None:
@@ -6050,6 +6155,7 @@ class GameLiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_fleet_deployments(
@@ -6121,7 +6227,7 @@ class GameLiftClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_gamelift.types.list_fleets_input.ListFleetsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_gamelift.types.list_fleets_input.ListFleetsInput = {}
         if build_id is not None:
             input_["build_id"] = build_id
         if script_id is not None:
@@ -6136,6 +6242,7 @@ class GameLiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_fleets(
@@ -6206,7 +6313,7 @@ class GameLiftClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_gamelift.types.list_game_server_groups_input.ListGameServerGroupsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_gamelift.types.list_game_server_groups_input.ListGameServerGroupsInput = {}
         if limit is not None:
             input_["limit"] = limit
         if next_token is not None:
@@ -6217,6 +6324,7 @@ class GameLiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_game_server_groups(
@@ -6285,7 +6393,7 @@ class GameLiftClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_gamelift.types.list_game_servers_input.ListGameServersInput = {}  # type: ignore[typeddict-item]
+        input_: capo_gamelift.types.list_game_servers_input.ListGameServersInput = {}
         if game_server_group_name is not None:
             input_["game_server_group_name"] = game_server_group_name
         if sort_order is not None:
@@ -6300,6 +6408,7 @@ class GameLiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_game_servers(
@@ -6374,7 +6483,7 @@ class GameLiftClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_gamelift.types.list_locations_input.ListLocationsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_gamelift.types.list_locations_input.ListLocationsInput = {}
         if filters is not None:
             input_["filters"] = filters
         if limit is not None:
@@ -6387,6 +6496,7 @@ class GameLiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_locations(
@@ -6455,7 +6565,7 @@ class GameLiftClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_gamelift.types.list_scripts_input.ListScriptsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_gamelift.types.list_scripts_input.ListScriptsInput = {}
         if limit is not None:
             input_["limit"] = limit
         if next_token is not None:
@@ -6466,6 +6576,7 @@ class GameLiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_scripts(
@@ -6528,7 +6639,7 @@ class GameLiftClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_gamelift.types.list_tags_for_resource_request.ListTagsForResourceRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_gamelift.types.list_tags_for_resource_request.ListTagsForResourceRequest = {}
         if resource_arn is not None:
             input_["resource_arn"] = resource_arn
 
@@ -6537,6 +6648,7 @@ class GameLiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def put_scaling_policy(
@@ -6602,7 +6714,7 @@ class GameLiftClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_gamelift.types.put_scaling_policy_input.PutScalingPolicyInput = {}  # type: ignore[typeddict-item]
+        input_: capo_gamelift.types.put_scaling_policy_input.PutScalingPolicyInput = {}
         if name is not None:
             input_["name"] = name
         if fleet_id is not None:
@@ -6629,6 +6741,7 @@ class GameLiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def register_compute(
@@ -6681,7 +6794,7 @@ class GameLiftClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_gamelift.types.register_compute_input.RegisterComputeInput = {}  # type: ignore[typeddict-item]
+        input_: capo_gamelift.types.register_compute_input.RegisterComputeInput = {}
         if fleet_id is not None:
             input_["fleet_id"] = fleet_id
         if compute_name is not None:
@@ -6700,6 +6813,7 @@ class GameLiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def register_game_server(
@@ -6755,7 +6869,7 @@ class GameLiftClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_gamelift.types.register_game_server_input.RegisterGameServerInput = {}  # type: ignore[typeddict-item]
+        input_: capo_gamelift.types.register_game_server_input.RegisterGameServerInput = {}
         if game_server_group_name is not None:
             input_["game_server_group_name"] = game_server_group_name
         if game_server_id is not None:
@@ -6772,6 +6886,7 @@ class GameLiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def request_upload_credentials(
@@ -6808,7 +6923,7 @@ class GameLiftClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_gamelift.types.request_upload_credentials_input.RequestUploadCredentialsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_gamelift.types.request_upload_credentials_input.RequestUploadCredentialsInput = {}
         if build_id is not None:
             input_["build_id"] = build_id
 
@@ -6817,6 +6932,7 @@ class GameLiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def resolve_alias(
@@ -6854,7 +6970,7 @@ class GameLiftClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_gamelift.types.resolve_alias_input.ResolveAliasInput = {}  # type: ignore[typeddict-item]
+        input_: capo_gamelift.types.resolve_alias_input.ResolveAliasInput = {}
         if alias_id is not None:
             input_["alias_id"] = alias_id
 
@@ -6863,6 +6979,7 @@ class GameLiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def resume_game_server_group(
@@ -6905,7 +7022,7 @@ class GameLiftClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_gamelift.types.resume_game_server_group_input.ResumeGameServerGroupInput = {}  # type: ignore[typeddict-item]
+        input_: capo_gamelift.types.resume_game_server_group_input.ResumeGameServerGroupInput = {}
         if game_server_group_name is not None:
             input_["game_server_group_name"] = game_server_group_name
         if resume_actions is not None:
@@ -6916,6 +7033,7 @@ class GameLiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def search_game_sessions(
@@ -6974,7 +7092,7 @@ class GameLiftClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_gamelift.types.search_game_sessions_input.SearchGameSessionsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_gamelift.types.search_game_sessions_input.SearchGameSessionsInput = {}
         if fleet_id is not None:
             input_["fleet_id"] = fleet_id
         if alias_id is not None:
@@ -6995,6 +7113,7 @@ class GameLiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_search_game_sessions(
@@ -7079,7 +7198,7 @@ class GameLiftClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_gamelift.types.start_fleet_actions_input.StartFleetActionsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_gamelift.types.start_fleet_actions_input.StartFleetActionsInput = {}
         if fleet_id is not None:
             input_["fleet_id"] = fleet_id
         if actions is not None:
@@ -7092,6 +7211,7 @@ class GameLiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def start_game_session_placement(
@@ -7163,7 +7283,7 @@ class GameLiftClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_gamelift.types.start_game_session_placement_input.StartGameSessionPlacementInput = {}  # type: ignore[typeddict-item]
+        input_: capo_gamelift.types.start_game_session_placement_input.StartGameSessionPlacementInput = {}
         if placement_id is not None:
             input_["placement_id"] = placement_id
         if game_session_queue_name is not None:
@@ -7188,6 +7308,7 @@ class GameLiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def start_match_backfill(
@@ -7236,7 +7357,7 @@ class GameLiftClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_gamelift.types.start_match_backfill_input.StartMatchBackfillInput = {}  # type: ignore[typeddict-item]
+        input_: capo_gamelift.types.start_match_backfill_input.StartMatchBackfillInput = {}
         if ticket_id is not None:
             input_["ticket_id"] = ticket_id
         if configuration_name is not None:
@@ -7251,6 +7372,7 @@ class GameLiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def start_matchmaking(
@@ -7295,7 +7417,7 @@ class GameLiftClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_gamelift.types.start_matchmaking_input.StartMatchmakingInput = {}  # type: ignore[typeddict-item]
+        input_: capo_gamelift.types.start_matchmaking_input.StartMatchmakingInput = {}
         if ticket_id is not None:
             input_["ticket_id"] = ticket_id
         if configuration_name is not None:
@@ -7308,6 +7430,7 @@ class GameLiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def stop_fleet_actions(
@@ -7353,7 +7476,7 @@ class GameLiftClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_gamelift.types.stop_fleet_actions_input.StopFleetActionsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_gamelift.types.stop_fleet_actions_input.StopFleetActionsInput = {}
         if fleet_id is not None:
             input_["fleet_id"] = fleet_id
         if actions is not None:
@@ -7366,6 +7489,7 @@ class GameLiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def stop_game_session_placement(
@@ -7404,7 +7528,7 @@ class GameLiftClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_gamelift.types.stop_game_session_placement_input.StopGameSessionPlacementInput = {}  # type: ignore[typeddict-item]
+        input_: capo_gamelift.types.stop_game_session_placement_input.StopGameSessionPlacementInput = {}
         if placement_id is not None:
             input_["placement_id"] = placement_id
 
@@ -7413,6 +7537,7 @@ class GameLiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def stop_matchmaking(
@@ -7451,7 +7576,7 @@ class GameLiftClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_gamelift.types.stop_matchmaking_input.StopMatchmakingInput = {}  # type: ignore[typeddict-item]
+        input_: capo_gamelift.types.stop_matchmaking_input.StopMatchmakingInput = {}
         if ticket_id is not None:
             input_["ticket_id"] = ticket_id
 
@@ -7460,6 +7585,7 @@ class GameLiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def suspend_game_server_group(
@@ -7502,7 +7628,7 @@ class GameLiftClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_gamelift.types.suspend_game_server_group_input.SuspendGameServerGroupInput = {}  # type: ignore[typeddict-item]
+        input_: capo_gamelift.types.suspend_game_server_group_input.SuspendGameServerGroupInput = {}
         if game_server_group_name is not None:
             input_["game_server_group_name"] = game_server_group_name
         if suspend_actions is not None:
@@ -7513,6 +7639,7 @@ class GameLiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def tag_resource(
@@ -7554,7 +7681,7 @@ class GameLiftClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_gamelift.types.tag_resource_request.TagResourceRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_gamelift.types.tag_resource_request.TagResourceRequest = {}
         if resource_arn is not None:
             input_["resource_arn"] = resource_arn
         if tags is not None:
@@ -7565,6 +7692,7 @@ class GameLiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def terminate_game_session(
@@ -7609,7 +7737,7 @@ class GameLiftClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_gamelift.types.terminate_game_session_input.TerminateGameSessionInput = {}  # type: ignore[typeddict-item]
+        input_: capo_gamelift.types.terminate_game_session_input.TerminateGameSessionInput = {}
         if game_session_id is not None:
             input_["game_session_id"] = game_session_id
         if termination_mode is not None:
@@ -7620,6 +7748,7 @@ class GameLiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def untag_resource(
@@ -7661,7 +7790,7 @@ class GameLiftClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_gamelift.types.untag_resource_request.UntagResourceRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_gamelift.types.untag_resource_request.UntagResourceRequest = {}
         if resource_arn is not None:
             input_["resource_arn"] = resource_arn
         if tag_keys is not None:
@@ -7672,6 +7801,7 @@ class GameLiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_alias(
@@ -7720,7 +7850,7 @@ class GameLiftClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_gamelift.types.update_alias_input.UpdateAliasInput = {}  # type: ignore[typeddict-item]
+        input_: capo_gamelift.types.update_alias_input.UpdateAliasInput = {}
         if alias_id is not None:
             input_["alias_id"] = alias_id
         if name is not None:
@@ -7735,6 +7865,7 @@ class GameLiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_build(
@@ -7779,7 +7910,7 @@ class GameLiftClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_gamelift.types.update_build_input.UpdateBuildInput = {}  # type: ignore[typeddict-item]
+        input_: capo_gamelift.types.update_build_input.UpdateBuildInput = {}
         if build_id is not None:
             input_["build_id"] = build_id
         if name is not None:
@@ -7792,6 +7923,7 @@ class GameLiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_container_fleet(
@@ -7883,7 +8015,7 @@ class GameLiftClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_gamelift.types.update_container_fleet_input.UpdateContainerFleetInput = {}  # type: ignore[typeddict-item]
+        input_: capo_gamelift.types.update_container_fleet_input.UpdateContainerFleetInput = {}
         if fleet_id is not None:
             input_["fleet_id"] = fleet_id
         if game_server_container_group_definition_name is not None:
@@ -7932,6 +8064,7 @@ class GameLiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_container_group_definition(
@@ -8000,7 +8133,7 @@ class GameLiftClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_gamelift.types.update_container_group_definition_input.UpdateContainerGroupDefinitionInput = {}  # type: ignore[typeddict-item]
+        input_: capo_gamelift.types.update_container_group_definition_input.UpdateContainerGroupDefinitionInput = {}
         if name is not None:
             input_["name"] = name
         if game_server_container_definition is not None:
@@ -8025,6 +8158,7 @@ class GameLiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_fleet_attributes(
@@ -8090,7 +8224,7 @@ class GameLiftClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_gamelift.types.update_fleet_attributes_input.UpdateFleetAttributesInput = {}  # type: ignore[typeddict-item]
+        input_: capo_gamelift.types.update_fleet_attributes_input.UpdateFleetAttributesInput = {}
         if fleet_id is not None:
             input_["fleet_id"] = fleet_id
         if name is not None:
@@ -8113,6 +8247,7 @@ class GameLiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_fleet_capacity(
@@ -8169,7 +8304,7 @@ class GameLiftClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_gamelift.types.update_fleet_capacity_input.UpdateFleetCapacityInput = {}  # type: ignore[typeddict-item]
+        input_: capo_gamelift.types.update_fleet_capacity_input.UpdateFleetCapacityInput = {}
         if fleet_id is not None:
             input_["fleet_id"] = fleet_id
         if desired_instances is not None:
@@ -8188,6 +8323,7 @@ class GameLiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_fleet_port_settings(
@@ -8235,7 +8371,7 @@ class GameLiftClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_gamelift.types.update_fleet_port_settings_input.UpdateFleetPortSettingsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_gamelift.types.update_fleet_port_settings_input.UpdateFleetPortSettingsInput = {}
         if fleet_id is not None:
             input_["fleet_id"] = fleet_id
         if inbound_permission_authorizations is not None:
@@ -8250,6 +8386,7 @@ class GameLiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_game_server(
@@ -8304,7 +8441,7 @@ class GameLiftClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_gamelift.types.update_game_server_input.UpdateGameServerInput = {}  # type: ignore[typeddict-item]
+        input_: capo_gamelift.types.update_game_server_input.UpdateGameServerInput = {}
         if game_server_group_name is not None:
             input_["game_server_group_name"] = game_server_group_name
         if game_server_id is not None:
@@ -8321,6 +8458,7 @@ class GameLiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_game_server_group(
@@ -8373,7 +8511,7 @@ class GameLiftClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_gamelift.types.update_game_server_group_input.UpdateGameServerGroupInput = {}  # type: ignore[typeddict-item]
+        input_: capo_gamelift.types.update_game_server_group_input.UpdateGameServerGroupInput = {}
         if game_server_group_name is not None:
             input_["game_server_group_name"] = game_server_group_name
         if role_arn is not None:
@@ -8390,6 +8528,7 @@ class GameLiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_game_session(
@@ -8451,7 +8590,7 @@ class GameLiftClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_gamelift.types.update_game_session_input.UpdateGameSessionInput = {}  # type: ignore[typeddict-item]
+        input_: capo_gamelift.types.update_game_session_input.UpdateGameSessionInput = {}
         if game_session_id is not None:
             input_["game_session_id"] = game_session_id
         if maximum_player_session_count is not None:
@@ -8470,6 +8609,7 @@ class GameLiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_game_session_queue(
@@ -8536,7 +8676,7 @@ class GameLiftClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_gamelift.types.update_game_session_queue_input.UpdateGameSessionQueueInput = {}  # type: ignore[typeddict-item]
+        input_: capo_gamelift.types.update_game_session_queue_input.UpdateGameSessionQueueInput = {}
         if name is not None:
             input_["name"] = name
         if timeout_in_seconds is not None:
@@ -8559,6 +8699,7 @@ class GameLiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_matchmaking_configuration(
@@ -8649,7 +8790,7 @@ class GameLiftClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_gamelift.types.update_matchmaking_configuration_input.UpdateMatchmakingConfigurationInput = {}  # type: ignore[typeddict-item]
+        input_: capo_gamelift.types.update_matchmaking_configuration_input.UpdateMatchmakingConfigurationInput = {}
         if name is not None:
             input_["name"] = name
         if description is not None:
@@ -8684,6 +8825,7 @@ class GameLiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_runtime_configuration(
@@ -8726,7 +8868,7 @@ class GameLiftClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_gamelift.types.update_runtime_configuration_input.UpdateRuntimeConfigurationInput = {}  # type: ignore[typeddict-item]
+        input_: capo_gamelift.types.update_runtime_configuration_input.UpdateRuntimeConfigurationInput = {}
         if fleet_id is not None:
             input_["fleet_id"] = fleet_id
         if runtime_configuration is not None:
@@ -8737,6 +8879,7 @@ class GameLiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_script(
@@ -8787,7 +8930,7 @@ class GameLiftClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_gamelift.types.update_script_input.UpdateScriptInput = {}  # type: ignore[typeddict-item]
+        input_: capo_gamelift.types.update_script_input.UpdateScriptInput = {}
         if script_id is not None:
             input_["script_id"] = script_id
         if name is not None:
@@ -8804,6 +8947,7 @@ class GameLiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def validate_matchmaking_rule_set(
@@ -8839,7 +8983,7 @@ class GameLiftClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_gamelift.types.validate_matchmaking_rule_set_input.ValidateMatchmakingRuleSetInput = {}  # type: ignore[typeddict-item]
+        input_: capo_gamelift.types.validate_matchmaking_rule_set_input.ValidateMatchmakingRuleSetInput = {}
         if rule_set_body is not None:
             input_["rule_set_body"] = rule_set_body
 
@@ -8848,6 +8992,7 @@ class GameLiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def __enter__(self) -> Self:

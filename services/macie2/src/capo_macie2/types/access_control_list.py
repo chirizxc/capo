@@ -27,8 +27,8 @@ def serialize_json(value: AccessControlList) -> dict:
 
 def deserialize_json(data: dict) -> AccessControlList:
     out: AccessControlList = {}  # type: ignore[typeddict-item]
-    if "allowsPublicReadAccess" in data:
+    if data.get("allowsPublicReadAccess") is not None:
         out["allows_public_read_access"] = data["allowsPublicReadAccess"]
-    if "allowsPublicWriteAccess" in data:
+    if data.get("allowsPublicWriteAccess") is not None:
         out["allows_public_write_access"] = data["allowsPublicWriteAccess"]
     return out

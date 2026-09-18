@@ -84,25 +84,25 @@ def serialize_aws_json_1_1(value: WorkspaceRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> WorkspaceRequest:
     out: WorkspaceRequest = {}  # type: ignore[typeddict-item]
-    if "DirectoryId" in data:
+    if data.get("DirectoryId") is not None:
         out["directory_id"] = data["DirectoryId"]
     else:
         raise DeserializationError("WorkspaceRequest.directory_id required")
-    if "UserName" in data:
+    if data.get("UserName") is not None:
         out["user_name"] = data["UserName"]
     else:
         raise DeserializationError("WorkspaceRequest.user_name required")
-    if "BundleId" in data:
+    if data.get("BundleId") is not None:
         out["bundle_id"] = data["BundleId"]
     else:
         raise DeserializationError("WorkspaceRequest.bundle_id required")
-    if "VolumeEncryptionKey" in data:
+    if data.get("VolumeEncryptionKey") is not None:
         out["volume_encryption_key"] = data["VolumeEncryptionKey"]
-    if "UserVolumeEncryptionEnabled" in data:
+    if data.get("UserVolumeEncryptionEnabled") is not None:
         out["user_volume_encryption_enabled"] = data["UserVolumeEncryptionEnabled"]
-    if "RootVolumeEncryptionEnabled" in data:
+    if data.get("RootVolumeEncryptionEnabled") is not None:
         out["root_volume_encryption_enabled"] = data["RootVolumeEncryptionEnabled"]
-    if "WorkspaceProperties" in data:
+    if data.get("WorkspaceProperties") is not None:
         import capo_workspaces.types.workspace_properties
 
         out["workspace_properties"] = (
@@ -110,14 +110,14 @@ def deserialize_aws_json_1_1(data: dict) -> WorkspaceRequest:
                 data["WorkspaceProperties"]
             )
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_workspaces.types.tag_list
 
         out["tags"] = capo_workspaces.types.tag_list.deserialize_aws_json_1_1(
             data["Tags"]
         )
-    if "WorkspaceName" in data:
+    if data.get("WorkspaceName") is not None:
         out["workspace_name"] = data["WorkspaceName"]
-    if "Ipv6Address" in data:
+    if data.get("Ipv6Address") is not None:
         out["ipv6_address"] = data["Ipv6Address"]
     return out

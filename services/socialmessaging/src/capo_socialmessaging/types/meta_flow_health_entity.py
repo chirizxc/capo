@@ -31,15 +31,15 @@ def serialize_json(value: MetaFlowHealthEntity) -> dict:
 
 def deserialize_json(data: dict) -> MetaFlowHealthEntity:
     out: MetaFlowHealthEntity = {}  # type: ignore[typeddict-item]
-    if "entityType" in data:
+    if data.get("entityType") is not None:
         out["entity_type"] = data["entityType"]
     else:
         raise DeserializationError("MetaFlowHealthEntity.entity_type required")
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("MetaFlowHealthEntity.id required")
-    if "canSendMessage" in data:
+    if data.get("canSendMessage") is not None:
         out["can_send_message"] = data["canSendMessage"]
     else:
         raise DeserializationError("MetaFlowHealthEntity.can_send_message required")

@@ -27,6 +27,8 @@ def serialize_aws_json_1_0(input_to_serialize: IPSetMetadataMap) -> dict:
 def deserialize_aws_json_1_0(data: dict) -> IPSetMetadataMap:
     out: IPSetMetadataMap = {}
     for key, value in data.items():
+        if value is None:
+            continue
         import capo_network_firewall.types.ip_set_metadata
 
         out[key] = capo_network_firewall.types.ip_set_metadata.deserialize_aws_json_1_0(

@@ -48,18 +48,18 @@ def serialize_aws_json_1_1(value: ModifyHsmRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ModifyHsmRequest:
     out: ModifyHsmRequest = {}  # type: ignore[typeddict-item]
-    if "HsmArn" in data:
+    if data.get("HsmArn") is not None:
         out["hsm_arn"] = data["HsmArn"]
     else:
         raise DeserializationError("ModifyHsmRequest.hsm_arn required")
-    if "SubnetId" in data:
+    if data.get("SubnetId") is not None:
         out["subnet_id"] = data["SubnetId"]
-    if "EniIp" in data:
+    if data.get("EniIp") is not None:
         out["eni_ip"] = data["EniIp"]
-    if "IamRoleArn" in data:
+    if data.get("IamRoleArn") is not None:
         out["iam_role_arn"] = data["IamRoleArn"]
-    if "ExternalId" in data:
+    if data.get("ExternalId") is not None:
         out["external_id"] = data["ExternalId"]
-    if "SyslogIp" in data:
+    if data.get("SyslogIp") is not None:
         out["syslog_ip"] = data["SyslogIp"]
     return out

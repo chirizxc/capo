@@ -42,17 +42,17 @@ def serialize_json(value: MultitrackInputConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> MultitrackInputConfiguration:
     out: MultitrackInputConfiguration = {}  # type: ignore[typeddict-item]
-    if "enabled" in data:
+    if data.get("enabled") is not None:
         out["enabled"] = data["enabled"]
     else:
         out["enabled"] = False
-    if "policy" in data:
+    if data.get("policy") is not None:
         import capo_ivs.types.multitrack_policy
 
         out["policy"] = capo_ivs.types.multitrack_policy.deserialize_json(
             data["policy"]
         )
-    if "maximumResolution" in data:
+    if data.get("maximumResolution") is not None:
         import capo_ivs.types.multitrack_maximum_resolution
 
         out["maximum_resolution"] = (

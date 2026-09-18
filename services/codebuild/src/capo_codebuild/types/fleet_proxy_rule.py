@@ -48,7 +48,7 @@ def serialize_aws_json_1_1(value: FleetProxyRule) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> FleetProxyRule:
     out: FleetProxyRule = {}  # type: ignore[typeddict-item]
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_codebuild.types.fleet_proxy_rule_type
 
         out["type"] = (
@@ -58,7 +58,7 @@ def deserialize_aws_json_1_1(data: dict) -> FleetProxyRule:
         )
     else:
         raise DeserializationError("FleetProxyRule.type required")
-    if "effect" in data:
+    if data.get("effect") is not None:
         import capo_codebuild.types.fleet_proxy_rule_effect_type
 
         out["effect"] = (
@@ -68,7 +68,7 @@ def deserialize_aws_json_1_1(data: dict) -> FleetProxyRule:
         )
     else:
         raise DeserializationError("FleetProxyRule.effect required")
-    if "entities" in data:
+    if data.get("entities") is not None:
         import capo_codebuild.types.fleet_proxy_rule_entities
 
         out["entities"] = (

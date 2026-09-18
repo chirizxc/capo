@@ -37,15 +37,18 @@ class ServerlessCacheNotFoundFault(ServiceError):
 
     code: str | None = "ServerlessCacheNotFoundFault"
 
-    def __init__(self, data: ServerlessCacheNotFoundFault_):
+    def __init__(self, data: ServerlessCacheNotFoundFault_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="ServerlessCacheNotFoundFault",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_query(cls, el: Element) -> "ServerlessCacheNotFoundFault":
-        return cls(deserialize_query(el))
+    def from_query(
+        cls, el: Element, message: str | None = None
+    ) -> "ServerlessCacheNotFoundFault":
+        return cls(deserialize_query(el), message)

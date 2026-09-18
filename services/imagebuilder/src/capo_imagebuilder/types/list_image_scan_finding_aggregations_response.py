@@ -47,11 +47,11 @@ def serialize_json(value: ListImageScanFindingAggregationsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListImageScanFindingAggregationsResponse:
     out: ListImageScanFindingAggregationsResponse = {}  # type: ignore[typeddict-item]
-    if "requestId" in data:
+    if data.get("requestId") is not None:
         out["request_id"] = data["requestId"]
-    if "aggregationType" in data:
+    if data.get("aggregationType") is not None:
         out["aggregation_type"] = data["aggregationType"]
-    if "responses" in data:
+    if data.get("responses") is not None:
         import capo_imagebuilder.types.image_scan_finding_aggregations_list
 
         out["responses"] = (
@@ -59,6 +59,6 @@ def deserialize_json(data: dict) -> ListImageScanFindingAggregationsResponse:
                 data["responses"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

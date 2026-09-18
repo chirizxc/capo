@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> DomainAssociations:
 
     out: DomainAssociations = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_amplify.types.domain_association.deserialize_json(item))
     return out

@@ -39,11 +39,11 @@ def serialize_json(value: UpdateRewardRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateRewardRequest:
     out: UpdateRewardRequest = {}  # type: ignore[typeddict-item]
-    if "TrajectoryId" in data:
+    if data.get("TrajectoryId") is not None:
         out["trajectory_id"] = data["TrajectoryId"]
     else:
         raise DeserializationError("UpdateRewardRequest.trajectory_id required")
-    if "Rewards" in data:
+    if data.get("Rewards") is not None:
         import capo_sagemakerjobruntime.types.double_list
 
         out["rewards"] = capo_sagemakerjobruntime.types.double_list.deserialize_json(
@@ -51,6 +51,6 @@ def deserialize_json(data: dict) -> UpdateRewardRequest:
         )
     else:
         raise DeserializationError("UpdateRewardRequest.rewards required")
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
     return out

@@ -66,19 +66,19 @@ def serialize_json(value: CreateGraphInput) -> dict:
 
 def deserialize_json(data: dict) -> CreateGraphInput:
     out: CreateGraphInput = {}  # type: ignore[typeddict-item]
-    if "graphName" in data:
+    if data.get("graphName") is not None:
         out["graph_name"] = data["graphName"]
     else:
         raise DeserializationError("CreateGraphInput.graph_name required")
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_neptune_graph.types.tag_map
 
         out["tags"] = capo_neptune_graph.types.tag_map.deserialize_json(data["tags"])
-    if "publicConnectivity" in data:
+    if data.get("publicConnectivity") is not None:
         out["public_connectivity"] = data["publicConnectivity"]
-    if "kmsKeyIdentifier" in data:
+    if data.get("kmsKeyIdentifier") is not None:
         out["kms_key_identifier"] = data["kmsKeyIdentifier"]
-    if "vectorSearchConfiguration" in data:
+    if data.get("vectorSearchConfiguration") is not None:
         import capo_neptune_graph.types.vector_search_configuration
 
         out["vector_search_configuration"] = (
@@ -86,11 +86,11 @@ def deserialize_json(data: dict) -> CreateGraphInput:
                 data["vectorSearchConfiguration"]
             )
         )
-    if "replicaCount" in data:
+    if data.get("replicaCount") is not None:
         out["replica_count"] = data["replicaCount"]
-    if "deletionProtection" in data:
+    if data.get("deletionProtection") is not None:
         out["deletion_protection"] = data["deletionProtection"]
-    if "provisionedMemory" in data:
+    if data.get("provisionedMemory") is not None:
         out["provisioned_memory"] = data["provisionedMemory"]
     else:
         raise DeserializationError("CreateGraphInput.provisioned_memory required")

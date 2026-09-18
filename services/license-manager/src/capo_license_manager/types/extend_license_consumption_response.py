@@ -30,8 +30,8 @@ def serialize_aws_json_1_1(value: ExtendLicenseConsumptionResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ExtendLicenseConsumptionResponse:
     out: ExtendLicenseConsumptionResponse = {}  # type: ignore[typeddict-item]
-    if "LicenseConsumptionToken" in data:
+    if data.get("LicenseConsumptionToken") is not None:
         out["license_consumption_token"] = data["LicenseConsumptionToken"]
-    if "Expiration" in data:
+    if data.get("Expiration") is not None:
         out["expiration"] = data["Expiration"]
     return out

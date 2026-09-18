@@ -141,25 +141,25 @@ def serialize_json(value: AutocompleteAddressHighlights) -> dict:
 
 def deserialize_json(data: dict) -> AutocompleteAddressHighlights:
     out: AutocompleteAddressHighlights = {}  # type: ignore[typeddict-item]
-    if "Label" in data:
+    if data.get("Label") is not None:
         import capo_geo_places.types.highlight_list
 
         out["label"] = capo_geo_places.types.highlight_list.deserialize_json(
             data["Label"]
         )
-    if "Country" in data:
+    if data.get("Country") is not None:
         import capo_geo_places.types.country_highlights
 
         out["country"] = capo_geo_places.types.country_highlights.deserialize_json(
             data["Country"]
         )
-    if "Region" in data:
+    if data.get("Region") is not None:
         import capo_geo_places.types.region_highlights
 
         out["region"] = capo_geo_places.types.region_highlights.deserialize_json(
             data["Region"]
         )
-    if "SubRegion" in data:
+    if data.get("SubRegion") is not None:
         import capo_geo_places.types.sub_region_highlights
 
         out["sub_region"] = (
@@ -167,43 +167,43 @@ def deserialize_json(data: dict) -> AutocompleteAddressHighlights:
                 data["SubRegion"]
             )
         )
-    if "Locality" in data:
+    if data.get("Locality") is not None:
         import capo_geo_places.types.highlight_list
 
         out["locality"] = capo_geo_places.types.highlight_list.deserialize_json(
             data["Locality"]
         )
-    if "District" in data:
+    if data.get("District") is not None:
         import capo_geo_places.types.highlight_list
 
         out["district"] = capo_geo_places.types.highlight_list.deserialize_json(
             data["District"]
         )
-    if "SubDistrict" in data:
+    if data.get("SubDistrict") is not None:
         import capo_geo_places.types.highlight_list
 
         out["sub_district"] = capo_geo_places.types.highlight_list.deserialize_json(
             data["SubDistrict"]
         )
-    if "Street" in data:
+    if data.get("Street") is not None:
         import capo_geo_places.types.highlight_list
 
         out["street"] = capo_geo_places.types.highlight_list.deserialize_json(
             data["Street"]
         )
-    if "Block" in data:
+    if data.get("Block") is not None:
         import capo_geo_places.types.highlight_list
 
         out["block"] = capo_geo_places.types.highlight_list.deserialize_json(
             data["Block"]
         )
-    if "SubBlock" in data:
+    if data.get("SubBlock") is not None:
         import capo_geo_places.types.highlight_list
 
         out["sub_block"] = capo_geo_places.types.highlight_list.deserialize_json(
             data["SubBlock"]
         )
-    if "Intersection" in data:
+    if data.get("Intersection") is not None:
         import capo_geo_places.types.intersection_highlights_list
 
         out["intersection"] = (
@@ -211,19 +211,19 @@ def deserialize_json(data: dict) -> AutocompleteAddressHighlights:
                 data["Intersection"]
             )
         )
-    if "PostalCode" in data:
+    if data.get("PostalCode") is not None:
         import capo_geo_places.types.highlight_list
 
         out["postal_code"] = capo_geo_places.types.highlight_list.deserialize_json(
             data["PostalCode"]
         )
-    if "AddressNumber" in data:
+    if data.get("AddressNumber") is not None:
         import capo_geo_places.types.highlight_list
 
         out["address_number"] = capo_geo_places.types.highlight_list.deserialize_json(
             data["AddressNumber"]
         )
-    if "Building" in data:
+    if data.get("Building") is not None:
         import capo_geo_places.types.highlight_list
 
         out["building"] = capo_geo_places.types.highlight_list.deserialize_json(

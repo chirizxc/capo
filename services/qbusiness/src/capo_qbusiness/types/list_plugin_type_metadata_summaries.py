@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> ListPluginTypeMetadataSummaries:
 
     out: ListPluginTypeMetadataSummaries = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_qbusiness.types.plugin_type_metadata_summary.deserialize_json(item)
         )

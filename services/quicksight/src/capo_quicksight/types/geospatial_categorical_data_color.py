@@ -28,11 +28,11 @@ def serialize_json(value: GeospatialCategoricalDataColor) -> dict:
 
 def deserialize_json(data: dict) -> GeospatialCategoricalDataColor:
     out: GeospatialCategoricalDataColor = {}  # type: ignore[typeddict-item]
-    if "Color" in data:
+    if data.get("Color") is not None:
         out["color"] = data["Color"]
     else:
         raise DeserializationError("GeospatialCategoricalDataColor.color required")
-    if "DataValue" in data:
+    if data.get("DataValue") is not None:
         out["data_value"] = data["DataValue"]
     else:
         raise DeserializationError("GeospatialCategoricalDataColor.data_value required")

@@ -33,7 +33,7 @@ def serialize_json(value: DeleteConnectInstanceIntegrationRequest) -> dict:
 
 def deserialize_json(data: dict) -> DeleteConnectInstanceIntegrationRequest:
     out: DeleteConnectInstanceIntegrationRequest = {}  # type: ignore[typeddict-item]
-    if "integrationIdentifier" in data:
+    if data.get("integrationIdentifier") is not None:
         import capo_connectcampaignsv2.types.integration_identifier
 
         out["integration_identifier"] = (

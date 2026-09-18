@@ -36,11 +36,11 @@ def serialize_json(value: ControlParameter) -> dict:
 
 def deserialize_json(data: dict) -> ControlParameter:
     out: ControlParameter = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("ControlParameter.name required")
-    if "Requirement" in data:
+    if data.get("Requirement") is not None:
         import capo_controlcatalog.types.control_parameter_requirement
 
         out["requirement"] = (

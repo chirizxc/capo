@@ -25,6 +25,8 @@ def serialize_json(input_to_serialize: ChoiceUpdates) -> dict:
 def deserialize_json(data: dict) -> ChoiceUpdates:
     out: ChoiceUpdates = {}
     for key, value in data.items():
+        if value is None:
+            continue
         import capo_wellarchitected.types.choice_update
 
         out[key] = capo_wellarchitected.types.choice_update.deserialize_json(value)

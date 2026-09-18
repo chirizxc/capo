@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> CreateDelegationRequests:
 
     out: CreateDelegationRequests = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_auditmanager.types.create_delegation_request.deserialize_json(item)
         )

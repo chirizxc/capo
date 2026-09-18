@@ -31,11 +31,11 @@ def serialize_json(value: SortProperty) -> dict:
 
 def deserialize_json(data: dict) -> SortProperty:
     out: SortProperty = {}  # type: ignore[typeddict-item]
-    if "field" in data:
+    if data.get("field") is not None:
         out["field"] = data["field"]
     else:
         raise DeserializationError("SortProperty.field required")
-    if "direction" in data:
+    if data.get("direction") is not None:
         import capo_amplifyuibuilder.types.sort_direction
 
         out["direction"] = capo_amplifyuibuilder.types.sort_direction.deserialize_json(

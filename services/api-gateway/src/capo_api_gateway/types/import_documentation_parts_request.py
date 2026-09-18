@@ -35,7 +35,7 @@ def serialize_json(value: ImportDocumentationPartsRequest) -> dict:
 
 def deserialize_json(data: dict) -> ImportDocumentationPartsRequest:
     out: ImportDocumentationPartsRequest = {}  # type: ignore[typeddict-item]
-    if "body" in data:
+    if data.get("body") is not None:
         import capo_api_gateway.types.blob
 
         out["body"] = capo_api_gateway.types.blob.deserialize_json(data["body"])

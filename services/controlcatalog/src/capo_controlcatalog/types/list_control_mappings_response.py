@@ -35,7 +35,7 @@ def serialize_json(value: ListControlMappingsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListControlMappingsResponse:
     out: ListControlMappingsResponse = {}  # type: ignore[typeddict-item]
-    if "ControlMappings" in data:
+    if data.get("ControlMappings") is not None:
         import capo_controlcatalog.types.control_mappings
 
         out["control_mappings"] = (
@@ -47,6 +47,6 @@ def deserialize_json(data: dict) -> ListControlMappingsResponse:
         raise DeserializationError(
             "ListControlMappingsResponse.control_mappings required"
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

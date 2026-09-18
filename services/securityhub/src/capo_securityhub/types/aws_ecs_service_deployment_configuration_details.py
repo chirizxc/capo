@@ -40,7 +40,7 @@ def serialize_json(value: AwsEcsServiceDeploymentConfigurationDetails) -> dict:
 
 def deserialize_json(data: dict) -> AwsEcsServiceDeploymentConfigurationDetails:
     out: AwsEcsServiceDeploymentConfigurationDetails = {}  # type: ignore[typeddict-item]
-    if "DeploymentCircuitBreaker" in data:
+    if data.get("DeploymentCircuitBreaker") is not None:
         import capo_securityhub.types.aws_ecs_service_deployment_configuration_deployment_circuit_breaker_details
 
         out["deployment_circuit_breaker"] = (
@@ -48,8 +48,8 @@ def deserialize_json(data: dict) -> AwsEcsServiceDeploymentConfigurationDetails:
                 data["DeploymentCircuitBreaker"]
             )
         )
-    if "MaximumPercent" in data:
+    if data.get("MaximumPercent") is not None:
         out["maximum_percent"] = data["MaximumPercent"]
-    if "MinimumHealthyPercent" in data:
+    if data.get("MinimumHealthyPercent") is not None:
         out["minimum_healthy_percent"] = data["MinimumHealthyPercent"]
     return out

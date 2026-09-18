@@ -4,6 +4,8 @@ from typing import TYPE_CHECKING
 
 from typing_extensions import NotRequired, TypedDict
 
+from capo_odb.errors import DeserializationError
+
 if TYPE_CHECKING:
     import capo_odb.types.peered_cidr_list
     import capo_odb.types.resource_display_name
@@ -30,6 +32,7 @@ class UpdateOdbPeeringConnectionInput(TypedDict, closed=True):
 # --- awsJson1_0 ser/de ---
 def serialize_aws_json_1_0(value: UpdateOdbPeeringConnectionInput) -> dict:
     out: dict = {}
+    out["odbPeeringConnectionId"] = value["odb_peering_connection_id"]
     if "display_name" in value:
         out["displayName"] = value["display_name"]
     if "peer_network_cidrs_to_be_added" in value:
@@ -53,9 +56,15 @@ def serialize_aws_json_1_0(value: UpdateOdbPeeringConnectionInput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> UpdateOdbPeeringConnectionInput:
     out: UpdateOdbPeeringConnectionInput = {}  # type: ignore[typeddict-item]
-    if "displayName" in data:
+    if data.get("odbPeeringConnectionId") is not None:
+        out["odb_peering_connection_id"] = data["odbPeeringConnectionId"]
+    else:
+        raise DeserializationError(
+            "UpdateOdbPeeringConnectionInput.odb_peering_connection_id required"
+        )
+    if data.get("displayName") is not None:
         out["display_name"] = data["displayName"]
-    if "peerNetworkCidrsToBeAdded" in data:
+    if data.get("peerNetworkCidrsToBeAdded") is not None:
         import capo_odb.types.peered_cidr_list
 
         out["peer_network_cidrs_to_be_added"] = (
@@ -63,7 +72,7 @@ def deserialize_aws_json_1_0(data: dict) -> UpdateOdbPeeringConnectionInput:
                 data["peerNetworkCidrsToBeAdded"]
             )
         )
-    if "peerNetworkCidrsToBeRemoved" in data:
+    if data.get("peerNetworkCidrsToBeRemoved") is not None:
         import capo_odb.types.peered_cidr_list
 
         out["peer_network_cidrs_to_be_removed"] = (

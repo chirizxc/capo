@@ -59,25 +59,25 @@ def serialize_json(value: MultiRegionEndpoint) -> dict:
 
 def deserialize_json(data: dict) -> MultiRegionEndpoint:
     out: MultiRegionEndpoint = {}  # type: ignore[typeddict-item]
-    if "EndpointName" in data:
+    if data.get("EndpointName") is not None:
         out["endpoint_name"] = data["EndpointName"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_sesv2.types.status
 
         out["status"] = capo_sesv2.types.status.deserialize_json(data["Status"])
-    if "EndpointId" in data:
+    if data.get("EndpointId") is not None:
         out["endpoint_id"] = data["EndpointId"]
-    if "Regions" in data:
+    if data.get("Regions") is not None:
         import capo_sesv2.types.regions
 
         out["regions"] = capo_sesv2.types.regions.deserialize_json(data["Regions"])
-    if "CreatedTimestamp" in data:
+    if data.get("CreatedTimestamp") is not None:
         import capo_sesv2.types.timestamp
 
         out["created_timestamp"] = capo_sesv2.types.timestamp.deserialize_json(
             data["CreatedTimestamp"]
         )
-    if "LastUpdatedTimestamp" in data:
+    if data.get("LastUpdatedTimestamp") is not None:
         import capo_sesv2.types.timestamp
 
         out["last_updated_timestamp"] = capo_sesv2.types.timestamp.deserialize_json(

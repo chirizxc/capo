@@ -26,7 +26,7 @@ def serialize_aws_json_1_1(value: Summary) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Summary:
     out: Summary = {}  # type: ignore[typeddict-item]
-    if "S3Object" in data:
+    if data.get("S3Object") is not None:
         import capo_rekognition.types.s3_object
 
         out["s3_object"] = capo_rekognition.types.s3_object.deserialize_aws_json_1_1(

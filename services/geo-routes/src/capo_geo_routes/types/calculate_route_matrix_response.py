@@ -41,11 +41,11 @@ def serialize_json(value: CalculateRouteMatrixResponse) -> dict:
 
 def deserialize_json(data: dict) -> CalculateRouteMatrixResponse:
     out: CalculateRouteMatrixResponse = {}  # type: ignore[typeddict-item]
-    if "ErrorCount" in data:
+    if data.get("ErrorCount") is not None:
         out["error_count"] = data["ErrorCount"]
     else:
         raise DeserializationError("CalculateRouteMatrixResponse.error_count required")
-    if "RouteMatrix" in data:
+    if data.get("RouteMatrix") is not None:
         import capo_geo_routes.types.route_matrix
 
         out["route_matrix"] = capo_geo_routes.types.route_matrix.deserialize_json(
@@ -53,7 +53,7 @@ def deserialize_json(data: dict) -> CalculateRouteMatrixResponse:
         )
     else:
         raise DeserializationError("CalculateRouteMatrixResponse.route_matrix required")
-    if "RoutingBoundary" in data:
+    if data.get("RoutingBoundary") is not None:
         import capo_geo_routes.types.route_matrix_boundary
 
         out["routing_boundary"] = (

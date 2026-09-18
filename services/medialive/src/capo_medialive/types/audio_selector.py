@@ -36,9 +36,9 @@ def serialize_json(value: AudioSelector) -> dict:
 
 def deserialize_json(data: dict) -> AudioSelector:
     out: AudioSelector = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "selectorSettings" in data:
+    if data.get("selectorSettings") is not None:
         import capo_medialive.types.audio_selector_settings
 
         out["selector_settings"] = (

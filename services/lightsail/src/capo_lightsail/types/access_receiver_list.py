@@ -27,6 +27,8 @@ def deserialize_aws_json_1_1(data: list) -> AccessReceiverList:
 
     out: AccessReceiverList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_lightsail.types.resource_receiving_access.deserialize_aws_json_1_1(
                 item

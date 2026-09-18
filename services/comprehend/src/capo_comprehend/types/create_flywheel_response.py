@@ -32,8 +32,8 @@ def serialize_aws_json_1_1(value: CreateFlywheelResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateFlywheelResponse:
     out: CreateFlywheelResponse = {}  # type: ignore[typeddict-item]
-    if "FlywheelArn" in data:
+    if data.get("FlywheelArn") is not None:
         out["flywheel_arn"] = data["FlywheelArn"]
-    if "ActiveModelArn" in data:
+    if data.get("ActiveModelArn") is not None:
         out["active_model_arn"] = data["ActiveModelArn"]
     return out

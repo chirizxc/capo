@@ -13,9 +13,9 @@ from capo_controltower import AsyncControlTowerClient
 
 
 async def main():
-    async with AsyncControlTowerClient() as s3:
+    async with AsyncControlTowerClient() as control_tower:
         # Example: call the disable_control operation
-        response = await s3.disable_control()
+        response = await control_tower.disable_control()
         print(response["operation_identifier"])
 ```
 
@@ -29,9 +29,9 @@ from capo_controltower.error import AccessDeniedException
 
 
 async def main():
-    async with AsyncControlTowerClient() as s3:
+    async with AsyncControlTowerClient() as control_tower:
         try:
-            await s3.disable_control()
+            await control_tower.disable_control()
         except AccessDeniedException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -48,13 +48,13 @@ from capo_controltower import AsyncControlTowerClient
 
 
 async def main():
-    async with AsyncControlTowerClient() as s3:
+    async with AsyncControlTowerClient() as control_tower:
         # Default: 3 attempts for every operation
-        response = await s3.disable_control()
+        response = await control_tower.disable_control()
 
         # Override per operation
-        response = await s3.disable_control(config_overrides={"retry_max_attempts": 5})
+        response = await control_tower.disable_control(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.disable_control(config_overrides={"retry_max_attempts": 1})
+        response = await control_tower.disable_control(config_overrides={"retry_max_attempts": 1})
 ```

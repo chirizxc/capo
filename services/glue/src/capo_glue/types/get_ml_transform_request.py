@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: GetMLTransformRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetMLTransformRequest:
     out: GetMLTransformRequest = {}  # type: ignore[typeddict-item]
-    if "TransformId" in data:
+    if data.get("TransformId") is not None:
         out["transform_id"] = data["TransformId"]
     else:
         raise DeserializationError("GetMLTransformRequest.transform_id required")

@@ -49,9 +49,9 @@ def serialize_aws_json_1_1(value: ResourceTagMapping) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ResourceTagMapping:
     out: ResourceTagMapping = {}  # type: ignore[typeddict-item]
-    if "ResourceARN" in data:
+    if data.get("ResourceARN") is not None:
         out["resource_arn"] = data["ResourceARN"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_resource_groups_tagging_api.types.tag_list
 
         out["tags"] = (
@@ -59,7 +59,7 @@ def deserialize_aws_json_1_1(data: dict) -> ResourceTagMapping:
                 data["Tags"]
             )
         )
-    if "ComplianceDetails" in data:
+    if data.get("ComplianceDetails") is not None:
         import capo_resource_groups_tagging_api.types.compliance_details
 
         out["compliance_details"] = (

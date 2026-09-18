@@ -41,11 +41,11 @@ def serialize_json(value: DescribeStreamStorageConfigurationOutput) -> dict:
 
 def deserialize_json(data: dict) -> DescribeStreamStorageConfigurationOutput:
     out: DescribeStreamStorageConfigurationOutput = {}  # type: ignore[typeddict-item]
-    if "StreamName" in data:
+    if data.get("StreamName") is not None:
         out["stream_name"] = data["StreamName"]
-    if "StreamARN" in data:
+    if data.get("StreamARN") is not None:
         out["stream_arn"] = data["StreamARN"]
-    if "StreamStorageConfiguration" in data:
+    if data.get("StreamStorageConfiguration") is not None:
         import capo_kinesis_video.types.stream_storage_configuration
 
         out["stream_storage_configuration"] = (

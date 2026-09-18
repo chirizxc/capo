@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> InvalidTopicReviewedAnswers:
 
     out: InvalidTopicReviewedAnswers = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_quicksight.types.invalid_topic_reviewed_answer.deserialize_json(item)
         )

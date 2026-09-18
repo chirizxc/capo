@@ -41,17 +41,17 @@ def serialize_aws_json_1_1(value: PutDetectorRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PutDetectorRequest:
     out: PutDetectorRequest = {}  # type: ignore[typeddict-item]
-    if "detectorId" in data:
+    if data.get("detectorId") is not None:
         out["detector_id"] = data["detectorId"]
     else:
         raise DeserializationError("PutDetectorRequest.detector_id required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "eventTypeName" in data:
+    if data.get("eventTypeName") is not None:
         out["event_type_name"] = data["eventTypeName"]
     else:
         raise DeserializationError("PutDetectorRequest.event_type_name required")
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_frauddetector.types.tag_list
 
         out["tags"] = capo_frauddetector.types.tag_list.deserialize_aws_json_1_1(

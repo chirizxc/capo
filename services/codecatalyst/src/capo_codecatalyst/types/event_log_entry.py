@@ -57,9 +57,9 @@ def serialize_json(value: EventLogEntry) -> dict:
     out["eventType"] = value["event_type"]
     out["eventCategory"] = value["event_category"]
     out["eventSource"] = value["event_source"]
-    import capo_codecatalyst.types.timestamp
+    import capo_codecatalyst._protocol.serialize
 
-    out["eventTime"] = capo_codecatalyst.types.timestamp.serialize_json(
+    out["eventTime"] = capo_codecatalyst._protocol.serialize.fmt_date_time(
         value["event_time"]
     )
     out["operationType"] = value["operation_type"]
@@ -101,39 +101,39 @@ def serialize_json(value: EventLogEntry) -> dict:
 
 def deserialize_json(data: dict) -> EventLogEntry:
     out: EventLogEntry = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("EventLogEntry.id required")
-    if "eventName" in data:
+    if data.get("eventName") is not None:
         out["event_name"] = data["eventName"]
     else:
         raise DeserializationError("EventLogEntry.event_name required")
-    if "eventType" in data:
+    if data.get("eventType") is not None:
         out["event_type"] = data["eventType"]
     else:
         raise DeserializationError("EventLogEntry.event_type required")
-    if "eventCategory" in data:
+    if data.get("eventCategory") is not None:
         out["event_category"] = data["eventCategory"]
     else:
         raise DeserializationError("EventLogEntry.event_category required")
-    if "eventSource" in data:
+    if data.get("eventSource") is not None:
         out["event_source"] = data["eventSource"]
     else:
         raise DeserializationError("EventLogEntry.event_source required")
-    if "eventTime" in data:
-        import capo_codecatalyst.types.timestamp
+    if data.get("eventTime") is not None:
+        import datetime
 
-        out["event_time"] = capo_codecatalyst.types.timestamp.deserialize_json(
-            data["eventTime"]
+        out["event_time"] = datetime.datetime.fromisoformat(
+            data["eventTime"].replace("Z", "+00:00")
         )
     else:
         raise DeserializationError("EventLogEntry.event_time required")
-    if "operationType" in data:
+    if data.get("operationType") is not None:
         out["operation_type"] = data["operationType"]
     else:
         raise DeserializationError("EventLogEntry.operation_type required")
-    if "userIdentity" in data:
+    if data.get("userIdentity") is not None:
         import capo_codecatalyst.types.user_identity
 
         out["user_identity"] = capo_codecatalyst.types.user_identity.deserialize_json(
@@ -141,7 +141,7 @@ def deserialize_json(data: dict) -> EventLogEntry:
         )
     else:
         raise DeserializationError("EventLogEntry.user_identity required")
-    if "projectInformation" in data:
+    if data.get("projectInformation") is not None:
         import capo_codecatalyst.types.project_information
 
         out["project_information"] = (
@@ -149,15 +149,15 @@ def deserialize_json(data: dict) -> EventLogEntry:
                 data["projectInformation"]
             )
         )
-    if "requestId" in data:
+    if data.get("requestId") is not None:
         out["request_id"] = data["requestId"]
-    if "requestPayload" in data:
+    if data.get("requestPayload") is not None:
         import capo_codecatalyst.types.event_payload
 
         out["request_payload"] = capo_codecatalyst.types.event_payload.deserialize_json(
             data["requestPayload"]
         )
-    if "responsePayload" in data:
+    if data.get("responsePayload") is not None:
         import capo_codecatalyst.types.event_payload
 
         out["response_payload"] = (
@@ -165,10 +165,10 @@ def deserialize_json(data: dict) -> EventLogEntry:
                 data["responsePayload"]
             )
         )
-    if "errorCode" in data:
+    if data.get("errorCode") is not None:
         out["error_code"] = data["errorCode"]
-    if "sourceIpAddress" in data:
+    if data.get("sourceIpAddress") is not None:
         out["source_ip_address"] = data["sourceIpAddress"]
-    if "userAgent" in data:
+    if data.get("userAgent") is not None:
         out["user_agent"] = data["userAgent"]
     return out

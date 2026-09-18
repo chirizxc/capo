@@ -34,9 +34,9 @@ def serialize_aws_json_1_1(value: GetQuerySuggestionsResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetQuerySuggestionsResponse:
     out: GetQuerySuggestionsResponse = {}  # type: ignore[typeddict-item]
-    if "QuerySuggestionsId" in data:
+    if data.get("QuerySuggestionsId") is not None:
         out["query_suggestions_id"] = data["QuerySuggestionsId"]
-    if "Suggestions" in data:
+    if data.get("Suggestions") is not None:
         import capo_kendra.types.suggestion_list
 
         out["suggestions"] = capo_kendra.types.suggestion_list.deserialize_aws_json_1_1(

@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: Data) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Data:
     out: Data = {}  # type: ignore[typeddict-item]
-    if "PerformanceInsightsMetric" in data:
+    if data.get("PerformanceInsightsMetric") is not None:
         import capo_pi.types.performance_insights_metric
 
         out["performance_insights_metric"] = (

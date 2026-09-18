@@ -38,13 +38,13 @@ def serialize_aws_json_1_1(value: Database) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Database:
     out: Database = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("Database.name required")
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Parameters" in data:
+    if data.get("Parameters") is not None:
         import capo_athena.types.parameters_map
 
         out["parameters"] = capo_athena.types.parameters_map.deserialize_aws_json_1_1(

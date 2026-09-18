@@ -94,9 +94,9 @@ def serialize_json(value: DescribeImportResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribeImportResponse:
     out: DescribeImportResponse = {}  # type: ignore[typeddict-item]
-    if "importId" in data:
+    if data.get("importId") is not None:
         out["import_id"] = data["importId"]
-    if "resourceSpecification" in data:
+    if data.get("resourceSpecification") is not None:
         import capo_lex_models_v2.types.import_resource_specification
 
         out["resource_specification"] = (
@@ -104,11 +104,11 @@ def deserialize_json(data: dict) -> DescribeImportResponse:
                 data["resourceSpecification"]
             )
         )
-    if "importedResourceId" in data:
+    if data.get("importedResourceId") is not None:
         out["imported_resource_id"] = data["importedResourceId"]
-    if "importedResourceName" in data:
+    if data.get("importedResourceName") is not None:
         out["imported_resource_name"] = data["importedResourceName"]
-    if "mergeStrategy" in data:
+    if data.get("mergeStrategy") is not None:
         import capo_lex_models_v2.types.merge_strategy
 
         out["merge_strategy"] = (
@@ -116,13 +116,13 @@ def deserialize_json(data: dict) -> DescribeImportResponse:
                 data["mergeStrategy"]
             )
         )
-    if "importStatus" in data:
+    if data.get("importStatus") is not None:
         import capo_lex_models_v2.types.import_status
 
         out["import_status"] = capo_lex_models_v2.types.import_status.deserialize_json(
             data["importStatus"]
         )
-    if "failureReasons" in data:
+    if data.get("failureReasons") is not None:
         import capo_lex_models_v2.types.failure_reasons
 
         out["failure_reasons"] = (
@@ -130,13 +130,13 @@ def deserialize_json(data: dict) -> DescribeImportResponse:
                 data["failureReasons"]
             )
         )
-    if "creationDateTime" in data:
+    if data.get("creationDateTime") is not None:
         import capo_lex_models_v2.types.timestamp
 
         out["creation_date_time"] = capo_lex_models_v2.types.timestamp.deserialize_json(
             data["creationDateTime"]
         )
-    if "lastUpdatedDateTime" in data:
+    if data.get("lastUpdatedDateTime") is not None:
         import capo_lex_models_v2.types.timestamp
 
         out["last_updated_date_time"] = (

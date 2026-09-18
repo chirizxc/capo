@@ -65,35 +65,35 @@ def serialize_json(value: SAPODataConnectorProfileProperties) -> dict:
 
 def deserialize_json(data: dict) -> SAPODataConnectorProfileProperties:
     out: SAPODataConnectorProfileProperties = {}  # type: ignore[typeddict-item]
-    if "applicationHostUrl" in data:
+    if data.get("applicationHostUrl") is not None:
         out["application_host_url"] = data["applicationHostUrl"]
     else:
         raise DeserializationError(
             "SAPODataConnectorProfileProperties.application_host_url required"
         )
-    if "applicationServicePath" in data:
+    if data.get("applicationServicePath") is not None:
         out["application_service_path"] = data["applicationServicePath"]
     else:
         raise DeserializationError(
             "SAPODataConnectorProfileProperties.application_service_path required"
         )
-    if "portNumber" in data:
+    if data.get("portNumber") is not None:
         out["port_number"] = data["portNumber"]
     else:
         raise DeserializationError(
             "SAPODataConnectorProfileProperties.port_number required"
         )
-    if "clientNumber" in data:
+    if data.get("clientNumber") is not None:
         out["client_number"] = data["clientNumber"]
     else:
         raise DeserializationError(
             "SAPODataConnectorProfileProperties.client_number required"
         )
-    if "logonLanguage" in data:
+    if data.get("logonLanguage") is not None:
         out["logon_language"] = data["logonLanguage"]
-    if "privateLinkServiceName" in data:
+    if data.get("privateLinkServiceName") is not None:
         out["private_link_service_name"] = data["privateLinkServiceName"]
-    if "oAuthProperties" in data:
+    if data.get("oAuthProperties") is not None:
         import capo_appflow.types.o_auth_properties
 
         out["o_auth_properties"] = (
@@ -101,7 +101,7 @@ def deserialize_json(data: dict) -> SAPODataConnectorProfileProperties:
                 data["oAuthProperties"]
             )
         )
-    if "disableSSO" in data:
+    if data.get("disableSSO") is not None:
         out["disable_sso"] = data["disableSSO"]
     else:
         out["disable_sso"] = False

@@ -46,15 +46,15 @@ def serialize_json(value: JiraCloudDetail) -> dict:
 
 def deserialize_json(data: dict) -> JiraCloudDetail:
     out: JiraCloudDetail = {}  # type: ignore[typeddict-item]
-    if "CloudId" in data:
+    if data.get("CloudId") is not None:
         out["cloud_id"] = data["CloudId"]
-    if "ProjectKey" in data:
+    if data.get("ProjectKey") is not None:
         out["project_key"] = data["ProjectKey"]
-    if "Domain" in data:
+    if data.get("Domain") is not None:
         out["domain"] = data["Domain"]
-    if "AuthUrl" in data:
+    if data.get("AuthUrl") is not None:
         out["auth_url"] = data["AuthUrl"]
-    if "AuthStatus" in data:
+    if data.get("AuthStatus") is not None:
         import capo_securityhub.types.connector_auth_status
 
         out["auth_status"] = (

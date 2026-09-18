@@ -24,7 +24,7 @@ def serialize_json(value: BotVersionLocaleDetails) -> dict:
 
 def deserialize_json(data: dict) -> BotVersionLocaleDetails:
     out: BotVersionLocaleDetails = {}  # type: ignore[typeddict-item]
-    if "sourceBotVersion" in data:
+    if data.get("sourceBotVersion") is not None:
         out["source_bot_version"] = data["sourceBotVersion"]
     else:
         raise DeserializationError(

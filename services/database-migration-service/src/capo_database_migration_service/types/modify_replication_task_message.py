@@ -80,15 +80,15 @@ def serialize_aws_json_1_1(value: ModifyReplicationTaskMessage) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ModifyReplicationTaskMessage:
     out: ModifyReplicationTaskMessage = {}  # type: ignore[typeddict-item]
-    if "ReplicationTaskArn" in data:
+    if data.get("ReplicationTaskArn") is not None:
         out["replication_task_arn"] = data["ReplicationTaskArn"]
     else:
         raise DeserializationError(
             "ModifyReplicationTaskMessage.replication_task_arn required"
         )
-    if "ReplicationTaskIdentifier" in data:
+    if data.get("ReplicationTaskIdentifier") is not None:
         out["replication_task_identifier"] = data["ReplicationTaskIdentifier"]
-    if "MigrationType" in data:
+    if data.get("MigrationType") is not None:
         import capo_database_migration_service.types.migration_type_value
 
         out["migration_type"] = (
@@ -96,11 +96,11 @@ def deserialize_aws_json_1_1(data: dict) -> ModifyReplicationTaskMessage:
                 data["MigrationType"]
             )
         )
-    if "TableMappings" in data:
+    if data.get("TableMappings") is not None:
         out["table_mappings"] = data["TableMappings"]
-    if "ReplicationTaskSettings" in data:
+    if data.get("ReplicationTaskSettings") is not None:
         out["replication_task_settings"] = data["ReplicationTaskSettings"]
-    if "CdcStartTime" in data:
+    if data.get("CdcStartTime") is not None:
         import capo_database_migration_service.types.t_stamp
 
         out["cdc_start_time"] = (
@@ -108,10 +108,10 @@ def deserialize_aws_json_1_1(data: dict) -> ModifyReplicationTaskMessage:
                 data["CdcStartTime"]
             )
         )
-    if "CdcStartPosition" in data:
+    if data.get("CdcStartPosition") is not None:
         out["cdc_start_position"] = data["CdcStartPosition"]
-    if "CdcStopPosition" in data:
+    if data.get("CdcStopPosition") is not None:
         out["cdc_stop_position"] = data["CdcStopPosition"]
-    if "TaskData" in data:
+    if data.get("TaskData") is not None:
         out["task_data"] = data["TaskData"]
     return out

@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> SipRuleTargetApplicationList:
 
     out: SipRuleTargetApplicationList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_chime_sdk_voice.types.sip_rule_target_application.deserialize_json(
                 item

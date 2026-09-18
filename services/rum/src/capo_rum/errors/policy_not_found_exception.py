@@ -18,7 +18,7 @@ def serialize_json(value: PolicyNotFoundException_) -> dict:
 
 def deserialize_json(data: dict) -> PolicyNotFoundException_:
     out: PolicyNotFoundException_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     else:
         raise DeserializationError("PolicyNotFoundException_.message required")
@@ -30,15 +30,18 @@ class PolicyNotFoundException(ServiceError):
 
     code: str | None = "PolicyNotFoundException"
 
-    def __init__(self, data: PolicyNotFoundException_):
+    def __init__(self, data: PolicyNotFoundException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="PolicyNotFoundException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "PolicyNotFoundException":
-        return cls(deserialize_json(data))
+    def from_json(
+        cls, data: dict, message: str | None = None
+    ) -> "PolicyNotFoundException":
+        return cls(deserialize_json(data), message)

@@ -43,7 +43,7 @@ def serialize_json(value: AutoExportRevisionToS3RequestDetails) -> dict:
 
 def deserialize_json(data: dict) -> AutoExportRevisionToS3RequestDetails:
     out: AutoExportRevisionToS3RequestDetails = {}  # type: ignore[typeddict-item]
-    if "Encryption" in data:
+    if data.get("Encryption") is not None:
         import capo_dataexchange.types.export_server_side_encryption
 
         out["encryption"] = (
@@ -51,7 +51,7 @@ def deserialize_json(data: dict) -> AutoExportRevisionToS3RequestDetails:
                 data["Encryption"]
             )
         )
-    if "RevisionDestination" in data:
+    if data.get("RevisionDestination") is not None:
         import capo_dataexchange.types.auto_export_revision_destination_entry
 
         out["revision_destination"] = (

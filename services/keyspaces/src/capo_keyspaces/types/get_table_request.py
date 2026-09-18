@@ -28,11 +28,11 @@ def serialize_aws_json_1_0(value: GetTableRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> GetTableRequest:
     out: GetTableRequest = {}  # type: ignore[typeddict-item]
-    if "keyspaceName" in data:
+    if data.get("keyspaceName") is not None:
         out["keyspace_name"] = data["keyspaceName"]
     else:
         raise DeserializationError("GetTableRequest.keyspace_name required")
-    if "tableName" in data:
+    if data.get("tableName") is not None:
         out["table_name"] = data["tableName"]
     else:
         raise DeserializationError("GetTableRequest.table_name required")

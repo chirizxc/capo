@@ -40,7 +40,7 @@ def deserialize_aws_json_1_1(
     data: dict,
 ) -> DescribeApplicableIndividualAssessmentsResponse:
     out: DescribeApplicableIndividualAssessmentsResponse = {}  # type: ignore[typeddict-item]
-    if "IndividualAssessmentNames" in data:
+    if data.get("IndividualAssessmentNames") is not None:
         import capo_database_migration_service.types.individual_assessment_name_list
 
         out["individual_assessment_names"] = (
@@ -48,6 +48,6 @@ def deserialize_aws_json_1_1(
                 data["IndividualAssessmentNames"]
             )
         )
-    if "Marker" in data:
+    if data.get("Marker") is not None:
         out["marker"] = data["Marker"]
     return out

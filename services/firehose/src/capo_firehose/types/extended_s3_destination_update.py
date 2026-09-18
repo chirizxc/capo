@@ -161,15 +161,15 @@ def serialize_aws_json_1_1(value: ExtendedS3DestinationUpdate) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ExtendedS3DestinationUpdate:
     out: ExtendedS3DestinationUpdate = {}  # type: ignore[typeddict-item]
-    if "RoleARN" in data:
+    if data.get("RoleARN") is not None:
         out["role_arn"] = data["RoleARN"]
-    if "BucketARN" in data:
+    if data.get("BucketARN") is not None:
         out["bucket_arn"] = data["BucketARN"]
-    if "Prefix" in data:
+    if data.get("Prefix") is not None:
         out["prefix"] = data["Prefix"]
-    if "ErrorOutputPrefix" in data:
+    if data.get("ErrorOutputPrefix") is not None:
         out["error_output_prefix"] = data["ErrorOutputPrefix"]
-    if "BufferingHints" in data:
+    if data.get("BufferingHints") is not None:
         import capo_firehose.types.buffering_hints
 
         out["buffering_hints"] = (
@@ -177,7 +177,7 @@ def deserialize_aws_json_1_1(data: dict) -> ExtendedS3DestinationUpdate:
                 data["BufferingHints"]
             )
         )
-    if "CompressionFormat" in data:
+    if data.get("CompressionFormat") is not None:
         import capo_firehose.types.compression_format
 
         out["compression_format"] = (
@@ -185,7 +185,7 @@ def deserialize_aws_json_1_1(data: dict) -> ExtendedS3DestinationUpdate:
                 data["CompressionFormat"]
             )
         )
-    if "EncryptionConfiguration" in data:
+    if data.get("EncryptionConfiguration") is not None:
         import capo_firehose.types.encryption_configuration
 
         out["encryption_configuration"] = (
@@ -193,7 +193,7 @@ def deserialize_aws_json_1_1(data: dict) -> ExtendedS3DestinationUpdate:
                 data["EncryptionConfiguration"]
             )
         )
-    if "CloudWatchLoggingOptions" in data:
+    if data.get("CloudWatchLoggingOptions") is not None:
         import capo_firehose.types.cloud_watch_logging_options
 
         out["cloud_watch_logging_options"] = (
@@ -201,7 +201,7 @@ def deserialize_aws_json_1_1(data: dict) -> ExtendedS3DestinationUpdate:
                 data["CloudWatchLoggingOptions"]
             )
         )
-    if "ProcessingConfiguration" in data:
+    if data.get("ProcessingConfiguration") is not None:
         import capo_firehose.types.processing_configuration
 
         out["processing_configuration"] = (
@@ -209,7 +209,7 @@ def deserialize_aws_json_1_1(data: dict) -> ExtendedS3DestinationUpdate:
                 data["ProcessingConfiguration"]
             )
         )
-    if "S3BackupMode" in data:
+    if data.get("S3BackupMode") is not None:
         import capo_firehose.types.s3_backup_mode
 
         out["s3_backup_mode"] = (
@@ -217,7 +217,7 @@ def deserialize_aws_json_1_1(data: dict) -> ExtendedS3DestinationUpdate:
                 data["S3BackupMode"]
             )
         )
-    if "S3BackupUpdate" in data:
+    if data.get("S3BackupUpdate") is not None:
         import capo_firehose.types.s3_destination_update
 
         out["s3_backup_update"] = (
@@ -225,7 +225,7 @@ def deserialize_aws_json_1_1(data: dict) -> ExtendedS3DestinationUpdate:
                 data["S3BackupUpdate"]
             )
         )
-    if "DataFormatConversionConfiguration" in data:
+    if data.get("DataFormatConversionConfiguration") is not None:
         import capo_firehose.types.data_format_conversion_configuration
 
         out["data_format_conversion_configuration"] = (
@@ -233,7 +233,7 @@ def deserialize_aws_json_1_1(data: dict) -> ExtendedS3DestinationUpdate:
                 data["DataFormatConversionConfiguration"]
             )
         )
-    if "DynamicPartitioningConfiguration" in data:
+    if data.get("DynamicPartitioningConfiguration") is not None:
         import capo_firehose.types.dynamic_partitioning_configuration
 
         out["dynamic_partitioning_configuration"] = (
@@ -241,8 +241,8 @@ def deserialize_aws_json_1_1(data: dict) -> ExtendedS3DestinationUpdate:
                 data["DynamicPartitioningConfiguration"]
             )
         )
-    if "FileExtension" in data:
+    if data.get("FileExtension") is not None:
         out["file_extension"] = data["FileExtension"]
-    if "CustomTimeZone" in data:
+    if data.get("CustomTimeZone") is not None:
         out["custom_time_zone"] = data["CustomTimeZone"]
     return out

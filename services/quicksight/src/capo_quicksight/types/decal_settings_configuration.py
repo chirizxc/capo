@@ -31,7 +31,7 @@ def serialize_json(value: DecalSettingsConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> DecalSettingsConfiguration:
     out: DecalSettingsConfiguration = {}  # type: ignore[typeddict-item]
-    if "CustomDecalSettings" in data:
+    if data.get("CustomDecalSettings") is not None:
         import capo_quicksight.types.decal_settings_list
 
         out["custom_decal_settings"] = (

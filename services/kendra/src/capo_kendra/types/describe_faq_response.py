@@ -96,48 +96,48 @@ def serialize_aws_json_1_1(value: DescribeFaqResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeFaqResponse:
     out: DescribeFaqResponse = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "IndexId" in data:
+    if data.get("IndexId") is not None:
         out["index_id"] = data["IndexId"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "CreatedAt" in data:
+    if data.get("CreatedAt") is not None:
         import capo_kendra.types.timestamp
 
         out["created_at"] = capo_kendra.types.timestamp.deserialize_aws_json_1_1(
             data["CreatedAt"]
         )
-    if "UpdatedAt" in data:
+    if data.get("UpdatedAt") is not None:
         import capo_kendra.types.timestamp
 
         out["updated_at"] = capo_kendra.types.timestamp.deserialize_aws_json_1_1(
             data["UpdatedAt"]
         )
-    if "S3Path" in data:
+    if data.get("S3Path") is not None:
         import capo_kendra.types.s3_path
 
         out["s3_path"] = capo_kendra.types.s3_path.deserialize_aws_json_1_1(
             data["S3Path"]
         )
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_kendra.types.faq_status
 
         out["status"] = capo_kendra.types.faq_status.deserialize_aws_json_1_1(
             data["Status"]
         )
-    if "RoleArn" in data:
+    if data.get("RoleArn") is not None:
         out["role_arn"] = data["RoleArn"]
-    if "ErrorMessage" in data:
+    if data.get("ErrorMessage") is not None:
         out["error_message"] = data["ErrorMessage"]
-    if "FileFormat" in data:
+    if data.get("FileFormat") is not None:
         import capo_kendra.types.faq_file_format
 
         out["file_format"] = capo_kendra.types.faq_file_format.deserialize_aws_json_1_1(
             data["FileFormat"]
         )
-    if "LanguageCode" in data:
+    if data.get("LanguageCode") is not None:
         out["language_code"] = data["LanguageCode"]
     return out

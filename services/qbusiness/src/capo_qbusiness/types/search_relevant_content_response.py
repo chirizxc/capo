@@ -36,7 +36,7 @@ def serialize_json(value: SearchRelevantContentResponse) -> dict:
 
 def deserialize_json(data: dict) -> SearchRelevantContentResponse:
     out: SearchRelevantContentResponse = {}  # type: ignore[typeddict-item]
-    if "relevantContent" in data:
+    if data.get("relevantContent") is not None:
         import capo_qbusiness.types.relevant_content_list
 
         out["relevant_content"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> SearchRelevantContentResponse:
                 data["relevantContent"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

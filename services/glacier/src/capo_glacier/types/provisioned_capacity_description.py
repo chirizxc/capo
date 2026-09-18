@@ -31,10 +31,10 @@ def serialize_json(value: ProvisionedCapacityDescription) -> dict:
 
 def deserialize_json(data: dict) -> ProvisionedCapacityDescription:
     out: ProvisionedCapacityDescription = {}  # type: ignore[typeddict-item]
-    if "CapacityId" in data:
+    if data.get("CapacityId") is not None:
         out["capacity_id"] = data["CapacityId"]
-    if "StartDate" in data:
+    if data.get("StartDate") is not None:
         out["start_date"] = data["StartDate"]
-    if "ExpirationDate" in data:
+    if data.get("ExpirationDate") is not None:
         out["expiration_date"] = data["ExpirationDate"]
     return out

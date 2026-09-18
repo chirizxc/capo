@@ -22,13 +22,13 @@ def serialize_json(value: S3PublicAccessBlockConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> S3PublicAccessBlockConfiguration:
     out: S3PublicAccessBlockConfiguration = {}  # type: ignore[typeddict-item]
-    if "ignorePublicAcls" in data:
+    if data.get("ignorePublicAcls") is not None:
         out["ignore_public_acls"] = data["ignorePublicAcls"]
     else:
         raise DeserializationError(
             "S3PublicAccessBlockConfiguration.ignore_public_acls required"
         )
-    if "restrictPublicBuckets" in data:
+    if data.get("restrictPublicBuckets") is not None:
         out["restrict_public_buckets"] = data["restrictPublicBuckets"]
     else:
         raise DeserializationError(

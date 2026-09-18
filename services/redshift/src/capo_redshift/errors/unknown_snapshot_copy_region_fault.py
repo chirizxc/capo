@@ -37,15 +37,20 @@ class UnknownSnapshotCopyRegionFault(ServiceError):
 
     code: str | None = "UnknownSnapshotCopyRegionFault"
 
-    def __init__(self, data: UnknownSnapshotCopyRegionFault_):
+    def __init__(
+        self, data: UnknownSnapshotCopyRegionFault_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="UnknownSnapshotCopyRegionFault",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_query(cls, el: Element) -> "UnknownSnapshotCopyRegionFault":
-        return cls(deserialize_query(el))
+    def from_query(
+        cls, el: Element, message: str | None = None
+    ) -> "UnknownSnapshotCopyRegionFault":
+        return cls(deserialize_query(el), message)

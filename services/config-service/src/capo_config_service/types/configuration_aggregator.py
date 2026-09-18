@@ -95,11 +95,11 @@ def serialize_aws_json_1_1(value: ConfigurationAggregator) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ConfigurationAggregator:
     out: ConfigurationAggregator = {}  # type: ignore[typeddict-item]
-    if "ConfigurationAggregatorName" in data:
+    if data.get("ConfigurationAggregatorName") is not None:
         out["configuration_aggregator_name"] = data["ConfigurationAggregatorName"]
-    if "ConfigurationAggregatorArn" in data:
+    if data.get("ConfigurationAggregatorArn") is not None:
         out["configuration_aggregator_arn"] = data["ConfigurationAggregatorArn"]
-    if "AccountAggregationSources" in data:
+    if data.get("AccountAggregationSources") is not None:
         import capo_config_service.types.account_aggregation_source_list
 
         out["account_aggregation_sources"] = (
@@ -107,7 +107,7 @@ def deserialize_aws_json_1_1(data: dict) -> ConfigurationAggregator:
                 data["AccountAggregationSources"]
             )
         )
-    if "OrganizationAggregationSource" in data:
+    if data.get("OrganizationAggregationSource") is not None:
         import capo_config_service.types.organization_aggregation_source
 
         out["organization_aggregation_source"] = (
@@ -115,13 +115,13 @@ def deserialize_aws_json_1_1(data: dict) -> ConfigurationAggregator:
                 data["OrganizationAggregationSource"]
             )
         )
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_config_service.types.date
 
         out["creation_time"] = capo_config_service.types.date.deserialize_aws_json_1_1(
             data["CreationTime"]
         )
-    if "LastUpdatedTime" in data:
+    if data.get("LastUpdatedTime") is not None:
         import capo_config_service.types.date
 
         out["last_updated_time"] = (
@@ -129,9 +129,9 @@ def deserialize_aws_json_1_1(data: dict) -> ConfigurationAggregator:
                 data["LastUpdatedTime"]
             )
         )
-    if "CreatedBy" in data:
+    if data.get("CreatedBy") is not None:
         out["created_by"] = data["CreatedBy"]
-    if "AggregatorFilters" in data:
+    if data.get("AggregatorFilters") is not None:
         import capo_config_service.types.aggregator_filters
 
         out["aggregator_filters"] = (

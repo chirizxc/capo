@@ -48,7 +48,7 @@ def serialize_json(value: BatchGetFlowAssociationRequest) -> dict:
 
 def deserialize_json(data: dict) -> BatchGetFlowAssociationRequest:
     out: BatchGetFlowAssociationRequest = {}  # type: ignore[typeddict-item]
-    if "ResourceIds" in data:
+    if data.get("ResourceIds") is not None:
         import capo_connect.types.resource_arn_list_max_limit100
 
         out["resource_ids"] = (
@@ -60,7 +60,7 @@ def deserialize_json(data: dict) -> BatchGetFlowAssociationRequest:
         raise DeserializationError(
             "BatchGetFlowAssociationRequest.resource_ids required"
         )
-    if "ResourceType" in data:
+    if data.get("ResourceType") is not None:
         import capo_connect.types.list_flow_association_resource_type
 
         out["resource_type"] = (

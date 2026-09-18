@@ -30,9 +30,9 @@ def serialize_json(value: AwsCredentials) -> dict:
     out["accessKeyId"] = value["access_key_id"]
     out["secretAccessKey"] = value["secret_access_key"]
     out["sessionToken"] = value["session_token"]
-    import capo_deadline.types.timestamp
+    import capo_deadline._protocol.serialize
 
-    out["expiration"] = capo_deadline.types.timestamp.serialize_json(
+    out["expiration"] = capo_deadline._protocol.serialize.fmt_date_time(
         value["expiration"]
     )
     return out
@@ -40,23 +40,23 @@ def serialize_json(value: AwsCredentials) -> dict:
 
 def deserialize_json(data: dict) -> AwsCredentials:
     out: AwsCredentials = {}  # type: ignore[typeddict-item]
-    if "accessKeyId" in data:
+    if data.get("accessKeyId") is not None:
         out["access_key_id"] = data["accessKeyId"]
     else:
         raise DeserializationError("AwsCredentials.access_key_id required")
-    if "secretAccessKey" in data:
+    if data.get("secretAccessKey") is not None:
         out["secret_access_key"] = data["secretAccessKey"]
     else:
         raise DeserializationError("AwsCredentials.secret_access_key required")
-    if "sessionToken" in data:
+    if data.get("sessionToken") is not None:
         out["session_token"] = data["sessionToken"]
     else:
         raise DeserializationError("AwsCredentials.session_token required")
-    if "expiration" in data:
-        import capo_deadline.types.timestamp
+    if data.get("expiration") is not None:
+        import datetime
 
-        out["expiration"] = capo_deadline.types.timestamp.deserialize_json(
-            data["expiration"]
+        out["expiration"] = datetime.datetime.fromisoformat(
+            data["expiration"].replace("Z", "+00:00")
         )
     else:
         raise DeserializationError("AwsCredentials.expiration required")

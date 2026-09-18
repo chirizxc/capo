@@ -38,18 +38,18 @@ def serialize_json(value: SamlConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> SamlConfiguration:
     out: SamlConfiguration = {}  # type: ignore[typeddict-item]
-    if "metadataXML" in data:
+    if data.get("metadataXML") is not None:
         out["metadata_xml"] = data["metadataXML"]
     else:
         raise DeserializationError("SamlConfiguration.metadata_xml required")
-    if "roleArn" in data:
+    if data.get("roleArn") is not None:
         out["role_arn"] = data["roleArn"]
     else:
         raise DeserializationError("SamlConfiguration.role_arn required")
-    if "userIdAttribute" in data:
+    if data.get("userIdAttribute") is not None:
         out["user_id_attribute"] = data["userIdAttribute"]
     else:
         raise DeserializationError("SamlConfiguration.user_id_attribute required")
-    if "userGroupAttribute" in data:
+    if data.get("userGroupAttribute") is not None:
         out["user_group_attribute"] = data["userGroupAttribute"]
     return out

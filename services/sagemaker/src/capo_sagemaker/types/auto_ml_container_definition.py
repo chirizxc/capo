@@ -39,11 +39,11 @@ def serialize_aws_json_1_1(value: AutoMLContainerDefinition) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AutoMLContainerDefinition:
     out: AutoMLContainerDefinition = {}  # type: ignore[typeddict-item]
-    if "Image" in data:
+    if data.get("Image") is not None:
         out["image"] = data["Image"]
-    if "ModelDataUrl" in data:
+    if data.get("ModelDataUrl") is not None:
         out["model_data_url"] = data["ModelDataUrl"]
-    if "Environment" in data:
+    if data.get("Environment") is not None:
         import capo_sagemaker.types.environment_map
 
         out["environment"] = (

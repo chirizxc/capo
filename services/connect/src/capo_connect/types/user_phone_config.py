@@ -50,7 +50,7 @@ def serialize_json(value: UserPhoneConfig) -> dict:
 
 def deserialize_json(data: dict) -> UserPhoneConfig:
     out: UserPhoneConfig = {}  # type: ignore[typeddict-item]
-    if "PhoneType" in data:
+    if data.get("PhoneType") is not None:
         import capo_connect.types.phone_type
 
         out["phone_type"] = capo_connect.types.phone_type.deserialize_json(
@@ -58,16 +58,16 @@ def deserialize_json(data: dict) -> UserPhoneConfig:
         )
     else:
         out["phone_type"] = "SOFT_PHONE"
-    if "AutoAccept" in data:
+    if data.get("AutoAccept") is not None:
         out["auto_accept"] = data["AutoAccept"]
     else:
         out["auto_accept"] = False
-    if "AfterContactWorkTimeLimit" in data:
+    if data.get("AfterContactWorkTimeLimit") is not None:
         out["after_contact_work_time_limit"] = data["AfterContactWorkTimeLimit"]
     else:
         out["after_contact_work_time_limit"] = 0
-    if "DeskPhoneNumber" in data:
+    if data.get("DeskPhoneNumber") is not None:
         out["desk_phone_number"] = data["DeskPhoneNumber"]
-    if "PersistentConnection" in data:
+    if data.get("PersistentConnection") is not None:
         out["persistent_connection"] = data["PersistentConnection"]
     return out

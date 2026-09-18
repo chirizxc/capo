@@ -22,7 +22,7 @@ def serialize_json(value: StartAccountAssociationRefreshResponse) -> dict:
 
 def deserialize_json(data: dict) -> StartAccountAssociationRefreshResponse:
     out: StartAccountAssociationRefreshResponse = {}  # type: ignore[typeddict-item]
-    if "OAuthAuthorizationUrl" in data:
+    if data.get("OAuthAuthorizationUrl") is not None:
         out["o_auth_authorization_url"] = data["OAuthAuthorizationUrl"]
     else:
         out["o_auth_authorization_url"] = ""

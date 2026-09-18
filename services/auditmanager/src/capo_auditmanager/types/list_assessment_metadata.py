@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> ListAssessmentMetadata:
 
     out: ListAssessmentMetadata = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_auditmanager.types.assessment_metadata_item.deserialize_json(item)
         )

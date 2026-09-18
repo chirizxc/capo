@@ -55,25 +55,25 @@ def serialize_json(value: RasterDataCollectionMetadata) -> dict:
 
 def deserialize_json(data: dict) -> RasterDataCollectionMetadata:
     out: RasterDataCollectionMetadata = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("RasterDataCollectionMetadata.name required")
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
     else:
         raise DeserializationError("RasterDataCollectionMetadata.arn required")
-    if "Type" in data:
+    if data.get("Type") is not None:
         out["type"] = data["Type"]
     else:
         raise DeserializationError("RasterDataCollectionMetadata.type required")
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
     else:
         raise DeserializationError("RasterDataCollectionMetadata.description required")
-    if "DescriptionPageUrl" in data:
+    if data.get("DescriptionPageUrl") is not None:
         out["description_page_url"] = data["DescriptionPageUrl"]
-    if "SupportedFilters" in data:
+    if data.get("SupportedFilters") is not None:
         import capo_sagemaker_geospatial.types.filter_list
 
         out["supported_filters"] = (
@@ -85,7 +85,7 @@ def deserialize_json(data: dict) -> RasterDataCollectionMetadata:
         raise DeserializationError(
             "RasterDataCollectionMetadata.supported_filters required"
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_sagemaker_geospatial.types.tags
 
         out["tags"] = capo_sagemaker_geospatial.types.tags.deserialize_json(

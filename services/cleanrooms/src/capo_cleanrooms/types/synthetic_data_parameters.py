@@ -34,7 +34,7 @@ def serialize_json(value: SyntheticDataParameters) -> dict:
 
 
 def deserialize_json(data: dict) -> SyntheticDataParameters:
-    if "mlSyntheticDataParameters" in data:
+    if data.get("mlSyntheticDataParameters") is not None:
         import capo_cleanrooms.types.ml_synthetic_data_parameters
 
         return {

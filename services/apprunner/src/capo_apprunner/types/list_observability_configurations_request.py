@@ -41,14 +41,14 @@ def serialize_aws_json_1_0(value: ListObservabilityConfigurationsRequest) -> dic
 
 def deserialize_aws_json_1_0(data: dict) -> ListObservabilityConfigurationsRequest:
     out: ListObservabilityConfigurationsRequest = {}  # type: ignore[typeddict-item]
-    if "ObservabilityConfigurationName" in data:
+    if data.get("ObservabilityConfigurationName") is not None:
         out["observability_configuration_name"] = data["ObservabilityConfigurationName"]
-    if "LatestOnly" in data:
+    if data.get("LatestOnly") is not None:
         out["latest_only"] = data["LatestOnly"]
     else:
         out["latest_only"] = False
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

@@ -23,5 +23,7 @@ def serialize_json(input_to_serialize: OutputTagMap) -> dict:
 def deserialize_json(data: dict) -> OutputTagMap:
     out: OutputTagMap = {}
     for key, value in data.items():
+        if value is None:
+            continue
         out[key] = value
     return out

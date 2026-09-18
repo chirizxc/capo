@@ -93,7 +93,15 @@ def serialize_json(value: Vp8Settings) -> dict:
     if "framerate_numerator" in value:
         out["framerateNumerator"] = value["framerate_numerator"]
     if "gop_size" in value:
-        out["gopSize"] = value["gop_size"]
+        out["gopSize"] = (
+            "NaN"
+            if value["gop_size"] != value["gop_size"]
+            else "Infinity"
+            if value["gop_size"] == float("inf")
+            else "-Infinity"
+            if value["gop_size"] == float("-inf")
+            else value["gop_size"]
+        )
     if "hrd_buffer_size" in value:
         out["hrdBufferSize"] = value["hrd_buffer_size"]
     if "max_bitrate" in value:
@@ -129,9 +137,9 @@ def serialize_json(value: Vp8Settings) -> dict:
 
 def deserialize_json(data: dict) -> Vp8Settings:
     out: Vp8Settings = {}  # type: ignore[typeddict-item]
-    if "bitrate" in data:
+    if data.get("bitrate") is not None:
         out["bitrate"] = data["bitrate"]
-    if "framerateControl" in data:
+    if data.get("framerateControl") is not None:
         import capo_mediaconvert.types.vp8_framerate_control
 
         out["framerate_control"] = (
@@ -139,7 +147,7 @@ def deserialize_json(data: dict) -> Vp8Settings:
                 data["framerateControl"]
             )
         )
-    if "framerateConversionAlgorithm" in data:
+    if data.get("framerateConversionAlgorithm") is not None:
         import capo_mediaconvert.types.vp8_framerate_conversion_algorithm
 
         out["framerate_conversion_algorithm"] = (
@@ -147,27 +155,27 @@ def deserialize_json(data: dict) -> Vp8Settings:
                 data["framerateConversionAlgorithm"]
             )
         )
-    if "framerateDenominator" in data:
+    if data.get("framerateDenominator") is not None:
         out["framerate_denominator"] = data["framerateDenominator"]
-    if "framerateNumerator" in data:
+    if data.get("framerateNumerator") is not None:
         out["framerate_numerator"] = data["framerateNumerator"]
-    if "gopSize" in data:
-        out["gop_size"] = data["gopSize"]
-    if "hrdBufferSize" in data:
+    if data.get("gopSize") is not None:
+        out["gop_size"] = float(data["gopSize"])
+    if data.get("hrdBufferSize") is not None:
         out["hrd_buffer_size"] = data["hrdBufferSize"]
-    if "maxBitrate" in data:
+    if data.get("maxBitrate") is not None:
         out["max_bitrate"] = data["maxBitrate"]
-    if "parControl" in data:
+    if data.get("parControl") is not None:
         import capo_mediaconvert.types.vp8_par_control
 
         out["par_control"] = capo_mediaconvert.types.vp8_par_control.deserialize_json(
             data["parControl"]
         )
-    if "parDenominator" in data:
+    if data.get("parDenominator") is not None:
         out["par_denominator"] = data["parDenominator"]
-    if "parNumerator" in data:
+    if data.get("parNumerator") is not None:
         out["par_numerator"] = data["parNumerator"]
-    if "qualityTuningLevel" in data:
+    if data.get("qualityTuningLevel") is not None:
         import capo_mediaconvert.types.vp8_quality_tuning_level
 
         out["quality_tuning_level"] = (
@@ -175,7 +183,7 @@ def deserialize_json(data: dict) -> Vp8Settings:
                 data["qualityTuningLevel"]
             )
         )
-    if "rateControlMode" in data:
+    if data.get("rateControlMode") is not None:
         import capo_mediaconvert.types.vp8_rate_control_mode
 
         out["rate_control_mode"] = (

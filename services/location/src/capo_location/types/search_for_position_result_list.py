@@ -25,6 +25,8 @@ def deserialize_json(data: list) -> SearchForPositionResultList:
 
     out: SearchForPositionResultList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_location.types.search_for_position_result.deserialize_json(item)
         )

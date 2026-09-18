@@ -53,15 +53,15 @@ def serialize_json(value: GenericAttachment) -> dict:
 
 def deserialize_json(data: dict) -> GenericAttachment:
     out: GenericAttachment = {}  # type: ignore[typeddict-item]
-    if "title" in data:
+    if data.get("title") is not None:
         out["title"] = data["title"]
-    if "subTitle" in data:
+    if data.get("subTitle") is not None:
         out["sub_title"] = data["subTitle"]
-    if "attachmentLinkUrl" in data:
+    if data.get("attachmentLinkUrl") is not None:
         out["attachment_link_url"] = data["attachmentLinkUrl"]
-    if "imageUrl" in data:
+    if data.get("imageUrl") is not None:
         out["image_url"] = data["imageUrl"]
-    if "buttons" in data:
+    if data.get("buttons") is not None:
         import capo_lex_runtime_service.types.list_of_buttons
 
         out["buttons"] = (

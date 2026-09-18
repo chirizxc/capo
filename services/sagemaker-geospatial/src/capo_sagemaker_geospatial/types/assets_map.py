@@ -23,6 +23,8 @@ def serialize_json(input_to_serialize: AssetsMap) -> dict:
 def deserialize_json(data: dict) -> AssetsMap:
     out: AssetsMap = {}
     for key, value in data.items():
+        if value is None:
+            continue
         import capo_sagemaker_geospatial.types.asset_value
 
         out[key] = capo_sagemaker_geospatial.types.asset_value.deserialize_json(value)

@@ -24,7 +24,7 @@ def serialize_json(value: TrendmicroSourceProperties) -> dict:
 
 def deserialize_json(data: dict) -> TrendmicroSourceProperties:
     out: TrendmicroSourceProperties = {}  # type: ignore[typeddict-item]
-    if "object" in data:
+    if data.get("object") is not None:
         out["object"] = data["object"]
     else:
         raise DeserializationError("TrendmicroSourceProperties.object required")

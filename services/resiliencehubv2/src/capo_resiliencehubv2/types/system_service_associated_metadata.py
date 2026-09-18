@@ -39,11 +39,11 @@ def serialize_json(value: SystemServiceAssociatedMetadata) -> dict:
 
 def deserialize_json(data: dict) -> SystemServiceAssociatedMetadata:
     out: SystemServiceAssociatedMetadata = {}  # type: ignore[typeddict-item]
-    if "serviceName" in data:
+    if data.get("serviceName") is not None:
         out["service_name"] = data["serviceName"]
-    if "serviceArn" in data:
+    if data.get("serviceArn") is not None:
         out["service_arn"] = data["serviceArn"]
-    if "userJourneys" in data:
+    if data.get("userJourneys") is not None:
         import capo_resiliencehubv2.types.user_journey_name_list
 
         out["user_journeys"] = (

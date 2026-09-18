@@ -23,6 +23,6 @@ def serialize_json(value: LogConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> LogConfiguration:
     out: LogConfiguration = {}  # type: ignore[typeddict-item]
-    if "Enabled" in data:
+    if data.get("Enabled") is not None:
         out["enabled"] = data["Enabled"]
     return out

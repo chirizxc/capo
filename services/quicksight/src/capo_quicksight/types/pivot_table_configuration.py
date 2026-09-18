@@ -128,7 +128,7 @@ def serialize_json(value: PivotTableConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> PivotTableConfiguration:
     out: PivotTableConfiguration = {}  # type: ignore[typeddict-item]
-    if "FieldWells" in data:
+    if data.get("FieldWells") is not None:
         import capo_quicksight.types.pivot_table_field_wells
 
         out["field_wells"] = (
@@ -136,7 +136,7 @@ def deserialize_json(data: dict) -> PivotTableConfiguration:
                 data["FieldWells"]
             )
         )
-    if "SortConfiguration" in data:
+    if data.get("SortConfiguration") is not None:
         import capo_quicksight.types.pivot_table_sort_configuration
 
         out["sort_configuration"] = (
@@ -144,7 +144,7 @@ def deserialize_json(data: dict) -> PivotTableConfiguration:
                 data["SortConfiguration"]
             )
         )
-    if "TableOptions" in data:
+    if data.get("TableOptions") is not None:
         import capo_quicksight.types.pivot_table_options
 
         out["table_options"] = (
@@ -152,7 +152,7 @@ def deserialize_json(data: dict) -> PivotTableConfiguration:
                 data["TableOptions"]
             )
         )
-    if "TotalOptions" in data:
+    if data.get("TotalOptions") is not None:
         import capo_quicksight.types.pivot_table_total_options
 
         out["total_options"] = (
@@ -160,7 +160,7 @@ def deserialize_json(data: dict) -> PivotTableConfiguration:
                 data["TotalOptions"]
             )
         )
-    if "FieldOptions" in data:
+    if data.get("FieldOptions") is not None:
         import capo_quicksight.types.pivot_table_field_options
 
         out["field_options"] = (
@@ -168,7 +168,7 @@ def deserialize_json(data: dict) -> PivotTableConfiguration:
                 data["FieldOptions"]
             )
         )
-    if "PaginatedReportOptions" in data:
+    if data.get("PaginatedReportOptions") is not None:
         import capo_quicksight.types.pivot_table_paginated_report_options
 
         out["paginated_report_options"] = (
@@ -176,13 +176,13 @@ def deserialize_json(data: dict) -> PivotTableConfiguration:
                 data["PaginatedReportOptions"]
             )
         )
-    if "Tooltip" in data:
+    if data.get("Tooltip") is not None:
         import capo_quicksight.types.tooltip_options
 
         out["tooltip"] = capo_quicksight.types.tooltip_options.deserialize_json(
             data["Tooltip"]
         )
-    if "DashboardCustomizationVisualOptions" in data:
+    if data.get("DashboardCustomizationVisualOptions") is not None:
         import capo_quicksight.types.dashboard_customization_visual_options
 
         out["dashboard_customization_visual_options"] = (
@@ -190,7 +190,7 @@ def deserialize_json(data: dict) -> PivotTableConfiguration:
                 data["DashboardCustomizationVisualOptions"]
             )
         )
-    if "Interactions" in data:
+    if data.get("Interactions") is not None:
         import capo_quicksight.types.visual_interaction_options
 
         out["interactions"] = (

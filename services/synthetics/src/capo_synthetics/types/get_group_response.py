@@ -25,7 +25,7 @@ def serialize_json(value: GetGroupResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetGroupResponse:
     out: GetGroupResponse = {}  # type: ignore[typeddict-item]
-    if "Group" in data:
+    if data.get("Group") is not None:
         import capo_synthetics.types.group
 
         out["group"] = capo_synthetics.types.group.deserialize_json(data["Group"])

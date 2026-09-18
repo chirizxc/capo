@@ -37,15 +37,20 @@ class ClusterSubnetGroupNotFoundFault(ServiceError):
 
     code: str | None = "ClusterSubnetGroupNotFoundFault"
 
-    def __init__(self, data: ClusterSubnetGroupNotFoundFault_):
+    def __init__(
+        self, data: ClusterSubnetGroupNotFoundFault_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="ClusterSubnetGroupNotFoundFault",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_query(cls, el: Element) -> "ClusterSubnetGroupNotFoundFault":
-        return cls(deserialize_query(el))
+    def from_query(
+        cls, el: Element, message: str | None = None
+    ) -> "ClusterSubnetGroupNotFoundFault":
+        return cls(deserialize_query(el), message)

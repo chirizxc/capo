@@ -47,7 +47,7 @@ def serialize_aws_json_1_0(value: DimensionValues) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> DimensionValues:
     out: DimensionValues = {}  # type: ignore[typeddict-item]
-    if "key" in data:
+    if data.get("key") is not None:
         import capo_bcm_dashboards.types.dimension
 
         out["key"] = capo_bcm_dashboards.types.dimension.deserialize_aws_json_1_0(
@@ -55,7 +55,7 @@ def deserialize_aws_json_1_0(data: dict) -> DimensionValues:
         )
     else:
         raise DeserializationError("DimensionValues.key required")
-    if "values" in data:
+    if data.get("values") is not None:
         import capo_bcm_dashboards.types.string_list
 
         out["values"] = capo_bcm_dashboards.types.string_list.deserialize_aws_json_1_0(
@@ -63,7 +63,7 @@ def deserialize_aws_json_1_0(data: dict) -> DimensionValues:
         )
     else:
         raise DeserializationError("DimensionValues.values required")
-    if "matchOptions" in data:
+    if data.get("matchOptions") is not None:
         import capo_bcm_dashboards.types.match_options
 
         out["match_options"] = (

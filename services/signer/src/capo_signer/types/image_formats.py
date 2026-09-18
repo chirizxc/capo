@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> ImageFormats:
 
     out: ImageFormats = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_signer.types.image_format.deserialize_json(item))
     return out

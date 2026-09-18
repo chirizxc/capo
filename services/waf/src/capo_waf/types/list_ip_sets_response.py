@@ -32,9 +32,9 @@ def serialize_aws_json_1_1(value: ListIPSetsResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListIPSetsResponse:
     out: ListIPSetsResponse = {}  # type: ignore[typeddict-item]
-    if "NextMarker" in data:
+    if data.get("NextMarker") is not None:
         out["next_marker"] = data["NextMarker"]
-    if "IPSets" in data:
+    if data.get("IPSets") is not None:
         import capo_waf.types.ip_set_summaries
 
         out["ip_sets"] = capo_waf.types.ip_set_summaries.deserialize_aws_json_1_1(

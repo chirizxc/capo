@@ -60,17 +60,17 @@ def serialize_aws_json_1_0(value: DashboardReference) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> DashboardReference:
     out: DashboardReference = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("DashboardReference.arn required")
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("DashboardReference.name required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_bcm_dashboards.types.dashboard_type
 
         out["type"] = capo_bcm_dashboards.types.dashboard_type.deserialize_aws_json_1_0(
@@ -78,7 +78,7 @@ def deserialize_aws_json_1_0(data: dict) -> DashboardReference:
         )
     else:
         raise DeserializationError("DashboardReference.type required")
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_bcm_dashboards.types.generic_time_stamp
 
         out["created_at"] = (
@@ -88,7 +88,7 @@ def deserialize_aws_json_1_0(data: dict) -> DashboardReference:
         )
     else:
         raise DeserializationError("DashboardReference.created_at required")
-    if "updatedAt" in data:
+    if data.get("updatedAt") is not None:
         import capo_bcm_dashboards.types.generic_time_stamp
 
         out["updated_at"] = (

@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> BotAliasMetadataList:
 
     out: BotAliasMetadataList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_lex_model_building_service.types.bot_alias_metadata.deserialize_json(
                 item

@@ -36,7 +36,7 @@ def serialize_json(value: ChannelNameCondition) -> dict:
 
 def deserialize_json(data: dict) -> ChannelNameCondition:
     out: ChannelNameCondition = {}  # type: ignore[typeddict-item]
-    if "ComparisonOperator" in data:
+    if data.get("ComparisonOperator") is not None:
         import capo_kinesis_video.types.comparison_operator
 
         out["comparison_operator"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> ChannelNameCondition:
                 data["ComparisonOperator"]
             )
         )
-    if "ComparisonValue" in data:
+    if data.get("ComparisonValue") is not None:
         out["comparison_value"] = data["ComparisonValue"]
     return out

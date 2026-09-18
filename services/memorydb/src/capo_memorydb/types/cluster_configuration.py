@@ -97,42 +97,42 @@ def serialize_aws_json_1_1(value: ClusterConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ClusterConfiguration:
     out: ClusterConfiguration = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "NodeType" in data:
+    if data.get("NodeType") is not None:
         out["node_type"] = data["NodeType"]
-    if "Engine" in data:
+    if data.get("Engine") is not None:
         out["engine"] = data["Engine"]
-    if "EngineVersion" in data:
+    if data.get("EngineVersion") is not None:
         out["engine_version"] = data["EngineVersion"]
-    if "MaintenanceWindow" in data:
+    if data.get("MaintenanceWindow") is not None:
         out["maintenance_window"] = data["MaintenanceWindow"]
-    if "TopicArn" in data:
+    if data.get("TopicArn") is not None:
         out["topic_arn"] = data["TopicArn"]
-    if "Port" in data:
+    if data.get("Port") is not None:
         out["port"] = data["Port"]
-    if "ParameterGroupName" in data:
+    if data.get("ParameterGroupName") is not None:
         out["parameter_group_name"] = data["ParameterGroupName"]
-    if "SubnetGroupName" in data:
+    if data.get("SubnetGroupName") is not None:
         out["subnet_group_name"] = data["SubnetGroupName"]
-    if "VpcId" in data:
+    if data.get("VpcId") is not None:
         out["vpc_id"] = data["VpcId"]
-    if "SnapshotRetentionLimit" in data:
+    if data.get("SnapshotRetentionLimit") is not None:
         out["snapshot_retention_limit"] = data["SnapshotRetentionLimit"]
-    if "SnapshotWindow" in data:
+    if data.get("SnapshotWindow") is not None:
         out["snapshot_window"] = data["SnapshotWindow"]
-    if "NumShards" in data:
+    if data.get("NumShards") is not None:
         out["num_shards"] = data["NumShards"]
-    if "Shards" in data:
+    if data.get("Shards") is not None:
         import capo_memorydb.types.shard_details
 
         out["shards"] = capo_memorydb.types.shard_details.deserialize_aws_json_1_1(
             data["Shards"]
         )
-    if "MultiRegionParameterGroupName" in data:
+    if data.get("MultiRegionParameterGroupName") is not None:
         out["multi_region_parameter_group_name"] = data["MultiRegionParameterGroupName"]
-    if "MultiRegionClusterName" in data:
+    if data.get("MultiRegionClusterName") is not None:
         out["multi_region_cluster_name"] = data["MultiRegionClusterName"]
     return out

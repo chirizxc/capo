@@ -31,7 +31,7 @@ def serialize_json(value: ScopeSettings) -> dict:
 
 def deserialize_json(data: dict) -> ScopeSettings:
     out: ScopeSettings = {}  # type: ignore[typeddict-item]
-    if "projectSelectionScope" in data:
+    if data.get("projectSelectionScope") is not None:
         import capo_inspector2.types.project_selection_scope
 
         out["project_selection_scope"] = (

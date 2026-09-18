@@ -225,7 +225,7 @@ def serialize_json(value: RouteVehicleTravelStep) -> dict:
 
 def deserialize_json(data: dict) -> RouteVehicleTravelStep:
     out: RouteVehicleTravelStep = {}  # type: ignore[typeddict-item]
-    if "ContinueHighwayStepDetails" in data:
+    if data.get("ContinueHighwayStepDetails") is not None:
         import capo_geo_routes.types.route_continue_highway_step_details
 
         out["continue_highway_step_details"] = (
@@ -233,7 +233,7 @@ def deserialize_json(data: dict) -> RouteVehicleTravelStep:
                 data["ContinueHighwayStepDetails"]
             )
         )
-    if "ContinueStepDetails" in data:
+    if data.get("ContinueStepDetails") is not None:
         import capo_geo_routes.types.route_continue_step_details
 
         out["continue_step_details"] = (
@@ -241,21 +241,21 @@ def deserialize_json(data: dict) -> RouteVehicleTravelStep:
                 data["ContinueStepDetails"]
             )
         )
-    if "CurrentRoad" in data:
+    if data.get("CurrentRoad") is not None:
         import capo_geo_routes.types.route_road
 
         out["current_road"] = capo_geo_routes.types.route_road.deserialize_json(
             data["CurrentRoad"]
         )
-    if "Distance" in data:
+    if data.get("Distance") is not None:
         out["distance"] = data["Distance"]
     else:
         out["distance"] = 0
-    if "Duration" in data:
+    if data.get("Duration") is not None:
         out["duration"] = data["Duration"]
     else:
         out["duration"] = 0
-    if "EnterHighwayStepDetails" in data:
+    if data.get("EnterHighwayStepDetails") is not None:
         import capo_geo_routes.types.route_enter_highway_step_details
 
         out["enter_highway_step_details"] = (
@@ -263,7 +263,7 @@ def deserialize_json(data: dict) -> RouteVehicleTravelStep:
                 data["EnterHighwayStepDetails"]
             )
         )
-    if "ExitNumber" in data:
+    if data.get("ExitNumber") is not None:
         import capo_geo_routes.types.localized_string_list
 
         out["exit_number"] = (
@@ -271,7 +271,7 @@ def deserialize_json(data: dict) -> RouteVehicleTravelStep:
                 data["ExitNumber"]
             )
         )
-    if "ExitStepDetails" in data:
+    if data.get("ExitStepDetails") is not None:
         import capo_geo_routes.types.route_exit_step_details
 
         out["exit_step_details"] = (
@@ -279,11 +279,11 @@ def deserialize_json(data: dict) -> RouteVehicleTravelStep:
                 data["ExitStepDetails"]
             )
         )
-    if "GeometryOffset" in data:
+    if data.get("GeometryOffset") is not None:
         out["geometry_offset"] = data["GeometryOffset"]
-    if "Instruction" in data:
+    if data.get("Instruction") is not None:
         out["instruction"] = data["Instruction"]
-    if "KeepStepDetails" in data:
+    if data.get("KeepStepDetails") is not None:
         import capo_geo_routes.types.route_keep_step_details
 
         out["keep_step_details"] = (
@@ -291,13 +291,13 @@ def deserialize_json(data: dict) -> RouteVehicleTravelStep:
                 data["KeepStepDetails"]
             )
         )
-    if "NextRoad" in data:
+    if data.get("NextRoad") is not None:
         import capo_geo_routes.types.route_road
 
         out["next_road"] = capo_geo_routes.types.route_road.deserialize_json(
             data["NextRoad"]
         )
-    if "RampStepDetails" in data:
+    if data.get("RampStepDetails") is not None:
         import capo_geo_routes.types.route_ramp_step_details
 
         out["ramp_step_details"] = (
@@ -305,7 +305,7 @@ def deserialize_json(data: dict) -> RouteVehicleTravelStep:
                 data["RampStepDetails"]
             )
         )
-    if "RoundaboutEnterStepDetails" in data:
+    if data.get("RoundaboutEnterStepDetails") is not None:
         import capo_geo_routes.types.route_roundabout_enter_step_details
 
         out["roundabout_enter_step_details"] = (
@@ -313,7 +313,7 @@ def deserialize_json(data: dict) -> RouteVehicleTravelStep:
                 data["RoundaboutEnterStepDetails"]
             )
         )
-    if "RoundaboutExitStepDetails" in data:
+    if data.get("RoundaboutExitStepDetails") is not None:
         import capo_geo_routes.types.route_roundabout_exit_step_details
 
         out["roundabout_exit_step_details"] = (
@@ -321,7 +321,7 @@ def deserialize_json(data: dict) -> RouteVehicleTravelStep:
                 data["RoundaboutExitStepDetails"]
             )
         )
-    if "RoundaboutPassStepDetails" in data:
+    if data.get("RoundaboutPassStepDetails") is not None:
         import capo_geo_routes.types.route_roundabout_pass_step_details
 
         out["roundabout_pass_step_details"] = (
@@ -329,13 +329,13 @@ def deserialize_json(data: dict) -> RouteVehicleTravelStep:
                 data["RoundaboutPassStepDetails"]
             )
         )
-    if "Signpost" in data:
+    if data.get("Signpost") is not None:
         import capo_geo_routes.types.route_signpost
 
         out["signpost"] = capo_geo_routes.types.route_signpost.deserialize_json(
             data["Signpost"]
         )
-    if "TurnStepDetails" in data:
+    if data.get("TurnStepDetails") is not None:
         import capo_geo_routes.types.route_turn_step_details
 
         out["turn_step_details"] = (
@@ -343,7 +343,7 @@ def deserialize_json(data: dict) -> RouteVehicleTravelStep:
                 data["TurnStepDetails"]
             )
         )
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_geo_routes.types.route_vehicle_travel_step_type
 
         out["type"] = (
@@ -353,7 +353,7 @@ def deserialize_json(data: dict) -> RouteVehicleTravelStep:
         )
     else:
         raise DeserializationError("RouteVehicleTravelStep.type required")
-    if "UTurnStepDetails" in data:
+    if data.get("UTurnStepDetails") is not None:
         import capo_geo_routes.types.route_u_turn_step_details
 
         out["u_turn_step_details"] = (

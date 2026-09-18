@@ -30,7 +30,7 @@ def serialize_json(value: DeleteEmailChannelResponse) -> dict:
 
 def deserialize_json(data: dict) -> DeleteEmailChannelResponse:
     out: DeleteEmailChannelResponse = {}  # type: ignore[typeddict-item]
-    if "EmailChannelResponse" in data:
+    if data.get("EmailChannelResponse") is not None:
         import capo_pinpoint.types.email_channel_response
 
         out["email_channel_response"] = (

@@ -75,41 +75,41 @@ def serialize_json(value: UserIdentity) -> dict:
 
 def deserialize_json(data: dict) -> UserIdentity:
     out: UserIdentity = {}  # type: ignore[typeddict-item]
-    if "assumedRole" in data:
+    if data.get("assumedRole") is not None:
         import capo_macie2.types.assumed_role
 
         out["assumed_role"] = capo_macie2.types.assumed_role.deserialize_json(
             data["assumedRole"]
         )
-    if "awsAccount" in data:
+    if data.get("awsAccount") is not None:
         import capo_macie2.types.aws_account
 
         out["aws_account"] = capo_macie2.types.aws_account.deserialize_json(
             data["awsAccount"]
         )
-    if "awsService" in data:
+    if data.get("awsService") is not None:
         import capo_macie2.types.aws_service
 
         out["aws_service"] = capo_macie2.types.aws_service.deserialize_json(
             data["awsService"]
         )
-    if "federatedUser" in data:
+    if data.get("federatedUser") is not None:
         import capo_macie2.types.federated_user
 
         out["federated_user"] = capo_macie2.types.federated_user.deserialize_json(
             data["federatedUser"]
         )
-    if "iamUser" in data:
+    if data.get("iamUser") is not None:
         import capo_macie2.types.iam_user
 
         out["iam_user"] = capo_macie2.types.iam_user.deserialize_json(data["iamUser"])
-    if "root" in data:
+    if data.get("root") is not None:
         import capo_macie2.types.user_identity_root
 
         out["root"] = capo_macie2.types.user_identity_root.deserialize_json(
             data["root"]
         )
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_macie2.types.user_identity_type
 
         out["type"] = capo_macie2.types.user_identity_type.deserialize_json(

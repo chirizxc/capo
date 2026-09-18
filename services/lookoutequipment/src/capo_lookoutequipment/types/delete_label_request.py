@@ -28,11 +28,11 @@ def serialize_aws_json_1_0(value: DeleteLabelRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> DeleteLabelRequest:
     out: DeleteLabelRequest = {}  # type: ignore[typeddict-item]
-    if "LabelGroupName" in data:
+    if data.get("LabelGroupName") is not None:
         out["label_group_name"] = data["LabelGroupName"]
     else:
         raise DeserializationError("DeleteLabelRequest.label_group_name required")
-    if "LabelId" in data:
+    if data.get("LabelId") is not None:
         out["label_id"] = data["LabelId"]
     else:
         raise DeserializationError("DeleteLabelRequest.label_id required")

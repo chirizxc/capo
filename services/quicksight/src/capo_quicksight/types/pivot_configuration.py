@@ -33,9 +33,9 @@ def serialize_json(value: PivotConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> PivotConfiguration:
     out: PivotConfiguration = {}  # type: ignore[typeddict-item]
-    if "LabelColumnName" in data:
+    if data.get("LabelColumnName") is not None:
         out["label_column_name"] = data["LabelColumnName"]
-    if "PivotedLabels" in data:
+    if data.get("PivotedLabels") is not None:
         import capo_quicksight.types.pivoted_label_list
 
         out["pivoted_labels"] = (

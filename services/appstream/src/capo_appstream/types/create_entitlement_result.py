@@ -27,7 +27,7 @@ def serialize_aws_json_1_1(value: CreateEntitlementResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateEntitlementResult:
     out: CreateEntitlementResult = {}  # type: ignore[typeddict-item]
-    if "Entitlement" in data:
+    if data.get("Entitlement") is not None:
         import capo_appstream.types.entitlement
 
         out["entitlement"] = capo_appstream.types.entitlement.deserialize_aws_json_1_1(

@@ -38,16 +38,16 @@ def serialize_json(value: MlResourceDefinition) -> dict:
 
 def deserialize_json(data: dict) -> MlResourceDefinition:
     out: MlResourceDefinition = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
-    if "outputLocation" in data:
+    if data.get("outputLocation") is not None:
         out["output_location"] = data["outputLocation"]
-    if "failureReason" in data:
+    if data.get("failureReason") is not None:
         out["failure_reason"] = data["failureReason"]
-    if "cloudwatchLogUrl" in data:
+    if data.get("cloudwatchLogUrl") is not None:
         out["cloudwatch_log_url"] = data["cloudwatchLogUrl"]
     return out

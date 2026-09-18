@@ -38,18 +38,18 @@ def serialize_json(value: ApplicationSummary) -> dict:
 
 def deserialize_json(data: dict) -> ApplicationSummary:
     out: ApplicationSummary = {}  # type: ignore[typeddict-item]
-    if "applicationId" in data:
+    if data.get("applicationId") is not None:
         out["application_id"] = data["applicationId"]
     else:
         raise DeserializationError("ApplicationSummary.application_id required")
-    if "applicationName" in data:
+    if data.get("applicationName") is not None:
         out["application_name"] = data["applicationName"]
     else:
         raise DeserializationError("ApplicationSummary.application_name required")
-    if "domain" in data:
+    if data.get("domain") is not None:
         out["domain"] = data["domain"]
     else:
         raise DeserializationError("ApplicationSummary.domain required")
-    if "defaultKmsKeyId" in data:
+    if data.get("defaultKmsKeyId") is not None:
         out["default_kms_key_id"] = data["defaultKmsKeyId"]
     return out

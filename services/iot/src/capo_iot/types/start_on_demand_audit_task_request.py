@@ -28,7 +28,7 @@ def serialize_json(value: StartOnDemandAuditTaskRequest) -> dict:
 
 def deserialize_json(data: dict) -> StartOnDemandAuditTaskRequest:
     out: StartOnDemandAuditTaskRequest = {}  # type: ignore[typeddict-item]
-    if "targetCheckNames" in data:
+    if data.get("targetCheckNames") is not None:
         import capo_iot.types.target_audit_check_names
 
         out["target_check_names"] = (

@@ -40,7 +40,7 @@ def serialize_aws_json_1_1(value: CreateTagsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateTagsRequest:
     out: CreateTagsRequest = {}  # type: ignore[typeddict-item]
-    if "configurationIds" in data:
+    if data.get("configurationIds") is not None:
         import capo_application_discovery_service.types.configuration_id_list
 
         out["configuration_ids"] = (
@@ -50,7 +50,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateTagsRequest:
         )
     else:
         raise DeserializationError("CreateTagsRequest.configuration_ids required")
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_application_discovery_service.types.tag_set
 
         out["tags"] = (

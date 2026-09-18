@@ -38,7 +38,7 @@ def serialize_json(value: ListClustersResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListClustersResponse:
     out: ListClustersResponse = {}  # type: ignore[typeddict-item]
-    if "Clusters" in data:
+    if data.get("Clusters") is not None:
         import capo_route53_recovery_control_config.types.__list_of_cluster
 
         out["clusters"] = (
@@ -46,6 +46,6 @@ def deserialize_json(data: dict) -> ListClustersResponse:
                 data["Clusters"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

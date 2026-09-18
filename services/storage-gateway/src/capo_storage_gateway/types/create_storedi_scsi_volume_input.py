@@ -65,35 +65,35 @@ def serialize_aws_json_1_1(value: CreateStorediSCSIVolumeInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateStorediSCSIVolumeInput:
     out: CreateStorediSCSIVolumeInput = {}  # type: ignore[typeddict-item]
-    if "GatewayARN" in data:
+    if data.get("GatewayARN") is not None:
         out["gateway_arn"] = data["GatewayARN"]
     else:
         raise DeserializationError("CreateStorediSCSIVolumeInput.gateway_arn required")
-    if "DiskId" in data:
+    if data.get("DiskId") is not None:
         out["disk_id"] = data["DiskId"]
     else:
         raise DeserializationError("CreateStorediSCSIVolumeInput.disk_id required")
-    if "SnapshotId" in data:
+    if data.get("SnapshotId") is not None:
         out["snapshot_id"] = data["SnapshotId"]
-    if "PreserveExistingData" in data:
+    if data.get("PreserveExistingData") is not None:
         out["preserve_existing_data"] = data["PreserveExistingData"]
     else:
         out["preserve_existing_data"] = False
-    if "TargetName" in data:
+    if data.get("TargetName") is not None:
         out["target_name"] = data["TargetName"]
     else:
         raise DeserializationError("CreateStorediSCSIVolumeInput.target_name required")
-    if "NetworkInterfaceId" in data:
+    if data.get("NetworkInterfaceId") is not None:
         out["network_interface_id"] = data["NetworkInterfaceId"]
     else:
         raise DeserializationError(
             "CreateStorediSCSIVolumeInput.network_interface_id required"
         )
-    if "KMSEncrypted" in data:
+    if data.get("KMSEncrypted") is not None:
         out["kms_encrypted"] = data["KMSEncrypted"]
-    if "KMSKey" in data:
+    if data.get("KMSKey") is not None:
         out["kms_key"] = data["KMSKey"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_storage_gateway.types.tags
 
         out["tags"] = capo_storage_gateway.types.tags.deserialize_aws_json_1_1(

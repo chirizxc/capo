@@ -51,11 +51,11 @@ def serialize_aws_json_1_1(value: ListPriceListsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListPriceListsRequest:
     out: ListPriceListsRequest = {}  # type: ignore[typeddict-item]
-    if "ServiceCode" in data:
+    if data.get("ServiceCode") is not None:
         out["service_code"] = data["ServiceCode"]
     else:
         raise DeserializationError("ListPriceListsRequest.service_code required")
-    if "EffectiveDate" in data:
+    if data.get("EffectiveDate") is not None:
         import capo_pricing.types.effective_date
 
         out["effective_date"] = (
@@ -65,14 +65,14 @@ def deserialize_aws_json_1_1(data: dict) -> ListPriceListsRequest:
         )
     else:
         raise DeserializationError("ListPriceListsRequest.effective_date required")
-    if "RegionCode" in data:
+    if data.get("RegionCode") is not None:
         out["region_code"] = data["RegionCode"]
-    if "CurrencyCode" in data:
+    if data.get("CurrencyCode") is not None:
         out["currency_code"] = data["CurrencyCode"]
     else:
         raise DeserializationError("ListPriceListsRequest.currency_code required")
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
     return out

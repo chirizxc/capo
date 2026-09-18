@@ -23,6 +23,6 @@ def serialize_json(value: AwsEc2LaunchTemplateDataCreditSpecificationDetails) ->
 
 def deserialize_json(data: dict) -> AwsEc2LaunchTemplateDataCreditSpecificationDetails:
     out: AwsEc2LaunchTemplateDataCreditSpecificationDetails = {}  # type: ignore[typeddict-item]
-    if "CpuCredits" in data:
+    if data.get("CpuCredits") is not None:
         out["cpu_credits"] = data["CpuCredits"]
     return out

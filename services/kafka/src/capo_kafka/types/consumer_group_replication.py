@@ -73,7 +73,7 @@ def serialize_json(value: ConsumerGroupReplication) -> dict:
 
 def deserialize_json(data: dict) -> ConsumerGroupReplication:
     out: ConsumerGroupReplication = {}  # type: ignore[typeddict-item]
-    if "consumerGroupsToExclude" in data:
+    if data.get("consumerGroupsToExclude") is not None:
         import capo_kafka.types.__list_of__string_max256
 
         out["consumer_groups_to_exclude"] = (
@@ -81,7 +81,7 @@ def deserialize_json(data: dict) -> ConsumerGroupReplication:
                 data["consumerGroupsToExclude"]
             )
         )
-    if "consumerGroupsToReplicate" in data:
+    if data.get("consumerGroupsToReplicate") is not None:
         import capo_kafka.types.__list_of__string_max256
 
         out["consumer_groups_to_replicate"] = (
@@ -89,15 +89,15 @@ def deserialize_json(data: dict) -> ConsumerGroupReplication:
                 data["consumerGroupsToReplicate"]
             )
         )
-    if "detectAndCopyNewConsumerGroups" in data:
+    if data.get("detectAndCopyNewConsumerGroups") is not None:
         out["detect_and_copy_new_consumer_groups"] = data[
             "detectAndCopyNewConsumerGroups"
         ]
-    if "synchroniseConsumerGroupOffsets" in data:
+    if data.get("synchroniseConsumerGroupOffsets") is not None:
         out["synchronise_consumer_group_offsets"] = data[
             "synchroniseConsumerGroupOffsets"
         ]
-    if "consumerGroupOffsetSyncMode" in data:
+    if data.get("consumerGroupOffsetSyncMode") is not None:
         import capo_kafka.types.consumer_group_offset_sync_mode
 
         out["consumer_group_offset_sync_mode"] = (

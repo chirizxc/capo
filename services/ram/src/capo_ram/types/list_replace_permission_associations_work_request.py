@@ -54,7 +54,7 @@ def serialize_json(value: ListReplacePermissionAssociationsWorkRequest) -> dict:
 
 def deserialize_json(data: dict) -> ListReplacePermissionAssociationsWorkRequest:
     out: ListReplacePermissionAssociationsWorkRequest = {}  # type: ignore[typeddict-item]
-    if "workIds" in data:
+    if data.get("workIds") is not None:
         import capo_ram.types.replace_permission_associations_work_id_list
 
         out["work_ids"] = (
@@ -62,7 +62,7 @@ def deserialize_json(data: dict) -> ListReplacePermissionAssociationsWorkRequest
                 data["workIds"]
             )
         )
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_ram.types.replace_permission_associations_work_status
 
         out["status"] = (
@@ -70,8 +70,8 @@ def deserialize_json(data: dict) -> ListReplacePermissionAssociationsWorkRequest
                 data["status"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
     return out

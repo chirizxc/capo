@@ -30,7 +30,7 @@ def serialize_json(value: DisassociateUserResponse) -> dict:
 
 def deserialize_json(data: dict) -> DisassociateUserResponse:
     out: DisassociateUserResponse = {}  # type: ignore[typeddict-item]
-    if "InstanceUserSummary" in data:
+    if data.get("InstanceUserSummary") is not None:
         import capo_license_manager_user_subscriptions.types.instance_user_summary
 
         out["instance_user_summary"] = (

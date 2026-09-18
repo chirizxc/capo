@@ -79,15 +79,15 @@ def serialize_aws_json_1_1(value: ServiceNowConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ServiceNowConfiguration:
     out: ServiceNowConfiguration = {}  # type: ignore[typeddict-item]
-    if "HostUrl" in data:
+    if data.get("HostUrl") is not None:
         out["host_url"] = data["HostUrl"]
     else:
         raise DeserializationError("ServiceNowConfiguration.host_url required")
-    if "SecretArn" in data:
+    if data.get("SecretArn") is not None:
         out["secret_arn"] = data["SecretArn"]
     else:
         raise DeserializationError("ServiceNowConfiguration.secret_arn required")
-    if "ServiceNowBuildVersion" in data:
+    if data.get("ServiceNowBuildVersion") is not None:
         import capo_kendra.types.service_now_build_version_type
 
         out["service_now_build_version"] = (
@@ -99,7 +99,7 @@ def deserialize_aws_json_1_1(data: dict) -> ServiceNowConfiguration:
         raise DeserializationError(
             "ServiceNowConfiguration.service_now_build_version required"
         )
-    if "KnowledgeArticleConfiguration" in data:
+    if data.get("KnowledgeArticleConfiguration") is not None:
         import capo_kendra.types.service_now_knowledge_article_configuration
 
         out["knowledge_article_configuration"] = (
@@ -107,7 +107,7 @@ def deserialize_aws_json_1_1(data: dict) -> ServiceNowConfiguration:
                 data["KnowledgeArticleConfiguration"]
             )
         )
-    if "ServiceCatalogConfiguration" in data:
+    if data.get("ServiceCatalogConfiguration") is not None:
         import capo_kendra.types.service_now_service_catalog_configuration
 
         out["service_catalog_configuration"] = (
@@ -115,7 +115,7 @@ def deserialize_aws_json_1_1(data: dict) -> ServiceNowConfiguration:
                 data["ServiceCatalogConfiguration"]
             )
         )
-    if "AuthenticationType" in data:
+    if data.get("AuthenticationType") is not None:
         import capo_kendra.types.service_now_authentication_type
 
         out["authentication_type"] = (

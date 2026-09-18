@@ -65,9 +65,9 @@ def serialize_aws_json_1_1(value: DecryptStepDetails) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DecryptStepDetails:
     out: DecryptStepDetails = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_transfer.types.encryption_type
 
         out["type"] = capo_transfer.types.encryption_type.deserialize_aws_json_1_1(
@@ -75,9 +75,9 @@ def deserialize_aws_json_1_1(data: dict) -> DecryptStepDetails:
         )
     else:
         raise DeserializationError("DecryptStepDetails.type required")
-    if "SourceFileLocation" in data:
+    if data.get("SourceFileLocation") is not None:
         out["source_file_location"] = data["SourceFileLocation"]
-    if "OverwriteExisting" in data:
+    if data.get("OverwriteExisting") is not None:
         import capo_transfer.types.overwrite_existing
 
         out["overwrite_existing"] = (
@@ -85,7 +85,7 @@ def deserialize_aws_json_1_1(data: dict) -> DecryptStepDetails:
                 data["OverwriteExisting"]
             )
         )
-    if "DestinationFileLocation" in data:
+    if data.get("DestinationFileLocation") is not None:
         import capo_transfer.types.input_file_location
 
         out["destination_file_location"] = (

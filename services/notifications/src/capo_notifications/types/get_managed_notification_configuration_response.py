@@ -38,31 +38,31 @@ def serialize_json(value: GetManagedNotificationConfigurationResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetManagedNotificationConfigurationResponse:
     out: GetManagedNotificationConfigurationResponse = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError(
             "GetManagedNotificationConfigurationResponse.arn required"
         )
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError(
             "GetManagedNotificationConfigurationResponse.name required"
         )
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
     else:
         raise DeserializationError(
             "GetManagedNotificationConfigurationResponse.description required"
         )
-    if "category" in data:
+    if data.get("category") is not None:
         out["category"] = data["category"]
     else:
         raise DeserializationError(
             "GetManagedNotificationConfigurationResponse.category required"
         )
-    if "subCategory" in data:
+    if data.get("subCategory") is not None:
         out["sub_category"] = data["subCategory"]
     else:
         raise DeserializationError(

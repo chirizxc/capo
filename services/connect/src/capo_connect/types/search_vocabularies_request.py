@@ -60,19 +60,19 @@ def serialize_json(value: SearchVocabulariesRequest) -> dict:
 
 def deserialize_json(data: dict) -> SearchVocabulariesRequest:
     out: SearchVocabulariesRequest = {}  # type: ignore[typeddict-item]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "State" in data:
+    if data.get("State") is not None:
         import capo_connect.types.vocabulary_state
 
         out["state"] = capo_connect.types.vocabulary_state.deserialize_json(
             data["State"]
         )
-    if "NameStartsWith" in data:
+    if data.get("NameStartsWith") is not None:
         out["name_starts_with"] = data["NameStartsWith"]
-    if "LanguageCode" in data:
+    if data.get("LanguageCode") is not None:
         import capo_connect.types.vocabulary_language_code
 
         out["language_code"] = (

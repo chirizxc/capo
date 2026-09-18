@@ -30,7 +30,7 @@ def serialize_aws_json_1_1(value: DescribeApplicationSnapshotResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeApplicationSnapshotResponse:
     out: DescribeApplicationSnapshotResponse = {}  # type: ignore[typeddict-item]
-    if "SnapshotDetails" in data:
+    if data.get("SnapshotDetails") is not None:
         import capo_kinesis_analytics_v2.types.snapshot_details
 
         out["snapshot_details"] = (

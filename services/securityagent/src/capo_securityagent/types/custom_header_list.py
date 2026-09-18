@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> CustomHeaderList:
 
     out: CustomHeaderList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_securityagent.types.custom_header.deserialize_json(item))
     return out

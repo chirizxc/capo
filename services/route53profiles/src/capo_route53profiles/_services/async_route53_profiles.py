@@ -217,10 +217,11 @@ class AsyncRoute53ProfilesClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_route53profiles.types.associate_profile_request.AssociateProfileRequest = {}  # type: ignore[typeddict-item]
-        input_["profile_id"] = profile_id
-        input_["resource_id"] = resource_id
-        input_["name"] = name
+        input_: capo_route53profiles.types.associate_profile_request.AssociateProfileRequest = {
+            "profile_id": profile_id,
+            "resource_id": resource_id,
+            "name": name,
+        }
         if tags is not None:
             input_["tags"] = tags
 
@@ -229,6 +230,7 @@ class AsyncRoute53ProfilesClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def associate_resource_to_profile(
@@ -278,10 +280,11 @@ class AsyncRoute53ProfilesClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_route53profiles.types.associate_resource_to_profile_request.AssociateResourceToProfileRequest = {}  # type: ignore[typeddict-item]
-        input_["profile_id"] = profile_id
-        input_["resource_arn"] = resource_arn
-        input_["name"] = name
+        input_: capo_route53profiles.types.associate_resource_to_profile_request.AssociateResourceToProfileRequest = {
+            "profile_id": profile_id,
+            "resource_arn": resource_arn,
+            "name": name,
+        }
         if resource_properties is not None:
             input_["resource_properties"] = resource_properties
 
@@ -290,6 +293,7 @@ class AsyncRoute53ProfilesClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_profile(
@@ -332,9 +336,10 @@ class AsyncRoute53ProfilesClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_route53profiles.types.create_profile_request.CreateProfileRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        input_["client_token"] = client_token
+        input_: capo_route53profiles.types.create_profile_request.CreateProfileRequest = {
+            "name": name,
+            "client_token": client_token,
+        }
         if tags is not None:
             input_["tags"] = tags
 
@@ -343,6 +348,7 @@ class AsyncRoute53ProfilesClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_profile(
@@ -381,14 +387,16 @@ class AsyncRoute53ProfilesClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_route53profiles.types.delete_profile_request.DeleteProfileRequest = {}  # type: ignore[typeddict-item]
-        input_["profile_id"] = profile_id
+        input_: capo_route53profiles.types.delete_profile_request.DeleteProfileRequest = {
+            "profile_id": profile_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def disassociate_profile(
@@ -430,15 +438,17 @@ class AsyncRoute53ProfilesClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_route53profiles.types.disassociate_profile_request.DisassociateProfileRequest = {}  # type: ignore[typeddict-item]
-        input_["profile_id"] = profile_id
-        input_["resource_id"] = resource_id
+        input_: capo_route53profiles.types.disassociate_profile_request.DisassociateProfileRequest = {
+            "profile_id": profile_id,
+            "resource_id": resource_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def disassociate_resource_from_profile(
@@ -482,15 +492,17 @@ class AsyncRoute53ProfilesClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_route53profiles.types.disassociate_resource_from_profile_request.DisassociateResourceFromProfileRequest = {}  # type: ignore[typeddict-item]
-        input_["profile_id"] = profile_id
-        input_["resource_arn"] = resource_arn
+        input_: capo_route53profiles.types.disassociate_resource_from_profile_request.DisassociateResourceFromProfileRequest = {
+            "profile_id": profile_id,
+            "resource_arn": resource_arn,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_profile(
@@ -528,14 +540,16 @@ class AsyncRoute53ProfilesClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_route53profiles.types.get_profile_request.GetProfileRequest = {}  # type: ignore[typeddict-item]
-        input_["profile_id"] = profile_id
+        input_: capo_route53profiles.types.get_profile_request.GetProfileRequest = {
+            "profile_id": profile_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_profile_association(
@@ -573,14 +587,16 @@ class AsyncRoute53ProfilesClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_route53profiles.types.get_profile_association_request.GetProfileAssociationRequest = {}  # type: ignore[typeddict-item]
-        input_["profile_association_id"] = profile_association_id
+        input_: capo_route53profiles.types.get_profile_association_request.GetProfileAssociationRequest = {
+            "profile_association_id": profile_association_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_profile_resource_association(
@@ -619,14 +635,16 @@ class AsyncRoute53ProfilesClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_route53profiles.types.get_profile_resource_association_request.GetProfileResourceAssociationRequest = {}  # type: ignore[typeddict-item]
-        input_["profile_resource_association_id"] = profile_resource_association_id
+        input_: capo_route53profiles.types.get_profile_resource_association_request.GetProfileResourceAssociationRequest = {
+            "profile_resource_association_id": profile_resource_association_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_profile_associations(
@@ -677,7 +695,7 @@ class AsyncRoute53ProfilesClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_route53profiles.types.list_profile_associations_request.ListProfileAssociationsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_route53profiles.types.list_profile_associations_request.ListProfileAssociationsRequest = {}
         if resource_id is not None:
             input_["resource_id"] = resource_id
         if profile_id is not None:
@@ -692,6 +710,7 @@ class AsyncRoute53ProfilesClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_profile_associations(
@@ -771,8 +790,9 @@ class AsyncRoute53ProfilesClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_route53profiles.types.list_profile_resource_associations_request.ListProfileResourceAssociationsRequest = {}  # type: ignore[typeddict-item]
-        input_["profile_id"] = profile_id
+        input_: capo_route53profiles.types.list_profile_resource_associations_request.ListProfileResourceAssociationsRequest = {
+            "profile_id": profile_id
+        }
         if resource_type is not None:
             input_["resource_type"] = resource_type
         if max_results is not None:
@@ -785,6 +805,7 @@ class AsyncRoute53ProfilesClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_profile_resource_associations(
@@ -854,7 +875,7 @@ class AsyncRoute53ProfilesClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_route53profiles.types.list_profiles_request.ListProfilesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_route53profiles.types.list_profiles_request.ListProfilesRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -865,6 +886,7 @@ class AsyncRoute53ProfilesClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_profiles(
@@ -926,14 +948,16 @@ class AsyncRoute53ProfilesClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_route53profiles.types.list_tags_for_resource_request.ListTagsForResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_route53profiles.types.list_tags_for_resource_request.ListTagsForResourceRequest = {
+            "resource_arn": resource_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def tag_resource(
@@ -973,15 +997,17 @@ class AsyncRoute53ProfilesClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_route53profiles.types.tag_resource_request.TagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tags"] = tags
+        input_: capo_route53profiles.types.tag_resource_request.TagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tags": tags,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def untag_resource(
@@ -1022,15 +1048,17 @@ class AsyncRoute53ProfilesClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_route53profiles.types.untag_resource_request.UntagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tag_keys"] = tag_keys
+        input_: capo_route53profiles.types.untag_resource_request.UntagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tag_keys": tag_keys,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_profile_resource_association(
@@ -1078,8 +1106,9 @@ class AsyncRoute53ProfilesClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_route53profiles.types.update_profile_resource_association_request.UpdateProfileResourceAssociationRequest = {}  # type: ignore[typeddict-item]
-        input_["profile_resource_association_id"] = profile_resource_association_id
+        input_: capo_route53profiles.types.update_profile_resource_association_request.UpdateProfileResourceAssociationRequest = {
+            "profile_resource_association_id": profile_resource_association_id
+        }
         if name is not None:
             input_["name"] = name
         if resource_properties is not None:
@@ -1090,6 +1119,7 @@ class AsyncRoute53ProfilesClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def __aenter__(self) -> Self:

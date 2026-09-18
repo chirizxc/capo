@@ -82,9 +82,9 @@ def serialize_json(value: InlineRedactionPattern) -> dict:
 
 def deserialize_json(data: dict) -> InlineRedactionPattern:
     out: InlineRedactionPattern = {}  # type: ignore[typeddict-item]
-    if "builtInPatternId" in data:
+    if data.get("builtInPatternId") is not None:
         out["built_in_pattern_id"] = data["builtInPatternId"]
-    if "customPattern" in data:
+    if data.get("customPattern") is not None:
         import capo_workspaces_web.types.custom_pattern
 
         out["custom_pattern"] = (
@@ -92,7 +92,7 @@ def deserialize_json(data: dict) -> InlineRedactionPattern:
                 data["customPattern"]
             )
         )
-    if "redactionPlaceHolder" in data:
+    if data.get("redactionPlaceHolder") is not None:
         import capo_workspaces_web.types.redaction_place_holder
 
         out["redaction_place_holder"] = (
@@ -104,7 +104,7 @@ def deserialize_json(data: dict) -> InlineRedactionPattern:
         raise DeserializationError(
             "InlineRedactionPattern.redaction_place_holder required"
         )
-    if "enforcedUrls" in data:
+    if data.get("enforcedUrls") is not None:
         import capo_workspaces_web.types.inline_redaction_urls
 
         out["enforced_urls"] = (
@@ -112,7 +112,7 @@ def deserialize_json(data: dict) -> InlineRedactionPattern:
                 data["enforcedUrls"]
             )
         )
-    if "exemptUrls" in data:
+    if data.get("exemptUrls") is not None:
         import capo_workspaces_web.types.inline_redaction_urls
 
         out["exempt_urls"] = (
@@ -120,6 +120,6 @@ def deserialize_json(data: dict) -> InlineRedactionPattern:
                 data["exemptUrls"]
             )
         )
-    if "confidenceLevel" in data:
+    if data.get("confidenceLevel") is not None:
         out["confidence_level"] = data["confidenceLevel"]
     return out

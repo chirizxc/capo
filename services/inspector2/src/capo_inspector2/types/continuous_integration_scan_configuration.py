@@ -30,7 +30,7 @@ def serialize_json(value: ContinuousIntegrationScanConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> ContinuousIntegrationScanConfiguration:
     out: ContinuousIntegrationScanConfiguration = {}  # type: ignore[typeddict-item]
-    if "supportedEvents" in data:
+    if data.get("supportedEvents") is not None:
         import capo_inspector2.types.continuous_integration_scan_supported_events
 
         out["supported_events"] = (

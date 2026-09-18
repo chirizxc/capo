@@ -50,21 +50,21 @@ def serialize_aws_json_1_1(value: CreateDatasetGroupRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateDatasetGroupRequest:
     out: CreateDatasetGroupRequest = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("CreateDatasetGroupRequest.name required")
-    if "roleArn" in data:
+    if data.get("roleArn") is not None:
         out["role_arn"] = data["roleArn"]
-    if "kmsKeyArn" in data:
+    if data.get("kmsKeyArn") is not None:
         out["kms_key_arn"] = data["kmsKeyArn"]
-    if "domain" in data:
+    if data.get("domain") is not None:
         import capo_personalize.types.domain
 
         out["domain"] = capo_personalize.types.domain.deserialize_aws_json_1_1(
             data["domain"]
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_personalize.types.tags
 
         out["tags"] = capo_personalize.types.tags.deserialize_aws_json_1_1(data["tags"])

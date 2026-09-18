@@ -51,15 +51,15 @@ def serialize_aws_json_1_1(value: IdentityProviderDetails) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> IdentityProviderDetails:
     out: IdentityProviderDetails = {}  # type: ignore[typeddict-item]
-    if "Url" in data:
+    if data.get("Url") is not None:
         out["url"] = data["Url"]
-    if "InvocationRole" in data:
+    if data.get("InvocationRole") is not None:
         out["invocation_role"] = data["InvocationRole"]
-    if "DirectoryId" in data:
+    if data.get("DirectoryId") is not None:
         out["directory_id"] = data["DirectoryId"]
-    if "Function" in data:
+    if data.get("Function") is not None:
         out["function"] = data["Function"]
-    if "SftpAuthenticationMethods" in data:
+    if data.get("SftpAuthenticationMethods") is not None:
         import capo_transfer.types.sftp_authentication_methods
 
         out["sftp_authentication_methods"] = (

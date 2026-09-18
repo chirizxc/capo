@@ -38,21 +38,21 @@ def serialize_json(value: StaticIpConnectionInfo) -> dict:
 
 def deserialize_json(data: dict) -> StaticIpConnectionInfo:
     out: StaticIpConnectionInfo = {}  # type: ignore[typeddict-item]
-    if "IpAddress" in data:
+    if data.get("IpAddress") is not None:
         out["ip_address"] = data["IpAddress"]
     else:
         raise DeserializationError("StaticIpConnectionInfo.ip_address required")
-    if "Mask" in data:
+    if data.get("Mask") is not None:
         out["mask"] = data["Mask"]
     else:
         raise DeserializationError("StaticIpConnectionInfo.mask required")
-    if "Dns" in data:
+    if data.get("Dns") is not None:
         import capo_panorama.types.dns_list
 
         out["dns"] = capo_panorama.types.dns_list.deserialize_json(data["Dns"])
     else:
         raise DeserializationError("StaticIpConnectionInfo.dns required")
-    if "DefaultGateway" in data:
+    if data.get("DefaultGateway") is not None:
         out["default_gateway"] = data["DefaultGateway"]
     else:
         raise DeserializationError("StaticIpConnectionInfo.default_gateway required")

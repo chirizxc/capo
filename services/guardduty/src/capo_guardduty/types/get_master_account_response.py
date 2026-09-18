@@ -25,7 +25,7 @@ def serialize_json(value: GetMasterAccountResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetMasterAccountResponse:
     out: GetMasterAccountResponse = {}  # type: ignore[typeddict-item]
-    if "master" in data:
+    if data.get("master") is not None:
         import capo_guardduty.types.master
 
         out["master"] = capo_guardduty.types.master.deserialize_json(data["master"])

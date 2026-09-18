@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: UpdateDeploymentGroupOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateDeploymentGroupOutput:
     out: UpdateDeploymentGroupOutput = {}  # type: ignore[typeddict-item]
-    if "hooksNotCleanedUp" in data:
+    if data.get("hooksNotCleanedUp") is not None:
         import capo_codedeploy.types.auto_scaling_group_list
 
         out["hooks_not_cleaned_up"] = (

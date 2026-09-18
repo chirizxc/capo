@@ -30,7 +30,7 @@ def serialize_aws_json_1_1(value: BatchDeleteAgentsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> BatchDeleteAgentsRequest:
     out: BatchDeleteAgentsRequest = {}  # type: ignore[typeddict-item]
-    if "deleteAgents" in data:
+    if data.get("deleteAgents") is not None:
         import capo_application_discovery_service.types.delete_agents
 
         out["delete_agents"] = (

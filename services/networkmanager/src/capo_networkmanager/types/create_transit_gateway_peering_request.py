@@ -42,22 +42,22 @@ def serialize_json(value: CreateTransitGatewayPeeringRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateTransitGatewayPeeringRequest:
     out: CreateTransitGatewayPeeringRequest = {}  # type: ignore[typeddict-item]
-    if "CoreNetworkId" in data:
+    if data.get("CoreNetworkId") is not None:
         out["core_network_id"] = data["CoreNetworkId"]
     else:
         raise DeserializationError(
             "CreateTransitGatewayPeeringRequest.core_network_id required"
         )
-    if "TransitGatewayArn" in data:
+    if data.get("TransitGatewayArn") is not None:
         out["transit_gateway_arn"] = data["TransitGatewayArn"]
     else:
         raise DeserializationError(
             "CreateTransitGatewayPeeringRequest.transit_gateway_arn required"
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_networkmanager.types.tag_list
 
         out["tags"] = capo_networkmanager.types.tag_list.deserialize_json(data["Tags"])
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
     return out

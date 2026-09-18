@@ -123,15 +123,15 @@ def serialize_json(value: UpdateAgentRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateAgentRequest:
     out: UpdateAgentRequest = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("UpdateAgentRequest.name required")
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "IconId" in data:
+    if data.get("IconId") is not None:
         out["icon_id"] = data["IconId"]
-    if "StarterPrompts" in data:
+    if data.get("StarterPrompts") is not None:
         import capo_quicksight.types.starter_prompt_list
 
         out["starter_prompts"] = (
@@ -139,9 +139,9 @@ def deserialize_json(data: dict) -> UpdateAgentRequest:
                 data["StarterPrompts"]
             )
         )
-    if "WelcomeMessage" in data:
+    if data.get("WelcomeMessage") is not None:
         out["welcome_message"] = data["WelcomeMessage"]
-    if "CustomPromptInput" in data:
+    if data.get("CustomPromptInput") is not None:
         import capo_quicksight.types.custom_prompt_input
 
         out["custom_prompt_input"] = (
@@ -149,7 +149,7 @@ def deserialize_json(data: dict) -> UpdateAgentRequest:
                 data["CustomPromptInput"]
             )
         )
-    if "SpacesToAdd" in data:
+    if data.get("SpacesToAdd") is not None:
         import capo_quicksight.types.update_agent_request_spaces_to_add_list
 
         out["spaces_to_add"] = (
@@ -157,7 +157,7 @@ def deserialize_json(data: dict) -> UpdateAgentRequest:
                 data["SpacesToAdd"]
             )
         )
-    if "SpacesToRemove" in data:
+    if data.get("SpacesToRemove") is not None:
         import capo_quicksight.types.update_agent_request_spaces_to_remove_list
 
         out["spaces_to_remove"] = (
@@ -165,7 +165,7 @@ def deserialize_json(data: dict) -> UpdateAgentRequest:
                 data["SpacesToRemove"]
             )
         )
-    if "ActionConnectorsToAdd" in data:
+    if data.get("ActionConnectorsToAdd") is not None:
         import capo_quicksight.types.update_agent_request_action_connectors_to_add_list
 
         out["action_connectors_to_add"] = (
@@ -173,7 +173,7 @@ def deserialize_json(data: dict) -> UpdateAgentRequest:
                 data["ActionConnectorsToAdd"]
             )
         )
-    if "ActionConnectorsToRemove" in data:
+    if data.get("ActionConnectorsToRemove") is not None:
         import capo_quicksight.types.update_agent_request_action_connectors_to_remove_list
 
         out["action_connectors_to_remove"] = (

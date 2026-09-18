@@ -74,7 +74,7 @@ def serialize_aws_json_1_0(value: AgreementEntitlement) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> AgreementEntitlement:
     out: AgreementEntitlement = {}  # type: ignore[typeddict-item]
-    if "resource" in data:
+    if data.get("resource") is not None:
         import capo_marketplace_agreement.types.resource
 
         out["resource"] = (
@@ -82,11 +82,11 @@ def deserialize_aws_json_1_0(data: dict) -> AgreementEntitlement:
                 data["resource"]
             )
         )
-    if "type" in data:
+    if data.get("type") is not None:
         out["type"] = data["type"]
-    if "registrationToken" in data:
+    if data.get("registrationToken") is not None:
         out["registration_token"] = data["registrationToken"]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_marketplace_agreement.types.agreement_entitlement_status
 
         out["status"] = (
@@ -94,7 +94,7 @@ def deserialize_aws_json_1_0(data: dict) -> AgreementEntitlement:
                 data["status"]
             )
         )
-    if "statusReasonCode" in data:
+    if data.get("statusReasonCode") is not None:
         import capo_marketplace_agreement.types.agreement_entitlement_status_reason_code
 
         out["status_reason_code"] = (
@@ -102,6 +102,6 @@ def deserialize_aws_json_1_0(data: dict) -> AgreementEntitlement:
                 data["statusReasonCode"]
             )
         )
-    if "licenseArn" in data:
+    if data.get("licenseArn") is not None:
         out["license_arn"] = data["licenseArn"]
     return out

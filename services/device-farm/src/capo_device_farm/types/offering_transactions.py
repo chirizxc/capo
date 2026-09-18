@@ -27,6 +27,8 @@ def deserialize_aws_json_1_1(data: list) -> OfferingTransactions:
 
     out: OfferingTransactions = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_device_farm.types.offering_transaction.deserialize_aws_json_1_1(item)
         )

@@ -90,7 +90,7 @@ def serialize_aws_json_1_1(value: DatabaseConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DatabaseConfiguration:
     out: DatabaseConfiguration = {}  # type: ignore[typeddict-item]
-    if "DatabaseEngineType" in data:
+    if data.get("DatabaseEngineType") is not None:
         import capo_kendra.types.database_engine_type
 
         out["database_engine_type"] = (
@@ -102,7 +102,7 @@ def deserialize_aws_json_1_1(data: dict) -> DatabaseConfiguration:
         raise DeserializationError(
             "DatabaseConfiguration.database_engine_type required"
         )
-    if "ConnectionConfiguration" in data:
+    if data.get("ConnectionConfiguration") is not None:
         import capo_kendra.types.connection_configuration
 
         out["connection_configuration"] = (
@@ -114,7 +114,7 @@ def deserialize_aws_json_1_1(data: dict) -> DatabaseConfiguration:
         raise DeserializationError(
             "DatabaseConfiguration.connection_configuration required"
         )
-    if "VpcConfiguration" in data:
+    if data.get("VpcConfiguration") is not None:
         import capo_kendra.types.data_source_vpc_configuration
 
         out["vpc_configuration"] = (
@@ -122,7 +122,7 @@ def deserialize_aws_json_1_1(data: dict) -> DatabaseConfiguration:
                 data["VpcConfiguration"]
             )
         )
-    if "ColumnConfiguration" in data:
+    if data.get("ColumnConfiguration") is not None:
         import capo_kendra.types.column_configuration
 
         out["column_configuration"] = (
@@ -134,7 +134,7 @@ def deserialize_aws_json_1_1(data: dict) -> DatabaseConfiguration:
         raise DeserializationError(
             "DatabaseConfiguration.column_configuration required"
         )
-    if "AclConfiguration" in data:
+    if data.get("AclConfiguration") is not None:
         import capo_kendra.types.acl_configuration
 
         out["acl_configuration"] = (
@@ -142,7 +142,7 @@ def deserialize_aws_json_1_1(data: dict) -> DatabaseConfiguration:
                 data["AclConfiguration"]
             )
         )
-    if "SqlConfiguration" in data:
+    if data.get("SqlConfiguration") is not None:
         import capo_kendra.types.sql_configuration
 
         out["sql_configuration"] = (

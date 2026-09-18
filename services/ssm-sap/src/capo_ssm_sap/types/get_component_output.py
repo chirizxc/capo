@@ -34,13 +34,13 @@ def serialize_json(value: GetComponentOutput) -> dict:
 
 def deserialize_json(data: dict) -> GetComponentOutput:
     out: GetComponentOutput = {}  # type: ignore[typeddict-item]
-    if "Component" in data:
+    if data.get("Component") is not None:
         import capo_ssm_sap.types.component
 
         out["component"] = capo_ssm_sap.types.component.deserialize_json(
             data["Component"]
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_ssm_sap.types.tag_map
 
         out["tags"] = capo_ssm_sap.types.tag_map.deserialize_json(data["Tags"])

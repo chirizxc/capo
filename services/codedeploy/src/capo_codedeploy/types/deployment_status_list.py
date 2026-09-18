@@ -25,6 +25,8 @@ def deserialize_aws_json_1_1(data: list) -> DeploymentStatusList:
 
     out: DeploymentStatusList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_codedeploy.types.deployment_status.deserialize_aws_json_1_1(item)
         )

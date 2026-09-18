@@ -35,11 +35,11 @@ def serialize_aws_json_1_0(value: UpdateLabelGroupRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> UpdateLabelGroupRequest:
     out: UpdateLabelGroupRequest = {}  # type: ignore[typeddict-item]
-    if "LabelGroupName" in data:
+    if data.get("LabelGroupName") is not None:
         out["label_group_name"] = data["LabelGroupName"]
     else:
         raise DeserializationError("UpdateLabelGroupRequest.label_group_name required")
-    if "FaultCodes" in data:
+    if data.get("FaultCodes") is not None:
         import capo_lookoutequipment.types.fault_codes
 
         out["fault_codes"] = (

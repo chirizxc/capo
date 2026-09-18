@@ -44,19 +44,19 @@ def serialize_aws_json_1_1(value: PutApprovalResultInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PutApprovalResultInput:
     out: PutApprovalResultInput = {}  # type: ignore[typeddict-item]
-    if "pipelineName" in data:
+    if data.get("pipelineName") is not None:
         out["pipeline_name"] = data["pipelineName"]
     else:
         raise DeserializationError("PutApprovalResultInput.pipeline_name required")
-    if "stageName" in data:
+    if data.get("stageName") is not None:
         out["stage_name"] = data["stageName"]
     else:
         raise DeserializationError("PutApprovalResultInput.stage_name required")
-    if "actionName" in data:
+    if data.get("actionName") is not None:
         out["action_name"] = data["actionName"]
     else:
         raise DeserializationError("PutApprovalResultInput.action_name required")
-    if "result" in data:
+    if data.get("result") is not None:
         import capo_codepipeline.types.approval_result
 
         out["result"] = (
@@ -66,7 +66,7 @@ def deserialize_aws_json_1_1(data: dict) -> PutApprovalResultInput:
         )
     else:
         raise DeserializationError("PutApprovalResultInput.result required")
-    if "token" in data:
+    if data.get("token") is not None:
         out["token"] = data["token"]
     else:
         raise DeserializationError("PutApprovalResultInput.token required")

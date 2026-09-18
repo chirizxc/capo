@@ -152,19 +152,19 @@ def serialize_aws_json_1_1(value: RateBasedStatementCustomKey) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RateBasedStatementCustomKey:
     out: RateBasedStatementCustomKey = {}  # type: ignore[typeddict-item]
-    if "Header" in data:
+    if data.get("Header") is not None:
         import capo_wafv2.types.rate_limit_header
 
         out["header"] = capo_wafv2.types.rate_limit_header.deserialize_aws_json_1_1(
             data["Header"]
         )
-    if "Cookie" in data:
+    if data.get("Cookie") is not None:
         import capo_wafv2.types.rate_limit_cookie
 
         out["cookie"] = capo_wafv2.types.rate_limit_cookie.deserialize_aws_json_1_1(
             data["Cookie"]
         )
-    if "QueryArgument" in data:
+    if data.get("QueryArgument") is not None:
         import capo_wafv2.types.rate_limit_query_argument
 
         out["query_argument"] = (
@@ -172,7 +172,7 @@ def deserialize_aws_json_1_1(data: dict) -> RateBasedStatementCustomKey:
                 data["QueryArgument"]
             )
         )
-    if "QueryString" in data:
+    if data.get("QueryString") is not None:
         import capo_wafv2.types.rate_limit_query_string
 
         out["query_string"] = (
@@ -180,7 +180,7 @@ def deserialize_aws_json_1_1(data: dict) -> RateBasedStatementCustomKey:
                 data["QueryString"]
             )
         )
-    if "HTTPMethod" in data:
+    if data.get("HTTPMethod") is not None:
         import capo_wafv2.types.rate_limit_http_method
 
         out["http_method"] = (
@@ -188,7 +188,7 @@ def deserialize_aws_json_1_1(data: dict) -> RateBasedStatementCustomKey:
                 data["HTTPMethod"]
             )
         )
-    if "ForwardedIP" in data:
+    if data.get("ForwardedIP") is not None:
         import capo_wafv2.types.rate_limit_forwarded_ip
 
         out["forwarded_ip"] = (
@@ -196,11 +196,11 @@ def deserialize_aws_json_1_1(data: dict) -> RateBasedStatementCustomKey:
                 data["ForwardedIP"]
             )
         )
-    if "IP" in data:
+    if data.get("IP") is not None:
         import capo_wafv2.types.rate_limit_ip
 
         out["ip"] = capo_wafv2.types.rate_limit_ip.deserialize_aws_json_1_1(data["IP"])
-    if "LabelNamespace" in data:
+    if data.get("LabelNamespace") is not None:
         import capo_wafv2.types.rate_limit_label_namespace
 
         out["label_namespace"] = (
@@ -208,13 +208,13 @@ def deserialize_aws_json_1_1(data: dict) -> RateBasedStatementCustomKey:
                 data["LabelNamespace"]
             )
         )
-    if "UriPath" in data:
+    if data.get("UriPath") is not None:
         import capo_wafv2.types.rate_limit_uri_path
 
         out["uri_path"] = capo_wafv2.types.rate_limit_uri_path.deserialize_aws_json_1_1(
             data["UriPath"]
         )
-    if "JA3Fingerprint" in data:
+    if data.get("JA3Fingerprint") is not None:
         import capo_wafv2.types.rate_limit_ja3_fingerprint
 
         out["ja3_fingerprint"] = (
@@ -222,7 +222,7 @@ def deserialize_aws_json_1_1(data: dict) -> RateBasedStatementCustomKey:
                 data["JA3Fingerprint"]
             )
         )
-    if "JA4Fingerprint" in data:
+    if data.get("JA4Fingerprint") is not None:
         import capo_wafv2.types.rate_limit_ja4_fingerprint
 
         out["ja4_fingerprint"] = (
@@ -230,7 +230,7 @@ def deserialize_aws_json_1_1(data: dict) -> RateBasedStatementCustomKey:
                 data["JA4Fingerprint"]
             )
         )
-    if "ASN" in data:
+    if data.get("ASN") is not None:
         import capo_wafv2.types.rate_limit_asn
 
         out["asn"] = capo_wafv2.types.rate_limit_asn.deserialize_aws_json_1_1(

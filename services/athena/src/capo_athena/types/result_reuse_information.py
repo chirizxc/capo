@@ -22,7 +22,7 @@ def serialize_aws_json_1_1(value: ResultReuseInformation) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ResultReuseInformation:
     out: ResultReuseInformation = {}  # type: ignore[typeddict-item]
-    if "ReusedPreviousResult" in data:
+    if data.get("ReusedPreviousResult") is not None:
         out["reused_previous_result"] = data["ReusedPreviousResult"]
     else:
         out["reused_previous_result"] = False

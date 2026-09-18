@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> PrimaryAttributeValueFilters:
 
     out: PrimaryAttributeValueFilters = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_connect.types.primary_attribute_value_filter.deserialize_json(item)
         )

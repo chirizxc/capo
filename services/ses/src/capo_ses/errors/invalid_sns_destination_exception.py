@@ -61,15 +61,20 @@ class InvalidSNSDestinationException(ServiceError):
 
     code: str | None = "InvalidSNSDestinationException"
 
-    def __init__(self, data: InvalidSNSDestinationException_):
+    def __init__(
+        self, data: InvalidSNSDestinationException_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="InvalidSNSDestinationException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_query(cls, el: Element) -> "InvalidSNSDestinationException":
-        return cls(deserialize_query(el))
+    def from_query(
+        cls, el: Element, message: str | None = None
+    ) -> "InvalidSNSDestinationException":
+        return cls(deserialize_query(el), message)

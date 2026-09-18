@@ -32,7 +32,7 @@ def serialize_json(value: TraceLocation) -> dict:
 
 def deserialize_json(data: dict) -> TraceLocation:
     out: TraceLocation = {}  # type: ignore[typeddict-item]
-    if "locationType" in data:
+    if data.get("locationType") is not None:
         import capo_nova_act.types.trace_location_type
 
         out["location_type"] = capo_nova_act.types.trace_location_type.deserialize_json(
@@ -40,7 +40,7 @@ def deserialize_json(data: dict) -> TraceLocation:
         )
     else:
         raise DeserializationError("TraceLocation.location_type required")
-    if "location" in data:
+    if data.get("location") is not None:
         out["location"] = data["location"]
     else:
         raise DeserializationError("TraceLocation.location required")

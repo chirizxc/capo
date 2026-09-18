@@ -44,7 +44,7 @@ def serialize_json(value: UpdateGlobalSettingsRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateGlobalSettingsRequest:
     out: UpdateGlobalSettingsRequest = {}  # type: ignore[typeddict-item]
-    if "BusinessCalling" in data:
+    if data.get("BusinessCalling") is not None:
         import capo_chime.types.business_calling_settings
 
         out["business_calling"] = (
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> UpdateGlobalSettingsRequest:
                 data["BusinessCalling"]
             )
         )
-    if "VoiceConnector" in data:
+    if data.get("VoiceConnector") is not None:
         import capo_chime.types.voice_connector_settings
 
         out["voice_connector"] = (

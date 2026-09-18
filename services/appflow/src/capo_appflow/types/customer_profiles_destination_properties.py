@@ -29,12 +29,12 @@ def serialize_json(value: CustomerProfilesDestinationProperties) -> dict:
 
 def deserialize_json(data: dict) -> CustomerProfilesDestinationProperties:
     out: CustomerProfilesDestinationProperties = {}  # type: ignore[typeddict-item]
-    if "domainName" in data:
+    if data.get("domainName") is not None:
         out["domain_name"] = data["domainName"]
     else:
         raise DeserializationError(
             "CustomerProfilesDestinationProperties.domain_name required"
         )
-    if "objectTypeName" in data:
+    if data.get("objectTypeName") is not None:
         out["object_type_name"] = data["objectTypeName"]
     return out

@@ -75,21 +75,21 @@ def serialize_json(value: Deployment) -> dict:
 
 def deserialize_json(data: dict) -> Deployment:
     out: Deployment = {}  # type: ignore[typeddict-item]
-    if "targetArn" in data:
+    if data.get("targetArn") is not None:
         out["target_arn"] = data["targetArn"]
-    if "revisionId" in data:
+    if data.get("revisionId") is not None:
         out["revision_id"] = data["revisionId"]
-    if "deploymentId" in data:
+    if data.get("deploymentId") is not None:
         out["deployment_id"] = data["deploymentId"]
-    if "deploymentName" in data:
+    if data.get("deploymentName") is not None:
         out["deployment_name"] = data["deploymentName"]
-    if "creationTimestamp" in data:
+    if data.get("creationTimestamp") is not None:
         import capo_greengrassv2.types.timestamp
 
         out["creation_timestamp"] = capo_greengrassv2.types.timestamp.deserialize_json(
             data["creationTimestamp"]
         )
-    if "deploymentStatus" in data:
+    if data.get("deploymentStatus") is not None:
         import capo_greengrassv2.types.deployment_status
 
         out["deployment_status"] = (
@@ -97,10 +97,10 @@ def deserialize_json(data: dict) -> Deployment:
                 data["deploymentStatus"]
             )
         )
-    if "isLatestForTarget" in data:
+    if data.get("isLatestForTarget") is not None:
         out["is_latest_for_target"] = data["isLatestForTarget"]
     else:
         out["is_latest_for_target"] = False
-    if "parentTargetArn" in data:
+    if data.get("parentTargetArn") is not None:
         out["parent_target_arn"] = data["parentTargetArn"]
     return out

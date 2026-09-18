@@ -32,9 +32,9 @@ def serialize_aws_json_1_1(value: SecurityConfigurationSummary) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SecurityConfigurationSummary:
     out: SecurityConfigurationSummary = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "CreationDateTime" in data:
+    if data.get("CreationDateTime") is not None:
         import capo_emr.types.date
 
         out["creation_date_time"] = capo_emr.types.date.deserialize_aws_json_1_1(

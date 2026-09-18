@@ -75,17 +75,17 @@ def serialize_json(value: CreateDataProtectionSettingsRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateDataProtectionSettingsRequest:
     out: CreateDataProtectionSettingsRequest = {}  # type: ignore[typeddict-item]
-    if "displayName" in data:
+    if data.get("displayName") is not None:
         out["display_name"] = data["displayName"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_workspaces_web.types.tag_list
 
         out["tags"] = capo_workspaces_web.types.tag_list.deserialize_json(data["tags"])
-    if "customerManagedKey" in data:
+    if data.get("customerManagedKey") is not None:
         out["customer_managed_key"] = data["customerManagedKey"]
-    if "additionalEncryptionContext" in data:
+    if data.get("additionalEncryptionContext") is not None:
         import capo_workspaces_web.types.encryption_context_map
 
         out["additional_encryption_context"] = (
@@ -93,7 +93,7 @@ def deserialize_json(data: dict) -> CreateDataProtectionSettingsRequest:
                 data["additionalEncryptionContext"]
             )
         )
-    if "inlineRedactionConfiguration" in data:
+    if data.get("inlineRedactionConfiguration") is not None:
         import capo_workspaces_web.types.inline_redaction_configuration
 
         out["inline_redaction_configuration"] = (
@@ -101,6 +101,6 @@ def deserialize_json(data: dict) -> CreateDataProtectionSettingsRequest:
                 data["inlineRedactionConfiguration"]
             )
         )
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     return out

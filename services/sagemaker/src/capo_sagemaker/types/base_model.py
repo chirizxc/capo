@@ -37,10 +37,10 @@ def serialize_aws_json_1_1(value: BaseModel) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> BaseModel:
     out: BaseModel = {}  # type: ignore[typeddict-item]
-    if "HubContentName" in data:
+    if data.get("HubContentName") is not None:
         out["hub_content_name"] = data["HubContentName"]
-    if "HubContentVersion" in data:
+    if data.get("HubContentVersion") is not None:
         out["hub_content_version"] = data["HubContentVersion"]
-    if "RecipeName" in data:
+    if data.get("RecipeName") is not None:
         out["recipe_name"] = data["RecipeName"]
     return out

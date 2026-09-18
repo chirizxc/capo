@@ -37,10 +37,10 @@ def serialize_json(value: AwsRedshiftClusterDeferredMaintenanceWindow) -> dict:
 
 def deserialize_json(data: dict) -> AwsRedshiftClusterDeferredMaintenanceWindow:
     out: AwsRedshiftClusterDeferredMaintenanceWindow = {}  # type: ignore[typeddict-item]
-    if "DeferMaintenanceEndTime" in data:
+    if data.get("DeferMaintenanceEndTime") is not None:
         out["defer_maintenance_end_time"] = data["DeferMaintenanceEndTime"]
-    if "DeferMaintenanceIdentifier" in data:
+    if data.get("DeferMaintenanceIdentifier") is not None:
         out["defer_maintenance_identifier"] = data["DeferMaintenanceIdentifier"]
-    if "DeferMaintenanceStartTime" in data:
+    if data.get("DeferMaintenanceStartTime") is not None:
         out["defer_maintenance_start_time"] = data["DeferMaintenanceStartTime"]
     return out

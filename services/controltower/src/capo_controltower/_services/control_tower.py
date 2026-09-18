@@ -206,7 +206,7 @@ class ControlTowerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_controltower.types.disable_control_input.DisableControlInput = {}  # type: ignore[typeddict-item]
+        input_: capo_controltower.types.disable_control_input.DisableControlInput = {}
         if control_identifier is not None:
             input_["control_identifier"] = control_identifier
         if target_identifier is not None:
@@ -219,6 +219,7 @@ class ControlTowerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def __enter__(self) -> Self:

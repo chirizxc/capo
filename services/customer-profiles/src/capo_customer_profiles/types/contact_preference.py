@@ -42,13 +42,13 @@ def serialize_json(value: ContactPreference) -> dict:
 
 def deserialize_json(data: dict) -> ContactPreference:
     out: ContactPreference = {}  # type: ignore[typeddict-item]
-    if "KeyName" in data:
+    if data.get("KeyName") is not None:
         out["key_name"] = data["KeyName"]
-    if "KeyValue" in data:
+    if data.get("KeyValue") is not None:
         out["key_value"] = data["KeyValue"]
-    if "ProfileId" in data:
+    if data.get("ProfileId") is not None:
         out["profile_id"] = data["ProfileId"]
-    if "ContactType" in data:
+    if data.get("ContactType") is not None:
         import capo_customer_profiles.types.contact_type
 
         out["contact_type"] = (

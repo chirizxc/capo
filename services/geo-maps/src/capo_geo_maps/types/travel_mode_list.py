@@ -14,4 +14,4 @@ def serialize_json(value: TravelModeList) -> list:
 
 
 def deserialize_json(data: list) -> TravelModeList:
-    return list(data)
+    return [item for item in data if item is not None]

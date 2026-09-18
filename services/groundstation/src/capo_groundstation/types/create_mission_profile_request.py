@@ -86,17 +86,17 @@ def serialize_json(value: CreateMissionProfileRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateMissionProfileRequest:
     out: CreateMissionProfileRequest = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("CreateMissionProfileRequest.name required")
-    if "contactPrePassDurationSeconds" in data:
+    if data.get("contactPrePassDurationSeconds") is not None:
         out["contact_pre_pass_duration_seconds"] = data["contactPrePassDurationSeconds"]
-    if "contactPostPassDurationSeconds" in data:
+    if data.get("contactPostPassDurationSeconds") is not None:
         out["contact_post_pass_duration_seconds"] = data[
             "contactPostPassDurationSeconds"
         ]
-    if "minimumViableContactDurationSeconds" in data:
+    if data.get("minimumViableContactDurationSeconds") is not None:
         out["minimum_viable_contact_duration_seconds"] = data[
             "minimumViableContactDurationSeconds"
         ]
@@ -104,7 +104,7 @@ def deserialize_json(data: dict) -> CreateMissionProfileRequest:
         raise DeserializationError(
             "CreateMissionProfileRequest.minimum_viable_contact_duration_seconds required"
         )
-    if "dataflowEdges" in data:
+    if data.get("dataflowEdges") is not None:
         import capo_groundstation.types.dataflow_edge_list
 
         out["dataflow_edges"] = (
@@ -116,24 +116,24 @@ def deserialize_json(data: dict) -> CreateMissionProfileRequest:
         raise DeserializationError(
             "CreateMissionProfileRequest.dataflow_edges required"
         )
-    if "trackingConfigArn" in data:
+    if data.get("trackingConfigArn") is not None:
         out["tracking_config_arn"] = data["trackingConfigArn"]
     else:
         raise DeserializationError(
             "CreateMissionProfileRequest.tracking_config_arn required"
         )
-    if "telemetrySinkConfigArn" in data:
+    if data.get("telemetrySinkConfigArn") is not None:
         out["telemetry_sink_config_arn"] = data["telemetrySinkConfigArn"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_groundstation.types.tags_map
 
         out["tags"] = capo_groundstation.types.tags_map.deserialize_json(data["tags"])
-    if "streamsKmsKey" in data:
+    if data.get("streamsKmsKey") is not None:
         import capo_groundstation.types.kms_key
 
         out["streams_kms_key"] = capo_groundstation.types.kms_key.deserialize_json(
             data["streamsKmsKey"]
         )
-    if "streamsKmsRole" in data:
+    if data.get("streamsKmsRole") is not None:
         out["streams_kms_role"] = data["streamsKmsRole"]
     return out

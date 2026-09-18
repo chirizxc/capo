@@ -25,6 +25,8 @@ def deserialize_json(data: list) -> LinkRoutingRuleList:
 
     out: LinkRoutingRuleList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_rtbfabric.types.link_routing_rule_summary.deserialize_json(item)
         )

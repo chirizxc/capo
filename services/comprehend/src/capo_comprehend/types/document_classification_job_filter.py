@@ -51,15 +51,15 @@ def serialize_aws_json_1_1(value: DocumentClassificationJobFilter) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DocumentClassificationJobFilter:
     out: DocumentClassificationJobFilter = {}  # type: ignore[typeddict-item]
-    if "JobName" in data:
+    if data.get("JobName") is not None:
         out["job_name"] = data["JobName"]
-    if "JobStatus" in data:
+    if data.get("JobStatus") is not None:
         import capo_comprehend.types.job_status
 
         out["job_status"] = capo_comprehend.types.job_status.deserialize_aws_json_1_1(
             data["JobStatus"]
         )
-    if "SubmitTimeBefore" in data:
+    if data.get("SubmitTimeBefore") is not None:
         import capo_comprehend.types.timestamp
 
         out["submit_time_before"] = (
@@ -67,7 +67,7 @@ def deserialize_aws_json_1_1(data: dict) -> DocumentClassificationJobFilter:
                 data["SubmitTimeBefore"]
             )
         )
-    if "SubmitTimeAfter" in data:
+    if data.get("SubmitTimeAfter") is not None:
         import capo_comprehend.types.timestamp
 
         out["submit_time_after"] = (

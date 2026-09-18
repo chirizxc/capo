@@ -31,7 +31,7 @@ def serialize_json(value: AwsEventsEndpointRoutingConfigDetails) -> dict:
 
 def deserialize_json(data: dict) -> AwsEventsEndpointRoutingConfigDetails:
     out: AwsEventsEndpointRoutingConfigDetails = {}  # type: ignore[typeddict-item]
-    if "FailoverConfig" in data:
+    if data.get("FailoverConfig") is not None:
         import capo_securityhub.types.aws_events_endpoint_routing_config_failover_config_details
 
         out["failover_config"] = (

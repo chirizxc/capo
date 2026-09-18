@@ -47,13 +47,13 @@ def serialize_aws_json_1_1(value: GetInstancesHealthStatusRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetInstancesHealthStatusRequest:
     out: GetInstancesHealthStatusRequest = {}  # type: ignore[typeddict-item]
-    if "ServiceId" in data:
+    if data.get("ServiceId") is not None:
         out["service_id"] = data["ServiceId"]
     else:
         raise DeserializationError(
             "GetInstancesHealthStatusRequest.service_id required"
         )
-    if "Instances" in data:
+    if data.get("Instances") is not None:
         import capo_servicediscovery.types.instance_id_list
 
         out["instances"] = (
@@ -61,8 +61,8 @@ def deserialize_aws_json_1_1(data: dict) -> GetInstancesHealthStatusRequest:
                 data["Instances"]
             )
         )
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

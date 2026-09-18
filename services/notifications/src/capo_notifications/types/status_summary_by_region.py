@@ -27,6 +27,8 @@ def serialize_json(input_to_serialize: StatusSummaryByRegion) -> dict:
 def deserialize_json(data: dict) -> StatusSummaryByRegion:
     out: StatusSummaryByRegion = {}
     for key, value in data.items():
+        if value is None:
+            continue
         import capo_notifications.types.event_rule_status_summary
 
         out[key] = capo_notifications.types.event_rule_status_summary.deserialize_json(

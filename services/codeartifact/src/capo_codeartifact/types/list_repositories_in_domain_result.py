@@ -36,7 +36,7 @@ def serialize_json(value: ListRepositoriesInDomainResult) -> dict:
 
 def deserialize_json(data: dict) -> ListRepositoriesInDomainResult:
     out: ListRepositoriesInDomainResult = {}  # type: ignore[typeddict-item]
-    if "repositories" in data:
+    if data.get("repositories") is not None:
         import capo_codeartifact.types.repository_summary_list
 
         out["repositories"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> ListRepositoriesInDomainResult:
                 data["repositories"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

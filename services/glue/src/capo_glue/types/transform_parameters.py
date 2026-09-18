@@ -41,7 +41,7 @@ def serialize_aws_json_1_1(value: TransformParameters) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> TransformParameters:
     out: TransformParameters = {}  # type: ignore[typeddict-item]
-    if "TransformType" in data:
+    if data.get("TransformType") is not None:
         import capo_glue.types.transform_type
 
         out["transform_type"] = capo_glue.types.transform_type.deserialize_aws_json_1_1(
@@ -49,7 +49,7 @@ def deserialize_aws_json_1_1(data: dict) -> TransformParameters:
         )
     else:
         raise DeserializationError("TransformParameters.transform_type required")
-    if "FindMatchesParameters" in data:
+    if data.get("FindMatchesParameters") is not None:
         import capo_glue.types.find_matches_parameters
 
         out["find_matches_parameters"] = (

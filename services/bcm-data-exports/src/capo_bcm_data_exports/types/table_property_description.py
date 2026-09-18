@@ -46,9 +46,9 @@ def serialize_aws_json_1_1(value: TablePropertyDescription) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> TablePropertyDescription:
     out: TablePropertyDescription = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "ValidValues" in data:
+    if data.get("ValidValues") is not None:
         import capo_bcm_data_exports.types.generic_string_list
 
         out["valid_values"] = (
@@ -56,8 +56,8 @@ def deserialize_aws_json_1_1(data: dict) -> TablePropertyDescription:
                 data["ValidValues"]
             )
         )
-    if "DefaultValue" in data:
+    if data.get("DefaultValue") is not None:
         out["default_value"] = data["DefaultValue"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
     return out

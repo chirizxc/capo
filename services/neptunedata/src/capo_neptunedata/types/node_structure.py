@@ -46,9 +46,9 @@ def serialize_json(value: NodeStructure) -> dict:
 
 def deserialize_json(data: dict) -> NodeStructure:
     out: NodeStructure = {}  # type: ignore[typeddict-item]
-    if "count" in data:
+    if data.get("count") is not None:
         out["count"] = data["count"]
-    if "nodeProperties" in data:
+    if data.get("nodeProperties") is not None:
         import capo_neptunedata.types.node_properties
 
         out["node_properties"] = (
@@ -56,7 +56,7 @@ def deserialize_json(data: dict) -> NodeStructure:
                 data["nodeProperties"]
             )
         )
-    if "distinctOutgoingEdgeLabels" in data:
+    if data.get("distinctOutgoingEdgeLabels") is not None:
         import capo_neptunedata.types.outgoing_edge_labels
 
         out["distinct_outgoing_edge_labels"] = (

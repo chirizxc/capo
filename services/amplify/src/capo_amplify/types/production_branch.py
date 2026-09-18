@@ -42,16 +42,16 @@ def serialize_json(value: ProductionBranch) -> dict:
 
 def deserialize_json(data: dict) -> ProductionBranch:
     out: ProductionBranch = {}  # type: ignore[typeddict-item]
-    if "lastDeployTime" in data:
+    if data.get("lastDeployTime") is not None:
         import capo_amplify.types.last_deploy_time
 
         out["last_deploy_time"] = capo_amplify.types.last_deploy_time.deserialize_json(
             data["lastDeployTime"]
         )
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
-    if "thumbnailUrl" in data:
+    if data.get("thumbnailUrl") is not None:
         out["thumbnail_url"] = data["thumbnailUrl"]
-    if "branchName" in data:
+    if data.get("branchName") is not None:
         out["branch_name"] = data["branchName"]
     return out

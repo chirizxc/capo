@@ -62,19 +62,19 @@ def serialize_json(value: ListPackageVersionsResult) -> dict:
 
 def deserialize_json(data: dict) -> ListPackageVersionsResult:
     out: ListPackageVersionsResult = {}  # type: ignore[typeddict-item]
-    if "defaultDisplayVersion" in data:
+    if data.get("defaultDisplayVersion") is not None:
         out["default_display_version"] = data["defaultDisplayVersion"]
-    if "format" in data:
+    if data.get("format") is not None:
         import capo_codeartifact.types.package_format
 
         out["format"] = capo_codeartifact.types.package_format.deserialize_json(
             data["format"]
         )
-    if "namespace" in data:
+    if data.get("namespace") is not None:
         out["namespace"] = data["namespace"]
-    if "package" in data:
+    if data.get("package") is not None:
         out["package"] = data["package"]
-    if "versions" in data:
+    if data.get("versions") is not None:
         import capo_codeartifact.types.package_version_summary_list
 
         out["versions"] = (
@@ -82,6 +82,6 @@ def deserialize_json(data: dict) -> ListPackageVersionsResult:
                 data["versions"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

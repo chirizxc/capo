@@ -32,7 +32,7 @@ def serialize_json(value: StringSearch) -> dict:
 
 def deserialize_json(data: dict) -> StringSearch:
     out: StringSearch = {}  # type: ignore[typeddict-item]
-    if "SearchOption" in data:
+    if data.get("SearchOption") is not None:
         import capo_billingconductor.types.search_option
 
         out["search_option"] = (
@@ -42,7 +42,7 @@ def deserialize_json(data: dict) -> StringSearch:
         )
     else:
         raise DeserializationError("StringSearch.search_option required")
-    if "SearchValue" in data:
+    if data.get("SearchValue") is not None:
         out["search_value"] = data["SearchValue"]
     else:
         raise DeserializationError("StringSearch.search_value required")

@@ -30,7 +30,7 @@ def serialize_aws_json_1_0(value: TemplateVersionSourceInput) -> dict:
 
 
 def deserialize_aws_json_1_0(data: dict) -> TemplateVersionSourceInput:
-    if "s3" in data:
+    if data.get("s3") is not None:
         import capo_proton.types.s3_object_source
 
         return {

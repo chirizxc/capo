@@ -38,7 +38,7 @@ def serialize_json(value: ListSipMediaApplicationsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListSipMediaApplicationsResponse:
     out: ListSipMediaApplicationsResponse = {}  # type: ignore[typeddict-item]
-    if "SipMediaApplications" in data:
+    if data.get("SipMediaApplications") is not None:
         import capo_chime_sdk_voice.types.sip_media_application_list
 
         out["sip_media_applications"] = (
@@ -46,6 +46,6 @@ def deserialize_json(data: dict) -> ListSipMediaApplicationsResponse:
                 data["SipMediaApplications"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

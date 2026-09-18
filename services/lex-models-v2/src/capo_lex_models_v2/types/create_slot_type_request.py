@@ -97,13 +97,13 @@ def serialize_json(value: CreateSlotTypeRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateSlotTypeRequest:
     out: CreateSlotTypeRequest = {}  # type: ignore[typeddict-item]
-    if "slotTypeName" in data:
+    if data.get("slotTypeName") is not None:
         out["slot_type_name"] = data["slotTypeName"]
     else:
         raise DeserializationError("CreateSlotTypeRequest.slot_type_name required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "slotTypeValues" in data:
+    if data.get("slotTypeValues") is not None:
         import capo_lex_models_v2.types.slot_type_values
 
         out["slot_type_values"] = (
@@ -111,7 +111,7 @@ def deserialize_json(data: dict) -> CreateSlotTypeRequest:
                 data["slotTypeValues"]
             )
         )
-    if "valueSelectionSetting" in data:
+    if data.get("valueSelectionSetting") is not None:
         import capo_lex_models_v2.types.slot_value_selection_setting
 
         out["value_selection_setting"] = (
@@ -119,9 +119,9 @@ def deserialize_json(data: dict) -> CreateSlotTypeRequest:
                 data["valueSelectionSetting"]
             )
         )
-    if "parentSlotTypeSignature" in data:
+    if data.get("parentSlotTypeSignature") is not None:
         out["parent_slot_type_signature"] = data["parentSlotTypeSignature"]
-    if "externalSourceSetting" in data:
+    if data.get("externalSourceSetting") is not None:
         import capo_lex_models_v2.types.external_source_setting
 
         out["external_source_setting"] = (
@@ -129,7 +129,7 @@ def deserialize_json(data: dict) -> CreateSlotTypeRequest:
                 data["externalSourceSetting"]
             )
         )
-    if "compositeSlotTypeSetting" in data:
+    if data.get("compositeSlotTypeSetting") is not None:
         import capo_lex_models_v2.types.composite_slot_type_setting
 
         out["composite_slot_type_setting"] = (

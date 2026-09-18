@@ -26,7 +26,7 @@ def serialize_aws_json_1_1(value: GetCalculationExecutionStatusRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetCalculationExecutionStatusRequest:
     out: GetCalculationExecutionStatusRequest = {}  # type: ignore[typeddict-item]
-    if "CalculationExecutionId" in data:
+    if data.get("CalculationExecutionId") is not None:
         out["calculation_execution_id"] = data["CalculationExecutionId"]
     else:
         raise DeserializationError(

@@ -28,8 +28,8 @@ def serialize_json(value: Job) -> dict:
 
 def deserialize_json(data: dict) -> Job:
     out: Job = {}  # type: ignore[typeddict-item]
-    if "JobId" in data:
+    if data.get("JobId") is not None:
         out["job_id"] = data["JobId"]
-    if "DeviceId" in data:
+    if data.get("DeviceId") is not None:
         out["device_id"] = data["DeviceId"]
     return out

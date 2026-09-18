@@ -50,20 +50,20 @@ def serialize_json(value: APNSPushNotificationTemplate) -> dict:
 
 def deserialize_json(data: dict) -> APNSPushNotificationTemplate:
     out: APNSPushNotificationTemplate = {}  # type: ignore[typeddict-item]
-    if "Action" in data:
+    if data.get("Action") is not None:
         import capo_pinpoint.types.action
 
         out["action"] = capo_pinpoint.types.action.deserialize_json(data["Action"])
-    if "Body" in data:
+    if data.get("Body") is not None:
         out["body"] = data["Body"]
-    if "MediaUrl" in data:
+    if data.get("MediaUrl") is not None:
         out["media_url"] = data["MediaUrl"]
-    if "RawContent" in data:
+    if data.get("RawContent") is not None:
         out["raw_content"] = data["RawContent"]
-    if "Sound" in data:
+    if data.get("Sound") is not None:
         out["sound"] = data["Sound"]
-    if "Title" in data:
+    if data.get("Title") is not None:
         out["title"] = data["Title"]
-    if "Url" in data:
+    if data.get("Url") is not None:
         out["url"] = data["Url"]
     return out

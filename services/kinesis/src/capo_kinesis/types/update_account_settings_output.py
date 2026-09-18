@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: UpdateAccountSettingsOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateAccountSettingsOutput:
     out: UpdateAccountSettingsOutput = {}  # type: ignore[typeddict-item]
-    if "MinimumThroughputBillingCommitment" in data:
+    if data.get("MinimumThroughputBillingCommitment") is not None:
         import capo_kinesis.types.minimum_throughput_billing_commitment_output
 
         out["minimum_throughput_billing_commitment"] = (

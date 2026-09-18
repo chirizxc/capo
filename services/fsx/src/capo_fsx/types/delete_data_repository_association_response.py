@@ -45,9 +45,9 @@ def serialize_aws_json_1_1(value: DeleteDataRepositoryAssociationResponse) -> di
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteDataRepositoryAssociationResponse:
     out: DeleteDataRepositoryAssociationResponse = {}  # type: ignore[typeddict-item]
-    if "AssociationId" in data:
+    if data.get("AssociationId") is not None:
         out["association_id"] = data["AssociationId"]
-    if "Lifecycle" in data:
+    if data.get("Lifecycle") is not None:
         import capo_fsx.types.data_repository_lifecycle
 
         out["lifecycle"] = (
@@ -55,6 +55,6 @@ def deserialize_aws_json_1_1(data: dict) -> DeleteDataRepositoryAssociationRespo
                 data["Lifecycle"]
             )
         )
-    if "DeleteDataInFileSystem" in data:
+    if data.get("DeleteDataInFileSystem") is not None:
         out["delete_data_in_file_system"] = data["DeleteDataInFileSystem"]
     return out

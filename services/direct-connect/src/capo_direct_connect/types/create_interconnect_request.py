@@ -58,30 +58,30 @@ def serialize_aws_json_1_1(value: CreateInterconnectRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateInterconnectRequest:
     out: CreateInterconnectRequest = {}  # type: ignore[typeddict-item]
-    if "interconnectName" in data:
+    if data.get("interconnectName") is not None:
         out["interconnect_name"] = data["interconnectName"]
     else:
         raise DeserializationError(
             "CreateInterconnectRequest.interconnect_name required"
         )
-    if "bandwidth" in data:
+    if data.get("bandwidth") is not None:
         out["bandwidth"] = data["bandwidth"]
     else:
         raise DeserializationError("CreateInterconnectRequest.bandwidth required")
-    if "location" in data:
+    if data.get("location") is not None:
         out["location"] = data["location"]
     else:
         raise DeserializationError("CreateInterconnectRequest.location required")
-    if "lagId" in data:
+    if data.get("lagId") is not None:
         out["lag_id"] = data["lagId"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_direct_connect.types.tag_list
 
         out["tags"] = capo_direct_connect.types.tag_list.deserialize_aws_json_1_1(
             data["tags"]
         )
-    if "providerName" in data:
+    if data.get("providerName") is not None:
         out["provider_name"] = data["providerName"]
-    if "requestMACSec" in data:
+    if data.get("requestMACSec") is not None:
         out["request_mac_sec"] = data["requestMACSec"]
     return out

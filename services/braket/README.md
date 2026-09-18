@@ -13,10 +13,25 @@ from capo_braket import AsyncBraketClient
 
 
 async def main():
-    async with AsyncBraketClient() as s3:
+    async with AsyncBraketClient() as braket:
         # Example: call the list_tags_for_resource operation
-        response = await s3.list_tags_for_resource()
+        response = await braket.list_tags_for_resource()
         print(response["tags"])
+```
+
+## Pagination
+
+Some operations in this SDK support pagination. If the operation supports pagination it will have an `iter_` prefixed method that returns an async iterator.
+
+```python
+from capo_braket import AsyncBraketClient
+
+
+async def main():
+    async with AsyncBraketClient() as braket:
+        # Example: paginate over search_devices
+        async for item in braket.iter_search_devices():
+            print(item)
 ```
 
 ## Error Handling
@@ -29,9 +44,9 @@ from capo_braket.error import InternalServiceException
 
 
 async def main():
-    async with AsyncBraketClient() as s3:
+    async with AsyncBraketClient() as braket:
         try:
-            await s3.list_tags_for_resource()
+            await braket.list_tags_for_resource()
         except InternalServiceException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -48,13 +63,13 @@ from capo_braket import AsyncBraketClient
 
 
 async def main():
-    async with AsyncBraketClient() as s3:
+    async with AsyncBraketClient() as braket:
         # Default: 3 attempts for every operation
-        response = await s3.list_tags_for_resource()
+        response = await braket.list_tags_for_resource()
 
         # Override per operation
-        response = await s3.list_tags_for_resource(config_overrides={"retry_max_attempts": 5})
+        response = await braket.list_tags_for_resource(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.list_tags_for_resource(config_overrides={"retry_max_attempts": 1})
+        response = await braket.list_tags_for_resource(config_overrides={"retry_max_attempts": 1})
 ```

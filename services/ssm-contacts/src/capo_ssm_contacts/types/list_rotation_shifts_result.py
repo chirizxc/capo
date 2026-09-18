@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: ListRotationShiftsResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListRotationShiftsResult:
     out: ListRotationShiftsResult = {}  # type: ignore[typeddict-item]
-    if "RotationShifts" in data:
+    if data.get("RotationShifts") is not None:
         import capo_ssm_contacts.types.rotation_shifts
 
         out["rotation_shifts"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_1(data: dict) -> ListRotationShiftsResult:
                 data["RotationShifts"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

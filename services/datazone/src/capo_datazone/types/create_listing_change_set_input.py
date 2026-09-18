@@ -51,13 +51,13 @@ def serialize_json(value: CreateListingChangeSetInput) -> dict:
 
 def deserialize_json(data: dict) -> CreateListingChangeSetInput:
     out: CreateListingChangeSetInput = {}  # type: ignore[typeddict-item]
-    if "entityIdentifier" in data:
+    if data.get("entityIdentifier") is not None:
         out["entity_identifier"] = data["entityIdentifier"]
     else:
         raise DeserializationError(
             "CreateListingChangeSetInput.entity_identifier required"
         )
-    if "entityType" in data:
+    if data.get("entityType") is not None:
         import capo_datazone.types.entity_type
 
         out["entity_type"] = capo_datazone.types.entity_type.deserialize_json(
@@ -65,9 +65,9 @@ def deserialize_json(data: dict) -> CreateListingChangeSetInput:
         )
     else:
         raise DeserializationError("CreateListingChangeSetInput.entity_type required")
-    if "entityRevision" in data:
+    if data.get("entityRevision") is not None:
         out["entity_revision"] = data["entityRevision"]
-    if "action" in data:
+    if data.get("action") is not None:
         import capo_datazone.types.change_action
 
         out["action"] = capo_datazone.types.change_action.deserialize_json(
@@ -75,6 +75,6 @@ def deserialize_json(data: dict) -> CreateListingChangeSetInput:
         )
     else:
         raise DeserializationError("CreateListingChangeSetInput.action required")
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     return out

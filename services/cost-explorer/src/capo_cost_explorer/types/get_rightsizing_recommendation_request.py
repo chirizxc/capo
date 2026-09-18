@@ -58,13 +58,13 @@ def serialize_aws_json_1_1(value: GetRightsizingRecommendationRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetRightsizingRecommendationRequest:
     out: GetRightsizingRecommendationRequest = {}  # type: ignore[typeddict-item]
-    if "Filter" in data:
+    if data.get("Filter") is not None:
         import capo_cost_explorer.types.expression
 
         out["filter"] = capo_cost_explorer.types.expression.deserialize_aws_json_1_1(
             data["Filter"]
         )
-    if "Configuration" in data:
+    if data.get("Configuration") is not None:
         import capo_cost_explorer.types.rightsizing_recommendation_configuration
 
         out["configuration"] = (
@@ -72,16 +72,16 @@ def deserialize_aws_json_1_1(data: dict) -> GetRightsizingRecommendationRequest:
                 data["Configuration"]
             )
         )
-    if "Service" in data:
+    if data.get("Service") is not None:
         out["service"] = data["Service"]
     else:
         raise DeserializationError(
             "GetRightsizingRecommendationRequest.service required"
         )
-    if "PageSize" in data:
+    if data.get("PageSize") is not None:
         out["page_size"] = data["PageSize"]
     else:
         out["page_size"] = 0
-    if "NextPageToken" in data:
+    if data.get("NextPageToken") is not None:
         out["next_page_token"] = data["NextPageToken"]
     return out

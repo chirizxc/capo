@@ -34,13 +34,13 @@ def serialize_aws_json_1_0(value: UpdateTLSInspectionConfigurationResponse) -> d
 
 def deserialize_aws_json_1_0(data: dict) -> UpdateTLSInspectionConfigurationResponse:
     out: UpdateTLSInspectionConfigurationResponse = {}  # type: ignore[typeddict-item]
-    if "UpdateToken" in data:
+    if data.get("UpdateToken") is not None:
         out["update_token"] = data["UpdateToken"]
     else:
         raise DeserializationError(
             "UpdateTLSInspectionConfigurationResponse.update_token required"
         )
-    if "TLSInspectionConfigurationResponse" in data:
+    if data.get("TLSInspectionConfigurationResponse") is not None:
         import capo_network_firewall.types.tls_inspection_configuration_response
 
         out["tls_inspection_configuration_response"] = (

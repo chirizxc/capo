@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> MergeRouterInputProtocolConfigurationList:
 
     out: MergeRouterInputProtocolConfigurationList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_mediaconnect.types.merge_router_input_protocol_configuration.deserialize_json(
                 item

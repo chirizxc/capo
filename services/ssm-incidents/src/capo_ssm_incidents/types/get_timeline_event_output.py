@@ -28,7 +28,7 @@ def serialize_json(value: GetTimelineEventOutput) -> dict:
 
 def deserialize_json(data: dict) -> GetTimelineEventOutput:
     out: GetTimelineEventOutput = {}  # type: ignore[typeddict-item]
-    if "event" in data:
+    if data.get("event") is not None:
         import capo_ssm_incidents.types.timeline_event
 
         out["event"] = capo_ssm_incidents.types.timeline_event.deserialize_json(

@@ -81,23 +81,23 @@ def serialize_aws_json_1_0(value: CreatePartnerResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CreatePartnerResponse:
     out: CreatePartnerResponse = {}  # type: ignore[typeddict-item]
-    if "Catalog" in data:
+    if data.get("Catalog") is not None:
         out["catalog"] = data["Catalog"]
     else:
         raise DeserializationError("CreatePartnerResponse.catalog required")
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
     else:
         raise DeserializationError("CreatePartnerResponse.arn required")
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
     else:
         raise DeserializationError("CreatePartnerResponse.id required")
-    if "LegalName" in data:
+    if data.get("LegalName") is not None:
         out["legal_name"] = data["LegalName"]
     else:
         raise DeserializationError("CreatePartnerResponse.legal_name required")
-    if "CreatedAt" in data:
+    if data.get("CreatedAt") is not None:
         import capo_partnercentral_account.types.date_time
 
         out["created_at"] = (
@@ -107,7 +107,7 @@ def deserialize_aws_json_1_0(data: dict) -> CreatePartnerResponse:
         )
     else:
         raise DeserializationError("CreatePartnerResponse.created_at required")
-    if "Profile" in data:
+    if data.get("Profile") is not None:
         import capo_partnercentral_account.types.partner_profile
 
         out["profile"] = (
@@ -117,7 +117,7 @@ def deserialize_aws_json_1_0(data: dict) -> CreatePartnerResponse:
         )
     else:
         raise DeserializationError("CreatePartnerResponse.profile required")
-    if "AwsTrainingCertificationEmailDomains" in data:
+    if data.get("AwsTrainingCertificationEmailDomains") is not None:
         import capo_partnercentral_account.types.partner_domain_list
 
         out["aws_training_certification_email_domains"] = (
@@ -125,7 +125,7 @@ def deserialize_aws_json_1_0(data: dict) -> CreatePartnerResponse:
                 data["AwsTrainingCertificationEmailDomains"]
             )
         )
-    if "AllianceLeadContact" in data:
+    if data.get("AllianceLeadContact") is not None:
         import capo_partnercentral_account.types.alliance_lead_contact
 
         out["alliance_lead_contact"] = (

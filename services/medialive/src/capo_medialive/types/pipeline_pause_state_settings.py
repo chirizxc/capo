@@ -27,7 +27,7 @@ def serialize_json(value: PipelinePauseStateSettings) -> dict:
 
 def deserialize_json(data: dict) -> PipelinePauseStateSettings:
     out: PipelinePauseStateSettings = {}  # type: ignore[typeddict-item]
-    if "pipelineId" in data:
+    if data.get("pipelineId") is not None:
         import capo_medialive.types.pipeline_id
 
         out["pipeline_id"] = capo_medialive.types.pipeline_id.deserialize_json(

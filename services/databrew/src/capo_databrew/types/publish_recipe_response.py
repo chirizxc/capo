@@ -24,7 +24,7 @@ def serialize_json(value: PublishRecipeResponse) -> dict:
 
 def deserialize_json(data: dict) -> PublishRecipeResponse:
     out: PublishRecipeResponse = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("PublishRecipeResponse.name required")

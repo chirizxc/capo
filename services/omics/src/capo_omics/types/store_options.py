@@ -32,7 +32,7 @@ def serialize_json(value: StoreOptions) -> dict:
 
 
 def deserialize_json(data: dict) -> StoreOptions:
-    if "tsvStoreOptions" in data:
+    if data.get("tsvStoreOptions") is not None:
         import capo_omics.types.tsv_store_options
 
         return {

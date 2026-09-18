@@ -44,13 +44,13 @@ def serialize_aws_json_1_0(value: CertificateValidationRecord) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CertificateValidationRecord:
     out: CertificateValidationRecord = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Type" in data:
+    if data.get("Type") is not None:
         out["type"] = data["Type"]
-    if "Value" in data:
+    if data.get("Value") is not None:
         out["value"] = data["Value"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_apprunner.types.certificate_validation_record_status
 
         out["status"] = (

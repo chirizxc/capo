@@ -46,15 +46,15 @@ def serialize_aws_json_1_1(value: QueryForecastRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> QueryForecastRequest:
     out: QueryForecastRequest = {}  # type: ignore[typeddict-item]
-    if "ForecastArn" in data:
+    if data.get("ForecastArn") is not None:
         out["forecast_arn"] = data["ForecastArn"]
     else:
         raise DeserializationError("QueryForecastRequest.forecast_arn required")
-    if "StartDate" in data:
+    if data.get("StartDate") is not None:
         out["start_date"] = data["StartDate"]
-    if "EndDate" in data:
+    if data.get("EndDate") is not None:
         out["end_date"] = data["EndDate"]
-    if "Filters" in data:
+    if data.get("Filters") is not None:
         import capo_forecastquery.types.filters
 
         out["filters"] = capo_forecastquery.types.filters.deserialize_aws_json_1_1(
@@ -62,6 +62,6 @@ def deserialize_aws_json_1_1(data: dict) -> QueryForecastRequest:
         )
     else:
         raise DeserializationError("QueryForecastRequest.filters required")
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

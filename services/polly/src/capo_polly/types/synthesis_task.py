@@ -126,49 +126,49 @@ def serialize_json(value: SynthesisTask) -> dict:
 
 def deserialize_json(data: dict) -> SynthesisTask:
     out: SynthesisTask = {}  # type: ignore[typeddict-item]
-    if "Engine" in data:
+    if data.get("Engine") is not None:
         import capo_polly.types.engine
 
         out["engine"] = capo_polly.types.engine.deserialize_json(data["Engine"])
-    if "TaskId" in data:
+    if data.get("TaskId") is not None:
         out["task_id"] = data["TaskId"]
-    if "TaskStatus" in data:
+    if data.get("TaskStatus") is not None:
         import capo_polly.types.task_status
 
         out["task_status"] = capo_polly.types.task_status.deserialize_json(
             data["TaskStatus"]
         )
-    if "TaskStatusReason" in data:
+    if data.get("TaskStatusReason") is not None:
         out["task_status_reason"] = data["TaskStatusReason"]
-    if "OutputUri" in data:
+    if data.get("OutputUri") is not None:
         out["output_uri"] = data["OutputUri"]
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_polly.types.date_time
 
         out["creation_time"] = capo_polly.types.date_time.deserialize_json(
             data["CreationTime"]
         )
-    if "RequestCharacters" in data:
+    if data.get("RequestCharacters") is not None:
         out["request_characters"] = data["RequestCharacters"]
     else:
         out["request_characters"] = 0
-    if "SnsTopicArn" in data:
+    if data.get("SnsTopicArn") is not None:
         out["sns_topic_arn"] = data["SnsTopicArn"]
-    if "LexiconNames" in data:
+    if data.get("LexiconNames") is not None:
         import capo_polly.types.lexicon_name_list
 
         out["lexicon_names"] = capo_polly.types.lexicon_name_list.deserialize_json(
             data["LexiconNames"]
         )
-    if "OutputFormat" in data:
+    if data.get("OutputFormat") is not None:
         import capo_polly.types.output_format
 
         out["output_format"] = capo_polly.types.output_format.deserialize_json(
             data["OutputFormat"]
         )
-    if "SampleRate" in data:
+    if data.get("SampleRate") is not None:
         out["sample_rate"] = data["SampleRate"]
-    if "SpeechMarkTypes" in data:
+    if data.get("SpeechMarkTypes") is not None:
         import capo_polly.types.speech_mark_type_list
 
         out["speech_mark_types"] = (
@@ -176,15 +176,15 @@ def deserialize_json(data: dict) -> SynthesisTask:
                 data["SpeechMarkTypes"]
             )
         )
-    if "TextType" in data:
+    if data.get("TextType") is not None:
         import capo_polly.types.text_type
 
         out["text_type"] = capo_polly.types.text_type.deserialize_json(data["TextType"])
-    if "VoiceId" in data:
+    if data.get("VoiceId") is not None:
         import capo_polly.types.voice_id
 
         out["voice_id"] = capo_polly.types.voice_id.deserialize_json(data["VoiceId"])
-    if "LanguageCode" in data:
+    if data.get("LanguageCode") is not None:
         import capo_polly.types.language_code
 
         out["language_code"] = capo_polly.types.language_code.deserialize_json(

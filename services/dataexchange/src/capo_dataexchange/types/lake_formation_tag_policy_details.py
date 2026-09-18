@@ -27,8 +27,8 @@ def serialize_json(value: LakeFormationTagPolicyDetails) -> dict:
 
 def deserialize_json(data: dict) -> LakeFormationTagPolicyDetails:
     out: LakeFormationTagPolicyDetails = {}  # type: ignore[typeddict-item]
-    if "Database" in data:
+    if data.get("Database") is not None:
         out["database"] = data["Database"]
-    if "Table" in data:
+    if data.get("Table") is not None:
         out["table"] = data["Table"]
     return out

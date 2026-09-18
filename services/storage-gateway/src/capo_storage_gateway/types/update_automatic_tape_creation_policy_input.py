@@ -33,7 +33,7 @@ def serialize_aws_json_1_1(value: UpdateAutomaticTapeCreationPolicyInput) -> dic
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateAutomaticTapeCreationPolicyInput:
     out: UpdateAutomaticTapeCreationPolicyInput = {}  # type: ignore[typeddict-item]
-    if "AutomaticTapeCreationRules" in data:
+    if data.get("AutomaticTapeCreationRules") is not None:
         import capo_storage_gateway.types.automatic_tape_creation_rules
 
         out["automatic_tape_creation_rules"] = (
@@ -45,7 +45,7 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateAutomaticTapeCreationPolicyInp
         raise DeserializationError(
             "UpdateAutomaticTapeCreationPolicyInput.automatic_tape_creation_rules required"
         )
-    if "GatewayARN" in data:
+    if data.get("GatewayARN") is not None:
         out["gateway_arn"] = data["GatewayARN"]
     else:
         raise DeserializationError(

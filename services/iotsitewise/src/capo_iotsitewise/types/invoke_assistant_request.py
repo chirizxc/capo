@@ -34,13 +34,13 @@ def serialize_json(value: InvokeAssistantRequest) -> dict:
 
 def deserialize_json(data: dict) -> InvokeAssistantRequest:
     out: InvokeAssistantRequest = {}  # type: ignore[typeddict-item]
-    if "conversationId" in data:
+    if data.get("conversationId") is not None:
         out["conversation_id"] = data["conversationId"]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     else:
         raise DeserializationError("InvokeAssistantRequest.message required")
-    if "enableTrace" in data:
+    if data.get("enableTrace") is not None:
         out["enable_trace"] = data["enableTrace"]
     else:
         out["enable_trace"] = False

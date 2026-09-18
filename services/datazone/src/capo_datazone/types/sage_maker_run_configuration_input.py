@@ -28,7 +28,7 @@ def serialize_json(value: SageMakerRunConfigurationInput) -> dict:
 
 def deserialize_json(data: dict) -> SageMakerRunConfigurationInput:
     out: SageMakerRunConfigurationInput = {}  # type: ignore[typeddict-item]
-    if "trackingAssets" in data:
+    if data.get("trackingAssets") is not None:
         import capo_datazone.types.tracking_assets
 
         out["tracking_assets"] = capo_datazone.types.tracking_assets.deserialize_json(

@@ -23,7 +23,7 @@ def serialize_json(value: InvalidResourceTypeException_) -> dict:
 
 def deserialize_json(data: dict) -> InvalidResourceTypeException_:
     out: InvalidResourceTypeException_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     else:
         raise DeserializationError("InvalidResourceTypeException_.message required")
@@ -35,15 +35,18 @@ class InvalidResourceTypeException(ServiceError):
 
     code: str | None = "InvalidResourceTypeException"
 
-    def __init__(self, data: InvalidResourceTypeException_):
+    def __init__(self, data: InvalidResourceTypeException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="InvalidResourceTypeException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "InvalidResourceTypeException":
-        return cls(deserialize_json(data))
+    def from_json(
+        cls, data: dict, message: str | None = None
+    ) -> "InvalidResourceTypeException":
+        return cls(deserialize_json(data), message)

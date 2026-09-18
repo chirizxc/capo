@@ -37,9 +37,9 @@ def serialize_json(value: ListProtectedQueriesOutput) -> dict:
 
 def deserialize_json(data: dict) -> ListProtectedQueriesOutput:
     out: ListProtectedQueriesOutput = {}  # type: ignore[typeddict-item]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "protectedQueries" in data:
+    if data.get("protectedQueries") is not None:
         import capo_cleanrooms.types.protected_query_summary_list
 
         out["protected_queries"] = (

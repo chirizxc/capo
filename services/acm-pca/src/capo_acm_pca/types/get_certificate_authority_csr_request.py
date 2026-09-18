@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: GetCertificateAuthorityCsrRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetCertificateAuthorityCsrRequest:
     out: GetCertificateAuthorityCsrRequest = {}  # type: ignore[typeddict-item]
-    if "CertificateAuthorityArn" in data:
+    if data.get("CertificateAuthorityArn") is not None:
         out["certificate_authority_arn"] = data["CertificateAuthorityArn"]
     else:
         raise DeserializationError(

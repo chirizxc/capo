@@ -25,6 +25,6 @@ def serialize_aws_json_1_1(value: ParallelismConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ParallelismConfiguration:
     out: ParallelismConfiguration = {}  # type: ignore[typeddict-item]
-    if "MaxParallelExecutionSteps" in data:
+    if data.get("MaxParallelExecutionSteps") is not None:
         out["max_parallel_execution_steps"] = data["MaxParallelExecutionSteps"]
     return out

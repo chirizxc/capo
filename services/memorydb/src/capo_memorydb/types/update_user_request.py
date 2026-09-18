@@ -42,11 +42,11 @@ def serialize_aws_json_1_1(value: UpdateUserRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateUserRequest:
     out: UpdateUserRequest = {}  # type: ignore[typeddict-item]
-    if "UserName" in data:
+    if data.get("UserName") is not None:
         out["user_name"] = data["UserName"]
     else:
         raise DeserializationError("UpdateUserRequest.user_name required")
-    if "AuthenticationMode" in data:
+    if data.get("AuthenticationMode") is not None:
         import capo_memorydb.types.authentication_mode
 
         out["authentication_mode"] = (
@@ -54,6 +54,6 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateUserRequest:
                 data["AuthenticationMode"]
             )
         )
-    if "AccessString" in data:
+    if data.get("AccessString") is not None:
         out["access_string"] = data["AccessString"]
     return out

@@ -48,11 +48,11 @@ def serialize_aws_json_1_1(value: FeaturizationConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> FeaturizationConfig:
     out: FeaturizationConfig = {}  # type: ignore[typeddict-item]
-    if "ForecastFrequency" in data:
+    if data.get("ForecastFrequency") is not None:
         out["forecast_frequency"] = data["ForecastFrequency"]
     else:
         raise DeserializationError("FeaturizationConfig.forecast_frequency required")
-    if "ForecastDimensions" in data:
+    if data.get("ForecastDimensions") is not None:
         import capo_forecast.types.forecast_dimensions
 
         out["forecast_dimensions"] = (
@@ -60,7 +60,7 @@ def deserialize_aws_json_1_1(data: dict) -> FeaturizationConfig:
                 data["ForecastDimensions"]
             )
         )
-    if "Featurizations" in data:
+    if data.get("Featurizations") is not None:
         import capo_forecast.types.featurizations
 
         out["featurizations"] = (

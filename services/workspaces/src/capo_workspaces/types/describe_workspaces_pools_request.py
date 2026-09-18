@@ -52,7 +52,7 @@ def serialize_aws_json_1_1(value: DescribeWorkspacesPoolsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeWorkspacesPoolsRequest:
     out: DescribeWorkspacesPoolsRequest = {}  # type: ignore[typeddict-item]
-    if "PoolIds" in data:
+    if data.get("PoolIds") is not None:
         import capo_workspaces.types.workspaces_pool_ids
 
         out["pool_ids"] = (
@@ -60,7 +60,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeWorkspacesPoolsRequest:
                 data["PoolIds"]
             )
         )
-    if "Filters" in data:
+    if data.get("Filters") is not None:
         import capo_workspaces.types.describe_workspaces_pools_filters
 
         out["filters"] = (
@@ -68,8 +68,8 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeWorkspacesPoolsRequest:
                 data["Filters"]
             )
         )
-    if "Limit" in data:
+    if data.get("Limit") is not None:
         out["limit"] = data["Limit"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

@@ -31,7 +31,7 @@ def serialize_json(value: PutRetentionSettingsRequest) -> dict:
 
 def deserialize_json(data: dict) -> PutRetentionSettingsRequest:
     out: PutRetentionSettingsRequest = {}  # type: ignore[typeddict-item]
-    if "RetentionSettings" in data:
+    if data.get("RetentionSettings") is not None:
         import capo_chime.types.retention_settings
 
         out["retention_settings"] = (

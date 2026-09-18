@@ -70,7 +70,7 @@ def serialize_aws_json_1_0(value: CreateKeyInput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CreateKeyInput:
     out: CreateKeyInput = {}  # type: ignore[typeddict-item]
-    if "KeyAttributes" in data:
+    if data.get("KeyAttributes") is not None:
         import capo_payment_cryptography.types.key_attributes
 
         out["key_attributes"] = (
@@ -80,23 +80,23 @@ def deserialize_aws_json_1_0(data: dict) -> CreateKeyInput:
         )
     else:
         raise DeserializationError("CreateKeyInput.key_attributes required")
-    if "KeyCheckValueAlgorithm" in data:
+    if data.get("KeyCheckValueAlgorithm") is not None:
         out["key_check_value_algorithm"] = data["KeyCheckValueAlgorithm"]
-    if "Exportable" in data:
+    if data.get("Exportable") is not None:
         out["exportable"] = data["Exportable"]
     else:
         raise DeserializationError("CreateKeyInput.exportable required")
-    if "Enabled" in data:
+    if data.get("Enabled") is not None:
         out["enabled"] = data["Enabled"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_payment_cryptography.types.tags
 
         out["tags"] = capo_payment_cryptography.types.tags.deserialize_aws_json_1_0(
             data["Tags"]
         )
-    if "DeriveKeyUsage" in data:
+    if data.get("DeriveKeyUsage") is not None:
         out["derive_key_usage"] = data["DeriveKeyUsage"]
-    if "ReplicationRegions" in data:
+    if data.get("ReplicationRegions") is not None:
         import capo_payment_cryptography.types.regions
 
         out["replication_regions"] = (

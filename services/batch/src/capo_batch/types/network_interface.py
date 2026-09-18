@@ -31,10 +31,10 @@ def serialize_json(value: NetworkInterface) -> dict:
 
 def deserialize_json(data: dict) -> NetworkInterface:
     out: NetworkInterface = {}  # type: ignore[typeddict-item]
-    if "attachmentId" in data:
+    if data.get("attachmentId") is not None:
         out["attachment_id"] = data["attachmentId"]
-    if "ipv6Address" in data:
+    if data.get("ipv6Address") is not None:
         out["ipv6_address"] = data["ipv6Address"]
-    if "privateIpv4Address" in data:
+    if data.get("privateIpv4Address") is not None:
         out["private_ipv4_address"] = data["privateIpv4Address"]
     return out

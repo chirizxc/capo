@@ -27,7 +27,7 @@ def serialize_json(value: DisassociateLibraryItemReviewInput) -> dict:
 
 def deserialize_json(data: dict) -> DisassociateLibraryItemReviewInput:
     out: DisassociateLibraryItemReviewInput = {}  # type: ignore[typeddict-item]
-    if "libraryItemId" in data:
+    if data.get("libraryItemId") is not None:
         out["library_item_id"] = data["libraryItemId"]
     else:
         raise DeserializationError(

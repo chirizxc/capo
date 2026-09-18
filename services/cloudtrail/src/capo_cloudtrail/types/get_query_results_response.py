@@ -63,7 +63,7 @@ def serialize_aws_json_1_1(value: GetQueryResultsResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetQueryResultsResponse:
     out: GetQueryResultsResponse = {}  # type: ignore[typeddict-item]
-    if "QueryStatus" in data:
+    if data.get("QueryStatus") is not None:
         import capo_cloudtrail.types.query_status
 
         out["query_status"] = (
@@ -71,7 +71,7 @@ def deserialize_aws_json_1_1(data: dict) -> GetQueryResultsResponse:
                 data["QueryStatus"]
             )
         )
-    if "QueryStatistics" in data:
+    if data.get("QueryStatistics") is not None:
         import capo_cloudtrail.types.query_statistics
 
         out["query_statistics"] = (
@@ -79,7 +79,7 @@ def deserialize_aws_json_1_1(data: dict) -> GetQueryResultsResponse:
                 data["QueryStatistics"]
             )
         )
-    if "QueryResultRows" in data:
+    if data.get("QueryResultRows") is not None:
         import capo_cloudtrail.types.query_result_rows
 
         out["query_result_rows"] = (
@@ -87,8 +87,8 @@ def deserialize_aws_json_1_1(data: dict) -> GetQueryResultsResponse:
                 data["QueryResultRows"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "ErrorMessage" in data:
+    if data.get("ErrorMessage") is not None:
         out["error_message"] = data["ErrorMessage"]
     return out

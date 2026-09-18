@@ -29,6 +29,8 @@ def deserialize_aws_json_1_1(data: list) -> UnsuccessfulFaceAssociationReasons:
 
     out: UnsuccessfulFaceAssociationReasons = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_rekognition.types.unsuccessful_face_association_reason.deserialize_aws_json_1_1(
                 item

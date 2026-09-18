@@ -24,7 +24,7 @@ def serialize_json(value: FlowQuickConnectConfig) -> dict:
 
 def deserialize_json(data: dict) -> FlowQuickConnectConfig:
     out: FlowQuickConnectConfig = {}  # type: ignore[typeddict-item]
-    if "ContactFlowId" in data:
+    if data.get("ContactFlowId") is not None:
         out["contact_flow_id"] = data["ContactFlowId"]
     else:
         raise DeserializationError("FlowQuickConnectConfig.contact_flow_id required")

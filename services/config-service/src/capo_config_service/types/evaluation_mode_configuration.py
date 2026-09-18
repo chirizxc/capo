@@ -27,7 +27,7 @@ def serialize_aws_json_1_1(value: EvaluationModeConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> EvaluationModeConfiguration:
     out: EvaluationModeConfiguration = {}  # type: ignore[typeddict-item]
-    if "Mode" in data:
+    if data.get("Mode") is not None:
         import capo_config_service.types.evaluation_mode
 
         out["mode"] = (

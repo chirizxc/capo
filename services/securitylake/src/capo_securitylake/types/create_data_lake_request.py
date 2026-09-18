@@ -43,7 +43,7 @@ def serialize_json(value: CreateDataLakeRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateDataLakeRequest:
     out: CreateDataLakeRequest = {}  # type: ignore[typeddict-item]
-    if "configurations" in data:
+    if data.get("configurations") is not None:
         import capo_securitylake.types.data_lake_configuration_list
 
         out["configurations"] = (
@@ -53,13 +53,13 @@ def deserialize_json(data: dict) -> CreateDataLakeRequest:
         )
     else:
         raise DeserializationError("CreateDataLakeRequest.configurations required")
-    if "metaStoreManagerRoleArn" in data:
+    if data.get("metaStoreManagerRoleArn") is not None:
         out["meta_store_manager_role_arn"] = data["metaStoreManagerRoleArn"]
     else:
         raise DeserializationError(
             "CreateDataLakeRequest.meta_store_manager_role_arn required"
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_securitylake.types.tag_list
 
         out["tags"] = capo_securitylake.types.tag_list.deserialize_json(data["tags"])

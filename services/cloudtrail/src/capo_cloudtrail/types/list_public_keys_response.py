@@ -34,7 +34,7 @@ def serialize_aws_json_1_1(value: ListPublicKeysResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListPublicKeysResponse:
     out: ListPublicKeysResponse = {}  # type: ignore[typeddict-item]
-    if "PublicKeyList" in data:
+    if data.get("PublicKeyList") is not None:
         import capo_cloudtrail.types.public_key_list
 
         out["public_key_list"] = (
@@ -42,6 +42,6 @@ def deserialize_aws_json_1_1(data: dict) -> ListPublicKeysResponse:
                 data["PublicKeyList"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

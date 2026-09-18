@@ -35,13 +35,13 @@ def serialize_json(value: DateRangeType) -> dict:
 
 def deserialize_json(data: dict) -> DateRangeType:
     out: DateRangeType = {}  # type: ignore[typeddict-item]
-    if "StartValue" in data:
+    if data.get("StartValue") is not None:
         import capo_workdocs.types.timestamp_type
 
         out["start_value"] = capo_workdocs.types.timestamp_type.deserialize_json(
             data["StartValue"]
         )
-    if "EndValue" in data:
+    if data.get("EndValue") is not None:
         import capo_workdocs.types.timestamp_type
 
         out["end_value"] = capo_workdocs.types.timestamp_type.deserialize_json(

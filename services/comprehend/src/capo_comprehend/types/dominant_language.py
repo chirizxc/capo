@@ -22,14 +22,22 @@ def serialize_aws_json_1_1(value: DominantLanguage) -> dict:
     if "language_code" in value:
         out["LanguageCode"] = value["language_code"]
     if "score" in value:
-        out["Score"] = value["score"]
+        out["Score"] = (
+            "NaN"
+            if value["score"] != value["score"]
+            else "Infinity"
+            if value["score"] == float("inf")
+            else "-Infinity"
+            if value["score"] == float("-inf")
+            else value["score"]
+        )
     return out
 
 
 def deserialize_aws_json_1_1(data: dict) -> DominantLanguage:
     out: DominantLanguage = {}  # type: ignore[typeddict-item]
-    if "LanguageCode" in data:
+    if data.get("LanguageCode") is not None:
         out["language_code"] = data["LanguageCode"]
-    if "Score" in data:
-        out["score"] = data["Score"]
+    if data.get("Score") is not None:
+        out["score"] = float(data["Score"])
     return out

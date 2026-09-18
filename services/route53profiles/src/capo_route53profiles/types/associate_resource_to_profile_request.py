@@ -39,22 +39,22 @@ def serialize_json(value: AssociateResourceToProfileRequest) -> dict:
 
 def deserialize_json(data: dict) -> AssociateResourceToProfileRequest:
     out: AssociateResourceToProfileRequest = {}  # type: ignore[typeddict-item]
-    if "ProfileId" in data:
+    if data.get("ProfileId") is not None:
         out["profile_id"] = data["ProfileId"]
     else:
         raise DeserializationError(
             "AssociateResourceToProfileRequest.profile_id required"
         )
-    if "ResourceArn" in data:
+    if data.get("ResourceArn") is not None:
         out["resource_arn"] = data["ResourceArn"]
     else:
         raise DeserializationError(
             "AssociateResourceToProfileRequest.resource_arn required"
         )
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("AssociateResourceToProfileRequest.name required")
-    if "ResourceProperties" in data:
+    if data.get("ResourceProperties") is not None:
         out["resource_properties"] = data["ResourceProperties"]
     return out

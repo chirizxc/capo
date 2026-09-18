@@ -25,6 +25,6 @@ def serialize_json(value: UpdatePermissionGroupResponse) -> dict:
 
 def deserialize_json(data: dict) -> UpdatePermissionGroupResponse:
     out: UpdatePermissionGroupResponse = {}  # type: ignore[typeddict-item]
-    if "permissionGroupId" in data:
+    if data.get("permissionGroupId") is not None:
         out["permission_group_id"] = data["permissionGroupId"]
     return out

@@ -39,14 +39,14 @@ def serialize_json(value: GetPromptFileResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetPromptFileResponse:
     out: GetPromptFileResponse = {}  # type: ignore[typeddict-item]
-    if "PromptPresignedUrl" in data:
+    if data.get("PromptPresignedUrl") is not None:
         out["prompt_presigned_url"] = data["PromptPresignedUrl"]
-    if "LastModifiedTime" in data:
+    if data.get("LastModifiedTime") is not None:
         import capo_connect.types.timestamp
 
         out["last_modified_time"] = capo_connect.types.timestamp.deserialize_json(
             data["LastModifiedTime"]
         )
-    if "LastModifiedRegion" in data:
+    if data.get("LastModifiedRegion") is not None:
         out["last_modified_region"] = data["LastModifiedRegion"]
     return out

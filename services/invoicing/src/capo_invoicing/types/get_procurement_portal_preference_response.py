@@ -32,7 +32,7 @@ def serialize_aws_json_1_0(value: GetProcurementPortalPreferenceResponse) -> dic
 
 def deserialize_aws_json_1_0(data: dict) -> GetProcurementPortalPreferenceResponse:
     out: GetProcurementPortalPreferenceResponse = {}  # type: ignore[typeddict-item]
-    if "ProcurementPortalPreference" in data:
+    if data.get("ProcurementPortalPreference") is not None:
         import capo_invoicing.types.procurement_portal_preference
 
         out["procurement_portal_preference"] = (

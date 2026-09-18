@@ -43,18 +43,18 @@ def serialize_json(value: GetRetrievedTracesGraphResult) -> dict:
 
 def deserialize_json(data: dict) -> GetRetrievedTracesGraphResult:
     out: GetRetrievedTracesGraphResult = {}  # type: ignore[typeddict-item]
-    if "RetrievalStatus" in data:
+    if data.get("RetrievalStatus") is not None:
         import capo_xray.types.retrieval_status
 
         out["retrieval_status"] = capo_xray.types.retrieval_status.deserialize_json(
             data["RetrievalStatus"]
         )
-    if "Services" in data:
+    if data.get("Services") is not None:
         import capo_xray.types.retrieved_services_list
 
         out["services"] = capo_xray.types.retrieved_services_list.deserialize_json(
             data["Services"]
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

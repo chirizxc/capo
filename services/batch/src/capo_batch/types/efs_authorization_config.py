@@ -34,9 +34,9 @@ def serialize_json(value: EFSAuthorizationConfig) -> dict:
 
 def deserialize_json(data: dict) -> EFSAuthorizationConfig:
     out: EFSAuthorizationConfig = {}  # type: ignore[typeddict-item]
-    if "accessPointId" in data:
+    if data.get("accessPointId") is not None:
         out["access_point_id"] = data["accessPointId"]
-    if "iam" in data:
+    if data.get("iam") is not None:
         import capo_batch.types.efs_authorization_config_iam
 
         out["iam"] = capo_batch.types.efs_authorization_config_iam.deserialize_json(

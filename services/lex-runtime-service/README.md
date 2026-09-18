@@ -13,9 +13,9 @@ from capo_lex_runtime_service import AsyncLexRuntimeServiceClient
 
 
 async def main():
-    async with AsyncLexRuntimeServiceClient() as s3:
+    async with AsyncLexRuntimeServiceClient() as lex_runtime_service:
         # Example: call the delete_session operation
-        response = await s3.delete_session()
+        response = await lex_runtime_service.delete_session()
         print(response["bot_name"])
 ```
 
@@ -28,16 +28,16 @@ from capo_lex_runtime_service import AsyncLexRuntimeServiceClient
 
 
 async def main():
-    async with AsyncLexRuntimeServiceClient() as s3:
+    async with AsyncLexRuntimeServiceClient() as lex_runtime_service:
         # Example: call post_content with a streaming request body
         async def chunks():
             yield b'Hello, World!'
 
-        response = await s3.post_content(input_stream=chunks())
+        response = await lex_runtime_service.post_content(input_stream=chunks())
         print(response)
 
         # Or pass the whole body as bytes
-        response = await s3.post_content(input_stream=b'Hello, World!')
+        response = await lex_runtime_service.post_content(input_stream=b'Hello, World!')
         print(response)
 ```
 
@@ -50,9 +50,9 @@ from capo_lex_runtime_service import AsyncLexRuntimeServiceClient
 
 
 async def main():
-    async with AsyncLexRuntimeServiceClient() as s3:
+    async with AsyncLexRuntimeServiceClient() as lex_runtime_service:
         # Example: call post_content and read the streaming response
-        async with s3.post_content() as response:
+        async with lex_runtime_service.post_content() as response:
             async for chunk in response["audio_stream"]:
                 print(chunk)
 ```
@@ -67,9 +67,9 @@ from capo_lex_runtime_service.error import BadRequestException
 
 
 async def main():
-    async with AsyncLexRuntimeServiceClient() as s3:
+    async with AsyncLexRuntimeServiceClient() as lex_runtime_service:
         try:
-            await s3.delete_session()
+            await lex_runtime_service.delete_session()
         except BadRequestException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -86,13 +86,13 @@ from capo_lex_runtime_service import AsyncLexRuntimeServiceClient
 
 
 async def main():
-    async with AsyncLexRuntimeServiceClient() as s3:
+    async with AsyncLexRuntimeServiceClient() as lex_runtime_service:
         # Default: 3 attempts for every operation
-        response = await s3.delete_session()
+        response = await lex_runtime_service.delete_session()
 
         # Override per operation
-        response = await s3.delete_session(config_overrides={"retry_max_attempts": 5})
+        response = await lex_runtime_service.delete_session(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.delete_session(config_overrides={"retry_max_attempts": 1})
+        response = await lex_runtime_service.delete_session(config_overrides={"retry_max_attempts": 1})
 ```

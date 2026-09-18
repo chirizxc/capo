@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> KPIConditionalFormattingOptionList:
 
     out: KPIConditionalFormattingOptionList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_quicksight.types.kpi_conditional_formatting_option.deserialize_json(
                 item

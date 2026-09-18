@@ -53,15 +53,15 @@ def serialize_json(value: UpdateNetworkSettingsRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateNetworkSettingsRequest:
     out: UpdateNetworkSettingsRequest = {}  # type: ignore[typeddict-item]
-    if "vpcId" in data:
+    if data.get("vpcId") is not None:
         out["vpc_id"] = data["vpcId"]
-    if "subnetIds" in data:
+    if data.get("subnetIds") is not None:
         import capo_workspaces_web.types.subnet_id_list
 
         out["subnet_ids"] = capo_workspaces_web.types.subnet_id_list.deserialize_json(
             data["subnetIds"]
         )
-    if "securityGroupIds" in data:
+    if data.get("securityGroupIds") is not None:
         import capo_workspaces_web.types.security_group_id_list
 
         out["security_group_ids"] = (
@@ -69,6 +69,6 @@ def deserialize_json(data: dict) -> UpdateNetworkSettingsRequest:
                 data["securityGroupIds"]
             )
         )
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     return out

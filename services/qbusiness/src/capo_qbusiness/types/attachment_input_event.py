@@ -28,7 +28,7 @@ def serialize_json(value: AttachmentInputEvent) -> dict:
 
 def deserialize_json(data: dict) -> AttachmentInputEvent:
     out: AttachmentInputEvent = {}  # type: ignore[typeddict-item]
-    if "attachment" in data:
+    if data.get("attachment") is not None:
         import capo_qbusiness.types.attachment_input
 
         out["attachment"] = capo_qbusiness.types.attachment_input.deserialize_json(

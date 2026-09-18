@@ -38,11 +38,11 @@ def serialize_json(value: KeywordMatchConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> KeywordMatchConfiguration:
     out: KeywordMatchConfiguration = {}  # type: ignore[typeddict-item]
-    if "RuleName" in data:
+    if data.get("RuleName") is not None:
         out["rule_name"] = data["RuleName"]
     else:
         raise DeserializationError("KeywordMatchConfiguration.rule_name required")
-    if "Keywords" in data:
+    if data.get("Keywords") is not None:
         import capo_chime_sdk_media_pipelines.types.keyword_match_word_list
 
         out["keywords"] = (
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> KeywordMatchConfiguration:
         )
     else:
         raise DeserializationError("KeywordMatchConfiguration.keywords required")
-    if "Negate" in data:
+    if data.get("Negate") is not None:
         out["negate"] = data["Negate"]
     else:
         out["negate"] = False

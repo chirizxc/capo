@@ -36,7 +36,7 @@ def serialize_json(value: ListMatchingWorkflowsOutput) -> dict:
 
 def deserialize_json(data: dict) -> ListMatchingWorkflowsOutput:
     out: ListMatchingWorkflowsOutput = {}  # type: ignore[typeddict-item]
-    if "workflowSummaries" in data:
+    if data.get("workflowSummaries") is not None:
         import capo_entityresolution.types.matching_workflow_list
 
         out["workflow_summaries"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> ListMatchingWorkflowsOutput:
                 data["workflowSummaries"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

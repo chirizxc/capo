@@ -40,19 +40,19 @@ def serialize_json(value: DeletePracticeRunConfigurationResponse) -> dict:
 
 def deserialize_json(data: dict) -> DeletePracticeRunConfigurationResponse:
     out: DeletePracticeRunConfigurationResponse = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError(
             "DeletePracticeRunConfigurationResponse.arn required"
         )
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError(
             "DeletePracticeRunConfigurationResponse.name required"
         )
-    if "zonalAutoshiftStatus" in data:
+    if data.get("zonalAutoshiftStatus") is not None:
         import capo_arc_zonal_shift.types.zonal_autoshift_status
 
         out["zonal_autoshift_status"] = (

@@ -31,7 +31,7 @@ def serialize_json(value: LogDelivery) -> dict:
 
 def deserialize_json(data: dict) -> LogDelivery:
     out: LogDelivery = {}  # type: ignore[typeddict-item]
-    if "replicatorLogDelivery" in data:
+    if data.get("replicatorLogDelivery") is not None:
         import capo_kafka.types.replicator_log_delivery
 
         out["replicator_log_delivery"] = (

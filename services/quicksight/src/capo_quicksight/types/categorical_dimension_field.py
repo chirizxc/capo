@@ -50,11 +50,11 @@ def serialize_json(value: CategoricalDimensionField) -> dict:
 
 def deserialize_json(data: dict) -> CategoricalDimensionField:
     out: CategoricalDimensionField = {}  # type: ignore[typeddict-item]
-    if "FieldId" in data:
+    if data.get("FieldId") is not None:
         out["field_id"] = data["FieldId"]
     else:
         raise DeserializationError("CategoricalDimensionField.field_id required")
-    if "Column" in data:
+    if data.get("Column") is not None:
         import capo_quicksight.types.column_identifier
 
         out["column"] = capo_quicksight.types.column_identifier.deserialize_json(
@@ -62,9 +62,9 @@ def deserialize_json(data: dict) -> CategoricalDimensionField:
         )
     else:
         raise DeserializationError("CategoricalDimensionField.column required")
-    if "HierarchyId" in data:
+    if data.get("HierarchyId") is not None:
         out["hierarchy_id"] = data["HierarchyId"]
-    if "FormatConfiguration" in data:
+    if data.get("FormatConfiguration") is not None:
         import capo_quicksight.types.string_format_configuration
 
         out["format_configuration"] = (

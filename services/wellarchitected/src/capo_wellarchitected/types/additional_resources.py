@@ -40,7 +40,7 @@ def serialize_json(value: AdditionalResources) -> dict:
 
 def deserialize_json(data: dict) -> AdditionalResources:
     out: AdditionalResources = {}  # type: ignore[typeddict-item]
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_wellarchitected.types.additional_resource_type
 
         out["type"] = (
@@ -48,7 +48,7 @@ def deserialize_json(data: dict) -> AdditionalResources:
                 data["Type"]
             )
         )
-    if "Content" in data:
+    if data.get("Content") is not None:
         import capo_wellarchitected.types.urls
 
         out["content"] = capo_wellarchitected.types.urls.deserialize_json(

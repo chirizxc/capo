@@ -24,7 +24,7 @@ def serialize_aws_json_1_0(value: DeleteDefaultSenderIdRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> DeleteDefaultSenderIdRequest:
     out: DeleteDefaultSenderIdRequest = {}  # type: ignore[typeddict-item]
-    if "ConfigurationSetName" in data:
+    if data.get("ConfigurationSetName") is not None:
         out["configuration_set_name"] = data["ConfigurationSetName"]
     else:
         raise DeserializationError(

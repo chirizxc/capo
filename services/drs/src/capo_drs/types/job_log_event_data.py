@@ -68,15 +68,15 @@ def serialize_json(value: JobLogEventData) -> dict:
 
 def deserialize_json(data: dict) -> JobLogEventData:
     out: JobLogEventData = {}  # type: ignore[typeddict-item]
-    if "sourceServerID" in data:
+    if data.get("sourceServerID") is not None:
         out["source_server_id"] = data["sourceServerID"]
-    if "conversionServerID" in data:
+    if data.get("conversionServerID") is not None:
         out["conversion_server_id"] = data["conversionServerID"]
-    if "targetInstanceID" in data:
+    if data.get("targetInstanceID") is not None:
         out["target_instance_id"] = data["targetInstanceID"]
-    if "rawError" in data:
+    if data.get("rawError") is not None:
         out["raw_error"] = data["rawError"]
-    if "conversionProperties" in data:
+    if data.get("conversionProperties") is not None:
         import capo_drs.types.conversion_properties
 
         out["conversion_properties"] = (
@@ -84,7 +84,7 @@ def deserialize_json(data: dict) -> JobLogEventData:
                 data["conversionProperties"]
             )
         )
-    if "eventResourceData" in data:
+    if data.get("eventResourceData") is not None:
         import capo_drs.types.event_resource_data
 
         out["event_resource_data"] = (
@@ -92,11 +92,11 @@ def deserialize_json(data: dict) -> JobLogEventData:
                 data["eventResourceData"]
             )
         )
-    if "attemptCount" in data:
+    if data.get("attemptCount") is not None:
         out["attempt_count"] = data["attemptCount"]
     else:
         out["attempt_count"] = 0
-    if "maxAttemptsCount" in data:
+    if data.get("maxAttemptsCount") is not None:
         out["max_attempts_count"] = data["maxAttemptsCount"]
     else:
         out["max_attempts_count"] = 0

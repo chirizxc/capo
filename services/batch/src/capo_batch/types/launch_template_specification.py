@@ -53,13 +53,13 @@ def serialize_json(value: LaunchTemplateSpecification) -> dict:
 
 def deserialize_json(data: dict) -> LaunchTemplateSpecification:
     out: LaunchTemplateSpecification = {}  # type: ignore[typeddict-item]
-    if "launchTemplateId" in data:
+    if data.get("launchTemplateId") is not None:
         out["launch_template_id"] = data["launchTemplateId"]
-    if "launchTemplateName" in data:
+    if data.get("launchTemplateName") is not None:
         out["launch_template_name"] = data["launchTemplateName"]
-    if "version" in data:
+    if data.get("version") is not None:
         out["version"] = data["version"]
-    if "overrides" in data:
+    if data.get("overrides") is not None:
         import capo_batch.types.launch_template_specification_override_list
 
         out["overrides"] = (
@@ -67,7 +67,7 @@ def deserialize_json(data: dict) -> LaunchTemplateSpecification:
                 data["overrides"]
             )
         )
-    if "userdataType" in data:
+    if data.get("userdataType") is not None:
         import capo_batch.types.userdata_type
 
         out["userdata_type"] = capo_batch.types.userdata_type.deserialize_json(

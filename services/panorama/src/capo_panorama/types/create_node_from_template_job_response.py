@@ -24,7 +24,7 @@ def serialize_json(value: CreateNodeFromTemplateJobResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateNodeFromTemplateJobResponse:
     out: CreateNodeFromTemplateJobResponse = {}  # type: ignore[typeddict-item]
-    if "JobId" in data:
+    if data.get("JobId") is not None:
         out["job_id"] = data["JobId"]
     else:
         raise DeserializationError("CreateNodeFromTemplateJobResponse.job_id required")

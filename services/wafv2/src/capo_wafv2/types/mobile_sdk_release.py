@@ -44,17 +44,17 @@ def serialize_aws_json_1_1(value: MobileSdkRelease) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> MobileSdkRelease:
     out: MobileSdkRelease = {}  # type: ignore[typeddict-item]
-    if "ReleaseVersion" in data:
+    if data.get("ReleaseVersion") is not None:
         out["release_version"] = data["ReleaseVersion"]
-    if "Timestamp" in data:
+    if data.get("Timestamp") is not None:
         import capo_wafv2.types.timestamp
 
         out["timestamp"] = capo_wafv2.types.timestamp.deserialize_aws_json_1_1(
             data["Timestamp"]
         )
-    if "ReleaseNotes" in data:
+    if data.get("ReleaseNotes") is not None:
         out["release_notes"] = data["ReleaseNotes"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_wafv2.types.tag_list
 
         out["tags"] = capo_wafv2.types.tag_list.deserialize_aws_json_1_1(data["Tags"])

@@ -36,7 +36,7 @@ def serialize_json(value: ListImportFileTaskResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListImportFileTaskResponse:
     out: ListImportFileTaskResponse = {}  # type: ignore[typeddict-item]
-    if "taskInfos" in data:
+    if data.get("taskInfos") is not None:
         import capo_migrationhubstrategy.types.list_import_file_task_information
 
         out["task_infos"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> ListImportFileTaskResponse:
                 data["taskInfos"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

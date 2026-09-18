@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> EventTypes:
 
     out: EventTypes = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_sesv2.types.event_type.deserialize_json(item))
     return out

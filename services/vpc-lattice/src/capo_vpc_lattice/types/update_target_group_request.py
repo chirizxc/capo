@@ -33,7 +33,7 @@ def serialize_json(value: UpdateTargetGroupRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateTargetGroupRequest:
     out: UpdateTargetGroupRequest = {}  # type: ignore[typeddict-item]
-    if "healthCheck" in data:
+    if data.get("healthCheck") is not None:
         import capo_vpc_lattice.types.health_check_config
 
         out["health_check"] = (

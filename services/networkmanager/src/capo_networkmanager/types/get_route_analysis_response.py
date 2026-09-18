@@ -29,7 +29,7 @@ def serialize_json(value: GetRouteAnalysisResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetRouteAnalysisResponse:
     out: GetRouteAnalysisResponse = {}  # type: ignore[typeddict-item]
-    if "RouteAnalysis" in data:
+    if data.get("RouteAnalysis") is not None:
         import capo_networkmanager.types.route_analysis
 
         out["route_analysis"] = (

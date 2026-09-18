@@ -50,19 +50,19 @@ def serialize_json(value: ExportEarthObservationJobInput) -> dict:
 
 def deserialize_json(data: dict) -> ExportEarthObservationJobInput:
     out: ExportEarthObservationJobInput = {}  # type: ignore[typeddict-item]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
     else:
         raise DeserializationError("ExportEarthObservationJobInput.arn required")
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
-    if "ExecutionRoleArn" in data:
+    if data.get("ExecutionRoleArn") is not None:
         out["execution_role_arn"] = data["ExecutionRoleArn"]
     else:
         raise DeserializationError(
             "ExportEarthObservationJobInput.execution_role_arn required"
         )
-    if "OutputConfig" in data:
+    if data.get("OutputConfig") is not None:
         import capo_sagemaker_geospatial.types.output_config_input
 
         out["output_config"] = (
@@ -74,6 +74,6 @@ def deserialize_json(data: dict) -> ExportEarthObservationJobInput:
         raise DeserializationError(
             "ExportEarthObservationJobInput.output_config required"
         )
-    if "ExportSourceImages" in data:
+    if data.get("ExportSourceImages") is not None:
         out["export_source_images"] = data["ExportSourceImages"]
     return out

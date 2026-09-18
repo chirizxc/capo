@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> TargetAccountConfigurationList:
 
     out: TargetAccountConfigurationList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_fis.types.target_account_configuration_summary.deserialize_json(item)
         )

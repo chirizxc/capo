@@ -36,7 +36,7 @@ def serialize_json(value: ListQuickConnectsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListQuickConnectsResponse:
     out: ListQuickConnectsResponse = {}  # type: ignore[typeddict-item]
-    if "QuickConnectSummaryList" in data:
+    if data.get("QuickConnectSummaryList") is not None:
         import capo_connect.types.quick_connect_summary_list
 
         out["quick_connect_summary_list"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> ListQuickConnectsResponse:
                 data["QuickConnectSummaryList"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

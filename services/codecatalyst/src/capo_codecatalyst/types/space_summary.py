@@ -36,16 +36,16 @@ def serialize_json(value: SpaceSummary) -> dict:
 
 def deserialize_json(data: dict) -> SpaceSummary:
     out: SpaceSummary = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("SpaceSummary.name required")
-    if "regionName" in data:
+    if data.get("regionName") is not None:
         out["region_name"] = data["regionName"]
     else:
         raise DeserializationError("SpaceSummary.region_name required")
-    if "displayName" in data:
+    if data.get("displayName") is not None:
         out["display_name"] = data["displayName"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
     return out

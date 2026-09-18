@@ -38,15 +38,15 @@ def serialize_json(value: DescribeAccountOverviewResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribeAccountOverviewResponse:
     out: DescribeAccountOverviewResponse = {}  # type: ignore[typeddict-item]
-    if "ReactiveInsights" in data:
+    if data.get("ReactiveInsights") is not None:
         out["reactive_insights"] = data["ReactiveInsights"]
     else:
         out["reactive_insights"] = 0
-    if "ProactiveInsights" in data:
+    if data.get("ProactiveInsights") is not None:
         out["proactive_insights"] = data["ProactiveInsights"]
     else:
         out["proactive_insights"] = 0
-    if "MeanTimeToRecoverInMilliseconds" in data:
+    if data.get("MeanTimeToRecoverInMilliseconds") is not None:
         out["mean_time_to_recover_in_milliseconds"] = data[
             "MeanTimeToRecoverInMilliseconds"
         ]

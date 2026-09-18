@@ -32,7 +32,7 @@ def serialize_json(value: OpenHours) -> dict:
 
 
 def deserialize_json(data: dict) -> OpenHours:
-    if "dailyHours" in data:
+    if data.get("dailyHours") is not None:
         import capo_connectcampaignsv2.types.daily_hours
 
         return {

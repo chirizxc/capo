@@ -69,14 +69,16 @@ class ManagedFirewallDomainList:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_route53globalresolver.types.get_managed_firewall_domain_list_input.GetManagedFirewallDomainListInput = {}  # type: ignore[typeddict-item]
-        input_["managed_firewall_domain_list_id"] = managed_firewall_domain_list_id
+        input_: capo_route53globalresolver.types.get_managed_firewall_domain_list_input.GetManagedFirewallDomainListInput = {
+            "managed_firewall_domain_list_id": managed_firewall_domain_list_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -117,18 +119,20 @@ class ManagedFirewallDomainList:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_route53globalresolver.types.list_managed_firewall_domain_lists_input.ListManagedFirewallDomainListsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_route53globalresolver.types.list_managed_firewall_domain_lists_input.ListManagedFirewallDomainListsInput = {
+            "managed_firewall_domain_list_type": managed_firewall_domain_list_type
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
             input_["next_token"] = next_token
-        input_["managed_firewall_domain_list_type"] = managed_firewall_domain_list_type
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -172,14 +176,16 @@ class AsyncManagedFirewallDomainList:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_route53globalresolver.types.get_managed_firewall_domain_list_input.GetManagedFirewallDomainListInput = {}  # type: ignore[typeddict-item]
-        input_["managed_firewall_domain_list_id"] = managed_firewall_domain_list_id
+        input_: capo_route53globalresolver.types.get_managed_firewall_domain_list_input.GetManagedFirewallDomainListInput = {
+            "managed_firewall_domain_list_id": managed_firewall_domain_list_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -221,16 +227,18 @@ class AsyncManagedFirewallDomainList:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_route53globalresolver.types.list_managed_firewall_domain_lists_input.ListManagedFirewallDomainListsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_route53globalresolver.types.list_managed_firewall_domain_lists_input.ListManagedFirewallDomainListsInput = {
+            "managed_firewall_domain_list_type": managed_firewall_domain_list_type
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
             input_["next_token"] = next_token
-        input_["managed_firewall_domain_list_type"] = managed_firewall_domain_list_type
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

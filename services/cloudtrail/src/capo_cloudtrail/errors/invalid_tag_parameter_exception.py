@@ -25,7 +25,7 @@ def serialize_aws_json_1_1(value: InvalidTagParameterException_) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> InvalidTagParameterException_:
     out: InvalidTagParameterException_ = {}  # type: ignore[typeddict-item]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     return out
 
@@ -35,15 +35,18 @@ class InvalidTagParameterException(ServiceError):
 
     code: str | None = "InvalidTagParameterException"
 
-    def __init__(self, data: InvalidTagParameterException_):
+    def __init__(self, data: InvalidTagParameterException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="InvalidTagParameterException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "InvalidTagParameterException":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "InvalidTagParameterException":
+        return cls(deserialize_aws_json_1_1(data), message)

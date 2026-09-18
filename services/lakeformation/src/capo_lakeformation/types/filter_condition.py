@@ -53,13 +53,13 @@ def serialize_json(value: FilterCondition) -> dict:
 
 def deserialize_json(data: dict) -> FilterCondition:
     out: FilterCondition = {}  # type: ignore[typeddict-item]
-    if "Field" in data:
+    if data.get("Field") is not None:
         import capo_lakeformation.types.field_name_string
 
         out["field"] = capo_lakeformation.types.field_name_string.deserialize_json(
             data["Field"]
         )
-    if "ComparisonOperator" in data:
+    if data.get("ComparisonOperator") is not None:
         import capo_lakeformation.types.comparison_operator
 
         out["comparison_operator"] = (
@@ -67,7 +67,7 @@ def deserialize_json(data: dict) -> FilterCondition:
                 data["ComparisonOperator"]
             )
         )
-    if "StringValueList" in data:
+    if data.get("StringValueList") is not None:
         import capo_lakeformation.types.string_value_list
 
         out["string_value_list"] = (

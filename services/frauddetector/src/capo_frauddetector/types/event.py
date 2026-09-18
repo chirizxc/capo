@@ -63,13 +63,13 @@ def serialize_aws_json_1_1(value: Event) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Event:
     out: Event = {}  # type: ignore[typeddict-item]
-    if "eventId" in data:
+    if data.get("eventId") is not None:
         out["event_id"] = data["eventId"]
-    if "eventTypeName" in data:
+    if data.get("eventTypeName") is not None:
         out["event_type_name"] = data["eventTypeName"]
-    if "eventTimestamp" in data:
+    if data.get("eventTimestamp") is not None:
         out["event_timestamp"] = data["eventTimestamp"]
-    if "eventVariables" in data:
+    if data.get("eventVariables") is not None:
         import capo_frauddetector.types.event_attribute_map
 
         out["event_variables"] = (
@@ -77,11 +77,11 @@ def deserialize_aws_json_1_1(data: dict) -> Event:
                 data["eventVariables"]
             )
         )
-    if "currentLabel" in data:
+    if data.get("currentLabel") is not None:
         out["current_label"] = data["currentLabel"]
-    if "labelTimestamp" in data:
+    if data.get("labelTimestamp") is not None:
         out["label_timestamp"] = data["labelTimestamp"]
-    if "entities" in data:
+    if data.get("entities") is not None:
         import capo_frauddetector.types.list_of_entities
 
         out["entities"] = (

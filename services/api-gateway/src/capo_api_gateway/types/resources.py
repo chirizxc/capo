@@ -30,7 +30,7 @@ def serialize_json(value: Resources) -> dict:
 
 def deserialize_json(data: dict) -> Resources:
     out: Resources = {}  # type: ignore[typeddict-item]
-    if "item" in data:
+    if data.get("item") is not None:
         import capo_api_gateway.types.list_of_resource
 
         out["items"] = capo_api_gateway.types.list_of_resource.deserialize_json(

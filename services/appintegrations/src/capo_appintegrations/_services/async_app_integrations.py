@@ -1,5 +1,6 @@
 """Generated from Smithy shape ``com.amazonaws.appintegrations#AmazonAppIntegrationService``."""
 
+import uuid
 import warnings
 from collections.abc import AsyncIterator
 from typing import TYPE_CHECKING, Any, Iterable, Optional
@@ -296,18 +297,20 @@ class AsyncAppIntegrationsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appintegrations.types.create_application_request.CreateApplicationRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        input_["namespace"] = namespace
+        input_: capo_appintegrations.types.create_application_request.CreateApplicationRequest = {
+            "name": name,
+            "namespace": namespace,
+            "application_source_config": application_source_config,
+        }
         if description is not None:
             input_["description"] = description
-        input_["application_source_config"] = application_source_config
         if subscriptions is not None:
             input_["subscriptions"] = subscriptions
         if publications is not None:
             input_["publications"] = publications
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if tags is not None:
             input_["tags"] = tags
         if permissions is not None:
@@ -328,6 +331,7 @@ class AsyncAppIntegrationsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_data_integration(
@@ -393,19 +397,21 @@ class AsyncAppIntegrationsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appintegrations.types.create_data_integration_request.CreateDataIntegrationRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_appintegrations.types.create_data_integration_request.CreateDataIntegrationRequest = {
+            "name": name,
+            "kms_key": kms_key,
+        }
         if description is not None:
             input_["description"] = description
-        input_["kms_key"] = kms_key
         if source_uri is not None:
             input_["source_uri"] = source_uri
         if schedule_config is not None:
             input_["schedule_config"] = schedule_config
         if tags is not None:
             input_["tags"] = tags
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if file_configuration is not None:
             input_["file_configuration"] = file_configuration
         if object_configuration is not None:
@@ -416,6 +422,7 @@ class AsyncAppIntegrationsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_data_integration_association(
@@ -476,8 +483,9 @@ class AsyncAppIntegrationsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appintegrations.types.create_data_integration_association_request.CreateDataIntegrationAssociationRequest = {}  # type: ignore[typeddict-item]
-        input_["data_integration_identifier"] = data_integration_identifier
+        input_: capo_appintegrations.types.create_data_integration_association_request.CreateDataIntegrationAssociationRequest = {
+            "data_integration_identifier": data_integration_identifier
+        }
         if client_id is not None:
             input_["client_id"] = client_id
         if object_configuration is not None:
@@ -486,8 +494,9 @@ class AsyncAppIntegrationsClient:
             input_["destination_uri"] = destination_uri
         if client_association_metadata is not None:
             input_["client_association_metadata"] = client_association_metadata
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if execution_configuration is not None:
             input_["execution_configuration"] = execution_configuration
 
@@ -496,6 +505,7 @@ class AsyncAppIntegrationsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_event_integration(
@@ -549,14 +559,16 @@ class AsyncAppIntegrationsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appintegrations.types.create_event_integration_request.CreateEventIntegrationRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_appintegrations.types.create_event_integration_request.CreateEventIntegrationRequest = {
+            "name": name,
+            "event_filter": event_filter,
+            "event_bridge_bus": event_bridge_bus,
+        }
         if description is not None:
             input_["description"] = description
-        input_["event_filter"] = event_filter
-        input_["event_bridge_bus"] = event_bridge_bus
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if tags is not None:
             input_["tags"] = tags
 
@@ -565,6 +577,7 @@ class AsyncAppIntegrationsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_application(
@@ -609,14 +622,16 @@ class AsyncAppIntegrationsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appintegrations.types.delete_application_request.DeleteApplicationRequest = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
+        input_: capo_appintegrations.types.delete_application_request.DeleteApplicationRequest = {
+            "arn": arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_data_integration(
@@ -655,14 +670,16 @@ class AsyncAppIntegrationsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appintegrations.types.delete_data_integration_request.DeleteDataIntegrationRequest = {}  # type: ignore[typeddict-item]
-        input_["data_integration_identifier"] = data_integration_identifier
+        input_: capo_appintegrations.types.delete_data_integration_request.DeleteDataIntegrationRequest = {
+            "data_integration_identifier": data_integration_identifier
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_event_integration(
@@ -701,14 +718,16 @@ class AsyncAppIntegrationsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appintegrations.types.delete_event_integration_request.DeleteEventIntegrationRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_appintegrations.types.delete_event_integration_request.DeleteEventIntegrationRequest = {
+            "name": name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_application(
@@ -753,14 +772,16 @@ class AsyncAppIntegrationsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appintegrations.types.get_application_request.GetApplicationRequest = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
+        input_: capo_appintegrations.types.get_application_request.GetApplicationRequest = {
+            "arn": arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_data_integration(
@@ -799,14 +820,16 @@ class AsyncAppIntegrationsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appintegrations.types.get_data_integration_request.GetDataIntegrationRequest = {}  # type: ignore[typeddict-item]
-        input_["identifier"] = identifier
+        input_: capo_appintegrations.types.get_data_integration_request.GetDataIntegrationRequest = {
+            "identifier": identifier
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_event_integration(
@@ -845,14 +868,16 @@ class AsyncAppIntegrationsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appintegrations.types.get_event_integration_request.GetEventIntegrationRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_appintegrations.types.get_event_integration_request.GetEventIntegrationRequest = {
+            "name": name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_application_associations(
@@ -903,8 +928,9 @@ class AsyncAppIntegrationsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appintegrations.types.list_application_associations_request.ListApplicationAssociationsRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
+        input_: capo_appintegrations.types.list_application_associations_request.ListApplicationAssociationsRequest = {
+            "application_id": application_id
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -915,6 +941,7 @@ class AsyncAppIntegrationsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_application_associations(
@@ -993,7 +1020,7 @@ class AsyncAppIntegrationsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appintegrations.types.list_applications_request.ListApplicationsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_appintegrations.types.list_applications_request.ListApplicationsRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -1006,6 +1033,7 @@ class AsyncAppIntegrationsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_applications(
@@ -1077,8 +1105,9 @@ class AsyncAppIntegrationsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appintegrations.types.list_data_integration_associations_request.ListDataIntegrationAssociationsRequest = {}  # type: ignore[typeddict-item]
-        input_["data_integration_identifier"] = data_integration_identifier
+        input_: capo_appintegrations.types.list_data_integration_associations_request.ListDataIntegrationAssociationsRequest = {
+            "data_integration_identifier": data_integration_identifier
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -1089,6 +1118,7 @@ class AsyncAppIntegrationsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_data_integration_associations(
@@ -1155,7 +1185,7 @@ class AsyncAppIntegrationsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appintegrations.types.list_data_integrations_request.ListDataIntegrationsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_appintegrations.types.list_data_integrations_request.ListDataIntegrationsRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -1166,6 +1196,7 @@ class AsyncAppIntegrationsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_data_integrations(
@@ -1233,8 +1264,9 @@ class AsyncAppIntegrationsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appintegrations.types.list_event_integration_associations_request.ListEventIntegrationAssociationsRequest = {}  # type: ignore[typeddict-item]
-        input_["event_integration_name"] = event_integration_name
+        input_: capo_appintegrations.types.list_event_integration_associations_request.ListEventIntegrationAssociationsRequest = {
+            "event_integration_name": event_integration_name
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -1245,6 +1277,7 @@ class AsyncAppIntegrationsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_event_integration_associations(
@@ -1311,7 +1344,7 @@ class AsyncAppIntegrationsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appintegrations.types.list_event_integrations_request.ListEventIntegrationsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_appintegrations.types.list_event_integrations_request.ListEventIntegrationsRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -1322,6 +1355,7 @@ class AsyncAppIntegrationsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_event_integrations(
@@ -1382,14 +1416,16 @@ class AsyncAppIntegrationsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appintegrations.types.list_tags_for_resource_request.ListTagsForResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_appintegrations.types.list_tags_for_resource_request.ListTagsForResourceRequest = {
+            "resource_arn": resource_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def tag_resource(
@@ -1429,15 +1465,17 @@ class AsyncAppIntegrationsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appintegrations.types.tag_resource_request.TagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tags"] = tags
+        input_: capo_appintegrations.types.tag_resource_request.TagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tags": tags,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def untag_resource(
@@ -1477,15 +1515,17 @@ class AsyncAppIntegrationsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appintegrations.types.untag_resource_request.UntagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tag_keys"] = tag_keys
+        input_: capo_appintegrations.types.untag_resource_request.UntagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tag_keys": tag_keys,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_application(
@@ -1573,8 +1613,9 @@ class AsyncAppIntegrationsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appintegrations.types.update_application_request.UpdateApplicationRequest = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
+        input_: capo_appintegrations.types.update_application_request.UpdateApplicationRequest = {
+            "arn": arn
+        }
         if name is not None:
             input_["name"] = name
         if description is not None:
@@ -1603,6 +1644,7 @@ class AsyncAppIntegrationsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_data_integration(
@@ -1647,8 +1689,9 @@ class AsyncAppIntegrationsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appintegrations.types.update_data_integration_request.UpdateDataIntegrationRequest = {}  # type: ignore[typeddict-item]
-        input_["identifier"] = identifier
+        input_: capo_appintegrations.types.update_data_integration_request.UpdateDataIntegrationRequest = {
+            "identifier": identifier
+        }
         if name is not None:
             input_["name"] = name
         if description is not None:
@@ -1659,6 +1702,7 @@ class AsyncAppIntegrationsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_data_integration_association(
@@ -1701,18 +1745,18 @@ class AsyncAppIntegrationsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appintegrations.types.update_data_integration_association_request.UpdateDataIntegrationAssociationRequest = {}  # type: ignore[typeddict-item]
-        input_["data_integration_identifier"] = data_integration_identifier
-        input_["data_integration_association_identifier"] = (
-            data_integration_association_identifier
-        )
-        input_["execution_configuration"] = execution_configuration
+        input_: capo_appintegrations.types.update_data_integration_association_request.UpdateDataIntegrationAssociationRequest = {
+            "data_integration_identifier": data_integration_identifier,
+            "data_integration_association_identifier": data_integration_association_identifier,
+            "execution_configuration": execution_configuration,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_event_integration(
@@ -1755,8 +1799,9 @@ class AsyncAppIntegrationsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appintegrations.types.update_event_integration_request.UpdateEventIntegrationRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_appintegrations.types.update_event_integration_request.UpdateEventIntegrationRequest = {
+            "name": name
+        }
         if description is not None:
             input_["description"] = description
 
@@ -1765,6 +1810,7 @@ class AsyncAppIntegrationsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def __aenter__(self) -> Self:

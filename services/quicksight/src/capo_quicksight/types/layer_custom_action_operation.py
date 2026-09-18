@@ -66,7 +66,7 @@ def serialize_json(value: LayerCustomActionOperation) -> dict:
 
 def deserialize_json(data: dict) -> LayerCustomActionOperation:
     out: LayerCustomActionOperation = {}  # type: ignore[typeddict-item]
-    if "FilterOperation" in data:
+    if data.get("FilterOperation") is not None:
         import capo_quicksight.types.custom_action_filter_operation
 
         out["filter_operation"] = (
@@ -74,7 +74,7 @@ def deserialize_json(data: dict) -> LayerCustomActionOperation:
                 data["FilterOperation"]
             )
         )
-    if "NavigationOperation" in data:
+    if data.get("NavigationOperation") is not None:
         import capo_quicksight.types.custom_action_navigation_operation
 
         out["navigation_operation"] = (
@@ -82,7 +82,7 @@ def deserialize_json(data: dict) -> LayerCustomActionOperation:
                 data["NavigationOperation"]
             )
         )
-    if "URLOperation" in data:
+    if data.get("URLOperation") is not None:
         import capo_quicksight.types.custom_action_url_operation
 
         out["url_operation"] = (
@@ -90,7 +90,7 @@ def deserialize_json(data: dict) -> LayerCustomActionOperation:
                 data["URLOperation"]
             )
         )
-    if "SetParametersOperation" in data:
+    if data.get("SetParametersOperation") is not None:
         import capo_quicksight.types.custom_action_set_parameters_operation
 
         out["set_parameters_operation"] = (

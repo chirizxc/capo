@@ -31,15 +31,55 @@ class MetricDatapoint(TypedDict, closed=True):
 def serialize_aws_json_1_1(value: MetricDatapoint) -> dict:
     out: dict = {}
     if "average" in value:
-        out["average"] = value["average"]
+        out["average"] = (
+            "NaN"
+            if value["average"] != value["average"]
+            else "Infinity"
+            if value["average"] == float("inf")
+            else "-Infinity"
+            if value["average"] == float("-inf")
+            else value["average"]
+        )
     if "maximum" in value:
-        out["maximum"] = value["maximum"]
+        out["maximum"] = (
+            "NaN"
+            if value["maximum"] != value["maximum"]
+            else "Infinity"
+            if value["maximum"] == float("inf")
+            else "-Infinity"
+            if value["maximum"] == float("-inf")
+            else value["maximum"]
+        )
     if "minimum" in value:
-        out["minimum"] = value["minimum"]
+        out["minimum"] = (
+            "NaN"
+            if value["minimum"] != value["minimum"]
+            else "Infinity"
+            if value["minimum"] == float("inf")
+            else "-Infinity"
+            if value["minimum"] == float("-inf")
+            else value["minimum"]
+        )
     if "sample_count" in value:
-        out["sampleCount"] = value["sample_count"]
+        out["sampleCount"] = (
+            "NaN"
+            if value["sample_count"] != value["sample_count"]
+            else "Infinity"
+            if value["sample_count"] == float("inf")
+            else "-Infinity"
+            if value["sample_count"] == float("-inf")
+            else value["sample_count"]
+        )
     if "sum" in value:
-        out["sum"] = value["sum"]
+        out["sum"] = (
+            "NaN"
+            if value["sum"] != value["sum"]
+            else "Infinity"
+            if value["sum"] == float("inf")
+            else "-Infinity"
+            if value["sum"] == float("-inf")
+            else value["sum"]
+        )
     if "timestamp" in value:
         import capo_lightsail.types.timestamp
 
@@ -57,23 +97,23 @@ def serialize_aws_json_1_1(value: MetricDatapoint) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> MetricDatapoint:
     out: MetricDatapoint = {}  # type: ignore[typeddict-item]
-    if "average" in data:
-        out["average"] = data["average"]
-    if "maximum" in data:
-        out["maximum"] = data["maximum"]
-    if "minimum" in data:
-        out["minimum"] = data["minimum"]
-    if "sampleCount" in data:
-        out["sample_count"] = data["sampleCount"]
-    if "sum" in data:
-        out["sum"] = data["sum"]
-    if "timestamp" in data:
+    if data.get("average") is not None:
+        out["average"] = float(data["average"])
+    if data.get("maximum") is not None:
+        out["maximum"] = float(data["maximum"])
+    if data.get("minimum") is not None:
+        out["minimum"] = float(data["minimum"])
+    if data.get("sampleCount") is not None:
+        out["sample_count"] = float(data["sampleCount"])
+    if data.get("sum") is not None:
+        out["sum"] = float(data["sum"])
+    if data.get("timestamp") is not None:
         import capo_lightsail.types.timestamp
 
         out["timestamp"] = capo_lightsail.types.timestamp.deserialize_aws_json_1_1(
             data["timestamp"]
         )
-    if "unit" in data:
+    if data.get("unit") is not None:
         import capo_lightsail.types.metric_unit
 
         out["unit"] = capo_lightsail.types.metric_unit.deserialize_aws_json_1_1(

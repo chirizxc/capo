@@ -34,7 +34,7 @@ def serialize_json(value: UpdateListenerRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateListenerRequest:
     out: UpdateListenerRequest = {}  # type: ignore[typeddict-item]
-    if "defaultAction" in data:
+    if data.get("defaultAction") is not None:
         import capo_vpc_lattice.types.rule_action
 
         out["default_action"] = capo_vpc_lattice.types.rule_action.deserialize_json(

@@ -31,7 +31,7 @@ def serialize_json(value: BatchSnoozeAlarmResponse) -> dict:
 
 def deserialize_json(data: dict) -> BatchSnoozeAlarmResponse:
     out: BatchSnoozeAlarmResponse = {}  # type: ignore[typeddict-item]
-    if "errorEntries" in data:
+    if data.get("errorEntries") is not None:
         import capo_iot_events_data.types.batch_alarm_action_error_entries
 
         out["error_entries"] = (

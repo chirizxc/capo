@@ -54,15 +54,15 @@ def serialize_aws_json_1_1(value: CreateIntegrationResourcePropertyResponse) -> 
 
 def deserialize_aws_json_1_1(data: dict) -> CreateIntegrationResourcePropertyResponse:
     out: CreateIntegrationResourcePropertyResponse = {}  # type: ignore[typeddict-item]
-    if "ResourceArn" in data:
+    if data.get("ResourceArn") is not None:
         out["resource_arn"] = data["ResourceArn"]
     else:
         raise DeserializationError(
             "CreateIntegrationResourcePropertyResponse.resource_arn required"
         )
-    if "ResourcePropertyArn" in data:
+    if data.get("ResourcePropertyArn") is not None:
         out["resource_property_arn"] = data["ResourcePropertyArn"]
-    if "SourceProcessingProperties" in data:
+    if data.get("SourceProcessingProperties") is not None:
         import capo_glue.types.source_processing_properties
 
         out["source_processing_properties"] = (
@@ -70,7 +70,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateIntegrationResourcePropertyRes
                 data["SourceProcessingProperties"]
             )
         )
-    if "TargetProcessingProperties" in data:
+    if data.get("TargetProcessingProperties") is not None:
         import capo_glue.types.target_processing_properties
 
         out["target_processing_properties"] = (

@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> SecurityGroupList:
 
     out: SecurityGroupList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_wickr.types.security_group.deserialize_json(item))
     return out

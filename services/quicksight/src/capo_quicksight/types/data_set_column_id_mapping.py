@@ -27,11 +27,11 @@ def serialize_json(value: DataSetColumnIdMapping) -> dict:
 
 def deserialize_json(data: dict) -> DataSetColumnIdMapping:
     out: DataSetColumnIdMapping = {}  # type: ignore[typeddict-item]
-    if "SourceColumnId" in data:
+    if data.get("SourceColumnId") is not None:
         out["source_column_id"] = data["SourceColumnId"]
     else:
         raise DeserializationError("DataSetColumnIdMapping.source_column_id required")
-    if "TargetColumnId" in data:
+    if data.get("TargetColumnId") is not None:
         out["target_column_id"] = data["TargetColumnId"]
     else:
         raise DeserializationError("DataSetColumnIdMapping.target_column_id required")

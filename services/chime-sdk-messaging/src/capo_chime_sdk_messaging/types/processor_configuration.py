@@ -31,7 +31,7 @@ def serialize_json(value: ProcessorConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> ProcessorConfiguration:
     out: ProcessorConfiguration = {}  # type: ignore[typeddict-item]
-    if "Lambda" in data:
+    if data.get("Lambda") is not None:
         import capo_chime_sdk_messaging.types.lambda_configuration
 
         out["lambda"] = (

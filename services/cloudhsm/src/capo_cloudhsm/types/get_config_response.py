@@ -31,10 +31,10 @@ def serialize_aws_json_1_1(value: GetConfigResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetConfigResponse:
     out: GetConfigResponse = {}  # type: ignore[typeddict-item]
-    if "ConfigType" in data:
+    if data.get("ConfigType") is not None:
         out["config_type"] = data["ConfigType"]
-    if "ConfigFile" in data:
+    if data.get("ConfigFile") is not None:
         out["config_file"] = data["ConfigFile"]
-    if "ConfigCred" in data:
+    if data.get("ConfigCred") is not None:
         out["config_cred"] = data["ConfigCred"]
     return out

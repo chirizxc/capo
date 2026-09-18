@@ -36,7 +36,7 @@ def serialize_json(value: ListChangeSetsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListChangeSetsResponse:
     out: ListChangeSetsResponse = {}  # type: ignore[typeddict-item]
-    if "ChangeSetSummaryList" in data:
+    if data.get("ChangeSetSummaryList") is not None:
         import capo_marketplace_catalog.types.change_set_summary_list
 
         out["change_set_summary_list"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> ListChangeSetsResponse:
                 data["ChangeSetSummaryList"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

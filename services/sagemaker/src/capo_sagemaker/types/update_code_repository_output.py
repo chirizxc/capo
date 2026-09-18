@@ -25,6 +25,6 @@ def serialize_aws_json_1_1(value: UpdateCodeRepositoryOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateCodeRepositoryOutput:
     out: UpdateCodeRepositoryOutput = {}  # type: ignore[typeddict-item]
-    if "CodeRepositoryArn" in data:
+    if data.get("CodeRepositoryArn") is not None:
         out["code_repository_arn"] = data["CodeRepositoryArn"]
     return out

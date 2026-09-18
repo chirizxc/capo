@@ -49,13 +49,13 @@ def serialize_aws_json_1_0(value: ProjectedMetric) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ProjectedMetric:
     out: ProjectedMetric = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         import capo_compute_optimizer.types.metric_name
 
         out["name"] = capo_compute_optimizer.types.metric_name.deserialize_aws_json_1_0(
             data["name"]
         )
-    if "timestamps" in data:
+    if data.get("timestamps") is not None:
         import capo_compute_optimizer.types.timestamps
 
         out["timestamps"] = (
@@ -63,7 +63,7 @@ def deserialize_aws_json_1_0(data: dict) -> ProjectedMetric:
                 data["timestamps"]
             )
         )
-    if "values" in data:
+    if data.get("values") is not None:
         import capo_compute_optimizer.types.metric_values
 
         out["values"] = (

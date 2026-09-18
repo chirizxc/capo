@@ -43,13 +43,13 @@ def serialize_json(value: ProviderProperties) -> dict:
 
 def deserialize_json(data: dict) -> ProviderProperties:
     out: ProviderProperties = {}  # type: ignore[typeddict-item]
-    if "providerServiceArn" in data:
+    if data.get("providerServiceArn") is not None:
         out["provider_service_arn"] = data["providerServiceArn"]
     else:
         raise DeserializationError("ProviderProperties.provider_service_arn required")
-    if "providerConfiguration" in data:
+    if data.get("providerConfiguration") is not None:
         out["provider_configuration"] = data["providerConfiguration"]
-    if "intermediateSourceConfiguration" in data:
+    if data.get("intermediateSourceConfiguration") is not None:
         import capo_entityresolution.types.intermediate_source_configuration
 
         out["intermediate_source_configuration"] = (

@@ -35,7 +35,7 @@ def serialize_json(value: ListObjectivesResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListObjectivesResponse:
     out: ListObjectivesResponse = {}  # type: ignore[typeddict-item]
-    if "Objectives" in data:
+    if data.get("Objectives") is not None:
         import capo_controlcatalog.types.objective_summary_list
 
         out["objectives"] = (
@@ -45,6 +45,6 @@ def deserialize_json(data: dict) -> ListObjectivesResponse:
         )
     else:
         raise DeserializationError("ListObjectivesResponse.objectives required")
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

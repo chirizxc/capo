@@ -34,11 +34,11 @@ def serialize_json(value: ResourceConfig) -> dict:
 
 def deserialize_json(data: dict) -> ResourceConfig:
     out: ResourceConfig = {}  # type: ignore[typeddict-item]
-    if "instanceCount" in data:
+    if data.get("instanceCount") is not None:
         out["instance_count"] = data["instanceCount"]
     else:
         out["instance_count"] = 1
-    if "instanceType" in data:
+    if data.get("instanceType") is not None:
         import capo_cleanroomsml.types.instance_type
 
         out["instance_type"] = capo_cleanroomsml.types.instance_type.deserialize_json(
@@ -46,7 +46,7 @@ def deserialize_json(data: dict) -> ResourceConfig:
         )
     else:
         raise DeserializationError("ResourceConfig.instance_type required")
-    if "volumeSizeInGB" in data:
+    if data.get("volumeSizeInGB") is not None:
         out["volume_size_in_gb"] = data["volumeSizeInGB"]
     else:
         raise DeserializationError("ResourceConfig.volume_size_in_gb required")

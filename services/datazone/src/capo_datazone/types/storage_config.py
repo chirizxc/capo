@@ -28,8 +28,8 @@ def serialize_json(value: StorageConfig) -> dict:
 
 def deserialize_json(data: dict) -> StorageConfig:
     out: StorageConfig = {}  # type: ignore[typeddict-item]
-    if "projectS3Path" in data:
+    if data.get("projectS3Path") is not None:
         out["project_s3_path"] = data["projectS3Path"]
-    if "kmsKeyArn" in data:
+    if data.get("kmsKeyArn") is not None:
         out["kms_key_arn"] = data["kmsKeyArn"]
     return out

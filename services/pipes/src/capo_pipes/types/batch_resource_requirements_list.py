@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> BatchResourceRequirementsList:
 
     out: BatchResourceRequirementsList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_pipes.types.batch_resource_requirement.deserialize_json(item))
     return out

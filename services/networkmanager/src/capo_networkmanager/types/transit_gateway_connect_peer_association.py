@@ -55,15 +55,15 @@ def serialize_json(value: TransitGatewayConnectPeerAssociation) -> dict:
 
 def deserialize_json(data: dict) -> TransitGatewayConnectPeerAssociation:
     out: TransitGatewayConnectPeerAssociation = {}  # type: ignore[typeddict-item]
-    if "TransitGatewayConnectPeerArn" in data:
+    if data.get("TransitGatewayConnectPeerArn") is not None:
         out["transit_gateway_connect_peer_arn"] = data["TransitGatewayConnectPeerArn"]
-    if "GlobalNetworkId" in data:
+    if data.get("GlobalNetworkId") is not None:
         out["global_network_id"] = data["GlobalNetworkId"]
-    if "DeviceId" in data:
+    if data.get("DeviceId") is not None:
         out["device_id"] = data["DeviceId"]
-    if "LinkId" in data:
+    if data.get("LinkId") is not None:
         out["link_id"] = data["LinkId"]
-    if "State" in data:
+    if data.get("State") is not None:
         import capo_networkmanager.types.transit_gateway_connect_peer_association_state
 
         out["state"] = (

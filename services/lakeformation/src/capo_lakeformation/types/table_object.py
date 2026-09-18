@@ -32,11 +32,11 @@ def serialize_json(value: TableObject) -> dict:
 
 def deserialize_json(data: dict) -> TableObject:
     out: TableObject = {}  # type: ignore[typeddict-item]
-    if "Uri" in data:
+    if data.get("Uri") is not None:
         out["uri"] = data["Uri"]
-    if "ETag" in data:
+    if data.get("ETag") is not None:
         out["e_tag"] = data["ETag"]
-    if "Size" in data:
+    if data.get("Size") is not None:
         out["size"] = data["Size"]
     else:
         out["size"] = 0

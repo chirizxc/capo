@@ -83,13 +83,13 @@ def serialize_aws_json_1_1(value: CreateCostCategoryDefinitionRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateCostCategoryDefinitionRequest:
     out: CreateCostCategoryDefinitionRequest = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("CreateCostCategoryDefinitionRequest.name required")
-    if "EffectiveStart" in data:
+    if data.get("EffectiveStart") is not None:
         out["effective_start"] = data["EffectiveStart"]
-    if "RuleVersion" in data:
+    if data.get("RuleVersion") is not None:
         import capo_cost_explorer.types.cost_category_rule_version
 
         out["rule_version"] = (
@@ -101,7 +101,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateCostCategoryDefinitionRequest:
         raise DeserializationError(
             "CreateCostCategoryDefinitionRequest.rule_version required"
         )
-    if "Rules" in data:
+    if data.get("Rules") is not None:
         import capo_cost_explorer.types.cost_category_rules_list
 
         out["rules"] = (
@@ -111,9 +111,9 @@ def deserialize_aws_json_1_1(data: dict) -> CreateCostCategoryDefinitionRequest:
         )
     else:
         raise DeserializationError("CreateCostCategoryDefinitionRequest.rules required")
-    if "DefaultValue" in data:
+    if data.get("DefaultValue") is not None:
         out["default_value"] = data["DefaultValue"]
-    if "SplitChargeRules" in data:
+    if data.get("SplitChargeRules") is not None:
         import capo_cost_explorer.types.cost_category_split_charge_rules_list
 
         out["split_charge_rules"] = (
@@ -121,7 +121,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateCostCategoryDefinitionRequest:
                 data["SplitChargeRules"]
             )
         )
-    if "ResourceTags" in data:
+    if data.get("ResourceTags") is not None:
         import capo_cost_explorer.types.resource_tag_list
 
         out["resource_tags"] = (

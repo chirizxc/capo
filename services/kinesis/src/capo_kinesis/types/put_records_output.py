@@ -50,9 +50,9 @@ def serialize_aws_json_1_1(value: PutRecordsOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PutRecordsOutput:
     out: PutRecordsOutput = {}  # type: ignore[typeddict-item]
-    if "FailedRecordCount" in data:
+    if data.get("FailedRecordCount") is not None:
         out["failed_record_count"] = data["FailedRecordCount"]
-    if "Records" in data:
+    if data.get("Records") is not None:
         import capo_kinesis.types.put_records_result_entry_list
 
         out["records"] = (
@@ -62,7 +62,7 @@ def deserialize_aws_json_1_1(data: dict) -> PutRecordsOutput:
         )
     else:
         raise DeserializationError("PutRecordsOutput.records required")
-    if "EncryptionType" in data:
+    if data.get("EncryptionType") is not None:
         import capo_kinesis.types.encryption_type
 
         out["encryption_type"] = (

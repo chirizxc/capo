@@ -58,19 +58,19 @@ def serialize_json(value: GetRegisteredSubscriptionProviderResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetRegisteredSubscriptionProviderResponse:
     out: GetRegisteredSubscriptionProviderResponse = {}  # type: ignore[typeddict-item]
-    if "SubscriptionProviderArn" in data:
+    if data.get("SubscriptionProviderArn") is not None:
         out["subscription_provider_arn"] = data["SubscriptionProviderArn"]
-    if "SubscriptionProviderSource" in data:
+    if data.get("SubscriptionProviderSource") is not None:
         out["subscription_provider_source"] = data["SubscriptionProviderSource"]
-    if "SecretArn" in data:
+    if data.get("SecretArn") is not None:
         out["secret_arn"] = data["SecretArn"]
-    if "SubscriptionProviderStatus" in data:
+    if data.get("SubscriptionProviderStatus") is not None:
         out["subscription_provider_status"] = data["SubscriptionProviderStatus"]
-    if "SubscriptionProviderStatusMessage" in data:
+    if data.get("SubscriptionProviderStatusMessage") is not None:
         out["subscription_provider_status_message"] = data[
             "SubscriptionProviderStatusMessage"
         ]
-    if "LastSuccessfulDataRetrievalTime" in data:
+    if data.get("LastSuccessfulDataRetrievalTime") is not None:
         out["last_successful_data_retrieval_time"] = data[
             "LastSuccessfulDataRetrievalTime"
         ]

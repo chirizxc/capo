@@ -30,6 +30,10 @@ class ListVmEntitlementsRequest(TypedDict, closed=True):
 # --- awsJson1_0 ser/de ---
 def serialize_aws_json_1_0(value: ListVmEntitlementsRequest) -> dict:
     out: dict = {}
+    if "next_token" in value:
+        out["nextToken"] = value["next_token"]
+    if "max_results" in value:
+        out["maxResults"] = value["max_results"]
     out["environmentId"] = value["environment_id"]
     out["connectorId"] = value["connector_id"]
     import capo_evs.types.entitlement_type
@@ -42,15 +46,19 @@ def serialize_aws_json_1_0(value: ListVmEntitlementsRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ListVmEntitlementsRequest:
     out: ListVmEntitlementsRequest = {}  # type: ignore[typeddict-item]
-    if "environmentId" in data:
+    if data.get("nextToken") is not None:
+        out["next_token"] = data["nextToken"]
+    if data.get("maxResults") is not None:
+        out["max_results"] = data["maxResults"]
+    if data.get("environmentId") is not None:
         out["environment_id"] = data["environmentId"]
     else:
         raise DeserializationError("ListVmEntitlementsRequest.environment_id required")
-    if "connectorId" in data:
+    if data.get("connectorId") is not None:
         out["connector_id"] = data["connectorId"]
     else:
         raise DeserializationError("ListVmEntitlementsRequest.connector_id required")
-    if "entitlementType" in data:
+    if data.get("entitlementType") is not None:
         import capo_evs.types.entitlement_type
 
         out["entitlement_type"] = (

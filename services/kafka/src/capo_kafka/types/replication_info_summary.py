@@ -27,8 +27,8 @@ def serialize_json(value: ReplicationInfoSummary) -> dict:
 
 def deserialize_json(data: dict) -> ReplicationInfoSummary:
     out: ReplicationInfoSummary = {}  # type: ignore[typeddict-item]
-    if "sourceKafkaClusterAlias" in data:
+    if data.get("sourceKafkaClusterAlias") is not None:
         out["source_kafka_cluster_alias"] = data["sourceKafkaClusterAlias"]
-    if "targetKafkaClusterAlias" in data:
+    if data.get("targetKafkaClusterAlias") is not None:
         out["target_kafka_cluster_alias"] = data["targetKafkaClusterAlias"]
     return out

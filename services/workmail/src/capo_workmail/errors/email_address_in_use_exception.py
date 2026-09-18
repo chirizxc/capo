@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: EmailAddressInUseException_) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> EmailAddressInUseException_:
     out: EmailAddressInUseException_ = {}  # type: ignore[typeddict-item]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     return out
 
@@ -34,15 +34,18 @@ class EmailAddressInUseException(ServiceError):
 
     code: str | None = "EmailAddressInUseException"
 
-    def __init__(self, data: EmailAddressInUseException_):
+    def __init__(self, data: EmailAddressInUseException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="EmailAddressInUseException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "EmailAddressInUseException":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "EmailAddressInUseException":
+        return cls(deserialize_aws_json_1_1(data), message)

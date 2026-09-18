@@ -58,19 +58,19 @@ def serialize_json(value: ListLogSourcesRequest) -> dict:
 
 def deserialize_json(data: dict) -> ListLogSourcesRequest:
     out: ListLogSourcesRequest = {}  # type: ignore[typeddict-item]
-    if "accounts" in data:
+    if data.get("accounts") is not None:
         import capo_securitylake.types.account_list
 
         out["accounts"] = capo_securitylake.types.account_list.deserialize_json(
             data["accounts"]
         )
-    if "regions" in data:
+    if data.get("regions") is not None:
         import capo_securitylake.types.region_list
 
         out["regions"] = capo_securitylake.types.region_list.deserialize_json(
             data["regions"]
         )
-    if "sources" in data:
+    if data.get("sources") is not None:
         import capo_securitylake.types.log_source_resource_list
 
         out["sources"] = (
@@ -78,10 +78,10 @@ def deserialize_json(data: dict) -> ListLogSourcesRequest:
                 data["sources"]
             )
         )
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
     else:
         out["max_results"] = 50
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

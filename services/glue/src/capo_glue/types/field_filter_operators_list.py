@@ -25,5 +25,7 @@ def deserialize_aws_json_1_1(data: list) -> FieldFilterOperatorsList:
 
     out: FieldFilterOperatorsList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_glue.types.field_filter_operator.deserialize_aws_json_1_1(item))
     return out

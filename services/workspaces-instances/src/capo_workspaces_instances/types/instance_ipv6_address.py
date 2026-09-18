@@ -29,8 +29,8 @@ def serialize_aws_json_1_0(value: InstanceIpv6Address) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> InstanceIpv6Address:
     out: InstanceIpv6Address = {}  # type: ignore[typeddict-item]
-    if "Ipv6Address" in data:
+    if data.get("Ipv6Address") is not None:
         out["ipv6_address"] = data["Ipv6Address"]
-    if "IsPrimaryIpv6" in data:
+    if data.get("IsPrimaryIpv6") is not None:
         out["is_primary_ipv6"] = data["IsPrimaryIpv6"]
     return out

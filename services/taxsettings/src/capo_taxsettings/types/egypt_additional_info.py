@@ -34,9 +34,9 @@ def serialize_json(value: EgyptAdditionalInfo) -> dict:
 
 def deserialize_json(data: dict) -> EgyptAdditionalInfo:
     out: EgyptAdditionalInfo = {}  # type: ignore[typeddict-item]
-    if "uniqueIdentificationNumber" in data:
+    if data.get("uniqueIdentificationNumber") is not None:
         out["unique_identification_number"] = data["uniqueIdentificationNumber"]
-    if "uniqueIdentificationNumberExpirationDate" in data:
+    if data.get("uniqueIdentificationNumberExpirationDate") is not None:
         out["unique_identification_number_expiration_date"] = data[
             "uniqueIdentificationNumberExpirationDate"
         ]

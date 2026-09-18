@@ -37,9 +37,9 @@ def serialize_aws_json_1_1(value: PutDataCatalogEncryptionSettingsRequest) -> di
 
 def deserialize_aws_json_1_1(data: dict) -> PutDataCatalogEncryptionSettingsRequest:
     out: PutDataCatalogEncryptionSettingsRequest = {}  # type: ignore[typeddict-item]
-    if "CatalogId" in data:
+    if data.get("CatalogId") is not None:
         out["catalog_id"] = data["CatalogId"]
-    if "DataCatalogEncryptionSettings" in data:
+    if data.get("DataCatalogEncryptionSettings") is not None:
         import capo_glue.types.data_catalog_encryption_settings
 
         out["data_catalog_encryption_settings"] = (

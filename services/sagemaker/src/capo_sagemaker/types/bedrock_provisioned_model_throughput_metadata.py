@@ -23,6 +23,6 @@ def serialize_aws_json_1_1(value: BedrockProvisionedModelThroughputMetadata) -> 
 
 def deserialize_aws_json_1_1(data: dict) -> BedrockProvisionedModelThroughputMetadata:
     out: BedrockProvisionedModelThroughputMetadata = {}  # type: ignore[typeddict-item]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
     return out

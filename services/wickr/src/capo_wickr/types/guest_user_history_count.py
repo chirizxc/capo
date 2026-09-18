@@ -27,11 +27,11 @@ def serialize_json(value: GuestUserHistoryCount) -> dict:
 
 def deserialize_json(data: dict) -> GuestUserHistoryCount:
     out: GuestUserHistoryCount = {}  # type: ignore[typeddict-item]
-    if "month" in data:
+    if data.get("month") is not None:
         out["month"] = data["month"]
     else:
         raise DeserializationError("GuestUserHistoryCount.month required")
-    if "count" in data:
+    if data.get("count") is not None:
         out["count"] = data["count"]
     else:
         raise DeserializationError("GuestUserHistoryCount.count required")

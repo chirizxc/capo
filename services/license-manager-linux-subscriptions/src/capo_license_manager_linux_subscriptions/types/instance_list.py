@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> InstanceList:
 
     out: InstanceList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_license_manager_linux_subscriptions.types.instance.deserialize_json(
                 item

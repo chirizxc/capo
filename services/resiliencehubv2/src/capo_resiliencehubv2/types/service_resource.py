@@ -40,17 +40,17 @@ def serialize_json(value: ServiceResource) -> dict:
 
 def deserialize_json(data: dict) -> ServiceResource:
     out: ServiceResource = {}  # type: ignore[typeddict-item]
-    if "resourceIdentifier" in data:
+    if data.get("resourceIdentifier") is not None:
         out["resource_identifier"] = data["resourceIdentifier"]
     else:
         raise DeserializationError("ServiceResource.resource_identifier required")
-    if "inputSource" in data:
+    if data.get("inputSource") is not None:
         import capo_resiliencehubv2.types.input_source
 
         out["input_source"] = capo_resiliencehubv2.types.input_source.deserialize_json(
             data["inputSource"]
         )
-    if "resource" in data:
+    if data.get("resource") is not None:
         import capo_resiliencehubv2.types.resource
 
         out["resource"] = capo_resiliencehubv2.types.resource.deserialize_json(

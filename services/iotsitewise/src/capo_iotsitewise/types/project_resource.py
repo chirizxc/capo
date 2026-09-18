@@ -24,7 +24,7 @@ def serialize_json(value: ProjectResource) -> dict:
 
 def deserialize_json(data: dict) -> ProjectResource:
     out: ProjectResource = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("ProjectResource.id required")

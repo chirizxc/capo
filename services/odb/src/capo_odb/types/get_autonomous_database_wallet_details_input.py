@@ -24,7 +24,7 @@ def serialize_aws_json_1_0(value: GetAutonomousDatabaseWalletDetailsInput) -> di
 
 def deserialize_aws_json_1_0(data: dict) -> GetAutonomousDatabaseWalletDetailsInput:
     out: GetAutonomousDatabaseWalletDetailsInput = {}  # type: ignore[typeddict-item]
-    if "autonomousDatabaseId" in data:
+    if data.get("autonomousDatabaseId") is not None:
         out["autonomous_database_id"] = data["autonomousDatabaseId"]
     else:
         raise DeserializationError(

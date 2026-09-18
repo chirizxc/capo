@@ -44,15 +44,15 @@ def serialize_aws_json_1_1(value: IcebergSortField) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> IcebergSortField:
     out: IcebergSortField = {}  # type: ignore[typeddict-item]
-    if "SourceId" in data:
+    if data.get("SourceId") is not None:
         out["source_id"] = data["SourceId"]
     else:
         out["source_id"] = 0
-    if "Transform" in data:
+    if data.get("Transform") is not None:
         out["transform"] = data["Transform"]
     else:
         raise DeserializationError("IcebergSortField.transform required")
-    if "Direction" in data:
+    if data.get("Direction") is not None:
         import capo_glue.types.iceberg_sort_direction
 
         out["direction"] = (
@@ -62,7 +62,7 @@ def deserialize_aws_json_1_1(data: dict) -> IcebergSortField:
         )
     else:
         raise DeserializationError("IcebergSortField.direction required")
-    if "NullOrder" in data:
+    if data.get("NullOrder") is not None:
         import capo_glue.types.iceberg_null_order
 
         out["null_order"] = capo_glue.types.iceberg_null_order.deserialize_aws_json_1_1(

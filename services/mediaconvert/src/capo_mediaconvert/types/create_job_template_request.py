@@ -101,7 +101,7 @@ def serialize_json(value: CreateJobTemplateRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateJobTemplateRequest:
     out: CreateJobTemplateRequest = {}  # type: ignore[typeddict-item]
-    if "accelerationSettings" in data:
+    if data.get("accelerationSettings") is not None:
         import capo_mediaconvert.types.acceleration_settings
 
         out["acceleration_settings"] = (
@@ -109,11 +109,11 @@ def deserialize_json(data: dict) -> CreateJobTemplateRequest:
                 data["accelerationSettings"]
             )
         )
-    if "category" in data:
+    if data.get("category") is not None:
         out["category"] = data["category"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "hopDestinations" in data:
+    if data.get("hopDestinations") is not None:
         import capo_mediaconvert.types.__list_of_hop_destination
 
         out["hop_destinations"] = (
@@ -121,13 +121,13 @@ def deserialize_json(data: dict) -> CreateJobTemplateRequest:
                 data["hopDestinations"]
             )
         )
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "priority" in data:
+    if data.get("priority") is not None:
         out["priority"] = data["priority"]
-    if "queue" in data:
+    if data.get("queue") is not None:
         out["queue"] = data["queue"]
-    if "settings" in data:
+    if data.get("settings") is not None:
         import capo_mediaconvert.types.job_template_settings
 
         out["settings"] = (
@@ -135,7 +135,7 @@ def deserialize_json(data: dict) -> CreateJobTemplateRequest:
                 data["settings"]
             )
         )
-    if "statusUpdateInterval" in data:
+    if data.get("statusUpdateInterval") is not None:
         import capo_mediaconvert.types.status_update_interval
 
         out["status_update_interval"] = (
@@ -143,7 +143,7 @@ def deserialize_json(data: dict) -> CreateJobTemplateRequest:
                 data["statusUpdateInterval"]
             )
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_mediaconvert.types.__map_of__string
 
         out["tags"] = capo_mediaconvert.types.__map_of__string.deserialize_json(

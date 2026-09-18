@@ -84,9 +84,9 @@ def serialize_json(value: ReputationEntity) -> dict:
 
 def deserialize_json(data: dict) -> ReputationEntity:
     out: ReputationEntity = {}  # type: ignore[typeddict-item]
-    if "ReputationEntityReference" in data:
+    if data.get("ReputationEntityReference") is not None:
         out["reputation_entity_reference"] = data["ReputationEntityReference"]
-    if "ReputationEntityType" in data:
+    if data.get("ReputationEntityType") is not None:
         import capo_sesv2.types.reputation_entity_type
 
         out["reputation_entity_type"] = (
@@ -94,9 +94,9 @@ def deserialize_json(data: dict) -> ReputationEntity:
                 data["ReputationEntityType"]
             )
         )
-    if "ReputationManagementPolicy" in data:
+    if data.get("ReputationManagementPolicy") is not None:
         out["reputation_management_policy"] = data["ReputationManagementPolicy"]
-    if "CustomerManagedStatus" in data:
+    if data.get("CustomerManagedStatus") is not None:
         import capo_sesv2.types.status_record
 
         out["customer_managed_status"] = (
@@ -104,13 +104,13 @@ def deserialize_json(data: dict) -> ReputationEntity:
                 data["CustomerManagedStatus"]
             )
         )
-    if "AwsSesManagedStatus" in data:
+    if data.get("AwsSesManagedStatus") is not None:
         import capo_sesv2.types.status_record
 
         out["aws_ses_managed_status"] = capo_sesv2.types.status_record.deserialize_json(
             data["AwsSesManagedStatus"]
         )
-    if "SendingStatusAggregate" in data:
+    if data.get("SendingStatusAggregate") is not None:
         import capo_sesv2.types.sending_status
 
         out["sending_status_aggregate"] = (
@@ -118,7 +118,7 @@ def deserialize_json(data: dict) -> ReputationEntity:
                 data["SendingStatusAggregate"]
             )
         )
-    if "ReputationImpact" in data:
+    if data.get("ReputationImpact") is not None:
         import capo_sesv2.types.recommendation_impact
 
         out["reputation_impact"] = (

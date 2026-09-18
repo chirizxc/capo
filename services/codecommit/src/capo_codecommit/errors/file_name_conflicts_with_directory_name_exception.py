@@ -27,7 +27,7 @@ def deserialize_aws_json_1_1(
     data: dict,
 ) -> FileNameConflictsWithDirectoryNameException_:
     out: FileNameConflictsWithDirectoryNameException_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     return out
 
@@ -37,17 +37,22 @@ class FileNameConflictsWithDirectoryNameException(ServiceError):
 
     code: str | None = "FileNameConflictsWithDirectoryNameException"
 
-    def __init__(self, data: FileNameConflictsWithDirectoryNameException_):
+    def __init__(
+        self,
+        data: FileNameConflictsWithDirectoryNameException_,
+        message: str | None = None,
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="FileNameConflictsWithDirectoryNameException",
+            message=message,
         )
         self.data = data
 
     @classmethod
     def from_aws_json_1_1(
-        cls, data: dict
+        cls, data: dict, message: str | None = None
     ) -> "FileNameConflictsWithDirectoryNameException":
-        return cls(deserialize_aws_json_1_1(data))
+        return cls(deserialize_aws_json_1_1(data), message)

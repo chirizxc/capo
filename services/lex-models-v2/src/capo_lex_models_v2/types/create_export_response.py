@@ -67,9 +67,9 @@ def serialize_json(value: CreateExportResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateExportResponse:
     out: CreateExportResponse = {}  # type: ignore[typeddict-item]
-    if "exportId" in data:
+    if data.get("exportId") is not None:
         out["export_id"] = data["exportId"]
-    if "resourceSpecification" in data:
+    if data.get("resourceSpecification") is not None:
         import capo_lex_models_v2.types.export_resource_specification
 
         out["resource_specification"] = (
@@ -77,7 +77,7 @@ def deserialize_json(data: dict) -> CreateExportResponse:
                 data["resourceSpecification"]
             )
         )
-    if "fileFormat" in data:
+    if data.get("fileFormat") is not None:
         import capo_lex_models_v2.types.import_export_file_format
 
         out["file_format"] = (
@@ -85,13 +85,13 @@ def deserialize_json(data: dict) -> CreateExportResponse:
                 data["fileFormat"]
             )
         )
-    if "exportStatus" in data:
+    if data.get("exportStatus") is not None:
         import capo_lex_models_v2.types.export_status
 
         out["export_status"] = capo_lex_models_v2.types.export_status.deserialize_json(
             data["exportStatus"]
         )
-    if "creationDateTime" in data:
+    if data.get("creationDateTime") is not None:
         import capo_lex_models_v2.types.timestamp
 
         out["creation_date_time"] = capo_lex_models_v2.types.timestamp.deserialize_json(

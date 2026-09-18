@@ -27,7 +27,7 @@ def serialize_aws_json_1_1(value: CreateProjectOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateProjectOutput:
     out: CreateProjectOutput = {}  # type: ignore[typeddict-item]
-    if "project" in data:
+    if data.get("project") is not None:
         import capo_codebuild.types.project
 
         out["project"] = capo_codebuild.types.project.deserialize_aws_json_1_1(

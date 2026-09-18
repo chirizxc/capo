@@ -72,11 +72,11 @@ def serialize_json(value: LayerMapVisual) -> dict:
 
 def deserialize_json(data: dict) -> LayerMapVisual:
     out: LayerMapVisual = {}  # type: ignore[typeddict-item]
-    if "VisualId" in data:
+    if data.get("VisualId") is not None:
         out["visual_id"] = data["VisualId"]
     else:
         raise DeserializationError("LayerMapVisual.visual_id required")
-    if "Title" in data:
+    if data.get("Title") is not None:
         import capo_quicksight.types.visual_title_label_options
 
         out["title"] = (
@@ -84,7 +84,7 @@ def deserialize_json(data: dict) -> LayerMapVisual:
                 data["Title"]
             )
         )
-    if "Subtitle" in data:
+    if data.get("Subtitle") is not None:
         import capo_quicksight.types.visual_subtitle_label_options
 
         out["subtitle"] = (
@@ -92,7 +92,7 @@ def deserialize_json(data: dict) -> LayerMapVisual:
                 data["Subtitle"]
             )
         )
-    if "ChartConfiguration" in data:
+    if data.get("ChartConfiguration") is not None:
         import capo_quicksight.types.geospatial_layer_map_configuration
 
         out["chart_configuration"] = (
@@ -100,10 +100,10 @@ def deserialize_json(data: dict) -> LayerMapVisual:
                 data["ChartConfiguration"]
             )
         )
-    if "DataSetIdentifier" in data:
+    if data.get("DataSetIdentifier") is not None:
         out["data_set_identifier"] = data["DataSetIdentifier"]
     else:
         raise DeserializationError("LayerMapVisual.data_set_identifier required")
-    if "VisualContentAltText" in data:
+    if data.get("VisualContentAltText") is not None:
         out["visual_content_alt_text"] = data["VisualContentAltText"]
     return out

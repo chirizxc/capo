@@ -60,47 +60,41 @@ def serialize_aws_json_1_0(value: GetAccountActivityResponse) -> dict:
             "estimated_time_to_complete_in_minutes"
         ]
     if "expires_at" in value:
-        import capo_freetier.types._prelude.timestamp
+        import capo_freetier._protocol.serialize
 
-        out["expiresAt"] = (
-            capo_freetier.types._prelude.timestamp.serialize_aws_json_1_0(
-                value["expires_at"]
-            )
+        out["expiresAt"] = capo_freetier._protocol.serialize.fmt_date_time(
+            value["expires_at"]
         )
     if "started_at" in value:
-        import capo_freetier.types._prelude.timestamp
+        import capo_freetier._protocol.serialize
 
-        out["startedAt"] = (
-            capo_freetier.types._prelude.timestamp.serialize_aws_json_1_0(
-                value["started_at"]
-            )
+        out["startedAt"] = capo_freetier._protocol.serialize.fmt_date_time(
+            value["started_at"]
         )
     if "completed_at" in value:
-        import capo_freetier.types._prelude.timestamp
+        import capo_freetier._protocol.serialize
 
-        out["completedAt"] = (
-            capo_freetier.types._prelude.timestamp.serialize_aws_json_1_0(
-                value["completed_at"]
-            )
+        out["completedAt"] = capo_freetier._protocol.serialize.fmt_date_time(
+            value["completed_at"]
         )
     return out
 
 
 def deserialize_aws_json_1_0(data: dict) -> GetAccountActivityResponse:
     out: GetAccountActivityResponse = {}  # type: ignore[typeddict-item]
-    if "activityId" in data:
+    if data.get("activityId") is not None:
         out["activity_id"] = data["activityId"]
     else:
         raise DeserializationError("GetAccountActivityResponse.activity_id required")
-    if "title" in data:
+    if data.get("title") is not None:
         out["title"] = data["title"]
     else:
         raise DeserializationError("GetAccountActivityResponse.title required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
     else:
         raise DeserializationError("GetAccountActivityResponse.description required")
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_freetier.types.activity_status
 
         out["status"] = capo_freetier.types.activity_status.deserialize_aws_json_1_0(
@@ -108,13 +102,13 @@ def deserialize_aws_json_1_0(data: dict) -> GetAccountActivityResponse:
         )
     else:
         raise DeserializationError("GetAccountActivityResponse.status required")
-    if "instructionsUrl" in data:
+    if data.get("instructionsUrl") is not None:
         out["instructions_url"] = data["instructionsUrl"]
     else:
         raise DeserializationError(
             "GetAccountActivityResponse.instructions_url required"
         )
-    if "reward" in data:
+    if data.get("reward") is not None:
         import capo_freetier.types.activity_reward
 
         out["reward"] = capo_freetier.types.activity_reward.deserialize_aws_json_1_0(
@@ -122,32 +116,26 @@ def deserialize_aws_json_1_0(data: dict) -> GetAccountActivityResponse:
         )
     else:
         raise DeserializationError("GetAccountActivityResponse.reward required")
-    if "estimatedTimeToCompleteInMinutes" in data:
+    if data.get("estimatedTimeToCompleteInMinutes") is not None:
         out["estimated_time_to_complete_in_minutes"] = data[
             "estimatedTimeToCompleteInMinutes"
         ]
-    if "expiresAt" in data:
-        import capo_freetier.types._prelude.timestamp
+    if data.get("expiresAt") is not None:
+        import datetime
 
-        out["expires_at"] = (
-            capo_freetier.types._prelude.timestamp.deserialize_aws_json_1_0(
-                data["expiresAt"]
-            )
+        out["expires_at"] = datetime.datetime.fromisoformat(
+            data["expiresAt"].replace("Z", "+00:00")
         )
-    if "startedAt" in data:
-        import capo_freetier.types._prelude.timestamp
+    if data.get("startedAt") is not None:
+        import datetime
 
-        out["started_at"] = (
-            capo_freetier.types._prelude.timestamp.deserialize_aws_json_1_0(
-                data["startedAt"]
-            )
+        out["started_at"] = datetime.datetime.fromisoformat(
+            data["startedAt"].replace("Z", "+00:00")
         )
-    if "completedAt" in data:
-        import capo_freetier.types._prelude.timestamp
+    if data.get("completedAt") is not None:
+        import datetime
 
-        out["completed_at"] = (
-            capo_freetier.types._prelude.timestamp.deserialize_aws_json_1_0(
-                data["completedAt"]
-            )
+        out["completed_at"] = datetime.datetime.fromisoformat(
+            data["completedAt"].replace("Z", "+00:00")
         )
     return out

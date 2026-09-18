@@ -25,6 +25,6 @@ def serialize_aws_json_1_1(value: PropertyNameQuery) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PropertyNameQuery:
     out: PropertyNameQuery = {}  # type: ignore[typeddict-item]
-    if "PropertyNameHint" in data:
+    if data.get("PropertyNameHint") is not None:
         out["property_name_hint"] = data["PropertyNameHint"]
     return out

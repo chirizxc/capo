@@ -36,14 +36,14 @@ def serialize_json(value: SearchContactsResponse) -> dict:
 
 def deserialize_json(data: dict) -> SearchContactsResponse:
     out: SearchContactsResponse = {}  # type: ignore[typeddict-item]
-    if "Contacts" in data:
+    if data.get("Contacts") is not None:
         import capo_connect.types.contacts
 
         out["contacts"] = capo_connect.types.contacts.deserialize_json(data["Contacts"])
     else:
         raise DeserializationError("SearchContactsResponse.contacts required")
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "TotalCount" in data:
+    if data.get("TotalCount") is not None:
         out["total_count"] = data["TotalCount"]
     return out

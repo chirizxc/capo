@@ -34,7 +34,7 @@ def serialize_json(value: DomainEndpointOptionsStatus) -> dict:
 
 def deserialize_json(data: dict) -> DomainEndpointOptionsStatus:
     out: DomainEndpointOptionsStatus = {}  # type: ignore[typeddict-item]
-    if "Options" in data:
+    if data.get("Options") is not None:
         import capo_opensearch.types.domain_endpoint_options
 
         out["options"] = capo_opensearch.types.domain_endpoint_options.deserialize_json(
@@ -42,7 +42,7 @@ def deserialize_json(data: dict) -> DomainEndpointOptionsStatus:
         )
     else:
         raise DeserializationError("DomainEndpointOptionsStatus.options required")
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_opensearch.types.option_status
 
         out["status"] = capo_opensearch.types.option_status.deserialize_json(

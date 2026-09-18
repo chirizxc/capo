@@ -18,6 +18,6 @@ def serialize_aws_json_1_0(value: DbInstanceConfiguration) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> DbInstanceConfiguration:
     out: DbInstanceConfiguration = {}  # type: ignore[typeddict-item]
-    if "dbInstanceClass" in data:
+    if data.get("dbInstanceClass") is not None:
         out["db_instance_class"] = data["dbInstanceClass"]
     return out

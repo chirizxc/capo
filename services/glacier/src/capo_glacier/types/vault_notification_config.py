@@ -34,9 +34,9 @@ def serialize_json(value: VaultNotificationConfig) -> dict:
 
 def deserialize_json(data: dict) -> VaultNotificationConfig:
     out: VaultNotificationConfig = {}  # type: ignore[typeddict-item]
-    if "SNSTopic" in data:
+    if data.get("SNSTopic") is not None:
         out["sns_topic"] = data["SNSTopic"]
-    if "Events" in data:
+    if data.get("Events") is not None:
         import capo_glacier.types.notification_event_list
 
         out["events"] = capo_glacier.types.notification_event_list.deserialize_json(

@@ -51,7 +51,7 @@ def serialize_aws_json_1_1(value: DeleteScheduledActionRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteScheduledActionRequest:
     out: DeleteScheduledActionRequest = {}  # type: ignore[typeddict-item]
-    if "ServiceNamespace" in data:
+    if data.get("ServiceNamespace") is not None:
         import capo_application_auto_scaling.types.service_namespace
 
         out["service_namespace"] = (
@@ -63,17 +63,17 @@ def deserialize_aws_json_1_1(data: dict) -> DeleteScheduledActionRequest:
         raise DeserializationError(
             "DeleteScheduledActionRequest.service_namespace required"
         )
-    if "ScheduledActionName" in data:
+    if data.get("ScheduledActionName") is not None:
         out["scheduled_action_name"] = data["ScheduledActionName"]
     else:
         raise DeserializationError(
             "DeleteScheduledActionRequest.scheduled_action_name required"
         )
-    if "ResourceId" in data:
+    if data.get("ResourceId") is not None:
         out["resource_id"] = data["ResourceId"]
     else:
         raise DeserializationError("DeleteScheduledActionRequest.resource_id required")
-    if "ScalableDimension" in data:
+    if data.get("ScalableDimension") is not None:
         import capo_application_auto_scaling.types.scalable_dimension
 
         out["scalable_dimension"] = (

@@ -38,20 +38,20 @@ def serialize_json(value: CreateSourceRepositoryResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateSourceRepositoryResponse:
     out: CreateSourceRepositoryResponse = {}  # type: ignore[typeddict-item]
-    if "spaceName" in data:
+    if data.get("spaceName") is not None:
         out["space_name"] = data["spaceName"]
     else:
         raise DeserializationError("CreateSourceRepositoryResponse.space_name required")
-    if "projectName" in data:
+    if data.get("projectName") is not None:
         out["project_name"] = data["projectName"]
     else:
         raise DeserializationError(
             "CreateSourceRepositoryResponse.project_name required"
         )
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("CreateSourceRepositoryResponse.name required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
     return out

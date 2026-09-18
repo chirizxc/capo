@@ -35,11 +35,11 @@ def serialize_json(value: FormButton) -> dict:
 
 def deserialize_json(data: dict) -> FormButton:
     out: FormButton = {}  # type: ignore[typeddict-item]
-    if "excluded" in data:
+    if data.get("excluded") is not None:
         out["excluded"] = data["excluded"]
-    if "children" in data:
+    if data.get("children") is not None:
         out["children"] = data["children"]
-    if "position" in data:
+    if data.get("position") is not None:
         import capo_amplifyuibuilder.types.field_position
 
         out["position"] = capo_amplifyuibuilder.types.field_position.deserialize_json(

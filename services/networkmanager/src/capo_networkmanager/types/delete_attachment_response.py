@@ -27,7 +27,7 @@ def serialize_json(value: DeleteAttachmentResponse) -> dict:
 
 def deserialize_json(data: dict) -> DeleteAttachmentResponse:
     out: DeleteAttachmentResponse = {}  # type: ignore[typeddict-item]
-    if "Attachment" in data:
+    if data.get("Attachment") is not None:
         import capo_networkmanager.types.attachment
 
         out["attachment"] = capo_networkmanager.types.attachment.deserialize_json(

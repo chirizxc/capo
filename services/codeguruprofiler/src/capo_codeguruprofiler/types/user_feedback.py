@@ -24,7 +24,7 @@ def serialize_json(value: UserFeedback) -> dict:
 
 def deserialize_json(data: dict) -> UserFeedback:
     out: UserFeedback = {}  # type: ignore[typeddict-item]
-    if "type" in data:
+    if data.get("type") is not None:
         out["type"] = data["type"]
     else:
         raise DeserializationError("UserFeedback.type required")

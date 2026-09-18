@@ -41,11 +41,11 @@ def serialize_aws_json_1_1(value: Location) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Location:
     out: Location = {}  # type: ignore[typeddict-item]
-    if "filePath" in data:
+    if data.get("filePath") is not None:
         out["file_path"] = data["filePath"]
-    if "filePosition" in data:
+    if data.get("filePosition") is not None:
         out["file_position"] = data["filePosition"]
-    if "relativeFileVersion" in data:
+    if data.get("relativeFileVersion") is not None:
         import capo_codecommit.types.relative_file_version_enum
 
         out["relative_file_version"] = (

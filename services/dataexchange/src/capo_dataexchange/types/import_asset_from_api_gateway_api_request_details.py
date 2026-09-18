@@ -56,47 +56,47 @@ def serialize_json(value: ImportAssetFromApiGatewayApiRequestDetails) -> dict:
 
 def deserialize_json(data: dict) -> ImportAssetFromApiGatewayApiRequestDetails:
     out: ImportAssetFromApiGatewayApiRequestDetails = {}  # type: ignore[typeddict-item]
-    if "ApiDescription" in data:
+    if data.get("ApiDescription") is not None:
         out["api_description"] = data["ApiDescription"]
-    if "ApiId" in data:
+    if data.get("ApiId") is not None:
         out["api_id"] = data["ApiId"]
     else:
         raise DeserializationError(
             "ImportAssetFromApiGatewayApiRequestDetails.api_id required"
         )
-    if "ApiKey" in data:
+    if data.get("ApiKey") is not None:
         out["api_key"] = data["ApiKey"]
-    if "ApiName" in data:
+    if data.get("ApiName") is not None:
         out["api_name"] = data["ApiName"]
     else:
         raise DeserializationError(
             "ImportAssetFromApiGatewayApiRequestDetails.api_name required"
         )
-    if "ApiSpecificationMd5Hash" in data:
+    if data.get("ApiSpecificationMd5Hash") is not None:
         out["api_specification_md5_hash"] = data["ApiSpecificationMd5Hash"]
     else:
         raise DeserializationError(
             "ImportAssetFromApiGatewayApiRequestDetails.api_specification_md5_hash required"
         )
-    if "DataSetId" in data:
+    if data.get("DataSetId") is not None:
         out["data_set_id"] = data["DataSetId"]
     else:
         raise DeserializationError(
             "ImportAssetFromApiGatewayApiRequestDetails.data_set_id required"
         )
-    if "ProtocolType" in data:
+    if data.get("ProtocolType") is not None:
         out["protocol_type"] = data["ProtocolType"]
     else:
         raise DeserializationError(
             "ImportAssetFromApiGatewayApiRequestDetails.protocol_type required"
         )
-    if "RevisionId" in data:
+    if data.get("RevisionId") is not None:
         out["revision_id"] = data["RevisionId"]
     else:
         raise DeserializationError(
             "ImportAssetFromApiGatewayApiRequestDetails.revision_id required"
         )
-    if "Stage" in data:
+    if data.get("Stage") is not None:
         out["stage"] = data["Stage"]
     else:
         raise DeserializationError(

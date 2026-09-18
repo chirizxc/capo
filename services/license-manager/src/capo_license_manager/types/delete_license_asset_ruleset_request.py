@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: DeleteLicenseAssetRulesetRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteLicenseAssetRulesetRequest:
     out: DeleteLicenseAssetRulesetRequest = {}  # type: ignore[typeddict-item]
-    if "LicenseAssetRulesetArn" in data:
+    if data.get("LicenseAssetRulesetArn") is not None:
         out["license_asset_ruleset_arn"] = data["LicenseAssetRulesetArn"]
     else:
         raise DeserializationError(

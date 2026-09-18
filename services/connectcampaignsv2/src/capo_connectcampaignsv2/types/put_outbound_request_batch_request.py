@@ -33,7 +33,7 @@ def serialize_json(value: PutOutboundRequestBatchRequest) -> dict:
 
 def deserialize_json(data: dict) -> PutOutboundRequestBatchRequest:
     out: PutOutboundRequestBatchRequest = {}  # type: ignore[typeddict-item]
-    if "outboundRequests" in data:
+    if data.get("outboundRequests") is not None:
         import capo_connectcampaignsv2.types.outbound_request_list
 
         out["outbound_requests"] = (

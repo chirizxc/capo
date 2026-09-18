@@ -35,7 +35,7 @@ def serialize_aws_json_1_1(value: ListExclusionsResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListExclusionsResponse:
     out: ListExclusionsResponse = {}  # type: ignore[typeddict-item]
-    if "exclusionArns" in data:
+    if data.get("exclusionArns") is not None:
         import capo_inspector.types.list_returned_arn_list
 
         out["exclusion_arns"] = (
@@ -45,6 +45,6 @@ def deserialize_aws_json_1_1(data: dict) -> ListExclusionsResponse:
         )
     else:
         raise DeserializationError("ListExclusionsResponse.exclusion_arns required")
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

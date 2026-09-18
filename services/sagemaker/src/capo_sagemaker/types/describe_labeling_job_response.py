@@ -189,7 +189,7 @@ def serialize_aws_json_1_1(value: DescribeLabelingJobResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeLabelingJobResponse:
     out: DescribeLabelingJobResponse = {}  # type: ignore[typeddict-item]
-    if "LabelingJobStatus" in data:
+    if data.get("LabelingJobStatus") is not None:
         import capo_sagemaker.types.labeling_job_status
 
         out["labeling_job_status"] = (
@@ -197,7 +197,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeLabelingJobResponse:
                 data["LabelingJobStatus"]
             )
         )
-    if "LabelCounters" in data:
+    if data.get("LabelCounters") is not None:
         import capo_sagemaker.types.label_counters
 
         out["label_counters"] = (
@@ -205,15 +205,15 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeLabelingJobResponse:
                 data["LabelCounters"]
             )
         )
-    if "FailureReason" in data:
+    if data.get("FailureReason") is not None:
         out["failure_reason"] = data["FailureReason"]
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_sagemaker.types.timestamp
 
         out["creation_time"] = capo_sagemaker.types.timestamp.deserialize_aws_json_1_1(
             data["CreationTime"]
         )
-    if "LastModifiedTime" in data:
+    if data.get("LastModifiedTime") is not None:
         import capo_sagemaker.types.timestamp
 
         out["last_modified_time"] = (
@@ -221,15 +221,15 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeLabelingJobResponse:
                 data["LastModifiedTime"]
             )
         )
-    if "JobReferenceCode" in data:
+    if data.get("JobReferenceCode") is not None:
         out["job_reference_code"] = data["JobReferenceCode"]
-    if "LabelingJobName" in data:
+    if data.get("LabelingJobName") is not None:
         out["labeling_job_name"] = data["LabelingJobName"]
-    if "LabelingJobArn" in data:
+    if data.get("LabelingJobArn") is not None:
         out["labeling_job_arn"] = data["LabelingJobArn"]
-    if "LabelAttributeName" in data:
+    if data.get("LabelAttributeName") is not None:
         out["label_attribute_name"] = data["LabelAttributeName"]
-    if "InputConfig" in data:
+    if data.get("InputConfig") is not None:
         import capo_sagemaker.types.labeling_job_input_config
 
         out["input_config"] = (
@@ -237,7 +237,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeLabelingJobResponse:
                 data["InputConfig"]
             )
         )
-    if "OutputConfig" in data:
+    if data.get("OutputConfig") is not None:
         import capo_sagemaker.types.labeling_job_output_config
 
         out["output_config"] = (
@@ -245,11 +245,11 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeLabelingJobResponse:
                 data["OutputConfig"]
             )
         )
-    if "RoleArn" in data:
+    if data.get("RoleArn") is not None:
         out["role_arn"] = data["RoleArn"]
-    if "LabelCategoryConfigS3Uri" in data:
+    if data.get("LabelCategoryConfigS3Uri") is not None:
         out["label_category_config_s3_uri"] = data["LabelCategoryConfigS3Uri"]
-    if "StoppingConditions" in data:
+    if data.get("StoppingConditions") is not None:
         import capo_sagemaker.types.labeling_job_stopping_conditions
 
         out["stopping_conditions"] = (
@@ -257,7 +257,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeLabelingJobResponse:
                 data["StoppingConditions"]
             )
         )
-    if "LabelingJobAlgorithmsConfig" in data:
+    if data.get("LabelingJobAlgorithmsConfig") is not None:
         import capo_sagemaker.types.labeling_job_algorithms_config
 
         out["labeling_job_algorithms_config"] = (
@@ -265,7 +265,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeLabelingJobResponse:
                 data["LabelingJobAlgorithmsConfig"]
             )
         )
-    if "HumanTaskConfig" in data:
+    if data.get("HumanTaskConfig") is not None:
         import capo_sagemaker.types.human_task_config
 
         out["human_task_config"] = (
@@ -273,13 +273,13 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeLabelingJobResponse:
                 data["HumanTaskConfig"]
             )
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_sagemaker.types.tag_list
 
         out["tags"] = capo_sagemaker.types.tag_list.deserialize_aws_json_1_1(
             data["Tags"]
         )
-    if "LabelingJobOutput" in data:
+    if data.get("LabelingJobOutput") is not None:
         import capo_sagemaker.types.labeling_job_output
 
         out["labeling_job_output"] = (

@@ -35,17 +35,17 @@ def serialize_aws_json_1_0(value: ActivityTaskCanceledEventAttributes) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ActivityTaskCanceledEventAttributes:
     out: ActivityTaskCanceledEventAttributes = {}  # type: ignore[typeddict-item]
-    if "details" in data:
+    if data.get("details") is not None:
         out["details"] = data["details"]
-    if "scheduledEventId" in data:
+    if data.get("scheduledEventId") is not None:
         out["scheduled_event_id"] = data["scheduledEventId"]
     else:
         out["scheduled_event_id"] = 0
-    if "startedEventId" in data:
+    if data.get("startedEventId") is not None:
         out["started_event_id"] = data["startedEventId"]
     else:
         out["started_event_id"] = 0
-    if "latestCancelRequestedEventId" in data:
+    if data.get("latestCancelRequestedEventId") is not None:
         out["latest_cancel_requested_event_id"] = data["latestCancelRequestedEventId"]
     else:
         out["latest_cancel_requested_event_id"] = 0

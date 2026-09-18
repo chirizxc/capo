@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> EmailInsightsList:
 
     out: EmailInsightsList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_sesv2.types.email_insights.deserialize_json(item))
     return out

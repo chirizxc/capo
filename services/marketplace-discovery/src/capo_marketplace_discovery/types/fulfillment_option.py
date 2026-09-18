@@ -196,7 +196,7 @@ def serialize_json(value: FulfillmentOption) -> dict:
 
 
 def deserialize_json(data: dict) -> FulfillmentOption:
-    if "amazonMachineImageFulfillmentOption" in data:
+    if data.get("amazonMachineImageFulfillmentOption") is not None:
         import capo_marketplace_discovery.types.amazon_machine_image_fulfillment_option
 
         return {
@@ -204,7 +204,7 @@ def deserialize_json(data: dict) -> FulfillmentOption:
                 data["amazonMachineImageFulfillmentOption"]
             )
         }
-    elif "apiFulfillmentOption" in data:
+    elif data.get("apiFulfillmentOption") is not None:
         import capo_marketplace_discovery.types.api_fulfillment_option
 
         return {
@@ -212,7 +212,7 @@ def deserialize_json(data: dict) -> FulfillmentOption:
                 data["apiFulfillmentOption"]
             )
         }
-    elif "cloudFormationFulfillmentOption" in data:
+    elif data.get("cloudFormationFulfillmentOption") is not None:
         import capo_marketplace_discovery.types.cloud_formation_fulfillment_option
 
         return {
@@ -220,7 +220,7 @@ def deserialize_json(data: dict) -> FulfillmentOption:
                 data["cloudFormationFulfillmentOption"]
             )
         }
-    elif "containerFulfillmentOption" in data:
+    elif data.get("containerFulfillmentOption") is not None:
         import capo_marketplace_discovery.types.container_fulfillment_option
 
         return {
@@ -228,7 +228,7 @@ def deserialize_json(data: dict) -> FulfillmentOption:
                 data["containerFulfillmentOption"]
             )
         }
-    elif "helmFulfillmentOption" in data:
+    elif data.get("helmFulfillmentOption") is not None:
         import capo_marketplace_discovery.types.helm_fulfillment_option
 
         return {
@@ -236,7 +236,7 @@ def deserialize_json(data: dict) -> FulfillmentOption:
                 data["helmFulfillmentOption"]
             )
         }
-    elif "eksAddOnFulfillmentOption" in data:
+    elif data.get("eksAddOnFulfillmentOption") is not None:
         import capo_marketplace_discovery.types.eks_add_on_fulfillment_option
 
         return {
@@ -244,7 +244,7 @@ def deserialize_json(data: dict) -> FulfillmentOption:
                 data["eksAddOnFulfillmentOption"]
             )
         }
-    elif "ec2ImageBuilderComponentFulfillmentOption" in data:
+    elif data.get("ec2ImageBuilderComponentFulfillmentOption") is not None:
         import capo_marketplace_discovery.types.ec2_image_builder_component_fulfillment_option
 
         return {
@@ -252,7 +252,7 @@ def deserialize_json(data: dict) -> FulfillmentOption:
                 data["ec2ImageBuilderComponentFulfillmentOption"]
             )
         }
-    elif "dataExchangeFulfillmentOption" in data:
+    elif data.get("dataExchangeFulfillmentOption") is not None:
         import capo_marketplace_discovery.types.data_exchange_fulfillment_option
 
         return {
@@ -260,7 +260,7 @@ def deserialize_json(data: dict) -> FulfillmentOption:
                 data["dataExchangeFulfillmentOption"]
             )
         }
-    elif "professionalServicesFulfillmentOption" in data:
+    elif data.get("professionalServicesFulfillmentOption") is not None:
         import capo_marketplace_discovery.types.professional_services_fulfillment_option
 
         return {
@@ -268,7 +268,7 @@ def deserialize_json(data: dict) -> FulfillmentOption:
                 data["professionalServicesFulfillmentOption"]
             )
         }
-    elif "saasFulfillmentOption" in data:
+    elif data.get("saasFulfillmentOption") is not None:
         import capo_marketplace_discovery.types.saas_fulfillment_option
 
         return {
@@ -276,7 +276,7 @@ def deserialize_json(data: dict) -> FulfillmentOption:
                 data["saasFulfillmentOption"]
             )
         }
-    elif "sageMakerAlgorithmFulfillmentOption" in data:
+    elif data.get("sageMakerAlgorithmFulfillmentOption") is not None:
         import capo_marketplace_discovery.types.sage_maker_algorithm_fulfillment_option
 
         return {
@@ -284,7 +284,7 @@ def deserialize_json(data: dict) -> FulfillmentOption:
                 data["sageMakerAlgorithmFulfillmentOption"]
             )
         }
-    elif "sageMakerModelFulfillmentOption" in data:
+    elif data.get("sageMakerModelFulfillmentOption") is not None:
         import capo_marketplace_discovery.types.sage_maker_model_fulfillment_option
 
         return {

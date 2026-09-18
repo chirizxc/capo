@@ -36,17 +36,17 @@ def serialize_json(value: SessionKeyEmvCommon) -> dict:
 
 def deserialize_json(data: dict) -> SessionKeyEmvCommon:
     out: SessionKeyEmvCommon = {}  # type: ignore[typeddict-item]
-    if "PrimaryAccountNumber" in data:
+    if data.get("PrimaryAccountNumber") is not None:
         out["primary_account_number"] = data["PrimaryAccountNumber"]
     else:
         raise DeserializationError(
             "SessionKeyEmvCommon.primary_account_number required"
         )
-    if "PanSequenceNumber" in data:
+    if data.get("PanSequenceNumber") is not None:
         out["pan_sequence_number"] = data["PanSequenceNumber"]
     else:
         raise DeserializationError("SessionKeyEmvCommon.pan_sequence_number required")
-    if "ApplicationTransactionCounter" in data:
+    if data.get("ApplicationTransactionCounter") is not None:
         out["application_transaction_counter"] = data["ApplicationTransactionCounter"]
     else:
         raise DeserializationError(

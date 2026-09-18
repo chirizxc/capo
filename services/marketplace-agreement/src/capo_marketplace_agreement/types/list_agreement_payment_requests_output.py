@@ -35,9 +35,9 @@ def serialize_aws_json_1_0(value: ListAgreementPaymentRequestsOutput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ListAgreementPaymentRequestsOutput:
     out: ListAgreementPaymentRequestsOutput = {}  # type: ignore[typeddict-item]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "items" in data:
+    if data.get("items") is not None:
         import capo_marketplace_agreement.types.payment_request_summary_list
 
         out["items"] = (

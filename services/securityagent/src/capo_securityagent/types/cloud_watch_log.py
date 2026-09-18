@@ -22,8 +22,8 @@ def serialize_json(value: CloudWatchLog) -> dict:
 
 def deserialize_json(data: dict) -> CloudWatchLog:
     out: CloudWatchLog = {}  # type: ignore[typeddict-item]
-    if "logGroup" in data:
+    if data.get("logGroup") is not None:
         out["log_group"] = data["logGroup"]
-    if "logStream" in data:
+    if data.get("logStream") is not None:
         out["log_stream"] = data["logStream"]
     return out

@@ -32,7 +32,7 @@ def serialize_aws_json_1_1(value: ThemeGenerationConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ThemeGenerationConfig:
     out: ThemeGenerationConfig = {}  # type: ignore[typeddict-item]
-    if "fieldsForThemeGeneration" in data:
+    if data.get("fieldsForThemeGeneration") is not None:
         import capo_personalize.types.fields_for_theme_generation
 
         out["fields_for_theme_generation"] = (

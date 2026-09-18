@@ -79,11 +79,11 @@ def serialize_json(value: StandardsSubscription) -> dict:
 
 def deserialize_json(data: dict) -> StandardsSubscription:
     out: StandardsSubscription = {}  # type: ignore[typeddict-item]
-    if "StandardsSubscriptionArn" in data:
+    if data.get("StandardsSubscriptionArn") is not None:
         out["standards_subscription_arn"] = data["StandardsSubscriptionArn"]
-    if "StandardsArn" in data:
+    if data.get("StandardsArn") is not None:
         out["standards_arn"] = data["StandardsArn"]
-    if "StandardsInput" in data:
+    if data.get("StandardsInput") is not None:
         import capo_securityhub.types.standards_input_parameter_map
 
         out["standards_input"] = (
@@ -91,7 +91,7 @@ def deserialize_json(data: dict) -> StandardsSubscription:
                 data["StandardsInput"]
             )
         )
-    if "StandardsStatus" in data:
+    if data.get("StandardsStatus") is not None:
         import capo_securityhub.types.standards_status
 
         out["standards_status"] = (
@@ -99,7 +99,7 @@ def deserialize_json(data: dict) -> StandardsSubscription:
                 data["StandardsStatus"]
             )
         )
-    if "StandardsControlsUpdatable" in data:
+    if data.get("StandardsControlsUpdatable") is not None:
         import capo_securityhub.types.standards_controls_updatable
 
         out["standards_controls_updatable"] = (
@@ -107,7 +107,7 @@ def deserialize_json(data: dict) -> StandardsSubscription:
                 data["StandardsControlsUpdatable"]
             )
         )
-    if "StandardsStatusReason" in data:
+    if data.get("StandardsStatusReason") is not None:
         import capo_securityhub.types.standards_status_reason
 
         out["standards_status_reason"] = (

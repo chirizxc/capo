@@ -31,7 +31,7 @@ def serialize_json(value: ListIntentPathsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListIntentPathsResponse:
     out: ListIntentPathsResponse = {}  # type: ignore[typeddict-item]
-    if "nodeSummaries" in data:
+    if data.get("nodeSummaries") is not None:
         import capo_lex_models_v2.types.analytics_intent_node_summaries
 
         out["node_summaries"] = (

@@ -29,7 +29,7 @@ def serialize_json(value: UpdateServiceNetworkRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateServiceNetworkRequest:
     out: UpdateServiceNetworkRequest = {}  # type: ignore[typeddict-item]
-    if "authType" in data:
+    if data.get("authType") is not None:
         out["auth_type"] = data["authType"]
     else:
         raise DeserializationError("UpdateServiceNetworkRequest.auth_type required")

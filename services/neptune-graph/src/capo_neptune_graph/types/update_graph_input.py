@@ -36,10 +36,10 @@ def serialize_json(value: UpdateGraphInput) -> dict:
 
 def deserialize_json(data: dict) -> UpdateGraphInput:
     out: UpdateGraphInput = {}  # type: ignore[typeddict-item]
-    if "publicConnectivity" in data:
+    if data.get("publicConnectivity") is not None:
         out["public_connectivity"] = data["publicConnectivity"]
-    if "provisionedMemory" in data:
+    if data.get("provisionedMemory") is not None:
         out["provisioned_memory"] = data["provisionedMemory"]
-    if "deletionProtection" in data:
+    if data.get("deletionProtection") is not None:
         out["deletion_protection"] = data["deletionProtection"]
     return out

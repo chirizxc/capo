@@ -36,10 +36,10 @@ def serialize_json(value: CreateWhatsAppMessageTemplateOutput) -> dict:
 
 def deserialize_json(data: dict) -> CreateWhatsAppMessageTemplateOutput:
     out: CreateWhatsAppMessageTemplateOutput = {}  # type: ignore[typeddict-item]
-    if "metaTemplateId" in data:
+    if data.get("metaTemplateId") is not None:
         out["meta_template_id"] = data["metaTemplateId"]
-    if "templateStatus" in data:
+    if data.get("templateStatus") is not None:
         out["template_status"] = data["templateStatus"]
-    if "category" in data:
+    if data.get("category") is not None:
         out["category"] = data["category"]
     return out

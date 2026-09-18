@@ -65,13 +65,13 @@ def serialize_aws_json_1_1(value: UpdateEndpointInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateEndpointInput:
     out: UpdateEndpointInput = {}  # type: ignore[typeddict-item]
-    if "EndpointName" in data:
+    if data.get("EndpointName") is not None:
         out["endpoint_name"] = data["EndpointName"]
-    if "EndpointConfigName" in data:
+    if data.get("EndpointConfigName") is not None:
         out["endpoint_config_name"] = data["EndpointConfigName"]
-    if "RetainAllVariantProperties" in data:
+    if data.get("RetainAllVariantProperties") is not None:
         out["retain_all_variant_properties"] = data["RetainAllVariantProperties"]
-    if "ExcludeRetainedVariantProperties" in data:
+    if data.get("ExcludeRetainedVariantProperties") is not None:
         import capo_sagemaker.types.variant_property_list
 
         out["exclude_retained_variant_properties"] = (
@@ -79,7 +79,7 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateEndpointInput:
                 data["ExcludeRetainedVariantProperties"]
             )
         )
-    if "DeploymentConfig" in data:
+    if data.get("DeploymentConfig") is not None:
         import capo_sagemaker.types.deployment_config
 
         out["deployment_config"] = (
@@ -87,6 +87,6 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateEndpointInput:
                 data["DeploymentConfig"]
             )
         )
-    if "RetainDeploymentConfig" in data:
+    if data.get("RetainDeploymentConfig") is not None:
         out["retain_deployment_config"] = data["RetainDeploymentConfig"]
     return out

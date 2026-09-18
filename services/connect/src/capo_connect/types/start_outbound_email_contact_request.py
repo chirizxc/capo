@@ -74,19 +74,19 @@ def serialize_json(value: StartOutboundEmailContactRequest) -> dict:
 
 def deserialize_json(data: dict) -> StartOutboundEmailContactRequest:
     out: StartOutboundEmailContactRequest = {}  # type: ignore[typeddict-item]
-    if "InstanceId" in data:
+    if data.get("InstanceId") is not None:
         out["instance_id"] = data["InstanceId"]
     else:
         raise DeserializationError(
             "StartOutboundEmailContactRequest.instance_id required"
         )
-    if "ContactId" in data:
+    if data.get("ContactId") is not None:
         out["contact_id"] = data["ContactId"]
     else:
         raise DeserializationError(
             "StartOutboundEmailContactRequest.contact_id required"
         )
-    if "FromEmailAddress" in data:
+    if data.get("FromEmailAddress") is not None:
         import capo_connect.types.email_address_info
 
         out["from_email_address"] = (
@@ -94,7 +94,7 @@ def deserialize_json(data: dict) -> StartOutboundEmailContactRequest:
                 data["FromEmailAddress"]
             )
         )
-    if "DestinationEmailAddress" in data:
+    if data.get("DestinationEmailAddress") is not None:
         import capo_connect.types.email_address_info
 
         out["destination_email_address"] = (
@@ -106,7 +106,7 @@ def deserialize_json(data: dict) -> StartOutboundEmailContactRequest:
         raise DeserializationError(
             "StartOutboundEmailContactRequest.destination_email_address required"
         )
-    if "AdditionalRecipients" in data:
+    if data.get("AdditionalRecipients") is not None:
         import capo_connect.types.outbound_additional_recipients
 
         out["additional_recipients"] = (
@@ -114,7 +114,7 @@ def deserialize_json(data: dict) -> StartOutboundEmailContactRequest:
                 data["AdditionalRecipients"]
             )
         )
-    if "EmailMessage" in data:
+    if data.get("EmailMessage") is not None:
         import capo_connect.types.outbound_email_content
 
         out["email_message"] = (
@@ -126,6 +126,6 @@ def deserialize_json(data: dict) -> StartOutboundEmailContactRequest:
         raise DeserializationError(
             "StartOutboundEmailContactRequest.email_message required"
         )
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
     return out

@@ -23,6 +23,6 @@ def serialize_json(value: NodeExporterInfo) -> dict:
 
 def deserialize_json(data: dict) -> NodeExporterInfo:
     out: NodeExporterInfo = {}  # type: ignore[typeddict-item]
-    if "enabledInBroker" in data:
+    if data.get("enabledInBroker") is not None:
         out["enabled_in_broker"] = data["enabledInBroker"]
     return out

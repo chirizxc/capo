@@ -124,23 +124,23 @@ def serialize_json(value: UpdateResponsePlanInput) -> dict:
 
 def deserialize_json(data: dict) -> UpdateResponsePlanInput:
     out: UpdateResponsePlanInput = {}  # type: ignore[typeddict-item]
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("UpdateResponsePlanInput.arn required")
-    if "displayName" in data:
+    if data.get("displayName") is not None:
         out["display_name"] = data["displayName"]
-    if "incidentTemplateTitle" in data:
+    if data.get("incidentTemplateTitle") is not None:
         out["incident_template_title"] = data["incidentTemplateTitle"]
-    if "incidentTemplateImpact" in data:
+    if data.get("incidentTemplateImpact") is not None:
         out["incident_template_impact"] = data["incidentTemplateImpact"]
-    if "incidentTemplateSummary" in data:
+    if data.get("incidentTemplateSummary") is not None:
         out["incident_template_summary"] = data["incidentTemplateSummary"]
-    if "incidentTemplateDedupeString" in data:
+    if data.get("incidentTemplateDedupeString") is not None:
         out["incident_template_dedupe_string"] = data["incidentTemplateDedupeString"]
-    if "incidentTemplateNotificationTargets" in data:
+    if data.get("incidentTemplateNotificationTargets") is not None:
         import capo_ssm_incidents.types.notification_target_set
 
         out["incident_template_notification_targets"] = (
@@ -148,25 +148,25 @@ def deserialize_json(data: dict) -> UpdateResponsePlanInput:
                 data["incidentTemplateNotificationTargets"]
             )
         )
-    if "chatChannel" in data:
+    if data.get("chatChannel") is not None:
         import capo_ssm_incidents.types.chat_channel
 
         out["chat_channel"] = capo_ssm_incidents.types.chat_channel.deserialize_json(
             data["chatChannel"]
         )
-    if "engagements" in data:
+    if data.get("engagements") is not None:
         import capo_ssm_incidents.types.engagement_set
 
         out["engagements"] = capo_ssm_incidents.types.engagement_set.deserialize_json(
             data["engagements"]
         )
-    if "actions" in data:
+    if data.get("actions") is not None:
         import capo_ssm_incidents.types.actions_list
 
         out["actions"] = capo_ssm_incidents.types.actions_list.deserialize_json(
             data["actions"]
         )
-    if "incidentTemplateTags" in data:
+    if data.get("incidentTemplateTags") is not None:
         import capo_ssm_incidents.types.tag_map_update
 
         out["incident_template_tags"] = (
@@ -174,7 +174,7 @@ def deserialize_json(data: dict) -> UpdateResponsePlanInput:
                 data["incidentTemplateTags"]
             )
         )
-    if "integrations" in data:
+    if data.get("integrations") is not None:
         import capo_ssm_incidents.types.integrations
 
         out["integrations"] = capo_ssm_incidents.types.integrations.deserialize_json(

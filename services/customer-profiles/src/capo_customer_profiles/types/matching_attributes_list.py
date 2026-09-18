@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> MatchingAttributesList:
 
     out: MatchingAttributesList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_customer_profiles.types.matching_attributes.deserialize_json(item)
         )

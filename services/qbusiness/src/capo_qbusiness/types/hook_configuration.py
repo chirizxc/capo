@@ -46,7 +46,7 @@ def serialize_json(value: HookConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> HookConfiguration:
     out: HookConfiguration = {}  # type: ignore[typeddict-item]
-    if "invocationCondition" in data:
+    if data.get("invocationCondition") is not None:
         import capo_qbusiness.types.document_attribute_condition
 
         out["invocation_condition"] = (
@@ -54,10 +54,10 @@ def deserialize_json(data: dict) -> HookConfiguration:
                 data["invocationCondition"]
             )
         )
-    if "lambdaArn" in data:
+    if data.get("lambdaArn") is not None:
         out["lambda_arn"] = data["lambdaArn"]
-    if "s3BucketName" in data:
+    if data.get("s3BucketName") is not None:
         out["s3_bucket_name"] = data["s3BucketName"]
-    if "roleArn" in data:
+    if data.get("roleArn") is not None:
         out["role_arn"] = data["roleArn"]
     return out

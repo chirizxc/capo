@@ -33,10 +33,10 @@ def serialize_json(value: LatestDeviceJob) -> dict:
 
 def deserialize_json(data: dict) -> LatestDeviceJob:
     out: LatestDeviceJob = {}  # type: ignore[typeddict-item]
-    if "ImageVersion" in data:
+    if data.get("ImageVersion") is not None:
         out["image_version"] = data["ImageVersion"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         out["status"] = data["Status"]
-    if "JobType" in data:
+    if data.get("JobType") is not None:
         out["job_type"] = data["JobType"]
     return out

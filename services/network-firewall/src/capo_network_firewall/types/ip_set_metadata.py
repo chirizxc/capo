@@ -23,6 +23,6 @@ def serialize_aws_json_1_0(value: IPSetMetadata) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> IPSetMetadata:
     out: IPSetMetadata = {}  # type: ignore[typeddict-item]
-    if "ResolvedCIDRCount" in data:
+    if data.get("ResolvedCIDRCount") is not None:
         out["resolved_cidr_count"] = data["ResolvedCIDRCount"]
     return out

@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> AllowedStatisticList:
 
     out: AllowedStatisticList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_databrew.types.allowed_statistics.deserialize_json(item))
     return out

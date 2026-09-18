@@ -36,11 +36,11 @@ def serialize_aws_json_1_1(value: ApplyMapping) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ApplyMapping:
     out: ApplyMapping = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("ApplyMapping.name required")
-    if "Inputs" in data:
+    if data.get("Inputs") is not None:
         import capo_glue.types.one_input
 
         out["inputs"] = capo_glue.types.one_input.deserialize_aws_json_1_1(
@@ -48,7 +48,7 @@ def deserialize_aws_json_1_1(data: dict) -> ApplyMapping:
         )
     else:
         raise DeserializationError("ApplyMapping.inputs required")
-    if "Mapping" in data:
+    if data.get("Mapping") is not None:
         import capo_glue.types.mappings
 
         out["mapping"] = capo_glue.types.mappings.deserialize_aws_json_1_1(

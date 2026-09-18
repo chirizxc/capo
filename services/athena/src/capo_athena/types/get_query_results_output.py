@@ -37,14 +37,14 @@ def serialize_aws_json_1_1(value: GetQueryResultsOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetQueryResultsOutput:
     out: GetQueryResultsOutput = {}  # type: ignore[typeddict-item]
-    if "UpdateCount" in data:
+    if data.get("UpdateCount") is not None:
         out["update_count"] = data["UpdateCount"]
-    if "ResultSet" in data:
+    if data.get("ResultSet") is not None:
         import capo_athena.types.result_set
 
         out["result_set"] = capo_athena.types.result_set.deserialize_aws_json_1_1(
             data["ResultSet"]
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

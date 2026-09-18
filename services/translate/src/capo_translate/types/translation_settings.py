@@ -45,19 +45,19 @@ def serialize_aws_json_1_1(value: TranslationSettings) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> TranslationSettings:
     out: TranslationSettings = {}  # type: ignore[typeddict-item]
-    if "Formality" in data:
+    if data.get("Formality") is not None:
         import capo_translate.types.formality
 
         out["formality"] = capo_translate.types.formality.deserialize_aws_json_1_1(
             data["Formality"]
         )
-    if "Profanity" in data:
+    if data.get("Profanity") is not None:
         import capo_translate.types.profanity
 
         out["profanity"] = capo_translate.types.profanity.deserialize_aws_json_1_1(
             data["Profanity"]
         )
-    if "Brevity" in data:
+    if data.get("Brevity") is not None:
         import capo_translate.types.brevity
 
         out["brevity"] = capo_translate.types.brevity.deserialize_aws_json_1_1(

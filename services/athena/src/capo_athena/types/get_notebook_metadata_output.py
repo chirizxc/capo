@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: GetNotebookMetadataOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetNotebookMetadataOutput:
     out: GetNotebookMetadataOutput = {}  # type: ignore[typeddict-item]
-    if "NotebookMetadata" in data:
+    if data.get("NotebookMetadata") is not None:
         import capo_athena.types.notebook_metadata
 
         out["notebook_metadata"] = (

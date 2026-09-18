@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> EnabledBaselineParameterSummaries:
 
     out: EnabledBaselineParameterSummaries = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_controltower.types.enabled_baseline_parameter_summary.deserialize_json(
                 item

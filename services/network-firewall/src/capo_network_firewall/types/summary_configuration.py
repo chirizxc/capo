@@ -31,7 +31,7 @@ def serialize_aws_json_1_0(value: SummaryConfiguration) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> SummaryConfiguration:
     out: SummaryConfiguration = {}  # type: ignore[typeddict-item]
-    if "RuleOptions" in data:
+    if data.get("RuleOptions") is not None:
         import capo_network_firewall.types.summary_rule_options
 
         out["rule_options"] = (

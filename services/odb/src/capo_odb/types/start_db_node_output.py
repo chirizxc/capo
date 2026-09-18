@@ -36,16 +36,16 @@ def serialize_aws_json_1_0(value: StartDbNodeOutput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> StartDbNodeOutput:
     out: StartDbNodeOutput = {}  # type: ignore[typeddict-item]
-    if "dbNodeId" in data:
+    if data.get("dbNodeId") is not None:
         out["db_node_id"] = data["dbNodeId"]
     else:
         raise DeserializationError("StartDbNodeOutput.db_node_id required")
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_odb.types.db_node_resource_status
 
         out["status"] = capo_odb.types.db_node_resource_status.deserialize_aws_json_1_0(
             data["status"]
         )
-    if "statusReason" in data:
+    if data.get("statusReason") is not None:
         out["status_reason"] = data["statusReason"]
     return out

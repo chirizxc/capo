@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: DescribeEnvironmentMembershipsResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeEnvironmentMembershipsResult:
     out: DescribeEnvironmentMembershipsResult = {}  # type: ignore[typeddict-item]
-    if "memberships" in data:
+    if data.get("memberships") is not None:
         import capo_cloud9.types.environment_members_list
 
         out["memberships"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeEnvironmentMembershipsResult
                 data["memberships"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

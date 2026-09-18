@@ -41,7 +41,7 @@ def serialize_aws_json_1_1(value: BatchUpdateClusterRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> BatchUpdateClusterRequest:
     out: BatchUpdateClusterRequest = {}  # type: ignore[typeddict-item]
-    if "ClusterNames" in data:
+    if data.get("ClusterNames") is not None:
         import capo_memorydb.types.cluster_name_list
 
         out["cluster_names"] = (
@@ -51,7 +51,7 @@ def deserialize_aws_json_1_1(data: dict) -> BatchUpdateClusterRequest:
         )
     else:
         raise DeserializationError("BatchUpdateClusterRequest.cluster_names required")
-    if "ServiceUpdate" in data:
+    if data.get("ServiceUpdate") is not None:
         import capo_memorydb.types.service_update_request
 
         out["service_update"] = (

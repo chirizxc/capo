@@ -32,11 +32,11 @@ def serialize_json(value: UpdateVpcEndpointRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateVpcEndpointRequest:
     out: UpdateVpcEndpointRequest = {}  # type: ignore[typeddict-item]
-    if "VpcEndpointId" in data:
+    if data.get("VpcEndpointId") is not None:
         out["vpc_endpoint_id"] = data["VpcEndpointId"]
     else:
         raise DeserializationError("UpdateVpcEndpointRequest.vpc_endpoint_id required")
-    if "VpcOptions" in data:
+    if data.get("VpcOptions") is not None:
         import capo_opensearch.types.vpc_options
 
         out["vpc_options"] = capo_opensearch.types.vpc_options.deserialize_json(

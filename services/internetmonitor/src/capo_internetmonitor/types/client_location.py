@@ -35,39 +35,55 @@ def serialize_json(value: ClientLocation) -> dict:
     if "metro" in value:
         out["Metro"] = value["metro"]
     out["City"] = value["city"]
-    out["Latitude"] = value["latitude"]
-    out["Longitude"] = value["longitude"]
+    out["Latitude"] = (
+        "NaN"
+        if value["latitude"] != value["latitude"]
+        else "Infinity"
+        if value["latitude"] == float("inf")
+        else "-Infinity"
+        if value["latitude"] == float("-inf")
+        else value["latitude"]
+    )
+    out["Longitude"] = (
+        "NaN"
+        if value["longitude"] != value["longitude"]
+        else "Infinity"
+        if value["longitude"] == float("inf")
+        else "-Infinity"
+        if value["longitude"] == float("-inf")
+        else value["longitude"]
+    )
     return out
 
 
 def deserialize_json(data: dict) -> ClientLocation:
     out: ClientLocation = {}  # type: ignore[typeddict-item]
-    if "ASName" in data:
+    if data.get("ASName") is not None:
         out["as_name"] = data["ASName"]
     else:
         raise DeserializationError("ClientLocation.as_name required")
-    if "ASNumber" in data:
+    if data.get("ASNumber") is not None:
         out["as_number"] = data["ASNumber"]
     else:
         raise DeserializationError("ClientLocation.as_number required")
-    if "Country" in data:
+    if data.get("Country") is not None:
         out["country"] = data["Country"]
     else:
         raise DeserializationError("ClientLocation.country required")
-    if "Subdivision" in data:
+    if data.get("Subdivision") is not None:
         out["subdivision"] = data["Subdivision"]
-    if "Metro" in data:
+    if data.get("Metro") is not None:
         out["metro"] = data["Metro"]
-    if "City" in data:
+    if data.get("City") is not None:
         out["city"] = data["City"]
     else:
         raise DeserializationError("ClientLocation.city required")
-    if "Latitude" in data:
-        out["latitude"] = data["Latitude"]
+    if data.get("Latitude") is not None:
+        out["latitude"] = float(data["Latitude"])
     else:
         raise DeserializationError("ClientLocation.latitude required")
-    if "Longitude" in data:
-        out["longitude"] = data["Longitude"]
+    if data.get("Longitude") is not None:
+        out["longitude"] = float(data["Longitude"])
     else:
         raise DeserializationError("ClientLocation.longitude required")
     return out

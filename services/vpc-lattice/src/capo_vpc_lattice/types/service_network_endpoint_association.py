@@ -54,19 +54,19 @@ def serialize_json(value: ServiceNetworkEndpointAssociation) -> dict:
 
 def deserialize_json(data: dict) -> ServiceNetworkEndpointAssociation:
     out: ServiceNetworkEndpointAssociation = {}  # type: ignore[typeddict-item]
-    if "vpcEndpointId" in data:
+    if data.get("vpcEndpointId") is not None:
         out["vpc_endpoint_id"] = data["vpcEndpointId"]
-    if "vpcId" in data:
+    if data.get("vpcId") is not None:
         out["vpc_id"] = data["vpcId"]
-    if "vpcEndpointOwnerId" in data:
+    if data.get("vpcEndpointOwnerId") is not None:
         out["vpc_endpoint_owner_id"] = data["vpcEndpointOwnerId"]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "state" in data:
+    if data.get("state") is not None:
         out["state"] = data["state"]
-    if "serviceNetworkArn" in data:
+    if data.get("serviceNetworkArn") is not None:
         out["service_network_arn"] = data["serviceNetworkArn"]
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_vpc_lattice.types.timestamp
 
         out["created_at"] = capo_vpc_lattice.types.timestamp.deserialize_json(

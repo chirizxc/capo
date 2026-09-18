@@ -43,11 +43,11 @@ def serialize_json(value: GeoSpatialColumnGroup) -> dict:
 
 def deserialize_json(data: dict) -> GeoSpatialColumnGroup:
     out: GeoSpatialColumnGroup = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("GeoSpatialColumnGroup.name required")
-    if "CountryCode" in data:
+    if data.get("CountryCode") is not None:
         import capo_quicksight.types.geo_spatial_country_code
 
         out["country_code"] = (
@@ -55,7 +55,7 @@ def deserialize_json(data: dict) -> GeoSpatialColumnGroup:
                 data["CountryCode"]
             )
         )
-    if "Columns" in data:
+    if data.get("Columns") is not None:
         import capo_quicksight.types.column_list
 
         out["columns"] = capo_quicksight.types.column_list.deserialize_json(

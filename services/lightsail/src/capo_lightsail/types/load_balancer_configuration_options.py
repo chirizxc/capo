@@ -33,6 +33,8 @@ def deserialize_aws_json_1_1(data: dict) -> LoadBalancerConfigurationOptions:
     for key, value in data.items():
         import capo_lightsail.types.load_balancer_attribute_name
 
+        if value is None:
+            continue
         out[
             capo_lightsail.types.load_balancer_attribute_name.deserialize_aws_json_1_1(
                 key

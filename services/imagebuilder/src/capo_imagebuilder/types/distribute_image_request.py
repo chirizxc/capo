@@ -56,29 +56,29 @@ def serialize_json(value: DistributeImageRequest) -> dict:
 
 def deserialize_json(data: dict) -> DistributeImageRequest:
     out: DistributeImageRequest = {}  # type: ignore[typeddict-item]
-    if "sourceImage" in data:
+    if data.get("sourceImage") is not None:
         out["source_image"] = data["sourceImage"]
     else:
         raise DeserializationError("DistributeImageRequest.source_image required")
-    if "distributionConfigurationArn" in data:
+    if data.get("distributionConfigurationArn") is not None:
         out["distribution_configuration_arn"] = data["distributionConfigurationArn"]
     else:
         raise DeserializationError(
             "DistributeImageRequest.distribution_configuration_arn required"
         )
-    if "executionRole" in data:
+    if data.get("executionRole") is not None:
         out["execution_role"] = data["executionRole"]
     else:
         raise DeserializationError("DistributeImageRequest.execution_role required")
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_imagebuilder.types.tag_map
 
         out["tags"] = capo_imagebuilder.types.tag_map.deserialize_json(data["tags"])
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     else:
         raise DeserializationError("DistributeImageRequest.client_token required")
-    if "loggingConfiguration" in data:
+    if data.get("loggingConfiguration") is not None:
         import capo_imagebuilder.types.image_logging_configuration
 
         out["logging_configuration"] = (

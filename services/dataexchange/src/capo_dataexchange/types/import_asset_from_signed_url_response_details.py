@@ -52,29 +52,29 @@ def serialize_json(value: ImportAssetFromSignedUrlResponseDetails) -> dict:
 
 def deserialize_json(data: dict) -> ImportAssetFromSignedUrlResponseDetails:
     out: ImportAssetFromSignedUrlResponseDetails = {}  # type: ignore[typeddict-item]
-    if "AssetName" in data:
+    if data.get("AssetName") is not None:
         out["asset_name"] = data["AssetName"]
     else:
         raise DeserializationError(
             "ImportAssetFromSignedUrlResponseDetails.asset_name required"
         )
-    if "DataSetId" in data:
+    if data.get("DataSetId") is not None:
         out["data_set_id"] = data["DataSetId"]
     else:
         raise DeserializationError(
             "ImportAssetFromSignedUrlResponseDetails.data_set_id required"
         )
-    if "Md5Hash" in data:
+    if data.get("Md5Hash") is not None:
         out["md5_hash"] = data["Md5Hash"]
-    if "RevisionId" in data:
+    if data.get("RevisionId") is not None:
         out["revision_id"] = data["RevisionId"]
     else:
         raise DeserializationError(
             "ImportAssetFromSignedUrlResponseDetails.revision_id required"
         )
-    if "SignedUrl" in data:
+    if data.get("SignedUrl") is not None:
         out["signed_url"] = data["SignedUrl"]
-    if "SignedUrlExpiresAt" in data:
+    if data.get("SignedUrlExpiresAt") is not None:
         import capo_dataexchange.types.timestamp
 
         out["signed_url_expires_at"] = (

@@ -99,7 +99,7 @@ def serialize_json(value: GaugeChartConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> GaugeChartConfiguration:
     out: GaugeChartConfiguration = {}  # type: ignore[typeddict-item]
-    if "FieldWells" in data:
+    if data.get("FieldWells") is not None:
         import capo_quicksight.types.gauge_chart_field_wells
 
         out["field_wells"] = (
@@ -107,7 +107,7 @@ def deserialize_json(data: dict) -> GaugeChartConfiguration:
                 data["FieldWells"]
             )
         )
-    if "GaugeChartOptions" in data:
+    if data.get("GaugeChartOptions") is not None:
         import capo_quicksight.types.gauge_chart_options
 
         out["gauge_chart_options"] = (
@@ -115,25 +115,25 @@ def deserialize_json(data: dict) -> GaugeChartConfiguration:
                 data["GaugeChartOptions"]
             )
         )
-    if "DataLabels" in data:
+    if data.get("DataLabels") is not None:
         import capo_quicksight.types.data_label_options
 
         out["data_labels"] = capo_quicksight.types.data_label_options.deserialize_json(
             data["DataLabels"]
         )
-    if "TooltipOptions" in data:
+    if data.get("TooltipOptions") is not None:
         import capo_quicksight.types.tooltip_options
 
         out["tooltip_options"] = capo_quicksight.types.tooltip_options.deserialize_json(
             data["TooltipOptions"]
         )
-    if "VisualPalette" in data:
+    if data.get("VisualPalette") is not None:
         import capo_quicksight.types.visual_palette
 
         out["visual_palette"] = capo_quicksight.types.visual_palette.deserialize_json(
             data["VisualPalette"]
         )
-    if "ColorConfiguration" in data:
+    if data.get("ColorConfiguration") is not None:
         import capo_quicksight.types.gauge_chart_color_configuration
 
         out["color_configuration"] = (
@@ -141,7 +141,7 @@ def deserialize_json(data: dict) -> GaugeChartConfiguration:
                 data["ColorConfiguration"]
             )
         )
-    if "Interactions" in data:
+    if data.get("Interactions") is not None:
         import capo_quicksight.types.visual_interaction_options
 
         out["interactions"] = (

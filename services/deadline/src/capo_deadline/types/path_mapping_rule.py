@@ -35,7 +35,7 @@ def serialize_json(value: PathMappingRule) -> dict:
 
 def deserialize_json(data: dict) -> PathMappingRule:
     out: PathMappingRule = {}  # type: ignore[typeddict-item]
-    if "sourcePathFormat" in data:
+    if data.get("sourcePathFormat") is not None:
         import capo_deadline.types.path_format
 
         out["source_path_format"] = capo_deadline.types.path_format.deserialize_json(
@@ -43,11 +43,11 @@ def deserialize_json(data: dict) -> PathMappingRule:
         )
     else:
         raise DeserializationError("PathMappingRule.source_path_format required")
-    if "sourcePath" in data:
+    if data.get("sourcePath") is not None:
         out["source_path"] = data["sourcePath"]
     else:
         raise DeserializationError("PathMappingRule.source_path required")
-    if "destinationPath" in data:
+    if data.get("destinationPath") is not None:
         out["destination_path"] = data["destinationPath"]
     else:
         raise DeserializationError("PathMappingRule.destination_path required")

@@ -52,24 +52,24 @@ def serialize_json(value: GetFindingStatisticsV2Request) -> dict:
 
 def deserialize_json(data: dict) -> GetFindingStatisticsV2Request:
     out: GetFindingStatisticsV2Request = {}  # type: ignore[typeddict-item]
-    if "GroupByRules" in data:
+    if data.get("GroupByRules") is not None:
         import capo_securityhub.types.group_by_rules
 
         out["group_by_rules"] = capo_securityhub.types.group_by_rules.deserialize_json(
             data["GroupByRules"]
         )
-    if "Scopes" in data:
+    if data.get("Scopes") is not None:
         import capo_securityhub.types.finding_scopes
 
         out["scopes"] = capo_securityhub.types.finding_scopes.deserialize_json(
             data["Scopes"]
         )
-    if "SortOrder" in data:
+    if data.get("SortOrder") is not None:
         import capo_securityhub.types.sort_order
 
         out["sort_order"] = capo_securityhub.types.sort_order.deserialize_json(
             data["SortOrder"]
         )
-    if "MaxStatisticResults" in data:
+    if data.get("MaxStatisticResults") is not None:
         out["max_statistic_results"] = data["MaxStatisticResults"]
     return out

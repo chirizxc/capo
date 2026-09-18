@@ -45,19 +45,19 @@ def serialize_aws_json_1_0(value: MpaTeamAssociation) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> MpaTeamAssociation:
     out: MpaTeamAssociation = {}  # type: ignore[typeddict-item]
-    if "Action" in data:
+    if data.get("Action") is not None:
         out["action"] = data["Action"]
     else:
         raise DeserializationError("MpaTeamAssociation.action required")
-    if "MpaTeamArn" in data:
+    if data.get("MpaTeamArn") is not None:
         out["mpa_team_arn"] = data["MpaTeamArn"]
     else:
         raise DeserializationError("MpaTeamAssociation.mpa_team_arn required")
-    if "AssociationState" in data:
+    if data.get("AssociationState") is not None:
         out["association_state"] = data["AssociationState"]
     else:
         raise DeserializationError("MpaTeamAssociation.association_state required")
-    if "MpaStatus" in data:
+    if data.get("MpaStatus") is not None:
         import capo_payment_cryptography.types.mpa_status
 
         out["mpa_status"] = (

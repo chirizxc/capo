@@ -32,9 +32,9 @@ def serialize_json(value: AssociatedClientDevice) -> dict:
 
 def deserialize_json(data: dict) -> AssociatedClientDevice:
     out: AssociatedClientDevice = {}  # type: ignore[typeddict-item]
-    if "thingName" in data:
+    if data.get("thingName") is not None:
         out["thing_name"] = data["thingName"]
-    if "associationTimestamp" in data:
+    if data.get("associationTimestamp") is not None:
         import capo_greengrassv2.types.timestamp
 
         out["association_timestamp"] = (

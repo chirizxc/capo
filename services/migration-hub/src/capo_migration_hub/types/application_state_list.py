@@ -27,6 +27,8 @@ def deserialize_aws_json_1_1(data: list) -> ApplicationStateList:
 
     out: ApplicationStateList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_migration_hub.types.application_state.deserialize_aws_json_1_1(item)
         )

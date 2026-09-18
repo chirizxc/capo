@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: GetLicenseManagerReportGeneratorResponse) -> d
 
 def deserialize_aws_json_1_1(data: dict) -> GetLicenseManagerReportGeneratorResponse:
     out: GetLicenseManagerReportGeneratorResponse = {}  # type: ignore[typeddict-item]
-    if "ReportGenerator" in data:
+    if data.get("ReportGenerator") is not None:
         import capo_license_manager.types.report_generator
 
         out["report_generator"] = (

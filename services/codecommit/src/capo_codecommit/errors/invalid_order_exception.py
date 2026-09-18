@@ -25,7 +25,7 @@ def serialize_aws_json_1_1(value: InvalidOrderException_) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> InvalidOrderException_:
     out: InvalidOrderException_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     return out
 
@@ -35,15 +35,18 @@ class InvalidOrderException(ServiceError):
 
     code: str | None = "InvalidOrderException"
 
-    def __init__(self, data: InvalidOrderException_):
+    def __init__(self, data: InvalidOrderException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="InvalidOrderException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "InvalidOrderException":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "InvalidOrderException":
+        return cls(deserialize_aws_json_1_1(data), message)

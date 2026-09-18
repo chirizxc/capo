@@ -25,6 +25,8 @@ def deserialize_json(data: list) -> SearchNearbyResultItemList:
 
     out: SearchNearbyResultItemList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_geo_places.types.search_nearby_result_item.deserialize_json(item)
         )

@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> ShareInvitationSummaries:
 
     out: ShareInvitationSummaries = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_wellarchitected.types.share_invitation_summary.deserialize_json(item)
         )

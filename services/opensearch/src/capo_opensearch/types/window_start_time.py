@@ -26,11 +26,11 @@ def serialize_json(value: WindowStartTime) -> dict:
 
 def deserialize_json(data: dict) -> WindowStartTime:
     out: WindowStartTime = {}  # type: ignore[typeddict-item]
-    if "Hours" in data:
+    if data.get("Hours") is not None:
         out["hours"] = data["Hours"]
     else:
         out["hours"] = 0
-    if "Minutes" in data:
+    if data.get("Minutes") is not None:
         out["minutes"] = data["Minutes"]
     else:
         out["minutes"] = 0

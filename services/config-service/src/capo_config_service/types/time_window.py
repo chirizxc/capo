@@ -35,13 +35,13 @@ def serialize_aws_json_1_1(value: TimeWindow) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> TimeWindow:
     out: TimeWindow = {}  # type: ignore[typeddict-item]
-    if "StartTime" in data:
+    if data.get("StartTime") is not None:
         import capo_config_service.types.date
 
         out["start_time"] = capo_config_service.types.date.deserialize_aws_json_1_1(
             data["StartTime"]
         )
-    if "EndTime" in data:
+    if data.get("EndTime") is not None:
         import capo_config_service.types.date
 
         out["end_time"] = capo_config_service.types.date.deserialize_aws_json_1_1(

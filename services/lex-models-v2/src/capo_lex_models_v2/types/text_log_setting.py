@@ -38,11 +38,11 @@ def serialize_json(value: TextLogSetting) -> dict:
 
 def deserialize_json(data: dict) -> TextLogSetting:
     out: TextLogSetting = {}  # type: ignore[typeddict-item]
-    if "enabled" in data:
+    if data.get("enabled") is not None:
         out["enabled"] = data["enabled"]
     else:
         out["enabled"] = False
-    if "destination" in data:
+    if data.get("destination") is not None:
         import capo_lex_models_v2.types.text_log_destination
 
         out["destination"] = (
@@ -52,6 +52,6 @@ def deserialize_json(data: dict) -> TextLogSetting:
         )
     else:
         raise DeserializationError("TextLogSetting.destination required")
-    if "selectiveLoggingEnabled" in data:
+    if data.get("selectiveLoggingEnabled") is not None:
         out["selective_logging_enabled"] = data["selectiveLoggingEnabled"]
     return out

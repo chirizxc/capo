@@ -55,19 +55,19 @@ def serialize_aws_json_1_1(value: CalculationStatus) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CalculationStatus:
     out: CalculationStatus = {}  # type: ignore[typeddict-item]
-    if "SubmissionDateTime" in data:
+    if data.get("SubmissionDateTime") is not None:
         import capo_athena.types.date
 
         out["submission_date_time"] = capo_athena.types.date.deserialize_aws_json_1_1(
             data["SubmissionDateTime"]
         )
-    if "CompletionDateTime" in data:
+    if data.get("CompletionDateTime") is not None:
         import capo_athena.types.date
 
         out["completion_date_time"] = capo_athena.types.date.deserialize_aws_json_1_1(
             data["CompletionDateTime"]
         )
-    if "State" in data:
+    if data.get("State") is not None:
         import capo_athena.types.calculation_execution_state
 
         out["state"] = (
@@ -75,6 +75,6 @@ def deserialize_aws_json_1_1(data: dict) -> CalculationStatus:
                 data["State"]
             )
         )
-    if "StateChangeReason" in data:
+    if data.get("StateChangeReason") is not None:
         out["state_change_reason"] = data["StateChangeReason"]
     return out

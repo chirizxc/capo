@@ -31,10 +31,10 @@ def serialize_aws_json_1_1(value: SNOMEDCTDetails) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SNOMEDCTDetails:
     out: SNOMEDCTDetails = {}  # type: ignore[typeddict-item]
-    if "Edition" in data:
+    if data.get("Edition") is not None:
         out["edition"] = data["Edition"]
-    if "Language" in data:
+    if data.get("Language") is not None:
         out["language"] = data["Language"]
-    if "VersionDate" in data:
+    if data.get("VersionDate") is not None:
         out["version_date"] = data["VersionDate"]
     return out

@@ -27,11 +27,11 @@ def serialize_json(value: RefreshTokenResponse) -> dict:
 
 def deserialize_json(data: dict) -> RefreshTokenResponse:
     out: RefreshTokenResponse = {}  # type: ignore[typeddict-item]
-    if "accessToken" in data:
+    if data.get("accessToken") is not None:
         out["access_token"] = data["accessToken"]
     else:
         raise DeserializationError("RefreshTokenResponse.access_token required")
-    if "expiresIn" in data:
+    if data.get("expiresIn") is not None:
         out["expires_in"] = data["expiresIn"]
     else:
         raise DeserializationError("RefreshTokenResponse.expires_in required")

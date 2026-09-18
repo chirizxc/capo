@@ -77,15 +77,15 @@ def serialize_json(value: CreateEntityRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateEntityRequest:
     out: CreateEntityRequest = {}  # type: ignore[typeddict-item]
-    if "entityId" in data:
+    if data.get("entityId") is not None:
         out["entity_id"] = data["entityId"]
-    if "entityName" in data:
+    if data.get("entityName") is not None:
         out["entity_name"] = data["entityName"]
     else:
         raise DeserializationError("CreateEntityRequest.entity_name required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "components" in data:
+    if data.get("components") is not None:
         import capo_iottwinmaker.types.components_map_request
 
         out["components"] = (
@@ -93,7 +93,7 @@ def deserialize_json(data: dict) -> CreateEntityRequest:
                 data["components"]
             )
         )
-    if "compositeComponents" in data:
+    if data.get("compositeComponents") is not None:
         import capo_iottwinmaker.types.composite_components_map_request
 
         out["composite_components"] = (
@@ -101,9 +101,9 @@ def deserialize_json(data: dict) -> CreateEntityRequest:
                 data["compositeComponents"]
             )
         )
-    if "parentEntityId" in data:
+    if data.get("parentEntityId") is not None:
         out["parent_entity_id"] = data["parentEntityId"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_iottwinmaker.types.tag_map
 
         out["tags"] = capo_iottwinmaker.types.tag_map.deserialize_json(data["tags"])

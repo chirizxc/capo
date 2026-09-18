@@ -64,9 +64,9 @@ def serialize_json(value: LogAnomalyClass) -> dict:
 
 def deserialize_json(data: dict) -> LogAnomalyClass:
     out: LogAnomalyClass = {}  # type: ignore[typeddict-item]
-    if "LogStreamName" in data:
+    if data.get("LogStreamName") is not None:
         out["log_stream_name"] = data["LogStreamName"]
-    if "LogAnomalyType" in data:
+    if data.get("LogAnomalyType") is not None:
         import capo_devops_guru.types.log_anomaly_type
 
         out["log_anomaly_type"] = (
@@ -74,17 +74,17 @@ def deserialize_json(data: dict) -> LogAnomalyClass:
                 data["LogAnomalyType"]
             )
         )
-    if "LogAnomalyToken" in data:
+    if data.get("LogAnomalyToken") is not None:
         out["log_anomaly_token"] = data["LogAnomalyToken"]
-    if "LogEventId" in data:
+    if data.get("LogEventId") is not None:
         out["log_event_id"] = data["LogEventId"]
-    if "Explanation" in data:
+    if data.get("Explanation") is not None:
         out["explanation"] = data["Explanation"]
-    if "NumberOfLogLinesOccurrences" in data:
+    if data.get("NumberOfLogLinesOccurrences") is not None:
         out["number_of_log_lines_occurrences"] = data["NumberOfLogLinesOccurrences"]
     else:
         out["number_of_log_lines_occurrences"] = 0
-    if "LogEventTimestamp" in data:
+    if data.get("LogEventTimestamp") is not None:
         import capo_devops_guru.types.timestamp
 
         out["log_event_timestamp"] = capo_devops_guru.types.timestamp.deserialize_json(

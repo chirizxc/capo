@@ -25,6 +25,6 @@ def serialize_json(value: ContentBlockerRule) -> dict:
 
 def deserialize_json(data: dict) -> ContentBlockerRule:
     out: ContentBlockerRule = {}  # type: ignore[typeddict-item]
-    if "systemMessageOverride" in data:
+    if data.get("systemMessageOverride") is not None:
         out["system_message_override"] = data["systemMessageOverride"]
     return out

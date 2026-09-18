@@ -30,11 +30,11 @@ def serialize_aws_json_1_1(value: EntityPersonaConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> EntityPersonaConfiguration:
     out: EntityPersonaConfiguration = {}  # type: ignore[typeddict-item]
-    if "EntityId" in data:
+    if data.get("EntityId") is not None:
         out["entity_id"] = data["EntityId"]
     else:
         raise DeserializationError("EntityPersonaConfiguration.entity_id required")
-    if "Persona" in data:
+    if data.get("Persona") is not None:
         import capo_kendra.types.persona
 
         out["persona"] = capo_kendra.types.persona.deserialize_aws_json_1_1(

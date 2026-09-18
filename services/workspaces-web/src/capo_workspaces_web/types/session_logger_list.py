@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> SessionLoggerList:
 
     out: SessionLoggerList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_workspaces_web.types.session_logger_summary.deserialize_json(item)
         )

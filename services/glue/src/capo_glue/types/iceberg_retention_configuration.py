@@ -42,12 +42,12 @@ def serialize_aws_json_1_1(value: IcebergRetentionConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> IcebergRetentionConfiguration:
     out: IcebergRetentionConfiguration = {}  # type: ignore[typeddict-item]
-    if "snapshotRetentionPeriodInDays" in data:
+    if data.get("snapshotRetentionPeriodInDays") is not None:
         out["snapshot_retention_period_in_days"] = data["snapshotRetentionPeriodInDays"]
-    if "numberOfSnapshotsToRetain" in data:
+    if data.get("numberOfSnapshotsToRetain") is not None:
         out["number_of_snapshots_to_retain"] = data["numberOfSnapshotsToRetain"]
-    if "cleanExpiredFiles" in data:
+    if data.get("cleanExpiredFiles") is not None:
         out["clean_expired_files"] = data["cleanExpiredFiles"]
-    if "runRateInHours" in data:
+    if data.get("runRateInHours") is not None:
         out["run_rate_in_hours"] = data["runRateInHours"]
     return out

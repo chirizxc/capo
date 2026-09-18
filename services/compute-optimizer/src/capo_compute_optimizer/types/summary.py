@@ -30,7 +30,15 @@ def serialize_aws_json_1_0(value: Summary) -> dict:
         out["name"] = capo_compute_optimizer.types.finding.serialize_aws_json_1_0(
             value["name"]
         )
-    out["value"] = value.get("value", 0)
+    out["value"] = (
+        "NaN"
+        if value.get("value", 0) != value.get("value", 0)
+        else "Infinity"
+        if value.get("value", 0) == float("inf")
+        else "-Infinity"
+        if value.get("value", 0) == float("-inf")
+        else value.get("value", 0)
+    )
     if "reason_code_summaries" in value:
         import capo_compute_optimizer.types.reason_code_summaries
 
@@ -44,17 +52,17 @@ def serialize_aws_json_1_0(value: Summary) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> Summary:
     out: Summary = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         import capo_compute_optimizer.types.finding
 
         out["name"] = capo_compute_optimizer.types.finding.deserialize_aws_json_1_0(
             data["name"]
         )
-    if "value" in data:
-        out["value"] = data["value"]
+    if data.get("value") is not None:
+        out["value"] = float(data["value"])
     else:
         out["value"] = 0
-    if "reasonCodeSummaries" in data:
+    if data.get("reasonCodeSummaries") is not None:
         import capo_compute_optimizer.types.reason_code_summaries
 
         out["reason_code_summaries"] = (

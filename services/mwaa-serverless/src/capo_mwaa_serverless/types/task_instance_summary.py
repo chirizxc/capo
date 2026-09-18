@@ -61,15 +61,15 @@ def serialize_aws_json_1_0(value: TaskInstanceSummary) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> TaskInstanceSummary:
     out: TaskInstanceSummary = {}  # type: ignore[typeddict-item]
-    if "WorkflowArn" in data:
+    if data.get("WorkflowArn") is not None:
         out["workflow_arn"] = data["WorkflowArn"]
-    if "WorkflowVersion" in data:
+    if data.get("WorkflowVersion") is not None:
         out["workflow_version"] = data["WorkflowVersion"]
-    if "RunId" in data:
+    if data.get("RunId") is not None:
         out["run_id"] = data["RunId"]
-    if "TaskInstanceId" in data:
+    if data.get("TaskInstanceId") is not None:
         out["task_instance_id"] = data["TaskInstanceId"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_mwaa_serverless.types.task_instance_status
 
         out["status"] = (
@@ -77,8 +77,8 @@ def deserialize_aws_json_1_0(data: dict) -> TaskInstanceSummary:
                 data["Status"]
             )
         )
-    if "DurationInSeconds" in data:
+    if data.get("DurationInSeconds") is not None:
         out["duration_in_seconds"] = data["DurationInSeconds"]
-    if "OperatorName" in data:
+    if data.get("OperatorName") is not None:
         out["operator_name"] = data["OperatorName"]
     return out

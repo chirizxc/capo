@@ -45,19 +45,19 @@ def serialize_aws_json_1_1(value: CreateScriptRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateScriptRequest:
     out: CreateScriptRequest = {}  # type: ignore[typeddict-item]
-    if "DagNodes" in data:
+    if data.get("DagNodes") is not None:
         import capo_glue.types.dag_nodes
 
         out["dag_nodes"] = capo_glue.types.dag_nodes.deserialize_aws_json_1_1(
             data["DagNodes"]
         )
-    if "DagEdges" in data:
+    if data.get("DagEdges") is not None:
         import capo_glue.types.dag_edges
 
         out["dag_edges"] = capo_glue.types.dag_edges.deserialize_aws_json_1_1(
             data["DagEdges"]
         )
-    if "Language" in data:
+    if data.get("Language") is not None:
         import capo_glue.types.language
 
         out["language"] = capo_glue.types.language.deserialize_aws_json_1_1(

@@ -106,60 +106,60 @@ def serialize_json(value: Dataset) -> dict:
 
 def deserialize_json(data: dict) -> Dataset:
     out: Dataset = {}  # type: ignore[typeddict-item]
-    if "AccountId" in data:
+    if data.get("AccountId") is not None:
         out["account_id"] = data["AccountId"]
-    if "CreatedBy" in data:
+    if data.get("CreatedBy") is not None:
         out["created_by"] = data["CreatedBy"]
-    if "CreateDate" in data:
+    if data.get("CreateDate") is not None:
         import capo_databrew.types.date
 
         out["create_date"] = capo_databrew.types.date.deserialize_json(
             data["CreateDate"]
         )
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("Dataset.name required")
-    if "Format" in data:
+    if data.get("Format") is not None:
         import capo_databrew.types.input_format
 
         out["format"] = capo_databrew.types.input_format.deserialize_json(
             data["Format"]
         )
-    if "FormatOptions" in data:
+    if data.get("FormatOptions") is not None:
         import capo_databrew.types.format_options
 
         out["format_options"] = capo_databrew.types.format_options.deserialize_json(
             data["FormatOptions"]
         )
-    if "Input" in data:
+    if data.get("Input") is not None:
         import capo_databrew.types.input
 
         out["input"] = capo_databrew.types.input.deserialize_json(data["Input"])
     else:
         raise DeserializationError("Dataset.input required")
-    if "LastModifiedDate" in data:
+    if data.get("LastModifiedDate") is not None:
         import capo_databrew.types.date
 
         out["last_modified_date"] = capo_databrew.types.date.deserialize_json(
             data["LastModifiedDate"]
         )
-    if "LastModifiedBy" in data:
+    if data.get("LastModifiedBy") is not None:
         out["last_modified_by"] = data["LastModifiedBy"]
-    if "Source" in data:
+    if data.get("Source") is not None:
         import capo_databrew.types.source
 
         out["source"] = capo_databrew.types.source.deserialize_json(data["Source"])
-    if "PathOptions" in data:
+    if data.get("PathOptions") is not None:
         import capo_databrew.types.path_options
 
         out["path_options"] = capo_databrew.types.path_options.deserialize_json(
             data["PathOptions"]
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_databrew.types.tag_map
 
         out["tags"] = capo_databrew.types.tag_map.deserialize_json(data["Tags"])
-    if "ResourceArn" in data:
+    if data.get("ResourceArn") is not None:
         out["resource_arn"] = data["ResourceArn"]
     return out

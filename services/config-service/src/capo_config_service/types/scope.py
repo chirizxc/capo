@@ -65,7 +65,7 @@ def serialize_aws_json_1_1(value: Scope) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Scope:
     out: Scope = {}  # type: ignore[typeddict-item]
-    if "ComplianceResourceTypes" in data:
+    if data.get("ComplianceResourceTypes") is not None:
         import capo_config_service.types.compliance_resource_types
 
         out["compliance_resource_types"] = (
@@ -73,13 +73,13 @@ def deserialize_aws_json_1_1(data: dict) -> Scope:
                 data["ComplianceResourceTypes"]
             )
         )
-    if "TagKey" in data:
+    if data.get("TagKey") is not None:
         out["tag_key"] = data["TagKey"]
-    if "TagValue" in data:
+    if data.get("TagValue") is not None:
         out["tag_value"] = data["TagValue"]
-    if "ComplianceResourceId" in data:
+    if data.get("ComplianceResourceId") is not None:
         out["compliance_resource_id"] = data["ComplianceResourceId"]
-    if "ServicePrincipals" in data:
+    if data.get("ServicePrincipals") is not None:
         import capo_config_service.types.service_principals
 
         out["service_principals"] = (

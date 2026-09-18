@@ -39,11 +39,11 @@ def serialize_aws_json_1_1(value: RegisterSchemaVersionResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RegisterSchemaVersionResponse:
     out: RegisterSchemaVersionResponse = {}  # type: ignore[typeddict-item]
-    if "SchemaVersionId" in data:
+    if data.get("SchemaVersionId") is not None:
         out["schema_version_id"] = data["SchemaVersionId"]
-    if "VersionNumber" in data:
+    if data.get("VersionNumber") is not None:
         out["version_number"] = data["VersionNumber"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_glue.types.schema_version_status
 
         out["status"] = capo_glue.types.schema_version_status.deserialize_aws_json_1_1(

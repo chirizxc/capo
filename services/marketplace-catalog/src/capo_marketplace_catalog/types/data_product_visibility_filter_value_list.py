@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> DataProductVisibilityFilterValueList:
 
     out: DataProductVisibilityFilterValueList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_marketplace_catalog.types.data_product_visibility_string.deserialize_json(
                 item

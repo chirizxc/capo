@@ -90,25 +90,25 @@ def serialize_json(value: CreateSessionRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateSessionRequest:
     out: CreateSessionRequest = {}  # type: ignore[typeddict-item]
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("CreateSessionRequest.name required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_qconnect.types.tags
 
         out["tags"] = capo_qconnect.types.tags.deserialize_json(data["tags"])
-    if "tagFilter" in data:
+    if data.get("tagFilter") is not None:
         import capo_qconnect.types.tag_filter
 
         out["tag_filter"] = capo_qconnect.types.tag_filter.deserialize_json(
             data["tagFilter"]
         )
-    if "aiAgentConfiguration" in data:
+    if data.get("aiAgentConfiguration") is not None:
         import capo_qconnect.types.ai_agent_configuration_map
 
         out["ai_agent_configuration"] = (
@@ -116,9 +116,9 @@ def deserialize_json(data: dict) -> CreateSessionRequest:
                 data["aiAgentConfiguration"]
             )
         )
-    if "contactArn" in data:
+    if data.get("contactArn") is not None:
         out["contact_arn"] = data["contactArn"]
-    if "orchestratorConfigurationList" in data:
+    if data.get("orchestratorConfigurationList") is not None:
         import capo_qconnect.types.orchestrator_configuration_list
 
         out["orchestrator_configuration_list"] = (
@@ -126,7 +126,7 @@ def deserialize_json(data: dict) -> CreateSessionRequest:
                 data["orchestratorConfigurationList"]
             )
         )
-    if "removeOrchestratorConfigurationList" in data:
+    if data.get("removeOrchestratorConfigurationList") is not None:
         out["remove_orchestrator_configuration_list"] = data[
             "removeOrchestratorConfigurationList"
         ]

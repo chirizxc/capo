@@ -112,23 +112,23 @@ def serialize_json(value: GetProviderServiceOutput) -> dict:
 
 def deserialize_json(data: dict) -> GetProviderServiceOutput:
     out: GetProviderServiceOutput = {}  # type: ignore[typeddict-item]
-    if "providerName" in data:
+    if data.get("providerName") is not None:
         out["provider_name"] = data["providerName"]
     else:
         raise DeserializationError("GetProviderServiceOutput.provider_name required")
-    if "providerServiceName" in data:
+    if data.get("providerServiceName") is not None:
         out["provider_service_name"] = data["providerServiceName"]
     else:
         raise DeserializationError(
             "GetProviderServiceOutput.provider_service_name required"
         )
-    if "providerServiceDisplayName" in data:
+    if data.get("providerServiceDisplayName") is not None:
         out["provider_service_display_name"] = data["providerServiceDisplayName"]
     else:
         raise DeserializationError(
             "GetProviderServiceOutput.provider_service_display_name required"
         )
-    if "providerServiceType" in data:
+    if data.get("providerServiceType") is not None:
         import capo_entityresolution.types.service_type
 
         out["provider_service_type"] = (
@@ -140,17 +140,17 @@ def deserialize_json(data: dict) -> GetProviderServiceOutput:
         raise DeserializationError(
             "GetProviderServiceOutput.provider_service_type required"
         )
-    if "providerServiceArn" in data:
+    if data.get("providerServiceArn") is not None:
         out["provider_service_arn"] = data["providerServiceArn"]
     else:
         raise DeserializationError(
             "GetProviderServiceOutput.provider_service_arn required"
         )
-    if "providerConfigurationDefinition" in data:
+    if data.get("providerConfigurationDefinition") is not None:
         out["provider_configuration_definition"] = data[
             "providerConfigurationDefinition"
         ]
-    if "providerIdNameSpaceConfiguration" in data:
+    if data.get("providerIdNameSpaceConfiguration") is not None:
         import capo_entityresolution.types.provider_id_name_space_configuration
 
         out["provider_id_name_space_configuration"] = (
@@ -158,9 +158,9 @@ def deserialize_json(data: dict) -> GetProviderServiceOutput:
                 data["providerIdNameSpaceConfiguration"]
             )
         )
-    if "providerJobConfiguration" in data:
+    if data.get("providerJobConfiguration") is not None:
         out["provider_job_configuration"] = data["providerJobConfiguration"]
-    if "providerEndpointConfiguration" in data:
+    if data.get("providerEndpointConfiguration") is not None:
         import capo_entityresolution.types.provider_endpoint_configuration
 
         out["provider_endpoint_configuration"] = (
@@ -172,13 +172,13 @@ def deserialize_json(data: dict) -> GetProviderServiceOutput:
         raise DeserializationError(
             "GetProviderServiceOutput.provider_endpoint_configuration required"
         )
-    if "anonymizedOutput" in data:
+    if data.get("anonymizedOutput") is not None:
         out["anonymized_output"] = data["anonymizedOutput"]
     else:
         raise DeserializationError(
             "GetProviderServiceOutput.anonymized_output required"
         )
-    if "providerEntityOutputDefinition" in data:
+    if data.get("providerEntityOutputDefinition") is not None:
         out["provider_entity_output_definition"] = data[
             "providerEntityOutputDefinition"
         ]
@@ -186,7 +186,7 @@ def deserialize_json(data: dict) -> GetProviderServiceOutput:
         raise DeserializationError(
             "GetProviderServiceOutput.provider_entity_output_definition required"
         )
-    if "providerIntermediateDataAccessConfiguration" in data:
+    if data.get("providerIntermediateDataAccessConfiguration") is not None:
         import capo_entityresolution.types.provider_intermediate_data_access_configuration
 
         out["provider_intermediate_data_access_configuration"] = (
@@ -194,7 +194,7 @@ def deserialize_json(data: dict) -> GetProviderServiceOutput:
                 data["providerIntermediateDataAccessConfiguration"]
             )
         )
-    if "providerComponentSchema" in data:
+    if data.get("providerComponentSchema") is not None:
         import capo_entityresolution.types.provider_component_schema
 
         out["provider_component_schema"] = (

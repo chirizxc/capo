@@ -13,9 +13,9 @@ from capo_m2 import Asyncm2Client
 
 
 async def main():
-    async with Asyncm2Client() as s3:
+    async with Asyncm2Client() as m2:
         # Example: call the get_signed_bluinsights_url operation
-        response = await s3.get_signed_bluinsights_url()
+        response = await m2.get_signed_bluinsights_url()
         print(response["signed_bi_url"])
 ```
 
@@ -28,9 +28,9 @@ from capo_m2 import Asyncm2Client
 
 
 async def main():
-    async with Asyncm2Client() as s3:
+    async with Asyncm2Client() as m2:
         # Example: paginate over list_engine_versions
-        async for item in s3.iter_list_engine_versions():
+        async for item in m2.iter_list_engine_versions():
             print(item)
 ```
 
@@ -44,9 +44,9 @@ from capo_m2.error import AccessDeniedException
 
 
 async def main():
-    async with Asyncm2Client() as s3:
+    async with Asyncm2Client() as m2:
         try:
-            await s3.get_signed_bluinsights_url()
+            await m2.get_signed_bluinsights_url()
         except AccessDeniedException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -63,13 +63,13 @@ from capo_m2 import Asyncm2Client
 
 
 async def main():
-    async with Asyncm2Client() as s3:
+    async with Asyncm2Client() as m2:
         # Default: 3 attempts for every operation
-        response = await s3.get_signed_bluinsights_url()
+        response = await m2.get_signed_bluinsights_url()
 
         # Override per operation
-        response = await s3.get_signed_bluinsights_url(config_overrides={"retry_max_attempts": 5})
+        response = await m2.get_signed_bluinsights_url(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.get_signed_bluinsights_url(config_overrides={"retry_max_attempts": 1})
+        response = await m2.get_signed_bluinsights_url(config_overrides={"retry_max_attempts": 1})
 ```

@@ -50,13 +50,13 @@ def serialize_json(value: AcceptLinkRequest) -> dict:
 
 def deserialize_json(data: dict) -> AcceptLinkRequest:
     out: AcceptLinkRequest = {}  # type: ignore[typeddict-item]
-    if "attributes" in data:
+    if data.get("attributes") is not None:
         import capo_rtbfabric.types.link_attributes
 
         out["attributes"] = capo_rtbfabric.types.link_attributes.deserialize_json(
             data["attributes"]
         )
-    if "logSettings" in data:
+    if data.get("logSettings") is not None:
         import capo_rtbfabric.types.link_log_settings
 
         out["log_settings"] = capo_rtbfabric.types.link_log_settings.deserialize_json(
@@ -64,6 +64,6 @@ def deserialize_json(data: dict) -> AcceptLinkRequest:
         )
     else:
         raise DeserializationError("AcceptLinkRequest.log_settings required")
-    if "timeoutInMillis" in data:
+    if data.get("timeoutInMillis") is not None:
         out["timeout_in_millis"] = data["timeoutInMillis"]
     return out

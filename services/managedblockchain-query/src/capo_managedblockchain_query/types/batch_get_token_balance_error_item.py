@@ -66,7 +66,7 @@ def serialize_json(value: BatchGetTokenBalanceErrorItem) -> dict:
 
 def deserialize_json(data: dict) -> BatchGetTokenBalanceErrorItem:
     out: BatchGetTokenBalanceErrorItem = {}  # type: ignore[typeddict-item]
-    if "tokenIdentifier" in data:
+    if data.get("tokenIdentifier") is not None:
         import capo_managedblockchain_query.types.token_identifier
 
         out["token_identifier"] = (
@@ -74,7 +74,7 @@ def deserialize_json(data: dict) -> BatchGetTokenBalanceErrorItem:
                 data["tokenIdentifier"]
             )
         )
-    if "ownerIdentifier" in data:
+    if data.get("ownerIdentifier") is not None:
         import capo_managedblockchain_query.types.owner_identifier
 
         out["owner_identifier"] = (
@@ -82,7 +82,7 @@ def deserialize_json(data: dict) -> BatchGetTokenBalanceErrorItem:
                 data["ownerIdentifier"]
             )
         )
-    if "atBlockchainInstant" in data:
+    if data.get("atBlockchainInstant") is not None:
         import capo_managedblockchain_query.types.blockchain_instant
 
         out["at_blockchain_instant"] = (
@@ -90,17 +90,17 @@ def deserialize_json(data: dict) -> BatchGetTokenBalanceErrorItem:
                 data["atBlockchainInstant"]
             )
         )
-    if "errorCode" in data:
+    if data.get("errorCode") is not None:
         out["error_code"] = data["errorCode"]
     else:
         raise DeserializationError("BatchGetTokenBalanceErrorItem.error_code required")
-    if "errorMessage" in data:
+    if data.get("errorMessage") is not None:
         out["error_message"] = data["errorMessage"]
     else:
         raise DeserializationError(
             "BatchGetTokenBalanceErrorItem.error_message required"
         )
-    if "errorType" in data:
+    if data.get("errorType") is not None:
         out["error_type"] = data["errorType"]
     else:
         raise DeserializationError("BatchGetTokenBalanceErrorItem.error_type required")

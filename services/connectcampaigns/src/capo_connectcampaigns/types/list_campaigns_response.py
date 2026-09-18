@@ -34,9 +34,9 @@ def serialize_json(value: ListCampaignsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListCampaignsResponse:
     out: ListCampaignsResponse = {}  # type: ignore[typeddict-item]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "campaignSummaryList" in data:
+    if data.get("campaignSummaryList") is not None:
         import capo_connectcampaigns.types.campaign_summary_list
 
         out["campaign_summary_list"] = (

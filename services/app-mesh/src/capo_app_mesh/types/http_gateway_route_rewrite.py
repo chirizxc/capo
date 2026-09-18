@@ -57,7 +57,7 @@ def serialize_json(value: HttpGatewayRouteRewrite) -> dict:
 
 def deserialize_json(data: dict) -> HttpGatewayRouteRewrite:
     out: HttpGatewayRouteRewrite = {}  # type: ignore[typeddict-item]
-    if "prefix" in data:
+    if data.get("prefix") is not None:
         import capo_app_mesh.types.http_gateway_route_prefix_rewrite
 
         out["prefix"] = (
@@ -65,7 +65,7 @@ def deserialize_json(data: dict) -> HttpGatewayRouteRewrite:
                 data["prefix"]
             )
         )
-    if "path" in data:
+    if data.get("path") is not None:
         import capo_app_mesh.types.http_gateway_route_path_rewrite
 
         out["path"] = (
@@ -73,7 +73,7 @@ def deserialize_json(data: dict) -> HttpGatewayRouteRewrite:
                 data["path"]
             )
         )
-    if "hostname" in data:
+    if data.get("hostname") is not None:
         import capo_app_mesh.types.gateway_route_hostname_rewrite
 
         out["hostname"] = (

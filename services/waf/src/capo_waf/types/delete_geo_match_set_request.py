@@ -28,11 +28,11 @@ def serialize_aws_json_1_1(value: DeleteGeoMatchSetRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteGeoMatchSetRequest:
     out: DeleteGeoMatchSetRequest = {}  # type: ignore[typeddict-item]
-    if "GeoMatchSetId" in data:
+    if data.get("GeoMatchSetId") is not None:
         out["geo_match_set_id"] = data["GeoMatchSetId"]
     else:
         raise DeserializationError("DeleteGeoMatchSetRequest.geo_match_set_id required")
-    if "ChangeToken" in data:
+    if data.get("ChangeToken") is not None:
         out["change_token"] = data["ChangeToken"]
     else:
         raise DeserializationError("DeleteGeoMatchSetRequest.change_token required")

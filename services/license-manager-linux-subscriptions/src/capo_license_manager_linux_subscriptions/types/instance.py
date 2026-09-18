@@ -93,21 +93,21 @@ def serialize_json(value: Instance) -> dict:
 
 def deserialize_json(data: dict) -> Instance:
     out: Instance = {}  # type: ignore[typeddict-item]
-    if "AmiId" in data:
+    if data.get("AmiId") is not None:
         out["ami_id"] = data["AmiId"]
-    if "InstanceID" in data:
+    if data.get("InstanceID") is not None:
         out["instance_id"] = data["InstanceID"]
-    if "InstanceType" in data:
+    if data.get("InstanceType") is not None:
         out["instance_type"] = data["InstanceType"]
-    if "AccountID" in data:
+    if data.get("AccountID") is not None:
         out["account_id"] = data["AccountID"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         out["status"] = data["Status"]
-    if "Region" in data:
+    if data.get("Region") is not None:
         out["region"] = data["Region"]
-    if "UsageOperation" in data:
+    if data.get("UsageOperation") is not None:
         out["usage_operation"] = data["UsageOperation"]
-    if "ProductCode" in data:
+    if data.get("ProductCode") is not None:
         import capo_license_manager_linux_subscriptions.types.product_code_list
 
         out["product_code"] = (
@@ -115,23 +115,23 @@ def deserialize_json(data: dict) -> Instance:
                 data["ProductCode"]
             )
         )
-    if "LastUpdatedTime" in data:
+    if data.get("LastUpdatedTime") is not None:
         out["last_updated_time"] = data["LastUpdatedTime"]
-    if "SubscriptionName" in data:
+    if data.get("SubscriptionName") is not None:
         out["subscription_name"] = data["SubscriptionName"]
-    if "OsVersion" in data:
+    if data.get("OsVersion") is not None:
         out["os_version"] = data["OsVersion"]
-    if "SubscriptionProviderCreateTime" in data:
+    if data.get("SubscriptionProviderCreateTime") is not None:
         out["subscription_provider_create_time"] = data[
             "SubscriptionProviderCreateTime"
         ]
-    if "SubscriptionProviderUpdateTime" in data:
+    if data.get("SubscriptionProviderUpdateTime") is not None:
         out["subscription_provider_update_time"] = data[
             "SubscriptionProviderUpdateTime"
         ]
-    if "DualSubscription" in data:
+    if data.get("DualSubscription") is not None:
         out["dual_subscription"] = data["DualSubscription"]
-    if "RegisteredWithSubscriptionProvider" in data:
+    if data.get("RegisteredWithSubscriptionProvider") is not None:
         out["registered_with_subscription_provider"] = data[
             "RegisteredWithSubscriptionProvider"
         ]

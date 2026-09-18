@@ -54,7 +54,7 @@ def serialize_json(value: CreateVariantStoreRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateVariantStoreRequest:
     out: CreateVariantStoreRequest = {}  # type: ignore[typeddict-item]
-    if "reference" in data:
+    if data.get("reference") is not None:
         import capo_omics.types.reference_item
 
         out["reference"] = capo_omics.types.reference_item.deserialize_json(
@@ -62,15 +62,15 @@ def deserialize_json(data: dict) -> CreateVariantStoreRequest:
         )
     else:
         raise DeserializationError("CreateVariantStoreRequest.reference required")
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_omics.types.tag_map
 
         out["tags"] = capo_omics.types.tag_map.deserialize_json(data["tags"])
-    if "sseConfig" in data:
+    if data.get("sseConfig") is not None:
         import capo_omics.types.sse_config
 
         out["sse_config"] = capo_omics.types.sse_config.deserialize_json(

@@ -68,15 +68,15 @@ def serialize_json(value: InsightEvent) -> dict:
 
 def deserialize_json(data: dict) -> InsightEvent:
     out: InsightEvent = {}  # type: ignore[typeddict-item]
-    if "Summary" in data:
+    if data.get("Summary") is not None:
         out["summary"] = data["Summary"]
-    if "EventTime" in data:
+    if data.get("EventTime") is not None:
         import capo_xray.types.timestamp
 
         out["event_time"] = capo_xray.types.timestamp.deserialize_json(
             data["EventTime"]
         )
-    if "ClientRequestImpactStatistics" in data:
+    if data.get("ClientRequestImpactStatistics") is not None:
         import capo_xray.types.request_impact_statistics
 
         out["client_request_impact_statistics"] = (
@@ -84,7 +84,7 @@ def deserialize_json(data: dict) -> InsightEvent:
                 data["ClientRequestImpactStatistics"]
             )
         )
-    if "RootCauseServiceRequestImpactStatistics" in data:
+    if data.get("RootCauseServiceRequestImpactStatistics") is not None:
         import capo_xray.types.request_impact_statistics
 
         out["root_cause_service_request_impact_statistics"] = (
@@ -92,7 +92,7 @@ def deserialize_json(data: dict) -> InsightEvent:
                 data["RootCauseServiceRequestImpactStatistics"]
             )
         )
-    if "TopAnomalousServices" in data:
+    if data.get("TopAnomalousServices") is not None:
         import capo_xray.types.anomalous_service_list
 
         out["top_anomalous_services"] = (

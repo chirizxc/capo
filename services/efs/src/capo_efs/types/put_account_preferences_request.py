@@ -28,7 +28,7 @@ def serialize_json(value: PutAccountPreferencesRequest) -> dict:
 
 def deserialize_json(data: dict) -> PutAccountPreferencesRequest:
     out: PutAccountPreferencesRequest = {}  # type: ignore[typeddict-item]
-    if "ResourceIdType" in data:
+    if data.get("ResourceIdType") is not None:
         import capo_efs.types.resource_id_type
 
         out["resource_id_type"] = capo_efs.types.resource_id_type.deserialize_json(

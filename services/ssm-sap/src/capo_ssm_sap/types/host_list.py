@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> HostList:
 
     out: HostList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_ssm_sap.types.host.deserialize_json(item))
     return out

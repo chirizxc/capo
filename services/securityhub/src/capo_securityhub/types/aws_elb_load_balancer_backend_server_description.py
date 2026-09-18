@@ -32,9 +32,9 @@ def serialize_json(value: AwsElbLoadBalancerBackendServerDescription) -> dict:
 
 def deserialize_json(data: dict) -> AwsElbLoadBalancerBackendServerDescription:
     out: AwsElbLoadBalancerBackendServerDescription = {}  # type: ignore[typeddict-item]
-    if "InstancePort" in data:
+    if data.get("InstancePort") is not None:
         out["instance_port"] = data["InstancePort"]
-    if "PolicyNames" in data:
+    if data.get("PolicyNames") is not None:
         import capo_securityhub.types.string_list
 
         out["policy_names"] = capo_securityhub.types.string_list.deserialize_json(

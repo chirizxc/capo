@@ -28,9 +28,9 @@ def serialize_json(value: UnsupportedUserEditionException_) -> dict:
 
 def deserialize_json(data: dict) -> UnsupportedUserEditionException_:
     out: UnsupportedUserEditionException_ = {}  # type: ignore[typeddict-item]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
-    if "RequestId" in data:
+    if data.get("RequestId") is not None:
         out["request_id"] = data["RequestId"]
     return out
 
@@ -40,15 +40,20 @@ class UnsupportedUserEditionException(ServiceError):
 
     code: str | None = "UnsupportedUserEditionException"
 
-    def __init__(self, data: UnsupportedUserEditionException_):
+    def __init__(
+        self, data: UnsupportedUserEditionException_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="UnsupportedUserEditionException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "UnsupportedUserEditionException":
-        return cls(deserialize_json(data))
+    def from_json(
+        cls, data: dict, message: str | None = None
+    ) -> "UnsupportedUserEditionException":
+        return cls(deserialize_json(data), message)

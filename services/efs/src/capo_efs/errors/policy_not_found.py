@@ -28,9 +28,9 @@ def serialize_json(value: PolicyNotFound_) -> dict:
 
 def deserialize_json(data: dict) -> PolicyNotFound_:
     out: PolicyNotFound_ = {}  # type: ignore[typeddict-item]
-    if "ErrorCode" in data:
+    if data.get("ErrorCode") is not None:
         out["error_code"] = data["ErrorCode"]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     return out
 
@@ -40,15 +40,16 @@ class PolicyNotFound(ServiceError):
 
     code: str | None = "PolicyNotFound"
 
-    def __init__(self, data: PolicyNotFound_):
+    def __init__(self, data: PolicyNotFound_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="PolicyNotFound",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "PolicyNotFound":
-        return cls(deserialize_json(data))
+    def from_json(cls, data: dict, message: str | None = None) -> "PolicyNotFound":
+        return cls(deserialize_json(data), message)

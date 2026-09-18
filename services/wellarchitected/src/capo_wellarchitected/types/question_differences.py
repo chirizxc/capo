@@ -25,6 +25,8 @@ def deserialize_json(data: list) -> QuestionDifferences:
 
     out: QuestionDifferences = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_wellarchitected.types.question_difference.deserialize_json(item)
         )

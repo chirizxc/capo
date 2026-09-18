@@ -59,23 +59,23 @@ def serialize_json(value: Member) -> dict:
 
 def deserialize_json(data: dict) -> Member:
     out: Member = {}  # type: ignore[typeddict-item]
-    if "AccountId" in data:
+    if data.get("AccountId") is not None:
         out["account_id"] = data["AccountId"]
-    if "Email" in data:
+    if data.get("Email") is not None:
         out["email"] = data["Email"]
-    if "MasterId" in data:
+    if data.get("MasterId") is not None:
         out["master_id"] = data["MasterId"]
-    if "AdministratorId" in data:
+    if data.get("AdministratorId") is not None:
         out["administrator_id"] = data["AdministratorId"]
-    if "MemberStatus" in data:
+    if data.get("MemberStatus") is not None:
         out["member_status"] = data["MemberStatus"]
-    if "InvitedAt" in data:
+    if data.get("InvitedAt") is not None:
         import capo_securityhub.types.timestamp
 
         out["invited_at"] = capo_securityhub.types.timestamp.deserialize_json(
             data["InvitedAt"]
         )
-    if "UpdatedAt" in data:
+    if data.get("UpdatedAt") is not None:
         import capo_securityhub.types.timestamp
 
         out["updated_at"] = capo_securityhub.types.timestamp.deserialize_json(

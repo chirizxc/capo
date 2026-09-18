@@ -28,7 +28,7 @@ def deserialize_aws_json_1_1(
     data: dict,
 ) -> DirectoryServiceAuthenticationFailedException_:
     out: DirectoryServiceAuthenticationFailedException_ = {}  # type: ignore[typeddict-item]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     return out
 
@@ -38,17 +38,22 @@ class DirectoryServiceAuthenticationFailedException(ServiceError):
 
     code: str | None = "DirectoryServiceAuthenticationFailedException"
 
-    def __init__(self, data: DirectoryServiceAuthenticationFailedException_):
+    def __init__(
+        self,
+        data: DirectoryServiceAuthenticationFailedException_,
+        message: str | None = None,
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="DirectoryServiceAuthenticationFailedException",
+            message=message,
         )
         self.data = data
 
     @classmethod
     def from_aws_json_1_1(
-        cls, data: dict
+        cls, data: dict, message: str | None = None
     ) -> "DirectoryServiceAuthenticationFailedException":
-        return cls(deserialize_aws_json_1_1(data))
+        return cls(deserialize_aws_json_1_1(data), message)

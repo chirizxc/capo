@@ -27,6 +27,8 @@ def deserialize_aws_json_1_0(data: list) -> SelectColumnList:
 
     out: SelectColumnList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_timestream_query.types.select_column.deserialize_aws_json_1_0(item)
         )

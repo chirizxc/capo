@@ -31,12 +31,12 @@ def serialize_json(value: ListAssetFiltersOutput) -> dict:
 
 def deserialize_json(data: dict) -> ListAssetFiltersOutput:
     out: ListAssetFiltersOutput = {}  # type: ignore[typeddict-item]
-    if "items" in data:
+    if data.get("items") is not None:
         import capo_datazone.types.asset_filters
 
         out["items"] = capo_datazone.types.asset_filters.deserialize_json(data["items"])
     else:
         raise DeserializationError("ListAssetFiltersOutput.items required")
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

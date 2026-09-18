@@ -28,11 +28,11 @@ def serialize_aws_json_1_1(value: PartitionKey) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PartitionKey:
     out: PartitionKey = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("PartitionKey.name required")
-    if "Type" in data:
+    if data.get("Type") is not None:
         out["type"] = data["Type"]
     else:
         raise DeserializationError("PartitionKey.type required")

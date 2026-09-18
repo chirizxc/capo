@@ -79,17 +79,17 @@ def serialize_aws_json_1_1(value: CacheSettings) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CacheSettings:
     out: CacheSettings = {}  # type: ignore[typeddict-item]
-    if "defaultTTL" in data:
+    if data.get("defaultTTL") is not None:
         out["default_ttl"] = data["defaultTTL"]
-    if "minimumTTL" in data:
+    if data.get("minimumTTL") is not None:
         out["minimum_ttl"] = data["minimumTTL"]
-    if "maximumTTL" in data:
+    if data.get("maximumTTL") is not None:
         out["maximum_ttl"] = data["maximumTTL"]
-    if "allowedHTTPMethods" in data:
+    if data.get("allowedHTTPMethods") is not None:
         out["allowed_http_methods"] = data["allowedHTTPMethods"]
-    if "cachedHTTPMethods" in data:
+    if data.get("cachedHTTPMethods") is not None:
         out["cached_http_methods"] = data["cachedHTTPMethods"]
-    if "forwardedCookies" in data:
+    if data.get("forwardedCookies") is not None:
         import capo_lightsail.types.cookie_object
 
         out["forwarded_cookies"] = (
@@ -97,7 +97,7 @@ def deserialize_aws_json_1_1(data: dict) -> CacheSettings:
                 data["forwardedCookies"]
             )
         )
-    if "forwardedHeaders" in data:
+    if data.get("forwardedHeaders") is not None:
         import capo_lightsail.types.header_object
 
         out["forwarded_headers"] = (
@@ -105,7 +105,7 @@ def deserialize_aws_json_1_1(data: dict) -> CacheSettings:
                 data["forwardedHeaders"]
             )
         )
-    if "forwardedQueryStrings" in data:
+    if data.get("forwardedQueryStrings") is not None:
         import capo_lightsail.types.query_string_object
 
         out["forwarded_query_strings"] = (

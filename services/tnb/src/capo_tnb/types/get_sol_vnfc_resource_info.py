@@ -31,7 +31,7 @@ def serialize_json(value: GetSolVnfcResourceInfo) -> dict:
 
 def deserialize_json(data: dict) -> GetSolVnfcResourceInfo:
     out: GetSolVnfcResourceInfo = {}  # type: ignore[typeddict-item]
-    if "metadata" in data:
+    if data.get("metadata") is not None:
         import capo_tnb.types.get_sol_vnfc_resource_info_metadata
 
         out["metadata"] = (

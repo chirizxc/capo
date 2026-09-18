@@ -25,6 +25,6 @@ def serialize_aws_json_1_1(value: S3ConfigurationType) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> S3ConfigurationType:
     out: S3ConfigurationType = {}  # type: ignore[typeddict-item]
-    if "BucketArn" in data:
+    if data.get("BucketArn") is not None:
         out["bucket_arn"] = data["BucketArn"]
     return out

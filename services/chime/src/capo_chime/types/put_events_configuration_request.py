@@ -36,8 +36,8 @@ def serialize_json(value: PutEventsConfigurationRequest) -> dict:
 
 def deserialize_json(data: dict) -> PutEventsConfigurationRequest:
     out: PutEventsConfigurationRequest = {}  # type: ignore[typeddict-item]
-    if "OutboundEventsHTTPSEndpoint" in data:
+    if data.get("OutboundEventsHTTPSEndpoint") is not None:
         out["outbound_events_https_endpoint"] = data["OutboundEventsHTTPSEndpoint"]
-    if "LambdaFunctionArn" in data:
+    if data.get("LambdaFunctionArn") is not None:
         out["lambda_function_arn"] = data["LambdaFunctionArn"]
     return out

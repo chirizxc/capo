@@ -31,7 +31,7 @@ def serialize_json(value: BatchGetTokenBalanceInput) -> dict:
 
 def deserialize_json(data: dict) -> BatchGetTokenBalanceInput:
     out: BatchGetTokenBalanceInput = {}  # type: ignore[typeddict-item]
-    if "getTokenBalanceInputs" in data:
+    if data.get("getTokenBalanceInputs") is not None:
         import capo_managedblockchain_query.types.get_token_balance_input_list
 
         out["get_token_balance_inputs"] = (

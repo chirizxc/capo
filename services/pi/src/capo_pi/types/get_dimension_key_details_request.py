@@ -52,7 +52,7 @@ def serialize_aws_json_1_1(value: GetDimensionKeyDetailsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetDimensionKeyDetailsRequest:
     out: GetDimensionKeyDetailsRequest = {}  # type: ignore[typeddict-item]
-    if "ServiceType" in data:
+    if data.get("ServiceType") is not None:
         import capo_pi.types.service_type
 
         out["service_type"] = capo_pi.types.service_type.deserialize_aws_json_1_1(
@@ -62,21 +62,21 @@ def deserialize_aws_json_1_1(data: dict) -> GetDimensionKeyDetailsRequest:
         raise DeserializationError(
             "GetDimensionKeyDetailsRequest.service_type required"
         )
-    if "Identifier" in data:
+    if data.get("Identifier") is not None:
         out["identifier"] = data["Identifier"]
     else:
         raise DeserializationError("GetDimensionKeyDetailsRequest.identifier required")
-    if "Group" in data:
+    if data.get("Group") is not None:
         out["group"] = data["Group"]
     else:
         raise DeserializationError("GetDimensionKeyDetailsRequest.group required")
-    if "GroupIdentifier" in data:
+    if data.get("GroupIdentifier") is not None:
         out["group_identifier"] = data["GroupIdentifier"]
     else:
         raise DeserializationError(
             "GetDimensionKeyDetailsRequest.group_identifier required"
         )
-    if "RequestedDimensions" in data:
+    if data.get("RequestedDimensions") is not None:
         import capo_pi.types.requested_dimension_list
 
         out["requested_dimensions"] = (

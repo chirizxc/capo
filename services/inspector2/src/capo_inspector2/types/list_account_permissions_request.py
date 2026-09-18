@@ -35,10 +35,10 @@ def serialize_json(value: ListAccountPermissionsRequest) -> dict:
 
 def deserialize_json(data: dict) -> ListAccountPermissionsRequest:
     out: ListAccountPermissionsRequest = {}  # type: ignore[typeddict-item]
-    if "service" in data:
+    if data.get("service") is not None:
         out["service"] = data["service"]
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

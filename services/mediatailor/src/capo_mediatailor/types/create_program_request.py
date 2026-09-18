@@ -79,15 +79,15 @@ def serialize_json(value: CreateProgramRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateProgramRequest:
     out: CreateProgramRequest = {}  # type: ignore[typeddict-item]
-    if "AdBreaks" in data:
+    if data.get("AdBreaks") is not None:
         import capo_mediatailor.types.__list_of_ad_break
 
         out["ad_breaks"] = capo_mediatailor.types.__list_of_ad_break.deserialize_json(
             data["AdBreaks"]
         )
-    if "LiveSourceName" in data:
+    if data.get("LiveSourceName") is not None:
         out["live_source_name"] = data["LiveSourceName"]
-    if "ScheduleConfiguration" in data:
+    if data.get("ScheduleConfiguration") is not None:
         import capo_mediatailor.types.schedule_configuration
 
         out["schedule_configuration"] = (
@@ -99,13 +99,13 @@ def deserialize_json(data: dict) -> CreateProgramRequest:
         raise DeserializationError(
             "CreateProgramRequest.schedule_configuration required"
         )
-    if "SourceLocationName" in data:
+    if data.get("SourceLocationName") is not None:
         out["source_location_name"] = data["SourceLocationName"]
     else:
         raise DeserializationError("CreateProgramRequest.source_location_name required")
-    if "VodSourceName" in data:
+    if data.get("VodSourceName") is not None:
         out["vod_source_name"] = data["VodSourceName"]
-    if "AudienceMedia" in data:
+    if data.get("AudienceMedia") is not None:
         import capo_mediatailor.types.__list_of_audience_media
 
         out["audience_media"] = (
@@ -113,7 +113,7 @@ def deserialize_json(data: dict) -> CreateProgramRequest:
                 data["AudienceMedia"]
             )
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_mediatailor.types.__map_of__string
 
         out["tags"] = capo_mediatailor.types.__map_of__string.deserialize_json(

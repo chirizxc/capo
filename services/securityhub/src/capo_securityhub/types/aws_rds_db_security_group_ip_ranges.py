@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> AwsRdsDbSecurityGroupIpRanges:
 
     out: AwsRdsDbSecurityGroupIpRanges = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_securityhub.types.aws_rds_db_security_group_ip_range.deserialize_json(
                 item

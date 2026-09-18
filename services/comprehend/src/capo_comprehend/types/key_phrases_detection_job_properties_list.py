@@ -29,6 +29,8 @@ def deserialize_aws_json_1_1(data: list) -> KeyPhrasesDetectionJobPropertiesList
 
     out: KeyPhrasesDetectionJobPropertiesList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_comprehend.types.key_phrases_detection_job_properties.deserialize_aws_json_1_1(
                 item

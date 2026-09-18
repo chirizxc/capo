@@ -24,7 +24,7 @@ def serialize_json(value: S3MonitoringConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> S3MonitoringConfiguration:
     out: S3MonitoringConfiguration = {}  # type: ignore[typeddict-item]
-    if "logUri" in data:
+    if data.get("logUri") is not None:
         out["log_uri"] = data["logUri"]
     else:
         raise DeserializationError("S3MonitoringConfiguration.log_uri required")

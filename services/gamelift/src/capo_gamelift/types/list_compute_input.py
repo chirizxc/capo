@@ -62,13 +62,13 @@ def serialize_aws_json_1_1(value: ListComputeInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListComputeInput:
     out: ListComputeInput = {}  # type: ignore[typeddict-item]
-    if "FleetId" in data:
+    if data.get("FleetId") is not None:
         out["fleet_id"] = data["FleetId"]
-    if "Location" in data:
+    if data.get("Location") is not None:
         out["location"] = data["Location"]
-    if "ContainerGroupDefinitionName" in data:
+    if data.get("ContainerGroupDefinitionName") is not None:
         out["container_group_definition_name"] = data["ContainerGroupDefinitionName"]
-    if "ComputeStatus" in data:
+    if data.get("ComputeStatus") is not None:
         import capo_gamelift.types.list_compute_input_status
 
         out["compute_status"] = (
@@ -76,8 +76,8 @@ def deserialize_aws_json_1_1(data: dict) -> ListComputeInput:
                 data["ComputeStatus"]
             )
         )
-    if "Limit" in data:
+    if data.get("Limit") is not None:
         out["limit"] = data["Limit"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

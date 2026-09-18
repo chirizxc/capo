@@ -37,10 +37,10 @@ def serialize_json(value: DeleteActionConnectorResponse) -> dict:
 
 def deserialize_json(data: dict) -> DeleteActionConnectorResponse:
     out: DeleteActionConnectorResponse = {}  # type: ignore[typeddict-item]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "ActionConnectorId" in data:
+    if data.get("ActionConnectorId") is not None:
         out["action_connector_id"] = data["ActionConnectorId"]
-    if "RequestId" in data:
+    if data.get("RequestId") is not None:
         out["request_id"] = data["RequestId"]
     return out

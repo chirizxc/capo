@@ -23,6 +23,6 @@ def serialize_aws_json_1_1(value: CreateDatasetImportJobResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateDatasetImportJobResponse:
     out: CreateDatasetImportJobResponse = {}  # type: ignore[typeddict-item]
-    if "datasetImportJobArn" in data:
+    if data.get("datasetImportJobArn") is not None:
         out["dataset_import_job_arn"] = data["datasetImportJobArn"]
     return out

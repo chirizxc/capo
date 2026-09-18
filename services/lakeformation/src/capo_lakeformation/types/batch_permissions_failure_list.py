@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> BatchPermissionsFailureList:
 
     out: BatchPermissionsFailureList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_lakeformation.types.batch_permissions_failure_entry.deserialize_json(
                 item

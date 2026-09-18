@@ -47,7 +47,7 @@ def serialize_aws_json_1_0(value: StateTemplateUpdateStrategy) -> dict:
 
 
 def deserialize_aws_json_1_0(data: dict) -> StateTemplateUpdateStrategy:
-    if "periodic" in data:
+    if data.get("periodic") is not None:
         import capo_iotfleetwise.types.periodic_state_template_update_strategy
 
         return {
@@ -55,7 +55,7 @@ def deserialize_aws_json_1_0(data: dict) -> StateTemplateUpdateStrategy:
                 data["periodic"]
             )
         }
-    elif "onChange" in data:
+    elif data.get("onChange") is not None:
         import capo_iotfleetwise.types.on_change_state_template_update_strategy
 
         return {

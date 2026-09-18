@@ -34,12 +34,12 @@ def serialize_json(value: ListWorkflowVersionsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListWorkflowVersionsResponse:
     out: ListWorkflowVersionsResponse = {}  # type: ignore[typeddict-item]
-    if "items" in data:
+    if data.get("items") is not None:
         import capo_omics.types.workflow_version_list
 
         out["items"] = capo_omics.types.workflow_version_list.deserialize_json(
             data["items"]
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

@@ -57,23 +57,23 @@ def serialize_aws_json_1_1(value: StandbyWorkspace) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> StandbyWorkspace:
     out: StandbyWorkspace = {}  # type: ignore[typeddict-item]
-    if "PrimaryWorkspaceId" in data:
+    if data.get("PrimaryWorkspaceId") is not None:
         out["primary_workspace_id"] = data["PrimaryWorkspaceId"]
     else:
         raise DeserializationError("StandbyWorkspace.primary_workspace_id required")
-    if "VolumeEncryptionKey" in data:
+    if data.get("VolumeEncryptionKey") is not None:
         out["volume_encryption_key"] = data["VolumeEncryptionKey"]
-    if "DirectoryId" in data:
+    if data.get("DirectoryId") is not None:
         out["directory_id"] = data["DirectoryId"]
     else:
         raise DeserializationError("StandbyWorkspace.directory_id required")
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_workspaces.types.tag_list
 
         out["tags"] = capo_workspaces.types.tag_list.deserialize_aws_json_1_1(
             data["Tags"]
         )
-    if "DataReplication" in data:
+    if data.get("DataReplication") is not None:
         import capo_workspaces.types.data_replication
 
         out["data_replication"] = (

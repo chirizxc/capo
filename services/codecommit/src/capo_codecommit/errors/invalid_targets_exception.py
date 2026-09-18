@@ -25,7 +25,7 @@ def serialize_aws_json_1_1(value: InvalidTargetsException_) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> InvalidTargetsException_:
     out: InvalidTargetsException_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     return out
 
@@ -35,15 +35,18 @@ class InvalidTargetsException(ServiceError):
 
     code: str | None = "InvalidTargetsException"
 
-    def __init__(self, data: InvalidTargetsException_):
+    def __init__(self, data: InvalidTargetsException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="InvalidTargetsException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "InvalidTargetsException":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "InvalidTargetsException":
+        return cls(deserialize_aws_json_1_1(data), message)

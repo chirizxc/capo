@@ -45,16 +45,16 @@ def serialize_aws_json_1_1(value: UpdateVirtualInterfaceAttributesRequest) -> di
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateVirtualInterfaceAttributesRequest:
     out: UpdateVirtualInterfaceAttributesRequest = {}  # type: ignore[typeddict-item]
-    if "virtualInterfaceId" in data:
+    if data.get("virtualInterfaceId") is not None:
         out["virtual_interface_id"] = data["virtualInterfaceId"]
     else:
         raise DeserializationError(
             "UpdateVirtualInterfaceAttributesRequest.virtual_interface_id required"
         )
-    if "mtu" in data:
+    if data.get("mtu") is not None:
         out["mtu"] = data["mtu"]
-    if "enableSiteLink" in data:
+    if data.get("enableSiteLink") is not None:
         out["enable_site_link"] = data["enableSiteLink"]
-    if "virtualInterfaceName" in data:
+    if data.get("virtualInterfaceName") is not None:
         out["virtual_interface_name"] = data["virtualInterfaceName"]
     return out

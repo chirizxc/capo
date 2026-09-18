@@ -32,7 +32,7 @@ def serialize_json(value: GetIngestionDestinationResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetIngestionDestinationResponse:
     out: GetIngestionDestinationResponse = {}  # type: ignore[typeddict-item]
-    if "ingestionDestination" in data:
+    if data.get("ingestionDestination") is not None:
         import capo_appfabric.types.ingestion_destination
 
         out["ingestion_destination"] = (

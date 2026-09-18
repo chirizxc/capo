@@ -59,13 +59,13 @@ def serialize_json(value: UpdateQueueRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateQueueRequest:
     out: UpdateQueueRequest = {}  # type: ignore[typeddict-item]
-    if "concurrentJobs" in data:
+    if data.get("concurrentJobs") is not None:
         out["concurrent_jobs"] = data["concurrentJobs"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "maximumConcurrentFeeds" in data:
+    if data.get("maximumConcurrentFeeds") is not None:
         out["maximum_concurrent_feeds"] = data["maximumConcurrentFeeds"]
-    if "reservationPlanSettings" in data:
+    if data.get("reservationPlanSettings") is not None:
         import capo_mediaconvert.types.reservation_plan_settings
 
         out["reservation_plan_settings"] = (
@@ -73,7 +73,7 @@ def deserialize_json(data: dict) -> UpdateQueueRequest:
                 data["reservationPlanSettings"]
             )
         )
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_mediaconvert.types.queue_status
 
         out["status"] = capo_mediaconvert.types.queue_status.deserialize_json(

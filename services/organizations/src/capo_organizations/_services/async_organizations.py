@@ -314,14 +314,16 @@ class AsyncOrganizationsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_organizations.types.accept_handshake_request.AcceptHandshakeRequest = {}  # type: ignore[typeddict-item]
-        input_["handshake_id"] = handshake_id
+        input_: capo_organizations.types.accept_handshake_request.AcceptHandshakeRequest = {
+            "handshake_id": handshake_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def attach_policy(
@@ -380,15 +382,17 @@ class AsyncOrganizationsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_organizations.types.attach_policy_request.AttachPolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["policy_id"] = policy_id
-        input_["target_id"] = target_id
+        input_: capo_organizations.types.attach_policy_request.AttachPolicyRequest = {
+            "policy_id": policy_id,
+            "target_id": target_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def cancel_handshake(
@@ -430,14 +434,16 @@ class AsyncOrganizationsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_organizations.types.cancel_handshake_request.CancelHandshakeRequest = {}  # type: ignore[typeddict-item]
-        input_["handshake_id"] = handshake_id
+        input_: capo_organizations.types.cancel_handshake_request.CancelHandshakeRequest = {
+            "handshake_id": handshake_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def close_account(
@@ -480,14 +486,16 @@ class AsyncOrganizationsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_organizations.types.close_account_request.CloseAccountRequest = {}  # type: ignore[typeddict-item]
-        input_["account_id"] = account_id
+        input_: capo_organizations.types.close_account_request.CloseAccountRequest = {
+            "account_id": account_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_account(
@@ -548,9 +556,10 @@ class AsyncOrganizationsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_organizations.types.create_account_request.CreateAccountRequest = {}  # type: ignore[typeddict-item]
-        input_["email"] = email
-        input_["account_name"] = account_name
+        input_: capo_organizations.types.create_account_request.CreateAccountRequest = {
+            "email": email,
+            "account_name": account_name,
+        }
         if role_name is not None:
             input_["role_name"] = role_name
         if iam_user_access_to_billing is not None:
@@ -563,6 +572,7 @@ class AsyncOrganizationsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_gov_cloud_account(
@@ -615,9 +625,10 @@ class AsyncOrganizationsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_organizations.types.create_gov_cloud_account_request.CreateGovCloudAccountRequest = {}  # type: ignore[typeddict-item]
-        input_["email"] = email
-        input_["account_name"] = account_name
+        input_: capo_organizations.types.create_gov_cloud_account_request.CreateGovCloudAccountRequest = {
+            "email": email,
+            "account_name": account_name,
+        }
         if role_name is not None:
             input_["role_name"] = role_name
         if iam_user_access_to_billing is not None:
@@ -630,6 +641,7 @@ class AsyncOrganizationsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_organization(
@@ -687,7 +699,7 @@ class AsyncOrganizationsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_organizations.types.create_organization_request.CreateOrganizationRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_organizations.types.create_organization_request.CreateOrganizationRequest = {}
         if feature_set is not None:
             input_["feature_set"] = feature_set
 
@@ -696,6 +708,7 @@ class AsyncOrganizationsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_organizational_unit(
@@ -750,9 +763,10 @@ class AsyncOrganizationsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_organizations.types.create_organizational_unit_request.CreateOrganizationalUnitRequest = {}  # type: ignore[typeddict-item]
-        input_["parent_id"] = parent_id
-        input_["name"] = name
+        input_: capo_organizations.types.create_organizational_unit_request.CreateOrganizationalUnitRequest = {
+            "parent_id": parent_id,
+            "name": name,
+        }
         if tags is not None:
             input_["tags"] = tags
 
@@ -761,6 +775,7 @@ class AsyncOrganizationsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_policy(
@@ -821,11 +836,12 @@ class AsyncOrganizationsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_organizations.types.create_policy_request.CreatePolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["content"] = content
-        input_["description"] = description
-        input_["name"] = name
-        input_["type"] = type
+        input_: capo_organizations.types.create_policy_request.CreatePolicyRequest = {
+            "content": content,
+            "description": description,
+            "name": name,
+            "type": type,
+        }
         if tags is not None:
             input_["tags"] = tags
 
@@ -834,6 +850,7 @@ class AsyncOrganizationsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def decline_handshake(
@@ -881,14 +898,16 @@ class AsyncOrganizationsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_organizations.types.decline_handshake_request.DeclineHandshakeRequest = {}  # type: ignore[typeddict-item]
-        input_["handshake_id"] = handshake_id
+        input_: capo_organizations.types.decline_handshake_request.DeclineHandshakeRequest = {
+            "handshake_id": handshake_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_organization(
@@ -928,6 +947,7 @@ class AsyncOrganizationsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_organizational_unit(
@@ -975,14 +995,16 @@ class AsyncOrganizationsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_organizations.types.delete_organizational_unit_request.DeleteOrganizationalUnitRequest = {}  # type: ignore[typeddict-item]
-        input_["organizational_unit_id"] = organizational_unit_id
+        input_: capo_organizations.types.delete_organizational_unit_request.DeleteOrganizationalUnitRequest = {
+            "organizational_unit_id": organizational_unit_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_policy(
@@ -1031,14 +1053,16 @@ class AsyncOrganizationsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_organizations.types.delete_policy_request.DeletePolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["policy_id"] = policy_id
+        input_: capo_organizations.types.delete_policy_request.DeletePolicyRequest = {
+            "policy_id": policy_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_resource_policy(
@@ -1078,6 +1102,7 @@ class AsyncOrganizationsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def deregister_delegated_administrator(
@@ -1121,15 +1146,17 @@ class AsyncOrganizationsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_organizations.types.deregister_delegated_administrator_request.DeregisterDelegatedAdministratorRequest = {}  # type: ignore[typeddict-item]
-        input_["account_id"] = account_id
-        input_["service_principal"] = service_principal
+        input_: capo_organizations.types.deregister_delegated_administrator_request.DeregisterDelegatedAdministratorRequest = {
+            "account_id": account_id,
+            "service_principal": service_principal,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_account(
@@ -1175,14 +1202,16 @@ class AsyncOrganizationsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_organizations.types.describe_account_request.DescribeAccountRequest = {}  # type: ignore[typeddict-item]
-        input_["account_id"] = account_id
+        input_: capo_organizations.types.describe_account_request.DescribeAccountRequest = {
+            "account_id": account_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_create_account_status(
@@ -1229,14 +1258,16 @@ class AsyncOrganizationsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_organizations.types.describe_create_account_status_request.DescribeCreateAccountStatusRequest = {}  # type: ignore[typeddict-item]
-        input_["create_account_request_id"] = create_account_request_id
+        input_: capo_organizations.types.describe_create_account_status_request.DescribeCreateAccountStatusRequest = {
+            "create_account_request_id": create_account_request_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_effective_policy(
@@ -1283,8 +1314,9 @@ class AsyncOrganizationsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_organizations.types.describe_effective_policy_request.DescribeEffectivePolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["policy_type"] = policy_type
+        input_: capo_organizations.types.describe_effective_policy_request.DescribeEffectivePolicyRequest = {
+            "policy_type": policy_type
+        }
         if target_id is not None:
             input_["target_id"] = target_id
 
@@ -1293,6 +1325,7 @@ class AsyncOrganizationsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_handshake(
@@ -1340,14 +1373,16 @@ class AsyncOrganizationsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_organizations.types.describe_handshake_request.DescribeHandshakeRequest = {}  # type: ignore[typeddict-item]
-        input_["handshake_id"] = handshake_id
+        input_: capo_organizations.types.describe_handshake_request.DescribeHandshakeRequest = {
+            "handshake_id": handshake_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_organization(
@@ -1392,6 +1427,7 @@ class AsyncOrganizationsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_organizational_unit(
@@ -1437,14 +1473,16 @@ class AsyncOrganizationsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_organizations.types.describe_organizational_unit_request.DescribeOrganizationalUnitRequest = {}  # type: ignore[typeddict-item]
-        input_["organizational_unit_id"] = organizational_unit_id
+        input_: capo_organizations.types.describe_organizational_unit_request.DescribeOrganizationalUnitRequest = {
+            "organizational_unit_id": organizational_unit_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_policy(
@@ -1491,14 +1529,16 @@ class AsyncOrganizationsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_organizations.types.describe_policy_request.DescribePolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["policy_id"] = policy_id
+        input_: capo_organizations.types.describe_policy_request.DescribePolicyRequest = {
+            "policy_id": policy_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_resource_policy(
@@ -1539,6 +1579,7 @@ class AsyncOrganizationsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_responsibility_transfer(
@@ -1579,14 +1620,16 @@ class AsyncOrganizationsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_organizations.types.describe_responsibility_transfer_request.DescribeResponsibilityTransferRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_organizations.types.describe_responsibility_transfer_request.DescribeResponsibilityTransferRequest = {
+            "id": id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def detach_policy(
@@ -1638,15 +1681,17 @@ class AsyncOrganizationsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_organizations.types.detach_policy_request.DetachPolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["policy_id"] = policy_id
-        input_["target_id"] = target_id
+        input_: capo_organizations.types.detach_policy_request.DetachPolicyRequest = {
+            "policy_id": policy_id,
+            "target_id": target_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def disable_aws_service_access(
@@ -1686,14 +1731,16 @@ class AsyncOrganizationsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_organizations.types.disable_aws_service_access_request.DisableAWSServiceAccessRequest = {}  # type: ignore[typeddict-item]
-        input_["service_principal"] = service_principal
+        input_: capo_organizations.types.disable_aws_service_access_request.DisableAWSServiceAccessRequest = {
+            "service_principal": service_principal
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def disable_policy_type(
@@ -1746,15 +1793,17 @@ class AsyncOrganizationsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_organizations.types.disable_policy_type_request.DisablePolicyTypeRequest = {}  # type: ignore[typeddict-item]
-        input_["root_id"] = root_id
-        input_["policy_type"] = policy_type
+        input_: capo_organizations.types.disable_policy_type_request.DisablePolicyTypeRequest = {
+            "root_id": root_id,
+            "policy_type": policy_type,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def enable_all_features(
@@ -1796,13 +1845,14 @@ class AsyncOrganizationsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_organizations.types.enable_all_features_request.EnableAllFeaturesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_organizations.types.enable_all_features_request.EnableAllFeaturesRequest = {}
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def enable_aws_service_access(
@@ -1842,14 +1892,16 @@ class AsyncOrganizationsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_organizations.types.enable_aws_service_access_request.EnableAWSServiceAccessRequest = {}  # type: ignore[typeddict-item]
-        input_["service_principal"] = service_principal
+        input_: capo_organizations.types.enable_aws_service_access_request.EnableAWSServiceAccessRequest = {
+            "service_principal": service_principal
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def enable_policy_type(
@@ -1905,15 +1957,17 @@ class AsyncOrganizationsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_organizations.types.enable_policy_type_request.EnablePolicyTypeRequest = {}  # type: ignore[typeddict-item]
-        input_["root_id"] = root_id
-        input_["policy_type"] = policy_type
+        input_: capo_organizations.types.enable_policy_type_request.EnablePolicyTypeRequest = {
+            "root_id": root_id,
+            "policy_type": policy_type,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def invite_account_to_organization(
@@ -1970,8 +2024,9 @@ class AsyncOrganizationsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_organizations.types.invite_account_to_organization_request.InviteAccountToOrganizationRequest = {}  # type: ignore[typeddict-item]
-        input_["target"] = target
+        input_: capo_organizations.types.invite_account_to_organization_request.InviteAccountToOrganizationRequest = {
+            "target": target
+        }
         if notes is not None:
             input_["notes"] = notes
         if tags is not None:
@@ -1982,6 +2037,7 @@ class AsyncOrganizationsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def invite_organization_to_transfer_responsibility(
@@ -2037,13 +2093,14 @@ class AsyncOrganizationsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_organizations.types.invite_organization_to_transfer_responsibility_request.InviteOrganizationToTransferResponsibilityRequest = {}  # type: ignore[typeddict-item]
-        input_["type"] = type
-        input_["target"] = target
+        input_: capo_organizations.types.invite_organization_to_transfer_responsibility_request.InviteOrganizationToTransferResponsibilityRequest = {
+            "type": type,
+            "target": target,
+            "start_timestamp": start_timestamp,
+            "source_name": source_name,
+        }
         if notes is not None:
             input_["notes"] = notes
-        input_["start_timestamp"] = start_timestamp
-        input_["source_name"] = source_name
         if tags is not None:
             input_["tags"] = tags
 
@@ -2052,6 +2109,7 @@ class AsyncOrganizationsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def leave_organization(
@@ -2098,6 +2156,7 @@ class AsyncOrganizationsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_accounts(
@@ -2138,7 +2197,7 @@ class AsyncOrganizationsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_organizations.types.list_accounts_request.ListAccountsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_organizations.types.list_accounts_request.ListAccountsRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -2149,7 +2208,27 @@ class AsyncOrganizationsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_accounts(
+        self,
+        *,
+        config_overrides: Optional[AsyncOrganizationsClientConfig] = None,
+        next_token: Optional["capo_organizations.types.next_token.NextToken"] = None,
+        max_results: Optional["capo_organizations.types.max_results.MaxResults"] = None,
+    ) -> "AsyncIterator[capo_organizations.types.list_accounts_response.ListAccountsResponse]":
+        _token = next_token
+        while True:
+            _response = await self.list_accounts(
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_accounts_for_parent(
         self,
@@ -2198,8 +2277,9 @@ class AsyncOrganizationsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_organizations.types.list_accounts_for_parent_request.ListAccountsForParentRequest = {}  # type: ignore[typeddict-item]
-        input_["parent_id"] = parent_id
+        input_: capo_organizations.types.list_accounts_for_parent_request.ListAccountsForParentRequest = {
+            "parent_id": parent_id
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -2210,7 +2290,29 @@ class AsyncOrganizationsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_accounts_for_parent(
+        self,
+        parent_id: "capo_organizations.types.parent_id.ParentId",
+        *,
+        config_overrides: Optional[AsyncOrganizationsClientConfig] = None,
+        next_token: Optional["capo_organizations.types.next_token.NextToken"] = None,
+        max_results: Optional["capo_organizations.types.max_results.MaxResults"] = None,
+    ) -> "AsyncIterator[capo_organizations.types.list_accounts_for_parent_response.ListAccountsForParentResponse]":
+        _token = next_token
+        while True:
+            _response = await self.list_accounts_for_parent(
+                parent_id,
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_accounts_with_invalid_effective_policy(
         self,
@@ -2261,8 +2363,9 @@ class AsyncOrganizationsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_organizations.types.list_accounts_with_invalid_effective_policy_request.ListAccountsWithInvalidEffectivePolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["policy_type"] = policy_type
+        input_: capo_organizations.types.list_accounts_with_invalid_effective_policy_request.ListAccountsWithInvalidEffectivePolicyRequest = {
+            "policy_type": policy_type
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -2273,6 +2376,7 @@ class AsyncOrganizationsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_accounts_with_invalid_effective_policy(
@@ -2338,7 +2442,7 @@ class AsyncOrganizationsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_organizations.types.list_aws_service_access_for_organization_request.ListAWSServiceAccessForOrganizationRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_organizations.types.list_aws_service_access_for_organization_request.ListAWSServiceAccessForOrganizationRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -2349,7 +2453,27 @@ class AsyncOrganizationsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_aws_service_access_for_organization(
+        self,
+        *,
+        config_overrides: Optional[AsyncOrganizationsClientConfig] = None,
+        next_token: Optional["capo_organizations.types.next_token.NextToken"] = None,
+        max_results: Optional["capo_organizations.types.max_results.MaxResults"] = None,
+    ) -> "AsyncIterator[capo_organizations.types.list_aws_service_access_for_organization_response.ListAWSServiceAccessForOrganizationResponse]":
+        _token = next_token
+        while True:
+            _response = await self.list_aws_service_access_for_organization(
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_children(
         self,
@@ -2400,9 +2524,10 @@ class AsyncOrganizationsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_organizations.types.list_children_request.ListChildrenRequest = {}  # type: ignore[typeddict-item]
-        input_["parent_id"] = parent_id
-        input_["child_type"] = child_type
+        input_: capo_organizations.types.list_children_request.ListChildrenRequest = {
+            "parent_id": parent_id,
+            "child_type": child_type,
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -2413,7 +2538,31 @@ class AsyncOrganizationsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_children(
+        self,
+        parent_id: "capo_organizations.types.parent_id.ParentId",
+        child_type: "capo_organizations.types.child_type.ChildType",
+        *,
+        config_overrides: Optional[AsyncOrganizationsClientConfig] = None,
+        next_token: Optional["capo_organizations.types.next_token.NextToken"] = None,
+        max_results: Optional["capo_organizations.types.max_results.MaxResults"] = None,
+    ) -> "AsyncIterator[capo_organizations.types.list_children_response.ListChildrenResponse]":
+        _token = next_token
+        while True:
+            _response = await self.list_children(
+                parent_id,
+                child_type,
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_create_account_status(
         self,
@@ -2468,7 +2617,7 @@ class AsyncOrganizationsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_organizations.types.list_create_account_status_request.ListCreateAccountStatusRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_organizations.types.list_create_account_status_request.ListCreateAccountStatusRequest = {}
         if states is not None:
             input_["states"] = states
         if next_token is not None:
@@ -2481,7 +2630,31 @@ class AsyncOrganizationsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_create_account_status(
+        self,
+        *,
+        config_overrides: Optional[AsyncOrganizationsClientConfig] = None,
+        states: Optional[
+            "capo_organizations.types.create_account_states.CreateAccountStates"
+        ] = None,
+        next_token: Optional["capo_organizations.types.next_token.NextToken"] = None,
+        max_results: Optional["capo_organizations.types.max_results.MaxResults"] = None,
+    ) -> "AsyncIterator[capo_organizations.types.list_create_account_status_response.ListCreateAccountStatusResponse]":
+        _token = next_token
+        while True:
+            _response = await self.list_create_account_status(
+                config_overrides=config_overrides,
+                states=states,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_delegated_administrators(
         self,
@@ -2527,7 +2700,7 @@ class AsyncOrganizationsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_organizations.types.list_delegated_administrators_request.ListDelegatedAdministratorsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_organizations.types.list_delegated_administrators_request.ListDelegatedAdministratorsRequest = {}
         if service_principal is not None:
             input_["service_principal"] = service_principal
         if next_token is not None:
@@ -2540,6 +2713,7 @@ class AsyncOrganizationsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_delegated_administrators(
@@ -2611,8 +2785,9 @@ class AsyncOrganizationsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_organizations.types.list_delegated_services_for_account_request.ListDelegatedServicesForAccountRequest = {}  # type: ignore[typeddict-item]
-        input_["account_id"] = account_id
+        input_: capo_organizations.types.list_delegated_services_for_account_request.ListDelegatedServicesForAccountRequest = {
+            "account_id": account_id
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -2623,6 +2798,7 @@ class AsyncOrganizationsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_delegated_services_for_account(
@@ -2694,9 +2870,10 @@ class AsyncOrganizationsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_organizations.types.list_effective_policy_validation_errors_request.ListEffectivePolicyValidationErrorsRequest = {}  # type: ignore[typeddict-item]
-        input_["account_id"] = account_id
-        input_["policy_type"] = policy_type
+        input_: capo_organizations.types.list_effective_policy_validation_errors_request.ListEffectivePolicyValidationErrorsRequest = {
+            "account_id": account_id,
+            "policy_type": policy_type,
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -2707,6 +2884,7 @@ class AsyncOrganizationsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_effective_policy_validation_errors(
@@ -2782,7 +2960,7 @@ class AsyncOrganizationsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_organizations.types.list_handshakes_for_account_request.ListHandshakesForAccountRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_organizations.types.list_handshakes_for_account_request.ListHandshakesForAccountRequest = {}
         if filter is not None:
             input_["filter"] = filter
         if next_token is not None:
@@ -2795,7 +2973,31 @@ class AsyncOrganizationsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_handshakes_for_account(
+        self,
+        *,
+        config_overrides: Optional[AsyncOrganizationsClientConfig] = None,
+        filter: Optional[
+            "capo_organizations.types.handshake_filter.HandshakeFilter"
+        ] = None,
+        next_token: Optional["capo_organizations.types.next_token.NextToken"] = None,
+        max_results: Optional["capo_organizations.types.max_results.MaxResults"] = None,
+    ) -> "AsyncIterator[capo_organizations.types.list_handshakes_for_account_response.ListHandshakesForAccountResponse]":
+        _token = next_token
+        while True:
+            _response = await self.list_handshakes_for_account(
+                config_overrides=config_overrides,
+                filter=filter,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_handshakes_for_organization(
         self,
@@ -2846,7 +3048,7 @@ class AsyncOrganizationsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_organizations.types.list_handshakes_for_organization_request.ListHandshakesForOrganizationRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_organizations.types.list_handshakes_for_organization_request.ListHandshakesForOrganizationRequest = {}
         if filter is not None:
             input_["filter"] = filter
         if next_token is not None:
@@ -2859,7 +3061,31 @@ class AsyncOrganizationsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_handshakes_for_organization(
+        self,
+        *,
+        config_overrides: Optional[AsyncOrganizationsClientConfig] = None,
+        filter: Optional[
+            "capo_organizations.types.handshake_filter.HandshakeFilter"
+        ] = None,
+        next_token: Optional["capo_organizations.types.next_token.NextToken"] = None,
+        max_results: Optional["capo_organizations.types.max_results.MaxResults"] = None,
+    ) -> "AsyncIterator[capo_organizations.types.list_handshakes_for_organization_response.ListHandshakesForOrganizationResponse]":
+        _token = next_token
+        while True:
+            _response = await self.list_handshakes_for_organization(
+                config_overrides=config_overrides,
+                filter=filter,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_inbound_responsibility_transfers(
         self,
@@ -2908,8 +3134,9 @@ class AsyncOrganizationsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_organizations.types.list_inbound_responsibility_transfers_request.ListInboundResponsibilityTransfersRequest = {}  # type: ignore[typeddict-item]
-        input_["type"] = type
+        input_: capo_organizations.types.list_inbound_responsibility_transfers_request.ListInboundResponsibilityTransfersRequest = {
+            "type": type
+        }
         if id is not None:
             input_["id"] = id
         if next_token is not None:
@@ -2922,6 +3149,7 @@ class AsyncOrganizationsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_organizational_units_for_parent(
@@ -2971,8 +3199,9 @@ class AsyncOrganizationsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_organizations.types.list_organizational_units_for_parent_request.ListOrganizationalUnitsForParentRequest = {}  # type: ignore[typeddict-item]
-        input_["parent_id"] = parent_id
+        input_: capo_organizations.types.list_organizational_units_for_parent_request.ListOrganizationalUnitsForParentRequest = {
+            "parent_id": parent_id
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -2983,7 +3212,29 @@ class AsyncOrganizationsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_organizational_units_for_parent(
+        self,
+        parent_id: "capo_organizations.types.parent_id.ParentId",
+        *,
+        config_overrides: Optional[AsyncOrganizationsClientConfig] = None,
+        next_token: Optional["capo_organizations.types.next_token.NextToken"] = None,
+        max_results: Optional["capo_organizations.types.max_results.MaxResults"] = None,
+    ) -> "AsyncIterator[capo_organizations.types.list_organizational_units_for_parent_response.ListOrganizationalUnitsForParentResponse]":
+        _token = next_token
+        while True:
+            _response = await self.list_organizational_units_for_parent(
+                parent_id,
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_outbound_responsibility_transfers(
         self,
@@ -3027,8 +3278,9 @@ class AsyncOrganizationsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_organizations.types.list_outbound_responsibility_transfers_request.ListOutboundResponsibilityTransfersRequest = {}  # type: ignore[typeddict-item]
-        input_["type"] = type
+        input_: capo_organizations.types.list_outbound_responsibility_transfers_request.ListOutboundResponsibilityTransfersRequest = {
+            "type": type
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -3039,6 +3291,7 @@ class AsyncOrganizationsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_parents(
@@ -3088,8 +3341,9 @@ class AsyncOrganizationsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_organizations.types.list_parents_request.ListParentsRequest = {}  # type: ignore[typeddict-item]
-        input_["child_id"] = child_id
+        input_: capo_organizations.types.list_parents_request.ListParentsRequest = {
+            "child_id": child_id
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -3100,7 +3354,29 @@ class AsyncOrganizationsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_parents(
+        self,
+        child_id: "capo_organizations.types.child_id.ChildId",
+        *,
+        config_overrides: Optional[AsyncOrganizationsClientConfig] = None,
+        next_token: Optional["capo_organizations.types.next_token.NextToken"] = None,
+        max_results: Optional["capo_organizations.types.max_results.MaxResults"] = None,
+    ) -> "AsyncIterator[capo_organizations.types.list_parents_response.ListParentsResponse]":
+        _token = next_token
+        while True:
+            _response = await self.list_parents(
+                child_id,
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_policies(
         self,
@@ -3149,8 +3425,9 @@ class AsyncOrganizationsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_organizations.types.list_policies_request.ListPoliciesRequest = {}  # type: ignore[typeddict-item]
-        input_["filter"] = filter
+        input_: capo_organizations.types.list_policies_request.ListPoliciesRequest = {
+            "filter": filter
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -3161,7 +3438,29 @@ class AsyncOrganizationsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_policies(
+        self,
+        filter: "capo_organizations.types.policy_type.PolicyType",
+        *,
+        config_overrides: Optional[AsyncOrganizationsClientConfig] = None,
+        next_token: Optional["capo_organizations.types.next_token.NextToken"] = None,
+        max_results: Optional["capo_organizations.types.max_results.MaxResults"] = None,
+    ) -> "AsyncIterator[capo_organizations.types.list_policies_response.ListPoliciesResponse]":
+        _token = next_token
+        while True:
+            _response = await self.list_policies(
+                filter,
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_policies_for_target(
         self,
@@ -3213,9 +3512,10 @@ class AsyncOrganizationsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_organizations.types.list_policies_for_target_request.ListPoliciesForTargetRequest = {}  # type: ignore[typeddict-item]
-        input_["target_id"] = target_id
-        input_["filter"] = filter
+        input_: capo_organizations.types.list_policies_for_target_request.ListPoliciesForTargetRequest = {
+            "target_id": target_id,
+            "filter": filter,
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -3226,7 +3526,31 @@ class AsyncOrganizationsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_policies_for_target(
+        self,
+        target_id: "capo_organizations.types.policy_target_id.PolicyTargetId",
+        filter: "capo_organizations.types.policy_type.PolicyType",
+        *,
+        config_overrides: Optional[AsyncOrganizationsClientConfig] = None,
+        next_token: Optional["capo_organizations.types.next_token.NextToken"] = None,
+        max_results: Optional["capo_organizations.types.max_results.MaxResults"] = None,
+    ) -> "AsyncIterator[capo_organizations.types.list_policies_for_target_response.ListPoliciesForTargetResponse]":
+        _token = next_token
+        while True:
+            _response = await self.list_policies_for_target(
+                target_id,
+                filter,
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_roots(
         self,
@@ -3272,7 +3596,7 @@ class AsyncOrganizationsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_organizations.types.list_roots_request.ListRootsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_organizations.types.list_roots_request.ListRootsRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -3283,7 +3607,29 @@ class AsyncOrganizationsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_roots(
+        self,
+        *,
+        config_overrides: Optional[AsyncOrganizationsClientConfig] = None,
+        next_token: Optional["capo_organizations.types.next_token.NextToken"] = None,
+        max_results: Optional["capo_organizations.types.max_results.MaxResults"] = None,
+    ) -> (
+        "AsyncIterator[capo_organizations.types.list_roots_response.ListRootsResponse]"
+    ):
+        _token = next_token
+        while True:
+            _response = await self.list_roots(
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_tags_for_resource(
         self,
@@ -3324,8 +3670,9 @@ class AsyncOrganizationsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_organizations.types.list_tags_for_resource_request.ListTagsForResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_id"] = resource_id
+        input_: capo_organizations.types.list_tags_for_resource_request.ListTagsForResourceRequest = {
+            "resource_id": resource_id
+        }
         if next_token is not None:
             input_["next_token"] = next_token
 
@@ -3334,6 +3681,7 @@ class AsyncOrganizationsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_tags_for_resource(
@@ -3405,8 +3753,9 @@ class AsyncOrganizationsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_organizations.types.list_targets_for_policy_request.ListTargetsForPolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["policy_id"] = policy_id
+        input_: capo_organizations.types.list_targets_for_policy_request.ListTargetsForPolicyRequest = {
+            "policy_id": policy_id
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -3417,7 +3766,29 @@ class AsyncOrganizationsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_targets_for_policy(
+        self,
+        policy_id: "capo_organizations.types.policy_id.PolicyId",
+        *,
+        config_overrides: Optional[AsyncOrganizationsClientConfig] = None,
+        next_token: Optional["capo_organizations.types.next_token.NextToken"] = None,
+        max_results: Optional["capo_organizations.types.max_results.MaxResults"] = None,
+    ) -> "AsyncIterator[capo_organizations.types.list_targets_for_policy_response.ListTargetsForPolicyResponse]":
+        _token = next_token
+        while True:
+            _response = await self.list_targets_for_policy(
+                policy_id,
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def move_account(
         self,
@@ -3468,16 +3839,18 @@ class AsyncOrganizationsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_organizations.types.move_account_request.MoveAccountRequest = {}  # type: ignore[typeddict-item]
-        input_["account_id"] = account_id
-        input_["source_parent_id"] = source_parent_id
-        input_["destination_parent_id"] = destination_parent_id
+        input_: capo_organizations.types.move_account_request.MoveAccountRequest = {
+            "account_id": account_id,
+            "source_parent_id": source_parent_id,
+            "destination_parent_id": destination_parent_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def put_resource_policy(
@@ -3521,8 +3894,9 @@ class AsyncOrganizationsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_organizations.types.put_resource_policy_request.PutResourcePolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["content"] = content
+        input_: capo_organizations.types.put_resource_policy_request.PutResourcePolicyRequest = {
+            "content": content
+        }
         if tags is not None:
             input_["tags"] = tags
 
@@ -3531,6 +3905,7 @@ class AsyncOrganizationsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def register_delegated_administrator(
@@ -3574,15 +3949,17 @@ class AsyncOrganizationsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_organizations.types.register_delegated_administrator_request.RegisterDelegatedAdministratorRequest = {}  # type: ignore[typeddict-item]
-        input_["account_id"] = account_id
-        input_["service_principal"] = service_principal
+        input_: capo_organizations.types.register_delegated_administrator_request.RegisterDelegatedAdministratorRequest = {
+            "account_id": account_id,
+            "service_principal": service_principal,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def remove_account_from_organization(
@@ -3629,14 +4006,16 @@ class AsyncOrganizationsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_organizations.types.remove_account_from_organization_request.RemoveAccountFromOrganizationRequest = {}  # type: ignore[typeddict-item]
-        input_["account_id"] = account_id
+        input_: capo_organizations.types.remove_account_from_organization_request.RemoveAccountFromOrganizationRequest = {
+            "account_id": account_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def tag_resource(
@@ -3678,15 +4057,17 @@ class AsyncOrganizationsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_organizations.types.tag_resource_request.TagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_id"] = resource_id
-        input_["tags"] = tags
+        input_: capo_organizations.types.tag_resource_request.TagResourceRequest = {
+            "resource_id": resource_id,
+            "tags": tags,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def terminate_responsibility_transfer(
@@ -3733,8 +4114,9 @@ class AsyncOrganizationsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_organizations.types.terminate_responsibility_transfer_request.TerminateResponsibilityTransferRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_organizations.types.terminate_responsibility_transfer_request.TerminateResponsibilityTransferRequest = {
+            "id": id
+        }
         if end_timestamp is not None:
             input_["end_timestamp"] = end_timestamp
 
@@ -3743,6 +4125,7 @@ class AsyncOrganizationsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def untag_resource(
@@ -3784,15 +4167,17 @@ class AsyncOrganizationsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_organizations.types.untag_resource_request.UntagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_id"] = resource_id
-        input_["tag_keys"] = tag_keys
+        input_: capo_organizations.types.untag_resource_request.UntagResourceRequest = {
+            "resource_id": resource_id,
+            "tag_keys": tag_keys,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_organizational_unit(
@@ -3844,8 +4229,9 @@ class AsyncOrganizationsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_organizations.types.update_organizational_unit_request.UpdateOrganizationalUnitRequest = {}  # type: ignore[typeddict-item]
-        input_["organizational_unit_id"] = organizational_unit_id
+        input_: capo_organizations.types.update_organizational_unit_request.UpdateOrganizationalUnitRequest = {
+            "organizational_unit_id": organizational_unit_id
+        }
         if name is not None:
             input_["name"] = name
 
@@ -3854,6 +4240,7 @@ class AsyncOrganizationsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_policy(
@@ -3919,8 +4306,9 @@ class AsyncOrganizationsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_organizations.types.update_policy_request.UpdatePolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["policy_id"] = policy_id
+        input_: capo_organizations.types.update_policy_request.UpdatePolicyRequest = {
+            "policy_id": policy_id
+        }
         if name is not None:
             input_["name"] = name
         if description is not None:
@@ -3933,6 +4321,7 @@ class AsyncOrganizationsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_responsibility_transfer(
@@ -3976,15 +4365,17 @@ class AsyncOrganizationsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_organizations.types.update_responsibility_transfer_request.UpdateResponsibilityTransferRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
-        input_["name"] = name
+        input_: capo_organizations.types.update_responsibility_transfer_request.UpdateResponsibilityTransferRequest = {
+            "id": id,
+            "name": name,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def __aenter__(self) -> Self:

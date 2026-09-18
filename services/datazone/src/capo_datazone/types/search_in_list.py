@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> SearchInList:
 
     out: SearchInList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_datazone.types.search_in_item.deserialize_json(item))
     return out

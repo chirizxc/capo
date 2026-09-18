@@ -124,21 +124,21 @@ def serialize_json(value: CreateGraphUsingImportTaskInput) -> dict:
 
 def deserialize_json(data: dict) -> CreateGraphUsingImportTaskInput:
     out: CreateGraphUsingImportTaskInput = {}  # type: ignore[typeddict-item]
-    if "graphName" in data:
+    if data.get("graphName") is not None:
         out["graph_name"] = data["graphName"]
     else:
         raise DeserializationError(
             "CreateGraphUsingImportTaskInput.graph_name required"
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_neptune_graph.types.tag_map
 
         out["tags"] = capo_neptune_graph.types.tag_map.deserialize_json(data["tags"])
-    if "publicConnectivity" in data:
+    if data.get("publicConnectivity") is not None:
         out["public_connectivity"] = data["publicConnectivity"]
-    if "kmsKeyIdentifier" in data:
+    if data.get("kmsKeyIdentifier") is not None:
         out["kms_key_identifier"] = data["kmsKeyIdentifier"]
-    if "vectorSearchConfiguration" in data:
+    if data.get("vectorSearchConfiguration") is not None:
         import capo_neptune_graph.types.vector_search_configuration
 
         out["vector_search_configuration"] = (
@@ -146,11 +146,11 @@ def deserialize_json(data: dict) -> CreateGraphUsingImportTaskInput:
                 data["vectorSearchConfiguration"]
             )
         )
-    if "replicaCount" in data:
+    if data.get("replicaCount") is not None:
         out["replica_count"] = data["replicaCount"]
-    if "deletionProtection" in data:
+    if data.get("deletionProtection") is not None:
         out["deletion_protection"] = data["deletionProtection"]
-    if "importOptions" in data:
+    if data.get("importOptions") is not None:
         import capo_neptune_graph.types.import_options
 
         out["import_options"] = (
@@ -158,27 +158,27 @@ def deserialize_json(data: dict) -> CreateGraphUsingImportTaskInput:
                 data["importOptions"]
             )
         )
-    if "maxProvisionedMemory" in data:
+    if data.get("maxProvisionedMemory") is not None:
         out["max_provisioned_memory"] = data["maxProvisionedMemory"]
-    if "minProvisionedMemory" in data:
+    if data.get("minProvisionedMemory") is not None:
         out["min_provisioned_memory"] = data["minProvisionedMemory"]
-    if "failOnError" in data:
+    if data.get("failOnError") is not None:
         out["fail_on_error"] = data["failOnError"]
-    if "source" in data:
+    if data.get("source") is not None:
         out["source"] = data["source"]
     else:
         raise DeserializationError("CreateGraphUsingImportTaskInput.source required")
-    if "format" in data:
+    if data.get("format") is not None:
         import capo_neptune_graph.types.format
 
         out["format"] = capo_neptune_graph.types.format.deserialize_json(data["format"])
-    if "parquetType" in data:
+    if data.get("parquetType") is not None:
         import capo_neptune_graph.types.parquet_type
 
         out["parquet_type"] = capo_neptune_graph.types.parquet_type.deserialize_json(
             data["parquetType"]
         )
-    if "blankNodeHandling" in data:
+    if data.get("blankNodeHandling") is not None:
         import capo_neptune_graph.types.blank_node_handling
 
         out["blank_node_handling"] = (
@@ -186,7 +186,7 @@ def deserialize_json(data: dict) -> CreateGraphUsingImportTaskInput:
                 data["blankNodeHandling"]
             )
         )
-    if "roleArn" in data:
+    if data.get("roleArn") is not None:
         out["role_arn"] = data["roleArn"]
     else:
         raise DeserializationError("CreateGraphUsingImportTaskInput.role_arn required")

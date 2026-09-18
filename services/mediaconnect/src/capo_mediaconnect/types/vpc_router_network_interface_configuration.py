@@ -35,7 +35,7 @@ def serialize_json(value: VpcRouterNetworkInterfaceConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> VpcRouterNetworkInterfaceConfiguration:
     out: VpcRouterNetworkInterfaceConfiguration = {}  # type: ignore[typeddict-item]
-    if "securityGroupIds" in data:
+    if data.get("securityGroupIds") is not None:
         import capo_mediaconnect.types.security_group_id_list
 
         out["security_group_ids"] = (
@@ -47,7 +47,7 @@ def deserialize_json(data: dict) -> VpcRouterNetworkInterfaceConfiguration:
         raise DeserializationError(
             "VpcRouterNetworkInterfaceConfiguration.security_group_ids required"
         )
-    if "subnetId" in data:
+    if data.get("subnetId") is not None:
         out["subnet_id"] = data["subnetId"]
     else:
         raise DeserializationError(

@@ -36,7 +36,7 @@ def serialize_json(value: ListLandingZoneOperationsOutput) -> dict:
 
 def deserialize_json(data: dict) -> ListLandingZoneOperationsOutput:
     out: ListLandingZoneOperationsOutput = {}  # type: ignore[typeddict-item]
-    if "landingZoneOperations" in data:
+    if data.get("landingZoneOperations") is not None:
         import capo_controltower.types.landing_zone_operations
 
         out["landing_zone_operations"] = (
@@ -48,6 +48,6 @@ def deserialize_json(data: dict) -> ListLandingZoneOperationsOutput:
         raise DeserializationError(
             "ListLandingZoneOperationsOutput.landing_zone_operations required"
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

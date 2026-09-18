@@ -45,15 +45,15 @@ def serialize_aws_json_1_1(value: VpcConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> VpcConfig:
     out: VpcConfig = {}  # type: ignore[typeddict-item]
-    if "vpcId" in data:
+    if data.get("vpcId") is not None:
         out["vpc_id"] = data["vpcId"]
-    if "subnets" in data:
+    if data.get("subnets") is not None:
         import capo_codebuild.types.subnets
 
         out["subnets"] = capo_codebuild.types.subnets.deserialize_aws_json_1_1(
             data["subnets"]
         )
-    if "securityGroupIds" in data:
+    if data.get("securityGroupIds") is not None:
         import capo_codebuild.types.security_group_ids
 
         out["security_group_ids"] = (

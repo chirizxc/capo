@@ -41,17 +41,22 @@ class CapacityDecreaseRequestsLimitExceededException(ServiceError):
 
     code: str | None = "CapacityDecreaseRequestsLimitExceededException"
 
-    def __init__(self, data: CapacityDecreaseRequestsLimitExceededException_):
+    def __init__(
+        self,
+        data: CapacityDecreaseRequestsLimitExceededException_,
+        message: str | None = None,
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="CapacityDecreaseRequestsLimitExceededException",
+            message=message,
         )
         self.data = data
 
     @classmethod
     def from_query(
-        cls, el: Element
+        cls, el: Element, message: str | None = None
     ) -> "CapacityDecreaseRequestsLimitExceededException":
-        return cls(deserialize_query(el))
+        return cls(deserialize_query(el), message)

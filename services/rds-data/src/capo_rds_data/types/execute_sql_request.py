@@ -40,22 +40,22 @@ def serialize_json(value: ExecuteSqlRequest) -> dict:
 
 def deserialize_json(data: dict) -> ExecuteSqlRequest:
     out: ExecuteSqlRequest = {}  # type: ignore[typeddict-item]
-    if "dbClusterOrInstanceArn" in data:
+    if data.get("dbClusterOrInstanceArn") is not None:
         out["db_cluster_or_instance_arn"] = data["dbClusterOrInstanceArn"]
     else:
         raise DeserializationError(
             "ExecuteSqlRequest.db_cluster_or_instance_arn required"
         )
-    if "awsSecretStoreArn" in data:
+    if data.get("awsSecretStoreArn") is not None:
         out["aws_secret_store_arn"] = data["awsSecretStoreArn"]
     else:
         raise DeserializationError("ExecuteSqlRequest.aws_secret_store_arn required")
-    if "sqlStatements" in data:
+    if data.get("sqlStatements") is not None:
         out["sql_statements"] = data["sqlStatements"]
     else:
         raise DeserializationError("ExecuteSqlRequest.sql_statements required")
-    if "database" in data:
+    if data.get("database") is not None:
         out["database"] = data["database"]
-    if "schema" in data:
+    if data.get("schema") is not None:
         out["schema"] = data["schema"]
     return out

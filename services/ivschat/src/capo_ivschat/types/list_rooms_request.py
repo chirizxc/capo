@@ -47,14 +47,14 @@ def serialize_json(value: ListRoomsRequest) -> dict:
 
 def deserialize_json(data: dict) -> ListRoomsRequest:
     out: ListRoomsRequest = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
-    if "messageReviewHandlerUri" in data:
+    if data.get("messageReviewHandlerUri") is not None:
         out["message_review_handler_uri"] = data["messageReviewHandlerUri"]
-    if "loggingConfigurationIdentifier" in data:
+    if data.get("loggingConfigurationIdentifier") is not None:
         out["logging_configuration_identifier"] = data["loggingConfigurationIdentifier"]
     return out

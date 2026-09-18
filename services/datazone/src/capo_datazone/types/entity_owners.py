@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> EntityOwners:
 
     out: EntityOwners = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_datazone.types.owner_properties_output.deserialize_json(item))
     return out

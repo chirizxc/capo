@@ -35,12 +35,12 @@ def serialize_aws_json_1_1(value: DatasetStats) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DatasetStats:
     out: DatasetStats = {}  # type: ignore[typeddict-item]
-    if "LabeledEntries" in data:
+    if data.get("LabeledEntries") is not None:
         out["labeled_entries"] = data["LabeledEntries"]
-    if "TotalEntries" in data:
+    if data.get("TotalEntries") is not None:
         out["total_entries"] = data["TotalEntries"]
-    if "TotalLabels" in data:
+    if data.get("TotalLabels") is not None:
         out["total_labels"] = data["TotalLabels"]
-    if "ErrorEntries" in data:
+    if data.get("ErrorEntries") is not None:
         out["error_entries"] = data["ErrorEntries"]
     return out

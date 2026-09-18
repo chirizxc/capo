@@ -48,7 +48,7 @@ def serialize_aws_json_1_1(value: AdapterVersionEvaluationMetric) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AdapterVersionEvaluationMetric:
     out: AdapterVersionEvaluationMetric = {}  # type: ignore[typeddict-item]
-    if "Baseline" in data:
+    if data.get("Baseline") is not None:
         import capo_textract.types.evaluation_metric
 
         out["baseline"] = (
@@ -56,7 +56,7 @@ def deserialize_aws_json_1_1(data: dict) -> AdapterVersionEvaluationMetric:
                 data["Baseline"]
             )
         )
-    if "AdapterVersion" in data:
+    if data.get("AdapterVersion") is not None:
         import capo_textract.types.evaluation_metric
 
         out["adapter_version"] = (
@@ -64,7 +64,7 @@ def deserialize_aws_json_1_1(data: dict) -> AdapterVersionEvaluationMetric:
                 data["AdapterVersion"]
             )
         )
-    if "FeatureType" in data:
+    if data.get("FeatureType") is not None:
         import capo_textract.types.feature_type
 
         out["feature_type"] = capo_textract.types.feature_type.deserialize_aws_json_1_1(

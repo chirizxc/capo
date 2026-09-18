@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> TokenBalanceList:
 
     out: TokenBalanceList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_managedblockchain_query.types.token_balance.deserialize_json(item)
         )

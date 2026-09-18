@@ -25,6 +25,8 @@ def serialize_json(input_to_serialize: EvaluationAnswersOutputMap) -> dict:
 def deserialize_json(data: dict) -> EvaluationAnswersOutputMap:
     out: EvaluationAnswersOutputMap = {}
     for key, value in data.items():
+        if value is None:
+            continue
         import capo_connect.types.evaluation_answer_output
 
         out[key] = capo_connect.types.evaluation_answer_output.deserialize_json(value)

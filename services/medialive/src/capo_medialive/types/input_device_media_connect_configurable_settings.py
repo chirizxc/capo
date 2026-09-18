@@ -35,12 +35,12 @@ def serialize_json(value: InputDeviceMediaConnectConfigurableSettings) -> dict:
 
 def deserialize_json(data: dict) -> InputDeviceMediaConnectConfigurableSettings:
     out: InputDeviceMediaConnectConfigurableSettings = {}  # type: ignore[typeddict-item]
-    if "flowArn" in data:
+    if data.get("flowArn") is not None:
         out["flow_arn"] = data["flowArn"]
-    if "roleArn" in data:
+    if data.get("roleArn") is not None:
         out["role_arn"] = data["roleArn"]
-    if "secretArn" in data:
+    if data.get("secretArn") is not None:
         out["secret_arn"] = data["secretArn"]
-    if "sourceName" in data:
+    if data.get("sourceName") is not None:
         out["source_name"] = data["sourceName"]
     return out

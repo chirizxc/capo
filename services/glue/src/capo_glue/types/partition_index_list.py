@@ -23,5 +23,7 @@ def deserialize_aws_json_1_1(data: list) -> PartitionIndexList:
 
     out: PartitionIndexList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_glue.types.partition_index.deserialize_aws_json_1_1(item))
     return out

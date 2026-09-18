@@ -29,13 +29,13 @@ def serialize_json(value: PrimaryKey) -> dict:
 
 def deserialize_json(data: dict) -> PrimaryKey:
     out: PrimaryKey = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "offset" in data:
+    if data.get("offset") is not None:
         out["offset"] = data["offset"]
     else:
         out["offset"] = 0
-    if "length" in data:
+    if data.get("length") is not None:
         out["length"] = data["length"]
     else:
         out["length"] = 0

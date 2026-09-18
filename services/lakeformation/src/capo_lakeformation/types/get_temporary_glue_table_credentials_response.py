@@ -63,13 +63,13 @@ def serialize_json(value: GetTemporaryGlueTableCredentialsResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetTemporaryGlueTableCredentialsResponse:
     out: GetTemporaryGlueTableCredentialsResponse = {}  # type: ignore[typeddict-item]
-    if "AccessKeyId" in data:
+    if data.get("AccessKeyId") is not None:
         out["access_key_id"] = data["AccessKeyId"]
-    if "SecretAccessKey" in data:
+    if data.get("SecretAccessKey") is not None:
         out["secret_access_key"] = data["SecretAccessKey"]
-    if "SessionToken" in data:
+    if data.get("SessionToken") is not None:
         out["session_token"] = data["SessionToken"]
-    if "Expiration" in data:
+    if data.get("Expiration") is not None:
         import capo_lakeformation.types.expiration_timestamp
 
         out["expiration"] = (
@@ -77,7 +77,7 @@ def deserialize_json(data: dict) -> GetTemporaryGlueTableCredentialsResponse:
                 data["Expiration"]
             )
         )
-    if "VendedS3Path" in data:
+    if data.get("VendedS3Path") is not None:
         import capo_lakeformation.types.path_string_list
 
         out["vended_s3_path"] = (

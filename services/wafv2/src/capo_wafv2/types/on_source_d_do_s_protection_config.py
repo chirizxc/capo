@@ -30,7 +30,7 @@ def serialize_aws_json_1_1(value: OnSourceDDoSProtectionConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> OnSourceDDoSProtectionConfig:
     out: OnSourceDDoSProtectionConfig = {}  # type: ignore[typeddict-item]
-    if "ALBLowReputationMode" in data:
+    if data.get("ALBLowReputationMode") is not None:
         import capo_wafv2.types.low_reputation_mode
 
         out["alb_low_reputation_mode"] = (

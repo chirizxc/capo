@@ -59,23 +59,23 @@ def serialize_aws_json_1_1(value: DirectJDBCSource) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DirectJDBCSource:
     out: DirectJDBCSource = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("DirectJDBCSource.name required")
-    if "Database" in data:
+    if data.get("Database") is not None:
         out["database"] = data["Database"]
     else:
         raise DeserializationError("DirectJDBCSource.database required")
-    if "Table" in data:
+    if data.get("Table") is not None:
         out["table"] = data["Table"]
     else:
         raise DeserializationError("DirectJDBCSource.table required")
-    if "ConnectionName" in data:
+    if data.get("ConnectionName") is not None:
         out["connection_name"] = data["ConnectionName"]
     else:
         raise DeserializationError("DirectJDBCSource.connection_name required")
-    if "ConnectionType" in data:
+    if data.get("ConnectionType") is not None:
         import capo_glue.types.jdbc_connection_type
 
         out["connection_type"] = (
@@ -85,9 +85,9 @@ def deserialize_aws_json_1_1(data: dict) -> DirectJDBCSource:
         )
     else:
         raise DeserializationError("DirectJDBCSource.connection_type required")
-    if "RedshiftTmpDir" in data:
+    if data.get("RedshiftTmpDir") is not None:
         out["redshift_tmp_dir"] = data["RedshiftTmpDir"]
-    if "OutputSchemas" in data:
+    if data.get("OutputSchemas") is not None:
         import capo_glue.types.glue_schemas
 
         out["output_schemas"] = capo_glue.types.glue_schemas.deserialize_aws_json_1_1(

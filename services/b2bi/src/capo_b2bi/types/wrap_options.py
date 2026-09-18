@@ -40,7 +40,7 @@ def serialize_aws_json_1_0(value: WrapOptions) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> WrapOptions:
     out: WrapOptions = {}  # type: ignore[typeddict-item]
-    if "wrapBy" in data:
+    if data.get("wrapBy") is not None:
         import capo_b2bi.types.wrap_format
 
         out["wrap_by"] = capo_b2bi.types.wrap_format.deserialize_aws_json_1_0(
@@ -48,7 +48,7 @@ def deserialize_aws_json_1_0(data: dict) -> WrapOptions:
         )
     else:
         raise DeserializationError("WrapOptions.wrap_by required")
-    if "lineTerminator" in data:
+    if data.get("lineTerminator") is not None:
         import capo_b2bi.types.line_terminator
 
         out["line_terminator"] = (
@@ -56,6 +56,6 @@ def deserialize_aws_json_1_0(data: dict) -> WrapOptions:
                 data["lineTerminator"]
             )
         )
-    if "lineLength" in data:
+    if data.get("lineLength") is not None:
         out["line_length"] = data["lineLength"]
     return out

@@ -105,11 +105,11 @@ def serialize_json(value: CreateComponentTypeRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateComponentTypeRequest:
     out: CreateComponentTypeRequest = {}  # type: ignore[typeddict-item]
-    if "isSingleton" in data:
+    if data.get("isSingleton") is not None:
         out["is_singleton"] = data["isSingleton"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "propertyDefinitions" in data:
+    if data.get("propertyDefinitions") is not None:
         import capo_iottwinmaker.types.property_definitions_request
 
         out["property_definitions"] = (
@@ -117,23 +117,23 @@ def deserialize_json(data: dict) -> CreateComponentTypeRequest:
                 data["propertyDefinitions"]
             )
         )
-    if "extendsFrom" in data:
+    if data.get("extendsFrom") is not None:
         import capo_iottwinmaker.types.extends_from
 
         out["extends_from"] = capo_iottwinmaker.types.extends_from.deserialize_json(
             data["extendsFrom"]
         )
-    if "functions" in data:
+    if data.get("functions") is not None:
         import capo_iottwinmaker.types.functions_request
 
         out["functions"] = capo_iottwinmaker.types.functions_request.deserialize_json(
             data["functions"]
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_iottwinmaker.types.tag_map
 
         out["tags"] = capo_iottwinmaker.types.tag_map.deserialize_json(data["tags"])
-    if "propertyGroups" in data:
+    if data.get("propertyGroups") is not None:
         import capo_iottwinmaker.types.property_groups_request
 
         out["property_groups"] = (
@@ -141,9 +141,9 @@ def deserialize_json(data: dict) -> CreateComponentTypeRequest:
                 data["propertyGroups"]
             )
         )
-    if "componentTypeName" in data:
+    if data.get("componentTypeName") is not None:
         out["component_type_name"] = data["componentTypeName"]
-    if "compositeComponentTypes" in data:
+    if data.get("compositeComponentTypes") is not None:
         import capo_iottwinmaker.types.composite_component_types_request
 
         out["composite_component_types"] = (

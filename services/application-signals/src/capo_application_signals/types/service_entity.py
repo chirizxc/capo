@@ -30,12 +30,12 @@ def serialize_json(value: ServiceEntity) -> dict:
 
 def deserialize_json(data: dict) -> ServiceEntity:
     out: ServiceEntity = {}  # type: ignore[typeddict-item]
-    if "Type" in data:
+    if data.get("Type") is not None:
         out["type"] = data["Type"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Environment" in data:
+    if data.get("Environment") is not None:
         out["environment"] = data["Environment"]
-    if "AwsAccountId" in data:
+    if data.get("AwsAccountId") is not None:
         out["aws_account_id"] = data["AwsAccountId"]
     return out

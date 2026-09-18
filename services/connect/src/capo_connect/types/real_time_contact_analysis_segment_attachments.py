@@ -61,19 +61,19 @@ def serialize_json(value: RealTimeContactAnalysisSegmentAttachments) -> dict:
 
 def deserialize_json(data: dict) -> RealTimeContactAnalysisSegmentAttachments:
     out: RealTimeContactAnalysisSegmentAttachments = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
     else:
         raise DeserializationError(
             "RealTimeContactAnalysisSegmentAttachments.id required"
         )
-    if "ParticipantId" in data:
+    if data.get("ParticipantId") is not None:
         out["participant_id"] = data["ParticipantId"]
     else:
         raise DeserializationError(
             "RealTimeContactAnalysisSegmentAttachments.participant_id required"
         )
-    if "ParticipantRole" in data:
+    if data.get("ParticipantRole") is not None:
         import capo_connect.types.participant_role
 
         out["participant_role"] = capo_connect.types.participant_role.deserialize_json(
@@ -83,9 +83,9 @@ def deserialize_json(data: dict) -> RealTimeContactAnalysisSegmentAttachments:
         raise DeserializationError(
             "RealTimeContactAnalysisSegmentAttachments.participant_role required"
         )
-    if "DisplayName" in data:
+    if data.get("DisplayName") is not None:
         out["display_name"] = data["DisplayName"]
-    if "Attachments" in data:
+    if data.get("Attachments") is not None:
         import capo_connect.types.real_time_contact_analysis_attachments
 
         out["attachments"] = (
@@ -97,7 +97,7 @@ def deserialize_json(data: dict) -> RealTimeContactAnalysisSegmentAttachments:
         raise DeserializationError(
             "RealTimeContactAnalysisSegmentAttachments.attachments required"
         )
-    if "Time" in data:
+    if data.get("Time") is not None:
         import capo_connect.types.real_time_contact_analysis_time_data
 
         out["time"] = (

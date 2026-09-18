@@ -31,10 +31,10 @@ def serialize_json(value: KinesisVideoStreamConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> KinesisVideoStreamConfiguration:
     out: KinesisVideoStreamConfiguration = {}  # type: ignore[typeddict-item]
-    if "Region" in data:
+    if data.get("Region") is not None:
         out["region"] = data["Region"]
     else:
         raise DeserializationError("KinesisVideoStreamConfiguration.region required")
-    if "DataRetentionInHours" in data:
+    if data.get("DataRetentionInHours") is not None:
         out["data_retention_in_hours"] = data["DataRetentionInHours"]
     return out

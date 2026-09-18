@@ -40,7 +40,7 @@ def serialize_json(value: CardStatus) -> dict:
 
 def deserialize_json(data: dict) -> CardStatus:
     out: CardStatus = {}  # type: ignore[typeddict-item]
-    if "currentState" in data:
+    if data.get("currentState") is not None:
         import capo_qapps.types.execution_status
 
         out["current_state"] = capo_qapps.types.execution_status.deserialize_json(
@@ -48,11 +48,11 @@ def deserialize_json(data: dict) -> CardStatus:
         )
     else:
         raise DeserializationError("CardStatus.current_state required")
-    if "currentValue" in data:
+    if data.get("currentValue") is not None:
         out["current_value"] = data["currentValue"]
     else:
         raise DeserializationError("CardStatus.current_value required")
-    if "submissions" in data:
+    if data.get("submissions") is not None:
         import capo_qapps.types.submission_list
 
         out["submissions"] = capo_qapps.types.submission_list.deserialize_json(

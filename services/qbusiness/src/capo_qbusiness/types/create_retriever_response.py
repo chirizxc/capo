@@ -28,8 +28,8 @@ def serialize_json(value: CreateRetrieverResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateRetrieverResponse:
     out: CreateRetrieverResponse = {}  # type: ignore[typeddict-item]
-    if "retrieverId" in data:
+    if data.get("retrieverId") is not None:
         out["retriever_id"] = data["retrieverId"]
-    if "retrieverArn" in data:
+    if data.get("retrieverArn") is not None:
         out["retriever_arn"] = data["retrieverArn"]
     return out

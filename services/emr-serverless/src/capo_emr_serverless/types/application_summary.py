@@ -70,31 +70,31 @@ def serialize_json(value: ApplicationSummary) -> dict:
 
 def deserialize_json(data: dict) -> ApplicationSummary:
     out: ApplicationSummary = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("ApplicationSummary.id required")
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("ApplicationSummary.arn required")
-    if "releaseLabel" in data:
+    if data.get("releaseLabel") is not None:
         out["release_label"] = data["releaseLabel"]
     else:
         raise DeserializationError("ApplicationSummary.release_label required")
-    if "type" in data:
+    if data.get("type") is not None:
         out["type"] = data["type"]
     else:
         raise DeserializationError("ApplicationSummary.type required")
-    if "state" in data:
+    if data.get("state") is not None:
         out["state"] = data["state"]
     else:
         raise DeserializationError("ApplicationSummary.state required")
-    if "stateDetails" in data:
+    if data.get("stateDetails") is not None:
         out["state_details"] = data["stateDetails"]
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_emr_serverless.types.date
 
         out["created_at"] = capo_emr_serverless.types.date.deserialize_json(
@@ -102,7 +102,7 @@ def deserialize_json(data: dict) -> ApplicationSummary:
         )
     else:
         raise DeserializationError("ApplicationSummary.created_at required")
-    if "updatedAt" in data:
+    if data.get("updatedAt") is not None:
         import capo_emr_serverless.types.date
 
         out["updated_at"] = capo_emr_serverless.types.date.deserialize_json(
@@ -110,6 +110,6 @@ def deserialize_json(data: dict) -> ApplicationSummary:
         )
     else:
         raise DeserializationError("ApplicationSummary.updated_at required")
-    if "architecture" in data:
+    if data.get("architecture") is not None:
         out["architecture"] = data["architecture"]
     return out

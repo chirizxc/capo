@@ -35,11 +35,11 @@ def serialize_json(value: ThingPrincipalObject) -> dict:
 
 def deserialize_json(data: dict) -> ThingPrincipalObject:
     out: ThingPrincipalObject = {}  # type: ignore[typeddict-item]
-    if "principal" in data:
+    if data.get("principal") is not None:
         out["principal"] = data["principal"]
     else:
         raise DeserializationError("ThingPrincipalObject.principal required")
-    if "thingPrincipalType" in data:
+    if data.get("thingPrincipalType") is not None:
         import capo_iot.types.thing_principal_type
 
         out["thing_principal_type"] = (

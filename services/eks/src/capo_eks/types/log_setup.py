@@ -30,10 +30,10 @@ def serialize_json(value: LogSetup) -> dict:
 
 def deserialize_json(data: dict) -> LogSetup:
     out: LogSetup = {}  # type: ignore[typeddict-item]
-    if "types" in data:
+    if data.get("types") is not None:
         import capo_eks.types.log_types
 
         out["types"] = capo_eks.types.log_types.deserialize_json(data["types"])
-    if "enabled" in data:
+    if data.get("enabled") is not None:
         out["enabled"] = data["enabled"]
     return out

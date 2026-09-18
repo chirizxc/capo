@@ -37,9 +37,9 @@ def serialize_json(value: ListAppAssessmentsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListAppAssessmentsResponse:
     out: ListAppAssessmentsResponse = {}  # type: ignore[typeddict-item]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "assessmentSummaries" in data:
+    if data.get("assessmentSummaries") is not None:
         import capo_resiliencehub.types.app_assessment_summary_list
 
         out["assessment_summaries"] = (

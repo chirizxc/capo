@@ -140,25 +140,25 @@ def serialize_json(value: DescribeScanJobOutput) -> dict:
 
 def deserialize_json(data: dict) -> DescribeScanJobOutput:
     out: DescribeScanJobOutput = {}  # type: ignore[typeddict-item]
-    if "AccountId" in data:
+    if data.get("AccountId") is not None:
         out["account_id"] = data["AccountId"]
     else:
         raise DeserializationError("DescribeScanJobOutput.account_id required")
-    if "BackupVaultArn" in data:
+    if data.get("BackupVaultArn") is not None:
         out["backup_vault_arn"] = data["BackupVaultArn"]
     else:
         raise DeserializationError("DescribeScanJobOutput.backup_vault_arn required")
-    if "BackupVaultName" in data:
+    if data.get("BackupVaultName") is not None:
         out["backup_vault_name"] = data["BackupVaultName"]
     else:
         raise DeserializationError("DescribeScanJobOutput.backup_vault_name required")
-    if "CompletionDate" in data:
+    if data.get("CompletionDate") is not None:
         import capo_backup.types._prelude.timestamp
 
         out["completion_date"] = capo_backup.types._prelude.timestamp.deserialize_json(
             data["CompletionDate"]
         )
-    if "ContinuousScanEndTime" in data:
+    if data.get("ContinuousScanEndTime") is not None:
         import capo_backup.types._prelude.timestamp
 
         out["continuous_scan_end_time"] = (
@@ -166,7 +166,7 @@ def deserialize_json(data: dict) -> DescribeScanJobOutput:
                 data["ContinuousScanEndTime"]
             )
         )
-    if "ContinuousScanStartTime" in data:
+    if data.get("ContinuousScanStartTime") is not None:
         import capo_backup.types._prelude.timestamp
 
         out["continuous_scan_start_time"] = (
@@ -174,7 +174,7 @@ def deserialize_json(data: dict) -> DescribeScanJobOutput:
                 data["ContinuousScanStartTime"]
             )
         )
-    if "CreatedBy" in data:
+    if data.get("CreatedBy") is not None:
         import capo_backup.types.scan_job_creator
 
         out["created_by"] = capo_backup.types.scan_job_creator.deserialize_json(
@@ -182,7 +182,7 @@ def deserialize_json(data: dict) -> DescribeScanJobOutput:
         )
     else:
         raise DeserializationError("DescribeScanJobOutput.created_by required")
-    if "CreationDate" in data:
+    if data.get("CreationDate") is not None:
         import capo_backup.types._prelude.timestamp
 
         out["creation_date"] = capo_backup.types._prelude.timestamp.deserialize_json(
@@ -190,11 +190,11 @@ def deserialize_json(data: dict) -> DescribeScanJobOutput:
         )
     else:
         raise DeserializationError("DescribeScanJobOutput.creation_date required")
-    if "IamRoleArn" in data:
+    if data.get("IamRoleArn") is not None:
         out["iam_role_arn"] = data["IamRoleArn"]
     else:
         raise DeserializationError("DescribeScanJobOutput.iam_role_arn required")
-    if "MalwareScanner" in data:
+    if data.get("MalwareScanner") is not None:
         import capo_backup.types.malware_scanner
 
         out["malware_scanner"] = capo_backup.types.malware_scanner.deserialize_json(
@@ -202,19 +202,19 @@ def deserialize_json(data: dict) -> DescribeScanJobOutput:
         )
     else:
         raise DeserializationError("DescribeScanJobOutput.malware_scanner required")
-    if "RecoveryPointArn" in data:
+    if data.get("RecoveryPointArn") is not None:
         out["recovery_point_arn"] = data["RecoveryPointArn"]
     else:
         raise DeserializationError("DescribeScanJobOutput.recovery_point_arn required")
-    if "ResourceArn" in data:
+    if data.get("ResourceArn") is not None:
         out["resource_arn"] = data["ResourceArn"]
     else:
         raise DeserializationError("DescribeScanJobOutput.resource_arn required")
-    if "ResourceName" in data:
+    if data.get("ResourceName") is not None:
         out["resource_name"] = data["ResourceName"]
     else:
         raise DeserializationError("DescribeScanJobOutput.resource_name required")
-    if "ResourceType" in data:
+    if data.get("ResourceType") is not None:
         import capo_backup.types.scan_resource_type
 
         out["resource_type"] = capo_backup.types.scan_resource_type.deserialize_json(
@@ -222,15 +222,15 @@ def deserialize_json(data: dict) -> DescribeScanJobOutput:
         )
     else:
         raise DeserializationError("DescribeScanJobOutput.resource_type required")
-    if "ScanBaseRecoveryPointArn" in data:
+    if data.get("ScanBaseRecoveryPointArn") is not None:
         out["scan_base_recovery_point_arn"] = data["ScanBaseRecoveryPointArn"]
-    if "ScanId" in data:
+    if data.get("ScanId") is not None:
         out["scan_id"] = data["ScanId"]
-    if "ScanJobId" in data:
+    if data.get("ScanJobId") is not None:
         out["scan_job_id"] = data["ScanJobId"]
     else:
         raise DeserializationError("DescribeScanJobOutput.scan_job_id required")
-    if "ScanMode" in data:
+    if data.get("ScanMode") is not None:
         import capo_backup.types.scan_mode
 
         out["scan_mode"] = capo_backup.types.scan_mode.deserialize_json(
@@ -238,22 +238,22 @@ def deserialize_json(data: dict) -> DescribeScanJobOutput:
         )
     else:
         raise DeserializationError("DescribeScanJobOutput.scan_mode required")
-    if "ScanResult" in data:
+    if data.get("ScanResult") is not None:
         import capo_backup.types.scan_result_info
 
         out["scan_result"] = capo_backup.types.scan_result_info.deserialize_json(
             data["ScanResult"]
         )
-    if "ScannerRoleArn" in data:
+    if data.get("ScannerRoleArn") is not None:
         out["scanner_role_arn"] = data["ScannerRoleArn"]
     else:
         raise DeserializationError("DescribeScanJobOutput.scanner_role_arn required")
-    if "State" in data:
+    if data.get("State") is not None:
         import capo_backup.types.scan_state
 
         out["state"] = capo_backup.types.scan_state.deserialize_json(data["State"])
     else:
         raise DeserializationError("DescribeScanJobOutput.state required")
-    if "StatusMessage" in data:
+    if data.get("StatusMessage") is not None:
         out["status_message"] = data["StatusMessage"]
     return out

@@ -1,5 +1,6 @@
 """Generated from Smithy shape ``com.amazonaws.networkmanager#NetworkManager``."""
 
+import uuid
 import warnings
 from collections.abc import Iterator
 from typing import TYPE_CHECKING, Any, Iterable, Optional
@@ -439,14 +440,16 @@ class NetworkManagerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_networkmanager.types.accept_attachment_request.AcceptAttachmentRequest = {}  # type: ignore[typeddict-item]
-        input_["attachment_id"] = attachment_id
+        input_: capo_networkmanager.types.accept_attachment_request.AcceptAttachmentRequest = {
+            "attachment_id": attachment_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def associate_connect_peer(
@@ -492,10 +495,11 @@ class NetworkManagerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_networkmanager.types.associate_connect_peer_request.AssociateConnectPeerRequest = {}  # type: ignore[typeddict-item]
-        input_["global_network_id"] = global_network_id
-        input_["connect_peer_id"] = connect_peer_id
-        input_["device_id"] = device_id
+        input_: capo_networkmanager.types.associate_connect_peer_request.AssociateConnectPeerRequest = {
+            "global_network_id": global_network_id,
+            "connect_peer_id": connect_peer_id,
+            "device_id": device_id,
+        }
         if link_id is not None:
             input_["link_id"] = link_id
 
@@ -504,6 +508,7 @@ class NetworkManagerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def associate_customer_gateway(
@@ -549,10 +554,11 @@ class NetworkManagerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_networkmanager.types.associate_customer_gateway_request.AssociateCustomerGatewayRequest = {}  # type: ignore[typeddict-item]
-        input_["customer_gateway_arn"] = customer_gateway_arn
-        input_["global_network_id"] = global_network_id
-        input_["device_id"] = device_id
+        input_: capo_networkmanager.types.associate_customer_gateway_request.AssociateCustomerGatewayRequest = {
+            "customer_gateway_arn": customer_gateway_arn,
+            "global_network_id": global_network_id,
+            "device_id": device_id,
+        }
         if link_id is not None:
             input_["link_id"] = link_id
 
@@ -561,6 +567,7 @@ class NetworkManagerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def associate_link(
@@ -604,16 +611,18 @@ class NetworkManagerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_networkmanager.types.associate_link_request.AssociateLinkRequest = {}  # type: ignore[typeddict-item]
-        input_["global_network_id"] = global_network_id
-        input_["device_id"] = device_id
-        input_["link_id"] = link_id
+        input_: capo_networkmanager.types.associate_link_request.AssociateLinkRequest = {
+            "global_network_id": global_network_id,
+            "device_id": device_id,
+            "link_id": link_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def associate_transit_gateway_connect_peer(
@@ -659,10 +668,11 @@ class NetworkManagerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_networkmanager.types.associate_transit_gateway_connect_peer_request.AssociateTransitGatewayConnectPeerRequest = {}  # type: ignore[typeddict-item]
-        input_["global_network_id"] = global_network_id
-        input_["transit_gateway_connect_peer_arn"] = transit_gateway_connect_peer_arn
-        input_["device_id"] = device_id
+        input_: capo_networkmanager.types.associate_transit_gateway_connect_peer_request.AssociateTransitGatewayConnectPeerRequest = {
+            "global_network_id": global_network_id,
+            "transit_gateway_connect_peer_arn": transit_gateway_connect_peer_arn,
+            "device_id": device_id,
+        }
         if link_id is not None:
             input_["link_id"] = link_id
 
@@ -671,6 +681,7 @@ class NetworkManagerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_connect_attachment(
@@ -725,23 +736,26 @@ class NetworkManagerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_networkmanager.types.create_connect_attachment_request.CreateConnectAttachmentRequest = {}  # type: ignore[typeddict-item]
-        input_["core_network_id"] = core_network_id
-        input_["edge_location"] = edge_location
-        input_["transport_attachment_id"] = transport_attachment_id
+        input_: capo_networkmanager.types.create_connect_attachment_request.CreateConnectAttachmentRequest = {
+            "core_network_id": core_network_id,
+            "edge_location": edge_location,
+            "transport_attachment_id": transport_attachment_id,
+            "options": options,
+        }
         if routing_policy_label is not None:
             input_["routing_policy_label"] = routing_policy_label
-        input_["options"] = options
         if tags is not None:
             input_["tags"] = tags
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_connection(
@@ -796,10 +810,11 @@ class NetworkManagerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_networkmanager.types.create_connection_request.CreateConnectionRequest = {}  # type: ignore[typeddict-item]
-        input_["global_network_id"] = global_network_id
-        input_["device_id"] = device_id
-        input_["connected_device_id"] = connected_device_id
+        input_: capo_networkmanager.types.create_connection_request.CreateConnectionRequest = {
+            "global_network_id": global_network_id,
+            "device_id": device_id,
+            "connected_device_id": connected_device_id,
+        }
         if link_id is not None:
             input_["link_id"] = link_id
         if connected_link_id is not None:
@@ -814,6 +829,7 @@ class NetworkManagerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_connect_peer(
@@ -874,19 +890,21 @@ class NetworkManagerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_networkmanager.types.create_connect_peer_request.CreateConnectPeerRequest = {}  # type: ignore[typeddict-item]
-        input_["connect_attachment_id"] = connect_attachment_id
+        input_: capo_networkmanager.types.create_connect_peer_request.CreateConnectPeerRequest = {
+            "connect_attachment_id": connect_attachment_id,
+            "peer_address": peer_address,
+        }
         if core_network_address is not None:
             input_["core_network_address"] = core_network_address
-        input_["peer_address"] = peer_address
         if bgp_options is not None:
             input_["bgp_options"] = bgp_options
         if inside_cidr_blocks is not None:
             input_["inside_cidr_blocks"] = inside_cidr_blocks
         if tags is not None:
             input_["tags"] = tags
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if subnet_arn is not None:
             input_["subnet_arn"] = subnet_arn
 
@@ -895,6 +913,7 @@ class NetworkManagerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_core_network(
@@ -948,22 +967,25 @@ class NetworkManagerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_networkmanager.types.create_core_network_request.CreateCoreNetworkRequest = {}  # type: ignore[typeddict-item]
-        input_["global_network_id"] = global_network_id
+        input_: capo_networkmanager.types.create_core_network_request.CreateCoreNetworkRequest = {
+            "global_network_id": global_network_id
+        }
         if description is not None:
             input_["description"] = description
         if tags is not None:
             input_["tags"] = tags
         if policy_document is not None:
             input_["policy_document"] = policy_document
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_core_network_prefix_list_association(
@@ -1011,18 +1033,21 @@ class NetworkManagerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_networkmanager.types.create_core_network_prefix_list_association_request.CreateCoreNetworkPrefixListAssociationRequest = {}  # type: ignore[typeddict-item]
-        input_["core_network_id"] = core_network_id
-        input_["prefix_list_arn"] = prefix_list_arn
-        input_["prefix_list_alias"] = prefix_list_alias
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_networkmanager.types.create_core_network_prefix_list_association_request.CreateCoreNetworkPrefixListAssociationRequest = {
+            "core_network_id": core_network_id,
+            "prefix_list_arn": prefix_list_arn,
+            "prefix_list_alias": prefix_list_alias,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_device(
@@ -1092,8 +1117,9 @@ class NetworkManagerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_networkmanager.types.create_device_request.CreateDeviceRequest = {}  # type: ignore[typeddict-item]
-        input_["global_network_id"] = global_network_id
+        input_: capo_networkmanager.types.create_device_request.CreateDeviceRequest = {
+            "global_network_id": global_network_id
+        }
         if aws_location is not None:
             input_["aws_location"] = aws_location
         if description is not None:
@@ -1118,6 +1144,7 @@ class NetworkManagerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_direct_connect_gateway_attachment(
@@ -1170,22 +1197,25 @@ class NetworkManagerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_networkmanager.types.create_direct_connect_gateway_attachment_request.CreateDirectConnectGatewayAttachmentRequest = {}  # type: ignore[typeddict-item]
-        input_["core_network_id"] = core_network_id
-        input_["direct_connect_gateway_arn"] = direct_connect_gateway_arn
+        input_: capo_networkmanager.types.create_direct_connect_gateway_attachment_request.CreateDirectConnectGatewayAttachmentRequest = {
+            "core_network_id": core_network_id,
+            "direct_connect_gateway_arn": direct_connect_gateway_arn,
+            "edge_locations": edge_locations,
+        }
         if routing_policy_label is not None:
             input_["routing_policy_label"] = routing_policy_label
-        input_["edge_locations"] = edge_locations
         if tags is not None:
             input_["tags"] = tags
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_global_network(
@@ -1228,7 +1258,7 @@ class NetworkManagerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_networkmanager.types.create_global_network_request.CreateGlobalNetworkRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_networkmanager.types.create_global_network_request.CreateGlobalNetworkRequest = {}
         if description is not None:
             input_["description"] = description
         if tags is not None:
@@ -1239,6 +1269,7 @@ class NetworkManagerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_link(
@@ -1296,16 +1327,17 @@ class NetworkManagerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_networkmanager.types.create_link_request.CreateLinkRequest = {}  # type: ignore[typeddict-item]
-        input_["global_network_id"] = global_network_id
+        input_: capo_networkmanager.types.create_link_request.CreateLinkRequest = {
+            "global_network_id": global_network_id,
+            "bandwidth": bandwidth,
+            "site_id": site_id,
+        }
         if description is not None:
             input_["description"] = description
         if type is not None:
             input_["type"] = type
-        input_["bandwidth"] = bandwidth
         if provider is not None:
             input_["provider"] = provider
-        input_["site_id"] = site_id
         if tags is not None:
             input_["tags"] = tags
 
@@ -1314,6 +1346,7 @@ class NetworkManagerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_site(
@@ -1361,8 +1394,9 @@ class NetworkManagerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_networkmanager.types.create_site_request.CreateSiteRequest = {}  # type: ignore[typeddict-item]
-        input_["global_network_id"] = global_network_id
+        input_: capo_networkmanager.types.create_site_request.CreateSiteRequest = {
+            "global_network_id": global_network_id
+        }
         if description is not None:
             input_["description"] = description
         if location is not None:
@@ -1375,6 +1409,7 @@ class NetworkManagerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_site_to_site_vpn_attachment(
@@ -1425,21 +1460,24 @@ class NetworkManagerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_networkmanager.types.create_site_to_site_vpn_attachment_request.CreateSiteToSiteVpnAttachmentRequest = {}  # type: ignore[typeddict-item]
-        input_["core_network_id"] = core_network_id
-        input_["vpn_connection_arn"] = vpn_connection_arn
+        input_: capo_networkmanager.types.create_site_to_site_vpn_attachment_request.CreateSiteToSiteVpnAttachmentRequest = {
+            "core_network_id": core_network_id,
+            "vpn_connection_arn": vpn_connection_arn,
+        }
         if routing_policy_label is not None:
             input_["routing_policy_label"] = routing_policy_label
         if tags is not None:
             input_["tags"] = tags
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_transit_gateway_peering(
@@ -1486,19 +1524,22 @@ class NetworkManagerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_networkmanager.types.create_transit_gateway_peering_request.CreateTransitGatewayPeeringRequest = {}  # type: ignore[typeddict-item]
-        input_["core_network_id"] = core_network_id
-        input_["transit_gateway_arn"] = transit_gateway_arn
+        input_: capo_networkmanager.types.create_transit_gateway_peering_request.CreateTransitGatewayPeeringRequest = {
+            "core_network_id": core_network_id,
+            "transit_gateway_arn": transit_gateway_arn,
+        }
         if tags is not None:
             input_["tags"] = tags
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_transit_gateway_route_table_attachment(
@@ -1549,21 +1590,24 @@ class NetworkManagerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_networkmanager.types.create_transit_gateway_route_table_attachment_request.CreateTransitGatewayRouteTableAttachmentRequest = {}  # type: ignore[typeddict-item]
-        input_["peering_id"] = peering_id
-        input_["transit_gateway_route_table_arn"] = transit_gateway_route_table_arn
+        input_: capo_networkmanager.types.create_transit_gateway_route_table_attachment_request.CreateTransitGatewayRouteTableAttachmentRequest = {
+            "peering_id": peering_id,
+            "transit_gateway_route_table_arn": transit_gateway_route_table_arn,
+        }
         if routing_policy_label is not None:
             input_["routing_policy_label"] = routing_policy_label
         if tags is not None:
             input_["tags"] = tags
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_vpc_attachment(
@@ -1618,24 +1662,27 @@ class NetworkManagerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_networkmanager.types.create_vpc_attachment_request.CreateVpcAttachmentRequest = {}  # type: ignore[typeddict-item]
-        input_["core_network_id"] = core_network_id
-        input_["vpc_arn"] = vpc_arn
-        input_["subnet_arns"] = subnet_arns
+        input_: capo_networkmanager.types.create_vpc_attachment_request.CreateVpcAttachmentRequest = {
+            "core_network_id": core_network_id,
+            "vpc_arn": vpc_arn,
+            "subnet_arns": subnet_arns,
+        }
         if options is not None:
             input_["options"] = options
         if routing_policy_label is not None:
             input_["routing_policy_label"] = routing_policy_label
         if tags is not None:
             input_["tags"] = tags
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_attachment(
@@ -1676,14 +1723,16 @@ class NetworkManagerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_networkmanager.types.delete_attachment_request.DeleteAttachmentRequest = {}  # type: ignore[typeddict-item]
-        input_["attachment_id"] = attachment_id
+        input_: capo_networkmanager.types.delete_attachment_request.DeleteAttachmentRequest = {
+            "attachment_id": attachment_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_connection(
@@ -1726,15 +1775,17 @@ class NetworkManagerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_networkmanager.types.delete_connection_request.DeleteConnectionRequest = {}  # type: ignore[typeddict-item]
-        input_["global_network_id"] = global_network_id
-        input_["connection_id"] = connection_id
+        input_: capo_networkmanager.types.delete_connection_request.DeleteConnectionRequest = {
+            "global_network_id": global_network_id,
+            "connection_id": connection_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_connect_peer(
@@ -1773,14 +1824,16 @@ class NetworkManagerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_networkmanager.types.delete_connect_peer_request.DeleteConnectPeerRequest = {}  # type: ignore[typeddict-item]
-        input_["connect_peer_id"] = connect_peer_id
+        input_: capo_networkmanager.types.delete_connect_peer_request.DeleteConnectPeerRequest = {
+            "connect_peer_id": connect_peer_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_core_network(
@@ -1819,14 +1872,16 @@ class NetworkManagerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_networkmanager.types.delete_core_network_request.DeleteCoreNetworkRequest = {}  # type: ignore[typeddict-item]
-        input_["core_network_id"] = core_network_id
+        input_: capo_networkmanager.types.delete_core_network_request.DeleteCoreNetworkRequest = {
+            "core_network_id": core_network_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_core_network_policy_version(
@@ -1867,15 +1922,17 @@ class NetworkManagerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_networkmanager.types.delete_core_network_policy_version_request.DeleteCoreNetworkPolicyVersionRequest = {}  # type: ignore[typeddict-item]
-        input_["core_network_id"] = core_network_id
-        input_["policy_version_id"] = policy_version_id
+        input_: capo_networkmanager.types.delete_core_network_policy_version_request.DeleteCoreNetworkPolicyVersionRequest = {
+            "core_network_id": core_network_id,
+            "policy_version_id": policy_version_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_core_network_prefix_list_association(
@@ -1917,15 +1974,17 @@ class NetworkManagerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_networkmanager.types.delete_core_network_prefix_list_association_request.DeleteCoreNetworkPrefixListAssociationRequest = {}  # type: ignore[typeddict-item]
-        input_["core_network_id"] = core_network_id
-        input_["prefix_list_arn"] = prefix_list_arn
+        input_: capo_networkmanager.types.delete_core_network_prefix_list_association_request.DeleteCoreNetworkPrefixListAssociationRequest = {
+            "core_network_id": core_network_id,
+            "prefix_list_arn": prefix_list_arn,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_device(
@@ -1966,15 +2025,17 @@ class NetworkManagerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_networkmanager.types.delete_device_request.DeleteDeviceRequest = {}  # type: ignore[typeddict-item]
-        input_["global_network_id"] = global_network_id
-        input_["device_id"] = device_id
+        input_: capo_networkmanager.types.delete_device_request.DeleteDeviceRequest = {
+            "global_network_id": global_network_id,
+            "device_id": device_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_global_network(
@@ -2013,14 +2074,16 @@ class NetworkManagerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_networkmanager.types.delete_global_network_request.DeleteGlobalNetworkRequest = {}  # type: ignore[typeddict-item]
-        input_["global_network_id"] = global_network_id
+        input_: capo_networkmanager.types.delete_global_network_request.DeleteGlobalNetworkRequest = {
+            "global_network_id": global_network_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_link(
@@ -2061,15 +2124,17 @@ class NetworkManagerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_networkmanager.types.delete_link_request.DeleteLinkRequest = {}  # type: ignore[typeddict-item]
-        input_["global_network_id"] = global_network_id
-        input_["link_id"] = link_id
+        input_: capo_networkmanager.types.delete_link_request.DeleteLinkRequest = {
+            "global_network_id": global_network_id,
+            "link_id": link_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_peering(
@@ -2108,14 +2173,16 @@ class NetworkManagerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_networkmanager.types.delete_peering_request.DeletePeeringRequest = {}  # type: ignore[typeddict-item]
-        input_["peering_id"] = peering_id
+        input_: capo_networkmanager.types.delete_peering_request.DeletePeeringRequest = {
+            "peering_id": peering_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_resource_policy(
@@ -2153,14 +2220,16 @@ class NetworkManagerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_networkmanager.types.delete_resource_policy_request.DeleteResourcePolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_networkmanager.types.delete_resource_policy_request.DeleteResourcePolicyRequest = {
+            "resource_arn": resource_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_site(
@@ -2201,15 +2270,17 @@ class NetworkManagerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_networkmanager.types.delete_site_request.DeleteSiteRequest = {}  # type: ignore[typeddict-item]
-        input_["global_network_id"] = global_network_id
-        input_["site_id"] = site_id
+        input_: capo_networkmanager.types.delete_site_request.DeleteSiteRequest = {
+            "global_network_id": global_network_id,
+            "site_id": site_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def deregister_transit_gateway(
@@ -2250,15 +2321,17 @@ class NetworkManagerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_networkmanager.types.deregister_transit_gateway_request.DeregisterTransitGatewayRequest = {}  # type: ignore[typeddict-item]
-        input_["global_network_id"] = global_network_id
-        input_["transit_gateway_arn"] = transit_gateway_arn
+        input_: capo_networkmanager.types.deregister_transit_gateway_request.DeregisterTransitGatewayRequest = {
+            "global_network_id": global_network_id,
+            "transit_gateway_arn": transit_gateway_arn,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_global_networks(
@@ -2304,7 +2377,7 @@ class NetworkManagerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_networkmanager.types.describe_global_networks_request.DescribeGlobalNetworksRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_networkmanager.types.describe_global_networks_request.DescribeGlobalNetworksRequest = {}
         if global_network_ids is not None:
             input_["global_network_ids"] = global_network_ids
         if max_results is not None:
@@ -2317,6 +2390,7 @@ class NetworkManagerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_describe_global_networks(
@@ -2384,15 +2458,17 @@ class NetworkManagerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_networkmanager.types.disassociate_connect_peer_request.DisassociateConnectPeerRequest = {}  # type: ignore[typeddict-item]
-        input_["global_network_id"] = global_network_id
-        input_["connect_peer_id"] = connect_peer_id
+        input_: capo_networkmanager.types.disassociate_connect_peer_request.DisassociateConnectPeerRequest = {
+            "global_network_id": global_network_id,
+            "connect_peer_id": connect_peer_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def disassociate_customer_gateway(
@@ -2433,15 +2509,17 @@ class NetworkManagerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_networkmanager.types.disassociate_customer_gateway_request.DisassociateCustomerGatewayRequest = {}  # type: ignore[typeddict-item]
-        input_["global_network_id"] = global_network_id
-        input_["customer_gateway_arn"] = customer_gateway_arn
+        input_: capo_networkmanager.types.disassociate_customer_gateway_request.DisassociateCustomerGatewayRequest = {
+            "global_network_id": global_network_id,
+            "customer_gateway_arn": customer_gateway_arn,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def disassociate_link(
@@ -2486,16 +2564,18 @@ class NetworkManagerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_networkmanager.types.disassociate_link_request.DisassociateLinkRequest = {}  # type: ignore[typeddict-item]
-        input_["global_network_id"] = global_network_id
-        input_["device_id"] = device_id
-        input_["link_id"] = link_id
+        input_: capo_networkmanager.types.disassociate_link_request.DisassociateLinkRequest = {
+            "global_network_id": global_network_id,
+            "device_id": device_id,
+            "link_id": link_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def disassociate_transit_gateway_connect_peer(
@@ -2536,15 +2616,17 @@ class NetworkManagerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_networkmanager.types.disassociate_transit_gateway_connect_peer_request.DisassociateTransitGatewayConnectPeerRequest = {}  # type: ignore[typeddict-item]
-        input_["global_network_id"] = global_network_id
-        input_["transit_gateway_connect_peer_arn"] = transit_gateway_connect_peer_arn
+        input_: capo_networkmanager.types.disassociate_transit_gateway_connect_peer_request.DisassociateTransitGatewayConnectPeerRequest = {
+            "global_network_id": global_network_id,
+            "transit_gateway_connect_peer_arn": transit_gateway_connect_peer_arn,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def execute_core_network_change_set(
@@ -2585,15 +2667,17 @@ class NetworkManagerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_networkmanager.types.execute_core_network_change_set_request.ExecuteCoreNetworkChangeSetRequest = {}  # type: ignore[typeddict-item]
-        input_["core_network_id"] = core_network_id
-        input_["policy_version_id"] = policy_version_id
+        input_: capo_networkmanager.types.execute_core_network_change_set_request.ExecuteCoreNetworkChangeSetRequest = {
+            "core_network_id": core_network_id,
+            "policy_version_id": policy_version_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_connect_attachment(
@@ -2631,14 +2715,16 @@ class NetworkManagerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_networkmanager.types.get_connect_attachment_request.GetConnectAttachmentRequest = {}  # type: ignore[typeddict-item]
-        input_["attachment_id"] = attachment_id
+        input_: capo_networkmanager.types.get_connect_attachment_request.GetConnectAttachmentRequest = {
+            "attachment_id": attachment_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_connections(
@@ -2688,8 +2774,9 @@ class NetworkManagerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_networkmanager.types.get_connections_request.GetConnectionsRequest = {}  # type: ignore[typeddict-item]
-        input_["global_network_id"] = global_network_id
+        input_: capo_networkmanager.types.get_connections_request.GetConnectionsRequest = {
+            "global_network_id": global_network_id
+        }
         if connection_ids is not None:
             input_["connection_ids"] = connection_ids
         if device_id is not None:
@@ -2704,6 +2791,7 @@ class NetworkManagerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_get_connections(
@@ -2772,14 +2860,16 @@ class NetworkManagerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_networkmanager.types.get_connect_peer_request.GetConnectPeerRequest = {}  # type: ignore[typeddict-item]
-        input_["connect_peer_id"] = connect_peer_id
+        input_: capo_networkmanager.types.get_connect_peer_request.GetConnectPeerRequest = {
+            "connect_peer_id": connect_peer_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_connect_peer_associations(
@@ -2828,8 +2918,9 @@ class NetworkManagerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_networkmanager.types.get_connect_peer_associations_request.GetConnectPeerAssociationsRequest = {}  # type: ignore[typeddict-item]
-        input_["global_network_id"] = global_network_id
+        input_: capo_networkmanager.types.get_connect_peer_associations_request.GetConnectPeerAssociationsRequest = {
+            "global_network_id": global_network_id
+        }
         if connect_peer_ids is not None:
             input_["connect_peer_ids"] = connect_peer_ids
         if max_results is not None:
@@ -2842,6 +2933,7 @@ class NetworkManagerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_get_connect_peer_associations(
@@ -2908,14 +3000,16 @@ class NetworkManagerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_networkmanager.types.get_core_network_request.GetCoreNetworkRequest = {}  # type: ignore[typeddict-item]
-        input_["core_network_id"] = core_network_id
+        input_: capo_networkmanager.types.get_core_network_request.GetCoreNetworkRequest = {
+            "core_network_id": core_network_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_core_network_change_events(
@@ -2961,9 +3055,10 @@ class NetworkManagerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_networkmanager.types.get_core_network_change_events_request.GetCoreNetworkChangeEventsRequest = {}  # type: ignore[typeddict-item]
-        input_["core_network_id"] = core_network_id
-        input_["policy_version_id"] = policy_version_id
+        input_: capo_networkmanager.types.get_core_network_change_events_request.GetCoreNetworkChangeEventsRequest = {
+            "core_network_id": core_network_id,
+            "policy_version_id": policy_version_id,
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -2974,6 +3069,7 @@ class NetworkManagerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_get_core_network_change_events(
@@ -3046,9 +3142,10 @@ class NetworkManagerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_networkmanager.types.get_core_network_change_set_request.GetCoreNetworkChangeSetRequest = {}  # type: ignore[typeddict-item]
-        input_["core_network_id"] = core_network_id
-        input_["policy_version_id"] = policy_version_id
+        input_: capo_networkmanager.types.get_core_network_change_set_request.GetCoreNetworkChangeSetRequest = {
+            "core_network_id": core_network_id,
+            "policy_version_id": policy_version_id,
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -3059,6 +3156,7 @@ class NetworkManagerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_get_core_network_change_set(
@@ -3129,8 +3227,9 @@ class NetworkManagerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_networkmanager.types.get_core_network_policy_request.GetCoreNetworkPolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["core_network_id"] = core_network_id
+        input_: capo_networkmanager.types.get_core_network_policy_request.GetCoreNetworkPolicyRequest = {
+            "core_network_id": core_network_id
+        }
         if policy_version_id is not None:
             input_["policy_version_id"] = policy_version_id
         if alias is not None:
@@ -3141,6 +3240,7 @@ class NetworkManagerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_customer_gateway_associations(
@@ -3189,8 +3289,9 @@ class NetworkManagerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_networkmanager.types.get_customer_gateway_associations_request.GetCustomerGatewayAssociationsRequest = {}  # type: ignore[typeddict-item]
-        input_["global_network_id"] = global_network_id
+        input_: capo_networkmanager.types.get_customer_gateway_associations_request.GetCustomerGatewayAssociationsRequest = {
+            "global_network_id": global_network_id
+        }
         if customer_gateway_arns is not None:
             input_["customer_gateway_arns"] = customer_gateway_arns
         if max_results is not None:
@@ -3203,6 +3304,7 @@ class NetworkManagerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_get_customer_gateway_associations(
@@ -3281,8 +3383,9 @@ class NetworkManagerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_networkmanager.types.get_devices_request.GetDevicesRequest = {}  # type: ignore[typeddict-item]
-        input_["global_network_id"] = global_network_id
+        input_: capo_networkmanager.types.get_devices_request.GetDevicesRequest = {
+            "global_network_id": global_network_id
+        }
         if device_ids is not None:
             input_["device_ids"] = device_ids
         if site_id is not None:
@@ -3297,6 +3400,7 @@ class NetworkManagerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_get_devices(
@@ -3365,14 +3469,16 @@ class NetworkManagerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_networkmanager.types.get_direct_connect_gateway_attachment_request.GetDirectConnectGatewayAttachmentRequest = {}  # type: ignore[typeddict-item]
-        input_["attachment_id"] = attachment_id
+        input_: capo_networkmanager.types.get_direct_connect_gateway_attachment_request.GetDirectConnectGatewayAttachmentRequest = {
+            "attachment_id": attachment_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_link_associations(
@@ -3420,8 +3526,9 @@ class NetworkManagerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_networkmanager.types.get_link_associations_request.GetLinkAssociationsRequest = {}  # type: ignore[typeddict-item]
-        input_["global_network_id"] = global_network_id
+        input_: capo_networkmanager.types.get_link_associations_request.GetLinkAssociationsRequest = {
+            "global_network_id": global_network_id
+        }
         if device_id is not None:
             input_["device_id"] = device_id
         if link_id is not None:
@@ -3436,6 +3543,7 @@ class NetworkManagerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_get_link_associations(
@@ -3520,8 +3628,9 @@ class NetworkManagerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_networkmanager.types.get_links_request.GetLinksRequest = {}  # type: ignore[typeddict-item]
-        input_["global_network_id"] = global_network_id
+        input_: capo_networkmanager.types.get_links_request.GetLinksRequest = {
+            "global_network_id": global_network_id
+        }
         if link_ids is not None:
             input_["link_ids"] = link_ids
         if site_id is not None:
@@ -3540,6 +3649,7 @@ class NetworkManagerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_get_links(
@@ -3623,8 +3733,9 @@ class NetworkManagerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_networkmanager.types.get_network_resource_counts_request.GetNetworkResourceCountsRequest = {}  # type: ignore[typeddict-item]
-        input_["global_network_id"] = global_network_id
+        input_: capo_networkmanager.types.get_network_resource_counts_request.GetNetworkResourceCountsRequest = {
+            "global_network_id": global_network_id
+        }
         if resource_type is not None:
             input_["resource_type"] = resource_type
         if max_results is not None:
@@ -3637,6 +3748,7 @@ class NetworkManagerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_get_network_resource_counts(
@@ -3733,8 +3845,9 @@ class NetworkManagerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_networkmanager.types.get_network_resource_relationships_request.GetNetworkResourceRelationshipsRequest = {}  # type: ignore[typeddict-item]
-        input_["global_network_id"] = global_network_id
+        input_: capo_networkmanager.types.get_network_resource_relationships_request.GetNetworkResourceRelationshipsRequest = {
+            "global_network_id": global_network_id
+        }
         if core_network_id is not None:
             input_["core_network_id"] = core_network_id
         if registered_gateway_arn is not None:
@@ -3757,6 +3870,7 @@ class NetworkManagerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_get_network_resource_relationships(
@@ -3873,8 +3987,9 @@ class NetworkManagerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_networkmanager.types.get_network_resources_request.GetNetworkResourcesRequest = {}  # type: ignore[typeddict-item]
-        input_["global_network_id"] = global_network_id
+        input_: capo_networkmanager.types.get_network_resources_request.GetNetworkResourcesRequest = {
+            "global_network_id": global_network_id
+        }
         if core_network_id is not None:
             input_["core_network_id"] = core_network_id
         if registered_gateway_arn is not None:
@@ -3897,6 +4012,7 @@ class NetworkManagerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_get_network_resources(
@@ -4019,9 +4135,10 @@ class NetworkManagerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_networkmanager.types.get_network_routes_request.GetNetworkRoutesRequest = {}  # type: ignore[typeddict-item]
-        input_["global_network_id"] = global_network_id
-        input_["route_table_identifier"] = route_table_identifier
+        input_: capo_networkmanager.types.get_network_routes_request.GetNetworkRoutesRequest = {
+            "global_network_id": global_network_id,
+            "route_table_identifier": route_table_identifier,
+        }
         if exact_cidr_matches is not None:
             input_["exact_cidr_matches"] = exact_cidr_matches
         if longest_prefix_matches is not None:
@@ -4044,6 +4161,7 @@ class NetworkManagerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_network_telemetry(
@@ -4111,8 +4229,9 @@ class NetworkManagerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_networkmanager.types.get_network_telemetry_request.GetNetworkTelemetryRequest = {}  # type: ignore[typeddict-item]
-        input_["global_network_id"] = global_network_id
+        input_: capo_networkmanager.types.get_network_telemetry_request.GetNetworkTelemetryRequest = {
+            "global_network_id": global_network_id
+        }
         if core_network_id is not None:
             input_["core_network_id"] = core_network_id
         if registered_gateway_arn is not None:
@@ -4135,6 +4254,7 @@ class NetworkManagerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_get_network_telemetry(
@@ -4220,14 +4340,16 @@ class NetworkManagerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_networkmanager.types.get_resource_policy_request.GetResourcePolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_networkmanager.types.get_resource_policy_request.GetResourcePolicyRequest = {
+            "resource_arn": resource_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_route_analysis(
@@ -4269,15 +4391,17 @@ class NetworkManagerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_networkmanager.types.get_route_analysis_request.GetRouteAnalysisRequest = {}  # type: ignore[typeddict-item]
-        input_["global_network_id"] = global_network_id
-        input_["route_analysis_id"] = route_analysis_id
+        input_: capo_networkmanager.types.get_route_analysis_request.GetRouteAnalysisRequest = {
+            "global_network_id": global_network_id,
+            "route_analysis_id": route_analysis_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_sites(
@@ -4323,8 +4447,9 @@ class NetworkManagerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_networkmanager.types.get_sites_request.GetSitesRequest = {}  # type: ignore[typeddict-item]
-        input_["global_network_id"] = global_network_id
+        input_: capo_networkmanager.types.get_sites_request.GetSitesRequest = {
+            "global_network_id": global_network_id
+        }
         if site_ids is not None:
             input_["site_ids"] = site_ids
         if max_results is not None:
@@ -4337,6 +4462,7 @@ class NetworkManagerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_get_sites(
@@ -4401,14 +4527,16 @@ class NetworkManagerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_networkmanager.types.get_site_to_site_vpn_attachment_request.GetSiteToSiteVpnAttachmentRequest = {}  # type: ignore[typeddict-item]
-        input_["attachment_id"] = attachment_id
+        input_: capo_networkmanager.types.get_site_to_site_vpn_attachment_request.GetSiteToSiteVpnAttachmentRequest = {
+            "attachment_id": attachment_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_transit_gateway_connect_peer_associations(
@@ -4457,8 +4585,9 @@ class NetworkManagerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_networkmanager.types.get_transit_gateway_connect_peer_associations_request.GetTransitGatewayConnectPeerAssociationsRequest = {}  # type: ignore[typeddict-item]
-        input_["global_network_id"] = global_network_id
+        input_: capo_networkmanager.types.get_transit_gateway_connect_peer_associations_request.GetTransitGatewayConnectPeerAssociationsRequest = {
+            "global_network_id": global_network_id
+        }
         if transit_gateway_connect_peer_arns is not None:
             input_["transit_gateway_connect_peer_arns"] = (
                 transit_gateway_connect_peer_arns
@@ -4473,6 +4602,7 @@ class NetworkManagerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_get_transit_gateway_connect_peer_associations(
@@ -4541,14 +4671,16 @@ class NetworkManagerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_networkmanager.types.get_transit_gateway_peering_request.GetTransitGatewayPeeringRequest = {}  # type: ignore[typeddict-item]
-        input_["peering_id"] = peering_id
+        input_: capo_networkmanager.types.get_transit_gateway_peering_request.GetTransitGatewayPeeringRequest = {
+            "peering_id": peering_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_transit_gateway_registrations(
@@ -4596,8 +4728,9 @@ class NetworkManagerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_networkmanager.types.get_transit_gateway_registrations_request.GetTransitGatewayRegistrationsRequest = {}  # type: ignore[typeddict-item]
-        input_["global_network_id"] = global_network_id
+        input_: capo_networkmanager.types.get_transit_gateway_registrations_request.GetTransitGatewayRegistrationsRequest = {
+            "global_network_id": global_network_id
+        }
         if transit_gateway_arns is not None:
             input_["transit_gateway_arns"] = transit_gateway_arns
         if max_results is not None:
@@ -4610,6 +4743,7 @@ class NetworkManagerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_get_transit_gateway_registrations(
@@ -4676,14 +4810,16 @@ class NetworkManagerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_networkmanager.types.get_transit_gateway_route_table_attachment_request.GetTransitGatewayRouteTableAttachmentRequest = {}  # type: ignore[typeddict-item]
-        input_["attachment_id"] = attachment_id
+        input_: capo_networkmanager.types.get_transit_gateway_route_table_attachment_request.GetTransitGatewayRouteTableAttachmentRequest = {
+            "attachment_id": attachment_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_vpc_attachment(
@@ -4723,14 +4859,16 @@ class NetworkManagerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_networkmanager.types.get_vpc_attachment_request.GetVpcAttachmentRequest = {}  # type: ignore[typeddict-item]
-        input_["attachment_id"] = attachment_id
+        input_: capo_networkmanager.types.get_vpc_attachment_request.GetVpcAttachmentRequest = {
+            "attachment_id": attachment_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_attachment_routing_policy_associations(
@@ -4778,8 +4916,9 @@ class NetworkManagerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_networkmanager.types.list_attachment_routing_policy_associations_request.ListAttachmentRoutingPolicyAssociationsRequest = {}  # type: ignore[typeddict-item]
-        input_["core_network_id"] = core_network_id
+        input_: capo_networkmanager.types.list_attachment_routing_policy_associations_request.ListAttachmentRoutingPolicyAssociationsRequest = {
+            "core_network_id": core_network_id
+        }
         if attachment_id is not None:
             input_["attachment_id"] = attachment_id
         if max_results is not None:
@@ -4792,6 +4931,7 @@ class NetworkManagerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_attachment_routing_policy_associations(
@@ -4879,7 +5019,7 @@ class NetworkManagerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_networkmanager.types.list_attachments_request.ListAttachmentsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_networkmanager.types.list_attachments_request.ListAttachmentsRequest = {}
         if core_network_id is not None:
             input_["core_network_id"] = core_network_id
         if attachment_type is not None:
@@ -4898,6 +5038,7 @@ class NetworkManagerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_attachments(
@@ -4987,7 +5128,7 @@ class NetworkManagerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_networkmanager.types.list_connect_peers_request.ListConnectPeersRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_networkmanager.types.list_connect_peers_request.ListConnectPeersRequest = {}
         if core_network_id is not None:
             input_["core_network_id"] = core_network_id
         if connect_attachment_id is not None:
@@ -5002,6 +5143,7 @@ class NetworkManagerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_connect_peers(
@@ -5076,8 +5218,9 @@ class NetworkManagerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_networkmanager.types.list_core_network_policy_versions_request.ListCoreNetworkPolicyVersionsRequest = {}  # type: ignore[typeddict-item]
-        input_["core_network_id"] = core_network_id
+        input_: capo_networkmanager.types.list_core_network_policy_versions_request.ListCoreNetworkPolicyVersionsRequest = {
+            "core_network_id": core_network_id
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -5088,6 +5231,7 @@ class NetworkManagerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_core_network_policy_versions(
@@ -5160,8 +5304,9 @@ class NetworkManagerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_networkmanager.types.list_core_network_prefix_list_associations_request.ListCoreNetworkPrefixListAssociationsRequest = {}  # type: ignore[typeddict-item]
-        input_["core_network_id"] = core_network_id
+        input_: capo_networkmanager.types.list_core_network_prefix_list_associations_request.ListCoreNetworkPrefixListAssociationsRequest = {
+            "core_network_id": core_network_id
+        }
         if prefix_list_arn is not None:
             input_["prefix_list_arn"] = prefix_list_arn
         if max_results is not None:
@@ -5174,6 +5319,7 @@ class NetworkManagerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_core_network_prefix_list_associations(
@@ -5270,10 +5416,11 @@ class NetworkManagerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_networkmanager.types.list_core_network_routing_information_request.ListCoreNetworkRoutingInformationRequest = {}  # type: ignore[typeddict-item]
-        input_["core_network_id"] = core_network_id
-        input_["segment_name"] = segment_name
-        input_["edge_location"] = edge_location
+        input_: capo_networkmanager.types.list_core_network_routing_information_request.ListCoreNetworkRoutingInformationRequest = {
+            "core_network_id": core_network_id,
+            "segment_name": segment_name,
+            "edge_location": edge_location,
+        }
         if next_hop_filters is not None:
             input_["next_hop_filters"] = next_hop_filters
         if local_preference_matches is not None:
@@ -5294,6 +5441,7 @@ class NetworkManagerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_core_network_routing_information(
@@ -5385,7 +5533,7 @@ class NetworkManagerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_networkmanager.types.list_core_networks_request.ListCoreNetworksRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_networkmanager.types.list_core_networks_request.ListCoreNetworksRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -5396,6 +5544,7 @@ class NetworkManagerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_core_networks(
@@ -5455,7 +5604,7 @@ class NetworkManagerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_networkmanager.types.list_organization_service_access_status_request.ListOrganizationServiceAccessStatusRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_networkmanager.types.list_organization_service_access_status_request.ListOrganizationServiceAccessStatusRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -5466,6 +5615,7 @@ class NetworkManagerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_peerings(
@@ -5520,7 +5670,7 @@ class NetworkManagerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_networkmanager.types.list_peerings_request.ListPeeringsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_networkmanager.types.list_peerings_request.ListPeeringsRequest = {}
         if core_network_id is not None:
             input_["core_network_id"] = core_network_id
         if peering_type is not None:
@@ -5539,6 +5689,7 @@ class NetworkManagerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_peerings(
@@ -5613,14 +5764,16 @@ class NetworkManagerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_networkmanager.types.list_tags_for_resource_request.ListTagsForResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_networkmanager.types.list_tags_for_resource_request.ListTagsForResourceRequest = {
+            "resource_arn": resource_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def put_attachment_routing_policy_label(
@@ -5668,18 +5821,21 @@ class NetworkManagerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_networkmanager.types.put_attachment_routing_policy_label_request.PutAttachmentRoutingPolicyLabelRequest = {}  # type: ignore[typeddict-item]
-        input_["core_network_id"] = core_network_id
-        input_["attachment_id"] = attachment_id
-        input_["routing_policy_label"] = routing_policy_label
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_networkmanager.types.put_attachment_routing_policy_label_request.PutAttachmentRoutingPolicyLabelRequest = {
+            "core_network_id": core_network_id,
+            "attachment_id": attachment_id,
+            "routing_policy_label": routing_policy_label,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def put_core_network_policy(
@@ -5731,21 +5887,24 @@ class NetworkManagerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_networkmanager.types.put_core_network_policy_request.PutCoreNetworkPolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["core_network_id"] = core_network_id
-        input_["policy_document"] = policy_document
+        input_: capo_networkmanager.types.put_core_network_policy_request.PutCoreNetworkPolicyRequest = {
+            "core_network_id": core_network_id,
+            "policy_document": policy_document,
+        }
         if description is not None:
             input_["description"] = description
         if latest_version_id is not None:
             input_["latest_version_id"] = latest_version_id
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def put_resource_policy(
@@ -5786,15 +5945,17 @@ class NetworkManagerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_networkmanager.types.put_resource_policy_request.PutResourcePolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["policy_document"] = policy_document
-        input_["resource_arn"] = resource_arn
+        input_: capo_networkmanager.types.put_resource_policy_request.PutResourcePolicyRequest = {
+            "policy_document": policy_document,
+            "resource_arn": resource_arn,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def register_transit_gateway(
@@ -5835,15 +5996,17 @@ class NetworkManagerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_networkmanager.types.register_transit_gateway_request.RegisterTransitGatewayRequest = {}  # type: ignore[typeddict-item]
-        input_["global_network_id"] = global_network_id
-        input_["transit_gateway_arn"] = transit_gateway_arn
+        input_: capo_networkmanager.types.register_transit_gateway_request.RegisterTransitGatewayRequest = {
+            "global_network_id": global_network_id,
+            "transit_gateway_arn": transit_gateway_arn,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def reject_attachment(
@@ -5884,14 +6047,16 @@ class NetworkManagerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_networkmanager.types.reject_attachment_request.RejectAttachmentRequest = {}  # type: ignore[typeddict-item]
-        input_["attachment_id"] = attachment_id
+        input_: capo_networkmanager.types.reject_attachment_request.RejectAttachmentRequest = {
+            "attachment_id": attachment_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def remove_attachment_routing_policy_label(
@@ -5933,15 +6098,17 @@ class NetworkManagerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_networkmanager.types.remove_attachment_routing_policy_label_request.RemoveAttachmentRoutingPolicyLabelRequest = {}  # type: ignore[typeddict-item]
-        input_["core_network_id"] = core_network_id
-        input_["attachment_id"] = attachment_id
+        input_: capo_networkmanager.types.remove_attachment_routing_policy_label_request.RemoveAttachmentRoutingPolicyLabelRequest = {
+            "core_network_id": core_network_id,
+            "attachment_id": attachment_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def restore_core_network_policy_version(
@@ -5982,15 +6149,17 @@ class NetworkManagerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_networkmanager.types.restore_core_network_policy_version_request.RestoreCoreNetworkPolicyVersionRequest = {}  # type: ignore[typeddict-item]
-        input_["core_network_id"] = core_network_id
-        input_["policy_version_id"] = policy_version_id
+        input_: capo_networkmanager.types.restore_core_network_policy_version_request.RestoreCoreNetworkPolicyVersionRequest = {
+            "core_network_id": core_network_id,
+            "policy_version_id": policy_version_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def start_organization_service_access_update(
@@ -6029,14 +6198,16 @@ class NetworkManagerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_networkmanager.types.start_organization_service_access_update_request.StartOrganizationServiceAccessUpdateRequest = {}  # type: ignore[typeddict-item]
-        input_["action"] = action
+        input_: capo_networkmanager.types.start_organization_service_access_update_request.StartOrganizationServiceAccessUpdateRequest = {
+            "action": action
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def start_route_analysis(
@@ -6085,10 +6256,11 @@ class NetworkManagerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_networkmanager.types.start_route_analysis_request.StartRouteAnalysisRequest = {}  # type: ignore[typeddict-item]
-        input_["global_network_id"] = global_network_id
-        input_["source"] = source
-        input_["destination"] = destination
+        input_: capo_networkmanager.types.start_route_analysis_request.StartRouteAnalysisRequest = {
+            "global_network_id": global_network_id,
+            "source": source,
+            "destination": destination,
+        }
         if include_return_path is not None:
             input_["include_return_path"] = include_return_path
         if use_middleboxes is not None:
@@ -6099,6 +6271,7 @@ class NetworkManagerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def tag_resource(
@@ -6140,15 +6313,17 @@ class NetworkManagerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_networkmanager.types.tag_resource_request.TagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tags"] = tags
+        input_: capo_networkmanager.types.tag_resource_request.TagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tags": tags,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def untag_resource(
@@ -6189,15 +6364,17 @@ class NetworkManagerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_networkmanager.types.untag_resource_request.UntagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tag_keys"] = tag_keys
+        input_: capo_networkmanager.types.untag_resource_request.UntagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tag_keys": tag_keys,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_connection(
@@ -6248,9 +6425,10 @@ class NetworkManagerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_networkmanager.types.update_connection_request.UpdateConnectionRequest = {}  # type: ignore[typeddict-item]
-        input_["global_network_id"] = global_network_id
-        input_["connection_id"] = connection_id
+        input_: capo_networkmanager.types.update_connection_request.UpdateConnectionRequest = {
+            "global_network_id": global_network_id,
+            "connection_id": connection_id,
+        }
         if link_id is not None:
             input_["link_id"] = link_id
         if connected_link_id is not None:
@@ -6263,6 +6441,7 @@ class NetworkManagerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_core_network(
@@ -6305,8 +6484,9 @@ class NetworkManagerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_networkmanager.types.update_core_network_request.UpdateCoreNetworkRequest = {}  # type: ignore[typeddict-item]
-        input_["core_network_id"] = core_network_id
+        input_: capo_networkmanager.types.update_core_network_request.UpdateCoreNetworkRequest = {
+            "core_network_id": core_network_id
+        }
         if description is not None:
             input_["description"] = description
 
@@ -6315,6 +6495,7 @@ class NetworkManagerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_device(
@@ -6382,9 +6563,10 @@ class NetworkManagerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_networkmanager.types.update_device_request.UpdateDeviceRequest = {}  # type: ignore[typeddict-item]
-        input_["global_network_id"] = global_network_id
-        input_["device_id"] = device_id
+        input_: capo_networkmanager.types.update_device_request.UpdateDeviceRequest = {
+            "global_network_id": global_network_id,
+            "device_id": device_id,
+        }
         if aws_location is not None:
             input_["aws_location"] = aws_location
         if description is not None:
@@ -6407,6 +6589,7 @@ class NetworkManagerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_direct_connect_gateway_attachment(
@@ -6449,8 +6632,9 @@ class NetworkManagerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_networkmanager.types.update_direct_connect_gateway_attachment_request.UpdateDirectConnectGatewayAttachmentRequest = {}  # type: ignore[typeddict-item]
-        input_["attachment_id"] = attachment_id
+        input_: capo_networkmanager.types.update_direct_connect_gateway_attachment_request.UpdateDirectConnectGatewayAttachmentRequest = {
+            "attachment_id": attachment_id
+        }
         if edge_locations is not None:
             input_["edge_locations"] = edge_locations
 
@@ -6459,6 +6643,7 @@ class NetworkManagerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_global_network(
@@ -6501,8 +6686,9 @@ class NetworkManagerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_networkmanager.types.update_global_network_request.UpdateGlobalNetworkRequest = {}  # type: ignore[typeddict-item]
-        input_["global_network_id"] = global_network_id
+        input_: capo_networkmanager.types.update_global_network_request.UpdateGlobalNetworkRequest = {
+            "global_network_id": global_network_id
+        }
         if description is not None:
             input_["description"] = description
 
@@ -6511,6 +6697,7 @@ class NetworkManagerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_link(
@@ -6566,9 +6753,10 @@ class NetworkManagerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_networkmanager.types.update_link_request.UpdateLinkRequest = {}  # type: ignore[typeddict-item]
-        input_["global_network_id"] = global_network_id
-        input_["link_id"] = link_id
+        input_: capo_networkmanager.types.update_link_request.UpdateLinkRequest = {
+            "global_network_id": global_network_id,
+            "link_id": link_id,
+        }
         if description is not None:
             input_["description"] = description
         if type is not None:
@@ -6583,6 +6771,7 @@ class NetworkManagerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_network_resource_metadata(
@@ -6625,16 +6814,18 @@ class NetworkManagerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_networkmanager.types.update_network_resource_metadata_request.UpdateNetworkResourceMetadataRequest = {}  # type: ignore[typeddict-item]
-        input_["global_network_id"] = global_network_id
-        input_["resource_arn"] = resource_arn
-        input_["metadata"] = metadata
+        input_: capo_networkmanager.types.update_network_resource_metadata_request.UpdateNetworkResourceMetadataRequest = {
+            "global_network_id": global_network_id,
+            "resource_arn": resource_arn,
+            "metadata": metadata,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_site(
@@ -6681,9 +6872,10 @@ class NetworkManagerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_networkmanager.types.update_site_request.UpdateSiteRequest = {}  # type: ignore[typeddict-item]
-        input_["global_network_id"] = global_network_id
-        input_["site_id"] = site_id
+        input_: capo_networkmanager.types.update_site_request.UpdateSiteRequest = {
+            "global_network_id": global_network_id,
+            "site_id": site_id,
+        }
         if description is not None:
             input_["description"] = description
         if location is not None:
@@ -6694,6 +6886,7 @@ class NetworkManagerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_vpc_attachment(
@@ -6742,8 +6935,9 @@ class NetworkManagerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_networkmanager.types.update_vpc_attachment_request.UpdateVpcAttachmentRequest = {}  # type: ignore[typeddict-item]
-        input_["attachment_id"] = attachment_id
+        input_: capo_networkmanager.types.update_vpc_attachment_request.UpdateVpcAttachmentRequest = {
+            "attachment_id": attachment_id
+        }
         if add_subnet_arns is not None:
             input_["add_subnet_arns"] = add_subnet_arns
         if remove_subnet_arns is not None:
@@ -6756,6 +6950,7 @@ class NetworkManagerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def __enter__(self) -> Self:

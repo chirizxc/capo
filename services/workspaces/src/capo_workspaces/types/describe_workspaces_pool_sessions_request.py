@@ -41,16 +41,16 @@ def serialize_aws_json_1_1(value: DescribeWorkspacesPoolSessionsRequest) -> dict
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeWorkspacesPoolSessionsRequest:
     out: DescribeWorkspacesPoolSessionsRequest = {}  # type: ignore[typeddict-item]
-    if "PoolId" in data:
+    if data.get("PoolId") is not None:
         out["pool_id"] = data["PoolId"]
     else:
         raise DeserializationError(
             "DescribeWorkspacesPoolSessionsRequest.pool_id required"
         )
-    if "UserId" in data:
+    if data.get("UserId") is not None:
         out["user_id"] = data["UserId"]
-    if "Limit" in data:
+    if data.get("Limit") is not None:
         out["limit"] = data["Limit"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

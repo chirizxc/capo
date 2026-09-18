@@ -36,9 +36,9 @@ def serialize_aws_json_1_1(value: CreateUsageReportSubscriptionResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateUsageReportSubscriptionResult:
     out: CreateUsageReportSubscriptionResult = {}  # type: ignore[typeddict-item]
-    if "S3BucketName" in data:
+    if data.get("S3BucketName") is not None:
         out["s3_bucket_name"] = data["S3BucketName"]
-    if "Schedule" in data:
+    if data.get("Schedule") is not None:
         import capo_appstream.types.usage_report_schedule
 
         out["schedule"] = (

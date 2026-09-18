@@ -30,13 +30,13 @@ def serialize_aws_json_1_1(value: UntagCertificateAuthorityRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UntagCertificateAuthorityRequest:
     out: UntagCertificateAuthorityRequest = {}  # type: ignore[typeddict-item]
-    if "CertificateAuthorityArn" in data:
+    if data.get("CertificateAuthorityArn") is not None:
         out["certificate_authority_arn"] = data["CertificateAuthorityArn"]
     else:
         raise DeserializationError(
             "UntagCertificateAuthorityRequest.certificate_authority_arn required"
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_acm_pca.types.tag_list
 
         out["tags"] = capo_acm_pca.types.tag_list.deserialize_aws_json_1_1(data["Tags"])

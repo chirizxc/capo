@@ -29,7 +29,7 @@ def serialize_aws_json_1_1(value: GetStoredQueryResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetStoredQueryResponse:
     out: GetStoredQueryResponse = {}  # type: ignore[typeddict-item]
-    if "StoredQuery" in data:
+    if data.get("StoredQuery") is not None:
         import capo_config_service.types.stored_query
 
         out["stored_query"] = (

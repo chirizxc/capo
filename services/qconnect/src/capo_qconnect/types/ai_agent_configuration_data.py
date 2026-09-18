@@ -24,7 +24,7 @@ def serialize_json(value: AIAgentConfigurationData) -> dict:
 
 def deserialize_json(data: dict) -> AIAgentConfigurationData:
     out: AIAgentConfigurationData = {}  # type: ignore[typeddict-item]
-    if "aiAgentId" in data:
+    if data.get("aiAgentId") is not None:
         out["ai_agent_id"] = data["aiAgentId"]
     else:
         raise DeserializationError("AIAgentConfigurationData.ai_agent_id required")

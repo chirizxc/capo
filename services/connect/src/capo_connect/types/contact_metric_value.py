@@ -20,13 +20,23 @@ ContactMetricValue: TypeAlias = _ContactMetricValue_Number
 # --- restJson1 ser/de ---
 def serialize_json(value: ContactMetricValue) -> dict:
     if "Number" in value:
-        return {"Number": value["Number"]}
+        return {
+            "Number": (
+                "NaN"
+                if value["Number"] != value["Number"]
+                else "Infinity"
+                if value["Number"] == float("inf")
+                else "-Infinity"
+                if value["Number"] == float("-inf")
+                else value["Number"]
+            )
+        }
     else:
         raise SerializationError("ContactMetricValue: no variant present")
 
 
 def deserialize_json(data: dict) -> ContactMetricValue:
-    if "Number" in data:
-        return {"Number": data["Number"]}
+    if data.get("Number") is not None:
+        return {"Number": float(data["Number"])}
     else:
         raise DeserializationError("ContactMetricValue: no recognized variant key")

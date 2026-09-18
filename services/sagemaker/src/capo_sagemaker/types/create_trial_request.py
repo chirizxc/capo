@@ -58,13 +58,13 @@ def serialize_aws_json_1_1(value: CreateTrialRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateTrialRequest:
     out: CreateTrialRequest = {}  # type: ignore[typeddict-item]
-    if "TrialName" in data:
+    if data.get("TrialName") is not None:
         out["trial_name"] = data["TrialName"]
-    if "DisplayName" in data:
+    if data.get("DisplayName") is not None:
         out["display_name"] = data["DisplayName"]
-    if "ExperimentName" in data:
+    if data.get("ExperimentName") is not None:
         out["experiment_name"] = data["ExperimentName"]
-    if "MetadataProperties" in data:
+    if data.get("MetadataProperties") is not None:
         import capo_sagemaker.types.metadata_properties
 
         out["metadata_properties"] = (
@@ -72,7 +72,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateTrialRequest:
                 data["MetadataProperties"]
             )
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_sagemaker.types.tag_list
 
         out["tags"] = capo_sagemaker.types.tag_list.deserialize_aws_json_1_1(

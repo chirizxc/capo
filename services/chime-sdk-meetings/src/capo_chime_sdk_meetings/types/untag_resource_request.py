@@ -34,11 +34,11 @@ def serialize_json(value: UntagResourceRequest) -> dict:
 
 def deserialize_json(data: dict) -> UntagResourceRequest:
     out: UntagResourceRequest = {}  # type: ignore[typeddict-item]
-    if "ResourceARN" in data:
+    if data.get("ResourceARN") is not None:
         out["resource_arn"] = data["ResourceARN"]
     else:
         raise DeserializationError("UntagResourceRequest.resource_arn required")
-    if "TagKeys" in data:
+    if data.get("TagKeys") is not None:
         import capo_chime_sdk_meetings.types.tag_key_list
 
         out["tag_keys"] = capo_chime_sdk_meetings.types.tag_key_list.deserialize_json(

@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> AccountDetails:
 
     out: AccountDetails = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_guardduty.types.account_detail.deserialize_json(item))
     return out

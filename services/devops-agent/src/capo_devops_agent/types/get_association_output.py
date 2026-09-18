@@ -27,7 +27,7 @@ def serialize_json(value: GetAssociationOutput) -> dict:
 
 def deserialize_json(data: dict) -> GetAssociationOutput:
     out: GetAssociationOutput = {}  # type: ignore[typeddict-item]
-    if "association" in data:
+    if data.get("association") is not None:
         import capo_devops_agent.types.association
 
         out["association"] = capo_devops_agent.types.association.deserialize_json(

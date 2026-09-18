@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> ScraperComponents:
 
     out: ScraperComponents = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_amp.types.scraper_component.deserialize_json(item))
     return out

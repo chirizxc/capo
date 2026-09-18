@@ -74,9 +74,9 @@ def serialize_json(value: ActiveDirectorySettings) -> dict:
 
 def deserialize_json(data: dict) -> ActiveDirectorySettings:
     out: ActiveDirectorySettings = {}  # type: ignore[typeddict-item]
-    if "DomainName" in data:
+    if data.get("DomainName") is not None:
         out["domain_name"] = data["DomainName"]
-    if "DomainIpv4List" in data:
+    if data.get("DomainIpv4List") is not None:
         import capo_license_manager_user_subscriptions.types.ip_v4_list
 
         out["domain_ipv4_list"] = (
@@ -84,7 +84,7 @@ def deserialize_json(data: dict) -> ActiveDirectorySettings:
                 data["DomainIpv4List"]
             )
         )
-    if "DomainIpv6List" in data:
+    if data.get("DomainIpv6List") is not None:
         import capo_license_manager_user_subscriptions.types.ip_v6_list
 
         out["domain_ipv6_list"] = (
@@ -92,7 +92,7 @@ def deserialize_json(data: dict) -> ActiveDirectorySettings:
                 data["DomainIpv6List"]
             )
         )
-    if "DomainCredentialsProvider" in data:
+    if data.get("DomainCredentialsProvider") is not None:
         import capo_license_manager_user_subscriptions.types.credentials_provider
 
         out["domain_credentials_provider"] = (
@@ -100,7 +100,7 @@ def deserialize_json(data: dict) -> ActiveDirectorySettings:
                 data["DomainCredentialsProvider"]
             )
         )
-    if "DomainNetworkSettings" in data:
+    if data.get("DomainNetworkSettings") is not None:
         import capo_license_manager_user_subscriptions.types.domain_network_settings
 
         out["domain_network_settings"] = (

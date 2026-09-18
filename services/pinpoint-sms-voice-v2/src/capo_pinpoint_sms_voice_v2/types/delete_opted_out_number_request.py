@@ -30,13 +30,13 @@ def serialize_aws_json_1_0(value: DeleteOptedOutNumberRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> DeleteOptedOutNumberRequest:
     out: DeleteOptedOutNumberRequest = {}  # type: ignore[typeddict-item]
-    if "OptOutListName" in data:
+    if data.get("OptOutListName") is not None:
         out["opt_out_list_name"] = data["OptOutListName"]
     else:
         raise DeserializationError(
             "DeleteOptedOutNumberRequest.opt_out_list_name required"
         )
-    if "OptedOutNumber" in data:
+    if data.get("OptedOutNumber") is not None:
         out["opted_out_number"] = data["OptedOutNumber"]
     else:
         raise DeserializationError(

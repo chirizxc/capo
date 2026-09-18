@@ -54,7 +54,7 @@ def serialize_json(value: TextConditionalFormat) -> dict:
 
 def deserialize_json(data: dict) -> TextConditionalFormat:
     out: TextConditionalFormat = {}  # type: ignore[typeddict-item]
-    if "BackgroundColor" in data:
+    if data.get("BackgroundColor") is not None:
         import capo_quicksight.types.conditional_formatting_color
 
         out["background_color"] = (
@@ -62,7 +62,7 @@ def deserialize_json(data: dict) -> TextConditionalFormat:
                 data["BackgroundColor"]
             )
         )
-    if "TextColor" in data:
+    if data.get("TextColor") is not None:
         import capo_quicksight.types.conditional_formatting_color
 
         out["text_color"] = (
@@ -70,7 +70,7 @@ def deserialize_json(data: dict) -> TextConditionalFormat:
                 data["TextColor"]
             )
         )
-    if "Icon" in data:
+    if data.get("Icon") is not None:
         import capo_quicksight.types.conditional_formatting_icon
 
         out["icon"] = (

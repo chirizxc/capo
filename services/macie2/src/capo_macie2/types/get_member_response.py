@@ -76,23 +76,23 @@ def serialize_json(value: GetMemberResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetMemberResponse:
     out: GetMemberResponse = {}  # type: ignore[typeddict-item]
-    if "accountId" in data:
+    if data.get("accountId") is not None:
         out["account_id"] = data["accountId"]
-    if "administratorAccountId" in data:
+    if data.get("administratorAccountId") is not None:
         out["administrator_account_id"] = data["administratorAccountId"]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "email" in data:
+    if data.get("email") is not None:
         out["email"] = data["email"]
-    if "invitedAt" in data:
+    if data.get("invitedAt") is not None:
         import capo_macie2.types.__timestamp_iso8601
 
         out["invited_at"] = capo_macie2.types.__timestamp_iso8601.deserialize_json(
             data["invitedAt"]
         )
-    if "masterAccountId" in data:
+    if data.get("masterAccountId") is not None:
         out["master_account_id"] = data["masterAccountId"]
-    if "relationshipStatus" in data:
+    if data.get("relationshipStatus") is not None:
         import capo_macie2.types.relationship_status
 
         out["relationship_status"] = (
@@ -100,11 +100,11 @@ def deserialize_json(data: dict) -> GetMemberResponse:
                 data["relationshipStatus"]
             )
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_macie2.types.tag_map
 
         out["tags"] = capo_macie2.types.tag_map.deserialize_json(data["tags"])
-    if "updatedAt" in data:
+    if data.get("updatedAt") is not None:
         import capo_macie2.types.__timestamp_iso8601
 
         out["updated_at"] = capo_macie2.types.__timestamp_iso8601.deserialize_json(

@@ -36,15 +36,15 @@ def serialize_json(value: DNISEmergencyCallingConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> DNISEmergencyCallingConfiguration:
     out: DNISEmergencyCallingConfiguration = {}  # type: ignore[typeddict-item]
-    if "EmergencyPhoneNumber" in data:
+    if data.get("EmergencyPhoneNumber") is not None:
         out["emergency_phone_number"] = data["EmergencyPhoneNumber"]
     else:
         raise DeserializationError(
             "DNISEmergencyCallingConfiguration.emergency_phone_number required"
         )
-    if "TestPhoneNumber" in data:
+    if data.get("TestPhoneNumber") is not None:
         out["test_phone_number"] = data["TestPhoneNumber"]
-    if "CallingCountry" in data:
+    if data.get("CallingCountry") is not None:
         out["calling_country"] = data["CallingCountry"]
     else:
         raise DeserializationError(

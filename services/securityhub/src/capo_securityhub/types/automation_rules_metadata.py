@@ -71,34 +71,34 @@ def serialize_json(value: AutomationRulesMetadata) -> dict:
 
 def deserialize_json(data: dict) -> AutomationRulesMetadata:
     out: AutomationRulesMetadata = {}  # type: ignore[typeddict-item]
-    if "RuleArn" in data:
+    if data.get("RuleArn") is not None:
         out["rule_arn"] = data["RuleArn"]
-    if "RuleStatus" in data:
+    if data.get("RuleStatus") is not None:
         import capo_securityhub.types.rule_status
 
         out["rule_status"] = capo_securityhub.types.rule_status.deserialize_json(
             data["RuleStatus"]
         )
-    if "RuleOrder" in data:
+    if data.get("RuleOrder") is not None:
         out["rule_order"] = data["RuleOrder"]
-    if "RuleName" in data:
+    if data.get("RuleName") is not None:
         out["rule_name"] = data["RuleName"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "IsTerminal" in data:
+    if data.get("IsTerminal") is not None:
         out["is_terminal"] = data["IsTerminal"]
-    if "CreatedAt" in data:
+    if data.get("CreatedAt") is not None:
         import capo_securityhub.types.timestamp
 
         out["created_at"] = capo_securityhub.types.timestamp.deserialize_json(
             data["CreatedAt"]
         )
-    if "UpdatedAt" in data:
+    if data.get("UpdatedAt") is not None:
         import capo_securityhub.types.timestamp
 
         out["updated_at"] = capo_securityhub.types.timestamp.deserialize_json(
             data["UpdatedAt"]
         )
-    if "CreatedBy" in data:
+    if data.get("CreatedBy") is not None:
         out["created_by"] = data["CreatedBy"]
     return out

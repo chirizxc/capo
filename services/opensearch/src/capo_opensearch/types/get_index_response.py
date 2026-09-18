@@ -24,7 +24,7 @@ def serialize_json(value: GetIndexResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetIndexResponse:
     out: GetIndexResponse = {}  # type: ignore[typeddict-item]
-    if "IndexSchema" in data:
+    if data.get("IndexSchema") is not None:
         out["index_schema"] = data["IndexSchema"]
     else:
         raise DeserializationError("GetIndexResponse.index_schema required")

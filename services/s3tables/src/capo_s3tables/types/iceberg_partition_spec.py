@@ -32,7 +32,7 @@ def serialize_json(value: IcebergPartitionSpec) -> dict:
 
 def deserialize_json(data: dict) -> IcebergPartitionSpec:
     out: IcebergPartitionSpec = {}  # type: ignore[typeddict-item]
-    if "fields" in data:
+    if data.get("fields") is not None:
         import capo_s3tables.types.iceberg_partition_field_list
 
         out["fields"] = (
@@ -42,6 +42,6 @@ def deserialize_json(data: dict) -> IcebergPartitionSpec:
         )
     else:
         raise DeserializationError("IcebergPartitionSpec.fields required")
-    if "spec-id" in data:
+    if data.get("spec-id") is not None:
         out["spec_id"] = data["spec-id"]
     return out

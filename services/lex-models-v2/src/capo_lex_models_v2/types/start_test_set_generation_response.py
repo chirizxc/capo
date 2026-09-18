@@ -95,15 +95,15 @@ def serialize_json(value: StartTestSetGenerationResponse) -> dict:
 
 def deserialize_json(data: dict) -> StartTestSetGenerationResponse:
     out: StartTestSetGenerationResponse = {}  # type: ignore[typeddict-item]
-    if "testSetGenerationId" in data:
+    if data.get("testSetGenerationId") is not None:
         out["test_set_generation_id"] = data["testSetGenerationId"]
-    if "creationDateTime" in data:
+    if data.get("creationDateTime") is not None:
         import capo_lex_models_v2.types.timestamp
 
         out["creation_date_time"] = capo_lex_models_v2.types.timestamp.deserialize_json(
             data["creationDateTime"]
         )
-    if "testSetGenerationStatus" in data:
+    if data.get("testSetGenerationStatus") is not None:
         import capo_lex_models_v2.types.test_set_generation_status
 
         out["test_set_generation_status"] = (
@@ -111,11 +111,11 @@ def deserialize_json(data: dict) -> StartTestSetGenerationResponse:
                 data["testSetGenerationStatus"]
             )
         )
-    if "testSetName" in data:
+    if data.get("testSetName") is not None:
         out["test_set_name"] = data["testSetName"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "storageLocation" in data:
+    if data.get("storageLocation") is not None:
         import capo_lex_models_v2.types.test_set_storage_location
 
         out["storage_location"] = (
@@ -123,7 +123,7 @@ def deserialize_json(data: dict) -> StartTestSetGenerationResponse:
                 data["storageLocation"]
             )
         )
-    if "generationDataSource" in data:
+    if data.get("generationDataSource") is not None:
         import capo_lex_models_v2.types.test_set_generation_data_source
 
         out["generation_data_source"] = (
@@ -131,9 +131,9 @@ def deserialize_json(data: dict) -> StartTestSetGenerationResponse:
                 data["generationDataSource"]
             )
         )
-    if "roleArn" in data:
+    if data.get("roleArn") is not None:
         out["role_arn"] = data["roleArn"]
-    if "testSetTags" in data:
+    if data.get("testSetTags") is not None:
         import capo_lex_models_v2.types.tag_map
 
         out["test_set_tags"] = capo_lex_models_v2.types.tag_map.deserialize_json(

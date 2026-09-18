@@ -29,6 +29,9 @@ def deserialize_json(data: dict) -> DisruptionPolicy:
     out: DisruptionPolicy = {}
     for key, value in data.items():
         import capo_resiliencehub.types.disruption_type
+
+        if value is None:
+            continue
         import capo_resiliencehub.types.failure_policy
 
         out[capo_resiliencehub.types.disruption_type.deserialize_json(key)] = (

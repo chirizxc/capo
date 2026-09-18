@@ -36,12 +36,12 @@ def serialize_aws_json_1_1(value: PullRequestCreatedEventMetadata) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PullRequestCreatedEventMetadata:
     out: PullRequestCreatedEventMetadata = {}  # type: ignore[typeddict-item]
-    if "repositoryName" in data:
+    if data.get("repositoryName") is not None:
         out["repository_name"] = data["repositoryName"]
-    if "sourceCommitId" in data:
+    if data.get("sourceCommitId") is not None:
         out["source_commit_id"] = data["sourceCommitId"]
-    if "destinationCommitId" in data:
+    if data.get("destinationCommitId") is not None:
         out["destination_commit_id"] = data["destinationCommitId"]
-    if "mergeBase" in data:
+    if data.get("mergeBase") is not None:
         out["merge_base"] = data["mergeBase"]
     return out

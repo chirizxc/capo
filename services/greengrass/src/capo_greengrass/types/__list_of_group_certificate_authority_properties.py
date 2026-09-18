@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> __listOfGroupCertificateAuthorityProperties:
 
     out: __listOfGroupCertificateAuthorityProperties = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_greengrass.types.group_certificate_authority_properties.deserialize_json(
                 item

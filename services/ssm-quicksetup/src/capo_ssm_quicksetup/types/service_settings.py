@@ -25,6 +25,6 @@ def serialize_json(value: ServiceSettings) -> dict:
 
 def deserialize_json(data: dict) -> ServiceSettings:
     out: ServiceSettings = {}  # type: ignore[typeddict-item]
-    if "ExplorerEnablingRoleArn" in data:
+    if data.get("ExplorerEnablingRoleArn") is not None:
         out["explorer_enabling_role_arn"] = data["ExplorerEnablingRoleArn"]
     return out

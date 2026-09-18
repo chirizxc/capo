@@ -23,5 +23,7 @@ def deserialize_aws_json_1_1(data: list) -> S3ResourceList:
 
     out: S3ResourceList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_snowball.types.s3_resource.deserialize_aws_json_1_1(item))
     return out

@@ -23,6 +23,6 @@ def serialize_json(value: Scram) -> dict:
 
 def deserialize_json(data: dict) -> Scram:
     out: Scram = {}  # type: ignore[typeddict-item]
-    if "enabled" in data:
+    if data.get("enabled") is not None:
         out["enabled"] = data["enabled"]
     return out

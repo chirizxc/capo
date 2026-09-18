@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import uuid
 from typing import TYPE_CHECKING, Optional
 
 import capo_deadline._auth._signers
@@ -133,10 +134,12 @@ class FarmResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_deadline.types.create_farm_request.CreateFarmRequest = {}  # type: ignore[typeddict-item]
-        if client_token is not None:
-            input_["client_token"] = client_token
-        input_["display_name"] = display_name
+        input_: capo_deadline.types.create_farm_request.CreateFarmRequest = {
+            "display_name": display_name
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if description is not None:
             input_["description"] = description
         if kms_key_arn is not None:
@@ -151,6 +154,7 @@ class FarmResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -186,14 +190,16 @@ class FarmResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_deadline.types.get_farm_request.GetFarmRequest = {}  # type: ignore[typeddict-item]
-        input_["farm_id"] = farm_id
+        input_: capo_deadline.types.get_farm_request.GetFarmRequest = {
+            "farm_id": farm_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update(
@@ -239,8 +245,9 @@ class FarmResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_deadline.types.update_farm_request.UpdateFarmRequest = {}  # type: ignore[typeddict-item]
-        input_["farm_id"] = farm_id
+        input_: capo_deadline.types.update_farm_request.UpdateFarmRequest = {
+            "farm_id": farm_id
+        }
         if display_name is not None:
             input_["display_name"] = display_name
         if description is not None:
@@ -253,6 +260,7 @@ class FarmResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -290,14 +298,16 @@ class FarmResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_deadline.types.delete_farm_request.DeleteFarmRequest = {}  # type: ignore[typeddict-item]
-        input_["farm_id"] = farm_id
+        input_: capo_deadline.types.delete_farm_request.DeleteFarmRequest = {
+            "farm_id": farm_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -340,7 +350,7 @@ class FarmResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_deadline.types.list_farms_request.ListFarmsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_deadline.types.list_farms_request.ListFarmsRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -353,6 +363,7 @@ class FarmResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def associate_member_to_farm(
@@ -401,12 +412,13 @@ class FarmResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_deadline.types.associate_member_to_farm_request.AssociateMemberToFarmRequest = {}  # type: ignore[typeddict-item]
-        input_["farm_id"] = farm_id
-        input_["principal_type"] = principal_type
-        input_["identity_store_id"] = identity_store_id
-        input_["membership_level"] = membership_level
-        input_["principal_id"] = principal_id
+        input_: capo_deadline.types.associate_member_to_farm_request.AssociateMemberToFarmRequest = {
+            "farm_id": farm_id,
+            "principal_type": principal_type,
+            "identity_store_id": identity_store_id,
+            "membership_level": membership_level,
+            "principal_id": principal_id,
+        }
         if identity_center_region is not None:
             input_["identity_center_region"] = identity_center_region
 
@@ -415,6 +427,7 @@ class FarmResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_limit(
@@ -463,13 +476,15 @@ class FarmResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_deadline.types.create_limit_request.CreateLimitRequest = {}  # type: ignore[typeddict-item]
-        input_["farm_id"] = farm_id
-        if client_token is not None:
-            input_["client_token"] = client_token
-        input_["display_name"] = display_name
-        input_["amount_requirement_name"] = amount_requirement_name
-        input_["max_count"] = max_count
+        input_: capo_deadline.types.create_limit_request.CreateLimitRequest = {
+            "farm_id": farm_id,
+            "display_name": display_name,
+            "amount_requirement_name": amount_requirement_name,
+            "max_count": max_count,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if description is not None:
             input_["description"] = description
 
@@ -478,6 +493,7 @@ class FarmResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_storage_profile(
@@ -526,12 +542,14 @@ class FarmResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_deadline.types.create_storage_profile_request.CreateStorageProfileRequest = {}  # type: ignore[typeddict-item]
-        input_["farm_id"] = farm_id
-        if client_token is not None:
-            input_["client_token"] = client_token
-        input_["display_name"] = display_name
-        input_["os_family"] = os_family
+        input_: capo_deadline.types.create_storage_profile_request.CreateStorageProfileRequest = {
+            "farm_id": farm_id,
+            "display_name": display_name,
+            "os_family": os_family,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if file_system_locations is not None:
             input_["file_system_locations"] = file_system_locations
 
@@ -540,6 +558,7 @@ class FarmResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_limit(
@@ -578,15 +597,17 @@ class FarmResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_deadline.types.delete_limit_request.DeleteLimitRequest = {}  # type: ignore[typeddict-item]
-        input_["farm_id"] = farm_id
-        input_["limit_id"] = limit_id
+        input_: capo_deadline.types.delete_limit_request.DeleteLimitRequest = {
+            "farm_id": farm_id,
+            "limit_id": limit_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_storage_profile(
@@ -625,15 +646,17 @@ class FarmResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_deadline.types.delete_storage_profile_request.DeleteStorageProfileRequest = {}  # type: ignore[typeddict-item]
-        input_["farm_id"] = farm_id
-        input_["storage_profile_id"] = storage_profile_id
+        input_: capo_deadline.types.delete_storage_profile_request.DeleteStorageProfileRequest = {
+            "farm_id": farm_id,
+            "storage_profile_id": storage_profile_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def disassociate_member_from_farm(
@@ -673,15 +696,17 @@ class FarmResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_deadline.types.disassociate_member_from_farm_request.DisassociateMemberFromFarmRequest = {}  # type: ignore[typeddict-item]
-        input_["farm_id"] = farm_id
-        input_["principal_id"] = principal_id
+        input_: capo_deadline.types.disassociate_member_from_farm_request.DisassociateMemberFromFarmRequest = {
+            "farm_id": farm_id,
+            "principal_id": principal_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_limit(
@@ -721,15 +746,17 @@ class FarmResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_deadline.types.get_limit_request.GetLimitRequest = {}  # type: ignore[typeddict-item]
-        input_["farm_id"] = farm_id
-        input_["limit_id"] = limit_id
+        input_: capo_deadline.types.get_limit_request.GetLimitRequest = {
+            "farm_id": farm_id,
+            "limit_id": limit_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_storage_profile(
@@ -769,15 +796,17 @@ class FarmResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_deadline.types.get_storage_profile_request.GetStorageProfileRequest = {}  # type: ignore[typeddict-item]
-        input_["farm_id"] = farm_id
-        input_["storage_profile_id"] = storage_profile_id
+        input_: capo_deadline.types.get_storage_profile_request.GetStorageProfileRequest = {
+            "farm_id": farm_id,
+            "storage_profile_id": storage_profile_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_farm_members(
@@ -819,8 +848,9 @@ class FarmResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_deadline.types.list_farm_members_request.ListFarmMembersRequest = {}  # type: ignore[typeddict-item]
-        input_["farm_id"] = farm_id
+        input_: capo_deadline.types.list_farm_members_request.ListFarmMembersRequest = {
+            "farm_id": farm_id
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -831,6 +861,7 @@ class FarmResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_limits(
@@ -872,8 +903,9 @@ class FarmResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_deadline.types.list_limits_request.ListLimitsRequest = {}  # type: ignore[typeddict-item]
-        input_["farm_id"] = farm_id
+        input_: capo_deadline.types.list_limits_request.ListLimitsRequest = {
+            "farm_id": farm_id
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -884,6 +916,7 @@ class FarmResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_storage_profiles(
@@ -927,8 +960,9 @@ class FarmResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_deadline.types.list_storage_profiles_request.ListStorageProfilesRequest = {}  # type: ignore[typeddict-item]
-        input_["farm_id"] = farm_id
+        input_: capo_deadline.types.list_storage_profiles_request.ListStorageProfilesRequest = {
+            "farm_id": farm_id
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -939,6 +973,7 @@ class FarmResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_limit(
@@ -984,9 +1019,10 @@ class FarmResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_deadline.types.update_limit_request.UpdateLimitRequest = {}  # type: ignore[typeddict-item]
-        input_["farm_id"] = farm_id
-        input_["limit_id"] = limit_id
+        input_: capo_deadline.types.update_limit_request.UpdateLimitRequest = {
+            "farm_id": farm_id,
+            "limit_id": limit_id,
+        }
         if display_name is not None:
             input_["display_name"] = display_name
         if description is not None:
@@ -999,6 +1035,7 @@ class FarmResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_storage_profile(
@@ -1054,11 +1091,13 @@ class FarmResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_deadline.types.update_storage_profile_request.UpdateStorageProfileRequest = {}  # type: ignore[typeddict-item]
-        input_["farm_id"] = farm_id
-        input_["storage_profile_id"] = storage_profile_id
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_deadline.types.update_storage_profile_request.UpdateStorageProfileRequest = {
+            "farm_id": farm_id,
+            "storage_profile_id": storage_profile_id,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if display_name is not None:
             input_["display_name"] = display_name
         if os_family is not None:
@@ -1073,6 +1112,7 @@ class FarmResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -1129,10 +1169,12 @@ class AsyncFarmResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_deadline.types.create_farm_request.CreateFarmRequest = {}  # type: ignore[typeddict-item]
-        if client_token is not None:
-            input_["client_token"] = client_token
-        input_["display_name"] = display_name
+        input_: capo_deadline.types.create_farm_request.CreateFarmRequest = {
+            "display_name": display_name
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if description is not None:
             input_["description"] = description
         if kms_key_arn is not None:
@@ -1147,6 +1189,7 @@ class AsyncFarmResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -1185,14 +1228,16 @@ class AsyncFarmResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_deadline.types.get_farm_request.GetFarmRequest = {}  # type: ignore[typeddict-item]
-        input_["farm_id"] = farm_id
+        input_: capo_deadline.types.get_farm_request.GetFarmRequest = {
+            "farm_id": farm_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update(
@@ -1239,8 +1284,9 @@ class AsyncFarmResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_deadline.types.update_farm_request.UpdateFarmRequest = {}  # type: ignore[typeddict-item]
-        input_["farm_id"] = farm_id
+        input_: capo_deadline.types.update_farm_request.UpdateFarmRequest = {
+            "farm_id": farm_id
+        }
         if display_name is not None:
             input_["display_name"] = display_name
         if description is not None:
@@ -1253,6 +1299,7 @@ class AsyncFarmResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -1291,14 +1338,16 @@ class AsyncFarmResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_deadline.types.delete_farm_request.DeleteFarmRequest = {}  # type: ignore[typeddict-item]
-        input_["farm_id"] = farm_id
+        input_: capo_deadline.types.delete_farm_request.DeleteFarmRequest = {
+            "farm_id": farm_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -1342,7 +1391,7 @@ class AsyncFarmResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_deadline.types.list_farms_request.ListFarmsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_deadline.types.list_farms_request.ListFarmsRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -1355,6 +1404,7 @@ class AsyncFarmResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def associate_member_to_farm(
@@ -1404,12 +1454,13 @@ class AsyncFarmResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_deadline.types.associate_member_to_farm_request.AssociateMemberToFarmRequest = {}  # type: ignore[typeddict-item]
-        input_["farm_id"] = farm_id
-        input_["principal_type"] = principal_type
-        input_["identity_store_id"] = identity_store_id
-        input_["membership_level"] = membership_level
-        input_["principal_id"] = principal_id
+        input_: capo_deadline.types.associate_member_to_farm_request.AssociateMemberToFarmRequest = {
+            "farm_id": farm_id,
+            "principal_type": principal_type,
+            "identity_store_id": identity_store_id,
+            "membership_level": membership_level,
+            "principal_id": principal_id,
+        }
         if identity_center_region is not None:
             input_["identity_center_region"] = identity_center_region
 
@@ -1418,6 +1469,7 @@ class AsyncFarmResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_limit(
@@ -1467,13 +1519,15 @@ class AsyncFarmResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_deadline.types.create_limit_request.CreateLimitRequest = {}  # type: ignore[typeddict-item]
-        input_["farm_id"] = farm_id
-        if client_token is not None:
-            input_["client_token"] = client_token
-        input_["display_name"] = display_name
-        input_["amount_requirement_name"] = amount_requirement_name
-        input_["max_count"] = max_count
+        input_: capo_deadline.types.create_limit_request.CreateLimitRequest = {
+            "farm_id": farm_id,
+            "display_name": display_name,
+            "amount_requirement_name": amount_requirement_name,
+            "max_count": max_count,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if description is not None:
             input_["description"] = description
 
@@ -1482,6 +1536,7 @@ class AsyncFarmResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_storage_profile(
@@ -1531,12 +1586,14 @@ class AsyncFarmResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_deadline.types.create_storage_profile_request.CreateStorageProfileRequest = {}  # type: ignore[typeddict-item]
-        input_["farm_id"] = farm_id
-        if client_token is not None:
-            input_["client_token"] = client_token
-        input_["display_name"] = display_name
-        input_["os_family"] = os_family
+        input_: capo_deadline.types.create_storage_profile_request.CreateStorageProfileRequest = {
+            "farm_id": farm_id,
+            "display_name": display_name,
+            "os_family": os_family,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if file_system_locations is not None:
             input_["file_system_locations"] = file_system_locations
 
@@ -1545,6 +1602,7 @@ class AsyncFarmResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_limit(
@@ -1584,15 +1642,17 @@ class AsyncFarmResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_deadline.types.delete_limit_request.DeleteLimitRequest = {}  # type: ignore[typeddict-item]
-        input_["farm_id"] = farm_id
-        input_["limit_id"] = limit_id
+        input_: capo_deadline.types.delete_limit_request.DeleteLimitRequest = {
+            "farm_id": farm_id,
+            "limit_id": limit_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_storage_profile(
@@ -1632,15 +1692,17 @@ class AsyncFarmResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_deadline.types.delete_storage_profile_request.DeleteStorageProfileRequest = {}  # type: ignore[typeddict-item]
-        input_["farm_id"] = farm_id
-        input_["storage_profile_id"] = storage_profile_id
+        input_: capo_deadline.types.delete_storage_profile_request.DeleteStorageProfileRequest = {
+            "farm_id": farm_id,
+            "storage_profile_id": storage_profile_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def disassociate_member_from_farm(
@@ -1681,15 +1743,17 @@ class AsyncFarmResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_deadline.types.disassociate_member_from_farm_request.DisassociateMemberFromFarmRequest = {}  # type: ignore[typeddict-item]
-        input_["farm_id"] = farm_id
-        input_["principal_id"] = principal_id
+        input_: capo_deadline.types.disassociate_member_from_farm_request.DisassociateMemberFromFarmRequest = {
+            "farm_id": farm_id,
+            "principal_id": principal_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_limit(
@@ -1730,15 +1794,17 @@ class AsyncFarmResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_deadline.types.get_limit_request.GetLimitRequest = {}  # type: ignore[typeddict-item]
-        input_["farm_id"] = farm_id
-        input_["limit_id"] = limit_id
+        input_: capo_deadline.types.get_limit_request.GetLimitRequest = {
+            "farm_id": farm_id,
+            "limit_id": limit_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_storage_profile(
@@ -1779,15 +1845,17 @@ class AsyncFarmResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_deadline.types.get_storage_profile_request.GetStorageProfileRequest = {}  # type: ignore[typeddict-item]
-        input_["farm_id"] = farm_id
-        input_["storage_profile_id"] = storage_profile_id
+        input_: capo_deadline.types.get_storage_profile_request.GetStorageProfileRequest = {
+            "farm_id": farm_id,
+            "storage_profile_id": storage_profile_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_farm_members(
@@ -1830,8 +1898,9 @@ class AsyncFarmResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_deadline.types.list_farm_members_request.ListFarmMembersRequest = {}  # type: ignore[typeddict-item]
-        input_["farm_id"] = farm_id
+        input_: capo_deadline.types.list_farm_members_request.ListFarmMembersRequest = {
+            "farm_id": farm_id
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -1842,6 +1911,7 @@ class AsyncFarmResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_limits(
@@ -1884,8 +1954,9 @@ class AsyncFarmResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_deadline.types.list_limits_request.ListLimitsRequest = {}  # type: ignore[typeddict-item]
-        input_["farm_id"] = farm_id
+        input_: capo_deadline.types.list_limits_request.ListLimitsRequest = {
+            "farm_id": farm_id
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -1896,6 +1967,7 @@ class AsyncFarmResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_storage_profiles(
@@ -1940,8 +2012,9 @@ class AsyncFarmResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_deadline.types.list_storage_profiles_request.ListStorageProfilesRequest = {}  # type: ignore[typeddict-item]
-        input_["farm_id"] = farm_id
+        input_: capo_deadline.types.list_storage_profiles_request.ListStorageProfilesRequest = {
+            "farm_id": farm_id
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -1952,6 +2025,7 @@ class AsyncFarmResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_limit(
@@ -1998,9 +2072,10 @@ class AsyncFarmResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_deadline.types.update_limit_request.UpdateLimitRequest = {}  # type: ignore[typeddict-item]
-        input_["farm_id"] = farm_id
-        input_["limit_id"] = limit_id
+        input_: capo_deadline.types.update_limit_request.UpdateLimitRequest = {
+            "farm_id": farm_id,
+            "limit_id": limit_id,
+        }
         if display_name is not None:
             input_["display_name"] = display_name
         if description is not None:
@@ -2013,6 +2088,7 @@ class AsyncFarmResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_storage_profile(
@@ -2069,11 +2145,13 @@ class AsyncFarmResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_deadline.types.update_storage_profile_request.UpdateStorageProfileRequest = {}  # type: ignore[typeddict-item]
-        input_["farm_id"] = farm_id
-        input_["storage_profile_id"] = storage_profile_id
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_deadline.types.update_storage_profile_request.UpdateStorageProfileRequest = {
+            "farm_id": farm_id,
+            "storage_profile_id": storage_profile_id,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if display_name is not None:
             input_["display_name"] = display_name
         if os_family is not None:
@@ -2088,4 +2166,5 @@ class AsyncFarmResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

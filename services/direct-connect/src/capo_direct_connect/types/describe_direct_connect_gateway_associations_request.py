@@ -64,16 +64,16 @@ def deserialize_aws_json_1_1(
     data: dict,
 ) -> DescribeDirectConnectGatewayAssociationsRequest:
     out: DescribeDirectConnectGatewayAssociationsRequest = {}  # type: ignore[typeddict-item]
-    if "associationId" in data:
+    if data.get("associationId") is not None:
         out["association_id"] = data["associationId"]
-    if "associatedGatewayId" in data:
+    if data.get("associatedGatewayId") is not None:
         out["associated_gateway_id"] = data["associatedGatewayId"]
-    if "directConnectGatewayId" in data:
+    if data.get("directConnectGatewayId") is not None:
         out["direct_connect_gateway_id"] = data["directConnectGatewayId"]
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "virtualGatewayId" in data:
+    if data.get("virtualGatewayId") is not None:
         out["virtual_gateway_id"] = data["virtualGatewayId"]
     return out

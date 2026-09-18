@@ -33,10 +33,10 @@ def serialize_json(value: CreatePackageResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreatePackageResponse:
     out: CreatePackageResponse = {}  # type: ignore[typeddict-item]
-    if "packageName" in data:
+    if data.get("packageName") is not None:
         out["package_name"] = data["packageName"]
-    if "packageArn" in data:
+    if data.get("packageArn") is not None:
         out["package_arn"] = data["packageArn"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
     return out

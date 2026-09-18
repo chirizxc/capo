@@ -118,17 +118,17 @@ def serialize_aws_json_1_1(value: InstanceGroupDetail) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> InstanceGroupDetail:
     out: InstanceGroupDetail = {}  # type: ignore[typeddict-item]
-    if "InstanceGroupId" in data:
+    if data.get("InstanceGroupId") is not None:
         out["instance_group_id"] = data["InstanceGroupId"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Market" in data:
+    if data.get("Market") is not None:
         import capo_emr.types.market_type
 
         out["market"] = capo_emr.types.market_type.deserialize_aws_json_1_1(
             data["Market"]
         )
-    if "InstanceRole" in data:
+    if data.get("InstanceRole") is not None:
         import capo_emr.types.instance_role_type
 
         out["instance_role"] = (
@@ -136,46 +136,46 @@ def deserialize_aws_json_1_1(data: dict) -> InstanceGroupDetail:
                 data["InstanceRole"]
             )
         )
-    if "BidPrice" in data:
+    if data.get("BidPrice") is not None:
         out["bid_price"] = data["BidPrice"]
-    if "InstanceType" in data:
+    if data.get("InstanceType") is not None:
         out["instance_type"] = data["InstanceType"]
-    if "InstanceRequestCount" in data:
+    if data.get("InstanceRequestCount") is not None:
         out["instance_request_count"] = data["InstanceRequestCount"]
-    if "InstanceRunningCount" in data:
+    if data.get("InstanceRunningCount") is not None:
         out["instance_running_count"] = data["InstanceRunningCount"]
-    if "State" in data:
+    if data.get("State") is not None:
         import capo_emr.types.instance_group_state
 
         out["state"] = capo_emr.types.instance_group_state.deserialize_aws_json_1_1(
             data["State"]
         )
-    if "LastStateChangeReason" in data:
+    if data.get("LastStateChangeReason") is not None:
         out["last_state_change_reason"] = data["LastStateChangeReason"]
-    if "CreationDateTime" in data:
+    if data.get("CreationDateTime") is not None:
         import capo_emr.types.date
 
         out["creation_date_time"] = capo_emr.types.date.deserialize_aws_json_1_1(
             data["CreationDateTime"]
         )
-    if "StartDateTime" in data:
+    if data.get("StartDateTime") is not None:
         import capo_emr.types.date
 
         out["start_date_time"] = capo_emr.types.date.deserialize_aws_json_1_1(
             data["StartDateTime"]
         )
-    if "ReadyDateTime" in data:
+    if data.get("ReadyDateTime") is not None:
         import capo_emr.types.date
 
         out["ready_date_time"] = capo_emr.types.date.deserialize_aws_json_1_1(
             data["ReadyDateTime"]
         )
-    if "EndDateTime" in data:
+    if data.get("EndDateTime") is not None:
         import capo_emr.types.date
 
         out["end_date_time"] = capo_emr.types.date.deserialize_aws_json_1_1(
             data["EndDateTime"]
         )
-    if "CustomAmiId" in data:
+    if data.get("CustomAmiId") is not None:
         out["custom_ami_id"] = data["CustomAmiId"]
     return out

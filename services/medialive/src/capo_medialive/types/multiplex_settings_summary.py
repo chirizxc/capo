@@ -25,6 +25,6 @@ def serialize_json(value: MultiplexSettingsSummary) -> dict:
 
 def deserialize_json(data: dict) -> MultiplexSettingsSummary:
     out: MultiplexSettingsSummary = {}  # type: ignore[typeddict-item]
-    if "transportStreamBitrate" in data:
+    if data.get("transportStreamBitrate") is not None:
         out["transport_stream_bitrate"] = data["transportStreamBitrate"]
     return out

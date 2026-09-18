@@ -41,7 +41,7 @@ def serialize_json(value: EvaluateCodeRequest) -> dict:
 
 def deserialize_json(data: dict) -> EvaluateCodeRequest:
     out: EvaluateCodeRequest = {}  # type: ignore[typeddict-item]
-    if "runtime" in data:
+    if data.get("runtime") is not None:
         import capo_appsync.types.app_sync_runtime
 
         out["runtime"] = capo_appsync.types.app_sync_runtime.deserialize_json(
@@ -49,14 +49,14 @@ def deserialize_json(data: dict) -> EvaluateCodeRequest:
         )
     else:
         raise DeserializationError("EvaluateCodeRequest.runtime required")
-    if "code" in data:
+    if data.get("code") is not None:
         out["code"] = data["code"]
     else:
         raise DeserializationError("EvaluateCodeRequest.code required")
-    if "context" in data:
+    if data.get("context") is not None:
         out["context"] = data["context"]
     else:
         raise DeserializationError("EvaluateCodeRequest.context required")
-    if "function" in data:
+    if data.get("function") is not None:
         out["function"] = data["function"]
     return out

@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: ContainsPiiEntitiesResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ContainsPiiEntitiesResponse:
     out: ContainsPiiEntitiesResponse = {}  # type: ignore[typeddict-item]
-    if "Labels" in data:
+    if data.get("Labels") is not None:
         import capo_comprehend.types.list_of_entity_labels
 
         out["labels"] = (

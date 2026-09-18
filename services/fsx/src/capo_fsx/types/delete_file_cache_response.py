@@ -32,9 +32,9 @@ def serialize_aws_json_1_1(value: DeleteFileCacheResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteFileCacheResponse:
     out: DeleteFileCacheResponse = {}  # type: ignore[typeddict-item]
-    if "FileCacheId" in data:
+    if data.get("FileCacheId") is not None:
         out["file_cache_id"] = data["FileCacheId"]
-    if "Lifecycle" in data:
+    if data.get("Lifecycle") is not None:
         import capo_fsx.types.file_cache_lifecycle
 
         out["lifecycle"] = capo_fsx.types.file_cache_lifecycle.deserialize_aws_json_1_1(

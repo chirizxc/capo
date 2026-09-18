@@ -30,15 +30,15 @@ def serialize_json(value: DataEncryptionMetadata) -> dict:
 
 def deserialize_json(data: dict) -> DataEncryptionMetadata:
     out: DataEncryptionMetadata = {}  # type: ignore[typeddict-item]
-    if "allowCleartext" in data:
+    if data.get("allowCleartext") is not None:
         out["allow_cleartext"] = data["allowCleartext"]
     else:
         raise DeserializationError("DataEncryptionMetadata.allow_cleartext required")
-    if "allowDuplicates" in data:
+    if data.get("allowDuplicates") is not None:
         out["allow_duplicates"] = data["allowDuplicates"]
     else:
         raise DeserializationError("DataEncryptionMetadata.allow_duplicates required")
-    if "allowJoinsOnColumnsWithDifferentNames" in data:
+    if data.get("allowJoinsOnColumnsWithDifferentNames") is not None:
         out["allow_joins_on_columns_with_different_names"] = data[
             "allowJoinsOnColumnsWithDifferentNames"
         ]
@@ -46,7 +46,7 @@ def deserialize_json(data: dict) -> DataEncryptionMetadata:
         raise DeserializationError(
             "DataEncryptionMetadata.allow_joins_on_columns_with_different_names required"
         )
-    if "preserveNulls" in data:
+    if data.get("preserveNulls") is not None:
         out["preserve_nulls"] = data["preserveNulls"]
     else:
         raise DeserializationError("DataEncryptionMetadata.preserve_nulls required")

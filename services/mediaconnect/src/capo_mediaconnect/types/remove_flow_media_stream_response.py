@@ -22,8 +22,8 @@ def serialize_json(value: RemoveFlowMediaStreamResponse) -> dict:
 
 def deserialize_json(data: dict) -> RemoveFlowMediaStreamResponse:
     out: RemoveFlowMediaStreamResponse = {}  # type: ignore[typeddict-item]
-    if "flowArn" in data:
+    if data.get("flowArn") is not None:
         out["flow_arn"] = data["flowArn"]
-    if "mediaStreamName" in data:
+    if data.get("mediaStreamName") is not None:
         out["media_stream_name"] = data["mediaStreamName"]
     return out

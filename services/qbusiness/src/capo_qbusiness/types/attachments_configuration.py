@@ -32,7 +32,7 @@ def serialize_json(value: AttachmentsConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> AttachmentsConfiguration:
     out: AttachmentsConfiguration = {}  # type: ignore[typeddict-item]
-    if "attachmentsControlMode" in data:
+    if data.get("attachmentsControlMode") is not None:
         import capo_qbusiness.types.attachments_control_mode
 
         out["attachments_control_mode"] = (

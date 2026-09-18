@@ -36,7 +36,7 @@ def serialize_json(value: PutAlertManagerDefinitionRequest) -> dict:
 
 def deserialize_json(data: dict) -> PutAlertManagerDefinitionRequest:
     out: PutAlertManagerDefinitionRequest = {}  # type: ignore[typeddict-item]
-    if "data" in data:
+    if data.get("data") is not None:
         import capo_amp.types.alert_manager_definition_data
 
         out["data"] = capo_amp.types.alert_manager_definition_data.deserialize_json(
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> PutAlertManagerDefinitionRequest:
         )
     else:
         raise DeserializationError("PutAlertManagerDefinitionRequest.data required")
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     return out

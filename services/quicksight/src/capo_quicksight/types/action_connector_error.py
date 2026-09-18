@@ -33,9 +33,9 @@ def serialize_json(value: ActionConnectorError) -> dict:
 
 def deserialize_json(data: dict) -> ActionConnectorError:
     out: ActionConnectorError = {}  # type: ignore[typeddict-item]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_quicksight.types.action_connector_error_type
 
         out["type"] = (

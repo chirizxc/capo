@@ -34,9 +34,9 @@ def serialize_json(value: MapConfigurationUpdate) -> dict:
 
 def deserialize_json(data: dict) -> MapConfigurationUpdate:
     out: MapConfigurationUpdate = {}  # type: ignore[typeddict-item]
-    if "PoliticalView" in data:
+    if data.get("PoliticalView") is not None:
         out["political_view"] = data["PoliticalView"]
-    if "CustomLayers" in data:
+    if data.get("CustomLayers") is not None:
         import capo_location.types.custom_layer_list
 
         out["custom_layers"] = capo_location.types.custom_layer_list.deserialize_json(

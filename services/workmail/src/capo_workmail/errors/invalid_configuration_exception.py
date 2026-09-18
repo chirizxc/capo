@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: InvalidConfigurationException_) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> InvalidConfigurationException_:
     out: InvalidConfigurationException_ = {}  # type: ignore[typeddict-item]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     return out
 
@@ -34,15 +34,20 @@ class InvalidConfigurationException(ServiceError):
 
     code: str | None = "InvalidConfigurationException"
 
-    def __init__(self, data: InvalidConfigurationException_):
+    def __init__(
+        self, data: InvalidConfigurationException_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="InvalidConfigurationException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "InvalidConfigurationException":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "InvalidConfigurationException":
+        return cls(deserialize_aws_json_1_1(data), message)

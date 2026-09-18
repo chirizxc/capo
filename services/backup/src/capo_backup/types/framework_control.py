@@ -46,11 +46,11 @@ def serialize_json(value: FrameworkControl) -> dict:
 
 def deserialize_json(data: dict) -> FrameworkControl:
     out: FrameworkControl = {}  # type: ignore[typeddict-item]
-    if "ControlName" in data:
+    if data.get("ControlName") is not None:
         out["control_name"] = data["ControlName"]
     else:
         raise DeserializationError("FrameworkControl.control_name required")
-    if "ControlInputParameters" in data:
+    if data.get("ControlInputParameters") is not None:
         import capo_backup.types.control_input_parameters
 
         out["control_input_parameters"] = (
@@ -58,7 +58,7 @@ def deserialize_json(data: dict) -> FrameworkControl:
                 data["ControlInputParameters"]
             )
         )
-    if "ControlScope" in data:
+    if data.get("ControlScope") is not None:
         import capo_backup.types.control_scope
 
         out["control_scope"] = capo_backup.types.control_scope.deserialize_json(

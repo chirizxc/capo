@@ -32,12 +32,12 @@ def serialize_json(value: GetDedicatedIpsResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetDedicatedIpsResponse:
     out: GetDedicatedIpsResponse = {}  # type: ignore[typeddict-item]
-    if "DedicatedIps" in data:
+    if data.get("DedicatedIps") is not None:
         import capo_sesv2.types.dedicated_ip_list
 
         out["dedicated_ips"] = capo_sesv2.types.dedicated_ip_list.deserialize_json(
             data["DedicatedIps"]
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

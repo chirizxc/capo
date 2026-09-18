@@ -39,11 +39,11 @@ def serialize_json(value: SyntheticDataColumnProperties) -> dict:
 
 def deserialize_json(data: dict) -> SyntheticDataColumnProperties:
     out: SyntheticDataColumnProperties = {}  # type: ignore[typeddict-item]
-    if "columnName" in data:
+    if data.get("columnName") is not None:
         out["column_name"] = data["columnName"]
     else:
         raise DeserializationError("SyntheticDataColumnProperties.column_name required")
-    if "columnType" in data:
+    if data.get("columnType") is not None:
         import capo_cleanrooms.types.synthetic_data_column_type
 
         out["column_type"] = (
@@ -53,7 +53,7 @@ def deserialize_json(data: dict) -> SyntheticDataColumnProperties:
         )
     else:
         raise DeserializationError("SyntheticDataColumnProperties.column_type required")
-    if "isPredictiveValue" in data:
+    if data.get("isPredictiveValue") is not None:
         out["is_predictive_value"] = data["isPredictiveValue"]
     else:
         raise DeserializationError(

@@ -27,7 +27,7 @@ def serialize_json(value: BatchCreateRoomMembershipResponse) -> dict:
 
 def deserialize_json(data: dict) -> BatchCreateRoomMembershipResponse:
     out: BatchCreateRoomMembershipResponse = {}  # type: ignore[typeddict-item]
-    if "Errors" in data:
+    if data.get("Errors") is not None:
         import capo_chime.types.member_error_list
 
         out["errors"] = capo_chime.types.member_error_list.deserialize_json(

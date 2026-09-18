@@ -62,26 +62,26 @@ def serialize_json(value: GetBotResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetBotResponse:
     out: GetBotResponse = {}  # type: ignore[typeddict-item]
-    if "botId" in data:
+    if data.get("botId") is not None:
         out["bot_id"] = data["botId"]
-    if "displayName" in data:
+    if data.get("displayName") is not None:
         out["display_name"] = data["displayName"]
-    if "username" in data:
+    if data.get("username") is not None:
         out["username"] = data["username"]
-    if "uname" in data:
+    if data.get("uname") is not None:
         out["uname"] = data["uname"]
-    if "pubkey" in data:
+    if data.get("pubkey") is not None:
         out["pubkey"] = data["pubkey"]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_wickr.types.bot_status
 
         out["status"] = capo_wickr.types.bot_status.deserialize_json(data["status"])
-    if "groupId" in data:
+    if data.get("groupId") is not None:
         out["group_id"] = data["groupId"]
-    if "hasChallenge" in data:
+    if data.get("hasChallenge") is not None:
         out["has_challenge"] = data["hasChallenge"]
-    if "suspended" in data:
+    if data.get("suspended") is not None:
         out["suspended"] = data["suspended"]
-    if "lastLogin" in data:
+    if data.get("lastLogin") is not None:
         out["last_login"] = data["lastLogin"]
     return out

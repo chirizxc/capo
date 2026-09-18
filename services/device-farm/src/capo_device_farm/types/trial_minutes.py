@@ -19,16 +19,32 @@ class TrialMinutes(TypedDict, closed=True):
 def serialize_aws_json_1_1(value: TrialMinutes) -> dict:
     out: dict = {}
     if "total" in value:
-        out["total"] = value["total"]
+        out["total"] = (
+            "NaN"
+            if value["total"] != value["total"]
+            else "Infinity"
+            if value["total"] == float("inf")
+            else "-Infinity"
+            if value["total"] == float("-inf")
+            else value["total"]
+        )
     if "remaining" in value:
-        out["remaining"] = value["remaining"]
+        out["remaining"] = (
+            "NaN"
+            if value["remaining"] != value["remaining"]
+            else "Infinity"
+            if value["remaining"] == float("inf")
+            else "-Infinity"
+            if value["remaining"] == float("-inf")
+            else value["remaining"]
+        )
     return out
 
 
 def deserialize_aws_json_1_1(data: dict) -> TrialMinutes:
     out: TrialMinutes = {}  # type: ignore[typeddict-item]
-    if "total" in data:
-        out["total"] = data["total"]
-    if "remaining" in data:
-        out["remaining"] = data["remaining"]
+    if data.get("total") is not None:
+        out["total"] = float(data["total"])
+    if data.get("remaining") is not None:
+        out["remaining"] = float(data["remaining"])
     return out

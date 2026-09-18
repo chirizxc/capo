@@ -39,14 +39,14 @@ def serialize_aws_json_1_1(value: DescribeComponentConfigurationResponse) -> dic
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeComponentConfigurationResponse:
     out: DescribeComponentConfigurationResponse = {}  # type: ignore[typeddict-item]
-    if "Monitor" in data:
+    if data.get("Monitor") is not None:
         out["monitor"] = data["Monitor"]
-    if "Tier" in data:
+    if data.get("Tier") is not None:
         import capo_application_insights.types.tier
 
         out["tier"] = capo_application_insights.types.tier.deserialize_aws_json_1_1(
             data["Tier"]
         )
-    if "ComponentConfiguration" in data:
+    if data.get("ComponentConfiguration") is not None:
         out["component_configuration"] = data["ComponentConfiguration"]
     return out

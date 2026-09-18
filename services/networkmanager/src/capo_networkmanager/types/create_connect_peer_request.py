@@ -71,25 +71,25 @@ def serialize_json(value: CreateConnectPeerRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateConnectPeerRequest:
     out: CreateConnectPeerRequest = {}  # type: ignore[typeddict-item]
-    if "ConnectAttachmentId" in data:
+    if data.get("ConnectAttachmentId") is not None:
         out["connect_attachment_id"] = data["ConnectAttachmentId"]
     else:
         raise DeserializationError(
             "CreateConnectPeerRequest.connect_attachment_id required"
         )
-    if "CoreNetworkAddress" in data:
+    if data.get("CoreNetworkAddress") is not None:
         out["core_network_address"] = data["CoreNetworkAddress"]
-    if "PeerAddress" in data:
+    if data.get("PeerAddress") is not None:
         out["peer_address"] = data["PeerAddress"]
     else:
         raise DeserializationError("CreateConnectPeerRequest.peer_address required")
-    if "BgpOptions" in data:
+    if data.get("BgpOptions") is not None:
         import capo_networkmanager.types.bgp_options
 
         out["bgp_options"] = capo_networkmanager.types.bgp_options.deserialize_json(
             data["BgpOptions"]
         )
-    if "InsideCidrBlocks" in data:
+    if data.get("InsideCidrBlocks") is not None:
         import capo_networkmanager.types.constrained_string_list
 
         out["inside_cidr_blocks"] = (
@@ -97,12 +97,12 @@ def deserialize_json(data: dict) -> CreateConnectPeerRequest:
                 data["InsideCidrBlocks"]
             )
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_networkmanager.types.tag_list
 
         out["tags"] = capo_networkmanager.types.tag_list.deserialize_json(data["Tags"])
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
-    if "SubnetArn" in data:
+    if data.get("SubnetArn") is not None:
         out["subnet_arn"] = data["SubnetArn"]
     return out

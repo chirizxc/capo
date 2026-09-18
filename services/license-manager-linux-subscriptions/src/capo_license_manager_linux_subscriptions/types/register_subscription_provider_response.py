@@ -36,10 +36,10 @@ def serialize_json(value: RegisterSubscriptionProviderResponse) -> dict:
 
 def deserialize_json(data: dict) -> RegisterSubscriptionProviderResponse:
     out: RegisterSubscriptionProviderResponse = {}  # type: ignore[typeddict-item]
-    if "SubscriptionProviderSource" in data:
+    if data.get("SubscriptionProviderSource") is not None:
         out["subscription_provider_source"] = data["SubscriptionProviderSource"]
-    if "SubscriptionProviderArn" in data:
+    if data.get("SubscriptionProviderArn") is not None:
         out["subscription_provider_arn"] = data["SubscriptionProviderArn"]
-    if "SubscriptionProviderStatus" in data:
+    if data.get("SubscriptionProviderStatus") is not None:
         out["subscription_provider_status"] = data["SubscriptionProviderStatus"]
     return out

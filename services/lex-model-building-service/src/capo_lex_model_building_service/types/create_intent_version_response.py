@@ -210,17 +210,17 @@ def serialize_json(value: CreateIntentVersionResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateIntentVersionResponse:
     out: CreateIntentVersionResponse = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "slots" in data:
+    if data.get("slots") is not None:
         import capo_lex_model_building_service.types.slot_list
 
         out["slots"] = capo_lex_model_building_service.types.slot_list.deserialize_json(
             data["slots"]
         )
-    if "sampleUtterances" in data:
+    if data.get("sampleUtterances") is not None:
         import capo_lex_model_building_service.types.intent_utterance_list
 
         out["sample_utterances"] = (
@@ -228,7 +228,7 @@ def deserialize_json(data: dict) -> CreateIntentVersionResponse:
                 data["sampleUtterances"]
             )
         )
-    if "confirmationPrompt" in data:
+    if data.get("confirmationPrompt") is not None:
         import capo_lex_model_building_service.types.prompt
 
         out["confirmation_prompt"] = (
@@ -236,7 +236,7 @@ def deserialize_json(data: dict) -> CreateIntentVersionResponse:
                 data["confirmationPrompt"]
             )
         )
-    if "rejectionStatement" in data:
+    if data.get("rejectionStatement") is not None:
         import capo_lex_model_building_service.types.statement
 
         out["rejection_statement"] = (
@@ -244,7 +244,7 @@ def deserialize_json(data: dict) -> CreateIntentVersionResponse:
                 data["rejectionStatement"]
             )
         )
-    if "followUpPrompt" in data:
+    if data.get("followUpPrompt") is not None:
         import capo_lex_model_building_service.types.follow_up_prompt
 
         out["follow_up_prompt"] = (
@@ -252,7 +252,7 @@ def deserialize_json(data: dict) -> CreateIntentVersionResponse:
                 data["followUpPrompt"]
             )
         )
-    if "conclusionStatement" in data:
+    if data.get("conclusionStatement") is not None:
         import capo_lex_model_building_service.types.statement
 
         out["conclusion_statement"] = (
@@ -260,7 +260,7 @@ def deserialize_json(data: dict) -> CreateIntentVersionResponse:
                 data["conclusionStatement"]
             )
         )
-    if "dialogCodeHook" in data:
+    if data.get("dialogCodeHook") is not None:
         import capo_lex_model_building_service.types.code_hook
 
         out["dialog_code_hook"] = (
@@ -268,7 +268,7 @@ def deserialize_json(data: dict) -> CreateIntentVersionResponse:
                 data["dialogCodeHook"]
             )
         )
-    if "fulfillmentActivity" in data:
+    if data.get("fulfillmentActivity") is not None:
         import capo_lex_model_building_service.types.fulfillment_activity
 
         out["fulfillment_activity"] = (
@@ -276,9 +276,9 @@ def deserialize_json(data: dict) -> CreateIntentVersionResponse:
                 data["fulfillmentActivity"]
             )
         )
-    if "parentIntentSignature" in data:
+    if data.get("parentIntentSignature") is not None:
         out["parent_intent_signature"] = data["parentIntentSignature"]
-    if "lastUpdatedDate" in data:
+    if data.get("lastUpdatedDate") is not None:
         import capo_lex_model_building_service.types.timestamp
 
         out["last_updated_date"] = (
@@ -286,7 +286,7 @@ def deserialize_json(data: dict) -> CreateIntentVersionResponse:
                 data["lastUpdatedDate"]
             )
         )
-    if "createdDate" in data:
+    if data.get("createdDate") is not None:
         import capo_lex_model_building_service.types.timestamp
 
         out["created_date"] = (
@@ -294,11 +294,11 @@ def deserialize_json(data: dict) -> CreateIntentVersionResponse:
                 data["createdDate"]
             )
         )
-    if "version" in data:
+    if data.get("version") is not None:
         out["version"] = data["version"]
-    if "checksum" in data:
+    if data.get("checksum") is not None:
         out["checksum"] = data["checksum"]
-    if "kendraConfiguration" in data:
+    if data.get("kendraConfiguration") is not None:
         import capo_lex_model_building_service.types.kendra_configuration
 
         out["kendra_configuration"] = (
@@ -306,7 +306,7 @@ def deserialize_json(data: dict) -> CreateIntentVersionResponse:
                 data["kendraConfiguration"]
             )
         )
-    if "inputContexts" in data:
+    if data.get("inputContexts") is not None:
         import capo_lex_model_building_service.types.input_context_list
 
         out["input_contexts"] = (
@@ -314,7 +314,7 @@ def deserialize_json(data: dict) -> CreateIntentVersionResponse:
                 data["inputContexts"]
             )
         )
-    if "outputContexts" in data:
+    if data.get("outputContexts") is not None:
         import capo_lex_model_building_service.types.output_context_list
 
         out["output_contexts"] = (

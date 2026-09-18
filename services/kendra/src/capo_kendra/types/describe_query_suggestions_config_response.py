@@ -104,11 +104,11 @@ def serialize_aws_json_1_1(value: DescribeQuerySuggestionsConfigResponse) -> dic
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeQuerySuggestionsConfigResponse:
     out: DescribeQuerySuggestionsConfigResponse = {}  # type: ignore[typeddict-item]
-    if "Mode" in data:
+    if data.get("Mode") is not None:
         import capo_kendra.types.mode
 
         out["mode"] = capo_kendra.types.mode.deserialize_aws_json_1_1(data["Mode"])
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_kendra.types.query_suggestions_status
 
         out["status"] = (
@@ -116,17 +116,17 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeQuerySuggestionsConfigRespon
                 data["Status"]
             )
         )
-    if "QueryLogLookBackWindowInDays" in data:
+    if data.get("QueryLogLookBackWindowInDays") is not None:
         out["query_log_look_back_window_in_days"] = data["QueryLogLookBackWindowInDays"]
-    if "IncludeQueriesWithoutUserInformation" in data:
+    if data.get("IncludeQueriesWithoutUserInformation") is not None:
         out["include_queries_without_user_information"] = data[
             "IncludeQueriesWithoutUserInformation"
         ]
-    if "MinimumNumberOfQueryingUsers" in data:
+    if data.get("MinimumNumberOfQueryingUsers") is not None:
         out["minimum_number_of_querying_users"] = data["MinimumNumberOfQueryingUsers"]
-    if "MinimumQueryCount" in data:
+    if data.get("MinimumQueryCount") is not None:
         out["minimum_query_count"] = data["MinimumQueryCount"]
-    if "LastSuggestionsBuildTime" in data:
+    if data.get("LastSuggestionsBuildTime") is not None:
         import capo_kendra.types.timestamp
 
         out["last_suggestions_build_time"] = (
@@ -134,15 +134,15 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeQuerySuggestionsConfigRespon
                 data["LastSuggestionsBuildTime"]
             )
         )
-    if "LastClearTime" in data:
+    if data.get("LastClearTime") is not None:
         import capo_kendra.types.timestamp
 
         out["last_clear_time"] = capo_kendra.types.timestamp.deserialize_aws_json_1_1(
             data["LastClearTime"]
         )
-    if "TotalSuggestionsCount" in data:
+    if data.get("TotalSuggestionsCount") is not None:
         out["total_suggestions_count"] = data["TotalSuggestionsCount"]
-    if "AttributeSuggestionsConfig" in data:
+    if data.get("AttributeSuggestionsConfig") is not None:
         import capo_kendra.types.attribute_suggestions_describe_config
 
         out["attribute_suggestions_config"] = (

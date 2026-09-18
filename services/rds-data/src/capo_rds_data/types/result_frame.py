@@ -38,7 +38,7 @@ def serialize_json(value: ResultFrame) -> dict:
 
 def deserialize_json(data: dict) -> ResultFrame:
     out: ResultFrame = {}  # type: ignore[typeddict-item]
-    if "resultSetMetadata" in data:
+    if data.get("resultSetMetadata") is not None:
         import capo_rds_data.types.result_set_metadata
 
         out["result_set_metadata"] = (
@@ -46,7 +46,7 @@ def deserialize_json(data: dict) -> ResultFrame:
                 data["resultSetMetadata"]
             )
         )
-    if "records" in data:
+    if data.get("records") is not None:
         import capo_rds_data.types.records
 
         out["records"] = capo_rds_data.types.records.deserialize_json(data["records"])

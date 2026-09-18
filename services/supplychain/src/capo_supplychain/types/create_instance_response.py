@@ -26,7 +26,7 @@ def serialize_json(value: CreateInstanceResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateInstanceResponse:
     out: CreateInstanceResponse = {}  # type: ignore[typeddict-item]
-    if "instance" in data:
+    if data.get("instance") is not None:
         import capo_supplychain.types.instance
 
         out["instance"] = capo_supplychain.types.instance.deserialize_json(

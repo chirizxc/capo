@@ -32,12 +32,12 @@ def serialize_aws_json_1_1(value: BlockPublicAccessConfigurationMetadata) -> dic
 
 def deserialize_aws_json_1_1(data: dict) -> BlockPublicAccessConfigurationMetadata:
     out: BlockPublicAccessConfigurationMetadata = {}  # type: ignore[typeddict-item]
-    if "CreationDateTime" in data:
+    if data.get("CreationDateTime") is not None:
         import capo_emr.types.date
 
         out["creation_date_time"] = capo_emr.types.date.deserialize_aws_json_1_1(
             data["CreationDateTime"]
         )
-    if "CreatedByArn" in data:
+    if data.get("CreatedByArn") is not None:
         out["created_by_arn"] = data["CreatedByArn"]
     return out

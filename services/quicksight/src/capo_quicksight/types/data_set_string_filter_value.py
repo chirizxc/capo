@@ -25,6 +25,6 @@ def serialize_json(value: DataSetStringFilterValue) -> dict:
 
 def deserialize_json(data: dict) -> DataSetStringFilterValue:
     out: DataSetStringFilterValue = {}  # type: ignore[typeddict-item]
-    if "StaticValue" in data:
+    if data.get("StaticValue") is not None:
         out["static_value"] = data["StaticValue"]
     return out

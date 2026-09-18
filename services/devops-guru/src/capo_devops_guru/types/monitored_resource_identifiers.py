@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> MonitoredResourceIdentifiers:
 
     out: MonitoredResourceIdentifiers = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_devops_guru.types.monitored_resource_identifier.deserialize_json(item)
         )

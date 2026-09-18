@@ -62,11 +62,11 @@ def serialize_json(value: AwsGroundStationAgentEndpoint) -> dict:
 
 def deserialize_json(data: dict) -> AwsGroundStationAgentEndpoint:
     out: AwsGroundStationAgentEndpoint = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("AwsGroundStationAgentEndpoint.name required")
-    if "egressAddress" in data:
+    if data.get("egressAddress") is not None:
         import capo_groundstation.types.connection_details
 
         out["egress_address"] = (
@@ -78,7 +78,7 @@ def deserialize_json(data: dict) -> AwsGroundStationAgentEndpoint:
         raise DeserializationError(
             "AwsGroundStationAgentEndpoint.egress_address required"
         )
-    if "ingressAddress" in data:
+    if data.get("ingressAddress") is not None:
         import capo_groundstation.types.ranged_connection_details
 
         out["ingress_address"] = (
@@ -90,13 +90,13 @@ def deserialize_json(data: dict) -> AwsGroundStationAgentEndpoint:
         raise DeserializationError(
             "AwsGroundStationAgentEndpoint.ingress_address required"
         )
-    if "agentStatus" in data:
+    if data.get("agentStatus") is not None:
         import capo_groundstation.types.agent_status
 
         out["agent_status"] = capo_groundstation.types.agent_status.deserialize_json(
             data["agentStatus"]
         )
-    if "auditResults" in data:
+    if data.get("auditResults") is not None:
         import capo_groundstation.types.audit_results
 
         out["audit_results"] = capo_groundstation.types.audit_results.deserialize_json(

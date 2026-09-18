@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> BatchGetAssetPropertyValueHistoryErrorEntrie
 
     out: BatchGetAssetPropertyValueHistoryErrorEntries = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_iotsitewise.types.batch_get_asset_property_value_history_error_entry.deserialize_json(
                 item

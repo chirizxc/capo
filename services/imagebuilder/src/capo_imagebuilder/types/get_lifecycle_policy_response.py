@@ -31,7 +31,7 @@ def serialize_json(value: GetLifecyclePolicyResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetLifecyclePolicyResponse:
     out: GetLifecyclePolicyResponse = {}  # type: ignore[typeddict-item]
-    if "lifecyclePolicy" in data:
+    if data.get("lifecyclePolicy") is not None:
         import capo_imagebuilder.types.lifecycle_policy
 
         out["lifecycle_policy"] = (

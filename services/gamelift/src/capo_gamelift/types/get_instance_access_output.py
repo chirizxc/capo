@@ -29,7 +29,7 @@ def serialize_aws_json_1_1(value: GetInstanceAccessOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetInstanceAccessOutput:
     out: GetInstanceAccessOutput = {}  # type: ignore[typeddict-item]
-    if "InstanceAccess" in data:
+    if data.get("InstanceAccess") is not None:
         import capo_gamelift.types.instance_access
 
         out["instance_access"] = (

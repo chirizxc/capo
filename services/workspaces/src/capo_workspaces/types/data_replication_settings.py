@@ -42,7 +42,7 @@ def serialize_aws_json_1_1(value: DataReplicationSettings) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DataReplicationSettings:
     out: DataReplicationSettings = {}  # type: ignore[typeddict-item]
-    if "DataReplication" in data:
+    if data.get("DataReplication") is not None:
         import capo_workspaces.types.data_replication
 
         out["data_replication"] = (
@@ -50,7 +50,7 @@ def deserialize_aws_json_1_1(data: dict) -> DataReplicationSettings:
                 data["DataReplication"]
             )
         )
-    if "RecoverySnapshotTime" in data:
+    if data.get("RecoverySnapshotTime") is not None:
         import capo_workspaces.types.timestamp
 
         out["recovery_snapshot_time"] = (

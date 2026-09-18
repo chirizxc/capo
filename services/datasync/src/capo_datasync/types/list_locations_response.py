@@ -32,12 +32,12 @@ def serialize_aws_json_1_1(value: ListLocationsResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListLocationsResponse:
     out: ListLocationsResponse = {}  # type: ignore[typeddict-item]
-    if "Locations" in data:
+    if data.get("Locations") is not None:
         import capo_datasync.types.location_list
 
         out["locations"] = capo_datasync.types.location_list.deserialize_aws_json_1_1(
             data["Locations"]
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

@@ -31,12 +31,12 @@ def serialize_json(value: DescribeWorkspaceConfigurationResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribeWorkspaceConfigurationResponse:
     out: DescribeWorkspaceConfigurationResponse = {}  # type: ignore[typeddict-item]
-    if "configuration" in data:
+    if data.get("configuration") is not None:
         out["configuration"] = data["configuration"]
     else:
         raise DeserializationError(
             "DescribeWorkspaceConfigurationResponse.configuration required"
         )
-    if "grafanaVersion" in data:
+    if data.get("grafanaVersion") is not None:
         out["grafana_version"] = data["grafanaVersion"]
     return out

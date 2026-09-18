@@ -26,7 +26,7 @@ def serialize_aws_json_1_1(value: DescribeAllManagedProductsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeAllManagedProductsRequest:
     out: DescribeAllManagedProductsRequest = {}  # type: ignore[typeddict-item]
-    if "Scope" in data:
+    if data.get("Scope") is not None:
         import capo_wafv2.types.scope
 
         out["scope"] = capo_wafv2.types.scope.deserialize_aws_json_1_1(data["Scope"])

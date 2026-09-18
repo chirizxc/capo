@@ -45,7 +45,15 @@ def serialize_aws_json_1_1(value: Entity) -> dict:
     if "end_offset" in value:
         out["EndOffset"] = value["end_offset"]
     if "score" in value:
-        out["Score"] = value["score"]
+        out["Score"] = (
+            "NaN"
+            if value["score"] != value["score"]
+            else "Infinity"
+            if value["score"] == float("inf")
+            else "-Infinity"
+            if value["score"] == float("-inf")
+            else value["score"]
+        )
     if "text" in value:
         out["Text"] = value["text"]
     if "category" in value:
@@ -83,17 +91,17 @@ def serialize_aws_json_1_1(value: Entity) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Entity:
     out: Entity = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "BeginOffset" in data:
+    if data.get("BeginOffset") is not None:
         out["begin_offset"] = data["BeginOffset"]
-    if "EndOffset" in data:
+    if data.get("EndOffset") is not None:
         out["end_offset"] = data["EndOffset"]
-    if "Score" in data:
-        out["score"] = data["Score"]
-    if "Text" in data:
+    if data.get("Score") is not None:
+        out["score"] = float(data["Score"])
+    if data.get("Text") is not None:
         out["text"] = data["Text"]
-    if "Category" in data:
+    if data.get("Category") is not None:
         import capo_comprehendmedical.types.entity_type
 
         out["category"] = (
@@ -101,7 +109,7 @@ def deserialize_aws_json_1_1(data: dict) -> Entity:
                 data["Category"]
             )
         )
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_comprehendmedical.types.entity_sub_type
 
         out["type"] = (
@@ -109,7 +117,7 @@ def deserialize_aws_json_1_1(data: dict) -> Entity:
                 data["Type"]
             )
         )
-    if "Traits" in data:
+    if data.get("Traits") is not None:
         import capo_comprehendmedical.types.trait_list
 
         out["traits"] = (
@@ -117,7 +125,7 @@ def deserialize_aws_json_1_1(data: dict) -> Entity:
                 data["Traits"]
             )
         )
-    if "Attributes" in data:
+    if data.get("Attributes") is not None:
         import capo_comprehendmedical.types.attribute_list
 
         out["attributes"] = (

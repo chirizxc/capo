@@ -73,19 +73,19 @@ def serialize_json(value: GetLayoutResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetLayoutResponse:
     out: GetLayoutResponse = {}  # type: ignore[typeddict-item]
-    if "layoutId" in data:
+    if data.get("layoutId") is not None:
         out["layout_id"] = data["layoutId"]
     else:
         raise DeserializationError("GetLayoutResponse.layout_id required")
-    if "layoutArn" in data:
+    if data.get("layoutArn") is not None:
         out["layout_arn"] = data["layoutArn"]
     else:
         raise DeserializationError("GetLayoutResponse.layout_arn required")
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("GetLayoutResponse.name required")
-    if "content" in data:
+    if data.get("content") is not None:
         import capo_connectcases.types.layout_content
 
         out["content"] = capo_connectcases.types.layout_content.deserialize_json(
@@ -93,21 +93,21 @@ def deserialize_json(data: dict) -> GetLayoutResponse:
         )
     else:
         raise DeserializationError("GetLayoutResponse.content required")
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_connectcases.types.tags
 
         out["tags"] = capo_connectcases.types.tags.deserialize_json(data["tags"])
-    if "deleted" in data:
+    if data.get("deleted") is not None:
         out["deleted"] = data["deleted"]
     else:
         out["deleted"] = False
-    if "createdTime" in data:
+    if data.get("createdTime") is not None:
         import capo_connectcases.types.created_time
 
         out["created_time"] = capo_connectcases.types.created_time.deserialize_json(
             data["createdTime"]
         )
-    if "lastModifiedTime" in data:
+    if data.get("lastModifiedTime") is not None:
         import capo_connectcases.types.last_modified_time
 
         out["last_modified_time"] = (

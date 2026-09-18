@@ -126,19 +126,19 @@ def serialize_json(value: GetKxVolumeResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetKxVolumeResponse:
     out: GetKxVolumeResponse = {}  # type: ignore[typeddict-item]
-    if "environmentId" in data:
+    if data.get("environmentId") is not None:
         out["environment_id"] = data["environmentId"]
-    if "volumeName" in data:
+    if data.get("volumeName") is not None:
         out["volume_name"] = data["volumeName"]
-    if "volumeType" in data:
+    if data.get("volumeType") is not None:
         import capo_finspace.types.kx_volume_type
 
         out["volume_type"] = capo_finspace.types.kx_volume_type.deserialize_json(
             data["volumeType"]
         )
-    if "volumeArn" in data:
+    if data.get("volumeArn") is not None:
         out["volume_arn"] = data["volumeArn"]
-    if "nas1Configuration" in data:
+    if data.get("nas1Configuration") is not None:
         import capo_finspace.types.kx_nas1_configuration
 
         out["nas1_configuration"] = (
@@ -146,27 +146,27 @@ def deserialize_json(data: dict) -> GetKxVolumeResponse:
                 data["nas1Configuration"]
             )
         )
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_finspace.types.kx_volume_status
 
         out["status"] = capo_finspace.types.kx_volume_status.deserialize_json(
             data["status"]
         )
-    if "statusReason" in data:
+    if data.get("statusReason") is not None:
         out["status_reason"] = data["statusReason"]
-    if "createdTimestamp" in data:
+    if data.get("createdTimestamp") is not None:
         import capo_finspace.types.timestamp
 
         out["created_timestamp"] = capo_finspace.types.timestamp.deserialize_json(
             data["createdTimestamp"]
         )
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "azMode" in data:
+    if data.get("azMode") is not None:
         import capo_finspace.types.kx_az_mode
 
         out["az_mode"] = capo_finspace.types.kx_az_mode.deserialize_json(data["azMode"])
-    if "availabilityZoneIds" in data:
+    if data.get("availabilityZoneIds") is not None:
         import capo_finspace.types.availability_zone_ids
 
         out["availability_zone_ids"] = (
@@ -174,13 +174,13 @@ def deserialize_json(data: dict) -> GetKxVolumeResponse:
                 data["availabilityZoneIds"]
             )
         )
-    if "lastModifiedTimestamp" in data:
+    if data.get("lastModifiedTimestamp") is not None:
         import capo_finspace.types.timestamp
 
         out["last_modified_timestamp"] = capo_finspace.types.timestamp.deserialize_json(
             data["lastModifiedTimestamp"]
         )
-    if "attachedClusters" in data:
+    if data.get("attachedClusters") is not None:
         import capo_finspace.types.kx_attached_clusters
 
         out["attached_clusters"] = (

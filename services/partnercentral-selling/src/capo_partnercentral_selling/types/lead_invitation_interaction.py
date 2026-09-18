@@ -43,21 +43,21 @@ def serialize_aws_json_1_0(value: LeadInvitationInteraction) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> LeadInvitationInteraction:
     out: LeadInvitationInteraction = {}  # type: ignore[typeddict-item]
-    if "SourceType" in data:
+    if data.get("SourceType") is not None:
         out["source_type"] = data["SourceType"]
     else:
         raise DeserializationError("LeadInvitationInteraction.source_type required")
-    if "SourceId" in data:
+    if data.get("SourceId") is not None:
         out["source_id"] = data["SourceId"]
     else:
         raise DeserializationError("LeadInvitationInteraction.source_id required")
-    if "SourceName" in data:
+    if data.get("SourceName") is not None:
         out["source_name"] = data["SourceName"]
     else:
         raise DeserializationError("LeadInvitationInteraction.source_name required")
-    if "Usecase" in data:
+    if data.get("Usecase") is not None:
         out["usecase"] = data["Usecase"]
-    if "ContactBusinessTitle" in data:
+    if data.get("ContactBusinessTitle") is not None:
         out["contact_business_title"] = data["ContactBusinessTitle"]
     else:
         raise DeserializationError(

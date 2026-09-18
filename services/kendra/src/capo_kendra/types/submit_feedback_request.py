@@ -54,15 +54,15 @@ def serialize_aws_json_1_1(value: SubmitFeedbackRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SubmitFeedbackRequest:
     out: SubmitFeedbackRequest = {}  # type: ignore[typeddict-item]
-    if "IndexId" in data:
+    if data.get("IndexId") is not None:
         out["index_id"] = data["IndexId"]
     else:
         raise DeserializationError("SubmitFeedbackRequest.index_id required")
-    if "QueryId" in data:
+    if data.get("QueryId") is not None:
         out["query_id"] = data["QueryId"]
     else:
         raise DeserializationError("SubmitFeedbackRequest.query_id required")
-    if "ClickFeedbackItems" in data:
+    if data.get("ClickFeedbackItems") is not None:
         import capo_kendra.types.click_feedback_list
 
         out["click_feedback_items"] = (
@@ -70,7 +70,7 @@ def deserialize_aws_json_1_1(data: dict) -> SubmitFeedbackRequest:
                 data["ClickFeedbackItems"]
             )
         )
-    if "RelevanceFeedbackItems" in data:
+    if data.get("RelevanceFeedbackItems") is not None:
         import capo_kendra.types.relevance_feedback_list
 
         out["relevance_feedback_items"] = (

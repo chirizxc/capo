@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import uuid
 from typing import TYPE_CHECKING, Optional
 
 from capo_b2bi._services._pipeline import (
@@ -98,17 +99,19 @@ class Partnership:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_b2bi.types.create_partnership_request.CreatePartnershipRequest = {}  # type: ignore[typeddict-item]
-        input_["profile_id"] = profile_id
-        input_["name"] = name
-        input_["email"] = email
+        input_: capo_b2bi.types.create_partnership_request.CreatePartnershipRequest = {
+            "profile_id": profile_id,
+            "name": name,
+            "email": email,
+            "capabilities": capabilities,
+        }
         if phone is not None:
             input_["phone"] = phone
-        input_["capabilities"] = capabilities
         if capability_options is not None:
             input_["capability_options"] = capability_options
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if tags is not None:
             input_["tags"] = tags
 
@@ -117,6 +120,7 @@ class Partnership:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -159,14 +163,16 @@ class Partnership:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_b2bi.types.get_partnership_request.GetPartnershipRequest = {}  # type: ignore[typeddict-item]
-        input_["partnership_id"] = partnership_id
+        input_: capo_b2bi.types.get_partnership_request.GetPartnershipRequest = {
+            "partnership_id": partnership_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update(
@@ -221,8 +227,9 @@ class Partnership:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_b2bi.types.update_partnership_request.UpdatePartnershipRequest = {}  # type: ignore[typeddict-item]
-        input_["partnership_id"] = partnership_id
+        input_: capo_b2bi.types.update_partnership_request.UpdatePartnershipRequest = {
+            "partnership_id": partnership_id
+        }
         if name is not None:
             input_["name"] = name
         if capabilities is not None:
@@ -235,6 +242,7 @@ class Partnership:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -276,14 +284,16 @@ class Partnership:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_b2bi.types.delete_partnership_request.DeletePartnershipRequest = {}  # type: ignore[typeddict-item]
-        input_["partnership_id"] = partnership_id
+        input_: capo_b2bi.types.delete_partnership_request.DeletePartnershipRequest = {
+            "partnership_id": partnership_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -330,7 +340,7 @@ class Partnership:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_b2bi.types.list_partnerships_request.ListPartnershipsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_b2bi.types.list_partnerships_request.ListPartnershipsRequest = {}
         if profile_id is not None:
             input_["profile_id"] = profile_id
         if next_token is not None:
@@ -343,6 +353,7 @@ class Partnership:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -409,17 +420,19 @@ class AsyncPartnership:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_b2bi.types.create_partnership_request.CreatePartnershipRequest = {}  # type: ignore[typeddict-item]
-        input_["profile_id"] = profile_id
-        input_["name"] = name
-        input_["email"] = email
+        input_: capo_b2bi.types.create_partnership_request.CreatePartnershipRequest = {
+            "profile_id": profile_id,
+            "name": name,
+            "email": email,
+            "capabilities": capabilities,
+        }
         if phone is not None:
             input_["phone"] = phone
-        input_["capabilities"] = capabilities
         if capability_options is not None:
             input_["capability_options"] = capability_options
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if tags is not None:
             input_["tags"] = tags
 
@@ -428,6 +441,7 @@ class AsyncPartnership:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -471,14 +485,16 @@ class AsyncPartnership:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_b2bi.types.get_partnership_request.GetPartnershipRequest = {}  # type: ignore[typeddict-item]
-        input_["partnership_id"] = partnership_id
+        input_: capo_b2bi.types.get_partnership_request.GetPartnershipRequest = {
+            "partnership_id": partnership_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update(
@@ -534,8 +550,9 @@ class AsyncPartnership:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_b2bi.types.update_partnership_request.UpdatePartnershipRequest = {}  # type: ignore[typeddict-item]
-        input_["partnership_id"] = partnership_id
+        input_: capo_b2bi.types.update_partnership_request.UpdatePartnershipRequest = {
+            "partnership_id": partnership_id
+        }
         if name is not None:
             input_["name"] = name
         if capabilities is not None:
@@ -548,6 +565,7 @@ class AsyncPartnership:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -590,14 +608,16 @@ class AsyncPartnership:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_b2bi.types.delete_partnership_request.DeletePartnershipRequest = {}  # type: ignore[typeddict-item]
-        input_["partnership_id"] = partnership_id
+        input_: capo_b2bi.types.delete_partnership_request.DeletePartnershipRequest = {
+            "partnership_id": partnership_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -645,7 +665,7 @@ class AsyncPartnership:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_b2bi.types.list_partnerships_request.ListPartnershipsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_b2bi.types.list_partnerships_request.ListPartnershipsRequest = {}
         if profile_id is not None:
             input_["profile_id"] = profile_id
         if next_token is not None:
@@ -658,4 +678,5 @@ class AsyncPartnership:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

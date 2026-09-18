@@ -32,13 +32,13 @@ def serialize_json(value: BatchGetUserAccessTasksRequest) -> dict:
 
 def deserialize_json(data: dict) -> BatchGetUserAccessTasksRequest:
     out: BatchGetUserAccessTasksRequest = {}  # type: ignore[typeddict-item]
-    if "appBundleIdentifier" in data:
+    if data.get("appBundleIdentifier") is not None:
         out["app_bundle_identifier"] = data["appBundleIdentifier"]
     else:
         raise DeserializationError(
             "BatchGetUserAccessTasksRequest.app_bundle_identifier required"
         )
-    if "taskIdList" in data:
+    if data.get("taskIdList") is not None:
         import capo_appfabric.types.task_id_list
 
         out["task_id_list"] = capo_appfabric.types.task_id_list.deserialize_json(

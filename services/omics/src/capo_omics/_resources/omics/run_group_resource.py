@@ -89,7 +89,9 @@ class RunGroupResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_omics.types.create_run_group_request.CreateRunGroupRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_omics.types.create_run_group_request.CreateRunGroupRequest = {
+            "request_id": request_id
+        }
         if name is not None:
             input_["name"] = name
         if max_cpus is not None:
@@ -100,7 +102,6 @@ class RunGroupResource:
             input_["max_duration"] = max_duration
         if tags is not None:
             input_["tags"] = tags
-        input_["request_id"] = request_id
         if max_gpus is not None:
             input_["max_gpus"] = max_gpus
 
@@ -109,6 +110,7 @@ class RunGroupResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -149,14 +151,14 @@ class RunGroupResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_omics.types.get_run_group_request.GetRunGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_omics.types.get_run_group_request.GetRunGroupRequest = {"id": id}
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update(
@@ -205,8 +207,9 @@ class RunGroupResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_omics.types.update_run_group_request.UpdateRunGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_omics.types.update_run_group_request.UpdateRunGroupRequest = {
+            "id": id
+        }
         if name is not None:
             input_["name"] = name
         if max_cpus is not None:
@@ -223,6 +226,7 @@ class RunGroupResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -261,14 +265,16 @@ class RunGroupResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_omics.types.delete_run_group_request.DeleteRunGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_omics.types.delete_run_group_request.DeleteRunGroupRequest = {
+            "id": id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -315,7 +321,7 @@ class RunGroupResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_omics.types.list_run_groups_request.ListRunGroupsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_omics.types.list_run_groups_request.ListRunGroupsRequest = {}
         if name is not None:
             input_["name"] = name
         if starting_token is not None:
@@ -328,6 +334,7 @@ class RunGroupResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -386,7 +393,9 @@ class AsyncRunGroupResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_omics.types.create_run_group_request.CreateRunGroupRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_omics.types.create_run_group_request.CreateRunGroupRequest = {
+            "request_id": request_id
+        }
         if name is not None:
             input_["name"] = name
         if max_cpus is not None:
@@ -397,7 +406,6 @@ class AsyncRunGroupResource:
             input_["max_duration"] = max_duration
         if tags is not None:
             input_["tags"] = tags
-        input_["request_id"] = request_id
         if max_gpus is not None:
             input_["max_gpus"] = max_gpus
 
@@ -406,6 +414,7 @@ class AsyncRunGroupResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -447,14 +456,14 @@ class AsyncRunGroupResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_omics.types.get_run_group_request.GetRunGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_omics.types.get_run_group_request.GetRunGroupRequest = {"id": id}
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update(
@@ -504,8 +513,9 @@ class AsyncRunGroupResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_omics.types.update_run_group_request.UpdateRunGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_omics.types.update_run_group_request.UpdateRunGroupRequest = {
+            "id": id
+        }
         if name is not None:
             input_["name"] = name
         if max_cpus is not None:
@@ -522,6 +532,7 @@ class AsyncRunGroupResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -561,14 +572,16 @@ class AsyncRunGroupResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_omics.types.delete_run_group_request.DeleteRunGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_omics.types.delete_run_group_request.DeleteRunGroupRequest = {
+            "id": id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -616,7 +629,7 @@ class AsyncRunGroupResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_omics.types.list_run_groups_request.ListRunGroupsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_omics.types.list_run_groups_request.ListRunGroupsRequest = {}
         if name is not None:
             input_["name"] = name
         if starting_token is not None:
@@ -629,4 +642,5 @@ class AsyncRunGroupResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

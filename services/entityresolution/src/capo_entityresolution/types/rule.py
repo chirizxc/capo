@@ -31,11 +31,11 @@ def serialize_json(value: Rule) -> dict:
 
 def deserialize_json(data: dict) -> Rule:
     out: Rule = {}  # type: ignore[typeddict-item]
-    if "ruleName" in data:
+    if data.get("ruleName") is not None:
         out["rule_name"] = data["ruleName"]
     else:
         raise DeserializationError("Rule.rule_name required")
-    if "matchingKeys" in data:
+    if data.get("matchingKeys") is not None:
         import capo_entityresolution.types.matching_keys
 
         out["matching_keys"] = (

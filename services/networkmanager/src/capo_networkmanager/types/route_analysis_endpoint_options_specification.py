@@ -30,8 +30,8 @@ def serialize_json(value: RouteAnalysisEndpointOptionsSpecification) -> dict:
 
 def deserialize_json(data: dict) -> RouteAnalysisEndpointOptionsSpecification:
     out: RouteAnalysisEndpointOptionsSpecification = {}  # type: ignore[typeddict-item]
-    if "TransitGatewayAttachmentArn" in data:
+    if data.get("TransitGatewayAttachmentArn") is not None:
         out["transit_gateway_attachment_arn"] = data["TransitGatewayAttachmentArn"]
-    if "IpAddress" in data:
+    if data.get("IpAddress") is not None:
         out["ip_address"] = data["IpAddress"]
     return out

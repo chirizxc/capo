@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> __listOfVideoMonitoringSetting:
 
     out: __listOfVideoMonitoringSetting = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_mediaconnect.types.video_monitoring_setting.deserialize_json(item)
         )

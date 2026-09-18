@@ -32,7 +32,7 @@ def serialize_json(value: MobileDeviceManagement) -> dict:
 
 
 def deserialize_json(data: dict) -> MobileDeviceManagement:
-    if "Intune" in data:
+    if data.get("Intune") is not None:
         import capo_pca_connector_scep.types.intune_configuration
 
         return {

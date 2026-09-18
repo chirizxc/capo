@@ -52,25 +52,25 @@ def serialize_json(value: Identity) -> dict:
 
 def deserialize_json(data: dict) -> Identity:
     out: Identity = {}  # type: ignore[typeddict-item]
-    if "user" in data:
+    if data.get("user") is not None:
         import capo_iotsitewise.types.user_identity
 
         out["user"] = capo_iotsitewise.types.user_identity.deserialize_json(
             data["user"]
         )
-    if "group" in data:
+    if data.get("group") is not None:
         import capo_iotsitewise.types.group_identity
 
         out["group"] = capo_iotsitewise.types.group_identity.deserialize_json(
             data["group"]
         )
-    if "iamUser" in data:
+    if data.get("iamUser") is not None:
         import capo_iotsitewise.types.iam_user_identity
 
         out["iam_user"] = capo_iotsitewise.types.iam_user_identity.deserialize_json(
             data["iamUser"]
         )
-    if "iamRole" in data:
+    if data.get("iamRole") is not None:
         import capo_iotsitewise.types.iam_role_identity
 
         out["iam_role"] = capo_iotsitewise.types.iam_role_identity.deserialize_json(

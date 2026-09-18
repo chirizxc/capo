@@ -134,8 +134,9 @@ class ProviderResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_geo_places.types.autocomplete_request.AutocompleteRequest = {}  # type: ignore[typeddict-item]
-        input_["query_text"] = query_text
+        input_: capo_geo_places.types.autocomplete_request.AutocompleteRequest = {
+            "query_text": query_text
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if bias_position is not None:
@@ -160,6 +161,7 @@ class ProviderResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def geocode(
@@ -223,7 +225,7 @@ class ProviderResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_geo_places.types.geocode_request.GeocodeRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_geo_places.types.geocode_request.GeocodeRequest = {}
         if query_text is not None:
             input_["query_text"] = query_text
         if query_components is not None:
@@ -250,6 +252,7 @@ class ProviderResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_place(
@@ -302,8 +305,9 @@ class ProviderResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_geo_places.types.get_place_request.GetPlaceRequest = {}  # type: ignore[typeddict-item]
-        input_["place_id"] = place_id
+        input_: capo_geo_places.types.get_place_request.GetPlaceRequest = {
+            "place_id": place_id
+        }
         if additional_features is not None:
             input_["additional_features"] = additional_features
         if language is not None:
@@ -320,6 +324,7 @@ class ProviderResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def reverse_geocode(
@@ -384,8 +389,9 @@ class ProviderResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_geo_places.types.reverse_geocode_request.ReverseGeocodeRequest = {}  # type: ignore[typeddict-item]
-        input_["query_position"] = query_position
+        input_: capo_geo_places.types.reverse_geocode_request.ReverseGeocodeRequest = {
+            "query_position": query_position
+        }
         if query_radius is not None:
             input_["query_radius"] = query_radius
         if max_results is not None:
@@ -410,6 +416,7 @@ class ProviderResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def search_nearby(
@@ -474,8 +481,9 @@ class ProviderResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_geo_places.types.search_nearby_request.SearchNearbyRequest = {}  # type: ignore[typeddict-item]
-        input_["query_position"] = query_position
+        input_: capo_geo_places.types.search_nearby_request.SearchNearbyRequest = {
+            "query_position": query_position
+        }
         if query_radius is not None:
             input_["query_radius"] = query_radius
         if max_results is not None:
@@ -500,6 +508,7 @@ class ProviderResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def search_text(
@@ -568,7 +577,7 @@ class ProviderResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_geo_places.types.search_text_request.SearchTextRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_geo_places.types.search_text_request.SearchTextRequest = {}
         if query_text is not None:
             input_["query_text"] = query_text
         if query_id is not None:
@@ -597,6 +606,7 @@ class ProviderResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def suggest(
@@ -657,8 +667,9 @@ class ProviderResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_geo_places.types.suggest_request.SuggestRequest = {}  # type: ignore[typeddict-item]
-        input_["query_text"] = query_text
+        input_: capo_geo_places.types.suggest_request.SuggestRequest = {
+            "query_text": query_text
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if max_query_refinements is not None:
@@ -683,6 +694,7 @@ class ProviderResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -753,8 +765,9 @@ class AsyncProviderResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_geo_places.types.autocomplete_request.AutocompleteRequest = {}  # type: ignore[typeddict-item]
-        input_["query_text"] = query_text
+        input_: capo_geo_places.types.autocomplete_request.AutocompleteRequest = {
+            "query_text": query_text
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if bias_position is not None:
@@ -779,6 +792,7 @@ class AsyncProviderResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def geocode(
@@ -843,7 +857,7 @@ class AsyncProviderResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_geo_places.types.geocode_request.GeocodeRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_geo_places.types.geocode_request.GeocodeRequest = {}
         if query_text is not None:
             input_["query_text"] = query_text
         if query_components is not None:
@@ -870,6 +884,7 @@ class AsyncProviderResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_place(
@@ -923,8 +938,9 @@ class AsyncProviderResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_geo_places.types.get_place_request.GetPlaceRequest = {}  # type: ignore[typeddict-item]
-        input_["place_id"] = place_id
+        input_: capo_geo_places.types.get_place_request.GetPlaceRequest = {
+            "place_id": place_id
+        }
         if additional_features is not None:
             input_["additional_features"] = additional_features
         if language is not None:
@@ -941,6 +957,7 @@ class AsyncProviderResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def reverse_geocode(
@@ -1006,8 +1023,9 @@ class AsyncProviderResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_geo_places.types.reverse_geocode_request.ReverseGeocodeRequest = {}  # type: ignore[typeddict-item]
-        input_["query_position"] = query_position
+        input_: capo_geo_places.types.reverse_geocode_request.ReverseGeocodeRequest = {
+            "query_position": query_position
+        }
         if query_radius is not None:
             input_["query_radius"] = query_radius
         if max_results is not None:
@@ -1032,6 +1050,7 @@ class AsyncProviderResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def search_nearby(
@@ -1097,8 +1116,9 @@ class AsyncProviderResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_geo_places.types.search_nearby_request.SearchNearbyRequest = {}  # type: ignore[typeddict-item]
-        input_["query_position"] = query_position
+        input_: capo_geo_places.types.search_nearby_request.SearchNearbyRequest = {
+            "query_position": query_position
+        }
         if query_radius is not None:
             input_["query_radius"] = query_radius
         if max_results is not None:
@@ -1123,6 +1143,7 @@ class AsyncProviderResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def search_text(
@@ -1192,7 +1213,7 @@ class AsyncProviderResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_geo_places.types.search_text_request.SearchTextRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_geo_places.types.search_text_request.SearchTextRequest = {}
         if query_text is not None:
             input_["query_text"] = query_text
         if query_id is not None:
@@ -1221,6 +1242,7 @@ class AsyncProviderResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def suggest(
@@ -1282,8 +1304,9 @@ class AsyncProviderResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_geo_places.types.suggest_request.SuggestRequest = {}  # type: ignore[typeddict-item]
-        input_["query_text"] = query_text
+        input_: capo_geo_places.types.suggest_request.SuggestRequest = {
+            "query_text": query_text
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if max_query_refinements is not None:
@@ -1308,4 +1331,5 @@ class AsyncProviderResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

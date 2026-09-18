@@ -53,13 +53,13 @@ def serialize_json(value: TextFieldControlDisplayOptions) -> dict:
 
 def deserialize_json(data: dict) -> TextFieldControlDisplayOptions:
     out: TextFieldControlDisplayOptions = {}  # type: ignore[typeddict-item]
-    if "TitleOptions" in data:
+    if data.get("TitleOptions") is not None:
         import capo_quicksight.types.label_options
 
         out["title_options"] = capo_quicksight.types.label_options.deserialize_json(
             data["TitleOptions"]
         )
-    if "PlaceholderOptions" in data:
+    if data.get("PlaceholderOptions") is not None:
         import capo_quicksight.types.text_control_placeholder_options
 
         out["placeholder_options"] = (
@@ -67,7 +67,7 @@ def deserialize_json(data: dict) -> TextFieldControlDisplayOptions:
                 data["PlaceholderOptions"]
             )
         )
-    if "InfoIconLabelOptions" in data:
+    if data.get("InfoIconLabelOptions") is not None:
         import capo_quicksight.types.sheet_control_info_icon_label_options
 
         out["info_icon_label_options"] = (

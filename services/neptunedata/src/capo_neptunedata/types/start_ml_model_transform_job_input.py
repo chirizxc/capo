@@ -95,15 +95,15 @@ def serialize_json(value: StartMLModelTransformJobInput) -> dict:
 
 def deserialize_json(data: dict) -> StartMLModelTransformJobInput:
     out: StartMLModelTransformJobInput = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "dataProcessingJobId" in data:
+    if data.get("dataProcessingJobId") is not None:
         out["data_processing_job_id"] = data["dataProcessingJobId"]
-    if "mlModelTrainingJobId" in data:
+    if data.get("mlModelTrainingJobId") is not None:
         out["ml_model_training_job_id"] = data["mlModelTrainingJobId"]
-    if "trainingJobName" in data:
+    if data.get("trainingJobName") is not None:
         out["training_job_name"] = data["trainingJobName"]
-    if "modelTransformOutputS3Location" in data:
+    if data.get("modelTransformOutputS3Location") is not None:
         out["model_transform_output_s3_location"] = data[
             "modelTransformOutputS3Location"
         ]
@@ -111,11 +111,11 @@ def deserialize_json(data: dict) -> StartMLModelTransformJobInput:
         raise DeserializationError(
             "StartMLModelTransformJobInput.model_transform_output_s3_location required"
         )
-    if "sagemakerIamRoleArn" in data:
+    if data.get("sagemakerIamRoleArn") is not None:
         out["sagemaker_iam_role_arn"] = data["sagemakerIamRoleArn"]
-    if "neptuneIamRoleArn" in data:
+    if data.get("neptuneIamRoleArn") is not None:
         out["neptune_iam_role_arn"] = data["neptuneIamRoleArn"]
-    if "customModelTransformParameters" in data:
+    if data.get("customModelTransformParameters") is not None:
         import capo_neptunedata.types.custom_model_transform_parameters
 
         out["custom_model_transform_parameters"] = (
@@ -123,26 +123,26 @@ def deserialize_json(data: dict) -> StartMLModelTransformJobInput:
                 data["customModelTransformParameters"]
             )
         )
-    if "baseProcessingInstanceType" in data:
+    if data.get("baseProcessingInstanceType") is not None:
         out["base_processing_instance_type"] = data["baseProcessingInstanceType"]
-    if "baseProcessingInstanceVolumeSizeInGB" in data:
+    if data.get("baseProcessingInstanceVolumeSizeInGB") is not None:
         out["base_processing_instance_volume_size_in_gb"] = data[
             "baseProcessingInstanceVolumeSizeInGB"
         ]
-    if "subnets" in data:
+    if data.get("subnets") is not None:
         import capo_neptunedata.types.string_list
 
         out["subnets"] = capo_neptunedata.types.string_list.deserialize_json(
             data["subnets"]
         )
-    if "securityGroupIds" in data:
+    if data.get("securityGroupIds") is not None:
         import capo_neptunedata.types.string_list
 
         out["security_group_ids"] = capo_neptunedata.types.string_list.deserialize_json(
             data["securityGroupIds"]
         )
-    if "volumeEncryptionKMSKey" in data:
+    if data.get("volumeEncryptionKMSKey") is not None:
         out["volume_encryption_kms_key"] = data["volumeEncryptionKMSKey"]
-    if "s3OutputEncryptionKMSKey" in data:
+    if data.get("s3OutputEncryptionKMSKey") is not None:
         out["s3_output_encryption_kms_key"] = data["s3OutputEncryptionKMSKey"]
     return out

@@ -75,7 +75,7 @@ def serialize_json(value: AddMediaStreamRequest) -> dict:
 
 def deserialize_json(data: dict) -> AddMediaStreamRequest:
     out: AddMediaStreamRequest = {}  # type: ignore[typeddict-item]
-    if "attributes" in data:
+    if data.get("attributes") is not None:
         import capo_mediaconnect.types.media_stream_attributes_request
 
         out["attributes"] = (
@@ -83,15 +83,15 @@ def deserialize_json(data: dict) -> AddMediaStreamRequest:
                 data["attributes"]
             )
         )
-    if "clockRate" in data:
+    if data.get("clockRate") is not None:
         out["clock_rate"] = data["clockRate"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "mediaStreamId" in data:
+    if data.get("mediaStreamId") is not None:
         out["media_stream_id"] = data["mediaStreamId"]
-    if "mediaStreamName" in data:
+    if data.get("mediaStreamName") is not None:
         out["media_stream_name"] = data["mediaStreamName"]
-    if "mediaStreamType" in data:
+    if data.get("mediaStreamType") is not None:
         import capo_mediaconnect.types.media_stream_type
 
         out["media_stream_type"] = (
@@ -99,9 +99,9 @@ def deserialize_json(data: dict) -> AddMediaStreamRequest:
                 data["mediaStreamType"]
             )
         )
-    if "videoFormat" in data:
+    if data.get("videoFormat") is not None:
         out["video_format"] = data["videoFormat"]
-    if "mediaStreamTags" in data:
+    if data.get("mediaStreamTags") is not None:
         import capo_mediaconnect.types.__map_of_string
 
         out["media_stream_tags"] = (

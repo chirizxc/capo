@@ -41,14 +41,14 @@ def serialize_json(value: AgentSpace) -> dict:
         out["description"] = value["description"]
     if "locale" in value:
         out["locale"] = value["locale"]
-    import capo_devops_agent.types._prelude.timestamp
+    import capo_devops_agent._protocol.serialize
 
-    out["createdAt"] = capo_devops_agent.types._prelude.timestamp.serialize_json(
+    out["createdAt"] = capo_devops_agent._protocol.serialize.fmt_date_time(
         value["created_at"]
     )
-    import capo_devops_agent.types._prelude.timestamp
+    import capo_devops_agent._protocol.serialize
 
-    out["updatedAt"] = capo_devops_agent.types._prelude.timestamp.serialize_json(
+    out["updatedAt"] = capo_devops_agent._protocol.serialize.fmt_date_time(
         value["updated_at"]
     )
     if "kms_key_arn" in value:
@@ -59,33 +59,33 @@ def serialize_json(value: AgentSpace) -> dict:
 
 def deserialize_json(data: dict) -> AgentSpace:
     out: AgentSpace = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("AgentSpace.name required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "locale" in data:
+    if data.get("locale") is not None:
         out["locale"] = data["locale"]
-    if "createdAt" in data:
-        import capo_devops_agent.types._prelude.timestamp
+    if data.get("createdAt") is not None:
+        import datetime
 
-        out["created_at"] = capo_devops_agent.types._prelude.timestamp.deserialize_json(
-            data["createdAt"]
+        out["created_at"] = datetime.datetime.fromisoformat(
+            data["createdAt"].replace("Z", "+00:00")
         )
     else:
         raise DeserializationError("AgentSpace.created_at required")
-    if "updatedAt" in data:
-        import capo_devops_agent.types._prelude.timestamp
+    if data.get("updatedAt") is not None:
+        import datetime
 
-        out["updated_at"] = capo_devops_agent.types._prelude.timestamp.deserialize_json(
-            data["updatedAt"]
+        out["updated_at"] = datetime.datetime.fromisoformat(
+            data["updatedAt"].replace("Z", "+00:00")
         )
     else:
         raise DeserializationError("AgentSpace.updated_at required")
-    if "kmsKeyArn" in data:
+    if data.get("kmsKeyArn") is not None:
         out["kms_key_arn"] = data["kmsKeyArn"]
-    if "agentSpaceId" in data:
+    if data.get("agentSpaceId") is not None:
         out["agent_space_id"] = data["agentSpaceId"]
     else:
         raise DeserializationError("AgentSpace.agent_space_id required")

@@ -31,7 +31,7 @@ def serialize_json(value: CascadingControlConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> CascadingControlConfiguration:
     out: CascadingControlConfiguration = {}  # type: ignore[typeddict-item]
-    if "SourceControls" in data:
+    if data.get("SourceControls") is not None:
         import capo_quicksight.types.cascading_control_source_list
 
         out["source_controls"] = (

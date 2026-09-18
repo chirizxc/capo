@@ -36,7 +36,7 @@ def serialize_json(value: ListWorkloadsOutput) -> dict:
 
 def deserialize_json(data: dict) -> ListWorkloadsOutput:
     out: ListWorkloadsOutput = {}  # type: ignore[typeddict-item]
-    if "workloads" in data:
+    if data.get("workloads") is not None:
         import capo_launch_wizard.types.workload_data_summary_list
 
         out["workloads"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> ListWorkloadsOutput:
                 data["workloads"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

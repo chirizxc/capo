@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: BatchDisassociateUserStackResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> BatchDisassociateUserStackResult:
     out: BatchDisassociateUserStackResult = {}  # type: ignore[typeddict-item]
-    if "errors" in data:
+    if data.get("errors") is not None:
         import capo_appstream.types.user_stack_association_error_list
 
         out["errors"] = (

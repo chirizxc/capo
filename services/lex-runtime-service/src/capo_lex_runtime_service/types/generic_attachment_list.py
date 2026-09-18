@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> genericAttachmentList:
 
     out: genericAttachmentList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_lex_runtime_service.types.generic_attachment.deserialize_json(item)
         )

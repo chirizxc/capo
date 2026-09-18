@@ -30,13 +30,13 @@ def serialize_aws_json_1_1(value: DeleteMobileDeviceAccessRuleRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteMobileDeviceAccessRuleRequest:
     out: DeleteMobileDeviceAccessRuleRequest = {}  # type: ignore[typeddict-item]
-    if "OrganizationId" in data:
+    if data.get("OrganizationId") is not None:
         out["organization_id"] = data["OrganizationId"]
     else:
         raise DeserializationError(
             "DeleteMobileDeviceAccessRuleRequest.organization_id required"
         )
-    if "MobileDeviceAccessRuleId" in data:
+    if data.get("MobileDeviceAccessRuleId") is not None:
         out["mobile_device_access_rule_id"] = data["MobileDeviceAccessRuleId"]
     else:
         raise DeserializationError(

@@ -24,7 +24,7 @@ def serialize_json(value: CallRateLimitExceededException_) -> dict:
 
 def deserialize_json(data: dict) -> CallRateLimitExceededException_:
     out: CallRateLimitExceededException_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     return out
 
@@ -34,15 +34,20 @@ class CallRateLimitExceededException(ServiceError):
 
     code: str | None = "CallRateLimitExceededException"
 
-    def __init__(self, data: CallRateLimitExceededException_):
+    def __init__(
+        self, data: CallRateLimitExceededException_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="CallRateLimitExceededException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "CallRateLimitExceededException":
-        return cls(deserialize_json(data))
+    def from_json(
+        cls, data: dict, message: str | None = None
+    ) -> "CallRateLimitExceededException":
+        return cls(deserialize_json(data), message)

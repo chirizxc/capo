@@ -34,11 +34,11 @@ def serialize_aws_json_1_0(value: PartnerDomain) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> PartnerDomain:
     out: PartnerDomain = {}  # type: ignore[typeddict-item]
-    if "DomainName" in data:
+    if data.get("DomainName") is not None:
         out["domain_name"] = data["DomainName"]
     else:
         raise DeserializationError("PartnerDomain.domain_name required")
-    if "RegisteredAt" in data:
+    if data.get("RegisteredAt") is not None:
         import capo_partnercentral_account.types.date_time
 
         out["registered_at"] = (

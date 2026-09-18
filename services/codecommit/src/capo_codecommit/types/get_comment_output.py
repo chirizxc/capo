@@ -27,7 +27,7 @@ def serialize_aws_json_1_1(value: GetCommentOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetCommentOutput:
     out: GetCommentOutput = {}  # type: ignore[typeddict-item]
-    if "comment" in data:
+    if data.get("comment") is not None:
         import capo_codecommit.types.comment
 
         out["comment"] = capo_codecommit.types.comment.deserialize_aws_json_1_1(

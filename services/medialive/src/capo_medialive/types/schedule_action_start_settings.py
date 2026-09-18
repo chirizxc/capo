@@ -57,7 +57,7 @@ def serialize_json(value: ScheduleActionStartSettings) -> dict:
 
 def deserialize_json(data: dict) -> ScheduleActionStartSettings:
     out: ScheduleActionStartSettings = {}  # type: ignore[typeddict-item]
-    if "fixedModeScheduleActionStartSettings" in data:
+    if data.get("fixedModeScheduleActionStartSettings") is not None:
         import capo_medialive.types.fixed_mode_schedule_action_start_settings
 
         out["fixed_mode_schedule_action_start_settings"] = (
@@ -65,7 +65,7 @@ def deserialize_json(data: dict) -> ScheduleActionStartSettings:
                 data["fixedModeScheduleActionStartSettings"]
             )
         )
-    if "followModeScheduleActionStartSettings" in data:
+    if data.get("followModeScheduleActionStartSettings") is not None:
         import capo_medialive.types.follow_mode_schedule_action_start_settings
 
         out["follow_mode_schedule_action_start_settings"] = (
@@ -73,7 +73,7 @@ def deserialize_json(data: dict) -> ScheduleActionStartSettings:
                 data["followModeScheduleActionStartSettings"]
             )
         )
-    if "immediateModeScheduleActionStartSettings" in data:
+    if data.get("immediateModeScheduleActionStartSettings") is not None:
         import capo_medialive.types.immediate_mode_schedule_action_start_settings
 
         out["immediate_mode_schedule_action_start_settings"] = (

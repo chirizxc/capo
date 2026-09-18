@@ -61,11 +61,11 @@ def serialize_json(value: AdvancedSecurityOptions) -> dict:
 
 def deserialize_json(data: dict) -> AdvancedSecurityOptions:
     out: AdvancedSecurityOptions = {}  # type: ignore[typeddict-item]
-    if "Enabled" in data:
+    if data.get("Enabled") is not None:
         out["enabled"] = data["Enabled"]
-    if "InternalUserDatabaseEnabled" in data:
+    if data.get("InternalUserDatabaseEnabled") is not None:
         out["internal_user_database_enabled"] = data["InternalUserDatabaseEnabled"]
-    if "SAMLOptions" in data:
+    if data.get("SAMLOptions") is not None:
         import capo_elasticsearch_service.types.saml_options_output
 
         out["saml_options"] = (
@@ -73,7 +73,7 @@ def deserialize_json(data: dict) -> AdvancedSecurityOptions:
                 data["SAMLOptions"]
             )
         )
-    if "AnonymousAuthDisableDate" in data:
+    if data.get("AnonymousAuthDisableDate") is not None:
         import capo_elasticsearch_service.types.disable_timestamp
 
         out["anonymous_auth_disable_date"] = (
@@ -81,6 +81,6 @@ def deserialize_json(data: dict) -> AdvancedSecurityOptions:
                 data["AnonymousAuthDisableDate"]
             )
         )
-    if "AnonymousAuthEnabled" in data:
+    if data.get("AnonymousAuthEnabled") is not None:
         out["anonymous_auth_enabled"] = data["AnonymousAuthEnabled"]
     return out

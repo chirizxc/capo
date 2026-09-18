@@ -41,17 +41,17 @@ def serialize_json(value: CreateFindingsReportRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateFindingsReportRequest:
     out: CreateFindingsReportRequest = {}  # type: ignore[typeddict-item]
-    if "filterCriteria" in data:
+    if data.get("filterCriteria") is not None:
         import capo_inspector2.types.filter_criteria
 
         out["filter_criteria"] = capo_inspector2.types.filter_criteria.deserialize_json(
             data["filterCriteria"]
         )
-    if "reportFormat" in data:
+    if data.get("reportFormat") is not None:
         out["report_format"] = data["reportFormat"]
     else:
         raise DeserializationError("CreateFindingsReportRequest.report_format required")
-    if "s3Destination" in data:
+    if data.get("s3Destination") is not None:
         import capo_inspector2.types.destination
 
         out["s3_destination"] = capo_inspector2.types.destination.deserialize_json(

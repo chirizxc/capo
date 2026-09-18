@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: DescribeNotebookExecutionOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeNotebookExecutionOutput:
     out: DescribeNotebookExecutionOutput = {}  # type: ignore[typeddict-item]
-    if "NotebookExecution" in data:
+    if data.get("NotebookExecution") is not None:
         import capo_emr.types.notebook_execution
 
         out["notebook_execution"] = (

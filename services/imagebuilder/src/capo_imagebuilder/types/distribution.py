@@ -115,11 +115,11 @@ def serialize_json(value: Distribution) -> dict:
 
 def deserialize_json(data: dict) -> Distribution:
     out: Distribution = {}  # type: ignore[typeddict-item]
-    if "region" in data:
+    if data.get("region") is not None:
         out["region"] = data["region"]
     else:
         raise DeserializationError("Distribution.region required")
-    if "amiDistributionConfiguration" in data:
+    if data.get("amiDistributionConfiguration") is not None:
         import capo_imagebuilder.types.ami_distribution_configuration
 
         out["ami_distribution_configuration"] = (
@@ -127,7 +127,7 @@ def deserialize_json(data: dict) -> Distribution:
                 data["amiDistributionConfiguration"]
             )
         )
-    if "containerDistributionConfiguration" in data:
+    if data.get("containerDistributionConfiguration") is not None:
         import capo_imagebuilder.types.container_distribution_configuration
 
         out["container_distribution_configuration"] = (
@@ -135,7 +135,7 @@ def deserialize_json(data: dict) -> Distribution:
                 data["containerDistributionConfiguration"]
             )
         )
-    if "licenseConfigurationArns" in data:
+    if data.get("licenseConfigurationArns") is not None:
         import capo_imagebuilder.types.license_configuration_arn_list
 
         out["license_configuration_arns"] = (
@@ -143,7 +143,7 @@ def deserialize_json(data: dict) -> Distribution:
                 data["licenseConfigurationArns"]
             )
         )
-    if "launchTemplateConfigurations" in data:
+    if data.get("launchTemplateConfigurations") is not None:
         import capo_imagebuilder.types.launch_template_configuration_list
 
         out["launch_template_configurations"] = (
@@ -151,7 +151,7 @@ def deserialize_json(data: dict) -> Distribution:
                 data["launchTemplateConfigurations"]
             )
         )
-    if "s3ExportConfiguration" in data:
+    if data.get("s3ExportConfiguration") is not None:
         import capo_imagebuilder.types.s3_export_configuration
 
         out["s3_export_configuration"] = (
@@ -159,7 +159,7 @@ def deserialize_json(data: dict) -> Distribution:
                 data["s3ExportConfiguration"]
             )
         )
-    if "fastLaunchConfigurations" in data:
+    if data.get("fastLaunchConfigurations") is not None:
         import capo_imagebuilder.types.fast_launch_configuration_list
 
         out["fast_launch_configurations"] = (
@@ -167,7 +167,7 @@ def deserialize_json(data: dict) -> Distribution:
                 data["fastLaunchConfigurations"]
             )
         )
-    if "ssmParameterConfigurations" in data:
+    if data.get("ssmParameterConfigurations") is not None:
         import capo_imagebuilder.types.ssm_parameter_configuration_list
 
         out["ssm_parameter_configurations"] = (

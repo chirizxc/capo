@@ -24,7 +24,7 @@ def serialize_json(value: IntermediateSourceConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> IntermediateSourceConfiguration:
     out: IntermediateSourceConfiguration = {}  # type: ignore[typeddict-item]
-    if "intermediateS3Path" in data:
+    if data.get("intermediateS3Path") is not None:
         out["intermediate_s3_path"] = data["intermediateS3Path"]
     else:
         raise DeserializationError(

@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: DeleteRetentionConfigurationRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteRetentionConfigurationRequest:
     out: DeleteRetentionConfigurationRequest = {}  # type: ignore[typeddict-item]
-    if "RetentionConfigurationName" in data:
+    if data.get("RetentionConfigurationName") is not None:
         out["retention_configuration_name"] = data["RetentionConfigurationName"]
     else:
         raise DeserializationError(

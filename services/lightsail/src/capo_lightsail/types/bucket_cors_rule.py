@@ -80,9 +80,9 @@ def serialize_aws_json_1_1(value: BucketCorsRule) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> BucketCorsRule:
     out: BucketCorsRule = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "allowedMethods" in data:
+    if data.get("allowedMethods") is not None:
         import capo_lightsail.types.bucket_cors_allowed_methods
 
         out["allowed_methods"] = (
@@ -92,7 +92,7 @@ def deserialize_aws_json_1_1(data: dict) -> BucketCorsRule:
         )
     else:
         raise DeserializationError("BucketCorsRule.allowed_methods required")
-    if "allowedOrigins" in data:
+    if data.get("allowedOrigins") is not None:
         import capo_lightsail.types.bucket_cors_allowed_origins
 
         out["allowed_origins"] = (
@@ -102,7 +102,7 @@ def deserialize_aws_json_1_1(data: dict) -> BucketCorsRule:
         )
     else:
         raise DeserializationError("BucketCorsRule.allowed_origins required")
-    if "allowedHeaders" in data:
+    if data.get("allowedHeaders") is not None:
         import capo_lightsail.types.bucket_cors_allowed_headers
 
         out["allowed_headers"] = (
@@ -110,7 +110,7 @@ def deserialize_aws_json_1_1(data: dict) -> BucketCorsRule:
                 data["allowedHeaders"]
             )
         )
-    if "exposeHeaders" in data:
+    if data.get("exposeHeaders") is not None:
         import capo_lightsail.types.bucket_cors_expose_headers
 
         out["expose_headers"] = (
@@ -118,6 +118,6 @@ def deserialize_aws_json_1_1(data: dict) -> BucketCorsRule:
                 data["exposeHeaders"]
             )
         )
-    if "maxAgeSeconds" in data:
+    if data.get("maxAgeSeconds") is not None:
         out["max_age_seconds"] = data["maxAgeSeconds"]
     return out

@@ -46,11 +46,11 @@ def serialize_json(value: ListComponentTypesResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListComponentTypesResponse:
     out: ListComponentTypesResponse = {}  # type: ignore[typeddict-item]
-    if "workspaceId" in data:
+    if data.get("workspaceId") is not None:
         out["workspace_id"] = data["workspaceId"]
     else:
         raise DeserializationError("ListComponentTypesResponse.workspace_id required")
-    if "componentTypeSummaries" in data:
+    if data.get("componentTypeSummaries") is not None:
         import capo_iottwinmaker.types.component_type_summaries
 
         out["component_type_summaries"] = (
@@ -62,8 +62,8 @@ def deserialize_json(data: dict) -> ListComponentTypesResponse:
         raise DeserializationError(
             "ListComponentTypesResponse.component_type_summaries required"
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
     return out

@@ -46,7 +46,7 @@ def serialize_aws_json_1_1(value: Diagnostics) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Diagnostics:
     out: Diagnostics = {}  # type: ignore[typeddict-item]
-    if "errorCode" in data:
+    if data.get("errorCode") is not None:
         import capo_codedeploy.types.lifecycle_error_code
 
         out["error_code"] = (
@@ -54,10 +54,10 @@ def deserialize_aws_json_1_1(data: dict) -> Diagnostics:
                 data["errorCode"]
             )
         )
-    if "scriptName" in data:
+    if data.get("scriptName") is not None:
         out["script_name"] = data["scriptName"]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
-    if "logTail" in data:
+    if data.get("logTail") is not None:
         out["log_tail"] = data["logTail"]
     return out

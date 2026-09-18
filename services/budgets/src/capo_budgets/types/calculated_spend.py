@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: CalculatedSpend) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CalculatedSpend:
     out: CalculatedSpend = {}  # type: ignore[typeddict-item]
-    if "ActualSpend" in data:
+    if data.get("ActualSpend") is not None:
         import capo_budgets.types.spend
 
         out["actual_spend"] = capo_budgets.types.spend.deserialize_aws_json_1_1(
@@ -44,7 +44,7 @@ def deserialize_aws_json_1_1(data: dict) -> CalculatedSpend:
         )
     else:
         raise DeserializationError("CalculatedSpend.actual_spend required")
-    if "ForecastedSpend" in data:
+    if data.get("ForecastedSpend") is not None:
         import capo_budgets.types.spend
 
         out["forecasted_spend"] = capo_budgets.types.spend.deserialize_aws_json_1_1(

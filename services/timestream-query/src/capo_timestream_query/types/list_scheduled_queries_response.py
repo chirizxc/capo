@@ -39,7 +39,7 @@ def serialize_aws_json_1_0(value: ListScheduledQueriesResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ListScheduledQueriesResponse:
     out: ListScheduledQueriesResponse = {}  # type: ignore[typeddict-item]
-    if "ScheduledQueries" in data:
+    if data.get("ScheduledQueries") is not None:
         import capo_timestream_query.types.scheduled_query_list
 
         out["scheduled_queries"] = (
@@ -51,6 +51,6 @@ def deserialize_aws_json_1_0(data: dict) -> ListScheduledQueriesResponse:
         raise DeserializationError(
             "ListScheduledQueriesResponse.scheduled_queries required"
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

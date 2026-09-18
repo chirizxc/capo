@@ -41,7 +41,7 @@ def serialize_aws_json_1_0(value: GetEnrollmentStatusesForOrganizationRequest) -
 
 def deserialize_aws_json_1_0(data: dict) -> GetEnrollmentStatusesForOrganizationRequest:
     out: GetEnrollmentStatusesForOrganizationRequest = {}  # type: ignore[typeddict-item]
-    if "filters" in data:
+    if data.get("filters") is not None:
         import capo_compute_optimizer.types.enrollment_filters
 
         out["filters"] = (
@@ -49,8 +49,8 @@ def deserialize_aws_json_1_0(data: dict) -> GetEnrollmentStatusesForOrganization
                 data["filters"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
     return out

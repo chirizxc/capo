@@ -41,26 +41,26 @@ def serialize_json(value: CloudwatchMetricAction) -> dict:
 
 def deserialize_json(data: dict) -> CloudwatchMetricAction:
     out: CloudwatchMetricAction = {}  # type: ignore[typeddict-item]
-    if "roleArn" in data:
+    if data.get("roleArn") is not None:
         out["role_arn"] = data["roleArn"]
     else:
         raise DeserializationError("CloudwatchMetricAction.role_arn required")
-    if "metricNamespace" in data:
+    if data.get("metricNamespace") is not None:
         out["metric_namespace"] = data["metricNamespace"]
     else:
         raise DeserializationError("CloudwatchMetricAction.metric_namespace required")
-    if "metricName" in data:
+    if data.get("metricName") is not None:
         out["metric_name"] = data["metricName"]
     else:
         raise DeserializationError("CloudwatchMetricAction.metric_name required")
-    if "metricValue" in data:
+    if data.get("metricValue") is not None:
         out["metric_value"] = data["metricValue"]
     else:
         raise DeserializationError("CloudwatchMetricAction.metric_value required")
-    if "metricUnit" in data:
+    if data.get("metricUnit") is not None:
         out["metric_unit"] = data["metricUnit"]
     else:
         raise DeserializationError("CloudwatchMetricAction.metric_unit required")
-    if "metricTimestamp" in data:
+    if data.get("metricTimestamp") is not None:
         out["metric_timestamp"] = data["metricTimestamp"]
     return out

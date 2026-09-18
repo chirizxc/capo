@@ -38,7 +38,7 @@ def serialize_aws_json_1_1(value: IPSetUpdate) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> IPSetUpdate:
     out: IPSetUpdate = {}  # type: ignore[typeddict-item]
-    if "Action" in data:
+    if data.get("Action") is not None:
         import capo_waf_regional.types.change_action
 
         out["action"] = capo_waf_regional.types.change_action.deserialize_aws_json_1_1(
@@ -46,7 +46,7 @@ def deserialize_aws_json_1_1(data: dict) -> IPSetUpdate:
         )
     else:
         raise DeserializationError("IPSetUpdate.action required")
-    if "IPSetDescriptor" in data:
+    if data.get("IPSetDescriptor") is not None:
         import capo_waf_regional.types.ip_set_descriptor
 
         out["ip_set_descriptor"] = (

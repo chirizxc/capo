@@ -33,7 +33,7 @@ def serialize_aws_json_1_1(value: SignInOptions) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SignInOptions:
     out: SignInOptions = {}  # type: ignore[typeddict-item]
-    if "Origin" in data:
+    if data.get("Origin") is not None:
         import capo_sso_admin.types.sign_in_origin
 
         out["origin"] = capo_sso_admin.types.sign_in_origin.deserialize_aws_json_1_1(
@@ -41,6 +41,6 @@ def deserialize_aws_json_1_1(data: dict) -> SignInOptions:
         )
     else:
         raise DeserializationError("SignInOptions.origin required")
-    if "ApplicationUrl" in data:
+    if data.get("ApplicationUrl") is not None:
         out["application_url"] = data["ApplicationUrl"]
     return out

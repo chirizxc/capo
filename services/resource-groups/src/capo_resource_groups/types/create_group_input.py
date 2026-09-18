@@ -75,13 +75,13 @@ def serialize_json(value: CreateGroupInput) -> dict:
 
 def deserialize_json(data: dict) -> CreateGroupInput:
     out: CreateGroupInput = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("CreateGroupInput.name required")
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "ResourceQuery" in data:
+    if data.get("ResourceQuery") is not None:
         import capo_resource_groups.types.resource_query
 
         out["resource_query"] = (
@@ -89,11 +89,11 @@ def deserialize_json(data: dict) -> CreateGroupInput:
                 data["ResourceQuery"]
             )
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_resource_groups.types.tags
 
         out["tags"] = capo_resource_groups.types.tags.deserialize_json(data["Tags"])
-    if "Configuration" in data:
+    if data.get("Configuration") is not None:
         import capo_resource_groups.types.group_configuration_list
 
         out["configuration"] = (
@@ -101,10 +101,10 @@ def deserialize_json(data: dict) -> CreateGroupInput:
                 data["Configuration"]
             )
         )
-    if "Criticality" in data:
+    if data.get("Criticality") is not None:
         out["criticality"] = data["Criticality"]
-    if "Owner" in data:
+    if data.get("Owner") is not None:
         out["owner"] = data["Owner"]
-    if "DisplayName" in data:
+    if data.get("DisplayName") is not None:
         out["display_name"] = data["DisplayName"]
     return out

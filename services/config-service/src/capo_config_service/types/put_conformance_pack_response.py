@@ -25,6 +25,6 @@ def serialize_aws_json_1_1(value: PutConformancePackResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PutConformancePackResponse:
     out: PutConformancePackResponse = {}  # type: ignore[typeddict-item]
-    if "ConformancePackArn" in data:
+    if data.get("ConformancePackArn") is not None:
         out["conformance_pack_arn"] = data["ConformancePackArn"]
     return out

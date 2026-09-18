@@ -49,9 +49,9 @@ def serialize_json(value: ThingTypeProperties) -> dict:
 
 def deserialize_json(data: dict) -> ThingTypeProperties:
     out: ThingTypeProperties = {}  # type: ignore[typeddict-item]
-    if "thingTypeDescription" in data:
+    if data.get("thingTypeDescription") is not None:
         out["thing_type_description"] = data["thingTypeDescription"]
-    if "searchableAttributes" in data:
+    if data.get("searchableAttributes") is not None:
         import capo_iot.types.searchable_attributes
 
         out["searchable_attributes"] = (
@@ -59,7 +59,7 @@ def deserialize_json(data: dict) -> ThingTypeProperties:
                 data["searchableAttributes"]
             )
         )
-    if "mqtt5Configuration" in data:
+    if data.get("mqtt5Configuration") is not None:
         import capo_iot.types.mqtt5_configuration
 
         out["mqtt5_configuration"] = (

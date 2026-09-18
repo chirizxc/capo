@@ -82,10 +82,11 @@ class RepositoryResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_proton.types.create_repository_input.CreateRepositoryInput = {}  # type: ignore[typeddict-item]
-        input_["provider"] = provider
-        input_["name"] = name
-        input_["connection_arn"] = connection_arn
+        input_: capo_proton.types.create_repository_input.CreateRepositoryInput = {
+            "provider": provider,
+            "name": name,
+            "connection_arn": connection_arn,
+        }
         if encryption_key is not None:
             input_["encryption_key"] = encryption_key
         if tags is not None:
@@ -96,6 +97,7 @@ class RepositoryResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -135,15 +137,17 @@ class RepositoryResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_proton.types.get_repository_input.GetRepositoryInput = {}  # type: ignore[typeddict-item]
-        input_["provider"] = provider
-        input_["name"] = name
+        input_: capo_proton.types.get_repository_input.GetRepositoryInput = {
+            "provider": provider,
+            "name": name,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -184,15 +188,17 @@ class RepositoryResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_proton.types.delete_repository_input.DeleteRepositoryInput = {}  # type: ignore[typeddict-item]
-        input_["provider"] = provider
-        input_["name"] = name
+        input_: capo_proton.types.delete_repository_input.DeleteRepositoryInput = {
+            "provider": provider,
+            "name": name,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -234,7 +240,7 @@ class RepositoryResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_proton.types.list_repositories_input.ListRepositoriesInput = {}  # type: ignore[typeddict-item]
+        input_: capo_proton.types.list_repositories_input.ListRepositoriesInput = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -245,6 +251,7 @@ class RepositoryResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -297,10 +304,11 @@ class AsyncRepositoryResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_proton.types.create_repository_input.CreateRepositoryInput = {}  # type: ignore[typeddict-item]
-        input_["provider"] = provider
-        input_["name"] = name
-        input_["connection_arn"] = connection_arn
+        input_: capo_proton.types.create_repository_input.CreateRepositoryInput = {
+            "provider": provider,
+            "name": name,
+            "connection_arn": connection_arn,
+        }
         if encryption_key is not None:
             input_["encryption_key"] = encryption_key
         if tags is not None:
@@ -311,6 +319,7 @@ class AsyncRepositoryResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -351,15 +360,17 @@ class AsyncRepositoryResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_proton.types.get_repository_input.GetRepositoryInput = {}  # type: ignore[typeddict-item]
-        input_["provider"] = provider
-        input_["name"] = name
+        input_: capo_proton.types.get_repository_input.GetRepositoryInput = {
+            "provider": provider,
+            "name": name,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -401,15 +412,17 @@ class AsyncRepositoryResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_proton.types.delete_repository_input.DeleteRepositoryInput = {}  # type: ignore[typeddict-item]
-        input_["provider"] = provider
-        input_["name"] = name
+        input_: capo_proton.types.delete_repository_input.DeleteRepositoryInput = {
+            "provider": provider,
+            "name": name,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -452,7 +465,7 @@ class AsyncRepositoryResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_proton.types.list_repositories_input.ListRepositoriesInput = {}  # type: ignore[typeddict-item]
+        input_: capo_proton.types.list_repositories_input.ListRepositoriesInput = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -463,4 +476,5 @@ class AsyncRepositoryResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

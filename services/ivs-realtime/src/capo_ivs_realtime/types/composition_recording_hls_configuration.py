@@ -25,6 +25,6 @@ def serialize_json(value: CompositionRecordingHlsConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> CompositionRecordingHlsConfiguration:
     out: CompositionRecordingHlsConfiguration = {}  # type: ignore[typeddict-item]
-    if "targetSegmentDurationSeconds" in data:
+    if data.get("targetSegmentDurationSeconds") is not None:
         out["target_segment_duration_seconds"] = data["targetSegmentDurationSeconds"]
     return out

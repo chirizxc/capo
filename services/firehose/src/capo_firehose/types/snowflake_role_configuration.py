@@ -28,8 +28,8 @@ def serialize_aws_json_1_1(value: SnowflakeRoleConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SnowflakeRoleConfiguration:
     out: SnowflakeRoleConfiguration = {}  # type: ignore[typeddict-item]
-    if "Enabled" in data:
+    if data.get("Enabled") is not None:
         out["enabled"] = data["Enabled"]
-    if "SnowflakeRole" in data:
+    if data.get("SnowflakeRole") is not None:
         out["snowflake_role"] = data["SnowflakeRole"]
     return out

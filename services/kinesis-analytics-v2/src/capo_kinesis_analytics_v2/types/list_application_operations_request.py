@@ -49,19 +49,19 @@ def serialize_aws_json_1_1(value: ListApplicationOperationsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListApplicationOperationsRequest:
     out: ListApplicationOperationsRequest = {}  # type: ignore[typeddict-item]
-    if "ApplicationName" in data:
+    if data.get("ApplicationName") is not None:
         out["application_name"] = data["ApplicationName"]
     else:
         raise DeserializationError(
             "ListApplicationOperationsRequest.application_name required"
         )
-    if "Limit" in data:
+    if data.get("Limit") is not None:
         out["limit"] = data["Limit"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "Operation" in data:
+    if data.get("Operation") is not None:
         out["operation"] = data["Operation"]
-    if "OperationStatus" in data:
+    if data.get("OperationStatus") is not None:
         import capo_kinesis_analytics_v2.types.operation_status
 
         out["operation_status"] = (

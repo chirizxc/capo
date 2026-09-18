@@ -73,13 +73,13 @@ def serialize_json(value: UpdateAIPromptRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateAIPromptRequest:
     out: UpdateAIPromptRequest = {}  # type: ignore[typeddict-item]
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
-    if "visibilityStatus" in data:
+    if data.get("visibilityStatus") is not None:
         out["visibility_status"] = data["visibilityStatus"]
     else:
         raise DeserializationError("UpdateAIPromptRequest.visibility_status required")
-    if "templateConfiguration" in data:
+    if data.get("templateConfiguration") is not None:
         import capo_qconnect.types.ai_prompt_template_configuration
 
         out["template_configuration"] = (
@@ -87,11 +87,11 @@ def deserialize_json(data: dict) -> UpdateAIPromptRequest:
                 data["templateConfiguration"]
             )
         )
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "modelId" in data:
+    if data.get("modelId") is not None:
         out["model_id"] = data["modelId"]
-    if "inferenceConfiguration" in data:
+    if data.get("inferenceConfiguration") is not None:
         import capo_qconnect.types.ai_prompt_inference_configuration
 
         out["inference_configuration"] = (

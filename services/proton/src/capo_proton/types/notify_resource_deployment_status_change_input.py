@@ -50,22 +50,22 @@ def serialize_aws_json_1_0(value: NotifyResourceDeploymentStatusChangeInput) -> 
 
 def deserialize_aws_json_1_0(data: dict) -> NotifyResourceDeploymentStatusChangeInput:
     out: NotifyResourceDeploymentStatusChangeInput = {}  # type: ignore[typeddict-item]
-    if "resourceArn" in data:
+    if data.get("resourceArn") is not None:
         out["resource_arn"] = data["resourceArn"]
     else:
         raise DeserializationError(
             "NotifyResourceDeploymentStatusChangeInput.resource_arn required"
         )
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
-    if "outputs" in data:
+    if data.get("outputs") is not None:
         import capo_proton.types.outputs_list
 
         out["outputs"] = capo_proton.types.outputs_list.deserialize_aws_json_1_0(
             data["outputs"]
         )
-    if "deploymentId" in data:
+    if data.get("deploymentId") is not None:
         out["deployment_id"] = data["deploymentId"]
-    if "statusMessage" in data:
+    if data.get("statusMessage") is not None:
         out["status_message"] = data["statusMessage"]
     return out

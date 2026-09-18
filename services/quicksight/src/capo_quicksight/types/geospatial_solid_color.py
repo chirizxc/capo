@@ -35,11 +35,11 @@ def serialize_json(value: GeospatialSolidColor) -> dict:
 
 def deserialize_json(data: dict) -> GeospatialSolidColor:
     out: GeospatialSolidColor = {}  # type: ignore[typeddict-item]
-    if "Color" in data:
+    if data.get("Color") is not None:
         out["color"] = data["Color"]
     else:
         raise DeserializationError("GeospatialSolidColor.color required")
-    if "State" in data:
+    if data.get("State") is not None:
         import capo_quicksight.types.geospatial_color_state
 
         out["state"] = capo_quicksight.types.geospatial_color_state.deserialize_json(

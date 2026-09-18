@@ -27,7 +27,7 @@ def serialize_json(value: CreateNotificationSubscriptionResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateNotificationSubscriptionResponse:
     out: CreateNotificationSubscriptionResponse = {}  # type: ignore[typeddict-item]
-    if "Subscription" in data:
+    if data.get("Subscription") is not None:
         import capo_workdocs.types.subscription
 
         out["subscription"] = capo_workdocs.types.subscription.deserialize_json(

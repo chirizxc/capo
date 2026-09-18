@@ -88,19 +88,19 @@ def serialize_json(value: DescribeTaskOutput) -> dict:
 
 def deserialize_json(data: dict) -> DescribeTaskOutput:
     out: DescribeTaskOutput = {}  # type: ignore[typeddict-item]
-    if "taskId" in data:
+    if data.get("taskId") is not None:
         out["task_id"] = data["taskId"]
-    if "taskArn" in data:
+    if data.get("taskArn") is not None:
         out["task_arn"] = data["taskArn"]
-    if "targets" in data:
+    if data.get("targets") is not None:
         import capo_snow_device_management.types.target_list
 
         out["targets"] = capo_snow_device_management.types.target_list.deserialize_json(
             data["targets"]
         )
-    if "state" in data:
+    if data.get("state") is not None:
         out["state"] = data["state"]
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_snow_device_management.types._prelude.timestamp
 
         out["created_at"] = (
@@ -108,7 +108,7 @@ def deserialize_json(data: dict) -> DescribeTaskOutput:
                 data["createdAt"]
             )
         )
-    if "lastUpdatedAt" in data:
+    if data.get("lastUpdatedAt") is not None:
         import capo_snow_device_management.types._prelude.timestamp
 
         out["last_updated_at"] = (
@@ -116,7 +116,7 @@ def deserialize_json(data: dict) -> DescribeTaskOutput:
                 data["lastUpdatedAt"]
             )
         )
-    if "completedAt" in data:
+    if data.get("completedAt") is not None:
         import capo_snow_device_management.types._prelude.timestamp
 
         out["completed_at"] = (
@@ -124,9 +124,9 @@ def deserialize_json(data: dict) -> DescribeTaskOutput:
                 data["completedAt"]
             )
         )
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_snow_device_management.types.tag_map
 
         out["tags"] = capo_snow_device_management.types.tag_map.deserialize_json(

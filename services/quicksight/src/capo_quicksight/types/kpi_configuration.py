@@ -62,13 +62,13 @@ def serialize_json(value: KPIConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> KPIConfiguration:
     out: KPIConfiguration = {}  # type: ignore[typeddict-item]
-    if "FieldWells" in data:
+    if data.get("FieldWells") is not None:
         import capo_quicksight.types.kpi_field_wells
 
         out["field_wells"] = capo_quicksight.types.kpi_field_wells.deserialize_json(
             data["FieldWells"]
         )
-    if "SortConfiguration" in data:
+    if data.get("SortConfiguration") is not None:
         import capo_quicksight.types.kpi_sort_configuration
 
         out["sort_configuration"] = (
@@ -76,13 +76,13 @@ def deserialize_json(data: dict) -> KPIConfiguration:
                 data["SortConfiguration"]
             )
         )
-    if "KPIOptions" in data:
+    if data.get("KPIOptions") is not None:
         import capo_quicksight.types.kpi_options
 
         out["kpi_options"] = capo_quicksight.types.kpi_options.deserialize_json(
             data["KPIOptions"]
         )
-    if "Interactions" in data:
+    if data.get("Interactions") is not None:
         import capo_quicksight.types.visual_interaction_options
 
         out["interactions"] = (

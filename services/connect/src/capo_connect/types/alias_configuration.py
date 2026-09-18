@@ -24,7 +24,7 @@ def serialize_json(value: AliasConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> AliasConfiguration:
     out: AliasConfiguration = {}  # type: ignore[typeddict-item]
-    if "EmailAddressId" in data:
+    if data.get("EmailAddressId") is not None:
         out["email_address_id"] = data["EmailAddressId"]
     else:
         raise DeserializationError("AliasConfiguration.email_address_id required")

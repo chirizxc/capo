@@ -137,7 +137,7 @@ def serialize_json(value: InputSettings) -> dict:
 
 def deserialize_json(data: dict) -> InputSettings:
     out: InputSettings = {}  # type: ignore[typeddict-item]
-    if "audioSelectors" in data:
+    if data.get("audioSelectors") is not None:
         import capo_medialive.types.__list_of_audio_selector
 
         out["audio_selectors"] = (
@@ -145,7 +145,7 @@ def deserialize_json(data: dict) -> InputSettings:
                 data["audioSelectors"]
             )
         )
-    if "captionSelectors" in data:
+    if data.get("captionSelectors") is not None:
         import capo_medialive.types.__list_of_caption_selector
 
         out["caption_selectors"] = (
@@ -153,7 +153,7 @@ def deserialize_json(data: dict) -> InputSettings:
                 data["captionSelectors"]
             )
         )
-    if "deblockFilter" in data:
+    if data.get("deblockFilter") is not None:
         import capo_medialive.types.input_deblock_filter
 
         out["deblock_filter"] = (
@@ -161,7 +161,7 @@ def deserialize_json(data: dict) -> InputSettings:
                 data["deblockFilter"]
             )
         )
-    if "denoiseFilter" in data:
+    if data.get("denoiseFilter") is not None:
         import capo_medialive.types.input_denoise_filter
 
         out["denoise_filter"] = (
@@ -169,15 +169,15 @@ def deserialize_json(data: dict) -> InputSettings:
                 data["denoiseFilter"]
             )
         )
-    if "filterStrength" in data:
+    if data.get("filterStrength") is not None:
         out["filter_strength"] = data["filterStrength"]
-    if "inputFilter" in data:
+    if data.get("inputFilter") is not None:
         import capo_medialive.types.input_filter
 
         out["input_filter"] = capo_medialive.types.input_filter.deserialize_json(
             data["inputFilter"]
         )
-    if "networkInputSettings" in data:
+    if data.get("networkInputSettings") is not None:
         import capo_medialive.types.network_input_settings
 
         out["network_input_settings"] = (
@@ -185,9 +185,9 @@ def deserialize_json(data: dict) -> InputSettings:
                 data["networkInputSettings"]
             )
         )
-    if "scte35Pid" in data:
+    if data.get("scte35Pid") is not None:
         out["scte35_pid"] = data["scte35Pid"]
-    if "smpte2038DataPreference" in data:
+    if data.get("smpte2038DataPreference") is not None:
         import capo_medialive.types.smpte2038_data_preference
 
         out["smpte2038_data_preference"] = (
@@ -195,7 +195,7 @@ def deserialize_json(data: dict) -> InputSettings:
                 data["smpte2038DataPreference"]
             )
         )
-    if "sourceEndBehavior" in data:
+    if data.get("sourceEndBehavior") is not None:
         import capo_medialive.types.input_source_end_behavior
 
         out["source_end_behavior"] = (
@@ -203,7 +203,7 @@ def deserialize_json(data: dict) -> InputSettings:
                 data["sourceEndBehavior"]
             )
         )
-    if "videoSelector" in data:
+    if data.get("videoSelector") is not None:
         import capo_medialive.types.video_selector
 
         out["video_selector"] = capo_medialive.types.video_selector.deserialize_json(

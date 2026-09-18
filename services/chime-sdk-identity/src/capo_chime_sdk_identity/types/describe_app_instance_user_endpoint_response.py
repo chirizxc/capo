@@ -31,7 +31,7 @@ def serialize_json(value: DescribeAppInstanceUserEndpointResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribeAppInstanceUserEndpointResponse:
     out: DescribeAppInstanceUserEndpointResponse = {}  # type: ignore[typeddict-item]
-    if "AppInstanceUserEndpoint" in data:
+    if data.get("AppInstanceUserEndpoint") is not None:
         import capo_chime_sdk_identity.types.app_instance_user_endpoint
 
         out["app_instance_user_endpoint"] = (

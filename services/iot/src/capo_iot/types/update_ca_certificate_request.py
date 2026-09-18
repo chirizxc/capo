@@ -46,7 +46,7 @@ def serialize_json(value: UpdateCACertificateRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateCACertificateRequest:
     out: UpdateCACertificateRequest = {}  # type: ignore[typeddict-item]
-    if "registrationConfig" in data:
+    if data.get("registrationConfig") is not None:
         import capo_iot.types.registration_config
 
         out["registration_config"] = (
@@ -54,7 +54,7 @@ def deserialize_json(data: dict) -> UpdateCACertificateRequest:
                 data["registrationConfig"]
             )
         )
-    if "removeAutoRegistration" in data:
+    if data.get("removeAutoRegistration") is not None:
         out["remove_auto_registration"] = data["removeAutoRegistration"]
     else:
         out["remove_auto_registration"] = False

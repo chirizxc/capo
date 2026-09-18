@@ -36,13 +36,13 @@ def serialize_aws_json_1_1(value: EnvironmentLanguage) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> EnvironmentLanguage:
     out: EnvironmentLanguage = {}  # type: ignore[typeddict-item]
-    if "language" in data:
+    if data.get("language") is not None:
         import capo_codebuild.types.language_type
 
         out["language"] = capo_codebuild.types.language_type.deserialize_aws_json_1_1(
             data["language"]
         )
-    if "images" in data:
+    if data.get("images") is not None:
         import capo_codebuild.types.environment_images
 
         out["images"] = (

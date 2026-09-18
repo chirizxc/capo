@@ -32,10 +32,10 @@ def serialize_json(value: HighestSeverityThreatDetails) -> dict:
 
 def deserialize_json(data: dict) -> HighestSeverityThreatDetails:
     out: HighestSeverityThreatDetails = {}  # type: ignore[typeddict-item]
-    if "severity" in data:
+    if data.get("severity") is not None:
         out["severity"] = data["severity"]
-    if "threatName" in data:
+    if data.get("threatName") is not None:
         out["threat_name"] = data["threatName"]
-    if "count" in data:
+    if data.get("count") is not None:
         out["count"] = data["count"]
     return out

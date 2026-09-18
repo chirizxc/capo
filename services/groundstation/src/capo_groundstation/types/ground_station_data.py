@@ -36,10 +36,10 @@ def serialize_json(value: GroundStationData) -> dict:
 
 def deserialize_json(data: dict) -> GroundStationData:
     out: GroundStationData = {}  # type: ignore[typeddict-item]
-    if "groundStationId" in data:
+    if data.get("groundStationId") is not None:
         out["ground_station_id"] = data["groundStationId"]
-    if "groundStationName" in data:
+    if data.get("groundStationName") is not None:
         out["ground_station_name"] = data["groundStationName"]
-    if "region" in data:
+    if data.get("region") is not None:
         out["region"] = data["region"]
     return out

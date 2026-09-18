@@ -58,21 +58,21 @@ def serialize_aws_json_1_1(value: UpdateMaintenanceStartTimeInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateMaintenanceStartTimeInput:
     out: UpdateMaintenanceStartTimeInput = {}  # type: ignore[typeddict-item]
-    if "GatewayARN" in data:
+    if data.get("GatewayARN") is not None:
         out["gateway_arn"] = data["GatewayARN"]
     else:
         raise DeserializationError(
             "UpdateMaintenanceStartTimeInput.gateway_arn required"
         )
-    if "HourOfDay" in data:
+    if data.get("HourOfDay") is not None:
         out["hour_of_day"] = data["HourOfDay"]
-    if "MinuteOfHour" in data:
+    if data.get("MinuteOfHour") is not None:
         out["minute_of_hour"] = data["MinuteOfHour"]
-    if "DayOfWeek" in data:
+    if data.get("DayOfWeek") is not None:
         out["day_of_week"] = data["DayOfWeek"]
-    if "DayOfMonth" in data:
+    if data.get("DayOfMonth") is not None:
         out["day_of_month"] = data["DayOfMonth"]
-    if "SoftwareUpdatePreferences" in data:
+    if data.get("SoftwareUpdatePreferences") is not None:
         import capo_storage_gateway.types.software_update_preferences
 
         out["software_update_preferences"] = (

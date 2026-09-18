@@ -51,7 +51,7 @@ def serialize_json(value: CreateBackendAuthForgotPasswordConfig) -> dict:
 
 def deserialize_json(data: dict) -> CreateBackendAuthForgotPasswordConfig:
     out: CreateBackendAuthForgotPasswordConfig = {}  # type: ignore[typeddict-item]
-    if "deliveryMethod" in data:
+    if data.get("deliveryMethod") is not None:
         import capo_amplifybackend.types.delivery_method
 
         out["delivery_method"] = (
@@ -59,7 +59,7 @@ def deserialize_json(data: dict) -> CreateBackendAuthForgotPasswordConfig:
                 data["deliveryMethod"]
             )
         )
-    if "emailSettings" in data:
+    if data.get("emailSettings") is not None:
         import capo_amplifybackend.types.email_settings
 
         out["email_settings"] = (
@@ -67,7 +67,7 @@ def deserialize_json(data: dict) -> CreateBackendAuthForgotPasswordConfig:
                 data["emailSettings"]
             )
         )
-    if "smsSettings" in data:
+    if data.get("smsSettings") is not None:
         import capo_amplifybackend.types.sms_settings
 
         out["sms_settings"] = capo_amplifybackend.types.sms_settings.deserialize_json(

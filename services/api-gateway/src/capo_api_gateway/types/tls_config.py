@@ -22,7 +22,7 @@ def serialize_json(value: TlsConfig) -> dict:
 
 def deserialize_json(data: dict) -> TlsConfig:
     out: TlsConfig = {}  # type: ignore[typeddict-item]
-    if "insecureSkipVerification" in data:
+    if data.get("insecureSkipVerification") is not None:
         out["insecure_skip_verification"] = data["insecureSkipVerification"]
     else:
         out["insecure_skip_verification"] = False

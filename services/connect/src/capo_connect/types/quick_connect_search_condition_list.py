@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> QuickConnectSearchConditionList:
 
     out: QuickConnectSearchConditionList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_connect.types.quick_connect_search_criteria.deserialize_json(item)
         )

@@ -52,9 +52,9 @@ def serialize_json(value: CampaignInAppMessage) -> dict:
 
 def deserialize_json(data: dict) -> CampaignInAppMessage:
     out: CampaignInAppMessage = {}  # type: ignore[typeddict-item]
-    if "Body" in data:
+    if data.get("Body") is not None:
         out["body"] = data["Body"]
-    if "Content" in data:
+    if data.get("Content") is not None:
         import capo_pinpoint.types.list_of_in_app_message_content
 
         out["content"] = (
@@ -62,13 +62,13 @@ def deserialize_json(data: dict) -> CampaignInAppMessage:
                 data["Content"]
             )
         )
-    if "CustomConfig" in data:
+    if data.get("CustomConfig") is not None:
         import capo_pinpoint.types.map_of__string
 
         out["custom_config"] = capo_pinpoint.types.map_of__string.deserialize_json(
             data["CustomConfig"]
         )
-    if "Layout" in data:
+    if data.get("Layout") is not None:
         import capo_pinpoint.types.layout
 
         out["layout"] = capo_pinpoint.types.layout.deserialize_json(data["Layout"])

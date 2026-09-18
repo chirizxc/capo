@@ -40,13 +40,13 @@ def serialize_json(value: GetTraceSegmentDestinationResult) -> dict:
 
 def deserialize_json(data: dict) -> GetTraceSegmentDestinationResult:
     out: GetTraceSegmentDestinationResult = {}  # type: ignore[typeddict-item]
-    if "Destination" in data:
+    if data.get("Destination") is not None:
         import capo_xray.types.trace_segment_destination
 
         out["destination"] = capo_xray.types.trace_segment_destination.deserialize_json(
             data["Destination"]
         )
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_xray.types.trace_segment_destination_status
 
         out["status"] = (

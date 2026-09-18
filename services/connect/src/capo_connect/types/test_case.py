@@ -98,42 +98,42 @@ def serialize_json(value: TestCase) -> dict:
 
 def deserialize_json(data: dict) -> TestCase:
     out: TestCase = {}  # type: ignore[typeddict-item]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Content" in data:
+    if data.get("Content") is not None:
         out["content"] = data["Content"]
-    if "EntryPoint" in data:
+    if data.get("EntryPoint") is not None:
         import capo_connect.types.test_case_entry_point
 
         out["entry_point"] = capo_connect.types.test_case_entry_point.deserialize_json(
             data["EntryPoint"]
         )
-    if "InitializationData" in data:
+    if data.get("InitializationData") is not None:
         out["initialization_data"] = data["InitializationData"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_connect.types.test_case_status
 
         out["status"] = capo_connect.types.test_case_status.deserialize_json(
             data["Status"]
         )
-    if "LastModifiedTime" in data:
+    if data.get("LastModifiedTime") is not None:
         import capo_connect.types.timestamp
 
         out["last_modified_time"] = capo_connect.types.timestamp.deserialize_json(
             data["LastModifiedTime"]
         )
-    if "LastModifiedRegion" in data:
+    if data.get("LastModifiedRegion") is not None:
         out["last_modified_region"] = data["LastModifiedRegion"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_connect.types.tag_map
 
         out["tags"] = capo_connect.types.tag_map.deserialize_json(data["Tags"])
-    if "TestCaseSha256" in data:
+    if data.get("TestCaseSha256") is not None:
         out["test_case_sha256"] = data["TestCaseSha256"]
     return out

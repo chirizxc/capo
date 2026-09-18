@@ -28,7 +28,7 @@ def serialize_json(value: ApprovalStatusDetails) -> dict:
 
 def deserialize_json(data: dict) -> ApprovalStatusDetails:
     out: ApprovalStatusDetails = {}  # type: ignore[typeddict-item]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_cleanrooms.types.approval_status
 
         out["status"] = capo_cleanrooms.types.approval_status.deserialize_json(

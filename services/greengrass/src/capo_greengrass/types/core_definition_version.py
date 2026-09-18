@@ -27,7 +27,7 @@ def serialize_json(value: CoreDefinitionVersion) -> dict:
 
 def deserialize_json(data: dict) -> CoreDefinitionVersion:
     out: CoreDefinitionVersion = {}  # type: ignore[typeddict-item]
-    if "Cores" in data:
+    if data.get("Cores") is not None:
         import capo_greengrass.types.__list_of_core
 
         out["cores"] = capo_greengrass.types.__list_of_core.deserialize_json(

@@ -46,11 +46,11 @@ def serialize_aws_json_1_0(value: PrepareQueryResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> PrepareQueryResponse:
     out: PrepareQueryResponse = {}  # type: ignore[typeddict-item]
-    if "QueryString" in data:
+    if data.get("QueryString") is not None:
         out["query_string"] = data["QueryString"]
     else:
         raise DeserializationError("PrepareQueryResponse.query_string required")
-    if "Columns" in data:
+    if data.get("Columns") is not None:
         import capo_timestream_query.types.select_column_list
 
         out["columns"] = (
@@ -60,7 +60,7 @@ def deserialize_aws_json_1_0(data: dict) -> PrepareQueryResponse:
         )
     else:
         raise DeserializationError("PrepareQueryResponse.columns required")
-    if "Parameters" in data:
+    if data.get("Parameters") is not None:
         import capo_timestream_query.types.parameter_mapping_list
 
         out["parameters"] = (

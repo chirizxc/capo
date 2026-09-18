@@ -13,9 +13,9 @@ from capo_global_accelerator import AsyncGlobalAcceleratorClient
 
 
 async def main():
-    async with AsyncGlobalAcceleratorClient() as s3:
+    async with AsyncGlobalAcceleratorClient() as global_accelerator:
         # Example: call the add_custom_routing_endpoints operation
-        response = await s3.add_custom_routing_endpoints()
+        response = await global_accelerator.add_custom_routing_endpoints()
         print(response["endpoint_descriptions"])
 ```
 
@@ -28,9 +28,9 @@ from capo_global_accelerator import AsyncGlobalAcceleratorClient
 
 
 async def main():
-    async with AsyncGlobalAcceleratorClient() as s3:
+    async with AsyncGlobalAcceleratorClient() as global_accelerator:
         # Example: paginate over list_accelerators
-        async for item in s3.iter_list_accelerators():
+        async for item in global_accelerator.iter_list_accelerators():
             print(item)
 ```
 
@@ -44,9 +44,9 @@ from capo_global_accelerator.error import AccessDeniedException
 
 
 async def main():
-    async with AsyncGlobalAcceleratorClient() as s3:
+    async with AsyncGlobalAcceleratorClient() as global_accelerator:
         try:
-            await s3.add_custom_routing_endpoints()
+            await global_accelerator.add_custom_routing_endpoints()
         except AccessDeniedException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -63,13 +63,13 @@ from capo_global_accelerator import AsyncGlobalAcceleratorClient
 
 
 async def main():
-    async with AsyncGlobalAcceleratorClient() as s3:
+    async with AsyncGlobalAcceleratorClient() as global_accelerator:
         # Default: 3 attempts for every operation
-        response = await s3.add_custom_routing_endpoints()
+        response = await global_accelerator.add_custom_routing_endpoints()
 
         # Override per operation
-        response = await s3.add_custom_routing_endpoints(config_overrides={"retry_max_attempts": 5})
+        response = await global_accelerator.add_custom_routing_endpoints(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.add_custom_routing_endpoints(config_overrides={"retry_max_attempts": 1})
+        response = await global_accelerator.add_custom_routing_endpoints(config_overrides={"retry_max_attempts": 1})
 ```

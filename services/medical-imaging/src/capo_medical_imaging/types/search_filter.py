@@ -40,7 +40,7 @@ def serialize_json(value: SearchFilter) -> dict:
 
 def deserialize_json(data: dict) -> SearchFilter:
     out: SearchFilter = {}  # type: ignore[typeddict-item]
-    if "values" in data:
+    if data.get("values") is not None:
         import capo_medical_imaging.types.search_by_attribute_values
 
         out["values"] = (
@@ -50,7 +50,7 @@ def deserialize_json(data: dict) -> SearchFilter:
         )
     else:
         raise DeserializationError("SearchFilter.values required")
-    if "operator" in data:
+    if data.get("operator") is not None:
         import capo_medical_imaging.types.operator
 
         out["operator"] = capo_medical_imaging.types.operator.deserialize_json(

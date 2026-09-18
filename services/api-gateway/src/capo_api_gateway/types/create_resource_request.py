@@ -28,7 +28,7 @@ def serialize_json(value: CreateResourceRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateResourceRequest:
     out: CreateResourceRequest = {}  # type: ignore[typeddict-item]
-    if "pathPart" in data:
+    if data.get("pathPart") is not None:
         out["path_part"] = data["pathPart"]
     else:
         raise DeserializationError("CreateResourceRequest.path_part required")

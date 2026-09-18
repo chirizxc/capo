@@ -32,9 +32,9 @@ def serialize_json(value: SubscribedUser) -> dict:
 
 def deserialize_json(data: dict) -> SubscribedUser:
     out: SubscribedUser = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "details" in data:
+    if data.get("details") is not None:
         import capo_datazone.types.user_profile_details
 
         out["details"] = capo_datazone.types.user_profile_details.deserialize_json(

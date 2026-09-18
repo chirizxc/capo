@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> ResourcePendingMaintenanceActionList:
 
     out: ResourcePendingMaintenanceActionList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_docdb_elastic.types.resource_pending_maintenance_action.deserialize_json(
                 item

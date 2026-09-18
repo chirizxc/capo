@@ -51,7 +51,7 @@ def serialize_json(value: PrivateConnectionProvisioningState) -> dict:
 
 def deserialize_json(data: dict) -> PrivateConnectionProvisioningState:
     out: PrivateConnectionProvisioningState = {}  # type: ignore[typeddict-item]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_appflow.types.private_connection_provisioning_status
 
         out["status"] = (
@@ -59,9 +59,9 @@ def deserialize_json(data: dict) -> PrivateConnectionProvisioningState:
                 data["status"]
             )
         )
-    if "failureMessage" in data:
+    if data.get("failureMessage") is not None:
         out["failure_message"] = data["failureMessage"]
-    if "failureCause" in data:
+    if data.get("failureCause") is not None:
         import capo_appflow.types.private_connection_provisioning_failure_cause
 
         out["failure_cause"] = (

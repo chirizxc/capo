@@ -31,20 +31,28 @@ def serialize_aws_json_1_1(value: InstanceHardware) -> dict:
             value["disks"]
         )
     if "ram_size_in_gb" in value:
-        out["ramSizeInGb"] = value["ram_size_in_gb"]
+        out["ramSizeInGb"] = (
+            "NaN"
+            if value["ram_size_in_gb"] != value["ram_size_in_gb"]
+            else "Infinity"
+            if value["ram_size_in_gb"] == float("inf")
+            else "-Infinity"
+            if value["ram_size_in_gb"] == float("-inf")
+            else value["ram_size_in_gb"]
+        )
     return out
 
 
 def deserialize_aws_json_1_1(data: dict) -> InstanceHardware:
     out: InstanceHardware = {}  # type: ignore[typeddict-item]
-    if "cpuCount" in data:
+    if data.get("cpuCount") is not None:
         out["cpu_count"] = data["cpuCount"]
-    if "disks" in data:
+    if data.get("disks") is not None:
         import capo_lightsail.types.disk_list
 
         out["disks"] = capo_lightsail.types.disk_list.deserialize_aws_json_1_1(
             data["disks"]
         )
-    if "ramSizeInGb" in data:
-        out["ram_size_in_gb"] = data["ramSizeInGb"]
+    if data.get("ramSizeInGb") is not None:
+        out["ram_size_in_gb"] = float(data["ramSizeInGb"])
     return out

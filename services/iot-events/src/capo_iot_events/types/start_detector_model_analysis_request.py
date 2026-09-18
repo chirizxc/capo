@@ -31,7 +31,7 @@ def serialize_json(value: StartDetectorModelAnalysisRequest) -> dict:
 
 def deserialize_json(data: dict) -> StartDetectorModelAnalysisRequest:
     out: StartDetectorModelAnalysisRequest = {}  # type: ignore[typeddict-item]
-    if "detectorModelDefinition" in data:
+    if data.get("detectorModelDefinition") is not None:
         import capo_iot_events.types.detector_model_definition
 
         out["detector_model_definition"] = (

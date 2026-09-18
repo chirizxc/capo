@@ -77,7 +77,15 @@ def serialize_aws_json_1_1(value: StorediSCSIVolume) -> dict:
         out["VolumeAttachmentStatus"] = value["volume_attachment_status"]
     out["VolumeSizeInBytes"] = value.get("volume_size_in_bytes", 0)
     if "volume_progress" in value:
-        out["VolumeProgress"] = value["volume_progress"]
+        out["VolumeProgress"] = (
+            "NaN"
+            if value["volume_progress"] != value["volume_progress"]
+            else "Infinity"
+            if value["volume_progress"] == float("inf")
+            else "-Infinity"
+            if value["volume_progress"] == float("-inf")
+            else value["volume_progress"]
+        )
     if "volume_disk_id" in value:
         out["VolumeDiskId"] = value["volume_disk_id"]
     if "source_snapshot_id" in value:
@@ -110,31 +118,31 @@ def serialize_aws_json_1_1(value: StorediSCSIVolume) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> StorediSCSIVolume:
     out: StorediSCSIVolume = {}  # type: ignore[typeddict-item]
-    if "VolumeARN" in data:
+    if data.get("VolumeARN") is not None:
         out["volume_arn"] = data["VolumeARN"]
-    if "VolumeId" in data:
+    if data.get("VolumeId") is not None:
         out["volume_id"] = data["VolumeId"]
-    if "VolumeType" in data:
+    if data.get("VolumeType") is not None:
         out["volume_type"] = data["VolumeType"]
-    if "VolumeStatus" in data:
+    if data.get("VolumeStatus") is not None:
         out["volume_status"] = data["VolumeStatus"]
-    if "VolumeAttachmentStatus" in data:
+    if data.get("VolumeAttachmentStatus") is not None:
         out["volume_attachment_status"] = data["VolumeAttachmentStatus"]
-    if "VolumeSizeInBytes" in data:
+    if data.get("VolumeSizeInBytes") is not None:
         out["volume_size_in_bytes"] = data["VolumeSizeInBytes"]
     else:
         out["volume_size_in_bytes"] = 0
-    if "VolumeProgress" in data:
-        out["volume_progress"] = data["VolumeProgress"]
-    if "VolumeDiskId" in data:
+    if data.get("VolumeProgress") is not None:
+        out["volume_progress"] = float(data["VolumeProgress"])
+    if data.get("VolumeDiskId") is not None:
         out["volume_disk_id"] = data["VolumeDiskId"]
-    if "SourceSnapshotId" in data:
+    if data.get("SourceSnapshotId") is not None:
         out["source_snapshot_id"] = data["SourceSnapshotId"]
-    if "PreservedExistingData" in data:
+    if data.get("PreservedExistingData") is not None:
         out["preserved_existing_data"] = data["PreservedExistingData"]
     else:
         out["preserved_existing_data"] = False
-    if "VolumeiSCSIAttributes" in data:
+    if data.get("VolumeiSCSIAttributes") is not None:
         import capo_storage_gateway.types.volumei_scsi_attributes
 
         out["volumei_scsi_attributes"] = (
@@ -142,7 +150,7 @@ def deserialize_aws_json_1_1(data: dict) -> StorediSCSIVolume:
                 data["VolumeiSCSIAttributes"]
             )
         )
-    if "CreatedDate" in data:
+    if data.get("CreatedDate") is not None:
         import capo_storage_gateway.types.created_date
 
         out["created_date"] = (
@@ -150,10 +158,10 @@ def deserialize_aws_json_1_1(data: dict) -> StorediSCSIVolume:
                 data["CreatedDate"]
             )
         )
-    if "VolumeUsedInBytes" in data:
+    if data.get("VolumeUsedInBytes") is not None:
         out["volume_used_in_bytes"] = data["VolumeUsedInBytes"]
-    if "KMSKey" in data:
+    if data.get("KMSKey") is not None:
         out["kms_key"] = data["KMSKey"]
-    if "TargetName" in data:
+    if data.get("TargetName") is not None:
         out["target_name"] = data["TargetName"]
     return out

@@ -50,9 +50,9 @@ def serialize_json(value: StopProductSubscriptionRequest) -> dict:
 
 def deserialize_json(data: dict) -> StopProductSubscriptionRequest:
     out: StopProductSubscriptionRequest = {}  # type: ignore[typeddict-item]
-    if "Username" in data:
+    if data.get("Username") is not None:
         out["username"] = data["Username"]
-    if "IdentityProvider" in data:
+    if data.get("IdentityProvider") is not None:
         import capo_license_manager_user_subscriptions.types.identity_provider
 
         out["identity_provider"] = (
@@ -60,10 +60,10 @@ def deserialize_json(data: dict) -> StopProductSubscriptionRequest:
                 data["IdentityProvider"]
             )
         )
-    if "Product" in data:
+    if data.get("Product") is not None:
         out["product"] = data["Product"]
-    if "ProductUserArn" in data:
+    if data.get("ProductUserArn") is not None:
         out["product_user_arn"] = data["ProductUserArn"]
-    if "Domain" in data:
+    if data.get("Domain") is not None:
         out["domain"] = data["Domain"]
     return out

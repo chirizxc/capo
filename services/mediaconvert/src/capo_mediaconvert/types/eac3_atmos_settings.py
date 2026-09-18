@@ -155,13 +155,45 @@ def serialize_json(value: Eac3AtmosSettings) -> dict:
             )
         )
     if "lo_ro_center_mix_level" in value:
-        out["loRoCenterMixLevel"] = value["lo_ro_center_mix_level"]
+        out["loRoCenterMixLevel"] = (
+            "NaN"
+            if value["lo_ro_center_mix_level"] != value["lo_ro_center_mix_level"]
+            else "Infinity"
+            if value["lo_ro_center_mix_level"] == float("inf")
+            else "-Infinity"
+            if value["lo_ro_center_mix_level"] == float("-inf")
+            else value["lo_ro_center_mix_level"]
+        )
     if "lo_ro_surround_mix_level" in value:
-        out["loRoSurroundMixLevel"] = value["lo_ro_surround_mix_level"]
+        out["loRoSurroundMixLevel"] = (
+            "NaN"
+            if value["lo_ro_surround_mix_level"] != value["lo_ro_surround_mix_level"]
+            else "Infinity"
+            if value["lo_ro_surround_mix_level"] == float("inf")
+            else "-Infinity"
+            if value["lo_ro_surround_mix_level"] == float("-inf")
+            else value["lo_ro_surround_mix_level"]
+        )
     if "lt_rt_center_mix_level" in value:
-        out["ltRtCenterMixLevel"] = value["lt_rt_center_mix_level"]
+        out["ltRtCenterMixLevel"] = (
+            "NaN"
+            if value["lt_rt_center_mix_level"] != value["lt_rt_center_mix_level"]
+            else "Infinity"
+            if value["lt_rt_center_mix_level"] == float("inf")
+            else "-Infinity"
+            if value["lt_rt_center_mix_level"] == float("-inf")
+            else value["lt_rt_center_mix_level"]
+        )
     if "lt_rt_surround_mix_level" in value:
-        out["ltRtSurroundMixLevel"] = value["lt_rt_surround_mix_level"]
+        out["ltRtSurroundMixLevel"] = (
+            "NaN"
+            if value["lt_rt_surround_mix_level"] != value["lt_rt_surround_mix_level"]
+            else "Infinity"
+            if value["lt_rt_surround_mix_level"] == float("inf")
+            else "-Infinity"
+            if value["lt_rt_surround_mix_level"] == float("-inf")
+            else value["lt_rt_surround_mix_level"]
+        )
     if "metering_mode" in value:
         import capo_mediaconvert.types.eac3_atmos_metering_mode
 
@@ -195,9 +227,9 @@ def serialize_json(value: Eac3AtmosSettings) -> dict:
 
 def deserialize_json(data: dict) -> Eac3AtmosSettings:
     out: Eac3AtmosSettings = {}  # type: ignore[typeddict-item]
-    if "bitrate" in data:
+    if data.get("bitrate") is not None:
         out["bitrate"] = data["bitrate"]
-    if "bitstreamMode" in data:
+    if data.get("bitstreamMode") is not None:
         import capo_mediaconvert.types.eac3_atmos_bitstream_mode
 
         out["bitstream_mode"] = (
@@ -205,7 +237,7 @@ def deserialize_json(data: dict) -> Eac3AtmosSettings:
                 data["bitstreamMode"]
             )
         )
-    if "codingMode" in data:
+    if data.get("codingMode") is not None:
         import capo_mediaconvert.types.eac3_atmos_coding_mode
 
         out["coding_mode"] = (
@@ -213,7 +245,7 @@ def deserialize_json(data: dict) -> Eac3AtmosSettings:
                 data["codingMode"]
             )
         )
-    if "dialogueIntelligence" in data:
+    if data.get("dialogueIntelligence") is not None:
         import capo_mediaconvert.types.eac3_atmos_dialogue_intelligence
 
         out["dialogue_intelligence"] = (
@@ -221,7 +253,7 @@ def deserialize_json(data: dict) -> Eac3AtmosSettings:
                 data["dialogueIntelligence"]
             )
         )
-    if "downmixControl" in data:
+    if data.get("downmixControl") is not None:
         import capo_mediaconvert.types.eac3_atmos_downmix_control
 
         out["downmix_control"] = (
@@ -229,7 +261,7 @@ def deserialize_json(data: dict) -> Eac3AtmosSettings:
                 data["downmixControl"]
             )
         )
-    if "dynamicRangeCompressionLine" in data:
+    if data.get("dynamicRangeCompressionLine") is not None:
         import capo_mediaconvert.types.eac3_atmos_dynamic_range_compression_line
 
         out["dynamic_range_compression_line"] = (
@@ -237,7 +269,7 @@ def deserialize_json(data: dict) -> Eac3AtmosSettings:
                 data["dynamicRangeCompressionLine"]
             )
         )
-    if "dynamicRangeCompressionRf" in data:
+    if data.get("dynamicRangeCompressionRf") is not None:
         import capo_mediaconvert.types.eac3_atmos_dynamic_range_compression_rf
 
         out["dynamic_range_compression_rf"] = (
@@ -245,7 +277,7 @@ def deserialize_json(data: dict) -> Eac3AtmosSettings:
                 data["dynamicRangeCompressionRf"]
             )
         )
-    if "dynamicRangeControl" in data:
+    if data.get("dynamicRangeControl") is not None:
         import capo_mediaconvert.types.eac3_atmos_dynamic_range_control
 
         out["dynamic_range_control"] = (
@@ -253,15 +285,15 @@ def deserialize_json(data: dict) -> Eac3AtmosSettings:
                 data["dynamicRangeControl"]
             )
         )
-    if "loRoCenterMixLevel" in data:
-        out["lo_ro_center_mix_level"] = data["loRoCenterMixLevel"]
-    if "loRoSurroundMixLevel" in data:
-        out["lo_ro_surround_mix_level"] = data["loRoSurroundMixLevel"]
-    if "ltRtCenterMixLevel" in data:
-        out["lt_rt_center_mix_level"] = data["ltRtCenterMixLevel"]
-    if "ltRtSurroundMixLevel" in data:
-        out["lt_rt_surround_mix_level"] = data["ltRtSurroundMixLevel"]
-    if "meteringMode" in data:
+    if data.get("loRoCenterMixLevel") is not None:
+        out["lo_ro_center_mix_level"] = float(data["loRoCenterMixLevel"])
+    if data.get("loRoSurroundMixLevel") is not None:
+        out["lo_ro_surround_mix_level"] = float(data["loRoSurroundMixLevel"])
+    if data.get("ltRtCenterMixLevel") is not None:
+        out["lt_rt_center_mix_level"] = float(data["ltRtCenterMixLevel"])
+    if data.get("ltRtSurroundMixLevel") is not None:
+        out["lt_rt_surround_mix_level"] = float(data["ltRtSurroundMixLevel"])
+    if data.get("meteringMode") is not None:
         import capo_mediaconvert.types.eac3_atmos_metering_mode
 
         out["metering_mode"] = (
@@ -269,11 +301,11 @@ def deserialize_json(data: dict) -> Eac3AtmosSettings:
                 data["meteringMode"]
             )
         )
-    if "sampleRate" in data:
+    if data.get("sampleRate") is not None:
         out["sample_rate"] = data["sampleRate"]
-    if "speechThreshold" in data:
+    if data.get("speechThreshold") is not None:
         out["speech_threshold"] = data["speechThreshold"]
-    if "stereoDownmix" in data:
+    if data.get("stereoDownmix") is not None:
         import capo_mediaconvert.types.eac3_atmos_stereo_downmix
 
         out["stereo_downmix"] = (
@@ -281,7 +313,7 @@ def deserialize_json(data: dict) -> Eac3AtmosSettings:
                 data["stereoDownmix"]
             )
         )
-    if "surroundExMode" in data:
+    if data.get("surroundExMode") is not None:
         import capo_mediaconvert.types.eac3_atmos_surround_ex_mode
 
         out["surround_ex_mode"] = (

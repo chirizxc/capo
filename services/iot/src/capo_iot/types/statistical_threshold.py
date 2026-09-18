@@ -23,6 +23,6 @@ def serialize_json(value: StatisticalThreshold) -> dict:
 
 def deserialize_json(data: dict) -> StatisticalThreshold:
     out: StatisticalThreshold = {}  # type: ignore[typeddict-item]
-    if "statistic" in data:
+    if data.get("statistic") is not None:
         out["statistic"] = data["statistic"]
     return out

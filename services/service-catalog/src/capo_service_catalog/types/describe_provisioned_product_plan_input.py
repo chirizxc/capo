@@ -40,18 +40,18 @@ def serialize_aws_json_1_1(value: DescribeProvisionedProductPlanInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeProvisionedProductPlanInput:
     out: DescribeProvisionedProductPlanInput = {}  # type: ignore[typeddict-item]
-    if "AcceptLanguage" in data:
+    if data.get("AcceptLanguage") is not None:
         out["accept_language"] = data["AcceptLanguage"]
-    if "PlanId" in data:
+    if data.get("PlanId") is not None:
         out["plan_id"] = data["PlanId"]
     else:
         raise DeserializationError(
             "DescribeProvisionedProductPlanInput.plan_id required"
         )
-    if "PageSize" in data:
+    if data.get("PageSize") is not None:
         out["page_size"] = data["PageSize"]
     else:
         out["page_size"] = 0
-    if "PageToken" in data:
+    if data.get("PageToken") is not None:
         out["page_token"] = data["PageToken"]
     return out

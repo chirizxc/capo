@@ -63,7 +63,7 @@ def serialize_aws_json_1_1(value: EndpointDetails) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> EndpointDetails:
     out: EndpointDetails = {}  # type: ignore[typeddict-item]
-    if "AddressAllocationIds" in data:
+    if data.get("AddressAllocationIds") is not None:
         import capo_transfer.types.address_allocation_ids
 
         out["address_allocation_ids"] = (
@@ -71,17 +71,17 @@ def deserialize_aws_json_1_1(data: dict) -> EndpointDetails:
                 data["AddressAllocationIds"]
             )
         )
-    if "SubnetIds" in data:
+    if data.get("SubnetIds") is not None:
         import capo_transfer.types.subnet_ids
 
         out["subnet_ids"] = capo_transfer.types.subnet_ids.deserialize_aws_json_1_1(
             data["SubnetIds"]
         )
-    if "VpcEndpointId" in data:
+    if data.get("VpcEndpointId") is not None:
         out["vpc_endpoint_id"] = data["VpcEndpointId"]
-    if "VpcId" in data:
+    if data.get("VpcId") is not None:
         out["vpc_id"] = data["VpcId"]
-    if "SecurityGroupIds" in data:
+    if data.get("SecurityGroupIds") is not None:
         import capo_transfer.types.security_group_ids
 
         out["security_group_ids"] = (

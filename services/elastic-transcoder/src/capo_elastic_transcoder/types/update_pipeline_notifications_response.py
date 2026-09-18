@@ -27,7 +27,7 @@ def serialize_json(value: UpdatePipelineNotificationsResponse) -> dict:
 
 def deserialize_json(data: dict) -> UpdatePipelineNotificationsResponse:
     out: UpdatePipelineNotificationsResponse = {}  # type: ignore[typeddict-item]
-    if "Pipeline" in data:
+    if data.get("Pipeline") is not None:
         import capo_elastic_transcoder.types.pipeline
 
         out["pipeline"] = capo_elastic_transcoder.types.pipeline.deserialize_json(

@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> DocumentAttributeConfigurations:
 
     out: DocumentAttributeConfigurations = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_qbusiness.types.document_attribute_configuration.deserialize_json(item)
         )

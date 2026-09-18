@@ -464,15 +464,17 @@ class AsyncDatabaseMigrationServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_database_migration_service.types.add_tags_to_resource_message.AddTagsToResourceMessage = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tags"] = tags
+        input_: capo_database_migration_service.types.add_tags_to_resource_message.AddTagsToResourceMessage = {
+            "resource_arn": resource_arn,
+            "tags": tags,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def apply_pending_maintenance_action(
@@ -511,16 +513,18 @@ class AsyncDatabaseMigrationServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_database_migration_service.types.apply_pending_maintenance_action_message.ApplyPendingMaintenanceActionMessage = {}  # type: ignore[typeddict-item]
-        input_["replication_instance_arn"] = replication_instance_arn
-        input_["apply_action"] = apply_action
-        input_["opt_in_type"] = opt_in_type
+        input_: capo_database_migration_service.types.apply_pending_maintenance_action_message.ApplyPendingMaintenanceActionMessage = {
+            "replication_instance_arn": replication_instance_arn,
+            "apply_action": apply_action,
+            "opt_in_type": opt_in_type,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def batch_start_recommendations(
@@ -559,7 +563,7 @@ class AsyncDatabaseMigrationServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_database_migration_service.types.batch_start_recommendations_request.BatchStartRecommendationsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_database_migration_service.types.batch_start_recommendations_request.BatchStartRecommendationsRequest = {}
         if data is not None:
             input_["data"] = data
 
@@ -568,6 +572,7 @@ class AsyncDatabaseMigrationServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def cancel_metadata_model_conversion(
@@ -606,15 +611,17 @@ class AsyncDatabaseMigrationServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_database_migration_service.types.cancel_metadata_model_conversion_message.CancelMetadataModelConversionMessage = {}  # type: ignore[typeddict-item]
-        input_["migration_project_identifier"] = migration_project_identifier
-        input_["request_identifier"] = request_identifier
+        input_: capo_database_migration_service.types.cancel_metadata_model_conversion_message.CancelMetadataModelConversionMessage = {
+            "migration_project_identifier": migration_project_identifier,
+            "request_identifier": request_identifier,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def cancel_metadata_model_creation(
@@ -653,15 +660,17 @@ class AsyncDatabaseMigrationServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_database_migration_service.types.cancel_metadata_model_creation_message.CancelMetadataModelCreationMessage = {}  # type: ignore[typeddict-item]
-        input_["migration_project_identifier"] = migration_project_identifier
-        input_["request_identifier"] = request_identifier
+        input_: capo_database_migration_service.types.cancel_metadata_model_creation_message.CancelMetadataModelCreationMessage = {
+            "migration_project_identifier": migration_project_identifier,
+            "request_identifier": request_identifier,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def cancel_replication_task_assessment_run(
@@ -698,16 +707,16 @@ class AsyncDatabaseMigrationServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_database_migration_service.types.cancel_replication_task_assessment_run_message.CancelReplicationTaskAssessmentRunMessage = {}  # type: ignore[typeddict-item]
-        input_["replication_task_assessment_run_arn"] = (
-            replication_task_assessment_run_arn
-        )
+        input_: capo_database_migration_service.types.cancel_replication_task_assessment_run_message.CancelReplicationTaskAssessmentRunMessage = {
+            "replication_task_assessment_run_arn": replication_task_assessment_run_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_data_migration(
@@ -776,12 +785,13 @@ class AsyncDatabaseMigrationServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_database_migration_service.types.create_data_migration_message.CreateDataMigrationMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_database_migration_service.types.create_data_migration_message.CreateDataMigrationMessage = {
+            "migration_project_identifier": migration_project_identifier,
+            "data_migration_type": data_migration_type,
+            "service_access_role_arn": service_access_role_arn,
+        }
         if data_migration_name is not None:
             input_["data_migration_name"] = data_migration_name
-        input_["migration_project_identifier"] = migration_project_identifier
-        input_["data_migration_type"] = data_migration_type
-        input_["service_access_role_arn"] = service_access_role_arn
         if enable_cloudwatch_logs is not None:
             input_["enable_cloudwatch_logs"] = enable_cloudwatch_logs
         if source_data_settings is not None:
@@ -800,6 +810,7 @@ class AsyncDatabaseMigrationServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_data_provider(
@@ -859,15 +870,16 @@ class AsyncDatabaseMigrationServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_database_migration_service.types.create_data_provider_message.CreateDataProviderMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_database_migration_service.types.create_data_provider_message.CreateDataProviderMessage = {
+            "engine": engine,
+            "settings": settings,
+        }
         if data_provider_name is not None:
             input_["data_provider_name"] = data_provider_name
         if description is not None:
             input_["description"] = description
-        input_["engine"] = engine
         if virtual is not None:
             input_["virtual"] = virtual
-        input_["settings"] = settings
         if tags is not None:
             input_["tags"] = tags
 
@@ -876,6 +888,7 @@ class AsyncDatabaseMigrationServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_endpoint(
@@ -1050,10 +1063,11 @@ class AsyncDatabaseMigrationServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_database_migration_service.types.create_endpoint_message.CreateEndpointMessage = {}  # type: ignore[typeddict-item]
-        input_["endpoint_identifier"] = endpoint_identifier
-        input_["endpoint_type"] = endpoint_type
-        input_["engine_name"] = engine_name
+        input_: capo_database_migration_service.types.create_endpoint_message.CreateEndpointMessage = {
+            "endpoint_identifier": endpoint_identifier,
+            "endpoint_type": endpoint_type,
+            "engine_name": engine_name,
+        }
         if username is not None:
             input_["username"] = username
         if password is not None:
@@ -1124,6 +1138,7 @@ class AsyncDatabaseMigrationServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_event_subscription(
@@ -1187,9 +1202,10 @@ class AsyncDatabaseMigrationServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_database_migration_service.types.create_event_subscription_message.CreateEventSubscriptionMessage = {}  # type: ignore[typeddict-item]
-        input_["subscription_name"] = subscription_name
-        input_["sns_topic_arn"] = sns_topic_arn
+        input_: capo_database_migration_service.types.create_event_subscription_message.CreateEventSubscriptionMessage = {
+            "subscription_name": subscription_name,
+            "sns_topic_arn": sns_topic_arn,
+        }
         if source_type is not None:
             input_["source_type"] = source_type
         if event_categories is not None:
@@ -1206,6 +1222,7 @@ class AsyncDatabaseMigrationServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_fleet_advisor_collector(
@@ -1252,18 +1269,20 @@ class AsyncDatabaseMigrationServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_database_migration_service.types.create_fleet_advisor_collector_request.CreateFleetAdvisorCollectorRequest = {}  # type: ignore[typeddict-item]
-        input_["collector_name"] = collector_name
+        input_: capo_database_migration_service.types.create_fleet_advisor_collector_request.CreateFleetAdvisorCollectorRequest = {
+            "collector_name": collector_name,
+            "service_access_role_arn": service_access_role_arn,
+            "s3_bucket_name": s3_bucket_name,
+        }
         if description is not None:
             input_["description"] = description
-        input_["service_access_role_arn"] = service_access_role_arn
-        input_["s3_bucket_name"] = s3_bucket_name
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_instance_profile(
@@ -1344,7 +1363,7 @@ class AsyncDatabaseMigrationServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_database_migration_service.types.create_instance_profile_message.CreateInstanceProfileMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_database_migration_service.types.create_instance_profile_message.CreateInstanceProfileMessage = {}
         if availability_zone is not None:
             input_["availability_zone"] = availability_zone
         if kms_key_arn is not None:
@@ -1369,6 +1388,7 @@ class AsyncDatabaseMigrationServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_migration_project(
@@ -1437,12 +1457,13 @@ class AsyncDatabaseMigrationServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_database_migration_service.types.create_migration_project_message.CreateMigrationProjectMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_database_migration_service.types.create_migration_project_message.CreateMigrationProjectMessage = {
+            "source_data_provider_descriptors": source_data_provider_descriptors,
+            "target_data_provider_descriptors": target_data_provider_descriptors,
+            "instance_profile_identifier": instance_profile_identifier,
+        }
         if migration_project_name is not None:
             input_["migration_project_name"] = migration_project_name
-        input_["source_data_provider_descriptors"] = source_data_provider_descriptors
-        input_["target_data_provider_descriptors"] = target_data_provider_descriptors
-        input_["instance_profile_identifier"] = instance_profile_identifier
         if transformation_rules is not None:
             input_["transformation_rules"] = transformation_rules
         if description is not None:
@@ -1459,6 +1480,7 @@ class AsyncDatabaseMigrationServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_replication_config(
@@ -1524,13 +1546,14 @@ class AsyncDatabaseMigrationServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_database_migration_service.types.create_replication_config_message.CreateReplicationConfigMessage = {}  # type: ignore[typeddict-item]
-        input_["replication_config_identifier"] = replication_config_identifier
-        input_["source_endpoint_arn"] = source_endpoint_arn
-        input_["target_endpoint_arn"] = target_endpoint_arn
-        input_["compute_config"] = compute_config
-        input_["replication_type"] = replication_type
-        input_["table_mappings"] = table_mappings
+        input_: capo_database_migration_service.types.create_replication_config_message.CreateReplicationConfigMessage = {
+            "replication_config_identifier": replication_config_identifier,
+            "source_endpoint_arn": source_endpoint_arn,
+            "target_endpoint_arn": target_endpoint_arn,
+            "compute_config": compute_config,
+            "replication_type": replication_type,
+            "table_mappings": table_mappings,
+        }
         if replication_settings is not None:
             input_["replication_settings"] = replication_settings
         if supplemental_settings is not None:
@@ -1545,6 +1568,7 @@ class AsyncDatabaseMigrationServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_replication_instance(
@@ -1654,11 +1678,12 @@ class AsyncDatabaseMigrationServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_database_migration_service.types.create_replication_instance_message.CreateReplicationInstanceMessage = {}  # type: ignore[typeddict-item]
-        input_["replication_instance_identifier"] = replication_instance_identifier
+        input_: capo_database_migration_service.types.create_replication_instance_message.CreateReplicationInstanceMessage = {
+            "replication_instance_identifier": replication_instance_identifier,
+            "replication_instance_class": replication_instance_class,
+        }
         if allocated_storage is not None:
             input_["allocated_storage"] = allocated_storage
-        input_["replication_instance_class"] = replication_instance_class
         if vpc_security_group_ids is not None:
             input_["vpc_security_group_ids"] = vpc_security_group_ids
         if availability_zone is not None:
@@ -1697,6 +1722,7 @@ class AsyncDatabaseMigrationServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_replication_subnet_group(
@@ -1748,14 +1774,11 @@ class AsyncDatabaseMigrationServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_database_migration_service.types.create_replication_subnet_group_message.CreateReplicationSubnetGroupMessage = {}  # type: ignore[typeddict-item]
-        input_["replication_subnet_group_identifier"] = (
-            replication_subnet_group_identifier
-        )
-        input_["replication_subnet_group_description"] = (
-            replication_subnet_group_description
-        )
-        input_["subnet_ids"] = subnet_ids
+        input_: capo_database_migration_service.types.create_replication_subnet_group_message.CreateReplicationSubnetGroupMessage = {
+            "replication_subnet_group_identifier": replication_subnet_group_identifier,
+            "replication_subnet_group_description": replication_subnet_group_description,
+            "subnet_ids": subnet_ids,
+        }
         if tags is not None:
             input_["tags"] = tags
 
@@ -1764,6 +1787,7 @@ class AsyncDatabaseMigrationServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_replication_task(
@@ -1845,13 +1869,14 @@ class AsyncDatabaseMigrationServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_database_migration_service.types.create_replication_task_message.CreateReplicationTaskMessage = {}  # type: ignore[typeddict-item]
-        input_["replication_task_identifier"] = replication_task_identifier
-        input_["source_endpoint_arn"] = source_endpoint_arn
-        input_["target_endpoint_arn"] = target_endpoint_arn
-        input_["replication_instance_arn"] = replication_instance_arn
-        input_["migration_type"] = migration_type
-        input_["table_mappings"] = table_mappings
+        input_: capo_database_migration_service.types.create_replication_task_message.CreateReplicationTaskMessage = {
+            "replication_task_identifier": replication_task_identifier,
+            "source_endpoint_arn": source_endpoint_arn,
+            "target_endpoint_arn": target_endpoint_arn,
+            "replication_instance_arn": replication_instance_arn,
+            "migration_type": migration_type,
+            "table_mappings": table_mappings,
+        }
         if replication_task_settings is not None:
             input_["replication_task_settings"] = replication_task_settings
         if cdc_start_time is not None:
@@ -1872,6 +1897,7 @@ class AsyncDatabaseMigrationServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_certificate(
@@ -1913,14 +1939,16 @@ class AsyncDatabaseMigrationServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_database_migration_service.types.delete_certificate_message.DeleteCertificateMessage = {}  # type: ignore[typeddict-item]
-        input_["certificate_arn"] = certificate_arn
+        input_: capo_database_migration_service.types.delete_certificate_message.DeleteCertificateMessage = {
+            "certificate_arn": certificate_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_connection(
@@ -1965,15 +1993,17 @@ class AsyncDatabaseMigrationServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_database_migration_service.types.delete_connection_message.DeleteConnectionMessage = {}  # type: ignore[typeddict-item]
-        input_["endpoint_arn"] = endpoint_arn
-        input_["replication_instance_arn"] = replication_instance_arn
+        input_: capo_database_migration_service.types.delete_connection_message.DeleteConnectionMessage = {
+            "endpoint_arn": endpoint_arn,
+            "replication_instance_arn": replication_instance_arn,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_data_migration(
@@ -2010,14 +2040,16 @@ class AsyncDatabaseMigrationServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_database_migration_service.types.delete_data_migration_message.DeleteDataMigrationMessage = {}  # type: ignore[typeddict-item]
-        input_["data_migration_identifier"] = data_migration_identifier
+        input_: capo_database_migration_service.types.delete_data_migration_message.DeleteDataMigrationMessage = {
+            "data_migration_identifier": data_migration_identifier
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_data_provider(
@@ -2061,14 +2093,16 @@ class AsyncDatabaseMigrationServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_database_migration_service.types.delete_data_provider_message.DeleteDataProviderMessage = {}  # type: ignore[typeddict-item]
-        input_["data_provider_identifier"] = data_provider_identifier
+        input_: capo_database_migration_service.types.delete_data_provider_message.DeleteDataProviderMessage = {
+            "data_provider_identifier": data_provider_identifier
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_endpoint(
@@ -2111,14 +2145,16 @@ class AsyncDatabaseMigrationServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_database_migration_service.types.delete_endpoint_message.DeleteEndpointMessage = {}  # type: ignore[typeddict-item]
-        input_["endpoint_arn"] = endpoint_arn
+        input_: capo_database_migration_service.types.delete_endpoint_message.DeleteEndpointMessage = {
+            "endpoint_arn": endpoint_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_event_subscription(
@@ -2155,14 +2191,16 @@ class AsyncDatabaseMigrationServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_database_migration_service.types.delete_event_subscription_message.DeleteEventSubscriptionMessage = {}  # type: ignore[typeddict-item]
-        input_["subscription_name"] = subscription_name
+        input_: capo_database_migration_service.types.delete_event_subscription_message.DeleteEventSubscriptionMessage = {
+            "subscription_name": subscription_name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_fleet_advisor_collector(
@@ -2197,14 +2235,16 @@ class AsyncDatabaseMigrationServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_database_migration_service.types.delete_collector_request.DeleteCollectorRequest = {}  # type: ignore[typeddict-item]
-        input_["collector_referenced_id"] = collector_referenced_id
+        input_: capo_database_migration_service.types.delete_collector_request.DeleteCollectorRequest = {
+            "collector_referenced_id": collector_referenced_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_fleet_advisor_databases(
@@ -2241,14 +2281,16 @@ class AsyncDatabaseMigrationServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_database_migration_service.types.delete_fleet_advisor_databases_request.DeleteFleetAdvisorDatabasesRequest = {}  # type: ignore[typeddict-item]
-        input_["database_ids"] = database_ids
+        input_: capo_database_migration_service.types.delete_fleet_advisor_databases_request.DeleteFleetAdvisorDatabasesRequest = {
+            "database_ids": database_ids
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_instance_profile(
@@ -2292,14 +2334,16 @@ class AsyncDatabaseMigrationServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_database_migration_service.types.delete_instance_profile_message.DeleteInstanceProfileMessage = {}  # type: ignore[typeddict-item]
-        input_["instance_profile_identifier"] = instance_profile_identifier
+        input_: capo_database_migration_service.types.delete_instance_profile_message.DeleteInstanceProfileMessage = {
+            "instance_profile_identifier": instance_profile_identifier
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_migration_project(
@@ -2343,14 +2387,16 @@ class AsyncDatabaseMigrationServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_database_migration_service.types.delete_migration_project_message.DeleteMigrationProjectMessage = {}  # type: ignore[typeddict-item]
-        input_["migration_project_identifier"] = migration_project_identifier
+        input_: capo_database_migration_service.types.delete_migration_project_message.DeleteMigrationProjectMessage = {
+            "migration_project_identifier": migration_project_identifier
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_replication_config(
@@ -2387,14 +2433,16 @@ class AsyncDatabaseMigrationServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_database_migration_service.types.delete_replication_config_message.DeleteReplicationConfigMessage = {}  # type: ignore[typeddict-item]
-        input_["replication_config_arn"] = replication_config_arn
+        input_: capo_database_migration_service.types.delete_replication_config_message.DeleteReplicationConfigMessage = {
+            "replication_config_arn": replication_config_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_replication_instance(
@@ -2438,14 +2486,16 @@ class AsyncDatabaseMigrationServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_database_migration_service.types.delete_replication_instance_message.DeleteReplicationInstanceMessage = {}  # type: ignore[typeddict-item]
-        input_["replication_instance_arn"] = replication_instance_arn
+        input_: capo_database_migration_service.types.delete_replication_instance_message.DeleteReplicationInstanceMessage = {
+            "replication_instance_arn": replication_instance_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_replication_subnet_group(
@@ -2488,16 +2538,16 @@ class AsyncDatabaseMigrationServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_database_migration_service.types.delete_replication_subnet_group_message.DeleteReplicationSubnetGroupMessage = {}  # type: ignore[typeddict-item]
-        input_["replication_subnet_group_identifier"] = (
-            replication_subnet_group_identifier
-        )
+        input_: capo_database_migration_service.types.delete_replication_subnet_group_message.DeleteReplicationSubnetGroupMessage = {
+            "replication_subnet_group_identifier": replication_subnet_group_identifier
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_replication_task(
@@ -2539,14 +2589,16 @@ class AsyncDatabaseMigrationServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_database_migration_service.types.delete_replication_task_message.DeleteReplicationTaskMessage = {}  # type: ignore[typeddict-item]
-        input_["replication_task_arn"] = replication_task_arn
+        input_: capo_database_migration_service.types.delete_replication_task_message.DeleteReplicationTaskMessage = {
+            "replication_task_arn": replication_task_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_replication_task_assessment_run(
@@ -2583,16 +2635,16 @@ class AsyncDatabaseMigrationServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_database_migration_service.types.delete_replication_task_assessment_run_message.DeleteReplicationTaskAssessmentRunMessage = {}  # type: ignore[typeddict-item]
-        input_["replication_task_assessment_run_arn"] = (
-            replication_task_assessment_run_arn
-        )
+        input_: capo_database_migration_service.types.delete_replication_task_assessment_run_message.DeleteReplicationTaskAssessmentRunMessage = {
+            "replication_task_assessment_run_arn": replication_task_assessment_run_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_account_attributes(
@@ -2628,13 +2680,14 @@ class AsyncDatabaseMigrationServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_database_migration_service.types.describe_account_attributes_message.DescribeAccountAttributesMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_database_migration_service.types.describe_account_attributes_message.DescribeAccountAttributesMessage = {}
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_applicable_individual_assessments(
@@ -2699,7 +2752,7 @@ class AsyncDatabaseMigrationServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_database_migration_service.types.describe_applicable_individual_assessments_message.DescribeApplicableIndividualAssessmentsMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_database_migration_service.types.describe_applicable_individual_assessments_message.DescribeApplicableIndividualAssessmentsMessage = {}
         if replication_task_arn is not None:
             input_["replication_task_arn"] = replication_task_arn
         if replication_instance_arn is not None:
@@ -2722,7 +2775,53 @@ class AsyncDatabaseMigrationServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_describe_applicable_individual_assessments(
+        self,
+        *,
+        config_overrides: Optional[AsyncDatabaseMigrationServiceClientConfig] = None,
+        replication_task_arn: Optional[
+            "capo_database_migration_service.types.string.String"
+        ] = None,
+        replication_instance_arn: Optional[
+            "capo_database_migration_service.types.string.String"
+        ] = None,
+        replication_config_arn: Optional[
+            "capo_database_migration_service.types.string.String"
+        ] = None,
+        source_engine_name: Optional[
+            "capo_database_migration_service.types.string.String"
+        ] = None,
+        target_engine_name: Optional[
+            "capo_database_migration_service.types.string.String"
+        ] = None,
+        migration_type: Optional[
+            "capo_database_migration_service.types.migration_type_value.MigrationTypeValue"
+        ] = None,
+        max_records: Optional[
+            "capo_database_migration_service.types.integer_optional.IntegerOptional"
+        ] = None,
+        marker: Optional["capo_database_migration_service.types.string.String"] = None,
+    ) -> "AsyncIterator[capo_database_migration_service.types.describe_applicable_individual_assessments_response.DescribeApplicableIndividualAssessmentsResponse]":
+        _token = marker
+        while True:
+            _response = await self.describe_applicable_individual_assessments(
+                config_overrides=config_overrides,
+                replication_task_arn=replication_task_arn,
+                replication_instance_arn=replication_instance_arn,
+                replication_config_arn=replication_config_arn,
+                source_engine_name=source_engine_name,
+                target_engine_name=target_engine_name,
+                migration_type=migration_type,
+                max_records=max_records,
+                marker=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("marker",))
+            if not _token:
+                break
 
     async def describe_certificates(
         self,
@@ -2770,7 +2869,7 @@ class AsyncDatabaseMigrationServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_database_migration_service.types.describe_certificates_message.DescribeCertificatesMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_database_migration_service.types.describe_certificates_message.DescribeCertificatesMessage = {}
         if filters is not None:
             input_["filters"] = filters
         if max_records is not None:
@@ -2783,7 +2882,33 @@ class AsyncDatabaseMigrationServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_describe_certificates(
+        self,
+        *,
+        config_overrides: Optional[AsyncDatabaseMigrationServiceClientConfig] = None,
+        filters: Optional[
+            "capo_database_migration_service.types.filter_list.FilterList"
+        ] = None,
+        max_records: Optional[
+            "capo_database_migration_service.types.integer_optional.IntegerOptional"
+        ] = None,
+        marker: Optional["capo_database_migration_service.types.string.String"] = None,
+    ) -> "AsyncIterator[capo_database_migration_service.types.describe_certificates_response.DescribeCertificatesResponse]":
+        _token = marker
+        while True:
+            _response = await self.describe_certificates(
+                config_overrides=config_overrides,
+                filters=filters,
+                max_records=max_records,
+                marker=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("marker",))
+            if not _token:
+                break
 
     async def describe_connections(
         self,
@@ -2831,7 +2956,7 @@ class AsyncDatabaseMigrationServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_database_migration_service.types.describe_connections_message.DescribeConnectionsMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_database_migration_service.types.describe_connections_message.DescribeConnectionsMessage = {}
         if filters is not None:
             input_["filters"] = filters
         if max_records is not None:
@@ -2844,7 +2969,33 @@ class AsyncDatabaseMigrationServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_describe_connections(
+        self,
+        *,
+        config_overrides: Optional[AsyncDatabaseMigrationServiceClientConfig] = None,
+        filters: Optional[
+            "capo_database_migration_service.types.filter_list.FilterList"
+        ] = None,
+        max_records: Optional[
+            "capo_database_migration_service.types.integer_optional.IntegerOptional"
+        ] = None,
+        marker: Optional["capo_database_migration_service.types.string.String"] = None,
+    ) -> "AsyncIterator[capo_database_migration_service.types.describe_connections_response.DescribeConnectionsResponse]":
+        _token = marker
+        while True:
+            _response = await self.describe_connections(
+                config_overrides=config_overrides,
+                filters=filters,
+                max_records=max_records,
+                marker=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("marker",))
+            if not _token:
+                break
 
     async def describe_conversion_configuration(
         self,
@@ -2884,14 +3035,16 @@ class AsyncDatabaseMigrationServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_database_migration_service.types.describe_conversion_configuration_message.DescribeConversionConfigurationMessage = {}  # type: ignore[typeddict-item]
-        input_["migration_project_identifier"] = migration_project_identifier
+        input_: capo_database_migration_service.types.describe_conversion_configuration_message.DescribeConversionConfigurationMessage = {
+            "migration_project_identifier": migration_project_identifier
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_data_migrations(
@@ -2944,7 +3097,7 @@ class AsyncDatabaseMigrationServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_database_migration_service.types.describe_data_migrations_message.DescribeDataMigrationsMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_database_migration_service.types.describe_data_migrations_message.DescribeDataMigrationsMessage = {}
         if filters is not None:
             input_["filters"] = filters
         if max_records is not None:
@@ -2961,6 +3114,7 @@ class AsyncDatabaseMigrationServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_describe_data_migrations(
@@ -3045,7 +3199,7 @@ class AsyncDatabaseMigrationServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_database_migration_service.types.describe_data_providers_message.DescribeDataProvidersMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_database_migration_service.types.describe_data_providers_message.DescribeDataProvidersMessage = {}
         if filters is not None:
             input_["filters"] = filters
         if max_records is not None:
@@ -3058,7 +3212,33 @@ class AsyncDatabaseMigrationServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_describe_data_providers(
+        self,
+        *,
+        config_overrides: Optional[AsyncDatabaseMigrationServiceClientConfig] = None,
+        filters: Optional[
+            "capo_database_migration_service.types.filter_list.FilterList"
+        ] = None,
+        max_records: Optional[
+            "capo_database_migration_service.types.integer_optional.IntegerOptional"
+        ] = None,
+        marker: Optional["capo_database_migration_service.types.string.String"] = None,
+    ) -> "AsyncIterator[capo_database_migration_service.types.describe_data_providers_response.DescribeDataProvidersResponse]":
+        _token = marker
+        while True:
+            _response = await self.describe_data_providers(
+                config_overrides=config_overrides,
+                filters=filters,
+                max_records=max_records,
+                marker=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("marker",))
+            if not _token:
+                break
 
     async def describe_endpoints(
         self,
@@ -3106,7 +3286,7 @@ class AsyncDatabaseMigrationServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_database_migration_service.types.describe_endpoints_message.DescribeEndpointsMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_database_migration_service.types.describe_endpoints_message.DescribeEndpointsMessage = {}
         if filters is not None:
             input_["filters"] = filters
         if max_records is not None:
@@ -3119,7 +3299,33 @@ class AsyncDatabaseMigrationServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_describe_endpoints(
+        self,
+        *,
+        config_overrides: Optional[AsyncDatabaseMigrationServiceClientConfig] = None,
+        filters: Optional[
+            "capo_database_migration_service.types.filter_list.FilterList"
+        ] = None,
+        max_records: Optional[
+            "capo_database_migration_service.types.integer_optional.IntegerOptional"
+        ] = None,
+        marker: Optional["capo_database_migration_service.types.string.String"] = None,
+    ) -> "AsyncIterator[capo_database_migration_service.types.describe_endpoints_response.DescribeEndpointsResponse]":
+        _token = marker
+        while True:
+            _response = await self.describe_endpoints(
+                config_overrides=config_overrides,
+                filters=filters,
+                max_records=max_records,
+                marker=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("marker",))
+            if not _token:
+                break
 
     async def describe_endpoint_settings(
         self,
@@ -3158,8 +3364,9 @@ class AsyncDatabaseMigrationServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_database_migration_service.types.describe_endpoint_settings_message.DescribeEndpointSettingsMessage = {}  # type: ignore[typeddict-item]
-        input_["engine_name"] = engine_name
+        input_: capo_database_migration_service.types.describe_endpoint_settings_message.DescribeEndpointSettingsMessage = {
+            "engine_name": engine_name
+        }
         if max_records is not None:
             input_["max_records"] = max_records
         if marker is not None:
@@ -3170,7 +3377,31 @@ class AsyncDatabaseMigrationServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_describe_endpoint_settings(
+        self,
+        engine_name: "capo_database_migration_service.types.string.String",
+        *,
+        config_overrides: Optional[AsyncDatabaseMigrationServiceClientConfig] = None,
+        max_records: Optional[
+            "capo_database_migration_service.types.integer_optional.IntegerOptional"
+        ] = None,
+        marker: Optional["capo_database_migration_service.types.string.String"] = None,
+    ) -> "AsyncIterator[capo_database_migration_service.types.describe_endpoint_settings_response.DescribeEndpointSettingsResponse]":
+        _token = marker
+        while True:
+            _response = await self.describe_endpoint_settings(
+                engine_name,
+                config_overrides=config_overrides,
+                max_records=max_records,
+                marker=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("marker",))
+            if not _token:
+                break
 
     async def describe_endpoint_types(
         self,
@@ -3217,7 +3448,7 @@ class AsyncDatabaseMigrationServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_database_migration_service.types.describe_endpoint_types_message.DescribeEndpointTypesMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_database_migration_service.types.describe_endpoint_types_message.DescribeEndpointTypesMessage = {}
         if filters is not None:
             input_["filters"] = filters
         if max_records is not None:
@@ -3230,7 +3461,33 @@ class AsyncDatabaseMigrationServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_describe_endpoint_types(
+        self,
+        *,
+        config_overrides: Optional[AsyncDatabaseMigrationServiceClientConfig] = None,
+        filters: Optional[
+            "capo_database_migration_service.types.filter_list.FilterList"
+        ] = None,
+        max_records: Optional[
+            "capo_database_migration_service.types.integer_optional.IntegerOptional"
+        ] = None,
+        marker: Optional["capo_database_migration_service.types.string.String"] = None,
+    ) -> "AsyncIterator[capo_database_migration_service.types.describe_endpoint_types_response.DescribeEndpointTypesResponse]":
+        _token = marker
+        while True:
+            _response = await self.describe_endpoint_types(
+                config_overrides=config_overrides,
+                filters=filters,
+                max_records=max_records,
+                marker=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("marker",))
+            if not _token:
+                break
 
     async def describe_engine_versions(
         self,
@@ -3267,7 +3524,7 @@ class AsyncDatabaseMigrationServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_database_migration_service.types.describe_engine_versions_message.DescribeEngineVersionsMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_database_migration_service.types.describe_engine_versions_message.DescribeEngineVersionsMessage = {}
         if max_records is not None:
             input_["max_records"] = max_records
         if marker is not None:
@@ -3278,7 +3535,29 @@ class AsyncDatabaseMigrationServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_describe_engine_versions(
+        self,
+        *,
+        config_overrides: Optional[AsyncDatabaseMigrationServiceClientConfig] = None,
+        max_records: Optional[
+            "capo_database_migration_service.types.integer_optional.IntegerOptional"
+        ] = None,
+        marker: Optional["capo_database_migration_service.types.string.String"] = None,
+    ) -> "AsyncIterator[capo_database_migration_service.types.describe_engine_versions_response.DescribeEngineVersionsResponse]":
+        _token = marker
+        while True:
+            _response = await self.describe_engine_versions(
+                config_overrides=config_overrides,
+                max_records=max_records,
+                marker=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("marker",))
+            if not _token:
+                break
 
     async def describe_event_categories(
         self,
@@ -3317,7 +3596,7 @@ class AsyncDatabaseMigrationServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_database_migration_service.types.describe_event_categories_message.DescribeEventCategoriesMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_database_migration_service.types.describe_event_categories_message.DescribeEventCategoriesMessage = {}
         if source_type is not None:
             input_["source_type"] = source_type
         if filters is not None:
@@ -3328,6 +3607,7 @@ class AsyncDatabaseMigrationServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_events(
@@ -3393,7 +3673,7 @@ class AsyncDatabaseMigrationServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_database_migration_service.types.describe_events_message.DescribeEventsMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_database_migration_service.types.describe_events_message.DescribeEventsMessage = {}
         if source_identifier is not None:
             input_["source_identifier"] = source_identifier
         if source_type is not None:
@@ -3418,7 +3698,57 @@ class AsyncDatabaseMigrationServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_describe_events(
+        self,
+        *,
+        config_overrides: Optional[AsyncDatabaseMigrationServiceClientConfig] = None,
+        source_identifier: Optional[
+            "capo_database_migration_service.types.string.String"
+        ] = None,
+        source_type: Optional[
+            "capo_database_migration_service.types.source_type.SourceType"
+        ] = None,
+        start_time: Optional[
+            "capo_database_migration_service.types.t_stamp.TStamp"
+        ] = None,
+        end_time: Optional[
+            "capo_database_migration_service.types.t_stamp.TStamp"
+        ] = None,
+        duration: Optional[
+            "capo_database_migration_service.types.integer_optional.IntegerOptional"
+        ] = None,
+        event_categories: Optional[
+            "capo_database_migration_service.types.event_categories_list.EventCategoriesList"
+        ] = None,
+        filters: Optional[
+            "capo_database_migration_service.types.filter_list.FilterList"
+        ] = None,
+        max_records: Optional[
+            "capo_database_migration_service.types.integer_optional.IntegerOptional"
+        ] = None,
+        marker: Optional["capo_database_migration_service.types.string.String"] = None,
+    ) -> "AsyncIterator[capo_database_migration_service.types.describe_events_response.DescribeEventsResponse]":
+        _token = marker
+        while True:
+            _response = await self.describe_events(
+                config_overrides=config_overrides,
+                source_identifier=source_identifier,
+                source_type=source_type,
+                start_time=start_time,
+                end_time=end_time,
+                duration=duration,
+                event_categories=event_categories,
+                filters=filters,
+                max_records=max_records,
+                marker=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("marker",))
+            if not _token:
+                break
 
     async def describe_event_subscriptions(
         self,
@@ -3464,7 +3794,7 @@ class AsyncDatabaseMigrationServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_database_migration_service.types.describe_event_subscriptions_message.DescribeEventSubscriptionsMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_database_migration_service.types.describe_event_subscriptions_message.DescribeEventSubscriptionsMessage = {}
         if subscription_name is not None:
             input_["subscription_name"] = subscription_name
         if filters is not None:
@@ -3479,7 +3809,37 @@ class AsyncDatabaseMigrationServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_describe_event_subscriptions(
+        self,
+        *,
+        config_overrides: Optional[AsyncDatabaseMigrationServiceClientConfig] = None,
+        subscription_name: Optional[
+            "capo_database_migration_service.types.string.String"
+        ] = None,
+        filters: Optional[
+            "capo_database_migration_service.types.filter_list.FilterList"
+        ] = None,
+        max_records: Optional[
+            "capo_database_migration_service.types.integer_optional.IntegerOptional"
+        ] = None,
+        marker: Optional["capo_database_migration_service.types.string.String"] = None,
+    ) -> "AsyncIterator[capo_database_migration_service.types.describe_event_subscriptions_response.DescribeEventSubscriptionsResponse]":
+        _token = marker
+        while True:
+            _response = await self.describe_event_subscriptions(
+                config_overrides=config_overrides,
+                subscription_name=subscription_name,
+                filters=filters,
+                max_records=max_records,
+                marker=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("marker",))
+            if not _token:
+                break
 
     async def describe_extension_pack_associations(
         self,
@@ -3528,8 +3888,9 @@ class AsyncDatabaseMigrationServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_database_migration_service.types.describe_extension_pack_associations_message.DescribeExtensionPackAssociationsMessage = {}  # type: ignore[typeddict-item]
-        input_["migration_project_identifier"] = migration_project_identifier
+        input_: capo_database_migration_service.types.describe_extension_pack_associations_message.DescribeExtensionPackAssociationsMessage = {
+            "migration_project_identifier": migration_project_identifier
+        }
         if filters is not None:
             input_["filters"] = filters
         if marker is not None:
@@ -3542,7 +3903,35 @@ class AsyncDatabaseMigrationServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_describe_extension_pack_associations(
+        self,
+        migration_project_identifier: "capo_database_migration_service.types.migration_project_identifier.MigrationProjectIdentifier",
+        *,
+        config_overrides: Optional[AsyncDatabaseMigrationServiceClientConfig] = None,
+        filters: Optional[
+            "capo_database_migration_service.types.filter_list.FilterList"
+        ] = None,
+        marker: Optional["capo_database_migration_service.types.string.String"] = None,
+        max_records: Optional[
+            "capo_database_migration_service.types.integer_optional.IntegerOptional"
+        ] = None,
+    ) -> "AsyncIterator[capo_database_migration_service.types.describe_extension_pack_associations_response.DescribeExtensionPackAssociationsResponse]":
+        _token = marker
+        while True:
+            _response = await self.describe_extension_pack_associations(
+                migration_project_identifier,
+                config_overrides=config_overrides,
+                filters=filters,
+                marker=_token,
+                max_records=max_records,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("marker",))
+            if not _token:
+                break
 
     async def describe_fleet_advisor_collectors(
         self,
@@ -3586,7 +3975,7 @@ class AsyncDatabaseMigrationServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_database_migration_service.types.describe_fleet_advisor_collectors_request.DescribeFleetAdvisorCollectorsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_database_migration_service.types.describe_fleet_advisor_collectors_request.DescribeFleetAdvisorCollectorsRequest = {}
         if filters is not None:
             input_["filters"] = filters
         if max_records is not None:
@@ -3599,7 +3988,35 @@ class AsyncDatabaseMigrationServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_describe_fleet_advisor_collectors(
+        self,
+        *,
+        config_overrides: Optional[AsyncDatabaseMigrationServiceClientConfig] = None,
+        filters: Optional[
+            "capo_database_migration_service.types.filter_list.FilterList"
+        ] = None,
+        max_records: Optional[
+            "capo_database_migration_service.types.integer_optional.IntegerOptional"
+        ] = None,
+        next_token: Optional[
+            "capo_database_migration_service.types.string.String"
+        ] = None,
+    ) -> "AsyncIterator[capo_database_migration_service.types.describe_fleet_advisor_collectors_response.DescribeFleetAdvisorCollectorsResponse]":
+        _token = next_token
+        while True:
+            _response = await self.describe_fleet_advisor_collectors(
+                config_overrides=config_overrides,
+                filters=filters,
+                max_records=max_records,
+                next_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def describe_fleet_advisor_databases(
         self,
@@ -3643,7 +4060,7 @@ class AsyncDatabaseMigrationServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_database_migration_service.types.describe_fleet_advisor_databases_request.DescribeFleetAdvisorDatabasesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_database_migration_service.types.describe_fleet_advisor_databases_request.DescribeFleetAdvisorDatabasesRequest = {}
         if filters is not None:
             input_["filters"] = filters
         if max_records is not None:
@@ -3656,7 +4073,35 @@ class AsyncDatabaseMigrationServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_describe_fleet_advisor_databases(
+        self,
+        *,
+        config_overrides: Optional[AsyncDatabaseMigrationServiceClientConfig] = None,
+        filters: Optional[
+            "capo_database_migration_service.types.filter_list.FilterList"
+        ] = None,
+        max_records: Optional[
+            "capo_database_migration_service.types.integer_optional.IntegerOptional"
+        ] = None,
+        next_token: Optional[
+            "capo_database_migration_service.types.string.String"
+        ] = None,
+    ) -> "AsyncIterator[capo_database_migration_service.types.describe_fleet_advisor_databases_response.DescribeFleetAdvisorDatabasesResponse]":
+        _token = next_token
+        while True:
+            _response = await self.describe_fleet_advisor_databases(
+                config_overrides=config_overrides,
+                filters=filters,
+                max_records=max_records,
+                next_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def describe_fleet_advisor_lsa_analysis(
         self,
@@ -3696,7 +4141,7 @@ class AsyncDatabaseMigrationServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_database_migration_service.types.describe_fleet_advisor_lsa_analysis_request.DescribeFleetAdvisorLsaAnalysisRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_database_migration_service.types.describe_fleet_advisor_lsa_analysis_request.DescribeFleetAdvisorLsaAnalysisRequest = {}
         if max_records is not None:
             input_["max_records"] = max_records
         if next_token is not None:
@@ -3707,7 +4152,31 @@ class AsyncDatabaseMigrationServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_describe_fleet_advisor_lsa_analysis(
+        self,
+        *,
+        config_overrides: Optional[AsyncDatabaseMigrationServiceClientConfig] = None,
+        max_records: Optional[
+            "capo_database_migration_service.types.integer_optional.IntegerOptional"
+        ] = None,
+        next_token: Optional[
+            "capo_database_migration_service.types.string.String"
+        ] = None,
+    ) -> "AsyncIterator[capo_database_migration_service.types.describe_fleet_advisor_lsa_analysis_response.DescribeFleetAdvisorLsaAnalysisResponse]":
+        _token = next_token
+        while True:
+            _response = await self.describe_fleet_advisor_lsa_analysis(
+                config_overrides=config_overrides,
+                max_records=max_records,
+                next_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def describe_fleet_advisor_schema_object_summary(
         self,
@@ -3751,7 +4220,7 @@ class AsyncDatabaseMigrationServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_database_migration_service.types.describe_fleet_advisor_schema_object_summary_request.DescribeFleetAdvisorSchemaObjectSummaryRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_database_migration_service.types.describe_fleet_advisor_schema_object_summary_request.DescribeFleetAdvisorSchemaObjectSummaryRequest = {}
         if filters is not None:
             input_["filters"] = filters
         if max_records is not None:
@@ -3764,7 +4233,35 @@ class AsyncDatabaseMigrationServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_describe_fleet_advisor_schema_object_summary(
+        self,
+        *,
+        config_overrides: Optional[AsyncDatabaseMigrationServiceClientConfig] = None,
+        filters: Optional[
+            "capo_database_migration_service.types.filter_list.FilterList"
+        ] = None,
+        max_records: Optional[
+            "capo_database_migration_service.types.integer_optional.IntegerOptional"
+        ] = None,
+        next_token: Optional[
+            "capo_database_migration_service.types.string.String"
+        ] = None,
+    ) -> "AsyncIterator[capo_database_migration_service.types.describe_fleet_advisor_schema_object_summary_response.DescribeFleetAdvisorSchemaObjectSummaryResponse]":
+        _token = next_token
+        while True:
+            _response = await self.describe_fleet_advisor_schema_object_summary(
+                config_overrides=config_overrides,
+                filters=filters,
+                max_records=max_records,
+                next_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def describe_fleet_advisor_schemas(
         self,
@@ -3808,7 +4305,7 @@ class AsyncDatabaseMigrationServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_database_migration_service.types.describe_fleet_advisor_schemas_request.DescribeFleetAdvisorSchemasRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_database_migration_service.types.describe_fleet_advisor_schemas_request.DescribeFleetAdvisorSchemasRequest = {}
         if filters is not None:
             input_["filters"] = filters
         if max_records is not None:
@@ -3821,7 +4318,35 @@ class AsyncDatabaseMigrationServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_describe_fleet_advisor_schemas(
+        self,
+        *,
+        config_overrides: Optional[AsyncDatabaseMigrationServiceClientConfig] = None,
+        filters: Optional[
+            "capo_database_migration_service.types.filter_list.FilterList"
+        ] = None,
+        max_records: Optional[
+            "capo_database_migration_service.types.integer_optional.IntegerOptional"
+        ] = None,
+        next_token: Optional[
+            "capo_database_migration_service.types.string.String"
+        ] = None,
+    ) -> "AsyncIterator[capo_database_migration_service.types.describe_fleet_advisor_schemas_response.DescribeFleetAdvisorSchemasResponse]":
+        _token = next_token
+        while True:
+            _response = await self.describe_fleet_advisor_schemas(
+                config_overrides=config_overrides,
+                filters=filters,
+                max_records=max_records,
+                next_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def describe_instance_profiles(
         self,
@@ -3871,7 +4396,7 @@ class AsyncDatabaseMigrationServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_database_migration_service.types.describe_instance_profiles_message.DescribeInstanceProfilesMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_database_migration_service.types.describe_instance_profiles_message.DescribeInstanceProfilesMessage = {}
         if filters is not None:
             input_["filters"] = filters
         if max_records is not None:
@@ -3884,7 +4409,33 @@ class AsyncDatabaseMigrationServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_describe_instance_profiles(
+        self,
+        *,
+        config_overrides: Optional[AsyncDatabaseMigrationServiceClientConfig] = None,
+        filters: Optional[
+            "capo_database_migration_service.types.filter_list.FilterList"
+        ] = None,
+        max_records: Optional[
+            "capo_database_migration_service.types.integer_optional.IntegerOptional"
+        ] = None,
+        marker: Optional["capo_database_migration_service.types.string.String"] = None,
+    ) -> "AsyncIterator[capo_database_migration_service.types.describe_instance_profiles_response.DescribeInstanceProfilesResponse]":
+        _token = marker
+        while True:
+            _response = await self.describe_instance_profiles(
+                config_overrides=config_overrides,
+                filters=filters,
+                max_records=max_records,
+                marker=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("marker",))
+            if not _token:
+                break
 
     async def describe_metadata_model(
         self,
@@ -3923,16 +4474,18 @@ class AsyncDatabaseMigrationServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_database_migration_service.types.describe_metadata_model_message.DescribeMetadataModelMessage = {}  # type: ignore[typeddict-item]
-        input_["selection_rules"] = selection_rules
-        input_["migration_project_identifier"] = migration_project_identifier
-        input_["origin"] = origin
+        input_: capo_database_migration_service.types.describe_metadata_model_message.DescribeMetadataModelMessage = {
+            "selection_rules": selection_rules,
+            "migration_project_identifier": migration_project_identifier,
+            "origin": origin,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_metadata_model_assessments(
@@ -3983,8 +4536,9 @@ class AsyncDatabaseMigrationServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_database_migration_service.types.describe_metadata_model_assessments_message.DescribeMetadataModelAssessmentsMessage = {}  # type: ignore[typeddict-item]
-        input_["migration_project_identifier"] = migration_project_identifier
+        input_: capo_database_migration_service.types.describe_metadata_model_assessments_message.DescribeMetadataModelAssessmentsMessage = {
+            "migration_project_identifier": migration_project_identifier
+        }
         if filters is not None:
             input_["filters"] = filters
         if marker is not None:
@@ -3997,7 +4551,35 @@ class AsyncDatabaseMigrationServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_describe_metadata_model_assessments(
+        self,
+        migration_project_identifier: "capo_database_migration_service.types.migration_project_identifier.MigrationProjectIdentifier",
+        *,
+        config_overrides: Optional[AsyncDatabaseMigrationServiceClientConfig] = None,
+        filters: Optional[
+            "capo_database_migration_service.types.filter_list.FilterList"
+        ] = None,
+        marker: Optional["capo_database_migration_service.types.string.String"] = None,
+        max_records: Optional[
+            "capo_database_migration_service.types.integer_optional.IntegerOptional"
+        ] = None,
+    ) -> "AsyncIterator[capo_database_migration_service.types.describe_metadata_model_assessments_response.DescribeMetadataModelAssessmentsResponse]":
+        _token = marker
+        while True:
+            _response = await self.describe_metadata_model_assessments(
+                migration_project_identifier,
+                config_overrides=config_overrides,
+                filters=filters,
+                marker=_token,
+                max_records=max_records,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("marker",))
+            if not _token:
+                break
 
     async def describe_metadata_model_children(
         self,
@@ -4042,10 +4624,11 @@ class AsyncDatabaseMigrationServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_database_migration_service.types.describe_metadata_model_children_message.DescribeMetadataModelChildrenMessage = {}  # type: ignore[typeddict-item]
-        input_["selection_rules"] = selection_rules
-        input_["migration_project_identifier"] = migration_project_identifier
-        input_["origin"] = origin
+        input_: capo_database_migration_service.types.describe_metadata_model_children_message.DescribeMetadataModelChildrenMessage = {
+            "selection_rules": selection_rules,
+            "migration_project_identifier": migration_project_identifier,
+            "origin": origin,
+        }
         if marker is not None:
             input_["marker"] = marker
         if max_records is not None:
@@ -4056,6 +4639,7 @@ class AsyncDatabaseMigrationServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_describe_metadata_model_children(
@@ -4135,8 +4719,9 @@ class AsyncDatabaseMigrationServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_database_migration_service.types.describe_metadata_model_conversions_message.DescribeMetadataModelConversionsMessage = {}  # type: ignore[typeddict-item]
-        input_["migration_project_identifier"] = migration_project_identifier
+        input_: capo_database_migration_service.types.describe_metadata_model_conversions_message.DescribeMetadataModelConversionsMessage = {
+            "migration_project_identifier": migration_project_identifier
+        }
         if filters is not None:
             input_["filters"] = filters
         if marker is not None:
@@ -4149,7 +4734,35 @@ class AsyncDatabaseMigrationServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_describe_metadata_model_conversions(
+        self,
+        migration_project_identifier: "capo_database_migration_service.types.migration_project_identifier.MigrationProjectIdentifier",
+        *,
+        config_overrides: Optional[AsyncDatabaseMigrationServiceClientConfig] = None,
+        filters: Optional[
+            "capo_database_migration_service.types.filter_list.FilterList"
+        ] = None,
+        marker: Optional["capo_database_migration_service.types.string.String"] = None,
+        max_records: Optional[
+            "capo_database_migration_service.types.integer_optional.IntegerOptional"
+        ] = None,
+    ) -> "AsyncIterator[capo_database_migration_service.types.describe_metadata_model_conversions_response.DescribeMetadataModelConversionsResponse]":
+        _token = marker
+        while True:
+            _response = await self.describe_metadata_model_conversions(
+                migration_project_identifier,
+                config_overrides=config_overrides,
+                filters=filters,
+                marker=_token,
+                max_records=max_records,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("marker",))
+            if not _token:
+                break
 
     async def describe_metadata_model_creations(
         self,
@@ -4194,20 +4807,22 @@ class AsyncDatabaseMigrationServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_database_migration_service.types.describe_metadata_model_creations_message.DescribeMetadataModelCreationsMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_database_migration_service.types.describe_metadata_model_creations_message.DescribeMetadataModelCreationsMessage = {
+            "migration_project_identifier": migration_project_identifier
+        }
         if filters is not None:
             input_["filters"] = filters
         if marker is not None:
             input_["marker"] = marker
         if max_records is not None:
             input_["max_records"] = max_records
-        input_["migration_project_identifier"] = migration_project_identifier
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_describe_metadata_model_creations(
@@ -4287,8 +4902,9 @@ class AsyncDatabaseMigrationServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_database_migration_service.types.describe_metadata_model_exports_as_script_message.DescribeMetadataModelExportsAsScriptMessage = {}  # type: ignore[typeddict-item]
-        input_["migration_project_identifier"] = migration_project_identifier
+        input_: capo_database_migration_service.types.describe_metadata_model_exports_as_script_message.DescribeMetadataModelExportsAsScriptMessage = {
+            "migration_project_identifier": migration_project_identifier
+        }
         if filters is not None:
             input_["filters"] = filters
         if marker is not None:
@@ -4301,7 +4917,35 @@ class AsyncDatabaseMigrationServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_describe_metadata_model_exports_as_script(
+        self,
+        migration_project_identifier: "capo_database_migration_service.types.migration_project_identifier.MigrationProjectIdentifier",
+        *,
+        config_overrides: Optional[AsyncDatabaseMigrationServiceClientConfig] = None,
+        filters: Optional[
+            "capo_database_migration_service.types.filter_list.FilterList"
+        ] = None,
+        marker: Optional["capo_database_migration_service.types.string.String"] = None,
+        max_records: Optional[
+            "capo_database_migration_service.types.integer_optional.IntegerOptional"
+        ] = None,
+    ) -> "AsyncIterator[capo_database_migration_service.types.describe_metadata_model_exports_as_script_response.DescribeMetadataModelExportsAsScriptResponse]":
+        _token = marker
+        while True:
+            _response = await self.describe_metadata_model_exports_as_script(
+                migration_project_identifier,
+                config_overrides=config_overrides,
+                filters=filters,
+                marker=_token,
+                max_records=max_records,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("marker",))
+            if not _token:
+                break
 
     async def describe_metadata_model_exports_to_target(
         self,
@@ -4351,8 +4995,9 @@ class AsyncDatabaseMigrationServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_database_migration_service.types.describe_metadata_model_exports_to_target_message.DescribeMetadataModelExportsToTargetMessage = {}  # type: ignore[typeddict-item]
-        input_["migration_project_identifier"] = migration_project_identifier
+        input_: capo_database_migration_service.types.describe_metadata_model_exports_to_target_message.DescribeMetadataModelExportsToTargetMessage = {
+            "migration_project_identifier": migration_project_identifier
+        }
         if filters is not None:
             input_["filters"] = filters
         if marker is not None:
@@ -4365,7 +5010,35 @@ class AsyncDatabaseMigrationServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_describe_metadata_model_exports_to_target(
+        self,
+        migration_project_identifier: "capo_database_migration_service.types.migration_project_identifier.MigrationProjectIdentifier",
+        *,
+        config_overrides: Optional[AsyncDatabaseMigrationServiceClientConfig] = None,
+        filters: Optional[
+            "capo_database_migration_service.types.filter_list.FilterList"
+        ] = None,
+        marker: Optional["capo_database_migration_service.types.string.String"] = None,
+        max_records: Optional[
+            "capo_database_migration_service.types.integer_optional.IntegerOptional"
+        ] = None,
+    ) -> "AsyncIterator[capo_database_migration_service.types.describe_metadata_model_exports_to_target_response.DescribeMetadataModelExportsToTargetResponse]":
+        _token = marker
+        while True:
+            _response = await self.describe_metadata_model_exports_to_target(
+                migration_project_identifier,
+                config_overrides=config_overrides,
+                filters=filters,
+                marker=_token,
+                max_records=max_records,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("marker",))
+            if not _token:
+                break
 
     async def describe_metadata_model_imports(
         self,
@@ -4415,8 +5088,9 @@ class AsyncDatabaseMigrationServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_database_migration_service.types.describe_metadata_model_imports_message.DescribeMetadataModelImportsMessage = {}  # type: ignore[typeddict-item]
-        input_["migration_project_identifier"] = migration_project_identifier
+        input_: capo_database_migration_service.types.describe_metadata_model_imports_message.DescribeMetadataModelImportsMessage = {
+            "migration_project_identifier": migration_project_identifier
+        }
         if filters is not None:
             input_["filters"] = filters
         if marker is not None:
@@ -4429,7 +5103,35 @@ class AsyncDatabaseMigrationServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_describe_metadata_model_imports(
+        self,
+        migration_project_identifier: "capo_database_migration_service.types.migration_project_identifier.MigrationProjectIdentifier",
+        *,
+        config_overrides: Optional[AsyncDatabaseMigrationServiceClientConfig] = None,
+        filters: Optional[
+            "capo_database_migration_service.types.filter_list.FilterList"
+        ] = None,
+        marker: Optional["capo_database_migration_service.types.string.String"] = None,
+        max_records: Optional[
+            "capo_database_migration_service.types.integer_optional.IntegerOptional"
+        ] = None,
+    ) -> "AsyncIterator[capo_database_migration_service.types.describe_metadata_model_imports_response.DescribeMetadataModelImportsResponse]":
+        _token = marker
+        while True:
+            _response = await self.describe_metadata_model_imports(
+                migration_project_identifier,
+                config_overrides=config_overrides,
+                filters=filters,
+                marker=_token,
+                max_records=max_records,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("marker",))
+            if not _token:
+                break
 
     async def describe_migration_projects(
         self,
@@ -4479,7 +5181,7 @@ class AsyncDatabaseMigrationServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_database_migration_service.types.describe_migration_projects_message.DescribeMigrationProjectsMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_database_migration_service.types.describe_migration_projects_message.DescribeMigrationProjectsMessage = {}
         if filters is not None:
             input_["filters"] = filters
         if max_records is not None:
@@ -4492,7 +5194,33 @@ class AsyncDatabaseMigrationServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_describe_migration_projects(
+        self,
+        *,
+        config_overrides: Optional[AsyncDatabaseMigrationServiceClientConfig] = None,
+        filters: Optional[
+            "capo_database_migration_service.types.filter_list.FilterList"
+        ] = None,
+        max_records: Optional[
+            "capo_database_migration_service.types.integer_optional.IntegerOptional"
+        ] = None,
+        marker: Optional["capo_database_migration_service.types.string.String"] = None,
+    ) -> "AsyncIterator[capo_database_migration_service.types.describe_migration_projects_response.DescribeMigrationProjectsResponse]":
+        _token = marker
+        while True:
+            _response = await self.describe_migration_projects(
+                config_overrides=config_overrides,
+                filters=filters,
+                max_records=max_records,
+                marker=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("marker",))
+            if not _token:
+                break
 
     async def describe_orderable_replication_instances(
         self,
@@ -4535,7 +5263,7 @@ class AsyncDatabaseMigrationServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_database_migration_service.types.describe_orderable_replication_instances_message.DescribeOrderableReplicationInstancesMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_database_migration_service.types.describe_orderable_replication_instances_message.DescribeOrderableReplicationInstancesMessage = {}
         if max_records is not None:
             input_["max_records"] = max_records
         if marker is not None:
@@ -4546,7 +5274,29 @@ class AsyncDatabaseMigrationServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_describe_orderable_replication_instances(
+        self,
+        *,
+        config_overrides: Optional[AsyncDatabaseMigrationServiceClientConfig] = None,
+        max_records: Optional[
+            "capo_database_migration_service.types.integer_optional.IntegerOptional"
+        ] = None,
+        marker: Optional["capo_database_migration_service.types.string.String"] = None,
+    ) -> "AsyncIterator[capo_database_migration_service.types.describe_orderable_replication_instances_response.DescribeOrderableReplicationInstancesResponse]":
+        _token = marker
+        while True:
+            _response = await self.describe_orderable_replication_instances(
+                config_overrides=config_overrides,
+                max_records=max_records,
+                marker=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("marker",))
+            if not _token:
+                break
 
     async def describe_pending_maintenance_actions(
         self,
@@ -4592,7 +5342,7 @@ class AsyncDatabaseMigrationServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_database_migration_service.types.describe_pending_maintenance_actions_message.DescribePendingMaintenanceActionsMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_database_migration_service.types.describe_pending_maintenance_actions_message.DescribePendingMaintenanceActionsMessage = {}
         if replication_instance_arn is not None:
             input_["replication_instance_arn"] = replication_instance_arn
         if filters is not None:
@@ -4607,7 +5357,37 @@ class AsyncDatabaseMigrationServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_describe_pending_maintenance_actions(
+        self,
+        *,
+        config_overrides: Optional[AsyncDatabaseMigrationServiceClientConfig] = None,
+        replication_instance_arn: Optional[
+            "capo_database_migration_service.types.string.String"
+        ] = None,
+        filters: Optional[
+            "capo_database_migration_service.types.filter_list.FilterList"
+        ] = None,
+        marker: Optional["capo_database_migration_service.types.string.String"] = None,
+        max_records: Optional[
+            "capo_database_migration_service.types.integer_optional.IntegerOptional"
+        ] = None,
+    ) -> "AsyncIterator[capo_database_migration_service.types.describe_pending_maintenance_actions_response.DescribePendingMaintenanceActionsResponse]":
+        _token = marker
+        while True:
+            _response = await self.describe_pending_maintenance_actions(
+                config_overrides=config_overrides,
+                replication_instance_arn=replication_instance_arn,
+                filters=filters,
+                marker=_token,
+                max_records=max_records,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("marker",))
+            if not _token:
+                break
 
     async def describe_recommendation_limitations(
         self,
@@ -4652,7 +5432,7 @@ class AsyncDatabaseMigrationServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_database_migration_service.types.describe_recommendation_limitations_request.DescribeRecommendationLimitationsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_database_migration_service.types.describe_recommendation_limitations_request.DescribeRecommendationLimitationsRequest = {}
         if filters is not None:
             input_["filters"] = filters
         if max_records is not None:
@@ -4665,7 +5445,35 @@ class AsyncDatabaseMigrationServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_describe_recommendation_limitations(
+        self,
+        *,
+        config_overrides: Optional[AsyncDatabaseMigrationServiceClientConfig] = None,
+        filters: Optional[
+            "capo_database_migration_service.types.filter_list.FilterList"
+        ] = None,
+        max_records: Optional[
+            "capo_database_migration_service.types.integer_optional.IntegerOptional"
+        ] = None,
+        next_token: Optional[
+            "capo_database_migration_service.types.string.String"
+        ] = None,
+    ) -> "AsyncIterator[capo_database_migration_service.types.describe_recommendation_limitations_response.DescribeRecommendationLimitationsResponse]":
+        _token = next_token
+        while True:
+            _response = await self.describe_recommendation_limitations(
+                config_overrides=config_overrides,
+                filters=filters,
+                max_records=max_records,
+                next_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def describe_recommendations(
         self,
@@ -4710,7 +5518,7 @@ class AsyncDatabaseMigrationServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_database_migration_service.types.describe_recommendations_request.DescribeRecommendationsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_database_migration_service.types.describe_recommendations_request.DescribeRecommendationsRequest = {}
         if filters is not None:
             input_["filters"] = filters
         if max_records is not None:
@@ -4723,7 +5531,35 @@ class AsyncDatabaseMigrationServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_describe_recommendations(
+        self,
+        *,
+        config_overrides: Optional[AsyncDatabaseMigrationServiceClientConfig] = None,
+        filters: Optional[
+            "capo_database_migration_service.types.filter_list.FilterList"
+        ] = None,
+        max_records: Optional[
+            "capo_database_migration_service.types.integer_optional.IntegerOptional"
+        ] = None,
+        next_token: Optional[
+            "capo_database_migration_service.types.string.String"
+        ] = None,
+    ) -> "AsyncIterator[capo_database_migration_service.types.describe_recommendations_response.DescribeRecommendationsResponse]":
+        _token = next_token
+        while True:
+            _response = await self.describe_recommendations(
+                config_overrides=config_overrides,
+                filters=filters,
+                max_records=max_records,
+                next_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def describe_refresh_schemas_status(
         self,
@@ -4764,14 +5600,16 @@ class AsyncDatabaseMigrationServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_database_migration_service.types.describe_refresh_schemas_status_message.DescribeRefreshSchemasStatusMessage = {}  # type: ignore[typeddict-item]
-        input_["endpoint_arn"] = endpoint_arn
+        input_: capo_database_migration_service.types.describe_refresh_schemas_status_message.DescribeRefreshSchemasStatusMessage = {
+            "endpoint_arn": endpoint_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_replication_configs(
@@ -4814,7 +5652,7 @@ class AsyncDatabaseMigrationServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_database_migration_service.types.describe_replication_configs_message.DescribeReplicationConfigsMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_database_migration_service.types.describe_replication_configs_message.DescribeReplicationConfigsMessage = {}
         if filters is not None:
             input_["filters"] = filters
         if max_records is not None:
@@ -4827,7 +5665,33 @@ class AsyncDatabaseMigrationServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_describe_replication_configs(
+        self,
+        *,
+        config_overrides: Optional[AsyncDatabaseMigrationServiceClientConfig] = None,
+        filters: Optional[
+            "capo_database_migration_service.types.filter_list.FilterList"
+        ] = None,
+        max_records: Optional[
+            "capo_database_migration_service.types.integer_optional.IntegerOptional"
+        ] = None,
+        marker: Optional["capo_database_migration_service.types.string.String"] = None,
+    ) -> "AsyncIterator[capo_database_migration_service.types.describe_replication_configs_response.DescribeReplicationConfigsResponse]":
+        _token = marker
+        while True:
+            _response = await self.describe_replication_configs(
+                config_overrides=config_overrides,
+                filters=filters,
+                max_records=max_records,
+                marker=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("marker",))
+            if not _token:
+                break
 
     async def describe_replication_instances(
         self,
@@ -4875,7 +5739,7 @@ class AsyncDatabaseMigrationServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_database_migration_service.types.describe_replication_instances_message.DescribeReplicationInstancesMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_database_migration_service.types.describe_replication_instances_message.DescribeReplicationInstancesMessage = {}
         if filters is not None:
             input_["filters"] = filters
         if max_records is not None:
@@ -4888,7 +5752,33 @@ class AsyncDatabaseMigrationServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_describe_replication_instances(
+        self,
+        *,
+        config_overrides: Optional[AsyncDatabaseMigrationServiceClientConfig] = None,
+        filters: Optional[
+            "capo_database_migration_service.types.filter_list.FilterList"
+        ] = None,
+        max_records: Optional[
+            "capo_database_migration_service.types.integer_optional.IntegerOptional"
+        ] = None,
+        marker: Optional["capo_database_migration_service.types.string.String"] = None,
+    ) -> "AsyncIterator[capo_database_migration_service.types.describe_replication_instances_response.DescribeReplicationInstancesResponse]":
+        _token = marker
+        while True:
+            _response = await self.describe_replication_instances(
+                config_overrides=config_overrides,
+                filters=filters,
+                max_records=max_records,
+                marker=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("marker",))
+            if not _token:
+                break
 
     async def describe_replication_instance_task_logs(
         self,
@@ -4929,8 +5819,9 @@ class AsyncDatabaseMigrationServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_database_migration_service.types.describe_replication_instance_task_logs_message.DescribeReplicationInstanceTaskLogsMessage = {}  # type: ignore[typeddict-item]
-        input_["replication_instance_arn"] = replication_instance_arn
+        input_: capo_database_migration_service.types.describe_replication_instance_task_logs_message.DescribeReplicationInstanceTaskLogsMessage = {
+            "replication_instance_arn": replication_instance_arn
+        }
         if max_records is not None:
             input_["max_records"] = max_records
         if marker is not None:
@@ -4941,7 +5832,31 @@ class AsyncDatabaseMigrationServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_describe_replication_instance_task_logs(
+        self,
+        replication_instance_arn: "capo_database_migration_service.types.string.String",
+        *,
+        config_overrides: Optional[AsyncDatabaseMigrationServiceClientConfig] = None,
+        max_records: Optional[
+            "capo_database_migration_service.types.integer_optional.IntegerOptional"
+        ] = None,
+        marker: Optional["capo_database_migration_service.types.string.String"] = None,
+    ) -> "AsyncIterator[capo_database_migration_service.types.describe_replication_instance_task_logs_response.DescribeReplicationInstanceTaskLogsResponse]":
+        _token = marker
+        while True:
+            _response = await self.describe_replication_instance_task_logs(
+                replication_instance_arn,
+                config_overrides=config_overrides,
+                max_records=max_records,
+                marker=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("marker",))
+            if not _token:
+                break
 
     async def describe_replications(
         self,
@@ -4983,7 +5898,7 @@ class AsyncDatabaseMigrationServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_database_migration_service.types.describe_replications_message.DescribeReplicationsMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_database_migration_service.types.describe_replications_message.DescribeReplicationsMessage = {}
         if filters is not None:
             input_["filters"] = filters
         if max_records is not None:
@@ -4996,7 +5911,33 @@ class AsyncDatabaseMigrationServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_describe_replications(
+        self,
+        *,
+        config_overrides: Optional[AsyncDatabaseMigrationServiceClientConfig] = None,
+        filters: Optional[
+            "capo_database_migration_service.types.filter_list.FilterList"
+        ] = None,
+        max_records: Optional[
+            "capo_database_migration_service.types.integer_optional.IntegerOptional"
+        ] = None,
+        marker: Optional["capo_database_migration_service.types.string.String"] = None,
+    ) -> "AsyncIterator[capo_database_migration_service.types.describe_replications_response.DescribeReplicationsResponse]":
+        _token = marker
+        while True:
+            _response = await self.describe_replications(
+                config_overrides=config_overrides,
+                filters=filters,
+                max_records=max_records,
+                marker=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("marker",))
+            if not _token:
+                break
 
     async def describe_replication_subnet_groups(
         self,
@@ -5044,7 +5985,7 @@ class AsyncDatabaseMigrationServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_database_migration_service.types.describe_replication_subnet_groups_message.DescribeReplicationSubnetGroupsMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_database_migration_service.types.describe_replication_subnet_groups_message.DescribeReplicationSubnetGroupsMessage = {}
         if filters is not None:
             input_["filters"] = filters
         if max_records is not None:
@@ -5057,7 +5998,33 @@ class AsyncDatabaseMigrationServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_describe_replication_subnet_groups(
+        self,
+        *,
+        config_overrides: Optional[AsyncDatabaseMigrationServiceClientConfig] = None,
+        filters: Optional[
+            "capo_database_migration_service.types.filter_list.FilterList"
+        ] = None,
+        max_records: Optional[
+            "capo_database_migration_service.types.integer_optional.IntegerOptional"
+        ] = None,
+        marker: Optional["capo_database_migration_service.types.string.String"] = None,
+    ) -> "AsyncIterator[capo_database_migration_service.types.describe_replication_subnet_groups_response.DescribeReplicationSubnetGroupsResponse]":
+        _token = marker
+        while True:
+            _response = await self.describe_replication_subnet_groups(
+                config_overrides=config_overrides,
+                filters=filters,
+                max_records=max_records,
+                marker=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("marker",))
+            if not _token:
+                break
 
     async def describe_replication_table_statistics(
         self,
@@ -5102,8 +6069,9 @@ class AsyncDatabaseMigrationServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_database_migration_service.types.describe_replication_table_statistics_message.DescribeReplicationTableStatisticsMessage = {}  # type: ignore[typeddict-item]
-        input_["replication_config_arn"] = replication_config_arn
+        input_: capo_database_migration_service.types.describe_replication_table_statistics_message.DescribeReplicationTableStatisticsMessage = {
+            "replication_config_arn": replication_config_arn
+        }
         if max_records is not None:
             input_["max_records"] = max_records
         if marker is not None:
@@ -5116,7 +6084,35 @@ class AsyncDatabaseMigrationServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_describe_replication_table_statistics(
+        self,
+        replication_config_arn: "capo_database_migration_service.types.string.String",
+        *,
+        config_overrides: Optional[AsyncDatabaseMigrationServiceClientConfig] = None,
+        max_records: Optional[
+            "capo_database_migration_service.types.integer_optional.IntegerOptional"
+        ] = None,
+        marker: Optional["capo_database_migration_service.types.string.String"] = None,
+        filters: Optional[
+            "capo_database_migration_service.types.filter_list.FilterList"
+        ] = None,
+    ) -> "AsyncIterator[capo_database_migration_service.types.describe_replication_table_statistics_response.DescribeReplicationTableStatisticsResponse]":
+        _token = marker
+        while True:
+            _response = await self.describe_replication_table_statistics(
+                replication_config_arn,
+                config_overrides=config_overrides,
+                max_records=max_records,
+                marker=_token,
+                filters=filters,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("marker",))
+            if not _token:
+                break
 
     async def describe_replication_task_assessment_results(
         self,
@@ -5158,7 +6154,7 @@ class AsyncDatabaseMigrationServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_database_migration_service.types.describe_replication_task_assessment_results_message.DescribeReplicationTaskAssessmentResultsMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_database_migration_service.types.describe_replication_task_assessment_results_message.DescribeReplicationTaskAssessmentResultsMessage = {}
         if replication_task_arn is not None:
             input_["replication_task_arn"] = replication_task_arn
         if max_records is not None:
@@ -5171,7 +6167,33 @@ class AsyncDatabaseMigrationServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_describe_replication_task_assessment_results(
+        self,
+        *,
+        config_overrides: Optional[AsyncDatabaseMigrationServiceClientConfig] = None,
+        replication_task_arn: Optional[
+            "capo_database_migration_service.types.string.String"
+        ] = None,
+        max_records: Optional[
+            "capo_database_migration_service.types.integer_optional.IntegerOptional"
+        ] = None,
+        marker: Optional["capo_database_migration_service.types.string.String"] = None,
+    ) -> "AsyncIterator[capo_database_migration_service.types.describe_replication_task_assessment_results_response.DescribeReplicationTaskAssessmentResultsResponse]":
+        _token = marker
+        while True:
+            _response = await self.describe_replication_task_assessment_results(
+                config_overrides=config_overrides,
+                replication_task_arn=replication_task_arn,
+                max_records=max_records,
+                marker=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("marker",))
+            if not _token:
+                break
 
     async def describe_replication_task_assessment_runs(
         self,
@@ -5213,7 +6235,7 @@ class AsyncDatabaseMigrationServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_database_migration_service.types.describe_replication_task_assessment_runs_message.DescribeReplicationTaskAssessmentRunsMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_database_migration_service.types.describe_replication_task_assessment_runs_message.DescribeReplicationTaskAssessmentRunsMessage = {}
         if filters is not None:
             input_["filters"] = filters
         if max_records is not None:
@@ -5226,7 +6248,33 @@ class AsyncDatabaseMigrationServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_describe_replication_task_assessment_runs(
+        self,
+        *,
+        config_overrides: Optional[AsyncDatabaseMigrationServiceClientConfig] = None,
+        filters: Optional[
+            "capo_database_migration_service.types.filter_list.FilterList"
+        ] = None,
+        max_records: Optional[
+            "capo_database_migration_service.types.integer_optional.IntegerOptional"
+        ] = None,
+        marker: Optional["capo_database_migration_service.types.string.String"] = None,
+    ) -> "AsyncIterator[capo_database_migration_service.types.describe_replication_task_assessment_runs_response.DescribeReplicationTaskAssessmentRunsResponse]":
+        _token = marker
+        while True:
+            _response = await self.describe_replication_task_assessment_runs(
+                config_overrides=config_overrides,
+                filters=filters,
+                max_records=max_records,
+                marker=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("marker",))
+            if not _token:
+                break
 
     async def describe_replication_task_individual_assessments(
         self,
@@ -5268,7 +6316,7 @@ class AsyncDatabaseMigrationServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_database_migration_service.types.describe_replication_task_individual_assessments_message.DescribeReplicationTaskIndividualAssessmentsMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_database_migration_service.types.describe_replication_task_individual_assessments_message.DescribeReplicationTaskIndividualAssessmentsMessage = {}
         if filters is not None:
             input_["filters"] = filters
         if max_records is not None:
@@ -5281,7 +6329,33 @@ class AsyncDatabaseMigrationServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_describe_replication_task_individual_assessments(
+        self,
+        *,
+        config_overrides: Optional[AsyncDatabaseMigrationServiceClientConfig] = None,
+        filters: Optional[
+            "capo_database_migration_service.types.filter_list.FilterList"
+        ] = None,
+        max_records: Optional[
+            "capo_database_migration_service.types.integer_optional.IntegerOptional"
+        ] = None,
+        marker: Optional["capo_database_migration_service.types.string.String"] = None,
+    ) -> "AsyncIterator[capo_database_migration_service.types.describe_replication_task_individual_assessments_response.DescribeReplicationTaskIndividualAssessmentsResponse]":
+        _token = marker
+        while True:
+            _response = await self.describe_replication_task_individual_assessments(
+                config_overrides=config_overrides,
+                filters=filters,
+                max_records=max_records,
+                marker=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("marker",))
+            if not _token:
+                break
 
     async def describe_replication_tasks(
         self,
@@ -5333,7 +6407,7 @@ class AsyncDatabaseMigrationServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_database_migration_service.types.describe_replication_tasks_message.DescribeReplicationTasksMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_database_migration_service.types.describe_replication_tasks_message.DescribeReplicationTasksMessage = {}
         if filters is not None:
             input_["filters"] = filters
         if max_records is not None:
@@ -5348,7 +6422,37 @@ class AsyncDatabaseMigrationServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_describe_replication_tasks(
+        self,
+        *,
+        config_overrides: Optional[AsyncDatabaseMigrationServiceClientConfig] = None,
+        filters: Optional[
+            "capo_database_migration_service.types.filter_list.FilterList"
+        ] = None,
+        max_records: Optional[
+            "capo_database_migration_service.types.integer_optional.IntegerOptional"
+        ] = None,
+        marker: Optional["capo_database_migration_service.types.string.String"] = None,
+        without_settings: Optional[
+            "capo_database_migration_service.types.boolean_optional.BooleanOptional"
+        ] = None,
+    ) -> "AsyncIterator[capo_database_migration_service.types.describe_replication_tasks_response.DescribeReplicationTasksResponse]":
+        _token = marker
+        while True:
+            _response = await self.describe_replication_tasks(
+                config_overrides=config_overrides,
+                filters=filters,
+                max_records=max_records,
+                marker=_token,
+                without_settings=without_settings,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("marker",))
+            if not _token:
+                break
 
     async def describe_schemas(
         self,
@@ -5395,8 +6499,9 @@ class AsyncDatabaseMigrationServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_database_migration_service.types.describe_schemas_message.DescribeSchemasMessage = {}  # type: ignore[typeddict-item]
-        input_["endpoint_arn"] = endpoint_arn
+        input_: capo_database_migration_service.types.describe_schemas_message.DescribeSchemasMessage = {
+            "endpoint_arn": endpoint_arn
+        }
         if max_records is not None:
             input_["max_records"] = max_records
         if marker is not None:
@@ -5407,7 +6512,31 @@ class AsyncDatabaseMigrationServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_describe_schemas(
+        self,
+        endpoint_arn: "capo_database_migration_service.types.string.String",
+        *,
+        config_overrides: Optional[AsyncDatabaseMigrationServiceClientConfig] = None,
+        max_records: Optional[
+            "capo_database_migration_service.types.integer_optional.IntegerOptional"
+        ] = None,
+        marker: Optional["capo_database_migration_service.types.string.String"] = None,
+    ) -> "AsyncIterator[capo_database_migration_service.types.describe_schemas_response.DescribeSchemasResponse]":
+        _token = marker
+        while True:
+            _response = await self.describe_schemas(
+                endpoint_arn,
+                config_overrides=config_overrides,
+                max_records=max_records,
+                marker=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("marker",))
+            if not _token:
+                break
 
     async def describe_table_statistics(
         self,
@@ -5459,8 +6588,9 @@ class AsyncDatabaseMigrationServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_database_migration_service.types.describe_table_statistics_message.DescribeTableStatisticsMessage = {}  # type: ignore[typeddict-item]
-        input_["replication_task_arn"] = replication_task_arn
+        input_: capo_database_migration_service.types.describe_table_statistics_message.DescribeTableStatisticsMessage = {
+            "replication_task_arn": replication_task_arn
+        }
         if max_records is not None:
             input_["max_records"] = max_records
         if marker is not None:
@@ -5473,7 +6603,35 @@ class AsyncDatabaseMigrationServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_describe_table_statistics(
+        self,
+        replication_task_arn: "capo_database_migration_service.types.string.String",
+        *,
+        config_overrides: Optional[AsyncDatabaseMigrationServiceClientConfig] = None,
+        max_records: Optional[
+            "capo_database_migration_service.types.integer_optional.IntegerOptional"
+        ] = None,
+        marker: Optional["capo_database_migration_service.types.string.String"] = None,
+        filters: Optional[
+            "capo_database_migration_service.types.filter_list.FilterList"
+        ] = None,
+    ) -> "AsyncIterator[capo_database_migration_service.types.describe_table_statistics_response.DescribeTableStatisticsResponse]":
+        _token = marker
+        while True:
+            _response = await self.describe_table_statistics(
+                replication_task_arn,
+                config_overrides=config_overrides,
+                max_records=max_records,
+                marker=_token,
+                filters=filters,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("marker",))
+            if not _token:
+                break
 
     async def export_metadata_model_assessment(
         self,
@@ -5523,9 +6681,10 @@ class AsyncDatabaseMigrationServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_database_migration_service.types.export_metadata_model_assessment_message.ExportMetadataModelAssessmentMessage = {}  # type: ignore[typeddict-item]
-        input_["migration_project_identifier"] = migration_project_identifier
-        input_["selection_rules"] = selection_rules
+        input_: capo_database_migration_service.types.export_metadata_model_assessment_message.ExportMetadataModelAssessmentMessage = {
+            "migration_project_identifier": migration_project_identifier,
+            "selection_rules": selection_rules,
+        }
         if file_name is not None:
             input_["file_name"] = file_name
         if assessment_report_types is not None:
@@ -5536,6 +6695,7 @@ class AsyncDatabaseMigrationServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_target_selection_rules(
@@ -5574,15 +6734,17 @@ class AsyncDatabaseMigrationServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_database_migration_service.types.get_target_selection_rules_message.GetTargetSelectionRulesMessage = {}  # type: ignore[typeddict-item]
-        input_["migration_project_identifier"] = migration_project_identifier
-        input_["selection_rules"] = selection_rules
+        input_: capo_database_migration_service.types.get_target_selection_rules_message.GetTargetSelectionRulesMessage = {
+            "migration_project_identifier": migration_project_identifier,
+            "selection_rules": selection_rules,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def import_certificate(
@@ -5640,8 +6802,9 @@ class AsyncDatabaseMigrationServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_database_migration_service.types.import_certificate_message.ImportCertificateMessage = {}  # type: ignore[typeddict-item]
-        input_["certificate_identifier"] = certificate_identifier
+        input_: capo_database_migration_service.types.import_certificate_message.ImportCertificateMessage = {
+            "certificate_identifier": certificate_identifier
+        }
         if certificate_pem is not None:
             input_["certificate_pem"] = certificate_pem
         if certificate_wallet is not None:
@@ -5656,6 +6819,7 @@ class AsyncDatabaseMigrationServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_tags_for_resource(
@@ -5703,7 +6867,7 @@ class AsyncDatabaseMigrationServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_database_migration_service.types.list_tags_for_resource_message.ListTagsForResourceMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_database_migration_service.types.list_tags_for_resource_message.ListTagsForResourceMessage = {}
         if resource_arn is not None:
             input_["resource_arn"] = resource_arn
         if resource_arn_list is not None:
@@ -5714,6 +6878,7 @@ class AsyncDatabaseMigrationServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def modify_conversion_configuration(
@@ -5757,15 +6922,17 @@ class AsyncDatabaseMigrationServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_database_migration_service.types.modify_conversion_configuration_message.ModifyConversionConfigurationMessage = {}  # type: ignore[typeddict-item]
-        input_["migration_project_identifier"] = migration_project_identifier
-        input_["conversion_configuration"] = conversion_configuration
+        input_: capo_database_migration_service.types.modify_conversion_configuration_message.ModifyConversionConfigurationMessage = {
+            "migration_project_identifier": migration_project_identifier,
+            "conversion_configuration": conversion_configuration,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def modify_data_migration(
@@ -5834,8 +7001,9 @@ class AsyncDatabaseMigrationServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_database_migration_service.types.modify_data_migration_message.ModifyDataMigrationMessage = {}  # type: ignore[typeddict-item]
-        input_["data_migration_identifier"] = data_migration_identifier
+        input_: capo_database_migration_service.types.modify_data_migration_message.ModifyDataMigrationMessage = {
+            "data_migration_identifier": data_migration_identifier
+        }
         if data_migration_name is not None:
             input_["data_migration_name"] = data_migration_name
         if enable_cloudwatch_logs is not None:
@@ -5858,6 +7026,7 @@ class AsyncDatabaseMigrationServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def modify_data_provider(
@@ -5923,8 +7092,9 @@ class AsyncDatabaseMigrationServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_database_migration_service.types.modify_data_provider_message.ModifyDataProviderMessage = {}  # type: ignore[typeddict-item]
-        input_["data_provider_identifier"] = data_provider_identifier
+        input_: capo_database_migration_service.types.modify_data_provider_message.ModifyDataProviderMessage = {
+            "data_provider_identifier": data_provider_identifier
+        }
         if data_provider_name is not None:
             input_["data_provider_name"] = data_provider_name
         if description is not None:
@@ -5943,6 +7113,7 @@ class AsyncDatabaseMigrationServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def modify_endpoint(
@@ -6118,8 +7289,9 @@ class AsyncDatabaseMigrationServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_database_migration_service.types.modify_endpoint_message.ModifyEndpointMessage = {}  # type: ignore[typeddict-item]
-        input_["endpoint_arn"] = endpoint_arn
+        input_: capo_database_migration_service.types.modify_endpoint_message.ModifyEndpointMessage = {
+            "endpoint_arn": endpoint_arn
+        }
         if endpoint_identifier is not None:
             input_["endpoint_identifier"] = endpoint_identifier
         if endpoint_type is not None:
@@ -6192,6 +7364,7 @@ class AsyncDatabaseMigrationServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def modify_event_subscription(
@@ -6251,8 +7424,9 @@ class AsyncDatabaseMigrationServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_database_migration_service.types.modify_event_subscription_message.ModifyEventSubscriptionMessage = {}  # type: ignore[typeddict-item]
-        input_["subscription_name"] = subscription_name
+        input_: capo_database_migration_service.types.modify_event_subscription_message.ModifyEventSubscriptionMessage = {
+            "subscription_name": subscription_name
+        }
         if sns_topic_arn is not None:
             input_["sns_topic_arn"] = sns_topic_arn
         if source_type is not None:
@@ -6267,6 +7441,7 @@ class AsyncDatabaseMigrationServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def modify_instance_profile(
@@ -6345,8 +7520,9 @@ class AsyncDatabaseMigrationServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_database_migration_service.types.modify_instance_profile_message.ModifyInstanceProfileMessage = {}  # type: ignore[typeddict-item]
-        input_["instance_profile_identifier"] = instance_profile_identifier
+        input_: capo_database_migration_service.types.modify_instance_profile_message.ModifyInstanceProfileMessage = {
+            "instance_profile_identifier": instance_profile_identifier
+        }
         if availability_zone is not None:
             input_["availability_zone"] = availability_zone
         if kms_key_arn is not None:
@@ -6369,6 +7545,7 @@ class AsyncDatabaseMigrationServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def modify_migration_project(
@@ -6442,8 +7619,9 @@ class AsyncDatabaseMigrationServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_database_migration_service.types.modify_migration_project_message.ModifyMigrationProjectMessage = {}  # type: ignore[typeddict-item]
-        input_["migration_project_identifier"] = migration_project_identifier
+        input_: capo_database_migration_service.types.modify_migration_project_message.ModifyMigrationProjectMessage = {
+            "migration_project_identifier": migration_project_identifier
+        }
         if migration_project_name is not None:
             input_["migration_project_name"] = migration_project_name
         if source_data_provider_descriptors is not None:
@@ -6470,6 +7648,7 @@ class AsyncDatabaseMigrationServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def modify_replication_config(
@@ -6541,8 +7720,9 @@ class AsyncDatabaseMigrationServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_database_migration_service.types.modify_replication_config_message.ModifyReplicationConfigMessage = {}  # type: ignore[typeddict-item]
-        input_["replication_config_arn"] = replication_config_arn
+        input_: capo_database_migration_service.types.modify_replication_config_message.ModifyReplicationConfigMessage = {
+            "replication_config_arn": replication_config_arn
+        }
         if replication_config_identifier is not None:
             input_["replication_config_identifier"] = replication_config_identifier
         if replication_type is not None:
@@ -6565,6 +7745,7 @@ class AsyncDatabaseMigrationServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def modify_replication_instance(
@@ -6659,8 +7840,9 @@ class AsyncDatabaseMigrationServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_database_migration_service.types.modify_replication_instance_message.ModifyReplicationInstanceMessage = {}  # type: ignore[typeddict-item]
-        input_["replication_instance_arn"] = replication_instance_arn
+        input_: capo_database_migration_service.types.modify_replication_instance_message.ModifyReplicationInstanceMessage = {
+            "replication_instance_arn": replication_instance_arn
+        }
         if allocated_storage is not None:
             input_["allocated_storage"] = allocated_storage
         if apply_immediately is not None:
@@ -6693,6 +7875,7 @@ class AsyncDatabaseMigrationServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def modify_replication_subnet_group(
@@ -6744,21 +7927,21 @@ class AsyncDatabaseMigrationServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_database_migration_service.types.modify_replication_subnet_group_message.ModifyReplicationSubnetGroupMessage = {}  # type: ignore[typeddict-item]
-        input_["replication_subnet_group_identifier"] = (
-            replication_subnet_group_identifier
-        )
+        input_: capo_database_migration_service.types.modify_replication_subnet_group_message.ModifyReplicationSubnetGroupMessage = {
+            "replication_subnet_group_identifier": replication_subnet_group_identifier,
+            "subnet_ids": subnet_ids,
+        }
         if replication_subnet_group_description is not None:
             input_["replication_subnet_group_description"] = (
                 replication_subnet_group_description
             )
-        input_["subnet_ids"] = subnet_ids
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def modify_replication_task(
@@ -6828,8 +8011,9 @@ class AsyncDatabaseMigrationServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_database_migration_service.types.modify_replication_task_message.ModifyReplicationTaskMessage = {}  # type: ignore[typeddict-item]
-        input_["replication_task_arn"] = replication_task_arn
+        input_: capo_database_migration_service.types.modify_replication_task_message.ModifyReplicationTaskMessage = {
+            "replication_task_arn": replication_task_arn
+        }
         if replication_task_identifier is not None:
             input_["replication_task_identifier"] = replication_task_identifier
         if migration_type is not None:
@@ -6852,6 +8036,7 @@ class AsyncDatabaseMigrationServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def move_replication_task(
@@ -6892,15 +8077,17 @@ class AsyncDatabaseMigrationServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_database_migration_service.types.move_replication_task_message.MoveReplicationTaskMessage = {}  # type: ignore[typeddict-item]
-        input_["replication_task_arn"] = replication_task_arn
-        input_["target_replication_instance_arn"] = target_replication_instance_arn
+        input_: capo_database_migration_service.types.move_replication_task_message.MoveReplicationTaskMessage = {
+            "replication_task_arn": replication_task_arn,
+            "target_replication_instance_arn": target_replication_instance_arn,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def reboot_replication_instance(
@@ -6944,8 +8131,9 @@ class AsyncDatabaseMigrationServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_database_migration_service.types.reboot_replication_instance_message.RebootReplicationInstanceMessage = {}  # type: ignore[typeddict-item]
-        input_["replication_instance_arn"] = replication_instance_arn
+        input_: capo_database_migration_service.types.reboot_replication_instance_message.RebootReplicationInstanceMessage = {
+            "replication_instance_arn": replication_instance_arn
+        }
         if force_failover is not None:
             input_["force_failover"] = force_failover
         if force_planned_failover is not None:
@@ -6956,6 +8144,7 @@ class AsyncDatabaseMigrationServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def refresh_schemas(
@@ -7001,15 +8190,17 @@ class AsyncDatabaseMigrationServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_database_migration_service.types.refresh_schemas_message.RefreshSchemasMessage = {}  # type: ignore[typeddict-item]
-        input_["endpoint_arn"] = endpoint_arn
-        input_["replication_instance_arn"] = replication_instance_arn
+        input_: capo_database_migration_service.types.refresh_schemas_message.RefreshSchemasMessage = {
+            "endpoint_arn": endpoint_arn,
+            "replication_instance_arn": replication_instance_arn,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def reload_replication_tables(
@@ -7051,9 +8242,10 @@ class AsyncDatabaseMigrationServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_database_migration_service.types.reload_replication_tables_message.ReloadReplicationTablesMessage = {}  # type: ignore[typeddict-item]
-        input_["replication_config_arn"] = replication_config_arn
-        input_["tables_to_reload"] = tables_to_reload
+        input_: capo_database_migration_service.types.reload_replication_tables_message.ReloadReplicationTablesMessage = {
+            "replication_config_arn": replication_config_arn,
+            "tables_to_reload": tables_to_reload,
+        }
         if reload_option is not None:
             input_["reload_option"] = reload_option
 
@@ -7062,6 +8254,7 @@ class AsyncDatabaseMigrationServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def reload_tables(
@@ -7103,9 +8296,10 @@ class AsyncDatabaseMigrationServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_database_migration_service.types.reload_tables_message.ReloadTablesMessage = {}  # type: ignore[typeddict-item]
-        input_["replication_task_arn"] = replication_task_arn
-        input_["tables_to_reload"] = tables_to_reload
+        input_: capo_database_migration_service.types.reload_tables_message.ReloadTablesMessage = {
+            "replication_task_arn": replication_task_arn,
+            "tables_to_reload": tables_to_reload,
+        }
         if reload_option is not None:
             input_["reload_option"] = reload_option
 
@@ -7114,6 +8308,7 @@ class AsyncDatabaseMigrationServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def remove_tags_from_resource(
@@ -7157,15 +8352,17 @@ class AsyncDatabaseMigrationServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_database_migration_service.types.remove_tags_from_resource_message.RemoveTagsFromResourceMessage = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tag_keys"] = tag_keys
+        input_: capo_database_migration_service.types.remove_tags_from_resource_message.RemoveTagsFromResourceMessage = {
+            "resource_arn": resource_arn,
+            "tag_keys": tag_keys,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def run_fleet_advisor_lsa_analysis(
@@ -7203,6 +8400,7 @@ class AsyncDatabaseMigrationServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def start_data_migration(
@@ -7243,15 +8441,17 @@ class AsyncDatabaseMigrationServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_database_migration_service.types.start_data_migration_message.StartDataMigrationMessage = {}  # type: ignore[typeddict-item]
-        input_["data_migration_identifier"] = data_migration_identifier
-        input_["start_type"] = start_type
+        input_: capo_database_migration_service.types.start_data_migration_message.StartDataMigrationMessage = {
+            "data_migration_identifier": data_migration_identifier,
+            "start_type": start_type,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def start_extension_pack_association(
@@ -7299,14 +8499,16 @@ class AsyncDatabaseMigrationServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_database_migration_service.types.start_extension_pack_association_message.StartExtensionPackAssociationMessage = {}  # type: ignore[typeddict-item]
-        input_["migration_project_identifier"] = migration_project_identifier
+        input_: capo_database_migration_service.types.start_extension_pack_association_message.StartExtensionPackAssociationMessage = {
+            "migration_project_identifier": migration_project_identifier
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def start_metadata_model_assessment(
@@ -7357,15 +8559,17 @@ class AsyncDatabaseMigrationServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_database_migration_service.types.start_metadata_model_assessment_message.StartMetadataModelAssessmentMessage = {}  # type: ignore[typeddict-item]
-        input_["migration_project_identifier"] = migration_project_identifier
-        input_["selection_rules"] = selection_rules
+        input_: capo_database_migration_service.types.start_metadata_model_assessment_message.StartMetadataModelAssessmentMessage = {
+            "migration_project_identifier": migration_project_identifier,
+            "selection_rules": selection_rules,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def start_metadata_model_conversion(
@@ -7415,15 +8619,17 @@ class AsyncDatabaseMigrationServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_database_migration_service.types.start_metadata_model_conversion_message.StartMetadataModelConversionMessage = {}  # type: ignore[typeddict-item]
-        input_["migration_project_identifier"] = migration_project_identifier
-        input_["selection_rules"] = selection_rules
+        input_: capo_database_migration_service.types.start_metadata_model_conversion_message.StartMetadataModelConversionMessage = {
+            "migration_project_identifier": migration_project_identifier,
+            "selection_rules": selection_rules,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def start_metadata_model_creation(
@@ -7467,17 +8673,19 @@ class AsyncDatabaseMigrationServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_database_migration_service.types.start_metadata_model_creation_message.StartMetadataModelCreationMessage = {}  # type: ignore[typeddict-item]
-        input_["migration_project_identifier"] = migration_project_identifier
-        input_["selection_rules"] = selection_rules
-        input_["metadata_model_name"] = metadata_model_name
-        input_["properties"] = properties
+        input_: capo_database_migration_service.types.start_metadata_model_creation_message.StartMetadataModelCreationMessage = {
+            "migration_project_identifier": migration_project_identifier,
+            "selection_rules": selection_rules,
+            "metadata_model_name": metadata_model_name,
+            "properties": properties,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def start_metadata_model_export_as_script(
@@ -7533,10 +8741,11 @@ class AsyncDatabaseMigrationServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_database_migration_service.types.start_metadata_model_export_as_script_message.StartMetadataModelExportAsScriptMessage = {}  # type: ignore[typeddict-item]
-        input_["migration_project_identifier"] = migration_project_identifier
-        input_["selection_rules"] = selection_rules
-        input_["origin"] = origin
+        input_: capo_database_migration_service.types.start_metadata_model_export_as_script_message.StartMetadataModelExportAsScriptMessage = {
+            "migration_project_identifier": migration_project_identifier,
+            "selection_rules": selection_rules,
+            "origin": origin,
+        }
         if file_name is not None:
             input_["file_name"] = file_name
 
@@ -7545,6 +8754,7 @@ class AsyncDatabaseMigrationServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def start_metadata_model_export_to_target(
@@ -7598,9 +8808,10 @@ class AsyncDatabaseMigrationServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_database_migration_service.types.start_metadata_model_export_to_target_message.StartMetadataModelExportToTargetMessage = {}  # type: ignore[typeddict-item]
-        input_["migration_project_identifier"] = migration_project_identifier
-        input_["selection_rules"] = selection_rules
+        input_: capo_database_migration_service.types.start_metadata_model_export_to_target_message.StartMetadataModelExportToTargetMessage = {
+            "migration_project_identifier": migration_project_identifier,
+            "selection_rules": selection_rules,
+        }
         if overwrite_extension_pack is not None:
             input_["overwrite_extension_pack"] = overwrite_extension_pack
 
@@ -7609,6 +8820,7 @@ class AsyncDatabaseMigrationServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def start_metadata_model_import(
@@ -7664,10 +8876,11 @@ class AsyncDatabaseMigrationServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_database_migration_service.types.start_metadata_model_import_message.StartMetadataModelImportMessage = {}  # type: ignore[typeddict-item]
-        input_["migration_project_identifier"] = migration_project_identifier
-        input_["selection_rules"] = selection_rules
-        input_["origin"] = origin
+        input_: capo_database_migration_service.types.start_metadata_model_import_message.StartMetadataModelImportMessage = {
+            "migration_project_identifier": migration_project_identifier,
+            "selection_rules": selection_rules,
+            "origin": origin,
+        }
         if refresh is not None:
             input_["refresh"] = refresh
 
@@ -7676,6 +8889,7 @@ class AsyncDatabaseMigrationServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def start_recommendations(
@@ -7712,15 +8926,17 @@ class AsyncDatabaseMigrationServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_database_migration_service.types.start_recommendations_request.StartRecommendationsRequest = {}  # type: ignore[typeddict-item]
-        input_["database_id"] = database_id
-        input_["settings"] = settings
+        input_: capo_database_migration_service.types.start_recommendations_request.StartRecommendationsRequest = {
+            "database_id": database_id,
+            "settings": settings,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def start_replication(
@@ -7775,9 +8991,10 @@ class AsyncDatabaseMigrationServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_database_migration_service.types.start_replication_message.StartReplicationMessage = {}  # type: ignore[typeddict-item]
-        input_["replication_config_arn"] = replication_config_arn
-        input_["start_replication_type"] = start_replication_type
+        input_: capo_database_migration_service.types.start_replication_message.StartReplicationMessage = {
+            "replication_config_arn": replication_config_arn,
+            "start_replication_type": start_replication_type,
+        }
         if premigration_assessment_settings is not None:
             input_["premigration_assessment_settings"] = (
                 premigration_assessment_settings
@@ -7794,6 +9011,7 @@ class AsyncDatabaseMigrationServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def start_replication_task(
@@ -7850,9 +9068,10 @@ class AsyncDatabaseMigrationServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_database_migration_service.types.start_replication_task_message.StartReplicationTaskMessage = {}  # type: ignore[typeddict-item]
-        input_["replication_task_arn"] = replication_task_arn
-        input_["start_replication_task_type"] = start_replication_task_type
+        input_: capo_database_migration_service.types.start_replication_task_message.StartReplicationTaskMessage = {
+            "replication_task_arn": replication_task_arn,
+            "start_replication_task_type": start_replication_task_type,
+        }
         if cdc_start_time is not None:
             input_["cdc_start_time"] = cdc_start_time
         if cdc_start_position is not None:
@@ -7865,6 +9084,7 @@ class AsyncDatabaseMigrationServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def start_replication_task_assessment(
@@ -7900,14 +9120,16 @@ class AsyncDatabaseMigrationServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_database_migration_service.types.start_replication_task_assessment_message.StartReplicationTaskAssessmentMessage = {}  # type: ignore[typeddict-item]
-        input_["replication_task_arn"] = replication_task_arn
+        input_: capo_database_migration_service.types.start_replication_task_assessment_message.StartReplicationTaskAssessmentMessage = {
+            "replication_task_arn": replication_task_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def start_replication_task_assessment_run(
@@ -7981,17 +9203,18 @@ class AsyncDatabaseMigrationServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_database_migration_service.types.start_replication_task_assessment_run_message.StartReplicationTaskAssessmentRunMessage = {}  # type: ignore[typeddict-item]
-        input_["replication_task_arn"] = replication_task_arn
-        input_["service_access_role_arn"] = service_access_role_arn
-        input_["result_location_bucket"] = result_location_bucket
+        input_: capo_database_migration_service.types.start_replication_task_assessment_run_message.StartReplicationTaskAssessmentRunMessage = {
+            "replication_task_arn": replication_task_arn,
+            "service_access_role_arn": service_access_role_arn,
+            "result_location_bucket": result_location_bucket,
+            "assessment_run_name": assessment_run_name,
+        }
         if result_location_folder is not None:
             input_["result_location_folder"] = result_location_folder
         if result_encryption_mode is not None:
             input_["result_encryption_mode"] = result_encryption_mode
         if result_kms_key_arn is not None:
             input_["result_kms_key_arn"] = result_kms_key_arn
-        input_["assessment_run_name"] = assessment_run_name
         if include_only is not None:
             input_["include_only"] = include_only
         if exclude is not None:
@@ -8004,6 +9227,7 @@ class AsyncDatabaseMigrationServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def stop_data_migration(
@@ -8040,14 +9264,16 @@ class AsyncDatabaseMigrationServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_database_migration_service.types.stop_data_migration_message.StopDataMigrationMessage = {}  # type: ignore[typeddict-item]
-        input_["data_migration_identifier"] = data_migration_identifier
+        input_: capo_database_migration_service.types.stop_data_migration_message.StopDataMigrationMessage = {
+            "data_migration_identifier": data_migration_identifier
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def stop_replication(
@@ -8084,14 +9310,16 @@ class AsyncDatabaseMigrationServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_database_migration_service.types.stop_replication_message.StopReplicationMessage = {}  # type: ignore[typeddict-item]
-        input_["replication_config_arn"] = replication_config_arn
+        input_: capo_database_migration_service.types.stop_replication_message.StopReplicationMessage = {
+            "replication_config_arn": replication_config_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def stop_replication_task(
@@ -8133,14 +9361,16 @@ class AsyncDatabaseMigrationServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_database_migration_service.types.stop_replication_task_message.StopReplicationTaskMessage = {}  # type: ignore[typeddict-item]
-        input_["replication_task_arn"] = replication_task_arn
+        input_: capo_database_migration_service.types.stop_replication_task_message.StopReplicationTaskMessage = {
+            "replication_task_arn": replication_task_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def test_connection(
@@ -8187,15 +9417,17 @@ class AsyncDatabaseMigrationServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_database_migration_service.types.test_connection_message.TestConnectionMessage = {}  # type: ignore[typeddict-item]
-        input_["replication_instance_arn"] = replication_instance_arn
-        input_["endpoint_arn"] = endpoint_arn
+        input_: capo_database_migration_service.types.test_connection_message.TestConnectionMessage = {
+            "replication_instance_arn": replication_instance_arn,
+            "endpoint_arn": endpoint_arn,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_subscriptions_to_event_bridge(
@@ -8233,7 +9465,7 @@ class AsyncDatabaseMigrationServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_database_migration_service.types.update_subscriptions_to_event_bridge_message.UpdateSubscriptionsToEventBridgeMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_database_migration_service.types.update_subscriptions_to_event_bridge_message.UpdateSubscriptionsToEventBridgeMessage = {}
         if force_move is not None:
             input_["force_move"] = force_move
 
@@ -8242,6 +9474,7 @@ class AsyncDatabaseMigrationServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def __aenter__(self) -> Self:

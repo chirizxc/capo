@@ -41,7 +41,7 @@ def serialize_aws_json_1_1(value: ResourceError) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ResourceError:
     out: ResourceError = {}  # type: ignore[typeddict-item]
-    if "ErrorCode" in data:
+    if data.get("ErrorCode") is not None:
         import capo_appstream.types.fleet_error_code
 
         out["error_code"] = (
@@ -49,9 +49,9 @@ def deserialize_aws_json_1_1(data: dict) -> ResourceError:
                 data["ErrorCode"]
             )
         )
-    if "ErrorMessage" in data:
+    if data.get("ErrorMessage") is not None:
         out["error_message"] = data["ErrorMessage"]
-    if "ErrorTimestamp" in data:
+    if data.get("ErrorTimestamp") is not None:
         import capo_appstream.types.timestamp
 
         out["error_timestamp"] = (

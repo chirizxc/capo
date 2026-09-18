@@ -28,8 +28,8 @@ def serialize_json(value: DescribeSignalingChannelInput) -> dict:
 
 def deserialize_json(data: dict) -> DescribeSignalingChannelInput:
     out: DescribeSignalingChannelInput = {}  # type: ignore[typeddict-item]
-    if "ChannelName" in data:
+    if data.get("ChannelName") is not None:
         out["channel_name"] = data["ChannelName"]
-    if "ChannelARN" in data:
+    if data.get("ChannelARN") is not None:
         out["channel_arn"] = data["ChannelARN"]
     return out

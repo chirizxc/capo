@@ -34,7 +34,7 @@ def serialize_json(value: UpdateUserSecurityProfilesRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateUserSecurityProfilesRequest:
     out: UpdateUserSecurityProfilesRequest = {}  # type: ignore[typeddict-item]
-    if "SecurityProfileIds" in data:
+    if data.get("SecurityProfileIds") is not None:
         import capo_connect.types.security_profile_ids
 
         out["security_profile_ids"] = (

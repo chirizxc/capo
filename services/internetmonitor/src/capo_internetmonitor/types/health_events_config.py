@@ -27,8 +27,26 @@ class HealthEventsConfig(TypedDict, closed=True):
 # --- restJson1 ser/de ---
 def serialize_json(value: HealthEventsConfig) -> dict:
     out: dict = {}
-    out["AvailabilityScoreThreshold"] = value.get("availability_score_threshold", 0)
-    out["PerformanceScoreThreshold"] = value.get("performance_score_threshold", 0)
+    out["AvailabilityScoreThreshold"] = (
+        "NaN"
+        if value.get("availability_score_threshold", 0)
+        != value.get("availability_score_threshold", 0)
+        else "Infinity"
+        if value.get("availability_score_threshold", 0) == float("inf")
+        else "-Infinity"
+        if value.get("availability_score_threshold", 0) == float("-inf")
+        else value.get("availability_score_threshold", 0)
+    )
+    out["PerformanceScoreThreshold"] = (
+        "NaN"
+        if value.get("performance_score_threshold", 0)
+        != value.get("performance_score_threshold", 0)
+        else "Infinity"
+        if value.get("performance_score_threshold", 0) == float("inf")
+        else "-Infinity"
+        if value.get("performance_score_threshold", 0) == float("-inf")
+        else value.get("performance_score_threshold", 0)
+    )
     if "availability_local_health_events_config" in value:
         import capo_internetmonitor.types.local_health_events_config
 
@@ -50,15 +68,15 @@ def serialize_json(value: HealthEventsConfig) -> dict:
 
 def deserialize_json(data: dict) -> HealthEventsConfig:
     out: HealthEventsConfig = {}  # type: ignore[typeddict-item]
-    if "AvailabilityScoreThreshold" in data:
-        out["availability_score_threshold"] = data["AvailabilityScoreThreshold"]
+    if data.get("AvailabilityScoreThreshold") is not None:
+        out["availability_score_threshold"] = float(data["AvailabilityScoreThreshold"])
     else:
         out["availability_score_threshold"] = 0
-    if "PerformanceScoreThreshold" in data:
-        out["performance_score_threshold"] = data["PerformanceScoreThreshold"]
+    if data.get("PerformanceScoreThreshold") is not None:
+        out["performance_score_threshold"] = float(data["PerformanceScoreThreshold"])
     else:
         out["performance_score_threshold"] = 0
-    if "AvailabilityLocalHealthEventsConfig" in data:
+    if data.get("AvailabilityLocalHealthEventsConfig") is not None:
         import capo_internetmonitor.types.local_health_events_config
 
         out["availability_local_health_events_config"] = (
@@ -66,7 +84,7 @@ def deserialize_json(data: dict) -> HealthEventsConfig:
                 data["AvailabilityLocalHealthEventsConfig"]
             )
         )
-    if "PerformanceLocalHealthEventsConfig" in data:
+    if data.get("PerformanceLocalHealthEventsConfig") is not None:
         import capo_internetmonitor.types.local_health_events_config
 
         out["performance_local_health_events_config"] = (

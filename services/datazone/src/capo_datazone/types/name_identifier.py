@@ -22,8 +22,8 @@ def serialize_json(value: NameIdentifier) -> dict:
 
 def deserialize_json(data: dict) -> NameIdentifier:
     out: NameIdentifier = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "namespace" in data:
+    if data.get("namespace") is not None:
         out["namespace"] = data["namespace"]
     return out

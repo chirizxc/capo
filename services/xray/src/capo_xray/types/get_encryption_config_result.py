@@ -27,7 +27,7 @@ def serialize_json(value: GetEncryptionConfigResult) -> dict:
 
 def deserialize_json(data: dict) -> GetEncryptionConfigResult:
     out: GetEncryptionConfigResult = {}  # type: ignore[typeddict-item]
-    if "EncryptionConfig" in data:
+    if data.get("EncryptionConfig") is not None:
         import capo_xray.types.encryption_config
 
         out["encryption_config"] = capo_xray.types.encryption_config.deserialize_json(

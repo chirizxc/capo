@@ -54,7 +54,7 @@ def serialize_aws_json_1_0(value: DataSourceConfiguration) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> DataSourceConfiguration:
     out: DataSourceConfiguration = {}  # type: ignore[typeddict-item]
-    if "DataSourceS3Configuration" in data:
+    if data.get("DataSourceS3Configuration") is not None:
         import capo_timestream_write.types.data_source_s3_configuration
 
         out["data_source_s3_configuration"] = (
@@ -66,7 +66,7 @@ def deserialize_aws_json_1_0(data: dict) -> DataSourceConfiguration:
         raise DeserializationError(
             "DataSourceConfiguration.data_source_s3_configuration required"
         )
-    if "CsvConfiguration" in data:
+    if data.get("CsvConfiguration") is not None:
         import capo_timestream_write.types.csv_configuration
 
         out["csv_configuration"] = (
@@ -74,7 +74,7 @@ def deserialize_aws_json_1_0(data: dict) -> DataSourceConfiguration:
                 data["CsvConfiguration"]
             )
         )
-    if "DataFormat" in data:
+    if data.get("DataFormat") is not None:
         import capo_timestream_write.types.batch_load_data_format
 
         out["data_format"] = (

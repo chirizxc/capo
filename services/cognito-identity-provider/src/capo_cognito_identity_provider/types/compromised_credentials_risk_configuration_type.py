@@ -43,7 +43,7 @@ def serialize_aws_json_1_1(value: CompromisedCredentialsRiskConfigurationType) -
 
 def deserialize_aws_json_1_1(data: dict) -> CompromisedCredentialsRiskConfigurationType:
     out: CompromisedCredentialsRiskConfigurationType = {}  # type: ignore[typeddict-item]
-    if "EventFilter" in data:
+    if data.get("EventFilter") is not None:
         import capo_cognito_identity_provider.types.event_filters_type
 
         out["event_filter"] = (
@@ -51,7 +51,7 @@ def deserialize_aws_json_1_1(data: dict) -> CompromisedCredentialsRiskConfigurat
                 data["EventFilter"]
             )
         )
-    if "Actions" in data:
+    if data.get("Actions") is not None:
         import capo_cognito_identity_provider.types.compromised_credentials_actions_type
 
         out["actions"] = (

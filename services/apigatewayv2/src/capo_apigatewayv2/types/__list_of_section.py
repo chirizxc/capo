@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> __listOfSection:
 
     out: __listOfSection = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_apigatewayv2.types.section.deserialize_json(item))
     return out

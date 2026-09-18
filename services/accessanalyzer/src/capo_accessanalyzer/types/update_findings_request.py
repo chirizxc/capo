@@ -46,22 +46,22 @@ def serialize_json(value: UpdateFindingsRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateFindingsRequest:
     out: UpdateFindingsRequest = {}  # type: ignore[typeddict-item]
-    if "analyzerArn" in data:
+    if data.get("analyzerArn") is not None:
         out["analyzer_arn"] = data["analyzerArn"]
     else:
         raise DeserializationError("UpdateFindingsRequest.analyzer_arn required")
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
     else:
         raise DeserializationError("UpdateFindingsRequest.status required")
-    if "ids" in data:
+    if data.get("ids") is not None:
         import capo_accessanalyzer.types.finding_id_list
 
         out["ids"] = capo_accessanalyzer.types.finding_id_list.deserialize_json(
             data["ids"]
         )
-    if "resourceArn" in data:
+    if data.get("resourceArn") is not None:
         out["resource_arn"] = data["resourceArn"]
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     return out

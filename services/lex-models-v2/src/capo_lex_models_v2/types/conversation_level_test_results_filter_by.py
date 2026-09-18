@@ -31,7 +31,7 @@ def serialize_json(value: ConversationLevelTestResultsFilterBy) -> dict:
 
 def deserialize_json(data: dict) -> ConversationLevelTestResultsFilterBy:
     out: ConversationLevelTestResultsFilterBy = {}  # type: ignore[typeddict-item]
-    if "endToEndResult" in data:
+    if data.get("endToEndResult") is not None:
         import capo_lex_models_v2.types.test_result_match_status
 
         out["end_to_end_result"] = (

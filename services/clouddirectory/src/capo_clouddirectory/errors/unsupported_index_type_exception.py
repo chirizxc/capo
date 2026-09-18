@@ -24,7 +24,7 @@ def serialize_json(value: UnsupportedIndexTypeException_) -> dict:
 
 def deserialize_json(data: dict) -> UnsupportedIndexTypeException_:
     out: UnsupportedIndexTypeException_ = {}  # type: ignore[typeddict-item]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     return out
 
@@ -34,15 +34,20 @@ class UnsupportedIndexTypeException(ServiceError):
 
     code: str | None = "UnsupportedIndexTypeException"
 
-    def __init__(self, data: UnsupportedIndexTypeException_):
+    def __init__(
+        self, data: UnsupportedIndexTypeException_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="UnsupportedIndexTypeException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "UnsupportedIndexTypeException":
-        return cls(deserialize_json(data))
+    def from_json(
+        cls, data: dict, message: str | None = None
+    ) -> "UnsupportedIndexTypeException":
+        return cls(deserialize_json(data), message)

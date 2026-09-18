@@ -54,9 +54,9 @@ def serialize_json(value: UpdateKxClusterDatabasesRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateKxClusterDatabasesRequest:
     out: UpdateKxClusterDatabasesRequest = {}  # type: ignore[typeddict-item]
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
-    if "databases" in data:
+    if data.get("databases") is not None:
         import capo_finspace.types.kx_database_configurations
 
         out["databases"] = (
@@ -66,7 +66,7 @@ def deserialize_json(data: dict) -> UpdateKxClusterDatabasesRequest:
         )
     else:
         raise DeserializationError("UpdateKxClusterDatabasesRequest.databases required")
-    if "deploymentConfiguration" in data:
+    if data.get("deploymentConfiguration") is not None:
         import capo_finspace.types.kx_deployment_configuration
 
         out["deployment_configuration"] = (

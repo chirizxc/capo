@@ -32,10 +32,10 @@ def serialize_json(value: AssociateApprovedOriginRequest) -> dict:
 
 def deserialize_json(data: dict) -> AssociateApprovedOriginRequest:
     out: AssociateApprovedOriginRequest = {}  # type: ignore[typeddict-item]
-    if "Origin" in data:
+    if data.get("Origin") is not None:
         out["origin"] = data["Origin"]
     else:
         raise DeserializationError("AssociateApprovedOriginRequest.origin required")
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
     return out

@@ -25,6 +25,6 @@ def serialize_aws_json_1_1(value: DescribeTrainingPlanRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeTrainingPlanRequest:
     out: DescribeTrainingPlanRequest = {}  # type: ignore[typeddict-item]
-    if "TrainingPlanName" in data:
+    if data.get("TrainingPlanName") is not None:
         out["training_plan_name"] = data["TrainingPlanName"]
     return out

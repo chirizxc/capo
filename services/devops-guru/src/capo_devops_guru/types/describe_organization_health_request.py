@@ -40,13 +40,13 @@ def serialize_json(value: DescribeOrganizationHealthRequest) -> dict:
 
 def deserialize_json(data: dict) -> DescribeOrganizationHealthRequest:
     out: DescribeOrganizationHealthRequest = {}  # type: ignore[typeddict-item]
-    if "AccountIds" in data:
+    if data.get("AccountIds") is not None:
         import capo_devops_guru.types.account_id_list
 
         out["account_ids"] = capo_devops_guru.types.account_id_list.deserialize_json(
             data["AccountIds"]
         )
-    if "OrganizationalUnitIds" in data:
+    if data.get("OrganizationalUnitIds") is not None:
         import capo_devops_guru.types.organizational_unit_id_list
 
         out["organizational_unit_ids"] = (

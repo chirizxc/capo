@@ -22,8 +22,8 @@ def serialize_json(value: DeleteStatisticsValueMap) -> dict:
 
 def deserialize_json(data: dict) -> DeleteStatisticsValueMap:
     out: DeleteStatisticsValueMap = {}  # type: ignore[typeddict-item]
-    if "active" in data:
+    if data.get("active") is not None:
         out["active"] = data["active"]
-    if "statisticsId" in data:
+    if data.get("statisticsId") is not None:
         out["statistics_id"] = data["statisticsId"]
     return out

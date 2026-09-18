@@ -42,13 +42,13 @@ def serialize_aws_json_1_1(value: UpdateNotificationSettingsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateNotificationSettingsRequest:
     out: UpdateNotificationSettingsRequest = {}  # type: ignore[typeddict-item]
-    if "HITTypeId" in data:
+    if data.get("HITTypeId") is not None:
         out["hit_type_id"] = data["HITTypeId"]
     else:
         raise DeserializationError(
             "UpdateNotificationSettingsRequest.hit_type_id required"
         )
-    if "Notification" in data:
+    if data.get("Notification") is not None:
         import capo_mturk.types.notification_specification
 
         out["notification"] = (
@@ -56,6 +56,6 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateNotificationSettingsRequest:
                 data["Notification"]
             )
         )
-    if "Active" in data:
+    if data.get("Active") is not None:
         out["active"] = data["Active"]
     return out

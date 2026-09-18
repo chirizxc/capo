@@ -31,7 +31,7 @@ def serialize_json(value: GetServiceSettingsOutput) -> dict:
 
 def deserialize_json(data: dict) -> GetServiceSettingsOutput:
     out: GetServiceSettingsOutput = {}  # type: ignore[typeddict-item]
-    if "ServiceSettings" in data:
+    if data.get("ServiceSettings") is not None:
         import capo_ssm_quicksetup.types.service_settings
 
         out["service_settings"] = (

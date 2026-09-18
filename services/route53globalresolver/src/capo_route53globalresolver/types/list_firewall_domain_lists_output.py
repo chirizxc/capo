@@ -36,9 +36,9 @@ def serialize_json(value: ListFirewallDomainListsOutput) -> dict:
 
 def deserialize_json(data: dict) -> ListFirewallDomainListsOutput:
     out: ListFirewallDomainListsOutput = {}  # type: ignore[typeddict-item]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "firewallDomainLists" in data:
+    if data.get("firewallDomainLists") is not None:
         import capo_route53globalresolver.types.firewall_domain_lists
 
         out["firewall_domain_lists"] = (

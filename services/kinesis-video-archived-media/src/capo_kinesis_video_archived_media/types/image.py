@@ -49,7 +49,7 @@ def serialize_json(value: Image) -> dict:
 
 def deserialize_json(data: dict) -> Image:
     out: Image = {}  # type: ignore[typeddict-item]
-    if "TimeStamp" in data:
+    if data.get("TimeStamp") is not None:
         import capo_kinesis_video_archived_media.types.timestamp
 
         out["time_stamp"] = (
@@ -57,7 +57,7 @@ def deserialize_json(data: dict) -> Image:
                 data["TimeStamp"]
             )
         )
-    if "Error" in data:
+    if data.get("Error") is not None:
         import capo_kinesis_video_archived_media.types.image_error
 
         out["error"] = (
@@ -65,6 +65,6 @@ def deserialize_json(data: dict) -> Image:
                 data["Error"]
             )
         )
-    if "ImageContent" in data:
+    if data.get("ImageContent") is not None:
         out["image_content"] = data["ImageContent"]
     return out

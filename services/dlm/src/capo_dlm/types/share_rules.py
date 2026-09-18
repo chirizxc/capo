@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> ShareRules:
 
     out: ShareRules = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_dlm.types.share_rule.deserialize_json(item))
     return out

@@ -24,7 +24,7 @@ def serialize_json(value: FileContent) -> dict:
 
 def deserialize_json(data: dict) -> FileContent:
     out: FileContent = {}  # type: ignore[typeddict-item]
-    if "fileArn" in data:
+    if data.get("fileArn") is not None:
         out["file_arn"] = data["fileArn"]
     else:
         raise DeserializationError("FileContent.file_arn required")

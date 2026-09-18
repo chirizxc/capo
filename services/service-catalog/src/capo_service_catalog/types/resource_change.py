@@ -81,7 +81,7 @@ def serialize_aws_json_1_1(value: ResourceChange) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ResourceChange:
     out: ResourceChange = {}  # type: ignore[typeddict-item]
-    if "Action" in data:
+    if data.get("Action") is not None:
         import capo_service_catalog.types.change_action
 
         out["action"] = (
@@ -89,13 +89,13 @@ def deserialize_aws_json_1_1(data: dict) -> ResourceChange:
                 data["Action"]
             )
         )
-    if "LogicalResourceId" in data:
+    if data.get("LogicalResourceId") is not None:
         out["logical_resource_id"] = data["LogicalResourceId"]
-    if "PhysicalResourceId" in data:
+    if data.get("PhysicalResourceId") is not None:
         out["physical_resource_id"] = data["PhysicalResourceId"]
-    if "ResourceType" in data:
+    if data.get("ResourceType") is not None:
         out["resource_type"] = data["ResourceType"]
-    if "Replacement" in data:
+    if data.get("Replacement") is not None:
         import capo_service_catalog.types.replacement
 
         out["replacement"] = (
@@ -103,13 +103,13 @@ def deserialize_aws_json_1_1(data: dict) -> ResourceChange:
                 data["Replacement"]
             )
         )
-    if "Scope" in data:
+    if data.get("Scope") is not None:
         import capo_service_catalog.types.scope
 
         out["scope"] = capo_service_catalog.types.scope.deserialize_aws_json_1_1(
             data["Scope"]
         )
-    if "Details" in data:
+    if data.get("Details") is not None:
         import capo_service_catalog.types.resource_change_details
 
         out["details"] = (

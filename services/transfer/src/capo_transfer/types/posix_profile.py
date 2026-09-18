@@ -38,15 +38,15 @@ def serialize_aws_json_1_1(value: PosixProfile) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PosixProfile:
     out: PosixProfile = {}  # type: ignore[typeddict-item]
-    if "Uid" in data:
+    if data.get("Uid") is not None:
         out["uid"] = data["Uid"]
     else:
         raise DeserializationError("PosixProfile.uid required")
-    if "Gid" in data:
+    if data.get("Gid") is not None:
         out["gid"] = data["Gid"]
     else:
         raise DeserializationError("PosixProfile.gid required")
-    if "SecondaryGids" in data:
+    if data.get("SecondaryGids") is not None:
         import capo_transfer.types.secondary_gids
 
         out["secondary_gids"] = (

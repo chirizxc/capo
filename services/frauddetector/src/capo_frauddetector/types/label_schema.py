@@ -42,7 +42,7 @@ def serialize_aws_json_1_1(value: LabelSchema) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> LabelSchema:
     out: LabelSchema = {}  # type: ignore[typeddict-item]
-    if "labelMapper" in data:
+    if data.get("labelMapper") is not None:
         import capo_frauddetector.types.label_mapper
 
         out["label_mapper"] = (
@@ -50,7 +50,7 @@ def deserialize_aws_json_1_1(data: dict) -> LabelSchema:
                 data["labelMapper"]
             )
         )
-    if "unlabeledEventsTreatment" in data:
+    if data.get("unlabeledEventsTreatment") is not None:
         import capo_frauddetector.types.unlabeled_events_treatment
 
         out["unlabeled_events_treatment"] = (

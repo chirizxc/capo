@@ -54,16 +54,16 @@ def serialize_json(value: DescribeEntityResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribeEntityResponse:
     out: DescribeEntityResponse = {}  # type: ignore[typeddict-item]
-    if "EntityType" in data:
+    if data.get("EntityType") is not None:
         out["entity_type"] = data["EntityType"]
-    if "EntityIdentifier" in data:
+    if data.get("EntityIdentifier") is not None:
         out["entity_identifier"] = data["EntityIdentifier"]
-    if "EntityArn" in data:
+    if data.get("EntityArn") is not None:
         out["entity_arn"] = data["EntityArn"]
-    if "LastModifiedDate" in data:
+    if data.get("LastModifiedDate") is not None:
         out["last_modified_date"] = data["LastModifiedDate"]
-    if "Details" in data:
+    if data.get("Details") is not None:
         out["details"] = data["Details"]
-    if "DetailsDocument" in data:
+    if data.get("DetailsDocument") is not None:
         out["details_document"] = data["DetailsDocument"]
     return out

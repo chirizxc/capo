@@ -1,6 +1,7 @@
 """Generated from Smithy shape ``com.amazonaws.applicationinsights#EC2WindowsBarleyService``."""
 
 import warnings
+from collections.abc import Iterator
 from typing import TYPE_CHECKING, Any, Iterable, Optional
 
 from typing_extensions import Self, TypedDict
@@ -16,6 +17,7 @@ from capo_application_insights._auth._providers import (
     default_aws_credentials_chain,
 )
 from capo_application_insights._auth._zapros_handler import AuthMiddleware
+from capo_application_insights._pagination import resolve_path as _resolve_path
 from capo_application_insights._services._aws_config import aws_config
 from capo_application_insights._services._pipeline import (
     Interceptor,
@@ -263,16 +265,18 @@ class ApplicationInsightsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_application_insights.types.add_workload_request.AddWorkloadRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_group_name"] = resource_group_name
-        input_["component_name"] = component_name
-        input_["workload_configuration"] = workload_configuration
+        input_: capo_application_insights.types.add_workload_request.AddWorkloadRequest = {
+            "resource_group_name": resource_group_name,
+            "component_name": component_name,
+            "workload_configuration": workload_configuration,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_application(
@@ -347,7 +351,7 @@ class ApplicationInsightsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_application_insights.types.create_application_request.CreateApplicationRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_application_insights.types.create_application_request.CreateApplicationRequest = {}
         if resource_group_name is not None:
             input_["resource_group_name"] = resource_group_name
         if ops_center_enabled is not None:
@@ -374,6 +378,7 @@ class ApplicationInsightsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_component(
@@ -414,16 +419,18 @@ class ApplicationInsightsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_application_insights.types.create_component_request.CreateComponentRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_group_name"] = resource_group_name
-        input_["component_name"] = component_name
-        input_["resource_list"] = resource_list
+        input_: capo_application_insights.types.create_component_request.CreateComponentRequest = {
+            "resource_group_name": resource_group_name,
+            "component_name": component_name,
+            "resource_list": resource_list,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_log_pattern(
@@ -468,18 +475,20 @@ class ApplicationInsightsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_application_insights.types.create_log_pattern_request.CreateLogPatternRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_group_name"] = resource_group_name
-        input_["pattern_set_name"] = pattern_set_name
-        input_["pattern_name"] = pattern_name
-        input_["pattern"] = pattern
-        input_["rank"] = rank
+        input_: capo_application_insights.types.create_log_pattern_request.CreateLogPatternRequest = {
+            "resource_group_name": resource_group_name,
+            "pattern_set_name": pattern_set_name,
+            "pattern_name": pattern_name,
+            "pattern": pattern,
+            "rank": rank,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_application(
@@ -516,14 +525,16 @@ class ApplicationInsightsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_application_insights.types.delete_application_request.DeleteApplicationRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_group_name"] = resource_group_name
+        input_: capo_application_insights.types.delete_application_request.DeleteApplicationRequest = {
+            "resource_group_name": resource_group_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_component(
@@ -561,15 +572,17 @@ class ApplicationInsightsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_application_insights.types.delete_component_request.DeleteComponentRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_group_name"] = resource_group_name
-        input_["component_name"] = component_name
+        input_: capo_application_insights.types.delete_component_request.DeleteComponentRequest = {
+            "resource_group_name": resource_group_name,
+            "component_name": component_name,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_log_pattern(
@@ -610,16 +623,18 @@ class ApplicationInsightsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_application_insights.types.delete_log_pattern_request.DeleteLogPatternRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_group_name"] = resource_group_name
-        input_["pattern_set_name"] = pattern_set_name
-        input_["pattern_name"] = pattern_name
+        input_: capo_application_insights.types.delete_log_pattern_request.DeleteLogPatternRequest = {
+            "resource_group_name": resource_group_name,
+            "pattern_set_name": pattern_set_name,
+            "pattern_name": pattern_name,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_application(
@@ -659,8 +674,9 @@ class ApplicationInsightsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_application_insights.types.describe_application_request.DescribeApplicationRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_group_name"] = resource_group_name
+        input_: capo_application_insights.types.describe_application_request.DescribeApplicationRequest = {
+            "resource_group_name": resource_group_name
+        }
         if account_id is not None:
             input_["account_id"] = account_id
 
@@ -669,6 +685,7 @@ class ApplicationInsightsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_component(
@@ -710,9 +727,10 @@ class ApplicationInsightsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_application_insights.types.describe_component_request.DescribeComponentRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_group_name"] = resource_group_name
-        input_["component_name"] = component_name
+        input_: capo_application_insights.types.describe_component_request.DescribeComponentRequest = {
+            "resource_group_name": resource_group_name,
+            "component_name": component_name,
+        }
         if account_id is not None:
             input_["account_id"] = account_id
 
@@ -721,6 +739,7 @@ class ApplicationInsightsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_component_configuration(
@@ -762,9 +781,10 @@ class ApplicationInsightsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_application_insights.types.describe_component_configuration_request.DescribeComponentConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_group_name"] = resource_group_name
-        input_["component_name"] = component_name
+        input_: capo_application_insights.types.describe_component_configuration_request.DescribeComponentConfigurationRequest = {
+            "resource_group_name": resource_group_name,
+            "component_name": component_name,
+        }
         if account_id is not None:
             input_["account_id"] = account_id
 
@@ -773,6 +793,7 @@ class ApplicationInsightsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_component_configuration_recommendation(
@@ -820,10 +841,11 @@ class ApplicationInsightsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_application_insights.types.describe_component_configuration_recommendation_request.DescribeComponentConfigurationRecommendationRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_group_name"] = resource_group_name
-        input_["component_name"] = component_name
-        input_["tier"] = tier
+        input_: capo_application_insights.types.describe_component_configuration_recommendation_request.DescribeComponentConfigurationRecommendationRequest = {
+            "resource_group_name": resource_group_name,
+            "component_name": component_name,
+            "tier": tier,
+        }
         if workload_name is not None:
             input_["workload_name"] = workload_name
         if recommendation_type is not None:
@@ -834,6 +856,7 @@ class ApplicationInsightsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_log_pattern(
@@ -877,10 +900,11 @@ class ApplicationInsightsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_application_insights.types.describe_log_pattern_request.DescribeLogPatternRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_group_name"] = resource_group_name
-        input_["pattern_set_name"] = pattern_set_name
-        input_["pattern_name"] = pattern_name
+        input_: capo_application_insights.types.describe_log_pattern_request.DescribeLogPatternRequest = {
+            "resource_group_name": resource_group_name,
+            "pattern_set_name": pattern_set_name,
+            "pattern_name": pattern_name,
+        }
         if account_id is not None:
             input_["account_id"] = account_id
 
@@ -889,6 +913,7 @@ class ApplicationInsightsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_observation(
@@ -928,8 +953,9 @@ class ApplicationInsightsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_application_insights.types.describe_observation_request.DescribeObservationRequest = {}  # type: ignore[typeddict-item]
-        input_["observation_id"] = observation_id
+        input_: capo_application_insights.types.describe_observation_request.DescribeObservationRequest = {
+            "observation_id": observation_id
+        }
         if account_id is not None:
             input_["account_id"] = account_id
 
@@ -938,6 +964,7 @@ class ApplicationInsightsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_problem(
@@ -977,8 +1004,9 @@ class ApplicationInsightsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_application_insights.types.describe_problem_request.DescribeProblemRequest = {}  # type: ignore[typeddict-item]
-        input_["problem_id"] = problem_id
+        input_: capo_application_insights.types.describe_problem_request.DescribeProblemRequest = {
+            "problem_id": problem_id
+        }
         if account_id is not None:
             input_["account_id"] = account_id
 
@@ -987,6 +1015,7 @@ class ApplicationInsightsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_problem_observations(
@@ -1026,8 +1055,9 @@ class ApplicationInsightsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_application_insights.types.describe_problem_observations_request.DescribeProblemObservationsRequest = {}  # type: ignore[typeddict-item]
-        input_["problem_id"] = problem_id
+        input_: capo_application_insights.types.describe_problem_observations_request.DescribeProblemObservationsRequest = {
+            "problem_id": problem_id
+        }
         if account_id is not None:
             input_["account_id"] = account_id
 
@@ -1036,6 +1066,7 @@ class ApplicationInsightsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_workload(
@@ -1079,10 +1110,11 @@ class ApplicationInsightsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_application_insights.types.describe_workload_request.DescribeWorkloadRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_group_name"] = resource_group_name
-        input_["component_name"] = component_name
-        input_["workload_id"] = workload_id
+        input_: capo_application_insights.types.describe_workload_request.DescribeWorkloadRequest = {
+            "resource_group_name": resource_group_name,
+            "component_name": component_name,
+            "workload_id": workload_id,
+        }
         if account_id is not None:
             input_["account_id"] = account_id
 
@@ -1091,6 +1123,7 @@ class ApplicationInsightsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_applications(
@@ -1135,7 +1168,7 @@ class ApplicationInsightsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_application_insights.types.list_applications_request.ListApplicationsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_application_insights.types.list_applications_request.ListApplicationsRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -1148,7 +1181,35 @@ class ApplicationInsightsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_applications(
+        self,
+        *,
+        config_overrides: Optional[ApplicationInsightsClientConfig] = None,
+        max_results: Optional[
+            "capo_application_insights.types.max_entities.MaxEntities"
+        ] = None,
+        next_token: Optional[
+            "capo_application_insights.types.pagination_token.PaginationToken"
+        ] = None,
+        account_id: Optional[
+            "capo_application_insights.types.account_id.AccountId"
+        ] = None,
+    ) -> "Iterator[capo_application_insights.types.list_applications_response.ListApplicationsResponse]":
+        _token = next_token
+        while True:
+            _response = self.list_applications(
+                config_overrides=config_overrides,
+                max_results=max_results,
+                next_token=_token,
+                account_id=account_id,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def list_components(
         self,
@@ -1195,8 +1256,9 @@ class ApplicationInsightsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_application_insights.types.list_components_request.ListComponentsRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_group_name"] = resource_group_name
+        input_: capo_application_insights.types.list_components_request.ListComponentsRequest = {
+            "resource_group_name": resource_group_name
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -1209,7 +1271,37 @@ class ApplicationInsightsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_components(
+        self,
+        resource_group_name: "capo_application_insights.types.resource_group_name.ResourceGroupName",
+        *,
+        config_overrides: Optional[ApplicationInsightsClientConfig] = None,
+        max_results: Optional[
+            "capo_application_insights.types.max_entities.MaxEntities"
+        ] = None,
+        next_token: Optional[
+            "capo_application_insights.types.pagination_token.PaginationToken"
+        ] = None,
+        account_id: Optional[
+            "capo_application_insights.types.account_id.AccountId"
+        ] = None,
+    ) -> "Iterator[capo_application_insights.types.list_components_response.ListComponentsResponse]":
+        _token = next_token
+        while True:
+            _response = self.list_components(
+                resource_group_name,
+                config_overrides=config_overrides,
+                max_results=max_results,
+                next_token=_token,
+                account_id=account_id,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def list_configuration_history(
         self,
@@ -1268,7 +1360,7 @@ class ApplicationInsightsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_application_insights.types.list_configuration_history_request.ListConfigurationHistoryRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_application_insights.types.list_configuration_history_request.ListConfigurationHistoryRequest = {}
         if resource_group_name is not None:
             input_["resource_group_name"] = resource_group_name
         if start_time is not None:
@@ -1289,7 +1381,49 @@ class ApplicationInsightsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_configuration_history(
+        self,
+        *,
+        config_overrides: Optional[ApplicationInsightsClientConfig] = None,
+        resource_group_name: Optional[
+            "capo_application_insights.types.resource_group_name.ResourceGroupName"
+        ] = None,
+        start_time: Optional[
+            "capo_application_insights.types.start_time.StartTime"
+        ] = None,
+        end_time: Optional["capo_application_insights.types.end_time.EndTime"] = None,
+        event_status: Optional[
+            "capo_application_insights.types.configuration_event_status.ConfigurationEventStatus"
+        ] = None,
+        max_results: Optional[
+            "capo_application_insights.types.max_entities.MaxEntities"
+        ] = None,
+        next_token: Optional[
+            "capo_application_insights.types.pagination_token.PaginationToken"
+        ] = None,
+        account_id: Optional[
+            "capo_application_insights.types.account_id.AccountId"
+        ] = None,
+    ) -> "Iterator[capo_application_insights.types.list_configuration_history_response.ListConfigurationHistoryResponse]":
+        _token = next_token
+        while True:
+            _response = self.list_configuration_history(
+                config_overrides=config_overrides,
+                resource_group_name=resource_group_name,
+                start_time=start_time,
+                end_time=end_time,
+                event_status=event_status,
+                max_results=max_results,
+                next_token=_token,
+                account_id=account_id,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def list_log_patterns(
         self,
@@ -1340,8 +1474,9 @@ class ApplicationInsightsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_application_insights.types.list_log_patterns_request.ListLogPatternsRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_group_name"] = resource_group_name
+        input_: capo_application_insights.types.list_log_patterns_request.ListLogPatternsRequest = {
+            "resource_group_name": resource_group_name
+        }
         if pattern_set_name is not None:
             input_["pattern_set_name"] = pattern_set_name
         if max_results is not None:
@@ -1356,7 +1491,41 @@ class ApplicationInsightsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_log_patterns(
+        self,
+        resource_group_name: "capo_application_insights.types.resource_group_name.ResourceGroupName",
+        *,
+        config_overrides: Optional[ApplicationInsightsClientConfig] = None,
+        pattern_set_name: Optional[
+            "capo_application_insights.types.log_pattern_set_name.LogPatternSetName"
+        ] = None,
+        max_results: Optional[
+            "capo_application_insights.types.max_entities.MaxEntities"
+        ] = None,
+        next_token: Optional[
+            "capo_application_insights.types.pagination_token.PaginationToken"
+        ] = None,
+        account_id: Optional[
+            "capo_application_insights.types.account_id.AccountId"
+        ] = None,
+    ) -> "Iterator[capo_application_insights.types.list_log_patterns_response.ListLogPatternsResponse]":
+        _token = next_token
+        while True:
+            _response = self.list_log_patterns(
+                resource_group_name,
+                config_overrides=config_overrides,
+                pattern_set_name=pattern_set_name,
+                max_results=max_results,
+                next_token=_token,
+                account_id=account_id,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def list_log_pattern_sets(
         self,
@@ -1403,8 +1572,9 @@ class ApplicationInsightsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_application_insights.types.list_log_pattern_sets_request.ListLogPatternSetsRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_group_name"] = resource_group_name
+        input_: capo_application_insights.types.list_log_pattern_sets_request.ListLogPatternSetsRequest = {
+            "resource_group_name": resource_group_name
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -1417,7 +1587,37 @@ class ApplicationInsightsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_log_pattern_sets(
+        self,
+        resource_group_name: "capo_application_insights.types.resource_group_name.ResourceGroupName",
+        *,
+        config_overrides: Optional[ApplicationInsightsClientConfig] = None,
+        max_results: Optional[
+            "capo_application_insights.types.max_entities.MaxEntities"
+        ] = None,
+        next_token: Optional[
+            "capo_application_insights.types.pagination_token.PaginationToken"
+        ] = None,
+        account_id: Optional[
+            "capo_application_insights.types.account_id.AccountId"
+        ] = None,
+    ) -> "Iterator[capo_application_insights.types.list_log_pattern_sets_response.ListLogPatternSetsResponse]":
+        _token = next_token
+        while True:
+            _response = self.list_log_pattern_sets(
+                resource_group_name,
+                config_overrides=config_overrides,
+                max_results=max_results,
+                next_token=_token,
+                account_id=account_id,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def list_problems(
         self,
@@ -1480,7 +1680,7 @@ class ApplicationInsightsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_application_insights.types.list_problems_request.ListProblemsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_application_insights.types.list_problems_request.ListProblemsRequest = {}
         if account_id is not None:
             input_["account_id"] = account_id
         if resource_group_name is not None:
@@ -1503,7 +1703,53 @@ class ApplicationInsightsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_problems(
+        self,
+        *,
+        config_overrides: Optional[ApplicationInsightsClientConfig] = None,
+        account_id: Optional[
+            "capo_application_insights.types.account_id.AccountId"
+        ] = None,
+        resource_group_name: Optional[
+            "capo_application_insights.types.resource_group_name.ResourceGroupName"
+        ] = None,
+        start_time: Optional[
+            "capo_application_insights.types.start_time.StartTime"
+        ] = None,
+        end_time: Optional["capo_application_insights.types.end_time.EndTime"] = None,
+        max_results: Optional[
+            "capo_application_insights.types.max_entities.MaxEntities"
+        ] = None,
+        next_token: Optional[
+            "capo_application_insights.types.pagination_token.PaginationToken"
+        ] = None,
+        component_name: Optional[
+            "capo_application_insights.types.component_name.ComponentName"
+        ] = None,
+        visibility: Optional[
+            "capo_application_insights.types.visibility.Visibility"
+        ] = None,
+    ) -> "Iterator[capo_application_insights.types.list_problems_response.ListProblemsResponse]":
+        _token = next_token
+        while True:
+            _response = self.list_problems(
+                config_overrides=config_overrides,
+                account_id=account_id,
+                resource_group_name=resource_group_name,
+                start_time=start_time,
+                end_time=end_time,
+                max_results=max_results,
+                next_token=_token,
+                component_name=component_name,
+                visibility=visibility,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def list_tags_for_resource(
         self,
@@ -1537,14 +1783,16 @@ class ApplicationInsightsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_application_insights.types.list_tags_for_resource_request.ListTagsForResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_application_insights.types.list_tags_for_resource_request.ListTagsForResourceRequest = {
+            "resource_arn": resource_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_workloads(
@@ -1596,9 +1844,10 @@ class ApplicationInsightsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_application_insights.types.list_workloads_request.ListWorkloadsRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_group_name"] = resource_group_name
-        input_["component_name"] = component_name
+        input_: capo_application_insights.types.list_workloads_request.ListWorkloadsRequest = {
+            "resource_group_name": resource_group_name,
+            "component_name": component_name,
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -1611,7 +1860,39 @@ class ApplicationInsightsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_workloads(
+        self,
+        resource_group_name: "capo_application_insights.types.resource_group_name.ResourceGroupName",
+        component_name: "capo_application_insights.types.component_name.ComponentName",
+        *,
+        config_overrides: Optional[ApplicationInsightsClientConfig] = None,
+        max_results: Optional[
+            "capo_application_insights.types.max_entities.MaxEntities"
+        ] = None,
+        next_token: Optional[
+            "capo_application_insights.types.pagination_token.PaginationToken"
+        ] = None,
+        account_id: Optional[
+            "capo_application_insights.types.account_id.AccountId"
+        ] = None,
+    ) -> "Iterator[capo_application_insights.types.list_workloads_response.ListWorkloadsResponse]":
+        _token = next_token
+        while True:
+            _response = self.list_workloads(
+                resource_group_name,
+                component_name,
+                config_overrides=config_overrides,
+                max_results=max_results,
+                next_token=_token,
+                account_id=account_id,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def remove_workload(
         self,
@@ -1650,16 +1931,18 @@ class ApplicationInsightsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_application_insights.types.remove_workload_request.RemoveWorkloadRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_group_name"] = resource_group_name
-        input_["component_name"] = component_name
-        input_["workload_id"] = workload_id
+        input_: capo_application_insights.types.remove_workload_request.RemoveWorkloadRequest = {
+            "resource_group_name": resource_group_name,
+            "component_name": component_name,
+            "workload_id": workload_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def tag_resource(
@@ -1697,15 +1980,17 @@ class ApplicationInsightsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_application_insights.types.tag_resource_request.TagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tags"] = tags
+        input_: capo_application_insights.types.tag_resource_request.TagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tags": tags,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def untag_resource(
@@ -1744,15 +2029,17 @@ class ApplicationInsightsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_application_insights.types.untag_resource_request.UntagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tag_keys"] = tag_keys
+        input_: capo_application_insights.types.untag_resource_request.UntagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tag_keys": tag_keys,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_application(
@@ -1816,8 +2103,9 @@ class ApplicationInsightsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_application_insights.types.update_application_request.UpdateApplicationRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_group_name"] = resource_group_name
+        input_: capo_application_insights.types.update_application_request.UpdateApplicationRequest = {
+            "resource_group_name": resource_group_name
+        }
         if ops_center_enabled is not None:
             input_["ops_center_enabled"] = ops_center_enabled
         if cwe_monitor_enabled is not None:
@@ -1838,6 +2126,7 @@ class ApplicationInsightsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_component(
@@ -1884,9 +2173,10 @@ class ApplicationInsightsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_application_insights.types.update_component_request.UpdateComponentRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_group_name"] = resource_group_name
-        input_["component_name"] = component_name
+        input_: capo_application_insights.types.update_component_request.UpdateComponentRequest = {
+            "resource_group_name": resource_group_name,
+            "component_name": component_name,
+        }
         if new_component_name is not None:
             input_["new_component_name"] = new_component_name
         if resource_list is not None:
@@ -1897,6 +2187,7 @@ class ApplicationInsightsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_component_configuration(
@@ -1947,9 +2238,10 @@ class ApplicationInsightsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_application_insights.types.update_component_configuration_request.UpdateComponentConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_group_name"] = resource_group_name
-        input_["component_name"] = component_name
+        input_: capo_application_insights.types.update_component_configuration_request.UpdateComponentConfigurationRequest = {
+            "resource_group_name": resource_group_name,
+            "component_name": component_name,
+        }
         if monitor is not None:
             input_["monitor"] = monitor
         if tier is not None:
@@ -1964,6 +2256,7 @@ class ApplicationInsightsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_log_pattern(
@@ -2012,10 +2305,11 @@ class ApplicationInsightsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_application_insights.types.update_log_pattern_request.UpdateLogPatternRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_group_name"] = resource_group_name
-        input_["pattern_set_name"] = pattern_set_name
-        input_["pattern_name"] = pattern_name
+        input_: capo_application_insights.types.update_log_pattern_request.UpdateLogPatternRequest = {
+            "resource_group_name": resource_group_name,
+            "pattern_set_name": pattern_set_name,
+            "pattern_name": pattern_name,
+        }
         if pattern is not None:
             input_["pattern"] = pattern
         if rank is not None:
@@ -2026,6 +2320,7 @@ class ApplicationInsightsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_problem(
@@ -2071,8 +2366,9 @@ class ApplicationInsightsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_application_insights.types.update_problem_request.UpdateProblemRequest = {}  # type: ignore[typeddict-item]
-        input_["problem_id"] = problem_id
+        input_: capo_application_insights.types.update_problem_request.UpdateProblemRequest = {
+            "problem_id": problem_id
+        }
         if update_status is not None:
             input_["update_status"] = update_status
         if visibility is not None:
@@ -2083,6 +2379,7 @@ class ApplicationInsightsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_workload(
@@ -2126,18 +2423,20 @@ class ApplicationInsightsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_application_insights.types.update_workload_request.UpdateWorkloadRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_group_name"] = resource_group_name
-        input_["component_name"] = component_name
+        input_: capo_application_insights.types.update_workload_request.UpdateWorkloadRequest = {
+            "resource_group_name": resource_group_name,
+            "component_name": component_name,
+            "workload_configuration": workload_configuration,
+        }
         if workload_id is not None:
             input_["workload_id"] = workload_id
-        input_["workload_configuration"] = workload_configuration
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def __enter__(self) -> Self:

@@ -38,13 +38,13 @@ def serialize_json(value: GetGroupResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetGroupResponse:
     out: GetGroupResponse = {}  # type: ignore[typeddict-item]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_qbusiness.types.group_status_detail
 
         out["status"] = capo_qbusiness.types.group_status_detail.deserialize_json(
             data["status"]
         )
-    if "statusHistory" in data:
+    if data.get("statusHistory") is not None:
         import capo_qbusiness.types.group_status_details
 
         out["status_history"] = (

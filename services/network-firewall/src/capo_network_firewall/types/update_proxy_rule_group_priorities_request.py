@@ -48,11 +48,11 @@ def serialize_aws_json_1_0(value: UpdateProxyRuleGroupPrioritiesRequest) -> dict
 
 def deserialize_aws_json_1_0(data: dict) -> UpdateProxyRuleGroupPrioritiesRequest:
     out: UpdateProxyRuleGroupPrioritiesRequest = {}  # type: ignore[typeddict-item]
-    if "ProxyConfigurationName" in data:
+    if data.get("ProxyConfigurationName") is not None:
         out["proxy_configuration_name"] = data["ProxyConfigurationName"]
-    if "ProxyConfigurationArn" in data:
+    if data.get("ProxyConfigurationArn") is not None:
         out["proxy_configuration_arn"] = data["ProxyConfigurationArn"]
-    if "RuleGroups" in data:
+    if data.get("RuleGroups") is not None:
         import capo_network_firewall.types.proxy_rule_group_priority_list
 
         out["rule_groups"] = (
@@ -64,7 +64,7 @@ def deserialize_aws_json_1_0(data: dict) -> UpdateProxyRuleGroupPrioritiesReques
         raise DeserializationError(
             "UpdateProxyRuleGroupPrioritiesRequest.rule_groups required"
         )
-    if "UpdateToken" in data:
+    if data.get("UpdateToken") is not None:
         out["update_token"] = data["UpdateToken"]
     else:
         raise DeserializationError(

@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> __listOfRoutingControl:
 
     out: __listOfRoutingControl = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_route53_recovery_control_config.types.routing_control.deserialize_json(
                 item

@@ -39,11 +39,11 @@ def serialize_json(value: CreateLinkRoutingRuleResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateLinkRoutingRuleResponse:
     out: CreateLinkRoutingRuleResponse = {}  # type: ignore[typeddict-item]
-    if "ruleId" in data:
+    if data.get("ruleId") is not None:
         out["rule_id"] = data["ruleId"]
     else:
         raise DeserializationError("CreateLinkRoutingRuleResponse.rule_id required")
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_rtbfabric.types.rule_status
 
         out["status"] = capo_rtbfabric.types.rule_status.deserialize_json(
@@ -51,7 +51,7 @@ def deserialize_json(data: dict) -> CreateLinkRoutingRuleResponse:
         )
     else:
         raise DeserializationError("CreateLinkRoutingRuleResponse.status required")
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_rtbfabric.types._prelude.timestamp
 
         out["created_at"] = capo_rtbfabric.types._prelude.timestamp.deserialize_json(

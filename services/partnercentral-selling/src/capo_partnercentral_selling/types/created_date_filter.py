@@ -43,7 +43,7 @@ def serialize_aws_json_1_0(value: CreatedDateFilter) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CreatedDateFilter:
     out: CreatedDateFilter = {}  # type: ignore[typeddict-item]
-    if "AfterCreatedDate" in data:
+    if data.get("AfterCreatedDate") is not None:
         import capo_partnercentral_selling.types.date_time
 
         out["after_created_date"] = (
@@ -51,7 +51,7 @@ def deserialize_aws_json_1_0(data: dict) -> CreatedDateFilter:
                 data["AfterCreatedDate"]
             )
         )
-    if "BeforeCreatedDate" in data:
+    if data.get("BeforeCreatedDate") is not None:
         import capo_partnercentral_selling.types.date_time
 
         out["before_created_date"] = (

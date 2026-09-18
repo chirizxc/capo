@@ -234,10 +234,11 @@ class PaymentCryptographyDataClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_payment_cryptography_data.types.decrypt_data_input.DecryptDataInput = {}  # type: ignore[typeddict-item]
-        input_["key_identifier"] = key_identifier
-        input_["cipher_text"] = cipher_text
-        input_["decryption_attributes"] = decryption_attributes
+        input_: capo_payment_cryptography_data.types.decrypt_data_input.DecryptDataInput = {
+            "key_identifier": key_identifier,
+            "cipher_text": cipher_text,
+            "decryption_attributes": decryption_attributes,
+        }
         if wrapped_key is not None:
             input_["wrapped_key"] = wrapped_key
 
@@ -246,6 +247,7 @@ class PaymentCryptographyDataClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def encrypt_data(
@@ -291,10 +293,11 @@ class PaymentCryptographyDataClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_payment_cryptography_data.types.encrypt_data_input.EncryptDataInput = {}  # type: ignore[typeddict-item]
-        input_["key_identifier"] = key_identifier
-        input_["plain_text"] = plain_text
-        input_["encryption_attributes"] = encryption_attributes
+        input_: capo_payment_cryptography_data.types.encrypt_data_input.EncryptDataInput = {
+            "key_identifier": key_identifier,
+            "plain_text": plain_text,
+            "encryption_attributes": encryption_attributes,
+        }
         if wrapped_key is not None:
             input_["wrapped_key"] = wrapped_key
 
@@ -303,6 +306,7 @@ class PaymentCryptographyDataClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def generate_as2805_kek_validation(
@@ -344,16 +348,18 @@ class PaymentCryptographyDataClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_payment_cryptography_data.types.generate_as2805_kek_validation_input.GenerateAs2805KekValidationInput = {}  # type: ignore[typeddict-item]
-        input_["key_identifier"] = key_identifier
-        input_["kek_validation_type"] = kek_validation_type
-        input_["random_key_send_variant_mask"] = random_key_send_variant_mask
+        input_: capo_payment_cryptography_data.types.generate_as2805_kek_validation_input.GenerateAs2805KekValidationInput = {
+            "key_identifier": key_identifier,
+            "kek_validation_type": kek_validation_type,
+            "random_key_send_variant_mask": random_key_send_variant_mask,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def generate_auth_request_cryptogram(
@@ -397,17 +403,19 @@ class PaymentCryptographyDataClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_payment_cryptography_data.types.generate_auth_request_cryptogram_input.GenerateAuthRequestCryptogramInput = {}  # type: ignore[typeddict-item]
-        input_["key_identifier"] = key_identifier
-        input_["transaction_data"] = transaction_data
-        input_["major_key_derivation_mode"] = major_key_derivation_mode
-        input_["session_key_derivation_attributes"] = session_key_derivation_attributes
+        input_: capo_payment_cryptography_data.types.generate_auth_request_cryptogram_input.GenerateAuthRequestCryptogramInput = {
+            "key_identifier": key_identifier,
+            "transaction_data": transaction_data,
+            "major_key_derivation_mode": major_key_derivation_mode,
+            "session_key_derivation_attributes": session_key_derivation_attributes,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def generate_card_validation_data(
@@ -453,10 +461,11 @@ class PaymentCryptographyDataClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_payment_cryptography_data.types.generate_card_validation_data_input.GenerateCardValidationDataInput = {}  # type: ignore[typeddict-item]
-        input_["key_identifier"] = key_identifier
-        input_["primary_account_number"] = primary_account_number
-        input_["generation_attributes"] = generation_attributes
+        input_: capo_payment_cryptography_data.types.generate_card_validation_data_input.GenerateCardValidationDataInput = {
+            "key_identifier": key_identifier,
+            "primary_account_number": primary_account_number,
+            "generation_attributes": generation_attributes,
+        }
         if validation_data_length is not None:
             input_["validation_data_length"] = validation_data_length
 
@@ -465,6 +474,7 @@ class PaymentCryptographyDataClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def generate_mac(
@@ -510,10 +520,11 @@ class PaymentCryptographyDataClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_payment_cryptography_data.types.generate_mac_input.GenerateMacInput = {}  # type: ignore[typeddict-item]
-        input_["key_identifier"] = key_identifier
-        input_["message_data"] = message_data
-        input_["generation_attributes"] = generation_attributes
+        input_: capo_payment_cryptography_data.types.generate_mac_input.GenerateMacInput = {
+            "key_identifier": key_identifier,
+            "message_data": message_data,
+            "generation_attributes": generation_attributes,
+        }
         if mac_length is not None:
             input_["mac_length"] = mac_length
 
@@ -522,6 +533,7 @@ class PaymentCryptographyDataClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def generate_mac_emv_pin_change(
@@ -571,24 +583,22 @@ class PaymentCryptographyDataClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_payment_cryptography_data.types.generate_mac_emv_pin_change_input.GenerateMacEmvPinChangeInput = {}  # type: ignore[typeddict-item]
-        input_["new_pin_pek_identifier"] = new_pin_pek_identifier
-        input_["new_encrypted_pin_block"] = new_encrypted_pin_block
-        input_["pin_block_format"] = pin_block_format
-        input_["secure_messaging_integrity_key_identifier"] = (
-            secure_messaging_integrity_key_identifier
-        )
-        input_["secure_messaging_confidentiality_key_identifier"] = (
-            secure_messaging_confidentiality_key_identifier
-        )
-        input_["message_data"] = message_data
-        input_["derivation_method_attributes"] = derivation_method_attributes
+        input_: capo_payment_cryptography_data.types.generate_mac_emv_pin_change_input.GenerateMacEmvPinChangeInput = {
+            "new_pin_pek_identifier": new_pin_pek_identifier,
+            "new_encrypted_pin_block": new_encrypted_pin_block,
+            "pin_block_format": pin_block_format,
+            "secure_messaging_integrity_key_identifier": secure_messaging_integrity_key_identifier,
+            "secure_messaging_confidentiality_key_identifier": secure_messaging_confidentiality_key_identifier,
+            "message_data": message_data,
+            "derivation_method_attributes": derivation_method_attributes,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def generate_pin_data(
@@ -643,15 +653,16 @@ class PaymentCryptographyDataClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_payment_cryptography_data.types.generate_pin_data_input.GeneratePinDataInput = {}  # type: ignore[typeddict-item]
-        input_["generation_key_identifier"] = generation_key_identifier
-        input_["encryption_key_identifier"] = encryption_key_identifier
-        input_["generation_attributes"] = generation_attributes
+        input_: capo_payment_cryptography_data.types.generate_pin_data_input.GeneratePinDataInput = {
+            "generation_key_identifier": generation_key_identifier,
+            "encryption_key_identifier": encryption_key_identifier,
+            "generation_attributes": generation_attributes,
+            "pin_block_format": pin_block_format,
+        }
         if pin_data_length is not None:
             input_["pin_data_length"] = pin_data_length
         if primary_account_number is not None:
             input_["primary_account_number"] = primary_account_number
-        input_["pin_block_format"] = pin_block_format
         if encryption_wrapped_key is not None:
             input_["encryption_wrapped_key"] = encryption_wrapped_key
 
@@ -660,6 +671,7 @@ class PaymentCryptographyDataClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def re_encrypt_data(
@@ -713,12 +725,13 @@ class PaymentCryptographyDataClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_payment_cryptography_data.types.re_encrypt_data_input.ReEncryptDataInput = {}  # type: ignore[typeddict-item]
-        input_["incoming_key_identifier"] = incoming_key_identifier
-        input_["outgoing_key_identifier"] = outgoing_key_identifier
-        input_["cipher_text"] = cipher_text
-        input_["incoming_encryption_attributes"] = incoming_encryption_attributes
-        input_["outgoing_encryption_attributes"] = outgoing_encryption_attributes
+        input_: capo_payment_cryptography_data.types.re_encrypt_data_input.ReEncryptDataInput = {
+            "incoming_key_identifier": incoming_key_identifier,
+            "outgoing_key_identifier": outgoing_key_identifier,
+            "cipher_text": cipher_text,
+            "incoming_encryption_attributes": incoming_encryption_attributes,
+            "outgoing_encryption_attributes": outgoing_encryption_attributes,
+        }
         if incoming_wrapped_key is not None:
             input_["incoming_wrapped_key"] = incoming_wrapped_key
         if outgoing_wrapped_key is not None:
@@ -729,6 +742,7 @@ class PaymentCryptographyDataClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def translate_key_material(
@@ -772,9 +786,10 @@ class PaymentCryptographyDataClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_payment_cryptography_data.types.translate_key_material_input.TranslateKeyMaterialInput = {}  # type: ignore[typeddict-item]
-        input_["incoming_key_material"] = incoming_key_material
-        input_["outgoing_key_material"] = outgoing_key_material
+        input_: capo_payment_cryptography_data.types.translate_key_material_input.TranslateKeyMaterialInput = {
+            "incoming_key_material": incoming_key_material,
+            "outgoing_key_material": outgoing_key_material,
+        }
         if key_check_value_algorithm is not None:
             input_["key_check_value_algorithm"] = key_check_value_algorithm
 
@@ -783,6 +798,7 @@ class PaymentCryptographyDataClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def translate_pin_data(
@@ -848,12 +864,13 @@ class PaymentCryptographyDataClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_payment_cryptography_data.types.translate_pin_data_input.TranslatePinDataInput = {}  # type: ignore[typeddict-item]
-        input_["incoming_key_identifier"] = incoming_key_identifier
-        input_["outgoing_key_identifier"] = outgoing_key_identifier
-        input_["incoming_translation_attributes"] = incoming_translation_attributes
-        input_["outgoing_translation_attributes"] = outgoing_translation_attributes
-        input_["encrypted_pin_block"] = encrypted_pin_block
+        input_: capo_payment_cryptography_data.types.translate_pin_data_input.TranslatePinDataInput = {
+            "incoming_key_identifier": incoming_key_identifier,
+            "outgoing_key_identifier": outgoing_key_identifier,
+            "incoming_translation_attributes": incoming_translation_attributes,
+            "outgoing_translation_attributes": outgoing_translation_attributes,
+            "encrypted_pin_block": encrypted_pin_block,
+        }
         if incoming_dukpt_attributes is not None:
             input_["incoming_dukpt_attributes"] = incoming_dukpt_attributes
         if outgoing_dukpt_attributes is not None:
@@ -870,6 +887,7 @@ class PaymentCryptographyDataClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def verify_auth_request_cryptogram(
@@ -920,12 +938,13 @@ class PaymentCryptographyDataClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_payment_cryptography_data.types.verify_auth_request_cryptogram_input.VerifyAuthRequestCryptogramInput = {}  # type: ignore[typeddict-item]
-        input_["key_identifier"] = key_identifier
-        input_["transaction_data"] = transaction_data
-        input_["auth_request_cryptogram"] = auth_request_cryptogram
-        input_["major_key_derivation_mode"] = major_key_derivation_mode
-        input_["session_key_derivation_attributes"] = session_key_derivation_attributes
+        input_: capo_payment_cryptography_data.types.verify_auth_request_cryptogram_input.VerifyAuthRequestCryptogramInput = {
+            "key_identifier": key_identifier,
+            "transaction_data": transaction_data,
+            "auth_request_cryptogram": auth_request_cryptogram,
+            "major_key_derivation_mode": major_key_derivation_mode,
+            "session_key_derivation_attributes": session_key_derivation_attributes,
+        }
         if auth_response_attributes is not None:
             input_["auth_response_attributes"] = auth_response_attributes
 
@@ -934,6 +953,7 @@ class PaymentCryptographyDataClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def verify_card_validation_data(
@@ -978,17 +998,19 @@ class PaymentCryptographyDataClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_payment_cryptography_data.types.verify_card_validation_data_input.VerifyCardValidationDataInput = {}  # type: ignore[typeddict-item]
-        input_["key_identifier"] = key_identifier
-        input_["primary_account_number"] = primary_account_number
-        input_["verification_attributes"] = verification_attributes
-        input_["validation_data"] = validation_data
+        input_: capo_payment_cryptography_data.types.verify_card_validation_data_input.VerifyCardValidationDataInput = {
+            "key_identifier": key_identifier,
+            "primary_account_number": primary_account_number,
+            "verification_attributes": verification_attributes,
+            "validation_data": validation_data,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def verify_mac(
@@ -1037,11 +1059,12 @@ class PaymentCryptographyDataClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_payment_cryptography_data.types.verify_mac_input.VerifyMacInput = {}  # type: ignore[typeddict-item]
-        input_["key_identifier"] = key_identifier
-        input_["message_data"] = message_data
-        input_["mac"] = mac
-        input_["verification_attributes"] = verification_attributes
+        input_: capo_payment_cryptography_data.types.verify_mac_input.VerifyMacInput = {
+            "key_identifier": key_identifier,
+            "message_data": message_data,
+            "mac": mac,
+            "verification_attributes": verification_attributes,
+        }
         if mac_length is not None:
             input_["mac_length"] = mac_length
 
@@ -1050,6 +1073,7 @@ class PaymentCryptographyDataClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def verify_pin_data(
@@ -1111,14 +1135,15 @@ class PaymentCryptographyDataClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_payment_cryptography_data.types.verify_pin_data_input.VerifyPinDataInput = {}  # type: ignore[typeddict-item]
-        input_["verification_key_identifier"] = verification_key_identifier
-        input_["encryption_key_identifier"] = encryption_key_identifier
-        input_["verification_attributes"] = verification_attributes
-        input_["encrypted_pin_block"] = encrypted_pin_block
+        input_: capo_payment_cryptography_data.types.verify_pin_data_input.VerifyPinDataInput = {
+            "verification_key_identifier": verification_key_identifier,
+            "encryption_key_identifier": encryption_key_identifier,
+            "verification_attributes": verification_attributes,
+            "encrypted_pin_block": encrypted_pin_block,
+            "pin_block_format": pin_block_format,
+        }
         if primary_account_number is not None:
             input_["primary_account_number"] = primary_account_number
-        input_["pin_block_format"] = pin_block_format
         if pin_data_length is not None:
             input_["pin_data_length"] = pin_data_length
         if dukpt_attributes is not None:
@@ -1131,6 +1156,7 @@ class PaymentCryptographyDataClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def __enter__(self) -> Self:

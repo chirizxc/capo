@@ -50,9 +50,9 @@ def serialize_json(value: UpdateSubscriptionResponse) -> dict:
 
 def deserialize_json(data: dict) -> UpdateSubscriptionResponse:
     out: UpdateSubscriptionResponse = {}  # type: ignore[typeddict-item]
-    if "subscriptionArn" in data:
+    if data.get("subscriptionArn") is not None:
         out["subscription_arn"] = data["subscriptionArn"]
-    if "currentSubscription" in data:
+    if data.get("currentSubscription") is not None:
         import capo_qbusiness.types.subscription_details
 
         out["current_subscription"] = (
@@ -60,7 +60,7 @@ def deserialize_json(data: dict) -> UpdateSubscriptionResponse:
                 data["currentSubscription"]
             )
         )
-    if "nextSubscription" in data:
+    if data.get("nextSubscription") is not None:
         import capo_qbusiness.types.subscription_details
 
         out["next_subscription"] = (

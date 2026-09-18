@@ -68,9 +68,9 @@ def serialize_aws_json_1_0(value: GetEncryptionConfigurationResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> GetEncryptionConfigurationResponse:
     out: GetEncryptionConfigurationResponse = {}  # type: ignore[typeddict-item]
-    if "kmsKeyId" in data:
+    if data.get("kmsKeyId") is not None:
         out["kms_key_id"] = data["kmsKeyId"]
-    if "encryptionStatus" in data:
+    if data.get("encryptionStatus") is not None:
         import capo_iotfleetwise.types.encryption_status
 
         out["encryption_status"] = (
@@ -82,7 +82,7 @@ def deserialize_aws_json_1_0(data: dict) -> GetEncryptionConfigurationResponse:
         raise DeserializationError(
             "GetEncryptionConfigurationResponse.encryption_status required"
         )
-    if "encryptionType" in data:
+    if data.get("encryptionType") is not None:
         import capo_iotfleetwise.types.encryption_type
 
         out["encryption_type"] = (
@@ -94,9 +94,9 @@ def deserialize_aws_json_1_0(data: dict) -> GetEncryptionConfigurationResponse:
         raise DeserializationError(
             "GetEncryptionConfigurationResponse.encryption_type required"
         )
-    if "errorMessage" in data:
+    if data.get("errorMessage") is not None:
         out["error_message"] = data["errorMessage"]
-    if "creationTime" in data:
+    if data.get("creationTime") is not None:
         import capo_iotfleetwise.types.timestamp
 
         out["creation_time"] = (
@@ -104,7 +104,7 @@ def deserialize_aws_json_1_0(data: dict) -> GetEncryptionConfigurationResponse:
                 data["creationTime"]
             )
         )
-    if "lastModificationTime" in data:
+    if data.get("lastModificationTime") is not None:
         import capo_iotfleetwise.types.timestamp
 
         out["last_modification_time"] = (

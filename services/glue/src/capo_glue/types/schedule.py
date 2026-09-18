@@ -32,9 +32,9 @@ def serialize_aws_json_1_1(value: Schedule) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Schedule:
     out: Schedule = {}  # type: ignore[typeddict-item]
-    if "ScheduleExpression" in data:
+    if data.get("ScheduleExpression") is not None:
         out["schedule_expression"] = data["ScheduleExpression"]
-    if "State" in data:
+    if data.get("State") is not None:
         import capo_glue.types.schedule_state
 
         out["state"] = capo_glue.types.schedule_state.deserialize_aws_json_1_1(

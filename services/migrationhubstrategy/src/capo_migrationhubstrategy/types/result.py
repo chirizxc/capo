@@ -58,9 +58,9 @@ def serialize_json(value: Result) -> dict:
 
 def deserialize_json(data: dict) -> Result:
     out: Result = {}  # type: ignore[typeddict-item]
-    if "analysisType" in data:
+    if data.get("analysisType") is not None:
         out["analysis_type"] = data["analysisType"]
-    if "analysisStatus" in data:
+    if data.get("analysisStatus") is not None:
         import capo_migrationhubstrategy.types.analysis_status_union
 
         out["analysis_status"] = (
@@ -68,9 +68,9 @@ def deserialize_json(data: dict) -> Result:
                 data["analysisStatus"]
             )
         )
-    if "statusMessage" in data:
+    if data.get("statusMessage") is not None:
         out["status_message"] = data["statusMessage"]
-    if "antipatternReportResultList" in data:
+    if data.get("antipatternReportResultList") is not None:
         import capo_migrationhubstrategy.types.antipattern_report_result_list
 
         out["antipattern_report_result_list"] = (

@@ -30,7 +30,7 @@ def serialize_json(value: ListPrivateConnectionsOutput) -> dict:
 
 def deserialize_json(data: dict) -> ListPrivateConnectionsOutput:
     out: ListPrivateConnectionsOutput = {}  # type: ignore[typeddict-item]
-    if "privateConnections" in data:
+    if data.get("privateConnections") is not None:
         import capo_devops_agent.types.private_connection_summary_list
 
         out["private_connections"] = (

@@ -24,7 +24,7 @@ def serialize_aws_json_1_0(value: WatchlistDetails) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> WatchlistDetails:
     out: WatchlistDetails = {}  # type: ignore[typeddict-item]
-    if "DefaultWatchlistId" in data:
+    if data.get("DefaultWatchlistId") is not None:
         out["default_watchlist_id"] = data["DefaultWatchlistId"]
     else:
         raise DeserializationError("WatchlistDetails.default_watchlist_id required")

@@ -60,17 +60,17 @@ def serialize_json(value: CreateApplicationRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateApplicationRequest:
     out: CreateApplicationRequest = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("CreateApplicationRequest.name required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "engineType" in data:
+    if data.get("engineType") is not None:
         out["engine_type"] = data["engineType"]
     else:
         raise DeserializationError("CreateApplicationRequest.engine_type required")
-    if "definition" in data:
+    if data.get("definition") is not None:
         import capo_m2.types.definition
 
         out["definition"] = capo_m2.types.definition.deserialize_json(
@@ -78,14 +78,14 @@ def deserialize_json(data: dict) -> CreateApplicationRequest:
         )
     else:
         raise DeserializationError("CreateApplicationRequest.definition required")
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_m2.types.tag_map
 
         out["tags"] = capo_m2.types.tag_map.deserialize_json(data["tags"])
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
-    if "kmsKeyId" in data:
+    if data.get("kmsKeyId") is not None:
         out["kms_key_id"] = data["kmsKeyId"]
-    if "roleArn" in data:
+    if data.get("roleArn") is not None:
         out["role_arn"] = data["roleArn"]
     return out

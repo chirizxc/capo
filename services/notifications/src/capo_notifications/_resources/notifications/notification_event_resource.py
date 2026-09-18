@@ -76,8 +76,9 @@ class NotificationEventResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_notifications.types.get_notification_event_request.GetNotificationEventRequest = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
+        input_: capo_notifications.types.get_notification_event_request.GetNotificationEventRequest = {
+            "arn": arn
+        }
         if locale is not None:
             input_["locale"] = locale
 
@@ -86,6 +87,7 @@ class NotificationEventResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -142,7 +144,7 @@ class NotificationEventResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_notifications.types.list_notification_events_request.ListNotificationEventsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_notifications.types.list_notification_events_request.ListNotificationEventsRequest = {}
         if start_time is not None:
             input_["start_time"] = start_time
         if end_time is not None:
@@ -169,6 +171,7 @@ class NotificationEventResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -214,8 +217,9 @@ class AsyncNotificationEventResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_notifications.types.get_notification_event_request.GetNotificationEventRequest = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
+        input_: capo_notifications.types.get_notification_event_request.GetNotificationEventRequest = {
+            "arn": arn
+        }
         if locale is not None:
             input_["locale"] = locale
 
@@ -224,6 +228,7 @@ class AsyncNotificationEventResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -281,7 +286,7 @@ class AsyncNotificationEventResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_notifications.types.list_notification_events_request.ListNotificationEventsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_notifications.types.list_notification_events_request.ListNotificationEventsRequest = {}
         if start_time is not None:
             input_["start_time"] = start_time
         if end_time is not None:
@@ -308,4 +313,5 @@ class AsyncNotificationEventResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

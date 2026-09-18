@@ -33,7 +33,7 @@ def serialize_aws_json_1_1(value: ListMLTransformsResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListMLTransformsResponse:
     out: ListMLTransformsResponse = {}  # type: ignore[typeddict-item]
-    if "TransformIds" in data:
+    if data.get("TransformIds") is not None:
         import capo_glue.types.transform_id_list
 
         out["transform_ids"] = (
@@ -43,6 +43,6 @@ def deserialize_aws_json_1_1(data: dict) -> ListMLTransformsResponse:
         )
     else:
         raise DeserializationError("ListMLTransformsResponse.transform_ids required")
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

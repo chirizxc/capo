@@ -31,14 +31,14 @@ def serialize_json(value: DashBaseUrl) -> dict:
 
 def deserialize_json(data: dict) -> DashBaseUrl:
     out: DashBaseUrl = {}  # type: ignore[typeddict-item]
-    if "Url" in data:
+    if data.get("Url") is not None:
         out["url"] = data["Url"]
     else:
         raise DeserializationError("DashBaseUrl.url required")
-    if "ServiceLocation" in data:
+    if data.get("ServiceLocation") is not None:
         out["service_location"] = data["ServiceLocation"]
-    if "DvbPriority" in data:
+    if data.get("DvbPriority") is not None:
         out["dvb_priority"] = data["DvbPriority"]
-    if "DvbWeight" in data:
+    if data.get("DvbWeight") is not None:
         out["dvb_weight"] = data["DvbWeight"]
     return out

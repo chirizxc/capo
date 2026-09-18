@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> Record:
 
     out: Record = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_sagemaker_featurestore_runtime.types.feature_value.deserialize_json(
                 item

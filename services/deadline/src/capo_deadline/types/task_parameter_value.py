@@ -60,15 +60,15 @@ def serialize_json(value: TaskParameterValue) -> dict:
 
 
 def deserialize_json(data: dict) -> TaskParameterValue:
-    if "int" in data:
+    if data.get("int") is not None:
         return {"int": data["int"]}
-    elif "float" in data:
+    elif data.get("float") is not None:
         return {"float": data["float"]}
-    elif "string" in data:
+    elif data.get("string") is not None:
         return {"string": data["string"]}
-    elif "path" in data:
+    elif data.get("path") is not None:
         return {"path": data["path"]}
-    elif "chunkInt" in data:
+    elif data.get("chunkInt") is not None:
         return {"chunkInt": data["chunkInt"]}
     else:
         raise DeserializationError("TaskParameterValue: no recognized variant key")

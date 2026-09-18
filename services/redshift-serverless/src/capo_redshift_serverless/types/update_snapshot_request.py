@@ -23,10 +23,10 @@ def serialize_aws_json_1_1(value: UpdateSnapshotRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateSnapshotRequest:
     out: UpdateSnapshotRequest = {}  # type: ignore[typeddict-item]
-    if "snapshotName" in data:
+    if data.get("snapshotName") is not None:
         out["snapshot_name"] = data["snapshotName"]
     else:
         raise DeserializationError("UpdateSnapshotRequest.snapshot_name required")
-    if "retentionPeriod" in data:
+    if data.get("retentionPeriod") is not None:
         out["retention_period"] = data["retentionPeriod"]
     return out

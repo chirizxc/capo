@@ -39,14 +39,14 @@ def serialize_aws_json_1_1(value: SearchThingsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SearchThingsRequest:
     out: SearchThingsRequest = {}  # type: ignore[typeddict-item]
-    if "entityId" in data:
+    if data.get("entityId") is not None:
         out["entity_id"] = data["entityId"]
     else:
         raise DeserializationError("SearchThingsRequest.entity_id required")
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
-    if "namespaceVersion" in data:
+    if data.get("namespaceVersion") is not None:
         out["namespace_version"] = data["namespaceVersion"]
     return out

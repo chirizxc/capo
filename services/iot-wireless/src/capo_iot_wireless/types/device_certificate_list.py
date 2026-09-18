@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> DeviceCertificateList:
 
     out: DeviceCertificateList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_iot_wireless.types.certificate_list.deserialize_json(item))
     return out

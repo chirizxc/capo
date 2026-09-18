@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> RoadSnapHazardousCargoTypeList:
 
     out: RoadSnapHazardousCargoTypeList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_geo_routes.types.road_snap_hazardous_cargo_type.deserialize_json(item)
         )

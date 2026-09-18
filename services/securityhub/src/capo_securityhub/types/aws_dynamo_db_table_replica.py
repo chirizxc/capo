@@ -67,7 +67,7 @@ def serialize_json(value: AwsDynamoDbTableReplica) -> dict:
 
 def deserialize_json(data: dict) -> AwsDynamoDbTableReplica:
     out: AwsDynamoDbTableReplica = {}  # type: ignore[typeddict-item]
-    if "GlobalSecondaryIndexes" in data:
+    if data.get("GlobalSecondaryIndexes") is not None:
         import capo_securityhub.types.aws_dynamo_db_table_replica_global_secondary_index_list
 
         out["global_secondary_indexes"] = (
@@ -75,9 +75,9 @@ def deserialize_json(data: dict) -> AwsDynamoDbTableReplica:
                 data["GlobalSecondaryIndexes"]
             )
         )
-    if "KmsMasterKeyId" in data:
+    if data.get("KmsMasterKeyId") is not None:
         out["kms_master_key_id"] = data["KmsMasterKeyId"]
-    if "ProvisionedThroughputOverride" in data:
+    if data.get("ProvisionedThroughputOverride") is not None:
         import capo_securityhub.types.aws_dynamo_db_table_provisioned_throughput_override
 
         out["provisioned_throughput_override"] = (
@@ -85,10 +85,10 @@ def deserialize_json(data: dict) -> AwsDynamoDbTableReplica:
                 data["ProvisionedThroughputOverride"]
             )
         )
-    if "RegionName" in data:
+    if data.get("RegionName") is not None:
         out["region_name"] = data["RegionName"]
-    if "ReplicaStatus" in data:
+    if data.get("ReplicaStatus") is not None:
         out["replica_status"] = data["ReplicaStatus"]
-    if "ReplicaStatusDescription" in data:
+    if data.get("ReplicaStatusDescription") is not None:
         out["replica_status_description"] = data["ReplicaStatusDescription"]
     return out

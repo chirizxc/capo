@@ -27,11 +27,11 @@ def serialize_json(value: PosixUser) -> dict:
 
 def deserialize_json(data: dict) -> PosixUser:
     out: PosixUser = {}  # type: ignore[typeddict-item]
-    if "user" in data:
+    if data.get("user") is not None:
         out["user"] = data["user"]
     else:
         raise DeserializationError("PosixUser.user required")
-    if "group" in data:
+    if data.get("group") is not None:
         out["group"] = data["group"]
     else:
         raise DeserializationError("PosixUser.group required")

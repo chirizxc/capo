@@ -41,11 +41,11 @@ def serialize_json(value: UpdateImageGenerationConfigurationInput) -> dict:
 
 def deserialize_json(data: dict) -> UpdateImageGenerationConfigurationInput:
     out: UpdateImageGenerationConfigurationInput = {}  # type: ignore[typeddict-item]
-    if "StreamName" in data:
+    if data.get("StreamName") is not None:
         out["stream_name"] = data["StreamName"]
-    if "StreamARN" in data:
+    if data.get("StreamARN") is not None:
         out["stream_arn"] = data["StreamARN"]
-    if "ImageGenerationConfiguration" in data:
+    if data.get("ImageGenerationConfiguration") is not None:
         import capo_kinesis_video.types.image_generation_configuration
 
         out["image_generation_configuration"] = (

@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> StartReadSetActivationJobSourceList:
 
     out: StartReadSetActivationJobSourceList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_omics.types.start_read_set_activation_job_source_item.deserialize_json(
                 item

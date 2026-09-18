@@ -45,7 +45,7 @@ def serialize_json(value: ConnectorProfileConfig) -> dict:
 
 def deserialize_json(data: dict) -> ConnectorProfileConfig:
     out: ConnectorProfileConfig = {}  # type: ignore[typeddict-item]
-    if "connectorProfileProperties" in data:
+    if data.get("connectorProfileProperties") is not None:
         import capo_appflow.types.connector_profile_properties
 
         out["connector_profile_properties"] = (
@@ -57,7 +57,7 @@ def deserialize_json(data: dict) -> ConnectorProfileConfig:
         raise DeserializationError(
             "ConnectorProfileConfig.connector_profile_properties required"
         )
-    if "connectorProfileCredentials" in data:
+    if data.get("connectorProfileCredentials") is not None:
         import capo_appflow.types.connector_profile_credentials
 
         out["connector_profile_credentials"] = (

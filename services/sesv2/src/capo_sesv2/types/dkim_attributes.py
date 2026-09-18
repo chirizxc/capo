@@ -88,21 +88,21 @@ def serialize_json(value: DkimAttributes) -> dict:
 
 def deserialize_json(data: dict) -> DkimAttributes:
     out: DkimAttributes = {}  # type: ignore[typeddict-item]
-    if "SigningEnabled" in data:
+    if data.get("SigningEnabled") is not None:
         out["signing_enabled"] = data["SigningEnabled"]
     else:
         out["signing_enabled"] = False
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_sesv2.types.dkim_status
 
         out["status"] = capo_sesv2.types.dkim_status.deserialize_json(data["Status"])
-    if "Tokens" in data:
+    if data.get("Tokens") is not None:
         import capo_sesv2.types.dns_token_list
 
         out["tokens"] = capo_sesv2.types.dns_token_list.deserialize_json(data["Tokens"])
-    if "SigningHostedZone" in data:
+    if data.get("SigningHostedZone") is not None:
         out["signing_hosted_zone"] = data["SigningHostedZone"]
-    if "SigningAttributesOrigin" in data:
+    if data.get("SigningAttributesOrigin") is not None:
         import capo_sesv2.types.dkim_signing_attributes_origin
 
         out["signing_attributes_origin"] = (
@@ -110,7 +110,7 @@ def deserialize_json(data: dict) -> DkimAttributes:
                 data["SigningAttributesOrigin"]
             )
         )
-    if "NextSigningKeyLength" in data:
+    if data.get("NextSigningKeyLength") is not None:
         import capo_sesv2.types.dkim_signing_key_length
 
         out["next_signing_key_length"] = (
@@ -118,7 +118,7 @@ def deserialize_json(data: dict) -> DkimAttributes:
                 data["NextSigningKeyLength"]
             )
         )
-    if "CurrentSigningKeyLength" in data:
+    if data.get("CurrentSigningKeyLength") is not None:
         import capo_sesv2.types.dkim_signing_key_length
 
         out["current_signing_key_length"] = (
@@ -126,7 +126,7 @@ def deserialize_json(data: dict) -> DkimAttributes:
                 data["CurrentSigningKeyLength"]
             )
         )
-    if "LastKeyGenerationTimestamp" in data:
+    if data.get("LastKeyGenerationTimestamp") is not None:
         import capo_sesv2.types.timestamp
 
         out["last_key_generation_timestamp"] = (

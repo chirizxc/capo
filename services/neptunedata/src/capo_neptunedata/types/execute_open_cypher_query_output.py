@@ -19,7 +19,7 @@ def serialize_json(value: ExecuteOpenCypherQueryOutput) -> dict:
 
 def deserialize_json(data: dict) -> ExecuteOpenCypherQueryOutput:
     out: ExecuteOpenCypherQueryOutput = {}  # type: ignore[typeddict-item]
-    if "results" in data:
+    if data.get("results") is not None:
         out["results"] = data["results"]
     else:
         raise DeserializationError("ExecuteOpenCypherQueryOutput.results required")

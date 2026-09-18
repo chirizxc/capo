@@ -27,6 +27,8 @@ def deserialize_aws_json_1_1(data: list) -> DomainValidationRecordList:
 
     out: DomainValidationRecordList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_lightsail.types.domain_validation_record.deserialize_aws_json_1_1(item)
         )

@@ -31,10 +31,10 @@ def serialize_aws_json_1_1(value: UnprocessedCluster) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UnprocessedCluster:
     out: UnprocessedCluster = {}  # type: ignore[typeddict-item]
-    if "ClusterName" in data:
+    if data.get("ClusterName") is not None:
         out["cluster_name"] = data["ClusterName"]
-    if "ErrorType" in data:
+    if data.get("ErrorType") is not None:
         out["error_type"] = data["ErrorType"]
-    if "ErrorMessage" in data:
+    if data.get("ErrorMessage") is not None:
         out["error_message"] = data["ErrorMessage"]
     return out

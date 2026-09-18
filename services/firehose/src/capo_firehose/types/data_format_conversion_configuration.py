@@ -62,7 +62,7 @@ def serialize_aws_json_1_1(value: DataFormatConversionConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DataFormatConversionConfiguration:
     out: DataFormatConversionConfiguration = {}  # type: ignore[typeddict-item]
-    if "SchemaConfiguration" in data:
+    if data.get("SchemaConfiguration") is not None:
         import capo_firehose.types.schema_configuration
 
         out["schema_configuration"] = (
@@ -70,7 +70,7 @@ def deserialize_aws_json_1_1(data: dict) -> DataFormatConversionConfiguration:
                 data["SchemaConfiguration"]
             )
         )
-    if "InputFormatConfiguration" in data:
+    if data.get("InputFormatConfiguration") is not None:
         import capo_firehose.types.input_format_configuration
 
         out["input_format_configuration"] = (
@@ -78,7 +78,7 @@ def deserialize_aws_json_1_1(data: dict) -> DataFormatConversionConfiguration:
                 data["InputFormatConfiguration"]
             )
         )
-    if "OutputFormatConfiguration" in data:
+    if data.get("OutputFormatConfiguration") is not None:
         import capo_firehose.types.output_format_configuration
 
         out["output_format_configuration"] = (
@@ -86,6 +86,6 @@ def deserialize_aws_json_1_1(data: dict) -> DataFormatConversionConfiguration:
                 data["OutputFormatConfiguration"]
             )
         )
-    if "Enabled" in data:
+    if data.get("Enabled") is not None:
         out["enabled"] = data["Enabled"]
     return out

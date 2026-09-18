@@ -14,4 +14,4 @@ def serialize_json(value: PathStringList) -> list:
 
 
 def deserialize_json(data: list) -> PathStringList:
-    return list(data)
+    return [item for item in data if item is not None]

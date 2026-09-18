@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> ScanSummaries:
 
     out: ScanSummaries = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_codeguru_security.types.scan_summary.deserialize_json(item))
     return out

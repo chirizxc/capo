@@ -31,7 +31,7 @@ def serialize_json(value: ColumnGroup) -> dict:
 
 def deserialize_json(data: dict) -> ColumnGroup:
     out: ColumnGroup = {}  # type: ignore[typeddict-item]
-    if "GeoSpatialColumnGroup" in data:
+    if data.get("GeoSpatialColumnGroup") is not None:
         import capo_quicksight.types.geo_spatial_column_group
 
         out["geo_spatial_column_group"] = (

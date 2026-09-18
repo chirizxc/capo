@@ -31,10 +31,10 @@ def serialize_json(value: Action) -> dict:
 
 def deserialize_json(data: dict) -> Action:
     out: Action = {}  # type: ignore[typeddict-item]
-    if "actionId" in data:
+    if data.get("actionId") is not None:
         out["action_id"] = data["actionId"]
     else:
         raise DeserializationError("Action.action_id required")
-    if "properties" in data:
+    if data.get("properties") is not None:
         out["properties"] = data["properties"]
     return out

@@ -26,7 +26,7 @@ def serialize_json(value: ExperimentalCapabilities) -> dict:
 
 
 def deserialize_json(data: dict) -> ExperimentalCapabilities:
-    if "enabled" in data:
+    if data.get("enabled") is not None:
         return {"enabled": data["enabled"]}
     else:
         raise DeserializationError(

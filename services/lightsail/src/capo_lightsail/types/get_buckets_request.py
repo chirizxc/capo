@@ -37,12 +37,12 @@ def serialize_aws_json_1_1(value: GetBucketsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetBucketsRequest:
     out: GetBucketsRequest = {}  # type: ignore[typeddict-item]
-    if "bucketName" in data:
+    if data.get("bucketName") is not None:
         out["bucket_name"] = data["bucketName"]
-    if "pageToken" in data:
+    if data.get("pageToken") is not None:
         out["page_token"] = data["pageToken"]
-    if "includeConnectedResources" in data:
+    if data.get("includeConnectedResources") is not None:
         out["include_connected_resources"] = data["includeConnectedResources"]
-    if "includeCors" in data:
+    if data.get("includeCors") is not None:
         out["include_cors"] = data["includeCors"]
     return out

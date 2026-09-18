@@ -69,23 +69,23 @@ def serialize_json(value: CreateServiceNetworkVpcAssociationRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateServiceNetworkVpcAssociationRequest:
     out: CreateServiceNetworkVpcAssociationRequest = {}  # type: ignore[typeddict-item]
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
-    if "serviceNetworkIdentifier" in data:
+    if data.get("serviceNetworkIdentifier") is not None:
         out["service_network_identifier"] = data["serviceNetworkIdentifier"]
     else:
         raise DeserializationError(
             "CreateServiceNetworkVpcAssociationRequest.service_network_identifier required"
         )
-    if "vpcIdentifier" in data:
+    if data.get("vpcIdentifier") is not None:
         out["vpc_identifier"] = data["vpcIdentifier"]
     else:
         raise DeserializationError(
             "CreateServiceNetworkVpcAssociationRequest.vpc_identifier required"
         )
-    if "privateDnsEnabled" in data:
+    if data.get("privateDnsEnabled") is not None:
         out["private_dns_enabled"] = data["privateDnsEnabled"]
-    if "securityGroupIds" in data:
+    if data.get("securityGroupIds") is not None:
         import capo_vpc_lattice.types.security_group_list
 
         out["security_group_ids"] = (
@@ -93,11 +93,11 @@ def deserialize_json(data: dict) -> CreateServiceNetworkVpcAssociationRequest:
                 data["securityGroupIds"]
             )
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_vpc_lattice.types.tag_map
 
         out["tags"] = capo_vpc_lattice.types.tag_map.deserialize_json(data["tags"])
-    if "dnsOptions" in data:
+    if data.get("dnsOptions") is not None:
         import capo_vpc_lattice.types.dns_options
 
         out["dns_options"] = capo_vpc_lattice.types.dns_options.deserialize_json(

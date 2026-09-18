@@ -190,15 +190,15 @@ def serialize_aws_json_1_1(value: CreateServerRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateServerRequest:
     out: CreateServerRequest = {}  # type: ignore[typeddict-item]
-    if "Certificate" in data:
+    if data.get("Certificate") is not None:
         out["certificate"] = data["Certificate"]
-    if "Domain" in data:
+    if data.get("Domain") is not None:
         import capo_transfer.types.domain
 
         out["domain"] = capo_transfer.types.domain.deserialize_aws_json_1_1(
             data["Domain"]
         )
-    if "EndpointDetails" in data:
+    if data.get("EndpointDetails") is not None:
         import capo_transfer.types.endpoint_details
 
         out["endpoint_details"] = (
@@ -206,7 +206,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateServerRequest:
                 data["EndpointDetails"]
             )
         )
-    if "EndpointType" in data:
+    if data.get("EndpointType") is not None:
         import capo_transfer.types.endpoint_type
 
         out["endpoint_type"] = (
@@ -214,9 +214,9 @@ def deserialize_aws_json_1_1(data: dict) -> CreateServerRequest:
                 data["EndpointType"]
             )
         )
-    if "HostKey" in data:
+    if data.get("HostKey") is not None:
         out["host_key"] = data["HostKey"]
-    if "IdentityProviderDetails" in data:
+    if data.get("IdentityProviderDetails") is not None:
         import capo_transfer.types.identity_provider_details
 
         out["identity_provider_details"] = (
@@ -224,7 +224,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateServerRequest:
                 data["IdentityProviderDetails"]
             )
         )
-    if "IdentityProviderType" in data:
+    if data.get("IdentityProviderType") is not None:
         import capo_transfer.types.identity_provider_type
 
         out["identity_provider_type"] = (
@@ -232,19 +232,19 @@ def deserialize_aws_json_1_1(data: dict) -> CreateServerRequest:
                 data["IdentityProviderType"]
             )
         )
-    if "LoggingRole" in data:
+    if data.get("LoggingRole") is not None:
         out["logging_role"] = data["LoggingRole"]
-    if "PostAuthenticationLoginBanner" in data:
+    if data.get("PostAuthenticationLoginBanner") is not None:
         out["post_authentication_login_banner"] = data["PostAuthenticationLoginBanner"]
-    if "PreAuthenticationLoginBanner" in data:
+    if data.get("PreAuthenticationLoginBanner") is not None:
         out["pre_authentication_login_banner"] = data["PreAuthenticationLoginBanner"]
-    if "Protocols" in data:
+    if data.get("Protocols") is not None:
         import capo_transfer.types.protocols
 
         out["protocols"] = capo_transfer.types.protocols.deserialize_aws_json_1_1(
             data["Protocols"]
         )
-    if "ProtocolDetails" in data:
+    if data.get("ProtocolDetails") is not None:
         import capo_transfer.types.protocol_details
 
         out["protocol_details"] = (
@@ -252,13 +252,13 @@ def deserialize_aws_json_1_1(data: dict) -> CreateServerRequest:
                 data["ProtocolDetails"]
             )
         )
-    if "SecurityPolicyName" in data:
+    if data.get("SecurityPolicyName") is not None:
         out["security_policy_name"] = data["SecurityPolicyName"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_transfer.types.tags
 
         out["tags"] = capo_transfer.types.tags.deserialize_aws_json_1_1(data["Tags"])
-    if "WorkflowDetails" in data:
+    if data.get("WorkflowDetails") is not None:
         import capo_transfer.types.workflow_details
 
         out["workflow_details"] = (
@@ -266,7 +266,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateServerRequest:
                 data["WorkflowDetails"]
             )
         )
-    if "StructuredLogDestinations" in data:
+    if data.get("StructuredLogDestinations") is not None:
         import capo_transfer.types.structured_log_destinations
 
         out["structured_log_destinations"] = (
@@ -274,7 +274,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateServerRequest:
                 data["StructuredLogDestinations"]
             )
         )
-    if "S3StorageOptions" in data:
+    if data.get("S3StorageOptions") is not None:
         import capo_transfer.types.s3_storage_options
 
         out["s3_storage_options"] = (
@@ -282,7 +282,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateServerRequest:
                 data["S3StorageOptions"]
             )
         )
-    if "IpAddressType" in data:
+    if data.get("IpAddressType") is not None:
         import capo_transfer.types.ip_address_type
 
         out["ip_address_type"] = (

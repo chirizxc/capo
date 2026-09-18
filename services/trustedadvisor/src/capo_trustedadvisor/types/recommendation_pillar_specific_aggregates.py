@@ -31,7 +31,7 @@ def serialize_json(value: RecommendationPillarSpecificAggregates) -> dict:
 
 def deserialize_json(data: dict) -> RecommendationPillarSpecificAggregates:
     out: RecommendationPillarSpecificAggregates = {}  # type: ignore[typeddict-item]
-    if "costOptimizing" in data:
+    if data.get("costOptimizing") is not None:
         import capo_trustedadvisor.types.recommendation_cost_optimizing_aggregates
 
         out["cost_optimizing"] = (

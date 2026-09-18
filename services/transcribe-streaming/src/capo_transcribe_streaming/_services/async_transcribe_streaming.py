@@ -197,14 +197,16 @@ class AsyncTranscribeStreamingClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_transcribe_streaming.types.get_medical_scribe_stream_request.GetMedicalScribeStreamRequest = {}  # type: ignore[typeddict-item]
-        input_["session_id"] = session_id
+        input_: capo_transcribe_streaming.types.get_medical_scribe_stream_request.GetMedicalScribeStreamRequest = {
+            "session_id": session_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     @asynccontextmanager
@@ -312,16 +314,17 @@ class AsyncTranscribeStreamingClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_transcribe_streaming.types.start_call_analytics_stream_transcription_request.StartCallAnalyticsStreamTranscriptionRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_transcribe_streaming.types.start_call_analytics_stream_transcription_request.StartCallAnalyticsStreamTranscriptionRequest = {
+            "media_sample_rate_hertz": media_sample_rate_hertz,
+            "media_encoding": media_encoding,
+            "audio_stream": ensure_async_iterator(audio_stream),
+        }
         if language_code is not None:
             input_["language_code"] = language_code
-        input_["media_sample_rate_hertz"] = media_sample_rate_hertz
-        input_["media_encoding"] = media_encoding
         if vocabulary_name is not None:
             input_["vocabulary_name"] = vocabulary_name
         if session_id is not None:
             input_["session_id"] = session_id
-        input_["audio_stream"] = ensure_async_iterator(audio_stream)
         if vocabulary_filter_name is not None:
             input_["vocabulary_filter_name"] = vocabulary_filter_name
         if vocabulary_filter_method is not None:
@@ -356,7 +359,10 @@ class AsyncTranscribeStreamingClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
-        yield response.output
+        try:
+            yield response.output
+        finally:
+            await response.response.aclose()
 
     @asynccontextmanager
     async def start_medical_scribe_stream(
@@ -405,20 +411,24 @@ class AsyncTranscribeStreamingClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_transcribe_streaming.types.start_medical_scribe_stream_request.StartMedicalScribeStreamRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_transcribe_streaming.types.start_medical_scribe_stream_request.StartMedicalScribeStreamRequest = {
+            "language_code": language_code,
+            "media_sample_rate_hertz": media_sample_rate_hertz,
+            "media_encoding": media_encoding,
+            "input_stream": ensure_async_iterator(input_stream),
+        }
         if session_id is not None:
             input_["session_id"] = session_id
-        input_["language_code"] = language_code
-        input_["media_sample_rate_hertz"] = media_sample_rate_hertz
-        input_["media_encoding"] = media_encoding
-        input_["input_stream"] = ensure_async_iterator(input_stream)
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
-        yield response.output
+        try:
+            yield response.output
+        finally:
+            await response.response.aclose()
 
     @asynccontextmanager
     async def start_medical_stream_transcription(
@@ -490,19 +500,20 @@ class AsyncTranscribeStreamingClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_transcribe_streaming.types.start_medical_stream_transcription_request.StartMedicalStreamTranscriptionRequest = {}  # type: ignore[typeddict-item]
-        input_["language_code"] = language_code
-        input_["media_sample_rate_hertz"] = media_sample_rate_hertz
-        input_["media_encoding"] = media_encoding
+        input_: capo_transcribe_streaming.types.start_medical_stream_transcription_request.StartMedicalStreamTranscriptionRequest = {
+            "language_code": language_code,
+            "media_sample_rate_hertz": media_sample_rate_hertz,
+            "media_encoding": media_encoding,
+            "specialty": specialty,
+            "type": type,
+            "audio_stream": ensure_async_iterator(audio_stream),
+        }
         if vocabulary_name is not None:
             input_["vocabulary_name"] = vocabulary_name
-        input_["specialty"] = specialty
-        input_["type"] = type
         if show_speaker_label is not None:
             input_["show_speaker_label"] = show_speaker_label
         if session_id is not None:
             input_["session_id"] = session_id
-        input_["audio_stream"] = ensure_async_iterator(audio_stream)
         if enable_channel_identification is not None:
             input_["enable_channel_identification"] = enable_channel_identification
         if number_of_channels is not None:
@@ -515,7 +526,10 @@ class AsyncTranscribeStreamingClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
-        yield response.output
+        try:
+            yield response.output
+        finally:
+            await response.response.aclose()
 
     @asynccontextmanager
     async def start_stream_transcription(
@@ -642,16 +656,17 @@ class AsyncTranscribeStreamingClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_transcribe_streaming.types.start_stream_transcription_request.StartStreamTranscriptionRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_transcribe_streaming.types.start_stream_transcription_request.StartStreamTranscriptionRequest = {
+            "media_sample_rate_hertz": media_sample_rate_hertz,
+            "media_encoding": media_encoding,
+            "audio_stream": ensure_async_iterator(audio_stream),
+        }
         if language_code is not None:
             input_["language_code"] = language_code
-        input_["media_sample_rate_hertz"] = media_sample_rate_hertz
-        input_["media_encoding"] = media_encoding
         if vocabulary_name is not None:
             input_["vocabulary_name"] = vocabulary_name
         if session_id is not None:
             input_["session_id"] = session_id
-        input_["audio_stream"] = ensure_async_iterator(audio_stream)
         if vocabulary_filter_name is not None:
             input_["vocabulary_filter_name"] = vocabulary_filter_name
         if vocabulary_filter_method is not None:
@@ -696,7 +711,10 @@ class AsyncTranscribeStreamingClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
-        yield response.output
+        try:
+            yield response.output
+        finally:
+            await response.response.aclose()
 
     async def __aenter__(self) -> Self:
         return self

@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> MigrationAlerts:
 
     out: MigrationAlerts = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_lex_model_building_service.types.migration_alert.deserialize_json(item)
         )

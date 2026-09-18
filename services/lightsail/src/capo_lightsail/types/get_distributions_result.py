@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: GetDistributionsResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetDistributionsResult:
     out: GetDistributionsResult = {}  # type: ignore[typeddict-item]
-    if "distributions" in data:
+    if data.get("distributions") is not None:
         import capo_lightsail.types.distribution_list
 
         out["distributions"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_1(data: dict) -> GetDistributionsResult:
                 data["distributions"]
             )
         )
-    if "nextPageToken" in data:
+    if data.get("nextPageToken") is not None:
         out["next_page_token"] = data["nextPageToken"]
     return out

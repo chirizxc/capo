@@ -36,7 +36,7 @@ def serialize_json(value: EndpointUser) -> dict:
 
 def deserialize_json(data: dict) -> EndpointUser:
     out: EndpointUser = {}  # type: ignore[typeddict-item]
-    if "UserAttributes" in data:
+    if data.get("UserAttributes") is not None:
         import capo_pinpoint.types.map_of_list_of__string
 
         out["user_attributes"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> EndpointUser:
                 data["UserAttributes"]
             )
         )
-    if "UserId" in data:
+    if data.get("UserId") is not None:
         out["user_id"] = data["UserId"]
     return out

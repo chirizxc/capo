@@ -96,15 +96,15 @@ def serialize_aws_json_1_0(value: ListModelVersionsRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ListModelVersionsRequest:
     out: ListModelVersionsRequest = {}  # type: ignore[typeddict-item]
-    if "ModelName" in data:
+    if data.get("ModelName") is not None:
         out["model_name"] = data["ModelName"]
     else:
         raise DeserializationError("ListModelVersionsRequest.model_name required")
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_lookoutequipment.types.model_version_status
 
         out["status"] = (
@@ -112,7 +112,7 @@ def deserialize_aws_json_1_0(data: dict) -> ListModelVersionsRequest:
                 data["Status"]
             )
         )
-    if "SourceType" in data:
+    if data.get("SourceType") is not None:
         import capo_lookoutequipment.types.model_version_source_type
 
         out["source_type"] = (
@@ -120,7 +120,7 @@ def deserialize_aws_json_1_0(data: dict) -> ListModelVersionsRequest:
                 data["SourceType"]
             )
         )
-    if "CreatedAtEndTime" in data:
+    if data.get("CreatedAtEndTime") is not None:
         import capo_lookoutequipment.types.timestamp
 
         out["created_at_end_time"] = (
@@ -128,7 +128,7 @@ def deserialize_aws_json_1_0(data: dict) -> ListModelVersionsRequest:
                 data["CreatedAtEndTime"]
             )
         )
-    if "CreatedAtStartTime" in data:
+    if data.get("CreatedAtStartTime") is not None:
         import capo_lookoutequipment.types.timestamp
 
         out["created_at_start_time"] = (
@@ -136,8 +136,8 @@ def deserialize_aws_json_1_0(data: dict) -> ListModelVersionsRequest:
                 data["CreatedAtStartTime"]
             )
         )
-    if "MaxModelVersion" in data:
+    if data.get("MaxModelVersion") is not None:
         out["max_model_version"] = data["MaxModelVersion"]
-    if "MinModelVersion" in data:
+    if data.get("MinModelVersion") is not None:
         out["min_model_version"] = data["MinModelVersion"]
     return out

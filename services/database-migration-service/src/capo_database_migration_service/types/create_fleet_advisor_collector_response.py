@@ -43,14 +43,14 @@ def serialize_aws_json_1_1(value: CreateFleetAdvisorCollectorResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateFleetAdvisorCollectorResponse:
     out: CreateFleetAdvisorCollectorResponse = {}  # type: ignore[typeddict-item]
-    if "CollectorReferencedId" in data:
+    if data.get("CollectorReferencedId") is not None:
         out["collector_referenced_id"] = data["CollectorReferencedId"]
-    if "CollectorName" in data:
+    if data.get("CollectorName") is not None:
         out["collector_name"] = data["CollectorName"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "ServiceAccessRoleArn" in data:
+    if data.get("ServiceAccessRoleArn") is not None:
         out["service_access_role_arn"] = data["ServiceAccessRoleArn"]
-    if "S3BucketName" in data:
+    if data.get("S3BucketName") is not None:
         out["s3_bucket_name"] = data["S3BucketName"]
     return out

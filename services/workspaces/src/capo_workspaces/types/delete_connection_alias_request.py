@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: DeleteConnectionAliasRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteConnectionAliasRequest:
     out: DeleteConnectionAliasRequest = {}  # type: ignore[typeddict-item]
-    if "AliasId" in data:
+    if data.get("AliasId") is not None:
         out["alias_id"] = data["AliasId"]
     else:
         raise DeserializationError("DeleteConnectionAliasRequest.alias_id required")

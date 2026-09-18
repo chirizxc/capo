@@ -99,15 +99,16 @@ class RunCacheResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_omics.types.create_run_cache_request.CreateRunCacheRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_omics.types.create_run_cache_request.CreateRunCacheRequest = {
+            "cache_s3_location": cache_s3_location,
+            "request_id": request_id,
+        }
         if cache_behavior is not None:
             input_["cache_behavior"] = cache_behavior
-        input_["cache_s3_location"] = cache_s3_location
         if description is not None:
             input_["description"] = description
         if name is not None:
             input_["name"] = name
-        input_["request_id"] = request_id
         if tags is not None:
             input_["tags"] = tags
         if cache_bucket_owner_id is not None:
@@ -118,6 +119,7 @@ class RunCacheResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -158,14 +160,14 @@ class RunCacheResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_omics.types.get_run_cache_request.GetRunCacheRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_omics.types.get_run_cache_request.GetRunCacheRequest = {"id": id}
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update(
@@ -214,12 +216,13 @@ class RunCacheResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_omics.types.update_run_cache_request.UpdateRunCacheRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_omics.types.update_run_cache_request.UpdateRunCacheRequest = {
+            "id": id
+        }
         if cache_behavior is not None:
             input_["cache_behavior"] = cache_behavior
         if description is not None:
             input_["description"] = description
-        input_["id"] = id
         if name is not None:
             input_["name"] = name
 
@@ -228,6 +231,7 @@ class RunCacheResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -266,14 +270,16 @@ class RunCacheResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_omics.types.delete_run_cache_request.DeleteRunCacheRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_omics.types.delete_run_cache_request.DeleteRunCacheRequest = {
+            "id": id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -316,7 +322,7 @@ class RunCacheResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_omics.types.list_run_caches_request.ListRunCachesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_omics.types.list_run_caches_request.ListRunCachesRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if starting_token is not None:
@@ -327,6 +333,7 @@ class RunCacheResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -391,15 +398,16 @@ class AsyncRunCacheResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_omics.types.create_run_cache_request.CreateRunCacheRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_omics.types.create_run_cache_request.CreateRunCacheRequest = {
+            "cache_s3_location": cache_s3_location,
+            "request_id": request_id,
+        }
         if cache_behavior is not None:
             input_["cache_behavior"] = cache_behavior
-        input_["cache_s3_location"] = cache_s3_location
         if description is not None:
             input_["description"] = description
         if name is not None:
             input_["name"] = name
-        input_["request_id"] = request_id
         if tags is not None:
             input_["tags"] = tags
         if cache_bucket_owner_id is not None:
@@ -410,6 +418,7 @@ class AsyncRunCacheResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -451,14 +460,14 @@ class AsyncRunCacheResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_omics.types.get_run_cache_request.GetRunCacheRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_omics.types.get_run_cache_request.GetRunCacheRequest = {"id": id}
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update(
@@ -508,12 +517,13 @@ class AsyncRunCacheResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_omics.types.update_run_cache_request.UpdateRunCacheRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_omics.types.update_run_cache_request.UpdateRunCacheRequest = {
+            "id": id
+        }
         if cache_behavior is not None:
             input_["cache_behavior"] = cache_behavior
         if description is not None:
             input_["description"] = description
-        input_["id"] = id
         if name is not None:
             input_["name"] = name
 
@@ -522,6 +532,7 @@ class AsyncRunCacheResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -561,14 +572,16 @@ class AsyncRunCacheResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_omics.types.delete_run_cache_request.DeleteRunCacheRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_omics.types.delete_run_cache_request.DeleteRunCacheRequest = {
+            "id": id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -612,7 +625,7 @@ class AsyncRunCacheResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_omics.types.list_run_caches_request.ListRunCachesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_omics.types.list_run_caches_request.ListRunCachesRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if starting_token is not None:
@@ -623,4 +636,5 @@ class AsyncRunCacheResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

@@ -32,9 +32,9 @@ def serialize_aws_json_1_0(value: CreateModelResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CreateModelResponse:
     out: CreateModelResponse = {}  # type: ignore[typeddict-item]
-    if "ModelArn" in data:
+    if data.get("ModelArn") is not None:
         out["model_arn"] = data["ModelArn"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_lookoutequipment.types.model_status
 
         out["status"] = (

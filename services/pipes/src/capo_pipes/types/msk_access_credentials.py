@@ -35,9 +35,9 @@ def serialize_json(value: MSKAccessCredentials) -> dict:
 
 
 def deserialize_json(data: dict) -> MSKAccessCredentials:
-    if "SaslScram512Auth" in data:
+    if data.get("SaslScram512Auth") is not None:
         return {"SaslScram512Auth": data["SaslScram512Auth"]}
-    elif "ClientCertificateTlsAuth" in data:
+    elif data.get("ClientCertificateTlsAuth") is not None:
         return {"ClientCertificateTlsAuth": data["ClientCertificateTlsAuth"]}
     else:
         raise DeserializationError("MSKAccessCredentials: no recognized variant key")

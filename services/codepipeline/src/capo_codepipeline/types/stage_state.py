@@ -136,9 +136,9 @@ def serialize_aws_json_1_1(value: StageState) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> StageState:
     out: StageState = {}  # type: ignore[typeddict-item]
-    if "stageName" in data:
+    if data.get("stageName") is not None:
         out["stage_name"] = data["stageName"]
-    if "inboundExecution" in data:
+    if data.get("inboundExecution") is not None:
         import capo_codepipeline.types.stage_execution
 
         out["inbound_execution"] = (
@@ -146,7 +146,7 @@ def deserialize_aws_json_1_1(data: dict) -> StageState:
                 data["inboundExecution"]
             )
         )
-    if "inboundExecutions" in data:
+    if data.get("inboundExecutions") is not None:
         import capo_codepipeline.types.stage_execution_list
 
         out["inbound_executions"] = (
@@ -154,7 +154,7 @@ def deserialize_aws_json_1_1(data: dict) -> StageState:
                 data["inboundExecutions"]
             )
         )
-    if "inboundTransitionState" in data:
+    if data.get("inboundTransitionState") is not None:
         import capo_codepipeline.types.transition_state
 
         out["inbound_transition_state"] = (
@@ -162,7 +162,7 @@ def deserialize_aws_json_1_1(data: dict) -> StageState:
                 data["inboundTransitionState"]
             )
         )
-    if "actionStates" in data:
+    if data.get("actionStates") is not None:
         import capo_codepipeline.types.action_state_list
 
         out["action_states"] = (
@@ -170,7 +170,7 @@ def deserialize_aws_json_1_1(data: dict) -> StageState:
                 data["actionStates"]
             )
         )
-    if "latestExecution" in data:
+    if data.get("latestExecution") is not None:
         import capo_codepipeline.types.stage_execution
 
         out["latest_execution"] = (
@@ -178,7 +178,7 @@ def deserialize_aws_json_1_1(data: dict) -> StageState:
                 data["latestExecution"]
             )
         )
-    if "beforeEntryConditionState" in data:
+    if data.get("beforeEntryConditionState") is not None:
         import capo_codepipeline.types.stage_condition_state
 
         out["before_entry_condition_state"] = (
@@ -186,7 +186,7 @@ def deserialize_aws_json_1_1(data: dict) -> StageState:
                 data["beforeEntryConditionState"]
             )
         )
-    if "onSuccessConditionState" in data:
+    if data.get("onSuccessConditionState") is not None:
         import capo_codepipeline.types.stage_condition_state
 
         out["on_success_condition_state"] = (
@@ -194,7 +194,7 @@ def deserialize_aws_json_1_1(data: dict) -> StageState:
                 data["onSuccessConditionState"]
             )
         )
-    if "onFailureConditionState" in data:
+    if data.get("onFailureConditionState") is not None:
         import capo_codepipeline.types.stage_condition_state
 
         out["on_failure_condition_state"] = (
@@ -202,7 +202,7 @@ def deserialize_aws_json_1_1(data: dict) -> StageState:
                 data["onFailureConditionState"]
             )
         )
-    if "retryStageMetadata" in data:
+    if data.get("retryStageMetadata") is not None:
         import capo_codepipeline.types.retry_stage_metadata
 
         out["retry_stage_metadata"] = (

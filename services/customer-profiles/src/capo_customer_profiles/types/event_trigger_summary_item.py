@@ -57,19 +57,19 @@ def serialize_json(value: EventTriggerSummaryItem) -> dict:
 
 def deserialize_json(data: dict) -> EventTriggerSummaryItem:
     out: EventTriggerSummaryItem = {}  # type: ignore[typeddict-item]
-    if "ObjectTypeName" in data:
+    if data.get("ObjectTypeName") is not None:
         out["object_type_name"] = data["ObjectTypeName"]
-    if "EventTriggerName" in data:
+    if data.get("EventTriggerName") is not None:
         out["event_trigger_name"] = data["EventTriggerName"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "CreatedAt" in data:
+    if data.get("CreatedAt") is not None:
         import capo_customer_profiles.types.timestamp
 
         out["created_at"] = capo_customer_profiles.types.timestamp.deserialize_json(
             data["CreatedAt"]
         )
-    if "LastUpdatedAt" in data:
+    if data.get("LastUpdatedAt") is not None:
         import capo_customer_profiles.types.timestamp
 
         out["last_updated_at"] = (
@@ -77,7 +77,7 @@ def deserialize_json(data: dict) -> EventTriggerSummaryItem:
                 data["LastUpdatedAt"]
             )
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_customer_profiles.types.tag_map
 
         out["tags"] = capo_customer_profiles.types.tag_map.deserialize_json(

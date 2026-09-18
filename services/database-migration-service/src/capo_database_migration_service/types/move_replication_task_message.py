@@ -29,13 +29,13 @@ def serialize_aws_json_1_1(value: MoveReplicationTaskMessage) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> MoveReplicationTaskMessage:
     out: MoveReplicationTaskMessage = {}  # type: ignore[typeddict-item]
-    if "ReplicationTaskArn" in data:
+    if data.get("ReplicationTaskArn") is not None:
         out["replication_task_arn"] = data["ReplicationTaskArn"]
     else:
         raise DeserializationError(
             "MoveReplicationTaskMessage.replication_task_arn required"
         )
-    if "TargetReplicationInstanceArn" in data:
+    if data.get("TargetReplicationInstanceArn") is not None:
         out["target_replication_instance_arn"] = data["TargetReplicationInstanceArn"]
     else:
         raise DeserializationError(

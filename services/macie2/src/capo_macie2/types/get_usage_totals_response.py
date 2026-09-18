@@ -38,13 +38,13 @@ def serialize_json(value: GetUsageTotalsResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetUsageTotalsResponse:
     out: GetUsageTotalsResponse = {}  # type: ignore[typeddict-item]
-    if "timeRange" in data:
+    if data.get("timeRange") is not None:
         import capo_macie2.types.time_range
 
         out["time_range"] = capo_macie2.types.time_range.deserialize_json(
             data["timeRange"]
         )
-    if "usageTotals" in data:
+    if data.get("usageTotals") is not None:
         import capo_macie2.types.__list_of_usage_total
 
         out["usage_totals"] = capo_macie2.types.__list_of_usage_total.deserialize_json(

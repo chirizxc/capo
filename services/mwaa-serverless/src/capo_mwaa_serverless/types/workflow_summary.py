@@ -84,17 +84,17 @@ def serialize_aws_json_1_0(value: WorkflowSummary) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> WorkflowSummary:
     out: WorkflowSummary = {}  # type: ignore[typeddict-item]
-    if "WorkflowArn" in data:
+    if data.get("WorkflowArn") is not None:
         out["workflow_arn"] = data["WorkflowArn"]
     else:
         raise DeserializationError("WorkflowSummary.workflow_arn required")
-    if "WorkflowVersion" in data:
+    if data.get("WorkflowVersion") is not None:
         out["workflow_version"] = data["WorkflowVersion"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "CreatedAt" in data:
+    if data.get("CreatedAt") is not None:
         import capo_mwaa_serverless.types.timestamp_value
 
         out["created_at"] = (
@@ -102,7 +102,7 @@ def deserialize_aws_json_1_0(data: dict) -> WorkflowSummary:
                 data["CreatedAt"]
             )
         )
-    if "ModifiedAt" in data:
+    if data.get("ModifiedAt") is not None:
         import capo_mwaa_serverless.types.timestamp_value
 
         out["modified_at"] = (
@@ -110,7 +110,7 @@ def deserialize_aws_json_1_0(data: dict) -> WorkflowSummary:
                 data["ModifiedAt"]
             )
         )
-    if "WorkflowStatus" in data:
+    if data.get("WorkflowStatus") is not None:
         import capo_mwaa_serverless.types.workflow_status
 
         out["workflow_status"] = (
@@ -118,6 +118,6 @@ def deserialize_aws_json_1_0(data: dict) -> WorkflowSummary:
                 data["WorkflowStatus"]
             )
         )
-    if "TriggerMode" in data:
+    if data.get("TriggerMode") is not None:
         out["trigger_mode"] = data["TriggerMode"]
     return out

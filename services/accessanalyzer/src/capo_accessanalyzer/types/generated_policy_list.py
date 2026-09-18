@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> GeneratedPolicyList:
 
     out: GeneratedPolicyList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_accessanalyzer.types.generated_policy.deserialize_json(item))
     return out

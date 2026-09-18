@@ -13,9 +13,9 @@ from capo_securityagent import AsyncSecurityAgentClient
 
 
 async def main():
-    async with AsyncSecurityAgentClient() as s3:
+    async with AsyncSecurityAgentClient() as security_agent:
         # Example: call the add_artifact operation
-        response = await s3.add_artifact()
+        response = await security_agent.add_artifact()
         print(response["artifact_id"])
 ```
 
@@ -28,9 +28,9 @@ from capo_securityagent import AsyncSecurityAgentClient
 
 
 async def main():
-    async with AsyncSecurityAgentClient() as s3:
+    async with AsyncSecurityAgentClient() as security_agent:
         # Example: paginate over list_artifacts
-        async for item in s3.iter_list_artifacts():
+        async for item in security_agent.iter_list_artifacts():
             print(item)
 ```
 
@@ -44,9 +44,9 @@ from capo_securityagent.error import AccessDeniedException
 
 
 async def main():
-    async with AsyncSecurityAgentClient() as s3:
+    async with AsyncSecurityAgentClient() as security_agent:
         try:
-            await s3.add_artifact()
+            await security_agent.add_artifact()
         except AccessDeniedException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -63,13 +63,13 @@ from capo_securityagent import AsyncSecurityAgentClient
 
 
 async def main():
-    async with AsyncSecurityAgentClient() as s3:
+    async with AsyncSecurityAgentClient() as security_agent:
         # Default: 3 attempts for every operation
-        response = await s3.add_artifact()
+        response = await security_agent.add_artifact()
 
         # Override per operation
-        response = await s3.add_artifact(config_overrides={"retry_max_attempts": 5})
+        response = await security_agent.add_artifact(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.add_artifact(config_overrides={"retry_max_attempts": 1})
+        response = await security_agent.add_artifact(config_overrides={"retry_max_attempts": 1})
 ```

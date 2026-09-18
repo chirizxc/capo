@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> RestoreTestingRecoveryPointTypeList:
 
     out: RestoreTestingRecoveryPointTypeList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_backup.types.restore_testing_recovery_point_type.deserialize_json(item)
         )

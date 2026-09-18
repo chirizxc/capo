@@ -25,5 +25,7 @@ def deserialize_aws_json_1_1(data: list) -> entityStatusCodeList:
 
     out: entityStatusCodeList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_health.types.entity_status_code.deserialize_aws_json_1_1(item))
     return out

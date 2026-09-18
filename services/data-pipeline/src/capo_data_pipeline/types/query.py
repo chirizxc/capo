@@ -29,7 +29,7 @@ def serialize_aws_json_1_1(value: Query) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Query:
     out: Query = {}  # type: ignore[typeddict-item]
-    if "selectors" in data:
+    if data.get("selectors") is not None:
         import capo_data_pipeline.types.selector_list
 
         out["selectors"] = (

@@ -63,13 +63,13 @@ def serialize_aws_json_1_0(value: ConfigurableUpfrontPricingTerm) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ConfigurableUpfrontPricingTerm:
     out: ConfigurableUpfrontPricingTerm = {}  # type: ignore[typeddict-item]
-    if "type" in data:
+    if data.get("type") is not None:
         out["type"] = data["type"]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "currencyCode" in data:
+    if data.get("currencyCode") is not None:
         out["currency_code"] = data["currencyCode"]
-    if "rateCards" in data:
+    if data.get("rateCards") is not None:
         import capo_marketplace_agreement.types.configurable_upfront_rate_card_list
 
         out["rate_cards"] = (
@@ -77,7 +77,7 @@ def deserialize_aws_json_1_0(data: dict) -> ConfigurableUpfrontPricingTerm:
                 data["rateCards"]
             )
         )
-    if "configuration" in data:
+    if data.get("configuration") is not None:
         import capo_marketplace_agreement.types.configurable_upfront_pricing_term_configuration
 
         out["configuration"] = (

@@ -39,15 +39,15 @@ def serialize_json(value: PutFeedbackRequest) -> dict:
 
 def deserialize_json(data: dict) -> PutFeedbackRequest:
     out: PutFeedbackRequest = {}  # type: ignore[typeddict-item]
-    if "targetId" in data:
+    if data.get("targetId") is not None:
         out["target_id"] = data["targetId"]
     else:
         raise DeserializationError("PutFeedbackRequest.target_id required")
-    if "targetType" in data:
+    if data.get("targetType") is not None:
         out["target_type"] = data["targetType"]
     else:
         raise DeserializationError("PutFeedbackRequest.target_type required")
-    if "contentFeedback" in data:
+    if data.get("contentFeedback") is not None:
         import capo_qconnect.types.content_feedback_data
 
         out["content_feedback"] = (

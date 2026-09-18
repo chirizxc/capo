@@ -24,7 +24,7 @@ def serialize_json(value: VirtualRouterStatus) -> dict:
 
 def deserialize_json(data: dict) -> VirtualRouterStatus:
     out: VirtualRouterStatus = {}  # type: ignore[typeddict-item]
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
     else:
         raise DeserializationError("VirtualRouterStatus.status required")

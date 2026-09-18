@@ -40,18 +40,18 @@ def serialize_json(value: SigningProfileRevocationRecord) -> dict:
 
 def deserialize_json(data: dict) -> SigningProfileRevocationRecord:
     out: SigningProfileRevocationRecord = {}  # type: ignore[typeddict-item]
-    if "revocationEffectiveFrom" in data:
+    if data.get("revocationEffectiveFrom") is not None:
         import capo_signer.types.timestamp
 
         out["revocation_effective_from"] = capo_signer.types.timestamp.deserialize_json(
             data["revocationEffectiveFrom"]
         )
-    if "revokedAt" in data:
+    if data.get("revokedAt") is not None:
         import capo_signer.types.timestamp
 
         out["revoked_at"] = capo_signer.types.timestamp.deserialize_json(
             data["revokedAt"]
         )
-    if "revokedBy" in data:
+    if data.get("revokedBy") is not None:
         out["revoked_by"] = data["revokedBy"]
     return out

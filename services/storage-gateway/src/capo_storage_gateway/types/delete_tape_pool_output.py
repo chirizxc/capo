@@ -23,6 +23,6 @@ def serialize_aws_json_1_1(value: DeleteTapePoolOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteTapePoolOutput:
     out: DeleteTapePoolOutput = {}  # type: ignore[typeddict-item]
-    if "PoolARN" in data:
+    if data.get("PoolARN") is not None:
         out["pool_arn"] = data["PoolARN"]
     return out

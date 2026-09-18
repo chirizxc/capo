@@ -34,11 +34,11 @@ def serialize_json(value: ImportTableOperation) -> dict:
 
 def deserialize_json(data: dict) -> ImportTableOperation:
     out: ImportTableOperation = {}  # type: ignore[typeddict-item]
-    if "Alias" in data:
+    if data.get("Alias") is not None:
         out["alias"] = data["Alias"]
     else:
         raise DeserializationError("ImportTableOperation.alias required")
-    if "Source" in data:
+    if data.get("Source") is not None:
         import capo_quicksight.types.import_table_operation_source
 
         out["source"] = (

@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> UserMessage:
 
     out: UserMessage = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_devops_agent.types.user_message_block.deserialize_json(item))
     return out

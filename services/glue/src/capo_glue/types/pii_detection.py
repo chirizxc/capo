@@ -92,9 +92,25 @@ def serialize_aws_json_1_1(value: PIIDetection) -> dict:
     if "output_column_name" in value:
         out["OutputColumnName"] = value["output_column_name"]
     if "sample_fraction" in value:
-        out["SampleFraction"] = value["sample_fraction"]
+        out["SampleFraction"] = (
+            "NaN"
+            if value["sample_fraction"] != value["sample_fraction"]
+            else "Infinity"
+            if value["sample_fraction"] == float("inf")
+            else "-Infinity"
+            if value["sample_fraction"] == float("-inf")
+            else value["sample_fraction"]
+        )
     if "threshold_fraction" in value:
-        out["ThresholdFraction"] = value["threshold_fraction"]
+        out["ThresholdFraction"] = (
+            "NaN"
+            if value["threshold_fraction"] != value["threshold_fraction"]
+            else "Infinity"
+            if value["threshold_fraction"] == float("inf")
+            else "-Infinity"
+            if value["threshold_fraction"] == float("-inf")
+            else value["threshold_fraction"]
+        )
     if "mask_value" in value:
         out["MaskValue"] = value["mask_value"]
     if "redact_text" in value:
@@ -116,11 +132,11 @@ def serialize_aws_json_1_1(value: PIIDetection) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PIIDetection:
     out: PIIDetection = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("PIIDetection.name required")
-    if "Inputs" in data:
+    if data.get("Inputs") is not None:
         import capo_glue.types.one_input
 
         out["inputs"] = capo_glue.types.one_input.deserialize_aws_json_1_1(
@@ -128,7 +144,7 @@ def deserialize_aws_json_1_1(data: dict) -> PIIDetection:
         )
     else:
         raise DeserializationError("PIIDetection.inputs required")
-    if "PiiType" in data:
+    if data.get("PiiType") is not None:
         import capo_glue.types.pii_type
 
         out["pii_type"] = capo_glue.types.pii_type.deserialize_aws_json_1_1(
@@ -136,7 +152,7 @@ def deserialize_aws_json_1_1(data: dict) -> PIIDetection:
         )
     else:
         raise DeserializationError("PIIDetection.pii_type required")
-    if "EntityTypesToDetect" in data:
+    if data.get("EntityTypesToDetect") is not None:
         import capo_glue.types.enclosed_in_string_properties
 
         out["entity_types_to_detect"] = (
@@ -146,26 +162,26 @@ def deserialize_aws_json_1_1(data: dict) -> PIIDetection:
         )
     else:
         raise DeserializationError("PIIDetection.entity_types_to_detect required")
-    if "OutputColumnName" in data:
+    if data.get("OutputColumnName") is not None:
         out["output_column_name"] = data["OutputColumnName"]
-    if "SampleFraction" in data:
-        out["sample_fraction"] = data["SampleFraction"]
-    if "ThresholdFraction" in data:
-        out["threshold_fraction"] = data["ThresholdFraction"]
-    if "MaskValue" in data:
+    if data.get("SampleFraction") is not None:
+        out["sample_fraction"] = float(data["SampleFraction"])
+    if data.get("ThresholdFraction") is not None:
+        out["threshold_fraction"] = float(data["ThresholdFraction"])
+    if data.get("MaskValue") is not None:
         out["mask_value"] = data["MaskValue"]
-    if "RedactText" in data:
+    if data.get("RedactText") is not None:
         out["redact_text"] = data["RedactText"]
-    if "RedactChar" in data:
+    if data.get("RedactChar") is not None:
         out["redact_char"] = data["RedactChar"]
-    if "MatchPattern" in data:
+    if data.get("MatchPattern") is not None:
         out["match_pattern"] = data["MatchPattern"]
-    if "NumLeftCharsToExclude" in data:
+    if data.get("NumLeftCharsToExclude") is not None:
         out["num_left_chars_to_exclude"] = data["NumLeftCharsToExclude"]
-    if "NumRightCharsToExclude" in data:
+    if data.get("NumRightCharsToExclude") is not None:
         out["num_right_chars_to_exclude"] = data["NumRightCharsToExclude"]
-    if "DetectionParameters" in data:
+    if data.get("DetectionParameters") is not None:
         out["detection_parameters"] = data["DetectionParameters"]
-    if "DetectionSensitivity" in data:
+    if data.get("DetectionSensitivity") is not None:
         out["detection_sensitivity"] = data["DetectionSensitivity"]
     return out

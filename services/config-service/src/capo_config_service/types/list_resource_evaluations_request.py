@@ -40,7 +40,7 @@ def serialize_aws_json_1_1(value: ListResourceEvaluationsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListResourceEvaluationsRequest:
     out: ListResourceEvaluationsRequest = {}  # type: ignore[typeddict-item]
-    if "Filters" in data:
+    if data.get("Filters") is not None:
         import capo_config_service.types.resource_evaluation_filters
 
         out["filters"] = (
@@ -48,10 +48,10 @@ def deserialize_aws_json_1_1(data: dict) -> ListResourceEvaluationsRequest:
                 data["Filters"]
             )
         )
-    if "Limit" in data:
+    if data.get("Limit") is not None:
         out["limit"] = data["Limit"]
     else:
         out["limit"] = 0
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

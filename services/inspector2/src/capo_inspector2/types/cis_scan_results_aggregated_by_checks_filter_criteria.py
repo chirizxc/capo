@@ -94,7 +94,7 @@ def serialize_json(value: CisScanResultsAggregatedByChecksFilterCriteria) -> dic
 
 def deserialize_json(data: dict) -> CisScanResultsAggregatedByChecksFilterCriteria:
     out: CisScanResultsAggregatedByChecksFilterCriteria = {}  # type: ignore[typeddict-item]
-    if "accountIdFilters" in data:
+    if data.get("accountIdFilters") is not None:
         import capo_inspector2.types.one_account_id_filter_list
 
         out["account_id_filters"] = (
@@ -102,7 +102,7 @@ def deserialize_json(data: dict) -> CisScanResultsAggregatedByChecksFilterCriter
                 data["accountIdFilters"]
             )
         )
-    if "checkIdFilters" in data:
+    if data.get("checkIdFilters") is not None:
         import capo_inspector2.types.check_id_filter_list
 
         out["check_id_filters"] = (
@@ -110,13 +110,13 @@ def deserialize_json(data: dict) -> CisScanResultsAggregatedByChecksFilterCriter
                 data["checkIdFilters"]
             )
         )
-    if "titleFilters" in data:
+    if data.get("titleFilters") is not None:
         import capo_inspector2.types.title_filter_list
 
         out["title_filters"] = capo_inspector2.types.title_filter_list.deserialize_json(
             data["titleFilters"]
         )
-    if "platformFilters" in data:
+    if data.get("platformFilters") is not None:
         import capo_inspector2.types.platform_filter_list
 
         out["platform_filters"] = (
@@ -124,7 +124,7 @@ def deserialize_json(data: dict) -> CisScanResultsAggregatedByChecksFilterCriter
                 data["platformFilters"]
             )
         )
-    if "failedResourcesFilters" in data:
+    if data.get("failedResourcesFilters") is not None:
         import capo_inspector2.types.cis_number_filter_list
 
         out["failed_resources_filters"] = (
@@ -132,7 +132,7 @@ def deserialize_json(data: dict) -> CisScanResultsAggregatedByChecksFilterCriter
                 data["failedResourcesFilters"]
             )
         )
-    if "securityLevelFilters" in data:
+    if data.get("securityLevelFilters") is not None:
         import capo_inspector2.types.cis_security_level_filter_list
 
         out["security_level_filters"] = (

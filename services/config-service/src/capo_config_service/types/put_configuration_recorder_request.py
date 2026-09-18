@@ -41,7 +41,7 @@ def serialize_aws_json_1_1(value: PutConfigurationRecorderRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PutConfigurationRecorderRequest:
     out: PutConfigurationRecorderRequest = {}  # type: ignore[typeddict-item]
-    if "ConfigurationRecorder" in data:
+    if data.get("ConfigurationRecorder") is not None:
         import capo_config_service.types.configuration_recorder
 
         out["configuration_recorder"] = (
@@ -53,7 +53,7 @@ def deserialize_aws_json_1_1(data: dict) -> PutConfigurationRecorderRequest:
         raise DeserializationError(
             "PutConfigurationRecorderRequest.configuration_recorder required"
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_config_service.types.tags_list
 
         out["tags"] = capo_config_service.types.tags_list.deserialize_aws_json_1_1(

@@ -25,6 +25,8 @@ def deserialize_json(data: list) -> DataLakeConfigurationList:
 
     out: DataLakeConfigurationList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_securitylake.types.data_lake_configuration.deserialize_json(item)
         )

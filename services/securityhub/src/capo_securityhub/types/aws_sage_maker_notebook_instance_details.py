@@ -154,7 +154,7 @@ def serialize_json(value: AwsSageMakerNotebookInstanceDetails) -> dict:
 
 def deserialize_json(data: dict) -> AwsSageMakerNotebookInstanceDetails:
     out: AwsSageMakerNotebookInstanceDetails = {}  # type: ignore[typeddict-item]
-    if "AcceleratorTypes" in data:
+    if data.get("AcceleratorTypes") is not None:
         import capo_securityhub.types.non_empty_string_list
 
         out["accelerator_types"] = (
@@ -162,7 +162,7 @@ def deserialize_json(data: dict) -> AwsSageMakerNotebookInstanceDetails:
                 data["AcceleratorTypes"]
             )
         )
-    if "AdditionalCodeRepositories" in data:
+    if data.get("AdditionalCodeRepositories") is not None:
         import capo_securityhub.types.non_empty_string_list
 
         out["additional_code_repositories"] = (
@@ -170,13 +170,13 @@ def deserialize_json(data: dict) -> AwsSageMakerNotebookInstanceDetails:
                 data["AdditionalCodeRepositories"]
             )
         )
-    if "DefaultCodeRepository" in data:
+    if data.get("DefaultCodeRepository") is not None:
         out["default_code_repository"] = data["DefaultCodeRepository"]
-    if "DirectInternetAccess" in data:
+    if data.get("DirectInternetAccess") is not None:
         out["direct_internet_access"] = data["DirectInternetAccess"]
-    if "FailureReason" in data:
+    if data.get("FailureReason") is not None:
         out["failure_reason"] = data["FailureReason"]
-    if "InstanceMetadataServiceConfiguration" in data:
+    if data.get("InstanceMetadataServiceConfiguration") is not None:
         import capo_securityhub.types.aws_sage_maker_notebook_instance_metadata_service_configuration_details
 
         out["instance_metadata_service_configuration"] = (
@@ -184,29 +184,29 @@ def deserialize_json(data: dict) -> AwsSageMakerNotebookInstanceDetails:
                 data["InstanceMetadataServiceConfiguration"]
             )
         )
-    if "InstanceType" in data:
+    if data.get("InstanceType") is not None:
         out["instance_type"] = data["InstanceType"]
-    if "KmsKeyId" in data:
+    if data.get("KmsKeyId") is not None:
         out["kms_key_id"] = data["KmsKeyId"]
-    if "NetworkInterfaceId" in data:
+    if data.get("NetworkInterfaceId") is not None:
         out["network_interface_id"] = data["NetworkInterfaceId"]
-    if "NotebookInstanceArn" in data:
+    if data.get("NotebookInstanceArn") is not None:
         out["notebook_instance_arn"] = data["NotebookInstanceArn"]
-    if "NotebookInstanceLifecycleConfigName" in data:
+    if data.get("NotebookInstanceLifecycleConfigName") is not None:
         out["notebook_instance_lifecycle_config_name"] = data[
             "NotebookInstanceLifecycleConfigName"
         ]
-    if "NotebookInstanceName" in data:
+    if data.get("NotebookInstanceName") is not None:
         out["notebook_instance_name"] = data["NotebookInstanceName"]
-    if "NotebookInstanceStatus" in data:
+    if data.get("NotebookInstanceStatus") is not None:
         out["notebook_instance_status"] = data["NotebookInstanceStatus"]
-    if "PlatformIdentifier" in data:
+    if data.get("PlatformIdentifier") is not None:
         out["platform_identifier"] = data["PlatformIdentifier"]
-    if "RoleArn" in data:
+    if data.get("RoleArn") is not None:
         out["role_arn"] = data["RoleArn"]
-    if "RootAccess" in data:
+    if data.get("RootAccess") is not None:
         out["root_access"] = data["RootAccess"]
-    if "SecurityGroups" in data:
+    if data.get("SecurityGroups") is not None:
         import capo_securityhub.types.non_empty_string_list
 
         out["security_groups"] = (
@@ -214,10 +214,10 @@ def deserialize_json(data: dict) -> AwsSageMakerNotebookInstanceDetails:
                 data["SecurityGroups"]
             )
         )
-    if "SubnetId" in data:
+    if data.get("SubnetId") is not None:
         out["subnet_id"] = data["SubnetId"]
-    if "Url" in data:
+    if data.get("Url") is not None:
         out["url"] = data["Url"]
-    if "VolumeSizeInGB" in data:
+    if data.get("VolumeSizeInGB") is not None:
         out["volume_size_in_gb"] = data["VolumeSizeInGB"]
     return out

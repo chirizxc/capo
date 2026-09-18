@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> AssetModelCompositeModelPath:
 
     out: AssetModelCompositeModelPath = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_iotsitewise.types.asset_model_composite_model_path_segment.deserialize_json(
                 item

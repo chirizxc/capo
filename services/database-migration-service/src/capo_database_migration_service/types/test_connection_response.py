@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: TestConnectionResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> TestConnectionResponse:
     out: TestConnectionResponse = {}  # type: ignore[typeddict-item]
-    if "Connection" in data:
+    if data.get("Connection") is not None:
         import capo_database_migration_service.types.connection
 
         out["connection"] = (

@@ -25,6 +25,8 @@ def serialize_json(input_to_serialize: TargetResourceTags) -> dict:
 def deserialize_json(data: dict) -> TargetResourceTags:
     out: TargetResourceTags = {}
     for key, value in data.items():
+        if value is None:
+            continue
         import capo_inspector2.types.tag_value_list
 
         out[key] = capo_inspector2.types.tag_value_list.deserialize_json(value)

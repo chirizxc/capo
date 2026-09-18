@@ -22,7 +22,7 @@ def serialize_aws_json_1_1(value: DetectLabelsImagePropertiesSettings) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DetectLabelsImagePropertiesSettings:
     out: DetectLabelsImagePropertiesSettings = {}  # type: ignore[typeddict-item]
-    if "MaxDominantColors" in data:
+    if data.get("MaxDominantColors") is not None:
         out["max_dominant_colors"] = data["MaxDominantColors"]
     else:
         out["max_dominant_colors"] = 0

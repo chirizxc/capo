@@ -54,15 +54,15 @@ def serialize_json(value: CreateProposalInput) -> dict:
 
 def deserialize_json(data: dict) -> CreateProposalInput:
     out: CreateProposalInput = {}  # type: ignore[typeddict-item]
-    if "ClientRequestToken" in data:
+    if data.get("ClientRequestToken") is not None:
         out["client_request_token"] = data["ClientRequestToken"]
     else:
         raise DeserializationError("CreateProposalInput.client_request_token required")
-    if "MemberId" in data:
+    if data.get("MemberId") is not None:
         out["member_id"] = data["MemberId"]
     else:
         raise DeserializationError("CreateProposalInput.member_id required")
-    if "Actions" in data:
+    if data.get("Actions") is not None:
         import capo_managedblockchain.types.proposal_actions
 
         out["actions"] = capo_managedblockchain.types.proposal_actions.deserialize_json(
@@ -70,9 +70,9 @@ def deserialize_json(data: dict) -> CreateProposalInput:
         )
     else:
         raise DeserializationError("CreateProposalInput.actions required")
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_managedblockchain.types.input_tag_map
 
         out["tags"] = capo_managedblockchain.types.input_tag_map.deserialize_json(

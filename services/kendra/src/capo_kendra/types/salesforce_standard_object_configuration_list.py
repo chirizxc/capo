@@ -29,6 +29,8 @@ def deserialize_aws_json_1_1(data: list) -> SalesforceStandardObjectConfiguratio
 
     out: SalesforceStandardObjectConfigurationList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_kendra.types.salesforce_standard_object_configuration.deserialize_aws_json_1_1(
                 item

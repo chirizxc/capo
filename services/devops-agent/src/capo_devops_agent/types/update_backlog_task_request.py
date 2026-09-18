@@ -37,12 +37,12 @@ def serialize_json(value: UpdateBacklogTaskRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateBacklogTaskRequest:
     out: UpdateBacklogTaskRequest = {}  # type: ignore[typeddict-item]
-    if "taskStatus" in data:
+    if data.get("taskStatus") is not None:
         import capo_devops_agent.types.task_status
 
         out["task_status"] = capo_devops_agent.types.task_status.deserialize_json(
             data["taskStatus"]
         )
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     return out

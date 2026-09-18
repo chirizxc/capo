@@ -40,15 +40,15 @@ def serialize_json(value: CreateChatTokenResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateChatTokenResponse:
     out: CreateChatTokenResponse = {}  # type: ignore[typeddict-item]
-    if "token" in data:
+    if data.get("token") is not None:
         out["token"] = data["token"]
-    if "tokenExpirationTime" in data:
+    if data.get("tokenExpirationTime") is not None:
         import capo_ivschat.types.time
 
         out["token_expiration_time"] = capo_ivschat.types.time.deserialize_json(
             data["tokenExpirationTime"]
         )
-    if "sessionExpirationTime" in data:
+    if data.get("sessionExpirationTime") is not None:
         import capo_ivschat.types.time
 
         out["session_expiration_time"] = capo_ivschat.types.time.deserialize_json(

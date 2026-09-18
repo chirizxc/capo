@@ -33,6 +33,8 @@ def deserialize_json(
 
     out: AwsEcsTaskDefinitionContainerDefinitionsExtraHostsList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_securityhub.types.aws_ecs_task_definition_container_definitions_extra_hosts_details.deserialize_json(
                 item

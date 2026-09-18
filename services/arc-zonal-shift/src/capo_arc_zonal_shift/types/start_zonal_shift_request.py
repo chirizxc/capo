@@ -38,21 +38,21 @@ def serialize_json(value: StartZonalShiftRequest) -> dict:
 
 def deserialize_json(data: dict) -> StartZonalShiftRequest:
     out: StartZonalShiftRequest = {}  # type: ignore[typeddict-item]
-    if "resourceIdentifier" in data:
+    if data.get("resourceIdentifier") is not None:
         out["resource_identifier"] = data["resourceIdentifier"]
     else:
         raise DeserializationError(
             "StartZonalShiftRequest.resource_identifier required"
         )
-    if "awayFrom" in data:
+    if data.get("awayFrom") is not None:
         out["away_from"] = data["awayFrom"]
     else:
         raise DeserializationError("StartZonalShiftRequest.away_from required")
-    if "expiresIn" in data:
+    if data.get("expiresIn") is not None:
         out["expires_in"] = data["expiresIn"]
     else:
         raise DeserializationError("StartZonalShiftRequest.expires_in required")
-    if "comment" in data:
+    if data.get("comment") is not None:
         out["comment"] = data["comment"]
     else:
         raise DeserializationError("StartZonalShiftRequest.comment required")

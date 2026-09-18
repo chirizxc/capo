@@ -49,7 +49,7 @@ def serialize_json(value: GetArchitectureRecommendationsResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetArchitectureRecommendationsResponse:
     out: GetArchitectureRecommendationsResponse = {}  # type: ignore[typeddict-item]
-    if "lastAuditTimestamp" in data:
+    if data.get("lastAuditTimestamp") is not None:
         import capo_route53_recovery_readiness.types.last_audit_timestamp
 
         out["last_audit_timestamp"] = (
@@ -57,9 +57,9 @@ def deserialize_json(data: dict) -> GetArchitectureRecommendationsResponse:
                 data["lastAuditTimestamp"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "recommendations" in data:
+    if data.get("recommendations") is not None:
         import capo_route53_recovery_readiness.types.__list_of_recommendation
 
         out["recommendations"] = (

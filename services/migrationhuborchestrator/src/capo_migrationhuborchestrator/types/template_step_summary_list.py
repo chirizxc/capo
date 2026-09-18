@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> TemplateStepSummaryList:
 
     out: TemplateStepSummaryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_migrationhuborchestrator.types.template_step_summary.deserialize_json(
                 item

@@ -29,7 +29,7 @@ def serialize_json(value: CreateChannelNamespaceResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateChannelNamespaceResponse:
     out: CreateChannelNamespaceResponse = {}  # type: ignore[typeddict-item]
-    if "channelNamespace" in data:
+    if data.get("channelNamespace") is not None:
         import capo_appsync.types.channel_namespace
 
         out["channel_namespace"] = (

@@ -90,15 +90,15 @@ def serialize_aws_json_1_1(value: CreateProjectVersionRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateProjectVersionRequest:
     out: CreateProjectVersionRequest = {}  # type: ignore[typeddict-item]
-    if "ProjectArn" in data:
+    if data.get("ProjectArn") is not None:
         out["project_arn"] = data["ProjectArn"]
     else:
         raise DeserializationError("CreateProjectVersionRequest.project_arn required")
-    if "VersionName" in data:
+    if data.get("VersionName") is not None:
         out["version_name"] = data["VersionName"]
     else:
         raise DeserializationError("CreateProjectVersionRequest.version_name required")
-    if "OutputConfig" in data:
+    if data.get("OutputConfig") is not None:
         import capo_rekognition.types.output_config
 
         out["output_config"] = (
@@ -108,7 +108,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateProjectVersionRequest:
         )
     else:
         raise DeserializationError("CreateProjectVersionRequest.output_config required")
-    if "TrainingData" in data:
+    if data.get("TrainingData") is not None:
         import capo_rekognition.types.training_data
 
         out["training_data"] = (
@@ -116,7 +116,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateProjectVersionRequest:
                 data["TrainingData"]
             )
         )
-    if "TestingData" in data:
+    if data.get("TestingData") is not None:
         import capo_rekognition.types.testing_data
 
         out["testing_data"] = (
@@ -124,17 +124,17 @@ def deserialize_aws_json_1_1(data: dict) -> CreateProjectVersionRequest:
                 data["TestingData"]
             )
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_rekognition.types.tag_map
 
         out["tags"] = capo_rekognition.types.tag_map.deserialize_aws_json_1_1(
             data["Tags"]
         )
-    if "KmsKeyId" in data:
+    if data.get("KmsKeyId") is not None:
         out["kms_key_id"] = data["KmsKeyId"]
-    if "VersionDescription" in data:
+    if data.get("VersionDescription") is not None:
         out["version_description"] = data["VersionDescription"]
-    if "FeatureConfig" in data:
+    if data.get("FeatureConfig") is not None:
         import capo_rekognition.types.customization_feature_config
 
         out["feature_config"] = (

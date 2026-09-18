@@ -48,15 +48,15 @@ def serialize_json(value: VirtualGatewayData) -> dict:
 
 def deserialize_json(data: dict) -> VirtualGatewayData:
     out: VirtualGatewayData = {}  # type: ignore[typeddict-item]
-    if "meshName" in data:
+    if data.get("meshName") is not None:
         out["mesh_name"] = data["meshName"]
     else:
         raise DeserializationError("VirtualGatewayData.mesh_name required")
-    if "virtualGatewayName" in data:
+    if data.get("virtualGatewayName") is not None:
         out["virtual_gateway_name"] = data["virtualGatewayName"]
     else:
         raise DeserializationError("VirtualGatewayData.virtual_gateway_name required")
-    if "spec" in data:
+    if data.get("spec") is not None:
         import capo_app_mesh.types.virtual_gateway_spec
 
         out["spec"] = capo_app_mesh.types.virtual_gateway_spec.deserialize_json(
@@ -64,7 +64,7 @@ def deserialize_json(data: dict) -> VirtualGatewayData:
         )
     else:
         raise DeserializationError("VirtualGatewayData.spec required")
-    if "metadata" in data:
+    if data.get("metadata") is not None:
         import capo_app_mesh.types.resource_metadata
 
         out["metadata"] = capo_app_mesh.types.resource_metadata.deserialize_json(
@@ -72,7 +72,7 @@ def deserialize_json(data: dict) -> VirtualGatewayData:
         )
     else:
         raise DeserializationError("VirtualGatewayData.metadata required")
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_app_mesh.types.virtual_gateway_status
 
         out["status"] = capo_app_mesh.types.virtual_gateway_status.deserialize_json(

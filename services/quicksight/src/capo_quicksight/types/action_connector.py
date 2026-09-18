@@ -112,15 +112,15 @@ def serialize_json(value: ActionConnector) -> dict:
 
 def deserialize_json(data: dict) -> ActionConnector:
     out: ActionConnector = {}  # type: ignore[typeddict-item]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
     else:
         raise DeserializationError("ActionConnector.arn required")
-    if "ActionConnectorId" in data:
+    if data.get("ActionConnectorId") is not None:
         out["action_connector_id"] = data["ActionConnectorId"]
     else:
         raise DeserializationError("ActionConnector.action_connector_id required")
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_quicksight.types.action_connector_type
 
         out["type"] = capo_quicksight.types.action_connector_type.deserialize_json(
@@ -128,17 +128,17 @@ def deserialize_json(data: dict) -> ActionConnector:
         )
     else:
         raise DeserializationError("ActionConnector.type required")
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("ActionConnector.name required")
-    if "CreatedTime" in data:
+    if data.get("CreatedTime") is not None:
         import capo_quicksight.types._prelude.timestamp
 
         out["created_time"] = capo_quicksight.types._prelude.timestamp.deserialize_json(
             data["CreatedTime"]
         )
-    if "LastUpdatedTime" in data:
+    if data.get("LastUpdatedTime") is not None:
         import capo_quicksight.types._prelude.timestamp
 
         out["last_updated_time"] = (
@@ -148,21 +148,21 @@ def deserialize_json(data: dict) -> ActionConnector:
         )
     else:
         raise DeserializationError("ActionConnector.last_updated_time required")
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_quicksight.types.resource_status
 
         out["status"] = capo_quicksight.types.resource_status.deserialize_json(
             data["Status"]
         )
-    if "Error" in data:
+    if data.get("Error") is not None:
         import capo_quicksight.types.action_connector_error
 
         out["error"] = capo_quicksight.types.action_connector_error.deserialize_json(
             data["Error"]
         )
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "AuthenticationConfig" in data:
+    if data.get("AuthenticationConfig") is not None:
         import capo_quicksight.types.read_auth_config
 
         out["authentication_config"] = (
@@ -170,12 +170,12 @@ def deserialize_json(data: dict) -> ActionConnector:
                 data["AuthenticationConfig"]
             )
         )
-    if "EnabledActions" in data:
+    if data.get("EnabledActions") is not None:
         import capo_quicksight.types.action_id_list
 
         out["enabled_actions"] = capo_quicksight.types.action_id_list.deserialize_json(
             data["EnabledActions"]
         )
-    if "VpcConnectionArn" in data:
+    if data.get("VpcConnectionArn") is not None:
         out["vpc_connection_arn"] = data["VpcConnectionArn"]
     return out

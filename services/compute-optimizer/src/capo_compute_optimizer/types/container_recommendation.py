@@ -43,9 +43,9 @@ def serialize_aws_json_1_0(value: ContainerRecommendation) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ContainerRecommendation:
     out: ContainerRecommendation = {}  # type: ignore[typeddict-item]
-    if "containerName" in data:
+    if data.get("containerName") is not None:
         out["container_name"] = data["containerName"]
-    if "memorySizeConfiguration" in data:
+    if data.get("memorySizeConfiguration") is not None:
         import capo_compute_optimizer.types.memory_size_configuration
 
         out["memory_size_configuration"] = (
@@ -53,6 +53,6 @@ def deserialize_aws_json_1_0(data: dict) -> ContainerRecommendation:
                 data["memorySizeConfiguration"]
             )
         )
-    if "cpu" in data:
+    if data.get("cpu") is not None:
         out["cpu"] = data["cpu"]
     return out

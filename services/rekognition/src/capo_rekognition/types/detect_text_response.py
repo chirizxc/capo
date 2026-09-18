@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: DetectTextResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DetectTextResponse:
     out: DetectTextResponse = {}  # type: ignore[typeddict-item]
-    if "TextDetections" in data:
+    if data.get("TextDetections") is not None:
         import capo_rekognition.types.text_detection_list
 
         out["text_detections"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_1(data: dict) -> DetectTextResponse:
                 data["TextDetections"]
             )
         )
-    if "TextModelVersion" in data:
+    if data.get("TextModelVersion") is not None:
         out["text_model_version"] = data["TextModelVersion"]
     return out

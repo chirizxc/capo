@@ -123,7 +123,7 @@ def serialize_json(value: GetNetworkRoutesRequest) -> dict:
 
 def deserialize_json(data: dict) -> GetNetworkRoutesRequest:
     out: GetNetworkRoutesRequest = {}  # type: ignore[typeddict-item]
-    if "RouteTableIdentifier" in data:
+    if data.get("RouteTableIdentifier") is not None:
         import capo_networkmanager.types.route_table_identifier
 
         out["route_table_identifier"] = (
@@ -135,7 +135,7 @@ def deserialize_json(data: dict) -> GetNetworkRoutesRequest:
         raise DeserializationError(
             "GetNetworkRoutesRequest.route_table_identifier required"
         )
-    if "ExactCidrMatches" in data:
+    if data.get("ExactCidrMatches") is not None:
         import capo_networkmanager.types.constrained_string_list
 
         out["exact_cidr_matches"] = (
@@ -143,7 +143,7 @@ def deserialize_json(data: dict) -> GetNetworkRoutesRequest:
                 data["ExactCidrMatches"]
             )
         )
-    if "LongestPrefixMatches" in data:
+    if data.get("LongestPrefixMatches") is not None:
         import capo_networkmanager.types.constrained_string_list
 
         out["longest_prefix_matches"] = (
@@ -151,7 +151,7 @@ def deserialize_json(data: dict) -> GetNetworkRoutesRequest:
                 data["LongestPrefixMatches"]
             )
         )
-    if "SubnetOfMatches" in data:
+    if data.get("SubnetOfMatches") is not None:
         import capo_networkmanager.types.constrained_string_list
 
         out["subnet_of_matches"] = (
@@ -159,7 +159,7 @@ def deserialize_json(data: dict) -> GetNetworkRoutesRequest:
                 data["SubnetOfMatches"]
             )
         )
-    if "SupernetOfMatches" in data:
+    if data.get("SupernetOfMatches") is not None:
         import capo_networkmanager.types.constrained_string_list
 
         out["supernet_of_matches"] = (
@@ -167,7 +167,7 @@ def deserialize_json(data: dict) -> GetNetworkRoutesRequest:
                 data["SupernetOfMatches"]
             )
         )
-    if "PrefixListIds" in data:
+    if data.get("PrefixListIds") is not None:
         import capo_networkmanager.types.constrained_string_list
 
         out["prefix_list_ids"] = (
@@ -175,19 +175,19 @@ def deserialize_json(data: dict) -> GetNetworkRoutesRequest:
                 data["PrefixListIds"]
             )
         )
-    if "States" in data:
+    if data.get("States") is not None:
         import capo_networkmanager.types.route_state_list
 
         out["states"] = capo_networkmanager.types.route_state_list.deserialize_json(
             data["States"]
         )
-    if "Types" in data:
+    if data.get("Types") is not None:
         import capo_networkmanager.types.route_type_list
 
         out["types"] = capo_networkmanager.types.route_type_list.deserialize_json(
             data["Types"]
         )
-    if "DestinationFilters" in data:
+    if data.get("DestinationFilters") is not None:
         import capo_networkmanager.types.filter_map
 
         out["destination_filters"] = (

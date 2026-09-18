@@ -1,5 +1,6 @@
 """Generated from Smithy shape ``com.amazonaws.qbusiness#ExpertQ``."""
 
+import uuid
 import warnings
 from collections.abc import AsyncGenerator, AsyncIterator
 from contextlib import asynccontextmanager
@@ -355,19 +356,21 @@ class AsyncQBusinessClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_qbusiness.types.associate_permission_request.AssociatePermissionRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
-        input_["statement_id"] = statement_id
-        input_["actions"] = actions
+        input_: capo_qbusiness.types.associate_permission_request.AssociatePermissionRequest = {
+            "application_id": application_id,
+            "statement_id": statement_id,
+            "actions": actions,
+            "principal": principal,
+        }
         if conditions is not None:
             input_["conditions"] = conditions
-        input_["principal"] = principal
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def batch_delete_document(
@@ -415,10 +418,11 @@ class AsyncQBusinessClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_qbusiness.types.batch_delete_document_request.BatchDeleteDocumentRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
-        input_["index_id"] = index_id
-        input_["documents"] = documents
+        input_: capo_qbusiness.types.batch_delete_document_request.BatchDeleteDocumentRequest = {
+            "application_id": application_id,
+            "index_id": index_id,
+            "documents": documents,
+        }
         if data_source_sync_id is not None:
             input_["data_source_sync_id"] = data_source_sync_id
 
@@ -427,6 +431,7 @@ class AsyncQBusinessClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def batch_put_document(
@@ -477,10 +482,11 @@ class AsyncQBusinessClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_qbusiness.types.batch_put_document_request.BatchPutDocumentRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
-        input_["index_id"] = index_id
-        input_["documents"] = documents
+        input_: capo_qbusiness.types.batch_put_document_request.BatchPutDocumentRequest = {
+            "application_id": application_id,
+            "index_id": index_id,
+            "documents": documents,
+        }
         if role_arn is not None:
             input_["role_arn"] = role_arn
         if data_source_sync_id is not None:
@@ -491,6 +497,7 @@ class AsyncQBusinessClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def cancel_subscription(
@@ -531,15 +538,17 @@ class AsyncQBusinessClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_qbusiness.types.cancel_subscription_request.CancelSubscriptionRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
-        input_["subscription_id"] = subscription_id
+        input_: capo_qbusiness.types.cancel_subscription_request.CancelSubscriptionRequest = {
+            "application_id": application_id,
+            "subscription_id": subscription_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     @asynccontextmanager
@@ -596,8 +605,9 @@ class AsyncQBusinessClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_qbusiness.types.chat_input.ChatInput = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
+        input_: capo_qbusiness.types.chat_input.ChatInput = {
+            "application_id": application_id
+        }
         if user_id is not None:
             input_["user_id"] = user_id
         if user_groups is not None:
@@ -606,8 +616,9 @@ class AsyncQBusinessClient:
             input_["conversation_id"] = conversation_id
         if parent_message_id is not None:
             input_["parent_message_id"] = parent_message_id
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if input_stream is not None:
             input_["input_stream"] = ensure_async_iterator(input_stream)
 
@@ -616,7 +627,10 @@ class AsyncQBusinessClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
-        yield response.output
+        try:
+            yield response.output
+        finally:
+            await response.response.aclose()
 
     async def chat_sync(
         self,
@@ -693,8 +707,9 @@ class AsyncQBusinessClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_qbusiness.types.chat_sync_input.ChatSyncInput = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
+        input_: capo_qbusiness.types.chat_sync_input.ChatSyncInput = {
+            "application_id": application_id
+        }
         if user_id is not None:
             input_["user_id"] = user_id
         if user_groups is not None:
@@ -717,14 +732,16 @@ class AsyncQBusinessClient:
             input_["chat_mode"] = chat_mode
         if chat_mode_configuration is not None:
             input_["chat_mode_configuration"] = chat_mode_configuration
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def check_document_access(
@@ -773,11 +790,12 @@ class AsyncQBusinessClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_qbusiness.types.check_document_access_request.CheckDocumentAccessRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
-        input_["index_id"] = index_id
-        input_["user_id"] = user_id
-        input_["document_id"] = document_id
+        input_: capo_qbusiness.types.check_document_access_request.CheckDocumentAccessRequest = {
+            "application_id": application_id,
+            "index_id": index_id,
+            "user_id": user_id,
+            "document_id": document_id,
+        }
         if data_source_id is not None:
             input_["data_source_id"] = data_source_id
 
@@ -786,6 +804,7 @@ class AsyncQBusinessClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_anonymous_web_experience_url(
@@ -831,9 +850,10 @@ class AsyncQBusinessClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_qbusiness.types.create_anonymous_web_experience_url_request.CreateAnonymousWebExperienceUrlRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
-        input_["web_experience_id"] = web_experience_id
+        input_: capo_qbusiness.types.create_anonymous_web_experience_url_request.CreateAnonymousWebExperienceUrlRequest = {
+            "application_id": application_id,
+            "web_experience_id": web_experience_id,
+        }
         if session_duration_in_minutes is not None:
             input_["session_duration_in_minutes"] = session_duration_in_minutes
 
@@ -842,6 +862,7 @@ class AsyncQBusinessClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_chat_response_configuration(
@@ -890,12 +911,14 @@ class AsyncQBusinessClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_qbusiness.types.create_chat_response_configuration_request.CreateChatResponseConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
-        input_["display_name"] = display_name
-        if client_token is not None:
-            input_["client_token"] = client_token
-        input_["response_configurations"] = response_configurations
+        input_: capo_qbusiness.types.create_chat_response_configuration_request.CreateChatResponseConfigurationRequest = {
+            "application_id": application_id,
+            "display_name": display_name,
+            "response_configurations": response_configurations,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if tags is not None:
             input_["tags"] = tags
 
@@ -904,6 +927,7 @@ class AsyncQBusinessClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_subscription(
@@ -949,18 +973,21 @@ class AsyncQBusinessClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_qbusiness.types.create_subscription_request.CreateSubscriptionRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
-        input_["principal"] = principal
-        input_["type"] = type
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_qbusiness.types.create_subscription_request.CreateSubscriptionRequest = {
+            "application_id": application_id,
+            "principal": principal,
+            "type": type,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_user(
@@ -1007,19 +1034,22 @@ class AsyncQBusinessClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_qbusiness.types.create_user_request.CreateUserRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
-        input_["user_id"] = user_id
+        input_: capo_qbusiness.types.create_user_request.CreateUserRequest = {
+            "application_id": application_id,
+            "user_id": user_id,
+        }
         if user_aliases is not None:
             input_["user_aliases"] = user_aliases
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_attachment(
@@ -1065,10 +1095,11 @@ class AsyncQBusinessClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_qbusiness.types.delete_attachment_request.DeleteAttachmentRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
-        input_["conversation_id"] = conversation_id
-        input_["attachment_id"] = attachment_id
+        input_: capo_qbusiness.types.delete_attachment_request.DeleteAttachmentRequest = {
+            "application_id": application_id,
+            "conversation_id": conversation_id,
+            "attachment_id": attachment_id,
+        }
         if user_id is not None:
             input_["user_id"] = user_id
 
@@ -1077,6 +1108,7 @@ class AsyncQBusinessClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_chat_controls_configuration(
@@ -1115,14 +1147,16 @@ class AsyncQBusinessClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_qbusiness.types.delete_chat_controls_configuration_request.DeleteChatControlsConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
+        input_: capo_qbusiness.types.delete_chat_controls_configuration_request.DeleteChatControlsConfigurationRequest = {
+            "application_id": application_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_chat_response_configuration(
@@ -1164,15 +1198,17 @@ class AsyncQBusinessClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_qbusiness.types.delete_chat_response_configuration_request.DeleteChatResponseConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
-        input_["chat_response_configuration_id"] = chat_response_configuration_id
+        input_: capo_qbusiness.types.delete_chat_response_configuration_request.DeleteChatResponseConfigurationRequest = {
+            "application_id": application_id,
+            "chat_response_configuration_id": chat_response_configuration_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_conversation(
@@ -1217,9 +1253,10 @@ class AsyncQBusinessClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_qbusiness.types.delete_conversation_request.DeleteConversationRequest = {}  # type: ignore[typeddict-item]
-        input_["conversation_id"] = conversation_id
-        input_["application_id"] = application_id
+        input_: capo_qbusiness.types.delete_conversation_request.DeleteConversationRequest = {
+            "conversation_id": conversation_id,
+            "application_id": application_id,
+        }
         if user_id is not None:
             input_["user_id"] = user_id
 
@@ -1228,6 +1265,7 @@ class AsyncQBusinessClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_group(
@@ -1275,10 +1313,11 @@ class AsyncQBusinessClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_qbusiness.types.delete_group_request.DeleteGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
-        input_["index_id"] = index_id
-        input_["group_name"] = group_name
+        input_: capo_qbusiness.types.delete_group_request.DeleteGroupRequest = {
+            "application_id": application_id,
+            "index_id": index_id,
+            "group_name": group_name,
+        }
         if data_source_id is not None:
             input_["data_source_id"] = data_source_id
 
@@ -1287,6 +1326,7 @@ class AsyncQBusinessClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_user(
@@ -1328,15 +1368,17 @@ class AsyncQBusinessClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_qbusiness.types.delete_user_request.DeleteUserRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
-        input_["user_id"] = user_id
+        input_: capo_qbusiness.types.delete_user_request.DeleteUserRequest = {
+            "application_id": application_id,
+            "user_id": user_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def disassociate_permission(
@@ -1378,15 +1420,17 @@ class AsyncQBusinessClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_qbusiness.types.disassociate_permission_request.DisassociatePermissionRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
-        input_["statement_id"] = statement_id
+        input_: capo_qbusiness.types.disassociate_permission_request.DisassociatePermissionRequest = {
+            "application_id": application_id,
+            "statement_id": statement_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_chat_controls_configuration(
@@ -1431,8 +1475,9 @@ class AsyncQBusinessClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_qbusiness.types.get_chat_controls_configuration_request.GetChatControlsConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
+        input_: capo_qbusiness.types.get_chat_controls_configuration_request.GetChatControlsConfigurationRequest = {
+            "application_id": application_id
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -1443,6 +1488,7 @@ class AsyncQBusinessClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_get_chat_controls_configuration(
@@ -1508,15 +1554,17 @@ class AsyncQBusinessClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_qbusiness.types.get_chat_response_configuration_request.GetChatResponseConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
-        input_["chat_response_configuration_id"] = chat_response_configuration_id
+        input_: capo_qbusiness.types.get_chat_response_configuration_request.GetChatResponseConfigurationRequest = {
+            "application_id": application_id,
+            "chat_response_configuration_id": chat_response_configuration_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_document_content(
@@ -1569,12 +1617,13 @@ class AsyncQBusinessClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_qbusiness.types.get_document_content_request.GetDocumentContentRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
-        input_["index_id"] = index_id
+        input_: capo_qbusiness.types.get_document_content_request.GetDocumentContentRequest = {
+            "application_id": application_id,
+            "index_id": index_id,
+            "document_id": document_id,
+        }
         if data_source_id is not None:
             input_["data_source_id"] = data_source_id
-        input_["document_id"] = document_id
         if output_format is not None:
             input_["output_format"] = output_format
 
@@ -1583,6 +1632,7 @@ class AsyncQBusinessClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_group(
@@ -1630,10 +1680,11 @@ class AsyncQBusinessClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_qbusiness.types.get_group_request.GetGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
-        input_["index_id"] = index_id
-        input_["group_name"] = group_name
+        input_: capo_qbusiness.types.get_group_request.GetGroupRequest = {
+            "application_id": application_id,
+            "index_id": index_id,
+            "group_name": group_name,
+        }
         if data_source_id is not None:
             input_["data_source_id"] = data_source_id
 
@@ -1642,6 +1693,7 @@ class AsyncQBusinessClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_media(
@@ -1688,17 +1740,19 @@ class AsyncQBusinessClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_qbusiness.types.get_media_request.GetMediaRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
-        input_["conversation_id"] = conversation_id
-        input_["message_id"] = message_id
-        input_["media_id"] = media_id
+        input_: capo_qbusiness.types.get_media_request.GetMediaRequest = {
+            "application_id": application_id,
+            "conversation_id": conversation_id,
+            "message_id": message_id,
+            "media_id": media_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_policy(
@@ -1737,14 +1791,16 @@ class AsyncQBusinessClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_qbusiness.types.get_policy_request.GetPolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
+        input_: capo_qbusiness.types.get_policy_request.GetPolicyRequest = {
+            "application_id": application_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_user(
@@ -1786,15 +1842,17 @@ class AsyncQBusinessClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_qbusiness.types.get_user_request.GetUserRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
-        input_["user_id"] = user_id
+        input_: capo_qbusiness.types.get_user_request.GetUserRequest = {
+            "application_id": application_id,
+            "user_id": user_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_attachments(
@@ -1846,8 +1904,9 @@ class AsyncQBusinessClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_qbusiness.types.list_attachments_request.ListAttachmentsRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
+        input_: capo_qbusiness.types.list_attachments_request.ListAttachmentsRequest = {
+            "application_id": application_id
+        }
         if conversation_id is not None:
             input_["conversation_id"] = conversation_id
         if user_id is not None:
@@ -1862,6 +1921,7 @@ class AsyncQBusinessClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_attachments(
@@ -1935,8 +1995,9 @@ class AsyncQBusinessClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_qbusiness.types.list_chat_response_configurations_request.ListChatResponseConfigurationsRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
+        input_: capo_qbusiness.types.list_chat_response_configurations_request.ListChatResponseConfigurationsRequest = {
+            "application_id": application_id
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -1947,6 +2008,7 @@ class AsyncQBusinessClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_chat_response_configurations(
@@ -2017,8 +2079,9 @@ class AsyncQBusinessClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_qbusiness.types.list_conversations_request.ListConversationsRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
+        input_: capo_qbusiness.types.list_conversations_request.ListConversationsRequest = {
+            "application_id": application_id
+        }
         if user_id is not None:
             input_["user_id"] = user_id
         if next_token is not None:
@@ -2031,6 +2094,7 @@ class AsyncQBusinessClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_conversations(
@@ -2115,10 +2179,11 @@ class AsyncQBusinessClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_qbusiness.types.list_data_source_sync_jobs_request.ListDataSourceSyncJobsRequest = {}  # type: ignore[typeddict-item]
-        input_["data_source_id"] = data_source_id
-        input_["application_id"] = application_id
-        input_["index_id"] = index_id
+        input_: capo_qbusiness.types.list_data_source_sync_jobs_request.ListDataSourceSyncJobsRequest = {
+            "data_source_id": data_source_id,
+            "application_id": application_id,
+            "index_id": index_id,
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -2135,6 +2200,7 @@ class AsyncQBusinessClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_data_source_sync_jobs(
@@ -2222,9 +2288,10 @@ class AsyncQBusinessClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_qbusiness.types.list_documents_request.ListDocumentsRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
-        input_["index_id"] = index_id
+        input_: capo_qbusiness.types.list_documents_request.ListDocumentsRequest = {
+            "application_id": application_id,
+            "index_id": index_id,
+        }
         if data_source_ids is not None:
             input_["data_source_ids"] = data_source_ids
         if next_token is not None:
@@ -2237,6 +2304,7 @@ class AsyncQBusinessClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_documents(
@@ -2321,10 +2389,11 @@ class AsyncQBusinessClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_qbusiness.types.list_groups_request.ListGroupsRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
-        input_["index_id"] = index_id
-        input_["updated_earlier_than"] = updated_earlier_than
+        input_: capo_qbusiness.types.list_groups_request.ListGroupsRequest = {
+            "application_id": application_id,
+            "index_id": index_id,
+            "updated_earlier_than": updated_earlier_than,
+        }
         if data_source_id is not None:
             input_["data_source_id"] = data_source_id
         if next_token is not None:
@@ -2337,6 +2406,7 @@ class AsyncQBusinessClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_groups(
@@ -2419,9 +2489,10 @@ class AsyncQBusinessClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_qbusiness.types.list_messages_request.ListMessagesRequest = {}  # type: ignore[typeddict-item]
-        input_["conversation_id"] = conversation_id
-        input_["application_id"] = application_id
+        input_: capo_qbusiness.types.list_messages_request.ListMessagesRequest = {
+            "conversation_id": conversation_id,
+            "application_id": application_id,
+        }
         if user_id is not None:
             input_["user_id"] = user_id
         if next_token is not None:
@@ -2434,6 +2505,7 @@ class AsyncQBusinessClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_messages(
@@ -2509,9 +2581,10 @@ class AsyncQBusinessClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_qbusiness.types.list_plugin_actions_request.ListPluginActionsRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
-        input_["plugin_id"] = plugin_id
+        input_: capo_qbusiness.types.list_plugin_actions_request.ListPluginActionsRequest = {
+            "application_id": application_id,
+            "plugin_id": plugin_id,
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -2522,6 +2595,7 @@ class AsyncQBusinessClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_plugin_actions(
@@ -2592,8 +2666,9 @@ class AsyncQBusinessClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_qbusiness.types.list_plugin_type_actions_request.ListPluginTypeActionsRequest = {}  # type: ignore[typeddict-item]
-        input_["plugin_type"] = plugin_type
+        input_: capo_qbusiness.types.list_plugin_type_actions_request.ListPluginTypeActionsRequest = {
+            "plugin_type": plugin_type
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -2604,6 +2679,7 @@ class AsyncQBusinessClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_plugin_type_actions(
@@ -2670,7 +2746,7 @@ class AsyncQBusinessClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_qbusiness.types.list_plugin_type_metadata_request.ListPluginTypeMetadataRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_qbusiness.types.list_plugin_type_metadata_request.ListPluginTypeMetadataRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -2681,6 +2757,7 @@ class AsyncQBusinessClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_plugin_type_metadata(
@@ -2749,8 +2826,9 @@ class AsyncQBusinessClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_qbusiness.types.list_subscriptions_request.ListSubscriptionsRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
+        input_: capo_qbusiness.types.list_subscriptions_request.ListSubscriptionsRequest = {
+            "application_id": application_id
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -2761,6 +2839,7 @@ class AsyncQBusinessClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_subscriptions(
@@ -2824,14 +2903,16 @@ class AsyncQBusinessClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_qbusiness.types.list_tags_for_resource_request.ListTagsForResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_qbusiness.types.list_tags_for_resource_request.ListTagsForResourceRequest = {
+            "resource_arn": resource_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def put_feedback(
@@ -2880,12 +2961,13 @@ class AsyncQBusinessClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_qbusiness.types.put_feedback_request.PutFeedbackRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
+        input_: capo_qbusiness.types.put_feedback_request.PutFeedbackRequest = {
+            "application_id": application_id,
+            "conversation_id": conversation_id,
+            "message_id": message_id,
+        }
         if user_id is not None:
             input_["user_id"] = user_id
-        input_["conversation_id"] = conversation_id
-        input_["message_id"] = message_id
         if message_copied_at is not None:
             input_["message_copied_at"] = message_copied_at
         if message_usefulness is not None:
@@ -2896,6 +2978,7 @@ class AsyncQBusinessClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def put_group(
@@ -2949,14 +3032,15 @@ class AsyncQBusinessClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_qbusiness.types.put_group_request.PutGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
-        input_["index_id"] = index_id
-        input_["group_name"] = group_name
+        input_: capo_qbusiness.types.put_group_request.PutGroupRequest = {
+            "application_id": application_id,
+            "index_id": index_id,
+            "group_name": group_name,
+            "type": type,
+            "group_members": group_members,
+        }
         if data_source_id is not None:
             input_["data_source_id"] = data_source_id
-        input_["type"] = type
-        input_["group_members"] = group_members
         if role_arn is not None:
             input_["role_arn"] = role_arn
 
@@ -2965,6 +3049,7 @@ class AsyncQBusinessClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def search_relevant_content(
@@ -3015,10 +3100,11 @@ class AsyncQBusinessClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_qbusiness.types.search_relevant_content_request.SearchRelevantContentRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
-        input_["query_text"] = query_text
-        input_["content_source"] = content_source
+        input_: capo_qbusiness.types.search_relevant_content_request.SearchRelevantContentRequest = {
+            "application_id": application_id,
+            "query_text": query_text,
+            "content_source": content_source,
+        }
         if attribute_filter is not None:
             input_["attribute_filter"] = attribute_filter
         if max_results is not None:
@@ -3031,6 +3117,7 @@ class AsyncQBusinessClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_search_relevant_content(
@@ -3106,16 +3193,18 @@ class AsyncQBusinessClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_qbusiness.types.start_data_source_sync_job_request.StartDataSourceSyncJobRequest = {}  # type: ignore[typeddict-item]
-        input_["data_source_id"] = data_source_id
-        input_["application_id"] = application_id
-        input_["index_id"] = index_id
+        input_: capo_qbusiness.types.start_data_source_sync_job_request.StartDataSourceSyncJobRequest = {
+            "data_source_id": data_source_id,
+            "application_id": application_id,
+            "index_id": index_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def stop_data_source_sync_job(
@@ -3159,16 +3248,18 @@ class AsyncQBusinessClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_qbusiness.types.stop_data_source_sync_job_request.StopDataSourceSyncJobRequest = {}  # type: ignore[typeddict-item]
-        input_["data_source_id"] = data_source_id
-        input_["application_id"] = application_id
-        input_["index_id"] = index_id
+        input_: capo_qbusiness.types.stop_data_source_sync_job_request.StopDataSourceSyncJobRequest = {
+            "data_source_id": data_source_id,
+            "application_id": application_id,
+            "index_id": index_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def tag_resource(
@@ -3210,15 +3301,17 @@ class AsyncQBusinessClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_qbusiness.types.tag_resource_request.TagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tags"] = tags
+        input_: capo_qbusiness.types.tag_resource_request.TagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tags": tags,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def untag_resource(
@@ -3259,15 +3352,17 @@ class AsyncQBusinessClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_qbusiness.types.untag_resource_request.UntagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tag_keys"] = tag_keys
+        input_: capo_qbusiness.types.untag_resource_request.UntagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tag_keys": tag_keys,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_chat_controls_configuration(
@@ -3338,10 +3433,12 @@ class AsyncQBusinessClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_qbusiness.types.update_chat_controls_configuration_request.UpdateChatControlsConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_qbusiness.types.update_chat_controls_configuration_request.UpdateChatControlsConfigurationRequest = {
+            "application_id": application_id
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if response_scope is not None:
             input_["response_scope"] = response_scope
         if orchestration_configuration is not None:
@@ -3368,6 +3465,7 @@ class AsyncQBusinessClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_chat_response_configuration(
@@ -3415,20 +3513,23 @@ class AsyncQBusinessClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_qbusiness.types.update_chat_response_configuration_request.UpdateChatResponseConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
-        input_["chat_response_configuration_id"] = chat_response_configuration_id
+        input_: capo_qbusiness.types.update_chat_response_configuration_request.UpdateChatResponseConfigurationRequest = {
+            "application_id": application_id,
+            "chat_response_configuration_id": chat_response_configuration_id,
+            "response_configurations": response_configurations,
+        }
         if display_name is not None:
             input_["display_name"] = display_name
-        input_["response_configurations"] = response_configurations
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_subscription(
@@ -3472,16 +3573,18 @@ class AsyncQBusinessClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_qbusiness.types.update_subscription_request.UpdateSubscriptionRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
-        input_["subscription_id"] = subscription_id
-        input_["type"] = type
+        input_: capo_qbusiness.types.update_subscription_request.UpdateSubscriptionRequest = {
+            "application_id": application_id,
+            "subscription_id": subscription_id,
+            "type": type,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_user(
@@ -3532,9 +3635,10 @@ class AsyncQBusinessClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_qbusiness.types.update_user_request.UpdateUserRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
-        input_["user_id"] = user_id
+        input_: capo_qbusiness.types.update_user_request.UpdateUserRequest = {
+            "application_id": application_id,
+            "user_id": user_id,
+        }
         if user_aliases_to_update is not None:
             input_["user_aliases_to_update"] = user_aliases_to_update
         if user_aliases_to_delete is not None:
@@ -3545,6 +3649,7 @@ class AsyncQBusinessClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def __aenter__(self) -> Self:

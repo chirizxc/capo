@@ -32,12 +32,12 @@ def serialize_aws_json_1_1(value: ListMonitorsResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListMonitorsResponse:
     out: ListMonitorsResponse = {}  # type: ignore[typeddict-item]
-    if "Monitors" in data:
+    if data.get("Monitors") is not None:
         import capo_forecast.types.monitors
 
         out["monitors"] = capo_forecast.types.monitors.deserialize_aws_json_1_1(
             data["Monitors"]
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

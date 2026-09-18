@@ -37,15 +37,15 @@ def serialize_json(value: VectorBucketSummary) -> dict:
 
 def deserialize_json(data: dict) -> VectorBucketSummary:
     out: VectorBucketSummary = {}  # type: ignore[typeddict-item]
-    if "vectorBucketName" in data:
+    if data.get("vectorBucketName") is not None:
         out["vector_bucket_name"] = data["vectorBucketName"]
     else:
         raise DeserializationError("VectorBucketSummary.vector_bucket_name required")
-    if "vectorBucketArn" in data:
+    if data.get("vectorBucketArn") is not None:
         out["vector_bucket_arn"] = data["vectorBucketArn"]
     else:
         raise DeserializationError("VectorBucketSummary.vector_bucket_arn required")
-    if "creationTime" in data:
+    if data.get("creationTime") is not None:
         import capo_s3vectors.types._prelude.timestamp
 
         out["creation_time"] = capo_s3vectors.types._prelude.timestamp.deserialize_json(

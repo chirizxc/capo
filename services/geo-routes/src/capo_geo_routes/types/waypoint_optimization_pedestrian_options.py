@@ -19,12 +19,20 @@ class WaypointOptimizationPedestrianOptions(TypedDict, closed=True):
 def serialize_json(value: WaypointOptimizationPedestrianOptions) -> dict:
     out: dict = {}
     if "speed" in value:
-        out["Speed"] = value["speed"]
+        out["Speed"] = (
+            "NaN"
+            if value["speed"] != value["speed"]
+            else "Infinity"
+            if value["speed"] == float("inf")
+            else "-Infinity"
+            if value["speed"] == float("-inf")
+            else value["speed"]
+        )
     return out
 
 
 def deserialize_json(data: dict) -> WaypointOptimizationPedestrianOptions:
     out: WaypointOptimizationPedestrianOptions = {}  # type: ignore[typeddict-item]
-    if "Speed" in data:
-        out["speed"] = data["Speed"]
+    if data.get("Speed") is not None:
+        out["speed"] = float(data["Speed"])
     return out

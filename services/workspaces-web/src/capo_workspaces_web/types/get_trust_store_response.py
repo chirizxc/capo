@@ -27,7 +27,7 @@ def serialize_json(value: GetTrustStoreResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetTrustStoreResponse:
     out: GetTrustStoreResponse = {}  # type: ignore[typeddict-item]
-    if "trustStore" in data:
+    if data.get("trustStore") is not None:
         import capo_workspaces_web.types.trust_store
 
         out["trust_store"] = capo_workspaces_web.types.trust_store.deserialize_json(

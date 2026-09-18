@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> Models:
 
     out: Models = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_sagemaker_edge.types.model.deserialize_json(item))
     return out

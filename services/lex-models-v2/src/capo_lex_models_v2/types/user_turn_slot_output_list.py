@@ -25,6 +25,8 @@ def deserialize_json(data: list) -> UserTurnSlotOutputList:
 
     out: UserTurnSlotOutputList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_lex_models_v2.types.user_turn_slot_output.deserialize_json(item)
         )

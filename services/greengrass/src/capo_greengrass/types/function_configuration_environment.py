@@ -58,9 +58,9 @@ def serialize_json(value: FunctionConfigurationEnvironment) -> dict:
 
 def deserialize_json(data: dict) -> FunctionConfigurationEnvironment:
     out: FunctionConfigurationEnvironment = {}  # type: ignore[typeddict-item]
-    if "AccessSysfs" in data:
+    if data.get("AccessSysfs") is not None:
         out["access_sysfs"] = data["AccessSysfs"]
-    if "Execution" in data:
+    if data.get("Execution") is not None:
         import capo_greengrass.types.function_execution_config
 
         out["execution"] = (
@@ -68,7 +68,7 @@ def deserialize_json(data: dict) -> FunctionConfigurationEnvironment:
                 data["Execution"]
             )
         )
-    if "ResourceAccessPolicies" in data:
+    if data.get("ResourceAccessPolicies") is not None:
         import capo_greengrass.types.__list_of_resource_access_policy
 
         out["resource_access_policies"] = (
@@ -76,7 +76,7 @@ def deserialize_json(data: dict) -> FunctionConfigurationEnvironment:
                 data["ResourceAccessPolicies"]
             )
         )
-    if "Variables" in data:
+    if data.get("Variables") is not None:
         import capo_greengrass.types.__map_of__string
 
         out["variables"] = capo_greengrass.types.__map_of__string.deserialize_json(

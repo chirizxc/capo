@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> FilterCriteria:
 
     out: FilterCriteria = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_rtbfabric.types.filter_criterion.deserialize_json(item))
     return out

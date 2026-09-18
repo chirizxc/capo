@@ -24,7 +24,7 @@ def serialize_json(value: LcmOperationInfo) -> dict:
 
 def deserialize_json(data: dict) -> LcmOperationInfo:
     out: LcmOperationInfo = {}  # type: ignore[typeddict-item]
-    if "nsLcmOpOccId" in data:
+    if data.get("nsLcmOpOccId") is not None:
         out["ns_lcm_op_occ_id"] = data["nsLcmOpOccId"]
     else:
         raise DeserializationError("LcmOperationInfo.ns_lcm_op_occ_id required")

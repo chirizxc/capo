@@ -38,9 +38,9 @@ def deserialize_aws_json_1_1(
     data: dict,
 ) -> DescribePipelineDefinitionForExecutionResponse:
     out: DescribePipelineDefinitionForExecutionResponse = {}  # type: ignore[typeddict-item]
-    if "PipelineDefinition" in data:
+    if data.get("PipelineDefinition") is not None:
         out["pipeline_definition"] = data["PipelineDefinition"]
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_sagemaker.types.timestamp
 
         out["creation_time"] = capo_sagemaker.types.timestamp.deserialize_aws_json_1_1(

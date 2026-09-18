@@ -40,7 +40,7 @@ def serialize_json(value: ItemFilters) -> dict:
 
 def deserialize_json(data: dict) -> ItemFilters:
     out: ItemFilters = {}  # type: ignore[typeddict-item]
-    if "S3ItemFilters" in data:
+    if data.get("S3ItemFilters") is not None:
         import capo_backupsearch.types.s3_item_filters
 
         out["s3_item_filters"] = (
@@ -48,7 +48,7 @@ def deserialize_json(data: dict) -> ItemFilters:
                 data["S3ItemFilters"]
             )
         )
-    if "EBSItemFilters" in data:
+    if data.get("EBSItemFilters") is not None:
         import capo_backupsearch.types.ebs_item_filters
 
         out["ebs_item_filters"] = (

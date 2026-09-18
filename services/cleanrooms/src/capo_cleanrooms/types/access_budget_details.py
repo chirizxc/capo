@@ -62,7 +62,7 @@ def serialize_json(value: AccessBudgetDetails) -> dict:
 
 def deserialize_json(data: dict) -> AccessBudgetDetails:
     out: AccessBudgetDetails = {}  # type: ignore[typeddict-item]
-    if "startTime" in data:
+    if data.get("startTime") is not None:
         import capo_cleanrooms.types._prelude.timestamp
 
         out["start_time"] = capo_cleanrooms.types._prelude.timestamp.deserialize_json(
@@ -70,21 +70,21 @@ def deserialize_json(data: dict) -> AccessBudgetDetails:
         )
     else:
         raise DeserializationError("AccessBudgetDetails.start_time required")
-    if "endTime" in data:
+    if data.get("endTime") is not None:
         import capo_cleanrooms.types._prelude.timestamp
 
         out["end_time"] = capo_cleanrooms.types._prelude.timestamp.deserialize_json(
             data["endTime"]
         )
-    if "remainingBudget" in data:
+    if data.get("remainingBudget") is not None:
         out["remaining_budget"] = data["remainingBudget"]
     else:
         raise DeserializationError("AccessBudgetDetails.remaining_budget required")
-    if "budget" in data:
+    if data.get("budget") is not None:
         out["budget"] = data["budget"]
     else:
         raise DeserializationError("AccessBudgetDetails.budget required")
-    if "budgetType" in data:
+    if data.get("budgetType") is not None:
         import capo_cleanrooms.types.access_budget_type
 
         out["budget_type"] = capo_cleanrooms.types.access_budget_type.deserialize_json(
@@ -92,7 +92,7 @@ def deserialize_json(data: dict) -> AccessBudgetDetails:
         )
     else:
         raise DeserializationError("AccessBudgetDetails.budget_type required")
-    if "autoRefresh" in data:
+    if data.get("autoRefresh") is not None:
         import capo_cleanrooms.types.auto_refresh_mode
 
         out["auto_refresh"] = capo_cleanrooms.types.auto_refresh_mode.deserialize_json(

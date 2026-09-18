@@ -23,7 +23,7 @@ def serialize_json(value: ResourceShareInvitationArnNotFoundException_) -> dict:
 
 def deserialize_json(data: dict) -> ResourceShareInvitationArnNotFoundException_:
     out: ResourceShareInvitationArnNotFoundException_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     else:
         raise DeserializationError(
@@ -37,15 +37,22 @@ class ResourceShareInvitationArnNotFoundException(ServiceError):
 
     code: str | None = "ResourceShareInvitationArnNotFoundException"
 
-    def __init__(self, data: ResourceShareInvitationArnNotFoundException_):
+    def __init__(
+        self,
+        data: ResourceShareInvitationArnNotFoundException_,
+        message: str | None = None,
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="ResourceShareInvitationArnNotFoundException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "ResourceShareInvitationArnNotFoundException":
-        return cls(deserialize_json(data))
+    def from_json(
+        cls, data: dict, message: str | None = None
+    ) -> "ResourceShareInvitationArnNotFoundException":
+        return cls(deserialize_json(data), message)

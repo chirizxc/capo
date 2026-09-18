@@ -28,7 +28,7 @@ def serialize_aws_json_1_1(value: CreateCloudFormationStackRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateCloudFormationStackRequest:
     out: CreateCloudFormationStackRequest = {}  # type: ignore[typeddict-item]
-    if "instances" in data:
+    if data.get("instances") is not None:
         import capo_lightsail.types.instance_entry_list
 
         out["instances"] = (

@@ -53,17 +53,17 @@ def serialize_json(value: StartVariantImportRequest) -> dict:
 
 def deserialize_json(data: dict) -> StartVariantImportRequest:
     out: StartVariantImportRequest = {}  # type: ignore[typeddict-item]
-    if "destinationName" in data:
+    if data.get("destinationName") is not None:
         out["destination_name"] = data["destinationName"]
     else:
         raise DeserializationError(
             "StartVariantImportRequest.destination_name required"
         )
-    if "roleArn" in data:
+    if data.get("roleArn") is not None:
         out["role_arn"] = data["roleArn"]
     else:
         raise DeserializationError("StartVariantImportRequest.role_arn required")
-    if "items" in data:
+    if data.get("items") is not None:
         import capo_omics.types.variant_import_item_sources
 
         out["items"] = capo_omics.types.variant_import_item_sources.deserialize_json(
@@ -71,11 +71,11 @@ def deserialize_json(data: dict) -> StartVariantImportRequest:
         )
     else:
         raise DeserializationError("StartVariantImportRequest.items required")
-    if "runLeftNormalization" in data:
+    if data.get("runLeftNormalization") is not None:
         out["run_left_normalization"] = data["runLeftNormalization"]
     else:
         out["run_left_normalization"] = False
-    if "annotationFields" in data:
+    if data.get("annotationFields") is not None:
         import capo_omics.types.annotation_field_map
 
         out["annotation_fields"] = (

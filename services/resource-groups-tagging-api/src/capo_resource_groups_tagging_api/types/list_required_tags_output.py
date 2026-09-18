@@ -38,7 +38,7 @@ def serialize_aws_json_1_1(value: ListRequiredTagsOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListRequiredTagsOutput:
     out: ListRequiredTagsOutput = {}  # type: ignore[typeddict-item]
-    if "RequiredTags" in data:
+    if data.get("RequiredTags") is not None:
         import capo_resource_groups_tagging_api.types.required_tags_for_list_required_tags
 
         out["required_tags"] = (
@@ -46,6 +46,6 @@ def deserialize_aws_json_1_1(data: dict) -> ListRequiredTagsOutput:
                 data["RequiredTags"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

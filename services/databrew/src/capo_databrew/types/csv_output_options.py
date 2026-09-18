@@ -23,6 +23,6 @@ def serialize_json(value: CsvOutputOptions) -> dict:
 
 def deserialize_json(data: dict) -> CsvOutputOptions:
     out: CsvOutputOptions = {}  # type: ignore[typeddict-item]
-    if "Delimiter" in data:
+    if data.get("Delimiter") is not None:
         out["delimiter"] = data["Delimiter"]
     return out

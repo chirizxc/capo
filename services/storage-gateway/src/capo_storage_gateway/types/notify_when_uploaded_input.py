@@ -23,7 +23,7 @@ def serialize_aws_json_1_1(value: NotifyWhenUploadedInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> NotifyWhenUploadedInput:
     out: NotifyWhenUploadedInput = {}  # type: ignore[typeddict-item]
-    if "FileShareARN" in data:
+    if data.get("FileShareARN") is not None:
         out["file_share_arn"] = data["FileShareARN"]
     else:
         raise DeserializationError("NotifyWhenUploadedInput.file_share_arn required")

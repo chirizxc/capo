@@ -38,7 +38,7 @@ def serialize_json(value: ListIndexesForMembersInput) -> dict:
 
 def deserialize_json(data: dict) -> ListIndexesForMembersInput:
     out: ListIndexesForMembersInput = {}  # type: ignore[typeddict-item]
-    if "AccountIdList" in data:
+    if data.get("AccountIdList") is not None:
         import capo_resource_explorer_2.types.account_id_list
 
         out["account_id_list"] = (
@@ -50,8 +50,8 @@ def deserialize_json(data: dict) -> ListIndexesForMembersInput:
         raise DeserializationError(
             "ListIndexesForMembersInput.account_id_list required"
         )
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

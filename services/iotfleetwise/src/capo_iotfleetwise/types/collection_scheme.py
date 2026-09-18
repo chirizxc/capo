@@ -50,7 +50,7 @@ def serialize_aws_json_1_0(value: CollectionScheme) -> dict:
 
 
 def deserialize_aws_json_1_0(data: dict) -> CollectionScheme:
-    if "timeBasedCollectionScheme" in data:
+    if data.get("timeBasedCollectionScheme") is not None:
         import capo_iotfleetwise.types.time_based_collection_scheme
 
         return {
@@ -58,7 +58,7 @@ def deserialize_aws_json_1_0(data: dict) -> CollectionScheme:
                 data["timeBasedCollectionScheme"]
             )
         }
-    elif "conditionBasedCollectionScheme" in data:
+    elif data.get("conditionBasedCollectionScheme") is not None:
         import capo_iotfleetwise.types.condition_based_collection_scheme
 
         return {

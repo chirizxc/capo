@@ -41,7 +41,7 @@ def serialize_json(value: CreateThingTypeRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateThingTypeRequest:
     out: CreateThingTypeRequest = {}  # type: ignore[typeddict-item]
-    if "thingTypeProperties" in data:
+    if data.get("thingTypeProperties") is not None:
         import capo_iot.types.thing_type_properties
 
         out["thing_type_properties"] = (
@@ -49,7 +49,7 @@ def deserialize_json(data: dict) -> CreateThingTypeRequest:
                 data["thingTypeProperties"]
             )
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_iot.types.tag_list
 
         out["tags"] = capo_iot.types.tag_list.deserialize_json(data["tags"])

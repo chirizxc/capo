@@ -35,9 +35,9 @@ def serialize_json(value: ListVectorsOutput) -> dict:
 
 def deserialize_json(data: dict) -> ListVectorsOutput:
     out: ListVectorsOutput = {}  # type: ignore[typeddict-item]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "vectors" in data:
+    if data.get("vectors") is not None:
         import capo_s3vectors.types.list_vectors_output_list
 
         out["vectors"] = capo_s3vectors.types.list_vectors_output_list.deserialize_json(

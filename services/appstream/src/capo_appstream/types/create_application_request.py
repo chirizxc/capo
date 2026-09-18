@@ -87,13 +87,13 @@ def serialize_aws_json_1_1(value: CreateApplicationRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateApplicationRequest:
     out: CreateApplicationRequest = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "DisplayName" in data:
+    if data.get("DisplayName") is not None:
         out["display_name"] = data["DisplayName"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "IconS3Location" in data:
+    if data.get("IconS3Location") is not None:
         import capo_appstream.types.s3_location
 
         out["icon_s3_location"] = (
@@ -101,19 +101,19 @@ def deserialize_aws_json_1_1(data: dict) -> CreateApplicationRequest:
                 data["IconS3Location"]
             )
         )
-    if "LaunchPath" in data:
+    if data.get("LaunchPath") is not None:
         out["launch_path"] = data["LaunchPath"]
-    if "WorkingDirectory" in data:
+    if data.get("WorkingDirectory") is not None:
         out["working_directory"] = data["WorkingDirectory"]
-    if "LaunchParameters" in data:
+    if data.get("LaunchParameters") is not None:
         out["launch_parameters"] = data["LaunchParameters"]
-    if "Platforms" in data:
+    if data.get("Platforms") is not None:
         import capo_appstream.types.platforms
 
         out["platforms"] = capo_appstream.types.platforms.deserialize_aws_json_1_1(
             data["Platforms"]
         )
-    if "InstanceFamilies" in data:
+    if data.get("InstanceFamilies") is not None:
         import capo_appstream.types.string_list
 
         out["instance_families"] = (
@@ -121,9 +121,9 @@ def deserialize_aws_json_1_1(data: dict) -> CreateApplicationRequest:
                 data["InstanceFamilies"]
             )
         )
-    if "AppBlockArn" in data:
+    if data.get("AppBlockArn") is not None:
         out["app_block_arn"] = data["AppBlockArn"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_appstream.types.tags
 
         out["tags"] = capo_appstream.types.tags.deserialize_aws_json_1_1(data["Tags"])

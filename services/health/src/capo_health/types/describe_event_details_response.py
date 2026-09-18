@@ -44,7 +44,7 @@ def serialize_aws_json_1_1(value: DescribeEventDetailsResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeEventDetailsResponse:
     out: DescribeEventDetailsResponse = {}  # type: ignore[typeddict-item]
-    if "successfulSet" in data:
+    if data.get("successfulSet") is not None:
         import capo_health.types.describe_event_details_successful_set
 
         out["successful_set"] = (
@@ -52,7 +52,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeEventDetailsResponse:
                 data["successfulSet"]
             )
         )
-    if "failedSet" in data:
+    if data.get("failedSet") is not None:
         import capo_health.types.describe_event_details_failed_set
 
         out["failed_set"] = (

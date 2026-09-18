@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> ListSinksItems:
 
     out: ListSinksItems = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_oam.types.list_sinks_item.deserialize_json(item))
     return out

@@ -32,10 +32,10 @@ def serialize_json(value: CreateNetworkResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateNetworkResponse:
     out: CreateNetworkResponse = {}  # type: ignore[typeddict-item]
-    if "networkId" in data:
+    if data.get("networkId") is not None:
         out["network_id"] = data["networkId"]
-    if "networkName" in data:
+    if data.get("networkName") is not None:
         out["network_name"] = data["networkName"]
-    if "encryptionKeyArn" in data:
+    if data.get("encryptionKeyArn") is not None:
         out["encryption_key_arn"] = data["encryptionKeyArn"]
     return out

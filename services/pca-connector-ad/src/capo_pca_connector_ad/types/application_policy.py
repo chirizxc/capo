@@ -45,7 +45,7 @@ def serialize_json(value: ApplicationPolicy) -> dict:
 
 
 def deserialize_json(data: dict) -> ApplicationPolicy:
-    if "PolicyType" in data:
+    if data.get("PolicyType") is not None:
         import capo_pca_connector_ad.types.application_policy_type
 
         return {
@@ -53,7 +53,7 @@ def deserialize_json(data: dict) -> ApplicationPolicy:
                 data["PolicyType"]
             )
         }
-    elif "PolicyObjectIdentifier" in data:
+    elif data.get("PolicyObjectIdentifier") is not None:
         return {"PolicyObjectIdentifier": data["PolicyObjectIdentifier"]}
     else:
         raise DeserializationError("ApplicationPolicy: no recognized variant key")

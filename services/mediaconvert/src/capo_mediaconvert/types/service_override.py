@@ -35,12 +35,12 @@ def serialize_json(value: ServiceOverride) -> dict:
 
 def deserialize_json(data: dict) -> ServiceOverride:
     out: ServiceOverride = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "overrideValue" in data:
+    if data.get("overrideValue") is not None:
         out["override_value"] = data["overrideValue"]
-    if "value" in data:
+    if data.get("value") is not None:
         out["value"] = data["value"]
     return out

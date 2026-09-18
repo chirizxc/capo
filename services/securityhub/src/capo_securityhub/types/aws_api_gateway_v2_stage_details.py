@@ -109,13 +109,13 @@ def serialize_json(value: AwsApiGatewayV2StageDetails) -> dict:
 
 def deserialize_json(data: dict) -> AwsApiGatewayV2StageDetails:
     out: AwsApiGatewayV2StageDetails = {}  # type: ignore[typeddict-item]
-    if "ClientCertificateId" in data:
+    if data.get("ClientCertificateId") is not None:
         out["client_certificate_id"] = data["ClientCertificateId"]
-    if "CreatedDate" in data:
+    if data.get("CreatedDate") is not None:
         out["created_date"] = data["CreatedDate"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "DefaultRouteSettings" in data:
+    if data.get("DefaultRouteSettings") is not None:
         import capo_securityhub.types.aws_api_gateway_v2_route_settings
 
         out["default_route_settings"] = (
@@ -123,11 +123,11 @@ def deserialize_json(data: dict) -> AwsApiGatewayV2StageDetails:
                 data["DefaultRouteSettings"]
             )
         )
-    if "DeploymentId" in data:
+    if data.get("DeploymentId") is not None:
         out["deployment_id"] = data["DeploymentId"]
-    if "LastUpdatedDate" in data:
+    if data.get("LastUpdatedDate") is not None:
         out["last_updated_date"] = data["LastUpdatedDate"]
-    if "RouteSettings" in data:
+    if data.get("RouteSettings") is not None:
         import capo_securityhub.types.aws_api_gateway_v2_route_settings
 
         out["route_settings"] = (
@@ -135,15 +135,15 @@ def deserialize_json(data: dict) -> AwsApiGatewayV2StageDetails:
                 data["RouteSettings"]
             )
         )
-    if "StageName" in data:
+    if data.get("StageName") is not None:
         out["stage_name"] = data["StageName"]
-    if "StageVariables" in data:
+    if data.get("StageVariables") is not None:
         import capo_securityhub.types.field_map
 
         out["stage_variables"] = capo_securityhub.types.field_map.deserialize_json(
             data["StageVariables"]
         )
-    if "AccessLogSettings" in data:
+    if data.get("AccessLogSettings") is not None:
         import capo_securityhub.types.aws_api_gateway_access_log_settings
 
         out["access_log_settings"] = (
@@ -151,10 +151,10 @@ def deserialize_json(data: dict) -> AwsApiGatewayV2StageDetails:
                 data["AccessLogSettings"]
             )
         )
-    if "AutoDeploy" in data:
+    if data.get("AutoDeploy") is not None:
         out["auto_deploy"] = data["AutoDeploy"]
-    if "LastDeploymentStatusMessage" in data:
+    if data.get("LastDeploymentStatusMessage") is not None:
         out["last_deployment_status_message"] = data["LastDeploymentStatusMessage"]
-    if "ApiGatewayManaged" in data:
+    if data.get("ApiGatewayManaged") is not None:
         out["api_gateway_managed"] = data["ApiGatewayManaged"]
     return out

@@ -44,7 +44,7 @@ def serialize_json(value: BatchPutContactResponse) -> dict:
 
 def deserialize_json(data: dict) -> BatchPutContactResponse:
     out: BatchPutContactResponse = {}  # type: ignore[typeddict-item]
-    if "SuccessfulRequestList" in data:
+    if data.get("SuccessfulRequestList") is not None:
         import capo_connect.types.successful_request_list
 
         out["successful_request_list"] = (
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> BatchPutContactResponse:
                 data["SuccessfulRequestList"]
             )
         )
-    if "FailedRequestList" in data:
+    if data.get("FailedRequestList") is not None:
         import capo_connect.types.failed_request_list
 
         out["failed_request_list"] = (

@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> EventLogConfigurationListDefinition:
 
     out: EventLogConfigurationListDefinition = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_iot_managed_integrations.types.event_log_configuration_summary.deserialize_json(
                 item

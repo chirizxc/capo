@@ -57,7 +57,7 @@ def serialize_json(value: WaypointOptimizationDriverOptions) -> dict:
 
 def deserialize_json(data: dict) -> WaypointOptimizationDriverOptions:
     out: WaypointOptimizationDriverOptions = {}  # type: ignore[typeddict-item]
-    if "RestCycles" in data:
+    if data.get("RestCycles") is not None:
         import capo_geo_routes.types.waypoint_optimization_rest_cycles
 
         out["rest_cycles"] = (
@@ -65,7 +65,7 @@ def deserialize_json(data: dict) -> WaypointOptimizationDriverOptions:
                 data["RestCycles"]
             )
         )
-    if "RestProfile" in data:
+    if data.get("RestProfile") is not None:
         import capo_geo_routes.types.waypoint_optimization_rest_profile
 
         out["rest_profile"] = (
@@ -73,7 +73,7 @@ def deserialize_json(data: dict) -> WaypointOptimizationDriverOptions:
                 data["RestProfile"]
             )
         )
-    if "TreatServiceTimeAs" in data:
+    if data.get("TreatServiceTimeAs") is not None:
         import capo_geo_routes.types.waypoint_optimization_service_time_treatment
 
         out["treat_service_time_as"] = (

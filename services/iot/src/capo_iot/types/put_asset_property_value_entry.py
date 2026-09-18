@@ -50,15 +50,15 @@ def serialize_json(value: PutAssetPropertyValueEntry) -> dict:
 
 def deserialize_json(data: dict) -> PutAssetPropertyValueEntry:
     out: PutAssetPropertyValueEntry = {}  # type: ignore[typeddict-item]
-    if "entryId" in data:
+    if data.get("entryId") is not None:
         out["entry_id"] = data["entryId"]
-    if "assetId" in data:
+    if data.get("assetId") is not None:
         out["asset_id"] = data["assetId"]
-    if "propertyId" in data:
+    if data.get("propertyId") is not None:
         out["property_id"] = data["propertyId"]
-    if "propertyAlias" in data:
+    if data.get("propertyAlias") is not None:
         out["property_alias"] = data["propertyAlias"]
-    if "propertyValues" in data:
+    if data.get("propertyValues") is not None:
         import capo_iot.types.asset_property_value_list
 
         out["property_values"] = (

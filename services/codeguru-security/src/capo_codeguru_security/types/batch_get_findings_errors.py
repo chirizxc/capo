@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> BatchGetFindingsErrors:
 
     out: BatchGetFindingsErrors = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_codeguru_security.types.batch_get_findings_error.deserialize_json(item)
         )

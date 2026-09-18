@@ -163,39 +163,39 @@ def serialize_aws_json_1_1(value: DescribeUserResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeUserResponse:
     out: DescribeUserResponse = {}  # type: ignore[typeddict-item]
-    if "UserId" in data:
+    if data.get("UserId") is not None:
         out["user_id"] = data["UserId"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Email" in data:
+    if data.get("Email") is not None:
         out["email"] = data["Email"]
-    if "DisplayName" in data:
+    if data.get("DisplayName") is not None:
         out["display_name"] = data["DisplayName"]
-    if "State" in data:
+    if data.get("State") is not None:
         import capo_workmail.types.entity_state
 
         out["state"] = capo_workmail.types.entity_state.deserialize_aws_json_1_1(
             data["State"]
         )
-    if "UserRole" in data:
+    if data.get("UserRole") is not None:
         import capo_workmail.types.user_role
 
         out["user_role"] = capo_workmail.types.user_role.deserialize_aws_json_1_1(
             data["UserRole"]
         )
-    if "EnabledDate" in data:
+    if data.get("EnabledDate") is not None:
         import capo_workmail.types.timestamp
 
         out["enabled_date"] = capo_workmail.types.timestamp.deserialize_aws_json_1_1(
             data["EnabledDate"]
         )
-    if "DisabledDate" in data:
+    if data.get("DisabledDate") is not None:
         import capo_workmail.types.timestamp
 
         out["disabled_date"] = capo_workmail.types.timestamp.deserialize_aws_json_1_1(
             data["DisabledDate"]
         )
-    if "MailboxProvisionedDate" in data:
+    if data.get("MailboxProvisionedDate") is not None:
         import capo_workmail.types.timestamp
 
         out["mailbox_provisioned_date"] = (
@@ -203,7 +203,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeUserResponse:
                 data["MailboxProvisionedDate"]
             )
         )
-    if "MailboxDeprovisionedDate" in data:
+    if data.get("MailboxDeprovisionedDate") is not None:
         import capo_workmail.types.timestamp
 
         out["mailbox_deprovisioned_date"] = (
@@ -211,37 +211,37 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeUserResponse:
                 data["MailboxDeprovisionedDate"]
             )
         )
-    if "FirstName" in data:
+    if data.get("FirstName") is not None:
         out["first_name"] = data["FirstName"]
-    if "LastName" in data:
+    if data.get("LastName") is not None:
         out["last_name"] = data["LastName"]
-    if "HiddenFromGlobalAddressList" in data:
+    if data.get("HiddenFromGlobalAddressList") is not None:
         out["hidden_from_global_address_list"] = data["HiddenFromGlobalAddressList"]
     else:
         out["hidden_from_global_address_list"] = False
-    if "Initials" in data:
+    if data.get("Initials") is not None:
         out["initials"] = data["Initials"]
-    if "Telephone" in data:
+    if data.get("Telephone") is not None:
         out["telephone"] = data["Telephone"]
-    if "Street" in data:
+    if data.get("Street") is not None:
         out["street"] = data["Street"]
-    if "JobTitle" in data:
+    if data.get("JobTitle") is not None:
         out["job_title"] = data["JobTitle"]
-    if "City" in data:
+    if data.get("City") is not None:
         out["city"] = data["City"]
-    if "Company" in data:
+    if data.get("Company") is not None:
         out["company"] = data["Company"]
-    if "ZipCode" in data:
+    if data.get("ZipCode") is not None:
         out["zip_code"] = data["ZipCode"]
-    if "Department" in data:
+    if data.get("Department") is not None:
         out["department"] = data["Department"]
-    if "Country" in data:
+    if data.get("Country") is not None:
         out["country"] = data["Country"]
-    if "Office" in data:
+    if data.get("Office") is not None:
         out["office"] = data["Office"]
-    if "IdentityProviderUserId" in data:
+    if data.get("IdentityProviderUserId") is not None:
         out["identity_provider_user_id"] = data["IdentityProviderUserId"]
-    if "IdentityProviderIdentityStoreId" in data:
+    if data.get("IdentityProviderIdentityStoreId") is not None:
         out["identity_provider_identity_store_id"] = data[
             "IdentityProviderIdentityStoreId"
         ]

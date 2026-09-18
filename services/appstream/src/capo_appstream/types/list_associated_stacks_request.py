@@ -27,8 +27,8 @@ def serialize_aws_json_1_1(value: ListAssociatedStacksRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListAssociatedStacksRequest:
     out: ListAssociatedStacksRequest = {}  # type: ignore[typeddict-item]
-    if "FleetName" in data:
+    if data.get("FleetName") is not None:
         out["fleet_name"] = data["FleetName"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

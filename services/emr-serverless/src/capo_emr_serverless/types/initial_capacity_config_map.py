@@ -27,6 +27,8 @@ def serialize_json(input_to_serialize: InitialCapacityConfigMap) -> dict:
 def deserialize_json(data: dict) -> InitialCapacityConfigMap:
     out: InitialCapacityConfigMap = {}
     for key, value in data.items():
+        if value is None:
+            continue
         import capo_emr_serverless.types.initial_capacity_config
 
         out[key] = capo_emr_serverless.types.initial_capacity_config.deserialize_json(

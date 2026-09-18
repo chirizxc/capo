@@ -215,7 +215,7 @@ def serialize_json(value: SourceConnectorProperties) -> dict:
 
 def deserialize_json(data: dict) -> SourceConnectorProperties:
     out: SourceConnectorProperties = {}  # type: ignore[typeddict-item]
-    if "Amplitude" in data:
+    if data.get("Amplitude") is not None:
         import capo_appflow.types.amplitude_source_properties
 
         out["amplitude"] = (
@@ -223,13 +223,13 @@ def deserialize_json(data: dict) -> SourceConnectorProperties:
                 data["Amplitude"]
             )
         )
-    if "Datadog" in data:
+    if data.get("Datadog") is not None:
         import capo_appflow.types.datadog_source_properties
 
         out["datadog"] = capo_appflow.types.datadog_source_properties.deserialize_json(
             data["Datadog"]
         )
-    if "Dynatrace" in data:
+    if data.get("Dynatrace") is not None:
         import capo_appflow.types.dynatrace_source_properties
 
         out["dynatrace"] = (
@@ -237,7 +237,7 @@ def deserialize_json(data: dict) -> SourceConnectorProperties:
                 data["Dynatrace"]
             )
         )
-    if "GoogleAnalytics" in data:
+    if data.get("GoogleAnalytics") is not None:
         import capo_appflow.types.google_analytics_source_properties
 
         out["google_analytics"] = (
@@ -245,7 +245,7 @@ def deserialize_json(data: dict) -> SourceConnectorProperties:
                 data["GoogleAnalytics"]
             )
         )
-    if "InforNexus" in data:
+    if data.get("InforNexus") is not None:
         import capo_appflow.types.infor_nexus_source_properties
 
         out["infor_nexus"] = (
@@ -253,17 +253,17 @@ def deserialize_json(data: dict) -> SourceConnectorProperties:
                 data["InforNexus"]
             )
         )
-    if "Marketo" in data:
+    if data.get("Marketo") is not None:
         import capo_appflow.types.marketo_source_properties
 
         out["marketo"] = capo_appflow.types.marketo_source_properties.deserialize_json(
             data["Marketo"]
         )
-    if "S3" in data:
+    if data.get("S3") is not None:
         import capo_appflow.types.s3_source_properties
 
         out["s3"] = capo_appflow.types.s3_source_properties.deserialize_json(data["S3"])
-    if "Salesforce" in data:
+    if data.get("Salesforce") is not None:
         import capo_appflow.types.salesforce_source_properties
 
         out["salesforce"] = (
@@ -271,7 +271,7 @@ def deserialize_json(data: dict) -> SourceConnectorProperties:
                 data["Salesforce"]
             )
         )
-    if "ServiceNow" in data:
+    if data.get("ServiceNow") is not None:
         import capo_appflow.types.service_now_source_properties
 
         out["service_now"] = (
@@ -279,7 +279,7 @@ def deserialize_json(data: dict) -> SourceConnectorProperties:
                 data["ServiceNow"]
             )
         )
-    if "Singular" in data:
+    if data.get("Singular") is not None:
         import capo_appflow.types.singular_source_properties
 
         out["singular"] = (
@@ -287,13 +287,13 @@ def deserialize_json(data: dict) -> SourceConnectorProperties:
                 data["Singular"]
             )
         )
-    if "Slack" in data:
+    if data.get("Slack") is not None:
         import capo_appflow.types.slack_source_properties
 
         out["slack"] = capo_appflow.types.slack_source_properties.deserialize_json(
             data["Slack"]
         )
-    if "Trendmicro" in data:
+    if data.get("Trendmicro") is not None:
         import capo_appflow.types.trendmicro_source_properties
 
         out["trendmicro"] = (
@@ -301,19 +301,19 @@ def deserialize_json(data: dict) -> SourceConnectorProperties:
                 data["Trendmicro"]
             )
         )
-    if "Veeva" in data:
+    if data.get("Veeva") is not None:
         import capo_appflow.types.veeva_source_properties
 
         out["veeva"] = capo_appflow.types.veeva_source_properties.deserialize_json(
             data["Veeva"]
         )
-    if "Zendesk" in data:
+    if data.get("Zendesk") is not None:
         import capo_appflow.types.zendesk_source_properties
 
         out["zendesk"] = capo_appflow.types.zendesk_source_properties.deserialize_json(
             data["Zendesk"]
         )
-    if "SAPOData" in data:
+    if data.get("SAPOData") is not None:
         import capo_appflow.types.sapo_data_source_properties
 
         out["sapo_data"] = (
@@ -321,7 +321,7 @@ def deserialize_json(data: dict) -> SourceConnectorProperties:
                 data["SAPOData"]
             )
         )
-    if "CustomConnector" in data:
+    if data.get("CustomConnector") is not None:
         import capo_appflow.types.custom_connector_source_properties
 
         out["custom_connector"] = (
@@ -329,7 +329,7 @@ def deserialize_json(data: dict) -> SourceConnectorProperties:
                 data["CustomConnector"]
             )
         )
-    if "Pardot" in data:
+    if data.get("Pardot") is not None:
         import capo_appflow.types.pardot_source_properties
 
         out["pardot"] = capo_appflow.types.pardot_source_properties.deserialize_json(

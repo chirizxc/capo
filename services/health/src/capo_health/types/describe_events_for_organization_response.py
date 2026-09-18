@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: DescribeEventsForOrganizationResponse) -> dict
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeEventsForOrganizationResponse:
     out: DescribeEventsForOrganizationResponse = {}  # type: ignore[typeddict-item]
-    if "events" in data:
+    if data.get("events") is not None:
         import capo_health.types.organization_event_list
 
         out["events"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeEventsForOrganizationRespons
                 data["events"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

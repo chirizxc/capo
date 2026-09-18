@@ -31,7 +31,7 @@ def serialize_json(value: TtmlDestinationSettings) -> dict:
 
 def deserialize_json(data: dict) -> TtmlDestinationSettings:
     out: TtmlDestinationSettings = {}  # type: ignore[typeddict-item]
-    if "stylePassthrough" in data:
+    if data.get("stylePassthrough") is not None:
         import capo_mediaconvert.types.ttml_style_passthrough
 
         out["style_passthrough"] = (

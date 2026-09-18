@@ -24,7 +24,7 @@ def serialize_aws_json_1_0(value: TimeBasedCollectionScheme) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> TimeBasedCollectionScheme:
     out: TimeBasedCollectionScheme = {}  # type: ignore[typeddict-item]
-    if "periodMs" in data:
+    if data.get("periodMs") is not None:
         out["period_ms"] = data["periodMs"]
     else:
         raise DeserializationError("TimeBasedCollectionScheme.period_ms required")

@@ -140,13 +140,13 @@ def serialize_json(value: AwsBackupRecoveryPointDetails) -> dict:
 
 def deserialize_json(data: dict) -> AwsBackupRecoveryPointDetails:
     out: AwsBackupRecoveryPointDetails = {}  # type: ignore[typeddict-item]
-    if "BackupSizeInBytes" in data:
+    if data.get("BackupSizeInBytes") is not None:
         out["backup_size_in_bytes"] = data["BackupSizeInBytes"]
-    if "BackupVaultArn" in data:
+    if data.get("BackupVaultArn") is not None:
         out["backup_vault_arn"] = data["BackupVaultArn"]
-    if "BackupVaultName" in data:
+    if data.get("BackupVaultName") is not None:
         out["backup_vault_name"] = data["BackupVaultName"]
-    if "CalculatedLifecycle" in data:
+    if data.get("CalculatedLifecycle") is not None:
         import capo_securityhub.types.aws_backup_recovery_point_calculated_lifecycle_details
 
         out["calculated_lifecycle"] = (
@@ -154,9 +154,9 @@ def deserialize_json(data: dict) -> AwsBackupRecoveryPointDetails:
                 data["CalculatedLifecycle"]
             )
         )
-    if "CompletionDate" in data:
+    if data.get("CompletionDate") is not None:
         out["completion_date"] = data["CompletionDate"]
-    if "CreatedBy" in data:
+    if data.get("CreatedBy") is not None:
         import capo_securityhub.types.aws_backup_recovery_point_created_by_details
 
         out["created_by"] = (
@@ -164,17 +164,17 @@ def deserialize_json(data: dict) -> AwsBackupRecoveryPointDetails:
                 data["CreatedBy"]
             )
         )
-    if "CreationDate" in data:
+    if data.get("CreationDate") is not None:
         out["creation_date"] = data["CreationDate"]
-    if "EncryptionKeyArn" in data:
+    if data.get("EncryptionKeyArn") is not None:
         out["encryption_key_arn"] = data["EncryptionKeyArn"]
-    if "IamRoleArn" in data:
+    if data.get("IamRoleArn") is not None:
         out["iam_role_arn"] = data["IamRoleArn"]
-    if "IsEncrypted" in data:
+    if data.get("IsEncrypted") is not None:
         out["is_encrypted"] = data["IsEncrypted"]
-    if "LastRestoreTime" in data:
+    if data.get("LastRestoreTime") is not None:
         out["last_restore_time"] = data["LastRestoreTime"]
-    if "Lifecycle" in data:
+    if data.get("Lifecycle") is not None:
         import capo_securityhub.types.aws_backup_recovery_point_lifecycle_details
 
         out["lifecycle"] = (
@@ -182,18 +182,18 @@ def deserialize_json(data: dict) -> AwsBackupRecoveryPointDetails:
                 data["Lifecycle"]
             )
         )
-    if "RecoveryPointArn" in data:
+    if data.get("RecoveryPointArn") is not None:
         out["recovery_point_arn"] = data["RecoveryPointArn"]
-    if "ResourceArn" in data:
+    if data.get("ResourceArn") is not None:
         out["resource_arn"] = data["ResourceArn"]
-    if "ResourceType" in data:
+    if data.get("ResourceType") is not None:
         out["resource_type"] = data["ResourceType"]
-    if "SourceBackupVaultArn" in data:
+    if data.get("SourceBackupVaultArn") is not None:
         out["source_backup_vault_arn"] = data["SourceBackupVaultArn"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         out["status"] = data["Status"]
-    if "StatusMessage" in data:
+    if data.get("StatusMessage") is not None:
         out["status_message"] = data["StatusMessage"]
-    if "StorageClass" in data:
+    if data.get("StorageClass") is not None:
         out["storage_class"] = data["StorageClass"]
     return out

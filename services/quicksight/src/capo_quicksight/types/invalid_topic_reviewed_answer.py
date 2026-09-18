@@ -34,9 +34,9 @@ def serialize_json(value: InvalidTopicReviewedAnswer) -> dict:
 
 def deserialize_json(data: dict) -> InvalidTopicReviewedAnswer:
     out: InvalidTopicReviewedAnswer = {}  # type: ignore[typeddict-item]
-    if "AnswerId" in data:
+    if data.get("AnswerId") is not None:
         out["answer_id"] = data["AnswerId"]
-    if "Error" in data:
+    if data.get("Error") is not None:
         import capo_quicksight.types.reviewed_answer_error_code
 
         out["error"] = (

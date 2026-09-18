@@ -29,10 +29,10 @@ def serialize_json(value: FrozenFrames) -> dict:
 
 def deserialize_json(data: dict) -> FrozenFrames:
     out: FrozenFrames = {}  # type: ignore[typeddict-item]
-    if "state" in data:
+    if data.get("state") is not None:
         import capo_mediaconnect.types.state
 
         out["state"] = capo_mediaconnect.types.state.deserialize_json(data["state"])
-    if "thresholdSeconds" in data:
+    if data.get("thresholdSeconds") is not None:
         out["threshold_seconds"] = data["thresholdSeconds"]
     return out

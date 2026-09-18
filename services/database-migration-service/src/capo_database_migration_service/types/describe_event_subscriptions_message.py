@@ -47,9 +47,9 @@ def serialize_aws_json_1_1(value: DescribeEventSubscriptionsMessage) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeEventSubscriptionsMessage:
     out: DescribeEventSubscriptionsMessage = {}  # type: ignore[typeddict-item]
-    if "SubscriptionName" in data:
+    if data.get("SubscriptionName") is not None:
         out["subscription_name"] = data["SubscriptionName"]
-    if "Filters" in data:
+    if data.get("Filters") is not None:
         import capo_database_migration_service.types.filter_list
 
         out["filters"] = (
@@ -57,8 +57,8 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeEventSubscriptionsMessage:
                 data["Filters"]
             )
         )
-    if "MaxRecords" in data:
+    if data.get("MaxRecords") is not None:
         out["max_records"] = data["MaxRecords"]
-    if "Marker" in data:
+    if data.get("Marker") is not None:
         out["marker"] = data["Marker"]
     return out

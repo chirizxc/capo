@@ -23,7 +23,15 @@ class SloSource(TypedDict, closed=True):
 def serialize_json(value: SloSource) -> dict:
     out: dict = {}
     if "value" in value:
-        out["value"] = value["value"]
+        out["value"] = (
+            "NaN"
+            if value["value"] != value["value"]
+            else "Infinity"
+            if value["value"] == float("inf")
+            else "-Infinity"
+            if value["value"] == float("-inf")
+            else value["value"]
+        )
     if "policy_name" in value:
         out["policyName"] = value["policy_name"]
     if "source" in value:
@@ -37,11 +45,11 @@ def serialize_json(value: SloSource) -> dict:
 
 def deserialize_json(data: dict) -> SloSource:
     out: SloSource = {}  # type: ignore[typeddict-item]
-    if "value" in data:
-        out["value"] = data["value"]
-    if "policyName" in data:
+    if data.get("value") is not None:
+        out["value"] = float(data["value"])
+    if data.get("policyName") is not None:
         out["policy_name"] = data["policyName"]
-    if "source" in data:
+    if data.get("source") is not None:
         import capo_resiliencehubv2.types.policy_value_source
 
         out["source"] = capo_resiliencehubv2.types.policy_value_source.deserialize_json(

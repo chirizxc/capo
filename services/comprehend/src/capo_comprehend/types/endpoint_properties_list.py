@@ -27,6 +27,8 @@ def deserialize_aws_json_1_1(data: list) -> EndpointPropertiesList:
 
     out: EndpointPropertiesList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_comprehend.types.endpoint_properties.deserialize_aws_json_1_1(item)
         )

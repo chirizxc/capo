@@ -28,11 +28,11 @@ def serialize_aws_json_1_0(value: DeleteTypeResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> DeleteTypeResponse:
     out: DeleteTypeResponse = {}  # type: ignore[typeddict-item]
-    if "keyspaceArn" in data:
+    if data.get("keyspaceArn") is not None:
         out["keyspace_arn"] = data["keyspaceArn"]
     else:
         raise DeserializationError("DeleteTypeResponse.keyspace_arn required")
-    if "typeName" in data:
+    if data.get("typeName") is not None:
         out["type_name"] = data["typeName"]
     else:
         raise DeserializationError("DeleteTypeResponse.type_name required")

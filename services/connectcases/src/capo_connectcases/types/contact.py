@@ -24,7 +24,7 @@ def serialize_json(value: Contact) -> dict:
 
 def deserialize_json(data: dict) -> Contact:
     out: Contact = {}  # type: ignore[typeddict-item]
-    if "contactArn" in data:
+    if data.get("contactArn") is not None:
         out["contact_arn"] = data["contactArn"]
     else:
         raise DeserializationError("Contact.contact_arn required")

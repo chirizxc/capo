@@ -1,6 +1,7 @@
 """Generated from Smithy shape ``com.amazonaws.panorama#OmniCloudServiceLambda``."""
 
 import warnings
+from collections.abc import Iterator
 from typing import TYPE_CHECKING, Any, Iterable, Optional
 
 from typing_extensions import Self, TypedDict
@@ -16,6 +17,7 @@ from capo_panorama._auth._providers import (
     default_aws_credentials_chain,
 )
 from capo_panorama._auth._zapros_handler import AuthMiddleware
+from capo_panorama._pagination import resolve_path as _resolve_path
 from capo_panorama._services._aws_config import aws_config
 from capo_panorama._services._pipeline import (
     Interceptor,
@@ -289,12 +291,14 @@ class PanoramaClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_panorama.types.create_application_instance_request.CreateApplicationInstanceRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_panorama.types.create_application_instance_request.CreateApplicationInstanceRequest = {
+            "manifest_payload": manifest_payload,
+            "default_runtime_context_device": default_runtime_context_device,
+        }
         if name is not None:
             input_["name"] = name
         if description is not None:
             input_["description"] = description
-        input_["manifest_payload"] = manifest_payload
         if manifest_overrides_payload is not None:
             input_["manifest_overrides_payload"] = manifest_overrides_payload
         if application_instance_id_to_replace is not None:
@@ -303,7 +307,6 @@ class PanoramaClient:
             )
         if runtime_role_arn is not None:
             input_["runtime_role_arn"] = runtime_role_arn
-        input_["default_runtime_context_device"] = default_runtime_context_device
         if tags is not None:
             input_["tags"] = tags
 
@@ -312,6 +315,7 @@ class PanoramaClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_job_for_devices(
@@ -355,17 +359,19 @@ class PanoramaClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_panorama.types.create_job_for_devices_request.CreateJobForDevicesRequest = {}  # type: ignore[typeddict-item]
-        input_["device_ids"] = device_ids
+        input_: capo_panorama.types.create_job_for_devices_request.CreateJobForDevicesRequest = {
+            "device_ids": device_ids,
+            "job_type": job_type,
+        }
         if device_job_config is not None:
             input_["device_job_config"] = device_job_config
-        input_["job_type"] = job_type
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_node_from_template_job(
@@ -416,14 +422,15 @@ class PanoramaClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_panorama.types.create_node_from_template_job_request.CreateNodeFromTemplateJobRequest = {}  # type: ignore[typeddict-item]
-        input_["template_type"] = template_type
-        input_["output_package_name"] = output_package_name
-        input_["output_package_version"] = output_package_version
-        input_["node_name"] = node_name
+        input_: capo_panorama.types.create_node_from_template_job_request.CreateNodeFromTemplateJobRequest = {
+            "template_type": template_type,
+            "output_package_name": output_package_name,
+            "output_package_version": output_package_version,
+            "node_name": node_name,
+            "template_parameters": template_parameters,
+        }
         if node_description is not None:
             input_["node_description"] = node_description
-        input_["template_parameters"] = template_parameters
         if job_tags is not None:
             input_["job_tags"] = job_tags
 
@@ -432,6 +439,7 @@ class PanoramaClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_package(
@@ -470,8 +478,9 @@ class PanoramaClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_panorama.types.create_package_request.CreatePackageRequest = {}  # type: ignore[typeddict-item]
-        input_["package_name"] = package_name
+        input_: capo_panorama.types.create_package_request.CreatePackageRequest = {
+            "package_name": package_name
+        }
         if tags is not None:
             input_["tags"] = tags
 
@@ -480,6 +489,7 @@ class PanoramaClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_package_import_job(
@@ -524,11 +534,12 @@ class PanoramaClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_panorama.types.create_package_import_job_request.CreatePackageImportJobRequest = {}  # type: ignore[typeddict-item]
-        input_["job_type"] = job_type
-        input_["input_config"] = input_config
-        input_["output_config"] = output_config
-        input_["client_token"] = client_token
+        input_: capo_panorama.types.create_package_import_job_request.CreatePackageImportJobRequest = {
+            "job_type": job_type,
+            "input_config": input_config,
+            "output_config": output_config,
+            "client_token": client_token,
+        }
         if job_tags is not None:
             input_["job_tags"] = job_tags
 
@@ -537,6 +548,7 @@ class PanoramaClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_device(
@@ -574,14 +586,16 @@ class PanoramaClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_panorama.types.delete_device_request.DeleteDeviceRequest = {}  # type: ignore[typeddict-item]
-        input_["device_id"] = device_id
+        input_: capo_panorama.types.delete_device_request.DeleteDeviceRequest = {
+            "device_id": device_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_package(
@@ -621,8 +635,9 @@ class PanoramaClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_panorama.types.delete_package_request.DeletePackageRequest = {}  # type: ignore[typeddict-item]
-        input_["package_id"] = package_id
+        input_: capo_panorama.types.delete_package_request.DeletePackageRequest = {
+            "package_id": package_id
+        }
         if force_delete is not None:
             input_["force_delete"] = force_delete
 
@@ -631,6 +646,7 @@ class PanoramaClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def deregister_package_version(
@@ -680,12 +696,13 @@ class PanoramaClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_panorama.types.deregister_package_version_request.DeregisterPackageVersionRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_panorama.types.deregister_package_version_request.DeregisterPackageVersionRequest = {
+            "package_id": package_id,
+            "package_version": package_version,
+            "patch_version": patch_version,
+        }
         if owner_account is not None:
             input_["owner_account"] = owner_account
-        input_["package_id"] = package_id
-        input_["package_version"] = package_version
-        input_["patch_version"] = patch_version
         if updated_latest_patch_version is not None:
             input_["updated_latest_patch_version"] = updated_latest_patch_version
 
@@ -694,6 +711,7 @@ class PanoramaClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_application_instance(
@@ -731,14 +749,16 @@ class PanoramaClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_panorama.types.describe_application_instance_request.DescribeApplicationInstanceRequest = {}  # type: ignore[typeddict-item]
-        input_["application_instance_id"] = application_instance_id
+        input_: capo_panorama.types.describe_application_instance_request.DescribeApplicationInstanceRequest = {
+            "application_instance_id": application_instance_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_application_instance_details(
@@ -776,14 +796,16 @@ class PanoramaClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_panorama.types.describe_application_instance_details_request.DescribeApplicationInstanceDetailsRequest = {}  # type: ignore[typeddict-item]
-        input_["application_instance_id"] = application_instance_id
+        input_: capo_panorama.types.describe_application_instance_details_request.DescribeApplicationInstanceDetailsRequest = {
+            "application_instance_id": application_instance_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_device(
@@ -820,14 +842,16 @@ class PanoramaClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_panorama.types.describe_device_request.DescribeDeviceRequest = {}  # type: ignore[typeddict-item]
-        input_["device_id"] = device_id
+        input_: capo_panorama.types.describe_device_request.DescribeDeviceRequest = {
+            "device_id": device_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_device_job(
@@ -865,14 +889,16 @@ class PanoramaClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_panorama.types.describe_device_job_request.DescribeDeviceJobRequest = {}  # type: ignore[typeddict-item]
-        input_["job_id"] = job_id
+        input_: capo_panorama.types.describe_device_job_request.DescribeDeviceJobRequest = {
+            "job_id": job_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_node(
@@ -914,8 +940,9 @@ class PanoramaClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_panorama.types.describe_node_request.DescribeNodeRequest = {}  # type: ignore[typeddict-item]
-        input_["node_id"] = node_id
+        input_: capo_panorama.types.describe_node_request.DescribeNodeRequest = {
+            "node_id": node_id
+        }
         if owner_account is not None:
             input_["owner_account"] = owner_account
 
@@ -924,6 +951,7 @@ class PanoramaClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_node_from_template_job(
@@ -960,14 +988,16 @@ class PanoramaClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_panorama.types.describe_node_from_template_job_request.DescribeNodeFromTemplateJobRequest = {}  # type: ignore[typeddict-item]
-        input_["job_id"] = job_id
+        input_: capo_panorama.types.describe_node_from_template_job_request.DescribeNodeFromTemplateJobRequest = {
+            "job_id": job_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_package(
@@ -1005,14 +1035,16 @@ class PanoramaClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_panorama.types.describe_package_request.DescribePackageRequest = {}  # type: ignore[typeddict-item]
-        input_["package_id"] = package_id
+        input_: capo_panorama.types.describe_package_request.DescribePackageRequest = {
+            "package_id": package_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_package_import_job(
@@ -1049,14 +1081,16 @@ class PanoramaClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_panorama.types.describe_package_import_job_request.DescribePackageImportJobRequest = {}  # type: ignore[typeddict-item]
-        input_["job_id"] = job_id
+        input_: capo_panorama.types.describe_package_import_job_request.DescribePackageImportJobRequest = {
+            "job_id": job_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_package_version(
@@ -1104,11 +1138,12 @@ class PanoramaClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_panorama.types.describe_package_version_request.DescribePackageVersionRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_panorama.types.describe_package_version_request.DescribePackageVersionRequest = {
+            "package_id": package_id,
+            "package_version": package_version,
+        }
         if owner_account is not None:
             input_["owner_account"] = owner_account
-        input_["package_id"] = package_id
-        input_["package_version"] = package_version
         if patch_version is not None:
             input_["patch_version"] = patch_version
 
@@ -1117,6 +1152,7 @@ class PanoramaClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_application_instance_dependencies(
@@ -1155,8 +1191,9 @@ class PanoramaClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_panorama.types.list_application_instance_dependencies_request.ListApplicationInstanceDependenciesRequest = {}  # type: ignore[typeddict-item]
-        input_["application_instance_id"] = application_instance_id
+        input_: capo_panorama.types.list_application_instance_dependencies_request.ListApplicationInstanceDependenciesRequest = {
+            "application_instance_id": application_instance_id
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -1167,7 +1204,29 @@ class PanoramaClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_application_instance_dependencies(
+        self,
+        application_instance_id: "capo_panorama.types.application_instance_id.ApplicationInstanceId",
+        *,
+        config_overrides: Optional[PanoramaClientConfig] = None,
+        max_results: Optional["capo_panorama.types.max_size25.MaxSize25"] = None,
+        next_token: Optional["capo_panorama.types.next_token.NextToken"] = None,
+    ) -> "Iterator[capo_panorama.types.list_application_instance_dependencies_response.ListApplicationInstanceDependenciesResponse]":
+        _token = next_token
+        while True:
+            _response = self.list_application_instance_dependencies(
+                application_instance_id,
+                config_overrides=config_overrides,
+                max_results=max_results,
+                next_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def list_application_instance_node_instances(
         self,
@@ -1205,8 +1264,9 @@ class PanoramaClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_panorama.types.list_application_instance_node_instances_request.ListApplicationInstanceNodeInstancesRequest = {}  # type: ignore[typeddict-item]
-        input_["application_instance_id"] = application_instance_id
+        input_: capo_panorama.types.list_application_instance_node_instances_request.ListApplicationInstanceNodeInstancesRequest = {
+            "application_instance_id": application_instance_id
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -1217,7 +1277,29 @@ class PanoramaClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_application_instance_node_instances(
+        self,
+        application_instance_id: "capo_panorama.types.application_instance_id.ApplicationInstanceId",
+        *,
+        config_overrides: Optional[PanoramaClientConfig] = None,
+        max_results: Optional["capo_panorama.types.max_size25.MaxSize25"] = None,
+        next_token: Optional["capo_panorama.types.next_token.NextToken"] = None,
+    ) -> "Iterator[capo_panorama.types.list_application_instance_node_instances_response.ListApplicationInstanceNodeInstancesResponse]":
+        _token = next_token
+        while True:
+            _response = self.list_application_instance_node_instances(
+                application_instance_id,
+                config_overrides=config_overrides,
+                max_results=max_results,
+                next_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def list_application_instances(
         self,
@@ -1259,7 +1341,7 @@ class PanoramaClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_panorama.types.list_application_instances_request.ListApplicationInstancesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_panorama.types.list_application_instances_request.ListApplicationInstancesRequest = {}
         if device_id is not None:
             input_["device_id"] = device_id
         if status_filter is not None:
@@ -1274,7 +1356,33 @@ class PanoramaClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_application_instances(
+        self,
+        *,
+        config_overrides: Optional[PanoramaClientConfig] = None,
+        device_id: Optional["capo_panorama.types.device_id.DeviceId"] = None,
+        status_filter: Optional[
+            "capo_panorama.types.status_filter.StatusFilter"
+        ] = None,
+        max_results: Optional["capo_panorama.types.max_size25.MaxSize25"] = None,
+        next_token: Optional["capo_panorama.types.next_token.NextToken"] = None,
+    ) -> "Iterator[capo_panorama.types.list_application_instances_response.ListApplicationInstancesResponse]":
+        _token = next_token
+        while True:
+            _response = self.list_application_instances(
+                config_overrides=config_overrides,
+                device_id=device_id,
+                status_filter=status_filter,
+                max_results=max_results,
+                next_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def list_devices(
         self,
@@ -1324,7 +1432,7 @@ class PanoramaClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_panorama.types.list_devices_request.ListDevicesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_panorama.types.list_devices_request.ListDevicesRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -1343,7 +1451,39 @@ class PanoramaClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_devices(
+        self,
+        *,
+        config_overrides: Optional[PanoramaClientConfig] = None,
+        next_token: Optional["capo_panorama.types.next_token.NextToken"] = None,
+        max_results: Optional["capo_panorama.types.max_size25.MaxSize25"] = None,
+        sort_by: Optional[
+            "capo_panorama.types.list_devices_sort_by.ListDevicesSortBy"
+        ] = None,
+        sort_order: Optional["capo_panorama.types.sort_order.SortOrder"] = None,
+        name_filter: Optional["capo_panorama.types.name_filter.NameFilter"] = None,
+        device_aggregated_status_filter: Optional[
+            "capo_panorama.types.device_aggregated_status.DeviceAggregatedStatus"
+        ] = None,
+    ) -> "Iterator[capo_panorama.types.list_devices_response.ListDevicesResponse]":
+        _token = next_token
+        while True:
+            _response = self.list_devices(
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+                sort_by=sort_by,
+                sort_order=sort_order,
+                name_filter=name_filter,
+                device_aggregated_status_filter=device_aggregated_status_filter,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def list_devices_jobs(
         self,
@@ -1384,7 +1524,7 @@ class PanoramaClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_panorama.types.list_devices_jobs_request.ListDevicesJobsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_panorama.types.list_devices_jobs_request.ListDevicesJobsRequest = {}
         if device_id is not None:
             input_["device_id"] = device_id
         if next_token is not None:
@@ -1397,7 +1537,29 @@ class PanoramaClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_devices_jobs(
+        self,
+        *,
+        config_overrides: Optional[PanoramaClientConfig] = None,
+        device_id: Optional["capo_panorama.types.device_id.DeviceId"] = None,
+        next_token: Optional["capo_panorama.types.next_token.NextToken"] = None,
+        max_results: Optional["capo_panorama.types.max_size25.MaxSize25"] = None,
+    ) -> "Iterator[capo_panorama.types.list_devices_jobs_response.ListDevicesJobsResponse]":
+        _token = next_token
+        while True:
+            _response = self.list_devices_jobs(
+                config_overrides=config_overrides,
+                device_id=device_id,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def list_node_from_template_jobs(
         self,
@@ -1435,7 +1597,7 @@ class PanoramaClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_panorama.types.list_node_from_template_jobs_request.ListNodeFromTemplateJobsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_panorama.types.list_node_from_template_jobs_request.ListNodeFromTemplateJobsRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -1446,7 +1608,27 @@ class PanoramaClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_node_from_template_jobs(
+        self,
+        *,
+        config_overrides: Optional[PanoramaClientConfig] = None,
+        next_token: Optional["capo_panorama.types.next_token.NextToken"] = None,
+        max_results: Optional["capo_panorama.types.max_size25.MaxSize25"] = None,
+    ) -> "Iterator[capo_panorama.types.list_node_from_template_jobs_response.ListNodeFromTemplateJobsResponse]":
+        _token = next_token
+        while True:
+            _response = self.list_node_from_template_jobs(
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def list_nodes(
         self,
@@ -1501,7 +1683,7 @@ class PanoramaClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_panorama.types.list_nodes_request.ListNodesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_panorama.types.list_nodes_request.ListNodesRequest = {}
         if category is not None:
             input_["category"] = category
         if owner_account is not None:
@@ -1522,7 +1704,45 @@ class PanoramaClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_nodes(
+        self,
+        *,
+        config_overrides: Optional[PanoramaClientConfig] = None,
+        category: Optional["capo_panorama.types.node_category.NodeCategory"] = None,
+        owner_account: Optional[
+            "capo_panorama.types.package_owner_account.PackageOwnerAccount"
+        ] = None,
+        package_name: Optional[
+            "capo_panorama.types.node_package_name.NodePackageName"
+        ] = None,
+        package_version: Optional[
+            "capo_panorama.types.node_package_version.NodePackageVersion"
+        ] = None,
+        patch_version: Optional[
+            "capo_panorama.types.node_package_patch_version.NodePackagePatchVersion"
+        ] = None,
+        next_token: Optional["capo_panorama.types.token.Token"] = None,
+        max_results: Optional["capo_panorama.types.max_size25.MaxSize25"] = None,
+    ) -> "Iterator[capo_panorama.types.list_nodes_response.ListNodesResponse]":
+        _token = next_token
+        while True:
+            _response = self.list_nodes(
+                config_overrides=config_overrides,
+                category=category,
+                owner_account=owner_account,
+                package_name=package_name,
+                package_version=package_version,
+                patch_version=patch_version,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def list_package_import_jobs(
         self,
@@ -1560,7 +1780,7 @@ class PanoramaClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_panorama.types.list_package_import_jobs_request.ListPackageImportJobsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_panorama.types.list_package_import_jobs_request.ListPackageImportJobsRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -1571,7 +1791,27 @@ class PanoramaClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_package_import_jobs(
+        self,
+        *,
+        config_overrides: Optional[PanoramaClientConfig] = None,
+        next_token: Optional["capo_panorama.types.next_token.NextToken"] = None,
+        max_results: Optional["capo_panorama.types.max_size25.MaxSize25"] = None,
+    ) -> "Iterator[capo_panorama.types.list_package_import_jobs_response.ListPackageImportJobsResponse]":
+        _token = next_token
+        while True:
+            _response = self.list_package_import_jobs(
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def list_packages(
         self,
@@ -1610,7 +1850,7 @@ class PanoramaClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_panorama.types.list_packages_request.ListPackagesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_panorama.types.list_packages_request.ListPackagesRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -1621,7 +1861,27 @@ class PanoramaClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_packages(
+        self,
+        *,
+        config_overrides: Optional[PanoramaClientConfig] = None,
+        max_results: Optional["capo_panorama.types.max_size25.MaxSize25"] = None,
+        next_token: Optional["capo_panorama.types.token.Token"] = None,
+    ) -> "Iterator[capo_panorama.types.list_packages_response.ListPackagesResponse]":
+        _token = next_token
+        while True:
+            _response = self.list_packages(
+                config_overrides=config_overrides,
+                max_results=max_results,
+                next_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def list_tags_for_resource(
         self,
@@ -1656,14 +1916,16 @@ class PanoramaClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_panorama.types.list_tags_for_resource_request.ListTagsForResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_panorama.types.list_tags_for_resource_request.ListTagsForResourceRequest = {
+            "resource_arn": resource_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def provision_device(
@@ -1709,8 +1971,9 @@ class PanoramaClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_panorama.types.provision_device_request.ProvisionDeviceRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_panorama.types.provision_device_request.ProvisionDeviceRequest = {
+            "name": name
+        }
         if description is not None:
             input_["description"] = description
         if tags is not None:
@@ -1723,6 +1986,7 @@ class PanoramaClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def register_package_version(
@@ -1771,12 +2035,13 @@ class PanoramaClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_panorama.types.register_package_version_request.RegisterPackageVersionRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_panorama.types.register_package_version_request.RegisterPackageVersionRequest = {
+            "package_id": package_id,
+            "package_version": package_version,
+            "patch_version": patch_version,
+        }
         if owner_account is not None:
             input_["owner_account"] = owner_account
-        input_["package_id"] = package_id
-        input_["package_version"] = package_version
-        input_["patch_version"] = patch_version
         if mark_latest is not None:
             input_["mark_latest"] = mark_latest
 
@@ -1785,6 +2050,7 @@ class PanoramaClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def remove_application_instance(
@@ -1822,14 +2088,16 @@ class PanoramaClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_panorama.types.remove_application_instance_request.RemoveApplicationInstanceRequest = {}  # type: ignore[typeddict-item]
-        input_["application_instance_id"] = application_instance_id
+        input_: capo_panorama.types.remove_application_instance_request.RemoveApplicationInstanceRequest = {
+            "application_instance_id": application_instance_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def signal_application_instance_node_instances(
@@ -1868,15 +2136,17 @@ class PanoramaClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_panorama.types.signal_application_instance_node_instances_request.SignalApplicationInstanceNodeInstancesRequest = {}  # type: ignore[typeddict-item]
-        input_["application_instance_id"] = application_instance_id
-        input_["node_signals"] = node_signals
+        input_: capo_panorama.types.signal_application_instance_node_instances_request.SignalApplicationInstanceNodeInstancesRequest = {
+            "application_instance_id": application_instance_id,
+            "node_signals": node_signals,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def tag_resource(
@@ -1914,15 +2184,17 @@ class PanoramaClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_panorama.types.tag_resource_request.TagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tags"] = tags
+        input_: capo_panorama.types.tag_resource_request.TagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tags": tags,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def untag_resource(
@@ -1960,15 +2232,17 @@ class PanoramaClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_panorama.types.untag_resource_request.UntagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tag_keys"] = tag_keys
+        input_: capo_panorama.types.untag_resource_request.UntagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tag_keys": tag_keys,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_device_metadata(
@@ -2008,8 +2282,9 @@ class PanoramaClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_panorama.types.update_device_metadata_request.UpdateDeviceMetadataRequest = {}  # type: ignore[typeddict-item]
-        input_["device_id"] = device_id
+        input_: capo_panorama.types.update_device_metadata_request.UpdateDeviceMetadataRequest = {
+            "device_id": device_id
+        }
         if description is not None:
             input_["description"] = description
 
@@ -2018,6 +2293,7 @@ class PanoramaClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def __enter__(self) -> Self:

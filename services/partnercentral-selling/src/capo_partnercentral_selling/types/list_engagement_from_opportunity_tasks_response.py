@@ -35,7 +35,7 @@ def serialize_aws_json_1_0(value: ListEngagementFromOpportunityTasksResponse) ->
 
 def deserialize_aws_json_1_0(data: dict) -> ListEngagementFromOpportunityTasksResponse:
     out: ListEngagementFromOpportunityTasksResponse = {}  # type: ignore[typeddict-item]
-    if "TaskSummaries" in data:
+    if data.get("TaskSummaries") is not None:
         import capo_partnercentral_selling.types.list_engagement_from_opportunity_task_summaries
 
         out["task_summaries"] = (
@@ -43,6 +43,6 @@ def deserialize_aws_json_1_0(data: dict) -> ListEngagementFromOpportunityTasksRe
                 data["TaskSummaries"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

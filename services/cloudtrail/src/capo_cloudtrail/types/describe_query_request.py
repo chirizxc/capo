@@ -47,14 +47,14 @@ def serialize_aws_json_1_1(value: DescribeQueryRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeQueryRequest:
     out: DescribeQueryRequest = {}  # type: ignore[typeddict-item]
-    if "EventDataStore" in data:
+    if data.get("EventDataStore") is not None:
         out["event_data_store"] = data["EventDataStore"]
-    if "QueryId" in data:
+    if data.get("QueryId") is not None:
         out["query_id"] = data["QueryId"]
-    if "QueryAlias" in data:
+    if data.get("QueryAlias") is not None:
         out["query_alias"] = data["QueryAlias"]
-    if "RefreshId" in data:
+    if data.get("RefreshId") is not None:
         out["refresh_id"] = data["RefreshId"]
-    if "EventDataStoreOwnerAccountId" in data:
+    if data.get("EventDataStoreOwnerAccountId") is not None:
         out["event_data_store_owner_account_id"] = data["EventDataStoreOwnerAccountId"]
     return out

@@ -45,20 +45,20 @@ def serialize_aws_json_1_1(value: ViewBillingRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ViewBillingRequest:
     out: ViewBillingRequest = {}  # type: ignore[typeddict-item]
-    if "Start" in data:
+    if data.get("Start") is not None:
         import capo_route_53_domains.types.timestamp
 
         out["start"] = capo_route_53_domains.types.timestamp.deserialize_aws_json_1_1(
             data["Start"]
         )
-    if "End" in data:
+    if data.get("End") is not None:
         import capo_route_53_domains.types.timestamp
 
         out["end"] = capo_route_53_domains.types.timestamp.deserialize_aws_json_1_1(
             data["End"]
         )
-    if "Marker" in data:
+    if data.get("Marker") is not None:
         out["marker"] = data["Marker"]
-    if "MaxItems" in data:
+    if data.get("MaxItems") is not None:
         out["max_items"] = data["MaxItems"]
     return out

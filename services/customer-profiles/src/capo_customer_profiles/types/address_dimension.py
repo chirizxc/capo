@@ -79,13 +79,13 @@ def serialize_json(value: AddressDimension) -> dict:
 
 def deserialize_json(data: dict) -> AddressDimension:
     out: AddressDimension = {}  # type: ignore[typeddict-item]
-    if "City" in data:
+    if data.get("City") is not None:
         import capo_customer_profiles.types.profile_dimension
 
         out["city"] = capo_customer_profiles.types.profile_dimension.deserialize_json(
             data["City"]
         )
-    if "Country" in data:
+    if data.get("Country") is not None:
         import capo_customer_profiles.types.profile_dimension
 
         out["country"] = (
@@ -93,13 +93,13 @@ def deserialize_json(data: dict) -> AddressDimension:
                 data["Country"]
             )
         )
-    if "County" in data:
+    if data.get("County") is not None:
         import capo_customer_profiles.types.profile_dimension
 
         out["county"] = capo_customer_profiles.types.profile_dimension.deserialize_json(
             data["County"]
         )
-    if "PostalCode" in data:
+    if data.get("PostalCode") is not None:
         import capo_customer_profiles.types.profile_dimension
 
         out["postal_code"] = (
@@ -107,7 +107,7 @@ def deserialize_json(data: dict) -> AddressDimension:
                 data["PostalCode"]
             )
         )
-    if "Province" in data:
+    if data.get("Province") is not None:
         import capo_customer_profiles.types.profile_dimension
 
         out["province"] = (
@@ -115,7 +115,7 @@ def deserialize_json(data: dict) -> AddressDimension:
                 data["Province"]
             )
         )
-    if "State" in data:
+    if data.get("State") is not None:
         import capo_customer_profiles.types.profile_dimension
 
         out["state"] = capo_customer_profiles.types.profile_dimension.deserialize_json(

@@ -24,7 +24,7 @@ def serialize_json(value: AppBundleSummary) -> dict:
 
 def deserialize_json(data: dict) -> AppBundleSummary:
     out: AppBundleSummary = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("AppBundleSummary.arn required")

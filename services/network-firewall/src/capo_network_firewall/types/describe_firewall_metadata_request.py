@@ -23,6 +23,6 @@ def serialize_aws_json_1_0(value: DescribeFirewallMetadataRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> DescribeFirewallMetadataRequest:
     out: DescribeFirewallMetadataRequest = {}  # type: ignore[typeddict-item]
-    if "FirewallArn" in data:
+    if data.get("FirewallArn") is not None:
         out["firewall_arn"] = data["FirewallArn"]
     return out

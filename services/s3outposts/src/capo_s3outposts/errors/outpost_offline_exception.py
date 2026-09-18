@@ -24,7 +24,7 @@ def serialize_json(value: OutpostOfflineException_) -> dict:
 
 def deserialize_json(data: dict) -> OutpostOfflineException_:
     out: OutpostOfflineException_ = {}  # type: ignore[typeddict-item]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     return out
 
@@ -34,15 +34,18 @@ class OutpostOfflineException(ServiceError):
 
     code: str | None = "OutpostOfflineException"
 
-    def __init__(self, data: OutpostOfflineException_):
+    def __init__(self, data: OutpostOfflineException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="OutpostOfflineException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "OutpostOfflineException":
-        return cls(deserialize_json(data))
+    def from_json(
+        cls, data: dict, message: str | None = None
+    ) -> "OutpostOfflineException":
+        return cls(deserialize_json(data), message)

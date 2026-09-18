@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> __listOfNdiDiscoveryServerConfig:
 
     out: __listOfNdiDiscoveryServerConfig = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_mediaconnect.types.ndi_discovery_server_config.deserialize_json(item)
         )

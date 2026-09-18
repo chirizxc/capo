@@ -42,13 +42,13 @@ def serialize_json(value: UpdateConnectorRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateConnectorRequest:
     out: UpdateConnectorRequest = {}  # type: ignore[typeddict-item]
-    if "connectorID" in data:
+    if data.get("connectorID") is not None:
         out["connector_id"] = data["connectorID"]
     else:
         raise DeserializationError("UpdateConnectorRequest.connector_id required")
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "ssmCommandConfig" in data:
+    if data.get("ssmCommandConfig") is not None:
         import capo_mgn.types.connector_ssm_command_config
 
         out["ssm_command_config"] = (

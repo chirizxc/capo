@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> StepAmountCapabilities:
 
     out: StepAmountCapabilities = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_deadline.types.step_amount_capability.deserialize_json(item))
     return out

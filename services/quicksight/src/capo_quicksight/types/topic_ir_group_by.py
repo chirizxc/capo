@@ -79,13 +79,13 @@ def serialize_json(value: TopicIRGroupBy) -> dict:
 
 def deserialize_json(data: dict) -> TopicIRGroupBy:
     out: TopicIRGroupBy = {}  # type: ignore[typeddict-item]
-    if "FieldName" in data:
+    if data.get("FieldName") is not None:
         import capo_quicksight.types.identifier
 
         out["field_name"] = capo_quicksight.types.identifier.deserialize_json(
             data["FieldName"]
         )
-    if "TimeGranularity" in data:
+    if data.get("TimeGranularity") is not None:
         import capo_quicksight.types.topic_time_granularity
 
         out["time_granularity"] = (
@@ -93,19 +93,19 @@ def deserialize_json(data: dict) -> TopicIRGroupBy:
                 data["TimeGranularity"]
             )
         )
-    if "Sort" in data:
+    if data.get("Sort") is not None:
         import capo_quicksight.types.topic_sort_clause
 
         out["sort"] = capo_quicksight.types.topic_sort_clause.deserialize_json(
             data["Sort"]
         )
-    if "DisplayFormat" in data:
+    if data.get("DisplayFormat") is not None:
         import capo_quicksight.types.display_format
 
         out["display_format"] = capo_quicksight.types.display_format.deserialize_json(
             data["DisplayFormat"]
         )
-    if "DisplayFormatOptions" in data:
+    if data.get("DisplayFormatOptions") is not None:
         import capo_quicksight.types.display_format_options
 
         out["display_format_options"] = (
@@ -113,7 +113,7 @@ def deserialize_json(data: dict) -> TopicIRGroupBy:
                 data["DisplayFormatOptions"]
             )
         )
-    if "NamedEntity" in data:
+    if data.get("NamedEntity") is not None:
         import capo_quicksight.types.named_entity_ref
 
         out["named_entity"] = capo_quicksight.types.named_entity_ref.deserialize_json(

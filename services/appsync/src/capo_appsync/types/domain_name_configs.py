@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> DomainNameConfigs:
 
     out: DomainNameConfigs = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_appsync.types.domain_name_config.deserialize_json(item))
     return out

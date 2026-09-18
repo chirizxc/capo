@@ -67,13 +67,13 @@ def serialize_aws_json_1_1(value: SessionStatus) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SessionStatus:
     out: SessionStatus = {}  # type: ignore[typeddict-item]
-    if "StartDateTime" in data:
+    if data.get("StartDateTime") is not None:
         import capo_athena.types.date
 
         out["start_date_time"] = capo_athena.types.date.deserialize_aws_json_1_1(
             data["StartDateTime"]
         )
-    if "LastModifiedDateTime" in data:
+    if data.get("LastModifiedDateTime") is not None:
         import capo_athena.types.date
 
         out["last_modified_date_time"] = (
@@ -81,24 +81,24 @@ def deserialize_aws_json_1_1(data: dict) -> SessionStatus:
                 data["LastModifiedDateTime"]
             )
         )
-    if "EndDateTime" in data:
+    if data.get("EndDateTime") is not None:
         import capo_athena.types.date
 
         out["end_date_time"] = capo_athena.types.date.deserialize_aws_json_1_1(
             data["EndDateTime"]
         )
-    if "IdleSinceDateTime" in data:
+    if data.get("IdleSinceDateTime") is not None:
         import capo_athena.types.date
 
         out["idle_since_date_time"] = capo_athena.types.date.deserialize_aws_json_1_1(
             data["IdleSinceDateTime"]
         )
-    if "State" in data:
+    if data.get("State") is not None:
         import capo_athena.types.session_state
 
         out["state"] = capo_athena.types.session_state.deserialize_aws_json_1_1(
             data["State"]
         )
-    if "StateChangeReason" in data:
+    if data.get("StateChangeReason") is not None:
         out["state_change_reason"] = data["StateChangeReason"]
     return out

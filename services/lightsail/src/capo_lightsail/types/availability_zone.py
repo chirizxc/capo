@@ -27,8 +27,8 @@ def serialize_aws_json_1_1(value: AvailabilityZone) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AvailabilityZone:
     out: AvailabilityZone = {}  # type: ignore[typeddict-item]
-    if "zoneName" in data:
+    if data.get("zoneName") is not None:
         out["zone_name"] = data["zoneName"]
-    if "state" in data:
+    if data.get("state") is not None:
         out["state"] = data["state"]
     return out

@@ -33,7 +33,7 @@ def serialize_json(value: BatchPutGeofenceRequest) -> dict:
 
 def deserialize_json(data: dict) -> BatchPutGeofenceRequest:
     out: BatchPutGeofenceRequest = {}  # type: ignore[typeddict-item]
-    if "Entries" in data:
+    if data.get("Entries") is not None:
         import capo_location.types.batch_put_geofence_request_entry_list
 
         out["entries"] = (

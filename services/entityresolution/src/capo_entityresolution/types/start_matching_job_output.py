@@ -24,7 +24,7 @@ def serialize_json(value: StartMatchingJobOutput) -> dict:
 
 def deserialize_json(data: dict) -> StartMatchingJobOutput:
     out: StartMatchingJobOutput = {}  # type: ignore[typeddict-item]
-    if "jobId" in data:
+    if data.get("jobId") is not None:
         out["job_id"] = data["jobId"]
     else:
         raise DeserializationError("StartMatchingJobOutput.job_id required")

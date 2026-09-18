@@ -44,7 +44,7 @@ def serialize_aws_json_1_1(value: LabelingJobDataSource) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> LabelingJobDataSource:
     out: LabelingJobDataSource = {}  # type: ignore[typeddict-item]
-    if "S3DataSource" in data:
+    if data.get("S3DataSource") is not None:
         import capo_sagemaker.types.labeling_job_s3_data_source
 
         out["s3_data_source"] = (
@@ -52,7 +52,7 @@ def deserialize_aws_json_1_1(data: dict) -> LabelingJobDataSource:
                 data["S3DataSource"]
             )
         )
-    if "SnsDataSource" in data:
+    if data.get("SnsDataSource") is not None:
         import capo_sagemaker.types.labeling_job_sns_data_source
 
         out["sns_data_source"] = (

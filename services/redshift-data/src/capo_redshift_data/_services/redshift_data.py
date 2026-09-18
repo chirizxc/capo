@@ -1,5 +1,6 @@
 """Generated from Smithy shape ``com.amazonaws.redshiftdata#RedshiftData``."""
 
+import uuid
 import warnings
 from collections.abc import Iterator
 from typing import TYPE_CHECKING, Any, Iterable, Optional
@@ -240,8 +241,9 @@ class RedshiftDataClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_redshift_data.types.batch_execute_statement_input.BatchExecuteStatementInput = {}  # type: ignore[typeddict-item]
-        input_["sqls"] = sqls
+        input_: capo_redshift_data.types.batch_execute_statement_input.BatchExecuteStatementInput = {
+            "sqls": sqls
+        }
         if cluster_identifier is not None:
             input_["cluster_identifier"] = cluster_identifier
         if secret_arn is not None:
@@ -258,8 +260,9 @@ class RedshiftDataClient:
             input_["parameters"] = parameters
         if workgroup_name is not None:
             input_["workgroup_name"] = workgroup_name
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if result_format is not None:
             input_["result_format"] = result_format
         if session_keep_alive_seconds is not None:
@@ -272,6 +275,7 @@ class RedshiftDataClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def cancel_statement(
@@ -309,14 +313,16 @@ class RedshiftDataClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_redshift_data.types.cancel_statement_request.CancelStatementRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_redshift_data.types.cancel_statement_request.CancelStatementRequest = {
+            "id": id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_statement(
@@ -354,14 +360,16 @@ class RedshiftDataClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_redshift_data.types.describe_statement_request.DescribeStatementRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_redshift_data.types.describe_statement_request.DescribeStatementRequest = {
+            "id": id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_table(
@@ -421,14 +429,15 @@ class RedshiftDataClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_redshift_data.types.describe_table_request.DescribeTableRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_redshift_data.types.describe_table_request.DescribeTableRequest = {
+            "database": database
+        }
         if cluster_identifier is not None:
             input_["cluster_identifier"] = cluster_identifier
         if secret_arn is not None:
             input_["secret_arn"] = secret_arn
         if db_user is not None:
             input_["db_user"] = db_user
-        input_["database"] = database
         if connected_database is not None:
             input_["connected_database"] = connected_database
         if schema is not None:
@@ -447,6 +456,7 @@ class RedshiftDataClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_describe_table(
@@ -564,8 +574,9 @@ class RedshiftDataClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_redshift_data.types.execute_statement_input.ExecuteStatementInput = {}  # type: ignore[typeddict-item]
-        input_["sql"] = sql
+        input_: capo_redshift_data.types.execute_statement_input.ExecuteStatementInput = {
+            "sql": sql
+        }
         if cluster_identifier is not None:
             input_["cluster_identifier"] = cluster_identifier
         if secret_arn is not None:
@@ -582,8 +593,9 @@ class RedshiftDataClient:
             input_["parameters"] = parameters
         if workgroup_name is not None:
             input_["workgroup_name"] = workgroup_name
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if result_format is not None:
             input_["result_format"] = result_format
         if session_keep_alive_seconds is not None:
@@ -596,6 +608,7 @@ class RedshiftDataClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_statement_result(
@@ -633,8 +646,9 @@ class RedshiftDataClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_redshift_data.types.get_statement_result_request.GetStatementResultRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_redshift_data.types.get_statement_result_request.GetStatementResultRequest = {
+            "id": id
+        }
         if next_token is not None:
             input_["next_token"] = next_token
 
@@ -643,6 +657,7 @@ class RedshiftDataClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_get_statement_result(
@@ -701,8 +716,9 @@ class RedshiftDataClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_redshift_data.types.get_statement_result_v2_request.GetStatementResultV2Request = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_redshift_data.types.get_statement_result_v2_request.GetStatementResultV2Request = {
+            "id": id
+        }
         if next_token is not None:
             input_["next_token"] = next_token
 
@@ -711,6 +727,7 @@ class RedshiftDataClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_get_statement_result_v2(
@@ -785,10 +802,11 @@ class RedshiftDataClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_redshift_data.types.list_databases_request.ListDatabasesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_redshift_data.types.list_databases_request.ListDatabasesRequest = {
+            "database": database
+        }
         if cluster_identifier is not None:
             input_["cluster_identifier"] = cluster_identifier
-        input_["database"] = database
         if secret_arn is not None:
             input_["secret_arn"] = secret_arn
         if db_user is not None:
@@ -805,6 +823,7 @@ class RedshiftDataClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_databases(
@@ -897,14 +916,15 @@ class RedshiftDataClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_redshift_data.types.list_schemas_request.ListSchemasRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_redshift_data.types.list_schemas_request.ListSchemasRequest = {
+            "database": database
+        }
         if cluster_identifier is not None:
             input_["cluster_identifier"] = cluster_identifier
         if secret_arn is not None:
             input_["secret_arn"] = secret_arn
         if db_user is not None:
             input_["db_user"] = db_user
-        input_["database"] = database
         if connected_database is not None:
             input_["connected_database"] = connected_database
         if schema_pattern is not None:
@@ -921,6 +941,7 @@ class RedshiftDataClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_schemas(
@@ -1017,7 +1038,7 @@ class RedshiftDataClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_redshift_data.types.list_statements_request.ListStatementsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_redshift_data.types.list_statements_request.ListStatementsRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -1040,6 +1061,7 @@ class RedshiftDataClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_statements(
@@ -1140,14 +1162,15 @@ class RedshiftDataClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_redshift_data.types.list_tables_request.ListTablesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_redshift_data.types.list_tables_request.ListTablesRequest = {
+            "database": database
+        }
         if cluster_identifier is not None:
             input_["cluster_identifier"] = cluster_identifier
         if secret_arn is not None:
             input_["secret_arn"] = secret_arn
         if db_user is not None:
             input_["db_user"] = db_user
-        input_["database"] = database
         if connected_database is not None:
             input_["connected_database"] = connected_database
         if schema_pattern is not None:
@@ -1166,6 +1189,7 @@ class RedshiftDataClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_tables(

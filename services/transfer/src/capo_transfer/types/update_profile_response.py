@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: UpdateProfileResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateProfileResponse:
     out: UpdateProfileResponse = {}  # type: ignore[typeddict-item]
-    if "ProfileId" in data:
+    if data.get("ProfileId") is not None:
         out["profile_id"] = data["ProfileId"]
     else:
         raise DeserializationError("UpdateProfileResponse.profile_id required")

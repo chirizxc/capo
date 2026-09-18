@@ -60,19 +60,19 @@ def serialize_json(value: QueryPlanningContext) -> dict:
 
 def deserialize_json(data: dict) -> QueryPlanningContext:
     out: QueryPlanningContext = {}  # type: ignore[typeddict-item]
-    if "CatalogId" in data:
+    if data.get("CatalogId") is not None:
         out["catalog_id"] = data["CatalogId"]
-    if "DatabaseName" in data:
+    if data.get("DatabaseName") is not None:
         out["database_name"] = data["DatabaseName"]
     else:
         raise DeserializationError("QueryPlanningContext.database_name required")
-    if "QueryAsOfTime" in data:
+    if data.get("QueryAsOfTime") is not None:
         import capo_lakeformation.types.timestamp
 
         out["query_as_of_time"] = capo_lakeformation.types.timestamp.deserialize_json(
             data["QueryAsOfTime"]
         )
-    if "QueryParameters" in data:
+    if data.get("QueryParameters") is not None:
         import capo_lakeformation.types.query_parameter_map
 
         out["query_parameters"] = (
@@ -80,6 +80,6 @@ def deserialize_json(data: dict) -> QueryPlanningContext:
                 data["QueryParameters"]
             )
         )
-    if "TransactionId" in data:
+    if data.get("TransactionId") is not None:
         out["transaction_id"] = data["TransactionId"]
     return out

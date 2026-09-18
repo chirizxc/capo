@@ -57,31 +57,31 @@ def serialize_aws_json_1_0(value: BatchCreateBillingAdjustmentRequestEntry) -> d
 
 def deserialize_aws_json_1_0(data: dict) -> BatchCreateBillingAdjustmentRequestEntry:
     out: BatchCreateBillingAdjustmentRequestEntry = {}  # type: ignore[typeddict-item]
-    if "agreementId" in data:
+    if data.get("agreementId") is not None:
         out["agreement_id"] = data["agreementId"]
     else:
         raise DeserializationError(
             "BatchCreateBillingAdjustmentRequestEntry.agreement_id required"
         )
-    if "originalInvoiceId" in data:
+    if data.get("originalInvoiceId") is not None:
         out["original_invoice_id"] = data["originalInvoiceId"]
     else:
         raise DeserializationError(
             "BatchCreateBillingAdjustmentRequestEntry.original_invoice_id required"
         )
-    if "adjustmentAmount" in data:
+    if data.get("adjustmentAmount") is not None:
         out["adjustment_amount"] = data["adjustmentAmount"]
     else:
         raise DeserializationError(
             "BatchCreateBillingAdjustmentRequestEntry.adjustment_amount required"
         )
-    if "currencyCode" in data:
+    if data.get("currencyCode") is not None:
         out["currency_code"] = data["currencyCode"]
     else:
         raise DeserializationError(
             "BatchCreateBillingAdjustmentRequestEntry.currency_code required"
         )
-    if "adjustmentReasonCode" in data:
+    if data.get("adjustmentReasonCode") is not None:
         import capo_marketplace_agreement.types.billing_adjustment_reason_code
 
         out["adjustment_reason_code"] = (
@@ -93,9 +93,9 @@ def deserialize_aws_json_1_0(data: dict) -> BatchCreateBillingAdjustmentRequestE
         raise DeserializationError(
             "BatchCreateBillingAdjustmentRequestEntry.adjustment_reason_code required"
         )
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     else:
         raise DeserializationError(

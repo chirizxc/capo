@@ -38,13 +38,13 @@ def serialize_json(value: DocumentContent) -> dict:
 
 
 def deserialize_json(data: dict) -> DocumentContent:
-    if "blob" in data:
+    if data.get("blob") is not None:
         import capo_qbusiness.types._prelude.blob
 
         return {
             "blob": capo_qbusiness.types._prelude.blob.deserialize_json(data["blob"])
         }
-    elif "s3" in data:
+    elif data.get("s3") is not None:
         import capo_qbusiness.types.s3
 
         return {"s3": capo_qbusiness.types.s3.deserialize_json(data["s3"])}

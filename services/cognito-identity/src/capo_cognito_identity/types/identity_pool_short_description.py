@@ -32,8 +32,8 @@ def serialize_aws_json_1_1(value: IdentityPoolShortDescription) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> IdentityPoolShortDescription:
     out: IdentityPoolShortDescription = {}  # type: ignore[typeddict-item]
-    if "IdentityPoolId" in data:
+    if data.get("IdentityPoolId") is not None:
         out["identity_pool_id"] = data["IdentityPoolId"]
-    if "IdentityPoolName" in data:
+    if data.get("IdentityPoolName") is not None:
         out["identity_pool_name"] = data["IdentityPoolName"]
     return out

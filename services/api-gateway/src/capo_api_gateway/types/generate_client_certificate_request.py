@@ -34,9 +34,9 @@ def serialize_json(value: GenerateClientCertificateRequest) -> dict:
 
 def deserialize_json(data: dict) -> GenerateClientCertificateRequest:
     out: GenerateClientCertificateRequest = {}  # type: ignore[typeddict-item]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_api_gateway.types.map_of_string_to_string
 
         out["tags"] = capo_api_gateway.types.map_of_string_to_string.deserialize_json(

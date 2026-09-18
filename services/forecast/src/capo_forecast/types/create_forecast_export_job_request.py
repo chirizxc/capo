@@ -48,19 +48,19 @@ def serialize_aws_json_1_1(value: CreateForecastExportJobRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateForecastExportJobRequest:
     out: CreateForecastExportJobRequest = {}  # type: ignore[typeddict-item]
-    if "ForecastExportJobName" in data:
+    if data.get("ForecastExportJobName") is not None:
         out["forecast_export_job_name"] = data["ForecastExportJobName"]
     else:
         raise DeserializationError(
             "CreateForecastExportJobRequest.forecast_export_job_name required"
         )
-    if "ForecastArn" in data:
+    if data.get("ForecastArn") is not None:
         out["forecast_arn"] = data["ForecastArn"]
     else:
         raise DeserializationError(
             "CreateForecastExportJobRequest.forecast_arn required"
         )
-    if "Destination" in data:
+    if data.get("Destination") is not None:
         import capo_forecast.types.data_destination
 
         out["destination"] = (
@@ -72,10 +72,10 @@ def deserialize_aws_json_1_1(data: dict) -> CreateForecastExportJobRequest:
         raise DeserializationError(
             "CreateForecastExportJobRequest.destination required"
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_forecast.types.tags
 
         out["tags"] = capo_forecast.types.tags.deserialize_aws_json_1_1(data["Tags"])
-    if "Format" in data:
+    if data.get("Format") is not None:
         out["format"] = data["Format"]
     return out

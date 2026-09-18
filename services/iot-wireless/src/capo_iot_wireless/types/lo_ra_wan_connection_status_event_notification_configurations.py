@@ -35,7 +35,7 @@ def deserialize_json(
     data: dict,
 ) -> LoRaWANConnectionStatusEventNotificationConfigurations:
     out: LoRaWANConnectionStatusEventNotificationConfigurations = {}  # type: ignore[typeddict-item]
-    if "GatewayEuiEventTopic" in data:
+    if data.get("GatewayEuiEventTopic") is not None:
         import capo_iot_wireless.types.event_notification_topic_status
 
         out["gateway_eui_event_topic"] = (

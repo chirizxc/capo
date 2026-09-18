@@ -13,9 +13,9 @@ from capo_personalize import AsyncPersonalizeClient
 
 
 async def main():
-    async with AsyncPersonalizeClient() as s3:
+    async with AsyncPersonalizeClient() as personalize:
         # Example: call the create_batch_inference_job operation
-        response = await s3.create_batch_inference_job()
+        response = await personalize.create_batch_inference_job()
         print(response["batch_inference_job_arn"])
 ```
 
@@ -28,9 +28,9 @@ from capo_personalize import AsyncPersonalizeClient
 
 
 async def main():
-    async with AsyncPersonalizeClient() as s3:
+    async with AsyncPersonalizeClient() as personalize:
         # Example: paginate over list_batch_inference_jobs
-        async for item in s3.iter_list_batch_inference_jobs():
+        async for item in personalize.iter_list_batch_inference_jobs():
             print(item)
 ```
 
@@ -44,9 +44,9 @@ from capo_personalize.error import InvalidInputException
 
 
 async def main():
-    async with AsyncPersonalizeClient() as s3:
+    async with AsyncPersonalizeClient() as personalize:
         try:
-            await s3.create_batch_inference_job()
+            await personalize.create_batch_inference_job()
         except InvalidInputException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -63,13 +63,13 @@ from capo_personalize import AsyncPersonalizeClient
 
 
 async def main():
-    async with AsyncPersonalizeClient() as s3:
+    async with AsyncPersonalizeClient() as personalize:
         # Default: 3 attempts for every operation
-        response = await s3.create_batch_inference_job()
+        response = await personalize.create_batch_inference_job()
 
         # Override per operation
-        response = await s3.create_batch_inference_job(config_overrides={"retry_max_attempts": 5})
+        response = await personalize.create_batch_inference_job(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.create_batch_inference_job(config_overrides={"retry_max_attempts": 1})
+        response = await personalize.create_batch_inference_job(config_overrides={"retry_max_attempts": 1})
 ```

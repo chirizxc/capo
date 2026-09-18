@@ -70,19 +70,19 @@ def serialize_json(value: CreateFilterRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateFilterRequest:
     out: CreateFilterRequest = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "action" in data:
+    if data.get("action") is not None:
         import capo_guardduty.types.filter_action
 
         out["action"] = capo_guardduty.types.filter_action.deserialize_json(
             data["action"]
         )
-    if "rank" in data:
+    if data.get("rank") is not None:
         out["rank"] = data["rank"]
-    if "findingCriteria" in data:
+    if data.get("findingCriteria") is not None:
         import capo_guardduty.types.finding_criteria
 
         out["finding_criteria"] = (
@@ -90,9 +90,9 @@ def deserialize_json(data: dict) -> CreateFilterRequest:
                 data["findingCriteria"]
             )
         )
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_guardduty.types.tag_map
 
         out["tags"] = capo_guardduty.types.tag_map.deserialize_json(data["tags"])

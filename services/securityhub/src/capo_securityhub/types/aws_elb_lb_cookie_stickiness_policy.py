@@ -28,8 +28,8 @@ def serialize_json(value: AwsElbLbCookieStickinessPolicy) -> dict:
 
 def deserialize_json(data: dict) -> AwsElbLbCookieStickinessPolicy:
     out: AwsElbLbCookieStickinessPolicy = {}  # type: ignore[typeddict-item]
-    if "CookieExpirationPeriod" in data:
+    if data.get("CookieExpirationPeriod") is not None:
         out["cookie_expiration_period"] = data["CookieExpirationPeriod"]
-    if "PolicyName" in data:
+    if data.get("PolicyName") is not None:
         out["policy_name"] = data["PolicyName"]
     return out

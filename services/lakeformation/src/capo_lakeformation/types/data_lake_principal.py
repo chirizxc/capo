@@ -25,6 +25,6 @@ def serialize_json(value: DataLakePrincipal) -> dict:
 
 def deserialize_json(data: dict) -> DataLakePrincipal:
     out: DataLakePrincipal = {}  # type: ignore[typeddict-item]
-    if "DataLakePrincipalIdentifier" in data:
+    if data.get("DataLakePrincipalIdentifier") is not None:
         out["data_lake_principal_identifier"] = data["DataLakePrincipalIdentifier"]
     return out

@@ -74,7 +74,7 @@ def serialize_aws_json_1_1(value: AccountModification) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AccountModification:
     out: AccountModification = {}  # type: ignore[typeddict-item]
-    if "ModificationState" in data:
+    if data.get("ModificationState") is not None:
         import capo_workspaces.types.dedicated_tenancy_modification_state_enum
 
         out["modification_state"] = (
@@ -82,7 +82,7 @@ def deserialize_aws_json_1_1(data: dict) -> AccountModification:
                 data["ModificationState"]
             )
         )
-    if "DedicatedTenancySupport" in data:
+    if data.get("DedicatedTenancySupport") is not None:
         import capo_workspaces.types.dedicated_tenancy_support_result_enum
 
         out["dedicated_tenancy_support"] = (
@@ -90,18 +90,18 @@ def deserialize_aws_json_1_1(data: dict) -> AccountModification:
                 data["DedicatedTenancySupport"]
             )
         )
-    if "DedicatedTenancyManagementCidrRange" in data:
+    if data.get("DedicatedTenancyManagementCidrRange") is not None:
         out["dedicated_tenancy_management_cidr_range"] = data[
             "DedicatedTenancyManagementCidrRange"
         ]
-    if "StartTime" in data:
+    if data.get("StartTime") is not None:
         import capo_workspaces.types.timestamp
 
         out["start_time"] = capo_workspaces.types.timestamp.deserialize_aws_json_1_1(
             data["StartTime"]
         )
-    if "ErrorCode" in data:
+    if data.get("ErrorCode") is not None:
         out["error_code"] = data["ErrorCode"]
-    if "ErrorMessage" in data:
+    if data.get("ErrorMessage") is not None:
         out["error_message"] = data["ErrorMessage"]
     return out

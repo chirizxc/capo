@@ -38,13 +38,13 @@ def serialize_json(value: AudioTrackSelection) -> dict:
 
 def deserialize_json(data: dict) -> AudioTrackSelection:
     out: AudioTrackSelection = {}  # type: ignore[typeddict-item]
-    if "tracks" in data:
+    if data.get("tracks") is not None:
         import capo_medialive.types.__list_of_audio_track
 
         out["tracks"] = capo_medialive.types.__list_of_audio_track.deserialize_json(
             data["tracks"]
         )
-    if "dolbyEDecode" in data:
+    if data.get("dolbyEDecode") is not None:
         import capo_medialive.types.audio_dolby_e_decode
 
         out["dolby_e_decode"] = (

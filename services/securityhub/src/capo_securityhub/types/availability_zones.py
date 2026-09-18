@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> AvailabilityZones:
 
     out: AvailabilityZones = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_securityhub.types.availability_zone.deserialize_json(item))
     return out

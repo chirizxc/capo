@@ -30,9 +30,9 @@ def serialize_json(value: SortCriteria) -> dict:
 
 def deserialize_json(data: dict) -> SortCriteria:
     out: SortCriteria = {}  # type: ignore[typeddict-item]
-    if "attributeName" in data:
+    if data.get("attributeName") is not None:
         out["attribute_name"] = data["attributeName"]
-    if "orderBy" in data:
+    if data.get("orderBy") is not None:
         import capo_macie2.types.order_by
 
         out["order_by"] = capo_macie2.types.order_by.deserialize_json(data["orderBy"])

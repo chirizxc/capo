@@ -38,25 +38,25 @@ def serialize_json(value: Ibm3624PinVerification) -> dict:
 
 def deserialize_json(data: dict) -> Ibm3624PinVerification:
     out: Ibm3624PinVerification = {}  # type: ignore[typeddict-item]
-    if "DecimalizationTable" in data:
+    if data.get("DecimalizationTable") is not None:
         out["decimalization_table"] = data["DecimalizationTable"]
     else:
         raise DeserializationError(
             "Ibm3624PinVerification.decimalization_table required"
         )
-    if "PinValidationDataPadCharacter" in data:
+    if data.get("PinValidationDataPadCharacter") is not None:
         out["pin_validation_data_pad_character"] = data["PinValidationDataPadCharacter"]
     else:
         raise DeserializationError(
             "Ibm3624PinVerification.pin_validation_data_pad_character required"
         )
-    if "PinValidationData" in data:
+    if data.get("PinValidationData") is not None:
         out["pin_validation_data"] = data["PinValidationData"]
     else:
         raise DeserializationError(
             "Ibm3624PinVerification.pin_validation_data required"
         )
-    if "PinOffset" in data:
+    if data.get("PinOffset") is not None:
         out["pin_offset"] = data["PinOffset"]
     else:
         raise DeserializationError("Ibm3624PinVerification.pin_offset required")

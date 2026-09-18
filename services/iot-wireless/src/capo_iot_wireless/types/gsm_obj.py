@@ -66,33 +66,33 @@ def serialize_json(value: GsmObj) -> dict:
 
 def deserialize_json(data: dict) -> GsmObj:
     out: GsmObj = {}  # type: ignore[typeddict-item]
-    if "Mcc" in data:
+    if data.get("Mcc") is not None:
         out["mcc"] = data["Mcc"]
     else:
         raise DeserializationError("GsmObj.mcc required")
-    if "Mnc" in data:
+    if data.get("Mnc") is not None:
         out["mnc"] = data["Mnc"]
     else:
         raise DeserializationError("GsmObj.mnc required")
-    if "Lac" in data:
+    if data.get("Lac") is not None:
         out["lac"] = data["Lac"]
     else:
         raise DeserializationError("GsmObj.lac required")
-    if "GeranCid" in data:
+    if data.get("GeranCid") is not None:
         out["geran_cid"] = data["GeranCid"]
     else:
         raise DeserializationError("GsmObj.geran_cid required")
-    if "GsmLocalId" in data:
+    if data.get("GsmLocalId") is not None:
         import capo_iot_wireless.types.gsm_local_id
 
         out["gsm_local_id"] = capo_iot_wireless.types.gsm_local_id.deserialize_json(
             data["GsmLocalId"]
         )
-    if "GsmTimingAdvance" in data:
+    if data.get("GsmTimingAdvance") is not None:
         out["gsm_timing_advance"] = data["GsmTimingAdvance"]
-    if "RxLevel" in data:
+    if data.get("RxLevel") is not None:
         out["rx_level"] = data["RxLevel"]
-    if "GsmNmr" in data:
+    if data.get("GsmNmr") is not None:
         import capo_iot_wireless.types.gsm_nmr_list
 
         out["gsm_nmr"] = capo_iot_wireless.types.gsm_nmr_list.deserialize_json(

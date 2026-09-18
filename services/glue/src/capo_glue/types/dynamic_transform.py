@@ -71,15 +71,15 @@ def serialize_aws_json_1_1(value: DynamicTransform) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DynamicTransform:
     out: DynamicTransform = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("DynamicTransform.name required")
-    if "TransformName" in data:
+    if data.get("TransformName") is not None:
         out["transform_name"] = data["TransformName"]
     else:
         raise DeserializationError("DynamicTransform.transform_name required")
-    if "Inputs" in data:
+    if data.get("Inputs") is not None:
         import capo_glue.types.one_input
 
         out["inputs"] = capo_glue.types.one_input.deserialize_aws_json_1_1(
@@ -87,7 +87,7 @@ def deserialize_aws_json_1_1(data: dict) -> DynamicTransform:
         )
     else:
         raise DeserializationError("DynamicTransform.inputs required")
-    if "Parameters" in data:
+    if data.get("Parameters") is not None:
         import capo_glue.types.transform_config_parameter_list
 
         out["parameters"] = (
@@ -95,17 +95,17 @@ def deserialize_aws_json_1_1(data: dict) -> DynamicTransform:
                 data["Parameters"]
             )
         )
-    if "FunctionName" in data:
+    if data.get("FunctionName") is not None:
         out["function_name"] = data["FunctionName"]
     else:
         raise DeserializationError("DynamicTransform.function_name required")
-    if "Path" in data:
+    if data.get("Path") is not None:
         out["path"] = data["Path"]
     else:
         raise DeserializationError("DynamicTransform.path required")
-    if "Version" in data:
+    if data.get("Version") is not None:
         out["version"] = data["Version"]
-    if "OutputSchemas" in data:
+    if data.get("OutputSchemas") is not None:
         import capo_glue.types.glue_schemas
 
         out["output_schemas"] = capo_glue.types.glue_schemas.deserialize_aws_json_1_1(

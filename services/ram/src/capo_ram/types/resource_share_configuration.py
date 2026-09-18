@@ -27,7 +27,7 @@ def serialize_json(value: ResourceShareConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> ResourceShareConfiguration:
     out: ResourceShareConfiguration = {}  # type: ignore[typeddict-item]
-    if "retainSharingOnAccountLeaveOrganization" in data:
+    if data.get("retainSharingOnAccountLeaveOrganization") is not None:
         out["retain_sharing_on_account_leave_organization"] = data[
             "retainSharingOnAccountLeaveOrganization"
         ]

@@ -27,8 +27,8 @@ def serialize_json(value: S3RecordingDetails) -> dict:
 
 def deserialize_json(data: dict) -> S3RecordingDetails:
     out: S3RecordingDetails = {}  # type: ignore[typeddict-item]
-    if "bucketArn" in data:
+    if data.get("bucketArn") is not None:
         out["bucket_arn"] = data["bucketArn"]
-    if "keyTemplate" in data:
+    if data.get("keyTemplate") is not None:
         out["key_template"] = data["keyTemplate"]
     return out

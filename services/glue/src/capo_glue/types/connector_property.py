@@ -67,25 +67,25 @@ def serialize_aws_json_1_1(value: ConnectorProperty) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ConnectorProperty:
     out: ConnectorProperty = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("ConnectorProperty.name required")
-    if "KeyOverride" in data:
+    if data.get("KeyOverride") is not None:
         out["key_override"] = data["KeyOverride"]
-    if "Required" in data:
+    if data.get("Required") is not None:
         out["required"] = data["Required"]
     else:
         raise DeserializationError("ConnectorProperty.required required")
-    if "DefaultValue" in data:
+    if data.get("DefaultValue") is not None:
         out["default_value"] = data["DefaultValue"]
-    if "AllowedValues" in data:
+    if data.get("AllowedValues") is not None:
         import capo_glue.types.list_of_string
 
         out["allowed_values"] = capo_glue.types.list_of_string.deserialize_aws_json_1_1(
             data["AllowedValues"]
         )
-    if "PropertyLocation" in data:
+    if data.get("PropertyLocation") is not None:
         import capo_glue.types.property_location
 
         out["property_location"] = (
@@ -93,7 +93,7 @@ def deserialize_aws_json_1_1(data: dict) -> ConnectorProperty:
                 data["PropertyLocation"]
             )
         )
-    if "PropertyType" in data:
+    if data.get("PropertyType") is not None:
         import capo_glue.types.property_type
 
         out["property_type"] = capo_glue.types.property_type.deserialize_aws_json_1_1(

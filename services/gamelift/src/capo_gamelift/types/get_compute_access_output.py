@@ -67,15 +67,15 @@ def serialize_aws_json_1_1(value: GetComputeAccessOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetComputeAccessOutput:
     out: GetComputeAccessOutput = {}  # type: ignore[typeddict-item]
-    if "FleetId" in data:
+    if data.get("FleetId") is not None:
         out["fleet_id"] = data["FleetId"]
-    if "FleetArn" in data:
+    if data.get("FleetArn") is not None:
         out["fleet_arn"] = data["FleetArn"]
-    if "ComputeName" in data:
+    if data.get("ComputeName") is not None:
         out["compute_name"] = data["ComputeName"]
-    if "ComputeArn" in data:
+    if data.get("ComputeArn") is not None:
         out["compute_arn"] = data["ComputeArn"]
-    if "Credentials" in data:
+    if data.get("Credentials") is not None:
         import capo_gamelift.types.aws_credentials
 
         out["credentials"] = (
@@ -83,9 +83,9 @@ def deserialize_aws_json_1_1(data: dict) -> GetComputeAccessOutput:
                 data["Credentials"]
             )
         )
-    if "Target" in data:
+    if data.get("Target") is not None:
         out["target"] = data["Target"]
-    if "ContainerIdentifiers" in data:
+    if data.get("ContainerIdentifiers") is not None:
         import capo_gamelift.types.container_identifier_list
 
         out["container_identifiers"] = (

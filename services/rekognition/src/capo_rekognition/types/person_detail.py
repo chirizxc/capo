@@ -40,11 +40,11 @@ def serialize_aws_json_1_1(value: PersonDetail) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PersonDetail:
     out: PersonDetail = {}  # type: ignore[typeddict-item]
-    if "Index" in data:
+    if data.get("Index") is not None:
         out["index"] = data["Index"]
     else:
         out["index"] = 0
-    if "BoundingBox" in data:
+    if data.get("BoundingBox") is not None:
         import capo_rekognition.types.bounding_box
 
         out["bounding_box"] = (
@@ -52,7 +52,7 @@ def deserialize_aws_json_1_1(data: dict) -> PersonDetail:
                 data["BoundingBox"]
             )
         )
-    if "Face" in data:
+    if data.get("Face") is not None:
         import capo_rekognition.types.face_detail
 
         out["face"] = capo_rekognition.types.face_detail.deserialize_aws_json_1_1(

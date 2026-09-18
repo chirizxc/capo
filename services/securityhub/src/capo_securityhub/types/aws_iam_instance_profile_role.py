@@ -46,16 +46,16 @@ def serialize_json(value: AwsIamInstanceProfileRole) -> dict:
 
 def deserialize_json(data: dict) -> AwsIamInstanceProfileRole:
     out: AwsIamInstanceProfileRole = {}  # type: ignore[typeddict-item]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "AssumeRolePolicyDocument" in data:
+    if data.get("AssumeRolePolicyDocument") is not None:
         out["assume_role_policy_document"] = data["AssumeRolePolicyDocument"]
-    if "CreateDate" in data:
+    if data.get("CreateDate") is not None:
         out["create_date"] = data["CreateDate"]
-    if "Path" in data:
+    if data.get("Path") is not None:
         out["path"] = data["Path"]
-    if "RoleId" in data:
+    if data.get("RoleId") is not None:
         out["role_id"] = data["RoleId"]
-    if "RoleName" in data:
+    if data.get("RoleName") is not None:
         out["role_name"] = data["RoleName"]
     return out

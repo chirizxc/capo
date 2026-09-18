@@ -23,6 +23,6 @@ def serialize_json(value: RelatedFindingGroupDetail) -> dict:
 
 def deserialize_json(data: dict) -> RelatedFindingGroupDetail:
     out: RelatedFindingGroupDetail = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
     return out

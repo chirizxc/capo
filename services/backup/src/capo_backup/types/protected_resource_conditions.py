@@ -35,13 +35,13 @@ def serialize_json(value: ProtectedResourceConditions) -> dict:
 
 def deserialize_json(data: dict) -> ProtectedResourceConditions:
     out: ProtectedResourceConditions = {}  # type: ignore[typeddict-item]
-    if "StringEquals" in data:
+    if data.get("StringEquals") is not None:
         import capo_backup.types.key_value_list
 
         out["string_equals"] = capo_backup.types.key_value_list.deserialize_json(
             data["StringEquals"]
         )
-    if "StringNotEquals" in data:
+    if data.get("StringNotEquals") is not None:
         import capo_backup.types.key_value_list
 
         out["string_not_equals"] = capo_backup.types.key_value_list.deserialize_json(

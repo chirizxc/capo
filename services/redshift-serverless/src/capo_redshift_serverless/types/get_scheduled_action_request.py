@@ -26,7 +26,7 @@ def serialize_aws_json_1_1(value: GetScheduledActionRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetScheduledActionRequest:
     out: GetScheduledActionRequest = {}  # type: ignore[typeddict-item]
-    if "scheduledActionName" in data:
+    if data.get("scheduledActionName") is not None:
         out["scheduled_action_name"] = data["scheduledActionName"]
     else:
         raise DeserializationError(

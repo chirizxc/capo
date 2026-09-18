@@ -51,13 +51,13 @@ def serialize_aws_json_1_1(value: FailureConditions) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> FailureConditions:
     out: FailureConditions = {}  # type: ignore[typeddict-item]
-    if "result" in data:
+    if data.get("result") is not None:
         import capo_codepipeline.types.result
 
         out["result"] = capo_codepipeline.types.result.deserialize_aws_json_1_1(
             data["result"]
         )
-    if "retryConfiguration" in data:
+    if data.get("retryConfiguration") is not None:
         import capo_codepipeline.types.retry_configuration
 
         out["retry_configuration"] = (
@@ -65,7 +65,7 @@ def deserialize_aws_json_1_1(data: dict) -> FailureConditions:
                 data["retryConfiguration"]
             )
         )
-    if "conditions" in data:
+    if data.get("conditions") is not None:
         import capo_codepipeline.types.condition_list
 
         out["conditions"] = (

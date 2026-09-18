@@ -43,18 +43,18 @@ def serialize_aws_json_1_1(value: ListCrawlsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListCrawlsRequest:
     out: ListCrawlsRequest = {}  # type: ignore[typeddict-item]
-    if "CrawlerName" in data:
+    if data.get("CrawlerName") is not None:
         out["crawler_name"] = data["CrawlerName"]
     else:
         raise DeserializationError("ListCrawlsRequest.crawler_name required")
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "Filters" in data:
+    if data.get("Filters") is not None:
         import capo_glue.types.crawls_filter_list
 
         out["filters"] = capo_glue.types.crawls_filter_list.deserialize_aws_json_1_1(
             data["Filters"]
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

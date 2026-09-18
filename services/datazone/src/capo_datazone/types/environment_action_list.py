@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> EnvironmentActionList:
 
     out: EnvironmentActionList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_datazone.types.configurable_environment_action.deserialize_json(item)
         )

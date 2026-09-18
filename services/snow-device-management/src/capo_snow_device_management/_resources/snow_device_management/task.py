@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import uuid
 from typing import TYPE_CHECKING, Optional
 
 import capo_snow_device_management._auth._signers
@@ -94,21 +95,24 @@ class Task:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_snow_device_management.types.create_task_input.CreateTaskInput = {}  # type: ignore[typeddict-item]
-        input_["targets"] = targets
-        input_["command"] = command
+        input_: capo_snow_device_management.types.create_task_input.CreateTaskInput = {
+            "targets": targets,
+            "command": command,
+        }
         if description is not None:
             input_["description"] = description
         if tags is not None:
             input_["tags"] = tags
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -146,14 +150,16 @@ class Task:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_snow_device_management.types.describe_task_input.DescribeTaskInput = {}  # type: ignore[typeddict-item]
-        input_["task_id"] = task_id
+        input_: capo_snow_device_management.types.describe_task_input.DescribeTaskInput = {
+            "task_id": task_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -200,7 +206,7 @@ class Task:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_snow_device_management.types.list_tasks_input.ListTasksInput = {}  # type: ignore[typeddict-item]
+        input_: capo_snow_device_management.types.list_tasks_input.ListTasksInput = {}
         if state is not None:
             input_["state"] = state
         if max_results is not None:
@@ -213,6 +219,7 @@ class Task:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def cancel_task(
@@ -250,14 +257,16 @@ class Task:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_snow_device_management.types.cancel_task_input.CancelTaskInput = {}  # type: ignore[typeddict-item]
-        input_["task_id"] = task_id
+        input_: capo_snow_device_management.types.cancel_task_input.CancelTaskInput = {
+            "task_id": task_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -314,21 +323,24 @@ class AsyncTask:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_snow_device_management.types.create_task_input.CreateTaskInput = {}  # type: ignore[typeddict-item]
-        input_["targets"] = targets
-        input_["command"] = command
+        input_: capo_snow_device_management.types.create_task_input.CreateTaskInput = {
+            "targets": targets,
+            "command": command,
+        }
         if description is not None:
             input_["description"] = description
         if tags is not None:
             input_["tags"] = tags
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -367,14 +379,16 @@ class AsyncTask:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_snow_device_management.types.describe_task_input.DescribeTaskInput = {}  # type: ignore[typeddict-item]
-        input_["task_id"] = task_id
+        input_: capo_snow_device_management.types.describe_task_input.DescribeTaskInput = {
+            "task_id": task_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -422,7 +436,7 @@ class AsyncTask:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_snow_device_management.types.list_tasks_input.ListTasksInput = {}  # type: ignore[typeddict-item]
+        input_: capo_snow_device_management.types.list_tasks_input.ListTasksInput = {}
         if state is not None:
             input_["state"] = state
         if max_results is not None:
@@ -435,6 +449,7 @@ class AsyncTask:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def cancel_task(
@@ -473,12 +488,14 @@ class AsyncTask:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_snow_device_management.types.cancel_task_input.CancelTaskInput = {}  # type: ignore[typeddict-item]
-        input_["task_id"] = task_id
+        input_: capo_snow_device_management.types.cancel_task_input.CancelTaskInput = {
+            "task_id": task_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

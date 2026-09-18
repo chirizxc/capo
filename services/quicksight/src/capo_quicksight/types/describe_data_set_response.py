@@ -35,12 +35,12 @@ def serialize_json(value: DescribeDataSetResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribeDataSetResponse:
     out: DescribeDataSetResponse = {}  # type: ignore[typeddict-item]
-    if "DataSet" in data:
+    if data.get("DataSet") is not None:
         import capo_quicksight.types.data_set
 
         out["data_set"] = capo_quicksight.types.data_set.deserialize_json(
             data["DataSet"]
         )
-    if "RequestId" in data:
+    if data.get("RequestId") is not None:
         out["request_id"] = data["RequestId"]
     return out

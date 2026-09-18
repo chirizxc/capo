@@ -56,7 +56,7 @@ def serialize_json(value: DataIntegrationFlowTarget) -> dict:
 
 def deserialize_json(data: dict) -> DataIntegrationFlowTarget:
     out: DataIntegrationFlowTarget = {}  # type: ignore[typeddict-item]
-    if "targetType" in data:
+    if data.get("targetType") is not None:
         import capo_supplychain.types.data_integration_flow_target_type
 
         out["target_type"] = (
@@ -66,7 +66,7 @@ def deserialize_json(data: dict) -> DataIntegrationFlowTarget:
         )
     else:
         raise DeserializationError("DataIntegrationFlowTarget.target_type required")
-    if "s3Target" in data:
+    if data.get("s3Target") is not None:
         import capo_supplychain.types.data_integration_flow_s3_target_configuration
 
         out["s3_target"] = (
@@ -74,7 +74,7 @@ def deserialize_json(data: dict) -> DataIntegrationFlowTarget:
                 data["s3Target"]
             )
         )
-    if "datasetTarget" in data:
+    if data.get("datasetTarget") is not None:
         import capo_supplychain.types.data_integration_flow_dataset_target_configuration
 
         out["dataset_target"] = (

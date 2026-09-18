@@ -104,15 +104,15 @@ def serialize_json(value: UpdateEnvironmentOutput) -> dict:
     out["domainId"] = value["domain_id"]
     out["createdBy"] = value["created_by"]
     if "created_at" in value:
-        import capo_datazone.types._prelude.timestamp
+        import capo_datazone._protocol.serialize
 
-        out["createdAt"] = capo_datazone.types._prelude.timestamp.serialize_json(
+        out["createdAt"] = capo_datazone._protocol.serialize.fmt_date_time(
             value["created_at"]
         )
     if "updated_at" in value:
-        import capo_datazone.types._prelude.timestamp
+        import capo_datazone._protocol.serialize
 
-        out["updatedAt"] = capo_datazone.types._prelude.timestamp.serialize_json(
+        out["updatedAt"] = capo_datazone._protocol.serialize.fmt_date_time(
             value["updated_at"]
         )
     out["name"] = value["name"]
@@ -191,51 +191,51 @@ def serialize_json(value: UpdateEnvironmentOutput) -> dict:
 
 def deserialize_json(data: dict) -> UpdateEnvironmentOutput:
     out: UpdateEnvironmentOutput = {}  # type: ignore[typeddict-item]
-    if "projectId" in data:
+    if data.get("projectId") is not None:
         out["project_id"] = data["projectId"]
     else:
         raise DeserializationError("UpdateEnvironmentOutput.project_id required")
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "domainId" in data:
+    if data.get("domainId") is not None:
         out["domain_id"] = data["domainId"]
     else:
         raise DeserializationError("UpdateEnvironmentOutput.domain_id required")
-    if "createdBy" in data:
+    if data.get("createdBy") is not None:
         out["created_by"] = data["createdBy"]
     else:
         raise DeserializationError("UpdateEnvironmentOutput.created_by required")
-    if "createdAt" in data:
-        import capo_datazone.types._prelude.timestamp
+    if data.get("createdAt") is not None:
+        import datetime
 
-        out["created_at"] = capo_datazone.types._prelude.timestamp.deserialize_json(
-            data["createdAt"]
+        out["created_at"] = datetime.datetime.fromisoformat(
+            data["createdAt"].replace("Z", "+00:00")
         )
-    if "updatedAt" in data:
-        import capo_datazone.types._prelude.timestamp
+    if data.get("updatedAt") is not None:
+        import datetime
 
-        out["updated_at"] = capo_datazone.types._prelude.timestamp.deserialize_json(
-            data["updatedAt"]
+        out["updated_at"] = datetime.datetime.fromisoformat(
+            data["updatedAt"].replace("Z", "+00:00")
         )
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("UpdateEnvironmentOutput.name required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "environmentProfileId" in data:
+    if data.get("environmentProfileId") is not None:
         out["environment_profile_id"] = data["environmentProfileId"]
     else:
         out["environment_profile_id"] = ""
-    if "awsAccountId" in data:
+    if data.get("awsAccountId") is not None:
         out["aws_account_id"] = data["awsAccountId"]
-    if "awsAccountRegion" in data:
+    if data.get("awsAccountRegion") is not None:
         out["aws_account_region"] = data["awsAccountRegion"]
-    if "provider" in data:
+    if data.get("provider") is not None:
         out["provider"] = data["provider"]
     else:
         raise DeserializationError("UpdateEnvironmentOutput.provider required")
-    if "provisionedResources" in data:
+    if data.get("provisionedResources") is not None:
         import capo_datazone.types.resource_list
 
         out["provisioned_resources"] = (
@@ -243,13 +243,13 @@ def deserialize_json(data: dict) -> UpdateEnvironmentOutput:
                 data["provisionedResources"]
             )
         )
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_datazone.types.environment_status
 
         out["status"] = capo_datazone.types.environment_status.deserialize_json(
             data["status"]
         )
-    if "environmentActions" in data:
+    if data.get("environmentActions") is not None:
         import capo_datazone.types.environment_action_list
 
         out["environment_actions"] = (
@@ -257,13 +257,13 @@ def deserialize_json(data: dict) -> UpdateEnvironmentOutput:
                 data["environmentActions"]
             )
         )
-    if "glossaryTerms" in data:
+    if data.get("glossaryTerms") is not None:
         import capo_datazone.types.glossary_terms
 
         out["glossary_terms"] = capo_datazone.types.glossary_terms.deserialize_json(
             data["glossaryTerms"]
         )
-    if "userParameters" in data:
+    if data.get("userParameters") is not None:
         import capo_datazone.types.custom_parameter_list
 
         out["user_parameters"] = (
@@ -271,13 +271,13 @@ def deserialize_json(data: dict) -> UpdateEnvironmentOutput:
                 data["userParameters"]
             )
         )
-    if "lastDeployment" in data:
+    if data.get("lastDeployment") is not None:
         import capo_datazone.types.deployment
 
         out["last_deployment"] = capo_datazone.types.deployment.deserialize_json(
             data["lastDeployment"]
         )
-    if "provisioningProperties" in data:
+    if data.get("provisioningProperties") is not None:
         import capo_datazone.types.provisioning_properties
 
         out["provisioning_properties"] = (
@@ -285,7 +285,7 @@ def deserialize_json(data: dict) -> UpdateEnvironmentOutput:
                 data["provisioningProperties"]
             )
         )
-    if "deploymentProperties" in data:
+    if data.get("deploymentProperties") is not None:
         import capo_datazone.types.deployment_properties
 
         out["deployment_properties"] = (
@@ -293,10 +293,10 @@ def deserialize_json(data: dict) -> UpdateEnvironmentOutput:
                 data["deploymentProperties"]
             )
         )
-    if "environmentBlueprintId" in data:
+    if data.get("environmentBlueprintId") is not None:
         out["environment_blueprint_id"] = data["environmentBlueprintId"]
-    if "environmentConfigurationId" in data:
+    if data.get("environmentConfigurationId") is not None:
         out["environment_configuration_id"] = data["environmentConfigurationId"]
-    if "environmentConfigurationName" in data:
+    if data.get("environmentConfigurationName") is not None:
         out["environment_configuration_name"] = data["environmentConfigurationName"]
     return out

@@ -36,7 +36,7 @@ def serialize_aws_json_1_0(value: DescribeRecommendationExportJobsResponse) -> d
 
 def deserialize_aws_json_1_0(data: dict) -> DescribeRecommendationExportJobsResponse:
     out: DescribeRecommendationExportJobsResponse = {}  # type: ignore[typeddict-item]
-    if "recommendationExportJobs" in data:
+    if data.get("recommendationExportJobs") is not None:
         import capo_compute_optimizer.types.recommendation_export_jobs
 
         out["recommendation_export_jobs"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_0(data: dict) -> DescribeRecommendationExportJobsResp
                 data["recommendationExportJobs"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

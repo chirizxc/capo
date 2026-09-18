@@ -38,9 +38,9 @@ def serialize_aws_json_1_1(value: ServiceUnavailableError_) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ServiceUnavailableError_:
     out: ServiceUnavailableError_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
-    if "error" in data:
+    if data.get("error") is not None:
         import capo_storage_gateway.types.storage_gateway_error
 
         out["error"] = (
@@ -56,15 +56,18 @@ class ServiceUnavailableError(ServiceError):
 
     code: str | None = "ServiceUnavailableError"
 
-    def __init__(self, data: ServiceUnavailableError_):
+    def __init__(self, data: ServiceUnavailableError_, message: str | None = None):
         super().__init__(
             "server",
             is_throttling_error=False,
             is_retryable=False,
             code="ServiceUnavailableError",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "ServiceUnavailableError":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "ServiceUnavailableError":
+        return cls(deserialize_aws_json_1_1(data), message)

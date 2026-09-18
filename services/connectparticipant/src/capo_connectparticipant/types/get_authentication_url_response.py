@@ -25,6 +25,6 @@ def serialize_json(value: GetAuthenticationUrlResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetAuthenticationUrlResponse:
     out: GetAuthenticationUrlResponse = {}  # type: ignore[typeddict-item]
-    if "AuthenticationUrl" in data:
+    if data.get("AuthenticationUrl") is not None:
         out["authentication_url"] = data["AuthenticationUrl"]
     return out

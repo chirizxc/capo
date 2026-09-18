@@ -45,15 +45,15 @@ def serialize_json(value: PutChannelMembershipPreferencesResponse) -> dict:
 
 def deserialize_json(data: dict) -> PutChannelMembershipPreferencesResponse:
     out: PutChannelMembershipPreferencesResponse = {}  # type: ignore[typeddict-item]
-    if "ChannelArn" in data:
+    if data.get("ChannelArn") is not None:
         out["channel_arn"] = data["ChannelArn"]
-    if "Member" in data:
+    if data.get("Member") is not None:
         import capo_chime_sdk_messaging.types.identity
 
         out["member"] = capo_chime_sdk_messaging.types.identity.deserialize_json(
             data["Member"]
         )
-    if "Preferences" in data:
+    if data.get("Preferences") is not None:
         import capo_chime_sdk_messaging.types.channel_membership_preferences
 
         out["preferences"] = (

@@ -44,7 +44,7 @@ def serialize_aws_json_1_1(value: Headers) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Headers:
     out: Headers = {}  # type: ignore[typeddict-item]
-    if "MatchPattern" in data:
+    if data.get("MatchPattern") is not None:
         import capo_wafv2.types.header_match_pattern
 
         out["match_pattern"] = (
@@ -54,7 +54,7 @@ def deserialize_aws_json_1_1(data: dict) -> Headers:
         )
     else:
         raise DeserializationError("Headers.match_pattern required")
-    if "MatchScope" in data:
+    if data.get("MatchScope") is not None:
         import capo_wafv2.types.map_match_scope
 
         out["match_scope"] = capo_wafv2.types.map_match_scope.deserialize_aws_json_1_1(
@@ -62,7 +62,7 @@ def deserialize_aws_json_1_1(data: dict) -> Headers:
         )
     else:
         raise DeserializationError("Headers.match_scope required")
-    if "OversizeHandling" in data:
+    if data.get("OversizeHandling") is not None:
         import capo_wafv2.types.oversize_handling
 
         out["oversize_handling"] = (

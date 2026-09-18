@@ -45,21 +45,21 @@ def serialize_json(value: WaypointOptimizationOptimizedWaypoint) -> dict:
 
 def deserialize_json(data: dict) -> WaypointOptimizationOptimizedWaypoint:
     out: WaypointOptimizationOptimizedWaypoint = {}  # type: ignore[typeddict-item]
-    if "ArrivalTime" in data:
+    if data.get("ArrivalTime") is not None:
         out["arrival_time"] = data["ArrivalTime"]
-    if "ClusterIndex" in data:
+    if data.get("ClusterIndex") is not None:
         out["cluster_index"] = data["ClusterIndex"]
-    if "DepartureTime" in data:
+    if data.get("DepartureTime") is not None:
         out["departure_time"] = data["DepartureTime"]
     else:
         raise DeserializationError(
             "WaypointOptimizationOptimizedWaypoint.departure_time required"
         )
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
     else:
         raise DeserializationError("WaypointOptimizationOptimizedWaypoint.id required")
-    if "Position" in data:
+    if data.get("Position") is not None:
         import capo_geo_routes.types.position
 
         out["position"] = capo_geo_routes.types.position.deserialize_json(

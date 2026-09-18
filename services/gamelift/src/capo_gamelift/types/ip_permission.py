@@ -41,13 +41,13 @@ def serialize_aws_json_1_1(value: IpPermission) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> IpPermission:
     out: IpPermission = {}  # type: ignore[typeddict-item]
-    if "FromPort" in data:
+    if data.get("FromPort") is not None:
         out["from_port"] = data["FromPort"]
-    if "ToPort" in data:
+    if data.get("ToPort") is not None:
         out["to_port"] = data["ToPort"]
-    if "IpRange" in data:
+    if data.get("IpRange") is not None:
         out["ip_range"] = data["IpRange"]
-    if "Protocol" in data:
+    if data.get("Protocol") is not None:
         import capo_gamelift.types.ip_protocol
 
         out["protocol"] = capo_gamelift.types.ip_protocol.deserialize_aws_json_1_1(

@@ -98,9 +98,9 @@ def serialize_aws_json_1_1(value: CreateInferenceRecommendationsJobRequest) -> d
 
 def deserialize_aws_json_1_1(data: dict) -> CreateInferenceRecommendationsJobRequest:
     out: CreateInferenceRecommendationsJobRequest = {}  # type: ignore[typeddict-item]
-    if "JobName" in data:
+    if data.get("JobName") is not None:
         out["job_name"] = data["JobName"]
-    if "JobType" in data:
+    if data.get("JobType") is not None:
         import capo_sagemaker.types.recommendation_job_type
 
         out["job_type"] = (
@@ -108,9 +108,9 @@ def deserialize_aws_json_1_1(data: dict) -> CreateInferenceRecommendationsJobReq
                 data["JobType"]
             )
         )
-    if "RoleArn" in data:
+    if data.get("RoleArn") is not None:
         out["role_arn"] = data["RoleArn"]
-    if "InputConfig" in data:
+    if data.get("InputConfig") is not None:
         import capo_sagemaker.types.recommendation_job_input_config
 
         out["input_config"] = (
@@ -118,9 +118,9 @@ def deserialize_aws_json_1_1(data: dict) -> CreateInferenceRecommendationsJobReq
                 data["InputConfig"]
             )
         )
-    if "JobDescription" in data:
+    if data.get("JobDescription") is not None:
         out["job_description"] = data["JobDescription"]
-    if "StoppingConditions" in data:
+    if data.get("StoppingConditions") is not None:
         import capo_sagemaker.types.recommendation_job_stopping_conditions
 
         out["stopping_conditions"] = (
@@ -128,7 +128,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateInferenceRecommendationsJobReq
                 data["StoppingConditions"]
             )
         )
-    if "OutputConfig" in data:
+    if data.get("OutputConfig") is not None:
         import capo_sagemaker.types.recommendation_job_output_config
 
         out["output_config"] = (
@@ -136,7 +136,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateInferenceRecommendationsJobReq
                 data["OutputConfig"]
             )
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_sagemaker.types.tag_list
 
         out["tags"] = capo_sagemaker.types.tag_list.deserialize_aws_json_1_1(

@@ -36,9 +36,9 @@ def serialize_json(value: GetMetricDataResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetMetricDataResponse:
     out: GetMetricDataResponse = {}  # type: ignore[typeddict-item]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "MetricResults" in data:
+    if data.get("MetricResults") is not None:
         import capo_connect.types.historical_metric_results
 
         out["metric_results"] = (

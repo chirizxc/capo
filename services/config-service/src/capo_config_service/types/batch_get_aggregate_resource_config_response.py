@@ -44,7 +44,7 @@ def serialize_aws_json_1_1(value: BatchGetAggregateResourceConfigResponse) -> di
 
 def deserialize_aws_json_1_1(data: dict) -> BatchGetAggregateResourceConfigResponse:
     out: BatchGetAggregateResourceConfigResponse = {}  # type: ignore[typeddict-item]
-    if "BaseConfigurationItems" in data:
+    if data.get("BaseConfigurationItems") is not None:
         import capo_config_service.types.base_configuration_items
 
         out["base_configuration_items"] = (
@@ -52,7 +52,7 @@ def deserialize_aws_json_1_1(data: dict) -> BatchGetAggregateResourceConfigRespo
                 data["BaseConfigurationItems"]
             )
         )
-    if "UnprocessedResourceIdentifiers" in data:
+    if data.get("UnprocessedResourceIdentifiers") is not None:
         import capo_config_service.types.unprocessed_resource_identifier_list
 
         out["unprocessed_resource_identifiers"] = (

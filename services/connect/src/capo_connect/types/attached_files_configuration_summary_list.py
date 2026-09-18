@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> AttachedFilesConfigurationSummaryList:
 
     out: AttachedFilesConfigurationSummaryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_connect.types.attached_files_configuration_summary.deserialize_json(
                 item

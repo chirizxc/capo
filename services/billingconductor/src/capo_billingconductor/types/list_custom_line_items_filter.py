@@ -66,7 +66,7 @@ def serialize_json(value: ListCustomLineItemsFilter) -> dict:
 
 def deserialize_json(data: dict) -> ListCustomLineItemsFilter:
     out: ListCustomLineItemsFilter = {}  # type: ignore[typeddict-item]
-    if "Names" in data:
+    if data.get("Names") is not None:
         import capo_billingconductor.types.custom_line_item_name_list
 
         out["names"] = (
@@ -74,7 +74,7 @@ def deserialize_json(data: dict) -> ListCustomLineItemsFilter:
                 data["Names"]
             )
         )
-    if "BillingGroups" in data:
+    if data.get("BillingGroups") is not None:
         import capo_billingconductor.types.billing_group_arn_list
 
         out["billing_groups"] = (
@@ -82,7 +82,7 @@ def deserialize_json(data: dict) -> ListCustomLineItemsFilter:
                 data["BillingGroups"]
             )
         )
-    if "Arns" in data:
+    if data.get("Arns") is not None:
         import capo_billingconductor.types.custom_line_item_arns
 
         out["arns"] = (
@@ -90,7 +90,7 @@ def deserialize_json(data: dict) -> ListCustomLineItemsFilter:
                 data["Arns"]
             )
         )
-    if "AccountIds" in data:
+    if data.get("AccountIds") is not None:
         import capo_billingconductor.types.account_id_list
 
         out["account_ids"] = (

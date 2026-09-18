@@ -26,6 +26,10 @@ class ListEndpointAccessRequest(TypedDict, closed=True):
 # --- awsJson1_1 ser/de ---
 def serialize_aws_json_1_1(value: ListEndpointAccessRequest) -> dict:
     out: dict = {}
+    if "next_token" in value:
+        out["nextToken"] = value["next_token"]
+    if "max_results" in value:
+        out["maxResults"] = value["max_results"]
     if "workgroup_name" in value:
         out["workgroupName"] = value["workgroup_name"]
     if "vpc_id" in value:
@@ -37,10 +41,14 @@ def serialize_aws_json_1_1(value: ListEndpointAccessRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListEndpointAccessRequest:
     out: ListEndpointAccessRequest = {}  # type: ignore[typeddict-item]
-    if "workgroupName" in data:
+    if data.get("nextToken") is not None:
+        out["next_token"] = data["nextToken"]
+    if data.get("maxResults") is not None:
+        out["max_results"] = data["maxResults"]
+    if data.get("workgroupName") is not None:
         out["workgroup_name"] = data["workgroupName"]
-    if "vpcId" in data:
+    if data.get("vpcId") is not None:
         out["vpc_id"] = data["vpcId"]
-    if "ownerAccount" in data:
+    if data.get("ownerAccount") is not None:
         out["owner_account"] = data["ownerAccount"]
     return out

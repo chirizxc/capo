@@ -58,9 +58,9 @@ def serialize_aws_json_1_1(value: Container) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Container:
     out: Container = {}  # type: ignore[typeddict-item]
-    if "Endpoint" in data:
+    if data.get("Endpoint") is not None:
         out["endpoint"] = data["Endpoint"]
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_mediastore.types.time_stamp
 
         out["creation_time"] = (
@@ -68,16 +68,16 @@ def deserialize_aws_json_1_1(data: dict) -> Container:
                 data["CreationTime"]
             )
         )
-    if "ARN" in data:
+    if data.get("ARN") is not None:
         out["arn"] = data["ARN"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_mediastore.types.container_status
 
         out["status"] = capo_mediastore.types.container_status.deserialize_aws_json_1_1(
             data["Status"]
         )
-    if "AccessLoggingEnabled" in data:
+    if data.get("AccessLoggingEnabled") is not None:
         out["access_logging_enabled"] = data["AccessLoggingEnabled"]
     return out

@@ -32,11 +32,11 @@ def serialize_json(value: LambdaEventSource) -> dict:
 
 def deserialize_json(data: dict) -> LambdaEventSource:
     out: LambdaEventSource = {}  # type: ignore[typeddict-item]
-    if "topic" in data:
+    if data.get("topic") is not None:
         out["topic"] = data["topic"]
     else:
         raise DeserializationError("LambdaEventSource.topic required")
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_greengrassv2.types.lambda_event_source_type
 
         out["type"] = capo_greengrassv2.types.lambda_event_source_type.deserialize_json(

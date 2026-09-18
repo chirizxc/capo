@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> BatchGetJobItems:
 
     out: BatchGetJobItems = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_deadline.types.batch_get_job_item.deserialize_json(item))
     return out

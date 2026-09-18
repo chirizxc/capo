@@ -27,7 +27,7 @@ def serialize_json(value: HoneycodeMetadata) -> dict:
 
 def deserialize_json(data: dict) -> HoneycodeMetadata:
     out: HoneycodeMetadata = {}  # type: ignore[typeddict-item]
-    if "oAuthScopes" in data:
+    if data.get("oAuthScopes") is not None:
         import capo_appflow.types.o_auth_scope_list
 
         out["o_auth_scopes"] = capo_appflow.types.o_auth_scope_list.deserialize_json(

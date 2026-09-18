@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> MembershipDatasourcesList:
 
     out: MembershipDatasourcesList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_detective.types.membership_datasources.deserialize_json(item))
     return out

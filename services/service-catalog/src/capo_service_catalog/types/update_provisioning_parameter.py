@@ -32,11 +32,11 @@ def serialize_aws_json_1_1(value: UpdateProvisioningParameter) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateProvisioningParameter:
     out: UpdateProvisioningParameter = {}  # type: ignore[typeddict-item]
-    if "Key" in data:
+    if data.get("Key") is not None:
         out["key"] = data["Key"]
-    if "Value" in data:
+    if data.get("Value") is not None:
         out["value"] = data["Value"]
-    if "UsePreviousValue" in data:
+    if data.get("UsePreviousValue") is not None:
         out["use_previous_value"] = data["UsePreviousValue"]
     else:
         out["use_previous_value"] = False

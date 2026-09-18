@@ -29,7 +29,7 @@ def serialize_aws_json_1_1(value: RetryConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RetryConfiguration:
     out: RetryConfiguration = {}  # type: ignore[typeddict-item]
-    if "retryMode" in data:
+    if data.get("retryMode") is not None:
         import capo_codepipeline.types.stage_retry_mode
 
         out["retry_mode"] = (

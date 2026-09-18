@@ -85,15 +85,15 @@ def serialize_json(value: CreateDeploymentRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateDeploymentRequest:
     out: CreateDeploymentRequest = {}  # type: ignore[typeddict-item]
-    if "stageName" in data:
+    if data.get("stageName") is not None:
         out["stage_name"] = data["stageName"]
-    if "stageDescription" in data:
+    if data.get("stageDescription") is not None:
         out["stage_description"] = data["stageDescription"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "cacheClusterEnabled" in data:
+    if data.get("cacheClusterEnabled") is not None:
         out["cache_cluster_enabled"] = data["cacheClusterEnabled"]
-    if "cacheClusterSize" in data:
+    if data.get("cacheClusterSize") is not None:
         import capo_api_gateway.types.cache_cluster_size
 
         out["cache_cluster_size"] = (
@@ -101,7 +101,7 @@ def deserialize_json(data: dict) -> CreateDeploymentRequest:
                 data["cacheClusterSize"]
             )
         )
-    if "variables" in data:
+    if data.get("variables") is not None:
         import capo_api_gateway.types.map_of_string_to_string
 
         out["variables"] = (
@@ -109,7 +109,7 @@ def deserialize_json(data: dict) -> CreateDeploymentRequest:
                 data["variables"]
             )
         )
-    if "canarySettings" in data:
+    if data.get("canarySettings") is not None:
         import capo_api_gateway.types.deployment_canary_settings
 
         out["canary_settings"] = (
@@ -117,6 +117,6 @@ def deserialize_json(data: dict) -> CreateDeploymentRequest:
                 data["canarySettings"]
             )
         )
-    if "tracingEnabled" in data:
+    if data.get("tracingEnabled") is not None:
         out["tracing_enabled"] = data["tracingEnabled"]
     return out

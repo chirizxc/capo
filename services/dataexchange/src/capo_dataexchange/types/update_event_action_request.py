@@ -28,7 +28,7 @@ def serialize_json(value: UpdateEventActionRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateEventActionRequest:
     out: UpdateEventActionRequest = {}  # type: ignore[typeddict-item]
-    if "Action" in data:
+    if data.get("Action") is not None:
         import capo_dataexchange.types.action
 
         out["action"] = capo_dataexchange.types.action.deserialize_json(data["Action"])

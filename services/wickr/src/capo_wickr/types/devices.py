@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> Devices:
 
     out: Devices = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_wickr.types.basic_device_object.deserialize_json(item))
     return out

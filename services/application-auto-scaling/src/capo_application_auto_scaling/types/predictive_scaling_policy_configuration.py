@@ -70,7 +70,7 @@ def serialize_aws_json_1_1(value: PredictiveScalingPolicyConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PredictiveScalingPolicyConfiguration:
     out: PredictiveScalingPolicyConfiguration = {}  # type: ignore[typeddict-item]
-    if "MetricSpecifications" in data:
+    if data.get("MetricSpecifications") is not None:
         import capo_application_auto_scaling.types.predictive_scaling_metric_specifications
 
         out["metric_specifications"] = (
@@ -82,7 +82,7 @@ def deserialize_aws_json_1_1(data: dict) -> PredictiveScalingPolicyConfiguration
         raise DeserializationError(
             "PredictiveScalingPolicyConfiguration.metric_specifications required"
         )
-    if "Mode" in data:
+    if data.get("Mode") is not None:
         import capo_application_auto_scaling.types.predictive_scaling_mode
 
         out["mode"] = (
@@ -90,9 +90,9 @@ def deserialize_aws_json_1_1(data: dict) -> PredictiveScalingPolicyConfiguration
                 data["Mode"]
             )
         )
-    if "SchedulingBufferTime" in data:
+    if data.get("SchedulingBufferTime") is not None:
         out["scheduling_buffer_time"] = data["SchedulingBufferTime"]
-    if "MaxCapacityBreachBehavior" in data:
+    if data.get("MaxCapacityBreachBehavior") is not None:
         import capo_application_auto_scaling.types.predictive_scaling_max_capacity_breach_behavior
 
         out["max_capacity_breach_behavior"] = (
@@ -100,6 +100,6 @@ def deserialize_aws_json_1_1(data: dict) -> PredictiveScalingPolicyConfiguration
                 data["MaxCapacityBreachBehavior"]
             )
         )
-    if "MaxCapacityBuffer" in data:
+    if data.get("MaxCapacityBuffer") is not None:
         out["max_capacity_buffer"] = data["MaxCapacityBuffer"]
     return out

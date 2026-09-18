@@ -30,7 +30,7 @@ def serialize_aws_json_1_1(value: GetTokensFromRefreshTokenResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetTokensFromRefreshTokenResponse:
     out: GetTokensFromRefreshTokenResponse = {}  # type: ignore[typeddict-item]
-    if "AuthenticationResult" in data:
+    if data.get("AuthenticationResult") is not None:
         import capo_cognito_identity_provider.types.authentication_result_type
 
         out["authentication_result"] = (

@@ -27,11 +27,11 @@ def serialize_aws_json_1_1(value: ScriptRuleStatement) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ScriptRuleStatement:
     out: ScriptRuleStatement = {}  # type: ignore[typeddict-item]
-    if "KeyToMatch" in data:
+    if data.get("KeyToMatch") is not None:
         out["key_to_match"] = data["KeyToMatch"]
     else:
         raise DeserializationError("ScriptRuleStatement.key_to_match required")
-    if "Script" in data:
+    if data.get("Script") is not None:
         out["script"] = data["Script"]
     else:
         raise DeserializationError("ScriptRuleStatement.script required")

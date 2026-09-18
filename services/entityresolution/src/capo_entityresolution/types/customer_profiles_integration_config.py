@@ -28,13 +28,13 @@ def serialize_json(value: CustomerProfilesIntegrationConfig) -> dict:
 
 def deserialize_json(data: dict) -> CustomerProfilesIntegrationConfig:
     out: CustomerProfilesIntegrationConfig = {}  # type: ignore[typeddict-item]
-    if "domainArn" in data:
+    if data.get("domainArn") is not None:
         out["domain_arn"] = data["domainArn"]
     else:
         raise DeserializationError(
             "CustomerProfilesIntegrationConfig.domain_arn required"
         )
-    if "objectTypeArn" in data:
+    if data.get("objectTypeArn") is not None:
         out["object_type_arn"] = data["objectTypeArn"]
     else:
         raise DeserializationError(

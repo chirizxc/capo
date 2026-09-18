@@ -78,17 +78,17 @@ def serialize_json(value: AnswerRecommendationAIAgentConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> AnswerRecommendationAIAgentConfiguration:
     out: AnswerRecommendationAIAgentConfiguration = {}  # type: ignore[typeddict-item]
-    if "intentLabelingGenerationAIPromptId" in data:
+    if data.get("intentLabelingGenerationAIPromptId") is not None:
         out["intent_labeling_generation_ai_prompt_id"] = data[
             "intentLabelingGenerationAIPromptId"
         ]
-    if "queryReformulationAIPromptId" in data:
+    if data.get("queryReformulationAIPromptId") is not None:
         out["query_reformulation_ai_prompt_id"] = data["queryReformulationAIPromptId"]
-    if "answerGenerationAIPromptId" in data:
+    if data.get("answerGenerationAIPromptId") is not None:
         out["answer_generation_ai_prompt_id"] = data["answerGenerationAIPromptId"]
-    if "answerGenerationAIGuardrailId" in data:
+    if data.get("answerGenerationAIGuardrailId") is not None:
         out["answer_generation_ai_guardrail_id"] = data["answerGenerationAIGuardrailId"]
-    if "associationConfigurations" in data:
+    if data.get("associationConfigurations") is not None:
         import capo_qconnect.types.association_configuration_list
 
         out["association_configurations"] = (
@@ -96,9 +96,9 @@ def deserialize_json(data: dict) -> AnswerRecommendationAIAgentConfiguration:
                 data["associationConfigurations"]
             )
         )
-    if "locale" in data:
+    if data.get("locale") is not None:
         out["locale"] = data["locale"]
-    if "suggestedMessages" in data:
+    if data.get("suggestedMessages") is not None:
         import capo_qconnect.types.suggested_messages_list
 
         out["suggested_messages"] = (

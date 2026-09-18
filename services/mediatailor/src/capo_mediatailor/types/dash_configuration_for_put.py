@@ -36,9 +36,9 @@ def serialize_json(value: DashConfigurationForPut) -> dict:
 
 def deserialize_json(data: dict) -> DashConfigurationForPut:
     out: DashConfigurationForPut = {}  # type: ignore[typeddict-item]
-    if "MpdLocation" in data:
+    if data.get("MpdLocation") is not None:
         out["mpd_location"] = data["MpdLocation"]
-    if "OriginManifestType" in data:
+    if data.get("OriginManifestType") is not None:
         import capo_mediatailor.types.origin_manifest_type
 
         out["origin_manifest_type"] = (

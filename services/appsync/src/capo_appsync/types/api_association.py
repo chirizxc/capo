@@ -43,11 +43,11 @@ def serialize_json(value: ApiAssociation) -> dict:
 
 def deserialize_json(data: dict) -> ApiAssociation:
     out: ApiAssociation = {}  # type: ignore[typeddict-item]
-    if "domainName" in data:
+    if data.get("domainName") is not None:
         out["domain_name"] = data["domainName"]
-    if "apiId" in data:
+    if data.get("apiId") is not None:
         out["api_id"] = data["apiId"]
-    if "associationStatus" in data:
+    if data.get("associationStatus") is not None:
         import capo_appsync.types.association_status
 
         out["association_status"] = (
@@ -55,6 +55,6 @@ def deserialize_json(data: dict) -> ApiAssociation:
                 data["associationStatus"]
             )
         )
-    if "deploymentDetail" in data:
+    if data.get("deploymentDetail") is not None:
         out["deployment_detail"] = data["deploymentDetail"]
     return out

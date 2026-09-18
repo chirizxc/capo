@@ -13,9 +13,9 @@ from capo_sso_admin import AsyncSSOAdminClient
 
 
 async def main():
-    async with AsyncSSOAdminClient() as s3:
+    async with AsyncSSOAdminClient() as sso_admin:
         # Example: call the add_region operation
-        response = await s3.add_region()
+        response = await sso_admin.add_region()
         print(response["status"])
 ```
 
@@ -28,9 +28,9 @@ from capo_sso_admin import AsyncSSOAdminClient
 
 
 async def main():
-    async with AsyncSSOAdminClient() as s3:
+    async with AsyncSSOAdminClient() as sso_admin:
         # Example: paginate over list_account_assignment_creation_status
-        async for item in s3.iter_list_account_assignment_creation_status():
+        async for item in sso_admin.iter_list_account_assignment_creation_status():
             print(item)
 ```
 
@@ -44,9 +44,9 @@ from capo_sso_admin.error import AccessDeniedException
 
 
 async def main():
-    async with AsyncSSOAdminClient() as s3:
+    async with AsyncSSOAdminClient() as sso_admin:
         try:
-            await s3.add_region()
+            await sso_admin.add_region()
         except AccessDeniedException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -63,13 +63,13 @@ from capo_sso_admin import AsyncSSOAdminClient
 
 
 async def main():
-    async with AsyncSSOAdminClient() as s3:
+    async with AsyncSSOAdminClient() as sso_admin:
         # Default: 3 attempts for every operation
-        response = await s3.add_region()
+        response = await sso_admin.add_region()
 
         # Override per operation
-        response = await s3.add_region(config_overrides={"retry_max_attempts": 5})
+        response = await sso_admin.add_region(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.add_region(config_overrides={"retry_max_attempts": 1})
+        response = await sso_admin.add_region(config_overrides={"retry_max_attempts": 1})
 ```

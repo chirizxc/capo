@@ -31,7 +31,7 @@ def serialize_json(value: CompositionDetails) -> dict:
 
 def deserialize_json(data: dict) -> CompositionDetails:
     out: CompositionDetails = {}  # type: ignore[typeddict-item]
-    if "compositionRelationship" in data:
+    if data.get("compositionRelationship") is not None:
         import capo_iotsitewise.types.composition_relationship
 
         out["composition_relationship"] = (

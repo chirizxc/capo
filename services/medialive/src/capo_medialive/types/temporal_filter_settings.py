@@ -42,7 +42,7 @@ def serialize_json(value: TemporalFilterSettings) -> dict:
 
 def deserialize_json(data: dict) -> TemporalFilterSettings:
     out: TemporalFilterSettings = {}  # type: ignore[typeddict-item]
-    if "postFilterSharpening" in data:
+    if data.get("postFilterSharpening") is not None:
         import capo_medialive.types.temporal_filter_post_filter_sharpening
 
         out["post_filter_sharpening"] = (
@@ -50,7 +50,7 @@ def deserialize_json(data: dict) -> TemporalFilterSettings:
                 data["postFilterSharpening"]
             )
         )
-    if "strength" in data:
+    if data.get("strength") is not None:
         import capo_medialive.types.temporal_filter_strength
 
         out["strength"] = (

@@ -36,8 +36,8 @@ def deserialize_json(
     data: dict,
 ) -> AwsEcsTaskDefinitionContainerDefinitionsVolumesFromDetails:
     out: AwsEcsTaskDefinitionContainerDefinitionsVolumesFromDetails = {}  # type: ignore[typeddict-item]
-    if "ReadOnly" in data:
+    if data.get("ReadOnly") is not None:
         out["read_only"] = data["ReadOnly"]
-    if "SourceContainer" in data:
+    if data.get("SourceContainer") is not None:
         out["source_container"] = data["SourceContainer"]
     return out

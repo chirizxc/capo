@@ -230,21 +230,21 @@ def serialize_aws_json_1_1(value: JobMetadata) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> JobMetadata:
     out: JobMetadata = {}  # type: ignore[typeddict-item]
-    if "JobId" in data:
+    if data.get("JobId") is not None:
         out["job_id"] = data["JobId"]
-    if "JobState" in data:
+    if data.get("JobState") is not None:
         import capo_snowball.types.job_state
 
         out["job_state"] = capo_snowball.types.job_state.deserialize_aws_json_1_1(
             data["JobState"]
         )
-    if "JobType" in data:
+    if data.get("JobType") is not None:
         import capo_snowball.types.job_type
 
         out["job_type"] = capo_snowball.types.job_type.deserialize_aws_json_1_1(
             data["JobType"]
         )
-    if "SnowballType" in data:
+    if data.get("SnowballType") is not None:
         import capo_snowball.types.snowball_type
 
         out["snowball_type"] = (
@@ -252,27 +252,27 @@ def deserialize_aws_json_1_1(data: dict) -> JobMetadata:
                 data["SnowballType"]
             )
         )
-    if "CreationDate" in data:
+    if data.get("CreationDate") is not None:
         import capo_snowball.types.timestamp
 
         out["creation_date"] = capo_snowball.types.timestamp.deserialize_aws_json_1_1(
             data["CreationDate"]
         )
-    if "Resources" in data:
+    if data.get("Resources") is not None:
         import capo_snowball.types.job_resource
 
         out["resources"] = capo_snowball.types.job_resource.deserialize_aws_json_1_1(
             data["Resources"]
         )
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "KmsKeyARN" in data:
+    if data.get("KmsKeyARN") is not None:
         out["kms_key_arn"] = data["KmsKeyARN"]
-    if "RoleARN" in data:
+    if data.get("RoleARN") is not None:
         out["role_arn"] = data["RoleARN"]
-    if "AddressId" in data:
+    if data.get("AddressId") is not None:
         out["address_id"] = data["AddressId"]
-    if "ShippingDetails" in data:
+    if data.get("ShippingDetails") is not None:
         import capo_snowball.types.shipping_details
 
         out["shipping_details"] = (
@@ -280,7 +280,7 @@ def deserialize_aws_json_1_1(data: dict) -> JobMetadata:
                 data["ShippingDetails"]
             )
         )
-    if "SnowballCapacityPreference" in data:
+    if data.get("SnowballCapacityPreference") is not None:
         import capo_snowball.types.snowball_capacity
 
         out["snowball_capacity_preference"] = (
@@ -288,13 +288,13 @@ def deserialize_aws_json_1_1(data: dict) -> JobMetadata:
                 data["SnowballCapacityPreference"]
             )
         )
-    if "Notification" in data:
+    if data.get("Notification") is not None:
         import capo_snowball.types.notification
 
         out["notification"] = capo_snowball.types.notification.deserialize_aws_json_1_1(
             data["Notification"]
         )
-    if "DataTransferProgress" in data:
+    if data.get("DataTransferProgress") is not None:
         import capo_snowball.types.data_transfer
 
         out["data_transfer_progress"] = (
@@ -302,17 +302,17 @@ def deserialize_aws_json_1_1(data: dict) -> JobMetadata:
                 data["DataTransferProgress"]
             )
         )
-    if "JobLogInfo" in data:
+    if data.get("JobLogInfo") is not None:
         import capo_snowball.types.job_logs
 
         out["job_log_info"] = capo_snowball.types.job_logs.deserialize_aws_json_1_1(
             data["JobLogInfo"]
         )
-    if "ClusterId" in data:
+    if data.get("ClusterId") is not None:
         out["cluster_id"] = data["ClusterId"]
-    if "ForwardingAddressId" in data:
+    if data.get("ForwardingAddressId") is not None:
         out["forwarding_address_id"] = data["ForwardingAddressId"]
-    if "TaxDocuments" in data:
+    if data.get("TaxDocuments") is not None:
         import capo_snowball.types.tax_documents
 
         out["tax_documents"] = (
@@ -320,7 +320,7 @@ def deserialize_aws_json_1_1(data: dict) -> JobMetadata:
                 data["TaxDocuments"]
             )
         )
-    if "DeviceConfiguration" in data:
+    if data.get("DeviceConfiguration") is not None:
         import capo_snowball.types.device_configuration
 
         out["device_configuration"] = (
@@ -328,7 +328,7 @@ def deserialize_aws_json_1_1(data: dict) -> JobMetadata:
                 data["DeviceConfiguration"]
             )
         )
-    if "RemoteManagement" in data:
+    if data.get("RemoteManagement") is not None:
         import capo_snowball.types.remote_management
 
         out["remote_management"] = (
@@ -336,9 +336,9 @@ def deserialize_aws_json_1_1(data: dict) -> JobMetadata:
                 data["RemoteManagement"]
             )
         )
-    if "LongTermPricingId" in data:
+    if data.get("LongTermPricingId") is not None:
         out["long_term_pricing_id"] = data["LongTermPricingId"]
-    if "OnDeviceServiceConfiguration" in data:
+    if data.get("OnDeviceServiceConfiguration") is not None:
         import capo_snowball.types.on_device_service_configuration
 
         out["on_device_service_configuration"] = (
@@ -346,13 +346,13 @@ def deserialize_aws_json_1_1(data: dict) -> JobMetadata:
                 data["OnDeviceServiceConfiguration"]
             )
         )
-    if "ImpactLevel" in data:
+    if data.get("ImpactLevel") is not None:
         import capo_snowball.types.impact_level
 
         out["impact_level"] = capo_snowball.types.impact_level.deserialize_aws_json_1_1(
             data["ImpactLevel"]
         )
-    if "PickupDetails" in data:
+    if data.get("PickupDetails") is not None:
         import capo_snowball.types.pickup_details
 
         out["pickup_details"] = (
@@ -360,6 +360,6 @@ def deserialize_aws_json_1_1(data: dict) -> JobMetadata:
                 data["PickupDetails"]
             )
         )
-    if "SnowballId" in data:
+    if data.get("SnowballId") is not None:
         out["snowball_id"] = data["SnowballId"]
     return out

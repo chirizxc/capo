@@ -31,11 +31,11 @@ def serialize_json(value: ScraperComponent) -> dict:
 
 def deserialize_json(data: dict) -> ScraperComponent:
     out: ScraperComponent = {}  # type: ignore[typeddict-item]
-    if "type" in data:
+    if data.get("type") is not None:
         out["type"] = data["type"]
     else:
         raise DeserializationError("ScraperComponent.type required")
-    if "config" in data:
+    if data.get("config") is not None:
         import capo_amp.types.component_config
 
         out["config"] = capo_amp.types.component_config.deserialize_json(data["config"])

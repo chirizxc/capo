@@ -33,7 +33,7 @@ def serialize_aws_json_1_1(value: ResourceCount) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ResourceCount:
     out: ResourceCount = {}  # type: ignore[typeddict-item]
-    if "resourceType" in data:
+    if data.get("resourceType") is not None:
         import capo_config_service.types.resource_type
 
         out["resource_type"] = (
@@ -41,7 +41,7 @@ def deserialize_aws_json_1_1(data: dict) -> ResourceCount:
                 data["resourceType"]
             )
         )
-    if "count" in data:
+    if data.get("count") is not None:
         out["count"] = data["count"]
     else:
         out["count"] = 0

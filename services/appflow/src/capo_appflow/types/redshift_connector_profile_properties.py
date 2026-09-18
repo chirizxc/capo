@@ -66,32 +66,32 @@ def serialize_json(value: RedshiftConnectorProfileProperties) -> dict:
 
 def deserialize_json(data: dict) -> RedshiftConnectorProfileProperties:
     out: RedshiftConnectorProfileProperties = {}  # type: ignore[typeddict-item]
-    if "databaseUrl" in data:
+    if data.get("databaseUrl") is not None:
         out["database_url"] = data["databaseUrl"]
-    if "bucketName" in data:
+    if data.get("bucketName") is not None:
         out["bucket_name"] = data["bucketName"]
     else:
         raise DeserializationError(
             "RedshiftConnectorProfileProperties.bucket_name required"
         )
-    if "bucketPrefix" in data:
+    if data.get("bucketPrefix") is not None:
         out["bucket_prefix"] = data["bucketPrefix"]
-    if "roleArn" in data:
+    if data.get("roleArn") is not None:
         out["role_arn"] = data["roleArn"]
     else:
         raise DeserializationError(
             "RedshiftConnectorProfileProperties.role_arn required"
         )
-    if "dataApiRoleArn" in data:
+    if data.get("dataApiRoleArn") is not None:
         out["data_api_role_arn"] = data["dataApiRoleArn"]
-    if "isRedshiftServerless" in data:
+    if data.get("isRedshiftServerless") is not None:
         out["is_redshift_serverless"] = data["isRedshiftServerless"]
     else:
         out["is_redshift_serverless"] = False
-    if "clusterIdentifier" in data:
+    if data.get("clusterIdentifier") is not None:
         out["cluster_identifier"] = data["clusterIdentifier"]
-    if "workgroupName" in data:
+    if data.get("workgroupName") is not None:
         out["workgroup_name"] = data["workgroupName"]
-    if "databaseName" in data:
+    if data.get("databaseName") is not None:
         out["database_name"] = data["databaseName"]
     return out

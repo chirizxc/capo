@@ -40,19 +40,19 @@ def serialize_aws_json_1_0(value: IngestedFilesSummary) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> IngestedFilesSummary:
     out: IngestedFilesSummary = {}  # type: ignore[typeddict-item]
-    if "TotalNumberOfFiles" in data:
+    if data.get("TotalNumberOfFiles") is not None:
         out["total_number_of_files"] = data["TotalNumberOfFiles"]
     else:
         raise DeserializationError(
             "IngestedFilesSummary.total_number_of_files required"
         )
-    if "IngestedNumberOfFiles" in data:
+    if data.get("IngestedNumberOfFiles") is not None:
         out["ingested_number_of_files"] = data["IngestedNumberOfFiles"]
     else:
         raise DeserializationError(
             "IngestedFilesSummary.ingested_number_of_files required"
         )
-    if "DiscardedFiles" in data:
+    if data.get("DiscardedFiles") is not None:
         import capo_lookoutequipment.types.list_of_discarded_files
 
         out["discarded_files"] = (

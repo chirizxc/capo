@@ -32,11 +32,11 @@ def serialize_aws_json_1_1(value: TagResourceRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> TagResourceRequest:
     out: TagResourceRequest = {}  # type: ignore[typeddict-item]
-    if "ResourceArn" in data:
+    if data.get("ResourceArn") is not None:
         out["resource_arn"] = data["ResourceArn"]
     else:
         raise DeserializationError("TagResourceRequest.resource_arn required")
-    if "TagsToAdd" in data:
+    if data.get("TagsToAdd") is not None:
         import capo_glue.types.tags_map
 
         out["tags_to_add"] = capo_glue.types.tags_map.deserialize_aws_json_1_1(

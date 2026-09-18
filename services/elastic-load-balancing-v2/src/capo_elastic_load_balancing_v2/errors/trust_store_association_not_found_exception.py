@@ -41,15 +41,20 @@ class TrustStoreAssociationNotFoundException(ServiceError):
 
     code: str | None = "TrustStoreAssociationNotFoundException"
 
-    def __init__(self, data: TrustStoreAssociationNotFoundException_):
+    def __init__(
+        self, data: TrustStoreAssociationNotFoundException_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="TrustStoreAssociationNotFoundException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_query(cls, el: Element) -> "TrustStoreAssociationNotFoundException":
-        return cls(deserialize_query(el))
+    def from_query(
+        cls, el: Element, message: str | None = None
+    ) -> "TrustStoreAssociationNotFoundException":
+        return cls(deserialize_query(el), message)

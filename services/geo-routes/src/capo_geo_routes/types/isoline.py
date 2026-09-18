@@ -48,7 +48,7 @@ def serialize_json(value: Isoline) -> dict:
 
 def deserialize_json(data: dict) -> Isoline:
     out: Isoline = {}  # type: ignore[typeddict-item]
-    if "Connections" in data:
+    if data.get("Connections") is not None:
         import capo_geo_routes.types.isoline_connection_list
 
         out["connections"] = (
@@ -58,11 +58,11 @@ def deserialize_json(data: dict) -> Isoline:
         )
     else:
         raise DeserializationError("Isoline.connections required")
-    if "DistanceThreshold" in data:
+    if data.get("DistanceThreshold") is not None:
         out["distance_threshold"] = data["DistanceThreshold"]
     else:
         out["distance_threshold"] = 0
-    if "Geometries" in data:
+    if data.get("Geometries") is not None:
         import capo_geo_routes.types.isoline_shape_geometry_list
 
         out["geometries"] = (
@@ -72,7 +72,7 @@ def deserialize_json(data: dict) -> Isoline:
         )
     else:
         raise DeserializationError("Isoline.geometries required")
-    if "TimeThreshold" in data:
+    if data.get("TimeThreshold") is not None:
         out["time_threshold"] = data["TimeThreshold"]
     else:
         out["time_threshold"] = 0

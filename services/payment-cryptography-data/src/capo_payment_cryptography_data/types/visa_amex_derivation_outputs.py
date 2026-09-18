@@ -44,13 +44,13 @@ def serialize_json(value: VisaAmexDerivationOutputs) -> dict:
 
 def deserialize_json(data: dict) -> VisaAmexDerivationOutputs:
     out: VisaAmexDerivationOutputs = {}  # type: ignore[typeddict-item]
-    if "AuthorizationRequestKeyArn" in data:
+    if data.get("AuthorizationRequestKeyArn") is not None:
         out["authorization_request_key_arn"] = data["AuthorizationRequestKeyArn"]
     else:
         raise DeserializationError(
             "VisaAmexDerivationOutputs.authorization_request_key_arn required"
         )
-    if "AuthorizationRequestKeyCheckValue" in data:
+    if data.get("AuthorizationRequestKeyCheckValue") is not None:
         out["authorization_request_key_check_value"] = data[
             "AuthorizationRequestKeyCheckValue"
         ]
@@ -58,8 +58,8 @@ def deserialize_json(data: dict) -> VisaAmexDerivationOutputs:
         raise DeserializationError(
             "VisaAmexDerivationOutputs.authorization_request_key_check_value required"
         )
-    if "CurrentPinPekArn" in data:
+    if data.get("CurrentPinPekArn") is not None:
         out["current_pin_pek_arn"] = data["CurrentPinPekArn"]
-    if "CurrentPinPekKeyCheckValue" in data:
+    if data.get("CurrentPinPekKeyCheckValue") is not None:
         out["current_pin_pek_key_check_value"] = data["CurrentPinPekKeyCheckValue"]
     return out

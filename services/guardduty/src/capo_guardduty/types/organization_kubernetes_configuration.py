@@ -31,7 +31,7 @@ def serialize_json(value: OrganizationKubernetesConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> OrganizationKubernetesConfiguration:
     out: OrganizationKubernetesConfiguration = {}  # type: ignore[typeddict-item]
-    if "auditLogs" in data:
+    if data.get("auditLogs") is not None:
         import capo_guardduty.types.organization_kubernetes_audit_logs_configuration
 
         out["audit_logs"] = (

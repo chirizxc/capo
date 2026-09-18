@@ -55,13 +55,13 @@ def serialize_aws_json_1_1(value: CertificateSummary) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CertificateSummary:
     out: CertificateSummary = {}  # type: ignore[typeddict-item]
-    if "certificateArn" in data:
+    if data.get("certificateArn") is not None:
         out["certificate_arn"] = data["certificateArn"]
-    if "certificateName" in data:
+    if data.get("certificateName") is not None:
         out["certificate_name"] = data["certificateName"]
-    if "domainName" in data:
+    if data.get("domainName") is not None:
         out["domain_name"] = data["domainName"]
-    if "certificateDetail" in data:
+    if data.get("certificateDetail") is not None:
         import capo_lightsail.types.certificate
 
         out["certificate_detail"] = (
@@ -69,7 +69,7 @@ def deserialize_aws_json_1_1(data: dict) -> CertificateSummary:
                 data["certificateDetail"]
             )
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_lightsail.types.tag_list
 
         out["tags"] = capo_lightsail.types.tag_list.deserialize_aws_json_1_1(

@@ -33,13 +33,13 @@ def serialize_aws_json_1_1(value: ReportDestinationS3) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ReportDestinationS3:
     out: ReportDestinationS3 = {}  # type: ignore[typeddict-item]
-    if "Subdirectory" in data:
+    if data.get("Subdirectory") is not None:
         out["subdirectory"] = data["Subdirectory"]
-    if "S3BucketArn" in data:
+    if data.get("S3BucketArn") is not None:
         out["s3_bucket_arn"] = data["S3BucketArn"]
     else:
         raise DeserializationError("ReportDestinationS3.s3_bucket_arn required")
-    if "BucketAccessRoleArn" in data:
+    if data.get("BucketAccessRoleArn") is not None:
         out["bucket_access_role_arn"] = data["BucketAccessRoleArn"]
     else:
         raise DeserializationError(

@@ -46,7 +46,7 @@ def serialize_aws_json_1_1(value: GetApproximateUsageRecordsResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetApproximateUsageRecordsResponse:
     out: GetApproximateUsageRecordsResponse = {}  # type: ignore[typeddict-item]
-    if "Services" in data:
+    if data.get("Services") is not None:
         import capo_cost_explorer.types.approximate_usage_records_per_service
 
         out["services"] = (
@@ -54,11 +54,11 @@ def deserialize_aws_json_1_1(data: dict) -> GetApproximateUsageRecordsResponse:
                 data["Services"]
             )
         )
-    if "TotalRecords" in data:
+    if data.get("TotalRecords") is not None:
         out["total_records"] = data["TotalRecords"]
     else:
         out["total_records"] = 0
-    if "LookbackPeriod" in data:
+    if data.get("LookbackPeriod") is not None:
         import capo_cost_explorer.types.date_interval
 
         out["lookback_period"] = (

@@ -43,19 +43,19 @@ def serialize_aws_json_1_0(value: KeyspaceSummary) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> KeyspaceSummary:
     out: KeyspaceSummary = {}  # type: ignore[typeddict-item]
-    if "keyspaceName" in data:
+    if data.get("keyspaceName") is not None:
         out["keyspace_name"] = data["keyspaceName"]
     else:
         raise DeserializationError("KeyspaceSummary.keyspace_name required")
-    if "resourceArn" in data:
+    if data.get("resourceArn") is not None:
         out["resource_arn"] = data["resourceArn"]
     else:
         raise DeserializationError("KeyspaceSummary.resource_arn required")
-    if "replicationStrategy" in data:
+    if data.get("replicationStrategy") is not None:
         out["replication_strategy"] = data["replicationStrategy"]
     else:
         raise DeserializationError("KeyspaceSummary.replication_strategy required")
-    if "replicationRegions" in data:
+    if data.get("replicationRegions") is not None:
         import capo_keyspaces.types.region_list
 
         out["replication_regions"] = (

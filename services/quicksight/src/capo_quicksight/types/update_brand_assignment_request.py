@@ -27,7 +27,7 @@ def serialize_json(value: UpdateBrandAssignmentRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateBrandAssignmentRequest:
     out: UpdateBrandAssignmentRequest = {}  # type: ignore[typeddict-item]
-    if "BrandArn" in data:
+    if data.get("BrandArn") is not None:
         out["brand_arn"] = data["BrandArn"]
     else:
         raise DeserializationError("UpdateBrandAssignmentRequest.brand_arn required")

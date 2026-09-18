@@ -43,7 +43,7 @@ def serialize_json(value: SearchAnalysesRequest) -> dict:
 
 def deserialize_json(data: dict) -> SearchAnalysesRequest:
     out: SearchAnalysesRequest = {}  # type: ignore[typeddict-item]
-    if "Filters" in data:
+    if data.get("Filters") is not None:
         import capo_quicksight.types.analysis_search_filter_list
 
         out["filters"] = (
@@ -53,8 +53,8 @@ def deserialize_json(data: dict) -> SearchAnalysesRequest:
         )
     else:
         raise DeserializationError("SearchAnalysesRequest.filters required")
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
     return out

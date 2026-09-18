@@ -30,15 +30,15 @@ def serialize_aws_json_1_1(value: S3ImportSource) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> S3ImportSource:
     out: S3ImportSource = {}  # type: ignore[typeddict-item]
-    if "S3LocationUri" in data:
+    if data.get("S3LocationUri") is not None:
         out["s3_location_uri"] = data["S3LocationUri"]
     else:
         raise DeserializationError("S3ImportSource.s3_location_uri required")
-    if "S3BucketRegion" in data:
+    if data.get("S3BucketRegion") is not None:
         out["s3_bucket_region"] = data["S3BucketRegion"]
     else:
         raise DeserializationError("S3ImportSource.s3_bucket_region required")
-    if "S3BucketAccessRoleArn" in data:
+    if data.get("S3BucketAccessRoleArn") is not None:
         out["s3_bucket_access_role_arn"] = data["S3BucketAccessRoleArn"]
     else:
         raise DeserializationError("S3ImportSource.s3_bucket_access_role_arn required")

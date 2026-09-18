@@ -24,7 +24,7 @@ def serialize_json(value: CreateIpAccessSettingsResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateIpAccessSettingsResponse:
     out: CreateIpAccessSettingsResponse = {}  # type: ignore[typeddict-item]
-    if "ipAccessSettingsArn" in data:
+    if data.get("ipAccessSettingsArn") is not None:
         out["ip_access_settings_arn"] = data["ipAccessSettingsArn"]
     else:
         raise DeserializationError(

@@ -25,6 +25,6 @@ def serialize_aws_json_1_1(value: ProcessingFeatureStoreOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ProcessingFeatureStoreOutput:
     out: ProcessingFeatureStoreOutput = {}  # type: ignore[typeddict-item]
-    if "FeatureGroupName" in data:
+    if data.get("FeatureGroupName") is not None:
         out["feature_group_name"] = data["FeatureGroupName"]
     return out

@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> OAuth2CustomPropertiesList:
 
     out: OAuth2CustomPropertiesList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_appflow.types.o_auth2_custom_parameter.deserialize_json(item))
     return out

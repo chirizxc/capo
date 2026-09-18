@@ -51,7 +51,7 @@ def serialize_json(value: UpdateBackendAuthVerificationMessageConfig) -> dict:
 
 def deserialize_json(data: dict) -> UpdateBackendAuthVerificationMessageConfig:
     out: UpdateBackendAuthVerificationMessageConfig = {}  # type: ignore[typeddict-item]
-    if "deliveryMethod" in data:
+    if data.get("deliveryMethod") is not None:
         import capo_amplifybackend.types.delivery_method
 
         out["delivery_method"] = (
@@ -59,7 +59,7 @@ def deserialize_json(data: dict) -> UpdateBackendAuthVerificationMessageConfig:
                 data["deliveryMethod"]
             )
         )
-    if "emailSettings" in data:
+    if data.get("emailSettings") is not None:
         import capo_amplifybackend.types.email_settings
 
         out["email_settings"] = (
@@ -67,7 +67,7 @@ def deserialize_json(data: dict) -> UpdateBackendAuthVerificationMessageConfig:
                 data["emailSettings"]
             )
         )
-    if "smsSettings" in data:
+    if data.get("smsSettings") is not None:
         import capo_amplifybackend.types.sms_settings
 
         out["sms_settings"] = capo_amplifybackend.types.sms_settings.deserialize_json(

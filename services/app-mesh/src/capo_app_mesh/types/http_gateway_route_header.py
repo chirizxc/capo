@@ -37,13 +37,13 @@ def serialize_json(value: HttpGatewayRouteHeader) -> dict:
 
 def deserialize_json(data: dict) -> HttpGatewayRouteHeader:
     out: HttpGatewayRouteHeader = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("HttpGatewayRouteHeader.name required")
-    if "invert" in data:
+    if data.get("invert") is not None:
         out["invert"] = data["invert"]
-    if "match" in data:
+    if data.get("match") is not None:
         import capo_app_mesh.types.header_match_method
 
         out["match"] = capo_app_mesh.types.header_match_method.deserialize_json(

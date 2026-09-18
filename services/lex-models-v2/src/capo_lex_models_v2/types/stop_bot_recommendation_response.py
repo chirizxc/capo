@@ -52,13 +52,13 @@ def serialize_json(value: StopBotRecommendationResponse) -> dict:
 
 def deserialize_json(data: dict) -> StopBotRecommendationResponse:
     out: StopBotRecommendationResponse = {}  # type: ignore[typeddict-item]
-    if "botId" in data:
+    if data.get("botId") is not None:
         out["bot_id"] = data["botId"]
-    if "botVersion" in data:
+    if data.get("botVersion") is not None:
         out["bot_version"] = data["botVersion"]
-    if "localeId" in data:
+    if data.get("localeId") is not None:
         out["locale_id"] = data["localeId"]
-    if "botRecommendationStatus" in data:
+    if data.get("botRecommendationStatus") is not None:
         import capo_lex_models_v2.types.bot_recommendation_status
 
         out["bot_recommendation_status"] = (
@@ -66,6 +66,6 @@ def deserialize_json(data: dict) -> StopBotRecommendationResponse:
                 data["botRecommendationStatus"]
             )
         )
-    if "botRecommendationId" in data:
+    if data.get("botRecommendationId") is not None:
         out["bot_recommendation_id"] = data["botRecommendationId"]
     return out

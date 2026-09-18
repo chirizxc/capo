@@ -41,11 +41,11 @@ def serialize_json(value: CreateTelemetryRuleInput) -> dict:
 
 def deserialize_json(data: dict) -> CreateTelemetryRuleInput:
     out: CreateTelemetryRuleInput = {}  # type: ignore[typeddict-item]
-    if "RuleName" in data:
+    if data.get("RuleName") is not None:
         out["rule_name"] = data["RuleName"]
     else:
         raise DeserializationError("CreateTelemetryRuleInput.rule_name required")
-    if "Rule" in data:
+    if data.get("Rule") is not None:
         import capo_observabilityadmin.types.telemetry_rule
 
         out["rule"] = capo_observabilityadmin.types.telemetry_rule.deserialize_json(
@@ -53,7 +53,7 @@ def deserialize_json(data: dict) -> CreateTelemetryRuleInput:
         )
     else:
         raise DeserializationError("CreateTelemetryRuleInput.rule required")
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_observabilityadmin.types.tag_map_input
 
         out["tags"] = capo_observabilityadmin.types.tag_map_input.deserialize_json(

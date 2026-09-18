@@ -52,9 +52,9 @@ def serialize_json(value: NetworkSettings) -> dict:
 
 def deserialize_json(data: dict) -> NetworkSettings:
     out: NetworkSettings = {}  # type: ignore[typeddict-item]
-    if "enableClientMetrics" in data:
+    if data.get("enableClientMetrics") is not None:
         out["enable_client_metrics"] = data["enableClientMetrics"]
-    if "readReceiptConfig" in data:
+    if data.get("readReceiptConfig") is not None:
         import capo_wickr.types.read_receipt_config
 
         out["read_receipt_config"] = (
@@ -62,11 +62,11 @@ def deserialize_json(data: dict) -> NetworkSettings:
                 data["readReceiptConfig"]
             )
         )
-    if "dataRetention" in data:
+    if data.get("dataRetention") is not None:
         out["data_retention"] = data["dataRetention"]
-    if "enableTrustedDataFormat" in data:
+    if data.get("enableTrustedDataFormat") is not None:
         out["enable_trusted_data_format"] = data["enableTrustedDataFormat"]
-    if "consentPopup" in data:
+    if data.get("consentPopup") is not None:
         import capo_wickr.types.consent_popup_config
 
         out["consent_popup"] = capo_wickr.types.consent_popup_config.deserialize_json(

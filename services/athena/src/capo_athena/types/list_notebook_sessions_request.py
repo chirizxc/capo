@@ -34,12 +34,12 @@ def serialize_aws_json_1_1(value: ListNotebookSessionsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListNotebookSessionsRequest:
     out: ListNotebookSessionsRequest = {}  # type: ignore[typeddict-item]
-    if "NotebookId" in data:
+    if data.get("NotebookId") is not None:
         out["notebook_id"] = data["NotebookId"]
     else:
         raise DeserializationError("ListNotebookSessionsRequest.notebook_id required")
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

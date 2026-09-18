@@ -45,9 +45,9 @@ def serialize_json(value: GetSensitiveDataOccurrencesResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetSensitiveDataOccurrencesResponse:
     out: GetSensitiveDataOccurrencesResponse = {}  # type: ignore[typeddict-item]
-    if "error" in data:
+    if data.get("error") is not None:
         out["error"] = data["error"]
-    if "sensitiveDataOccurrences" in data:
+    if data.get("sensitiveDataOccurrences") is not None:
         import capo_macie2.types.sensitive_data_occurrences
 
         out["sensitive_data_occurrences"] = (
@@ -55,7 +55,7 @@ def deserialize_json(data: dict) -> GetSensitiveDataOccurrencesResponse:
                 data["sensitiveDataOccurrences"]
             )
         )
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_macie2.types.reveal_request_status
 
         out["status"] = capo_macie2.types.reveal_request_status.deserialize_json(

@@ -71,7 +71,7 @@ class ManagedWorkgroupResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_redshift_serverless.types.list_managed_workgroups_request.ListManagedWorkgroupsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_redshift_serverless.types.list_managed_workgroups_request.ListManagedWorkgroupsRequest = {}
         if source_arn is not None:
             input_["source_arn"] = source_arn
         if next_token is not None:
@@ -84,6 +84,7 @@ class ManagedWorkgroupResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -132,7 +133,7 @@ class AsyncManagedWorkgroupResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_redshift_serverless.types.list_managed_workgroups_request.ListManagedWorkgroupsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_redshift_serverless.types.list_managed_workgroups_request.ListManagedWorkgroupsRequest = {}
         if source_arn is not None:
             input_["source_arn"] = source_arn
         if next_token is not None:
@@ -145,4 +146,5 @@ class AsyncManagedWorkgroupResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

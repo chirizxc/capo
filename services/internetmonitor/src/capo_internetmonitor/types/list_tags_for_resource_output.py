@@ -25,7 +25,7 @@ def serialize_json(value: ListTagsForResourceOutput) -> dict:
 
 def deserialize_json(data: dict) -> ListTagsForResourceOutput:
     out: ListTagsForResourceOutput = {}  # type: ignore[typeddict-item]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_internetmonitor.types.tag_map
 
         out["tags"] = capo_internetmonitor.types.tag_map.deserialize_json(data["Tags"])

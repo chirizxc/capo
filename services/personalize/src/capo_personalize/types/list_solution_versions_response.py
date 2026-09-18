@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: ListSolutionVersionsResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListSolutionVersionsResponse:
     out: ListSolutionVersionsResponse = {}  # type: ignore[typeddict-item]
-    if "solutionVersions" in data:
+    if data.get("solutionVersions") is not None:
         import capo_personalize.types.solution_versions
 
         out["solution_versions"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_1(data: dict) -> ListSolutionVersionsResponse:
                 data["solutionVersions"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

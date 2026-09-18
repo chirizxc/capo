@@ -31,7 +31,7 @@ def serialize_json(value: ReverseGeocodeFilter) -> dict:
 
 def deserialize_json(data: dict) -> ReverseGeocodeFilter:
     out: ReverseGeocodeFilter = {}  # type: ignore[typeddict-item]
-    if "IncludePlaceTypes" in data:
+    if data.get("IncludePlaceTypes") is not None:
         import capo_geo_places.types.reverse_geocode_filter_place_type_list
 
         out["include_place_types"] = (

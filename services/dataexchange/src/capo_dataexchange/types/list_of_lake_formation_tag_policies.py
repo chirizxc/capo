@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> ListOfLakeFormationTagPolicies:
 
     out: ListOfLakeFormationTagPolicies = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_dataexchange.types.lake_formation_tag_policy_details.deserialize_json(
                 item

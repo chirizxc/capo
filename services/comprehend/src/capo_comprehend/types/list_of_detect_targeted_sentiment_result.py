@@ -29,6 +29,8 @@ def deserialize_aws_json_1_1(data: list) -> ListOfDetectTargetedSentimentResult:
 
     out: ListOfDetectTargetedSentimentResult = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_comprehend.types.batch_detect_targeted_sentiment_item_result.deserialize_aws_json_1_1(
                 item

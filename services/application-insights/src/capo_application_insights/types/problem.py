@@ -156,23 +156,23 @@ def serialize_aws_json_1_1(value: Problem) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Problem:
     out: Problem = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "Title" in data:
+    if data.get("Title") is not None:
         out["title"] = data["Title"]
-    if "ShortName" in data:
+    if data.get("ShortName") is not None:
         out["short_name"] = data["ShortName"]
-    if "Insights" in data:
+    if data.get("Insights") is not None:
         out["insights"] = data["Insights"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_application_insights.types.status
 
         out["status"] = capo_application_insights.types.status.deserialize_aws_json_1_1(
             data["Status"]
         )
-    if "AffectedResource" in data:
+    if data.get("AffectedResource") is not None:
         out["affected_resource"] = data["AffectedResource"]
-    if "StartTime" in data:
+    if data.get("StartTime") is not None:
         import capo_application_insights.types.start_time
 
         out["start_time"] = (
@@ -180,7 +180,7 @@ def deserialize_aws_json_1_1(data: dict) -> Problem:
                 data["StartTime"]
             )
         )
-    if "EndTime" in data:
+    if data.get("EndTime") is not None:
         import capo_application_insights.types.end_time
 
         out["end_time"] = (
@@ -188,7 +188,7 @@ def deserialize_aws_json_1_1(data: dict) -> Problem:
                 data["EndTime"]
             )
         )
-    if "SeverityLevel" in data:
+    if data.get("SeverityLevel") is not None:
         import capo_application_insights.types.severity_level
 
         out["severity_level"] = (
@@ -196,11 +196,11 @@ def deserialize_aws_json_1_1(data: dict) -> Problem:
                 data["SeverityLevel"]
             )
         )
-    if "AccountId" in data:
+    if data.get("AccountId") is not None:
         out["account_id"] = data["AccountId"]
-    if "ResourceGroupName" in data:
+    if data.get("ResourceGroupName") is not None:
         out["resource_group_name"] = data["ResourceGroupName"]
-    if "Feedback" in data:
+    if data.get("Feedback") is not None:
         import capo_application_insights.types.feedback
 
         out["feedback"] = (
@@ -208,9 +208,9 @@ def deserialize_aws_json_1_1(data: dict) -> Problem:
                 data["Feedback"]
             )
         )
-    if "RecurringCount" in data:
+    if data.get("RecurringCount") is not None:
         out["recurring_count"] = data["RecurringCount"]
-    if "LastRecurrenceTime" in data:
+    if data.get("LastRecurrenceTime") is not None:
         import capo_application_insights.types.last_recurrence_time
 
         out["last_recurrence_time"] = (
@@ -218,7 +218,7 @@ def deserialize_aws_json_1_1(data: dict) -> Problem:
                 data["LastRecurrenceTime"]
             )
         )
-    if "Visibility" in data:
+    if data.get("Visibility") is not None:
         import capo_application_insights.types.visibility
 
         out["visibility"] = (
@@ -226,7 +226,7 @@ def deserialize_aws_json_1_1(data: dict) -> Problem:
                 data["Visibility"]
             )
         )
-    if "ResolutionMethod" in data:
+    if data.get("ResolutionMethod") is not None:
         import capo_application_insights.types.resolution_method
 
         out["resolution_method"] = (

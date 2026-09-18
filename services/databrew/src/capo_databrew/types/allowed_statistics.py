@@ -28,7 +28,7 @@ def serialize_json(value: AllowedStatistics) -> dict:
 
 def deserialize_json(data: dict) -> AllowedStatistics:
     out: AllowedStatistics = {}  # type: ignore[typeddict-item]
-    if "Statistics" in data:
+    if data.get("Statistics") is not None:
         import capo_databrew.types.statistic_list
 
         out["statistics"] = capo_databrew.types.statistic_list.deserialize_json(

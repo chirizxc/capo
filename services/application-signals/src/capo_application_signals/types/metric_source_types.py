@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> MetricSourceTypes:
 
     out: MetricSourceTypes = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_application_signals.types.metric_source_type.deserialize_json(item)
         )

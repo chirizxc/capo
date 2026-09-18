@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> SearchJobs:
 
     out: SearchJobs = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_backupsearch.types.search_job_summary.deserialize_json(item))
     return out

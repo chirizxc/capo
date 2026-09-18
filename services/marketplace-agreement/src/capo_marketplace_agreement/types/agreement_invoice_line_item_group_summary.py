@@ -90,11 +90,11 @@ def serialize_aws_json_1_0(value: AgreementInvoiceLineItemGroupSummary) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> AgreementInvoiceLineItemGroupSummary:
     out: AgreementInvoiceLineItemGroupSummary = {}  # type: ignore[typeddict-item]
-    if "agreementId" in data:
+    if data.get("agreementId") is not None:
         out["agreement_id"] = data["agreementId"]
-    if "invoiceId" in data:
+    if data.get("invoiceId") is not None:
         out["invoice_id"] = data["invoiceId"]
-    if "pricingCurrencyAmount" in data:
+    if data.get("pricingCurrencyAmount") is not None:
         import capo_marketplace_agreement.types.pricing_currency_amount
 
         out["pricing_currency_amount"] = (
@@ -102,7 +102,7 @@ def deserialize_aws_json_1_0(data: dict) -> AgreementInvoiceLineItemGroupSummary
                 data["pricingCurrencyAmount"]
             )
         )
-    if "invoiceBillingPeriod" in data:
+    if data.get("invoiceBillingPeriod") is not None:
         import capo_marketplace_agreement.types.invoice_billing_period
 
         out["invoice_billing_period"] = (
@@ -110,7 +110,7 @@ def deserialize_aws_json_1_0(data: dict) -> AgreementInvoiceLineItemGroupSummary
                 data["invoiceBillingPeriod"]
             )
         )
-    if "issuedTime" in data:
+    if data.get("issuedTime") is not None:
         import capo_marketplace_agreement.types.timestamp
 
         out["issued_time"] = (
@@ -118,7 +118,7 @@ def deserialize_aws_json_1_0(data: dict) -> AgreementInvoiceLineItemGroupSummary
                 data["issuedTime"]
             )
         )
-    if "invoiceType" in data:
+    if data.get("invoiceType") is not None:
         import capo_marketplace_agreement.types.invoice_type
 
         out["invoice_type"] = (
@@ -126,7 +126,7 @@ def deserialize_aws_json_1_0(data: dict) -> AgreementInvoiceLineItemGroupSummary
                 data["invoiceType"]
             )
         )
-    if "invoicingEntity" in data:
+    if data.get("invoicingEntity") is not None:
         import capo_marketplace_agreement.types.invoicing_entity
 
         out["invoicing_entity"] = (

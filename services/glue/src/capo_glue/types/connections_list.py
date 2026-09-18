@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: ConnectionsList) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ConnectionsList:
     out: ConnectionsList = {}  # type: ignore[typeddict-item]
-    if "Connections" in data:
+    if data.get("Connections") is not None:
         import capo_glue.types.connection_string_list
 
         out["connections"] = (

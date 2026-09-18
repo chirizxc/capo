@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> TrainedModelExportReceiverMembers:
 
     out: TrainedModelExportReceiverMembers = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_cleanroomsml.types.trained_model_export_receiver_member.deserialize_json(
                 item

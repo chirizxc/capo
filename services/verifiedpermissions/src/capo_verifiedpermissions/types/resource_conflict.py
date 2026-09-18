@@ -33,11 +33,11 @@ def serialize_aws_json_1_0(value: ResourceConflict) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ResourceConflict:
     out: ResourceConflict = {}  # type: ignore[typeddict-item]
-    if "resourceId" in data:
+    if data.get("resourceId") is not None:
         out["resource_id"] = data["resourceId"]
     else:
         raise DeserializationError("ResourceConflict.resource_id required")
-    if "resourceType" in data:
+    if data.get("resourceType") is not None:
         import capo_verifiedpermissions.types.resource_type
 
         out["resource_type"] = (

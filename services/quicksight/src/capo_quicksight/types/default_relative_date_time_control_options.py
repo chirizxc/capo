@@ -40,7 +40,7 @@ def serialize_json(value: DefaultRelativeDateTimeControlOptions) -> dict:
 
 def deserialize_json(data: dict) -> DefaultRelativeDateTimeControlOptions:
     out: DefaultRelativeDateTimeControlOptions = {}  # type: ignore[typeddict-item]
-    if "DisplayOptions" in data:
+    if data.get("DisplayOptions") is not None:
         import capo_quicksight.types.relative_date_time_control_display_options
 
         out["display_options"] = (
@@ -48,7 +48,7 @@ def deserialize_json(data: dict) -> DefaultRelativeDateTimeControlOptions:
                 data["DisplayOptions"]
             )
         )
-    if "CommitMode" in data:
+    if data.get("CommitMode") is not None:
         import capo_quicksight.types.commit_mode
 
         out["commit_mode"] = capo_quicksight.types.commit_mode.deserialize_json(

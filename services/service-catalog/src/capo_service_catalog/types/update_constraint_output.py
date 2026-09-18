@@ -47,7 +47,7 @@ def serialize_aws_json_1_1(value: UpdateConstraintOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateConstraintOutput:
     out: UpdateConstraintOutput = {}  # type: ignore[typeddict-item]
-    if "ConstraintDetail" in data:
+    if data.get("ConstraintDetail") is not None:
         import capo_service_catalog.types.constraint_detail
 
         out["constraint_detail"] = (
@@ -55,9 +55,9 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateConstraintOutput:
                 data["ConstraintDetail"]
             )
         )
-    if "ConstraintParameters" in data:
+    if data.get("ConstraintParameters") is not None:
         out["constraint_parameters"] = data["ConstraintParameters"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_service_catalog.types.status
 
         out["status"] = capo_service_catalog.types.status.deserialize_aws_json_1_1(

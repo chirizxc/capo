@@ -25,6 +25,6 @@ def serialize_aws_json_1_1(value: JobConfigSchemaVersionSummary) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> JobConfigSchemaVersionSummary:
     out: JobConfigSchemaVersionSummary = {}  # type: ignore[typeddict-item]
-    if "JobConfigSchemaVersion" in data:
+    if data.get("JobConfigSchemaVersion") is not None:
         out["job_config_schema_version"] = data["JobConfigSchemaVersion"]
     return out

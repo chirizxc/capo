@@ -46,20 +46,20 @@ def serialize_aws_json_1_1(value: ListStepsInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListStepsInput:
     out: ListStepsInput = {}  # type: ignore[typeddict-item]
-    if "ClusterId" in data:
+    if data.get("ClusterId") is not None:
         out["cluster_id"] = data["ClusterId"]
-    if "StepStates" in data:
+    if data.get("StepStates") is not None:
         import capo_emr.types.step_state_list
 
         out["step_states"] = capo_emr.types.step_state_list.deserialize_aws_json_1_1(
             data["StepStates"]
         )
-    if "StepIds" in data:
+    if data.get("StepIds") is not None:
         import capo_emr.types.xml_string_list
 
         out["step_ids"] = capo_emr.types.xml_string_list.deserialize_aws_json_1_1(
             data["StepIds"]
         )
-    if "Marker" in data:
+    if data.get("Marker") is not None:
         out["marker"] = data["Marker"]
     return out

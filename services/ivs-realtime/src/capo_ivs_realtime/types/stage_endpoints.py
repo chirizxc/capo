@@ -35,12 +35,12 @@ def serialize_json(value: StageEndpoints) -> dict:
 
 def deserialize_json(data: dict) -> StageEndpoints:
     out: StageEndpoints = {}  # type: ignore[typeddict-item]
-    if "events" in data:
+    if data.get("events") is not None:
         out["events"] = data["events"]
-    if "whip" in data:
+    if data.get("whip") is not None:
         out["whip"] = data["whip"]
-    if "rtmp" in data:
+    if data.get("rtmp") is not None:
         out["rtmp"] = data["rtmp"]
-    if "rtmps" in data:
+    if data.get("rtmps") is not None:
         out["rtmps"] = data["rtmps"]
     return out

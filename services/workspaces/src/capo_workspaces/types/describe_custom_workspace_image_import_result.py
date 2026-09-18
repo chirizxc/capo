@@ -107,11 +107,11 @@ def serialize_aws_json_1_1(value: DescribeCustomWorkspaceImageImportResult) -> d
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeCustomWorkspaceImageImportResult:
     out: DescribeCustomWorkspaceImageImportResult = {}  # type: ignore[typeddict-item]
-    if "ImageId" in data:
+    if data.get("ImageId") is not None:
         out["image_id"] = data["ImageId"]
-    if "InfrastructureConfigurationArn" in data:
+    if data.get("InfrastructureConfigurationArn") is not None:
         out["infrastructure_configuration_arn"] = data["InfrastructureConfigurationArn"]
-    if "State" in data:
+    if data.get("State") is not None:
         import capo_workspaces.types.custom_workspace_image_import_state
 
         out["state"] = (
@@ -119,17 +119,17 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeCustomWorkspaceImageImportRe
                 data["State"]
             )
         )
-    if "StateMessage" in data:
+    if data.get("StateMessage") is not None:
         out["state_message"] = data["StateMessage"]
-    if "ProgressPercentage" in data:
+    if data.get("ProgressPercentage") is not None:
         out["progress_percentage"] = data["ProgressPercentage"]
-    if "Created" in data:
+    if data.get("Created") is not None:
         import capo_workspaces.types.timestamp
 
         out["created"] = capo_workspaces.types.timestamp.deserialize_aws_json_1_1(
             data["Created"]
         )
-    if "LastUpdatedTime" in data:
+    if data.get("LastUpdatedTime") is not None:
         import capo_workspaces.types.timestamp
 
         out["last_updated_time"] = (
@@ -137,7 +137,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeCustomWorkspaceImageImportRe
                 data["LastUpdatedTime"]
             )
         )
-    if "ImageSource" in data:
+    if data.get("ImageSource") is not None:
         import capo_workspaces.types.image_source_identifier
 
         out["image_source"] = (
@@ -145,9 +145,9 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeCustomWorkspaceImageImportRe
                 data["ImageSource"]
             )
         )
-    if "ImageBuilderInstanceId" in data:
+    if data.get("ImageBuilderInstanceId") is not None:
         out["image_builder_instance_id"] = data["ImageBuilderInstanceId"]
-    if "ErrorDetails" in data:
+    if data.get("ErrorDetails") is not None:
         import capo_workspaces.types.custom_workspace_image_import_error_details_list
 
         out["error_details"] = (

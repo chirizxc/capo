@@ -73,23 +73,23 @@ def serialize_json(value: CampaignSummary) -> dict:
 
 def deserialize_json(data: dict) -> CampaignSummary:
     out: CampaignSummary = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("CampaignSummary.id required")
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("CampaignSummary.arn required")
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("CampaignSummary.name required")
-    if "connectInstanceId" in data:
+    if data.get("connectInstanceId") is not None:
         out["connect_instance_id"] = data["connectInstanceId"]
     else:
         raise DeserializationError("CampaignSummary.connect_instance_id required")
-    if "channelSubtypes" in data:
+    if data.get("channelSubtypes") is not None:
         import capo_connectcampaignsv2.types.channel_subtype_list
 
         out["channel_subtypes"] = (
@@ -99,15 +99,15 @@ def deserialize_json(data: dict) -> CampaignSummary:
         )
     else:
         raise DeserializationError("CampaignSummary.channel_subtypes required")
-    if "type" in data:
+    if data.get("type") is not None:
         out["type"] = data["type"]
-    if "schedule" in data:
+    if data.get("schedule") is not None:
         import capo_connectcampaignsv2.types.schedule
 
         out["schedule"] = capo_connectcampaignsv2.types.schedule.deserialize_json(
             data["schedule"]
         )
-    if "entryLimitsConfig" in data:
+    if data.get("entryLimitsConfig") is not None:
         import capo_connectcampaignsv2.types.entry_limits_config
 
         out["entry_limits_config"] = (
@@ -115,6 +115,6 @@ def deserialize_json(data: dict) -> CampaignSummary:
                 data["entryLimitsConfig"]
             )
         )
-    if "connectCampaignFlowArn" in data:
+    if data.get("connectCampaignFlowArn") is not None:
         out["connect_campaign_flow_arn"] = data["connectCampaignFlowArn"]
     return out

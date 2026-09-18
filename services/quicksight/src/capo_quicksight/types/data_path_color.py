@@ -43,7 +43,7 @@ def serialize_json(value: DataPathColor) -> dict:
 
 def deserialize_json(data: dict) -> DataPathColor:
     out: DataPathColor = {}  # type: ignore[typeddict-item]
-    if "Element" in data:
+    if data.get("Element") is not None:
         import capo_quicksight.types.data_path_value
 
         out["element"] = capo_quicksight.types.data_path_value.deserialize_json(
@@ -51,11 +51,11 @@ def deserialize_json(data: dict) -> DataPathColor:
         )
     else:
         raise DeserializationError("DataPathColor.element required")
-    if "Color" in data:
+    if data.get("Color") is not None:
         out["color"] = data["Color"]
     else:
         raise DeserializationError("DataPathColor.color required")
-    if "TimeGranularity" in data:
+    if data.get("TimeGranularity") is not None:
         import capo_quicksight.types.time_granularity
 
         out["time_granularity"] = (

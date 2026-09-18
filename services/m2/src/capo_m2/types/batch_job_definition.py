@@ -52,7 +52,7 @@ def serialize_json(value: BatchJobDefinition) -> dict:
 
 
 def deserialize_json(data: dict) -> BatchJobDefinition:
-    if "fileBatchJobDefinition" in data:
+    if data.get("fileBatchJobDefinition") is not None:
         import capo_m2.types.file_batch_job_definition
 
         return {
@@ -60,7 +60,7 @@ def deserialize_json(data: dict) -> BatchJobDefinition:
                 data["fileBatchJobDefinition"]
             )
         }
-    elif "scriptBatchJobDefinition" in data:
+    elif data.get("scriptBatchJobDefinition") is not None:
         import capo_m2.types.script_batch_job_definition
 
         return {

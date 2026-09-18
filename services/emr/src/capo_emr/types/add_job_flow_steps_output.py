@@ -27,7 +27,7 @@ def serialize_aws_json_1_1(value: AddJobFlowStepsOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AddJobFlowStepsOutput:
     out: AddJobFlowStepsOutput = {}  # type: ignore[typeddict-item]
-    if "StepIds" in data:
+    if data.get("StepIds") is not None:
         import capo_emr.types.step_ids_list
 
         out["step_ids"] = capo_emr.types.step_ids_list.deserialize_aws_json_1_1(

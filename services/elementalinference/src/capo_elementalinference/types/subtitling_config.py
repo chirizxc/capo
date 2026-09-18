@@ -59,7 +59,7 @@ def serialize_json(value: SubtitlingConfig) -> dict:
 
 def deserialize_json(data: dict) -> SubtitlingConfig:
     out: SubtitlingConfig = {}  # type: ignore[typeddict-item]
-    if "language" in data:
+    if data.get("language") is not None:
         import capo_elementalinference.types.transcription_language
 
         out["language"] = (
@@ -69,7 +69,7 @@ def deserialize_json(data: dict) -> SubtitlingConfig:
         )
     else:
         raise DeserializationError("SubtitlingConfig.language required")
-    if "aspectRatio" in data:
+    if data.get("aspectRatio") is not None:
         import capo_elementalinference.types.aspect_ratio
 
         out["aspect_ratio"] = (
@@ -77,9 +77,9 @@ def deserialize_json(data: dict) -> SubtitlingConfig:
                 data["aspectRatio"]
             )
         )
-    if "dictionary" in data:
+    if data.get("dictionary") is not None:
         out["dictionary"] = data["dictionary"]
-    if "profanityFilter" in data:
+    if data.get("profanityFilter") is not None:
         import capo_elementalinference.types.profanity_filter_mode
 
         out["profanity_filter"] = (

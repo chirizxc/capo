@@ -38,17 +38,17 @@ def serialize_json(value: QnAKendraConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> QnAKendraConfiguration:
     out: QnAKendraConfiguration = {}  # type: ignore[typeddict-item]
-    if "kendraIndex" in data:
+    if data.get("kendraIndex") is not None:
         out["kendra_index"] = data["kendraIndex"]
     else:
         raise DeserializationError("QnAKendraConfiguration.kendra_index required")
-    if "queryFilterStringEnabled" in data:
+    if data.get("queryFilterStringEnabled") is not None:
         out["query_filter_string_enabled"] = data["queryFilterStringEnabled"]
     else:
         out["query_filter_string_enabled"] = False
-    if "queryFilterString" in data:
+    if data.get("queryFilterString") is not None:
         out["query_filter_string"] = data["queryFilterString"]
-    if "exactResponse" in data:
+    if data.get("exactResponse") is not None:
         out["exact_response"] = data["exactResponse"]
     else:
         out["exact_response"] = False

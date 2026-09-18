@@ -42,7 +42,7 @@ def serialize_aws_json_1_1(value: ConditionState) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ConditionState:
     out: ConditionState = {}  # type: ignore[typeddict-item]
-    if "latestExecution" in data:
+    if data.get("latestExecution") is not None:
         import capo_codepipeline.types.condition_execution
 
         out["latest_execution"] = (
@@ -50,7 +50,7 @@ def deserialize_aws_json_1_1(data: dict) -> ConditionState:
                 data["latestExecution"]
             )
         )
-    if "ruleStates" in data:
+    if data.get("ruleStates") is not None:
         import capo_codepipeline.types.rule_state_list
 
         out["rule_states"] = (

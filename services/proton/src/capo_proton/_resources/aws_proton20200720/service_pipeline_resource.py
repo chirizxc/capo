@@ -77,10 +77,11 @@ class ServicePipelineResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_proton.types.update_service_pipeline_input.UpdateServicePipelineInput = {}  # type: ignore[typeddict-item]
-        input_["service_name"] = service_name
-        input_["spec"] = spec
-        input_["deployment_type"] = deployment_type
+        input_: capo_proton.types.update_service_pipeline_input.UpdateServicePipelineInput = {
+            "service_name": service_name,
+            "spec": spec,
+            "deployment_type": deployment_type,
+        }
         if template_major_version is not None:
             input_["template_major_version"] = template_major_version
         if template_minor_version is not None:
@@ -91,6 +92,7 @@ class ServicePipelineResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -147,10 +149,11 @@ class AsyncServicePipelineResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_proton.types.update_service_pipeline_input.UpdateServicePipelineInput = {}  # type: ignore[typeddict-item]
-        input_["service_name"] = service_name
-        input_["spec"] = spec
-        input_["deployment_type"] = deployment_type
+        input_: capo_proton.types.update_service_pipeline_input.UpdateServicePipelineInput = {
+            "service_name": service_name,
+            "spec": spec,
+            "deployment_type": deployment_type,
+        }
         if template_major_version is not None:
             input_["template_major_version"] = template_major_version
         if template_minor_version is not None:
@@ -161,4 +164,5 @@ class AsyncServicePipelineResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

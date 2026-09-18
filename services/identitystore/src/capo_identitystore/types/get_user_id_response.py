@@ -28,11 +28,11 @@ def serialize_aws_json_1_1(value: GetUserIdResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetUserIdResponse:
     out: GetUserIdResponse = {}  # type: ignore[typeddict-item]
-    if "IdentityStoreId" in data:
+    if data.get("IdentityStoreId") is not None:
         out["identity_store_id"] = data["IdentityStoreId"]
     else:
         raise DeserializationError("GetUserIdResponse.identity_store_id required")
-    if "UserId" in data:
+    if data.get("UserId") is not None:
         out["user_id"] = data["UserId"]
     else:
         raise DeserializationError("GetUserIdResponse.user_id required")

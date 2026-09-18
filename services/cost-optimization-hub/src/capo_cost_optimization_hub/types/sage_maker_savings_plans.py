@@ -44,7 +44,7 @@ def serialize_aws_json_1_0(value: SageMakerSavingsPlans) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> SageMakerSavingsPlans:
     out: SageMakerSavingsPlans = {}  # type: ignore[typeddict-item]
-    if "configuration" in data:
+    if data.get("configuration") is not None:
         import capo_cost_optimization_hub.types.sage_maker_savings_plans_configuration
 
         out["configuration"] = (
@@ -52,7 +52,7 @@ def deserialize_aws_json_1_0(data: dict) -> SageMakerSavingsPlans:
                 data["configuration"]
             )
         )
-    if "costCalculation" in data:
+    if data.get("costCalculation") is not None:
         import capo_cost_optimization_hub.types.savings_plans_cost_calculation
 
         out["cost_calculation"] = (

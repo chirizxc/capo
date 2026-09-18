@@ -38,18 +38,18 @@ def serialize_json(value: StartAssessmentFrameworkShareRequest) -> dict:
 
 def deserialize_json(data: dict) -> StartAssessmentFrameworkShareRequest:
     out: StartAssessmentFrameworkShareRequest = {}  # type: ignore[typeddict-item]
-    if "destinationAccount" in data:
+    if data.get("destinationAccount") is not None:
         out["destination_account"] = data["destinationAccount"]
     else:
         raise DeserializationError(
             "StartAssessmentFrameworkShareRequest.destination_account required"
         )
-    if "destinationRegion" in data:
+    if data.get("destinationRegion") is not None:
         out["destination_region"] = data["destinationRegion"]
     else:
         raise DeserializationError(
             "StartAssessmentFrameworkShareRequest.destination_region required"
         )
-    if "comment" in data:
+    if data.get("comment") is not None:
         out["comment"] = data["comment"]
     return out

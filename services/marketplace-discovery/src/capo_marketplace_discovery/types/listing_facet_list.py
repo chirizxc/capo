@@ -25,6 +25,8 @@ def deserialize_json(data: list) -> ListingFacetList:
 
     out: ListingFacetList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_marketplace_discovery.types.listing_facet.deserialize_json(item)
         )

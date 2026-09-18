@@ -32,12 +32,12 @@ def serialize_aws_json_1_1(value: ListProtectionsResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListProtectionsResponse:
     out: ListProtectionsResponse = {}  # type: ignore[typeddict-item]
-    if "Protections" in data:
+    if data.get("Protections") is not None:
         import capo_shield.types.protections
 
         out["protections"] = capo_shield.types.protections.deserialize_aws_json_1_1(
             data["Protections"]
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

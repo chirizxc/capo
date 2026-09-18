@@ -119,11 +119,11 @@ def serialize_json(value: CustomLineItemListElement) -> dict:
 
 def deserialize_json(data: dict) -> CustomLineItemListElement:
     out: CustomLineItemListElement = {}  # type: ignore[typeddict-item]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "ChargeDetails" in data:
+    if data.get("ChargeDetails") is not None:
         import capo_billingconductor.types.list_custom_line_item_charge_details
 
         out["charge_details"] = (
@@ -131,7 +131,7 @@ def deserialize_json(data: dict) -> CustomLineItemListElement:
                 data["ChargeDetails"]
             )
         )
-    if "CurrencyCode" in data:
+    if data.get("CurrencyCode") is not None:
         import capo_billingconductor.types.currency_code
 
         out["currency_code"] = (
@@ -139,27 +139,27 @@ def deserialize_json(data: dict) -> CustomLineItemListElement:
                 data["CurrencyCode"]
             )
         )
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "ProductCode" in data:
+    if data.get("ProductCode") is not None:
         out["product_code"] = data["ProductCode"]
-    if "BillingGroupArn" in data:
+    if data.get("BillingGroupArn") is not None:
         out["billing_group_arn"] = data["BillingGroupArn"]
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         out["creation_time"] = data["CreationTime"]
     else:
         out["creation_time"] = 0
-    if "LastModifiedTime" in data:
+    if data.get("LastModifiedTime") is not None:
         out["last_modified_time"] = data["LastModifiedTime"]
     else:
         out["last_modified_time"] = 0
-    if "AssociationSize" in data:
+    if data.get("AssociationSize") is not None:
         out["association_size"] = data["AssociationSize"]
     else:
         out["association_size"] = 0
-    if "AccountId" in data:
+    if data.get("AccountId") is not None:
         out["account_id"] = data["AccountId"]
-    if "ComputationRule" in data:
+    if data.get("ComputationRule") is not None:
         import capo_billingconductor.types.computation_rule_enum
 
         out["computation_rule"] = (
@@ -167,7 +167,7 @@ def deserialize_json(data: dict) -> CustomLineItemListElement:
                 data["ComputationRule"]
             )
         )
-    if "PresentationDetails" in data:
+    if data.get("PresentationDetails") is not None:
         import capo_billingconductor.types.presentation_object
 
         out["presentation_details"] = (

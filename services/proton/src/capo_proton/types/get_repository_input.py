@@ -28,11 +28,11 @@ def serialize_aws_json_1_0(value: GetRepositoryInput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> GetRepositoryInput:
     out: GetRepositoryInput = {}  # type: ignore[typeddict-item]
-    if "provider" in data:
+    if data.get("provider") is not None:
         out["provider"] = data["provider"]
     else:
         raise DeserializationError("GetRepositoryInput.provider required")
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("GetRepositoryInput.name required")

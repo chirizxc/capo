@@ -46,7 +46,7 @@ def serialize_aws_json_1_1(value: GetExclusionsPreviewResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetExclusionsPreviewResponse:
     out: GetExclusionsPreviewResponse = {}  # type: ignore[typeddict-item]
-    if "previewStatus" in data:
+    if data.get("previewStatus") is not None:
         import capo_inspector.types.preview_status
 
         out["preview_status"] = (
@@ -58,7 +58,7 @@ def deserialize_aws_json_1_1(data: dict) -> GetExclusionsPreviewResponse:
         raise DeserializationError(
             "GetExclusionsPreviewResponse.preview_status required"
         )
-    if "exclusionPreviews" in data:
+    if data.get("exclusionPreviews") is not None:
         import capo_inspector.types.exclusion_preview_list
 
         out["exclusion_previews"] = (
@@ -66,6 +66,6 @@ def deserialize_aws_json_1_1(data: dict) -> GetExclusionsPreviewResponse:
                 data["exclusionPreviews"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

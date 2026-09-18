@@ -32,9 +32,9 @@ def serialize_aws_json_1_1(value: PredictorEvent) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PredictorEvent:
     out: PredictorEvent = {}  # type: ignore[typeddict-item]
-    if "Detail" in data:
+    if data.get("Detail") is not None:
         out["detail"] = data["Detail"]
-    if "Datetime" in data:
+    if data.get("Datetime") is not None:
         import capo_forecast.types.timestamp
 
         out["datetime"] = capo_forecast.types.timestamp.deserialize_aws_json_1_1(

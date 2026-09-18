@@ -88,9 +88,9 @@ def serialize_aws_json_1_1(value: InferenceRecommendation) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> InferenceRecommendation:
     out: InferenceRecommendation = {}  # type: ignore[typeddict-item]
-    if "RecommendationId" in data:
+    if data.get("RecommendationId") is not None:
         out["recommendation_id"] = data["RecommendationId"]
-    if "Metrics" in data:
+    if data.get("Metrics") is not None:
         import capo_sagemaker.types.recommendation_metrics
 
         out["metrics"] = (
@@ -98,7 +98,7 @@ def deserialize_aws_json_1_1(data: dict) -> InferenceRecommendation:
                 data["Metrics"]
             )
         )
-    if "EndpointConfiguration" in data:
+    if data.get("EndpointConfiguration") is not None:
         import capo_sagemaker.types.endpoint_output_configuration
 
         out["endpoint_configuration"] = (
@@ -106,7 +106,7 @@ def deserialize_aws_json_1_1(data: dict) -> InferenceRecommendation:
                 data["EndpointConfiguration"]
             )
         )
-    if "ModelConfiguration" in data:
+    if data.get("ModelConfiguration") is not None:
         import capo_sagemaker.types.model_configuration
 
         out["model_configuration"] = (
@@ -114,7 +114,7 @@ def deserialize_aws_json_1_1(data: dict) -> InferenceRecommendation:
                 data["ModelConfiguration"]
             )
         )
-    if "InvocationEndTime" in data:
+    if data.get("InvocationEndTime") is not None:
         import capo_sagemaker.types.invocation_end_time
 
         out["invocation_end_time"] = (
@@ -122,7 +122,7 @@ def deserialize_aws_json_1_1(data: dict) -> InferenceRecommendation:
                 data["InvocationEndTime"]
             )
         )
-    if "InvocationStartTime" in data:
+    if data.get("InvocationStartTime") is not None:
         import capo_sagemaker.types.invocation_start_time
 
         out["invocation_start_time"] = (

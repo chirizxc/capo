@@ -36,9 +36,9 @@ def serialize_json(value: ListRecoveryPointsByResourceOutput) -> dict:
 
 def deserialize_json(data: dict) -> ListRecoveryPointsByResourceOutput:
     out: ListRecoveryPointsByResourceOutput = {}  # type: ignore[typeddict-item]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "RecoveryPoints" in data:
+    if data.get("RecoveryPoints") is not None:
         import capo_backup.types.recovery_point_by_resource_list
 
         out["recovery_points"] = (

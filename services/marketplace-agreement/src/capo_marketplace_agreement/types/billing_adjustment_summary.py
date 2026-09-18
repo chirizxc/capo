@@ -77,29 +77,29 @@ def serialize_aws_json_1_0(value: BillingAdjustmentSummary) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> BillingAdjustmentSummary:
     out: BillingAdjustmentSummary = {}  # type: ignore[typeddict-item]
-    if "billingAdjustmentRequestId" in data:
+    if data.get("billingAdjustmentRequestId") is not None:
         out["billing_adjustment_request_id"] = data["billingAdjustmentRequestId"]
     else:
         raise DeserializationError(
             "BillingAdjustmentSummary.billing_adjustment_request_id required"
         )
-    if "originalInvoiceId" in data:
+    if data.get("originalInvoiceId") is not None:
         out["original_invoice_id"] = data["originalInvoiceId"]
     else:
         raise DeserializationError(
             "BillingAdjustmentSummary.original_invoice_id required"
         )
-    if "adjustmentAmount" in data:
+    if data.get("adjustmentAmount") is not None:
         out["adjustment_amount"] = data["adjustmentAmount"]
     else:
         raise DeserializationError(
             "BillingAdjustmentSummary.adjustment_amount required"
         )
-    if "currencyCode" in data:
+    if data.get("currencyCode") is not None:
         out["currency_code"] = data["currencyCode"]
     else:
         raise DeserializationError("BillingAdjustmentSummary.currency_code required")
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_marketplace_agreement.types.billing_adjustment_status
 
         out["status"] = (
@@ -109,11 +109,11 @@ def deserialize_aws_json_1_0(data: dict) -> BillingAdjustmentSummary:
         )
     else:
         raise DeserializationError("BillingAdjustmentSummary.status required")
-    if "agreementId" in data:
+    if data.get("agreementId") is not None:
         out["agreement_id"] = data["agreementId"]
     else:
         raise DeserializationError("BillingAdjustmentSummary.agreement_id required")
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_marketplace_agreement.types.timestamp
 
         out["created_at"] = (
@@ -123,7 +123,7 @@ def deserialize_aws_json_1_0(data: dict) -> BillingAdjustmentSummary:
         )
     else:
         raise DeserializationError("BillingAdjustmentSummary.created_at required")
-    if "updatedAt" in data:
+    if data.get("updatedAt") is not None:
         import capo_marketplace_agreement.types.timestamp
 
         out["updated_at"] = (
@@ -133,11 +133,11 @@ def deserialize_aws_json_1_0(data: dict) -> BillingAdjustmentSummary:
         )
     else:
         raise DeserializationError("BillingAdjustmentSummary.updated_at required")
-    if "agreementType" in data:
+    if data.get("agreementType") is not None:
         out["agreement_type"] = data["agreementType"]
     else:
         raise DeserializationError("BillingAdjustmentSummary.agreement_type required")
-    if "catalog" in data:
+    if data.get("catalog") is not None:
         out["catalog"] = data["catalog"]
     else:
         raise DeserializationError("BillingAdjustmentSummary.catalog required")

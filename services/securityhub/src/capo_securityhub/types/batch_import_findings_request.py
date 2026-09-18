@@ -31,7 +31,7 @@ def serialize_json(value: BatchImportFindingsRequest) -> dict:
 
 def deserialize_json(data: dict) -> BatchImportFindingsRequest:
     out: BatchImportFindingsRequest = {}  # type: ignore[typeddict-item]
-    if "Findings" in data:
+    if data.get("Findings") is not None:
         import capo_securityhub.types.batch_import_findings_request_finding_list
 
         out["findings"] = (

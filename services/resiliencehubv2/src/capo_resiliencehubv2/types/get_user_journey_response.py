@@ -28,7 +28,7 @@ def serialize_json(value: GetUserJourneyResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetUserJourneyResponse:
     out: GetUserJourneyResponse = {}  # type: ignore[typeddict-item]
-    if "userJourney" in data:
+    if data.get("userJourney") is not None:
         import capo_resiliencehubv2.types.user_journey
 
         out["user_journey"] = capo_resiliencehubv2.types.user_journey.deserialize_json(

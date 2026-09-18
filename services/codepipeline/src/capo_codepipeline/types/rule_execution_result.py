@@ -47,13 +47,13 @@ def serialize_aws_json_1_1(value: RuleExecutionResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RuleExecutionResult:
     out: RuleExecutionResult = {}  # type: ignore[typeddict-item]
-    if "externalExecutionId" in data:
+    if data.get("externalExecutionId") is not None:
         out["external_execution_id"] = data["externalExecutionId"]
-    if "externalExecutionSummary" in data:
+    if data.get("externalExecutionSummary") is not None:
         out["external_execution_summary"] = data["externalExecutionSummary"]
-    if "externalExecutionUrl" in data:
+    if data.get("externalExecutionUrl") is not None:
         out["external_execution_url"] = data["externalExecutionUrl"]
-    if "errorDetails" in data:
+    if data.get("errorDetails") is not None:
         import capo_codepipeline.types.error_details
 
         out["error_details"] = (

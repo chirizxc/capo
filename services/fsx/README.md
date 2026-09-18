@@ -13,9 +13,9 @@ from capo_fsx import AsyncFSxClient
 
 
 async def main():
-    async with AsyncFSxClient() as s3:
+    async with AsyncFSxClient() as f_sx:
         # Example: call the associate_file_system_aliases operation
-        response = await s3.associate_file_system_aliases()
+        response = await f_sx.associate_file_system_aliases()
         print(response["aliases"])
 ```
 
@@ -28,9 +28,9 @@ from capo_fsx import AsyncFSxClient
 
 
 async def main():
-    async with AsyncFSxClient() as s3:
-        # Example: paginate over describe_s3_access_point_attachments
-        async for item in s3.iter_describe_s3_access_point_attachments():
+    async with AsyncFSxClient() as f_sx:
+        # Example: paginate over describe_backups
+        async for item in f_sx.iter_describe_backups():
             print(item)
 ```
 
@@ -44,9 +44,9 @@ from capo_fsx.error import BadRequest
 
 
 async def main():
-    async with AsyncFSxClient() as s3:
+    async with AsyncFSxClient() as f_sx:
         try:
-            await s3.associate_file_system_aliases()
+            await f_sx.associate_file_system_aliases()
         except BadRequest as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -63,13 +63,13 @@ from capo_fsx import AsyncFSxClient
 
 
 async def main():
-    async with AsyncFSxClient() as s3:
+    async with AsyncFSxClient() as f_sx:
         # Default: 3 attempts for every operation
-        response = await s3.associate_file_system_aliases()
+        response = await f_sx.associate_file_system_aliases()
 
         # Override per operation
-        response = await s3.associate_file_system_aliases(config_overrides={"retry_max_attempts": 5})
+        response = await f_sx.associate_file_system_aliases(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.associate_file_system_aliases(config_overrides={"retry_max_attempts": 1})
+        response = await f_sx.associate_file_system_aliases(config_overrides={"retry_max_attempts": 1})
 ```

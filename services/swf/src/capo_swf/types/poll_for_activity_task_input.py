@@ -37,11 +37,11 @@ def serialize_aws_json_1_0(value: PollForActivityTaskInput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> PollForActivityTaskInput:
     out: PollForActivityTaskInput = {}  # type: ignore[typeddict-item]
-    if "domain" in data:
+    if data.get("domain") is not None:
         out["domain"] = data["domain"]
     else:
         raise DeserializationError("PollForActivityTaskInput.domain required")
-    if "taskList" in data:
+    if data.get("taskList") is not None:
         import capo_swf.types.task_list
 
         out["task_list"] = capo_swf.types.task_list.deserialize_aws_json_1_0(
@@ -49,6 +49,6 @@ def deserialize_aws_json_1_0(data: dict) -> PollForActivityTaskInput:
         )
     else:
         raise DeserializationError("PollForActivityTaskInput.task_list required")
-    if "identity" in data:
+    if data.get("identity") is not None:
         out["identity"] = data["identity"]
     return out

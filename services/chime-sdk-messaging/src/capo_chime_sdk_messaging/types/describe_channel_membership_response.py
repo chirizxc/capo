@@ -31,7 +31,7 @@ def serialize_json(value: DescribeChannelMembershipResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribeChannelMembershipResponse:
     out: DescribeChannelMembershipResponse = {}  # type: ignore[typeddict-item]
-    if "ChannelMembership" in data:
+    if data.get("ChannelMembership") is not None:
         import capo_chime_sdk_messaging.types.channel_membership
 
         out["channel_membership"] = (

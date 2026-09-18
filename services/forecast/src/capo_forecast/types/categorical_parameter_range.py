@@ -30,11 +30,11 @@ def serialize_aws_json_1_1(value: CategoricalParameterRange) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CategoricalParameterRange:
     out: CategoricalParameterRange = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("CategoricalParameterRange.name required")
-    if "Values" in data:
+    if data.get("Values") is not None:
         import capo_forecast.types.values
 
         out["values"] = capo_forecast.types.values.deserialize_aws_json_1_1(

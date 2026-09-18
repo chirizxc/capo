@@ -29,10 +29,10 @@ def serialize_aws_json_1_1(value: SchemaVersionNumber) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SchemaVersionNumber:
     out: SchemaVersionNumber = {}  # type: ignore[typeddict-item]
-    if "LatestVersion" in data:
+    if data.get("LatestVersion") is not None:
         out["latest_version"] = data["LatestVersion"]
     else:
         out["latest_version"] = False
-    if "VersionNumber" in data:
+    if data.get("VersionNumber") is not None:
         out["version_number"] = data["VersionNumber"]
     return out

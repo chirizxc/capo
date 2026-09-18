@@ -20,16 +20,24 @@ class CoversBodyPart(TypedDict, closed=True):
 def serialize_aws_json_1_1(value: CoversBodyPart) -> dict:
     out: dict = {}
     if "confidence" in value:
-        out["Confidence"] = value["confidence"]
+        out["Confidence"] = (
+            "NaN"
+            if value["confidence"] != value["confidence"]
+            else "Infinity"
+            if value["confidence"] == float("inf")
+            else "-Infinity"
+            if value["confidence"] == float("-inf")
+            else value["confidence"]
+        )
     out["Value"] = value.get("value", False)
     return out
 
 
 def deserialize_aws_json_1_1(data: dict) -> CoversBodyPart:
     out: CoversBodyPart = {}  # type: ignore[typeddict-item]
-    if "Confidence" in data:
-        out["confidence"] = data["Confidence"]
-    if "Value" in data:
+    if data.get("Confidence") is not None:
+        out["confidence"] = float(data["Confidence"])
+    if data.get("Value") is not None:
         out["value"] = data["Value"]
     else:
         out["value"] = False

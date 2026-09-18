@@ -27,6 +27,8 @@ def deserialize_aws_json_1_1(data: list) -> EnvironmentPlatforms:
 
     out: EnvironmentPlatforms = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_codebuild.types.environment_platform.deserialize_aws_json_1_1(item)
         )

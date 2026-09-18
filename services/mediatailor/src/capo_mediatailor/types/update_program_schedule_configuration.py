@@ -40,7 +40,7 @@ def serialize_json(value: UpdateProgramScheduleConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> UpdateProgramScheduleConfiguration:
     out: UpdateProgramScheduleConfiguration = {}  # type: ignore[typeddict-item]
-    if "Transition" in data:
+    if data.get("Transition") is not None:
         import capo_mediatailor.types.update_program_transition
 
         out["transition"] = (
@@ -48,7 +48,7 @@ def deserialize_json(data: dict) -> UpdateProgramScheduleConfiguration:
                 data["Transition"]
             )
         )
-    if "ClipRange" in data:
+    if data.get("ClipRange") is not None:
         import capo_mediatailor.types.clip_range
 
         out["clip_range"] = capo_mediatailor.types.clip_range.deserialize_json(

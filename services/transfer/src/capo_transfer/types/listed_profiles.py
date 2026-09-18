@@ -23,5 +23,7 @@ def deserialize_aws_json_1_1(data: list) -> ListedProfiles:
 
     out: ListedProfiles = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_transfer.types.listed_profile.deserialize_aws_json_1_1(item))
     return out

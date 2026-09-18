@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> S3ItemFilters:
 
     out: S3ItemFilters = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_backupsearch.types.s3_item_filter.deserialize_json(item))
     return out

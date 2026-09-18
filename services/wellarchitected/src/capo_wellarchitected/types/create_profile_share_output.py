@@ -27,8 +27,8 @@ def serialize_json(value: CreateProfileShareOutput) -> dict:
 
 def deserialize_json(data: dict) -> CreateProfileShareOutput:
     out: CreateProfileShareOutput = {}  # type: ignore[typeddict-item]
-    if "ShareId" in data:
+    if data.get("ShareId") is not None:
         out["share_id"] = data["ShareId"]
-    if "ProfileArn" in data:
+    if data.get("ProfileArn") is not None:
         out["profile_arn"] = data["ProfileArn"]
     return out

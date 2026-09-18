@@ -30,8 +30,8 @@ def serialize_json(value: BuiltInSlotTypeSummary) -> dict:
 
 def deserialize_json(data: dict) -> BuiltInSlotTypeSummary:
     out: BuiltInSlotTypeSummary = {}  # type: ignore[typeddict-item]
-    if "slotTypeSignature" in data:
+    if data.get("slotTypeSignature") is not None:
         out["slot_type_signature"] = data["slotTypeSignature"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
     return out

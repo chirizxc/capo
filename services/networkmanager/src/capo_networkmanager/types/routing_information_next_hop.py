@@ -55,16 +55,16 @@ def serialize_json(value: RoutingInformationNextHop) -> dict:
 
 def deserialize_json(data: dict) -> RoutingInformationNextHop:
     out: RoutingInformationNextHop = {}  # type: ignore[typeddict-item]
-    if "IpAddress" in data:
+    if data.get("IpAddress") is not None:
         out["ip_address"] = data["IpAddress"]
-    if "CoreNetworkAttachmentId" in data:
+    if data.get("CoreNetworkAttachmentId") is not None:
         out["core_network_attachment_id"] = data["CoreNetworkAttachmentId"]
-    if "ResourceId" in data:
+    if data.get("ResourceId") is not None:
         out["resource_id"] = data["ResourceId"]
-    if "ResourceType" in data:
+    if data.get("ResourceType") is not None:
         out["resource_type"] = data["ResourceType"]
-    if "SegmentName" in data:
+    if data.get("SegmentName") is not None:
         out["segment_name"] = data["SegmentName"]
-    if "EdgeLocation" in data:
+    if data.get("EdgeLocation") is not None:
         out["edge_location"] = data["EdgeLocation"]
     return out

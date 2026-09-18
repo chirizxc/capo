@@ -50,11 +50,11 @@ def serialize_aws_json_1_1(value: UpdateClusterSchedulerConfigRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateClusterSchedulerConfigRequest:
     out: UpdateClusterSchedulerConfigRequest = {}  # type: ignore[typeddict-item]
-    if "ClusterSchedulerConfigId" in data:
+    if data.get("ClusterSchedulerConfigId") is not None:
         out["cluster_scheduler_config_id"] = data["ClusterSchedulerConfigId"]
-    if "TargetVersion" in data:
+    if data.get("TargetVersion") is not None:
         out["target_version"] = data["TargetVersion"]
-    if "SchedulerConfig" in data:
+    if data.get("SchedulerConfig") is not None:
         import capo_sagemaker.types.scheduler_config
 
         out["scheduler_config"] = (
@@ -62,6 +62,6 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateClusterSchedulerConfigRequest:
                 data["SchedulerConfig"]
             )
         )
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
     return out

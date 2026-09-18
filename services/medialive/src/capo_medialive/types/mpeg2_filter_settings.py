@@ -30,7 +30,7 @@ def serialize_json(value: Mpeg2FilterSettings) -> dict:
 
 def deserialize_json(data: dict) -> Mpeg2FilterSettings:
     out: Mpeg2FilterSettings = {}  # type: ignore[typeddict-item]
-    if "temporalFilterSettings" in data:
+    if data.get("temporalFilterSettings") is not None:
         import capo_medialive.types.temporal_filter_settings
 
         out["temporal_filter_settings"] = (

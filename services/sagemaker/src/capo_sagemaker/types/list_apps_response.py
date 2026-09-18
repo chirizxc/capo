@@ -32,12 +32,12 @@ def serialize_aws_json_1_1(value: ListAppsResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListAppsResponse:
     out: ListAppsResponse = {}  # type: ignore[typeddict-item]
-    if "Apps" in data:
+    if data.get("Apps") is not None:
         import capo_sagemaker.types.app_list
 
         out["apps"] = capo_sagemaker.types.app_list.deserialize_aws_json_1_1(
             data["Apps"]
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

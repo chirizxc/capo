@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> LFTagErrors:
 
     out: LFTagErrors = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_lakeformation.types.lf_tag_error.deserialize_json(item))
     return out

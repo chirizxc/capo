@@ -19,7 +19,7 @@ def serialize_json(value: TextAttributes) -> dict:
 
 def deserialize_json(data: dict) -> TextAttributes:
     out: TextAttributes = {}  # type: ignore[typeddict-item]
-    if "isMultiline" in data:
+    if data.get("isMultiline") is not None:
         out["is_multiline"] = data["isMultiline"]
     else:
         raise DeserializationError("TextAttributes.is_multiline required")

@@ -58,13 +58,13 @@ def serialize_aws_json_1_1(value: DetectLabelsResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DetectLabelsResponse:
     out: DetectLabelsResponse = {}  # type: ignore[typeddict-item]
-    if "Labels" in data:
+    if data.get("Labels") is not None:
         import capo_rekognition.types.labels
 
         out["labels"] = capo_rekognition.types.labels.deserialize_aws_json_1_1(
             data["Labels"]
         )
-    if "OrientationCorrection" in data:
+    if data.get("OrientationCorrection") is not None:
         import capo_rekognition.types.orientation_correction
 
         out["orientation_correction"] = (
@@ -72,9 +72,9 @@ def deserialize_aws_json_1_1(data: dict) -> DetectLabelsResponse:
                 data["OrientationCorrection"]
             )
         )
-    if "LabelModelVersion" in data:
+    if data.get("LabelModelVersion") is not None:
         out["label_model_version"] = data["LabelModelVersion"]
-    if "ImageProperties" in data:
+    if data.get("ImageProperties") is not None:
         import capo_rekognition.types.detect_labels_image_properties
 
         out["image_properties"] = (

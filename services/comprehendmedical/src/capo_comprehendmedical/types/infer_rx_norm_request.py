@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: InferRxNormRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> InferRxNormRequest:
     out: InferRxNormRequest = {}  # type: ignore[typeddict-item]
-    if "Text" in data:
+    if data.get("Text") is not None:
         out["text"] = data["Text"]
     else:
         raise DeserializationError("InferRxNormRequest.text required")

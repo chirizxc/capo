@@ -42,19 +42,19 @@ def serialize_json(value: StartReferenceImportJobSourceItem) -> dict:
 
 def deserialize_json(data: dict) -> StartReferenceImportJobSourceItem:
     out: StartReferenceImportJobSourceItem = {}  # type: ignore[typeddict-item]
-    if "sourceFile" in data:
+    if data.get("sourceFile") is not None:
         out["source_file"] = data["sourceFile"]
     else:
         raise DeserializationError(
             "StartReferenceImportJobSourceItem.source_file required"
         )
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("StartReferenceImportJobSourceItem.name required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_omics.types.tag_map
 
         out["tags"] = capo_omics.types.tag_map.deserialize_json(data["tags"])

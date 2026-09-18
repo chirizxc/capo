@@ -28,11 +28,11 @@ def serialize_json(value: InsertAdBreakRequest) -> dict:
 
 def deserialize_json(data: dict) -> InsertAdBreakRequest:
     out: InsertAdBreakRequest = {}  # type: ignore[typeddict-item]
-    if "channelArn" in data:
+    if data.get("channelArn") is not None:
         out["channel_arn"] = data["channelArn"]
     else:
         raise DeserializationError("InsertAdBreakRequest.channel_arn required")
-    if "durationSeconds" in data:
+    if data.get("durationSeconds") is not None:
         out["duration_seconds"] = data["durationSeconds"]
     else:
         raise DeserializationError("InsertAdBreakRequest.duration_seconds required")

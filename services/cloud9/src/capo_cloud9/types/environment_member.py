@@ -49,7 +49,7 @@ def serialize_aws_json_1_1(value: EnvironmentMember) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> EnvironmentMember:
     out: EnvironmentMember = {}  # type: ignore[typeddict-item]
-    if "permissions" in data:
+    if data.get("permissions") is not None:
         import capo_cloud9.types.permissions
 
         out["permissions"] = capo_cloud9.types.permissions.deserialize_aws_json_1_1(
@@ -57,19 +57,19 @@ def deserialize_aws_json_1_1(data: dict) -> EnvironmentMember:
         )
     else:
         raise DeserializationError("EnvironmentMember.permissions required")
-    if "userId" in data:
+    if data.get("userId") is not None:
         out["user_id"] = data["userId"]
     else:
         raise DeserializationError("EnvironmentMember.user_id required")
-    if "userArn" in data:
+    if data.get("userArn") is not None:
         out["user_arn"] = data["userArn"]
     else:
         raise DeserializationError("EnvironmentMember.user_arn required")
-    if "environmentId" in data:
+    if data.get("environmentId") is not None:
         out["environment_id"] = data["environmentId"]
     else:
         raise DeserializationError("EnvironmentMember.environment_id required")
-    if "lastAccess" in data:
+    if data.get("lastAccess") is not None:
         import capo_cloud9.types.timestamp
 
         out["last_access"] = capo_cloud9.types.timestamp.deserialize_aws_json_1_1(

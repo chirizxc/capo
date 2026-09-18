@@ -81,6 +81,7 @@ class CreateCampaignRequest(TypedDict, closed=True):
 # --- awsJson1_0 ser/de ---
 def serialize_aws_json_1_0(value: CreateCampaignRequest) -> dict:
     out: dict = {}
+    out["name"] = value["name"]
     if "description" in value:
         out["description"] = value["description"]
     out["signalCatalogArn"] = value["signal_catalog_arn"]
@@ -181,31 +182,35 @@ def serialize_aws_json_1_0(value: CreateCampaignRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CreateCampaignRequest:
     out: CreateCampaignRequest = {}  # type: ignore[typeddict-item]
-    if "description" in data:
+    if data.get("name") is not None:
+        out["name"] = data["name"]
+    else:
+        raise DeserializationError("CreateCampaignRequest.name required")
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "signalCatalogArn" in data:
+    if data.get("signalCatalogArn") is not None:
         out["signal_catalog_arn"] = data["signalCatalogArn"]
     else:
         raise DeserializationError("CreateCampaignRequest.signal_catalog_arn required")
-    if "targetArn" in data:
+    if data.get("targetArn") is not None:
         out["target_arn"] = data["targetArn"]
     else:
         raise DeserializationError("CreateCampaignRequest.target_arn required")
-    if "startTime" in data:
+    if data.get("startTime") is not None:
         import capo_iotfleetwise.types.timestamp
 
         out["start_time"] = capo_iotfleetwise.types.timestamp.deserialize_aws_json_1_0(
             data["startTime"]
         )
-    if "expiryTime" in data:
+    if data.get("expiryTime") is not None:
         import capo_iotfleetwise.types.timestamp
 
         out["expiry_time"] = capo_iotfleetwise.types.timestamp.deserialize_aws_json_1_0(
             data["expiryTime"]
         )
-    if "postTriggerCollectionDuration" in data:
+    if data.get("postTriggerCollectionDuration") is not None:
         out["post_trigger_collection_duration"] = data["postTriggerCollectionDuration"]
-    if "diagnosticsMode" in data:
+    if data.get("diagnosticsMode") is not None:
         import capo_iotfleetwise.types.diagnostics_mode
 
         out["diagnostics_mode"] = (
@@ -213,7 +218,7 @@ def deserialize_aws_json_1_0(data: dict) -> CreateCampaignRequest:
                 data["diagnosticsMode"]
             )
         )
-    if "spoolingMode" in data:
+    if data.get("spoolingMode") is not None:
         import capo_iotfleetwise.types.spooling_mode
 
         out["spooling_mode"] = (
@@ -221,7 +226,7 @@ def deserialize_aws_json_1_0(data: dict) -> CreateCampaignRequest:
                 data["spoolingMode"]
             )
         )
-    if "compression" in data:
+    if data.get("compression") is not None:
         import capo_iotfleetwise.types.compression
 
         out["compression"] = (
@@ -229,9 +234,9 @@ def deserialize_aws_json_1_0(data: dict) -> CreateCampaignRequest:
                 data["compression"]
             )
         )
-    if "priority" in data:
+    if data.get("priority") is not None:
         out["priority"] = data["priority"]
-    if "signalsToCollect" in data:
+    if data.get("signalsToCollect") is not None:
         import capo_iotfleetwise.types.signal_information_list
 
         out["signals_to_collect"] = (
@@ -239,7 +244,7 @@ def deserialize_aws_json_1_0(data: dict) -> CreateCampaignRequest:
                 data["signalsToCollect"]
             )
         )
-    if "collectionScheme" in data:
+    if data.get("collectionScheme") is not None:
         import capo_iotfleetwise.types.collection_scheme
 
         out["collection_scheme"] = (
@@ -249,7 +254,7 @@ def deserialize_aws_json_1_0(data: dict) -> CreateCampaignRequest:
         )
     else:
         raise DeserializationError("CreateCampaignRequest.collection_scheme required")
-    if "dataExtraDimensions" in data:
+    if data.get("dataExtraDimensions") is not None:
         import capo_iotfleetwise.types.data_extra_dimension_node_path_list
 
         out["data_extra_dimensions"] = (
@@ -257,13 +262,13 @@ def deserialize_aws_json_1_0(data: dict) -> CreateCampaignRequest:
                 data["dataExtraDimensions"]
             )
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_iotfleetwise.types.tag_list
 
         out["tags"] = capo_iotfleetwise.types.tag_list.deserialize_aws_json_1_0(
             data["tags"]
         )
-    if "dataDestinationConfigs" in data:
+    if data.get("dataDestinationConfigs") is not None:
         import capo_iotfleetwise.types.data_destination_configs
 
         out["data_destination_configs"] = (
@@ -271,7 +276,7 @@ def deserialize_aws_json_1_0(data: dict) -> CreateCampaignRequest:
                 data["dataDestinationConfigs"]
             )
         )
-    if "dataPartitions" in data:
+    if data.get("dataPartitions") is not None:
         import capo_iotfleetwise.types.data_partitions
 
         out["data_partitions"] = (
@@ -279,7 +284,7 @@ def deserialize_aws_json_1_0(data: dict) -> CreateCampaignRequest:
                 data["dataPartitions"]
             )
         )
-    if "signalsToFetch" in data:
+    if data.get("signalsToFetch") is not None:
         import capo_iotfleetwise.types.signal_fetch_information_list
 
         out["signals_to_fetch"] = (

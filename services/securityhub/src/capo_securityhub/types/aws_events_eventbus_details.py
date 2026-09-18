@@ -31,10 +31,10 @@ def serialize_json(value: AwsEventsEventbusDetails) -> dict:
 
 def deserialize_json(data: dict) -> AwsEventsEventbusDetails:
     out: AwsEventsEventbusDetails = {}  # type: ignore[typeddict-item]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Policy" in data:
+    if data.get("Policy") is not None:
         out["policy"] = data["Policy"]
     return out

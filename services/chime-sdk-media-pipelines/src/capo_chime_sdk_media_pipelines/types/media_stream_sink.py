@@ -50,11 +50,11 @@ def serialize_json(value: MediaStreamSink) -> dict:
 
 def deserialize_json(data: dict) -> MediaStreamSink:
     out: MediaStreamSink = {}  # type: ignore[typeddict-item]
-    if "SinkArn" in data:
+    if data.get("SinkArn") is not None:
         out["sink_arn"] = data["SinkArn"]
     else:
         raise DeserializationError("MediaStreamSink.sink_arn required")
-    if "SinkType" in data:
+    if data.get("SinkType") is not None:
         import capo_chime_sdk_media_pipelines.types.media_stream_pipeline_sink_type
 
         out["sink_type"] = (
@@ -64,11 +64,11 @@ def deserialize_json(data: dict) -> MediaStreamSink:
         )
     else:
         raise DeserializationError("MediaStreamSink.sink_type required")
-    if "ReservedStreamCapacity" in data:
+    if data.get("ReservedStreamCapacity") is not None:
         out["reserved_stream_capacity"] = data["ReservedStreamCapacity"]
     else:
         raise DeserializationError("MediaStreamSink.reserved_stream_capacity required")
-    if "MediaStreamType" in data:
+    if data.get("MediaStreamType") is not None:
         import capo_chime_sdk_media_pipelines.types.media_stream_type
 
         out["media_stream_type"] = (

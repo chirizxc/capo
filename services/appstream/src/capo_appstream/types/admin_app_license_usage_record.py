@@ -65,13 +65,13 @@ def serialize_aws_json_1_1(value: AdminAppLicenseUsageRecord) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AdminAppLicenseUsageRecord:
     out: AdminAppLicenseUsageRecord = {}  # type: ignore[typeddict-item]
-    if "UserArn" in data:
+    if data.get("UserArn") is not None:
         out["user_arn"] = data["UserArn"]
-    if "BillingPeriod" in data:
+    if data.get("BillingPeriod") is not None:
         out["billing_period"] = data["BillingPeriod"]
-    if "OwnerAWSAccountId" in data:
+    if data.get("OwnerAWSAccountId") is not None:
         out["owner_aws_account_id"] = data["OwnerAWSAccountId"]
-    if "SubscriptionFirstUsedDate" in data:
+    if data.get("SubscriptionFirstUsedDate") is not None:
         import capo_appstream.types.timestamp
 
         out["subscription_first_used_date"] = (
@@ -79,7 +79,7 @@ def deserialize_aws_json_1_1(data: dict) -> AdminAppLicenseUsageRecord:
                 data["SubscriptionFirstUsedDate"]
             )
         )
-    if "SubscriptionLastUsedDate" in data:
+    if data.get("SubscriptionLastUsedDate") is not None:
         import capo_appstream.types.timestamp
 
         out["subscription_last_used_date"] = (
@@ -87,8 +87,8 @@ def deserialize_aws_json_1_1(data: dict) -> AdminAppLicenseUsageRecord:
                 data["SubscriptionLastUsedDate"]
             )
         )
-    if "LicenseType" in data:
+    if data.get("LicenseType") is not None:
         out["license_type"] = data["LicenseType"]
-    if "UserId" in data:
+    if data.get("UserId") is not None:
         out["user_id"] = data["UserId"]
     return out

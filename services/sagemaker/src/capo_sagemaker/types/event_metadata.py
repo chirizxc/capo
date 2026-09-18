@@ -76,7 +76,7 @@ def serialize_aws_json_1_1(value: EventMetadata) -> dict:
 
 
 def deserialize_aws_json_1_1(data: dict) -> EventMetadata:
-    if "Cluster" in data:
+    if data.get("Cluster") is not None:
         import capo_sagemaker.types.cluster_metadata
 
         return {
@@ -84,7 +84,7 @@ def deserialize_aws_json_1_1(data: dict) -> EventMetadata:
                 data["Cluster"]
             )
         }
-    elif "InstanceGroup" in data:
+    elif data.get("InstanceGroup") is not None:
         import capo_sagemaker.types.instance_group_metadata
 
         return {
@@ -92,7 +92,7 @@ def deserialize_aws_json_1_1(data: dict) -> EventMetadata:
                 data["InstanceGroup"]
             )
         }
-    elif "InstanceGroupScaling" in data:
+    elif data.get("InstanceGroupScaling") is not None:
         import capo_sagemaker.types.instance_group_scaling_metadata
 
         return {
@@ -100,7 +100,7 @@ def deserialize_aws_json_1_1(data: dict) -> EventMetadata:
                 data["InstanceGroupScaling"]
             )
         }
-    elif "Instance" in data:
+    elif data.get("Instance") is not None:
         import capo_sagemaker.types.instance_metadata
 
         return {

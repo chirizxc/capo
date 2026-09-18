@@ -208,16 +208,16 @@ class AsyncTrustedAdvisorClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_trustedadvisor.types.batch_update_recommendation_resource_exclusion_request.BatchUpdateRecommendationResourceExclusionRequest = {}  # type: ignore[typeddict-item]
-        input_["recommendation_resource_exclusions"] = (
-            recommendation_resource_exclusions
-        )
+        input_: capo_trustedadvisor.types.batch_update_recommendation_resource_exclusion_request.BatchUpdateRecommendationResourceExclusionRequest = {
+            "recommendation_resource_exclusions": recommendation_resource_exclusions
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_organization_recommendation(
@@ -261,16 +261,16 @@ class AsyncTrustedAdvisorClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_trustedadvisor.types.get_organization_recommendation_request.GetOrganizationRecommendationRequest = {}  # type: ignore[typeddict-item]
-        input_["organization_recommendation_identifier"] = (
-            organization_recommendation_identifier
-        )
+        input_: capo_trustedadvisor.types.get_organization_recommendation_request.GetOrganizationRecommendationRequest = {
+            "organization_recommendation_identifier": organization_recommendation_identifier
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_recommendation(
@@ -318,8 +318,9 @@ class AsyncTrustedAdvisorClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_trustedadvisor.types.get_recommendation_request.GetRecommendationRequest = {}  # type: ignore[typeddict-item]
-        input_["recommendation_identifier"] = recommendation_identifier
+        input_: capo_trustedadvisor.types.get_recommendation_request.GetRecommendationRequest = {
+            "recommendation_identifier": recommendation_identifier
+        }
         if language is not None:
             input_["language"] = language
 
@@ -328,6 +329,7 @@ class AsyncTrustedAdvisorClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_checks(
@@ -388,7 +390,7 @@ class AsyncTrustedAdvisorClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_trustedadvisor.types.list_checks_request.ListChecksRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_trustedadvisor.types.list_checks_request.ListChecksRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -407,6 +409,7 @@ class AsyncTrustedAdvisorClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_checks(
@@ -495,14 +498,13 @@ class AsyncTrustedAdvisorClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_trustedadvisor.types.list_organization_recommendation_accounts_request.ListOrganizationRecommendationAccountsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_trustedadvisor.types.list_organization_recommendation_accounts_request.ListOrganizationRecommendationAccountsRequest = {
+            "organization_recommendation_identifier": organization_recommendation_identifier
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
             input_["max_results"] = max_results
-        input_["organization_recommendation_identifier"] = (
-            organization_recommendation_identifier
-        )
         if affected_account_id is not None:
             input_["affected_account_id"] = affected_account_id
 
@@ -511,6 +513,7 @@ class AsyncTrustedAdvisorClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_organization_recommendation_accounts(
@@ -601,7 +604,9 @@ class AsyncTrustedAdvisorClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_trustedadvisor.types.list_organization_recommendation_resources_request.ListOrganizationRecommendationResourcesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_trustedadvisor.types.list_organization_recommendation_resources_request.ListOrganizationRecommendationResourcesRequest = {
+            "organization_recommendation_identifier": organization_recommendation_identifier
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -612,9 +617,6 @@ class AsyncTrustedAdvisorClient:
             input_["exclusion_status"] = exclusion_status
         if region_code is not None:
             input_["region_code"] = region_code
-        input_["organization_recommendation_identifier"] = (
-            organization_recommendation_identifier
-        )
         if affected_account_id is not None:
             input_["affected_account_id"] = affected_account_id
 
@@ -623,6 +625,7 @@ class AsyncTrustedAdvisorClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_organization_recommendation_resources(
@@ -740,7 +743,7 @@ class AsyncTrustedAdvisorClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_trustedadvisor.types.list_organization_recommendations_request.ListOrganizationRecommendationsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_trustedadvisor.types.list_organization_recommendations_request.ListOrganizationRecommendationsRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -767,6 +770,7 @@ class AsyncTrustedAdvisorClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_organization_recommendations(
@@ -877,7 +881,9 @@ class AsyncTrustedAdvisorClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_trustedadvisor.types.list_recommendation_resources_request.ListRecommendationResourcesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_trustedadvisor.types.list_recommendation_resources_request.ListRecommendationResourcesRequest = {
+            "recommendation_identifier": recommendation_identifier
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -888,7 +894,6 @@ class AsyncTrustedAdvisorClient:
             input_["exclusion_status"] = exclusion_status
         if region_code is not None:
             input_["region_code"] = region_code
-        input_["recommendation_identifier"] = recommendation_identifier
         if language is not None:
             input_["language"] = language
 
@@ -897,6 +902,7 @@ class AsyncTrustedAdvisorClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_recommendation_resources(
@@ -1016,7 +1022,7 @@ class AsyncTrustedAdvisorClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_trustedadvisor.types.list_recommendations_request.ListRecommendationsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_trustedadvisor.types.list_recommendations_request.ListRecommendationsRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -1045,6 +1051,7 @@ class AsyncTrustedAdvisorClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_recommendations(
@@ -1150,21 +1157,21 @@ class AsyncTrustedAdvisorClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_trustedadvisor.types.update_organization_recommendation_lifecycle_request.UpdateOrganizationRecommendationLifecycleRequest = {}  # type: ignore[typeddict-item]
-        input_["lifecycle_stage"] = lifecycle_stage
+        input_: capo_trustedadvisor.types.update_organization_recommendation_lifecycle_request.UpdateOrganizationRecommendationLifecycleRequest = {
+            "lifecycle_stage": lifecycle_stage,
+            "organization_recommendation_identifier": organization_recommendation_identifier,
+        }
         if update_reason is not None:
             input_["update_reason"] = update_reason
         if update_reason_code is not None:
             input_["update_reason_code"] = update_reason_code
-        input_["organization_recommendation_identifier"] = (
-            organization_recommendation_identifier
-        )
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_recommendation_lifecycle(
@@ -1217,19 +1224,21 @@ class AsyncTrustedAdvisorClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_trustedadvisor.types.update_recommendation_lifecycle_request.UpdateRecommendationLifecycleRequest = {}  # type: ignore[typeddict-item]
-        input_["lifecycle_stage"] = lifecycle_stage
+        input_: capo_trustedadvisor.types.update_recommendation_lifecycle_request.UpdateRecommendationLifecycleRequest = {
+            "lifecycle_stage": lifecycle_stage,
+            "recommendation_identifier": recommendation_identifier,
+        }
         if update_reason is not None:
             input_["update_reason"] = update_reason
         if update_reason_code is not None:
             input_["update_reason_code"] = update_reason_code
-        input_["recommendation_identifier"] = recommendation_identifier
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def __aenter__(self) -> Self:

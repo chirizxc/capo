@@ -14,4 +14,4 @@ def serialize_json(value: FolderColumnList) -> list:
 
 
 def deserialize_json(data: list) -> FolderColumnList:
-    return list(data)
+    return [item for item in data if item is not None]

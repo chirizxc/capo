@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> S3Sources:
 
     out: S3Sources = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_connecthealth.types.s3_source.deserialize_json(item))
     return out

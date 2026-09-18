@@ -32,11 +32,11 @@ def serialize_aws_json_1_0(value: CountPendingDecisionTasksInput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CountPendingDecisionTasksInput:
     out: CountPendingDecisionTasksInput = {}  # type: ignore[typeddict-item]
-    if "domain" in data:
+    if data.get("domain") is not None:
         out["domain"] = data["domain"]
     else:
         raise DeserializationError("CountPendingDecisionTasksInput.domain required")
-    if "taskList" in data:
+    if data.get("taskList") is not None:
         import capo_swf.types.task_list
 
         out["task_list"] = capo_swf.types.task_list.deserialize_aws_json_1_0(

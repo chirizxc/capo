@@ -23,6 +23,6 @@ def serialize_json(value: StreamFilters) -> dict:
 
 def deserialize_json(data: dict) -> StreamFilters:
     out: StreamFilters = {}  # type: ignore[typeddict-item]
-    if "health" in data:
+    if data.get("health") is not None:
         out["health"] = data["health"]
     return out

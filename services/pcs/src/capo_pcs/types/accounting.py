@@ -30,9 +30,9 @@ def serialize_aws_json_1_0(value: Accounting) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> Accounting:
     out: Accounting = {}  # type: ignore[typeddict-item]
-    if "defaultPurgeTimeInDays" in data:
+    if data.get("defaultPurgeTimeInDays") is not None:
         out["default_purge_time_in_days"] = data["defaultPurgeTimeInDays"]
-    if "mode" in data:
+    if data.get("mode") is not None:
         import capo_pcs.types.accounting_mode
 
         out["mode"] = capo_pcs.types.accounting_mode.deserialize_aws_json_1_0(

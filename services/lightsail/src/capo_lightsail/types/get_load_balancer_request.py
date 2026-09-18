@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: GetLoadBalancerRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetLoadBalancerRequest:
     out: GetLoadBalancerRequest = {}  # type: ignore[typeddict-item]
-    if "loadBalancerName" in data:
+    if data.get("loadBalancerName") is not None:
         out["load_balancer_name"] = data["loadBalancerName"]
     else:
         raise DeserializationError("GetLoadBalancerRequest.load_balancer_name required")

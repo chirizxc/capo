@@ -16,14 +16,22 @@ class ReferenceLineStaticDataConfiguration(TypedDict, closed=True):
 # --- restJson1 ser/de ---
 def serialize_json(value: ReferenceLineStaticDataConfiguration) -> dict:
     out: dict = {}
-    out["Value"] = value.get("value", 0)
+    out["Value"] = (
+        "NaN"
+        if value.get("value", 0) != value.get("value", 0)
+        else "Infinity"
+        if value.get("value", 0) == float("inf")
+        else "-Infinity"
+        if value.get("value", 0) == float("-inf")
+        else value.get("value", 0)
+    )
     return out
 
 
 def deserialize_json(data: dict) -> ReferenceLineStaticDataConfiguration:
     out: ReferenceLineStaticDataConfiguration = {}  # type: ignore[typeddict-item]
-    if "Value" in data:
-        out["value"] = data["Value"]
+    if data.get("Value") is not None:
+        out["value"] = float(data["Value"])
     else:
         out["value"] = 0
     return out

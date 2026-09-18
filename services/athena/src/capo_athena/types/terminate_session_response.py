@@ -27,7 +27,7 @@ def serialize_aws_json_1_1(value: TerminateSessionResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> TerminateSessionResponse:
     out: TerminateSessionResponse = {}  # type: ignore[typeddict-item]
-    if "State" in data:
+    if data.get("State") is not None:
         import capo_athena.types.session_state
 
         out["state"] = capo_athena.types.session_state.deserialize_aws_json_1_1(

@@ -37,9 +37,9 @@ def serialize_json(value: CreateDeploymentResult) -> dict:
 
 def deserialize_json(data: dict) -> CreateDeploymentResult:
     out: CreateDeploymentResult = {}  # type: ignore[typeddict-item]
-    if "jobId" in data:
+    if data.get("jobId") is not None:
         out["job_id"] = data["jobId"]
-    if "fileUploadUrls" in data:
+    if data.get("fileUploadUrls") is not None:
         import capo_amplify.types.file_upload_urls
 
         out["file_upload_urls"] = capo_amplify.types.file_upload_urls.deserialize_json(
@@ -47,7 +47,7 @@ def deserialize_json(data: dict) -> CreateDeploymentResult:
         )
     else:
         raise DeserializationError("CreateDeploymentResult.file_upload_urls required")
-    if "zipUploadUrl" in data:
+    if data.get("zipUploadUrl") is not None:
         out["zip_upload_url"] = data["zipUploadUrl"]
     else:
         raise DeserializationError("CreateDeploymentResult.zip_upload_url required")

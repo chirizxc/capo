@@ -27,7 +27,7 @@ def serialize_json(value: StopQAppSessionInput) -> dict:
 
 def deserialize_json(data: dict) -> StopQAppSessionInput:
     out: StopQAppSessionInput = {}  # type: ignore[typeddict-item]
-    if "sessionId" in data:
+    if data.get("sessionId") is not None:
         out["session_id"] = data["sessionId"]
     else:
         raise DeserializationError("StopQAppSessionInput.session_id required")

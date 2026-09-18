@@ -48,13 +48,13 @@ def serialize_json(value: ComponentDeploymentSpecification) -> dict:
 
 def deserialize_json(data: dict) -> ComponentDeploymentSpecification:
     out: ComponentDeploymentSpecification = {}  # type: ignore[typeddict-item]
-    if "componentVersion" in data:
+    if data.get("componentVersion") is not None:
         out["component_version"] = data["componentVersion"]
     else:
         raise DeserializationError(
             "ComponentDeploymentSpecification.component_version required"
         )
-    if "configurationUpdate" in data:
+    if data.get("configurationUpdate") is not None:
         import capo_greengrassv2.types.component_configuration_update
 
         out["configuration_update"] = (
@@ -62,7 +62,7 @@ def deserialize_json(data: dict) -> ComponentDeploymentSpecification:
                 data["configurationUpdate"]
             )
         )
-    if "runWith" in data:
+    if data.get("runWith") is not None:
         import capo_greengrassv2.types.component_run_with
 
         out["run_with"] = capo_greengrassv2.types.component_run_with.deserialize_json(

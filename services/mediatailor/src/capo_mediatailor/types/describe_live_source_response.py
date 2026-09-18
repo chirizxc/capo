@@ -76,15 +76,15 @@ def serialize_json(value: DescribeLiveSourceResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribeLiveSourceResponse:
     out: DescribeLiveSourceResponse = {}  # type: ignore[typeddict-item]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_mediatailor.types.__timestamp_unix
 
         out["creation_time"] = capo_mediatailor.types.__timestamp_unix.deserialize_json(
             data["CreationTime"]
         )
-    if "HttpPackageConfigurations" in data:
+    if data.get("HttpPackageConfigurations") is not None:
         import capo_mediatailor.types.http_package_configurations
 
         out["http_package_configurations"] = (
@@ -92,7 +92,7 @@ def deserialize_json(data: dict) -> DescribeLiveSourceResponse:
                 data["HttpPackageConfigurations"]
             )
         )
-    if "LastModifiedTime" in data:
+    if data.get("LastModifiedTime") is not None:
         import capo_mediatailor.types.__timestamp_unix
 
         out["last_modified_time"] = (
@@ -100,11 +100,11 @@ def deserialize_json(data: dict) -> DescribeLiveSourceResponse:
                 data["LastModifiedTime"]
             )
         )
-    if "LiveSourceName" in data:
+    if data.get("LiveSourceName") is not None:
         out["live_source_name"] = data["LiveSourceName"]
-    if "SourceLocationName" in data:
+    if data.get("SourceLocationName") is not None:
         out["source_location_name"] = data["SourceLocationName"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_mediatailor.types.__map_of__string
 
         out["tags"] = capo_mediatailor.types.__map_of__string.deserialize_json(

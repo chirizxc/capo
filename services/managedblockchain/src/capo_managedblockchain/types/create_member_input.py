@@ -42,15 +42,15 @@ def serialize_json(value: CreateMemberInput) -> dict:
 
 def deserialize_json(data: dict) -> CreateMemberInput:
     out: CreateMemberInput = {}  # type: ignore[typeddict-item]
-    if "ClientRequestToken" in data:
+    if data.get("ClientRequestToken") is not None:
         out["client_request_token"] = data["ClientRequestToken"]
     else:
         raise DeserializationError("CreateMemberInput.client_request_token required")
-    if "InvitationId" in data:
+    if data.get("InvitationId") is not None:
         out["invitation_id"] = data["InvitationId"]
     else:
         raise DeserializationError("CreateMemberInput.invitation_id required")
-    if "MemberConfiguration" in data:
+    if data.get("MemberConfiguration") is not None:
         import capo_managedblockchain.types.member_configuration
 
         out["member_configuration"] = (

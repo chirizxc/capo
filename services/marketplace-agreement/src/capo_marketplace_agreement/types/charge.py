@@ -69,21 +69,21 @@ def serialize_aws_json_1_0(value: Charge) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> Charge:
     out: Charge = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "revision" in data:
+    if data.get("revision") is not None:
         out["revision"] = data["revision"]
-    if "agreementId" in data:
+    if data.get("agreementId") is not None:
         out["agreement_id"] = data["agreementId"]
-    if "agreementType" in data:
+    if data.get("agreementType") is not None:
         out["agreement_type"] = data["agreementType"]
-    if "purchaseOrderReference" in data:
+    if data.get("purchaseOrderReference") is not None:
         out["purchase_order_reference"] = data["purchaseOrderReference"]
-    if "currencyCode" in data:
+    if data.get("currencyCode") is not None:
         out["currency_code"] = data["currencyCode"]
-    if "amount" in data:
+    if data.get("amount") is not None:
         out["amount"] = data["amount"]
-    if "time" in data:
+    if data.get("time") is not None:
         import capo_marketplace_agreement.types.timestamp
 
         out["time"] = (

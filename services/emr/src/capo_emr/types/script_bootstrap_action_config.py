@@ -32,9 +32,9 @@ def serialize_aws_json_1_1(value: ScriptBootstrapActionConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ScriptBootstrapActionConfig:
     out: ScriptBootstrapActionConfig = {}  # type: ignore[typeddict-item]
-    if "Path" in data:
+    if data.get("Path") is not None:
         out["path"] = data["Path"]
-    if "Args" in data:
+    if data.get("Args") is not None:
         import capo_emr.types.xml_string_list
 
         out["args"] = capo_emr.types.xml_string_list.deserialize_aws_json_1_1(

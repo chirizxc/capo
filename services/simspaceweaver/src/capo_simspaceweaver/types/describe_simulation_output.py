@@ -130,27 +130,27 @@ def serialize_json(value: DescribeSimulationOutput) -> dict:
 
 def deserialize_json(data: dict) -> DescribeSimulationOutput:
     out: DescribeSimulationOutput = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "ExecutionId" in data:
+    if data.get("ExecutionId") is not None:
         out["execution_id"] = data["ExecutionId"]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "RoleArn" in data:
+    if data.get("RoleArn") is not None:
         out["role_arn"] = data["RoleArn"]
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_simspaceweaver.types.timestamp
 
         out["creation_time"] = capo_simspaceweaver.types.timestamp.deserialize_json(
             data["CreationTime"]
         )
-    if "Status" in data:
+    if data.get("Status") is not None:
         out["status"] = data["Status"]
-    if "TargetStatus" in data:
+    if data.get("TargetStatus") is not None:
         out["target_status"] = data["TargetStatus"]
-    if "SchemaS3Location" in data:
+    if data.get("SchemaS3Location") is not None:
         import capo_simspaceweaver.types.s3_location
 
         out["schema_s3_location"] = (
@@ -158,9 +158,9 @@ def deserialize_json(data: dict) -> DescribeSimulationOutput:
                 data["SchemaS3Location"]
             )
         )
-    if "SchemaError" in data:
+    if data.get("SchemaError") is not None:
         out["schema_error"] = data["SchemaError"]
-    if "LoggingConfiguration" in data:
+    if data.get("LoggingConfiguration") is not None:
         import capo_simspaceweaver.types.logging_configuration
 
         out["logging_configuration"] = (
@@ -168,7 +168,7 @@ def deserialize_json(data: dict) -> DescribeSimulationOutput:
                 data["LoggingConfiguration"]
             )
         )
-    if "LiveSimulationState" in data:
+    if data.get("LiveSimulationState") is not None:
         import capo_simspaceweaver.types.live_simulation_state
 
         out["live_simulation_state"] = (
@@ -176,9 +176,9 @@ def deserialize_json(data: dict) -> DescribeSimulationOutput:
                 data["LiveSimulationState"]
             )
         )
-    if "MaximumDuration" in data:
+    if data.get("MaximumDuration") is not None:
         out["maximum_duration"] = data["MaximumDuration"]
-    if "SnapshotS3Location" in data:
+    if data.get("SnapshotS3Location") is not None:
         import capo_simspaceweaver.types.s3_location
 
         out["snapshot_s3_location"] = (
@@ -186,6 +186,6 @@ def deserialize_json(data: dict) -> DescribeSimulationOutput:
                 data["SnapshotS3Location"]
             )
         )
-    if "StartError" in data:
+    if data.get("StartError") is not None:
         out["start_error"] = data["StartError"]
     return out

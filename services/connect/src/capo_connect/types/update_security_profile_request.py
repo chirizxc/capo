@@ -123,15 +123,15 @@ def serialize_json(value: UpdateSecurityProfileRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateSecurityProfileRequest:
     out: UpdateSecurityProfileRequest = {}  # type: ignore[typeddict-item]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Permissions" in data:
+    if data.get("Permissions") is not None:
         import capo_connect.types.permissions_list
 
         out["permissions"] = capo_connect.types.permissions_list.deserialize_json(
             data["Permissions"]
         )
-    if "AllowedAccessControlTags" in data:
+    if data.get("AllowedAccessControlTags") is not None:
         import capo_connect.types.allowed_access_control_tags
 
         out["allowed_access_control_tags"] = (
@@ -139,7 +139,7 @@ def deserialize_json(data: dict) -> UpdateSecurityProfileRequest:
                 data["AllowedAccessControlTags"]
             )
         )
-    if "TagRestrictedResources" in data:
+    if data.get("TagRestrictedResources") is not None:
         import capo_connect.types.tag_restricted_resource_list
 
         out["tag_restricted_resources"] = (
@@ -147,13 +147,13 @@ def deserialize_json(data: dict) -> UpdateSecurityProfileRequest:
                 data["TagRestrictedResources"]
             )
         )
-    if "Applications" in data:
+    if data.get("Applications") is not None:
         import capo_connect.types.applications
 
         out["applications"] = capo_connect.types.applications.deserialize_json(
             data["Applications"]
         )
-    if "HierarchyRestrictedResources" in data:
+    if data.get("HierarchyRestrictedResources") is not None:
         import capo_connect.types.hierarchy_restricted_resource_list
 
         out["hierarchy_restricted_resources"] = (
@@ -161,11 +161,11 @@ def deserialize_json(data: dict) -> UpdateSecurityProfileRequest:
                 data["HierarchyRestrictedResources"]
             )
         )
-    if "AllowedAccessControlHierarchyGroupId" in data:
+    if data.get("AllowedAccessControlHierarchyGroupId") is not None:
         out["allowed_access_control_hierarchy_group_id"] = data[
             "AllowedAccessControlHierarchyGroupId"
         ]
-    if "AllowedFlowModules" in data:
+    if data.get("AllowedFlowModules") is not None:
         import capo_connect.types.allowed_flow_modules
 
         out["allowed_flow_modules"] = (
@@ -173,7 +173,7 @@ def deserialize_json(data: dict) -> UpdateSecurityProfileRequest:
                 data["AllowedFlowModules"]
             )
         )
-    if "GranularAccessControlConfiguration" in data:
+    if data.get("GranularAccessControlConfiguration") is not None:
         import capo_connect.types.granular_access_control_configuration
 
         out["granular_access_control_configuration"] = (

@@ -188,45 +188,45 @@ def serialize_aws_json_1_1(value: Table) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Table:
     out: Table = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("Table.name required")
-    if "DatabaseName" in data:
+    if data.get("DatabaseName") is not None:
         out["database_name"] = data["DatabaseName"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Owner" in data:
+    if data.get("Owner") is not None:
         out["owner"] = data["Owner"]
-    if "CreateTime" in data:
+    if data.get("CreateTime") is not None:
         import capo_glue.types.timestamp
 
         out["create_time"] = capo_glue.types.timestamp.deserialize_aws_json_1_1(
             data["CreateTime"]
         )
-    if "UpdateTime" in data:
+    if data.get("UpdateTime") is not None:
         import capo_glue.types.timestamp
 
         out["update_time"] = capo_glue.types.timestamp.deserialize_aws_json_1_1(
             data["UpdateTime"]
         )
-    if "LastAccessTime" in data:
+    if data.get("LastAccessTime") is not None:
         import capo_glue.types.timestamp
 
         out["last_access_time"] = capo_glue.types.timestamp.deserialize_aws_json_1_1(
             data["LastAccessTime"]
         )
-    if "LastAnalyzedTime" in data:
+    if data.get("LastAnalyzedTime") is not None:
         import capo_glue.types.timestamp
 
         out["last_analyzed_time"] = capo_glue.types.timestamp.deserialize_aws_json_1_1(
             data["LastAnalyzedTime"]
         )
-    if "Retention" in data:
+    if data.get("Retention") is not None:
         out["retention"] = data["Retention"]
     else:
         out["retention"] = 0
-    if "StorageDescriptor" in data:
+    if data.get("StorageDescriptor") is not None:
         import capo_glue.types.storage_descriptor
 
         out["storage_descriptor"] = (
@@ -234,41 +234,41 @@ def deserialize_aws_json_1_1(data: dict) -> Table:
                 data["StorageDescriptor"]
             )
         )
-    if "PartitionKeys" in data:
+    if data.get("PartitionKeys") is not None:
         import capo_glue.types.column_list
 
         out["partition_keys"] = capo_glue.types.column_list.deserialize_aws_json_1_1(
             data["PartitionKeys"]
         )
-    if "ViewOriginalText" in data:
+    if data.get("ViewOriginalText") is not None:
         out["view_original_text"] = data["ViewOriginalText"]
-    if "ViewExpandedText" in data:
+    if data.get("ViewExpandedText") is not None:
         out["view_expanded_text"] = data["ViewExpandedText"]
-    if "TableType" in data:
+    if data.get("TableType") is not None:
         out["table_type"] = data["TableType"]
-    if "Parameters" in data:
+    if data.get("Parameters") is not None:
         import capo_glue.types.parameters_map
 
         out["parameters"] = capo_glue.types.parameters_map.deserialize_aws_json_1_1(
             data["Parameters"]
         )
-    if "CreatedBy" in data:
+    if data.get("CreatedBy") is not None:
         out["created_by"] = data["CreatedBy"]
-    if "IsRegisteredWithLakeFormation" in data:
+    if data.get("IsRegisteredWithLakeFormation") is not None:
         out["is_registered_with_lake_formation"] = data["IsRegisteredWithLakeFormation"]
     else:
         out["is_registered_with_lake_formation"] = False
-    if "TargetTable" in data:
+    if data.get("TargetTable") is not None:
         import capo_glue.types.table_identifier
 
         out["target_table"] = capo_glue.types.table_identifier.deserialize_aws_json_1_1(
             data["TargetTable"]
         )
-    if "CatalogId" in data:
+    if data.get("CatalogId") is not None:
         out["catalog_id"] = data["CatalogId"]
-    if "VersionId" in data:
+    if data.get("VersionId") is not None:
         out["version_id"] = data["VersionId"]
-    if "FederatedTable" in data:
+    if data.get("FederatedTable") is not None:
         import capo_glue.types.federated_table
 
         out["federated_table"] = (
@@ -276,7 +276,7 @@ def deserialize_aws_json_1_1(data: dict) -> Table:
                 data["FederatedTable"]
             )
         )
-    if "ViewDefinition" in data:
+    if data.get("ViewDefinition") is not None:
         import capo_glue.types.view_definition
 
         out["view_definition"] = (
@@ -284,11 +284,11 @@ def deserialize_aws_json_1_1(data: dict) -> Table:
                 data["ViewDefinition"]
             )
         )
-    if "IsMultiDialectView" in data:
+    if data.get("IsMultiDialectView") is not None:
         out["is_multi_dialect_view"] = data["IsMultiDialectView"]
-    if "IsMaterializedView" in data:
+    if data.get("IsMaterializedView") is not None:
         out["is_materialized_view"] = data["IsMaterializedView"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_glue.types.table_status
 
         out["status"] = capo_glue.types.table_status.deserialize_aws_json_1_1(

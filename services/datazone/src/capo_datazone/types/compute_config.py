@@ -27,8 +27,8 @@ def serialize_json(value: ComputeConfig) -> dict:
 
 def deserialize_json(data: dict) -> ComputeConfig:
     out: ComputeConfig = {}  # type: ignore[typeddict-item]
-    if "instanceType" in data:
+    if data.get("instanceType") is not None:
         out["instance_type"] = data["instanceType"]
-    if "environmentVersion" in data:
+    if data.get("environmentVersion") is not None:
         out["environment_version"] = data["environmentVersion"]
     return out

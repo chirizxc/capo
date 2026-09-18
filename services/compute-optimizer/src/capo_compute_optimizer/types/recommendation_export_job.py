@@ -91,9 +91,9 @@ def serialize_aws_json_1_0(value: RecommendationExportJob) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> RecommendationExportJob:
     out: RecommendationExportJob = {}  # type: ignore[typeddict-item]
-    if "jobId" in data:
+    if data.get("jobId") is not None:
         out["job_id"] = data["jobId"]
-    if "destination" in data:
+    if data.get("destination") is not None:
         import capo_compute_optimizer.types.export_destination
 
         out["destination"] = (
@@ -101,7 +101,7 @@ def deserialize_aws_json_1_0(data: dict) -> RecommendationExportJob:
                 data["destination"]
             )
         )
-    if "resourceType" in data:
+    if data.get("resourceType") is not None:
         import capo_compute_optimizer.types.resource_type
 
         out["resource_type"] = (
@@ -109,7 +109,7 @@ def deserialize_aws_json_1_0(data: dict) -> RecommendationExportJob:
                 data["resourceType"]
             )
         )
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_compute_optimizer.types.job_status
 
         out["status"] = (
@@ -117,7 +117,7 @@ def deserialize_aws_json_1_0(data: dict) -> RecommendationExportJob:
                 data["status"]
             )
         )
-    if "creationTimestamp" in data:
+    if data.get("creationTimestamp") is not None:
         import capo_compute_optimizer.types.creation_timestamp
 
         out["creation_timestamp"] = (
@@ -125,7 +125,7 @@ def deserialize_aws_json_1_0(data: dict) -> RecommendationExportJob:
                 data["creationTimestamp"]
             )
         )
-    if "lastUpdatedTimestamp" in data:
+    if data.get("lastUpdatedTimestamp") is not None:
         import capo_compute_optimizer.types.last_updated_timestamp
 
         out["last_updated_timestamp"] = (
@@ -133,6 +133,6 @@ def deserialize_aws_json_1_0(data: dict) -> RecommendationExportJob:
                 data["lastUpdatedTimestamp"]
             )
         )
-    if "failureReason" in data:
+    if data.get("failureReason") is not None:
         out["failure_reason"] = data["failureReason"]
     return out

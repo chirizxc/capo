@@ -76,7 +76,7 @@ def serialize_aws_json_1_0(value: DeploymentState) -> dict:
 
 
 def deserialize_aws_json_1_0(data: dict) -> DeploymentState:
-    if "serviceInstance" in data:
+    if data.get("serviceInstance") is not None:
         import capo_proton.types.service_instance_state
 
         return {
@@ -84,7 +84,7 @@ def deserialize_aws_json_1_0(data: dict) -> DeploymentState:
                 data["serviceInstance"]
             )
         }
-    elif "environment" in data:
+    elif data.get("environment") is not None:
         import capo_proton.types.environment_state
 
         return {
@@ -92,7 +92,7 @@ def deserialize_aws_json_1_0(data: dict) -> DeploymentState:
                 data["environment"]
             )
         }
-    elif "servicePipeline" in data:
+    elif data.get("servicePipeline") is not None:
         import capo_proton.types.service_pipeline_state
 
         return {
@@ -100,7 +100,7 @@ def deserialize_aws_json_1_0(data: dict) -> DeploymentState:
                 data["servicePipeline"]
             )
         }
-    elif "component" in data:
+    elif data.get("component") is not None:
         import capo_proton.types.component_state
 
         return {

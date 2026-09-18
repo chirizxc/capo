@@ -89,26 +89,26 @@ def serialize_json(value: InsertableImage) -> dict:
 
 def deserialize_json(data: dict) -> InsertableImage:
     out: InsertableImage = {}  # type: ignore[typeddict-item]
-    if "duration" in data:
+    if data.get("duration") is not None:
         out["duration"] = data["duration"]
-    if "fadeIn" in data:
+    if data.get("fadeIn") is not None:
         out["fade_in"] = data["fadeIn"]
-    if "fadeOut" in data:
+    if data.get("fadeOut") is not None:
         out["fade_out"] = data["fadeOut"]
-    if "height" in data:
+    if data.get("height") is not None:
         out["height"] = data["height"]
-    if "imageInserterInput" in data:
+    if data.get("imageInserterInput") is not None:
         out["image_inserter_input"] = data["imageInserterInput"]
-    if "imageX" in data:
+    if data.get("imageX") is not None:
         out["image_x"] = data["imageX"]
-    if "imageY" in data:
+    if data.get("imageY") is not None:
         out["image_y"] = data["imageY"]
-    if "layer" in data:
+    if data.get("layer") is not None:
         out["layer"] = data["layer"]
-    if "opacity" in data:
+    if data.get("opacity") is not None:
         out["opacity"] = data["opacity"]
-    if "startTime" in data:
+    if data.get("startTime") is not None:
         out["start_time"] = data["startTime"]
-    if "width" in data:
+    if data.get("width") is not None:
         out["width"] = data["width"]
     return out

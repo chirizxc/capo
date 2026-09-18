@@ -23,6 +23,6 @@ def serialize_aws_json_1_1(value: DescribeSeverityLevelsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeSeverityLevelsRequest:
     out: DescribeSeverityLevelsRequest = {}  # type: ignore[typeddict-item]
-    if "language" in data:
+    if data.get("language") is not None:
         out["language"] = data["language"]
     return out

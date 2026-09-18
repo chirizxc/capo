@@ -50,7 +50,7 @@ def serialize_json(value: AssociatePackageRequest) -> dict:
 
 def deserialize_json(data: dict) -> AssociatePackageRequest:
     out: AssociatePackageRequest = {}  # type: ignore[typeddict-item]
-    if "PrerequisitePackageIDList" in data:
+    if data.get("PrerequisitePackageIDList") is not None:
         import capo_opensearch.types.package_id_list
 
         out["prerequisite_package_id_list"] = (
@@ -58,7 +58,7 @@ def deserialize_json(data: dict) -> AssociatePackageRequest:
                 data["PrerequisitePackageIDList"]
             )
         )
-    if "AssociationConfiguration" in data:
+    if data.get("AssociationConfiguration") is not None:
         import capo_opensearch.types.package_association_configuration
 
         out["association_configuration"] = (

@@ -38,7 +38,7 @@ def serialize_json(value: BatchGetRouterOutputResponse) -> dict:
 
 def deserialize_json(data: dict) -> BatchGetRouterOutputResponse:
     out: BatchGetRouterOutputResponse = {}  # type: ignore[typeddict-item]
-    if "routerOutputs" in data:
+    if data.get("routerOutputs") is not None:
         import capo_mediaconnect.types.router_output_list
 
         out["router_outputs"] = (
@@ -50,7 +50,7 @@ def deserialize_json(data: dict) -> BatchGetRouterOutputResponse:
         raise DeserializationError(
             "BatchGetRouterOutputResponse.router_outputs required"
         )
-    if "errors" in data:
+    if data.get("errors") is not None:
         import capo_mediaconnect.types.batch_get_router_output_error_list
 
         out["errors"] = (

@@ -27,7 +27,7 @@ def serialize_json(value: LambdaConfig) -> dict:
 
 def deserialize_json(data: dict) -> LambdaConfig:
     out: LambdaConfig = {}  # type: ignore[typeddict-item]
-    if "invokeType" in data:
+    if data.get("invokeType") is not None:
         import capo_appsync.types.invoke_type
 
         out["invoke_type"] = capo_appsync.types.invoke_type.deserialize_json(

@@ -19,7 +19,7 @@ def serialize_json(value: InvalidStateException_) -> dict:
 
 def deserialize_json(data: dict) -> InvalidStateException_:
     out: InvalidStateException_ = {}  # type: ignore[typeddict-item]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     return out
 
@@ -29,15 +29,18 @@ class InvalidStateException(ServiceError):
 
     code: str | None = "InvalidStateException"
 
-    def __init__(self, data: InvalidStateException_):
+    def __init__(self, data: InvalidStateException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="InvalidStateException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "InvalidStateException":
-        return cls(deserialize_json(data))
+    def from_json(
+        cls, data: dict, message: str | None = None
+    ) -> "InvalidStateException":
+        return cls(deserialize_json(data), message)

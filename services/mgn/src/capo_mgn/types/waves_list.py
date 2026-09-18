@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> WavesList:
 
     out: WavesList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_mgn.types.wave.deserialize_json(item))
     return out

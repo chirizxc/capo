@@ -92,19 +92,19 @@ def serialize_json(value: CreateEnvironmentInput) -> dict:
 
 def deserialize_json(data: dict) -> CreateEnvironmentInput:
     out: CreateEnvironmentInput = {}  # type: ignore[typeddict-item]
-    if "projectIdentifier" in data:
+    if data.get("projectIdentifier") is not None:
         out["project_identifier"] = data["projectIdentifier"]
     else:
         raise DeserializationError("CreateEnvironmentInput.project_identifier required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("CreateEnvironmentInput.name required")
-    if "environmentProfileIdentifier" in data:
+    if data.get("environmentProfileIdentifier") is not None:
         out["environment_profile_identifier"] = data["environmentProfileIdentifier"]
-    if "userParameters" in data:
+    if data.get("userParameters") is not None:
         import capo_datazone.types.environment_parameters_list
 
         out["user_parameters"] = (
@@ -112,22 +112,22 @@ def deserialize_json(data: dict) -> CreateEnvironmentInput:
                 data["userParameters"]
             )
         )
-    if "glossaryTerms" in data:
+    if data.get("glossaryTerms") is not None:
         import capo_datazone.types.glossary_terms
 
         out["glossary_terms"] = capo_datazone.types.glossary_terms.deserialize_json(
             data["glossaryTerms"]
         )
-    if "environmentAccountIdentifier" in data:
+    if data.get("environmentAccountIdentifier") is not None:
         out["environment_account_identifier"] = data["environmentAccountIdentifier"]
-    if "environmentAccountRegion" in data:
+    if data.get("environmentAccountRegion") is not None:
         out["environment_account_region"] = data["environmentAccountRegion"]
-    if "environmentBlueprintIdentifier" in data:
+    if data.get("environmentBlueprintIdentifier") is not None:
         out["environment_blueprint_identifier"] = data["environmentBlueprintIdentifier"]
-    if "deploymentOrder" in data:
+    if data.get("deploymentOrder") is not None:
         out["deployment_order"] = data["deploymentOrder"]
-    if "environmentConfigurationId" in data:
+    if data.get("environmentConfigurationId") is not None:
         out["environment_configuration_id"] = data["environmentConfigurationId"]
-    if "environmentConfigurationName" in data:
+    if data.get("environmentConfigurationName") is not None:
         out["environment_configuration_name"] = data["environmentConfigurationName"]
     return out

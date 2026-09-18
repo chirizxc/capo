@@ -126,27 +126,27 @@ def serialize_aws_json_1_1(value: DescribeActionResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeActionResponse:
     out: DescribeActionResponse = {}  # type: ignore[typeddict-item]
-    if "ActionName" in data:
+    if data.get("ActionName") is not None:
         out["action_name"] = data["ActionName"]
-    if "ActionArn" in data:
+    if data.get("ActionArn") is not None:
         out["action_arn"] = data["ActionArn"]
-    if "Source" in data:
+    if data.get("Source") is not None:
         import capo_sagemaker.types.action_source
 
         out["source"] = capo_sagemaker.types.action_source.deserialize_aws_json_1_1(
             data["Source"]
         )
-    if "ActionType" in data:
+    if data.get("ActionType") is not None:
         out["action_type"] = data["ActionType"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_sagemaker.types.action_status
 
         out["status"] = capo_sagemaker.types.action_status.deserialize_aws_json_1_1(
             data["Status"]
         )
-    if "Properties" in data:
+    if data.get("Properties") is not None:
         import capo_sagemaker.types.lineage_entity_parameters
 
         out["properties"] = (
@@ -154,19 +154,19 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeActionResponse:
                 data["Properties"]
             )
         )
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_sagemaker.types.timestamp
 
         out["creation_time"] = capo_sagemaker.types.timestamp.deserialize_aws_json_1_1(
             data["CreationTime"]
         )
-    if "CreatedBy" in data:
+    if data.get("CreatedBy") is not None:
         import capo_sagemaker.types.user_context
 
         out["created_by"] = capo_sagemaker.types.user_context.deserialize_aws_json_1_1(
             data["CreatedBy"]
         )
-    if "LastModifiedTime" in data:
+    if data.get("LastModifiedTime") is not None:
         import capo_sagemaker.types.timestamp
 
         out["last_modified_time"] = (
@@ -174,7 +174,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeActionResponse:
                 data["LastModifiedTime"]
             )
         )
-    if "LastModifiedBy" in data:
+    if data.get("LastModifiedBy") is not None:
         import capo_sagemaker.types.user_context
 
         out["last_modified_by"] = (
@@ -182,7 +182,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeActionResponse:
                 data["LastModifiedBy"]
             )
         )
-    if "MetadataProperties" in data:
+    if data.get("MetadataProperties") is not None:
         import capo_sagemaker.types.metadata_properties
 
         out["metadata_properties"] = (
@@ -190,6 +190,6 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeActionResponse:
                 data["MetadataProperties"]
             )
         )
-    if "LineageGroupArn" in data:
+    if data.get("LineageGroupArn") is not None:
         out["lineage_group_arn"] = data["LineageGroupArn"]
     return out

@@ -8,6 +8,11 @@ ISOTimestamp: TypeAlias = datetime.datetime
 
 # --- awsJson1_1 ser/de ---
 def serialize_aws_json_1_1(value: ISOTimestamp) -> float:
+    value = (
+        value.astimezone(datetime.timezone.utc)
+        if value.tzinfo
+        else value.replace(tzinfo=datetime.timezone.utc)
+    )
     return value.timestamp()
 
 

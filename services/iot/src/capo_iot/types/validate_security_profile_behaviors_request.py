@@ -26,7 +26,7 @@ def serialize_json(value: ValidateSecurityProfileBehaviorsRequest) -> dict:
 
 def deserialize_json(data: dict) -> ValidateSecurityProfileBehaviorsRequest:
     out: ValidateSecurityProfileBehaviorsRequest = {}  # type: ignore[typeddict-item]
-    if "behaviors" in data:
+    if data.get("behaviors") is not None:
         import capo_iot.types.behaviors
 
         out["behaviors"] = capo_iot.types.behaviors.deserialize_json(data["behaviors"])

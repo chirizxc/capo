@@ -37,7 +37,7 @@ def serialize_json(value: UpdateIdentityPropagationConfigRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateIdentityPropagationConfigRequest:
     out: UpdateIdentityPropagationConfigRequest = {}  # type: ignore[typeddict-item]
-    if "AuthorizedTargets" in data:
+    if data.get("AuthorizedTargets") is not None:
         import capo_quicksight.types.authorized_targets_list
 
         out["authorized_targets"] = (

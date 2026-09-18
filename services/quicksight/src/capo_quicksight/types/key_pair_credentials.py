@@ -35,14 +35,14 @@ def serialize_json(value: KeyPairCredentials) -> dict:
 
 def deserialize_json(data: dict) -> KeyPairCredentials:
     out: KeyPairCredentials = {}  # type: ignore[typeddict-item]
-    if "KeyPairUsername" in data:
+    if data.get("KeyPairUsername") is not None:
         out["key_pair_username"] = data["KeyPairUsername"]
     else:
         raise DeserializationError("KeyPairCredentials.key_pair_username required")
-    if "PrivateKey" in data:
+    if data.get("PrivateKey") is not None:
         out["private_key"] = data["PrivateKey"]
     else:
         raise DeserializationError("KeyPairCredentials.private_key required")
-    if "PrivateKeyPassphrase" in data:
+    if data.get("PrivateKeyPassphrase") is not None:
         out["private_key_passphrase"] = data["PrivateKeyPassphrase"]
     return out

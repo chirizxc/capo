@@ -25,6 +25,8 @@ def deserialize_aws_json_1_1(data: list) -> LabelDetections:
 
     out: LabelDetections = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_rekognition.types.label_detection.deserialize_aws_json_1_1(item)
         )

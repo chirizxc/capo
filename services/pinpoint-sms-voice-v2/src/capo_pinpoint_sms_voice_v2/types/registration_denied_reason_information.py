@@ -34,22 +34,22 @@ def serialize_aws_json_1_0(value: RegistrationDeniedReasonInformation) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> RegistrationDeniedReasonInformation:
     out: RegistrationDeniedReasonInformation = {}  # type: ignore[typeddict-item]
-    if "Reason" in data:
+    if data.get("Reason") is not None:
         out["reason"] = data["Reason"]
     else:
         raise DeserializationError(
             "RegistrationDeniedReasonInformation.reason required"
         )
-    if "ShortDescription" in data:
+    if data.get("ShortDescription") is not None:
         out["short_description"] = data["ShortDescription"]
     else:
         raise DeserializationError(
             "RegistrationDeniedReasonInformation.short_description required"
         )
-    if "LongDescription" in data:
+    if data.get("LongDescription") is not None:
         out["long_description"] = data["LongDescription"]
-    if "DocumentationTitle" in data:
+    if data.get("DocumentationTitle") is not None:
         out["documentation_title"] = data["DocumentationTitle"]
-    if "DocumentationLink" in data:
+    if data.get("DocumentationLink") is not None:
         out["documentation_link"] = data["DocumentationLink"]
     return out

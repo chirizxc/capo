@@ -81,7 +81,7 @@ def serialize_json(value: WordCloudChartConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> WordCloudChartConfiguration:
     out: WordCloudChartConfiguration = {}  # type: ignore[typeddict-item]
-    if "FieldWells" in data:
+    if data.get("FieldWells") is not None:
         import capo_quicksight.types.word_cloud_field_wells
 
         out["field_wells"] = (
@@ -89,7 +89,7 @@ def deserialize_json(data: dict) -> WordCloudChartConfiguration:
                 data["FieldWells"]
             )
         )
-    if "SortConfiguration" in data:
+    if data.get("SortConfiguration") is not None:
         import capo_quicksight.types.word_cloud_sort_configuration
 
         out["sort_configuration"] = (
@@ -97,7 +97,7 @@ def deserialize_json(data: dict) -> WordCloudChartConfiguration:
                 data["SortConfiguration"]
             )
         )
-    if "CategoryLabelOptions" in data:
+    if data.get("CategoryLabelOptions") is not None:
         import capo_quicksight.types.chart_axis_label_options
 
         out["category_label_options"] = (
@@ -105,7 +105,7 @@ def deserialize_json(data: dict) -> WordCloudChartConfiguration:
                 data["CategoryLabelOptions"]
             )
         )
-    if "WordCloudOptions" in data:
+    if data.get("WordCloudOptions") is not None:
         import capo_quicksight.types.word_cloud_options
 
         out["word_cloud_options"] = (
@@ -113,7 +113,7 @@ def deserialize_json(data: dict) -> WordCloudChartConfiguration:
                 data["WordCloudOptions"]
             )
         )
-    if "Interactions" in data:
+    if data.get("Interactions") is not None:
         import capo_quicksight.types.visual_interaction_options
 
         out["interactions"] = (

@@ -35,11 +35,11 @@ def serialize_aws_json_1_0(value: SystemVersionSummary) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> SystemVersionSummary:
     out: SystemVersionSummary = {}  # type: ignore[typeddict-item]
-    if "giVersion" in data:
+    if data.get("giVersion") is not None:
         out["gi_version"] = data["giVersion"]
-    if "shape" in data:
+    if data.get("shape") is not None:
         out["shape"] = data["shape"]
-    if "systemVersions" in data:
+    if data.get("systemVersions") is not None:
         import capo_odb.types.string_list
 
         out["system_versions"] = capo_odb.types.string_list.deserialize_aws_json_1_0(

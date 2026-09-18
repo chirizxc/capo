@@ -44,7 +44,7 @@ def serialize_json(value: GeocodeFilter) -> dict:
 
 def deserialize_json(data: dict) -> GeocodeFilter:
     out: GeocodeFilter = {}  # type: ignore[typeddict-item]
-    if "IncludeCountries" in data:
+    if data.get("IncludeCountries") is not None:
         import capo_geo_places.types.country_code_list
 
         out["include_countries"] = (
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> GeocodeFilter:
                 data["IncludeCountries"]
             )
         )
-    if "IncludePlaceTypes" in data:
+    if data.get("IncludePlaceTypes") is not None:
         import capo_geo_places.types.geocode_filter_place_type_list
 
         out["include_place_types"] = (

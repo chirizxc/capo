@@ -29,10 +29,10 @@ def serialize_aws_json_1_1(value: GetPipelineDefinitionInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetPipelineDefinitionInput:
     out: GetPipelineDefinitionInput = {}  # type: ignore[typeddict-item]
-    if "pipelineId" in data:
+    if data.get("pipelineId") is not None:
         out["pipeline_id"] = data["pipelineId"]
     else:
         raise DeserializationError("GetPipelineDefinitionInput.pipeline_id required")
-    if "version" in data:
+    if data.get("version") is not None:
         out["version"] = data["version"]
     return out

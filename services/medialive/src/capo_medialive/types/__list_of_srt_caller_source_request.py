@@ -25,6 +25,8 @@ def deserialize_json(data: list) -> __listOfSrtCallerSourceRequest:
 
     out: __listOfSrtCallerSourceRequest = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_medialive.types.srt_caller_source_request.deserialize_json(item)
         )

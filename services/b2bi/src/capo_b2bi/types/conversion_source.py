@@ -36,7 +36,7 @@ def serialize_aws_json_1_0(value: ConversionSource) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ConversionSource:
     out: ConversionSource = {}  # type: ignore[typeddict-item]
-    if "fileFormat" in data:
+    if data.get("fileFormat") is not None:
         import capo_b2bi.types.conversion_source_format
 
         out["file_format"] = (
@@ -46,7 +46,7 @@ def deserialize_aws_json_1_0(data: dict) -> ConversionSource:
         )
     else:
         raise DeserializationError("ConversionSource.file_format required")
-    if "inputFile" in data:
+    if data.get("inputFile") is not None:
         import capo_b2bi.types.input_file_source
 
         out["input_file"] = capo_b2bi.types.input_file_source.deserialize_aws_json_1_0(

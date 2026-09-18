@@ -66,11 +66,11 @@ def serialize_aws_json_1_0(value: CreateLabelRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CreateLabelRequest:
     out: CreateLabelRequest = {}  # type: ignore[typeddict-item]
-    if "LabelGroupName" in data:
+    if data.get("LabelGroupName") is not None:
         out["label_group_name"] = data["LabelGroupName"]
     else:
         raise DeserializationError("CreateLabelRequest.label_group_name required")
-    if "StartTime" in data:
+    if data.get("StartTime") is not None:
         import capo_lookoutequipment.types.timestamp
 
         out["start_time"] = (
@@ -80,7 +80,7 @@ def deserialize_aws_json_1_0(data: dict) -> CreateLabelRequest:
         )
     else:
         raise DeserializationError("CreateLabelRequest.start_time required")
-    if "EndTime" in data:
+    if data.get("EndTime") is not None:
         import capo_lookoutequipment.types.timestamp
 
         out["end_time"] = (
@@ -90,7 +90,7 @@ def deserialize_aws_json_1_0(data: dict) -> CreateLabelRequest:
         )
     else:
         raise DeserializationError("CreateLabelRequest.end_time required")
-    if "Rating" in data:
+    if data.get("Rating") is not None:
         import capo_lookoutequipment.types.label_rating
 
         out["rating"] = (
@@ -100,13 +100,13 @@ def deserialize_aws_json_1_0(data: dict) -> CreateLabelRequest:
         )
     else:
         raise DeserializationError("CreateLabelRequest.rating required")
-    if "FaultCode" in data:
+    if data.get("FaultCode") is not None:
         out["fault_code"] = data["FaultCode"]
-    if "Notes" in data:
+    if data.get("Notes") is not None:
         out["notes"] = data["Notes"]
-    if "Equipment" in data:
+    if data.get("Equipment") is not None:
         out["equipment"] = data["Equipment"]
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
     else:
         raise DeserializationError("CreateLabelRequest.client_token required")

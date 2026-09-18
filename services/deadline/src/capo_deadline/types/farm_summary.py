@@ -59,17 +59,17 @@ def serialize_json(value: FarmSummary) -> dict:
 
 def deserialize_json(data: dict) -> FarmSummary:
     out: FarmSummary = {}  # type: ignore[typeddict-item]
-    if "farmId" in data:
+    if data.get("farmId") is not None:
         out["farm_id"] = data["farmId"]
     else:
         raise DeserializationError("FarmSummary.farm_id required")
-    if "displayName" in data:
+    if data.get("displayName") is not None:
         out["display_name"] = data["displayName"]
     else:
         raise DeserializationError("FarmSummary.display_name required")
-    if "kmsKeyArn" in data:
+    if data.get("kmsKeyArn") is not None:
         out["kms_key_arn"] = data["kmsKeyArn"]
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_deadline.types.created_at
 
         out["created_at"] = capo_deadline.types.created_at.deserialize_json(
@@ -77,16 +77,16 @@ def deserialize_json(data: dict) -> FarmSummary:
         )
     else:
         raise DeserializationError("FarmSummary.created_at required")
-    if "createdBy" in data:
+    if data.get("createdBy") is not None:
         out["created_by"] = data["createdBy"]
     else:
         raise DeserializationError("FarmSummary.created_by required")
-    if "updatedAt" in data:
+    if data.get("updatedAt") is not None:
         import capo_deadline.types.updated_at
 
         out["updated_at"] = capo_deadline.types.updated_at.deserialize_json(
             data["updatedAt"]
         )
-    if "updatedBy" in data:
+    if data.get("updatedBy") is not None:
         out["updated_by"] = data["updatedBy"]
     return out

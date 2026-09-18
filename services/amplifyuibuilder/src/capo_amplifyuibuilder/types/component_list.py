@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> ComponentList:
 
     out: ComponentList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_amplifyuibuilder.types.component.deserialize_json(item))
     return out

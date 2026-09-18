@@ -83,7 +83,7 @@ def serialize_json(value: AwsElbLoadBalancerAttributes) -> dict:
 
 def deserialize_json(data: dict) -> AwsElbLoadBalancerAttributes:
     out: AwsElbLoadBalancerAttributes = {}  # type: ignore[typeddict-item]
-    if "AccessLog" in data:
+    if data.get("AccessLog") is not None:
         import capo_securityhub.types.aws_elb_load_balancer_access_log
 
         out["access_log"] = (
@@ -91,7 +91,7 @@ def deserialize_json(data: dict) -> AwsElbLoadBalancerAttributes:
                 data["AccessLog"]
             )
         )
-    if "ConnectionDraining" in data:
+    if data.get("ConnectionDraining") is not None:
         import capo_securityhub.types.aws_elb_load_balancer_connection_draining
 
         out["connection_draining"] = (
@@ -99,7 +99,7 @@ def deserialize_json(data: dict) -> AwsElbLoadBalancerAttributes:
                 data["ConnectionDraining"]
             )
         )
-    if "ConnectionSettings" in data:
+    if data.get("ConnectionSettings") is not None:
         import capo_securityhub.types.aws_elb_load_balancer_connection_settings
 
         out["connection_settings"] = (
@@ -107,7 +107,7 @@ def deserialize_json(data: dict) -> AwsElbLoadBalancerAttributes:
                 data["ConnectionSettings"]
             )
         )
-    if "CrossZoneLoadBalancing" in data:
+    if data.get("CrossZoneLoadBalancing") is not None:
         import capo_securityhub.types.aws_elb_load_balancer_cross_zone_load_balancing
 
         out["cross_zone_load_balancing"] = (
@@ -115,7 +115,7 @@ def deserialize_json(data: dict) -> AwsElbLoadBalancerAttributes:
                 data["CrossZoneLoadBalancing"]
             )
         )
-    if "AdditionalAttributes" in data:
+    if data.get("AdditionalAttributes") is not None:
         import capo_securityhub.types.aws_elb_load_balancer_additional_attribute_list
 
         out["additional_attributes"] = (

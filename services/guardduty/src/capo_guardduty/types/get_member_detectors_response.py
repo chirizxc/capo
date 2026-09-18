@@ -44,7 +44,7 @@ def serialize_json(value: GetMemberDetectorsResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetMemberDetectorsResponse:
     out: GetMemberDetectorsResponse = {}  # type: ignore[typeddict-item]
-    if "members" in data:
+    if data.get("members") is not None:
         import capo_guardduty.types.member_data_source_configurations
 
         out["member_data_source_configurations"] = (
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> GetMemberDetectorsResponse:
                 data["members"]
             )
         )
-    if "unprocessedAccounts" in data:
+    if data.get("unprocessedAccounts") is not None:
         import capo_guardduty.types.unprocessed_accounts
 
         out["unprocessed_accounts"] = (

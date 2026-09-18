@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: ListTracksResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListTracksResponse:
     out: ListTracksResponse = {}  # type: ignore[typeddict-item]
-    if "tracks" in data:
+    if data.get("tracks") is not None:
         import capo_redshift_serverless.types.track_list
 
         out["tracks"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_1(data: dict) -> ListTracksResponse:
                 data["tracks"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

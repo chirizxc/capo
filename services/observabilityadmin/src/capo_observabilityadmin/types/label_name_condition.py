@@ -18,6 +18,6 @@ def serialize_json(value: LabelNameCondition) -> dict:
 
 def deserialize_json(data: dict) -> LabelNameCondition:
     out: LabelNameCondition = {}  # type: ignore[typeddict-item]
-    if "LabelName" in data:
+    if data.get("LabelName") is not None:
         out["label_name"] = data["LabelName"]
     return out

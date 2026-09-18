@@ -32,10 +32,10 @@ def serialize_aws_json_1_1(value: MergeHunkDetail) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> MergeHunkDetail:
     out: MergeHunkDetail = {}  # type: ignore[typeddict-item]
-    if "startLine" in data:
+    if data.get("startLine") is not None:
         out["start_line"] = data["startLine"]
-    if "endLine" in data:
+    if data.get("endLine") is not None:
         out["end_line"] = data["endLine"]
-    if "hunkContent" in data:
+    if data.get("hunkContent") is not None:
         out["hunk_content"] = data["hunkContent"]
     return out

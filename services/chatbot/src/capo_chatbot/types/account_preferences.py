@@ -31,8 +31,8 @@ def serialize_json(value: AccountPreferences) -> dict:
 
 def deserialize_json(data: dict) -> AccountPreferences:
     out: AccountPreferences = {}  # type: ignore[typeddict-item]
-    if "UserAuthorizationRequired" in data:
+    if data.get("UserAuthorizationRequired") is not None:
         out["user_authorization_required"] = data["UserAuthorizationRequired"]
-    if "TrainingDataCollectionEnabled" in data:
+    if data.get("TrainingDataCollectionEnabled") is not None:
         out["training_data_collection_enabled"] = data["TrainingDataCollectionEnabled"]
     return out

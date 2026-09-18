@@ -75,9 +75,9 @@ def serialize_json(value: ListPermissionsRequest) -> dict:
 
 def deserialize_json(data: dict) -> ListPermissionsRequest:
     out: ListPermissionsRequest = {}  # type: ignore[typeddict-item]
-    if "CatalogId" in data:
+    if data.get("CatalogId") is not None:
         out["catalog_id"] = data["CatalogId"]
-    if "Principal" in data:
+    if data.get("Principal") is not None:
         import capo_lakeformation.types.data_lake_principal
 
         out["principal"] = (
@@ -85,7 +85,7 @@ def deserialize_json(data: dict) -> ListPermissionsRequest:
                 data["Principal"]
             )
         )
-    if "ResourceType" in data:
+    if data.get("ResourceType") is not None:
         import capo_lakeformation.types.data_lake_resource_type
 
         out["resource_type"] = (
@@ -93,16 +93,16 @@ def deserialize_json(data: dict) -> ListPermissionsRequest:
                 data["ResourceType"]
             )
         )
-    if "Resource" in data:
+    if data.get("Resource") is not None:
         import capo_lakeformation.types.resource
 
         out["resource"] = capo_lakeformation.types.resource.deserialize_json(
             data["Resource"]
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "IncludeRelated" in data:
+    if data.get("IncludeRelated") is not None:
         out["include_related"] = data["IncludeRelated"]
     return out

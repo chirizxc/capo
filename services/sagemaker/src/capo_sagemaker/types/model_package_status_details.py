@@ -43,7 +43,7 @@ def serialize_aws_json_1_1(value: ModelPackageStatusDetails) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ModelPackageStatusDetails:
     out: ModelPackageStatusDetails = {}  # type: ignore[typeddict-item]
-    if "ValidationStatuses" in data:
+    if data.get("ValidationStatuses") is not None:
         import capo_sagemaker.types.model_package_status_item_list
 
         out["validation_statuses"] = (
@@ -51,7 +51,7 @@ def deserialize_aws_json_1_1(data: dict) -> ModelPackageStatusDetails:
                 data["ValidationStatuses"]
             )
         )
-    if "ImageScanStatuses" in data:
+    if data.get("ImageScanStatuses") is not None:
         import capo_sagemaker.types.model_package_status_item_list
 
         out["image_scan_statuses"] = (

@@ -100,49 +100,49 @@ def serialize_json(value: Service) -> dict:
 
 def deserialize_json(data: dict) -> Service:
     out: Service = {}  # type: ignore[typeddict-item]
-    if "ReferenceId" in data:
+    if data.get("ReferenceId") is not None:
         out["reference_id"] = data["ReferenceId"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Names" in data:
+    if data.get("Names") is not None:
         import capo_xray.types.service_names
 
         out["names"] = capo_xray.types.service_names.deserialize_json(data["Names"])
-    if "Root" in data:
+    if data.get("Root") is not None:
         out["root"] = data["Root"]
-    if "AccountId" in data:
+    if data.get("AccountId") is not None:
         out["account_id"] = data["AccountId"]
-    if "Type" in data:
+    if data.get("Type") is not None:
         out["type"] = data["Type"]
-    if "State" in data:
+    if data.get("State") is not None:
         out["state"] = data["State"]
-    if "StartTime" in data:
+    if data.get("StartTime") is not None:
         import capo_xray.types.timestamp
 
         out["start_time"] = capo_xray.types.timestamp.deserialize_json(
             data["StartTime"]
         )
-    if "EndTime" in data:
+    if data.get("EndTime") is not None:
         import capo_xray.types.timestamp
 
         out["end_time"] = capo_xray.types.timestamp.deserialize_json(data["EndTime"])
-    if "Edges" in data:
+    if data.get("Edges") is not None:
         import capo_xray.types.edge_list
 
         out["edges"] = capo_xray.types.edge_list.deserialize_json(data["Edges"])
-    if "SummaryStatistics" in data:
+    if data.get("SummaryStatistics") is not None:
         import capo_xray.types.service_statistics
 
         out["summary_statistics"] = capo_xray.types.service_statistics.deserialize_json(
             data["SummaryStatistics"]
         )
-    if "DurationHistogram" in data:
+    if data.get("DurationHistogram") is not None:
         import capo_xray.types.histogram
 
         out["duration_histogram"] = capo_xray.types.histogram.deserialize_json(
             data["DurationHistogram"]
         )
-    if "ResponseTimeHistogram" in data:
+    if data.get("ResponseTimeHistogram") is not None:
         import capo_xray.types.histogram
 
         out["response_time_histogram"] = capo_xray.types.histogram.deserialize_json(

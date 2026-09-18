@@ -65,13 +65,13 @@ def serialize_json(value: CreateReportPlanInput) -> dict:
 
 def deserialize_json(data: dict) -> CreateReportPlanInput:
     out: CreateReportPlanInput = {}  # type: ignore[typeddict-item]
-    if "ReportPlanName" in data:
+    if data.get("ReportPlanName") is not None:
         out["report_plan_name"] = data["ReportPlanName"]
     else:
         raise DeserializationError("CreateReportPlanInput.report_plan_name required")
-    if "ReportPlanDescription" in data:
+    if data.get("ReportPlanDescription") is not None:
         out["report_plan_description"] = data["ReportPlanDescription"]
-    if "ReportDeliveryChannel" in data:
+    if data.get("ReportDeliveryChannel") is not None:
         import capo_backup.types.report_delivery_channel
 
         out["report_delivery_channel"] = (
@@ -83,7 +83,7 @@ def deserialize_json(data: dict) -> CreateReportPlanInput:
         raise DeserializationError(
             "CreateReportPlanInput.report_delivery_channel required"
         )
-    if "ReportSetting" in data:
+    if data.get("ReportSetting") is not None:
         import capo_backup.types.report_setting
 
         out["report_setting"] = capo_backup.types.report_setting.deserialize_json(
@@ -91,12 +91,12 @@ def deserialize_json(data: dict) -> CreateReportPlanInput:
         )
     else:
         raise DeserializationError("CreateReportPlanInput.report_setting required")
-    if "ReportPlanTags" in data:
+    if data.get("ReportPlanTags") is not None:
         import capo_backup.types.string_map
 
         out["report_plan_tags"] = capo_backup.types.string_map.deserialize_json(
             data["ReportPlanTags"]
         )
-    if "IdempotencyToken" in data:
+    if data.get("IdempotencyToken") is not None:
         out["idempotency_token"] = data["IdempotencyToken"]
     return out

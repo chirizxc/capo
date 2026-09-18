@@ -35,7 +35,7 @@ def serialize_json(value: ListConfiguredAudienceModelAssociationsOutput) -> dict
 
 def deserialize_json(data: dict) -> ListConfiguredAudienceModelAssociationsOutput:
     out: ListConfiguredAudienceModelAssociationsOutput = {}  # type: ignore[typeddict-item]
-    if "configuredAudienceModelAssociationSummaries" in data:
+    if data.get("configuredAudienceModelAssociationSummaries") is not None:
         import capo_cleanrooms.types.configured_audience_model_association_summary_list
 
         out["configured_audience_model_association_summaries"] = (
@@ -47,6 +47,6 @@ def deserialize_json(data: dict) -> ListConfiguredAudienceModelAssociationsOutpu
         raise DeserializationError(
             "ListConfiguredAudienceModelAssociationsOutput.configured_audience_model_association_summaries required"
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

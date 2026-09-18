@@ -39,14 +39,14 @@ def serialize_aws_json_1_0(value: ListAutoScalingConfigurationsRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ListAutoScalingConfigurationsRequest:
     out: ListAutoScalingConfigurationsRequest = {}  # type: ignore[typeddict-item]
-    if "AutoScalingConfigurationName" in data:
+    if data.get("AutoScalingConfigurationName") is not None:
         out["auto_scaling_configuration_name"] = data["AutoScalingConfigurationName"]
-    if "LatestOnly" in data:
+    if data.get("LatestOnly") is not None:
         out["latest_only"] = data["LatestOnly"]
     else:
         out["latest_only"] = False
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

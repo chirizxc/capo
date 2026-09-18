@@ -38,12 +38,12 @@ def serialize_json(value: SessionSharingConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> SessionSharingConfiguration:
     out: SessionSharingConfiguration = {}  # type: ignore[typeddict-item]
-    if "enabled" in data:
+    if data.get("enabled") is not None:
         out["enabled"] = data["enabled"]
     else:
         raise DeserializationError("SessionSharingConfiguration.enabled required")
-    if "acceptResponses" in data:
+    if data.get("acceptResponses") is not None:
         out["accept_responses"] = data["acceptResponses"]
-    if "revealCards" in data:
+    if data.get("revealCards") is not None:
         out["reveal_cards"] = data["revealCards"]
     return out

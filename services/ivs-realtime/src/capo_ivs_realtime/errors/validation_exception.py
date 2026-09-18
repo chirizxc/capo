@@ -42,7 +42,7 @@ def serialize_json(value: ValidationException_) -> dict:
 
 def deserialize_json(data: dict) -> ValidationException_:
     out: ValidationException_ = {}  # type: ignore[typeddict-item]
-    if "exceptionMessage" in data:
+    if data.get("exceptionMessage") is not None:
         out["exception_message"] = data["exceptionMessage"]
     return out
 
@@ -52,15 +52,16 @@ class ValidationException(ServiceError):
 
     code: str | None = "ValidationException"
 
-    def __init__(self, data: ValidationException_):
+    def __init__(self, data: ValidationException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="ValidationException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "ValidationException":
-        return cls(deserialize_json(data))
+    def from_json(cls, data: dict, message: str | None = None) -> "ValidationException":
+        return cls(deserialize_json(data), message)

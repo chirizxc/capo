@@ -24,7 +24,7 @@ def serialize_json(value: CreateUploadUrlRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateUploadUrlRequest:
     out: CreateUploadUrlRequest = {}  # type: ignore[typeddict-item]
-    if "scanName" in data:
+    if data.get("scanName") is not None:
         out["scan_name"] = data["scanName"]
     else:
         raise DeserializationError("CreateUploadUrlRequest.scan_name required")

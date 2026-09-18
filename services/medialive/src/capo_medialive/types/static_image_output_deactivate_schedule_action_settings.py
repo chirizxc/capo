@@ -37,11 +37,11 @@ def serialize_json(value: StaticImageOutputDeactivateScheduleActionSettings) -> 
 
 def deserialize_json(data: dict) -> StaticImageOutputDeactivateScheduleActionSettings:
     out: StaticImageOutputDeactivateScheduleActionSettings = {}  # type: ignore[typeddict-item]
-    if "fadeOut" in data:
+    if data.get("fadeOut") is not None:
         out["fade_out"] = data["fadeOut"]
-    if "layer" in data:
+    if data.get("layer") is not None:
         out["layer"] = data["layer"]
-    if "outputNames" in data:
+    if data.get("outputNames") is not None:
         import capo_medialive.types.__list_of__string
 
         out["output_names"] = capo_medialive.types.__list_of__string.deserialize_json(

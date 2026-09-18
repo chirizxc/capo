@@ -23,6 +23,6 @@ def serialize_aws_json_1_1(value: GetContactReachabilityStatusRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetContactReachabilityStatusRequest:
     out: GetContactReachabilityStatusRequest = {}  # type: ignore[typeddict-item]
-    if "domainName" in data:
+    if data.get("domainName") is not None:
         out["domain_name"] = data["domainName"]
     return out

@@ -37,14 +37,14 @@ def serialize_aws_json_1_1(value: AddJobFlowStepsInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AddJobFlowStepsInput:
     out: AddJobFlowStepsInput = {}  # type: ignore[typeddict-item]
-    if "JobFlowId" in data:
+    if data.get("JobFlowId") is not None:
         out["job_flow_id"] = data["JobFlowId"]
-    if "Steps" in data:
+    if data.get("Steps") is not None:
         import capo_emr.types.step_config_list
 
         out["steps"] = capo_emr.types.step_config_list.deserialize_aws_json_1_1(
             data["Steps"]
         )
-    if "ExecutionRoleArn" in data:
+    if data.get("ExecutionRoleArn") is not None:
         out["execution_role_arn"] = data["ExecutionRoleArn"]
     return out

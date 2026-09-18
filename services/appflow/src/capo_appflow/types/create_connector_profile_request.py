@@ -69,15 +69,15 @@ def serialize_json(value: CreateConnectorProfileRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateConnectorProfileRequest:
     out: CreateConnectorProfileRequest = {}  # type: ignore[typeddict-item]
-    if "connectorProfileName" in data:
+    if data.get("connectorProfileName") is not None:
         out["connector_profile_name"] = data["connectorProfileName"]
     else:
         raise DeserializationError(
             "CreateConnectorProfileRequest.connector_profile_name required"
         )
-    if "kmsArn" in data:
+    if data.get("kmsArn") is not None:
         out["kms_arn"] = data["kmsArn"]
-    if "connectorType" in data:
+    if data.get("connectorType") is not None:
         import capo_appflow.types.connector_type
 
         out["connector_type"] = capo_appflow.types.connector_type.deserialize_json(
@@ -87,9 +87,9 @@ def deserialize_json(data: dict) -> CreateConnectorProfileRequest:
         raise DeserializationError(
             "CreateConnectorProfileRequest.connector_type required"
         )
-    if "connectorLabel" in data:
+    if data.get("connectorLabel") is not None:
         out["connector_label"] = data["connectorLabel"]
-    if "connectionMode" in data:
+    if data.get("connectionMode") is not None:
         import capo_appflow.types.connection_mode
 
         out["connection_mode"] = capo_appflow.types.connection_mode.deserialize_json(
@@ -99,7 +99,7 @@ def deserialize_json(data: dict) -> CreateConnectorProfileRequest:
         raise DeserializationError(
             "CreateConnectorProfileRequest.connection_mode required"
         )
-    if "connectorProfileConfig" in data:
+    if data.get("connectorProfileConfig") is not None:
         import capo_appflow.types.connector_profile_config
 
         out["connector_profile_config"] = (
@@ -111,6 +111,6 @@ def deserialize_json(data: dict) -> CreateConnectorProfileRequest:
         raise DeserializationError(
             "CreateConnectorProfileRequest.connector_profile_config required"
         )
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     return out

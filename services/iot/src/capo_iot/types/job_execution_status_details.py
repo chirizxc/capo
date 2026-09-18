@@ -27,7 +27,7 @@ def serialize_json(value: JobExecutionStatusDetails) -> dict:
 
 def deserialize_json(data: dict) -> JobExecutionStatusDetails:
     out: JobExecutionStatusDetails = {}  # type: ignore[typeddict-item]
-    if "detailsMap" in data:
+    if data.get("detailsMap") is not None:
         import capo_iot.types.details_map
 
         out["details_map"] = capo_iot.types.details_map.deserialize_json(

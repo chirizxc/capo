@@ -43,11 +43,11 @@ def serialize_json(value: AssociationConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> AssociationConfiguration:
     out: AssociationConfiguration = {}  # type: ignore[typeddict-item]
-    if "associationId" in data:
+    if data.get("associationId") is not None:
         out["association_id"] = data["associationId"]
-    if "associationType" in data:
+    if data.get("associationType") is not None:
         out["association_type"] = data["associationType"]
-    if "associationConfigurationData" in data:
+    if data.get("associationConfigurationData") is not None:
         import capo_qconnect.types.association_configuration_data
 
         out["association_configuration_data"] = (

@@ -32,11 +32,11 @@ def serialize_json(value: ExportMetric) -> dict:
 
 def deserialize_json(data: dict) -> ExportMetric:
     out: ExportMetric = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         import capo_sesv2.types.metric
 
         out["name"] = capo_sesv2.types.metric.deserialize_json(data["Name"])
-    if "Aggregation" in data:
+    if data.get("Aggregation") is not None:
         import capo_sesv2.types.metric_aggregation
 
         out["aggregation"] = capo_sesv2.types.metric_aggregation.deserialize_json(

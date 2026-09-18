@@ -42,11 +42,11 @@ def serialize_json(value: AddArtifactInput) -> dict:
 
 def deserialize_json(data: dict) -> AddArtifactInput:
     out: AddArtifactInput = {}  # type: ignore[typeddict-item]
-    if "agentSpaceId" in data:
+    if data.get("agentSpaceId") is not None:
         out["agent_space_id"] = data["agentSpaceId"]
     else:
         raise DeserializationError("AddArtifactInput.agent_space_id required")
-    if "artifactContent" in data:
+    if data.get("artifactContent") is not None:
         import capo_securityagent.types._prelude.blob
 
         out["artifact_content"] = (
@@ -56,7 +56,7 @@ def deserialize_json(data: dict) -> AddArtifactInput:
         )
     else:
         raise DeserializationError("AddArtifactInput.artifact_content required")
-    if "artifactType" in data:
+    if data.get("artifactType") is not None:
         import capo_securityagent.types.artifact_type
 
         out["artifact_type"] = capo_securityagent.types.artifact_type.deserialize_json(
@@ -64,7 +64,7 @@ def deserialize_json(data: dict) -> AddArtifactInput:
         )
     else:
         raise DeserializationError("AddArtifactInput.artifact_type required")
-    if "fileName" in data:
+    if data.get("fileName") is not None:
         out["file_name"] = data["fileName"]
     else:
         raise DeserializationError("AddArtifactInput.file_name required")

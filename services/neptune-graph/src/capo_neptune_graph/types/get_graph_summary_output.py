@@ -27,10 +27,10 @@ def serialize_json(value: GetGraphSummaryOutput) -> dict:
     if "version" in value:
         out["version"] = value["version"]
     if "last_statistics_computation_time" in value:
-        import capo_neptune_graph.types._prelude.timestamp
+        import capo_neptune_graph._protocol.serialize
 
         out["lastStatisticsComputationTime"] = (
-            capo_neptune_graph.types._prelude.timestamp.serialize_json(
+            capo_neptune_graph._protocol.serialize.fmt_date_time(
                 value["last_statistics_computation_time"]
             )
         )
@@ -47,17 +47,15 @@ def serialize_json(value: GetGraphSummaryOutput) -> dict:
 
 def deserialize_json(data: dict) -> GetGraphSummaryOutput:
     out: GetGraphSummaryOutput = {}  # type: ignore[typeddict-item]
-    if "version" in data:
+    if data.get("version") is not None:
         out["version"] = data["version"]
-    if "lastStatisticsComputationTime" in data:
-        import capo_neptune_graph.types._prelude.timestamp
+    if data.get("lastStatisticsComputationTime") is not None:
+        import datetime
 
-        out["last_statistics_computation_time"] = (
-            capo_neptune_graph.types._prelude.timestamp.deserialize_json(
-                data["lastStatisticsComputationTime"]
-            )
+        out["last_statistics_computation_time"] = datetime.datetime.fromisoformat(
+            data["lastStatisticsComputationTime"].replace("Z", "+00:00")
         )
-    if "graphSummary" in data:
+    if data.get("graphSummary") is not None:
         import capo_neptune_graph.types.graph_data_summary
 
         out["graph_summary"] = (

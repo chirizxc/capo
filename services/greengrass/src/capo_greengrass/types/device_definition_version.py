@@ -27,7 +27,7 @@ def serialize_json(value: DeviceDefinitionVersion) -> dict:
 
 def deserialize_json(data: dict) -> DeviceDefinitionVersion:
     out: DeviceDefinitionVersion = {}  # type: ignore[typeddict-item]
-    if "Devices" in data:
+    if data.get("Devices") is not None:
         import capo_greengrass.types.__list_of_device
 
         out["devices"] = capo_greengrass.types.__list_of_device.deserialize_json(

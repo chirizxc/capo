@@ -29,6 +29,8 @@ def serialize_json(input_to_serialize: ContactSearchSummarySegmentAttributes) ->
 def deserialize_json(data: dict) -> ContactSearchSummarySegmentAttributes:
     out: ContactSearchSummarySegmentAttributes = {}
     for key, value in data.items():
+        if value is None:
+            continue
         import capo_connect.types.contact_search_summary_segment_attribute_value
 
         out[key] = (

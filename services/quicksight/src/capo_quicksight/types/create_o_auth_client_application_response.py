@@ -47,16 +47,16 @@ def serialize_json(value: CreateOAuthClientApplicationResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateOAuthClientApplicationResponse:
     out: CreateOAuthClientApplicationResponse = {}  # type: ignore[typeddict-item]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "OAuthClientApplicationId" in data:
+    if data.get("OAuthClientApplicationId") is not None:
         out["o_auth_client_application_id"] = data["OAuthClientApplicationId"]
-    if "CreationStatus" in data:
+    if data.get("CreationStatus") is not None:
         import capo_quicksight.types.resource_status
 
         out["creation_status"] = capo_quicksight.types.resource_status.deserialize_json(
             data["CreationStatus"]
         )
-    if "RequestId" in data:
+    if data.get("RequestId") is not None:
         out["request_id"] = data["RequestId"]
     return out

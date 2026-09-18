@@ -25,6 +25,8 @@ def deserialize_json(data: list) -> KxDataviewActiveVersionList:
 
     out: KxDataviewActiveVersionList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_finspace.types.kx_dataview_active_version.deserialize_json(item)
         )

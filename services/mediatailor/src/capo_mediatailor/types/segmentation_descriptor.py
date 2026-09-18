@@ -46,20 +46,20 @@ def serialize_json(value: SegmentationDescriptor) -> dict:
 
 def deserialize_json(data: dict) -> SegmentationDescriptor:
     out: SegmentationDescriptor = {}  # type: ignore[typeddict-item]
-    if "SegmentationEventId" in data:
+    if data.get("SegmentationEventId") is not None:
         out["segmentation_event_id"] = data["SegmentationEventId"]
-    if "SegmentationUpidType" in data:
+    if data.get("SegmentationUpidType") is not None:
         out["segmentation_upid_type"] = data["SegmentationUpidType"]
-    if "SegmentationUpid" in data:
+    if data.get("SegmentationUpid") is not None:
         out["segmentation_upid"] = data["SegmentationUpid"]
-    if "SegmentationTypeId" in data:
+    if data.get("SegmentationTypeId") is not None:
         out["segmentation_type_id"] = data["SegmentationTypeId"]
-    if "SegmentNum" in data:
+    if data.get("SegmentNum") is not None:
         out["segment_num"] = data["SegmentNum"]
-    if "SegmentsExpected" in data:
+    if data.get("SegmentsExpected") is not None:
         out["segments_expected"] = data["SegmentsExpected"]
-    if "SubSegmentNum" in data:
+    if data.get("SubSegmentNum") is not None:
         out["sub_segment_num"] = data["SubSegmentNum"]
-    if "SubSegmentsExpected" in data:
+    if data.get("SubSegmentsExpected") is not None:
         out["sub_segments_expected"] = data["SubSegmentsExpected"]
     return out

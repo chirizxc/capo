@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> AcceleratorTypes:
 
     out: AcceleratorTypes = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_deadline.types.accelerator_type.deserialize_json(item))
     return out

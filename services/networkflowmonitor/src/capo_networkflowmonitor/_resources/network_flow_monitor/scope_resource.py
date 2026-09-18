@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import datetime
+import uuid
 from typing import TYPE_CHECKING, Optional
 
 import capo_networkflowmonitor._auth._signers
@@ -108,10 +109,12 @@ class ScopeResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_networkflowmonitor.types.create_scope_input.CreateScopeInput = {}  # type: ignore[typeddict-item]
-        input_["targets"] = targets
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_networkflowmonitor.types.create_scope_input.CreateScopeInput = {
+            "targets": targets
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if tags is not None:
             input_["tags"] = tags
 
@@ -120,6 +123,7 @@ class ScopeResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -158,14 +162,16 @@ class ScopeResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_networkflowmonitor.types.get_scope_input.GetScopeInput = {}  # type: ignore[typeddict-item]
-        input_["scope_id"] = scope_id
+        input_: capo_networkflowmonitor.types.get_scope_input.GetScopeInput = {
+            "scope_id": scope_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update(
@@ -213,8 +219,9 @@ class ScopeResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_networkflowmonitor.types.update_scope_input.UpdateScopeInput = {}  # type: ignore[typeddict-item]
-        input_["scope_id"] = scope_id
+        input_: capo_networkflowmonitor.types.update_scope_input.UpdateScopeInput = {
+            "scope_id": scope_id
+        }
         if resources_to_add is not None:
             input_["resources_to_add"] = resources_to_add
         if resources_to_delete is not None:
@@ -225,6 +232,7 @@ class ScopeResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -264,14 +272,16 @@ class ScopeResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_networkflowmonitor.types.delete_scope_input.DeleteScopeInput = {}  # type: ignore[typeddict-item]
-        input_["scope_id"] = scope_id
+        input_: capo_networkflowmonitor.types.delete_scope_input.DeleteScopeInput = {
+            "scope_id": scope_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -313,7 +323,7 @@ class ScopeResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_networkflowmonitor.types.list_scopes_input.ListScopesInput = {}  # type: ignore[typeddict-item]
+        input_: capo_networkflowmonitor.types.list_scopes_input.ListScopesInput = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -324,6 +334,7 @@ class ScopeResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_query_results_workload_insights_top_contributors(
@@ -368,9 +379,10 @@ class ScopeResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_networkflowmonitor.types.get_query_results_workload_insights_top_contributors_input.GetQueryResultsWorkloadInsightsTopContributorsInput = {}  # type: ignore[typeddict-item]
-        input_["scope_id"] = scope_id
-        input_["query_id"] = query_id
+        input_: capo_networkflowmonitor.types.get_query_results_workload_insights_top_contributors_input.GetQueryResultsWorkloadInsightsTopContributorsInput = {
+            "scope_id": scope_id,
+            "query_id": query_id,
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -381,6 +393,7 @@ class ScopeResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_query_results_workload_insights_top_contributors_data(
@@ -425,9 +438,10 @@ class ScopeResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_networkflowmonitor.types.get_query_results_workload_insights_top_contributors_data_input.GetQueryResultsWorkloadInsightsTopContributorsDataInput = {}  # type: ignore[typeddict-item]
-        input_["scope_id"] = scope_id
-        input_["query_id"] = query_id
+        input_: capo_networkflowmonitor.types.get_query_results_workload_insights_top_contributors_data_input.GetQueryResultsWorkloadInsightsTopContributorsDataInput = {
+            "scope_id": scope_id,
+            "query_id": query_id,
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -438,6 +452,7 @@ class ScopeResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_query_status_workload_insights_top_contributors(
@@ -477,15 +492,17 @@ class ScopeResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_networkflowmonitor.types.get_query_status_workload_insights_top_contributors_input.GetQueryStatusWorkloadInsightsTopContributorsInput = {}  # type: ignore[typeddict-item]
-        input_["scope_id"] = scope_id
-        input_["query_id"] = query_id
+        input_: capo_networkflowmonitor.types.get_query_status_workload_insights_top_contributors_input.GetQueryStatusWorkloadInsightsTopContributorsInput = {
+            "scope_id": scope_id,
+            "query_id": query_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_query_status_workload_insights_top_contributors_data(
@@ -525,15 +542,17 @@ class ScopeResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_networkflowmonitor.types.get_query_status_workload_insights_top_contributors_data_input.GetQueryStatusWorkloadInsightsTopContributorsDataInput = {}  # type: ignore[typeddict-item]
-        input_["scope_id"] = scope_id
-        input_["query_id"] = query_id
+        input_: capo_networkflowmonitor.types.get_query_status_workload_insights_top_contributors_data_input.GetQueryStatusWorkloadInsightsTopContributorsDataInput = {
+            "scope_id": scope_id,
+            "query_id": query_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def start_query_workload_insights_top_contributors(
@@ -581,12 +600,13 @@ class ScopeResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_networkflowmonitor.types.start_query_workload_insights_top_contributors_input.StartQueryWorkloadInsightsTopContributorsInput = {}  # type: ignore[typeddict-item]
-        input_["scope_id"] = scope_id
-        input_["start_time"] = start_time
-        input_["end_time"] = end_time
-        input_["metric_name"] = metric_name
-        input_["destination_category"] = destination_category
+        input_: capo_networkflowmonitor.types.start_query_workload_insights_top_contributors_input.StartQueryWorkloadInsightsTopContributorsInput = {
+            "scope_id": scope_id,
+            "start_time": start_time,
+            "end_time": end_time,
+            "metric_name": metric_name,
+            "destination_category": destination_category,
+        }
         if limit is not None:
             input_["limit"] = limit
 
@@ -595,6 +615,7 @@ class ScopeResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def start_query_workload_insights_top_contributors_data(
@@ -640,18 +661,20 @@ class ScopeResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_networkflowmonitor.types.start_query_workload_insights_top_contributors_data_input.StartQueryWorkloadInsightsTopContributorsDataInput = {}  # type: ignore[typeddict-item]
-        input_["scope_id"] = scope_id
-        input_["start_time"] = start_time
-        input_["end_time"] = end_time
-        input_["metric_name"] = metric_name
-        input_["destination_category"] = destination_category
+        input_: capo_networkflowmonitor.types.start_query_workload_insights_top_contributors_data_input.StartQueryWorkloadInsightsTopContributorsDataInput = {
+            "scope_id": scope_id,
+            "start_time": start_time,
+            "end_time": end_time,
+            "metric_name": metric_name,
+            "destination_category": destination_category,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def stop_query_workload_insights_top_contributors(
@@ -691,15 +714,17 @@ class ScopeResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_networkflowmonitor.types.stop_query_workload_insights_top_contributors_input.StopQueryWorkloadInsightsTopContributorsInput = {}  # type: ignore[typeddict-item]
-        input_["scope_id"] = scope_id
-        input_["query_id"] = query_id
+        input_: capo_networkflowmonitor.types.stop_query_workload_insights_top_contributors_input.StopQueryWorkloadInsightsTopContributorsInput = {
+            "scope_id": scope_id,
+            "query_id": query_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def stop_query_workload_insights_top_contributors_data(
@@ -739,15 +764,17 @@ class ScopeResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_networkflowmonitor.types.stop_query_workload_insights_top_contributors_data_input.StopQueryWorkloadInsightsTopContributorsDataInput = {}  # type: ignore[typeddict-item]
-        input_["scope_id"] = scope_id
-        input_["query_id"] = query_id
+        input_: capo_networkflowmonitor.types.stop_query_workload_insights_top_contributors_data_input.StopQueryWorkloadInsightsTopContributorsDataInput = {
+            "scope_id": scope_id,
+            "query_id": query_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -798,10 +825,12 @@ class AsyncScopeResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_networkflowmonitor.types.create_scope_input.CreateScopeInput = {}  # type: ignore[typeddict-item]
-        input_["targets"] = targets
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_networkflowmonitor.types.create_scope_input.CreateScopeInput = {
+            "targets": targets
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if tags is not None:
             input_["tags"] = tags
 
@@ -810,6 +839,7 @@ class AsyncScopeResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -849,14 +879,16 @@ class AsyncScopeResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_networkflowmonitor.types.get_scope_input.GetScopeInput = {}  # type: ignore[typeddict-item]
-        input_["scope_id"] = scope_id
+        input_: capo_networkflowmonitor.types.get_scope_input.GetScopeInput = {
+            "scope_id": scope_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update(
@@ -905,8 +937,9 @@ class AsyncScopeResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_networkflowmonitor.types.update_scope_input.UpdateScopeInput = {}  # type: ignore[typeddict-item]
-        input_["scope_id"] = scope_id
+        input_: capo_networkflowmonitor.types.update_scope_input.UpdateScopeInput = {
+            "scope_id": scope_id
+        }
         if resources_to_add is not None:
             input_["resources_to_add"] = resources_to_add
         if resources_to_delete is not None:
@@ -917,6 +950,7 @@ class AsyncScopeResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -957,14 +991,16 @@ class AsyncScopeResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_networkflowmonitor.types.delete_scope_input.DeleteScopeInput = {}  # type: ignore[typeddict-item]
-        input_["scope_id"] = scope_id
+        input_: capo_networkflowmonitor.types.delete_scope_input.DeleteScopeInput = {
+            "scope_id": scope_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -1007,7 +1043,7 @@ class AsyncScopeResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_networkflowmonitor.types.list_scopes_input.ListScopesInput = {}  # type: ignore[typeddict-item]
+        input_: capo_networkflowmonitor.types.list_scopes_input.ListScopesInput = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -1018,6 +1054,7 @@ class AsyncScopeResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_query_results_workload_insights_top_contributors(
@@ -1063,9 +1100,10 @@ class AsyncScopeResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_networkflowmonitor.types.get_query_results_workload_insights_top_contributors_input.GetQueryResultsWorkloadInsightsTopContributorsInput = {}  # type: ignore[typeddict-item]
-        input_["scope_id"] = scope_id
-        input_["query_id"] = query_id
+        input_: capo_networkflowmonitor.types.get_query_results_workload_insights_top_contributors_input.GetQueryResultsWorkloadInsightsTopContributorsInput = {
+            "scope_id": scope_id,
+            "query_id": query_id,
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -1076,6 +1114,7 @@ class AsyncScopeResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_query_results_workload_insights_top_contributors_data(
@@ -1121,9 +1160,10 @@ class AsyncScopeResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_networkflowmonitor.types.get_query_results_workload_insights_top_contributors_data_input.GetQueryResultsWorkloadInsightsTopContributorsDataInput = {}  # type: ignore[typeddict-item]
-        input_["scope_id"] = scope_id
-        input_["query_id"] = query_id
+        input_: capo_networkflowmonitor.types.get_query_results_workload_insights_top_contributors_data_input.GetQueryResultsWorkloadInsightsTopContributorsDataInput = {
+            "scope_id": scope_id,
+            "query_id": query_id,
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -1134,6 +1174,7 @@ class AsyncScopeResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_query_status_workload_insights_top_contributors(
@@ -1174,15 +1215,17 @@ class AsyncScopeResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_networkflowmonitor.types.get_query_status_workload_insights_top_contributors_input.GetQueryStatusWorkloadInsightsTopContributorsInput = {}  # type: ignore[typeddict-item]
-        input_["scope_id"] = scope_id
-        input_["query_id"] = query_id
+        input_: capo_networkflowmonitor.types.get_query_status_workload_insights_top_contributors_input.GetQueryStatusWorkloadInsightsTopContributorsInput = {
+            "scope_id": scope_id,
+            "query_id": query_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_query_status_workload_insights_top_contributors_data(
@@ -1223,15 +1266,17 @@ class AsyncScopeResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_networkflowmonitor.types.get_query_status_workload_insights_top_contributors_data_input.GetQueryStatusWorkloadInsightsTopContributorsDataInput = {}  # type: ignore[typeddict-item]
-        input_["scope_id"] = scope_id
-        input_["query_id"] = query_id
+        input_: capo_networkflowmonitor.types.get_query_status_workload_insights_top_contributors_data_input.GetQueryStatusWorkloadInsightsTopContributorsDataInput = {
+            "scope_id": scope_id,
+            "query_id": query_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def start_query_workload_insights_top_contributors(
@@ -1280,12 +1325,13 @@ class AsyncScopeResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_networkflowmonitor.types.start_query_workload_insights_top_contributors_input.StartQueryWorkloadInsightsTopContributorsInput = {}  # type: ignore[typeddict-item]
-        input_["scope_id"] = scope_id
-        input_["start_time"] = start_time
-        input_["end_time"] = end_time
-        input_["metric_name"] = metric_name
-        input_["destination_category"] = destination_category
+        input_: capo_networkflowmonitor.types.start_query_workload_insights_top_contributors_input.StartQueryWorkloadInsightsTopContributorsInput = {
+            "scope_id": scope_id,
+            "start_time": start_time,
+            "end_time": end_time,
+            "metric_name": metric_name,
+            "destination_category": destination_category,
+        }
         if limit is not None:
             input_["limit"] = limit
 
@@ -1294,6 +1340,7 @@ class AsyncScopeResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def start_query_workload_insights_top_contributors_data(
@@ -1340,18 +1387,20 @@ class AsyncScopeResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_networkflowmonitor.types.start_query_workload_insights_top_contributors_data_input.StartQueryWorkloadInsightsTopContributorsDataInput = {}  # type: ignore[typeddict-item]
-        input_["scope_id"] = scope_id
-        input_["start_time"] = start_time
-        input_["end_time"] = end_time
-        input_["metric_name"] = metric_name
-        input_["destination_category"] = destination_category
+        input_: capo_networkflowmonitor.types.start_query_workload_insights_top_contributors_data_input.StartQueryWorkloadInsightsTopContributorsDataInput = {
+            "scope_id": scope_id,
+            "start_time": start_time,
+            "end_time": end_time,
+            "metric_name": metric_name,
+            "destination_category": destination_category,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def stop_query_workload_insights_top_contributors(
@@ -1392,15 +1441,17 @@ class AsyncScopeResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_networkflowmonitor.types.stop_query_workload_insights_top_contributors_input.StopQueryWorkloadInsightsTopContributorsInput = {}  # type: ignore[typeddict-item]
-        input_["scope_id"] = scope_id
-        input_["query_id"] = query_id
+        input_: capo_networkflowmonitor.types.stop_query_workload_insights_top_contributors_input.StopQueryWorkloadInsightsTopContributorsInput = {
+            "scope_id": scope_id,
+            "query_id": query_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def stop_query_workload_insights_top_contributors_data(
@@ -1441,13 +1492,15 @@ class AsyncScopeResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_networkflowmonitor.types.stop_query_workload_insights_top_contributors_data_input.StopQueryWorkloadInsightsTopContributorsDataInput = {}  # type: ignore[typeddict-item]
-        input_["scope_id"] = scope_id
-        input_["query_id"] = query_id
+        input_: capo_networkflowmonitor.types.stop_query_workload_insights_top_contributors_data_input.StopQueryWorkloadInsightsTopContributorsDataInput = {
+            "scope_id": scope_id,
+            "query_id": query_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

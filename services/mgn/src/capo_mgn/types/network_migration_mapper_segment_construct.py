@@ -78,31 +78,31 @@ def serialize_json(value: NetworkMigrationMapperSegmentConstruct) -> dict:
 
 def deserialize_json(data: dict) -> NetworkMigrationMapperSegmentConstruct:
     out: NetworkMigrationMapperSegmentConstruct = {}  # type: ignore[typeddict-item]
-    if "constructID" in data:
+    if data.get("constructID") is not None:
         out["construct_id"] = data["constructID"]
-    if "constructType" in data:
+    if data.get("constructType") is not None:
         out["construct_type"] = data["constructType"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "logicalID" in data:
+    if data.get("logicalID") is not None:
         out["logical_id"] = data["logicalID"]
-    if "excluded" in data:
+    if data.get("excluded") is not None:
         out["excluded"] = data["excluded"]
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_mgn.types._prelude.timestamp
 
         out["created_at"] = capo_mgn.types._prelude.timestamp.deserialize_json(
             data["createdAt"]
         )
-    if "updatedAt" in data:
+    if data.get("updatedAt") is not None:
         import capo_mgn.types._prelude.timestamp
 
         out["updated_at"] = capo_mgn.types._prelude.timestamp.deserialize_json(
             data["updatedAt"]
         )
-    if "properties" in data:
+    if data.get("properties") is not None:
         import capo_mgn.types.construct_properties
 
         out["properties"] = capo_mgn.types.construct_properties.deserialize_json(

@@ -23,5 +23,7 @@ def deserialize_aws_json_1_1(data: list) -> NotificationTriggerList:
 
     out: NotificationTriggerList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_lightsail.types.alarm_state.deserialize_aws_json_1_1(item))
     return out

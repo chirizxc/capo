@@ -47,11 +47,11 @@ def serialize_aws_json_1_1(value: EventDetails) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> EventDetails:
     out: EventDetails = {}  # type: ignore[typeddict-item]
-    if "event" in data:
+    if data.get("event") is not None:
         import capo_health.types.event
 
         out["event"] = capo_health.types.event.deserialize_aws_json_1_1(data["event"])
-    if "eventDescription" in data:
+    if data.get("eventDescription") is not None:
         import capo_health.types.event_description
 
         out["event_description"] = (
@@ -59,7 +59,7 @@ def deserialize_aws_json_1_1(data: dict) -> EventDetails:
                 data["eventDescription"]
             )
         )
-    if "eventMetadata" in data:
+    if data.get("eventMetadata") is not None:
         import capo_health.types.event_metadata
 
         out["event_metadata"] = (

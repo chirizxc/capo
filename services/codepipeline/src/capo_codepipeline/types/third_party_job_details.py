@@ -39,9 +39,9 @@ def serialize_aws_json_1_1(value: ThirdPartyJobDetails) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ThirdPartyJobDetails:
     out: ThirdPartyJobDetails = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "data" in data:
+    if data.get("data") is not None:
         import capo_codepipeline.types.third_party_job_data
 
         out["data"] = (
@@ -49,6 +49,6 @@ def deserialize_aws_json_1_1(data: dict) -> ThirdPartyJobDetails:
                 data["data"]
             )
         )
-    if "nonce" in data:
+    if data.get("nonce") is not None:
         out["nonce"] = data["nonce"]
     return out

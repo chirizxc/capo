@@ -36,12 +36,12 @@ def serialize_json(value: ExportJobResource) -> dict:
 
 def deserialize_json(data: dict) -> ExportJobResource:
     out: ExportJobResource = {}  # type: ignore[typeddict-item]
-    if "RoleArn" in data:
+    if data.get("RoleArn") is not None:
         out["role_arn"] = data["RoleArn"]
-    if "S3UrlPrefix" in data:
+    if data.get("S3UrlPrefix") is not None:
         out["s3_url_prefix"] = data["S3UrlPrefix"]
-    if "SegmentId" in data:
+    if data.get("SegmentId") is not None:
         out["segment_id"] = data["SegmentId"]
-    if "SegmentVersion" in data:
+    if data.get("SegmentVersion") is not None:
         out["segment_version"] = data["SegmentVersion"]
     return out

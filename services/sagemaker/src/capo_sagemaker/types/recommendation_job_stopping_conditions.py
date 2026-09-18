@@ -49,9 +49,9 @@ def serialize_aws_json_1_1(value: RecommendationJobStoppingConditions) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RecommendationJobStoppingConditions:
     out: RecommendationJobStoppingConditions = {}  # type: ignore[typeddict-item]
-    if "MaxInvocations" in data:
+    if data.get("MaxInvocations") is not None:
         out["max_invocations"] = data["MaxInvocations"]
-    if "ModelLatencyThresholds" in data:
+    if data.get("ModelLatencyThresholds") is not None:
         import capo_sagemaker.types.model_latency_thresholds
 
         out["model_latency_thresholds"] = (
@@ -59,7 +59,7 @@ def deserialize_aws_json_1_1(data: dict) -> RecommendationJobStoppingConditions:
                 data["ModelLatencyThresholds"]
             )
         )
-    if "FlatInvocations" in data:
+    if data.get("FlatInvocations") is not None:
         import capo_sagemaker.types.flat_invocations
 
         out["flat_invocations"] = (

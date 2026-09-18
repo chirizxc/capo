@@ -30,13 +30,13 @@ def serialize_json(value: CancelImageCreationRequest) -> dict:
 
 def deserialize_json(data: dict) -> CancelImageCreationRequest:
     out: CancelImageCreationRequest = {}  # type: ignore[typeddict-item]
-    if "imageBuildVersionArn" in data:
+    if data.get("imageBuildVersionArn") is not None:
         out["image_build_version_arn"] = data["imageBuildVersionArn"]
     else:
         raise DeserializationError(
             "CancelImageCreationRequest.image_build_version_arn required"
         )
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     else:
         raise DeserializationError("CancelImageCreationRequest.client_token required")

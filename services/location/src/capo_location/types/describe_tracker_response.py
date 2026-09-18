@@ -85,27 +85,27 @@ def serialize_json(value: DescribeTrackerResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribeTrackerResponse:
     out: DescribeTrackerResponse = {}  # type: ignore[typeddict-item]
-    if "TrackerName" in data:
+    if data.get("TrackerName") is not None:
         out["tracker_name"] = data["TrackerName"]
     else:
         raise DeserializationError("DescribeTrackerResponse.tracker_name required")
-    if "TrackerArn" in data:
+    if data.get("TrackerArn") is not None:
         out["tracker_arn"] = data["TrackerArn"]
     else:
         raise DeserializationError("DescribeTrackerResponse.tracker_arn required")
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
     else:
         raise DeserializationError("DescribeTrackerResponse.description required")
-    if "PricingPlan" in data:
+    if data.get("PricingPlan") is not None:
         out["pricing_plan"] = data["PricingPlan"]
-    if "PricingPlanDataSource" in data:
+    if data.get("PricingPlanDataSource") is not None:
         out["pricing_plan_data_source"] = data["PricingPlanDataSource"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_location.types.tag_map
 
         out["tags"] = capo_location.types.tag_map.deserialize_json(data["Tags"])
-    if "CreateTime" in data:
+    if data.get("CreateTime") is not None:
         import capo_location.types.timestamp
 
         out["create_time"] = capo_location.types.timestamp.deserialize_json(
@@ -113,7 +113,7 @@ def deserialize_json(data: dict) -> DescribeTrackerResponse:
         )
     else:
         raise DeserializationError("DescribeTrackerResponse.create_time required")
-    if "UpdateTime" in data:
+    if data.get("UpdateTime") is not None:
         import capo_location.types.timestamp
 
         out["update_time"] = capo_location.types.timestamp.deserialize_json(
@@ -121,12 +121,12 @@ def deserialize_json(data: dict) -> DescribeTrackerResponse:
         )
     else:
         raise DeserializationError("DescribeTrackerResponse.update_time required")
-    if "KmsKeyId" in data:
+    if data.get("KmsKeyId") is not None:
         out["kms_key_id"] = data["KmsKeyId"]
-    if "PositionFiltering" in data:
+    if data.get("PositionFiltering") is not None:
         out["position_filtering"] = data["PositionFiltering"]
-    if "EventBridgeEnabled" in data:
+    if data.get("EventBridgeEnabled") is not None:
         out["event_bridge_enabled"] = data["EventBridgeEnabled"]
-    if "KmsKeyEnableGeospatialQueries" in data:
+    if data.get("KmsKeyEnableGeospatialQueries") is not None:
         out["kms_key_enable_geospatial_queries"] = data["KmsKeyEnableGeospatialQueries"]
     return out

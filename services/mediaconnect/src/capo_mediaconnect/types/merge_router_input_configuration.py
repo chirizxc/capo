@@ -39,13 +39,13 @@ def serialize_json(value: MergeRouterInputConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> MergeRouterInputConfiguration:
     out: MergeRouterInputConfiguration = {}  # type: ignore[typeddict-item]
-    if "networkInterfaceArn" in data:
+    if data.get("networkInterfaceArn") is not None:
         out["network_interface_arn"] = data["networkInterfaceArn"]
     else:
         raise DeserializationError(
             "MergeRouterInputConfiguration.network_interface_arn required"
         )
-    if "protocolConfigurations" in data:
+    if data.get("protocolConfigurations") is not None:
         import capo_mediaconnect.types.merge_router_input_protocol_configuration_list
 
         out["protocol_configurations"] = (
@@ -57,7 +57,7 @@ def deserialize_json(data: dict) -> MergeRouterInputConfiguration:
         raise DeserializationError(
             "MergeRouterInputConfiguration.protocol_configurations required"
         )
-    if "mergeRecoveryWindowMilliseconds" in data:
+    if data.get("mergeRecoveryWindowMilliseconds") is not None:
         out["merge_recovery_window_milliseconds"] = data[
             "mergeRecoveryWindowMilliseconds"
         ]

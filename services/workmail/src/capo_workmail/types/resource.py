@@ -75,36 +75,36 @@ def serialize_aws_json_1_1(value: Resource) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Resource:
     out: Resource = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "Email" in data:
+    if data.get("Email") is not None:
         out["email"] = data["Email"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_workmail.types.resource_type
 
         out["type"] = capo_workmail.types.resource_type.deserialize_aws_json_1_1(
             data["Type"]
         )
-    if "State" in data:
+    if data.get("State") is not None:
         import capo_workmail.types.entity_state
 
         out["state"] = capo_workmail.types.entity_state.deserialize_aws_json_1_1(
             data["State"]
         )
-    if "EnabledDate" in data:
+    if data.get("EnabledDate") is not None:
         import capo_workmail.types.timestamp
 
         out["enabled_date"] = capo_workmail.types.timestamp.deserialize_aws_json_1_1(
             data["EnabledDate"]
         )
-    if "DisabledDate" in data:
+    if data.get("DisabledDate") is not None:
         import capo_workmail.types.timestamp
 
         out["disabled_date"] = capo_workmail.types.timestamp.deserialize_aws_json_1_1(
             data["DisabledDate"]
         )
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
     return out

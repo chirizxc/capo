@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> DeleteDetectorRequests:
 
     out: DeleteDetectorRequests = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_iot_events_data.types.delete_detector_request.deserialize_json(item)
         )

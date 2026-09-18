@@ -40,11 +40,11 @@ def serialize_json(value: TransposedTableOption) -> dict:
 
 def deserialize_json(data: dict) -> TransposedTableOption:
     out: TransposedTableOption = {}  # type: ignore[typeddict-item]
-    if "ColumnIndex" in data:
+    if data.get("ColumnIndex") is not None:
         out["column_index"] = data["ColumnIndex"]
-    if "ColumnWidth" in data:
+    if data.get("ColumnWidth") is not None:
         out["column_width"] = data["ColumnWidth"]
-    if "ColumnType" in data:
+    if data.get("ColumnType") is not None:
         import capo_quicksight.types.transposed_column_type
 
         out["column_type"] = (

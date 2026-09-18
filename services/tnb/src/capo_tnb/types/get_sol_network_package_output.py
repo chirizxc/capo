@@ -86,15 +86,15 @@ def serialize_json(value: GetSolNetworkPackageOutput) -> dict:
 
 def deserialize_json(data: dict) -> GetSolNetworkPackageOutput:
     out: GetSolNetworkPackageOutput = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("GetSolNetworkPackageOutput.id required")
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("GetSolNetworkPackageOutput.arn required")
-    if "nsdOnboardingState" in data:
+    if data.get("nsdOnboardingState") is not None:
         import capo_tnb.types.nsd_onboarding_state
 
         out["nsd_onboarding_state"] = (
@@ -106,7 +106,7 @@ def deserialize_json(data: dict) -> GetSolNetworkPackageOutput:
         raise DeserializationError(
             "GetSolNetworkPackageOutput.nsd_onboarding_state required"
         )
-    if "nsdOperationalState" in data:
+    if data.get("nsdOperationalState") is not None:
         import capo_tnb.types.nsd_operational_state
 
         out["nsd_operational_state"] = (
@@ -118,7 +118,7 @@ def deserialize_json(data: dict) -> GetSolNetworkPackageOutput:
         raise DeserializationError(
             "GetSolNetworkPackageOutput.nsd_operational_state required"
         )
-    if "nsdUsageState" in data:
+    if data.get("nsdUsageState") is not None:
         import capo_tnb.types.nsd_usage_state
 
         out["nsd_usage_state"] = capo_tnb.types.nsd_usage_state.deserialize_json(
@@ -128,19 +128,19 @@ def deserialize_json(data: dict) -> GetSolNetworkPackageOutput:
         raise DeserializationError(
             "GetSolNetworkPackageOutput.nsd_usage_state required"
         )
-    if "nsdId" in data:
+    if data.get("nsdId") is not None:
         out["nsd_id"] = data["nsdId"]
     else:
         raise DeserializationError("GetSolNetworkPackageOutput.nsd_id required")
-    if "nsdName" in data:
+    if data.get("nsdName") is not None:
         out["nsd_name"] = data["nsdName"]
     else:
         raise DeserializationError("GetSolNetworkPackageOutput.nsd_name required")
-    if "nsdVersion" in data:
+    if data.get("nsdVersion") is not None:
         out["nsd_version"] = data["nsdVersion"]
     else:
         raise DeserializationError("GetSolNetworkPackageOutput.nsd_version required")
-    if "vnfPkgIds" in data:
+    if data.get("vnfPkgIds") is not None:
         import capo_tnb.types.vnf_pkg_id_list
 
         out["vnf_pkg_ids"] = capo_tnb.types.vnf_pkg_id_list.deserialize_json(
@@ -148,7 +148,7 @@ def deserialize_json(data: dict) -> GetSolNetworkPackageOutput:
         )
     else:
         raise DeserializationError("GetSolNetworkPackageOutput.vnf_pkg_ids required")
-    if "metadata" in data:
+    if data.get("metadata") is not None:
         import capo_tnb.types.get_sol_network_package_metadata
 
         out["metadata"] = (
@@ -158,7 +158,7 @@ def deserialize_json(data: dict) -> GetSolNetworkPackageOutput:
         )
     else:
         raise DeserializationError("GetSolNetworkPackageOutput.metadata required")
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_tnb.types.tag_map
 
         out["tags"] = capo_tnb.types.tag_map.deserialize_json(data["tags"])

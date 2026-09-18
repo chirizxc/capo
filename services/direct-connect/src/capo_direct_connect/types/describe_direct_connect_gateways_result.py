@@ -38,7 +38,7 @@ def serialize_aws_json_1_1(value: DescribeDirectConnectGatewaysResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeDirectConnectGatewaysResult:
     out: DescribeDirectConnectGatewaysResult = {}  # type: ignore[typeddict-item]
-    if "directConnectGateways" in data:
+    if data.get("directConnectGateways") is not None:
         import capo_direct_connect.types.direct_connect_gateway_list
 
         out["direct_connect_gateways"] = (
@@ -46,6 +46,6 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeDirectConnectGatewaysResult:
                 data["directConnectGateways"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

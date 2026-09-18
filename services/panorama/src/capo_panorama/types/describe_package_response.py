@@ -79,19 +79,19 @@ def serialize_json(value: DescribePackageResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribePackageResponse:
     out: DescribePackageResponse = {}  # type: ignore[typeddict-item]
-    if "PackageId" in data:
+    if data.get("PackageId") is not None:
         out["package_id"] = data["PackageId"]
     else:
         raise DeserializationError("DescribePackageResponse.package_id required")
-    if "PackageName" in data:
+    if data.get("PackageName") is not None:
         out["package_name"] = data["PackageName"]
     else:
         raise DeserializationError("DescribePackageResponse.package_name required")
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
     else:
         raise DeserializationError("DescribePackageResponse.arn required")
-    if "StorageLocation" in data:
+    if data.get("StorageLocation") is not None:
         import capo_panorama.types.storage_location
 
         out["storage_location"] = capo_panorama.types.storage_location.deserialize_json(
@@ -99,7 +99,7 @@ def deserialize_json(data: dict) -> DescribePackageResponse:
         )
     else:
         raise DeserializationError("DescribePackageResponse.storage_location required")
-    if "ReadAccessPrincipalArns" in data:
+    if data.get("ReadAccessPrincipalArns") is not None:
         import capo_panorama.types.principal_arns_list
 
         out["read_access_principal_arns"] = (
@@ -107,7 +107,7 @@ def deserialize_json(data: dict) -> DescribePackageResponse:
                 data["ReadAccessPrincipalArns"]
             )
         )
-    if "WriteAccessPrincipalArns" in data:
+    if data.get("WriteAccessPrincipalArns") is not None:
         import capo_panorama.types.principal_arns_list
 
         out["write_access_principal_arns"] = (
@@ -115,7 +115,7 @@ def deserialize_json(data: dict) -> DescribePackageResponse:
                 data["WriteAccessPrincipalArns"]
             )
         )
-    if "CreatedTime" in data:
+    if data.get("CreatedTime") is not None:
         import capo_panorama.types.time_stamp
 
         out["created_time"] = capo_panorama.types.time_stamp.deserialize_json(
@@ -123,7 +123,7 @@ def deserialize_json(data: dict) -> DescribePackageResponse:
         )
     else:
         raise DeserializationError("DescribePackageResponse.created_time required")
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_panorama.types.tag_map
 
         out["tags"] = capo_panorama.types.tag_map.deserialize_json(data["Tags"])

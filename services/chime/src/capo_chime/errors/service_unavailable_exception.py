@@ -30,11 +30,11 @@ def serialize_json(value: ServiceUnavailableException_) -> dict:
 
 def deserialize_json(data: dict) -> ServiceUnavailableException_:
     out: ServiceUnavailableException_ = {}  # type: ignore[typeddict-item]
-    if "Code" in data:
+    if data.get("Code") is not None:
         import capo_chime.types.error_code
 
         out["code"] = capo_chime.types.error_code.deserialize_json(data["Code"])
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     return out
 
@@ -44,15 +44,18 @@ class ServiceUnavailableException(ServiceError):
 
     code: str | None = "ServiceUnavailableException"
 
-    def __init__(self, data: ServiceUnavailableException_):
+    def __init__(self, data: ServiceUnavailableException_, message: str | None = None):
         super().__init__(
             "server",
             is_throttling_error=False,
             is_retryable=False,
             code="ServiceUnavailableException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "ServiceUnavailableException":
-        return cls(deserialize_json(data))
+    def from_json(
+        cls, data: dict, message: str | None = None
+    ) -> "ServiceUnavailableException":
+        return cls(deserialize_json(data), message)

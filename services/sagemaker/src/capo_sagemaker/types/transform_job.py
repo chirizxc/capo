@@ -221,11 +221,11 @@ def serialize_aws_json_1_1(value: TransformJob) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> TransformJob:
     out: TransformJob = {}  # type: ignore[typeddict-item]
-    if "TransformJobName" in data:
+    if data.get("TransformJobName") is not None:
         out["transform_job_name"] = data["TransformJobName"]
-    if "TransformJobArn" in data:
+    if data.get("TransformJobArn") is not None:
         out["transform_job_arn"] = data["TransformJobArn"]
-    if "TransformJobStatus" in data:
+    if data.get("TransformJobStatus") is not None:
         import capo_sagemaker.types.transform_job_status
 
         out["transform_job_status"] = (
@@ -233,13 +233,13 @@ def deserialize_aws_json_1_1(data: dict) -> TransformJob:
                 data["TransformJobStatus"]
             )
         )
-    if "FailureReason" in data:
+    if data.get("FailureReason") is not None:
         out["failure_reason"] = data["FailureReason"]
-    if "ModelName" in data:
+    if data.get("ModelName") is not None:
         out["model_name"] = data["ModelName"]
-    if "MaxConcurrentTransforms" in data:
+    if data.get("MaxConcurrentTransforms") is not None:
         out["max_concurrent_transforms"] = data["MaxConcurrentTransforms"]
-    if "ModelClientConfig" in data:
+    if data.get("ModelClientConfig") is not None:
         import capo_sagemaker.types.model_client_config
 
         out["model_client_config"] = (
@@ -247,9 +247,9 @@ def deserialize_aws_json_1_1(data: dict) -> TransformJob:
                 data["ModelClientConfig"]
             )
         )
-    if "MaxPayloadInMB" in data:
+    if data.get("MaxPayloadInMB") is not None:
         out["max_payload_in_mb"] = data["MaxPayloadInMB"]
-    if "BatchStrategy" in data:
+    if data.get("BatchStrategy") is not None:
         import capo_sagemaker.types.batch_strategy
 
         out["batch_strategy"] = (
@@ -257,7 +257,7 @@ def deserialize_aws_json_1_1(data: dict) -> TransformJob:
                 data["BatchStrategy"]
             )
         )
-    if "Environment" in data:
+    if data.get("Environment") is not None:
         import capo_sagemaker.types.transform_environment_map
 
         out["environment"] = (
@@ -265,7 +265,7 @@ def deserialize_aws_json_1_1(data: dict) -> TransformJob:
                 data["Environment"]
             )
         )
-    if "TransformInput" in data:
+    if data.get("TransformInput") is not None:
         import capo_sagemaker.types.transform_input
 
         out["transform_input"] = (
@@ -273,7 +273,7 @@ def deserialize_aws_json_1_1(data: dict) -> TransformJob:
                 data["TransformInput"]
             )
         )
-    if "TransformOutput" in data:
+    if data.get("TransformOutput") is not None:
         import capo_sagemaker.types.transform_output
 
         out["transform_output"] = (
@@ -281,7 +281,7 @@ def deserialize_aws_json_1_1(data: dict) -> TransformJob:
                 data["TransformOutput"]
             )
         )
-    if "DataCaptureConfig" in data:
+    if data.get("DataCaptureConfig") is not None:
         import capo_sagemaker.types.batch_data_capture_config
 
         out["data_capture_config"] = (
@@ -289,7 +289,7 @@ def deserialize_aws_json_1_1(data: dict) -> TransformJob:
                 data["DataCaptureConfig"]
             )
         )
-    if "TransformResources" in data:
+    if data.get("TransformResources") is not None:
         import capo_sagemaker.types.transform_resources
 
         out["transform_resources"] = (
@@ -297,13 +297,13 @@ def deserialize_aws_json_1_1(data: dict) -> TransformJob:
                 data["TransformResources"]
             )
         )
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_sagemaker.types.timestamp
 
         out["creation_time"] = capo_sagemaker.types.timestamp.deserialize_aws_json_1_1(
             data["CreationTime"]
         )
-    if "TransformStartTime" in data:
+    if data.get("TransformStartTime") is not None:
         import capo_sagemaker.types.timestamp
 
         out["transform_start_time"] = (
@@ -311,7 +311,7 @@ def deserialize_aws_json_1_1(data: dict) -> TransformJob:
                 data["TransformStartTime"]
             )
         )
-    if "TransformEndTime" in data:
+    if data.get("TransformEndTime") is not None:
         import capo_sagemaker.types.timestamp
 
         out["transform_end_time"] = (
@@ -319,11 +319,11 @@ def deserialize_aws_json_1_1(data: dict) -> TransformJob:
                 data["TransformEndTime"]
             )
         )
-    if "LabelingJobArn" in data:
+    if data.get("LabelingJobArn") is not None:
         out["labeling_job_arn"] = data["LabelingJobArn"]
-    if "AutoMLJobArn" in data:
+    if data.get("AutoMLJobArn") is not None:
         out["auto_ml_job_arn"] = data["AutoMLJobArn"]
-    if "DataProcessing" in data:
+    if data.get("DataProcessing") is not None:
         import capo_sagemaker.types.data_processing
 
         out["data_processing"] = (
@@ -331,7 +331,7 @@ def deserialize_aws_json_1_1(data: dict) -> TransformJob:
                 data["DataProcessing"]
             )
         )
-    if "ExperimentConfig" in data:
+    if data.get("ExperimentConfig") is not None:
         import capo_sagemaker.types.experiment_config
 
         out["experiment_config"] = (
@@ -339,7 +339,7 @@ def deserialize_aws_json_1_1(data: dict) -> TransformJob:
                 data["ExperimentConfig"]
             )
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_sagemaker.types.tag_list
 
         out["tags"] = capo_sagemaker.types.tag_list.deserialize_aws_json_1_1(

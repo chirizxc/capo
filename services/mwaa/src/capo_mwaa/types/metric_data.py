@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> MetricData:
 
     out: MetricData = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_mwaa.types.metric_datum.deserialize_json(item))
     return out

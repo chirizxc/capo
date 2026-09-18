@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: ClusterNetworkInterface) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ClusterNetworkInterface:
     out: ClusterNetworkInterface = {}  # type: ignore[typeddict-item]
-    if "InterfaceType" in data:
+    if data.get("InterfaceType") is not None:
         import capo_sagemaker.types.cluster_interface_type
 
         out["interface_type"] = (

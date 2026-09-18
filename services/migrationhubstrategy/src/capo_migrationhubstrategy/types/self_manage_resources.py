@@ -30,7 +30,7 @@ def serialize_json(value: SelfManageResources) -> dict:
 
 def deserialize_json(data: dict) -> SelfManageResources:
     out: SelfManageResources = {}  # type: ignore[typeddict-item]
-    if "targetDestination" in data:
+    if data.get("targetDestination") is not None:
         import capo_migrationhubstrategy.types.self_manage_target_destinations
 
         out["target_destination"] = (

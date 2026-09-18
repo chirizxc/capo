@@ -36,7 +36,7 @@ def serialize_json(value: ListReputationEntitiesResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListReputationEntitiesResponse:
     out: ListReputationEntitiesResponse = {}  # type: ignore[typeddict-item]
-    if "ReputationEntities" in data:
+    if data.get("ReputationEntities") is not None:
         import capo_sesv2.types.reputation_entities_list
 
         out["reputation_entities"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> ListReputationEntitiesResponse:
                 data["ReputationEntities"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

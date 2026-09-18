@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import uuid
 from typing import TYPE_CHECKING, Optional
 
 import capo_workspaces_web._auth._signers
@@ -96,13 +97,15 @@ class IdentityProviderResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_workspaces_web.types.create_identity_provider_request.CreateIdentityProviderRequest = {}  # type: ignore[typeddict-item]
-        input_["portal_arn"] = portal_arn
-        input_["identity_provider_name"] = identity_provider_name
-        input_["identity_provider_type"] = identity_provider_type
-        input_["identity_provider_details"] = identity_provider_details
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_workspaces_web.types.create_identity_provider_request.CreateIdentityProviderRequest = {
+            "portal_arn": portal_arn,
+            "identity_provider_name": identity_provider_name,
+            "identity_provider_type": identity_provider_type,
+            "identity_provider_details": identity_provider_details,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if tags is not None:
             input_["tags"] = tags
 
@@ -111,6 +114,7 @@ class IdentityProviderResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -148,14 +152,16 @@ class IdentityProviderResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_workspaces_web.types.get_identity_provider_request.GetIdentityProviderRequest = {}  # type: ignore[typeddict-item]
-        input_["identity_provider_arn"] = identity_provider_arn
+        input_: capo_workspaces_web.types.get_identity_provider_request.GetIdentityProviderRequest = {
+            "identity_provider_arn": identity_provider_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update(
@@ -209,22 +215,25 @@ class IdentityProviderResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_workspaces_web.types.update_identity_provider_request.UpdateIdentityProviderRequest = {}  # type: ignore[typeddict-item]
-        input_["identity_provider_arn"] = identity_provider_arn
+        input_: capo_workspaces_web.types.update_identity_provider_request.UpdateIdentityProviderRequest = {
+            "identity_provider_arn": identity_provider_arn
+        }
         if identity_provider_name is not None:
             input_["identity_provider_name"] = identity_provider_name
         if identity_provider_type is not None:
             input_["identity_provider_type"] = identity_provider_type
         if identity_provider_details is not None:
             input_["identity_provider_details"] = identity_provider_details
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -262,14 +271,16 @@ class IdentityProviderResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_workspaces_web.types.delete_identity_provider_request.DeleteIdentityProviderRequest = {}  # type: ignore[typeddict-item]
-        input_["identity_provider_arn"] = identity_provider_arn
+        input_: capo_workspaces_web.types.delete_identity_provider_request.DeleteIdentityProviderRequest = {
+            "identity_provider_arn": identity_provider_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -314,18 +325,20 @@ class IdentityProviderResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_workspaces_web.types.list_identity_providers_request.ListIdentityProvidersRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_workspaces_web.types.list_identity_providers_request.ListIdentityProvidersRequest = {
+            "portal_arn": portal_arn
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
             input_["max_results"] = max_results
-        input_["portal_arn"] = portal_arn
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -383,13 +396,15 @@ class AsyncIdentityProviderResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_workspaces_web.types.create_identity_provider_request.CreateIdentityProviderRequest = {}  # type: ignore[typeddict-item]
-        input_["portal_arn"] = portal_arn
-        input_["identity_provider_name"] = identity_provider_name
-        input_["identity_provider_type"] = identity_provider_type
-        input_["identity_provider_details"] = identity_provider_details
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_workspaces_web.types.create_identity_provider_request.CreateIdentityProviderRequest = {
+            "portal_arn": portal_arn,
+            "identity_provider_name": identity_provider_name,
+            "identity_provider_type": identity_provider_type,
+            "identity_provider_details": identity_provider_details,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if tags is not None:
             input_["tags"] = tags
 
@@ -398,6 +413,7 @@ class AsyncIdentityProviderResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -436,14 +452,16 @@ class AsyncIdentityProviderResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_workspaces_web.types.get_identity_provider_request.GetIdentityProviderRequest = {}  # type: ignore[typeddict-item]
-        input_["identity_provider_arn"] = identity_provider_arn
+        input_: capo_workspaces_web.types.get_identity_provider_request.GetIdentityProviderRequest = {
+            "identity_provider_arn": identity_provider_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update(
@@ -498,22 +516,25 @@ class AsyncIdentityProviderResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_workspaces_web.types.update_identity_provider_request.UpdateIdentityProviderRequest = {}  # type: ignore[typeddict-item]
-        input_["identity_provider_arn"] = identity_provider_arn
+        input_: capo_workspaces_web.types.update_identity_provider_request.UpdateIdentityProviderRequest = {
+            "identity_provider_arn": identity_provider_arn
+        }
         if identity_provider_name is not None:
             input_["identity_provider_name"] = identity_provider_name
         if identity_provider_type is not None:
             input_["identity_provider_type"] = identity_provider_type
         if identity_provider_details is not None:
             input_["identity_provider_details"] = identity_provider_details
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -552,14 +573,16 @@ class AsyncIdentityProviderResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_workspaces_web.types.delete_identity_provider_request.DeleteIdentityProviderRequest = {}  # type: ignore[typeddict-item]
-        input_["identity_provider_arn"] = identity_provider_arn
+        input_: capo_workspaces_web.types.delete_identity_provider_request.DeleteIdentityProviderRequest = {
+            "identity_provider_arn": identity_provider_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -605,16 +628,18 @@ class AsyncIdentityProviderResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_workspaces_web.types.list_identity_providers_request.ListIdentityProvidersRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_workspaces_web.types.list_identity_providers_request.ListIdentityProvidersRequest = {
+            "portal_arn": portal_arn
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
             input_["max_results"] = max_results
-        input_["portal_arn"] = portal_arn
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

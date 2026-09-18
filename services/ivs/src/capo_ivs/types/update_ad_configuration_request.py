@@ -42,13 +42,13 @@ def serialize_json(value: UpdateAdConfigurationRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateAdConfigurationRequest:
     out: UpdateAdConfigurationRequest = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("UpdateAdConfigurationRequest.arn required")
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "mediaTailorPlaybackConfigurations" in data:
+    if data.get("mediaTailorPlaybackConfigurations") is not None:
         import capo_ivs.types.media_tailor_playback_configurations_list
 
         out["media_tailor_playback_configurations"] = (

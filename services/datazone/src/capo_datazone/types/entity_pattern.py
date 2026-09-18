@@ -39,7 +39,7 @@ def serialize_json(value: EntityPattern) -> dict:
 
 def deserialize_json(data: dict) -> EntityPattern:
     out: EntityPattern = {}  # type: ignore[typeddict-item]
-    if "entityType" in data:
+    if data.get("entityType") is not None:
         import capo_datazone.types.graph_entity_type
 
         out["entity_type"] = capo_datazone.types.graph_entity_type.deserialize_json(
@@ -47,11 +47,11 @@ def deserialize_json(data: dict) -> EntityPattern:
         )
     else:
         raise DeserializationError("EntityPattern.entity_type required")
-    if "identifier" in data:
+    if data.get("identifier") is not None:
         out["identifier"] = data["identifier"]
     else:
         raise DeserializationError("EntityPattern.identifier required")
-    if "filters" in data:
+    if data.get("filters") is not None:
         import capo_datazone.types.filter_clause
 
         out["filters"] = capo_datazone.types.filter_clause.deserialize_json(

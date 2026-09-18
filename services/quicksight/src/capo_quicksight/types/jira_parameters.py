@@ -24,7 +24,7 @@ def serialize_json(value: JiraParameters) -> dict:
 
 def deserialize_json(data: dict) -> JiraParameters:
     out: JiraParameters = {}  # type: ignore[typeddict-item]
-    if "SiteBaseUrl" in data:
+    if data.get("SiteBaseUrl") is not None:
         out["site_base_url"] = data["SiteBaseUrl"]
     else:
         raise DeserializationError("JiraParameters.site_base_url required")

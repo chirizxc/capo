@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> AwsS3BucketNotificationConfigurationDetails:
 
     out: AwsS3BucketNotificationConfigurationDetails = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_securityhub.types.aws_s3_bucket_notification_configuration_detail.deserialize_json(
                 item

@@ -13,9 +13,9 @@ from capo_observabilityadmin import AsyncObservabilityAdminClient
 
 
 async def main():
-    async with AsyncObservabilityAdminClient() as s3:
+    async with AsyncObservabilityAdminClient() as observability_admin:
         # Example: call the create_centralization_rule_for_organization operation
-        response = await s3.create_centralization_rule_for_organization()
+        response = await observability_admin.create_centralization_rule_for_organization()
         print(response["rule_arn"])
 ```
 
@@ -28,9 +28,9 @@ from capo_observabilityadmin import AsyncObservabilityAdminClient
 
 
 async def main():
-    async with AsyncObservabilityAdminClient() as s3:
+    async with AsyncObservabilityAdminClient() as observability_admin:
         # Example: paginate over list_centralization_rules_for_organization
-        async for item in s3.iter_list_centralization_rules_for_organization():
+        async for item in observability_admin.iter_list_centralization_rules_for_organization():
             print(item)
 ```
 
@@ -44,9 +44,9 @@ from capo_observabilityadmin.error import AccessDeniedException
 
 
 async def main():
-    async with AsyncObservabilityAdminClient() as s3:
+    async with AsyncObservabilityAdminClient() as observability_admin:
         try:
-            await s3.create_centralization_rule_for_organization()
+            await observability_admin.create_centralization_rule_for_organization()
         except AccessDeniedException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -63,13 +63,13 @@ from capo_observabilityadmin import AsyncObservabilityAdminClient
 
 
 async def main():
-    async with AsyncObservabilityAdminClient() as s3:
+    async with AsyncObservabilityAdminClient() as observability_admin:
         # Default: 3 attempts for every operation
-        response = await s3.create_centralization_rule_for_organization()
+        response = await observability_admin.create_centralization_rule_for_organization()
 
         # Override per operation
-        response = await s3.create_centralization_rule_for_organization(config_overrides={"retry_max_attempts": 5})
+        response = await observability_admin.create_centralization_rule_for_organization(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.create_centralization_rule_for_organization(config_overrides={"retry_max_attempts": 1})
+        response = await observability_admin.create_centralization_rule_for_organization(config_overrides={"retry_max_attempts": 1})
 ```

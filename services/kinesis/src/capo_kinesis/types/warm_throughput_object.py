@@ -31,8 +31,8 @@ def serialize_aws_json_1_1(value: WarmThroughputObject) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> WarmThroughputObject:
     out: WarmThroughputObject = {}  # type: ignore[typeddict-item]
-    if "TargetMiBps" in data:
+    if data.get("TargetMiBps") is not None:
         out["target_mi_bps"] = data["TargetMiBps"]
-    if "CurrentMiBps" in data:
+    if data.get("CurrentMiBps") is not None:
         out["current_mi_bps"] = data["CurrentMiBps"]
     return out

@@ -23,5 +23,7 @@ def deserialize_aws_json_1_1(data: list) -> HudiTargetList:
 
     out: HudiTargetList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_glue.types.hudi_target.deserialize_aws_json_1_1(item))
     return out

@@ -54,23 +54,23 @@ def serialize_json(value: S3DataAccessAssetSourceEntry) -> dict:
 
 def deserialize_json(data: dict) -> S3DataAccessAssetSourceEntry:
     out: S3DataAccessAssetSourceEntry = {}  # type: ignore[typeddict-item]
-    if "Bucket" in data:
+    if data.get("Bucket") is not None:
         out["bucket"] = data["Bucket"]
     else:
         raise DeserializationError("S3DataAccessAssetSourceEntry.bucket required")
-    if "KeyPrefixes" in data:
+    if data.get("KeyPrefixes") is not None:
         import capo_dataexchange.types.list_of__string
 
         out["key_prefixes"] = capo_dataexchange.types.list_of__string.deserialize_json(
             data["KeyPrefixes"]
         )
-    if "Keys" in data:
+    if data.get("Keys") is not None:
         import capo_dataexchange.types.list_of__string
 
         out["keys"] = capo_dataexchange.types.list_of__string.deserialize_json(
             data["Keys"]
         )
-    if "KmsKeysToGrant" in data:
+    if data.get("KmsKeysToGrant") is not None:
         import capo_dataexchange.types.list_of_kms_keys_to_grant
 
         out["kms_keys_to_grant"] = (

@@ -35,8 +35,8 @@ def deserialize_json(
     data: dict,
 ) -> AwsAthenaWorkGroupConfigurationResultConfigurationEncryptionConfigurationDetails:
     out: AwsAthenaWorkGroupConfigurationResultConfigurationEncryptionConfigurationDetails = {}  # type: ignore[typeddict-item]
-    if "EncryptionOption" in data:
+    if data.get("EncryptionOption") is not None:
         out["encryption_option"] = data["EncryptionOption"]
-    if "KmsKey" in data:
+    if data.get("KmsKey") is not None:
         out["kms_key"] = data["KmsKey"]
     return out

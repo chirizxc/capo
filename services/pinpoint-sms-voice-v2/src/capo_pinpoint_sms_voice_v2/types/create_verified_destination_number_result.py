@@ -60,33 +60,33 @@ def serialize_aws_json_1_0(value: CreateVerifiedDestinationNumberResult) -> dict
 
 def deserialize_aws_json_1_0(data: dict) -> CreateVerifiedDestinationNumberResult:
     out: CreateVerifiedDestinationNumberResult = {}  # type: ignore[typeddict-item]
-    if "VerifiedDestinationNumberArn" in data:
+    if data.get("VerifiedDestinationNumberArn") is not None:
         out["verified_destination_number_arn"] = data["VerifiedDestinationNumberArn"]
     else:
         raise DeserializationError(
             "CreateVerifiedDestinationNumberResult.verified_destination_number_arn required"
         )
-    if "VerifiedDestinationNumberId" in data:
+    if data.get("VerifiedDestinationNumberId") is not None:
         out["verified_destination_number_id"] = data["VerifiedDestinationNumberId"]
     else:
         raise DeserializationError(
             "CreateVerifiedDestinationNumberResult.verified_destination_number_id required"
         )
-    if "DestinationPhoneNumber" in data:
+    if data.get("DestinationPhoneNumber") is not None:
         out["destination_phone_number"] = data["DestinationPhoneNumber"]
     else:
         raise DeserializationError(
             "CreateVerifiedDestinationNumberResult.destination_phone_number required"
         )
-    if "Status" in data:
+    if data.get("Status") is not None:
         out["status"] = data["Status"]
     else:
         raise DeserializationError(
             "CreateVerifiedDestinationNumberResult.status required"
         )
-    if "RcsAgentId" in data:
+    if data.get("RcsAgentId") is not None:
         out["rcs_agent_id"] = data["RcsAgentId"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_pinpoint_sms_voice_v2.types.tag_list
 
         out["tags"] = (
@@ -94,7 +94,7 @@ def deserialize_aws_json_1_0(data: dict) -> CreateVerifiedDestinationNumberResul
                 data["Tags"]
             )
         )
-    if "CreatedTimestamp" in data:
+    if data.get("CreatedTimestamp") is not None:
         import capo_pinpoint_sms_voice_v2.types._prelude.timestamp
 
         out["created_timestamp"] = (

@@ -23,6 +23,6 @@ def serialize_aws_json_1_1(value: AutoTerminationPolicy) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AutoTerminationPolicy:
     out: AutoTerminationPolicy = {}  # type: ignore[typeddict-item]
-    if "IdleTimeout" in data:
+    if data.get("IdleTimeout") is not None:
         out["idle_timeout"] = data["IdleTimeout"]
     return out

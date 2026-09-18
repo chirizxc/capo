@@ -29,9 +29,9 @@ def serialize_json(value: NotFoundException_) -> dict:
 
 def deserialize_json(data: dict) -> NotFoundException_:
     out: NotFoundException_ = {}  # type: ignore[typeddict-item]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
-    if "RequestID" in data:
+    if data.get("RequestID") is not None:
         out["request_id"] = data["RequestID"]
     return out
 
@@ -41,15 +41,16 @@ class NotFoundException(ServiceError):
 
     code: str | None = "NotFoundException"
 
-    def __init__(self, data: NotFoundException_):
+    def __init__(self, data: NotFoundException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="NotFoundException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "NotFoundException":
-        return cls(deserialize_json(data))
+    def from_json(cls, data: dict, message: str | None = None) -> "NotFoundException":
+        return cls(deserialize_json(data), message)

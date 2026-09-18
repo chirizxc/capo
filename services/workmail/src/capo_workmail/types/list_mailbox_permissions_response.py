@@ -32,12 +32,12 @@ def serialize_aws_json_1_1(value: ListMailboxPermissionsResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListMailboxPermissionsResponse:
     out: ListMailboxPermissionsResponse = {}  # type: ignore[typeddict-item]
-    if "Permissions" in data:
+    if data.get("Permissions") is not None:
         import capo_workmail.types.permissions
 
         out["permissions"] = capo_workmail.types.permissions.deserialize_aws_json_1_1(
             data["Permissions"]
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

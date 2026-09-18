@@ -48,7 +48,15 @@ def serialize_aws_json_1_0(value: RDSDBInstanceRecommendationOption) -> dict:
                 value["projected_utilization_metrics"]
             )
         )
-    out["performanceRisk"] = value.get("performance_risk", 0)
+    out["performanceRisk"] = (
+        "NaN"
+        if value.get("performance_risk", 0) != value.get("performance_risk", 0)
+        else "Infinity"
+        if value.get("performance_risk", 0) == float("inf")
+        else "-Infinity"
+        if value.get("performance_risk", 0) == float("-inf")
+        else value.get("performance_risk", 0)
+    )
     out["rank"] = value.get("rank", 0)
     if "savings_opportunity" in value:
         import capo_compute_optimizer.types.savings_opportunity
@@ -71,9 +79,9 @@ def serialize_aws_json_1_0(value: RDSDBInstanceRecommendationOption) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> RDSDBInstanceRecommendationOption:
     out: RDSDBInstanceRecommendationOption = {}  # type: ignore[typeddict-item]
-    if "dbInstanceClass" in data:
+    if data.get("dbInstanceClass") is not None:
         out["db_instance_class"] = data["dbInstanceClass"]
-    if "projectedUtilizationMetrics" in data:
+    if data.get("projectedUtilizationMetrics") is not None:
         import capo_compute_optimizer.types.rdsdb_projected_utilization_metrics
 
         out["projected_utilization_metrics"] = (
@@ -81,15 +89,15 @@ def deserialize_aws_json_1_0(data: dict) -> RDSDBInstanceRecommendationOption:
                 data["projectedUtilizationMetrics"]
             )
         )
-    if "performanceRisk" in data:
-        out["performance_risk"] = data["performanceRisk"]
+    if data.get("performanceRisk") is not None:
+        out["performance_risk"] = float(data["performanceRisk"])
     else:
         out["performance_risk"] = 0
-    if "rank" in data:
+    if data.get("rank") is not None:
         out["rank"] = data["rank"]
     else:
         out["rank"] = 0
-    if "savingsOpportunity" in data:
+    if data.get("savingsOpportunity") is not None:
         import capo_compute_optimizer.types.savings_opportunity
 
         out["savings_opportunity"] = (
@@ -97,7 +105,7 @@ def deserialize_aws_json_1_0(data: dict) -> RDSDBInstanceRecommendationOption:
                 data["savingsOpportunity"]
             )
         )
-    if "savingsOpportunityAfterDiscounts" in data:
+    if data.get("savingsOpportunityAfterDiscounts") is not None:
         import capo_compute_optimizer.types.rds_instance_savings_opportunity_after_discounts
 
         out["savings_opportunity_after_discounts"] = (

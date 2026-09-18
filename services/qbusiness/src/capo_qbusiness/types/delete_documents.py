@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> DeleteDocuments:
 
     out: DeleteDocuments = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_qbusiness.types.delete_document.deserialize_json(item))
     return out

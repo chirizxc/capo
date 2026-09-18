@@ -58,11 +58,11 @@ def serialize_json(value: CreateRequesterGatewayRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateRequesterGatewayRequest:
     out: CreateRequesterGatewayRequest = {}  # type: ignore[typeddict-item]
-    if "vpcId" in data:
+    if data.get("vpcId") is not None:
         out["vpc_id"] = data["vpcId"]
     else:
         raise DeserializationError("CreateRequesterGatewayRequest.vpc_id required")
-    if "subnetIds" in data:
+    if data.get("subnetIds") is not None:
         import capo_rtbfabric.types.subnet_id_list
 
         out["subnet_ids"] = capo_rtbfabric.types.subnet_id_list.deserialize_json(
@@ -70,7 +70,7 @@ def deserialize_json(data: dict) -> CreateRequesterGatewayRequest:
         )
     else:
         raise DeserializationError("CreateRequesterGatewayRequest.subnet_ids required")
-    if "securityGroupIds" in data:
+    if data.get("securityGroupIds") is not None:
         import capo_rtbfabric.types.security_group_id_list
 
         out["security_group_ids"] = (
@@ -82,15 +82,15 @@ def deserialize_json(data: dict) -> CreateRequesterGatewayRequest:
         raise DeserializationError(
             "CreateRequesterGatewayRequest.security_group_ids required"
         )
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     else:
         raise DeserializationError(
             "CreateRequesterGatewayRequest.client_token required"
         )
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_rtbfabric.types.tags_map
 
         out["tags"] = capo_rtbfabric.types.tags_map.deserialize_json(data["tags"])

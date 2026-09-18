@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> RuleGroupSourceStatelessRulesList:
 
     out: RuleGroupSourceStatelessRulesList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_securityhub.types.rule_group_source_stateless_rules_details.deserialize_json(
                 item

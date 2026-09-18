@@ -50,7 +50,7 @@ def serialize_json(value: BlockedPhrasesConfigurationUpdate) -> dict:
 
 def deserialize_json(data: dict) -> BlockedPhrasesConfigurationUpdate:
     out: BlockedPhrasesConfigurationUpdate = {}  # type: ignore[typeddict-item]
-    if "blockedPhrasesToCreateOrUpdate" in data:
+    if data.get("blockedPhrasesToCreateOrUpdate") is not None:
         import capo_qbusiness.types.blocked_phrases
 
         out["blocked_phrases_to_create_or_update"] = (
@@ -58,7 +58,7 @@ def deserialize_json(data: dict) -> BlockedPhrasesConfigurationUpdate:
                 data["blockedPhrasesToCreateOrUpdate"]
             )
         )
-    if "blockedPhrasesToDelete" in data:
+    if data.get("blockedPhrasesToDelete") is not None:
         import capo_qbusiness.types.blocked_phrases
 
         out["blocked_phrases_to_delete"] = (
@@ -66,6 +66,6 @@ def deserialize_json(data: dict) -> BlockedPhrasesConfigurationUpdate:
                 data["blockedPhrasesToDelete"]
             )
         )
-    if "systemMessageOverride" in data:
+    if data.get("systemMessageOverride") is not None:
         out["system_message_override"] = data["systemMessageOverride"]
     return out

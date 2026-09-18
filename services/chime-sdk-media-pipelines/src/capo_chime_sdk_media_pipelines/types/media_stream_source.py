@@ -34,7 +34,7 @@ def serialize_json(value: MediaStreamSource) -> dict:
 
 def deserialize_json(data: dict) -> MediaStreamSource:
     out: MediaStreamSource = {}  # type: ignore[typeddict-item]
-    if "SourceType" in data:
+    if data.get("SourceType") is not None:
         import capo_chime_sdk_media_pipelines.types.media_pipeline_source_type
 
         out["source_type"] = (
@@ -44,7 +44,7 @@ def deserialize_json(data: dict) -> MediaStreamSource:
         )
     else:
         raise DeserializationError("MediaStreamSource.source_type required")
-    if "SourceArn" in data:
+    if data.get("SourceArn") is not None:
         out["source_arn"] = data["SourceArn"]
     else:
         raise DeserializationError("MediaStreamSource.source_arn required")

@@ -34,9 +34,9 @@ def serialize_json(value: AwsEksClusterLoggingClusterLoggingDetails) -> dict:
 
 def deserialize_json(data: dict) -> AwsEksClusterLoggingClusterLoggingDetails:
     out: AwsEksClusterLoggingClusterLoggingDetails = {}  # type: ignore[typeddict-item]
-    if "Enabled" in data:
+    if data.get("Enabled") is not None:
         out["enabled"] = data["Enabled"]
-    if "Types" in data:
+    if data.get("Types") is not None:
         import capo_securityhub.types.non_empty_string_list
 
         out["types"] = capo_securityhub.types.non_empty_string_list.deserialize_json(

@@ -29,7 +29,7 @@ def serialize_json(value: ArtifactConfigInput) -> dict:
 
 def deserialize_json(data: dict) -> ArtifactConfigInput:
     out: ArtifactConfigInput = {}  # type: ignore[typeddict-item]
-    if "S3Encryption" in data:
+    if data.get("S3Encryption") is not None:
         import capo_synthetics.types.s3_encryption_config
 
         out["s3_encryption"] = (

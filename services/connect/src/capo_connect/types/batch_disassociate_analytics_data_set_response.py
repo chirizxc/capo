@@ -34,13 +34,13 @@ def serialize_json(value: BatchDisassociateAnalyticsDataSetResponse) -> dict:
 
 def deserialize_json(data: dict) -> BatchDisassociateAnalyticsDataSetResponse:
     out: BatchDisassociateAnalyticsDataSetResponse = {}  # type: ignore[typeddict-item]
-    if "Deleted" in data:
+    if data.get("Deleted") is not None:
         import capo_connect.types.data_set_ids
 
         out["deleted"] = capo_connect.types.data_set_ids.deserialize_json(
             data["Deleted"]
         )
-    if "Errors" in data:
+    if data.get("Errors") is not None:
         import capo_connect.types.error_results
 
         out["errors"] = capo_connect.types.error_results.deserialize_json(

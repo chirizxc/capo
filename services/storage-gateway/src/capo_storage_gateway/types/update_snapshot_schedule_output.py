@@ -23,6 +23,6 @@ def serialize_aws_json_1_1(value: UpdateSnapshotScheduleOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateSnapshotScheduleOutput:
     out: UpdateSnapshotScheduleOutput = {}  # type: ignore[typeddict-item]
-    if "VolumeARN" in data:
+    if data.get("VolumeARN") is not None:
         out["volume_arn"] = data["VolumeARN"]
     return out

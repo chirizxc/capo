@@ -25,6 +25,6 @@ def serialize_aws_json_1_1(value: AssessmentTargetFilter) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AssessmentTargetFilter:
     out: AssessmentTargetFilter = {}  # type: ignore[typeddict-item]
-    if "assessmentTargetNamePattern" in data:
+    if data.get("assessmentTargetNamePattern") is not None:
         out["assessment_target_name_pattern"] = data["assessmentTargetNamePattern"]
     return out

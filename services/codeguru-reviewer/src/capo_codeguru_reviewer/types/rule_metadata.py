@@ -51,15 +51,15 @@ def serialize_json(value: RuleMetadata) -> dict:
 
 def deserialize_json(data: dict) -> RuleMetadata:
     out: RuleMetadata = {}  # type: ignore[typeddict-item]
-    if "RuleId" in data:
+    if data.get("RuleId") is not None:
         out["rule_id"] = data["RuleId"]
-    if "RuleName" in data:
+    if data.get("RuleName") is not None:
         out["rule_name"] = data["RuleName"]
-    if "ShortDescription" in data:
+    if data.get("ShortDescription") is not None:
         out["short_description"] = data["ShortDescription"]
-    if "LongDescription" in data:
+    if data.get("LongDescription") is not None:
         out["long_description"] = data["LongDescription"]
-    if "RuleTags" in data:
+    if data.get("RuleTags") is not None:
         import capo_codeguru_reviewer.types.rule_tags
 
         out["rule_tags"] = capo_codeguru_reviewer.types.rule_tags.deserialize_json(

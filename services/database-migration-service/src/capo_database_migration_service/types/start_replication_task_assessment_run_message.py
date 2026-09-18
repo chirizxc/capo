@@ -88,37 +88,37 @@ def serialize_aws_json_1_1(value: StartReplicationTaskAssessmentRunMessage) -> d
 
 def deserialize_aws_json_1_1(data: dict) -> StartReplicationTaskAssessmentRunMessage:
     out: StartReplicationTaskAssessmentRunMessage = {}  # type: ignore[typeddict-item]
-    if "ReplicationTaskArn" in data:
+    if data.get("ReplicationTaskArn") is not None:
         out["replication_task_arn"] = data["ReplicationTaskArn"]
     else:
         raise DeserializationError(
             "StartReplicationTaskAssessmentRunMessage.replication_task_arn required"
         )
-    if "ServiceAccessRoleArn" in data:
+    if data.get("ServiceAccessRoleArn") is not None:
         out["service_access_role_arn"] = data["ServiceAccessRoleArn"]
     else:
         raise DeserializationError(
             "StartReplicationTaskAssessmentRunMessage.service_access_role_arn required"
         )
-    if "ResultLocationBucket" in data:
+    if data.get("ResultLocationBucket") is not None:
         out["result_location_bucket"] = data["ResultLocationBucket"]
     else:
         raise DeserializationError(
             "StartReplicationTaskAssessmentRunMessage.result_location_bucket required"
         )
-    if "ResultLocationFolder" in data:
+    if data.get("ResultLocationFolder") is not None:
         out["result_location_folder"] = data["ResultLocationFolder"]
-    if "ResultEncryptionMode" in data:
+    if data.get("ResultEncryptionMode") is not None:
         out["result_encryption_mode"] = data["ResultEncryptionMode"]
-    if "ResultKmsKeyArn" in data:
+    if data.get("ResultKmsKeyArn") is not None:
         out["result_kms_key_arn"] = data["ResultKmsKeyArn"]
-    if "AssessmentRunName" in data:
+    if data.get("AssessmentRunName") is not None:
         out["assessment_run_name"] = data["AssessmentRunName"]
     else:
         raise DeserializationError(
             "StartReplicationTaskAssessmentRunMessage.assessment_run_name required"
         )
-    if "IncludeOnly" in data:
+    if data.get("IncludeOnly") is not None:
         import capo_database_migration_service.types.include_test_list
 
         out["include_only"] = (
@@ -126,7 +126,7 @@ def deserialize_aws_json_1_1(data: dict) -> StartReplicationTaskAssessmentRunMes
                 data["IncludeOnly"]
             )
         )
-    if "Exclude" in data:
+    if data.get("Exclude") is not None:
         import capo_database_migration_service.types.exclude_test_list
 
         out["exclude"] = (
@@ -134,7 +134,7 @@ def deserialize_aws_json_1_1(data: dict) -> StartReplicationTaskAssessmentRunMes
                 data["Exclude"]
             )
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_database_migration_service.types.tag_list
 
         out["tags"] = (

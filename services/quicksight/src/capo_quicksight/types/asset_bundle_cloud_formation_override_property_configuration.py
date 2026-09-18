@@ -139,7 +139,7 @@ def deserialize_json(
     data: dict,
 ) -> AssetBundleCloudFormationOverridePropertyConfiguration:
     out: AssetBundleCloudFormationOverridePropertyConfiguration = {}  # type: ignore[typeddict-item]
-    if "ResourceIdOverrideConfiguration" in data:
+    if data.get("ResourceIdOverrideConfiguration") is not None:
         import capo_quicksight.types.asset_bundle_export_job_resource_id_override_configuration
 
         out["resource_id_override_configuration"] = (
@@ -147,7 +147,7 @@ def deserialize_json(
                 data["ResourceIdOverrideConfiguration"]
             )
         )
-    if "VPCConnections" in data:
+    if data.get("VPCConnections") is not None:
         import capo_quicksight.types.asset_bundle_export_job_vpc_connection_override_properties_list
 
         out["vpc_connections"] = (
@@ -155,7 +155,7 @@ def deserialize_json(
                 data["VPCConnections"]
             )
         )
-    if "RefreshSchedules" in data:
+    if data.get("RefreshSchedules") is not None:
         import capo_quicksight.types.asset_bundle_export_job_refresh_schedule_override_properties_list
 
         out["refresh_schedules"] = (
@@ -163,7 +163,7 @@ def deserialize_json(
                 data["RefreshSchedules"]
             )
         )
-    if "DataSources" in data:
+    if data.get("DataSources") is not None:
         import capo_quicksight.types.asset_bundle_export_job_data_source_override_properties_list
 
         out["data_sources"] = (
@@ -171,7 +171,7 @@ def deserialize_json(
                 data["DataSources"]
             )
         )
-    if "DataSets" in data:
+    if data.get("DataSets") is not None:
         import capo_quicksight.types.asset_bundle_export_job_data_set_override_properties_list
 
         out["data_sets"] = (
@@ -179,7 +179,7 @@ def deserialize_json(
                 data["DataSets"]
             )
         )
-    if "Themes" in data:
+    if data.get("Themes") is not None:
         import capo_quicksight.types.asset_bundle_export_job_theme_override_properties_list
 
         out["themes"] = (
@@ -187,7 +187,7 @@ def deserialize_json(
                 data["Themes"]
             )
         )
-    if "Analyses" in data:
+    if data.get("Analyses") is not None:
         import capo_quicksight.types.asset_bundle_export_job_analysis_override_properties_list
 
         out["analyses"] = (
@@ -195,7 +195,7 @@ def deserialize_json(
                 data["Analyses"]
             )
         )
-    if "Dashboards" in data:
+    if data.get("Dashboards") is not None:
         import capo_quicksight.types.asset_bundle_export_job_dashboard_override_properties_list
 
         out["dashboards"] = (
@@ -203,7 +203,7 @@ def deserialize_json(
                 data["Dashboards"]
             )
         )
-    if "Folders" in data:
+    if data.get("Folders") is not None:
         import capo_quicksight.types.asset_bundle_export_job_folder_override_properties_list
 
         out["folders"] = (

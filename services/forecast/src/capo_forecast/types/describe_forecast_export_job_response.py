@@ -77,13 +77,13 @@ def serialize_aws_json_1_1(value: DescribeForecastExportJobResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeForecastExportJobResponse:
     out: DescribeForecastExportJobResponse = {}  # type: ignore[typeddict-item]
-    if "ForecastExportJobArn" in data:
+    if data.get("ForecastExportJobArn") is not None:
         out["forecast_export_job_arn"] = data["ForecastExportJobArn"]
-    if "ForecastExportJobName" in data:
+    if data.get("ForecastExportJobName") is not None:
         out["forecast_export_job_name"] = data["ForecastExportJobName"]
-    if "ForecastArn" in data:
+    if data.get("ForecastArn") is not None:
         out["forecast_arn"] = data["ForecastArn"]
-    if "Destination" in data:
+    if data.get("Destination") is not None:
         import capo_forecast.types.data_destination
 
         out["destination"] = (
@@ -91,17 +91,17 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeForecastExportJobResponse:
                 data["Destination"]
             )
         )
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         out["status"] = data["Status"]
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_forecast.types.timestamp
 
         out["creation_time"] = capo_forecast.types.timestamp.deserialize_aws_json_1_1(
             data["CreationTime"]
         )
-    if "LastModificationTime" in data:
+    if data.get("LastModificationTime") is not None:
         import capo_forecast.types.timestamp
 
         out["last_modification_time"] = (
@@ -109,6 +109,6 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeForecastExportJobResponse:
                 data["LastModificationTime"]
             )
         )
-    if "Format" in data:
+    if data.get("Format") is not None:
         out["format"] = data["Format"]
     return out

@@ -52,9 +52,9 @@ def serialize_aws_json_1_1(value: GetVocabularyFilterResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetVocabularyFilterResponse:
     out: GetVocabularyFilterResponse = {}  # type: ignore[typeddict-item]
-    if "VocabularyFilterName" in data:
+    if data.get("VocabularyFilterName") is not None:
         out["vocabulary_filter_name"] = data["VocabularyFilterName"]
-    if "LanguageCode" in data:
+    if data.get("LanguageCode") is not None:
         import capo_transcribe.types.language_code
 
         out["language_code"] = (
@@ -62,7 +62,7 @@ def deserialize_aws_json_1_1(data: dict) -> GetVocabularyFilterResponse:
                 data["LanguageCode"]
             )
         )
-    if "LastModifiedTime" in data:
+    if data.get("LastModifiedTime") is not None:
         import capo_transcribe.types.date_time
 
         out["last_modified_time"] = (
@@ -70,6 +70,6 @@ def deserialize_aws_json_1_1(data: dict) -> GetVocabularyFilterResponse:
                 data["LastModifiedTime"]
             )
         )
-    if "DownloadUri" in data:
+    if data.get("DownloadUri") is not None:
         out["download_uri"] = data["DownloadUri"]
     return out

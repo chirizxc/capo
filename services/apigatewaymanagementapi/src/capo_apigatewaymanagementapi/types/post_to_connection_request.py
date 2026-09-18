@@ -30,7 +30,7 @@ def serialize_json(value: PostToConnectionRequest) -> dict:
 
 def deserialize_json(data: dict) -> PostToConnectionRequest:
     out: PostToConnectionRequest = {}  # type: ignore[typeddict-item]
-    if "Data" in data:
+    if data.get("Data") is not None:
         import capo_apigatewaymanagementapi.types.data
 
         out["data"] = capo_apigatewaymanagementapi.types.data.deserialize_json(

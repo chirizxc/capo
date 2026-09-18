@@ -30,8 +30,8 @@ def serialize_json(value: S3MonitoringConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> S3MonitoringConfiguration:
     out: S3MonitoringConfiguration = {}  # type: ignore[typeddict-item]
-    if "logUri" in data:
+    if data.get("logUri") is not None:
         out["log_uri"] = data["logUri"]
-    if "encryptionKeyArn" in data:
+    if data.get("encryptionKeyArn") is not None:
         out["encryption_key_arn"] = data["encryptionKeyArn"]
     return out

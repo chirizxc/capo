@@ -29,9 +29,9 @@ def serialize_json(value: JobOutputDataConfig) -> dict:
 
 def deserialize_json(data: dict) -> JobOutputDataConfig:
     out: JobOutputDataConfig = {}  # type: ignore[typeddict-item]
-    if "kmsKeyId" in data:
+    if data.get("kmsKeyId") is not None:
         out["kms_key_id"] = data["kmsKeyId"]
-    if "s3Path" in data:
+    if data.get("s3Path") is not None:
         out["s3_path"] = data["s3Path"]
     else:
         raise DeserializationError("JobOutputDataConfig.s3_path required")

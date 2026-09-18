@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> InvisibleTaskTemplateFields:
 
     out: InvisibleTaskTemplateFields = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_connect.types.invisible_field_info.deserialize_json(item))
     return out

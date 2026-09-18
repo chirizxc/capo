@@ -34,7 +34,7 @@ def serialize_json(value: IntegratedResourceMetadata) -> dict:
 
 
 def deserialize_json(data: dict) -> IntegratedResourceMetadata:
-    if "githubRepository" in data:
+    if data.get("githubRepository") is not None:
         import capo_securityagent.types.git_hub_repository_metadata
 
         return {

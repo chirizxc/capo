@@ -38,12 +38,12 @@ def serialize_aws_json_1_1(value: ListDevicesRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListDevicesRequest:
     out: ListDevicesRequest = {}  # type: ignore[typeddict-item]
-    if "AccessToken" in data:
+    if data.get("AccessToken") is not None:
         out["access_token"] = data["AccessToken"]
     else:
         raise DeserializationError("ListDevicesRequest.access_token required")
-    if "Limit" in data:
+    if data.get("Limit") is not None:
         out["limit"] = data["Limit"]
-    if "PaginationToken" in data:
+    if data.get("PaginationToken") is not None:
         out["pagination_token"] = data["PaginationToken"]
     return out

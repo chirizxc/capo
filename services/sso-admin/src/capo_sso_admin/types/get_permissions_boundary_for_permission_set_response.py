@@ -35,7 +35,7 @@ def deserialize_aws_json_1_1(
     data: dict,
 ) -> GetPermissionsBoundaryForPermissionSetResponse:
     out: GetPermissionsBoundaryForPermissionSetResponse = {}  # type: ignore[typeddict-item]
-    if "PermissionsBoundary" in data:
+    if data.get("PermissionsBoundary") is not None:
         import capo_sso_admin.types.permissions_boundary
 
         out["permissions_boundary"] = (

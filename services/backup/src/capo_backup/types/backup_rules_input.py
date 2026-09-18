@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> BackupRulesInput:
 
     out: BackupRulesInput = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_backup.types.backup_rule_input.deserialize_json(item))
     return out

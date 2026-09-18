@@ -14,4 +14,4 @@ def serialize_json(value: GroupingsV2) -> list:
 
 
 def deserialize_json(data: list) -> GroupingsV2:
-    return list(data)
+    return [item for item in data if item is not None]

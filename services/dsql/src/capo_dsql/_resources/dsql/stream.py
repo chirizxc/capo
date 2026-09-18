@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import uuid
 from typing import TYPE_CHECKING, Optional
 
 import capo_dsql._auth._signers
@@ -87,21 +88,24 @@ class Stream:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_dsql.types.create_stream_input.CreateStreamInput = {}  # type: ignore[typeddict-item]
-        input_["cluster_identifier"] = cluster_identifier
-        input_["target_definition"] = target_definition
-        input_["ordering"] = ordering
-        input_["format"] = format
+        input_: capo_dsql.types.create_stream_input.CreateStreamInput = {
+            "cluster_identifier": cluster_identifier,
+            "target_definition": target_definition,
+            "ordering": ordering,
+            "format": format,
+        }
         if tags is not None:
             input_["tags"] = tags
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -137,15 +141,17 @@ class Stream:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_dsql.types.get_stream_input.GetStreamInput = {}  # type: ignore[typeddict-item]
-        input_["cluster_identifier"] = cluster_identifier
-        input_["stream_identifier"] = stream_identifier
+        input_: capo_dsql.types.get_stream_input.GetStreamInput = {
+            "cluster_identifier": cluster_identifier,
+            "stream_identifier": stream_identifier,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -188,17 +194,20 @@ class Stream:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_dsql.types.delete_stream_input.DeleteStreamInput = {}  # type: ignore[typeddict-item]
-        input_["cluster_identifier"] = cluster_identifier
-        input_["stream_identifier"] = stream_identifier
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_dsql.types.delete_stream_input.DeleteStreamInput = {
+            "cluster_identifier": cluster_identifier,
+            "stream_identifier": stream_identifier,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -238,8 +247,9 @@ class Stream:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_dsql.types.list_streams_input.ListStreamsInput = {}  # type: ignore[typeddict-item]
-        input_["cluster_identifier"] = cluster_identifier
+        input_: capo_dsql.types.list_streams_input.ListStreamsInput = {
+            "cluster_identifier": cluster_identifier
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -250,6 +260,7 @@ class Stream:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -305,21 +316,24 @@ class AsyncStream:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_dsql.types.create_stream_input.CreateStreamInput = {}  # type: ignore[typeddict-item]
-        input_["cluster_identifier"] = cluster_identifier
-        input_["target_definition"] = target_definition
-        input_["ordering"] = ordering
-        input_["format"] = format
+        input_: capo_dsql.types.create_stream_input.CreateStreamInput = {
+            "cluster_identifier": cluster_identifier,
+            "target_definition": target_definition,
+            "ordering": ordering,
+            "format": format,
+        }
         if tags is not None:
             input_["tags"] = tags
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -360,15 +374,17 @@ class AsyncStream:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_dsql.types.get_stream_input.GetStreamInput = {}  # type: ignore[typeddict-item]
-        input_["cluster_identifier"] = cluster_identifier
-        input_["stream_identifier"] = stream_identifier
+        input_: capo_dsql.types.get_stream_input.GetStreamInput = {
+            "cluster_identifier": cluster_identifier,
+            "stream_identifier": stream_identifier,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -412,17 +428,20 @@ class AsyncStream:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_dsql.types.delete_stream_input.DeleteStreamInput = {}  # type: ignore[typeddict-item]
-        input_["cluster_identifier"] = cluster_identifier
-        input_["stream_identifier"] = stream_identifier
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_dsql.types.delete_stream_input.DeleteStreamInput = {
+            "cluster_identifier": cluster_identifier,
+            "stream_identifier": stream_identifier,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -465,8 +484,9 @@ class AsyncStream:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_dsql.types.list_streams_input.ListStreamsInput = {}  # type: ignore[typeddict-item]
-        input_["cluster_identifier"] = cluster_identifier
+        input_: capo_dsql.types.list_streams_input.ListStreamsInput = {
+            "cluster_identifier": cluster_identifier
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -477,4 +497,5 @@ class AsyncStream:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

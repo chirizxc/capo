@@ -36,9 +36,9 @@ def serialize_aws_json_1_1(value: DescribeServiceUpdatesResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeServiceUpdatesResponse:
     out: DescribeServiceUpdatesResponse = {}  # type: ignore[typeddict-item]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "ServiceUpdates" in data:
+    if data.get("ServiceUpdates") is not None:
         import capo_memorydb.types.service_update_list
 
         out["service_updates"] = (

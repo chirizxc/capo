@@ -64,13 +64,13 @@ def serialize_aws_json_1_0(value: CreateRetrainingSchedulerRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CreateRetrainingSchedulerRequest:
     out: CreateRetrainingSchedulerRequest = {}  # type: ignore[typeddict-item]
-    if "ModelName" in data:
+    if data.get("ModelName") is not None:
         out["model_name"] = data["ModelName"]
     else:
         raise DeserializationError(
             "CreateRetrainingSchedulerRequest.model_name required"
         )
-    if "RetrainingStartDate" in data:
+    if data.get("RetrainingStartDate") is not None:
         import capo_lookoutequipment.types.timestamp
 
         out["retraining_start_date"] = (
@@ -78,19 +78,19 @@ def deserialize_aws_json_1_0(data: dict) -> CreateRetrainingSchedulerRequest:
                 data["RetrainingStartDate"]
             )
         )
-    if "RetrainingFrequency" in data:
+    if data.get("RetrainingFrequency") is not None:
         out["retraining_frequency"] = data["RetrainingFrequency"]
     else:
         raise DeserializationError(
             "CreateRetrainingSchedulerRequest.retraining_frequency required"
         )
-    if "LookbackWindow" in data:
+    if data.get("LookbackWindow") is not None:
         out["lookback_window"] = data["LookbackWindow"]
     else:
         raise DeserializationError(
             "CreateRetrainingSchedulerRequest.lookback_window required"
         )
-    if "PromoteMode" in data:
+    if data.get("PromoteMode") is not None:
         import capo_lookoutequipment.types.model_promote_mode
 
         out["promote_mode"] = (
@@ -98,7 +98,7 @@ def deserialize_aws_json_1_0(data: dict) -> CreateRetrainingSchedulerRequest:
                 data["PromoteMode"]
             )
         )
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
     else:
         raise DeserializationError(

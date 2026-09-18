@@ -157,23 +157,23 @@ def serialize_json(value: Quote) -> dict:
 
 def deserialize_json(data: dict) -> Quote:
     out: Quote = {}  # type: ignore[typeddict-item]
-    if "QuoteId" in data:
+    if data.get("QuoteId") is not None:
         out["quote_id"] = data["QuoteId"]
-    if "AccountId" in data:
+    if data.get("AccountId") is not None:
         out["account_id"] = data["AccountId"]
-    if "QuoteStatus" in data:
+    if data.get("QuoteStatus") is not None:
         import capo_outposts.types.quote_status
 
         out["quote_status"] = capo_outposts.types.quote_status.deserialize_json(
             data["QuoteStatus"]
         )
-    if "StatusMessage" in data:
+    if data.get("StatusMessage") is not None:
         out["status_message"] = data["StatusMessage"]
-    if "OutpostArn" in data:
+    if data.get("OutpostArn") is not None:
         out["outpost_arn"] = data["OutpostArn"]
-    if "CountryCode" in data:
+    if data.get("CountryCode") is not None:
         out["country_code"] = data["CountryCode"]
-    if "RequestedCapacities" in data:
+    if data.get("RequestedCapacities") is not None:
         import capo_outposts.types.quote_capacity_list
 
         out["requested_capacities"] = (
@@ -181,7 +181,7 @@ def deserialize_json(data: dict) -> Quote:
                 data["RequestedCapacities"]
             )
         )
-    if "RequestedConstraints" in data:
+    if data.get("RequestedConstraints") is not None:
         import capo_outposts.types.quote_constraint_list
 
         out["requested_constraints"] = (
@@ -189,7 +189,7 @@ def deserialize_json(data: dict) -> Quote:
                 data["RequestedConstraints"]
             )
         )
-    if "RequestedPaymentOptions" in data:
+    if data.get("RequestedPaymentOptions") is not None:
         import capo_outposts.types.payment_option_list
 
         out["requested_payment_options"] = (
@@ -197,7 +197,7 @@ def deserialize_json(data: dict) -> Quote:
                 data["RequestedPaymentOptions"]
             )
         )
-    if "RequestedPaymentTerms" in data:
+    if data.get("RequestedPaymentTerms") is not None:
         import capo_outposts.types.payment_term_list
 
         out["requested_payment_terms"] = (
@@ -205,13 +205,13 @@ def deserialize_json(data: dict) -> Quote:
                 data["RequestedPaymentTerms"]
             )
         )
-    if "QuoteOptions" in data:
+    if data.get("QuoteOptions") is not None:
         import capo_outposts.types.quote_option_list
 
         out["quote_options"] = capo_outposts.types.quote_option_list.deserialize_json(
             data["QuoteOptions"]
         )
-    if "OrderingRequirements" in data:
+    if data.get("OrderingRequirements") is not None:
         import capo_outposts.types.ordering_requirement_list
 
         out["ordering_requirements"] = (
@@ -219,20 +219,20 @@ def deserialize_json(data: dict) -> Quote:
                 data["OrderingRequirements"]
             )
         )
-    if "SubmittedOrderId" in data:
+    if data.get("SubmittedOrderId") is not None:
         out["submitted_order_id"] = data["SubmittedOrderId"]
-    if "CreatedDate" in data:
+    if data.get("CreatedDate") is not None:
         import capo_outposts.types.iso8601_timestamp
 
         out["created_date"] = capo_outposts.types.iso8601_timestamp.deserialize_json(
             data["CreatedDate"]
         )
-    if "ExpirationDate" in data:
+    if data.get("ExpirationDate") is not None:
         import capo_outposts.types.iso8601_timestamp
 
         out["expiration_date"] = capo_outposts.types.iso8601_timestamp.deserialize_json(
             data["ExpirationDate"]
         )
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
     return out

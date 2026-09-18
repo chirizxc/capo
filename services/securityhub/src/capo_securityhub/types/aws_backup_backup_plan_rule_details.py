@@ -79,21 +79,21 @@ def serialize_json(value: AwsBackupBackupPlanRuleDetails) -> dict:
 
 def deserialize_json(data: dict) -> AwsBackupBackupPlanRuleDetails:
     out: AwsBackupBackupPlanRuleDetails = {}  # type: ignore[typeddict-item]
-    if "TargetBackupVault" in data:
+    if data.get("TargetBackupVault") is not None:
         out["target_backup_vault"] = data["TargetBackupVault"]
-    if "StartWindowMinutes" in data:
+    if data.get("StartWindowMinutes") is not None:
         out["start_window_minutes"] = data["StartWindowMinutes"]
-    if "ScheduleExpression" in data:
+    if data.get("ScheduleExpression") is not None:
         out["schedule_expression"] = data["ScheduleExpression"]
-    if "RuleName" in data:
+    if data.get("RuleName") is not None:
         out["rule_name"] = data["RuleName"]
-    if "RuleId" in data:
+    if data.get("RuleId") is not None:
         out["rule_id"] = data["RuleId"]
-    if "EnableContinuousBackup" in data:
+    if data.get("EnableContinuousBackup") is not None:
         out["enable_continuous_backup"] = data["EnableContinuousBackup"]
-    if "CompletionWindowMinutes" in data:
+    if data.get("CompletionWindowMinutes") is not None:
         out["completion_window_minutes"] = data["CompletionWindowMinutes"]
-    if "CopyActions" in data:
+    if data.get("CopyActions") is not None:
         import capo_securityhub.types.aws_backup_backup_plan_rule_copy_actions_list
 
         out["copy_actions"] = (
@@ -101,7 +101,7 @@ def deserialize_json(data: dict) -> AwsBackupBackupPlanRuleDetails:
                 data["CopyActions"]
             )
         )
-    if "Lifecycle" in data:
+    if data.get("Lifecycle") is not None:
         import capo_securityhub.types.aws_backup_backup_plan_lifecycle_details
 
         out["lifecycle"] = (

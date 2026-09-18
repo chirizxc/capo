@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import uuid
 from typing import TYPE_CHECKING, Optional
 
 import capo_vpc_lattice._auth._signers
@@ -103,15 +104,17 @@ class Rule:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_vpc_lattice.types.create_rule_request.CreateRuleRequest = {}  # type: ignore[typeddict-item]
-        input_["service_identifier"] = service_identifier
-        input_["listener_identifier"] = listener_identifier
-        input_["name"] = name
-        input_["match"] = match
-        input_["priority"] = priority
-        input_["action"] = action
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_vpc_lattice.types.create_rule_request.CreateRuleRequest = {
+            "service_identifier": service_identifier,
+            "listener_identifier": listener_identifier,
+            "name": name,
+            "match": match,
+            "priority": priority,
+            "action": action,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if tags is not None:
             input_["tags"] = tags
 
@@ -120,6 +123,7 @@ class Rule:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -161,16 +165,18 @@ class Rule:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_vpc_lattice.types.get_rule_request.GetRuleRequest = {}  # type: ignore[typeddict-item]
-        input_["service_identifier"] = service_identifier
-        input_["listener_identifier"] = listener_identifier
-        input_["rule_identifier"] = rule_identifier
+        input_: capo_vpc_lattice.types.get_rule_request.GetRuleRequest = {
+            "service_identifier": service_identifier,
+            "listener_identifier": listener_identifier,
+            "rule_identifier": rule_identifier,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update(
@@ -220,10 +226,11 @@ class Rule:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_vpc_lattice.types.update_rule_request.UpdateRuleRequest = {}  # type: ignore[typeddict-item]
-        input_["service_identifier"] = service_identifier
-        input_["listener_identifier"] = listener_identifier
-        input_["rule_identifier"] = rule_identifier
+        input_: capo_vpc_lattice.types.update_rule_request.UpdateRuleRequest = {
+            "service_identifier": service_identifier,
+            "listener_identifier": listener_identifier,
+            "rule_identifier": rule_identifier,
+        }
         if match is not None:
             input_["match"] = match
         if priority is not None:
@@ -236,6 +243,7 @@ class Rule:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -278,16 +286,18 @@ class Rule:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_vpc_lattice.types.delete_rule_request.DeleteRuleRequest = {}  # type: ignore[typeddict-item]
-        input_["service_identifier"] = service_identifier
-        input_["listener_identifier"] = listener_identifier
-        input_["rule_identifier"] = rule_identifier
+        input_: capo_vpc_lattice.types.delete_rule_request.DeleteRuleRequest = {
+            "service_identifier": service_identifier,
+            "listener_identifier": listener_identifier,
+            "rule_identifier": rule_identifier,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -331,9 +341,10 @@ class Rule:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_vpc_lattice.types.list_rules_request.ListRulesRequest = {}  # type: ignore[typeddict-item]
-        input_["service_identifier"] = service_identifier
-        input_["listener_identifier"] = listener_identifier
+        input_: capo_vpc_lattice.types.list_rules_request.ListRulesRequest = {
+            "service_identifier": service_identifier,
+            "listener_identifier": listener_identifier,
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -344,6 +355,7 @@ class Rule:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -405,15 +417,17 @@ class AsyncRule:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_vpc_lattice.types.create_rule_request.CreateRuleRequest = {}  # type: ignore[typeddict-item]
-        input_["service_identifier"] = service_identifier
-        input_["listener_identifier"] = listener_identifier
-        input_["name"] = name
-        input_["match"] = match
-        input_["priority"] = priority
-        input_["action"] = action
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_vpc_lattice.types.create_rule_request.CreateRuleRequest = {
+            "service_identifier": service_identifier,
+            "listener_identifier": listener_identifier,
+            "name": name,
+            "match": match,
+            "priority": priority,
+            "action": action,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if tags is not None:
             input_["tags"] = tags
 
@@ -422,6 +436,7 @@ class AsyncRule:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -464,16 +479,18 @@ class AsyncRule:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_vpc_lattice.types.get_rule_request.GetRuleRequest = {}  # type: ignore[typeddict-item]
-        input_["service_identifier"] = service_identifier
-        input_["listener_identifier"] = listener_identifier
-        input_["rule_identifier"] = rule_identifier
+        input_: capo_vpc_lattice.types.get_rule_request.GetRuleRequest = {
+            "service_identifier": service_identifier,
+            "listener_identifier": listener_identifier,
+            "rule_identifier": rule_identifier,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update(
@@ -524,10 +541,11 @@ class AsyncRule:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_vpc_lattice.types.update_rule_request.UpdateRuleRequest = {}  # type: ignore[typeddict-item]
-        input_["service_identifier"] = service_identifier
-        input_["listener_identifier"] = listener_identifier
-        input_["rule_identifier"] = rule_identifier
+        input_: capo_vpc_lattice.types.update_rule_request.UpdateRuleRequest = {
+            "service_identifier": service_identifier,
+            "listener_identifier": listener_identifier,
+            "rule_identifier": rule_identifier,
+        }
         if match is not None:
             input_["match"] = match
         if priority is not None:
@@ -540,6 +558,7 @@ class AsyncRule:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -583,16 +602,18 @@ class AsyncRule:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_vpc_lattice.types.delete_rule_request.DeleteRuleRequest = {}  # type: ignore[typeddict-item]
-        input_["service_identifier"] = service_identifier
-        input_["listener_identifier"] = listener_identifier
-        input_["rule_identifier"] = rule_identifier
+        input_: capo_vpc_lattice.types.delete_rule_request.DeleteRuleRequest = {
+            "service_identifier": service_identifier,
+            "listener_identifier": listener_identifier,
+            "rule_identifier": rule_identifier,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -637,9 +658,10 @@ class AsyncRule:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_vpc_lattice.types.list_rules_request.ListRulesRequest = {}  # type: ignore[typeddict-item]
-        input_["service_identifier"] = service_identifier
-        input_["listener_identifier"] = listener_identifier
+        input_: capo_vpc_lattice.types.list_rules_request.ListRulesRequest = {
+            "service_identifier": service_identifier,
+            "listener_identifier": listener_identifier,
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -650,4 +672,5 @@ class AsyncRule:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

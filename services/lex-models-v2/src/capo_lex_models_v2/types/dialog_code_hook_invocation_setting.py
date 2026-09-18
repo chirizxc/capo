@@ -42,19 +42,19 @@ def serialize_json(value: DialogCodeHookInvocationSetting) -> dict:
 
 def deserialize_json(data: dict) -> DialogCodeHookInvocationSetting:
     out: DialogCodeHookInvocationSetting = {}  # type: ignore[typeddict-item]
-    if "enableCodeHookInvocation" in data:
+    if data.get("enableCodeHookInvocation") is not None:
         out["enable_code_hook_invocation"] = data["enableCodeHookInvocation"]
     else:
         raise DeserializationError(
             "DialogCodeHookInvocationSetting.enable_code_hook_invocation required"
         )
-    if "active" in data:
+    if data.get("active") is not None:
         out["active"] = data["active"]
     else:
         raise DeserializationError("DialogCodeHookInvocationSetting.active required")
-    if "invocationLabel" in data:
+    if data.get("invocationLabel") is not None:
         out["invocation_label"] = data["invocationLabel"]
-    if "postCodeHookSpecification" in data:
+    if data.get("postCodeHookSpecification") is not None:
         import capo_lex_models_v2.types.post_dialog_code_hook_invocation_specification
 
         out["post_code_hook_specification"] = (

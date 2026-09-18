@@ -28,15 +28,15 @@ def serialize_json(value: ResourceStateUpdateIncludeResources) -> dict:
 
 def deserialize_json(data: dict) -> ResourceStateUpdateIncludeResources:
     out: ResourceStateUpdateIncludeResources = {}  # type: ignore[typeddict-item]
-    if "amis" in data:
+    if data.get("amis") is not None:
         out["amis"] = data["amis"]
     else:
         out["amis"] = False
-    if "snapshots" in data:
+    if data.get("snapshots") is not None:
         out["snapshots"] = data["snapshots"]
     else:
         out["snapshots"] = False
-    if "containers" in data:
+    if data.get("containers") is not None:
         out["containers"] = data["containers"]
     else:
         out["containers"] = False

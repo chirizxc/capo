@@ -41,13 +41,13 @@ def serialize_json(value: CustomDataIdentifiersDetections) -> dict:
 
 def deserialize_json(data: dict) -> CustomDataIdentifiersDetections:
     out: CustomDataIdentifiersDetections = {}  # type: ignore[typeddict-item]
-    if "Count" in data:
+    if data.get("Count") is not None:
         out["count"] = data["Count"]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Occurrences" in data:
+    if data.get("Occurrences") is not None:
         import capo_securityhub.types.occurrences
 
         out["occurrences"] = capo_securityhub.types.occurrences.deserialize_json(

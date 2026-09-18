@@ -144,7 +144,7 @@ def serialize_json(value: Provisioned) -> dict:
 
 def deserialize_json(data: dict) -> Provisioned:
     out: Provisioned = {}  # type: ignore[typeddict-item]
-    if "brokerNodeGroupInfo" in data:
+    if data.get("brokerNodeGroupInfo") is not None:
         import capo_kafka.types.broker_node_group_info
 
         out["broker_node_group_info"] = (
@@ -152,13 +152,13 @@ def deserialize_json(data: dict) -> Provisioned:
                 data["brokerNodeGroupInfo"]
             )
         )
-    if "rebalancing" in data:
+    if data.get("rebalancing") is not None:
         import capo_kafka.types.rebalancing
 
         out["rebalancing"] = capo_kafka.types.rebalancing.deserialize_json(
             data["rebalancing"]
         )
-    if "currentBrokerSoftwareInfo" in data:
+    if data.get("currentBrokerSoftwareInfo") is not None:
         import capo_kafka.types.broker_software_info
 
         out["current_broker_software_info"] = (
@@ -166,7 +166,7 @@ def deserialize_json(data: dict) -> Provisioned:
                 data["currentBrokerSoftwareInfo"]
             )
         )
-    if "clientAuthentication" in data:
+    if data.get("clientAuthentication") is not None:
         import capo_kafka.types.client_authentication
 
         out["client_authentication"] = (
@@ -174,13 +174,13 @@ def deserialize_json(data: dict) -> Provisioned:
                 data["clientAuthentication"]
             )
         )
-    if "encryptionInfo" in data:
+    if data.get("encryptionInfo") is not None:
         import capo_kafka.types.encryption_info
 
         out["encryption_info"] = capo_kafka.types.encryption_info.deserialize_json(
             data["encryptionInfo"]
         )
-    if "enhancedMonitoring" in data:
+    if data.get("enhancedMonitoring") is not None:
         import capo_kafka.types.enhanced_monitoring
 
         out["enhanced_monitoring"] = (
@@ -188,31 +188,31 @@ def deserialize_json(data: dict) -> Provisioned:
                 data["enhancedMonitoring"]
             )
         )
-    if "openMonitoring" in data:
+    if data.get("openMonitoring") is not None:
         import capo_kafka.types.open_monitoring_info
 
         out["open_monitoring"] = capo_kafka.types.open_monitoring_info.deserialize_json(
             data["openMonitoring"]
         )
-    if "loggingInfo" in data:
+    if data.get("loggingInfo") is not None:
         import capo_kafka.types.logging_info
 
         out["logging_info"] = capo_kafka.types.logging_info.deserialize_json(
             data["loggingInfo"]
         )
-    if "numberOfBrokerNodes" in data:
+    if data.get("numberOfBrokerNodes") is not None:
         out["number_of_broker_nodes"] = data["numberOfBrokerNodes"]
-    if "zookeeperConnectString" in data:
+    if data.get("zookeeperConnectString") is not None:
         out["zookeeper_connect_string"] = data["zookeeperConnectString"]
-    if "zookeeperConnectStringTls" in data:
+    if data.get("zookeeperConnectStringTls") is not None:
         out["zookeeper_connect_string_tls"] = data["zookeeperConnectStringTls"]
-    if "storageMode" in data:
+    if data.get("storageMode") is not None:
         import capo_kafka.types.storage_mode
 
         out["storage_mode"] = capo_kafka.types.storage_mode.deserialize_json(
             data["storageMode"]
         )
-    if "customerActionStatus" in data:
+    if data.get("customerActionStatus") is not None:
         import capo_kafka.types.customer_action_status
 
         out["customer_action_status"] = (

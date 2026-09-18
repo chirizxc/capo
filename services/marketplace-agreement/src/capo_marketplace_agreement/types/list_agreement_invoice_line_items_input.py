@@ -99,13 +99,13 @@ def serialize_aws_json_1_0(value: ListAgreementInvoiceLineItemsInput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ListAgreementInvoiceLineItemsInput:
     out: ListAgreementInvoiceLineItemsInput = {}  # type: ignore[typeddict-item]
-    if "agreementId" in data:
+    if data.get("agreementId") is not None:
         out["agreement_id"] = data["agreementId"]
     else:
         raise DeserializationError(
             "ListAgreementInvoiceLineItemsInput.agreement_id required"
         )
-    if "groupBy" in data:
+    if data.get("groupBy") is not None:
         import capo_marketplace_agreement.types.line_item_group_by
 
         out["group_by"] = (
@@ -117,9 +117,9 @@ def deserialize_aws_json_1_0(data: dict) -> ListAgreementInvoiceLineItemsInput:
         raise DeserializationError(
             "ListAgreementInvoiceLineItemsInput.group_by required"
         )
-    if "invoiceId" in data:
+    if data.get("invoiceId") is not None:
         out["invoice_id"] = data["invoiceId"]
-    if "invoiceType" in data:
+    if data.get("invoiceType") is not None:
         import capo_marketplace_agreement.types.invoice_type
 
         out["invoice_type"] = (
@@ -127,7 +127,7 @@ def deserialize_aws_json_1_0(data: dict) -> ListAgreementInvoiceLineItemsInput:
                 data["invoiceType"]
             )
         )
-    if "invoiceBillingPeriod" in data:
+    if data.get("invoiceBillingPeriod") is not None:
         import capo_marketplace_agreement.types.invoice_billing_period
 
         out["invoice_billing_period"] = (
@@ -135,7 +135,7 @@ def deserialize_aws_json_1_0(data: dict) -> ListAgreementInvoiceLineItemsInput:
                 data["invoiceBillingPeriod"]
             )
         )
-    if "beforeIssuedTime" in data:
+    if data.get("beforeIssuedTime") is not None:
         import capo_marketplace_agreement.types.timestamp
 
         out["before_issued_time"] = (
@@ -143,7 +143,7 @@ def deserialize_aws_json_1_0(data: dict) -> ListAgreementInvoiceLineItemsInput:
                 data["beforeIssuedTime"]
             )
         )
-    if "afterIssuedTime" in data:
+    if data.get("afterIssuedTime") is not None:
         import capo_marketplace_agreement.types.timestamp
 
         out["after_issued_time"] = (
@@ -151,8 +151,8 @@ def deserialize_aws_json_1_0(data: dict) -> ListAgreementInvoiceLineItemsInput:
                 data["afterIssuedTime"]
             )
         )
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

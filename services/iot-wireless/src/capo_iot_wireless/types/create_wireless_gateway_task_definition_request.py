@@ -56,13 +56,13 @@ def serialize_json(value: CreateWirelessGatewayTaskDefinitionRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateWirelessGatewayTaskDefinitionRequest:
     out: CreateWirelessGatewayTaskDefinitionRequest = {}  # type: ignore[typeddict-item]
-    if "AutoCreateTasks" in data:
+    if data.get("AutoCreateTasks") is not None:
         out["auto_create_tasks"] = data["AutoCreateTasks"]
     else:
         out["auto_create_tasks"] = False
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Update" in data:
+    if data.get("Update") is not None:
         import capo_iot_wireless.types.update_wireless_gateway_task_create
 
         out["update"] = (
@@ -70,9 +70,9 @@ def deserialize_json(data: dict) -> CreateWirelessGatewayTaskDefinitionRequest:
                 data["Update"]
             )
         )
-    if "ClientRequestToken" in data:
+    if data.get("ClientRequestToken") is not None:
         out["client_request_token"] = data["ClientRequestToken"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_iot_wireless.types.tag_list
 
         out["tags"] = capo_iot_wireless.types.tag_list.deserialize_json(data["Tags"])

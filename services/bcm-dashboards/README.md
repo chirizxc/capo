@@ -13,9 +13,9 @@ from capo_bcm_dashboards import AsyncBCMDashboardsClient
 
 
 async def main():
-    async with AsyncBCMDashboardsClient() as s3:
+    async with AsyncBCMDashboardsClient() as bcm_dashboards:
         # Example: call the create_dashboard operation
-        response = await s3.create_dashboard()
+        response = await bcm_dashboards.create_dashboard()
         print(response["arn"])
 ```
 
@@ -28,9 +28,9 @@ from capo_bcm_dashboards import AsyncBCMDashboardsClient
 
 
 async def main():
-    async with AsyncBCMDashboardsClient() as s3:
+    async with AsyncBCMDashboardsClient() as bcm_dashboards:
         # Example: paginate over list_dashboards
-        async for item in s3.iter_list_dashboards():
+        async for item in bcm_dashboards.iter_list_dashboards():
             print(item)
 ```
 
@@ -44,9 +44,9 @@ from capo_bcm_dashboards.error import AccessDeniedException
 
 
 async def main():
-    async with AsyncBCMDashboardsClient() as s3:
+    async with AsyncBCMDashboardsClient() as bcm_dashboards:
         try:
-            await s3.create_dashboard()
+            await bcm_dashboards.create_dashboard()
         except AccessDeniedException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -63,13 +63,13 @@ from capo_bcm_dashboards import AsyncBCMDashboardsClient
 
 
 async def main():
-    async with AsyncBCMDashboardsClient() as s3:
+    async with AsyncBCMDashboardsClient() as bcm_dashboards:
         # Default: 3 attempts for every operation
-        response = await s3.create_dashboard()
+        response = await bcm_dashboards.create_dashboard()
 
         # Override per operation
-        response = await s3.create_dashboard(config_overrides={"retry_max_attempts": 5})
+        response = await bcm_dashboards.create_dashboard(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.create_dashboard(config_overrides={"retry_max_attempts": 1})
+        response = await bcm_dashboards.create_dashboard(config_overrides={"retry_max_attempts": 1})
 ```

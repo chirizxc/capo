@@ -38,9 +38,9 @@ def serialize_json(value: GetRecommendationReportDetailsResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetRecommendationReportDetailsResponse:
     out: GetRecommendationReportDetailsResponse = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "recommendationReportDetails" in data:
+    if data.get("recommendationReportDetails") is not None:
         import capo_migrationhubstrategy.types.recommendation_report_details
 
         out["recommendation_report_details"] = (

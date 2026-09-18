@@ -46,17 +46,17 @@ def serialize_json(value: Definition) -> dict:
 
 def deserialize_json(data: dict) -> Definition:
     out: Definition = {}  # type: ignore[typeddict-item]
-    if "ModelHandle" in data:
+    if data.get("ModelHandle") is not None:
         out["model_handle"] = data["ModelHandle"]
-    if "S3Url" in data:
+    if data.get("S3Url") is not None:
         out["s3_url"] = data["S3Url"]
-    if "Checksum" in data:
+    if data.get("Checksum") is not None:
         import capo_sagemaker_edge.types.checksum
 
         out["checksum"] = capo_sagemaker_edge.types.checksum.deserialize_json(
             data["Checksum"]
         )
-    if "State" in data:
+    if data.get("State") is not None:
         import capo_sagemaker_edge.types.model_state
 
         out["state"] = capo_sagemaker_edge.types.model_state.deserialize_json(

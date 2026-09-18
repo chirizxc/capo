@@ -55,7 +55,7 @@ def serialize_json(value: ListAuditFindingsOutput) -> dict:
 
 def deserialize_json(data: dict) -> ListAuditFindingsOutput:
     out: ListAuditFindingsOutput = {}  # type: ignore[typeddict-item]
-    if "StartTime" in data:
+    if data.get("StartTime") is not None:
         import capo_application_signals.types._prelude.timestamp
 
         out["start_time"] = (
@@ -63,7 +63,7 @@ def deserialize_json(data: dict) -> ListAuditFindingsOutput:
                 data["StartTime"]
             )
         )
-    if "EndTime" in data:
+    if data.get("EndTime") is not None:
         import capo_application_signals.types._prelude.timestamp
 
         out["end_time"] = (
@@ -71,7 +71,7 @@ def deserialize_json(data: dict) -> ListAuditFindingsOutput:
                 data["EndTime"]
             )
         )
-    if "AuditFindings" in data:
+    if data.get("AuditFindings") is not None:
         import capo_application_signals.types.audit_findings
 
         out["audit_findings"] = (
@@ -81,6 +81,6 @@ def deserialize_json(data: dict) -> ListAuditFindingsOutput:
         )
     else:
         raise DeserializationError("ListAuditFindingsOutput.audit_findings required")
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

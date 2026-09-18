@@ -48,7 +48,7 @@ def serialize_json(value: DynamicDefaultValue) -> dict:
 
 def deserialize_json(data: dict) -> DynamicDefaultValue:
     out: DynamicDefaultValue = {}  # type: ignore[typeddict-item]
-    if "UserNameColumn" in data:
+    if data.get("UserNameColumn") is not None:
         import capo_quicksight.types.column_identifier
 
         out["user_name_column"] = (
@@ -56,7 +56,7 @@ def deserialize_json(data: dict) -> DynamicDefaultValue:
                 data["UserNameColumn"]
             )
         )
-    if "GroupNameColumn" in data:
+    if data.get("GroupNameColumn") is not None:
         import capo_quicksight.types.column_identifier
 
         out["group_name_column"] = (
@@ -64,7 +64,7 @@ def deserialize_json(data: dict) -> DynamicDefaultValue:
                 data["GroupNameColumn"]
             )
         )
-    if "DefaultValueColumn" in data:
+    if data.get("DefaultValueColumn") is not None:
         import capo_quicksight.types.column_identifier
 
         out["default_value_column"] = (

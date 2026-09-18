@@ -24,7 +24,7 @@ def serialize_json(value: PackageVendingOptions) -> dict:
 
 def deserialize_json(data: dict) -> PackageVendingOptions:
     out: PackageVendingOptions = {}  # type: ignore[typeddict-item]
-    if "VendingEnabled" in data:
+    if data.get("VendingEnabled") is not None:
         out["vending_enabled"] = data["VendingEnabled"]
     else:
         raise DeserializationError("PackageVendingOptions.vending_enabled required")

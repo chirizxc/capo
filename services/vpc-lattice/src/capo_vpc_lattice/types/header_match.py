@@ -37,11 +37,11 @@ def serialize_json(value: HeaderMatch) -> dict:
 
 def deserialize_json(data: dict) -> HeaderMatch:
     out: HeaderMatch = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("HeaderMatch.name required")
-    if "match" in data:
+    if data.get("match") is not None:
         import capo_vpc_lattice.types.header_match_type
 
         out["match"] = capo_vpc_lattice.types.header_match_type.deserialize_json(
@@ -49,6 +49,6 @@ def deserialize_json(data: dict) -> HeaderMatch:
         )
     else:
         raise DeserializationError("HeaderMatch.match required")
-    if "caseSensitive" in data:
+    if data.get("caseSensitive") is not None:
         out["case_sensitive"] = data["caseSensitive"]
     return out

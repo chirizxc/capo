@@ -88,7 +88,16 @@ def serialize_aws_json_1_0(value: VolumeRecommendation) -> dict:
                 value["utilization_metrics"]
             )
         )
-    out["lookBackPeriodInDays"] = value.get("look_back_period_in_days", 0)
+    out["lookBackPeriodInDays"] = (
+        "NaN"
+        if value.get("look_back_period_in_days", 0)
+        != value.get("look_back_period_in_days", 0)
+        else "Infinity"
+        if value.get("look_back_period_in_days", 0) == float("inf")
+        else "-Infinity"
+        if value.get("look_back_period_in_days", 0) == float("-inf")
+        else value.get("look_back_period_in_days", 0)
+    )
     if "volume_recommendation_options" in value:
         import capo_compute_optimizer.types.volume_recommendation_options
 
@@ -132,11 +141,11 @@ def serialize_aws_json_1_0(value: VolumeRecommendation) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> VolumeRecommendation:
     out: VolumeRecommendation = {}  # type: ignore[typeddict-item]
-    if "volumeArn" in data:
+    if data.get("volumeArn") is not None:
         out["volume_arn"] = data["volumeArn"]
-    if "accountId" in data:
+    if data.get("accountId") is not None:
         out["account_id"] = data["accountId"]
-    if "currentConfiguration" in data:
+    if data.get("currentConfiguration") is not None:
         import capo_compute_optimizer.types.volume_configuration
 
         out["current_configuration"] = (
@@ -144,7 +153,7 @@ def deserialize_aws_json_1_0(data: dict) -> VolumeRecommendation:
                 data["currentConfiguration"]
             )
         )
-    if "finding" in data:
+    if data.get("finding") is not None:
         import capo_compute_optimizer.types.ebs_finding
 
         out["finding"] = (
@@ -152,7 +161,7 @@ def deserialize_aws_json_1_0(data: dict) -> VolumeRecommendation:
                 data["finding"]
             )
         )
-    if "utilizationMetrics" in data:
+    if data.get("utilizationMetrics") is not None:
         import capo_compute_optimizer.types.ebs_utilization_metrics
 
         out["utilization_metrics"] = (
@@ -160,11 +169,11 @@ def deserialize_aws_json_1_0(data: dict) -> VolumeRecommendation:
                 data["utilizationMetrics"]
             )
         )
-    if "lookBackPeriodInDays" in data:
-        out["look_back_period_in_days"] = data["lookBackPeriodInDays"]
+    if data.get("lookBackPeriodInDays") is not None:
+        out["look_back_period_in_days"] = float(data["lookBackPeriodInDays"])
     else:
         out["look_back_period_in_days"] = 0
-    if "volumeRecommendationOptions" in data:
+    if data.get("volumeRecommendationOptions") is not None:
         import capo_compute_optimizer.types.volume_recommendation_options
 
         out["volume_recommendation_options"] = (
@@ -172,7 +181,7 @@ def deserialize_aws_json_1_0(data: dict) -> VolumeRecommendation:
                 data["volumeRecommendationOptions"]
             )
         )
-    if "lastRefreshTimestamp" in data:
+    if data.get("lastRefreshTimestamp") is not None:
         import capo_compute_optimizer.types.last_refresh_timestamp
 
         out["last_refresh_timestamp"] = (
@@ -180,7 +189,7 @@ def deserialize_aws_json_1_0(data: dict) -> VolumeRecommendation:
                 data["lastRefreshTimestamp"]
             )
         )
-    if "currentPerformanceRisk" in data:
+    if data.get("currentPerformanceRisk") is not None:
         import capo_compute_optimizer.types.current_performance_risk
 
         out["current_performance_risk"] = (
@@ -188,7 +197,7 @@ def deserialize_aws_json_1_0(data: dict) -> VolumeRecommendation:
                 data["currentPerformanceRisk"]
             )
         )
-    if "effectiveRecommendationPreferences" in data:
+    if data.get("effectiveRecommendationPreferences") is not None:
         import capo_compute_optimizer.types.ebs_effective_recommendation_preferences
 
         out["effective_recommendation_preferences"] = (
@@ -196,7 +205,7 @@ def deserialize_aws_json_1_0(data: dict) -> VolumeRecommendation:
                 data["effectiveRecommendationPreferences"]
             )
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_compute_optimizer.types.tags
 
         out["tags"] = capo_compute_optimizer.types.tags.deserialize_aws_json_1_0(

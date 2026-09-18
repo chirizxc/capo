@@ -35,11 +35,11 @@ def serialize_json(value: AssociateServiceInput) -> dict:
 
 def deserialize_json(data: dict) -> AssociateServiceInput:
     out: AssociateServiceInput = {}  # type: ignore[typeddict-item]
-    if "serviceId" in data:
+    if data.get("serviceId") is not None:
         out["service_id"] = data["serviceId"]
     else:
         raise DeserializationError("AssociateServiceInput.service_id required")
-    if "configuration" in data:
+    if data.get("configuration") is not None:
         import capo_devops_agent.types.service_configuration
 
         out["configuration"] = (

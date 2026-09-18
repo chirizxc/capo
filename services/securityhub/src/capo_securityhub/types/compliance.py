@@ -86,13 +86,13 @@ def serialize_json(value: Compliance) -> dict:
 
 def deserialize_json(data: dict) -> Compliance:
     out: Compliance = {}  # type: ignore[typeddict-item]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_securityhub.types.compliance_status
 
         out["status"] = capo_securityhub.types.compliance_status.deserialize_json(
             data["Status"]
         )
-    if "RelatedRequirements" in data:
+    if data.get("RelatedRequirements") is not None:
         import capo_securityhub.types.related_requirements_list
 
         out["related_requirements"] = (
@@ -100,7 +100,7 @@ def deserialize_json(data: dict) -> Compliance:
                 data["RelatedRequirements"]
             )
         )
-    if "StatusReasons" in data:
+    if data.get("StatusReasons") is not None:
         import capo_securityhub.types.status_reasons_list
 
         out["status_reasons"] = (
@@ -108,9 +108,9 @@ def deserialize_json(data: dict) -> Compliance:
                 data["StatusReasons"]
             )
         )
-    if "SecurityControlId" in data:
+    if data.get("SecurityControlId") is not None:
         out["security_control_id"] = data["SecurityControlId"]
-    if "AssociatedStandards" in data:
+    if data.get("AssociatedStandards") is not None:
         import capo_securityhub.types.associated_standards_list
 
         out["associated_standards"] = (
@@ -118,7 +118,7 @@ def deserialize_json(data: dict) -> Compliance:
                 data["AssociatedStandards"]
             )
         )
-    if "SecurityControlParameters" in data:
+    if data.get("SecurityControlParameters") is not None:
         import capo_securityhub.types.security_control_parameters_list
 
         out["security_control_parameters"] = (

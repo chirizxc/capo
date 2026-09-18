@@ -22,11 +22,11 @@ def serialize_json(value: PutTableReplicationResponse) -> dict:
 
 def deserialize_json(data: dict) -> PutTableReplicationResponse:
     out: PutTableReplicationResponse = {}  # type: ignore[typeddict-item]
-    if "versionToken" in data:
+    if data.get("versionToken") is not None:
         out["version_token"] = data["versionToken"]
     else:
         raise DeserializationError("PutTableReplicationResponse.version_token required")
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
     else:
         raise DeserializationError("PutTableReplicationResponse.status required")

@@ -45,19 +45,19 @@ def serialize_json(value: StartNetworkMigrationCodeGenerationRequest) -> dict:
 
 def deserialize_json(data: dict) -> StartNetworkMigrationCodeGenerationRequest:
     out: StartNetworkMigrationCodeGenerationRequest = {}  # type: ignore[typeddict-item]
-    if "networkMigrationExecutionID" in data:
+    if data.get("networkMigrationExecutionID") is not None:
         out["network_migration_execution_id"] = data["networkMigrationExecutionID"]
     else:
         raise DeserializationError(
             "StartNetworkMigrationCodeGenerationRequest.network_migration_execution_id required"
         )
-    if "networkMigrationDefinitionID" in data:
+    if data.get("networkMigrationDefinitionID") is not None:
         out["network_migration_definition_id"] = data["networkMigrationDefinitionID"]
     else:
         raise DeserializationError(
             "StartNetworkMigrationCodeGenerationRequest.network_migration_definition_id required"
         )
-    if "codeGenerationOutputFormatTypes" in data:
+    if data.get("codeGenerationOutputFormatTypes") is not None:
         import capo_mgn.types.code_generation_output_format_types
 
         out["code_generation_output_format_types"] = (

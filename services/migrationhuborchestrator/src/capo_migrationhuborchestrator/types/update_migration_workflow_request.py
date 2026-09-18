@@ -55,11 +55,11 @@ def serialize_json(value: UpdateMigrationWorkflowRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateMigrationWorkflowRequest:
     out: UpdateMigrationWorkflowRequest = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "inputParameters" in data:
+    if data.get("inputParameters") is not None:
         import capo_migrationhuborchestrator.types.step_input_parameters
 
         out["input_parameters"] = (
@@ -67,7 +67,7 @@ def deserialize_json(data: dict) -> UpdateMigrationWorkflowRequest:
                 data["inputParameters"]
             )
         )
-    if "stepTargets" in data:
+    if data.get("stepTargets") is not None:
         import capo_migrationhuborchestrator.types.string_list
 
         out["step_targets"] = (

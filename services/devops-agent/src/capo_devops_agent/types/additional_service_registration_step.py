@@ -34,7 +34,7 @@ def serialize_json(value: AdditionalServiceRegistrationStep) -> dict:
 
 
 def deserialize_json(data: dict) -> AdditionalServiceRegistrationStep:
-    if "oauth" in data:
+    if data.get("oauth") is not None:
         import capo_devops_agent.types.o_auth_additional_step_details
 
         return {

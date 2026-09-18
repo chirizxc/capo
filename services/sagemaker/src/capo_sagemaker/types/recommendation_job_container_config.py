@@ -101,15 +101,15 @@ def serialize_aws_json_1_1(value: RecommendationJobContainerConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RecommendationJobContainerConfig:
     out: RecommendationJobContainerConfig = {}  # type: ignore[typeddict-item]
-    if "Domain" in data:
+    if data.get("Domain") is not None:
         out["domain"] = data["Domain"]
-    if "Task" in data:
+    if data.get("Task") is not None:
         out["task"] = data["Task"]
-    if "Framework" in data:
+    if data.get("Framework") is not None:
         out["framework"] = data["Framework"]
-    if "FrameworkVersion" in data:
+    if data.get("FrameworkVersion") is not None:
         out["framework_version"] = data["FrameworkVersion"]
-    if "PayloadConfig" in data:
+    if data.get("PayloadConfig") is not None:
         import capo_sagemaker.types.recommendation_job_payload_config
 
         out["payload_config"] = (
@@ -117,9 +117,9 @@ def deserialize_aws_json_1_1(data: dict) -> RecommendationJobContainerConfig:
                 data["PayloadConfig"]
             )
         )
-    if "NearestModelName" in data:
+    if data.get("NearestModelName") is not None:
         out["nearest_model_name"] = data["NearestModelName"]
-    if "SupportedInstanceTypes" in data:
+    if data.get("SupportedInstanceTypes") is not None:
         import capo_sagemaker.types.recommendation_job_supported_instance_types
 
         out["supported_instance_types"] = (
@@ -127,7 +127,7 @@ def deserialize_aws_json_1_1(data: dict) -> RecommendationJobContainerConfig:
                 data["SupportedInstanceTypes"]
             )
         )
-    if "SupportedEndpointType" in data:
+    if data.get("SupportedEndpointType") is not None:
         import capo_sagemaker.types.recommendation_job_supported_endpoint_type
 
         out["supported_endpoint_type"] = (
@@ -135,9 +135,9 @@ def deserialize_aws_json_1_1(data: dict) -> RecommendationJobContainerConfig:
                 data["SupportedEndpointType"]
             )
         )
-    if "DataInputConfig" in data:
+    if data.get("DataInputConfig") is not None:
         out["data_input_config"] = data["DataInputConfig"]
-    if "SupportedResponseMIMETypes" in data:
+    if data.get("SupportedResponseMIMETypes") is not None:
         import capo_sagemaker.types.recommendation_job_supported_response_mime_types
 
         out["supported_response_mime_types"] = (

@@ -66,7 +66,7 @@ def serialize_json(value: CustomConnectorProfileCredentials) -> dict:
 
 def deserialize_json(data: dict) -> CustomConnectorProfileCredentials:
     out: CustomConnectorProfileCredentials = {}  # type: ignore[typeddict-item]
-    if "authenticationType" in data:
+    if data.get("authenticationType") is not None:
         import capo_appflow.types.authentication_type
 
         out["authentication_type"] = (
@@ -78,25 +78,25 @@ def deserialize_json(data: dict) -> CustomConnectorProfileCredentials:
         raise DeserializationError(
             "CustomConnectorProfileCredentials.authentication_type required"
         )
-    if "basic" in data:
+    if data.get("basic") is not None:
         import capo_appflow.types.basic_auth_credentials
 
         out["basic"] = capo_appflow.types.basic_auth_credentials.deserialize_json(
             data["basic"]
         )
-    if "oauth2" in data:
+    if data.get("oauth2") is not None:
         import capo_appflow.types.o_auth2_credentials
 
         out["oauth2"] = capo_appflow.types.o_auth2_credentials.deserialize_json(
             data["oauth2"]
         )
-    if "apiKey" in data:
+    if data.get("apiKey") is not None:
         import capo_appflow.types.api_key_credentials
 
         out["api_key"] = capo_appflow.types.api_key_credentials.deserialize_json(
             data["apiKey"]
         )
-    if "custom" in data:
+    if data.get("custom") is not None:
         import capo_appflow.types.custom_auth_credentials
 
         out["custom"] = capo_appflow.types.custom_auth_credentials.deserialize_json(

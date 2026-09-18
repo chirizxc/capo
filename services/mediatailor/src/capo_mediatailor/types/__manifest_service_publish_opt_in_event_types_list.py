@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> __manifestServicePublishOptInEventTypesList:
 
     out: __manifestServicePublishOptInEventTypesList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_mediatailor.types.manifest_service_publish_opt_in_event_type.deserialize_json(
                 item

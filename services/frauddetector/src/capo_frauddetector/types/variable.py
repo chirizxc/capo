@@ -67,15 +67,15 @@ def serialize_aws_json_1_1(value: Variable) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Variable:
     out: Variable = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "dataType" in data:
+    if data.get("dataType") is not None:
         import capo_frauddetector.types.data_type
 
         out["data_type"] = capo_frauddetector.types.data_type.deserialize_aws_json_1_1(
             data["dataType"]
         )
-    if "dataSource" in data:
+    if data.get("dataSource") is not None:
         import capo_frauddetector.types.data_source
 
         out["data_source"] = (
@@ -83,16 +83,16 @@ def deserialize_aws_json_1_1(data: dict) -> Variable:
                 data["dataSource"]
             )
         )
-    if "defaultValue" in data:
+    if data.get("defaultValue") is not None:
         out["default_value"] = data["defaultValue"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "variableType" in data:
+    if data.get("variableType") is not None:
         out["variable_type"] = data["variableType"]
-    if "lastUpdatedTime" in data:
+    if data.get("lastUpdatedTime") is not None:
         out["last_updated_time"] = data["lastUpdatedTime"]
-    if "createdTime" in data:
+    if data.get("createdTime") is not None:
         out["created_time"] = data["createdTime"]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     return out

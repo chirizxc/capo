@@ -49,23 +49,23 @@ def serialize_json(value: TemplateSummary) -> dict:
 
 def deserialize_json(data: dict) -> TemplateSummary:
     out: TemplateSummary = {}  # type: ignore[typeddict-item]
-    if "templateId" in data:
+    if data.get("templateId") is not None:
         out["template_id"] = data["templateId"]
     else:
         raise DeserializationError("TemplateSummary.template_id required")
-    if "templateArn" in data:
+    if data.get("templateArn") is not None:
         out["template_arn"] = data["templateArn"]
     else:
         raise DeserializationError("TemplateSummary.template_arn required")
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("TemplateSummary.name required")
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
     else:
         raise DeserializationError("TemplateSummary.status required")
-    if "tagPropagationConfigurations" in data:
+    if data.get("tagPropagationConfigurations") is not None:
         import capo_connectcases.types.tag_propagation_configuration_list
 
         out["tag_propagation_configurations"] = (

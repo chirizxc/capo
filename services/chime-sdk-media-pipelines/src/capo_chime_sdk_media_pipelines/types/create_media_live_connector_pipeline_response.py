@@ -31,7 +31,7 @@ def serialize_json(value: CreateMediaLiveConnectorPipelineResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateMediaLiveConnectorPipelineResponse:
     out: CreateMediaLiveConnectorPipelineResponse = {}  # type: ignore[typeddict-item]
-    if "MediaLiveConnectorPipeline" in data:
+    if data.get("MediaLiveConnectorPipeline") is not None:
         import capo_chime_sdk_media_pipelines.types.media_live_connector_pipeline
 
         out["media_live_connector_pipeline"] = (

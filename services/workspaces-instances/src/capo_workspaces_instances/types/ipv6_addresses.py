@@ -29,6 +29,8 @@ def deserialize_aws_json_1_0(data: list) -> Ipv6Addresses:
 
     out: Ipv6Addresses = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_workspaces_instances.types.instance_ipv6_address.deserialize_aws_json_1_0(
                 item

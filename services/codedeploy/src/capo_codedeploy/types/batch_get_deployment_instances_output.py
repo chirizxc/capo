@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: BatchGetDeploymentInstancesOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> BatchGetDeploymentInstancesOutput:
     out: BatchGetDeploymentInstancesOutput = {}  # type: ignore[typeddict-item]
-    if "instancesSummary" in data:
+    if data.get("instancesSummary") is not None:
         import capo_codedeploy.types.instance_summary_list
 
         out["instances_summary"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_1(data: dict) -> BatchGetDeploymentInstancesOutput:
                 data["instancesSummary"]
             )
         )
-    if "errorMessage" in data:
+    if data.get("errorMessage") is not None:
         out["error_message"] = data["errorMessage"]
     return out

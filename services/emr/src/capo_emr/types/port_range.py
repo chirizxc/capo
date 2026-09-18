@@ -27,8 +27,8 @@ def serialize_aws_json_1_1(value: PortRange) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PortRange:
     out: PortRange = {}  # type: ignore[typeddict-item]
-    if "MinRange" in data:
+    if data.get("MinRange") is not None:
         out["min_range"] = data["MinRange"]
-    if "MaxRange" in data:
+    if data.get("MaxRange") is not None:
         out["max_range"] = data["MaxRange"]
     return out

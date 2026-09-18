@@ -25,11 +25,19 @@ def serialize_aws_json_1_1(value: ListManagedWorkgroupsRequest) -> dict:
     out: dict = {}
     if "source_arn" in value:
         out["sourceArn"] = value["source_arn"]
+    if "next_token" in value:
+        out["nextToken"] = value["next_token"]
+    if "max_results" in value:
+        out["maxResults"] = value["max_results"]
     return out
 
 
 def deserialize_aws_json_1_1(data: dict) -> ListManagedWorkgroupsRequest:
     out: ListManagedWorkgroupsRequest = {}  # type: ignore[typeddict-item]
-    if "sourceArn" in data:
+    if data.get("sourceArn") is not None:
         out["source_arn"] = data["sourceArn"]
+    if data.get("nextToken") is not None:
+        out["next_token"] = data["nextToken"]
+    if data.get("maxResults") is not None:
+        out["max_results"] = data["maxResults"]
     return out

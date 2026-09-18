@@ -67,7 +67,7 @@ def serialize_json(value: DynamicAudioSelector) -> dict:
 
 def deserialize_json(data: dict) -> DynamicAudioSelector:
     out: DynamicAudioSelector = {}  # type: ignore[typeddict-item]
-    if "audioDurationCorrection" in data:
+    if data.get("audioDurationCorrection") is not None:
         import capo_mediaconvert.types.audio_duration_correction
 
         out["audio_duration_correction"] = (
@@ -75,17 +75,17 @@ def deserialize_json(data: dict) -> DynamicAudioSelector:
                 data["audioDurationCorrection"]
             )
         )
-    if "externalAudioFileInput" in data:
+    if data.get("externalAudioFileInput") is not None:
         out["external_audio_file_input"] = data["externalAudioFileInput"]
-    if "languageCode" in data:
+    if data.get("languageCode") is not None:
         import capo_mediaconvert.types.language_code
 
         out["language_code"] = capo_mediaconvert.types.language_code.deserialize_json(
             data["languageCode"]
         )
-    if "offset" in data:
+    if data.get("offset") is not None:
         out["offset"] = data["offset"]
-    if "selectorType" in data:
+    if data.get("selectorType") is not None:
         import capo_mediaconvert.types.dynamic_audio_selector_type
 
         out["selector_type"] = (

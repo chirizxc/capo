@@ -68,21 +68,21 @@ def serialize_json(value: CreateBulkImportJobRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateBulkImportJobRequest:
     out: CreateBulkImportJobRequest = {}  # type: ignore[typeddict-item]
-    if "jobName" in data:
+    if data.get("jobName") is not None:
         out["job_name"] = data["jobName"]
     else:
         raise DeserializationError("CreateBulkImportJobRequest.job_name required")
-    if "jobRoleArn" in data:
+    if data.get("jobRoleArn") is not None:
         out["job_role_arn"] = data["jobRoleArn"]
     else:
         raise DeserializationError("CreateBulkImportJobRequest.job_role_arn required")
-    if "files" in data:
+    if data.get("files") is not None:
         import capo_iotsitewise.types.files
 
         out["files"] = capo_iotsitewise.types.files.deserialize_json(data["files"])
     else:
         raise DeserializationError("CreateBulkImportJobRequest.files required")
-    if "errorReportLocation" in data:
+    if data.get("errorReportLocation") is not None:
         import capo_iotsitewise.types.error_report_location
 
         out["error_report_location"] = (
@@ -94,7 +94,7 @@ def deserialize_json(data: dict) -> CreateBulkImportJobRequest:
         raise DeserializationError(
             "CreateBulkImportJobRequest.error_report_location required"
         )
-    if "jobConfiguration" in data:
+    if data.get("jobConfiguration") is not None:
         import capo_iotsitewise.types.job_configuration
 
         out["job_configuration"] = (
@@ -106,8 +106,8 @@ def deserialize_json(data: dict) -> CreateBulkImportJobRequest:
         raise DeserializationError(
             "CreateBulkImportJobRequest.job_configuration required"
         )
-    if "adaptiveIngestion" in data:
+    if data.get("adaptiveIngestion") is not None:
         out["adaptive_ingestion"] = data["adaptiveIngestion"]
-    if "deleteFilesAfterImport" in data:
+    if data.get("deleteFilesAfterImport") is not None:
         out["delete_files_after_import"] = data["deleteFilesAfterImport"]
     return out

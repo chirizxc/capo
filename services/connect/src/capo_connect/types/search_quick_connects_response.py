@@ -43,7 +43,7 @@ def serialize_json(value: SearchQuickConnectsResponse) -> dict:
 
 def deserialize_json(data: dict) -> SearchQuickConnectsResponse:
     out: SearchQuickConnectsResponse = {}  # type: ignore[typeddict-item]
-    if "QuickConnects" in data:
+    if data.get("QuickConnects") is not None:
         import capo_connect.types.quick_connect_search_summary_list
 
         out["quick_connects"] = (
@@ -51,8 +51,8 @@ def deserialize_json(data: dict) -> SearchQuickConnectsResponse:
                 data["QuickConnects"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "ApproximateTotalCount" in data:
+    if data.get("ApproximateTotalCount") is not None:
         out["approximate_total_count"] = data["ApproximateTotalCount"]
     return out

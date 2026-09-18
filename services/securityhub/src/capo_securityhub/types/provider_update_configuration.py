@@ -47,7 +47,7 @@ def serialize_json(value: ProviderUpdateConfiguration) -> dict:
 
 
 def deserialize_json(data: dict) -> ProviderUpdateConfiguration:
-    if "JiraCloud" in data:
+    if data.get("JiraCloud") is not None:
         import capo_securityhub.types.jira_cloud_update_configuration
 
         return {
@@ -55,7 +55,7 @@ def deserialize_json(data: dict) -> ProviderUpdateConfiguration:
                 data["JiraCloud"]
             )
         }
-    elif "ServiceNow" in data:
+    elif data.get("ServiceNow") is not None:
         import capo_securityhub.types.service_now_update_configuration
 
         return {

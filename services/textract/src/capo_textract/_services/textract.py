@@ -1,5 +1,6 @@
 """Generated from Smithy shape ``com.amazonaws.textract#Textract``."""
 
+import uuid
 import warnings
 from collections.abc import Iterator
 from typing import TYPE_CHECKING, Any, Iterable, Optional
@@ -255,9 +256,10 @@ class TextractClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_textract.types.analyze_document_request.AnalyzeDocumentRequest = {}  # type: ignore[typeddict-item]
-        input_["document"] = document
-        input_["feature_types"] = feature_types
+        input_: capo_textract.types.analyze_document_request.AnalyzeDocumentRequest = {
+            "document": document,
+            "feature_types": feature_types,
+        }
         if human_loop_config is not None:
             input_["human_loop_config"] = human_loop_config
         if queries_config is not None:
@@ -270,6 +272,7 @@ class TextractClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def analyze_expense(
@@ -308,14 +311,16 @@ class TextractClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_textract.types.analyze_expense_request.AnalyzeExpenseRequest = {}  # type: ignore[typeddict-item]
-        input_["document"] = document
+        input_: capo_textract.types.analyze_expense_request.AnalyzeExpenseRequest = {
+            "document": document
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def analyze_id(
@@ -357,14 +362,16 @@ class TextractClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_textract.types.analyze_id_request.AnalyzeIDRequest = {}  # type: ignore[typeddict-item]
-        input_["document_pages"] = document_pages
+        input_: capo_textract.types.analyze_id_request.AnalyzeIDRequest = {
+            "document_pages": document_pages
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_adapter(
@@ -421,13 +428,15 @@ class TextractClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_textract.types.create_adapter_request.CreateAdapterRequest = {}  # type: ignore[typeddict-item]
-        input_["adapter_name"] = adapter_name
-        if client_request_token is not None:
-            input_["client_request_token"] = client_request_token
+        input_: capo_textract.types.create_adapter_request.CreateAdapterRequest = {
+            "adapter_name": adapter_name,
+            "feature_types": feature_types,
+        }
+        if client_request_token is None:
+            client_request_token = str(uuid.uuid4())
+        input_["client_request_token"] = client_request_token
         if description is not None:
             input_["description"] = description
-        input_["feature_types"] = feature_types
         if auto_update is not None:
             input_["auto_update"] = auto_update
         if tags is not None:
@@ -438,6 +447,7 @@ class TextractClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_adapter_version(
@@ -494,14 +504,16 @@ class TextractClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_textract.types.create_adapter_version_request.CreateAdapterVersionRequest = {}  # type: ignore[typeddict-item]
-        input_["adapter_id"] = adapter_id
-        if client_request_token is not None:
-            input_["client_request_token"] = client_request_token
-        input_["dataset_config"] = dataset_config
+        input_: capo_textract.types.create_adapter_version_request.CreateAdapterVersionRequest = {
+            "adapter_id": adapter_id,
+            "dataset_config": dataset_config,
+            "output_config": output_config,
+        }
+        if client_request_token is None:
+            client_request_token = str(uuid.uuid4())
+        input_["client_request_token"] = client_request_token
         if kms_key_id is not None:
             input_["kms_key_id"] = kms_key_id
-        input_["output_config"] = output_config
         if tags is not None:
             input_["tags"] = tags
 
@@ -510,6 +522,7 @@ class TextractClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_adapter(
@@ -550,14 +563,16 @@ class TextractClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_textract.types.delete_adapter_request.DeleteAdapterRequest = {}  # type: ignore[typeddict-item]
-        input_["adapter_id"] = adapter_id
+        input_: capo_textract.types.delete_adapter_request.DeleteAdapterRequest = {
+            "adapter_id": adapter_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_adapter_version(
@@ -600,15 +615,17 @@ class TextractClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_textract.types.delete_adapter_version_request.DeleteAdapterVersionRequest = {}  # type: ignore[typeddict-item]
-        input_["adapter_id"] = adapter_id
-        input_["adapter_version"] = adapter_version
+        input_: capo_textract.types.delete_adapter_version_request.DeleteAdapterVersionRequest = {
+            "adapter_id": adapter_id,
+            "adapter_version": adapter_version,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def detect_document_text(
@@ -650,14 +667,16 @@ class TextractClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_textract.types.detect_document_text_request.DetectDocumentTextRequest = {}  # type: ignore[typeddict-item]
-        input_["document"] = document
+        input_: capo_textract.types.detect_document_text_request.DetectDocumentTextRequest = {
+            "document": document
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_adapter(
@@ -697,14 +716,16 @@ class TextractClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_textract.types.get_adapter_request.GetAdapterRequest = {}  # type: ignore[typeddict-item]
-        input_["adapter_id"] = adapter_id
+        input_: capo_textract.types.get_adapter_request.GetAdapterRequest = {
+            "adapter_id": adapter_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_adapter_version(
@@ -746,15 +767,17 @@ class TextractClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_textract.types.get_adapter_version_request.GetAdapterVersionRequest = {}  # type: ignore[typeddict-item]
-        input_["adapter_id"] = adapter_id
-        input_["adapter_version"] = adapter_version
+        input_: capo_textract.types.get_adapter_version_request.GetAdapterVersionRequest = {
+            "adapter_id": adapter_id,
+            "adapter_version": adapter_version,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_document_analysis(
@@ -803,8 +826,9 @@ class TextractClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_textract.types.get_document_analysis_request.GetDocumentAnalysisRequest = {}  # type: ignore[typeddict-item]
-        input_["job_id"] = job_id
+        input_: capo_textract.types.get_document_analysis_request.GetDocumentAnalysisRequest = {
+            "job_id": job_id
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -815,6 +839,7 @@ class TextractClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_document_text_detection(
@@ -861,8 +886,9 @@ class TextractClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_textract.types.get_document_text_detection_request.GetDocumentTextDetectionRequest = {}  # type: ignore[typeddict-item]
-        input_["job_id"] = job_id
+        input_: capo_textract.types.get_document_text_detection_request.GetDocumentTextDetectionRequest = {
+            "job_id": job_id
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -873,6 +899,7 @@ class TextractClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_expense_analysis(
@@ -919,8 +946,9 @@ class TextractClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_textract.types.get_expense_analysis_request.GetExpenseAnalysisRequest = {}  # type: ignore[typeddict-item]
-        input_["job_id"] = job_id
+        input_: capo_textract.types.get_expense_analysis_request.GetExpenseAnalysisRequest = {
+            "job_id": job_id
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -931,6 +959,7 @@ class TextractClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_lending_analysis(
@@ -977,8 +1006,9 @@ class TextractClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_textract.types.get_lending_analysis_request.GetLendingAnalysisRequest = {}  # type: ignore[typeddict-item]
-        input_["job_id"] = job_id
+        input_: capo_textract.types.get_lending_analysis_request.GetLendingAnalysisRequest = {
+            "job_id": job_id
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -989,6 +1019,7 @@ class TextractClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_lending_analysis_summary(
@@ -1029,14 +1060,16 @@ class TextractClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_textract.types.get_lending_analysis_summary_request.GetLendingAnalysisSummaryRequest = {}  # type: ignore[typeddict-item]
-        input_["job_id"] = job_id
+        input_: capo_textract.types.get_lending_analysis_summary_request.GetLendingAnalysisSummaryRequest = {
+            "job_id": job_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_adapters(
@@ -1083,7 +1116,7 @@ class TextractClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_textract.types.list_adapters_request.ListAdaptersRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_textract.types.list_adapters_request.ListAdaptersRequest = {}
         if after_creation_time is not None:
             input_["after_creation_time"] = after_creation_time
         if before_creation_time is not None:
@@ -1098,6 +1131,7 @@ class TextractClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_adapters(
@@ -1176,7 +1210,7 @@ class TextractClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_textract.types.list_adapter_versions_request.ListAdapterVersionsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_textract.types.list_adapter_versions_request.ListAdapterVersionsRequest = {}
         if adapter_id is not None:
             input_["adapter_id"] = adapter_id
         if after_creation_time is not None:
@@ -1193,6 +1227,7 @@ class TextractClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_adapter_versions(
@@ -1263,14 +1298,16 @@ class TextractClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_textract.types.list_tags_for_resource_request.ListTagsForResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_textract.types.list_tags_for_resource_request.ListTagsForResourceRequest = {
+            "resource_arn": resource_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def start_document_analysis(
@@ -1340,9 +1377,10 @@ class TextractClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_textract.types.start_document_analysis_request.StartDocumentAnalysisRequest = {}  # type: ignore[typeddict-item]
-        input_["document_location"] = document_location
-        input_["feature_types"] = feature_types
+        input_: capo_textract.types.start_document_analysis_request.StartDocumentAnalysisRequest = {
+            "document_location": document_location,
+            "feature_types": feature_types,
+        }
         if client_request_token is not None:
             input_["client_request_token"] = client_request_token
         if job_tag is not None:
@@ -1363,6 +1401,7 @@ class TextractClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def start_document_text_detection(
@@ -1423,8 +1462,9 @@ class TextractClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_textract.types.start_document_text_detection_request.StartDocumentTextDetectionRequest = {}  # type: ignore[typeddict-item]
-        input_["document_location"] = document_location
+        input_: capo_textract.types.start_document_text_detection_request.StartDocumentTextDetectionRequest = {
+            "document_location": document_location
+        }
         if client_request_token is not None:
             input_["client_request_token"] = client_request_token
         if job_tag is not None:
@@ -1441,6 +1481,7 @@ class TextractClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def start_expense_analysis(
@@ -1501,8 +1542,9 @@ class TextractClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_textract.types.start_expense_analysis_request.StartExpenseAnalysisRequest = {}  # type: ignore[typeddict-item]
-        input_["document_location"] = document_location
+        input_: capo_textract.types.start_expense_analysis_request.StartExpenseAnalysisRequest = {
+            "document_location": document_location
+        }
         if client_request_token is not None:
             input_["client_request_token"] = client_request_token
         if job_tag is not None:
@@ -1519,6 +1561,7 @@ class TextractClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def start_lending_analysis(
@@ -1576,8 +1619,9 @@ class TextractClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_textract.types.start_lending_analysis_request.StartLendingAnalysisRequest = {}  # type: ignore[typeddict-item]
-        input_["document_location"] = document_location
+        input_: capo_textract.types.start_lending_analysis_request.StartLendingAnalysisRequest = {
+            "document_location": document_location
+        }
         if client_request_token is not None:
             input_["client_request_token"] = client_request_token
         if job_tag is not None:
@@ -1594,6 +1638,7 @@ class TextractClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def tag_resource(
@@ -1636,15 +1681,17 @@ class TextractClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_textract.types.tag_resource_request.TagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tags"] = tags
+        input_: capo_textract.types.tag_resource_request.TagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tags": tags,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def untag_resource(
@@ -1686,15 +1733,17 @@ class TextractClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_textract.types.untag_resource_request.UntagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tag_keys"] = tag_keys
+        input_: capo_textract.types.untag_resource_request.UntagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tag_keys": tag_keys,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_adapter(
@@ -1743,8 +1792,9 @@ class TextractClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_textract.types.update_adapter_request.UpdateAdapterRequest = {}  # type: ignore[typeddict-item]
-        input_["adapter_id"] = adapter_id
+        input_: capo_textract.types.update_adapter_request.UpdateAdapterRequest = {
+            "adapter_id": adapter_id
+        }
         if description is not None:
             input_["description"] = description
         if adapter_name is not None:
@@ -1757,6 +1807,7 @@ class TextractClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def __enter__(self) -> Self:

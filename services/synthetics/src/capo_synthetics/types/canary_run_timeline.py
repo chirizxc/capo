@@ -47,19 +47,19 @@ def serialize_json(value: CanaryRunTimeline) -> dict:
 
 def deserialize_json(data: dict) -> CanaryRunTimeline:
     out: CanaryRunTimeline = {}  # type: ignore[typeddict-item]
-    if "Started" in data:
+    if data.get("Started") is not None:
         import capo_synthetics.types.timestamp
 
         out["started"] = capo_synthetics.types.timestamp.deserialize_json(
             data["Started"]
         )
-    if "Completed" in data:
+    if data.get("Completed") is not None:
         import capo_synthetics.types.timestamp
 
         out["completed"] = capo_synthetics.types.timestamp.deserialize_json(
             data["Completed"]
         )
-    if "MetricTimestampForRunAndRetries" in data:
+    if data.get("MetricTimestampForRunAndRetries") is not None:
         import capo_synthetics.types.timestamp
 
         out["metric_timestamp_for_run_and_retries"] = (

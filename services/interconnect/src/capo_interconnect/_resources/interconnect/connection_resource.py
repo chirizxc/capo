@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import uuid
 from typing import TYPE_CHECKING, Optional
 
 from capo_interconnect._services._pipeline import (
@@ -106,24 +107,27 @@ class ConnectionResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_interconnect.types.create_connection_request.CreateConnectionRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_interconnect.types.create_connection_request.CreateConnectionRequest = {
+            "bandwidth": bandwidth,
+            "attach_point": attach_point,
+            "environment_id": environment_id,
+        }
         if description is not None:
             input_["description"] = description
-        input_["bandwidth"] = bandwidth
-        input_["attach_point"] = attach_point
-        input_["environment_id"] = environment_id
         if remote_account is not None:
             input_["remote_account"] = remote_account
         if tags is not None:
             input_["tags"] = tags
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -168,14 +172,16 @@ class ConnectionResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_interconnect.types.get_connection_request.GetConnectionRequest = {}  # type: ignore[typeddict-item]
-        input_["identifier"] = identifier
+        input_: capo_interconnect.types.get_connection_request.GetConnectionRequest = {
+            "identifier": identifier
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update(
@@ -233,20 +239,23 @@ class ConnectionResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_interconnect.types.update_connection_request.UpdateConnectionRequest = {}  # type: ignore[typeddict-item]
-        input_["identifier"] = identifier
+        input_: capo_interconnect.types.update_connection_request.UpdateConnectionRequest = {
+            "identifier": identifier
+        }
         if description is not None:
             input_["description"] = description
         if bandwidth is not None:
             input_["bandwidth"] = bandwidth
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -293,16 +302,19 @@ class ConnectionResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_interconnect.types.delete_connection_request.DeleteConnectionRequest = {}  # type: ignore[typeddict-item]
-        input_["identifier"] = identifier
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_interconnect.types.delete_connection_request.DeleteConnectionRequest = {
+            "identifier": identifier
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -369,7 +381,7 @@ class ConnectionResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_interconnect.types.list_connections_request.ListConnectionsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_interconnect.types.list_connections_request.ListConnectionsRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -388,6 +400,7 @@ class ConnectionResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -454,24 +467,27 @@ class AsyncConnectionResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_interconnect.types.create_connection_request.CreateConnectionRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_interconnect.types.create_connection_request.CreateConnectionRequest = {
+            "bandwidth": bandwidth,
+            "attach_point": attach_point,
+            "environment_id": environment_id,
+        }
         if description is not None:
             input_["description"] = description
-        input_["bandwidth"] = bandwidth
-        input_["attach_point"] = attach_point
-        input_["environment_id"] = environment_id
         if remote_account is not None:
             input_["remote_account"] = remote_account
         if tags is not None:
             input_["tags"] = tags
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -517,14 +533,16 @@ class AsyncConnectionResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_interconnect.types.get_connection_request.GetConnectionRequest = {}  # type: ignore[typeddict-item]
-        input_["identifier"] = identifier
+        input_: capo_interconnect.types.get_connection_request.GetConnectionRequest = {
+            "identifier": identifier
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update(
@@ -583,20 +601,23 @@ class AsyncConnectionResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_interconnect.types.update_connection_request.UpdateConnectionRequest = {}  # type: ignore[typeddict-item]
-        input_["identifier"] = identifier
+        input_: capo_interconnect.types.update_connection_request.UpdateConnectionRequest = {
+            "identifier": identifier
+        }
         if description is not None:
             input_["description"] = description
         if bandwidth is not None:
             input_["bandwidth"] = bandwidth
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -644,16 +665,19 @@ class AsyncConnectionResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_interconnect.types.delete_connection_request.DeleteConnectionRequest = {}  # type: ignore[typeddict-item]
-        input_["identifier"] = identifier
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_interconnect.types.delete_connection_request.DeleteConnectionRequest = {
+            "identifier": identifier
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -721,7 +745,7 @@ class AsyncConnectionResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_interconnect.types.list_connections_request.ListConnectionsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_interconnect.types.list_connections_request.ListConnectionsRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -740,4 +764,5 @@ class AsyncConnectionResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

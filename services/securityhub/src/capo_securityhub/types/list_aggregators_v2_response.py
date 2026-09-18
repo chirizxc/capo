@@ -34,7 +34,7 @@ def serialize_json(value: ListAggregatorsV2Response) -> dict:
 
 def deserialize_json(data: dict) -> ListAggregatorsV2Response:
     out: ListAggregatorsV2Response = {}  # type: ignore[typeddict-item]
-    if "AggregatorsV2" in data:
+    if data.get("AggregatorsV2") is not None:
         import capo_securityhub.types.aggregator_v2_list
 
         out["aggregators_v2"] = (
@@ -42,6 +42,6 @@ def deserialize_json(data: dict) -> ListAggregatorsV2Response:
                 data["AggregatorsV2"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

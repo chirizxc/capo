@@ -40,23 +40,23 @@ def serialize_json(value: ElasticsearchAction) -> dict:
 
 def deserialize_json(data: dict) -> ElasticsearchAction:
     out: ElasticsearchAction = {}  # type: ignore[typeddict-item]
-    if "roleArn" in data:
+    if data.get("roleArn") is not None:
         out["role_arn"] = data["roleArn"]
     else:
         raise DeserializationError("ElasticsearchAction.role_arn required")
-    if "endpoint" in data:
+    if data.get("endpoint") is not None:
         out["endpoint"] = data["endpoint"]
     else:
         raise DeserializationError("ElasticsearchAction.endpoint required")
-    if "index" in data:
+    if data.get("index") is not None:
         out["index"] = data["index"]
     else:
         raise DeserializationError("ElasticsearchAction.index required")
-    if "type" in data:
+    if data.get("type") is not None:
         out["type"] = data["type"]
     else:
         raise DeserializationError("ElasticsearchAction.type required")
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("ElasticsearchAction.id required")

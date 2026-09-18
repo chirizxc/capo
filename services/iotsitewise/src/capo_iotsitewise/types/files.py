@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> Files:
 
     out: Files = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_iotsitewise.types.file.deserialize_json(item))
     return out

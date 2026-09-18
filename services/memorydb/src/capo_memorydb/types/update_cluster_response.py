@@ -27,7 +27,7 @@ def serialize_aws_json_1_1(value: UpdateClusterResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateClusterResponse:
     out: UpdateClusterResponse = {}  # type: ignore[typeddict-item]
-    if "Cluster" in data:
+    if data.get("Cluster") is not None:
         import capo_memorydb.types.cluster
 
         out["cluster"] = capo_memorydb.types.cluster.deserialize_aws_json_1_1(

@@ -41,14 +41,14 @@ def serialize_aws_json_1_1(value: WorkloadConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> WorkloadConfiguration:
     out: WorkloadConfiguration = {}  # type: ignore[typeddict-item]
-    if "WorkloadName" in data:
+    if data.get("WorkloadName") is not None:
         out["workload_name"] = data["WorkloadName"]
-    if "Tier" in data:
+    if data.get("Tier") is not None:
         import capo_application_insights.types.tier
 
         out["tier"] = capo_application_insights.types.tier.deserialize_aws_json_1_1(
             data["Tier"]
         )
-    if "Configuration" in data:
+    if data.get("Configuration") is not None:
         out["configuration"] = data["Configuration"]
     return out

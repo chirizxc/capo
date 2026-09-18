@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> ListGeofenceResponseEntryList:
 
     out: ListGeofenceResponseEntryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_location.types.list_geofence_response_entry.deserialize_json(item)
         )

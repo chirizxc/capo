@@ -37,7 +37,7 @@ def serialize_json(value: TimestampRange) -> dict:
 
 def deserialize_json(data: dict) -> TimestampRange:
     out: TimestampRange = {}  # type: ignore[typeddict-item]
-    if "StartTimestamp" in data:
+    if data.get("StartTimestamp") is not None:
         import capo_chime_sdk_media_pipelines.types.timestamp
 
         out["start_timestamp"] = (
@@ -47,7 +47,7 @@ def deserialize_json(data: dict) -> TimestampRange:
         )
     else:
         raise DeserializationError("TimestampRange.start_timestamp required")
-    if "EndTimestamp" in data:
+    if data.get("EndTimestamp") is not None:
         import capo_chime_sdk_media_pipelines.types.timestamp
 
         out["end_timestamp"] = (

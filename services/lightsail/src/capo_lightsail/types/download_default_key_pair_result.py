@@ -36,11 +36,11 @@ def serialize_aws_json_1_1(value: DownloadDefaultKeyPairResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DownloadDefaultKeyPairResult:
     out: DownloadDefaultKeyPairResult = {}  # type: ignore[typeddict-item]
-    if "publicKeyBase64" in data:
+    if data.get("publicKeyBase64") is not None:
         out["public_key_base64"] = data["publicKeyBase64"]
-    if "privateKeyBase64" in data:
+    if data.get("privateKeyBase64") is not None:
         out["private_key_base64"] = data["privateKeyBase64"]
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_lightsail.types.iso_date
 
         out["created_at"] = capo_lightsail.types.iso_date.deserialize_aws_json_1_1(

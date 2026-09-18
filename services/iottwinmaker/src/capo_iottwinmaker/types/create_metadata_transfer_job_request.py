@@ -50,11 +50,11 @@ def serialize_json(value: CreateMetadataTransferJobRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateMetadataTransferJobRequest:
     out: CreateMetadataTransferJobRequest = {}  # type: ignore[typeddict-item]
-    if "metadataTransferJobId" in data:
+    if data.get("metadataTransferJobId") is not None:
         out["metadata_transfer_job_id"] = data["metadataTransferJobId"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "sources" in data:
+    if data.get("sources") is not None:
         import capo_iottwinmaker.types.source_configurations
 
         out["sources"] = capo_iottwinmaker.types.source_configurations.deserialize_json(
@@ -62,7 +62,7 @@ def deserialize_json(data: dict) -> CreateMetadataTransferJobRequest:
         )
     else:
         raise DeserializationError("CreateMetadataTransferJobRequest.sources required")
-    if "destination" in data:
+    if data.get("destination") is not None:
         import capo_iottwinmaker.types.destination_configuration
 
         out["destination"] = (

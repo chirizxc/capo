@@ -25,17 +25,17 @@ def serialize_json(value: QueryLimitExceededException_) -> dict:
 
 def deserialize_json(data: dict) -> QueryLimitExceededException_:
     out: QueryLimitExceededException_ = {}  # type: ignore[typeddict-item]
-    if "detailedMessage" in data:
+    if data.get("detailedMessage") is not None:
         out["detailed_message"] = data["detailedMessage"]
     else:
         raise DeserializationError(
             "QueryLimitExceededException_.detailed_message required"
         )
-    if "requestId" in data:
+    if data.get("requestId") is not None:
         out["request_id"] = data["requestId"]
     else:
         raise DeserializationError("QueryLimitExceededException_.request_id required")
-    if "code" in data:
+    if data.get("code") is not None:
         out["code"] = data["code"]
     else:
         raise DeserializationError("QueryLimitExceededException_.code required")
@@ -47,15 +47,18 @@ class QueryLimitExceededException(ServiceError):
 
     code: str | None = "QueryLimitExceededException"
 
-    def __init__(self, data: QueryLimitExceededException_):
+    def __init__(self, data: QueryLimitExceededException_, message: str | None = None):
         super().__init__(
             "server",
             is_throttling_error=False,
             is_retryable=True,
             code="QueryLimitExceededException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "QueryLimitExceededException":
-        return cls(deserialize_json(data))
+    def from_json(
+        cls, data: dict, message: str | None = None
+    ) -> "QueryLimitExceededException":
+        return cls(deserialize_json(data), message)

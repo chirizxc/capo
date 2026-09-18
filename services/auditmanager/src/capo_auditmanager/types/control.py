@@ -133,29 +133,29 @@ def serialize_json(value: Control) -> dict:
 
 def deserialize_json(data: dict) -> Control:
     out: Control = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_auditmanager.types.control_type
 
         out["type"] = capo_auditmanager.types.control_type.deserialize_json(
             data["type"]
         )
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "testingInformation" in data:
+    if data.get("testingInformation") is not None:
         out["testing_information"] = data["testingInformation"]
-    if "actionPlanTitle" in data:
+    if data.get("actionPlanTitle") is not None:
         out["action_plan_title"] = data["actionPlanTitle"]
-    if "actionPlanInstructions" in data:
+    if data.get("actionPlanInstructions") is not None:
         out["action_plan_instructions"] = data["actionPlanInstructions"]
-    if "controlSources" in data:
+    if data.get("controlSources") is not None:
         out["control_sources"] = data["controlSources"]
-    if "controlMappingSources" in data:
+    if data.get("controlMappingSources") is not None:
         import capo_auditmanager.types.control_mapping_sources
 
         out["control_mapping_sources"] = (
@@ -163,27 +163,27 @@ def deserialize_json(data: dict) -> Control:
                 data["controlMappingSources"]
             )
         )
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_auditmanager.types.timestamp
 
         out["created_at"] = capo_auditmanager.types.timestamp.deserialize_json(
             data["createdAt"]
         )
-    if "lastUpdatedAt" in data:
+    if data.get("lastUpdatedAt") is not None:
         import capo_auditmanager.types.timestamp
 
         out["last_updated_at"] = capo_auditmanager.types.timestamp.deserialize_json(
             data["lastUpdatedAt"]
         )
-    if "createdBy" in data:
+    if data.get("createdBy") is not None:
         out["created_by"] = data["createdBy"]
-    if "lastUpdatedBy" in data:
+    if data.get("lastUpdatedBy") is not None:
         out["last_updated_by"] = data["lastUpdatedBy"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_auditmanager.types.tag_map
 
         out["tags"] = capo_auditmanager.types.tag_map.deserialize_json(data["tags"])
-    if "state" in data:
+    if data.get("state") is not None:
         import capo_auditmanager.types.control_state
 
         out["state"] = capo_auditmanager.types.control_state.deserialize_json(

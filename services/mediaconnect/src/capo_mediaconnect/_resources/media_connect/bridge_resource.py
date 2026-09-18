@@ -126,7 +126,7 @@ class BridgeResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mediaconnect.types.create_bridge_request.CreateBridgeRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_mediaconnect.types.create_bridge_request.CreateBridgeRequest = {}
         if egress_gateway_bridge is not None:
             input_["egress_gateway_bridge"] = egress_gateway_bridge
         if ingress_gateway_bridge is not None:
@@ -147,6 +147,7 @@ class BridgeResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -186,14 +187,16 @@ class BridgeResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mediaconnect.types.describe_bridge_request.DescribeBridgeRequest = {}  # type: ignore[typeddict-item]
-        input_["bridge_arn"] = bridge_arn
+        input_: capo_mediaconnect.types.describe_bridge_request.DescribeBridgeRequest = {
+            "bridge_arn": bridge_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update(
@@ -245,8 +248,9 @@ class BridgeResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mediaconnect.types.update_bridge_request.UpdateBridgeRequest = {}  # type: ignore[typeddict-item]
-        input_["bridge_arn"] = bridge_arn
+        input_: capo_mediaconnect.types.update_bridge_request.UpdateBridgeRequest = {
+            "bridge_arn": bridge_arn
+        }
         if egress_gateway_bridge is not None:
             input_["egress_gateway_bridge"] = egress_gateway_bridge
         if ingress_gateway_bridge is not None:
@@ -259,6 +263,7 @@ class BridgeResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -298,14 +303,16 @@ class BridgeResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mediaconnect.types.delete_bridge_request.DeleteBridgeRequest = {}  # type: ignore[typeddict-item]
-        input_["bridge_arn"] = bridge_arn
+        input_: capo_mediaconnect.types.delete_bridge_request.DeleteBridgeRequest = {
+            "bridge_arn": bridge_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -347,7 +354,7 @@ class BridgeResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mediaconnect.types.list_bridges_request.ListBridgesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_mediaconnect.types.list_bridges_request.ListBridgesRequest = {}
         if filter_arn is not None:
             input_["filter_arn"] = filter_arn
         if max_results is not None:
@@ -360,6 +367,7 @@ class BridgeResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def add_bridge_outputs(
@@ -403,8 +411,9 @@ class BridgeResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mediaconnect.types.add_bridge_outputs_request.AddBridgeOutputsRequest = {}  # type: ignore[typeddict-item]
-        input_["bridge_arn"] = bridge_arn
+        input_: capo_mediaconnect.types.add_bridge_outputs_request.AddBridgeOutputsRequest = {
+            "bridge_arn": bridge_arn
+        }
         if outputs is not None:
             input_["outputs"] = outputs
 
@@ -413,6 +422,7 @@ class BridgeResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def add_bridge_sources(
@@ -456,8 +466,9 @@ class BridgeResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mediaconnect.types.add_bridge_sources_request.AddBridgeSourcesRequest = {}  # type: ignore[typeddict-item]
-        input_["bridge_arn"] = bridge_arn
+        input_: capo_mediaconnect.types.add_bridge_sources_request.AddBridgeSourcesRequest = {
+            "bridge_arn": bridge_arn
+        }
         if sources is not None:
             input_["sources"] = sources
 
@@ -466,6 +477,7 @@ class BridgeResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def remove_bridge_output(
@@ -507,15 +519,17 @@ class BridgeResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mediaconnect.types.remove_bridge_output_request.RemoveBridgeOutputRequest = {}  # type: ignore[typeddict-item]
-        input_["bridge_arn"] = bridge_arn
-        input_["output_name"] = output_name
+        input_: capo_mediaconnect.types.remove_bridge_output_request.RemoveBridgeOutputRequest = {
+            "bridge_arn": bridge_arn,
+            "output_name": output_name,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def remove_bridge_source(
@@ -557,15 +571,17 @@ class BridgeResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mediaconnect.types.remove_bridge_source_request.RemoveBridgeSourceRequest = {}  # type: ignore[typeddict-item]
-        input_["bridge_arn"] = bridge_arn
-        input_["source_name"] = source_name
+        input_: capo_mediaconnect.types.remove_bridge_source_request.RemoveBridgeSourceRequest = {
+            "bridge_arn": bridge_arn,
+            "source_name": source_name,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_bridge_output(
@@ -611,17 +627,19 @@ class BridgeResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mediaconnect.types.update_bridge_output_request.UpdateBridgeOutputRequest = {}  # type: ignore[typeddict-item]
-        input_["bridge_arn"] = bridge_arn
+        input_: capo_mediaconnect.types.update_bridge_output_request.UpdateBridgeOutputRequest = {
+            "bridge_arn": bridge_arn,
+            "output_name": output_name,
+        }
         if network_output is not None:
             input_["network_output"] = network_output
-        input_["output_name"] = output_name
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_bridge_source(
@@ -671,19 +689,21 @@ class BridgeResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mediaconnect.types.update_bridge_source_request.UpdateBridgeSourceRequest = {}  # type: ignore[typeddict-item]
-        input_["bridge_arn"] = bridge_arn
+        input_: capo_mediaconnect.types.update_bridge_source_request.UpdateBridgeSourceRequest = {
+            "bridge_arn": bridge_arn,
+            "source_name": source_name,
+        }
         if flow_source is not None:
             input_["flow_source"] = flow_source
         if network_source is not None:
             input_["network_source"] = network_source
-        input_["source_name"] = source_name
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_bridge_state(
@@ -729,8 +749,9 @@ class BridgeResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mediaconnect.types.update_bridge_state_request.UpdateBridgeStateRequest = {}  # type: ignore[typeddict-item]
-        input_["bridge_arn"] = bridge_arn
+        input_: capo_mediaconnect.types.update_bridge_state_request.UpdateBridgeStateRequest = {
+            "bridge_arn": bridge_arn
+        }
         if desired_state is not None:
             input_["desired_state"] = desired_state
 
@@ -739,6 +760,7 @@ class BridgeResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -806,7 +828,7 @@ class AsyncBridgeResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mediaconnect.types.create_bridge_request.CreateBridgeRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_mediaconnect.types.create_bridge_request.CreateBridgeRequest = {}
         if egress_gateway_bridge is not None:
             input_["egress_gateway_bridge"] = egress_gateway_bridge
         if ingress_gateway_bridge is not None:
@@ -827,6 +849,7 @@ class AsyncBridgeResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -867,14 +890,16 @@ class AsyncBridgeResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mediaconnect.types.describe_bridge_request.DescribeBridgeRequest = {}  # type: ignore[typeddict-item]
-        input_["bridge_arn"] = bridge_arn
+        input_: capo_mediaconnect.types.describe_bridge_request.DescribeBridgeRequest = {
+            "bridge_arn": bridge_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update(
@@ -927,8 +952,9 @@ class AsyncBridgeResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mediaconnect.types.update_bridge_request.UpdateBridgeRequest = {}  # type: ignore[typeddict-item]
-        input_["bridge_arn"] = bridge_arn
+        input_: capo_mediaconnect.types.update_bridge_request.UpdateBridgeRequest = {
+            "bridge_arn": bridge_arn
+        }
         if egress_gateway_bridge is not None:
             input_["egress_gateway_bridge"] = egress_gateway_bridge
         if ingress_gateway_bridge is not None:
@@ -941,6 +967,7 @@ class AsyncBridgeResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -981,14 +1008,16 @@ class AsyncBridgeResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mediaconnect.types.delete_bridge_request.DeleteBridgeRequest = {}  # type: ignore[typeddict-item]
-        input_["bridge_arn"] = bridge_arn
+        input_: capo_mediaconnect.types.delete_bridge_request.DeleteBridgeRequest = {
+            "bridge_arn": bridge_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -1031,7 +1060,7 @@ class AsyncBridgeResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mediaconnect.types.list_bridges_request.ListBridgesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_mediaconnect.types.list_bridges_request.ListBridgesRequest = {}
         if filter_arn is not None:
             input_["filter_arn"] = filter_arn
         if max_results is not None:
@@ -1044,6 +1073,7 @@ class AsyncBridgeResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def add_bridge_outputs(
@@ -1088,8 +1118,9 @@ class AsyncBridgeResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mediaconnect.types.add_bridge_outputs_request.AddBridgeOutputsRequest = {}  # type: ignore[typeddict-item]
-        input_["bridge_arn"] = bridge_arn
+        input_: capo_mediaconnect.types.add_bridge_outputs_request.AddBridgeOutputsRequest = {
+            "bridge_arn": bridge_arn
+        }
         if outputs is not None:
             input_["outputs"] = outputs
 
@@ -1098,6 +1129,7 @@ class AsyncBridgeResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def add_bridge_sources(
@@ -1142,8 +1174,9 @@ class AsyncBridgeResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mediaconnect.types.add_bridge_sources_request.AddBridgeSourcesRequest = {}  # type: ignore[typeddict-item]
-        input_["bridge_arn"] = bridge_arn
+        input_: capo_mediaconnect.types.add_bridge_sources_request.AddBridgeSourcesRequest = {
+            "bridge_arn": bridge_arn
+        }
         if sources is not None:
             input_["sources"] = sources
 
@@ -1152,6 +1185,7 @@ class AsyncBridgeResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def remove_bridge_output(
@@ -1194,15 +1228,17 @@ class AsyncBridgeResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mediaconnect.types.remove_bridge_output_request.RemoveBridgeOutputRequest = {}  # type: ignore[typeddict-item]
-        input_["bridge_arn"] = bridge_arn
-        input_["output_name"] = output_name
+        input_: capo_mediaconnect.types.remove_bridge_output_request.RemoveBridgeOutputRequest = {
+            "bridge_arn": bridge_arn,
+            "output_name": output_name,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def remove_bridge_source(
@@ -1245,15 +1281,17 @@ class AsyncBridgeResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mediaconnect.types.remove_bridge_source_request.RemoveBridgeSourceRequest = {}  # type: ignore[typeddict-item]
-        input_["bridge_arn"] = bridge_arn
-        input_["source_name"] = source_name
+        input_: capo_mediaconnect.types.remove_bridge_source_request.RemoveBridgeSourceRequest = {
+            "bridge_arn": bridge_arn,
+            "source_name": source_name,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_bridge_output(
@@ -1300,17 +1338,19 @@ class AsyncBridgeResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mediaconnect.types.update_bridge_output_request.UpdateBridgeOutputRequest = {}  # type: ignore[typeddict-item]
-        input_["bridge_arn"] = bridge_arn
+        input_: capo_mediaconnect.types.update_bridge_output_request.UpdateBridgeOutputRequest = {
+            "bridge_arn": bridge_arn,
+            "output_name": output_name,
+        }
         if network_output is not None:
             input_["network_output"] = network_output
-        input_["output_name"] = output_name
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_bridge_source(
@@ -1361,19 +1401,21 @@ class AsyncBridgeResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mediaconnect.types.update_bridge_source_request.UpdateBridgeSourceRequest = {}  # type: ignore[typeddict-item]
-        input_["bridge_arn"] = bridge_arn
+        input_: capo_mediaconnect.types.update_bridge_source_request.UpdateBridgeSourceRequest = {
+            "bridge_arn": bridge_arn,
+            "source_name": source_name,
+        }
         if flow_source is not None:
             input_["flow_source"] = flow_source
         if network_source is not None:
             input_["network_source"] = network_source
-        input_["source_name"] = source_name
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_bridge_state(
@@ -1420,8 +1462,9 @@ class AsyncBridgeResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mediaconnect.types.update_bridge_state_request.UpdateBridgeStateRequest = {}  # type: ignore[typeddict-item]
-        input_["bridge_arn"] = bridge_arn
+        input_: capo_mediaconnect.types.update_bridge_state_request.UpdateBridgeStateRequest = {
+            "bridge_arn": bridge_arn
+        }
         if desired_state is not None:
             input_["desired_state"] = desired_state
 
@@ -1430,4 +1473,5 @@ class AsyncBridgeResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

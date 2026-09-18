@@ -32,12 +32,12 @@ def serialize_aws_json_1_1(value: ListBootstrapActionsOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListBootstrapActionsOutput:
     out: ListBootstrapActionsOutput = {}  # type: ignore[typeddict-item]
-    if "BootstrapActions" in data:
+    if data.get("BootstrapActions") is not None:
         import capo_emr.types.command_list
 
         out["bootstrap_actions"] = capo_emr.types.command_list.deserialize_aws_json_1_1(
             data["BootstrapActions"]
         )
-    if "Marker" in data:
+    if data.get("Marker") is not None:
         out["marker"] = data["Marker"]
     return out

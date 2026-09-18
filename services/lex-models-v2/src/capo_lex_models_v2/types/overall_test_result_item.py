@@ -50,15 +50,15 @@ def serialize_json(value: OverallTestResultItem) -> dict:
 
 def deserialize_json(data: dict) -> OverallTestResultItem:
     out: OverallTestResultItem = {}  # type: ignore[typeddict-item]
-    if "multiTurnConversation" in data:
+    if data.get("multiTurnConversation") is not None:
         out["multi_turn_conversation"] = data["multiTurnConversation"]
     else:
         out["multi_turn_conversation"] = False
-    if "totalResultCount" in data:
+    if data.get("totalResultCount") is not None:
         out["total_result_count"] = data["totalResultCount"]
     else:
         raise DeserializationError("OverallTestResultItem.total_result_count required")
-    if "speechTranscriptionResultCounts" in data:
+    if data.get("speechTranscriptionResultCounts") is not None:
         import capo_lex_models_v2.types.test_result_match_status_count_map
 
         out["speech_transcription_result_counts"] = (
@@ -66,7 +66,7 @@ def deserialize_json(data: dict) -> OverallTestResultItem:
                 data["speechTranscriptionResultCounts"]
             )
         )
-    if "endToEndResultCounts" in data:
+    if data.get("endToEndResultCounts") is not None:
         import capo_lex_models_v2.types.test_result_match_status_count_map
 
         out["end_to_end_result_counts"] = (

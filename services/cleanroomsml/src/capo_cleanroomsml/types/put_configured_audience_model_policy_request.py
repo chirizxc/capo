@@ -47,15 +47,15 @@ def serialize_json(value: PutConfiguredAudienceModelPolicyRequest) -> dict:
 
 def deserialize_json(data: dict) -> PutConfiguredAudienceModelPolicyRequest:
     out: PutConfiguredAudienceModelPolicyRequest = {}  # type: ignore[typeddict-item]
-    if "configuredAudienceModelPolicy" in data:
+    if data.get("configuredAudienceModelPolicy") is not None:
         out["configured_audience_model_policy"] = data["configuredAudienceModelPolicy"]
     else:
         raise DeserializationError(
             "PutConfiguredAudienceModelPolicyRequest.configured_audience_model_policy required"
         )
-    if "previousPolicyHash" in data:
+    if data.get("previousPolicyHash") is not None:
         out["previous_policy_hash"] = data["previousPolicyHash"]
-    if "policyExistenceCondition" in data:
+    if data.get("policyExistenceCondition") is not None:
         import capo_cleanroomsml.types.policy_existence_condition
 
         out["policy_existence_condition"] = (

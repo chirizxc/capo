@@ -34,7 +34,7 @@ def serialize_json(value: ListStreamingAccessForServicesOutput) -> dict:
 
 def deserialize_json(data: dict) -> ListStreamingAccessForServicesOutput:
     out: ListStreamingAccessForServicesOutput = {}  # type: ignore[typeddict-item]
-    if "StreamingAccessForServices" in data:
+    if data.get("StreamingAccessForServices") is not None:
         import capo_resource_explorer_2.types.streaming_access_details_list
 
         out["streaming_access_for_services"] = (
@@ -46,6 +46,6 @@ def deserialize_json(data: dict) -> ListStreamingAccessForServicesOutput:
         raise DeserializationError(
             "ListStreamingAccessForServicesOutput.streaming_access_for_services required"
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

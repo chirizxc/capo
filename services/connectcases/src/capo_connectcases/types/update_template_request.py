@@ -91,11 +91,11 @@ def serialize_json(value: UpdateTemplateRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateTemplateRequest:
     out: UpdateTemplateRequest = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "layoutConfiguration" in data:
+    if data.get("layoutConfiguration") is not None:
         import capo_connectcases.types.layout_configuration
 
         out["layout_configuration"] = (
@@ -103,7 +103,7 @@ def deserialize_json(data: dict) -> UpdateTemplateRequest:
                 data["layoutConfiguration"]
             )
         )
-    if "requiredFields" in data:
+    if data.get("requiredFields") is not None:
         import capo_connectcases.types.required_field_list
 
         out["required_fields"] = (
@@ -111,15 +111,15 @@ def deserialize_json(data: dict) -> UpdateTemplateRequest:
                 data["requiredFields"]
             )
         )
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
-    if "rules" in data:
+    if data.get("rules") is not None:
         import capo_connectcases.types.template_case_rule_list
 
         out["rules"] = capo_connectcases.types.template_case_rule_list.deserialize_json(
             data["rules"]
         )
-    if "tagPropagationConfigurations" in data:
+    if data.get("tagPropagationConfigurations") is not None:
         import capo_connectcases.types.tag_propagation_configuration_list
 
         out["tag_propagation_configurations"] = (

@@ -96,21 +96,21 @@ def serialize_json(value: CreateCustomLineItemInput) -> dict:
 
 def deserialize_json(data: dict) -> CreateCustomLineItemInput:
     out: CreateCustomLineItemInput = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("CreateCustomLineItemInput.name required")
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
     else:
         raise DeserializationError("CreateCustomLineItemInput.description required")
-    if "BillingGroupArn" in data:
+    if data.get("BillingGroupArn") is not None:
         out["billing_group_arn"] = data["BillingGroupArn"]
     else:
         raise DeserializationError(
             "CreateCustomLineItemInput.billing_group_arn required"
         )
-    if "BillingPeriodRange" in data:
+    if data.get("BillingPeriodRange") is not None:
         import capo_billingconductor.types.custom_line_item_billing_period_range
 
         out["billing_period_range"] = (
@@ -118,11 +118,11 @@ def deserialize_json(data: dict) -> CreateCustomLineItemInput:
                 data["BillingPeriodRange"]
             )
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_billingconductor.types.tag_map
 
         out["tags"] = capo_billingconductor.types.tag_map.deserialize_json(data["Tags"])
-    if "ChargeDetails" in data:
+    if data.get("ChargeDetails") is not None:
         import capo_billingconductor.types.custom_line_item_charge_details
 
         out["charge_details"] = (
@@ -132,9 +132,9 @@ def deserialize_json(data: dict) -> CreateCustomLineItemInput:
         )
     else:
         raise DeserializationError("CreateCustomLineItemInput.charge_details required")
-    if "AccountId" in data:
+    if data.get("AccountId") is not None:
         out["account_id"] = data["AccountId"]
-    if "ComputationRule" in data:
+    if data.get("ComputationRule") is not None:
         import capo_billingconductor.types.computation_rule_enum
 
         out["computation_rule"] = (
@@ -142,7 +142,7 @@ def deserialize_json(data: dict) -> CreateCustomLineItemInput:
                 data["ComputationRule"]
             )
         )
-    if "PresentationDetails" in data:
+    if data.get("PresentationDetails") is not None:
         import capo_billingconductor.types.presentation_object
 
         out["presentation_details"] = (

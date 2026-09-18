@@ -26,7 +26,7 @@ def serialize_json(value: SAPODataParallelismConfig) -> dict:
 
 def deserialize_json(data: dict) -> SAPODataParallelismConfig:
     out: SAPODataParallelismConfig = {}  # type: ignore[typeddict-item]
-    if "maxParallelism" in data:
+    if data.get("maxParallelism") is not None:
         out["max_parallelism"] = data["maxParallelism"]
     else:
         raise DeserializationError("SAPODataParallelismConfig.max_parallelism required")

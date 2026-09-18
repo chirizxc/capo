@@ -36,11 +36,11 @@ def serialize_json(value: ListKeysRequest) -> dict:
 
 def deserialize_json(data: dict) -> ListKeysRequest:
     out: ListKeysRequest = {}  # type: ignore[typeddict-item]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "Filter" in data:
+    if data.get("Filter") is not None:
         import capo_location.types.api_key_filter
 
         out["filter"] = capo_location.types.api_key_filter.deserialize_json(

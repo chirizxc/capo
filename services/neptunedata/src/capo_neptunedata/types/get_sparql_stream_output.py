@@ -45,7 +45,7 @@ def serialize_json(value: GetSparqlStreamOutput) -> dict:
 
 def deserialize_json(data: dict) -> GetSparqlStreamOutput:
     out: GetSparqlStreamOutput = {}  # type: ignore[typeddict-item]
-    if "lastEventId" in data:
+    if data.get("lastEventId") is not None:
         import capo_neptunedata.types.string_valued_map
 
         out["last_event_id"] = (
@@ -55,17 +55,17 @@ def deserialize_json(data: dict) -> GetSparqlStreamOutput:
         )
     else:
         raise DeserializationError("GetSparqlStreamOutput.last_event_id required")
-    if "lastTrxTimestamp" in data:
+    if data.get("lastTrxTimestamp") is not None:
         out["last_trx_timestamp_in_millis"] = data["lastTrxTimestamp"]
     else:
         raise DeserializationError(
             "GetSparqlStreamOutput.last_trx_timestamp_in_millis required"
         )
-    if "format" in data:
+    if data.get("format") is not None:
         out["format"] = data["format"]
     else:
         raise DeserializationError("GetSparqlStreamOutput.format required")
-    if "records" in data:
+    if data.get("records") is not None:
         import capo_neptunedata.types.sparql_records_list
 
         out["records"] = capo_neptunedata.types.sparql_records_list.deserialize_json(
@@ -73,7 +73,7 @@ def deserialize_json(data: dict) -> GetSparqlStreamOutput:
         )
     else:
         raise DeserializationError("GetSparqlStreamOutput.records required")
-    if "totalRecords" in data:
+    if data.get("totalRecords") is not None:
         out["total_records"] = data["totalRecords"]
     else:
         raise DeserializationError("GetSparqlStreamOutput.total_records required")

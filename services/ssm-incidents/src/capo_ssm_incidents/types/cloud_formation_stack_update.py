@@ -41,7 +41,7 @@ def serialize_json(value: CloudFormationStackUpdate) -> dict:
 
 def deserialize_json(data: dict) -> CloudFormationStackUpdate:
     out: CloudFormationStackUpdate = {}  # type: ignore[typeddict-item]
-    if "startTime" in data:
+    if data.get("startTime") is not None:
         import capo_ssm_incidents.types._prelude.timestamp
 
         out["start_time"] = (
@@ -51,13 +51,13 @@ def deserialize_json(data: dict) -> CloudFormationStackUpdate:
         )
     else:
         raise DeserializationError("CloudFormationStackUpdate.start_time required")
-    if "endTime" in data:
+    if data.get("endTime") is not None:
         import capo_ssm_incidents.types._prelude.timestamp
 
         out["end_time"] = capo_ssm_incidents.types._prelude.timestamp.deserialize_json(
             data["endTime"]
         )
-    if "stackArn" in data:
+    if data.get("stackArn") is not None:
         out["stack_arn"] = data["stackArn"]
     else:
         raise DeserializationError("CloudFormationStackUpdate.stack_arn required")

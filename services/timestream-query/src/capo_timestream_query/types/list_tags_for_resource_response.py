@@ -35,7 +35,7 @@ def serialize_aws_json_1_0(value: ListTagsForResourceResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ListTagsForResourceResponse:
     out: ListTagsForResourceResponse = {}  # type: ignore[typeddict-item]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_timestream_query.types.tag_list
 
         out["tags"] = capo_timestream_query.types.tag_list.deserialize_aws_json_1_0(
@@ -43,6 +43,6 @@ def deserialize_aws_json_1_0(data: dict) -> ListTagsForResourceResponse:
         )
     else:
         raise DeserializationError("ListTagsForResourceResponse.tags required")
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

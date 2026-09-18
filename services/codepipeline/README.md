@@ -13,9 +13,9 @@ from capo_codepipeline import AsyncCodePipelineClient
 
 
 async def main():
-    async with AsyncCodePipelineClient() as s3:
+    async with AsyncCodePipelineClient() as code_pipeline:
         # Example: call the acknowledge_job operation
-        response = await s3.acknowledge_job()
+        response = await code_pipeline.acknowledge_job()
         print(response["status"])
 ```
 
@@ -28,9 +28,9 @@ from capo_codepipeline import AsyncCodePipelineClient
 
 
 async def main():
-    async with AsyncCodePipelineClient() as s3:
+    async with AsyncCodePipelineClient() as code_pipeline:
         # Example: paginate over list_action_executions
-        async for item in s3.iter_list_action_executions():
+        async for item in code_pipeline.iter_list_action_executions():
             print(item)
 ```
 
@@ -44,9 +44,9 @@ from capo_codepipeline.error import InvalidNonceException
 
 
 async def main():
-    async with AsyncCodePipelineClient() as s3:
+    async with AsyncCodePipelineClient() as code_pipeline:
         try:
-            await s3.acknowledge_job()
+            await code_pipeline.acknowledge_job()
         except InvalidNonceException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -63,13 +63,13 @@ from capo_codepipeline import AsyncCodePipelineClient
 
 
 async def main():
-    async with AsyncCodePipelineClient() as s3:
+    async with AsyncCodePipelineClient() as code_pipeline:
         # Default: 3 attempts for every operation
-        response = await s3.acknowledge_job()
+        response = await code_pipeline.acknowledge_job()
 
         # Override per operation
-        response = await s3.acknowledge_job(config_overrides={"retry_max_attempts": 5})
+        response = await code_pipeline.acknowledge_job(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.acknowledge_job(config_overrides={"retry_max_attempts": 1})
+        response = await code_pipeline.acknowledge_job(config_overrides={"retry_max_attempts": 1})
 ```

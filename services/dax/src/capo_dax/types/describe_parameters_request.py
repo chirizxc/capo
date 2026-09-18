@@ -37,16 +37,16 @@ def serialize_aws_json_1_1(value: DescribeParametersRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeParametersRequest:
     out: DescribeParametersRequest = {}  # type: ignore[typeddict-item]
-    if "ParameterGroupName" in data:
+    if data.get("ParameterGroupName") is not None:
         out["parameter_group_name"] = data["ParameterGroupName"]
     else:
         raise DeserializationError(
             "DescribeParametersRequest.parameter_group_name required"
         )
-    if "Source" in data:
+    if data.get("Source") is not None:
         out["source"] = data["Source"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

@@ -39,15 +39,20 @@ class ScheduledActionTypeUnsupportedFault(ServiceError):
 
     code: str | None = "ScheduledActionTypeUnsupportedFault"
 
-    def __init__(self, data: ScheduledActionTypeUnsupportedFault_):
+    def __init__(
+        self, data: ScheduledActionTypeUnsupportedFault_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="ScheduledActionTypeUnsupportedFault",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_query(cls, el: Element) -> "ScheduledActionTypeUnsupportedFault":
-        return cls(deserialize_query(el))
+    def from_query(
+        cls, el: Element, message: str | None = None
+    ) -> "ScheduledActionTypeUnsupportedFault":
+        return cls(deserialize_query(el), message)

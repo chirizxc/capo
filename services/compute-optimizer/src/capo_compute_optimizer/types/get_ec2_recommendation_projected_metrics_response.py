@@ -33,7 +33,7 @@ def deserialize_aws_json_1_0(
     data: dict,
 ) -> GetEC2RecommendationProjectedMetricsResponse:
     out: GetEC2RecommendationProjectedMetricsResponse = {}  # type: ignore[typeddict-item]
-    if "recommendedOptionProjectedMetrics" in data:
+    if data.get("recommendedOptionProjectedMetrics") is not None:
         import capo_compute_optimizer.types.recommended_option_projected_metrics
 
         out["recommended_option_projected_metrics"] = (

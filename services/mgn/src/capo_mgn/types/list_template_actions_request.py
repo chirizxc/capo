@@ -47,13 +47,13 @@ def serialize_json(value: ListTemplateActionsRequest) -> dict:
 
 def deserialize_json(data: dict) -> ListTemplateActionsRequest:
     out: ListTemplateActionsRequest = {}  # type: ignore[typeddict-item]
-    if "launchConfigurationTemplateID" in data:
+    if data.get("launchConfigurationTemplateID") is not None:
         out["launch_configuration_template_id"] = data["launchConfigurationTemplateID"]
     else:
         raise DeserializationError(
             "ListTemplateActionsRequest.launch_configuration_template_id required"
         )
-    if "filters" in data:
+    if data.get("filters") is not None:
         import capo_mgn.types.template_actions_request_filters
 
         out["filters"] = (
@@ -61,8 +61,8 @@ def deserialize_json(data: dict) -> ListTemplateActionsRequest:
                 data["filters"]
             )
         )
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

@@ -23,6 +23,6 @@ def serialize_aws_json_1_1(value: StopImageBuilderRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> StopImageBuilderRequest:
     out: StopImageBuilderRequest = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     return out

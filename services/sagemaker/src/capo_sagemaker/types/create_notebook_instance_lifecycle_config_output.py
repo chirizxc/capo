@@ -27,7 +27,7 @@ def serialize_aws_json_1_1(value: CreateNotebookInstanceLifecycleConfigOutput) -
 
 def deserialize_aws_json_1_1(data: dict) -> CreateNotebookInstanceLifecycleConfigOutput:
     out: CreateNotebookInstanceLifecycleConfigOutput = {}  # type: ignore[typeddict-item]
-    if "NotebookInstanceLifecycleConfigArn" in data:
+    if data.get("NotebookInstanceLifecycleConfigArn") is not None:
         out["notebook_instance_lifecycle_config_arn"] = data[
             "NotebookInstanceLifecycleConfigArn"
         ]

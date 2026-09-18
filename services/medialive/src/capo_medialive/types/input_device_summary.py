@@ -163,9 +163,9 @@ def serialize_json(value: InputDeviceSummary) -> dict:
 
 def deserialize_json(data: dict) -> InputDeviceSummary:
     out: InputDeviceSummary = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "connectionState" in data:
+    if data.get("connectionState") is not None:
         import capo_medialive.types.input_device_connection_state
 
         out["connection_state"] = (
@@ -173,7 +173,7 @@ def deserialize_json(data: dict) -> InputDeviceSummary:
                 data["connectionState"]
             )
         )
-    if "deviceSettingsSyncState" in data:
+    if data.get("deviceSettingsSyncState") is not None:
         import capo_medialive.types.device_settings_sync_state
 
         out["device_settings_sync_state"] = (
@@ -181,7 +181,7 @@ def deserialize_json(data: dict) -> InputDeviceSummary:
                 data["deviceSettingsSyncState"]
             )
         )
-    if "deviceUpdateStatus" in data:
+    if data.get("deviceUpdateStatus") is not None:
         import capo_medialive.types.device_update_status
 
         out["device_update_status"] = (
@@ -189,7 +189,7 @@ def deserialize_json(data: dict) -> InputDeviceSummary:
                 data["deviceUpdateStatus"]
             )
         )
-    if "hdDeviceSettings" in data:
+    if data.get("hdDeviceSettings") is not None:
         import capo_medialive.types.input_device_hd_settings
 
         out["hd_device_settings"] = (
@@ -197,13 +197,13 @@ def deserialize_json(data: dict) -> InputDeviceSummary:
                 data["hdDeviceSettings"]
             )
         )
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "macAddress" in data:
+    if data.get("macAddress") is not None:
         out["mac_address"] = data["macAddress"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "networkSettings" in data:
+    if data.get("networkSettings") is not None:
         import capo_medialive.types.input_device_network_settings
 
         out["network_settings"] = (
@@ -211,15 +211,15 @@ def deserialize_json(data: dict) -> InputDeviceSummary:
                 data["networkSettings"]
             )
         )
-    if "serialNumber" in data:
+    if data.get("serialNumber") is not None:
         out["serial_number"] = data["serialNumber"]
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_medialive.types.input_device_type
 
         out["type"] = capo_medialive.types.input_device_type.deserialize_json(
             data["type"]
         )
-    if "uhdDeviceSettings" in data:
+    if data.get("uhdDeviceSettings") is not None:
         import capo_medialive.types.input_device_uhd_settings
 
         out["uhd_device_settings"] = (
@@ -227,13 +227,13 @@ def deserialize_json(data: dict) -> InputDeviceSummary:
                 data["uhdDeviceSettings"]
             )
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_medialive.types.tags
 
         out["tags"] = capo_medialive.types.tags.deserialize_json(data["tags"])
-    if "availabilityZone" in data:
+    if data.get("availabilityZone") is not None:
         out["availability_zone"] = data["availabilityZone"]
-    if "medialiveInputArns" in data:
+    if data.get("medialiveInputArns") is not None:
         import capo_medialive.types.__list_of__string
 
         out["medialive_input_arns"] = (
@@ -241,7 +241,7 @@ def deserialize_json(data: dict) -> InputDeviceSummary:
                 data["medialiveInputArns"]
             )
         )
-    if "outputType" in data:
+    if data.get("outputType") is not None:
         import capo_medialive.types.input_device_output_type
 
         out["output_type"] = (

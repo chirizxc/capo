@@ -54,13 +54,13 @@ def serialize_aws_json_1_0(value: OpenIdConnectConfigurationItem) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> OpenIdConnectConfigurationItem:
     out: OpenIdConnectConfigurationItem = {}  # type: ignore[typeddict-item]
-    if "issuer" in data:
+    if data.get("issuer") is not None:
         out["issuer"] = data["issuer"]
     else:
         raise DeserializationError("OpenIdConnectConfigurationItem.issuer required")
-    if "entityIdPrefix" in data:
+    if data.get("entityIdPrefix") is not None:
         out["entity_id_prefix"] = data["entityIdPrefix"]
-    if "groupConfiguration" in data:
+    if data.get("groupConfiguration") is not None:
         import capo_verifiedpermissions.types.open_id_connect_group_configuration_item
 
         out["group_configuration"] = (
@@ -68,7 +68,7 @@ def deserialize_aws_json_1_0(data: dict) -> OpenIdConnectConfigurationItem:
                 data["groupConfiguration"]
             )
         )
-    if "tokenSelection" in data:
+    if data.get("tokenSelection") is not None:
         import capo_verifiedpermissions.types.open_id_connect_token_selection_item
 
         out["token_selection"] = (

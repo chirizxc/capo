@@ -23,6 +23,6 @@ def serialize_json(value: AutomaticFailConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> AutomaticFailConfiguration:
     out: AutomaticFailConfiguration = {}  # type: ignore[typeddict-item]
-    if "TargetSection" in data:
+    if data.get("TargetSection") is not None:
         out["target_section"] = data["TargetSection"]
     return out

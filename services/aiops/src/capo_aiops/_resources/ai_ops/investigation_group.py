@@ -107,9 +107,10 @@ class InvestigationGroup:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_aiops.types.create_investigation_group_input.CreateInvestigationGroupInput = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        input_["role_arn"] = role_arn
+        input_: capo_aiops.types.create_investigation_group_input.CreateInvestigationGroupInput = {
+            "name": name,
+            "role_arn": role_arn,
+        }
         if encryption_configuration is not None:
             input_["encryption_configuration"] = encryption_configuration
         if retention_in_days is not None:
@@ -132,6 +133,7 @@ class InvestigationGroup:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -171,14 +173,16 @@ class InvestigationGroup:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_aiops.types.get_investigation_group_request.GetInvestigationGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["identifier"] = identifier
+        input_: capo_aiops.types.get_investigation_group_request.GetInvestigationGroupRequest = {
+            "identifier": identifier
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update(
@@ -238,8 +242,9 @@ class InvestigationGroup:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_aiops.types.update_investigation_group_request.UpdateInvestigationGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["identifier"] = identifier
+        input_: capo_aiops.types.update_investigation_group_request.UpdateInvestigationGroupRequest = {
+            "identifier": identifier
+        }
         if role_arn is not None:
             input_["role_arn"] = role_arn
         if encryption_configuration is not None:
@@ -260,6 +265,7 @@ class InvestigationGroup:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -297,14 +303,16 @@ class InvestigationGroup:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_aiops.types.delete_investigation_group_request.DeleteInvestigationGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["identifier"] = identifier
+        input_: capo_aiops.types.delete_investigation_group_request.DeleteInvestigationGroupRequest = {
+            "identifier": identifier
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -348,7 +356,7 @@ class InvestigationGroup:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_aiops.types.list_investigation_groups_input.ListInvestigationGroupsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_aiops.types.list_investigation_groups_input.ListInvestigationGroupsInput = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -359,6 +367,7 @@ class InvestigationGroup:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -429,9 +438,10 @@ class AsyncInvestigationGroup:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_aiops.types.create_investigation_group_input.CreateInvestigationGroupInput = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        input_["role_arn"] = role_arn
+        input_: capo_aiops.types.create_investigation_group_input.CreateInvestigationGroupInput = {
+            "name": name,
+            "role_arn": role_arn,
+        }
         if encryption_configuration is not None:
             input_["encryption_configuration"] = encryption_configuration
         if retention_in_days is not None:
@@ -454,6 +464,7 @@ class AsyncInvestigationGroup:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -494,14 +505,16 @@ class AsyncInvestigationGroup:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_aiops.types.get_investigation_group_request.GetInvestigationGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["identifier"] = identifier
+        input_: capo_aiops.types.get_investigation_group_request.GetInvestigationGroupRequest = {
+            "identifier": identifier
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update(
@@ -562,8 +575,9 @@ class AsyncInvestigationGroup:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_aiops.types.update_investigation_group_request.UpdateInvestigationGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["identifier"] = identifier
+        input_: capo_aiops.types.update_investigation_group_request.UpdateInvestigationGroupRequest = {
+            "identifier": identifier
+        }
         if role_arn is not None:
             input_["role_arn"] = role_arn
         if encryption_configuration is not None:
@@ -584,6 +598,7 @@ class AsyncInvestigationGroup:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -622,14 +637,16 @@ class AsyncInvestigationGroup:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_aiops.types.delete_investigation_group_request.DeleteInvestigationGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["identifier"] = identifier
+        input_: capo_aiops.types.delete_investigation_group_request.DeleteInvestigationGroupRequest = {
+            "identifier": identifier
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -674,7 +691,7 @@ class AsyncInvestigationGroup:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_aiops.types.list_investigation_groups_input.ListInvestigationGroupsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_aiops.types.list_investigation_groups_input.ListInvestigationGroupsInput = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -685,4 +702,5 @@ class AsyncInvestigationGroup:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

@@ -37,15 +37,18 @@ class SubnetNotAllowedFault(ServiceError):
 
     code: str | None = "SubnetNotAllowedFault"
 
-    def __init__(self, data: SubnetNotAllowedFault_):
+    def __init__(self, data: SubnetNotAllowedFault_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="SubnetNotAllowedFault",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_query(cls, el: Element) -> "SubnetNotAllowedFault":
-        return cls(deserialize_query(el))
+    def from_query(
+        cls, el: Element, message: str | None = None
+    ) -> "SubnetNotAllowedFault":
+        return cls(deserialize_query(el), message)

@@ -57,7 +57,7 @@ def serialize_aws_json_1_1(value: Definition) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Definition:
     out: Definition = {}  # type: ignore[typeddict-item]
-    if "IamActionDefinition" in data:
+    if data.get("IamActionDefinition") is not None:
         import capo_budgets.types.iam_action_definition
 
         out["iam_action_definition"] = (
@@ -65,7 +65,7 @@ def deserialize_aws_json_1_1(data: dict) -> Definition:
                 data["IamActionDefinition"]
             )
         )
-    if "ScpActionDefinition" in data:
+    if data.get("ScpActionDefinition") is not None:
         import capo_budgets.types.scp_action_definition
 
         out["scp_action_definition"] = (
@@ -73,7 +73,7 @@ def deserialize_aws_json_1_1(data: dict) -> Definition:
                 data["ScpActionDefinition"]
             )
         )
-    if "SsmActionDefinition" in data:
+    if data.get("SsmActionDefinition") is not None:
         import capo_budgets.types.ssm_action_definition
 
         out["ssm_action_definition"] = (

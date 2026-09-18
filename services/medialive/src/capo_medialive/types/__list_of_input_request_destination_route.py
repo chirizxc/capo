@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> __listOfInputRequestDestinationRoute:
 
     out: __listOfInputRequestDestinationRoute = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_medialive.types.input_request_destination_route.deserialize_json(item)
         )

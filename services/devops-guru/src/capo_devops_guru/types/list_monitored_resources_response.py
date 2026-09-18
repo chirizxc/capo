@@ -35,7 +35,7 @@ def serialize_json(value: ListMonitoredResourcesResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListMonitoredResourcesResponse:
     out: ListMonitoredResourcesResponse = {}  # type: ignore[typeddict-item]
-    if "MonitoredResourceIdentifiers" in data:
+    if data.get("MonitoredResourceIdentifiers") is not None:
         import capo_devops_guru.types.monitored_resource_identifiers
 
         out["monitored_resource_identifiers"] = (
@@ -47,6 +47,6 @@ def deserialize_json(data: dict) -> ListMonitoredResourcesResponse:
         raise DeserializationError(
             "ListMonitoredResourcesResponse.monitored_resource_identifiers required"
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

@@ -352,14 +352,16 @@ class AsyncDataSyncClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_datasync.types.cancel_task_execution_request.CancelTaskExecutionRequest = {}  # type: ignore[typeddict-item]
-        input_["task_execution_arn"] = task_execution_arn
+        input_: capo_datasync.types.cancel_task_execution_request.CancelTaskExecutionRequest = {
+            "task_execution_arn": task_execution_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_agent(
@@ -411,8 +413,9 @@ class AsyncDataSyncClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_datasync.types.create_agent_request.CreateAgentRequest = {}  # type: ignore[typeddict-item]
-        input_["activation_key"] = activation_key
+        input_: capo_datasync.types.create_agent_request.CreateAgentRequest = {
+            "activation_key": activation_key
+        }
         if agent_name is not None:
             input_["agent_name"] = agent_name
         if tags is not None:
@@ -429,6 +432,7 @@ class AsyncDataSyncClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_location_azure_blob(
@@ -492,9 +496,10 @@ class AsyncDataSyncClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_datasync.types.create_location_azure_blob_request.CreateLocationAzureBlobRequest = {}  # type: ignore[typeddict-item]
-        input_["container_url"] = container_url
-        input_["authentication_type"] = authentication_type
+        input_: capo_datasync.types.create_location_azure_blob_request.CreateLocationAzureBlobRequest = {
+            "container_url": container_url,
+            "authentication_type": authentication_type,
+        }
         if sas_configuration is not None:
             input_["sas_configuration"] = sas_configuration
         if blob_type is not None:
@@ -517,6 +522,7 @@ class AsyncDataSyncClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_location_efs(
@@ -572,11 +578,12 @@ class AsyncDataSyncClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_datasync.types.create_location_efs_request.CreateLocationEfsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_datasync.types.create_location_efs_request.CreateLocationEfsRequest = {
+            "efs_filesystem_arn": efs_filesystem_arn,
+            "ec2_config": ec2_config,
+        }
         if subdirectory is not None:
             input_["subdirectory"] = subdirectory
-        input_["efs_filesystem_arn"] = efs_filesystem_arn
-        input_["ec2_config"] = ec2_config
         if tags is not None:
             input_["tags"] = tags
         if access_point_arn is not None:
@@ -591,6 +598,7 @@ class AsyncDataSyncClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_location_fsx_lustre(
@@ -634,9 +642,10 @@ class AsyncDataSyncClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_datasync.types.create_location_fsx_lustre_request.CreateLocationFsxLustreRequest = {}  # type: ignore[typeddict-item]
-        input_["fsx_filesystem_arn"] = fsx_filesystem_arn
-        input_["security_group_arns"] = security_group_arns
+        input_: capo_datasync.types.create_location_fsx_lustre_request.CreateLocationFsxLustreRequest = {
+            "fsx_filesystem_arn": fsx_filesystem_arn,
+            "security_group_arns": security_group_arns,
+        }
         if subdirectory is not None:
             input_["subdirectory"] = subdirectory
         if tags is not None:
@@ -647,6 +656,7 @@ class AsyncDataSyncClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_location_fsx_ontap(
@@ -691,10 +701,11 @@ class AsyncDataSyncClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_datasync.types.create_location_fsx_ontap_request.CreateLocationFsxOntapRequest = {}  # type: ignore[typeddict-item]
-        input_["protocol"] = protocol
-        input_["security_group_arns"] = security_group_arns
-        input_["storage_virtual_machine_arn"] = storage_virtual_machine_arn
+        input_: capo_datasync.types.create_location_fsx_ontap_request.CreateLocationFsxOntapRequest = {
+            "protocol": protocol,
+            "security_group_arns": security_group_arns,
+            "storage_virtual_machine_arn": storage_virtual_machine_arn,
+        }
         if subdirectory is not None:
             input_["subdirectory"] = subdirectory
         if tags is not None:
@@ -705,6 +716,7 @@ class AsyncDataSyncClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_location_fsx_open_zfs(
@@ -750,10 +762,11 @@ class AsyncDataSyncClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_datasync.types.create_location_fsx_open_zfs_request.CreateLocationFsxOpenZfsRequest = {}  # type: ignore[typeddict-item]
-        input_["fsx_filesystem_arn"] = fsx_filesystem_arn
-        input_["protocol"] = protocol
-        input_["security_group_arns"] = security_group_arns
+        input_: capo_datasync.types.create_location_fsx_open_zfs_request.CreateLocationFsxOpenZfsRequest = {
+            "fsx_filesystem_arn": fsx_filesystem_arn,
+            "protocol": protocol,
+            "security_group_arns": security_group_arns,
+        }
         if subdirectory is not None:
             input_["subdirectory"] = subdirectory
         if tags is not None:
@@ -764,6 +777,7 @@ class AsyncDataSyncClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_location_fsx_windows(
@@ -821,14 +835,15 @@ class AsyncDataSyncClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_datasync.types.create_location_fsx_windows_request.CreateLocationFsxWindowsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_datasync.types.create_location_fsx_windows_request.CreateLocationFsxWindowsRequest = {
+            "fsx_filesystem_arn": fsx_filesystem_arn,
+            "security_group_arns": security_group_arns,
+            "user": user,
+        }
         if subdirectory is not None:
             input_["subdirectory"] = subdirectory
-        input_["fsx_filesystem_arn"] = fsx_filesystem_arn
-        input_["security_group_arns"] = security_group_arns
         if tags is not None:
             input_["tags"] = tags
-        input_["user"] = user
         if domain is not None:
             input_["domain"] = domain
         if password is not None:
@@ -843,6 +858,7 @@ class AsyncDataSyncClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_location_hdfs(
@@ -926,10 +942,13 @@ class AsyncDataSyncClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_datasync.types.create_location_hdfs_request.CreateLocationHdfsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_datasync.types.create_location_hdfs_request.CreateLocationHdfsRequest = {
+            "name_nodes": name_nodes,
+            "authentication_type": authentication_type,
+            "agent_arns": agent_arns,
+        }
         if subdirectory is not None:
             input_["subdirectory"] = subdirectory
-        input_["name_nodes"] = name_nodes
         if block_size is not None:
             input_["block_size"] = block_size
         if replication_factor is not None:
@@ -938,7 +957,6 @@ class AsyncDataSyncClient:
             input_["kms_key_provider_uri"] = kms_key_provider_uri
         if qop_configuration is not None:
             input_["qop_configuration"] = qop_configuration
-        input_["authentication_type"] = authentication_type
         if simple_user is not None:
             input_["simple_user"] = simple_user
         if kerberos_principal is not None:
@@ -947,7 +965,6 @@ class AsyncDataSyncClient:
             input_["kerberos_keytab"] = kerberos_keytab
         if kerberos_krb5_conf is not None:
             input_["kerberos_krb5_conf"] = kerberos_krb5_conf
-        input_["agent_arns"] = agent_arns
         if tags is not None:
             input_["tags"] = tags
         if cmk_secret_config is not None:
@@ -960,6 +977,7 @@ class AsyncDataSyncClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_location_nfs(
@@ -1005,10 +1023,11 @@ class AsyncDataSyncClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_datasync.types.create_location_nfs_request.CreateLocationNfsRequest = {}  # type: ignore[typeddict-item]
-        input_["subdirectory"] = subdirectory
-        input_["server_hostname"] = server_hostname
-        input_["on_prem_config"] = on_prem_config
+        input_: capo_datasync.types.create_location_nfs_request.CreateLocationNfsRequest = {
+            "subdirectory": subdirectory,
+            "server_hostname": server_hostname,
+            "on_prem_config": on_prem_config,
+        }
         if mount_options is not None:
             input_["mount_options"] = mount_options
         if tags is not None:
@@ -1019,6 +1038,7 @@ class AsyncDataSyncClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_location_object_storage(
@@ -1092,15 +1112,16 @@ class AsyncDataSyncClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_datasync.types.create_location_object_storage_request.CreateLocationObjectStorageRequest = {}  # type: ignore[typeddict-item]
-        input_["server_hostname"] = server_hostname
+        input_: capo_datasync.types.create_location_object_storage_request.CreateLocationObjectStorageRequest = {
+            "server_hostname": server_hostname,
+            "bucket_name": bucket_name,
+        }
         if server_port is not None:
             input_["server_port"] = server_port
         if server_protocol is not None:
             input_["server_protocol"] = server_protocol
         if subdirectory is not None:
             input_["subdirectory"] = subdirectory
-        input_["bucket_name"] = bucket_name
         if access_key is not None:
             input_["access_key"] = access_key
         if secret_key is not None:
@@ -1121,6 +1142,7 @@ class AsyncDataSyncClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_location_s3(
@@ -1169,13 +1191,14 @@ class AsyncDataSyncClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_datasync.types.create_location_s3_request.CreateLocationS3Request = {}  # type: ignore[typeddict-item]
+        input_: capo_datasync.types.create_location_s3_request.CreateLocationS3Request = {
+            "s3_bucket_arn": s3_bucket_arn,
+            "s3_config": s3_config,
+        }
         if subdirectory is not None:
             input_["subdirectory"] = subdirectory
-        input_["s3_bucket_arn"] = s3_bucket_arn
         if s3_storage_class is not None:
             input_["s3_storage_class"] = s3_storage_class
-        input_["s3_config"] = s3_config
         if agent_arns is not None:
             input_["agent_arns"] = agent_arns
         if tags is not None:
@@ -1186,6 +1209,7 @@ class AsyncDataSyncClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_location_smb(
@@ -1263,9 +1287,11 @@ class AsyncDataSyncClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_datasync.types.create_location_smb_request.CreateLocationSmbRequest = {}  # type: ignore[typeddict-item]
-        input_["subdirectory"] = subdirectory
-        input_["server_hostname"] = server_hostname
+        input_: capo_datasync.types.create_location_smb_request.CreateLocationSmbRequest = {
+            "subdirectory": subdirectory,
+            "server_hostname": server_hostname,
+            "agent_arns": agent_arns,
+        }
         if user is not None:
             input_["user"] = user
         if domain is not None:
@@ -1276,7 +1302,6 @@ class AsyncDataSyncClient:
             input_["cmk_secret_config"] = cmk_secret_config
         if custom_secret_config is not None:
             input_["custom_secret_config"] = custom_secret_config
-        input_["agent_arns"] = agent_arns
         if mount_options is not None:
             input_["mount_options"] = mount_options
         if tags is not None:
@@ -1297,6 +1322,7 @@ class AsyncDataSyncClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_task(
@@ -1360,9 +1386,10 @@ class AsyncDataSyncClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_datasync.types.create_task_request.CreateTaskRequest = {}  # type: ignore[typeddict-item]
-        input_["source_location_arn"] = source_location_arn
-        input_["destination_location_arn"] = destination_location_arn
+        input_: capo_datasync.types.create_task_request.CreateTaskRequest = {
+            "source_location_arn": source_location_arn,
+            "destination_location_arn": destination_location_arn,
+        }
         if cloud_watch_log_group_arn is not None:
             input_["cloud_watch_log_group_arn"] = cloud_watch_log_group_arn
         if name is not None:
@@ -1389,6 +1416,7 @@ class AsyncDataSyncClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_agent(
@@ -1424,14 +1452,16 @@ class AsyncDataSyncClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_datasync.types.delete_agent_request.DeleteAgentRequest = {}  # type: ignore[typeddict-item]
-        input_["agent_arn"] = agent_arn
+        input_: capo_datasync.types.delete_agent_request.DeleteAgentRequest = {
+            "agent_arn": agent_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_location(
@@ -1467,14 +1497,16 @@ class AsyncDataSyncClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_datasync.types.delete_location_request.DeleteLocationRequest = {}  # type: ignore[typeddict-item]
-        input_["location_arn"] = location_arn
+        input_: capo_datasync.types.delete_location_request.DeleteLocationRequest = {
+            "location_arn": location_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_task(
@@ -1510,14 +1542,16 @@ class AsyncDataSyncClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_datasync.types.delete_task_request.DeleteTaskRequest = {}  # type: ignore[typeddict-item]
-        input_["task_arn"] = task_arn
+        input_: capo_datasync.types.delete_task_request.DeleteTaskRequest = {
+            "task_arn": task_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_agent(
@@ -1553,14 +1587,16 @@ class AsyncDataSyncClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_datasync.types.describe_agent_request.DescribeAgentRequest = {}  # type: ignore[typeddict-item]
-        input_["agent_arn"] = agent_arn
+        input_: capo_datasync.types.describe_agent_request.DescribeAgentRequest = {
+            "agent_arn": agent_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_location_azure_blob(
@@ -1596,14 +1632,16 @@ class AsyncDataSyncClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_datasync.types.describe_location_azure_blob_request.DescribeLocationAzureBlobRequest = {}  # type: ignore[typeddict-item]
-        input_["location_arn"] = location_arn
+        input_: capo_datasync.types.describe_location_azure_blob_request.DescribeLocationAzureBlobRequest = {
+            "location_arn": location_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_location_efs(
@@ -1641,14 +1679,16 @@ class AsyncDataSyncClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_datasync.types.describe_location_efs_request.DescribeLocationEfsRequest = {}  # type: ignore[typeddict-item]
-        input_["location_arn"] = location_arn
+        input_: capo_datasync.types.describe_location_efs_request.DescribeLocationEfsRequest = {
+            "location_arn": location_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_location_fsx_lustre(
@@ -1684,14 +1724,16 @@ class AsyncDataSyncClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_datasync.types.describe_location_fsx_lustre_request.DescribeLocationFsxLustreRequest = {}  # type: ignore[typeddict-item]
-        input_["location_arn"] = location_arn
+        input_: capo_datasync.types.describe_location_fsx_lustre_request.DescribeLocationFsxLustreRequest = {
+            "location_arn": location_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_location_fsx_ontap(
@@ -1727,14 +1769,16 @@ class AsyncDataSyncClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_datasync.types.describe_location_fsx_ontap_request.DescribeLocationFsxOntapRequest = {}  # type: ignore[typeddict-item]
-        input_["location_arn"] = location_arn
+        input_: capo_datasync.types.describe_location_fsx_ontap_request.DescribeLocationFsxOntapRequest = {
+            "location_arn": location_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_location_fsx_open_zfs(
@@ -1770,14 +1814,16 @@ class AsyncDataSyncClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_datasync.types.describe_location_fsx_open_zfs_request.DescribeLocationFsxOpenZfsRequest = {}  # type: ignore[typeddict-item]
-        input_["location_arn"] = location_arn
+        input_: capo_datasync.types.describe_location_fsx_open_zfs_request.DescribeLocationFsxOpenZfsRequest = {
+            "location_arn": location_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_location_fsx_windows(
@@ -1813,14 +1859,16 @@ class AsyncDataSyncClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_datasync.types.describe_location_fsx_windows_request.DescribeLocationFsxWindowsRequest = {}  # type: ignore[typeddict-item]
-        input_["location_arn"] = location_arn
+        input_: capo_datasync.types.describe_location_fsx_windows_request.DescribeLocationFsxWindowsRequest = {
+            "location_arn": location_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_location_hdfs(
@@ -1856,14 +1904,16 @@ class AsyncDataSyncClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_datasync.types.describe_location_hdfs_request.DescribeLocationHdfsRequest = {}  # type: ignore[typeddict-item]
-        input_["location_arn"] = location_arn
+        input_: capo_datasync.types.describe_location_hdfs_request.DescribeLocationHdfsRequest = {
+            "location_arn": location_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_location_nfs(
@@ -1901,14 +1951,16 @@ class AsyncDataSyncClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_datasync.types.describe_location_nfs_request.DescribeLocationNfsRequest = {}  # type: ignore[typeddict-item]
-        input_["location_arn"] = location_arn
+        input_: capo_datasync.types.describe_location_nfs_request.DescribeLocationNfsRequest = {
+            "location_arn": location_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_location_object_storage(
@@ -1944,14 +1996,16 @@ class AsyncDataSyncClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_datasync.types.describe_location_object_storage_request.DescribeLocationObjectStorageRequest = {}  # type: ignore[typeddict-item]
-        input_["location_arn"] = location_arn
+        input_: capo_datasync.types.describe_location_object_storage_request.DescribeLocationObjectStorageRequest = {
+            "location_arn": location_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_location_s3(
@@ -1987,14 +2041,16 @@ class AsyncDataSyncClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_datasync.types.describe_location_s3_request.DescribeLocationS3Request = {}  # type: ignore[typeddict-item]
-        input_["location_arn"] = location_arn
+        input_: capo_datasync.types.describe_location_s3_request.DescribeLocationS3Request = {
+            "location_arn": location_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_location_smb(
@@ -2032,14 +2088,16 @@ class AsyncDataSyncClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_datasync.types.describe_location_smb_request.DescribeLocationSmbRequest = {}  # type: ignore[typeddict-item]
-        input_["location_arn"] = location_arn
+        input_: capo_datasync.types.describe_location_smb_request.DescribeLocationSmbRequest = {
+            "location_arn": location_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_task(
@@ -2075,14 +2133,16 @@ class AsyncDataSyncClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_datasync.types.describe_task_request.DescribeTaskRequest = {}  # type: ignore[typeddict-item]
-        input_["task_arn"] = task_arn
+        input_: capo_datasync.types.describe_task_request.DescribeTaskRequest = {
+            "task_arn": task_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_task_execution(
@@ -2118,14 +2178,16 @@ class AsyncDataSyncClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_datasync.types.describe_task_execution_request.DescribeTaskExecutionRequest = {}  # type: ignore[typeddict-item]
-        input_["task_execution_arn"] = task_execution_arn
+        input_: capo_datasync.types.describe_task_execution_request.DescribeTaskExecutionRequest = {
+            "task_execution_arn": task_execution_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_agents(
@@ -2163,7 +2225,7 @@ class AsyncDataSyncClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_datasync.types.list_agents_request.ListAgentsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_datasync.types.list_agents_request.ListAgentsRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -2174,6 +2236,7 @@ class AsyncDataSyncClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_agents(
@@ -2236,7 +2299,7 @@ class AsyncDataSyncClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_datasync.types.list_locations_request.ListLocationsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_datasync.types.list_locations_request.ListLocationsRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -2249,6 +2312,7 @@ class AsyncDataSyncClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_locations(
@@ -2313,8 +2377,9 @@ class AsyncDataSyncClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_datasync.types.list_tags_for_resource_request.ListTagsForResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_datasync.types.list_tags_for_resource_request.ListTagsForResourceRequest = {
+            "resource_arn": resource_arn
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -2325,6 +2390,7 @@ class AsyncDataSyncClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_tags_for_resource(
@@ -2387,7 +2453,7 @@ class AsyncDataSyncClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_datasync.types.list_task_executions_request.ListTaskExecutionsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_datasync.types.list_task_executions_request.ListTaskExecutionsRequest = {}
         if task_arn is not None:
             input_["task_arn"] = task_arn
         if max_results is not None:
@@ -2400,6 +2466,7 @@ class AsyncDataSyncClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_task_executions(
@@ -2462,7 +2529,7 @@ class AsyncDataSyncClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_datasync.types.list_tasks_request.ListTasksRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_datasync.types.list_tasks_request.ListTasksRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -2475,6 +2542,7 @@ class AsyncDataSyncClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_tasks(
@@ -2548,8 +2616,9 @@ class AsyncDataSyncClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_datasync.types.start_task_execution_request.StartTaskExecutionRequest = {}  # type: ignore[typeddict-item]
-        input_["task_arn"] = task_arn
+        input_: capo_datasync.types.start_task_execution_request.StartTaskExecutionRequest = {
+            "task_arn": task_arn
+        }
         if override_options is not None:
             input_["override_options"] = override_options
         if includes is not None:
@@ -2568,6 +2637,7 @@ class AsyncDataSyncClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def tag_resource(
@@ -2605,15 +2675,17 @@ class AsyncDataSyncClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_datasync.types.tag_resource_request.TagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tags"] = tags
+        input_: capo_datasync.types.tag_resource_request.TagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tags": tags,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def untag_resource(
@@ -2651,15 +2723,17 @@ class AsyncDataSyncClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_datasync.types.untag_resource_request.UntagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["keys"] = keys
+        input_: capo_datasync.types.untag_resource_request.UntagResourceRequest = {
+            "resource_arn": resource_arn,
+            "keys": keys,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_agent(
@@ -2697,8 +2771,9 @@ class AsyncDataSyncClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_datasync.types.update_agent_request.UpdateAgentRequest = {}  # type: ignore[typeddict-item]
-        input_["agent_arn"] = agent_arn
+        input_: capo_datasync.types.update_agent_request.UpdateAgentRequest = {
+            "agent_arn": agent_arn
+        }
         if name is not None:
             input_["name"] = name
 
@@ -2707,6 +2782,7 @@ class AsyncDataSyncClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_location_azure_blob(
@@ -2770,8 +2846,9 @@ class AsyncDataSyncClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_datasync.types.update_location_azure_blob_request.UpdateLocationAzureBlobRequest = {}  # type: ignore[typeddict-item]
-        input_["location_arn"] = location_arn
+        input_: capo_datasync.types.update_location_azure_blob_request.UpdateLocationAzureBlobRequest = {
+            "location_arn": location_arn
+        }
         if subdirectory is not None:
             input_["subdirectory"] = subdirectory
         if authentication_type is not None:
@@ -2794,6 +2871,7 @@ class AsyncDataSyncClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_location_efs(
@@ -2845,8 +2923,9 @@ class AsyncDataSyncClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_datasync.types.update_location_efs_request.UpdateLocationEfsRequest = {}  # type: ignore[typeddict-item]
-        input_["location_arn"] = location_arn
+        input_: capo_datasync.types.update_location_efs_request.UpdateLocationEfsRequest = {
+            "location_arn": location_arn
+        }
         if subdirectory is not None:
             input_["subdirectory"] = subdirectory
         if access_point_arn is not None:
@@ -2861,6 +2940,7 @@ class AsyncDataSyncClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_location_fsx_lustre(
@@ -2900,8 +2980,9 @@ class AsyncDataSyncClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_datasync.types.update_location_fsx_lustre_request.UpdateLocationFsxLustreRequest = {}  # type: ignore[typeddict-item]
-        input_["location_arn"] = location_arn
+        input_: capo_datasync.types.update_location_fsx_lustre_request.UpdateLocationFsxLustreRequest = {
+            "location_arn": location_arn
+        }
         if subdirectory is not None:
             input_["subdirectory"] = subdirectory
 
@@ -2910,6 +2991,7 @@ class AsyncDataSyncClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_location_fsx_ontap(
@@ -2953,8 +3035,9 @@ class AsyncDataSyncClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_datasync.types.update_location_fsx_ontap_request.UpdateLocationFsxOntapRequest = {}  # type: ignore[typeddict-item]
-        input_["location_arn"] = location_arn
+        input_: capo_datasync.types.update_location_fsx_ontap_request.UpdateLocationFsxOntapRequest = {
+            "location_arn": location_arn
+        }
         if protocol is not None:
             input_["protocol"] = protocol
         if subdirectory is not None:
@@ -2965,6 +3048,7 @@ class AsyncDataSyncClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_location_fsx_open_zfs(
@@ -3005,8 +3089,9 @@ class AsyncDataSyncClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_datasync.types.update_location_fsx_open_zfs_request.UpdateLocationFsxOpenZfsRequest = {}  # type: ignore[typeddict-item]
-        input_["location_arn"] = location_arn
+        input_: capo_datasync.types.update_location_fsx_open_zfs_request.UpdateLocationFsxOpenZfsRequest = {
+            "location_arn": location_arn
+        }
         if protocol is not None:
             input_["protocol"] = protocol
         if subdirectory is not None:
@@ -3017,6 +3102,7 @@ class AsyncDataSyncClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_location_fsx_windows(
@@ -3072,8 +3158,9 @@ class AsyncDataSyncClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_datasync.types.update_location_fsx_windows_request.UpdateLocationFsxWindowsRequest = {}  # type: ignore[typeddict-item]
-        input_["location_arn"] = location_arn
+        input_: capo_datasync.types.update_location_fsx_windows_request.UpdateLocationFsxWindowsRequest = {
+            "location_arn": location_arn
+        }
         if subdirectory is not None:
             input_["subdirectory"] = subdirectory
         if domain is not None:
@@ -3092,6 +3179,7 @@ class AsyncDataSyncClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_location_hdfs(
@@ -3179,8 +3267,9 @@ class AsyncDataSyncClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_datasync.types.update_location_hdfs_request.UpdateLocationHdfsRequest = {}  # type: ignore[typeddict-item]
-        input_["location_arn"] = location_arn
+        input_: capo_datasync.types.update_location_hdfs_request.UpdateLocationHdfsRequest = {
+            "location_arn": location_arn
+        }
         if subdirectory is not None:
             input_["subdirectory"] = subdirectory
         if name_nodes is not None:
@@ -3215,6 +3304,7 @@ class AsyncDataSyncClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_location_nfs(
@@ -3264,8 +3354,9 @@ class AsyncDataSyncClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_datasync.types.update_location_nfs_request.UpdateLocationNfsRequest = {}  # type: ignore[typeddict-item]
-        input_["location_arn"] = location_arn
+        input_: capo_datasync.types.update_location_nfs_request.UpdateLocationNfsRequest = {
+            "location_arn": location_arn
+        }
         if subdirectory is not None:
             input_["subdirectory"] = subdirectory
         if server_hostname is not None:
@@ -3280,6 +3371,7 @@ class AsyncDataSyncClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_location_object_storage(
@@ -3353,8 +3445,9 @@ class AsyncDataSyncClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_datasync.types.update_location_object_storage_request.UpdateLocationObjectStorageRequest = {}  # type: ignore[typeddict-item]
-        input_["location_arn"] = location_arn
+        input_: capo_datasync.types.update_location_object_storage_request.UpdateLocationObjectStorageRequest = {
+            "location_arn": location_arn
+        }
         if server_port is not None:
             input_["server_port"] = server_port
         if server_protocol is not None:
@@ -3381,6 +3474,7 @@ class AsyncDataSyncClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_location_s3(
@@ -3425,8 +3519,9 @@ class AsyncDataSyncClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_datasync.types.update_location_s3_request.UpdateLocationS3Request = {}  # type: ignore[typeddict-item]
-        input_["location_arn"] = location_arn
+        input_: capo_datasync.types.update_location_s3_request.UpdateLocationS3Request = {
+            "location_arn": location_arn
+        }
         if subdirectory is not None:
             input_["subdirectory"] = subdirectory
         if s3_storage_class is not None:
@@ -3439,6 +3534,7 @@ class AsyncDataSyncClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_location_smb(
@@ -3519,8 +3615,9 @@ class AsyncDataSyncClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_datasync.types.update_location_smb_request.UpdateLocationSmbRequest = {}  # type: ignore[typeddict-item]
-        input_["location_arn"] = location_arn
+        input_: capo_datasync.types.update_location_smb_request.UpdateLocationSmbRequest = {
+            "location_arn": location_arn
+        }
         if subdirectory is not None:
             input_["subdirectory"] = subdirectory
         if server_hostname is not None:
@@ -3555,6 +3652,7 @@ class AsyncDataSyncClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_task(
@@ -3611,8 +3709,9 @@ class AsyncDataSyncClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_datasync.types.update_task_request.UpdateTaskRequest = {}  # type: ignore[typeddict-item]
-        input_["task_arn"] = task_arn
+        input_: capo_datasync.types.update_task_request.UpdateTaskRequest = {
+            "task_arn": task_arn
+        }
         if options is not None:
             input_["options"] = options
         if excludes is not None:
@@ -3635,6 +3734,7 @@ class AsyncDataSyncClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_task_execution(
@@ -3673,15 +3773,17 @@ class AsyncDataSyncClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_datasync.types.update_task_execution_request.UpdateTaskExecutionRequest = {}  # type: ignore[typeddict-item]
-        input_["task_execution_arn"] = task_execution_arn
-        input_["options"] = options
+        input_: capo_datasync.types.update_task_execution_request.UpdateTaskExecutionRequest = {
+            "task_execution_arn": task_execution_arn,
+            "options": options,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def __aenter__(self) -> Self:

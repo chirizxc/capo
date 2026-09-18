@@ -36,7 +36,7 @@ def serialize_json(value: AudienceSizeConfig) -> dict:
 
 def deserialize_json(data: dict) -> AudienceSizeConfig:
     out: AudienceSizeConfig = {}  # type: ignore[typeddict-item]
-    if "audienceSizeType" in data:
+    if data.get("audienceSizeType") is not None:
         import capo_cleanroomsml.types.audience_size_type
 
         out["audience_size_type"] = (
@@ -46,7 +46,7 @@ def deserialize_json(data: dict) -> AudienceSizeConfig:
         )
     else:
         raise DeserializationError("AudienceSizeConfig.audience_size_type required")
-    if "audienceSizeBins" in data:
+    if data.get("audienceSizeBins") is not None:
         import capo_cleanroomsml.types.audience_size_bins
 
         out["audience_size_bins"] = (

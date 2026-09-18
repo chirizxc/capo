@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: GetDeploymentInstanceOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetDeploymentInstanceOutput:
     out: GetDeploymentInstanceOutput = {}  # type: ignore[typeddict-item]
-    if "instanceSummary" in data:
+    if data.get("instanceSummary") is not None:
         import capo_codedeploy.types.instance_summary
 
         out["instance_summary"] = (

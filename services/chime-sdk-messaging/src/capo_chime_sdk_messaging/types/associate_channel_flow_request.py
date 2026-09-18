@@ -28,7 +28,7 @@ def serialize_json(value: AssociateChannelFlowRequest) -> dict:
 
 def deserialize_json(data: dict) -> AssociateChannelFlowRequest:
     out: AssociateChannelFlowRequest = {}  # type: ignore[typeddict-item]
-    if "ChannelFlowArn" in data:
+    if data.get("ChannelFlowArn") is not None:
         out["channel_flow_arn"] = data["ChannelFlowArn"]
     else:
         raise DeserializationError(

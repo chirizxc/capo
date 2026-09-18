@@ -28,7 +28,7 @@ def serialize_json(value: ValidationStrategy) -> dict:
 
 def deserialize_json(data: dict) -> ValidationStrategy:
     out: ValidationStrategy = {}  # type: ignore[typeddict-item]
-    if "Mode" in data:
+    if data.get("Mode") is not None:
         import capo_quicksight.types.validation_strategy_mode
 
         out["mode"] = capo_quicksight.types.validation_strategy_mode.deserialize_json(

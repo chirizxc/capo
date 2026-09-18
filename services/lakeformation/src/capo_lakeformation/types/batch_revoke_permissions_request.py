@@ -37,9 +37,9 @@ def serialize_json(value: BatchRevokePermissionsRequest) -> dict:
 
 def deserialize_json(data: dict) -> BatchRevokePermissionsRequest:
     out: BatchRevokePermissionsRequest = {}  # type: ignore[typeddict-item]
-    if "CatalogId" in data:
+    if data.get("CatalogId") is not None:
         out["catalog_id"] = data["CatalogId"]
-    if "Entries" in data:
+    if data.get("Entries") is not None:
         import capo_lakeformation.types.batch_permissions_request_entry_list
 
         out["entries"] = (

@@ -41,17 +41,17 @@ def serialize_json(value: ReplicationConfigurationReplicatedDisk) -> dict:
 
 def deserialize_json(data: dict) -> ReplicationConfigurationReplicatedDisk:
     out: ReplicationConfigurationReplicatedDisk = {}  # type: ignore[typeddict-item]
-    if "deviceName" in data:
+    if data.get("deviceName") is not None:
         out["device_name"] = data["deviceName"]
-    if "isBootDisk" in data:
+    if data.get("isBootDisk") is not None:
         out["is_boot_disk"] = data["isBootDisk"]
-    if "stagingDiskType" in data:
+    if data.get("stagingDiskType") is not None:
         out["staging_disk_type"] = data["stagingDiskType"]
-    if "iops" in data:
+    if data.get("iops") is not None:
         out["iops"] = data["iops"]
     else:
         out["iops"] = 0
-    if "throughput" in data:
+    if data.get("throughput") is not None:
         out["throughput"] = data["throughput"]
     else:
         out["throughput"] = 0

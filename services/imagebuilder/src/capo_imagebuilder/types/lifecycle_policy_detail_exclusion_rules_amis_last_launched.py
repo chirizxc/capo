@@ -32,13 +32,13 @@ def serialize_json(value: LifecyclePolicyDetailExclusionRulesAmisLastLaunched) -
 
 def deserialize_json(data: dict) -> LifecyclePolicyDetailExclusionRulesAmisLastLaunched:
     out: LifecyclePolicyDetailExclusionRulesAmisLastLaunched = {}  # type: ignore[typeddict-item]
-    if "value" in data:
+    if data.get("value") is not None:
         out["value"] = data["value"]
     else:
         raise DeserializationError(
             "LifecyclePolicyDetailExclusionRulesAmisLastLaunched.value required"
         )
-    if "unit" in data:
+    if data.get("unit") is not None:
         import capo_imagebuilder.types.lifecycle_policy_time_unit
 
         out["unit"] = (

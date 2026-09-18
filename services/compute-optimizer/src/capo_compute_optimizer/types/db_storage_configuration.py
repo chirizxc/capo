@@ -46,16 +46,16 @@ def serialize_aws_json_1_0(value: DBStorageConfiguration) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> DBStorageConfiguration:
     out: DBStorageConfiguration = {}  # type: ignore[typeddict-item]
-    if "storageType" in data:
+    if data.get("storageType") is not None:
         out["storage_type"] = data["storageType"]
-    if "allocatedStorage" in data:
+    if data.get("allocatedStorage") is not None:
         out["allocated_storage"] = data["allocatedStorage"]
     else:
         out["allocated_storage"] = 0
-    if "iops" in data:
+    if data.get("iops") is not None:
         out["iops"] = data["iops"]
-    if "maxAllocatedStorage" in data:
+    if data.get("maxAllocatedStorage") is not None:
         out["max_allocated_storage"] = data["maxAllocatedStorage"]
-    if "storageThroughput" in data:
+    if data.get("storageThroughput") is not None:
         out["storage_throughput"] = data["storageThroughput"]
     return out

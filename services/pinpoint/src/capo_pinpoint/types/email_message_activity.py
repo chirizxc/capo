@@ -42,7 +42,7 @@ def serialize_json(value: EmailMessageActivity) -> dict:
 
 def deserialize_json(data: dict) -> EmailMessageActivity:
     out: EmailMessageActivity = {}  # type: ignore[typeddict-item]
-    if "MessageConfig" in data:
+    if data.get("MessageConfig") is not None:
         import capo_pinpoint.types.journey_email_message
 
         out["message_config"] = (
@@ -50,10 +50,10 @@ def deserialize_json(data: dict) -> EmailMessageActivity:
                 data["MessageConfig"]
             )
         )
-    if "NextActivity" in data:
+    if data.get("NextActivity") is not None:
         out["next_activity"] = data["NextActivity"]
-    if "TemplateName" in data:
+    if data.get("TemplateName") is not None:
         out["template_name"] = data["TemplateName"]
-    if "TemplateVersion" in data:
+    if data.get("TemplateVersion") is not None:
         out["template_version"] = data["TemplateVersion"]
     return out

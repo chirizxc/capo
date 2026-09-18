@@ -13,9 +13,9 @@ from capo_securityhub import AsyncSecurityHubClient
 
 
 async def main():
-    async with AsyncSecurityHubClient() as s3:
+    async with AsyncSecurityHubClient() as security_hub:
         # Example: call the accept_administrator_invitation operation
-        response = await s3.accept_administrator_invitation()
+        response = await security_hub.accept_administrator_invitation()
         print(response)
 ```
 
@@ -28,9 +28,9 @@ from capo_securityhub import AsyncSecurityHubClient
 
 
 async def main():
-    async with AsyncSecurityHubClient() as s3:
+    async with AsyncSecurityHubClient() as security_hub:
         # Example: paginate over describe_action_targets
-        async for item in s3.iter_describe_action_targets():
+        async for item in security_hub.iter_describe_action_targets():
             print(item)
 ```
 
@@ -44,9 +44,9 @@ from capo_securityhub.error import InternalException
 
 
 async def main():
-    async with AsyncSecurityHubClient() as s3:
+    async with AsyncSecurityHubClient() as security_hub:
         try:
-            await s3.accept_administrator_invitation()
+            await security_hub.accept_administrator_invitation()
         except InternalException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -63,13 +63,13 @@ from capo_securityhub import AsyncSecurityHubClient
 
 
 async def main():
-    async with AsyncSecurityHubClient() as s3:
+    async with AsyncSecurityHubClient() as security_hub:
         # Default: 3 attempts for every operation
-        response = await s3.accept_administrator_invitation()
+        response = await security_hub.accept_administrator_invitation()
 
         # Override per operation
-        response = await s3.accept_administrator_invitation(config_overrides={"retry_max_attempts": 5})
+        response = await security_hub.accept_administrator_invitation(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.accept_administrator_invitation(config_overrides={"retry_max_attempts": 1})
+        response = await security_hub.accept_administrator_invitation(config_overrides={"retry_max_attempts": 1})
 ```

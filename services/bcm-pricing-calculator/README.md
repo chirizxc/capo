@@ -13,10 +13,25 @@ from capo_bcm_pricing_calculator import AsyncBCMPricingCalculatorClient
 
 
 async def main():
-    async with AsyncBCMPricingCalculatorClient() as s3:
+    async with AsyncBCMPricingCalculatorClient() as bcm_pricing_calculator:
         # Example: call the get_preferences operation
-        response = await s3.get_preferences()
+        response = await bcm_pricing_calculator.get_preferences()
         print(response["management_account_rate_type_selections"])
+```
+
+## Pagination
+
+Some operations in this SDK support pagination. If the operation supports pagination it will have an `iter_` prefixed method that returns an async iterator.
+
+```python
+from capo_bcm_pricing_calculator import AsyncBCMPricingCalculatorClient
+
+
+async def main():
+    async with AsyncBCMPricingCalculatorClient() as bcm_pricing_calculator:
+        # Example: paginate over list_bill_estimates
+        async for item in bcm_pricing_calculator.iter_list_bill_estimates():
+            print(item)
 ```
 
 ## Error Handling
@@ -29,9 +44,9 @@ from capo_bcm_pricing_calculator.error import AccessDeniedException
 
 
 async def main():
-    async with AsyncBCMPricingCalculatorClient() as s3:
+    async with AsyncBCMPricingCalculatorClient() as bcm_pricing_calculator:
         try:
-            await s3.get_preferences()
+            await bcm_pricing_calculator.get_preferences()
         except AccessDeniedException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -48,13 +63,13 @@ from capo_bcm_pricing_calculator import AsyncBCMPricingCalculatorClient
 
 
 async def main():
-    async with AsyncBCMPricingCalculatorClient() as s3:
+    async with AsyncBCMPricingCalculatorClient() as bcm_pricing_calculator:
         # Default: 3 attempts for every operation
-        response = await s3.get_preferences()
+        response = await bcm_pricing_calculator.get_preferences()
 
         # Override per operation
-        response = await s3.get_preferences(config_overrides={"retry_max_attempts": 5})
+        response = await bcm_pricing_calculator.get_preferences(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.get_preferences(config_overrides={"retry_max_attempts": 1})
+        response = await bcm_pricing_calculator.get_preferences(config_overrides={"retry_max_attempts": 1})
 ```

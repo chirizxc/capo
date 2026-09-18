@@ -38,9 +38,9 @@ def serialize_aws_json_1_1(value: GetCSVHeaderResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetCSVHeaderResponse:
     out: GetCSVHeaderResponse = {}  # type: ignore[typeddict-item]
-    if "UserPoolId" in data:
+    if data.get("UserPoolId") is not None:
         out["user_pool_id"] = data["UserPoolId"]
-    if "CSVHeader" in data:
+    if data.get("CSVHeader") is not None:
         import capo_cognito_identity_provider.types.list_of_string_types
 
         out["csv_header"] = (

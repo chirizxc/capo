@@ -88,9 +88,9 @@ def serialize_aws_json_1_1(value: ListClusterNodesRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListClusterNodesRequest:
     out: ListClusterNodesRequest = {}  # type: ignore[typeddict-item]
-    if "ClusterName" in data:
+    if data.get("ClusterName") is not None:
         out["cluster_name"] = data["ClusterName"]
-    if "CreationTimeAfter" in data:
+    if data.get("CreationTimeAfter") is not None:
         import capo_sagemaker.types.timestamp
 
         out["creation_time_after"] = (
@@ -98,7 +98,7 @@ def deserialize_aws_json_1_1(data: dict) -> ListClusterNodesRequest:
                 data["CreationTimeAfter"]
             )
         )
-    if "CreationTimeBefore" in data:
+    if data.get("CreationTimeBefore") is not None:
         import capo_sagemaker.types.timestamp
 
         out["creation_time_before"] = (
@@ -106,24 +106,24 @@ def deserialize_aws_json_1_1(data: dict) -> ListClusterNodesRequest:
                 data["CreationTimeBefore"]
             )
         )
-    if "InstanceGroupNameContains" in data:
+    if data.get("InstanceGroupNameContains") is not None:
         out["instance_group_name_contains"] = data["InstanceGroupNameContains"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "SortBy" in data:
+    if data.get("SortBy") is not None:
         import capo_sagemaker.types.cluster_sort_by
 
         out["sort_by"] = capo_sagemaker.types.cluster_sort_by.deserialize_aws_json_1_1(
             data["SortBy"]
         )
-    if "SortOrder" in data:
+    if data.get("SortOrder") is not None:
         import capo_sagemaker.types.sort_order
 
         out["sort_order"] = capo_sagemaker.types.sort_order.deserialize_aws_json_1_1(
             data["SortOrder"]
         )
-    if "IncludeNodeLogicalIds" in data:
+    if data.get("IncludeNodeLogicalIds") is not None:
         out["include_node_logical_ids"] = data["IncludeNodeLogicalIds"]
     return out

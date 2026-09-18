@@ -18,6 +18,9 @@ def serialize_query(
 ) -> None:
     import capo_docdb.types.upgrade_target
 
+    if not value:
+        pairs.append((prefix, ""))
+        return
     for n, item in enumerate(value, 1):
         capo_docdb.types.upgrade_target.serialize_query(
             item, pairs, f"{prefix}.UpgradeTarget.{n}"
@@ -38,6 +41,9 @@ def serialize_query_flat(
 ) -> None:
     import capo_docdb.types.upgrade_target
 
+    if not value:
+        pairs.append((prefix, ""))
+        return
     for n, item in enumerate(value, 1):
         capo_docdb.types.upgrade_target.serialize_query(item, pairs, f"{prefix}.{n}")
 

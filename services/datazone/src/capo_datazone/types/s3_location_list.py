@@ -14,4 +14,4 @@ def serialize_json(value: S3LocationList) -> list:
 
 
 def deserialize_json(data: list) -> S3LocationList:
-    return list(data)
+    return [item for item in data if item is not None]

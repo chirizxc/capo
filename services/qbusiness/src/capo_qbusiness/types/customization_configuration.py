@@ -38,12 +38,12 @@ def serialize_json(value: CustomizationConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> CustomizationConfiguration:
     out: CustomizationConfiguration = {}  # type: ignore[typeddict-item]
-    if "customCSSUrl" in data:
+    if data.get("customCSSUrl") is not None:
         out["custom_css_url"] = data["customCSSUrl"]
-    if "logoUrl" in data:
+    if data.get("logoUrl") is not None:
         out["logo_url"] = data["logoUrl"]
-    if "fontUrl" in data:
+    if data.get("fontUrl") is not None:
         out["font_url"] = data["fontUrl"]
-    if "faviconUrl" in data:
+    if data.get("faviconUrl") is not None:
         out["favicon_url"] = data["faviconUrl"]
     return out

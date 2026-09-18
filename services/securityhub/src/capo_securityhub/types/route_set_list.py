@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> RouteSetList:
 
     out: RouteSetList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_securityhub.types.route_set_details.deserialize_json(item))
     return out

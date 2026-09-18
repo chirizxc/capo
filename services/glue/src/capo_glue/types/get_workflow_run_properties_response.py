@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: GetWorkflowRunPropertiesResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetWorkflowRunPropertiesResponse:
     out: GetWorkflowRunPropertiesResponse = {}  # type: ignore[typeddict-item]
-    if "RunProperties" in data:
+    if data.get("RunProperties") is not None:
         import capo_glue.types.workflow_run_properties
 
         out["run_properties"] = (

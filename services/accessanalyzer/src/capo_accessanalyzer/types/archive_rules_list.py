@@ -25,6 +25,8 @@ def deserialize_json(data: list) -> ArchiveRulesList:
 
     out: ArchiveRulesList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_accessanalyzer.types.archive_rule_summary.deserialize_json(item)
         )

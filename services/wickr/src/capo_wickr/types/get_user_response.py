@@ -71,27 +71,27 @@ def serialize_json(value: GetUserResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetUserResponse:
     out: GetUserResponse = {}  # type: ignore[typeddict-item]
-    if "userId" in data:
+    if data.get("userId") is not None:
         out["user_id"] = data["userId"]
     else:
         raise DeserializationError("GetUserResponse.user_id required")
-    if "firstName" in data:
+    if data.get("firstName") is not None:
         out["first_name"] = data["firstName"]
-    if "lastName" in data:
+    if data.get("lastName") is not None:
         out["last_name"] = data["lastName"]
-    if "username" in data:
+    if data.get("username") is not None:
         out["username"] = data["username"]
-    if "isAdmin" in data:
+    if data.get("isAdmin") is not None:
         out["is_admin"] = data["isAdmin"]
-    if "suspended" in data:
+    if data.get("suspended") is not None:
         out["suspended"] = data["suspended"]
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
-    if "lastActivity" in data:
+    if data.get("lastActivity") is not None:
         out["last_activity"] = data["lastActivity"]
-    if "lastLogin" in data:
+    if data.get("lastLogin") is not None:
         out["last_login"] = data["lastLogin"]
-    if "securityGroupIds" in data:
+    if data.get("securityGroupIds") is not None:
         import capo_wickr.types.security_group_id_list
 
         out["security_group_ids"] = (

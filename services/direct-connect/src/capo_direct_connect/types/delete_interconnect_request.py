@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: DeleteInterconnectRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteInterconnectRequest:
     out: DeleteInterconnectRequest = {}  # type: ignore[typeddict-item]
-    if "interconnectId" in data:
+    if data.get("interconnectId") is not None:
         out["interconnect_id"] = data["interconnectId"]
     else:
         raise DeserializationError("DeleteInterconnectRequest.interconnect_id required")

@@ -32,7 +32,7 @@ def serialize_json(value: ControlCondition) -> dict:
 
 def deserialize_json(data: dict) -> ControlCondition:
     out: ControlCondition = {}  # type: ignore[typeddict-item]
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_arc_zonal_shift.types.control_condition_type
 
         out["type"] = (
@@ -42,7 +42,7 @@ def deserialize_json(data: dict) -> ControlCondition:
         )
     else:
         raise DeserializationError("ControlCondition.type required")
-    if "alarmIdentifier" in data:
+    if data.get("alarmIdentifier") is not None:
         out["alarm_identifier"] = data["alarmIdentifier"]
     else:
         raise DeserializationError("ControlCondition.alarm_identifier required")

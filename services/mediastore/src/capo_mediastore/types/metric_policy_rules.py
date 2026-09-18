@@ -27,6 +27,8 @@ def deserialize_aws_json_1_1(data: list) -> MetricPolicyRules:
 
     out: MetricPolicyRules = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_mediastore.types.metric_policy_rule.deserialize_aws_json_1_1(item)
         )

@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> AwsEc2NetworkInterfaceSecurityGroupList:
 
     out: AwsEc2NetworkInterfaceSecurityGroupList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_securityhub.types.aws_ec2_network_interface_security_group.deserialize_json(
                 item

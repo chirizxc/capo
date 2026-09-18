@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import uuid
 from typing import TYPE_CHECKING, Optional
 
 from capo_mailmanager._services._pipeline import (
@@ -81,10 +82,12 @@ class AddonSubscriptionResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mailmanager.types.create_addon_subscription_request.CreateAddonSubscriptionRequest = {}  # type: ignore[typeddict-item]
-        if client_token is not None:
-            input_["client_token"] = client_token
-        input_["addon_name"] = addon_name
+        input_: capo_mailmanager.types.create_addon_subscription_request.CreateAddonSubscriptionRequest = {
+            "addon_name": addon_name
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if tags is not None:
             input_["tags"] = tags
 
@@ -93,6 +96,7 @@ class AddonSubscriptionResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -127,14 +131,16 @@ class AddonSubscriptionResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mailmanager.types.get_addon_subscription_request.GetAddonSubscriptionRequest = {}  # type: ignore[typeddict-item]
-        input_["addon_subscription_id"] = addon_subscription_id
+        input_: capo_mailmanager.types.get_addon_subscription_request.GetAddonSubscriptionRequest = {
+            "addon_subscription_id": addon_subscription_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -169,14 +175,16 @@ class AddonSubscriptionResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mailmanager.types.delete_addon_subscription_request.DeleteAddonSubscriptionRequest = {}  # type: ignore[typeddict-item]
-        input_["addon_subscription_id"] = addon_subscription_id
+        input_: capo_mailmanager.types.delete_addon_subscription_request.DeleteAddonSubscriptionRequest = {
+            "addon_subscription_id": addon_subscription_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -214,7 +222,7 @@ class AddonSubscriptionResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mailmanager.types.list_addon_subscriptions_request.ListAddonSubscriptionsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_mailmanager.types.list_addon_subscriptions_request.ListAddonSubscriptionsRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if page_size is not None:
@@ -225,6 +233,7 @@ class AddonSubscriptionResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -273,10 +282,12 @@ class AsyncAddonSubscriptionResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mailmanager.types.create_addon_subscription_request.CreateAddonSubscriptionRequest = {}  # type: ignore[typeddict-item]
-        if client_token is not None:
-            input_["client_token"] = client_token
-        input_["addon_name"] = addon_name
+        input_: capo_mailmanager.types.create_addon_subscription_request.CreateAddonSubscriptionRequest = {
+            "addon_name": addon_name
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if tags is not None:
             input_["tags"] = tags
 
@@ -285,6 +296,7 @@ class AsyncAddonSubscriptionResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -320,14 +332,16 @@ class AsyncAddonSubscriptionResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mailmanager.types.get_addon_subscription_request.GetAddonSubscriptionRequest = {}  # type: ignore[typeddict-item]
-        input_["addon_subscription_id"] = addon_subscription_id
+        input_: capo_mailmanager.types.get_addon_subscription_request.GetAddonSubscriptionRequest = {
+            "addon_subscription_id": addon_subscription_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -363,14 +377,16 @@ class AsyncAddonSubscriptionResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mailmanager.types.delete_addon_subscription_request.DeleteAddonSubscriptionRequest = {}  # type: ignore[typeddict-item]
-        input_["addon_subscription_id"] = addon_subscription_id
+        input_: capo_mailmanager.types.delete_addon_subscription_request.DeleteAddonSubscriptionRequest = {
+            "addon_subscription_id": addon_subscription_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -409,7 +425,7 @@ class AsyncAddonSubscriptionResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mailmanager.types.list_addon_subscriptions_request.ListAddonSubscriptionsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_mailmanager.types.list_addon_subscriptions_request.ListAddonSubscriptionsRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if page_size is not None:
@@ -420,4 +436,5 @@ class AsyncAddonSubscriptionResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

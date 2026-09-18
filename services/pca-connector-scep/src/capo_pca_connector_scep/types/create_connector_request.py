@@ -56,13 +56,13 @@ def serialize_json(value: CreateConnectorRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateConnectorRequest:
     out: CreateConnectorRequest = {}  # type: ignore[typeddict-item]
-    if "CertificateAuthorityArn" in data:
+    if data.get("CertificateAuthorityArn") is not None:
         out["certificate_authority_arn"] = data["CertificateAuthorityArn"]
     else:
         raise DeserializationError(
             "CreateConnectorRequest.certificate_authority_arn required"
         )
-    if "MobileDeviceManagement" in data:
+    if data.get("MobileDeviceManagement") is not None:
         import capo_pca_connector_scep.types.mobile_device_management
 
         out["mobile_device_management"] = (
@@ -70,11 +70,11 @@ def deserialize_json(data: dict) -> CreateConnectorRequest:
                 data["MobileDeviceManagement"]
             )
         )
-    if "VpcEndpointId" in data:
+    if data.get("VpcEndpointId") is not None:
         out["vpc_endpoint_id"] = data["VpcEndpointId"]
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_pca_connector_scep.types.tags
 
         out["tags"] = capo_pca_connector_scep.types.tags.deserialize_json(data["Tags"])

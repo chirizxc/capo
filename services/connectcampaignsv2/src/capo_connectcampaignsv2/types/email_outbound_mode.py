@@ -32,7 +32,7 @@ def serialize_json(value: EmailOutboundMode) -> dict:
 
 
 def deserialize_json(data: dict) -> EmailOutboundMode:
-    if "agentless" in data:
+    if data.get("agentless") is not None:
         import capo_connectcampaignsv2.types.agentless_config
 
         return {

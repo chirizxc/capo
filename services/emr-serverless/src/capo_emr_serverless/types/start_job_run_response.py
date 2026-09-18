@@ -32,15 +32,15 @@ def serialize_json(value: StartJobRunResponse) -> dict:
 
 def deserialize_json(data: dict) -> StartJobRunResponse:
     out: StartJobRunResponse = {}  # type: ignore[typeddict-item]
-    if "applicationId" in data:
+    if data.get("applicationId") is not None:
         out["application_id"] = data["applicationId"]
     else:
         raise DeserializationError("StartJobRunResponse.application_id required")
-    if "jobRunId" in data:
+    if data.get("jobRunId") is not None:
         out["job_run_id"] = data["jobRunId"]
     else:
         raise DeserializationError("StartJobRunResponse.job_run_id required")
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("StartJobRunResponse.arn required")

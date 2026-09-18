@@ -35,12 +35,12 @@ def serialize_json(value: UpdateQuickSightQSearchConfigurationResponse) -> dict:
 
 def deserialize_json(data: dict) -> UpdateQuickSightQSearchConfigurationResponse:
     out: UpdateQuickSightQSearchConfigurationResponse = {}  # type: ignore[typeddict-item]
-    if "QSearchStatus" in data:
+    if data.get("QSearchStatus") is not None:
         import capo_quicksight.types.q_search_status
 
         out["q_search_status"] = capo_quicksight.types.q_search_status.deserialize_json(
             data["QSearchStatus"]
         )
-    if "RequestId" in data:
+    if data.get("RequestId") is not None:
         out["request_id"] = data["RequestId"]
     return out

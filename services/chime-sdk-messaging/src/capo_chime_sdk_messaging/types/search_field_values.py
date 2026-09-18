@@ -16,4 +16,4 @@ def serialize_json(value: SearchFieldValues) -> list:
 
 
 def deserialize_json(data: list) -> SearchFieldValues:
-    return list(data)
+    return [item for item in data if item is not None]

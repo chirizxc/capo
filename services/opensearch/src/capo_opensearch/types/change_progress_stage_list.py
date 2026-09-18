@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> ChangeProgressStageList:
 
     out: ChangeProgressStageList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_opensearch.types.change_progress_stage.deserialize_json(item))
     return out

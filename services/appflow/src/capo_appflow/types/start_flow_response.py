@@ -37,14 +37,14 @@ def serialize_json(value: StartFlowResponse) -> dict:
 
 def deserialize_json(data: dict) -> StartFlowResponse:
     out: StartFlowResponse = {}  # type: ignore[typeddict-item]
-    if "flowArn" in data:
+    if data.get("flowArn") is not None:
         out["flow_arn"] = data["flowArn"]
-    if "flowStatus" in data:
+    if data.get("flowStatus") is not None:
         import capo_appflow.types.flow_status
 
         out["flow_status"] = capo_appflow.types.flow_status.deserialize_json(
             data["flowStatus"]
         )
-    if "executionId" in data:
+    if data.get("executionId") is not None:
         out["execution_id"] = data["executionId"]
     return out

@@ -37,7 +37,7 @@ def serialize_json(value: ListAppInputSourcesResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListAppInputSourcesResponse:
     out: ListAppInputSourcesResponse = {}  # type: ignore[typeddict-item]
-    if "appInputSources" in data:
+    if data.get("appInputSources") is not None:
         import capo_resiliencehub.types.app_input_source_list
 
         out["app_input_sources"] = (
@@ -49,6 +49,6 @@ def deserialize_json(data: dict) -> ListAppInputSourcesResponse:
         raise DeserializationError(
             "ListAppInputSourcesResponse.app_input_sources required"
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

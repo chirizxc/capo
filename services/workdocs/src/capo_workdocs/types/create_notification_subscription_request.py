@@ -43,13 +43,13 @@ def serialize_json(value: CreateNotificationSubscriptionRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateNotificationSubscriptionRequest:
     out: CreateNotificationSubscriptionRequest = {}  # type: ignore[typeddict-item]
-    if "Endpoint" in data:
+    if data.get("Endpoint") is not None:
         out["endpoint"] = data["Endpoint"]
     else:
         raise DeserializationError(
             "CreateNotificationSubscriptionRequest.endpoint required"
         )
-    if "Protocol" in data:
+    if data.get("Protocol") is not None:
         import capo_workdocs.types.subscription_protocol_type
 
         out["protocol"] = (
@@ -61,7 +61,7 @@ def deserialize_json(data: dict) -> CreateNotificationSubscriptionRequest:
         raise DeserializationError(
             "CreateNotificationSubscriptionRequest.protocol required"
         )
-    if "SubscriptionType" in data:
+    if data.get("SubscriptionType") is not None:
         import capo_workdocs.types.subscription_type
 
         out["subscription_type"] = (

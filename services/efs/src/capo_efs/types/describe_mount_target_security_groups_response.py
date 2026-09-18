@@ -28,7 +28,7 @@ def serialize_json(value: DescribeMountTargetSecurityGroupsResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribeMountTargetSecurityGroupsResponse:
     out: DescribeMountTargetSecurityGroupsResponse = {}  # type: ignore[typeddict-item]
-    if "SecurityGroups" in data:
+    if data.get("SecurityGroups") is not None:
         import capo_efs.types.security_groups
 
         out["security_groups"] = capo_efs.types.security_groups.deserialize_json(

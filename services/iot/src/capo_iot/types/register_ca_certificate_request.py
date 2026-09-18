@@ -65,15 +65,15 @@ def serialize_json(value: RegisterCACertificateRequest) -> dict:
 
 def deserialize_json(data: dict) -> RegisterCACertificateRequest:
     out: RegisterCACertificateRequest = {}  # type: ignore[typeddict-item]
-    if "caCertificate" in data:
+    if data.get("caCertificate") is not None:
         out["ca_certificate"] = data["caCertificate"]
     else:
         raise DeserializationError(
             "RegisterCACertificateRequest.ca_certificate required"
         )
-    if "verificationCertificate" in data:
+    if data.get("verificationCertificate") is not None:
         out["verification_certificate"] = data["verificationCertificate"]
-    if "registrationConfig" in data:
+    if data.get("registrationConfig") is not None:
         import capo_iot.types.registration_config
 
         out["registration_config"] = (
@@ -81,11 +81,11 @@ def deserialize_json(data: dict) -> RegisterCACertificateRequest:
                 data["registrationConfig"]
             )
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_iot.types.tag_list
 
         out["tags"] = capo_iot.types.tag_list.deserialize_json(data["tags"])
-    if "certificateMode" in data:
+    if data.get("certificateMode") is not None:
         import capo_iot.types.certificate_mode
 
         out["certificate_mode"] = capo_iot.types.certificate_mode.deserialize_json(

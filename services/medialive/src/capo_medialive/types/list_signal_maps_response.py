@@ -37,9 +37,9 @@ def serialize_json(value: ListSignalMapsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListSignalMapsResponse:
     out: ListSignalMapsResponse = {}  # type: ignore[typeddict-item]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "signalMaps" in data:
+    if data.get("signalMaps") is not None:
         import capo_medialive.types.__list_of_signal_map_summary
 
         out["signal_maps"] = (

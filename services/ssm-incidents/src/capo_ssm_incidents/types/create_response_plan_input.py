@@ -87,15 +87,15 @@ def serialize_json(value: CreateResponsePlanInput) -> dict:
 
 def deserialize_json(data: dict) -> CreateResponsePlanInput:
     out: CreateResponsePlanInput = {}  # type: ignore[typeddict-item]
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("CreateResponsePlanInput.name required")
-    if "displayName" in data:
+    if data.get("displayName") is not None:
         out["display_name"] = data["displayName"]
-    if "incidentTemplate" in data:
+    if data.get("incidentTemplate") is not None:
         import capo_ssm_incidents.types.incident_template
 
         out["incident_template"] = (
@@ -105,29 +105,29 @@ def deserialize_json(data: dict) -> CreateResponsePlanInput:
         )
     else:
         raise DeserializationError("CreateResponsePlanInput.incident_template required")
-    if "chatChannel" in data:
+    if data.get("chatChannel") is not None:
         import capo_ssm_incidents.types.chat_channel
 
         out["chat_channel"] = capo_ssm_incidents.types.chat_channel.deserialize_json(
             data["chatChannel"]
         )
-    if "engagements" in data:
+    if data.get("engagements") is not None:
         import capo_ssm_incidents.types.engagement_set
 
         out["engagements"] = capo_ssm_incidents.types.engagement_set.deserialize_json(
             data["engagements"]
         )
-    if "actions" in data:
+    if data.get("actions") is not None:
         import capo_ssm_incidents.types.actions_list
 
         out["actions"] = capo_ssm_incidents.types.actions_list.deserialize_json(
             data["actions"]
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_ssm_incidents.types.tag_map
 
         out["tags"] = capo_ssm_incidents.types.tag_map.deserialize_json(data["tags"])
-    if "integrations" in data:
+    if data.get("integrations") is not None:
         import capo_ssm_incidents.types.integrations
 
         out["integrations"] = capo_ssm_incidents.types.integrations.deserialize_json(

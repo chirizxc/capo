@@ -64,17 +64,17 @@ def serialize_json(value: UpdateRouteResponse) -> dict:
 
 def deserialize_json(data: dict) -> UpdateRouteResponse:
     out: UpdateRouteResponse = {}  # type: ignore[typeddict-item]
-    if "RouteId" in data:
+    if data.get("RouteId") is not None:
         out["route_id"] = data["RouteId"]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "ServiceId" in data:
+    if data.get("ServiceId") is not None:
         out["service_id"] = data["ServiceId"]
-    if "ApplicationId" in data:
+    if data.get("ApplicationId") is not None:
         out["application_id"] = data["ApplicationId"]
-    if "State" in data:
+    if data.get("State") is not None:
         out["state"] = data["State"]
-    if "LastUpdatedTime" in data:
+    if data.get("LastUpdatedTime") is not None:
         import capo_migration_hub_refactor_spaces.types.timestamp
 
         out["last_updated_time"] = (

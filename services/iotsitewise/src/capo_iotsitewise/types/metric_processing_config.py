@@ -28,7 +28,7 @@ def serialize_json(value: MetricProcessingConfig) -> dict:
 
 def deserialize_json(data: dict) -> MetricProcessingConfig:
     out: MetricProcessingConfig = {}  # type: ignore[typeddict-item]
-    if "computeLocation" in data:
+    if data.get("computeLocation") is not None:
         import capo_iotsitewise.types.compute_location
 
         out["compute_location"] = (

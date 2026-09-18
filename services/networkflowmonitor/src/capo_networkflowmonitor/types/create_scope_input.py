@@ -42,7 +42,7 @@ def serialize_json(value: CreateScopeInput) -> dict:
 
 def deserialize_json(data: dict) -> CreateScopeInput:
     out: CreateScopeInput = {}  # type: ignore[typeddict-item]
-    if "targets" in data:
+    if data.get("targets") is not None:
         import capo_networkflowmonitor.types.target_resource_list
 
         out["targets"] = (
@@ -52,9 +52,9 @@ def deserialize_json(data: dict) -> CreateScopeInput:
         )
     else:
         raise DeserializationError("CreateScopeInput.targets required")
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_networkflowmonitor.types.tag_map
 
         out["tags"] = capo_networkflowmonitor.types.tag_map.deserialize_json(

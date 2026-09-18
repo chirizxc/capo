@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> ExperimentReportS3ReportList:
 
     out: ExperimentReportS3ReportList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_fis.types.experiment_report_s3_report.deserialize_json(item))
     return out

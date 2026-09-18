@@ -39,15 +39,18 @@ class HealthUnavailableException(ServiceError):
 
     code: str | None = "HealthUnavailableException"
 
-    def __init__(self, data: HealthUnavailableException_):
+    def __init__(self, data: HealthUnavailableException_, message: str | None = None):
         super().__init__(
             "server",
             is_throttling_error=False,
             is_retryable=False,
             code="HealthUnavailableException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_query(cls, el: Element) -> "HealthUnavailableException":
-        return cls(deserialize_query(el))
+    def from_query(
+        cls, el: Element, message: str | None = None
+    ) -> "HealthUnavailableException":
+        return cls(deserialize_query(el), message)

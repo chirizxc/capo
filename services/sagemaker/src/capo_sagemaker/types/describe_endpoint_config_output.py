@@ -138,11 +138,11 @@ def serialize_aws_json_1_1(value: DescribeEndpointConfigOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeEndpointConfigOutput:
     out: DescribeEndpointConfigOutput = {}  # type: ignore[typeddict-item]
-    if "EndpointConfigName" in data:
+    if data.get("EndpointConfigName") is not None:
         out["endpoint_config_name"] = data["EndpointConfigName"]
-    if "EndpointConfigArn" in data:
+    if data.get("EndpointConfigArn") is not None:
         out["endpoint_config_arn"] = data["EndpointConfigArn"]
-    if "ProductionVariants" in data:
+    if data.get("ProductionVariants") is not None:
         import capo_sagemaker.types.production_variant_list
 
         out["production_variants"] = (
@@ -150,7 +150,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeEndpointConfigOutput:
                 data["ProductionVariants"]
             )
         )
-    if "DataCaptureConfig" in data:
+    if data.get("DataCaptureConfig") is not None:
         import capo_sagemaker.types.data_capture_config
 
         out["data_capture_config"] = (
@@ -158,15 +158,15 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeEndpointConfigOutput:
                 data["DataCaptureConfig"]
             )
         )
-    if "KmsKeyId" in data:
+    if data.get("KmsKeyId") is not None:
         out["kms_key_id"] = data["KmsKeyId"]
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_sagemaker.types.timestamp
 
         out["creation_time"] = capo_sagemaker.types.timestamp.deserialize_aws_json_1_1(
             data["CreationTime"]
         )
-    if "AsyncInferenceConfig" in data:
+    if data.get("AsyncInferenceConfig") is not None:
         import capo_sagemaker.types.async_inference_config
 
         out["async_inference_config"] = (
@@ -174,7 +174,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeEndpointConfigOutput:
                 data["AsyncInferenceConfig"]
             )
         )
-    if "ExplainerConfig" in data:
+    if data.get("ExplainerConfig") is not None:
         import capo_sagemaker.types.explainer_config
 
         out["explainer_config"] = (
@@ -182,7 +182,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeEndpointConfigOutput:
                 data["ExplainerConfig"]
             )
         )
-    if "ShadowProductionVariants" in data:
+    if data.get("ShadowProductionVariants") is not None:
         import capo_sagemaker.types.production_variant_list
 
         out["shadow_production_variants"] = (
@@ -190,17 +190,17 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeEndpointConfigOutput:
                 data["ShadowProductionVariants"]
             )
         )
-    if "ExecutionRoleArn" in data:
+    if data.get("ExecutionRoleArn") is not None:
         out["execution_role_arn"] = data["ExecutionRoleArn"]
-    if "VpcConfig" in data:
+    if data.get("VpcConfig") is not None:
         import capo_sagemaker.types.vpc_config
 
         out["vpc_config"] = capo_sagemaker.types.vpc_config.deserialize_aws_json_1_1(
             data["VpcConfig"]
         )
-    if "EnableNetworkIsolation" in data:
+    if data.get("EnableNetworkIsolation") is not None:
         out["enable_network_isolation"] = data["EnableNetworkIsolation"]
-    if "MetricsConfig" in data:
+    if data.get("MetricsConfig") is not None:
         import capo_sagemaker.types.metrics_config
 
         out["metrics_config"] = (

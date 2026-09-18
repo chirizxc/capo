@@ -73,11 +73,11 @@ def serialize_json(value: UpdateEntityRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateEntityRequest:
     out: UpdateEntityRequest = {}  # type: ignore[typeddict-item]
-    if "entityName" in data:
+    if data.get("entityName") is not None:
         out["entity_name"] = data["entityName"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "componentUpdates" in data:
+    if data.get("componentUpdates") is not None:
         import capo_iottwinmaker.types.component_updates_map_request
 
         out["component_updates"] = (
@@ -85,7 +85,7 @@ def deserialize_json(data: dict) -> UpdateEntityRequest:
                 data["componentUpdates"]
             )
         )
-    if "compositeComponentUpdates" in data:
+    if data.get("compositeComponentUpdates") is not None:
         import capo_iottwinmaker.types.composite_component_updates_map_request
 
         out["composite_component_updates"] = (
@@ -93,7 +93,7 @@ def deserialize_json(data: dict) -> UpdateEntityRequest:
                 data["compositeComponentUpdates"]
             )
         )
-    if "parentEntityUpdate" in data:
+    if data.get("parentEntityUpdate") is not None:
         import capo_iottwinmaker.types.parent_entity_update_request
 
         out["parent_entity_update"] = (

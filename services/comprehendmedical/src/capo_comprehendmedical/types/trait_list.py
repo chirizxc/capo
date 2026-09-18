@@ -23,5 +23,7 @@ def deserialize_aws_json_1_1(data: list) -> TraitList:
 
     out: TraitList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_comprehendmedical.types.trait.deserialize_aws_json_1_1(item))
     return out

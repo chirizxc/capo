@@ -49,11 +49,11 @@ def serialize_aws_json_1_1(value: ListRotationOverridesRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListRotationOverridesRequest:
     out: ListRotationOverridesRequest = {}  # type: ignore[typeddict-item]
-    if "RotationId" in data:
+    if data.get("RotationId") is not None:
         out["rotation_id"] = data["RotationId"]
     else:
         raise DeserializationError("ListRotationOverridesRequest.rotation_id required")
-    if "StartTime" in data:
+    if data.get("StartTime") is not None:
         import capo_ssm_contacts.types.date_time
 
         out["start_time"] = capo_ssm_contacts.types.date_time.deserialize_aws_json_1_1(
@@ -61,7 +61,7 @@ def deserialize_aws_json_1_1(data: dict) -> ListRotationOverridesRequest:
         )
     else:
         raise DeserializationError("ListRotationOverridesRequest.start_time required")
-    if "EndTime" in data:
+    if data.get("EndTime") is not None:
         import capo_ssm_contacts.types.date_time
 
         out["end_time"] = capo_ssm_contacts.types.date_time.deserialize_aws_json_1_1(
@@ -69,8 +69,8 @@ def deserialize_aws_json_1_1(data: dict) -> ListRotationOverridesRequest:
         )
     else:
         raise DeserializationError("ListRotationOverridesRequest.end_time required")
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
     return out

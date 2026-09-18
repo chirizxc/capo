@@ -29,7 +29,7 @@ def serialize_json(value: PutTaxInheritanceRequest) -> dict:
 
 def deserialize_json(data: dict) -> PutTaxInheritanceRequest:
     out: PutTaxInheritanceRequest = {}  # type: ignore[typeddict-item]
-    if "heritageStatus" in data:
+    if data.get("heritageStatus") is not None:
         import capo_taxsettings.types.heritage_status
 
         out["heritage_status"] = (

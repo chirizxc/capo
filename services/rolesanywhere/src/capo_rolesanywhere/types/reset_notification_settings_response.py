@@ -27,7 +27,7 @@ def serialize_json(value: ResetNotificationSettingsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ResetNotificationSettingsResponse:
     out: ResetNotificationSettingsResponse = {}  # type: ignore[typeddict-item]
-    if "trustAnchor" in data:
+    if data.get("trustAnchor") is not None:
         import capo_rolesanywhere.types.trust_anchor_detail
 
         out["trust_anchor"] = (

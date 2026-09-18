@@ -62,15 +62,15 @@ def serialize_aws_json_1_0(value: UpdateTrafficPolicyRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> UpdateTrafficPolicyRequest:
     out: UpdateTrafficPolicyRequest = {}  # type: ignore[typeddict-item]
-    if "TrafficPolicyId" in data:
+    if data.get("TrafficPolicyId") is not None:
         out["traffic_policy_id"] = data["TrafficPolicyId"]
     else:
         raise DeserializationError(
             "UpdateTrafficPolicyRequest.traffic_policy_id required"
         )
-    if "TrafficPolicyName" in data:
+    if data.get("TrafficPolicyName") is not None:
         out["traffic_policy_name"] = data["TrafficPolicyName"]
-    if "PolicyStatements" in data:
+    if data.get("PolicyStatements") is not None:
         import capo_mailmanager.types.policy_statement_list
 
         out["policy_statements"] = (
@@ -78,7 +78,7 @@ def deserialize_aws_json_1_0(data: dict) -> UpdateTrafficPolicyRequest:
                 data["PolicyStatements"]
             )
         )
-    if "DefaultAction" in data:
+    if data.get("DefaultAction") is not None:
         import capo_mailmanager.types.accept_action
 
         out["default_action"] = (
@@ -86,6 +86,6 @@ def deserialize_aws_json_1_0(data: dict) -> UpdateTrafficPolicyRequest:
                 data["DefaultAction"]
             )
         )
-    if "MaxMessageSizeBytes" in data:
+    if data.get("MaxMessageSizeBytes") is not None:
         out["max_message_size_bytes"] = data["MaxMessageSizeBytes"]
     return out

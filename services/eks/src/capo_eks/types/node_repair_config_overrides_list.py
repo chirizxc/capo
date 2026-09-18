@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> NodeRepairConfigOverridesList:
 
     out: NodeRepairConfigOverridesList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_eks.types.node_repair_config_overrides.deserialize_json(item))
     return out

@@ -53,7 +53,7 @@ def serialize_json(value: PipeSourceRabbitMQBrokerParameters) -> dict:
 
 def deserialize_json(data: dict) -> PipeSourceRabbitMQBrokerParameters:
     out: PipeSourceRabbitMQBrokerParameters = {}  # type: ignore[typeddict-item]
-    if "Credentials" in data:
+    if data.get("Credentials") is not None:
         import capo_pipes.types.mq_broker_access_credentials
 
         out["credentials"] = (
@@ -65,17 +65,17 @@ def deserialize_json(data: dict) -> PipeSourceRabbitMQBrokerParameters:
         raise DeserializationError(
             "PipeSourceRabbitMQBrokerParameters.credentials required"
         )
-    if "QueueName" in data:
+    if data.get("QueueName") is not None:
         out["queue_name"] = data["QueueName"]
     else:
         raise DeserializationError(
             "PipeSourceRabbitMQBrokerParameters.queue_name required"
         )
-    if "VirtualHost" in data:
+    if data.get("VirtualHost") is not None:
         out["virtual_host"] = data["VirtualHost"]
-    if "BatchSize" in data:
+    if data.get("BatchSize") is not None:
         out["batch_size"] = data["BatchSize"]
-    if "MaximumBatchingWindowInSeconds" in data:
+    if data.get("MaximumBatchingWindowInSeconds") is not None:
         out["maximum_batching_window_in_seconds"] = data[
             "MaximumBatchingWindowInSeconds"
         ]

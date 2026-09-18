@@ -35,9 +35,9 @@ def serialize_aws_json_1_1(value: ListAccessControlConfigurationsResponse) -> di
 
 def deserialize_aws_json_1_1(data: dict) -> ListAccessControlConfigurationsResponse:
     out: ListAccessControlConfigurationsResponse = {}  # type: ignore[typeddict-item]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "AccessControlConfigurations" in data:
+    if data.get("AccessControlConfigurations") is not None:
         import capo_kendra.types.access_control_configuration_summary_list
 
         out["access_control_configurations"] = (

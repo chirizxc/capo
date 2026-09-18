@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> LteNetworkMeasurementsList:
 
     out: LteNetworkMeasurementsList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_location.types.lte_network_measurements.deserialize_json(item))
     return out

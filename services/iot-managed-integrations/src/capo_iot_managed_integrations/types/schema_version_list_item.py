@@ -70,9 +70,9 @@ def serialize_json(value: SchemaVersionListItem) -> dict:
 
 def deserialize_json(data: dict) -> SchemaVersionListItem:
     out: SchemaVersionListItem = {}  # type: ignore[typeddict-item]
-    if "SchemaId" in data:
+    if data.get("SchemaId") is not None:
         out["schema_id"] = data["SchemaId"]
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_iot_managed_integrations.types.schema_version_type
 
         out["type"] = (
@@ -80,13 +80,13 @@ def deserialize_json(data: dict) -> SchemaVersionListItem:
                 data["Type"]
             )
         )
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Namespace" in data:
+    if data.get("Namespace") is not None:
         out["namespace"] = data["Namespace"]
-    if "SemanticVersion" in data:
+    if data.get("SemanticVersion") is not None:
         out["semantic_version"] = data["SemanticVersion"]
-    if "Visibility" in data:
+    if data.get("Visibility") is not None:
         import capo_iot_managed_integrations.types.schema_version_visibility
 
         out["visibility"] = (

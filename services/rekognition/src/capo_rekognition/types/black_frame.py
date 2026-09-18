@@ -24,16 +24,32 @@ class BlackFrame(TypedDict, closed=True):
 def serialize_aws_json_1_1(value: BlackFrame) -> dict:
     out: dict = {}
     if "max_pixel_threshold" in value:
-        out["MaxPixelThreshold"] = value["max_pixel_threshold"]
+        out["MaxPixelThreshold"] = (
+            "NaN"
+            if value["max_pixel_threshold"] != value["max_pixel_threshold"]
+            else "Infinity"
+            if value["max_pixel_threshold"] == float("inf")
+            else "-Infinity"
+            if value["max_pixel_threshold"] == float("-inf")
+            else value["max_pixel_threshold"]
+        )
     if "min_coverage_percentage" in value:
-        out["MinCoveragePercentage"] = value["min_coverage_percentage"]
+        out["MinCoveragePercentage"] = (
+            "NaN"
+            if value["min_coverage_percentage"] != value["min_coverage_percentage"]
+            else "Infinity"
+            if value["min_coverage_percentage"] == float("inf")
+            else "-Infinity"
+            if value["min_coverage_percentage"] == float("-inf")
+            else value["min_coverage_percentage"]
+        )
     return out
 
 
 def deserialize_aws_json_1_1(data: dict) -> BlackFrame:
     out: BlackFrame = {}  # type: ignore[typeddict-item]
-    if "MaxPixelThreshold" in data:
-        out["max_pixel_threshold"] = data["MaxPixelThreshold"]
-    if "MinCoveragePercentage" in data:
-        out["min_coverage_percentage"] = data["MinCoveragePercentage"]
+    if data.get("MaxPixelThreshold") is not None:
+        out["max_pixel_threshold"] = float(data["MaxPixelThreshold"])
+    if data.get("MinCoveragePercentage") is not None:
+        out["min_coverage_percentage"] = float(data["MinCoveragePercentage"])
     return out

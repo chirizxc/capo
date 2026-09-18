@@ -25,7 +25,7 @@ def serialize_json(value: CreateAccountResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateAccountResponse:
     out: CreateAccountResponse = {}  # type: ignore[typeddict-item]
-    if "Account" in data:
+    if data.get("Account") is not None:
         import capo_chime.types.account
 
         out["account"] = capo_chime.types.account.deserialize_json(data["Account"])

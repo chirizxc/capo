@@ -22,22 +22,30 @@ class BinaryColumnStatisticsData(TypedDict, closed=True):
 def serialize_aws_json_1_1(value: BinaryColumnStatisticsData) -> dict:
     out: dict = {}
     out["MaximumLength"] = value.get("maximum_length", 0)
-    out["AverageLength"] = value.get("average_length", 0)
+    out["AverageLength"] = (
+        "NaN"
+        if value.get("average_length", 0) != value.get("average_length", 0)
+        else "Infinity"
+        if value.get("average_length", 0) == float("inf")
+        else "-Infinity"
+        if value.get("average_length", 0) == float("-inf")
+        else value.get("average_length", 0)
+    )
     out["NumberOfNulls"] = value.get("number_of_nulls", 0)
     return out
 
 
 def deserialize_aws_json_1_1(data: dict) -> BinaryColumnStatisticsData:
     out: BinaryColumnStatisticsData = {}  # type: ignore[typeddict-item]
-    if "MaximumLength" in data:
+    if data.get("MaximumLength") is not None:
         out["maximum_length"] = data["MaximumLength"]
     else:
         out["maximum_length"] = 0
-    if "AverageLength" in data:
-        out["average_length"] = data["AverageLength"]
+    if data.get("AverageLength") is not None:
+        out["average_length"] = float(data["AverageLength"])
     else:
         out["average_length"] = 0
-    if "NumberOfNulls" in data:
+    if data.get("NumberOfNulls") is not None:
         out["number_of_nulls"] = data["NumberOfNulls"]
     else:
         out["number_of_nulls"] = 0

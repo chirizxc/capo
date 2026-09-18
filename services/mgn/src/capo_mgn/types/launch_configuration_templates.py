@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> LaunchConfigurationTemplates:
 
     out: LaunchConfigurationTemplates = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_mgn.types.launch_configuration_template.deserialize_json(item))
     return out

@@ -29,6 +29,8 @@ def deserialize_aws_json_1_1(data: list) -> ProtectiveEquipmentPersons:
 
     out: ProtectiveEquipmentPersons = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_rekognition.types.protective_equipment_person.deserialize_aws_json_1_1(
                 item

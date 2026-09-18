@@ -181,11 +181,11 @@ def serialize_aws_json_1_1(value: DescribeCompilationJobResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeCompilationJobResponse:
     out: DescribeCompilationJobResponse = {}  # type: ignore[typeddict-item]
-    if "CompilationJobName" in data:
+    if data.get("CompilationJobName") is not None:
         out["compilation_job_name"] = data["CompilationJobName"]
-    if "CompilationJobArn" in data:
+    if data.get("CompilationJobArn") is not None:
         out["compilation_job_arn"] = data["CompilationJobArn"]
-    if "CompilationJobStatus" in data:
+    if data.get("CompilationJobStatus") is not None:
         import capo_sagemaker.types.compilation_job_status
 
         out["compilation_job_status"] = (
@@ -193,7 +193,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeCompilationJobResponse:
                 data["CompilationJobStatus"]
             )
         )
-    if "CompilationStartTime" in data:
+    if data.get("CompilationStartTime") is not None:
         import capo_sagemaker.types.timestamp
 
         out["compilation_start_time"] = (
@@ -201,7 +201,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeCompilationJobResponse:
                 data["CompilationStartTime"]
             )
         )
-    if "CompilationEndTime" in data:
+    if data.get("CompilationEndTime") is not None:
         import capo_sagemaker.types.timestamp
 
         out["compilation_end_time"] = (
@@ -209,7 +209,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeCompilationJobResponse:
                 data["CompilationEndTime"]
             )
         )
-    if "StoppingCondition" in data:
+    if data.get("StoppingCondition") is not None:
         import capo_sagemaker.types.stopping_condition
 
         out["stopping_condition"] = (
@@ -217,11 +217,11 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeCompilationJobResponse:
                 data["StoppingCondition"]
             )
         )
-    if "InferenceImage" in data:
+    if data.get("InferenceImage") is not None:
         out["inference_image"] = data["InferenceImage"]
-    if "ModelPackageVersionArn" in data:
+    if data.get("ModelPackageVersionArn") is not None:
         out["model_package_version_arn"] = data["ModelPackageVersionArn"]
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_sagemaker.types.creation_time
 
         out["creation_time"] = (
@@ -229,7 +229,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeCompilationJobResponse:
                 data["CreationTime"]
             )
         )
-    if "LastModifiedTime" in data:
+    if data.get("LastModifiedTime") is not None:
         import capo_sagemaker.types.last_modified_time
 
         out["last_modified_time"] = (
@@ -237,9 +237,9 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeCompilationJobResponse:
                 data["LastModifiedTime"]
             )
         )
-    if "FailureReason" in data:
+    if data.get("FailureReason") is not None:
         out["failure_reason"] = data["FailureReason"]
-    if "ModelArtifacts" in data:
+    if data.get("ModelArtifacts") is not None:
         import capo_sagemaker.types.model_artifacts
 
         out["model_artifacts"] = (
@@ -247,7 +247,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeCompilationJobResponse:
                 data["ModelArtifacts"]
             )
         )
-    if "ModelDigests" in data:
+    if data.get("ModelDigests") is not None:
         import capo_sagemaker.types.model_digests
 
         out["model_digests"] = (
@@ -255,9 +255,9 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeCompilationJobResponse:
                 data["ModelDigests"]
             )
         )
-    if "RoleArn" in data:
+    if data.get("RoleArn") is not None:
         out["role_arn"] = data["RoleArn"]
-    if "InputConfig" in data:
+    if data.get("InputConfig") is not None:
         import capo_sagemaker.types.input_config
 
         out["input_config"] = (
@@ -265,7 +265,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeCompilationJobResponse:
                 data["InputConfig"]
             )
         )
-    if "OutputConfig" in data:
+    if data.get("OutputConfig") is not None:
         import capo_sagemaker.types.output_config
 
         out["output_config"] = (
@@ -273,7 +273,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeCompilationJobResponse:
                 data["OutputConfig"]
             )
         )
-    if "VpcConfig" in data:
+    if data.get("VpcConfig") is not None:
         import capo_sagemaker.types.neo_vpc_config
 
         out["vpc_config"] = (
@@ -281,7 +281,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeCompilationJobResponse:
                 data["VpcConfig"]
             )
         )
-    if "DerivedInformation" in data:
+    if data.get("DerivedInformation") is not None:
         import capo_sagemaker.types.derived_information
 
         out["derived_information"] = (

@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: CreateExclusionsPreviewResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateExclusionsPreviewResponse:
     out: CreateExclusionsPreviewResponse = {}  # type: ignore[typeddict-item]
-    if "previewToken" in data:
+    if data.get("previewToken") is not None:
         out["preview_token"] = data["previewToken"]
     else:
         raise DeserializationError(

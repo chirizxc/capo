@@ -27,11 +27,11 @@ def serialize_json(value: UplinkEchoConfig) -> dict:
 
 def deserialize_json(data: dict) -> UplinkEchoConfig:
     out: UplinkEchoConfig = {}  # type: ignore[typeddict-item]
-    if "enabled" in data:
+    if data.get("enabled") is not None:
         out["enabled"] = data["enabled"]
     else:
         raise DeserializationError("UplinkEchoConfig.enabled required")
-    if "antennaUplinkConfigArn" in data:
+    if data.get("antennaUplinkConfigArn") is not None:
         out["antenna_uplink_config_arn"] = data["antennaUplinkConfigArn"]
     else:
         raise DeserializationError(

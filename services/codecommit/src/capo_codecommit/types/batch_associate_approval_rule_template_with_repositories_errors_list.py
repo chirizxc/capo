@@ -33,6 +33,8 @@ def deserialize_aws_json_1_1(
 
     out: BatchAssociateApprovalRuleTemplateWithRepositoriesErrorsList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_codecommit.types.batch_associate_approval_rule_template_with_repositories_error.deserialize_aws_json_1_1(
                 item

@@ -24,7 +24,7 @@ def serialize_json(value: ServiceNowParameters) -> dict:
 
 def deserialize_json(data: dict) -> ServiceNowParameters:
     out: ServiceNowParameters = {}  # type: ignore[typeddict-item]
-    if "SiteBaseUrl" in data:
+    if data.get("SiteBaseUrl") is not None:
         out["site_base_url"] = data["SiteBaseUrl"]
     else:
         raise DeserializationError("ServiceNowParameters.site_base_url required")

@@ -101,9 +101,9 @@ def serialize_json(value: HlsEncryptionSettings) -> dict:
 
 def deserialize_json(data: dict) -> HlsEncryptionSettings:
     out: HlsEncryptionSettings = {}  # type: ignore[typeddict-item]
-    if "constantInitializationVector" in data:
+    if data.get("constantInitializationVector") is not None:
         out["constant_initialization_vector"] = data["constantInitializationVector"]
-    if "encryptionMethod" in data:
+    if data.get("encryptionMethod") is not None:
         import capo_mediaconvert.types.hls_encryption_type
 
         out["encryption_method"] = (
@@ -111,7 +111,7 @@ def deserialize_json(data: dict) -> HlsEncryptionSettings:
                 data["encryptionMethod"]
             )
         )
-    if "initializationVectorInManifest" in data:
+    if data.get("initializationVectorInManifest") is not None:
         import capo_mediaconvert.types.hls_initialization_vector_in_manifest
 
         out["initialization_vector_in_manifest"] = (
@@ -119,7 +119,7 @@ def deserialize_json(data: dict) -> HlsEncryptionSettings:
                 data["initializationVectorInManifest"]
             )
         )
-    if "offlineEncrypted" in data:
+    if data.get("offlineEncrypted") is not None:
         import capo_mediaconvert.types.hls_offline_encrypted
 
         out["offline_encrypted"] = (
@@ -127,7 +127,7 @@ def deserialize_json(data: dict) -> HlsEncryptionSettings:
                 data["offlineEncrypted"]
             )
         )
-    if "spekeKeyProvider" in data:
+    if data.get("spekeKeyProvider") is not None:
         import capo_mediaconvert.types.speke_key_provider
 
         out["speke_key_provider"] = (
@@ -135,7 +135,7 @@ def deserialize_json(data: dict) -> HlsEncryptionSettings:
                 data["spekeKeyProvider"]
             )
         )
-    if "staticKeyProvider" in data:
+    if data.get("staticKeyProvider") is not None:
         import capo_mediaconvert.types.static_key_provider
 
         out["static_key_provider"] = (
@@ -143,7 +143,7 @@ def deserialize_json(data: dict) -> HlsEncryptionSettings:
                 data["staticKeyProvider"]
             )
         )
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_mediaconvert.types.hls_key_provider_type
 
         out["type"] = capo_mediaconvert.types.hls_key_provider_type.deserialize_json(

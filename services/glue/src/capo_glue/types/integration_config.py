@@ -41,9 +41,9 @@ def serialize_aws_json_1_1(value: IntegrationConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> IntegrationConfig:
     out: IntegrationConfig = {}  # type: ignore[typeddict-item]
-    if "RefreshInterval" in data:
+    if data.get("RefreshInterval") is not None:
         out["refresh_interval"] = data["RefreshInterval"]
-    if "SourceProperties" in data:
+    if data.get("SourceProperties") is not None:
         import capo_glue.types.integration_source_properties_map
 
         out["source_properties"] = (
@@ -51,6 +51,6 @@ def deserialize_aws_json_1_1(data: dict) -> IntegrationConfig:
                 data["SourceProperties"]
             )
         )
-    if "ContinuousSync" in data:
+    if data.get("ContinuousSync") is not None:
         out["continuous_sync"] = data["ContinuousSync"]
     return out

@@ -197,7 +197,7 @@ def serialize_aws_json_1_0(value: Decision) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> Decision:
     out: Decision = {}  # type: ignore[typeddict-item]
-    if "decisionType" in data:
+    if data.get("decisionType") is not None:
         import capo_swf.types.decision_type
 
         out["decision_type"] = capo_swf.types.decision_type.deserialize_aws_json_1_0(
@@ -205,7 +205,7 @@ def deserialize_aws_json_1_0(data: dict) -> Decision:
         )
     else:
         raise DeserializationError("Decision.decision_type required")
-    if "scheduleActivityTaskDecisionAttributes" in data:
+    if data.get("scheduleActivityTaskDecisionAttributes") is not None:
         import capo_swf.types.schedule_activity_task_decision_attributes
 
         out["schedule_activity_task_decision_attributes"] = (
@@ -213,7 +213,7 @@ def deserialize_aws_json_1_0(data: dict) -> Decision:
                 data["scheduleActivityTaskDecisionAttributes"]
             )
         )
-    if "requestCancelActivityTaskDecisionAttributes" in data:
+    if data.get("requestCancelActivityTaskDecisionAttributes") is not None:
         import capo_swf.types.request_cancel_activity_task_decision_attributes
 
         out["request_cancel_activity_task_decision_attributes"] = (
@@ -221,7 +221,7 @@ def deserialize_aws_json_1_0(data: dict) -> Decision:
                 data["requestCancelActivityTaskDecisionAttributes"]
             )
         )
-    if "completeWorkflowExecutionDecisionAttributes" in data:
+    if data.get("completeWorkflowExecutionDecisionAttributes") is not None:
         import capo_swf.types.complete_workflow_execution_decision_attributes
 
         out["complete_workflow_execution_decision_attributes"] = (
@@ -229,7 +229,7 @@ def deserialize_aws_json_1_0(data: dict) -> Decision:
                 data["completeWorkflowExecutionDecisionAttributes"]
             )
         )
-    if "failWorkflowExecutionDecisionAttributes" in data:
+    if data.get("failWorkflowExecutionDecisionAttributes") is not None:
         import capo_swf.types.fail_workflow_execution_decision_attributes
 
         out["fail_workflow_execution_decision_attributes"] = (
@@ -237,7 +237,7 @@ def deserialize_aws_json_1_0(data: dict) -> Decision:
                 data["failWorkflowExecutionDecisionAttributes"]
             )
         )
-    if "cancelWorkflowExecutionDecisionAttributes" in data:
+    if data.get("cancelWorkflowExecutionDecisionAttributes") is not None:
         import capo_swf.types.cancel_workflow_execution_decision_attributes
 
         out["cancel_workflow_execution_decision_attributes"] = (
@@ -245,7 +245,7 @@ def deserialize_aws_json_1_0(data: dict) -> Decision:
                 data["cancelWorkflowExecutionDecisionAttributes"]
             )
         )
-    if "continueAsNewWorkflowExecutionDecisionAttributes" in data:
+    if data.get("continueAsNewWorkflowExecutionDecisionAttributes") is not None:
         import capo_swf.types.continue_as_new_workflow_execution_decision_attributes
 
         out["continue_as_new_workflow_execution_decision_attributes"] = (
@@ -253,7 +253,7 @@ def deserialize_aws_json_1_0(data: dict) -> Decision:
                 data["continueAsNewWorkflowExecutionDecisionAttributes"]
             )
         )
-    if "recordMarkerDecisionAttributes" in data:
+    if data.get("recordMarkerDecisionAttributes") is not None:
         import capo_swf.types.record_marker_decision_attributes
 
         out["record_marker_decision_attributes"] = (
@@ -261,7 +261,7 @@ def deserialize_aws_json_1_0(data: dict) -> Decision:
                 data["recordMarkerDecisionAttributes"]
             )
         )
-    if "startTimerDecisionAttributes" in data:
+    if data.get("startTimerDecisionAttributes") is not None:
         import capo_swf.types.start_timer_decision_attributes
 
         out["start_timer_decision_attributes"] = (
@@ -269,7 +269,7 @@ def deserialize_aws_json_1_0(data: dict) -> Decision:
                 data["startTimerDecisionAttributes"]
             )
         )
-    if "cancelTimerDecisionAttributes" in data:
+    if data.get("cancelTimerDecisionAttributes") is not None:
         import capo_swf.types.cancel_timer_decision_attributes
 
         out["cancel_timer_decision_attributes"] = (
@@ -277,7 +277,7 @@ def deserialize_aws_json_1_0(data: dict) -> Decision:
                 data["cancelTimerDecisionAttributes"]
             )
         )
-    if "signalExternalWorkflowExecutionDecisionAttributes" in data:
+    if data.get("signalExternalWorkflowExecutionDecisionAttributes") is not None:
         import capo_swf.types.signal_external_workflow_execution_decision_attributes
 
         out["signal_external_workflow_execution_decision_attributes"] = (
@@ -285,7 +285,7 @@ def deserialize_aws_json_1_0(data: dict) -> Decision:
                 data["signalExternalWorkflowExecutionDecisionAttributes"]
             )
         )
-    if "requestCancelExternalWorkflowExecutionDecisionAttributes" in data:
+    if data.get("requestCancelExternalWorkflowExecutionDecisionAttributes") is not None:
         import capo_swf.types.request_cancel_external_workflow_execution_decision_attributes
 
         out["request_cancel_external_workflow_execution_decision_attributes"] = (
@@ -293,7 +293,7 @@ def deserialize_aws_json_1_0(data: dict) -> Decision:
                 data["requestCancelExternalWorkflowExecutionDecisionAttributes"]
             )
         )
-    if "startChildWorkflowExecutionDecisionAttributes" in data:
+    if data.get("startChildWorkflowExecutionDecisionAttributes") is not None:
         import capo_swf.types.start_child_workflow_execution_decision_attributes
 
         out["start_child_workflow_execution_decision_attributes"] = (
@@ -301,7 +301,7 @@ def deserialize_aws_json_1_0(data: dict) -> Decision:
                 data["startChildWorkflowExecutionDecisionAttributes"]
             )
         )
-    if "scheduleLambdaFunctionDecisionAttributes" in data:
+    if data.get("scheduleLambdaFunctionDecisionAttributes") is not None:
         import capo_swf.types.schedule_lambda_function_decision_attributes
 
         out["schedule_lambda_function_decision_attributes"] = (

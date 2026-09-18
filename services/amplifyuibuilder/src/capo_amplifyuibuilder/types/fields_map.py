@@ -23,6 +23,8 @@ def serialize_json(input_to_serialize: FieldsMap) -> dict:
 def deserialize_json(data: dict) -> FieldsMap:
     out: FieldsMap = {}
     for key, value in data.items():
+        if value is None:
+            continue
         import capo_amplifyuibuilder.types.field_config
 
         out[key] = capo_amplifyuibuilder.types.field_config.deserialize_json(value)

@@ -38,14 +38,14 @@ def serialize_aws_json_1_0(value: Branch) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> Branch:
     out: Branch = {}  # type: ignore[typeddict-item]
-    if "fullyQualifiedName" in data:
+    if data.get("fullyQualifiedName") is not None:
         out["fully_qualified_name"] = data["fullyQualifiedName"]
     else:
         raise DeserializationError("Branch.fully_qualified_name required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "deprecationMessage" in data:
+    if data.get("deprecationMessage") is not None:
         out["deprecation_message"] = data["deprecationMessage"]
-    if "comment" in data:
+    if data.get("comment") is not None:
         out["comment"] = data["comment"]
     return out

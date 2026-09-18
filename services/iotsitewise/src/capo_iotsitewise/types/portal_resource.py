@@ -24,7 +24,7 @@ def serialize_json(value: PortalResource) -> dict:
 
 def deserialize_json(data: dict) -> PortalResource:
     out: PortalResource = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("PortalResource.id required")

@@ -82,9 +82,9 @@ def serialize_aws_json_1_1(value: ProjectDescription) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ProjectDescription:
     out: ProjectDescription = {}  # type: ignore[typeddict-item]
-    if "ProjectArn" in data:
+    if data.get("ProjectArn") is not None:
         out["project_arn"] = data["ProjectArn"]
-    if "CreationTimestamp" in data:
+    if data.get("CreationTimestamp") is not None:
         import capo_rekognition.types.date_time
 
         out["creation_timestamp"] = (
@@ -92,13 +92,13 @@ def deserialize_aws_json_1_1(data: dict) -> ProjectDescription:
                 data["CreationTimestamp"]
             )
         )
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_rekognition.types.project_status
 
         out["status"] = capo_rekognition.types.project_status.deserialize_aws_json_1_1(
             data["Status"]
         )
-    if "Datasets" in data:
+    if data.get("Datasets") is not None:
         import capo_rekognition.types.dataset_metadata_list
 
         out["datasets"] = (
@@ -106,7 +106,7 @@ def deserialize_aws_json_1_1(data: dict) -> ProjectDescription:
                 data["Datasets"]
             )
         )
-    if "Feature" in data:
+    if data.get("Feature") is not None:
         import capo_rekognition.types.customization_feature
 
         out["feature"] = (
@@ -114,7 +114,7 @@ def deserialize_aws_json_1_1(data: dict) -> ProjectDescription:
                 data["Feature"]
             )
         )
-    if "AutoUpdate" in data:
+    if data.get("AutoUpdate") is not None:
         import capo_rekognition.types.project_auto_update
 
         out["auto_update"] = (

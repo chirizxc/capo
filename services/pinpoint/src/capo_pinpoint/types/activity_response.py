@@ -81,33 +81,33 @@ def serialize_json(value: ActivityResponse) -> dict:
 
 def deserialize_json(data: dict) -> ActivityResponse:
     out: ActivityResponse = {}  # type: ignore[typeddict-item]
-    if "ApplicationId" in data:
+    if data.get("ApplicationId") is not None:
         out["application_id"] = data["ApplicationId"]
-    if "CampaignId" in data:
+    if data.get("CampaignId") is not None:
         out["campaign_id"] = data["CampaignId"]
-    if "End" in data:
+    if data.get("End") is not None:
         out["end"] = data["End"]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "Result" in data:
+    if data.get("Result") is not None:
         out["result"] = data["Result"]
-    if "ScheduledStart" in data:
+    if data.get("ScheduledStart") is not None:
         out["scheduled_start"] = data["ScheduledStart"]
-    if "Start" in data:
+    if data.get("Start") is not None:
         out["start"] = data["Start"]
-    if "State" in data:
+    if data.get("State") is not None:
         out["state"] = data["State"]
-    if "SuccessfulEndpointCount" in data:
+    if data.get("SuccessfulEndpointCount") is not None:
         out["successful_endpoint_count"] = data["SuccessfulEndpointCount"]
-    if "TimezonesCompletedCount" in data:
+    if data.get("TimezonesCompletedCount") is not None:
         out["timezones_completed_count"] = data["TimezonesCompletedCount"]
-    if "TimezonesTotalCount" in data:
+    if data.get("TimezonesTotalCount") is not None:
         out["timezones_total_count"] = data["TimezonesTotalCount"]
-    if "TotalEndpointCount" in data:
+    if data.get("TotalEndpointCount") is not None:
         out["total_endpoint_count"] = data["TotalEndpointCount"]
-    if "TreatmentId" in data:
+    if data.get("TreatmentId") is not None:
         out["treatment_id"] = data["TreatmentId"]
-    if "ExecutionMetrics" in data:
+    if data.get("ExecutionMetrics") is not None:
         import capo_pinpoint.types.map_of__string
 
         out["execution_metrics"] = capo_pinpoint.types.map_of__string.deserialize_json(

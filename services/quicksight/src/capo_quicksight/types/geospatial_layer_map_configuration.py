@@ -73,13 +73,13 @@ def serialize_json(value: GeospatialLayerMapConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> GeospatialLayerMapConfiguration:
     out: GeospatialLayerMapConfiguration = {}  # type: ignore[typeddict-item]
-    if "Legend" in data:
+    if data.get("Legend") is not None:
         import capo_quicksight.types.legend_options
 
         out["legend"] = capo_quicksight.types.legend_options.deserialize_json(
             data["Legend"]
         )
-    if "MapLayers" in data:
+    if data.get("MapLayers") is not None:
         import capo_quicksight.types.geospatial_map_layer_list
 
         out["map_layers"] = (
@@ -87,19 +87,19 @@ def deserialize_json(data: dict) -> GeospatialLayerMapConfiguration:
                 data["MapLayers"]
             )
         )
-    if "MapState" in data:
+    if data.get("MapState") is not None:
         import capo_quicksight.types.geospatial_map_state
 
         out["map_state"] = capo_quicksight.types.geospatial_map_state.deserialize_json(
             data["MapState"]
         )
-    if "MapStyle" in data:
+    if data.get("MapStyle") is not None:
         import capo_quicksight.types.geospatial_map_style
 
         out["map_style"] = capo_quicksight.types.geospatial_map_style.deserialize_json(
             data["MapStyle"]
         )
-    if "Interactions" in data:
+    if data.get("Interactions") is not None:
         import capo_quicksight.types.visual_interaction_options
 
         out["interactions"] = (

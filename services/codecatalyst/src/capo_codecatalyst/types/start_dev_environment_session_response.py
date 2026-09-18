@@ -44,7 +44,7 @@ def serialize_json(value: StartDevEnvironmentSessionResponse) -> dict:
 
 def deserialize_json(data: dict) -> StartDevEnvironmentSessionResponse:
     out: StartDevEnvironmentSessionResponse = {}  # type: ignore[typeddict-item]
-    if "accessDetails" in data:
+    if data.get("accessDetails") is not None:
         import capo_codecatalyst.types.dev_environment_access_details
 
         out["access_details"] = (
@@ -56,21 +56,21 @@ def deserialize_json(data: dict) -> StartDevEnvironmentSessionResponse:
         raise DeserializationError(
             "StartDevEnvironmentSessionResponse.access_details required"
         )
-    if "sessionId" in data:
+    if data.get("sessionId") is not None:
         out["session_id"] = data["sessionId"]
-    if "spaceName" in data:
+    if data.get("spaceName") is not None:
         out["space_name"] = data["spaceName"]
     else:
         raise DeserializationError(
             "StartDevEnvironmentSessionResponse.space_name required"
         )
-    if "projectName" in data:
+    if data.get("projectName") is not None:
         out["project_name"] = data["projectName"]
     else:
         raise DeserializationError(
             "StartDevEnvironmentSessionResponse.project_name required"
         )
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("StartDevEnvironmentSessionResponse.id required")

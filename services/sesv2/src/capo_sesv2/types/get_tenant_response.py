@@ -25,7 +25,7 @@ def serialize_json(value: GetTenantResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetTenantResponse:
     out: GetTenantResponse = {}  # type: ignore[typeddict-item]
-    if "Tenant" in data:
+    if data.get("Tenant") is not None:
         import capo_sesv2.types.tenant
 
         out["tenant"] = capo_sesv2.types.tenant.deserialize_json(data["Tenant"])

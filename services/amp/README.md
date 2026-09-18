@@ -13,10 +13,25 @@ from capo_amp import AsyncampClient
 
 
 async def main():
-    async with AsyncampClient() as s3:
+    async with AsyncampClient() as amp:
         # Example: call the get_default_scraper_configuration operation
-        response = await s3.get_default_scraper_configuration()
+        response = await amp.get_default_scraper_configuration()
         print(response["configuration"])
+```
+
+## Pagination
+
+Some operations in this SDK support pagination. If the operation supports pagination it will have an `iter_` prefixed method that returns an async iterator.
+
+```python
+from capo_amp import AsyncampClient
+
+
+async def main():
+    async with AsyncampClient() as amp:
+        # Example: paginate over list_scrapers
+        async for item in amp.iter_list_scrapers():
+            print(item)
 ```
 
 ## Error Handling
@@ -29,9 +44,9 @@ from capo_amp.error import AccessDeniedException
 
 
 async def main():
-    async with AsyncampClient() as s3:
+    async with AsyncampClient() as amp:
         try:
-            await s3.get_default_scraper_configuration()
+            await amp.get_default_scraper_configuration()
         except AccessDeniedException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -48,13 +63,13 @@ from capo_amp import AsyncampClient
 
 
 async def main():
-    async with AsyncampClient() as s3:
+    async with AsyncampClient() as amp:
         # Default: 3 attempts for every operation
-        response = await s3.get_default_scraper_configuration()
+        response = await amp.get_default_scraper_configuration()
 
         # Override per operation
-        response = await s3.get_default_scraper_configuration(config_overrides={"retry_max_attempts": 5})
+        response = await amp.get_default_scraper_configuration(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.get_default_scraper_configuration(config_overrides={"retry_max_attempts": 1})
+        response = await amp.get_default_scraper_configuration(config_overrides={"retry_max_attempts": 1})
 ```

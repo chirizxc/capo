@@ -80,15 +80,15 @@ def serialize_json(value: ConnectPeerSummary) -> dict:
 
 def deserialize_json(data: dict) -> ConnectPeerSummary:
     out: ConnectPeerSummary = {}  # type: ignore[typeddict-item]
-    if "CoreNetworkId" in data:
+    if data.get("CoreNetworkId") is not None:
         out["core_network_id"] = data["CoreNetworkId"]
-    if "ConnectAttachmentId" in data:
+    if data.get("ConnectAttachmentId") is not None:
         out["connect_attachment_id"] = data["ConnectAttachmentId"]
-    if "ConnectPeerId" in data:
+    if data.get("ConnectPeerId") is not None:
         out["connect_peer_id"] = data["ConnectPeerId"]
-    if "EdgeLocation" in data:
+    if data.get("EdgeLocation") is not None:
         out["edge_location"] = data["EdgeLocation"]
-    if "ConnectPeerState" in data:
+    if data.get("ConnectPeerState") is not None:
         import capo_networkmanager.types.connect_peer_state
 
         out["connect_peer_state"] = (
@@ -96,16 +96,16 @@ def deserialize_json(data: dict) -> ConnectPeerSummary:
                 data["ConnectPeerState"]
             )
         )
-    if "CreatedAt" in data:
+    if data.get("CreatedAt") is not None:
         import capo_networkmanager.types.date_time
 
         out["created_at"] = capo_networkmanager.types.date_time.deserialize_json(
             data["CreatedAt"]
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_networkmanager.types.tag_list
 
         out["tags"] = capo_networkmanager.types.tag_list.deserialize_json(data["Tags"])
-    if "SubnetArn" in data:
+    if data.get("SubnetArn") is not None:
         out["subnet_arn"] = data["SubnetArn"]
     return out

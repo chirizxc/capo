@@ -23,6 +23,6 @@ def serialize_json(value: AwsSsoAuthentication) -> dict:
 
 def deserialize_json(data: dict) -> AwsSsoAuthentication:
     out: AwsSsoAuthentication = {}  # type: ignore[typeddict-item]
-    if "ssoClientId" in data:
+    if data.get("ssoClientId") is not None:
         out["sso_client_id"] = data["ssoClientId"]
     return out

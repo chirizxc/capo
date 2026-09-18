@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: DeleteExplainabilityRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteExplainabilityRequest:
     out: DeleteExplainabilityRequest = {}  # type: ignore[typeddict-item]
-    if "ExplainabilityArn" in data:
+    if data.get("ExplainabilityArn") is not None:
         out["explainability_arn"] = data["ExplainabilityArn"]
     else:
         raise DeserializationError(

@@ -102,11 +102,11 @@ def serialize_aws_json_1_1(value: OwnerDirectoryDescription) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> OwnerDirectoryDescription:
     out: OwnerDirectoryDescription = {}  # type: ignore[typeddict-item]
-    if "DirectoryId" in data:
+    if data.get("DirectoryId") is not None:
         out["directory_id"] = data["DirectoryId"]
-    if "AccountId" in data:
+    if data.get("AccountId") is not None:
         out["account_id"] = data["AccountId"]
-    if "DnsIpAddrs" in data:
+    if data.get("DnsIpAddrs") is not None:
         import capo_directory_service.types.dns_ip_addrs
 
         out["dns_ip_addrs"] = (
@@ -114,7 +114,7 @@ def deserialize_aws_json_1_1(data: dict) -> OwnerDirectoryDescription:
                 data["DnsIpAddrs"]
             )
         )
-    if "DnsIpv6Addrs" in data:
+    if data.get("DnsIpv6Addrs") is not None:
         import capo_directory_service.types.dns_ipv6_addrs
 
         out["dns_ipv6_addrs"] = (
@@ -122,7 +122,7 @@ def deserialize_aws_json_1_1(data: dict) -> OwnerDirectoryDescription:
                 data["DnsIpv6Addrs"]
             )
         )
-    if "VpcSettings" in data:
+    if data.get("VpcSettings") is not None:
         import capo_directory_service.types.directory_vpc_settings_description
 
         out["vpc_settings"] = (
@@ -130,7 +130,7 @@ def deserialize_aws_json_1_1(data: dict) -> OwnerDirectoryDescription:
                 data["VpcSettings"]
             )
         )
-    if "RadiusSettings" in data:
+    if data.get("RadiusSettings") is not None:
         import capo_directory_service.types.radius_settings
 
         out["radius_settings"] = (
@@ -138,7 +138,7 @@ def deserialize_aws_json_1_1(data: dict) -> OwnerDirectoryDescription:
                 data["RadiusSettings"]
             )
         )
-    if "RadiusStatus" in data:
+    if data.get("RadiusStatus") is not None:
         import capo_directory_service.types.radius_status
 
         out["radius_status"] = (
@@ -146,7 +146,7 @@ def deserialize_aws_json_1_1(data: dict) -> OwnerDirectoryDescription:
                 data["RadiusStatus"]
             )
         )
-    if "NetworkType" in data:
+    if data.get("NetworkType") is not None:
         import capo_directory_service.types.network_type
 
         out["network_type"] = (

@@ -37,13 +37,13 @@ def serialize_aws_json_1_1(value: UpdateBlueprintRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateBlueprintRequest:
     out: UpdateBlueprintRequest = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("UpdateBlueprintRequest.name required")
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "BlueprintLocation" in data:
+    if data.get("BlueprintLocation") is not None:
         out["blueprint_location"] = data["BlueprintLocation"]
     else:
         raise DeserializationError("UpdateBlueprintRequest.blueprint_location required")

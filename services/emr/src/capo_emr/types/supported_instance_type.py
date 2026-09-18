@@ -42,7 +42,15 @@ def serialize_aws_json_1_1(value: SupportedInstanceType) -> dict:
     if "type" in value:
         out["Type"] = value["type"]
     if "memory_gb" in value:
-        out["MemoryGB"] = value["memory_gb"]
+        out["MemoryGB"] = (
+            "NaN"
+            if value["memory_gb"] != value["memory_gb"]
+            else "Infinity"
+            if value["memory_gb"] == float("inf")
+            else "-Infinity"
+            if value["memory_gb"] == float("-inf")
+            else value["memory_gb"]
+        )
     if "storage_gb" in value:
         out["StorageGB"] = value["storage_gb"]
     if "vcpu" in value:
@@ -66,26 +74,26 @@ def serialize_aws_json_1_1(value: SupportedInstanceType) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SupportedInstanceType:
     out: SupportedInstanceType = {}  # type: ignore[typeddict-item]
-    if "Type" in data:
+    if data.get("Type") is not None:
         out["type"] = data["Type"]
-    if "MemoryGB" in data:
-        out["memory_gb"] = data["MemoryGB"]
-    if "StorageGB" in data:
+    if data.get("MemoryGB") is not None:
+        out["memory_gb"] = float(data["MemoryGB"])
+    if data.get("StorageGB") is not None:
         out["storage_gb"] = data["StorageGB"]
-    if "VCPU" in data:
+    if data.get("VCPU") is not None:
         out["vcpu"] = data["VCPU"]
-    if "Is64BitsOnly" in data:
+    if data.get("Is64BitsOnly") is not None:
         out["is64_bits_only"] = data["Is64BitsOnly"]
-    if "InstanceFamilyId" in data:
+    if data.get("InstanceFamilyId") is not None:
         out["instance_family_id"] = data["InstanceFamilyId"]
-    if "EbsOptimizedAvailable" in data:
+    if data.get("EbsOptimizedAvailable") is not None:
         out["ebs_optimized_available"] = data["EbsOptimizedAvailable"]
-    if "EbsOptimizedByDefault" in data:
+    if data.get("EbsOptimizedByDefault") is not None:
         out["ebs_optimized_by_default"] = data["EbsOptimizedByDefault"]
-    if "NumberOfDisks" in data:
+    if data.get("NumberOfDisks") is not None:
         out["number_of_disks"] = data["NumberOfDisks"]
-    if "EbsStorageOnly" in data:
+    if data.get("EbsStorageOnly") is not None:
         out["ebs_storage_only"] = data["EbsStorageOnly"]
-    if "Architecture" in data:
+    if data.get("Architecture") is not None:
         out["architecture"] = data["Architecture"]
     return out

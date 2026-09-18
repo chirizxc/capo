@@ -43,12 +43,12 @@ def serialize_aws_json_1_1(value: FileSystemAssociationSummary) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> FileSystemAssociationSummary:
     out: FileSystemAssociationSummary = {}  # type: ignore[typeddict-item]
-    if "FileSystemAssociationId" in data:
+    if data.get("FileSystemAssociationId") is not None:
         out["file_system_association_id"] = data["FileSystemAssociationId"]
-    if "FileSystemAssociationARN" in data:
+    if data.get("FileSystemAssociationARN") is not None:
         out["file_system_association_arn"] = data["FileSystemAssociationARN"]
-    if "FileSystemAssociationStatus" in data:
+    if data.get("FileSystemAssociationStatus") is not None:
         out["file_system_association_status"] = data["FileSystemAssociationStatus"]
-    if "GatewayARN" in data:
+    if data.get("GatewayARN") is not None:
         out["gateway_arn"] = data["GatewayARN"]
     return out

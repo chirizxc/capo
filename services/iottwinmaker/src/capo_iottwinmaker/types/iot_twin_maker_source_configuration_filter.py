@@ -54,7 +54,7 @@ def serialize_json(value: IotTwinMakerSourceConfigurationFilter) -> dict:
 
 
 def deserialize_json(data: dict) -> IotTwinMakerSourceConfigurationFilter:
-    if "filterByComponentType" in data:
+    if data.get("filterByComponentType") is not None:
         import capo_iottwinmaker.types.filter_by_component_type
 
         return {
@@ -62,7 +62,7 @@ def deserialize_json(data: dict) -> IotTwinMakerSourceConfigurationFilter:
                 data["filterByComponentType"]
             )
         }
-    elif "filterByEntity" in data:
+    elif data.get("filterByEntity") is not None:
         import capo_iottwinmaker.types.filter_by_entity
 
         return {

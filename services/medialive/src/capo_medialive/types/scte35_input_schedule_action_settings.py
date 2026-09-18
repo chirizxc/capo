@@ -34,9 +34,9 @@ def serialize_json(value: Scte35InputScheduleActionSettings) -> dict:
 
 def deserialize_json(data: dict) -> Scte35InputScheduleActionSettings:
     out: Scte35InputScheduleActionSettings = {}  # type: ignore[typeddict-item]
-    if "inputAttachmentNameReference" in data:
+    if data.get("inputAttachmentNameReference") is not None:
         out["input_attachment_name_reference"] = data["inputAttachmentNameReference"]
-    if "mode" in data:
+    if data.get("mode") is not None:
         import capo_medialive.types.scte35_input_mode
 
         out["mode"] = capo_medialive.types.scte35_input_mode.deserialize_json(

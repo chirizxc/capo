@@ -47,21 +47,21 @@ def serialize_json(value: QAppSessionData) -> dict:
 
 def deserialize_json(data: dict) -> QAppSessionData:
     out: QAppSessionData = {}  # type: ignore[typeddict-item]
-    if "cardId" in data:
+    if data.get("cardId") is not None:
         out["card_id"] = data["cardId"]
     else:
         raise DeserializationError("QAppSessionData.card_id required")
-    if "value" in data:
+    if data.get("value") is not None:
         out["value"] = data["value"]
-    if "user" in data:
+    if data.get("user") is not None:
         import capo_qapps.types.user
 
         out["user"] = capo_qapps.types.user.deserialize_json(data["user"])
     else:
         raise DeserializationError("QAppSessionData.user required")
-    if "submissionId" in data:
+    if data.get("submissionId") is not None:
         out["submission_id"] = data["submissionId"]
-    if "timestamp" in data:
+    if data.get("timestamp") is not None:
         import capo_qapps.types.q_apps_timestamp
 
         out["timestamp"] = capo_qapps.types.q_apps_timestamp.deserialize_json(

@@ -25,6 +25,8 @@ def deserialize_aws_json_1_1(data: list) -> StatisticModelResults:
 
     out: StatisticModelResults = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_glue.types.statistic_model_result.deserialize_aws_json_1_1(item)
         )

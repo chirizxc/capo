@@ -29,6 +29,8 @@ def serialize_json(input_to_serialize: ComponentDependencyMap) -> dict:
 def deserialize_json(data: dict) -> ComponentDependencyMap:
     out: ComponentDependencyMap = {}
     for key, value in data.items():
+        if value is None:
+            continue
         import capo_greengrassv2.types.component_dependency_requirement
 
         out[key] = (

@@ -32,8 +32,8 @@ def serialize_json(value: UpdateControlPanelRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateControlPanelRequest:
     out: UpdateControlPanelRequest = {}  # type: ignore[typeddict-item]
-    if "ControlPanelArn" in data:
+    if data.get("ControlPanelArn") is not None:
         out["control_panel_arn"] = data["ControlPanelArn"]
-    if "ControlPanelName" in data:
+    if data.get("ControlPanelName") is not None:
         out["control_panel_name"] = data["ControlPanelName"]
     return out

@@ -33,10 +33,10 @@ def serialize_aws_json_1_1(value: BatchGetCommitsError) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> BatchGetCommitsError:
     out: BatchGetCommitsError = {}  # type: ignore[typeddict-item]
-    if "commitId" in data:
+    if data.get("commitId") is not None:
         out["commit_id"] = data["commitId"]
-    if "errorCode" in data:
+    if data.get("errorCode") is not None:
         out["error_code"] = data["errorCode"]
-    if "errorMessage" in data:
+    if data.get("errorMessage") is not None:
         out["error_message"] = data["errorMessage"]
     return out

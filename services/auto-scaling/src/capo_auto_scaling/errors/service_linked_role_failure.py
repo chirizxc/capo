@@ -39,15 +39,18 @@ class ServiceLinkedRoleFailure(ServiceError):
 
     code: str | None = "ServiceLinkedRoleFailure"
 
-    def __init__(self, data: ServiceLinkedRoleFailure_):
+    def __init__(self, data: ServiceLinkedRoleFailure_, message: str | None = None):
         super().__init__(
             "server",
             is_throttling_error=False,
             is_retryable=False,
             code="ServiceLinkedRoleFailure",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_query(cls, el: Element) -> "ServiceLinkedRoleFailure":
-        return cls(deserialize_query(el))
+    def from_query(
+        cls, el: Element, message: str | None = None
+    ) -> "ServiceLinkedRoleFailure":
+        return cls(deserialize_query(el), message)

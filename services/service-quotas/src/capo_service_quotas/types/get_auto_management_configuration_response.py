@@ -69,7 +69,7 @@ def serialize_aws_json_1_1(value: GetAutoManagementConfigurationResponse) -> dic
 
 def deserialize_aws_json_1_1(data: dict) -> GetAutoManagementConfigurationResponse:
     out: GetAutoManagementConfigurationResponse = {}  # type: ignore[typeddict-item]
-    if "OptInLevel" in data:
+    if data.get("OptInLevel") is not None:
         import capo_service_quotas.types.opt_in_level
 
         out["opt_in_level"] = (
@@ -77,7 +77,7 @@ def deserialize_aws_json_1_1(data: dict) -> GetAutoManagementConfigurationRespon
                 data["OptInLevel"]
             )
         )
-    if "OptInType" in data:
+    if data.get("OptInType") is not None:
         import capo_service_quotas.types.opt_in_type
 
         out["opt_in_type"] = (
@@ -85,9 +85,9 @@ def deserialize_aws_json_1_1(data: dict) -> GetAutoManagementConfigurationRespon
                 data["OptInType"]
             )
         )
-    if "NotificationArn" in data:
+    if data.get("NotificationArn") is not None:
         out["notification_arn"] = data["NotificationArn"]
-    if "OptInStatus" in data:
+    if data.get("OptInStatus") is not None:
         import capo_service_quotas.types.opt_in_status
 
         out["opt_in_status"] = (
@@ -95,7 +95,7 @@ def deserialize_aws_json_1_1(data: dict) -> GetAutoManagementConfigurationRespon
                 data["OptInStatus"]
             )
         )
-    if "ExclusionList" in data:
+    if data.get("ExclusionList") is not None:
         import capo_service_quotas.types.exclusion_quota_list
 
         out["exclusion_list"] = (

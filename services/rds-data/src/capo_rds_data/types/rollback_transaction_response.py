@@ -25,6 +25,6 @@ def serialize_json(value: RollbackTransactionResponse) -> dict:
 
 def deserialize_json(data: dict) -> RollbackTransactionResponse:
     out: RollbackTransactionResponse = {}  # type: ignore[typeddict-item]
-    if "transactionStatus" in data:
+    if data.get("transactionStatus") is not None:
         out["transaction_status"] = data["transactionStatus"]
     return out

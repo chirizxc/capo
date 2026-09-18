@@ -28,11 +28,11 @@ def serialize_aws_json_1_1(value: CreateAliasRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateAliasRequest:
     out: CreateAliasRequest = {}  # type: ignore[typeddict-item]
-    if "DirectoryId" in data:
+    if data.get("DirectoryId") is not None:
         out["directory_id"] = data["DirectoryId"]
     else:
         raise DeserializationError("CreateAliasRequest.directory_id required")
-    if "Alias" in data:
+    if data.get("Alias") is not None:
         out["alias"] = data["Alias"]
     else:
         raise DeserializationError("CreateAliasRequest.alias required")

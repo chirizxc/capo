@@ -114,11 +114,15 @@ class RegionSwitchPlan:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_arc_region_switch.types.create_plan_request.CreatePlanRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_arc_region_switch.types.create_plan_request.CreatePlanRequest = {
+            "workflows": workflows,
+            "execution_role": execution_role,
+            "name": name,
+            "regions": regions,
+            "recovery_approach": recovery_approach,
+        }
         if description is not None:
             input_["description"] = description
-        input_["workflows"] = workflows
-        input_["execution_role"] = execution_role
         if recovery_time_objective_minutes is not None:
             input_["recovery_time_objective_minutes"] = recovery_time_objective_minutes
         if associated_alarms is not None:
@@ -127,9 +131,6 @@ class RegionSwitchPlan:
             input_["triggers"] = triggers
         if report_configuration is not None:
             input_["report_configuration"] = report_configuration
-        input_["name"] = name
-        input_["regions"] = regions
-        input_["recovery_approach"] = recovery_approach
         if primary_region is not None:
             input_["primary_region"] = primary_region
         if tags is not None:
@@ -140,6 +141,7 @@ class RegionSwitchPlan:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -173,14 +175,16 @@ class RegionSwitchPlan:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_arc_region_switch.types.get_plan_request.GetPlanRequest = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
+        input_: capo_arc_region_switch.types.get_plan_request.GetPlanRequest = {
+            "arn": arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update(
@@ -234,12 +238,13 @@ class RegionSwitchPlan:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_arc_region_switch.types.update_plan_request.UpdatePlanRequest = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
+        input_: capo_arc_region_switch.types.update_plan_request.UpdatePlanRequest = {
+            "arn": arn,
+            "workflows": workflows,
+            "execution_role": execution_role,
+        }
         if description is not None:
             input_["description"] = description
-        input_["workflows"] = workflows
-        input_["execution_role"] = execution_role
         if recovery_time_objective_minutes is not None:
             input_["recovery_time_objective_minutes"] = recovery_time_objective_minutes
         if associated_alarms is not None:
@@ -254,6 +259,7 @@ class RegionSwitchPlan:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -288,14 +294,16 @@ class RegionSwitchPlan:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_arc_region_switch.types.delete_plan_request.DeletePlanRequest = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
+        input_: capo_arc_region_switch.types.delete_plan_request.DeletePlanRequest = {
+            "arn": arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -334,7 +342,7 @@ class RegionSwitchPlan:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_arc_region_switch.types.list_plans_request.ListPlansRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_arc_region_switch.types.list_plans_request.ListPlansRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -345,6 +353,7 @@ class RegionSwitchPlan:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_tags_for_resource(
@@ -379,14 +388,16 @@ class RegionSwitchPlan:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_arc_region_switch.types.list_tags_for_resource_request.ListTagsForResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
+        input_: capo_arc_region_switch.types.list_tags_for_resource_request.ListTagsForResourceRequest = {
+            "arn": arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def tag_resource(
@@ -423,15 +434,17 @@ class RegionSwitchPlan:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_arc_region_switch.types.tag_resource_request.TagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
-        input_["tags"] = tags
+        input_: capo_arc_region_switch.types.tag_resource_request.TagResourceRequest = {
+            "arn": arn,
+            "tags": tags,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def untag_resource(
@@ -468,15 +481,17 @@ class RegionSwitchPlan:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_arc_region_switch.types.untag_resource_request.UntagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
-        input_["resource_tag_keys"] = resource_tag_keys
+        input_: capo_arc_region_switch.types.untag_resource_request.UntagResourceRequest = {
+            "arn": arn,
+            "resource_tag_keys": resource_tag_keys,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -542,11 +557,15 @@ class AsyncRegionSwitchPlan:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_arc_region_switch.types.create_plan_request.CreatePlanRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_arc_region_switch.types.create_plan_request.CreatePlanRequest = {
+            "workflows": workflows,
+            "execution_role": execution_role,
+            "name": name,
+            "regions": regions,
+            "recovery_approach": recovery_approach,
+        }
         if description is not None:
             input_["description"] = description
-        input_["workflows"] = workflows
-        input_["execution_role"] = execution_role
         if recovery_time_objective_minutes is not None:
             input_["recovery_time_objective_minutes"] = recovery_time_objective_minutes
         if associated_alarms is not None:
@@ -555,9 +574,6 @@ class AsyncRegionSwitchPlan:
             input_["triggers"] = triggers
         if report_configuration is not None:
             input_["report_configuration"] = report_configuration
-        input_["name"] = name
-        input_["regions"] = regions
-        input_["recovery_approach"] = recovery_approach
         if primary_region is not None:
             input_["primary_region"] = primary_region
         if tags is not None:
@@ -568,6 +584,7 @@ class AsyncRegionSwitchPlan:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -602,14 +619,16 @@ class AsyncRegionSwitchPlan:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_arc_region_switch.types.get_plan_request.GetPlanRequest = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
+        input_: capo_arc_region_switch.types.get_plan_request.GetPlanRequest = {
+            "arn": arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update(
@@ -664,12 +683,13 @@ class AsyncRegionSwitchPlan:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_arc_region_switch.types.update_plan_request.UpdatePlanRequest = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
+        input_: capo_arc_region_switch.types.update_plan_request.UpdatePlanRequest = {
+            "arn": arn,
+            "workflows": workflows,
+            "execution_role": execution_role,
+        }
         if description is not None:
             input_["description"] = description
-        input_["workflows"] = workflows
-        input_["execution_role"] = execution_role
         if recovery_time_objective_minutes is not None:
             input_["recovery_time_objective_minutes"] = recovery_time_objective_minutes
         if associated_alarms is not None:
@@ -684,6 +704,7 @@ class AsyncRegionSwitchPlan:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -719,14 +740,16 @@ class AsyncRegionSwitchPlan:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_arc_region_switch.types.delete_plan_request.DeletePlanRequest = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
+        input_: capo_arc_region_switch.types.delete_plan_request.DeletePlanRequest = {
+            "arn": arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -766,7 +789,7 @@ class AsyncRegionSwitchPlan:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_arc_region_switch.types.list_plans_request.ListPlansRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_arc_region_switch.types.list_plans_request.ListPlansRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -777,6 +800,7 @@ class AsyncRegionSwitchPlan:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_tags_for_resource(
@@ -812,14 +836,16 @@ class AsyncRegionSwitchPlan:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_arc_region_switch.types.list_tags_for_resource_request.ListTagsForResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
+        input_: capo_arc_region_switch.types.list_tags_for_resource_request.ListTagsForResourceRequest = {
+            "arn": arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def tag_resource(
@@ -857,15 +883,17 @@ class AsyncRegionSwitchPlan:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_arc_region_switch.types.tag_resource_request.TagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
-        input_["tags"] = tags
+        input_: capo_arc_region_switch.types.tag_resource_request.TagResourceRequest = {
+            "arn": arn,
+            "tags": tags,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def untag_resource(
@@ -903,13 +931,15 @@ class AsyncRegionSwitchPlan:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_arc_region_switch.types.untag_resource_request.UntagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
-        input_["resource_tag_keys"] = resource_tag_keys
+        input_: capo_arc_region_switch.types.untag_resource_request.UntagResourceRequest = {
+            "arn": arn,
+            "resource_tag_keys": resource_tag_keys,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

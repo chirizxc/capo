@@ -36,7 +36,7 @@ def serialize_json(value: ListAutomatedDiscoveryAccountsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListAutomatedDiscoveryAccountsResponse:
     out: ListAutomatedDiscoveryAccountsResponse = {}  # type: ignore[typeddict-item]
-    if "items" in data:
+    if data.get("items") is not None:
         import capo_macie2.types.__list_of_automated_discovery_account
 
         out["items"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> ListAutomatedDiscoveryAccountsResponse:
                 data["items"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

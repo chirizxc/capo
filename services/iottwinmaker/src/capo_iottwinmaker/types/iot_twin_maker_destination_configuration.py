@@ -24,7 +24,7 @@ def serialize_json(value: IotTwinMakerDestinationConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> IotTwinMakerDestinationConfiguration:
     out: IotTwinMakerDestinationConfiguration = {}  # type: ignore[typeddict-item]
-    if "workspace" in data:
+    if data.get("workspace") is not None:
         out["workspace"] = data["workspace"]
     else:
         raise DeserializationError(

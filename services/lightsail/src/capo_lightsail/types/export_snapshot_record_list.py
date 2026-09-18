@@ -27,6 +27,8 @@ def deserialize_aws_json_1_1(data: list) -> ExportSnapshotRecordList:
 
     out: ExportSnapshotRecordList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_lightsail.types.export_snapshot_record.deserialize_aws_json_1_1(item)
         )

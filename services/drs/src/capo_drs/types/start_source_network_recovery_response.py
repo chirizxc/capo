@@ -25,7 +25,7 @@ def serialize_json(value: StartSourceNetworkRecoveryResponse) -> dict:
 
 def deserialize_json(data: dict) -> StartSourceNetworkRecoveryResponse:
     out: StartSourceNetworkRecoveryResponse = {}  # type: ignore[typeddict-item]
-    if "job" in data:
+    if data.get("job") is not None:
         import capo_drs.types.job
 
         out["job"] = capo_drs.types.job.deserialize_json(data["job"])

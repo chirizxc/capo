@@ -32,7 +32,7 @@ def serialize_json(value: ObfuscationSetting) -> dict:
 
 def deserialize_json(data: dict) -> ObfuscationSetting:
     out: ObfuscationSetting = {}  # type: ignore[typeddict-item]
-    if "obfuscationSettingType" in data:
+    if data.get("obfuscationSettingType") is not None:
         import capo_lex_models_v2.types.obfuscation_setting_type
 
         out["obfuscation_setting_type"] = (

@@ -25,15 +25,15 @@ def serialize_json(value: WebAppConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> WebAppConfiguration:
     out: WebAppConfiguration = {}  # type: ignore[typeddict-item]
-    if "ehrRole" in data:
+    if data.get("ehrRole") is not None:
         out["ehr_role"] = data["ehrRole"]
     else:
         raise DeserializationError("WebAppConfiguration.ehr_role required")
-    if "idcApplicationId" in data:
+    if data.get("idcApplicationId") is not None:
         out["idc_application_id"] = data["idcApplicationId"]
     else:
         raise DeserializationError("WebAppConfiguration.idc_application_id required")
-    if "idcRegion" in data:
+    if data.get("idcRegion") is not None:
         out["idc_region"] = data["idcRegion"]
     else:
         raise DeserializationError("WebAppConfiguration.idc_region required")

@@ -33,13 +33,13 @@ def serialize_json(value: OcsfIpFilter) -> dict:
 
 def deserialize_json(data: dict) -> OcsfIpFilter:
     out: OcsfIpFilter = {}  # type: ignore[typeddict-item]
-    if "FieldName" in data:
+    if data.get("FieldName") is not None:
         import capo_securityhub.types.ocsf_ip_field
 
         out["field_name"] = capo_securityhub.types.ocsf_ip_field.deserialize_json(
             data["FieldName"]
         )
-    if "Filter" in data:
+    if data.get("Filter") is not None:
         import capo_securityhub.types.ip_filter
 
         out["filter"] = capo_securityhub.types.ip_filter.deserialize_json(

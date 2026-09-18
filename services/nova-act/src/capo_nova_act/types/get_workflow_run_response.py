@@ -63,15 +63,15 @@ def serialize_json(value: GetWorkflowRunResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetWorkflowRunResponse:
     out: GetWorkflowRunResponse = {}  # type: ignore[typeddict-item]
-    if "workflowRunArn" in data:
+    if data.get("workflowRunArn") is not None:
         out["workflow_run_arn"] = data["workflowRunArn"]
     else:
         raise DeserializationError("GetWorkflowRunResponse.workflow_run_arn required")
-    if "workflowRunId" in data:
+    if data.get("workflowRunId") is not None:
         out["workflow_run_id"] = data["workflowRunId"]
     else:
         raise DeserializationError("GetWorkflowRunResponse.workflow_run_id required")
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_nova_act.types.workflow_run_status
 
         out["status"] = capo_nova_act.types.workflow_run_status.deserialize_json(
@@ -79,7 +79,7 @@ def deserialize_json(data: dict) -> GetWorkflowRunResponse:
         )
     else:
         raise DeserializationError("GetWorkflowRunResponse.status required")
-    if "startedAt" in data:
+    if data.get("startedAt") is not None:
         import capo_nova_act.types.date_timestamp
 
         out["started_at"] = capo_nova_act.types.date_timestamp.deserialize_json(
@@ -87,16 +87,16 @@ def deserialize_json(data: dict) -> GetWorkflowRunResponse:
         )
     else:
         raise DeserializationError("GetWorkflowRunResponse.started_at required")
-    if "endedAt" in data:
+    if data.get("endedAt") is not None:
         import capo_nova_act.types.date_timestamp
 
         out["ended_at"] = capo_nova_act.types.date_timestamp.deserialize_json(
             data["endedAt"]
         )
-    if "modelId" in data:
+    if data.get("modelId") is not None:
         out["model_id"] = data["modelId"]
     else:
         raise DeserializationError("GetWorkflowRunResponse.model_id required")
-    if "logGroupName" in data:
+    if data.get("logGroupName") is not None:
         out["log_group_name"] = data["logGroupName"]
     return out

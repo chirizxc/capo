@@ -50,9 +50,9 @@ def serialize_json(value: RecordPrimaryValue) -> dict:
 
 def deserialize_json(data: dict) -> RecordPrimaryValue:
     out: RecordPrimaryValue = {}  # type: ignore[typeddict-item]
-    if "RecordId" in data:
+    if data.get("RecordId") is not None:
         out["record_id"] = data["RecordId"]
-    if "PrimaryValues" in data:
+    if data.get("PrimaryValues") is not None:
         import capo_connect.types.primary_values_response_set
 
         out["primary_values"] = (
@@ -60,12 +60,12 @@ def deserialize_json(data: dict) -> RecordPrimaryValue:
                 data["PrimaryValues"]
             )
         )
-    if "LastModifiedTime" in data:
+    if data.get("LastModifiedTime") is not None:
         import capo_connect.types.timestamp
 
         out["last_modified_time"] = capo_connect.types.timestamp.deserialize_json(
             data["LastModifiedTime"]
         )
-    if "LastModifiedRegion" in data:
+    if data.get("LastModifiedRegion") is not None:
         out["last_modified_region"] = data["LastModifiedRegion"]
     return out

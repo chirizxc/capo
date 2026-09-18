@@ -223,25 +223,25 @@ def serialize_json(value: ConnectorMetadata) -> dict:
 
 def deserialize_json(data: dict) -> ConnectorMetadata:
     out: ConnectorMetadata = {}  # type: ignore[typeddict-item]
-    if "Amplitude" in data:
+    if data.get("Amplitude") is not None:
         import capo_appflow.types.amplitude_metadata
 
         out["amplitude"] = capo_appflow.types.amplitude_metadata.deserialize_json(
             data["Amplitude"]
         )
-    if "Datadog" in data:
+    if data.get("Datadog") is not None:
         import capo_appflow.types.datadog_metadata
 
         out["datadog"] = capo_appflow.types.datadog_metadata.deserialize_json(
             data["Datadog"]
         )
-    if "Dynatrace" in data:
+    if data.get("Dynatrace") is not None:
         import capo_appflow.types.dynatrace_metadata
 
         out["dynatrace"] = capo_appflow.types.dynatrace_metadata.deserialize_json(
             data["Dynatrace"]
         )
-    if "GoogleAnalytics" in data:
+    if data.get("GoogleAnalytics") is not None:
         import capo_appflow.types.google_analytics_metadata
 
         out["google_analytics"] = (
@@ -249,85 +249,85 @@ def deserialize_json(data: dict) -> ConnectorMetadata:
                 data["GoogleAnalytics"]
             )
         )
-    if "InforNexus" in data:
+    if data.get("InforNexus") is not None:
         import capo_appflow.types.infor_nexus_metadata
 
         out["infor_nexus"] = capo_appflow.types.infor_nexus_metadata.deserialize_json(
             data["InforNexus"]
         )
-    if "Marketo" in data:
+    if data.get("Marketo") is not None:
         import capo_appflow.types.marketo_metadata
 
         out["marketo"] = capo_appflow.types.marketo_metadata.deserialize_json(
             data["Marketo"]
         )
-    if "Redshift" in data:
+    if data.get("Redshift") is not None:
         import capo_appflow.types.redshift_metadata
 
         out["redshift"] = capo_appflow.types.redshift_metadata.deserialize_json(
             data["Redshift"]
         )
-    if "S3" in data:
+    if data.get("S3") is not None:
         import capo_appflow.types.s3_metadata
 
         out["s3"] = capo_appflow.types.s3_metadata.deserialize_json(data["S3"])
-    if "Salesforce" in data:
+    if data.get("Salesforce") is not None:
         import capo_appflow.types.salesforce_metadata
 
         out["salesforce"] = capo_appflow.types.salesforce_metadata.deserialize_json(
             data["Salesforce"]
         )
-    if "ServiceNow" in data:
+    if data.get("ServiceNow") is not None:
         import capo_appflow.types.service_now_metadata
 
         out["service_now"] = capo_appflow.types.service_now_metadata.deserialize_json(
             data["ServiceNow"]
         )
-    if "Singular" in data:
+    if data.get("Singular") is not None:
         import capo_appflow.types.singular_metadata
 
         out["singular"] = capo_appflow.types.singular_metadata.deserialize_json(
             data["Singular"]
         )
-    if "Slack" in data:
+    if data.get("Slack") is not None:
         import capo_appflow.types.slack_metadata
 
         out["slack"] = capo_appflow.types.slack_metadata.deserialize_json(data["Slack"])
-    if "Snowflake" in data:
+    if data.get("Snowflake") is not None:
         import capo_appflow.types.snowflake_metadata
 
         out["snowflake"] = capo_appflow.types.snowflake_metadata.deserialize_json(
             data["Snowflake"]
         )
-    if "Trendmicro" in data:
+    if data.get("Trendmicro") is not None:
         import capo_appflow.types.trendmicro_metadata
 
         out["trendmicro"] = capo_appflow.types.trendmicro_metadata.deserialize_json(
             data["Trendmicro"]
         )
-    if "Veeva" in data:
+    if data.get("Veeva") is not None:
         import capo_appflow.types.veeva_metadata
 
         out["veeva"] = capo_appflow.types.veeva_metadata.deserialize_json(data["Veeva"])
-    if "Zendesk" in data:
+    if data.get("Zendesk") is not None:
         import capo_appflow.types.zendesk_metadata
 
         out["zendesk"] = capo_appflow.types.zendesk_metadata.deserialize_json(
             data["Zendesk"]
         )
-    if "EventBridge" in data:
+    if data.get("EventBridge") is not None:
         import capo_appflow.types.event_bridge_metadata
 
         out["event_bridge"] = capo_appflow.types.event_bridge_metadata.deserialize_json(
             data["EventBridge"]
         )
-    if "Upsolver" in data:
+    if data.get("Upsolver") is not None:
         import capo_appflow.types.upsolver_metadata
 
         out["upsolver"] = capo_appflow.types.upsolver_metadata.deserialize_json(
             data["Upsolver"]
         )
-    if "CustomerProfiles" in data:
+    if data.get("CustomerProfiles") is not None:
         import capo_appflow.types.customer_profiles_metadata
 
         out["customer_profiles"] = (
@@ -335,19 +335,19 @@ def deserialize_json(data: dict) -> ConnectorMetadata:
                 data["CustomerProfiles"]
             )
         )
-    if "Honeycode" in data:
+    if data.get("Honeycode") is not None:
         import capo_appflow.types.honeycode_metadata
 
         out["honeycode"] = capo_appflow.types.honeycode_metadata.deserialize_json(
             data["Honeycode"]
         )
-    if "SAPOData" in data:
+    if data.get("SAPOData") is not None:
         import capo_appflow.types.sapo_data_metadata
 
         out["sapo_data"] = capo_appflow.types.sapo_data_metadata.deserialize_json(
             data["SAPOData"]
         )
-    if "Pardot" in data:
+    if data.get("Pardot") is not None:
         import capo_appflow.types.pardot_metadata
 
         out["pardot"] = capo_appflow.types.pardot_metadata.deserialize_json(

@@ -35,9 +35,9 @@ def serialize_json(value: ListRoutingRulesResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListRoutingRulesResponse:
     out: ListRoutingRulesResponse = {}  # type: ignore[typeddict-item]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "routingRules" in data:
+    if data.get("routingRules") is not None:
         import capo_apigatewayv2.types.__list_of_routing_rule
 
         out["routing_rules"] = (

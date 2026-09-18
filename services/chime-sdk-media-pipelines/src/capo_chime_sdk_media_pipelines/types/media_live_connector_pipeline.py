@@ -96,7 +96,7 @@ def serialize_json(value: MediaLiveConnectorPipeline) -> dict:
 
 def deserialize_json(data: dict) -> MediaLiveConnectorPipeline:
     out: MediaLiveConnectorPipeline = {}  # type: ignore[typeddict-item]
-    if "Sources" in data:
+    if data.get("Sources") is not None:
         import capo_chime_sdk_media_pipelines.types.live_connector_source_list
 
         out["sources"] = (
@@ -104,7 +104,7 @@ def deserialize_json(data: dict) -> MediaLiveConnectorPipeline:
                 data["Sources"]
             )
         )
-    if "Sinks" in data:
+    if data.get("Sinks") is not None:
         import capo_chime_sdk_media_pipelines.types.live_connector_sink_list
 
         out["sinks"] = (
@@ -112,11 +112,11 @@ def deserialize_json(data: dict) -> MediaLiveConnectorPipeline:
                 data["Sinks"]
             )
         )
-    if "MediaPipelineId" in data:
+    if data.get("MediaPipelineId") is not None:
         out["media_pipeline_id"] = data["MediaPipelineId"]
-    if "MediaPipelineArn" in data:
+    if data.get("MediaPipelineArn") is not None:
         out["media_pipeline_arn"] = data["MediaPipelineArn"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_chime_sdk_media_pipelines.types.media_pipeline_status
 
         out["status"] = (
@@ -124,7 +124,7 @@ def deserialize_json(data: dict) -> MediaLiveConnectorPipeline:
                 data["Status"]
             )
         )
-    if "CreatedTimestamp" in data:
+    if data.get("CreatedTimestamp") is not None:
         import capo_chime_sdk_media_pipelines.types.iso8601_timestamp
 
         out["created_timestamp"] = (
@@ -132,7 +132,7 @@ def deserialize_json(data: dict) -> MediaLiveConnectorPipeline:
                 data["CreatedTimestamp"]
             )
         )
-    if "UpdatedTimestamp" in data:
+    if data.get("UpdatedTimestamp") is not None:
         import capo_chime_sdk_media_pipelines.types.iso8601_timestamp
 
         out["updated_timestamp"] = (

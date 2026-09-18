@@ -46,7 +46,7 @@ def serialize_json(value: UpdateScraperLoggingConfigurationRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateScraperLoggingConfigurationRequest:
     out: UpdateScraperLoggingConfigurationRequest = {}  # type: ignore[typeddict-item]
-    if "loggingDestination" in data:
+    if data.get("loggingDestination") is not None:
         import capo_amp.types.scraper_logging_destination
 
         out["logging_destination"] = (
@@ -58,7 +58,7 @@ def deserialize_json(data: dict) -> UpdateScraperLoggingConfigurationRequest:
         raise DeserializationError(
             "UpdateScraperLoggingConfigurationRequest.logging_destination required"
         )
-    if "scraperComponents" in data:
+    if data.get("scraperComponents") is not None:
         import capo_amp.types.scraper_components
 
         out["scraper_components"] = capo_amp.types.scraper_components.deserialize_json(

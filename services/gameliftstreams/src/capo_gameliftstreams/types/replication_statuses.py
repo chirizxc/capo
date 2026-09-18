@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> ReplicationStatuses:
 
     out: ReplicationStatuses = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_gameliftstreams.types.replication_status.deserialize_json(item))
     return out

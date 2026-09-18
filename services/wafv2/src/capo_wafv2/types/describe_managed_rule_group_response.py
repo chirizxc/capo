@@ -66,21 +66,21 @@ def serialize_aws_json_1_1(value: DescribeManagedRuleGroupResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeManagedRuleGroupResponse:
     out: DescribeManagedRuleGroupResponse = {}  # type: ignore[typeddict-item]
-    if "VersionName" in data:
+    if data.get("VersionName") is not None:
         out["version_name"] = data["VersionName"]
-    if "SnsTopicArn" in data:
+    if data.get("SnsTopicArn") is not None:
         out["sns_topic_arn"] = data["SnsTopicArn"]
-    if "Capacity" in data:
+    if data.get("Capacity") is not None:
         out["capacity"] = data["Capacity"]
-    if "Rules" in data:
+    if data.get("Rules") is not None:
         import capo_wafv2.types.rule_summaries
 
         out["rules"] = capo_wafv2.types.rule_summaries.deserialize_aws_json_1_1(
             data["Rules"]
         )
-    if "LabelNamespace" in data:
+    if data.get("LabelNamespace") is not None:
         out["label_namespace"] = data["LabelNamespace"]
-    if "AvailableLabels" in data:
+    if data.get("AvailableLabels") is not None:
         import capo_wafv2.types.label_summaries
 
         out["available_labels"] = (
@@ -88,7 +88,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeManagedRuleGroupResponse:
                 data["AvailableLabels"]
             )
         )
-    if "ConsumedLabels" in data:
+    if data.get("ConsumedLabels") is not None:
         import capo_wafv2.types.label_summaries
 
         out["consumed_labels"] = (

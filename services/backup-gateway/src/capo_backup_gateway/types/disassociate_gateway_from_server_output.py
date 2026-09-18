@@ -23,6 +23,6 @@ def serialize_aws_json_1_0(value: DisassociateGatewayFromServerOutput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> DisassociateGatewayFromServerOutput:
     out: DisassociateGatewayFromServerOutput = {}  # type: ignore[typeddict-item]
-    if "GatewayArn" in data:
+    if data.get("GatewayArn") is not None:
         out["gateway_arn"] = data["GatewayArn"]
     return out

@@ -38,10 +38,10 @@ def serialize_json(value: UpdateDashboardPublishedVersionResponse) -> dict:
 
 def deserialize_json(data: dict) -> UpdateDashboardPublishedVersionResponse:
     out: UpdateDashboardPublishedVersionResponse = {}  # type: ignore[typeddict-item]
-    if "DashboardId" in data:
+    if data.get("DashboardId") is not None:
         out["dashboard_id"] = data["DashboardId"]
-    if "DashboardArn" in data:
+    if data.get("DashboardArn") is not None:
         out["dashboard_arn"] = data["DashboardArn"]
-    if "RequestId" in data:
+    if data.get("RequestId") is not None:
         out["request_id"] = data["RequestId"]
     return out

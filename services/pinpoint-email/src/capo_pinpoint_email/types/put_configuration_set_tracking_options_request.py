@@ -30,6 +30,6 @@ def serialize_json(value: PutConfigurationSetTrackingOptionsRequest) -> dict:
 
 def deserialize_json(data: dict) -> PutConfigurationSetTrackingOptionsRequest:
     out: PutConfigurationSetTrackingOptionsRequest = {}  # type: ignore[typeddict-item]
-    if "CustomRedirectDomain" in data:
+    if data.get("CustomRedirectDomain") is not None:
         out["custom_redirect_domain"] = data["CustomRedirectDomain"]
     return out

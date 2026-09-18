@@ -61,15 +61,15 @@ def serialize_aws_json_1_0(value: RequestSenderIdRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> RequestSenderIdRequest:
     out: RequestSenderIdRequest = {}  # type: ignore[typeddict-item]
-    if "SenderId" in data:
+    if data.get("SenderId") is not None:
         out["sender_id"] = data["SenderId"]
     else:
         raise DeserializationError("RequestSenderIdRequest.sender_id required")
-    if "IsoCountryCode" in data:
+    if data.get("IsoCountryCode") is not None:
         out["iso_country_code"] = data["IsoCountryCode"]
     else:
         raise DeserializationError("RequestSenderIdRequest.iso_country_code required")
-    if "MessageTypes" in data:
+    if data.get("MessageTypes") is not None:
         import capo_pinpoint_sms_voice_v2.types.message_type_list
 
         out["message_types"] = (
@@ -77,9 +77,9 @@ def deserialize_aws_json_1_0(data: dict) -> RequestSenderIdRequest:
                 data["MessageTypes"]
             )
         )
-    if "DeletionProtectionEnabled" in data:
+    if data.get("DeletionProtectionEnabled") is not None:
         out["deletion_protection_enabled"] = data["DeletionProtectionEnabled"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_pinpoint_sms_voice_v2.types.tag_list
 
         out["tags"] = (
@@ -87,6 +87,6 @@ def deserialize_aws_json_1_0(data: dict) -> RequestSenderIdRequest:
                 data["Tags"]
             )
         )
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
     return out

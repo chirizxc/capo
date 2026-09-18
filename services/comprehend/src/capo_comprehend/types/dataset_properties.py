@@ -89,11 +89,11 @@ def serialize_aws_json_1_1(value: DatasetProperties) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DatasetProperties:
     out: DatasetProperties = {}  # type: ignore[typeddict-item]
-    if "DatasetArn" in data:
+    if data.get("DatasetArn") is not None:
         out["dataset_arn"] = data["DatasetArn"]
-    if "DatasetName" in data:
+    if data.get("DatasetName") is not None:
         out["dataset_name"] = data["DatasetName"]
-    if "DatasetType" in data:
+    if data.get("DatasetType") is not None:
         import capo_comprehend.types.dataset_type
 
         out["dataset_type"] = (
@@ -101,27 +101,27 @@ def deserialize_aws_json_1_1(data: dict) -> DatasetProperties:
                 data["DatasetType"]
             )
         )
-    if "DatasetS3Uri" in data:
+    if data.get("DatasetS3Uri") is not None:
         out["dataset_s3_uri"] = data["DatasetS3Uri"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_comprehend.types.dataset_status
 
         out["status"] = capo_comprehend.types.dataset_status.deserialize_aws_json_1_1(
             data["Status"]
         )
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
-    if "NumberOfDocuments" in data:
+    if data.get("NumberOfDocuments") is not None:
         out["number_of_documents"] = data["NumberOfDocuments"]
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_comprehend.types.timestamp
 
         out["creation_time"] = capo_comprehend.types.timestamp.deserialize_aws_json_1_1(
             data["CreationTime"]
         )
-    if "EndTime" in data:
+    if data.get("EndTime") is not None:
         import capo_comprehend.types.timestamp
 
         out["end_time"] = capo_comprehend.types.timestamp.deserialize_aws_json_1_1(

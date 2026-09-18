@@ -38,7 +38,7 @@ def deserialize_aws_json_1_1(
     data: dict,
 ) -> ListDataQualityRulesetEvaluationRunsResponse:
     out: ListDataQualityRulesetEvaluationRunsResponse = {}  # type: ignore[typeddict-item]
-    if "Runs" in data:
+    if data.get("Runs") is not None:
         import capo_glue.types.data_quality_ruleset_evaluation_run_list
 
         out["runs"] = (
@@ -46,6 +46,6 @@ def deserialize_aws_json_1_1(
                 data["Runs"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

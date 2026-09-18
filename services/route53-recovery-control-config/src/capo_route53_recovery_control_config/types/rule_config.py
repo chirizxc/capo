@@ -43,11 +43,11 @@ def serialize_json(value: RuleConfig) -> dict:
 
 def deserialize_json(data: dict) -> RuleConfig:
     out: RuleConfig = {}  # type: ignore[typeddict-item]
-    if "Inverted" in data:
+    if data.get("Inverted") is not None:
         out["inverted"] = data["Inverted"]
-    if "Threshold" in data:
+    if data.get("Threshold") is not None:
         out["threshold"] = data["Threshold"]
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_route53_recovery_control_config.types.rule_type
 
         out["type"] = (

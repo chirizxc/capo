@@ -67,15 +67,15 @@ def serialize_json(value: UpdatePluginRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdatePluginRequest:
     out: UpdatePluginRequest = {}  # type: ignore[typeddict-item]
-    if "displayName" in data:
+    if data.get("displayName") is not None:
         out["display_name"] = data["displayName"]
-    if "state" in data:
+    if data.get("state") is not None:
         import capo_qbusiness.types.plugin_state
 
         out["state"] = capo_qbusiness.types.plugin_state.deserialize_json(data["state"])
-    if "serverUrl" in data:
+    if data.get("serverUrl") is not None:
         out["server_url"] = data["serverUrl"]
-    if "customPluginConfiguration" in data:
+    if data.get("customPluginConfiguration") is not None:
         import capo_qbusiness.types.custom_plugin_configuration
 
         out["custom_plugin_configuration"] = (
@@ -83,7 +83,7 @@ def deserialize_json(data: dict) -> UpdatePluginRequest:
                 data["customPluginConfiguration"]
             )
         )
-    if "authConfiguration" in data:
+    if data.get("authConfiguration") is not None:
         import capo_qbusiness.types.plugin_auth_configuration
 
         out["auth_configuration"] = (

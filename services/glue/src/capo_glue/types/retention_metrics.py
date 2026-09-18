@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: RetentionMetrics) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RetentionMetrics:
     out: RetentionMetrics = {}  # type: ignore[typeddict-item]
-    if "IcebergMetrics" in data:
+    if data.get("IcebergMetrics") is not None:
         import capo_glue.types.iceberg_retention_metrics
 
         out["iceberg_metrics"] = (

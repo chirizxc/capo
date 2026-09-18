@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: DescribeWorkspacesConnectionStatusResult) -> d
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeWorkspacesConnectionStatusResult:
     out: DescribeWorkspacesConnectionStatusResult = {}  # type: ignore[typeddict-item]
-    if "WorkspacesConnectionStatus" in data:
+    if data.get("WorkspacesConnectionStatus") is not None:
         import capo_workspaces.types.workspace_connection_status_list
 
         out["workspaces_connection_status"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeWorkspacesConnectionStatusRe
                 data["WorkspacesConnectionStatus"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

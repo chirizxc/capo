@@ -43,12 +43,12 @@ def serialize_json(value: DeleteTemplateAliasResponse) -> dict:
 
 def deserialize_json(data: dict) -> DeleteTemplateAliasResponse:
     out: DeleteTemplateAliasResponse = {}  # type: ignore[typeddict-item]
-    if "TemplateId" in data:
+    if data.get("TemplateId") is not None:
         out["template_id"] = data["TemplateId"]
-    if "AliasName" in data:
+    if data.get("AliasName") is not None:
         out["alias_name"] = data["AliasName"]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "RequestId" in data:
+    if data.get("RequestId") is not None:
         out["request_id"] = data["RequestId"]
     return out

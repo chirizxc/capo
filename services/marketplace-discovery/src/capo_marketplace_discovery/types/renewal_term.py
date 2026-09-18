@@ -32,11 +32,11 @@ def serialize_json(value: RenewalTerm) -> dict:
 
 def deserialize_json(data: dict) -> RenewalTerm:
     out: RenewalTerm = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("RenewalTerm.id required")
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_marketplace_discovery.types.term_type
 
         out["type"] = capo_marketplace_discovery.types.term_type.deserialize_json(

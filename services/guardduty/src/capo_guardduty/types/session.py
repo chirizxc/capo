@@ -45,20 +45,20 @@ def serialize_json(value: Session) -> dict:
 
 def deserialize_json(data: dict) -> Session:
     out: Session = {}  # type: ignore[typeddict-item]
-    if "uid" in data:
+    if data.get("uid") is not None:
         out["uid"] = data["uid"]
-    if "mfaStatus" in data:
+    if data.get("mfaStatus") is not None:
         import capo_guardduty.types.mfa_status
 
         out["mfa_status"] = capo_guardduty.types.mfa_status.deserialize_json(
             data["mfaStatus"]
         )
-    if "createdTime" in data:
+    if data.get("createdTime") is not None:
         import capo_guardduty.types.timestamp
 
         out["created_time"] = capo_guardduty.types.timestamp.deserialize_json(
             data["createdTime"]
         )
-    if "issuer" in data:
+    if data.get("issuer") is not None:
         out["issuer"] = data["issuer"]
     return out

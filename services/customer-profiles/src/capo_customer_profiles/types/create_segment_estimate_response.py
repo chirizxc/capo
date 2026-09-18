@@ -31,8 +31,8 @@ def serialize_json(value: CreateSegmentEstimateResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateSegmentEstimateResponse:
     out: CreateSegmentEstimateResponse = {}  # type: ignore[typeddict-item]
-    if "DomainName" in data:
+    if data.get("DomainName") is not None:
         out["domain_name"] = data["DomainName"]
-    if "EstimateId" in data:
+    if data.get("EstimateId") is not None:
         out["estimate_id"] = data["EstimateId"]
     return out

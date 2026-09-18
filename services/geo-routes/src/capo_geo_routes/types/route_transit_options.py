@@ -73,7 +73,7 @@ def serialize_json(value: RouteTransitOptions) -> dict:
 
 def deserialize_json(data: dict) -> RouteTransitOptions:
     out: RouteTransitOptions = {}  # type: ignore[typeddict-item]
-    if "AccessibilityAttributes" in data:
+    if data.get("AccessibilityAttributes") is not None:
         import capo_geo_routes.types.route_accessibility_attribute_list
 
         out["accessibility_attributes"] = (
@@ -81,7 +81,7 @@ def deserialize_json(data: dict) -> RouteTransitOptions:
                 data["AccessibilityAttributes"]
             )
         )
-    if "AllowedModes" in data:
+    if data.get("AllowedModes") is not None:
         import capo_geo_routes.types.route_transit_mode_list
 
         out["allowed_modes"] = (
@@ -89,7 +89,7 @@ def deserialize_json(data: dict) -> RouteTransitOptions:
                 data["AllowedModes"]
             )
         )
-    if "ExcludedModes" in data:
+    if data.get("ExcludedModes") is not None:
         import capo_geo_routes.types.route_transit_mode_list
 
         out["excluded_modes"] = (
@@ -97,9 +97,9 @@ def deserialize_json(data: dict) -> RouteTransitOptions:
                 data["ExcludedModes"]
             )
         )
-    if "MaxTransfers" in data:
+    if data.get("MaxTransfers") is not None:
         out["max_transfers"] = data["MaxTransfers"]
-    if "Pedestrian" in data:
+    if data.get("Pedestrian") is not None:
         import capo_geo_routes.types.route_transit_pedestrian_options
 
         out["pedestrian"] = (

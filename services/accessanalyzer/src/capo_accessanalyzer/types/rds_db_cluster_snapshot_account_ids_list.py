@@ -16,4 +16,4 @@ def serialize_json(value: RdsDbClusterSnapshotAccountIdsList) -> list:
 
 
 def deserialize_json(data: list) -> RdsDbClusterSnapshotAccountIdsList:
-    return list(data)
+    return [item for item in data if item is not None]

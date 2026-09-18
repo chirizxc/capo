@@ -37,15 +37,20 @@ class InsufficientS3BucketPolicyFault(ServiceError):
 
     code: str | None = "InsufficientS3BucketPolicyFault"
 
-    def __init__(self, data: InsufficientS3BucketPolicyFault_):
+    def __init__(
+        self, data: InsufficientS3BucketPolicyFault_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="InsufficientS3BucketPolicyFault",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_query(cls, el: Element) -> "InsufficientS3BucketPolicyFault":
-        return cls(deserialize_query(el))
+    def from_query(
+        cls, el: Element, message: str | None = None
+    ) -> "InsufficientS3BucketPolicyFault":
+        return cls(deserialize_query(el), message)

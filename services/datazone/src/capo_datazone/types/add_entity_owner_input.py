@@ -39,7 +39,7 @@ def serialize_json(value: AddEntityOwnerInput) -> dict:
 
 def deserialize_json(data: dict) -> AddEntityOwnerInput:
     out: AddEntityOwnerInput = {}  # type: ignore[typeddict-item]
-    if "owner" in data:
+    if data.get("owner") is not None:
         import capo_datazone.types.owner_properties
 
         out["owner"] = capo_datazone.types.owner_properties.deserialize_json(
@@ -47,6 +47,6 @@ def deserialize_json(data: dict) -> AddEntityOwnerInput:
         )
     else:
         raise DeserializationError("AddEntityOwnerInput.owner required")
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     return out

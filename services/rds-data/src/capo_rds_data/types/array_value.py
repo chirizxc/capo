@@ -90,7 +90,7 @@ def serialize_json(value: ArrayValue) -> dict:
 
 
 def deserialize_json(data: dict) -> ArrayValue:
-    if "booleanValues" in data:
+    if data.get("booleanValues") is not None:
         import capo_rds_data.types.boolean_array
 
         return {
@@ -98,7 +98,7 @@ def deserialize_json(data: dict) -> ArrayValue:
                 data["booleanValues"]
             )
         }
-    elif "longValues" in data:
+    elif data.get("longValues") is not None:
         import capo_rds_data.types.long_array
 
         return {
@@ -106,7 +106,7 @@ def deserialize_json(data: dict) -> ArrayValue:
                 data["longValues"]
             )
         }
-    elif "doubleValues" in data:
+    elif data.get("doubleValues") is not None:
         import capo_rds_data.types.double_array
 
         return {
@@ -114,7 +114,7 @@ def deserialize_json(data: dict) -> ArrayValue:
                 data["doubleValues"]
             )
         }
-    elif "stringValues" in data:
+    elif data.get("stringValues") is not None:
         import capo_rds_data.types.string_array
 
         return {
@@ -122,7 +122,7 @@ def deserialize_json(data: dict) -> ArrayValue:
                 data["stringValues"]
             )
         }
-    elif "arrayValues" in data:
+    elif data.get("arrayValues") is not None:
         import capo_rds_data.types.array_of_array
 
         return {

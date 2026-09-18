@@ -35,9 +35,9 @@ def serialize_json(value: LoRaWANSendDataToDevice) -> dict:
 
 def deserialize_json(data: dict) -> LoRaWANSendDataToDevice:
     out: LoRaWANSendDataToDevice = {}  # type: ignore[typeddict-item]
-    if "FPort" in data:
+    if data.get("FPort") is not None:
         out["f_port"] = data["FPort"]
-    if "ParticipatingGateways" in data:
+    if data.get("ParticipatingGateways") is not None:
         import capo_iot_wireless.types.participating_gateways
 
         out["participating_gateways"] = (

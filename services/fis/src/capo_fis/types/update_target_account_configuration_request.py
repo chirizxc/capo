@@ -36,8 +36,8 @@ def serialize_json(value: UpdateTargetAccountConfigurationRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateTargetAccountConfigurationRequest:
     out: UpdateTargetAccountConfigurationRequest = {}  # type: ignore[typeddict-item]
-    if "roleArn" in data:
+    if data.get("roleArn") is not None:
         out["role_arn"] = data["roleArn"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
     return out

@@ -27,8 +27,8 @@ def serialize_json(value: WaitTime) -> dict:
 
 def deserialize_json(data: dict) -> WaitTime:
     out: WaitTime = {}  # type: ignore[typeddict-item]
-    if "WaitFor" in data:
+    if data.get("WaitFor") is not None:
         out["wait_for"] = data["WaitFor"]
-    if "WaitUntil" in data:
+    if data.get("WaitUntil") is not None:
         out["wait_until"] = data["WaitUntil"]
     return out

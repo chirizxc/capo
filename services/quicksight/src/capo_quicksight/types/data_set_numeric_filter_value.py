@@ -17,12 +17,20 @@ class DataSetNumericFilterValue(TypedDict, closed=True):
 def serialize_json(value: DataSetNumericFilterValue) -> dict:
     out: dict = {}
     if "static_value" in value:
-        out["StaticValue"] = value["static_value"]
+        out["StaticValue"] = (
+            "NaN"
+            if value["static_value"] != value["static_value"]
+            else "Infinity"
+            if value["static_value"] == float("inf")
+            else "-Infinity"
+            if value["static_value"] == float("-inf")
+            else value["static_value"]
+        )
     return out
 
 
 def deserialize_json(data: dict) -> DataSetNumericFilterValue:
     out: DataSetNumericFilterValue = {}  # type: ignore[typeddict-item]
-    if "StaticValue" in data:
-        out["static_value"] = data["StaticValue"]
+    if data.get("StaticValue") is not None:
+        out["static_value"] = float(data["StaticValue"])
     return out

@@ -28,11 +28,11 @@ def serialize_json(value: EventRuleStatusSummary) -> dict:
 
 def deserialize_json(data: dict) -> EventRuleStatusSummary:
     out: EventRuleStatusSummary = {}  # type: ignore[typeddict-item]
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
     else:
         raise DeserializationError("EventRuleStatusSummary.status required")
-    if "reason" in data:
+    if data.get("reason") is not None:
         out["reason"] = data["reason"]
     else:
         raise DeserializationError("EventRuleStatusSummary.reason required")

@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: StreamProcessorNotificationChannel) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> StreamProcessorNotificationChannel:
     out: StreamProcessorNotificationChannel = {}  # type: ignore[typeddict-item]
-    if "SNSTopicArn" in data:
+    if data.get("SNSTopicArn") is not None:
         out["sns_topic_arn"] = data["SNSTopicArn"]
     else:
         raise DeserializationError(

@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: DeleteCostCategoryDefinitionRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteCostCategoryDefinitionRequest:
     out: DeleteCostCategoryDefinitionRequest = {}  # type: ignore[typeddict-item]
-    if "CostCategoryArn" in data:
+    if data.get("CostCategoryArn") is not None:
         out["cost_category_arn"] = data["CostCategoryArn"]
     else:
         raise DeserializationError(

@@ -32,7 +32,7 @@ def serialize_json(value: NegativeValueConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> NegativeValueConfiguration:
     out: NegativeValueConfiguration = {}  # type: ignore[typeddict-item]
-    if "DisplayMode" in data:
+    if data.get("DisplayMode") is not None:
         import capo_quicksight.types.negative_value_display_mode
 
         out["display_mode"] = (

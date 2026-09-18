@@ -67,13 +67,13 @@ def serialize_aws_json_1_0(value: LicenseRecommendationOption) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> LicenseRecommendationOption:
     out: LicenseRecommendationOption = {}  # type: ignore[typeddict-item]
-    if "rank" in data:
+    if data.get("rank") is not None:
         out["rank"] = data["rank"]
     else:
         out["rank"] = 0
-    if "operatingSystem" in data:
+    if data.get("operatingSystem") is not None:
         out["operating_system"] = data["operatingSystem"]
-    if "licenseEdition" in data:
+    if data.get("licenseEdition") is not None:
         import capo_compute_optimizer.types.license_edition
 
         out["license_edition"] = (
@@ -81,7 +81,7 @@ def deserialize_aws_json_1_0(data: dict) -> LicenseRecommendationOption:
                 data["licenseEdition"]
             )
         )
-    if "licenseModel" in data:
+    if data.get("licenseModel") is not None:
         import capo_compute_optimizer.types.license_model
 
         out["license_model"] = (
@@ -89,7 +89,7 @@ def deserialize_aws_json_1_0(data: dict) -> LicenseRecommendationOption:
                 data["licenseModel"]
             )
         )
-    if "savingsOpportunity" in data:
+    if data.get("savingsOpportunity") is not None:
         import capo_compute_optimizer.types.savings_opportunity
 
         out["savings_opportunity"] = (

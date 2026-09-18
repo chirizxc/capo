@@ -39,10 +39,10 @@ def serialize_json(value: CreateCoreNetworkPrefixListAssociationResponse) -> dic
 
 def deserialize_json(data: dict) -> CreateCoreNetworkPrefixListAssociationResponse:
     out: CreateCoreNetworkPrefixListAssociationResponse = {}  # type: ignore[typeddict-item]
-    if "CoreNetworkId" in data:
+    if data.get("CoreNetworkId") is not None:
         out["core_network_id"] = data["CoreNetworkId"]
-    if "PrefixListArn" in data:
+    if data.get("PrefixListArn") is not None:
         out["prefix_list_arn"] = data["PrefixListArn"]
-    if "PrefixListAlias" in data:
+    if data.get("PrefixListAlias") is not None:
         out["prefix_list_alias"] = data["PrefixListAlias"]
     return out

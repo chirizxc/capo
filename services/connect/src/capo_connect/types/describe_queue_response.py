@@ -25,7 +25,7 @@ def serialize_json(value: DescribeQueueResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribeQueueResponse:
     out: DescribeQueueResponse = {}  # type: ignore[typeddict-item]
-    if "Queue" in data:
+    if data.get("Queue") is not None:
         import capo_connect.types.queue
 
         out["queue"] = capo_connect.types.queue.deserialize_json(data["Queue"])

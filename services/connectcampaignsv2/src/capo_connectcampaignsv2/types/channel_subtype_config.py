@@ -66,7 +66,7 @@ def serialize_json(value: ChannelSubtypeConfig) -> dict:
 
 def deserialize_json(data: dict) -> ChannelSubtypeConfig:
     out: ChannelSubtypeConfig = {}  # type: ignore[typeddict-item]
-    if "telephony" in data:
+    if data.get("telephony") is not None:
         import capo_connectcampaignsv2.types.telephony_channel_subtype_config
 
         out["telephony"] = (
@@ -74,7 +74,7 @@ def deserialize_json(data: dict) -> ChannelSubtypeConfig:
                 data["telephony"]
             )
         )
-    if "sms" in data:
+    if data.get("sms") is not None:
         import capo_connectcampaignsv2.types.sms_channel_subtype_config
 
         out["sms"] = (
@@ -82,7 +82,7 @@ def deserialize_json(data: dict) -> ChannelSubtypeConfig:
                 data["sms"]
             )
         )
-    if "email" in data:
+    if data.get("email") is not None:
         import capo_connectcampaignsv2.types.email_channel_subtype_config
 
         out["email"] = (
@@ -90,7 +90,7 @@ def deserialize_json(data: dict) -> ChannelSubtypeConfig:
                 data["email"]
             )
         )
-    if "whatsApp" in data:
+    if data.get("whatsApp") is not None:
         import capo_connectcampaignsv2.types.whats_app_channel_subtype_config
 
         out["whats_app"] = (

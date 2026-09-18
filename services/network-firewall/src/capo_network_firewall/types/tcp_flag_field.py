@@ -36,7 +36,7 @@ def serialize_aws_json_1_0(value: TCPFlagField) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> TCPFlagField:
     out: TCPFlagField = {}  # type: ignore[typeddict-item]
-    if "Flags" in data:
+    if data.get("Flags") is not None:
         import capo_network_firewall.types.flags
 
         out["flags"] = capo_network_firewall.types.flags.deserialize_aws_json_1_0(
@@ -44,7 +44,7 @@ def deserialize_aws_json_1_0(data: dict) -> TCPFlagField:
         )
     else:
         raise DeserializationError("TCPFlagField.flags required")
-    if "Masks" in data:
+    if data.get("Masks") is not None:
         import capo_network_firewall.types.flags
 
         out["masks"] = capo_network_firewall.types.flags.deserialize_aws_json_1_0(

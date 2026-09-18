@@ -43,7 +43,7 @@ def serialize_json(value: PropertyValueEntry) -> dict:
 
 def deserialize_json(data: dict) -> PropertyValueEntry:
     out: PropertyValueEntry = {}  # type: ignore[typeddict-item]
-    if "entityPropertyReference" in data:
+    if data.get("entityPropertyReference") is not None:
         import capo_iottwinmaker.types.entity_property_reference
 
         out["entity_property_reference"] = (
@@ -55,7 +55,7 @@ def deserialize_json(data: dict) -> PropertyValueEntry:
         raise DeserializationError(
             "PropertyValueEntry.entity_property_reference required"
         )
-    if "propertyValues" in data:
+    if data.get("propertyValues") is not None:
         import capo_iottwinmaker.types.property_values
 
         out["property_values"] = (

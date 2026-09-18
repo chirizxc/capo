@@ -65,19 +65,19 @@ def serialize_json(value: BatchUpdateRecommendationStatusSuccessfulEntry) -> dic
 
 def deserialize_json(data: dict) -> BatchUpdateRecommendationStatusSuccessfulEntry:
     out: BatchUpdateRecommendationStatusSuccessfulEntry = {}  # type: ignore[typeddict-item]
-    if "entryId" in data:
+    if data.get("entryId") is not None:
         out["entry_id"] = data["entryId"]
     else:
         raise DeserializationError(
             "BatchUpdateRecommendationStatusSuccessfulEntry.entry_id required"
         )
-    if "referenceId" in data:
+    if data.get("referenceId") is not None:
         out["reference_id"] = data["referenceId"]
     else:
         raise DeserializationError(
             "BatchUpdateRecommendationStatusSuccessfulEntry.reference_id required"
         )
-    if "item" in data:
+    if data.get("item") is not None:
         import capo_resiliencehub.types.update_recommendation_status_item
 
         out["item"] = (
@@ -85,15 +85,15 @@ def deserialize_json(data: dict) -> BatchUpdateRecommendationStatusSuccessfulEnt
                 data["item"]
             )
         )
-    if "excluded" in data:
+    if data.get("excluded") is not None:
         out["excluded"] = data["excluded"]
     else:
         raise DeserializationError(
             "BatchUpdateRecommendationStatusSuccessfulEntry.excluded required"
         )
-    if "appComponentId" in data:
+    if data.get("appComponentId") is not None:
         out["app_component_id"] = data["appComponentId"]
-    if "excludeReason" in data:
+    if data.get("excludeReason") is not None:
         import capo_resiliencehub.types.exclude_recommendation_reason
 
         out["exclude_reason"] = (

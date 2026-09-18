@@ -38,7 +38,7 @@ def serialize_aws_json_1_1(value: XssMatchStatement) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> XssMatchStatement:
     out: XssMatchStatement = {}  # type: ignore[typeddict-item]
-    if "FieldToMatch" in data:
+    if data.get("FieldToMatch") is not None:
         import capo_wafv2.types.field_to_match
 
         out["field_to_match"] = (
@@ -48,7 +48,7 @@ def deserialize_aws_json_1_1(data: dict) -> XssMatchStatement:
         )
     else:
         raise DeserializationError("XssMatchStatement.field_to_match required")
-    if "TextTransformations" in data:
+    if data.get("TextTransformations") is not None:
         import capo_wafv2.types.text_transformations
 
         out["text_transformations"] = (

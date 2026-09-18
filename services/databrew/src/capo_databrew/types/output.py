@@ -79,7 +79,7 @@ def serialize_json(value: Output) -> dict:
 
 def deserialize_json(data: dict) -> Output:
     out: Output = {}  # type: ignore[typeddict-item]
-    if "CompressionFormat" in data:
+    if data.get("CompressionFormat") is not None:
         import capo_databrew.types.compression_format
 
         out["compression_format"] = (
@@ -87,13 +87,13 @@ def deserialize_json(data: dict) -> Output:
                 data["CompressionFormat"]
             )
         )
-    if "Format" in data:
+    if data.get("Format") is not None:
         import capo_databrew.types.output_format
 
         out["format"] = capo_databrew.types.output_format.deserialize_json(
             data["Format"]
         )
-    if "PartitionColumns" in data:
+    if data.get("PartitionColumns") is not None:
         import capo_databrew.types.column_name_list
 
         out["partition_columns"] = (
@@ -101,7 +101,7 @@ def deserialize_json(data: dict) -> Output:
                 data["PartitionColumns"]
             )
         )
-    if "Location" in data:
+    if data.get("Location") is not None:
         import capo_databrew.types.s3_location
 
         out["location"] = capo_databrew.types.s3_location.deserialize_json(
@@ -109,11 +109,11 @@ def deserialize_json(data: dict) -> Output:
         )
     else:
         raise DeserializationError("Output.location required")
-    if "Overwrite" in data:
+    if data.get("Overwrite") is not None:
         out["overwrite"] = data["Overwrite"]
     else:
         out["overwrite"] = False
-    if "FormatOptions" in data:
+    if data.get("FormatOptions") is not None:
         import capo_databrew.types.output_format_options
 
         out["format_options"] = (
@@ -121,6 +121,6 @@ def deserialize_json(data: dict) -> Output:
                 data["FormatOptions"]
             )
         )
-    if "MaxOutputFiles" in data:
+    if data.get("MaxOutputFiles") is not None:
         out["max_output_files"] = data["MaxOutputFiles"]
     return out

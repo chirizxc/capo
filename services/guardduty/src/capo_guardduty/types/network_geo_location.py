@@ -28,20 +28,36 @@ def serialize_json(value: NetworkGeoLocation) -> dict:
     if "country" in value:
         out["country"] = value["country"]
     if "latitude" in value:
-        out["lat"] = value["latitude"]
+        out["lat"] = (
+            "NaN"
+            if value["latitude"] != value["latitude"]
+            else "Infinity"
+            if value["latitude"] == float("inf")
+            else "-Infinity"
+            if value["latitude"] == float("-inf")
+            else value["latitude"]
+        )
     if "longitude" in value:
-        out["lon"] = value["longitude"]
+        out["lon"] = (
+            "NaN"
+            if value["longitude"] != value["longitude"]
+            else "Infinity"
+            if value["longitude"] == float("inf")
+            else "-Infinity"
+            if value["longitude"] == float("-inf")
+            else value["longitude"]
+        )
     return out
 
 
 def deserialize_json(data: dict) -> NetworkGeoLocation:
     out: NetworkGeoLocation = {}  # type: ignore[typeddict-item]
-    if "city" in data:
+    if data.get("city") is not None:
         out["city"] = data["city"]
-    if "country" in data:
+    if data.get("country") is not None:
         out["country"] = data["country"]
-    if "lat" in data:
-        out["latitude"] = data["lat"]
-    if "lon" in data:
-        out["longitude"] = data["lon"]
+    if data.get("lat") is not None:
+        out["latitude"] = float(data["lat"])
+    if data.get("lon") is not None:
+        out["longitude"] = float(data["lon"])
     return out

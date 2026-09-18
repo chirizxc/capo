@@ -59,13 +59,13 @@ def serialize_json(value: BatchCreateCustomVocabularyItemResponse) -> dict:
 
 def deserialize_json(data: dict) -> BatchCreateCustomVocabularyItemResponse:
     out: BatchCreateCustomVocabularyItemResponse = {}  # type: ignore[typeddict-item]
-    if "botId" in data:
+    if data.get("botId") is not None:
         out["bot_id"] = data["botId"]
-    if "botVersion" in data:
+    if data.get("botVersion") is not None:
         out["bot_version"] = data["botVersion"]
-    if "localeId" in data:
+    if data.get("localeId") is not None:
         out["locale_id"] = data["localeId"]
-    if "errors" in data:
+    if data.get("errors") is not None:
         import capo_lex_models_v2.types.failed_custom_vocabulary_items
 
         out["errors"] = (
@@ -73,7 +73,7 @@ def deserialize_json(data: dict) -> BatchCreateCustomVocabularyItemResponse:
                 data["errors"]
             )
         )
-    if "resources" in data:
+    if data.get("resources") is not None:
         import capo_lex_models_v2.types.custom_vocabulary_items
 
         out["resources"] = (

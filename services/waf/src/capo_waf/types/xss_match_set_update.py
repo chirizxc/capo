@@ -34,7 +34,7 @@ def serialize_aws_json_1_1(value: XssMatchSetUpdate) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> XssMatchSetUpdate:
     out: XssMatchSetUpdate = {}  # type: ignore[typeddict-item]
-    if "Action" in data:
+    if data.get("Action") is not None:
         import capo_waf.types.change_action
 
         out["action"] = capo_waf.types.change_action.deserialize_aws_json_1_1(
@@ -42,7 +42,7 @@ def deserialize_aws_json_1_1(data: dict) -> XssMatchSetUpdate:
         )
     else:
         raise DeserializationError("XssMatchSetUpdate.action required")
-    if "XssMatchTuple" in data:
+    if data.get("XssMatchTuple") is not None:
         import capo_waf.types.xss_match_tuple
 
         out["xss_match_tuple"] = (

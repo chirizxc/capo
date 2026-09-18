@@ -41,7 +41,7 @@ def serialize_aws_json_1_1(value: LogConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> LogConfiguration:
     out: LogConfiguration = {}  # type: ignore[typeddict-item]
-    if "LogDestination" in data:
+    if data.get("LogDestination") is not None:
         import capo_gamelift.types.log_destination
 
         out["log_destination"] = (
@@ -49,8 +49,8 @@ def deserialize_aws_json_1_1(data: dict) -> LogConfiguration:
                 data["LogDestination"]
             )
         )
-    if "S3BucketName" in data:
+    if data.get("S3BucketName") is not None:
         out["s3_bucket_name"] = data["S3BucketName"]
-    if "LogGroupArn" in data:
+    if data.get("LogGroupArn") is not None:
         out["log_group_arn"] = data["LogGroupArn"]
     return out

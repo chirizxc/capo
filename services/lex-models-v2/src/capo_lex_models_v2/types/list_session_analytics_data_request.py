@@ -72,7 +72,7 @@ def serialize_json(value: ListSessionAnalyticsDataRequest) -> dict:
 
 def deserialize_json(data: dict) -> ListSessionAnalyticsDataRequest:
     out: ListSessionAnalyticsDataRequest = {}  # type: ignore[typeddict-item]
-    if "startDateTime" in data:
+    if data.get("startDateTime") is not None:
         import capo_lex_models_v2.types.timestamp
 
         out["start_date_time"] = capo_lex_models_v2.types.timestamp.deserialize_json(
@@ -82,7 +82,7 @@ def deserialize_json(data: dict) -> ListSessionAnalyticsDataRequest:
         raise DeserializationError(
             "ListSessionAnalyticsDataRequest.start_date_time required"
         )
-    if "endDateTime" in data:
+    if data.get("endDateTime") is not None:
         import capo_lex_models_v2.types.timestamp
 
         out["end_date_time"] = capo_lex_models_v2.types.timestamp.deserialize_json(
@@ -92,13 +92,13 @@ def deserialize_json(data: dict) -> ListSessionAnalyticsDataRequest:
         raise DeserializationError(
             "ListSessionAnalyticsDataRequest.end_date_time required"
         )
-    if "sortBy" in data:
+    if data.get("sortBy") is not None:
         import capo_lex_models_v2.types.session_data_sort_by
 
         out["sort_by"] = capo_lex_models_v2.types.session_data_sort_by.deserialize_json(
             data["sortBy"]
         )
-    if "filters" in data:
+    if data.get("filters") is not None:
         import capo_lex_models_v2.types.analytics_session_filters
 
         out["filters"] = (
@@ -106,8 +106,8 @@ def deserialize_json(data: dict) -> ListSessionAnalyticsDataRequest:
                 data["filters"]
             )
         )
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

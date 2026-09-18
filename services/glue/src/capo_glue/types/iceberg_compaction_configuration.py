@@ -38,14 +38,14 @@ def serialize_aws_json_1_1(value: IcebergCompactionConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> IcebergCompactionConfiguration:
     out: IcebergCompactionConfiguration = {}  # type: ignore[typeddict-item]
-    if "strategy" in data:
+    if data.get("strategy") is not None:
         import capo_glue.types.compaction_strategy
 
         out["strategy"] = capo_glue.types.compaction_strategy.deserialize_aws_json_1_1(
             data["strategy"]
         )
-    if "minInputFiles" in data:
+    if data.get("minInputFiles") is not None:
         out["min_input_files"] = data["minInputFiles"]
-    if "deleteFileThreshold" in data:
+    if data.get("deleteFileThreshold") is not None:
         out["delete_file_threshold"] = data["deleteFileThreshold"]
     return out

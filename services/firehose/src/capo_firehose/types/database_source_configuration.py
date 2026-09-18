@@ -111,7 +111,7 @@ def serialize_aws_json_1_1(value: DatabaseSourceConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DatabaseSourceConfiguration:
     out: DatabaseSourceConfiguration = {}  # type: ignore[typeddict-item]
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_firehose.types.database_type
 
         out["type"] = capo_firehose.types.database_type.deserialize_aws_json_1_1(
@@ -119,21 +119,21 @@ def deserialize_aws_json_1_1(data: dict) -> DatabaseSourceConfiguration:
         )
     else:
         raise DeserializationError("DatabaseSourceConfiguration.type required")
-    if "Endpoint" in data:
+    if data.get("Endpoint") is not None:
         out["endpoint"] = data["Endpoint"]
     else:
         raise DeserializationError("DatabaseSourceConfiguration.endpoint required")
-    if "Port" in data:
+    if data.get("Port") is not None:
         out["port"] = data["Port"]
     else:
         raise DeserializationError("DatabaseSourceConfiguration.port required")
-    if "SSLMode" in data:
+    if data.get("SSLMode") is not None:
         import capo_firehose.types.ssl_mode
 
         out["ssl_mode"] = capo_firehose.types.ssl_mode.deserialize_aws_json_1_1(
             data["SSLMode"]
         )
-    if "Databases" in data:
+    if data.get("Databases") is not None:
         import capo_firehose.types.database_list
 
         out["databases"] = capo_firehose.types.database_list.deserialize_aws_json_1_1(
@@ -141,7 +141,7 @@ def deserialize_aws_json_1_1(data: dict) -> DatabaseSourceConfiguration:
         )
     else:
         raise DeserializationError("DatabaseSourceConfiguration.databases required")
-    if "Tables" in data:
+    if data.get("Tables") is not None:
         import capo_firehose.types.database_table_list
 
         out["tables"] = (
@@ -151,7 +151,7 @@ def deserialize_aws_json_1_1(data: dict) -> DatabaseSourceConfiguration:
         )
     else:
         raise DeserializationError("DatabaseSourceConfiguration.tables required")
-    if "Columns" in data:
+    if data.get("Columns") is not None:
         import capo_firehose.types.database_column_list
 
         out["columns"] = (
@@ -159,7 +159,7 @@ def deserialize_aws_json_1_1(data: dict) -> DatabaseSourceConfiguration:
                 data["Columns"]
             )
         )
-    if "SurrogateKeys" in data:
+    if data.get("SurrogateKeys") is not None:
         import capo_firehose.types.database_surrogate_key_list
 
         out["surrogate_keys"] = (
@@ -167,13 +167,13 @@ def deserialize_aws_json_1_1(data: dict) -> DatabaseSourceConfiguration:
                 data["SurrogateKeys"]
             )
         )
-    if "SnapshotWatermarkTable" in data:
+    if data.get("SnapshotWatermarkTable") is not None:
         out["snapshot_watermark_table"] = data["SnapshotWatermarkTable"]
     else:
         raise DeserializationError(
             "DatabaseSourceConfiguration.snapshot_watermark_table required"
         )
-    if "DatabaseSourceAuthenticationConfiguration" in data:
+    if data.get("DatabaseSourceAuthenticationConfiguration") is not None:
         import capo_firehose.types.database_source_authentication_configuration
 
         out["database_source_authentication_configuration"] = (
@@ -185,7 +185,7 @@ def deserialize_aws_json_1_1(data: dict) -> DatabaseSourceConfiguration:
         raise DeserializationError(
             "DatabaseSourceConfiguration.database_source_authentication_configuration required"
         )
-    if "DatabaseSourceVPCConfiguration" in data:
+    if data.get("DatabaseSourceVPCConfiguration") is not None:
         import capo_firehose.types.database_source_vpc_configuration
 
         out["database_source_vpc_configuration"] = (

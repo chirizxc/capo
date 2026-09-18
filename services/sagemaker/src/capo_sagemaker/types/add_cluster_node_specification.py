@@ -58,19 +58,19 @@ def serialize_aws_json_1_1(value: AddClusterNodeSpecification) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AddClusterNodeSpecification:
     out: AddClusterNodeSpecification = {}  # type: ignore[typeddict-item]
-    if "InstanceGroupName" in data:
+    if data.get("InstanceGroupName") is not None:
         out["instance_group_name"] = data["InstanceGroupName"]
     else:
         raise DeserializationError(
             "AddClusterNodeSpecification.instance_group_name required"
         )
-    if "IncrementTargetCountBy" in data:
+    if data.get("IncrementTargetCountBy") is not None:
         out["increment_target_count_by"] = data["IncrementTargetCountBy"]
     else:
         raise DeserializationError(
             "AddClusterNodeSpecification.increment_target_count_by required"
         )
-    if "AvailabilityZones" in data:
+    if data.get("AvailabilityZones") is not None:
         import capo_sagemaker.types.cluster_availability_zones
 
         out["availability_zones"] = (
@@ -78,7 +78,7 @@ def deserialize_aws_json_1_1(data: dict) -> AddClusterNodeSpecification:
                 data["AvailabilityZones"]
             )
         )
-    if "InstanceTypes" in data:
+    if data.get("InstanceTypes") is not None:
         import capo_sagemaker.types.cluster_instance_types
 
         out["instance_types"] = (

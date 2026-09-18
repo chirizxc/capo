@@ -84,37 +84,37 @@ def serialize_json(value: Accessor) -> dict:
 
 def deserialize_json(data: dict) -> Accessor:
     out: Accessor = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_managedblockchain.types.accessor_type
 
         out["type"] = capo_managedblockchain.types.accessor_type.deserialize_json(
             data["Type"]
         )
-    if "BillingToken" in data:
+    if data.get("BillingToken") is not None:
         out["billing_token"] = data["BillingToken"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_managedblockchain.types.accessor_status
 
         out["status"] = capo_managedblockchain.types.accessor_status.deserialize_json(
             data["Status"]
         )
-    if "CreationDate" in data:
+    if data.get("CreationDate") is not None:
         import capo_managedblockchain.types.timestamp
 
         out["creation_date"] = capo_managedblockchain.types.timestamp.deserialize_json(
             data["CreationDate"]
         )
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_managedblockchain.types.output_tag_map
 
         out["tags"] = capo_managedblockchain.types.output_tag_map.deserialize_json(
             data["Tags"]
         )
-    if "NetworkType" in data:
+    if data.get("NetworkType") is not None:
         import capo_managedblockchain.types.accessor_network_type
 
         out["network_type"] = (

@@ -33,9 +33,9 @@ def serialize_aws_json_1_1(value: ListWebAppsResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListWebAppsResponse:
     out: ListWebAppsResponse = {}  # type: ignore[typeddict-item]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "WebApps" in data:
+    if data.get("WebApps") is not None:
         import capo_transfer.types.listed_web_apps
 
         out["web_apps"] = capo_transfer.types.listed_web_apps.deserialize_aws_json_1_1(

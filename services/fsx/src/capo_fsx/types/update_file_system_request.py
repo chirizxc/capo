@@ -109,13 +109,13 @@ def serialize_aws_json_1_1(value: UpdateFileSystemRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateFileSystemRequest:
     out: UpdateFileSystemRequest = {}  # type: ignore[typeddict-item]
-    if "FileSystemId" in data:
+    if data.get("FileSystemId") is not None:
         out["file_system_id"] = data["FileSystemId"]
-    if "ClientRequestToken" in data:
+    if data.get("ClientRequestToken") is not None:
         out["client_request_token"] = data["ClientRequestToken"]
-    if "StorageCapacity" in data:
+    if data.get("StorageCapacity") is not None:
         out["storage_capacity"] = data["StorageCapacity"]
-    if "WindowsConfiguration" in data:
+    if data.get("WindowsConfiguration") is not None:
         import capo_fsx.types.update_file_system_windows_configuration
 
         out["windows_configuration"] = (
@@ -123,7 +123,7 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateFileSystemRequest:
                 data["WindowsConfiguration"]
             )
         )
-    if "LustreConfiguration" in data:
+    if data.get("LustreConfiguration") is not None:
         import capo_fsx.types.update_file_system_lustre_configuration
 
         out["lustre_configuration"] = (
@@ -131,7 +131,7 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateFileSystemRequest:
                 data["LustreConfiguration"]
             )
         )
-    if "OntapConfiguration" in data:
+    if data.get("OntapConfiguration") is not None:
         import capo_fsx.types.update_file_system_ontap_configuration
 
         out["ontap_configuration"] = (
@@ -139,7 +139,7 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateFileSystemRequest:
                 data["OntapConfiguration"]
             )
         )
-    if "OpenZFSConfiguration" in data:
+    if data.get("OpenZFSConfiguration") is not None:
         import capo_fsx.types.update_file_system_open_zfs_configuration
 
         out["open_zfs_configuration"] = (
@@ -147,15 +147,15 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateFileSystemRequest:
                 data["OpenZFSConfiguration"]
             )
         )
-    if "StorageType" in data:
+    if data.get("StorageType") is not None:
         import capo_fsx.types.storage_type
 
         out["storage_type"] = capo_fsx.types.storage_type.deserialize_aws_json_1_1(
             data["StorageType"]
         )
-    if "FileSystemTypeVersion" in data:
+    if data.get("FileSystemTypeVersion") is not None:
         out["file_system_type_version"] = data["FileSystemTypeVersion"]
-    if "NetworkType" in data:
+    if data.get("NetworkType") is not None:
         import capo_fsx.types.network_type
 
         out["network_type"] = capo_fsx.types.network_type.deserialize_aws_json_1_1(

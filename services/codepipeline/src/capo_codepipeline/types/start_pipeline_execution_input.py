@@ -57,11 +57,11 @@ def serialize_aws_json_1_1(value: StartPipelineExecutionInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> StartPipelineExecutionInput:
     out: StartPipelineExecutionInput = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("StartPipelineExecutionInput.name required")
-    if "variables" in data:
+    if data.get("variables") is not None:
         import capo_codepipeline.types.pipeline_variable_list
 
         out["variables"] = (
@@ -69,9 +69,9 @@ def deserialize_aws_json_1_1(data: dict) -> StartPipelineExecutionInput:
                 data["variables"]
             )
         )
-    if "clientRequestToken" in data:
+    if data.get("clientRequestToken") is not None:
         out["client_request_token"] = data["clientRequestToken"]
-    if "sourceRevisions" in data:
+    if data.get("sourceRevisions") is not None:
         import capo_codepipeline.types.source_revision_override_list
 
         out["source_revisions"] = (

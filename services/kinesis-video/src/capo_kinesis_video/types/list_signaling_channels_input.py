@@ -43,11 +43,11 @@ def serialize_json(value: ListSignalingChannelsInput) -> dict:
 
 def deserialize_json(data: dict) -> ListSignalingChannelsInput:
     out: ListSignalingChannelsInput = {}  # type: ignore[typeddict-item]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "ChannelNameCondition" in data:
+    if data.get("ChannelNameCondition") is not None:
         import capo_kinesis_video.types.channel_name_condition
 
         out["channel_name_condition"] = (

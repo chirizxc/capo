@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> AssociatedPermissionList:
 
     out: AssociatedPermissionList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_ram.types.associated_permission.deserialize_json(item))
     return out

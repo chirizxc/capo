@@ -28,7 +28,7 @@ def serialize_aws_json_1_0(value: GetResourcesSummaryOutput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> GetResourcesSummaryOutput:
     out: GetResourcesSummaryOutput = {}  # type: ignore[typeddict-item]
-    if "counts" in data:
+    if data.get("counts") is not None:
         import capo_proton.types.counts_summary
 
         out["counts"] = capo_proton.types.counts_summary.deserialize_aws_json_1_0(

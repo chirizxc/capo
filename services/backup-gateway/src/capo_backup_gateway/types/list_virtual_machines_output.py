@@ -36,7 +36,7 @@ def serialize_aws_json_1_0(value: ListVirtualMachinesOutput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ListVirtualMachinesOutput:
     out: ListVirtualMachinesOutput = {}  # type: ignore[typeddict-item]
-    if "VirtualMachines" in data:
+    if data.get("VirtualMachines") is not None:
         import capo_backup_gateway.types.virtual_machines
 
         out["virtual_machines"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_0(data: dict) -> ListVirtualMachinesOutput:
                 data["VirtualMachines"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

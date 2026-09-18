@@ -26,7 +26,7 @@ def serialize_json(value: GetAdministratorAccountResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetAdministratorAccountResponse:
     out: GetAdministratorAccountResponse = {}  # type: ignore[typeddict-item]
-    if "Administrator" in data:
+    if data.get("Administrator") is not None:
         import capo_securityhub.types.invitation
 
         out["administrator"] = capo_securityhub.types.invitation.deserialize_json(

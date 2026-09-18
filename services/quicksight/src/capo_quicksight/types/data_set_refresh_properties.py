@@ -44,7 +44,7 @@ def serialize_json(value: DataSetRefreshProperties) -> dict:
 
 def deserialize_json(data: dict) -> DataSetRefreshProperties:
     out: DataSetRefreshProperties = {}  # type: ignore[typeddict-item]
-    if "RefreshConfiguration" in data:
+    if data.get("RefreshConfiguration") is not None:
         import capo_quicksight.types.refresh_configuration
 
         out["refresh_configuration"] = (
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> DataSetRefreshProperties:
                 data["RefreshConfiguration"]
             )
         )
-    if "FailureConfiguration" in data:
+    if data.get("FailureConfiguration") is not None:
         import capo_quicksight.types.refresh_failure_configuration
 
         out["failure_configuration"] = (

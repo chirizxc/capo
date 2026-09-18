@@ -44,7 +44,7 @@ def serialize_json(value: VectorIngestionConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> VectorIngestionConfiguration:
     out: VectorIngestionConfiguration = {}  # type: ignore[typeddict-item]
-    if "chunkingConfiguration" in data:
+    if data.get("chunkingConfiguration") is not None:
         import capo_qconnect.types.chunking_configuration
 
         out["chunking_configuration"] = (
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> VectorIngestionConfiguration:
                 data["chunkingConfiguration"]
             )
         )
-    if "parsingConfiguration" in data:
+    if data.get("parsingConfiguration") is not None:
         import capo_qconnect.types.parsing_configuration
 
         out["parsing_configuration"] = (

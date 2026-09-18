@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> LoggingDestinations:
 
     out: LoggingDestinations = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_amp.types.logging_destination.deserialize_json(item))
     return out

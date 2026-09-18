@@ -79,23 +79,23 @@ def serialize_json(value: ChangeSetSummaryListItem) -> dict:
 
 def deserialize_json(data: dict) -> ChangeSetSummaryListItem:
     out: ChangeSetSummaryListItem = {}  # type: ignore[typeddict-item]
-    if "ChangeSetId" in data:
+    if data.get("ChangeSetId") is not None:
         out["change_set_id"] = data["ChangeSetId"]
-    if "ChangeSetArn" in data:
+    if data.get("ChangeSetArn") is not None:
         out["change_set_arn"] = data["ChangeSetArn"]
-    if "ChangeSetName" in data:
+    if data.get("ChangeSetName") is not None:
         out["change_set_name"] = data["ChangeSetName"]
-    if "StartTime" in data:
+    if data.get("StartTime") is not None:
         out["start_time"] = data["StartTime"]
-    if "EndTime" in data:
+    if data.get("EndTime") is not None:
         out["end_time"] = data["EndTime"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_marketplace_catalog.types.change_status
 
         out["status"] = capo_marketplace_catalog.types.change_status.deserialize_json(
             data["Status"]
         )
-    if "EntityIdList" in data:
+    if data.get("EntityIdList") is not None:
         import capo_marketplace_catalog.types.resource_id_list
 
         out["entity_id_list"] = (
@@ -103,7 +103,7 @@ def deserialize_json(data: dict) -> ChangeSetSummaryListItem:
                 data["EntityIdList"]
             )
         )
-    if "FailureCode" in data:
+    if data.get("FailureCode") is not None:
         import capo_marketplace_catalog.types.failure_code
 
         out["failure_code"] = (

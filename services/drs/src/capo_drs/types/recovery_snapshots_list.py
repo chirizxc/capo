@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> RecoverySnapshotsList:
 
     out: RecoverySnapshotsList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_drs.types.recovery_snapshot.deserialize_json(item))
     return out

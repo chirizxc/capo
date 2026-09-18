@@ -74,17 +74,17 @@ def serialize_aws_json_1_1(value: DatasetGroup) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DatasetGroup:
     out: DatasetGroup = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "datasetGroupArn" in data:
+    if data.get("datasetGroupArn") is not None:
         out["dataset_group_arn"] = data["datasetGroupArn"]
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
-    if "roleArn" in data:
+    if data.get("roleArn") is not None:
         out["role_arn"] = data["roleArn"]
-    if "kmsKeyArn" in data:
+    if data.get("kmsKeyArn") is not None:
         out["kms_key_arn"] = data["kmsKeyArn"]
-    if "creationDateTime" in data:
+    if data.get("creationDateTime") is not None:
         import capo_personalize.types.date
 
         out["creation_date_time"] = (
@@ -92,7 +92,7 @@ def deserialize_aws_json_1_1(data: dict) -> DatasetGroup:
                 data["creationDateTime"]
             )
         )
-    if "lastUpdatedDateTime" in data:
+    if data.get("lastUpdatedDateTime") is not None:
         import capo_personalize.types.date
 
         out["last_updated_date_time"] = (
@@ -100,9 +100,9 @@ def deserialize_aws_json_1_1(data: dict) -> DatasetGroup:
                 data["lastUpdatedDateTime"]
             )
         )
-    if "failureReason" in data:
+    if data.get("failureReason") is not None:
         out["failure_reason"] = data["failureReason"]
-    if "domain" in data:
+    if data.get("domain") is not None:
         import capo_personalize.types.domain
 
         out["domain"] = capo_personalize.types.domain.deserialize_aws_json_1_1(

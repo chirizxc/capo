@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: ListCompatibleImagesResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListCompatibleImagesResult:
     out: ListCompatibleImagesResult = {}  # type: ignore[typeddict-item]
-    if "CompatibleImages" in data:
+    if data.get("CompatibleImages") is not None:
         import capo_snowball.types.compatible_image_list
 
         out["compatible_images"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_1(data: dict) -> ListCompatibleImagesResult:
                 data["CompatibleImages"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

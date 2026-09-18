@@ -39,10 +39,10 @@ def deserialize_aws_json_1_1(
     data: dict,
 ) -> BatchDisassociateApprovalRuleTemplateFromRepositoriesError:
     out: BatchDisassociateApprovalRuleTemplateFromRepositoriesError = {}  # type: ignore[typeddict-item]
-    if "repositoryName" in data:
+    if data.get("repositoryName") is not None:
         out["repository_name"] = data["repositoryName"]
-    if "errorCode" in data:
+    if data.get("errorCode") is not None:
         out["error_code"] = data["errorCode"]
-    if "errorMessage" in data:
+    if data.get("errorMessage") is not None:
         out["error_message"] = data["errorMessage"]
     return out

@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> __listOfWorkerConfigurationSummary:
 
     out: __listOfWorkerConfigurationSummary = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_kafkaconnect.types.worker_configuration_summary.deserialize_json(item)
         )

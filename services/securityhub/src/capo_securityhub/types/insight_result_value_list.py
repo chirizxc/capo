@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> InsightResultValueList:
 
     out: InsightResultValueList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_securityhub.types.insight_result_value.deserialize_json(item))
     return out

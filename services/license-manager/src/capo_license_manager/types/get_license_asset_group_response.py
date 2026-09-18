@@ -32,7 +32,7 @@ def serialize_aws_json_1_1(value: GetLicenseAssetGroupResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetLicenseAssetGroupResponse:
     out: GetLicenseAssetGroupResponse = {}  # type: ignore[typeddict-item]
-    if "LicenseAssetGroup" in data:
+    if data.get("LicenseAssetGroup") is not None:
         import capo_license_manager.types.license_asset_group
 
         out["license_asset_group"] = (

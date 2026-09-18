@@ -28,11 +28,11 @@ def serialize_aws_json_1_0(value: DeleteWatchlistRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> DeleteWatchlistRequest:
     out: DeleteWatchlistRequest = {}  # type: ignore[typeddict-item]
-    if "DomainId" in data:
+    if data.get("DomainId") is not None:
         out["domain_id"] = data["DomainId"]
     else:
         raise DeserializationError("DeleteWatchlistRequest.domain_id required")
-    if "WatchlistId" in data:
+    if data.get("WatchlistId") is not None:
         out["watchlist_id"] = data["WatchlistId"]
     else:
         raise DeserializationError("DeleteWatchlistRequest.watchlist_id required")

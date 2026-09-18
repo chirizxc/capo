@@ -54,21 +54,21 @@ def serialize_json(value: DefinitionInformation) -> dict:
 
 def deserialize_json(data: dict) -> DefinitionInformation:
     out: DefinitionInformation = {}  # type: ignore[typeddict-item]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "CreationTimestamp" in data:
+    if data.get("CreationTimestamp") is not None:
         out["creation_timestamp"] = data["CreationTimestamp"]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "LastUpdatedTimestamp" in data:
+    if data.get("LastUpdatedTimestamp") is not None:
         out["last_updated_timestamp"] = data["LastUpdatedTimestamp"]
-    if "LatestVersion" in data:
+    if data.get("LatestVersion") is not None:
         out["latest_version"] = data["LatestVersion"]
-    if "LatestVersionArn" in data:
+    if data.get("LatestVersionArn") is not None:
         out["latest_version_arn"] = data["LatestVersionArn"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_greengrass.types.tags
 
         out["tags"] = capo_greengrass.types.tags.deserialize_json(data["tags"])

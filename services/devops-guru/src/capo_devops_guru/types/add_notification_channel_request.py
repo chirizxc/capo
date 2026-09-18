@@ -30,7 +30,7 @@ def serialize_json(value: AddNotificationChannelRequest) -> dict:
 
 def deserialize_json(data: dict) -> AddNotificationChannelRequest:
     out: AddNotificationChannelRequest = {}  # type: ignore[typeddict-item]
-    if "Config" in data:
+    if data.get("Config") is not None:
         import capo_devops_guru.types.notification_channel_config
 
         out["config"] = (

@@ -141,21 +141,21 @@ def serialize_json(value: GetDataSourceResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetDataSourceResponse:
     out: GetDataSourceResponse = {}  # type: ignore[typeddict-item]
-    if "applicationId" in data:
+    if data.get("applicationId") is not None:
         out["application_id"] = data["applicationId"]
-    if "indexId" in data:
+    if data.get("indexId") is not None:
         out["index_id"] = data["indexId"]
-    if "dataSourceId" in data:
+    if data.get("dataSourceId") is not None:
         out["data_source_id"] = data["dataSourceId"]
-    if "dataSourceArn" in data:
+    if data.get("dataSourceArn") is not None:
         out["data_source_arn"] = data["dataSourceArn"]
-    if "displayName" in data:
+    if data.get("displayName") is not None:
         out["display_name"] = data["displayName"]
-    if "type" in data:
+    if data.get("type") is not None:
         out["type"] = data["type"]
-    if "configuration" in data:
+    if data.get("configuration") is not None:
         out["configuration"] = data["configuration"]
-    if "vpcConfiguration" in data:
+    if data.get("vpcConfiguration") is not None:
         import capo_qbusiness.types.data_source_vpc_configuration
 
         out["vpc_configuration"] = (
@@ -163,35 +163,35 @@ def deserialize_json(data: dict) -> GetDataSourceResponse:
                 data["vpcConfiguration"]
             )
         )
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_qbusiness.types.timestamp
 
         out["created_at"] = capo_qbusiness.types.timestamp.deserialize_json(
             data["createdAt"]
         )
-    if "updatedAt" in data:
+    if data.get("updatedAt") is not None:
         import capo_qbusiness.types.timestamp
 
         out["updated_at"] = capo_qbusiness.types.timestamp.deserialize_json(
             data["updatedAt"]
         )
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_qbusiness.types.data_source_status
 
         out["status"] = capo_qbusiness.types.data_source_status.deserialize_json(
             data["status"]
         )
-    if "syncSchedule" in data:
+    if data.get("syncSchedule") is not None:
         out["sync_schedule"] = data["syncSchedule"]
-    if "roleArn" in data:
+    if data.get("roleArn") is not None:
         out["role_arn"] = data["roleArn"]
-    if "error" in data:
+    if data.get("error") is not None:
         import capo_qbusiness.types.error_detail
 
         out["error"] = capo_qbusiness.types.error_detail.deserialize_json(data["error"])
-    if "documentEnrichmentConfiguration" in data:
+    if data.get("documentEnrichmentConfiguration") is not None:
         import capo_qbusiness.types.document_enrichment_configuration
 
         out["document_enrichment_configuration"] = (
@@ -199,7 +199,7 @@ def deserialize_json(data: dict) -> GetDataSourceResponse:
                 data["documentEnrichmentConfiguration"]
             )
         )
-    if "mediaExtractionConfiguration" in data:
+    if data.get("mediaExtractionConfiguration") is not None:
         import capo_qbusiness.types.media_extraction_configuration
 
         out["media_extraction_configuration"] = (

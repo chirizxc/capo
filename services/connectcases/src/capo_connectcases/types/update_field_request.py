@@ -45,11 +45,11 @@ def serialize_json(value: UpdateFieldRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateFieldRequest:
     out: UpdateFieldRequest = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "attributes" in data:
+    if data.get("attributes") is not None:
         import capo_connectcases.types.field_attributes
 
         out["attributes"] = capo_connectcases.types.field_attributes.deserialize_json(

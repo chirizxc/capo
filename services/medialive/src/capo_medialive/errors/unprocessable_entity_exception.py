@@ -38,9 +38,9 @@ def serialize_json(value: UnprocessableEntityException_) -> dict:
 
 def deserialize_json(data: dict) -> UnprocessableEntityException_:
     out: UnprocessableEntityException_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
-    if "validationErrors" in data:
+    if data.get("validationErrors") is not None:
         import capo_medialive.types.__list_of_validation_error
 
         out["validation_errors"] = (
@@ -56,15 +56,18 @@ class UnprocessableEntityException(ServiceError):
 
     code: str | None = "UnprocessableEntityException"
 
-    def __init__(self, data: UnprocessableEntityException_):
+    def __init__(self, data: UnprocessableEntityException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="UnprocessableEntityException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "UnprocessableEntityException":
-        return cls(deserialize_json(data))
+    def from_json(
+        cls, data: dict, message: str | None = None
+    ) -> "UnprocessableEntityException":
+        return cls(deserialize_json(data), message)

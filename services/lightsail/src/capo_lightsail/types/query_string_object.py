@@ -34,9 +34,9 @@ def serialize_aws_json_1_1(value: QueryStringObject) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> QueryStringObject:
     out: QueryStringObject = {}  # type: ignore[typeddict-item]
-    if "option" in data:
+    if data.get("option") is not None:
         out["option"] = data["option"]
-    if "queryStringsAllowList" in data:
+    if data.get("queryStringsAllowList") is not None:
         import capo_lightsail.types.string_list
 
         out["query_strings_allow_list"] = (

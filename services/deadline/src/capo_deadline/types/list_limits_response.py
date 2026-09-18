@@ -31,7 +31,7 @@ def serialize_json(value: ListLimitsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListLimitsResponse:
     out: ListLimitsResponse = {}  # type: ignore[typeddict-item]
-    if "limits" in data:
+    if data.get("limits") is not None:
         import capo_deadline.types.limit_summaries
 
         out["limits"] = capo_deadline.types.limit_summaries.deserialize_json(
@@ -39,6 +39,6 @@ def deserialize_json(data: dict) -> ListLimitsResponse:
         )
     else:
         raise DeserializationError("ListLimitsResponse.limits required")
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

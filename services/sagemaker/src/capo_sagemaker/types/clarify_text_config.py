@@ -44,7 +44,7 @@ def serialize_aws_json_1_1(value: ClarifyTextConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ClarifyTextConfig:
     out: ClarifyTextConfig = {}  # type: ignore[typeddict-item]
-    if "Language" in data:
+    if data.get("Language") is not None:
         import capo_sagemaker.types.clarify_text_language
 
         out["language"] = (
@@ -52,7 +52,7 @@ def deserialize_aws_json_1_1(data: dict) -> ClarifyTextConfig:
                 data["Language"]
             )
         )
-    if "Granularity" in data:
+    if data.get("Granularity") is not None:
         import capo_sagemaker.types.clarify_text_granularity
 
         out["granularity"] = (

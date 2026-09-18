@@ -77,37 +77,37 @@ def serialize_json(value: CreateKxChangesetResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateKxChangesetResponse:
     out: CreateKxChangesetResponse = {}  # type: ignore[typeddict-item]
-    if "changesetId" in data:
+    if data.get("changesetId") is not None:
         out["changeset_id"] = data["changesetId"]
-    if "databaseName" in data:
+    if data.get("databaseName") is not None:
         out["database_name"] = data["databaseName"]
-    if "environmentId" in data:
+    if data.get("environmentId") is not None:
         out["environment_id"] = data["environmentId"]
-    if "changeRequests" in data:
+    if data.get("changeRequests") is not None:
         import capo_finspace.types.change_requests
 
         out["change_requests"] = capo_finspace.types.change_requests.deserialize_json(
             data["changeRequests"]
         )
-    if "createdTimestamp" in data:
+    if data.get("createdTimestamp") is not None:
         import capo_finspace.types.timestamp
 
         out["created_timestamp"] = capo_finspace.types.timestamp.deserialize_json(
             data["createdTimestamp"]
         )
-    if "lastModifiedTimestamp" in data:
+    if data.get("lastModifiedTimestamp") is not None:
         import capo_finspace.types.timestamp
 
         out["last_modified_timestamp"] = capo_finspace.types.timestamp.deserialize_json(
             data["lastModifiedTimestamp"]
         )
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_finspace.types.changeset_status
 
         out["status"] = capo_finspace.types.changeset_status.deserialize_json(
             data["status"]
         )
-    if "errorInfo" in data:
+    if data.get("errorInfo") is not None:
         import capo_finspace.types.error_info
 
         out["error_info"] = capo_finspace.types.error_info.deserialize_json(

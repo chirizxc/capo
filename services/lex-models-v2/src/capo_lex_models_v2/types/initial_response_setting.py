@@ -63,7 +63,7 @@ def serialize_json(value: InitialResponseSetting) -> dict:
 
 def deserialize_json(data: dict) -> InitialResponseSetting:
     out: InitialResponseSetting = {}  # type: ignore[typeddict-item]
-    if "initialResponse" in data:
+    if data.get("initialResponse") is not None:
         import capo_lex_models_v2.types.response_specification
 
         out["initial_response"] = (
@@ -71,13 +71,13 @@ def deserialize_json(data: dict) -> InitialResponseSetting:
                 data["initialResponse"]
             )
         )
-    if "nextStep" in data:
+    if data.get("nextStep") is not None:
         import capo_lex_models_v2.types.dialog_state
 
         out["next_step"] = capo_lex_models_v2.types.dialog_state.deserialize_json(
             data["nextStep"]
         )
-    if "conditional" in data:
+    if data.get("conditional") is not None:
         import capo_lex_models_v2.types.conditional_specification
 
         out["conditional"] = (
@@ -85,7 +85,7 @@ def deserialize_json(data: dict) -> InitialResponseSetting:
                 data["conditional"]
             )
         )
-    if "codeHook" in data:
+    if data.get("codeHook") is not None:
         import capo_lex_models_v2.types.dialog_code_hook_invocation_setting
 
         out["code_hook"] = (

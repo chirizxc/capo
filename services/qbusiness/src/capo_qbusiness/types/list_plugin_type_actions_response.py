@@ -30,9 +30,9 @@ def serialize_json(value: ListPluginTypeActionsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListPluginTypeActionsResponse:
     out: ListPluginTypeActionsResponse = {}  # type: ignore[typeddict-item]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "items" in data:
+    if data.get("items") is not None:
         import capo_qbusiness.types.actions
 
         out["items"] = capo_qbusiness.types.actions.deserialize_json(data["items"])

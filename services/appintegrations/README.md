@@ -13,9 +13,9 @@ from capo_appintegrations import AsyncAppIntegrationsClient
 
 
 async def main():
-    async with AsyncAppIntegrationsClient() as s3:
+    async with AsyncAppIntegrationsClient() as app_integrations:
         # Example: call the create_application operation
-        response = await s3.create_application()
+        response = await app_integrations.create_application()
         print(response["arn"])
 ```
 
@@ -28,9 +28,9 @@ from capo_appintegrations import AsyncAppIntegrationsClient
 
 
 async def main():
-    async with AsyncAppIntegrationsClient() as s3:
+    async with AsyncAppIntegrationsClient() as app_integrations:
         # Example: paginate over list_application_associations
-        async for item in s3.iter_list_application_associations():
+        async for item in app_integrations.iter_list_application_associations():
             print(item)
 ```
 
@@ -44,9 +44,9 @@ from capo_appintegrations.error import AccessDeniedException
 
 
 async def main():
-    async with AsyncAppIntegrationsClient() as s3:
+    async with AsyncAppIntegrationsClient() as app_integrations:
         try:
-            await s3.create_application()
+            await app_integrations.create_application()
         except AccessDeniedException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -63,13 +63,13 @@ from capo_appintegrations import AsyncAppIntegrationsClient
 
 
 async def main():
-    async with AsyncAppIntegrationsClient() as s3:
+    async with AsyncAppIntegrationsClient() as app_integrations:
         # Default: 3 attempts for every operation
-        response = await s3.create_application()
+        response = await app_integrations.create_application()
 
         # Override per operation
-        response = await s3.create_application(config_overrides={"retry_max_attempts": 5})
+        response = await app_integrations.create_application(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.create_application(config_overrides={"retry_max_attempts": 1})
+        response = await app_integrations.create_application(config_overrides={"retry_max_attempts": 1})
 ```

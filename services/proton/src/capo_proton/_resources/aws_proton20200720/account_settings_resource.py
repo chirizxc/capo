@@ -58,13 +58,14 @@ class AccountSettingsResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_proton.types.get_account_settings_input.GetAccountSettingsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_proton.types.get_account_settings_input.GetAccountSettingsInput = {}
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update(
@@ -114,7 +115,7 @@ class AccountSettingsResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_proton.types.update_account_settings_input.UpdateAccountSettingsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_proton.types.update_account_settings_input.UpdateAccountSettingsInput = {}
         if pipeline_service_role_arn is not None:
             input_["pipeline_service_role_arn"] = pipeline_service_role_arn
         if pipeline_provisioning_repository is not None:
@@ -133,6 +134,7 @@ class AccountSettingsResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -170,13 +172,14 @@ class AsyncAccountSettingsResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_proton.types.get_account_settings_input.GetAccountSettingsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_proton.types.get_account_settings_input.GetAccountSettingsInput = {}
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update(
@@ -227,7 +230,7 @@ class AsyncAccountSettingsResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_proton.types.update_account_settings_input.UpdateAccountSettingsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_proton.types.update_account_settings_input.UpdateAccountSettingsInput = {}
         if pipeline_service_role_arn is not None:
             input_["pipeline_service_role_arn"] = pipeline_service_role_arn
         if pipeline_provisioning_repository is not None:
@@ -246,4 +249,5 @@ class AsyncAccountSettingsResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

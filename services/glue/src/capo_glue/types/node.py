@@ -69,15 +69,15 @@ def serialize_aws_json_1_1(value: Node) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Node:
     out: Node = {}  # type: ignore[typeddict-item]
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_glue.types.node_type
 
         out["type"] = capo_glue.types.node_type.deserialize_aws_json_1_1(data["Type"])
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "UniqueId" in data:
+    if data.get("UniqueId") is not None:
         out["unique_id"] = data["UniqueId"]
-    if "TriggerDetails" in data:
+    if data.get("TriggerDetails") is not None:
         import capo_glue.types.trigger_node_details
 
         out["trigger_details"] = (
@@ -85,13 +85,13 @@ def deserialize_aws_json_1_1(data: dict) -> Node:
                 data["TriggerDetails"]
             )
         )
-    if "JobDetails" in data:
+    if data.get("JobDetails") is not None:
         import capo_glue.types.job_node_details
 
         out["job_details"] = capo_glue.types.job_node_details.deserialize_aws_json_1_1(
             data["JobDetails"]
         )
-    if "CrawlerDetails" in data:
+    if data.get("CrawlerDetails") is not None:
         import capo_glue.types.crawler_node_details
 
         out["crawler_details"] = (

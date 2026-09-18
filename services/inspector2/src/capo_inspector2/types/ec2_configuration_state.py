@@ -40,7 +40,7 @@ def serialize_json(value: Ec2ConfigurationState) -> dict:
 
 def deserialize_json(data: dict) -> Ec2ConfigurationState:
     out: Ec2ConfigurationState = {}  # type: ignore[typeddict-item]
-    if "scanModeState" in data:
+    if data.get("scanModeState") is not None:
         import capo_inspector2.types.ec2_scan_mode_state
 
         out["scan_mode_state"] = (
@@ -48,7 +48,7 @@ def deserialize_json(data: dict) -> Ec2ConfigurationState:
                 data["scanModeState"]
             )
         )
-    if "vmScannerState" in data:
+    if data.get("vmScannerState") is not None:
         import capo_inspector2.types.vm_scanner_state
 
         out["vm_scanner_state"] = (

@@ -58,15 +58,15 @@ def serialize_aws_json_1_0(value: CreateVpcEndpointRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CreateVpcEndpointRequest:
     out: CreateVpcEndpointRequest = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("CreateVpcEndpointRequest.name required")
-    if "vpcId" in data:
+    if data.get("vpcId") is not None:
         out["vpc_id"] = data["vpcId"]
     else:
         raise DeserializationError("CreateVpcEndpointRequest.vpc_id required")
-    if "subnetIds" in data:
+    if data.get("subnetIds") is not None:
         import capo_opensearchserverless.types.subnet_ids
 
         out["subnet_ids"] = (
@@ -76,7 +76,7 @@ def deserialize_aws_json_1_0(data: dict) -> CreateVpcEndpointRequest:
         )
     else:
         raise DeserializationError("CreateVpcEndpointRequest.subnet_ids required")
-    if "securityGroupIds" in data:
+    if data.get("securityGroupIds") is not None:
         import capo_opensearchserverless.types.security_group_ids
 
         out["security_group_ids"] = (
@@ -84,6 +84,6 @@ def deserialize_aws_json_1_0(data: dict) -> CreateVpcEndpointRequest:
                 data["securityGroupIds"]
             )
         )
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     return out

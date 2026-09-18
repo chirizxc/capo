@@ -93,25 +93,25 @@ def serialize_json(value: GetRecommendationsRequest) -> dict:
 
 def deserialize_json(data: dict) -> GetRecommendationsRequest:
     out: GetRecommendationsRequest = {}  # type: ignore[typeddict-item]
-    if "campaignArn" in data:
+    if data.get("campaignArn") is not None:
         out["campaign_arn"] = data["campaignArn"]
-    if "itemId" in data:
+    if data.get("itemId") is not None:
         out["item_id"] = data["itemId"]
-    if "userId" in data:
+    if data.get("userId") is not None:
         out["user_id"] = data["userId"]
-    if "numResults" in data:
+    if data.get("numResults") is not None:
         out["num_results"] = data["numResults"]
     else:
         out["num_results"] = 0
-    if "context" in data:
+    if data.get("context") is not None:
         import capo_personalize_runtime.types.context
 
         out["context"] = capo_personalize_runtime.types.context.deserialize_json(
             data["context"]
         )
-    if "filterArn" in data:
+    if data.get("filterArn") is not None:
         out["filter_arn"] = data["filterArn"]
-    if "filterValues" in data:
+    if data.get("filterValues") is not None:
         import capo_personalize_runtime.types.filter_values
 
         out["filter_values"] = (
@@ -119,9 +119,9 @@ def deserialize_json(data: dict) -> GetRecommendationsRequest:
                 data["filterValues"]
             )
         )
-    if "recommenderArn" in data:
+    if data.get("recommenderArn") is not None:
         out["recommender_arn"] = data["recommenderArn"]
-    if "promotions" in data:
+    if data.get("promotions") is not None:
         import capo_personalize_runtime.types.promotion_list
 
         out["promotions"] = (
@@ -129,7 +129,7 @@ def deserialize_json(data: dict) -> GetRecommendationsRequest:
                 data["promotions"]
             )
         )
-    if "metadataColumns" in data:
+    if data.get("metadataColumns") is not None:
         import capo_personalize_runtime.types.metadata_columns
 
         out["metadata_columns"] = (

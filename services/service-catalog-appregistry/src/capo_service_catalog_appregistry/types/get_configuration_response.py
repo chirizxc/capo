@@ -31,7 +31,7 @@ def serialize_json(value: GetConfigurationResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetConfigurationResponse:
     out: GetConfigurationResponse = {}  # type: ignore[typeddict-item]
-    if "configuration" in data:
+    if data.get("configuration") is not None:
         import capo_service_catalog_appregistry.types.app_registry_configuration
 
         out["configuration"] = (

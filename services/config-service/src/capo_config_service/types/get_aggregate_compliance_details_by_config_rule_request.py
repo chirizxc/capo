@@ -62,31 +62,31 @@ def deserialize_aws_json_1_1(
     data: dict,
 ) -> GetAggregateComplianceDetailsByConfigRuleRequest:
     out: GetAggregateComplianceDetailsByConfigRuleRequest = {}  # type: ignore[typeddict-item]
-    if "ConfigurationAggregatorName" in data:
+    if data.get("ConfigurationAggregatorName") is not None:
         out["configuration_aggregator_name"] = data["ConfigurationAggregatorName"]
     else:
         raise DeserializationError(
             "GetAggregateComplianceDetailsByConfigRuleRequest.configuration_aggregator_name required"
         )
-    if "ConfigRuleName" in data:
+    if data.get("ConfigRuleName") is not None:
         out["config_rule_name"] = data["ConfigRuleName"]
     else:
         raise DeserializationError(
             "GetAggregateComplianceDetailsByConfigRuleRequest.config_rule_name required"
         )
-    if "AccountId" in data:
+    if data.get("AccountId") is not None:
         out["account_id"] = data["AccountId"]
     else:
         raise DeserializationError(
             "GetAggregateComplianceDetailsByConfigRuleRequest.account_id required"
         )
-    if "AwsRegion" in data:
+    if data.get("AwsRegion") is not None:
         out["aws_region"] = data["AwsRegion"]
     else:
         raise DeserializationError(
             "GetAggregateComplianceDetailsByConfigRuleRequest.aws_region required"
         )
-    if "ComplianceType" in data:
+    if data.get("ComplianceType") is not None:
         import capo_config_service.types.compliance_type
 
         out["compliance_type"] = (
@@ -94,10 +94,10 @@ def deserialize_aws_json_1_1(
                 data["ComplianceType"]
             )
         )
-    if "Limit" in data:
+    if data.get("Limit") is not None:
         out["limit"] = data["Limit"]
     else:
         out["limit"] = 0
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

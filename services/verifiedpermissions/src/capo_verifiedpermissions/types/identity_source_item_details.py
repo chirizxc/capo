@@ -56,7 +56,7 @@ def serialize_aws_json_1_0(value: IdentitySourceItemDetails) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> IdentitySourceItemDetails:
     out: IdentitySourceItemDetails = {}  # type: ignore[typeddict-item]
-    if "clientIds" in data:
+    if data.get("clientIds") is not None:
         import capo_verifiedpermissions.types.client_ids
 
         out["client_ids"] = (
@@ -64,11 +64,11 @@ def deserialize_aws_json_1_0(data: dict) -> IdentitySourceItemDetails:
                 data["clientIds"]
             )
         )
-    if "userPoolArn" in data:
+    if data.get("userPoolArn") is not None:
         out["user_pool_arn"] = data["userPoolArn"]
-    if "discoveryUrl" in data:
+    if data.get("discoveryUrl") is not None:
         out["discovery_url"] = data["discoveryUrl"]
-    if "openIdIssuer" in data:
+    if data.get("openIdIssuer") is not None:
         import capo_verifiedpermissions.types.open_id_issuer
 
         out["open_id_issuer"] = (

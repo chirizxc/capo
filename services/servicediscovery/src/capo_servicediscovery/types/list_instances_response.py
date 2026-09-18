@@ -43,9 +43,9 @@ def serialize_aws_json_1_1(value: ListInstancesResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListInstancesResponse:
     out: ListInstancesResponse = {}  # type: ignore[typeddict-item]
-    if "ResourceOwner" in data:
+    if data.get("ResourceOwner") is not None:
         out["resource_owner"] = data["ResourceOwner"]
-    if "Instances" in data:
+    if data.get("Instances") is not None:
         import capo_servicediscovery.types.instance_summary_list
 
         out["instances"] = (
@@ -53,6 +53,6 @@ def deserialize_aws_json_1_1(data: dict) -> ListInstancesResponse:
                 data["Instances"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

@@ -73,27 +73,27 @@ def serialize_json(value: CreateFleetRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateFleetRequest:
     out: CreateFleetRequest = {}  # type: ignore[typeddict-item]
-    if "displayName" in data:
+    if data.get("displayName") is not None:
         out["display_name"] = data["displayName"]
     else:
         raise DeserializationError("CreateFleetRequest.display_name required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
     else:
         out["description"] = ""
-    if "roleArn" in data:
+    if data.get("roleArn") is not None:
         out["role_arn"] = data["roleArn"]
     else:
         raise DeserializationError("CreateFleetRequest.role_arn required")
-    if "minWorkerCount" in data:
+    if data.get("minWorkerCount") is not None:
         out["min_worker_count"] = data["minWorkerCount"]
     else:
         out["min_worker_count"] = 0
-    if "maxWorkerCount" in data:
+    if data.get("maxWorkerCount") is not None:
         out["max_worker_count"] = data["maxWorkerCount"]
     else:
         raise DeserializationError("CreateFleetRequest.max_worker_count required")
-    if "configuration" in data:
+    if data.get("configuration") is not None:
         import capo_deadline.types.fleet_configuration
 
         out["configuration"] = capo_deadline.types.fleet_configuration.deserialize_json(
@@ -101,11 +101,11 @@ def deserialize_json(data: dict) -> CreateFleetRequest:
         )
     else:
         raise DeserializationError("CreateFleetRequest.configuration required")
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_deadline.types.tags
 
         out["tags"] = capo_deadline.types.tags.deserialize_json(data["tags"])
-    if "hostConfiguration" in data:
+    if data.get("hostConfiguration") is not None:
         import capo_deadline.types.host_configuration
 
         out["host_configuration"] = (

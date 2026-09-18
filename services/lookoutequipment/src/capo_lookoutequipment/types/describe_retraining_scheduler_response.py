@@ -97,11 +97,11 @@ def serialize_aws_json_1_0(value: DescribeRetrainingSchedulerResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> DescribeRetrainingSchedulerResponse:
     out: DescribeRetrainingSchedulerResponse = {}  # type: ignore[typeddict-item]
-    if "ModelName" in data:
+    if data.get("ModelName") is not None:
         out["model_name"] = data["ModelName"]
-    if "ModelArn" in data:
+    if data.get("ModelArn") is not None:
         out["model_arn"] = data["ModelArn"]
-    if "RetrainingStartDate" in data:
+    if data.get("RetrainingStartDate") is not None:
         import capo_lookoutequipment.types.timestamp
 
         out["retraining_start_date"] = (
@@ -109,11 +109,11 @@ def deserialize_aws_json_1_0(data: dict) -> DescribeRetrainingSchedulerResponse:
                 data["RetrainingStartDate"]
             )
         )
-    if "RetrainingFrequency" in data:
+    if data.get("RetrainingFrequency") is not None:
         out["retraining_frequency"] = data["RetrainingFrequency"]
-    if "LookbackWindow" in data:
+    if data.get("LookbackWindow") is not None:
         out["lookback_window"] = data["LookbackWindow"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_lookoutequipment.types.retraining_scheduler_status
 
         out["status"] = (
@@ -121,7 +121,7 @@ def deserialize_aws_json_1_0(data: dict) -> DescribeRetrainingSchedulerResponse:
                 data["Status"]
             )
         )
-    if "PromoteMode" in data:
+    if data.get("PromoteMode") is not None:
         import capo_lookoutequipment.types.model_promote_mode
 
         out["promote_mode"] = (
@@ -129,7 +129,7 @@ def deserialize_aws_json_1_0(data: dict) -> DescribeRetrainingSchedulerResponse:
                 data["PromoteMode"]
             )
         )
-    if "CreatedAt" in data:
+    if data.get("CreatedAt") is not None:
         import capo_lookoutequipment.types.timestamp
 
         out["created_at"] = (
@@ -137,7 +137,7 @@ def deserialize_aws_json_1_0(data: dict) -> DescribeRetrainingSchedulerResponse:
                 data["CreatedAt"]
             )
         )
-    if "UpdatedAt" in data:
+    if data.get("UpdatedAt") is not None:
         import capo_lookoutequipment.types.timestamp
 
         out["updated_at"] = (

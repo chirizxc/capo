@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> __listOfAutomatedDiscoveryAccountUpdateError
 
     out: __listOfAutomatedDiscoveryAccountUpdateError = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_macie2.types.automated_discovery_account_update_error.deserialize_json(
                 item

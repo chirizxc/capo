@@ -147,13 +147,13 @@ def serialize_json(value: Finding) -> dict:
 
 def deserialize_json(data: dict) -> Finding:
     out: Finding = {}  # type: ignore[typeddict-item]
-    if "findingId" in data:
+    if data.get("findingId") is not None:
         out["finding_id"] = data["findingId"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "failureCategory" in data:
+    if data.get("failureCategory") is not None:
         import capo_resiliencehubv2.types.failure_category
 
         out["failure_category"] = (
@@ -161,23 +161,23 @@ def deserialize_json(data: dict) -> Finding:
                 data["failureCategory"]
             )
         )
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_resiliencehubv2.types.finding_status
 
         out["status"] = capo_resiliencehubv2.types.finding_status.deserialize_json(
             data["status"]
         )
-    if "reasoning" in data:
+    if data.get("reasoning") is not None:
         out["reasoning"] = data["reasoning"]
-    if "comment" in data:
+    if data.get("comment") is not None:
         out["comment"] = data["comment"]
-    if "severity" in data:
+    if data.get("severity") is not None:
         import capo_resiliencehubv2.types.finding_severity
 
         out["severity"] = capo_resiliencehubv2.types.finding_severity.deserialize_json(
             data["severity"]
         )
-    if "serviceFunctions" in data:
+    if data.get("serviceFunctions") is not None:
         import capo_resiliencehubv2.types.functions_list
 
         out["service_functions"] = (
@@ -185,7 +185,7 @@ def deserialize_json(data: dict) -> Finding:
                 data["serviceFunctions"]
             )
         )
-    if "policyComponent" in data:
+    if data.get("policyComponent") is not None:
         import capo_resiliencehubv2.types.policy_component
 
         out["policy_component"] = (
@@ -193,7 +193,7 @@ def deserialize_json(data: dict) -> Finding:
                 data["policyComponent"]
             )
         )
-    if "infrastructureAndCodeRecommendations" in data:
+    if data.get("infrastructureAndCodeRecommendations") is not None:
         import capo_resiliencehubv2.types.infrastructure_and_code_recommendations_list
 
         out["infrastructure_and_code_recommendations"] = (
@@ -201,7 +201,7 @@ def deserialize_json(data: dict) -> Finding:
                 data["infrastructureAndCodeRecommendations"]
             )
         )
-    if "observabilityRecommendations" in data:
+    if data.get("observabilityRecommendations") is not None:
         import capo_resiliencehubv2.types.observability_recommendations_list
 
         out["observability_recommendations"] = (
@@ -209,7 +209,7 @@ def deserialize_json(data: dict) -> Finding:
                 data["observabilityRecommendations"]
             )
         )
-    if "testingRecommendations" in data:
+    if data.get("testingRecommendations") is not None:
         import capo_resiliencehubv2.types.testing_recommendations_list
 
         out["testing_recommendations"] = (
@@ -217,7 +217,7 @@ def deserialize_json(data: dict) -> Finding:
                 data["testingRecommendations"]
             )
         )
-    if "updatedAt" in data:
+    if data.get("updatedAt") is not None:
         import capo_resiliencehubv2.types._prelude.timestamp
 
         out["updated_at"] = (

@@ -44,11 +44,11 @@ def serialize_json(value: BotRecommendationResults) -> dict:
 
 def deserialize_json(data: dict) -> BotRecommendationResults:
     out: BotRecommendationResults = {}  # type: ignore[typeddict-item]
-    if "botLocaleExportUrl" in data:
+    if data.get("botLocaleExportUrl") is not None:
         out["bot_locale_export_url"] = data["botLocaleExportUrl"]
-    if "associatedTranscriptsUrl" in data:
+    if data.get("associatedTranscriptsUrl") is not None:
         out["associated_transcripts_url"] = data["associatedTranscriptsUrl"]
-    if "statistics" in data:
+    if data.get("statistics") is not None:
         import capo_lex_models_v2.types.bot_recommendation_result_statistics
 
         out["statistics"] = (

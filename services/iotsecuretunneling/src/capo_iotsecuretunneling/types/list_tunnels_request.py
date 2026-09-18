@@ -22,9 +22,21 @@ class ListTunnelsRequest(TypedDict, closed=True):
 # --- awsJson1_1 ser/de ---
 def serialize_aws_json_1_1(value: ListTunnelsRequest) -> dict:
     out: dict = {}
+    if "thing_name" in value:
+        out["thingName"] = value["thing_name"]
+    if "max_results" in value:
+        out["maxResults"] = value["max_results"]
+    if "next_token" in value:
+        out["nextToken"] = value["next_token"]
     return out
 
 
 def deserialize_aws_json_1_1(data: dict) -> ListTunnelsRequest:
     out: ListTunnelsRequest = {}  # type: ignore[typeddict-item]
+    if data.get("thingName") is not None:
+        out["thing_name"] = data["thingName"]
+    if data.get("maxResults") is not None:
+        out["max_results"] = data["maxResults"]
+    if data.get("nextToken") is not None:
+        out["next_token"] = data["nextToken"]
     return out

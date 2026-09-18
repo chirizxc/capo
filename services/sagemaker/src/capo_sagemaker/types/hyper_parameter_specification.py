@@ -64,26 +64,26 @@ def serialize_aws_json_1_1(value: HyperParameterSpecification) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> HyperParameterSpecification:
     out: HyperParameterSpecification = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_sagemaker.types.parameter_type
 
         out["type"] = capo_sagemaker.types.parameter_type.deserialize_aws_json_1_1(
             data["Type"]
         )
-    if "Range" in data:
+    if data.get("Range") is not None:
         import capo_sagemaker.types.parameter_range
 
         out["range"] = capo_sagemaker.types.parameter_range.deserialize_aws_json_1_1(
             data["Range"]
         )
-    if "IsTunable" in data:
+    if data.get("IsTunable") is not None:
         out["is_tunable"] = data["IsTunable"]
-    if "IsRequired" in data:
+    if data.get("IsRequired") is not None:
         out["is_required"] = data["IsRequired"]
-    if "DefaultValue" in data:
+    if data.get("DefaultValue") is not None:
         out["default_value"] = data["DefaultValue"]
     return out

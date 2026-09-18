@@ -27,9 +27,9 @@ def serialize_aws_json_1_1(value: ImportLabelsTaskRunProperties) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ImportLabelsTaskRunProperties:
     out: ImportLabelsTaskRunProperties = {}  # type: ignore[typeddict-item]
-    if "InputS3Path" in data:
+    if data.get("InputS3Path") is not None:
         out["input_s3_path"] = data["InputS3Path"]
-    if "Replace" in data:
+    if data.get("Replace") is not None:
         out["replace"] = data["Replace"]
     else:
         out["replace"] = False

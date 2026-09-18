@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> DateTimeDatasetParameterValueList:
 
     out: DateTimeDatasetParameterValueList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_quicksight.types.date_time_dataset_parameter_default_value.deserialize_json(
                 item

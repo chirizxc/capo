@@ -94,9 +94,9 @@ def serialize_json(value: ScheduleEntry) -> dict:
 
 def deserialize_json(data: dict) -> ScheduleEntry:
     out: ScheduleEntry = {}  # type: ignore[typeddict-item]
-    if "ApproximateDurationSeconds" in data:
+    if data.get("ApproximateDurationSeconds") is not None:
         out["approximate_duration_seconds"] = data["ApproximateDurationSeconds"]
-    if "ApproximateStartTime" in data:
+    if data.get("ApproximateStartTime") is not None:
         import capo_mediatailor.types.__timestamp_unix
 
         out["approximate_start_time"] = (
@@ -104,21 +104,21 @@ def deserialize_json(data: dict) -> ScheduleEntry:
                 data["ApproximateStartTime"]
             )
         )
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
     else:
         raise DeserializationError("ScheduleEntry.arn required")
-    if "ChannelName" in data:
+    if data.get("ChannelName") is not None:
         out["channel_name"] = data["ChannelName"]
     else:
         raise DeserializationError("ScheduleEntry.channel_name required")
-    if "LiveSourceName" in data:
+    if data.get("LiveSourceName") is not None:
         out["live_source_name"] = data["LiveSourceName"]
-    if "ProgramName" in data:
+    if data.get("ProgramName") is not None:
         out["program_name"] = data["ProgramName"]
     else:
         raise DeserializationError("ScheduleEntry.program_name required")
-    if "ScheduleAdBreaks" in data:
+    if data.get("ScheduleAdBreaks") is not None:
         import capo_mediatailor.types.__list_of_schedule_ad_break
 
         out["schedule_ad_breaks"] = (
@@ -126,7 +126,7 @@ def deserialize_json(data: dict) -> ScheduleEntry:
                 data["ScheduleAdBreaks"]
             )
         )
-    if "ScheduleEntryType" in data:
+    if data.get("ScheduleEntryType") is not None:
         import capo_mediatailor.types.schedule_entry_type
 
         out["schedule_entry_type"] = (
@@ -134,13 +134,13 @@ def deserialize_json(data: dict) -> ScheduleEntry:
                 data["ScheduleEntryType"]
             )
         )
-    if "SourceLocationName" in data:
+    if data.get("SourceLocationName") is not None:
         out["source_location_name"] = data["SourceLocationName"]
     else:
         raise DeserializationError("ScheduleEntry.source_location_name required")
-    if "VodSourceName" in data:
+    if data.get("VodSourceName") is not None:
         out["vod_source_name"] = data["VodSourceName"]
-    if "Audiences" in data:
+    if data.get("Audiences") is not None:
         import capo_mediatailor.types.audiences
 
         out["audiences"] = capo_mediatailor.types.audiences.deserialize_json(

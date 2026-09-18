@@ -40,15 +40,15 @@ def serialize_json(value: PutDomainPermissionsPolicyRequest) -> dict:
 
 def deserialize_json(data: dict) -> PutDomainPermissionsPolicyRequest:
     out: PutDomainPermissionsPolicyRequest = {}  # type: ignore[typeddict-item]
-    if "domain" in data:
+    if data.get("domain") is not None:
         out["domain"] = data["domain"]
     else:
         raise DeserializationError("PutDomainPermissionsPolicyRequest.domain required")
-    if "domainOwner" in data:
+    if data.get("domainOwner") is not None:
         out["domain_owner"] = data["domainOwner"]
-    if "policyRevision" in data:
+    if data.get("policyRevision") is not None:
         out["policy_revision"] = data["policyRevision"]
-    if "policyDocument" in data:
+    if data.get("policyDocument") is not None:
         out["policy_document"] = data["policyDocument"]
     else:
         raise DeserializationError(

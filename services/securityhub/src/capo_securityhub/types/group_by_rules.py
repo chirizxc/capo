@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> GroupByRules:
 
     out: GroupByRules = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_securityhub.types.group_by_rule.deserialize_json(item))
     return out

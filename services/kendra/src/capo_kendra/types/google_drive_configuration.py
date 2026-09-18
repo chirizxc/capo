@@ -101,11 +101,11 @@ def serialize_aws_json_1_1(value: GoogleDriveConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GoogleDriveConfiguration:
     out: GoogleDriveConfiguration = {}  # type: ignore[typeddict-item]
-    if "SecretArn" in data:
+    if data.get("SecretArn") is not None:
         out["secret_arn"] = data["SecretArn"]
     else:
         raise DeserializationError("GoogleDriveConfiguration.secret_arn required")
-    if "InclusionPatterns" in data:
+    if data.get("InclusionPatterns") is not None:
         import capo_kendra.types.data_source_inclusions_exclusions_strings
 
         out["inclusion_patterns"] = (
@@ -113,7 +113,7 @@ def deserialize_aws_json_1_1(data: dict) -> GoogleDriveConfiguration:
                 data["InclusionPatterns"]
             )
         )
-    if "ExclusionPatterns" in data:
+    if data.get("ExclusionPatterns") is not None:
         import capo_kendra.types.data_source_inclusions_exclusions_strings
 
         out["exclusion_patterns"] = (
@@ -121,7 +121,7 @@ def deserialize_aws_json_1_1(data: dict) -> GoogleDriveConfiguration:
                 data["ExclusionPatterns"]
             )
         )
-    if "FieldMappings" in data:
+    if data.get("FieldMappings") is not None:
         import capo_kendra.types.data_source_to_index_field_mapping_list
 
         out["field_mappings"] = (
@@ -129,7 +129,7 @@ def deserialize_aws_json_1_1(data: dict) -> GoogleDriveConfiguration:
                 data["FieldMappings"]
             )
         )
-    if "ExcludeMimeTypes" in data:
+    if data.get("ExcludeMimeTypes") is not None:
         import capo_kendra.types.exclude_mime_types_list
 
         out["exclude_mime_types"] = (
@@ -137,7 +137,7 @@ def deserialize_aws_json_1_1(data: dict) -> GoogleDriveConfiguration:
                 data["ExcludeMimeTypes"]
             )
         )
-    if "ExcludeUserAccounts" in data:
+    if data.get("ExcludeUserAccounts") is not None:
         import capo_kendra.types.exclude_user_accounts_list
 
         out["exclude_user_accounts"] = (
@@ -145,7 +145,7 @@ def deserialize_aws_json_1_1(data: dict) -> GoogleDriveConfiguration:
                 data["ExcludeUserAccounts"]
             )
         )
-    if "ExcludeSharedDrives" in data:
+    if data.get("ExcludeSharedDrives") is not None:
         import capo_kendra.types.exclude_shared_drives_list
 
         out["exclude_shared_drives"] = (

@@ -39,12 +39,12 @@ def serialize_aws_json_1_0(value: ListStreamsInput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ListStreamsInput:
     out: ListStreamsInput = {}  # type: ignore[typeddict-item]
-    if "keyspaceName" in data:
+    if data.get("keyspaceName") is not None:
         out["keyspace_name"] = data["keyspaceName"]
-    if "tableName" in data:
+    if data.get("tableName") is not None:
         out["table_name"] = data["tableName"]
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

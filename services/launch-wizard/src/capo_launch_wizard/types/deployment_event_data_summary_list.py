@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> DeploymentEventDataSummaryList:
 
     out: DeploymentEventDataSummaryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_launch_wizard.types.deployment_event_data_summary.deserialize_json(
                 item

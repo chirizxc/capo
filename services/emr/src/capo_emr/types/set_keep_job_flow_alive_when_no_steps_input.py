@@ -32,12 +32,12 @@ def serialize_aws_json_1_1(value: SetKeepJobFlowAliveWhenNoStepsInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SetKeepJobFlowAliveWhenNoStepsInput:
     out: SetKeepJobFlowAliveWhenNoStepsInput = {}  # type: ignore[typeddict-item]
-    if "JobFlowIds" in data:
+    if data.get("JobFlowIds") is not None:
         import capo_emr.types.xml_string_list
 
         out["job_flow_ids"] = capo_emr.types.xml_string_list.deserialize_aws_json_1_1(
             data["JobFlowIds"]
         )
-    if "KeepJobFlowAliveWhenNoSteps" in data:
+    if data.get("KeepJobFlowAliveWhenNoSteps") is not None:
         out["keep_job_flow_alive_when_no_steps"] = data["KeepJobFlowAliveWhenNoSteps"]
     return out

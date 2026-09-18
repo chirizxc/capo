@@ -43,18 +43,18 @@ def serialize_json(value: GetResourcesResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetResourcesResponse:
     out: GetResourcesResponse = {}  # type: ignore[typeddict-item]
-    if "Folders" in data:
+    if data.get("Folders") is not None:
         import capo_workdocs.types.folder_metadata_list
 
         out["folders"] = capo_workdocs.types.folder_metadata_list.deserialize_json(
             data["Folders"]
         )
-    if "Documents" in data:
+    if data.get("Documents") is not None:
         import capo_workdocs.types.document_metadata_list
 
         out["documents"] = capo_workdocs.types.document_metadata_list.deserialize_json(
             data["Documents"]
         )
-    if "Marker" in data:
+    if data.get("Marker") is not None:
         out["marker"] = data["Marker"]
     return out

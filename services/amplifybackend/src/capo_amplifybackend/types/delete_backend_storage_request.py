@@ -36,9 +36,9 @@ def serialize_json(value: DeleteBackendStorageRequest) -> dict:
 
 def deserialize_json(data: dict) -> DeleteBackendStorageRequest:
     out: DeleteBackendStorageRequest = {}  # type: ignore[typeddict-item]
-    if "resourceName" in data:
+    if data.get("resourceName") is not None:
         out["resource_name"] = data["resourceName"]
-    if "serviceName" in data:
+    if data.get("serviceName") is not None:
         import capo_amplifybackend.types.service_name
 
         out["service_name"] = capo_amplifybackend.types.service_name.deserialize_json(

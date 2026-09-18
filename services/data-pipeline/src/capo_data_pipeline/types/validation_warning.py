@@ -36,9 +36,9 @@ def serialize_aws_json_1_1(value: ValidationWarning) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ValidationWarning:
     out: ValidationWarning = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "warnings" in data:
+    if data.get("warnings") is not None:
         import capo_data_pipeline.types.validation_messages
 
         out["warnings"] = (

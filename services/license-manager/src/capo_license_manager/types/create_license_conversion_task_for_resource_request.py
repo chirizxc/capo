@@ -51,13 +51,13 @@ def deserialize_aws_json_1_1(
     data: dict,
 ) -> CreateLicenseConversionTaskForResourceRequest:
     out: CreateLicenseConversionTaskForResourceRequest = {}  # type: ignore[typeddict-item]
-    if "ResourceArn" in data:
+    if data.get("ResourceArn") is not None:
         out["resource_arn"] = data["ResourceArn"]
     else:
         raise DeserializationError(
             "CreateLicenseConversionTaskForResourceRequest.resource_arn required"
         )
-    if "SourceLicenseContext" in data:
+    if data.get("SourceLicenseContext") is not None:
         import capo_license_manager.types.license_conversion_context
 
         out["source_license_context"] = (
@@ -69,7 +69,7 @@ def deserialize_aws_json_1_1(
         raise DeserializationError(
             "CreateLicenseConversionTaskForResourceRequest.source_license_context required"
         )
-    if "DestinationLicenseContext" in data:
+    if data.get("DestinationLicenseContext") is not None:
         import capo_license_manager.types.license_conversion_context
 
         out["destination_license_context"] = (

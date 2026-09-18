@@ -59,15 +59,15 @@ def serialize_json(value: TrafficDistributionGroupSummary) -> dict:
 
 def deserialize_json(data: dict) -> TrafficDistributionGroupSummary:
     out: TrafficDistributionGroupSummary = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "InstanceArn" in data:
+    if data.get("InstanceArn") is not None:
         out["instance_arn"] = data["InstanceArn"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_connect.types.traffic_distribution_group_status
 
         out["status"] = (
@@ -75,7 +75,7 @@ def deserialize_json(data: dict) -> TrafficDistributionGroupSummary:
                 data["Status"]
             )
         )
-    if "IsDefault" in data:
+    if data.get("IsDefault") is not None:
         out["is_default"] = data["IsDefault"]
     else:
         out["is_default"] = False

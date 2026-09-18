@@ -44,16 +44,16 @@ def serialize_json(value: UpdateStreamInput) -> dict:
 
 def deserialize_json(data: dict) -> UpdateStreamInput:
     out: UpdateStreamInput = {}  # type: ignore[typeddict-item]
-    if "StreamName" in data:
+    if data.get("StreamName") is not None:
         out["stream_name"] = data["StreamName"]
-    if "StreamARN" in data:
+    if data.get("StreamARN") is not None:
         out["stream_arn"] = data["StreamARN"]
-    if "CurrentVersion" in data:
+    if data.get("CurrentVersion") is not None:
         out["current_version"] = data["CurrentVersion"]
     else:
         raise DeserializationError("UpdateStreamInput.current_version required")
-    if "DeviceName" in data:
+    if data.get("DeviceName") is not None:
         out["device_name"] = data["DeviceName"]
-    if "MediaType" in data:
+    if data.get("MediaType") is not None:
         out["media_type"] = data["MediaType"]
     return out

@@ -24,7 +24,7 @@ def serialize_json(value: DeleteTargetDomainInput) -> dict:
 
 def deserialize_json(data: dict) -> DeleteTargetDomainInput:
     out: DeleteTargetDomainInput = {}  # type: ignore[typeddict-item]
-    if "targetDomainId" in data:
+    if data.get("targetDomainId") is not None:
         out["target_domain_id"] = data["targetDomainId"]
     else:
         raise DeserializationError("DeleteTargetDomainInput.target_domain_id required")

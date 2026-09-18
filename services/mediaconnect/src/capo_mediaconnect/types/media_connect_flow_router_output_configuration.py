@@ -44,11 +44,11 @@ def serialize_json(value: MediaConnectFlowRouterOutputConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> MediaConnectFlowRouterOutputConfiguration:
     out: MediaConnectFlowRouterOutputConfiguration = {}  # type: ignore[typeddict-item]
-    if "flowArn" in data:
+    if data.get("flowArn") is not None:
         out["flow_arn"] = data["flowArn"]
-    if "flowSourceArn" in data:
+    if data.get("flowSourceArn") is not None:
         out["flow_source_arn"] = data["flowSourceArn"]
-    if "destinationTransitEncryption" in data:
+    if data.get("destinationTransitEncryption") is not None:
         import capo_mediaconnect.types.flow_transit_encryption
 
         out["destination_transit_encryption"] = (

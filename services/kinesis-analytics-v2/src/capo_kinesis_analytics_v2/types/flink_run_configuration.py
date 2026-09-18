@@ -25,6 +25,6 @@ def serialize_aws_json_1_1(value: FlinkRunConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> FlinkRunConfiguration:
     out: FlinkRunConfiguration = {}  # type: ignore[typeddict-item]
-    if "AllowNonRestoredState" in data:
+    if data.get("AllowNonRestoredState") is not None:
         out["allow_non_restored_state"] = data["AllowNonRestoredState"]
     return out

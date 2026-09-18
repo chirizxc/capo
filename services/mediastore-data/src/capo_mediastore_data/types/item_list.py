@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> ItemList:
 
     out: ItemList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_mediastore_data.types.item.deserialize_json(item))
     return out

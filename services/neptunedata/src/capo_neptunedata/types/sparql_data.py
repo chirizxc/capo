@@ -19,7 +19,7 @@ def serialize_json(value: SparqlData) -> dict:
 
 def deserialize_json(data: dict) -> SparqlData:
     out: SparqlData = {}  # type: ignore[typeddict-item]
-    if "stmt" in data:
+    if data.get("stmt") is not None:
         out["stmt"] = data["stmt"]
     else:
         raise DeserializationError("SparqlData.stmt required")

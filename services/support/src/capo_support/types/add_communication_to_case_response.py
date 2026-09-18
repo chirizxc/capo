@@ -22,7 +22,7 @@ def serialize_aws_json_1_1(value: AddCommunicationToCaseResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AddCommunicationToCaseResponse:
     out: AddCommunicationToCaseResponse = {}  # type: ignore[typeddict-item]
-    if "result" in data:
+    if data.get("result") is not None:
         out["result"] = data["result"]
     else:
         out["result"] = False

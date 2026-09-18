@@ -41,16 +41,16 @@ def serialize_aws_json_1_1(value: DeleteFirewallRuleRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteFirewallRuleRequest:
     out: DeleteFirewallRuleRequest = {}  # type: ignore[typeddict-item]
-    if "FirewallRuleGroupId" in data:
+    if data.get("FirewallRuleGroupId") is not None:
         out["firewall_rule_group_id"] = data["FirewallRuleGroupId"]
     else:
         raise DeserializationError(
             "DeleteFirewallRuleRequest.firewall_rule_group_id required"
         )
-    if "FirewallDomainListId" in data:
+    if data.get("FirewallDomainListId") is not None:
         out["firewall_domain_list_id"] = data["FirewallDomainListId"]
-    if "FirewallThreatProtectionId" in data:
+    if data.get("FirewallThreatProtectionId") is not None:
         out["firewall_threat_protection_id"] = data["FirewallThreatProtectionId"]
-    if "Qtype" in data:
+    if data.get("Qtype") is not None:
         out["qtype"] = data["Qtype"]
     return out

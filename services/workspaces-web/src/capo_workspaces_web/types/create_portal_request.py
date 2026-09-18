@@ -79,15 +79,15 @@ def serialize_json(value: CreatePortalRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreatePortalRequest:
     out: CreatePortalRequest = {}  # type: ignore[typeddict-item]
-    if "displayName" in data:
+    if data.get("displayName") is not None:
         out["display_name"] = data["displayName"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_workspaces_web.types.tag_list
 
         out["tags"] = capo_workspaces_web.types.tag_list.deserialize_json(data["tags"])
-    if "customerManagedKey" in data:
+    if data.get("customerManagedKey") is not None:
         out["customer_managed_key"] = data["customerManagedKey"]
-    if "additionalEncryptionContext" in data:
+    if data.get("additionalEncryptionContext") is not None:
         import capo_workspaces_web.types.encryption_context_map
 
         out["additional_encryption_context"] = (
@@ -95,14 +95,14 @@ def deserialize_json(data: dict) -> CreatePortalRequest:
                 data["additionalEncryptionContext"]
             )
         )
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
-    if "authenticationType" in data:
+    if data.get("authenticationType") is not None:
         out["authentication_type"] = data["authenticationType"]
-    if "instanceType" in data:
+    if data.get("instanceType") is not None:
         out["instance_type"] = data["instanceType"]
-    if "maxConcurrentSessions" in data:
+    if data.get("maxConcurrentSessions") is not None:
         out["max_concurrent_sessions"] = data["maxConcurrentSessions"]
-    if "portalCustomDomain" in data:
+    if data.get("portalCustomDomain") is not None:
         out["portal_custom_domain"] = data["portalCustomDomain"]
     return out

@@ -61,26 +61,26 @@ def serialize_json(value: ListExportsRequest) -> dict:
 
 def deserialize_json(data: dict) -> ListExportsRequest:
     out: ListExportsRequest = {}  # type: ignore[typeddict-item]
-    if "botId" in data:
+    if data.get("botId") is not None:
         out["bot_id"] = data["botId"]
-    if "botVersion" in data:
+    if data.get("botVersion") is not None:
         out["bot_version"] = data["botVersion"]
-    if "sortBy" in data:
+    if data.get("sortBy") is not None:
         import capo_lex_models_v2.types.export_sort_by
 
         out["sort_by"] = capo_lex_models_v2.types.export_sort_by.deserialize_json(
             data["sortBy"]
         )
-    if "filters" in data:
+    if data.get("filters") is not None:
         import capo_lex_models_v2.types.export_filters
 
         out["filters"] = capo_lex_models_v2.types.export_filters.deserialize_json(
             data["filters"]
         )
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "localeId" in data:
+    if data.get("localeId") is not None:
         out["locale_id"] = data["localeId"]
     return out

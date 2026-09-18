@@ -38,11 +38,11 @@ def serialize_json(value: BatchUpdateDevicePositionError) -> dict:
 
 def deserialize_json(data: dict) -> BatchUpdateDevicePositionError:
     out: BatchUpdateDevicePositionError = {}  # type: ignore[typeddict-item]
-    if "DeviceId" in data:
+    if data.get("DeviceId") is not None:
         out["device_id"] = data["DeviceId"]
     else:
         raise DeserializationError("BatchUpdateDevicePositionError.device_id required")
-    if "SampleTime" in data:
+    if data.get("SampleTime") is not None:
         import capo_location.types.timestamp
 
         out["sample_time"] = capo_location.types.timestamp.deserialize_json(
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> BatchUpdateDevicePositionError:
         raise DeserializationError(
             "BatchUpdateDevicePositionError.sample_time required"
         )
-    if "Error" in data:
+    if data.get("Error") is not None:
         import capo_location.types.batch_item_error
 
         out["error"] = capo_location.types.batch_item_error.deserialize_json(

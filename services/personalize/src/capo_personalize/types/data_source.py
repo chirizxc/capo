@@ -23,6 +23,6 @@ def serialize_aws_json_1_1(value: DataSource) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DataSource:
     out: DataSource = {}  # type: ignore[typeddict-item]
-    if "dataLocation" in data:
+    if data.get("dataLocation") is not None:
         out["data_location"] = data["dataLocation"]
     return out

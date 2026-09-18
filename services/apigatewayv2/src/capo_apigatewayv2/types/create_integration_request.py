@@ -175,9 +175,9 @@ def serialize_json(value: CreateIntegrationRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateIntegrationRequest:
     out: CreateIntegrationRequest = {}  # type: ignore[typeddict-item]
-    if "connectionId" in data:
+    if data.get("connectionId") is not None:
         out["connection_id"] = data["connectionId"]
-    if "connectionType" in data:
+    if data.get("connectionType") is not None:
         import capo_apigatewayv2.types.connection_type
 
         out["connection_type"] = (
@@ -185,7 +185,7 @@ def deserialize_json(data: dict) -> CreateIntegrationRequest:
                 data["connectionType"]
             )
         )
-    if "contentHandlingStrategy" in data:
+    if data.get("contentHandlingStrategy") is not None:
         import capo_apigatewayv2.types.content_handling_strategy
 
         out["content_handling_strategy"] = (
@@ -193,15 +193,15 @@ def deserialize_json(data: dict) -> CreateIntegrationRequest:
                 data["contentHandlingStrategy"]
             )
         )
-    if "credentialsArn" in data:
+    if data.get("credentialsArn") is not None:
         out["credentials_arn"] = data["credentialsArn"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "integrationMethod" in data:
+    if data.get("integrationMethod") is not None:
         out["integration_method"] = data["integrationMethod"]
-    if "integrationSubtype" in data:
+    if data.get("integrationSubtype") is not None:
         out["integration_subtype"] = data["integrationSubtype"]
-    if "integrationType" in data:
+    if data.get("integrationType") is not None:
         import capo_apigatewayv2.types.integration_type
 
         out["integration_type"] = (
@@ -209,9 +209,9 @@ def deserialize_json(data: dict) -> CreateIntegrationRequest:
                 data["integrationType"]
             )
         )
-    if "integrationUri" in data:
+    if data.get("integrationUri") is not None:
         out["integration_uri"] = data["integrationUri"]
-    if "passthroughBehavior" in data:
+    if data.get("passthroughBehavior") is not None:
         import capo_apigatewayv2.types.passthrough_behavior
 
         out["passthrough_behavior"] = (
@@ -219,9 +219,9 @@ def deserialize_json(data: dict) -> CreateIntegrationRequest:
                 data["passthroughBehavior"]
             )
         )
-    if "payloadFormatVersion" in data:
+    if data.get("payloadFormatVersion") is not None:
         out["payload_format_version"] = data["payloadFormatVersion"]
-    if "requestParameters" in data:
+    if data.get("requestParameters") is not None:
         import capo_apigatewayv2.types.integration_parameters
 
         out["request_parameters"] = (
@@ -229,7 +229,7 @@ def deserialize_json(data: dict) -> CreateIntegrationRequest:
                 data["requestParameters"]
             )
         )
-    if "requestTemplates" in data:
+    if data.get("requestTemplates") is not None:
         import capo_apigatewayv2.types.template_map
 
         out["request_templates"] = (
@@ -237,7 +237,7 @@ def deserialize_json(data: dict) -> CreateIntegrationRequest:
                 data["requestTemplates"]
             )
         )
-    if "responseParameters" in data:
+    if data.get("responseParameters") is not None:
         import capo_apigatewayv2.types.response_parameters
 
         out["response_parameters"] = (
@@ -245,11 +245,11 @@ def deserialize_json(data: dict) -> CreateIntegrationRequest:
                 data["responseParameters"]
             )
         )
-    if "templateSelectionExpression" in data:
+    if data.get("templateSelectionExpression") is not None:
         out["template_selection_expression"] = data["templateSelectionExpression"]
-    if "timeoutInMillis" in data:
+    if data.get("timeoutInMillis") is not None:
         out["timeout_in_millis"] = data["timeoutInMillis"]
-    if "tlsConfig" in data:
+    if data.get("tlsConfig") is not None:
         import capo_apigatewayv2.types.tls_config_input
 
         out["tls_config"] = capo_apigatewayv2.types.tls_config_input.deserialize_json(

@@ -33,7 +33,7 @@ def serialize_json(value: ReverseGeocodeResponse) -> dict:
 
 def deserialize_json(data: dict) -> ReverseGeocodeResponse:
     out: ReverseGeocodeResponse = {}  # type: ignore[typeddict-item]
-    if "ResultItems" in data:
+    if data.get("ResultItems") is not None:
         import capo_geo_places.types.reverse_geocode_result_item_list
 
         out["result_items"] = (

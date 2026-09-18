@@ -77,21 +77,21 @@ def serialize_json(value: Product) -> dict:
 
 def deserialize_json(data: dict) -> Product:
     out: Product = {}  # type: ignore[typeddict-item]
-    if "ProductArn" in data:
+    if data.get("ProductArn") is not None:
         out["product_arn"] = data["ProductArn"]
-    if "ProductName" in data:
+    if data.get("ProductName") is not None:
         out["product_name"] = data["ProductName"]
-    if "CompanyName" in data:
+    if data.get("CompanyName") is not None:
         out["company_name"] = data["CompanyName"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Categories" in data:
+    if data.get("Categories") is not None:
         import capo_securityhub.types.category_list
 
         out["categories"] = capo_securityhub.types.category_list.deserialize_json(
             data["Categories"]
         )
-    if "IntegrationTypes" in data:
+    if data.get("IntegrationTypes") is not None:
         import capo_securityhub.types.integration_type_list
 
         out["integration_types"] = (
@@ -99,11 +99,11 @@ def deserialize_json(data: dict) -> Product:
                 data["IntegrationTypes"]
             )
         )
-    if "MarketplaceUrl" in data:
+    if data.get("MarketplaceUrl") is not None:
         out["marketplace_url"] = data["MarketplaceUrl"]
-    if "ActivationUrl" in data:
+    if data.get("ActivationUrl") is not None:
         out["activation_url"] = data["ActivationUrl"]
-    if "ProductSubscriptionResourcePolicy" in data:
+    if data.get("ProductSubscriptionResourcePolicy") is not None:
         out["product_subscription_resource_policy"] = data[
             "ProductSubscriptionResourcePolicy"
         ]

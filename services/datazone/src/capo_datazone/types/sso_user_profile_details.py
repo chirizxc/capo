@@ -33,10 +33,10 @@ def serialize_json(value: SsoUserProfileDetails) -> dict:
 
 def deserialize_json(data: dict) -> SsoUserProfileDetails:
     out: SsoUserProfileDetails = {}  # type: ignore[typeddict-item]
-    if "username" in data:
+    if data.get("username") is not None:
         out["username"] = data["username"]
-    if "firstName" in data:
+    if data.get("firstName") is not None:
         out["first_name"] = data["firstName"]
-    if "lastName" in data:
+    if data.get("lastName") is not None:
         out["last_name"] = data["lastName"]
     return out

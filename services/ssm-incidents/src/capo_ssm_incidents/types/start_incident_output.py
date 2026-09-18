@@ -24,7 +24,7 @@ def serialize_json(value: StartIncidentOutput) -> dict:
 
 def deserialize_json(data: dict) -> StartIncidentOutput:
     out: StartIncidentOutput = {}  # type: ignore[typeddict-item]
-    if "incidentRecordArn" in data:
+    if data.get("incidentRecordArn") is not None:
         out["incident_record_arn"] = data["incidentRecordArn"]
     else:
         raise DeserializationError("StartIncidentOutput.incident_record_arn required")

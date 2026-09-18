@@ -61,23 +61,41 @@ def serialize_aws_json_1_1(value: DescribeCodeCoveragesInput) -> dict:
             )
         )
     if "min_line_coverage_percentage" in value:
-        out["minLineCoveragePercentage"] = value["min_line_coverage_percentage"]
+        out["minLineCoveragePercentage"] = (
+            "NaN"
+            if value["min_line_coverage_percentage"]
+            != value["min_line_coverage_percentage"]
+            else "Infinity"
+            if value["min_line_coverage_percentage"] == float("inf")
+            else "-Infinity"
+            if value["min_line_coverage_percentage"] == float("-inf")
+            else value["min_line_coverage_percentage"]
+        )
     if "max_line_coverage_percentage" in value:
-        out["maxLineCoveragePercentage"] = value["max_line_coverage_percentage"]
+        out["maxLineCoveragePercentage"] = (
+            "NaN"
+            if value["max_line_coverage_percentage"]
+            != value["max_line_coverage_percentage"]
+            else "Infinity"
+            if value["max_line_coverage_percentage"] == float("inf")
+            else "-Infinity"
+            if value["max_line_coverage_percentage"] == float("-inf")
+            else value["max_line_coverage_percentage"]
+        )
     return out
 
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeCodeCoveragesInput:
     out: DescribeCodeCoveragesInput = {}  # type: ignore[typeddict-item]
-    if "reportArn" in data:
+    if data.get("reportArn") is not None:
         out["report_arn"] = data["reportArn"]
     else:
         raise DeserializationError("DescribeCodeCoveragesInput.report_arn required")
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
-    if "sortOrder" in data:
+    if data.get("sortOrder") is not None:
         import capo_codebuild.types.sort_order_type
 
         out["sort_order"] = (
@@ -85,7 +103,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeCodeCoveragesInput:
                 data["sortOrder"]
             )
         )
-    if "sortBy" in data:
+    if data.get("sortBy") is not None:
         import capo_codebuild.types.report_code_coverage_sort_by_type
 
         out["sort_by"] = (
@@ -93,8 +111,8 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeCodeCoveragesInput:
                 data["sortBy"]
             )
         )
-    if "minLineCoveragePercentage" in data:
-        out["min_line_coverage_percentage"] = data["minLineCoveragePercentage"]
-    if "maxLineCoveragePercentage" in data:
-        out["max_line_coverage_percentage"] = data["maxLineCoveragePercentage"]
+    if data.get("minLineCoveragePercentage") is not None:
+        out["min_line_coverage_percentage"] = float(data["minLineCoveragePercentage"])
+    if data.get("maxLineCoveragePercentage") is not None:
+        out["max_line_coverage_percentage"] = float(data["maxLineCoveragePercentage"])
     return out

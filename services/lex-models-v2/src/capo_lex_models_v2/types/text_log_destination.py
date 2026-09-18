@@ -30,7 +30,7 @@ def serialize_json(value: TextLogDestination) -> dict:
 
 def deserialize_json(data: dict) -> TextLogDestination:
     out: TextLogDestination = {}  # type: ignore[typeddict-item]
-    if "cloudWatch" in data:
+    if data.get("cloudWatch") is not None:
         import capo_lex_models_v2.types.cloud_watch_log_group_log_destination
 
         out["cloud_watch"] = (

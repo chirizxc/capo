@@ -67,14 +67,16 @@ class DeviceResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_braket.types.get_device_request.GetDeviceRequest = {}  # type: ignore[typeddict-item]
-        input_["device_arn"] = device_arn
+        input_: capo_braket.types.get_device_request.GetDeviceRequest = {
+            "device_arn": device_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -115,18 +117,20 @@ class DeviceResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_braket.types.search_devices_request.SearchDevicesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_braket.types.search_devices_request.SearchDevicesRequest = {
+            "filters": filters
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
             input_["max_results"] = max_results
-        input_["filters"] = filters
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -170,14 +174,16 @@ class AsyncDeviceResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_braket.types.get_device_request.GetDeviceRequest = {}  # type: ignore[typeddict-item]
-        input_["device_arn"] = device_arn
+        input_: capo_braket.types.get_device_request.GetDeviceRequest = {
+            "device_arn": device_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -219,16 +225,18 @@ class AsyncDeviceResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_braket.types.search_devices_request.SearchDevicesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_braket.types.search_devices_request.SearchDevicesRequest = {
+            "filters": filters
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
             input_["max_results"] = max_results
-        input_["filters"] = filters
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

@@ -27,6 +27,8 @@ def serialize_json(input_to_serialize: Attributes) -> dict:
 def deserialize_json(data: dict) -> Attributes:
     out: Attributes = {}
     for key, value in data.items():
+        if value is None:
+            continue
         import capo_directory_service_data.types.attribute_value
 
         out[key] = capo_directory_service_data.types.attribute_value.deserialize_json(

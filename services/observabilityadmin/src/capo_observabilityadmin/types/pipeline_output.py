@@ -40,13 +40,13 @@ def serialize_json(value: PipelineOutput) -> dict:
 
 def deserialize_json(data: dict) -> PipelineOutput:
     out: PipelineOutput = {}  # type: ignore[typeddict-item]
-    if "Record" in data:
+    if data.get("Record") is not None:
         import capo_observabilityadmin.types.record
 
         out["record"] = capo_observabilityadmin.types.record.deserialize_json(
             data["Record"]
         )
-    if "Error" in data:
+    if data.get("Error") is not None:
         import capo_observabilityadmin.types.pipeline_output_error
 
         out["error"] = (

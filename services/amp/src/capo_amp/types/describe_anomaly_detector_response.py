@@ -30,7 +30,7 @@ def serialize_json(value: DescribeAnomalyDetectorResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribeAnomalyDetectorResponse:
     out: DescribeAnomalyDetectorResponse = {}  # type: ignore[typeddict-item]
-    if "anomalyDetector" in data:
+    if data.get("anomalyDetector") is not None:
         import capo_amp.types.anomaly_detector_description
 
         out["anomaly_detector"] = (

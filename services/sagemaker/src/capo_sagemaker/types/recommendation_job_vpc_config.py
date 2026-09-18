@@ -44,7 +44,7 @@ def serialize_aws_json_1_1(value: RecommendationJobVpcConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RecommendationJobVpcConfig:
     out: RecommendationJobVpcConfig = {}  # type: ignore[typeddict-item]
-    if "SecurityGroupIds" in data:
+    if data.get("SecurityGroupIds") is not None:
         import capo_sagemaker.types.recommendation_job_vpc_security_group_ids
 
         out["security_group_ids"] = (
@@ -52,7 +52,7 @@ def deserialize_aws_json_1_1(data: dict) -> RecommendationJobVpcConfig:
                 data["SecurityGroupIds"]
             )
         )
-    if "Subnets" in data:
+    if data.get("Subnets") is not None:
         import capo_sagemaker.types.recommendation_job_vpc_subnets
 
         out["subnets"] = (

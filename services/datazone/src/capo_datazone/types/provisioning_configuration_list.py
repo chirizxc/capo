@@ -25,6 +25,8 @@ def deserialize_json(data: list) -> ProvisioningConfigurationList:
 
     out: ProvisioningConfigurationList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_datazone.types.provisioning_configuration.deserialize_json(item)
         )

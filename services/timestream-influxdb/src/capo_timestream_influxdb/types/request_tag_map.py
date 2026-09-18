@@ -23,5 +23,7 @@ def serialize_aws_json_1_0(input_to_serialize: RequestTagMap) -> dict:
 def deserialize_aws_json_1_0(data: dict) -> RequestTagMap:
     out: RequestTagMap = {}
     for key, value in data.items():
+        if value is None:
+            continue
         out[key] = value
     return out

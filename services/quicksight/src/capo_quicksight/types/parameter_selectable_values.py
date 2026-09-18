@@ -44,7 +44,7 @@ def serialize_json(value: ParameterSelectableValues) -> dict:
 
 def deserialize_json(data: dict) -> ParameterSelectableValues:
     out: ParameterSelectableValues = {}  # type: ignore[typeddict-item]
-    if "Values" in data:
+    if data.get("Values") is not None:
         import capo_quicksight.types.parameter_selectable_value_list
 
         out["values"] = (
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> ParameterSelectableValues:
                 data["Values"]
             )
         )
-    if "LinkToDataSetColumn" in data:
+    if data.get("LinkToDataSetColumn") is not None:
         import capo_quicksight.types.column_identifier
 
         out["link_to_data_set_column"] = (

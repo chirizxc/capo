@@ -81,17 +81,17 @@ def serialize_aws_json_1_1(value: CreateSpaceRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateSpaceRequest:
     out: CreateSpaceRequest = {}  # type: ignore[typeddict-item]
-    if "DomainId" in data:
+    if data.get("DomainId") is not None:
         out["domain_id"] = data["DomainId"]
-    if "SpaceName" in data:
+    if data.get("SpaceName") is not None:
         out["space_name"] = data["SpaceName"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_sagemaker.types.tag_list
 
         out["tags"] = capo_sagemaker.types.tag_list.deserialize_aws_json_1_1(
             data["Tags"]
         )
-    if "SpaceSettings" in data:
+    if data.get("SpaceSettings") is not None:
         import capo_sagemaker.types.space_settings
 
         out["space_settings"] = (
@@ -99,7 +99,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateSpaceRequest:
                 data["SpaceSettings"]
             )
         )
-    if "OwnershipSettings" in data:
+    if data.get("OwnershipSettings") is not None:
         import capo_sagemaker.types.ownership_settings
 
         out["ownership_settings"] = (
@@ -107,7 +107,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateSpaceRequest:
                 data["OwnershipSettings"]
             )
         )
-    if "SpaceSharingSettings" in data:
+    if data.get("SpaceSharingSettings") is not None:
         import capo_sagemaker.types.space_sharing_settings
 
         out["space_sharing_settings"] = (
@@ -115,6 +115,6 @@ def deserialize_aws_json_1_1(data: dict) -> CreateSpaceRequest:
                 data["SpaceSharingSettings"]
             )
         )
-    if "SpaceDisplayName" in data:
+    if data.get("SpaceDisplayName") is not None:
         out["space_display_name"] = data["SpaceDisplayName"]
     return out

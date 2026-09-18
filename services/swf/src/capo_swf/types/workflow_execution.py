@@ -28,11 +28,11 @@ def serialize_aws_json_1_0(value: WorkflowExecution) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> WorkflowExecution:
     out: WorkflowExecution = {}  # type: ignore[typeddict-item]
-    if "workflowId" in data:
+    if data.get("workflowId") is not None:
         out["workflow_id"] = data["workflowId"]
     else:
         raise DeserializationError("WorkflowExecution.workflow_id required")
-    if "runId" in data:
+    if data.get("runId") is not None:
         out["run_id"] = data["runId"]
     else:
         raise DeserializationError("WorkflowExecution.run_id required")

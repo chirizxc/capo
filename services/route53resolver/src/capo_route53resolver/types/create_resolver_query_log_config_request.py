@@ -41,23 +41,23 @@ def serialize_aws_json_1_1(value: CreateResolverQueryLogConfigRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateResolverQueryLogConfigRequest:
     out: CreateResolverQueryLogConfigRequest = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("CreateResolverQueryLogConfigRequest.name required")
-    if "DestinationArn" in data:
+    if data.get("DestinationArn") is not None:
         out["destination_arn"] = data["DestinationArn"]
     else:
         raise DeserializationError(
             "CreateResolverQueryLogConfigRequest.destination_arn required"
         )
-    if "CreatorRequestId" in data:
+    if data.get("CreatorRequestId") is not None:
         out["creator_request_id"] = data["CreatorRequestId"]
     else:
         raise DeserializationError(
             "CreateResolverQueryLogConfigRequest.creator_request_id required"
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_route53resolver.types.tag_list
 
         out["tags"] = capo_route53resolver.types.tag_list.deserialize_aws_json_1_1(

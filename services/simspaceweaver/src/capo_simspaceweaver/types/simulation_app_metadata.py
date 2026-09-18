@@ -52,14 +52,14 @@ def serialize_json(value: SimulationAppMetadata) -> dict:
 
 def deserialize_json(data: dict) -> SimulationAppMetadata:
     out: SimulationAppMetadata = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Simulation" in data:
+    if data.get("Simulation") is not None:
         out["simulation"] = data["Simulation"]
-    if "Domain" in data:
+    if data.get("Domain") is not None:
         out["domain"] = data["Domain"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         out["status"] = data["Status"]
-    if "TargetStatus" in data:
+    if data.get("TargetStatus") is not None:
         out["target_status"] = data["TargetStatus"]
     return out

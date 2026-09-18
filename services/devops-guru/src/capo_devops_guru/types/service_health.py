@@ -45,18 +45,18 @@ def serialize_json(value: ServiceHealth) -> dict:
 
 def deserialize_json(data: dict) -> ServiceHealth:
     out: ServiceHealth = {}  # type: ignore[typeddict-item]
-    if "ServiceName" in data:
+    if data.get("ServiceName") is not None:
         import capo_devops_guru.types.service_name
 
         out["service_name"] = capo_devops_guru.types.service_name.deserialize_json(
             data["ServiceName"]
         )
-    if "Insight" in data:
+    if data.get("Insight") is not None:
         import capo_devops_guru.types.service_insight_health
 
         out["insight"] = capo_devops_guru.types.service_insight_health.deserialize_json(
             data["Insight"]
         )
-    if "AnalyzedResourceCount" in data:
+    if data.get("AnalyzedResourceCount") is not None:
         out["analyzed_resource_count"] = data["AnalyzedResourceCount"]
     return out

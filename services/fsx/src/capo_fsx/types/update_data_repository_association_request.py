@@ -49,13 +49,13 @@ def serialize_aws_json_1_1(value: UpdateDataRepositoryAssociationRequest) -> dic
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateDataRepositoryAssociationRequest:
     out: UpdateDataRepositoryAssociationRequest = {}  # type: ignore[typeddict-item]
-    if "AssociationId" in data:
+    if data.get("AssociationId") is not None:
         out["association_id"] = data["AssociationId"]
-    if "ClientRequestToken" in data:
+    if data.get("ClientRequestToken") is not None:
         out["client_request_token"] = data["ClientRequestToken"]
-    if "ImportedFileChunkSize" in data:
+    if data.get("ImportedFileChunkSize") is not None:
         out["imported_file_chunk_size"] = data["ImportedFileChunkSize"]
-    if "S3" in data:
+    if data.get("S3") is not None:
         import capo_fsx.types.s3_data_repository_configuration
 
         out["s3"] = (

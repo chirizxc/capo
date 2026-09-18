@@ -214,7 +214,7 @@ def serialize_json(value: PolicyGrantDetail) -> dict:
 
 
 def deserialize_json(data: dict) -> PolicyGrantDetail:
-    if "createDomainUnit" in data:
+    if data.get("createDomainUnit") is not None:
         import capo_datazone.types.create_domain_unit_policy_grant_detail
 
         return {
@@ -222,7 +222,7 @@ def deserialize_json(data: dict) -> PolicyGrantDetail:
                 data["createDomainUnit"]
             )
         }
-    elif "overrideDomainUnitOwners" in data:
+    elif data.get("overrideDomainUnitOwners") is not None:
         import capo_datazone.types.override_domain_unit_owners_policy_grant_detail
 
         return {
@@ -230,7 +230,7 @@ def deserialize_json(data: dict) -> PolicyGrantDetail:
                 data["overrideDomainUnitOwners"]
             )
         }
-    elif "addToProjectMemberPool" in data:
+    elif data.get("addToProjectMemberPool") is not None:
         import capo_datazone.types.add_to_project_member_pool_policy_grant_detail
 
         return {
@@ -238,7 +238,7 @@ def deserialize_json(data: dict) -> PolicyGrantDetail:
                 data["addToProjectMemberPool"]
             )
         }
-    elif "overrideProjectOwners" in data:
+    elif data.get("overrideProjectOwners") is not None:
         import capo_datazone.types.override_project_owners_policy_grant_detail
 
         return {
@@ -246,7 +246,7 @@ def deserialize_json(data: dict) -> PolicyGrantDetail:
                 data["overrideProjectOwners"]
             )
         }
-    elif "createGlossary" in data:
+    elif data.get("createGlossary") is not None:
         import capo_datazone.types.create_glossary_policy_grant_detail
 
         return {
@@ -254,7 +254,7 @@ def deserialize_json(data: dict) -> PolicyGrantDetail:
                 data["createGlossary"]
             )
         }
-    elif "createFormType" in data:
+    elif data.get("createFormType") is not None:
         import capo_datazone.types.create_form_type_policy_grant_detail
 
         return {
@@ -262,7 +262,7 @@ def deserialize_json(data: dict) -> PolicyGrantDetail:
                 data["createFormType"]
             )
         }
-    elif "createAssetType" in data:
+    elif data.get("createAssetType") is not None:
         import capo_datazone.types.create_asset_type_policy_grant_detail
 
         return {
@@ -270,7 +270,7 @@ def deserialize_json(data: dict) -> PolicyGrantDetail:
                 data["createAssetType"]
             )
         }
-    elif "createProject" in data:
+    elif data.get("createProject") is not None:
         import capo_datazone.types.create_project_policy_grant_detail
 
         return {
@@ -278,7 +278,7 @@ def deserialize_json(data: dict) -> PolicyGrantDetail:
                 data["createProject"]
             )
         }
-    elif "createEnvironmentProfile" in data:
+    elif data.get("createEnvironmentProfile") is not None:
         import capo_datazone.types.create_environment_profile_policy_grant_detail
 
         return {
@@ -286,7 +286,7 @@ def deserialize_json(data: dict) -> PolicyGrantDetail:
                 data["createEnvironmentProfile"]
             )
         }
-    elif "delegateCreateEnvironmentProfile" in data:
+    elif data.get("delegateCreateEnvironmentProfile") is not None:
         import capo_datazone.types.unit
 
         return {
@@ -294,7 +294,7 @@ def deserialize_json(data: dict) -> PolicyGrantDetail:
                 data["delegateCreateEnvironmentProfile"]
             )
         }
-    elif "createEnvironment" in data:
+    elif data.get("createEnvironment") is not None:
         import capo_datazone.types.unit
 
         return {
@@ -302,7 +302,7 @@ def deserialize_json(data: dict) -> PolicyGrantDetail:
                 data["createEnvironment"]
             )
         }
-    elif "createEnvironmentFromBlueprint" in data:
+    elif data.get("createEnvironmentFromBlueprint") is not None:
         import capo_datazone.types.unit
 
         return {
@@ -310,7 +310,7 @@ def deserialize_json(data: dict) -> PolicyGrantDetail:
                 data["createEnvironmentFromBlueprint"]
             )
         }
-    elif "createProjectFromProjectProfile" in data:
+    elif data.get("createProjectFromProjectProfile") is not None:
         import capo_datazone.types.create_project_from_project_profile_policy_grant_detail
 
         return {
@@ -318,7 +318,7 @@ def deserialize_json(data: dict) -> PolicyGrantDetail:
                 data["createProjectFromProjectProfile"]
             )
         }
-    elif "useAssetType" in data:
+    elif data.get("useAssetType") is not None:
         import capo_datazone.types.use_asset_type_policy_grant_detail
 
         return {

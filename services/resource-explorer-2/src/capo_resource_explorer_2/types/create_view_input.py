@@ -63,13 +63,13 @@ def serialize_json(value: CreateViewInput) -> dict:
 
 def deserialize_json(data: dict) -> CreateViewInput:
     out: CreateViewInput = {}  # type: ignore[typeddict-item]
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
-    if "ViewName" in data:
+    if data.get("ViewName") is not None:
         out["view_name"] = data["ViewName"]
     else:
         raise DeserializationError("CreateViewInput.view_name required")
-    if "IncludedProperties" in data:
+    if data.get("IncludedProperties") is not None:
         import capo_resource_explorer_2.types.included_property_list
 
         out["included_properties"] = (
@@ -77,15 +77,15 @@ def deserialize_json(data: dict) -> CreateViewInput:
                 data["IncludedProperties"]
             )
         )
-    if "Scope" in data:
+    if data.get("Scope") is not None:
         out["scope"] = data["Scope"]
-    if "Filters" in data:
+    if data.get("Filters") is not None:
         import capo_resource_explorer_2.types.search_filter
 
         out["filters"] = capo_resource_explorer_2.types.search_filter.deserialize_json(
             data["Filters"]
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_resource_explorer_2.types.tag_map
 
         out["tags"] = capo_resource_explorer_2.types.tag_map.deserialize_json(

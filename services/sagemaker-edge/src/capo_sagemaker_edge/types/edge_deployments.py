@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> EdgeDeployments:
 
     out: EdgeDeployments = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_sagemaker_edge.types.edge_deployment.deserialize_json(item))
     return out

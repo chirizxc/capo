@@ -76,35 +76,35 @@ def serialize_json(value: Application) -> dict:
 
 def deserialize_json(data: dict) -> Application:
     out: Application = {}  # type: ignore[typeddict-item]
-    if "displayName" in data:
+    if data.get("displayName") is not None:
         out["display_name"] = data["displayName"]
-    if "applicationId" in data:
+    if data.get("applicationId") is not None:
         out["application_id"] = data["applicationId"]
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_qbusiness.types.timestamp
 
         out["created_at"] = capo_qbusiness.types.timestamp.deserialize_json(
             data["createdAt"]
         )
-    if "updatedAt" in data:
+    if data.get("updatedAt") is not None:
         import capo_qbusiness.types.timestamp
 
         out["updated_at"] = capo_qbusiness.types.timestamp.deserialize_json(
             data["updatedAt"]
         )
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_qbusiness.types.application_status
 
         out["status"] = capo_qbusiness.types.application_status.deserialize_json(
             data["status"]
         )
-    if "identityType" in data:
+    if data.get("identityType") is not None:
         import capo_qbusiness.types.identity_type
 
         out["identity_type"] = capo_qbusiness.types.identity_type.deserialize_json(
             data["identityType"]
         )
-    if "quickSightConfiguration" in data:
+    if data.get("quickSightConfiguration") is not None:
         import capo_qbusiness.types.quick_sight_configuration
 
         out["quick_sight_configuration"] = (

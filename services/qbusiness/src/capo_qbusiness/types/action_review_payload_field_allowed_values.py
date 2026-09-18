@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> ActionReviewPayloadFieldAllowedValues:
 
     out: ActionReviewPayloadFieldAllowedValues = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_qbusiness.types.action_review_payload_field_allowed_value.deserialize_json(
                 item

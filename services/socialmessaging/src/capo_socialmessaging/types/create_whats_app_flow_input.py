@@ -60,15 +60,15 @@ def serialize_json(value: CreateWhatsAppFlowInput) -> dict:
 
 def deserialize_json(data: dict) -> CreateWhatsAppFlowInput:
     out: CreateWhatsAppFlowInput = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("CreateWhatsAppFlowInput.id required")
-    if "flowName" in data:
+    if data.get("flowName") is not None:
         out["flow_name"] = data["flowName"]
     else:
         raise DeserializationError("CreateWhatsAppFlowInput.flow_name required")
-    if "categories" in data:
+    if data.get("categories") is not None:
         import capo_socialmessaging.types.meta_flow_category_list
 
         out["categories"] = (
@@ -78,7 +78,7 @@ def deserialize_json(data: dict) -> CreateWhatsAppFlowInput:
         )
     else:
         raise DeserializationError("CreateWhatsAppFlowInput.categories required")
-    if "flowJson" in data:
+    if data.get("flowJson") is not None:
         import capo_socialmessaging.types.meta_flow_json_blob
 
         out["flow_json"] = (
@@ -86,8 +86,8 @@ def deserialize_json(data: dict) -> CreateWhatsAppFlowInput:
                 data["flowJson"]
             )
         )
-    if "publish" in data:
+    if data.get("publish") is not None:
         out["publish"] = data["publish"]
-    if "cloneFlowId" in data:
+    if data.get("cloneFlowId") is not None:
         out["clone_flow_id"] = data["cloneFlowId"]
     return out

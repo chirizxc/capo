@@ -40,15 +40,15 @@ def serialize_json(value: CreateEntityResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateEntityResponse:
     out: CreateEntityResponse = {}  # type: ignore[typeddict-item]
-    if "entityId" in data:
+    if data.get("entityId") is not None:
         out["entity_id"] = data["entityId"]
     else:
         raise DeserializationError("CreateEntityResponse.entity_id required")
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("CreateEntityResponse.arn required")
-    if "creationDateTime" in data:
+    if data.get("creationDateTime") is not None:
         import capo_iottwinmaker.types.timestamp
 
         out["creation_date_time"] = capo_iottwinmaker.types.timestamp.deserialize_json(
@@ -56,7 +56,7 @@ def deserialize_json(data: dict) -> CreateEntityResponse:
         )
     else:
         raise DeserializationError("CreateEntityResponse.creation_date_time required")
-    if "state" in data:
+    if data.get("state") is not None:
         out["state"] = data["state"]
     else:
         raise DeserializationError("CreateEntityResponse.state required")

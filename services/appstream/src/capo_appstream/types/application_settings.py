@@ -28,8 +28,8 @@ def serialize_aws_json_1_1(value: ApplicationSettings) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ApplicationSettings:
     out: ApplicationSettings = {}  # type: ignore[typeddict-item]
-    if "Enabled" in data:
+    if data.get("Enabled") is not None:
         out["enabled"] = data["Enabled"]
-    if "SettingsGroup" in data:
+    if data.get("SettingsGroup") is not None:
         out["settings_group"] = data["SettingsGroup"]
     return out

@@ -24,7 +24,7 @@ def serialize_json(value: EnableOrganizationAdminAccountRequest) -> dict:
 
 def deserialize_json(data: dict) -> EnableOrganizationAdminAccountRequest:
     out: EnableOrganizationAdminAccountRequest = {}  # type: ignore[typeddict-item]
-    if "AccountId" in data:
+    if data.get("AccountId") is not None:
         out["account_id"] = data["AccountId"]
     else:
         raise DeserializationError(

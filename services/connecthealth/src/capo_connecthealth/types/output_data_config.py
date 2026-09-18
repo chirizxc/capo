@@ -24,7 +24,7 @@ def serialize_json(value: OutputDataConfig) -> dict:
 
 def deserialize_json(data: dict) -> OutputDataConfig:
     out: OutputDataConfig = {}  # type: ignore[typeddict-item]
-    if "s3OutputPath" in data:
+    if data.get("s3OutputPath") is not None:
         out["s3_output_path"] = data["s3OutputPath"]
     else:
         raise DeserializationError("OutputDataConfig.s3_output_path required")

@@ -64,15 +64,15 @@ def serialize_json(value: AwsEc2NetworkAclDetails) -> dict:
 
 def deserialize_json(data: dict) -> AwsEc2NetworkAclDetails:
     out: AwsEc2NetworkAclDetails = {}  # type: ignore[typeddict-item]
-    if "IsDefault" in data:
+    if data.get("IsDefault") is not None:
         out["is_default"] = data["IsDefault"]
-    if "NetworkAclId" in data:
+    if data.get("NetworkAclId") is not None:
         out["network_acl_id"] = data["NetworkAclId"]
-    if "OwnerId" in data:
+    if data.get("OwnerId") is not None:
         out["owner_id"] = data["OwnerId"]
-    if "VpcId" in data:
+    if data.get("VpcId") is not None:
         out["vpc_id"] = data["VpcId"]
-    if "Associations" in data:
+    if data.get("Associations") is not None:
         import capo_securityhub.types.aws_ec2_network_acl_association_list
 
         out["associations"] = (
@@ -80,7 +80,7 @@ def deserialize_json(data: dict) -> AwsEc2NetworkAclDetails:
                 data["Associations"]
             )
         )
-    if "Entries" in data:
+    if data.get("Entries") is not None:
         import capo_securityhub.types.aws_ec2_network_acl_entry_list
 
         out["entries"] = (

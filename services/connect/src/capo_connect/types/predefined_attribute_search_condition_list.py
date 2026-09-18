@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> PredefinedAttributeSearchConditionList:
 
     out: PredefinedAttributeSearchConditionList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_connect.types.predefined_attribute_search_criteria.deserialize_json(
                 item

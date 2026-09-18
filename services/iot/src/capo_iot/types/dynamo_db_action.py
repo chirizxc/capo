@@ -73,40 +73,40 @@ def serialize_json(value: DynamoDBAction) -> dict:
 
 def deserialize_json(data: dict) -> DynamoDBAction:
     out: DynamoDBAction = {}  # type: ignore[typeddict-item]
-    if "tableName" in data:
+    if data.get("tableName") is not None:
         out["table_name"] = data["tableName"]
     else:
         raise DeserializationError("DynamoDBAction.table_name required")
-    if "roleArn" in data:
+    if data.get("roleArn") is not None:
         out["role_arn"] = data["roleArn"]
     else:
         raise DeserializationError("DynamoDBAction.role_arn required")
-    if "operation" in data:
+    if data.get("operation") is not None:
         out["operation"] = data["operation"]
-    if "hashKeyField" in data:
+    if data.get("hashKeyField") is not None:
         out["hash_key_field"] = data["hashKeyField"]
     else:
         raise DeserializationError("DynamoDBAction.hash_key_field required")
-    if "hashKeyValue" in data:
+    if data.get("hashKeyValue") is not None:
         out["hash_key_value"] = data["hashKeyValue"]
     else:
         raise DeserializationError("DynamoDBAction.hash_key_value required")
-    if "hashKeyType" in data:
+    if data.get("hashKeyType") is not None:
         import capo_iot.types.dynamo_key_type
 
         out["hash_key_type"] = capo_iot.types.dynamo_key_type.deserialize_json(
             data["hashKeyType"]
         )
-    if "rangeKeyField" in data:
+    if data.get("rangeKeyField") is not None:
         out["range_key_field"] = data["rangeKeyField"]
-    if "rangeKeyValue" in data:
+    if data.get("rangeKeyValue") is not None:
         out["range_key_value"] = data["rangeKeyValue"]
-    if "rangeKeyType" in data:
+    if data.get("rangeKeyType") is not None:
         import capo_iot.types.dynamo_key_type
 
         out["range_key_type"] = capo_iot.types.dynamo_key_type.deserialize_json(
             data["rangeKeyType"]
         )
-    if "payloadField" in data:
+    if data.get("payloadField") is not None:
         out["payload_field"] = data["payloadField"]
     return out

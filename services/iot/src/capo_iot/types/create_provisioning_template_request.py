@@ -67,29 +67,29 @@ def serialize_json(value: CreateProvisioningTemplateRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateProvisioningTemplateRequest:
     out: CreateProvisioningTemplateRequest = {}  # type: ignore[typeddict-item]
-    if "templateName" in data:
+    if data.get("templateName") is not None:
         out["template_name"] = data["templateName"]
     else:
         raise DeserializationError(
             "CreateProvisioningTemplateRequest.template_name required"
         )
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "templateBody" in data:
+    if data.get("templateBody") is not None:
         out["template_body"] = data["templateBody"]
     else:
         raise DeserializationError(
             "CreateProvisioningTemplateRequest.template_body required"
         )
-    if "enabled" in data:
+    if data.get("enabled") is not None:
         out["enabled"] = data["enabled"]
-    if "provisioningRoleArn" in data:
+    if data.get("provisioningRoleArn") is not None:
         out["provisioning_role_arn"] = data["provisioningRoleArn"]
     else:
         raise DeserializationError(
             "CreateProvisioningTemplateRequest.provisioning_role_arn required"
         )
-    if "preProvisioningHook" in data:
+    if data.get("preProvisioningHook") is not None:
         import capo_iot.types.provisioning_hook
 
         out["pre_provisioning_hook"] = (
@@ -97,11 +97,11 @@ def deserialize_json(data: dict) -> CreateProvisioningTemplateRequest:
                 data["preProvisioningHook"]
             )
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_iot.types.tag_list
 
         out["tags"] = capo_iot.types.tag_list.deserialize_json(data["tags"])
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_iot.types.template_type
 
         out["type"] = capo_iot.types.template_type.deserialize_json(data["type"])

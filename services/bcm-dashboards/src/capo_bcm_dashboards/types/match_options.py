@@ -23,6 +23,8 @@ def deserialize_aws_json_1_0(data: list) -> MatchOptions:
 
     out: MatchOptions = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_bcm_dashboards.types.match_option.deserialize_aws_json_1_0(item)
         )

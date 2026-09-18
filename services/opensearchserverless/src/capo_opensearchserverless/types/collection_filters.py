@@ -37,10 +37,10 @@ def serialize_aws_json_1_0(value: CollectionFilters) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CollectionFilters:
     out: CollectionFilters = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
-    if "collectionGroupName" in data:
+    if data.get("collectionGroupName") is not None:
         out["collection_group_name"] = data["collectionGroupName"]
     return out

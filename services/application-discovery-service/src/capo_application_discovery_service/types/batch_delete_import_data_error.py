@@ -45,9 +45,9 @@ def serialize_aws_json_1_1(value: BatchDeleteImportDataError) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> BatchDeleteImportDataError:
     out: BatchDeleteImportDataError = {}  # type: ignore[typeddict-item]
-    if "importTaskId" in data:
+    if data.get("importTaskId") is not None:
         out["import_task_id"] = data["importTaskId"]
-    if "errorCode" in data:
+    if data.get("errorCode") is not None:
         import capo_application_discovery_service.types.batch_delete_import_data_error_code
 
         out["error_code"] = (
@@ -55,6 +55,6 @@ def deserialize_aws_json_1_1(data: dict) -> BatchDeleteImportDataError:
                 data["errorCode"]
             )
         )
-    if "errorDescription" in data:
+    if data.get("errorDescription") is not None:
         out["error_description"] = data["errorDescription"]
     return out

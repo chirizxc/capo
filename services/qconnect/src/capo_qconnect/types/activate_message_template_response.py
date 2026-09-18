@@ -32,19 +32,19 @@ def serialize_json(value: ActivateMessageTemplateResponse) -> dict:
 
 def deserialize_json(data: dict) -> ActivateMessageTemplateResponse:
     out: ActivateMessageTemplateResponse = {}  # type: ignore[typeddict-item]
-    if "messageTemplateArn" in data:
+    if data.get("messageTemplateArn") is not None:
         out["message_template_arn"] = data["messageTemplateArn"]
     else:
         raise DeserializationError(
             "ActivateMessageTemplateResponse.message_template_arn required"
         )
-    if "messageTemplateId" in data:
+    if data.get("messageTemplateId") is not None:
         out["message_template_id"] = data["messageTemplateId"]
     else:
         raise DeserializationError(
             "ActivateMessageTemplateResponse.message_template_id required"
         )
-    if "versionNumber" in data:
+    if data.get("versionNumber") is not None:
         out["version_number"] = data["versionNumber"]
     else:
         raise DeserializationError(

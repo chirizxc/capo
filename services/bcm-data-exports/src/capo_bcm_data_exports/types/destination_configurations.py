@@ -30,7 +30,7 @@ def serialize_aws_json_1_1(value: DestinationConfigurations) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DestinationConfigurations:
     out: DestinationConfigurations = {}  # type: ignore[typeddict-item]
-    if "S3Destination" in data:
+    if data.get("S3Destination") is not None:
         import capo_bcm_data_exports.types.s3_destination
 
         out["s3_destination"] = (

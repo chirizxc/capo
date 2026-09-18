@@ -56,18 +56,18 @@ def serialize_json(value: ThingConnectivity) -> dict:
 
 def deserialize_json(data: dict) -> ThingConnectivity:
     out: ThingConnectivity = {}  # type: ignore[typeddict-item]
-    if "connected" in data:
+    if data.get("connected") is not None:
         out["connected"] = data["connected"]
-    if "timestamp" in data:
+    if data.get("timestamp") is not None:
         out["timestamp"] = data["timestamp"]
-    if "disconnectReason" in data:
+    if data.get("disconnectReason") is not None:
         out["disconnect_reason"] = data["disconnectReason"]
-    if "keepAliveDuration" in data:
+    if data.get("keepAliveDuration") is not None:
         out["keep_alive_duration"] = data["keepAliveDuration"]
-    if "cleanSession" in data:
+    if data.get("cleanSession") is not None:
         out["clean_session"] = data["cleanSession"]
-    if "sessionExpiry" in data:
+    if data.get("sessionExpiry") is not None:
         out["session_expiry"] = data["sessionExpiry"]
-    if "clientId" in data:
+    if data.get("clientId") is not None:
         out["client_id"] = data["clientId"]
     return out

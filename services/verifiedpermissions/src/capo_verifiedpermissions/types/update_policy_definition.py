@@ -32,7 +32,7 @@ def serialize_aws_json_1_0(value: UpdatePolicyDefinition) -> dict:
 
 
 def deserialize_aws_json_1_0(data: dict) -> UpdatePolicyDefinition:
-    if "static" in data:
+    if data.get("static") is not None:
         import capo_verifiedpermissions.types.update_static_policy_definition
 
         return {

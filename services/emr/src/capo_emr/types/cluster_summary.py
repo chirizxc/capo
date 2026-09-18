@@ -52,20 +52,20 @@ def serialize_aws_json_1_1(value: ClusterSummary) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ClusterSummary:
     out: ClusterSummary = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_emr.types.cluster_status
 
         out["status"] = capo_emr.types.cluster_status.deserialize_aws_json_1_1(
             data["Status"]
         )
-    if "NormalizedInstanceHours" in data:
+    if data.get("NormalizedInstanceHours") is not None:
         out["normalized_instance_hours"] = data["NormalizedInstanceHours"]
-    if "ClusterArn" in data:
+    if data.get("ClusterArn") is not None:
         out["cluster_arn"] = data["ClusterArn"]
-    if "OutpostArn" in data:
+    if data.get("OutpostArn") is not None:
         out["outpost_arn"] = data["OutpostArn"]
     return out

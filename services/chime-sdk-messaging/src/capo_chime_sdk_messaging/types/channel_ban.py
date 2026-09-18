@@ -51,15 +51,15 @@ def serialize_json(value: ChannelBan) -> dict:
 
 def deserialize_json(data: dict) -> ChannelBan:
     out: ChannelBan = {}  # type: ignore[typeddict-item]
-    if "Member" in data:
+    if data.get("Member") is not None:
         import capo_chime_sdk_messaging.types.identity
 
         out["member"] = capo_chime_sdk_messaging.types.identity.deserialize_json(
             data["Member"]
         )
-    if "ChannelArn" in data:
+    if data.get("ChannelArn") is not None:
         out["channel_arn"] = data["ChannelArn"]
-    if "CreatedTimestamp" in data:
+    if data.get("CreatedTimestamp") is not None:
         import capo_chime_sdk_messaging.types.timestamp
 
         out["created_timestamp"] = (
@@ -67,7 +67,7 @@ def deserialize_json(data: dict) -> ChannelBan:
                 data["CreatedTimestamp"]
             )
         )
-    if "CreatedBy" in data:
+    if data.get("CreatedBy") is not None:
         import capo_chime_sdk_messaging.types.identity
 
         out["created_by"] = capo_chime_sdk_messaging.types.identity.deserialize_json(

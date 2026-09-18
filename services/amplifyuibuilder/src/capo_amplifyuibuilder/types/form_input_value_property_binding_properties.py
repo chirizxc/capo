@@ -23,12 +23,12 @@ def serialize_json(value: FormInputValuePropertyBindingProperties) -> dict:
 
 def deserialize_json(data: dict) -> FormInputValuePropertyBindingProperties:
     out: FormInputValuePropertyBindingProperties = {}  # type: ignore[typeddict-item]
-    if "property" in data:
+    if data.get("property") is not None:
         out["property"] = data["property"]
     else:
         raise DeserializationError(
             "FormInputValuePropertyBindingProperties.property required"
         )
-    if "field" in data:
+    if data.get("field") is not None:
         out["field"] = data["field"]
     return out

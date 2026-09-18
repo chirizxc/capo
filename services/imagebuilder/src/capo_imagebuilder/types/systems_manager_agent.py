@@ -25,6 +25,6 @@ def serialize_json(value: SystemsManagerAgent) -> dict:
 
 def deserialize_json(data: dict) -> SystemsManagerAgent:
     out: SystemsManagerAgent = {}  # type: ignore[typeddict-item]
-    if "uninstallAfterBuild" in data:
+    if data.get("uninstallAfterBuild") is not None:
         out["uninstall_after_build"] = data["uninstallAfterBuild"]
     return out

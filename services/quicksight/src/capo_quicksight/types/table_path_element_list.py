@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> TablePathElementList:
 
     out: TablePathElementList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_quicksight.types.table_path_element.deserialize_json(item))
     return out

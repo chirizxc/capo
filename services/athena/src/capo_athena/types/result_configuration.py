@@ -56,9 +56,9 @@ def serialize_aws_json_1_1(value: ResultConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ResultConfiguration:
     out: ResultConfiguration = {}  # type: ignore[typeddict-item]
-    if "OutputLocation" in data:
+    if data.get("OutputLocation") is not None:
         out["output_location"] = data["OutputLocation"]
-    if "EncryptionConfiguration" in data:
+    if data.get("EncryptionConfiguration") is not None:
         import capo_athena.types.encryption_configuration
 
         out["encryption_configuration"] = (
@@ -66,9 +66,9 @@ def deserialize_aws_json_1_1(data: dict) -> ResultConfiguration:
                 data["EncryptionConfiguration"]
             )
         )
-    if "ExpectedBucketOwner" in data:
+    if data.get("ExpectedBucketOwner") is not None:
         out["expected_bucket_owner"] = data["ExpectedBucketOwner"]
-    if "AclConfiguration" in data:
+    if data.get("AclConfiguration") is not None:
         import capo_athena.types.acl_configuration
 
         out["acl_configuration"] = (

@@ -23,6 +23,6 @@ def serialize_aws_json_1_1(value: DeleteDataSourceOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteDataSourceOutput:
     out: DeleteDataSourceOutput = {}  # type: ignore[typeddict-item]
-    if "DataSourceId" in data:
+    if data.get("DataSourceId") is not None:
         out["data_source_id"] = data["DataSourceId"]
     return out

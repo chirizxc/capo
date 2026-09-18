@@ -32,8 +32,8 @@ def serialize_json(value: ConnectorOperationStep) -> dict:
 
 def deserialize_json(data: dict) -> ConnectorOperationStep:
     out: ConnectorOperationStep = {}  # type: ignore[typeddict-item]
-    if "stepType" in data:
+    if data.get("stepType") is not None:
         out["step_type"] = data["stepType"]
-    if "stepState" in data:
+    if data.get("stepState") is not None:
         out["step_state"] = data["stepState"]
     return out

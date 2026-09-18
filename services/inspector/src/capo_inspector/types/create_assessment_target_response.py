@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: CreateAssessmentTargetResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateAssessmentTargetResponse:
     out: CreateAssessmentTargetResponse = {}  # type: ignore[typeddict-item]
-    if "assessmentTargetArn" in data:
+    if data.get("assessmentTargetArn") is not None:
         out["assessment_target_arn"] = data["assessmentTargetArn"]
     else:
         raise DeserializationError(

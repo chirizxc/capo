@@ -33,22 +33,38 @@ def serialize_json(value: DomainIspPlacement) -> dict:
     if "spam_raw_count" in value:
         out["SpamRawCount"] = value["spam_raw_count"]
     if "inbox_percentage" in value:
-        out["InboxPercentage"] = value["inbox_percentage"]
+        out["InboxPercentage"] = (
+            "NaN"
+            if value["inbox_percentage"] != value["inbox_percentage"]
+            else "Infinity"
+            if value["inbox_percentage"] == float("inf")
+            else "-Infinity"
+            if value["inbox_percentage"] == float("-inf")
+            else value["inbox_percentage"]
+        )
     if "spam_percentage" in value:
-        out["SpamPercentage"] = value["spam_percentage"]
+        out["SpamPercentage"] = (
+            "NaN"
+            if value["spam_percentage"] != value["spam_percentage"]
+            else "Infinity"
+            if value["spam_percentage"] == float("inf")
+            else "-Infinity"
+            if value["spam_percentage"] == float("-inf")
+            else value["spam_percentage"]
+        )
     return out
 
 
 def deserialize_json(data: dict) -> DomainIspPlacement:
     out: DomainIspPlacement = {}  # type: ignore[typeddict-item]
-    if "IspName" in data:
+    if data.get("IspName") is not None:
         out["isp_name"] = data["IspName"]
-    if "InboxRawCount" in data:
+    if data.get("InboxRawCount") is not None:
         out["inbox_raw_count"] = data["InboxRawCount"]
-    if "SpamRawCount" in data:
+    if data.get("SpamRawCount") is not None:
         out["spam_raw_count"] = data["SpamRawCount"]
-    if "InboxPercentage" in data:
-        out["inbox_percentage"] = data["InboxPercentage"]
-    if "SpamPercentage" in data:
-        out["spam_percentage"] = data["SpamPercentage"]
+    if data.get("InboxPercentage") is not None:
+        out["inbox_percentage"] = float(data["InboxPercentage"])
+    if data.get("SpamPercentage") is not None:
+        out["spam_percentage"] = float(data["SpamPercentage"])
     return out

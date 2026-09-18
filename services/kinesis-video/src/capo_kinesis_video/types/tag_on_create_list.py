@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> TagOnCreateList:
 
     out: TagOnCreateList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_kinesis_video.types.tag.deserialize_json(item))
     return out

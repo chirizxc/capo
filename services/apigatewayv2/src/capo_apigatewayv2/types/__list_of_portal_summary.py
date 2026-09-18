@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> __listOfPortalSummary:
 
     out: __listOfPortalSummary = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_apigatewayv2.types.portal_summary.deserialize_json(item))
     return out

@@ -331,8 +331,9 @@ class AsyncCostExplorerClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cost_explorer.types.create_anomaly_monitor_request.CreateAnomalyMonitorRequest = {}  # type: ignore[typeddict-item]
-        input_["anomaly_monitor"] = anomaly_monitor
+        input_: capo_cost_explorer.types.create_anomaly_monitor_request.CreateAnomalyMonitorRequest = {
+            "anomaly_monitor": anomaly_monitor
+        }
         if resource_tags is not None:
             input_["resource_tags"] = resource_tags
 
@@ -341,6 +342,7 @@ class AsyncCostExplorerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_anomaly_subscription(
@@ -380,8 +382,9 @@ class AsyncCostExplorerClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cost_explorer.types.create_anomaly_subscription_request.CreateAnomalySubscriptionRequest = {}  # type: ignore[typeddict-item]
-        input_["anomaly_subscription"] = anomaly_subscription
+        input_: capo_cost_explorer.types.create_anomaly_subscription_request.CreateAnomalySubscriptionRequest = {
+            "anomaly_subscription": anomaly_subscription
+        }
         if resource_tags is not None:
             input_["resource_tags"] = resource_tags
 
@@ -390,6 +393,7 @@ class AsyncCostExplorerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_cost_category_definition(
@@ -442,12 +446,13 @@ class AsyncCostExplorerClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cost_explorer.types.create_cost_category_definition_request.CreateCostCategoryDefinitionRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_cost_explorer.types.create_cost_category_definition_request.CreateCostCategoryDefinitionRequest = {
+            "name": name,
+            "rule_version": rule_version,
+            "rules": rules,
+        }
         if effective_start is not None:
             input_["effective_start"] = effective_start
-        input_["rule_version"] = rule_version
-        input_["rules"] = rules
         if default_value is not None:
             input_["default_value"] = default_value
         if split_charge_rules is not None:
@@ -460,6 +465,7 @@ class AsyncCostExplorerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_anomaly_monitor(
@@ -495,14 +501,16 @@ class AsyncCostExplorerClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cost_explorer.types.delete_anomaly_monitor_request.DeleteAnomalyMonitorRequest = {}  # type: ignore[typeddict-item]
-        input_["monitor_arn"] = monitor_arn
+        input_: capo_cost_explorer.types.delete_anomaly_monitor_request.DeleteAnomalyMonitorRequest = {
+            "monitor_arn": monitor_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_anomaly_subscription(
@@ -538,14 +546,16 @@ class AsyncCostExplorerClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cost_explorer.types.delete_anomaly_subscription_request.DeleteAnomalySubscriptionRequest = {}  # type: ignore[typeddict-item]
-        input_["subscription_arn"] = subscription_arn
+        input_: capo_cost_explorer.types.delete_anomaly_subscription_request.DeleteAnomalySubscriptionRequest = {
+            "subscription_arn": subscription_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_cost_category_definition(
@@ -581,14 +591,16 @@ class AsyncCostExplorerClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cost_explorer.types.delete_cost_category_definition_request.DeleteCostCategoryDefinitionRequest = {}  # type: ignore[typeddict-item]
-        input_["cost_category_arn"] = cost_category_arn
+        input_: capo_cost_explorer.types.delete_cost_category_definition_request.DeleteCostCategoryDefinitionRequest = {
+            "cost_category_arn": cost_category_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_cost_category_definition(
@@ -628,8 +640,9 @@ class AsyncCostExplorerClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cost_explorer.types.describe_cost_category_definition_request.DescribeCostCategoryDefinitionRequest = {}  # type: ignore[typeddict-item]
-        input_["cost_category_arn"] = cost_category_arn
+        input_: capo_cost_explorer.types.describe_cost_category_definition_request.DescribeCostCategoryDefinitionRequest = {
+            "cost_category_arn": cost_category_arn
+        }
         if effective_on is not None:
             input_["effective_on"] = effective_on
 
@@ -638,6 +651,7 @@ class AsyncCostExplorerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_anomalies(
@@ -691,10 +705,11 @@ class AsyncCostExplorerClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cost_explorer.types.get_anomalies_request.GetAnomaliesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_cost_explorer.types.get_anomalies_request.GetAnomaliesRequest = {
+            "date_interval": date_interval
+        }
         if monitor_arn is not None:
             input_["monitor_arn"] = monitor_arn
-        input_["date_interval"] = date_interval
         if feedback is not None:
             input_["feedback"] = feedback
         if total_impact is not None:
@@ -709,6 +724,7 @@ class AsyncCostExplorerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_get_anomalies(
@@ -788,7 +804,7 @@ class AsyncCostExplorerClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cost_explorer.types.get_anomaly_monitors_request.GetAnomalyMonitorsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_cost_explorer.types.get_anomaly_monitors_request.GetAnomalyMonitorsRequest = {}
         if monitor_arn_list is not None:
             input_["monitor_arn_list"] = monitor_arn_list
         if next_page_token is not None:
@@ -801,6 +817,7 @@ class AsyncCostExplorerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_get_anomaly_monitors(
@@ -874,7 +891,7 @@ class AsyncCostExplorerClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cost_explorer.types.get_anomaly_subscriptions_request.GetAnomalySubscriptionsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_cost_explorer.types.get_anomaly_subscriptions_request.GetAnomalySubscriptionsRequest = {}
         if subscription_arn_list is not None:
             input_["subscription_arn_list"] = subscription_arn_list
         if monitor_arn is not None:
@@ -889,6 +906,7 @@ class AsyncCostExplorerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_get_anomaly_subscriptions(
@@ -961,17 +979,19 @@ class AsyncCostExplorerClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cost_explorer.types.get_approximate_usage_records_request.GetApproximateUsageRecordsRequest = {}  # type: ignore[typeddict-item]
-        input_["granularity"] = granularity
+        input_: capo_cost_explorer.types.get_approximate_usage_records_request.GetApproximateUsageRecordsRequest = {
+            "granularity": granularity,
+            "approximation_dimension": approximation_dimension,
+        }
         if services is not None:
             input_["services"] = services
-        input_["approximation_dimension"] = approximation_dimension
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_commitment_purchase_analysis(
@@ -1008,14 +1028,16 @@ class AsyncCostExplorerClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cost_explorer.types.get_commitment_purchase_analysis_request.GetCommitmentPurchaseAnalysisRequest = {}  # type: ignore[typeddict-item]
-        input_["analysis_id"] = analysis_id
+        input_: capo_cost_explorer.types.get_commitment_purchase_analysis_request.GetCommitmentPurchaseAnalysisRequest = {
+            "analysis_id": analysis_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_cost_and_usage(
@@ -1074,12 +1096,13 @@ class AsyncCostExplorerClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cost_explorer.types.get_cost_and_usage_request.GetCostAndUsageRequest = {}  # type: ignore[typeddict-item]
-        input_["time_period"] = time_period
-        input_["granularity"] = granularity
+        input_: capo_cost_explorer.types.get_cost_and_usage_request.GetCostAndUsageRequest = {
+            "time_period": time_period,
+            "granularity": granularity,
+            "metrics": metrics,
+        }
         if filter is not None:
             input_["filter"] = filter
-        input_["metrics"] = metrics
         if group_by is not None:
             input_["group_by"] = group_by
         if billing_view_arn is not None:
@@ -1092,6 +1115,7 @@ class AsyncCostExplorerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_cost_and_usage_comparisons(
@@ -1151,12 +1175,13 @@ class AsyncCostExplorerClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cost_explorer.types.get_cost_and_usage_comparisons_request.GetCostAndUsageComparisonsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_cost_explorer.types.get_cost_and_usage_comparisons_request.GetCostAndUsageComparisonsRequest = {
+            "baseline_time_period": baseline_time_period,
+            "comparison_time_period": comparison_time_period,
+            "metric_for_comparison": metric_for_comparison,
+        }
         if billing_view_arn is not None:
             input_["billing_view_arn"] = billing_view_arn
-        input_["baseline_time_period"] = baseline_time_period
-        input_["comparison_time_period"] = comparison_time_period
-        input_["metric_for_comparison"] = metric_for_comparison
         if filter is not None:
             input_["filter"] = filter
         if group_by is not None:
@@ -1171,6 +1196,7 @@ class AsyncCostExplorerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_get_cost_and_usage_comparisons(
@@ -1270,10 +1296,11 @@ class AsyncCostExplorerClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cost_explorer.types.get_cost_and_usage_with_resources_request.GetCostAndUsageWithResourcesRequest = {}  # type: ignore[typeddict-item]
-        input_["time_period"] = time_period
-        input_["granularity"] = granularity
-        input_["filter"] = filter
+        input_: capo_cost_explorer.types.get_cost_and_usage_with_resources_request.GetCostAndUsageWithResourcesRequest = {
+            "time_period": time_period,
+            "granularity": granularity,
+            "filter": filter,
+        }
         if metrics is not None:
             input_["metrics"] = metrics
         if group_by is not None:
@@ -1288,6 +1315,7 @@ class AsyncCostExplorerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_cost_categories(
@@ -1349,10 +1377,11 @@ class AsyncCostExplorerClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cost_explorer.types.get_cost_categories_request.GetCostCategoriesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_cost_explorer.types.get_cost_categories_request.GetCostCategoriesRequest = {
+            "time_period": time_period
+        }
         if search_string is not None:
             input_["search_string"] = search_string
-        input_["time_period"] = time_period
         if cost_category_name is not None:
             input_["cost_category_name"] = cost_category_name
         if filter is not None:
@@ -1371,6 +1400,7 @@ class AsyncCostExplorerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_cost_comparison_drivers(
@@ -1430,12 +1460,13 @@ class AsyncCostExplorerClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cost_explorer.types.get_cost_comparison_drivers_request.GetCostComparisonDriversRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_cost_explorer.types.get_cost_comparison_drivers_request.GetCostComparisonDriversRequest = {
+            "baseline_time_period": baseline_time_period,
+            "comparison_time_period": comparison_time_period,
+            "metric_for_comparison": metric_for_comparison,
+        }
         if billing_view_arn is not None:
             input_["billing_view_arn"] = billing_view_arn
-        input_["baseline_time_period"] = baseline_time_period
-        input_["comparison_time_period"] = comparison_time_period
-        input_["metric_for_comparison"] = metric_for_comparison
         if filter is not None:
             input_["filter"] = filter
         if group_by is not None:
@@ -1450,6 +1481,7 @@ class AsyncCostExplorerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_get_cost_comparison_drivers(
@@ -1542,10 +1574,11 @@ class AsyncCostExplorerClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cost_explorer.types.get_cost_forecast_request.GetCostForecastRequest = {}  # type: ignore[typeddict-item]
-        input_["time_period"] = time_period
-        input_["metric"] = metric
-        input_["granularity"] = granularity
+        input_: capo_cost_explorer.types.get_cost_forecast_request.GetCostForecastRequest = {
+            "time_period": time_period,
+            "metric": metric,
+            "granularity": granularity,
+        }
         if filter is not None:
             input_["filter"] = filter
         if billing_view_arn is not None:
@@ -1558,6 +1591,7 @@ class AsyncCostExplorerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_dimension_values(
@@ -1621,11 +1655,12 @@ class AsyncCostExplorerClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cost_explorer.types.get_dimension_values_request.GetDimensionValuesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_cost_explorer.types.get_dimension_values_request.GetDimensionValuesRequest = {
+            "time_period": time_period,
+            "dimension": dimension,
+        }
         if search_string is not None:
             input_["search_string"] = search_string
-        input_["time_period"] = time_period
-        input_["dimension"] = dimension
         if context is not None:
             input_["context"] = context
         if filter is not None:
@@ -1644,6 +1679,7 @@ class AsyncCostExplorerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_reservation_coverage(
@@ -1702,8 +1738,9 @@ class AsyncCostExplorerClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cost_explorer.types.get_reservation_coverage_request.GetReservationCoverageRequest = {}  # type: ignore[typeddict-item]
-        input_["time_period"] = time_period
+        input_: capo_cost_explorer.types.get_reservation_coverage_request.GetReservationCoverageRequest = {
+            "time_period": time_period
+        }
         if group_by is not None:
             input_["group_by"] = group_by
         if granularity is not None:
@@ -1724,6 +1761,7 @@ class AsyncCostExplorerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_reservation_purchase_recommendation(
@@ -1793,10 +1831,11 @@ class AsyncCostExplorerClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cost_explorer.types.get_reservation_purchase_recommendation_request.GetReservationPurchaseRecommendationRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_cost_explorer.types.get_reservation_purchase_recommendation_request.GetReservationPurchaseRecommendationRequest = {
+            "service": service
+        }
         if account_id is not None:
             input_["account_id"] = account_id
-        input_["service"] = service
         if filter is not None:
             input_["filter"] = filter
         if account_scope is not None:
@@ -1819,6 +1858,7 @@ class AsyncCostExplorerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_get_reservation_purchase_recommendation(
@@ -1928,8 +1968,9 @@ class AsyncCostExplorerClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cost_explorer.types.get_reservation_utilization_request.GetReservationUtilizationRequest = {}  # type: ignore[typeddict-item]
-        input_["time_period"] = time_period
+        input_: capo_cost_explorer.types.get_reservation_utilization_request.GetReservationUtilizationRequest = {
+            "time_period": time_period
+        }
         if group_by is not None:
             input_["group_by"] = group_by
         if granularity is not None:
@@ -1948,6 +1989,7 @@ class AsyncCostExplorerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_rightsizing_recommendation(
@@ -1996,12 +2038,13 @@ class AsyncCostExplorerClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cost_explorer.types.get_rightsizing_recommendation_request.GetRightsizingRecommendationRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_cost_explorer.types.get_rightsizing_recommendation_request.GetRightsizingRecommendationRequest = {
+            "service": service
+        }
         if filter is not None:
             input_["filter"] = filter
         if configuration is not None:
             input_["configuration"] = configuration
-        input_["service"] = service
         if page_size is not None:
             input_["page_size"] = page_size
         if next_page_token is not None:
@@ -2012,6 +2055,7 @@ class AsyncCostExplorerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_get_rightsizing_recommendation(
@@ -2080,14 +2124,16 @@ class AsyncCostExplorerClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cost_explorer.types.get_savings_plan_purchase_recommendation_details_request.GetSavingsPlanPurchaseRecommendationDetailsRequest = {}  # type: ignore[typeddict-item]
-        input_["recommendation_detail_id"] = recommendation_detail_id
+        input_: capo_cost_explorer.types.get_savings_plan_purchase_recommendation_details_request.GetSavingsPlanPurchaseRecommendationDetailsRequest = {
+            "recommendation_detail_id": recommendation_detail_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_savings_plans_coverage(
@@ -2146,8 +2192,9 @@ class AsyncCostExplorerClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cost_explorer.types.get_savings_plans_coverage_request.GetSavingsPlansCoverageRequest = {}  # type: ignore[typeddict-item]
-        input_["time_period"] = time_period
+        input_: capo_cost_explorer.types.get_savings_plans_coverage_request.GetSavingsPlansCoverageRequest = {
+            "time_period": time_period
+        }
         if group_by is not None:
             input_["group_by"] = group_by
         if granularity is not None:
@@ -2168,7 +2215,47 @@ class AsyncCostExplorerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_get_savings_plans_coverage(
+        self,
+        time_period: "capo_cost_explorer.types.date_interval.DateInterval",
+        *,
+        config_overrides: Optional[AsyncCostExplorerClientConfig] = None,
+        group_by: Optional[
+            "capo_cost_explorer.types.group_definitions.GroupDefinitions"
+        ] = None,
+        granularity: Optional[
+            "capo_cost_explorer.types.granularity.Granularity"
+        ] = None,
+        filter: Optional["capo_cost_explorer.types.expression.Expression"] = None,
+        metrics: Optional["capo_cost_explorer.types.metric_names.MetricNames"] = None,
+        next_token: Optional[
+            "capo_cost_explorer.types.next_page_token.NextPageToken"
+        ] = None,
+        max_results: Optional["capo_cost_explorer.types.max_results.MaxResults"] = None,
+        sort_by: Optional[
+            "capo_cost_explorer.types.sort_definition.SortDefinition"
+        ] = None,
+    ) -> "AsyncIterator[capo_cost_explorer.types.get_savings_plans_coverage_response.GetSavingsPlansCoverageResponse]":
+        _token = next_token
+        while True:
+            _response = await self.get_savings_plans_coverage(
+                time_period,
+                config_overrides=config_overrides,
+                group_by=group_by,
+                granularity=granularity,
+                filter=filter,
+                metrics=metrics,
+                next_token=_token,
+                max_results=max_results,
+                sort_by=sort_by,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def get_savings_plans_purchase_recommendation(
         self,
@@ -2223,17 +2310,18 @@ class AsyncCostExplorerClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cost_explorer.types.get_savings_plans_purchase_recommendation_request.GetSavingsPlansPurchaseRecommendationRequest = {}  # type: ignore[typeddict-item]
-        input_["savings_plans_type"] = savings_plans_type
-        input_["term_in_years"] = term_in_years
-        input_["payment_option"] = payment_option
+        input_: capo_cost_explorer.types.get_savings_plans_purchase_recommendation_request.GetSavingsPlansPurchaseRecommendationRequest = {
+            "savings_plans_type": savings_plans_type,
+            "term_in_years": term_in_years,
+            "payment_option": payment_option,
+            "lookback_period_in_days": lookback_period_in_days,
+        }
         if account_scope is not None:
             input_["account_scope"] = account_scope
         if next_page_token is not None:
             input_["next_page_token"] = next_page_token
         if page_size is not None:
             input_["page_size"] = page_size
-        input_["lookback_period_in_days"] = lookback_period_in_days
         if filter is not None:
             input_["filter"] = filter
 
@@ -2242,6 +2330,7 @@ class AsyncCostExplorerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_savings_plans_utilization(
@@ -2287,8 +2376,9 @@ class AsyncCostExplorerClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cost_explorer.types.get_savings_plans_utilization_request.GetSavingsPlansUtilizationRequest = {}  # type: ignore[typeddict-item]
-        input_["time_period"] = time_period
+        input_: capo_cost_explorer.types.get_savings_plans_utilization_request.GetSavingsPlansUtilizationRequest = {
+            "time_period": time_period
+        }
         if granularity is not None:
             input_["granularity"] = granularity
         if filter is not None:
@@ -2301,6 +2391,7 @@ class AsyncCostExplorerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_savings_plans_utilization_details(
@@ -2353,8 +2444,9 @@ class AsyncCostExplorerClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cost_explorer.types.get_savings_plans_utilization_details_request.GetSavingsPlansUtilizationDetailsRequest = {}  # type: ignore[typeddict-item]
-        input_["time_period"] = time_period
+        input_: capo_cost_explorer.types.get_savings_plans_utilization_details_request.GetSavingsPlansUtilizationDetailsRequest = {
+            "time_period": time_period
+        }
         if filter is not None:
             input_["filter"] = filter
         if data_type is not None:
@@ -2371,7 +2463,41 @@ class AsyncCostExplorerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_get_savings_plans_utilization_details(
+        self,
+        time_period: "capo_cost_explorer.types.date_interval.DateInterval",
+        *,
+        config_overrides: Optional[AsyncCostExplorerClientConfig] = None,
+        filter: Optional["capo_cost_explorer.types.expression.Expression"] = None,
+        data_type: Optional[
+            "capo_cost_explorer.types.savings_plans_data_types.SavingsPlansDataTypes"
+        ] = None,
+        next_token: Optional[
+            "capo_cost_explorer.types.next_page_token.NextPageToken"
+        ] = None,
+        max_results: Optional["capo_cost_explorer.types.max_results.MaxResults"] = None,
+        sort_by: Optional[
+            "capo_cost_explorer.types.sort_definition.SortDefinition"
+        ] = None,
+    ) -> "AsyncIterator[capo_cost_explorer.types.get_savings_plans_utilization_details_response.GetSavingsPlansUtilizationDetailsResponse]":
+        _token = next_token
+        while True:
+            _response = await self.get_savings_plans_utilization_details(
+                time_period,
+                config_overrides=config_overrides,
+                filter=filter,
+                data_type=data_type,
+                next_token=_token,
+                max_results=max_results,
+                sort_by=sort_by,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def get_tags(
         self,
@@ -2432,10 +2558,11 @@ class AsyncCostExplorerClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cost_explorer.types.get_tags_request.GetTagsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_cost_explorer.types.get_tags_request.GetTagsRequest = {
+            "time_period": time_period
+        }
         if search_string is not None:
             input_["search_string"] = search_string
-        input_["time_period"] = time_period
         if tag_key is not None:
             input_["tag_key"] = tag_key
         if filter is not None:
@@ -2454,6 +2581,7 @@ class AsyncCostExplorerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_usage_forecast(
@@ -2508,10 +2636,11 @@ class AsyncCostExplorerClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cost_explorer.types.get_usage_forecast_request.GetUsageForecastRequest = {}  # type: ignore[typeddict-item]
-        input_["time_period"] = time_period
-        input_["metric"] = metric
-        input_["granularity"] = granularity
+        input_: capo_cost_explorer.types.get_usage_forecast_request.GetUsageForecastRequest = {
+            "time_period": time_period,
+            "metric": metric,
+            "granularity": granularity,
+        }
         if filter is not None:
             input_["filter"] = filter
         if billing_view_arn is not None:
@@ -2524,6 +2653,7 @@ class AsyncCostExplorerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_commitment_purchase_analyses(
@@ -2574,7 +2704,7 @@ class AsyncCostExplorerClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cost_explorer.types.list_commitment_purchase_analyses_request.ListCommitmentPurchaseAnalysesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_cost_explorer.types.list_commitment_purchase_analyses_request.ListCommitmentPurchaseAnalysesRequest = {}
         if analysis_status is not None:
             input_["analysis_status"] = analysis_status
         if next_page_token is not None:
@@ -2589,6 +2719,7 @@ class AsyncCostExplorerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_commitment_purchase_analyses(
@@ -2663,7 +2794,7 @@ class AsyncCostExplorerClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cost_explorer.types.list_cost_allocation_tag_backfill_history_request.ListCostAllocationTagBackfillHistoryRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_cost_explorer.types.list_cost_allocation_tag_backfill_history_request.ListCostAllocationTagBackfillHistoryRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -2674,6 +2805,7 @@ class AsyncCostExplorerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_cost_allocation_tag_backfill_history(
@@ -2752,7 +2884,7 @@ class AsyncCostExplorerClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cost_explorer.types.list_cost_allocation_tags_request.ListCostAllocationTagsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_cost_explorer.types.list_cost_allocation_tags_request.ListCostAllocationTagsRequest = {}
         if status is not None:
             input_["status"] = status
         if tag_keys is not None:
@@ -2769,6 +2901,7 @@ class AsyncCostExplorerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_cost_allocation_tags(
@@ -2856,7 +2989,7 @@ class AsyncCostExplorerClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cost_explorer.types.list_cost_category_definitions_request.ListCostCategoryDefinitionsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_cost_explorer.types.list_cost_category_definitions_request.ListCostCategoryDefinitionsRequest = {}
         if effective_on is not None:
             input_["effective_on"] = effective_on
         if next_token is not None:
@@ -2871,6 +3004,7 @@ class AsyncCostExplorerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_cost_category_definitions(
@@ -2947,7 +3081,7 @@ class AsyncCostExplorerClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cost_explorer.types.list_cost_category_resource_associations_request.ListCostCategoryResourceAssociationsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_cost_explorer.types.list_cost_category_resource_associations_request.ListCostCategoryResourceAssociationsRequest = {}
         if cost_category_arn is not None:
             input_["cost_category_arn"] = cost_category_arn
         if next_token is not None:
@@ -2960,6 +3094,7 @@ class AsyncCostExplorerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_cost_category_resource_associations(
@@ -3037,7 +3172,7 @@ class AsyncCostExplorerClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cost_explorer.types.list_savings_plans_purchase_recommendation_generation_request.ListSavingsPlansPurchaseRecommendationGenerationRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_cost_explorer.types.list_savings_plans_purchase_recommendation_generation_request.ListSavingsPlansPurchaseRecommendationGenerationRequest = {}
         if generation_status is not None:
             input_["generation_status"] = generation_status
         if recommendation_ids is not None:
@@ -3052,6 +3187,7 @@ class AsyncCostExplorerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_savings_plans_purchase_recommendation_generation(
@@ -3122,14 +3258,16 @@ class AsyncCostExplorerClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cost_explorer.types.list_tags_for_resource_request.ListTagsForResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_cost_explorer.types.list_tags_for_resource_request.ListTagsForResourceRequest = {
+            "resource_arn": resource_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def provide_anomaly_feedback(
@@ -3166,15 +3304,17 @@ class AsyncCostExplorerClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cost_explorer.types.provide_anomaly_feedback_request.ProvideAnomalyFeedbackRequest = {}  # type: ignore[typeddict-item]
-        input_["anomaly_id"] = anomaly_id
-        input_["feedback"] = feedback
+        input_: capo_cost_explorer.types.provide_anomaly_feedback_request.ProvideAnomalyFeedbackRequest = {
+            "anomaly_id": anomaly_id,
+            "feedback": feedback,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def start_commitment_purchase_analysis(
@@ -3212,16 +3352,16 @@ class AsyncCostExplorerClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cost_explorer.types.start_commitment_purchase_analysis_request.StartCommitmentPurchaseAnalysisRequest = {}  # type: ignore[typeddict-item]
-        input_["commitment_purchase_analysis_configuration"] = (
-            commitment_purchase_analysis_configuration
-        )
+        input_: capo_cost_explorer.types.start_commitment_purchase_analysis_request.StartCommitmentPurchaseAnalysisRequest = {
+            "commitment_purchase_analysis_configuration": commitment_purchase_analysis_configuration
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def start_cost_allocation_tag_backfill(
@@ -3257,14 +3397,16 @@ class AsyncCostExplorerClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cost_explorer.types.start_cost_allocation_tag_backfill_request.StartCostAllocationTagBackfillRequest = {}  # type: ignore[typeddict-item]
-        input_["backfill_from"] = backfill_from
+        input_: capo_cost_explorer.types.start_cost_allocation_tag_backfill_request.StartCostAllocationTagBackfillRequest = {
+            "backfill_from": backfill_from
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def start_savings_plans_purchase_recommendation_generation(
@@ -3296,13 +3438,14 @@ class AsyncCostExplorerClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cost_explorer.types.start_savings_plans_purchase_recommendation_generation_request.StartSavingsPlansPurchaseRecommendationGenerationRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_cost_explorer.types.start_savings_plans_purchase_recommendation_generation_request.StartSavingsPlansPurchaseRecommendationGenerationRequest = {}
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def tag_resource(
@@ -3341,15 +3484,17 @@ class AsyncCostExplorerClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cost_explorer.types.tag_resource_request.TagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["resource_tags"] = resource_tags
+        input_: capo_cost_explorer.types.tag_resource_request.TagResourceRequest = {
+            "resource_arn": resource_arn,
+            "resource_tags": resource_tags,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def untag_resource(
@@ -3387,15 +3532,17 @@ class AsyncCostExplorerClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cost_explorer.types.untag_resource_request.UntagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["resource_tag_keys"] = resource_tag_keys
+        input_: capo_cost_explorer.types.untag_resource_request.UntagResourceRequest = {
+            "resource_arn": resource_arn,
+            "resource_tag_keys": resource_tag_keys,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_anomaly_monitor(
@@ -3435,8 +3582,9 @@ class AsyncCostExplorerClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cost_explorer.types.update_anomaly_monitor_request.UpdateAnomalyMonitorRequest = {}  # type: ignore[typeddict-item]
-        input_["monitor_arn"] = monitor_arn
+        input_: capo_cost_explorer.types.update_anomaly_monitor_request.UpdateAnomalyMonitorRequest = {
+            "monitor_arn": monitor_arn
+        }
         if monitor_name is not None:
             input_["monitor_name"] = monitor_name
 
@@ -3445,6 +3593,7 @@ class AsyncCostExplorerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_anomaly_subscription(
@@ -3505,8 +3654,9 @@ class AsyncCostExplorerClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cost_explorer.types.update_anomaly_subscription_request.UpdateAnomalySubscriptionRequest = {}  # type: ignore[typeddict-item]
-        input_["subscription_arn"] = subscription_arn
+        input_: capo_cost_explorer.types.update_anomaly_subscription_request.UpdateAnomalySubscriptionRequest = {
+            "subscription_arn": subscription_arn
+        }
         if threshold is not None:
             input_["threshold"] = threshold
         if frequency is not None:
@@ -3525,6 +3675,7 @@ class AsyncCostExplorerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_cost_allocation_tags_status(
@@ -3559,14 +3710,16 @@ class AsyncCostExplorerClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cost_explorer.types.update_cost_allocation_tags_status_request.UpdateCostAllocationTagsStatusRequest = {}  # type: ignore[typeddict-item]
-        input_["cost_allocation_tags_status"] = cost_allocation_tags_status
+        input_: capo_cost_explorer.types.update_cost_allocation_tags_status_request.UpdateCostAllocationTagsStatusRequest = {
+            "cost_allocation_tags_status": cost_allocation_tags_status
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_cost_category_definition(
@@ -3617,12 +3770,13 @@ class AsyncCostExplorerClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cost_explorer.types.update_cost_category_definition_request.UpdateCostCategoryDefinitionRequest = {}  # type: ignore[typeddict-item]
-        input_["cost_category_arn"] = cost_category_arn
+        input_: capo_cost_explorer.types.update_cost_category_definition_request.UpdateCostCategoryDefinitionRequest = {
+            "cost_category_arn": cost_category_arn,
+            "rule_version": rule_version,
+            "rules": rules,
+        }
         if effective_start is not None:
             input_["effective_start"] = effective_start
-        input_["rule_version"] = rule_version
-        input_["rules"] = rules
         if default_value is not None:
             input_["default_value"] = default_value
         if split_charge_rules is not None:
@@ -3633,6 +3787,7 @@ class AsyncCostExplorerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def __aenter__(self) -> Self:

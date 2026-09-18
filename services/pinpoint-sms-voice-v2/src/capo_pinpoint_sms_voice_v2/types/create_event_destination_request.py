@@ -88,19 +88,19 @@ def serialize_aws_json_1_0(value: CreateEventDestinationRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CreateEventDestinationRequest:
     out: CreateEventDestinationRequest = {}  # type: ignore[typeddict-item]
-    if "ConfigurationSetName" in data:
+    if data.get("ConfigurationSetName") is not None:
         out["configuration_set_name"] = data["ConfigurationSetName"]
     else:
         raise DeserializationError(
             "CreateEventDestinationRequest.configuration_set_name required"
         )
-    if "EventDestinationName" in data:
+    if data.get("EventDestinationName") is not None:
         out["event_destination_name"] = data["EventDestinationName"]
     else:
         raise DeserializationError(
             "CreateEventDestinationRequest.event_destination_name required"
         )
-    if "MatchingEventTypes" in data:
+    if data.get("MatchingEventTypes") is not None:
         import capo_pinpoint_sms_voice_v2.types.event_type_list
 
         out["matching_event_types"] = (
@@ -112,7 +112,7 @@ def deserialize_aws_json_1_0(data: dict) -> CreateEventDestinationRequest:
         raise DeserializationError(
             "CreateEventDestinationRequest.matching_event_types required"
         )
-    if "CloudWatchLogsDestination" in data:
+    if data.get("CloudWatchLogsDestination") is not None:
         import capo_pinpoint_sms_voice_v2.types.cloud_watch_logs_destination
 
         out["cloud_watch_logs_destination"] = (
@@ -120,7 +120,7 @@ def deserialize_aws_json_1_0(data: dict) -> CreateEventDestinationRequest:
                 data["CloudWatchLogsDestination"]
             )
         )
-    if "KinesisFirehoseDestination" in data:
+    if data.get("KinesisFirehoseDestination") is not None:
         import capo_pinpoint_sms_voice_v2.types.kinesis_firehose_destination
 
         out["kinesis_firehose_destination"] = (
@@ -128,7 +128,7 @@ def deserialize_aws_json_1_0(data: dict) -> CreateEventDestinationRequest:
                 data["KinesisFirehoseDestination"]
             )
         )
-    if "SnsDestination" in data:
+    if data.get("SnsDestination") is not None:
         import capo_pinpoint_sms_voice_v2.types.sns_destination
 
         out["sns_destination"] = (
@@ -136,6 +136,6 @@ def deserialize_aws_json_1_0(data: dict) -> CreateEventDestinationRequest:
                 data["SnsDestination"]
             )
         )
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
     return out

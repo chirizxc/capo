@@ -24,7 +24,7 @@ def serialize_aws_json_1_0(value: OperationTimeoutException_) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> OperationTimeoutException_:
     out: OperationTimeoutException_ = {}  # type: ignore[typeddict-item]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     return out
 
@@ -34,15 +34,18 @@ class OperationTimeoutException(ServiceError):
 
     code: str | None = "OperationTimeoutException"
 
-    def __init__(self, data: OperationTimeoutException_):
+    def __init__(self, data: OperationTimeoutException_, message: str | None = None):
         super().__init__(
             "server",
             is_throttling_error=False,
             is_retryable=False,
             code="OperationTimeoutException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_0(cls, data: dict) -> "OperationTimeoutException":
-        return cls(deserialize_aws_json_1_0(data))
+    def from_aws_json_1_0(
+        cls, data: dict, message: str | None = None
+    ) -> "OperationTimeoutException":
+        return cls(deserialize_aws_json_1_0(data), message)

@@ -79,21 +79,21 @@ def serialize_aws_json_1_1(value: Property) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Property:
     out: Property = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("Property.name required")
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
     else:
         raise DeserializationError("Property.description required")
-    if "Required" in data:
+    if data.get("Required") is not None:
         out["required"] = data["Required"]
     else:
         raise DeserializationError("Property.required required")
-    if "DefaultValue" in data:
+    if data.get("DefaultValue") is not None:
         out["default_value"] = data["DefaultValue"]
-    if "PropertyTypes" in data:
+    if data.get("PropertyTypes") is not None:
         import capo_glue.types.property_types
 
         out["property_types"] = capo_glue.types.property_types.deserialize_aws_json_1_1(
@@ -101,13 +101,13 @@ def deserialize_aws_json_1_1(data: dict) -> Property:
         )
     else:
         out["property_types"] = []
-    if "AllowedValues" in data:
+    if data.get("AllowedValues") is not None:
         import capo_glue.types.allowed_values
 
         out["allowed_values"] = capo_glue.types.allowed_values.deserialize_aws_json_1_1(
             data["AllowedValues"]
         )
-    if "DataOperationScopes" in data:
+    if data.get("DataOperationScopes") is not None:
         import capo_glue.types.data_operations
 
         out["data_operation_scopes"] = (
@@ -115,9 +115,9 @@ def deserialize_aws_json_1_1(data: dict) -> Property:
                 data["DataOperationScopes"]
             )
         )
-    if "KeyOverride" in data:
+    if data.get("KeyOverride") is not None:
         out["key_override"] = data["KeyOverride"]
-    if "PropertyLocation" in data:
+    if data.get("PropertyLocation") is not None:
         import capo_glue.types.property_location
 
         out["property_location"] = (

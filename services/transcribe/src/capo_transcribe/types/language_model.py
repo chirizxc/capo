@@ -98,15 +98,15 @@ def serialize_aws_json_1_1(value: LanguageModel) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> LanguageModel:
     out: LanguageModel = {}  # type: ignore[typeddict-item]
-    if "ModelName" in data:
+    if data.get("ModelName") is not None:
         out["model_name"] = data["ModelName"]
-    if "CreateTime" in data:
+    if data.get("CreateTime") is not None:
         import capo_transcribe.types.date_time
 
         out["create_time"] = capo_transcribe.types.date_time.deserialize_aws_json_1_1(
             data["CreateTime"]
         )
-    if "LastModifiedTime" in data:
+    if data.get("LastModifiedTime") is not None:
         import capo_transcribe.types.date_time
 
         out["last_modified_time"] = (
@@ -114,7 +114,7 @@ def deserialize_aws_json_1_1(data: dict) -> LanguageModel:
                 data["LastModifiedTime"]
             )
         )
-    if "LanguageCode" in data:
+    if data.get("LanguageCode") is not None:
         import capo_transcribe.types.clm_language_code
 
         out["language_code"] = (
@@ -122,7 +122,7 @@ def deserialize_aws_json_1_1(data: dict) -> LanguageModel:
                 data["LanguageCode"]
             )
         )
-    if "BaseModelName" in data:
+    if data.get("BaseModelName") is not None:
         import capo_transcribe.types.base_model_name
 
         out["base_model_name"] = (
@@ -130,7 +130,7 @@ def deserialize_aws_json_1_1(data: dict) -> LanguageModel:
                 data["BaseModelName"]
             )
         )
-    if "ModelStatus" in data:
+    if data.get("ModelStatus") is not None:
         import capo_transcribe.types.model_status
 
         out["model_status"] = (
@@ -138,11 +138,11 @@ def deserialize_aws_json_1_1(data: dict) -> LanguageModel:
                 data["ModelStatus"]
             )
         )
-    if "UpgradeAvailability" in data:
+    if data.get("UpgradeAvailability") is not None:
         out["upgrade_availability"] = data["UpgradeAvailability"]
-    if "FailureReason" in data:
+    if data.get("FailureReason") is not None:
         out["failure_reason"] = data["FailureReason"]
-    if "InputDataConfig" in data:
+    if data.get("InputDataConfig") is not None:
         import capo_transcribe.types.input_data_config
 
         out["input_data_config"] = (

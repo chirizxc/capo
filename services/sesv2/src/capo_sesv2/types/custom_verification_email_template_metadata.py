@@ -49,14 +49,14 @@ def serialize_json(value: CustomVerificationEmailTemplateMetadata) -> dict:
 
 def deserialize_json(data: dict) -> CustomVerificationEmailTemplateMetadata:
     out: CustomVerificationEmailTemplateMetadata = {}  # type: ignore[typeddict-item]
-    if "TemplateName" in data:
+    if data.get("TemplateName") is not None:
         out["template_name"] = data["TemplateName"]
-    if "FromEmailAddress" in data:
+    if data.get("FromEmailAddress") is not None:
         out["from_email_address"] = data["FromEmailAddress"]
-    if "TemplateSubject" in data:
+    if data.get("TemplateSubject") is not None:
         out["template_subject"] = data["TemplateSubject"]
-    if "SuccessRedirectionURL" in data:
+    if data.get("SuccessRedirectionURL") is not None:
         out["success_redirection_url"] = data["SuccessRedirectionURL"]
-    if "FailureRedirectionURL" in data:
+    if data.get("FailureRedirectionURL") is not None:
         out["failure_redirection_url"] = data["FailureRedirectionURL"]
     return out

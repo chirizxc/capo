@@ -30,11 +30,11 @@ def serialize_json(value: LambdaCodeHook) -> dict:
 
 def deserialize_json(data: dict) -> LambdaCodeHook:
     out: LambdaCodeHook = {}  # type: ignore[typeddict-item]
-    if "lambdaARN" in data:
+    if data.get("lambdaARN") is not None:
         out["lambda_arn"] = data["lambdaARN"]
     else:
         raise DeserializationError("LambdaCodeHook.lambda_arn required")
-    if "codeHookInterfaceVersion" in data:
+    if data.get("codeHookInterfaceVersion") is not None:
         out["code_hook_interface_version"] = data["codeHookInterfaceVersion"]
     else:
         raise DeserializationError(

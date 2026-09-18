@@ -27,7 +27,7 @@ def serialize_json(value: UpdatePrivateConnectionCertificateInput) -> dict:
 
 def deserialize_json(data: dict) -> UpdatePrivateConnectionCertificateInput:
     out: UpdatePrivateConnectionCertificateInput = {}  # type: ignore[typeddict-item]
-    if "certificate" in data:
+    if data.get("certificate") is not None:
         out["certificate"] = data["certificate"]
     else:
         raise DeserializationError(

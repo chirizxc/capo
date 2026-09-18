@@ -36,9 +36,9 @@ def serialize_json(value: ImageAggregation) -> dict:
 
 def deserialize_json(data: dict) -> ImageAggregation:
     out: ImageAggregation = {}  # type: ignore[typeddict-item]
-    if "imageBuildVersionArn" in data:
+    if data.get("imageBuildVersionArn") is not None:
         out["image_build_version_arn"] = data["imageBuildVersionArn"]
-    if "severityCounts" in data:
+    if data.get("severityCounts") is not None:
         import capo_imagebuilder.types.severity_counts
 
         out["severity_counts"] = (

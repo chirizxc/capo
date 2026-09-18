@@ -31,7 +31,7 @@ def serialize_json(value: RollbackServiceSoftwareUpdateResponse) -> dict:
 
 def deserialize_json(data: dict) -> RollbackServiceSoftwareUpdateResponse:
     out: RollbackServiceSoftwareUpdateResponse = {}  # type: ignore[typeddict-item]
-    if "RollbackServiceSoftwareOptions" in data:
+    if data.get("RollbackServiceSoftwareOptions") is not None:
         import capo_opensearch.types.rollback_service_software_options
 
         out["rollback_service_software_options"] = (

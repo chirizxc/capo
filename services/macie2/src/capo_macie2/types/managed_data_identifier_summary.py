@@ -34,7 +34,7 @@ def serialize_json(value: ManagedDataIdentifierSummary) -> dict:
 
 def deserialize_json(data: dict) -> ManagedDataIdentifierSummary:
     out: ManagedDataIdentifierSummary = {}  # type: ignore[typeddict-item]
-    if "category" in data:
+    if data.get("category") is not None:
         import capo_macie2.types.sensitive_data_item_category
 
         out["category"] = (
@@ -42,6 +42,6 @@ def deserialize_json(data: dict) -> ManagedDataIdentifierSummary:
                 data["category"]
             )
         )
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     return out

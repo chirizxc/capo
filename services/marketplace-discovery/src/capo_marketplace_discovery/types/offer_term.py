@@ -198,7 +198,7 @@ def serialize_json(value: OfferTerm) -> dict:
 
 
 def deserialize_json(data: dict) -> OfferTerm:
-    if "byolPricingTerm" in data:
+    if data.get("byolPricingTerm") is not None:
         import capo_marketplace_discovery.types.byol_pricing_term
 
         return {
@@ -206,7 +206,7 @@ def deserialize_json(data: dict) -> OfferTerm:
                 data["byolPricingTerm"]
             )
         }
-    elif "configurableUpfrontPricingTerm" in data:
+    elif data.get("configurableUpfrontPricingTerm") is not None:
         import capo_marketplace_discovery.types.configurable_upfront_pricing_term
 
         return {
@@ -214,7 +214,7 @@ def deserialize_json(data: dict) -> OfferTerm:
                 data["configurableUpfrontPricingTerm"]
             )
         }
-    elif "fixedUpfrontPricingTerm" in data:
+    elif data.get("fixedUpfrontPricingTerm") is not None:
         import capo_marketplace_discovery.types.fixed_upfront_pricing_term
 
         return {
@@ -222,7 +222,7 @@ def deserialize_json(data: dict) -> OfferTerm:
                 data["fixedUpfrontPricingTerm"]
             )
         }
-    elif "freeTrialPricingTerm" in data:
+    elif data.get("freeTrialPricingTerm") is not None:
         import capo_marketplace_discovery.types.free_trial_pricing_term
 
         return {
@@ -230,7 +230,7 @@ def deserialize_json(data: dict) -> OfferTerm:
                 data["freeTrialPricingTerm"]
             )
         }
-    elif "legalTerm" in data:
+    elif data.get("legalTerm") is not None:
         import capo_marketplace_discovery.types.legal_term
 
         return {
@@ -238,7 +238,7 @@ def deserialize_json(data: dict) -> OfferTerm:
                 data["legalTerm"]
             )
         }
-    elif "paymentScheduleTerm" in data:
+    elif data.get("paymentScheduleTerm") is not None:
         import capo_marketplace_discovery.types.payment_schedule_term
 
         return {
@@ -246,7 +246,7 @@ def deserialize_json(data: dict) -> OfferTerm:
                 data["paymentScheduleTerm"]
             )
         }
-    elif "recurringPaymentTerm" in data:
+    elif data.get("recurringPaymentTerm") is not None:
         import capo_marketplace_discovery.types.recurring_payment_term
 
         return {
@@ -254,7 +254,7 @@ def deserialize_json(data: dict) -> OfferTerm:
                 data["recurringPaymentTerm"]
             )
         }
-    elif "renewalTerm" in data:
+    elif data.get("renewalTerm") is not None:
         import capo_marketplace_discovery.types.renewal_term
 
         return {
@@ -262,7 +262,7 @@ def deserialize_json(data: dict) -> OfferTerm:
                 data["renewalTerm"]
             )
         }
-    elif "supportTerm" in data:
+    elif data.get("supportTerm") is not None:
         import capo_marketplace_discovery.types.support_term
 
         return {
@@ -270,7 +270,7 @@ def deserialize_json(data: dict) -> OfferTerm:
                 data["supportTerm"]
             )
         }
-    elif "usageBasedPricingTerm" in data:
+    elif data.get("usageBasedPricingTerm") is not None:
         import capo_marketplace_discovery.types.usage_based_pricing_term
 
         return {
@@ -278,7 +278,7 @@ def deserialize_json(data: dict) -> OfferTerm:
                 data["usageBasedPricingTerm"]
             )
         }
-    elif "validityTerm" in data:
+    elif data.get("validityTerm") is not None:
         import capo_marketplace_discovery.types.validity_term
 
         return {
@@ -286,7 +286,7 @@ def deserialize_json(data: dict) -> OfferTerm:
                 data["validityTerm"]
             )
         }
-    elif "variablePaymentTerm" in data:
+    elif data.get("variablePaymentTerm") is not None:
         import capo_marketplace_discovery.types.variable_payment_term
 
         return {

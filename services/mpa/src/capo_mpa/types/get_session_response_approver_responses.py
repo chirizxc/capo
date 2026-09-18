@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> GetSessionResponseApproverResponses:
 
     out: GetSessionResponseApproverResponses = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_mpa.types.get_session_response_approver_response.deserialize_json(item)
         )

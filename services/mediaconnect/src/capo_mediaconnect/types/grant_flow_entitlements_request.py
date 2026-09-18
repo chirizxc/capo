@@ -34,7 +34,7 @@ def serialize_json(value: GrantFlowEntitlementsRequest) -> dict:
 
 def deserialize_json(data: dict) -> GrantFlowEntitlementsRequest:
     out: GrantFlowEntitlementsRequest = {}  # type: ignore[typeddict-item]
-    if "entitlements" in data:
+    if data.get("entitlements") is not None:
         import capo_mediaconnect.types.__list_of_grant_entitlement_request
 
         out["entitlements"] = (

@@ -22,7 +22,7 @@ def serialize_json(value: SendingOptions) -> dict:
 
 def deserialize_json(data: dict) -> SendingOptions:
     out: SendingOptions = {}  # type: ignore[typeddict-item]
-    if "SendingEnabled" in data:
+    if data.get("SendingEnabled") is not None:
         out["sending_enabled"] = data["SendingEnabled"]
     else:
         out["sending_enabled"] = False

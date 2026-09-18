@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> __listOfCellOutput:
 
     out: __listOfCellOutput = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_route53_recovery_readiness.types.cell_output.deserialize_json(item)
         )

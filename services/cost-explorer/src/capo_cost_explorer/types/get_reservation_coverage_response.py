@@ -46,7 +46,7 @@ def serialize_aws_json_1_1(value: GetReservationCoverageResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetReservationCoverageResponse:
     out: GetReservationCoverageResponse = {}  # type: ignore[typeddict-item]
-    if "CoveragesByTime" in data:
+    if data.get("CoveragesByTime") is not None:
         import capo_cost_explorer.types.coverages_by_time
 
         out["coverages_by_time"] = (
@@ -58,12 +58,12 @@ def deserialize_aws_json_1_1(data: dict) -> GetReservationCoverageResponse:
         raise DeserializationError(
             "GetReservationCoverageResponse.coverages_by_time required"
         )
-    if "Total" in data:
+    if data.get("Total") is not None:
         import capo_cost_explorer.types.coverage
 
         out["total"] = capo_cost_explorer.types.coverage.deserialize_aws_json_1_1(
             data["Total"]
         )
-    if "NextPageToken" in data:
+    if data.get("NextPageToken") is not None:
         out["next_page_token"] = data["NextPageToken"]
     return out

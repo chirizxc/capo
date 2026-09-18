@@ -43,12 +43,12 @@ def serialize_aws_json_1_1(value: DiskResourceUtilization) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DiskResourceUtilization:
     out: DiskResourceUtilization = {}  # type: ignore[typeddict-item]
-    if "DiskReadOpsPerSecond" in data:
+    if data.get("DiskReadOpsPerSecond") is not None:
         out["disk_read_ops_per_second"] = data["DiskReadOpsPerSecond"]
-    if "DiskWriteOpsPerSecond" in data:
+    if data.get("DiskWriteOpsPerSecond") is not None:
         out["disk_write_ops_per_second"] = data["DiskWriteOpsPerSecond"]
-    if "DiskReadBytesPerSecond" in data:
+    if data.get("DiskReadBytesPerSecond") is not None:
         out["disk_read_bytes_per_second"] = data["DiskReadBytesPerSecond"]
-    if "DiskWriteBytesPerSecond" in data:
+    if data.get("DiskWriteBytesPerSecond") is not None:
         out["disk_write_bytes_per_second"] = data["DiskWriteBytesPerSecond"]
     return out

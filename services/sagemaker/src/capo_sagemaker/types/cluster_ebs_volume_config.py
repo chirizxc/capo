@@ -35,10 +35,10 @@ def serialize_aws_json_1_1(value: ClusterEbsVolumeConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ClusterEbsVolumeConfig:
     out: ClusterEbsVolumeConfig = {}  # type: ignore[typeddict-item]
-    if "VolumeSizeInGB" in data:
+    if data.get("VolumeSizeInGB") is not None:
         out["volume_size_in_gb"] = data["VolumeSizeInGB"]
-    if "VolumeKmsKeyId" in data:
+    if data.get("VolumeKmsKeyId") is not None:
         out["volume_kms_key_id"] = data["VolumeKmsKeyId"]
-    if "RootVolume" in data:
+    if data.get("RootVolume") is not None:
         out["root_volume"] = data["RootVolume"]
     return out

@@ -29,12 +29,12 @@ def serialize_json(value: ExperimentTemplateS3LogConfigurationInput) -> dict:
 
 def deserialize_json(data: dict) -> ExperimentTemplateS3LogConfigurationInput:
     out: ExperimentTemplateS3LogConfigurationInput = {}  # type: ignore[typeddict-item]
-    if "bucketName" in data:
+    if data.get("bucketName") is not None:
         out["bucket_name"] = data["bucketName"]
     else:
         raise DeserializationError(
             "ExperimentTemplateS3LogConfigurationInput.bucket_name required"
         )
-    if "prefix" in data:
+    if data.get("prefix") is not None:
         out["prefix"] = data["prefix"]
     return out

@@ -38,13 +38,13 @@ def deserialize_aws_json_1_1(
     data: dict,
 ) -> UpdateApplicationMaintenanceConfigurationRequest:
     out: UpdateApplicationMaintenanceConfigurationRequest = {}  # type: ignore[typeddict-item]
-    if "ApplicationName" in data:
+    if data.get("ApplicationName") is not None:
         out["application_name"] = data["ApplicationName"]
     else:
         raise DeserializationError(
             "UpdateApplicationMaintenanceConfigurationRequest.application_name required"
         )
-    if "ApplicationMaintenanceConfigurationUpdate" in data:
+    if data.get("ApplicationMaintenanceConfigurationUpdate") is not None:
         import capo_kinesis_analytics_v2.types.application_maintenance_configuration_update
 
         out["application_maintenance_configuration_update"] = (

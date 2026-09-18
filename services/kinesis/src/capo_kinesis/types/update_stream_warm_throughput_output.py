@@ -41,11 +41,11 @@ def serialize_aws_json_1_1(value: UpdateStreamWarmThroughputOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateStreamWarmThroughputOutput:
     out: UpdateStreamWarmThroughputOutput = {}  # type: ignore[typeddict-item]
-    if "StreamARN" in data:
+    if data.get("StreamARN") is not None:
         out["stream_arn"] = data["StreamARN"]
-    if "StreamName" in data:
+    if data.get("StreamName") is not None:
         out["stream_name"] = data["StreamName"]
-    if "WarmThroughput" in data:
+    if data.get("WarmThroughput") is not None:
         import capo_kinesis.types.warm_throughput_object
 
         out["warm_throughput"] = (

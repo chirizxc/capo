@@ -34,15 +34,31 @@ def serialize_json(value: CalculateRouteSummary) -> dict:
         value["route_b_box"]
     )
     out["DataSource"] = value["data_source"]
-    out["Distance"] = value["distance"]
-    out["DurationSeconds"] = value["duration_seconds"]
+    out["Distance"] = (
+        "NaN"
+        if value["distance"] != value["distance"]
+        else "Infinity"
+        if value["distance"] == float("inf")
+        else "-Infinity"
+        if value["distance"] == float("-inf")
+        else value["distance"]
+    )
+    out["DurationSeconds"] = (
+        "NaN"
+        if value["duration_seconds"] != value["duration_seconds"]
+        else "Infinity"
+        if value["duration_seconds"] == float("inf")
+        else "-Infinity"
+        if value["duration_seconds"] == float("-inf")
+        else value["duration_seconds"]
+    )
     out["DistanceUnit"] = value["distance_unit"]
     return out
 
 
 def deserialize_json(data: dict) -> CalculateRouteSummary:
     out: CalculateRouteSummary = {}  # type: ignore[typeddict-item]
-    if "RouteBBox" in data:
+    if data.get("RouteBBox") is not None:
         import capo_location.types.bounding_box
 
         out["route_b_box"] = capo_location.types.bounding_box.deserialize_json(
@@ -50,19 +66,19 @@ def deserialize_json(data: dict) -> CalculateRouteSummary:
         )
     else:
         raise DeserializationError("CalculateRouteSummary.route_b_box required")
-    if "DataSource" in data:
+    if data.get("DataSource") is not None:
         out["data_source"] = data["DataSource"]
     else:
         raise DeserializationError("CalculateRouteSummary.data_source required")
-    if "Distance" in data:
-        out["distance"] = data["Distance"]
+    if data.get("Distance") is not None:
+        out["distance"] = float(data["Distance"])
     else:
         raise DeserializationError("CalculateRouteSummary.distance required")
-    if "DurationSeconds" in data:
-        out["duration_seconds"] = data["DurationSeconds"]
+    if data.get("DurationSeconds") is not None:
+        out["duration_seconds"] = float(data["DurationSeconds"])
     else:
         raise DeserializationError("CalculateRouteSummary.duration_seconds required")
-    if "DistanceUnit" in data:
+    if data.get("DistanceUnit") is not None:
         out["distance_unit"] = data["DistanceUnit"]
     else:
         raise DeserializationError("CalculateRouteSummary.distance_unit required")

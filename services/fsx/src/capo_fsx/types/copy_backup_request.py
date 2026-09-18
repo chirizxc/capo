@@ -49,17 +49,17 @@ def serialize_aws_json_1_1(value: CopyBackupRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CopyBackupRequest:
     out: CopyBackupRequest = {}  # type: ignore[typeddict-item]
-    if "ClientRequestToken" in data:
+    if data.get("ClientRequestToken") is not None:
         out["client_request_token"] = data["ClientRequestToken"]
-    if "SourceBackupId" in data:
+    if data.get("SourceBackupId") is not None:
         out["source_backup_id"] = data["SourceBackupId"]
-    if "SourceRegion" in data:
+    if data.get("SourceRegion") is not None:
         out["source_region"] = data["SourceRegion"]
-    if "KmsKeyId" in data:
+    if data.get("KmsKeyId") is not None:
         out["kms_key_id"] = data["KmsKeyId"]
-    if "CopyTags" in data:
+    if data.get("CopyTags") is not None:
         out["copy_tags"] = data["CopyTags"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_fsx.types.tags
 
         out["tags"] = capo_fsx.types.tags.deserialize_aws_json_1_1(data["Tags"])

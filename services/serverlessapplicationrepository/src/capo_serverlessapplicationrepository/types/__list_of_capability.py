@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> __listOfCapability:
 
     out: __listOfCapability = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_serverlessapplicationrepository.types.capability.deserialize_json(item)
         )

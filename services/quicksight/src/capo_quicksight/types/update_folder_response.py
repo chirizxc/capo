@@ -38,10 +38,10 @@ def serialize_json(value: UpdateFolderResponse) -> dict:
 
 def deserialize_json(data: dict) -> UpdateFolderResponse:
     out: UpdateFolderResponse = {}  # type: ignore[typeddict-item]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "FolderId" in data:
+    if data.get("FolderId") is not None:
         out["folder_id"] = data["FolderId"]
-    if "RequestId" in data:
+    if data.get("RequestId") is not None:
         out["request_id"] = data["RequestId"]
     return out

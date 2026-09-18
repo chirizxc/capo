@@ -23,5 +23,7 @@ def deserialize_aws_json_1_0(data: list) -> DatabaseList:
 
     out: DatabaseList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_timestream_write.types.database.deserialize_aws_json_1_0(item))
     return out

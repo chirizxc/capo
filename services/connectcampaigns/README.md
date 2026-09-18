@@ -13,9 +13,9 @@ from capo_connectcampaigns import AsyncConnectCampaignsClient
 
 
 async def main():
-    async with AsyncConnectCampaignsClient() as s3:
+    async with AsyncConnectCampaignsClient() as connect_campaigns:
         # Example: call the create_campaign operation
-        response = await s3.create_campaign()
+        response = await connect_campaigns.create_campaign()
         print(response["id"])
 ```
 
@@ -28,9 +28,9 @@ from capo_connectcampaigns import AsyncConnectCampaignsClient
 
 
 async def main():
-    async with AsyncConnectCampaignsClient() as s3:
+    async with AsyncConnectCampaignsClient() as connect_campaigns:
         # Example: paginate over list_campaigns
-        async for item in s3.iter_list_campaigns():
+        async for item in connect_campaigns.iter_list_campaigns():
             print(item)
 ```
 
@@ -44,9 +44,9 @@ from capo_connectcampaigns.error import AccessDeniedException
 
 
 async def main():
-    async with AsyncConnectCampaignsClient() as s3:
+    async with AsyncConnectCampaignsClient() as connect_campaigns:
         try:
-            await s3.create_campaign()
+            await connect_campaigns.create_campaign()
         except AccessDeniedException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -63,13 +63,13 @@ from capo_connectcampaigns import AsyncConnectCampaignsClient
 
 
 async def main():
-    async with AsyncConnectCampaignsClient() as s3:
+    async with AsyncConnectCampaignsClient() as connect_campaigns:
         # Default: 3 attempts for every operation
-        response = await s3.create_campaign()
+        response = await connect_campaigns.create_campaign()
 
         # Override per operation
-        response = await s3.create_campaign(config_overrides={"retry_max_attempts": 5})
+        response = await connect_campaigns.create_campaign(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.create_campaign(config_overrides={"retry_max_attempts": 1})
+        response = await connect_campaigns.create_campaign(config_overrides={"retry_max_attempts": 1})
 ```

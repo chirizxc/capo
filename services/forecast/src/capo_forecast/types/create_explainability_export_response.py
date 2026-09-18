@@ -23,6 +23,6 @@ def serialize_aws_json_1_1(value: CreateExplainabilityExportResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateExplainabilityExportResponse:
     out: CreateExplainabilityExportResponse = {}  # type: ignore[typeddict-item]
-    if "ExplainabilityExportArn" in data:
+    if data.get("ExplainabilityExportArn") is not None:
         out["explainability_export_arn"] = data["ExplainabilityExportArn"]
     return out

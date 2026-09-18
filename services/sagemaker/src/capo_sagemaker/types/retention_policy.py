@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: RetentionPolicy) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RetentionPolicy:
     out: RetentionPolicy = {}  # type: ignore[typeddict-item]
-    if "HomeEfsFileSystem" in data:
+    if data.get("HomeEfsFileSystem") is not None:
         import capo_sagemaker.types.retention_type
 
         out["home_efs_file_system"] = (

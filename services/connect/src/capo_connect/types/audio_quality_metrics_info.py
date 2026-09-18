@@ -21,7 +21,15 @@ class AudioQualityMetricsInfo(TypedDict, closed=True):
 # --- restJson1 ser/de ---
 def serialize_json(value: AudioQualityMetricsInfo) -> dict:
     out: dict = {}
-    out["QualityScore"] = value.get("quality_score", 0)
+    out["QualityScore"] = (
+        "NaN"
+        if value.get("quality_score", 0) != value.get("quality_score", 0)
+        else "Infinity"
+        if value.get("quality_score", 0) == float("inf")
+        else "-Infinity"
+        if value.get("quality_score", 0) == float("-inf")
+        else value.get("quality_score", 0)
+    )
     if "potential_quality_issues" in value:
         import capo_connect.types.potential_audio_quality_issues
 
@@ -35,11 +43,11 @@ def serialize_json(value: AudioQualityMetricsInfo) -> dict:
 
 def deserialize_json(data: dict) -> AudioQualityMetricsInfo:
     out: AudioQualityMetricsInfo = {}  # type: ignore[typeddict-item]
-    if "QualityScore" in data:
-        out["quality_score"] = data["QualityScore"]
+    if data.get("QualityScore") is not None:
+        out["quality_score"] = float(data["QualityScore"])
     else:
         out["quality_score"] = 0
-    if "PotentialQualityIssues" in data:
+    if data.get("PotentialQualityIssues") is not None:
         import capo_connect.types.potential_audio_quality_issues
 
         out["potential_quality_issues"] = (

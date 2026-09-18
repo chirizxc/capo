@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> CommandSummaryList:
 
     out: CommandSummaryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_iot.types.command_summary.deserialize_json(item))
     return out

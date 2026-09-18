@@ -44,7 +44,7 @@ def serialize_aws_json_1_1(value: LoadBalancerTlsCertificateRenewalSummary) -> d
 
 def deserialize_aws_json_1_1(data: dict) -> LoadBalancerTlsCertificateRenewalSummary:
     out: LoadBalancerTlsCertificateRenewalSummary = {}  # type: ignore[typeddict-item]
-    if "renewalStatus" in data:
+    if data.get("renewalStatus") is not None:
         import capo_lightsail.types.load_balancer_tls_certificate_renewal_status
 
         out["renewal_status"] = (
@@ -52,7 +52,7 @@ def deserialize_aws_json_1_1(data: dict) -> LoadBalancerTlsCertificateRenewalSum
                 data["renewalStatus"]
             )
         )
-    if "domainValidationOptions" in data:
+    if data.get("domainValidationOptions") is not None:
         import capo_lightsail.types.load_balancer_tls_certificate_domain_validation_option_list
 
         out["domain_validation_options"] = (

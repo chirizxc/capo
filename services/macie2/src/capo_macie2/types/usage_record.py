@@ -59,9 +59,9 @@ def serialize_json(value: UsageRecord) -> dict:
 
 def deserialize_json(data: dict) -> UsageRecord:
     out: UsageRecord = {}  # type: ignore[typeddict-item]
-    if "accountId" in data:
+    if data.get("accountId") is not None:
         out["account_id"] = data["accountId"]
-    if "automatedDiscoveryFreeTrialStartDate" in data:
+    if data.get("automatedDiscoveryFreeTrialStartDate") is not None:
         import capo_macie2.types.__timestamp_iso8601
 
         out["automated_discovery_free_trial_start_date"] = (
@@ -69,7 +69,7 @@ def deserialize_json(data: dict) -> UsageRecord:
                 data["automatedDiscoveryFreeTrialStartDate"]
             )
         )
-    if "freeTrialStartDate" in data:
+    if data.get("freeTrialStartDate") is not None:
         import capo_macie2.types.__timestamp_iso8601
 
         out["free_trial_start_date"] = (
@@ -77,7 +77,7 @@ def deserialize_json(data: dict) -> UsageRecord:
                 data["freeTrialStartDate"]
             )
         )
-    if "usage" in data:
+    if data.get("usage") is not None:
         import capo_macie2.types.__list_of_usage_by_account
 
         out["usage"] = capo_macie2.types.__list_of_usage_by_account.deserialize_json(

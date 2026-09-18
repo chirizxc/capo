@@ -65,11 +65,11 @@ def serialize_aws_json_1_1(value: DescribeLocationS3Response) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeLocationS3Response:
     out: DescribeLocationS3Response = {}  # type: ignore[typeddict-item]
-    if "LocationArn" in data:
+    if data.get("LocationArn") is not None:
         out["location_arn"] = data["LocationArn"]
-    if "LocationUri" in data:
+    if data.get("LocationUri") is not None:
         out["location_uri"] = data["LocationUri"]
-    if "S3StorageClass" in data:
+    if data.get("S3StorageClass") is not None:
         import capo_datasync.types.s3_storage_class
 
         out["s3_storage_class"] = (
@@ -77,19 +77,19 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeLocationS3Response:
                 data["S3StorageClass"]
             )
         )
-    if "S3Config" in data:
+    if data.get("S3Config") is not None:
         import capo_datasync.types.s3_config
 
         out["s3_config"] = capo_datasync.types.s3_config.deserialize_aws_json_1_1(
             data["S3Config"]
         )
-    if "AgentArns" in data:
+    if data.get("AgentArns") is not None:
         import capo_datasync.types.agent_arn_list
 
         out["agent_arns"] = capo_datasync.types.agent_arn_list.deserialize_aws_json_1_1(
             data["AgentArns"]
         )
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_datasync.types.time
 
         out["creation_time"] = capo_datasync.types.time.deserialize_aws_json_1_1(

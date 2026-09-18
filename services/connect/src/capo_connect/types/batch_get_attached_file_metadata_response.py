@@ -38,13 +38,13 @@ def serialize_json(value: BatchGetAttachedFileMetadataResponse) -> dict:
 
 def deserialize_json(data: dict) -> BatchGetAttachedFileMetadataResponse:
     out: BatchGetAttachedFileMetadataResponse = {}  # type: ignore[typeddict-item]
-    if "Files" in data:
+    if data.get("Files") is not None:
         import capo_connect.types.attached_files_list
 
         out["files"] = capo_connect.types.attached_files_list.deserialize_json(
             data["Files"]
         )
-    if "Errors" in data:
+    if data.get("Errors") is not None:
         import capo_connect.types.attached_file_errors_list
 
         out["errors"] = capo_connect.types.attached_file_errors_list.deserialize_json(

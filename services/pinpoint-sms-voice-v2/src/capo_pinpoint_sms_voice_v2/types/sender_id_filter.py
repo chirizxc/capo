@@ -34,11 +34,11 @@ def serialize_aws_json_1_0(value: SenderIdFilter) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> SenderIdFilter:
     out: SenderIdFilter = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("SenderIdFilter.name required")
-    if "Values" in data:
+    if data.get("Values") is not None:
         import capo_pinpoint_sms_voice_v2.types.filter_value_list
 
         out["values"] = (

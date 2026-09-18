@@ -31,7 +31,7 @@ def serialize_json(value: UpdateProfileResourceAssociationResponse) -> dict:
 
 def deserialize_json(data: dict) -> UpdateProfileResourceAssociationResponse:
     out: UpdateProfileResourceAssociationResponse = {}  # type: ignore[typeddict-item]
-    if "ProfileResourceAssociation" in data:
+    if data.get("ProfileResourceAssociation") is not None:
         import capo_route53profiles.types.profile_resource_association
 
         out["profile_resource_association"] = (

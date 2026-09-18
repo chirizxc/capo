@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> SpanList:
 
     out: SpanList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_xray.types.span.deserialize_json(item))
     return out

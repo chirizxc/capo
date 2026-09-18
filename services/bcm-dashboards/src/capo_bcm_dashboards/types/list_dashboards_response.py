@@ -37,7 +37,7 @@ def serialize_aws_json_1_0(value: ListDashboardsResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ListDashboardsResponse:
     out: ListDashboardsResponse = {}  # type: ignore[typeddict-item]
-    if "dashboards" in data:
+    if data.get("dashboards") is not None:
         import capo_bcm_dashboards.types.dashboard_reference_list
 
         out["dashboards"] = (
@@ -47,6 +47,6 @@ def deserialize_aws_json_1_0(data: dict) -> ListDashboardsResponse:
         )
     else:
         raise DeserializationError("ListDashboardsResponse.dashboards required")
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

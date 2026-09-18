@@ -149,7 +149,7 @@ class ServerResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_transfer.types.create_server_request.CreateServerRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_transfer.types.create_server_request.CreateServerRequest = {}
         if certificate is not None:
             input_["certificate"] = certificate
         if domain is not None:
@@ -194,6 +194,7 @@ class ServerResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -230,14 +231,16 @@ class ServerResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_transfer.types.describe_server_request.DescribeServerRequest = {}  # type: ignore[typeddict-item]
-        input_["server_id"] = server_id
+        input_: capo_transfer.types.describe_server_request.DescribeServerRequest = {
+            "server_id": server_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update(
@@ -334,7 +337,9 @@ class ServerResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_transfer.types.update_server_request.UpdateServerRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_transfer.types.update_server_request.UpdateServerRequest = {
+            "server_id": server_id
+        }
         if certificate is not None:
             input_["certificate"] = certificate
         if protocol_details is not None:
@@ -359,7 +364,6 @@ class ServerResource:
             input_["protocols"] = protocols
         if security_policy_name is not None:
             input_["security_policy_name"] = security_policy_name
-        input_["server_id"] = server_id
         if workflow_details is not None:
             input_["workflow_details"] = workflow_details
         if structured_log_destinations is not None:
@@ -376,6 +380,7 @@ class ServerResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -411,14 +416,16 @@ class ServerResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_transfer.types.delete_server_request.DeleteServerRequest = {}  # type: ignore[typeddict-item]
-        input_["server_id"] = server_id
+        input_: capo_transfer.types.delete_server_request.DeleteServerRequest = {
+            "server_id": server_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -457,7 +464,7 @@ class ServerResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_transfer.types.list_servers_request.ListServersRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_transfer.types.list_servers_request.ListServersRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -468,6 +475,7 @@ class ServerResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -571,7 +579,7 @@ class AsyncServerResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_transfer.types.create_server_request.CreateServerRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_transfer.types.create_server_request.CreateServerRequest = {}
         if certificate is not None:
             input_["certificate"] = certificate
         if domain is not None:
@@ -616,6 +624,7 @@ class AsyncServerResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -653,14 +662,16 @@ class AsyncServerResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_transfer.types.describe_server_request.DescribeServerRequest = {}  # type: ignore[typeddict-item]
-        input_["server_id"] = server_id
+        input_: capo_transfer.types.describe_server_request.DescribeServerRequest = {
+            "server_id": server_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update(
@@ -758,7 +769,9 @@ class AsyncServerResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_transfer.types.update_server_request.UpdateServerRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_transfer.types.update_server_request.UpdateServerRequest = {
+            "server_id": server_id
+        }
         if certificate is not None:
             input_["certificate"] = certificate
         if protocol_details is not None:
@@ -783,7 +796,6 @@ class AsyncServerResource:
             input_["protocols"] = protocols
         if security_policy_name is not None:
             input_["security_policy_name"] = security_policy_name
-        input_["server_id"] = server_id
         if workflow_details is not None:
             input_["workflow_details"] = workflow_details
         if structured_log_destinations is not None:
@@ -800,6 +812,7 @@ class AsyncServerResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -836,14 +849,16 @@ class AsyncServerResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_transfer.types.delete_server_request.DeleteServerRequest = {}  # type: ignore[typeddict-item]
-        input_["server_id"] = server_id
+        input_: capo_transfer.types.delete_server_request.DeleteServerRequest = {
+            "server_id": server_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -883,7 +898,7 @@ class AsyncServerResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_transfer.types.list_servers_request.ListServersRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_transfer.types.list_servers_request.ListServersRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -894,4 +909,5 @@ class AsyncServerResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

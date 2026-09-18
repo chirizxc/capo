@@ -55,15 +55,15 @@ def serialize_json(value: MCPServerOAuthClientCredentialsConfig) -> dict:
 
 def deserialize_json(data: dict) -> MCPServerOAuthClientCredentialsConfig:
     out: MCPServerOAuthClientCredentialsConfig = {}  # type: ignore[typeddict-item]
-    if "clientName" in data:
+    if data.get("clientName") is not None:
         out["client_name"] = data["clientName"]
-    if "clientId" in data:
+    if data.get("clientId") is not None:
         out["client_id"] = data["clientId"]
     else:
         raise DeserializationError(
             "MCPServerOAuthClientCredentialsConfig.client_id required"
         )
-    if "exchangeParameters" in data:
+    if data.get("exchangeParameters") is not None:
         import capo_devops_agent.types.exchange_parameters
 
         out["exchange_parameters"] = (
@@ -71,19 +71,19 @@ def deserialize_json(data: dict) -> MCPServerOAuthClientCredentialsConfig:
                 data["exchangeParameters"]
             )
         )
-    if "clientSecret" in data:
+    if data.get("clientSecret") is not None:
         out["client_secret"] = data["clientSecret"]
     else:
         raise DeserializationError(
             "MCPServerOAuthClientCredentialsConfig.client_secret required"
         )
-    if "exchangeUrl" in data:
+    if data.get("exchangeUrl") is not None:
         out["exchange_url"] = data["exchangeUrl"]
     else:
         raise DeserializationError(
             "MCPServerOAuthClientCredentialsConfig.exchange_url required"
         )
-    if "scopes" in data:
+    if data.get("scopes") is not None:
         import capo_devops_agent.types.scopes
 
         out["scopes"] = capo_devops_agent.types.scopes.deserialize_json(data["scopes"])

@@ -40,10 +40,10 @@ def serialize_json(value: RenameTableRequest) -> dict:
 
 def deserialize_json(data: dict) -> RenameTableRequest:
     out: RenameTableRequest = {}  # type: ignore[typeddict-item]
-    if "newNamespaceName" in data:
+    if data.get("newNamespaceName") is not None:
         out["new_namespace_name"] = data["newNamespaceName"]
-    if "newName" in data:
+    if data.get("newName") is not None:
         out["new_name"] = data["newName"]
-    if "versionToken" in data:
+    if data.get("versionToken") is not None:
         out["version_token"] = data["versionToken"]
     return out

@@ -158,9 +158,9 @@ def serialize_aws_json_1_1(value: WindowsFileSystemConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> WindowsFileSystemConfiguration:
     out: WindowsFileSystemConfiguration = {}  # type: ignore[typeddict-item]
-    if "ActiveDirectoryId" in data:
+    if data.get("ActiveDirectoryId") is not None:
         out["active_directory_id"] = data["ActiveDirectoryId"]
-    if "SelfManagedActiveDirectoryConfiguration" in data:
+    if data.get("SelfManagedActiveDirectoryConfiguration") is not None:
         import capo_fsx.types.self_managed_active_directory_attributes
 
         out["self_managed_active_directory_configuration"] = (
@@ -168,7 +168,7 @@ def deserialize_aws_json_1_1(data: dict) -> WindowsFileSystemConfiguration:
                 data["SelfManagedActiveDirectoryConfiguration"]
             )
         )
-    if "DeploymentType" in data:
+    if data.get("DeploymentType") is not None:
         import capo_fsx.types.windows_deployment_type
 
         out["deployment_type"] = (
@@ -176,15 +176,15 @@ def deserialize_aws_json_1_1(data: dict) -> WindowsFileSystemConfiguration:
                 data["DeploymentType"]
             )
         )
-    if "RemoteAdministrationEndpoint" in data:
+    if data.get("RemoteAdministrationEndpoint") is not None:
         out["remote_administration_endpoint"] = data["RemoteAdministrationEndpoint"]
-    if "PreferredSubnetId" in data:
+    if data.get("PreferredSubnetId") is not None:
         out["preferred_subnet_id"] = data["PreferredSubnetId"]
-    if "PreferredFileServerIp" in data:
+    if data.get("PreferredFileServerIp") is not None:
         out["preferred_file_server_ip"] = data["PreferredFileServerIp"]
-    if "ThroughputCapacity" in data:
+    if data.get("ThroughputCapacity") is not None:
         out["throughput_capacity"] = data["ThroughputCapacity"]
-    if "MaintenanceOperationsInProgress" in data:
+    if data.get("MaintenanceOperationsInProgress") is not None:
         import capo_fsx.types.file_system_maintenance_operations
 
         out["maintenance_operations_in_progress"] = (
@@ -192,21 +192,21 @@ def deserialize_aws_json_1_1(data: dict) -> WindowsFileSystemConfiguration:
                 data["MaintenanceOperationsInProgress"]
             )
         )
-    if "WeeklyMaintenanceStartTime" in data:
+    if data.get("WeeklyMaintenanceStartTime") is not None:
         out["weekly_maintenance_start_time"] = data["WeeklyMaintenanceStartTime"]
-    if "DailyAutomaticBackupStartTime" in data:
+    if data.get("DailyAutomaticBackupStartTime") is not None:
         out["daily_automatic_backup_start_time"] = data["DailyAutomaticBackupStartTime"]
-    if "AutomaticBackupRetentionDays" in data:
+    if data.get("AutomaticBackupRetentionDays") is not None:
         out["automatic_backup_retention_days"] = data["AutomaticBackupRetentionDays"]
-    if "CopyTagsToBackups" in data:
+    if data.get("CopyTagsToBackups") is not None:
         out["copy_tags_to_backups"] = data["CopyTagsToBackups"]
-    if "Aliases" in data:
+    if data.get("Aliases") is not None:
         import capo_fsx.types.aliases
 
         out["aliases"] = capo_fsx.types.aliases.deserialize_aws_json_1_1(
             data["Aliases"]
         )
-    if "AuditLogConfiguration" in data:
+    if data.get("AuditLogConfiguration") is not None:
         import capo_fsx.types.windows_audit_log_configuration
 
         out["audit_log_configuration"] = (
@@ -214,7 +214,7 @@ def deserialize_aws_json_1_1(data: dict) -> WindowsFileSystemConfiguration:
                 data["AuditLogConfiguration"]
             )
         )
-    if "DiskIopsConfiguration" in data:
+    if data.get("DiskIopsConfiguration") is not None:
         import capo_fsx.types.disk_iops_configuration
 
         out["disk_iops_configuration"] = (
@@ -222,9 +222,9 @@ def deserialize_aws_json_1_1(data: dict) -> WindowsFileSystemConfiguration:
                 data["DiskIopsConfiguration"]
             )
         )
-    if "PreferredFileServerIpv6" in data:
+    if data.get("PreferredFileServerIpv6") is not None:
         out["preferred_file_server_ipv6"] = data["PreferredFileServerIpv6"]
-    if "FsrmConfiguration" in data:
+    if data.get("FsrmConfiguration") is not None:
         import capo_fsx.types.windows_fsrm_configuration
 
         out["fsrm_configuration"] = (

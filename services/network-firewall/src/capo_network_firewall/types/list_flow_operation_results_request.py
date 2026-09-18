@@ -62,26 +62,26 @@ def serialize_aws_json_1_0(value: ListFlowOperationResultsRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ListFlowOperationResultsRequest:
     out: ListFlowOperationResultsRequest = {}  # type: ignore[typeddict-item]
-    if "FirewallArn" in data:
+    if data.get("FirewallArn") is not None:
         out["firewall_arn"] = data["FirewallArn"]
     else:
         raise DeserializationError(
             "ListFlowOperationResultsRequest.firewall_arn required"
         )
-    if "FlowOperationId" in data:
+    if data.get("FlowOperationId") is not None:
         out["flow_operation_id"] = data["FlowOperationId"]
     else:
         raise DeserializationError(
             "ListFlowOperationResultsRequest.flow_operation_id required"
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "AvailabilityZone" in data:
+    if data.get("AvailabilityZone") is not None:
         out["availability_zone"] = data["AvailabilityZone"]
-    if "VpcEndpointId" in data:
+    if data.get("VpcEndpointId") is not None:
         out["vpc_endpoint_id"] = data["VpcEndpointId"]
-    if "VpcEndpointAssociationArn" in data:
+    if data.get("VpcEndpointAssociationArn") is not None:
         out["vpc_endpoint_association_arn"] = data["VpcEndpointAssociationArn"]
     return out

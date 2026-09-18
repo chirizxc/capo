@@ -54,17 +54,17 @@ def serialize_json(value: RecognizeTextRequest) -> dict:
 
 def deserialize_json(data: dict) -> RecognizeTextRequest:
     out: RecognizeTextRequest = {}  # type: ignore[typeddict-item]
-    if "text" in data:
+    if data.get("text") is not None:
         out["text"] = data["text"]
     else:
         raise DeserializationError("RecognizeTextRequest.text required")
-    if "sessionState" in data:
+    if data.get("sessionState") is not None:
         import capo_lex_runtime_v2.types.session_state
 
         out["session_state"] = capo_lex_runtime_v2.types.session_state.deserialize_json(
             data["sessionState"]
         )
-    if "requestAttributes" in data:
+    if data.get("requestAttributes") is not None:
         import capo_lex_runtime_v2.types.string_map
 
         out["request_attributes"] = (

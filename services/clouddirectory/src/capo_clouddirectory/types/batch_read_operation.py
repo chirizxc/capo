@@ -196,7 +196,7 @@ def serialize_json(value: BatchReadOperation) -> dict:
 
 def deserialize_json(data: dict) -> BatchReadOperation:
     out: BatchReadOperation = {}  # type: ignore[typeddict-item]
-    if "ListObjectAttributes" in data:
+    if data.get("ListObjectAttributes") is not None:
         import capo_clouddirectory.types.batch_list_object_attributes
 
         out["list_object_attributes"] = (
@@ -204,7 +204,7 @@ def deserialize_json(data: dict) -> BatchReadOperation:
                 data["ListObjectAttributes"]
             )
         )
-    if "ListObjectChildren" in data:
+    if data.get("ListObjectChildren") is not None:
         import capo_clouddirectory.types.batch_list_object_children
 
         out["list_object_children"] = (
@@ -212,7 +212,7 @@ def deserialize_json(data: dict) -> BatchReadOperation:
                 data["ListObjectChildren"]
             )
         )
-    if "ListAttachedIndices" in data:
+    if data.get("ListAttachedIndices") is not None:
         import capo_clouddirectory.types.batch_list_attached_indices
 
         out["list_attached_indices"] = (
@@ -220,7 +220,7 @@ def deserialize_json(data: dict) -> BatchReadOperation:
                 data["ListAttachedIndices"]
             )
         )
-    if "ListObjectParentPaths" in data:
+    if data.get("ListObjectParentPaths") is not None:
         import capo_clouddirectory.types.batch_list_object_parent_paths
 
         out["list_object_parent_paths"] = (
@@ -228,7 +228,7 @@ def deserialize_json(data: dict) -> BatchReadOperation:
                 data["ListObjectParentPaths"]
             )
         )
-    if "GetObjectInformation" in data:
+    if data.get("GetObjectInformation") is not None:
         import capo_clouddirectory.types.batch_get_object_information
 
         out["get_object_information"] = (
@@ -236,7 +236,7 @@ def deserialize_json(data: dict) -> BatchReadOperation:
                 data["GetObjectInformation"]
             )
         )
-    if "GetObjectAttributes" in data:
+    if data.get("GetObjectAttributes") is not None:
         import capo_clouddirectory.types.batch_get_object_attributes
 
         out["get_object_attributes"] = (
@@ -244,7 +244,7 @@ def deserialize_json(data: dict) -> BatchReadOperation:
                 data["GetObjectAttributes"]
             )
         )
-    if "ListObjectParents" in data:
+    if data.get("ListObjectParents") is not None:
         import capo_clouddirectory.types.batch_list_object_parents
 
         out["list_object_parents"] = (
@@ -252,7 +252,7 @@ def deserialize_json(data: dict) -> BatchReadOperation:
                 data["ListObjectParents"]
             )
         )
-    if "ListObjectPolicies" in data:
+    if data.get("ListObjectPolicies") is not None:
         import capo_clouddirectory.types.batch_list_object_policies
 
         out["list_object_policies"] = (
@@ -260,7 +260,7 @@ def deserialize_json(data: dict) -> BatchReadOperation:
                 data["ListObjectPolicies"]
             )
         )
-    if "ListPolicyAttachments" in data:
+    if data.get("ListPolicyAttachments") is not None:
         import capo_clouddirectory.types.batch_list_policy_attachments
 
         out["list_policy_attachments"] = (
@@ -268,7 +268,7 @@ def deserialize_json(data: dict) -> BatchReadOperation:
                 data["ListPolicyAttachments"]
             )
         )
-    if "LookupPolicy" in data:
+    if data.get("LookupPolicy") is not None:
         import capo_clouddirectory.types.batch_lookup_policy
 
         out["lookup_policy"] = (
@@ -276,13 +276,13 @@ def deserialize_json(data: dict) -> BatchReadOperation:
                 data["LookupPolicy"]
             )
         )
-    if "ListIndex" in data:
+    if data.get("ListIndex") is not None:
         import capo_clouddirectory.types.batch_list_index
 
         out["list_index"] = capo_clouddirectory.types.batch_list_index.deserialize_json(
             data["ListIndex"]
         )
-    if "ListOutgoingTypedLinks" in data:
+    if data.get("ListOutgoingTypedLinks") is not None:
         import capo_clouddirectory.types.batch_list_outgoing_typed_links
 
         out["list_outgoing_typed_links"] = (
@@ -290,7 +290,7 @@ def deserialize_json(data: dict) -> BatchReadOperation:
                 data["ListOutgoingTypedLinks"]
             )
         )
-    if "ListIncomingTypedLinks" in data:
+    if data.get("ListIncomingTypedLinks") is not None:
         import capo_clouddirectory.types.batch_list_incoming_typed_links
 
         out["list_incoming_typed_links"] = (
@@ -298,7 +298,7 @@ def deserialize_json(data: dict) -> BatchReadOperation:
                 data["ListIncomingTypedLinks"]
             )
         )
-    if "GetLinkAttributes" in data:
+    if data.get("GetLinkAttributes") is not None:
         import capo_clouddirectory.types.batch_get_link_attributes
 
         out["get_link_attributes"] = (

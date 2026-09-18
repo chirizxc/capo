@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> CaptionSources:
 
     out: CaptionSources = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_elastic_transcoder.types.caption_source.deserialize_json(item))
     return out

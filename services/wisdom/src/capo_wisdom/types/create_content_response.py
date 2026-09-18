@@ -25,7 +25,7 @@ def serialize_json(value: CreateContentResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateContentResponse:
     out: CreateContentResponse = {}  # type: ignore[typeddict-item]
-    if "content" in data:
+    if data.get("content") is not None:
         import capo_wisdom.types.content_data
 
         out["content"] = capo_wisdom.types.content_data.deserialize_json(

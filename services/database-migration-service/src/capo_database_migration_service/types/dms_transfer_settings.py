@@ -29,8 +29,8 @@ def serialize_aws_json_1_1(value: DmsTransferSettings) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DmsTransferSettings:
     out: DmsTransferSettings = {}  # type: ignore[typeddict-item]
-    if "ServiceAccessRoleArn" in data:
+    if data.get("ServiceAccessRoleArn") is not None:
         out["service_access_role_arn"] = data["ServiceAccessRoleArn"]
-    if "BucketName" in data:
+    if data.get("BucketName") is not None:
         out["bucket_name"] = data["BucketName"]
     return out

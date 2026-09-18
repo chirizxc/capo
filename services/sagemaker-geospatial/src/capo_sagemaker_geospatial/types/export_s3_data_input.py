@@ -29,10 +29,10 @@ def serialize_json(value: ExportS3DataInput) -> dict:
 
 def deserialize_json(data: dict) -> ExportS3DataInput:
     out: ExportS3DataInput = {}  # type: ignore[typeddict-item]
-    if "S3Uri" in data:
+    if data.get("S3Uri") is not None:
         out["s3_uri"] = data["S3Uri"]
     else:
         raise DeserializationError("ExportS3DataInput.s3_uri required")
-    if "KmsKeyId" in data:
+    if data.get("KmsKeyId") is not None:
         out["kms_key_id"] = data["KmsKeyId"]
     return out

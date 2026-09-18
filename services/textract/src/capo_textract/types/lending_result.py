@@ -45,9 +45,9 @@ def serialize_aws_json_1_1(value: LendingResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> LendingResult:
     out: LendingResult = {}  # type: ignore[typeddict-item]
-    if "Page" in data:
+    if data.get("Page") is not None:
         out["page"] = data["Page"]
-    if "PageClassification" in data:
+    if data.get("PageClassification") is not None:
         import capo_textract.types.page_classification
 
         out["page_classification"] = (
@@ -55,7 +55,7 @@ def deserialize_aws_json_1_1(data: dict) -> LendingResult:
                 data["PageClassification"]
             )
         )
-    if "Extractions" in data:
+    if data.get("Extractions") is not None:
         import capo_textract.types.extraction_list
 
         out["extractions"] = (

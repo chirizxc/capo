@@ -51,7 +51,7 @@ def serialize_json(value: AncillarySourceSettings) -> dict:
 
 def deserialize_json(data: dict) -> AncillarySourceSettings:
     out: AncillarySourceSettings = {}  # type: ignore[typeddict-item]
-    if "convert608To708" in data:
+    if data.get("convert608To708") is not None:
         import capo_mediaconvert.types.ancillary_convert608_to708
 
         out["convert608_to708"] = (
@@ -59,9 +59,9 @@ def deserialize_json(data: dict) -> AncillarySourceSettings:
                 data["convert608To708"]
             )
         )
-    if "sourceAncillaryChannelNumber" in data:
+    if data.get("sourceAncillaryChannelNumber") is not None:
         out["source_ancillary_channel_number"] = data["sourceAncillaryChannelNumber"]
-    if "terminateCaptions" in data:
+    if data.get("terminateCaptions") is not None:
         import capo_mediaconvert.types.ancillary_terminate_captions
 
         out["terminate_captions"] = (

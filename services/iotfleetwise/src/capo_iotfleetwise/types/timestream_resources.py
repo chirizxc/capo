@@ -32,13 +32,13 @@ def serialize_aws_json_1_0(value: TimestreamResources) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> TimestreamResources:
     out: TimestreamResources = {}  # type: ignore[typeddict-item]
-    if "timestreamDatabaseName" in data:
+    if data.get("timestreamDatabaseName") is not None:
         out["timestream_database_name"] = data["timestreamDatabaseName"]
     else:
         raise DeserializationError(
             "TimestreamResources.timestream_database_name required"
         )
-    if "timestreamTableName" in data:
+    if data.get("timestreamTableName") is not None:
         out["timestream_table_name"] = data["timestreamTableName"]
     else:
         raise DeserializationError("TimestreamResources.timestream_table_name required")

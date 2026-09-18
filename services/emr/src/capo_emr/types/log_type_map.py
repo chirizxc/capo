@@ -29,6 +29,9 @@ def deserialize_aws_json_1_1(data: dict) -> LogTypeMap:
     out: LogTypeMap = {}
     for key, value in data.items():
         import capo_emr.types.log_type
+
+        if value is None:
+            continue
         import capo_emr.types.log_upload_policy_value
 
         out[capo_emr.types.log_type.deserialize_aws_json_1_1(key)] = (

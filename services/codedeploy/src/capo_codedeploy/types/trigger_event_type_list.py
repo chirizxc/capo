@@ -27,6 +27,8 @@ def deserialize_aws_json_1_1(data: list) -> TriggerEventTypeList:
 
     out: TriggerEventTypeList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_codedeploy.types.trigger_event_type.deserialize_aws_json_1_1(item)
         )

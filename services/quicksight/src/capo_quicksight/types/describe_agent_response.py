@@ -30,12 +30,12 @@ def serialize_json(value: DescribeAgentResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribeAgentResponse:
     out: DescribeAgentResponse = {}  # type: ignore[typeddict-item]
-    if "Agent" in data:
+    if data.get("Agent") is not None:
         import capo_quicksight.types.agent
 
         out["agent"] = capo_quicksight.types.agent.deserialize_json(data["Agent"])
     else:
         raise DeserializationError("DescribeAgentResponse.agent required")
-    if "RequestId" in data:
+    if data.get("RequestId") is not None:
         out["request_id"] = data["RequestId"]
     return out

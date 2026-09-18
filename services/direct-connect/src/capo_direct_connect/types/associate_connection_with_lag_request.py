@@ -28,13 +28,13 @@ def serialize_aws_json_1_1(value: AssociateConnectionWithLagRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AssociateConnectionWithLagRequest:
     out: AssociateConnectionWithLagRequest = {}  # type: ignore[typeddict-item]
-    if "connectionId" in data:
+    if data.get("connectionId") is not None:
         out["connection_id"] = data["connectionId"]
     else:
         raise DeserializationError(
             "AssociateConnectionWithLagRequest.connection_id required"
         )
-    if "lagId" in data:
+    if data.get("lagId") is not None:
         out["lag_id"] = data["lagId"]
     else:
         raise DeserializationError("AssociateConnectionWithLagRequest.lag_id required")

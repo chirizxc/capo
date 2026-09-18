@@ -60,11 +60,11 @@ def serialize_json(value: FindingProviderFields) -> dict:
 
 def deserialize_json(data: dict) -> FindingProviderFields:
     out: FindingProviderFields = {}  # type: ignore[typeddict-item]
-    if "Confidence" in data:
+    if data.get("Confidence") is not None:
         out["confidence"] = data["Confidence"]
-    if "Criticality" in data:
+    if data.get("Criticality") is not None:
         out["criticality"] = data["Criticality"]
-    if "RelatedFindings" in data:
+    if data.get("RelatedFindings") is not None:
         import capo_securityhub.types.related_finding_list
 
         out["related_findings"] = (
@@ -72,7 +72,7 @@ def deserialize_json(data: dict) -> FindingProviderFields:
                 data["RelatedFindings"]
             )
         )
-    if "Severity" in data:
+    if data.get("Severity") is not None:
         import capo_securityhub.types.finding_provider_severity
 
         out["severity"] = (
@@ -80,7 +80,7 @@ def deserialize_json(data: dict) -> FindingProviderFields:
                 data["Severity"]
             )
         )
-    if "Types" in data:
+    if data.get("Types") is not None:
         import capo_securityhub.types.type_list
 
         out["types"] = capo_securityhub.types.type_list.deserialize_json(data["Types"])

@@ -1,6 +1,7 @@
 """Generated from Smithy shape ``com.amazonaws.lookoutequipment#AWSLookoutEquipmentFrontendService``."""
 
 import warnings
+from collections.abc import Iterator
 from typing import TYPE_CHECKING, Any, Iterable, Optional
 
 from typing_extensions import Self, TypedDict
@@ -16,6 +17,7 @@ from capo_lookoutequipment._auth._providers import (
     default_aws_credentials_chain,
 )
 from capo_lookoutequipment._auth._zapros_handler import AuthMiddleware
+from capo_lookoutequipment._pagination import resolve_path as _resolve_path
 from capo_lookoutequipment._services._aws_config import aws_config
 from capo_lookoutequipment._services._pipeline import (
     Interceptor,
@@ -306,13 +308,14 @@ class LookoutEquipmentClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lookoutequipment.types.create_dataset_request.CreateDatasetRequest = {}  # type: ignore[typeddict-item]
-        input_["dataset_name"] = dataset_name
+        input_: capo_lookoutequipment.types.create_dataset_request.CreateDatasetRequest = {
+            "dataset_name": dataset_name,
+            "client_token": client_token,
+        }
         if dataset_schema is not None:
             input_["dataset_schema"] = dataset_schema
         if server_side_kms_key_id is not None:
             input_["server_side_kms_key_id"] = server_side_kms_key_id
-        input_["client_token"] = client_token
         if tags is not None:
             input_["tags"] = tags
 
@@ -321,6 +324,7 @@ class LookoutEquipmentClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_inference_scheduler(
@@ -382,18 +386,19 @@ class LookoutEquipmentClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lookoutequipment.types.create_inference_scheduler_request.CreateInferenceSchedulerRequest = {}  # type: ignore[typeddict-item]
-        input_["model_name"] = model_name
-        input_["inference_scheduler_name"] = inference_scheduler_name
+        input_: capo_lookoutequipment.types.create_inference_scheduler_request.CreateInferenceSchedulerRequest = {
+            "model_name": model_name,
+            "inference_scheduler_name": inference_scheduler_name,
+            "data_upload_frequency": data_upload_frequency,
+            "data_input_configuration": data_input_configuration,
+            "data_output_configuration": data_output_configuration,
+            "role_arn": role_arn,
+            "client_token": client_token,
+        }
         if data_delay_offset_in_minutes is not None:
             input_["data_delay_offset_in_minutes"] = data_delay_offset_in_minutes
-        input_["data_upload_frequency"] = data_upload_frequency
-        input_["data_input_configuration"] = data_input_configuration
-        input_["data_output_configuration"] = data_output_configuration
-        input_["role_arn"] = role_arn
         if server_side_kms_key_id is not None:
             input_["server_side_kms_key_id"] = server_side_kms_key_id
-        input_["client_token"] = client_token
         if tags is not None:
             input_["tags"] = tags
 
@@ -402,6 +407,7 @@ class LookoutEquipmentClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_label(
@@ -455,24 +461,26 @@ class LookoutEquipmentClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lookoutequipment.types.create_label_request.CreateLabelRequest = {}  # type: ignore[typeddict-item]
-        input_["label_group_name"] = label_group_name
-        input_["start_time"] = start_time
-        input_["end_time"] = end_time
-        input_["rating"] = rating
+        input_: capo_lookoutequipment.types.create_label_request.CreateLabelRequest = {
+            "label_group_name": label_group_name,
+            "start_time": start_time,
+            "end_time": end_time,
+            "rating": rating,
+            "client_token": client_token,
+        }
         if fault_code is not None:
             input_["fault_code"] = fault_code
         if notes is not None:
             input_["notes"] = notes
         if equipment is not None:
             input_["equipment"] = equipment
-        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_label_group(
@@ -519,11 +527,12 @@ class LookoutEquipmentClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lookoutequipment.types.create_label_group_request.CreateLabelGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["label_group_name"] = label_group_name
+        input_: capo_lookoutequipment.types.create_label_group_request.CreateLabelGroupRequest = {
+            "label_group_name": label_group_name,
+            "client_token": client_token,
+        }
         if fault_codes is not None:
             input_["fault_codes"] = fault_codes
-        input_["client_token"] = client_token
         if tags is not None:
             input_["tags"] = tags
 
@@ -532,6 +541,7 @@ class LookoutEquipmentClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_model(
@@ -621,14 +631,15 @@ class LookoutEquipmentClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lookoutequipment.types.create_model_request.CreateModelRequest = {}  # type: ignore[typeddict-item]
-        input_["model_name"] = model_name
-        input_["dataset_name"] = dataset_name
+        input_: capo_lookoutequipment.types.create_model_request.CreateModelRequest = {
+            "model_name": model_name,
+            "dataset_name": dataset_name,
+            "client_token": client_token,
+        }
         if dataset_schema is not None:
             input_["dataset_schema"] = dataset_schema
         if labels_input_configuration is not None:
             input_["labels_input_configuration"] = labels_input_configuration
-        input_["client_token"] = client_token
         if training_data_start_time is not None:
             input_["training_data_start_time"] = training_data_start_time
         if training_data_end_time is not None:
@@ -659,6 +670,7 @@ class LookoutEquipmentClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_retraining_scheduler(
@@ -719,21 +731,23 @@ class LookoutEquipmentClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lookoutequipment.types.create_retraining_scheduler_request.CreateRetrainingSchedulerRequest = {}  # type: ignore[typeddict-item]
-        input_["model_name"] = model_name
+        input_: capo_lookoutequipment.types.create_retraining_scheduler_request.CreateRetrainingSchedulerRequest = {
+            "model_name": model_name,
+            "retraining_frequency": retraining_frequency,
+            "lookback_window": lookback_window,
+            "client_token": client_token,
+        }
         if retraining_start_date is not None:
             input_["retraining_start_date"] = retraining_start_date
-        input_["retraining_frequency"] = retraining_frequency
-        input_["lookback_window"] = lookback_window
         if promote_mode is not None:
             input_["promote_mode"] = promote_mode
-        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_dataset(
@@ -770,14 +784,16 @@ class LookoutEquipmentClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lookoutequipment.types.delete_dataset_request.DeleteDatasetRequest = {}  # type: ignore[typeddict-item]
-        input_["dataset_name"] = dataset_name
+        input_: capo_lookoutequipment.types.delete_dataset_request.DeleteDatasetRequest = {
+            "dataset_name": dataset_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_inference_scheduler(
@@ -814,14 +830,16 @@ class LookoutEquipmentClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lookoutequipment.types.delete_inference_scheduler_request.DeleteInferenceSchedulerRequest = {}  # type: ignore[typeddict-item]
-        input_["inference_scheduler_name"] = inference_scheduler_name
+        input_: capo_lookoutequipment.types.delete_inference_scheduler_request.DeleteInferenceSchedulerRequest = {
+            "inference_scheduler_name": inference_scheduler_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_label(
@@ -860,15 +878,17 @@ class LookoutEquipmentClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lookoutequipment.types.delete_label_request.DeleteLabelRequest = {}  # type: ignore[typeddict-item]
-        input_["label_group_name"] = label_group_name
-        input_["label_id"] = label_id
+        input_: capo_lookoutequipment.types.delete_label_request.DeleteLabelRequest = {
+            "label_group_name": label_group_name,
+            "label_id": label_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_label_group(
@@ -905,14 +925,16 @@ class LookoutEquipmentClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lookoutequipment.types.delete_label_group_request.DeleteLabelGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["label_group_name"] = label_group_name
+        input_: capo_lookoutequipment.types.delete_label_group_request.DeleteLabelGroupRequest = {
+            "label_group_name": label_group_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_model(
@@ -949,14 +971,16 @@ class LookoutEquipmentClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lookoutequipment.types.delete_model_request.DeleteModelRequest = {}  # type: ignore[typeddict-item]
-        input_["model_name"] = model_name
+        input_: capo_lookoutequipment.types.delete_model_request.DeleteModelRequest = {
+            "model_name": model_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_resource_policy(
@@ -993,14 +1017,16 @@ class LookoutEquipmentClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lookoutequipment.types.delete_resource_policy_request.DeleteResourcePolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_lookoutequipment.types.delete_resource_policy_request.DeleteResourcePolicyRequest = {
+            "resource_arn": resource_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_retraining_scheduler(
@@ -1042,14 +1068,16 @@ class LookoutEquipmentClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lookoutequipment.types.delete_retraining_scheduler_request.DeleteRetrainingSchedulerRequest = {}  # type: ignore[typeddict-item]
-        input_["model_name"] = model_name
+        input_: capo_lookoutequipment.types.delete_retraining_scheduler_request.DeleteRetrainingSchedulerRequest = {
+            "model_name": model_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_data_ingestion_job(
@@ -1087,14 +1115,16 @@ class LookoutEquipmentClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lookoutequipment.types.describe_data_ingestion_job_request.DescribeDataIngestionJobRequest = {}  # type: ignore[typeddict-item]
-        input_["job_id"] = job_id
+        input_: capo_lookoutequipment.types.describe_data_ingestion_job_request.DescribeDataIngestionJobRequest = {
+            "job_id": job_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_dataset(
@@ -1134,14 +1164,16 @@ class LookoutEquipmentClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lookoutequipment.types.describe_dataset_request.DescribeDatasetRequest = {}  # type: ignore[typeddict-item]
-        input_["dataset_name"] = dataset_name
+        input_: capo_lookoutequipment.types.describe_dataset_request.DescribeDatasetRequest = {
+            "dataset_name": dataset_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_inference_scheduler(
@@ -1179,14 +1211,16 @@ class LookoutEquipmentClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lookoutequipment.types.describe_inference_scheduler_request.DescribeInferenceSchedulerRequest = {}  # type: ignore[typeddict-item]
-        input_["inference_scheduler_name"] = inference_scheduler_name
+        input_: capo_lookoutequipment.types.describe_inference_scheduler_request.DescribeInferenceSchedulerRequest = {
+            "inference_scheduler_name": inference_scheduler_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_label(
@@ -1226,15 +1260,17 @@ class LookoutEquipmentClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lookoutequipment.types.describe_label_request.DescribeLabelRequest = {}  # type: ignore[typeddict-item]
-        input_["label_group_name"] = label_group_name
-        input_["label_id"] = label_id
+        input_: capo_lookoutequipment.types.describe_label_request.DescribeLabelRequest = {
+            "label_group_name": label_group_name,
+            "label_id": label_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_label_group(
@@ -1272,14 +1308,16 @@ class LookoutEquipmentClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lookoutequipment.types.describe_label_group_request.DescribeLabelGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["label_group_name"] = label_group_name
+        input_: capo_lookoutequipment.types.describe_label_group_request.DescribeLabelGroupRequest = {
+            "label_group_name": label_group_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_model(
@@ -1317,14 +1355,16 @@ class LookoutEquipmentClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lookoutequipment.types.describe_model_request.DescribeModelRequest = {}  # type: ignore[typeddict-item]
-        input_["model_name"] = model_name
+        input_: capo_lookoutequipment.types.describe_model_request.DescribeModelRequest = {
+            "model_name": model_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_model_version(
@@ -1364,15 +1404,17 @@ class LookoutEquipmentClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lookoutequipment.types.describe_model_version_request.DescribeModelVersionRequest = {}  # type: ignore[typeddict-item]
-        input_["model_name"] = model_name
-        input_["model_version"] = model_version
+        input_: capo_lookoutequipment.types.describe_model_version_request.DescribeModelVersionRequest = {
+            "model_name": model_name,
+            "model_version": model_version,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_resource_policy(
@@ -1410,14 +1452,16 @@ class LookoutEquipmentClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lookoutequipment.types.describe_resource_policy_request.DescribeResourcePolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_lookoutequipment.types.describe_resource_policy_request.DescribeResourcePolicyRequest = {
+            "resource_arn": resource_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_retraining_scheduler(
@@ -1460,14 +1504,16 @@ class LookoutEquipmentClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lookoutequipment.types.describe_retraining_scheduler_request.DescribeRetrainingSchedulerRequest = {}  # type: ignore[typeddict-item]
-        input_["model_name"] = model_name
+        input_: capo_lookoutequipment.types.describe_retraining_scheduler_request.DescribeRetrainingSchedulerRequest = {
+            "model_name": model_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def import_dataset(
@@ -1519,11 +1565,12 @@ class LookoutEquipmentClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lookoutequipment.types.import_dataset_request.ImportDatasetRequest = {}  # type: ignore[typeddict-item]
-        input_["source_dataset_arn"] = source_dataset_arn
+        input_: capo_lookoutequipment.types.import_dataset_request.ImportDatasetRequest = {
+            "source_dataset_arn": source_dataset_arn,
+            "client_token": client_token,
+        }
         if dataset_name is not None:
             input_["dataset_name"] = dataset_name
-        input_["client_token"] = client_token
         if server_side_kms_key_id is not None:
             input_["server_side_kms_key_id"] = server_side_kms_key_id
         if tags is not None:
@@ -1534,6 +1581,7 @@ class LookoutEquipmentClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def import_model_version(
@@ -1596,14 +1644,15 @@ class LookoutEquipmentClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lookoutequipment.types.import_model_version_request.ImportModelVersionRequest = {}  # type: ignore[typeddict-item]
-        input_["source_model_version_arn"] = source_model_version_arn
+        input_: capo_lookoutequipment.types.import_model_version_request.ImportModelVersionRequest = {
+            "source_model_version_arn": source_model_version_arn,
+            "dataset_name": dataset_name,
+            "client_token": client_token,
+        }
         if model_name is not None:
             input_["model_name"] = model_name
-        input_["dataset_name"] = dataset_name
         if labels_input_configuration is not None:
             input_["labels_input_configuration"] = labels_input_configuration
-        input_["client_token"] = client_token
         if role_arn is not None:
             input_["role_arn"] = role_arn
         if server_side_kms_key_id is not None:
@@ -1618,6 +1667,7 @@ class LookoutEquipmentClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_data_ingestion_jobs(
@@ -1666,7 +1716,7 @@ class LookoutEquipmentClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lookoutequipment.types.list_data_ingestion_jobs_request.ListDataIngestionJobsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_lookoutequipment.types.list_data_ingestion_jobs_request.ListDataIngestionJobsRequest = {}
         if dataset_name is not None:
             input_["dataset_name"] = dataset_name
         if next_token is not None:
@@ -1681,7 +1731,37 @@ class LookoutEquipmentClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_data_ingestion_jobs(
+        self,
+        *,
+        config_overrides: Optional[LookoutEquipmentClientConfig] = None,
+        dataset_name: Optional[
+            "capo_lookoutequipment.types.dataset_name.DatasetName"
+        ] = None,
+        next_token: Optional["capo_lookoutequipment.types.next_token.NextToken"] = None,
+        max_results: Optional[
+            "capo_lookoutequipment.types.max_results.MaxResults"
+        ] = None,
+        status: Optional[
+            "capo_lookoutequipment.types.ingestion_job_status.IngestionJobStatus"
+        ] = None,
+    ) -> "Iterator[capo_lookoutequipment.types.list_data_ingestion_jobs_response.ListDataIngestionJobsResponse]":
+        _token = next_token
+        while True:
+            _response = self.list_data_ingestion_jobs(
+                config_overrides=config_overrides,
+                dataset_name=dataset_name,
+                next_token=_token,
+                max_results=max_results,
+                status=status,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def list_datasets(
         self,
@@ -1725,7 +1805,7 @@ class LookoutEquipmentClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lookoutequipment.types.list_datasets_request.ListDatasetsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_lookoutequipment.types.list_datasets_request.ListDatasetsRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -1738,7 +1818,33 @@ class LookoutEquipmentClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_datasets(
+        self,
+        *,
+        config_overrides: Optional[LookoutEquipmentClientConfig] = None,
+        next_token: Optional["capo_lookoutequipment.types.next_token.NextToken"] = None,
+        max_results: Optional[
+            "capo_lookoutequipment.types.max_results.MaxResults"
+        ] = None,
+        dataset_name_begins_with: Optional[
+            "capo_lookoutequipment.types.dataset_name.DatasetName"
+        ] = None,
+    ) -> "Iterator[capo_lookoutequipment.types.list_datasets_response.ListDatasetsResponse]":
+        _token = next_token
+        while True:
+            _response = self.list_datasets(
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+                dataset_name_begins_with=dataset_name_begins_with,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def list_inference_events(
         self,
@@ -1785,21 +1891,50 @@ class LookoutEquipmentClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lookoutequipment.types.list_inference_events_request.ListInferenceEventsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_lookoutequipment.types.list_inference_events_request.ListInferenceEventsRequest = {
+            "inference_scheduler_name": inference_scheduler_name,
+            "interval_start_time": interval_start_time,
+            "interval_end_time": interval_end_time,
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
             input_["max_results"] = max_results
-        input_["inference_scheduler_name"] = inference_scheduler_name
-        input_["interval_start_time"] = interval_start_time
-        input_["interval_end_time"] = interval_end_time
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_inference_events(
+        self,
+        inference_scheduler_name: "capo_lookoutequipment.types.inference_scheduler_identifier.InferenceSchedulerIdentifier",
+        interval_start_time: "capo_lookoutequipment.types.timestamp.Timestamp",
+        interval_end_time: "capo_lookoutequipment.types.timestamp.Timestamp",
+        *,
+        config_overrides: Optional[LookoutEquipmentClientConfig] = None,
+        next_token: Optional["capo_lookoutequipment.types.next_token.NextToken"] = None,
+        max_results: Optional[
+            "capo_lookoutequipment.types.max_results.MaxResults"
+        ] = None,
+    ) -> "Iterator[capo_lookoutequipment.types.list_inference_events_response.ListInferenceEventsResponse]":
+        _token = next_token
+        while True:
+            _response = self.list_inference_events(
+                inference_scheduler_name,
+                interval_start_time,
+                interval_end_time,
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def list_inference_executions(
         self,
@@ -1854,12 +1989,13 @@ class LookoutEquipmentClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lookoutequipment.types.list_inference_executions_request.ListInferenceExecutionsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_lookoutequipment.types.list_inference_executions_request.ListInferenceExecutionsRequest = {
+            "inference_scheduler_name": inference_scheduler_name
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
             input_["max_results"] = max_results
-        input_["inference_scheduler_name"] = inference_scheduler_name
         if data_start_time_after is not None:
             input_["data_start_time_after"] = data_start_time_after
         if data_end_time_before is not None:
@@ -1872,7 +2008,43 @@ class LookoutEquipmentClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_inference_executions(
+        self,
+        inference_scheduler_name: "capo_lookoutequipment.types.inference_scheduler_identifier.InferenceSchedulerIdentifier",
+        *,
+        config_overrides: Optional[LookoutEquipmentClientConfig] = None,
+        next_token: Optional["capo_lookoutequipment.types.next_token.NextToken"] = None,
+        max_results: Optional[
+            "capo_lookoutequipment.types.max_results.MaxResults"
+        ] = None,
+        data_start_time_after: Optional[
+            "capo_lookoutequipment.types.timestamp.Timestamp"
+        ] = None,
+        data_end_time_before: Optional[
+            "capo_lookoutequipment.types.timestamp.Timestamp"
+        ] = None,
+        status: Optional[
+            "capo_lookoutequipment.types.inference_execution_status.InferenceExecutionStatus"
+        ] = None,
+    ) -> "Iterator[capo_lookoutequipment.types.list_inference_executions_response.ListInferenceExecutionsResponse]":
+        _token = next_token
+        while True:
+            _response = self.list_inference_executions(
+                inference_scheduler_name,
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+                data_start_time_after=data_start_time_after,
+                data_end_time_before=data_end_time_before,
+                status=status,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def list_inference_schedulers(
         self,
@@ -1922,7 +2094,7 @@ class LookoutEquipmentClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lookoutequipment.types.list_inference_schedulers_request.ListInferenceSchedulersRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_lookoutequipment.types.list_inference_schedulers_request.ListInferenceSchedulersRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -1941,7 +2113,39 @@ class LookoutEquipmentClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_inference_schedulers(
+        self,
+        *,
+        config_overrides: Optional[LookoutEquipmentClientConfig] = None,
+        next_token: Optional["capo_lookoutequipment.types.next_token.NextToken"] = None,
+        max_results: Optional[
+            "capo_lookoutequipment.types.max_results.MaxResults"
+        ] = None,
+        inference_scheduler_name_begins_with: Optional[
+            "capo_lookoutequipment.types.inference_scheduler_identifier.InferenceSchedulerIdentifier"
+        ] = None,
+        model_name: Optional["capo_lookoutequipment.types.model_name.ModelName"] = None,
+        status: Optional[
+            "capo_lookoutequipment.types.inference_scheduler_status.InferenceSchedulerStatus"
+        ] = None,
+    ) -> "Iterator[capo_lookoutequipment.types.list_inference_schedulers_response.ListInferenceSchedulersResponse]":
+        _token = next_token
+        while True:
+            _response = self.list_inference_schedulers(
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+                inference_scheduler_name_begins_with=inference_scheduler_name_begins_with,
+                model_name=model_name,
+                status=status,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def list_label_groups(
         self,
@@ -1987,7 +2191,7 @@ class LookoutEquipmentClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lookoutequipment.types.list_label_groups_request.ListLabelGroupsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_lookoutequipment.types.list_label_groups_request.ListLabelGroupsRequest = {}
         if label_group_name_begins_with is not None:
             input_["label_group_name_begins_with"] = label_group_name_begins_with
         if next_token is not None:
@@ -2000,7 +2204,33 @@ class LookoutEquipmentClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_label_groups(
+        self,
+        *,
+        config_overrides: Optional[LookoutEquipmentClientConfig] = None,
+        label_group_name_begins_with: Optional[
+            "capo_lookoutequipment.types.label_group_name.LabelGroupName"
+        ] = None,
+        next_token: Optional["capo_lookoutequipment.types.next_token.NextToken"] = None,
+        max_results: Optional[
+            "capo_lookoutequipment.types.max_results.MaxResults"
+        ] = None,
+    ) -> "Iterator[capo_lookoutequipment.types.list_label_groups_response.ListLabelGroupsResponse]":
+        _token = next_token
+        while True:
+            _response = self.list_label_groups(
+                config_overrides=config_overrides,
+                label_group_name_begins_with=label_group_name_begins_with,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def list_labels(
         self,
@@ -2054,8 +2284,9 @@ class LookoutEquipmentClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lookoutequipment.types.list_labels_request.ListLabelsRequest = {}  # type: ignore[typeddict-item]
-        input_["label_group_name"] = label_group_name
+        input_: capo_lookoutequipment.types.list_labels_request.ListLabelsRequest = {
+            "label_group_name": label_group_name
+        }
         if interval_start_time is not None:
             input_["interval_start_time"] = interval_start_time
         if interval_end_time is not None:
@@ -2074,7 +2305,45 @@ class LookoutEquipmentClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_labels(
+        self,
+        label_group_name: "capo_lookoutequipment.types.label_group_name.LabelGroupName",
+        *,
+        config_overrides: Optional[LookoutEquipmentClientConfig] = None,
+        interval_start_time: Optional[
+            "capo_lookoutequipment.types.timestamp.Timestamp"
+        ] = None,
+        interval_end_time: Optional[
+            "capo_lookoutequipment.types.timestamp.Timestamp"
+        ] = None,
+        fault_code: Optional["capo_lookoutequipment.types.fault_code.FaultCode"] = None,
+        equipment: Optional["capo_lookoutequipment.types.equipment.Equipment"] = None,
+        next_token: Optional["capo_lookoutequipment.types.next_token.NextToken"] = None,
+        max_results: Optional[
+            "capo_lookoutequipment.types.max_results.MaxResults"
+        ] = None,
+    ) -> (
+        "Iterator[capo_lookoutequipment.types.list_labels_response.ListLabelsResponse]"
+    ):
+        _token = next_token
+        while True:
+            _response = self.list_labels(
+                label_group_name,
+                config_overrides=config_overrides,
+                interval_start_time=interval_start_time,
+                interval_end_time=interval_end_time,
+                fault_code=fault_code,
+                equipment=equipment,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def list_models(
         self,
@@ -2124,7 +2393,7 @@ class LookoutEquipmentClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lookoutequipment.types.list_models_request.ListModelsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_lookoutequipment.types.list_models_request.ListModelsRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -2141,7 +2410,41 @@ class LookoutEquipmentClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_models(
+        self,
+        *,
+        config_overrides: Optional[LookoutEquipmentClientConfig] = None,
+        next_token: Optional["capo_lookoutequipment.types.next_token.NextToken"] = None,
+        max_results: Optional[
+            "capo_lookoutequipment.types.max_results.MaxResults"
+        ] = None,
+        status: Optional["capo_lookoutequipment.types.model_status.ModelStatus"] = None,
+        model_name_begins_with: Optional[
+            "capo_lookoutequipment.types.model_name.ModelName"
+        ] = None,
+        dataset_name_begins_with: Optional[
+            "capo_lookoutequipment.types.dataset_name.DatasetName"
+        ] = None,
+    ) -> (
+        "Iterator[capo_lookoutequipment.types.list_models_response.ListModelsResponse]"
+    ):
+        _token = next_token
+        while True:
+            _response = self.list_models(
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+                status=status,
+                model_name_begins_with=model_name_begins_with,
+                dataset_name_begins_with=dataset_name_begins_with,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def list_model_versions(
         self,
@@ -2208,8 +2511,9 @@ class LookoutEquipmentClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lookoutequipment.types.list_model_versions_request.ListModelVersionsRequest = {}  # type: ignore[typeddict-item]
-        input_["model_name"] = model_name
+        input_: capo_lookoutequipment.types.list_model_versions_request.ListModelVersionsRequest = {
+            "model_name": model_name
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -2232,7 +2536,55 @@ class LookoutEquipmentClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_model_versions(
+        self,
+        model_name: "capo_lookoutequipment.types.model_name.ModelName",
+        *,
+        config_overrides: Optional[LookoutEquipmentClientConfig] = None,
+        next_token: Optional["capo_lookoutequipment.types.next_token.NextToken"] = None,
+        max_results: Optional[
+            "capo_lookoutequipment.types.max_results.MaxResults"
+        ] = None,
+        status: Optional[
+            "capo_lookoutequipment.types.model_version_status.ModelVersionStatus"
+        ] = None,
+        source_type: Optional[
+            "capo_lookoutequipment.types.model_version_source_type.ModelVersionSourceType"
+        ] = None,
+        created_at_end_time: Optional[
+            "capo_lookoutequipment.types.timestamp.Timestamp"
+        ] = None,
+        created_at_start_time: Optional[
+            "capo_lookoutequipment.types.timestamp.Timestamp"
+        ] = None,
+        max_model_version: Optional[
+            "capo_lookoutequipment.types.model_version.ModelVersion"
+        ] = None,
+        min_model_version: Optional[
+            "capo_lookoutequipment.types.model_version.ModelVersion"
+        ] = None,
+    ) -> "Iterator[capo_lookoutequipment.types.list_model_versions_response.ListModelVersionsResponse]":
+        _token = next_token
+        while True:
+            _response = self.list_model_versions(
+                model_name,
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+                status=status,
+                source_type=source_type,
+                created_at_end_time=created_at_end_time,
+                created_at_start_time=created_at_start_time,
+                max_model_version=max_model_version,
+                min_model_version=min_model_version,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def list_retraining_schedulers(
         self,
@@ -2285,7 +2637,7 @@ class LookoutEquipmentClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lookoutequipment.types.list_retraining_schedulers_request.ListRetrainingSchedulersRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_lookoutequipment.types.list_retraining_schedulers_request.ListRetrainingSchedulersRequest = {}
         if model_name_begins_with is not None:
             input_["model_name_begins_with"] = model_name_begins_with
         if status is not None:
@@ -2300,7 +2652,37 @@ class LookoutEquipmentClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_retraining_schedulers(
+        self,
+        *,
+        config_overrides: Optional[LookoutEquipmentClientConfig] = None,
+        model_name_begins_with: Optional[
+            "capo_lookoutequipment.types.model_name.ModelName"
+        ] = None,
+        status: Optional[
+            "capo_lookoutequipment.types.retraining_scheduler_status.RetrainingSchedulerStatus"
+        ] = None,
+        next_token: Optional["capo_lookoutequipment.types.next_token.NextToken"] = None,
+        max_results: Optional[
+            "capo_lookoutequipment.types.max_results.MaxResults"
+        ] = None,
+    ) -> "Iterator[capo_lookoutequipment.types.list_retraining_schedulers_response.ListRetrainingSchedulersResponse]":
+        _token = next_token
+        while True:
+            _response = self.list_retraining_schedulers(
+                config_overrides=config_overrides,
+                model_name_begins_with=model_name_begins_with,
+                status=status,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def list_sensor_statistics(
         self,
@@ -2347,8 +2729,9 @@ class LookoutEquipmentClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lookoutequipment.types.list_sensor_statistics_request.ListSensorStatisticsRequest = {}  # type: ignore[typeddict-item]
-        input_["dataset_name"] = dataset_name
+        input_: capo_lookoutequipment.types.list_sensor_statistics_request.ListSensorStatisticsRequest = {
+            "dataset_name": dataset_name
+        }
         if ingestion_job_id is not None:
             input_["ingestion_job_id"] = ingestion_job_id
         if max_results is not None:
@@ -2361,7 +2744,35 @@ class LookoutEquipmentClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_sensor_statistics(
+        self,
+        dataset_name: "capo_lookoutequipment.types.dataset_name.DatasetName",
+        *,
+        config_overrides: Optional[LookoutEquipmentClientConfig] = None,
+        ingestion_job_id: Optional[
+            "capo_lookoutequipment.types.ingestion_job_id.IngestionJobId"
+        ] = None,
+        max_results: Optional[
+            "capo_lookoutequipment.types.max_results.MaxResults"
+        ] = None,
+        next_token: Optional["capo_lookoutequipment.types.next_token.NextToken"] = None,
+    ) -> "Iterator[capo_lookoutequipment.types.list_sensor_statistics_response.ListSensorStatisticsResponse]":
+        _token = next_token
+        while True:
+            _response = self.list_sensor_statistics(
+                dataset_name,
+                config_overrides=config_overrides,
+                ingestion_job_id=ingestion_job_id,
+                max_results=max_results,
+                next_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def list_tags_for_resource(
         self,
@@ -2398,14 +2809,16 @@ class LookoutEquipmentClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lookoutequipment.types.list_tags_for_resource_request.ListTagsForResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_lookoutequipment.types.list_tags_for_resource_request.ListTagsForResourceRequest = {
+            "resource_arn": resource_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def put_resource_policy(
@@ -2453,18 +2866,20 @@ class LookoutEquipmentClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lookoutequipment.types.put_resource_policy_request.PutResourcePolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["resource_policy"] = resource_policy
+        input_: capo_lookoutequipment.types.put_resource_policy_request.PutResourcePolicyRequest = {
+            "resource_arn": resource_arn,
+            "resource_policy": resource_policy,
+            "client_token": client_token,
+        }
         if policy_revision_id is not None:
             input_["policy_revision_id"] = policy_revision_id
-        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def start_data_ingestion_job(
@@ -2510,17 +2925,19 @@ class LookoutEquipmentClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lookoutequipment.types.start_data_ingestion_job_request.StartDataIngestionJobRequest = {}  # type: ignore[typeddict-item]
-        input_["dataset_name"] = dataset_name
-        input_["ingestion_input_configuration"] = ingestion_input_configuration
-        input_["role_arn"] = role_arn
-        input_["client_token"] = client_token
+        input_: capo_lookoutequipment.types.start_data_ingestion_job_request.StartDataIngestionJobRequest = {
+            "dataset_name": dataset_name,
+            "ingestion_input_configuration": ingestion_input_configuration,
+            "role_arn": role_arn,
+            "client_token": client_token,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def start_inference_scheduler(
@@ -2559,14 +2976,16 @@ class LookoutEquipmentClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lookoutequipment.types.start_inference_scheduler_request.StartInferenceSchedulerRequest = {}  # type: ignore[typeddict-item]
-        input_["inference_scheduler_name"] = inference_scheduler_name
+        input_: capo_lookoutequipment.types.start_inference_scheduler_request.StartInferenceSchedulerRequest = {
+            "inference_scheduler_name": inference_scheduler_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def start_retraining_scheduler(
@@ -2610,14 +3029,16 @@ class LookoutEquipmentClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lookoutequipment.types.start_retraining_scheduler_request.StartRetrainingSchedulerRequest = {}  # type: ignore[typeddict-item]
-        input_["model_name"] = model_name
+        input_: capo_lookoutequipment.types.start_retraining_scheduler_request.StartRetrainingSchedulerRequest = {
+            "model_name": model_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def stop_inference_scheduler(
@@ -2656,14 +3077,16 @@ class LookoutEquipmentClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lookoutequipment.types.stop_inference_scheduler_request.StopInferenceSchedulerRequest = {}  # type: ignore[typeddict-item]
-        input_["inference_scheduler_name"] = inference_scheduler_name
+        input_: capo_lookoutequipment.types.stop_inference_scheduler_request.StopInferenceSchedulerRequest = {
+            "inference_scheduler_name": inference_scheduler_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def stop_retraining_scheduler(
@@ -2707,14 +3130,16 @@ class LookoutEquipmentClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lookoutequipment.types.stop_retraining_scheduler_request.StopRetrainingSchedulerRequest = {}  # type: ignore[typeddict-item]
-        input_["model_name"] = model_name
+        input_: capo_lookoutequipment.types.stop_retraining_scheduler_request.StopRetrainingSchedulerRequest = {
+            "model_name": model_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def tag_resource(
@@ -2755,15 +3180,17 @@ class LookoutEquipmentClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lookoutequipment.types.tag_resource_request.TagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tags"] = tags
+        input_: capo_lookoutequipment.types.tag_resource_request.TagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tags": tags,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def untag_resource(
@@ -2803,15 +3230,17 @@ class LookoutEquipmentClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lookoutequipment.types.untag_resource_request.UntagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tag_keys"] = tag_keys
+        input_: capo_lookoutequipment.types.untag_resource_request.UntagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tag_keys": tag_keys,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_active_model_version(
@@ -2852,15 +3281,17 @@ class LookoutEquipmentClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lookoutequipment.types.update_active_model_version_request.UpdateActiveModelVersionRequest = {}  # type: ignore[typeddict-item]
-        input_["model_name"] = model_name
-        input_["model_version"] = model_version
+        input_: capo_lookoutequipment.types.update_active_model_version_request.UpdateActiveModelVersionRequest = {
+            "model_name": model_name,
+            "model_version": model_version,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_inference_scheduler(
@@ -2917,8 +3348,9 @@ class LookoutEquipmentClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lookoutequipment.types.update_inference_scheduler_request.UpdateInferenceSchedulerRequest = {}  # type: ignore[typeddict-item]
-        input_["inference_scheduler_name"] = inference_scheduler_name
+        input_: capo_lookoutequipment.types.update_inference_scheduler_request.UpdateInferenceSchedulerRequest = {
+            "inference_scheduler_name": inference_scheduler_name
+        }
         if data_delay_offset_in_minutes is not None:
             input_["data_delay_offset_in_minutes"] = data_delay_offset_in_minutes
         if data_upload_frequency is not None:
@@ -2935,6 +3367,7 @@ class LookoutEquipmentClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_label_group(
@@ -2975,8 +3408,9 @@ class LookoutEquipmentClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lookoutequipment.types.update_label_group_request.UpdateLabelGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["label_group_name"] = label_group_name
+        input_: capo_lookoutequipment.types.update_label_group_request.UpdateLabelGroupRequest = {
+            "label_group_name": label_group_name
+        }
         if fault_codes is not None:
             input_["fault_codes"] = fault_codes
 
@@ -2985,6 +3419,7 @@ class LookoutEquipmentClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_model(
@@ -3037,8 +3472,9 @@ class LookoutEquipmentClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lookoutequipment.types.update_model_request.UpdateModelRequest = {}  # type: ignore[typeddict-item]
-        input_["model_name"] = model_name
+        input_: capo_lookoutequipment.types.update_model_request.UpdateModelRequest = {
+            "model_name": model_name
+        }
         if labels_input_configuration is not None:
             input_["labels_input_configuration"] = labels_input_configuration
         if role_arn is not None:
@@ -3053,6 +3489,7 @@ class LookoutEquipmentClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_retraining_scheduler(
@@ -3110,8 +3547,9 @@ class LookoutEquipmentClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lookoutequipment.types.update_retraining_scheduler_request.UpdateRetrainingSchedulerRequest = {}  # type: ignore[typeddict-item]
-        input_["model_name"] = model_name
+        input_: capo_lookoutequipment.types.update_retraining_scheduler_request.UpdateRetrainingSchedulerRequest = {
+            "model_name": model_name
+        }
         if retraining_start_date is not None:
             input_["retraining_start_date"] = retraining_start_date
         if retraining_frequency is not None:
@@ -3126,6 +3564,7 @@ class LookoutEquipmentClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def __enter__(self) -> Self:

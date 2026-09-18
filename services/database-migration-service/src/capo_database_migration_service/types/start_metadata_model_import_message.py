@@ -42,19 +42,19 @@ def serialize_aws_json_1_1(value: StartMetadataModelImportMessage) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> StartMetadataModelImportMessage:
     out: StartMetadataModelImportMessage = {}  # type: ignore[typeddict-item]
-    if "MigrationProjectIdentifier" in data:
+    if data.get("MigrationProjectIdentifier") is not None:
         out["migration_project_identifier"] = data["MigrationProjectIdentifier"]
     else:
         raise DeserializationError(
             "StartMetadataModelImportMessage.migration_project_identifier required"
         )
-    if "SelectionRules" in data:
+    if data.get("SelectionRules") is not None:
         out["selection_rules"] = data["SelectionRules"]
     else:
         raise DeserializationError(
             "StartMetadataModelImportMessage.selection_rules required"
         )
-    if "Origin" in data:
+    if data.get("Origin") is not None:
         import capo_database_migration_service.types.origin_type_value
 
         out["origin"] = (
@@ -64,7 +64,7 @@ def deserialize_aws_json_1_1(data: dict) -> StartMetadataModelImportMessage:
         )
     else:
         raise DeserializationError("StartMetadataModelImportMessage.origin required")
-    if "Refresh" in data:
+    if data.get("Refresh") is not None:
         out["refresh"] = data["Refresh"]
     else:
         out["refresh"] = False

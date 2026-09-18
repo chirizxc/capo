@@ -74,33 +74,33 @@ def serialize_json(value: CoreNetworkChangeEvent) -> dict:
 
 def deserialize_json(data: dict) -> CoreNetworkChangeEvent:
     out: CoreNetworkChangeEvent = {}  # type: ignore[typeddict-item]
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_networkmanager.types.change_type
 
         out["type"] = capo_networkmanager.types.change_type.deserialize_json(
             data["Type"]
         )
-    if "Action" in data:
+    if data.get("Action") is not None:
         import capo_networkmanager.types.change_action
 
         out["action"] = capo_networkmanager.types.change_action.deserialize_json(
             data["Action"]
         )
-    if "IdentifierPath" in data:
+    if data.get("IdentifierPath") is not None:
         out["identifier_path"] = data["IdentifierPath"]
-    if "EventTime" in data:
+    if data.get("EventTime") is not None:
         import capo_networkmanager.types.date_time
 
         out["event_time"] = capo_networkmanager.types.date_time.deserialize_json(
             data["EventTime"]
         )
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_networkmanager.types.change_status
 
         out["status"] = capo_networkmanager.types.change_status.deserialize_json(
             data["Status"]
         )
-    if "Values" in data:
+    if data.get("Values") is not None:
         import capo_networkmanager.types.core_network_change_event_values
 
         out["values"] = (

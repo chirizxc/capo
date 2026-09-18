@@ -68,15 +68,15 @@ def serialize_json(value: CoreDevice) -> dict:
 
 def deserialize_json(data: dict) -> CoreDevice:
     out: CoreDevice = {}  # type: ignore[typeddict-item]
-    if "coreDeviceThingName" in data:
+    if data.get("coreDeviceThingName") is not None:
         out["core_device_thing_name"] = data["coreDeviceThingName"]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_greengrassv2.types.core_device_status
 
         out["status"] = capo_greengrassv2.types.core_device_status.deserialize_json(
             data["status"]
         )
-    if "lastStatusUpdateTimestamp" in data:
+    if data.get("lastStatusUpdateTimestamp") is not None:
         import capo_greengrassv2.types.timestamp
 
         out["last_status_update_timestamp"] = (
@@ -84,10 +84,10 @@ def deserialize_json(data: dict) -> CoreDevice:
                 data["lastStatusUpdateTimestamp"]
             )
         )
-    if "platform" in data:
+    if data.get("platform") is not None:
         out["platform"] = data["platform"]
-    if "architecture" in data:
+    if data.get("architecture") is not None:
         out["architecture"] = data["architecture"]
-    if "runtime" in data:
+    if data.get("runtime") is not None:
         out["runtime"] = data["runtime"]
     return out

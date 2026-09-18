@@ -74,17 +74,17 @@ def serialize_json(value: VodSource) -> dict:
 
 def deserialize_json(data: dict) -> VodSource:
     out: VodSource = {}  # type: ignore[typeddict-item]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
     else:
         raise DeserializationError("VodSource.arn required")
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_mediatailor.types.__timestamp_unix
 
         out["creation_time"] = capo_mediatailor.types.__timestamp_unix.deserialize_json(
             data["CreationTime"]
         )
-    if "HttpPackageConfigurations" in data:
+    if data.get("HttpPackageConfigurations") is not None:
         import capo_mediatailor.types.http_package_configurations
 
         out["http_package_configurations"] = (
@@ -94,7 +94,7 @@ def deserialize_json(data: dict) -> VodSource:
         )
     else:
         raise DeserializationError("VodSource.http_package_configurations required")
-    if "LastModifiedTime" in data:
+    if data.get("LastModifiedTime") is not None:
         import capo_mediatailor.types.__timestamp_unix
 
         out["last_modified_time"] = (
@@ -102,17 +102,17 @@ def deserialize_json(data: dict) -> VodSource:
                 data["LastModifiedTime"]
             )
         )
-    if "SourceLocationName" in data:
+    if data.get("SourceLocationName") is not None:
         out["source_location_name"] = data["SourceLocationName"]
     else:
         raise DeserializationError("VodSource.source_location_name required")
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_mediatailor.types.__map_of__string
 
         out["tags"] = capo_mediatailor.types.__map_of__string.deserialize_json(
             data["tags"]
         )
-    if "VodSourceName" in data:
+    if data.get("VodSourceName") is not None:
         out["vod_source_name"] = data["VodSourceName"]
     else:
         raise DeserializationError("VodSource.vod_source_name required")

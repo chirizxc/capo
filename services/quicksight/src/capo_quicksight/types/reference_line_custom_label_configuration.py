@@ -24,7 +24,7 @@ def serialize_json(value: ReferenceLineCustomLabelConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> ReferenceLineCustomLabelConfiguration:
     out: ReferenceLineCustomLabelConfiguration = {}  # type: ignore[typeddict-item]
-    if "CustomLabel" in data:
+    if data.get("CustomLabel") is not None:
         out["custom_label"] = data["CustomLabel"]
     else:
         raise DeserializationError(

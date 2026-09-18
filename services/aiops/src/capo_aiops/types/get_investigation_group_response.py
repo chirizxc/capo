@@ -117,21 +117,21 @@ def serialize_json(value: GetInvestigationGroupResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetInvestigationGroupResponse:
     out: GetInvestigationGroupResponse = {}  # type: ignore[typeddict-item]
-    if "createdBy" in data:
+    if data.get("createdBy") is not None:
         out["created_by"] = data["createdBy"]
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         out["created_at"] = data["createdAt"]
-    if "lastModifiedBy" in data:
+    if data.get("lastModifiedBy") is not None:
         out["last_modified_by"] = data["lastModifiedBy"]
-    if "lastModifiedAt" in data:
+    if data.get("lastModifiedAt") is not None:
         out["last_modified_at"] = data["lastModifiedAt"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "roleArn" in data:
+    if data.get("roleArn") is not None:
         out["role_arn"] = data["roleArn"]
-    if "encryptionConfiguration" in data:
+    if data.get("encryptionConfiguration") is not None:
         import capo_aiops.types.encryption_configuration
 
         out["encryption_configuration"] = (
@@ -139,9 +139,9 @@ def deserialize_json(data: dict) -> GetInvestigationGroupResponse:
                 data["encryptionConfiguration"]
             )
         )
-    if "retentionInDays" in data:
+    if data.get("retentionInDays") is not None:
         out["retention_in_days"] = data["retentionInDays"]
-    if "chatbotNotificationChannel" in data:
+    if data.get("chatbotNotificationChannel") is not None:
         import capo_aiops.types.chatbot_notification_channel
 
         out["chatbot_notification_channel"] = (
@@ -149,7 +149,7 @@ def deserialize_json(data: dict) -> GetInvestigationGroupResponse:
                 data["chatbotNotificationChannel"]
             )
         )
-    if "tagKeyBoundaries" in data:
+    if data.get("tagKeyBoundaries") is not None:
         import capo_aiops.types.tag_key_boundaries
 
         out["tag_key_boundaries"] = (
@@ -157,11 +157,11 @@ def deserialize_json(data: dict) -> GetInvestigationGroupResponse:
                 data["tagKeyBoundaries"]
             )
         )
-    if "isCloudTrailEventHistoryEnabled" in data:
+    if data.get("isCloudTrailEventHistoryEnabled") is not None:
         out["is_cloud_trail_event_history_enabled"] = data[
             "isCloudTrailEventHistoryEnabled"
         ]
-    if "crossAccountConfigurations" in data:
+    if data.get("crossAccountConfigurations") is not None:
         import capo_aiops.types.cross_account_configurations
 
         out["cross_account_configurations"] = (

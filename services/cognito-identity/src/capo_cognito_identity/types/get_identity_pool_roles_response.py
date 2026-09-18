@@ -47,15 +47,15 @@ def serialize_aws_json_1_1(value: GetIdentityPoolRolesResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetIdentityPoolRolesResponse:
     out: GetIdentityPoolRolesResponse = {}  # type: ignore[typeddict-item]
-    if "IdentityPoolId" in data:
+    if data.get("IdentityPoolId") is not None:
         out["identity_pool_id"] = data["IdentityPoolId"]
-    if "Roles" in data:
+    if data.get("Roles") is not None:
         import capo_cognito_identity.types.roles_map
 
         out["roles"] = capo_cognito_identity.types.roles_map.deserialize_aws_json_1_1(
             data["Roles"]
         )
-    if "RoleMappings" in data:
+    if data.get("RoleMappings") is not None:
         import capo_cognito_identity.types.role_mapping_map
 
         out["role_mappings"] = (

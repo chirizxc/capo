@@ -94,7 +94,16 @@ def serialize_aws_json_1_0(value: AutoScalingGroupRecommendation) -> dict:
                 value["utilization_metrics"]
             )
         )
-    out["lookBackPeriodInDays"] = value.get("look_back_period_in_days", 0)
+    out["lookBackPeriodInDays"] = (
+        "NaN"
+        if value.get("look_back_period_in_days", 0)
+        != value.get("look_back_period_in_days", 0)
+        else "Infinity"
+        if value.get("look_back_period_in_days", 0) == float("inf")
+        else "-Infinity"
+        if value.get("look_back_period_in_days", 0) == float("-inf")
+        else value.get("look_back_period_in_days", 0)
+    )
     if "current_configuration" in value:
         import capo_compute_optimizer.types.auto_scaling_group_configuration
 
@@ -156,19 +165,19 @@ def serialize_aws_json_1_0(value: AutoScalingGroupRecommendation) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> AutoScalingGroupRecommendation:
     out: AutoScalingGroupRecommendation = {}  # type: ignore[typeddict-item]
-    if "accountId" in data:
+    if data.get("accountId") is not None:
         out["account_id"] = data["accountId"]
-    if "autoScalingGroupArn" in data:
+    if data.get("autoScalingGroupArn") is not None:
         out["auto_scaling_group_arn"] = data["autoScalingGroupArn"]
-    if "autoScalingGroupName" in data:
+    if data.get("autoScalingGroupName") is not None:
         out["auto_scaling_group_name"] = data["autoScalingGroupName"]
-    if "finding" in data:
+    if data.get("finding") is not None:
         import capo_compute_optimizer.types.finding
 
         out["finding"] = capo_compute_optimizer.types.finding.deserialize_aws_json_1_0(
             data["finding"]
         )
-    if "utilizationMetrics" in data:
+    if data.get("utilizationMetrics") is not None:
         import capo_compute_optimizer.types.utilization_metrics
 
         out["utilization_metrics"] = (
@@ -176,11 +185,11 @@ def deserialize_aws_json_1_0(data: dict) -> AutoScalingGroupRecommendation:
                 data["utilizationMetrics"]
             )
         )
-    if "lookBackPeriodInDays" in data:
-        out["look_back_period_in_days"] = data["lookBackPeriodInDays"]
+    if data.get("lookBackPeriodInDays") is not None:
+        out["look_back_period_in_days"] = float(data["lookBackPeriodInDays"])
     else:
         out["look_back_period_in_days"] = 0
-    if "currentConfiguration" in data:
+    if data.get("currentConfiguration") is not None:
         import capo_compute_optimizer.types.auto_scaling_group_configuration
 
         out["current_configuration"] = (
@@ -188,7 +197,7 @@ def deserialize_aws_json_1_0(data: dict) -> AutoScalingGroupRecommendation:
                 data["currentConfiguration"]
             )
         )
-    if "currentInstanceGpuInfo" in data:
+    if data.get("currentInstanceGpuInfo") is not None:
         import capo_compute_optimizer.types.gpu_info
 
         out["current_instance_gpu_info"] = (
@@ -196,7 +205,7 @@ def deserialize_aws_json_1_0(data: dict) -> AutoScalingGroupRecommendation:
                 data["currentInstanceGpuInfo"]
             )
         )
-    if "recommendationOptions" in data:
+    if data.get("recommendationOptions") is not None:
         import capo_compute_optimizer.types.auto_scaling_group_recommendation_options
 
         out["recommendation_options"] = (
@@ -204,7 +213,7 @@ def deserialize_aws_json_1_0(data: dict) -> AutoScalingGroupRecommendation:
                 data["recommendationOptions"]
             )
         )
-    if "lastRefreshTimestamp" in data:
+    if data.get("lastRefreshTimestamp") is not None:
         import capo_compute_optimizer.types.last_refresh_timestamp
 
         out["last_refresh_timestamp"] = (
@@ -212,7 +221,7 @@ def deserialize_aws_json_1_0(data: dict) -> AutoScalingGroupRecommendation:
                 data["lastRefreshTimestamp"]
             )
         )
-    if "currentPerformanceRisk" in data:
+    if data.get("currentPerformanceRisk") is not None:
         import capo_compute_optimizer.types.current_performance_risk
 
         out["current_performance_risk"] = (
@@ -220,7 +229,7 @@ def deserialize_aws_json_1_0(data: dict) -> AutoScalingGroupRecommendation:
                 data["currentPerformanceRisk"]
             )
         )
-    if "effectiveRecommendationPreferences" in data:
+    if data.get("effectiveRecommendationPreferences") is not None:
         import capo_compute_optimizer.types.effective_recommendation_preferences
 
         out["effective_recommendation_preferences"] = (
@@ -228,7 +237,7 @@ def deserialize_aws_json_1_0(data: dict) -> AutoScalingGroupRecommendation:
                 data["effectiveRecommendationPreferences"]
             )
         )
-    if "inferredWorkloadTypes" in data:
+    if data.get("inferredWorkloadTypes") is not None:
         import capo_compute_optimizer.types.inferred_workload_types
 
         out["inferred_workload_types"] = (

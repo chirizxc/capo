@@ -31,7 +31,7 @@ def serialize_json(value: PluginVisualOptions) -> dict:
 
 def deserialize_json(data: dict) -> PluginVisualOptions:
     out: PluginVisualOptions = {}  # type: ignore[typeddict-item]
-    if "VisualProperties" in data:
+    if data.get("VisualProperties") is not None:
         import capo_quicksight.types.plugin_visual_properties_list
 
         out["visual_properties"] = (

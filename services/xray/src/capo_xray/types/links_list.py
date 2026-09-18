@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> LinksList:
 
     out: LinksList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_xray.types.graph_link.deserialize_json(item))
     return out

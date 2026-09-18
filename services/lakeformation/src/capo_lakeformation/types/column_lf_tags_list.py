@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> ColumnLFTagsList:
 
     out: ColumnLFTagsList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_lakeformation.types.column_lf_tag.deserialize_json(item))
     return out

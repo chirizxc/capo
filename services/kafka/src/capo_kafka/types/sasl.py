@@ -32,11 +32,11 @@ def serialize_json(value: Sasl) -> dict:
 
 def deserialize_json(data: dict) -> Sasl:
     out: Sasl = {}  # type: ignore[typeddict-item]
-    if "scram" in data:
+    if data.get("scram") is not None:
         import capo_kafka.types.scram
 
         out["scram"] = capo_kafka.types.scram.deserialize_json(data["scram"])
-    if "iam" in data:
+    if data.get("iam") is not None:
         import capo_kafka.types.iam
 
         out["iam"] = capo_kafka.types.iam.deserialize_json(data["iam"])

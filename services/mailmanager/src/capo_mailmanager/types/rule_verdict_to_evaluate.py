@@ -47,7 +47,7 @@ def serialize_aws_json_1_0(value: RuleVerdictToEvaluate) -> dict:
 
 
 def deserialize_aws_json_1_0(data: dict) -> RuleVerdictToEvaluate:
-    if "Attribute" in data:
+    if data.get("Attribute") is not None:
         import capo_mailmanager.types.rule_verdict_attribute
 
         return {
@@ -55,7 +55,7 @@ def deserialize_aws_json_1_0(data: dict) -> RuleVerdictToEvaluate:
                 data["Attribute"]
             )
         }
-    elif "Analysis" in data:
+    elif data.get("Analysis") is not None:
         import capo_mailmanager.types.analysis
 
         return {

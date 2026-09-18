@@ -30,7 +30,7 @@ def serialize_json(value: TerminateRecoveryInstancesRequest) -> dict:
 
 def deserialize_json(data: dict) -> TerminateRecoveryInstancesRequest:
     out: TerminateRecoveryInstancesRequest = {}  # type: ignore[typeddict-item]
-    if "recoveryInstanceIDs" in data:
+    if data.get("recoveryInstanceIDs") is not None:
         import capo_drs.types.recovery_instances_for_termination_request
 
         out["recovery_instance_i_ds"] = (

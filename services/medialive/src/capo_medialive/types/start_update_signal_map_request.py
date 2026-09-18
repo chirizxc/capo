@@ -70,7 +70,7 @@ def serialize_json(value: StartUpdateSignalMapRequest) -> dict:
 
 def deserialize_json(data: dict) -> StartUpdateSignalMapRequest:
     out: StartUpdateSignalMapRequest = {}  # type: ignore[typeddict-item]
-    if "cloudWatchAlarmTemplateGroupIdentifiers" in data:
+    if data.get("cloudWatchAlarmTemplateGroupIdentifiers") is not None:
         import capo_medialive.types.__list_of__string_pattern_s
 
         out["cloud_watch_alarm_template_group_identifiers"] = (
@@ -78,11 +78,11 @@ def deserialize_json(data: dict) -> StartUpdateSignalMapRequest:
                 data["cloudWatchAlarmTemplateGroupIdentifiers"]
             )
         )
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "discoveryEntryPointArn" in data:
+    if data.get("discoveryEntryPointArn") is not None:
         out["discovery_entry_point_arn"] = data["discoveryEntryPointArn"]
-    if "eventBridgeRuleTemplateGroupIdentifiers" in data:
+    if data.get("eventBridgeRuleTemplateGroupIdentifiers") is not None:
         import capo_medialive.types.__list_of__string_pattern_s
 
         out["event_bridge_rule_template_group_identifiers"] = (
@@ -90,8 +90,8 @@ def deserialize_json(data: dict) -> StartUpdateSignalMapRequest:
                 data["eventBridgeRuleTemplateGroupIdentifiers"]
             )
         )
-    if "forceRediscovery" in data:
+    if data.get("forceRediscovery") is not None:
         out["force_rediscovery"] = data["forceRediscovery"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     return out

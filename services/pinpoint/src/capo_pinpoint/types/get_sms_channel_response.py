@@ -30,7 +30,7 @@ def serialize_json(value: GetSmsChannelResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetSmsChannelResponse:
     out: GetSmsChannelResponse = {}  # type: ignore[typeddict-item]
-    if "SMSChannelResponse" in data:
+    if data.get("SMSChannelResponse") is not None:
         import capo_pinpoint.types.sms_channel_response
 
         out["sms_channel_response"] = (

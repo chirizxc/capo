@@ -36,7 +36,7 @@ def serialize_aws_json_1_0(value: InstanceTypeEsxVersionsInfo) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> InstanceTypeEsxVersionsInfo:
     out: InstanceTypeEsxVersionsInfo = {}  # type: ignore[typeddict-item]
-    if "instanceType" in data:
+    if data.get("instanceType") is not None:
         import capo_evs.types.instance_type
 
         out["instance_type"] = capo_evs.types.instance_type.deserialize_aws_json_1_0(
@@ -44,7 +44,7 @@ def deserialize_aws_json_1_0(data: dict) -> InstanceTypeEsxVersionsInfo:
         )
     else:
         raise DeserializationError("InstanceTypeEsxVersionsInfo.instance_type required")
-    if "esxVersions" in data:
+    if data.get("esxVersions") is not None:
         import capo_evs.types.esx_version_list
 
         out["esx_versions"] = capo_evs.types.esx_version_list.deserialize_aws_json_1_0(

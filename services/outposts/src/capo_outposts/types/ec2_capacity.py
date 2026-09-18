@@ -33,10 +33,10 @@ def serialize_json(value: EC2Capacity) -> dict:
 
 def deserialize_json(data: dict) -> EC2Capacity:
     out: EC2Capacity = {}  # type: ignore[typeddict-item]
-    if "Family" in data:
+    if data.get("Family") is not None:
         out["family"] = data["Family"]
-    if "MaxSize" in data:
+    if data.get("MaxSize") is not None:
         out["max_size"] = data["MaxSize"]
-    if "Quantity" in data:
+    if data.get("Quantity") is not None:
         out["quantity"] = data["Quantity"]
     return out

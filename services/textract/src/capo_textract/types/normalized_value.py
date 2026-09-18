@@ -32,9 +32,9 @@ def serialize_aws_json_1_1(value: NormalizedValue) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> NormalizedValue:
     out: NormalizedValue = {}  # type: ignore[typeddict-item]
-    if "Value" in data:
+    if data.get("Value") is not None:
         out["value"] = data["Value"]
-    if "ValueType" in data:
+    if data.get("ValueType") is not None:
         import capo_textract.types.value_type
 
         out["value_type"] = capo_textract.types.value_type.deserialize_aws_json_1_1(

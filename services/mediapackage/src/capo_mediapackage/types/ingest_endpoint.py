@@ -36,12 +36,12 @@ def serialize_json(value: IngestEndpoint) -> dict:
 
 def deserialize_json(data: dict) -> IngestEndpoint:
     out: IngestEndpoint = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "password" in data:
+    if data.get("password") is not None:
         out["password"] = data["password"]
-    if "url" in data:
+    if data.get("url") is not None:
         out["url"] = data["url"]
-    if "username" in data:
+    if data.get("username") is not None:
         out["username"] = data["username"]
     return out

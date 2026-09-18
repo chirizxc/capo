@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> AwsRdsDbClusterSnapshotDbClusterSnapshotAttr
 
     out: AwsRdsDbClusterSnapshotDbClusterSnapshotAttributes = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_securityhub.types.aws_rds_db_cluster_snapshot_db_cluster_snapshot_attribute.deserialize_json(
                 item

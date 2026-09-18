@@ -80,18 +80,20 @@ class ServiceSyncConfigResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_proton.types.create_service_sync_config_input.CreateServiceSyncConfigInput = {}  # type: ignore[typeddict-item]
-        input_["service_name"] = service_name
-        input_["repository_provider"] = repository_provider
-        input_["repository_name"] = repository_name
-        input_["branch"] = branch
-        input_["file_path"] = file_path
+        input_: capo_proton.types.create_service_sync_config_input.CreateServiceSyncConfigInput = {
+            "service_name": service_name,
+            "repository_provider": repository_provider,
+            "repository_name": repository_name,
+            "branch": branch,
+            "file_path": file_path,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -129,14 +131,16 @@ class ServiceSyncConfigResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_proton.types.get_service_sync_config_input.GetServiceSyncConfigInput = {}  # type: ignore[typeddict-item]
-        input_["service_name"] = service_name
+        input_: capo_proton.types.get_service_sync_config_input.GetServiceSyncConfigInput = {
+            "service_name": service_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update(
@@ -183,18 +187,20 @@ class ServiceSyncConfigResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_proton.types.update_service_sync_config_input.UpdateServiceSyncConfigInput = {}  # type: ignore[typeddict-item]
-        input_["service_name"] = service_name
-        input_["repository_provider"] = repository_provider
-        input_["repository_name"] = repository_name
-        input_["branch"] = branch
-        input_["file_path"] = file_path
+        input_: capo_proton.types.update_service_sync_config_input.UpdateServiceSyncConfigInput = {
+            "service_name": service_name,
+            "repository_provider": repository_provider,
+            "repository_name": repository_name,
+            "branch": branch,
+            "file_path": file_path,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -233,14 +239,16 @@ class ServiceSyncConfigResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_proton.types.delete_service_sync_config_input.DeleteServiceSyncConfigInput = {}  # type: ignore[typeddict-item]
-        input_["service_name"] = service_name
+        input_: capo_proton.types.delete_service_sync_config_input.DeleteServiceSyncConfigInput = {
+            "service_name": service_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -293,18 +301,20 @@ class AsyncServiceSyncConfigResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_proton.types.create_service_sync_config_input.CreateServiceSyncConfigInput = {}  # type: ignore[typeddict-item]
-        input_["service_name"] = service_name
-        input_["repository_provider"] = repository_provider
-        input_["repository_name"] = repository_name
-        input_["branch"] = branch
-        input_["file_path"] = file_path
+        input_: capo_proton.types.create_service_sync_config_input.CreateServiceSyncConfigInput = {
+            "service_name": service_name,
+            "repository_provider": repository_provider,
+            "repository_name": repository_name,
+            "branch": branch,
+            "file_path": file_path,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -343,14 +353,16 @@ class AsyncServiceSyncConfigResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_proton.types.get_service_sync_config_input.GetServiceSyncConfigInput = {}  # type: ignore[typeddict-item]
-        input_["service_name"] = service_name
+        input_: capo_proton.types.get_service_sync_config_input.GetServiceSyncConfigInput = {
+            "service_name": service_name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update(
@@ -398,18 +410,20 @@ class AsyncServiceSyncConfigResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_proton.types.update_service_sync_config_input.UpdateServiceSyncConfigInput = {}  # type: ignore[typeddict-item]
-        input_["service_name"] = service_name
-        input_["repository_provider"] = repository_provider
-        input_["repository_name"] = repository_name
-        input_["branch"] = branch
-        input_["file_path"] = file_path
+        input_: capo_proton.types.update_service_sync_config_input.UpdateServiceSyncConfigInput = {
+            "service_name": service_name,
+            "repository_provider": repository_provider,
+            "repository_name": repository_name,
+            "branch": branch,
+            "file_path": file_path,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -449,12 +463,14 @@ class AsyncServiceSyncConfigResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_proton.types.delete_service_sync_config_input.DeleteServiceSyncConfigInput = {}  # type: ignore[typeddict-item]
-        input_["service_name"] = service_name
+        input_: capo_proton.types.delete_service_sync_config_input.DeleteServiceSyncConfigInput = {
+            "service_name": service_name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

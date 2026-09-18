@@ -33,10 +33,10 @@ def serialize_aws_json_1_1(value: FileSystemConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> FileSystemConfig:
     out: FileSystemConfig = {}  # type: ignore[typeddict-item]
-    if "MountPath" in data:
+    if data.get("MountPath") is not None:
         out["mount_path"] = data["MountPath"]
-    if "DefaultUid" in data:
+    if data.get("DefaultUid") is not None:
         out["default_uid"] = data["DefaultUid"]
-    if "DefaultGid" in data:
+    if data.get("DefaultGid") is not None:
         out["default_gid"] = data["DefaultGid"]
     return out

@@ -70,7 +70,15 @@ def serialize_aws_json_1_1(value: ColumnStatisticsTaskSettings) -> dict:
         out["CatalogID"] = value["catalog_id"]
     if "role" in value:
         out["Role"] = value["role"]
-    out["SampleSize"] = value.get("sample_size", 0)
+    out["SampleSize"] = (
+        "NaN"
+        if value.get("sample_size", 0) != value.get("sample_size", 0)
+        else "Infinity"
+        if value.get("sample_size", 0) == float("inf")
+        else "-Infinity"
+        if value.get("sample_size", 0) == float("-inf")
+        else value.get("sample_size", 0)
+    )
     if "security_configuration" in value:
         out["SecurityConfiguration"] = value["security_configuration"]
     if "schedule_type" in value:
@@ -98,17 +106,17 @@ def serialize_aws_json_1_1(value: ColumnStatisticsTaskSettings) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ColumnStatisticsTaskSettings:
     out: ColumnStatisticsTaskSettings = {}  # type: ignore[typeddict-item]
-    if "DatabaseName" in data:
+    if data.get("DatabaseName") is not None:
         out["database_name"] = data["DatabaseName"]
-    if "TableName" in data:
+    if data.get("TableName") is not None:
         out["table_name"] = data["TableName"]
-    if "Schedule" in data:
+    if data.get("Schedule") is not None:
         import capo_glue.types.schedule
 
         out["schedule"] = capo_glue.types.schedule.deserialize_aws_json_1_1(
             data["Schedule"]
         )
-    if "ColumnNameList" in data:
+    if data.get("ColumnNameList") is not None:
         import capo_glue.types.column_name_list
 
         out["column_name_list"] = (
@@ -116,29 +124,29 @@ def deserialize_aws_json_1_1(data: dict) -> ColumnStatisticsTaskSettings:
                 data["ColumnNameList"]
             )
         )
-    if "CatalogID" in data:
+    if data.get("CatalogID") is not None:
         out["catalog_id"] = data["CatalogID"]
-    if "Role" in data:
+    if data.get("Role") is not None:
         out["role"] = data["Role"]
-    if "SampleSize" in data:
-        out["sample_size"] = data["SampleSize"]
+    if data.get("SampleSize") is not None:
+        out["sample_size"] = float(data["SampleSize"])
     else:
         out["sample_size"] = 0
-    if "SecurityConfiguration" in data:
+    if data.get("SecurityConfiguration") is not None:
         out["security_configuration"] = data["SecurityConfiguration"]
-    if "ScheduleType" in data:
+    if data.get("ScheduleType") is not None:
         import capo_glue.types.schedule_type
 
         out["schedule_type"] = capo_glue.types.schedule_type.deserialize_aws_json_1_1(
             data["ScheduleType"]
         )
-    if "SettingSource" in data:
+    if data.get("SettingSource") is not None:
         import capo_glue.types.setting_source
 
         out["setting_source"] = capo_glue.types.setting_source.deserialize_aws_json_1_1(
             data["SettingSource"]
         )
-    if "LastExecutionAttempt" in data:
+    if data.get("LastExecutionAttempt") is not None:
         import capo_glue.types.execution_attempt
 
         out["last_execution_attempt"] = (

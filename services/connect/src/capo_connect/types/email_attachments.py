@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> EmailAttachments:
 
     out: EmailAttachments = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_connect.types.email_attachment.deserialize_json(item))
     return out

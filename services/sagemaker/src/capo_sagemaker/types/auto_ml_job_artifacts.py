@@ -36,11 +36,11 @@ def serialize_aws_json_1_1(value: AutoMLJobArtifacts) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AutoMLJobArtifacts:
     out: AutoMLJobArtifacts = {}  # type: ignore[typeddict-item]
-    if "CandidateDefinitionNotebookLocation" in data:
+    if data.get("CandidateDefinitionNotebookLocation") is not None:
         out["candidate_definition_notebook_location"] = data[
             "CandidateDefinitionNotebookLocation"
         ]
-    if "DataExplorationNotebookLocation" in data:
+    if data.get("DataExplorationNotebookLocation") is not None:
         out["data_exploration_notebook_location"] = data[
             "DataExplorationNotebookLocation"
         ]

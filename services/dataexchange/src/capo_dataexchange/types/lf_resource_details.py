@@ -38,7 +38,7 @@ def serialize_json(value: LFResourceDetails) -> dict:
 
 def deserialize_json(data: dict) -> LFResourceDetails:
     out: LFResourceDetails = {}  # type: ignore[typeddict-item]
-    if "Database" in data:
+    if data.get("Database") is not None:
         import capo_dataexchange.types.database_lf_tag_policy
 
         out["database"] = (
@@ -46,7 +46,7 @@ def deserialize_json(data: dict) -> LFResourceDetails:
                 data["Database"]
             )
         )
-    if "Table" in data:
+    if data.get("Table") is not None:
         import capo_dataexchange.types.table_lf_tag_policy
 
         out["table"] = capo_dataexchange.types.table_lf_tag_policy.deserialize_json(

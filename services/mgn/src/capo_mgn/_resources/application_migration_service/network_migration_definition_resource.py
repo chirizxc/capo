@@ -165,14 +165,15 @@ class NetworkMigrationDefinitionResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mgn.types.create_network_migration_definition_request.CreateNetworkMigrationDefinitionRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_mgn.types.create_network_migration_definition_request.CreateNetworkMigrationDefinitionRequest = {
+            "name": name,
+            "target_s3_configuration": target_s3_configuration,
+            "target_network": target_network,
+        }
         if description is not None:
             input_["description"] = description
         if source_configurations is not None:
             input_["source_configurations"] = source_configurations
-        input_["target_s3_configuration"] = target_s3_configuration
-        input_["target_network"] = target_network
         if target_deployment is not None:
             input_["target_deployment"] = target_deployment
         if tags is not None:
@@ -185,6 +186,7 @@ class NetworkMigrationDefinitionResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update(
@@ -251,8 +253,9 @@ class NetworkMigrationDefinitionResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mgn.types.update_network_migration_definition_request.UpdateNetworkMigrationDefinitionRequest = {}  # type: ignore[typeddict-item]
-        input_["network_migration_definition_id"] = network_migration_definition_id
+        input_: capo_mgn.types.update_network_migration_definition_request.UpdateNetworkMigrationDefinitionRequest = {
+            "network_migration_definition_id": network_migration_definition_id
+        }
         if name is not None:
             input_["name"] = name
         if description is not None:
@@ -273,6 +276,7 @@ class NetworkMigrationDefinitionResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -313,14 +317,16 @@ class NetworkMigrationDefinitionResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mgn.types.delete_network_migration_definition_request.DeleteNetworkMigrationDefinitionRequest = {}  # type: ignore[typeddict-item]
-        input_["network_migration_definition_id"] = network_migration_definition_id
+        input_: capo_mgn.types.delete_network_migration_definition_request.DeleteNetworkMigrationDefinitionRequest = {
+            "network_migration_definition_id": network_migration_definition_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -365,7 +371,7 @@ class NetworkMigrationDefinitionResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mgn.types.list_network_migration_definitions_request.ListNetworkMigrationDefinitionsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_mgn.types.list_network_migration_definitions_request.ListNetworkMigrationDefinitionsRequest = {}
         if filters is not None:
             input_["filters"] = filters
         if next_token is not None:
@@ -378,6 +384,7 @@ class NetworkMigrationDefinitionResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_network_migration_definition(
@@ -417,14 +424,16 @@ class NetworkMigrationDefinitionResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mgn.types.get_network_migration_definition_request.GetNetworkMigrationDefinitionRequest = {}  # type: ignore[typeddict-item]
-        input_["network_migration_definition_id"] = network_migration_definition_id
+        input_: capo_mgn.types.get_network_migration_definition_request.GetNetworkMigrationDefinitionRequest = {
+            "network_migration_definition_id": network_migration_definition_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_network_migration_mapper_segment_construct(
@@ -471,17 +480,19 @@ class NetworkMigrationDefinitionResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mgn.types.get_network_migration_mapper_segment_construct_request.GetNetworkMigrationMapperSegmentConstructRequest = {}  # type: ignore[typeddict-item]
-        input_["network_migration_definition_id"] = network_migration_definition_id
-        input_["network_migration_execution_id"] = network_migration_execution_id
-        input_["segment_id"] = segment_id
-        input_["construct_id"] = construct_id
+        input_: capo_mgn.types.get_network_migration_mapper_segment_construct_request.GetNetworkMigrationMapperSegmentConstructRequest = {
+            "network_migration_definition_id": network_migration_definition_id,
+            "network_migration_execution_id": network_migration_execution_id,
+            "segment_id": segment_id,
+            "construct_id": construct_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_network_migration_analyses(
@@ -533,9 +544,10 @@ class NetworkMigrationDefinitionResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mgn.types.list_network_migration_analyses_request.ListNetworkMigrationAnalysesRequest = {}  # type: ignore[typeddict-item]
-        input_["network_migration_execution_id"] = network_migration_execution_id
-        input_["network_migration_definition_id"] = network_migration_definition_id
+        input_: capo_mgn.types.list_network_migration_analyses_request.ListNetworkMigrationAnalysesRequest = {
+            "network_migration_execution_id": network_migration_execution_id,
+            "network_migration_definition_id": network_migration_definition_id,
+        }
         if filters is not None:
             input_["filters"] = filters
         if max_results is not None:
@@ -548,6 +560,7 @@ class NetworkMigrationDefinitionResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_network_migration_analysis_results(
@@ -599,9 +612,10 @@ class NetworkMigrationDefinitionResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mgn.types.list_network_migration_analysis_results_request.ListNetworkMigrationAnalysisResultsRequest = {}  # type: ignore[typeddict-item]
-        input_["network_migration_execution_id"] = network_migration_execution_id
-        input_["network_migration_definition_id"] = network_migration_definition_id
+        input_: capo_mgn.types.list_network_migration_analysis_results_request.ListNetworkMigrationAnalysisResultsRequest = {
+            "network_migration_execution_id": network_migration_execution_id,
+            "network_migration_definition_id": network_migration_definition_id,
+        }
         if filters is not None:
             input_["filters"] = filters
         if max_results is not None:
@@ -614,6 +628,7 @@ class NetworkMigrationDefinitionResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_network_migration_code_generations(
@@ -665,9 +680,10 @@ class NetworkMigrationDefinitionResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mgn.types.list_network_migration_code_generations_request.ListNetworkMigrationCodeGenerationsRequest = {}  # type: ignore[typeddict-item]
-        input_["network_migration_execution_id"] = network_migration_execution_id
-        input_["network_migration_definition_id"] = network_migration_definition_id
+        input_: capo_mgn.types.list_network_migration_code_generations_request.ListNetworkMigrationCodeGenerationsRequest = {
+            "network_migration_execution_id": network_migration_execution_id,
+            "network_migration_definition_id": network_migration_definition_id,
+        }
         if filters is not None:
             input_["filters"] = filters
         if max_results is not None:
@@ -680,6 +696,7 @@ class NetworkMigrationDefinitionResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_network_migration_code_generation_segments(
@@ -731,9 +748,10 @@ class NetworkMigrationDefinitionResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mgn.types.list_network_migration_code_generation_segments_request.ListNetworkMigrationCodeGenerationSegmentsRequest = {}  # type: ignore[typeddict-item]
-        input_["network_migration_execution_id"] = network_migration_execution_id
-        input_["network_migration_definition_id"] = network_migration_definition_id
+        input_: capo_mgn.types.list_network_migration_code_generation_segments_request.ListNetworkMigrationCodeGenerationSegmentsRequest = {
+            "network_migration_execution_id": network_migration_execution_id,
+            "network_migration_definition_id": network_migration_definition_id,
+        }
         if filters is not None:
             input_["filters"] = filters
         if max_results is not None:
@@ -746,6 +764,7 @@ class NetworkMigrationDefinitionResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_network_migration_deployed_stacks(
@@ -793,9 +812,10 @@ class NetworkMigrationDefinitionResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mgn.types.list_network_migration_deployed_stacks_request.ListNetworkMigrationDeployedStacksRequest = {}  # type: ignore[typeddict-item]
-        input_["network_migration_execution_id"] = network_migration_execution_id
-        input_["network_migration_definition_id"] = network_migration_definition_id
+        input_: capo_mgn.types.list_network_migration_deployed_stacks_request.ListNetworkMigrationDeployedStacksRequest = {
+            "network_migration_execution_id": network_migration_execution_id,
+            "network_migration_definition_id": network_migration_definition_id,
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -806,6 +826,7 @@ class NetworkMigrationDefinitionResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_network_migration_deployments(
@@ -857,9 +878,10 @@ class NetworkMigrationDefinitionResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mgn.types.list_network_migration_deployments_request.ListNetworkMigrationDeploymentsRequest = {}  # type: ignore[typeddict-item]
-        input_["network_migration_execution_id"] = network_migration_execution_id
-        input_["network_migration_definition_id"] = network_migration_definition_id
+        input_: capo_mgn.types.list_network_migration_deployments_request.ListNetworkMigrationDeploymentsRequest = {
+            "network_migration_execution_id": network_migration_execution_id,
+            "network_migration_definition_id": network_migration_definition_id,
+        }
         if filters is not None:
             input_["filters"] = filters
         if max_results is not None:
@@ -872,6 +894,7 @@ class NetworkMigrationDefinitionResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_network_migration_executions(
@@ -919,8 +942,9 @@ class NetworkMigrationDefinitionResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mgn.types.list_network_migration_executions_request.ListNetworkMigrationExecutionsRequest = {}  # type: ignore[typeddict-item]
-        input_["network_migration_definition_id"] = network_migration_definition_id
+        input_: capo_mgn.types.list_network_migration_executions_request.ListNetworkMigrationExecutionsRequest = {
+            "network_migration_definition_id": network_migration_definition_id
+        }
         if filters is not None:
             input_["filters"] = filters
         if next_token is not None:
@@ -933,6 +957,7 @@ class NetworkMigrationDefinitionResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_network_migration_mapper_segment_constructs(
@@ -989,10 +1014,11 @@ class NetworkMigrationDefinitionResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mgn.types.list_network_migration_mapper_segment_constructs_request.ListNetworkMigrationMapperSegmentConstructsRequest = {}  # type: ignore[typeddict-item]
-        input_["network_migration_execution_id"] = network_migration_execution_id
-        input_["network_migration_definition_id"] = network_migration_definition_id
-        input_["segment_id"] = segment_id
+        input_: capo_mgn.types.list_network_migration_mapper_segment_constructs_request.ListNetworkMigrationMapperSegmentConstructsRequest = {
+            "network_migration_execution_id": network_migration_execution_id,
+            "network_migration_definition_id": network_migration_definition_id,
+            "segment_id": segment_id,
+        }
         if filters is not None:
             input_["filters"] = filters
         if max_results is not None:
@@ -1005,6 +1031,7 @@ class NetworkMigrationDefinitionResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_network_migration_mapper_segments(
@@ -1056,9 +1083,10 @@ class NetworkMigrationDefinitionResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mgn.types.list_network_migration_mapper_segments_request.ListNetworkMigrationMapperSegmentsRequest = {}  # type: ignore[typeddict-item]
-        input_["network_migration_execution_id"] = network_migration_execution_id
-        input_["network_migration_definition_id"] = network_migration_definition_id
+        input_: capo_mgn.types.list_network_migration_mapper_segments_request.ListNetworkMigrationMapperSegmentsRequest = {
+            "network_migration_execution_id": network_migration_execution_id,
+            "network_migration_definition_id": network_migration_definition_id,
+        }
         if filters is not None:
             input_["filters"] = filters
         if max_results is not None:
@@ -1071,6 +1099,7 @@ class NetworkMigrationDefinitionResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_network_migration_mappings(
@@ -1122,9 +1151,10 @@ class NetworkMigrationDefinitionResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mgn.types.list_network_migration_mappings_request.ListNetworkMigrationMappingsRequest = {}  # type: ignore[typeddict-item]
-        input_["network_migration_execution_id"] = network_migration_execution_id
-        input_["network_migration_definition_id"] = network_migration_definition_id
+        input_: capo_mgn.types.list_network_migration_mappings_request.ListNetworkMigrationMappingsRequest = {
+            "network_migration_execution_id": network_migration_execution_id,
+            "network_migration_definition_id": network_migration_definition_id,
+        }
         if filters is not None:
             input_["filters"] = filters
         if max_results is not None:
@@ -1137,6 +1167,7 @@ class NetworkMigrationDefinitionResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_network_migration_mapping_updates(
@@ -1188,9 +1219,10 @@ class NetworkMigrationDefinitionResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mgn.types.list_network_migration_mapping_updates_request.ListNetworkMigrationMappingUpdatesRequest = {}  # type: ignore[typeddict-item]
-        input_["network_migration_execution_id"] = network_migration_execution_id
-        input_["network_migration_definition_id"] = network_migration_definition_id
+        input_: capo_mgn.types.list_network_migration_mapping_updates_request.ListNetworkMigrationMappingUpdatesRequest = {
+            "network_migration_execution_id": network_migration_execution_id,
+            "network_migration_definition_id": network_migration_definition_id,
+        }
         if filters is not None:
             input_["filters"] = filters
         if max_results is not None:
@@ -1203,6 +1235,7 @@ class NetworkMigrationDefinitionResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def start_network_migration_analysis(
@@ -1248,15 +1281,17 @@ class NetworkMigrationDefinitionResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mgn.types.start_network_migration_analysis_request.StartNetworkMigrationAnalysisRequest = {}  # type: ignore[typeddict-item]
-        input_["network_migration_execution_id"] = network_migration_execution_id
-        input_["network_migration_definition_id"] = network_migration_definition_id
+        input_: capo_mgn.types.start_network_migration_analysis_request.StartNetworkMigrationAnalysisRequest = {
+            "network_migration_execution_id": network_migration_execution_id,
+            "network_migration_definition_id": network_migration_definition_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def start_network_migration_code_generation(
@@ -1306,9 +1341,10 @@ class NetworkMigrationDefinitionResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mgn.types.start_network_migration_code_generation_request.StartNetworkMigrationCodeGenerationRequest = {}  # type: ignore[typeddict-item]
-        input_["network_migration_execution_id"] = network_migration_execution_id
-        input_["network_migration_definition_id"] = network_migration_definition_id
+        input_: capo_mgn.types.start_network_migration_code_generation_request.StartNetworkMigrationCodeGenerationRequest = {
+            "network_migration_execution_id": network_migration_execution_id,
+            "network_migration_definition_id": network_migration_definition_id,
+        }
         if code_generation_output_format_types is not None:
             input_["code_generation_output_format_types"] = (
                 code_generation_output_format_types
@@ -1319,6 +1355,7 @@ class NetworkMigrationDefinitionResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def start_network_migration_deployment(
@@ -1364,15 +1401,17 @@ class NetworkMigrationDefinitionResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mgn.types.start_network_migration_deployment_request.StartNetworkMigrationDeploymentRequest = {}  # type: ignore[typeddict-item]
-        input_["network_migration_execution_id"] = network_migration_execution_id
-        input_["network_migration_definition_id"] = network_migration_definition_id
+        input_: capo_mgn.types.start_network_migration_deployment_request.StartNetworkMigrationDeploymentRequest = {
+            "network_migration_execution_id": network_migration_execution_id,
+            "network_migration_definition_id": network_migration_definition_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def start_network_migration_mapping(
@@ -1422,9 +1461,10 @@ class NetworkMigrationDefinitionResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mgn.types.start_network_migration_mapping_request.StartNetworkMigrationMappingRequest = {}  # type: ignore[typeddict-item]
-        input_["network_migration_execution_id"] = network_migration_execution_id
-        input_["network_migration_definition_id"] = network_migration_definition_id
+        input_: capo_mgn.types.start_network_migration_mapping_request.StartNetworkMigrationMappingRequest = {
+            "network_migration_execution_id": network_migration_execution_id,
+            "network_migration_definition_id": network_migration_definition_id,
+        }
         if security_group_mapping_strategy is not None:
             input_["security_group_mapping_strategy"] = security_group_mapping_strategy
 
@@ -1433,6 +1473,7 @@ class NetworkMigrationDefinitionResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def start_network_migration_mapping_update(
@@ -1486,9 +1527,10 @@ class NetworkMigrationDefinitionResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mgn.types.start_network_migration_mapping_update_request.StartNetworkMigrationMappingUpdateRequest = {}  # type: ignore[typeddict-item]
-        input_["network_migration_execution_id"] = network_migration_execution_id
-        input_["network_migration_definition_id"] = network_migration_definition_id
+        input_: capo_mgn.types.start_network_migration_mapping_update_request.StartNetworkMigrationMappingUpdateRequest = {
+            "network_migration_execution_id": network_migration_execution_id,
+            "network_migration_definition_id": network_migration_definition_id,
+        }
         if constructs is not None:
             input_["constructs"] = constructs
         if segments is not None:
@@ -1499,6 +1541,7 @@ class NetworkMigrationDefinitionResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_network_migration_mapper_segment(
@@ -1547,10 +1590,11 @@ class NetworkMigrationDefinitionResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mgn.types.update_network_migration_mapper_segment_request.UpdateNetworkMigrationMapperSegmentRequest = {}  # type: ignore[typeddict-item]
-        input_["network_migration_definition_id"] = network_migration_definition_id
-        input_["network_migration_execution_id"] = network_migration_execution_id
-        input_["segment_id"] = segment_id
+        input_: capo_mgn.types.update_network_migration_mapper_segment_request.UpdateNetworkMigrationMapperSegmentRequest = {
+            "network_migration_definition_id": network_migration_definition_id,
+            "network_migration_execution_id": network_migration_execution_id,
+            "segment_id": segment_id,
+        }
         if scope_tags is not None:
             input_["scope_tags"] = scope_tags
 
@@ -1559,6 +1603,7 @@ class NetworkMigrationDefinitionResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -1624,14 +1669,15 @@ class AsyncNetworkMigrationDefinitionResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mgn.types.create_network_migration_definition_request.CreateNetworkMigrationDefinitionRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_mgn.types.create_network_migration_definition_request.CreateNetworkMigrationDefinitionRequest = {
+            "name": name,
+            "target_s3_configuration": target_s3_configuration,
+            "target_network": target_network,
+        }
         if description is not None:
             input_["description"] = description
         if source_configurations is not None:
             input_["source_configurations"] = source_configurations
-        input_["target_s3_configuration"] = target_s3_configuration
-        input_["target_network"] = target_network
         if target_deployment is not None:
             input_["target_deployment"] = target_deployment
         if tags is not None:
@@ -1644,6 +1690,7 @@ class AsyncNetworkMigrationDefinitionResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update(
@@ -1711,8 +1758,9 @@ class AsyncNetworkMigrationDefinitionResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mgn.types.update_network_migration_definition_request.UpdateNetworkMigrationDefinitionRequest = {}  # type: ignore[typeddict-item]
-        input_["network_migration_definition_id"] = network_migration_definition_id
+        input_: capo_mgn.types.update_network_migration_definition_request.UpdateNetworkMigrationDefinitionRequest = {
+            "network_migration_definition_id": network_migration_definition_id
+        }
         if name is not None:
             input_["name"] = name
         if description is not None:
@@ -1733,6 +1781,7 @@ class AsyncNetworkMigrationDefinitionResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -1774,14 +1823,16 @@ class AsyncNetworkMigrationDefinitionResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mgn.types.delete_network_migration_definition_request.DeleteNetworkMigrationDefinitionRequest = {}  # type: ignore[typeddict-item]
-        input_["network_migration_definition_id"] = network_migration_definition_id
+        input_: capo_mgn.types.delete_network_migration_definition_request.DeleteNetworkMigrationDefinitionRequest = {
+            "network_migration_definition_id": network_migration_definition_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -1827,7 +1878,7 @@ class AsyncNetworkMigrationDefinitionResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mgn.types.list_network_migration_definitions_request.ListNetworkMigrationDefinitionsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_mgn.types.list_network_migration_definitions_request.ListNetworkMigrationDefinitionsRequest = {}
         if filters is not None:
             input_["filters"] = filters
         if next_token is not None:
@@ -1840,6 +1891,7 @@ class AsyncNetworkMigrationDefinitionResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_network_migration_definition(
@@ -1880,14 +1932,16 @@ class AsyncNetworkMigrationDefinitionResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mgn.types.get_network_migration_definition_request.GetNetworkMigrationDefinitionRequest = {}  # type: ignore[typeddict-item]
-        input_["network_migration_definition_id"] = network_migration_definition_id
+        input_: capo_mgn.types.get_network_migration_definition_request.GetNetworkMigrationDefinitionRequest = {
+            "network_migration_definition_id": network_migration_definition_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_network_migration_mapper_segment_construct(
@@ -1935,17 +1989,19 @@ class AsyncNetworkMigrationDefinitionResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mgn.types.get_network_migration_mapper_segment_construct_request.GetNetworkMigrationMapperSegmentConstructRequest = {}  # type: ignore[typeddict-item]
-        input_["network_migration_definition_id"] = network_migration_definition_id
-        input_["network_migration_execution_id"] = network_migration_execution_id
-        input_["segment_id"] = segment_id
-        input_["construct_id"] = construct_id
+        input_: capo_mgn.types.get_network_migration_mapper_segment_construct_request.GetNetworkMigrationMapperSegmentConstructRequest = {
+            "network_migration_definition_id": network_migration_definition_id,
+            "network_migration_execution_id": network_migration_execution_id,
+            "segment_id": segment_id,
+            "construct_id": construct_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_network_migration_analyses(
@@ -1998,9 +2054,10 @@ class AsyncNetworkMigrationDefinitionResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mgn.types.list_network_migration_analyses_request.ListNetworkMigrationAnalysesRequest = {}  # type: ignore[typeddict-item]
-        input_["network_migration_execution_id"] = network_migration_execution_id
-        input_["network_migration_definition_id"] = network_migration_definition_id
+        input_: capo_mgn.types.list_network_migration_analyses_request.ListNetworkMigrationAnalysesRequest = {
+            "network_migration_execution_id": network_migration_execution_id,
+            "network_migration_definition_id": network_migration_definition_id,
+        }
         if filters is not None:
             input_["filters"] = filters
         if max_results is not None:
@@ -2013,6 +2070,7 @@ class AsyncNetworkMigrationDefinitionResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_network_migration_analysis_results(
@@ -2065,9 +2123,10 @@ class AsyncNetworkMigrationDefinitionResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mgn.types.list_network_migration_analysis_results_request.ListNetworkMigrationAnalysisResultsRequest = {}  # type: ignore[typeddict-item]
-        input_["network_migration_execution_id"] = network_migration_execution_id
-        input_["network_migration_definition_id"] = network_migration_definition_id
+        input_: capo_mgn.types.list_network_migration_analysis_results_request.ListNetworkMigrationAnalysisResultsRequest = {
+            "network_migration_execution_id": network_migration_execution_id,
+            "network_migration_definition_id": network_migration_definition_id,
+        }
         if filters is not None:
             input_["filters"] = filters
         if max_results is not None:
@@ -2080,6 +2139,7 @@ class AsyncNetworkMigrationDefinitionResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_network_migration_code_generations(
@@ -2132,9 +2192,10 @@ class AsyncNetworkMigrationDefinitionResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mgn.types.list_network_migration_code_generations_request.ListNetworkMigrationCodeGenerationsRequest = {}  # type: ignore[typeddict-item]
-        input_["network_migration_execution_id"] = network_migration_execution_id
-        input_["network_migration_definition_id"] = network_migration_definition_id
+        input_: capo_mgn.types.list_network_migration_code_generations_request.ListNetworkMigrationCodeGenerationsRequest = {
+            "network_migration_execution_id": network_migration_execution_id,
+            "network_migration_definition_id": network_migration_definition_id,
+        }
         if filters is not None:
             input_["filters"] = filters
         if max_results is not None:
@@ -2147,6 +2208,7 @@ class AsyncNetworkMigrationDefinitionResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_network_migration_code_generation_segments(
@@ -2199,9 +2261,10 @@ class AsyncNetworkMigrationDefinitionResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mgn.types.list_network_migration_code_generation_segments_request.ListNetworkMigrationCodeGenerationSegmentsRequest = {}  # type: ignore[typeddict-item]
-        input_["network_migration_execution_id"] = network_migration_execution_id
-        input_["network_migration_definition_id"] = network_migration_definition_id
+        input_: capo_mgn.types.list_network_migration_code_generation_segments_request.ListNetworkMigrationCodeGenerationSegmentsRequest = {
+            "network_migration_execution_id": network_migration_execution_id,
+            "network_migration_definition_id": network_migration_definition_id,
+        }
         if filters is not None:
             input_["filters"] = filters
         if max_results is not None:
@@ -2214,6 +2277,7 @@ class AsyncNetworkMigrationDefinitionResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_network_migration_deployed_stacks(
@@ -2262,9 +2326,10 @@ class AsyncNetworkMigrationDefinitionResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mgn.types.list_network_migration_deployed_stacks_request.ListNetworkMigrationDeployedStacksRequest = {}  # type: ignore[typeddict-item]
-        input_["network_migration_execution_id"] = network_migration_execution_id
-        input_["network_migration_definition_id"] = network_migration_definition_id
+        input_: capo_mgn.types.list_network_migration_deployed_stacks_request.ListNetworkMigrationDeployedStacksRequest = {
+            "network_migration_execution_id": network_migration_execution_id,
+            "network_migration_definition_id": network_migration_definition_id,
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -2275,6 +2340,7 @@ class AsyncNetworkMigrationDefinitionResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_network_migration_deployments(
@@ -2327,9 +2393,10 @@ class AsyncNetworkMigrationDefinitionResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mgn.types.list_network_migration_deployments_request.ListNetworkMigrationDeploymentsRequest = {}  # type: ignore[typeddict-item]
-        input_["network_migration_execution_id"] = network_migration_execution_id
-        input_["network_migration_definition_id"] = network_migration_definition_id
+        input_: capo_mgn.types.list_network_migration_deployments_request.ListNetworkMigrationDeploymentsRequest = {
+            "network_migration_execution_id": network_migration_execution_id,
+            "network_migration_definition_id": network_migration_definition_id,
+        }
         if filters is not None:
             input_["filters"] = filters
         if max_results is not None:
@@ -2342,6 +2409,7 @@ class AsyncNetworkMigrationDefinitionResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_network_migration_executions(
@@ -2390,8 +2458,9 @@ class AsyncNetworkMigrationDefinitionResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mgn.types.list_network_migration_executions_request.ListNetworkMigrationExecutionsRequest = {}  # type: ignore[typeddict-item]
-        input_["network_migration_definition_id"] = network_migration_definition_id
+        input_: capo_mgn.types.list_network_migration_executions_request.ListNetworkMigrationExecutionsRequest = {
+            "network_migration_definition_id": network_migration_definition_id
+        }
         if filters is not None:
             input_["filters"] = filters
         if next_token is not None:
@@ -2404,6 +2473,7 @@ class AsyncNetworkMigrationDefinitionResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_network_migration_mapper_segment_constructs(
@@ -2461,10 +2531,11 @@ class AsyncNetworkMigrationDefinitionResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mgn.types.list_network_migration_mapper_segment_constructs_request.ListNetworkMigrationMapperSegmentConstructsRequest = {}  # type: ignore[typeddict-item]
-        input_["network_migration_execution_id"] = network_migration_execution_id
-        input_["network_migration_definition_id"] = network_migration_definition_id
-        input_["segment_id"] = segment_id
+        input_: capo_mgn.types.list_network_migration_mapper_segment_constructs_request.ListNetworkMigrationMapperSegmentConstructsRequest = {
+            "network_migration_execution_id": network_migration_execution_id,
+            "network_migration_definition_id": network_migration_definition_id,
+            "segment_id": segment_id,
+        }
         if filters is not None:
             input_["filters"] = filters
         if max_results is not None:
@@ -2477,6 +2548,7 @@ class AsyncNetworkMigrationDefinitionResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_network_migration_mapper_segments(
@@ -2529,9 +2601,10 @@ class AsyncNetworkMigrationDefinitionResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mgn.types.list_network_migration_mapper_segments_request.ListNetworkMigrationMapperSegmentsRequest = {}  # type: ignore[typeddict-item]
-        input_["network_migration_execution_id"] = network_migration_execution_id
-        input_["network_migration_definition_id"] = network_migration_definition_id
+        input_: capo_mgn.types.list_network_migration_mapper_segments_request.ListNetworkMigrationMapperSegmentsRequest = {
+            "network_migration_execution_id": network_migration_execution_id,
+            "network_migration_definition_id": network_migration_definition_id,
+        }
         if filters is not None:
             input_["filters"] = filters
         if max_results is not None:
@@ -2544,6 +2617,7 @@ class AsyncNetworkMigrationDefinitionResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_network_migration_mappings(
@@ -2596,9 +2670,10 @@ class AsyncNetworkMigrationDefinitionResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mgn.types.list_network_migration_mappings_request.ListNetworkMigrationMappingsRequest = {}  # type: ignore[typeddict-item]
-        input_["network_migration_execution_id"] = network_migration_execution_id
-        input_["network_migration_definition_id"] = network_migration_definition_id
+        input_: capo_mgn.types.list_network_migration_mappings_request.ListNetworkMigrationMappingsRequest = {
+            "network_migration_execution_id": network_migration_execution_id,
+            "network_migration_definition_id": network_migration_definition_id,
+        }
         if filters is not None:
             input_["filters"] = filters
         if max_results is not None:
@@ -2611,6 +2686,7 @@ class AsyncNetworkMigrationDefinitionResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_network_migration_mapping_updates(
@@ -2663,9 +2739,10 @@ class AsyncNetworkMigrationDefinitionResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mgn.types.list_network_migration_mapping_updates_request.ListNetworkMigrationMappingUpdatesRequest = {}  # type: ignore[typeddict-item]
-        input_["network_migration_execution_id"] = network_migration_execution_id
-        input_["network_migration_definition_id"] = network_migration_definition_id
+        input_: capo_mgn.types.list_network_migration_mapping_updates_request.ListNetworkMigrationMappingUpdatesRequest = {
+            "network_migration_execution_id": network_migration_execution_id,
+            "network_migration_definition_id": network_migration_definition_id,
+        }
         if filters is not None:
             input_["filters"] = filters
         if max_results is not None:
@@ -2678,6 +2755,7 @@ class AsyncNetworkMigrationDefinitionResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def start_network_migration_analysis(
@@ -2724,15 +2802,17 @@ class AsyncNetworkMigrationDefinitionResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mgn.types.start_network_migration_analysis_request.StartNetworkMigrationAnalysisRequest = {}  # type: ignore[typeddict-item]
-        input_["network_migration_execution_id"] = network_migration_execution_id
-        input_["network_migration_definition_id"] = network_migration_definition_id
+        input_: capo_mgn.types.start_network_migration_analysis_request.StartNetworkMigrationAnalysisRequest = {
+            "network_migration_execution_id": network_migration_execution_id,
+            "network_migration_definition_id": network_migration_definition_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def start_network_migration_code_generation(
@@ -2783,9 +2863,10 @@ class AsyncNetworkMigrationDefinitionResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mgn.types.start_network_migration_code_generation_request.StartNetworkMigrationCodeGenerationRequest = {}  # type: ignore[typeddict-item]
-        input_["network_migration_execution_id"] = network_migration_execution_id
-        input_["network_migration_definition_id"] = network_migration_definition_id
+        input_: capo_mgn.types.start_network_migration_code_generation_request.StartNetworkMigrationCodeGenerationRequest = {
+            "network_migration_execution_id": network_migration_execution_id,
+            "network_migration_definition_id": network_migration_definition_id,
+        }
         if code_generation_output_format_types is not None:
             input_["code_generation_output_format_types"] = (
                 code_generation_output_format_types
@@ -2796,6 +2877,7 @@ class AsyncNetworkMigrationDefinitionResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def start_network_migration_deployment(
@@ -2842,15 +2924,17 @@ class AsyncNetworkMigrationDefinitionResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mgn.types.start_network_migration_deployment_request.StartNetworkMigrationDeploymentRequest = {}  # type: ignore[typeddict-item]
-        input_["network_migration_execution_id"] = network_migration_execution_id
-        input_["network_migration_definition_id"] = network_migration_definition_id
+        input_: capo_mgn.types.start_network_migration_deployment_request.StartNetworkMigrationDeploymentRequest = {
+            "network_migration_execution_id": network_migration_execution_id,
+            "network_migration_definition_id": network_migration_definition_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def start_network_migration_mapping(
@@ -2901,9 +2985,10 @@ class AsyncNetworkMigrationDefinitionResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mgn.types.start_network_migration_mapping_request.StartNetworkMigrationMappingRequest = {}  # type: ignore[typeddict-item]
-        input_["network_migration_execution_id"] = network_migration_execution_id
-        input_["network_migration_definition_id"] = network_migration_definition_id
+        input_: capo_mgn.types.start_network_migration_mapping_request.StartNetworkMigrationMappingRequest = {
+            "network_migration_execution_id": network_migration_execution_id,
+            "network_migration_definition_id": network_migration_definition_id,
+        }
         if security_group_mapping_strategy is not None:
             input_["security_group_mapping_strategy"] = security_group_mapping_strategy
 
@@ -2912,6 +2997,7 @@ class AsyncNetworkMigrationDefinitionResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def start_network_migration_mapping_update(
@@ -2966,9 +3052,10 @@ class AsyncNetworkMigrationDefinitionResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mgn.types.start_network_migration_mapping_update_request.StartNetworkMigrationMappingUpdateRequest = {}  # type: ignore[typeddict-item]
-        input_["network_migration_execution_id"] = network_migration_execution_id
-        input_["network_migration_definition_id"] = network_migration_definition_id
+        input_: capo_mgn.types.start_network_migration_mapping_update_request.StartNetworkMigrationMappingUpdateRequest = {
+            "network_migration_execution_id": network_migration_execution_id,
+            "network_migration_definition_id": network_migration_definition_id,
+        }
         if constructs is not None:
             input_["constructs"] = constructs
         if segments is not None:
@@ -2979,6 +3066,7 @@ class AsyncNetworkMigrationDefinitionResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_network_migration_mapper_segment(
@@ -3028,10 +3116,11 @@ class AsyncNetworkMigrationDefinitionResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mgn.types.update_network_migration_mapper_segment_request.UpdateNetworkMigrationMapperSegmentRequest = {}  # type: ignore[typeddict-item]
-        input_["network_migration_definition_id"] = network_migration_definition_id
-        input_["network_migration_execution_id"] = network_migration_execution_id
-        input_["segment_id"] = segment_id
+        input_: capo_mgn.types.update_network_migration_mapper_segment_request.UpdateNetworkMigrationMapperSegmentRequest = {
+            "network_migration_definition_id": network_migration_definition_id,
+            "network_migration_execution_id": network_migration_execution_id,
+            "segment_id": segment_id,
+        }
         if scope_tags is not None:
             input_["scope_tags"] = scope_tags
 
@@ -3040,4 +3129,5 @@ class AsyncNetworkMigrationDefinitionResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

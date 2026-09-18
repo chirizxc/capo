@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> ControlMappings:
 
     out: ControlMappings = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_controlcatalog.types.control_mapping.deserialize_json(item))
     return out

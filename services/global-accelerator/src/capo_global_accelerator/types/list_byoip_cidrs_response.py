@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: ListByoipCidrsResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListByoipCidrsResponse:
     out: ListByoipCidrsResponse = {}  # type: ignore[typeddict-item]
-    if "ByoipCidrs" in data:
+    if data.get("ByoipCidrs") is not None:
         import capo_global_accelerator.types.byoip_cidrs
 
         out["byoip_cidrs"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_1(data: dict) -> ListByoipCidrsResponse:
                 data["ByoipCidrs"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

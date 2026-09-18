@@ -97,25 +97,25 @@ def serialize_json(value: SessionData) -> dict:
 
 def deserialize_json(data: dict) -> SessionData:
     out: SessionData = {}  # type: ignore[typeddict-item]
-    if "sessionArn" in data:
+    if data.get("sessionArn") is not None:
         out["session_arn"] = data["sessionArn"]
     else:
         raise DeserializationError("SessionData.session_arn required")
-    if "sessionId" in data:
+    if data.get("sessionId") is not None:
         out["session_id"] = data["sessionId"]
     else:
         raise DeserializationError("SessionData.session_id required")
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("SessionData.name required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_qconnect.types.tags
 
         out["tags"] = capo_qconnect.types.tags.deserialize_json(data["tags"])
-    if "integrationConfiguration" in data:
+    if data.get("integrationConfiguration") is not None:
         import capo_qconnect.types.session_integration_configuration
 
         out["integration_configuration"] = (
@@ -123,13 +123,13 @@ def deserialize_json(data: dict) -> SessionData:
                 data["integrationConfiguration"]
             )
         )
-    if "tagFilter" in data:
+    if data.get("tagFilter") is not None:
         import capo_qconnect.types.tag_filter
 
         out["tag_filter"] = capo_qconnect.types.tag_filter.deserialize_json(
             data["tagFilter"]
         )
-    if "aiAgentConfiguration" in data:
+    if data.get("aiAgentConfiguration") is not None:
         import capo_qconnect.types.ai_agent_configuration_map
 
         out["ai_agent_configuration"] = (
@@ -137,9 +137,9 @@ def deserialize_json(data: dict) -> SessionData:
                 data["aiAgentConfiguration"]
             )
         )
-    if "origin" in data:
+    if data.get("origin") is not None:
         out["origin"] = data["origin"]
-    if "orchestratorConfigurationList" in data:
+    if data.get("orchestratorConfigurationList") is not None:
         import capo_qconnect.types.orchestrator_configuration_list
 
         out["orchestrator_configuration_list"] = (

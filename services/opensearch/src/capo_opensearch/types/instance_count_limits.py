@@ -30,11 +30,11 @@ def serialize_json(value: InstanceCountLimits) -> dict:
 
 def deserialize_json(data: dict) -> InstanceCountLimits:
     out: InstanceCountLimits = {}  # type: ignore[typeddict-item]
-    if "MinimumInstanceCount" in data:
+    if data.get("MinimumInstanceCount") is not None:
         out["minimum_instance_count"] = data["MinimumInstanceCount"]
     else:
         out["minimum_instance_count"] = 0
-    if "MaximumInstanceCount" in data:
+    if data.get("MaximumInstanceCount") is not None:
         out["maximum_instance_count"] = data["MaximumInstanceCount"]
     else:
         out["maximum_instance_count"] = 0

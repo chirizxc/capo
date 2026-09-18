@@ -36,11 +36,11 @@ def serialize_json(value: EventBridgeDestinationProperties) -> dict:
 
 def deserialize_json(data: dict) -> EventBridgeDestinationProperties:
     out: EventBridgeDestinationProperties = {}  # type: ignore[typeddict-item]
-    if "object" in data:
+    if data.get("object") is not None:
         out["object"] = data["object"]
     else:
         raise DeserializationError("EventBridgeDestinationProperties.object required")
-    if "errorHandlingConfig" in data:
+    if data.get("errorHandlingConfig") is not None:
         import capo_appflow.types.error_handling_config
 
         out["error_handling_config"] = (

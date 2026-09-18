@@ -67,15 +67,15 @@ def serialize_aws_json_1_1(value: RecordingGroup) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RecordingGroup:
     out: RecordingGroup = {}  # type: ignore[typeddict-item]
-    if "allSupported" in data:
+    if data.get("allSupported") is not None:
         out["all_supported"] = data["allSupported"]
     else:
         out["all_supported"] = False
-    if "includeGlobalResourceTypes" in data:
+    if data.get("includeGlobalResourceTypes") is not None:
         out["include_global_resource_types"] = data["includeGlobalResourceTypes"]
     else:
         out["include_global_resource_types"] = False
-    if "resourceTypes" in data:
+    if data.get("resourceTypes") is not None:
         import capo_config_service.types.resource_type_list
 
         out["resource_types"] = (
@@ -83,7 +83,7 @@ def deserialize_aws_json_1_1(data: dict) -> RecordingGroup:
                 data["resourceTypes"]
             )
         )
-    if "exclusionByResourceTypes" in data:
+    if data.get("exclusionByResourceTypes") is not None:
         import capo_config_service.types.exclusion_by_resource_types
 
         out["exclusion_by_resource_types"] = (
@@ -91,7 +91,7 @@ def deserialize_aws_json_1_1(data: dict) -> RecordingGroup:
                 data["exclusionByResourceTypes"]
             )
         )
-    if "recordingStrategy" in data:
+    if data.get("recordingStrategy") is not None:
         import capo_config_service.types.recording_strategy
 
         out["recording_strategy"] = (

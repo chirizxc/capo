@@ -51,13 +51,21 @@ def serialize_json(value: GeospatialGradientColor) -> dict:
             )
         )
     if "default_opacity" in value:
-        out["DefaultOpacity"] = value["default_opacity"]
+        out["DefaultOpacity"] = (
+            "NaN"
+            if value["default_opacity"] != value["default_opacity"]
+            else "Infinity"
+            if value["default_opacity"] == float("inf")
+            else "-Infinity"
+            if value["default_opacity"] == float("-inf")
+            else value["default_opacity"]
+        )
     return out
 
 
 def deserialize_json(data: dict) -> GeospatialGradientColor:
     out: GeospatialGradientColor = {}  # type: ignore[typeddict-item]
-    if "StepColors" in data:
+    if data.get("StepColors") is not None:
         import capo_quicksight.types.geospatial_gradient_step_color_list
 
         out["step_colors"] = (
@@ -67,13 +75,13 @@ def deserialize_json(data: dict) -> GeospatialGradientColor:
         )
     else:
         raise DeserializationError("GeospatialGradientColor.step_colors required")
-    if "NullDataVisibility" in data:
+    if data.get("NullDataVisibility") is not None:
         import capo_quicksight.types.visibility
 
         out["null_data_visibility"] = capo_quicksight.types.visibility.deserialize_json(
             data["NullDataVisibility"]
         )
-    if "NullDataSettings" in data:
+    if data.get("NullDataSettings") is not None:
         import capo_quicksight.types.geospatial_null_data_settings
 
         out["null_data_settings"] = (
@@ -81,6 +89,6 @@ def deserialize_json(data: dict) -> GeospatialGradientColor:
                 data["NullDataSettings"]
             )
         )
-    if "DefaultOpacity" in data:
-        out["default_opacity"] = data["DefaultOpacity"]
+    if data.get("DefaultOpacity") is not None:
+        out["default_opacity"] = float(data["DefaultOpacity"])
     return out

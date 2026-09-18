@@ -39,11 +39,11 @@ def serialize_json(value: SourceAwsConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> SourceAwsConfiguration:
     out: SourceAwsConfiguration = {}  # type: ignore[typeddict-item]
-    if "accountId" in data:
+    if data.get("accountId") is not None:
         out["account_id"] = data["accountId"]
     else:
         raise DeserializationError("SourceAwsConfiguration.account_id required")
-    if "accountType" in data:
+    if data.get("accountType") is not None:
         import capo_devops_agent.types.source_account_type
 
         out["account_type"] = (
@@ -53,10 +53,10 @@ def deserialize_json(data: dict) -> SourceAwsConfiguration:
         )
     else:
         raise DeserializationError("SourceAwsConfiguration.account_type required")
-    if "assumableRoleArn" in data:
+    if data.get("assumableRoleArn") is not None:
         out["assumable_role_arn"] = data["assumableRoleArn"]
     else:
         raise DeserializationError("SourceAwsConfiguration.assumable_role_arn required")
-    if "externalId" in data:
+    if data.get("externalId") is not None:
         out["external_id"] = data["externalId"]
     return out

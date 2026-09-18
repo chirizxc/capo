@@ -92,17 +92,17 @@ def serialize_aws_json_1_1(value: ClusterEventDetail) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ClusterEventDetail:
     out: ClusterEventDetail = {}  # type: ignore[typeddict-item]
-    if "EventId" in data:
+    if data.get("EventId") is not None:
         out["event_id"] = data["EventId"]
-    if "ClusterArn" in data:
+    if data.get("ClusterArn") is not None:
         out["cluster_arn"] = data["ClusterArn"]
-    if "ClusterName" in data:
+    if data.get("ClusterName") is not None:
         out["cluster_name"] = data["ClusterName"]
-    if "InstanceGroupName" in data:
+    if data.get("InstanceGroupName") is not None:
         out["instance_group_name"] = data["InstanceGroupName"]
-    if "InstanceId" in data:
+    if data.get("InstanceId") is not None:
         out["instance_id"] = data["InstanceId"]
-    if "ResourceType" in data:
+    if data.get("ResourceType") is not None:
         import capo_sagemaker.types.cluster_event_resource_type
 
         out["resource_type"] = (
@@ -110,13 +110,13 @@ def deserialize_aws_json_1_1(data: dict) -> ClusterEventDetail:
                 data["ResourceType"]
             )
         )
-    if "EventTime" in data:
+    if data.get("EventTime") is not None:
         import capo_sagemaker.types.timestamp
 
         out["event_time"] = capo_sagemaker.types.timestamp.deserialize_aws_json_1_1(
             data["EventTime"]
         )
-    if "EventDetails" in data:
+    if data.get("EventDetails") is not None:
         import capo_sagemaker.types.event_details
 
         out["event_details"] = (
@@ -124,9 +124,9 @@ def deserialize_aws_json_1_1(data: dict) -> ClusterEventDetail:
                 data["EventDetails"]
             )
         )
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "EventLevel" in data:
+    if data.get("EventLevel") is not None:
         import capo_sagemaker.types.cluster_event_level
 
         out["event_level"] = (

@@ -37,21 +37,21 @@ def serialize_json(value: ReferenceInput) -> dict:
 
 def deserialize_json(data: dict) -> ReferenceInput:
     out: ReferenceInput = {}  # type: ignore[typeddict-item]
-    if "system" in data:
+    if data.get("system") is not None:
         out["system"] = data["system"]
     else:
         raise DeserializationError("ReferenceInput.system required")
-    if "title" in data:
+    if data.get("title") is not None:
         out["title"] = data["title"]
-    if "referenceId" in data:
+    if data.get("referenceId") is not None:
         out["reference_id"] = data["referenceId"]
     else:
         raise DeserializationError("ReferenceInput.reference_id required")
-    if "referenceUrl" in data:
+    if data.get("referenceUrl") is not None:
         out["reference_url"] = data["referenceUrl"]
     else:
         raise DeserializationError("ReferenceInput.reference_url required")
-    if "associationId" in data:
+    if data.get("associationId") is not None:
         out["association_id"] = data["associationId"]
     else:
         raise DeserializationError("ReferenceInput.association_id required")

@@ -37,11 +37,11 @@ def serialize_json(value: StartSimulationOutput) -> dict:
 
 def deserialize_json(data: dict) -> StartSimulationOutput:
     out: StartSimulationOutput = {}  # type: ignore[typeddict-item]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "ExecutionId" in data:
+    if data.get("ExecutionId") is not None:
         out["execution_id"] = data["ExecutionId"]
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_simspaceweaver.types.timestamp
 
         out["creation_time"] = capo_simspaceweaver.types.timestamp.deserialize_json(

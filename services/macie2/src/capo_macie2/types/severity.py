@@ -34,12 +34,12 @@ def serialize_json(value: Severity) -> dict:
 
 def deserialize_json(data: dict) -> Severity:
     out: Severity = {}  # type: ignore[typeddict-item]
-    if "description" in data:
+    if data.get("description") is not None:
         import capo_macie2.types.severity_description
 
         out["description"] = capo_macie2.types.severity_description.deserialize_json(
             data["description"]
         )
-    if "score" in data:
+    if data.get("score") is not None:
         out["score"] = data["score"]
     return out

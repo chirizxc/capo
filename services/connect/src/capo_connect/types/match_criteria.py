@@ -27,7 +27,7 @@ def serialize_json(value: MatchCriteria) -> dict:
 
 def deserialize_json(data: dict) -> MatchCriteria:
     out: MatchCriteria = {}  # type: ignore[typeddict-item]
-    if "AgentsCriteria" in data:
+    if data.get("AgentsCriteria") is not None:
         import capo_connect.types.agents_criteria
 
         out["agents_criteria"] = capo_connect.types.agents_criteria.deserialize_json(

@@ -40,7 +40,7 @@ def deserialize_aws_json_1_1(
     data: dict,
 ) -> DescribeAppBlockBuilderAppBlockAssociationsResult:
     out: DescribeAppBlockBuilderAppBlockAssociationsResult = {}  # type: ignore[typeddict-item]
-    if "AppBlockBuilderAppBlockAssociations" in data:
+    if data.get("AppBlockBuilderAppBlockAssociations") is not None:
         import capo_appstream.types.app_block_builder_app_block_associations_list
 
         out["app_block_builder_app_block_associations"] = (
@@ -48,6 +48,6 @@ def deserialize_aws_json_1_1(
                 data["AppBlockBuilderAppBlockAssociations"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

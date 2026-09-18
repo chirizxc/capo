@@ -89,17 +89,17 @@ def serialize_aws_json_1_0(value: RequestPhoneNumberRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> RequestPhoneNumberRequest:
     out: RequestPhoneNumberRequest = {}  # type: ignore[typeddict-item]
-    if "IsoCountryCode" in data:
+    if data.get("IsoCountryCode") is not None:
         out["iso_country_code"] = data["IsoCountryCode"]
     else:
         raise DeserializationError(
             "RequestPhoneNumberRequest.iso_country_code required"
         )
-    if "MessageType" in data:
+    if data.get("MessageType") is not None:
         out["message_type"] = data["MessageType"]
     else:
         raise DeserializationError("RequestPhoneNumberRequest.message_type required")
-    if "NumberCapabilities" in data:
+    if data.get("NumberCapabilities") is not None:
         import capo_pinpoint_sms_voice_v2.types.number_capability_list
 
         out["number_capabilities"] = (
@@ -111,21 +111,21 @@ def deserialize_aws_json_1_0(data: dict) -> RequestPhoneNumberRequest:
         raise DeserializationError(
             "RequestPhoneNumberRequest.number_capabilities required"
         )
-    if "NumberType" in data:
+    if data.get("NumberType") is not None:
         out["number_type"] = data["NumberType"]
     else:
         raise DeserializationError("RequestPhoneNumberRequest.number_type required")
-    if "OptOutListName" in data:
+    if data.get("OptOutListName") is not None:
         out["opt_out_list_name"] = data["OptOutListName"]
-    if "PoolId" in data:
+    if data.get("PoolId") is not None:
         out["pool_id"] = data["PoolId"]
-    if "RegistrationId" in data:
+    if data.get("RegistrationId") is not None:
         out["registration_id"] = data["RegistrationId"]
-    if "InternationalSendingEnabled" in data:
+    if data.get("InternationalSendingEnabled") is not None:
         out["international_sending_enabled"] = data["InternationalSendingEnabled"]
-    if "DeletionProtectionEnabled" in data:
+    if data.get("DeletionProtectionEnabled") is not None:
         out["deletion_protection_enabled"] = data["DeletionProtectionEnabled"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_pinpoint_sms_voice_v2.types.tag_list
 
         out["tags"] = (
@@ -133,6 +133,6 @@ def deserialize_aws_json_1_0(data: dict) -> RequestPhoneNumberRequest:
                 data["Tags"]
             )
         )
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
     return out

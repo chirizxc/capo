@@ -108,13 +108,13 @@ def serialize_json(value: DomainNameConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> DomainNameConfiguration:
     out: DomainNameConfiguration = {}  # type: ignore[typeddict-item]
-    if "apiGatewayDomainName" in data:
+    if data.get("apiGatewayDomainName") is not None:
         out["api_gateway_domain_name"] = data["apiGatewayDomainName"]
-    if "certificateArn" in data:
+    if data.get("certificateArn") is not None:
         out["certificate_arn"] = data["certificateArn"]
-    if "certificateName" in data:
+    if data.get("certificateName") is not None:
         out["certificate_name"] = data["certificateName"]
-    if "certificateUploadDate" in data:
+    if data.get("certificateUploadDate") is not None:
         import capo_apigatewayv2.types.__timestamp_iso8601
 
         out["certificate_upload_date"] = (
@@ -122,7 +122,7 @@ def deserialize_json(data: dict) -> DomainNameConfiguration:
                 data["certificateUploadDate"]
             )
         )
-    if "domainNameStatus" in data:
+    if data.get("domainNameStatus") is not None:
         import capo_apigatewayv2.types.domain_name_status
 
         out["domain_name_status"] = (
@@ -130,17 +130,17 @@ def deserialize_json(data: dict) -> DomainNameConfiguration:
                 data["domainNameStatus"]
             )
         )
-    if "domainNameStatusMessage" in data:
+    if data.get("domainNameStatusMessage") is not None:
         out["domain_name_status_message"] = data["domainNameStatusMessage"]
-    if "endpointType" in data:
+    if data.get("endpointType") is not None:
         import capo_apigatewayv2.types.endpoint_type
 
         out["endpoint_type"] = capo_apigatewayv2.types.endpoint_type.deserialize_json(
             data["endpointType"]
         )
-    if "hostedZoneId" in data:
+    if data.get("hostedZoneId") is not None:
         out["hosted_zone_id"] = data["hostedZoneId"]
-    if "ipAddressType" in data:
+    if data.get("ipAddressType") is not None:
         import capo_apigatewayv2.types.ip_address_type
 
         out["ip_address_type"] = (
@@ -148,7 +148,7 @@ def deserialize_json(data: dict) -> DomainNameConfiguration:
                 data["ipAddressType"]
             )
         )
-    if "securityPolicy" in data:
+    if data.get("securityPolicy") is not None:
         import capo_apigatewayv2.types.security_policy
 
         out["security_policy"] = (
@@ -156,7 +156,7 @@ def deserialize_json(data: dict) -> DomainNameConfiguration:
                 data["securityPolicy"]
             )
         )
-    if "ownershipVerificationCertificateArn" in data:
+    if data.get("ownershipVerificationCertificateArn") is not None:
         out["ownership_verification_certificate_arn"] = data[
             "ownershipVerificationCertificateArn"
         ]

@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: CreateWebACLMigrationStackResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateWebACLMigrationStackResponse:
     out: CreateWebACLMigrationStackResponse = {}  # type: ignore[typeddict-item]
-    if "S3ObjectUrl" in data:
+    if data.get("S3ObjectUrl") is not None:
         out["s3_object_url"] = data["S3ObjectUrl"]
     else:
         raise DeserializationError(

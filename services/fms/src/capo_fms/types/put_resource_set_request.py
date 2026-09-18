@@ -37,7 +37,7 @@ def serialize_aws_json_1_1(value: PutResourceSetRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PutResourceSetRequest:
     out: PutResourceSetRequest = {}  # type: ignore[typeddict-item]
-    if "ResourceSet" in data:
+    if data.get("ResourceSet") is not None:
         import capo_fms.types.resource_set
 
         out["resource_set"] = capo_fms.types.resource_set.deserialize_aws_json_1_1(
@@ -45,7 +45,7 @@ def deserialize_aws_json_1_1(data: dict) -> PutResourceSetRequest:
         )
     else:
         raise DeserializationError("PutResourceSetRequest.resource_set required")
-    if "TagList" in data:
+    if data.get("TagList") is not None:
         import capo_fms.types.tag_list
 
         out["tag_list"] = capo_fms.types.tag_list.deserialize_aws_json_1_1(

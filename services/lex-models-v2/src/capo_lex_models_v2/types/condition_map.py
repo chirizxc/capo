@@ -27,6 +27,8 @@ def serialize_json(input_to_serialize: ConditionMap) -> dict:
 def deserialize_json(data: dict) -> ConditionMap:
     out: ConditionMap = {}
     for key, value in data.items():
+        if value is None:
+            continue
         import capo_lex_models_v2.types.condition_key_value_map
 
         out[key] = capo_lex_models_v2.types.condition_key_value_map.deserialize_json(

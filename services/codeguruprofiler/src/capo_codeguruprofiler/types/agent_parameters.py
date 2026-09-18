@@ -21,5 +21,7 @@ def serialize_json(input_to_serialize: AgentParameters) -> dict:
 def deserialize_json(data: dict) -> AgentParameters:
     out: AgentParameters = {}
     for key, value in data.items():
+        if value is None:
+            continue
         out[key] = value
     return out

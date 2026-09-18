@@ -87,25 +87,25 @@ def serialize_json(value: SearchTextRequest) -> dict:
 
 def deserialize_json(data: dict) -> SearchTextRequest:
     out: SearchTextRequest = {}  # type: ignore[typeddict-item]
-    if "QueryText" in data:
+    if data.get("QueryText") is not None:
         out["query_text"] = data["QueryText"]
-    if "QueryId" in data:
+    if data.get("QueryId") is not None:
         out["query_id"] = data["QueryId"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "BiasPosition" in data:
+    if data.get("BiasPosition") is not None:
         import capo_geo_places.types.position
 
         out["bias_position"] = capo_geo_places.types.position.deserialize_json(
             data["BiasPosition"]
         )
-    if "Filter" in data:
+    if data.get("Filter") is not None:
         import capo_geo_places.types.search_text_filter
 
         out["filter"] = capo_geo_places.types.search_text_filter.deserialize_json(
             data["Filter"]
         )
-    if "AdditionalFeatures" in data:
+    if data.get("AdditionalFeatures") is not None:
         import capo_geo_places.types.search_text_additional_feature_list
 
         out["additional_features"] = (
@@ -113,12 +113,12 @@ def deserialize_json(data: dict) -> SearchTextRequest:
                 data["AdditionalFeatures"]
             )
         )
-    if "Language" in data:
+    if data.get("Language") is not None:
         out["language"] = data["Language"]
-    if "PoliticalView" in data:
+    if data.get("PoliticalView") is not None:
         out["political_view"] = data["PoliticalView"]
-    if "IntendedUse" in data:
+    if data.get("IntendedUse") is not None:
         out["intended_use"] = data["IntendedUse"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

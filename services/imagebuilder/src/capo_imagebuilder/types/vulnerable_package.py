@@ -70,24 +70,24 @@ def serialize_json(value: VulnerablePackage) -> dict:
 
 def deserialize_json(data: dict) -> VulnerablePackage:
     out: VulnerablePackage = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "version" in data:
+    if data.get("version") is not None:
         out["version"] = data["version"]
-    if "sourceLayerHash" in data:
+    if data.get("sourceLayerHash") is not None:
         out["source_layer_hash"] = data["sourceLayerHash"]
-    if "epoch" in data:
+    if data.get("epoch") is not None:
         out["epoch"] = data["epoch"]
-    if "release" in data:
+    if data.get("release") is not None:
         out["release"] = data["release"]
-    if "arch" in data:
+    if data.get("arch") is not None:
         out["arch"] = data["arch"]
-    if "packageManager" in data:
+    if data.get("packageManager") is not None:
         out["package_manager"] = data["packageManager"]
-    if "filePath" in data:
+    if data.get("filePath") is not None:
         out["file_path"] = data["filePath"]
-    if "fixedInVersion" in data:
+    if data.get("fixedInVersion") is not None:
         out["fixed_in_version"] = data["fixedInVersion"]
-    if "remediation" in data:
+    if data.get("remediation") is not None:
         out["remediation"] = data["remediation"]
     return out

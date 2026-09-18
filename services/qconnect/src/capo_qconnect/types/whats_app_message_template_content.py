@@ -25,6 +25,6 @@ def serialize_json(value: WhatsAppMessageTemplateContent) -> dict:
 
 def deserialize_json(data: dict) -> WhatsAppMessageTemplateContent:
     out: WhatsAppMessageTemplateContent = {}  # type: ignore[typeddict-item]
-    if "data" in data:
+    if data.get("data") is not None:
         out["data"] = data["data"]
     return out

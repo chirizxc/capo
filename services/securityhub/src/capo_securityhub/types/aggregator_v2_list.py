@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> AggregatorV2List:
 
     out: AggregatorV2List = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_securityhub.types.aggregator_v2.deserialize_json(item))
     return out

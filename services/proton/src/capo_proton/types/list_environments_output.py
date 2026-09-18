@@ -35,9 +35,9 @@ def serialize_aws_json_1_0(value: ListEnvironmentsOutput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ListEnvironmentsOutput:
     out: ListEnvironmentsOutput = {}  # type: ignore[typeddict-item]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "environments" in data:
+    if data.get("environments") is not None:
         import capo_proton.types.environment_summary_list
 
         out["environments"] = (

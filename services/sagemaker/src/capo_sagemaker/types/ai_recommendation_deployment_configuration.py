@@ -76,7 +76,7 @@ def serialize_aws_json_1_1(value: AIRecommendationDeploymentConfiguration) -> di
 
 def deserialize_aws_json_1_1(data: dict) -> AIRecommendationDeploymentConfiguration:
     out: AIRecommendationDeploymentConfiguration = {}  # type: ignore[typeddict-item]
-    if "S3" in data:
+    if data.get("S3") is not None:
         import capo_sagemaker.types.ai_recommendation_deployment_s3_channel_list
 
         out["s3"] = (
@@ -84,9 +84,9 @@ def deserialize_aws_json_1_1(data: dict) -> AIRecommendationDeploymentConfigurat
                 data["S3"]
             )
         )
-    if "ImageUri" in data:
+    if data.get("ImageUri") is not None:
         out["image_uri"] = data["ImageUri"]
-    if "InstanceType" in data:
+    if data.get("InstanceType") is not None:
         import capo_sagemaker.types.ai_recommendation_instance_type
 
         out["instance_type"] = (
@@ -94,11 +94,11 @@ def deserialize_aws_json_1_1(data: dict) -> AIRecommendationDeploymentConfigurat
                 data["InstanceType"]
             )
         )
-    if "InstanceCount" in data:
+    if data.get("InstanceCount") is not None:
         out["instance_count"] = data["InstanceCount"]
-    if "CopyCountPerInstance" in data:
+    if data.get("CopyCountPerInstance") is not None:
         out["copy_count_per_instance"] = data["CopyCountPerInstance"]
-    if "EnvironmentVariables" in data:
+    if data.get("EnvironmentVariables") is not None:
         import capo_sagemaker.types.environment_map
 
         out["environment_variables"] = (

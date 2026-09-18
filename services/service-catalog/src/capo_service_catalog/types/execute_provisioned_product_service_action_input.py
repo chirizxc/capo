@@ -51,27 +51,27 @@ def serialize_aws_json_1_1(value: ExecuteProvisionedProductServiceActionInput) -
 
 def deserialize_aws_json_1_1(data: dict) -> ExecuteProvisionedProductServiceActionInput:
     out: ExecuteProvisionedProductServiceActionInput = {}  # type: ignore[typeddict-item]
-    if "ProvisionedProductId" in data:
+    if data.get("ProvisionedProductId") is not None:
         out["provisioned_product_id"] = data["ProvisionedProductId"]
     else:
         raise DeserializationError(
             "ExecuteProvisionedProductServiceActionInput.provisioned_product_id required"
         )
-    if "ServiceActionId" in data:
+    if data.get("ServiceActionId") is not None:
         out["service_action_id"] = data["ServiceActionId"]
     else:
         raise DeserializationError(
             "ExecuteProvisionedProductServiceActionInput.service_action_id required"
         )
-    if "ExecuteToken" in data:
+    if data.get("ExecuteToken") is not None:
         out["execute_token"] = data["ExecuteToken"]
     else:
         raise DeserializationError(
             "ExecuteProvisionedProductServiceActionInput.execute_token required"
         )
-    if "AcceptLanguage" in data:
+    if data.get("AcceptLanguage") is not None:
         out["accept_language"] = data["AcceptLanguage"]
-    if "Parameters" in data:
+    if data.get("Parameters") is not None:
         import capo_service_catalog.types.execution_parameter_map
 
         out["parameters"] = (

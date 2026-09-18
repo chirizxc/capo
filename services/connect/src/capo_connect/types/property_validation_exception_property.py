@@ -38,13 +38,13 @@ def serialize_json(value: PropertyValidationExceptionProperty) -> dict:
 
 def deserialize_json(data: dict) -> PropertyValidationExceptionProperty:
     out: PropertyValidationExceptionProperty = {}  # type: ignore[typeddict-item]
-    if "PropertyPath" in data:
+    if data.get("PropertyPath") is not None:
         out["property_path"] = data["PropertyPath"]
     else:
         raise DeserializationError(
             "PropertyValidationExceptionProperty.property_path required"
         )
-    if "Reason" in data:
+    if data.get("Reason") is not None:
         import capo_connect.types.property_validation_exception_reason
 
         out["reason"] = (
@@ -56,7 +56,7 @@ def deserialize_json(data: dict) -> PropertyValidationExceptionProperty:
         raise DeserializationError(
             "PropertyValidationExceptionProperty.reason required"
         )
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     else:
         raise DeserializationError(

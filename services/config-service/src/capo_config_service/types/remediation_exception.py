@@ -51,21 +51,21 @@ def serialize_aws_json_1_1(value: RemediationException) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RemediationException:
     out: RemediationException = {}  # type: ignore[typeddict-item]
-    if "ConfigRuleName" in data:
+    if data.get("ConfigRuleName") is not None:
         out["config_rule_name"] = data["ConfigRuleName"]
     else:
         raise DeserializationError("RemediationException.config_rule_name required")
-    if "ResourceType" in data:
+    if data.get("ResourceType") is not None:
         out["resource_type"] = data["ResourceType"]
     else:
         raise DeserializationError("RemediationException.resource_type required")
-    if "ResourceId" in data:
+    if data.get("ResourceId") is not None:
         out["resource_id"] = data["ResourceId"]
     else:
         raise DeserializationError("RemediationException.resource_id required")
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
-    if "ExpirationTime" in data:
+    if data.get("ExpirationTime") is not None:
         import capo_config_service.types.date
 
         out["expiration_time"] = (

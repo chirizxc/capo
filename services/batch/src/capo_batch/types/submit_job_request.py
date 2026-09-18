@@ -154,35 +154,35 @@ def serialize_json(value: SubmitJobRequest) -> dict:
 
 def deserialize_json(data: dict) -> SubmitJobRequest:
     out: SubmitJobRequest = {}  # type: ignore[typeddict-item]
-    if "jobName" in data:
+    if data.get("jobName") is not None:
         out["job_name"] = data["jobName"]
-    if "jobQueue" in data:
+    if data.get("jobQueue") is not None:
         out["job_queue"] = data["jobQueue"]
-    if "shareIdentifier" in data:
+    if data.get("shareIdentifier") is not None:
         out["share_identifier"] = data["shareIdentifier"]
-    if "schedulingPriorityOverride" in data:
+    if data.get("schedulingPriorityOverride") is not None:
         out["scheduling_priority_override"] = data["schedulingPriorityOverride"]
-    if "arrayProperties" in data:
+    if data.get("arrayProperties") is not None:
         import capo_batch.types.array_properties
 
         out["array_properties"] = capo_batch.types.array_properties.deserialize_json(
             data["arrayProperties"]
         )
-    if "dependsOn" in data:
+    if data.get("dependsOn") is not None:
         import capo_batch.types.job_dependency_list
 
         out["depends_on"] = capo_batch.types.job_dependency_list.deserialize_json(
             data["dependsOn"]
         )
-    if "jobDefinition" in data:
+    if data.get("jobDefinition") is not None:
         out["job_definition"] = data["jobDefinition"]
-    if "parameters" in data:
+    if data.get("parameters") is not None:
         import capo_batch.types.parameters_map
 
         out["parameters"] = capo_batch.types.parameters_map.deserialize_json(
             data["parameters"]
         )
-    if "containerOverrides" in data:
+    if data.get("containerOverrides") is not None:
         import capo_batch.types.container_overrides
 
         out["container_overrides"] = (
@@ -190,29 +190,29 @@ def deserialize_json(data: dict) -> SubmitJobRequest:
                 data["containerOverrides"]
             )
         )
-    if "nodeOverrides" in data:
+    if data.get("nodeOverrides") is not None:
         import capo_batch.types.node_overrides
 
         out["node_overrides"] = capo_batch.types.node_overrides.deserialize_json(
             data["nodeOverrides"]
         )
-    if "retryStrategy" in data:
+    if data.get("retryStrategy") is not None:
         import capo_batch.types.retry_strategy
 
         out["retry_strategy"] = capo_batch.types.retry_strategy.deserialize_json(
             data["retryStrategy"]
         )
-    if "propagateTags" in data:
+    if data.get("propagateTags") is not None:
         out["propagate_tags"] = data["propagateTags"]
-    if "timeout" in data:
+    if data.get("timeout") is not None:
         import capo_batch.types.job_timeout
 
         out["timeout"] = capo_batch.types.job_timeout.deserialize_json(data["timeout"])
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_batch.types.tagris_tags_map
 
         out["tags"] = capo_batch.types.tagris_tags_map.deserialize_json(data["tags"])
-    if "eksPropertiesOverride" in data:
+    if data.get("eksPropertiesOverride") is not None:
         import capo_batch.types.eks_properties_override
 
         out["eks_properties_override"] = (
@@ -220,7 +220,7 @@ def deserialize_json(data: dict) -> SubmitJobRequest:
                 data["eksPropertiesOverride"]
             )
         )
-    if "ecsPropertiesOverride" in data:
+    if data.get("ecsPropertiesOverride") is not None:
         import capo_batch.types.ecs_properties_override
 
         out["ecs_properties_override"] = (
@@ -228,7 +228,7 @@ def deserialize_json(data: dict) -> SubmitJobRequest:
                 data["ecsPropertiesOverride"]
             )
         )
-    if "consumableResourcePropertiesOverride" in data:
+    if data.get("consumableResourcePropertiesOverride") is not None:
         import capo_batch.types.consumable_resource_properties
 
         out["consumable_resource_properties_override"] = (

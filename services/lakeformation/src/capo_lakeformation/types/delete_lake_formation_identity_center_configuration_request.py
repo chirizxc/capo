@@ -29,6 +29,6 @@ def deserialize_json(
     data: dict,
 ) -> DeleteLakeFormationIdentityCenterConfigurationRequest:
     out: DeleteLakeFormationIdentityCenterConfigurationRequest = {}  # type: ignore[typeddict-item]
-    if "CatalogId" in data:
+    if data.get("CatalogId") is not None:
         out["catalog_id"] = data["CatalogId"]
     return out

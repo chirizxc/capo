@@ -34,7 +34,7 @@ def serialize_json(value: ContentDataDetails) -> dict:
 
 def deserialize_json(data: dict) -> ContentDataDetails:
     out: ContentDataDetails = {}  # type: ignore[typeddict-item]
-    if "textData" in data:
+    if data.get("textData") is not None:
         import capo_qconnect.types.text_data
 
         out["text_data"] = capo_qconnect.types.text_data.deserialize_json(
@@ -42,7 +42,7 @@ def deserialize_json(data: dict) -> ContentDataDetails:
         )
     else:
         raise DeserializationError("ContentDataDetails.text_data required")
-    if "rankingData" in data:
+    if data.get("rankingData") is not None:
         import capo_qconnect.types.ranking_data
 
         out["ranking_data"] = capo_qconnect.types.ranking_data.deserialize_json(

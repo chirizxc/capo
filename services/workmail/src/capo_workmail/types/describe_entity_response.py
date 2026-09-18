@@ -39,11 +39,11 @@ def serialize_aws_json_1_1(value: DescribeEntityResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeEntityResponse:
     out: DescribeEntityResponse = {}  # type: ignore[typeddict-item]
-    if "EntityId" in data:
+    if data.get("EntityId") is not None:
         out["entity_id"] = data["EntityId"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_workmail.types.entity_type
 
         out["type"] = capo_workmail.types.entity_type.deserialize_aws_json_1_1(

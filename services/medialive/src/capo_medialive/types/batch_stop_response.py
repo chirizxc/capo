@@ -44,7 +44,7 @@ def serialize_json(value: BatchStopResponse) -> dict:
 
 def deserialize_json(data: dict) -> BatchStopResponse:
     out: BatchStopResponse = {}  # type: ignore[typeddict-item]
-    if "failed" in data:
+    if data.get("failed") is not None:
         import capo_medialive.types.__list_of_batch_failed_result_model
 
         out["failed"] = (
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> BatchStopResponse:
                 data["failed"]
             )
         )
-    if "successful" in data:
+    if data.get("successful") is not None:
         import capo_medialive.types.__list_of_batch_successful_result_model
 
         out["successful"] = (

@@ -32,13 +32,13 @@ def serialize_json(value: CopyAction) -> dict:
 
 def deserialize_json(data: dict) -> CopyAction:
     out: CopyAction = {}  # type: ignore[typeddict-item]
-    if "Lifecycle" in data:
+    if data.get("Lifecycle") is not None:
         import capo_backup.types.lifecycle
 
         out["lifecycle"] = capo_backup.types.lifecycle.deserialize_json(
             data["Lifecycle"]
         )
-    if "DestinationBackupVaultArn" in data:
+    if data.get("DestinationBackupVaultArn") is not None:
         out["destination_backup_vault_arn"] = data["DestinationBackupVaultArn"]
     else:
         raise DeserializationError("CopyAction.destination_backup_vault_arn required")

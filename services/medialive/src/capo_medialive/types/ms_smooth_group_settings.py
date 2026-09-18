@@ -190,9 +190,9 @@ def serialize_json(value: MsSmoothGroupSettings) -> dict:
 
 def deserialize_json(data: dict) -> MsSmoothGroupSettings:
     out: MsSmoothGroupSettings = {}  # type: ignore[typeddict-item]
-    if "acquisitionPointId" in data:
+    if data.get("acquisitionPointId") is not None:
         out["acquisition_point_id"] = data["acquisitionPointId"]
-    if "audioOnlyTimecodeControl" in data:
+    if data.get("audioOnlyTimecodeControl") is not None:
         import capo_medialive.types.smooth_group_audio_only_timecode_control
 
         out["audio_only_timecode_control"] = (
@@ -200,7 +200,7 @@ def deserialize_json(data: dict) -> MsSmoothGroupSettings:
                 data["audioOnlyTimecodeControl"]
             )
         )
-    if "certificateMode" in data:
+    if data.get("certificateMode") is not None:
         import capo_medialive.types.smooth_group_certificate_mode
 
         out["certificate_mode"] = (
@@ -208,17 +208,17 @@ def deserialize_json(data: dict) -> MsSmoothGroupSettings:
                 data["certificateMode"]
             )
         )
-    if "connectionRetryInterval" in data:
+    if data.get("connectionRetryInterval") is not None:
         out["connection_retry_interval"] = data["connectionRetryInterval"]
-    if "destination" in data:
+    if data.get("destination") is not None:
         import capo_medialive.types.output_location_ref
 
         out["destination"] = capo_medialive.types.output_location_ref.deserialize_json(
             data["destination"]
         )
-    if "eventId" in data:
+    if data.get("eventId") is not None:
         out["event_id"] = data["eventId"]
-    if "eventIdMode" in data:
+    if data.get("eventIdMode") is not None:
         import capo_medialive.types.smooth_group_event_id_mode
 
         out["event_id_mode"] = (
@@ -226,7 +226,7 @@ def deserialize_json(data: dict) -> MsSmoothGroupSettings:
                 data["eventIdMode"]
             )
         )
-    if "eventStopBehavior" in data:
+    if data.get("eventStopBehavior") is not None:
         import capo_medialive.types.smooth_group_event_stop_behavior
 
         out["event_stop_behavior"] = (
@@ -234,11 +234,11 @@ def deserialize_json(data: dict) -> MsSmoothGroupSettings:
                 data["eventStopBehavior"]
             )
         )
-    if "filecacheDuration" in data:
+    if data.get("filecacheDuration") is not None:
         out["filecache_duration"] = data["filecacheDuration"]
-    if "fragmentLength" in data:
+    if data.get("fragmentLength") is not None:
         out["fragment_length"] = data["fragmentLength"]
-    if "inputLossAction" in data:
+    if data.get("inputLossAction") is not None:
         import capo_medialive.types.input_loss_action_for_ms_smooth_out
 
         out["input_loss_action"] = (
@@ -246,11 +246,11 @@ def deserialize_json(data: dict) -> MsSmoothGroupSettings:
                 data["inputLossAction"]
             )
         )
-    if "numRetries" in data:
+    if data.get("numRetries") is not None:
         out["num_retries"] = data["numRetries"]
-    if "restartDelay" in data:
+    if data.get("restartDelay") is not None:
         out["restart_delay"] = data["restartDelay"]
-    if "segmentationMode" in data:
+    if data.get("segmentationMode") is not None:
         import capo_medialive.types.smooth_group_segmentation_mode
 
         out["segmentation_mode"] = (
@@ -258,9 +258,9 @@ def deserialize_json(data: dict) -> MsSmoothGroupSettings:
                 data["segmentationMode"]
             )
         )
-    if "sendDelayMs" in data:
+    if data.get("sendDelayMs") is not None:
         out["send_delay_ms"] = data["sendDelayMs"]
-    if "sparseTrackType" in data:
+    if data.get("sparseTrackType") is not None:
         import capo_medialive.types.smooth_group_sparse_track_type
 
         out["sparse_track_type"] = (
@@ -268,7 +268,7 @@ def deserialize_json(data: dict) -> MsSmoothGroupSettings:
                 data["sparseTrackType"]
             )
         )
-    if "streamManifestBehavior" in data:
+    if data.get("streamManifestBehavior") is not None:
         import capo_medialive.types.smooth_group_stream_manifest_behavior
 
         out["stream_manifest_behavior"] = (
@@ -276,9 +276,9 @@ def deserialize_json(data: dict) -> MsSmoothGroupSettings:
                 data["streamManifestBehavior"]
             )
         )
-    if "timestampOffset" in data:
+    if data.get("timestampOffset") is not None:
         out["timestamp_offset"] = data["timestampOffset"]
-    if "timestampOffsetMode" in data:
+    if data.get("timestampOffsetMode") is not None:
         import capo_medialive.types.smooth_group_timestamp_offset_mode
 
         out["timestamp_offset_mode"] = (

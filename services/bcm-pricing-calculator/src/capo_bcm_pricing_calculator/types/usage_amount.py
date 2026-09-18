@@ -27,13 +27,21 @@ def serialize_aws_json_1_0(value: UsageAmount) -> dict:
             value["start_hour"]
         )
     )
-    out["amount"] = value["amount"]
+    out["amount"] = (
+        "NaN"
+        if value["amount"] != value["amount"]
+        else "Infinity"
+        if value["amount"] == float("inf")
+        else "-Infinity"
+        if value["amount"] == float("-inf")
+        else value["amount"]
+    )
     return out
 
 
 def deserialize_aws_json_1_0(data: dict) -> UsageAmount:
     out: UsageAmount = {}  # type: ignore[typeddict-item]
-    if "startHour" in data:
+    if data.get("startHour") is not None:
         import capo_bcm_pricing_calculator.types._prelude.timestamp
 
         out["start_hour"] = (
@@ -43,8 +51,8 @@ def deserialize_aws_json_1_0(data: dict) -> UsageAmount:
         )
     else:
         raise DeserializationError("UsageAmount.start_hour required")
-    if "amount" in data:
-        out["amount"] = data["amount"]
+    if data.get("amount") is not None:
+        out["amount"] = float(data["amount"])
     else:
         raise DeserializationError("UsageAmount.amount required")
     return out

@@ -34,11 +34,11 @@ def serialize_json(value: SearchQuantumTasksFilter) -> dict:
 
 def deserialize_json(data: dict) -> SearchQuantumTasksFilter:
     out: SearchQuantumTasksFilter = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("SearchQuantumTasksFilter.name required")
-    if "values" in data:
+    if data.get("values") is not None:
         import capo_braket.types.string256_list
 
         out["values"] = capo_braket.types.string256_list.deserialize_json(
@@ -46,7 +46,7 @@ def deserialize_json(data: dict) -> SearchQuantumTasksFilter:
         )
     else:
         raise DeserializationError("SearchQuantumTasksFilter.values required")
-    if "operator" in data:
+    if data.get("operator") is not None:
         out["operator"] = data["operator"]
     else:
         raise DeserializationError("SearchQuantumTasksFilter.operator required")

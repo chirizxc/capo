@@ -23,5 +23,7 @@ def deserialize_aws_json_1_1(data: list) -> UniqueProblems:
 
     out: UniqueProblems = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_device_farm.types.unique_problem.deserialize_aws_json_1_1(item))
     return out

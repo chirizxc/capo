@@ -192,21 +192,21 @@ def serialize_aws_json_1_1(value: SnowflakeDestinationUpdate) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SnowflakeDestinationUpdate:
     out: SnowflakeDestinationUpdate = {}  # type: ignore[typeddict-item]
-    if "AccountUrl" in data:
+    if data.get("AccountUrl") is not None:
         out["account_url"] = data["AccountUrl"]
-    if "PrivateKey" in data:
+    if data.get("PrivateKey") is not None:
         out["private_key"] = data["PrivateKey"]
-    if "KeyPassphrase" in data:
+    if data.get("KeyPassphrase") is not None:
         out["key_passphrase"] = data["KeyPassphrase"]
-    if "User" in data:
+    if data.get("User") is not None:
         out["user"] = data["User"]
-    if "Database" in data:
+    if data.get("Database") is not None:
         out["database"] = data["Database"]
-    if "Schema" in data:
+    if data.get("Schema") is not None:
         out["schema"] = data["Schema"]
-    if "Table" in data:
+    if data.get("Table") is not None:
         out["table"] = data["Table"]
-    if "SnowflakeRoleConfiguration" in data:
+    if data.get("SnowflakeRoleConfiguration") is not None:
         import capo_firehose.types.snowflake_role_configuration
 
         out["snowflake_role_configuration"] = (
@@ -214,7 +214,7 @@ def deserialize_aws_json_1_1(data: dict) -> SnowflakeDestinationUpdate:
                 data["SnowflakeRoleConfiguration"]
             )
         )
-    if "DataLoadingOption" in data:
+    if data.get("DataLoadingOption") is not None:
         import capo_firehose.types.snowflake_data_loading_option
 
         out["data_loading_option"] = (
@@ -222,11 +222,11 @@ def deserialize_aws_json_1_1(data: dict) -> SnowflakeDestinationUpdate:
                 data["DataLoadingOption"]
             )
         )
-    if "MetaDataColumnName" in data:
+    if data.get("MetaDataColumnName") is not None:
         out["meta_data_column_name"] = data["MetaDataColumnName"]
-    if "ContentColumnName" in data:
+    if data.get("ContentColumnName") is not None:
         out["content_column_name"] = data["ContentColumnName"]
-    if "CloudWatchLoggingOptions" in data:
+    if data.get("CloudWatchLoggingOptions") is not None:
         import capo_firehose.types.cloud_watch_logging_options
 
         out["cloud_watch_logging_options"] = (
@@ -234,7 +234,7 @@ def deserialize_aws_json_1_1(data: dict) -> SnowflakeDestinationUpdate:
                 data["CloudWatchLoggingOptions"]
             )
         )
-    if "ProcessingConfiguration" in data:
+    if data.get("ProcessingConfiguration") is not None:
         import capo_firehose.types.processing_configuration
 
         out["processing_configuration"] = (
@@ -242,9 +242,9 @@ def deserialize_aws_json_1_1(data: dict) -> SnowflakeDestinationUpdate:
                 data["ProcessingConfiguration"]
             )
         )
-    if "RoleARN" in data:
+    if data.get("RoleARN") is not None:
         out["role_arn"] = data["RoleARN"]
-    if "RetryOptions" in data:
+    if data.get("RetryOptions") is not None:
         import capo_firehose.types.snowflake_retry_options
 
         out["retry_options"] = (
@@ -252,7 +252,7 @@ def deserialize_aws_json_1_1(data: dict) -> SnowflakeDestinationUpdate:
                 data["RetryOptions"]
             )
         )
-    if "S3BackupMode" in data:
+    if data.get("S3BackupMode") is not None:
         import capo_firehose.types.snowflake_s3_backup_mode
 
         out["s3_backup_mode"] = (
@@ -260,7 +260,7 @@ def deserialize_aws_json_1_1(data: dict) -> SnowflakeDestinationUpdate:
                 data["S3BackupMode"]
             )
         )
-    if "S3Update" in data:
+    if data.get("S3Update") is not None:
         import capo_firehose.types.s3_destination_update
 
         out["s3_update"] = (
@@ -268,7 +268,7 @@ def deserialize_aws_json_1_1(data: dict) -> SnowflakeDestinationUpdate:
                 data["S3Update"]
             )
         )
-    if "SecretsManagerConfiguration" in data:
+    if data.get("SecretsManagerConfiguration") is not None:
         import capo_firehose.types.secrets_manager_configuration
 
         out["secrets_manager_configuration"] = (
@@ -276,7 +276,7 @@ def deserialize_aws_json_1_1(data: dict) -> SnowflakeDestinationUpdate:
                 data["SecretsManagerConfiguration"]
             )
         )
-    if "BufferingHints" in data:
+    if data.get("BufferingHints") is not None:
         import capo_firehose.types.snowflake_buffering_hints
 
         out["buffering_hints"] = (

@@ -28,13 +28,13 @@ def serialize_json(value: OpenIDConnectProviderConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> OpenIDConnectProviderConfiguration:
     out: OpenIDConnectProviderConfiguration = {}  # type: ignore[typeddict-item]
-    if "secretsArn" in data:
+    if data.get("secretsArn") is not None:
         out["secrets_arn"] = data["secretsArn"]
     else:
         raise DeserializationError(
             "OpenIDConnectProviderConfiguration.secrets_arn required"
         )
-    if "secretsRole" in data:
+    if data.get("secretsRole") is not None:
         out["secrets_role"] = data["secretsRole"]
     else:
         raise DeserializationError(

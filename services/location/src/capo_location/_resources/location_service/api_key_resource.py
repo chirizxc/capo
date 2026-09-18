@@ -91,9 +91,10 @@ class ApiKeyResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_location.types.create_key_request.CreateKeyRequest = {}  # type: ignore[typeddict-item]
-        input_["key_name"] = key_name
-        input_["restrictions"] = restrictions
+        input_: capo_location.types.create_key_request.CreateKeyRequest = {
+            "key_name": key_name,
+            "restrictions": restrictions,
+        }
         if description is not None:
             input_["description"] = description
         if expire_time is not None:
@@ -108,6 +109,7 @@ class ApiKeyResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -145,14 +147,16 @@ class ApiKeyResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_location.types.describe_key_request.DescribeKeyRequest = {}  # type: ignore[typeddict-item]
-        input_["key_name"] = key_name
+        input_: capo_location.types.describe_key_request.DescribeKeyRequest = {
+            "key_name": key_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update(
@@ -204,8 +208,9 @@ class ApiKeyResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_location.types.update_key_request.UpdateKeyRequest = {}  # type: ignore[typeddict-item]
-        input_["key_name"] = key_name
+        input_: capo_location.types.update_key_request.UpdateKeyRequest = {
+            "key_name": key_name
+        }
         if description is not None:
             input_["description"] = description
         if expire_time is not None:
@@ -222,6 +227,7 @@ class ApiKeyResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -261,8 +267,9 @@ class ApiKeyResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_location.types.delete_key_request.DeleteKeyRequest = {}  # type: ignore[typeddict-item]
-        input_["key_name"] = key_name
+        input_: capo_location.types.delete_key_request.DeleteKeyRequest = {
+            "key_name": key_name
+        }
         if force_delete is not None:
             input_["force_delete"] = force_delete
 
@@ -271,6 +278,7 @@ class ApiKeyResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -311,7 +319,7 @@ class ApiKeyResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_location.types.list_keys_request.ListKeysRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_location.types.list_keys_request.ListKeysRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -324,6 +332,7 @@ class ApiKeyResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -380,9 +389,10 @@ class AsyncApiKeyResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_location.types.create_key_request.CreateKeyRequest = {}  # type: ignore[typeddict-item]
-        input_["key_name"] = key_name
-        input_["restrictions"] = restrictions
+        input_: capo_location.types.create_key_request.CreateKeyRequest = {
+            "key_name": key_name,
+            "restrictions": restrictions,
+        }
         if description is not None:
             input_["description"] = description
         if expire_time is not None:
@@ -397,6 +407,7 @@ class AsyncApiKeyResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -435,14 +446,16 @@ class AsyncApiKeyResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_location.types.describe_key_request.DescribeKeyRequest = {}  # type: ignore[typeddict-item]
-        input_["key_name"] = key_name
+        input_: capo_location.types.describe_key_request.DescribeKeyRequest = {
+            "key_name": key_name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update(
@@ -495,8 +508,9 @@ class AsyncApiKeyResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_location.types.update_key_request.UpdateKeyRequest = {}  # type: ignore[typeddict-item]
-        input_["key_name"] = key_name
+        input_: capo_location.types.update_key_request.UpdateKeyRequest = {
+            "key_name": key_name
+        }
         if description is not None:
             input_["description"] = description
         if expire_time is not None:
@@ -513,6 +527,7 @@ class AsyncApiKeyResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -553,8 +568,9 @@ class AsyncApiKeyResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_location.types.delete_key_request.DeleteKeyRequest = {}  # type: ignore[typeddict-item]
-        input_["key_name"] = key_name
+        input_: capo_location.types.delete_key_request.DeleteKeyRequest = {
+            "key_name": key_name
+        }
         if force_delete is not None:
             input_["force_delete"] = force_delete
 
@@ -563,6 +579,7 @@ class AsyncApiKeyResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -604,7 +621,7 @@ class AsyncApiKeyResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_location.types.list_keys_request.ListKeysRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_location.types.list_keys_request.ListKeysRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -617,4 +634,5 @@ class AsyncApiKeyResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

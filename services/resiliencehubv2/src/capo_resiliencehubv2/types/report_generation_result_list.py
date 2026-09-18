@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> ReportGenerationResultList:
 
     out: ReportGenerationResultList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_resiliencehubv2.types.report_generation_result.deserialize_json(item)
         )

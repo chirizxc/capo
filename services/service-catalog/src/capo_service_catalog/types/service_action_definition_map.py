@@ -31,6 +31,8 @@ def deserialize_aws_json_1_1(data: dict) -> ServiceActionDefinitionMap:
     for key, value in data.items():
         import capo_service_catalog.types.service_action_definition_key
 
+        if value is None:
+            continue
         out[
             capo_service_catalog.types.service_action_definition_key.deserialize_aws_json_1_1(
                 key

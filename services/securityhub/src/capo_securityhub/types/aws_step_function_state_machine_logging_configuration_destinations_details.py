@@ -37,7 +37,7 @@ def deserialize_json(
     data: dict,
 ) -> AwsStepFunctionStateMachineLoggingConfigurationDestinationsDetails:
     out: AwsStepFunctionStateMachineLoggingConfigurationDestinationsDetails = {}  # type: ignore[typeddict-item]
-    if "CloudWatchLogsLogGroup" in data:
+    if data.get("CloudWatchLogsLogGroup") is not None:
         import capo_securityhub.types.aws_step_function_state_machine_logging_configuration_destinations_cloud_watch_logs_log_group_details
 
         out["cloud_watch_logs_log_group"] = (

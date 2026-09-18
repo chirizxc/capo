@@ -75,7 +75,7 @@ class Autoshift:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_arc_zonal_shift.types.list_autoshifts_request.ListAutoshiftsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_arc_zonal_shift.types.list_autoshifts_request.ListAutoshiftsRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if status is not None:
@@ -88,6 +88,7 @@ class Autoshift:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -138,7 +139,7 @@ class AsyncAutoshift:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_arc_zonal_shift.types.list_autoshifts_request.ListAutoshiftsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_arc_zonal_shift.types.list_autoshifts_request.ListAutoshiftsRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if status is not None:
@@ -151,4 +152,5 @@ class AsyncAutoshift:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

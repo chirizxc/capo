@@ -42,7 +42,7 @@ def serialize_json(value: CreateLakeFormationOptInRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateLakeFormationOptInRequest:
     out: CreateLakeFormationOptInRequest = {}  # type: ignore[typeddict-item]
-    if "Principal" in data:
+    if data.get("Principal") is not None:
         import capo_lakeformation.types.data_lake_principal
 
         out["principal"] = (
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> CreateLakeFormationOptInRequest:
         )
     else:
         raise DeserializationError("CreateLakeFormationOptInRequest.principal required")
-    if "Resource" in data:
+    if data.get("Resource") is not None:
         import capo_lakeformation.types.resource
 
         out["resource"] = capo_lakeformation.types.resource.deserialize_json(
@@ -60,7 +60,7 @@ def deserialize_json(data: dict) -> CreateLakeFormationOptInRequest:
         )
     else:
         raise DeserializationError("CreateLakeFormationOptInRequest.resource required")
-    if "Condition" in data:
+    if data.get("Condition") is not None:
         import capo_lakeformation.types.condition
 
         out["condition"] = capo_lakeformation.types.condition.deserialize_json(

@@ -71,31 +71,31 @@ def serialize_json(value: CreateSpaceInput) -> dict:
 
 def deserialize_json(data: dict) -> CreateSpaceInput:
     out: CreateSpaceInput = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("CreateSpaceInput.name required")
-    if "subdomain" in data:
+    if data.get("subdomain") is not None:
         out["subdomain"] = data["subdomain"]
     else:
         raise DeserializationError("CreateSpaceInput.subdomain required")
-    if "tier" in data:
+    if data.get("tier") is not None:
         import capo_repostspace.types.tier_level
 
         out["tier"] = capo_repostspace.types.tier_level.deserialize_json(data["tier"])
     else:
         raise DeserializationError("CreateSpaceInput.tier required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "userKMSKey" in data:
+    if data.get("userKMSKey") is not None:
         out["user_kms_key"] = data["userKMSKey"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_repostspace.types.tags
 
         out["tags"] = capo_repostspace.types.tags.deserialize_json(data["tags"])
-    if "roleArn" in data:
+    if data.get("roleArn") is not None:
         out["role_arn"] = data["roleArn"]
-    if "supportedEmailDomains" in data:
+    if data.get("supportedEmailDomains") is not None:
         import capo_repostspace.types.supported_email_domains_parameters
 
         out["supported_email_domains"] = (

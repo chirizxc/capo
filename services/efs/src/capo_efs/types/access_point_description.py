@@ -80,35 +80,35 @@ def serialize_json(value: AccessPointDescription) -> dict:
 
 def deserialize_json(data: dict) -> AccessPointDescription:
     out: AccessPointDescription = {}  # type: ignore[typeddict-item]
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_efs.types.tags
 
         out["tags"] = capo_efs.types.tags.deserialize_json(data["Tags"])
-    if "AccessPointId" in data:
+    if data.get("AccessPointId") is not None:
         out["access_point_id"] = data["AccessPointId"]
-    if "AccessPointArn" in data:
+    if data.get("AccessPointArn") is not None:
         out["access_point_arn"] = data["AccessPointArn"]
-    if "FileSystemId" in data:
+    if data.get("FileSystemId") is not None:
         out["file_system_id"] = data["FileSystemId"]
-    if "PosixUser" in data:
+    if data.get("PosixUser") is not None:
         import capo_efs.types.posix_user
 
         out["posix_user"] = capo_efs.types.posix_user.deserialize_json(
             data["PosixUser"]
         )
-    if "RootDirectory" in data:
+    if data.get("RootDirectory") is not None:
         import capo_efs.types.root_directory
 
         out["root_directory"] = capo_efs.types.root_directory.deserialize_json(
             data["RootDirectory"]
         )
-    if "OwnerId" in data:
+    if data.get("OwnerId") is not None:
         out["owner_id"] = data["OwnerId"]
-    if "LifeCycleState" in data:
+    if data.get("LifeCycleState") is not None:
         import capo_efs.types.life_cycle_state
 
         out["life_cycle_state"] = capo_efs.types.life_cycle_state.deserialize_json(

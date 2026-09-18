@@ -32,12 +32,12 @@ def serialize_aws_json_1_1(value: ListStepsOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListStepsOutput:
     out: ListStepsOutput = {}  # type: ignore[typeddict-item]
-    if "Steps" in data:
+    if data.get("Steps") is not None:
         import capo_emr.types.step_summary_list
 
         out["steps"] = capo_emr.types.step_summary_list.deserialize_aws_json_1_1(
             data["Steps"]
         )
-    if "Marker" in data:
+    if data.get("Marker") is not None:
         out["marker"] = data["Marker"]
     return out

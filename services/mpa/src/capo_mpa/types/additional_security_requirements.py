@@ -25,6 +25,8 @@ def deserialize_json(data: list) -> AdditionalSecurityRequirements:
 
     out: AdditionalSecurityRequirements = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_mpa.types.additional_security_requirement.deserialize_json(item)
         )

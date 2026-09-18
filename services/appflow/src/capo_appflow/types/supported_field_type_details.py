@@ -26,7 +26,7 @@ def serialize_json(value: SupportedFieldTypeDetails) -> dict:
 
 def deserialize_json(data: dict) -> SupportedFieldTypeDetails:
     out: SupportedFieldTypeDetails = {}  # type: ignore[typeddict-item]
-    if "v1" in data:
+    if data.get("v1") is not None:
         import capo_appflow.types.field_type_details
 
         out["v1"] = capo_appflow.types.field_type_details.deserialize_json(data["v1"])

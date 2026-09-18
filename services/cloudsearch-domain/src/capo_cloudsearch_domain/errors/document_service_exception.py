@@ -29,9 +29,9 @@ def serialize_json(value: DocumentServiceException_) -> dict:
 
 def deserialize_json(data: dict) -> DocumentServiceException_:
     out: DocumentServiceException_ = {}  # type: ignore[typeddict-item]
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     return out
 
@@ -41,15 +41,18 @@ class DocumentServiceException(ServiceError):
 
     code: str | None = "DocumentServiceException"
 
-    def __init__(self, data: DocumentServiceException_):
+    def __init__(self, data: DocumentServiceException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="DocumentServiceException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "DocumentServiceException":
-        return cls(deserialize_json(data))
+    def from_json(
+        cls, data: dict, message: str | None = None
+    ) -> "DocumentServiceException":
+        return cls(deserialize_json(data), message)

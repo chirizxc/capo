@@ -30,7 +30,7 @@ def serialize_aws_json_1_1(value: PutEventsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PutEventsRequest:
     out: PutEventsRequest = {}  # type: ignore[typeddict-item]
-    if "Entries" in data:
+    if data.get("Entries") is not None:
         import capo_cloudwatch_events.types.put_events_request_entry_list
 
         out["entries"] = (

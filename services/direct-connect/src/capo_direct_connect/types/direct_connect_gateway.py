@@ -71,15 +71,15 @@ def serialize_aws_json_1_1(value: DirectConnectGateway) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DirectConnectGateway:
     out: DirectConnectGateway = {}  # type: ignore[typeddict-item]
-    if "directConnectGatewayId" in data:
+    if data.get("directConnectGatewayId") is not None:
         out["direct_connect_gateway_id"] = data["directConnectGatewayId"]
-    if "directConnectGatewayName" in data:
+    if data.get("directConnectGatewayName") is not None:
         out["direct_connect_gateway_name"] = data["directConnectGatewayName"]
-    if "amazonSideAsn" in data:
+    if data.get("amazonSideAsn") is not None:
         out["amazon_side_asn"] = data["amazonSideAsn"]
-    if "ownerAccount" in data:
+    if data.get("ownerAccount") is not None:
         out["owner_account"] = data["ownerAccount"]
-    if "directConnectGatewayState" in data:
+    if data.get("directConnectGatewayState") is not None:
         import capo_direct_connect.types.direct_connect_gateway_state
 
         out["direct_connect_gateway_state"] = (
@@ -87,9 +87,9 @@ def deserialize_aws_json_1_1(data: dict) -> DirectConnectGateway:
                 data["directConnectGatewayState"]
             )
         )
-    if "stateChangeError" in data:
+    if data.get("stateChangeError") is not None:
         out["state_change_error"] = data["stateChangeError"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_direct_connect.types.tag_list
 
         out["tags"] = capo_direct_connect.types.tag_list.deserialize_aws_json_1_1(

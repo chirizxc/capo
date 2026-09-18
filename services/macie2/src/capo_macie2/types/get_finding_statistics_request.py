@@ -52,19 +52,19 @@ def serialize_json(value: GetFindingStatisticsRequest) -> dict:
 
 def deserialize_json(data: dict) -> GetFindingStatisticsRequest:
     out: GetFindingStatisticsRequest = {}  # type: ignore[typeddict-item]
-    if "findingCriteria" in data:
+    if data.get("findingCriteria") is not None:
         import capo_macie2.types.finding_criteria
 
         out["finding_criteria"] = capo_macie2.types.finding_criteria.deserialize_json(
             data["findingCriteria"]
         )
-    if "groupBy" in data:
+    if data.get("groupBy") is not None:
         import capo_macie2.types.group_by
 
         out["group_by"] = capo_macie2.types.group_by.deserialize_json(data["groupBy"])
-    if "size" in data:
+    if data.get("size") is not None:
         out["size"] = data["size"]
-    if "sortCriteria" in data:
+    if data.get("sortCriteria") is not None:
         import capo_macie2.types.finding_statistics_sort_criteria
 
         out["sort_criteria"] = (

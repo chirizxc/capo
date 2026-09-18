@@ -27,8 +27,8 @@ def serialize_json(value: GetAgentConfigurationResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetAgentConfigurationResponse:
     out: GetAgentConfigurationResponse = {}  # type: ignore[typeddict-item]
-    if "agentId" in data:
+    if data.get("agentId") is not None:
         out["agent_id"] = data["agentId"]
-    if "taskingDocument" in data:
+    if data.get("taskingDocument") is not None:
         out["tasking_document"] = data["taskingDocument"]
     return out

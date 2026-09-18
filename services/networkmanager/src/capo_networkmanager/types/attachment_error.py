@@ -47,16 +47,16 @@ def serialize_json(value: AttachmentError) -> dict:
 
 def deserialize_json(data: dict) -> AttachmentError:
     out: AttachmentError = {}  # type: ignore[typeddict-item]
-    if "Code" in data:
+    if data.get("Code") is not None:
         import capo_networkmanager.types.attachment_error_code
 
         out["code"] = capo_networkmanager.types.attachment_error_code.deserialize_json(
             data["Code"]
         )
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
-    if "ResourceArn" in data:
+    if data.get("ResourceArn") is not None:
         out["resource_arn"] = data["ResourceArn"]
-    if "RequestId" in data:
+    if data.get("RequestId") is not None:
         out["request_id"] = data["RequestId"]
     return out

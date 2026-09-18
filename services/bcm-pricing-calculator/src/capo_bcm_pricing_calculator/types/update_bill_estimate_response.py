@@ -130,13 +130,13 @@ def serialize_aws_json_1_0(value: UpdateBillEstimateResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> UpdateBillEstimateResponse:
     out: UpdateBillEstimateResponse = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("UpdateBillEstimateResponse.id required")
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_bcm_pricing_calculator.types.bill_estimate_status
 
         out["status"] = (
@@ -144,9 +144,9 @@ def deserialize_aws_json_1_0(data: dict) -> UpdateBillEstimateResponse:
                 data["status"]
             )
         )
-    if "failureMessage" in data:
+    if data.get("failureMessage") is not None:
         out["failure_message"] = data["failureMessage"]
-    if "billInterval" in data:
+    if data.get("billInterval") is not None:
         import capo_bcm_pricing_calculator.types.bill_interval
 
         out["bill_interval"] = (
@@ -154,7 +154,7 @@ def deserialize_aws_json_1_0(data: dict) -> UpdateBillEstimateResponse:
                 data["billInterval"]
             )
         )
-    if "costSummary" in data:
+    if data.get("costSummary") is not None:
         import capo_bcm_pricing_calculator.types.bill_estimate_cost_summary
 
         out["cost_summary"] = (
@@ -162,7 +162,7 @@ def deserialize_aws_json_1_0(data: dict) -> UpdateBillEstimateResponse:
                 data["costSummary"]
             )
         )
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_bcm_pricing_calculator.types._prelude.timestamp
 
         out["created_at"] = (
@@ -170,7 +170,7 @@ def deserialize_aws_json_1_0(data: dict) -> UpdateBillEstimateResponse:
                 data["createdAt"]
             )
         )
-    if "expiresAt" in data:
+    if data.get("expiresAt") is not None:
         import capo_bcm_pricing_calculator.types._prelude.timestamp
 
         out["expires_at"] = (
@@ -178,7 +178,7 @@ def deserialize_aws_json_1_0(data: dict) -> UpdateBillEstimateResponse:
                 data["expiresAt"]
             )
         )
-    if "groupSharingPreference" in data:
+    if data.get("groupSharingPreference") is not None:
         import capo_bcm_pricing_calculator.types.group_sharing_preference_enum
 
         out["group_sharing_preference"] = (
@@ -186,11 +186,11 @@ def deserialize_aws_json_1_0(data: dict) -> UpdateBillEstimateResponse:
                 data["groupSharingPreference"]
             )
         )
-    if "costCategoryGroupSharingPreferenceArn" in data:
+    if data.get("costCategoryGroupSharingPreferenceArn") is not None:
         out["cost_category_group_sharing_preference_arn"] = data[
             "costCategoryGroupSharingPreferenceArn"
         ]
-    if "costCategoryGroupSharingPreferenceEffectiveDate" in data:
+    if data.get("costCategoryGroupSharingPreferenceEffectiveDate") is not None:
         import capo_bcm_pricing_calculator.types._prelude.timestamp
 
         out["cost_category_group_sharing_preference_effective_date"] = (

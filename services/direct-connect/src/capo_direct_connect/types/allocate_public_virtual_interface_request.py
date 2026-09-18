@@ -38,19 +38,19 @@ def serialize_aws_json_1_1(value: AllocatePublicVirtualInterfaceRequest) -> dict
 
 def deserialize_aws_json_1_1(data: dict) -> AllocatePublicVirtualInterfaceRequest:
     out: AllocatePublicVirtualInterfaceRequest = {}  # type: ignore[typeddict-item]
-    if "connectionId" in data:
+    if data.get("connectionId") is not None:
         out["connection_id"] = data["connectionId"]
     else:
         raise DeserializationError(
             "AllocatePublicVirtualInterfaceRequest.connection_id required"
         )
-    if "ownerAccount" in data:
+    if data.get("ownerAccount") is not None:
         out["owner_account"] = data["ownerAccount"]
     else:
         raise DeserializationError(
             "AllocatePublicVirtualInterfaceRequest.owner_account required"
         )
-    if "newPublicVirtualInterfaceAllocation" in data:
+    if data.get("newPublicVirtualInterfaceAllocation") is not None:
         import capo_direct_connect.types.new_public_virtual_interface_allocation
 
         out["new_public_virtual_interface_allocation"] = (

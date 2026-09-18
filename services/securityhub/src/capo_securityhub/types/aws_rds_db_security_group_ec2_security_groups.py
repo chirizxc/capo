@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> AwsRdsDbSecurityGroupEc2SecurityGroups:
 
     out: AwsRdsDbSecurityGroupEc2SecurityGroups = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_securityhub.types.aws_rds_db_security_group_ec2_security_group.deserialize_json(
                 item

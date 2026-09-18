@@ -29,6 +29,6 @@ def serialize_json(value: UpgradeReviewTemplateLensReviewInput) -> dict:
 
 def deserialize_json(data: dict) -> UpgradeReviewTemplateLensReviewInput:
     out: UpgradeReviewTemplateLensReviewInput = {}  # type: ignore[typeddict-item]
-    if "ClientRequestToken" in data:
+    if data.get("ClientRequestToken") is not None:
         out["client_request_token"] = data["ClientRequestToken"]
     return out

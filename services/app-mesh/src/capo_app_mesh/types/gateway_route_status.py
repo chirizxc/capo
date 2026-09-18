@@ -24,7 +24,7 @@ def serialize_json(value: GatewayRouteStatus) -> dict:
 
 def deserialize_json(data: dict) -> GatewayRouteStatus:
     out: GatewayRouteStatus = {}  # type: ignore[typeddict-item]
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
     else:
         raise DeserializationError("GatewayRouteStatus.status required")

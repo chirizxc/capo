@@ -34,14 +34,14 @@ def serialize_json(value: CreateDocumentationVersionRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateDocumentationVersionRequest:
     out: CreateDocumentationVersionRequest = {}  # type: ignore[typeddict-item]
-    if "documentationVersion" in data:
+    if data.get("documentationVersion") is not None:
         out["documentation_version"] = data["documentationVersion"]
     else:
         raise DeserializationError(
             "CreateDocumentationVersionRequest.documentation_version required"
         )
-    if "stageName" in data:
+    if data.get("stageName") is not None:
         out["stage_name"] = data["stageName"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
     return out

@@ -52,15 +52,15 @@ def serialize_json(value: DNSTargetResource) -> dict:
 
 def deserialize_json(data: dict) -> DNSTargetResource:
     out: DNSTargetResource = {}  # type: ignore[typeddict-item]
-    if "domainName" in data:
+    if data.get("domainName") is not None:
         out["domain_name"] = data["domainName"]
-    if "hostedZoneArn" in data:
+    if data.get("hostedZoneArn") is not None:
         out["hosted_zone_arn"] = data["hostedZoneArn"]
-    if "recordSetId" in data:
+    if data.get("recordSetId") is not None:
         out["record_set_id"] = data["recordSetId"]
-    if "recordType" in data:
+    if data.get("recordType") is not None:
         out["record_type"] = data["recordType"]
-    if "targetResource" in data:
+    if data.get("targetResource") is not None:
         import capo_route53_recovery_readiness.types.target_resource
 
         out["target_resource"] = (

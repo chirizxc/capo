@@ -86,40 +86,40 @@ def serialize_json(value: PodIdentityAssociation) -> dict:
 
 def deserialize_json(data: dict) -> PodIdentityAssociation:
     out: PodIdentityAssociation = {}  # type: ignore[typeddict-item]
-    if "clusterName" in data:
+    if data.get("clusterName") is not None:
         out["cluster_name"] = data["clusterName"]
-    if "namespace" in data:
+    if data.get("namespace") is not None:
         out["namespace"] = data["namespace"]
-    if "serviceAccount" in data:
+    if data.get("serviceAccount") is not None:
         out["service_account"] = data["serviceAccount"]
-    if "roleArn" in data:
+    if data.get("roleArn") is not None:
         out["role_arn"] = data["roleArn"]
-    if "associationArn" in data:
+    if data.get("associationArn") is not None:
         out["association_arn"] = data["associationArn"]
-    if "associationId" in data:
+    if data.get("associationId") is not None:
         out["association_id"] = data["associationId"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_eks.types.tag_map
 
         out["tags"] = capo_eks.types.tag_map.deserialize_json(data["tags"])
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_eks.types.timestamp
 
         out["created_at"] = capo_eks.types.timestamp.deserialize_json(data["createdAt"])
-    if "modifiedAt" in data:
+    if data.get("modifiedAt") is not None:
         import capo_eks.types.timestamp
 
         out["modified_at"] = capo_eks.types.timestamp.deserialize_json(
             data["modifiedAt"]
         )
-    if "ownerArn" in data:
+    if data.get("ownerArn") is not None:
         out["owner_arn"] = data["ownerArn"]
-    if "disableSessionTags" in data:
+    if data.get("disableSessionTags") is not None:
         out["disable_session_tags"] = data["disableSessionTags"]
-    if "targetRoleArn" in data:
+    if data.get("targetRoleArn") is not None:
         out["target_role_arn"] = data["targetRoleArn"]
-    if "externalId" in data:
+    if data.get("externalId") is not None:
         out["external_id"] = data["externalId"]
-    if "policy" in data:
+    if data.get("policy") is not None:
         out["policy"] = data["policy"]
     return out

@@ -23,5 +23,7 @@ def deserialize_aws_json_1_1(data: list) -> DiskMapList:
 
     out: DiskMapList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_lightsail.types.disk_map.deserialize_aws_json_1_1(item))
     return out

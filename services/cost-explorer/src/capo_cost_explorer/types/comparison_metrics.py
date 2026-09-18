@@ -29,6 +29,8 @@ def serialize_aws_json_1_1(input_to_serialize: ComparisonMetrics) -> dict:
 def deserialize_aws_json_1_1(data: dict) -> ComparisonMetrics:
     out: ComparisonMetrics = {}
     for key, value in data.items():
+        if value is None:
+            continue
         import capo_cost_explorer.types.comparison_metric_value
 
         out[key] = (

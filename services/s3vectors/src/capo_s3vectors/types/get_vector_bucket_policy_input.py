@@ -32,8 +32,8 @@ def serialize_json(value: GetVectorBucketPolicyInput) -> dict:
 
 def deserialize_json(data: dict) -> GetVectorBucketPolicyInput:
     out: GetVectorBucketPolicyInput = {}  # type: ignore[typeddict-item]
-    if "vectorBucketName" in data:
+    if data.get("vectorBucketName") is not None:
         out["vector_bucket_name"] = data["vectorBucketName"]
-    if "vectorBucketArn" in data:
+    if data.get("vectorBucketArn") is not None:
         out["vector_bucket_arn"] = data["vectorBucketArn"]
     return out

@@ -42,23 +42,23 @@ def serialize_json(value: SessionKeyMastercard) -> dict:
 
 def deserialize_json(data: dict) -> SessionKeyMastercard:
     out: SessionKeyMastercard = {}  # type: ignore[typeddict-item]
-    if "PrimaryAccountNumber" in data:
+    if data.get("PrimaryAccountNumber") is not None:
         out["primary_account_number"] = data["PrimaryAccountNumber"]
     else:
         raise DeserializationError(
             "SessionKeyMastercard.primary_account_number required"
         )
-    if "PanSequenceNumber" in data:
+    if data.get("PanSequenceNumber") is not None:
         out["pan_sequence_number"] = data["PanSequenceNumber"]
     else:
         raise DeserializationError("SessionKeyMastercard.pan_sequence_number required")
-    if "ApplicationTransactionCounter" in data:
+    if data.get("ApplicationTransactionCounter") is not None:
         out["application_transaction_counter"] = data["ApplicationTransactionCounter"]
     else:
         raise DeserializationError(
             "SessionKeyMastercard.application_transaction_counter required"
         )
-    if "UnpredictableNumber" in data:
+    if data.get("UnpredictableNumber") is not None:
         out["unpredictable_number"] = data["UnpredictableNumber"]
     else:
         raise DeserializationError("SessionKeyMastercard.unpredictable_number required")

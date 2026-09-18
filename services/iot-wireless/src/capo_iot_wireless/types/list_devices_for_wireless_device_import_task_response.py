@@ -69,11 +69,11 @@ def serialize_json(value: ListDevicesForWirelessDeviceImportTaskResponse) -> dic
 
 def deserialize_json(data: dict) -> ListDevicesForWirelessDeviceImportTaskResponse:
     out: ListDevicesForWirelessDeviceImportTaskResponse = {}  # type: ignore[typeddict-item]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "DestinationName" in data:
+    if data.get("DestinationName") is not None:
         out["destination_name"] = data["DestinationName"]
-    if "Positioning" in data:
+    if data.get("Positioning") is not None:
         import capo_iot_wireless.types.positioning_config_status
 
         out["positioning"] = (
@@ -81,7 +81,7 @@ def deserialize_json(data: dict) -> ListDevicesForWirelessDeviceImportTaskRespon
                 data["Positioning"]
             )
         )
-    if "Sidewalk" in data:
+    if data.get("Sidewalk") is not None:
         import capo_iot_wireless.types.sidewalk_list_devices_for_import_info
 
         out["sidewalk"] = (
@@ -89,7 +89,7 @@ def deserialize_json(data: dict) -> ListDevicesForWirelessDeviceImportTaskRespon
                 data["Sidewalk"]
             )
         )
-    if "ImportedWirelessDeviceList" in data:
+    if data.get("ImportedWirelessDeviceList") is not None:
         import capo_iot_wireless.types.imported_wireless_device_list
 
         out["imported_wireless_device_list"] = (

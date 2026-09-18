@@ -44,7 +44,7 @@ def serialize_json(value: TopicRuleDestinationConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> TopicRuleDestinationConfiguration:
     out: TopicRuleDestinationConfiguration = {}  # type: ignore[typeddict-item]
-    if "httpUrlConfiguration" in data:
+    if data.get("httpUrlConfiguration") is not None:
         import capo_iot.types.http_url_destination_configuration
 
         out["http_url_configuration"] = (
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> TopicRuleDestinationConfiguration:
                 data["httpUrlConfiguration"]
             )
         )
-    if "vpcConfiguration" in data:
+    if data.get("vpcConfiguration") is not None:
         import capo_iot.types.vpc_destination_configuration
 
         out["vpc_configuration"] = (

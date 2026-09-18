@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> ListOfAuthorizer:
 
     out: ListOfAuthorizer = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_api_gateway.types.authorizer.deserialize_json(item))
     return out

@@ -33,7 +33,7 @@ def serialize_json(value: UpdateCampaignChannelSubtypeConfigRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateCampaignChannelSubtypeConfigRequest:
     out: UpdateCampaignChannelSubtypeConfigRequest = {}  # type: ignore[typeddict-item]
-    if "channelSubtypeConfig" in data:
+    if data.get("channelSubtypeConfig") is not None:
         import capo_connectcampaignsv2.types.channel_subtype_config
 
         out["channel_subtype_config"] = (

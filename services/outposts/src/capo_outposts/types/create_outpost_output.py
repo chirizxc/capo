@@ -24,7 +24,7 @@ def serialize_json(value: CreateOutpostOutput) -> dict:
 
 def deserialize_json(data: dict) -> CreateOutpostOutput:
     out: CreateOutpostOutput = {}  # type: ignore[typeddict-item]
-    if "Outpost" in data:
+    if data.get("Outpost") is not None:
         import capo_outposts.types.outpost
 
         out["outpost"] = capo_outposts.types.outpost.deserialize_json(data["Outpost"])

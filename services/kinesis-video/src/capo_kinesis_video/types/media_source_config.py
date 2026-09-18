@@ -34,11 +34,11 @@ def serialize_json(value: MediaSourceConfig) -> dict:
 
 def deserialize_json(data: dict) -> MediaSourceConfig:
     out: MediaSourceConfig = {}  # type: ignore[typeddict-item]
-    if "MediaUriSecretArn" in data:
+    if data.get("MediaUriSecretArn") is not None:
         out["media_uri_secret_arn"] = data["MediaUriSecretArn"]
     else:
         raise DeserializationError("MediaSourceConfig.media_uri_secret_arn required")
-    if "MediaUriType" in data:
+    if data.get("MediaUriType") is not None:
         import capo_kinesis_video.types.media_uri_type
 
         out["media_uri_type"] = (

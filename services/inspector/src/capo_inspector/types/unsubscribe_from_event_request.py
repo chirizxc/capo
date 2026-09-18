@@ -35,11 +35,11 @@ def serialize_aws_json_1_1(value: UnsubscribeFromEventRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UnsubscribeFromEventRequest:
     out: UnsubscribeFromEventRequest = {}  # type: ignore[typeddict-item]
-    if "resourceArn" in data:
+    if data.get("resourceArn") is not None:
         out["resource_arn"] = data["resourceArn"]
     else:
         raise DeserializationError("UnsubscribeFromEventRequest.resource_arn required")
-    if "event" in data:
+    if data.get("event") is not None:
         import capo_inspector.types.inspector_event
 
         out["event"] = capo_inspector.types.inspector_event.deserialize_aws_json_1_1(
@@ -47,7 +47,7 @@ def deserialize_aws_json_1_1(data: dict) -> UnsubscribeFromEventRequest:
         )
     else:
         raise DeserializationError("UnsubscribeFromEventRequest.event required")
-    if "topicArn" in data:
+    if data.get("topicArn") is not None:
         out["topic_arn"] = data["topicArn"]
     else:
         raise DeserializationError("UnsubscribeFromEventRequest.topic_arn required")

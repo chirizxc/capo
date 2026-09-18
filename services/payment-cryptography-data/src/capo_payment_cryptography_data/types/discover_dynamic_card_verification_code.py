@@ -34,19 +34,19 @@ def serialize_json(value: DiscoverDynamicCardVerificationCode) -> dict:
 
 def deserialize_json(data: dict) -> DiscoverDynamicCardVerificationCode:
     out: DiscoverDynamicCardVerificationCode = {}  # type: ignore[typeddict-item]
-    if "CardExpiryDate" in data:
+    if data.get("CardExpiryDate") is not None:
         out["card_expiry_date"] = data["CardExpiryDate"]
     else:
         raise DeserializationError(
             "DiscoverDynamicCardVerificationCode.card_expiry_date required"
         )
-    if "UnpredictableNumber" in data:
+    if data.get("UnpredictableNumber") is not None:
         out["unpredictable_number"] = data["UnpredictableNumber"]
     else:
         raise DeserializationError(
             "DiscoverDynamicCardVerificationCode.unpredictable_number required"
         )
-    if "ApplicationTransactionCounter" in data:
+    if data.get("ApplicationTransactionCounter") is not None:
         out["application_transaction_counter"] = data["ApplicationTransactionCounter"]
     else:
         raise DeserializationError(

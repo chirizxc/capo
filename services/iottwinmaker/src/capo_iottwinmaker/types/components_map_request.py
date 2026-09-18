@@ -25,6 +25,8 @@ def serialize_json(input_to_serialize: ComponentsMapRequest) -> dict:
 def deserialize_json(data: dict) -> ComponentsMapRequest:
     out: ComponentsMapRequest = {}
     for key, value in data.items():
+        if value is None:
+            continue
         import capo_iottwinmaker.types.component_request
 
         out[key] = capo_iottwinmaker.types.component_request.deserialize_json(value)

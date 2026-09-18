@@ -34,8 +34,8 @@ def serialize_json(value: CancelJobRequest) -> dict:
 
 def deserialize_json(data: dict) -> CancelJobRequest:
     out: CancelJobRequest = {}  # type: ignore[typeddict-item]
-    if "reasonCode" in data:
+    if data.get("reasonCode") is not None:
         out["reason_code"] = data["reasonCode"]
-    if "comment" in data:
+    if data.get("comment") is not None:
         out["comment"] = data["comment"]
     return out

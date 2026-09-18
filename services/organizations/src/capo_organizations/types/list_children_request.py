@@ -42,11 +42,11 @@ def serialize_aws_json_1_1(value: ListChildrenRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListChildrenRequest:
     out: ListChildrenRequest = {}  # type: ignore[typeddict-item]
-    if "ParentId" in data:
+    if data.get("ParentId") is not None:
         out["parent_id"] = data["ParentId"]
     else:
         raise DeserializationError("ListChildrenRequest.parent_id required")
-    if "ChildType" in data:
+    if data.get("ChildType") is not None:
         import capo_organizations.types.child_type
 
         out["child_type"] = (
@@ -56,8 +56,8 @@ def deserialize_aws_json_1_1(data: dict) -> ListChildrenRequest:
         )
     else:
         raise DeserializationError("ListChildrenRequest.child_type required")
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
     return out

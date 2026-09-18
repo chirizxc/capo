@@ -28,15 +28,15 @@ def serialize_aws_json_1_1(value: BooleanColumnStatisticsData) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> BooleanColumnStatisticsData:
     out: BooleanColumnStatisticsData = {}  # type: ignore[typeddict-item]
-    if "NumberOfTrues" in data:
+    if data.get("NumberOfTrues") is not None:
         out["number_of_trues"] = data["NumberOfTrues"]
     else:
         out["number_of_trues"] = 0
-    if "NumberOfFalses" in data:
+    if data.get("NumberOfFalses") is not None:
         out["number_of_falses"] = data["NumberOfFalses"]
     else:
         out["number_of_falses"] = 0
-    if "NumberOfNulls" in data:
+    if data.get("NumberOfNulls") is not None:
         out["number_of_nulls"] = data["NumberOfNulls"]
     else:
         out["number_of_nulls"] = 0

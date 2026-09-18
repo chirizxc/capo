@@ -62,9 +62,9 @@ def serialize_json(value: UpdateScraperRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateScraperRequest:
     out: UpdateScraperRequest = {}  # type: ignore[typeddict-item]
-    if "alias" in data:
+    if data.get("alias") is not None:
         out["alias"] = data["alias"]
-    if "scrapeConfiguration" in data:
+    if data.get("scrapeConfiguration") is not None:
         import capo_amp.types.scrape_configuration
 
         out["scrape_configuration"] = (
@@ -72,18 +72,18 @@ def deserialize_json(data: dict) -> UpdateScraperRequest:
                 data["scrapeConfiguration"]
             )
         )
-    if "destination" in data:
+    if data.get("destination") is not None:
         import capo_amp.types.destination
 
         out["destination"] = capo_amp.types.destination.deserialize_json(
             data["destination"]
         )
-    if "roleConfiguration" in data:
+    if data.get("roleConfiguration") is not None:
         import capo_amp.types.role_configuration
 
         out["role_configuration"] = capo_amp.types.role_configuration.deserialize_json(
             data["roleConfiguration"]
         )
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     return out

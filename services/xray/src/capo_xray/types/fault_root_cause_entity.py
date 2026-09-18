@@ -37,14 +37,14 @@ def serialize_json(value: FaultRootCauseEntity) -> dict:
 
 def deserialize_json(data: dict) -> FaultRootCauseEntity:
     out: FaultRootCauseEntity = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Exceptions" in data:
+    if data.get("Exceptions") is not None:
         import capo_xray.types.root_cause_exceptions
 
         out["exceptions"] = capo_xray.types.root_cause_exceptions.deserialize_json(
             data["Exceptions"]
         )
-    if "Remote" in data:
+    if data.get("Remote") is not None:
         out["remote"] = data["Remote"]
     return out

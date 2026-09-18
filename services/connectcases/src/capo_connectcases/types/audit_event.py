@@ -64,17 +64,17 @@ def serialize_json(value: AuditEvent) -> dict:
 
 def deserialize_json(data: dict) -> AuditEvent:
     out: AuditEvent = {}  # type: ignore[typeddict-item]
-    if "eventId" in data:
+    if data.get("eventId") is not None:
         out["event_id"] = data["eventId"]
     else:
         raise DeserializationError("AuditEvent.event_id required")
-    if "type" in data:
+    if data.get("type") is not None:
         out["type"] = data["type"]
     else:
         raise DeserializationError("AuditEvent.type required")
-    if "relatedItemType" in data:
+    if data.get("relatedItemType") is not None:
         out["related_item_type"] = data["relatedItemType"]
-    if "performedTime" in data:
+    if data.get("performedTime") is not None:
         import capo_connectcases.types.audit_event_date_time
 
         out["performed_time"] = (
@@ -84,7 +84,7 @@ def deserialize_json(data: dict) -> AuditEvent:
         )
     else:
         raise DeserializationError("AuditEvent.performed_time required")
-    if "fields" in data:
+    if data.get("fields") is not None:
         import capo_connectcases.types.audit_event_field_list
 
         out["fields"] = capo_connectcases.types.audit_event_field_list.deserialize_json(
@@ -92,7 +92,7 @@ def deserialize_json(data: dict) -> AuditEvent:
         )
     else:
         raise DeserializationError("AuditEvent.fields required")
-    if "performedBy" in data:
+    if data.get("performedBy") is not None:
         import capo_connectcases.types.audit_event_performed_by
 
         out["performed_by"] = (

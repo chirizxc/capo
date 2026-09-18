@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> __listOfChannelEgressEndpoint:
 
     out: __listOfChannelEgressEndpoint = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_medialive.types.channel_egress_endpoint.deserialize_json(item))
     return out

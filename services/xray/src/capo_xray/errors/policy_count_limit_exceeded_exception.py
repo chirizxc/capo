@@ -24,7 +24,7 @@ def serialize_json(value: PolicyCountLimitExceededException_) -> dict:
 
 def deserialize_json(data: dict) -> PolicyCountLimitExceededException_:
     out: PolicyCountLimitExceededException_ = {}  # type: ignore[typeddict-item]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     return out
 
@@ -34,15 +34,20 @@ class PolicyCountLimitExceededException(ServiceError):
 
     code: str | None = "PolicyCountLimitExceededException"
 
-    def __init__(self, data: PolicyCountLimitExceededException_):
+    def __init__(
+        self, data: PolicyCountLimitExceededException_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="PolicyCountLimitExceededException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "PolicyCountLimitExceededException":
-        return cls(deserialize_json(data))
+    def from_json(
+        cls, data: dict, message: str | None = None
+    ) -> "PolicyCountLimitExceededException":
+        return cls(deserialize_json(data), message)

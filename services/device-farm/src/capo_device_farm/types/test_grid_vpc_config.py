@@ -42,7 +42,7 @@ def serialize_aws_json_1_1(value: TestGridVpcConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> TestGridVpcConfig:
     out: TestGridVpcConfig = {}  # type: ignore[typeddict-item]
-    if "securityGroupIds" in data:
+    if data.get("securityGroupIds") is not None:
         import capo_device_farm.types.security_group_ids
 
         out["security_group_ids"] = (
@@ -52,7 +52,7 @@ def deserialize_aws_json_1_1(data: dict) -> TestGridVpcConfig:
         )
     else:
         raise DeserializationError("TestGridVpcConfig.security_group_ids required")
-    if "subnetIds" in data:
+    if data.get("subnetIds") is not None:
         import capo_device_farm.types.subnet_ids
 
         out["subnet_ids"] = capo_device_farm.types.subnet_ids.deserialize_aws_json_1_1(
@@ -60,7 +60,7 @@ def deserialize_aws_json_1_1(data: dict) -> TestGridVpcConfig:
         )
     else:
         raise DeserializationError("TestGridVpcConfig.subnet_ids required")
-    if "vpcId" in data:
+    if data.get("vpcId") is not None:
         out["vpc_id"] = data["vpcId"]
     else:
         raise DeserializationError("TestGridVpcConfig.vpc_id required")

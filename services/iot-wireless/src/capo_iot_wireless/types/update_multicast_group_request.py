@@ -38,11 +38,11 @@ def serialize_json(value: UpdateMulticastGroupRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateMulticastGroupRequest:
     out: UpdateMulticastGroupRequest = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "LoRaWAN" in data:
+    if data.get("LoRaWAN") is not None:
         import capo_iot_wireless.types.lo_ra_wan_multicast
 
         out["lo_ra_wan"] = capo_iot_wireless.types.lo_ra_wan_multicast.deserialize_json(

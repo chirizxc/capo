@@ -54,17 +54,17 @@ def serialize_aws_json_1_0(value: Route53HealthCheck) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> Route53HealthCheck:
     out: Route53HealthCheck = {}  # type: ignore[typeddict-item]
-    if "hostedZoneId" in data:
+    if data.get("hostedZoneId") is not None:
         out["hosted_zone_id"] = data["hostedZoneId"]
     else:
         raise DeserializationError("Route53HealthCheck.hosted_zone_id required")
-    if "recordName" in data:
+    if data.get("recordName") is not None:
         out["record_name"] = data["recordName"]
     else:
         raise DeserializationError("Route53HealthCheck.record_name required")
-    if "healthCheckId" in data:
+    if data.get("healthCheckId") is not None:
         out["health_check_id"] = data["healthCheckId"]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_arc_region_switch.types.route53_health_check_status
 
         out["status"] = (
@@ -72,7 +72,7 @@ def deserialize_aws_json_1_0(data: dict) -> Route53HealthCheck:
                 data["status"]
             )
         )
-    if "region" in data:
+    if data.get("region") is not None:
         out["region"] = data["region"]
     else:
         raise DeserializationError("Route53HealthCheck.region required")

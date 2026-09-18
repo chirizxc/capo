@@ -40,7 +40,7 @@ def deserialize_json(
     data: dict,
 ) -> AwsMskClusterClusterInfoClientAuthenticationTlsDetails:
     out: AwsMskClusterClusterInfoClientAuthenticationTlsDetails = {}  # type: ignore[typeddict-item]
-    if "CertificateAuthorityArnList" in data:
+    if data.get("CertificateAuthorityArnList") is not None:
         import capo_securityhub.types.string_list
 
         out["certificate_authority_arn_list"] = (
@@ -48,6 +48,6 @@ def deserialize_json(
                 data["CertificateAuthorityArnList"]
             )
         )
-    if "Enabled" in data:
+    if data.get("Enabled") is not None:
         out["enabled"] = data["Enabled"]
     return out

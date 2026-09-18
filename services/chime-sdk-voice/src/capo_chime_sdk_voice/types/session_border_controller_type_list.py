@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> SessionBorderControllerTypeList:
 
     out: SessionBorderControllerTypeList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_chime_sdk_voice.types.session_border_controller_type.deserialize_json(
                 item

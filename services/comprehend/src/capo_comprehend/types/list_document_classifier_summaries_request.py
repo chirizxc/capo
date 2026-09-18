@@ -30,8 +30,8 @@ def serialize_aws_json_1_1(value: ListDocumentClassifierSummariesRequest) -> dic
 
 def deserialize_aws_json_1_1(data: dict) -> ListDocumentClassifierSummariesRequest:
     out: ListDocumentClassifierSummariesRequest = {}  # type: ignore[typeddict-item]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
     return out

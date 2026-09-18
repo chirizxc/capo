@@ -32,12 +32,12 @@ def serialize_aws_json_1_1(value: DescribeSubscribersForNotificationResponse) ->
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeSubscribersForNotificationResponse:
     out: DescribeSubscribersForNotificationResponse = {}  # type: ignore[typeddict-item]
-    if "Subscribers" in data:
+    if data.get("Subscribers") is not None:
         import capo_budgets.types.subscribers
 
         out["subscribers"] = capo_budgets.types.subscribers.deserialize_aws_json_1_1(
             data["Subscribers"]
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

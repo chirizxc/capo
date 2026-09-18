@@ -25,6 +25,8 @@ def deserialize_json(data: list) -> __listOfHlsAdditionalManifest:
 
     out: __listOfHlsAdditionalManifest = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_mediaconvert.types.hls_additional_manifest.deserialize_json(item)
         )

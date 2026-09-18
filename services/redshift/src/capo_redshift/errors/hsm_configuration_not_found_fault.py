@@ -37,15 +37,20 @@ class HsmConfigurationNotFoundFault(ServiceError):
 
     code: str | None = "HsmConfigurationNotFoundFault"
 
-    def __init__(self, data: HsmConfigurationNotFoundFault_):
+    def __init__(
+        self, data: HsmConfigurationNotFoundFault_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="HsmConfigurationNotFoundFault",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_query(cls, el: Element) -> "HsmConfigurationNotFoundFault":
-        return cls(deserialize_query(el))
+    def from_query(
+        cls, el: Element, message: str | None = None
+    ) -> "HsmConfigurationNotFoundFault":
+        return cls(deserialize_query(el), message)

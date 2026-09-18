@@ -34,13 +34,13 @@ def serialize_json(value: DeleteRecommendationTemplateResponse) -> dict:
 
 def deserialize_json(data: dict) -> DeleteRecommendationTemplateResponse:
     out: DeleteRecommendationTemplateResponse = {}  # type: ignore[typeddict-item]
-    if "recommendationTemplateArn" in data:
+    if data.get("recommendationTemplateArn") is not None:
         out["recommendation_template_arn"] = data["recommendationTemplateArn"]
     else:
         raise DeserializationError(
             "DeleteRecommendationTemplateResponse.recommendation_template_arn required"
         )
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_resiliencehub.types.recommendation_template_status
 
         out["status"] = (

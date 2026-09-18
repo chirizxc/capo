@@ -39,11 +39,11 @@ def serialize_aws_json_1_0(value: SubnetMapping) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> SubnetMapping:
     out: SubnetMapping = {}  # type: ignore[typeddict-item]
-    if "SubnetId" in data:
+    if data.get("SubnetId") is not None:
         out["subnet_id"] = data["SubnetId"]
     else:
         raise DeserializationError("SubnetMapping.subnet_id required")
-    if "IPAddressType" in data:
+    if data.get("IPAddressType") is not None:
         import capo_network_firewall.types.ip_address_type
 
         out["ip_address_type"] = (

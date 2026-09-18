@@ -14,4 +14,4 @@ def serialize_json(value: AssociatedServerIDs) -> list:
 
 
 def deserialize_json(data: list) -> AssociatedServerIDs:
-    return list(data)
+    return [item for item in data if item is not None]

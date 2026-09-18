@@ -46,15 +46,15 @@ def serialize_json(value: AwsCodeBuildProjectVpcConfig) -> dict:
 
 def deserialize_json(data: dict) -> AwsCodeBuildProjectVpcConfig:
     out: AwsCodeBuildProjectVpcConfig = {}  # type: ignore[typeddict-item]
-    if "VpcId" in data:
+    if data.get("VpcId") is not None:
         out["vpc_id"] = data["VpcId"]
-    if "Subnets" in data:
+    if data.get("Subnets") is not None:
         import capo_securityhub.types.non_empty_string_list
 
         out["subnets"] = capo_securityhub.types.non_empty_string_list.deserialize_json(
             data["Subnets"]
         )
-    if "SecurityGroupIds" in data:
+    if data.get("SecurityGroupIds") is not None:
         import capo_securityhub.types.non_empty_string_list
 
         out["security_group_ids"] = (

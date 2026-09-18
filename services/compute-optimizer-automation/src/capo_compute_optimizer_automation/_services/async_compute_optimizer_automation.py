@@ -1,6 +1,7 @@
 """Generated from Smithy shape ``com.amazonaws.computeoptimizerautomation#ComputeOptimizerAutomationService``."""
 
 import datetime
+import uuid
 import warnings
 from collections.abc import AsyncIterator
 from typing import TYPE_CHECKING, Any, Iterable, Optional
@@ -247,16 +248,19 @@ class AsyncComputeOptimizerAutomationClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_compute_optimizer_automation.types.associate_accounts_request.AssociateAccountsRequest = {}  # type: ignore[typeddict-item]
-        input_["account_ids"] = account_ids
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_compute_optimizer_automation.types.associate_accounts_request.AssociateAccountsRequest = {
+            "account_ids": account_ids
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_automation_rule(
@@ -331,30 +335,33 @@ class AsyncComputeOptimizerAutomationClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_compute_optimizer_automation.types.create_automation_rule_request.CreateAutomationRuleRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_compute_optimizer_automation.types.create_automation_rule_request.CreateAutomationRuleRequest = {
+            "name": name,
+            "rule_type": rule_type,
+            "recommended_action_types": recommended_action_types,
+            "schedule": schedule,
+            "status": status,
+        }
         if description is not None:
             input_["description"] = description
-        input_["rule_type"] = rule_type
         if organization_configuration is not None:
             input_["organization_configuration"] = organization_configuration
         if priority is not None:
             input_["priority"] = priority
-        input_["recommended_action_types"] = recommended_action_types
         if criteria is not None:
             input_["criteria"] = criteria
-        input_["schedule"] = schedule
-        input_["status"] = status
         if tags is not None:
             input_["tags"] = tags
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_automation_rule(
@@ -404,17 +411,20 @@ class AsyncComputeOptimizerAutomationClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_compute_optimizer_automation.types.delete_automation_rule_request.DeleteAutomationRuleRequest = {}  # type: ignore[typeddict-item]
-        input_["rule_arn"] = rule_arn
-        input_["rule_revision"] = rule_revision
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_compute_optimizer_automation.types.delete_automation_rule_request.DeleteAutomationRuleRequest = {
+            "rule_arn": rule_arn,
+            "rule_revision": rule_revision,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def disassociate_accounts(
@@ -462,16 +472,19 @@ class AsyncComputeOptimizerAutomationClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_compute_optimizer_automation.types.disassociate_accounts_request.DisassociateAccountsRequest = {}  # type: ignore[typeddict-item]
-        input_["account_ids"] = account_ids
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_compute_optimizer_automation.types.disassociate_accounts_request.DisassociateAccountsRequest = {
+            "account_ids": account_ids
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_automation_event(
@@ -513,14 +526,16 @@ class AsyncComputeOptimizerAutomationClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_compute_optimizer_automation.types.get_automation_event_request.GetAutomationEventRequest = {}  # type: ignore[typeddict-item]
-        input_["event_id"] = event_id
+        input_: capo_compute_optimizer_automation.types.get_automation_event_request.GetAutomationEventRequest = {
+            "event_id": event_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_automation_rule(
@@ -562,14 +577,16 @@ class AsyncComputeOptimizerAutomationClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_compute_optimizer_automation.types.get_automation_rule_request.GetAutomationRuleRequest = {}  # type: ignore[typeddict-item]
-        input_["rule_arn"] = rule_arn
+        input_: capo_compute_optimizer_automation.types.get_automation_rule_request.GetAutomationRuleRequest = {
+            "rule_arn": rule_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_enrollment_configuration(
@@ -607,13 +624,14 @@ class AsyncComputeOptimizerAutomationClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_compute_optimizer_automation.types.get_enrollment_configuration_request.GetEnrollmentConfigurationRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_compute_optimizer_automation.types.get_enrollment_configuration_request.GetEnrollmentConfigurationRequest = {}
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_accounts(
@@ -659,7 +677,7 @@ class AsyncComputeOptimizerAutomationClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_compute_optimizer_automation.types.list_accounts_request.ListAccountsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_compute_optimizer_automation.types.list_accounts_request.ListAccountsRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -670,6 +688,7 @@ class AsyncComputeOptimizerAutomationClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_accounts(
@@ -745,7 +764,7 @@ class AsyncComputeOptimizerAutomationClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_compute_optimizer_automation.types.list_automation_events_request.ListAutomationEventsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_compute_optimizer_automation.types.list_automation_events_request.ListAutomationEventsRequest = {}
         if filters is not None:
             input_["filters"] = filters
         if start_time_inclusive is not None:
@@ -762,6 +781,7 @@ class AsyncComputeOptimizerAutomationClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_automation_events(
@@ -840,8 +860,9 @@ class AsyncComputeOptimizerAutomationClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_compute_optimizer_automation.types.list_automation_event_steps_request.ListAutomationEventStepsRequest = {}  # type: ignore[typeddict-item]
-        input_["event_id"] = event_id
+        input_: capo_compute_optimizer_automation.types.list_automation_event_steps_request.ListAutomationEventStepsRequest = {
+            "event_id": event_id
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -852,6 +873,7 @@ class AsyncComputeOptimizerAutomationClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_automation_event_steps(
@@ -929,7 +951,7 @@ class AsyncComputeOptimizerAutomationClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_compute_optimizer_automation.types.list_automation_event_summaries_request.ListAutomationEventSummariesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_compute_optimizer_automation.types.list_automation_event_summaries_request.ListAutomationEventSummariesRequest = {}
         if filters is not None:
             input_["filters"] = filters
         if start_date_inclusive is not None:
@@ -946,6 +968,7 @@ class AsyncComputeOptimizerAutomationClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_automation_event_summaries(
@@ -1033,11 +1056,12 @@ class AsyncComputeOptimizerAutomationClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_compute_optimizer_automation.types.list_automation_rule_preview_request.ListAutomationRulePreviewRequest = {}  # type: ignore[typeddict-item]
-        input_["rule_type"] = rule_type
+        input_: capo_compute_optimizer_automation.types.list_automation_rule_preview_request.ListAutomationRulePreviewRequest = {
+            "rule_type": rule_type,
+            "recommended_action_types": recommended_action_types,
+        }
         if organization_scope is not None:
             input_["organization_scope"] = organization_scope
-        input_["recommended_action_types"] = recommended_action_types
         if criteria is not None:
             input_["criteria"] = criteria
         if max_results is not None:
@@ -1050,6 +1074,7 @@ class AsyncComputeOptimizerAutomationClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_automation_rule_preview(
@@ -1140,11 +1165,12 @@ class AsyncComputeOptimizerAutomationClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_compute_optimizer_automation.types.list_automation_rule_preview_summaries_request.ListAutomationRulePreviewSummariesRequest = {}  # type: ignore[typeddict-item]
-        input_["rule_type"] = rule_type
+        input_: capo_compute_optimizer_automation.types.list_automation_rule_preview_summaries_request.ListAutomationRulePreviewSummariesRequest = {
+            "rule_type": rule_type,
+            "recommended_action_types": recommended_action_types,
+        }
         if organization_scope is not None:
             input_["organization_scope"] = organization_scope
-        input_["recommended_action_types"] = recommended_action_types
         if criteria is not None:
             input_["criteria"] = criteria
         if max_results is not None:
@@ -1157,6 +1183,7 @@ class AsyncComputeOptimizerAutomationClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_automation_rule_preview_summaries(
@@ -1240,7 +1267,7 @@ class AsyncComputeOptimizerAutomationClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_compute_optimizer_automation.types.list_automation_rules_request.ListAutomationRulesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_compute_optimizer_automation.types.list_automation_rules_request.ListAutomationRulesRequest = {}
         if filters is not None:
             input_["filters"] = filters
         if max_results is not None:
@@ -1253,6 +1280,7 @@ class AsyncComputeOptimizerAutomationClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_automation_rules(
@@ -1328,7 +1356,7 @@ class AsyncComputeOptimizerAutomationClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_compute_optimizer_automation.types.list_recommended_actions_request.ListRecommendedActionsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_compute_optimizer_automation.types.list_recommended_actions_request.ListRecommendedActionsRequest = {}
         if filters is not None:
             input_["filters"] = filters
         if max_results is not None:
@@ -1341,6 +1369,7 @@ class AsyncComputeOptimizerAutomationClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_recommended_actions(
@@ -1416,7 +1445,7 @@ class AsyncComputeOptimizerAutomationClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_compute_optimizer_automation.types.list_recommended_action_summaries_request.ListRecommendedActionSummariesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_compute_optimizer_automation.types.list_recommended_action_summaries_request.ListRecommendedActionSummariesRequest = {}
         if filters is not None:
             input_["filters"] = filters
         if max_results is not None:
@@ -1429,6 +1458,7 @@ class AsyncComputeOptimizerAutomationClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_recommended_action_summaries(
@@ -1497,14 +1527,16 @@ class AsyncComputeOptimizerAutomationClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_compute_optimizer_automation.types.list_tags_for_resource_request.ListTagsForResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_compute_optimizer_automation.types.list_tags_for_resource_request.ListTagsForResourceRequest = {
+            "resource_arn": resource_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def rollback_automation_event(
@@ -1552,16 +1584,19 @@ class AsyncComputeOptimizerAutomationClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_compute_optimizer_automation.types.rollback_automation_event_request.RollbackAutomationEventRequest = {}  # type: ignore[typeddict-item]
-        input_["event_id"] = event_id
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_compute_optimizer_automation.types.rollback_automation_event_request.RollbackAutomationEventRequest = {
+            "event_id": event_id
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def start_automation_event(
@@ -1610,16 +1645,19 @@ class AsyncComputeOptimizerAutomationClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_compute_optimizer_automation.types.start_automation_event_request.StartAutomationEventRequest = {}  # type: ignore[typeddict-item]
-        input_["recommended_action_id"] = recommended_action_id
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_compute_optimizer_automation.types.start_automation_event_request.StartAutomationEventRequest = {
+            "recommended_action_id": recommended_action_id
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def tag_resource(
@@ -1671,18 +1709,21 @@ class AsyncComputeOptimizerAutomationClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_compute_optimizer_automation.types.tag_resource_request.TagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["rule_revision"] = rule_revision
-        input_["tags"] = tags
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_compute_optimizer_automation.types.tag_resource_request.TagResourceRequest = {
+            "resource_arn": resource_arn,
+            "rule_revision": rule_revision,
+            "tags": tags,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def untag_resource(
@@ -1734,18 +1775,21 @@ class AsyncComputeOptimizerAutomationClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_compute_optimizer_automation.types.untag_resource_request.UntagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["rule_revision"] = rule_revision
-        input_["tag_keys"] = tag_keys
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_compute_optimizer_automation.types.untag_resource_request.UntagResourceRequest = {
+            "resource_arn": resource_arn,
+            "rule_revision": rule_revision,
+            "tag_keys": tag_keys,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_automation_rule(
@@ -1828,9 +1872,10 @@ class AsyncComputeOptimizerAutomationClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_compute_optimizer_automation.types.update_automation_rule_request.UpdateAutomationRuleRequest = {}  # type: ignore[typeddict-item]
-        input_["rule_arn"] = rule_arn
-        input_["rule_revision"] = rule_revision
+        input_: capo_compute_optimizer_automation.types.update_automation_rule_request.UpdateAutomationRuleRequest = {
+            "rule_arn": rule_arn,
+            "rule_revision": rule_revision,
+        }
         if name is not None:
             input_["name"] = name
         if description is not None:
@@ -1849,14 +1894,16 @@ class AsyncComputeOptimizerAutomationClient:
             input_["schedule"] = schedule
         if status is not None:
             input_["status"] = status
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_enrollment_configuration(
@@ -1905,16 +1952,19 @@ class AsyncComputeOptimizerAutomationClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_compute_optimizer_automation.types.update_enrollment_configuration_request.UpdateEnrollmentConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["status"] = status
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_compute_optimizer_automation.types.update_enrollment_configuration_request.UpdateEnrollmentConfigurationRequest = {
+            "status": status
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def __aenter__(self) -> Self:

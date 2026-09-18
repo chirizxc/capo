@@ -28,11 +28,11 @@ def serialize_json(value: MetricDefinition) -> dict:
 
 def deserialize_json(data: dict) -> MetricDefinition:
     out: MetricDefinition = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("MetricDefinition.name required")
-    if "regex" in data:
+    if data.get("regex") is not None:
         out["regex"] = data["regex"]
     else:
         raise DeserializationError("MetricDefinition.regex required")

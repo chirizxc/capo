@@ -25,6 +25,6 @@ def serialize_aws_json_1_1(value: AutoTrainingConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AutoTrainingConfig:
     out: AutoTrainingConfig = {}  # type: ignore[typeddict-item]
-    if "schedulingExpression" in data:
+    if data.get("schedulingExpression") is not None:
         out["scheduling_expression"] = data["schedulingExpression"]
     return out

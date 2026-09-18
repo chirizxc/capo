@@ -43,7 +43,7 @@ def serialize_json(value: GetPendingJobExecutionsResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetPendingJobExecutionsResponse:
     out: GetPendingJobExecutionsResponse = {}  # type: ignore[typeddict-item]
-    if "inProgressJobs" in data:
+    if data.get("inProgressJobs") is not None:
         import capo_iot_jobs_data_plane.types.job_execution_summary_list
 
         out["in_progress_jobs"] = (
@@ -51,7 +51,7 @@ def deserialize_json(data: dict) -> GetPendingJobExecutionsResponse:
                 data["inProgressJobs"]
             )
         )
-    if "queuedJobs" in data:
+    if data.get("queuedJobs") is not None:
         import capo_iot_jobs_data_plane.types.job_execution_summary_list
 
         out["queued_jobs"] = (

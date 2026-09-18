@@ -38,7 +38,7 @@ def serialize_json(value: InboundConnectionStatus) -> dict:
 
 def deserialize_json(data: dict) -> InboundConnectionStatus:
     out: InboundConnectionStatus = {}  # type: ignore[typeddict-item]
-    if "StatusCode" in data:
+    if data.get("StatusCode") is not None:
         import capo_opensearch.types.inbound_connection_status_code
 
         out["status_code"] = (
@@ -46,6 +46,6 @@ def deserialize_json(data: dict) -> InboundConnectionStatus:
                 data["StatusCode"]
             )
         )
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     return out

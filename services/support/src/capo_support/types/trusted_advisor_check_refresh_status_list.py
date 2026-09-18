@@ -29,6 +29,8 @@ def deserialize_aws_json_1_1(data: list) -> TrustedAdvisorCheckRefreshStatusList
 
     out: TrustedAdvisorCheckRefreshStatusList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_support.types.trusted_advisor_check_refresh_status.deserialize_aws_json_1_1(
                 item

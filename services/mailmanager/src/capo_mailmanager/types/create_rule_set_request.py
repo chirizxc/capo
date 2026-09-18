@@ -46,13 +46,13 @@ def serialize_aws_json_1_0(value: CreateRuleSetRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CreateRuleSetRequest:
     out: CreateRuleSetRequest = {}  # type: ignore[typeddict-item]
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
-    if "RuleSetName" in data:
+    if data.get("RuleSetName") is not None:
         out["rule_set_name"] = data["RuleSetName"]
     else:
         raise DeserializationError("CreateRuleSetRequest.rule_set_name required")
-    if "Rules" in data:
+    if data.get("Rules") is not None:
         import capo_mailmanager.types.rules
 
         out["rules"] = capo_mailmanager.types.rules.deserialize_aws_json_1_0(
@@ -60,7 +60,7 @@ def deserialize_aws_json_1_0(data: dict) -> CreateRuleSetRequest:
         )
     else:
         raise DeserializationError("CreateRuleSetRequest.rules required")
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_mailmanager.types.tag_list
 
         out["tags"] = capo_mailmanager.types.tag_list.deserialize_aws_json_1_0(

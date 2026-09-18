@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import uuid
 from typing import TYPE_CHECKING, Optional
 
 from capo_mailmanager._services._pipeline import (
@@ -117,13 +118,15 @@ class IngressPointResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mailmanager.types.create_ingress_point_request.CreateIngressPointRequest = {}  # type: ignore[typeddict-item]
-        if client_token is not None:
-            input_["client_token"] = client_token
-        input_["ingress_point_name"] = ingress_point_name
-        input_["type"] = type
-        input_["rule_set_id"] = rule_set_id
-        input_["traffic_policy_id"] = traffic_policy_id
+        input_: capo_mailmanager.types.create_ingress_point_request.CreateIngressPointRequest = {
+            "ingress_point_name": ingress_point_name,
+            "type": type,
+            "rule_set_id": rule_set_id,
+            "traffic_policy_id": traffic_policy_id,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if ingress_point_configuration is not None:
             input_["ingress_point_configuration"] = ingress_point_configuration
         if network_configuration is not None:
@@ -138,6 +141,7 @@ class IngressPointResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -184,8 +188,9 @@ class IngressPointResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mailmanager.types.get_ingress_point_request.GetIngressPointRequest = {}  # type: ignore[typeddict-item]
-        input_["ingress_point_id"] = ingress_point_id
+        input_: capo_mailmanager.types.get_ingress_point_request.GetIngressPointRequest = {
+            "ingress_point_id": ingress_point_id
+        }
         if include_trust_store_contents is not None:
             input_["include_trust_store_contents"] = include_trust_store_contents
 
@@ -194,6 +199,7 @@ class IngressPointResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update(
@@ -263,8 +269,9 @@ class IngressPointResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mailmanager.types.update_ingress_point_request.UpdateIngressPointRequest = {}  # type: ignore[typeddict-item]
-        input_["ingress_point_id"] = ingress_point_id
+        input_: capo_mailmanager.types.update_ingress_point_request.UpdateIngressPointRequest = {
+            "ingress_point_id": ingress_point_id
+        }
         if ingress_point_name is not None:
             input_["ingress_point_name"] = ingress_point_name
         if status_to_update is not None:
@@ -283,6 +290,7 @@ class IngressPointResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -323,14 +331,16 @@ class IngressPointResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mailmanager.types.delete_ingress_point_request.DeleteIngressPointRequest = {}  # type: ignore[typeddict-item]
-        input_["ingress_point_id"] = ingress_point_id
+        input_: capo_mailmanager.types.delete_ingress_point_request.DeleteIngressPointRequest = {
+            "ingress_point_id": ingress_point_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -381,7 +391,7 @@ class IngressPointResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mailmanager.types.list_ingress_points_request.ListIngressPointsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_mailmanager.types.list_ingress_points_request.ListIngressPointsRequest = {}
         if page_size is not None:
             input_["page_size"] = page_size
         if next_token is not None:
@@ -392,6 +402,7 @@ class IngressPointResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -466,13 +477,15 @@ class AsyncIngressPointResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mailmanager.types.create_ingress_point_request.CreateIngressPointRequest = {}  # type: ignore[typeddict-item]
-        if client_token is not None:
-            input_["client_token"] = client_token
-        input_["ingress_point_name"] = ingress_point_name
-        input_["type"] = type
-        input_["rule_set_id"] = rule_set_id
-        input_["traffic_policy_id"] = traffic_policy_id
+        input_: capo_mailmanager.types.create_ingress_point_request.CreateIngressPointRequest = {
+            "ingress_point_name": ingress_point_name,
+            "type": type,
+            "rule_set_id": rule_set_id,
+            "traffic_policy_id": traffic_policy_id,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if ingress_point_configuration is not None:
             input_["ingress_point_configuration"] = ingress_point_configuration
         if network_configuration is not None:
@@ -487,6 +500,7 @@ class AsyncIngressPointResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -534,8 +548,9 @@ class AsyncIngressPointResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mailmanager.types.get_ingress_point_request.GetIngressPointRequest = {}  # type: ignore[typeddict-item]
-        input_["ingress_point_id"] = ingress_point_id
+        input_: capo_mailmanager.types.get_ingress_point_request.GetIngressPointRequest = {
+            "ingress_point_id": ingress_point_id
+        }
         if include_trust_store_contents is not None:
             input_["include_trust_store_contents"] = include_trust_store_contents
 
@@ -544,6 +559,7 @@ class AsyncIngressPointResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update(
@@ -614,8 +630,9 @@ class AsyncIngressPointResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mailmanager.types.update_ingress_point_request.UpdateIngressPointRequest = {}  # type: ignore[typeddict-item]
-        input_["ingress_point_id"] = ingress_point_id
+        input_: capo_mailmanager.types.update_ingress_point_request.UpdateIngressPointRequest = {
+            "ingress_point_id": ingress_point_id
+        }
         if ingress_point_name is not None:
             input_["ingress_point_name"] = ingress_point_name
         if status_to_update is not None:
@@ -634,6 +651,7 @@ class AsyncIngressPointResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -675,14 +693,16 @@ class AsyncIngressPointResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mailmanager.types.delete_ingress_point_request.DeleteIngressPointRequest = {}  # type: ignore[typeddict-item]
-        input_["ingress_point_id"] = ingress_point_id
+        input_: capo_mailmanager.types.delete_ingress_point_request.DeleteIngressPointRequest = {
+            "ingress_point_id": ingress_point_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -734,7 +754,7 @@ class AsyncIngressPointResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mailmanager.types.list_ingress_points_request.ListIngressPointsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_mailmanager.types.list_ingress_points_request.ListIngressPointsRequest = {}
         if page_size is not None:
             input_["page_size"] = page_size
         if next_token is not None:
@@ -745,4 +765,5 @@ class AsyncIngressPointResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

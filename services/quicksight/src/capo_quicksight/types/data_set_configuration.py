@@ -45,15 +45,15 @@ def serialize_json(value: DataSetConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> DataSetConfiguration:
     out: DataSetConfiguration = {}  # type: ignore[typeddict-item]
-    if "Placeholder" in data:
+    if data.get("Placeholder") is not None:
         out["placeholder"] = data["Placeholder"]
-    if "DataSetSchema" in data:
+    if data.get("DataSetSchema") is not None:
         import capo_quicksight.types.data_set_schema
 
         out["data_set_schema"] = capo_quicksight.types.data_set_schema.deserialize_json(
             data["DataSetSchema"]
         )
-    if "ColumnGroupSchemaList" in data:
+    if data.get("ColumnGroupSchemaList") is not None:
         import capo_quicksight.types.column_group_schema_list
 
         out["column_group_schema_list"] = (

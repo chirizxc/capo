@@ -61,13 +61,13 @@ def serialize_json(value: BatchChannelMemberships) -> dict:
 
 def deserialize_json(data: dict) -> BatchChannelMemberships:
     out: BatchChannelMemberships = {}  # type: ignore[typeddict-item]
-    if "InvitedBy" in data:
+    if data.get("InvitedBy") is not None:
         import capo_chime_sdk_messaging.types.identity
 
         out["invited_by"] = capo_chime_sdk_messaging.types.identity.deserialize_json(
             data["InvitedBy"]
         )
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_chime_sdk_messaging.types.channel_membership_type
 
         out["type"] = (
@@ -75,14 +75,14 @@ def deserialize_json(data: dict) -> BatchChannelMemberships:
                 data["Type"]
             )
         )
-    if "Members" in data:
+    if data.get("Members") is not None:
         import capo_chime_sdk_messaging.types.members
 
         out["members"] = capo_chime_sdk_messaging.types.members.deserialize_json(
             data["Members"]
         )
-    if "ChannelArn" in data:
+    if data.get("ChannelArn") is not None:
         out["channel_arn"] = data["ChannelArn"]
-    if "SubChannelId" in data:
+    if data.get("SubChannelId") is not None:
         out["sub_channel_id"] = data["SubChannelId"]
     return out

@@ -28,11 +28,11 @@ def serialize_aws_json_1_1(value: GetMLModelInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetMLModelInput:
     out: GetMLModelInput = {}  # type: ignore[typeddict-item]
-    if "MLModelId" in data:
+    if data.get("MLModelId") is not None:
         out["ml_model_id"] = data["MLModelId"]
     else:
         raise DeserializationError("GetMLModelInput.ml_model_id required")
-    if "Verbose" in data:
+    if data.get("Verbose") is not None:
         out["verbose"] = data["Verbose"]
     else:
         out["verbose"] = False

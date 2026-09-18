@@ -47,7 +47,7 @@ def serialize_json(value: ShareRule) -> dict:
 
 def deserialize_json(data: dict) -> ShareRule:
     out: ShareRule = {}  # type: ignore[typeddict-item]
-    if "TargetAccounts" in data:
+    if data.get("TargetAccounts") is not None:
         import capo_dlm.types.share_target_account_list
 
         out["target_accounts"] = (
@@ -55,9 +55,9 @@ def deserialize_json(data: dict) -> ShareRule:
                 data["TargetAccounts"]
             )
         )
-    if "UnshareInterval" in data:
+    if data.get("UnshareInterval") is not None:
         out["unshare_interval"] = data["UnshareInterval"]
-    if "UnshareIntervalUnit" in data:
+    if data.get("UnshareIntervalUnit") is not None:
         import capo_dlm.types.retention_interval_unit_values
 
         out["unshare_interval_unit"] = (

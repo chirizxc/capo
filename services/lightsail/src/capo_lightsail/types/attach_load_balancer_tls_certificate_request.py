@@ -27,13 +27,13 @@ def serialize_aws_json_1_1(value: AttachLoadBalancerTlsCertificateRequest) -> di
 
 def deserialize_aws_json_1_1(data: dict) -> AttachLoadBalancerTlsCertificateRequest:
     out: AttachLoadBalancerTlsCertificateRequest = {}  # type: ignore[typeddict-item]
-    if "loadBalancerName" in data:
+    if data.get("loadBalancerName") is not None:
         out["load_balancer_name"] = data["loadBalancerName"]
     else:
         raise DeserializationError(
             "AttachLoadBalancerTlsCertificateRequest.load_balancer_name required"
         )
-    if "certificateName" in data:
+    if data.get("certificateName") is not None:
         out["certificate_name"] = data["certificateName"]
     else:
         raise DeserializationError(

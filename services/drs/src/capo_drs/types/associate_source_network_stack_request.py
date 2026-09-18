@@ -28,13 +28,13 @@ def serialize_json(value: AssociateSourceNetworkStackRequest) -> dict:
 
 def deserialize_json(data: dict) -> AssociateSourceNetworkStackRequest:
     out: AssociateSourceNetworkStackRequest = {}  # type: ignore[typeddict-item]
-    if "sourceNetworkID" in data:
+    if data.get("sourceNetworkID") is not None:
         out["source_network_id"] = data["sourceNetworkID"]
     else:
         raise DeserializationError(
             "AssociateSourceNetworkStackRequest.source_network_id required"
         )
-    if "cfnStackName" in data:
+    if data.get("cfnStackName") is not None:
         out["cfn_stack_name"] = data["cfnStackName"]
     else:
         raise DeserializationError(

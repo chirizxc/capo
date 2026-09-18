@@ -23,6 +23,6 @@ def serialize_json(value: AccountConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> AccountConfiguration:
     out: AccountConfiguration = {}  # type: ignore[typeddict-item]
-    if "kmsKeyId" in data:
+    if data.get("kmsKeyId") is not None:
         out["kms_key_id"] = data["kmsKeyId"]
     return out

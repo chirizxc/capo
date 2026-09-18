@@ -35,17 +35,17 @@ def serialize_aws_json_1_1(value: DefaultIntegerHyperParameterRange) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DefaultIntegerHyperParameterRange:
     out: DefaultIntegerHyperParameterRange = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "minValue" in data:
+    if data.get("minValue") is not None:
         out["min_value"] = data["minValue"]
     else:
         out["min_value"] = 0
-    if "maxValue" in data:
+    if data.get("maxValue") is not None:
         out["max_value"] = data["maxValue"]
     else:
         out["max_value"] = 0
-    if "isTunable" in data:
+    if data.get("isTunable") is not None:
         out["is_tunable"] = data["isTunable"]
     else:
         out["is_tunable"] = False

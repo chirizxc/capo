@@ -34,14 +34,14 @@ def serialize_json(value: Capacity) -> dict:
 
 def deserialize_json(data: dict) -> Capacity:
     out: Capacity = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "unit" in data:
+    if data.get("unit") is not None:
         out["unit"] = data["unit"]
-    if "total" in data:
+    if data.get("total") is not None:
         out["total"] = data["total"]
-    if "used" in data:
+    if data.get("used") is not None:
         out["used"] = data["used"]
-    if "available" in data:
+    if data.get("available") is not None:
         out["available"] = data["available"]
     return out

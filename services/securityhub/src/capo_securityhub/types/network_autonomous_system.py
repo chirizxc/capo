@@ -28,8 +28,8 @@ def serialize_json(value: NetworkAutonomousSystem) -> dict:
 
 def deserialize_json(data: dict) -> NetworkAutonomousSystem:
     out: NetworkAutonomousSystem = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Number" in data:
+    if data.get("Number") is not None:
         out["number"] = data["Number"]
     return out

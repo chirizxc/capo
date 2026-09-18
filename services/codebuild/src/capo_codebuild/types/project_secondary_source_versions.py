@@ -27,6 +27,8 @@ def deserialize_aws_json_1_1(data: list) -> ProjectSecondarySourceVersions:
 
     out: ProjectSecondarySourceVersions = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_codebuild.types.project_source_version.deserialize_aws_json_1_1(item)
         )

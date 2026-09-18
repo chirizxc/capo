@@ -27,8 +27,8 @@ def serialize_json(value: UpdateProgramTransition) -> dict:
 
 def deserialize_json(data: dict) -> UpdateProgramTransition:
     out: UpdateProgramTransition = {}  # type: ignore[typeddict-item]
-    if "ScheduledStartTimeMillis" in data:
+    if data.get("ScheduledStartTimeMillis") is not None:
         out["scheduled_start_time_millis"] = data["ScheduledStartTimeMillis"]
-    if "DurationMillis" in data:
+    if data.get("DurationMillis") is not None:
         out["duration_millis"] = data["DurationMillis"]
     return out

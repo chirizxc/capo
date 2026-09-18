@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> ValidationExceptionFieldList:
 
     out: ValidationExceptionFieldList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_drs.types.validation_exception_field.deserialize_json(item))
     return out

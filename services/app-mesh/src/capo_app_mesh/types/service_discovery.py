@@ -45,7 +45,7 @@ def serialize_json(value: ServiceDiscovery) -> dict:
 
 
 def deserialize_json(data: dict) -> ServiceDiscovery:
-    if "dns" in data:
+    if data.get("dns") is not None:
         import capo_app_mesh.types.dns_service_discovery
 
         return {
@@ -53,7 +53,7 @@ def deserialize_json(data: dict) -> ServiceDiscovery:
                 data["dns"]
             )
         }
-    elif "awsCloudMap" in data:
+    elif data.get("awsCloudMap") is not None:
         import capo_app_mesh.types.aws_cloud_map_service_discovery
 
         return {

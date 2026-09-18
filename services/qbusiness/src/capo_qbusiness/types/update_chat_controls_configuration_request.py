@@ -112,15 +112,15 @@ def serialize_json(value: UpdateChatControlsConfigurationRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateChatControlsConfigurationRequest:
     out: UpdateChatControlsConfigurationRequest = {}  # type: ignore[typeddict-item]
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
-    if "responseScope" in data:
+    if data.get("responseScope") is not None:
         import capo_qbusiness.types.response_scope
 
         out["response_scope"] = capo_qbusiness.types.response_scope.deserialize_json(
             data["responseScope"]
         )
-    if "orchestrationConfiguration" in data:
+    if data.get("orchestrationConfiguration") is not None:
         import capo_qbusiness.types.orchestration_configuration
 
         out["orchestration_configuration"] = (
@@ -128,7 +128,7 @@ def deserialize_json(data: dict) -> UpdateChatControlsConfigurationRequest:
                 data["orchestrationConfiguration"]
             )
         )
-    if "blockedPhrasesConfigurationUpdate" in data:
+    if data.get("blockedPhrasesConfigurationUpdate") is not None:
         import capo_qbusiness.types.blocked_phrases_configuration_update
 
         out["blocked_phrases_configuration_update"] = (
@@ -136,7 +136,7 @@ def deserialize_json(data: dict) -> UpdateChatControlsConfigurationRequest:
                 data["blockedPhrasesConfigurationUpdate"]
             )
         )
-    if "topicConfigurationsToCreateOrUpdate" in data:
+    if data.get("topicConfigurationsToCreateOrUpdate") is not None:
         import capo_qbusiness.types.topic_configurations
 
         out["topic_configurations_to_create_or_update"] = (
@@ -144,7 +144,7 @@ def deserialize_json(data: dict) -> UpdateChatControlsConfigurationRequest:
                 data["topicConfigurationsToCreateOrUpdate"]
             )
         )
-    if "topicConfigurationsToDelete" in data:
+    if data.get("topicConfigurationsToDelete") is not None:
         import capo_qbusiness.types.topic_configurations
 
         out["topic_configurations_to_delete"] = (
@@ -152,7 +152,7 @@ def deserialize_json(data: dict) -> UpdateChatControlsConfigurationRequest:
                 data["topicConfigurationsToDelete"]
             )
         )
-    if "creatorModeConfiguration" in data:
+    if data.get("creatorModeConfiguration") is not None:
         import capo_qbusiness.types.creator_mode_configuration
 
         out["creator_mode_configuration"] = (
@@ -160,7 +160,7 @@ def deserialize_json(data: dict) -> UpdateChatControlsConfigurationRequest:
                 data["creatorModeConfiguration"]
             )
         )
-    if "hallucinationReductionConfiguration" in data:
+    if data.get("hallucinationReductionConfiguration") is not None:
         import capo_qbusiness.types.hallucination_reduction_configuration
 
         out["hallucination_reduction_configuration"] = (

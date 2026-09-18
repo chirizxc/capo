@@ -60,7 +60,7 @@ def serialize_aws_json_1_1(value: IndexFacesResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> IndexFacesResponse:
     out: IndexFacesResponse = {}  # type: ignore[typeddict-item]
-    if "FaceRecords" in data:
+    if data.get("FaceRecords") is not None:
         import capo_rekognition.types.face_record_list
 
         out["face_records"] = (
@@ -68,7 +68,7 @@ def deserialize_aws_json_1_1(data: dict) -> IndexFacesResponse:
                 data["FaceRecords"]
             )
         )
-    if "OrientationCorrection" in data:
+    if data.get("OrientationCorrection") is not None:
         import capo_rekognition.types.orientation_correction
 
         out["orientation_correction"] = (
@@ -76,9 +76,9 @@ def deserialize_aws_json_1_1(data: dict) -> IndexFacesResponse:
                 data["OrientationCorrection"]
             )
         )
-    if "FaceModelVersion" in data:
+    if data.get("FaceModelVersion") is not None:
         out["face_model_version"] = data["FaceModelVersion"]
-    if "UnindexedFaces" in data:
+    if data.get("UnindexedFaces") is not None:
         import capo_rekognition.types.unindexed_faces
 
         out["unindexed_faces"] = (

@@ -30,7 +30,7 @@ def serialize_json(value: ExportVectorEnrichmentJobOutputConfig) -> dict:
 
 def deserialize_json(data: dict) -> ExportVectorEnrichmentJobOutputConfig:
     out: ExportVectorEnrichmentJobOutputConfig = {}  # type: ignore[typeddict-item]
-    if "S3Data" in data:
+    if data.get("S3Data") is not None:
         import capo_sagemaker_geospatial.types.vector_enrichment_job_s3_data
 
         out["s3_data"] = (

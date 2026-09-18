@@ -36,7 +36,7 @@ def serialize_json(value: ListIdentityProviderConfigsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListIdentityProviderConfigsResponse:
     out: ListIdentityProviderConfigsResponse = {}  # type: ignore[typeddict-item]
-    if "identityProviderConfigs" in data:
+    if data.get("identityProviderConfigs") is not None:
         import capo_eks.types.identity_provider_configs
 
         out["identity_provider_configs"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> ListIdentityProviderConfigsResponse:
                 data["identityProviderConfigs"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

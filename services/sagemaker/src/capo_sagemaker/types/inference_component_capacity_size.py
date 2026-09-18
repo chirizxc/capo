@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: InferenceComponentCapacitySize) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> InferenceComponentCapacitySize:
     out: InferenceComponentCapacitySize = {}  # type: ignore[typeddict-item]
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_sagemaker.types.inference_component_capacity_size_type
 
         out["type"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_1(data: dict) -> InferenceComponentCapacitySize:
                 data["Type"]
             )
         )
-    if "Value" in data:
+    if data.get("Value") is not None:
         out["value"] = data["Value"]
     return out

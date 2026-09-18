@@ -32,16 +32,16 @@ def serialize_json(value: UpdateDeletionProtectionInput) -> dict:
 
 def deserialize_json(data: dict) -> UpdateDeletionProtectionInput:
     out: UpdateDeletionProtectionInput = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("UpdateDeletionProtectionInput.arn required")
-    if "deletionProtected" in data:
+    if data.get("deletionProtected") is not None:
         out["deletion_protected"] = data["deletionProtected"]
     else:
         raise DeserializationError(
             "UpdateDeletionProtectionInput.deletion_protected required"
         )
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     return out

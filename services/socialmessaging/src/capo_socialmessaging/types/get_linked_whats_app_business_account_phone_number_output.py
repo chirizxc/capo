@@ -39,7 +39,7 @@ def serialize_json(value: GetLinkedWhatsAppBusinessAccountPhoneNumberOutput) -> 
 
 def deserialize_json(data: dict) -> GetLinkedWhatsAppBusinessAccountPhoneNumberOutput:
     out: GetLinkedWhatsAppBusinessAccountPhoneNumberOutput = {}  # type: ignore[typeddict-item]
-    if "phoneNumber" in data:
+    if data.get("phoneNumber") is not None:
         import capo_socialmessaging.types.whats_app_phone_number_detail
 
         out["phone_number"] = (
@@ -47,7 +47,7 @@ def deserialize_json(data: dict) -> GetLinkedWhatsAppBusinessAccountPhoneNumberO
                 data["phoneNumber"]
             )
         )
-    if "linkedWhatsAppBusinessAccountId" in data:
+    if data.get("linkedWhatsAppBusinessAccountId") is not None:
         out["linked_whats_app_business_account_id"] = data[
             "linkedWhatsAppBusinessAccountId"
         ]

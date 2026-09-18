@@ -22,7 +22,7 @@ def serialize_json(value: UpdateThingGroupResponse) -> dict:
 
 def deserialize_json(data: dict) -> UpdateThingGroupResponse:
     out: UpdateThingGroupResponse = {}  # type: ignore[typeddict-item]
-    if "version" in data:
+    if data.get("version") is not None:
         out["version"] = data["version"]
     else:
         out["version"] = 0

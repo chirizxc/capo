@@ -77,23 +77,23 @@ def serialize_json(value: PipeTargetTimestreamParameters) -> dict:
 
 def deserialize_json(data: dict) -> PipeTargetTimestreamParameters:
     out: PipeTargetTimestreamParameters = {}  # type: ignore[typeddict-item]
-    if "TimeValue" in data:
+    if data.get("TimeValue") is not None:
         out["time_value"] = data["TimeValue"]
     else:
         raise DeserializationError("PipeTargetTimestreamParameters.time_value required")
-    if "EpochTimeUnit" in data:
+    if data.get("EpochTimeUnit") is not None:
         out["epoch_time_unit"] = data["EpochTimeUnit"]
-    if "TimeFieldType" in data:
+    if data.get("TimeFieldType") is not None:
         out["time_field_type"] = data["TimeFieldType"]
-    if "TimestampFormat" in data:
+    if data.get("TimestampFormat") is not None:
         out["timestamp_format"] = data["TimestampFormat"]
-    if "VersionValue" in data:
+    if data.get("VersionValue") is not None:
         out["version_value"] = data["VersionValue"]
     else:
         raise DeserializationError(
             "PipeTargetTimestreamParameters.version_value required"
         )
-    if "DimensionMappings" in data:
+    if data.get("DimensionMappings") is not None:
         import capo_pipes.types.dimension_mappings
 
         out["dimension_mappings"] = (
@@ -105,7 +105,7 @@ def deserialize_json(data: dict) -> PipeTargetTimestreamParameters:
         raise DeserializationError(
             "PipeTargetTimestreamParameters.dimension_mappings required"
         )
-    if "SingleMeasureMappings" in data:
+    if data.get("SingleMeasureMappings") is not None:
         import capo_pipes.types.single_measure_mappings
 
         out["single_measure_mappings"] = (
@@ -113,7 +113,7 @@ def deserialize_json(data: dict) -> PipeTargetTimestreamParameters:
                 data["SingleMeasureMappings"]
             )
         )
-    if "MultiMeasureMappings" in data:
+    if data.get("MultiMeasureMappings") is not None:
         import capo_pipes.types.multi_measure_mappings
 
         out["multi_measure_mappings"] = (

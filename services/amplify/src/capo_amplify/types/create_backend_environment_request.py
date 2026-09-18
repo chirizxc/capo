@@ -39,14 +39,14 @@ def serialize_json(value: CreateBackendEnvironmentRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateBackendEnvironmentRequest:
     out: CreateBackendEnvironmentRequest = {}  # type: ignore[typeddict-item]
-    if "environmentName" in data:
+    if data.get("environmentName") is not None:
         out["environment_name"] = data["environmentName"]
     else:
         raise DeserializationError(
             "CreateBackendEnvironmentRequest.environment_name required"
         )
-    if "stackName" in data:
+    if data.get("stackName") is not None:
         out["stack_name"] = data["stackName"]
-    if "deploymentArtifacts" in data:
+    if data.get("deploymentArtifacts") is not None:
         out["deployment_artifacts"] = data["deploymentArtifacts"]
     return out

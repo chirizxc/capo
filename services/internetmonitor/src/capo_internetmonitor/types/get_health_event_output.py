@@ -51,26 +51,26 @@ def serialize_json(value: GetHealthEventOutput) -> dict:
     out: dict = {}
     out["EventArn"] = value["event_arn"]
     out["EventId"] = value["event_id"]
-    import capo_internetmonitor.types._prelude.timestamp
+    import capo_internetmonitor._protocol.serialize
 
-    out["StartedAt"] = capo_internetmonitor.types._prelude.timestamp.serialize_json(
+    out["StartedAt"] = capo_internetmonitor._protocol.serialize.fmt_date_time(
         value["started_at"]
     )
     if "ended_at" in value:
-        import capo_internetmonitor.types._prelude.timestamp
+        import capo_internetmonitor._protocol.serialize
 
-        out["EndedAt"] = capo_internetmonitor.types._prelude.timestamp.serialize_json(
+        out["EndedAt"] = capo_internetmonitor._protocol.serialize.fmt_date_time(
             value["ended_at"]
         )
     if "created_at" in value:
-        import capo_internetmonitor.types._prelude.timestamp
+        import capo_internetmonitor._protocol.serialize
 
-        out["CreatedAt"] = capo_internetmonitor.types._prelude.timestamp.serialize_json(
+        out["CreatedAt"] = capo_internetmonitor._protocol.serialize.fmt_date_time(
             value["created_at"]
         )
-    import capo_internetmonitor.types._prelude.timestamp
+    import capo_internetmonitor._protocol.serialize
 
-    out["LastUpdatedAt"] = capo_internetmonitor.types._prelude.timestamp.serialize_json(
+    out["LastUpdatedAt"] = capo_internetmonitor._protocol.serialize.fmt_date_time(
         value["last_updated_at"]
     )
     import capo_internetmonitor.types.impacted_locations_list
@@ -82,61 +82,69 @@ def serialize_json(value: GetHealthEventOutput) -> dict:
     )
     out["Status"] = value["status"]
     if "percent_of_total_traffic_impacted" in value:
-        out["PercentOfTotalTrafficImpacted"] = value[
-            "percent_of_total_traffic_impacted"
-        ]
+        out["PercentOfTotalTrafficImpacted"] = (
+            "NaN"
+            if value["percent_of_total_traffic_impacted"]
+            != value["percent_of_total_traffic_impacted"]
+            else "Infinity"
+            if value["percent_of_total_traffic_impacted"] == float("inf")
+            else "-Infinity"
+            if value["percent_of_total_traffic_impacted"] == float("-inf")
+            else value["percent_of_total_traffic_impacted"]
+        )
     out["ImpactType"] = value["impact_type"]
-    out["HealthScoreThreshold"] = value.get("health_score_threshold", 0)
+    out["HealthScoreThreshold"] = (
+        "NaN"
+        if value.get("health_score_threshold", 0)
+        != value.get("health_score_threshold", 0)
+        else "Infinity"
+        if value.get("health_score_threshold", 0) == float("inf")
+        else "-Infinity"
+        if value.get("health_score_threshold", 0) == float("-inf")
+        else value.get("health_score_threshold", 0)
+    )
     return out
 
 
 def deserialize_json(data: dict) -> GetHealthEventOutput:
     out: GetHealthEventOutput = {}  # type: ignore[typeddict-item]
-    if "EventArn" in data:
+    if data.get("EventArn") is not None:
         out["event_arn"] = data["EventArn"]
     else:
         raise DeserializationError("GetHealthEventOutput.event_arn required")
-    if "EventId" in data:
+    if data.get("EventId") is not None:
         out["event_id"] = data["EventId"]
     else:
         raise DeserializationError("GetHealthEventOutput.event_id required")
-    if "StartedAt" in data:
-        import capo_internetmonitor.types._prelude.timestamp
+    if data.get("StartedAt") is not None:
+        import datetime
 
-        out["started_at"] = (
-            capo_internetmonitor.types._prelude.timestamp.deserialize_json(
-                data["StartedAt"]
-            )
+        out["started_at"] = datetime.datetime.fromisoformat(
+            data["StartedAt"].replace("Z", "+00:00")
         )
     else:
         raise DeserializationError("GetHealthEventOutput.started_at required")
-    if "EndedAt" in data:
-        import capo_internetmonitor.types._prelude.timestamp
+    if data.get("EndedAt") is not None:
+        import datetime
 
-        out["ended_at"] = (
-            capo_internetmonitor.types._prelude.timestamp.deserialize_json(
-                data["EndedAt"]
-            )
+        out["ended_at"] = datetime.datetime.fromisoformat(
+            data["EndedAt"].replace("Z", "+00:00")
         )
-    if "CreatedAt" in data:
-        import capo_internetmonitor.types._prelude.timestamp
+    if data.get("CreatedAt") is not None:
+        import datetime
 
-        out["created_at"] = (
-            capo_internetmonitor.types._prelude.timestamp.deserialize_json(
-                data["CreatedAt"]
-            )
+        out["created_at"] = datetime.datetime.fromisoformat(
+            data["CreatedAt"].replace("Z", "+00:00")
         )
-    if "LastUpdatedAt" in data:
-        import capo_internetmonitor.types._prelude.timestamp
+    if data.get("LastUpdatedAt") is not None:
+        import datetime
 
-        out["last_updated_at"] = (
-            capo_internetmonitor.types._prelude.timestamp.deserialize_json(
-                data["LastUpdatedAt"]
-            )
+        out["last_updated_at"] = datetime.datetime.fromisoformat(
+            data["LastUpdatedAt"].replace("Z", "+00:00")
         )
     else:
         raise DeserializationError("GetHealthEventOutput.last_updated_at required")
-    if "ImpactedLocations" in data:
+    if data.get("ImpactedLocations") is not None:
         import capo_internetmonitor.types.impacted_locations_list
 
         out["impacted_locations"] = (
@@ -146,18 +154,20 @@ def deserialize_json(data: dict) -> GetHealthEventOutput:
         )
     else:
         raise DeserializationError("GetHealthEventOutput.impacted_locations required")
-    if "Status" in data:
+    if data.get("Status") is not None:
         out["status"] = data["Status"]
     else:
         raise DeserializationError("GetHealthEventOutput.status required")
-    if "PercentOfTotalTrafficImpacted" in data:
-        out["percent_of_total_traffic_impacted"] = data["PercentOfTotalTrafficImpacted"]
-    if "ImpactType" in data:
+    if data.get("PercentOfTotalTrafficImpacted") is not None:
+        out["percent_of_total_traffic_impacted"] = float(
+            data["PercentOfTotalTrafficImpacted"]
+        )
+    if data.get("ImpactType") is not None:
         out["impact_type"] = data["ImpactType"]
     else:
         raise DeserializationError("GetHealthEventOutput.impact_type required")
-    if "HealthScoreThreshold" in data:
-        out["health_score_threshold"] = data["HealthScoreThreshold"]
+    if data.get("HealthScoreThreshold") is not None:
+        out["health_score_threshold"] = float(data["HealthScoreThreshold"])
     else:
         out["health_score_threshold"] = 0
     return out

@@ -34,9 +34,9 @@ def serialize_json(value: ShipmentInformation) -> dict:
 
 def deserialize_json(data: dict) -> ShipmentInformation:
     out: ShipmentInformation = {}  # type: ignore[typeddict-item]
-    if "ShipmentTrackingNumber" in data:
+    if data.get("ShipmentTrackingNumber") is not None:
         out["shipment_tracking_number"] = data["ShipmentTrackingNumber"]
-    if "ShipmentCarrier" in data:
+    if data.get("ShipmentCarrier") is not None:
         import capo_outposts.types.shipment_carrier
 
         out["shipment_carrier"] = capo_outposts.types.shipment_carrier.deserialize_json(

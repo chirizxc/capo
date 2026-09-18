@@ -18,6 +18,9 @@ def serialize_query(
 ) -> None:
     import capo_redshift.types.node_configuration_options_filter
 
+    if not value:
+        pairs.append((prefix, ""))
+        return
     for n, item in enumerate(value, 1):
         capo_redshift.types.node_configuration_options_filter.serialize_query(
             item, pairs, f"{prefix}.NodeConfigurationOptionsFilter.{n}"
@@ -42,6 +45,9 @@ def serialize_query_flat(
 ) -> None:
     import capo_redshift.types.node_configuration_options_filter
 
+    if not value:
+        pairs.append((prefix, ""))
+        return
     for n, item in enumerate(value, 1):
         capo_redshift.types.node_configuration_options_filter.serialize_query(
             item, pairs, f"{prefix}.{n}"

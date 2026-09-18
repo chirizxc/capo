@@ -76,13 +76,13 @@ def serialize_json(value: AppInstanceUserEndpointSummary) -> dict:
 
 def deserialize_json(data: dict) -> AppInstanceUserEndpointSummary:
     out: AppInstanceUserEndpointSummary = {}  # type: ignore[typeddict-item]
-    if "AppInstanceUserArn" in data:
+    if data.get("AppInstanceUserArn") is not None:
         out["app_instance_user_arn"] = data["AppInstanceUserArn"]
-    if "EndpointId" in data:
+    if data.get("EndpointId") is not None:
         out["endpoint_id"] = data["EndpointId"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_chime_sdk_identity.types.app_instance_user_endpoint_type
 
         out["type"] = (
@@ -90,7 +90,7 @@ def deserialize_json(data: dict) -> AppInstanceUserEndpointSummary:
                 data["Type"]
             )
         )
-    if "AllowMessages" in data:
+    if data.get("AllowMessages") is not None:
         import capo_chime_sdk_identity.types.allow_messages
 
         out["allow_messages"] = (
@@ -98,7 +98,7 @@ def deserialize_json(data: dict) -> AppInstanceUserEndpointSummary:
                 data["AllowMessages"]
             )
         )
-    if "EndpointState" in data:
+    if data.get("EndpointState") is not None:
         import capo_chime_sdk_identity.types.endpoint_state
 
         out["endpoint_state"] = (

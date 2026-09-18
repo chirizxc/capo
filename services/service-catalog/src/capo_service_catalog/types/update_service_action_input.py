@@ -58,13 +58,13 @@ def serialize_aws_json_1_1(value: UpdateServiceActionInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateServiceActionInput:
     out: UpdateServiceActionInput = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
     else:
         raise DeserializationError("UpdateServiceActionInput.id required")
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Definition" in data:
+    if data.get("Definition") is not None:
         import capo_service_catalog.types.service_action_definition_map
 
         out["definition"] = (
@@ -72,8 +72,8 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateServiceActionInput:
                 data["Definition"]
             )
         )
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "AcceptLanguage" in data:
+    if data.get("AcceptLanguage") is not None:
         out["accept_language"] = data["AcceptLanguage"]
     return out

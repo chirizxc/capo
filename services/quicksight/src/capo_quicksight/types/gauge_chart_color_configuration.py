@@ -27,8 +27,8 @@ def serialize_json(value: GaugeChartColorConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> GaugeChartColorConfiguration:
     out: GaugeChartColorConfiguration = {}  # type: ignore[typeddict-item]
-    if "ForegroundColor" in data:
+    if data.get("ForegroundColor") is not None:
         out["foreground_color"] = data["ForegroundColor"]
-    if "BackgroundColor" in data:
+    if data.get("BackgroundColor") is not None:
         out["background_color"] = data["BackgroundColor"]
     return out

@@ -43,26 +43,26 @@ def serialize_aws_json_1_1(value: DescribeBudgetPerformanceHistoryRequest) -> di
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeBudgetPerformanceHistoryRequest:
     out: DescribeBudgetPerformanceHistoryRequest = {}  # type: ignore[typeddict-item]
-    if "AccountId" in data:
+    if data.get("AccountId") is not None:
         out["account_id"] = data["AccountId"]
     else:
         raise DeserializationError(
             "DescribeBudgetPerformanceHistoryRequest.account_id required"
         )
-    if "BudgetName" in data:
+    if data.get("BudgetName") is not None:
         out["budget_name"] = data["BudgetName"]
     else:
         raise DeserializationError(
             "DescribeBudgetPerformanceHistoryRequest.budget_name required"
         )
-    if "TimePeriod" in data:
+    if data.get("TimePeriod") is not None:
         import capo_budgets.types.time_period
 
         out["time_period"] = capo_budgets.types.time_period.deserialize_aws_json_1_1(
             data["TimePeriod"]
         )
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

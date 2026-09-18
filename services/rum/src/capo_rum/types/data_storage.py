@@ -25,7 +25,7 @@ def serialize_json(value: DataStorage) -> dict:
 
 def deserialize_json(data: dict) -> DataStorage:
     out: DataStorage = {}  # type: ignore[typeddict-item]
-    if "CwLog" in data:
+    if data.get("CwLog") is not None:
         import capo_rum.types.cw_log
 
         out["cw_log"] = capo_rum.types.cw_log.deserialize_json(data["CwLog"])

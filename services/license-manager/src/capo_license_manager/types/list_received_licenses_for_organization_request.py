@@ -37,7 +37,7 @@ def serialize_aws_json_1_1(value: ListReceivedLicensesForOrganizationRequest) ->
 
 def deserialize_aws_json_1_1(data: dict) -> ListReceivedLicensesForOrganizationRequest:
     out: ListReceivedLicensesForOrganizationRequest = {}  # type: ignore[typeddict-item]
-    if "Filters" in data:
+    if data.get("Filters") is not None:
         import capo_license_manager.types.filter_list
 
         out["filters"] = (
@@ -45,8 +45,8 @@ def deserialize_aws_json_1_1(data: dict) -> ListReceivedLicensesForOrganizationR
                 data["Filters"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
     return out

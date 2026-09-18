@@ -36,9 +36,9 @@ def serialize_json(value: GetPhoneNumberSettingsResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetPhoneNumberSettingsResponse:
     out: GetPhoneNumberSettingsResponse = {}  # type: ignore[typeddict-item]
-    if "CallingName" in data:
+    if data.get("CallingName") is not None:
         out["calling_name"] = data["CallingName"]
-    if "CallingNameUpdatedTimestamp" in data:
+    if data.get("CallingNameUpdatedTimestamp") is not None:
         import capo_chime.types.iso8601_timestamp
 
         out["calling_name_updated_timestamp"] = (

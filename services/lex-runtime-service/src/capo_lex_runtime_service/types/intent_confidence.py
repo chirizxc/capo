@@ -16,14 +16,22 @@ class IntentConfidence(TypedDict, closed=True):
 # --- restJson1 ser/de ---
 def serialize_json(value: IntentConfidence) -> dict:
     out: dict = {}
-    out["score"] = value.get("score", 0)
+    out["score"] = (
+        "NaN"
+        if value.get("score", 0) != value.get("score", 0)
+        else "Infinity"
+        if value.get("score", 0) == float("inf")
+        else "-Infinity"
+        if value.get("score", 0) == float("-inf")
+        else value.get("score", 0)
+    )
     return out
 
 
 def deserialize_json(data: dict) -> IntentConfidence:
     out: IntentConfidence = {}  # type: ignore[typeddict-item]
-    if "score" in data:
-        out["score"] = data["score"]
+    if data.get("score") is not None:
+        out["score"] = float(data["score"])
     else:
         out["score"] = 0
     return out

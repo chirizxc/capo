@@ -41,11 +41,11 @@ def serialize_json(value: CaptionFormat) -> dict:
 
 def deserialize_json(data: dict) -> CaptionFormat:
     out: CaptionFormat = {}  # type: ignore[typeddict-item]
-    if "Format" in data:
+    if data.get("Format") is not None:
         out["format"] = data["Format"]
-    if "Pattern" in data:
+    if data.get("Pattern") is not None:
         out["pattern"] = data["Pattern"]
-    if "Encryption" in data:
+    if data.get("Encryption") is not None:
         import capo_elastic_transcoder.types.encryption
 
         out["encryption"] = capo_elastic_transcoder.types.encryption.deserialize_json(

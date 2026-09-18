@@ -43,7 +43,7 @@ def serialize_aws_json_1_1(value: UserPoolAddOnsType) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UserPoolAddOnsType:
     out: UserPoolAddOnsType = {}  # type: ignore[typeddict-item]
-    if "AdvancedSecurityMode" in data:
+    if data.get("AdvancedSecurityMode") is not None:
         import capo_cognito_identity_provider.types.advanced_security_mode_type
 
         out["advanced_security_mode"] = (
@@ -53,7 +53,7 @@ def deserialize_aws_json_1_1(data: dict) -> UserPoolAddOnsType:
         )
     else:
         raise DeserializationError("UserPoolAddOnsType.advanced_security_mode required")
-    if "AdvancedSecurityAdditionalFlows" in data:
+    if data.get("AdvancedSecurityAdditionalFlows") is not None:
         import capo_cognito_identity_provider.types.advanced_security_additional_flows_type
 
         out["advanced_security_additional_flows"] = (

@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> IpAccessSettingsList:
 
     out: IpAccessSettingsList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_workspaces_web.types.ip_access_settings_summary.deserialize_json(item)
         )

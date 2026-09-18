@@ -62,23 +62,23 @@ def serialize_aws_json_1_1(value: WhatIfForecastSummary) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> WhatIfForecastSummary:
     out: WhatIfForecastSummary = {}  # type: ignore[typeddict-item]
-    if "WhatIfForecastArn" in data:
+    if data.get("WhatIfForecastArn") is not None:
         out["what_if_forecast_arn"] = data["WhatIfForecastArn"]
-    if "WhatIfForecastName" in data:
+    if data.get("WhatIfForecastName") is not None:
         out["what_if_forecast_name"] = data["WhatIfForecastName"]
-    if "WhatIfAnalysisArn" in data:
+    if data.get("WhatIfAnalysisArn") is not None:
         out["what_if_analysis_arn"] = data["WhatIfAnalysisArn"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         out["status"] = data["Status"]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_forecast.types.timestamp
 
         out["creation_time"] = capo_forecast.types.timestamp.deserialize_aws_json_1_1(
             data["CreationTime"]
         )
-    if "LastModificationTime" in data:
+    if data.get("LastModificationTime") is not None:
         import capo_forecast.types.timestamp
 
         out["last_modification_time"] = (

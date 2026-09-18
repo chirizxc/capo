@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> DataLakeAutoEnableNewAccountConfigurationLis
 
     out: DataLakeAutoEnableNewAccountConfigurationList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_securitylake.types.data_lake_auto_enable_new_account_configuration.deserialize_json(
                 item

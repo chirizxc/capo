@@ -45,19 +45,19 @@ def serialize_json(value: CreateCustomPermissionsRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateCustomPermissionsRequest:
     out: CreateCustomPermissionsRequest = {}  # type: ignore[typeddict-item]
-    if "CustomPermissionsName" in data:
+    if data.get("CustomPermissionsName") is not None:
         out["custom_permissions_name"] = data["CustomPermissionsName"]
     else:
         raise DeserializationError(
             "CreateCustomPermissionsRequest.custom_permissions_name required"
         )
-    if "Capabilities" in data:
+    if data.get("Capabilities") is not None:
         import capo_quicksight.types.capabilities
 
         out["capabilities"] = capo_quicksight.types.capabilities.deserialize_json(
             data["Capabilities"]
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_quicksight.types.tag_list
 
         out["tags"] = capo_quicksight.types.tag_list.deserialize_json(data["Tags"])

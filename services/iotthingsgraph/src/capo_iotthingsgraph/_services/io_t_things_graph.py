@@ -267,9 +267,10 @@ class IoTThingsGraphClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iotthingsgraph.types.associate_entity_to_thing_request.AssociateEntityToThingRequest = {}  # type: ignore[typeddict-item]
-        input_["thing_name"] = thing_name
-        input_["entity_id"] = entity_id
+        input_: capo_iotthingsgraph.types.associate_entity_to_thing_request.AssociateEntityToThingRequest = {
+            "thing_name": thing_name,
+            "entity_id": entity_id,
+        }
         if namespace_version is not None:
             input_["namespace_version"] = namespace_version
 
@@ -278,6 +279,7 @@ class IoTThingsGraphClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_flow_template(
@@ -319,8 +321,9 @@ class IoTThingsGraphClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iotthingsgraph.types.create_flow_template_request.CreateFlowTemplateRequest = {}  # type: ignore[typeddict-item]
-        input_["definition"] = definition
+        input_: capo_iotthingsgraph.types.create_flow_template_request.CreateFlowTemplateRequest = {
+            "definition": definition
+        }
         if compatible_namespace_version is not None:
             input_["compatible_namespace_version"] = compatible_namespace_version
 
@@ -329,6 +332,7 @@ class IoTThingsGraphClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_system_instance(
@@ -384,11 +388,12 @@ class IoTThingsGraphClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iotthingsgraph.types.create_system_instance_request.CreateSystemInstanceRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_iotthingsgraph.types.create_system_instance_request.CreateSystemInstanceRequest = {
+            "definition": definition,
+            "target": target,
+        }
         if tags is not None:
             input_["tags"] = tags
-        input_["definition"] = definition
-        input_["target"] = target
         if greengrass_group_name is not None:
             input_["greengrass_group_name"] = greengrass_group_name
         if s3_bucket_name is not None:
@@ -403,6 +408,7 @@ class IoTThingsGraphClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_system_template(
@@ -443,8 +449,9 @@ class IoTThingsGraphClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iotthingsgraph.types.create_system_template_request.CreateSystemTemplateRequest = {}  # type: ignore[typeddict-item]
-        input_["definition"] = definition
+        input_: capo_iotthingsgraph.types.create_system_template_request.CreateSystemTemplateRequest = {
+            "definition": definition
+        }
         if compatible_namespace_version is not None:
             input_["compatible_namespace_version"] = compatible_namespace_version
 
@@ -453,6 +460,7 @@ class IoTThingsGraphClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_flow_template(
@@ -489,14 +497,16 @@ class IoTThingsGraphClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iotthingsgraph.types.delete_flow_template_request.DeleteFlowTemplateRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_iotthingsgraph.types.delete_flow_template_request.DeleteFlowTemplateRequest = {
+            "id": id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_namespace(
@@ -525,13 +535,14 @@ class IoTThingsGraphClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iotthingsgraph.types.delete_namespace_request.DeleteNamespaceRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_iotthingsgraph.types.delete_namespace_request.DeleteNamespaceRequest = {}
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_system_instance(
@@ -568,7 +579,7 @@ class IoTThingsGraphClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iotthingsgraph.types.delete_system_instance_request.DeleteSystemInstanceRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_iotthingsgraph.types.delete_system_instance_request.DeleteSystemInstanceRequest = {}
         if id is not None:
             input_["id"] = id
 
@@ -577,6 +588,7 @@ class IoTThingsGraphClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_system_template(
@@ -613,14 +625,16 @@ class IoTThingsGraphClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iotthingsgraph.types.delete_system_template_request.DeleteSystemTemplateRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_iotthingsgraph.types.delete_system_template_request.DeleteSystemTemplateRequest = {
+            "id": id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def deploy_system_instance(
@@ -658,7 +672,7 @@ class IoTThingsGraphClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iotthingsgraph.types.deploy_system_instance_request.DeploySystemInstanceRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_iotthingsgraph.types.deploy_system_instance_request.DeploySystemInstanceRequest = {}
         if id is not None:
             input_["id"] = id
 
@@ -667,6 +681,7 @@ class IoTThingsGraphClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def deprecate_flow_template(
@@ -703,14 +718,16 @@ class IoTThingsGraphClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iotthingsgraph.types.deprecate_flow_template_request.DeprecateFlowTemplateRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_iotthingsgraph.types.deprecate_flow_template_request.DeprecateFlowTemplateRequest = {
+            "id": id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def deprecate_system_template(
@@ -747,14 +764,16 @@ class IoTThingsGraphClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iotthingsgraph.types.deprecate_system_template_request.DeprecateSystemTemplateRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_iotthingsgraph.types.deprecate_system_template_request.DeprecateSystemTemplateRequest = {
+            "id": id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_namespace(
@@ -793,7 +812,7 @@ class IoTThingsGraphClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iotthingsgraph.types.describe_namespace_request.DescribeNamespaceRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_iotthingsgraph.types.describe_namespace_request.DescribeNamespaceRequest = {}
         if namespace_name is not None:
             input_["namespace_name"] = namespace_name
 
@@ -802,6 +821,7 @@ class IoTThingsGraphClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def dissociate_entity_from_thing(
@@ -840,15 +860,17 @@ class IoTThingsGraphClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iotthingsgraph.types.dissociate_entity_from_thing_request.DissociateEntityFromThingRequest = {}  # type: ignore[typeddict-item]
-        input_["thing_name"] = thing_name
-        input_["entity_type"] = entity_type
+        input_: capo_iotthingsgraph.types.dissociate_entity_from_thing_request.DissociateEntityFromThingRequest = {
+            "thing_name": thing_name,
+            "entity_type": entity_type,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_entities(
@@ -887,8 +909,9 @@ class IoTThingsGraphClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iotthingsgraph.types.get_entities_request.GetEntitiesRequest = {}  # type: ignore[typeddict-item]
-        input_["ids"] = ids
+        input_: capo_iotthingsgraph.types.get_entities_request.GetEntitiesRequest = {
+            "ids": ids
+        }
         if namespace_version is not None:
             input_["namespace_version"] = namespace_version
 
@@ -897,6 +920,7 @@ class IoTThingsGraphClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_flow_template(
@@ -935,8 +959,9 @@ class IoTThingsGraphClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iotthingsgraph.types.get_flow_template_request.GetFlowTemplateRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_iotthingsgraph.types.get_flow_template_request.GetFlowTemplateRequest = {
+            "id": id
+        }
         if revision_number is not None:
             input_["revision_number"] = revision_number
 
@@ -945,6 +970,7 @@ class IoTThingsGraphClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_flow_template_revisions(
@@ -987,8 +1013,9 @@ class IoTThingsGraphClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iotthingsgraph.types.get_flow_template_revisions_request.GetFlowTemplateRevisionsRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_iotthingsgraph.types.get_flow_template_revisions_request.GetFlowTemplateRevisionsRequest = {
+            "id": id
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -999,6 +1026,7 @@ class IoTThingsGraphClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_get_flow_template_revisions(
@@ -1055,13 +1083,14 @@ class IoTThingsGraphClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iotthingsgraph.types.get_namespace_deletion_status_request.GetNamespaceDeletionStatusRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_iotthingsgraph.types.get_namespace_deletion_status_request.GetNamespaceDeletionStatusRequest = {}
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_system_instance(
@@ -1098,14 +1127,16 @@ class IoTThingsGraphClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iotthingsgraph.types.get_system_instance_request.GetSystemInstanceRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_iotthingsgraph.types.get_system_instance_request.GetSystemInstanceRequest = {
+            "id": id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_system_template(
@@ -1144,8 +1175,9 @@ class IoTThingsGraphClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iotthingsgraph.types.get_system_template_request.GetSystemTemplateRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_iotthingsgraph.types.get_system_template_request.GetSystemTemplateRequest = {
+            "id": id
+        }
         if revision_number is not None:
             input_["revision_number"] = revision_number
 
@@ -1154,6 +1186,7 @@ class IoTThingsGraphClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_system_template_revisions(
@@ -1196,8 +1229,9 @@ class IoTThingsGraphClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iotthingsgraph.types.get_system_template_revisions_request.GetSystemTemplateRevisionsRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_iotthingsgraph.types.get_system_template_revisions_request.GetSystemTemplateRevisionsRequest = {
+            "id": id
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -1208,6 +1242,7 @@ class IoTThingsGraphClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_get_system_template_revisions(
@@ -1269,14 +1304,16 @@ class IoTThingsGraphClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iotthingsgraph.types.get_upload_status_request.GetUploadStatusRequest = {}  # type: ignore[typeddict-item]
-        input_["upload_id"] = upload_id
+        input_: capo_iotthingsgraph.types.get_upload_status_request.GetUploadStatusRequest = {
+            "upload_id": upload_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_flow_execution_messages(
@@ -1319,8 +1356,9 @@ class IoTThingsGraphClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iotthingsgraph.types.list_flow_execution_messages_request.ListFlowExecutionMessagesRequest = {}  # type: ignore[typeddict-item]
-        input_["flow_execution_id"] = flow_execution_id
+        input_: capo_iotthingsgraph.types.list_flow_execution_messages_request.ListFlowExecutionMessagesRequest = {
+            "flow_execution_id": flow_execution_id
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -1331,6 +1369,7 @@ class IoTThingsGraphClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_flow_execution_messages(
@@ -1398,10 +1437,11 @@ class IoTThingsGraphClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iotthingsgraph.types.list_tags_for_resource_request.ListTagsForResourceRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_iotthingsgraph.types.list_tags_for_resource_request.ListTagsForResourceRequest = {
+            "resource_arn": resource_arn
+        }
         if max_results is not None:
             input_["max_results"] = max_results
-        input_["resource_arn"] = resource_arn
         if next_token is not None:
             input_["next_token"] = next_token
 
@@ -1410,6 +1450,7 @@ class IoTThingsGraphClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_tags_for_resource(
@@ -1482,8 +1523,9 @@ class IoTThingsGraphClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iotthingsgraph.types.search_entities_request.SearchEntitiesRequest = {}  # type: ignore[typeddict-item]
-        input_["entity_types"] = entity_types
+        input_: capo_iotthingsgraph.types.search_entities_request.SearchEntitiesRequest = {
+            "entity_types": entity_types
+        }
         if filters is not None:
             input_["filters"] = filters
         if next_token is not None:
@@ -1498,6 +1540,7 @@ class IoTThingsGraphClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_search_entities(
@@ -1579,8 +1622,9 @@ class IoTThingsGraphClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iotthingsgraph.types.search_flow_executions_request.SearchFlowExecutionsRequest = {}  # type: ignore[typeddict-item]
-        input_["system_instance_id"] = system_instance_id
+        input_: capo_iotthingsgraph.types.search_flow_executions_request.SearchFlowExecutionsRequest = {
+            "system_instance_id": system_instance_id
+        }
         if flow_execution_id is not None:
             input_["flow_execution_id"] = flow_execution_id
         if start_time is not None:
@@ -1597,6 +1641,7 @@ class IoTThingsGraphClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_search_flow_executions(
@@ -1673,7 +1718,7 @@ class IoTThingsGraphClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iotthingsgraph.types.search_flow_templates_request.SearchFlowTemplatesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_iotthingsgraph.types.search_flow_templates_request.SearchFlowTemplatesRequest = {}
         if filters is not None:
             input_["filters"] = filters
         if next_token is not None:
@@ -1686,6 +1731,7 @@ class IoTThingsGraphClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_search_flow_templates(
@@ -1758,7 +1804,7 @@ class IoTThingsGraphClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iotthingsgraph.types.search_system_instances_request.SearchSystemInstancesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_iotthingsgraph.types.search_system_instances_request.SearchSystemInstancesRequest = {}
         if filters is not None:
             input_["filters"] = filters
         if next_token is not None:
@@ -1771,6 +1817,7 @@ class IoTThingsGraphClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_search_system_instances(
@@ -1841,7 +1888,7 @@ class IoTThingsGraphClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iotthingsgraph.types.search_system_templates_request.SearchSystemTemplatesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_iotthingsgraph.types.search_system_templates_request.SearchSystemTemplatesRequest = {}
         if filters is not None:
             input_["filters"] = filters
         if next_token is not None:
@@ -1854,6 +1901,7 @@ class IoTThingsGraphClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_search_system_templates(
@@ -1925,8 +1973,9 @@ class IoTThingsGraphClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iotthingsgraph.types.search_things_request.SearchThingsRequest = {}  # type: ignore[typeddict-item]
-        input_["entity_id"] = entity_id
+        input_: capo_iotthingsgraph.types.search_things_request.SearchThingsRequest = {
+            "entity_id": entity_id
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -1939,6 +1988,7 @@ class IoTThingsGraphClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_search_things(
@@ -2004,15 +2054,17 @@ class IoTThingsGraphClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iotthingsgraph.types.tag_resource_request.TagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tags"] = tags
+        input_: capo_iotthingsgraph.types.tag_resource_request.TagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tags": tags,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def undeploy_system_instance(
@@ -2050,7 +2102,7 @@ class IoTThingsGraphClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iotthingsgraph.types.undeploy_system_instance_request.UndeploySystemInstanceRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_iotthingsgraph.types.undeploy_system_instance_request.UndeploySystemInstanceRequest = {}
         if id is not None:
             input_["id"] = id
 
@@ -2059,6 +2111,7 @@ class IoTThingsGraphClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def untag_resource(
@@ -2097,15 +2150,17 @@ class IoTThingsGraphClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iotthingsgraph.types.untag_resource_request.UntagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tag_keys"] = tag_keys
+        input_: capo_iotthingsgraph.types.untag_resource_request.UntagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tag_keys": tag_keys,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_flow_template(
@@ -2148,9 +2203,10 @@ class IoTThingsGraphClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iotthingsgraph.types.update_flow_template_request.UpdateFlowTemplateRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
-        input_["definition"] = definition
+        input_: capo_iotthingsgraph.types.update_flow_template_request.UpdateFlowTemplateRequest = {
+            "id": id,
+            "definition": definition,
+        }
         if compatible_namespace_version is not None:
             input_["compatible_namespace_version"] = compatible_namespace_version
 
@@ -2159,6 +2215,7 @@ class IoTThingsGraphClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_system_template(
@@ -2201,9 +2258,10 @@ class IoTThingsGraphClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iotthingsgraph.types.update_system_template_request.UpdateSystemTemplateRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
-        input_["definition"] = definition
+        input_: capo_iotthingsgraph.types.update_system_template_request.UpdateSystemTemplateRequest = {
+            "id": id,
+            "definition": definition,
+        }
         if compatible_namespace_version is not None:
             input_["compatible_namespace_version"] = compatible_namespace_version
 
@@ -2212,6 +2270,7 @@ class IoTThingsGraphClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def upload_entity_definitions(
@@ -2257,7 +2316,7 @@ class IoTThingsGraphClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iotthingsgraph.types.upload_entity_definitions_request.UploadEntityDefinitionsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_iotthingsgraph.types.upload_entity_definitions_request.UploadEntityDefinitionsRequest = {}
         if document is not None:
             input_["document"] = document
         if sync_with_public_namespace is not None:
@@ -2270,6 +2329,7 @@ class IoTThingsGraphClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def __enter__(self) -> Self:

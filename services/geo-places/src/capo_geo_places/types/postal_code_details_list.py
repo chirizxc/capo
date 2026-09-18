@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> PostalCodeDetailsList:
 
     out: PostalCodeDetailsList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_geo_places.types.postal_code_details.deserialize_json(item))
     return out

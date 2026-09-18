@@ -73,23 +73,23 @@ def serialize_json(value: WhatsAppMessageTemplateSourceConfigurationSummary) -> 
 
 def deserialize_json(data: dict) -> WhatsAppMessageTemplateSourceConfigurationSummary:
     out: WhatsAppMessageTemplateSourceConfigurationSummary = {}  # type: ignore[typeddict-item]
-    if "businessAccountId" in data:
+    if data.get("businessAccountId") is not None:
         out["business_account_id"] = data["businessAccountId"]
     else:
         raise DeserializationError(
             "WhatsAppMessageTemplateSourceConfigurationSummary.business_account_id required"
         )
-    if "templateId" in data:
+    if data.get("templateId") is not None:
         out["template_id"] = data["templateId"]
     else:
         raise DeserializationError(
             "WhatsAppMessageTemplateSourceConfigurationSummary.template_id required"
         )
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "language" in data:
+    if data.get("language") is not None:
         out["language"] = data["language"]
-    if "components" in data:
+    if data.get("components") is not None:
         import capo_qconnect.types.whats_app_message_template_components
 
         out["components"] = (
@@ -97,8 +97,8 @@ def deserialize_json(data: dict) -> WhatsAppMessageTemplateSourceConfigurationSu
                 data["components"]
             )
         )
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
-    if "statusReason" in data:
+    if data.get("statusReason") is not None:
         out["status_reason"] = data["statusReason"]
     return out

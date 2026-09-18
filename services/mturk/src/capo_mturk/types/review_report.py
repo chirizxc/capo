@@ -44,7 +44,7 @@ def serialize_aws_json_1_1(value: ReviewReport) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ReviewReport:
     out: ReviewReport = {}  # type: ignore[typeddict-item]
-    if "ReviewResults" in data:
+    if data.get("ReviewResults") is not None:
         import capo_mturk.types.review_result_detail_list
 
         out["review_results"] = (
@@ -52,7 +52,7 @@ def deserialize_aws_json_1_1(data: dict) -> ReviewReport:
                 data["ReviewResults"]
             )
         )
-    if "ReviewActions" in data:
+    if data.get("ReviewActions") is not None:
         import capo_mturk.types.review_action_detail_list
 
         out["review_actions"] = (

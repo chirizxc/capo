@@ -62,11 +62,11 @@ def serialize_aws_json_1_1(value: AIRecommendationJobSummary) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AIRecommendationJobSummary:
     out: AIRecommendationJobSummary = {}  # type: ignore[typeddict-item]
-    if "AIRecommendationJobName" in data:
+    if data.get("AIRecommendationJobName") is not None:
         out["ai_recommendation_job_name"] = data["AIRecommendationJobName"]
-    if "AIRecommendationJobArn" in data:
+    if data.get("AIRecommendationJobArn") is not None:
         out["ai_recommendation_job_arn"] = data["AIRecommendationJobArn"]
-    if "AIRecommendationJobStatus" in data:
+    if data.get("AIRecommendationJobStatus") is not None:
         import capo_sagemaker.types.ai_recommendation_job_status
 
         out["ai_recommendation_job_status"] = (
@@ -74,13 +74,13 @@ def deserialize_aws_json_1_1(data: dict) -> AIRecommendationJobSummary:
                 data["AIRecommendationJobStatus"]
             )
         )
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_sagemaker.types.timestamp
 
         out["creation_time"] = capo_sagemaker.types.timestamp.deserialize_aws_json_1_1(
             data["CreationTime"]
         )
-    if "EndTime" in data:
+    if data.get("EndTime") is not None:
         import capo_sagemaker.types.timestamp
 
         out["end_time"] = capo_sagemaker.types.timestamp.deserialize_aws_json_1_1(

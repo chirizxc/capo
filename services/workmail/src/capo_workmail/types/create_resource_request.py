@@ -49,15 +49,15 @@ def serialize_aws_json_1_1(value: CreateResourceRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateResourceRequest:
     out: CreateResourceRequest = {}  # type: ignore[typeddict-item]
-    if "OrganizationId" in data:
+    if data.get("OrganizationId") is not None:
         out["organization_id"] = data["OrganizationId"]
     else:
         raise DeserializationError("CreateResourceRequest.organization_id required")
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("CreateResourceRequest.name required")
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_workmail.types.resource_type
 
         out["type"] = capo_workmail.types.resource_type.deserialize_aws_json_1_1(
@@ -65,9 +65,9 @@ def deserialize_aws_json_1_1(data: dict) -> CreateResourceRequest:
         )
     else:
         raise DeserializationError("CreateResourceRequest.type required")
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "HiddenFromGlobalAddressList" in data:
+    if data.get("HiddenFromGlobalAddressList") is not None:
         out["hidden_from_global_address_list"] = data["HiddenFromGlobalAddressList"]
     else:
         out["hidden_from_global_address_list"] = False

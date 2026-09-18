@@ -55,15 +55,15 @@ def serialize_aws_json_1_1(value: WebACL) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> WebACL:
     out: WebACL = {}  # type: ignore[typeddict-item]
-    if "WebACLId" in data:
+    if data.get("WebACLId") is not None:
         out["web_acl_id"] = data["WebACLId"]
     else:
         raise DeserializationError("WebACL.web_acl_id required")
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "MetricName" in data:
+    if data.get("MetricName") is not None:
         out["metric_name"] = data["MetricName"]
-    if "DefaultAction" in data:
+    if data.get("DefaultAction") is not None:
         import capo_waf_regional.types.waf_action
 
         out["default_action"] = (
@@ -73,7 +73,7 @@ def deserialize_aws_json_1_1(data: dict) -> WebACL:
         )
     else:
         raise DeserializationError("WebACL.default_action required")
-    if "Rules" in data:
+    if data.get("Rules") is not None:
         import capo_waf_regional.types.activated_rules
 
         out["rules"] = capo_waf_regional.types.activated_rules.deserialize_aws_json_1_1(
@@ -81,6 +81,6 @@ def deserialize_aws_json_1_1(data: dict) -> WebACL:
         )
     else:
         raise DeserializationError("WebACL.rules required")
-    if "WebACLArn" in data:
+    if data.get("WebACLArn") is not None:
         out["web_acl_arn"] = data["WebACLArn"]
     return out

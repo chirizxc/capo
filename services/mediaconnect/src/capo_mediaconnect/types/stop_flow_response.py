@@ -29,9 +29,9 @@ def serialize_json(value: StopFlowResponse) -> dict:
 
 def deserialize_json(data: dict) -> StopFlowResponse:
     out: StopFlowResponse = {}  # type: ignore[typeddict-item]
-    if "flowArn" in data:
+    if data.get("flowArn") is not None:
         out["flow_arn"] = data["flowArn"]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_mediaconnect.types.status
 
         out["status"] = capo_mediaconnect.types.status.deserialize_json(data["status"])

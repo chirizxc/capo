@@ -40,13 +40,13 @@ def serialize_aws_json_1_1(value: StepDetail) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> StepDetail:
     out: StepDetail = {}  # type: ignore[typeddict-item]
-    if "StepConfig" in data:
+    if data.get("StepConfig") is not None:
         import capo_emr.types.step_config
 
         out["step_config"] = capo_emr.types.step_config.deserialize_aws_json_1_1(
             data["StepConfig"]
         )
-    if "ExecutionStatusDetail" in data:
+    if data.get("ExecutionStatusDetail") is not None:
         import capo_emr.types.step_execution_status_detail
 
         out["execution_status_detail"] = (

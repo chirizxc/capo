@@ -61,7 +61,7 @@ def deserialize_aws_json_1_1(
     data: dict,
 ) -> DescribeIdentityProviderConfigurationResponse:
     out: DescribeIdentityProviderConfigurationResponse = {}  # type: ignore[typeddict-item]
-    if "AuthenticationMode" in data:
+    if data.get("AuthenticationMode") is not None:
         import capo_workmail.types.identity_provider_authentication_mode
 
         out["authentication_mode"] = (
@@ -69,7 +69,7 @@ def deserialize_aws_json_1_1(
                 data["AuthenticationMode"]
             )
         )
-    if "IdentityCenterConfiguration" in data:
+    if data.get("IdentityCenterConfiguration") is not None:
         import capo_workmail.types.identity_center_configuration
 
         out["identity_center_configuration"] = (
@@ -77,7 +77,7 @@ def deserialize_aws_json_1_1(
                 data["IdentityCenterConfiguration"]
             )
         )
-    if "PersonalAccessTokenConfiguration" in data:
+    if data.get("PersonalAccessTokenConfiguration") is not None:
         import capo_workmail.types.personal_access_token_configuration
 
         out["personal_access_token_configuration"] = (

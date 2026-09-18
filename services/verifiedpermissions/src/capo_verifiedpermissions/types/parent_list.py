@@ -29,6 +29,8 @@ def deserialize_aws_json_1_0(data: list) -> ParentList:
 
     out: ParentList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_verifiedpermissions.types.entity_identifier.deserialize_aws_json_1_0(
                 item

@@ -24,7 +24,7 @@ def serialize_json(value: SchemaAlreadyPublishedException_) -> dict:
 
 def deserialize_json(data: dict) -> SchemaAlreadyPublishedException_:
     out: SchemaAlreadyPublishedException_ = {}  # type: ignore[typeddict-item]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     return out
 
@@ -34,15 +34,20 @@ class SchemaAlreadyPublishedException(ServiceError):
 
     code: str | None = "SchemaAlreadyPublishedException"
 
-    def __init__(self, data: SchemaAlreadyPublishedException_):
+    def __init__(
+        self, data: SchemaAlreadyPublishedException_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="SchemaAlreadyPublishedException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "SchemaAlreadyPublishedException":
-        return cls(deserialize_json(data))
+    def from_json(
+        cls, data: dict, message: str | None = None
+    ) -> "SchemaAlreadyPublishedException":
+        return cls(deserialize_json(data), message)

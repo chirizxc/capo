@@ -38,7 +38,7 @@ def deserialize_aws_json_1_0(
     data: dict,
 ) -> GetEnrollmentStatusesForOrganizationResponse:
     out: GetEnrollmentStatusesForOrganizationResponse = {}  # type: ignore[typeddict-item]
-    if "accountEnrollmentStatuses" in data:
+    if data.get("accountEnrollmentStatuses") is not None:
         import capo_compute_optimizer.types.account_enrollment_statuses
 
         out["account_enrollment_statuses"] = (
@@ -46,6 +46,6 @@ def deserialize_aws_json_1_0(
                 data["accountEnrollmentStatuses"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

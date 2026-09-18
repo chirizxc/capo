@@ -33,7 +33,7 @@ def serialize_aws_json_1_0(value: WorkflowTypeInfos) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> WorkflowTypeInfos:
     out: WorkflowTypeInfos = {}  # type: ignore[typeddict-item]
-    if "typeInfos" in data:
+    if data.get("typeInfos") is not None:
         import capo_swf.types.workflow_type_info_list
 
         out["type_infos"] = (
@@ -43,6 +43,6 @@ def deserialize_aws_json_1_0(data: dict) -> WorkflowTypeInfos:
         )
     else:
         raise DeserializationError("WorkflowTypeInfos.type_infos required")
-    if "nextPageToken" in data:
+    if data.get("nextPageToken") is not None:
         out["next_page_token"] = data["nextPageToken"]
     return out

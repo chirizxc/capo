@@ -61,21 +61,21 @@ def serialize_aws_json_1_0(value: ServiceSummary) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ServiceSummary:
     out: ServiceSummary = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("ServiceSummary.name required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("ServiceSummary.arn required")
-    if "templateName" in data:
+    if data.get("templateName") is not None:
         out["template_name"] = data["templateName"]
     else:
         raise DeserializationError("ServiceSummary.template_name required")
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_proton.types._prelude.timestamp
 
         out["created_at"] = (
@@ -85,7 +85,7 @@ def deserialize_aws_json_1_0(data: dict) -> ServiceSummary:
         )
     else:
         raise DeserializationError("ServiceSummary.created_at required")
-    if "lastModifiedAt" in data:
+    if data.get("lastModifiedAt") is not None:
         import capo_proton.types._prelude.timestamp
 
         out["last_modified_at"] = (
@@ -95,10 +95,10 @@ def deserialize_aws_json_1_0(data: dict) -> ServiceSummary:
         )
     else:
         raise DeserializationError("ServiceSummary.last_modified_at required")
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
     else:
         raise DeserializationError("ServiceSummary.status required")
-    if "statusMessage" in data:
+    if data.get("statusMessage") is not None:
         out["status_message"] = data["statusMessage"]
     return out

@@ -41,9 +41,9 @@ def serialize_aws_json_1_1(value: PossibleRemediationAction) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PossibleRemediationAction:
     out: PossibleRemediationAction = {}  # type: ignore[typeddict-item]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "OrderedRemediationActions" in data:
+    if data.get("OrderedRemediationActions") is not None:
         import capo_fms.types.ordered_remediation_actions
 
         out["ordered_remediation_actions"] = (
@@ -55,7 +55,7 @@ def deserialize_aws_json_1_1(data: dict) -> PossibleRemediationAction:
         raise DeserializationError(
             "PossibleRemediationAction.ordered_remediation_actions required"
         )
-    if "IsDefaultAction" in data:
+    if data.get("IsDefaultAction") is not None:
         out["is_default_action"] = data["IsDefaultAction"]
     else:
         out["is_default_action"] = False

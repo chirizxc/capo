@@ -47,13 +47,13 @@ def serialize_json(value: EndpointConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> EndpointConfiguration:
     out: EndpointConfiguration = {}  # type: ignore[typeddict-item]
-    if "types" in data:
+    if data.get("types") is not None:
         import capo_api_gateway.types.list_of_endpoint_type
 
         out["types"] = capo_api_gateway.types.list_of_endpoint_type.deserialize_json(
             data["types"]
         )
-    if "ipAddressType" in data:
+    if data.get("ipAddressType") is not None:
         import capo_api_gateway.types.ip_address_type
 
         out["ip_address_type"] = (
@@ -61,7 +61,7 @@ def deserialize_json(data: dict) -> EndpointConfiguration:
                 data["ipAddressType"]
             )
         )
-    if "vpcEndpointIds" in data:
+    if data.get("vpcEndpointIds") is not None:
         import capo_api_gateway.types.list_of_string
 
         out["vpc_endpoint_ids"] = (

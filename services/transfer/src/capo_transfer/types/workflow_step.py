@@ -90,13 +90,13 @@ def serialize_aws_json_1_1(value: WorkflowStep) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> WorkflowStep:
     out: WorkflowStep = {}  # type: ignore[typeddict-item]
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_transfer.types.workflow_step_type
 
         out["type"] = capo_transfer.types.workflow_step_type.deserialize_aws_json_1_1(
             data["Type"]
         )
-    if "CopyStepDetails" in data:
+    if data.get("CopyStepDetails") is not None:
         import capo_transfer.types.copy_step_details
 
         out["copy_step_details"] = (
@@ -104,7 +104,7 @@ def deserialize_aws_json_1_1(data: dict) -> WorkflowStep:
                 data["CopyStepDetails"]
             )
         )
-    if "CustomStepDetails" in data:
+    if data.get("CustomStepDetails") is not None:
         import capo_transfer.types.custom_step_details
 
         out["custom_step_details"] = (
@@ -112,7 +112,7 @@ def deserialize_aws_json_1_1(data: dict) -> WorkflowStep:
                 data["CustomStepDetails"]
             )
         )
-    if "DeleteStepDetails" in data:
+    if data.get("DeleteStepDetails") is not None:
         import capo_transfer.types.delete_step_details
 
         out["delete_step_details"] = (
@@ -120,7 +120,7 @@ def deserialize_aws_json_1_1(data: dict) -> WorkflowStep:
                 data["DeleteStepDetails"]
             )
         )
-    if "TagStepDetails" in data:
+    if data.get("TagStepDetails") is not None:
         import capo_transfer.types.tag_step_details
 
         out["tag_step_details"] = (
@@ -128,7 +128,7 @@ def deserialize_aws_json_1_1(data: dict) -> WorkflowStep:
                 data["TagStepDetails"]
             )
         )
-    if "DecryptStepDetails" in data:
+    if data.get("DecryptStepDetails") is not None:
         import capo_transfer.types.decrypt_step_details
 
         out["decrypt_step_details"] = (

@@ -28,8 +28,8 @@ def serialize_aws_json_1_1(value: CreateCachediSCSIVolumeOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateCachediSCSIVolumeOutput:
     out: CreateCachediSCSIVolumeOutput = {}  # type: ignore[typeddict-item]
-    if "VolumeARN" in data:
+    if data.get("VolumeARN") is not None:
         out["volume_arn"] = data["VolumeARN"]
-    if "TargetARN" in data:
+    if data.get("TargetARN") is not None:
         out["target_arn"] = data["TargetARN"]
     return out

@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: GetAssignmentRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetAssignmentRequest:
     out: GetAssignmentRequest = {}  # type: ignore[typeddict-item]
-    if "AssignmentId" in data:
+    if data.get("AssignmentId") is not None:
         out["assignment_id"] = data["AssignmentId"]
     else:
         raise DeserializationError("GetAssignmentRequest.assignment_id required")

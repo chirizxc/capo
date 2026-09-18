@@ -67,11 +67,11 @@ def serialize_aws_json_1_1(value: QuerySuggestionsBlockListSummary) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> QuerySuggestionsBlockListSummary:
     out: QuerySuggestionsBlockListSummary = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_kendra.types.query_suggestions_block_list_status
 
         out["status"] = (
@@ -79,18 +79,18 @@ def deserialize_aws_json_1_1(data: dict) -> QuerySuggestionsBlockListSummary:
                 data["Status"]
             )
         )
-    if "CreatedAt" in data:
+    if data.get("CreatedAt") is not None:
         import capo_kendra.types.timestamp
 
         out["created_at"] = capo_kendra.types.timestamp.deserialize_aws_json_1_1(
             data["CreatedAt"]
         )
-    if "UpdatedAt" in data:
+    if data.get("UpdatedAt") is not None:
         import capo_kendra.types.timestamp
 
         out["updated_at"] = capo_kendra.types.timestamp.deserialize_aws_json_1_1(
             data["UpdatedAt"]
         )
-    if "ItemCount" in data:
+    if data.get("ItemCount") is not None:
         out["item_count"] = data["ItemCount"]
     return out

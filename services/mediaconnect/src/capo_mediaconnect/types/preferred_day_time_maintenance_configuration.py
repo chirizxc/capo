@@ -29,7 +29,7 @@ def serialize_json(value: PreferredDayTimeMaintenanceConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> PreferredDayTimeMaintenanceConfiguration:
     out: PreferredDayTimeMaintenanceConfiguration = {}  # type: ignore[typeddict-item]
-    if "day" in data:
+    if data.get("day") is not None:
         import capo_mediaconnect.types.day
 
         out["day"] = capo_mediaconnect.types.day.deserialize_json(data["day"])
@@ -37,7 +37,7 @@ def deserialize_json(data: dict) -> PreferredDayTimeMaintenanceConfiguration:
         raise DeserializationError(
             "PreferredDayTimeMaintenanceConfiguration.day required"
         )
-    if "time" in data:
+    if data.get("time") is not None:
         out["time"] = data["time"]
     else:
         raise DeserializationError(

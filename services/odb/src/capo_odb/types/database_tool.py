@@ -22,7 +22,15 @@ def serialize_aws_json_1_0(value: DatabaseTool) -> dict:
     if "name" in value:
         out["name"] = value["name"]
     if "compute_count" in value:
-        out["computeCount"] = value["compute_count"]
+        out["computeCount"] = (
+            "NaN"
+            if value["compute_count"] != value["compute_count"]
+            else "Infinity"
+            if value["compute_count"] == float("inf")
+            else "-Infinity"
+            if value["compute_count"] == float("-inf")
+            else value["compute_count"]
+        )
     if "max_idle_time_in_minutes" in value:
         out["maxIdleTimeInMinutes"] = value["max_idle_time_in_minutes"]
     return out
@@ -30,12 +38,12 @@ def serialize_aws_json_1_0(value: DatabaseTool) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> DatabaseTool:
     out: DatabaseTool = {}  # type: ignore[typeddict-item]
-    if "isEnabled" in data:
+    if data.get("isEnabled") is not None:
         out["is_enabled"] = data["isEnabled"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "computeCount" in data:
-        out["compute_count"] = data["computeCount"]
-    if "maxIdleTimeInMinutes" in data:
+    if data.get("computeCount") is not None:
+        out["compute_count"] = float(data["computeCount"])
+    if data.get("maxIdleTimeInMinutes") is not None:
         out["max_idle_time_in_minutes"] = data["maxIdleTimeInMinutes"]
     return out

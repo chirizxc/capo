@@ -142,17 +142,17 @@ def serialize_json(value: UpdateDataSourceRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateDataSourceRequest:
     out: UpdateDataSourceRequest = {}  # type: ignore[typeddict-item]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_appsync.types.data_source_type
 
         out["type"] = capo_appsync.types.data_source_type.deserialize_json(data["type"])
     else:
         raise DeserializationError("UpdateDataSourceRequest.type required")
-    if "serviceRoleArn" in data:
+    if data.get("serviceRoleArn") is not None:
         out["service_role_arn"] = data["serviceRoleArn"]
-    if "dynamodbConfig" in data:
+    if data.get("dynamodbConfig") is not None:
         import capo_appsync.types.dynamodb_data_source_config
 
         out["dynamodb_config"] = (
@@ -160,7 +160,7 @@ def deserialize_json(data: dict) -> UpdateDataSourceRequest:
                 data["dynamodbConfig"]
             )
         )
-    if "lambdaConfig" in data:
+    if data.get("lambdaConfig") is not None:
         import capo_appsync.types.lambda_data_source_config
 
         out["lambda_config"] = (
@@ -168,7 +168,7 @@ def deserialize_json(data: dict) -> UpdateDataSourceRequest:
                 data["lambdaConfig"]
             )
         )
-    if "elasticsearchConfig" in data:
+    if data.get("elasticsearchConfig") is not None:
         import capo_appsync.types.elasticsearch_data_source_config
 
         out["elasticsearch_config"] = (
@@ -176,7 +176,7 @@ def deserialize_json(data: dict) -> UpdateDataSourceRequest:
                 data["elasticsearchConfig"]
             )
         )
-    if "openSearchServiceConfig" in data:
+    if data.get("openSearchServiceConfig") is not None:
         import capo_appsync.types.open_search_service_data_source_config
 
         out["open_search_service_config"] = (
@@ -184,7 +184,7 @@ def deserialize_json(data: dict) -> UpdateDataSourceRequest:
                 data["openSearchServiceConfig"]
             )
         )
-    if "httpConfig" in data:
+    if data.get("httpConfig") is not None:
         import capo_appsync.types.http_data_source_config
 
         out["http_config"] = (
@@ -192,7 +192,7 @@ def deserialize_json(data: dict) -> UpdateDataSourceRequest:
                 data["httpConfig"]
             )
         )
-    if "relationalDatabaseConfig" in data:
+    if data.get("relationalDatabaseConfig") is not None:
         import capo_appsync.types.relational_database_data_source_config
 
         out["relational_database_config"] = (
@@ -200,7 +200,7 @@ def deserialize_json(data: dict) -> UpdateDataSourceRequest:
                 data["relationalDatabaseConfig"]
             )
         )
-    if "eventBridgeConfig" in data:
+    if data.get("eventBridgeConfig") is not None:
         import capo_appsync.types.event_bridge_data_source_config
 
         out["event_bridge_config"] = (
@@ -208,7 +208,7 @@ def deserialize_json(data: dict) -> UpdateDataSourceRequest:
                 data["eventBridgeConfig"]
             )
         )
-    if "metricsConfig" in data:
+    if data.get("metricsConfig") is not None:
         import capo_appsync.types.data_source_level_metrics_config
 
         out["metrics_config"] = (

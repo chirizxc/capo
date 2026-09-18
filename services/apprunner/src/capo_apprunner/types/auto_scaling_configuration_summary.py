@@ -72,17 +72,17 @@ def serialize_aws_json_1_0(value: AutoScalingConfigurationSummary) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> AutoScalingConfigurationSummary:
     out: AutoScalingConfigurationSummary = {}  # type: ignore[typeddict-item]
-    if "AutoScalingConfigurationArn" in data:
+    if data.get("AutoScalingConfigurationArn") is not None:
         out["auto_scaling_configuration_arn"] = data["AutoScalingConfigurationArn"]
-    if "AutoScalingConfigurationName" in data:
+    if data.get("AutoScalingConfigurationName") is not None:
         out["auto_scaling_configuration_name"] = data["AutoScalingConfigurationName"]
-    if "AutoScalingConfigurationRevision" in data:
+    if data.get("AutoScalingConfigurationRevision") is not None:
         out["auto_scaling_configuration_revision"] = data[
             "AutoScalingConfigurationRevision"
         ]
     else:
         out["auto_scaling_configuration_revision"] = 0
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_apprunner.types.auto_scaling_configuration_status
 
         out["status"] = (
@@ -90,14 +90,14 @@ def deserialize_aws_json_1_0(data: dict) -> AutoScalingConfigurationSummary:
                 data["Status"]
             )
         )
-    if "CreatedAt" in data:
+    if data.get("CreatedAt") is not None:
         import capo_apprunner.types.timestamp
 
         out["created_at"] = capo_apprunner.types.timestamp.deserialize_aws_json_1_0(
             data["CreatedAt"]
         )
-    if "HasAssociatedService" in data:
+    if data.get("HasAssociatedService") is not None:
         out["has_associated_service"] = data["HasAssociatedService"]
-    if "IsDefault" in data:
+    if data.get("IsDefault") is not None:
         out["is_default"] = data["IsDefault"]
     return out

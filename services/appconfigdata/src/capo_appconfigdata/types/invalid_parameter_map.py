@@ -27,6 +27,8 @@ def serialize_json(input_to_serialize: InvalidParameterMap) -> dict:
 def deserialize_json(data: dict) -> InvalidParameterMap:
     out: InvalidParameterMap = {}
     for key, value in data.items():
+        if value is None:
+            continue
         import capo_appconfigdata.types.invalid_parameter_detail
 
         out[key] = capo_appconfigdata.types.invalid_parameter_detail.deserialize_json(

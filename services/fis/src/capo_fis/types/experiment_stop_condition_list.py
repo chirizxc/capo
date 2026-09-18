@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> ExperimentStopConditionList:
 
     out: ExperimentStopConditionList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_fis.types.experiment_stop_condition.deserialize_json(item))
     return out

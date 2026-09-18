@@ -32,7 +32,7 @@ def serialize_aws_json_1_1(value: PutRemediationConfigurationsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PutRemediationConfigurationsRequest:
     out: PutRemediationConfigurationsRequest = {}  # type: ignore[typeddict-item]
-    if "RemediationConfigurations" in data:
+    if data.get("RemediationConfigurations") is not None:
         import capo_config_service.types.remediation_configurations
 
         out["remediation_configurations"] = (

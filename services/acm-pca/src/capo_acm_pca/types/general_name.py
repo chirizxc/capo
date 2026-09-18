@@ -70,17 +70,17 @@ def serialize_aws_json_1_1(value: GeneralName) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GeneralName:
     out: GeneralName = {}  # type: ignore[typeddict-item]
-    if "OtherName" in data:
+    if data.get("OtherName") is not None:
         import capo_acm_pca.types.other_name
 
         out["other_name"] = capo_acm_pca.types.other_name.deserialize_aws_json_1_1(
             data["OtherName"]
         )
-    if "Rfc822Name" in data:
+    if data.get("Rfc822Name") is not None:
         out["rfc822_name"] = data["Rfc822Name"]
-    if "DnsName" in data:
+    if data.get("DnsName") is not None:
         out["dns_name"] = data["DnsName"]
-    if "DirectoryName" in data:
+    if data.get("DirectoryName") is not None:
         import capo_acm_pca.types.asn1_subject
 
         out["directory_name"] = (
@@ -88,7 +88,7 @@ def deserialize_aws_json_1_1(data: dict) -> GeneralName:
                 data["DirectoryName"]
             )
         )
-    if "EdiPartyName" in data:
+    if data.get("EdiPartyName") is not None:
         import capo_acm_pca.types.edi_party_name
 
         out["edi_party_name"] = (
@@ -96,10 +96,10 @@ def deserialize_aws_json_1_1(data: dict) -> GeneralName:
                 data["EdiPartyName"]
             )
         )
-    if "UniformResourceIdentifier" in data:
+    if data.get("UniformResourceIdentifier") is not None:
         out["uniform_resource_identifier"] = data["UniformResourceIdentifier"]
-    if "IpAddress" in data:
+    if data.get("IpAddress") is not None:
         out["ip_address"] = data["IpAddress"]
-    if "RegisteredId" in data:
+    if data.get("RegisteredId") is not None:
         out["registered_id"] = data["RegisteredId"]
     return out

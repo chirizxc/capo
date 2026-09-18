@@ -36,19 +36,19 @@ def deserialize_aws_json_1_1(
     data: dict,
 ) -> GetServiceQuotaIncreaseRequestFromTemplateRequest:
     out: GetServiceQuotaIncreaseRequestFromTemplateRequest = {}  # type: ignore[typeddict-item]
-    if "ServiceCode" in data:
+    if data.get("ServiceCode") is not None:
         out["service_code"] = data["ServiceCode"]
     else:
         raise DeserializationError(
             "GetServiceQuotaIncreaseRequestFromTemplateRequest.service_code required"
         )
-    if "QuotaCode" in data:
+    if data.get("QuotaCode") is not None:
         out["quota_code"] = data["QuotaCode"]
     else:
         raise DeserializationError(
             "GetServiceQuotaIncreaseRequestFromTemplateRequest.quota_code required"
         )
-    if "AwsRegion" in data:
+    if data.get("AwsRegion") is not None:
         out["aws_region"] = data["AwsRegion"]
     else:
         raise DeserializationError(

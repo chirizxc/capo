@@ -28,6 +28,8 @@ def serialize_json(input_to_serialize: RecommenderSchemaFields) -> dict:
 def deserialize_json(data: dict) -> RecommenderSchemaFields:
     out: RecommenderSchemaFields = {}
     for key, value in data.items():
+        if value is None:
+            continue
         import capo_customer_profiles.types.recommender_schema_field_list
 
         out[key] = (

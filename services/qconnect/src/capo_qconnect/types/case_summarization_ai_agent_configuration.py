@@ -38,12 +38,12 @@ def serialize_json(value: CaseSummarizationAIAgentConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> CaseSummarizationAIAgentConfiguration:
     out: CaseSummarizationAIAgentConfiguration = {}  # type: ignore[typeddict-item]
-    if "caseSummarizationAIPromptId" in data:
+    if data.get("caseSummarizationAIPromptId") is not None:
         out["case_summarization_ai_prompt_id"] = data["caseSummarizationAIPromptId"]
-    if "caseSummarizationAIGuardrailId" in data:
+    if data.get("caseSummarizationAIGuardrailId") is not None:
         out["case_summarization_ai_guardrail_id"] = data[
             "caseSummarizationAIGuardrailId"
         ]
-    if "locale" in data:
+    if data.get("locale") is not None:
         out["locale"] = data["locale"]
     return out

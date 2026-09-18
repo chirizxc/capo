@@ -44,13 +44,13 @@ def serialize_aws_json_1_1(value: GetConformancePackComplianceDetailsResponse) -
 
 def deserialize_aws_json_1_1(data: dict) -> GetConformancePackComplianceDetailsResponse:
     out: GetConformancePackComplianceDetailsResponse = {}  # type: ignore[typeddict-item]
-    if "ConformancePackName" in data:
+    if data.get("ConformancePackName") is not None:
         out["conformance_pack_name"] = data["ConformancePackName"]
     else:
         raise DeserializationError(
             "GetConformancePackComplianceDetailsResponse.conformance_pack_name required"
         )
-    if "ConformancePackRuleEvaluationResults" in data:
+    if data.get("ConformancePackRuleEvaluationResults") is not None:
         import capo_config_service.types.conformance_pack_rule_evaluation_results_list
 
         out["conformance_pack_rule_evaluation_results"] = (
@@ -58,6 +58,6 @@ def deserialize_aws_json_1_1(data: dict) -> GetConformancePackComplianceDetailsR
                 data["ConformancePackRuleEvaluationResults"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

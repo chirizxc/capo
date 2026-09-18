@@ -30,10 +30,10 @@ def serialize_json(value: MediaItem) -> dict:
 
 def deserialize_json(data: dict) -> MediaItem:
     out: MediaItem = {}  # type: ignore[typeddict-item]
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_connect.types.media_type
 
         out["type"] = capo_connect.types.media_type.deserialize_json(data["Type"])
-    if "Source" in data:
+    if data.get("Source") is not None:
         out["source"] = data["Source"]
     return out

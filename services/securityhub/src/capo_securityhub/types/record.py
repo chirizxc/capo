@@ -28,8 +28,8 @@ def serialize_json(value: Record) -> dict:
 
 def deserialize_json(data: dict) -> Record:
     out: Record = {}  # type: ignore[typeddict-item]
-    if "JsonPath" in data:
+    if data.get("JsonPath") is not None:
         out["json_path"] = data["JsonPath"]
-    if "RecordIndex" in data:
+    if data.get("RecordIndex") is not None:
         out["record_index"] = data["RecordIndex"]
     return out

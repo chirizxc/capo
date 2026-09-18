@@ -65,11 +65,11 @@ def serialize_json(value: HlsAkamaiSettings) -> dict:
 
 def deserialize_json(data: dict) -> HlsAkamaiSettings:
     out: HlsAkamaiSettings = {}  # type: ignore[typeddict-item]
-    if "connectionRetryInterval" in data:
+    if data.get("connectionRetryInterval") is not None:
         out["connection_retry_interval"] = data["connectionRetryInterval"]
-    if "filecacheDuration" in data:
+    if data.get("filecacheDuration") is not None:
         out["filecache_duration"] = data["filecacheDuration"]
-    if "httpTransferMode" in data:
+    if data.get("httpTransferMode") is not None:
         import capo_medialive.types.hls_akamai_http_transfer_mode
 
         out["http_transfer_mode"] = (
@@ -77,12 +77,12 @@ def deserialize_json(data: dict) -> HlsAkamaiSettings:
                 data["httpTransferMode"]
             )
         )
-    if "numRetries" in data:
+    if data.get("numRetries") is not None:
         out["num_retries"] = data["numRetries"]
-    if "restartDelay" in data:
+    if data.get("restartDelay") is not None:
         out["restart_delay"] = data["restartDelay"]
-    if "salt" in data:
+    if data.get("salt") is not None:
         out["salt"] = data["salt"]
-    if "token" in data:
+    if data.get("token") is not None:
         out["token"] = data["token"]
     return out

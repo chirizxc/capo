@@ -29,7 +29,7 @@ def serialize_json(value: MedicalScribeAudioEvent) -> dict:
 
 def deserialize_json(data: dict) -> MedicalScribeAudioEvent:
     out: MedicalScribeAudioEvent = {}  # type: ignore[typeddict-item]
-    if "audioChunk" in data:
+    if data.get("audioChunk") is not None:
         import capo_connecthealth.types.audio_chunk
 
         out["audio_chunk"] = capo_connecthealth.types.audio_chunk.deserialize_json(

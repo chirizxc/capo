@@ -23,6 +23,6 @@ def serialize_aws_json_1_1(value: GetCalculationExecutionCodeResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetCalculationExecutionCodeResponse:
     out: GetCalculationExecutionCodeResponse = {}  # type: ignore[typeddict-item]
-    if "CodeBlock" in data:
+    if data.get("CodeBlock") is not None:
         out["code_block"] = data["CodeBlock"]
     return out

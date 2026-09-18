@@ -154,7 +154,7 @@ def serialize_aws_json_1_1(value: ScalingInstruction) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ScalingInstruction:
     out: ScalingInstruction = {}  # type: ignore[typeddict-item]
-    if "ServiceNamespace" in data:
+    if data.get("ServiceNamespace") is not None:
         import capo_auto_scaling_plans.types.service_namespace
 
         out["service_namespace"] = (
@@ -164,11 +164,11 @@ def deserialize_aws_json_1_1(data: dict) -> ScalingInstruction:
         )
     else:
         raise DeserializationError("ScalingInstruction.service_namespace required")
-    if "ResourceId" in data:
+    if data.get("ResourceId") is not None:
         out["resource_id"] = data["ResourceId"]
     else:
         raise DeserializationError("ScalingInstruction.resource_id required")
-    if "ScalableDimension" in data:
+    if data.get("ScalableDimension") is not None:
         import capo_auto_scaling_plans.types.scalable_dimension
 
         out["scalable_dimension"] = (
@@ -178,15 +178,15 @@ def deserialize_aws_json_1_1(data: dict) -> ScalingInstruction:
         )
     else:
         raise DeserializationError("ScalingInstruction.scalable_dimension required")
-    if "MinCapacity" in data:
+    if data.get("MinCapacity") is not None:
         out["min_capacity"] = data["MinCapacity"]
     else:
         raise DeserializationError("ScalingInstruction.min_capacity required")
-    if "MaxCapacity" in data:
+    if data.get("MaxCapacity") is not None:
         out["max_capacity"] = data["MaxCapacity"]
     else:
         raise DeserializationError("ScalingInstruction.max_capacity required")
-    if "TargetTrackingConfigurations" in data:
+    if data.get("TargetTrackingConfigurations") is not None:
         import capo_auto_scaling_plans.types.target_tracking_configurations
 
         out["target_tracking_configurations"] = (
@@ -198,7 +198,7 @@ def deserialize_aws_json_1_1(data: dict) -> ScalingInstruction:
         raise DeserializationError(
             "ScalingInstruction.target_tracking_configurations required"
         )
-    if "PredefinedLoadMetricSpecification" in data:
+    if data.get("PredefinedLoadMetricSpecification") is not None:
         import capo_auto_scaling_plans.types.predefined_load_metric_specification
 
         out["predefined_load_metric_specification"] = (
@@ -206,7 +206,7 @@ def deserialize_aws_json_1_1(data: dict) -> ScalingInstruction:
                 data["PredefinedLoadMetricSpecification"]
             )
         )
-    if "CustomizedLoadMetricSpecification" in data:
+    if data.get("CustomizedLoadMetricSpecification") is not None:
         import capo_auto_scaling_plans.types.customized_load_metric_specification
 
         out["customized_load_metric_specification"] = (
@@ -214,9 +214,9 @@ def deserialize_aws_json_1_1(data: dict) -> ScalingInstruction:
                 data["CustomizedLoadMetricSpecification"]
             )
         )
-    if "ScheduledActionBufferTime" in data:
+    if data.get("ScheduledActionBufferTime") is not None:
         out["scheduled_action_buffer_time"] = data["ScheduledActionBufferTime"]
-    if "PredictiveScalingMaxCapacityBehavior" in data:
+    if data.get("PredictiveScalingMaxCapacityBehavior") is not None:
         import capo_auto_scaling_plans.types.predictive_scaling_max_capacity_behavior
 
         out["predictive_scaling_max_capacity_behavior"] = (
@@ -224,11 +224,11 @@ def deserialize_aws_json_1_1(data: dict) -> ScalingInstruction:
                 data["PredictiveScalingMaxCapacityBehavior"]
             )
         )
-    if "PredictiveScalingMaxCapacityBuffer" in data:
+    if data.get("PredictiveScalingMaxCapacityBuffer") is not None:
         out["predictive_scaling_max_capacity_buffer"] = data[
             "PredictiveScalingMaxCapacityBuffer"
         ]
-    if "PredictiveScalingMode" in data:
+    if data.get("PredictiveScalingMode") is not None:
         import capo_auto_scaling_plans.types.predictive_scaling_mode
 
         out["predictive_scaling_mode"] = (
@@ -236,7 +236,7 @@ def deserialize_aws_json_1_1(data: dict) -> ScalingInstruction:
                 data["PredictiveScalingMode"]
             )
         )
-    if "ScalingPolicyUpdateBehavior" in data:
+    if data.get("ScalingPolicyUpdateBehavior") is not None:
         import capo_auto_scaling_plans.types.scaling_policy_update_behavior
 
         out["scaling_policy_update_behavior"] = (
@@ -244,6 +244,6 @@ def deserialize_aws_json_1_1(data: dict) -> ScalingInstruction:
                 data["ScalingPolicyUpdateBehavior"]
             )
         )
-    if "DisableDynamicScaling" in data:
+    if data.get("DisableDynamicScaling") is not None:
         out["disable_dynamic_scaling"] = data["DisableDynamicScaling"]
     return out

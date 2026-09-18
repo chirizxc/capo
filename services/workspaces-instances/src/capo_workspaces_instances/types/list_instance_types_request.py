@@ -43,11 +43,11 @@ def serialize_aws_json_1_0(value: ListInstanceTypesRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ListInstanceTypesRequest:
     out: ListInstanceTypesRequest = {}  # type: ignore[typeddict-item]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "InstanceConfigurationFilter" in data:
+    if data.get("InstanceConfigurationFilter") is not None:
         import capo_workspaces_instances.types.instance_configuration_filter
 
         out["instance_configuration_filter"] = (

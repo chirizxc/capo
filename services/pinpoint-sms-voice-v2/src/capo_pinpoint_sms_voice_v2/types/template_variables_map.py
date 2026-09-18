@@ -28,6 +28,8 @@ def serialize_aws_json_1_0(input_to_serialize: TemplateVariablesMap) -> dict:
 def deserialize_aws_json_1_0(data: dict) -> TemplateVariablesMap:
     out: TemplateVariablesMap = {}
     for key, value in data.items():
+        if value is None:
+            continue
         import capo_pinpoint_sms_voice_v2.types.template_variable_metadata
 
         out[key] = (

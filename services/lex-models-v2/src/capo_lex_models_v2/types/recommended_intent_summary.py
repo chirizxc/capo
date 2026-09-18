@@ -35,10 +35,10 @@ def serialize_json(value: RecommendedIntentSummary) -> dict:
 
 def deserialize_json(data: dict) -> RecommendedIntentSummary:
     out: RecommendedIntentSummary = {}  # type: ignore[typeddict-item]
-    if "intentId" in data:
+    if data.get("intentId") is not None:
         out["intent_id"] = data["intentId"]
-    if "intentName" in data:
+    if data.get("intentName") is not None:
         out["intent_name"] = data["intentName"]
-    if "sampleUtterancesCount" in data:
+    if data.get("sampleUtterancesCount") is not None:
         out["sample_utterances_count"] = data["sampleUtterancesCount"]
     return out

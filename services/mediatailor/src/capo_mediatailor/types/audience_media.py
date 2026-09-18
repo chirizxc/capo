@@ -36,9 +36,9 @@ def serialize_json(value: AudienceMedia) -> dict:
 
 def deserialize_json(data: dict) -> AudienceMedia:
     out: AudienceMedia = {}  # type: ignore[typeddict-item]
-    if "Audience" in data:
+    if data.get("Audience") is not None:
         out["audience"] = data["Audience"]
-    if "AlternateMedia" in data:
+    if data.get("AlternateMedia") is not None:
         import capo_mediatailor.types.__list_of_alternate_media
 
         out["alternate_media"] = (

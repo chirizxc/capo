@@ -48,13 +48,13 @@ def serialize_json(value: KPIFieldWells) -> dict:
 
 def deserialize_json(data: dict) -> KPIFieldWells:
     out: KPIFieldWells = {}  # type: ignore[typeddict-item]
-    if "Values" in data:
+    if data.get("Values") is not None:
         import capo_quicksight.types.measure_field_list
 
         out["values"] = capo_quicksight.types.measure_field_list.deserialize_json(
             data["Values"]
         )
-    if "TargetValues" in data:
+    if data.get("TargetValues") is not None:
         import capo_quicksight.types.measure_field_list
 
         out["target_values"] = (
@@ -62,7 +62,7 @@ def deserialize_json(data: dict) -> KPIFieldWells:
                 data["TargetValues"]
             )
         )
-    if "TrendGroups" in data:
+    if data.get("TrendGroups") is not None:
         import capo_quicksight.types.dimension_field_list
 
         out["trend_groups"] = (

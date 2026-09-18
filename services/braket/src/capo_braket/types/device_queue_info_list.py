@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> DeviceQueueInfoList:
 
     out: DeviceQueueInfoList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_braket.types.device_queue_info.deserialize_json(item))
     return out

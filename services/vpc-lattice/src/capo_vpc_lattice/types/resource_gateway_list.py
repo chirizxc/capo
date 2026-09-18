@@ -25,6 +25,8 @@ def deserialize_json(data: list) -> ResourceGatewayList:
 
     out: ResourceGatewayList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_vpc_lattice.types.resource_gateway_summary.deserialize_json(item)
         )

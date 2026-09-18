@@ -45,11 +45,11 @@ def serialize_json(value: ManagedThingAssociation) -> dict:
 
 def deserialize_json(data: dict) -> ManagedThingAssociation:
     out: ManagedThingAssociation = {}  # type: ignore[typeddict-item]
-    if "ManagedThingId" in data:
+    if data.get("ManagedThingId") is not None:
         out["managed_thing_id"] = data["ManagedThingId"]
-    if "AccountAssociationId" in data:
+    if data.get("AccountAssociationId") is not None:
         out["account_association_id"] = data["AccountAssociationId"]
-    if "ManagedThingAssociationStatus" in data:
+    if data.get("ManagedThingAssociationStatus") is not None:
         import capo_iot_managed_integrations.types.managed_thing_association_status
 
         out["managed_thing_association_status"] = (

@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> CreateLowLatencyHlsManifests:
 
     out: CreateLowLatencyHlsManifests = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_mediapackagev2.types.create_low_latency_hls_manifest_configuration.deserialize_json(
                 item

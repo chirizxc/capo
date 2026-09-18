@@ -79,13 +79,13 @@ def serialize_json(value: CreateDatasetRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateDatasetRequest:
     out: CreateDatasetRequest = {}  # type: ignore[typeddict-item]
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
-    if "datasetTitle" in data:
+    if data.get("datasetTitle") is not None:
         out["dataset_title"] = data["datasetTitle"]
     else:
         raise DeserializationError("CreateDatasetRequest.dataset_title required")
-    if "kind" in data:
+    if data.get("kind") is not None:
         import capo_finspace_data.types.dataset_kind
 
         out["kind"] = capo_finspace_data.types.dataset_kind.deserialize_json(
@@ -93,9 +93,9 @@ def deserialize_json(data: dict) -> CreateDatasetRequest:
         )
     else:
         raise DeserializationError("CreateDatasetRequest.kind required")
-    if "datasetDescription" in data:
+    if data.get("datasetDescription") is not None:
         out["dataset_description"] = data["datasetDescription"]
-    if "ownerInfo" in data:
+    if data.get("ownerInfo") is not None:
         import capo_finspace_data.types.dataset_owner_info
 
         out["owner_info"] = (
@@ -103,7 +103,7 @@ def deserialize_json(data: dict) -> CreateDatasetRequest:
                 data["ownerInfo"]
             )
         )
-    if "permissionGroupParams" in data:
+    if data.get("permissionGroupParams") is not None:
         import capo_finspace_data.types.permission_group_params
 
         out["permission_group_params"] = (
@@ -115,9 +115,9 @@ def deserialize_json(data: dict) -> CreateDatasetRequest:
         raise DeserializationError(
             "CreateDatasetRequest.permission_group_params required"
         )
-    if "alias" in data:
+    if data.get("alias") is not None:
         out["alias"] = data["alias"]
-    if "schemaDefinition" in data:
+    if data.get("schemaDefinition") is not None:
         import capo_finspace_data.types.schema_union
 
         out["schema_definition"] = (

@@ -29,6 +29,9 @@ def deserialize_json(data: dict) -> AddressRoleMap:
     out: AddressRoleMap = {}
     for key, value in data.items():
         import capo_taxsettings.types.address_role_type
+
+        if value is None:
+            continue
         import capo_taxsettings.types.jurisdiction
 
         out[capo_taxsettings.types.address_role_type.deserialize_json(key)] = (

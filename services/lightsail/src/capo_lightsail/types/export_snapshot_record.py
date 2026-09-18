@@ -90,17 +90,17 @@ def serialize_aws_json_1_1(value: ExportSnapshotRecord) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ExportSnapshotRecord:
     out: ExportSnapshotRecord = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_lightsail.types.iso_date
 
         out["created_at"] = capo_lightsail.types.iso_date.deserialize_aws_json_1_1(
             data["createdAt"]
         )
-    if "location" in data:
+    if data.get("location") is not None:
         import capo_lightsail.types.resource_location
 
         out["location"] = (
@@ -108,7 +108,7 @@ def deserialize_aws_json_1_1(data: dict) -> ExportSnapshotRecord:
                 data["location"]
             )
         )
-    if "resourceType" in data:
+    if data.get("resourceType") is not None:
         import capo_lightsail.types.resource_type
 
         out["resource_type"] = (
@@ -116,13 +116,13 @@ def deserialize_aws_json_1_1(data: dict) -> ExportSnapshotRecord:
                 data["resourceType"]
             )
         )
-    if "state" in data:
+    if data.get("state") is not None:
         import capo_lightsail.types.record_state
 
         out["state"] = capo_lightsail.types.record_state.deserialize_aws_json_1_1(
             data["state"]
         )
-    if "sourceInfo" in data:
+    if data.get("sourceInfo") is not None:
         import capo_lightsail.types.export_snapshot_record_source_info
 
         out["source_info"] = (
@@ -130,7 +130,7 @@ def deserialize_aws_json_1_1(data: dict) -> ExportSnapshotRecord:
                 data["sourceInfo"]
             )
         )
-    if "destinationInfo" in data:
+    if data.get("destinationInfo") is not None:
         import capo_lightsail.types.destination_info
 
         out["destination_info"] = (

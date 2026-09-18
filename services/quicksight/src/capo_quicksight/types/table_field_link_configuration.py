@@ -38,7 +38,7 @@ def serialize_json(value: TableFieldLinkConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> TableFieldLinkConfiguration:
     out: TableFieldLinkConfiguration = {}  # type: ignore[typeddict-item]
-    if "Target" in data:
+    if data.get("Target") is not None:
         import capo_quicksight.types.url_target_configuration
 
         out["target"] = capo_quicksight.types.url_target_configuration.deserialize_json(
@@ -46,7 +46,7 @@ def deserialize_json(data: dict) -> TableFieldLinkConfiguration:
         )
     else:
         raise DeserializationError("TableFieldLinkConfiguration.target required")
-    if "Content" in data:
+    if data.get("Content") is not None:
         import capo_quicksight.types.table_field_link_content_configuration
 
         out["content"] = (

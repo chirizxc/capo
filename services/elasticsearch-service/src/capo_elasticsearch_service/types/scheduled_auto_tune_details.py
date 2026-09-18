@@ -60,13 +60,13 @@ def serialize_json(value: ScheduledAutoTuneDetails) -> dict:
 
 def deserialize_json(data: dict) -> ScheduledAutoTuneDetails:
     out: ScheduledAutoTuneDetails = {}  # type: ignore[typeddict-item]
-    if "Date" in data:
+    if data.get("Date") is not None:
         import capo_elasticsearch_service.types.auto_tune_date
 
         out["date"] = capo_elasticsearch_service.types.auto_tune_date.deserialize_json(
             data["Date"]
         )
-    if "ActionType" in data:
+    if data.get("ActionType") is not None:
         import capo_elasticsearch_service.types.scheduled_auto_tune_action_type
 
         out["action_type"] = (
@@ -74,9 +74,9 @@ def deserialize_json(data: dict) -> ScheduledAutoTuneDetails:
                 data["ActionType"]
             )
         )
-    if "Action" in data:
+    if data.get("Action") is not None:
         out["action"] = data["Action"]
-    if "Severity" in data:
+    if data.get("Severity") is not None:
         import capo_elasticsearch_service.types.scheduled_auto_tune_severity_type
 
         out["severity"] = (

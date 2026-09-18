@@ -75,34 +75,34 @@ def serialize_json(value: StartNotebookImportOutput) -> dict:
 
 def deserialize_json(data: dict) -> StartNotebookImportOutput:
     out: StartNotebookImportOutput = {}  # type: ignore[typeddict-item]
-    if "notebookId" in data:
+    if data.get("notebookId") is not None:
         out["notebook_id"] = data["notebookId"]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_datazone.types.notebook_status
 
         out["status"] = capo_datazone.types.notebook_status.deserialize_json(
             data["status"]
         )
-    if "domainId" in data:
+    if data.get("domainId") is not None:
         out["domain_id"] = data["domainId"]
-    if "owningProjectId" in data:
+    if data.get("owningProjectId") is not None:
         out["owning_project_id"] = data["owningProjectId"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "sourceLocation" in data:
+    if data.get("sourceLocation") is not None:
         import capo_datazone.types.source_location
 
         out["source_location"] = capo_datazone.types.source_location.deserialize_json(
             data["sourceLocation"]
         )
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_datazone.types.created_at
 
         out["created_at"] = capo_datazone.types.created_at.deserialize_json(
             data["createdAt"]
         )
-    if "createdBy" in data:
+    if data.get("createdBy") is not None:
         out["created_by"] = data["createdBy"]
     return out

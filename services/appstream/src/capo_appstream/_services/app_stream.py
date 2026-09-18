@@ -1,6 +1,7 @@
 """Generated from Smithy shape ``com.amazonaws.appstream#PhotonAdminProxyService``."""
 
 import warnings
+from collections.abc import Iterator
 from typing import TYPE_CHECKING, Any, Iterable, Optional
 
 from typing_extensions import Self, TypedDict
@@ -16,6 +17,7 @@ from capo_appstream._auth._providers import (
     default_aws_credentials_chain,
 )
 from capo_appstream._auth._zapros_handler import AuthMiddleware
+from capo_appstream._pagination import resolve_path as _resolve_path
 from capo_appstream._services._aws_config import aws_config
 from capo_appstream._services._pipeline import (
     Interceptor,
@@ -415,7 +417,7 @@ class AppStreamClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appstream.types.associate_app_block_builder_app_block_request.AssociateAppBlockBuilderAppBlockRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_appstream.types.associate_app_block_builder_app_block_request.AssociateAppBlockBuilderAppBlockRequest = {}
         if app_block_arn is not None:
             input_["app_block_arn"] = app_block_arn
         if app_block_builder_name is not None:
@@ -426,6 +428,7 @@ class AppStreamClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def associate_application_fleet(
@@ -465,7 +468,7 @@ class AppStreamClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appstream.types.associate_application_fleet_request.AssociateApplicationFleetRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_appstream.types.associate_application_fleet_request.AssociateApplicationFleetRequest = {}
         if fleet_name is not None:
             input_["fleet_name"] = fleet_name
         if application_arn is not None:
@@ -476,6 +479,7 @@ class AppStreamClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def associate_application_to_entitlement(
@@ -516,7 +520,7 @@ class AppStreamClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appstream.types.associate_application_to_entitlement_request.AssociateApplicationToEntitlementRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_appstream.types.associate_application_to_entitlement_request.AssociateApplicationToEntitlementRequest = {}
         if stack_name is not None:
             input_["stack_name"] = stack_name
         if entitlement_name is not None:
@@ -529,6 +533,7 @@ class AppStreamClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def associate_fleet(
@@ -569,7 +574,7 @@ class AppStreamClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appstream.types.associate_fleet_request.AssociateFleetRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_appstream.types.associate_fleet_request.AssociateFleetRequest = {}
         if fleet_name is not None:
             input_["fleet_name"] = fleet_name
         if stack_name is not None:
@@ -580,6 +585,7 @@ class AppStreamClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def associate_software_to_image_builder(
@@ -619,7 +625,7 @@ class AppStreamClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appstream.types.associate_software_to_image_builder_request.AssociateSoftwareToImageBuilderRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_appstream.types.associate_software_to_image_builder_request.AssociateSoftwareToImageBuilderRequest = {}
         if image_builder_name is not None:
             input_["image_builder_name"] = image_builder_name
         if software_names is not None:
@@ -630,6 +636,7 @@ class AppStreamClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def batch_associate_user_stack(
@@ -666,7 +673,7 @@ class AppStreamClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appstream.types.batch_associate_user_stack_request.BatchAssociateUserStackRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_appstream.types.batch_associate_user_stack_request.BatchAssociateUserStackRequest = {}
         if user_stack_associations is not None:
             input_["user_stack_associations"] = user_stack_associations
 
@@ -675,6 +682,7 @@ class AppStreamClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def batch_disassociate_user_stack(
@@ -711,7 +719,7 @@ class AppStreamClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appstream.types.batch_disassociate_user_stack_request.BatchDisassociateUserStackRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_appstream.types.batch_disassociate_user_stack_request.BatchDisassociateUserStackRequest = {}
         if user_stack_associations is not None:
             input_["user_stack_associations"] = user_stack_associations
 
@@ -720,6 +728,7 @@ class AppStreamClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def copy_image(
@@ -768,7 +777,7 @@ class AppStreamClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appstream.types.copy_image_request.CopyImageRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_appstream.types.copy_image_request.CopyImageRequest = {}
         if source_image_name is not None:
             input_["source_image_name"] = source_image_name
         if destination_image_name is not None:
@@ -783,6 +792,7 @@ class AppStreamClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_app_block(
@@ -841,7 +851,7 @@ class AppStreamClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appstream.types.create_app_block_request.CreateAppBlockRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_appstream.types.create_app_block_request.CreateAppBlockRequest = {}
         if name is not None:
             input_["name"] = name
         if description is not None:
@@ -864,6 +874,7 @@ class AppStreamClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_app_block_builder(
@@ -934,7 +945,7 @@ class AppStreamClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appstream.types.create_app_block_builder_request.CreateAppBlockBuilderRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_appstream.types.create_app_block_builder_request.CreateAppBlockBuilderRequest = {}
         if name is not None:
             input_["name"] = name
         if description is not None:
@@ -963,6 +974,7 @@ class AppStreamClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_app_block_builder_streaming_url(
@@ -999,7 +1011,7 @@ class AppStreamClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appstream.types.create_app_block_builder_streaming_url_request.CreateAppBlockBuilderStreamingURLRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_appstream.types.create_app_block_builder_streaming_url_request.CreateAppBlockBuilderStreamingURLRequest = {}
         if app_block_builder_name is not None:
             input_["app_block_builder_name"] = app_block_builder_name
         if validity is not None:
@@ -1010,6 +1022,7 @@ class AppStreamClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_application(
@@ -1071,7 +1084,7 @@ class AppStreamClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appstream.types.create_application_request.CreateApplicationRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_appstream.types.create_application_request.CreateApplicationRequest = {}
         if name is not None:
             input_["name"] = name
         if display_name is not None:
@@ -1100,6 +1113,7 @@ class AppStreamClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_directory_config(
@@ -1152,7 +1166,7 @@ class AppStreamClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appstream.types.create_directory_config_request.CreateDirectoryConfigRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_appstream.types.create_directory_config_request.CreateDirectoryConfigRequest = {}
         if directory_name is not None:
             input_["directory_name"] = directory_name
         if organizational_unit_distinguished_names is not None:
@@ -1171,6 +1185,7 @@ class AppStreamClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_entitlement(
@@ -1219,7 +1234,7 @@ class AppStreamClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appstream.types.create_entitlement_request.CreateEntitlementRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_appstream.types.create_entitlement_request.CreateEntitlementRequest = {}
         if name is not None:
             input_["name"] = name
         if stack_name is not None:
@@ -1236,6 +1251,7 @@ class AppStreamClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_export_image_task(
@@ -1285,7 +1301,7 @@ class AppStreamClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appstream.types.create_export_image_task_request.CreateExportImageTaskRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_appstream.types.create_export_image_task_request.CreateExportImageTaskRequest = {}
         if image_name is not None:
             input_["image_name"] = image_name
         if ami_name is not None:
@@ -1302,6 +1318,7 @@ class AppStreamClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_fleet(
@@ -1415,7 +1432,7 @@ class AppStreamClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appstream.types.create_fleet_request.CreateFleetRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_appstream.types.create_fleet_request.CreateFleetRequest = {}
         if name is not None:
             input_["name"] = name
         if image_name is not None:
@@ -1472,6 +1489,7 @@ class AppStreamClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_image_builder(
@@ -1563,7 +1581,7 @@ class AppStreamClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appstream.types.create_image_builder_request.CreateImageBuilderRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_appstream.types.create_image_builder_request.CreateImageBuilderRequest = {}
         if name is not None:
             input_["name"] = name
         if image_name is not None:
@@ -1604,6 +1622,7 @@ class AppStreamClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_image_builder_streaming_url(
@@ -1640,7 +1659,7 @@ class AppStreamClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appstream.types.create_image_builder_streaming_url_request.CreateImageBuilderStreamingURLRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_appstream.types.create_image_builder_streaming_url_request.CreateImageBuilderStreamingURLRequest = {}
         if name is not None:
             input_["name"] = name
         if validity is not None:
@@ -1651,6 +1670,7 @@ class AppStreamClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_imported_image(
@@ -1726,7 +1746,7 @@ class AppStreamClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appstream.types.create_imported_image_request.CreateImportedImageRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_appstream.types.create_imported_image_request.CreateImportedImageRequest = {}
         if name is not None:
             input_["name"] = name
         if source_ami_id is not None:
@@ -1755,6 +1775,7 @@ class AppStreamClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_stack(
@@ -1836,7 +1857,7 @@ class AppStreamClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appstream.types.create_stack_request.CreateStackRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_appstream.types.create_stack_request.CreateStackRequest = {}
         if name is not None:
             input_["name"] = name
         if description is not None:
@@ -1871,6 +1892,7 @@ class AppStreamClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_streaming_url(
@@ -1919,7 +1941,7 @@ class AppStreamClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appstream.types.create_streaming_url_request.CreateStreamingURLRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_appstream.types.create_streaming_url_request.CreateStreamingURLRequest = {}
         if stack_name is not None:
             input_["stack_name"] = stack_name
         if fleet_name is not None:
@@ -1938,6 +1960,7 @@ class AppStreamClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_theme_for_stack(
@@ -1996,7 +2019,7 @@ class AppStreamClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appstream.types.create_theme_for_stack_request.CreateThemeForStackRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_appstream.types.create_theme_for_stack_request.CreateThemeForStackRequest = {}
         if stack_name is not None:
             input_["stack_name"] = stack_name
         if footer_links is not None:
@@ -2015,6 +2038,7 @@ class AppStreamClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_updated_image(
@@ -2068,7 +2092,7 @@ class AppStreamClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appstream.types.create_updated_image_request.CreateUpdatedImageRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_appstream.types.create_updated_image_request.CreateUpdatedImageRequest = {}
         if existing_image_name is not None:
             input_["existing_image_name"] = existing_image_name
         if new_image_name is not None:
@@ -2087,6 +2111,7 @@ class AppStreamClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_usage_report_subscription(
@@ -2116,13 +2141,14 @@ class AppStreamClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appstream.types.create_usage_report_subscription_request.CreateUsageReportSubscriptionRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_appstream.types.create_usage_report_subscription_request.CreateUsageReportSubscriptionRequest = {}
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_user(
@@ -2176,7 +2202,7 @@ class AppStreamClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appstream.types.create_user_request.CreateUserRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_appstream.types.create_user_request.CreateUserRequest = {}
         if user_name is not None:
             input_["user_name"] = user_name
         if message_action is not None:
@@ -2193,6 +2219,7 @@ class AppStreamClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_app_block(
@@ -2228,7 +2255,7 @@ class AppStreamClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appstream.types.delete_app_block_request.DeleteAppBlockRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_appstream.types.delete_app_block_request.DeleteAppBlockRequest = {}
         if name is not None:
             input_["name"] = name
 
@@ -2237,6 +2264,7 @@ class AppStreamClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_app_block_builder(
@@ -2273,7 +2301,7 @@ class AppStreamClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appstream.types.delete_app_block_builder_request.DeleteAppBlockBuilderRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_appstream.types.delete_app_block_builder_request.DeleteAppBlockBuilderRequest = {}
         if name is not None:
             input_["name"] = name
 
@@ -2282,6 +2310,7 @@ class AppStreamClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_application(
@@ -2318,7 +2347,7 @@ class AppStreamClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appstream.types.delete_application_request.DeleteApplicationRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_appstream.types.delete_application_request.DeleteApplicationRequest = {}
         if name is not None:
             input_["name"] = name
 
@@ -2327,6 +2356,7 @@ class AppStreamClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_directory_config(
@@ -2363,7 +2393,7 @@ class AppStreamClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appstream.types.delete_directory_config_request.DeleteDirectoryConfigRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_appstream.types.delete_directory_config_request.DeleteDirectoryConfigRequest = {}
         if directory_name is not None:
             input_["directory_name"] = directory_name
 
@@ -2372,6 +2402,7 @@ class AppStreamClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_entitlement(
@@ -2410,7 +2441,7 @@ class AppStreamClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appstream.types.delete_entitlement_request.DeleteEntitlementRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_appstream.types.delete_entitlement_request.DeleteEntitlementRequest = {}
         if name is not None:
             input_["name"] = name
         if stack_name is not None:
@@ -2421,6 +2452,7 @@ class AppStreamClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_fleet(
@@ -2456,7 +2488,7 @@ class AppStreamClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appstream.types.delete_fleet_request.DeleteFleetRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_appstream.types.delete_fleet_request.DeleteFleetRequest = {}
         if name is not None:
             input_["name"] = name
 
@@ -2465,6 +2497,7 @@ class AppStreamClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_image(
@@ -2501,7 +2534,7 @@ class AppStreamClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appstream.types.delete_image_request.DeleteImageRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_appstream.types.delete_image_request.DeleteImageRequest = {}
         if name is not None:
             input_["name"] = name
 
@@ -2510,6 +2543,7 @@ class AppStreamClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_image_builder(
@@ -2545,7 +2579,7 @@ class AppStreamClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appstream.types.delete_image_builder_request.DeleteImageBuilderRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_appstream.types.delete_image_builder_request.DeleteImageBuilderRequest = {}
         if name is not None:
             input_["name"] = name
 
@@ -2554,6 +2588,7 @@ class AppStreamClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_image_permissions(
@@ -2592,7 +2627,7 @@ class AppStreamClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appstream.types.delete_image_permissions_request.DeleteImagePermissionsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_appstream.types.delete_image_permissions_request.DeleteImagePermissionsRequest = {}
         if name is not None:
             input_["name"] = name
         if shared_account_id is not None:
@@ -2603,6 +2638,7 @@ class AppStreamClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_stack(
@@ -2639,7 +2675,7 @@ class AppStreamClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appstream.types.delete_stack_request.DeleteStackRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_appstream.types.delete_stack_request.DeleteStackRequest = {}
         if name is not None:
             input_["name"] = name
 
@@ -2648,6 +2684,7 @@ class AppStreamClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_theme_for_stack(
@@ -2683,7 +2720,7 @@ class AppStreamClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appstream.types.delete_theme_for_stack_request.DeleteThemeForStackRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_appstream.types.delete_theme_for_stack_request.DeleteThemeForStackRequest = {}
         if stack_name is not None:
             input_["stack_name"] = stack_name
 
@@ -2692,6 +2729,7 @@ class AppStreamClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_usage_report_subscription(
@@ -2720,13 +2758,14 @@ class AppStreamClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appstream.types.delete_usage_report_subscription_request.DeleteUsageReportSubscriptionRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_appstream.types.delete_usage_report_subscription_request.DeleteUsageReportSubscriptionRequest = {}
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_user(
@@ -2764,7 +2803,7 @@ class AppStreamClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appstream.types.delete_user_request.DeleteUserRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_appstream.types.delete_user_request.DeleteUserRequest = {}
         if user_name is not None:
             input_["user_name"] = user_name
         if authentication_type is not None:
@@ -2775,6 +2814,7 @@ class AppStreamClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_app_block_builder_app_block_associations(
@@ -2815,7 +2855,7 @@ class AppStreamClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appstream.types.describe_app_block_builder_app_block_associations_request.DescribeAppBlockBuilderAppBlockAssociationsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_appstream.types.describe_app_block_builder_app_block_associations_request.DescribeAppBlockBuilderAppBlockAssociationsRequest = {}
         if app_block_arn is not None:
             input_["app_block_arn"] = app_block_arn
         if app_block_builder_name is not None:
@@ -2830,7 +2870,31 @@ class AppStreamClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_describe_app_block_builder_app_block_associations(
+        self,
+        *,
+        config_overrides: Optional[AppStreamClientConfig] = None,
+        app_block_arn: Optional["capo_appstream.types.arn.Arn"] = None,
+        app_block_builder_name: Optional["capo_appstream.types.name.Name"] = None,
+        max_results: Optional["capo_appstream.types.integer.Integer"] = None,
+        next_token: Optional["capo_appstream.types.string.String"] = None,
+    ) -> "Iterator[capo_appstream.types.describe_app_block_builder_app_block_associations_result.DescribeAppBlockBuilderAppBlockAssociationsResult]":
+        _token = next_token
+        while True:
+            _response = self.describe_app_block_builder_app_block_associations(
+                config_overrides=config_overrides,
+                app_block_arn=app_block_arn,
+                app_block_builder_name=app_block_builder_name,
+                max_results=max_results,
+                next_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def describe_app_block_builders(
         self,
@@ -2868,7 +2932,7 @@ class AppStreamClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appstream.types.describe_app_block_builders_request.DescribeAppBlockBuildersRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_appstream.types.describe_app_block_builders_request.DescribeAppBlockBuildersRequest = {}
         if names is not None:
             input_["names"] = names
         if next_token is not None:
@@ -2881,7 +2945,29 @@ class AppStreamClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_describe_app_block_builders(
+        self,
+        *,
+        config_overrides: Optional[AppStreamClientConfig] = None,
+        names: Optional["capo_appstream.types.string_list.StringList"] = None,
+        next_token: Optional["capo_appstream.types.string.String"] = None,
+        max_results: Optional["capo_appstream.types.integer.Integer"] = None,
+    ) -> "Iterator[capo_appstream.types.describe_app_block_builders_result.DescribeAppBlockBuildersResult]":
+        _token = next_token
+        while True:
+            _response = self.describe_app_block_builders(
+                config_overrides=config_overrides,
+                names=names,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def describe_app_blocks(
         self,
@@ -2919,7 +3005,7 @@ class AppStreamClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appstream.types.describe_app_blocks_request.DescribeAppBlocksRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_appstream.types.describe_app_blocks_request.DescribeAppBlocksRequest = {}
         if arns is not None:
             input_["arns"] = arns
         if next_token is not None:
@@ -2932,6 +3018,7 @@ class AppStreamClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_application_fleet_associations(
@@ -2972,7 +3059,7 @@ class AppStreamClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appstream.types.describe_application_fleet_associations_request.DescribeApplicationFleetAssociationsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_appstream.types.describe_application_fleet_associations_request.DescribeApplicationFleetAssociationsRequest = {}
         if fleet_name is not None:
             input_["fleet_name"] = fleet_name
         if application_arn is not None:
@@ -2987,6 +3074,7 @@ class AppStreamClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_applications(
@@ -3025,7 +3113,7 @@ class AppStreamClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appstream.types.describe_applications_request.DescribeApplicationsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_appstream.types.describe_applications_request.DescribeApplicationsRequest = {}
         if arns is not None:
             input_["arns"] = arns
         if next_token is not None:
@@ -3038,6 +3126,7 @@ class AppStreamClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_app_license_usage(
@@ -3077,7 +3166,7 @@ class AppStreamClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appstream.types.describe_app_license_usage_request.DescribeAppLicenseUsageRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_appstream.types.describe_app_license_usage_request.DescribeAppLicenseUsageRequest = {}
         if billing_period is not None:
             input_["billing_period"] = billing_period
         if max_results is not None:
@@ -3090,6 +3179,7 @@ class AppStreamClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_directory_configs(
@@ -3129,7 +3219,7 @@ class AppStreamClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appstream.types.describe_directory_configs_request.DescribeDirectoryConfigsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_appstream.types.describe_directory_configs_request.DescribeDirectoryConfigsRequest = {}
         if directory_names is not None:
             input_["directory_names"] = directory_names
         if max_results is not None:
@@ -3142,6 +3232,7 @@ class AppStreamClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_entitlements(
@@ -3183,7 +3274,7 @@ class AppStreamClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appstream.types.describe_entitlements_request.DescribeEntitlementsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_appstream.types.describe_entitlements_request.DescribeEntitlementsRequest = {}
         if name is not None:
             input_["name"] = name
         if stack_name is not None:
@@ -3198,6 +3289,7 @@ class AppStreamClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_fleets(
@@ -3233,7 +3325,7 @@ class AppStreamClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appstream.types.describe_fleets_request.DescribeFleetsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_appstream.types.describe_fleets_request.DescribeFleetsRequest = {}
         if names is not None:
             input_["names"] = names
         if next_token is not None:
@@ -3244,6 +3336,7 @@ class AppStreamClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_image_builders(
@@ -3281,7 +3374,7 @@ class AppStreamClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appstream.types.describe_image_builders_request.DescribeImageBuildersRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_appstream.types.describe_image_builders_request.DescribeImageBuildersRequest = {}
         if names is not None:
             input_["names"] = names
         if max_results is not None:
@@ -3294,6 +3387,7 @@ class AppStreamClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_image_permissions(
@@ -3335,7 +3429,7 @@ class AppStreamClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appstream.types.describe_image_permissions_request.DescribeImagePermissionsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_appstream.types.describe_image_permissions_request.DescribeImagePermissionsRequest = {}
         if name is not None:
             input_["name"] = name
         if max_results is not None:
@@ -3350,7 +3444,33 @@ class AppStreamClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_describe_image_permissions(
+        self,
+        *,
+        config_overrides: Optional[AppStreamClientConfig] = None,
+        name: Optional["capo_appstream.types.name.Name"] = None,
+        max_results: Optional["capo_appstream.types.max_results.MaxResults"] = None,
+        shared_aws_account_ids: Optional[
+            "capo_appstream.types.aws_account_id_list.AwsAccountIdList"
+        ] = None,
+        next_token: Optional["capo_appstream.types.string.String"] = None,
+    ) -> "Iterator[capo_appstream.types.describe_image_permissions_result.DescribeImagePermissionsResult]":
+        _token = next_token
+        while True:
+            _response = self.describe_image_permissions(
+                config_overrides=config_overrides,
+                name=name,
+                max_results=max_results,
+                shared_aws_account_ids=shared_aws_account_ids,
+                next_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def describe_images(
         self,
@@ -3394,7 +3514,7 @@ class AppStreamClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appstream.types.describe_images_request.DescribeImagesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_appstream.types.describe_images_request.DescribeImagesRequest = {}
         if names is not None:
             input_["names"] = names
         if arns is not None:
@@ -3411,7 +3531,35 @@ class AppStreamClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_describe_images(
+        self,
+        *,
+        config_overrides: Optional[AppStreamClientConfig] = None,
+        names: Optional["capo_appstream.types.string_list.StringList"] = None,
+        arns: Optional["capo_appstream.types.arn_list.ArnList"] = None,
+        type: Optional["capo_appstream.types.visibility_type.VisibilityType"] = None,
+        next_token: Optional["capo_appstream.types.string.String"] = None,
+        max_results: Optional[
+            "capo_appstream.types.describe_images_max_results.DescribeImagesMaxResults"
+        ] = None,
+    ) -> "Iterator[capo_appstream.types.describe_images_result.DescribeImagesResult]":
+        _token = next_token
+        while True:
+            _response = self.describe_images(
+                config_overrides=config_overrides,
+                names=names,
+                arns=arns,
+                type=type,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def describe_sessions(
         self,
@@ -3458,7 +3606,7 @@ class AppStreamClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appstream.types.describe_sessions_request.DescribeSessionsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_appstream.types.describe_sessions_request.DescribeSessionsRequest = {}
         if stack_name is not None:
             input_["stack_name"] = stack_name
         if fleet_name is not None:
@@ -3479,6 +3627,7 @@ class AppStreamClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_software_associations(
@@ -3517,7 +3666,7 @@ class AppStreamClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appstream.types.describe_software_associations_request.DescribeSoftwareAssociationsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_appstream.types.describe_software_associations_request.DescribeSoftwareAssociationsRequest = {}
         if associated_resource is not None:
             input_["associated_resource"] = associated_resource
         if max_results is not None:
@@ -3530,6 +3679,7 @@ class AppStreamClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_stacks(
@@ -3565,7 +3715,7 @@ class AppStreamClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appstream.types.describe_stacks_request.DescribeStacksRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_appstream.types.describe_stacks_request.DescribeStacksRequest = {}
         if names is not None:
             input_["names"] = names
         if next_token is not None:
@@ -3576,6 +3726,7 @@ class AppStreamClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_theme_for_stack(
@@ -3610,7 +3761,7 @@ class AppStreamClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appstream.types.describe_theme_for_stack_request.DescribeThemeForStackRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_appstream.types.describe_theme_for_stack_request.DescribeThemeForStackRequest = {}
         if stack_name is not None:
             input_["stack_name"] = stack_name
 
@@ -3619,6 +3770,7 @@ class AppStreamClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_usage_report_subscriptions(
@@ -3655,7 +3807,7 @@ class AppStreamClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appstream.types.describe_usage_report_subscriptions_request.DescribeUsageReportSubscriptionsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_appstream.types.describe_usage_report_subscriptions_request.DescribeUsageReportSubscriptionsRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -3666,6 +3818,7 @@ class AppStreamClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_users(
@@ -3707,7 +3860,7 @@ class AppStreamClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appstream.types.describe_users_request.DescribeUsersRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_appstream.types.describe_users_request.DescribeUsersRequest = {}
         if authentication_type is not None:
             input_["authentication_type"] = authentication_type
         if max_results is not None:
@@ -3720,6 +3873,7 @@ class AppStreamClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_user_stack_associations(
@@ -3764,7 +3918,7 @@ class AppStreamClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appstream.types.describe_user_stack_associations_request.DescribeUserStackAssociationsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_appstream.types.describe_user_stack_associations_request.DescribeUserStackAssociationsRequest = {}
         if stack_name is not None:
             input_["stack_name"] = stack_name
         if user_name is not None:
@@ -3781,6 +3935,7 @@ class AppStreamClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def disable_user(
@@ -3818,7 +3973,7 @@ class AppStreamClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appstream.types.disable_user_request.DisableUserRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_appstream.types.disable_user_request.DisableUserRequest = {}
         if user_name is not None:
             input_["user_name"] = user_name
         if authentication_type is not None:
@@ -3829,6 +3984,7 @@ class AppStreamClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def disassociate_app_block_builder_app_block(
@@ -3867,7 +4023,7 @@ class AppStreamClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appstream.types.disassociate_app_block_builder_app_block_request.DisassociateAppBlockBuilderAppBlockRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_appstream.types.disassociate_app_block_builder_app_block_request.DisassociateAppBlockBuilderAppBlockRequest = {}
         if app_block_arn is not None:
             input_["app_block_arn"] = app_block_arn
         if app_block_builder_name is not None:
@@ -3878,6 +4034,7 @@ class AppStreamClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def disassociate_application_fleet(
@@ -3915,7 +4072,7 @@ class AppStreamClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appstream.types.disassociate_application_fleet_request.DisassociateApplicationFleetRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_appstream.types.disassociate_application_fleet_request.DisassociateApplicationFleetRequest = {}
         if fleet_name is not None:
             input_["fleet_name"] = fleet_name
         if application_arn is not None:
@@ -3926,6 +4083,7 @@ class AppStreamClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def disassociate_application_from_entitlement(
@@ -3965,7 +4123,7 @@ class AppStreamClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appstream.types.disassociate_application_from_entitlement_request.DisassociateApplicationFromEntitlementRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_appstream.types.disassociate_application_from_entitlement_request.DisassociateApplicationFromEntitlementRequest = {}
         if stack_name is not None:
             input_["stack_name"] = stack_name
         if entitlement_name is not None:
@@ -3978,6 +4136,7 @@ class AppStreamClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def disassociate_fleet(
@@ -4016,7 +4175,7 @@ class AppStreamClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appstream.types.disassociate_fleet_request.DisassociateFleetRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_appstream.types.disassociate_fleet_request.DisassociateFleetRequest = {}
         if fleet_name is not None:
             input_["fleet_name"] = fleet_name
         if stack_name is not None:
@@ -4027,6 +4186,7 @@ class AppStreamClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def disassociate_software_from_image_builder(
@@ -4065,7 +4225,7 @@ class AppStreamClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appstream.types.disassociate_software_from_image_builder_request.DisassociateSoftwareFromImageBuilderRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_appstream.types.disassociate_software_from_image_builder_request.DisassociateSoftwareFromImageBuilderRequest = {}
         if image_builder_name is not None:
             input_["image_builder_name"] = image_builder_name
         if software_names is not None:
@@ -4076,6 +4236,7 @@ class AppStreamClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def drain_session_instance(
@@ -4113,7 +4274,7 @@ class AppStreamClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appstream.types.drain_session_instance_request.DrainSessionInstanceRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_appstream.types.drain_session_instance_request.DrainSessionInstanceRequest = {}
         if session_id is not None:
             input_["session_id"] = session_id
 
@@ -4122,6 +4283,7 @@ class AppStreamClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def enable_user(
@@ -4160,7 +4322,7 @@ class AppStreamClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appstream.types.enable_user_request.EnableUserRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_appstream.types.enable_user_request.EnableUserRequest = {}
         if user_name is not None:
             input_["user_name"] = user_name
         if authentication_type is not None:
@@ -4171,6 +4333,7 @@ class AppStreamClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def expire_session(
@@ -4203,7 +4366,7 @@ class AppStreamClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appstream.types.expire_session_request.ExpireSessionRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_appstream.types.expire_session_request.ExpireSessionRequest = {}
         if session_id is not None:
             input_["session_id"] = session_id
 
@@ -4212,6 +4375,7 @@ class AppStreamClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_export_image_task(
@@ -4246,7 +4410,7 @@ class AppStreamClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appstream.types.get_export_image_task_request.GetExportImageTaskRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_appstream.types.get_export_image_task_request.GetExportImageTaskRequest = {}
         if task_id is not None:
             input_["task_id"] = task_id
 
@@ -4255,6 +4419,7 @@ class AppStreamClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_associated_fleets(
@@ -4291,7 +4456,7 @@ class AppStreamClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appstream.types.list_associated_fleets_request.ListAssociatedFleetsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_appstream.types.list_associated_fleets_request.ListAssociatedFleetsRequest = {}
         if stack_name is not None:
             input_["stack_name"] = stack_name
         if next_token is not None:
@@ -4302,6 +4467,7 @@ class AppStreamClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_associated_stacks(
@@ -4338,7 +4504,7 @@ class AppStreamClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appstream.types.list_associated_stacks_request.ListAssociatedStacksRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_appstream.types.list_associated_stacks_request.ListAssociatedStacksRequest = {}
         if fleet_name is not None:
             input_["fleet_name"] = fleet_name
         if next_token is not None:
@@ -4349,6 +4515,7 @@ class AppStreamClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_entitled_applications(
@@ -4390,7 +4557,7 @@ class AppStreamClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appstream.types.list_entitled_applications_request.ListEntitledApplicationsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_appstream.types.list_entitled_applications_request.ListEntitledApplicationsRequest = {}
         if stack_name is not None:
             input_["stack_name"] = stack_name
         if entitlement_name is not None:
@@ -4405,6 +4572,7 @@ class AppStreamClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_export_image_tasks(
@@ -4444,7 +4612,7 @@ class AppStreamClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appstream.types.list_export_image_tasks_request.ListExportImageTasksRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_appstream.types.list_export_image_tasks_request.ListExportImageTasksRequest = {}
         if filters is not None:
             input_["filters"] = filters
         if max_results is not None:
@@ -4457,6 +4625,7 @@ class AppStreamClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_tags_for_resource(
@@ -4490,7 +4659,7 @@ class AppStreamClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appstream.types.list_tags_for_resource_request.ListTagsForResourceRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_appstream.types.list_tags_for_resource_request.ListTagsForResourceRequest = {}
         if resource_arn is not None:
             input_["resource_arn"] = resource_arn
 
@@ -4499,6 +4668,7 @@ class AppStreamClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def start_app_block_builder(
@@ -4540,7 +4710,7 @@ class AppStreamClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appstream.types.start_app_block_builder_request.StartAppBlockBuilderRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_appstream.types.start_app_block_builder_request.StartAppBlockBuilderRequest = {}
         if name is not None:
             input_["name"] = name
 
@@ -4549,6 +4719,7 @@ class AppStreamClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def start_fleet(
@@ -4589,7 +4760,7 @@ class AppStreamClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appstream.types.start_fleet_request.StartFleetRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_appstream.types.start_fleet_request.StartFleetRequest = {}
         if name is not None:
             input_["name"] = name
 
@@ -4598,6 +4769,7 @@ class AppStreamClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def start_image_builder(
@@ -4639,7 +4811,7 @@ class AppStreamClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appstream.types.start_image_builder_request.StartImageBuilderRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_appstream.types.start_image_builder_request.StartImageBuilderRequest = {}
         if name is not None:
             input_["name"] = name
         if appstream_agent_version is not None:
@@ -4650,6 +4822,7 @@ class AppStreamClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def start_software_deployment_to_image_builder(
@@ -4689,7 +4862,7 @@ class AppStreamClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appstream.types.start_software_deployment_to_image_builder_request.StartSoftwareDeploymentToImageBuilderRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_appstream.types.start_software_deployment_to_image_builder_request.StartSoftwareDeploymentToImageBuilderRequest = {}
         if image_builder_name is not None:
             input_["image_builder_name"] = image_builder_name
         if retry_failed_deployments is not None:
@@ -4700,6 +4873,7 @@ class AppStreamClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def stop_app_block_builder(
@@ -4735,7 +4909,7 @@ class AppStreamClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appstream.types.stop_app_block_builder_request.StopAppBlockBuilderRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_appstream.types.stop_app_block_builder_request.StopAppBlockBuilderRequest = {}
         if name is not None:
             input_["name"] = name
 
@@ -4744,6 +4918,7 @@ class AppStreamClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def stop_fleet(
@@ -4778,7 +4953,7 @@ class AppStreamClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appstream.types.stop_fleet_request.StopFleetRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_appstream.types.stop_fleet_request.StopFleetRequest = {}
         if name is not None:
             input_["name"] = name
 
@@ -4787,6 +4962,7 @@ class AppStreamClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def stop_image_builder(
@@ -4822,7 +4998,7 @@ class AppStreamClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appstream.types.stop_image_builder_request.StopImageBuilderRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_appstream.types.stop_image_builder_request.StopImageBuilderRequest = {}
         if name is not None:
             input_["name"] = name
 
@@ -4831,6 +5007,7 @@ class AppStreamClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def tag_resource(
@@ -4868,7 +5045,7 @@ class AppStreamClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appstream.types.tag_resource_request.TagResourceRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_appstream.types.tag_resource_request.TagResourceRequest = {}
         if resource_arn is not None:
             input_["resource_arn"] = resource_arn
         if tags is not None:
@@ -4879,6 +5056,7 @@ class AppStreamClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def untag_resource(
@@ -4914,7 +5092,7 @@ class AppStreamClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appstream.types.untag_resource_request.UntagResourceRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_appstream.types.untag_resource_request.UntagResourceRequest = {}
         if resource_arn is not None:
             input_["resource_arn"] = resource_arn
         if tag_keys is not None:
@@ -4925,6 +5103,7 @@ class AppStreamClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_app_block_builder(
@@ -4995,7 +5174,7 @@ class AppStreamClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appstream.types.update_app_block_builder_request.UpdateAppBlockBuilderRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_appstream.types.update_app_block_builder_request.UpdateAppBlockBuilderRequest = {}
         if name is not None:
             input_["name"] = name
         if description is not None:
@@ -5024,6 +5203,7 @@ class AppStreamClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_application(
@@ -5079,7 +5259,7 @@ class AppStreamClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appstream.types.update_application_request.UpdateApplicationRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_appstream.types.update_application_request.UpdateApplicationRequest = {}
         if name is not None:
             input_["name"] = name
         if display_name is not None:
@@ -5104,6 +5284,7 @@ class AppStreamClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_directory_config(
@@ -5156,7 +5337,7 @@ class AppStreamClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appstream.types.update_directory_config_request.UpdateDirectoryConfigRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_appstream.types.update_directory_config_request.UpdateDirectoryConfigRequest = {}
         if directory_name is not None:
             input_["directory_name"] = directory_name
         if organizational_unit_distinguished_names is not None:
@@ -5175,6 +5356,7 @@ class AppStreamClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_entitlement(
@@ -5223,7 +5405,7 @@ class AppStreamClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appstream.types.update_entitlement_request.UpdateEntitlementRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_appstream.types.update_entitlement_request.UpdateEntitlementRequest = {}
         if name is not None:
             input_["name"] = name
         if stack_name is not None:
@@ -5240,6 +5422,7 @@ class AppStreamClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_fleet(
@@ -5355,7 +5538,7 @@ class AppStreamClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appstream.types.update_fleet_request.UpdateFleetRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_appstream.types.update_fleet_request.UpdateFleetRequest = {}
         if image_name is not None:
             input_["image_name"] = image_name
         if image_arn is not None:
@@ -5412,6 +5595,7 @@ class AppStreamClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_image_permissions(
@@ -5455,7 +5639,7 @@ class AppStreamClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appstream.types.update_image_permissions_request.UpdateImagePermissionsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_appstream.types.update_image_permissions_request.UpdateImagePermissionsRequest = {}
         if name is not None:
             input_["name"] = name
         if shared_account_id is not None:
@@ -5468,6 +5652,7 @@ class AppStreamClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_stack(
@@ -5556,7 +5741,7 @@ class AppStreamClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appstream.types.update_stack_request.UpdateStackRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_appstream.types.update_stack_request.UpdateStackRequest = {}
         if display_name is not None:
             input_["display_name"] = display_name
         if description is not None:
@@ -5593,6 +5778,7 @@ class AppStreamClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_theme_for_stack(
@@ -5657,7 +5843,7 @@ class AppStreamClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_appstream.types.update_theme_for_stack_request.UpdateThemeForStackRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_appstream.types.update_theme_for_stack_request.UpdateThemeForStackRequest = {}
         if stack_name is not None:
             input_["stack_name"] = stack_name
         if footer_links is not None:
@@ -5680,6 +5866,7 @@ class AppStreamClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def __enter__(self) -> Self:

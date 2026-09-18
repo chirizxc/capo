@@ -81,13 +81,13 @@ def serialize_aws_json_1_1(value: MongoDbDataProviderSettings) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> MongoDbDataProviderSettings:
     out: MongoDbDataProviderSettings = {}  # type: ignore[typeddict-item]
-    if "ServerName" in data:
+    if data.get("ServerName") is not None:
         out["server_name"] = data["ServerName"]
-    if "Port" in data:
+    if data.get("Port") is not None:
         out["port"] = data["Port"]
-    if "DatabaseName" in data:
+    if data.get("DatabaseName") is not None:
         out["database_name"] = data["DatabaseName"]
-    if "SslMode" in data:
+    if data.get("SslMode") is not None:
         import capo_database_migration_service.types.dms_ssl_mode_value
 
         out["ssl_mode"] = (
@@ -95,9 +95,9 @@ def deserialize_aws_json_1_1(data: dict) -> MongoDbDataProviderSettings:
                 data["SslMode"]
             )
         )
-    if "CertificateArn" in data:
+    if data.get("CertificateArn") is not None:
         out["certificate_arn"] = data["CertificateArn"]
-    if "AuthType" in data:
+    if data.get("AuthType") is not None:
         import capo_database_migration_service.types.auth_type_value
 
         out["auth_type"] = (
@@ -105,9 +105,9 @@ def deserialize_aws_json_1_1(data: dict) -> MongoDbDataProviderSettings:
                 data["AuthType"]
             )
         )
-    if "AuthSource" in data:
+    if data.get("AuthSource") is not None:
         out["auth_source"] = data["AuthSource"]
-    if "AuthMechanism" in data:
+    if data.get("AuthMechanism") is not None:
         import capo_database_migration_service.types.auth_mechanism_value
 
         out["auth_mechanism"] = (

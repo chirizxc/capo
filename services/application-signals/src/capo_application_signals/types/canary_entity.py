@@ -19,7 +19,7 @@ def serialize_json(value: CanaryEntity) -> dict:
 
 def deserialize_json(data: dict) -> CanaryEntity:
     out: CanaryEntity = {}  # type: ignore[typeddict-item]
-    if "CanaryName" in data:
+    if data.get("CanaryName") is not None:
         out["canary_name"] = data["CanaryName"]
     else:
         raise DeserializationError("CanaryEntity.canary_name required")

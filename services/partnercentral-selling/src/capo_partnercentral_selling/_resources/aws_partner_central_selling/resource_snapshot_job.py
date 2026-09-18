@@ -96,15 +96,14 @@ class ResourceSnapshotJob:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_partnercentral_selling.types.create_resource_snapshot_job_request.CreateResourceSnapshotJobRequest = {}  # type: ignore[typeddict-item]
-        input_["catalog"] = catalog
-        input_["client_token"] = client_token
-        input_["engagement_identifier"] = engagement_identifier
-        input_["resource_type"] = resource_type
-        input_["resource_identifier"] = resource_identifier
-        input_["resource_snapshot_template_identifier"] = (
-            resource_snapshot_template_identifier
-        )
+        input_: capo_partnercentral_selling.types.create_resource_snapshot_job_request.CreateResourceSnapshotJobRequest = {
+            "catalog": catalog,
+            "client_token": client_token,
+            "engagement_identifier": engagement_identifier,
+            "resource_type": resource_type,
+            "resource_identifier": resource_identifier,
+            "resource_snapshot_template_identifier": resource_snapshot_template_identifier,
+        }
         if tags is not None:
             input_["tags"] = tags
 
@@ -113,6 +112,7 @@ class ResourceSnapshotJob:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -152,15 +152,17 @@ class ResourceSnapshotJob:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_partnercentral_selling.types.get_resource_snapshot_job_request.GetResourceSnapshotJobRequest = {}  # type: ignore[typeddict-item]
-        input_["catalog"] = catalog
-        input_["resource_snapshot_job_identifier"] = resource_snapshot_job_identifier
+        input_: capo_partnercentral_selling.types.get_resource_snapshot_job_request.GetResourceSnapshotJobRequest = {
+            "catalog": catalog,
+            "resource_snapshot_job_identifier": resource_snapshot_job_identifier,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -199,15 +201,17 @@ class ResourceSnapshotJob:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_partnercentral_selling.types.delete_resource_snapshot_job_request.DeleteResourceSnapshotJobRequest = {}  # type: ignore[typeddict-item]
-        input_["catalog"] = catalog
-        input_["resource_snapshot_job_identifier"] = resource_snapshot_job_identifier
+        input_: capo_partnercentral_selling.types.delete_resource_snapshot_job_request.DeleteResourceSnapshotJobRequest = {
+            "catalog": catalog,
+            "resource_snapshot_job_identifier": resource_snapshot_job_identifier,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -263,8 +267,9 @@ class ResourceSnapshotJob:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_partnercentral_selling.types.list_resource_snapshot_jobs_request.ListResourceSnapshotJobsRequest = {}  # type: ignore[typeddict-item]
-        input_["catalog"] = catalog
+        input_: capo_partnercentral_selling.types.list_resource_snapshot_jobs_request.ListResourceSnapshotJobsRequest = {
+            "catalog": catalog
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -281,6 +286,7 @@ class ResourceSnapshotJob:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def start_resource_snapshot_job(
@@ -318,15 +324,17 @@ class ResourceSnapshotJob:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_partnercentral_selling.types.start_resource_snapshot_job_request.StartResourceSnapshotJobRequest = {}  # type: ignore[typeddict-item]
-        input_["catalog"] = catalog
-        input_["resource_snapshot_job_identifier"] = resource_snapshot_job_identifier
+        input_: capo_partnercentral_selling.types.start_resource_snapshot_job_request.StartResourceSnapshotJobRequest = {
+            "catalog": catalog,
+            "resource_snapshot_job_identifier": resource_snapshot_job_identifier,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def stop_resource_snapshot_job(
@@ -364,15 +372,17 @@ class ResourceSnapshotJob:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_partnercentral_selling.types.stop_resource_snapshot_job_request.StopResourceSnapshotJobRequest = {}  # type: ignore[typeddict-item]
-        input_["catalog"] = catalog
-        input_["resource_snapshot_job_identifier"] = resource_snapshot_job_identifier
+        input_: capo_partnercentral_selling.types.stop_resource_snapshot_job_request.StopResourceSnapshotJobRequest = {
+            "catalog": catalog,
+            "resource_snapshot_job_identifier": resource_snapshot_job_identifier,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -430,15 +440,14 @@ class AsyncResourceSnapshotJob:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_partnercentral_selling.types.create_resource_snapshot_job_request.CreateResourceSnapshotJobRequest = {}  # type: ignore[typeddict-item]
-        input_["catalog"] = catalog
-        input_["client_token"] = client_token
-        input_["engagement_identifier"] = engagement_identifier
-        input_["resource_type"] = resource_type
-        input_["resource_identifier"] = resource_identifier
-        input_["resource_snapshot_template_identifier"] = (
-            resource_snapshot_template_identifier
-        )
+        input_: capo_partnercentral_selling.types.create_resource_snapshot_job_request.CreateResourceSnapshotJobRequest = {
+            "catalog": catalog,
+            "client_token": client_token,
+            "engagement_identifier": engagement_identifier,
+            "resource_type": resource_type,
+            "resource_identifier": resource_identifier,
+            "resource_snapshot_template_identifier": resource_snapshot_template_identifier,
+        }
         if tags is not None:
             input_["tags"] = tags
 
@@ -447,6 +456,7 @@ class AsyncResourceSnapshotJob:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -487,15 +497,17 @@ class AsyncResourceSnapshotJob:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_partnercentral_selling.types.get_resource_snapshot_job_request.GetResourceSnapshotJobRequest = {}  # type: ignore[typeddict-item]
-        input_["catalog"] = catalog
-        input_["resource_snapshot_job_identifier"] = resource_snapshot_job_identifier
+        input_: capo_partnercentral_selling.types.get_resource_snapshot_job_request.GetResourceSnapshotJobRequest = {
+            "catalog": catalog,
+            "resource_snapshot_job_identifier": resource_snapshot_job_identifier,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -535,15 +547,17 @@ class AsyncResourceSnapshotJob:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_partnercentral_selling.types.delete_resource_snapshot_job_request.DeleteResourceSnapshotJobRequest = {}  # type: ignore[typeddict-item]
-        input_["catalog"] = catalog
-        input_["resource_snapshot_job_identifier"] = resource_snapshot_job_identifier
+        input_: capo_partnercentral_selling.types.delete_resource_snapshot_job_request.DeleteResourceSnapshotJobRequest = {
+            "catalog": catalog,
+            "resource_snapshot_job_identifier": resource_snapshot_job_identifier,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -600,8 +614,9 @@ class AsyncResourceSnapshotJob:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_partnercentral_selling.types.list_resource_snapshot_jobs_request.ListResourceSnapshotJobsRequest = {}  # type: ignore[typeddict-item]
-        input_["catalog"] = catalog
+        input_: capo_partnercentral_selling.types.list_resource_snapshot_jobs_request.ListResourceSnapshotJobsRequest = {
+            "catalog": catalog
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -618,6 +633,7 @@ class AsyncResourceSnapshotJob:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def start_resource_snapshot_job(
@@ -656,15 +672,17 @@ class AsyncResourceSnapshotJob:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_partnercentral_selling.types.start_resource_snapshot_job_request.StartResourceSnapshotJobRequest = {}  # type: ignore[typeddict-item]
-        input_["catalog"] = catalog
-        input_["resource_snapshot_job_identifier"] = resource_snapshot_job_identifier
+        input_: capo_partnercentral_selling.types.start_resource_snapshot_job_request.StartResourceSnapshotJobRequest = {
+            "catalog": catalog,
+            "resource_snapshot_job_identifier": resource_snapshot_job_identifier,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def stop_resource_snapshot_job(
@@ -703,13 +721,15 @@ class AsyncResourceSnapshotJob:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_partnercentral_selling.types.stop_resource_snapshot_job_request.StopResourceSnapshotJobRequest = {}  # type: ignore[typeddict-item]
-        input_["catalog"] = catalog
-        input_["resource_snapshot_job_identifier"] = resource_snapshot_job_identifier
+        input_: capo_partnercentral_selling.types.stop_resource_snapshot_job_request.StopResourceSnapshotJobRequest = {
+            "catalog": catalog,
+            "resource_snapshot_job_identifier": resource_snapshot_job_identifier,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

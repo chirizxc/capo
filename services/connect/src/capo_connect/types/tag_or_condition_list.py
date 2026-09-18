@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> TagOrConditionList:
 
     out: TagOrConditionList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_connect.types.tag_and_condition_list.deserialize_json(item))
     return out

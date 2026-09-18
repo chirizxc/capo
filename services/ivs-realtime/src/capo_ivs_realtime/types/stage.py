@@ -65,19 +65,19 @@ def serialize_json(value: Stage) -> dict:
 
 def deserialize_json(data: dict) -> Stage:
     out: Stage = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("Stage.arn required")
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "activeSessionId" in data:
+    if data.get("activeSessionId") is not None:
         out["active_session_id"] = data["activeSessionId"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_ivs_realtime.types.tags
 
         out["tags"] = capo_ivs_realtime.types.tags.deserialize_json(data["tags"])
-    if "autoParticipantRecordingConfiguration" in data:
+    if data.get("autoParticipantRecordingConfiguration") is not None:
         import capo_ivs_realtime.types.auto_participant_recording_configuration
 
         out["auto_participant_recording_configuration"] = (
@@ -85,7 +85,7 @@ def deserialize_json(data: dict) -> Stage:
                 data["autoParticipantRecordingConfiguration"]
             )
         )
-    if "endpoints" in data:
+    if data.get("endpoints") is not None:
         import capo_ivs_realtime.types.stage_endpoints
 
         out["endpoints"] = capo_ivs_realtime.types.stage_endpoints.deserialize_json(

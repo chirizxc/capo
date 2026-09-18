@@ -62,21 +62,21 @@ def serialize_aws_json_1_1(value: ManagedRuleSet) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ManagedRuleSet:
     out: ManagedRuleSet = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("ManagedRuleSet.name required")
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
     else:
         raise DeserializationError("ManagedRuleSet.id required")
-    if "ARN" in data:
+    if data.get("ARN") is not None:
         out["arn"] = data["ARN"]
     else:
         raise DeserializationError("ManagedRuleSet.arn required")
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "PublishedVersions" in data:
+    if data.get("PublishedVersions") is not None:
         import capo_wafv2.types.published_versions
 
         out["published_versions"] = (
@@ -84,8 +84,8 @@ def deserialize_aws_json_1_1(data: dict) -> ManagedRuleSet:
                 data["PublishedVersions"]
             )
         )
-    if "RecommendedVersion" in data:
+    if data.get("RecommendedVersion") is not None:
         out["recommended_version"] = data["RecommendedVersion"]
-    if "LabelNamespace" in data:
+    if data.get("LabelNamespace") is not None:
         out["label_namespace"] = data["LabelNamespace"]
     return out

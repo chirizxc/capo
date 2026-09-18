@@ -33,7 +33,7 @@ def serialize_json(value: ListDirectoriesResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListDirectoriesResponse:
     out: ListDirectoriesResponse = {}  # type: ignore[typeddict-item]
-    if "Directories" in data:
+    if data.get("Directories") is not None:
         import capo_clouddirectory.types.directory_list
 
         out["directories"] = capo_clouddirectory.types.directory_list.deserialize_json(
@@ -41,6 +41,6 @@ def deserialize_json(data: dict) -> ListDirectoriesResponse:
         )
     else:
         raise DeserializationError("ListDirectoriesResponse.directories required")
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

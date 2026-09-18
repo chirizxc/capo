@@ -36,7 +36,7 @@ def serialize_json(value: IsraelAdditionalInfo) -> dict:
 
 def deserialize_json(data: dict) -> IsraelAdditionalInfo:
     out: IsraelAdditionalInfo = {}  # type: ignore[typeddict-item]
-    if "dealerType" in data:
+    if data.get("dealerType") is not None:
         import capo_taxsettings.types.israel_dealer_type
 
         out["dealer_type"] = capo_taxsettings.types.israel_dealer_type.deserialize_json(
@@ -44,7 +44,7 @@ def deserialize_json(data: dict) -> IsraelAdditionalInfo:
         )
     else:
         raise DeserializationError("IsraelAdditionalInfo.dealer_type required")
-    if "customerType" in data:
+    if data.get("customerType") is not None:
         import capo_taxsettings.types.israel_customer_type
 
         out["customer_type"] = (

@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> DescribeRecoveryInstancesItems:
 
     out: DescribeRecoveryInstancesItems = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_drs.types.recovery_instance.deserialize_json(item))
     return out

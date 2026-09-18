@@ -148,9 +148,9 @@ def serialize_aws_json_1_0(value: AwsOpportunitySummaryFullView) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> AwsOpportunitySummaryFullView:
     out: AwsOpportunitySummaryFullView = {}  # type: ignore[typeddict-item]
-    if "RelatedOpportunityId" in data:
+    if data.get("RelatedOpportunityId") is not None:
         out["related_opportunity_id"] = data["RelatedOpportunityId"]
-    if "Origin" in data:
+    if data.get("Origin") is not None:
         import capo_partnercentral_selling.types.opportunity_origin
 
         out["origin"] = (
@@ -158,7 +158,7 @@ def deserialize_aws_json_1_0(data: dict) -> AwsOpportunitySummaryFullView:
                 data["Origin"]
             )
         )
-    if "InvolvementType" in data:
+    if data.get("InvolvementType") is not None:
         import capo_partnercentral_selling.types.sales_involvement_type
 
         out["involvement_type"] = (
@@ -166,7 +166,7 @@ def deserialize_aws_json_1_0(data: dict) -> AwsOpportunitySummaryFullView:
                 data["InvolvementType"]
             )
         )
-    if "Visibility" in data:
+    if data.get("Visibility") is not None:
         import capo_partnercentral_selling.types.visibility
 
         out["visibility"] = (
@@ -174,7 +174,7 @@ def deserialize_aws_json_1_0(data: dict) -> AwsOpportunitySummaryFullView:
                 data["Visibility"]
             )
         )
-    if "LifeCycle" in data:
+    if data.get("LifeCycle") is not None:
         import capo_partnercentral_selling.types.aws_opportunity_life_cycle
 
         out["life_cycle"] = (
@@ -182,7 +182,7 @@ def deserialize_aws_json_1_0(data: dict) -> AwsOpportunitySummaryFullView:
                 data["LifeCycle"]
             )
         )
-    if "OpportunityTeam" in data:
+    if data.get("OpportunityTeam") is not None:
         import capo_partnercentral_selling.types.aws_opportunity_team_members_list
 
         out["opportunity_team"] = (
@@ -190,7 +190,7 @@ def deserialize_aws_json_1_0(data: dict) -> AwsOpportunitySummaryFullView:
                 data["OpportunityTeam"]
             )
         )
-    if "Insights" in data:
+    if data.get("Insights") is not None:
         import capo_partnercentral_selling.types.aws_opportunity_insights
 
         out["insights"] = (
@@ -198,7 +198,7 @@ def deserialize_aws_json_1_0(data: dict) -> AwsOpportunitySummaryFullView:
                 data["Insights"]
             )
         )
-    if "InvolvementTypeChangeReason" in data:
+    if data.get("InvolvementTypeChangeReason") is not None:
         import capo_partnercentral_selling.types.involvement_type_change_reason
 
         out["involvement_type_change_reason"] = (
@@ -206,7 +206,7 @@ def deserialize_aws_json_1_0(data: dict) -> AwsOpportunitySummaryFullView:
                 data["InvolvementTypeChangeReason"]
             )
         )
-    if "RelatedEntityIds" in data:
+    if data.get("RelatedEntityIds") is not None:
         import capo_partnercentral_selling.types.aws_opportunity_related_entities
 
         out["related_entity_ids"] = (
@@ -214,7 +214,7 @@ def deserialize_aws_json_1_0(data: dict) -> AwsOpportunitySummaryFullView:
                 data["RelatedEntityIds"]
             )
         )
-    if "Customer" in data:
+    if data.get("Customer") is not None:
         import capo_partnercentral_selling.types.aws_opportunity_customer
 
         out["customer"] = (
@@ -222,7 +222,7 @@ def deserialize_aws_json_1_0(data: dict) -> AwsOpportunitySummaryFullView:
                 data["Customer"]
             )
         )
-    if "Project" in data:
+    if data.get("Project") is not None:
         import capo_partnercentral_selling.types.aws_opportunity_project
 
         out["project"] = (

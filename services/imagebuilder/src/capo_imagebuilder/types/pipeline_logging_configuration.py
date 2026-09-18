@@ -31,8 +31,8 @@ def serialize_json(value: PipelineLoggingConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> PipelineLoggingConfiguration:
     out: PipelineLoggingConfiguration = {}  # type: ignore[typeddict-item]
-    if "imageLogGroupName" in data:
+    if data.get("imageLogGroupName") is not None:
         out["image_log_group_name"] = data["imageLogGroupName"]
-    if "pipelineLogGroupName" in data:
+    if data.get("pipelineLogGroupName") is not None:
         out["pipeline_log_group_name"] = data["pipelineLogGroupName"]
     return out

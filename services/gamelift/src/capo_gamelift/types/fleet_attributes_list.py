@@ -25,5 +25,7 @@ def deserialize_aws_json_1_1(data: list) -> FleetAttributesList:
 
     out: FleetAttributesList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_gamelift.types.fleet_attributes.deserialize_aws_json_1_1(item))
     return out

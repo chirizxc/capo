@@ -44,7 +44,7 @@ def serialize_json(value: WorkloadDiscoveryConfig) -> dict:
 
 def deserialize_json(data: dict) -> WorkloadDiscoveryConfig:
     out: WorkloadDiscoveryConfig = {}  # type: ignore[typeddict-item]
-    if "TrustedAdvisorIntegrationStatus" in data:
+    if data.get("TrustedAdvisorIntegrationStatus") is not None:
         import capo_wellarchitected.types.trusted_advisor_integration_status
 
         out["trusted_advisor_integration_status"] = (
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> WorkloadDiscoveryConfig:
                 data["TrustedAdvisorIntegrationStatus"]
             )
         )
-    if "WorkloadResourceDefinition" in data:
+    if data.get("WorkloadResourceDefinition") is not None:
         import capo_wellarchitected.types.workload_resource_definition
 
         out["workload_resource_definition"] = (

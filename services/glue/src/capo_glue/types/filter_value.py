@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: FilterValue) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> FilterValue:
     out: FilterValue = {}  # type: ignore[typeddict-item]
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_glue.types.filter_value_type
 
         out["type"] = capo_glue.types.filter_value_type.deserialize_aws_json_1_1(
@@ -44,7 +44,7 @@ def deserialize_aws_json_1_1(data: dict) -> FilterValue:
         )
     else:
         raise DeserializationError("FilterValue.type required")
-    if "Value" in data:
+    if data.get("Value") is not None:
         import capo_glue.types.enclosed_in_string_properties
 
         out["value"] = (

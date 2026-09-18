@@ -72,34 +72,34 @@ def serialize_json(value: Event) -> dict:
 
 def deserialize_json(data: dict) -> Event:
     out: Event = {}  # type: ignore[typeddict-item]
-    if "AppPackageName" in data:
+    if data.get("AppPackageName") is not None:
         out["app_package_name"] = data["AppPackageName"]
-    if "AppTitle" in data:
+    if data.get("AppTitle") is not None:
         out["app_title"] = data["AppTitle"]
-    if "AppVersionCode" in data:
+    if data.get("AppVersionCode") is not None:
         out["app_version_code"] = data["AppVersionCode"]
-    if "Attributes" in data:
+    if data.get("Attributes") is not None:
         import capo_pinpoint.types.map_of__string
 
         out["attributes"] = capo_pinpoint.types.map_of__string.deserialize_json(
             data["Attributes"]
         )
-    if "ClientSdkVersion" in data:
+    if data.get("ClientSdkVersion") is not None:
         out["client_sdk_version"] = data["ClientSdkVersion"]
-    if "EventType" in data:
+    if data.get("EventType") is not None:
         out["event_type"] = data["EventType"]
-    if "Metrics" in data:
+    if data.get("Metrics") is not None:
         import capo_pinpoint.types.map_of__double
 
         out["metrics"] = capo_pinpoint.types.map_of__double.deserialize_json(
             data["Metrics"]
         )
-    if "SdkName" in data:
+    if data.get("SdkName") is not None:
         out["sdk_name"] = data["SdkName"]
-    if "Session" in data:
+    if data.get("Session") is not None:
         import capo_pinpoint.types.session
 
         out["session"] = capo_pinpoint.types.session.deserialize_json(data["Session"])
-    if "Timestamp" in data:
+    if data.get("Timestamp") is not None:
         out["timestamp"] = data["Timestamp"]
     return out

@@ -25,7 +25,7 @@ def serialize_aws_json_1_1(value: DisassociateFileSystemAliasesResponse) -> dict
 
 def deserialize_aws_json_1_1(data: dict) -> DisassociateFileSystemAliasesResponse:
     out: DisassociateFileSystemAliasesResponse = {}  # type: ignore[typeddict-item]
-    if "Aliases" in data:
+    if data.get("Aliases") is not None:
         import capo_fsx.types.aliases
 
         out["aliases"] = capo_fsx.types.aliases.deserialize_aws_json_1_1(

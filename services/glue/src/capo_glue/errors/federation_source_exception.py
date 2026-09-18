@@ -38,7 +38,7 @@ def serialize_aws_json_1_1(value: FederationSourceException_) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> FederationSourceException_:
     out: FederationSourceException_ = {}  # type: ignore[typeddict-item]
-    if "FederationSourceErrorCode" in data:
+    if data.get("FederationSourceErrorCode") is not None:
         import capo_glue.types.federation_source_error_code
 
         out["federation_source_error_code"] = (
@@ -46,7 +46,7 @@ def deserialize_aws_json_1_1(data: dict) -> FederationSourceException_:
                 data["FederationSourceErrorCode"]
             )
         )
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     return out
 
@@ -56,15 +56,18 @@ class FederationSourceException(ServiceError):
 
     code: str | None = "FederationSourceException"
 
-    def __init__(self, data: FederationSourceException_):
+    def __init__(self, data: FederationSourceException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="FederationSourceException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "FederationSourceException":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "FederationSourceException":
+        return cls(deserialize_aws_json_1_1(data), message)

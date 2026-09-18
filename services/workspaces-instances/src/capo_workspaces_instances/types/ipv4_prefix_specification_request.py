@@ -23,6 +23,6 @@ def serialize_aws_json_1_0(value: Ipv4PrefixSpecificationRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> Ipv4PrefixSpecificationRequest:
     out: Ipv4PrefixSpecificationRequest = {}  # type: ignore[typeddict-item]
-    if "Ipv4Prefix" in data:
+    if data.get("Ipv4Prefix") is not None:
         out["ipv4_prefix"] = data["Ipv4Prefix"]
     return out

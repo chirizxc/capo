@@ -127,13 +127,13 @@ def serialize_aws_json_1_1(value: Endpoint) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Endpoint:
     out: Endpoint = {}  # type: ignore[typeddict-item]
-    if "EndpointName" in data:
+    if data.get("EndpointName") is not None:
         out["endpoint_name"] = data["EndpointName"]
-    if "EndpointArn" in data:
+    if data.get("EndpointArn") is not None:
         out["endpoint_arn"] = data["EndpointArn"]
-    if "EndpointConfigName" in data:
+    if data.get("EndpointConfigName") is not None:
         out["endpoint_config_name"] = data["EndpointConfigName"]
-    if "ProductionVariants" in data:
+    if data.get("ProductionVariants") is not None:
         import capo_sagemaker.types.production_variant_summary_list
 
         out["production_variants"] = (
@@ -141,7 +141,7 @@ def deserialize_aws_json_1_1(data: dict) -> Endpoint:
                 data["ProductionVariants"]
             )
         )
-    if "DataCaptureConfig" in data:
+    if data.get("DataCaptureConfig") is not None:
         import capo_sagemaker.types.data_capture_config_summary
 
         out["data_capture_config"] = (
@@ -149,7 +149,7 @@ def deserialize_aws_json_1_1(data: dict) -> Endpoint:
                 data["DataCaptureConfig"]
             )
         )
-    if "EndpointStatus" in data:
+    if data.get("EndpointStatus") is not None:
         import capo_sagemaker.types.endpoint_status
 
         out["endpoint_status"] = (
@@ -157,15 +157,15 @@ def deserialize_aws_json_1_1(data: dict) -> Endpoint:
                 data["EndpointStatus"]
             )
         )
-    if "FailureReason" in data:
+    if data.get("FailureReason") is not None:
         out["failure_reason"] = data["FailureReason"]
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_sagemaker.types.timestamp
 
         out["creation_time"] = capo_sagemaker.types.timestamp.deserialize_aws_json_1_1(
             data["CreationTime"]
         )
-    if "LastModifiedTime" in data:
+    if data.get("LastModifiedTime") is not None:
         import capo_sagemaker.types.timestamp
 
         out["last_modified_time"] = (
@@ -173,7 +173,7 @@ def deserialize_aws_json_1_1(data: dict) -> Endpoint:
                 data["LastModifiedTime"]
             )
         )
-    if "MonitoringSchedules" in data:
+    if data.get("MonitoringSchedules") is not None:
         import capo_sagemaker.types.monitoring_schedule_list
 
         out["monitoring_schedules"] = (
@@ -181,13 +181,13 @@ def deserialize_aws_json_1_1(data: dict) -> Endpoint:
                 data["MonitoringSchedules"]
             )
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_sagemaker.types.tag_list
 
         out["tags"] = capo_sagemaker.types.tag_list.deserialize_aws_json_1_1(
             data["Tags"]
         )
-    if "ShadowProductionVariants" in data:
+    if data.get("ShadowProductionVariants") is not None:
         import capo_sagemaker.types.production_variant_summary_list
 
         out["shadow_production_variants"] = (

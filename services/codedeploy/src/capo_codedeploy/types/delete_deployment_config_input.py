@@ -26,7 +26,7 @@ def serialize_aws_json_1_1(value: DeleteDeploymentConfigInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteDeploymentConfigInput:
     out: DeleteDeploymentConfigInput = {}  # type: ignore[typeddict-item]
-    if "deploymentConfigName" in data:
+    if data.get("deploymentConfigName") is not None:
         out["deployment_config_name"] = data["deploymentConfigName"]
     else:
         raise DeserializationError(

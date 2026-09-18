@@ -36,7 +36,7 @@ def serialize_json(value: ListDictionariesResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListDictionariesResponse:
     out: ListDictionariesResponse = {}  # type: ignore[typeddict-item]
-    if "dictionaries" in data:
+    if data.get("dictionaries") is not None:
         import capo_elementalinference.types.dictionary_summary_list
 
         out["dictionaries"] = (
@@ -46,6 +46,6 @@ def deserialize_json(data: dict) -> ListDictionariesResponse:
         )
     else:
         raise DeserializationError("ListDictionariesResponse.dictionaries required")
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

@@ -28,8 +28,8 @@ def serialize_json(value: ReplicatorFirehose) -> dict:
 
 def deserialize_json(data: dict) -> ReplicatorFirehose:
     out: ReplicatorFirehose = {}  # type: ignore[typeddict-item]
-    if "enabled" in data:
+    if data.get("enabled") is not None:
         out["enabled"] = data["enabled"]
-    if "deliveryStream" in data:
+    if data.get("deliveryStream") is not None:
         out["delivery_stream"] = data["deliveryStream"]
     return out

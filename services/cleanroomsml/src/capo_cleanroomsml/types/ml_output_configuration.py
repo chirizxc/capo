@@ -33,13 +33,13 @@ def serialize_json(value: MLOutputConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> MLOutputConfiguration:
     out: MLOutputConfiguration = {}  # type: ignore[typeddict-item]
-    if "destination" in data:
+    if data.get("destination") is not None:
         import capo_cleanroomsml.types.destination
 
         out["destination"] = capo_cleanroomsml.types.destination.deserialize_json(
             data["destination"]
         )
-    if "roleArn" in data:
+    if data.get("roleArn") is not None:
         out["role_arn"] = data["roleArn"]
     else:
         raise DeserializationError("MLOutputConfiguration.role_arn required")

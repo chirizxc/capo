@@ -45,11 +45,11 @@ def serialize_aws_json_1_1(value: OidcJwtUpdateConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> OidcJwtUpdateConfiguration:
     out: OidcJwtUpdateConfiguration = {}  # type: ignore[typeddict-item]
-    if "ClaimAttributePath" in data:
+    if data.get("ClaimAttributePath") is not None:
         out["claim_attribute_path"] = data["ClaimAttributePath"]
-    if "IdentityStoreAttributePath" in data:
+    if data.get("IdentityStoreAttributePath") is not None:
         out["identity_store_attribute_path"] = data["IdentityStoreAttributePath"]
-    if "JwksRetrievalOption" in data:
+    if data.get("JwksRetrievalOption") is not None:
         import capo_sso_admin.types.jwks_retrieval_option
 
         out["jwks_retrieval_option"] = (

@@ -46,21 +46,21 @@ def serialize_json(value: CreateRouteCalculatorRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateRouteCalculatorRequest:
     out: CreateRouteCalculatorRequest = {}  # type: ignore[typeddict-item]
-    if "CalculatorName" in data:
+    if data.get("CalculatorName") is not None:
         out["calculator_name"] = data["CalculatorName"]
     else:
         raise DeserializationError(
             "CreateRouteCalculatorRequest.calculator_name required"
         )
-    if "DataSource" in data:
+    if data.get("DataSource") is not None:
         out["data_source"] = data["DataSource"]
     else:
         raise DeserializationError("CreateRouteCalculatorRequest.data_source required")
-    if "PricingPlan" in data:
+    if data.get("PricingPlan") is not None:
         out["pricing_plan"] = data["PricingPlan"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_location.types.tag_map
 
         out["tags"] = capo_location.types.tag_map.deserialize_json(data["Tags"])

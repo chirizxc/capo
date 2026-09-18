@@ -25,7 +25,7 @@ def serialize_aws_json_1_0(value: Month) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> Month:
     out: Month = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         import capo_odb.types.month_name
 
         out["name"] = capo_odb.types.month_name.deserialize_aws_json_1_0(data["name"])

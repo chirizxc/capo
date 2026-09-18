@@ -25,6 +25,6 @@ def serialize_aws_json_1_1(value: GetResolverRulePolicyResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetResolverRulePolicyResponse:
     out: GetResolverRulePolicyResponse = {}  # type: ignore[typeddict-item]
-    if "ResolverRulePolicy" in data:
+    if data.get("ResolverRulePolicy") is not None:
         out["resolver_rule_policy"] = data["ResolverRulePolicy"]
     return out

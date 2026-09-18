@@ -44,7 +44,7 @@ def serialize_json(value: BatchGetCodeReviewJobsOutput) -> dict:
 
 def deserialize_json(data: dict) -> BatchGetCodeReviewJobsOutput:
     out: BatchGetCodeReviewJobsOutput = {}  # type: ignore[typeddict-item]
-    if "codeReviewJobs" in data:
+    if data.get("codeReviewJobs") is not None:
         import capo_securityagent.types.code_review_job_list
 
         out["code_review_jobs"] = (
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> BatchGetCodeReviewJobsOutput:
                 data["codeReviewJobs"]
             )
         )
-    if "notFound" in data:
+    if data.get("notFound") is not None:
         import capo_securityagent.types.code_review_job_id_list
 
         out["not_found"] = (

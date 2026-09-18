@@ -25,6 +25,6 @@ def serialize_json(value: StartActiveApprovalTeamDeletionRequest) -> dict:
 
 def deserialize_json(data: dict) -> StartActiveApprovalTeamDeletionRequest:
     out: StartActiveApprovalTeamDeletionRequest = {}  # type: ignore[typeddict-item]
-    if "PendingWindowDays" in data:
+    if data.get("PendingWindowDays") is not None:
         out["pending_window_days"] = data["PendingWindowDays"]
     return out

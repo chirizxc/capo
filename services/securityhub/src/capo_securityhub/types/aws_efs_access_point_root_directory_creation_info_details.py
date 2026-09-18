@@ -31,10 +31,10 @@ def serialize_json(value: AwsEfsAccessPointRootDirectoryCreationInfoDetails) -> 
 
 def deserialize_json(data: dict) -> AwsEfsAccessPointRootDirectoryCreationInfoDetails:
     out: AwsEfsAccessPointRootDirectoryCreationInfoDetails = {}  # type: ignore[typeddict-item]
-    if "OwnerGid" in data:
+    if data.get("OwnerGid") is not None:
         out["owner_gid"] = data["OwnerGid"]
-    if "OwnerUid" in data:
+    if data.get("OwnerUid") is not None:
         out["owner_uid"] = data["OwnerUid"]
-    if "Permissions" in data:
+    if data.get("Permissions") is not None:
         out["permissions"] = data["Permissions"]
     return out

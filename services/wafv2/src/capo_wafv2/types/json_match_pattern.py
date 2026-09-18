@@ -36,11 +36,11 @@ def serialize_aws_json_1_1(value: JsonMatchPattern) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> JsonMatchPattern:
     out: JsonMatchPattern = {}  # type: ignore[typeddict-item]
-    if "All" in data:
+    if data.get("All") is not None:
         import capo_wafv2.types.all
 
         out["all"] = capo_wafv2.types.all.deserialize_aws_json_1_1(data["All"])
-    if "IncludedPaths" in data:
+    if data.get("IncludedPaths") is not None:
         import capo_wafv2.types.json_pointer_paths
 
         out["included_paths"] = (

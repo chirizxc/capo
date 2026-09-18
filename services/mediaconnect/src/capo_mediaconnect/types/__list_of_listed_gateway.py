@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> __listOfListedGateway:
 
     out: __listOfListedGateway = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_mediaconnect.types.listed_gateway.deserialize_json(item))
     return out

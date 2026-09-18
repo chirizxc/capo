@@ -34,19 +34,19 @@ def serialize_aws_json_1_1(value: UpdateCustomDomainAssociationRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateCustomDomainAssociationRequest:
     out: UpdateCustomDomainAssociationRequest = {}  # type: ignore[typeddict-item]
-    if "workgroupName" in data:
+    if data.get("workgroupName") is not None:
         out["workgroup_name"] = data["workgroupName"]
     else:
         raise DeserializationError(
             "UpdateCustomDomainAssociationRequest.workgroup_name required"
         )
-    if "customDomainName" in data:
+    if data.get("customDomainName") is not None:
         out["custom_domain_name"] = data["customDomainName"]
     else:
         raise DeserializationError(
             "UpdateCustomDomainAssociationRequest.custom_domain_name required"
         )
-    if "customDomainCertificateArn" in data:
+    if data.get("customDomainCertificateArn") is not None:
         out["custom_domain_certificate_arn"] = data["customDomainCertificateArn"]
     else:
         raise DeserializationError(

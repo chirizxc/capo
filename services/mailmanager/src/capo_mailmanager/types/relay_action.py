@@ -46,7 +46,7 @@ def serialize_aws_json_1_0(value: RelayAction) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> RelayAction:
     out: RelayAction = {}  # type: ignore[typeddict-item]
-    if "ActionFailurePolicy" in data:
+    if data.get("ActionFailurePolicy") is not None:
         import capo_mailmanager.types.action_failure_policy
 
         out["action_failure_policy"] = (
@@ -54,11 +54,11 @@ def deserialize_aws_json_1_0(data: dict) -> RelayAction:
                 data["ActionFailurePolicy"]
             )
         )
-    if "Relay" in data:
+    if data.get("Relay") is not None:
         out["relay"] = data["Relay"]
     else:
         raise DeserializationError("RelayAction.relay required")
-    if "MailFrom" in data:
+    if data.get("MailFrom") is not None:
         import capo_mailmanager.types.mail_from
 
         out["mail_from"] = capo_mailmanager.types.mail_from.deserialize_aws_json_1_0(

@@ -63,7 +63,7 @@ def serialize_json(value: ArtifactsConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> ArtifactsConfiguration:
     out: ArtifactsConfiguration = {}  # type: ignore[typeddict-item]
-    if "Audio" in data:
+    if data.get("Audio") is not None:
         import capo_chime_sdk_media_pipelines.types.audio_artifacts_configuration
 
         out["audio"] = (
@@ -73,7 +73,7 @@ def deserialize_json(data: dict) -> ArtifactsConfiguration:
         )
     else:
         raise DeserializationError("ArtifactsConfiguration.audio required")
-    if "Video" in data:
+    if data.get("Video") is not None:
         import capo_chime_sdk_media_pipelines.types.video_artifacts_configuration
 
         out["video"] = (
@@ -83,7 +83,7 @@ def deserialize_json(data: dict) -> ArtifactsConfiguration:
         )
     else:
         raise DeserializationError("ArtifactsConfiguration.video required")
-    if "Content" in data:
+    if data.get("Content") is not None:
         import capo_chime_sdk_media_pipelines.types.content_artifacts_configuration
 
         out["content"] = (
@@ -93,7 +93,7 @@ def deserialize_json(data: dict) -> ArtifactsConfiguration:
         )
     else:
         raise DeserializationError("ArtifactsConfiguration.content required")
-    if "CompositedVideo" in data:
+    if data.get("CompositedVideo") is not None:
         import capo_chime_sdk_media_pipelines.types.composited_video_artifacts_configuration
 
         out["composited_video"] = (

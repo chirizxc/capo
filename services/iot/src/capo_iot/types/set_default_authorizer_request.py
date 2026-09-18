@@ -24,7 +24,7 @@ def serialize_json(value: SetDefaultAuthorizerRequest) -> dict:
 
 def deserialize_json(data: dict) -> SetDefaultAuthorizerRequest:
     out: SetDefaultAuthorizerRequest = {}  # type: ignore[typeddict-item]
-    if "authorizerName" in data:
+    if data.get("authorizerName") is not None:
         out["authorizer_name"] = data["authorizerName"]
     else:
         raise DeserializationError(

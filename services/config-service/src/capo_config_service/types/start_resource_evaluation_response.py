@@ -25,6 +25,6 @@ def serialize_aws_json_1_1(value: StartResourceEvaluationResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> StartResourceEvaluationResponse:
     out: StartResourceEvaluationResponse = {}  # type: ignore[typeddict-item]
-    if "ResourceEvaluationId" in data:
+    if data.get("ResourceEvaluationId") is not None:
         out["resource_evaluation_id"] = data["ResourceEvaluationId"]
     return out

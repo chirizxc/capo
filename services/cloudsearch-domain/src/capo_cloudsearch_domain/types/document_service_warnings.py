@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> DocumentServiceWarnings:
 
     out: DocumentServiceWarnings = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_cloudsearch_domain.types.document_service_warning.deserialize_json(
                 item

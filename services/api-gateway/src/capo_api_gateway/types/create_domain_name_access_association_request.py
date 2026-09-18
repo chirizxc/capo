@@ -48,13 +48,13 @@ def serialize_json(value: CreateDomainNameAccessAssociationRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateDomainNameAccessAssociationRequest:
     out: CreateDomainNameAccessAssociationRequest = {}  # type: ignore[typeddict-item]
-    if "domainNameArn" in data:
+    if data.get("domainNameArn") is not None:
         out["domain_name_arn"] = data["domainNameArn"]
     else:
         raise DeserializationError(
             "CreateDomainNameAccessAssociationRequest.domain_name_arn required"
         )
-    if "accessAssociationSourceType" in data:
+    if data.get("accessAssociationSourceType") is not None:
         import capo_api_gateway.types.access_association_source_type
 
         out["access_association_source_type"] = (
@@ -66,13 +66,13 @@ def deserialize_json(data: dict) -> CreateDomainNameAccessAssociationRequest:
         raise DeserializationError(
             "CreateDomainNameAccessAssociationRequest.access_association_source_type required"
         )
-    if "accessAssociationSource" in data:
+    if data.get("accessAssociationSource") is not None:
         out["access_association_source"] = data["accessAssociationSource"]
     else:
         raise DeserializationError(
             "CreateDomainNameAccessAssociationRequest.access_association_source required"
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_api_gateway.types.map_of_string_to_string
 
         out["tags"] = capo_api_gateway.types.map_of_string_to_string.deserialize_json(

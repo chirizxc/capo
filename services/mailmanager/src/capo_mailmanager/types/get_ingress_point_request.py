@@ -37,11 +37,11 @@ def serialize_aws_json_1_0(value: GetIngressPointRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> GetIngressPointRequest:
     out: GetIngressPointRequest = {}  # type: ignore[typeddict-item]
-    if "IngressPointId" in data:
+    if data.get("IngressPointId") is not None:
         out["ingress_point_id"] = data["IngressPointId"]
     else:
         raise DeserializationError("GetIngressPointRequest.ingress_point_id required")
-    if "IncludeTrustStoreContents" in data:
+    if data.get("IncludeTrustStoreContents") is not None:
         import capo_mailmanager.types.trust_store_response_option
 
         out["include_trust_store_contents"] = (

@@ -53,18 +53,18 @@ def serialize_aws_json_1_0(value: ListResourcesInput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ListResourcesInput:
     out: ListResourcesInput = {}  # type: ignore[typeddict-item]
-    if "TypeName" in data:
+    if data.get("TypeName") is not None:
         out["type_name"] = data["TypeName"]
     else:
         raise DeserializationError("ListResourcesInput.type_name required")
-    if "TypeVersionId" in data:
+    if data.get("TypeVersionId") is not None:
         out["type_version_id"] = data["TypeVersionId"]
-    if "RoleArn" in data:
+    if data.get("RoleArn") is not None:
         out["role_arn"] = data["RoleArn"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "ResourceModel" in data:
+    if data.get("ResourceModel") is not None:
         out["resource_model"] = data["ResourceModel"]
     return out

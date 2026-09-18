@@ -44,16 +44,16 @@ def serialize_aws_json_1_1(value: ContainerServiceHealthCheckConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ContainerServiceHealthCheckConfig:
     out: ContainerServiceHealthCheckConfig = {}  # type: ignore[typeddict-item]
-    if "healthyThreshold" in data:
+    if data.get("healthyThreshold") is not None:
         out["healthy_threshold"] = data["healthyThreshold"]
-    if "unhealthyThreshold" in data:
+    if data.get("unhealthyThreshold") is not None:
         out["unhealthy_threshold"] = data["unhealthyThreshold"]
-    if "timeoutSeconds" in data:
+    if data.get("timeoutSeconds") is not None:
         out["timeout_seconds"] = data["timeoutSeconds"]
-    if "intervalSeconds" in data:
+    if data.get("intervalSeconds") is not None:
         out["interval_seconds"] = data["intervalSeconds"]
-    if "path" in data:
+    if data.get("path") is not None:
         out["path"] = data["path"]
-    if "successCodes" in data:
+    if data.get("successCodes") is not None:
         out["success_codes"] = data["successCodes"]
     return out

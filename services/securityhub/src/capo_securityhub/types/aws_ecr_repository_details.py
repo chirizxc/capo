@@ -67,9 +67,9 @@ def serialize_json(value: AwsEcrRepositoryDetails) -> dict:
 
 def deserialize_json(data: dict) -> AwsEcrRepositoryDetails:
     out: AwsEcrRepositoryDetails = {}  # type: ignore[typeddict-item]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "ImageScanningConfiguration" in data:
+    if data.get("ImageScanningConfiguration") is not None:
         import capo_securityhub.types.aws_ecr_repository_image_scanning_configuration_details
 
         out["image_scanning_configuration"] = (
@@ -77,9 +77,9 @@ def deserialize_json(data: dict) -> AwsEcrRepositoryDetails:
                 data["ImageScanningConfiguration"]
             )
         )
-    if "ImageTagMutability" in data:
+    if data.get("ImageTagMutability") is not None:
         out["image_tag_mutability"] = data["ImageTagMutability"]
-    if "LifecyclePolicy" in data:
+    if data.get("LifecyclePolicy") is not None:
         import capo_securityhub.types.aws_ecr_repository_lifecycle_policy_details
 
         out["lifecycle_policy"] = (
@@ -87,8 +87,8 @@ def deserialize_json(data: dict) -> AwsEcrRepositoryDetails:
                 data["LifecyclePolicy"]
             )
         )
-    if "RepositoryName" in data:
+    if data.get("RepositoryName") is not None:
         out["repository_name"] = data["RepositoryName"]
-    if "RepositoryPolicyText" in data:
+    if data.get("RepositoryPolicyText") is not None:
         out["repository_policy_text"] = data["RepositoryPolicyText"]
     return out

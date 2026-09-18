@@ -101,15 +101,15 @@ def serialize_json(value: GetSuiteRunResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetSuiteRunResponse:
     out: GetSuiteRunResponse = {}  # type: ignore[typeddict-item]
-    if "suiteDefinitionId" in data:
+    if data.get("suiteDefinitionId") is not None:
         out["suite_definition_id"] = data["suiteDefinitionId"]
-    if "suiteDefinitionVersion" in data:
+    if data.get("suiteDefinitionVersion") is not None:
         out["suite_definition_version"] = data["suiteDefinitionVersion"]
-    if "suiteRunId" in data:
+    if data.get("suiteRunId") is not None:
         out["suite_run_id"] = data["suiteRunId"]
-    if "suiteRunArn" in data:
+    if data.get("suiteRunArn") is not None:
         out["suite_run_arn"] = data["suiteRunArn"]
-    if "suiteRunConfiguration" in data:
+    if data.get("suiteRunConfiguration") is not None:
         import capo_iotdeviceadvisor.types.suite_run_configuration
 
         out["suite_run_configuration"] = (
@@ -117,33 +117,33 @@ def deserialize_json(data: dict) -> GetSuiteRunResponse:
                 data["suiteRunConfiguration"]
             )
         )
-    if "testResult" in data:
+    if data.get("testResult") is not None:
         import capo_iotdeviceadvisor.types.test_result
 
         out["test_result"] = capo_iotdeviceadvisor.types.test_result.deserialize_json(
             data["testResult"]
         )
-    if "startTime" in data:
+    if data.get("startTime") is not None:
         import capo_iotdeviceadvisor.types.timestamp
 
         out["start_time"] = capo_iotdeviceadvisor.types.timestamp.deserialize_json(
             data["startTime"]
         )
-    if "endTime" in data:
+    if data.get("endTime") is not None:
         import capo_iotdeviceadvisor.types.timestamp
 
         out["end_time"] = capo_iotdeviceadvisor.types.timestamp.deserialize_json(
             data["endTime"]
         )
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_iotdeviceadvisor.types.suite_run_status
 
         out["status"] = capo_iotdeviceadvisor.types.suite_run_status.deserialize_json(
             data["status"]
         )
-    if "errorReason" in data:
+    if data.get("errorReason") is not None:
         out["error_reason"] = data["errorReason"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_iotdeviceadvisor.types.tag_map
 
         out["tags"] = capo_iotdeviceadvisor.types.tag_map.deserialize_json(data["tags"])

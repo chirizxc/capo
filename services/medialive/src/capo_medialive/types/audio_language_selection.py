@@ -36,9 +36,9 @@ def serialize_json(value: AudioLanguageSelection) -> dict:
 
 def deserialize_json(data: dict) -> AudioLanguageSelection:
     out: AudioLanguageSelection = {}  # type: ignore[typeddict-item]
-    if "languageCode" in data:
+    if data.get("languageCode") is not None:
         out["language_code"] = data["languageCode"]
-    if "languageSelectionPolicy" in data:
+    if data.get("languageSelectionPolicy") is not None:
         import capo_medialive.types.audio_language_selection_policy
 
         out["language_selection_policy"] = (

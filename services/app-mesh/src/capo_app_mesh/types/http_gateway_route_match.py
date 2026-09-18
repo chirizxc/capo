@@ -76,13 +76,13 @@ def serialize_json(value: HttpGatewayRouteMatch) -> dict:
 
 def deserialize_json(data: dict) -> HttpGatewayRouteMatch:
     out: HttpGatewayRouteMatch = {}  # type: ignore[typeddict-item]
-    if "prefix" in data:
+    if data.get("prefix") is not None:
         out["prefix"] = data["prefix"]
-    if "path" in data:
+    if data.get("path") is not None:
         import capo_app_mesh.types.http_path_match
 
         out["path"] = capo_app_mesh.types.http_path_match.deserialize_json(data["path"])
-    if "queryParameters" in data:
+    if data.get("queryParameters") is not None:
         import capo_app_mesh.types.http_query_parameters
 
         out["query_parameters"] = (
@@ -90,9 +90,9 @@ def deserialize_json(data: dict) -> HttpGatewayRouteMatch:
                 data["queryParameters"]
             )
         )
-    if "method" in data:
+    if data.get("method") is not None:
         out["method"] = data["method"]
-    if "hostname" in data:
+    if data.get("hostname") is not None:
         import capo_app_mesh.types.gateway_route_hostname_match
 
         out["hostname"] = (
@@ -100,7 +100,7 @@ def deserialize_json(data: dict) -> HttpGatewayRouteMatch:
                 data["hostname"]
             )
         )
-    if "headers" in data:
+    if data.get("headers") is not None:
         import capo_app_mesh.types.http_gateway_route_headers
 
         out["headers"] = (
@@ -108,6 +108,6 @@ def deserialize_json(data: dict) -> HttpGatewayRouteMatch:
                 data["headers"]
             )
         )
-    if "port" in data:
+    if data.get("port") is not None:
         out["port"] = data["port"]
     return out

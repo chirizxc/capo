@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> ListKeysResponseEntryList:
 
     out: ListKeysResponseEntryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_location.types.list_keys_response_entry.deserialize_json(item))
     return out

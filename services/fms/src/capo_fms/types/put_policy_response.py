@@ -30,10 +30,10 @@ def serialize_aws_json_1_1(value: PutPolicyResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PutPolicyResponse:
     out: PutPolicyResponse = {}  # type: ignore[typeddict-item]
-    if "Policy" in data:
+    if data.get("Policy") is not None:
         import capo_fms.types.policy
 
         out["policy"] = capo_fms.types.policy.deserialize_aws_json_1_1(data["Policy"])
-    if "PolicyArn" in data:
+    if data.get("PolicyArn") is not None:
         out["policy_arn"] = data["PolicyArn"]
     return out

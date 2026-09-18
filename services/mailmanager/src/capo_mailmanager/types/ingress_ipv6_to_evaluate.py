@@ -32,7 +32,7 @@ def serialize_aws_json_1_0(value: IngressIpv6ToEvaluate) -> dict:
 
 
 def deserialize_aws_json_1_0(data: dict) -> IngressIpv6ToEvaluate:
-    if "Attribute" in data:
+    if data.get("Attribute") is not None:
         import capo_mailmanager.types.ingress_ipv6_attribute
 
         return {

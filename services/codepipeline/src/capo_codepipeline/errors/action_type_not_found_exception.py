@@ -25,7 +25,7 @@ def serialize_aws_json_1_1(value: ActionTypeNotFoundException_) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ActionTypeNotFoundException_:
     out: ActionTypeNotFoundException_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     return out
 
@@ -35,15 +35,18 @@ class ActionTypeNotFoundException(ServiceError):
 
     code: str | None = "ActionTypeNotFoundException"
 
-    def __init__(self, data: ActionTypeNotFoundException_):
+    def __init__(self, data: ActionTypeNotFoundException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="ActionTypeNotFoundException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "ActionTypeNotFoundException":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "ActionTypeNotFoundException":
+        return cls(deserialize_aws_json_1_1(data), message)

@@ -36,9 +36,9 @@ def serialize_aws_json_1_0(value: GetLambdaFunctionRecommendationsResponse) -> d
 
 def deserialize_aws_json_1_0(data: dict) -> GetLambdaFunctionRecommendationsResponse:
     out: GetLambdaFunctionRecommendationsResponse = {}  # type: ignore[typeddict-item]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "lambdaFunctionRecommendations" in data:
+    if data.get("lambdaFunctionRecommendations") is not None:
         import capo_compute_optimizer.types.lambda_function_recommendations
 
         out["lambda_function_recommendations"] = (

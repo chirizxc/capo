@@ -90,7 +90,7 @@ def serialize_json(value: FindingStatistics) -> dict:
 
 def deserialize_json(data: dict) -> FindingStatistics:
     out: FindingStatistics = {}  # type: ignore[typeddict-item]
-    if "countBySeverity" in data:
+    if data.get("countBySeverity") is not None:
         import capo_guardduty.types.count_by_severity
 
         out["count_by_severity"] = (
@@ -98,7 +98,7 @@ def deserialize_json(data: dict) -> FindingStatistics:
                 data["countBySeverity"]
             )
         )
-    if "groupedByAccount" in data:
+    if data.get("groupedByAccount") is not None:
         import capo_guardduty.types.grouped_by_account
 
         out["grouped_by_account"] = (
@@ -106,13 +106,13 @@ def deserialize_json(data: dict) -> FindingStatistics:
                 data["groupedByAccount"]
             )
         )
-    if "groupedByDate" in data:
+    if data.get("groupedByDate") is not None:
         import capo_guardduty.types.grouped_by_date
 
         out["grouped_by_date"] = capo_guardduty.types.grouped_by_date.deserialize_json(
             data["groupedByDate"]
         )
-    if "groupedByFindingType" in data:
+    if data.get("groupedByFindingType") is not None:
         import capo_guardduty.types.grouped_by_finding_type
 
         out["grouped_by_finding_type"] = (
@@ -120,7 +120,7 @@ def deserialize_json(data: dict) -> FindingStatistics:
                 data["groupedByFindingType"]
             )
         )
-    if "groupedByResource" in data:
+    if data.get("groupedByResource") is not None:
         import capo_guardduty.types.grouped_by_resource
 
         out["grouped_by_resource"] = (
@@ -128,7 +128,7 @@ def deserialize_json(data: dict) -> FindingStatistics:
                 data["groupedByResource"]
             )
         )
-    if "groupedBySeverity" in data:
+    if data.get("groupedBySeverity") is not None:
         import capo_guardduty.types.grouped_by_severity
 
         out["grouped_by_severity"] = (

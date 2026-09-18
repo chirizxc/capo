@@ -32,7 +32,7 @@ def serialize_aws_json_1_1(value: DisableAddOnRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DisableAddOnRequest:
     out: DisableAddOnRequest = {}  # type: ignore[typeddict-item]
-    if "addOnType" in data:
+    if data.get("addOnType") is not None:
         import capo_lightsail.types.add_on_type
 
         out["add_on_type"] = capo_lightsail.types.add_on_type.deserialize_aws_json_1_1(
@@ -40,7 +40,7 @@ def deserialize_aws_json_1_1(data: dict) -> DisableAddOnRequest:
         )
     else:
         raise DeserializationError("DisableAddOnRequest.add_on_type required")
-    if "resourceName" in data:
+    if data.get("resourceName") is not None:
         out["resource_name"] = data["resourceName"]
     else:
         raise DeserializationError("DisableAddOnRequest.resource_name required")

@@ -36,19 +36,19 @@ def serialize_aws_json_1_1(value: DescribeManagedLoginBrandingByClientRequest) -
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeManagedLoginBrandingByClientRequest:
     out: DescribeManagedLoginBrandingByClientRequest = {}  # type: ignore[typeddict-item]
-    if "UserPoolId" in data:
+    if data.get("UserPoolId") is not None:
         out["user_pool_id"] = data["UserPoolId"]
     else:
         raise DeserializationError(
             "DescribeManagedLoginBrandingByClientRequest.user_pool_id required"
         )
-    if "ClientId" in data:
+    if data.get("ClientId") is not None:
         out["client_id"] = data["ClientId"]
     else:
         raise DeserializationError(
             "DescribeManagedLoginBrandingByClientRequest.client_id required"
         )
-    if "ReturnMergedResources" in data:
+    if data.get("ReturnMergedResources") is not None:
         out["return_merged_resources"] = data["ReturnMergedResources"]
     else:
         out["return_merged_resources"] = False

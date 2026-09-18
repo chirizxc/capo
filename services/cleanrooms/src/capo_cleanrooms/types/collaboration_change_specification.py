@@ -31,7 +31,7 @@ def serialize_json(value: CollaborationChangeSpecification) -> dict:
 
 def deserialize_json(data: dict) -> CollaborationChangeSpecification:
     out: CollaborationChangeSpecification = {}  # type: ignore[typeddict-item]
-    if "autoApprovedChangeTypes" in data:
+    if data.get("autoApprovedChangeTypes") is not None:
         import capo_cleanrooms.types.auto_approved_change_type_list
 
         out["auto_approved_change_types"] = (

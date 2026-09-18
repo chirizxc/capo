@@ -31,7 +31,7 @@ def serialize_aws_json_1_0(value: ProfileConfiguration) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ProfileConfiguration:
     out: ProfileConfiguration = {}  # type: ignore[typeddict-item]
-    if "DefaultProfiles" in data:
+    if data.get("DefaultProfiles") is not None:
         import capo_healthlake.types.default_profiles
 
         out["default_profiles"] = (

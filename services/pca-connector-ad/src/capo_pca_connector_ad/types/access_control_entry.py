@@ -68,11 +68,11 @@ def serialize_json(value: AccessControlEntry) -> dict:
 
 def deserialize_json(data: dict) -> AccessControlEntry:
     out: AccessControlEntry = {}  # type: ignore[typeddict-item]
-    if "GroupDisplayName" in data:
+    if data.get("GroupDisplayName") is not None:
         out["group_display_name"] = data["GroupDisplayName"]
-    if "GroupSecurityIdentifier" in data:
+    if data.get("GroupSecurityIdentifier") is not None:
         out["group_security_identifier"] = data["GroupSecurityIdentifier"]
-    if "AccessRights" in data:
+    if data.get("AccessRights") is not None:
         import capo_pca_connector_ad.types.access_rights
 
         out["access_rights"] = (
@@ -80,9 +80,9 @@ def deserialize_json(data: dict) -> AccessControlEntry:
                 data["AccessRights"]
             )
         )
-    if "TemplateArn" in data:
+    if data.get("TemplateArn") is not None:
         out["template_arn"] = data["TemplateArn"]
-    if "CreatedAt" in data:
+    if data.get("CreatedAt") is not None:
         import capo_pca_connector_ad.types._prelude.timestamp
 
         out["created_at"] = (
@@ -90,7 +90,7 @@ def deserialize_json(data: dict) -> AccessControlEntry:
                 data["CreatedAt"]
             )
         )
-    if "UpdatedAt" in data:
+    if data.get("UpdatedAt") is not None:
         import capo_pca_connector_ad.types._prelude.timestamp
 
         out["updated_at"] = (

@@ -38,10 +38,10 @@ def serialize_json(value: CreateLensVersionInput) -> dict:
 
 def deserialize_json(data: dict) -> CreateLensVersionInput:
     out: CreateLensVersionInput = {}  # type: ignore[typeddict-item]
-    if "LensVersion" in data:
+    if data.get("LensVersion") is not None:
         out["lens_version"] = data["LensVersion"]
-    if "IsMajorVersion" in data:
+    if data.get("IsMajorVersion") is not None:
         out["is_major_version"] = data["IsMajorVersion"]
-    if "ClientRequestToken" in data:
+    if data.get("ClientRequestToken") is not None:
         out["client_request_token"] = data["ClientRequestToken"]
     return out

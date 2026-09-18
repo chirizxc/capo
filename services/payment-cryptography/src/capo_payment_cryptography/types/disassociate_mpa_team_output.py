@@ -32,7 +32,7 @@ def serialize_aws_json_1_0(value: DisassociateMpaTeamOutput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> DisassociateMpaTeamOutput:
     out: DisassociateMpaTeamOutput = {}  # type: ignore[typeddict-item]
-    if "MpaTeamAssociation" in data:
+    if data.get("MpaTeamAssociation") is not None:
         import capo_payment_cryptography.types.mpa_team_association
 
         out["mpa_team_association"] = (

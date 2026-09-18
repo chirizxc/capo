@@ -83,27 +83,27 @@ def serialize_aws_json_1_1(value: AccountAssignmentOperationStatus) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AccountAssignmentOperationStatus:
     out: AccountAssignmentOperationStatus = {}  # type: ignore[typeddict-item]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_sso_admin.types.status_values
 
         out["status"] = capo_sso_admin.types.status_values.deserialize_aws_json_1_1(
             data["Status"]
         )
-    if "RequestId" in data:
+    if data.get("RequestId") is not None:
         out["request_id"] = data["RequestId"]
-    if "FailureReason" in data:
+    if data.get("FailureReason") is not None:
         out["failure_reason"] = data["FailureReason"]
-    if "TargetId" in data:
+    if data.get("TargetId") is not None:
         out["target_id"] = data["TargetId"]
-    if "TargetType" in data:
+    if data.get("TargetType") is not None:
         import capo_sso_admin.types.target_type
 
         out["target_type"] = capo_sso_admin.types.target_type.deserialize_aws_json_1_1(
             data["TargetType"]
         )
-    if "PermissionSetArn" in data:
+    if data.get("PermissionSetArn") is not None:
         out["permission_set_arn"] = data["PermissionSetArn"]
-    if "PrincipalType" in data:
+    if data.get("PrincipalType") is not None:
         import capo_sso_admin.types.principal_type
 
         out["principal_type"] = (
@@ -111,9 +111,9 @@ def deserialize_aws_json_1_1(data: dict) -> AccountAssignmentOperationStatus:
                 data["PrincipalType"]
             )
         )
-    if "PrincipalId" in data:
+    if data.get("PrincipalId") is not None:
         out["principal_id"] = data["PrincipalId"]
-    if "CreatedDate" in data:
+    if data.get("CreatedDate") is not None:
         import capo_sso_admin.types.date
 
         out["created_date"] = capo_sso_admin.types.date.deserialize_aws_json_1_1(

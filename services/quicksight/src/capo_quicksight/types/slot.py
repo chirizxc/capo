@@ -27,8 +27,8 @@ def serialize_json(value: Slot) -> dict:
 
 def deserialize_json(data: dict) -> Slot:
     out: Slot = {}  # type: ignore[typeddict-item]
-    if "SlotId" in data:
+    if data.get("SlotId") is not None:
         out["slot_id"] = data["SlotId"]
-    if "VisualId" in data:
+    if data.get("VisualId") is not None:
         out["visual_id"] = data["VisualId"]
     return out

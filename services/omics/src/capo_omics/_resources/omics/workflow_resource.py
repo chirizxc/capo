@@ -151,7 +151,9 @@ class WorkflowResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_omics.types.create_workflow_request.CreateWorkflowRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_omics.types.create_workflow_request.CreateWorkflowRequest = {
+            "request_id": request_id
+        }
         if name is not None:
             input_["name"] = name
         if description is not None:
@@ -170,7 +172,6 @@ class WorkflowResource:
             input_["storage_capacity"] = storage_capacity
         if tags is not None:
             input_["tags"] = tags
-        input_["request_id"] = request_id
         if accelerators is not None:
             input_["accelerators"] = accelerators
         if storage_type is not None:
@@ -197,6 +198,7 @@ class WorkflowResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -247,8 +249,7 @@ class WorkflowResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_omics.types.get_workflow_request.GetWorkflowRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_omics.types.get_workflow_request.GetWorkflowRequest = {"id": id}
         if type is not None:
             input_["type"] = type
         if export is not None:
@@ -261,6 +262,7 @@ class WorkflowResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update(
@@ -313,8 +315,9 @@ class WorkflowResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_omics.types.update_workflow_request.UpdateWorkflowRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_omics.types.update_workflow_request.UpdateWorkflowRequest = {
+            "id": id
+        }
         if name is not None:
             input_["name"] = name
         if description is not None:
@@ -331,6 +334,7 @@ class WorkflowResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -369,14 +373,16 @@ class WorkflowResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_omics.types.delete_workflow_request.DeleteWorkflowRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_omics.types.delete_workflow_request.DeleteWorkflowRequest = {
+            "id": id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -425,7 +431,7 @@ class WorkflowResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_omics.types.list_workflows_request.ListWorkflowsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_omics.types.list_workflows_request.ListWorkflowsRequest = {}
         if type is not None:
             input_["type"] = type
         if name is not None:
@@ -440,6 +446,7 @@ class WorkflowResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -542,7 +549,9 @@ class AsyncWorkflowResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_omics.types.create_workflow_request.CreateWorkflowRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_omics.types.create_workflow_request.CreateWorkflowRequest = {
+            "request_id": request_id
+        }
         if name is not None:
             input_["name"] = name
         if description is not None:
@@ -561,7 +570,6 @@ class AsyncWorkflowResource:
             input_["storage_capacity"] = storage_capacity
         if tags is not None:
             input_["tags"] = tags
-        input_["request_id"] = request_id
         if accelerators is not None:
             input_["accelerators"] = accelerators
         if storage_type is not None:
@@ -588,6 +596,7 @@ class AsyncWorkflowResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -639,8 +648,7 @@ class AsyncWorkflowResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_omics.types.get_workflow_request.GetWorkflowRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_omics.types.get_workflow_request.GetWorkflowRequest = {"id": id}
         if type is not None:
             input_["type"] = type
         if export is not None:
@@ -653,6 +661,7 @@ class AsyncWorkflowResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update(
@@ -706,8 +715,9 @@ class AsyncWorkflowResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_omics.types.update_workflow_request.UpdateWorkflowRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_omics.types.update_workflow_request.UpdateWorkflowRequest = {
+            "id": id
+        }
         if name is not None:
             input_["name"] = name
         if description is not None:
@@ -724,6 +734,7 @@ class AsyncWorkflowResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -763,14 +774,16 @@ class AsyncWorkflowResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_omics.types.delete_workflow_request.DeleteWorkflowRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_omics.types.delete_workflow_request.DeleteWorkflowRequest = {
+            "id": id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -820,7 +833,7 @@ class AsyncWorkflowResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_omics.types.list_workflows_request.ListWorkflowsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_omics.types.list_workflows_request.ListWorkflowsRequest = {}
         if type is not None:
             input_["type"] = type
         if name is not None:
@@ -835,4 +848,5 @@ class AsyncWorkflowResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

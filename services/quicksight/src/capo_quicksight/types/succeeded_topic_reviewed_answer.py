@@ -23,6 +23,6 @@ def serialize_json(value: SucceededTopicReviewedAnswer) -> dict:
 
 def deserialize_json(data: dict) -> SucceededTopicReviewedAnswer:
     out: SucceededTopicReviewedAnswer = {}  # type: ignore[typeddict-item]
-    if "AnswerId" in data:
+    if data.get("AnswerId") is not None:
         out["answer_id"] = data["AnswerId"]
     return out

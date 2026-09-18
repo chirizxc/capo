@@ -23,6 +23,6 @@ def serialize_json(value: ObjectiveResourceFilter) -> dict:
 
 def deserialize_json(data: dict) -> ObjectiveResourceFilter:
     out: ObjectiveResourceFilter = {}  # type: ignore[typeddict-item]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
     return out

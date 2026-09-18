@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> SearchByAttributeValues:
 
     out: SearchByAttributeValues = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_medical_imaging.types.search_by_attribute_value.deserialize_json(item)
         )

@@ -73,23 +73,23 @@ def serialize_aws_json_1_1(value: CreateApplicationRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateApplicationRequest:
     out: CreateApplicationRequest = {}  # type: ignore[typeddict-item]
-    if "InstanceArn" in data:
+    if data.get("InstanceArn") is not None:
         out["instance_arn"] = data["InstanceArn"]
     else:
         raise DeserializationError("CreateApplicationRequest.instance_arn required")
-    if "ApplicationProviderArn" in data:
+    if data.get("ApplicationProviderArn") is not None:
         out["application_provider_arn"] = data["ApplicationProviderArn"]
     else:
         raise DeserializationError(
             "CreateApplicationRequest.application_provider_arn required"
         )
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("CreateApplicationRequest.name required")
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "PortalOptions" in data:
+    if data.get("PortalOptions") is not None:
         import capo_sso_admin.types.portal_options
 
         out["portal_options"] = (
@@ -97,13 +97,13 @@ def deserialize_aws_json_1_1(data: dict) -> CreateApplicationRequest:
                 data["PortalOptions"]
             )
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_sso_admin.types.tag_list
 
         out["tags"] = capo_sso_admin.types.tag_list.deserialize_aws_json_1_1(
             data["Tags"]
         )
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_sso_admin.types.application_status
 
         out["status"] = (
@@ -111,6 +111,6 @@ def deserialize_aws_json_1_1(data: dict) -> CreateApplicationRequest:
                 data["Status"]
             )
         )
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
     return out

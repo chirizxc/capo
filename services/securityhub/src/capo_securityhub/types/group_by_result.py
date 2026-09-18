@@ -34,9 +34,9 @@ def serialize_json(value: GroupByResult) -> dict:
 
 def deserialize_json(data: dict) -> GroupByResult:
     out: GroupByResult = {}  # type: ignore[typeddict-item]
-    if "GroupByField" in data:
+    if data.get("GroupByField") is not None:
         out["group_by_field"] = data["GroupByField"]
-    if "GroupByValues" in data:
+    if data.get("GroupByValues") is not None:
         import capo_securityhub.types.group_by_values
 
         out["group_by_values"] = (

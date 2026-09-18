@@ -25,9 +25,9 @@ class InstanceProperty(TypedDict, closed=True):
 def serialize_json(value: InstanceProperty) -> dict:
     out: dict = {}
     if "seen_at" in value:
-        import capo_rolesanywhere.types._prelude.timestamp
+        import capo_rolesanywhere._protocol.serialize
 
-        out["seenAt"] = capo_rolesanywhere.types._prelude.timestamp.serialize_json(
+        out["seenAt"] = capo_rolesanywhere._protocol.serialize.fmt_date_time(
             value["seen_at"]
         )
     if "properties" in value:
@@ -45,13 +45,13 @@ def serialize_json(value: InstanceProperty) -> dict:
 
 def deserialize_json(data: dict) -> InstanceProperty:
     out: InstanceProperty = {}  # type: ignore[typeddict-item]
-    if "seenAt" in data:
-        import capo_rolesanywhere.types._prelude.timestamp
+    if data.get("seenAt") is not None:
+        import datetime
 
-        out["seen_at"] = capo_rolesanywhere.types._prelude.timestamp.deserialize_json(
-            data["seenAt"]
+        out["seen_at"] = datetime.datetime.fromisoformat(
+            data["seenAt"].replace("Z", "+00:00")
         )
-    if "properties" in data:
+    if data.get("properties") is not None:
         import capo_rolesanywhere.types.instance_property_map
 
         out["properties"] = (
@@ -59,6 +59,6 @@ def deserialize_json(data: dict) -> InstanceProperty:
                 data["properties"]
             )
         )
-    if "failed" in data:
+    if data.get("failed") is not None:
         out["failed"] = data["failed"]
     return out

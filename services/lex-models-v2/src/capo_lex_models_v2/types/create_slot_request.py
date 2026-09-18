@@ -96,15 +96,15 @@ def serialize_json(value: CreateSlotRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateSlotRequest:
     out: CreateSlotRequest = {}  # type: ignore[typeddict-item]
-    if "slotName" in data:
+    if data.get("slotName") is not None:
         out["slot_name"] = data["slotName"]
     else:
         raise DeserializationError("CreateSlotRequest.slot_name required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "slotTypeId" in data:
+    if data.get("slotTypeId") is not None:
         out["slot_type_id"] = data["slotTypeId"]
-    if "valueElicitationSetting" in data:
+    if data.get("valueElicitationSetting") is not None:
         import capo_lex_models_v2.types.slot_value_elicitation_setting
 
         out["value_elicitation_setting"] = (
@@ -116,7 +116,7 @@ def deserialize_json(data: dict) -> CreateSlotRequest:
         raise DeserializationError(
             "CreateSlotRequest.value_elicitation_setting required"
         )
-    if "obfuscationSetting" in data:
+    if data.get("obfuscationSetting") is not None:
         import capo_lex_models_v2.types.obfuscation_setting
 
         out["obfuscation_setting"] = (
@@ -124,7 +124,7 @@ def deserialize_json(data: dict) -> CreateSlotRequest:
                 data["obfuscationSetting"]
             )
         )
-    if "multipleValuesSetting" in data:
+    if data.get("multipleValuesSetting") is not None:
         import capo_lex_models_v2.types.multiple_values_setting
 
         out["multiple_values_setting"] = (
@@ -132,7 +132,7 @@ def deserialize_json(data: dict) -> CreateSlotRequest:
                 data["multipleValuesSetting"]
             )
         )
-    if "subSlotSetting" in data:
+    if data.get("subSlotSetting") is not None:
         import capo_lex_models_v2.types.sub_slot_setting
 
         out["sub_slot_setting"] = (

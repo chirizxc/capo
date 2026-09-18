@@ -26,7 +26,7 @@ def serialize_aws_json_1_1(value: SearchedFaceDetails) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SearchedFaceDetails:
     out: SearchedFaceDetails = {}  # type: ignore[typeddict-item]
-    if "FaceDetail" in data:
+    if data.get("FaceDetail") is not None:
         import capo_rekognition.types.face_detail
 
         out["face_detail"] = (

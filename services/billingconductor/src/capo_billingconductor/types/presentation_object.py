@@ -24,7 +24,7 @@ def serialize_json(value: PresentationObject) -> dict:
 
 def deserialize_json(data: dict) -> PresentationObject:
     out: PresentationObject = {}  # type: ignore[typeddict-item]
-    if "Service" in data:
+    if data.get("Service") is not None:
         out["service"] = data["Service"]
     else:
         raise DeserializationError("PresentationObject.service required")

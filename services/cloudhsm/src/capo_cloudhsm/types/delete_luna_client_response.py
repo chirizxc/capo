@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: DeleteLunaClientResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteLunaClientResponse:
     out: DeleteLunaClientResponse = {}  # type: ignore[typeddict-item]
-    if "Status" in data:
+    if data.get("Status") is not None:
         out["status"] = data["Status"]
     else:
         raise DeserializationError("DeleteLunaClientResponse.status required")

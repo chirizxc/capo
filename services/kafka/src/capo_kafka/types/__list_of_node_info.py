@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> __listOfNodeInfo:
 
     out: __listOfNodeInfo = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_kafka.types.node_info.deserialize_json(item))
     return out

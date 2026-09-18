@@ -31,7 +31,7 @@ def serialize_json(value: BoxPlotFieldWells) -> dict:
 
 def deserialize_json(data: dict) -> BoxPlotFieldWells:
     out: BoxPlotFieldWells = {}  # type: ignore[typeddict-item]
-    if "BoxPlotAggregatedFieldWells" in data:
+    if data.get("BoxPlotAggregatedFieldWells") is not None:
         import capo_quicksight.types.box_plot_aggregated_field_wells
 
         out["box_plot_aggregated_field_wells"] = (

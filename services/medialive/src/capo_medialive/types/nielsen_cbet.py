@@ -43,9 +43,9 @@ def serialize_json(value: NielsenCBET) -> dict:
 
 def deserialize_json(data: dict) -> NielsenCBET:
     out: NielsenCBET = {}  # type: ignore[typeddict-item]
-    if "cbetCheckDigitString" in data:
+    if data.get("cbetCheckDigitString") is not None:
         out["cbet_check_digit_string"] = data["cbetCheckDigitString"]
-    if "cbetStepaside" in data:
+    if data.get("cbetStepaside") is not None:
         import capo_medialive.types.nielsen_watermarks_cbet_stepaside
 
         out["cbet_stepaside"] = (
@@ -53,6 +53,6 @@ def deserialize_json(data: dict) -> NielsenCBET:
                 data["cbetStepaside"]
             )
         )
-    if "csid" in data:
+    if data.get("csid") is not None:
         out["csid"] = data["csid"]
     return out

@@ -34,19 +34,19 @@ def serialize_json(value: CardHolderVerificationValue) -> dict:
 
 def deserialize_json(data: dict) -> CardHolderVerificationValue:
     out: CardHolderVerificationValue = {}  # type: ignore[typeddict-item]
-    if "UnpredictableNumber" in data:
+    if data.get("UnpredictableNumber") is not None:
         out["unpredictable_number"] = data["UnpredictableNumber"]
     else:
         raise DeserializationError(
             "CardHolderVerificationValue.unpredictable_number required"
         )
-    if "PanSequenceNumber" in data:
+    if data.get("PanSequenceNumber") is not None:
         out["pan_sequence_number"] = data["PanSequenceNumber"]
     else:
         raise DeserializationError(
             "CardHolderVerificationValue.pan_sequence_number required"
         )
-    if "ApplicationTransactionCounter" in data:
+    if data.get("ApplicationTransactionCounter") is not None:
         out["application_transaction_counter"] = data["ApplicationTransactionCounter"]
     else:
         raise DeserializationError(

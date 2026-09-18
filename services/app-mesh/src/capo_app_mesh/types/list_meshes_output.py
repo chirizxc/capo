@@ -30,12 +30,12 @@ def serialize_json(value: ListMeshesOutput) -> dict:
 
 def deserialize_json(data: dict) -> ListMeshesOutput:
     out: ListMeshesOutput = {}  # type: ignore[typeddict-item]
-    if "meshes" in data:
+    if data.get("meshes") is not None:
         import capo_app_mesh.types.mesh_list
 
         out["meshes"] = capo_app_mesh.types.mesh_list.deserialize_json(data["meshes"])
     else:
         raise DeserializationError("ListMeshesOutput.meshes required")
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

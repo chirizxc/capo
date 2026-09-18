@@ -28,13 +28,13 @@ def serialize_json(value: FailedGroupingRecommendationEntry) -> dict:
 
 def deserialize_json(data: dict) -> FailedGroupingRecommendationEntry:
     out: FailedGroupingRecommendationEntry = {}  # type: ignore[typeddict-item]
-    if "groupingRecommendationId" in data:
+    if data.get("groupingRecommendationId") is not None:
         out["grouping_recommendation_id"] = data["groupingRecommendationId"]
     else:
         raise DeserializationError(
             "FailedGroupingRecommendationEntry.grouping_recommendation_id required"
         )
-    if "errorMessage" in data:
+    if data.get("errorMessage") is not None:
         out["error_message"] = data["errorMessage"]
     else:
         raise DeserializationError(

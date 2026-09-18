@@ -93,41 +93,41 @@ def serialize_aws_json_1_1(value: RouteHasOutOfScopeEndpointViolation) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RouteHasOutOfScopeEndpointViolation:
     out: RouteHasOutOfScopeEndpointViolation = {}  # type: ignore[typeddict-item]
-    if "SubnetId" in data:
+    if data.get("SubnetId") is not None:
         out["subnet_id"] = data["SubnetId"]
-    if "VpcId" in data:
+    if data.get("VpcId") is not None:
         out["vpc_id"] = data["VpcId"]
-    if "RouteTableId" in data:
+    if data.get("RouteTableId") is not None:
         out["route_table_id"] = data["RouteTableId"]
-    if "ViolatingRoutes" in data:
+    if data.get("ViolatingRoutes") is not None:
         import capo_fms.types.routes
 
         out["violating_routes"] = capo_fms.types.routes.deserialize_aws_json_1_1(
             data["ViolatingRoutes"]
         )
-    if "SubnetAvailabilityZone" in data:
+    if data.get("SubnetAvailabilityZone") is not None:
         out["subnet_availability_zone"] = data["SubnetAvailabilityZone"]
-    if "SubnetAvailabilityZoneId" in data:
+    if data.get("SubnetAvailabilityZoneId") is not None:
         out["subnet_availability_zone_id"] = data["SubnetAvailabilityZoneId"]
-    if "CurrentFirewallSubnetRouteTable" in data:
+    if data.get("CurrentFirewallSubnetRouteTable") is not None:
         out["current_firewall_subnet_route_table"] = data[
             "CurrentFirewallSubnetRouteTable"
         ]
-    if "FirewallSubnetId" in data:
+    if data.get("FirewallSubnetId") is not None:
         out["firewall_subnet_id"] = data["FirewallSubnetId"]
-    if "FirewallSubnetRoutes" in data:
+    if data.get("FirewallSubnetRoutes") is not None:
         import capo_fms.types.routes
 
         out["firewall_subnet_routes"] = capo_fms.types.routes.deserialize_aws_json_1_1(
             data["FirewallSubnetRoutes"]
         )
-    if "InternetGatewayId" in data:
+    if data.get("InternetGatewayId") is not None:
         out["internet_gateway_id"] = data["InternetGatewayId"]
-    if "CurrentInternetGatewayRouteTable" in data:
+    if data.get("CurrentInternetGatewayRouteTable") is not None:
         out["current_internet_gateway_route_table"] = data[
             "CurrentInternetGatewayRouteTable"
         ]
-    if "InternetGatewayRoutes" in data:
+    if data.get("InternetGatewayRoutes") is not None:
         import capo_fms.types.routes
 
         out["internet_gateway_routes"] = capo_fms.types.routes.deserialize_aws_json_1_1(

@@ -41,14 +41,14 @@ def serialize_json(value: ExportFilesMetadata) -> dict:
 
 def deserialize_json(data: dict) -> ExportFilesMetadata:
     out: ExportFilesMetadata = {}  # type: ignore[typeddict-item]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_gameliftstreams.types.export_files_status
 
         out["status"] = capo_gameliftstreams.types.export_files_status.deserialize_json(
             data["Status"]
         )
-    if "StatusReason" in data:
+    if data.get("StatusReason") is not None:
         out["status_reason"] = data["StatusReason"]
-    if "OutputUri" in data:
+    if data.get("OutputUri") is not None:
         out["output_uri"] = data["OutputUri"]
     return out

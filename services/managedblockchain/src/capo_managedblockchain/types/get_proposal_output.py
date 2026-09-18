@@ -27,7 +27,7 @@ def serialize_json(value: GetProposalOutput) -> dict:
 
 def deserialize_json(data: dict) -> GetProposalOutput:
     out: GetProposalOutput = {}  # type: ignore[typeddict-item]
-    if "Proposal" in data:
+    if data.get("Proposal") is not None:
         import capo_managedblockchain.types.proposal
 
         out["proposal"] = capo_managedblockchain.types.proposal.deserialize_json(

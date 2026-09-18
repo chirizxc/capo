@@ -70,11 +70,11 @@ def serialize_json(value: CreateVoiceConnectorRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateVoiceConnectorRequest:
     out: CreateVoiceConnectorRequest = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("CreateVoiceConnectorRequest.name required")
-    if "AwsRegion" in data:
+    if data.get("AwsRegion") is not None:
         import capo_chime_sdk_voice.types.voice_connector_aws_region
 
         out["aws_region"] = (
@@ -82,17 +82,17 @@ def deserialize_json(data: dict) -> CreateVoiceConnectorRequest:
                 data["AwsRegion"]
             )
         )
-    if "RequireEncryption" in data:
+    if data.get("RequireEncryption") is not None:
         out["require_encryption"] = data["RequireEncryption"]
     else:
         raise DeserializationError(
             "CreateVoiceConnectorRequest.require_encryption required"
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_chime_sdk_voice.types.tag_list
 
         out["tags"] = capo_chime_sdk_voice.types.tag_list.deserialize_json(data["Tags"])
-    if "IntegrationType" in data:
+    if data.get("IntegrationType") is not None:
         import capo_chime_sdk_voice.types.voice_connector_integration_type
 
         out["integration_type"] = (
@@ -100,7 +100,7 @@ def deserialize_json(data: dict) -> CreateVoiceConnectorRequest:
                 data["IntegrationType"]
             )
         )
-    if "NetworkType" in data:
+    if data.get("NetworkType") is not None:
         import capo_chime_sdk_voice.types.network_type
 
         out["network_type"] = capo_chime_sdk_voice.types.network_type.deserialize_json(

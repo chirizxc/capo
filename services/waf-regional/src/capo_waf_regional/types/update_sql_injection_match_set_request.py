@@ -38,19 +38,19 @@ def serialize_aws_json_1_1(value: UpdateSqlInjectionMatchSetRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateSqlInjectionMatchSetRequest:
     out: UpdateSqlInjectionMatchSetRequest = {}  # type: ignore[typeddict-item]
-    if "SqlInjectionMatchSetId" in data:
+    if data.get("SqlInjectionMatchSetId") is not None:
         out["sql_injection_match_set_id"] = data["SqlInjectionMatchSetId"]
     else:
         raise DeserializationError(
             "UpdateSqlInjectionMatchSetRequest.sql_injection_match_set_id required"
         )
-    if "ChangeToken" in data:
+    if data.get("ChangeToken") is not None:
         out["change_token"] = data["ChangeToken"]
     else:
         raise DeserializationError(
             "UpdateSqlInjectionMatchSetRequest.change_token required"
         )
-    if "Updates" in data:
+    if data.get("Updates") is not None:
         import capo_waf_regional.types.sql_injection_match_set_updates
 
         out["updates"] = (

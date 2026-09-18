@@ -37,12 +37,12 @@ def serialize_json(value: PackageDependency) -> dict:
 
 def deserialize_json(data: dict) -> PackageDependency:
     out: PackageDependency = {}  # type: ignore[typeddict-item]
-    if "namespace" in data:
+    if data.get("namespace") is not None:
         out["namespace"] = data["namespace"]
-    if "package" in data:
+    if data.get("package") is not None:
         out["package"] = data["package"]
-    if "dependencyType" in data:
+    if data.get("dependencyType") is not None:
         out["dependency_type"] = data["dependencyType"]
-    if "versionRequirement" in data:
+    if data.get("versionRequirement") is not None:
         out["version_requirement"] = data["versionRequirement"]
     return out

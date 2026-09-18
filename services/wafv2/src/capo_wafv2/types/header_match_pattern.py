@@ -42,11 +42,11 @@ def serialize_aws_json_1_1(value: HeaderMatchPattern) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> HeaderMatchPattern:
     out: HeaderMatchPattern = {}  # type: ignore[typeddict-item]
-    if "All" in data:
+    if data.get("All") is not None:
         import capo_wafv2.types.all
 
         out["all"] = capo_wafv2.types.all.deserialize_aws_json_1_1(data["All"])
-    if "IncludedHeaders" in data:
+    if data.get("IncludedHeaders") is not None:
         import capo_wafv2.types.header_names
 
         out["included_headers"] = (
@@ -54,7 +54,7 @@ def deserialize_aws_json_1_1(data: dict) -> HeaderMatchPattern:
                 data["IncludedHeaders"]
             )
         )
-    if "ExcludedHeaders" in data:
+    if data.get("ExcludedHeaders") is not None:
         import capo_wafv2.types.header_names
 
         out["excluded_headers"] = (

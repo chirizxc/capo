@@ -54,23 +54,23 @@ def serialize_aws_json_1_1(value: CreateOrganizationRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateOrganizationRequest:
     out: CreateOrganizationRequest = {}  # type: ignore[typeddict-item]
-    if "DirectoryId" in data:
+    if data.get("DirectoryId") is not None:
         out["directory_id"] = data["DirectoryId"]
-    if "Alias" in data:
+    if data.get("Alias") is not None:
         out["alias"] = data["Alias"]
     else:
         raise DeserializationError("CreateOrganizationRequest.alias required")
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
-    if "Domains" in data:
+    if data.get("Domains") is not None:
         import capo_workmail.types.domains
 
         out["domains"] = capo_workmail.types.domains.deserialize_aws_json_1_1(
             data["Domains"]
         )
-    if "KmsKeyArn" in data:
+    if data.get("KmsKeyArn") is not None:
         out["kms_key_arn"] = data["KmsKeyArn"]
-    if "EnableInteroperability" in data:
+    if data.get("EnableInteroperability") is not None:
         out["enable_interoperability"] = data["EnableInteroperability"]
     else:
         out["enable_interoperability"] = False

@@ -36,9 +36,9 @@ def serialize_aws_json_1_1(value: DisableUserRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DisableUserRequest:
     out: DisableUserRequest = {}  # type: ignore[typeddict-item]
-    if "UserName" in data:
+    if data.get("UserName") is not None:
         out["user_name"] = data["UserName"]
-    if "AuthenticationType" in data:
+    if data.get("AuthenticationType") is not None:
         import capo_appstream.types.authentication_type
 
         out["authentication_type"] = (

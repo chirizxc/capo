@@ -59,19 +59,19 @@ def serialize_json(value: UpdateDependencyResponse) -> dict:
 
 def deserialize_json(data: dict) -> UpdateDependencyResponse:
     out: UpdateDependencyResponse = {}  # type: ignore[typeddict-item]
-    if "dependencyId" in data:
+    if data.get("dependencyId") is not None:
         out["dependency_id"] = data["dependencyId"]
     else:
         raise DeserializationError("UpdateDependencyResponse.dependency_id required")
-    if "dependencyName" in data:
+    if data.get("dependencyName") is not None:
         out["dependency_name"] = data["dependencyName"]
     else:
         raise DeserializationError("UpdateDependencyResponse.dependency_name required")
-    if "location" in data:
+    if data.get("location") is not None:
         out["location"] = data["location"]
     else:
         raise DeserializationError("UpdateDependencyResponse.location required")
-    if "criticality" in data:
+    if data.get("criticality") is not None:
         import capo_resiliencehubv2.types.dependency_criticality
 
         out["criticality"] = (
@@ -81,11 +81,11 @@ def deserialize_json(data: dict) -> UpdateDependencyResponse:
         )
     else:
         raise DeserializationError("UpdateDependencyResponse.criticality required")
-    if "comment" in data:
+    if data.get("comment") is not None:
         out["comment"] = data["comment"]
-    if "provider" in data:
+    if data.get("provider") is not None:
         out["provider"] = data["provider"]
-    if "updatedAt" in data:
+    if data.get("updatedAt") is not None:
         import capo_resiliencehubv2.types._prelude.timestamp
 
         out["updated_at"] = (

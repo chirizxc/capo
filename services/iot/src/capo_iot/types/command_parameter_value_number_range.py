@@ -27,11 +27,11 @@ def serialize_json(value: CommandParameterValueNumberRange) -> dict:
 
 def deserialize_json(data: dict) -> CommandParameterValueNumberRange:
     out: CommandParameterValueNumberRange = {}  # type: ignore[typeddict-item]
-    if "min" in data:
+    if data.get("min") is not None:
         out["min"] = data["min"]
     else:
         raise DeserializationError("CommandParameterValueNumberRange.min required")
-    if "max" in data:
+    if data.get("max") is not None:
         out["max"] = data["max"]
     else:
         raise DeserializationError("CommandParameterValueNumberRange.max required")

@@ -46,20 +46,20 @@ def serialize_aws_json_1_0(value: CreateSecurityPolicyRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CreateSecurityPolicyRequest:
     out: CreateSecurityPolicyRequest = {}  # type: ignore[typeddict-item]
-    if "type" in data:
+    if data.get("type") is not None:
         out["type"] = data["type"]
     else:
         raise DeserializationError("CreateSecurityPolicyRequest.type required")
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("CreateSecurityPolicyRequest.name required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "policy" in data:
+    if data.get("policy") is not None:
         out["policy"] = data["policy"]
     else:
         raise DeserializationError("CreateSecurityPolicyRequest.policy required")
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     return out

@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> AssignedSessionActions:
 
     out: AssignedSessionActions = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_deadline.types.assigned_session_action.deserialize_json(item))
     return out

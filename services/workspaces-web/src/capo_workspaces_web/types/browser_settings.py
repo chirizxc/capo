@@ -71,11 +71,11 @@ def serialize_json(value: BrowserSettings) -> dict:
 
 def deserialize_json(data: dict) -> BrowserSettings:
     out: BrowserSettings = {}  # type: ignore[typeddict-item]
-    if "browserSettingsArn" in data:
+    if data.get("browserSettingsArn") is not None:
         out["browser_settings_arn"] = data["browserSettingsArn"]
     else:
         raise DeserializationError("BrowserSettings.browser_settings_arn required")
-    if "associatedPortalArns" in data:
+    if data.get("associatedPortalArns") is not None:
         import capo_workspaces_web.types.arn_list
 
         out["associated_portal_arns"] = (
@@ -83,11 +83,11 @@ def deserialize_json(data: dict) -> BrowserSettings:
                 data["associatedPortalArns"]
             )
         )
-    if "browserPolicy" in data:
+    if data.get("browserPolicy") is not None:
         out["browser_policy"] = data["browserPolicy"]
-    if "customerManagedKey" in data:
+    if data.get("customerManagedKey") is not None:
         out["customer_managed_key"] = data["customerManagedKey"]
-    if "additionalEncryptionContext" in data:
+    if data.get("additionalEncryptionContext") is not None:
         import capo_workspaces_web.types.encryption_context_map
 
         out["additional_encryption_context"] = (
@@ -95,7 +95,7 @@ def deserialize_json(data: dict) -> BrowserSettings:
                 data["additionalEncryptionContext"]
             )
         )
-    if "webContentFilteringPolicy" in data:
+    if data.get("webContentFilteringPolicy") is not None:
         import capo_workspaces_web.types.web_content_filtering_policy
 
         out["web_content_filtering_policy"] = (

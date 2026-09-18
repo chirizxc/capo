@@ -43,7 +43,7 @@ def serialize_json(value: TableRowConditionalFormatting) -> dict:
 
 def deserialize_json(data: dict) -> TableRowConditionalFormatting:
     out: TableRowConditionalFormatting = {}  # type: ignore[typeddict-item]
-    if "BackgroundColor" in data:
+    if data.get("BackgroundColor") is not None:
         import capo_quicksight.types.conditional_formatting_color
 
         out["background_color"] = (
@@ -51,7 +51,7 @@ def deserialize_json(data: dict) -> TableRowConditionalFormatting:
                 data["BackgroundColor"]
             )
         )
-    if "TextColor" in data:
+    if data.get("TextColor") is not None:
         import capo_quicksight.types.conditional_formatting_color
 
         out["text_color"] = (

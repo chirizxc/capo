@@ -28,7 +28,7 @@ def serialize_json(value: Tiering) -> dict:
 
 def deserialize_json(data: dict) -> Tiering:
     out: Tiering = {}  # type: ignore[typeddict-item]
-    if "FreeTier" in data:
+    if data.get("FreeTier") is not None:
         import capo_billingconductor.types.free_tier_config
 
         out["free_tier"] = (

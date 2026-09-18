@@ -57,20 +57,20 @@ def serialize_json(value: UpdateDevEnvironmentRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateDevEnvironmentRequest:
     out: UpdateDevEnvironmentRequest = {}  # type: ignore[typeddict-item]
-    if "alias" in data:
+    if data.get("alias") is not None:
         out["alias"] = data["alias"]
-    if "ides" in data:
+    if data.get("ides") is not None:
         import capo_codecatalyst.types.ide_configuration_list
 
         out["ides"] = capo_codecatalyst.types.ide_configuration_list.deserialize_json(
             data["ides"]
         )
-    if "instanceType" in data:
+    if data.get("instanceType") is not None:
         out["instance_type"] = data["instanceType"]
-    if "inactivityTimeoutMinutes" in data:
+    if data.get("inactivityTimeoutMinutes") is not None:
         out["inactivity_timeout_minutes"] = data["inactivityTimeoutMinutes"]
     else:
         out["inactivity_timeout_minutes"] = 0
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     return out

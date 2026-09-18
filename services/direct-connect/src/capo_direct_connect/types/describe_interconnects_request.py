@@ -39,10 +39,10 @@ def serialize_aws_json_1_1(value: DescribeInterconnectsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeInterconnectsRequest:
     out: DescribeInterconnectsRequest = {}  # type: ignore[typeddict-item]
-    if "interconnectId" in data:
+    if data.get("interconnectId") is not None:
         out["interconnect_id"] = data["interconnectId"]
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

@@ -13,9 +13,9 @@ from capo_cost_optimization_hub import AsyncCostOptimizationHubClient
 
 
 async def main():
-    async with AsyncCostOptimizationHubClient() as s3:
+    async with AsyncCostOptimizationHubClient() as cost_optimization_hub:
         # Example: call the get_preferences operation
-        response = await s3.get_preferences()
+        response = await cost_optimization_hub.get_preferences()
         print(response["savings_estimation_mode"])
 ```
 
@@ -28,9 +28,9 @@ from capo_cost_optimization_hub import AsyncCostOptimizationHubClient
 
 
 async def main():
-    async with AsyncCostOptimizationHubClient() as s3:
+    async with AsyncCostOptimizationHubClient() as cost_optimization_hub:
         # Example: paginate over list_efficiency_metrics
-        async for item in s3.iter_list_efficiency_metrics():
+        async for item in cost_optimization_hub.iter_list_efficiency_metrics():
             print(item)
 ```
 
@@ -44,9 +44,9 @@ from capo_cost_optimization_hub.error import AccessDeniedException
 
 
 async def main():
-    async with AsyncCostOptimizationHubClient() as s3:
+    async with AsyncCostOptimizationHubClient() as cost_optimization_hub:
         try:
-            await s3.get_preferences()
+            await cost_optimization_hub.get_preferences()
         except AccessDeniedException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -63,13 +63,13 @@ from capo_cost_optimization_hub import AsyncCostOptimizationHubClient
 
 
 async def main():
-    async with AsyncCostOptimizationHubClient() as s3:
+    async with AsyncCostOptimizationHubClient() as cost_optimization_hub:
         # Default: 3 attempts for every operation
-        response = await s3.get_preferences()
+        response = await cost_optimization_hub.get_preferences()
 
         # Override per operation
-        response = await s3.get_preferences(config_overrides={"retry_max_attempts": 5})
+        response = await cost_optimization_hub.get_preferences(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.get_preferences(config_overrides={"retry_max_attempts": 1})
+        response = await cost_optimization_hub.get_preferences(config_overrides={"retry_max_attempts": 1})
 ```

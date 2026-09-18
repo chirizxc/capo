@@ -36,7 +36,7 @@ def serialize_json(value: SearchGroupedFilterExpressions) -> dict:
 
 def deserialize_json(data: dict) -> SearchGroupedFilterExpressions:
     out: SearchGroupedFilterExpressions = {}  # type: ignore[typeddict-item]
-    if "filters" in data:
+    if data.get("filters") is not None:
         import capo_deadline.types.search_filter_expressions
 
         out["filters"] = capo_deadline.types.search_filter_expressions.deserialize_json(
@@ -44,7 +44,7 @@ def deserialize_json(data: dict) -> SearchGroupedFilterExpressions:
         )
     else:
         raise DeserializationError("SearchGroupedFilterExpressions.filters required")
-    if "operator" in data:
+    if data.get("operator") is not None:
         import capo_deadline.types.logical_operator
 
         out["operator"] = capo_deadline.types.logical_operator.deserialize_json(

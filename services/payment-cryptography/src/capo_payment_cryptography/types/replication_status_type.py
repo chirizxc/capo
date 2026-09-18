@@ -28,10 +28,10 @@ def serialize_aws_json_1_0(value: ReplicationStatusType) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ReplicationStatusType:
     out: ReplicationStatusType = {}  # type: ignore[typeddict-item]
-    if "Status" in data:
+    if data.get("Status") is not None:
         out["status"] = data["Status"]
     else:
         raise DeserializationError("ReplicationStatusType.status required")
-    if "StatusMessage" in data:
+    if data.get("StatusMessage") is not None:
         out["status_message"] = data["StatusMessage"]
     return out

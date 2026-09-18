@@ -44,7 +44,7 @@ def serialize_json(value: MediaInsightsPipelineElementStatus) -> dict:
 
 def deserialize_json(data: dict) -> MediaInsightsPipelineElementStatus:
     out: MediaInsightsPipelineElementStatus = {}  # type: ignore[typeddict-item]
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_chime_sdk_media_pipelines.types.media_insights_pipeline_configuration_element_type
 
         out["type"] = (
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> MediaInsightsPipelineElementStatus:
                 data["Type"]
             )
         )
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_chime_sdk_media_pipelines.types.media_pipeline_element_status
 
         out["status"] = (

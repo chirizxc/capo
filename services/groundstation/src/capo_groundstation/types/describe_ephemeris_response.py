@@ -110,19 +110,19 @@ def serialize_json(value: DescribeEphemerisResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribeEphemerisResponse:
     out: DescribeEphemerisResponse = {}  # type: ignore[typeddict-item]
-    if "ephemerisId" in data:
+    if data.get("ephemerisId") is not None:
         out["ephemeris_id"] = data["ephemerisId"]
-    if "satelliteId" in data:
+    if data.get("satelliteId") is not None:
         out["satellite_id"] = data["satelliteId"]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_groundstation.types.ephemeris_status
 
         out["status"] = capo_groundstation.types.ephemeris_status.deserialize_json(
             data["status"]
         )
-    if "priority" in data:
+    if data.get("priority") is not None:
         out["priority"] = data["priority"]
-    if "creationTime" in data:
+    if data.get("creationTime") is not None:
         import capo_groundstation.types._prelude.timestamp
 
         out["creation_time"] = (
@@ -130,15 +130,15 @@ def deserialize_json(data: dict) -> DescribeEphemerisResponse:
                 data["creationTime"]
             )
         )
-    if "enabled" in data:
+    if data.get("enabled") is not None:
         out["enabled"] = data["enabled"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_groundstation.types.tags_map
 
         out["tags"] = capo_groundstation.types.tags_map.deserialize_json(data["tags"])
-    if "suppliedData" in data:
+    if data.get("suppliedData") is not None:
         import capo_groundstation.types.ephemeris_type_description
 
         out["supplied_data"] = (
@@ -146,7 +146,7 @@ def deserialize_json(data: dict) -> DescribeEphemerisResponse:
                 data["suppliedData"]
             )
         )
-    if "invalidReason" in data:
+    if data.get("invalidReason") is not None:
         import capo_groundstation.types.ephemeris_invalid_reason
 
         out["invalid_reason"] = (
@@ -154,7 +154,7 @@ def deserialize_json(data: dict) -> DescribeEphemerisResponse:
                 data["invalidReason"]
             )
         )
-    if "errorReasons" in data:
+    if data.get("errorReasons") is not None:
         import capo_groundstation.types.ephemeris_error_reason_list
 
         out["error_reasons"] = (

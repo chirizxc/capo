@@ -35,25 +35,25 @@ def serialize_json(value: UpgradePublishedSchemaRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpgradePublishedSchemaRequest:
     out: UpgradePublishedSchemaRequest = {}  # type: ignore[typeddict-item]
-    if "DevelopmentSchemaArn" in data:
+    if data.get("DevelopmentSchemaArn") is not None:
         out["development_schema_arn"] = data["DevelopmentSchemaArn"]
     else:
         raise DeserializationError(
             "UpgradePublishedSchemaRequest.development_schema_arn required"
         )
-    if "PublishedSchemaArn" in data:
+    if data.get("PublishedSchemaArn") is not None:
         out["published_schema_arn"] = data["PublishedSchemaArn"]
     else:
         raise DeserializationError(
             "UpgradePublishedSchemaRequest.published_schema_arn required"
         )
-    if "MinorVersion" in data:
+    if data.get("MinorVersion") is not None:
         out["minor_version"] = data["MinorVersion"]
     else:
         raise DeserializationError(
             "UpgradePublishedSchemaRequest.minor_version required"
         )
-    if "DryRun" in data:
+    if data.get("DryRun") is not None:
         out["dry_run"] = data["DryRun"]
     else:
         out["dry_run"] = False

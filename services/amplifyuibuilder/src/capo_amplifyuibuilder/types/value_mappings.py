@@ -41,7 +41,7 @@ def serialize_json(value: ValueMappings) -> dict:
 
 def deserialize_json(data: dict) -> ValueMappings:
     out: ValueMappings = {}  # type: ignore[typeddict-item]
-    if "values" in data:
+    if data.get("values") is not None:
         import capo_amplifyuibuilder.types.value_mapping_list
 
         out["values"] = capo_amplifyuibuilder.types.value_mapping_list.deserialize_json(
@@ -49,7 +49,7 @@ def deserialize_json(data: dict) -> ValueMappings:
         )
     else:
         raise DeserializationError("ValueMappings.values required")
-    if "bindingProperties" in data:
+    if data.get("bindingProperties") is not None:
         import capo_amplifyuibuilder.types.form_input_binding_properties
 
         out["binding_properties"] = (

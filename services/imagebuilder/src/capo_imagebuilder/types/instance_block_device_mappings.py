@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> InstanceBlockDeviceMappings:
 
     out: InstanceBlockDeviceMappings = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_imagebuilder.types.instance_block_device_mapping.deserialize_json(item)
         )

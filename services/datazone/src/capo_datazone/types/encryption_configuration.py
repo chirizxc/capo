@@ -22,8 +22,8 @@ def serialize_json(value: EncryptionConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> EncryptionConfiguration:
     out: EncryptionConfiguration = {}  # type: ignore[typeddict-item]
-    if "kmsKeyArn" in data:
+    if data.get("kmsKeyArn") is not None:
         out["kms_key_arn"] = data["kmsKeyArn"]
-    if "sseAlgorithm" in data:
+    if data.get("sseAlgorithm") is not None:
         out["sse_algorithm"] = data["sseAlgorithm"]
     return out

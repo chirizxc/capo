@@ -83,7 +83,7 @@ def serialize_json(value: EvaluationFormSearchCriteria) -> dict:
 
 def deserialize_json(data: dict) -> EvaluationFormSearchCriteria:
     out: EvaluationFormSearchCriteria = {}  # type: ignore[typeddict-item]
-    if "OrConditions" in data:
+    if data.get("OrConditions") is not None:
         import capo_connect.types.evaluation_form_search_condition_list
 
         out["or_conditions"] = (
@@ -91,7 +91,7 @@ def deserialize_json(data: dict) -> EvaluationFormSearchCriteria:
                 data["OrConditions"]
             )
         )
-    if "AndConditions" in data:
+    if data.get("AndConditions") is not None:
         import capo_connect.types.evaluation_form_search_condition_list
 
         out["and_conditions"] = (
@@ -99,19 +99,19 @@ def deserialize_json(data: dict) -> EvaluationFormSearchCriteria:
                 data["AndConditions"]
             )
         )
-    if "StringCondition" in data:
+    if data.get("StringCondition") is not None:
         import capo_connect.types.string_condition
 
         out["string_condition"] = capo_connect.types.string_condition.deserialize_json(
             data["StringCondition"]
         )
-    if "NumberCondition" in data:
+    if data.get("NumberCondition") is not None:
         import capo_connect.types.number_condition
 
         out["number_condition"] = capo_connect.types.number_condition.deserialize_json(
             data["NumberCondition"]
         )
-    if "BooleanCondition" in data:
+    if data.get("BooleanCondition") is not None:
         import capo_connect.types.boolean_condition
 
         out["boolean_condition"] = (
@@ -119,7 +119,7 @@ def deserialize_json(data: dict) -> EvaluationFormSearchCriteria:
                 data["BooleanCondition"]
             )
         )
-    if "DateTimeCondition" in data:
+    if data.get("DateTimeCondition") is not None:
         import capo_connect.types.date_time_condition
 
         out["date_time_condition"] = (

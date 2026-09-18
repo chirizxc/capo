@@ -77,13 +77,13 @@ def serialize_json(value: GenerateMacEmvPinChangeOutput) -> dict:
 
 def deserialize_json(data: dict) -> GenerateMacEmvPinChangeOutput:
     out: GenerateMacEmvPinChangeOutput = {}  # type: ignore[typeddict-item]
-    if "NewPinPekArn" in data:
+    if data.get("NewPinPekArn") is not None:
         out["new_pin_pek_arn"] = data["NewPinPekArn"]
     else:
         raise DeserializationError(
             "GenerateMacEmvPinChangeOutput.new_pin_pek_arn required"
         )
-    if "SecureMessagingIntegrityKeyArn" in data:
+    if data.get("SecureMessagingIntegrityKeyArn") is not None:
         out["secure_messaging_integrity_key_arn"] = data[
             "SecureMessagingIntegrityKeyArn"
         ]
@@ -91,7 +91,7 @@ def deserialize_json(data: dict) -> GenerateMacEmvPinChangeOutput:
         raise DeserializationError(
             "GenerateMacEmvPinChangeOutput.secure_messaging_integrity_key_arn required"
         )
-    if "SecureMessagingConfidentialityKeyArn" in data:
+    if data.get("SecureMessagingConfidentialityKeyArn") is not None:
         out["secure_messaging_confidentiality_key_arn"] = data[
             "SecureMessagingConfidentialityKeyArn"
         ]
@@ -99,23 +99,23 @@ def deserialize_json(data: dict) -> GenerateMacEmvPinChangeOutput:
         raise DeserializationError(
             "GenerateMacEmvPinChangeOutput.secure_messaging_confidentiality_key_arn required"
         )
-    if "Mac" in data:
+    if data.get("Mac") is not None:
         out["mac"] = data["Mac"]
     else:
         raise DeserializationError("GenerateMacEmvPinChangeOutput.mac required")
-    if "EncryptedPinBlock" in data:
+    if data.get("EncryptedPinBlock") is not None:
         out["encrypted_pin_block"] = data["EncryptedPinBlock"]
     else:
         raise DeserializationError(
             "GenerateMacEmvPinChangeOutput.encrypted_pin_block required"
         )
-    if "NewPinPekKeyCheckValue" in data:
+    if data.get("NewPinPekKeyCheckValue") is not None:
         out["new_pin_pek_key_check_value"] = data["NewPinPekKeyCheckValue"]
     else:
         raise DeserializationError(
             "GenerateMacEmvPinChangeOutput.new_pin_pek_key_check_value required"
         )
-    if "SecureMessagingIntegrityKeyCheckValue" in data:
+    if data.get("SecureMessagingIntegrityKeyCheckValue") is not None:
         out["secure_messaging_integrity_key_check_value"] = data[
             "SecureMessagingIntegrityKeyCheckValue"
         ]
@@ -123,7 +123,7 @@ def deserialize_json(data: dict) -> GenerateMacEmvPinChangeOutput:
         raise DeserializationError(
             "GenerateMacEmvPinChangeOutput.secure_messaging_integrity_key_check_value required"
         )
-    if "SecureMessagingConfidentialityKeyCheckValue" in data:
+    if data.get("SecureMessagingConfidentialityKeyCheckValue") is not None:
         out["secure_messaging_confidentiality_key_check_value"] = data[
             "SecureMessagingConfidentialityKeyCheckValue"
         ]
@@ -131,7 +131,7 @@ def deserialize_json(data: dict) -> GenerateMacEmvPinChangeOutput:
         raise DeserializationError(
             "GenerateMacEmvPinChangeOutput.secure_messaging_confidentiality_key_check_value required"
         )
-    if "VisaAmexDerivationOutputs" in data:
+    if data.get("VisaAmexDerivationOutputs") is not None:
         import capo_payment_cryptography_data.types.visa_amex_derivation_outputs
 
         out["visa_amex_derivation_outputs"] = (

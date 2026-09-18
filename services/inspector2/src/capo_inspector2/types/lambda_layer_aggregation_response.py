@@ -43,27 +43,27 @@ def serialize_json(value: LambdaLayerAggregationResponse) -> dict:
 
 def deserialize_json(data: dict) -> LambdaLayerAggregationResponse:
     out: LambdaLayerAggregationResponse = {}  # type: ignore[typeddict-item]
-    if "functionName" in data:
+    if data.get("functionName") is not None:
         out["function_name"] = data["functionName"]
     else:
         raise DeserializationError(
             "LambdaLayerAggregationResponse.function_name required"
         )
-    if "resourceId" in data:
+    if data.get("resourceId") is not None:
         out["resource_id"] = data["resourceId"]
     else:
         raise DeserializationError(
             "LambdaLayerAggregationResponse.resource_id required"
         )
-    if "layerArn" in data:
+    if data.get("layerArn") is not None:
         out["layer_arn"] = data["layerArn"]
     else:
         raise DeserializationError("LambdaLayerAggregationResponse.layer_arn required")
-    if "accountId" in data:
+    if data.get("accountId") is not None:
         out["account_id"] = data["accountId"]
     else:
         raise DeserializationError("LambdaLayerAggregationResponse.account_id required")
-    if "severityCounts" in data:
+    if data.get("severityCounts") is not None:
         import capo_inspector2.types.severity_counts
 
         out["severity_counts"] = capo_inspector2.types.severity_counts.deserialize_json(

@@ -25,7 +25,15 @@ def serialize_aws_json_1_1(value: DocumentLabel) -> dict:
     if "name" in value:
         out["Name"] = value["name"]
     if "score" in value:
-        out["Score"] = value["score"]
+        out["Score"] = (
+            "NaN"
+            if value["score"] != value["score"]
+            else "Infinity"
+            if value["score"] == float("inf")
+            else "-Infinity"
+            if value["score"] == float("-inf")
+            else value["score"]
+        )
     if "page" in value:
         out["Page"] = value["page"]
     return out
@@ -33,10 +41,10 @@ def serialize_aws_json_1_1(value: DocumentLabel) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DocumentLabel:
     out: DocumentLabel = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Score" in data:
-        out["score"] = data["Score"]
-    if "Page" in data:
+    if data.get("Score") is not None:
+        out["score"] = float(data["Score"])
+    if data.get("Page") is not None:
         out["page"] = data["Page"]
     return out

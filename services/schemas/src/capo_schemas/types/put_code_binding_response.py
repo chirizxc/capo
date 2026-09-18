@@ -55,21 +55,21 @@ def serialize_json(value: PutCodeBindingResponse) -> dict:
 
 def deserialize_json(data: dict) -> PutCodeBindingResponse:
     out: PutCodeBindingResponse = {}  # type: ignore[typeddict-item]
-    if "CreationDate" in data:
+    if data.get("CreationDate") is not None:
         import capo_schemas.types.__timestamp_iso8601
 
         out["creation_date"] = capo_schemas.types.__timestamp_iso8601.deserialize_json(
             data["CreationDate"]
         )
-    if "LastModified" in data:
+    if data.get("LastModified") is not None:
         import capo_schemas.types.__timestamp_iso8601
 
         out["last_modified"] = capo_schemas.types.__timestamp_iso8601.deserialize_json(
             data["LastModified"]
         )
-    if "SchemaVersion" in data:
+    if data.get("SchemaVersion") is not None:
         out["schema_version"] = data["SchemaVersion"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_schemas.types.code_generation_status
 
         out["status"] = capo_schemas.types.code_generation_status.deserialize_json(

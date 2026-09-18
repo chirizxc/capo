@@ -39,15 +39,15 @@ def serialize_json(value: CurrentMetric) -> dict:
 
 def deserialize_json(data: dict) -> CurrentMetric:
     out: CurrentMetric = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         import capo_connect.types.current_metric_name
 
         out["name"] = capo_connect.types.current_metric_name.deserialize_json(
             data["Name"]
         )
-    if "MetricId" in data:
+    if data.get("MetricId") is not None:
         out["metric_id"] = data["MetricId"]
-    if "Unit" in data:
+    if data.get("Unit") is not None:
         import capo_connect.types.unit
 
         out["unit"] = capo_connect.types.unit.deserialize_json(data["Unit"])

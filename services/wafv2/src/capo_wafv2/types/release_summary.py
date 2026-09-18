@@ -32,9 +32,9 @@ def serialize_aws_json_1_1(value: ReleaseSummary) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ReleaseSummary:
     out: ReleaseSummary = {}  # type: ignore[typeddict-item]
-    if "ReleaseVersion" in data:
+    if data.get("ReleaseVersion") is not None:
         out["release_version"] = data["ReleaseVersion"]
-    if "Timestamp" in data:
+    if data.get("Timestamp") is not None:
         import capo_wafv2.types.timestamp
 
         out["timestamp"] = capo_wafv2.types.timestamp.deserialize_aws_json_1_1(

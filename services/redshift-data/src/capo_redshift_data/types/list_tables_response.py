@@ -32,12 +32,12 @@ def serialize_aws_json_1_1(value: ListTablesResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListTablesResponse:
     out: ListTablesResponse = {}  # type: ignore[typeddict-item]
-    if "Tables" in data:
+    if data.get("Tables") is not None:
         import capo_redshift_data.types.table_list
 
         out["tables"] = capo_redshift_data.types.table_list.deserialize_aws_json_1_1(
             data["Tables"]
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

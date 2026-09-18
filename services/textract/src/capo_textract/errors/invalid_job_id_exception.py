@@ -27,9 +27,9 @@ def serialize_aws_json_1_1(value: InvalidJobIdException_) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> InvalidJobIdException_:
     out: InvalidJobIdException_ = {}  # type: ignore[typeddict-item]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
-    if "Code" in data:
+    if data.get("Code") is not None:
         out["code"] = data["Code"]
     return out
 
@@ -39,15 +39,18 @@ class InvalidJobIdException(ServiceError):
 
     code: str | None = "InvalidJobIdException"
 
-    def __init__(self, data: InvalidJobIdException_):
+    def __init__(self, data: InvalidJobIdException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="InvalidJobIdException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "InvalidJobIdException":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "InvalidJobIdException":
+        return cls(deserialize_aws_json_1_1(data), message)

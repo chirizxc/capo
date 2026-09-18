@@ -39,7 +39,7 @@ def serialize_json(value: ClipTimestampRange) -> dict:
 
 def deserialize_json(data: dict) -> ClipTimestampRange:
     out: ClipTimestampRange = {}  # type: ignore[typeddict-item]
-    if "StartTimestamp" in data:
+    if data.get("StartTimestamp") is not None:
         import capo_kinesis_video_archived_media.types.timestamp
 
         out["start_timestamp"] = (
@@ -49,7 +49,7 @@ def deserialize_json(data: dict) -> ClipTimestampRange:
         )
     else:
         raise DeserializationError("ClipTimestampRange.start_timestamp required")
-    if "EndTimestamp" in data:
+    if data.get("EndTimestamp") is not None:
         import capo_kinesis_video_archived_media.types.timestamp
 
         out["end_timestamp"] = (

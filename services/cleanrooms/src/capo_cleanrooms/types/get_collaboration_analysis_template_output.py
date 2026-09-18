@@ -30,7 +30,7 @@ def serialize_json(value: GetCollaborationAnalysisTemplateOutput) -> dict:
 
 def deserialize_json(data: dict) -> GetCollaborationAnalysisTemplateOutput:
     out: GetCollaborationAnalysisTemplateOutput = {}  # type: ignore[typeddict-item]
-    if "collaborationAnalysisTemplate" in data:
+    if data.get("collaborationAnalysisTemplate") is not None:
         import capo_cleanrooms.types.collaboration_analysis_template
 
         out["collaboration_analysis_template"] = (

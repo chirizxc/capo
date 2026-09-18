@@ -25,6 +25,6 @@ def serialize_aws_json_1_1(value: ShareDirectoryResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ShareDirectoryResult:
     out: ShareDirectoryResult = {}  # type: ignore[typeddict-item]
-    if "SharedDirectoryId" in data:
+    if data.get("SharedDirectoryId") is not None:
         out["shared_directory_id"] = data["SharedDirectoryId"]
     return out

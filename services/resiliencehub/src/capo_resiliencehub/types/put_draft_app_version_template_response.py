@@ -28,8 +28,8 @@ def serialize_json(value: PutDraftAppVersionTemplateResponse) -> dict:
 
 def deserialize_json(data: dict) -> PutDraftAppVersionTemplateResponse:
     out: PutDraftAppVersionTemplateResponse = {}  # type: ignore[typeddict-item]
-    if "appArn" in data:
+    if data.get("appArn") is not None:
         out["app_arn"] = data["appArn"]
-    if "appVersion" in data:
+    if data.get("appVersion") is not None:
         out["app_version"] = data["appVersion"]
     return out

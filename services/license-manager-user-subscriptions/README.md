@@ -13,9 +13,9 @@ from capo_license_manager_user_subscriptions import AsyncLicenseManagerUserSubsc
 
 
 async def main():
-    async with AsyncLicenseManagerUserSubscriptionsClient() as s3:
+    async with AsyncLicenseManagerUserSubscriptionsClient() as license_manager_user_subscriptions:
         # Example: call the associate_user operation
-        response = await s3.associate_user()
+        response = await license_manager_user_subscriptions.associate_user()
         print(response["instance_user_summary"])
 ```
 
@@ -28,9 +28,9 @@ from capo_license_manager_user_subscriptions import AsyncLicenseManagerUserSubsc
 
 
 async def main():
-    async with AsyncLicenseManagerUserSubscriptionsClient() as s3:
+    async with AsyncLicenseManagerUserSubscriptionsClient() as license_manager_user_subscriptions:
         # Example: paginate over list_identity_providers
-        async for item in s3.iter_list_identity_providers():
+        async for item in license_manager_user_subscriptions.iter_list_identity_providers():
             print(item)
 ```
 
@@ -44,9 +44,9 @@ from capo_license_manager_user_subscriptions.error import AccessDeniedException
 
 
 async def main():
-    async with AsyncLicenseManagerUserSubscriptionsClient() as s3:
+    async with AsyncLicenseManagerUserSubscriptionsClient() as license_manager_user_subscriptions:
         try:
-            await s3.associate_user()
+            await license_manager_user_subscriptions.associate_user()
         except AccessDeniedException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -63,13 +63,13 @@ from capo_license_manager_user_subscriptions import AsyncLicenseManagerUserSubsc
 
 
 async def main():
-    async with AsyncLicenseManagerUserSubscriptionsClient() as s3:
+    async with AsyncLicenseManagerUserSubscriptionsClient() as license_manager_user_subscriptions:
         # Default: 3 attempts for every operation
-        response = await s3.associate_user()
+        response = await license_manager_user_subscriptions.associate_user()
 
         # Override per operation
-        response = await s3.associate_user(config_overrides={"retry_max_attempts": 5})
+        response = await license_manager_user_subscriptions.associate_user(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.associate_user(config_overrides={"retry_max_attempts": 1})
+        response = await license_manager_user_subscriptions.associate_user(config_overrides={"retry_max_attempts": 1})
 ```

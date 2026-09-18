@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: DetectPHIResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DetectPHIResponse:
     out: DetectPHIResponse = {}  # type: ignore[typeddict-item]
-    if "Entities" in data:
+    if data.get("Entities") is not None:
         import capo_comprehendmedical.types.entity_list
 
         out["entities"] = (
@@ -46,9 +46,9 @@ def deserialize_aws_json_1_1(data: dict) -> DetectPHIResponse:
         )
     else:
         raise DeserializationError("DetectPHIResponse.entities required")
-    if "PaginationToken" in data:
+    if data.get("PaginationToken") is not None:
         out["pagination_token"] = data["PaginationToken"]
-    if "ModelVersion" in data:
+    if data.get("ModelVersion") is not None:
         out["model_version"] = data["ModelVersion"]
     else:
         raise DeserializationError("DetectPHIResponse.model_version required")

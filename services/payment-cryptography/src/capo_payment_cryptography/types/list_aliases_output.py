@@ -33,7 +33,7 @@ def serialize_aws_json_1_0(value: ListAliasesOutput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ListAliasesOutput:
     out: ListAliasesOutput = {}  # type: ignore[typeddict-item]
-    if "Aliases" in data:
+    if data.get("Aliases") is not None:
         import capo_payment_cryptography.types.aliases
 
         out["aliases"] = (
@@ -43,6 +43,6 @@ def deserialize_aws_json_1_0(data: dict) -> ListAliasesOutput:
         )
     else:
         raise DeserializationError("ListAliasesOutput.aliases required")
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

@@ -28,11 +28,11 @@ def serialize_json(value: SuccessfulKeyRegistrationEntry) -> dict:
 
 def deserialize_json(data: dict) -> SuccessfulKeyRegistrationEntry:
     out: SuccessfulKeyRegistrationEntry = {}  # type: ignore[typeddict-item]
-    if "KeyArn" in data:
+    if data.get("KeyArn") is not None:
         out["key_arn"] = data["KeyArn"]
     else:
         raise DeserializationError("SuccessfulKeyRegistrationEntry.key_arn required")
-    if "StatusCode" in data:
+    if data.get("StatusCode") is not None:
         out["status_code"] = data["StatusCode"]
     else:
         out["status_code"] = 0

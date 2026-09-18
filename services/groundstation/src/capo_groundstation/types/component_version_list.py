@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> ComponentVersionList:
 
     out: ComponentVersionList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_groundstation.types.component_version.deserialize_json(item))
     return out

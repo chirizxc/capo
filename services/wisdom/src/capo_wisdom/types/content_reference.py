@@ -36,12 +36,12 @@ def serialize_json(value: ContentReference) -> dict:
 
 def deserialize_json(data: dict) -> ContentReference:
     out: ContentReference = {}  # type: ignore[typeddict-item]
-    if "knowledgeBaseArn" in data:
+    if data.get("knowledgeBaseArn") is not None:
         out["knowledge_base_arn"] = data["knowledgeBaseArn"]
-    if "knowledgeBaseId" in data:
+    if data.get("knowledgeBaseId") is not None:
         out["knowledge_base_id"] = data["knowledgeBaseId"]
-    if "contentArn" in data:
+    if data.get("contentArn") is not None:
         out["content_arn"] = data["contentArn"]
-    if "contentId" in data:
+    if data.get("contentId") is not None:
         out["content_id"] = data["contentId"]
     return out

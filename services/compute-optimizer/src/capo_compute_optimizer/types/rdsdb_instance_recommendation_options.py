@@ -29,6 +29,8 @@ def deserialize_aws_json_1_0(data: list) -> RDSDBInstanceRecommendationOptions:
 
     out: RDSDBInstanceRecommendationOptions = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_compute_optimizer.types.rdsdb_instance_recommendation_option.deserialize_aws_json_1_0(
                 item

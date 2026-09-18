@@ -31,7 +31,7 @@ def serialize_json(value: SnapshotAnonymousUser) -> dict:
 
 def deserialize_json(data: dict) -> SnapshotAnonymousUser:
     out: SnapshotAnonymousUser = {}  # type: ignore[typeddict-item]
-    if "RowLevelPermissionTags" in data:
+    if data.get("RowLevelPermissionTags") is not None:
         import capo_quicksight.types.session_tag_list
 
         out["row_level_permission_tags"] = (

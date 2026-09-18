@@ -74,25 +74,25 @@ def serialize_json(value: DescribeTemplateDefinitionResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribeTemplateDefinitionResponse:
     out: DescribeTemplateDefinitionResponse = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "TemplateId" in data:
+    if data.get("TemplateId") is not None:
         out["template_id"] = data["TemplateId"]
-    if "Errors" in data:
+    if data.get("Errors") is not None:
         import capo_quicksight.types.template_error_list
 
         out["errors"] = capo_quicksight.types.template_error_list.deserialize_json(
             data["Errors"]
         )
-    if "ResourceStatus" in data:
+    if data.get("ResourceStatus") is not None:
         import capo_quicksight.types.resource_status
 
         out["resource_status"] = capo_quicksight.types.resource_status.deserialize_json(
             data["ResourceStatus"]
         )
-    if "ThemeArn" in data:
+    if data.get("ThemeArn") is not None:
         out["theme_arn"] = data["ThemeArn"]
-    if "Definition" in data:
+    if data.get("Definition") is not None:
         import capo_quicksight.types.template_version_definition
 
         out["definition"] = (
@@ -100,6 +100,6 @@ def deserialize_json(data: dict) -> DescribeTemplateDefinitionResponse:
                 data["Definition"]
             )
         )
-    if "RequestId" in data:
+    if data.get("RequestId") is not None:
         out["request_id"] = data["RequestId"]
     return out

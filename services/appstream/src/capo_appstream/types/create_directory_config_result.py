@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: CreateDirectoryConfigResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateDirectoryConfigResult:
     out: CreateDirectoryConfigResult = {}  # type: ignore[typeddict-item]
-    if "DirectoryConfig" in data:
+    if data.get("DirectoryConfig") is not None:
         import capo_appstream.types.directory_config
 
         out["directory_config"] = (

@@ -45,13 +45,13 @@ def serialize_aws_json_1_1(value: ResolverConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ResolverConfig:
     out: ResolverConfig = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "ResourceId" in data:
+    if data.get("ResourceId") is not None:
         out["resource_id"] = data["ResourceId"]
-    if "OwnerId" in data:
+    if data.get("OwnerId") is not None:
         out["owner_id"] = data["OwnerId"]
-    if "AutodefinedReverse" in data:
+    if data.get("AutodefinedReverse") is not None:
         import capo_route53resolver.types.resolver_autodefined_reverse_status
 
         out["autodefined_reverse"] = (

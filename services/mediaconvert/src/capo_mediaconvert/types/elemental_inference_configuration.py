@@ -44,7 +44,7 @@ def serialize_json(value: ElementalInferenceConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> ElementalInferenceConfiguration:
     out: ElementalInferenceConfiguration = {}  # type: ignore[typeddict-item]
-    if "features" in data:
+    if data.get("features") is not None:
         import capo_mediaconvert.types.__list_of_elemental_inference_feature
 
         out["features"] = (
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> ElementalInferenceConfiguration:
                 data["features"]
             )
         )
-    if "feeds" in data:
+    if data.get("feeds") is not None:
         import capo_mediaconvert.types.__list_of_elemental_inference_feed
 
         out["feeds"] = (

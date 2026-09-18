@@ -27,7 +27,7 @@ def serialize_aws_json_1_1(value: DescribeListenerResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeListenerResponse:
     out: DescribeListenerResponse = {}  # type: ignore[typeddict-item]
-    if "Listener" in data:
+    if data.get("Listener") is not None:
         import capo_global_accelerator.types.listener
 
         out["listener"] = (

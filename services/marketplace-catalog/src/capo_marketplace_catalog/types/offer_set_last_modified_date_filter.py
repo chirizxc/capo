@@ -31,7 +31,7 @@ def serialize_json(value: OfferSetLastModifiedDateFilter) -> dict:
 
 def deserialize_json(data: dict) -> OfferSetLastModifiedDateFilter:
     out: OfferSetLastModifiedDateFilter = {}  # type: ignore[typeddict-item]
-    if "DateRange" in data:
+    if data.get("DateRange") is not None:
         import capo_marketplace_catalog.types.offer_set_last_modified_date_filter_date_range
 
         out["date_range"] = (

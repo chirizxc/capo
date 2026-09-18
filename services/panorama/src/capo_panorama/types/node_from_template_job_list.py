@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> NodeFromTemplateJobList:
 
     out: NodeFromTemplateJobList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_panorama.types.node_from_template_job.deserialize_json(item))
     return out

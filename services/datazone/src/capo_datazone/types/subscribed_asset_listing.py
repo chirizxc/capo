@@ -69,15 +69,15 @@ def serialize_json(value: SubscribedAssetListing) -> dict:
 
 def deserialize_json(data: dict) -> SubscribedAssetListing:
     out: SubscribedAssetListing = {}  # type: ignore[typeddict-item]
-    if "entityId" in data:
+    if data.get("entityId") is not None:
         out["entity_id"] = data["entityId"]
-    if "entityRevision" in data:
+    if data.get("entityRevision") is not None:
         out["entity_revision"] = data["entityRevision"]
-    if "entityType" in data:
+    if data.get("entityType") is not None:
         out["entity_type"] = data["entityType"]
-    if "forms" in data:
+    if data.get("forms") is not None:
         out["forms"] = data["forms"]
-    if "glossaryTerms" in data:
+    if data.get("glossaryTerms") is not None:
         import capo_datazone.types.detailed_glossary_terms
 
         out["glossary_terms"] = (
@@ -85,13 +85,13 @@ def deserialize_json(data: dict) -> SubscribedAssetListing:
                 data["glossaryTerms"]
             )
         )
-    if "assetScope" in data:
+    if data.get("assetScope") is not None:
         import capo_datazone.types.asset_scope
 
         out["asset_scope"] = capo_datazone.types.asset_scope.deserialize_json(
             data["assetScope"]
         )
-    if "permissions" in data:
+    if data.get("permissions") is not None:
         import capo_datazone.types.permissions
 
         out["permissions"] = capo_datazone.types.permissions.deserialize_json(

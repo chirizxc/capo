@@ -26,10 +26,10 @@ def serialize_json(value: AssetInDataProductListingItem) -> dict:
 
 def deserialize_json(data: dict) -> AssetInDataProductListingItem:
     out: AssetInDataProductListingItem = {}  # type: ignore[typeddict-item]
-    if "entityId" in data:
+    if data.get("entityId") is not None:
         out["entity_id"] = data["entityId"]
-    if "entityRevision" in data:
+    if data.get("entityRevision") is not None:
         out["entity_revision"] = data["entityRevision"]
-    if "entityType" in data:
+    if data.get("entityType") is not None:
         out["entity_type"] = data["entityType"]
     return out

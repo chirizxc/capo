@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> SearchOutputAdditionalAttributes:
 
     out: SearchOutputAdditionalAttributes = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_datazone.types.search_output_additional_attribute.deserialize_json(
                 item

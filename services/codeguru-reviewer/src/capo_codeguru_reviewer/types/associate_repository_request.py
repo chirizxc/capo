@@ -55,7 +55,7 @@ def serialize_json(value: AssociateRepositoryRequest) -> dict:
 
 def deserialize_json(data: dict) -> AssociateRepositoryRequest:
     out: AssociateRepositoryRequest = {}  # type: ignore[typeddict-item]
-    if "Repository" in data:
+    if data.get("Repository") is not None:
         import capo_codeguru_reviewer.types.repository
 
         out["repository"] = capo_codeguru_reviewer.types.repository.deserialize_json(
@@ -63,15 +63,15 @@ def deserialize_json(data: dict) -> AssociateRepositoryRequest:
         )
     else:
         raise DeserializationError("AssociateRepositoryRequest.repository required")
-    if "ClientRequestToken" in data:
+    if data.get("ClientRequestToken") is not None:
         out["client_request_token"] = data["ClientRequestToken"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_codeguru_reviewer.types.tag_map
 
         out["tags"] = capo_codeguru_reviewer.types.tag_map.deserialize_json(
             data["Tags"]
         )
-    if "KMSKeyDetails" in data:
+    if data.get("KMSKeyDetails") is not None:
         import capo_codeguru_reviewer.types.kms_key_details
 
         out["kms_key_details"] = (

@@ -83,19 +83,19 @@ def serialize_json(value: ImportComponentRequest) -> dict:
 
 def deserialize_json(data: dict) -> ImportComponentRequest:
     out: ImportComponentRequest = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("ImportComponentRequest.name required")
-    if "semanticVersion" in data:
+    if data.get("semanticVersion") is not None:
         out["semantic_version"] = data["semanticVersion"]
     else:
         raise DeserializationError("ImportComponentRequest.semantic_version required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "changeDescription" in data:
+    if data.get("changeDescription") is not None:
         out["change_description"] = data["changeDescription"]
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_imagebuilder.types.component_type
 
         out["type"] = capo_imagebuilder.types.component_type.deserialize_json(
@@ -103,7 +103,7 @@ def deserialize_json(data: dict) -> ImportComponentRequest:
         )
     else:
         raise DeserializationError("ImportComponentRequest.type required")
-    if "format" in data:
+    if data.get("format") is not None:
         import capo_imagebuilder.types.component_format
 
         out["format"] = capo_imagebuilder.types.component_format.deserialize_json(
@@ -111,7 +111,7 @@ def deserialize_json(data: dict) -> ImportComponentRequest:
         )
     else:
         raise DeserializationError("ImportComponentRequest.format required")
-    if "platform" in data:
+    if data.get("platform") is not None:
         import capo_imagebuilder.types.platform
 
         out["platform"] = capo_imagebuilder.types.platform.deserialize_json(
@@ -119,17 +119,17 @@ def deserialize_json(data: dict) -> ImportComponentRequest:
         )
     else:
         raise DeserializationError("ImportComponentRequest.platform required")
-    if "data" in data:
+    if data.get("data") is not None:
         out["data"] = data["data"]
-    if "uri" in data:
+    if data.get("uri") is not None:
         out["uri"] = data["uri"]
-    if "kmsKeyId" in data:
+    if data.get("kmsKeyId") is not None:
         out["kms_key_id"] = data["kmsKeyId"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_imagebuilder.types.tag_map
 
         out["tags"] = capo_imagebuilder.types.tag_map.deserialize_json(data["tags"])
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     else:
         raise DeserializationError("ImportComponentRequest.client_token required")

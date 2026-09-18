@@ -46,13 +46,13 @@ def serialize_aws_json_1_1(value: TestConnectionResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> TestConnectionResponse:
     out: TestConnectionResponse = {}  # type: ignore[typeddict-item]
-    if "ConnectorId" in data:
+    if data.get("ConnectorId") is not None:
         out["connector_id"] = data["ConnectorId"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         out["status"] = data["Status"]
-    if "StatusMessage" in data:
+    if data.get("StatusMessage") is not None:
         out["status_message"] = data["StatusMessage"]
-    if "SftpConnectionDetails" in data:
+    if data.get("SftpConnectionDetails") is not None:
         import capo_transfer.types.sftp_connector_connection_details
 
         out["sftp_connection_details"] = (

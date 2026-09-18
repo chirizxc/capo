@@ -36,7 +36,7 @@ def serialize_json(value: ListFunctionsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListFunctionsResponse:
     out: ListFunctionsResponse = {}  # type: ignore[typeddict-item]
-    if "Items" in data:
+    if data.get("Items") is not None:
         import capo_mediatailor.types.__list_of_functions_response
 
         out["items"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> ListFunctionsResponse:
                 data["Items"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

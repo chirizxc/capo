@@ -34,11 +34,11 @@ def serialize_json(value: DisassociatePricingRulesInput) -> dict:
 
 def deserialize_json(data: dict) -> DisassociatePricingRulesInput:
     out: DisassociatePricingRulesInput = {}  # type: ignore[typeddict-item]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
     else:
         raise DeserializationError("DisassociatePricingRulesInput.arn required")
-    if "PricingRuleArns" in data:
+    if data.get("PricingRuleArns") is not None:
         import capo_billingconductor.types.pricing_rule_arns_non_empty_input
 
         out["pricing_rule_arns"] = (

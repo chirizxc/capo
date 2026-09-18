@@ -43,17 +43,17 @@ def serialize_json(value: IpAccessSettingsSummary) -> dict:
 
 def deserialize_json(data: dict) -> IpAccessSettingsSummary:
     out: IpAccessSettingsSummary = {}  # type: ignore[typeddict-item]
-    if "ipAccessSettingsArn" in data:
+    if data.get("ipAccessSettingsArn") is not None:
         out["ip_access_settings_arn"] = data["ipAccessSettingsArn"]
     else:
         raise DeserializationError(
             "IpAccessSettingsSummary.ip_access_settings_arn required"
         )
-    if "displayName" in data:
+    if data.get("displayName") is not None:
         out["display_name"] = data["displayName"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "creationDate" in data:
+    if data.get("creationDate") is not None:
         import capo_workspaces_web.types.timestamp
 
         out["creation_date"] = capo_workspaces_web.types.timestamp.deserialize_json(

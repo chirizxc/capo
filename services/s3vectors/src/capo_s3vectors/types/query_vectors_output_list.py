@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> QueryVectorsOutputList:
 
     out: QueryVectorsOutputList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_s3vectors.types.query_output_vector.deserialize_json(item))
     return out

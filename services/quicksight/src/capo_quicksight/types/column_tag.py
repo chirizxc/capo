@@ -44,7 +44,7 @@ def serialize_json(value: ColumnTag) -> dict:
 
 def deserialize_json(data: dict) -> ColumnTag:
     out: ColumnTag = {}  # type: ignore[typeddict-item]
-    if "ColumnGeographicRole" in data:
+    if data.get("ColumnGeographicRole") is not None:
         import capo_quicksight.types.geo_spatial_data_role
 
         out["column_geographic_role"] = (
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> ColumnTag:
                 data["ColumnGeographicRole"]
             )
         )
-    if "ColumnDescription" in data:
+    if data.get("ColumnDescription") is not None:
         import capo_quicksight.types.column_description
 
         out["column_description"] = (

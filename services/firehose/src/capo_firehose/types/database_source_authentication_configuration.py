@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: DatabaseSourceAuthenticationConfiguration) -> 
 
 def deserialize_aws_json_1_1(data: dict) -> DatabaseSourceAuthenticationConfiguration:
     out: DatabaseSourceAuthenticationConfiguration = {}  # type: ignore[typeddict-item]
-    if "SecretsManagerConfiguration" in data:
+    if data.get("SecretsManagerConfiguration") is not None:
         import capo_firehose.types.secrets_manager_configuration
 
         out["secrets_manager_configuration"] = (

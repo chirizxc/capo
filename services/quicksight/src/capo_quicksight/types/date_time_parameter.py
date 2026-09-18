@@ -32,11 +32,11 @@ def serialize_json(value: DateTimeParameter) -> dict:
 
 def deserialize_json(data: dict) -> DateTimeParameter:
     out: DateTimeParameter = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("DateTimeParameter.name required")
-    if "Values" in data:
+    if data.get("Values") is not None:
         import capo_quicksight.types.sensitive_timestamp_list
 
         out["values"] = capo_quicksight.types.sensitive_timestamp_list.deserialize_json(

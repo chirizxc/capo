@@ -49,7 +49,7 @@ def serialize_json(value: AggregationSortConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> AggregationSortConfiguration:
     out: AggregationSortConfiguration = {}  # type: ignore[typeddict-item]
-    if "Column" in data:
+    if data.get("Column") is not None:
         import capo_quicksight.types.column_identifier
 
         out["column"] = capo_quicksight.types.column_identifier.deserialize_json(
@@ -57,7 +57,7 @@ def deserialize_json(data: dict) -> AggregationSortConfiguration:
         )
     else:
         raise DeserializationError("AggregationSortConfiguration.column required")
-    if "SortDirection" in data:
+    if data.get("SortDirection") is not None:
         import capo_quicksight.types.sort_direction
 
         out["sort_direction"] = capo_quicksight.types.sort_direction.deserialize_json(
@@ -67,7 +67,7 @@ def deserialize_json(data: dict) -> AggregationSortConfiguration:
         raise DeserializationError(
             "AggregationSortConfiguration.sort_direction required"
         )
-    if "AggregationFunction" in data:
+    if data.get("AggregationFunction") is not None:
         import capo_quicksight.types.aggregation_function
 
         out["aggregation_function"] = (

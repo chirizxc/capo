@@ -32,9 +32,9 @@ def serialize_aws_json_1_1(value: EvaluationResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> EvaluationResult:
     out: EvaluationResult = {}  # type: ignore[typeddict-item]
-    if "AlgorithmArn" in data:
+    if data.get("AlgorithmArn") is not None:
         out["algorithm_arn"] = data["AlgorithmArn"]
-    if "TestWindows" in data:
+    if data.get("TestWindows") is not None:
         import capo_forecast.types.test_windows
 
         out["test_windows"] = capo_forecast.types.test_windows.deserialize_aws_json_1_1(

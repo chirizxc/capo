@@ -25,6 +25,6 @@ def serialize_json(value: M2tsScte35Esam) -> dict:
 
 def deserialize_json(data: dict) -> M2tsScte35Esam:
     out: M2tsScte35Esam = {}  # type: ignore[typeddict-item]
-    if "scte35EsamPid" in data:
+    if data.get("scte35EsamPid") is not None:
         out["scte35_esam_pid"] = data["scte35EsamPid"]
     return out

@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: AssociatedListenerFoundException_) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AssociatedListenerFoundException_:
     out: AssociatedListenerFoundException_ = {}  # type: ignore[typeddict-item]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     return out
 
@@ -34,15 +34,20 @@ class AssociatedListenerFoundException(ServiceError):
 
     code: str | None = "AssociatedListenerFoundException"
 
-    def __init__(self, data: AssociatedListenerFoundException_):
+    def __init__(
+        self, data: AssociatedListenerFoundException_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="AssociatedListenerFoundException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "AssociatedListenerFoundException":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "AssociatedListenerFoundException":
+        return cls(deserialize_aws_json_1_1(data), message)

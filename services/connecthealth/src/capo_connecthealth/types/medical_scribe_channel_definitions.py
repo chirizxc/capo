@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> MedicalScribeChannelDefinitions:
 
     out: MedicalScribeChannelDefinitions = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_connecthealth.types.medical_scribe_channel_definition.deserialize_json(
                 item

@@ -27,7 +27,7 @@ def serialize_json(value: RunConfigurations) -> dict:
 
 def deserialize_json(data: dict) -> RunConfigurations:
     out: RunConfigurations = {}  # type: ignore[typeddict-item]
-    if "vpcConfig" in data:
+    if data.get("vpcConfig") is not None:
         import capo_omics.types.vpc_config
 
         out["vpc_config"] = capo_omics.types.vpc_config.deserialize_json(

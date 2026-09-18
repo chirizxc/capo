@@ -36,9 +36,9 @@ def serialize_aws_json_1_1(value: ListSqlInjectionMatchSetsResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListSqlInjectionMatchSetsResponse:
     out: ListSqlInjectionMatchSetsResponse = {}  # type: ignore[typeddict-item]
-    if "NextMarker" in data:
+    if data.get("NextMarker") is not None:
         out["next_marker"] = data["NextMarker"]
-    if "SqlInjectionMatchSets" in data:
+    if data.get("SqlInjectionMatchSets") is not None:
         import capo_waf.types.sql_injection_match_set_summaries
 
         out["sql_injection_match_sets"] = (

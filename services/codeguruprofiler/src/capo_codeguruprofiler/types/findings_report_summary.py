@@ -48,11 +48,11 @@ def serialize_json(value: FindingsReportSummary) -> dict:
 
 def deserialize_json(data: dict) -> FindingsReportSummary:
     out: FindingsReportSummary = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "profilingGroupName" in data:
+    if data.get("profilingGroupName") is not None:
         out["profiling_group_name"] = data["profilingGroupName"]
-    if "profileStartTime" in data:
+    if data.get("profileStartTime") is not None:
         import capo_codeguruprofiler.types.timestamp
 
         out["profile_start_time"] = (
@@ -60,7 +60,7 @@ def deserialize_json(data: dict) -> FindingsReportSummary:
                 data["profileStartTime"]
             )
         )
-    if "profileEndTime" in data:
+    if data.get("profileEndTime") is not None:
         import capo_codeguruprofiler.types.timestamp
 
         out["profile_end_time"] = (
@@ -68,6 +68,6 @@ def deserialize_json(data: dict) -> FindingsReportSummary:
                 data["profileEndTime"]
             )
         )
-    if "totalNumberOfFindings" in data:
+    if data.get("totalNumberOfFindings") is not None:
         out["total_number_of_findings"] = data["totalNumberOfFindings"]
     return out

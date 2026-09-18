@@ -51,11 +51,11 @@ def serialize_json(value: EnableBaselineInput) -> dict:
 
 def deserialize_json(data: dict) -> EnableBaselineInput:
     out: EnableBaselineInput = {}  # type: ignore[typeddict-item]
-    if "baselineVersion" in data:
+    if data.get("baselineVersion") is not None:
         out["baseline_version"] = data["baselineVersion"]
     else:
         raise DeserializationError("EnableBaselineInput.baseline_version required")
-    if "parameters" in data:
+    if data.get("parameters") is not None:
         import capo_controltower.types.enabled_baseline_parameters
 
         out["parameters"] = (
@@ -63,15 +63,15 @@ def deserialize_json(data: dict) -> EnableBaselineInput:
                 data["parameters"]
             )
         )
-    if "baselineIdentifier" in data:
+    if data.get("baselineIdentifier") is not None:
         out["baseline_identifier"] = data["baselineIdentifier"]
     else:
         raise DeserializationError("EnableBaselineInput.baseline_identifier required")
-    if "targetIdentifier" in data:
+    if data.get("targetIdentifier") is not None:
         out["target_identifier"] = data["targetIdentifier"]
     else:
         raise DeserializationError("EnableBaselineInput.target_identifier required")
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_controltower.types.tag_map
 
         out["tags"] = capo_controltower.types.tag_map.deserialize_json(data["tags"])

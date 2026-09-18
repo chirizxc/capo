@@ -45,7 +45,7 @@ def serialize_json(value: CreateConfiguredTableAnalysisRuleInput) -> dict:
 
 def deserialize_json(data: dict) -> CreateConfiguredTableAnalysisRuleInput:
     out: CreateConfiguredTableAnalysisRuleInput = {}  # type: ignore[typeddict-item]
-    if "analysisRuleType" in data:
+    if data.get("analysisRuleType") is not None:
         import capo_cleanrooms.types.configured_table_analysis_rule_type
 
         out["analysis_rule_type"] = (
@@ -57,7 +57,7 @@ def deserialize_json(data: dict) -> CreateConfiguredTableAnalysisRuleInput:
         raise DeserializationError(
             "CreateConfiguredTableAnalysisRuleInput.analysis_rule_type required"
         )
-    if "analysisRulePolicy" in data:
+    if data.get("analysisRulePolicy") is not None:
         import capo_cleanrooms.types.configured_table_analysis_rule_policy
 
         out["analysis_rule_policy"] = (

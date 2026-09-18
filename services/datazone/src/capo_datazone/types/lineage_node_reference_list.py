@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> LineageNodeReferenceList:
 
     out: LineageNodeReferenceList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_datazone.types.lineage_node_reference.deserialize_json(item))
     return out

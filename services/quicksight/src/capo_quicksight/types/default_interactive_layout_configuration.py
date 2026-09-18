@@ -44,7 +44,7 @@ def serialize_json(value: DefaultInteractiveLayoutConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> DefaultInteractiveLayoutConfiguration:
     out: DefaultInteractiveLayoutConfiguration = {}  # type: ignore[typeddict-item]
-    if "Grid" in data:
+    if data.get("Grid") is not None:
         import capo_quicksight.types.default_grid_layout_configuration
 
         out["grid"] = (
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> DefaultInteractiveLayoutConfiguration:
                 data["Grid"]
             )
         )
-    if "FreeForm" in data:
+    if data.get("FreeForm") is not None:
         import capo_quicksight.types.default_free_form_layout_configuration
 
         out["free_form"] = (

@@ -32,7 +32,7 @@ def serialize_json(value: VectorData) -> dict:
 
 
 def deserialize_json(data: dict) -> VectorData:
-    if "float32" in data:
+    if data.get("float32") is not None:
         import capo_s3vectors.types.float32_vector_data
 
         return {

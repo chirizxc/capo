@@ -23,6 +23,6 @@ def serialize_json(value: CreateImportJobResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateImportJobResponse:
     out: CreateImportJobResponse = {}  # type: ignore[typeddict-item]
-    if "JobId" in data:
+    if data.get("JobId") is not None:
         out["job_id"] = data["JobId"]
     return out

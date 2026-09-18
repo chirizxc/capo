@@ -23,6 +23,6 @@ def serialize_json(value: HttpGatewayRoutePathRewrite) -> dict:
 
 def deserialize_json(data: dict) -> HttpGatewayRoutePathRewrite:
     out: HttpGatewayRoutePathRewrite = {}  # type: ignore[typeddict-item]
-    if "exact" in data:
+    if data.get("exact") is not None:
         out["exact"] = data["exact"]
     return out

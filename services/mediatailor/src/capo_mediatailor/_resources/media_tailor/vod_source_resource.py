@@ -81,18 +81,20 @@ class VodSourceResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mediatailor.types.create_vod_source_request.CreateVodSourceRequest = {}  # type: ignore[typeddict-item]
-        input_["http_package_configurations"] = http_package_configurations
-        input_["source_location_name"] = source_location_name
+        input_: capo_mediatailor.types.create_vod_source_request.CreateVodSourceRequest = {
+            "http_package_configurations": http_package_configurations,
+            "source_location_name": source_location_name,
+            "vod_source_name": vod_source_name,
+        }
         if tags is not None:
             input_["tags"] = tags
-        input_["vod_source_name"] = vod_source_name
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -129,15 +131,17 @@ class VodSourceResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mediatailor.types.describe_vod_source_request.DescribeVodSourceRequest = {}  # type: ignore[typeddict-item]
-        input_["source_location_name"] = source_location_name
-        input_["vod_source_name"] = vod_source_name
+        input_: capo_mediatailor.types.describe_vod_source_request.DescribeVodSourceRequest = {
+            "source_location_name": source_location_name,
+            "vod_source_name": vod_source_name,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update(
@@ -174,16 +178,18 @@ class VodSourceResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mediatailor.types.update_vod_source_request.UpdateVodSourceRequest = {}  # type: ignore[typeddict-item]
-        input_["http_package_configurations"] = http_package_configurations
-        input_["source_location_name"] = source_location_name
-        input_["vod_source_name"] = vod_source_name
+        input_: capo_mediatailor.types.update_vod_source_request.UpdateVodSourceRequest = {
+            "http_package_configurations": http_package_configurations,
+            "source_location_name": source_location_name,
+            "vod_source_name": vod_source_name,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -218,15 +224,17 @@ class VodSourceResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mediatailor.types.delete_vod_source_request.DeleteVodSourceRequest = {}  # type: ignore[typeddict-item]
-        input_["source_location_name"] = source_location_name
-        input_["vod_source_name"] = vod_source_name
+        input_: capo_mediatailor.types.delete_vod_source_request.DeleteVodSourceRequest = {
+            "source_location_name": source_location_name,
+            "vod_source_name": vod_source_name,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -263,18 +271,20 @@ class VodSourceResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mediatailor.types.list_vod_sources_request.ListVodSourcesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_mediatailor.types.list_vod_sources_request.ListVodSourcesRequest = {
+            "source_location_name": source_location_name
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
             input_["next_token"] = next_token
-        input_["source_location_name"] = source_location_name
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -321,18 +331,20 @@ class AsyncVodSourceResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mediatailor.types.create_vod_source_request.CreateVodSourceRequest = {}  # type: ignore[typeddict-item]
-        input_["http_package_configurations"] = http_package_configurations
-        input_["source_location_name"] = source_location_name
+        input_: capo_mediatailor.types.create_vod_source_request.CreateVodSourceRequest = {
+            "http_package_configurations": http_package_configurations,
+            "source_location_name": source_location_name,
+            "vod_source_name": vod_source_name,
+        }
         if tags is not None:
             input_["tags"] = tags
-        input_["vod_source_name"] = vod_source_name
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -370,15 +382,17 @@ class AsyncVodSourceResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mediatailor.types.describe_vod_source_request.DescribeVodSourceRequest = {}  # type: ignore[typeddict-item]
-        input_["source_location_name"] = source_location_name
-        input_["vod_source_name"] = vod_source_name
+        input_: capo_mediatailor.types.describe_vod_source_request.DescribeVodSourceRequest = {
+            "source_location_name": source_location_name,
+            "vod_source_name": vod_source_name,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update(
@@ -416,16 +430,18 @@ class AsyncVodSourceResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mediatailor.types.update_vod_source_request.UpdateVodSourceRequest = {}  # type: ignore[typeddict-item]
-        input_["http_package_configurations"] = http_package_configurations
-        input_["source_location_name"] = source_location_name
-        input_["vod_source_name"] = vod_source_name
+        input_: capo_mediatailor.types.update_vod_source_request.UpdateVodSourceRequest = {
+            "http_package_configurations": http_package_configurations,
+            "source_location_name": source_location_name,
+            "vod_source_name": vod_source_name,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -461,15 +477,17 @@ class AsyncVodSourceResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mediatailor.types.delete_vod_source_request.DeleteVodSourceRequest = {}  # type: ignore[typeddict-item]
-        input_["source_location_name"] = source_location_name
-        input_["vod_source_name"] = vod_source_name
+        input_: capo_mediatailor.types.delete_vod_source_request.DeleteVodSourceRequest = {
+            "source_location_name": source_location_name,
+            "vod_source_name": vod_source_name,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -507,16 +525,18 @@ class AsyncVodSourceResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mediatailor.types.list_vod_sources_request.ListVodSourcesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_mediatailor.types.list_vod_sources_request.ListVodSourcesRequest = {
+            "source_location_name": source_location_name
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
             input_["next_token"] = next_token
-        input_["source_location_name"] = source_location_name
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

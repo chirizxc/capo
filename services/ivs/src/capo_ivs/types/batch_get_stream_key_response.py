@@ -49,13 +49,13 @@ def serialize_json(value: BatchGetStreamKeyResponse) -> dict:
 
 def deserialize_json(data: dict) -> BatchGetStreamKeyResponse:
     out: BatchGetStreamKeyResponse = {}  # type: ignore[typeddict-item]
-    if "streamKeys" in data:
+    if data.get("streamKeys") is not None:
         import capo_ivs.types.stream_keys
 
         out["stream_keys"] = capo_ivs.types.stream_keys.deserialize_json(
             data["streamKeys"]
         )
-    if "errors" in data:
+    if data.get("errors") is not None:
         import capo_ivs.types.batch_errors
 
         out["errors"] = capo_ivs.types.batch_errors.deserialize_json(data["errors"])

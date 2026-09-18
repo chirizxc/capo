@@ -61,7 +61,7 @@ def serialize_aws_json_1_1(value: DescribeWorkspacesRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeWorkspacesRequest:
     out: DescribeWorkspacesRequest = {}  # type: ignore[typeddict-item]
-    if "WorkspaceIds" in data:
+    if data.get("WorkspaceIds") is not None:
         import capo_workspaces.types.workspace_id_list
 
         out["workspace_ids"] = (
@@ -69,16 +69,16 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeWorkspacesRequest:
                 data["WorkspaceIds"]
             )
         )
-    if "DirectoryId" in data:
+    if data.get("DirectoryId") is not None:
         out["directory_id"] = data["DirectoryId"]
-    if "UserName" in data:
+    if data.get("UserName") is not None:
         out["user_name"] = data["UserName"]
-    if "BundleId" in data:
+    if data.get("BundleId") is not None:
         out["bundle_id"] = data["BundleId"]
-    if "Limit" in data:
+    if data.get("Limit") is not None:
         out["limit"] = data["Limit"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "WorkspaceName" in data:
+    if data.get("WorkspaceName") is not None:
         out["workspace_name"] = data["WorkspaceName"]
     return out

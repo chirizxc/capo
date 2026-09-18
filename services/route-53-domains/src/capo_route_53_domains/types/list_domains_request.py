@@ -54,7 +54,7 @@ def serialize_aws_json_1_1(value: ListDomainsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListDomainsRequest:
     out: ListDomainsRequest = {}  # type: ignore[typeddict-item]
-    if "FilterConditions" in data:
+    if data.get("FilterConditions") is not None:
         import capo_route_53_domains.types.filter_conditions
 
         out["filter_conditions"] = (
@@ -62,7 +62,7 @@ def deserialize_aws_json_1_1(data: dict) -> ListDomainsRequest:
                 data["FilterConditions"]
             )
         )
-    if "SortCondition" in data:
+    if data.get("SortCondition") is not None:
         import capo_route_53_domains.types.sort_condition
 
         out["sort_condition"] = (
@@ -70,8 +70,8 @@ def deserialize_aws_json_1_1(data: dict) -> ListDomainsRequest:
                 data["SortCondition"]
             )
         )
-    if "Marker" in data:
+    if data.get("Marker") is not None:
         out["marker"] = data["Marker"]
-    if "MaxItems" in data:
+    if data.get("MaxItems") is not None:
         out["max_items"] = data["MaxItems"]
     return out

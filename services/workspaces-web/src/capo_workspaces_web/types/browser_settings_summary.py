@@ -24,7 +24,7 @@ def serialize_json(value: BrowserSettingsSummary) -> dict:
 
 def deserialize_json(data: dict) -> BrowserSettingsSummary:
     out: BrowserSettingsSummary = {}  # type: ignore[typeddict-item]
-    if "browserSettingsArn" in data:
+    if data.get("browserSettingsArn") is not None:
         out["browser_settings_arn"] = data["browserSettingsArn"]
     else:
         raise DeserializationError(

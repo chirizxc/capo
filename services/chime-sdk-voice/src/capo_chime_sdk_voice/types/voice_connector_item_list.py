@@ -25,6 +25,8 @@ def deserialize_json(data: list) -> VoiceConnectorItemList:
 
     out: VoiceConnectorItemList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_chime_sdk_voice.types.voice_connector_item.deserialize_json(item)
         )

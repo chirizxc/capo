@@ -31,7 +31,7 @@ def serialize_json(value: GetEnvironmentResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetEnvironmentResponse:
     out: GetEnvironmentResponse = {}  # type: ignore[typeddict-item]
-    if "environment" in data:
+    if data.get("environment") is not None:
         import capo_workspaces_thin_client.types.environment
 
         out["environment"] = (

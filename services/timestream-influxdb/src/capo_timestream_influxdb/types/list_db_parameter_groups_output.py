@@ -35,7 +35,7 @@ def serialize_aws_json_1_0(value: ListDbParameterGroupsOutput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ListDbParameterGroupsOutput:
     out: ListDbParameterGroupsOutput = {}  # type: ignore[typeddict-item]
-    if "items" in data:
+    if data.get("items") is not None:
         import capo_timestream_influxdb.types.db_parameter_group_summary_list
 
         out["items"] = (
@@ -45,6 +45,6 @@ def deserialize_aws_json_1_0(data: dict) -> ListDbParameterGroupsOutput:
         )
     else:
         raise DeserializationError("ListDbParameterGroupsOutput.items required")
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

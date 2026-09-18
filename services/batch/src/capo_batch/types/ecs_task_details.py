@@ -103,7 +103,7 @@ def serialize_json(value: EcsTaskDetails) -> dict:
 
 def deserialize_json(data: dict) -> EcsTaskDetails:
     out: EcsTaskDetails = {}  # type: ignore[typeddict-item]
-    if "containers" in data:
+    if data.get("containers") is not None:
         import capo_batch.types.list_task_container_details
 
         out["containers"] = (
@@ -111,27 +111,27 @@ def deserialize_json(data: dict) -> EcsTaskDetails:
                 data["containers"]
             )
         )
-    if "containerInstanceArn" in data:
+    if data.get("containerInstanceArn") is not None:
         out["container_instance_arn"] = data["containerInstanceArn"]
-    if "taskArn" in data:
+    if data.get("taskArn") is not None:
         out["task_arn"] = data["taskArn"]
-    if "ephemeralStorage" in data:
+    if data.get("ephemeralStorage") is not None:
         import capo_batch.types.ephemeral_storage
 
         out["ephemeral_storage"] = capo_batch.types.ephemeral_storage.deserialize_json(
             data["ephemeralStorage"]
         )
-    if "executionRoleArn" in data:
+    if data.get("executionRoleArn") is not None:
         out["execution_role_arn"] = data["executionRoleArn"]
-    if "platformVersion" in data:
+    if data.get("platformVersion") is not None:
         out["platform_version"] = data["platformVersion"]
-    if "ipcMode" in data:
+    if data.get("ipcMode") is not None:
         out["ipc_mode"] = data["ipcMode"]
-    if "taskRoleArn" in data:
+    if data.get("taskRoleArn") is not None:
         out["task_role_arn"] = data["taskRoleArn"]
-    if "pidMode" in data:
+    if data.get("pidMode") is not None:
         out["pid_mode"] = data["pidMode"]
-    if "networkConfiguration" in data:
+    if data.get("networkConfiguration") is not None:
         import capo_batch.types.network_configuration
 
         out["network_configuration"] = (
@@ -139,16 +139,16 @@ def deserialize_json(data: dict) -> EcsTaskDetails:
                 data["networkConfiguration"]
             )
         )
-    if "runtimePlatform" in data:
+    if data.get("runtimePlatform") is not None:
         import capo_batch.types.runtime_platform
 
         out["runtime_platform"] = capo_batch.types.runtime_platform.deserialize_json(
             data["runtimePlatform"]
         )
-    if "volumes" in data:
+    if data.get("volumes") is not None:
         import capo_batch.types.volumes
 
         out["volumes"] = capo_batch.types.volumes.deserialize_json(data["volumes"])
-    if "enableExecuteCommand" in data:
+    if data.get("enableExecuteCommand") is not None:
         out["enable_execute_command"] = data["enableExecuteCommand"]
     return out

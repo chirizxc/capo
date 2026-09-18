@@ -32,11 +32,11 @@ def serialize_aws_json_1_1(value: EnableLDAPSRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> EnableLDAPSRequest:
     out: EnableLDAPSRequest = {}  # type: ignore[typeddict-item]
-    if "DirectoryId" in data:
+    if data.get("DirectoryId") is not None:
         out["directory_id"] = data["DirectoryId"]
     else:
         raise DeserializationError("EnableLDAPSRequest.directory_id required")
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_directory_service.types.ldaps_type
 
         out["type"] = capo_directory_service.types.ldaps_type.deserialize_aws_json_1_1(

@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: GetDeploymentGroupOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetDeploymentGroupOutput:
     out: GetDeploymentGroupOutput = {}  # type: ignore[typeddict-item]
-    if "deploymentGroupInfo" in data:
+    if data.get("deploymentGroupInfo") is not None:
         import capo_codedeploy.types.deployment_group_info
 
         out["deployment_group_info"] = (

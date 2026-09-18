@@ -52,11 +52,11 @@ def serialize_json(value: ChallengeMetadata) -> dict:
 
 def deserialize_json(data: dict) -> ChallengeMetadata:
     out: ChallengeMetadata = {}  # type: ignore[typeddict-item]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "ConnectorArn" in data:
+    if data.get("ConnectorArn") is not None:
         out["connector_arn"] = data["ConnectorArn"]
-    if "CreatedAt" in data:
+    if data.get("CreatedAt") is not None:
         import capo_pca_connector_scep.types._prelude.timestamp
 
         out["created_at"] = (
@@ -64,7 +64,7 @@ def deserialize_json(data: dict) -> ChallengeMetadata:
                 data["CreatedAt"]
             )
         )
-    if "UpdatedAt" in data:
+    if data.get("UpdatedAt") is not None:
         import capo_pca_connector_scep.types._prelude.timestamp
 
         out["updated_at"] = (

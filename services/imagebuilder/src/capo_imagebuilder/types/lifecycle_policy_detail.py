@@ -53,7 +53,7 @@ def serialize_json(value: LifecyclePolicyDetail) -> dict:
 
 def deserialize_json(data: dict) -> LifecyclePolicyDetail:
     out: LifecyclePolicyDetail = {}  # type: ignore[typeddict-item]
-    if "action" in data:
+    if data.get("action") is not None:
         import capo_imagebuilder.types.lifecycle_policy_detail_action
 
         out["action"] = (
@@ -63,7 +63,7 @@ def deserialize_json(data: dict) -> LifecyclePolicyDetail:
         )
     else:
         raise DeserializationError("LifecyclePolicyDetail.action required")
-    if "filter" in data:
+    if data.get("filter") is not None:
         import capo_imagebuilder.types.lifecycle_policy_detail_filter
 
         out["filter"] = (
@@ -73,7 +73,7 @@ def deserialize_json(data: dict) -> LifecyclePolicyDetail:
         )
     else:
         raise DeserializationError("LifecyclePolicyDetail.filter required")
-    if "exclusionRules" in data:
+    if data.get("exclusionRules") is not None:
         import capo_imagebuilder.types.lifecycle_policy_detail_exclusion_rules
 
         out["exclusion_rules"] = (

@@ -39,15 +39,20 @@ class APICallRateForCustomerExceededFault(ServiceError):
 
     code: str | None = "APICallRateForCustomerExceededFault"
 
-    def __init__(self, data: APICallRateForCustomerExceededFault_):
+    def __init__(
+        self, data: APICallRateForCustomerExceededFault_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="APICallRateForCustomerExceededFault",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_query(cls, el: Element) -> "APICallRateForCustomerExceededFault":
-        return cls(deserialize_query(el))
+    def from_query(
+        cls, el: Element, message: str | None = None
+    ) -> "APICallRateForCustomerExceededFault":
+        return cls(deserialize_query(el), message)

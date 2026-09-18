@@ -47,18 +47,18 @@ def serialize_aws_json_1_1(value: Artifact) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Artifact:
     out: Artifact = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_device_farm.types.artifact_type
 
         out["type"] = capo_device_farm.types.artifact_type.deserialize_aws_json_1_1(
             data["type"]
         )
-    if "extension" in data:
+    if data.get("extension") is not None:
         out["extension"] = data["extension"]
-    if "url" in data:
+    if data.get("url") is not None:
         out["url"] = data["url"]
     return out

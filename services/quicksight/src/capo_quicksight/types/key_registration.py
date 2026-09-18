@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> KeyRegistration:
 
     out: KeyRegistration = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_quicksight.types.registered_customer_managed_key.deserialize_json(item)
         )

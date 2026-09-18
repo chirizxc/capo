@@ -31,8 +31,8 @@ def serialize_json(value: Participant) -> dict:
 
 def deserialize_json(data: dict) -> Participant:
     out: Participant = {}  # type: ignore[typeddict-item]
-    if "PhoneNumber" in data:
+    if data.get("PhoneNumber") is not None:
         out["phone_number"] = data["PhoneNumber"]
-    if "ProxyPhoneNumber" in data:
+    if data.get("ProxyPhoneNumber") is not None:
         out["proxy_phone_number"] = data["ProxyPhoneNumber"]
     return out

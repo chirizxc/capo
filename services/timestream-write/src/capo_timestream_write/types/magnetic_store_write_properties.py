@@ -37,13 +37,13 @@ def serialize_aws_json_1_0(value: MagneticStoreWriteProperties) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> MagneticStoreWriteProperties:
     out: MagneticStoreWriteProperties = {}  # type: ignore[typeddict-item]
-    if "EnableMagneticStoreWrites" in data:
+    if data.get("EnableMagneticStoreWrites") is not None:
         out["enable_magnetic_store_writes"] = data["EnableMagneticStoreWrites"]
     else:
         raise DeserializationError(
             "MagneticStoreWriteProperties.enable_magnetic_store_writes required"
         )
-    if "MagneticStoreRejectedDataLocation" in data:
+    if data.get("MagneticStoreRejectedDataLocation") is not None:
         import capo_timestream_write.types.magnetic_store_rejected_data_location
 
         out["magnetic_store_rejected_data_location"] = (

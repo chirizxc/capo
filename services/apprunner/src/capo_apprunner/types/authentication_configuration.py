@@ -30,8 +30,8 @@ def serialize_aws_json_1_0(value: AuthenticationConfiguration) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> AuthenticationConfiguration:
     out: AuthenticationConfiguration = {}  # type: ignore[typeddict-item]
-    if "ConnectionArn" in data:
+    if data.get("ConnectionArn") is not None:
         out["connection_arn"] = data["ConnectionArn"]
-    if "AccessRoleArn" in data:
+    if data.get("AccessRoleArn") is not None:
         out["access_role_arn"] = data["AccessRoleArn"]
     return out

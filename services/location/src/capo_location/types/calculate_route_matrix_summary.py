@@ -33,19 +33,19 @@ def serialize_json(value: CalculateRouteMatrixSummary) -> dict:
 
 def deserialize_json(data: dict) -> CalculateRouteMatrixSummary:
     out: CalculateRouteMatrixSummary = {}  # type: ignore[typeddict-item]
-    if "DataSource" in data:
+    if data.get("DataSource") is not None:
         out["data_source"] = data["DataSource"]
     else:
         raise DeserializationError("CalculateRouteMatrixSummary.data_source required")
-    if "RouteCount" in data:
+    if data.get("RouteCount") is not None:
         out["route_count"] = data["RouteCount"]
     else:
         raise DeserializationError("CalculateRouteMatrixSummary.route_count required")
-    if "ErrorCount" in data:
+    if data.get("ErrorCount") is not None:
         out["error_count"] = data["ErrorCount"]
     else:
         raise DeserializationError("CalculateRouteMatrixSummary.error_count required")
-    if "DistanceUnit" in data:
+    if data.get("DistanceUnit") is not None:
         out["distance_unit"] = data["DistanceUnit"]
     else:
         raise DeserializationError("CalculateRouteMatrixSummary.distance_unit required")

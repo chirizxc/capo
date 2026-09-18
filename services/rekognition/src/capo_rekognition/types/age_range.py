@@ -27,8 +27,8 @@ def serialize_aws_json_1_1(value: AgeRange) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AgeRange:
     out: AgeRange = {}  # type: ignore[typeddict-item]
-    if "Low" in data:
+    if data.get("Low") is not None:
         out["low"] = data["Low"]
-    if "High" in data:
+    if data.get("High") is not None:
         out["high"] = data["High"]
     return out

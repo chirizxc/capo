@@ -36,7 +36,7 @@ def serialize_aws_json_1_0(value: ListConnectionsResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ListConnectionsResponse:
     out: ListConnectionsResponse = {}  # type: ignore[typeddict-item]
-    if "connections" in data:
+    if data.get("connections") is not None:
         import capo_interconnect.types.connection_summaries_list
 
         out["connections"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_0(data: dict) -> ListConnectionsResponse:
                 data["connections"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

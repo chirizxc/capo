@@ -14,4 +14,4 @@ def serialize_json(value: TableAliasList) -> list:
 
 
 def deserialize_json(data: list) -> TableAliasList:
-    return list(data)
+    return [item for item in data if item is not None]

@@ -47,11 +47,11 @@ def serialize_json(value: LoggingOptions) -> dict:
 
 def deserialize_json(data: dict) -> LoggingOptions:
     out: LoggingOptions = {}  # type: ignore[typeddict-item]
-    if "roleArn" in data:
+    if data.get("roleArn") is not None:
         out["role_arn"] = data["roleArn"]
     else:
         raise DeserializationError("LoggingOptions.role_arn required")
-    if "level" in data:
+    if data.get("level") is not None:
         import capo_iot_events.types.logging_level
 
         out["level"] = capo_iot_events.types.logging_level.deserialize_json(
@@ -59,11 +59,11 @@ def deserialize_json(data: dict) -> LoggingOptions:
         )
     else:
         raise DeserializationError("LoggingOptions.level required")
-    if "enabled" in data:
+    if data.get("enabled") is not None:
         out["enabled"] = data["enabled"]
     else:
         out["enabled"] = False
-    if "detectorDebugOptions" in data:
+    if data.get("detectorDebugOptions") is not None:
         import capo_iot_events.types.detector_debug_options
 
         out["detector_debug_options"] = (

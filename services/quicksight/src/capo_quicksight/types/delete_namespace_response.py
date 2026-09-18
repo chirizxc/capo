@@ -26,6 +26,6 @@ def serialize_json(value: DeleteNamespaceResponse) -> dict:
 
 def deserialize_json(data: dict) -> DeleteNamespaceResponse:
     out: DeleteNamespaceResponse = {}  # type: ignore[typeddict-item]
-    if "RequestId" in data:
+    if data.get("RequestId") is not None:
         out["request_id"] = data["RequestId"]
     return out

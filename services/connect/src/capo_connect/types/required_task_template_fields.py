@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> RequiredTaskTemplateFields:
 
     out: RequiredTaskTemplateFields = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_connect.types.required_field_info.deserialize_json(item))
     return out

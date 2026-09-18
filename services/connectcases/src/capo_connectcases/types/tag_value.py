@@ -28,8 +28,8 @@ def serialize_json(value: TagValue) -> dict:
 
 def deserialize_json(data: dict) -> TagValue:
     out: TagValue = {}  # type: ignore[typeddict-item]
-    if "key" in data:
+    if data.get("key") is not None:
         out["key"] = data["key"]
-    if "value" in data:
+    if data.get("value") is not None:
         out["value"] = data["value"]
     return out

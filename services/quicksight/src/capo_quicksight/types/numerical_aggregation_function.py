@@ -44,7 +44,7 @@ def serialize_json(value: NumericalAggregationFunction) -> dict:
 
 def deserialize_json(data: dict) -> NumericalAggregationFunction:
     out: NumericalAggregationFunction = {}  # type: ignore[typeddict-item]
-    if "SimpleNumericalAggregation" in data:
+    if data.get("SimpleNumericalAggregation") is not None:
         import capo_quicksight.types.simple_numerical_aggregation_function
 
         out["simple_numerical_aggregation"] = (
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> NumericalAggregationFunction:
                 data["SimpleNumericalAggregation"]
             )
         )
-    if "PercentileAggregation" in data:
+    if data.get("PercentileAggregation") is not None:
         import capo_quicksight.types.percentile_aggregation
 
         out["percentile_aggregation"] = (

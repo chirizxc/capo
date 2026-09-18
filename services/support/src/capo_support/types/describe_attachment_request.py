@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: DescribeAttachmentRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeAttachmentRequest:
     out: DescribeAttachmentRequest = {}  # type: ignore[typeddict-item]
-    if "attachmentId" in data:
+    if data.get("attachmentId") is not None:
         out["attachment_id"] = data["attachmentId"]
     else:
         raise DeserializationError("DescribeAttachmentRequest.attachment_id required")

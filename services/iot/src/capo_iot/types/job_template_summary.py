@@ -40,13 +40,13 @@ def serialize_json(value: JobTemplateSummary) -> dict:
 
 def deserialize_json(data: dict) -> JobTemplateSummary:
     out: JobTemplateSummary = {}  # type: ignore[typeddict-item]
-    if "jobTemplateArn" in data:
+    if data.get("jobTemplateArn") is not None:
         out["job_template_arn"] = data["jobTemplateArn"]
-    if "jobTemplateId" in data:
+    if data.get("jobTemplateId") is not None:
         out["job_template_id"] = data["jobTemplateId"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_iot.types.date_type
 
         out["created_at"] = capo_iot.types.date_type.deserialize_json(data["createdAt"])

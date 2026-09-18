@@ -74,11 +74,11 @@ def serialize_aws_json_1_1(value: ServiceNowServiceCatalogConfiguration) -> dict
 
 def deserialize_aws_json_1_1(data: dict) -> ServiceNowServiceCatalogConfiguration:
     out: ServiceNowServiceCatalogConfiguration = {}  # type: ignore[typeddict-item]
-    if "CrawlAttachments" in data:
+    if data.get("CrawlAttachments") is not None:
         out["crawl_attachments"] = data["CrawlAttachments"]
     else:
         out["crawl_attachments"] = False
-    if "IncludeAttachmentFilePatterns" in data:
+    if data.get("IncludeAttachmentFilePatterns") is not None:
         import capo_kendra.types.data_source_inclusions_exclusions_strings
 
         out["include_attachment_file_patterns"] = (
@@ -86,7 +86,7 @@ def deserialize_aws_json_1_1(data: dict) -> ServiceNowServiceCatalogConfiguratio
                 data["IncludeAttachmentFilePatterns"]
             )
         )
-    if "ExcludeAttachmentFilePatterns" in data:
+    if data.get("ExcludeAttachmentFilePatterns") is not None:
         import capo_kendra.types.data_source_inclusions_exclusions_strings
 
         out["exclude_attachment_file_patterns"] = (
@@ -94,15 +94,15 @@ def deserialize_aws_json_1_1(data: dict) -> ServiceNowServiceCatalogConfiguratio
                 data["ExcludeAttachmentFilePatterns"]
             )
         )
-    if "DocumentDataFieldName" in data:
+    if data.get("DocumentDataFieldName") is not None:
         out["document_data_field_name"] = data["DocumentDataFieldName"]
     else:
         raise DeserializationError(
             "ServiceNowServiceCatalogConfiguration.document_data_field_name required"
         )
-    if "DocumentTitleFieldName" in data:
+    if data.get("DocumentTitleFieldName") is not None:
         out["document_title_field_name"] = data["DocumentTitleFieldName"]
-    if "FieldMappings" in data:
+    if data.get("FieldMappings") is not None:
         import capo_kendra.types.data_source_to_index_field_mapping_list
 
         out["field_mappings"] = (

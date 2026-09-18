@@ -24,7 +24,7 @@ def serialize_json(value: PhoneNumberQuickConnectConfig) -> dict:
 
 def deserialize_json(data: dict) -> PhoneNumberQuickConnectConfig:
     out: PhoneNumberQuickConnectConfig = {}  # type: ignore[typeddict-item]
-    if "PhoneNumber" in data:
+    if data.get("PhoneNumber") is not None:
         out["phone_number"] = data["PhoneNumber"]
     else:
         raise DeserializationError(

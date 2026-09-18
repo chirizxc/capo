@@ -28,15 +28,15 @@ def serialize_json(value: AppflowIntegrationWorkflowMetrics) -> dict:
 
 def deserialize_json(data: dict) -> AppflowIntegrationWorkflowMetrics:
     out: AppflowIntegrationWorkflowMetrics = {}  # type: ignore[typeddict-item]
-    if "RecordsProcessed" in data:
+    if data.get("RecordsProcessed") is not None:
         out["records_processed"] = data["RecordsProcessed"]
     else:
         out["records_processed"] = 0
-    if "StepsCompleted" in data:
+    if data.get("StepsCompleted") is not None:
         out["steps_completed"] = data["StepsCompleted"]
     else:
         out["steps_completed"] = 0
-    if "TotalSteps" in data:
+    if data.get("TotalSteps") is not None:
         out["total_steps"] = data["TotalSteps"]
     else:
         out["total_steps"] = 0

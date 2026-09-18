@@ -41,7 +41,7 @@ def serialize_json(value: ListTargetsRequest) -> dict:
 
 def deserialize_json(data: dict) -> ListTargetsRequest:
     out: ListTargetsRequest = {}  # type: ignore[typeddict-item]
-    if "Filters" in data:
+    if data.get("Filters") is not None:
         import capo_codestar_notifications.types.list_targets_filters
 
         out["filters"] = (
@@ -49,8 +49,8 @@ def deserialize_json(data: dict) -> ListTargetsRequest:
                 data["Filters"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
     return out

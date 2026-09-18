@@ -32,9 +32,9 @@ def serialize_aws_json_1_1(value: GetSolutionMetricsResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetSolutionMetricsResponse:
     out: GetSolutionMetricsResponse = {}  # type: ignore[typeddict-item]
-    if "solutionVersionArn" in data:
+    if data.get("solutionVersionArn") is not None:
         out["solution_version_arn"] = data["solutionVersionArn"]
-    if "metrics" in data:
+    if data.get("metrics") is not None:
         import capo_personalize.types.metrics
 
         out["metrics"] = capo_personalize.types.metrics.deserialize_aws_json_1_1(

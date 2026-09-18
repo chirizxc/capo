@@ -30,7 +30,7 @@ def serialize_json(value: DataLakeDatasetPartitionFieldTransform) -> dict:
 
 def deserialize_json(data: dict) -> DataLakeDatasetPartitionFieldTransform:
     out: DataLakeDatasetPartitionFieldTransform = {}  # type: ignore[typeddict-item]
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_supplychain.types.data_lake_dataset_partition_transform_type
 
         out["type"] = (

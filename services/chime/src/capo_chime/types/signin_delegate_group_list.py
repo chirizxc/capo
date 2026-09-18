@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> SigninDelegateGroupList:
 
     out: SigninDelegateGroupList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_chime.types.signin_delegate_group.deserialize_json(item))
     return out

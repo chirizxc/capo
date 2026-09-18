@@ -64,21 +64,21 @@ def serialize_json(value: OAuth2CustomParameter) -> dict:
 
 def deserialize_json(data: dict) -> OAuth2CustomParameter:
     out: OAuth2CustomParameter = {}  # type: ignore[typeddict-item]
-    if "key" in data:
+    if data.get("key") is not None:
         out["key"] = data["key"]
-    if "isRequired" in data:
+    if data.get("isRequired") is not None:
         out["is_required"] = data["isRequired"]
     else:
         out["is_required"] = False
-    if "label" in data:
+    if data.get("label") is not None:
         out["label"] = data["label"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "isSensitiveField" in data:
+    if data.get("isSensitiveField") is not None:
         out["is_sensitive_field"] = data["isSensitiveField"]
     else:
         out["is_sensitive_field"] = False
-    if "connectorSuppliedValues" in data:
+    if data.get("connectorSuppliedValues") is not None:
         import capo_appflow.types.connector_supplied_value_list
 
         out["connector_supplied_values"] = (
@@ -86,7 +86,7 @@ def deserialize_json(data: dict) -> OAuth2CustomParameter:
                 data["connectorSuppliedValues"]
             )
         )
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_appflow.types.o_auth2_custom_prop_type
 
         out["type"] = capo_appflow.types.o_auth2_custom_prop_type.deserialize_json(

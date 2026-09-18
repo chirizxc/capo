@@ -30,7 +30,7 @@ def serialize_json(value: MultiPolygonGeometryInput) -> dict:
 
 def deserialize_json(data: dict) -> MultiPolygonGeometryInput:
     out: MultiPolygonGeometryInput = {}  # type: ignore[typeddict-item]
-    if "Coordinates" in data:
+    if data.get("Coordinates") is not None:
         import capo_sagemaker_geospatial.types.linear_rings_list
 
         out["coordinates"] = (

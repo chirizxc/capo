@@ -53,13 +53,13 @@ def serialize_json(value: ImportTaskSummary) -> dict:
 
 def deserialize_json(data: dict) -> ImportTaskSummary:
     out: ImportTaskSummary = {}  # type: ignore[typeddict-item]
-    if "waves" in data:
+    if data.get("waves") is not None:
         import capo_mgn.types.import_task_summary_waves
 
         out["waves"] = capo_mgn.types.import_task_summary_waves.deserialize_json(
             data["waves"]
         )
-    if "applications" in data:
+    if data.get("applications") is not None:
         import capo_mgn.types.import_task_summary_applications
 
         out["applications"] = (
@@ -67,7 +67,7 @@ def deserialize_json(data: dict) -> ImportTaskSummary:
                 data["applications"]
             )
         )
-    if "servers" in data:
+    if data.get("servers") is not None:
         import capo_mgn.types.import_task_summary_servers
 
         out["servers"] = capo_mgn.types.import_task_summary_servers.deserialize_json(

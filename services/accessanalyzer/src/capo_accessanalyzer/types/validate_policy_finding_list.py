@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> ValidatePolicyFindingList:
 
     out: ValidatePolicyFindingList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_accessanalyzer.types.validate_policy_finding.deserialize_json(item)
         )

@@ -23,6 +23,6 @@ def serialize_aws_json_1_1(value: UpdateDomainResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateDomainResponse:
     out: UpdateDomainResponse = {}  # type: ignore[typeddict-item]
-    if "DomainArn" in data:
+    if data.get("DomainArn") is not None:
         out["domain_arn"] = data["DomainArn"]
     return out

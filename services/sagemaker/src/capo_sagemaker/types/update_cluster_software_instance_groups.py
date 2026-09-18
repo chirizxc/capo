@@ -29,6 +29,8 @@ def deserialize_aws_json_1_1(data: list) -> UpdateClusterSoftwareInstanceGroups:
 
     out: UpdateClusterSoftwareInstanceGroups = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_sagemaker.types.update_cluster_software_instance_group_specification.deserialize_aws_json_1_1(
                 item

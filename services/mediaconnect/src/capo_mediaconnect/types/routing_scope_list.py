@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> RoutingScopeList:
 
     out: RoutingScopeList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_mediaconnect.types.routing_scope.deserialize_json(item))
     return out

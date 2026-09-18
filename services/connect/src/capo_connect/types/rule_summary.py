@@ -71,19 +71,19 @@ def serialize_json(value: RuleSummary) -> dict:
 
 def deserialize_json(data: dict) -> RuleSummary:
     out: RuleSummary = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("RuleSummary.name required")
-    if "RuleId" in data:
+    if data.get("RuleId") is not None:
         out["rule_id"] = data["RuleId"]
     else:
         raise DeserializationError("RuleSummary.rule_id required")
-    if "RuleArn" in data:
+    if data.get("RuleArn") is not None:
         out["rule_arn"] = data["RuleArn"]
     else:
         raise DeserializationError("RuleSummary.rule_arn required")
-    if "EventSourceName" in data:
+    if data.get("EventSourceName") is not None:
         import capo_connect.types.event_source_name
 
         out["event_source_name"] = (
@@ -93,7 +93,7 @@ def deserialize_json(data: dict) -> RuleSummary:
         )
     else:
         raise DeserializationError("RuleSummary.event_source_name required")
-    if "PublishStatus" in data:
+    if data.get("PublishStatus") is not None:
         import capo_connect.types.rule_publish_status
 
         out["publish_status"] = capo_connect.types.rule_publish_status.deserialize_json(
@@ -101,7 +101,7 @@ def deserialize_json(data: dict) -> RuleSummary:
         )
     else:
         raise DeserializationError("RuleSummary.publish_status required")
-    if "ActionSummaries" in data:
+    if data.get("ActionSummaries") is not None:
         import capo_connect.types.action_summaries
 
         out["action_summaries"] = capo_connect.types.action_summaries.deserialize_json(
@@ -109,7 +109,7 @@ def deserialize_json(data: dict) -> RuleSummary:
         )
     else:
         raise DeserializationError("RuleSummary.action_summaries required")
-    if "CreatedTime" in data:
+    if data.get("CreatedTime") is not None:
         import capo_connect.types.timestamp
 
         out["created_time"] = capo_connect.types.timestamp.deserialize_json(
@@ -117,7 +117,7 @@ def deserialize_json(data: dict) -> RuleSummary:
         )
     else:
         raise DeserializationError("RuleSummary.created_time required")
-    if "LastUpdatedTime" in data:
+    if data.get("LastUpdatedTime") is not None:
         import capo_connect.types.timestamp
 
         out["last_updated_time"] = capo_connect.types.timestamp.deserialize_json(

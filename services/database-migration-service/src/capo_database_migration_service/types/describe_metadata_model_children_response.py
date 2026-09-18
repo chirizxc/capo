@@ -36,9 +36,9 @@ def serialize_aws_json_1_1(value: DescribeMetadataModelChildrenResponse) -> dict
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeMetadataModelChildrenResponse:
     out: DescribeMetadataModelChildrenResponse = {}  # type: ignore[typeddict-item]
-    if "Marker" in data:
+    if data.get("Marker") is not None:
         out["marker"] = data["Marker"]
-    if "MetadataModelChildren" in data:
+    if data.get("MetadataModelChildren") is not None:
         import capo_database_migration_service.types.metadata_model_reference_list
 
         out["metadata_model_children"] = (

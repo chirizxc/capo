@@ -45,9 +45,9 @@ def serialize_json(value: DeletionConfig) -> dict:
 
 def deserialize_json(data: dict) -> DeletionConfig:
     out: DeletionConfig = {}  # type: ignore[typeddict-item]
-    if "EdgeRetentionInHours" in data:
+    if data.get("EdgeRetentionInHours") is not None:
         out["edge_retention_in_hours"] = data["EdgeRetentionInHours"]
-    if "LocalSizeConfig" in data:
+    if data.get("LocalSizeConfig") is not None:
         import capo_kinesis_video.types.local_size_config
 
         out["local_size_config"] = (
@@ -55,6 +55,6 @@ def deserialize_json(data: dict) -> DeletionConfig:
                 data["LocalSizeConfig"]
             )
         )
-    if "DeleteAfterUpload" in data:
+    if data.get("DeleteAfterUpload") is not None:
         out["delete_after_upload"] = data["DeleteAfterUpload"]
     return out

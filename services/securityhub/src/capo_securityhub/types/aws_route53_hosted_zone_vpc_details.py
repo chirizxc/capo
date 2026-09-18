@@ -27,8 +27,8 @@ def serialize_json(value: AwsRoute53HostedZoneVpcDetails) -> dict:
 
 def deserialize_json(data: dict) -> AwsRoute53HostedZoneVpcDetails:
     out: AwsRoute53HostedZoneVpcDetails = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "Region" in data:
+    if data.get("Region") is not None:
         out["region"] = data["Region"]
     return out

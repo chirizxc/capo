@@ -42,11 +42,11 @@ def serialize_json(value: FreeTrialInfo) -> dict:
 
 def deserialize_json(data: dict) -> FreeTrialInfo:
     out: FreeTrialInfo = {}  # type: ignore[typeddict-item]
-    if "type" in data:
+    if data.get("type") is not None:
         out["type"] = data["type"]
     else:
         raise DeserializationError("FreeTrialInfo.type required")
-    if "start" in data:
+    if data.get("start") is not None:
         import capo_inspector2.types._prelude.timestamp
 
         out["start"] = capo_inspector2.types._prelude.timestamp.deserialize_json(
@@ -54,7 +54,7 @@ def deserialize_json(data: dict) -> FreeTrialInfo:
         )
     else:
         raise DeserializationError("FreeTrialInfo.start required")
-    if "end" in data:
+    if data.get("end") is not None:
         import capo_inspector2.types._prelude.timestamp
 
         out["end"] = capo_inspector2.types._prelude.timestamp.deserialize_json(
@@ -62,7 +62,7 @@ def deserialize_json(data: dict) -> FreeTrialInfo:
         )
     else:
         raise DeserializationError("FreeTrialInfo.end required")
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
     else:
         raise DeserializationError("FreeTrialInfo.status required")

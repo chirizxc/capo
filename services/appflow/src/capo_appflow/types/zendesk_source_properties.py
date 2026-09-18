@@ -24,7 +24,7 @@ def serialize_json(value: ZendeskSourceProperties) -> dict:
 
 def deserialize_json(data: dict) -> ZendeskSourceProperties:
     out: ZendeskSourceProperties = {}  # type: ignore[typeddict-item]
-    if "object" in data:
+    if data.get("object") is not None:
         out["object"] = data["object"]
     else:
         raise DeserializationError("ZendeskSourceProperties.object required")

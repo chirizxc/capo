@@ -38,9 +38,9 @@ def serialize_json(value: ProjectPeriodicScanConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> ProjectPeriodicScanConfiguration:
     out: ProjectPeriodicScanConfiguration = {}  # type: ignore[typeddict-item]
-    if "frequencyExpression" in data:
+    if data.get("frequencyExpression") is not None:
         out["frequency_expression"] = data["frequencyExpression"]
-    if "ruleSetCategories" in data:
+    if data.get("ruleSetCategories") is not None:
         import capo_inspector2.types.rule_set_categories
 
         out["rule_set_categories"] = (

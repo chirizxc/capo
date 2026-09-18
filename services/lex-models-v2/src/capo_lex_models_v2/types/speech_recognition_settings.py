@@ -44,7 +44,7 @@ def serialize_json(value: SpeechRecognitionSettings) -> dict:
 
 def deserialize_json(data: dict) -> SpeechRecognitionSettings:
     out: SpeechRecognitionSettings = {}  # type: ignore[typeddict-item]
-    if "speechModelPreference" in data:
+    if data.get("speechModelPreference") is not None:
         import capo_lex_models_v2.types.speech_model_preference
 
         out["speech_model_preference"] = (
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> SpeechRecognitionSettings:
                 data["speechModelPreference"]
             )
         )
-    if "speechModelConfig" in data:
+    if data.get("speechModelConfig") is not None:
         import capo_lex_models_v2.types.speech_model_config
 
         out["speech_model_config"] = (

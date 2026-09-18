@@ -107,7 +107,15 @@ def serialize_aws_json_1_1(value: MaterializedViewRefreshTaskRun) -> dict:
         )
     if "error_message" in value:
         out["ErrorMessage"] = value["error_message"]
-    out["DPUSeconds"] = value.get("dpu_seconds", 0)
+    out["DPUSeconds"] = (
+        "NaN"
+        if value.get("dpu_seconds", 0) != value.get("dpu_seconds", 0)
+        else "Infinity"
+        if value.get("dpu_seconds", 0) == float("inf")
+        else "-Infinity"
+        if value.get("dpu_seconds", 0) == float("-inf")
+        else value.get("dpu_seconds", 0)
+    )
     if "refresh_type" in value:
         import capo_glue.types.materialized_view_refresh_type
 
@@ -123,21 +131,21 @@ def serialize_aws_json_1_1(value: MaterializedViewRefreshTaskRun) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> MaterializedViewRefreshTaskRun:
     out: MaterializedViewRefreshTaskRun = {}  # type: ignore[typeddict-item]
-    if "CustomerId" in data:
+    if data.get("CustomerId") is not None:
         out["customer_id"] = data["CustomerId"]
-    if "MaterializedViewRefreshTaskRunId" in data:
+    if data.get("MaterializedViewRefreshTaskRunId") is not None:
         out["materialized_view_refresh_task_run_id"] = data[
             "MaterializedViewRefreshTaskRunId"
         ]
-    if "DatabaseName" in data:
+    if data.get("DatabaseName") is not None:
         out["database_name"] = data["DatabaseName"]
-    if "TableName" in data:
+    if data.get("TableName") is not None:
         out["table_name"] = data["TableName"]
-    if "CatalogId" in data:
+    if data.get("CatalogId") is not None:
         out["catalog_id"] = data["CatalogId"]
-    if "Role" in data:
+    if data.get("Role") is not None:
         out["role"] = data["Role"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_glue.types.materialized_view_refresh_state
 
         out["status"] = (
@@ -145,37 +153,37 @@ def deserialize_aws_json_1_1(data: dict) -> MaterializedViewRefreshTaskRun:
                 data["Status"]
             )
         )
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_glue.types.timestamp
 
         out["creation_time"] = capo_glue.types.timestamp.deserialize_aws_json_1_1(
             data["CreationTime"]
         )
-    if "LastUpdated" in data:
+    if data.get("LastUpdated") is not None:
         import capo_glue.types.timestamp
 
         out["last_updated"] = capo_glue.types.timestamp.deserialize_aws_json_1_1(
             data["LastUpdated"]
         )
-    if "StartTime" in data:
+    if data.get("StartTime") is not None:
         import capo_glue.types.timestamp
 
         out["start_time"] = capo_glue.types.timestamp.deserialize_aws_json_1_1(
             data["StartTime"]
         )
-    if "EndTime" in data:
+    if data.get("EndTime") is not None:
         import capo_glue.types.timestamp
 
         out["end_time"] = capo_glue.types.timestamp.deserialize_aws_json_1_1(
             data["EndTime"]
         )
-    if "ErrorMessage" in data:
+    if data.get("ErrorMessage") is not None:
         out["error_message"] = data["ErrorMessage"]
-    if "DPUSeconds" in data:
-        out["dpu_seconds"] = data["DPUSeconds"]
+    if data.get("DPUSeconds") is not None:
+        out["dpu_seconds"] = float(data["DPUSeconds"])
     else:
         out["dpu_seconds"] = 0
-    if "RefreshType" in data:
+    if data.get("RefreshType") is not None:
         import capo_glue.types.materialized_view_refresh_type
 
         out["refresh_type"] = (
@@ -183,6 +191,6 @@ def deserialize_aws_json_1_1(data: dict) -> MaterializedViewRefreshTaskRun:
                 data["RefreshType"]
             )
         )
-    if "ProcessedBytes" in data:
+    if data.get("ProcessedBytes") is not None:
         out["processed_bytes"] = data["ProcessedBytes"]
     return out

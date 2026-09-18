@@ -33,18 +33,18 @@ def serialize_json(value: DescribeAppVersionResourcesResolutionStatusRequest) ->
 
 def deserialize_json(data: dict) -> DescribeAppVersionResourcesResolutionStatusRequest:
     out: DescribeAppVersionResourcesResolutionStatusRequest = {}  # type: ignore[typeddict-item]
-    if "appArn" in data:
+    if data.get("appArn") is not None:
         out["app_arn"] = data["appArn"]
     else:
         raise DeserializationError(
             "DescribeAppVersionResourcesResolutionStatusRequest.app_arn required"
         )
-    if "appVersion" in data:
+    if data.get("appVersion") is not None:
         out["app_version"] = data["appVersion"]
     else:
         raise DeserializationError(
             "DescribeAppVersionResourcesResolutionStatusRequest.app_version required"
         )
-    if "resolutionId" in data:
+    if data.get("resolutionId") is not None:
         out["resolution_id"] = data["resolutionId"]
     return out

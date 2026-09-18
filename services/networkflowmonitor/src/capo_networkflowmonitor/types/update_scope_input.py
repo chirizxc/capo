@@ -46,7 +46,7 @@ def serialize_json(value: UpdateScopeInput) -> dict:
 
 def deserialize_json(data: dict) -> UpdateScopeInput:
     out: UpdateScopeInput = {}  # type: ignore[typeddict-item]
-    if "resourcesToAdd" in data:
+    if data.get("resourcesToAdd") is not None:
         import capo_networkflowmonitor.types.target_resource_list
 
         out["resources_to_add"] = (
@@ -54,7 +54,7 @@ def deserialize_json(data: dict) -> UpdateScopeInput:
                 data["resourcesToAdd"]
             )
         )
-    if "resourcesToDelete" in data:
+    if data.get("resourcesToDelete") is not None:
         import capo_networkflowmonitor.types.target_resource_list
 
         out["resources_to_delete"] = (

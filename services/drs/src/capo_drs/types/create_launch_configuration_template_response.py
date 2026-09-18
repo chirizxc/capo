@@ -31,7 +31,7 @@ def serialize_json(value: CreateLaunchConfigurationTemplateResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateLaunchConfigurationTemplateResponse:
     out: CreateLaunchConfigurationTemplateResponse = {}  # type: ignore[typeddict-item]
-    if "launchConfigurationTemplate" in data:
+    if data.get("launchConfigurationTemplate") is not None:
         import capo_drs.types.launch_configuration_template
 
         out["launch_configuration_template"] = (

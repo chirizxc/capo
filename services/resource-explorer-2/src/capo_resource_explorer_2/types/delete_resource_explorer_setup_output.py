@@ -19,7 +19,7 @@ def serialize_json(value: DeleteResourceExplorerSetupOutput) -> dict:
 
 def deserialize_json(data: dict) -> DeleteResourceExplorerSetupOutput:
     out: DeleteResourceExplorerSetupOutput = {}  # type: ignore[typeddict-item]
-    if "TaskId" in data:
+    if data.get("TaskId") is not None:
         out["task_id"] = data["TaskId"]
     else:
         raise DeserializationError("DeleteResourceExplorerSetupOutput.task_id required")

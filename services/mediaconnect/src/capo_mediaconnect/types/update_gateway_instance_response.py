@@ -35,7 +35,7 @@ def serialize_json(value: UpdateGatewayInstanceResponse) -> dict:
 
 def deserialize_json(data: dict) -> UpdateGatewayInstanceResponse:
     out: UpdateGatewayInstanceResponse = {}  # type: ignore[typeddict-item]
-    if "bridgePlacement" in data:
+    if data.get("bridgePlacement") is not None:
         import capo_mediaconnect.types.bridge_placement
 
         out["bridge_placement"] = (
@@ -43,6 +43,6 @@ def deserialize_json(data: dict) -> UpdateGatewayInstanceResponse:
                 data["bridgePlacement"]
             )
         )
-    if "gatewayInstanceArn" in data:
+    if data.get("gatewayInstanceArn") is not None:
         out["gateway_instance_arn"] = data["gatewayInstanceArn"]
     return out

@@ -30,7 +30,7 @@ def serialize_json(value: UpdateAnalyzerResponse) -> dict:
 
 def deserialize_json(data: dict) -> UpdateAnalyzerResponse:
     out: UpdateAnalyzerResponse = {}  # type: ignore[typeddict-item]
-    if "configuration" in data:
+    if data.get("configuration") is not None:
         import capo_accessanalyzer.types.analyzer_configuration
 
         out["configuration"] = (

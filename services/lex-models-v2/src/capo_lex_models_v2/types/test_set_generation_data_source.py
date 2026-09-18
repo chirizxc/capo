@@ -31,7 +31,7 @@ def serialize_json(value: TestSetGenerationDataSource) -> dict:
 
 def deserialize_json(data: dict) -> TestSetGenerationDataSource:
     out: TestSetGenerationDataSource = {}  # type: ignore[typeddict-item]
-    if "conversationLogsDataSource" in data:
+    if data.get("conversationLogsDataSource") is not None:
         import capo_lex_models_v2.types.conversation_logs_data_source
 
         out["conversation_logs_data_source"] = (

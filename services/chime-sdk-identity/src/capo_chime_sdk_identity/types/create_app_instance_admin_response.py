@@ -32,7 +32,7 @@ def serialize_json(value: CreateAppInstanceAdminResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateAppInstanceAdminResponse:
     out: CreateAppInstanceAdminResponse = {}  # type: ignore[typeddict-item]
-    if "AppInstanceAdmin" in data:
+    if data.get("AppInstanceAdmin") is not None:
         import capo_chime_sdk_identity.types.identity
 
         out["app_instance_admin"] = (
@@ -40,6 +40,6 @@ def deserialize_json(data: dict) -> CreateAppInstanceAdminResponse:
                 data["AppInstanceAdmin"]
             )
         )
-    if "AppInstanceArn" in data:
+    if data.get("AppInstanceArn") is not None:
         out["app_instance_arn"] = data["AppInstanceArn"]
     return out

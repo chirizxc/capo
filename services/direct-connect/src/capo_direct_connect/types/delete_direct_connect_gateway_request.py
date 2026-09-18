@@ -26,7 +26,7 @@ def serialize_aws_json_1_1(value: DeleteDirectConnectGatewayRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteDirectConnectGatewayRequest:
     out: DeleteDirectConnectGatewayRequest = {}  # type: ignore[typeddict-item]
-    if "directConnectGatewayId" in data:
+    if data.get("directConnectGatewayId") is not None:
         out["direct_connect_gateway_id"] = data["directConnectGatewayId"]
     else:
         raise DeserializationError(

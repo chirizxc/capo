@@ -116,51 +116,51 @@ def serialize_json(value: AuthenticationProfile) -> dict:
 
 def deserialize_json(data: dict) -> AuthenticationProfile:
     out: AuthenticationProfile = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "AllowedIps" in data:
+    if data.get("AllowedIps") is not None:
         import capo_connect.types.ip_cidr_list
 
         out["allowed_ips"] = capo_connect.types.ip_cidr_list.deserialize_json(
             data["AllowedIps"]
         )
-    if "BlockedIps" in data:
+    if data.get("BlockedIps") is not None:
         import capo_connect.types.ip_cidr_list
 
         out["blocked_ips"] = capo_connect.types.ip_cidr_list.deserialize_json(
             data["BlockedIps"]
         )
-    if "IsDefault" in data:
+    if data.get("IsDefault") is not None:
         out["is_default"] = data["IsDefault"]
     else:
         out["is_default"] = False
-    if "CreatedTime" in data:
+    if data.get("CreatedTime") is not None:
         import capo_connect.types.timestamp
 
         out["created_time"] = capo_connect.types.timestamp.deserialize_json(
             data["CreatedTime"]
         )
-    if "LastModifiedTime" in data:
+    if data.get("LastModifiedTime") is not None:
         import capo_connect.types.timestamp
 
         out["last_modified_time"] = capo_connect.types.timestamp.deserialize_json(
             data["LastModifiedTime"]
         )
-    if "LastModifiedRegion" in data:
+    if data.get("LastModifiedRegion") is not None:
         out["last_modified_region"] = data["LastModifiedRegion"]
-    if "PeriodicSessionDuration" in data:
+    if data.get("PeriodicSessionDuration") is not None:
         out["periodic_session_duration"] = data["PeriodicSessionDuration"]
-    if "MaxSessionDuration" in data:
+    if data.get("MaxSessionDuration") is not None:
         out["max_session_duration"] = data["MaxSessionDuration"]
-    if "SessionInactivityDuration" in data:
+    if data.get("SessionInactivityDuration") is not None:
         out["session_inactivity_duration"] = data["SessionInactivityDuration"]
-    if "SessionInactivityHandlingEnabled" in data:
+    if data.get("SessionInactivityHandlingEnabled") is not None:
         out["session_inactivity_handling_enabled"] = data[
             "SessionInactivityHandlingEnabled"
         ]

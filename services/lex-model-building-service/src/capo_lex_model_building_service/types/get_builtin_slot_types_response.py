@@ -38,7 +38,7 @@ def serialize_json(value: GetBuiltinSlotTypesResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetBuiltinSlotTypesResponse:
     out: GetBuiltinSlotTypesResponse = {}  # type: ignore[typeddict-item]
-    if "slotTypes" in data:
+    if data.get("slotTypes") is not None:
         import capo_lex_model_building_service.types.builtin_slot_type_metadata_list
 
         out["slot_types"] = (
@@ -46,6 +46,6 @@ def deserialize_json(data: dict) -> GetBuiltinSlotTypesResponse:
                 data["slotTypes"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

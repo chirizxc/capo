@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> ApplicationComponentStrategies:
 
     out: ApplicationComponentStrategies = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_migrationhubstrategy.types.application_component_strategy.deserialize_json(
                 item

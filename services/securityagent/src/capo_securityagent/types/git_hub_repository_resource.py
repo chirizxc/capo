@@ -28,11 +28,11 @@ def serialize_json(value: GitHubRepositoryResource) -> dict:
 
 def deserialize_json(data: dict) -> GitHubRepositoryResource:
     out: GitHubRepositoryResource = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("GitHubRepositoryResource.name required")
-    if "owner" in data:
+    if data.get("owner") is not None:
         out["owner"] = data["owner"]
     else:
         raise DeserializationError("GitHubRepositoryResource.owner required")

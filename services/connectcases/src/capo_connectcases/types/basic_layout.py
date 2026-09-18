@@ -35,13 +35,13 @@ def serialize_json(value: BasicLayout) -> dict:
 
 def deserialize_json(data: dict) -> BasicLayout:
     out: BasicLayout = {}  # type: ignore[typeddict-item]
-    if "topPanel" in data:
+    if data.get("topPanel") is not None:
         import capo_connectcases.types.layout_sections
 
         out["top_panel"] = capo_connectcases.types.layout_sections.deserialize_json(
             data["topPanel"]
         )
-    if "moreInfo" in data:
+    if data.get("moreInfo") is not None:
         import capo_connectcases.types.layout_sections
 
         out["more_info"] = capo_connectcases.types.layout_sections.deserialize_json(

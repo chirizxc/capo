@@ -27,7 +27,7 @@ def serialize_json(value: ArchiveS3Settings) -> dict:
 
 def deserialize_json(data: dict) -> ArchiveS3Settings:
     out: ArchiveS3Settings = {}  # type: ignore[typeddict-item]
-    if "cannedAcl" in data:
+    if data.get("cannedAcl") is not None:
         import capo_medialive.types.s3_canned_acl
 
         out["canned_acl"] = capo_medialive.types.s3_canned_acl.deserialize_json(

@@ -41,15 +41,15 @@ def serialize_json(value: MetricDataResult) -> dict:
 
 def deserialize_json(data: dict) -> MetricDataResult:
     out: MetricDataResult = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "Timestamps" in data:
+    if data.get("Timestamps") is not None:
         import capo_sesv2.types.timestamp_list
 
         out["timestamps"] = capo_sesv2.types.timestamp_list.deserialize_json(
             data["Timestamps"]
         )
-    if "Values" in data:
+    if data.get("Values") is not None:
         import capo_sesv2.types.metric_value_list
 
         out["values"] = capo_sesv2.types.metric_value_list.deserialize_json(

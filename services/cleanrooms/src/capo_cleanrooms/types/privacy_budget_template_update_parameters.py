@@ -52,7 +52,7 @@ def serialize_json(value: PrivacyBudgetTemplateUpdateParameters) -> dict:
 
 
 def deserialize_json(data: dict) -> PrivacyBudgetTemplateUpdateParameters:
-    if "differentialPrivacy" in data:
+    if data.get("differentialPrivacy") is not None:
         import capo_cleanrooms.types.differential_privacy_template_update_parameters
 
         return {
@@ -60,7 +60,7 @@ def deserialize_json(data: dict) -> PrivacyBudgetTemplateUpdateParameters:
                 data["differentialPrivacy"]
             )
         }
-    elif "accessBudget" in data:
+    elif data.get("accessBudget") is not None:
         import capo_cleanrooms.types.access_budgets_privacy_template_update_parameters
 
         return {

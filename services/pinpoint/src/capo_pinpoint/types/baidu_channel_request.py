@@ -32,10 +32,10 @@ def serialize_json(value: BaiduChannelRequest) -> dict:
 
 def deserialize_json(data: dict) -> BaiduChannelRequest:
     out: BaiduChannelRequest = {}  # type: ignore[typeddict-item]
-    if "ApiKey" in data:
+    if data.get("ApiKey") is not None:
         out["api_key"] = data["ApiKey"]
-    if "Enabled" in data:
+    if data.get("Enabled") is not None:
         out["enabled"] = data["Enabled"]
-    if "SecretKey" in data:
+    if data.get("SecretKey") is not None:
         out["secret_key"] = data["SecretKey"]
     return out

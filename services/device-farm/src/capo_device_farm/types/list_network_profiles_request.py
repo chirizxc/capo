@@ -40,11 +40,11 @@ def serialize_aws_json_1_1(value: ListNetworkProfilesRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListNetworkProfilesRequest:
     out: ListNetworkProfilesRequest = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("ListNetworkProfilesRequest.arn required")
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_device_farm.types.network_profile_type
 
         out["type"] = (
@@ -52,6 +52,6 @@ def deserialize_aws_json_1_1(data: dict) -> ListNetworkProfilesRequest:
                 data["type"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

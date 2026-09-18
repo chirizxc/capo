@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: GetAccountConfigurationResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetAccountConfigurationResponse:
     out: GetAccountConfigurationResponse = {}  # type: ignore[typeddict-item]
-    if "ExpiryEvents" in data:
+    if data.get("ExpiryEvents") is not None:
         import capo_acm.types.expiry_events_configuration
 
         out["expiry_events"] = (

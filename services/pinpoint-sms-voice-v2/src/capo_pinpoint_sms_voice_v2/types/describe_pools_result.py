@@ -36,7 +36,7 @@ def serialize_aws_json_1_0(value: DescribePoolsResult) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> DescribePoolsResult:
     out: DescribePoolsResult = {}  # type: ignore[typeddict-item]
-    if "Pools" in data:
+    if data.get("Pools") is not None:
         import capo_pinpoint_sms_voice_v2.types.pool_information_list
 
         out["pools"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_0(data: dict) -> DescribePoolsResult:
                 data["Pools"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

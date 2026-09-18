@@ -100,25 +100,25 @@ def serialize_json(value: EvaluationMetadata) -> dict:
 
 def deserialize_json(data: dict) -> EvaluationMetadata:
     out: EvaluationMetadata = {}  # type: ignore[typeddict-item]
-    if "ContactId" in data:
+    if data.get("ContactId") is not None:
         out["contact_id"] = data["ContactId"]
     else:
         raise DeserializationError("EvaluationMetadata.contact_id required")
-    if "EvaluatorArn" in data:
+    if data.get("EvaluatorArn") is not None:
         out["evaluator_arn"] = data["EvaluatorArn"]
     else:
         raise DeserializationError("EvaluationMetadata.evaluator_arn required")
-    if "ContactAgentId" in data:
+    if data.get("ContactAgentId") is not None:
         out["contact_agent_id"] = data["ContactAgentId"]
-    if "CalibrationSessionId" in data:
+    if data.get("CalibrationSessionId") is not None:
         out["calibration_session_id"] = data["CalibrationSessionId"]
-    if "Score" in data:
+    if data.get("Score") is not None:
         import capo_connect.types.evaluation_score
 
         out["score"] = capo_connect.types.evaluation_score.deserialize_json(
             data["Score"]
         )
-    if "AutoEvaluation" in data:
+    if data.get("AutoEvaluation") is not None:
         import capo_connect.types.auto_evaluation_details
 
         out["auto_evaluation"] = (
@@ -126,7 +126,7 @@ def deserialize_json(data: dict) -> EvaluationMetadata:
                 data["AutoEvaluation"]
             )
         )
-    if "Acknowledgement" in data:
+    if data.get("Acknowledgement") is not None:
         import capo_connect.types.evaluation_acknowledgement
 
         out["acknowledgement"] = (
@@ -134,13 +134,13 @@ def deserialize_json(data: dict) -> EvaluationMetadata:
                 data["Acknowledgement"]
             )
         )
-    if "Review" in data:
+    if data.get("Review") is not None:
         import capo_connect.types.evaluation_review_metadata
 
         out["review"] = capo_connect.types.evaluation_review_metadata.deserialize_json(
             data["Review"]
         )
-    if "ContactParticipant" in data:
+    if data.get("ContactParticipant") is not None:
         import capo_connect.types.evaluation_contact_participant
 
         out["contact_participant"] = (
@@ -148,6 +148,6 @@ def deserialize_json(data: dict) -> EvaluationMetadata:
                 data["ContactParticipant"]
             )
         )
-    if "SamplingJobId" in data:
+    if data.get("SamplingJobId") is not None:
         out["sampling_job_id"] = data["SamplingJobId"]
     return out

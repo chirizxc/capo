@@ -43,7 +43,7 @@ def serialize_json(value: RoutingPolicyAssociationDetail) -> dict:
 
 def deserialize_json(data: dict) -> RoutingPolicyAssociationDetail:
     out: RoutingPolicyAssociationDetail = {}  # type: ignore[typeddict-item]
-    if "RoutingPolicyNames" in data:
+    if data.get("RoutingPolicyNames") is not None:
         import capo_networkmanager.types.constrained_string_list
 
         out["routing_policy_names"] = (
@@ -51,7 +51,7 @@ def deserialize_json(data: dict) -> RoutingPolicyAssociationDetail:
                 data["RoutingPolicyNames"]
             )
         )
-    if "SharedSegments" in data:
+    if data.get("SharedSegments") is not None:
         import capo_networkmanager.types.constrained_string_list
 
         out["shared_segments"] = (

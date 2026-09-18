@@ -35,7 +35,7 @@ def serialize_json(value: DescribeInsightDetailsRequest) -> dict:
 
 def deserialize_json(data: dict) -> DescribeInsightDetailsRequest:
     out: DescribeInsightDetailsRequest = {}  # type: ignore[typeddict-item]
-    if "Entity" in data:
+    if data.get("Entity") is not None:
         import capo_opensearch.types.insight_entity
 
         out["entity"] = capo_opensearch.types.insight_entity.deserialize_json(
@@ -43,10 +43,10 @@ def deserialize_json(data: dict) -> DescribeInsightDetailsRequest:
         )
     else:
         raise DeserializationError("DescribeInsightDetailsRequest.entity required")
-    if "InsightId" in data:
+    if data.get("InsightId") is not None:
         out["insight_id"] = data["InsightId"]
     else:
         raise DeserializationError("DescribeInsightDetailsRequest.insight_id required")
-    if "ShowHtmlContent" in data:
+    if data.get("ShowHtmlContent") is not None:
         out["show_html_content"] = data["ShowHtmlContent"]
     return out

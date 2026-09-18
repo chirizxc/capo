@@ -26,7 +26,7 @@ def serialize_json(value: GetResourceLogLevelResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetResourceLogLevelResponse:
     out: GetResourceLogLevelResponse = {}  # type: ignore[typeddict-item]
-    if "LogLevel" in data:
+    if data.get("LogLevel") is not None:
         import capo_iot_wireless.types.log_level
 
         out["log_level"] = capo_iot_wireless.types.log_level.deserialize_json(

@@ -39,13 +39,13 @@ def serialize_aws_json_1_1(value: CreateRepositoryResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateRepositoryResponse:
     out: CreateRepositoryResponse = {}  # type: ignore[typeddict-item]
-    if "repository" in data:
+    if data.get("repository") is not None:
         import capo_ecr_public.types.repository
 
         out["repository"] = capo_ecr_public.types.repository.deserialize_aws_json_1_1(
             data["repository"]
         )
-    if "catalogData" in data:
+    if data.get("catalogData") is not None:
         import capo_ecr_public.types.repository_catalog_data
 
         out["catalog_data"] = (

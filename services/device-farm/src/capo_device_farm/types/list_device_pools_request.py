@@ -38,16 +38,16 @@ def serialize_aws_json_1_1(value: ListDevicePoolsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListDevicePoolsRequest:
     out: ListDevicePoolsRequest = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("ListDevicePoolsRequest.arn required")
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_device_farm.types.device_pool_type
 
         out["type"] = capo_device_farm.types.device_pool_type.deserialize_aws_json_1_1(
             data["type"]
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

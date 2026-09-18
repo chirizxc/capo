@@ -28,8 +28,8 @@ def serialize_aws_json_1_1(value: PresignedUrlAccessConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PresignedUrlAccessConfig:
     out: PresignedUrlAccessConfig = {}  # type: ignore[typeddict-item]
-    if "AcceptEula" in data:
+    if data.get("AcceptEula") is not None:
         out["accept_eula"] = data["AcceptEula"]
-    if "ExpectedS3Url" in data:
+    if data.get("ExpectedS3Url") is not None:
         out["expected_s3_url"] = data["ExpectedS3Url"]
     return out

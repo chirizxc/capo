@@ -67,11 +67,11 @@ def serialize_aws_json_1_1(value: CreateProjectInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateProjectInput:
     out: CreateProjectInput = {}  # type: ignore[typeddict-item]
-    if "ProjectName" in data:
+    if data.get("ProjectName") is not None:
         out["project_name"] = data["ProjectName"]
-    if "ProjectDescription" in data:
+    if data.get("ProjectDescription") is not None:
         out["project_description"] = data["ProjectDescription"]
-    if "ServiceCatalogProvisioningDetails" in data:
+    if data.get("ServiceCatalogProvisioningDetails") is not None:
         import capo_sagemaker.types.service_catalog_provisioning_details
 
         out["service_catalog_provisioning_details"] = (
@@ -79,13 +79,13 @@ def deserialize_aws_json_1_1(data: dict) -> CreateProjectInput:
                 data["ServiceCatalogProvisioningDetails"]
             )
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_sagemaker.types.tag_list
 
         out["tags"] = capo_sagemaker.types.tag_list.deserialize_aws_json_1_1(
             data["Tags"]
         )
-    if "TemplateProviders" in data:
+    if data.get("TemplateProviders") is not None:
         import capo_sagemaker.types.create_template_provider_list
 
         out["template_providers"] = (

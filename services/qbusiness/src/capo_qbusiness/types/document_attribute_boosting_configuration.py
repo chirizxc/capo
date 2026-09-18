@@ -84,7 +84,7 @@ def serialize_json(value: DocumentAttributeBoostingConfiguration) -> dict:
 
 
 def deserialize_json(data: dict) -> DocumentAttributeBoostingConfiguration:
-    if "numberConfiguration" in data:
+    if data.get("numberConfiguration") is not None:
         import capo_qbusiness.types.number_attribute_boosting_configuration
 
         return {
@@ -92,7 +92,7 @@ def deserialize_json(data: dict) -> DocumentAttributeBoostingConfiguration:
                 data["numberConfiguration"]
             )
         }
-    elif "stringConfiguration" in data:
+    elif data.get("stringConfiguration") is not None:
         import capo_qbusiness.types.string_attribute_boosting_configuration
 
         return {
@@ -100,7 +100,7 @@ def deserialize_json(data: dict) -> DocumentAttributeBoostingConfiguration:
                 data["stringConfiguration"]
             )
         }
-    elif "dateConfiguration" in data:
+    elif data.get("dateConfiguration") is not None:
         import capo_qbusiness.types.date_attribute_boosting_configuration
 
         return {
@@ -108,7 +108,7 @@ def deserialize_json(data: dict) -> DocumentAttributeBoostingConfiguration:
                 data["dateConfiguration"]
             )
         }
-    elif "stringListConfiguration" in data:
+    elif data.get("stringListConfiguration") is not None:
         import capo_qbusiness.types.string_list_attribute_boosting_configuration
 
         return {

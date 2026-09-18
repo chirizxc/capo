@@ -29,6 +29,8 @@ def deserialize_aws_json_1_0(data: list) -> PrimaryNeedsFromAws:
 
     out: PrimaryNeedsFromAws = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_partnercentral_selling.types.primary_need_from_aws.deserialize_aws_json_1_0(
                 item

@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> RejectGroupingRecommendationEntries:
 
     out: RejectGroupingRecommendationEntries = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_resiliencehub.types.reject_grouping_recommendation_entry.deserialize_json(
                 item

@@ -31,7 +31,7 @@ def serialize_json(value: GetAssetPropertyValueResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetAssetPropertyValueResponse:
     out: GetAssetPropertyValueResponse = {}  # type: ignore[typeddict-item]
-    if "propertyValue" in data:
+    if data.get("propertyValue") is not None:
         import capo_iotsitewise.types.asset_property_value
 
         out["property_value"] = (

@@ -28,13 +28,13 @@ def serialize_aws_json_1_0(value: DescribeSpeakerEnrollmentJobRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> DescribeSpeakerEnrollmentJobRequest:
     out: DescribeSpeakerEnrollmentJobRequest = {}  # type: ignore[typeddict-item]
-    if "DomainId" in data:
+    if data.get("DomainId") is not None:
         out["domain_id"] = data["DomainId"]
     else:
         raise DeserializationError(
             "DescribeSpeakerEnrollmentJobRequest.domain_id required"
         )
-    if "JobId" in data:
+    if data.get("JobId") is not None:
         out["job_id"] = data["JobId"]
     else:
         raise DeserializationError(

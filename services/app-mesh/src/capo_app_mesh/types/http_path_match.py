@@ -28,8 +28,8 @@ def serialize_json(value: HttpPathMatch) -> dict:
 
 def deserialize_json(data: dict) -> HttpPathMatch:
     out: HttpPathMatch = {}  # type: ignore[typeddict-item]
-    if "exact" in data:
+    if data.get("exact") is not None:
         out["exact"] = data["exact"]
-    if "regex" in data:
+    if data.get("regex") is not None:
         out["regex"] = data["regex"]
     return out

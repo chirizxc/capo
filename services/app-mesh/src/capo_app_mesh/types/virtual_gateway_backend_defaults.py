@@ -31,7 +31,7 @@ def serialize_json(value: VirtualGatewayBackendDefaults) -> dict:
 
 def deserialize_json(data: dict) -> VirtualGatewayBackendDefaults:
     out: VirtualGatewayBackendDefaults = {}  # type: ignore[typeddict-item]
-    if "clientPolicy" in data:
+    if data.get("clientPolicy") is not None:
         import capo_app_mesh.types.virtual_gateway_client_policy
 
         out["client_policy"] = (

@@ -32,10 +32,10 @@ def serialize_json(value: UnprocessedAutomationRule) -> dict:
 
 def deserialize_json(data: dict) -> UnprocessedAutomationRule:
     out: UnprocessedAutomationRule = {}  # type: ignore[typeddict-item]
-    if "RuleArn" in data:
+    if data.get("RuleArn") is not None:
         out["rule_arn"] = data["RuleArn"]
-    if "ErrorCode" in data:
+    if data.get("ErrorCode") is not None:
         out["error_code"] = data["ErrorCode"]
-    if "ErrorMessage" in data:
+    if data.get("ErrorMessage") is not None:
         out["error_message"] = data["ErrorMessage"]
     return out

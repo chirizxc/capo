@@ -38,13 +38,13 @@ def serialize_json(value: UpdateSelfUpgradeRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateSelfUpgradeRequest:
     out: UpdateSelfUpgradeRequest = {}  # type: ignore[typeddict-item]
-    if "UpgradeRequestId" in data:
+    if data.get("UpgradeRequestId") is not None:
         out["upgrade_request_id"] = data["UpgradeRequestId"]
     else:
         raise DeserializationError(
             "UpdateSelfUpgradeRequest.upgrade_request_id required"
         )
-    if "Action" in data:
+    if data.get("Action") is not None:
         import capo_quicksight.types.self_upgrade_admin_action
 
         out["action"] = (

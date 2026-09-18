@@ -53,20 +53,20 @@ def serialize_json(value: ClaimPhoneNumberRequest) -> dict:
 
 def deserialize_json(data: dict) -> ClaimPhoneNumberRequest:
     out: ClaimPhoneNumberRequest = {}  # type: ignore[typeddict-item]
-    if "TargetArn" in data:
+    if data.get("TargetArn") is not None:
         out["target_arn"] = data["TargetArn"]
-    if "InstanceId" in data:
+    if data.get("InstanceId") is not None:
         out["instance_id"] = data["InstanceId"]
-    if "PhoneNumber" in data:
+    if data.get("PhoneNumber") is not None:
         out["phone_number"] = data["PhoneNumber"]
     else:
         raise DeserializationError("ClaimPhoneNumberRequest.phone_number required")
-    if "PhoneNumberDescription" in data:
+    if data.get("PhoneNumberDescription") is not None:
         out["phone_number_description"] = data["PhoneNumberDescription"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_connect.types.tag_map
 
         out["tags"] = capo_connect.types.tag_map.deserialize_json(data["Tags"])
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
     return out

@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> SensitiveDataDetectionsList:
 
     out: SensitiveDataDetectionsList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_securityhub.types.sensitive_data_detections.deserialize_json(item)
         )

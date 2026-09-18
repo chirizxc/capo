@@ -39,13 +39,13 @@ def serialize_json(value: StreamChannelDefinition) -> dict:
 
 def deserialize_json(data: dict) -> StreamChannelDefinition:
     out: StreamChannelDefinition = {}  # type: ignore[typeddict-item]
-    if "NumberOfChannels" in data:
+    if data.get("NumberOfChannels") is not None:
         out["number_of_channels"] = data["NumberOfChannels"]
     else:
         raise DeserializationError(
             "StreamChannelDefinition.number_of_channels required"
         )
-    if "ChannelDefinitions" in data:
+    if data.get("ChannelDefinitions") is not None:
         import capo_chime_sdk_media_pipelines.types.channel_definitions
 
         out["channel_definitions"] = (

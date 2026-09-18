@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> RiskTypeList:
 
     out: RiskTypeList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_securityagent.types.risk_type.deserialize_json(item))
     return out

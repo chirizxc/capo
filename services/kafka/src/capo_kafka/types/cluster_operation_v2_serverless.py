@@ -56,7 +56,7 @@ def serialize_json(value: ClusterOperationV2Serverless) -> dict:
 
 def deserialize_json(data: dict) -> ClusterOperationV2Serverless:
     out: ClusterOperationV2Serverless = {}  # type: ignore[typeddict-item]
-    if "sourceClusterInfo" in data:
+    if data.get("sourceClusterInfo") is not None:
         import capo_kafka.types.serverless_connectivity_info
 
         out["source_cluster_info"] = (
@@ -64,7 +64,7 @@ def deserialize_json(data: dict) -> ClusterOperationV2Serverless:
                 data["sourceClusterInfo"]
             )
         )
-    if "targetClusterInfo" in data:
+    if data.get("targetClusterInfo") is not None:
         import capo_kafka.types.serverless_connectivity_info
 
         out["target_cluster_info"] = (
@@ -72,7 +72,7 @@ def deserialize_json(data: dict) -> ClusterOperationV2Serverless:
                 data["targetClusterInfo"]
             )
         )
-    if "vpcConnectionInfo" in data:
+    if data.get("vpcConnectionInfo") is not None:
         import capo_kafka.types.vpc_connection_info_serverless
 
         out["vpc_connection_info"] = (

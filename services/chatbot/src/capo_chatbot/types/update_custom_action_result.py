@@ -24,7 +24,7 @@ def serialize_json(value: UpdateCustomActionResult) -> dict:
 
 def deserialize_json(data: dict) -> UpdateCustomActionResult:
     out: UpdateCustomActionResult = {}  # type: ignore[typeddict-item]
-    if "CustomActionArn" in data:
+    if data.get("CustomActionArn") is not None:
         out["custom_action_arn"] = data["CustomActionArn"]
     else:
         raise DeserializationError(

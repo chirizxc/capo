@@ -28,8 +28,8 @@ def serialize_aws_json_1_0(value: IamInstanceProfileSpecification) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> IamInstanceProfileSpecification:
     out: IamInstanceProfileSpecification = {}  # type: ignore[typeddict-item]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     return out

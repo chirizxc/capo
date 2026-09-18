@@ -38,12 +38,12 @@ def serialize_json(value: TokenFilter) -> dict:
 
 def deserialize_json(data: dict) -> TokenFilter:
     out: TokenFilter = {}  # type: ignore[typeddict-item]
-    if "network" in data:
+    if data.get("network") is not None:
         out["network"] = data["network"]
     else:
         raise DeserializationError("TokenFilter.network required")
-    if "contractAddress" in data:
+    if data.get("contractAddress") is not None:
         out["contract_address"] = data["contractAddress"]
-    if "tokenId" in data:
+    if data.get("tokenId") is not None:
         out["token_id"] = data["tokenId"]
     return out

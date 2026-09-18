@@ -36,7 +36,7 @@ def serialize_json(value: ListEmailTemplatesResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListEmailTemplatesResponse:
     out: ListEmailTemplatesResponse = {}  # type: ignore[typeddict-item]
-    if "TemplatesMetadata" in data:
+    if data.get("TemplatesMetadata") is not None:
         import capo_sesv2.types.email_template_metadata_list
 
         out["templates_metadata"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> ListEmailTemplatesResponse:
                 data["TemplatesMetadata"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

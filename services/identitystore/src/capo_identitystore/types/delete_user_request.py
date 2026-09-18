@@ -28,11 +28,11 @@ def serialize_aws_json_1_1(value: DeleteUserRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteUserRequest:
     out: DeleteUserRequest = {}  # type: ignore[typeddict-item]
-    if "IdentityStoreId" in data:
+    if data.get("IdentityStoreId") is not None:
         out["identity_store_id"] = data["IdentityStoreId"]
     else:
         raise DeserializationError("DeleteUserRequest.identity_store_id required")
-    if "UserId" in data:
+    if data.get("UserId") is not None:
         out["user_id"] = data["UserId"]
     else:
         raise DeserializationError("DeleteUserRequest.user_id required")

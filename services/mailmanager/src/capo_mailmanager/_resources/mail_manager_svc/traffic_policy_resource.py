@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import uuid
 from typing import TYPE_CHECKING, Optional
 
 from capo_mailmanager._services._pipeline import (
@@ -98,12 +99,14 @@ class TrafficPolicyResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mailmanager.types.create_traffic_policy_request.CreateTrafficPolicyRequest = {}  # type: ignore[typeddict-item]
-        if client_token is not None:
-            input_["client_token"] = client_token
-        input_["traffic_policy_name"] = traffic_policy_name
-        input_["policy_statements"] = policy_statements
-        input_["default_action"] = default_action
+        input_: capo_mailmanager.types.create_traffic_policy_request.CreateTrafficPolicyRequest = {
+            "traffic_policy_name": traffic_policy_name,
+            "policy_statements": policy_statements,
+            "default_action": default_action,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if max_message_size_bytes is not None:
             input_["max_message_size_bytes"] = max_message_size_bytes
         if tags is not None:
@@ -114,6 +117,7 @@ class TrafficPolicyResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -153,14 +157,16 @@ class TrafficPolicyResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mailmanager.types.get_traffic_policy_request.GetTrafficPolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["traffic_policy_id"] = traffic_policy_id
+        input_: capo_mailmanager.types.get_traffic_policy_request.GetTrafficPolicyRequest = {
+            "traffic_policy_id": traffic_policy_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update(
@@ -223,8 +229,9 @@ class TrafficPolicyResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mailmanager.types.update_traffic_policy_request.UpdateTrafficPolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["traffic_policy_id"] = traffic_policy_id
+        input_: capo_mailmanager.types.update_traffic_policy_request.UpdateTrafficPolicyRequest = {
+            "traffic_policy_id": traffic_policy_id
+        }
         if traffic_policy_name is not None:
             input_["traffic_policy_name"] = traffic_policy_name
         if policy_statements is not None:
@@ -239,6 +246,7 @@ class TrafficPolicyResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -279,14 +287,16 @@ class TrafficPolicyResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mailmanager.types.delete_traffic_policy_request.DeleteTrafficPolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["traffic_policy_id"] = traffic_policy_id
+        input_: capo_mailmanager.types.delete_traffic_policy_request.DeleteTrafficPolicyRequest = {
+            "traffic_policy_id": traffic_policy_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -335,7 +345,7 @@ class TrafficPolicyResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mailmanager.types.list_traffic_policies_request.ListTrafficPoliciesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_mailmanager.types.list_traffic_policies_request.ListTrafficPoliciesRequest = {}
         if page_size is not None:
             input_["page_size"] = page_size
         if next_token is not None:
@@ -346,6 +356,7 @@ class TrafficPolicyResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -406,12 +417,14 @@ class AsyncTrafficPolicyResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mailmanager.types.create_traffic_policy_request.CreateTrafficPolicyRequest = {}  # type: ignore[typeddict-item]
-        if client_token is not None:
-            input_["client_token"] = client_token
-        input_["traffic_policy_name"] = traffic_policy_name
-        input_["policy_statements"] = policy_statements
-        input_["default_action"] = default_action
+        input_: capo_mailmanager.types.create_traffic_policy_request.CreateTrafficPolicyRequest = {
+            "traffic_policy_name": traffic_policy_name,
+            "policy_statements": policy_statements,
+            "default_action": default_action,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if max_message_size_bytes is not None:
             input_["max_message_size_bytes"] = max_message_size_bytes
         if tags is not None:
@@ -422,6 +435,7 @@ class AsyncTrafficPolicyResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -462,14 +476,16 @@ class AsyncTrafficPolicyResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mailmanager.types.get_traffic_policy_request.GetTrafficPolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["traffic_policy_id"] = traffic_policy_id
+        input_: capo_mailmanager.types.get_traffic_policy_request.GetTrafficPolicyRequest = {
+            "traffic_policy_id": traffic_policy_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update(
@@ -533,8 +549,9 @@ class AsyncTrafficPolicyResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mailmanager.types.update_traffic_policy_request.UpdateTrafficPolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["traffic_policy_id"] = traffic_policy_id
+        input_: capo_mailmanager.types.update_traffic_policy_request.UpdateTrafficPolicyRequest = {
+            "traffic_policy_id": traffic_policy_id
+        }
         if traffic_policy_name is not None:
             input_["traffic_policy_name"] = traffic_policy_name
         if policy_statements is not None:
@@ -549,6 +566,7 @@ class AsyncTrafficPolicyResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -590,14 +608,16 @@ class AsyncTrafficPolicyResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mailmanager.types.delete_traffic_policy_request.DeleteTrafficPolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["traffic_policy_id"] = traffic_policy_id
+        input_: capo_mailmanager.types.delete_traffic_policy_request.DeleteTrafficPolicyRequest = {
+            "traffic_policy_id": traffic_policy_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -647,7 +667,7 @@ class AsyncTrafficPolicyResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mailmanager.types.list_traffic_policies_request.ListTrafficPoliciesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_mailmanager.types.list_traffic_policies_request.ListTrafficPoliciesRequest = {}
         if page_size is not None:
             input_["page_size"] = page_size
         if next_token is not None:
@@ -658,4 +678,5 @@ class AsyncTrafficPolicyResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

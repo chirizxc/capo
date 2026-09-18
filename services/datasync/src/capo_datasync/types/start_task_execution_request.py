@@ -82,29 +82,29 @@ def serialize_aws_json_1_1(value: StartTaskExecutionRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> StartTaskExecutionRequest:
     out: StartTaskExecutionRequest = {}  # type: ignore[typeddict-item]
-    if "TaskArn" in data:
+    if data.get("TaskArn") is not None:
         out["task_arn"] = data["TaskArn"]
     else:
         raise DeserializationError("StartTaskExecutionRequest.task_arn required")
-    if "OverrideOptions" in data:
+    if data.get("OverrideOptions") is not None:
         import capo_datasync.types.options
 
         out["override_options"] = capo_datasync.types.options.deserialize_aws_json_1_1(
             data["OverrideOptions"]
         )
-    if "Includes" in data:
+    if data.get("Includes") is not None:
         import capo_datasync.types.filter_list
 
         out["includes"] = capo_datasync.types.filter_list.deserialize_aws_json_1_1(
             data["Includes"]
         )
-    if "Excludes" in data:
+    if data.get("Excludes") is not None:
         import capo_datasync.types.filter_list
 
         out["excludes"] = capo_datasync.types.filter_list.deserialize_aws_json_1_1(
             data["Excludes"]
         )
-    if "ManifestConfig" in data:
+    if data.get("ManifestConfig") is not None:
         import capo_datasync.types.manifest_config
 
         out["manifest_config"] = (
@@ -112,7 +112,7 @@ def deserialize_aws_json_1_1(data: dict) -> StartTaskExecutionRequest:
                 data["ManifestConfig"]
             )
         )
-    if "TaskReportConfig" in data:
+    if data.get("TaskReportConfig") is not None:
         import capo_datasync.types.task_report_config
 
         out["task_report_config"] = (
@@ -120,7 +120,7 @@ def deserialize_aws_json_1_1(data: dict) -> StartTaskExecutionRequest:
                 data["TaskReportConfig"]
             )
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_datasync.types.input_tag_list
 
         out["tags"] = capo_datasync.types.input_tag_list.deserialize_aws_json_1_1(

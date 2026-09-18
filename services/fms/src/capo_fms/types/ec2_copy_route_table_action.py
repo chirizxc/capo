@@ -38,9 +38,9 @@ def serialize_aws_json_1_1(value: EC2CopyRouteTableAction) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> EC2CopyRouteTableAction:
     out: EC2CopyRouteTableAction = {}  # type: ignore[typeddict-item]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "VpcId" in data:
+    if data.get("VpcId") is not None:
         import capo_fms.types.action_target
 
         out["vpc_id"] = capo_fms.types.action_target.deserialize_aws_json_1_1(
@@ -48,7 +48,7 @@ def deserialize_aws_json_1_1(data: dict) -> EC2CopyRouteTableAction:
         )
     else:
         raise DeserializationError("EC2CopyRouteTableAction.vpc_id required")
-    if "RouteTableId" in data:
+    if data.get("RouteTableId") is not None:
         import capo_fms.types.action_target
 
         out["route_table_id"] = capo_fms.types.action_target.deserialize_aws_json_1_1(

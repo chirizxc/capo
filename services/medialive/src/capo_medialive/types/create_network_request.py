@@ -60,7 +60,7 @@ def serialize_json(value: CreateNetworkRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateNetworkRequest:
     out: CreateNetworkRequest = {}  # type: ignore[typeddict-item]
-    if "ipPools" in data:
+    if data.get("ipPools") is not None:
         import capo_medialive.types.__list_of_ip_pool_create_request
 
         out["ip_pools"] = (
@@ -68,11 +68,11 @@ def deserialize_json(data: dict) -> CreateNetworkRequest:
                 data["ipPools"]
             )
         )
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "requestId" in data:
+    if data.get("requestId") is not None:
         out["request_id"] = data["requestId"]
-    if "routes" in data:
+    if data.get("routes") is not None:
         import capo_medialive.types.__list_of_route_create_request
 
         out["routes"] = (
@@ -80,7 +80,7 @@ def deserialize_json(data: dict) -> CreateNetworkRequest:
                 data["routes"]
             )
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_medialive.types.tags
 
         out["tags"] = capo_medialive.types.tags.deserialize_json(data["tags"])

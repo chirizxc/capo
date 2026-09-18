@@ -32,7 +32,7 @@ def serialize_json(value: WeeklySchedule) -> dict:
 
 def deserialize_json(data: dict) -> WeeklySchedule:
     out: WeeklySchedule = {}  # type: ignore[typeddict-item]
-    if "startTime" in data:
+    if data.get("startTime") is not None:
         import capo_inspector2.types.time
 
         out["start_time"] = capo_inspector2.types.time.deserialize_json(
@@ -40,7 +40,7 @@ def deserialize_json(data: dict) -> WeeklySchedule:
         )
     else:
         raise DeserializationError("WeeklySchedule.start_time required")
-    if "days" in data:
+    if data.get("days") is not None:
         import capo_inspector2.types.days_list
 
         out["days"] = capo_inspector2.types.days_list.deserialize_json(data["days"])

@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> LongConditionList:
 
     out: LongConditionList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_backupsearch.types.long_condition.deserialize_json(item))
     return out

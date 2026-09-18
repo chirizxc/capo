@@ -34,14 +34,14 @@ def serialize_json(value: AssetBundleImportJobFolderOverrideParameters) -> dict:
 
 def deserialize_json(data: dict) -> AssetBundleImportJobFolderOverrideParameters:
     out: AssetBundleImportJobFolderOverrideParameters = {}  # type: ignore[typeddict-item]
-    if "FolderId" in data:
+    if data.get("FolderId") is not None:
         out["folder_id"] = data["FolderId"]
     else:
         raise DeserializationError(
             "AssetBundleImportJobFolderOverrideParameters.folder_id required"
         )
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "ParentFolderArn" in data:
+    if data.get("ParentFolderArn") is not None:
         out["parent_folder_arn"] = data["ParentFolderArn"]
     return out

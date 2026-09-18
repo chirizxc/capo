@@ -73,25 +73,25 @@ def serialize_json(value: Voice) -> dict:
 
 def deserialize_json(data: dict) -> Voice:
     out: Voice = {}  # type: ignore[typeddict-item]
-    if "Gender" in data:
+    if data.get("Gender") is not None:
         import capo_polly.types.gender
 
         out["gender"] = capo_polly.types.gender.deserialize_json(data["Gender"])
-    if "Id" in data:
+    if data.get("Id") is not None:
         import capo_polly.types.voice_id
 
         out["id"] = capo_polly.types.voice_id.deserialize_json(data["Id"])
-    if "LanguageCode" in data:
+    if data.get("LanguageCode") is not None:
         import capo_polly.types.language_code
 
         out["language_code"] = capo_polly.types.language_code.deserialize_json(
             data["LanguageCode"]
         )
-    if "LanguageName" in data:
+    if data.get("LanguageName") is not None:
         out["language_name"] = data["LanguageName"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "AdditionalLanguageCodes" in data:
+    if data.get("AdditionalLanguageCodes") is not None:
         import capo_polly.types.language_code_list
 
         out["additional_language_codes"] = (
@@ -99,7 +99,7 @@ def deserialize_json(data: dict) -> Voice:
                 data["AdditionalLanguageCodes"]
             )
         )
-    if "SupportedEngines" in data:
+    if data.get("SupportedEngines") is not None:
         import capo_polly.types.engine_list
 
         out["supported_engines"] = capo_polly.types.engine_list.deserialize_json(

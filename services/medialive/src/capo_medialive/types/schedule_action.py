@@ -49,9 +49,9 @@ def serialize_json(value: ScheduleAction) -> dict:
 
 def deserialize_json(data: dict) -> ScheduleAction:
     out: ScheduleAction = {}  # type: ignore[typeddict-item]
-    if "actionName" in data:
+    if data.get("actionName") is not None:
         out["action_name"] = data["actionName"]
-    if "scheduleActionSettings" in data:
+    if data.get("scheduleActionSettings") is not None:
         import capo_medialive.types.schedule_action_settings
 
         out["schedule_action_settings"] = (
@@ -59,7 +59,7 @@ def deserialize_json(data: dict) -> ScheduleAction:
                 data["scheduleActionSettings"]
             )
         )
-    if "scheduleActionStartSettings" in data:
+    if data.get("scheduleActionStartSettings") is not None:
         import capo_medialive.types.schedule_action_start_settings
 
         out["schedule_action_start_settings"] = (

@@ -51,7 +51,7 @@ def serialize_aws_json_1_0(value: RDSDatabaseProjectedMetric) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> RDSDatabaseProjectedMetric:
     out: RDSDatabaseProjectedMetric = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         import capo_compute_optimizer.types.rdsdb_metric_name
 
         out["name"] = (
@@ -59,7 +59,7 @@ def deserialize_aws_json_1_0(data: dict) -> RDSDatabaseProjectedMetric:
                 data["name"]
             )
         )
-    if "timestamps" in data:
+    if data.get("timestamps") is not None:
         import capo_compute_optimizer.types.timestamps
 
         out["timestamps"] = (
@@ -67,7 +67,7 @@ def deserialize_aws_json_1_0(data: dict) -> RDSDatabaseProjectedMetric:
                 data["timestamps"]
             )
         )
-    if "values" in data:
+    if data.get("values") is not None:
         import capo_compute_optimizer.types.metric_values
 
         out["values"] = (

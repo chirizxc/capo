@@ -91,9 +91,9 @@ def serialize_aws_json_1_1(value: CreateUserRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateUserRequest:
     out: CreateUserRequest = {}  # type: ignore[typeddict-item]
-    if "HomeDirectory" in data:
+    if data.get("HomeDirectory") is not None:
         out["home_directory"] = data["HomeDirectory"]
-    if "HomeDirectoryType" in data:
+    if data.get("HomeDirectoryType") is not None:
         import capo_transfer.types.home_directory_type
 
         out["home_directory_type"] = (
@@ -101,7 +101,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateUserRequest:
                 data["HomeDirectoryType"]
             )
         )
-    if "HomeDirectoryMappings" in data:
+    if data.get("HomeDirectoryMappings") is not None:
         import capo_transfer.types.home_directory_mappings
 
         out["home_directory_mappings"] = (
@@ -109,9 +109,9 @@ def deserialize_aws_json_1_1(data: dict) -> CreateUserRequest:
                 data["HomeDirectoryMappings"]
             )
         )
-    if "Policy" in data:
+    if data.get("Policy") is not None:
         out["policy"] = data["Policy"]
-    if "PosixProfile" in data:
+    if data.get("PosixProfile") is not None:
         import capo_transfer.types.posix_profile
 
         out["posix_profile"] = (
@@ -119,21 +119,21 @@ def deserialize_aws_json_1_1(data: dict) -> CreateUserRequest:
                 data["PosixProfile"]
             )
         )
-    if "Role" in data:
+    if data.get("Role") is not None:
         out["role"] = data["Role"]
     else:
         raise DeserializationError("CreateUserRequest.role required")
-    if "ServerId" in data:
+    if data.get("ServerId") is not None:
         out["server_id"] = data["ServerId"]
     else:
         raise DeserializationError("CreateUserRequest.server_id required")
-    if "SshPublicKeyBody" in data:
+    if data.get("SshPublicKeyBody") is not None:
         out["ssh_public_key_body"] = data["SshPublicKeyBody"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_transfer.types.tags
 
         out["tags"] = capo_transfer.types.tags.deserialize_aws_json_1_1(data["Tags"])
-    if "UserName" in data:
+    if data.get("UserName") is not None:
         out["user_name"] = data["UserName"]
     else:
         raise DeserializationError("CreateUserRequest.user_name required")

@@ -49,7 +49,7 @@ def serialize_aws_json_1_1(value: UsageRecordResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UsageRecordResult:
     out: UsageRecordResult = {}  # type: ignore[typeddict-item]
-    if "UsageRecord" in data:
+    if data.get("UsageRecord") is not None:
         import capo_marketplace_metering.types.usage_record
 
         out["usage_record"] = (
@@ -57,9 +57,9 @@ def deserialize_aws_json_1_1(data: dict) -> UsageRecordResult:
                 data["UsageRecord"]
             )
         )
-    if "MeteringRecordId" in data:
+    if data.get("MeteringRecordId") is not None:
         out["metering_record_id"] = data["MeteringRecordId"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_marketplace_metering.types.usage_record_result_status
 
         out["status"] = (

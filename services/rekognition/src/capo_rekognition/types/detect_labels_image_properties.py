@@ -70,7 +70,7 @@ def serialize_aws_json_1_1(value: DetectLabelsImageProperties) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DetectLabelsImageProperties:
     out: DetectLabelsImageProperties = {}  # type: ignore[typeddict-item]
-    if "Quality" in data:
+    if data.get("Quality") is not None:
         import capo_rekognition.types.detect_labels_image_quality
 
         out["quality"] = (
@@ -78,7 +78,7 @@ def deserialize_aws_json_1_1(data: dict) -> DetectLabelsImageProperties:
                 data["Quality"]
             )
         )
-    if "DominantColors" in data:
+    if data.get("DominantColors") is not None:
         import capo_rekognition.types.dominant_colors
 
         out["dominant_colors"] = (
@@ -86,7 +86,7 @@ def deserialize_aws_json_1_1(data: dict) -> DetectLabelsImageProperties:
                 data["DominantColors"]
             )
         )
-    if "Foreground" in data:
+    if data.get("Foreground") is not None:
         import capo_rekognition.types.detect_labels_image_foreground
 
         out["foreground"] = (
@@ -94,7 +94,7 @@ def deserialize_aws_json_1_1(data: dict) -> DetectLabelsImageProperties:
                 data["Foreground"]
             )
         )
-    if "Background" in data:
+    if data.get("Background") is not None:
         import capo_rekognition.types.detect_labels_image_background
 
         out["background"] = (

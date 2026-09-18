@@ -30,11 +30,11 @@ def serialize_json(value: InsufficientCapacityException_) -> dict:
 
 def deserialize_json(data: dict) -> InsufficientCapacityException_:
     out: InsufficientCapacityException_ = {}  # type: ignore[typeddict-item]
-    if "type" in data:
+    if data.get("type") is not None:
         out["type"] = data["type"]
-    if "code" in data:
+    if data.get("code") is not None:
         out["code"] = data["code"]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     return out
 
@@ -44,15 +44,20 @@ class InsufficientCapacityException(ServiceError):
 
     code: str | None = "InsufficientCapacityException"
 
-    def __init__(self, data: InsufficientCapacityException_):
+    def __init__(
+        self, data: InsufficientCapacityException_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="InsufficientCapacityException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "InsufficientCapacityException":
-        return cls(deserialize_json(data))
+    def from_json(
+        cls, data: dict, message: str | None = None
+    ) -> "InsufficientCapacityException":
+        return cls(deserialize_json(data), message)

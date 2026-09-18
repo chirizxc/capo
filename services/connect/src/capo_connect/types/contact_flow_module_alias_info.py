@@ -67,21 +67,21 @@ def serialize_json(value: ContactFlowModuleAliasInfo) -> dict:
 
 def deserialize_json(data: dict) -> ContactFlowModuleAliasInfo:
     out: ContactFlowModuleAliasInfo = {}  # type: ignore[typeddict-item]
-    if "ContactFlowModuleId" in data:
+    if data.get("ContactFlowModuleId") is not None:
         out["contact_flow_module_id"] = data["ContactFlowModuleId"]
-    if "ContactFlowModuleArn" in data:
+    if data.get("ContactFlowModuleArn") is not None:
         out["contact_flow_module_arn"] = data["ContactFlowModuleArn"]
-    if "AliasId" in data:
+    if data.get("AliasId") is not None:
         out["alias_id"] = data["AliasId"]
-    if "Version" in data:
+    if data.get("Version") is not None:
         out["version"] = data["Version"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "LastModifiedRegion" in data:
+    if data.get("LastModifiedRegion") is not None:
         out["last_modified_region"] = data["LastModifiedRegion"]
-    if "LastModifiedTime" in data:
+    if data.get("LastModifiedTime") is not None:
         import capo_connect.types.timestamp
 
         out["last_modified_time"] = capo_connect.types.timestamp.deserialize_json(

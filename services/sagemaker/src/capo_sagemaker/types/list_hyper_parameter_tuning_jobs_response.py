@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: ListHyperParameterTuningJobsResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListHyperParameterTuningJobsResponse:
     out: ListHyperParameterTuningJobsResponse = {}  # type: ignore[typeddict-item]
-    if "HyperParameterTuningJobSummaries" in data:
+    if data.get("HyperParameterTuningJobSummaries") is not None:
         import capo_sagemaker.types.hyper_parameter_tuning_job_summaries
 
         out["hyper_parameter_tuning_job_summaries"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_1(data: dict) -> ListHyperParameterTuningJobsResponse
                 data["HyperParameterTuningJobSummaries"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

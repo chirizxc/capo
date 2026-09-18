@@ -52,20 +52,20 @@ def serialize_json(value: DomainNameConfig) -> dict:
 
 def deserialize_json(data: dict) -> DomainNameConfig:
     out: DomainNameConfig = {}  # type: ignore[typeddict-item]
-    if "domainName" in data:
+    if data.get("domainName") is not None:
         out["domain_name"] = data["domainName"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "certificateArn" in data:
+    if data.get("certificateArn") is not None:
         out["certificate_arn"] = data["certificateArn"]
-    if "appsyncDomainName" in data:
+    if data.get("appsyncDomainName") is not None:
         out["appsync_domain_name"] = data["appsyncDomainName"]
-    if "hostedZoneId" in data:
+    if data.get("hostedZoneId") is not None:
         out["hosted_zone_id"] = data["hostedZoneId"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_appsync.types.tag_map
 
         out["tags"] = capo_appsync.types.tag_map.deserialize_json(data["tags"])
-    if "domainNameArn" in data:
+    if data.get("domainNameArn") is not None:
         out["domain_name_arn"] = data["domainNameArn"]
     return out

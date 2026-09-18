@@ -44,7 +44,7 @@ def serialize_json(value: ProjectCodeSecurityScanConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> ProjectCodeSecurityScanConfiguration:
     out: ProjectCodeSecurityScanConfiguration = {}  # type: ignore[typeddict-item]
-    if "periodicScanConfigurations" in data:
+    if data.get("periodicScanConfigurations") is not None:
         import capo_inspector2.types.project_periodic_scan_configuration_list
 
         out["periodic_scan_configurations"] = (
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> ProjectCodeSecurityScanConfiguration:
                 data["periodicScanConfigurations"]
             )
         )
-    if "continuousIntegrationScanConfigurations" in data:
+    if data.get("continuousIntegrationScanConfigurations") is not None:
         import capo_inspector2.types.project_continuous_integration_scan_configuration_list
 
         out["continuous_integration_scan_configurations"] = (

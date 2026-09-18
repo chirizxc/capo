@@ -24,7 +24,7 @@ def serialize_json(value: ResourceQuotaExceededException_) -> dict:
 
 def deserialize_json(data: dict) -> ResourceQuotaExceededException_:
     out: ResourceQuotaExceededException_ = {}  # type: ignore[typeddict-item]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     return out
 
@@ -34,15 +34,20 @@ class ResourceQuotaExceededException(ServiceError):
 
     code: str | None = "ResourceQuotaExceededException"
 
-    def __init__(self, data: ResourceQuotaExceededException_):
+    def __init__(
+        self, data: ResourceQuotaExceededException_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="ResourceQuotaExceededException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "ResourceQuotaExceededException":
-        return cls(deserialize_json(data))
+    def from_json(
+        cls, data: dict, message: str | None = None
+    ) -> "ResourceQuotaExceededException":
+        return cls(deserialize_json(data), message)

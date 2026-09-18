@@ -25,7 +25,7 @@ def serialize_aws_json_1_1(value: InvalidTimeRangeException_) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> InvalidTimeRangeException_:
     out: InvalidTimeRangeException_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     return out
 
@@ -35,15 +35,18 @@ class InvalidTimeRangeException(ServiceError):
 
     code: str | None = "InvalidTimeRangeException"
 
-    def __init__(self, data: InvalidTimeRangeException_):
+    def __init__(self, data: InvalidTimeRangeException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="InvalidTimeRangeException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "InvalidTimeRangeException":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "InvalidTimeRangeException":
+        return cls(deserialize_aws_json_1_1(data), message)

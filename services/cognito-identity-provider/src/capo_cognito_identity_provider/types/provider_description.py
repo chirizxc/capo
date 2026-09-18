@@ -63,9 +63,9 @@ def serialize_aws_json_1_1(value: ProviderDescription) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ProviderDescription:
     out: ProviderDescription = {}  # type: ignore[typeddict-item]
-    if "ProviderName" in data:
+    if data.get("ProviderName") is not None:
         out["provider_name"] = data["ProviderName"]
-    if "ProviderType" in data:
+    if data.get("ProviderType") is not None:
         import capo_cognito_identity_provider.types.identity_provider_type_type
 
         out["provider_type"] = (
@@ -73,7 +73,7 @@ def deserialize_aws_json_1_1(data: dict) -> ProviderDescription:
                 data["ProviderType"]
             )
         )
-    if "LastModifiedDate" in data:
+    if data.get("LastModifiedDate") is not None:
         import capo_cognito_identity_provider.types.date_type
 
         out["last_modified_date"] = (
@@ -81,7 +81,7 @@ def deserialize_aws_json_1_1(data: dict) -> ProviderDescription:
                 data["LastModifiedDate"]
             )
         )
-    if "CreationDate" in data:
+    if data.get("CreationDate") is not None:
         import capo_cognito_identity_provider.types.date_type
 
         out["creation_date"] = (

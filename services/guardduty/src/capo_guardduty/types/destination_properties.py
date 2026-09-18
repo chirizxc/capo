@@ -27,8 +27,8 @@ def serialize_json(value: DestinationProperties) -> dict:
 
 def deserialize_json(data: dict) -> DestinationProperties:
     out: DestinationProperties = {}  # type: ignore[typeddict-item]
-    if "destinationArn" in data:
+    if data.get("destinationArn") is not None:
         out["destination_arn"] = data["destinationArn"]
-    if "kmsKeyArn" in data:
+    if data.get("kmsKeyArn") is not None:
         out["kms_key_arn"] = data["kmsKeyArn"]
     return out

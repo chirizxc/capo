@@ -28,7 +28,7 @@ def serialize_json(value: AuditLogDestinationConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> AuditLogDestinationConfiguration:
     out: AuditLogDestinationConfiguration = {}  # type: ignore[typeddict-item]
-    if "destination" in data:
+    if data.get("destination") is not None:
         import capo_appfabric.types.destination
 
         out["destination"] = capo_appfabric.types.destination.deserialize_json(

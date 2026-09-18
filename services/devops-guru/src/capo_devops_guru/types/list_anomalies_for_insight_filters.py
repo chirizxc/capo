@@ -30,7 +30,7 @@ def serialize_json(value: ListAnomaliesForInsightFilters) -> dict:
 
 def deserialize_json(data: dict) -> ListAnomaliesForInsightFilters:
     out: ListAnomaliesForInsightFilters = {}  # type: ignore[typeddict-item]
-    if "ServiceCollection" in data:
+    if data.get("ServiceCollection") is not None:
         import capo_devops_guru.types.service_collection
 
         out["service_collection"] = (

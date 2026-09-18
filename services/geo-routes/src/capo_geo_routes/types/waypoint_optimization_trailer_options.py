@@ -25,6 +25,6 @@ def serialize_json(value: WaypointOptimizationTrailerOptions) -> dict:
 
 def deserialize_json(data: dict) -> WaypointOptimizationTrailerOptions:
     out: WaypointOptimizationTrailerOptions = {}  # type: ignore[typeddict-item]
-    if "TrailerCount" in data:
+    if data.get("TrailerCount") is not None:
         out["trailer_count"] = data["TrailerCount"]
     return out

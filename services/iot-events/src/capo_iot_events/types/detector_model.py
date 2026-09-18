@@ -44,7 +44,7 @@ def serialize_json(value: DetectorModel) -> dict:
 
 def deserialize_json(data: dict) -> DetectorModel:
     out: DetectorModel = {}  # type: ignore[typeddict-item]
-    if "detectorModelDefinition" in data:
+    if data.get("detectorModelDefinition") is not None:
         import capo_iot_events.types.detector_model_definition
 
         out["detector_model_definition"] = (
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> DetectorModel:
                 data["detectorModelDefinition"]
             )
         )
-    if "detectorModelConfiguration" in data:
+    if data.get("detectorModelConfiguration") is not None:
         import capo_iot_events.types.detector_model_configuration
 
         out["detector_model_configuration"] = (

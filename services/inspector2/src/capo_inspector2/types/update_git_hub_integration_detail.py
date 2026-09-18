@@ -30,11 +30,11 @@ def serialize_json(value: UpdateGitHubIntegrationDetail) -> dict:
 
 def deserialize_json(data: dict) -> UpdateGitHubIntegrationDetail:
     out: UpdateGitHubIntegrationDetail = {}  # type: ignore[typeddict-item]
-    if "code" in data:
+    if data.get("code") is not None:
         out["code"] = data["code"]
     else:
         raise DeserializationError("UpdateGitHubIntegrationDetail.code required")
-    if "installationId" in data:
+    if data.get("installationId") is not None:
         out["installation_id"] = data["installationId"]
     else:
         raise DeserializationError(

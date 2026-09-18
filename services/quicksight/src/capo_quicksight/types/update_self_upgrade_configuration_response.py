@@ -26,6 +26,6 @@ def serialize_json(value: UpdateSelfUpgradeConfigurationResponse) -> dict:
 
 def deserialize_json(data: dict) -> UpdateSelfUpgradeConfigurationResponse:
     out: UpdateSelfUpgradeConfigurationResponse = {}  # type: ignore[typeddict-item]
-    if "RequestId" in data:
+    if data.get("RequestId") is not None:
         out["request_id"] = data["RequestId"]
     return out

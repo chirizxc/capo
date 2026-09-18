@@ -39,11 +39,11 @@ def serialize_aws_json_1_1(value: ApplicationAssignmentForPrincipal) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ApplicationAssignmentForPrincipal:
     out: ApplicationAssignmentForPrincipal = {}  # type: ignore[typeddict-item]
-    if "ApplicationArn" in data:
+    if data.get("ApplicationArn") is not None:
         out["application_arn"] = data["ApplicationArn"]
-    if "PrincipalId" in data:
+    if data.get("PrincipalId") is not None:
         out["principal_id"] = data["PrincipalId"]
-    if "PrincipalType" in data:
+    if data.get("PrincipalType") is not None:
         import capo_sso_admin.types.principal_type
 
         out["principal_type"] = (

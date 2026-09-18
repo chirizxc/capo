@@ -38,12 +38,12 @@ def serialize_aws_json_1_1(value: ResourceFilters) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ResourceFilters:
     out: ResourceFilters = {}  # type: ignore[typeddict-item]
-    if "AccountId" in data:
+    if data.get("AccountId") is not None:
         out["account_id"] = data["AccountId"]
-    if "ResourceId" in data:
+    if data.get("ResourceId") is not None:
         out["resource_id"] = data["ResourceId"]
-    if "ResourceName" in data:
+    if data.get("ResourceName") is not None:
         out["resource_name"] = data["ResourceName"]
-    if "Region" in data:
+    if data.get("Region") is not None:
         out["region"] = data["Region"]
     return out

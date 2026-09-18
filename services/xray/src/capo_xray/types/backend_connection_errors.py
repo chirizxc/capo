@@ -45,16 +45,16 @@ def serialize_json(value: BackendConnectionErrors) -> dict:
 
 def deserialize_json(data: dict) -> BackendConnectionErrors:
     out: BackendConnectionErrors = {}  # type: ignore[typeddict-item]
-    if "TimeoutCount" in data:
+    if data.get("TimeoutCount") is not None:
         out["timeout_count"] = data["TimeoutCount"]
-    if "ConnectionRefusedCount" in data:
+    if data.get("ConnectionRefusedCount") is not None:
         out["connection_refused_count"] = data["ConnectionRefusedCount"]
-    if "HTTPCode4XXCount" in data:
+    if data.get("HTTPCode4XXCount") is not None:
         out["http_code4_xx_count"] = data["HTTPCode4XXCount"]
-    if "HTTPCode5XXCount" in data:
+    if data.get("HTTPCode5XXCount") is not None:
         out["http_code5_xx_count"] = data["HTTPCode5XXCount"]
-    if "UnknownHostCount" in data:
+    if data.get("UnknownHostCount") is not None:
         out["unknown_host_count"] = data["UnknownHostCount"]
-    if "OtherCount" in data:
+    if data.get("OtherCount") is not None:
         out["other_count"] = data["OtherCount"]
     return out

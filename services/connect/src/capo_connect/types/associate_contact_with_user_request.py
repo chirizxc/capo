@@ -30,7 +30,7 @@ def serialize_json(value: AssociateContactWithUserRequest) -> dict:
 
 def deserialize_json(data: dict) -> AssociateContactWithUserRequest:
     out: AssociateContactWithUserRequest = {}  # type: ignore[typeddict-item]
-    if "UserId" in data:
+    if data.get("UserId") is not None:
         out["user_id"] = data["UserId"]
     else:
         raise DeserializationError("AssociateContactWithUserRequest.user_id required")

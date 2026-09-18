@@ -42,7 +42,7 @@ def serialize_aws_json_1_0(value: ConnectionTypeSummary) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ConnectionTypeSummary:
     out: ConnectionTypeSummary = {}  # type: ignore[typeddict-item]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_partnercentral_account.types.connection_type_status
 
         out["status"] = (
@@ -52,7 +52,7 @@ def deserialize_aws_json_1_0(data: dict) -> ConnectionTypeSummary:
         )
     else:
         raise DeserializationError("ConnectionTypeSummary.status required")
-    if "OtherParticipant" in data:
+    if data.get("OtherParticipant") is not None:
         import capo_partnercentral_account.types.participant
 
         out["other_participant"] = (

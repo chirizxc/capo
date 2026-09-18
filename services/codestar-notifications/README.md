@@ -13,9 +13,9 @@ from capo_codestar_notifications import AsynccodestarnotificationsClient
 
 
 async def main():
-    async with AsynccodestarnotificationsClient() as s3:
+    async with AsynccodestarnotificationsClient() as codestarnotifications:
         # Example: call the create_notification_rule operation
-        response = await s3.create_notification_rule()
+        response = await codestarnotifications.create_notification_rule()
         print(response["arn"])
 ```
 
@@ -28,9 +28,9 @@ from capo_codestar_notifications import AsynccodestarnotificationsClient
 
 
 async def main():
-    async with AsynccodestarnotificationsClient() as s3:
+    async with AsynccodestarnotificationsClient() as codestarnotifications:
         # Example: paginate over list_event_types
-        async for item in s3.iter_list_event_types():
+        async for item in codestarnotifications.iter_list_event_types():
             print(item)
 ```
 
@@ -44,9 +44,9 @@ from capo_codestar_notifications.error import AccessDeniedException
 
 
 async def main():
-    async with AsynccodestarnotificationsClient() as s3:
+    async with AsynccodestarnotificationsClient() as codestarnotifications:
         try:
-            await s3.create_notification_rule()
+            await codestarnotifications.create_notification_rule()
         except AccessDeniedException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -63,13 +63,13 @@ from capo_codestar_notifications import AsynccodestarnotificationsClient
 
 
 async def main():
-    async with AsynccodestarnotificationsClient() as s3:
+    async with AsynccodestarnotificationsClient() as codestarnotifications:
         # Default: 3 attempts for every operation
-        response = await s3.create_notification_rule()
+        response = await codestarnotifications.create_notification_rule()
 
         # Override per operation
-        response = await s3.create_notification_rule(config_overrides={"retry_max_attempts": 5})
+        response = await codestarnotifications.create_notification_rule(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.create_notification_rule(config_overrides={"retry_max_attempts": 1})
+        response = await codestarnotifications.create_notification_rule(config_overrides={"retry_max_attempts": 1})
 ```

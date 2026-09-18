@@ -38,7 +38,7 @@ def serialize_aws_json_1_1(value: RegisterUsageResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RegisterUsageResult:
     out: RegisterUsageResult = {}  # type: ignore[typeddict-item]
-    if "PublicKeyRotationTimestamp" in data:
+    if data.get("PublicKeyRotationTimestamp") is not None:
         import capo_marketplace_metering.types.timestamp
 
         out["public_key_rotation_timestamp"] = (
@@ -46,6 +46,6 @@ def deserialize_aws_json_1_1(data: dict) -> RegisterUsageResult:
                 data["PublicKeyRotationTimestamp"]
             )
         )
-    if "Signature" in data:
+    if data.get("Signature") is not None:
         out["signature"] = data["Signature"]
     return out

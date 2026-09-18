@@ -42,7 +42,7 @@ def serialize_json(value: UpdateAutomatedDiscoveryConfigurationRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateAutomatedDiscoveryConfigurationRequest:
     out: UpdateAutomatedDiscoveryConfigurationRequest = {}  # type: ignore[typeddict-item]
-    if "autoEnableOrganizationMembers" in data:
+    if data.get("autoEnableOrganizationMembers") is not None:
         import capo_macie2.types.auto_enable_mode
 
         out["auto_enable_organization_members"] = (
@@ -50,7 +50,7 @@ def deserialize_json(data: dict) -> UpdateAutomatedDiscoveryConfigurationRequest
                 data["autoEnableOrganizationMembers"]
             )
         )
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_macie2.types.automated_discovery_status
 
         out["status"] = capo_macie2.types.automated_discovery_status.deserialize_json(

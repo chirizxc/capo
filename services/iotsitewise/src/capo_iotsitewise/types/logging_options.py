@@ -26,7 +26,7 @@ def serialize_json(value: LoggingOptions) -> dict:
 
 def deserialize_json(data: dict) -> LoggingOptions:
     out: LoggingOptions = {}  # type: ignore[typeddict-item]
-    if "level" in data:
+    if data.get("level") is not None:
         import capo_iotsitewise.types.logging_level
 
         out["level"] = capo_iotsitewise.types.logging_level.deserialize_json(

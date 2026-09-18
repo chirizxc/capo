@@ -153,19 +153,19 @@ def serialize_json(value: Stage) -> dict:
 
 def deserialize_json(data: dict) -> Stage:
     out: Stage = {}  # type: ignore[typeddict-item]
-    if "deploymentId" in data:
+    if data.get("deploymentId") is not None:
         out["deployment_id"] = data["deploymentId"]
-    if "clientCertificateId" in data:
+    if data.get("clientCertificateId") is not None:
         out["client_certificate_id"] = data["clientCertificateId"]
-    if "stageName" in data:
+    if data.get("stageName") is not None:
         out["stage_name"] = data["stageName"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "cacheClusterEnabled" in data:
+    if data.get("cacheClusterEnabled") is not None:
         out["cache_cluster_enabled"] = data["cacheClusterEnabled"]
     else:
         out["cache_cluster_enabled"] = False
-    if "cacheClusterSize" in data:
+    if data.get("cacheClusterSize") is not None:
         import capo_api_gateway.types.cache_cluster_size
 
         out["cache_cluster_size"] = (
@@ -173,7 +173,7 @@ def deserialize_json(data: dict) -> Stage:
                 data["cacheClusterSize"]
             )
         )
-    if "cacheClusterStatus" in data:
+    if data.get("cacheClusterStatus") is not None:
         import capo_api_gateway.types.cache_cluster_status
 
         out["cache_cluster_status"] = (
@@ -181,7 +181,7 @@ def deserialize_json(data: dict) -> Stage:
                 data["cacheClusterStatus"]
             )
         )
-    if "methodSettings" in data:
+    if data.get("methodSettings") is not None:
         import capo_api_gateway.types.map_of_method_settings
 
         out["method_settings"] = (
@@ -189,7 +189,7 @@ def deserialize_json(data: dict) -> Stage:
                 data["methodSettings"]
             )
         )
-    if "variables" in data:
+    if data.get("variables") is not None:
         import capo_api_gateway.types.map_of_string_to_string
 
         out["variables"] = (
@@ -197,9 +197,9 @@ def deserialize_json(data: dict) -> Stage:
                 data["variables"]
             )
         )
-    if "documentationVersion" in data:
+    if data.get("documentationVersion") is not None:
         out["documentation_version"] = data["documentationVersion"]
-    if "accessLogSettings" in data:
+    if data.get("accessLogSettings") is not None:
         import capo_api_gateway.types.access_log_settings
 
         out["access_log_settings"] = (
@@ -207,7 +207,7 @@ def deserialize_json(data: dict) -> Stage:
                 data["accessLogSettings"]
             )
         )
-    if "canarySettings" in data:
+    if data.get("canarySettings") is not None:
         import capo_api_gateway.types.canary_settings
 
         out["canary_settings"] = (
@@ -215,25 +215,25 @@ def deserialize_json(data: dict) -> Stage:
                 data["canarySettings"]
             )
         )
-    if "tracingEnabled" in data:
+    if data.get("tracingEnabled") is not None:
         out["tracing_enabled"] = data["tracingEnabled"]
     else:
         out["tracing_enabled"] = False
-    if "webAclArn" in data:
+    if data.get("webAclArn") is not None:
         out["web_acl_arn"] = data["webAclArn"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_api_gateway.types.map_of_string_to_string
 
         out["tags"] = capo_api_gateway.types.map_of_string_to_string.deserialize_json(
             data["tags"]
         )
-    if "createdDate" in data:
+    if data.get("createdDate") is not None:
         import capo_api_gateway.types.timestamp
 
         out["created_date"] = capo_api_gateway.types.timestamp.deserialize_json(
             data["createdDate"]
         )
-    if "lastUpdatedDate" in data:
+    if data.get("lastUpdatedDate") is not None:
         import capo_api_gateway.types.timestamp
 
         out["last_updated_date"] = capo_api_gateway.types.timestamp.deserialize_json(

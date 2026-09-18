@@ -44,15 +44,15 @@ def serialize_json(value: UpdateLoggingConfigurationRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateLoggingConfigurationRequest:
     out: UpdateLoggingConfigurationRequest = {}  # type: ignore[typeddict-item]
-    if "identifier" in data:
+    if data.get("identifier") is not None:
         out["identifier"] = data["identifier"]
     else:
         raise DeserializationError(
             "UpdateLoggingConfigurationRequest.identifier required"
         )
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "destinationConfiguration" in data:
+    if data.get("destinationConfiguration") is not None:
         import capo_ivschat.types.destination_configuration
 
         out["destination_configuration"] = (

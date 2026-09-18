@@ -32,7 +32,7 @@ def serialize_json(value: ListMonitorsOutput) -> dict:
 
 def deserialize_json(data: dict) -> ListMonitorsOutput:
     out: ListMonitorsOutput = {}  # type: ignore[typeddict-item]
-    if "monitors" in data:
+    if data.get("monitors") is not None:
         import capo_networkmonitor.types.monitor_list
 
         out["monitors"] = capo_networkmonitor.types.monitor_list.deserialize_json(
@@ -40,6 +40,6 @@ def deserialize_json(data: dict) -> ListMonitorsOutput:
         )
     else:
         raise DeserializationError("ListMonitorsOutput.monitors required")
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> ThreatList:
 
     out: ThreatList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_securityhub.types.threat.deserialize_json(item))
     return out

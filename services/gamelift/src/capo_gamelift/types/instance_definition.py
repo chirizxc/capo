@@ -38,7 +38,7 @@ def serialize_aws_json_1_1(value: InstanceDefinition) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> InstanceDefinition:
     out: InstanceDefinition = {}  # type: ignore[typeddict-item]
-    if "InstanceType" in data:
+    if data.get("InstanceType") is not None:
         import capo_gamelift.types.game_server_group_instance_type
 
         out["instance_type"] = (
@@ -46,6 +46,6 @@ def deserialize_aws_json_1_1(data: dict) -> InstanceDefinition:
                 data["InstanceType"]
             )
         )
-    if "WeightedCapacity" in data:
+    if data.get("WeightedCapacity") is not None:
         out["weighted_capacity"] = data["WeightedCapacity"]
     return out

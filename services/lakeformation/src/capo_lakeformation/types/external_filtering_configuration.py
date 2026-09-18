@@ -36,7 +36,7 @@ def serialize_json(value: ExternalFilteringConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> ExternalFilteringConfiguration:
     out: ExternalFilteringConfiguration = {}  # type: ignore[typeddict-item]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_lakeformation.types.enable_status
 
         out["status"] = capo_lakeformation.types.enable_status.deserialize_json(
@@ -44,7 +44,7 @@ def deserialize_json(data: dict) -> ExternalFilteringConfiguration:
         )
     else:
         raise DeserializationError("ExternalFilteringConfiguration.status required")
-    if "AuthorizedTargets" in data:
+    if data.get("AuthorizedTargets") is not None:
         import capo_lakeformation.types.scope_targets
 
         out["authorized_targets"] = (

@@ -66,7 +66,7 @@ def serialize_json(value: ConfiguredTableAssociationAnalysisRulePolicyV1) -> dic
 
 
 def deserialize_json(data: dict) -> ConfiguredTableAssociationAnalysisRulePolicyV1:
-    if "list" in data:
+    if data.get("list") is not None:
         import capo_cleanrooms.types.configured_table_association_analysis_rule_list
 
         return {
@@ -74,7 +74,7 @@ def deserialize_json(data: dict) -> ConfiguredTableAssociationAnalysisRulePolicy
                 data["list"]
             )
         }
-    elif "aggregation" in data:
+    elif data.get("aggregation") is not None:
         import capo_cleanrooms.types.configured_table_association_analysis_rule_aggregation
 
         return {
@@ -82,7 +82,7 @@ def deserialize_json(data: dict) -> ConfiguredTableAssociationAnalysisRulePolicy
                 data["aggregation"]
             )
         }
-    elif "custom" in data:
+    elif data.get("custom") is not None:
         import capo_cleanrooms.types.configured_table_association_analysis_rule_custom
 
         return {

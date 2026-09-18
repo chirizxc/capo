@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: AIRecommendationConstraint) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AIRecommendationConstraint:
     out: AIRecommendationConstraint = {}  # type: ignore[typeddict-item]
-    if "Metric" in data:
+    if data.get("Metric") is not None:
         import capo_sagemaker.types.ai_recommendation_metric
 
         out["metric"] = (

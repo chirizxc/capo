@@ -85,19 +85,19 @@ def serialize_json(value: AwsDynamoDbTableGlobalSecondaryIndex) -> dict:
 
 def deserialize_json(data: dict) -> AwsDynamoDbTableGlobalSecondaryIndex:
     out: AwsDynamoDbTableGlobalSecondaryIndex = {}  # type: ignore[typeddict-item]
-    if "Backfilling" in data:
+    if data.get("Backfilling") is not None:
         out["backfilling"] = data["Backfilling"]
-    if "IndexArn" in data:
+    if data.get("IndexArn") is not None:
         out["index_arn"] = data["IndexArn"]
-    if "IndexName" in data:
+    if data.get("IndexName") is not None:
         out["index_name"] = data["IndexName"]
-    if "IndexSizeBytes" in data:
+    if data.get("IndexSizeBytes") is not None:
         out["index_size_bytes"] = data["IndexSizeBytes"]
-    if "IndexStatus" in data:
+    if data.get("IndexStatus") is not None:
         out["index_status"] = data["IndexStatus"]
-    if "ItemCount" in data:
+    if data.get("ItemCount") is not None:
         out["item_count"] = data["ItemCount"]
-    if "KeySchema" in data:
+    if data.get("KeySchema") is not None:
         import capo_securityhub.types.aws_dynamo_db_table_key_schema_list
 
         out["key_schema"] = (
@@ -105,7 +105,7 @@ def deserialize_json(data: dict) -> AwsDynamoDbTableGlobalSecondaryIndex:
                 data["KeySchema"]
             )
         )
-    if "Projection" in data:
+    if data.get("Projection") is not None:
         import capo_securityhub.types.aws_dynamo_db_table_projection
 
         out["projection"] = (
@@ -113,7 +113,7 @@ def deserialize_json(data: dict) -> AwsDynamoDbTableGlobalSecondaryIndex:
                 data["Projection"]
             )
         )
-    if "ProvisionedThroughput" in data:
+    if data.get("ProvisionedThroughput") is not None:
         import capo_securityhub.types.aws_dynamo_db_table_provisioned_throughput
 
         out["provisioned_throughput"] = (

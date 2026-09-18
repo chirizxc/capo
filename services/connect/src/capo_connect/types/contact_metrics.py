@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> ContactMetrics:
 
     out: ContactMetrics = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_connect.types.contact_metric_info.deserialize_json(item))
     return out

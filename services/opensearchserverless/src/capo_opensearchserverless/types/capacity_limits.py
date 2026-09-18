@@ -32,8 +32,8 @@ def serialize_aws_json_1_0(value: CapacityLimits) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CapacityLimits:
     out: CapacityLimits = {}  # type: ignore[typeddict-item]
-    if "maxIndexingCapacityInOCU" in data:
+    if data.get("maxIndexingCapacityInOCU") is not None:
         out["max_indexing_capacity_in_ocu"] = data["maxIndexingCapacityInOCU"]
-    if "maxSearchCapacityInOCU" in data:
+    if data.get("maxSearchCapacityInOCU") is not None:
         out["max_search_capacity_in_ocu"] = data["maxSearchCapacityInOCU"]
     return out

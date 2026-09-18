@@ -41,12 +41,12 @@ def serialize_json(value: StartJobRunResponse) -> dict:
 
 def deserialize_json(data: dict) -> StartJobRunResponse:
     out: StartJobRunResponse = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "virtualClusterId" in data:
+    if data.get("virtualClusterId") is not None:
         out["virtual_cluster_id"] = data["virtualClusterId"]
     return out

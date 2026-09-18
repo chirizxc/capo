@@ -23,6 +23,6 @@ def serialize_json(value: CrossRegionCopyTarget) -> dict:
 
 def deserialize_json(data: dict) -> CrossRegionCopyTarget:
     out: CrossRegionCopyTarget = {}  # type: ignore[typeddict-item]
-    if "TargetRegion" in data:
+    if data.get("TargetRegion") is not None:
         out["target_region"] = data["TargetRegion"]
     return out

@@ -63,19 +63,19 @@ def serialize_json(value: EBSResultItem) -> dict:
 
 def deserialize_json(data: dict) -> EBSResultItem:
     out: EBSResultItem = {}  # type: ignore[typeddict-item]
-    if "BackupResourceArn" in data:
+    if data.get("BackupResourceArn") is not None:
         out["backup_resource_arn"] = data["BackupResourceArn"]
-    if "SourceResourceArn" in data:
+    if data.get("SourceResourceArn") is not None:
         out["source_resource_arn"] = data["SourceResourceArn"]
-    if "BackupVaultName" in data:
+    if data.get("BackupVaultName") is not None:
         out["backup_vault_name"] = data["BackupVaultName"]
-    if "FileSystemIdentifier" in data:
+    if data.get("FileSystemIdentifier") is not None:
         out["file_system_identifier"] = data["FileSystemIdentifier"]
-    if "FilePath" in data:
+    if data.get("FilePath") is not None:
         out["file_path"] = data["FilePath"]
-    if "FileSize" in data:
+    if data.get("FileSize") is not None:
         out["file_size"] = data["FileSize"]
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_backupsearch.types._prelude.timestamp
 
         out["creation_time"] = (
@@ -83,7 +83,7 @@ def deserialize_json(data: dict) -> EBSResultItem:
                 data["CreationTime"]
             )
         )
-    if "LastModifiedTime" in data:
+    if data.get("LastModifiedTime") is not None:
         import capo_backupsearch.types._prelude.timestamp
 
         out["last_modified_time"] = (

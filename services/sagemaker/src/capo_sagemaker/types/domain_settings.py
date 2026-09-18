@@ -118,7 +118,7 @@ def serialize_aws_json_1_1(value: DomainSettings) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DomainSettings:
     out: DomainSettings = {}  # type: ignore[typeddict-item]
-    if "SecurityGroupIds" in data:
+    if data.get("SecurityGroupIds") is not None:
         import capo_sagemaker.types.domain_security_group_ids
 
         out["security_group_ids"] = (
@@ -126,7 +126,7 @@ def deserialize_aws_json_1_1(data: dict) -> DomainSettings:
                 data["SecurityGroupIds"]
             )
         )
-    if "RStudioServerProDomainSettings" in data:
+    if data.get("RStudioServerProDomainSettings") is not None:
         import capo_sagemaker.types.r_studio_server_pro_domain_settings
 
         out["r_studio_server_pro_domain_settings"] = (
@@ -134,7 +134,7 @@ def deserialize_aws_json_1_1(data: dict) -> DomainSettings:
                 data["RStudioServerProDomainSettings"]
             )
         )
-    if "ExecutionRoleIdentityConfig" in data:
+    if data.get("ExecutionRoleIdentityConfig") is not None:
         import capo_sagemaker.types.execution_role_identity_config
 
         out["execution_role_identity_config"] = (
@@ -142,7 +142,7 @@ def deserialize_aws_json_1_1(data: dict) -> DomainSettings:
                 data["ExecutionRoleIdentityConfig"]
             )
         )
-    if "TrustedIdentityPropagationSettings" in data:
+    if data.get("TrustedIdentityPropagationSettings") is not None:
         import capo_sagemaker.types.trusted_identity_propagation_settings
 
         out["trusted_identity_propagation_settings"] = (
@@ -150,7 +150,7 @@ def deserialize_aws_json_1_1(data: dict) -> DomainSettings:
                 data["TrustedIdentityPropagationSettings"]
             )
         )
-    if "DockerSettings" in data:
+    if data.get("DockerSettings") is not None:
         import capo_sagemaker.types.docker_settings
 
         out["docker_settings"] = (
@@ -158,7 +158,7 @@ def deserialize_aws_json_1_1(data: dict) -> DomainSettings:
                 data["DockerSettings"]
             )
         )
-    if "AmazonQSettings" in data:
+    if data.get("AmazonQSettings") is not None:
         import capo_sagemaker.types.amazon_q_settings
 
         out["amazon_q_settings"] = (
@@ -166,7 +166,7 @@ def deserialize_aws_json_1_1(data: dict) -> DomainSettings:
                 data["AmazonQSettings"]
             )
         )
-    if "UnifiedStudioSettings" in data:
+    if data.get("UnifiedStudioSettings") is not None:
         import capo_sagemaker.types.unified_studio_settings
 
         out["unified_studio_settings"] = (
@@ -174,7 +174,7 @@ def deserialize_aws_json_1_1(data: dict) -> DomainSettings:
                 data["UnifiedStudioSettings"]
             )
         )
-    if "IpAddressType" in data:
+    if data.get("IpAddressType") is not None:
         import capo_sagemaker.types.ip_address_type
 
         out["ip_address_type"] = (

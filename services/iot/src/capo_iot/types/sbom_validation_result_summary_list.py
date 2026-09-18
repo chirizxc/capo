@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> SbomValidationResultSummaryList:
 
     out: SbomValidationResultSummaryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_iot.types.sbom_validation_result_summary.deserialize_json(item))
     return out

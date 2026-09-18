@@ -30,11 +30,11 @@ def serialize_json(value: TagColumnOperation) -> dict:
 
 def deserialize_json(data: dict) -> TagColumnOperation:
     out: TagColumnOperation = {}  # type: ignore[typeddict-item]
-    if "ColumnName" in data:
+    if data.get("ColumnName") is not None:
         out["column_name"] = data["ColumnName"]
     else:
         raise DeserializationError("TagColumnOperation.column_name required")
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_quicksight.types.column_tag_list
 
         out["tags"] = capo_quicksight.types.column_tag_list.deserialize_json(

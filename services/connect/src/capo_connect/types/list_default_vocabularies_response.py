@@ -39,7 +39,7 @@ def serialize_json(value: ListDefaultVocabulariesResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListDefaultVocabulariesResponse:
     out: ListDefaultVocabulariesResponse = {}  # type: ignore[typeddict-item]
-    if "DefaultVocabularyList" in data:
+    if data.get("DefaultVocabularyList") is not None:
         import capo_connect.types.default_vocabulary_list
 
         out["default_vocabulary_list"] = (
@@ -51,6 +51,6 @@ def deserialize_json(data: dict) -> ListDefaultVocabulariesResponse:
         raise DeserializationError(
             "ListDefaultVocabulariesResponse.default_vocabulary_list required"
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

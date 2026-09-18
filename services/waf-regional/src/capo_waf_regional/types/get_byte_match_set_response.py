@@ -29,7 +29,7 @@ def serialize_aws_json_1_1(value: GetByteMatchSetResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetByteMatchSetResponse:
     out: GetByteMatchSetResponse = {}  # type: ignore[typeddict-item]
-    if "ByteMatchSet" in data:
+    if data.get("ByteMatchSet") is not None:
         import capo_waf_regional.types.byte_match_set
 
         out["byte_match_set"] = (

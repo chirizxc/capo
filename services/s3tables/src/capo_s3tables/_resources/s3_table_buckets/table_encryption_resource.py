@@ -70,16 +70,18 @@ class TableEncryptionResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_s3tables.types.get_table_encryption_request.GetTableEncryptionRequest = {}  # type: ignore[typeddict-item]
-        input_["table_bucket_arn"] = table_bucket_arn
-        input_["namespace"] = namespace
-        input_["name"] = name
+        input_: capo_s3tables.types.get_table_encryption_request.GetTableEncryptionRequest = {
+            "table_bucket_arn": table_bucket_arn,
+            "namespace": namespace,
+            "name": name,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -128,14 +130,16 @@ class AsyncTableEncryptionResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_s3tables.types.get_table_encryption_request.GetTableEncryptionRequest = {}  # type: ignore[typeddict-item]
-        input_["table_bucket_arn"] = table_bucket_arn
-        input_["namespace"] = namespace
-        input_["name"] = name
+        input_: capo_s3tables.types.get_table_encryption_request.GetTableEncryptionRequest = {
+            "table_bucket_arn": table_bucket_arn,
+            "namespace": namespace,
+            "name": name,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

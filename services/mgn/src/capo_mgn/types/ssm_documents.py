@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> SsmDocuments:
 
     out: SsmDocuments = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_mgn.types.ssm_document.deserialize_json(item))
     return out

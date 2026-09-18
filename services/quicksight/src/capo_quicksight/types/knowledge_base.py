@@ -164,19 +164,19 @@ def serialize_json(value: KnowledgeBase) -> dict:
 
 def deserialize_json(data: dict) -> KnowledgeBase:
     out: KnowledgeBase = {}  # type: ignore[typeddict-item]
-    if "KnowledgeBaseArn" in data:
+    if data.get("KnowledgeBaseArn") is not None:
         out["knowledge_base_arn"] = data["KnowledgeBaseArn"]
     else:
         raise DeserializationError("KnowledgeBase.knowledge_base_arn required")
-    if "KnowledgeBaseId" in data:
+    if data.get("KnowledgeBaseId") is not None:
         out["knowledge_base_id"] = data["KnowledgeBaseId"]
     else:
         raise DeserializationError("KnowledgeBase.knowledge_base_id required")
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("KnowledgeBase.name required")
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_quicksight.types.data_set_status
 
         out["status"] = capo_quicksight.types.data_set_status.deserialize_json(
@@ -184,11 +184,11 @@ def deserialize_json(data: dict) -> KnowledgeBase:
         )
     else:
         raise DeserializationError("KnowledgeBase.status required")
-    if "DataSourceArn" in data:
+    if data.get("DataSourceArn") is not None:
         out["data_source_arn"] = data["DataSourceArn"]
     else:
         raise DeserializationError("KnowledgeBase.data_source_arn required")
-    if "KnowledgeBaseConfiguration" in data:
+    if data.get("KnowledgeBaseConfiguration") is not None:
         import capo_quicksight.types.knowledge_base_configuration
 
         out["knowledge_base_configuration"] = (
@@ -200,7 +200,7 @@ def deserialize_json(data: dict) -> KnowledgeBase:
         raise DeserializationError(
             "KnowledgeBase.knowledge_base_configuration required"
         )
-    if "MediaExtractionConfiguration" in data:
+    if data.get("MediaExtractionConfiguration") is not None:
         import capo_quicksight.types.media_extraction_configuration
 
         out["media_extraction_configuration"] = (
@@ -208,27 +208,27 @@ def deserialize_json(data: dict) -> KnowledgeBase:
                 data["MediaExtractionConfiguration"]
             )
         )
-    if "Type" in data:
+    if data.get("Type") is not None:
         out["type"] = data["Type"]
-    if "CreatedAt" in data:
+    if data.get("CreatedAt") is not None:
         import capo_quicksight.types._prelude.timestamp
 
         out["created_at"] = capo_quicksight.types._prelude.timestamp.deserialize_json(
             data["CreatedAt"]
         )
-    if "UpdatedAt" in data:
+    if data.get("UpdatedAt") is not None:
         import capo_quicksight.types._prelude.timestamp
 
         out["updated_at"] = capo_quicksight.types._prelude.timestamp.deserialize_json(
             data["UpdatedAt"]
         )
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "IsEmailNotificationOptedForIngestionFailures" in data:
+    if data.get("IsEmailNotificationOptedForIngestionFailures") is not None:
         out["is_email_notification_opted_for_ingestion_failures"] = data[
             "IsEmailNotificationOptedForIngestionFailures"
         ]
-    if "FirstCompletedIngestionSummary" in data:
+    if data.get("FirstCompletedIngestionSummary") is not None:
         import capo_quicksight.types.knowledge_base_ingestion_summary
 
         out["first_completed_ingestion_summary"] = (
@@ -236,7 +236,7 @@ def deserialize_json(data: dict) -> KnowledgeBase:
                 data["FirstCompletedIngestionSummary"]
             )
         )
-    if "FirstIncompleteIngestionSummary" in data:
+    if data.get("FirstIncompleteIngestionSummary") is not None:
         import capo_quicksight.types.knowledge_base_ingestion_summary
 
         out["first_incomplete_ingestion_summary"] = (
@@ -244,7 +244,7 @@ def deserialize_json(data: dict) -> KnowledgeBase:
                 data["FirstIncompleteIngestionSummary"]
             )
         )
-    if "LatestIngestionSummary" in data:
+    if data.get("LatestIngestionSummary") is not None:
         import capo_quicksight.types.knowledge_base_ingestion_summary
 
         out["latest_ingestion_summary"] = (
@@ -252,12 +252,12 @@ def deserialize_json(data: dict) -> KnowledgeBase:
                 data["LatestIngestionSummary"]
             )
         )
-    if "KnowledgeBaseSizeBytes" in data:
+    if data.get("KnowledgeBaseSizeBytes") is not None:
         out["knowledge_base_size_bytes"] = data["KnowledgeBaseSizeBytes"]
-    if "DocumentCount" in data:
+    if data.get("DocumentCount") is not None:
         out["document_count"] = data["DocumentCount"]
-    if "PrimaryOwnerArn" in data:
+    if data.get("PrimaryOwnerArn") is not None:
         out["primary_owner_arn"] = data["PrimaryOwnerArn"]
-    if "PrimaryOwnerUsername" in data:
+    if data.get("PrimaryOwnerUsername") is not None:
         out["primary_owner_username"] = data["PrimaryOwnerUsername"]
     return out

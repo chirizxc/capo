@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> EnvironmentVariables:
 
     out: EnvironmentVariables = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_batch.types.key_value_pair.deserialize_json(item))
     return out

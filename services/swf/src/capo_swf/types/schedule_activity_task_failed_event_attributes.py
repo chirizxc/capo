@@ -48,7 +48,7 @@ def serialize_aws_json_1_0(value: ScheduleActivityTaskFailedEventAttributes) -> 
 
 def deserialize_aws_json_1_0(data: dict) -> ScheduleActivityTaskFailedEventAttributes:
     out: ScheduleActivityTaskFailedEventAttributes = {}  # type: ignore[typeddict-item]
-    if "activityType" in data:
+    if data.get("activityType") is not None:
         import capo_swf.types.activity_type
 
         out["activity_type"] = capo_swf.types.activity_type.deserialize_aws_json_1_0(
@@ -58,13 +58,13 @@ def deserialize_aws_json_1_0(data: dict) -> ScheduleActivityTaskFailedEventAttri
         raise DeserializationError(
             "ScheduleActivityTaskFailedEventAttributes.activity_type required"
         )
-    if "activityId" in data:
+    if data.get("activityId") is not None:
         out["activity_id"] = data["activityId"]
     else:
         raise DeserializationError(
             "ScheduleActivityTaskFailedEventAttributes.activity_id required"
         )
-    if "cause" in data:
+    if data.get("cause") is not None:
         import capo_swf.types.schedule_activity_task_failed_cause
 
         out["cause"] = (
@@ -76,7 +76,7 @@ def deserialize_aws_json_1_0(data: dict) -> ScheduleActivityTaskFailedEventAttri
         raise DeserializationError(
             "ScheduleActivityTaskFailedEventAttributes.cause required"
         )
-    if "decisionTaskCompletedEventId" in data:
+    if data.get("decisionTaskCompletedEventId") is not None:
         out["decision_task_completed_event_id"] = data["decisionTaskCompletedEventId"]
     else:
         out["decision_task_completed_event_id"] = 0

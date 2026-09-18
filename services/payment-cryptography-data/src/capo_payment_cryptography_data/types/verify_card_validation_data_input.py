@@ -44,19 +44,19 @@ def serialize_json(value: VerifyCardValidationDataInput) -> dict:
 
 def deserialize_json(data: dict) -> VerifyCardValidationDataInput:
     out: VerifyCardValidationDataInput = {}  # type: ignore[typeddict-item]
-    if "KeyIdentifier" in data:
+    if data.get("KeyIdentifier") is not None:
         out["key_identifier"] = data["KeyIdentifier"]
     else:
         raise DeserializationError(
             "VerifyCardValidationDataInput.key_identifier required"
         )
-    if "PrimaryAccountNumber" in data:
+    if data.get("PrimaryAccountNumber") is not None:
         out["primary_account_number"] = data["PrimaryAccountNumber"]
     else:
         raise DeserializationError(
             "VerifyCardValidationDataInput.primary_account_number required"
         )
-    if "VerificationAttributes" in data:
+    if data.get("VerificationAttributes") is not None:
         import capo_payment_cryptography_data.types.card_verification_attributes
 
         out["verification_attributes"] = (
@@ -68,7 +68,7 @@ def deserialize_json(data: dict) -> VerifyCardValidationDataInput:
         raise DeserializationError(
             "VerifyCardValidationDataInput.verification_attributes required"
         )
-    if "ValidationData" in data:
+    if data.get("ValidationData") is not None:
         out["validation_data"] = data["ValidationData"]
     else:
         raise DeserializationError(

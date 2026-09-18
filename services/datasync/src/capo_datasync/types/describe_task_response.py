@@ -187,25 +187,25 @@ def serialize_aws_json_1_1(value: DescribeTaskResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeTaskResponse:
     out: DescribeTaskResponse = {}  # type: ignore[typeddict-item]
-    if "TaskArn" in data:
+    if data.get("TaskArn") is not None:
         out["task_arn"] = data["TaskArn"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_datasync.types.task_status
 
         out["status"] = capo_datasync.types.task_status.deserialize_aws_json_1_1(
             data["Status"]
         )
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "CurrentTaskExecutionArn" in data:
+    if data.get("CurrentTaskExecutionArn") is not None:
         out["current_task_execution_arn"] = data["CurrentTaskExecutionArn"]
-    if "SourceLocationArn" in data:
+    if data.get("SourceLocationArn") is not None:
         out["source_location_arn"] = data["SourceLocationArn"]
-    if "DestinationLocationArn" in data:
+    if data.get("DestinationLocationArn") is not None:
         out["destination_location_arn"] = data["DestinationLocationArn"]
-    if "CloudWatchLogGroupArn" in data:
+    if data.get("CloudWatchLogGroupArn") is not None:
         out["cloud_watch_log_group_arn"] = data["CloudWatchLogGroupArn"]
-    if "SourceNetworkInterfaceArns" in data:
+    if data.get("SourceNetworkInterfaceArns") is not None:
         import capo_datasync.types.source_network_interface_arns
 
         out["source_network_interface_arns"] = (
@@ -213,7 +213,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeTaskResponse:
                 data["SourceNetworkInterfaceArns"]
             )
         )
-    if "DestinationNetworkInterfaceArns" in data:
+    if data.get("DestinationNetworkInterfaceArns") is not None:
         import capo_datasync.types.destination_network_interface_arns
 
         out["destination_network_interface_arns"] = (
@@ -221,41 +221,41 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeTaskResponse:
                 data["DestinationNetworkInterfaceArns"]
             )
         )
-    if "Options" in data:
+    if data.get("Options") is not None:
         import capo_datasync.types.options
 
         out["options"] = capo_datasync.types.options.deserialize_aws_json_1_1(
             data["Options"]
         )
-    if "Excludes" in data:
+    if data.get("Excludes") is not None:
         import capo_datasync.types.filter_list
 
         out["excludes"] = capo_datasync.types.filter_list.deserialize_aws_json_1_1(
             data["Excludes"]
         )
-    if "Schedule" in data:
+    if data.get("Schedule") is not None:
         import capo_datasync.types.task_schedule
 
         out["schedule"] = capo_datasync.types.task_schedule.deserialize_aws_json_1_1(
             data["Schedule"]
         )
-    if "ErrorCode" in data:
+    if data.get("ErrorCode") is not None:
         out["error_code"] = data["ErrorCode"]
-    if "ErrorDetail" in data:
+    if data.get("ErrorDetail") is not None:
         out["error_detail"] = data["ErrorDetail"]
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_datasync.types.time
 
         out["creation_time"] = capo_datasync.types.time.deserialize_aws_json_1_1(
             data["CreationTime"]
         )
-    if "Includes" in data:
+    if data.get("Includes") is not None:
         import capo_datasync.types.filter_list
 
         out["includes"] = capo_datasync.types.filter_list.deserialize_aws_json_1_1(
             data["Includes"]
         )
-    if "ManifestConfig" in data:
+    if data.get("ManifestConfig") is not None:
         import capo_datasync.types.manifest_config
 
         out["manifest_config"] = (
@@ -263,7 +263,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeTaskResponse:
                 data["ManifestConfig"]
             )
         )
-    if "TaskReportConfig" in data:
+    if data.get("TaskReportConfig") is not None:
         import capo_datasync.types.task_report_config
 
         out["task_report_config"] = (
@@ -271,7 +271,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeTaskResponse:
                 data["TaskReportConfig"]
             )
         )
-    if "ScheduleDetails" in data:
+    if data.get("ScheduleDetails") is not None:
         import capo_datasync.types.task_schedule_details
 
         out["schedule_details"] = (
@@ -279,7 +279,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeTaskResponse:
                 data["ScheduleDetails"]
             )
         )
-    if "TaskMode" in data:
+    if data.get("TaskMode") is not None:
         import capo_datasync.types.task_mode
 
         out["task_mode"] = capo_datasync.types.task_mode.deserialize_aws_json_1_1(

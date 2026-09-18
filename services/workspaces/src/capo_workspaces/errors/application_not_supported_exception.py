@@ -25,15 +25,20 @@ class ApplicationNotSupportedException(ServiceError):
 
     code: str | None = "ApplicationNotSupportedException"
 
-    def __init__(self, data: ApplicationNotSupportedException_):
+    def __init__(
+        self, data: ApplicationNotSupportedException_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="ApplicationNotSupportedException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "ApplicationNotSupportedException":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "ApplicationNotSupportedException":
+        return cls(deserialize_aws_json_1_1(data), message)

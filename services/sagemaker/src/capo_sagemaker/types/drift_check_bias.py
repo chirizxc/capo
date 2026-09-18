@@ -52,13 +52,13 @@ def serialize_aws_json_1_1(value: DriftCheckBias) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DriftCheckBias:
     out: DriftCheckBias = {}  # type: ignore[typeddict-item]
-    if "ConfigFile" in data:
+    if data.get("ConfigFile") is not None:
         import capo_sagemaker.types.file_source
 
         out["config_file"] = capo_sagemaker.types.file_source.deserialize_aws_json_1_1(
             data["ConfigFile"]
         )
-    if "PreTrainingConstraints" in data:
+    if data.get("PreTrainingConstraints") is not None:
         import capo_sagemaker.types.metrics_source
 
         out["pre_training_constraints"] = (
@@ -66,7 +66,7 @@ def deserialize_aws_json_1_1(data: dict) -> DriftCheckBias:
                 data["PreTrainingConstraints"]
             )
         )
-    if "PostTrainingConstraints" in data:
+    if data.get("PostTrainingConstraints") is not None:
         import capo_sagemaker.types.metrics_source
 
         out["post_training_constraints"] = (

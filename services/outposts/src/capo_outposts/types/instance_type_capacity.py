@@ -28,11 +28,11 @@ def serialize_json(value: InstanceTypeCapacity) -> dict:
 
 def deserialize_json(data: dict) -> InstanceTypeCapacity:
     out: InstanceTypeCapacity = {}  # type: ignore[typeddict-item]
-    if "InstanceType" in data:
+    if data.get("InstanceType") is not None:
         out["instance_type"] = data["InstanceType"]
     else:
         raise DeserializationError("InstanceTypeCapacity.instance_type required")
-    if "Count" in data:
+    if data.get("Count") is not None:
         out["count"] = data["Count"]
     else:
         out["count"] = 0

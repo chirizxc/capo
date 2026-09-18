@@ -31,7 +31,7 @@ def serialize_json(value: CommonControlFilter) -> dict:
 
 def deserialize_json(data: dict) -> CommonControlFilter:
     out: CommonControlFilter = {}  # type: ignore[typeddict-item]
-    if "Objectives" in data:
+    if data.get("Objectives") is not None:
         import capo_controlcatalog.types.objective_resource_filter_list
 
         out["objectives"] = (

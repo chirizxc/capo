@@ -52,13 +52,13 @@ def serialize_aws_json_1_1(value: DescribeImagesRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeImagesRequest:
     out: DescribeImagesRequest = {}  # type: ignore[typeddict-item]
-    if "registryId" in data:
+    if data.get("registryId") is not None:
         out["registry_id"] = data["registryId"]
-    if "repositoryName" in data:
+    if data.get("repositoryName") is not None:
         out["repository_name"] = data["repositoryName"]
     else:
         raise DeserializationError("DescribeImagesRequest.repository_name required")
-    if "imageIds" in data:
+    if data.get("imageIds") is not None:
         import capo_ecr_public.types.image_identifier_list
 
         out["image_ids"] = (
@@ -66,8 +66,8 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeImagesRequest:
                 data["imageIds"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
     return out

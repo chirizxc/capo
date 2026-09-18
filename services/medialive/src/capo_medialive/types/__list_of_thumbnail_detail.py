@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> __listOfThumbnailDetail:
 
     out: __listOfThumbnailDetail = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_medialive.types.thumbnail_detail.deserialize_json(item))
     return out

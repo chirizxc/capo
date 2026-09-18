@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: DeleteDataSourceInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteDataSourceInput:
     out: DeleteDataSourceInput = {}  # type: ignore[typeddict-item]
-    if "DataSourceId" in data:
+    if data.get("DataSourceId") is not None:
         out["data_source_id"] = data["DataSourceId"]
     else:
         raise DeserializationError("DeleteDataSourceInput.data_source_id required")

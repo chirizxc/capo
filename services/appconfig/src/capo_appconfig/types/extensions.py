@@ -32,12 +32,12 @@ def serialize_json(value: Extensions) -> dict:
 
 def deserialize_json(data: dict) -> Extensions:
     out: Extensions = {}  # type: ignore[typeddict-item]
-    if "Items" in data:
+    if data.get("Items") is not None:
         import capo_appconfig.types.extension_summaries
 
         out["items"] = capo_appconfig.types.extension_summaries.deserialize_json(
             data["Items"]
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

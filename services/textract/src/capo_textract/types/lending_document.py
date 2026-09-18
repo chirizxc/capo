@@ -44,7 +44,7 @@ def serialize_aws_json_1_1(value: LendingDocument) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> LendingDocument:
     out: LendingDocument = {}  # type: ignore[typeddict-item]
-    if "LendingFields" in data:
+    if data.get("LendingFields") is not None:
         import capo_textract.types.lending_field_list
 
         out["lending_fields"] = (
@@ -52,7 +52,7 @@ def deserialize_aws_json_1_1(data: dict) -> LendingDocument:
                 data["LendingFields"]
             )
         )
-    if "SignatureDetections" in data:
+    if data.get("SignatureDetections") is not None:
         import capo_textract.types.signature_detection_list
 
         out["signature_detections"] = (

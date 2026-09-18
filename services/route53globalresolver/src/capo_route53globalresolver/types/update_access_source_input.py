@@ -55,9 +55,9 @@ def serialize_json(value: UpdateAccessSourceInput) -> dict:
 
 def deserialize_json(data: dict) -> UpdateAccessSourceInput:
     out: UpdateAccessSourceInput = {}  # type: ignore[typeddict-item]
-    if "cidr" in data:
+    if data.get("cidr") is not None:
         out["cidr"] = data["cidr"]
-    if "ipAddressType" in data:
+    if data.get("ipAddressType") is not None:
         import capo_route53globalresolver.types.ip_address_type
 
         out["ip_address_type"] = (
@@ -65,9 +65,9 @@ def deserialize_json(data: dict) -> UpdateAccessSourceInput:
                 data["ipAddressType"]
             )
         )
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "protocol" in data:
+    if data.get("protocol") is not None:
         import capo_route53globalresolver.types.dns_protocol
 
         out["protocol"] = (

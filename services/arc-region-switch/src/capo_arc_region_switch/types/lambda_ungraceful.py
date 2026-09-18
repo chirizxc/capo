@@ -28,7 +28,7 @@ def serialize_aws_json_1_0(value: LambdaUngraceful) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> LambdaUngraceful:
     out: LambdaUngraceful = {}  # type: ignore[typeddict-item]
-    if "behavior" in data:
+    if data.get("behavior") is not None:
         import capo_arc_region_switch.types.lambda_ungraceful_behavior
 
         out["behavior"] = (

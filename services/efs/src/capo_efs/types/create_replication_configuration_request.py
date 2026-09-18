@@ -31,7 +31,7 @@ def serialize_json(value: CreateReplicationConfigurationRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateReplicationConfigurationRequest:
     out: CreateReplicationConfigurationRequest = {}  # type: ignore[typeddict-item]
-    if "Destinations" in data:
+    if data.get("Destinations") is not None:
         import capo_efs.types.destinations_to_create
 
         out["destinations"] = capo_efs.types.destinations_to_create.deserialize_json(

@@ -31,12 +31,12 @@ def serialize_aws_json_1_1(value: CheckDomainTransferabilityRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CheckDomainTransferabilityRequest:
     out: CheckDomainTransferabilityRequest = {}  # type: ignore[typeddict-item]
-    if "DomainName" in data:
+    if data.get("DomainName") is not None:
         out["domain_name"] = data["DomainName"]
     else:
         raise DeserializationError(
             "CheckDomainTransferabilityRequest.domain_name required"
         )
-    if "AuthCode" in data:
+    if data.get("AuthCode") is not None:
         out["auth_code"] = data["AuthCode"]
     return out

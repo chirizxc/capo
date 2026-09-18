@@ -303,7 +303,15 @@ def serialize_json(value: M2tsSettings) -> dict:
             )
         )
     if "fragment_time" in value:
-        out["fragmentTime"] = value["fragment_time"]
+        out["fragmentTime"] = (
+            "NaN"
+            if value["fragment_time"] != value["fragment_time"]
+            else "Infinity"
+            if value["fragment_time"] == float("inf")
+            else "-Infinity"
+            if value["fragment_time"] == float("-inf")
+            else value["fragment_time"]
+        )
     if "klv_metadata" in value:
         import capo_mediaconvert.types.m2ts_klv_metadata
 
@@ -321,7 +329,15 @@ def serialize_json(value: M2tsSettings) -> dict:
             value["nielsen_id3"]
         )
     if "null_packet_bitrate" in value:
-        out["nullPacketBitrate"] = value["null_packet_bitrate"]
+        out["nullPacketBitrate"] = (
+            "NaN"
+            if value["null_packet_bitrate"] != value["null_packet_bitrate"]
+            else "Infinity"
+            if value["null_packet_bitrate"] == float("inf")
+            else "-Infinity"
+            if value["null_packet_bitrate"] == float("-inf")
+            else value["null_packet_bitrate"]
+        )
     if "pat_interval" in value:
         out["patInterval"] = value["pat_interval"]
     if "pcr_control" in value:
@@ -393,7 +409,15 @@ def serialize_json(value: M2tsSettings) -> dict:
             )
         )
     if "segmentation_time" in value:
-        out["segmentationTime"] = value["segmentation_time"]
+        out["segmentationTime"] = (
+            "NaN"
+            if value["segmentation_time"] != value["segmentation_time"]
+            else "Infinity"
+            if value["segmentation_time"] == float("inf")
+            else "-Infinity"
+            if value["segmentation_time"] == float("-inf")
+            else value["segmentation_time"]
+        )
     if "timed_metadata_pid" in value:
         out["timedMetadataPid"] = value["timed_metadata_pid"]
     if "transport_stream_id" in value:
@@ -405,7 +429,7 @@ def serialize_json(value: M2tsSettings) -> dict:
 
 def deserialize_json(data: dict) -> M2tsSettings:
     out: M2tsSettings = {}  # type: ignore[typeddict-item]
-    if "audioBufferModel" in data:
+    if data.get("audioBufferModel") is not None:
         import capo_mediaconvert.types.m2ts_audio_buffer_model
 
         out["audio_buffer_model"] = (
@@ -413,7 +437,7 @@ def deserialize_json(data: dict) -> M2tsSettings:
                 data["audioBufferModel"]
             )
         )
-    if "audioDuration" in data:
+    if data.get("audioDuration") is not None:
         import capo_mediaconvert.types.m2ts_audio_duration
 
         out["audio_duration"] = (
@@ -421,9 +445,9 @@ def deserialize_json(data: dict) -> M2tsSettings:
                 data["audioDuration"]
             )
         )
-    if "audioFramesPerPes" in data:
+    if data.get("audioFramesPerPes") is not None:
         out["audio_frames_per_pes"] = data["audioFramesPerPes"]
-    if "audioPids" in data:
+    if data.get("audioPids") is not None:
         import capo_mediaconvert.types.__list_of__integer_min32_max8182
 
         out["audio_pids"] = (
@@ -431,11 +455,11 @@ def deserialize_json(data: dict) -> M2tsSettings:
                 data["audioPids"]
             )
         )
-    if "audioPtsOffsetDelta" in data:
+    if data.get("audioPtsOffsetDelta") is not None:
         out["audio_pts_offset_delta"] = data["audioPtsOffsetDelta"]
-    if "bitrate" in data:
+    if data.get("bitrate") is not None:
         out["bitrate"] = data["bitrate"]
-    if "bufferModel" in data:
+    if data.get("bufferModel") is not None:
         import capo_mediaconvert.types.m2ts_buffer_model
 
         out["buffer_model"] = (
@@ -443,7 +467,7 @@ def deserialize_json(data: dict) -> M2tsSettings:
                 data["bufferModel"]
             )
         )
-    if "dataPTSControl" in data:
+    if data.get("dataPTSControl") is not None:
         import capo_mediaconvert.types.m2ts_data_pts_control
 
         out["data_pts_control"] = (
@@ -451,7 +475,7 @@ def deserialize_json(data: dict) -> M2tsSettings:
                 data["dataPTSControl"]
             )
         )
-    if "dvbNitSettings" in data:
+    if data.get("dvbNitSettings") is not None:
         import capo_mediaconvert.types.dvb_nit_settings
 
         out["dvb_nit_settings"] = (
@@ -459,7 +483,7 @@ def deserialize_json(data: dict) -> M2tsSettings:
                 data["dvbNitSettings"]
             )
         )
-    if "dvbSdtSettings" in data:
+    if data.get("dvbSdtSettings") is not None:
         import capo_mediaconvert.types.dvb_sdt_settings
 
         out["dvb_sdt_settings"] = (
@@ -467,7 +491,7 @@ def deserialize_json(data: dict) -> M2tsSettings:
                 data["dvbSdtSettings"]
             )
         )
-    if "dvbSubPids" in data:
+    if data.get("dvbSubPids") is not None:
         import capo_mediaconvert.types.__list_of__integer_min32_max8182
 
         out["dvb_sub_pids"] = (
@@ -475,7 +499,7 @@ def deserialize_json(data: dict) -> M2tsSettings:
                 data["dvbSubPids"]
             )
         )
-    if "dvbTdtSettings" in data:
+    if data.get("dvbTdtSettings") is not None:
         import capo_mediaconvert.types.dvb_tdt_settings
 
         out["dvb_tdt_settings"] = (
@@ -483,9 +507,9 @@ def deserialize_json(data: dict) -> M2tsSettings:
                 data["dvbTdtSettings"]
             )
         )
-    if "dvbTeletextPid" in data:
+    if data.get("dvbTeletextPid") is not None:
         out["dvb_teletext_pid"] = data["dvbTeletextPid"]
-    if "ebpAudioInterval" in data:
+    if data.get("ebpAudioInterval") is not None:
         import capo_mediaconvert.types.m2ts_ebp_audio_interval
 
         out["ebp_audio_interval"] = (
@@ -493,7 +517,7 @@ def deserialize_json(data: dict) -> M2tsSettings:
                 data["ebpAudioInterval"]
             )
         )
-    if "ebpPlacement" in data:
+    if data.get("ebpPlacement") is not None:
         import capo_mediaconvert.types.m2ts_ebp_placement
 
         out["ebp_placement"] = (
@@ -501,7 +525,7 @@ def deserialize_json(data: dict) -> M2tsSettings:
                 data["ebpPlacement"]
             )
         )
-    if "esRateInPes" in data:
+    if data.get("esRateInPes") is not None:
         import capo_mediaconvert.types.m2ts_es_rate_in_pes
 
         out["es_rate_in_pes"] = (
@@ -509,7 +533,7 @@ def deserialize_json(data: dict) -> M2tsSettings:
                 data["esRateInPes"]
             )
         )
-    if "forceTsVideoEbpOrder" in data:
+    if data.get("forceTsVideoEbpOrder") is not None:
         import capo_mediaconvert.types.m2ts_force_ts_video_ebp_order
 
         out["force_ts_video_ebp_order"] = (
@@ -517,9 +541,9 @@ def deserialize_json(data: dict) -> M2tsSettings:
                 data["forceTsVideoEbpOrder"]
             )
         )
-    if "fragmentTime" in data:
-        out["fragment_time"] = data["fragmentTime"]
-    if "klvMetadata" in data:
+    if data.get("fragmentTime") is not None:
+        out["fragment_time"] = float(data["fragmentTime"])
+    if data.get("klvMetadata") is not None:
         import capo_mediaconvert.types.m2ts_klv_metadata
 
         out["klv_metadata"] = (
@@ -527,33 +551,33 @@ def deserialize_json(data: dict) -> M2tsSettings:
                 data["klvMetadata"]
             )
         )
-    if "maxPcrInterval" in data:
+    if data.get("maxPcrInterval") is not None:
         out["max_pcr_interval"] = data["maxPcrInterval"]
-    if "minEbpInterval" in data:
+    if data.get("minEbpInterval") is not None:
         out["min_ebp_interval"] = data["minEbpInterval"]
-    if "nielsenId3" in data:
+    if data.get("nielsenId3") is not None:
         import capo_mediaconvert.types.m2ts_nielsen_id3
 
         out["nielsen_id3"] = capo_mediaconvert.types.m2ts_nielsen_id3.deserialize_json(
             data["nielsenId3"]
         )
-    if "nullPacketBitrate" in data:
-        out["null_packet_bitrate"] = data["nullPacketBitrate"]
-    if "patInterval" in data:
+    if data.get("nullPacketBitrate") is not None:
+        out["null_packet_bitrate"] = float(data["nullPacketBitrate"])
+    if data.get("patInterval") is not None:
         out["pat_interval"] = data["patInterval"]
-    if "pcrControl" in data:
+    if data.get("pcrControl") is not None:
         import capo_mediaconvert.types.m2ts_pcr_control
 
         out["pcr_control"] = capo_mediaconvert.types.m2ts_pcr_control.deserialize_json(
             data["pcrControl"]
         )
-    if "pcrPid" in data:
+    if data.get("pcrPid") is not None:
         out["pcr_pid"] = data["pcrPid"]
-    if "pmtInterval" in data:
+    if data.get("pmtInterval") is not None:
         out["pmt_interval"] = data["pmtInterval"]
-    if "pmtPid" in data:
+    if data.get("pmtPid") is not None:
         out["pmt_pid"] = data["pmtPid"]
-    if "preventBufferUnderflow" in data:
+    if data.get("preventBufferUnderflow") is not None:
         import capo_mediaconvert.types.m2ts_prevent_buffer_underflow
 
         out["prevent_buffer_underflow"] = (
@@ -561,33 +585,33 @@ def deserialize_json(data: dict) -> M2tsSettings:
                 data["preventBufferUnderflow"]
             )
         )
-    if "privateMetadataPid" in data:
+    if data.get("privateMetadataPid") is not None:
         out["private_metadata_pid"] = data["privateMetadataPid"]
-    if "programNumber" in data:
+    if data.get("programNumber") is not None:
         out["program_number"] = data["programNumber"]
-    if "ptsOffset" in data:
+    if data.get("ptsOffset") is not None:
         out["pts_offset"] = data["ptsOffset"]
-    if "ptsOffsetMode" in data:
+    if data.get("ptsOffsetMode") is not None:
         import capo_mediaconvert.types.ts_pts_offset
 
         out["pts_offset_mode"] = capo_mediaconvert.types.ts_pts_offset.deserialize_json(
             data["ptsOffsetMode"]
         )
-    if "rateMode" in data:
+    if data.get("rateMode") is not None:
         import capo_mediaconvert.types.m2ts_rate_mode
 
         out["rate_mode"] = capo_mediaconvert.types.m2ts_rate_mode.deserialize_json(
             data["rateMode"]
         )
-    if "scte35Esam" in data:
+    if data.get("scte35Esam") is not None:
         import capo_mediaconvert.types.m2ts_scte35_esam
 
         out["scte35_esam"] = capo_mediaconvert.types.m2ts_scte35_esam.deserialize_json(
             data["scte35Esam"]
         )
-    if "scte35Pid" in data:
+    if data.get("scte35Pid") is not None:
         out["scte35_pid"] = data["scte35Pid"]
-    if "scte35Source" in data:
+    if data.get("scte35Source") is not None:
         import capo_mediaconvert.types.m2ts_scte35_source
 
         out["scte35_source"] = (
@@ -595,7 +619,7 @@ def deserialize_json(data: dict) -> M2tsSettings:
                 data["scte35Source"]
             )
         )
-    if "segmentationMarkers" in data:
+    if data.get("segmentationMarkers") is not None:
         import capo_mediaconvert.types.m2ts_segmentation_markers
 
         out["segmentation_markers"] = (
@@ -603,7 +627,7 @@ def deserialize_json(data: dict) -> M2tsSettings:
                 data["segmentationMarkers"]
             )
         )
-    if "segmentationStyle" in data:
+    if data.get("segmentationStyle") is not None:
         import capo_mediaconvert.types.m2ts_segmentation_style
 
         out["segmentation_style"] = (
@@ -611,12 +635,12 @@ def deserialize_json(data: dict) -> M2tsSettings:
                 data["segmentationStyle"]
             )
         )
-    if "segmentationTime" in data:
-        out["segmentation_time"] = data["segmentationTime"]
-    if "timedMetadataPid" in data:
+    if data.get("segmentationTime") is not None:
+        out["segmentation_time"] = float(data["segmentationTime"])
+    if data.get("timedMetadataPid") is not None:
         out["timed_metadata_pid"] = data["timedMetadataPid"]
-    if "transportStreamId" in data:
+    if data.get("transportStreamId") is not None:
         out["transport_stream_id"] = data["transportStreamId"]
-    if "videoPid" in data:
+    if data.get("videoPid") is not None:
         out["video_pid"] = data["videoPid"]
     return out

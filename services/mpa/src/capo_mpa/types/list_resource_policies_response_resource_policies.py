@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> ListResourcePoliciesResponseResourcePolicies
 
     out: ListResourcePoliciesResponseResourcePolicies = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_mpa.types.list_resource_policies_response_resource_policy.deserialize_json(
                 item

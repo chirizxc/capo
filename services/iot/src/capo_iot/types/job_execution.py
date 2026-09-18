@@ -94,17 +94,17 @@ def serialize_json(value: JobExecution) -> dict:
 
 def deserialize_json(data: dict) -> JobExecution:
     out: JobExecution = {}  # type: ignore[typeddict-item]
-    if "jobId" in data:
+    if data.get("jobId") is not None:
         out["job_id"] = data["jobId"]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_iot.types.job_execution_status
 
         out["status"] = capo_iot.types.job_execution_status.deserialize_json(
             data["status"]
         )
-    if "forceCanceled" in data:
+    if data.get("forceCanceled") is not None:
         out["force_canceled"] = data["forceCanceled"]
-    if "statusDetails" in data:
+    if data.get("statusDetails") is not None:
         import capo_iot.types.job_execution_status_details
 
         out["status_details"] = (
@@ -112,29 +112,29 @@ def deserialize_json(data: dict) -> JobExecution:
                 data["statusDetails"]
             )
         )
-    if "thingArn" in data:
+    if data.get("thingArn") is not None:
         out["thing_arn"] = data["thingArn"]
-    if "queuedAt" in data:
+    if data.get("queuedAt") is not None:
         import capo_iot.types.date_type
 
         out["queued_at"] = capo_iot.types.date_type.deserialize_json(data["queuedAt"])
-    if "startedAt" in data:
+    if data.get("startedAt") is not None:
         import capo_iot.types.date_type
 
         out["started_at"] = capo_iot.types.date_type.deserialize_json(data["startedAt"])
-    if "lastUpdatedAt" in data:
+    if data.get("lastUpdatedAt") is not None:
         import capo_iot.types.date_type
 
         out["last_updated_at"] = capo_iot.types.date_type.deserialize_json(
             data["lastUpdatedAt"]
         )
-    if "executionNumber" in data:
+    if data.get("executionNumber") is not None:
         out["execution_number"] = data["executionNumber"]
-    if "versionNumber" in data:
+    if data.get("versionNumber") is not None:
         out["version_number"] = data["versionNumber"]
     else:
         out["version_number"] = 0
-    if "approximateSecondsBeforeTimedOut" in data:
+    if data.get("approximateSecondsBeforeTimedOut") is not None:
         out["approximate_seconds_before_timed_out"] = data[
             "approximateSecondsBeforeTimedOut"
         ]

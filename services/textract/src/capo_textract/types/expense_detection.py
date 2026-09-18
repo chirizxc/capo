@@ -30,20 +30,28 @@ def serialize_aws_json_1_1(value: ExpenseDetection) -> dict:
             value["geometry"]
         )
     if "confidence" in value:
-        out["Confidence"] = value["confidence"]
+        out["Confidence"] = (
+            "NaN"
+            if value["confidence"] != value["confidence"]
+            else "Infinity"
+            if value["confidence"] == float("inf")
+            else "-Infinity"
+            if value["confidence"] == float("-inf")
+            else value["confidence"]
+        )
     return out
 
 
 def deserialize_aws_json_1_1(data: dict) -> ExpenseDetection:
     out: ExpenseDetection = {}  # type: ignore[typeddict-item]
-    if "Text" in data:
+    if data.get("Text") is not None:
         out["text"] = data["Text"]
-    if "Geometry" in data:
+    if data.get("Geometry") is not None:
         import capo_textract.types.geometry
 
         out["geometry"] = capo_textract.types.geometry.deserialize_aws_json_1_1(
             data["Geometry"]
         )
-    if "Confidence" in data:
-        out["confidence"] = data["Confidence"]
+    if data.get("Confidence") is not None:
+        out["confidence"] = float(data["Confidence"])
     return out

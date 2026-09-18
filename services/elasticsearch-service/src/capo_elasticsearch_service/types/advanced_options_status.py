@@ -36,7 +36,7 @@ def serialize_json(value: AdvancedOptionsStatus) -> dict:
 
 def deserialize_json(data: dict) -> AdvancedOptionsStatus:
     out: AdvancedOptionsStatus = {}  # type: ignore[typeddict-item]
-    if "Options" in data:
+    if data.get("Options") is not None:
         import capo_elasticsearch_service.types.advanced_options
 
         out["options"] = (
@@ -46,7 +46,7 @@ def deserialize_json(data: dict) -> AdvancedOptionsStatus:
         )
     else:
         raise DeserializationError("AdvancedOptionsStatus.options required")
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_elasticsearch_service.types.option_status
 
         out["status"] = capo_elasticsearch_service.types.option_status.deserialize_json(

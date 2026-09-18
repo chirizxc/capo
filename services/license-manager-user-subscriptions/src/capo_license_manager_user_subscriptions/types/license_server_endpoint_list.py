@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> LicenseServerEndpointList:
 
     out: LicenseServerEndpointList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_license_manager_user_subscriptions.types.license_server_endpoint.deserialize_json(
                 item

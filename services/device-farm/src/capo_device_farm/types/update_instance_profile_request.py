@@ -56,17 +56,17 @@ def serialize_aws_json_1_1(value: UpdateInstanceProfileRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateInstanceProfileRequest:
     out: UpdateInstanceProfileRequest = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("UpdateInstanceProfileRequest.arn required")
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "packageCleanup" in data:
+    if data.get("packageCleanup") is not None:
         out["package_cleanup"] = data["packageCleanup"]
-    if "excludeAppPackagesFromCleanup" in data:
+    if data.get("excludeAppPackagesFromCleanup") is not None:
         import capo_device_farm.types.package_ids
 
         out["exclude_app_packages_from_cleanup"] = (
@@ -74,6 +74,6 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateInstanceProfileRequest:
                 data["excludeAppPackagesFromCleanup"]
             )
         )
-    if "rebootAfterUse" in data:
+    if data.get("rebootAfterUse") is not None:
         out["reboot_after_use"] = data["rebootAfterUse"]
     return out

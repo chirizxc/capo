@@ -67,23 +67,23 @@ def serialize_aws_json_1_1(value: CatalogKafkaSource) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CatalogKafkaSource:
     out: CatalogKafkaSource = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("CatalogKafkaSource.name required")
-    if "WindowSize" in data:
+    if data.get("WindowSize") is not None:
         out["window_size"] = data["WindowSize"]
-    if "DetectSchema" in data:
+    if data.get("DetectSchema") is not None:
         out["detect_schema"] = data["DetectSchema"]
-    if "Table" in data:
+    if data.get("Table") is not None:
         out["table"] = data["Table"]
     else:
         raise DeserializationError("CatalogKafkaSource.table required")
-    if "Database" in data:
+    if data.get("Database") is not None:
         out["database"] = data["Database"]
     else:
         raise DeserializationError("CatalogKafkaSource.database required")
-    if "StreamingOptions" in data:
+    if data.get("StreamingOptions") is not None:
         import capo_glue.types.kafka_streaming_source_options
 
         out["streaming_options"] = (
@@ -91,7 +91,7 @@ def deserialize_aws_json_1_1(data: dict) -> CatalogKafkaSource:
                 data["StreamingOptions"]
             )
         )
-    if "DataPreviewOptions" in data:
+    if data.get("DataPreviewOptions") is not None:
         import capo_glue.types.streaming_data_preview_options
 
         out["data_preview_options"] = (

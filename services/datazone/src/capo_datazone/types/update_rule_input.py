@@ -52,18 +52,18 @@ def serialize_json(value: UpdateRuleInput) -> dict:
 
 def deserialize_json(data: dict) -> UpdateRuleInput:
     out: UpdateRuleInput = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "scope" in data:
+    if data.get("scope") is not None:
         import capo_datazone.types.rule_scope
 
         out["scope"] = capo_datazone.types.rule_scope.deserialize_json(data["scope"])
-    if "detail" in data:
+    if data.get("detail") is not None:
         import capo_datazone.types.rule_detail
 
         out["detail"] = capo_datazone.types.rule_detail.deserialize_json(data["detail"])
-    if "includeChildDomainUnits" in data:
+    if data.get("includeChildDomainUnits") is not None:
         out["include_child_domain_units"] = data["includeChildDomainUnits"]
     return out

@@ -46,17 +46,17 @@ def serialize_aws_json_1_1(value: CompletionReport) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CompletionReport:
     out: CompletionReport = {}  # type: ignore[typeddict-item]
-    if "Enabled" in data:
+    if data.get("Enabled") is not None:
         out["enabled"] = data["Enabled"]
-    if "Path" in data:
+    if data.get("Path") is not None:
         out["path"] = data["Path"]
-    if "Format" in data:
+    if data.get("Format") is not None:
         import capo_fsx.types.report_format
 
         out["format"] = capo_fsx.types.report_format.deserialize_aws_json_1_1(
             data["Format"]
         )
-    if "Scope" in data:
+    if data.get("Scope") is not None:
         import capo_fsx.types.report_scope
 
         out["scope"] = capo_fsx.types.report_scope.deserialize_aws_json_1_1(

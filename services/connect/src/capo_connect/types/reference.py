@@ -51,24 +51,24 @@ def serialize_json(value: Reference) -> dict:
 
 def deserialize_json(data: dict) -> Reference:
     out: Reference = {}  # type: ignore[typeddict-item]
-    if "Value" in data:
+    if data.get("Value") is not None:
         out["value"] = data["Value"]
     else:
         out["value"] = ""
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_connect.types.reference_type
 
         out["type"] = capo_connect.types.reference_type.deserialize_json(data["Type"])
     else:
         raise DeserializationError("Reference.type required")
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_connect.types.reference_status
 
         out["status"] = capo_connect.types.reference_status.deserialize_json(
             data["Status"]
         )
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "StatusReason" in data:
+    if data.get("StatusReason") is not None:
         out["status_reason"] = data["StatusReason"]
     return out

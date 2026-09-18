@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> StartNetworkMigrationMappingUpdateConstructs
 
     out: StartNetworkMigrationMappingUpdateConstructs = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_mgn.types.start_network_migration_mapping_update_construct.deserialize_json(
                 item

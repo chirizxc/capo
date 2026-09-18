@@ -23,6 +23,6 @@ def serialize_json(value: ControlPlanePlacementRequest) -> dict:
 
 def deserialize_json(data: dict) -> ControlPlanePlacementRequest:
     out: ControlPlanePlacementRequest = {}  # type: ignore[typeddict-item]
-    if "groupName" in data:
+    if data.get("groupName") is not None:
         out["group_name"] = data["groupName"]
     return out

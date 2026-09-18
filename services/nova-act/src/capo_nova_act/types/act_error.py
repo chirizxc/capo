@@ -28,10 +28,10 @@ def serialize_json(value: ActError) -> dict:
 
 def deserialize_json(data: dict) -> ActError:
     out: ActError = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     else:
         raise DeserializationError("ActError.message required")
-    if "type" in data:
+    if data.get("type") is not None:
         out["type"] = data["type"]
     return out

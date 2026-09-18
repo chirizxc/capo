@@ -32,11 +32,11 @@ def serialize_json(value: SheetLayoutGroupMember) -> dict:
 
 def deserialize_json(data: dict) -> SheetLayoutGroupMember:
     out: SheetLayoutGroupMember = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
     else:
         raise DeserializationError("SheetLayoutGroupMember.id required")
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_quicksight.types.sheet_layout_group_member_type
 
         out["type"] = (

@@ -27,6 +27,8 @@ def deserialize_aws_json_1_1(data: list) -> EventTriggerDefinitionList:
 
     out: EventTriggerDefinitionList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_snowball.types.event_trigger_definition.deserialize_aws_json_1_1(item)
         )

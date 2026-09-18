@@ -30,8 +30,8 @@ def serialize_json(value: NielsenConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> NielsenConfiguration:
     out: NielsenConfiguration = {}  # type: ignore[typeddict-item]
-    if "breakoutCode" in data:
+    if data.get("breakoutCode") is not None:
         out["breakout_code"] = data["breakoutCode"]
-    if "distributorId" in data:
+    if data.get("distributorId") is not None:
         out["distributor_id"] = data["distributorId"]
     return out

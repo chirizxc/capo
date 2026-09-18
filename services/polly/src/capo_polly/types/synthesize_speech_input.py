@@ -86,23 +86,23 @@ def serialize_json(value: SynthesizeSpeechInput) -> dict:
 
 def deserialize_json(data: dict) -> SynthesizeSpeechInput:
     out: SynthesizeSpeechInput = {}  # type: ignore[typeddict-item]
-    if "Engine" in data:
+    if data.get("Engine") is not None:
         import capo_polly.types.engine
 
         out["engine"] = capo_polly.types.engine.deserialize_json(data["Engine"])
-    if "LanguageCode" in data:
+    if data.get("LanguageCode") is not None:
         import capo_polly.types.language_code
 
         out["language_code"] = capo_polly.types.language_code.deserialize_json(
             data["LanguageCode"]
         )
-    if "LexiconNames" in data:
+    if data.get("LexiconNames") is not None:
         import capo_polly.types.lexicon_name_list
 
         out["lexicon_names"] = capo_polly.types.lexicon_name_list.deserialize_json(
             data["LexiconNames"]
         )
-    if "OutputFormat" in data:
+    if data.get("OutputFormat") is not None:
         import capo_polly.types.output_format
 
         out["output_format"] = capo_polly.types.output_format.deserialize_json(
@@ -110,9 +110,9 @@ def deserialize_json(data: dict) -> SynthesizeSpeechInput:
         )
     else:
         raise DeserializationError("SynthesizeSpeechInput.output_format required")
-    if "SampleRate" in data:
+    if data.get("SampleRate") is not None:
         out["sample_rate"] = data["SampleRate"]
-    if "SpeechMarkTypes" in data:
+    if data.get("SpeechMarkTypes") is not None:
         import capo_polly.types.speech_mark_type_list
 
         out["speech_mark_types"] = (
@@ -120,15 +120,15 @@ def deserialize_json(data: dict) -> SynthesizeSpeechInput:
                 data["SpeechMarkTypes"]
             )
         )
-    if "Text" in data:
+    if data.get("Text") is not None:
         out["text"] = data["Text"]
     else:
         raise DeserializationError("SynthesizeSpeechInput.text required")
-    if "TextType" in data:
+    if data.get("TextType") is not None:
         import capo_polly.types.text_type
 
         out["text_type"] = capo_polly.types.text_type.deserialize_json(data["TextType"])
-    if "VoiceId" in data:
+    if data.get("VoiceId") is not None:
         import capo_polly.types.voice_id
 
         out["voice_id"] = capo_polly.types.voice_id.deserialize_json(data["VoiceId"])

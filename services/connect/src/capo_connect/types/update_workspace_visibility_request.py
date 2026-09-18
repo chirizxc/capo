@@ -34,7 +34,7 @@ def serialize_json(value: UpdateWorkspaceVisibilityRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateWorkspaceVisibilityRequest:
     out: UpdateWorkspaceVisibilityRequest = {}  # type: ignore[typeddict-item]
-    if "Visibility" in data:
+    if data.get("Visibility") is not None:
         import capo_connect.types.visibility
 
         out["visibility"] = capo_connect.types.visibility.deserialize_json(

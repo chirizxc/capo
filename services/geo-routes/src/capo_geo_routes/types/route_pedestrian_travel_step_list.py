@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> RoutePedestrianTravelStepList:
 
     out: RoutePedestrianTravelStepList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_geo_routes.types.route_pedestrian_travel_step.deserialize_json(item)
         )

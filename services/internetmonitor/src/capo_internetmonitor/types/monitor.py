@@ -39,18 +39,18 @@ def serialize_json(value: Monitor) -> dict:
 
 def deserialize_json(data: dict) -> Monitor:
     out: Monitor = {}  # type: ignore[typeddict-item]
-    if "MonitorName" in data:
+    if data.get("MonitorName") is not None:
         out["monitor_name"] = data["MonitorName"]
     else:
         raise DeserializationError("Monitor.monitor_name required")
-    if "MonitorArn" in data:
+    if data.get("MonitorArn") is not None:
         out["monitor_arn"] = data["MonitorArn"]
     else:
         raise DeserializationError("Monitor.monitor_arn required")
-    if "Status" in data:
+    if data.get("Status") is not None:
         out["status"] = data["Status"]
     else:
         raise DeserializationError("Monitor.status required")
-    if "ProcessingStatus" in data:
+    if data.get("ProcessingStatus") is not None:
         out["processing_status"] = data["ProcessingStatus"]
     return out

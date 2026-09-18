@@ -33,11 +33,11 @@ def serialize_aws_json_1_1(value: SortDefinition) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SortDefinition:
     out: SortDefinition = {}  # type: ignore[typeddict-item]
-    if "Key" in data:
+    if data.get("Key") is not None:
         out["key"] = data["Key"]
     else:
         raise DeserializationError("SortDefinition.key required")
-    if "SortOrder" in data:
+    if data.get("SortOrder") is not None:
         import capo_cost_explorer.types.sort_order
 
         out["sort_order"] = (

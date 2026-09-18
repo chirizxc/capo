@@ -32,15 +32,15 @@ def serialize_json(value: MetaFlowAsset) -> dict:
 
 def deserialize_json(data: dict) -> MetaFlowAsset:
     out: MetaFlowAsset = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("MetaFlowAsset.name required")
-    if "assetType" in data:
+    if data.get("assetType") is not None:
         out["asset_type"] = data["assetType"]
     else:
         raise DeserializationError("MetaFlowAsset.asset_type required")
-    if "downloadUrl" in data:
+    if data.get("downloadUrl") is not None:
         out["download_url"] = data["downloadUrl"]
     else:
         raise DeserializationError("MetaFlowAsset.download_url required")

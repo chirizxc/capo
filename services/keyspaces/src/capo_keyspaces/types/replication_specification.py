@@ -33,13 +33,13 @@ def serialize_aws_json_1_0(value: ReplicationSpecification) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ReplicationSpecification:
     out: ReplicationSpecification = {}  # type: ignore[typeddict-item]
-    if "replicationStrategy" in data:
+    if data.get("replicationStrategy") is not None:
         out["replication_strategy"] = data["replicationStrategy"]
     else:
         raise DeserializationError(
             "ReplicationSpecification.replication_strategy required"
         )
-    if "regionList" in data:
+    if data.get("regionList") is not None:
         import capo_keyspaces.types.region_list
 
         out["region_list"] = capo_keyspaces.types.region_list.deserialize_aws_json_1_0(

@@ -74,33 +74,33 @@ def serialize_json(value: AwsEcrContainerAggregationResponse) -> dict:
 
 def deserialize_json(data: dict) -> AwsEcrContainerAggregationResponse:
     out: AwsEcrContainerAggregationResponse = {}  # type: ignore[typeddict-item]
-    if "resourceId" in data:
+    if data.get("resourceId") is not None:
         out["resource_id"] = data["resourceId"]
     else:
         raise DeserializationError(
             "AwsEcrContainerAggregationResponse.resource_id required"
         )
-    if "imageSha" in data:
+    if data.get("imageSha") is not None:
         out["image_sha"] = data["imageSha"]
-    if "repository" in data:
+    if data.get("repository") is not None:
         out["repository"] = data["repository"]
-    if "architecture" in data:
+    if data.get("architecture") is not None:
         out["architecture"] = data["architecture"]
-    if "imageTags" in data:
+    if data.get("imageTags") is not None:
         import capo_inspector2.types.string_list
 
         out["image_tags"] = capo_inspector2.types.string_list.deserialize_json(
             data["imageTags"]
         )
-    if "accountId" in data:
+    if data.get("accountId") is not None:
         out["account_id"] = data["accountId"]
-    if "severityCounts" in data:
+    if data.get("severityCounts") is not None:
         import capo_inspector2.types.severity_counts
 
         out["severity_counts"] = capo_inspector2.types.severity_counts.deserialize_json(
             data["severityCounts"]
         )
-    if "lastInUseAt" in data:
+    if data.get("lastInUseAt") is not None:
         import capo_inspector2.types.date_time_timestamp
 
         out["last_in_use_at"] = (
@@ -108,6 +108,6 @@ def deserialize_json(data: dict) -> AwsEcrContainerAggregationResponse:
                 data["lastInUseAt"]
             )
         )
-    if "inUseCount" in data:
+    if data.get("inUseCount") is not None:
         out["in_use_count"] = data["inUseCount"]
     return out

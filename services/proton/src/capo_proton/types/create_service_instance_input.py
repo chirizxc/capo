@@ -56,26 +56,26 @@ def serialize_aws_json_1_0(value: CreateServiceInstanceInput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CreateServiceInstanceInput:
     out: CreateServiceInstanceInput = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("CreateServiceInstanceInput.name required")
-    if "serviceName" in data:
+    if data.get("serviceName") is not None:
         out["service_name"] = data["serviceName"]
     else:
         raise DeserializationError("CreateServiceInstanceInput.service_name required")
-    if "spec" in data:
+    if data.get("spec") is not None:
         out["spec"] = data["spec"]
     else:
         raise DeserializationError("CreateServiceInstanceInput.spec required")
-    if "templateMajorVersion" in data:
+    if data.get("templateMajorVersion") is not None:
         out["template_major_version"] = data["templateMajorVersion"]
-    if "templateMinorVersion" in data:
+    if data.get("templateMinorVersion") is not None:
         out["template_minor_version"] = data["templateMinorVersion"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_proton.types.tag_list
 
         out["tags"] = capo_proton.types.tag_list.deserialize_aws_json_1_0(data["tags"])
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     return out

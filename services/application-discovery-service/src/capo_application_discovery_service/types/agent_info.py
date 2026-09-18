@@ -84,11 +84,11 @@ def serialize_aws_json_1_1(value: AgentInfo) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AgentInfo:
     out: AgentInfo = {}  # type: ignore[typeddict-item]
-    if "agentId" in data:
+    if data.get("agentId") is not None:
         out["agent_id"] = data["agentId"]
-    if "hostName" in data:
+    if data.get("hostName") is not None:
         out["host_name"] = data["hostName"]
-    if "agentNetworkInfoList" in data:
+    if data.get("agentNetworkInfoList") is not None:
         import capo_application_discovery_service.types.agent_network_info_list
 
         out["agent_network_info_list"] = (
@@ -96,11 +96,11 @@ def deserialize_aws_json_1_1(data: dict) -> AgentInfo:
                 data["agentNetworkInfoList"]
             )
         )
-    if "connectorId" in data:
+    if data.get("connectorId") is not None:
         out["connector_id"] = data["connectorId"]
-    if "version" in data:
+    if data.get("version") is not None:
         out["version"] = data["version"]
-    if "health" in data:
+    if data.get("health") is not None:
         import capo_application_discovery_service.types.agent_status
 
         out["health"] = (
@@ -108,12 +108,12 @@ def deserialize_aws_json_1_1(data: dict) -> AgentInfo:
                 data["health"]
             )
         )
-    if "lastHealthPingTime" in data:
+    if data.get("lastHealthPingTime") is not None:
         out["last_health_ping_time"] = data["lastHealthPingTime"]
-    if "collectionStatus" in data:
+    if data.get("collectionStatus") is not None:
         out["collection_status"] = data["collectionStatus"]
-    if "agentType" in data:
+    if data.get("agentType") is not None:
         out["agent_type"] = data["agentType"]
-    if "registeredTime" in data:
+    if data.get("registeredTime") is not None:
         out["registered_time"] = data["registeredTime"]
     return out

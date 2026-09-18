@@ -111,13 +111,13 @@ def serialize_aws_json_1_1(value: ClusterNodeSummary) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ClusterNodeSummary:
     out: ClusterNodeSummary = {}  # type: ignore[typeddict-item]
-    if "InstanceGroupName" in data:
+    if data.get("InstanceGroupName") is not None:
         out["instance_group_name"] = data["InstanceGroupName"]
-    if "InstanceId" in data:
+    if data.get("InstanceId") is not None:
         out["instance_id"] = data["InstanceId"]
-    if "NodeLogicalId" in data:
+    if data.get("NodeLogicalId") is not None:
         out["node_logical_id"] = data["NodeLogicalId"]
-    if "InstanceType" in data:
+    if data.get("InstanceType") is not None:
         import capo_sagemaker.types.cluster_instance_type
 
         out["instance_type"] = (
@@ -125,13 +125,13 @@ def deserialize_aws_json_1_1(data: dict) -> ClusterNodeSummary:
                 data["InstanceType"]
             )
         )
-    if "LaunchTime" in data:
+    if data.get("LaunchTime") is not None:
         import capo_sagemaker.types.timestamp
 
         out["launch_time"] = capo_sagemaker.types.timestamp.deserialize_aws_json_1_1(
             data["LaunchTime"]
         )
-    if "LastSoftwareUpdateTime" in data:
+    if data.get("LastSoftwareUpdateTime") is not None:
         import capo_sagemaker.types.timestamp
 
         out["last_software_update_time"] = (
@@ -139,7 +139,7 @@ def deserialize_aws_json_1_1(data: dict) -> ClusterNodeSummary:
                 data["LastSoftwareUpdateTime"]
             )
         )
-    if "InstanceStatus" in data:
+    if data.get("InstanceStatus") is not None:
         import capo_sagemaker.types.cluster_instance_status_details
 
         out["instance_status"] = (
@@ -147,7 +147,7 @@ def deserialize_aws_json_1_1(data: dict) -> ClusterNodeSummary:
                 data["InstanceStatus"]
             )
         )
-    if "UltraServerInfo" in data:
+    if data.get("UltraServerInfo") is not None:
         import capo_sagemaker.types.ultra_server_info
 
         out["ultra_server_info"] = (
@@ -155,9 +155,9 @@ def deserialize_aws_json_1_1(data: dict) -> ClusterNodeSummary:
                 data["UltraServerInfo"]
             )
         )
-    if "PrivateDnsHostname" in data:
+    if data.get("PrivateDnsHostname") is not None:
         out["private_dns_hostname"] = data["PrivateDnsHostname"]
-    if "ImageVersionStatus" in data:
+    if data.get("ImageVersionStatus") is not None:
         import capo_sagemaker.types.cluster_image_version_status
 
         out["image_version_status"] = (

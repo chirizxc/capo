@@ -50,20 +50,20 @@ def serialize_json(value: ActionReview) -> dict:
 
 def deserialize_json(data: dict) -> ActionReview:
     out: ActionReview = {}  # type: ignore[typeddict-item]
-    if "pluginId" in data:
+    if data.get("pluginId") is not None:
         out["plugin_id"] = data["pluginId"]
-    if "pluginType" in data:
+    if data.get("pluginType") is not None:
         import capo_qbusiness.types.plugin_type
 
         out["plugin_type"] = capo_qbusiness.types.plugin_type.deserialize_json(
             data["pluginType"]
         )
-    if "payload" in data:
+    if data.get("payload") is not None:
         import capo_qbusiness.types.action_review_payload
 
         out["payload"] = capo_qbusiness.types.action_review_payload.deserialize_json(
             data["payload"]
         )
-    if "payloadFieldNameSeparator" in data:
+    if data.get("payloadFieldNameSeparator") is not None:
         out["payload_field_name_separator"] = data["payloadFieldNameSeparator"]
     return out

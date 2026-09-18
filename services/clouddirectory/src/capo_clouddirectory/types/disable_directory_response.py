@@ -24,7 +24,7 @@ def serialize_json(value: DisableDirectoryResponse) -> dict:
 
 def deserialize_json(data: dict) -> DisableDirectoryResponse:
     out: DisableDirectoryResponse = {}  # type: ignore[typeddict-item]
-    if "DirectoryArn" in data:
+    if data.get("DirectoryArn") is not None:
         out["directory_arn"] = data["DirectoryArn"]
     else:
         raise DeserializationError("DisableDirectoryResponse.directory_arn required")

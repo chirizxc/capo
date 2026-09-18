@@ -36,8 +36,8 @@ def deserialize_json(
     data: dict,
 ) -> AwsEc2LaunchTemplateDataNetworkInterfaceSetPrivateIpAddressesDetails:
     out: AwsEc2LaunchTemplateDataNetworkInterfaceSetPrivateIpAddressesDetails = {}  # type: ignore[typeddict-item]
-    if "Primary" in data:
+    if data.get("Primary") is not None:
         out["primary"] = data["Primary"]
-    if "PrivateIpAddress" in data:
+    if data.get("PrivateIpAddress") is not None:
         out["private_ip_address"] = data["PrivateIpAddress"]
     return out

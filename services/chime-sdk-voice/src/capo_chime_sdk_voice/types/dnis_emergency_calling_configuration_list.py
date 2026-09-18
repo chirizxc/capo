@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> DNISEmergencyCallingConfigurationList:
 
     out: DNISEmergencyCallingConfigurationList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_chime_sdk_voice.types.dnis_emergency_calling_configuration.deserialize_json(
                 item

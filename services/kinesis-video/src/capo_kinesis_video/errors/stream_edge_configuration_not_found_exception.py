@@ -24,7 +24,7 @@ def serialize_json(value: StreamEdgeConfigurationNotFoundException_) -> dict:
 
 def deserialize_json(data: dict) -> StreamEdgeConfigurationNotFoundException_:
     out: StreamEdgeConfigurationNotFoundException_ = {}  # type: ignore[typeddict-item]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     return out
 
@@ -34,15 +34,22 @@ class StreamEdgeConfigurationNotFoundException(ServiceError):
 
     code: str | None = "StreamEdgeConfigurationNotFoundException"
 
-    def __init__(self, data: StreamEdgeConfigurationNotFoundException_):
+    def __init__(
+        self,
+        data: StreamEdgeConfigurationNotFoundException_,
+        message: str | None = None,
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="StreamEdgeConfigurationNotFoundException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "StreamEdgeConfigurationNotFoundException":
-        return cls(deserialize_json(data))
+    def from_json(
+        cls, data: dict, message: str | None = None
+    ) -> "StreamEdgeConfigurationNotFoundException":
+        return cls(deserialize_json(data), message)

@@ -28,8 +28,8 @@ def serialize_json(value: RunLogLocation) -> dict:
 
 def deserialize_json(data: dict) -> RunLogLocation:
     out: RunLogLocation = {}  # type: ignore[typeddict-item]
-    if "engineLogStream" in data:
+    if data.get("engineLogStream") is not None:
         out["engine_log_stream"] = data["engineLogStream"]
-    if "runLogStream" in data:
+    if data.get("runLogStream") is not None:
         out["run_log_stream"] = data["runLogStream"]
     return out

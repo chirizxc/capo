@@ -26,7 +26,7 @@ def serialize_aws_json_1_0(value: DuplicateTimestamps) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> DuplicateTimestamps:
     out: DuplicateTimestamps = {}  # type: ignore[typeddict-item]
-    if "TotalNumberOfDuplicateTimestamps" in data:
+    if data.get("TotalNumberOfDuplicateTimestamps") is not None:
         out["total_number_of_duplicate_timestamps"] = data[
             "TotalNumberOfDuplicateTimestamps"
         ]

@@ -126,7 +126,15 @@ def serialize_aws_json_1_1(value: ProductionVariant) -> dict:
             "variant_instance_provision_timeout_in_seconds"
         ]
     if "initial_variant_weight" in value:
-        out["InitialVariantWeight"] = value["initial_variant_weight"]
+        out["InitialVariantWeight"] = (
+            "NaN"
+            if value["initial_variant_weight"] != value["initial_variant_weight"]
+            else "Infinity"
+            if value["initial_variant_weight"] == float("inf")
+            else "-Infinity"
+            if value["initial_variant_weight"] == float("-inf")
+            else value["initial_variant_weight"]
+        )
     if "accelerator_type" in value:
         import capo_sagemaker.types.production_variant_accelerator_type
 
@@ -200,13 +208,13 @@ def serialize_aws_json_1_1(value: ProductionVariant) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ProductionVariant:
     out: ProductionVariant = {}  # type: ignore[typeddict-item]
-    if "VariantName" in data:
+    if data.get("VariantName") is not None:
         out["variant_name"] = data["VariantName"]
-    if "ModelName" in data:
+    if data.get("ModelName") is not None:
         out["model_name"] = data["ModelName"]
-    if "InitialInstanceCount" in data:
+    if data.get("InitialInstanceCount") is not None:
         out["initial_instance_count"] = data["InitialInstanceCount"]
-    if "InstanceType" in data:
+    if data.get("InstanceType") is not None:
         import capo_sagemaker.types.production_variant_instance_type
 
         out["instance_type"] = (
@@ -214,7 +222,7 @@ def deserialize_aws_json_1_1(data: dict) -> ProductionVariant:
                 data["InstanceType"]
             )
         )
-    if "InstancePools" in data:
+    if data.get("InstancePools") is not None:
         import capo_sagemaker.types.instance_pool_list
 
         out["instance_pools"] = (
@@ -222,13 +230,13 @@ def deserialize_aws_json_1_1(data: dict) -> ProductionVariant:
                 data["InstancePools"]
             )
         )
-    if "VariantInstanceProvisionTimeoutInSeconds" in data:
+    if data.get("VariantInstanceProvisionTimeoutInSeconds") is not None:
         out["variant_instance_provision_timeout_in_seconds"] = data[
             "VariantInstanceProvisionTimeoutInSeconds"
         ]
-    if "InitialVariantWeight" in data:
-        out["initial_variant_weight"] = data["InitialVariantWeight"]
-    if "AcceleratorType" in data:
+    if data.get("InitialVariantWeight") is not None:
+        out["initial_variant_weight"] = float(data["InitialVariantWeight"])
+    if data.get("AcceleratorType") is not None:
         import capo_sagemaker.types.production_variant_accelerator_type
 
         out["accelerator_type"] = (
@@ -236,7 +244,7 @@ def deserialize_aws_json_1_1(data: dict) -> ProductionVariant:
                 data["AcceleratorType"]
             )
         )
-    if "CoreDumpConfig" in data:
+    if data.get("CoreDumpConfig") is not None:
         import capo_sagemaker.types.production_variant_core_dump_config
 
         out["core_dump_config"] = (
@@ -244,7 +252,7 @@ def deserialize_aws_json_1_1(data: dict) -> ProductionVariant:
                 data["CoreDumpConfig"]
             )
         )
-    if "ServerlessConfig" in data:
+    if data.get("ServerlessConfig") is not None:
         import capo_sagemaker.types.production_variant_serverless_config
 
         out["serverless_config"] = (
@@ -252,19 +260,19 @@ def deserialize_aws_json_1_1(data: dict) -> ProductionVariant:
                 data["ServerlessConfig"]
             )
         )
-    if "VolumeSizeInGB" in data:
+    if data.get("VolumeSizeInGB") is not None:
         out["volume_size_in_gb"] = data["VolumeSizeInGB"]
-    if "ModelDataDownloadTimeoutInSeconds" in data:
+    if data.get("ModelDataDownloadTimeoutInSeconds") is not None:
         out["model_data_download_timeout_in_seconds"] = data[
             "ModelDataDownloadTimeoutInSeconds"
         ]
-    if "ContainerStartupHealthCheckTimeoutInSeconds" in data:
+    if data.get("ContainerStartupHealthCheckTimeoutInSeconds") is not None:
         out["container_startup_health_check_timeout_in_seconds"] = data[
             "ContainerStartupHealthCheckTimeoutInSeconds"
         ]
-    if "EnableSSMAccess" in data:
+    if data.get("EnableSSMAccess") is not None:
         out["enable_ssm_access"] = data["EnableSSMAccess"]
-    if "ManagedInstanceScaling" in data:
+    if data.get("ManagedInstanceScaling") is not None:
         import capo_sagemaker.types.production_variant_managed_instance_scaling
 
         out["managed_instance_scaling"] = (
@@ -272,7 +280,7 @@ def deserialize_aws_json_1_1(data: dict) -> ProductionVariant:
                 data["ManagedInstanceScaling"]
             )
         )
-    if "RoutingConfig" in data:
+    if data.get("RoutingConfig") is not None:
         import capo_sagemaker.types.production_variant_routing_config
 
         out["routing_config"] = (
@@ -280,7 +288,7 @@ def deserialize_aws_json_1_1(data: dict) -> ProductionVariant:
                 data["RoutingConfig"]
             )
         )
-    if "InferenceAmiVersion" in data:
+    if data.get("InferenceAmiVersion") is not None:
         import capo_sagemaker.types.production_variant_inference_ami_version
 
         out["inference_ami_version"] = (
@@ -288,7 +296,7 @@ def deserialize_aws_json_1_1(data: dict) -> ProductionVariant:
                 data["InferenceAmiVersion"]
             )
         )
-    if "CapacityReservationConfig" in data:
+    if data.get("CapacityReservationConfig") is not None:
         import capo_sagemaker.types.production_variant_capacity_reservation_config
 
         out["capacity_reservation_config"] = (

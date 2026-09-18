@@ -36,11 +36,11 @@ def serialize_json(value: ContactListDestination) -> dict:
 
 def deserialize_json(data: dict) -> ContactListDestination:
     out: ContactListDestination = {}  # type: ignore[typeddict-item]
-    if "ContactListName" in data:
+    if data.get("ContactListName") is not None:
         out["contact_list_name"] = data["ContactListName"]
     else:
         raise DeserializationError("ContactListDestination.contact_list_name required")
-    if "ContactListImportAction" in data:
+    if data.get("ContactListImportAction") is not None:
         import capo_sesv2.types.contact_list_import_action
 
         out["contact_list_import_action"] = (

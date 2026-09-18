@@ -24,7 +24,7 @@ def serialize_json(value: StopVectorEnrichmentJobInput) -> dict:
 
 def deserialize_json(data: dict) -> StopVectorEnrichmentJobInput:
     out: StopVectorEnrichmentJobInput = {}  # type: ignore[typeddict-item]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
     else:
         raise DeserializationError("StopVectorEnrichmentJobInput.arn required")

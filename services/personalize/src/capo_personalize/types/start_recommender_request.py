@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: StartRecommenderRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> StartRecommenderRequest:
     out: StartRecommenderRequest = {}  # type: ignore[typeddict-item]
-    if "recommenderArn" in data:
+    if data.get("recommenderArn") is not None:
         out["recommender_arn"] = data["recommenderArn"]
     else:
         raise DeserializationError("StartRecommenderRequest.recommender_arn required")

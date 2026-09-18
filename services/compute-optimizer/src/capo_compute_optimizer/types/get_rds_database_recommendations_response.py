@@ -49,9 +49,9 @@ def serialize_aws_json_1_0(value: GetRDSDatabaseRecommendationsResponse) -> dict
 
 def deserialize_aws_json_1_0(data: dict) -> GetRDSDatabaseRecommendationsResponse:
     out: GetRDSDatabaseRecommendationsResponse = {}  # type: ignore[typeddict-item]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "rdsDBRecommendations" in data:
+    if data.get("rdsDBRecommendations") is not None:
         import capo_compute_optimizer.types.rdsdb_recommendations
 
         out["rds_db_recommendations"] = (
@@ -59,7 +59,7 @@ def deserialize_aws_json_1_0(data: dict) -> GetRDSDatabaseRecommendationsRespons
                 data["rdsDBRecommendations"]
             )
         )
-    if "errors" in data:
+    if data.get("errors") is not None:
         import capo_compute_optimizer.types.get_recommendation_errors
 
         out["errors"] = (

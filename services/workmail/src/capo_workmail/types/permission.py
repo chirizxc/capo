@@ -42,11 +42,11 @@ def serialize_aws_json_1_1(value: Permission) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Permission:
     out: Permission = {}  # type: ignore[typeddict-item]
-    if "GranteeId" in data:
+    if data.get("GranteeId") is not None:
         out["grantee_id"] = data["GranteeId"]
     else:
         raise DeserializationError("Permission.grantee_id required")
-    if "GranteeType" in data:
+    if data.get("GranteeType") is not None:
         import capo_workmail.types.member_type
 
         out["grantee_type"] = capo_workmail.types.member_type.deserialize_aws_json_1_1(
@@ -54,7 +54,7 @@ def deserialize_aws_json_1_1(data: dict) -> Permission:
         )
     else:
         raise DeserializationError("Permission.grantee_type required")
-    if "PermissionValues" in data:
+    if data.get("PermissionValues") is not None:
         import capo_workmail.types.permission_values
 
         out["permission_values"] = (

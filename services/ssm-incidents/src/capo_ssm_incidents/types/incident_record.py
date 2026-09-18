@@ -123,25 +123,25 @@ def serialize_json(value: IncidentRecord) -> dict:
 
 def deserialize_json(data: dict) -> IncidentRecord:
     out: IncidentRecord = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("IncidentRecord.arn required")
-    if "title" in data:
+    if data.get("title") is not None:
         out["title"] = data["title"]
     else:
         raise DeserializationError("IncidentRecord.title required")
-    if "summary" in data:
+    if data.get("summary") is not None:
         out["summary"] = data["summary"]
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
     else:
         raise DeserializationError("IncidentRecord.status required")
-    if "impact" in data:
+    if data.get("impact") is not None:
         out["impact"] = data["impact"]
     else:
         raise DeserializationError("IncidentRecord.impact required")
-    if "creationTime" in data:
+    if data.get("creationTime") is not None:
         import capo_ssm_incidents.types._prelude.timestamp
 
         out["creation_time"] = (
@@ -151,7 +151,7 @@ def deserialize_json(data: dict) -> IncidentRecord:
         )
     else:
         raise DeserializationError("IncidentRecord.creation_time required")
-    if "resolvedTime" in data:
+    if data.get("resolvedTime") is not None:
         import capo_ssm_incidents.types._prelude.timestamp
 
         out["resolved_time"] = (
@@ -159,7 +159,7 @@ def deserialize_json(data: dict) -> IncidentRecord:
                 data["resolvedTime"]
             )
         )
-    if "lastModifiedTime" in data:
+    if data.get("lastModifiedTime") is not None:
         import capo_ssm_incidents.types._prelude.timestamp
 
         out["last_modified_time"] = (
@@ -169,11 +169,11 @@ def deserialize_json(data: dict) -> IncidentRecord:
         )
     else:
         raise DeserializationError("IncidentRecord.last_modified_time required")
-    if "lastModifiedBy" in data:
+    if data.get("lastModifiedBy") is not None:
         out["last_modified_by"] = data["lastModifiedBy"]
     else:
         raise DeserializationError("IncidentRecord.last_modified_by required")
-    if "automationExecutions" in data:
+    if data.get("automationExecutions") is not None:
         import capo_ssm_incidents.types.automation_execution_set
 
         out["automation_executions"] = (
@@ -181,7 +181,7 @@ def deserialize_json(data: dict) -> IncidentRecord:
                 data["automationExecutions"]
             )
         )
-    if "incidentRecordSource" in data:
+    if data.get("incidentRecordSource") is not None:
         import capo_ssm_incidents.types.incident_record_source
 
         out["incident_record_source"] = (
@@ -191,17 +191,17 @@ def deserialize_json(data: dict) -> IncidentRecord:
         )
     else:
         raise DeserializationError("IncidentRecord.incident_record_source required")
-    if "dedupeString" in data:
+    if data.get("dedupeString") is not None:
         out["dedupe_string"] = data["dedupeString"]
     else:
         raise DeserializationError("IncidentRecord.dedupe_string required")
-    if "chatChannel" in data:
+    if data.get("chatChannel") is not None:
         import capo_ssm_incidents.types.chat_channel
 
         out["chat_channel"] = capo_ssm_incidents.types.chat_channel.deserialize_json(
             data["chatChannel"]
         )
-    if "notificationTargets" in data:
+    if data.get("notificationTargets") is not None:
         import capo_ssm_incidents.types.notification_target_set
 
         out["notification_targets"] = (

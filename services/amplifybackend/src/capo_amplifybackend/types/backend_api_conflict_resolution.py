@@ -31,7 +31,7 @@ def serialize_json(value: BackendAPIConflictResolution) -> dict:
 
 def deserialize_json(data: dict) -> BackendAPIConflictResolution:
     out: BackendAPIConflictResolution = {}  # type: ignore[typeddict-item]
-    if "resolutionStrategy" in data:
+    if data.get("resolutionStrategy") is not None:
         import capo_amplifybackend.types.resolution_strategy
 
         out["resolution_strategy"] = (

@@ -19,7 +19,7 @@ def serialize_json(value: JobRunError) -> dict:
 
 def deserialize_json(data: dict) -> JobRunError:
     out: JobRunError = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     else:
         raise DeserializationError("JobRunError.message required")

@@ -27,8 +27,8 @@ def serialize_json(value: LoadBalancerState) -> dict:
 
 def deserialize_json(data: dict) -> LoadBalancerState:
     out: LoadBalancerState = {}  # type: ignore[typeddict-item]
-    if "Code" in data:
+    if data.get("Code") is not None:
         out["code"] = data["Code"]
-    if "Reason" in data:
+    if data.get("Reason") is not None:
         out["reason"] = data["Reason"]
     return out

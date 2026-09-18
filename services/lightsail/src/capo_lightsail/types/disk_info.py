@@ -38,12 +38,12 @@ def serialize_aws_json_1_1(value: DiskInfo) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DiskInfo:
     out: DiskInfo = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "path" in data:
+    if data.get("path") is not None:
         out["path"] = data["path"]
-    if "sizeInGb" in data:
+    if data.get("sizeInGb") is not None:
         out["size_in_gb"] = data["sizeInGb"]
-    if "isSystemDisk" in data:
+    if data.get("isSystemDisk") is not None:
         out["is_system_disk"] = data["isSystemDisk"]
     return out

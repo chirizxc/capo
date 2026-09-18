@@ -35,13 +35,13 @@ def serialize_json(value: FilledMapShapeConditionalFormatting) -> dict:
 
 def deserialize_json(data: dict) -> FilledMapShapeConditionalFormatting:
     out: FilledMapShapeConditionalFormatting = {}  # type: ignore[typeddict-item]
-    if "FieldId" in data:
+    if data.get("FieldId") is not None:
         out["field_id"] = data["FieldId"]
     else:
         raise DeserializationError(
             "FilledMapShapeConditionalFormatting.field_id required"
         )
-    if "Format" in data:
+    if data.get("Format") is not None:
         import capo_quicksight.types.shape_conditional_format
 
         out["format"] = capo_quicksight.types.shape_conditional_format.deserialize_json(

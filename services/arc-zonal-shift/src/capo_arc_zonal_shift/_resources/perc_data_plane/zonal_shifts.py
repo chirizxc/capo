@@ -89,7 +89,7 @@ class ZonalShifts:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_arc_zonal_shift.types.list_zonal_shifts_request.ListZonalShiftsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_arc_zonal_shift.types.list_zonal_shifts_request.ListZonalShiftsRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if status is not None:
@@ -104,6 +104,7 @@ class ZonalShifts:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def start_practice_run(
@@ -146,16 +147,18 @@ class ZonalShifts:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_arc_zonal_shift.types.start_practice_run_request.StartPracticeRunRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_identifier"] = resource_identifier
-        input_["away_from"] = away_from
-        input_["comment"] = comment
+        input_: capo_arc_zonal_shift.types.start_practice_run_request.StartPracticeRunRequest = {
+            "resource_identifier": resource_identifier,
+            "away_from": away_from,
+            "comment": comment,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def start_zonal_shift(
@@ -198,17 +201,19 @@ class ZonalShifts:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_arc_zonal_shift.types.start_zonal_shift_request.StartZonalShiftRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_identifier"] = resource_identifier
-        input_["away_from"] = away_from
-        input_["expires_in"] = expires_in
-        input_["comment"] = comment
+        input_: capo_arc_zonal_shift.types.start_zonal_shift_request.StartZonalShiftRequest = {
+            "resource_identifier": resource_identifier,
+            "away_from": away_from,
+            "expires_in": expires_in,
+            "comment": comment,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -265,7 +270,7 @@ class AsyncZonalShifts:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_arc_zonal_shift.types.list_zonal_shifts_request.ListZonalShiftsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_arc_zonal_shift.types.list_zonal_shifts_request.ListZonalShiftsRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if status is not None:
@@ -280,6 +285,7 @@ class AsyncZonalShifts:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def start_practice_run(
@@ -323,16 +329,18 @@ class AsyncZonalShifts:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_arc_zonal_shift.types.start_practice_run_request.StartPracticeRunRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_identifier"] = resource_identifier
-        input_["away_from"] = away_from
-        input_["comment"] = comment
+        input_: capo_arc_zonal_shift.types.start_practice_run_request.StartPracticeRunRequest = {
+            "resource_identifier": resource_identifier,
+            "away_from": away_from,
+            "comment": comment,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def start_zonal_shift(
@@ -378,15 +386,17 @@ class AsyncZonalShifts:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_arc_zonal_shift.types.start_zonal_shift_request.StartZonalShiftRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_identifier"] = resource_identifier
-        input_["away_from"] = away_from
-        input_["expires_in"] = expires_in
-        input_["comment"] = comment
+        input_: capo_arc_zonal_shift.types.start_zonal_shift_request.StartZonalShiftRequest = {
+            "resource_identifier": resource_identifier,
+            "away_from": away_from,
+            "expires_in": expires_in,
+            "comment": comment,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

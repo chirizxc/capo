@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> ResultErrorEntries:
 
     out: ResultErrorEntries = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_cloudtrail_data.types.result_error_entry.deserialize_json(item))
     return out

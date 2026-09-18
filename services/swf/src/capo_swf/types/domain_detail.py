@@ -36,7 +36,7 @@ def serialize_aws_json_1_0(value: DomainDetail) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> DomainDetail:
     out: DomainDetail = {}  # type: ignore[typeddict-item]
-    if "domainInfo" in data:
+    if data.get("domainInfo") is not None:
         import capo_swf.types.domain_info
 
         out["domain_info"] = capo_swf.types.domain_info.deserialize_aws_json_1_0(
@@ -44,7 +44,7 @@ def deserialize_aws_json_1_0(data: dict) -> DomainDetail:
         )
     else:
         raise DeserializationError("DomainDetail.domain_info required")
-    if "configuration" in data:
+    if data.get("configuration") is not None:
         import capo_swf.types.domain_configuration
 
         out["configuration"] = (

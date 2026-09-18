@@ -38,7 +38,7 @@ def serialize_json(value: EBSStorageInfo) -> dict:
 
 def deserialize_json(data: dict) -> EBSStorageInfo:
     out: EBSStorageInfo = {}  # type: ignore[typeddict-item]
-    if "provisionedThroughput" in data:
+    if data.get("provisionedThroughput") is not None:
         import capo_kafka.types.provisioned_throughput
 
         out["provisioned_throughput"] = (
@@ -46,6 +46,6 @@ def deserialize_json(data: dict) -> EBSStorageInfo:
                 data["provisionedThroughput"]
             )
         )
-    if "volumeSize" in data:
+    if data.get("volumeSize") is not None:
         out["volume_size"] = data["volumeSize"]
     return out

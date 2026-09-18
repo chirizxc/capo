@@ -49,19 +49,19 @@ def serialize_json(value: ProbeResult) -> dict:
 
 def deserialize_json(data: dict) -> ProbeResult:
     out: ProbeResult = {}  # type: ignore[typeddict-item]
-    if "container" in data:
+    if data.get("container") is not None:
         import capo_mediaconvert.types.container
 
         out["container"] = capo_mediaconvert.types.container.deserialize_json(
             data["container"]
         )
-    if "metadata" in data:
+    if data.get("metadata") is not None:
         import capo_mediaconvert.types.metadata
 
         out["metadata"] = capo_mediaconvert.types.metadata.deserialize_json(
             data["metadata"]
         )
-    if "trackMappings" in data:
+    if data.get("trackMappings") is not None:
         import capo_mediaconvert.types.__list_of_track_mapping
 
         out["track_mappings"] = (

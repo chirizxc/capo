@@ -34,12 +34,12 @@ def serialize_aws_json_1_0(value: TrustStore) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> TrustStore:
     out: TrustStore = {}  # type: ignore[typeddict-item]
-    if "CAContent" in data:
+    if data.get("CAContent") is not None:
         out["ca_content"] = data["CAContent"]
     else:
         raise DeserializationError("TrustStore.ca_content required")
-    if "CrlContent" in data:
+    if data.get("CrlContent") is not None:
         out["crl_content"] = data["CrlContent"]
-    if "KmsKeyArn" in data:
+    if data.get("KmsKeyArn") is not None:
         out["kms_key_arn"] = data["KmsKeyArn"]
     return out

@@ -37,7 +37,7 @@ def serialize_aws_json_1_1(value: RoutingStrategy) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RoutingStrategy:
     out: RoutingStrategy = {}  # type: ignore[typeddict-item]
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_gamelift.types.routing_strategy_type
 
         out["type"] = (
@@ -45,8 +45,8 @@ def deserialize_aws_json_1_1(data: dict) -> RoutingStrategy:
                 data["Type"]
             )
         )
-    if "FleetId" in data:
+    if data.get("FleetId") is not None:
         out["fleet_id"] = data["FleetId"]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     return out

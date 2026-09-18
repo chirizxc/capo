@@ -27,7 +27,7 @@ def serialize_json(value: DeleteDomainResult) -> dict:
 
 def deserialize_json(data: dict) -> DeleteDomainResult:
     out: DeleteDomainResult = {}  # type: ignore[typeddict-item]
-    if "domain" in data:
+    if data.get("domain") is not None:
         import capo_codeartifact.types.domain_description
 
         out["domain"] = capo_codeartifact.types.domain_description.deserialize_json(

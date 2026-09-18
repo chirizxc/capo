@@ -29,6 +29,9 @@ def deserialize_json(data: dict) -> LastIngestStateChangeDates:
     out: LastIngestStateChangeDates = {}
     for key, value in data.items():
         import capo_detective.types.datasource_package_ingest_state
+
+        if value is None:
+            continue
         import capo_detective.types.timestamp_for_collection
 
         out[

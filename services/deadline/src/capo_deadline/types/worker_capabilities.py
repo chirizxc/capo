@@ -40,7 +40,7 @@ def serialize_json(value: WorkerCapabilities) -> dict:
 
 def deserialize_json(data: dict) -> WorkerCapabilities:
     out: WorkerCapabilities = {}  # type: ignore[typeddict-item]
-    if "amounts" in data:
+    if data.get("amounts") is not None:
         import capo_deadline.types.worker_amount_capability_list
 
         out["amounts"] = (
@@ -50,7 +50,7 @@ def deserialize_json(data: dict) -> WorkerCapabilities:
         )
     else:
         raise DeserializationError("WorkerCapabilities.amounts required")
-    if "attributes" in data:
+    if data.get("attributes") is not None:
         import capo_deadline.types.worker_attribute_capability_list
 
         out["attributes"] = (

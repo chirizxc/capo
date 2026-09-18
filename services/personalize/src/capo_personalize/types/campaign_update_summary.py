@@ -69,11 +69,11 @@ def serialize_aws_json_1_1(value: CampaignUpdateSummary) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CampaignUpdateSummary:
     out: CampaignUpdateSummary = {}  # type: ignore[typeddict-item]
-    if "solutionVersionArn" in data:
+    if data.get("solutionVersionArn") is not None:
         out["solution_version_arn"] = data["solutionVersionArn"]
-    if "minProvisionedTPS" in data:
+    if data.get("minProvisionedTPS") is not None:
         out["min_provisioned_tps"] = data["minProvisionedTPS"]
-    if "campaignConfig" in data:
+    if data.get("campaignConfig") is not None:
         import capo_personalize.types.campaign_config
 
         out["campaign_config"] = (
@@ -81,11 +81,11 @@ def deserialize_aws_json_1_1(data: dict) -> CampaignUpdateSummary:
                 data["campaignConfig"]
             )
         )
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
-    if "failureReason" in data:
+    if data.get("failureReason") is not None:
         out["failure_reason"] = data["failureReason"]
-    if "creationDateTime" in data:
+    if data.get("creationDateTime") is not None:
         import capo_personalize.types.date
 
         out["creation_date_time"] = (
@@ -93,7 +93,7 @@ def deserialize_aws_json_1_1(data: dict) -> CampaignUpdateSummary:
                 data["creationDateTime"]
             )
         )
-    if "lastUpdatedDateTime" in data:
+    if data.get("lastUpdatedDateTime") is not None:
         import capo_personalize.types.date
 
         out["last_updated_date_time"] = (

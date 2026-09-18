@@ -29,12 +29,12 @@ def serialize_json(value: DisconnectFromServiceRequest) -> dict:
 
 def deserialize_json(data: dict) -> DisconnectFromServiceRequest:
     out: DisconnectFromServiceRequest = {}  # type: ignore[typeddict-item]
-    if "sourceServerID" in data:
+    if data.get("sourceServerID") is not None:
         out["source_server_id"] = data["sourceServerID"]
     else:
         raise DeserializationError(
             "DisconnectFromServiceRequest.source_server_id required"
         )
-    if "accountID" in data:
+    if data.get("accountID") is not None:
         out["account_id"] = data["accountID"]
     return out

@@ -37,12 +37,12 @@ def serialize_json(value: SendEventRequest) -> dict:
 
 def deserialize_json(data: dict) -> SendEventRequest:
     out: SendEventRequest = {}  # type: ignore[typeddict-item]
-    if "ContentType" in data:
+    if data.get("ContentType") is not None:
         out["content_type"] = data["ContentType"]
     else:
         raise DeserializationError("SendEventRequest.content_type required")
-    if "Content" in data:
+    if data.get("Content") is not None:
         out["content"] = data["Content"]
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
     return out

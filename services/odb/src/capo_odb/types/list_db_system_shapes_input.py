@@ -17,6 +17,10 @@ class ListDbSystemShapesInput(TypedDict, closed=True):
 # --- awsJson1_0 ser/de ---
 def serialize_aws_json_1_0(value: ListDbSystemShapesInput) -> dict:
     out: dict = {}
+    if "max_results" in value:
+        out["maxResults"] = value["max_results"]
+    if "next_token" in value:
+        out["nextToken"] = value["next_token"]
     if "availability_zone" in value:
         out["availabilityZone"] = value["availability_zone"]
     if "availability_zone_id" in value:
@@ -26,8 +30,12 @@ def serialize_aws_json_1_0(value: ListDbSystemShapesInput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ListDbSystemShapesInput:
     out: ListDbSystemShapesInput = {}  # type: ignore[typeddict-item]
-    if "availabilityZone" in data:
+    if data.get("maxResults") is not None:
+        out["max_results"] = data["maxResults"]
+    if data.get("nextToken") is not None:
+        out["next_token"] = data["nextToken"]
+    if data.get("availabilityZone") is not None:
         out["availability_zone"] = data["availabilityZone"]
-    if "availabilityZoneId" in data:
+    if data.get("availabilityZoneId") is not None:
         out["availability_zone_id"] = data["availabilityZoneId"]
     return out

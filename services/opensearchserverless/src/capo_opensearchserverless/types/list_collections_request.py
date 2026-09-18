@@ -39,7 +39,7 @@ def serialize_aws_json_1_0(value: ListCollectionsRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ListCollectionsRequest:
     out: ListCollectionsRequest = {}  # type: ignore[typeddict-item]
-    if "collectionFilters" in data:
+    if data.get("collectionFilters") is not None:
         import capo_opensearchserverless.types.collection_filters
 
         out["collection_filters"] = (
@@ -47,8 +47,8 @@ def deserialize_aws_json_1_0(data: dict) -> ListCollectionsRequest:
                 data["collectionFilters"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
     return out

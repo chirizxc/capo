@@ -78,7 +78,7 @@ def serialize_json(value: SearchInventoryResultItem) -> dict:
 
 
 def deserialize_json(data: dict) -> SearchInventoryResultItem:
-    if "glossaryItem" in data:
+    if data.get("glossaryItem") is not None:
         import capo_datazone.types.glossary_item
 
         return {
@@ -86,7 +86,7 @@ def deserialize_json(data: dict) -> SearchInventoryResultItem:
                 data["glossaryItem"]
             )
         }
-    elif "glossaryTermItem" in data:
+    elif data.get("glossaryTermItem") is not None:
         import capo_datazone.types.glossary_term_item
 
         return {
@@ -94,7 +94,7 @@ def deserialize_json(data: dict) -> SearchInventoryResultItem:
                 data["glossaryTermItem"]
             )
         }
-    elif "assetItem" in data:
+    elif data.get("assetItem") is not None:
         import capo_datazone.types.asset_item
 
         return {
@@ -102,7 +102,7 @@ def deserialize_json(data: dict) -> SearchInventoryResultItem:
                 data["assetItem"]
             )
         }
-    elif "dataProductItem" in data:
+    elif data.get("dataProductItem") is not None:
         import capo_datazone.types.data_product_result_item
 
         return {

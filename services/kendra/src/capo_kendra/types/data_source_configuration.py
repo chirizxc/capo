@@ -251,7 +251,7 @@ def serialize_aws_json_1_1(value: DataSourceConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DataSourceConfiguration:
     out: DataSourceConfiguration = {}  # type: ignore[typeddict-item]
-    if "S3Configuration" in data:
+    if data.get("S3Configuration") is not None:
         import capo_kendra.types.s3_data_source_configuration
 
         out["s3_configuration"] = (
@@ -259,7 +259,7 @@ def deserialize_aws_json_1_1(data: dict) -> DataSourceConfiguration:
                 data["S3Configuration"]
             )
         )
-    if "SharePointConfiguration" in data:
+    if data.get("SharePointConfiguration") is not None:
         import capo_kendra.types.share_point_configuration
 
         out["share_point_configuration"] = (
@@ -267,7 +267,7 @@ def deserialize_aws_json_1_1(data: dict) -> DataSourceConfiguration:
                 data["SharePointConfiguration"]
             )
         )
-    if "DatabaseConfiguration" in data:
+    if data.get("DatabaseConfiguration") is not None:
         import capo_kendra.types.database_configuration
 
         out["database_configuration"] = (
@@ -275,7 +275,7 @@ def deserialize_aws_json_1_1(data: dict) -> DataSourceConfiguration:
                 data["DatabaseConfiguration"]
             )
         )
-    if "SalesforceConfiguration" in data:
+    if data.get("SalesforceConfiguration") is not None:
         import capo_kendra.types.salesforce_configuration
 
         out["salesforce_configuration"] = (
@@ -283,7 +283,7 @@ def deserialize_aws_json_1_1(data: dict) -> DataSourceConfiguration:
                 data["SalesforceConfiguration"]
             )
         )
-    if "OneDriveConfiguration" in data:
+    if data.get("OneDriveConfiguration") is not None:
         import capo_kendra.types.one_drive_configuration
 
         out["one_drive_configuration"] = (
@@ -291,7 +291,7 @@ def deserialize_aws_json_1_1(data: dict) -> DataSourceConfiguration:
                 data["OneDriveConfiguration"]
             )
         )
-    if "ServiceNowConfiguration" in data:
+    if data.get("ServiceNowConfiguration") is not None:
         import capo_kendra.types.service_now_configuration
 
         out["service_now_configuration"] = (
@@ -299,7 +299,7 @@ def deserialize_aws_json_1_1(data: dict) -> DataSourceConfiguration:
                 data["ServiceNowConfiguration"]
             )
         )
-    if "ConfluenceConfiguration" in data:
+    if data.get("ConfluenceConfiguration") is not None:
         import capo_kendra.types.confluence_configuration
 
         out["confluence_configuration"] = (
@@ -307,7 +307,7 @@ def deserialize_aws_json_1_1(data: dict) -> DataSourceConfiguration:
                 data["ConfluenceConfiguration"]
             )
         )
-    if "GoogleDriveConfiguration" in data:
+    if data.get("GoogleDriveConfiguration") is not None:
         import capo_kendra.types.google_drive_configuration
 
         out["google_drive_configuration"] = (
@@ -315,7 +315,7 @@ def deserialize_aws_json_1_1(data: dict) -> DataSourceConfiguration:
                 data["GoogleDriveConfiguration"]
             )
         )
-    if "WebCrawlerConfiguration" in data:
+    if data.get("WebCrawlerConfiguration") is not None:
         import capo_kendra.types.web_crawler_configuration
 
         out["web_crawler_configuration"] = (
@@ -323,7 +323,7 @@ def deserialize_aws_json_1_1(data: dict) -> DataSourceConfiguration:
                 data["WebCrawlerConfiguration"]
             )
         )
-    if "WorkDocsConfiguration" in data:
+    if data.get("WorkDocsConfiguration") is not None:
         import capo_kendra.types.work_docs_configuration
 
         out["work_docs_configuration"] = (
@@ -331,7 +331,7 @@ def deserialize_aws_json_1_1(data: dict) -> DataSourceConfiguration:
                 data["WorkDocsConfiguration"]
             )
         )
-    if "FsxConfiguration" in data:
+    if data.get("FsxConfiguration") is not None:
         import capo_kendra.types.fsx_configuration
 
         out["fsx_configuration"] = (
@@ -339,7 +339,7 @@ def deserialize_aws_json_1_1(data: dict) -> DataSourceConfiguration:
                 data["FsxConfiguration"]
             )
         )
-    if "SlackConfiguration" in data:
+    if data.get("SlackConfiguration") is not None:
         import capo_kendra.types.slack_configuration
 
         out["slack_configuration"] = (
@@ -347,7 +347,7 @@ def deserialize_aws_json_1_1(data: dict) -> DataSourceConfiguration:
                 data["SlackConfiguration"]
             )
         )
-    if "BoxConfiguration" in data:
+    if data.get("BoxConfiguration") is not None:
         import capo_kendra.types.box_configuration
 
         out["box_configuration"] = (
@@ -355,7 +355,7 @@ def deserialize_aws_json_1_1(data: dict) -> DataSourceConfiguration:
                 data["BoxConfiguration"]
             )
         )
-    if "QuipConfiguration" in data:
+    if data.get("QuipConfiguration") is not None:
         import capo_kendra.types.quip_configuration
 
         out["quip_configuration"] = (
@@ -363,7 +363,7 @@ def deserialize_aws_json_1_1(data: dict) -> DataSourceConfiguration:
                 data["QuipConfiguration"]
             )
         )
-    if "JiraConfiguration" in data:
+    if data.get("JiraConfiguration") is not None:
         import capo_kendra.types.jira_configuration
 
         out["jira_configuration"] = (
@@ -371,7 +371,7 @@ def deserialize_aws_json_1_1(data: dict) -> DataSourceConfiguration:
                 data["JiraConfiguration"]
             )
         )
-    if "GitHubConfiguration" in data:
+    if data.get("GitHubConfiguration") is not None:
         import capo_kendra.types.git_hub_configuration
 
         out["git_hub_configuration"] = (
@@ -379,7 +379,7 @@ def deserialize_aws_json_1_1(data: dict) -> DataSourceConfiguration:
                 data["GitHubConfiguration"]
             )
         )
-    if "AlfrescoConfiguration" in data:
+    if data.get("AlfrescoConfiguration") is not None:
         import capo_kendra.types.alfresco_configuration
 
         out["alfresco_configuration"] = (
@@ -387,7 +387,7 @@ def deserialize_aws_json_1_1(data: dict) -> DataSourceConfiguration:
                 data["AlfrescoConfiguration"]
             )
         )
-    if "TemplateConfiguration" in data:
+    if data.get("TemplateConfiguration") is not None:
         import capo_kendra.types.template_configuration
 
         out["template_configuration"] = (

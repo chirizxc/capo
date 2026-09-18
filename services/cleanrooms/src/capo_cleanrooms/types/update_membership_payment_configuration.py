@@ -54,7 +54,7 @@ def serialize_json(value: UpdateMembershipPaymentConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> UpdateMembershipPaymentConfiguration:
     out: UpdateMembershipPaymentConfiguration = {}  # type: ignore[typeddict-item]
-    if "queryCompute" in data:
+    if data.get("queryCompute") is not None:
         import capo_cleanrooms.types.membership_query_compute_payment_config
 
         out["query_compute"] = (
@@ -62,7 +62,7 @@ def deserialize_json(data: dict) -> UpdateMembershipPaymentConfiguration:
                 data["queryCompute"]
             )
         )
-    if "machineLearning" in data:
+    if data.get("machineLearning") is not None:
         import capo_cleanrooms.types.membership_ml_payment_config
 
         out["machine_learning"] = (
@@ -70,7 +70,7 @@ def deserialize_json(data: dict) -> UpdateMembershipPaymentConfiguration:
                 data["machineLearning"]
             )
         )
-    if "jobCompute" in data:
+    if data.get("jobCompute") is not None:
         import capo_cleanrooms.types.membership_job_compute_payment_config
 
         out["job_compute"] = (

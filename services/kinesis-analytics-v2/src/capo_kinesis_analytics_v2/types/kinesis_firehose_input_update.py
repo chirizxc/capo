@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: KinesisFirehoseInputUpdate) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> KinesisFirehoseInputUpdate:
     out: KinesisFirehoseInputUpdate = {}  # type: ignore[typeddict-item]
-    if "ResourceARNUpdate" in data:
+    if data.get("ResourceARNUpdate") is not None:
         out["resource_arn_update"] = data["ResourceARNUpdate"]
     else:
         raise DeserializationError(

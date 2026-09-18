@@ -42,16 +42,16 @@ def serialize_json(value: ListDevEnvironmentsRequest) -> dict:
 
 def deserialize_json(data: dict) -> ListDevEnvironmentsRequest:
     out: ListDevEnvironmentsRequest = {}  # type: ignore[typeddict-item]
-    if "projectName" in data:
+    if data.get("projectName") is not None:
         out["project_name"] = data["projectName"]
-    if "filters" in data:
+    if data.get("filters") is not None:
         import capo_codecatalyst.types.filters
 
         out["filters"] = capo_codecatalyst.types.filters.deserialize_json(
             data["filters"]
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
     return out

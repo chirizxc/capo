@@ -54,7 +54,7 @@ def serialize_aws_json_1_1(value: CheckpointConfigurationUpdate) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CheckpointConfigurationUpdate:
     out: CheckpointConfigurationUpdate = {}  # type: ignore[typeddict-item]
-    if "ConfigurationTypeUpdate" in data:
+    if data.get("ConfigurationTypeUpdate") is not None:
         import capo_kinesis_analytics_v2.types.configuration_type
 
         out["configuration_type_update"] = (
@@ -62,11 +62,11 @@ def deserialize_aws_json_1_1(data: dict) -> CheckpointConfigurationUpdate:
                 data["ConfigurationTypeUpdate"]
             )
         )
-    if "CheckpointingEnabledUpdate" in data:
+    if data.get("CheckpointingEnabledUpdate") is not None:
         out["checkpointing_enabled_update"] = data["CheckpointingEnabledUpdate"]
-    if "CheckpointIntervalUpdate" in data:
+    if data.get("CheckpointIntervalUpdate") is not None:
         out["checkpoint_interval_update"] = data["CheckpointIntervalUpdate"]
-    if "MinPauseBetweenCheckpointsUpdate" in data:
+    if data.get("MinPauseBetweenCheckpointsUpdate") is not None:
         out["min_pause_between_checkpoints_update"] = data[
             "MinPauseBetweenCheckpointsUpdate"
         ]

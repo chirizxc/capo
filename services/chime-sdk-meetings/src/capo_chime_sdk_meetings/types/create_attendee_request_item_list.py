@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> CreateAttendeeRequestItemList:
 
     out: CreateAttendeeRequestItemList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_chime_sdk_meetings.types.create_attendee_request_item.deserialize_json(
                 item

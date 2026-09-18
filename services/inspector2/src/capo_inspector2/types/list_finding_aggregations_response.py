@@ -42,13 +42,13 @@ def serialize_json(value: ListFindingAggregationsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListFindingAggregationsResponse:
     out: ListFindingAggregationsResponse = {}  # type: ignore[typeddict-item]
-    if "aggregationType" in data:
+    if data.get("aggregationType") is not None:
         out["aggregation_type"] = data["aggregationType"]
     else:
         raise DeserializationError(
             "ListFindingAggregationsResponse.aggregation_type required"
         )
-    if "responses" in data:
+    if data.get("responses") is not None:
         import capo_inspector2.types.aggregation_response_list
 
         out["responses"] = (
@@ -56,6 +56,6 @@ def deserialize_json(data: dict) -> ListFindingAggregationsResponse:
                 data["responses"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

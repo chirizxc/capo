@@ -30,9 +30,9 @@ def serialize_json(value: CreateApplicationRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateApplicationRequest:
     out: CreateApplicationRequest = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_pinpoint.types.map_of__string
 
         out["tags"] = capo_pinpoint.types.map_of__string.deserialize_json(data["tags"])

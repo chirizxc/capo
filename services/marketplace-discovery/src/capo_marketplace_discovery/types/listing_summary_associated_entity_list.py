@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> ListingSummaryAssociatedEntityList:
 
     out: ListingSummaryAssociatedEntityList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_marketplace_discovery.types.listing_summary_associated_entity.deserialize_json(
                 item

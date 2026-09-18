@@ -33,7 +33,7 @@ def serialize_aws_json_1_1(value: GetCatalogsResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetCatalogsResponse:
     out: GetCatalogsResponse = {}  # type: ignore[typeddict-item]
-    if "CatalogList" in data:
+    if data.get("CatalogList") is not None:
         import capo_glue.types.catalog_list
 
         out["catalog_list"] = capo_glue.types.catalog_list.deserialize_aws_json_1_1(
@@ -41,6 +41,6 @@ def deserialize_aws_json_1_1(data: dict) -> GetCatalogsResponse:
         )
     else:
         raise DeserializationError("GetCatalogsResponse.catalog_list required")
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

@@ -39,13 +39,13 @@ def serialize_json(value: RegisteredUserDashboardEmbeddingConfiguration) -> dict
 
 def deserialize_json(data: dict) -> RegisteredUserDashboardEmbeddingConfiguration:
     out: RegisteredUserDashboardEmbeddingConfiguration = {}  # type: ignore[typeddict-item]
-    if "InitialDashboardId" in data:
+    if data.get("InitialDashboardId") is not None:
         out["initial_dashboard_id"] = data["InitialDashboardId"]
     else:
         raise DeserializationError(
             "RegisteredUserDashboardEmbeddingConfiguration.initial_dashboard_id required"
         )
-    if "FeatureConfigurations" in data:
+    if data.get("FeatureConfigurations") is not None:
         import capo_quicksight.types.registered_user_dashboard_feature_configurations
 
         out["feature_configurations"] = (

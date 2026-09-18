@@ -59,13 +59,13 @@ def serialize_json(value: CreateMembershipRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateMembershipRequest:
     out: CreateMembershipRequest = {}  # type: ignore[typeddict-item]
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
-    if "membershipName" in data:
+    if data.get("membershipName") is not None:
         out["membership_name"] = data["membershipName"]
     else:
         raise DeserializationError("CreateMembershipRequest.membership_name required")
-    if "incidentResponseTeam" in data:
+    if data.get("incidentResponseTeam") is not None:
         import capo_security_ir.types.incident_response_team
 
         out["incident_response_team"] = (
@@ -77,7 +77,7 @@ def deserialize_json(data: dict) -> CreateMembershipRequest:
         raise DeserializationError(
             "CreateMembershipRequest.incident_response_team required"
         )
-    if "optInFeatures" in data:
+    if data.get("optInFeatures") is not None:
         import capo_security_ir.types.opt_in_features
 
         out["opt_in_features"] = (
@@ -85,11 +85,11 @@ def deserialize_json(data: dict) -> CreateMembershipRequest:
                 data["optInFeatures"]
             )
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_security_ir.types.tag_map
 
         out["tags"] = capo_security_ir.types.tag_map.deserialize_json(data["tags"])
-    if "coverEntireOrganization" in data:
+    if data.get("coverEntireOrganization") is not None:
         out["cover_entire_organization"] = data["coverEntireOrganization"]
     else:
         out["cover_entire_organization"] = True

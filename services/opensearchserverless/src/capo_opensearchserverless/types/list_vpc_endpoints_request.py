@@ -39,7 +39,7 @@ def serialize_aws_json_1_0(value: ListVpcEndpointsRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ListVpcEndpointsRequest:
     out: ListVpcEndpointsRequest = {}  # type: ignore[typeddict-item]
-    if "vpcEndpointFilters" in data:
+    if data.get("vpcEndpointFilters") is not None:
         import capo_opensearchserverless.types.vpc_endpoint_filters
 
         out["vpc_endpoint_filters"] = (
@@ -47,8 +47,8 @@ def deserialize_aws_json_1_0(data: dict) -> ListVpcEndpointsRequest:
                 data["vpcEndpointFilters"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
     return out

@@ -60,13 +60,13 @@ def serialize_json(value: RouteTollOptions) -> dict:
 
 def deserialize_json(data: dict) -> RouteTollOptions:
     out: RouteTollOptions = {}  # type: ignore[typeddict-item]
-    if "AllTransponders" in data:
+    if data.get("AllTransponders") is not None:
         out["all_transponders"] = data["AllTransponders"]
-    if "AllVignettes" in data:
+    if data.get("AllVignettes") is not None:
         out["all_vignettes"] = data["AllVignettes"]
-    if "Currency" in data:
+    if data.get("Currency") is not None:
         out["currency"] = data["Currency"]
-    if "EmissionType" in data:
+    if data.get("EmissionType") is not None:
         import capo_geo_routes.types.route_emission_type
 
         out["emission_type"] = (
@@ -74,7 +74,7 @@ def deserialize_json(data: dict) -> RouteTollOptions:
                 data["EmissionType"]
             )
         )
-    if "VehicleCategory" in data:
+    if data.get("VehicleCategory") is not None:
         import capo_geo_routes.types.route_toll_vehicle_category
 
         out["vehicle_category"] = (

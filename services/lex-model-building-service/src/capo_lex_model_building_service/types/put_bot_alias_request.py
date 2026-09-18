@@ -64,15 +64,15 @@ def serialize_json(value: PutBotAliasRequest) -> dict:
 
 def deserialize_json(data: dict) -> PutBotAliasRequest:
     out: PutBotAliasRequest = {}  # type: ignore[typeddict-item]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "botVersion" in data:
+    if data.get("botVersion") is not None:
         out["bot_version"] = data["botVersion"]
     else:
         raise DeserializationError("PutBotAliasRequest.bot_version required")
-    if "checksum" in data:
+    if data.get("checksum") is not None:
         out["checksum"] = data["checksum"]
-    if "conversationLogs" in data:
+    if data.get("conversationLogs") is not None:
         import capo_lex_model_building_service.types.conversation_logs_request
 
         out["conversation_logs"] = (
@@ -80,7 +80,7 @@ def deserialize_json(data: dict) -> PutBotAliasRequest:
                 data["conversationLogs"]
             )
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_lex_model_building_service.types.tag_list
 
         out["tags"] = capo_lex_model_building_service.types.tag_list.deserialize_json(

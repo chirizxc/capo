@@ -25,6 +25,8 @@ def deserialize_json(data: list) -> AssociationSetList:
 
     out: AssociationSetList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_securityhub.types.association_set_details.deserialize_json(item)
         )

@@ -90,11 +90,11 @@ def serialize_aws_json_1_1(value: GetDeviceFleetReportResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetDeviceFleetReportResponse:
     out: GetDeviceFleetReportResponse = {}  # type: ignore[typeddict-item]
-    if "DeviceFleetArn" in data:
+    if data.get("DeviceFleetArn") is not None:
         out["device_fleet_arn"] = data["DeviceFleetArn"]
-    if "DeviceFleetName" in data:
+    if data.get("DeviceFleetName") is not None:
         out["device_fleet_name"] = data["DeviceFleetName"]
-    if "OutputConfig" in data:
+    if data.get("OutputConfig") is not None:
         import capo_sagemaker.types.edge_output_config
 
         out["output_config"] = (
@@ -102,9 +102,9 @@ def deserialize_aws_json_1_1(data: dict) -> GetDeviceFleetReportResponse:
                 data["OutputConfig"]
             )
         )
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "ReportGenerated" in data:
+    if data.get("ReportGenerated") is not None:
         import capo_sagemaker.types.timestamp
 
         out["report_generated"] = (
@@ -112,7 +112,7 @@ def deserialize_aws_json_1_1(data: dict) -> GetDeviceFleetReportResponse:
                 data["ReportGenerated"]
             )
         )
-    if "DeviceStats" in data:
+    if data.get("DeviceStats") is not None:
         import capo_sagemaker.types.device_stats
 
         out["device_stats"] = (
@@ -120,7 +120,7 @@ def deserialize_aws_json_1_1(data: dict) -> GetDeviceFleetReportResponse:
                 data["DeviceStats"]
             )
         )
-    if "AgentVersions" in data:
+    if data.get("AgentVersions") is not None:
         import capo_sagemaker.types.agent_versions
 
         out["agent_versions"] = (
@@ -128,7 +128,7 @@ def deserialize_aws_json_1_1(data: dict) -> GetDeviceFleetReportResponse:
                 data["AgentVersions"]
             )
         )
-    if "ModelStats" in data:
+    if data.get("ModelStats") is not None:
         import capo_sagemaker.types.edge_model_stats
 
         out["model_stats"] = (

@@ -38,7 +38,7 @@ def serialize_aws_json_1_1(value: PermissionsBoundary) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PermissionsBoundary:
     out: PermissionsBoundary = {}  # type: ignore[typeddict-item]
-    if "CustomerManagedPolicyReference" in data:
+    if data.get("CustomerManagedPolicyReference") is not None:
         import capo_sso_admin.types.customer_managed_policy_reference
 
         out["customer_managed_policy_reference"] = (
@@ -46,6 +46,6 @@ def deserialize_aws_json_1_1(data: dict) -> PermissionsBoundary:
                 data["CustomerManagedPolicyReference"]
             )
         )
-    if "ManagedPolicyArn" in data:
+    if data.get("ManagedPolicyArn") is not None:
         out["managed_policy_arn"] = data["ManagedPolicyArn"]
     return out

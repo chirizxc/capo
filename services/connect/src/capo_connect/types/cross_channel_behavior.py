@@ -28,7 +28,7 @@ def serialize_json(value: CrossChannelBehavior) -> dict:
 
 def deserialize_json(data: dict) -> CrossChannelBehavior:
     out: CrossChannelBehavior = {}  # type: ignore[typeddict-item]
-    if "BehaviorType" in data:
+    if data.get("BehaviorType") is not None:
         import capo_connect.types.behavior_type
 
         out["behavior_type"] = capo_connect.types.behavior_type.deserialize_json(

@@ -56,24 +56,24 @@ def serialize_json(value: Item) -> dict:
 
 def deserialize_json(data: dict) -> Item:
     out: Item = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_mediastore_data.types.item_type
 
         out["type"] = capo_mediastore_data.types.item_type.deserialize_json(
             data["Type"]
         )
-    if "ETag" in data:
+    if data.get("ETag") is not None:
         out["e_tag"] = data["ETag"]
-    if "LastModified" in data:
+    if data.get("LastModified") is not None:
         import capo_mediastore_data.types.time_stamp
 
         out["last_modified"] = capo_mediastore_data.types.time_stamp.deserialize_json(
             data["LastModified"]
         )
-    if "ContentType" in data:
+    if data.get("ContentType") is not None:
         out["content_type"] = data["ContentType"]
-    if "ContentLength" in data:
+    if data.get("ContentLength") is not None:
         out["content_length"] = data["ContentLength"]
     return out

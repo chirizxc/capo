@@ -31,7 +31,7 @@ def serialize_json(value: UpdateIngestConfigurationResponse) -> dict:
 
 def deserialize_json(data: dict) -> UpdateIngestConfigurationResponse:
     out: UpdateIngestConfigurationResponse = {}  # type: ignore[typeddict-item]
-    if "ingestConfiguration" in data:
+    if data.get("ingestConfiguration") is not None:
         import capo_ivs_realtime.types.ingest_configuration
 
         out["ingest_configuration"] = (

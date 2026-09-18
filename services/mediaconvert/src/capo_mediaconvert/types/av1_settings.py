@@ -126,7 +126,15 @@ def serialize_json(value: Av1Settings) -> dict:
     if "framerate_numerator" in value:
         out["framerateNumerator"] = value["framerate_numerator"]
     if "gop_size" in value:
-        out["gopSize"] = value["gop_size"]
+        out["gopSize"] = (
+            "NaN"
+            if value["gop_size"] != value["gop_size"]
+            else "Infinity"
+            if value["gop_size"] == float("inf")
+            else "-Infinity"
+            if value["gop_size"] == float("-inf")
+            else value["gop_size"]
+        )
     if "max_bitrate" in value:
         out["maxBitrate"] = value["max_bitrate"]
     if "number_b_frames_between_reference_frames" in value:
@@ -170,7 +178,7 @@ def serialize_json(value: Av1Settings) -> dict:
 
 def deserialize_json(data: dict) -> Av1Settings:
     out: Av1Settings = {}  # type: ignore[typeddict-item]
-    if "adaptiveQuantization" in data:
+    if data.get("adaptiveQuantization") is not None:
         import capo_mediaconvert.types.av1_adaptive_quantization
 
         out["adaptive_quantization"] = (
@@ -178,13 +186,13 @@ def deserialize_json(data: dict) -> Av1Settings:
                 data["adaptiveQuantization"]
             )
         )
-    if "bitDepth" in data:
+    if data.get("bitDepth") is not None:
         import capo_mediaconvert.types.av1_bit_depth
 
         out["bit_depth"] = capo_mediaconvert.types.av1_bit_depth.deserialize_json(
             data["bitDepth"]
         )
-    if "filmGrainSynthesis" in data:
+    if data.get("filmGrainSynthesis") is not None:
         import capo_mediaconvert.types.av1_film_grain_synthesis
 
         out["film_grain_synthesis"] = (
@@ -192,7 +200,7 @@ def deserialize_json(data: dict) -> Av1Settings:
                 data["filmGrainSynthesis"]
             )
         )
-    if "framerateControl" in data:
+    if data.get("framerateControl") is not None:
         import capo_mediaconvert.types.av1_framerate_control
 
         out["framerate_control"] = (
@@ -200,7 +208,7 @@ def deserialize_json(data: dict) -> Av1Settings:
                 data["framerateControl"]
             )
         )
-    if "framerateConversionAlgorithm" in data:
+    if data.get("framerateConversionAlgorithm") is not None:
         import capo_mediaconvert.types.av1_framerate_conversion_algorithm
 
         out["framerate_conversion_algorithm"] = (
@@ -208,19 +216,19 @@ def deserialize_json(data: dict) -> Av1Settings:
                 data["framerateConversionAlgorithm"]
             )
         )
-    if "framerateDenominator" in data:
+    if data.get("framerateDenominator") is not None:
         out["framerate_denominator"] = data["framerateDenominator"]
-    if "framerateNumerator" in data:
+    if data.get("framerateNumerator") is not None:
         out["framerate_numerator"] = data["framerateNumerator"]
-    if "gopSize" in data:
-        out["gop_size"] = data["gopSize"]
-    if "maxBitrate" in data:
+    if data.get("gopSize") is not None:
+        out["gop_size"] = float(data["gopSize"])
+    if data.get("maxBitrate") is not None:
         out["max_bitrate"] = data["maxBitrate"]
-    if "numberBFramesBetweenReferenceFrames" in data:
+    if data.get("numberBFramesBetweenReferenceFrames") is not None:
         out["number_b_frames_between_reference_frames"] = data[
             "numberBFramesBetweenReferenceFrames"
         ]
-    if "perFrameMetrics" in data:
+    if data.get("perFrameMetrics") is not None:
         import capo_mediaconvert.types.__list_of_frame_metric_type
 
         out["per_frame_metrics"] = (
@@ -228,7 +236,7 @@ def deserialize_json(data: dict) -> Av1Settings:
                 data["perFrameMetrics"]
             )
         )
-    if "qvbrSettings" in data:
+    if data.get("qvbrSettings") is not None:
         import capo_mediaconvert.types.av1_qvbr_settings
 
         out["qvbr_settings"] = (
@@ -236,7 +244,7 @@ def deserialize_json(data: dict) -> Av1Settings:
                 data["qvbrSettings"]
             )
         )
-    if "rateControlMode" in data:
+    if data.get("rateControlMode") is not None:
         import capo_mediaconvert.types.av1_rate_control_mode
 
         out["rate_control_mode"] = (
@@ -244,9 +252,9 @@ def deserialize_json(data: dict) -> Av1Settings:
                 data["rateControlMode"]
             )
         )
-    if "slices" in data:
+    if data.get("slices") is not None:
         out["slices"] = data["slices"]
-    if "spatialAdaptiveQuantization" in data:
+    if data.get("spatialAdaptiveQuantization") is not None:
         import capo_mediaconvert.types.av1_spatial_adaptive_quantization
 
         out["spatial_adaptive_quantization"] = (

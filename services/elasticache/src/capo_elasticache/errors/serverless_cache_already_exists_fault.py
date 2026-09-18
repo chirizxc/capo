@@ -37,15 +37,20 @@ class ServerlessCacheAlreadyExistsFault(ServiceError):
 
     code: str | None = "ServerlessCacheAlreadyExistsFault"
 
-    def __init__(self, data: ServerlessCacheAlreadyExistsFault_):
+    def __init__(
+        self, data: ServerlessCacheAlreadyExistsFault_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="ServerlessCacheAlreadyExistsFault",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_query(cls, el: Element) -> "ServerlessCacheAlreadyExistsFault":
-        return cls(deserialize_query(el))
+    def from_query(
+        cls, el: Element, message: str | None = None
+    ) -> "ServerlessCacheAlreadyExistsFault":
+        return cls(deserialize_query(el), message)

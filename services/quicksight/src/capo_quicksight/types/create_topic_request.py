@@ -62,11 +62,11 @@ def serialize_json(value: CreateTopicRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateTopicRequest:
     out: CreateTopicRequest = {}  # type: ignore[typeddict-item]
-    if "TopicId" in data:
+    if data.get("TopicId") is not None:
         out["topic_id"] = data["TopicId"]
     else:
         raise DeserializationError("CreateTopicRequest.topic_id required")
-    if "Topic" in data:
+    if data.get("Topic") is not None:
         import capo_quicksight.types.topic_details
 
         out["topic"] = capo_quicksight.types.topic_details.deserialize_json(
@@ -74,17 +74,17 @@ def deserialize_json(data: dict) -> CreateTopicRequest:
         )
     else:
         raise DeserializationError("CreateTopicRequest.topic required")
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_quicksight.types.tag_list
 
         out["tags"] = capo_quicksight.types.tag_list.deserialize_json(data["Tags"])
-    if "FolderArns" in data:
+    if data.get("FolderArns") is not None:
         import capo_quicksight.types.folder_arn_list
 
         out["folder_arns"] = capo_quicksight.types.folder_arn_list.deserialize_json(
             data["FolderArns"]
         )
-    if "CustomInstructions" in data:
+    if data.get("CustomInstructions") is not None:
         import capo_quicksight.types.custom_instructions
 
         out["custom_instructions"] = (

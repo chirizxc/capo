@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> BatchGetTokenBalanceErrors:
 
     out: BatchGetTokenBalanceErrors = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_managedblockchain_query.types.batch_get_token_balance_error_item.deserialize_json(
                 item

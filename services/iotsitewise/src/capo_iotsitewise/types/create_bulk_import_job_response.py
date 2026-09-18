@@ -36,15 +36,15 @@ def serialize_json(value: CreateBulkImportJobResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateBulkImportJobResponse:
     out: CreateBulkImportJobResponse = {}  # type: ignore[typeddict-item]
-    if "jobId" in data:
+    if data.get("jobId") is not None:
         out["job_id"] = data["jobId"]
     else:
         raise DeserializationError("CreateBulkImportJobResponse.job_id required")
-    if "jobName" in data:
+    if data.get("jobName") is not None:
         out["job_name"] = data["jobName"]
     else:
         raise DeserializationError("CreateBulkImportJobResponse.job_name required")
-    if "jobStatus" in data:
+    if data.get("jobStatus") is not None:
         import capo_iotsitewise.types.job_status
 
         out["job_status"] = capo_iotsitewise.types.job_status.deserialize_json(

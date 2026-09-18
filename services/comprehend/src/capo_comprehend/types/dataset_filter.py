@@ -57,13 +57,13 @@ def serialize_aws_json_1_1(value: DatasetFilter) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DatasetFilter:
     out: DatasetFilter = {}  # type: ignore[typeddict-item]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_comprehend.types.dataset_status
 
         out["status"] = capo_comprehend.types.dataset_status.deserialize_aws_json_1_1(
             data["Status"]
         )
-    if "DatasetType" in data:
+    if data.get("DatasetType") is not None:
         import capo_comprehend.types.dataset_type
 
         out["dataset_type"] = (
@@ -71,7 +71,7 @@ def deserialize_aws_json_1_1(data: dict) -> DatasetFilter:
                 data["DatasetType"]
             )
         )
-    if "CreationTimeAfter" in data:
+    if data.get("CreationTimeAfter") is not None:
         import capo_comprehend.types.timestamp
 
         out["creation_time_after"] = (
@@ -79,7 +79,7 @@ def deserialize_aws_json_1_1(data: dict) -> DatasetFilter:
                 data["CreationTimeAfter"]
             )
         )
-    if "CreationTimeBefore" in data:
+    if data.get("CreationTimeBefore") is not None:
         import capo_comprehend.types.timestamp
 
         out["creation_time_before"] = (

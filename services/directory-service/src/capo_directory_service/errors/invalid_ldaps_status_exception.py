@@ -30,9 +30,9 @@ def serialize_aws_json_1_1(value: InvalidLDAPSStatusException_) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> InvalidLDAPSStatusException_:
     out: InvalidLDAPSStatusException_ = {}  # type: ignore[typeddict-item]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
-    if "RequestId" in data:
+    if data.get("RequestId") is not None:
         out["request_id"] = data["RequestId"]
     return out
 
@@ -42,15 +42,18 @@ class InvalidLDAPSStatusException(ServiceError):
 
     code: str | None = "InvalidLDAPSStatusException"
 
-    def __init__(self, data: InvalidLDAPSStatusException_):
+    def __init__(self, data: InvalidLDAPSStatusException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="InvalidLDAPSStatusException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "InvalidLDAPSStatusException":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "InvalidLDAPSStatusException":
+        return cls(deserialize_aws_json_1_1(data), message)

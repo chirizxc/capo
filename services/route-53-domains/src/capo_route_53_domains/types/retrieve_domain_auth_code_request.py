@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: RetrieveDomainAuthCodeRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RetrieveDomainAuthCodeRequest:
     out: RetrieveDomainAuthCodeRequest = {}  # type: ignore[typeddict-item]
-    if "DomainName" in data:
+    if data.get("DomainName") is not None:
         out["domain_name"] = data["DomainName"]
     else:
         raise DeserializationError("RetrieveDomainAuthCodeRequest.domain_name required")

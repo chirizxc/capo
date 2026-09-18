@@ -25,6 +25,8 @@ def deserialize_json(data: list) -> EvaluationSuggestedAnswersList:
 
     out: EvaluationSuggestedAnswersList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_connect.types.evaluation_suggested_answer.deserialize_json(item)
         )

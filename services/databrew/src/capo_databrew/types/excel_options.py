@@ -41,18 +41,18 @@ def serialize_json(value: ExcelOptions) -> dict:
 
 def deserialize_json(data: dict) -> ExcelOptions:
     out: ExcelOptions = {}  # type: ignore[typeddict-item]
-    if "SheetNames" in data:
+    if data.get("SheetNames") is not None:
         import capo_databrew.types.sheet_name_list
 
         out["sheet_names"] = capo_databrew.types.sheet_name_list.deserialize_json(
             data["SheetNames"]
         )
-    if "SheetIndexes" in data:
+    if data.get("SheetIndexes") is not None:
         import capo_databrew.types.sheet_index_list
 
         out["sheet_indexes"] = capo_databrew.types.sheet_index_list.deserialize_json(
             data["SheetIndexes"]
         )
-    if "HeaderRow" in data:
+    if data.get("HeaderRow") is not None:
         out["header_row"] = data["HeaderRow"]
     return out

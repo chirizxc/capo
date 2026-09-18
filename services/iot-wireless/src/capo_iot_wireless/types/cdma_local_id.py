@@ -28,11 +28,11 @@ def serialize_json(value: CdmaLocalId) -> dict:
 
 def deserialize_json(data: dict) -> CdmaLocalId:
     out: CdmaLocalId = {}  # type: ignore[typeddict-item]
-    if "PnOffset" in data:
+    if data.get("PnOffset") is not None:
         out["pn_offset"] = data["PnOffset"]
     else:
         raise DeserializationError("CdmaLocalId.pn_offset required")
-    if "CdmaChannel" in data:
+    if data.get("CdmaChannel") is not None:
         out["cdma_channel"] = data["CdmaChannel"]
     else:
         raise DeserializationError("CdmaLocalId.cdma_channel required")

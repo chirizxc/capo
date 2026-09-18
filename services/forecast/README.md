@@ -13,9 +13,9 @@ from capo_forecast import AsyncforecastClient
 
 
 async def main():
-    async with AsyncforecastClient() as s3:
+    async with AsyncforecastClient() as forecast:
         # Example: call the create_auto_predictor operation
-        response = await s3.create_auto_predictor()
+        response = await forecast.create_auto_predictor()
         print(response["predictor_arn"])
 ```
 
@@ -28,9 +28,9 @@ from capo_forecast import AsyncforecastClient
 
 
 async def main():
-    async with AsyncforecastClient() as s3:
+    async with AsyncforecastClient() as forecast:
         # Example: paginate over list_dataset_groups
-        async for item in s3.iter_list_dataset_groups():
+        async for item in forecast.iter_list_dataset_groups():
             print(item)
 ```
 
@@ -44,9 +44,9 @@ from capo_forecast.error import InvalidInputException
 
 
 async def main():
-    async with AsyncforecastClient() as s3:
+    async with AsyncforecastClient() as forecast:
         try:
-            await s3.create_auto_predictor()
+            await forecast.create_auto_predictor()
         except InvalidInputException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -63,13 +63,13 @@ from capo_forecast import AsyncforecastClient
 
 
 async def main():
-    async with AsyncforecastClient() as s3:
+    async with AsyncforecastClient() as forecast:
         # Default: 3 attempts for every operation
-        response = await s3.create_auto_predictor()
+        response = await forecast.create_auto_predictor()
 
         # Override per operation
-        response = await s3.create_auto_predictor(config_overrides={"retry_max_attempts": 5})
+        response = await forecast.create_auto_predictor(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.create_auto_predictor(config_overrides={"retry_max_attempts": 1})
+        response = await forecast.create_auto_predictor(config_overrides={"retry_max_attempts": 1})
 ```

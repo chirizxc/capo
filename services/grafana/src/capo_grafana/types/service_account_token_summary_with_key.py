@@ -30,15 +30,15 @@ def serialize_json(value: ServiceAccountTokenSummaryWithKey) -> dict:
 
 def deserialize_json(data: dict) -> ServiceAccountTokenSummaryWithKey:
     out: ServiceAccountTokenSummaryWithKey = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("ServiceAccountTokenSummaryWithKey.id required")
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("ServiceAccountTokenSummaryWithKey.name required")
-    if "key" in data:
+    if data.get("key") is not None:
         out["key"] = data["key"]
     else:
         raise DeserializationError("ServiceAccountTokenSummaryWithKey.key required")

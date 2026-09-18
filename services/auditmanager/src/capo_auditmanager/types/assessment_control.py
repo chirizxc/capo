@@ -84,31 +84,31 @@ def serialize_json(value: AssessmentControl) -> dict:
 
 def deserialize_json(data: dict) -> AssessmentControl:
     out: AssessmentControl = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_auditmanager.types.control_status
 
         out["status"] = capo_auditmanager.types.control_status.deserialize_json(
             data["status"]
         )
-    if "response" in data:
+    if data.get("response") is not None:
         import capo_auditmanager.types.control_response
 
         out["response"] = capo_auditmanager.types.control_response.deserialize_json(
             data["response"]
         )
-    if "comments" in data:
+    if data.get("comments") is not None:
         import capo_auditmanager.types.control_comments
 
         out["comments"] = capo_auditmanager.types.control_comments.deserialize_json(
             data["comments"]
         )
-    if "evidenceSources" in data:
+    if data.get("evidenceSources") is not None:
         import capo_auditmanager.types.evidence_sources
 
         out["evidence_sources"] = (
@@ -116,11 +116,11 @@ def deserialize_json(data: dict) -> AssessmentControl:
                 data["evidenceSources"]
             )
         )
-    if "evidenceCount" in data:
+    if data.get("evidenceCount") is not None:
         out["evidence_count"] = data["evidenceCount"]
     else:
         out["evidence_count"] = 0
-    if "assessmentReportEvidenceCount" in data:
+    if data.get("assessmentReportEvidenceCount") is not None:
         out["assessment_report_evidence_count"] = data["assessmentReportEvidenceCount"]
     else:
         out["assessment_report_evidence_count"] = 0

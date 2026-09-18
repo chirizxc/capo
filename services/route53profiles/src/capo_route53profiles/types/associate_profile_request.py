@@ -38,19 +38,19 @@ def serialize_json(value: AssociateProfileRequest) -> dict:
 
 def deserialize_json(data: dict) -> AssociateProfileRequest:
     out: AssociateProfileRequest = {}  # type: ignore[typeddict-item]
-    if "ProfileId" in data:
+    if data.get("ProfileId") is not None:
         out["profile_id"] = data["ProfileId"]
     else:
         raise DeserializationError("AssociateProfileRequest.profile_id required")
-    if "ResourceId" in data:
+    if data.get("ResourceId") is not None:
         out["resource_id"] = data["ResourceId"]
     else:
         raise DeserializationError("AssociateProfileRequest.resource_id required")
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("AssociateProfileRequest.name required")
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_route53profiles.types.tag_list
 
         out["tags"] = capo_route53profiles.types.tag_list.deserialize_json(data["Tags"])

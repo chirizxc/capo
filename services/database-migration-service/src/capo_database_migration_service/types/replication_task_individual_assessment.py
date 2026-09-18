@@ -58,19 +58,19 @@ def serialize_aws_json_1_1(value: ReplicationTaskIndividualAssessment) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ReplicationTaskIndividualAssessment:
     out: ReplicationTaskIndividualAssessment = {}  # type: ignore[typeddict-item]
-    if "ReplicationTaskIndividualAssessmentArn" in data:
+    if data.get("ReplicationTaskIndividualAssessmentArn") is not None:
         out["replication_task_individual_assessment_arn"] = data[
             "ReplicationTaskIndividualAssessmentArn"
         ]
-    if "ReplicationTaskAssessmentRunArn" in data:
+    if data.get("ReplicationTaskAssessmentRunArn") is not None:
         out["replication_task_assessment_run_arn"] = data[
             "ReplicationTaskAssessmentRunArn"
         ]
-    if "IndividualAssessmentName" in data:
+    if data.get("IndividualAssessmentName") is not None:
         out["individual_assessment_name"] = data["IndividualAssessmentName"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         out["status"] = data["Status"]
-    if "ReplicationTaskIndividualAssessmentStartDate" in data:
+    if data.get("ReplicationTaskIndividualAssessmentStartDate") is not None:
         import capo_database_migration_service.types.t_stamp
 
         out["replication_task_individual_assessment_start_date"] = (

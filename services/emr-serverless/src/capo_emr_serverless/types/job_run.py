@@ -242,25 +242,25 @@ def serialize_json(value: JobRun) -> dict:
 
 def deserialize_json(data: dict) -> JobRun:
     out: JobRun = {}  # type: ignore[typeddict-item]
-    if "applicationId" in data:
+    if data.get("applicationId") is not None:
         out["application_id"] = data["applicationId"]
     else:
         raise DeserializationError("JobRun.application_id required")
-    if "jobRunId" in data:
+    if data.get("jobRunId") is not None:
         out["job_run_id"] = data["jobRunId"]
     else:
         raise DeserializationError("JobRun.job_run_id required")
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("JobRun.arn required")
-    if "createdBy" in data:
+    if data.get("createdBy") is not None:
         out["created_by"] = data["createdBy"]
     else:
         raise DeserializationError("JobRun.created_by required")
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_emr_serverless.types.date
 
         out["created_at"] = capo_emr_serverless.types.date.deserialize_json(
@@ -268,7 +268,7 @@ def deserialize_json(data: dict) -> JobRun:
         )
     else:
         raise DeserializationError("JobRun.created_at required")
-    if "updatedAt" in data:
+    if data.get("updatedAt") is not None:
         import capo_emr_serverless.types.date
 
         out["updated_at"] = capo_emr_serverless.types.date.deserialize_json(
@@ -276,11 +276,11 @@ def deserialize_json(data: dict) -> JobRun:
         )
     else:
         raise DeserializationError("JobRun.updated_at required")
-    if "executionRole" in data:
+    if data.get("executionRole") is not None:
         out["execution_role"] = data["executionRole"]
     else:
         raise DeserializationError("JobRun.execution_role required")
-    if "executionIamPolicy" in data:
+    if data.get("executionIamPolicy") is not None:
         import capo_emr_serverless.types.job_run_execution_iam_policy
 
         out["execution_iam_policy"] = (
@@ -288,19 +288,19 @@ def deserialize_json(data: dict) -> JobRun:
                 data["executionIamPolicy"]
             )
         )
-    if "state" in data:
+    if data.get("state") is not None:
         out["state"] = data["state"]
     else:
         raise DeserializationError("JobRun.state required")
-    if "stateDetails" in data:
+    if data.get("stateDetails") is not None:
         out["state_details"] = data["stateDetails"]
     else:
         raise DeserializationError("JobRun.state_details required")
-    if "releaseLabel" in data:
+    if data.get("releaseLabel") is not None:
         out["release_label"] = data["releaseLabel"]
     else:
         raise DeserializationError("JobRun.release_label required")
-    if "configurationOverrides" in data:
+    if data.get("configurationOverrides") is not None:
         import capo_emr_serverless.types.configuration_overrides
 
         out["configuration_overrides"] = (
@@ -308,7 +308,7 @@ def deserialize_json(data: dict) -> JobRun:
                 data["configurationOverrides"]
             )
         )
-    if "jobDriver" in data:
+    if data.get("jobDriver") is not None:
         import capo_emr_serverless.types.job_driver
 
         out["job_driver"] = capo_emr_serverless.types.job_driver.deserialize_json(
@@ -316,11 +316,11 @@ def deserialize_json(data: dict) -> JobRun:
         )
     else:
         raise DeserializationError("JobRun.job_driver required")
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_emr_serverless.types.tag_map
 
         out["tags"] = capo_emr_serverless.types.tag_map.deserialize_json(data["tags"])
-    if "totalResourceUtilization" in data:
+    if data.get("totalResourceUtilization") is not None:
         import capo_emr_serverless.types.total_resource_utilization
 
         out["total_resource_utilization"] = (
@@ -328,7 +328,7 @@ def deserialize_json(data: dict) -> JobRun:
                 data["totalResourceUtilization"]
             )
         )
-    if "networkConfiguration" in data:
+    if data.get("networkConfiguration") is not None:
         import capo_emr_serverless.types.network_configuration
 
         out["network_configuration"] = (
@@ -336,11 +336,11 @@ def deserialize_json(data: dict) -> JobRun:
                 data["networkConfiguration"]
             )
         )
-    if "totalExecutionDurationSeconds" in data:
+    if data.get("totalExecutionDurationSeconds") is not None:
         out["total_execution_duration_seconds"] = data["totalExecutionDurationSeconds"]
-    if "executionTimeoutMinutes" in data:
+    if data.get("executionTimeoutMinutes") is not None:
         out["execution_timeout_minutes"] = data["executionTimeoutMinutes"]
-    if "billedResourceUtilization" in data:
+    if data.get("billedResourceUtilization") is not None:
         import capo_emr_serverless.types.resource_utilization
 
         out["billed_resource_utilization"] = (
@@ -348,43 +348,43 @@ def deserialize_json(data: dict) -> JobRun:
                 data["billedResourceUtilization"]
             )
         )
-    if "mode" in data:
+    if data.get("mode") is not None:
         out["mode"] = data["mode"]
-    if "retryPolicy" in data:
+    if data.get("retryPolicy") is not None:
         import capo_emr_serverless.types.retry_policy
 
         out["retry_policy"] = capo_emr_serverless.types.retry_policy.deserialize_json(
             data["retryPolicy"]
         )
-    if "attempt" in data:
+    if data.get("attempt") is not None:
         out["attempt"] = data["attempt"]
-    if "attemptCreatedAt" in data:
+    if data.get("attemptCreatedAt") is not None:
         import capo_emr_serverless.types.date
 
         out["attempt_created_at"] = capo_emr_serverless.types.date.deserialize_json(
             data["attemptCreatedAt"]
         )
-    if "attemptUpdatedAt" in data:
+    if data.get("attemptUpdatedAt") is not None:
         import capo_emr_serverless.types.date
 
         out["attempt_updated_at"] = capo_emr_serverless.types.date.deserialize_json(
             data["attemptUpdatedAt"]
         )
-    if "startedAt" in data:
+    if data.get("startedAt") is not None:
         import capo_emr_serverless.types.date
 
         out["started_at"] = capo_emr_serverless.types.date.deserialize_json(
             data["startedAt"]
         )
-    if "endedAt" in data:
+    if data.get("endedAt") is not None:
         import capo_emr_serverless.types.date
 
         out["ended_at"] = capo_emr_serverless.types.date.deserialize_json(
             data["endedAt"]
         )
-    if "queuedDurationMilliseconds" in data:
+    if data.get("queuedDurationMilliseconds") is not None:
         out["queued_duration_milliseconds"] = data["queuedDurationMilliseconds"]
-    if "imageConfiguration" in data:
+    if data.get("imageConfiguration") is not None:
         import capo_emr_serverless.types.image_configuration
 
         out["image_configuration"] = (
@@ -392,7 +392,7 @@ def deserialize_json(data: dict) -> JobRun:
                 data["imageConfiguration"]
             )
         )
-    if "workerTypeSpecifications" in data:
+    if data.get("workerTypeSpecifications") is not None:
         import capo_emr_serverless.types.worker_type_specification_map
 
         out["worker_type_specifications"] = (

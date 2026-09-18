@@ -170,21 +170,21 @@ def serialize_aws_json_1_0(value: CreateDbInstanceInput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CreateDbInstanceInput:
     out: CreateDbInstanceInput = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("CreateDbInstanceInput.name required")
-    if "username" in data:
+    if data.get("username") is not None:
         out["username"] = data["username"]
-    if "password" in data:
+    if data.get("password") is not None:
         out["password"] = data["password"]
     else:
         raise DeserializationError("CreateDbInstanceInput.password required")
-    if "organization" in data:
+    if data.get("organization") is not None:
         out["organization"] = data["organization"]
-    if "bucket" in data:
+    if data.get("bucket") is not None:
         out["bucket"] = data["bucket"]
-    if "dbInstanceType" in data:
+    if data.get("dbInstanceType") is not None:
         import capo_timestream_influxdb.types.db_instance_type
 
         out["db_instance_type"] = (
@@ -194,7 +194,7 @@ def deserialize_aws_json_1_0(data: dict) -> CreateDbInstanceInput:
         )
     else:
         raise DeserializationError("CreateDbInstanceInput.db_instance_type required")
-    if "vpcSubnetIds" in data:
+    if data.get("vpcSubnetIds") is not None:
         import capo_timestream_influxdb.types.vpc_subnet_id_list
 
         out["vpc_subnet_ids"] = (
@@ -204,7 +204,7 @@ def deserialize_aws_json_1_0(data: dict) -> CreateDbInstanceInput:
         )
     else:
         raise DeserializationError("CreateDbInstanceInput.vpc_subnet_ids required")
-    if "vpcSecurityGroupIds" in data:
+    if data.get("vpcSecurityGroupIds") is not None:
         import capo_timestream_influxdb.types.vpc_security_group_id_list
 
         out["vpc_security_group_ids"] = (
@@ -216,9 +216,9 @@ def deserialize_aws_json_1_0(data: dict) -> CreateDbInstanceInput:
         raise DeserializationError(
             "CreateDbInstanceInput.vpc_security_group_ids required"
         )
-    if "publiclyAccessible" in data:
+    if data.get("publiclyAccessible") is not None:
         out["publicly_accessible"] = data["publiclyAccessible"]
-    if "dbStorageType" in data:
+    if data.get("dbStorageType") is not None:
         import capo_timestream_influxdb.types.db_storage_type
 
         out["db_storage_type"] = (
@@ -226,13 +226,13 @@ def deserialize_aws_json_1_0(data: dict) -> CreateDbInstanceInput:
                 data["dbStorageType"]
             )
         )
-    if "allocatedStorage" in data:
+    if data.get("allocatedStorage") is not None:
         out["allocated_storage"] = data["allocatedStorage"]
     else:
         raise DeserializationError("CreateDbInstanceInput.allocated_storage required")
-    if "dbParameterGroupIdentifier" in data:
+    if data.get("dbParameterGroupIdentifier") is not None:
         out["db_parameter_group_identifier"] = data["dbParameterGroupIdentifier"]
-    if "deploymentType" in data:
+    if data.get("deploymentType") is not None:
         import capo_timestream_influxdb.types.deployment_type
 
         out["deployment_type"] = (
@@ -240,7 +240,7 @@ def deserialize_aws_json_1_0(data: dict) -> CreateDbInstanceInput:
                 data["deploymentType"]
             )
         )
-    if "logDeliveryConfiguration" in data:
+    if data.get("logDeliveryConfiguration") is not None:
         import capo_timestream_influxdb.types.log_delivery_configuration
 
         out["log_delivery_configuration"] = (
@@ -248,7 +248,7 @@ def deserialize_aws_json_1_0(data: dict) -> CreateDbInstanceInput:
                 data["logDeliveryConfiguration"]
             )
         )
-    if "maintenanceSchedule" in data:
+    if data.get("maintenanceSchedule") is not None:
         import capo_timestream_influxdb.types.maintenance_schedule
 
         out["maintenance_schedule"] = (
@@ -256,7 +256,7 @@ def deserialize_aws_json_1_0(data: dict) -> CreateDbInstanceInput:
                 data["maintenanceSchedule"]
             )
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_timestream_influxdb.types.request_tag_map
 
         out["tags"] = (
@@ -264,11 +264,11 @@ def deserialize_aws_json_1_0(data: dict) -> CreateDbInstanceInput:
                 data["tags"]
             )
         )
-    if "port" in data:
+    if data.get("port") is not None:
         out["port"] = data["port"]
     else:
         out["port"] = 8086
-    if "networkType" in data:
+    if data.get("networkType") is not None:
         import capo_timestream_influxdb.types.network_type
 
         out["network_type"] = (

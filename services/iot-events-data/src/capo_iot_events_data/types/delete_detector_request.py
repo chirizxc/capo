@@ -35,14 +35,14 @@ def serialize_json(value: DeleteDetectorRequest) -> dict:
 
 def deserialize_json(data: dict) -> DeleteDetectorRequest:
     out: DeleteDetectorRequest = {}  # type: ignore[typeddict-item]
-    if "messageId" in data:
+    if data.get("messageId") is not None:
         out["message_id"] = data["messageId"]
     else:
         raise DeserializationError("DeleteDetectorRequest.message_id required")
-    if "detectorModelName" in data:
+    if data.get("detectorModelName") is not None:
         out["detector_model_name"] = data["detectorModelName"]
     else:
         raise DeserializationError("DeleteDetectorRequest.detector_model_name required")
-    if "keyValue" in data:
+    if data.get("keyValue") is not None:
         out["key_value"] = data["keyValue"]
     return out

@@ -147,41 +147,41 @@ def serialize_json(value: AIGuardrailData) -> dict:
 
 def deserialize_json(data: dict) -> AIGuardrailData:
     out: AIGuardrailData = {}  # type: ignore[typeddict-item]
-    if "assistantId" in data:
+    if data.get("assistantId") is not None:
         out["assistant_id"] = data["assistantId"]
     else:
         raise DeserializationError("AIGuardrailData.assistant_id required")
-    if "assistantArn" in data:
+    if data.get("assistantArn") is not None:
         out["assistant_arn"] = data["assistantArn"]
     else:
         raise DeserializationError("AIGuardrailData.assistant_arn required")
-    if "aiGuardrailArn" in data:
+    if data.get("aiGuardrailArn") is not None:
         out["ai_guardrail_arn"] = data["aiGuardrailArn"]
     else:
         raise DeserializationError("AIGuardrailData.ai_guardrail_arn required")
-    if "aiGuardrailId" in data:
+    if data.get("aiGuardrailId") is not None:
         out["ai_guardrail_id"] = data["aiGuardrailId"]
     else:
         raise DeserializationError("AIGuardrailData.ai_guardrail_id required")
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("AIGuardrailData.name required")
-    if "visibilityStatus" in data:
+    if data.get("visibilityStatus") is not None:
         out["visibility_status"] = data["visibilityStatus"]
     else:
         raise DeserializationError("AIGuardrailData.visibility_status required")
-    if "blockedInputMessaging" in data:
+    if data.get("blockedInputMessaging") is not None:
         out["blocked_input_messaging"] = data["blockedInputMessaging"]
     else:
         raise DeserializationError("AIGuardrailData.blocked_input_messaging required")
-    if "blockedOutputsMessaging" in data:
+    if data.get("blockedOutputsMessaging") is not None:
         out["blocked_outputs_messaging"] = data["blockedOutputsMessaging"]
     else:
         raise DeserializationError("AIGuardrailData.blocked_outputs_messaging required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "topicPolicyConfig" in data:
+    if data.get("topicPolicyConfig") is not None:
         import capo_qconnect.types.ai_guardrail_topic_policy_config
 
         out["topic_policy_config"] = (
@@ -189,7 +189,7 @@ def deserialize_json(data: dict) -> AIGuardrailData:
                 data["topicPolicyConfig"]
             )
         )
-    if "contentPolicyConfig" in data:
+    if data.get("contentPolicyConfig") is not None:
         import capo_qconnect.types.ai_guardrail_content_policy_config
 
         out["content_policy_config"] = (
@@ -197,7 +197,7 @@ def deserialize_json(data: dict) -> AIGuardrailData:
                 data["contentPolicyConfig"]
             )
         )
-    if "wordPolicyConfig" in data:
+    if data.get("wordPolicyConfig") is not None:
         import capo_qconnect.types.ai_guardrail_word_policy_config
 
         out["word_policy_config"] = (
@@ -205,7 +205,7 @@ def deserialize_json(data: dict) -> AIGuardrailData:
                 data["wordPolicyConfig"]
             )
         )
-    if "sensitiveInformationPolicyConfig" in data:
+    if data.get("sensitiveInformationPolicyConfig") is not None:
         import capo_qconnect.types.ai_guardrail_sensitive_information_policy_config
 
         out["sensitive_information_policy_config"] = (
@@ -213,7 +213,7 @@ def deserialize_json(data: dict) -> AIGuardrailData:
                 data["sensitiveInformationPolicyConfig"]
             )
         )
-    if "contextualGroundingPolicyConfig" in data:
+    if data.get("contextualGroundingPolicyConfig") is not None:
         import capo_qconnect.types.ai_guardrail_contextual_grounding_policy_config
 
         out["contextual_grounding_policy_config"] = (
@@ -221,13 +221,13 @@ def deserialize_json(data: dict) -> AIGuardrailData:
                 data["contextualGroundingPolicyConfig"]
             )
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_qconnect.types.tags
 
         out["tags"] = capo_qconnect.types.tags.deserialize_json(data["tags"])
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
-    if "modifiedTime" in data:
+    if data.get("modifiedTime") is not None:
         import capo_qconnect.types._prelude.timestamp
 
         out["modified_time"] = capo_qconnect.types._prelude.timestamp.deserialize_json(

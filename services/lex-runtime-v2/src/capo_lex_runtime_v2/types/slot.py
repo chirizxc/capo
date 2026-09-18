@@ -48,21 +48,21 @@ def serialize_json(value: Slot) -> dict:
 
 def deserialize_json(data: dict) -> Slot:
     out: Slot = {}  # type: ignore[typeddict-item]
-    if "value" in data:
+    if data.get("value") is not None:
         import capo_lex_runtime_v2.types.value
 
         out["value"] = capo_lex_runtime_v2.types.value.deserialize_json(data["value"])
-    if "shape" in data:
+    if data.get("shape") is not None:
         import capo_lex_runtime_v2.types.shape
 
         out["shape"] = capo_lex_runtime_v2.types.shape.deserialize_json(data["shape"])
-    if "values" in data:
+    if data.get("values") is not None:
         import capo_lex_runtime_v2.types.values
 
         out["values"] = capo_lex_runtime_v2.types.values.deserialize_json(
             data["values"]
         )
-    if "subSlots" in data:
+    if data.get("subSlots") is not None:
         import capo_lex_runtime_v2.types.slots
 
         out["sub_slots"] = capo_lex_runtime_v2.types.slots.deserialize_json(

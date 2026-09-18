@@ -51,18 +51,18 @@ def serialize_json(value: CreateDashboardResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateDashboardResponse:
     out: CreateDashboardResponse = {}  # type: ignore[typeddict-item]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "VersionArn" in data:
+    if data.get("VersionArn") is not None:
         out["version_arn"] = data["VersionArn"]
-    if "DashboardId" in data:
+    if data.get("DashboardId") is not None:
         out["dashboard_id"] = data["DashboardId"]
-    if "CreationStatus" in data:
+    if data.get("CreationStatus") is not None:
         import capo_quicksight.types.resource_status
 
         out["creation_status"] = capo_quicksight.types.resource_status.deserialize_json(
             data["CreationStatus"]
         )
-    if "RequestId" in data:
+    if data.get("RequestId") is not None:
         out["request_id"] = data["RequestId"]
     return out

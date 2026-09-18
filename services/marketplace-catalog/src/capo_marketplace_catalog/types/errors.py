@@ -29,6 +29,8 @@ def serialize_json(input_to_serialize: Errors) -> dict:
 def deserialize_json(data: dict) -> Errors:
     out: Errors = {}
     for key, value in data.items():
+        if value is None:
+            continue
         import capo_marketplace_catalog.types.batch_describe_error_detail
 
         out[key] = (

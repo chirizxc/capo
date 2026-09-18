@@ -50,13 +50,13 @@ def serialize_aws_json_1_1(value: BatchPutDocumentRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> BatchPutDocumentRequest:
     out: BatchPutDocumentRequest = {}  # type: ignore[typeddict-item]
-    if "IndexId" in data:
+    if data.get("IndexId") is not None:
         out["index_id"] = data["IndexId"]
     else:
         raise DeserializationError("BatchPutDocumentRequest.index_id required")
-    if "RoleArn" in data:
+    if data.get("RoleArn") is not None:
         out["role_arn"] = data["RoleArn"]
-    if "Documents" in data:
+    if data.get("Documents") is not None:
         import capo_kendra.types.document_list
 
         out["documents"] = capo_kendra.types.document_list.deserialize_aws_json_1_1(
@@ -64,7 +64,7 @@ def deserialize_aws_json_1_1(data: dict) -> BatchPutDocumentRequest:
         )
     else:
         raise DeserializationError("BatchPutDocumentRequest.documents required")
-    if "CustomDocumentEnrichmentConfiguration" in data:
+    if data.get("CustomDocumentEnrichmentConfiguration") is not None:
         import capo_kendra.types.custom_document_enrichment_configuration
 
         out["custom_document_enrichment_configuration"] = (

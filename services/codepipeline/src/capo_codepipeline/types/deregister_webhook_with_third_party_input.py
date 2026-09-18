@@ -23,6 +23,6 @@ def serialize_aws_json_1_1(value: DeregisterWebhookWithThirdPartyInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeregisterWebhookWithThirdPartyInput:
     out: DeregisterWebhookWithThirdPartyInput = {}  # type: ignore[typeddict-item]
-    if "webhookName" in data:
+    if data.get("webhookName") is not None:
         out["webhook_name"] = data["webhookName"]
     return out

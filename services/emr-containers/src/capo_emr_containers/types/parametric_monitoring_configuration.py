@@ -51,9 +51,9 @@ def serialize_json(value: ParametricMonitoringConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> ParametricMonitoringConfiguration:
     out: ParametricMonitoringConfiguration = {}  # type: ignore[typeddict-item]
-    if "persistentAppUI" in data:
+    if data.get("persistentAppUI") is not None:
         out["persistent_app_ui"] = data["persistentAppUI"]
-    if "cloudWatchMonitoringConfiguration" in data:
+    if data.get("cloudWatchMonitoringConfiguration") is not None:
         import capo_emr_containers.types.parametric_cloud_watch_monitoring_configuration
 
         out["cloud_watch_monitoring_configuration"] = (
@@ -61,7 +61,7 @@ def deserialize_json(data: dict) -> ParametricMonitoringConfiguration:
                 data["cloudWatchMonitoringConfiguration"]
             )
         )
-    if "s3MonitoringConfiguration" in data:
+    if data.get("s3MonitoringConfiguration") is not None:
         import capo_emr_containers.types.parametric_s3_monitoring_configuration
 
         out["s3_monitoring_configuration"] = (

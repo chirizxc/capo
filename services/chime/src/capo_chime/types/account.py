@@ -90,49 +90,49 @@ def serialize_json(value: Account) -> dict:
 
 def deserialize_json(data: dict) -> Account:
     out: Account = {}  # type: ignore[typeddict-item]
-    if "AwsAccountId" in data:
+    if data.get("AwsAccountId") is not None:
         out["aws_account_id"] = data["AwsAccountId"]
     else:
         raise DeserializationError("Account.aws_account_id required")
-    if "AccountId" in data:
+    if data.get("AccountId") is not None:
         out["account_id"] = data["AccountId"]
     else:
         raise DeserializationError("Account.account_id required")
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("Account.name required")
-    if "AccountType" in data:
+    if data.get("AccountType") is not None:
         import capo_chime.types.account_type
 
         out["account_type"] = capo_chime.types.account_type.deserialize_json(
             data["AccountType"]
         )
-    if "CreatedTimestamp" in data:
+    if data.get("CreatedTimestamp") is not None:
         import capo_chime.types.iso8601_timestamp
 
         out["created_timestamp"] = capo_chime.types.iso8601_timestamp.deserialize_json(
             data["CreatedTimestamp"]
         )
-    if "DefaultLicense" in data:
+    if data.get("DefaultLicense") is not None:
         import capo_chime.types.license
 
         out["default_license"] = capo_chime.types.license.deserialize_json(
             data["DefaultLicense"]
         )
-    if "SupportedLicenses" in data:
+    if data.get("SupportedLicenses") is not None:
         import capo_chime.types.license_list
 
         out["supported_licenses"] = capo_chime.types.license_list.deserialize_json(
             data["SupportedLicenses"]
         )
-    if "AccountStatus" in data:
+    if data.get("AccountStatus") is not None:
         import capo_chime.types.account_status
 
         out["account_status"] = capo_chime.types.account_status.deserialize_json(
             data["AccountStatus"]
         )
-    if "SigninDelegateGroups" in data:
+    if data.get("SigninDelegateGroups") is not None:
         import capo_chime.types.signin_delegate_group_list
 
         out["signin_delegate_groups"] = (

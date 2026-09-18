@@ -53,11 +53,11 @@ def serialize_json(value: UpdateIdentityProviderRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateIdentityProviderRequest:
     out: UpdateIdentityProviderRequest = {}  # type: ignore[typeddict-item]
-    if "identityProviderName" in data:
+    if data.get("identityProviderName") is not None:
         out["identity_provider_name"] = data["identityProviderName"]
-    if "identityProviderType" in data:
+    if data.get("identityProviderType") is not None:
         out["identity_provider_type"] = data["identityProviderType"]
-    if "identityProviderDetails" in data:
+    if data.get("identityProviderDetails") is not None:
         import capo_workspaces_web.types.identity_provider_details
 
         out["identity_provider_details"] = (
@@ -65,6 +65,6 @@ def deserialize_json(data: dict) -> UpdateIdentityProviderRequest:
                 data["identityProviderDetails"]
             )
         )
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     return out

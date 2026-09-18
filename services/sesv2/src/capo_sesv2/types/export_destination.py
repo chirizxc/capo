@@ -33,7 +33,7 @@ def serialize_json(value: ExportDestination) -> dict:
 
 def deserialize_json(data: dict) -> ExportDestination:
     out: ExportDestination = {}  # type: ignore[typeddict-item]
-    if "DataFormat" in data:
+    if data.get("DataFormat") is not None:
         import capo_sesv2.types.data_format
 
         out["data_format"] = capo_sesv2.types.data_format.deserialize_json(
@@ -41,6 +41,6 @@ def deserialize_json(data: dict) -> ExportDestination:
         )
     else:
         raise DeserializationError("ExportDestination.data_format required")
-    if "S3Url" in data:
+    if data.get("S3Url") is not None:
         out["s3_url"] = data["S3Url"]
     return out

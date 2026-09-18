@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> AllowedExtensionsList:
 
     out: AllowedExtensionsList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_connect.types.allowed_extension.deserialize_json(item))
     return out

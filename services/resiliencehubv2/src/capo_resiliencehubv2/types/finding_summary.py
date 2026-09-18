@@ -91,15 +91,15 @@ def serialize_json(value: FindingSummary) -> dict:
 
 def deserialize_json(data: dict) -> FindingSummary:
     out: FindingSummary = {}  # type: ignore[typeddict-item]
-    if "serviceArn" in data:
+    if data.get("serviceArn") is not None:
         out["service_arn"] = data["serviceArn"]
-    if "findingId" in data:
+    if data.get("findingId") is not None:
         out["finding_id"] = data["findingId"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "failureCategory" in data:
+    if data.get("failureCategory") is not None:
         import capo_resiliencehubv2.types.failure_category
 
         out["failure_category"] = (
@@ -107,19 +107,19 @@ def deserialize_json(data: dict) -> FindingSummary:
                 data["failureCategory"]
             )
         )
-    if "severity" in data:
+    if data.get("severity") is not None:
         import capo_resiliencehubv2.types.finding_severity
 
         out["severity"] = capo_resiliencehubv2.types.finding_severity.deserialize_json(
             data["severity"]
         )
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_resiliencehubv2.types.finding_status
 
         out["status"] = capo_resiliencehubv2.types.finding_status.deserialize_json(
             data["status"]
         )
-    if "policyComponent" in data:
+    if data.get("policyComponent") is not None:
         import capo_resiliencehubv2.types.policy_component
 
         out["policy_component"] = (
@@ -127,7 +127,7 @@ def deserialize_json(data: dict) -> FindingSummary:
                 data["policyComponent"]
             )
         )
-    if "updatedAt" in data:
+    if data.get("updatedAt") is not None:
         import capo_resiliencehubv2.types._prelude.timestamp
 
         out["updated_at"] = (

@@ -105,13 +105,13 @@ def serialize_json(value: StartAssetBundleExportJobRequest) -> dict:
 
 def deserialize_json(data: dict) -> StartAssetBundleExportJobRequest:
     out: StartAssetBundleExportJobRequest = {}  # type: ignore[typeddict-item]
-    if "AssetBundleExportJobId" in data:
+    if data.get("AssetBundleExportJobId") is not None:
         out["asset_bundle_export_job_id"] = data["AssetBundleExportJobId"]
     else:
         raise DeserializationError(
             "StartAssetBundleExportJobRequest.asset_bundle_export_job_id required"
         )
-    if "ResourceArns" in data:
+    if data.get("ResourceArns") is not None:
         import capo_quicksight.types.asset_bundle_resource_arns
 
         out["resource_arns"] = (
@@ -123,11 +123,11 @@ def deserialize_json(data: dict) -> StartAssetBundleExportJobRequest:
         raise DeserializationError(
             "StartAssetBundleExportJobRequest.resource_arns required"
         )
-    if "IncludeAllDependencies" in data:
+    if data.get("IncludeAllDependencies") is not None:
         out["include_all_dependencies"] = data["IncludeAllDependencies"]
     else:
         out["include_all_dependencies"] = False
-    if "ExportFormat" in data:
+    if data.get("ExportFormat") is not None:
         import capo_quicksight.types.asset_bundle_export_format
 
         out["export_format"] = (
@@ -139,7 +139,7 @@ def deserialize_json(data: dict) -> StartAssetBundleExportJobRequest:
         raise DeserializationError(
             "StartAssetBundleExportJobRequest.export_format required"
         )
-    if "CloudFormationOverridePropertyConfiguration" in data:
+    if data.get("CloudFormationOverridePropertyConfiguration") is not None:
         import capo_quicksight.types.asset_bundle_cloud_formation_override_property_configuration
 
         out["cloud_formation_override_property_configuration"] = (
@@ -147,15 +147,15 @@ def deserialize_json(data: dict) -> StartAssetBundleExportJobRequest:
                 data["CloudFormationOverridePropertyConfiguration"]
             )
         )
-    if "IncludePermissions" in data:
+    if data.get("IncludePermissions") is not None:
         out["include_permissions"] = data["IncludePermissions"]
     else:
         out["include_permissions"] = False
-    if "IncludeTags" in data:
+    if data.get("IncludeTags") is not None:
         out["include_tags"] = data["IncludeTags"]
     else:
         out["include_tags"] = False
-    if "ValidationStrategy" in data:
+    if data.get("ValidationStrategy") is not None:
         import capo_quicksight.types.asset_bundle_export_job_validation_strategy
 
         out["validation_strategy"] = (
@@ -163,11 +163,11 @@ def deserialize_json(data: dict) -> StartAssetBundleExportJobRequest:
                 data["ValidationStrategy"]
             )
         )
-    if "IncludeFolderMemberships" in data:
+    if data.get("IncludeFolderMemberships") is not None:
         out["include_folder_memberships"] = data["IncludeFolderMemberships"]
     else:
         out["include_folder_memberships"] = False
-    if "IncludeFolderMembers" in data:
+    if data.get("IncludeFolderMembers") is not None:
         import capo_quicksight.types.include_folder_members
 
         out["include_folder_members"] = (

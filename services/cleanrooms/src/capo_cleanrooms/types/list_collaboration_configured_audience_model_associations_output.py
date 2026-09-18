@@ -41,7 +41,7 @@ def deserialize_json(
     data: dict,
 ) -> ListCollaborationConfiguredAudienceModelAssociationsOutput:
     out: ListCollaborationConfiguredAudienceModelAssociationsOutput = {}  # type: ignore[typeddict-item]
-    if "collaborationConfiguredAudienceModelAssociationSummaries" in data:
+    if data.get("collaborationConfiguredAudienceModelAssociationSummaries") is not None:
         import capo_cleanrooms.types.collaboration_configured_audience_model_association_summary_list
 
         out["collaboration_configured_audience_model_association_summaries"] = (
@@ -53,6 +53,6 @@ def deserialize_json(
         raise DeserializationError(
             "ListCollaborationConfiguredAudienceModelAssociationsOutput.collaboration_configured_audience_model_association_summaries required"
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

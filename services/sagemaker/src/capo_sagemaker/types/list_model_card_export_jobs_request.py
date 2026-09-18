@@ -106,11 +106,11 @@ def serialize_aws_json_1_1(value: ListModelCardExportJobsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListModelCardExportJobsRequest:
     out: ListModelCardExportJobsRequest = {}  # type: ignore[typeddict-item]
-    if "ModelCardName" in data:
+    if data.get("ModelCardName") is not None:
         out["model_card_name"] = data["ModelCardName"]
-    if "ModelCardVersion" in data:
+    if data.get("ModelCardVersion") is not None:
         out["model_card_version"] = data["ModelCardVersion"]
-    if "CreationTimeAfter" in data:
+    if data.get("CreationTimeAfter") is not None:
         import capo_sagemaker.types.timestamp
 
         out["creation_time_after"] = (
@@ -118,7 +118,7 @@ def deserialize_aws_json_1_1(data: dict) -> ListModelCardExportJobsRequest:
                 data["CreationTimeAfter"]
             )
         )
-    if "CreationTimeBefore" in data:
+    if data.get("CreationTimeBefore") is not None:
         import capo_sagemaker.types.timestamp
 
         out["creation_time_before"] = (
@@ -126,11 +126,11 @@ def deserialize_aws_json_1_1(data: dict) -> ListModelCardExportJobsRequest:
                 data["CreationTimeBefore"]
             )
         )
-    if "ModelCardExportJobNameContains" in data:
+    if data.get("ModelCardExportJobNameContains") is not None:
         out["model_card_export_job_name_contains"] = data[
             "ModelCardExportJobNameContains"
         ]
-    if "StatusEquals" in data:
+    if data.get("StatusEquals") is not None:
         import capo_sagemaker.types.model_card_export_job_status
 
         out["status_equals"] = (
@@ -138,7 +138,7 @@ def deserialize_aws_json_1_1(data: dict) -> ListModelCardExportJobsRequest:
                 data["StatusEquals"]
             )
         )
-    if "SortBy" in data:
+    if data.get("SortBy") is not None:
         import capo_sagemaker.types.model_card_export_job_sort_by
 
         out["sort_by"] = (
@@ -146,7 +146,7 @@ def deserialize_aws_json_1_1(data: dict) -> ListModelCardExportJobsRequest:
                 data["SortBy"]
             )
         )
-    if "SortOrder" in data:
+    if data.get("SortOrder") is not None:
         import capo_sagemaker.types.model_card_export_job_sort_order
 
         out["sort_order"] = (
@@ -154,8 +154,8 @@ def deserialize_aws_json_1_1(data: dict) -> ListModelCardExportJobsRequest:
                 data["SortOrder"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
     return out

@@ -70,17 +70,17 @@ def serialize_aws_json_1_1(value: Step) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Step:
     out: Step = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Config" in data:
+    if data.get("Config") is not None:
         import capo_emr.types.hadoop_step_config
 
         out["config"] = capo_emr.types.hadoop_step_config.deserialize_aws_json_1_1(
             data["Config"]
         )
-    if "ActionOnFailure" in data:
+    if data.get("ActionOnFailure") is not None:
         import capo_emr.types.action_on_failure
 
         out["action_on_failure"] = (
@@ -88,16 +88,16 @@ def deserialize_aws_json_1_1(data: dict) -> Step:
                 data["ActionOnFailure"]
             )
         )
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_emr.types.step_status
 
         out["status"] = capo_emr.types.step_status.deserialize_aws_json_1_1(
             data["Status"]
         )
-    if "ExecutionRoleArn" in data:
+    if data.get("ExecutionRoleArn") is not None:
         out["execution_role_arn"] = data["ExecutionRoleArn"]
-    if "LogUri" in data:
+    if data.get("LogUri") is not None:
         out["log_uri"] = data["LogUri"]
-    if "EncryptionKeyArn" in data:
+    if data.get("EncryptionKeyArn") is not None:
         out["encryption_key_arn"] = data["EncryptionKeyArn"]
     return out

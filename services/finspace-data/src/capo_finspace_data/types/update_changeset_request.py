@@ -47,9 +47,9 @@ def serialize_json(value: UpdateChangesetRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateChangesetRequest:
     out: UpdateChangesetRequest = {}  # type: ignore[typeddict-item]
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
-    if "sourceParams" in data:
+    if data.get("sourceParams") is not None:
         import capo_finspace_data.types.source_params
 
         out["source_params"] = capo_finspace_data.types.source_params.deserialize_json(
@@ -57,7 +57,7 @@ def deserialize_json(data: dict) -> UpdateChangesetRequest:
         )
     else:
         raise DeserializationError("UpdateChangesetRequest.source_params required")
-    if "formatParams" in data:
+    if data.get("formatParams") is not None:
         import capo_finspace_data.types.format_params
 
         out["format_params"] = capo_finspace_data.types.format_params.deserialize_json(

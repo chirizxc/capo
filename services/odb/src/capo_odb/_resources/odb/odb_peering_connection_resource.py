@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import uuid
 from typing import TYPE_CHECKING, Optional
 
 from capo_odb._services._pipeline import (
@@ -93,17 +94,19 @@ class OdbPeeringConnectionResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_odb.types.create_odb_peering_connection_input.CreateOdbPeeringConnectionInput = {}  # type: ignore[typeddict-item]
-        input_["odb_network_id"] = odb_network_id
-        input_["peer_network_id"] = peer_network_id
+        input_: capo_odb.types.create_odb_peering_connection_input.CreateOdbPeeringConnectionInput = {
+            "odb_network_id": odb_network_id,
+            "peer_network_id": peer_network_id,
+        }
         if display_name is not None:
             input_["display_name"] = display_name
         if peer_network_cidrs_to_be_added is not None:
             input_["peer_network_cidrs_to_be_added"] = peer_network_cidrs_to_be_added
         if peer_network_route_table_ids is not None:
             input_["peer_network_route_table_ids"] = peer_network_route_table_ids
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if tags is not None:
             input_["tags"] = tags
 
@@ -112,6 +115,7 @@ class OdbPeeringConnectionResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -151,14 +155,16 @@ class OdbPeeringConnectionResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_odb.types.get_odb_peering_connection_input.GetOdbPeeringConnectionInput = {}  # type: ignore[typeddict-item]
-        input_["odb_peering_connection_id"] = odb_peering_connection_id
+        input_: capo_odb.types.get_odb_peering_connection_input.GetOdbPeeringConnectionInput = {
+            "odb_peering_connection_id": odb_peering_connection_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update(
@@ -209,8 +215,9 @@ class OdbPeeringConnectionResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_odb.types.update_odb_peering_connection_input.UpdateOdbPeeringConnectionInput = {}  # type: ignore[typeddict-item]
-        input_["odb_peering_connection_id"] = odb_peering_connection_id
+        input_: capo_odb.types.update_odb_peering_connection_input.UpdateOdbPeeringConnectionInput = {
+            "odb_peering_connection_id": odb_peering_connection_id
+        }
         if display_name is not None:
             input_["display_name"] = display_name
         if peer_network_cidrs_to_be_added is not None:
@@ -225,6 +232,7 @@ class OdbPeeringConnectionResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -262,14 +270,16 @@ class OdbPeeringConnectionResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_odb.types.delete_odb_peering_connection_input.DeleteOdbPeeringConnectionInput = {}  # type: ignore[typeddict-item]
-        input_["odb_peering_connection_id"] = odb_peering_connection_id
+        input_: capo_odb.types.delete_odb_peering_connection_input.DeleteOdbPeeringConnectionInput = {
+            "odb_peering_connection_id": odb_peering_connection_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -313,7 +323,7 @@ class OdbPeeringConnectionResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_odb.types.list_odb_peering_connections_input.ListOdbPeeringConnectionsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_odb.types.list_odb_peering_connections_input.ListOdbPeeringConnectionsInput = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -326,6 +336,7 @@ class OdbPeeringConnectionResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -390,17 +401,19 @@ class AsyncOdbPeeringConnectionResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_odb.types.create_odb_peering_connection_input.CreateOdbPeeringConnectionInput = {}  # type: ignore[typeddict-item]
-        input_["odb_network_id"] = odb_network_id
-        input_["peer_network_id"] = peer_network_id
+        input_: capo_odb.types.create_odb_peering_connection_input.CreateOdbPeeringConnectionInput = {
+            "odb_network_id": odb_network_id,
+            "peer_network_id": peer_network_id,
+        }
         if display_name is not None:
             input_["display_name"] = display_name
         if peer_network_cidrs_to_be_added is not None:
             input_["peer_network_cidrs_to_be_added"] = peer_network_cidrs_to_be_added
         if peer_network_route_table_ids is not None:
             input_["peer_network_route_table_ids"] = peer_network_route_table_ids
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if tags is not None:
             input_["tags"] = tags
 
@@ -409,6 +422,7 @@ class AsyncOdbPeeringConnectionResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -449,14 +463,16 @@ class AsyncOdbPeeringConnectionResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_odb.types.get_odb_peering_connection_input.GetOdbPeeringConnectionInput = {}  # type: ignore[typeddict-item]
-        input_["odb_peering_connection_id"] = odb_peering_connection_id
+        input_: capo_odb.types.get_odb_peering_connection_input.GetOdbPeeringConnectionInput = {
+            "odb_peering_connection_id": odb_peering_connection_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update(
@@ -508,8 +524,9 @@ class AsyncOdbPeeringConnectionResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_odb.types.update_odb_peering_connection_input.UpdateOdbPeeringConnectionInput = {}  # type: ignore[typeddict-item]
-        input_["odb_peering_connection_id"] = odb_peering_connection_id
+        input_: capo_odb.types.update_odb_peering_connection_input.UpdateOdbPeeringConnectionInput = {
+            "odb_peering_connection_id": odb_peering_connection_id
+        }
         if display_name is not None:
             input_["display_name"] = display_name
         if peer_network_cidrs_to_be_added is not None:
@@ -524,6 +541,7 @@ class AsyncOdbPeeringConnectionResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -562,14 +580,16 @@ class AsyncOdbPeeringConnectionResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_odb.types.delete_odb_peering_connection_input.DeleteOdbPeeringConnectionInput = {}  # type: ignore[typeddict-item]
-        input_["odb_peering_connection_id"] = odb_peering_connection_id
+        input_: capo_odb.types.delete_odb_peering_connection_input.DeleteOdbPeeringConnectionInput = {
+            "odb_peering_connection_id": odb_peering_connection_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -614,7 +634,7 @@ class AsyncOdbPeeringConnectionResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_odb.types.list_odb_peering_connections_input.ListOdbPeeringConnectionsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_odb.types.list_odb_peering_connections_input.ListOdbPeeringConnectionsInput = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -627,4 +647,5 @@ class AsyncOdbPeeringConnectionResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

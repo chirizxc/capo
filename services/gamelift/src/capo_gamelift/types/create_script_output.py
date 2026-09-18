@@ -27,7 +27,7 @@ def serialize_aws_json_1_1(value: CreateScriptOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateScriptOutput:
     out: CreateScriptOutput = {}  # type: ignore[typeddict-item]
-    if "Script" in data:
+    if data.get("Script") is not None:
         import capo_gamelift.types.script
 
         out["script"] = capo_gamelift.types.script.deserialize_aws_json_1_1(

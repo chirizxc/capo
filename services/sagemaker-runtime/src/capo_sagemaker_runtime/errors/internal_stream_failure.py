@@ -25,7 +25,7 @@ def serialize_json(value: InternalStreamFailure_) -> dict:
 
 def deserialize_json(data: dict) -> InternalStreamFailure_:
     out: InternalStreamFailure_ = {}  # type: ignore[typeddict-item]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     return out
 
@@ -35,18 +35,21 @@ class InternalStreamFailure(ServiceError):
 
     code: str | None = "InternalStreamFailure"
 
-    def __init__(self, data: InternalStreamFailure_):
+    def __init__(self, data: InternalStreamFailure_, message: str | None = None):
         super().__init__(
             "server",
             is_throttling_error=False,
             is_retryable=False,
             code="InternalStreamFailure",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "InternalStreamFailure":
-        return cls(deserialize_json(data))
+    def from_json(
+        cls, data: dict, message: str | None = None
+    ) -> "InternalStreamFailure":
+        return cls(deserialize_json(data), message)
 
 
 def serialize_event_json(value: InternalStreamFailure_) -> bytes:

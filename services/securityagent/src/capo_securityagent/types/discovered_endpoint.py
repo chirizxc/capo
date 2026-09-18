@@ -40,26 +40,26 @@ def serialize_json(value: DiscoveredEndpoint) -> dict:
 
 def deserialize_json(data: dict) -> DiscoveredEndpoint:
     out: DiscoveredEndpoint = {}  # type: ignore[typeddict-item]
-    if "uri" in data:
+    if data.get("uri") is not None:
         out["uri"] = data["uri"]
     else:
         raise DeserializationError("DiscoveredEndpoint.uri required")
-    if "pentestJobId" in data:
+    if data.get("pentestJobId") is not None:
         out["pentest_job_id"] = data["pentestJobId"]
     else:
         raise DeserializationError("DiscoveredEndpoint.pentest_job_id required")
-    if "taskId" in data:
+    if data.get("taskId") is not None:
         out["task_id"] = data["taskId"]
     else:
         raise DeserializationError("DiscoveredEndpoint.task_id required")
-    if "agentSpaceId" in data:
+    if data.get("agentSpaceId") is not None:
         out["agent_space_id"] = data["agentSpaceId"]
     else:
         raise DeserializationError("DiscoveredEndpoint.agent_space_id required")
-    if "evidence" in data:
+    if data.get("evidence") is not None:
         out["evidence"] = data["evidence"]
-    if "operation" in data:
+    if data.get("operation") is not None:
         out["operation"] = data["operation"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
     return out

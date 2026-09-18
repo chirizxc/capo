@@ -36,16 +36,16 @@ def serialize_json(value: CreateUserAccessLoggingSettingsRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateUserAccessLoggingSettingsRequest:
     out: CreateUserAccessLoggingSettingsRequest = {}  # type: ignore[typeddict-item]
-    if "kinesisStreamArn" in data:
+    if data.get("kinesisStreamArn") is not None:
         out["kinesis_stream_arn"] = data["kinesisStreamArn"]
     else:
         raise DeserializationError(
             "CreateUserAccessLoggingSettingsRequest.kinesis_stream_arn required"
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_workspaces_web.types.tag_list
 
         out["tags"] = capo_workspaces_web.types.tag_list.deserialize_json(data["tags"])
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     return out

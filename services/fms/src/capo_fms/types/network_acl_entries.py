@@ -23,5 +23,7 @@ def deserialize_aws_json_1_1(data: list) -> NetworkAclEntries:
 
     out: NetworkAclEntries = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_fms.types.network_acl_entry.deserialize_aws_json_1_1(item))
     return out

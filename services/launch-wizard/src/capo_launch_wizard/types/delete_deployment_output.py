@@ -31,12 +31,12 @@ def serialize_json(value: DeleteDeploymentOutput) -> dict:
 
 def deserialize_json(data: dict) -> DeleteDeploymentOutput:
     out: DeleteDeploymentOutput = {}  # type: ignore[typeddict-item]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_launch_wizard.types.deployment_status
 
         out["status"] = capo_launch_wizard.types.deployment_status.deserialize_json(
             data["status"]
         )
-    if "statusReason" in data:
+    if data.get("statusReason") is not None:
         out["status_reason"] = data["statusReason"]
     return out

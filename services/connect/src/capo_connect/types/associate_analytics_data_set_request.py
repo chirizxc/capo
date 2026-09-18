@@ -32,12 +32,12 @@ def serialize_json(value: AssociateAnalyticsDataSetRequest) -> dict:
 
 def deserialize_json(data: dict) -> AssociateAnalyticsDataSetRequest:
     out: AssociateAnalyticsDataSetRequest = {}  # type: ignore[typeddict-item]
-    if "DataSetId" in data:
+    if data.get("DataSetId") is not None:
         out["data_set_id"] = data["DataSetId"]
     else:
         raise DeserializationError(
             "AssociateAnalyticsDataSetRequest.data_set_id required"
         )
-    if "TargetAccountId" in data:
+    if data.get("TargetAccountId") is not None:
         out["target_account_id"] = data["TargetAccountId"]
     return out

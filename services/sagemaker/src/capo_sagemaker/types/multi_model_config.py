@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: MultiModelConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> MultiModelConfig:
     out: MultiModelConfig = {}  # type: ignore[typeddict-item]
-    if "ModelCacheSetting" in data:
+    if data.get("ModelCacheSetting") is not None:
         import capo_sagemaker.types.model_cache_setting
 
         out["model_cache_setting"] = (

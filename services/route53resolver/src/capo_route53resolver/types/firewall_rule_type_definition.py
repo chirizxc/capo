@@ -40,12 +40,12 @@ def serialize_aws_json_1_1(value: FirewallRuleTypeDefinition) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> FirewallRuleTypeDefinition:
     out: FirewallRuleTypeDefinition = {}  # type: ignore[typeddict-item]
-    if "RuleType" in data:
+    if data.get("RuleType") is not None:
         out["rule_type"] = data["RuleType"]
-    if "Value" in data:
+    if data.get("Value") is not None:
         out["value"] = data["Value"]
-    if "DisplayName" in data:
+    if data.get("DisplayName") is not None:
         out["display_name"] = data["DisplayName"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
     return out

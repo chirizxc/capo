@@ -82,41 +82,41 @@ def serialize_json(value: RulesetItem) -> dict:
 
 def deserialize_json(data: dict) -> RulesetItem:
     out: RulesetItem = {}  # type: ignore[typeddict-item]
-    if "AccountId" in data:
+    if data.get("AccountId") is not None:
         out["account_id"] = data["AccountId"]
-    if "CreatedBy" in data:
+    if data.get("CreatedBy") is not None:
         out["created_by"] = data["CreatedBy"]
-    if "CreateDate" in data:
+    if data.get("CreateDate") is not None:
         import capo_databrew.types.date
 
         out["create_date"] = capo_databrew.types.date.deserialize_json(
             data["CreateDate"]
         )
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "LastModifiedBy" in data:
+    if data.get("LastModifiedBy") is not None:
         out["last_modified_by"] = data["LastModifiedBy"]
-    if "LastModifiedDate" in data:
+    if data.get("LastModifiedDate") is not None:
         import capo_databrew.types.date
 
         out["last_modified_date"] = capo_databrew.types.date.deserialize_json(
             data["LastModifiedDate"]
         )
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("RulesetItem.name required")
-    if "ResourceArn" in data:
+    if data.get("ResourceArn") is not None:
         out["resource_arn"] = data["ResourceArn"]
-    if "RuleCount" in data:
+    if data.get("RuleCount") is not None:
         out["rule_count"] = data["RuleCount"]
     else:
         out["rule_count"] = 0
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_databrew.types.tag_map
 
         out["tags"] = capo_databrew.types.tag_map.deserialize_json(data["Tags"])
-    if "TargetArn" in data:
+    if data.get("TargetArn") is not None:
         out["target_arn"] = data["TargetArn"]
     else:
         raise DeserializationError("RulesetItem.target_arn required")

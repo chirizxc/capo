@@ -69,11 +69,11 @@ def serialize_json(value: UpdateExperimentTemplateActionInputItem) -> dict:
 
 def deserialize_json(data: dict) -> UpdateExperimentTemplateActionInputItem:
     out: UpdateExperimentTemplateActionInputItem = {}  # type: ignore[typeddict-item]
-    if "actionId" in data:
+    if data.get("actionId") is not None:
         out["action_id"] = data["actionId"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "parameters" in data:
+    if data.get("parameters") is not None:
         import capo_fis.types.experiment_template_action_parameter_map
 
         out["parameters"] = (
@@ -81,7 +81,7 @@ def deserialize_json(data: dict) -> UpdateExperimentTemplateActionInputItem:
                 data["parameters"]
             )
         )
-    if "targets" in data:
+    if data.get("targets") is not None:
         import capo_fis.types.experiment_template_action_target_map
 
         out["targets"] = (
@@ -89,7 +89,7 @@ def deserialize_json(data: dict) -> UpdateExperimentTemplateActionInputItem:
                 data["targets"]
             )
         )
-    if "startAfter" in data:
+    if data.get("startAfter") is not None:
         import capo_fis.types.experiment_template_action_start_after_list
 
         out["start_after"] = (

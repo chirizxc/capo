@@ -25,6 +25,6 @@ def serialize_json(value: EventBridgeRuleTemplateTarget) -> dict:
 
 def deserialize_json(data: dict) -> EventBridgeRuleTemplateTarget:
     out: EventBridgeRuleTemplateTarget = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     return out

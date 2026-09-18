@@ -36,7 +36,7 @@ def serialize_json(value: ListJobsByConsumableResourceResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListJobsByConsumableResourceResponse:
     out: ListJobsByConsumableResourceResponse = {}  # type: ignore[typeddict-item]
-    if "jobs" in data:
+    if data.get("jobs") is not None:
         import capo_batch.types.list_jobs_by_consumable_resource_summary_list
 
         out["jobs"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> ListJobsByConsumableResourceResponse:
                 data["jobs"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

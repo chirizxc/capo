@@ -69,7 +69,7 @@ def serialize_json(value: BatchGetFrameMetricDataResponse) -> dict:
 
 def deserialize_json(data: dict) -> BatchGetFrameMetricDataResponse:
     out: BatchGetFrameMetricDataResponse = {}  # type: ignore[typeddict-item]
-    if "startTime" in data:
+    if data.get("startTime") is not None:
         import capo_codeguruprofiler.types.timestamp
 
         out["start_time"] = capo_codeguruprofiler.types.timestamp.deserialize_json(
@@ -79,7 +79,7 @@ def deserialize_json(data: dict) -> BatchGetFrameMetricDataResponse:
         raise DeserializationError(
             "BatchGetFrameMetricDataResponse.start_time required"
         )
-    if "endTime" in data:
+    if data.get("endTime") is not None:
         import capo_codeguruprofiler.types.timestamp
 
         out["end_time"] = capo_codeguruprofiler.types.timestamp.deserialize_json(
@@ -87,13 +87,13 @@ def deserialize_json(data: dict) -> BatchGetFrameMetricDataResponse:
         )
     else:
         raise DeserializationError("BatchGetFrameMetricDataResponse.end_time required")
-    if "resolution" in data:
+    if data.get("resolution") is not None:
         out["resolution"] = data["resolution"]
     else:
         raise DeserializationError(
             "BatchGetFrameMetricDataResponse.resolution required"
         )
-    if "endTimes" in data:
+    if data.get("endTimes") is not None:
         import capo_codeguruprofiler.types.list_of_timestamps
 
         out["end_times"] = (
@@ -103,7 +103,7 @@ def deserialize_json(data: dict) -> BatchGetFrameMetricDataResponse:
         )
     else:
         raise DeserializationError("BatchGetFrameMetricDataResponse.end_times required")
-    if "unprocessedEndTimes" in data:
+    if data.get("unprocessedEndTimes") is not None:
         import capo_codeguruprofiler.types.unprocessed_end_time_map
 
         out["unprocessed_end_times"] = (
@@ -115,7 +115,7 @@ def deserialize_json(data: dict) -> BatchGetFrameMetricDataResponse:
         raise DeserializationError(
             "BatchGetFrameMetricDataResponse.unprocessed_end_times required"
         )
-    if "frameMetricData" in data:
+    if data.get("frameMetricData") is not None:
         import capo_codeguruprofiler.types.frame_metric_data
 
         out["frame_metric_data"] = (

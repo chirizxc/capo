@@ -54,11 +54,11 @@ def serialize_aws_json_1_0(value: ExpectedCustomerSpend) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ExpectedCustomerSpend:
     out: ExpectedCustomerSpend = {}  # type: ignore[typeddict-item]
-    if "Amount" in data:
+    if data.get("Amount") is not None:
         out["amount"] = data["Amount"]
     else:
         out["amount"] = ""
-    if "CurrencyCode" in data:
+    if data.get("CurrencyCode") is not None:
         import capo_partnercentral_selling.types.currency_code
 
         out["currency_code"] = (
@@ -68,7 +68,7 @@ def deserialize_aws_json_1_0(data: dict) -> ExpectedCustomerSpend:
         )
     else:
         raise DeserializationError("ExpectedCustomerSpend.currency_code required")
-    if "Frequency" in data:
+    if data.get("Frequency") is not None:
         import capo_partnercentral_selling.types.payment_frequency
 
         out["frequency"] = (
@@ -78,10 +78,10 @@ def deserialize_aws_json_1_0(data: dict) -> ExpectedCustomerSpend:
         )
     else:
         raise DeserializationError("ExpectedCustomerSpend.frequency required")
-    if "TargetCompany" in data:
+    if data.get("TargetCompany") is not None:
         out["target_company"] = data["TargetCompany"]
     else:
         raise DeserializationError("ExpectedCustomerSpend.target_company required")
-    if "EstimationUrl" in data:
+    if data.get("EstimationUrl") is not None:
         out["estimation_url"] = data["EstimationUrl"]
     return out

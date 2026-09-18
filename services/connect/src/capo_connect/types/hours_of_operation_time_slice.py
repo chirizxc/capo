@@ -28,11 +28,11 @@ def serialize_json(value: HoursOfOperationTimeSlice) -> dict:
 
 def deserialize_json(data: dict) -> HoursOfOperationTimeSlice:
     out: HoursOfOperationTimeSlice = {}  # type: ignore[typeddict-item]
-    if "Hours" in data:
+    if data.get("Hours") is not None:
         out["hours"] = data["Hours"]
     else:
         raise DeserializationError("HoursOfOperationTimeSlice.hours required")
-    if "Minutes" in data:
+    if data.get("Minutes") is not None:
         out["minutes"] = data["Minutes"]
     else:
         raise DeserializationError("HoursOfOperationTimeSlice.minutes required")

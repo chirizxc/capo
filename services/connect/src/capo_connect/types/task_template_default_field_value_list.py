@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> TaskTemplateDefaultFieldValueList:
 
     out: TaskTemplateDefaultFieldValueList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_connect.types.task_template_default_field_value.deserialize_json(item)
         )

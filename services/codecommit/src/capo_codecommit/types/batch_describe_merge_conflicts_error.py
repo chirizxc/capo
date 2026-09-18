@@ -32,19 +32,19 @@ def serialize_aws_json_1_1(value: BatchDescribeMergeConflictsError) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> BatchDescribeMergeConflictsError:
     out: BatchDescribeMergeConflictsError = {}  # type: ignore[typeddict-item]
-    if "filePath" in data:
+    if data.get("filePath") is not None:
         out["file_path"] = data["filePath"]
     else:
         raise DeserializationError(
             "BatchDescribeMergeConflictsError.file_path required"
         )
-    if "exceptionName" in data:
+    if data.get("exceptionName") is not None:
         out["exception_name"] = data["exceptionName"]
     else:
         raise DeserializationError(
             "BatchDescribeMergeConflictsError.exception_name required"
         )
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     else:
         raise DeserializationError("BatchDescribeMergeConflictsError.message required")

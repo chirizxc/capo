@@ -87,42 +87,42 @@ def serialize_json(value: ImportJobResponse) -> dict:
 
 def deserialize_json(data: dict) -> ImportJobResponse:
     out: ImportJobResponse = {}  # type: ignore[typeddict-item]
-    if "ApplicationId" in data:
+    if data.get("ApplicationId") is not None:
         out["application_id"] = data["ApplicationId"]
-    if "CompletedPieces" in data:
+    if data.get("CompletedPieces") is not None:
         out["completed_pieces"] = data["CompletedPieces"]
-    if "CompletionDate" in data:
+    if data.get("CompletionDate") is not None:
         out["completion_date"] = data["CompletionDate"]
-    if "CreationDate" in data:
+    if data.get("CreationDate") is not None:
         out["creation_date"] = data["CreationDate"]
-    if "Definition" in data:
+    if data.get("Definition") is not None:
         import capo_pinpoint.types.import_job_resource
 
         out["definition"] = capo_pinpoint.types.import_job_resource.deserialize_json(
             data["Definition"]
         )
-    if "FailedPieces" in data:
+    if data.get("FailedPieces") is not None:
         out["failed_pieces"] = data["FailedPieces"]
-    if "Failures" in data:
+    if data.get("Failures") is not None:
         import capo_pinpoint.types.list_of__string
 
         out["failures"] = capo_pinpoint.types.list_of__string.deserialize_json(
             data["Failures"]
         )
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "JobStatus" in data:
+    if data.get("JobStatus") is not None:
         import capo_pinpoint.types.job_status
 
         out["job_status"] = capo_pinpoint.types.job_status.deserialize_json(
             data["JobStatus"]
         )
-    if "TotalFailures" in data:
+    if data.get("TotalFailures") is not None:
         out["total_failures"] = data["TotalFailures"]
-    if "TotalPieces" in data:
+    if data.get("TotalPieces") is not None:
         out["total_pieces"] = data["TotalPieces"]
-    if "TotalProcessed" in data:
+    if data.get("TotalProcessed") is not None:
         out["total_processed"] = data["TotalProcessed"]
-    if "Type" in data:
+    if data.get("Type") is not None:
         out["type"] = data["Type"]
     return out

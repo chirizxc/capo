@@ -62,11 +62,11 @@ def serialize_json(value: SubscribedProductListing) -> dict:
 
 def deserialize_json(data: dict) -> SubscribedProductListing:
     out: SubscribedProductListing = {}  # type: ignore[typeddict-item]
-    if "entityId" in data:
+    if data.get("entityId") is not None:
         out["entity_id"] = data["entityId"]
-    if "entityRevision" in data:
+    if data.get("entityRevision") is not None:
         out["entity_revision"] = data["entityRevision"]
-    if "glossaryTerms" in data:
+    if data.get("glossaryTerms") is not None:
         import capo_datazone.types.detailed_glossary_terms
 
         out["glossary_terms"] = (
@@ -74,11 +74,11 @@ def deserialize_json(data: dict) -> SubscribedProductListing:
                 data["glossaryTerms"]
             )
         )
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "assetListings" in data:
+    if data.get("assetListings") is not None:
         import capo_datazone.types.asset_in_data_product_listing_items
 
         out["asset_listings"] = (

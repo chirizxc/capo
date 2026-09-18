@@ -58,15 +58,15 @@ def serialize_json(value: CreateConfigurationResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateConfigurationResponse:
     out: CreateConfigurationResponse = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "creationTime" in data:
+    if data.get("creationTime") is not None:
         import capo_kafka.types.__timestamp_iso8601
 
         out["creation_time"] = capo_kafka.types.__timestamp_iso8601.deserialize_json(
             data["creationTime"]
         )
-    if "latestRevision" in data:
+    if data.get("latestRevision") is not None:
         import capo_kafka.types.configuration_revision
 
         out["latest_revision"] = (
@@ -74,9 +74,9 @@ def deserialize_json(data: dict) -> CreateConfigurationResponse:
                 data["latestRevision"]
             )
         )
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "state" in data:
+    if data.get("state") is not None:
         import capo_kafka.types.configuration_state
 
         out["state"] = capo_kafka.types.configuration_state.deserialize_json(

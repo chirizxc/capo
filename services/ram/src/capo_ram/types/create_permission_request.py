@@ -43,21 +43,21 @@ def serialize_json(value: CreatePermissionRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreatePermissionRequest:
     out: CreatePermissionRequest = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("CreatePermissionRequest.name required")
-    if "resourceType" in data:
+    if data.get("resourceType") is not None:
         out["resource_type"] = data["resourceType"]
     else:
         raise DeserializationError("CreatePermissionRequest.resource_type required")
-    if "policyTemplate" in data:
+    if data.get("policyTemplate") is not None:
         out["policy_template"] = data["policyTemplate"]
     else:
         raise DeserializationError("CreatePermissionRequest.policy_template required")
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_ram.types.tag_list
 
         out["tags"] = capo_ram.types.tag_list.deserialize_json(data["tags"])

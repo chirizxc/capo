@@ -150,9 +150,9 @@ def serialize_json(value: PostTextResponse) -> dict:
 
 def deserialize_json(data: dict) -> PostTextResponse:
     out: PostTextResponse = {}  # type: ignore[typeddict-item]
-    if "intentName" in data:
+    if data.get("intentName") is not None:
         out["intent_name"] = data["intentName"]
-    if "nluIntentConfidence" in data:
+    if data.get("nluIntentConfidence") is not None:
         import capo_lex_runtime_service.types.intent_confidence
 
         out["nlu_intent_confidence"] = (
@@ -160,7 +160,7 @@ def deserialize_json(data: dict) -> PostTextResponse:
                 data["nluIntentConfidence"]
             )
         )
-    if "alternativeIntents" in data:
+    if data.get("alternativeIntents") is not None:
         import capo_lex_runtime_service.types.intent_list
 
         out["alternative_intents"] = (
@@ -168,13 +168,13 @@ def deserialize_json(data: dict) -> PostTextResponse:
                 data["alternativeIntents"]
             )
         )
-    if "slots" in data:
+    if data.get("slots") is not None:
         import capo_lex_runtime_service.types.string_map
 
         out["slots"] = capo_lex_runtime_service.types.string_map.deserialize_json(
             data["slots"]
         )
-    if "sessionAttributes" in data:
+    if data.get("sessionAttributes") is not None:
         import capo_lex_runtime_service.types.string_map
 
         out["session_attributes"] = (
@@ -182,9 +182,9 @@ def deserialize_json(data: dict) -> PostTextResponse:
                 data["sessionAttributes"]
             )
         )
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
-    if "sentimentResponse" in data:
+    if data.get("sentimentResponse") is not None:
         import capo_lex_runtime_service.types.sentiment_response
 
         out["sentiment_response"] = (
@@ -192,7 +192,7 @@ def deserialize_json(data: dict) -> PostTextResponse:
                 data["sentimentResponse"]
             )
         )
-    if "messageFormat" in data:
+    if data.get("messageFormat") is not None:
         import capo_lex_runtime_service.types.message_format_type
 
         out["message_format"] = (
@@ -200,7 +200,7 @@ def deserialize_json(data: dict) -> PostTextResponse:
                 data["messageFormat"]
             )
         )
-    if "dialogState" in data:
+    if data.get("dialogState") is not None:
         import capo_lex_runtime_service.types.dialog_state
 
         out["dialog_state"] = (
@@ -208,9 +208,9 @@ def deserialize_json(data: dict) -> PostTextResponse:
                 data["dialogState"]
             )
         )
-    if "slotToElicit" in data:
+    if data.get("slotToElicit") is not None:
         out["slot_to_elicit"] = data["slotToElicit"]
-    if "responseCard" in data:
+    if data.get("responseCard") is not None:
         import capo_lex_runtime_service.types.response_card
 
         out["response_card"] = (
@@ -218,11 +218,11 @@ def deserialize_json(data: dict) -> PostTextResponse:
                 data["responseCard"]
             )
         )
-    if "sessionId" in data:
+    if data.get("sessionId") is not None:
         out["session_id"] = data["sessionId"]
-    if "botVersion" in data:
+    if data.get("botVersion") is not None:
         out["bot_version"] = data["botVersion"]
-    if "activeContexts" in data:
+    if data.get("activeContexts") is not None:
         import capo_lex_runtime_service.types.active_contexts_list
 
         out["active_contexts"] = (

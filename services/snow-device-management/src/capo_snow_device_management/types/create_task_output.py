@@ -22,8 +22,8 @@ def serialize_json(value: CreateTaskOutput) -> dict:
 
 def deserialize_json(data: dict) -> CreateTaskOutput:
     out: CreateTaskOutput = {}  # type: ignore[typeddict-item]
-    if "taskId" in data:
+    if data.get("taskId") is not None:
         out["task_id"] = data["taskId"]
-    if "taskArn" in data:
+    if data.get("taskArn") is not None:
         out["task_arn"] = data["taskArn"]
     return out

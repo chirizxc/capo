@@ -45,15 +45,15 @@ def serialize_aws_json_1_1(value: CreateProvisioningArtifactInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateProvisioningArtifactInput:
     out: CreateProvisioningArtifactInput = {}  # type: ignore[typeddict-item]
-    if "AcceptLanguage" in data:
+    if data.get("AcceptLanguage") is not None:
         out["accept_language"] = data["AcceptLanguage"]
-    if "ProductId" in data:
+    if data.get("ProductId") is not None:
         out["product_id"] = data["ProductId"]
     else:
         raise DeserializationError(
             "CreateProvisioningArtifactInput.product_id required"
         )
-    if "Parameters" in data:
+    if data.get("Parameters") is not None:
         import capo_service_catalog.types.provisioning_artifact_properties
 
         out["parameters"] = (
@@ -65,7 +65,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateProvisioningArtifactInput:
         raise DeserializationError(
             "CreateProvisioningArtifactInput.parameters required"
         )
-    if "IdempotencyToken" in data:
+    if data.get("IdempotencyToken") is not None:
         out["idempotency_token"] = data["IdempotencyToken"]
     else:
         raise DeserializationError(

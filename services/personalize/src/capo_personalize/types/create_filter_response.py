@@ -23,6 +23,6 @@ def serialize_aws_json_1_1(value: CreateFilterResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateFilterResponse:
     out: CreateFilterResponse = {}  # type: ignore[typeddict-item]
-    if "filterArn" in data:
+    if data.get("filterArn") is not None:
         out["filter_arn"] = data["filterArn"]
     return out

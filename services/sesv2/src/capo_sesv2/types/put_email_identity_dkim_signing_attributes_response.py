@@ -41,18 +41,18 @@ def serialize_json(value: PutEmailIdentityDkimSigningAttributesResponse) -> dict
 
 def deserialize_json(data: dict) -> PutEmailIdentityDkimSigningAttributesResponse:
     out: PutEmailIdentityDkimSigningAttributesResponse = {}  # type: ignore[typeddict-item]
-    if "DkimStatus" in data:
+    if data.get("DkimStatus") is not None:
         import capo_sesv2.types.dkim_status
 
         out["dkim_status"] = capo_sesv2.types.dkim_status.deserialize_json(
             data["DkimStatus"]
         )
-    if "DkimTokens" in data:
+    if data.get("DkimTokens") is not None:
         import capo_sesv2.types.dns_token_list
 
         out["dkim_tokens"] = capo_sesv2.types.dns_token_list.deserialize_json(
             data["DkimTokens"]
         )
-    if "SigningHostedZone" in data:
+    if data.get("SigningHostedZone") is not None:
         out["signing_hosted_zone"] = data["SigningHostedZone"]
     return out

@@ -40,7 +40,7 @@ def serialize_aws_json_1_0(value: RuleBooleanExpression) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> RuleBooleanExpression:
     out: RuleBooleanExpression = {}  # type: ignore[typeddict-item]
-    if "Evaluate" in data:
+    if data.get("Evaluate") is not None:
         import capo_mailmanager.types.rule_boolean_to_evaluate
 
         out["evaluate"] = (
@@ -50,7 +50,7 @@ def deserialize_aws_json_1_0(data: dict) -> RuleBooleanExpression:
         )
     else:
         raise DeserializationError("RuleBooleanExpression.evaluate required")
-    if "Operator" in data:
+    if data.get("Operator") is not None:
         import capo_mailmanager.types.rule_boolean_operator
 
         out["operator"] = (

@@ -31,13 +31,13 @@ def serialize_json(value: CreateRecommenderFilterResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateRecommenderFilterResponse:
     out: CreateRecommenderFilterResponse = {}  # type: ignore[typeddict-item]
-    if "RecommenderFilterArn" in data:
+    if data.get("RecommenderFilterArn") is not None:
         out["recommender_filter_arn"] = data["RecommenderFilterArn"]
     else:
         raise DeserializationError(
             "CreateRecommenderFilterResponse.recommender_filter_arn required"
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_customer_profiles.types.tag_map
 
         out["tags"] = capo_customer_profiles.types.tag_map.deserialize_json(

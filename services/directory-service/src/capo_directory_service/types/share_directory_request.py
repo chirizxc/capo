@@ -49,13 +49,13 @@ def serialize_aws_json_1_1(value: ShareDirectoryRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ShareDirectoryRequest:
     out: ShareDirectoryRequest = {}  # type: ignore[typeddict-item]
-    if "DirectoryId" in data:
+    if data.get("DirectoryId") is not None:
         out["directory_id"] = data["DirectoryId"]
     else:
         raise DeserializationError("ShareDirectoryRequest.directory_id required")
-    if "ShareNotes" in data:
+    if data.get("ShareNotes") is not None:
         out["share_notes"] = data["ShareNotes"]
-    if "ShareTarget" in data:
+    if data.get("ShareTarget") is not None:
         import capo_directory_service.types.share_target
 
         out["share_target"] = (
@@ -65,7 +65,7 @@ def deserialize_aws_json_1_1(data: dict) -> ShareDirectoryRequest:
         )
     else:
         raise DeserializationError("ShareDirectoryRequest.share_target required")
-    if "ShareMethod" in data:
+    if data.get("ShareMethod") is not None:
         import capo_directory_service.types.share_method
 
         out["share_method"] = (

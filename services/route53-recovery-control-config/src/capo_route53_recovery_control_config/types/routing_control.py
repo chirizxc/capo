@@ -56,13 +56,13 @@ def serialize_json(value: RoutingControl) -> dict:
 
 def deserialize_json(data: dict) -> RoutingControl:
     out: RoutingControl = {}  # type: ignore[typeddict-item]
-    if "ControlPanelArn" in data:
+    if data.get("ControlPanelArn") is not None:
         out["control_panel_arn"] = data["ControlPanelArn"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "RoutingControlArn" in data:
+    if data.get("RoutingControlArn") is not None:
         out["routing_control_arn"] = data["RoutingControlArn"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_route53_recovery_control_config.types.status
 
         out["status"] = (
@@ -70,6 +70,6 @@ def deserialize_json(data: dict) -> RoutingControl:
                 data["Status"]
             )
         )
-    if "Owner" in data:
+    if data.get("Owner") is not None:
         out["owner"] = data["Owner"]
     return out

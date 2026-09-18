@@ -34,7 +34,7 @@ def serialize_json(value: DvbSubSourceSettings) -> dict:
 
 def deserialize_json(data: dict) -> DvbSubSourceSettings:
     out: DvbSubSourceSettings = {}  # type: ignore[typeddict-item]
-    if "ocrLanguage" in data:
+    if data.get("ocrLanguage") is not None:
         import capo_medialive.types.dvb_sub_ocr_language
 
         out["ocr_language"] = (
@@ -42,6 +42,6 @@ def deserialize_json(data: dict) -> DvbSubSourceSettings:
                 data["ocrLanguage"]
             )
         )
-    if "pid" in data:
+    if data.get("pid") is not None:
         out["pid"] = data["pid"]
     return out

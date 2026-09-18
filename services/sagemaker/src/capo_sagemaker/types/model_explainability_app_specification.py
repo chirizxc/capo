@@ -41,11 +41,11 @@ def serialize_aws_json_1_1(value: ModelExplainabilityAppSpecification) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ModelExplainabilityAppSpecification:
     out: ModelExplainabilityAppSpecification = {}  # type: ignore[typeddict-item]
-    if "ImageUri" in data:
+    if data.get("ImageUri") is not None:
         out["image_uri"] = data["ImageUri"]
-    if "ConfigUri" in data:
+    if data.get("ConfigUri") is not None:
         out["config_uri"] = data["ConfigUri"]
-    if "Environment" in data:
+    if data.get("Environment") is not None:
         import capo_sagemaker.types.monitoring_environment_map
 
         out["environment"] = (

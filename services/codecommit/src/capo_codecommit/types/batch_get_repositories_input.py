@@ -30,7 +30,7 @@ def serialize_aws_json_1_1(value: BatchGetRepositoriesInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> BatchGetRepositoriesInput:
     out: BatchGetRepositoriesInput = {}  # type: ignore[typeddict-item]
-    if "repositoryNames" in data:
+    if data.get("repositoryNames") is not None:
         import capo_codecommit.types.repository_name_list
 
         out["repository_names"] = (

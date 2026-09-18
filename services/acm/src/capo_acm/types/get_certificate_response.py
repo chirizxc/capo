@@ -28,8 +28,8 @@ def serialize_aws_json_1_1(value: GetCertificateResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetCertificateResponse:
     out: GetCertificateResponse = {}  # type: ignore[typeddict-item]
-    if "Certificate" in data:
+    if data.get("Certificate") is not None:
         out["certificate"] = data["Certificate"]
-    if "CertificateChain" in data:
+    if data.get("CertificateChain") is not None:
         out["certificate_chain"] = data["CertificateChain"]
     return out

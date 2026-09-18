@@ -51,11 +51,11 @@ def serialize_aws_json_1_0(value: S3Config) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> S3Config:
     out: S3Config = {}  # type: ignore[typeddict-item]
-    if "bucketArn" in data:
+    if data.get("bucketArn") is not None:
         out["bucket_arn"] = data["bucketArn"]
     else:
         raise DeserializationError("S3Config.bucket_arn required")
-    if "dataFormat" in data:
+    if data.get("dataFormat") is not None:
         import capo_iotfleetwise.types.data_format
 
         out["data_format"] = (
@@ -63,7 +63,7 @@ def deserialize_aws_json_1_0(data: dict) -> S3Config:
                 data["dataFormat"]
             )
         )
-    if "storageCompressionFormat" in data:
+    if data.get("storageCompressionFormat") is not None:
         import capo_iotfleetwise.types.storage_compression_format
 
         out["storage_compression_format"] = (
@@ -71,6 +71,6 @@ def deserialize_aws_json_1_0(data: dict) -> S3Config:
                 data["storageCompressionFormat"]
             )
         )
-    if "prefix" in data:
+    if data.get("prefix") is not None:
         out["prefix"] = data["prefix"]
     return out

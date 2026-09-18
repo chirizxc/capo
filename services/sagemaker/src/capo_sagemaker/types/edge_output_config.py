@@ -46,11 +46,11 @@ def serialize_aws_json_1_1(value: EdgeOutputConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> EdgeOutputConfig:
     out: EdgeOutputConfig = {}  # type: ignore[typeddict-item]
-    if "S3OutputLocation" in data:
+    if data.get("S3OutputLocation") is not None:
         out["s3_output_location"] = data["S3OutputLocation"]
-    if "KmsKeyId" in data:
+    if data.get("KmsKeyId") is not None:
         out["kms_key_id"] = data["KmsKeyId"]
-    if "PresetDeploymentType" in data:
+    if data.get("PresetDeploymentType") is not None:
         import capo_sagemaker.types.edge_preset_deployment_type
 
         out["preset_deployment_type"] = (
@@ -58,6 +58,6 @@ def deserialize_aws_json_1_1(data: dict) -> EdgeOutputConfig:
                 data["PresetDeploymentType"]
             )
         )
-    if "PresetDeploymentConfig" in data:
+    if data.get("PresetDeploymentConfig") is not None:
         out["preset_deployment_config"] = data["PresetDeploymentConfig"]
     return out

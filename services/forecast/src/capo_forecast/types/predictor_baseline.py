@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: PredictorBaseline) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PredictorBaseline:
     out: PredictorBaseline = {}  # type: ignore[typeddict-item]
-    if "BaselineMetrics" in data:
+    if data.get("BaselineMetrics") is not None:
         import capo_forecast.types.baseline_metrics
 
         out["baseline_metrics"] = (

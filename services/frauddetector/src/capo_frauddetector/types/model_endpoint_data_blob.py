@@ -32,12 +32,12 @@ def serialize_aws_json_1_1(value: ModelEndpointDataBlob) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ModelEndpointDataBlob:
     out: ModelEndpointDataBlob = {}  # type: ignore[typeddict-item]
-    if "byteBuffer" in data:
+    if data.get("byteBuffer") is not None:
         import capo_frauddetector.types.blob
 
         out["byte_buffer"] = capo_frauddetector.types.blob.deserialize_aws_json_1_1(
             data["byteBuffer"]
         )
-    if "contentType" in data:
+    if data.get("contentType") is not None:
         out["content_type"] = data["contentType"]
     return out

@@ -39,11 +39,11 @@ def serialize_json(value: CreatePluginResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreatePluginResponse:
     out: CreatePluginResponse = {}  # type: ignore[typeddict-item]
-    if "pluginId" in data:
+    if data.get("pluginId") is not None:
         out["plugin_id"] = data["pluginId"]
-    if "pluginArn" in data:
+    if data.get("pluginArn") is not None:
         out["plugin_arn"] = data["pluginArn"]
-    if "buildStatus" in data:
+    if data.get("buildStatus") is not None:
         import capo_qbusiness.types.plugin_build_status
 
         out["build_status"] = capo_qbusiness.types.plugin_build_status.deserialize_json(

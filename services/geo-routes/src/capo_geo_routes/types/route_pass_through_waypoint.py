@@ -32,9 +32,9 @@ def serialize_json(value: RoutePassThroughWaypoint) -> dict:
 
 def deserialize_json(data: dict) -> RoutePassThroughWaypoint:
     out: RoutePassThroughWaypoint = {}  # type: ignore[typeddict-item]
-    if "GeometryOffset" in data:
+    if data.get("GeometryOffset") is not None:
         out["geometry_offset"] = data["GeometryOffset"]
-    if "Place" in data:
+    if data.get("Place") is not None:
         import capo_geo_routes.types.route_pass_through_place
 
         out["place"] = capo_geo_routes.types.route_pass_through_place.deserialize_json(

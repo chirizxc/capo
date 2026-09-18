@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> PivotTableFieldCollapseStateOptionList:
 
     out: PivotTableFieldCollapseStateOptionList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_quicksight.types.pivot_table_field_collapse_state_option.deserialize_json(
                 item

@@ -19,7 +19,7 @@ def serialize_json(value: ProtectedJobS3Output) -> dict:
 
 def deserialize_json(data: dict) -> ProtectedJobS3Output:
     out: ProtectedJobS3Output = {}  # type: ignore[typeddict-item]
-    if "location" in data:
+    if data.get("location") is not None:
         out["location"] = data["location"]
     else:
         raise DeserializationError("ProtectedJobS3Output.location required")

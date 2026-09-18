@@ -40,9 +40,9 @@ def serialize_json(value: UpdateSchemaMappingInput) -> dict:
 
 def deserialize_json(data: dict) -> UpdateSchemaMappingInput:
     out: UpdateSchemaMappingInput = {}  # type: ignore[typeddict-item]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "mappedInputFields" in data:
+    if data.get("mappedInputFields") is not None:
         import capo_entityresolution.types.schema_input_attributes
 
         out["mapped_input_fields"] = (

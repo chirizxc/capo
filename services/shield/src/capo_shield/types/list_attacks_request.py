@@ -58,7 +58,7 @@ def serialize_aws_json_1_1(value: ListAttacksRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListAttacksRequest:
     out: ListAttacksRequest = {}  # type: ignore[typeddict-item]
-    if "ResourceArns" in data:
+    if data.get("ResourceArns") is not None:
         import capo_shield.types.resource_arn_filter_list
 
         out["resource_arns"] = (
@@ -66,20 +66,20 @@ def deserialize_aws_json_1_1(data: dict) -> ListAttacksRequest:
                 data["ResourceArns"]
             )
         )
-    if "StartTime" in data:
+    if data.get("StartTime") is not None:
         import capo_shield.types.time_range
 
         out["start_time"] = capo_shield.types.time_range.deserialize_aws_json_1_1(
             data["StartTime"]
         )
-    if "EndTime" in data:
+    if data.get("EndTime") is not None:
         import capo_shield.types.time_range
 
         out["end_time"] = capo_shield.types.time_range.deserialize_aws_json_1_1(
             data["EndTime"]
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
     return out

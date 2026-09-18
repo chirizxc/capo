@@ -27,7 +27,7 @@ def serialize_json(value: CancelParticipantAuthenticationRequest) -> dict:
 
 def deserialize_json(data: dict) -> CancelParticipantAuthenticationRequest:
     out: CancelParticipantAuthenticationRequest = {}  # type: ignore[typeddict-item]
-    if "SessionId" in data:
+    if data.get("SessionId") is not None:
         out["session_id"] = data["SessionId"]
     else:
         raise DeserializationError(

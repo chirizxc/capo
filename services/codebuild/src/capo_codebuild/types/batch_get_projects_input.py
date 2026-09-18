@@ -28,7 +28,7 @@ def serialize_aws_json_1_1(value: BatchGetProjectsInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> BatchGetProjectsInput:
     out: BatchGetProjectsInput = {}  # type: ignore[typeddict-item]
-    if "names" in data:
+    if data.get("names") is not None:
         import capo_codebuild.types.project_names
 
         out["names"] = capo_codebuild.types.project_names.deserialize_aws_json_1_1(

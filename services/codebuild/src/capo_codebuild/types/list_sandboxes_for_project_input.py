@@ -43,13 +43,13 @@ def serialize_aws_json_1_1(value: ListSandboxesForProjectInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListSandboxesForProjectInput:
     out: ListSandboxesForProjectInput = {}  # type: ignore[typeddict-item]
-    if "projectName" in data:
+    if data.get("projectName") is not None:
         out["project_name"] = data["projectName"]
     else:
         raise DeserializationError("ListSandboxesForProjectInput.project_name required")
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
-    if "sortOrder" in data:
+    if data.get("sortOrder") is not None:
         import capo_codebuild.types.sort_order_type
 
         out["sort_order"] = (
@@ -57,6 +57,6 @@ def deserialize_aws_json_1_1(data: dict) -> ListSandboxesForProjectInput:
                 data["sortOrder"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

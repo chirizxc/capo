@@ -42,7 +42,7 @@ def serialize_aws_json_1_1(value: NetworkUpdateSettings) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> NetworkUpdateSettings:
     out: NetworkUpdateSettings = {}  # type: ignore[typeddict-item]
-    if "NetworkType" in data:
+    if data.get("NetworkType") is not None:
         import capo_directory_service.types.network_type
 
         out["network_type"] = (
@@ -50,7 +50,7 @@ def deserialize_aws_json_1_1(data: dict) -> NetworkUpdateSettings:
                 data["NetworkType"]
             )
         )
-    if "CustomerDnsIpsV6" in data:
+    if data.get("CustomerDnsIpsV6") is not None:
         import capo_directory_service.types.dns_ipv6_addrs
 
         out["customer_dns_ips_v6"] = (

@@ -43,7 +43,7 @@ def serialize_json(value: LoRaWANUpdateGatewayTaskEntry) -> dict:
 
 def deserialize_json(data: dict) -> LoRaWANUpdateGatewayTaskEntry:
     out: LoRaWANUpdateGatewayTaskEntry = {}  # type: ignore[typeddict-item]
-    if "CurrentVersion" in data:
+    if data.get("CurrentVersion") is not None:
         import capo_iot_wireless.types.lo_ra_wan_gateway_version
 
         out["current_version"] = (
@@ -51,7 +51,7 @@ def deserialize_json(data: dict) -> LoRaWANUpdateGatewayTaskEntry:
                 data["CurrentVersion"]
             )
         )
-    if "UpdateVersion" in data:
+    if data.get("UpdateVersion") is not None:
         import capo_iot_wireless.types.lo_ra_wan_gateway_version
 
         out["update_version"] = (

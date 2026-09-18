@@ -40,20 +40,20 @@ def serialize_aws_json_1_1(value: DescribeScalingPlanResourcesRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeScalingPlanResourcesRequest:
     out: DescribeScalingPlanResourcesRequest = {}  # type: ignore[typeddict-item]
-    if "ScalingPlanName" in data:
+    if data.get("ScalingPlanName") is not None:
         out["scaling_plan_name"] = data["ScalingPlanName"]
     else:
         raise DeserializationError(
             "DescribeScalingPlanResourcesRequest.scaling_plan_name required"
         )
-    if "ScalingPlanVersion" in data:
+    if data.get("ScalingPlanVersion") is not None:
         out["scaling_plan_version"] = data["ScalingPlanVersion"]
     else:
         raise DeserializationError(
             "DescribeScalingPlanResourcesRequest.scaling_plan_version required"
         )
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

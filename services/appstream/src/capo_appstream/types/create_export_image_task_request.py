@@ -47,18 +47,18 @@ def serialize_aws_json_1_1(value: CreateExportImageTaskRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateExportImageTaskRequest:
     out: CreateExportImageTaskRequest = {}  # type: ignore[typeddict-item]
-    if "ImageName" in data:
+    if data.get("ImageName") is not None:
         out["image_name"] = data["ImageName"]
-    if "AmiName" in data:
+    if data.get("AmiName") is not None:
         out["ami_name"] = data["AmiName"]
-    if "IamRoleArn" in data:
+    if data.get("IamRoleArn") is not None:
         out["iam_role_arn"] = data["IamRoleArn"]
-    if "TagSpecifications" in data:
+    if data.get("TagSpecifications") is not None:
         import capo_appstream.types.tags
 
         out["tag_specifications"] = capo_appstream.types.tags.deserialize_aws_json_1_1(
             data["TagSpecifications"]
         )
-    if "AmiDescription" in data:
+    if data.get("AmiDescription") is not None:
         out["ami_description"] = data["AmiDescription"]
     return out

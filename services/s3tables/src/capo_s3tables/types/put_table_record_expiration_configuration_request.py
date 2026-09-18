@@ -33,7 +33,7 @@ def serialize_json(value: PutTableRecordExpirationConfigurationRequest) -> dict:
 
 def deserialize_json(data: dict) -> PutTableRecordExpirationConfigurationRequest:
     out: PutTableRecordExpirationConfigurationRequest = {}  # type: ignore[typeddict-item]
-    if "value" in data:
+    if data.get("value") is not None:
         import capo_s3tables.types.table_record_expiration_configuration_value
 
         out["value"] = (

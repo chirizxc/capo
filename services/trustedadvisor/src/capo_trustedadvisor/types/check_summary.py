@@ -71,23 +71,23 @@ def serialize_json(value: CheckSummary) -> dict:
 
 def deserialize_json(data: dict) -> CheckSummary:
     out: CheckSummary = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("CheckSummary.id required")
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("CheckSummary.arn required")
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("CheckSummary.name required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
     else:
         raise DeserializationError("CheckSummary.description required")
-    if "pillars" in data:
+    if data.get("pillars") is not None:
         import capo_trustedadvisor.types.recommendation_pillar_list
 
         out["pillars"] = (
@@ -97,7 +97,7 @@ def deserialize_json(data: dict) -> CheckSummary:
         )
     else:
         raise DeserializationError("CheckSummary.pillars required")
-    if "awsServices" in data:
+    if data.get("awsServices") is not None:
         import capo_trustedadvisor.types.recommendation_aws_service_list
 
         out["aws_services"] = (
@@ -107,7 +107,7 @@ def deserialize_json(data: dict) -> CheckSummary:
         )
     else:
         raise DeserializationError("CheckSummary.aws_services required")
-    if "source" in data:
+    if data.get("source") is not None:
         import capo_trustedadvisor.types.recommendation_source
 
         out["source"] = (
@@ -117,7 +117,7 @@ def deserialize_json(data: dict) -> CheckSummary:
         )
     else:
         raise DeserializationError("CheckSummary.source required")
-    if "metadata" in data:
+    if data.get("metadata") is not None:
         import capo_trustedadvisor.types.string_map
 
         out["metadata"] = capo_trustedadvisor.types.string_map.deserialize_json(

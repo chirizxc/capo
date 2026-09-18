@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> DetectorAdditionalConfigurations:
 
     out: DetectorAdditionalConfigurations = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_guardduty.types.detector_additional_configuration.deserialize_json(
                 item

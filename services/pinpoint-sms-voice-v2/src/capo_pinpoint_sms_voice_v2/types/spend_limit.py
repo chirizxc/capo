@@ -33,19 +33,19 @@ def serialize_aws_json_1_0(value: SpendLimit) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> SpendLimit:
     out: SpendLimit = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("SpendLimit.name required")
-    if "EnforcedLimit" in data:
+    if data.get("EnforcedLimit") is not None:
         out["enforced_limit"] = data["EnforcedLimit"]
     else:
         out["enforced_limit"] = 0
-    if "MaxLimit" in data:
+    if data.get("MaxLimit") is not None:
         out["max_limit"] = data["MaxLimit"]
     else:
         out["max_limit"] = 0
-    if "Overridden" in data:
+    if data.get("Overridden") is not None:
         out["overridden"] = data["Overridden"]
     else:
         out["overridden"] = False

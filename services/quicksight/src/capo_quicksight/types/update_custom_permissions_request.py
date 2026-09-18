@@ -35,7 +35,7 @@ def serialize_json(value: UpdateCustomPermissionsRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateCustomPermissionsRequest:
     out: UpdateCustomPermissionsRequest = {}  # type: ignore[typeddict-item]
-    if "Capabilities" in data:
+    if data.get("Capabilities") is not None:
         import capo_quicksight.types.capabilities
 
         out["capabilities"] = capo_quicksight.types.capabilities.deserialize_json(

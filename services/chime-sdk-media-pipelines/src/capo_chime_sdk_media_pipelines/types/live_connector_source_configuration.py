@@ -40,7 +40,7 @@ def serialize_json(value: LiveConnectorSourceConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> LiveConnectorSourceConfiguration:
     out: LiveConnectorSourceConfiguration = {}  # type: ignore[typeddict-item]
-    if "SourceType" in data:
+    if data.get("SourceType") is not None:
         import capo_chime_sdk_media_pipelines.types.live_connector_source_type
 
         out["source_type"] = (
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> LiveConnectorSourceConfiguration:
         raise DeserializationError(
             "LiveConnectorSourceConfiguration.source_type required"
         )
-    if "ChimeSdkMeetingLiveConnectorConfiguration" in data:
+    if data.get("ChimeSdkMeetingLiveConnectorConfiguration") is not None:
         import capo_chime_sdk_media_pipelines.types.chime_sdk_meeting_live_connector_configuration
 
         out["chime_sdk_meeting_live_connector_configuration"] = (

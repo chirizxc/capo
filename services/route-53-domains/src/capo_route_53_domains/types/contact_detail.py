@@ -108,11 +108,11 @@ def serialize_aws_json_1_1(value: ContactDetail) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ContactDetail:
     out: ContactDetail = {}  # type: ignore[typeddict-item]
-    if "FirstName" in data:
+    if data.get("FirstName") is not None:
         out["first_name"] = data["FirstName"]
-    if "LastName" in data:
+    if data.get("LastName") is not None:
         out["last_name"] = data["LastName"]
-    if "ContactType" in data:
+    if data.get("ContactType") is not None:
         import capo_route_53_domains.types.contact_type
 
         out["contact_type"] = (
@@ -120,17 +120,17 @@ def deserialize_aws_json_1_1(data: dict) -> ContactDetail:
                 data["ContactType"]
             )
         )
-    if "OrganizationName" in data:
+    if data.get("OrganizationName") is not None:
         out["organization_name"] = data["OrganizationName"]
-    if "AddressLine1" in data:
+    if data.get("AddressLine1") is not None:
         out["address_line1"] = data["AddressLine1"]
-    if "AddressLine2" in data:
+    if data.get("AddressLine2") is not None:
         out["address_line2"] = data["AddressLine2"]
-    if "City" in data:
+    if data.get("City") is not None:
         out["city"] = data["City"]
-    if "State" in data:
+    if data.get("State") is not None:
         out["state"] = data["State"]
-    if "CountryCode" in data:
+    if data.get("CountryCode") is not None:
         import capo_route_53_domains.types.country_code
 
         out["country_code"] = (
@@ -138,15 +138,15 @@ def deserialize_aws_json_1_1(data: dict) -> ContactDetail:
                 data["CountryCode"]
             )
         )
-    if "ZipCode" in data:
+    if data.get("ZipCode") is not None:
         out["zip_code"] = data["ZipCode"]
-    if "PhoneNumber" in data:
+    if data.get("PhoneNumber") is not None:
         out["phone_number"] = data["PhoneNumber"]
-    if "Email" in data:
+    if data.get("Email") is not None:
         out["email"] = data["Email"]
-    if "Fax" in data:
+    if data.get("Fax") is not None:
         out["fax"] = data["Fax"]
-    if "ExtraParams" in data:
+    if data.get("ExtraParams") is not None:
         import capo_route_53_domains.types.extra_param_list
 
         out["extra_params"] = (

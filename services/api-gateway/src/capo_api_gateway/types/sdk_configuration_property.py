@@ -39,16 +39,16 @@ def serialize_json(value: SdkConfigurationProperty) -> dict:
 
 def deserialize_json(data: dict) -> SdkConfigurationProperty:
     out: SdkConfigurationProperty = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "friendlyName" in data:
+    if data.get("friendlyName") is not None:
         out["friendly_name"] = data["friendlyName"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "required" in data:
+    if data.get("required") is not None:
         out["required"] = data["required"]
     else:
         out["required"] = False
-    if "defaultValue" in data:
+    if data.get("defaultValue") is not None:
         out["default_value"] = data["defaultValue"]
     return out

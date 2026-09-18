@@ -47,7 +47,7 @@ def serialize_aws_json_1_1(value: UpdateAutoManagementRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateAutoManagementRequest:
     out: UpdateAutoManagementRequest = {}  # type: ignore[typeddict-item]
-    if "OptInType" in data:
+    if data.get("OptInType") is not None:
         import capo_service_quotas.types.opt_in_type
 
         out["opt_in_type"] = (
@@ -55,9 +55,9 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateAutoManagementRequest:
                 data["OptInType"]
             )
         )
-    if "NotificationArn" in data:
+    if data.get("NotificationArn") is not None:
         out["notification_arn"] = data["NotificationArn"]
-    if "ExclusionList" in data:
+    if data.get("ExclusionList") is not None:
         import capo_service_quotas.types.exclusion_list
 
         out["exclusion_list"] = (

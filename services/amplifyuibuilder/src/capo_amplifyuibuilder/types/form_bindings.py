@@ -25,6 +25,8 @@ def serialize_json(input_to_serialize: FormBindings) -> dict:
 def deserialize_json(data: dict) -> FormBindings:
     out: FormBindings = {}
     for key, value in data.items():
+        if value is None:
+            continue
         import capo_amplifyuibuilder.types.form_binding_element
 
         out[key] = capo_amplifyuibuilder.types.form_binding_element.deserialize_json(

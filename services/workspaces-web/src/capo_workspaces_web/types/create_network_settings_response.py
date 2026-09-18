@@ -24,7 +24,7 @@ def serialize_json(value: CreateNetworkSettingsResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateNetworkSettingsResponse:
     out: CreateNetworkSettingsResponse = {}  # type: ignore[typeddict-item]
-    if "networkSettingsArn" in data:
+    if data.get("networkSettingsArn") is not None:
         out["network_settings_arn"] = data["networkSettingsArn"]
     else:
         raise DeserializationError(

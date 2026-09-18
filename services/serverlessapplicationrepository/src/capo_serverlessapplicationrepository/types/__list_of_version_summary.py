@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> __listOfVersionSummary:
 
     out: __listOfVersionSummary = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_serverlessapplicationrepository.types.version_summary.deserialize_json(
                 item

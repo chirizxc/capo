@@ -4,6 +4,8 @@ from typing import TYPE_CHECKING
 
 from typing_extensions import TypedDict
 
+from capo_lightsail.errors import DeserializationError
+
 if TYPE_CHECKING:
     import capo_lightsail.types.container_service_name
 
@@ -16,9 +18,16 @@ class DeleteContainerServiceRequest(TypedDict, closed=True):
 # --- awsJson1_1 ser/de ---
 def serialize_aws_json_1_1(value: DeleteContainerServiceRequest) -> dict:
     out: dict = {}
+    out["serviceName"] = value["service_name"]
     return out
 
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteContainerServiceRequest:
     out: DeleteContainerServiceRequest = {}  # type: ignore[typeddict-item]
+    if data.get("serviceName") is not None:
+        out["service_name"] = data["serviceName"]
+    else:
+        raise DeserializationError(
+            "DeleteContainerServiceRequest.service_name required"
+        )
     return out

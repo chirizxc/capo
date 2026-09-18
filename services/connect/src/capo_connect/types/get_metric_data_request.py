@@ -67,7 +67,7 @@ def serialize_json(value: GetMetricDataRequest) -> dict:
 
 def deserialize_json(data: dict) -> GetMetricDataRequest:
     out: GetMetricDataRequest = {}  # type: ignore[typeddict-item]
-    if "StartTime" in data:
+    if data.get("StartTime") is not None:
         import capo_connect.types.timestamp
 
         out["start_time"] = capo_connect.types.timestamp.deserialize_json(
@@ -75,25 +75,25 @@ def deserialize_json(data: dict) -> GetMetricDataRequest:
         )
     else:
         raise DeserializationError("GetMetricDataRequest.start_time required")
-    if "EndTime" in data:
+    if data.get("EndTime") is not None:
         import capo_connect.types.timestamp
 
         out["end_time"] = capo_connect.types.timestamp.deserialize_json(data["EndTime"])
     else:
         raise DeserializationError("GetMetricDataRequest.end_time required")
-    if "Filters" in data:
+    if data.get("Filters") is not None:
         import capo_connect.types.filters
 
         out["filters"] = capo_connect.types.filters.deserialize_json(data["Filters"])
     else:
         raise DeserializationError("GetMetricDataRequest.filters required")
-    if "Groupings" in data:
+    if data.get("Groupings") is not None:
         import capo_connect.types.groupings
 
         out["groupings"] = capo_connect.types.groupings.deserialize_json(
             data["Groupings"]
         )
-    if "HistoricalMetrics" in data:
+    if data.get("HistoricalMetrics") is not None:
         import capo_connect.types.historical_metrics
 
         out["historical_metrics"] = (
@@ -103,8 +103,8 @@ def deserialize_json(data: dict) -> GetMetricDataRequest:
         )
     else:
         raise DeserializationError("GetMetricDataRequest.historical_metrics required")
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
     return out

@@ -99,55 +99,55 @@ def serialize_json(value: ContainerSettings) -> dict:
 
 def deserialize_json(data: dict) -> ContainerSettings:
     out: ContainerSettings = {}  # type: ignore[typeddict-item]
-    if "cmfcSettings" in data:
+    if data.get("cmfcSettings") is not None:
         import capo_mediaconvert.types.cmfc_settings
 
         out["cmfc_settings"] = capo_mediaconvert.types.cmfc_settings.deserialize_json(
             data["cmfcSettings"]
         )
-    if "container" in data:
+    if data.get("container") is not None:
         import capo_mediaconvert.types.container_type
 
         out["container"] = capo_mediaconvert.types.container_type.deserialize_json(
             data["container"]
         )
-    if "f4vSettings" in data:
+    if data.get("f4vSettings") is not None:
         import capo_mediaconvert.types.f4v_settings
 
         out["f4v_settings"] = capo_mediaconvert.types.f4v_settings.deserialize_json(
             data["f4vSettings"]
         )
-    if "m2tsSettings" in data:
+    if data.get("m2tsSettings") is not None:
         import capo_mediaconvert.types.m2ts_settings
 
         out["m2ts_settings"] = capo_mediaconvert.types.m2ts_settings.deserialize_json(
             data["m2tsSettings"]
         )
-    if "m3u8Settings" in data:
+    if data.get("m3u8Settings") is not None:
         import capo_mediaconvert.types.m3u8_settings
 
         out["m3u8_settings"] = capo_mediaconvert.types.m3u8_settings.deserialize_json(
             data["m3u8Settings"]
         )
-    if "movSettings" in data:
+    if data.get("movSettings") is not None:
         import capo_mediaconvert.types.mov_settings
 
         out["mov_settings"] = capo_mediaconvert.types.mov_settings.deserialize_json(
             data["movSettings"]
         )
-    if "mp4Settings" in data:
+    if data.get("mp4Settings") is not None:
         import capo_mediaconvert.types.mp4_settings
 
         out["mp4_settings"] = capo_mediaconvert.types.mp4_settings.deserialize_json(
             data["mp4Settings"]
         )
-    if "mpdSettings" in data:
+    if data.get("mpdSettings") is not None:
         import capo_mediaconvert.types.mpd_settings
 
         out["mpd_settings"] = capo_mediaconvert.types.mpd_settings.deserialize_json(
             data["mpdSettings"]
         )
-    if "mxfSettings" in data:
+    if data.get("mxfSettings") is not None:
         import capo_mediaconvert.types.mxf_settings
 
         out["mxf_settings"] = capo_mediaconvert.types.mxf_settings.deserialize_json(

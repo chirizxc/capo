@@ -52,7 +52,7 @@ def serialize_json(value: DomainUnitPolicyGrantPrincipal) -> dict:
 
 def deserialize_json(data: dict) -> DomainUnitPolicyGrantPrincipal:
     out: DomainUnitPolicyGrantPrincipal = {}  # type: ignore[typeddict-item]
-    if "domainUnitDesignation" in data:
+    if data.get("domainUnitDesignation") is not None:
         import capo_datazone.types.domain_unit_designation
 
         out["domain_unit_designation"] = (
@@ -64,9 +64,9 @@ def deserialize_json(data: dict) -> DomainUnitPolicyGrantPrincipal:
         raise DeserializationError(
             "DomainUnitPolicyGrantPrincipal.domain_unit_designation required"
         )
-    if "domainUnitIdentifier" in data:
+    if data.get("domainUnitIdentifier") is not None:
         out["domain_unit_identifier"] = data["domainUnitIdentifier"]
-    if "domainUnitGrantFilter" in data:
+    if data.get("domainUnitGrantFilter") is not None:
         import capo_datazone.types.domain_unit_grant_filter
 
         out["domain_unit_grant_filter"] = (

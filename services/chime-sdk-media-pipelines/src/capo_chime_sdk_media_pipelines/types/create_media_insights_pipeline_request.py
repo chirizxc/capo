@@ -96,7 +96,7 @@ def serialize_json(value: CreateMediaInsightsPipelineRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateMediaInsightsPipelineRequest:
     out: CreateMediaInsightsPipelineRequest = {}  # type: ignore[typeddict-item]
-    if "MediaInsightsPipelineConfigurationArn" in data:
+    if data.get("MediaInsightsPipelineConfigurationArn") is not None:
         out["media_insights_pipeline_configuration_arn"] = data[
             "MediaInsightsPipelineConfigurationArn"
         ]
@@ -104,7 +104,7 @@ def deserialize_json(data: dict) -> CreateMediaInsightsPipelineRequest:
         raise DeserializationError(
             "CreateMediaInsightsPipelineRequest.media_insights_pipeline_configuration_arn required"
         )
-    if "KinesisVideoStreamSourceRuntimeConfiguration" in data:
+    if data.get("KinesisVideoStreamSourceRuntimeConfiguration") is not None:
         import capo_chime_sdk_media_pipelines.types.kinesis_video_stream_source_runtime_configuration
 
         out["kinesis_video_stream_source_runtime_configuration"] = (
@@ -112,7 +112,7 @@ def deserialize_json(data: dict) -> CreateMediaInsightsPipelineRequest:
                 data["KinesisVideoStreamSourceRuntimeConfiguration"]
             )
         )
-    if "MediaInsightsRuntimeMetadata" in data:
+    if data.get("MediaInsightsRuntimeMetadata") is not None:
         import capo_chime_sdk_media_pipelines.types.media_insights_runtime_metadata
 
         out["media_insights_runtime_metadata"] = (
@@ -120,7 +120,7 @@ def deserialize_json(data: dict) -> CreateMediaInsightsPipelineRequest:
                 data["MediaInsightsRuntimeMetadata"]
             )
         )
-    if "KinesisVideoStreamRecordingSourceRuntimeConfiguration" in data:
+    if data.get("KinesisVideoStreamRecordingSourceRuntimeConfiguration") is not None:
         import capo_chime_sdk_media_pipelines.types.kinesis_video_stream_recording_source_runtime_configuration
 
         out["kinesis_video_stream_recording_source_runtime_configuration"] = (
@@ -128,7 +128,7 @@ def deserialize_json(data: dict) -> CreateMediaInsightsPipelineRequest:
                 data["KinesisVideoStreamRecordingSourceRuntimeConfiguration"]
             )
         )
-    if "S3RecordingSinkRuntimeConfiguration" in data:
+    if data.get("S3RecordingSinkRuntimeConfiguration") is not None:
         import capo_chime_sdk_media_pipelines.types.s3_recording_sink_runtime_configuration
 
         out["s3_recording_sink_runtime_configuration"] = (
@@ -136,12 +136,12 @@ def deserialize_json(data: dict) -> CreateMediaInsightsPipelineRequest:
                 data["S3RecordingSinkRuntimeConfiguration"]
             )
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_chime_sdk_media_pipelines.types.tag_list
 
         out["tags"] = capo_chime_sdk_media_pipelines.types.tag_list.deserialize_json(
             data["Tags"]
         )
-    if "ClientRequestToken" in data:
+    if data.get("ClientRequestToken") is not None:
         out["client_request_token"] = data["ClientRequestToken"]
     return out

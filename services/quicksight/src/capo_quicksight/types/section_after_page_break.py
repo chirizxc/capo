@@ -29,7 +29,7 @@ def serialize_json(value: SectionAfterPageBreak) -> dict:
 
 def deserialize_json(data: dict) -> SectionAfterPageBreak:
     out: SectionAfterPageBreak = {}  # type: ignore[typeddict-item]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_quicksight.types.section_page_break_status
 
         out["status"] = (

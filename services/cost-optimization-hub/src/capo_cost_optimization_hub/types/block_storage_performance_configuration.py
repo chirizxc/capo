@@ -14,16 +14,32 @@ class BlockStoragePerformanceConfiguration(TypedDict, closed=True):
 def serialize_aws_json_1_0(value: BlockStoragePerformanceConfiguration) -> dict:
     out: dict = {}
     if "iops" in value:
-        out["iops"] = value["iops"]
+        out["iops"] = (
+            "NaN"
+            if value["iops"] != value["iops"]
+            else "Infinity"
+            if value["iops"] == float("inf")
+            else "-Infinity"
+            if value["iops"] == float("-inf")
+            else value["iops"]
+        )
     if "throughput" in value:
-        out["throughput"] = value["throughput"]
+        out["throughput"] = (
+            "NaN"
+            if value["throughput"] != value["throughput"]
+            else "Infinity"
+            if value["throughput"] == float("inf")
+            else "-Infinity"
+            if value["throughput"] == float("-inf")
+            else value["throughput"]
+        )
     return out
 
 
 def deserialize_aws_json_1_0(data: dict) -> BlockStoragePerformanceConfiguration:
     out: BlockStoragePerformanceConfiguration = {}  # type: ignore[typeddict-item]
-    if "iops" in data:
-        out["iops"] = data["iops"]
-    if "throughput" in data:
-        out["throughput"] = data["throughput"]
+    if data.get("iops") is not None:
+        out["iops"] = float(data["iops"])
+    if data.get("throughput") is not None:
+        out["throughput"] = float(data["throughput"])
     return out

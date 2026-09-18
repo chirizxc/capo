@@ -44,7 +44,7 @@ def serialize_aws_json_1_1(value: ArtifactLocation) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ArtifactLocation:
     out: ArtifactLocation = {}  # type: ignore[typeddict-item]
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_codepipeline.types.artifact_location_type
 
         out["type"] = (
@@ -52,7 +52,7 @@ def deserialize_aws_json_1_1(data: dict) -> ArtifactLocation:
                 data["type"]
             )
         )
-    if "s3Location" in data:
+    if data.get("s3Location") is not None:
         import capo_codepipeline.types.s3_artifact_location
 
         out["s3_location"] = (

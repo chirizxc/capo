@@ -34,13 +34,13 @@ def deserialize_aws_json_1_0(
     data: dict,
 ) -> DeleteProtectConfigurationRuleSetNumberOverrideRequest:
     out: DeleteProtectConfigurationRuleSetNumberOverrideRequest = {}  # type: ignore[typeddict-item]
-    if "ProtectConfigurationId" in data:
+    if data.get("ProtectConfigurationId") is not None:
         out["protect_configuration_id"] = data["ProtectConfigurationId"]
     else:
         raise DeserializationError(
             "DeleteProtectConfigurationRuleSetNumberOverrideRequest.protect_configuration_id required"
         )
-    if "DestinationPhoneNumber" in data:
+    if data.get("DestinationPhoneNumber") is not None:
         out["destination_phone_number"] = data["DestinationPhoneNumber"]
     else:
         raise DeserializationError(

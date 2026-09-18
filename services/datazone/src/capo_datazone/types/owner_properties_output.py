@@ -49,7 +49,7 @@ def serialize_json(value: OwnerPropertiesOutput) -> dict:
 
 
 def deserialize_json(data: dict) -> OwnerPropertiesOutput:
-    if "user" in data:
+    if data.get("user") is not None:
         import capo_datazone.types.owner_user_properties_output
 
         return {
@@ -57,7 +57,7 @@ def deserialize_json(data: dict) -> OwnerPropertiesOutput:
                 data["user"]
             )
         }
-    elif "group" in data:
+    elif data.get("group") is not None:
         import capo_datazone.types.owner_group_properties_output
 
         return {

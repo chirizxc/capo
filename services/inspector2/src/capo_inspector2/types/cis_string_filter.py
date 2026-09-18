@@ -31,7 +31,7 @@ def serialize_json(value: CisStringFilter) -> dict:
 
 def deserialize_json(data: dict) -> CisStringFilter:
     out: CisStringFilter = {}  # type: ignore[typeddict-item]
-    if "comparison" in data:
+    if data.get("comparison") is not None:
         import capo_inspector2.types.cis_string_comparison
 
         out["comparison"] = (
@@ -41,7 +41,7 @@ def deserialize_json(data: dict) -> CisStringFilter:
         )
     else:
         raise DeserializationError("CisStringFilter.comparison required")
-    if "value" in data:
+    if data.get("value") is not None:
         out["value"] = data["value"]
     else:
         raise DeserializationError("CisStringFilter.value required")

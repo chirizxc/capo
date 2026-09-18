@@ -28,11 +28,11 @@ def serialize_aws_json_1_1(value: DeviceProxy) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeviceProxy:
     out: DeviceProxy = {}  # type: ignore[typeddict-item]
-    if "host" in data:
+    if data.get("host") is not None:
         out["host"] = data["host"]
     else:
         raise DeserializationError("DeviceProxy.host required")
-    if "port" in data:
+    if data.get("port") is not None:
         out["port"] = data["port"]
     else:
         out["port"] = 3128

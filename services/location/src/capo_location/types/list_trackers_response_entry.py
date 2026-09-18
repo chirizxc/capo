@@ -52,19 +52,19 @@ def serialize_json(value: ListTrackersResponseEntry) -> dict:
 
 def deserialize_json(data: dict) -> ListTrackersResponseEntry:
     out: ListTrackersResponseEntry = {}  # type: ignore[typeddict-item]
-    if "TrackerName" in data:
+    if data.get("TrackerName") is not None:
         out["tracker_name"] = data["TrackerName"]
     else:
         raise DeserializationError("ListTrackersResponseEntry.tracker_name required")
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
     else:
         raise DeserializationError("ListTrackersResponseEntry.description required")
-    if "PricingPlan" in data:
+    if data.get("PricingPlan") is not None:
         out["pricing_plan"] = data["PricingPlan"]
-    if "PricingPlanDataSource" in data:
+    if data.get("PricingPlanDataSource") is not None:
         out["pricing_plan_data_source"] = data["PricingPlanDataSource"]
-    if "CreateTime" in data:
+    if data.get("CreateTime") is not None:
         import capo_location.types.timestamp
 
         out["create_time"] = capo_location.types.timestamp.deserialize_json(
@@ -72,7 +72,7 @@ def deserialize_json(data: dict) -> ListTrackersResponseEntry:
         )
     else:
         raise DeserializationError("ListTrackersResponseEntry.create_time required")
-    if "UpdateTime" in data:
+    if data.get("UpdateTime") is not None:
         import capo_location.types.timestamp
 
         out["update_time"] = capo_location.types.timestamp.deserialize_json(

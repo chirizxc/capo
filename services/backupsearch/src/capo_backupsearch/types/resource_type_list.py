@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> ResourceTypeList:
 
     out: ResourceTypeList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_backupsearch.types.resource_type.deserialize_json(item))
     return out

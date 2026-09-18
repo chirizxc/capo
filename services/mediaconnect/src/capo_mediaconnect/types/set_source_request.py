@@ -166,25 +166,25 @@ def serialize_json(value: SetSourceRequest) -> dict:
 
 def deserialize_json(data: dict) -> SetSourceRequest:
     out: SetSourceRequest = {}  # type: ignore[typeddict-item]
-    if "decryption" in data:
+    if data.get("decryption") is not None:
         import capo_mediaconnect.types.encryption
 
         out["decryption"] = capo_mediaconnect.types.encryption.deserialize_json(
             data["decryption"]
         )
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "entitlementArn" in data:
+    if data.get("entitlementArn") is not None:
         out["entitlement_arn"] = data["entitlementArn"]
-    if "ingestPort" in data:
+    if data.get("ingestPort") is not None:
         out["ingest_port"] = data["ingestPort"]
-    if "maxBitrate" in data:
+    if data.get("maxBitrate") is not None:
         out["max_bitrate"] = data["maxBitrate"]
-    if "maxLatency" in data:
+    if data.get("maxLatency") is not None:
         out["max_latency"] = data["maxLatency"]
-    if "maxSyncBuffer" in data:
+    if data.get("maxSyncBuffer") is not None:
         out["max_sync_buffer"] = data["maxSyncBuffer"]
-    if "mediaStreamSourceConfigurations" in data:
+    if data.get("mediaStreamSourceConfigurations") is not None:
         import capo_mediaconnect.types.__list_of_media_stream_source_configuration_request
 
         out["media_stream_source_configurations"] = (
@@ -192,31 +192,31 @@ def deserialize_json(data: dict) -> SetSourceRequest:
                 data["mediaStreamSourceConfigurations"]
             )
         )
-    if "minLatency" in data:
+    if data.get("minLatency") is not None:
         out["min_latency"] = data["minLatency"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "protocol" in data:
+    if data.get("protocol") is not None:
         import capo_mediaconnect.types.protocol
 
         out["protocol"] = capo_mediaconnect.types.protocol.deserialize_json(
             data["protocol"]
         )
-    if "senderControlPort" in data:
+    if data.get("senderControlPort") is not None:
         out["sender_control_port"] = data["senderControlPort"]
-    if "senderIpAddress" in data:
+    if data.get("senderIpAddress") is not None:
         out["sender_ip_address"] = data["senderIpAddress"]
-    if "sourceListenerAddress" in data:
+    if data.get("sourceListenerAddress") is not None:
         out["source_listener_address"] = data["sourceListenerAddress"]
-    if "sourceListenerPort" in data:
+    if data.get("sourceListenerPort") is not None:
         out["source_listener_port"] = data["sourceListenerPort"]
-    if "streamId" in data:
+    if data.get("streamId") is not None:
         out["stream_id"] = data["streamId"]
-    if "vpcInterfaceName" in data:
+    if data.get("vpcInterfaceName") is not None:
         out["vpc_interface_name"] = data["vpcInterfaceName"]
-    if "whitelistCidr" in data:
+    if data.get("whitelistCidr") is not None:
         out["whitelist_cidr"] = data["whitelistCidr"]
-    if "gatewayBridgeSource" in data:
+    if data.get("gatewayBridgeSource") is not None:
         import capo_mediaconnect.types.set_gateway_bridge_source_request
 
         out["gateway_bridge_source"] = (
@@ -224,7 +224,7 @@ def deserialize_json(data: dict) -> SetSourceRequest:
                 data["gatewayBridgeSource"]
             )
         )
-    if "ndiSourceSettings" in data:
+    if data.get("ndiSourceSettings") is not None:
         import capo_mediaconnect.types.ndi_source_settings
 
         out["ndi_source_settings"] = (
@@ -232,13 +232,13 @@ def deserialize_json(data: dict) -> SetSourceRequest:
                 data["ndiSourceSettings"]
             )
         )
-    if "sourceTags" in data:
+    if data.get("sourceTags") is not None:
         import capo_mediaconnect.types.__map_of_string
 
         out["source_tags"] = capo_mediaconnect.types.__map_of_string.deserialize_json(
             data["sourceTags"]
         )
-    if "routerIntegrationState" in data:
+    if data.get("routerIntegrationState") is not None:
         import capo_mediaconnect.types.state
 
         out["router_integration_state"] = (
@@ -246,7 +246,7 @@ def deserialize_json(data: dict) -> SetSourceRequest:
                 data["routerIntegrationState"]
             )
         )
-    if "routerIntegrationTransitDecryption" in data:
+    if data.get("routerIntegrationTransitDecryption") is not None:
         import capo_mediaconnect.types.flow_transit_encryption
 
         out["router_integration_transit_decryption"] = (

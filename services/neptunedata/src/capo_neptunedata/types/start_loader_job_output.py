@@ -31,11 +31,11 @@ def serialize_json(value: StartLoaderJobOutput) -> dict:
 
 def deserialize_json(data: dict) -> StartLoaderJobOutput:
     out: StartLoaderJobOutput = {}  # type: ignore[typeddict-item]
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
     else:
         raise DeserializationError("StartLoaderJobOutput.status required")
-    if "payload" in data:
+    if data.get("payload") is not None:
         import capo_neptunedata.types.string_valued_map
 
         out["payload"] = capo_neptunedata.types.string_valued_map.deserialize_json(

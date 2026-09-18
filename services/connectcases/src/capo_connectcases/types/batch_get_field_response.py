@@ -36,7 +36,7 @@ def serialize_json(value: BatchGetFieldResponse) -> dict:
 
 def deserialize_json(data: dict) -> BatchGetFieldResponse:
     out: BatchGetFieldResponse = {}  # type: ignore[typeddict-item]
-    if "fields" in data:
+    if data.get("fields") is not None:
         import capo_connectcases.types.batch_get_field_list
 
         out["fields"] = capo_connectcases.types.batch_get_field_list.deserialize_json(
@@ -44,7 +44,7 @@ def deserialize_json(data: dict) -> BatchGetFieldResponse:
         )
     else:
         raise DeserializationError("BatchGetFieldResponse.fields required")
-    if "errors" in data:
+    if data.get("errors") is not None:
         import capo_connectcases.types.batch_get_field_error_list
 
         out["errors"] = (

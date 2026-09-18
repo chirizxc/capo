@@ -41,7 +41,7 @@ def serialize_aws_json_1_1(value: SolutionUpdateConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SolutionUpdateConfig:
     out: SolutionUpdateConfig = {}  # type: ignore[typeddict-item]
-    if "autoTrainingConfig" in data:
+    if data.get("autoTrainingConfig") is not None:
         import capo_personalize.types.auto_training_config
 
         out["auto_training_config"] = (
@@ -49,7 +49,7 @@ def deserialize_aws_json_1_1(data: dict) -> SolutionUpdateConfig:
                 data["autoTrainingConfig"]
             )
         )
-    if "eventsConfig" in data:
+    if data.get("eventsConfig") is not None:
         import capo_personalize.types.events_config
 
         out["events_config"] = (

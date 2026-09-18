@@ -13,9 +13,9 @@ from capo_datasync import AsyncDataSyncClient
 
 
 async def main():
-    async with AsyncDataSyncClient() as s3:
+    async with AsyncDataSyncClient() as data_sync:
         # Example: call the cancel_task_execution operation
-        response = await s3.cancel_task_execution()
+        response = await data_sync.cancel_task_execution()
         print(response)
 ```
 
@@ -28,9 +28,9 @@ from capo_datasync import AsyncDataSyncClient
 
 
 async def main():
-    async with AsyncDataSyncClient() as s3:
+    async with AsyncDataSyncClient() as data_sync:
         # Example: paginate over list_agents
-        async for item in s3.iter_list_agents():
+        async for item in data_sync.iter_list_agents():
             print(item)
 ```
 
@@ -44,9 +44,9 @@ from capo_datasync.error import InternalException
 
 
 async def main():
-    async with AsyncDataSyncClient() as s3:
+    async with AsyncDataSyncClient() as data_sync:
         try:
-            await s3.cancel_task_execution()
+            await data_sync.cancel_task_execution()
         except InternalException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -63,13 +63,13 @@ from capo_datasync import AsyncDataSyncClient
 
 
 async def main():
-    async with AsyncDataSyncClient() as s3:
+    async with AsyncDataSyncClient() as data_sync:
         # Default: 3 attempts for every operation
-        response = await s3.cancel_task_execution()
+        response = await data_sync.cancel_task_execution()
 
         # Override per operation
-        response = await s3.cancel_task_execution(config_overrides={"retry_max_attempts": 5})
+        response = await data_sync.cancel_task_execution(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.cancel_task_execution(config_overrides={"retry_max_attempts": 1})
+        response = await data_sync.cancel_task_execution(config_overrides={"retry_max_attempts": 1})
 ```

@@ -34,7 +34,7 @@ def serialize_json(value: Dataset) -> dict:
 
 def deserialize_json(data: dict) -> Dataset:
     out: Dataset = {}  # type: ignore[typeddict-item]
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_cleanroomsml.types.dataset_type
 
         out["type"] = capo_cleanroomsml.types.dataset_type.deserialize_json(
@@ -42,7 +42,7 @@ def deserialize_json(data: dict) -> Dataset:
         )
     else:
         raise DeserializationError("Dataset.type required")
-    if "inputConfig" in data:
+    if data.get("inputConfig") is not None:
         import capo_cleanroomsml.types.dataset_input_config
 
         out["input_config"] = (

@@ -23,5 +23,7 @@ def deserialize_aws_json_1_1(data: list) -> RedactedFields:
 
     out: RedactedFields = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_waf.types.field_to_match.deserialize_aws_json_1_1(item))
     return out

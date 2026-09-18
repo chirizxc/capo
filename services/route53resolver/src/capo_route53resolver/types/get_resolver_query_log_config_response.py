@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: GetResolverQueryLogConfigResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetResolverQueryLogConfigResponse:
     out: GetResolverQueryLogConfigResponse = {}  # type: ignore[typeddict-item]
-    if "ResolverQueryLogConfig" in data:
+    if data.get("ResolverQueryLogConfig") is not None:
         import capo_route53resolver.types.resolver_query_log_config
 
         out["resolver_query_log_config"] = (

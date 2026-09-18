@@ -35,17 +35,17 @@ def serialize_json(value: GuardrailContentFilterConfig) -> dict:
 
 def deserialize_json(data: dict) -> GuardrailContentFilterConfig:
     out: GuardrailContentFilterConfig = {}  # type: ignore[typeddict-item]
-    if "type" in data:
+    if data.get("type") is not None:
         out["type"] = data["type"]
     else:
         raise DeserializationError("GuardrailContentFilterConfig.type required")
-    if "inputStrength" in data:
+    if data.get("inputStrength") is not None:
         out["input_strength"] = data["inputStrength"]
     else:
         raise DeserializationError(
             "GuardrailContentFilterConfig.input_strength required"
         )
-    if "outputStrength" in data:
+    if data.get("outputStrength") is not None:
         out["output_strength"] = data["outputStrength"]
     else:
         raise DeserializationError(

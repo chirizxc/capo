@@ -38,18 +38,18 @@ def serialize_aws_json_1_0(value: TestHypervisorConfigurationInput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> TestHypervisorConfigurationInput:
     out: TestHypervisorConfigurationInput = {}  # type: ignore[typeddict-item]
-    if "GatewayArn" in data:
+    if data.get("GatewayArn") is not None:
         out["gateway_arn"] = data["GatewayArn"]
     else:
         raise DeserializationError(
             "TestHypervisorConfigurationInput.gateway_arn required"
         )
-    if "Host" in data:
+    if data.get("Host") is not None:
         out["host"] = data["Host"]
     else:
         raise DeserializationError("TestHypervisorConfigurationInput.host required")
-    if "Username" in data:
+    if data.get("Username") is not None:
         out["username"] = data["Username"]
-    if "Password" in data:
+    if data.get("Password") is not None:
         out["password"] = data["Password"]
     return out

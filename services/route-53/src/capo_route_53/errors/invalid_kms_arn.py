@@ -41,7 +41,7 @@ class InvalidKMSArn(ServiceError):
             is_throttling_error=False,
             is_retryable=False,
             code="InvalidKMSArn",
-            message=message if message is not None else data.get("message"),
+            message=message,
         )
         self.data = data
 

@@ -34,9 +34,9 @@ def serialize_aws_json_1_1(value: DescribeEventsResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeEventsResponse:
     out: DescribeEventsResponse = {}  # type: ignore[typeddict-item]
-    if "Marker" in data:
+    if data.get("Marker") is not None:
         out["marker"] = data["Marker"]
-    if "Events" in data:
+    if data.get("Events") is not None:
         import capo_database_migration_service.types.event_list
 
         out["events"] = (

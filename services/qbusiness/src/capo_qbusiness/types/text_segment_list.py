@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> TextSegmentList:
 
     out: TextSegmentList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_qbusiness.types.text_segment.deserialize_json(item))
     return out

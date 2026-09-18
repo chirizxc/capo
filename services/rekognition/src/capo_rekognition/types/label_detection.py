@@ -44,20 +44,20 @@ def serialize_aws_json_1_1(value: LabelDetection) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> LabelDetection:
     out: LabelDetection = {}  # type: ignore[typeddict-item]
-    if "Timestamp" in data:
+    if data.get("Timestamp") is not None:
         out["timestamp"] = data["Timestamp"]
     else:
         out["timestamp"] = 0
-    if "Label" in data:
+    if data.get("Label") is not None:
         import capo_rekognition.types.label
 
         out["label"] = capo_rekognition.types.label.deserialize_aws_json_1_1(
             data["Label"]
         )
-    if "StartTimestampMillis" in data:
+    if data.get("StartTimestampMillis") is not None:
         out["start_timestamp_millis"] = data["StartTimestampMillis"]
-    if "EndTimestampMillis" in data:
+    if data.get("EndTimestampMillis") is not None:
         out["end_timestamp_millis"] = data["EndTimestampMillis"]
-    if "DurationMillis" in data:
+    if data.get("DurationMillis") is not None:
         out["duration_millis"] = data["DurationMillis"]
     return out

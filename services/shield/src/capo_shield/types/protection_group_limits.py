@@ -34,11 +34,11 @@ def serialize_aws_json_1_1(value: ProtectionGroupLimits) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ProtectionGroupLimits:
     out: ProtectionGroupLimits = {}  # type: ignore[typeddict-item]
-    if "MaxProtectionGroups" in data:
+    if data.get("MaxProtectionGroups") is not None:
         out["max_protection_groups"] = data["MaxProtectionGroups"]
     else:
         out["max_protection_groups"] = 0
-    if "PatternTypeLimits" in data:
+    if data.get("PatternTypeLimits") is not None:
         import capo_shield.types.protection_group_pattern_type_limits
 
         out["pattern_type_limits"] = (

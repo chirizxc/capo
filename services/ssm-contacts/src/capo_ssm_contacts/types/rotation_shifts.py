@@ -23,6 +23,8 @@ def deserialize_aws_json_1_1(data: list) -> RotationShifts:
 
     out: RotationShifts = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_ssm_contacts.types.rotation_shift.deserialize_aws_json_1_1(item)
         )

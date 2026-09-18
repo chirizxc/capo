@@ -28,7 +28,7 @@ def serialize_json(value: NtpPayload) -> dict:
 
 def deserialize_json(data: dict) -> NtpPayload:
     out: NtpPayload = {}  # type: ignore[typeddict-item]
-    if "NtpServers" in data:
+    if data.get("NtpServers") is not None:
         import capo_panorama.types.ntp_server_list
 
         out["ntp_servers"] = capo_panorama.types.ntp_server_list.deserialize_json(

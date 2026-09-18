@@ -82,15 +82,15 @@ def serialize_json(value: Statistics) -> dict:
         value["runtime_in_seconds"]
     )
     if "aggregation_start_time" in value:
-        import capo_deadline.types.timestamp
+        import capo_deadline._protocol.serialize
 
-        out["aggregationStartTime"] = capo_deadline.types.timestamp.serialize_json(
+        out["aggregationStartTime"] = capo_deadline._protocol.serialize.fmt_date_time(
             value["aggregation_start_time"]
         )
     if "aggregation_end_time" in value:
-        import capo_deadline.types.timestamp
+        import capo_deadline._protocol.serialize
 
-        out["aggregationEndTime"] = capo_deadline.types.timestamp.serialize_json(
+        out["aggregationEndTime"] = capo_deadline._protocol.serialize.fmt_date_time(
             value["aggregation_end_time"]
         )
     return out
@@ -98,31 +98,31 @@ def serialize_json(value: Statistics) -> dict:
 
 def deserialize_json(data: dict) -> Statistics:
     out: Statistics = {}  # type: ignore[typeddict-item]
-    if "queueId" in data:
+    if data.get("queueId") is not None:
         out["queue_id"] = data["queueId"]
-    if "fleetId" in data:
+    if data.get("fleetId") is not None:
         out["fleet_id"] = data["fleetId"]
-    if "jobId" in data:
+    if data.get("jobId") is not None:
         out["job_id"] = data["jobId"]
-    if "jobName" in data:
+    if data.get("jobName") is not None:
         out["job_name"] = data["jobName"]
-    if "userId" in data:
+    if data.get("userId") is not None:
         out["user_id"] = data["userId"]
-    if "usageType" in data:
+    if data.get("usageType") is not None:
         import capo_deadline.types.usage_type
 
         out["usage_type"] = capo_deadline.types.usage_type.deserialize_json(
             data["usageType"]
         )
-    if "licenseProduct" in data:
+    if data.get("licenseProduct") is not None:
         out["license_product"] = data["licenseProduct"]
-    if "instanceType" in data:
+    if data.get("instanceType") is not None:
         out["instance_type"] = data["instanceType"]
-    if "count" in data:
+    if data.get("count") is not None:
         out["count"] = data["count"]
     else:
         raise DeserializationError("Statistics.count required")
-    if "costInUsd" in data:
+    if data.get("costInUsd") is not None:
         import capo_deadline.types.stats
 
         out["cost_in_usd"] = capo_deadline.types.stats.deserialize_json(
@@ -130,7 +130,7 @@ def deserialize_json(data: dict) -> Statistics:
         )
     else:
         raise DeserializationError("Statistics.cost_in_usd required")
-    if "runtimeInSeconds" in data:
+    if data.get("runtimeInSeconds") is not None:
         import capo_deadline.types.stats
 
         out["runtime_in_seconds"] = capo_deadline.types.stats.deserialize_json(
@@ -138,16 +138,16 @@ def deserialize_json(data: dict) -> Statistics:
         )
     else:
         raise DeserializationError("Statistics.runtime_in_seconds required")
-    if "aggregationStartTime" in data:
-        import capo_deadline.types.timestamp
+    if data.get("aggregationStartTime") is not None:
+        import datetime
 
-        out["aggregation_start_time"] = capo_deadline.types.timestamp.deserialize_json(
-            data["aggregationStartTime"]
+        out["aggregation_start_time"] = datetime.datetime.fromisoformat(
+            data["aggregationStartTime"].replace("Z", "+00:00")
         )
-    if "aggregationEndTime" in data:
-        import capo_deadline.types.timestamp
+    if data.get("aggregationEndTime") is not None:
+        import datetime
 
-        out["aggregation_end_time"] = capo_deadline.types.timestamp.deserialize_json(
-            data["aggregationEndTime"]
+        out["aggregation_end_time"] = datetime.datetime.fromisoformat(
+            data["aggregationEndTime"].replace("Z", "+00:00")
         )
     return out

@@ -112,15 +112,16 @@ class EnvironmentResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_proton.types.create_environment_input.CreateEnvironmentInput = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        input_["template_name"] = template_name
-        input_["template_major_version"] = template_major_version
+        input_: capo_proton.types.create_environment_input.CreateEnvironmentInput = {
+            "name": name,
+            "template_name": template_name,
+            "template_major_version": template_major_version,
+            "spec": spec,
+        }
         if template_minor_version is not None:
             input_["template_minor_version"] = template_minor_version
         if description is not None:
             input_["description"] = description
-        input_["spec"] = spec
         if proton_service_role_arn is not None:
             input_["proton_service_role_arn"] = proton_service_role_arn
         if environment_account_connection_id is not None:
@@ -141,6 +142,7 @@ class EnvironmentResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -178,14 +180,16 @@ class EnvironmentResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_proton.types.get_environment_input.GetEnvironmentInput = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_proton.types.get_environment_input.GetEnvironmentInput = {
+            "name": name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update(
@@ -252,8 +256,10 @@ class EnvironmentResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_proton.types.update_environment_input.UpdateEnvironmentInput = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_proton.types.update_environment_input.UpdateEnvironmentInput = {
+            "name": name,
+            "deployment_type": deployment_type,
+        }
         if description is not None:
             input_["description"] = description
         if spec is not None:
@@ -264,7 +270,6 @@ class EnvironmentResource:
             input_["template_minor_version"] = template_minor_version
         if proton_service_role_arn is not None:
             input_["proton_service_role_arn"] = proton_service_role_arn
-        input_["deployment_type"] = deployment_type
         if environment_account_connection_id is not None:
             input_["environment_account_connection_id"] = (
                 environment_account_connection_id
@@ -281,6 +286,7 @@ class EnvironmentResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -319,14 +325,16 @@ class EnvironmentResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_proton.types.delete_environment_input.DeleteEnvironmentInput = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_proton.types.delete_environment_input.DeleteEnvironmentInput = {
+            "name": name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -372,7 +380,7 @@ class EnvironmentResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_proton.types.list_environments_input.ListEnvironmentsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_proton.types.list_environments_input.ListEnvironmentsInput = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -385,6 +393,7 @@ class EnvironmentResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -458,15 +467,16 @@ class AsyncEnvironmentResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_proton.types.create_environment_input.CreateEnvironmentInput = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        input_["template_name"] = template_name
-        input_["template_major_version"] = template_major_version
+        input_: capo_proton.types.create_environment_input.CreateEnvironmentInput = {
+            "name": name,
+            "template_name": template_name,
+            "template_major_version": template_major_version,
+            "spec": spec,
+        }
         if template_minor_version is not None:
             input_["template_minor_version"] = template_minor_version
         if description is not None:
             input_["description"] = description
-        input_["spec"] = spec
         if proton_service_role_arn is not None:
             input_["proton_service_role_arn"] = proton_service_role_arn
         if environment_account_connection_id is not None:
@@ -487,6 +497,7 @@ class AsyncEnvironmentResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -525,14 +536,16 @@ class AsyncEnvironmentResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_proton.types.get_environment_input.GetEnvironmentInput = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_proton.types.get_environment_input.GetEnvironmentInput = {
+            "name": name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update(
@@ -600,8 +613,10 @@ class AsyncEnvironmentResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_proton.types.update_environment_input.UpdateEnvironmentInput = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_proton.types.update_environment_input.UpdateEnvironmentInput = {
+            "name": name,
+            "deployment_type": deployment_type,
+        }
         if description is not None:
             input_["description"] = description
         if spec is not None:
@@ -612,7 +627,6 @@ class AsyncEnvironmentResource:
             input_["template_minor_version"] = template_minor_version
         if proton_service_role_arn is not None:
             input_["proton_service_role_arn"] = proton_service_role_arn
-        input_["deployment_type"] = deployment_type
         if environment_account_connection_id is not None:
             input_["environment_account_connection_id"] = (
                 environment_account_connection_id
@@ -629,6 +643,7 @@ class AsyncEnvironmentResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -668,14 +683,16 @@ class AsyncEnvironmentResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_proton.types.delete_environment_input.DeleteEnvironmentInput = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_proton.types.delete_environment_input.DeleteEnvironmentInput = {
+            "name": name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -722,7 +739,7 @@ class AsyncEnvironmentResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_proton.types.list_environments_input.ListEnvironmentsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_proton.types.list_environments_input.ListEnvironmentsInput = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -735,4 +752,5 @@ class AsyncEnvironmentResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

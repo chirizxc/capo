@@ -28,11 +28,11 @@ def serialize_aws_json_1_1(value: GetDataSourceInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetDataSourceInput:
     out: GetDataSourceInput = {}  # type: ignore[typeddict-item]
-    if "DataSourceId" in data:
+    if data.get("DataSourceId") is not None:
         out["data_source_id"] = data["DataSourceId"]
     else:
         raise DeserializationError("GetDataSourceInput.data_source_id required")
-    if "Verbose" in data:
+    if data.get("Verbose") is not None:
         out["verbose"] = data["Verbose"]
     else:
         out["verbose"] = False

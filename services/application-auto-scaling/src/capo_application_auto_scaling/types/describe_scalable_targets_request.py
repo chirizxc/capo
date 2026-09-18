@@ -70,7 +70,7 @@ def serialize_aws_json_1_1(value: DescribeScalableTargetsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeScalableTargetsRequest:
     out: DescribeScalableTargetsRequest = {}  # type: ignore[typeddict-item]
-    if "ServiceNamespace" in data:
+    if data.get("ServiceNamespace") is not None:
         import capo_application_auto_scaling.types.service_namespace
 
         out["service_namespace"] = (
@@ -82,7 +82,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeScalableTargetsRequest:
         raise DeserializationError(
             "DescribeScalableTargetsRequest.service_namespace required"
         )
-    if "ResourceIds" in data:
+    if data.get("ResourceIds") is not None:
         import capo_application_auto_scaling.types.resource_ids_max_len1600
 
         out["resource_ids"] = (
@@ -90,7 +90,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeScalableTargetsRequest:
                 data["ResourceIds"]
             )
         )
-    if "ScalableDimension" in data:
+    if data.get("ScalableDimension") is not None:
         import capo_application_auto_scaling.types.scalable_dimension
 
         out["scalable_dimension"] = (
@@ -98,8 +98,8 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeScalableTargetsRequest:
                 data["ScalableDimension"]
             )
         )
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

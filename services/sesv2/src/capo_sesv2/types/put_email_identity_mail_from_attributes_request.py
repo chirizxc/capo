@@ -41,9 +41,9 @@ def serialize_json(value: PutEmailIdentityMailFromAttributesRequest) -> dict:
 
 def deserialize_json(data: dict) -> PutEmailIdentityMailFromAttributesRequest:
     out: PutEmailIdentityMailFromAttributesRequest = {}  # type: ignore[typeddict-item]
-    if "MailFromDomain" in data:
+    if data.get("MailFromDomain") is not None:
         out["mail_from_domain"] = data["MailFromDomain"]
-    if "BehaviorOnMxFailure" in data:
+    if data.get("BehaviorOnMxFailure") is not None:
         import capo_sesv2.types.behavior_on_mx_failure
 
         out["behavior_on_mx_failure"] = (

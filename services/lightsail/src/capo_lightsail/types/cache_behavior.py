@@ -27,7 +27,7 @@ def serialize_aws_json_1_1(value: CacheBehavior) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CacheBehavior:
     out: CacheBehavior = {}  # type: ignore[typeddict-item]
-    if "behavior" in data:
+    if data.get("behavior") is not None:
         import capo_lightsail.types.behavior_enum
 
         out["behavior"] = capo_lightsail.types.behavior_enum.deserialize_aws_json_1_1(

@@ -48,17 +48,17 @@ def serialize_json(value: ListProfileObjectsRequest) -> dict:
 
 def deserialize_json(data: dict) -> ListProfileObjectsRequest:
     out: ListProfileObjectsRequest = {}  # type: ignore[typeddict-item]
-    if "ObjectTypeName" in data:
+    if data.get("ObjectTypeName") is not None:
         out["object_type_name"] = data["ObjectTypeName"]
     else:
         raise DeserializationError(
             "ListProfileObjectsRequest.object_type_name required"
         )
-    if "ProfileId" in data:
+    if data.get("ProfileId") is not None:
         out["profile_id"] = data["ProfileId"]
     else:
         raise DeserializationError("ListProfileObjectsRequest.profile_id required")
-    if "ObjectFilter" in data:
+    if data.get("ObjectFilter") is not None:
         import capo_customer_profiles.types.object_filter
 
         out["object_filter"] = (

@@ -34,7 +34,7 @@ def serialize_json(value: DescribeFlowExecutionRecordsResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribeFlowExecutionRecordsResponse:
     out: DescribeFlowExecutionRecordsResponse = {}  # type: ignore[typeddict-item]
-    if "flowExecutions" in data:
+    if data.get("flowExecutions") is not None:
         import capo_appflow.types.flow_execution_list
 
         out["flow_executions"] = (
@@ -42,6 +42,6 @@ def deserialize_json(data: dict) -> DescribeFlowExecutionRecordsResponse:
                 data["flowExecutions"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

@@ -32,7 +32,7 @@ def serialize_json(value: WhatsAppOutboundMode) -> dict:
 
 
 def deserialize_json(data: dict) -> WhatsAppOutboundMode:
-    if "agentless" in data:
+    if data.get("agentless") is not None:
         import capo_connectcampaignsv2.types.agentless_config
 
         return {

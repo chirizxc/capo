@@ -31,10 +31,10 @@ def serialize_aws_json_1_1(value: ServerShortInfoResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ServerShortInfoResponse:
     out: ServerShortInfoResponse = {}  # type: ignore[typeddict-item]
-    if "ServerId" in data:
+    if data.get("ServerId") is not None:
         out["server_id"] = data["ServerId"]
-    if "IpAddress" in data:
+    if data.get("IpAddress") is not None:
         out["ip_address"] = data["IpAddress"]
-    if "ServerName" in data:
+    if data.get("ServerName") is not None:
         out["server_name"] = data["ServerName"]
     return out

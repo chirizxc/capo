@@ -24,7 +24,7 @@ def serialize_json(value: CommonControlMappingDetails) -> dict:
 
 def deserialize_json(data: dict) -> CommonControlMappingDetails:
     out: CommonControlMappingDetails = {}  # type: ignore[typeddict-item]
-    if "CommonControlArn" in data:
+    if data.get("CommonControlArn") is not None:
         out["common_control_arn"] = data["CommonControlArn"]
     else:
         raise DeserializationError(

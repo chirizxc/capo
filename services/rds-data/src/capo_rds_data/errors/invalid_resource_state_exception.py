@@ -24,7 +24,7 @@ def serialize_json(value: InvalidResourceStateException_) -> dict:
 
 def deserialize_json(data: dict) -> InvalidResourceStateException_:
     out: InvalidResourceStateException_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     return out
 
@@ -34,15 +34,20 @@ class InvalidResourceStateException(ServiceError):
 
     code: str | None = "InvalidResourceStateException"
 
-    def __init__(self, data: InvalidResourceStateException_):
+    def __init__(
+        self, data: InvalidResourceStateException_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="InvalidResourceStateException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "InvalidResourceStateException":
-        return cls(deserialize_json(data))
+    def from_json(
+        cls, data: dict, message: str | None = None
+    ) -> "InvalidResourceStateException":
+        return cls(deserialize_json(data), message)

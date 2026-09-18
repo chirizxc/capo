@@ -35,11 +35,11 @@ def serialize_json(value: CreateReportRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateReportRequest:
     out: CreateReportRequest = {}  # type: ignore[typeddict-item]
-    if "serviceArn" in data:
+    if data.get("serviceArn") is not None:
         out["service_arn"] = data["serviceArn"]
     else:
         raise DeserializationError("CreateReportRequest.service_arn required")
-    if "reportType" in data:
+    if data.get("reportType") is not None:
         import capo_resiliencehubv2.types.report_type
 
         out["report_type"] = capo_resiliencehubv2.types.report_type.deserialize_json(
@@ -47,6 +47,6 @@ def deserialize_json(data: dict) -> CreateReportRequest:
         )
     else:
         raise DeserializationError("CreateReportRequest.report_type required")
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     return out

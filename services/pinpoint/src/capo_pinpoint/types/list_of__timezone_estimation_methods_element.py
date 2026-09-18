@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> ListOf__TimezoneEstimationMethodsElement:
 
     out: ListOf__TimezoneEstimationMethodsElement = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_pinpoint.types.__timezone_estimation_methods_element.deserialize_json(
                 item

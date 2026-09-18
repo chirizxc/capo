@@ -39,11 +39,11 @@ def serialize_json(value: FindingAggregationAccountDetails) -> dict:
 
 def deserialize_json(data: dict) -> FindingAggregationAccountDetails:
     out: FindingAggregationAccountDetails = {}  # type: ignore[typeddict-item]
-    if "account" in data:
+    if data.get("account") is not None:
         out["account"] = data["account"]
-    if "numberOfActiveFindings" in data:
+    if data.get("numberOfActiveFindings") is not None:
         out["number_of_active_findings"] = data["numberOfActiveFindings"]
-    if "details" in data:
+    if data.get("details") is not None:
         import capo_accessanalyzer.types.finding_aggregation_account_details_map
 
         out["details"] = (

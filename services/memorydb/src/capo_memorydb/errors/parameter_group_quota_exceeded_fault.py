@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: ParameterGroupQuotaExceededFault_) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ParameterGroupQuotaExceededFault_:
     out: ParameterGroupQuotaExceededFault_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     return out
 
@@ -34,15 +34,20 @@ class ParameterGroupQuotaExceededFault(ServiceError):
 
     code: str | None = "ParameterGroupQuotaExceededFault"
 
-    def __init__(self, data: ParameterGroupQuotaExceededFault_):
+    def __init__(
+        self, data: ParameterGroupQuotaExceededFault_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="ParameterGroupQuotaExceededFault",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "ParameterGroupQuotaExceededFault":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "ParameterGroupQuotaExceededFault":
+        return cls(deserialize_aws_json_1_1(data), message)

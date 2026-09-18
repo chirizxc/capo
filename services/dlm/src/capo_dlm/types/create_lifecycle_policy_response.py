@@ -23,6 +23,6 @@ def serialize_json(value: CreateLifecyclePolicyResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateLifecyclePolicyResponse:
     out: CreateLifecyclePolicyResponse = {}  # type: ignore[typeddict-item]
-    if "PolicyId" in data:
+    if data.get("PolicyId") is not None:
         out["policy_id"] = data["PolicyId"]
     return out

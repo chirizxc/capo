@@ -31,6 +31,6 @@ def deserialize_json(
     data: dict,
 ) -> AwsEc2ClientVpnEndpointAuthenticationOptionsMutualAuthenticationDetails:
     out: AwsEc2ClientVpnEndpointAuthenticationOptionsMutualAuthenticationDetails = {}  # type: ignore[typeddict-item]
-    if "ClientRootCertificateChain" in data:
+    if data.get("ClientRootCertificateChain") is not None:
         out["client_root_certificate_chain"] = data["ClientRootCertificateChain"]
     return out

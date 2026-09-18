@@ -32,12 +32,12 @@ def serialize_json(value: AIAgentVersionSummary) -> dict:
 
 def deserialize_json(data: dict) -> AIAgentVersionSummary:
     out: AIAgentVersionSummary = {}  # type: ignore[typeddict-item]
-    if "aiAgentSummary" in data:
+    if data.get("aiAgentSummary") is not None:
         import capo_qconnect.types.ai_agent_summary
 
         out["ai_agent_summary"] = capo_qconnect.types.ai_agent_summary.deserialize_json(
             data["aiAgentSummary"]
         )
-    if "versionNumber" in data:
+    if data.get("versionNumber") is not None:
         out["version_number"] = data["versionNumber"]
     return out

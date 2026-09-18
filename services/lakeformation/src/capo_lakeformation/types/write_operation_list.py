@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> WriteOperationList:
 
     out: WriteOperationList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_lakeformation.types.write_operation.deserialize_json(item))
     return out

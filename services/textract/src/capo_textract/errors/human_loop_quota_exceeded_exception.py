@@ -39,15 +39,15 @@ def serialize_aws_json_1_1(value: HumanLoopQuotaExceededException_) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> HumanLoopQuotaExceededException_:
     out: HumanLoopQuotaExceededException_ = {}  # type: ignore[typeddict-item]
-    if "ResourceType" in data:
+    if data.get("ResourceType") is not None:
         out["resource_type"] = data["ResourceType"]
-    if "QuotaCode" in data:
+    if data.get("QuotaCode") is not None:
         out["quota_code"] = data["QuotaCode"]
-    if "ServiceCode" in data:
+    if data.get("ServiceCode") is not None:
         out["service_code"] = data["ServiceCode"]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
-    if "Code" in data:
+    if data.get("Code") is not None:
         out["code"] = data["Code"]
     return out
 
@@ -57,15 +57,20 @@ class HumanLoopQuotaExceededException(ServiceError):
 
     code: str | None = "HumanLoopQuotaExceededException"
 
-    def __init__(self, data: HumanLoopQuotaExceededException_):
+    def __init__(
+        self, data: HumanLoopQuotaExceededException_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="HumanLoopQuotaExceededException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "HumanLoopQuotaExceededException":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "HumanLoopQuotaExceededException":
+        return cls(deserialize_aws_json_1_1(data), message)

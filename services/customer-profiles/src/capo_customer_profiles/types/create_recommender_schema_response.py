@@ -67,19 +67,19 @@ def serialize_json(value: CreateRecommenderSchemaResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateRecommenderSchemaResponse:
     out: CreateRecommenderSchemaResponse = {}  # type: ignore[typeddict-item]
-    if "RecommenderSchemaArn" in data:
+    if data.get("RecommenderSchemaArn") is not None:
         out["recommender_schema_arn"] = data["RecommenderSchemaArn"]
     else:
         raise DeserializationError(
             "CreateRecommenderSchemaResponse.recommender_schema_arn required"
         )
-    if "RecommenderSchemaName" in data:
+    if data.get("RecommenderSchemaName") is not None:
         out["recommender_schema_name"] = data["RecommenderSchemaName"]
     else:
         raise DeserializationError(
             "CreateRecommenderSchemaResponse.recommender_schema_name required"
         )
-    if "Fields" in data:
+    if data.get("Fields") is not None:
         import capo_customer_profiles.types.recommender_schema_fields
 
         out["fields"] = (
@@ -89,7 +89,7 @@ def deserialize_json(data: dict) -> CreateRecommenderSchemaResponse:
         )
     else:
         raise DeserializationError("CreateRecommenderSchemaResponse.fields required")
-    if "CreatedAt" in data:
+    if data.get("CreatedAt") is not None:
         import capo_customer_profiles.types.timestamp
 
         out["created_at"] = capo_customer_profiles.types.timestamp.deserialize_json(
@@ -99,7 +99,7 @@ def deserialize_json(data: dict) -> CreateRecommenderSchemaResponse:
         raise DeserializationError(
             "CreateRecommenderSchemaResponse.created_at required"
         )
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_customer_profiles.types.recommender_schema_status
 
         out["status"] = (
@@ -109,7 +109,7 @@ def deserialize_json(data: dict) -> CreateRecommenderSchemaResponse:
         )
     else:
         raise DeserializationError("CreateRecommenderSchemaResponse.status required")
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_customer_profiles.types.tag_map
 
         out["tags"] = capo_customer_profiles.types.tag_map.deserialize_json(

@@ -31,7 +31,7 @@ def serialize_json(value: DashboardVisualPublishOptions) -> dict:
 
 def deserialize_json(data: dict) -> DashboardVisualPublishOptions:
     out: DashboardVisualPublishOptions = {}  # type: ignore[typeddict-item]
-    if "ExportHiddenFieldsOption" in data:
+    if data.get("ExportHiddenFieldsOption") is not None:
         import capo_quicksight.types.export_hidden_fields_option
 
         out["export_hidden_fields_option"] = (

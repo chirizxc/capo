@@ -34,9 +34,9 @@ def serialize_json(value: VisualPalette) -> dict:
 
 def deserialize_json(data: dict) -> VisualPalette:
     out: VisualPalette = {}  # type: ignore[typeddict-item]
-    if "ChartColor" in data:
+    if data.get("ChartColor") is not None:
         out["chart_color"] = data["ChartColor"]
-    if "ColorMap" in data:
+    if data.get("ColorMap") is not None:
         import capo_quicksight.types.data_path_color_list
 
         out["color_map"] = capo_quicksight.types.data_path_color_list.deserialize_json(

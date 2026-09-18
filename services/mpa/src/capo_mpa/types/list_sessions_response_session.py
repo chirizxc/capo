@@ -143,57 +143,57 @@ def serialize_json(value: ListSessionsResponseSession) -> dict:
 
 def deserialize_json(data: dict) -> ListSessionsResponseSession:
     out: ListSessionsResponseSession = {}  # type: ignore[typeddict-item]
-    if "SessionArn" in data:
+    if data.get("SessionArn") is not None:
         out["session_arn"] = data["SessionArn"]
-    if "ApprovalTeamName" in data:
+    if data.get("ApprovalTeamName") is not None:
         out["approval_team_name"] = data["ApprovalTeamName"]
-    if "ApprovalTeamArn" in data:
+    if data.get("ApprovalTeamArn") is not None:
         out["approval_team_arn"] = data["ApprovalTeamArn"]
-    if "InitiationTime" in data:
+    if data.get("InitiationTime") is not None:
         import capo_mpa.types.iso_timestamp
 
         out["initiation_time"] = capo_mpa.types.iso_timestamp.deserialize_json(
             data["InitiationTime"]
         )
-    if "ExpirationTime" in data:
+    if data.get("ExpirationTime") is not None:
         import capo_mpa.types.iso_timestamp
 
         out["expiration_time"] = capo_mpa.types.iso_timestamp.deserialize_json(
             data["ExpirationTime"]
         )
-    if "CompletionTime" in data:
+    if data.get("CompletionTime") is not None:
         import capo_mpa.types.iso_timestamp
 
         out["completion_time"] = capo_mpa.types.iso_timestamp.deserialize_json(
             data["CompletionTime"]
         )
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "ActionName" in data:
+    if data.get("ActionName") is not None:
         out["action_name"] = data["ActionName"]
-    if "ProtectedResourceArn" in data:
+    if data.get("ProtectedResourceArn") is not None:
         out["protected_resource_arn"] = data["ProtectedResourceArn"]
-    if "RequesterServicePrincipal" in data:
+    if data.get("RequesterServicePrincipal") is not None:
         out["requester_service_principal"] = data["RequesterServicePrincipal"]
-    if "RequesterPrincipalArn" in data:
+    if data.get("RequesterPrincipalArn") is not None:
         out["requester_principal_arn"] = data["RequesterPrincipalArn"]
-    if "RequesterRegion" in data:
+    if data.get("RequesterRegion") is not None:
         out["requester_region"] = data["RequesterRegion"]
-    if "RequesterAccountId" in data:
+    if data.get("RequesterAccountId") is not None:
         out["requester_account_id"] = data["RequesterAccountId"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_mpa.types.session_status
 
         out["status"] = capo_mpa.types.session_status.deserialize_json(data["Status"])
-    if "StatusCode" in data:
+    if data.get("StatusCode") is not None:
         import capo_mpa.types.session_status_code
 
         out["status_code"] = capo_mpa.types.session_status_code.deserialize_json(
             data["StatusCode"]
         )
-    if "StatusMessage" in data:
+    if data.get("StatusMessage") is not None:
         out["status_message"] = data["StatusMessage"]
-    if "ActionCompletionStrategy" in data:
+    if data.get("ActionCompletionStrategy") is not None:
         import capo_mpa.types.action_completion_strategy
 
         out["action_completion_strategy"] = (
@@ -201,7 +201,7 @@ def deserialize_json(data: dict) -> ListSessionsResponseSession:
                 data["ActionCompletionStrategy"]
             )
         )
-    if "AdditionalSecurityRequirements" in data:
+    if data.get("AdditionalSecurityRequirements") is not None:
         import capo_mpa.types.additional_security_requirements
 
         out["additional_security_requirements"] = (

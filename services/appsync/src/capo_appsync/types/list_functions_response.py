@@ -32,12 +32,12 @@ def serialize_json(value: ListFunctionsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListFunctionsResponse:
     out: ListFunctionsResponse = {}  # type: ignore[typeddict-item]
-    if "functions" in data:
+    if data.get("functions") is not None:
         import capo_appsync.types.functions
 
         out["functions"] = capo_appsync.types.functions.deserialize_json(
             data["functions"]
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

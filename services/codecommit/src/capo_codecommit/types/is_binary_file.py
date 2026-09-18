@@ -31,10 +31,10 @@ def serialize_aws_json_1_1(value: IsBinaryFile) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> IsBinaryFile:
     out: IsBinaryFile = {}  # type: ignore[typeddict-item]
-    if "source" in data:
+    if data.get("source") is not None:
         out["source"] = data["source"]
-    if "destination" in data:
+    if data.get("destination") is not None:
         out["destination"] = data["destination"]
-    if "base" in data:
+    if data.get("base") is not None:
         out["base"] = data["base"]
     return out

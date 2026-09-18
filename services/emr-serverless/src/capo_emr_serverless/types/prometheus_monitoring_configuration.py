@@ -25,6 +25,6 @@ def serialize_json(value: PrometheusMonitoringConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> PrometheusMonitoringConfiguration:
     out: PrometheusMonitoringConfiguration = {}  # type: ignore[typeddict-item]
-    if "remoteWriteUrl" in data:
+    if data.get("remoteWriteUrl") is not None:
         out["remote_write_url"] = data["remoteWriteUrl"]
     return out

@@ -105,12 +105,13 @@ class Subscriber:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_securitylake.types.create_subscriber_request.CreateSubscriberRequest = {}  # type: ignore[typeddict-item]
-        input_["subscriber_identity"] = subscriber_identity
-        input_["subscriber_name"] = subscriber_name
+        input_: capo_securitylake.types.create_subscriber_request.CreateSubscriberRequest = {
+            "subscriber_identity": subscriber_identity,
+            "subscriber_name": subscriber_name,
+            "sources": sources,
+        }
         if subscriber_description is not None:
             input_["subscriber_description"] = subscriber_description
-        input_["sources"] = sources
         if access_types is not None:
             input_["access_types"] = access_types
         if tags is not None:
@@ -121,6 +122,7 @@ class Subscriber:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -159,14 +161,16 @@ class Subscriber:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_securitylake.types.get_subscriber_request.GetSubscriberRequest = {}  # type: ignore[typeddict-item]
-        input_["subscriber_id"] = subscriber_id
+        input_: capo_securitylake.types.get_subscriber_request.GetSubscriberRequest = {
+            "subscriber_id": subscriber_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update(
@@ -221,8 +225,9 @@ class Subscriber:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_securitylake.types.update_subscriber_request.UpdateSubscriberRequest = {}  # type: ignore[typeddict-item]
-        input_["subscriber_id"] = subscriber_id
+        input_: capo_securitylake.types.update_subscriber_request.UpdateSubscriberRequest = {
+            "subscriber_id": subscriber_id
+        }
         if subscriber_identity is not None:
             input_["subscriber_identity"] = subscriber_identity
         if subscriber_name is not None:
@@ -237,6 +242,7 @@ class Subscriber:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -275,14 +281,16 @@ class Subscriber:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_securitylake.types.delete_subscriber_request.DeleteSubscriberRequest = {}  # type: ignore[typeddict-item]
-        input_["subscriber_id"] = subscriber_id
+        input_: capo_securitylake.types.delete_subscriber_request.DeleteSubscriberRequest = {
+            "subscriber_id": subscriber_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -323,7 +331,7 @@ class Subscriber:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_securitylake.types.list_subscribers_request.ListSubscribersRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_securitylake.types.list_subscribers_request.ListSubscribersRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -334,6 +342,7 @@ class Subscriber:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_subscriber_notification(
@@ -374,15 +383,17 @@ class Subscriber:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_securitylake.types.create_subscriber_notification_request.CreateSubscriberNotificationRequest = {}  # type: ignore[typeddict-item]
-        input_["subscriber_id"] = subscriber_id
-        input_["configuration"] = configuration
+        input_: capo_securitylake.types.create_subscriber_notification_request.CreateSubscriberNotificationRequest = {
+            "subscriber_id": subscriber_id,
+            "configuration": configuration,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_subscriber_notification(
@@ -421,14 +432,16 @@ class Subscriber:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_securitylake.types.delete_subscriber_notification_request.DeleteSubscriberNotificationRequest = {}  # type: ignore[typeddict-item]
-        input_["subscriber_id"] = subscriber_id
+        input_: capo_securitylake.types.delete_subscriber_notification_request.DeleteSubscriberNotificationRequest = {
+            "subscriber_id": subscriber_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_subscriber_notification(
@@ -469,15 +482,17 @@ class Subscriber:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_securitylake.types.update_subscriber_notification_request.UpdateSubscriberNotificationRequest = {}  # type: ignore[typeddict-item]
-        input_["subscriber_id"] = subscriber_id
-        input_["configuration"] = configuration
+        input_: capo_securitylake.types.update_subscriber_notification_request.UpdateSubscriberNotificationRequest = {
+            "subscriber_id": subscriber_id,
+            "configuration": configuration,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -536,12 +551,13 @@ class AsyncSubscriber:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_securitylake.types.create_subscriber_request.CreateSubscriberRequest = {}  # type: ignore[typeddict-item]
-        input_["subscriber_identity"] = subscriber_identity
-        input_["subscriber_name"] = subscriber_name
+        input_: capo_securitylake.types.create_subscriber_request.CreateSubscriberRequest = {
+            "subscriber_identity": subscriber_identity,
+            "subscriber_name": subscriber_name,
+            "sources": sources,
+        }
         if subscriber_description is not None:
             input_["subscriber_description"] = subscriber_description
-        input_["sources"] = sources
         if access_types is not None:
             input_["access_types"] = access_types
         if tags is not None:
@@ -552,6 +568,7 @@ class AsyncSubscriber:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -591,14 +608,16 @@ class AsyncSubscriber:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_securitylake.types.get_subscriber_request.GetSubscriberRequest = {}  # type: ignore[typeddict-item]
-        input_["subscriber_id"] = subscriber_id
+        input_: capo_securitylake.types.get_subscriber_request.GetSubscriberRequest = {
+            "subscriber_id": subscriber_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update(
@@ -654,8 +673,9 @@ class AsyncSubscriber:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_securitylake.types.update_subscriber_request.UpdateSubscriberRequest = {}  # type: ignore[typeddict-item]
-        input_["subscriber_id"] = subscriber_id
+        input_: capo_securitylake.types.update_subscriber_request.UpdateSubscriberRequest = {
+            "subscriber_id": subscriber_id
+        }
         if subscriber_identity is not None:
             input_["subscriber_identity"] = subscriber_identity
         if subscriber_name is not None:
@@ -670,6 +690,7 @@ class AsyncSubscriber:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -709,14 +730,16 @@ class AsyncSubscriber:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_securitylake.types.delete_subscriber_request.DeleteSubscriberRequest = {}  # type: ignore[typeddict-item]
-        input_["subscriber_id"] = subscriber_id
+        input_: capo_securitylake.types.delete_subscriber_request.DeleteSubscriberRequest = {
+            "subscriber_id": subscriber_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -758,7 +781,7 @@ class AsyncSubscriber:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_securitylake.types.list_subscribers_request.ListSubscribersRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_securitylake.types.list_subscribers_request.ListSubscribersRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -769,6 +792,7 @@ class AsyncSubscriber:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_subscriber_notification(
@@ -810,15 +834,17 @@ class AsyncSubscriber:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_securitylake.types.create_subscriber_notification_request.CreateSubscriberNotificationRequest = {}  # type: ignore[typeddict-item]
-        input_["subscriber_id"] = subscriber_id
-        input_["configuration"] = configuration
+        input_: capo_securitylake.types.create_subscriber_notification_request.CreateSubscriberNotificationRequest = {
+            "subscriber_id": subscriber_id,
+            "configuration": configuration,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_subscriber_notification(
@@ -858,14 +884,16 @@ class AsyncSubscriber:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_securitylake.types.delete_subscriber_notification_request.DeleteSubscriberNotificationRequest = {}  # type: ignore[typeddict-item]
-        input_["subscriber_id"] = subscriber_id
+        input_: capo_securitylake.types.delete_subscriber_notification_request.DeleteSubscriberNotificationRequest = {
+            "subscriber_id": subscriber_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_subscriber_notification(
@@ -907,13 +935,15 @@ class AsyncSubscriber:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_securitylake.types.update_subscriber_notification_request.UpdateSubscriberNotificationRequest = {}  # type: ignore[typeddict-item]
-        input_["subscriber_id"] = subscriber_id
-        input_["configuration"] = configuration
+        input_: capo_securitylake.types.update_subscriber_notification_request.UpdateSubscriberNotificationRequest = {
+            "subscriber_id": subscriber_id,
+            "configuration": configuration,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

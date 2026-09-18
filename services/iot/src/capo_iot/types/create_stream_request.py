@@ -45,19 +45,19 @@ def serialize_json(value: CreateStreamRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateStreamRequest:
     out: CreateStreamRequest = {}  # type: ignore[typeddict-item]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "files" in data:
+    if data.get("files") is not None:
         import capo_iot.types.stream_files
 
         out["files"] = capo_iot.types.stream_files.deserialize_json(data["files"])
     else:
         raise DeserializationError("CreateStreamRequest.files required")
-    if "roleArn" in data:
+    if data.get("roleArn") is not None:
         out["role_arn"] = data["roleArn"]
     else:
         raise DeserializationError("CreateStreamRequest.role_arn required")
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_iot.types.tag_list
 
         out["tags"] = capo_iot.types.tag_list.deserialize_json(data["tags"])

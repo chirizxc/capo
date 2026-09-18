@@ -45,15 +45,15 @@ def serialize_json(value: AuditMitigationActionsTaskTarget) -> dict:
 
 def deserialize_json(data: dict) -> AuditMitigationActionsTaskTarget:
     out: AuditMitigationActionsTaskTarget = {}  # type: ignore[typeddict-item]
-    if "auditTaskId" in data:
+    if data.get("auditTaskId") is not None:
         out["audit_task_id"] = data["auditTaskId"]
-    if "findingIds" in data:
+    if data.get("findingIds") is not None:
         import capo_iot.types.finding_ids
 
         out["finding_ids"] = capo_iot.types.finding_ids.deserialize_json(
             data["findingIds"]
         )
-    if "auditCheckToReasonCodeFilter" in data:
+    if data.get("auditCheckToReasonCodeFilter") is not None:
         import capo_iot.types.audit_check_to_reason_code_filter
 
         out["audit_check_to_reason_code_filter"] = (

@@ -36,9 +36,9 @@ def serialize_aws_json_1_1(value: JoinDomainOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> JoinDomainOutput:
     out: JoinDomainOutput = {}  # type: ignore[typeddict-item]
-    if "GatewayARN" in data:
+    if data.get("GatewayARN") is not None:
         out["gateway_arn"] = data["GatewayARN"]
-    if "ActiveDirectoryStatus" in data:
+    if data.get("ActiveDirectoryStatus") is not None:
         import capo_storage_gateway.types.active_directory_status
 
         out["active_directory_status"] = (

@@ -91,7 +91,7 @@ def serialize_json(value: ThingIndexingConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> ThingIndexingConfiguration:
     out: ThingIndexingConfiguration = {}  # type: ignore[typeddict-item]
-    if "thingIndexingMode" in data:
+    if data.get("thingIndexingMode") is not None:
         import capo_iot.types.thing_indexing_mode
 
         out["thing_indexing_mode"] = (
@@ -103,7 +103,7 @@ def deserialize_json(data: dict) -> ThingIndexingConfiguration:
         raise DeserializationError(
             "ThingIndexingConfiguration.thing_indexing_mode required"
         )
-    if "thingConnectivityIndexingMode" in data:
+    if data.get("thingConnectivityIndexingMode") is not None:
         import capo_iot.types.thing_connectivity_indexing_mode
 
         out["thing_connectivity_indexing_mode"] = (
@@ -111,7 +111,7 @@ def deserialize_json(data: dict) -> ThingIndexingConfiguration:
                 data["thingConnectivityIndexingMode"]
             )
         )
-    if "deviceDefenderIndexingMode" in data:
+    if data.get("deviceDefenderIndexingMode") is not None:
         import capo_iot.types.device_defender_indexing_mode
 
         out["device_defender_indexing_mode"] = (
@@ -119,7 +119,7 @@ def deserialize_json(data: dict) -> ThingIndexingConfiguration:
                 data["deviceDefenderIndexingMode"]
             )
         )
-    if "namedShadowIndexingMode" in data:
+    if data.get("namedShadowIndexingMode") is not None:
         import capo_iot.types.named_shadow_indexing_mode
 
         out["named_shadow_indexing_mode"] = (
@@ -127,19 +127,19 @@ def deserialize_json(data: dict) -> ThingIndexingConfiguration:
                 data["namedShadowIndexingMode"]
             )
         )
-    if "managedFields" in data:
+    if data.get("managedFields") is not None:
         import capo_iot.types.fields
 
         out["managed_fields"] = capo_iot.types.fields.deserialize_json(
             data["managedFields"]
         )
-    if "customFields" in data:
+    if data.get("customFields") is not None:
         import capo_iot.types.fields
 
         out["custom_fields"] = capo_iot.types.fields.deserialize_json(
             data["customFields"]
         )
-    if "filter" in data:
+    if data.get("filter") is not None:
         import capo_iot.types.indexing_filter
 
         out["filter"] = capo_iot.types.indexing_filter.deserialize_json(data["filter"])

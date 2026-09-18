@@ -27,7 +27,7 @@ def serialize_json(value: UpdateMembershipOutput) -> dict:
 
 def deserialize_json(data: dict) -> UpdateMembershipOutput:
     out: UpdateMembershipOutput = {}  # type: ignore[typeddict-item]
-    if "membership" in data:
+    if data.get("membership") is not None:
         import capo_cleanrooms.types.membership
 
         out["membership"] = capo_cleanrooms.types.membership.deserialize_json(

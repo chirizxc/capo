@@ -48,13 +48,13 @@ def serialize_json(value: CreateDimensionRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateDimensionRequest:
     out: CreateDimensionRequest = {}  # type: ignore[typeddict-item]
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_iot.types.dimension_type
 
         out["type"] = capo_iot.types.dimension_type.deserialize_json(data["type"])
     else:
         raise DeserializationError("CreateDimensionRequest.type required")
-    if "stringValues" in data:
+    if data.get("stringValues") is not None:
         import capo_iot.types.dimension_string_values
 
         out["string_values"] = capo_iot.types.dimension_string_values.deserialize_json(
@@ -62,11 +62,11 @@ def deserialize_json(data: dict) -> CreateDimensionRequest:
         )
     else:
         raise DeserializationError("CreateDimensionRequest.string_values required")
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_iot.types.tag_list
 
         out["tags"] = capo_iot.types.tag_list.deserialize_json(data["tags"])
-    if "clientRequestToken" in data:
+    if data.get("clientRequestToken") is not None:
         out["client_request_token"] = data["clientRequestToken"]
     else:
         raise DeserializationError(

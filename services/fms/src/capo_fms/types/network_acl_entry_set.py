@@ -44,7 +44,7 @@ def serialize_aws_json_1_1(value: NetworkAclEntrySet) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> NetworkAclEntrySet:
     out: NetworkAclEntrySet = {}  # type: ignore[typeddict-item]
-    if "FirstEntries" in data:
+    if data.get("FirstEntries") is not None:
         import capo_fms.types.network_acl_entries
 
         out["first_entries"] = (
@@ -52,13 +52,13 @@ def deserialize_aws_json_1_1(data: dict) -> NetworkAclEntrySet:
                 data["FirstEntries"]
             )
         )
-    if "ForceRemediateForFirstEntries" in data:
+    if data.get("ForceRemediateForFirstEntries") is not None:
         out["force_remediate_for_first_entries"] = data["ForceRemediateForFirstEntries"]
     else:
         raise DeserializationError(
             "NetworkAclEntrySet.force_remediate_for_first_entries required"
         )
-    if "LastEntries" in data:
+    if data.get("LastEntries") is not None:
         import capo_fms.types.network_acl_entries
 
         out["last_entries"] = (
@@ -66,7 +66,7 @@ def deserialize_aws_json_1_1(data: dict) -> NetworkAclEntrySet:
                 data["LastEntries"]
             )
         )
-    if "ForceRemediateForLastEntries" in data:
+    if data.get("ForceRemediateForLastEntries") is not None:
         out["force_remediate_for_last_entries"] = data["ForceRemediateForLastEntries"]
     else:
         raise DeserializationError(

@@ -74,7 +74,7 @@ def serialize_json(value: HlsCdnSettings) -> dict:
 
 def deserialize_json(data: dict) -> HlsCdnSettings:
     out: HlsCdnSettings = {}  # type: ignore[typeddict-item]
-    if "hlsAkamaiSettings" in data:
+    if data.get("hlsAkamaiSettings") is not None:
         import capo_medialive.types.hls_akamai_settings
 
         out["hls_akamai_settings"] = (
@@ -82,7 +82,7 @@ def deserialize_json(data: dict) -> HlsCdnSettings:
                 data["hlsAkamaiSettings"]
             )
         )
-    if "hlsBasicPutSettings" in data:
+    if data.get("hlsBasicPutSettings") is not None:
         import capo_medialive.types.hls_basic_put_settings
 
         out["hls_basic_put_settings"] = (
@@ -90,7 +90,7 @@ def deserialize_json(data: dict) -> HlsCdnSettings:
                 data["hlsBasicPutSettings"]
             )
         )
-    if "hlsMediaStoreSettings" in data:
+    if data.get("hlsMediaStoreSettings") is not None:
         import capo_medialive.types.hls_media_store_settings
 
         out["hls_media_store_settings"] = (
@@ -98,13 +98,13 @@ def deserialize_json(data: dict) -> HlsCdnSettings:
                 data["hlsMediaStoreSettings"]
             )
         )
-    if "hlsS3Settings" in data:
+    if data.get("hlsS3Settings") is not None:
         import capo_medialive.types.hls_s3_settings
 
         out["hls_s3_settings"] = capo_medialive.types.hls_s3_settings.deserialize_json(
             data["hlsS3Settings"]
         )
-    if "hlsWebdavSettings" in data:
+    if data.get("hlsWebdavSettings") is not None:
         import capo_medialive.types.hls_webdav_settings
 
         out["hls_webdav_settings"] = (

@@ -36,7 +36,7 @@ def serialize_json(value: CommunicationLimitsConfig) -> dict:
 
 def deserialize_json(data: dict) -> CommunicationLimitsConfig:
     out: CommunicationLimitsConfig = {}  # type: ignore[typeddict-item]
-    if "allChannelSubtypes" in data:
+    if data.get("allChannelSubtypes") is not None:
         import capo_connectcampaignsv2.types.communication_limits
 
         out["all_channel_subtypes"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> CommunicationLimitsConfig:
                 data["allChannelSubtypes"]
             )
         )
-    if "instanceLimitsHandling" in data:
+    if data.get("instanceLimitsHandling") is not None:
         out["instance_limits_handling"] = data["instanceLimitsHandling"]
     return out

@@ -29,9 +29,9 @@ def serialize_aws_json_1_0(value: GrantItem) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> GrantItem:
     out: GrantItem = {}  # type: ignore[typeddict-item]
-    if "dimensionKey" in data:
+    if data.get("dimensionKey") is not None:
         out["dimension_key"] = data["dimensionKey"]
-    if "maxQuantity" in data:
+    if data.get("maxQuantity") is not None:
         out["max_quantity"] = data["maxQuantity"]
     else:
         out["max_quantity"] = 1

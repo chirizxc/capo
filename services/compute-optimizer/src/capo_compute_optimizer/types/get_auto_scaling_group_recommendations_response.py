@@ -49,9 +49,9 @@ def serialize_aws_json_1_0(value: GetAutoScalingGroupRecommendationsResponse) ->
 
 def deserialize_aws_json_1_0(data: dict) -> GetAutoScalingGroupRecommendationsResponse:
     out: GetAutoScalingGroupRecommendationsResponse = {}  # type: ignore[typeddict-item]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "autoScalingGroupRecommendations" in data:
+    if data.get("autoScalingGroupRecommendations") is not None:
         import capo_compute_optimizer.types.auto_scaling_group_recommendations
 
         out["auto_scaling_group_recommendations"] = (
@@ -59,7 +59,7 @@ def deserialize_aws_json_1_0(data: dict) -> GetAutoScalingGroupRecommendationsRe
                 data["autoScalingGroupRecommendations"]
             )
         )
-    if "errors" in data:
+    if data.get("errors") is not None:
         import capo_compute_optimizer.types.get_recommendation_errors
 
         out["errors"] = (

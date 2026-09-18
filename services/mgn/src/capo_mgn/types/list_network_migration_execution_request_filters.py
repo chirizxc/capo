@@ -44,7 +44,7 @@ def serialize_json(value: ListNetworkMigrationExecutionRequestFilters) -> dict:
 
 def deserialize_json(data: dict) -> ListNetworkMigrationExecutionRequestFilters:
     out: ListNetworkMigrationExecutionRequestFilters = {}  # type: ignore[typeddict-item]
-    if "networkMigrationExecutionIDs" in data:
+    if data.get("networkMigrationExecutionIDs") is not None:
         import capo_mgn.types.network_migration_execution_i_ds_filter
 
         out["network_migration_execution_i_ds"] = (
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> ListNetworkMigrationExecutionRequestFilters:
                 data["networkMigrationExecutionIDs"]
             )
         )
-    if "networkMigrationExecutionStatuses" in data:
+    if data.get("networkMigrationExecutionStatuses") is not None:
         import capo_mgn.types.network_migration_execution_statuses_filter
 
         out["network_migration_execution_statuses"] = (

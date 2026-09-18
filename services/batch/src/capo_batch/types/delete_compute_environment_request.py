@@ -23,6 +23,6 @@ def serialize_json(value: DeleteComputeEnvironmentRequest) -> dict:
 
 def deserialize_json(data: dict) -> DeleteComputeEnvironmentRequest:
     out: DeleteComputeEnvironmentRequest = {}  # type: ignore[typeddict-item]
-    if "computeEnvironment" in data:
+    if data.get("computeEnvironment") is not None:
         out["compute_environment"] = data["computeEnvironment"]
     return out

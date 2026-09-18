@@ -29,6 +29,8 @@ def deserialize_aws_json_1_1(data: list) -> IdentityProviderOAuthSettings:
 
     out: IdentityProviderOAuthSettings = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_sagemaker.types.identity_provider_o_auth_setting.deserialize_aws_json_1_1(
                 item

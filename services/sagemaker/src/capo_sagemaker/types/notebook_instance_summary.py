@@ -110,11 +110,11 @@ def serialize_aws_json_1_1(value: NotebookInstanceSummary) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> NotebookInstanceSummary:
     out: NotebookInstanceSummary = {}  # type: ignore[typeddict-item]
-    if "NotebookInstanceName" in data:
+    if data.get("NotebookInstanceName") is not None:
         out["notebook_instance_name"] = data["NotebookInstanceName"]
-    if "NotebookInstanceArn" in data:
+    if data.get("NotebookInstanceArn") is not None:
         out["notebook_instance_arn"] = data["NotebookInstanceArn"]
-    if "NotebookInstanceStatus" in data:
+    if data.get("NotebookInstanceStatus") is not None:
         import capo_sagemaker.types.notebook_instance_status
 
         out["notebook_instance_status"] = (
@@ -122,9 +122,9 @@ def deserialize_aws_json_1_1(data: dict) -> NotebookInstanceSummary:
                 data["NotebookInstanceStatus"]
             )
         )
-    if "Url" in data:
+    if data.get("Url") is not None:
         out["url"] = data["Url"]
-    if "InstanceType" in data:
+    if data.get("InstanceType") is not None:
         import capo_sagemaker.types.instance_type
 
         out["instance_type"] = (
@@ -132,7 +132,7 @@ def deserialize_aws_json_1_1(data: dict) -> NotebookInstanceSummary:
                 data["InstanceType"]
             )
         )
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_sagemaker.types.creation_time
 
         out["creation_time"] = (
@@ -140,7 +140,7 @@ def deserialize_aws_json_1_1(data: dict) -> NotebookInstanceSummary:
                 data["CreationTime"]
             )
         )
-    if "LastModifiedTime" in data:
+    if data.get("LastModifiedTime") is not None:
         import capo_sagemaker.types.last_modified_time
 
         out["last_modified_time"] = (
@@ -148,13 +148,13 @@ def deserialize_aws_json_1_1(data: dict) -> NotebookInstanceSummary:
                 data["LastModifiedTime"]
             )
         )
-    if "NotebookInstanceLifecycleConfigName" in data:
+    if data.get("NotebookInstanceLifecycleConfigName") is not None:
         out["notebook_instance_lifecycle_config_name"] = data[
             "NotebookInstanceLifecycleConfigName"
         ]
-    if "DefaultCodeRepository" in data:
+    if data.get("DefaultCodeRepository") is not None:
         out["default_code_repository"] = data["DefaultCodeRepository"]
-    if "AdditionalCodeRepositories" in data:
+    if data.get("AdditionalCodeRepositories") is not None:
         import capo_sagemaker.types.additional_code_repository_names_or_urls
 
         out["additional_code_repositories"] = (

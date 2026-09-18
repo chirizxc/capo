@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> BrowserConfigs:
 
     out: BrowserConfigs = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_synthetics.types.browser_config.deserialize_json(item))
     return out

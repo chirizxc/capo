@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> PromotionalMediaList:
 
     out: PromotionalMediaList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_marketplace_discovery.types.promotional_media.deserialize_json(item)
         )

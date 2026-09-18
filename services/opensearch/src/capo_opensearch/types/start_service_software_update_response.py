@@ -31,7 +31,7 @@ def serialize_json(value: StartServiceSoftwareUpdateResponse) -> dict:
 
 def deserialize_json(data: dict) -> StartServiceSoftwareUpdateResponse:
     out: StartServiceSoftwareUpdateResponse = {}  # type: ignore[typeddict-item]
-    if "ServiceSoftwareOptions" in data:
+    if data.get("ServiceSoftwareOptions") is not None:
         import capo_opensearch.types.service_software_options
 
         out["service_software_options"] = (

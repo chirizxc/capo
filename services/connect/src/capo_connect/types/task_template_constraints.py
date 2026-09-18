@@ -57,7 +57,7 @@ def serialize_json(value: TaskTemplateConstraints) -> dict:
 
 def deserialize_json(data: dict) -> TaskTemplateConstraints:
     out: TaskTemplateConstraints = {}  # type: ignore[typeddict-item]
-    if "RequiredFields" in data:
+    if data.get("RequiredFields") is not None:
         import capo_connect.types.required_task_template_fields
 
         out["required_fields"] = (
@@ -65,7 +65,7 @@ def deserialize_json(data: dict) -> TaskTemplateConstraints:
                 data["RequiredFields"]
             )
         )
-    if "ReadOnlyFields" in data:
+    if data.get("ReadOnlyFields") is not None:
         import capo_connect.types.read_only_task_template_fields
 
         out["read_only_fields"] = (
@@ -73,7 +73,7 @@ def deserialize_json(data: dict) -> TaskTemplateConstraints:
                 data["ReadOnlyFields"]
             )
         )
-    if "InvisibleFields" in data:
+    if data.get("InvisibleFields") is not None:
         import capo_connect.types.invisible_task_template_fields
 
         out["invisible_fields"] = (

@@ -30,7 +30,7 @@ def serialize_json(value: UpdateAccountConfigurationRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateAccountConfigurationRequest:
     out: UpdateAccountConfigurationRequest = {}  # type: ignore[typeddict-item]
-    if "accountConfiguration" in data:
+    if data.get("accountConfiguration") is not None:
         import capo_medialive.types.account_configuration
 
         out["account_configuration"] = (

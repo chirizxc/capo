@@ -25,7 +25,7 @@ def serialize_json(value: ResourceNotFoundError_) -> dict:
 
 def deserialize_json(data: dict) -> ResourceNotFoundError_:
     out: ResourceNotFoundError_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     return out
 
@@ -35,15 +35,18 @@ class ResourceNotFoundError(ServiceError):
 
     code: str | None = "ResourceNotFoundError"
 
-    def __init__(self, data: ResourceNotFoundError_):
+    def __init__(self, data: ResourceNotFoundError_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="ResourceNotFoundError",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "ResourceNotFoundError":
-        return cls(deserialize_json(data))
+    def from_json(
+        cls, data: dict, message: str | None = None
+    ) -> "ResourceNotFoundError":
+        return cls(deserialize_json(data), message)

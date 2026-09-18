@@ -58,27 +58,27 @@ def serialize_json(value: RouteSpec) -> dict:
 
 def deserialize_json(data: dict) -> RouteSpec:
     out: RouteSpec = {}  # type: ignore[typeddict-item]
-    if "priority" in data:
+    if data.get("priority") is not None:
         out["priority"] = data["priority"]
-    if "httpRoute" in data:
+    if data.get("httpRoute") is not None:
         import capo_app_mesh.types.http_route
 
         out["http_route"] = capo_app_mesh.types.http_route.deserialize_json(
             data["httpRoute"]
         )
-    if "tcpRoute" in data:
+    if data.get("tcpRoute") is not None:
         import capo_app_mesh.types.tcp_route
 
         out["tcp_route"] = capo_app_mesh.types.tcp_route.deserialize_json(
             data["tcpRoute"]
         )
-    if "http2Route" in data:
+    if data.get("http2Route") is not None:
         import capo_app_mesh.types.http_route
 
         out["http2_route"] = capo_app_mesh.types.http_route.deserialize_json(
             data["http2Route"]
         )
-    if "grpcRoute" in data:
+    if data.get("grpcRoute") is not None:
         import capo_app_mesh.types.grpc_route
 
         out["grpc_route"] = capo_app_mesh.types.grpc_route.deserialize_json(

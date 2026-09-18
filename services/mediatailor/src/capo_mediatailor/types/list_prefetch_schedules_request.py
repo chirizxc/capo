@@ -49,11 +49,11 @@ def serialize_json(value: ListPrefetchSchedulesRequest) -> dict:
 
 def deserialize_json(data: dict) -> ListPrefetchSchedulesRequest:
     out: ListPrefetchSchedulesRequest = {}  # type: ignore[typeddict-item]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "ScheduleType" in data:
+    if data.get("ScheduleType") is not None:
         import capo_mediatailor.types.list_prefetch_schedule_type
 
         out["schedule_type"] = (
@@ -61,6 +61,6 @@ def deserialize_json(data: dict) -> ListPrefetchSchedulesRequest:
                 data["ScheduleType"]
             )
         )
-    if "StreamId" in data:
+    if data.get("StreamId") is not None:
         out["stream_id"] = data["StreamId"]
     return out

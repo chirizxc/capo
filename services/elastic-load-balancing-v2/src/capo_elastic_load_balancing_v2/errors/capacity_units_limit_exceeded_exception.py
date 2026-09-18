@@ -41,15 +41,20 @@ class CapacityUnitsLimitExceededException(ServiceError):
 
     code: str | None = "CapacityUnitsLimitExceededException"
 
-    def __init__(self, data: CapacityUnitsLimitExceededException_):
+    def __init__(
+        self, data: CapacityUnitsLimitExceededException_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="CapacityUnitsLimitExceededException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_query(cls, el: Element) -> "CapacityUnitsLimitExceededException":
-        return cls(deserialize_query(el))
+    def from_query(
+        cls, el: Element, message: str | None = None
+    ) -> "CapacityUnitsLimitExceededException":
+        return cls(deserialize_query(el), message)

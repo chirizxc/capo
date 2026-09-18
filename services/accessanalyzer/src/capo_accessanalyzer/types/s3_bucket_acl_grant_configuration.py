@@ -32,11 +32,11 @@ def serialize_json(value: S3BucketAclGrantConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> S3BucketAclGrantConfiguration:
     out: S3BucketAclGrantConfiguration = {}  # type: ignore[typeddict-item]
-    if "permission" in data:
+    if data.get("permission") is not None:
         out["permission"] = data["permission"]
     else:
         raise DeserializationError("S3BucketAclGrantConfiguration.permission required")
-    if "grantee" in data:
+    if data.get("grantee") is not None:
         import capo_accessanalyzer.types.acl_grantee
 
         out["grantee"] = capo_accessanalyzer.types.acl_grantee.deserialize_json(

@@ -55,9 +55,9 @@ def serialize_json(value: ServiceDependent) -> dict:
 
 def deserialize_json(data: dict) -> ServiceDependent:
     out: ServiceDependent = {}  # type: ignore[typeddict-item]
-    if "OperationName" in data:
+    if data.get("OperationName") is not None:
         out["operation_name"] = data["OperationName"]
-    if "DependentKeyAttributes" in data:
+    if data.get("DependentKeyAttributes") is not None:
         import capo_application_signals.types.attributes
 
         out["dependent_key_attributes"] = (
@@ -67,9 +67,9 @@ def deserialize_json(data: dict) -> ServiceDependent:
         )
     else:
         raise DeserializationError("ServiceDependent.dependent_key_attributes required")
-    if "DependentOperationName" in data:
+    if data.get("DependentOperationName") is not None:
         out["dependent_operation_name"] = data["DependentOperationName"]
-    if "MetricReferences" in data:
+    if data.get("MetricReferences") is not None:
         import capo_application_signals.types.metric_references
 
         out["metric_references"] = (

@@ -43,7 +43,7 @@ def serialize_json(value: GeneralAuthorizationUpdate) -> dict:
 
 def deserialize_json(data: dict) -> GeneralAuthorizationUpdate:
     out: GeneralAuthorizationUpdate = {}  # type: ignore[typeddict-item]
-    if "AuthMaterialsToAdd" in data:
+    if data.get("AuthMaterialsToAdd") is not None:
         import capo_iot_managed_integrations.types.auth_materials
 
         out["auth_materials_to_add"] = (
@@ -51,7 +51,7 @@ def deserialize_json(data: dict) -> GeneralAuthorizationUpdate:
                 data["AuthMaterialsToAdd"]
             )
         )
-    if "AuthMaterialsToUpdate" in data:
+    if data.get("AuthMaterialsToUpdate") is not None:
         import capo_iot_managed_integrations.types.auth_materials
 
         out["auth_materials_to_update"] = (

@@ -31,9 +31,9 @@ def serialize_aws_json_1_1(value: ForgetDeviceRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ForgetDeviceRequest:
     out: ForgetDeviceRequest = {}  # type: ignore[typeddict-item]
-    if "AccessToken" in data:
+    if data.get("AccessToken") is not None:
         out["access_token"] = data["AccessToken"]
-    if "DeviceKey" in data:
+    if data.get("DeviceKey") is not None:
         out["device_key"] = data["DeviceKey"]
     else:
         raise DeserializationError("ForgetDeviceRequest.device_key required")

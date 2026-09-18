@@ -33,9 +33,9 @@ def serialize_json(value: ListWorkflowRunsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListWorkflowRunsResponse:
     out: ListWorkflowRunsResponse = {}  # type: ignore[typeddict-item]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "items" in data:
+    if data.get("items") is not None:
         import capo_codecatalyst.types.workflow_run_summaries
 
         out["items"] = capo_codecatalyst.types.workflow_run_summaries.deserialize_json(

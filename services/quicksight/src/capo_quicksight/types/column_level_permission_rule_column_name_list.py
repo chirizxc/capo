@@ -16,4 +16,4 @@ def serialize_json(value: ColumnLevelPermissionRuleColumnNameList) -> list:
 
 
 def deserialize_json(data: list) -> ColumnLevelPermissionRuleColumnNameList:
-    return list(data)
+    return [item for item in data if item is not None]

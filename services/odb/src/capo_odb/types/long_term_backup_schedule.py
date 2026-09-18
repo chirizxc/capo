@@ -35,9 +35,9 @@ def serialize_aws_json_1_0(value: LongTermBackupSchedule) -> dict:
     if "retention_period_in_days" in value:
         out["retentionPeriodInDays"] = value["retention_period_in_days"]
     if "time_of_backup" in value:
-        import capo_odb.types._prelude.timestamp
+        import capo_odb._protocol.serialize
 
-        out["timeOfBackup"] = capo_odb.types._prelude.timestamp.serialize_aws_json_1_0(
+        out["timeOfBackup"] = capo_odb._protocol.serialize.fmt_date_time(
             value["time_of_backup"]
         )
     return out
@@ -45,22 +45,20 @@ def serialize_aws_json_1_0(value: LongTermBackupSchedule) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> LongTermBackupSchedule:
     out: LongTermBackupSchedule = {}  # type: ignore[typeddict-item]
-    if "isDisabled" in data:
+    if data.get("isDisabled") is not None:
         out["is_disabled"] = data["isDisabled"]
-    if "repeatCadence" in data:
+    if data.get("repeatCadence") is not None:
         import capo_odb.types.repeat_cadence
 
         out["repeat_cadence"] = capo_odb.types.repeat_cadence.deserialize_aws_json_1_0(
             data["repeatCadence"]
         )
-    if "retentionPeriodInDays" in data:
+    if data.get("retentionPeriodInDays") is not None:
         out["retention_period_in_days"] = data["retentionPeriodInDays"]
-    if "timeOfBackup" in data:
-        import capo_odb.types._prelude.timestamp
+    if data.get("timeOfBackup") is not None:
+        import datetime
 
-        out["time_of_backup"] = (
-            capo_odb.types._prelude.timestamp.deserialize_aws_json_1_0(
-                data["timeOfBackup"]
-            )
+        out["time_of_backup"] = datetime.datetime.fromisoformat(
+            data["timeOfBackup"].replace("Z", "+00:00")
         )
     return out

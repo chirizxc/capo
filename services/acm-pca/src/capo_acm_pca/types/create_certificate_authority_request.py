@@ -95,7 +95,7 @@ def serialize_aws_json_1_1(value: CreateCertificateAuthorityRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateCertificateAuthorityRequest:
     out: CreateCertificateAuthorityRequest = {}  # type: ignore[typeddict-item]
-    if "CertificateAuthorityConfiguration" in data:
+    if data.get("CertificateAuthorityConfiguration") is not None:
         import capo_acm_pca.types.certificate_authority_configuration
 
         out["certificate_authority_configuration"] = (
@@ -107,7 +107,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateCertificateAuthorityRequest:
         raise DeserializationError(
             "CreateCertificateAuthorityRequest.certificate_authority_configuration required"
         )
-    if "RevocationConfiguration" in data:
+    if data.get("RevocationConfiguration") is not None:
         import capo_acm_pca.types.revocation_configuration
 
         out["revocation_configuration"] = (
@@ -115,7 +115,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateCertificateAuthorityRequest:
                 data["RevocationConfiguration"]
             )
         )
-    if "CertificateAuthorityType" in data:
+    if data.get("CertificateAuthorityType") is not None:
         import capo_acm_pca.types.certificate_authority_type
 
         out["certificate_authority_type"] = (
@@ -127,9 +127,9 @@ def deserialize_aws_json_1_1(data: dict) -> CreateCertificateAuthorityRequest:
         raise DeserializationError(
             "CreateCertificateAuthorityRequest.certificate_authority_type required"
         )
-    if "IdempotencyToken" in data:
+    if data.get("IdempotencyToken") is not None:
         out["idempotency_token"] = data["IdempotencyToken"]
-    if "KeyStorageSecurityStandard" in data:
+    if data.get("KeyStorageSecurityStandard") is not None:
         import capo_acm_pca.types.key_storage_security_standard
 
         out["key_storage_security_standard"] = (
@@ -137,11 +137,11 @@ def deserialize_aws_json_1_1(data: dict) -> CreateCertificateAuthorityRequest:
                 data["KeyStorageSecurityStandard"]
             )
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_acm_pca.types.tag_list
 
         out["tags"] = capo_acm_pca.types.tag_list.deserialize_aws_json_1_1(data["Tags"])
-    if "UsageMode" in data:
+    if data.get("UsageMode") is not None:
         import capo_acm_pca.types.certificate_authority_usage_mode
 
         out["usage_mode"] = (

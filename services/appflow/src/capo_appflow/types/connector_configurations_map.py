@@ -28,8 +28,11 @@ def serialize_json(input_to_serialize: ConnectorConfigurationsMap) -> dict:
 def deserialize_json(data: dict) -> ConnectorConfigurationsMap:
     out: ConnectorConfigurationsMap = {}
     for key, value in data.items():
-        import capo_appflow.types.connector_configuration
         import capo_appflow.types.connector_type
+
+        if value is None:
+            continue
+        import capo_appflow.types.connector_configuration
 
         out[capo_appflow.types.connector_type.deserialize_json(key)] = (
             capo_appflow.types.connector_configuration.deserialize_json(value)

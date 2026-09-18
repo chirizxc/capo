@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: ListDocumentClassifierSummariesResponse) -> di
 
 def deserialize_aws_json_1_1(data: dict) -> ListDocumentClassifierSummariesResponse:
     out: ListDocumentClassifierSummariesResponse = {}  # type: ignore[typeddict-item]
-    if "DocumentClassifierSummariesList" in data:
+    if data.get("DocumentClassifierSummariesList") is not None:
         import capo_comprehend.types.document_classifier_summaries_list
 
         out["document_classifier_summaries_list"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_1(data: dict) -> ListDocumentClassifierSummariesRespo
                 data["DocumentClassifierSummariesList"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

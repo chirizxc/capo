@@ -35,17 +35,17 @@ def serialize_json(value: RetainedMessageSummary) -> dict:
 
 def deserialize_json(data: dict) -> RetainedMessageSummary:
     out: RetainedMessageSummary = {}  # type: ignore[typeddict-item]
-    if "topic" in data:
+    if data.get("topic") is not None:
         out["topic"] = data["topic"]
-    if "payloadSize" in data:
+    if data.get("payloadSize") is not None:
         out["payload_size"] = data["payloadSize"]
     else:
         out["payload_size"] = 0
-    if "qos" in data:
+    if data.get("qos") is not None:
         out["qos"] = data["qos"]
     else:
         out["qos"] = 0
-    if "lastModifiedTime" in data:
+    if data.get("lastModifiedTime") is not None:
         out["last_modified_time"] = data["lastModifiedTime"]
     else:
         out["last_modified_time"] = 0

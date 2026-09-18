@@ -28,11 +28,11 @@ def serialize_json(value: ExactResponseFields) -> dict:
 
 def deserialize_json(data: dict) -> ExactResponseFields:
     out: ExactResponseFields = {}  # type: ignore[typeddict-item]
-    if "questionField" in data:
+    if data.get("questionField") is not None:
         out["question_field"] = data["questionField"]
     else:
         raise DeserializationError("ExactResponseFields.question_field required")
-    if "answerField" in data:
+    if data.get("answerField") is not None:
         out["answer_field"] = data["answerField"]
     else:
         raise DeserializationError("ExactResponseFields.answer_field required")

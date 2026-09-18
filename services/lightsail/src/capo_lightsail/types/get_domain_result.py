@@ -27,7 +27,7 @@ def serialize_aws_json_1_1(value: GetDomainResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetDomainResult:
     out: GetDomainResult = {}  # type: ignore[typeddict-item]
-    if "domain" in data:
+    if data.get("domain") is not None:
         import capo_lightsail.types.domain
 
         out["domain"] = capo_lightsail.types.domain.deserialize_aws_json_1_1(

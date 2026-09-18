@@ -54,13 +54,13 @@ def serialize_aws_json_1_1(value: ListAggregateDiscoveredResourcesRequest) -> di
 
 def deserialize_aws_json_1_1(data: dict) -> ListAggregateDiscoveredResourcesRequest:
     out: ListAggregateDiscoveredResourcesRequest = {}  # type: ignore[typeddict-item]
-    if "ConfigurationAggregatorName" in data:
+    if data.get("ConfigurationAggregatorName") is not None:
         out["configuration_aggregator_name"] = data["ConfigurationAggregatorName"]
     else:
         raise DeserializationError(
             "ListAggregateDiscoveredResourcesRequest.configuration_aggregator_name required"
         )
-    if "ResourceType" in data:
+    if data.get("ResourceType") is not None:
         import capo_config_service.types.resource_type
 
         out["resource_type"] = (
@@ -72,7 +72,7 @@ def deserialize_aws_json_1_1(data: dict) -> ListAggregateDiscoveredResourcesRequ
         raise DeserializationError(
             "ListAggregateDiscoveredResourcesRequest.resource_type required"
         )
-    if "Filters" in data:
+    if data.get("Filters") is not None:
         import capo_config_service.types.resource_filters
 
         out["filters"] = (
@@ -80,10 +80,10 @@ def deserialize_aws_json_1_1(data: dict) -> ListAggregateDiscoveredResourcesRequ
                 data["Filters"]
             )
         )
-    if "Limit" in data:
+    if data.get("Limit") is not None:
         out["limit"] = data["Limit"]
     else:
         out["limit"] = 0
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

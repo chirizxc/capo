@@ -13,9 +13,9 @@ from capo_macie2 import AsyncMacie2Client
 
 
 async def main():
-    async with AsyncMacie2Client() as s3:
+    async with AsyncMacie2Client() as macie2:
         # Example: call the accept_invitation operation
-        response = await s3.accept_invitation()
+        response = await macie2.accept_invitation()
         print(response)
 ```
 
@@ -28,9 +28,9 @@ from capo_macie2 import AsyncMacie2Client
 
 
 async def main():
-    async with AsyncMacie2Client() as s3:
+    async with AsyncMacie2Client() as macie2:
         # Example: paginate over describe_buckets
-        async for item in s3.iter_describe_buckets():
+        async for item in macie2.iter_describe_buckets():
             print(item)
 ```
 
@@ -44,9 +44,9 @@ from capo_macie2.error import AccessDeniedException
 
 
 async def main():
-    async with AsyncMacie2Client() as s3:
+    async with AsyncMacie2Client() as macie2:
         try:
-            await s3.accept_invitation()
+            await macie2.accept_invitation()
         except AccessDeniedException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -63,13 +63,13 @@ from capo_macie2 import AsyncMacie2Client
 
 
 async def main():
-    async with AsyncMacie2Client() as s3:
+    async with AsyncMacie2Client() as macie2:
         # Default: 3 attempts for every operation
-        response = await s3.accept_invitation()
+        response = await macie2.accept_invitation()
 
         # Override per operation
-        response = await s3.accept_invitation(config_overrides={"retry_max_attempts": 5})
+        response = await macie2.accept_invitation(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.accept_invitation(config_overrides={"retry_max_attempts": 1})
+        response = await macie2.accept_invitation(config_overrides={"retry_max_attempts": 1})
 ```

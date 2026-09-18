@@ -105,11 +105,11 @@ def serialize_json(value: SendChannelMessageRequest) -> dict:
 
 def deserialize_json(data: dict) -> SendChannelMessageRequest:
     out: SendChannelMessageRequest = {}  # type: ignore[typeddict-item]
-    if "Content" in data:
+    if data.get("Content") is not None:
         out["content"] = data["Content"]
     else:
         raise DeserializationError("SendChannelMessageRequest.content required")
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_chime_sdk_messaging.types.channel_message_type
 
         out["type"] = (
@@ -119,7 +119,7 @@ def deserialize_json(data: dict) -> SendChannelMessageRequest:
         )
     else:
         raise DeserializationError("SendChannelMessageRequest.type required")
-    if "Persistence" in data:
+    if data.get("Persistence") is not None:
         import capo_chime_sdk_messaging.types.channel_message_persistence_type
 
         out["persistence"] = (
@@ -129,15 +129,15 @@ def deserialize_json(data: dict) -> SendChannelMessageRequest:
         )
     else:
         raise DeserializationError("SendChannelMessageRequest.persistence required")
-    if "Metadata" in data:
+    if data.get("Metadata") is not None:
         out["metadata"] = data["Metadata"]
-    if "ClientRequestToken" in data:
+    if data.get("ClientRequestToken") is not None:
         out["client_request_token"] = data["ClientRequestToken"]
     else:
         raise DeserializationError(
             "SendChannelMessageRequest.client_request_token required"
         )
-    if "PushNotification" in data:
+    if data.get("PushNotification") is not None:
         import capo_chime_sdk_messaging.types.push_notification_configuration
 
         out["push_notification"] = (
@@ -145,7 +145,7 @@ def deserialize_json(data: dict) -> SendChannelMessageRequest:
                 data["PushNotification"]
             )
         )
-    if "MessageAttributes" in data:
+    if data.get("MessageAttributes") is not None:
         import capo_chime_sdk_messaging.types.message_attribute_map
 
         out["message_attributes"] = (
@@ -153,11 +153,11 @@ def deserialize_json(data: dict) -> SendChannelMessageRequest:
                 data["MessageAttributes"]
             )
         )
-    if "SubChannelId" in data:
+    if data.get("SubChannelId") is not None:
         out["sub_channel_id"] = data["SubChannelId"]
-    if "ContentType" in data:
+    if data.get("ContentType") is not None:
         out["content_type"] = data["ContentType"]
-    if "Target" in data:
+    if data.get("Target") is not None:
         import capo_chime_sdk_messaging.types.target_list
 
         out["target"] = capo_chime_sdk_messaging.types.target_list.deserialize_json(

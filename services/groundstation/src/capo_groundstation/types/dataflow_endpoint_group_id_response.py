@@ -23,6 +23,6 @@ def serialize_json(value: DataflowEndpointGroupIdResponse) -> dict:
 
 def deserialize_json(data: dict) -> DataflowEndpointGroupIdResponse:
     out: DataflowEndpointGroupIdResponse = {}  # type: ignore[typeddict-item]
-    if "dataflowEndpointGroupId" in data:
+    if data.get("dataflowEndpointGroupId") is not None:
         out["dataflow_endpoint_group_id"] = data["dataflowEndpointGroupId"]
     return out

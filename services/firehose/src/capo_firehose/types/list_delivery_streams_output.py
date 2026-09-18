@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: ListDeliveryStreamsOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListDeliveryStreamsOutput:
     out: ListDeliveryStreamsOutput = {}  # type: ignore[typeddict-item]
-    if "DeliveryStreamNames" in data:
+    if data.get("DeliveryStreamNames") is not None:
         import capo_firehose.types.delivery_stream_name_list
 
         out["delivery_stream_names"] = (
@@ -48,7 +48,7 @@ def deserialize_aws_json_1_1(data: dict) -> ListDeliveryStreamsOutput:
         raise DeserializationError(
             "ListDeliveryStreamsOutput.delivery_stream_names required"
         )
-    if "HasMoreDeliveryStreams" in data:
+    if data.get("HasMoreDeliveryStreams") is not None:
         out["has_more_delivery_streams"] = data["HasMoreDeliveryStreams"]
     else:
         raise DeserializationError(

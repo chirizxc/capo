@@ -28,11 +28,11 @@ def serialize_json(value: AlertTarget) -> dict:
 
 def deserialize_json(data: dict) -> AlertTarget:
     out: AlertTarget = {}  # type: ignore[typeddict-item]
-    if "alertTargetArn" in data:
+    if data.get("alertTargetArn") is not None:
         out["alert_target_arn"] = data["alertTargetArn"]
     else:
         raise DeserializationError("AlertTarget.alert_target_arn required")
-    if "roleArn" in data:
+    if data.get("roleArn") is not None:
         out["role_arn"] = data["roleArn"]
     else:
         raise DeserializationError("AlertTarget.role_arn required")

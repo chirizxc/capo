@@ -121,17 +121,17 @@ def serialize_json(value: CreateRestApiRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateRestApiRequest:
     out: CreateRestApiRequest = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("CreateRestApiRequest.name required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "version" in data:
+    if data.get("version") is not None:
         out["version"] = data["version"]
-    if "cloneFrom" in data:
+    if data.get("cloneFrom") is not None:
         out["clone_from"] = data["cloneFrom"]
-    if "binaryMediaTypes" in data:
+    if data.get("binaryMediaTypes") is not None:
         import capo_api_gateway.types.list_of_string
 
         out["binary_media_types"] = (
@@ -139,9 +139,9 @@ def deserialize_json(data: dict) -> CreateRestApiRequest:
                 data["binaryMediaTypes"]
             )
         )
-    if "minimumCompressionSize" in data:
+    if data.get("minimumCompressionSize") is not None:
         out["minimum_compression_size"] = data["minimumCompressionSize"]
-    if "apiKeySource" in data:
+    if data.get("apiKeySource") is not None:
         import capo_api_gateway.types.api_key_source_type
 
         out["api_key_source"] = (
@@ -149,7 +149,7 @@ def deserialize_json(data: dict) -> CreateRestApiRequest:
                 data["apiKeySource"]
             )
         )
-    if "endpointConfiguration" in data:
+    if data.get("endpointConfiguration") is not None:
         import capo_api_gateway.types.endpoint_configuration
 
         out["endpoint_configuration"] = (
@@ -157,19 +157,19 @@ def deserialize_json(data: dict) -> CreateRestApiRequest:
                 data["endpointConfiguration"]
             )
         )
-    if "policy" in data:
+    if data.get("policy") is not None:
         out["policy"] = data["policy"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_api_gateway.types.map_of_string_to_string
 
         out["tags"] = capo_api_gateway.types.map_of_string_to_string.deserialize_json(
             data["tags"]
         )
-    if "disableExecuteApiEndpoint" in data:
+    if data.get("disableExecuteApiEndpoint") is not None:
         out["disable_execute_api_endpoint"] = data["disableExecuteApiEndpoint"]
     else:
         out["disable_execute_api_endpoint"] = False
-    if "securityPolicy" in data:
+    if data.get("securityPolicy") is not None:
         import capo_api_gateway.types.security_policy
 
         out["security_policy"] = (
@@ -177,7 +177,7 @@ def deserialize_json(data: dict) -> CreateRestApiRequest:
                 data["securityPolicy"]
             )
         )
-    if "endpointAccessMode" in data:
+    if data.get("endpointAccessMode") is not None:
         import capo_api_gateway.types.endpoint_access_mode
 
         out["endpoint_access_mode"] = (

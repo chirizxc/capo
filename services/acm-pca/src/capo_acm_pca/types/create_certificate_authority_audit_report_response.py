@@ -32,8 +32,8 @@ def deserialize_aws_json_1_1(
     data: dict,
 ) -> CreateCertificateAuthorityAuditReportResponse:
     out: CreateCertificateAuthorityAuditReportResponse = {}  # type: ignore[typeddict-item]
-    if "AuditReportId" in data:
+    if data.get("AuditReportId") is not None:
         out["audit_report_id"] = data["AuditReportId"]
-    if "S3Key" in data:
+    if data.get("S3Key") is not None:
         out["s3_key"] = data["S3Key"]
     return out

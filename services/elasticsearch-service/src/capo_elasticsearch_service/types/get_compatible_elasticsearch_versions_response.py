@@ -31,7 +31,7 @@ def serialize_json(value: GetCompatibleElasticsearchVersionsResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetCompatibleElasticsearchVersionsResponse:
     out: GetCompatibleElasticsearchVersionsResponse = {}  # type: ignore[typeddict-item]
-    if "CompatibleElasticsearchVersions" in data:
+    if data.get("CompatibleElasticsearchVersions") is not None:
         import capo_elasticsearch_service.types.compatible_elasticsearch_versions_list
 
         out["compatible_elasticsearch_versions"] = (

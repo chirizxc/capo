@@ -36,7 +36,7 @@ def serialize_json(value: ListTableStorageOptimizersResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListTableStorageOptimizersResponse:
     out: ListTableStorageOptimizersResponse = {}  # type: ignore[typeddict-item]
-    if "StorageOptimizerList" in data:
+    if data.get("StorageOptimizerList") is not None:
         import capo_lakeformation.types.storage_optimizer_list
 
         out["storage_optimizer_list"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> ListTableStorageOptimizersResponse:
                 data["StorageOptimizerList"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

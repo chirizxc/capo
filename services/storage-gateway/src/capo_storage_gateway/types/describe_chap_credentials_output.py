@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: DescribeChapCredentialsOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeChapCredentialsOutput:
     out: DescribeChapCredentialsOutput = {}  # type: ignore[typeddict-item]
-    if "ChapCredentials" in data:
+    if data.get("ChapCredentials") is not None:
         import capo_storage_gateway.types.chap_credentials
 
         out["chap_credentials"] = (

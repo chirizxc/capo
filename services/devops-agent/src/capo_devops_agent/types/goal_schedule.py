@@ -32,7 +32,7 @@ def serialize_json(value: GoalSchedule) -> dict:
 
 def deserialize_json(data: dict) -> GoalSchedule:
     out: GoalSchedule = {}  # type: ignore[typeddict-item]
-    if "state" in data:
+    if data.get("state") is not None:
         import capo_devops_agent.types.scheduler_state
 
         out["state"] = capo_devops_agent.types.scheduler_state.deserialize_json(
@@ -40,6 +40,6 @@ def deserialize_json(data: dict) -> GoalSchedule:
         )
     else:
         raise DeserializationError("GoalSchedule.state required")
-    if "expression" in data:
+    if data.get("expression") is not None:
         out["expression"] = data["expression"]
     return out

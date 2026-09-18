@@ -42,7 +42,7 @@ def serialize_aws_json_1_1(value: JupyterLabAppImageConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> JupyterLabAppImageConfig:
     out: JupyterLabAppImageConfig = {}  # type: ignore[typeddict-item]
-    if "FileSystemConfig" in data:
+    if data.get("FileSystemConfig") is not None:
         import capo_sagemaker.types.file_system_config
 
         out["file_system_config"] = (
@@ -50,7 +50,7 @@ def deserialize_aws_json_1_1(data: dict) -> JupyterLabAppImageConfig:
                 data["FileSystemConfig"]
             )
         )
-    if "ContainerConfig" in data:
+    if data.get("ContainerConfig") is not None:
         import capo_sagemaker.types.container_config
 
         out["container_config"] = (

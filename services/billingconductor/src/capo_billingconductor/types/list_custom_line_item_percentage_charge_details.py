@@ -18,14 +18,22 @@ class ListCustomLineItemPercentageChargeDetails(TypedDict, closed=True):
 # --- restJson1 ser/de ---
 def serialize_json(value: ListCustomLineItemPercentageChargeDetails) -> dict:
     out: dict = {}
-    out["PercentageValue"] = value["percentage_value"]
+    out["PercentageValue"] = (
+        "NaN"
+        if value["percentage_value"] != value["percentage_value"]
+        else "Infinity"
+        if value["percentage_value"] == float("inf")
+        else "-Infinity"
+        if value["percentage_value"] == float("-inf")
+        else value["percentage_value"]
+    )
     return out
 
 
 def deserialize_json(data: dict) -> ListCustomLineItemPercentageChargeDetails:
     out: ListCustomLineItemPercentageChargeDetails = {}  # type: ignore[typeddict-item]
-    if "PercentageValue" in data:
-        out["percentage_value"] = data["PercentageValue"]
+    if data.get("PercentageValue") is not None:
+        out["percentage_value"] = float(data["PercentageValue"])
     else:
         raise DeserializationError(
             "ListCustomLineItemPercentageChargeDetails.percentage_value required"

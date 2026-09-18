@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> PricingRuleList:
 
     out: PricingRuleList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_billingconductor.types.pricing_rule_list_element.deserialize_json(item)
         )

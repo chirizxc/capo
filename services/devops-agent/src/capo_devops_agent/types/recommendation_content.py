@@ -23,10 +23,10 @@ def serialize_json(value: RecommendationContent) -> dict:
 
 def deserialize_json(data: dict) -> RecommendationContent:
     out: RecommendationContent = {}  # type: ignore[typeddict-item]
-    if "summary" in data:
+    if data.get("summary") is not None:
         out["summary"] = data["summary"]
     else:
         raise DeserializationError("RecommendationContent.summary required")
-    if "spec" in data:
+    if data.get("spec") is not None:
         out["spec"] = data["spec"]
     return out

@@ -23,6 +23,6 @@ def serialize_json(value: PutReportDefinitionResult) -> dict:
 
 def deserialize_json(data: dict) -> PutReportDefinitionResult:
     out: PutReportDefinitionResult = {}  # type: ignore[typeddict-item]
-    if "reportId" in data:
+    if data.get("reportId") is not None:
         out["report_id"] = data["reportId"]
     return out

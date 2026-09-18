@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import uuid
 from typing import TYPE_CHECKING, Optional
 
 import capo_vpc_lattice._auth._signers
@@ -108,13 +109,15 @@ class TargetGroup:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_vpc_lattice.types.create_target_group_request.CreateTargetGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        input_["type"] = type
+        input_: capo_vpc_lattice.types.create_target_group_request.CreateTargetGroupRequest = {
+            "name": name,
+            "type": type,
+        }
         if config is not None:
             input_["config"] = config
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if tags is not None:
             input_["tags"] = tags
 
@@ -123,6 +126,7 @@ class TargetGroup:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -160,14 +164,16 @@ class TargetGroup:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_vpc_lattice.types.get_target_group_request.GetTargetGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["target_group_identifier"] = target_group_identifier
+        input_: capo_vpc_lattice.types.get_target_group_request.GetTargetGroupRequest = {
+            "target_group_identifier": target_group_identifier
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update(
@@ -211,15 +217,17 @@ class TargetGroup:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_vpc_lattice.types.update_target_group_request.UpdateTargetGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["target_group_identifier"] = target_group_identifier
-        input_["health_check"] = health_check
+        input_: capo_vpc_lattice.types.update_target_group_request.UpdateTargetGroupRequest = {
+            "target_group_identifier": target_group_identifier,
+            "health_check": health_check,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -259,14 +267,16 @@ class TargetGroup:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_vpc_lattice.types.delete_target_group_request.DeleteTargetGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["target_group_identifier"] = target_group_identifier
+        input_: capo_vpc_lattice.types.delete_target_group_request.DeleteTargetGroupRequest = {
+            "target_group_identifier": target_group_identifier
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -311,7 +321,7 @@ class TargetGroup:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_vpc_lattice.types.list_target_groups_request.ListTargetGroupsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_vpc_lattice.types.list_target_groups_request.ListTargetGroupsRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -326,6 +336,7 @@ class TargetGroup:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def deregister_targets(
@@ -366,15 +377,17 @@ class TargetGroup:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_vpc_lattice.types.deregister_targets_request.DeregisterTargetsRequest = {}  # type: ignore[typeddict-item]
-        input_["target_group_identifier"] = target_group_identifier
-        input_["targets"] = targets
+        input_: capo_vpc_lattice.types.deregister_targets_request.DeregisterTargetsRequest = {
+            "target_group_identifier": target_group_identifier,
+            "targets": targets,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_targets(
@@ -418,8 +431,9 @@ class TargetGroup:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_vpc_lattice.types.list_targets_request.ListTargetsRequest = {}  # type: ignore[typeddict-item]
-        input_["target_group_identifier"] = target_group_identifier
+        input_: capo_vpc_lattice.types.list_targets_request.ListTargetsRequest = {
+            "target_group_identifier": target_group_identifier
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -432,6 +446,7 @@ class TargetGroup:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def register_targets(
@@ -473,15 +488,17 @@ class TargetGroup:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_vpc_lattice.types.register_targets_request.RegisterTargetsRequest = {}  # type: ignore[typeddict-item]
-        input_["target_group_identifier"] = target_group_identifier
-        input_["targets"] = targets
+        input_: capo_vpc_lattice.types.register_targets_request.RegisterTargetsRequest = {
+            "target_group_identifier": target_group_identifier,
+            "targets": targets,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -541,13 +558,15 @@ class AsyncTargetGroup:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_vpc_lattice.types.create_target_group_request.CreateTargetGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        input_["type"] = type
+        input_: capo_vpc_lattice.types.create_target_group_request.CreateTargetGroupRequest = {
+            "name": name,
+            "type": type,
+        }
         if config is not None:
             input_["config"] = config
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if tags is not None:
             input_["tags"] = tags
 
@@ -556,6 +575,7 @@ class AsyncTargetGroup:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -594,14 +614,16 @@ class AsyncTargetGroup:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_vpc_lattice.types.get_target_group_request.GetTargetGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["target_group_identifier"] = target_group_identifier
+        input_: capo_vpc_lattice.types.get_target_group_request.GetTargetGroupRequest = {
+            "target_group_identifier": target_group_identifier
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update(
@@ -646,15 +668,17 @@ class AsyncTargetGroup:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_vpc_lattice.types.update_target_group_request.UpdateTargetGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["target_group_identifier"] = target_group_identifier
-        input_["health_check"] = health_check
+        input_: capo_vpc_lattice.types.update_target_group_request.UpdateTargetGroupRequest = {
+            "target_group_identifier": target_group_identifier,
+            "health_check": health_check,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -695,14 +719,16 @@ class AsyncTargetGroup:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_vpc_lattice.types.delete_target_group_request.DeleteTargetGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["target_group_identifier"] = target_group_identifier
+        input_: capo_vpc_lattice.types.delete_target_group_request.DeleteTargetGroupRequest = {
+            "target_group_identifier": target_group_identifier
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -748,7 +774,7 @@ class AsyncTargetGroup:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_vpc_lattice.types.list_target_groups_request.ListTargetGroupsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_vpc_lattice.types.list_target_groups_request.ListTargetGroupsRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -763,6 +789,7 @@ class AsyncTargetGroup:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def deregister_targets(
@@ -804,15 +831,17 @@ class AsyncTargetGroup:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_vpc_lattice.types.deregister_targets_request.DeregisterTargetsRequest = {}  # type: ignore[typeddict-item]
-        input_["target_group_identifier"] = target_group_identifier
-        input_["targets"] = targets
+        input_: capo_vpc_lattice.types.deregister_targets_request.DeregisterTargetsRequest = {
+            "target_group_identifier": target_group_identifier,
+            "targets": targets,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_targets(
@@ -857,8 +886,9 @@ class AsyncTargetGroup:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_vpc_lattice.types.list_targets_request.ListTargetsRequest = {}  # type: ignore[typeddict-item]
-        input_["target_group_identifier"] = target_group_identifier
+        input_: capo_vpc_lattice.types.list_targets_request.ListTargetsRequest = {
+            "target_group_identifier": target_group_identifier
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -871,6 +901,7 @@ class AsyncTargetGroup:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def register_targets(
@@ -913,13 +944,15 @@ class AsyncTargetGroup:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_vpc_lattice.types.register_targets_request.RegisterTargetsRequest = {}  # type: ignore[typeddict-item]
-        input_["target_group_identifier"] = target_group_identifier
-        input_["targets"] = targets
+        input_: capo_vpc_lattice.types.register_targets_request.RegisterTargetsRequest = {
+            "target_group_identifier": target_group_identifier,
+            "targets": targets,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

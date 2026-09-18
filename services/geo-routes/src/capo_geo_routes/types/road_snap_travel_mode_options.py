@@ -29,7 +29,7 @@ def serialize_json(value: RoadSnapTravelModeOptions) -> dict:
 
 def deserialize_json(data: dict) -> RoadSnapTravelModeOptions:
     out: RoadSnapTravelModeOptions = {}  # type: ignore[typeddict-item]
-    if "Truck" in data:
+    if data.get("Truck") is not None:
         import capo_geo_routes.types.road_snap_truck_options
 
         out["truck"] = capo_geo_routes.types.road_snap_truck_options.deserialize_json(

@@ -29,10 +29,10 @@ def serialize_aws_json_1_0(value: UpdateAliasInput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> UpdateAliasInput:
     out: UpdateAliasInput = {}  # type: ignore[typeddict-item]
-    if "AliasName" in data:
+    if data.get("AliasName") is not None:
         out["alias_name"] = data["AliasName"]
     else:
         raise DeserializationError("UpdateAliasInput.alias_name required")
-    if "KeyArn" in data:
+    if data.get("KeyArn") is not None:
         out["key_arn"] = data["KeyArn"]
     return out

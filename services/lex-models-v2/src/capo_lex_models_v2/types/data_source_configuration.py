@@ -57,7 +57,7 @@ def serialize_json(value: DataSourceConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> DataSourceConfiguration:
     out: DataSourceConfiguration = {}  # type: ignore[typeddict-item]
-    if "opensearchConfiguration" in data:
+    if data.get("opensearchConfiguration") is not None:
         import capo_lex_models_v2.types.opensearch_configuration
 
         out["opensearch_configuration"] = (
@@ -65,7 +65,7 @@ def deserialize_json(data: dict) -> DataSourceConfiguration:
                 data["opensearchConfiguration"]
             )
         )
-    if "kendraConfiguration" in data:
+    if data.get("kendraConfiguration") is not None:
         import capo_lex_models_v2.types.qn_a_kendra_configuration
 
         out["kendra_configuration"] = (
@@ -73,7 +73,7 @@ def deserialize_json(data: dict) -> DataSourceConfiguration:
                 data["kendraConfiguration"]
             )
         )
-    if "bedrockKnowledgeStoreConfiguration" in data:
+    if data.get("bedrockKnowledgeStoreConfiguration") is not None:
         import capo_lex_models_v2.types.bedrock_knowledge_store_configuration
 
         out["bedrock_knowledge_store_configuration"] = (

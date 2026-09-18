@@ -53,7 +53,7 @@ def serialize_json(value: AwsElbLoadBalancerPolicies) -> dict:
 
 def deserialize_json(data: dict) -> AwsElbLoadBalancerPolicies:
     out: AwsElbLoadBalancerPolicies = {}  # type: ignore[typeddict-item]
-    if "AppCookieStickinessPolicies" in data:
+    if data.get("AppCookieStickinessPolicies") is not None:
         import capo_securityhub.types.aws_elb_app_cookie_stickiness_policies
 
         out["app_cookie_stickiness_policies"] = (
@@ -61,7 +61,7 @@ def deserialize_json(data: dict) -> AwsElbLoadBalancerPolicies:
                 data["AppCookieStickinessPolicies"]
             )
         )
-    if "LbCookieStickinessPolicies" in data:
+    if data.get("LbCookieStickinessPolicies") is not None:
         import capo_securityhub.types.aws_elb_lb_cookie_stickiness_policies
 
         out["lb_cookie_stickiness_policies"] = (
@@ -69,7 +69,7 @@ def deserialize_json(data: dict) -> AwsElbLoadBalancerPolicies:
                 data["LbCookieStickinessPolicies"]
             )
         )
-    if "OtherPolicies" in data:
+    if data.get("OtherPolicies") is not None:
         import capo_securityhub.types.string_list
 
         out["other_policies"] = capo_securityhub.types.string_list.deserialize_json(

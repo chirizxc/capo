@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: GetContactMethodsResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetContactMethodsResult:
     out: GetContactMethodsResult = {}  # type: ignore[typeddict-item]
-    if "contactMethods" in data:
+    if data.get("contactMethods") is not None:
         import capo_lightsail.types.contact_methods_list
 
         out["contact_methods"] = (

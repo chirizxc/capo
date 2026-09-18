@@ -59,31 +59,31 @@ def serialize_json(value: TemplateConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> TemplateConfiguration:
     out: TemplateConfiguration = {}  # type: ignore[typeddict-item]
-    if "EmailTemplate" in data:
+    if data.get("EmailTemplate") is not None:
         import capo_pinpoint.types.template
 
         out["email_template"] = capo_pinpoint.types.template.deserialize_json(
             data["EmailTemplate"]
         )
-    if "PushTemplate" in data:
+    if data.get("PushTemplate") is not None:
         import capo_pinpoint.types.template
 
         out["push_template"] = capo_pinpoint.types.template.deserialize_json(
             data["PushTemplate"]
         )
-    if "SMSTemplate" in data:
+    if data.get("SMSTemplate") is not None:
         import capo_pinpoint.types.template
 
         out["sms_template"] = capo_pinpoint.types.template.deserialize_json(
             data["SMSTemplate"]
         )
-    if "VoiceTemplate" in data:
+    if data.get("VoiceTemplate") is not None:
         import capo_pinpoint.types.template
 
         out["voice_template"] = capo_pinpoint.types.template.deserialize_json(
             data["VoiceTemplate"]
         )
-    if "InAppTemplate" in data:
+    if data.get("InAppTemplate") is not None:
         import capo_pinpoint.types.template
 
         out["in_app_template"] = capo_pinpoint.types.template.deserialize_json(

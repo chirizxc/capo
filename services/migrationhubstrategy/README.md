@@ -13,9 +13,9 @@ from capo_migrationhubstrategy import AsyncMigrationHubStrategyClient
 
 
 async def main():
-    async with AsyncMigrationHubStrategyClient() as s3:
+    async with AsyncMigrationHubStrategyClient() as migration_hub_strategy:
         # Example: call the get_application_component_details operation
-        response = await s3.get_application_component_details()
+        response = await migration_hub_strategy.get_application_component_details()
         print(response["application_component_detail"])
 ```
 
@@ -28,9 +28,9 @@ from capo_migrationhubstrategy import AsyncMigrationHubStrategyClient
 
 
 async def main():
-    async with AsyncMigrationHubStrategyClient() as s3:
+    async with AsyncMigrationHubStrategyClient() as migration_hub_strategy:
         # Example: paginate over get_server_details
-        async for item in s3.iter_get_server_details():
+        async for item in migration_hub_strategy.iter_get_server_details():
             print(item)
 ```
 
@@ -44,9 +44,9 @@ from capo_migrationhubstrategy.error import InternalServerException
 
 
 async def main():
-    async with AsyncMigrationHubStrategyClient() as s3:
+    async with AsyncMigrationHubStrategyClient() as migration_hub_strategy:
         try:
-            await s3.get_application_component_details()
+            await migration_hub_strategy.get_application_component_details()
         except InternalServerException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -63,13 +63,13 @@ from capo_migrationhubstrategy import AsyncMigrationHubStrategyClient
 
 
 async def main():
-    async with AsyncMigrationHubStrategyClient() as s3:
+    async with AsyncMigrationHubStrategyClient() as migration_hub_strategy:
         # Default: 3 attempts for every operation
-        response = await s3.get_application_component_details()
+        response = await migration_hub_strategy.get_application_component_details()
 
         # Override per operation
-        response = await s3.get_application_component_details(config_overrides={"retry_max_attempts": 5})
+        response = await migration_hub_strategy.get_application_component_details(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.get_application_component_details(config_overrides={"retry_max_attempts": 1})
+        response = await migration_hub_strategy.get_application_component_details(config_overrides={"retry_max_attempts": 1})
 ```

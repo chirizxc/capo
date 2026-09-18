@@ -61,7 +61,7 @@ def serialize_json(value: RecurrencePattern) -> dict:
 
 def deserialize_json(data: dict) -> RecurrencePattern:
     out: RecurrencePattern = {}  # type: ignore[typeddict-item]
-    if "Frequency" in data:
+    if data.get("Frequency") is not None:
         import capo_connect.types.recurrence_frequency
 
         out["frequency"] = capo_connect.types.recurrence_frequency.deserialize_json(
@@ -69,23 +69,23 @@ def deserialize_json(data: dict) -> RecurrencePattern:
         )
     else:
         raise DeserializationError("RecurrencePattern.frequency required")
-    if "Interval" in data:
+    if data.get("Interval") is not None:
         out["interval"] = data["Interval"]
     else:
         raise DeserializationError("RecurrencePattern.interval required")
-    if "ByMonth" in data:
+    if data.get("ByMonth") is not None:
         import capo_connect.types.month_list
 
         out["by_month"] = capo_connect.types.month_list.deserialize_json(
             data["ByMonth"]
         )
-    if "ByMonthDay" in data:
+    if data.get("ByMonthDay") is not None:
         import capo_connect.types.month_day_list
 
         out["by_month_day"] = capo_connect.types.month_day_list.deserialize_json(
             data["ByMonthDay"]
         )
-    if "ByWeekdayOccurrence" in data:
+    if data.get("ByWeekdayOccurrence") is not None:
         import capo_connect.types.weekday_occurrence_list
 
         out["by_weekday_occurrence"] = (

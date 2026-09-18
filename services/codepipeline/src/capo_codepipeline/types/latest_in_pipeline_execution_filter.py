@@ -36,13 +36,13 @@ def serialize_aws_json_1_1(value: LatestInPipelineExecutionFilter) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> LatestInPipelineExecutionFilter:
     out: LatestInPipelineExecutionFilter = {}  # type: ignore[typeddict-item]
-    if "pipelineExecutionId" in data:
+    if data.get("pipelineExecutionId") is not None:
         out["pipeline_execution_id"] = data["pipelineExecutionId"]
     else:
         raise DeserializationError(
             "LatestInPipelineExecutionFilter.pipeline_execution_id required"
         )
-    if "startTimeRange" in data:
+    if data.get("startTimeRange") is not None:
         import capo_codepipeline.types.start_time_range
 
         out["start_time_range"] = (

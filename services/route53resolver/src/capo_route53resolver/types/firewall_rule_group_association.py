@@ -108,19 +108,19 @@ def serialize_aws_json_1_1(value: FirewallRuleGroupAssociation) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> FirewallRuleGroupAssociation:
     out: FirewallRuleGroupAssociation = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "FirewallRuleGroupId" in data:
+    if data.get("FirewallRuleGroupId") is not None:
         out["firewall_rule_group_id"] = data["FirewallRuleGroupId"]
-    if "VpcId" in data:
+    if data.get("VpcId") is not None:
         out["vpc_id"] = data["VpcId"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Priority" in data:
+    if data.get("Priority") is not None:
         out["priority"] = data["Priority"]
-    if "MutationProtection" in data:
+    if data.get("MutationProtection") is not None:
         import capo_route53resolver.types.mutation_protection_status
 
         out["mutation_protection"] = (
@@ -128,9 +128,9 @@ def deserialize_aws_json_1_1(data: dict) -> FirewallRuleGroupAssociation:
                 data["MutationProtection"]
             )
         )
-    if "ManagedOwnerName" in data:
+    if data.get("ManagedOwnerName") is not None:
         out["managed_owner_name"] = data["ManagedOwnerName"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_route53resolver.types.firewall_rule_group_association_status
 
         out["status"] = (
@@ -138,12 +138,12 @@ def deserialize_aws_json_1_1(data: dict) -> FirewallRuleGroupAssociation:
                 data["Status"]
             )
         )
-    if "StatusMessage" in data:
+    if data.get("StatusMessage") is not None:
         out["status_message"] = data["StatusMessage"]
-    if "CreatorRequestId" in data:
+    if data.get("CreatorRequestId") is not None:
         out["creator_request_id"] = data["CreatorRequestId"]
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         out["creation_time"] = data["CreationTime"]
-    if "ModificationTime" in data:
+    if data.get("ModificationTime") is not None:
         out["modification_time"] = data["ModificationTime"]
     return out

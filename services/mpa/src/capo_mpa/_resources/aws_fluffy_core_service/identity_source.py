@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import uuid
 from typing import TYPE_CHECKING, Optional
 
 import capo_mpa._auth._signers
@@ -74,10 +75,12 @@ class IdentitySource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mpa.types.create_identity_source_request.CreateIdentitySourceRequest = {}  # type: ignore[typeddict-item]
-        input_["identity_source_parameters"] = identity_source_parameters
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_mpa.types.create_identity_source_request.CreateIdentitySourceRequest = {
+            "identity_source_parameters": identity_source_parameters
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if tags is not None:
             input_["tags"] = tags
 
@@ -86,6 +89,7 @@ class IdentitySource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -123,14 +127,16 @@ class IdentitySource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mpa.types.get_identity_source_request.GetIdentitySourceRequest = {}  # type: ignore[typeddict-item]
-        input_["identity_source_arn"] = identity_source_arn
+        input_: capo_mpa.types.get_identity_source_request.GetIdentitySourceRequest = {
+            "identity_source_arn": identity_source_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -166,14 +172,16 @@ class IdentitySource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mpa.types.delete_identity_source_request.DeleteIdentitySourceRequest = {}  # type: ignore[typeddict-item]
-        input_["identity_source_arn"] = identity_source_arn
+        input_: capo_mpa.types.delete_identity_source_request.DeleteIdentitySourceRequest = {
+            "identity_source_arn": identity_source_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -212,7 +220,7 @@ class IdentitySource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mpa.types.list_identity_sources_request.ListIdentitySourcesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_mpa.types.list_identity_sources_request.ListIdentitySourcesRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -223,6 +231,7 @@ class IdentitySource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -270,10 +279,12 @@ class AsyncIdentitySource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mpa.types.create_identity_source_request.CreateIdentitySourceRequest = {}  # type: ignore[typeddict-item]
-        input_["identity_source_parameters"] = identity_source_parameters
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_mpa.types.create_identity_source_request.CreateIdentitySourceRequest = {
+            "identity_source_parameters": identity_source_parameters
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if tags is not None:
             input_["tags"] = tags
 
@@ -282,6 +293,7 @@ class AsyncIdentitySource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -320,14 +332,16 @@ class AsyncIdentitySource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mpa.types.get_identity_source_request.GetIdentitySourceRequest = {}  # type: ignore[typeddict-item]
-        input_["identity_source_arn"] = identity_source_arn
+        input_: capo_mpa.types.get_identity_source_request.GetIdentitySourceRequest = {
+            "identity_source_arn": identity_source_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -364,14 +378,16 @@ class AsyncIdentitySource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mpa.types.delete_identity_source_request.DeleteIdentitySourceRequest = {}  # type: ignore[typeddict-item]
-        input_["identity_source_arn"] = identity_source_arn
+        input_: capo_mpa.types.delete_identity_source_request.DeleteIdentitySourceRequest = {
+            "identity_source_arn": identity_source_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -411,7 +427,7 @@ class AsyncIdentitySource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mpa.types.list_identity_sources_request.ListIdentitySourcesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_mpa.types.list_identity_sources_request.ListIdentitySourcesRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -422,4 +438,5 @@ class AsyncIdentitySource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

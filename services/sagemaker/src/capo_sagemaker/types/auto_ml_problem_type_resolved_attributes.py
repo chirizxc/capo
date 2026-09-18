@@ -56,7 +56,7 @@ def serialize_aws_json_1_1(value: AutoMLProblemTypeResolvedAttributes) -> dict:
 
 
 def deserialize_aws_json_1_1(data: dict) -> AutoMLProblemTypeResolvedAttributes:
-    if "TabularResolvedAttributes" in data:
+    if data.get("TabularResolvedAttributes") is not None:
         import capo_sagemaker.types.tabular_resolved_attributes
 
         return {
@@ -64,7 +64,7 @@ def deserialize_aws_json_1_1(data: dict) -> AutoMLProblemTypeResolvedAttributes:
                 data["TabularResolvedAttributes"]
             )
         }
-    elif "TextGenerationResolvedAttributes" in data:
+    elif data.get("TextGenerationResolvedAttributes") is not None:
         import capo_sagemaker.types.text_generation_resolved_attributes
 
         return {

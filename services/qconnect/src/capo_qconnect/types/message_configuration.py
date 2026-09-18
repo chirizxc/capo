@@ -22,8 +22,8 @@ def serialize_json(value: MessageConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> MessageConfiguration:
     out: MessageConfiguration = {}  # type: ignore[typeddict-item]
-    if "generateFillerMessage" in data:
+    if data.get("generateFillerMessage") is not None:
         out["generate_filler_message"] = data["generateFillerMessage"]
-    if "generateChunkedMessage" in data:
+    if data.get("generateChunkedMessage") is not None:
         out["generate_chunked_message"] = data["generateChunkedMessage"]
     return out

@@ -47,11 +47,11 @@ def serialize_aws_json_1_1(value: CustomCode) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CustomCode:
     out: CustomCode = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("CustomCode.name required")
-    if "Inputs" in data:
+    if data.get("Inputs") is not None:
         import capo_glue.types.many_inputs
 
         out["inputs"] = capo_glue.types.many_inputs.deserialize_aws_json_1_1(
@@ -59,15 +59,15 @@ def deserialize_aws_json_1_1(data: dict) -> CustomCode:
         )
     else:
         raise DeserializationError("CustomCode.inputs required")
-    if "Code" in data:
+    if data.get("Code") is not None:
         out["code"] = data["Code"]
     else:
         raise DeserializationError("CustomCode.code required")
-    if "ClassName" in data:
+    if data.get("ClassName") is not None:
         out["class_name"] = data["ClassName"]
     else:
         raise DeserializationError("CustomCode.class_name required")
-    if "OutputSchemas" in data:
+    if data.get("OutputSchemas") is not None:
         import capo_glue.types.glue_schemas
 
         out["output_schemas"] = capo_glue.types.glue_schemas.deserialize_aws_json_1_1(

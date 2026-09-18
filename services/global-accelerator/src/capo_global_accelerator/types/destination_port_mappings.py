@@ -29,6 +29,8 @@ def deserialize_aws_json_1_1(data: list) -> DestinationPortMappings:
 
     out: DestinationPortMappings = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_global_accelerator.types.destination_port_mapping.deserialize_aws_json_1_1(
                 item

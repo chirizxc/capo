@@ -25,7 +25,7 @@ def serialize_json(value: TransactionCommitInProgressException_) -> dict:
 
 def deserialize_json(data: dict) -> TransactionCommitInProgressException_:
     out: TransactionCommitInProgressException_ = {}  # type: ignore[typeddict-item]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     return out
 
@@ -35,15 +35,20 @@ class TransactionCommitInProgressException(ServiceError):
 
     code: str | None = "TransactionCommitInProgressException"
 
-    def __init__(self, data: TransactionCommitInProgressException_):
+    def __init__(
+        self, data: TransactionCommitInProgressException_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="TransactionCommitInProgressException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "TransactionCommitInProgressException":
-        return cls(deserialize_json(data))
+    def from_json(
+        cls, data: dict, message: str | None = None
+    ) -> "TransactionCommitInProgressException":
+        return cls(deserialize_json(data), message)

@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> AnalysisTemplateValidationStatusReasonList:
 
     out: AnalysisTemplateValidationStatusReasonList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_cleanrooms.types.analysis_template_validation_status_reason.deserialize_json(
                 item

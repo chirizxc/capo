@@ -31,7 +31,7 @@ def serialize_json(value: UpdatePackagingGroupRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdatePackagingGroupRequest:
     out: UpdatePackagingGroupRequest = {}  # type: ignore[typeddict-item]
-    if "authorization" in data:
+    if data.get("authorization") is not None:
         import capo_mediapackage_vod.types.authorization
 
         out["authorization"] = (

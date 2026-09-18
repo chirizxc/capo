@@ -63,30 +63,30 @@ def serialize_aws_json_1_1(value: Commit) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Commit:
     out: Commit = {}  # type: ignore[typeddict-item]
-    if "commitId" in data:
+    if data.get("commitId") is not None:
         out["commit_id"] = data["commitId"]
-    if "treeId" in data:
+    if data.get("treeId") is not None:
         out["tree_id"] = data["treeId"]
-    if "parents" in data:
+    if data.get("parents") is not None:
         import capo_codecommit.types.parent_list
 
         out["parents"] = capo_codecommit.types.parent_list.deserialize_aws_json_1_1(
             data["parents"]
         )
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
-    if "author" in data:
+    if data.get("author") is not None:
         import capo_codecommit.types.user_info
 
         out["author"] = capo_codecommit.types.user_info.deserialize_aws_json_1_1(
             data["author"]
         )
-    if "committer" in data:
+    if data.get("committer") is not None:
         import capo_codecommit.types.user_info
 
         out["committer"] = capo_codecommit.types.user_info.deserialize_aws_json_1_1(
             data["committer"]
         )
-    if "additionalData" in data:
+    if data.get("additionalData") is not None:
         out["additional_data"] = data["additionalData"]
     return out

@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import uuid
 from typing import TYPE_CHECKING, Optional
 
 import capo_datazone._auth._signers
@@ -103,10 +104,11 @@ class DataProduct:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_datazone.types.create_data_product_input.CreateDataProductInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
-        input_["name"] = name
-        input_["owning_project_identifier"] = owning_project_identifier
+        input_: capo_datazone.types.create_data_product_input.CreateDataProductInput = {
+            "domain_identifier": domain_identifier,
+            "name": name,
+            "owning_project_identifier": owning_project_identifier,
+        }
         if description is not None:
             input_["description"] = description
         if glossary_terms is not None:
@@ -115,14 +117,16 @@ class DataProduct:
             input_["forms_input"] = forms_input
         if items is not None:
             input_["items"] = items
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -165,9 +169,10 @@ class DataProduct:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_datazone.types.get_data_product_input.GetDataProductInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
-        input_["identifier"] = identifier
+        input_: capo_datazone.types.get_data_product_input.GetDataProductInput = {
+            "domain_identifier": domain_identifier,
+            "identifier": identifier,
+        }
         if revision is not None:
             input_["revision"] = revision
 
@@ -176,6 +181,7 @@ class DataProduct:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -217,15 +223,17 @@ class DataProduct:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_datazone.types.delete_data_product_input.DeleteDataProductInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
-        input_["identifier"] = identifier
+        input_: capo_datazone.types.delete_data_product_input.DeleteDataProductInput = {
+            "domain_identifier": domain_identifier,
+            "identifier": identifier,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_data_product_revision(
@@ -287,10 +295,11 @@ class DataProduct:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_datazone.types.create_data_product_revision_input.CreateDataProductRevisionInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
-        input_["identifier"] = identifier
-        input_["name"] = name
+        input_: capo_datazone.types.create_data_product_revision_input.CreateDataProductRevisionInput = {
+            "domain_identifier": domain_identifier,
+            "identifier": identifier,
+            "name": name,
+        }
         if description is not None:
             input_["description"] = description
         if glossary_terms is not None:
@@ -299,14 +308,16 @@ class DataProduct:
             input_["items"] = items
         if forms_input is not None:
             input_["forms_input"] = forms_input
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -375,10 +386,11 @@ class AsyncDataProduct:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_datazone.types.create_data_product_input.CreateDataProductInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
-        input_["name"] = name
-        input_["owning_project_identifier"] = owning_project_identifier
+        input_: capo_datazone.types.create_data_product_input.CreateDataProductInput = {
+            "domain_identifier": domain_identifier,
+            "name": name,
+            "owning_project_identifier": owning_project_identifier,
+        }
         if description is not None:
             input_["description"] = description
         if glossary_terms is not None:
@@ -387,14 +399,16 @@ class AsyncDataProduct:
             input_["forms_input"] = forms_input
         if items is not None:
             input_["items"] = items
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -438,9 +452,10 @@ class AsyncDataProduct:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_datazone.types.get_data_product_input.GetDataProductInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
-        input_["identifier"] = identifier
+        input_: capo_datazone.types.get_data_product_input.GetDataProductInput = {
+            "domain_identifier": domain_identifier,
+            "identifier": identifier,
+        }
         if revision is not None:
             input_["revision"] = revision
 
@@ -449,6 +464,7 @@ class AsyncDataProduct:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -491,15 +507,17 @@ class AsyncDataProduct:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_datazone.types.delete_data_product_input.DeleteDataProductInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
-        input_["identifier"] = identifier
+        input_: capo_datazone.types.delete_data_product_input.DeleteDataProductInput = {
+            "domain_identifier": domain_identifier,
+            "identifier": identifier,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_data_product_revision(
@@ -562,10 +580,11 @@ class AsyncDataProduct:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_datazone.types.create_data_product_revision_input.CreateDataProductRevisionInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
-        input_["identifier"] = identifier
-        input_["name"] = name
+        input_: capo_datazone.types.create_data_product_revision_input.CreateDataProductRevisionInput = {
+            "domain_identifier": domain_identifier,
+            "identifier": identifier,
+            "name": name,
+        }
         if description is not None:
             input_["description"] = description
         if glossary_terms is not None:
@@ -574,12 +593,14 @@ class AsyncDataProduct:
             input_["items"] = items
         if forms_input is not None:
             input_["forms_input"] = forms_input
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

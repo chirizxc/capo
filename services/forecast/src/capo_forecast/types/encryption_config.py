@@ -28,11 +28,11 @@ def serialize_aws_json_1_1(value: EncryptionConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> EncryptionConfig:
     out: EncryptionConfig = {}  # type: ignore[typeddict-item]
-    if "RoleArn" in data:
+    if data.get("RoleArn") is not None:
         out["role_arn"] = data["RoleArn"]
     else:
         raise DeserializationError("EncryptionConfig.role_arn required")
-    if "KMSKeyArn" in data:
+    if data.get("KMSKeyArn") is not None:
         out["kms_key_arn"] = data["KMSKeyArn"]
     else:
         raise DeserializationError("EncryptionConfig.kms_key_arn required")

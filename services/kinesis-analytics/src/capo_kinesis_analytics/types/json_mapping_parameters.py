@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: JSONMappingParameters) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> JSONMappingParameters:
     out: JSONMappingParameters = {}  # type: ignore[typeddict-item]
-    if "RecordRowPath" in data:
+    if data.get("RecordRowPath") is not None:
         out["record_row_path"] = data["RecordRowPath"]
     else:
         raise DeserializationError("JSONMappingParameters.record_row_path required")

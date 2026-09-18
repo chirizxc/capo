@@ -46,17 +46,17 @@ def serialize_json(value: NetworkPathComponent) -> dict:
 
 def deserialize_json(data: dict) -> NetworkPathComponent:
     out: NetworkPathComponent = {}  # type: ignore[typeddict-item]
-    if "ComponentId" in data:
+    if data.get("ComponentId") is not None:
         out["component_id"] = data["ComponentId"]
-    if "ComponentType" in data:
+    if data.get("ComponentType") is not None:
         out["component_type"] = data["ComponentType"]
-    if "Egress" in data:
+    if data.get("Egress") is not None:
         import capo_securityhub.types.network_header
 
         out["egress"] = capo_securityhub.types.network_header.deserialize_json(
             data["Egress"]
         )
-    if "Ingress" in data:
+    if data.get("Ingress") is not None:
         import capo_securityhub.types.network_header
 
         out["ingress"] = capo_securityhub.types.network_header.deserialize_json(

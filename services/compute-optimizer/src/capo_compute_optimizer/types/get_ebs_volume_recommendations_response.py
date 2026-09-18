@@ -49,9 +49,9 @@ def serialize_aws_json_1_0(value: GetEBSVolumeRecommendationsResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> GetEBSVolumeRecommendationsResponse:
     out: GetEBSVolumeRecommendationsResponse = {}  # type: ignore[typeddict-item]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "volumeRecommendations" in data:
+    if data.get("volumeRecommendations") is not None:
         import capo_compute_optimizer.types.volume_recommendations
 
         out["volume_recommendations"] = (
@@ -59,7 +59,7 @@ def deserialize_aws_json_1_0(data: dict) -> GetEBSVolumeRecommendationsResponse:
                 data["volumeRecommendations"]
             )
         )
-    if "errors" in data:
+    if data.get("errors") is not None:
         import capo_compute_optimizer.types.get_recommendation_errors
 
         out["errors"] = (

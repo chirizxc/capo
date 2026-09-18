@@ -28,8 +28,8 @@ def serialize_aws_json_1_1(value: AssumeImpersonationRoleResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AssumeImpersonationRoleResponse:
     out: AssumeImpersonationRoleResponse = {}  # type: ignore[typeddict-item]
-    if "Token" in data:
+    if data.get("Token") is not None:
         out["token"] = data["Token"]
-    if "ExpiresIn" in data:
+    if data.get("ExpiresIn") is not None:
         out["expires_in"] = data["ExpiresIn"]
     return out

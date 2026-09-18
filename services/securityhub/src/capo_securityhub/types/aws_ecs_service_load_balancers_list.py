@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> AwsEcsServiceLoadBalancersList:
 
     out: AwsEcsServiceLoadBalancersList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_securityhub.types.aws_ecs_service_load_balancers_details.deserialize_json(
                 item

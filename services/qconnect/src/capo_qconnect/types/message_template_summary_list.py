@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> MessageTemplateSummaryList:
 
     out: MessageTemplateSummaryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_qconnect.types.message_template_summary.deserialize_json(item))
     return out

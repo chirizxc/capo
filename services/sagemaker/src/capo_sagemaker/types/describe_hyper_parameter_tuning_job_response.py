@@ -216,11 +216,11 @@ def serialize_aws_json_1_1(value: DescribeHyperParameterTuningJobResponse) -> di
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeHyperParameterTuningJobResponse:
     out: DescribeHyperParameterTuningJobResponse = {}  # type: ignore[typeddict-item]
-    if "HyperParameterTuningJobName" in data:
+    if data.get("HyperParameterTuningJobName") is not None:
         out["hyper_parameter_tuning_job_name"] = data["HyperParameterTuningJobName"]
-    if "HyperParameterTuningJobArn" in data:
+    if data.get("HyperParameterTuningJobArn") is not None:
         out["hyper_parameter_tuning_job_arn"] = data["HyperParameterTuningJobArn"]
-    if "HyperParameterTuningJobConfig" in data:
+    if data.get("HyperParameterTuningJobConfig") is not None:
         import capo_sagemaker.types.hyper_parameter_tuning_job_config
 
         out["hyper_parameter_tuning_job_config"] = (
@@ -228,7 +228,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeHyperParameterTuningJobRespo
                 data["HyperParameterTuningJobConfig"]
             )
         )
-    if "TrainingJobDefinition" in data:
+    if data.get("TrainingJobDefinition") is not None:
         import capo_sagemaker.types.hyper_parameter_training_job_definition
 
         out["training_job_definition"] = (
@@ -236,7 +236,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeHyperParameterTuningJobRespo
                 data["TrainingJobDefinition"]
             )
         )
-    if "TrainingJobDefinitions" in data:
+    if data.get("TrainingJobDefinitions") is not None:
         import capo_sagemaker.types.hyper_parameter_training_job_definitions
 
         out["training_job_definitions"] = (
@@ -244,7 +244,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeHyperParameterTuningJobRespo
                 data["TrainingJobDefinitions"]
             )
         )
-    if "HyperParameterTuningJobStatus" in data:
+    if data.get("HyperParameterTuningJobStatus") is not None:
         import capo_sagemaker.types.hyper_parameter_tuning_job_status
 
         out["hyper_parameter_tuning_job_status"] = (
@@ -252,13 +252,13 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeHyperParameterTuningJobRespo
                 data["HyperParameterTuningJobStatus"]
             )
         )
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_sagemaker.types.timestamp
 
         out["creation_time"] = capo_sagemaker.types.timestamp.deserialize_aws_json_1_1(
             data["CreationTime"]
         )
-    if "HyperParameterTuningEndTime" in data:
+    if data.get("HyperParameterTuningEndTime") is not None:
         import capo_sagemaker.types.timestamp
 
         out["hyper_parameter_tuning_end_time"] = (
@@ -266,7 +266,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeHyperParameterTuningJobRespo
                 data["HyperParameterTuningEndTime"]
             )
         )
-    if "LastModifiedTime" in data:
+    if data.get("LastModifiedTime") is not None:
         import capo_sagemaker.types.timestamp
 
         out["last_modified_time"] = (
@@ -274,7 +274,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeHyperParameterTuningJobRespo
                 data["LastModifiedTime"]
             )
         )
-    if "TrainingJobStatusCounters" in data:
+    if data.get("TrainingJobStatusCounters") is not None:
         import capo_sagemaker.types.training_job_status_counters
 
         out["training_job_status_counters"] = (
@@ -282,7 +282,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeHyperParameterTuningJobRespo
                 data["TrainingJobStatusCounters"]
             )
         )
-    if "ObjectiveStatusCounters" in data:
+    if data.get("ObjectiveStatusCounters") is not None:
         import capo_sagemaker.types.objective_status_counters
 
         out["objective_status_counters"] = (
@@ -290,7 +290,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeHyperParameterTuningJobRespo
                 data["ObjectiveStatusCounters"]
             )
         )
-    if "BestTrainingJob" in data:
+    if data.get("BestTrainingJob") is not None:
         import capo_sagemaker.types.hyper_parameter_training_job_summary
 
         out["best_training_job"] = (
@@ -298,7 +298,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeHyperParameterTuningJobRespo
                 data["BestTrainingJob"]
             )
         )
-    if "OverallBestTrainingJob" in data:
+    if data.get("OverallBestTrainingJob") is not None:
         import capo_sagemaker.types.hyper_parameter_training_job_summary
 
         out["overall_best_training_job"] = (
@@ -306,7 +306,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeHyperParameterTuningJobRespo
                 data["OverallBestTrainingJob"]
             )
         )
-    if "WarmStartConfig" in data:
+    if data.get("WarmStartConfig") is not None:
         import capo_sagemaker.types.hyper_parameter_tuning_job_warm_start_config
 
         out["warm_start_config"] = (
@@ -314,15 +314,15 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeHyperParameterTuningJobRespo
                 data["WarmStartConfig"]
             )
         )
-    if "Autotune" in data:
+    if data.get("Autotune") is not None:
         import capo_sagemaker.types.autotune
 
         out["autotune"] = capo_sagemaker.types.autotune.deserialize_aws_json_1_1(
             data["Autotune"]
         )
-    if "FailureReason" in data:
+    if data.get("FailureReason") is not None:
         out["failure_reason"] = data["FailureReason"]
-    if "TuningJobCompletionDetails" in data:
+    if data.get("TuningJobCompletionDetails") is not None:
         import capo_sagemaker.types.hyper_parameter_tuning_job_completion_details
 
         out["tuning_job_completion_details"] = (
@@ -330,7 +330,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeHyperParameterTuningJobRespo
                 data["TuningJobCompletionDetails"]
             )
         )
-    if "ConsumedResources" in data:
+    if data.get("ConsumedResources") is not None:
         import capo_sagemaker.types.hyper_parameter_tuning_job_consumed_resources
 
         out["consumed_resources"] = (

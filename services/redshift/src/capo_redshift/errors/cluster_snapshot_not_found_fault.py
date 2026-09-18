@@ -37,15 +37,18 @@ class ClusterSnapshotNotFoundFault(ServiceError):
 
     code: str | None = "ClusterSnapshotNotFoundFault"
 
-    def __init__(self, data: ClusterSnapshotNotFoundFault_):
+    def __init__(self, data: ClusterSnapshotNotFoundFault_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="ClusterSnapshotNotFoundFault",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_query(cls, el: Element) -> "ClusterSnapshotNotFoundFault":
-        return cls(deserialize_query(el))
+    def from_query(
+        cls, el: Element, message: str | None = None
+    ) -> "ClusterSnapshotNotFoundFault":
+        return cls(deserialize_query(el), message)

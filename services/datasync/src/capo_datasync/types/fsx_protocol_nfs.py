@@ -28,7 +28,7 @@ def serialize_aws_json_1_1(value: FsxProtocolNfs) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> FsxProtocolNfs:
     out: FsxProtocolNfs = {}  # type: ignore[typeddict-item]
-    if "MountOptions" in data:
+    if data.get("MountOptions") is not None:
         import capo_datasync.types.nfs_mount_options
 
         out["mount_options"] = (

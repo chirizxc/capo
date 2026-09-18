@@ -51,20 +51,20 @@ def serialize_json(value: MediaPlacement) -> dict:
 
 def deserialize_json(data: dict) -> MediaPlacement:
     out: MediaPlacement = {}  # type: ignore[typeddict-item]
-    if "AudioHostUrl" in data:
+    if data.get("AudioHostUrl") is not None:
         out["audio_host_url"] = data["AudioHostUrl"]
-    if "AudioFallbackUrl" in data:
+    if data.get("AudioFallbackUrl") is not None:
         out["audio_fallback_url"] = data["AudioFallbackUrl"]
-    if "SignalingUrl" in data:
+    if data.get("SignalingUrl") is not None:
         out["signaling_url"] = data["SignalingUrl"]
-    if "TurnControlUrl" in data:
+    if data.get("TurnControlUrl") is not None:
         out["turn_control_url"] = data["TurnControlUrl"]
-    if "ScreenDataUrl" in data:
+    if data.get("ScreenDataUrl") is not None:
         out["screen_data_url"] = data["ScreenDataUrl"]
-    if "ScreenViewingUrl" in data:
+    if data.get("ScreenViewingUrl") is not None:
         out["screen_viewing_url"] = data["ScreenViewingUrl"]
-    if "ScreenSharingUrl" in data:
+    if data.get("ScreenSharingUrl") is not None:
         out["screen_sharing_url"] = data["ScreenSharingUrl"]
-    if "EventIngestionUrl" in data:
+    if data.get("EventIngestionUrl") is not None:
         out["event_ingestion_url"] = data["EventIngestionUrl"]
     return out

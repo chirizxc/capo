@@ -27,7 +27,7 @@ def serialize_aws_json_1_1(value: DeleteKnownHostKeysResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteKnownHostKeysResult:
     out: DeleteKnownHostKeysResult = {}  # type: ignore[typeddict-item]
-    if "operations" in data:
+    if data.get("operations") is not None:
         import capo_lightsail.types.operation_list
 
         out["operations"] = (

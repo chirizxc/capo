@@ -51,7 +51,7 @@ def serialize_json(value: ClusterMetadata) -> dict:
 
 
 def deserialize_json(data: dict) -> ClusterMetadata:
-    if "awsEcsMetadataDetails" in data:
+    if data.get("awsEcsMetadataDetails") is not None:
         import capo_inspector2.types.aws_ecs_metadata_details
 
         return {
@@ -59,7 +59,7 @@ def deserialize_json(data: dict) -> ClusterMetadata:
                 data["awsEcsMetadataDetails"]
             )
         }
-    elif "awsEksMetadataDetails" in data:
+    elif data.get("awsEksMetadataDetails") is not None:
         import capo_inspector2.types.aws_eks_metadata_details
 
         return {

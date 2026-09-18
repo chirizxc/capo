@@ -54,7 +54,7 @@ def serialize_json(value: BatchGetTokenBalanceInputItem) -> dict:
 
 def deserialize_json(data: dict) -> BatchGetTokenBalanceInputItem:
     out: BatchGetTokenBalanceInputItem = {}  # type: ignore[typeddict-item]
-    if "tokenIdentifier" in data:
+    if data.get("tokenIdentifier") is not None:
         import capo_managedblockchain_query.types.token_identifier
 
         out["token_identifier"] = (
@@ -66,7 +66,7 @@ def deserialize_json(data: dict) -> BatchGetTokenBalanceInputItem:
         raise DeserializationError(
             "BatchGetTokenBalanceInputItem.token_identifier required"
         )
-    if "ownerIdentifier" in data:
+    if data.get("ownerIdentifier") is not None:
         import capo_managedblockchain_query.types.owner_identifier
 
         out["owner_identifier"] = (
@@ -78,7 +78,7 @@ def deserialize_json(data: dict) -> BatchGetTokenBalanceInputItem:
         raise DeserializationError(
             "BatchGetTokenBalanceInputItem.owner_identifier required"
         )
-    if "atBlockchainInstant" in data:
+    if data.get("atBlockchainInstant") is not None:
         import capo_managedblockchain_query.types.blockchain_instant
 
         out["at_blockchain_instant"] = (

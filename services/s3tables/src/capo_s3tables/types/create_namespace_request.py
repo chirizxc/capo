@@ -31,7 +31,7 @@ def serialize_json(value: CreateNamespaceRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateNamespaceRequest:
     out: CreateNamespaceRequest = {}  # type: ignore[typeddict-item]
-    if "namespace" in data:
+    if data.get("namespace") is not None:
         import capo_s3tables.types.namespace_list
 
         out["namespace"] = capo_s3tables.types.namespace_list.deserialize_json(

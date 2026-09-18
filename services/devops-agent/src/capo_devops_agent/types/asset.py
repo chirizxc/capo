@@ -50,23 +50,23 @@ def serialize_json(value: Asset) -> dict:
 
 def deserialize_json(data: dict) -> Asset:
     out: Asset = {}  # type: ignore[typeddict-item]
-    if "assetId" in data:
+    if data.get("assetId") is not None:
         out["asset_id"] = data["assetId"]
     else:
         raise DeserializationError("Asset.asset_id required")
-    if "assetType" in data:
+    if data.get("assetType") is not None:
         out["asset_type"] = data["assetType"]
     else:
         raise DeserializationError("Asset.asset_type required")
-    if "metadata" in data:
+    if data.get("metadata") is not None:
         out["metadata"] = data["metadata"]
     else:
         raise DeserializationError("Asset.metadata required")
-    if "version" in data:
+    if data.get("version") is not None:
         out["version"] = data["version"]
     else:
         raise DeserializationError("Asset.version required")
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_devops_agent.types._prelude.timestamp
 
         out["created_at"] = capo_devops_agent.types._prelude.timestamp.deserialize_json(
@@ -74,7 +74,7 @@ def deserialize_json(data: dict) -> Asset:
         )
     else:
         raise DeserializationError("Asset.created_at required")
-    if "updatedAt" in data:
+    if data.get("updatedAt") is not None:
         import capo_devops_agent.types._prelude.timestamp
 
         out["updated_at"] = capo_devops_agent.types._prelude.timestamp.deserialize_json(

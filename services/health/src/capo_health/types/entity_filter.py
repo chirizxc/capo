@@ -81,7 +81,7 @@ def serialize_aws_json_1_1(value: EntityFilter) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> EntityFilter:
     out: EntityFilter = {}  # type: ignore[typeddict-item]
-    if "eventArns" in data:
+    if data.get("eventArns") is not None:
         import capo_health.types.event_arn_list
 
         out["event_arns"] = capo_health.types.event_arn_list.deserialize_aws_json_1_1(
@@ -89,13 +89,13 @@ def deserialize_aws_json_1_1(data: dict) -> EntityFilter:
         )
     else:
         raise DeserializationError("EntityFilter.event_arns required")
-    if "entityArns" in data:
+    if data.get("entityArns") is not None:
         import capo_health.types.entity_arn_list
 
         out["entity_arns"] = capo_health.types.entity_arn_list.deserialize_aws_json_1_1(
             data["entityArns"]
         )
-    if "entityValues" in data:
+    if data.get("entityValues") is not None:
         import capo_health.types.entity_value_list
 
         out["entity_values"] = (
@@ -103,7 +103,7 @@ def deserialize_aws_json_1_1(data: dict) -> EntityFilter:
                 data["entityValues"]
             )
         )
-    if "lastUpdatedTimes" in data:
+    if data.get("lastUpdatedTimes") is not None:
         import capo_health.types.date_time_range_list
 
         out["last_updated_times"] = (
@@ -111,13 +111,13 @@ def deserialize_aws_json_1_1(data: dict) -> EntityFilter:
                 data["lastUpdatedTimes"]
             )
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_health.types.tag_filter
 
         out["tags"] = capo_health.types.tag_filter.deserialize_aws_json_1_1(
             data["tags"]
         )
-    if "statusCodes" in data:
+    if data.get("statusCodes") is not None:
         import capo_health.types.entity_status_code_list
 
         out["status_codes"] = (

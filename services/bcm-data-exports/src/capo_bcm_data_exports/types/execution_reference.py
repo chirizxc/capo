@@ -34,11 +34,11 @@ def serialize_aws_json_1_1(value: ExecutionReference) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ExecutionReference:
     out: ExecutionReference = {}  # type: ignore[typeddict-item]
-    if "ExecutionId" in data:
+    if data.get("ExecutionId") is not None:
         out["execution_id"] = data["ExecutionId"]
     else:
         raise DeserializationError("ExecutionReference.execution_id required")
-    if "ExecutionStatus" in data:
+    if data.get("ExecutionStatus") is not None:
         import capo_bcm_data_exports.types.execution_status
 
         out["execution_status"] = (

@@ -34,11 +34,11 @@ def serialize_json(value: BatchPutAssetPropertyErrorEntry) -> dict:
 
 def deserialize_json(data: dict) -> BatchPutAssetPropertyErrorEntry:
     out: BatchPutAssetPropertyErrorEntry = {}  # type: ignore[typeddict-item]
-    if "entryId" in data:
+    if data.get("entryId") is not None:
         out["entry_id"] = data["entryId"]
     else:
         raise DeserializationError("BatchPutAssetPropertyErrorEntry.entry_id required")
-    if "errors" in data:
+    if data.get("errors") is not None:
         import capo_iotsitewise.types.batch_put_asset_property_errors
 
         out["errors"] = (

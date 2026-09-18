@@ -30,7 +30,7 @@ def serialize_aws_json_1_1(value: RefreshCadence) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RefreshCadence:
     out: RefreshCadence = {}  # type: ignore[typeddict-item]
-    if "Frequency" in data:
+    if data.get("Frequency") is not None:
         import capo_bcm_data_exports.types.frequency_option
 
         out["frequency"] = (

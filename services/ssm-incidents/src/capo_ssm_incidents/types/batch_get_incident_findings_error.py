@@ -30,15 +30,15 @@ def serialize_json(value: BatchGetIncidentFindingsError) -> dict:
 
 def deserialize_json(data: dict) -> BatchGetIncidentFindingsError:
     out: BatchGetIncidentFindingsError = {}  # type: ignore[typeddict-item]
-    if "findingId" in data:
+    if data.get("findingId") is not None:
         out["finding_id"] = data["findingId"]
     else:
         raise DeserializationError("BatchGetIncidentFindingsError.finding_id required")
-    if "code" in data:
+    if data.get("code") is not None:
         out["code"] = data["code"]
     else:
         raise DeserializationError("BatchGetIncidentFindingsError.code required")
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     else:
         raise DeserializationError("BatchGetIncidentFindingsError.message required")

@@ -32,9 +32,9 @@ def serialize_json(value: PropertyGroupRequest) -> dict:
 
 def deserialize_json(data: dict) -> PropertyGroupRequest:
     out: PropertyGroupRequest = {}  # type: ignore[typeddict-item]
-    if "groupType" in data:
+    if data.get("groupType") is not None:
         out["group_type"] = data["groupType"]
-    if "propertyNames" in data:
+    if data.get("propertyNames") is not None:
         import capo_iottwinmaker.types.property_names
 
         out["property_names"] = capo_iottwinmaker.types.property_names.deserialize_json(

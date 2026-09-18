@@ -36,13 +36,13 @@ def serialize_aws_json_1_1(value: UpdateRegexPatternSetRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateRegexPatternSetRequest:
     out: UpdateRegexPatternSetRequest = {}  # type: ignore[typeddict-item]
-    if "RegexPatternSetId" in data:
+    if data.get("RegexPatternSetId") is not None:
         out["regex_pattern_set_id"] = data["RegexPatternSetId"]
     else:
         raise DeserializationError(
             "UpdateRegexPatternSetRequest.regex_pattern_set_id required"
         )
-    if "Updates" in data:
+    if data.get("Updates") is not None:
         import capo_waf.types.regex_pattern_set_updates
 
         out["updates"] = (
@@ -52,7 +52,7 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateRegexPatternSetRequest:
         )
     else:
         raise DeserializationError("UpdateRegexPatternSetRequest.updates required")
-    if "ChangeToken" in data:
+    if data.get("ChangeToken") is not None:
         out["change_token"] = data["ChangeToken"]
     else:
         raise DeserializationError("UpdateRegexPatternSetRequest.change_token required")

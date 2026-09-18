@@ -31,6 +31,8 @@ def deserialize_aws_json_1_0(
 
     out: BatchCreateBillingAdjustmentRequestEntryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_marketplace_agreement.types.batch_create_billing_adjustment_request_entry.deserialize_aws_json_1_0(
                 item

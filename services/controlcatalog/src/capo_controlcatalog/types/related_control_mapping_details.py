@@ -35,9 +35,9 @@ def serialize_json(value: RelatedControlMappingDetails) -> dict:
 
 def deserialize_json(data: dict) -> RelatedControlMappingDetails:
     out: RelatedControlMappingDetails = {}  # type: ignore[typeddict-item]
-    if "ControlArn" in data:
+    if data.get("ControlArn") is not None:
         out["control_arn"] = data["ControlArn"]
-    if "RelationType" in data:
+    if data.get("RelationType") is not None:
         import capo_controlcatalog.types.control_relation_type
 
         out["relation_type"] = (

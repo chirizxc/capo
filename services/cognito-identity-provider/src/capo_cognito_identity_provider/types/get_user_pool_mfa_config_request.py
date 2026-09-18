@@ -26,7 +26,7 @@ def serialize_aws_json_1_1(value: GetUserPoolMfaConfigRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetUserPoolMfaConfigRequest:
     out: GetUserPoolMfaConfigRequest = {}  # type: ignore[typeddict-item]
-    if "UserPoolId" in data:
+    if data.get("UserPoolId") is not None:
         out["user_pool_id"] = data["UserPoolId"]
     else:
         raise DeserializationError("GetUserPoolMfaConfigRequest.user_pool_id required")

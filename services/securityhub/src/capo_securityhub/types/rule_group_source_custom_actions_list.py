@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> RuleGroupSourceCustomActionsList:
 
     out: RuleGroupSourceCustomActionsList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_securityhub.types.rule_group_source_custom_actions_details.deserialize_json(
                 item

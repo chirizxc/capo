@@ -153,15 +153,15 @@ def serialize_aws_json_1_1(value: Policy) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Policy:
     out: Policy = {}  # type: ignore[typeddict-item]
-    if "PolicyId" in data:
+    if data.get("PolicyId") is not None:
         out["policy_id"] = data["PolicyId"]
-    if "PolicyName" in data:
+    if data.get("PolicyName") is not None:
         out["policy_name"] = data["PolicyName"]
     else:
         raise DeserializationError("Policy.policy_name required")
-    if "PolicyUpdateToken" in data:
+    if data.get("PolicyUpdateToken") is not None:
         out["policy_update_token"] = data["PolicyUpdateToken"]
-    if "SecurityServicePolicyData" in data:
+    if data.get("SecurityServicePolicyData") is not None:
         import capo_fms.types.security_service_policy_data
 
         out["security_service_policy_data"] = (
@@ -171,11 +171,11 @@ def deserialize_aws_json_1_1(data: dict) -> Policy:
         )
     else:
         raise DeserializationError("Policy.security_service_policy_data required")
-    if "ResourceType" in data:
+    if data.get("ResourceType") is not None:
         out["resource_type"] = data["ResourceType"]
     else:
         raise DeserializationError("Policy.resource_type required")
-    if "ResourceTypeList" in data:
+    if data.get("ResourceTypeList") is not None:
         import capo_fms.types.resource_type_list
 
         out["resource_type_list"] = (
@@ -183,27 +183,27 @@ def deserialize_aws_json_1_1(data: dict) -> Policy:
                 data["ResourceTypeList"]
             )
         )
-    if "ResourceTags" in data:
+    if data.get("ResourceTags") is not None:
         import capo_fms.types.resource_tags
 
         out["resource_tags"] = capo_fms.types.resource_tags.deserialize_aws_json_1_1(
             data["ResourceTags"]
         )
-    if "ExcludeResourceTags" in data:
+    if data.get("ExcludeResourceTags") is not None:
         out["exclude_resource_tags"] = data["ExcludeResourceTags"]
     else:
         out["exclude_resource_tags"] = False
-    if "RemediationEnabled" in data:
+    if data.get("RemediationEnabled") is not None:
         out["remediation_enabled"] = data["RemediationEnabled"]
     else:
         out["remediation_enabled"] = False
-    if "DeleteUnusedFMManagedResources" in data:
+    if data.get("DeleteUnusedFMManagedResources") is not None:
         out["delete_unused_fm_managed_resources"] = data[
             "DeleteUnusedFMManagedResources"
         ]
     else:
         out["delete_unused_fm_managed_resources"] = False
-    if "IncludeMap" in data:
+    if data.get("IncludeMap") is not None:
         import capo_fms.types.customer_policy_scope_map
 
         out["include_map"] = (
@@ -211,7 +211,7 @@ def deserialize_aws_json_1_1(data: dict) -> Policy:
                 data["IncludeMap"]
             )
         )
-    if "ExcludeMap" in data:
+    if data.get("ExcludeMap") is not None:
         import capo_fms.types.customer_policy_scope_map
 
         out["exclude_map"] = (
@@ -219,7 +219,7 @@ def deserialize_aws_json_1_1(data: dict) -> Policy:
                 data["ExcludeMap"]
             )
         )
-    if "ResourceSetIds" in data:
+    if data.get("ResourceSetIds") is not None:
         import capo_fms.types.resource_set_ids
 
         out["resource_set_ids"] = (
@@ -227,9 +227,9 @@ def deserialize_aws_json_1_1(data: dict) -> Policy:
                 data["ResourceSetIds"]
             )
         )
-    if "PolicyDescription" in data:
+    if data.get("PolicyDescription") is not None:
         out["policy_description"] = data["PolicyDescription"]
-    if "PolicyStatus" in data:
+    if data.get("PolicyStatus") is not None:
         import capo_fms.types.customer_policy_status
 
         out["policy_status"] = (
@@ -237,7 +237,7 @@ def deserialize_aws_json_1_1(data: dict) -> Policy:
                 data["PolicyStatus"]
             )
         )
-    if "ResourceTagLogicalOperator" in data:
+    if data.get("ResourceTagLogicalOperator") is not None:
         import capo_fms.types.resource_tag_logical_operator
 
         out["resource_tag_logical_operator"] = (

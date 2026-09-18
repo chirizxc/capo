@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: AIWorkloadDataSource) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AIWorkloadDataSource:
     out: AIWorkloadDataSource = {}  # type: ignore[typeddict-item]
-    if "S3DataSource" in data:
+    if data.get("S3DataSource") is not None:
         import capo_sagemaker.types.ai_workload_s3_data_source
 
         out["s3_data_source"] = (

@@ -28,7 +28,7 @@ def serialize_json(value: RawMessageContent) -> dict:
 
 def deserialize_json(data: dict) -> RawMessageContent:
     out: RawMessageContent = {}  # type: ignore[typeddict-item]
-    if "s3Reference" in data:
+    if data.get("s3Reference") is not None:
         import capo_workmailmessageflow.types.s3_reference
 
         out["s3_reference"] = (

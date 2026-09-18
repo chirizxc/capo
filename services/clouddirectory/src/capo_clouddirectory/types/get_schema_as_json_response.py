@@ -30,8 +30,8 @@ def serialize_json(value: GetSchemaAsJsonResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetSchemaAsJsonResponse:
     out: GetSchemaAsJsonResponse = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Document" in data:
+    if data.get("Document") is not None:
         out["document"] = data["Document"]
     return out

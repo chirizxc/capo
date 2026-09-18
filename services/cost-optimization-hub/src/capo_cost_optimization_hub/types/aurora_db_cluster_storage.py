@@ -43,7 +43,7 @@ def serialize_aws_json_1_0(value: AuroraDbClusterStorage) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> AuroraDbClusterStorage:
     out: AuroraDbClusterStorage = {}  # type: ignore[typeddict-item]
-    if "configuration" in data:
+    if data.get("configuration") is not None:
         import capo_cost_optimization_hub.types.aurora_db_cluster_storage_configuration
 
         out["configuration"] = (
@@ -51,7 +51,7 @@ def deserialize_aws_json_1_0(data: dict) -> AuroraDbClusterStorage:
                 data["configuration"]
             )
         )
-    if "costCalculation" in data:
+    if data.get("costCalculation") is not None:
         import capo_cost_optimization_hub.types.resource_cost_calculation
 
         out["cost_calculation"] = (

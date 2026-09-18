@@ -38,7 +38,7 @@ def serialize_json(value: SearchResourcesInput) -> dict:
 
 def deserialize_json(data: dict) -> SearchResourcesInput:
     out: SearchResourcesInput = {}  # type: ignore[typeddict-item]
-    if "ResourceQuery" in data:
+    if data.get("ResourceQuery") is not None:
         import capo_resource_groups.types.resource_query
 
         out["resource_query"] = (
@@ -48,8 +48,8 @@ def deserialize_json(data: dict) -> SearchResourcesInput:
         )
     else:
         raise DeserializationError("SearchResourcesInput.resource_query required")
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

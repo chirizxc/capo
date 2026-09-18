@@ -32,15 +32,15 @@ def serialize_aws_json_1_1(value: BookingOptions) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> BookingOptions:
     out: BookingOptions = {}  # type: ignore[typeddict-item]
-    if "AutoAcceptRequests" in data:
+    if data.get("AutoAcceptRequests") is not None:
         out["auto_accept_requests"] = data["AutoAcceptRequests"]
     else:
         out["auto_accept_requests"] = False
-    if "AutoDeclineRecurringRequests" in data:
+    if data.get("AutoDeclineRecurringRequests") is not None:
         out["auto_decline_recurring_requests"] = data["AutoDeclineRecurringRequests"]
     else:
         out["auto_decline_recurring_requests"] = False
-    if "AutoDeclineConflictingRequests" in data:
+    if data.get("AutoDeclineConflictingRequests") is not None:
         out["auto_decline_conflicting_requests"] = data[
             "AutoDeclineConflictingRequests"
         ]

@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: GetSizeConstraintSetResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetSizeConstraintSetResponse:
     out: GetSizeConstraintSetResponse = {}  # type: ignore[typeddict-item]
-    if "SizeConstraintSet" in data:
+    if data.get("SizeConstraintSet") is not None:
         import capo_waf_regional.types.size_constraint_set
 
         out["size_constraint_set"] = (

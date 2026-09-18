@@ -31,7 +31,7 @@ def serialize_json(value: JiraSelectedQuestionConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> JiraSelectedQuestionConfiguration:
     out: JiraSelectedQuestionConfiguration = {}  # type: ignore[typeddict-item]
-    if "SelectedPillars" in data:
+    if data.get("SelectedPillars") is not None:
         import capo_wellarchitected.types.selected_pillars
 
         out["selected_pillars"] = (

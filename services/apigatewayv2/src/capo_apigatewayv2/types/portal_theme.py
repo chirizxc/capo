@@ -40,13 +40,13 @@ def serialize_json(value: PortalTheme) -> dict:
 
 def deserialize_json(data: dict) -> PortalTheme:
     out: PortalTheme = {}  # type: ignore[typeddict-item]
-    if "customColors" in data:
+    if data.get("customColors") is not None:
         import capo_apigatewayv2.types.custom_colors
 
         out["custom_colors"] = capo_apigatewayv2.types.custom_colors.deserialize_json(
             data["customColors"]
         )
-    if "logoLastUploaded" in data:
+    if data.get("logoLastUploaded") is not None:
         import capo_apigatewayv2.types.__timestamp_iso8601
 
         out["logo_last_uploaded"] = (

@@ -54,25 +54,25 @@ def serialize_json(value: ScanResult) -> dict:
 
 def deserialize_json(data: dict) -> ScanResult:
     out: ScanResult = {}  # type: ignore[typeddict-item]
-    if "MalwareScanner" in data:
+    if data.get("MalwareScanner") is not None:
         import capo_backup.types.malware_scanner
 
         out["malware_scanner"] = capo_backup.types.malware_scanner.deserialize_json(
             data["MalwareScanner"]
         )
-    if "ScanJobState" in data:
+    if data.get("ScanJobState") is not None:
         import capo_backup.types.scan_job_state
 
         out["scan_job_state"] = capo_backup.types.scan_job_state.deserialize_json(
             data["ScanJobState"]
         )
-    if "LastScanTimestamp" in data:
+    if data.get("LastScanTimestamp") is not None:
         import capo_backup.types.timestamp
 
         out["last_scan_timestamp"] = capo_backup.types.timestamp.deserialize_json(
             data["LastScanTimestamp"]
         )
-    if "Findings" in data:
+    if data.get("Findings") is not None:
         import capo_backup.types.scan_findings
 
         out["findings"] = capo_backup.types.scan_findings.deserialize_json(

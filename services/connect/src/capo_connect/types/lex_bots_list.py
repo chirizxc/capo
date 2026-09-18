@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> LexBotsList:
 
     out: LexBotsList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_connect.types.lex_bot.deserialize_json(item))
     return out

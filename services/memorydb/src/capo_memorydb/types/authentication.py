@@ -32,12 +32,12 @@ def serialize_aws_json_1_1(value: Authentication) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Authentication:
     out: Authentication = {}  # type: ignore[typeddict-item]
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_memorydb.types.authentication_type
 
         out["type"] = capo_memorydb.types.authentication_type.deserialize_aws_json_1_1(
             data["Type"]
         )
-    if "PasswordCount" in data:
+    if data.get("PasswordCount") is not None:
         out["password_count"] = data["PasswordCount"]
     return out

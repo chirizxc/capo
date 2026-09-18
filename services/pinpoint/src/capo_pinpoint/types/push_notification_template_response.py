@@ -130,7 +130,7 @@ def serialize_json(value: PushNotificationTemplateResponse) -> dict:
 
 def deserialize_json(data: dict) -> PushNotificationTemplateResponse:
     out: PushNotificationTemplateResponse = {}  # type: ignore[typeddict-item]
-    if "ADM" in data:
+    if data.get("ADM") is not None:
         import capo_pinpoint.types.android_push_notification_template
 
         out["adm"] = (
@@ -138,7 +138,7 @@ def deserialize_json(data: dict) -> PushNotificationTemplateResponse:
                 data["ADM"]
             )
         )
-    if "APNS" in data:
+    if data.get("APNS") is not None:
         import capo_pinpoint.types.apns_push_notification_template
 
         out["apns"] = (
@@ -146,9 +146,9 @@ def deserialize_json(data: dict) -> PushNotificationTemplateResponse:
                 data["APNS"]
             )
         )
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "Baidu" in data:
+    if data.get("Baidu") is not None:
         import capo_pinpoint.types.android_push_notification_template
 
         out["baidu"] = (
@@ -156,9 +156,9 @@ def deserialize_json(data: dict) -> PushNotificationTemplateResponse:
                 data["Baidu"]
             )
         )
-    if "CreationDate" in data:
+    if data.get("CreationDate") is not None:
         out["creation_date"] = data["CreationDate"]
-    if "Default" in data:
+    if data.get("Default") is not None:
         import capo_pinpoint.types.default_push_notification_template
 
         out["default"] = (
@@ -166,9 +166,9 @@ def deserialize_json(data: dict) -> PushNotificationTemplateResponse:
                 data["Default"]
             )
         )
-    if "DefaultSubstitutions" in data:
+    if data.get("DefaultSubstitutions") is not None:
         out["default_substitutions"] = data["DefaultSubstitutions"]
-    if "GCM" in data:
+    if data.get("GCM") is not None:
         import capo_pinpoint.types.android_push_notification_template
 
         out["gcm"] = (
@@ -176,24 +176,24 @@ def deserialize_json(data: dict) -> PushNotificationTemplateResponse:
                 data["GCM"]
             )
         )
-    if "LastModifiedDate" in data:
+    if data.get("LastModifiedDate") is not None:
         out["last_modified_date"] = data["LastModifiedDate"]
-    if "RecommenderId" in data:
+    if data.get("RecommenderId") is not None:
         out["recommender_id"] = data["RecommenderId"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_pinpoint.types.map_of__string
 
         out["tags"] = capo_pinpoint.types.map_of__string.deserialize_json(data["tags"])
-    if "TemplateDescription" in data:
+    if data.get("TemplateDescription") is not None:
         out["template_description"] = data["TemplateDescription"]
-    if "TemplateName" in data:
+    if data.get("TemplateName") is not None:
         out["template_name"] = data["TemplateName"]
-    if "TemplateType" in data:
+    if data.get("TemplateType") is not None:
         import capo_pinpoint.types.template_type
 
         out["template_type"] = capo_pinpoint.types.template_type.deserialize_json(
             data["TemplateType"]
         )
-    if "Version" in data:
+    if data.get("Version") is not None:
         out["version"] = data["Version"]
     return out

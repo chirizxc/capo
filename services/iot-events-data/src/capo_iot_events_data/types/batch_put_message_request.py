@@ -28,7 +28,7 @@ def serialize_json(value: BatchPutMessageRequest) -> dict:
 
 def deserialize_json(data: dict) -> BatchPutMessageRequest:
     out: BatchPutMessageRequest = {}  # type: ignore[typeddict-item]
-    if "messages" in data:
+    if data.get("messages") is not None:
         import capo_iot_events_data.types.messages
 
         out["messages"] = capo_iot_events_data.types.messages.deserialize_json(

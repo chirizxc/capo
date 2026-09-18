@@ -35,24 +35,24 @@ def serialize_json(value: ApplyPendingMaintenanceActionInput) -> dict:
 
 def deserialize_json(data: dict) -> ApplyPendingMaintenanceActionInput:
     out: ApplyPendingMaintenanceActionInput = {}  # type: ignore[typeddict-item]
-    if "resourceArn" in data:
+    if data.get("resourceArn") is not None:
         out["resource_arn"] = data["resourceArn"]
     else:
         raise DeserializationError(
             "ApplyPendingMaintenanceActionInput.resource_arn required"
         )
-    if "applyAction" in data:
+    if data.get("applyAction") is not None:
         out["apply_action"] = data["applyAction"]
     else:
         raise DeserializationError(
             "ApplyPendingMaintenanceActionInput.apply_action required"
         )
-    if "optInType" in data:
+    if data.get("optInType") is not None:
         out["opt_in_type"] = data["optInType"]
     else:
         raise DeserializationError(
             "ApplyPendingMaintenanceActionInput.opt_in_type required"
         )
-    if "applyOn" in data:
+    if data.get("applyOn") is not None:
         out["apply_on"] = data["applyOn"]
     return out

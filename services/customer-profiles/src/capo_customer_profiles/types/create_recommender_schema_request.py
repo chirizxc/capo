@@ -44,7 +44,7 @@ def serialize_json(value: CreateRecommenderSchemaRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateRecommenderSchemaRequest:
     out: CreateRecommenderSchemaRequest = {}  # type: ignore[typeddict-item]
-    if "Fields" in data:
+    if data.get("Fields") is not None:
         import capo_customer_profiles.types.recommender_schema_fields
 
         out["fields"] = (
@@ -54,7 +54,7 @@ def deserialize_json(data: dict) -> CreateRecommenderSchemaRequest:
         )
     else:
         raise DeserializationError("CreateRecommenderSchemaRequest.fields required")
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_customer_profiles.types.tag_map
 
         out["tags"] = capo_customer_profiles.types.tag_map.deserialize_json(

@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> BatchDisassociateProjectAssetsErrors:
 
     out: BatchDisassociateProjectAssetsErrors = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_iotsitewise.types.asset_error_details.deserialize_json(item))
     return out

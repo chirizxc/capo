@@ -45,19 +45,19 @@ def serialize_json(value: AddObjectInput) -> dict:
 
 def deserialize_json(data: dict) -> AddObjectInput:
     out: AddObjectInput = {}  # type: ignore[typeddict-item]
-    if "Uri" in data:
+    if data.get("Uri") is not None:
         out["uri"] = data["Uri"]
     else:
         raise DeserializationError("AddObjectInput.uri required")
-    if "ETag" in data:
+    if data.get("ETag") is not None:
         out["e_tag"] = data["ETag"]
     else:
         raise DeserializationError("AddObjectInput.e_tag required")
-    if "Size" in data:
+    if data.get("Size") is not None:
         out["size"] = data["Size"]
     else:
         out["size"] = 0
-    if "PartitionValues" in data:
+    if data.get("PartitionValues") is not None:
         import capo_lakeformation.types.partition_values_list
 
         out["partition_values"] = (

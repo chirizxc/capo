@@ -29,11 +29,11 @@ def serialize_aws_json_1_1(value: ReplicationTaskAssessmentRunProgress) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ReplicationTaskAssessmentRunProgress:
     out: ReplicationTaskAssessmentRunProgress = {}  # type: ignore[typeddict-item]
-    if "IndividualAssessmentCount" in data:
+    if data.get("IndividualAssessmentCount") is not None:
         out["individual_assessment_count"] = data["IndividualAssessmentCount"]
     else:
         out["individual_assessment_count"] = 0
-    if "IndividualAssessmentCompletedCount" in data:
+    if data.get("IndividualAssessmentCompletedCount") is not None:
         out["individual_assessment_completed_count"] = data[
             "IndividualAssessmentCompletedCount"
         ]

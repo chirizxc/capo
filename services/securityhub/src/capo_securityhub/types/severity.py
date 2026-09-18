@@ -26,7 +26,15 @@ class Severity(TypedDict, closed=True):
 def serialize_json(value: Severity) -> dict:
     out: dict = {}
     if "product" in value:
-        out["Product"] = value["product"]
+        out["Product"] = (
+            "NaN"
+            if value["product"] != value["product"]
+            else "Infinity"
+            if value["product"] == float("inf")
+            else "-Infinity"
+            if value["product"] == float("-inf")
+            else value["product"]
+        )
     if "label" in value:
         import capo_securityhub.types.severity_label
 
@@ -42,16 +50,16 @@ def serialize_json(value: Severity) -> dict:
 
 def deserialize_json(data: dict) -> Severity:
     out: Severity = {}  # type: ignore[typeddict-item]
-    if "Product" in data:
-        out["product"] = data["Product"]
-    if "Label" in data:
+    if data.get("Product") is not None:
+        out["product"] = float(data["Product"])
+    if data.get("Label") is not None:
         import capo_securityhub.types.severity_label
 
         out["label"] = capo_securityhub.types.severity_label.deserialize_json(
             data["Label"]
         )
-    if "Normalized" in data:
+    if data.get("Normalized") is not None:
         out["normalized"] = data["Normalized"]
-    if "Original" in data:
+    if data.get("Original") is not None:
         out["original"] = data["Original"]
     return out

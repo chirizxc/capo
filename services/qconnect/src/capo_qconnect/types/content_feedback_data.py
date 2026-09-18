@@ -32,7 +32,7 @@ def serialize_json(value: ContentFeedbackData) -> dict:
 
 
 def deserialize_json(data: dict) -> ContentFeedbackData:
-    if "generativeContentFeedbackData" in data:
+    if data.get("generativeContentFeedbackData") is not None:
         import capo_qconnect.types.generative_content_feedback_data
 
         return {

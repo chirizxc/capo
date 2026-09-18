@@ -24,7 +24,7 @@ def serialize_json(value: DeleteEncoderConfigurationRequest) -> dict:
 
 def deserialize_json(data: dict) -> DeleteEncoderConfigurationRequest:
     out: DeleteEncoderConfigurationRequest = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("DeleteEncoderConfigurationRequest.arn required")

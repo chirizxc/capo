@@ -28,11 +28,11 @@ def serialize_json(value: GetArtifactInput) -> dict:
 
 def deserialize_json(data: dict) -> GetArtifactInput:
     out: GetArtifactInput = {}  # type: ignore[typeddict-item]
-    if "agentSpaceId" in data:
+    if data.get("agentSpaceId") is not None:
         out["agent_space_id"] = data["agentSpaceId"]
     else:
         raise DeserializationError("GetArtifactInput.agent_space_id required")
-    if "artifactId" in data:
+    if data.get("artifactId") is not None:
         out["artifact_id"] = data["artifactId"]
     else:
         raise DeserializationError("GetArtifactInput.artifact_id required")

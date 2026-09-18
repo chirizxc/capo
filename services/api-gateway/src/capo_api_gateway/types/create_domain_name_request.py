@@ -133,25 +133,25 @@ def serialize_json(value: CreateDomainNameRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateDomainNameRequest:
     out: CreateDomainNameRequest = {}  # type: ignore[typeddict-item]
-    if "domainName" in data:
+    if data.get("domainName") is not None:
         out["domain_name"] = data["domainName"]
     else:
         raise DeserializationError("CreateDomainNameRequest.domain_name required")
-    if "certificateName" in data:
+    if data.get("certificateName") is not None:
         out["certificate_name"] = data["certificateName"]
-    if "certificateBody" in data:
+    if data.get("certificateBody") is not None:
         out["certificate_body"] = data["certificateBody"]
-    if "certificatePrivateKey" in data:
+    if data.get("certificatePrivateKey") is not None:
         out["certificate_private_key"] = data["certificatePrivateKey"]
-    if "certificateChain" in data:
+    if data.get("certificateChain") is not None:
         out["certificate_chain"] = data["certificateChain"]
-    if "certificateArn" in data:
+    if data.get("certificateArn") is not None:
         out["certificate_arn"] = data["certificateArn"]
-    if "regionalCertificateName" in data:
+    if data.get("regionalCertificateName") is not None:
         out["regional_certificate_name"] = data["regionalCertificateName"]
-    if "regionalCertificateArn" in data:
+    if data.get("regionalCertificateArn") is not None:
         out["regional_certificate_arn"] = data["regionalCertificateArn"]
-    if "endpointConfiguration" in data:
+    if data.get("endpointConfiguration") is not None:
         import capo_api_gateway.types.endpoint_configuration
 
         out["endpoint_configuration"] = (
@@ -159,13 +159,13 @@ def deserialize_json(data: dict) -> CreateDomainNameRequest:
                 data["endpointConfiguration"]
             )
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_api_gateway.types.map_of_string_to_string
 
         out["tags"] = capo_api_gateway.types.map_of_string_to_string.deserialize_json(
             data["tags"]
         )
-    if "securityPolicy" in data:
+    if data.get("securityPolicy") is not None:
         import capo_api_gateway.types.security_policy
 
         out["security_policy"] = (
@@ -173,7 +173,7 @@ def deserialize_json(data: dict) -> CreateDomainNameRequest:
                 data["securityPolicy"]
             )
         )
-    if "endpointAccessMode" in data:
+    if data.get("endpointAccessMode") is not None:
         import capo_api_gateway.types.endpoint_access_mode
 
         out["endpoint_access_mode"] = (
@@ -181,7 +181,7 @@ def deserialize_json(data: dict) -> CreateDomainNameRequest:
                 data["endpointAccessMode"]
             )
         )
-    if "mutualTlsAuthentication" in data:
+    if data.get("mutualTlsAuthentication") is not None:
         import capo_api_gateway.types.mutual_tls_authentication_input
 
         out["mutual_tls_authentication"] = (
@@ -189,13 +189,13 @@ def deserialize_json(data: dict) -> CreateDomainNameRequest:
                 data["mutualTlsAuthentication"]
             )
         )
-    if "ownershipVerificationCertificateArn" in data:
+    if data.get("ownershipVerificationCertificateArn") is not None:
         out["ownership_verification_certificate_arn"] = data[
             "ownershipVerificationCertificateArn"
         ]
-    if "policy" in data:
+    if data.get("policy") is not None:
         out["policy"] = data["policy"]
-    if "routingMode" in data:
+    if data.get("routingMode") is not None:
         import capo_api_gateway.types.routing_mode
 
         out["routing_mode"] = capo_api_gateway.types.routing_mode.deserialize_json(

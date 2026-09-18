@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: AggregatedVariablesImportanceMetrics) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AggregatedVariablesImportanceMetrics:
     out: AggregatedVariablesImportanceMetrics = {}  # type: ignore[typeddict-item]
-    if "logOddsMetrics" in data:
+    if data.get("logOddsMetrics") is not None:
         import capo_frauddetector.types.list_of_aggregated_log_odds_metrics
 
         out["log_odds_metrics"] = (

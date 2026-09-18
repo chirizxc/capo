@@ -41,9 +41,9 @@ def serialize_json(value: ListAppInstanceAdminsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListAppInstanceAdminsResponse:
     out: ListAppInstanceAdminsResponse = {}  # type: ignore[typeddict-item]
-    if "AppInstanceArn" in data:
+    if data.get("AppInstanceArn") is not None:
         out["app_instance_arn"] = data["AppInstanceArn"]
-    if "AppInstanceAdmins" in data:
+    if data.get("AppInstanceAdmins") is not None:
         import capo_chime_sdk_identity.types.app_instance_admin_list
 
         out["app_instance_admins"] = (
@@ -51,6 +51,6 @@ def deserialize_json(data: dict) -> ListAppInstanceAdminsResponse:
                 data["AppInstanceAdmins"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

@@ -31,7 +31,7 @@ def serialize_json(value: FilterOperationTargetVisualsConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> FilterOperationTargetVisualsConfiguration:
     out: FilterOperationTargetVisualsConfiguration = {}  # type: ignore[typeddict-item]
-    if "SameSheetTargetVisualConfiguration" in data:
+    if data.get("SameSheetTargetVisualConfiguration") is not None:
         import capo_quicksight.types.same_sheet_target_visual_configuration
 
         out["same_sheet_target_visual_configuration"] = (

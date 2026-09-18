@@ -72,44 +72,52 @@ def serialize_aws_json_1_1(value: CrawlerHistory) -> dict:
         out["LogStream"] = value["log_stream"]
     if "message_prefix" in value:
         out["MessagePrefix"] = value["message_prefix"]
-    out["DPUHour"] = value.get("dpu_hour", 0)
+    out["DPUHour"] = (
+        "NaN"
+        if value.get("dpu_hour", 0) != value.get("dpu_hour", 0)
+        else "Infinity"
+        if value.get("dpu_hour", 0) == float("inf")
+        else "-Infinity"
+        if value.get("dpu_hour", 0) == float("-inf")
+        else value.get("dpu_hour", 0)
+    )
     return out
 
 
 def deserialize_aws_json_1_1(data: dict) -> CrawlerHistory:
     out: CrawlerHistory = {}  # type: ignore[typeddict-item]
-    if "CrawlId" in data:
+    if data.get("CrawlId") is not None:
         out["crawl_id"] = data["CrawlId"]
-    if "State" in data:
+    if data.get("State") is not None:
         import capo_glue.types.crawler_history_state
 
         out["state"] = capo_glue.types.crawler_history_state.deserialize_aws_json_1_1(
             data["State"]
         )
-    if "StartTime" in data:
+    if data.get("StartTime") is not None:
         import capo_glue.types.timestamp
 
         out["start_time"] = capo_glue.types.timestamp.deserialize_aws_json_1_1(
             data["StartTime"]
         )
-    if "EndTime" in data:
+    if data.get("EndTime") is not None:
         import capo_glue.types.timestamp
 
         out["end_time"] = capo_glue.types.timestamp.deserialize_aws_json_1_1(
             data["EndTime"]
         )
-    if "Summary" in data:
+    if data.get("Summary") is not None:
         out["summary"] = data["Summary"]
-    if "ErrorMessage" in data:
+    if data.get("ErrorMessage") is not None:
         out["error_message"] = data["ErrorMessage"]
-    if "LogGroup" in data:
+    if data.get("LogGroup") is not None:
         out["log_group"] = data["LogGroup"]
-    if "LogStream" in data:
+    if data.get("LogStream") is not None:
         out["log_stream"] = data["LogStream"]
-    if "MessagePrefix" in data:
+    if data.get("MessagePrefix") is not None:
         out["message_prefix"] = data["MessagePrefix"]
-    if "DPUHour" in data:
-        out["dpu_hour"] = data["DPUHour"]
+    if data.get("DPUHour") is not None:
+        out["dpu_hour"] = float(data["DPUHour"])
     else:
         out["dpu_hour"] = 0
     return out

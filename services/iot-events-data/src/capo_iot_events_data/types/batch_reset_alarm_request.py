@@ -30,7 +30,7 @@ def serialize_json(value: BatchResetAlarmRequest) -> dict:
 
 def deserialize_json(data: dict) -> BatchResetAlarmRequest:
     out: BatchResetAlarmRequest = {}  # type: ignore[typeddict-item]
-    if "resetActionRequests" in data:
+    if data.get("resetActionRequests") is not None:
         import capo_iot_events_data.types.reset_alarm_action_requests
 
         out["reset_action_requests"] = (

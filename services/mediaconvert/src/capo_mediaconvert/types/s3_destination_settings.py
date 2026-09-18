@@ -55,7 +55,7 @@ def serialize_json(value: S3DestinationSettings) -> dict:
 
 def deserialize_json(data: dict) -> S3DestinationSettings:
     out: S3DestinationSettings = {}  # type: ignore[typeddict-item]
-    if "accessControl" in data:
+    if data.get("accessControl") is not None:
         import capo_mediaconvert.types.s3_destination_access_control
 
         out["access_control"] = (
@@ -63,7 +63,7 @@ def deserialize_json(data: dict) -> S3DestinationSettings:
                 data["accessControl"]
             )
         )
-    if "encryption" in data:
+    if data.get("encryption") is not None:
         import capo_mediaconvert.types.s3_encryption_settings
 
         out["encryption"] = (
@@ -71,7 +71,7 @@ def deserialize_json(data: dict) -> S3DestinationSettings:
                 data["encryption"]
             )
         )
-    if "storageClass" in data:
+    if data.get("storageClass") is not None:
         import capo_mediaconvert.types.s3_storage_class
 
         out["storage_class"] = (

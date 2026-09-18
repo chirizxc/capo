@@ -40,7 +40,7 @@ def serialize_json(value: SigningPlatformOverrides) -> dict:
 
 def deserialize_json(data: dict) -> SigningPlatformOverrides:
     out: SigningPlatformOverrides = {}  # type: ignore[typeddict-item]
-    if "signingConfiguration" in data:
+    if data.get("signingConfiguration") is not None:
         import capo_signer.types.signing_configuration_overrides
 
         out["signing_configuration"] = (
@@ -48,7 +48,7 @@ def deserialize_json(data: dict) -> SigningPlatformOverrides:
                 data["signingConfiguration"]
             )
         )
-    if "signingImageFormat" in data:
+    if data.get("signingImageFormat") is not None:
         import capo_signer.types.image_format
 
         out["signing_image_format"] = capo_signer.types.image_format.deserialize_json(

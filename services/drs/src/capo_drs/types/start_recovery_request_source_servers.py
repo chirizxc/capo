@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> StartRecoveryRequestSourceServers:
 
     out: StartRecoveryRequestSourceServers = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_drs.types.start_recovery_request_source_server.deserialize_json(item)
         )

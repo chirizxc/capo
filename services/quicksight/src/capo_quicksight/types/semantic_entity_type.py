@@ -36,11 +36,11 @@ def serialize_json(value: SemanticEntityType) -> dict:
 
 def deserialize_json(data: dict) -> SemanticEntityType:
     out: SemanticEntityType = {}  # type: ignore[typeddict-item]
-    if "TypeName" in data:
+    if data.get("TypeName") is not None:
         out["type_name"] = data["TypeName"]
-    if "SubTypeName" in data:
+    if data.get("SubTypeName") is not None:
         out["sub_type_name"] = data["SubTypeName"]
-    if "TypeParameters" in data:
+    if data.get("TypeParameters") is not None:
         import capo_quicksight.types.type_parameters
 
         out["type_parameters"] = capo_quicksight.types.type_parameters.deserialize_json(

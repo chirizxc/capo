@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> KxDataviewSegmentConfigurationList:
 
     out: KxDataviewSegmentConfigurationList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_finspace.types.kx_dataview_segment_configuration.deserialize_json(item)
         )

@@ -25,6 +25,6 @@ def serialize_json(value: RouteMatrixTrailerOptions) -> dict:
 
 def deserialize_json(data: dict) -> RouteMatrixTrailerOptions:
     out: RouteMatrixTrailerOptions = {}  # type: ignore[typeddict-item]
-    if "TrailerCount" in data:
+    if data.get("TrailerCount") is not None:
         out["trailer_count"] = data["TrailerCount"]
     return out

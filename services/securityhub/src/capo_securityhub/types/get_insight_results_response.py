@@ -29,7 +29,7 @@ def serialize_json(value: GetInsightResultsResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetInsightResultsResponse:
     out: GetInsightResultsResponse = {}  # type: ignore[typeddict-item]
-    if "InsightResults" in data:
+    if data.get("InsightResults") is not None:
         import capo_securityhub.types.insight_results
 
         out["insight_results"] = (

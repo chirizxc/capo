@@ -32,10 +32,10 @@ def serialize_json(value: CreateShareResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateShareResponse:
     out: CreateShareResponse = {}  # type: ignore[typeddict-item]
-    if "shareId" in data:
+    if data.get("shareId") is not None:
         out["share_id"] = data["shareId"]
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
-    if "shareName" in data:
+    if data.get("shareName") is not None:
         out["share_name"] = data["shareName"]
     return out

@@ -23,6 +23,8 @@ def serialize_json(input_to_serialize: FilterCriteriaMap) -> dict:
 def deserialize_json(data: dict) -> FilterCriteriaMap:
     out: FilterCriteriaMap = {}
     for key, value in data.items():
+        if value is None:
+            continue
         import capo_accessanalyzer.types.criterion
 
         out[key] = capo_accessanalyzer.types.criterion.deserialize_json(value)

@@ -32,11 +32,11 @@ def serialize_json(value: AssetListingDetails) -> dict:
 
 def deserialize_json(data: dict) -> AssetListingDetails:
     out: AssetListingDetails = {}  # type: ignore[typeddict-item]
-    if "listingId" in data:
+    if data.get("listingId") is not None:
         out["listing_id"] = data["listingId"]
     else:
         raise DeserializationError("AssetListingDetails.listing_id required")
-    if "listingStatus" in data:
+    if data.get("listingStatus") is not None:
         import capo_datazone.types.listing_status
 
         out["listing_status"] = capo_datazone.types.listing_status.deserialize_json(

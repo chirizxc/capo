@@ -31,7 +31,7 @@ def serialize_json(value: SnapshotUserConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> SnapshotUserConfiguration:
     out: SnapshotUserConfiguration = {}  # type: ignore[typeddict-item]
-    if "AnonymousUsers" in data:
+    if data.get("AnonymousUsers") is not None:
         import capo_quicksight.types.snapshot_anonymous_user_list
 
         out["anonymous_users"] = (

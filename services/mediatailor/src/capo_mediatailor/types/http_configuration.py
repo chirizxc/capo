@@ -24,7 +24,7 @@ def serialize_json(value: HttpConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> HttpConfiguration:
     out: HttpConfiguration = {}  # type: ignore[typeddict-item]
-    if "BaseUrl" in data:
+    if data.get("BaseUrl") is not None:
         out["base_url"] = data["BaseUrl"]
     else:
         raise DeserializationError("HttpConfiguration.base_url required")

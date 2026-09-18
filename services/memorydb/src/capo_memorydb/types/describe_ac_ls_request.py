@@ -32,10 +32,10 @@ def serialize_aws_json_1_1(value: DescribeACLsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeACLsRequest:
     out: DescribeACLsRequest = {}  # type: ignore[typeddict-item]
-    if "ACLName" in data:
+    if data.get("ACLName") is not None:
         out["acl_name"] = data["ACLName"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

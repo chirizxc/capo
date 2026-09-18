@@ -157,49 +157,49 @@ def serialize_json(value: RestoreJobsListMember) -> dict:
 
 def deserialize_json(data: dict) -> RestoreJobsListMember:
     out: RestoreJobsListMember = {}  # type: ignore[typeddict-item]
-    if "AccountId" in data:
+    if data.get("AccountId") is not None:
         out["account_id"] = data["AccountId"]
-    if "RestoreJobId" in data:
+    if data.get("RestoreJobId") is not None:
         out["restore_job_id"] = data["RestoreJobId"]
-    if "RecoveryPointArn" in data:
+    if data.get("RecoveryPointArn") is not None:
         out["recovery_point_arn"] = data["RecoveryPointArn"]
-    if "SourceResourceArn" in data:
+    if data.get("SourceResourceArn") is not None:
         out["source_resource_arn"] = data["SourceResourceArn"]
-    if "BackupVaultArn" in data:
+    if data.get("BackupVaultArn") is not None:
         out["backup_vault_arn"] = data["BackupVaultArn"]
-    if "CreationDate" in data:
+    if data.get("CreationDate") is not None:
         import capo_backup.types.timestamp
 
         out["creation_date"] = capo_backup.types.timestamp.deserialize_json(
             data["CreationDate"]
         )
-    if "CompletionDate" in data:
+    if data.get("CompletionDate") is not None:
         import capo_backup.types.timestamp
 
         out["completion_date"] = capo_backup.types.timestamp.deserialize_json(
             data["CompletionDate"]
         )
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_backup.types.restore_job_status
 
         out["status"] = capo_backup.types.restore_job_status.deserialize_json(
             data["Status"]
         )
-    if "StatusMessage" in data:
+    if data.get("StatusMessage") is not None:
         out["status_message"] = data["StatusMessage"]
-    if "PercentDone" in data:
+    if data.get("PercentDone") is not None:
         out["percent_done"] = data["PercentDone"]
-    if "BackupSizeInBytes" in data:
+    if data.get("BackupSizeInBytes") is not None:
         out["backup_size_in_bytes"] = data["BackupSizeInBytes"]
-    if "IamRoleArn" in data:
+    if data.get("IamRoleArn") is not None:
         out["iam_role_arn"] = data["IamRoleArn"]
-    if "ExpectedCompletionTimeMinutes" in data:
+    if data.get("ExpectedCompletionTimeMinutes") is not None:
         out["expected_completion_time_minutes"] = data["ExpectedCompletionTimeMinutes"]
-    if "CreatedResourceArn" in data:
+    if data.get("CreatedResourceArn") is not None:
         out["created_resource_arn"] = data["CreatedResourceArn"]
-    if "ResourceType" in data:
+    if data.get("ResourceType") is not None:
         out["resource_type"] = data["ResourceType"]
-    if "RecoveryPointCreationDate" in data:
+    if data.get("RecoveryPointCreationDate") is not None:
         import capo_backup.types.timestamp
 
         out["recovery_point_creation_date"] = (
@@ -207,19 +207,19 @@ def deserialize_json(data: dict) -> RestoreJobsListMember:
                 data["RecoveryPointCreationDate"]
             )
         )
-    if "IsParent" in data:
+    if data.get("IsParent") is not None:
         out["is_parent"] = data["IsParent"]
     else:
         out["is_parent"] = False
-    if "ParentJobId" in data:
+    if data.get("ParentJobId") is not None:
         out["parent_job_id"] = data["ParentJobId"]
-    if "CreatedBy" in data:
+    if data.get("CreatedBy") is not None:
         import capo_backup.types.restore_job_creator
 
         out["created_by"] = capo_backup.types.restore_job_creator.deserialize_json(
             data["CreatedBy"]
         )
-    if "ValidationStatus" in data:
+    if data.get("ValidationStatus") is not None:
         import capo_backup.types.restore_validation_status
 
         out["validation_status"] = (
@@ -227,9 +227,9 @@ def deserialize_json(data: dict) -> RestoreJobsListMember:
                 data["ValidationStatus"]
             )
         )
-    if "ValidationStatusMessage" in data:
+    if data.get("ValidationStatusMessage") is not None:
         out["validation_status_message"] = data["ValidationStatusMessage"]
-    if "DeletionStatus" in data:
+    if data.get("DeletionStatus") is not None:
         import capo_backup.types.restore_deletion_status
 
         out["deletion_status"] = (
@@ -237,6 +237,6 @@ def deserialize_json(data: dict) -> RestoreJobsListMember:
                 data["DeletionStatus"]
             )
         )
-    if "DeletionStatusMessage" in data:
+    if data.get("DeletionStatusMessage") is not None:
         out["deletion_status_message"] = data["DeletionStatusMessage"]
     return out

@@ -79,7 +79,7 @@ def serialize_json(value: Event) -> dict:
 
 def deserialize_json(data: dict) -> Event:
     out: Event = {}  # type: ignore[typeddict-item]
-    if "ResourceCollection" in data:
+    if data.get("ResourceCollection") is not None:
         import capo_devops_guru.types.resource_collection
 
         out["resource_collection"] = (
@@ -87,29 +87,29 @@ def deserialize_json(data: dict) -> Event:
                 data["ResourceCollection"]
             )
         )
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "Time" in data:
+    if data.get("Time") is not None:
         import capo_devops_guru.types.timestamp
 
         out["time"] = capo_devops_guru.types.timestamp.deserialize_json(data["Time"])
-    if "EventSource" in data:
+    if data.get("EventSource") is not None:
         out["event_source"] = data["EventSource"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "DataSource" in data:
+    if data.get("DataSource") is not None:
         import capo_devops_guru.types.event_data_source
 
         out["data_source"] = capo_devops_guru.types.event_data_source.deserialize_json(
             data["DataSource"]
         )
-    if "EventClass" in data:
+    if data.get("EventClass") is not None:
         import capo_devops_guru.types.event_class
 
         out["event_class"] = capo_devops_guru.types.event_class.deserialize_json(
             data["EventClass"]
         )
-    if "Resources" in data:
+    if data.get("Resources") is not None:
         import capo_devops_guru.types.event_resources
 
         out["resources"] = capo_devops_guru.types.event_resources.deserialize_json(

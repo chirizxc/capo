@@ -38,9 +38,9 @@ def serialize_aws_json_1_1(value: ScheduledUpdateConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ScheduledUpdateConfig:
     out: ScheduledUpdateConfig = {}  # type: ignore[typeddict-item]
-    if "ScheduleExpression" in data:
+    if data.get("ScheduleExpression") is not None:
         out["schedule_expression"] = data["ScheduleExpression"]
-    if "DeploymentConfig" in data:
+    if data.get("DeploymentConfig") is not None:
         import capo_sagemaker.types.deployment_configuration
 
         out["deployment_config"] = (

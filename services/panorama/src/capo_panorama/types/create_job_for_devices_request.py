@@ -43,7 +43,7 @@ def serialize_json(value: CreateJobForDevicesRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateJobForDevicesRequest:
     out: CreateJobForDevicesRequest = {}  # type: ignore[typeddict-item]
-    if "DeviceIds" in data:
+    if data.get("DeviceIds") is not None:
         import capo_panorama.types.device_id_list
 
         out["device_ids"] = capo_panorama.types.device_id_list.deserialize_json(
@@ -51,7 +51,7 @@ def deserialize_json(data: dict) -> CreateJobForDevicesRequest:
         )
     else:
         raise DeserializationError("CreateJobForDevicesRequest.device_ids required")
-    if "DeviceJobConfig" in data:
+    if data.get("DeviceJobConfig") is not None:
         import capo_panorama.types.device_job_config
 
         out["device_job_config"] = (
@@ -59,7 +59,7 @@ def deserialize_json(data: dict) -> CreateJobForDevicesRequest:
                 data["DeviceJobConfig"]
             )
         )
-    if "JobType" in data:
+    if data.get("JobType") is not None:
         out["job_type"] = data["JobType"]
     else:
         raise DeserializationError("CreateJobForDevicesRequest.job_type required")

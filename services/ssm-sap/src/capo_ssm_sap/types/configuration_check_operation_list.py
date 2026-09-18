@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> ConfigurationCheckOperationList:
 
     out: ConfigurationCheckOperationList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_ssm_sap.types.configuration_check_operation.deserialize_json(item)
         )

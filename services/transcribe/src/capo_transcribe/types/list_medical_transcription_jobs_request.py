@@ -29,9 +29,37 @@ class ListMedicalTranscriptionJobsRequest(TypedDict, closed=True):
 # --- awsJson1_1 ser/de ---
 def serialize_aws_json_1_1(value: ListMedicalTranscriptionJobsRequest) -> dict:
     out: dict = {}
+    if "status" in value:
+        import capo_transcribe.types.transcription_job_status
+
+        out["Status"] = (
+            capo_transcribe.types.transcription_job_status.serialize_aws_json_1_1(
+                value["status"]
+            )
+        )
+    if "job_name_contains" in value:
+        out["JobNameContains"] = value["job_name_contains"]
+    if "next_token" in value:
+        out["NextToken"] = value["next_token"]
+    if "max_results" in value:
+        out["MaxResults"] = value["max_results"]
     return out
 
 
 def deserialize_aws_json_1_1(data: dict) -> ListMedicalTranscriptionJobsRequest:
     out: ListMedicalTranscriptionJobsRequest = {}  # type: ignore[typeddict-item]
+    if data.get("Status") is not None:
+        import capo_transcribe.types.transcription_job_status
+
+        out["status"] = (
+            capo_transcribe.types.transcription_job_status.deserialize_aws_json_1_1(
+                data["Status"]
+            )
+        )
+    if data.get("JobNameContains") is not None:
+        out["job_name_contains"] = data["JobNameContains"]
+    if data.get("NextToken") is not None:
+        out["next_token"] = data["NextToken"]
+    if data.get("MaxResults") is not None:
+        out["max_results"] = data["MaxResults"]
     return out

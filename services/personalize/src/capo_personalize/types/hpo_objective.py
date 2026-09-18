@@ -33,10 +33,10 @@ def serialize_aws_json_1_1(value: HPOObjective) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> HPOObjective:
     out: HPOObjective = {}  # type: ignore[typeddict-item]
-    if "type" in data:
+    if data.get("type") is not None:
         out["type"] = data["type"]
-    if "metricName" in data:
+    if data.get("metricName") is not None:
         out["metric_name"] = data["metricName"]
-    if "metricRegex" in data:
+    if data.get("metricRegex") is not None:
         out["metric_regex"] = data["metricRegex"]
     return out

@@ -62,11 +62,11 @@ def serialize_json(value: ProfileNotificationSummary) -> dict:
 
 def deserialize_json(data: dict) -> ProfileNotificationSummary:
     out: ProfileNotificationSummary = {}  # type: ignore[typeddict-item]
-    if "CurrentProfileVersion" in data:
+    if data.get("CurrentProfileVersion") is not None:
         out["current_profile_version"] = data["CurrentProfileVersion"]
-    if "LatestProfileVersion" in data:
+    if data.get("LatestProfileVersion") is not None:
         out["latest_profile_version"] = data["LatestProfileVersion"]
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_wellarchitected.types.profile_notification_type
 
         out["type"] = (
@@ -74,12 +74,12 @@ def deserialize_json(data: dict) -> ProfileNotificationSummary:
                 data["Type"]
             )
         )
-    if "ProfileArn" in data:
+    if data.get("ProfileArn") is not None:
         out["profile_arn"] = data["ProfileArn"]
-    if "ProfileName" in data:
+    if data.get("ProfileName") is not None:
         out["profile_name"] = data["ProfileName"]
-    if "WorkloadId" in data:
+    if data.get("WorkloadId") is not None:
         out["workload_id"] = data["WorkloadId"]
-    if "WorkloadName" in data:
+    if data.get("WorkloadName") is not None:
         out["workload_name"] = data["WorkloadName"]
     return out

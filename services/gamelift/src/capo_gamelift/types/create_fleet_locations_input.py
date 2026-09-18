@@ -36,9 +36,9 @@ def serialize_aws_json_1_1(value: CreateFleetLocationsInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateFleetLocationsInput:
     out: CreateFleetLocationsInput = {}  # type: ignore[typeddict-item]
-    if "FleetId" in data:
+    if data.get("FleetId") is not None:
         out["fleet_id"] = data["FleetId"]
-    if "Locations" in data:
+    if data.get("Locations") is not None:
         import capo_gamelift.types.location_configuration_list
 
         out["locations"] = (

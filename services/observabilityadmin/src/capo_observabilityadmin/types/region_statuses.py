@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> RegionStatuses:
 
     out: RegionStatuses = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_observabilityadmin.types.region_status.deserialize_json(item))
     return out

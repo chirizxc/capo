@@ -53,9 +53,9 @@ def serialize_aws_json_1_0(value: DatastoreFilter) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> DatastoreFilter:
     out: DatastoreFilter = {}  # type: ignore[typeddict-item]
-    if "DatastoreName" in data:
+    if data.get("DatastoreName") is not None:
         out["datastore_name"] = data["DatastoreName"]
-    if "DatastoreStatus" in data:
+    if data.get("DatastoreStatus") is not None:
         import capo_healthlake.types.datastore_status
 
         out["datastore_status"] = (
@@ -63,7 +63,7 @@ def deserialize_aws_json_1_0(data: dict) -> DatastoreFilter:
                 data["DatastoreStatus"]
             )
         )
-    if "CreatedBefore" in data:
+    if data.get("CreatedBefore") is not None:
         import capo_healthlake.types.timestamp
 
         out["created_before"] = (
@@ -71,7 +71,7 @@ def deserialize_aws_json_1_0(data: dict) -> DatastoreFilter:
                 data["CreatedBefore"]
             )
         )
-    if "CreatedAfter" in data:
+    if data.get("CreatedAfter") is not None:
         import capo_healthlake.types.timestamp
 
         out["created_after"] = capo_healthlake.types.timestamp.deserialize_aws_json_1_0(

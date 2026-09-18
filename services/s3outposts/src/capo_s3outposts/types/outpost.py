@@ -42,15 +42,15 @@ def serialize_json(value: Outpost) -> dict:
 
 def deserialize_json(data: dict) -> Outpost:
     out: Outpost = {}  # type: ignore[typeddict-item]
-    if "OutpostArn" in data:
+    if data.get("OutpostArn") is not None:
         out["outpost_arn"] = data["OutpostArn"]
-    if "S3OutpostArn" in data:
+    if data.get("S3OutpostArn") is not None:
         out["s3_outpost_arn"] = data["S3OutpostArn"]
-    if "OutpostId" in data:
+    if data.get("OutpostId") is not None:
         out["outpost_id"] = data["OutpostId"]
-    if "OwnerId" in data:
+    if data.get("OwnerId") is not None:
         out["owner_id"] = data["OwnerId"]
-    if "CapacityInBytes" in data:
+    if data.get("CapacityInBytes") is not None:
         out["capacity_in_bytes"] = data["CapacityInBytes"]
     else:
         out["capacity_in_bytes"] = 0

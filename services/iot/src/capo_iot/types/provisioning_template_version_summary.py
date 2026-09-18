@@ -36,15 +36,15 @@ def serialize_json(value: ProvisioningTemplateVersionSummary) -> dict:
 
 def deserialize_json(data: dict) -> ProvisioningTemplateVersionSummary:
     out: ProvisioningTemplateVersionSummary = {}  # type: ignore[typeddict-item]
-    if "versionId" in data:
+    if data.get("versionId") is not None:
         out["version_id"] = data["versionId"]
-    if "creationDate" in data:
+    if data.get("creationDate") is not None:
         import capo_iot.types.date_type
 
         out["creation_date"] = capo_iot.types.date_type.deserialize_json(
             data["creationDate"]
         )
-    if "isDefaultVersion" in data:
+    if data.get("isDefaultVersion") is not None:
         out["is_default_version"] = data["isDefaultVersion"]
     else:
         out["is_default_version"] = False

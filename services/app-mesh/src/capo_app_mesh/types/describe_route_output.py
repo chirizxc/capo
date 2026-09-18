@@ -26,7 +26,7 @@ def serialize_json(value: DescribeRouteOutput) -> dict:
 
 def deserialize_json(data: dict) -> DescribeRouteOutput:
     out: DescribeRouteOutput = {}  # type: ignore[typeddict-item]
-    if "route" in data:
+    if data.get("route") is not None:
         import capo_app_mesh.types.route_data
 
         out["route"] = capo_app_mesh.types.route_data.deserialize_json(data["route"])

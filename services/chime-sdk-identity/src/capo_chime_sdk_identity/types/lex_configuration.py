@@ -53,26 +53,26 @@ def serialize_json(value: LexConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> LexConfiguration:
     out: LexConfiguration = {}  # type: ignore[typeddict-item]
-    if "RespondsTo" in data:
+    if data.get("RespondsTo") is not None:
         import capo_chime_sdk_identity.types.responds_to
 
         out["responds_to"] = capo_chime_sdk_identity.types.responds_to.deserialize_json(
             data["RespondsTo"]
         )
-    if "InvokedBy" in data:
+    if data.get("InvokedBy") is not None:
         import capo_chime_sdk_identity.types.invoked_by
 
         out["invoked_by"] = capo_chime_sdk_identity.types.invoked_by.deserialize_json(
             data["InvokedBy"]
         )
-    if "LexBotAliasArn" in data:
+    if data.get("LexBotAliasArn") is not None:
         out["lex_bot_alias_arn"] = data["LexBotAliasArn"]
     else:
         raise DeserializationError("LexConfiguration.lex_bot_alias_arn required")
-    if "LocaleId" in data:
+    if data.get("LocaleId") is not None:
         out["locale_id"] = data["LocaleId"]
     else:
         raise DeserializationError("LexConfiguration.locale_id required")
-    if "WelcomeIntent" in data:
+    if data.get("WelcomeIntent") is not None:
         out["welcome_intent"] = data["WelcomeIntent"]
     return out

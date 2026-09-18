@@ -78,7 +78,7 @@ def serialize_json(value: PolicyGrantPrincipal) -> dict:
 
 
 def deserialize_json(data: dict) -> PolicyGrantPrincipal:
-    if "user" in data:
+    if data.get("user") is not None:
         import capo_datazone.types.user_policy_grant_principal
 
         return {
@@ -86,7 +86,7 @@ def deserialize_json(data: dict) -> PolicyGrantPrincipal:
                 data["user"]
             )
         }
-    elif "group" in data:
+    elif data.get("group") is not None:
         import capo_datazone.types.group_policy_grant_principal
 
         return {
@@ -94,7 +94,7 @@ def deserialize_json(data: dict) -> PolicyGrantPrincipal:
                 data["group"]
             )
         }
-    elif "project" in data:
+    elif data.get("project") is not None:
         import capo_datazone.types.project_policy_grant_principal
 
         return {
@@ -102,7 +102,7 @@ def deserialize_json(data: dict) -> PolicyGrantPrincipal:
                 data["project"]
             )
         }
-    elif "domainUnit" in data:
+    elif data.get("domainUnit") is not None:
         import capo_datazone.types.domain_unit_policy_grant_principal
 
         return {

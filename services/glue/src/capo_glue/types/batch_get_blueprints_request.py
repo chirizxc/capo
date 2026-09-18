@@ -39,7 +39,7 @@ def serialize_aws_json_1_1(value: BatchGetBlueprintsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> BatchGetBlueprintsRequest:
     out: BatchGetBlueprintsRequest = {}  # type: ignore[typeddict-item]
-    if "Names" in data:
+    if data.get("Names") is not None:
         import capo_glue.types.batch_get_blueprint_names
 
         out["names"] = (
@@ -49,8 +49,8 @@ def deserialize_aws_json_1_1(data: dict) -> BatchGetBlueprintsRequest:
         )
     else:
         raise DeserializationError("BatchGetBlueprintsRequest.names required")
-    if "IncludeBlueprint" in data:
+    if data.get("IncludeBlueprint") is not None:
         out["include_blueprint"] = data["IncludeBlueprint"]
-    if "IncludeParameterSpec" in data:
+    if data.get("IncludeParameterSpec") is not None:
         out["include_parameter_spec"] = data["IncludeParameterSpec"]
     return out

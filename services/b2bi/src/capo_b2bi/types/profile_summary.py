@@ -63,27 +63,27 @@ def serialize_aws_json_1_0(value: ProfileSummary) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ProfileSummary:
     out: ProfileSummary = {}  # type: ignore[typeddict-item]
-    if "profileId" in data:
+    if data.get("profileId") is not None:
         out["profile_id"] = data["profileId"]
     else:
         raise DeserializationError("ProfileSummary.profile_id required")
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("ProfileSummary.name required")
-    if "businessName" in data:
+    if data.get("businessName") is not None:
         out["business_name"] = data["businessName"]
     else:
         raise DeserializationError("ProfileSummary.business_name required")
-    if "logging" in data:
+    if data.get("logging") is not None:
         import capo_b2bi.types.logging
 
         out["logging"] = capo_b2bi.types.logging.deserialize_aws_json_1_0(
             data["logging"]
         )
-    if "logGroupName" in data:
+    if data.get("logGroupName") is not None:
         out["log_group_name"] = data["logGroupName"]
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_b2bi.types.created_date
 
         out["created_at"] = capo_b2bi.types.created_date.deserialize_aws_json_1_0(
@@ -91,7 +91,7 @@ def deserialize_aws_json_1_0(data: dict) -> ProfileSummary:
         )
     else:
         raise DeserializationError("ProfileSummary.created_at required")
-    if "modifiedAt" in data:
+    if data.get("modifiedAt") is not None:
         import capo_b2bi.types.modified_date
 
         out["modified_at"] = capo_b2bi.types.modified_date.deserialize_aws_json_1_0(

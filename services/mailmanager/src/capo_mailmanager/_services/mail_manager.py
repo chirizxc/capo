@@ -1,6 +1,7 @@
 """Generated from Smithy shape ``com.amazonaws.mailmanager#MailManagerSvc``."""
 
 import datetime
+import uuid
 import warnings
 from collections.abc import Iterator
 from typing import TYPE_CHECKING, Any, Iterable, Optional
@@ -270,18 +271,21 @@ class MailManagerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mailmanager.types.create_address_list_import_job_request.CreateAddressListImportJobRequest = {}  # type: ignore[typeddict-item]
-        if client_token is not None:
-            input_["client_token"] = client_token
-        input_["address_list_id"] = address_list_id
-        input_["name"] = name
-        input_["import_data_format"] = import_data_format
+        input_: capo_mailmanager.types.create_address_list_import_job_request.CreateAddressListImportJobRequest = {
+            "address_list_id": address_list_id,
+            "name": name,
+            "import_data_format": import_data_format,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def deregister_member_from_address_list(
@@ -321,15 +325,17 @@ class MailManagerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mailmanager.types.deregister_member_from_address_list_request.DeregisterMemberFromAddressListRequest = {}  # type: ignore[typeddict-item]
-        input_["address_list_id"] = address_list_id
-        input_["address"] = address
+        input_: capo_mailmanager.types.deregister_member_from_address_list_request.DeregisterMemberFromAddressListRequest = {
+            "address_list_id": address_list_id,
+            "address": address,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_address_list_import_job(
@@ -366,14 +372,16 @@ class MailManagerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mailmanager.types.get_address_list_import_job_request.GetAddressListImportJobRequest = {}  # type: ignore[typeddict-item]
-        input_["job_id"] = job_id
+        input_: capo_mailmanager.types.get_address_list_import_job_request.GetAddressListImportJobRequest = {
+            "job_id": job_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_archive_export(
@@ -409,14 +417,16 @@ class MailManagerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mailmanager.types.get_archive_export_request.GetArchiveExportRequest = {}  # type: ignore[typeddict-item]
-        input_["export_id"] = export_id
+        input_: capo_mailmanager.types.get_archive_export_request.GetArchiveExportRequest = {
+            "export_id": export_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_archive_message(
@@ -454,14 +464,16 @@ class MailManagerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mailmanager.types.get_archive_message_request.GetArchiveMessageRequest = {}  # type: ignore[typeddict-item]
-        input_["archived_message_id"] = archived_message_id
+        input_: capo_mailmanager.types.get_archive_message_request.GetArchiveMessageRequest = {
+            "archived_message_id": archived_message_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_archive_message_content(
@@ -497,14 +509,16 @@ class MailManagerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mailmanager.types.get_archive_message_content_request.GetArchiveMessageContentRequest = {}  # type: ignore[typeddict-item]
-        input_["archived_message_id"] = archived_message_id
+        input_: capo_mailmanager.types.get_archive_message_content_request.GetArchiveMessageContentRequest = {
+            "archived_message_id": archived_message_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_archive_search(
@@ -540,14 +554,16 @@ class MailManagerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mailmanager.types.get_archive_search_request.GetArchiveSearchRequest = {}  # type: ignore[typeddict-item]
-        input_["search_id"] = search_id
+        input_: capo_mailmanager.types.get_archive_search_request.GetArchiveSearchRequest = {
+            "search_id": search_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_archive_search_results(
@@ -584,14 +600,16 @@ class MailManagerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mailmanager.types.get_archive_search_results_request.GetArchiveSearchResultsRequest = {}  # type: ignore[typeddict-item]
-        input_["search_id"] = search_id
+        input_: capo_mailmanager.types.get_archive_search_results_request.GetArchiveSearchResultsRequest = {
+            "search_id": search_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_member_of_address_list(
@@ -630,15 +648,17 @@ class MailManagerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mailmanager.types.get_member_of_address_list_request.GetMemberOfAddressListRequest = {}  # type: ignore[typeddict-item]
-        input_["address_list_id"] = address_list_id
-        input_["address"] = address
+        input_: capo_mailmanager.types.get_member_of_address_list_request.GetMemberOfAddressListRequest = {
+            "address_list_id": address_list_id,
+            "address": address,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_address_list_import_jobs(
@@ -681,8 +701,9 @@ class MailManagerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mailmanager.types.list_address_list_import_jobs_request.ListAddressListImportJobsRequest = {}  # type: ignore[typeddict-item]
-        input_["address_list_id"] = address_list_id
+        input_: capo_mailmanager.types.list_address_list_import_jobs_request.ListAddressListImportJobsRequest = {
+            "address_list_id": address_list_id
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if page_size is not None:
@@ -693,6 +714,7 @@ class MailManagerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_address_list_import_jobs(
@@ -760,8 +782,9 @@ class MailManagerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mailmanager.types.list_archive_exports_request.ListArchiveExportsRequest = {}  # type: ignore[typeddict-item]
-        input_["archive_id"] = archive_id
+        input_: capo_mailmanager.types.list_archive_exports_request.ListArchiveExportsRequest = {
+            "archive_id": archive_id
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if page_size is not None:
@@ -772,6 +795,7 @@ class MailManagerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_archive_exports(
@@ -839,8 +863,9 @@ class MailManagerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mailmanager.types.list_archive_searches_request.ListArchiveSearchesRequest = {}  # type: ignore[typeddict-item]
-        input_["archive_id"] = archive_id
+        input_: capo_mailmanager.types.list_archive_searches_request.ListArchiveSearchesRequest = {
+            "archive_id": archive_id
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if page_size is not None:
@@ -851,6 +876,7 @@ class MailManagerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_archive_searches(
@@ -922,8 +948,9 @@ class MailManagerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mailmanager.types.list_members_of_address_list_request.ListMembersOfAddressListRequest = {}  # type: ignore[typeddict-item]
-        input_["address_list_id"] = address_list_id
+        input_: capo_mailmanager.types.list_members_of_address_list_request.ListMembersOfAddressListRequest = {
+            "address_list_id": address_list_id
+        }
         if filter is not None:
             input_["filter"] = filter
         if next_token is not None:
@@ -936,6 +963,7 @@ class MailManagerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_members_of_address_list(
@@ -999,14 +1027,16 @@ class MailManagerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mailmanager.types.list_tags_for_resource_request.ListTagsForResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_mailmanager.types.list_tags_for_resource_request.ListTagsForResourceRequest = {
+            "resource_arn": resource_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def register_member_to_address_list(
@@ -1047,15 +1077,17 @@ class MailManagerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mailmanager.types.register_member_to_address_list_request.RegisterMemberToAddressListRequest = {}  # type: ignore[typeddict-item]
-        input_["address_list_id"] = address_list_id
-        input_["address"] = address
+        input_: capo_mailmanager.types.register_member_to_address_list_request.RegisterMemberToAddressListRequest = {
+            "address_list_id": address_list_id,
+            "address": address,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def start_address_list_import_job(
@@ -1094,14 +1126,16 @@ class MailManagerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mailmanager.types.start_address_list_import_job_request.StartAddressListImportJobRequest = {}  # type: ignore[typeddict-item]
-        input_["job_id"] = job_id
+        input_: capo_mailmanager.types.start_address_list_import_job_request.StartAddressListImportJobRequest = {
+            "job_id": job_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def start_archive_export(
@@ -1155,15 +1189,16 @@ class MailManagerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mailmanager.types.start_archive_export_request.StartArchiveExportRequest = {}  # type: ignore[typeddict-item]
-        input_["archive_id"] = archive_id
+        input_: capo_mailmanager.types.start_archive_export_request.StartArchiveExportRequest = {
+            "archive_id": archive_id,
+            "from_timestamp": from_timestamp,
+            "to_timestamp": to_timestamp,
+            "export_destination_configuration": export_destination_configuration,
+        }
         if filters is not None:
             input_["filters"] = filters
-        input_["from_timestamp"] = from_timestamp
-        input_["to_timestamp"] = to_timestamp
         if max_results is not None:
             input_["max_results"] = max_results
-        input_["export_destination_configuration"] = export_destination_configuration
         if include_metadata is not None:
             input_["include_metadata"] = include_metadata
 
@@ -1172,6 +1207,7 @@ class MailManagerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def start_archive_search(
@@ -1220,19 +1256,21 @@ class MailManagerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mailmanager.types.start_archive_search_request.StartArchiveSearchRequest = {}  # type: ignore[typeddict-item]
-        input_["archive_id"] = archive_id
+        input_: capo_mailmanager.types.start_archive_search_request.StartArchiveSearchRequest = {
+            "archive_id": archive_id,
+            "from_timestamp": from_timestamp,
+            "to_timestamp": to_timestamp,
+            "max_results": max_results,
+        }
         if filters is not None:
             input_["filters"] = filters
-        input_["from_timestamp"] = from_timestamp
-        input_["to_timestamp"] = to_timestamp
-        input_["max_results"] = max_results
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def stop_address_list_import_job(
@@ -1270,14 +1308,16 @@ class MailManagerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mailmanager.types.stop_address_list_import_job_request.StopAddressListImportJobRequest = {}  # type: ignore[typeddict-item]
-        input_["job_id"] = job_id
+        input_: capo_mailmanager.types.stop_address_list_import_job_request.StopAddressListImportJobRequest = {
+            "job_id": job_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def stop_archive_export(
@@ -1315,14 +1355,16 @@ class MailManagerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mailmanager.types.stop_archive_export_request.StopArchiveExportRequest = {}  # type: ignore[typeddict-item]
-        input_["export_id"] = export_id
+        input_: capo_mailmanager.types.stop_archive_export_request.StopArchiveExportRequest = {
+            "export_id": export_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def stop_archive_search(
@@ -1360,14 +1402,16 @@ class MailManagerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mailmanager.types.stop_archive_search_request.StopArchiveSearchRequest = {}  # type: ignore[typeddict-item]
-        input_["search_id"] = search_id
+        input_: capo_mailmanager.types.stop_archive_search_request.StopArchiveSearchRequest = {
+            "search_id": search_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def tag_resource(
@@ -1406,15 +1450,17 @@ class MailManagerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mailmanager.types.tag_resource_request.TagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tags"] = tags
+        input_: capo_mailmanager.types.tag_resource_request.TagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tags": tags,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def untag_resource(
@@ -1452,15 +1498,17 @@ class MailManagerClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mailmanager.types.untag_resource_request.UntagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tag_keys"] = tag_keys
+        input_: capo_mailmanager.types.untag_resource_request.UntagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tag_keys": tag_keys,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def __enter__(self) -> Self:

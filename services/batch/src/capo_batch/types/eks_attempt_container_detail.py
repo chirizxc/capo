@@ -36,12 +36,12 @@ def serialize_json(value: EksAttemptContainerDetail) -> dict:
 
 def deserialize_json(data: dict) -> EksAttemptContainerDetail:
     out: EksAttemptContainerDetail = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "containerID" in data:
+    if data.get("containerID") is not None:
         out["container_id"] = data["containerID"]
-    if "exitCode" in data:
+    if data.get("exitCode") is not None:
         out["exit_code"] = data["exitCode"]
-    if "reason" in data:
+    if data.get("reason") is not None:
         out["reason"] = data["reason"]
     return out

@@ -38,13 +38,13 @@ def serialize_json(value: BatchGetFindingDetailsResponse) -> dict:
 
 def deserialize_json(data: dict) -> BatchGetFindingDetailsResponse:
     out: BatchGetFindingDetailsResponse = {}  # type: ignore[typeddict-item]
-    if "findingDetails" in data:
+    if data.get("findingDetails") is not None:
         import capo_inspector2.types.finding_details
 
         out["finding_details"] = capo_inspector2.types.finding_details.deserialize_json(
             data["findingDetails"]
         )
-    if "errors" in data:
+    if data.get("errors") is not None:
         import capo_inspector2.types.finding_details_error_list
 
         out["errors"] = (

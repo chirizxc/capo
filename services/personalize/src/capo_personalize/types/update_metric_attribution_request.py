@@ -62,7 +62,7 @@ def serialize_aws_json_1_1(value: UpdateMetricAttributionRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateMetricAttributionRequest:
     out: UpdateMetricAttributionRequest = {}  # type: ignore[typeddict-item]
-    if "addMetrics" in data:
+    if data.get("addMetrics") is not None:
         import capo_personalize.types.metric_attributes
 
         out["add_metrics"] = (
@@ -70,7 +70,7 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateMetricAttributionRequest:
                 data["addMetrics"]
             )
         )
-    if "removeMetrics" in data:
+    if data.get("removeMetrics") is not None:
         import capo_personalize.types.metric_attributes_names_list
 
         out["remove_metrics"] = (
@@ -78,7 +78,7 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateMetricAttributionRequest:
                 data["removeMetrics"]
             )
         )
-    if "metricsOutputConfig" in data:
+    if data.get("metricsOutputConfig") is not None:
         import capo_personalize.types.metric_attribution_output
 
         out["metrics_output_config"] = (
@@ -86,6 +86,6 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateMetricAttributionRequest:
                 data["metricsOutputConfig"]
             )
         )
-    if "metricAttributionArn" in data:
+    if data.get("metricAttributionArn") is not None:
         out["metric_attribution_arn"] = data["metricAttributionArn"]
     return out

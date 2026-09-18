@@ -32,7 +32,7 @@ def serialize_aws_json_1_0(value: ReportOutputConfiguration) -> dict:
 
 
 def deserialize_aws_json_1_0(data: dict) -> ReportOutputConfiguration:
-    if "s3Configuration" in data:
+    if data.get("s3Configuration") is not None:
         import capo_arc_region_switch.types.s3_report_output_configuration
 
         return {

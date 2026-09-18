@@ -1,5 +1,6 @@
 """Generated from Smithy shape ``com.amazonaws.marketplacemetering#AWSMPMeteringService``."""
 
+import uuid
 import warnings
 from typing import TYPE_CHECKING, Any, Iterable, Optional
 
@@ -188,8 +189,9 @@ class AsyncMarketplaceMeteringClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_marketplace_metering.types.batch_meter_usage_request.BatchMeterUsageRequest = {}  # type: ignore[typeddict-item]
-        input_["usage_records"] = usage_records
+        input_: capo_marketplace_metering.types.batch_meter_usage_request.BatchMeterUsageRequest = {
+            "usage_records": usage_records
+        }
         if product_code is not None:
             input_["product_code"] = product_code
 
@@ -198,6 +200,7 @@ class AsyncMarketplaceMeteringClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def meter_usage(
@@ -260,24 +263,27 @@ class AsyncMarketplaceMeteringClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_marketplace_metering.types.meter_usage_request.MeterUsageRequest = {}  # type: ignore[typeddict-item]
-        input_["product_code"] = product_code
-        input_["timestamp"] = timestamp
-        input_["usage_dimension"] = usage_dimension
+        input_: capo_marketplace_metering.types.meter_usage_request.MeterUsageRequest = {
+            "product_code": product_code,
+            "timestamp": timestamp,
+            "usage_dimension": usage_dimension,
+        }
         if usage_quantity is not None:
             input_["usage_quantity"] = usage_quantity
         if dry_run is not None:
             input_["dry_run"] = dry_run
         if usage_allocations is not None:
             input_["usage_allocations"] = usage_allocations
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def register_usage(
@@ -323,9 +329,10 @@ class AsyncMarketplaceMeteringClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_marketplace_metering.types.register_usage_request.RegisterUsageRequest = {}  # type: ignore[typeddict-item]
-        input_["product_code"] = product_code
-        input_["public_key_version"] = public_key_version
+        input_: capo_marketplace_metering.types.register_usage_request.RegisterUsageRequest = {
+            "product_code": product_code,
+            "public_key_version": public_key_version,
+        }
         if nonce is not None:
             input_["nonce"] = nonce
 
@@ -334,6 +341,7 @@ class AsyncMarketplaceMeteringClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def resolve_customer(
@@ -374,14 +382,16 @@ class AsyncMarketplaceMeteringClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_marketplace_metering.types.resolve_customer_request.ResolveCustomerRequest = {}  # type: ignore[typeddict-item]
-        input_["registration_token"] = registration_token
+        input_: capo_marketplace_metering.types.resolve_customer_request.ResolveCustomerRequest = {
+            "registration_token": registration_token
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def __aenter__(self) -> Self:

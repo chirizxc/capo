@@ -34,7 +34,7 @@ def serialize_json(value: TelemetrySinkData) -> dict:
 
 
 def deserialize_json(data: dict) -> TelemetrySinkData:
-    if "kinesisDataStreamData" in data:
+    if data.get("kinesisDataStreamData") is not None:
         import capo_groundstation.types.kinesis_data_stream_data
 
         return {

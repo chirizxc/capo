@@ -78,27 +78,27 @@ def serialize_aws_json_1_1(value: GetUnfilteredPartitionMetadataRequest) -> dict
 
 def deserialize_aws_json_1_1(data: dict) -> GetUnfilteredPartitionMetadataRequest:
     out: GetUnfilteredPartitionMetadataRequest = {}  # type: ignore[typeddict-item]
-    if "Region" in data:
+    if data.get("Region") is not None:
         out["region"] = data["Region"]
-    if "CatalogId" in data:
+    if data.get("CatalogId") is not None:
         out["catalog_id"] = data["CatalogId"]
     else:
         raise DeserializationError(
             "GetUnfilteredPartitionMetadataRequest.catalog_id required"
         )
-    if "DatabaseName" in data:
+    if data.get("DatabaseName") is not None:
         out["database_name"] = data["DatabaseName"]
     else:
         raise DeserializationError(
             "GetUnfilteredPartitionMetadataRequest.database_name required"
         )
-    if "TableName" in data:
+    if data.get("TableName") is not None:
         out["table_name"] = data["TableName"]
     else:
         raise DeserializationError(
             "GetUnfilteredPartitionMetadataRequest.table_name required"
         )
-    if "PartitionValues" in data:
+    if data.get("PartitionValues") is not None:
         import capo_glue.types.value_string_list
 
         out["partition_values"] = (
@@ -110,13 +110,13 @@ def deserialize_aws_json_1_1(data: dict) -> GetUnfilteredPartitionMetadataReques
         raise DeserializationError(
             "GetUnfilteredPartitionMetadataRequest.partition_values required"
         )
-    if "AuditContext" in data:
+    if data.get("AuditContext") is not None:
         import capo_glue.types.audit_context
 
         out["audit_context"] = capo_glue.types.audit_context.deserialize_aws_json_1_1(
             data["AuditContext"]
         )
-    if "SupportedPermissionTypes" in data:
+    if data.get("SupportedPermissionTypes") is not None:
         import capo_glue.types.permission_type_list
 
         out["supported_permission_types"] = (
@@ -128,7 +128,7 @@ def deserialize_aws_json_1_1(data: dict) -> GetUnfilteredPartitionMetadataReques
         raise DeserializationError(
             "GetUnfilteredPartitionMetadataRequest.supported_permission_types required"
         )
-    if "QuerySessionContext" in data:
+    if data.get("QuerySessionContext") is not None:
         import capo_glue.types.query_session_context
 
         out["query_session_context"] = (

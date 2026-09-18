@@ -29,7 +29,7 @@ def serialize_json(value: LoggingConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> LoggingConfiguration:
     out: LoggingConfiguration = {}  # type: ignore[typeddict-item]
-    if "Destinations" in data:
+    if data.get("Destinations") is not None:
         import capo_simspaceweaver.types.log_destinations
 
         out["destinations"] = (

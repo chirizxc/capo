@@ -49,7 +49,7 @@ def serialize_json(value: DescribeEventConfigurationsResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribeEventConfigurationsResponse:
     out: DescribeEventConfigurationsResponse = {}  # type: ignore[typeddict-item]
-    if "eventConfigurations" in data:
+    if data.get("eventConfigurations") is not None:
         import capo_iot.types.event_configurations
 
         out["event_configurations"] = (
@@ -57,13 +57,13 @@ def deserialize_json(data: dict) -> DescribeEventConfigurationsResponse:
                 data["eventConfigurations"]
             )
         )
-    if "creationDate" in data:
+    if data.get("creationDate") is not None:
         import capo_iot.types.creation_date
 
         out["creation_date"] = capo_iot.types.creation_date.deserialize_json(
             data["creationDate"]
         )
-    if "lastModifiedDate" in data:
+    if data.get("lastModifiedDate") is not None:
         import capo_iot.types.last_modified_date
 
         out["last_modified_date"] = capo_iot.types.last_modified_date.deserialize_json(

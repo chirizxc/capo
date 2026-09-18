@@ -49,27 +49,27 @@ def serialize_aws_json_1_1(value: JsonClassifier) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> JsonClassifier:
     out: JsonClassifier = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("JsonClassifier.name required")
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_glue.types.timestamp
 
         out["creation_time"] = capo_glue.types.timestamp.deserialize_aws_json_1_1(
             data["CreationTime"]
         )
-    if "LastUpdated" in data:
+    if data.get("LastUpdated") is not None:
         import capo_glue.types.timestamp
 
         out["last_updated"] = capo_glue.types.timestamp.deserialize_aws_json_1_1(
             data["LastUpdated"]
         )
-    if "Version" in data:
+    if data.get("Version") is not None:
         out["version"] = data["Version"]
     else:
         out["version"] = 0
-    if "JsonPath" in data:
+    if data.get("JsonPath") is not None:
         out["json_path"] = data["JsonPath"]
     else:
         raise DeserializationError("JsonClassifier.json_path required")

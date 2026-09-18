@@ -43,7 +43,7 @@ def serialize_aws_json_1_0(value: ArchiveFilters) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ArchiveFilters:
     out: ArchiveFilters = {}  # type: ignore[typeddict-item]
-    if "Include" in data:
+    if data.get("Include") is not None:
         import capo_mailmanager.types.archive_filter_conditions
 
         out["include"] = (
@@ -51,7 +51,7 @@ def deserialize_aws_json_1_0(data: dict) -> ArchiveFilters:
                 data["Include"]
             )
         )
-    if "Unless" in data:
+    if data.get("Unless") is not None:
         import capo_mailmanager.types.archive_filter_conditions
 
         out["unless"] = (

@@ -58,28 +58,28 @@ def serialize_json(value: JobExecutionSummary) -> dict:
 
 def deserialize_json(data: dict) -> JobExecutionSummary:
     out: JobExecutionSummary = {}  # type: ignore[typeddict-item]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_iot.types.job_execution_status
 
         out["status"] = capo_iot.types.job_execution_status.deserialize_json(
             data["status"]
         )
-    if "queuedAt" in data:
+    if data.get("queuedAt") is not None:
         import capo_iot.types.date_type
 
         out["queued_at"] = capo_iot.types.date_type.deserialize_json(data["queuedAt"])
-    if "startedAt" in data:
+    if data.get("startedAt") is not None:
         import capo_iot.types.date_type
 
         out["started_at"] = capo_iot.types.date_type.deserialize_json(data["startedAt"])
-    if "lastUpdatedAt" in data:
+    if data.get("lastUpdatedAt") is not None:
         import capo_iot.types.date_type
 
         out["last_updated_at"] = capo_iot.types.date_type.deserialize_json(
             data["lastUpdatedAt"]
         )
-    if "executionNumber" in data:
+    if data.get("executionNumber") is not None:
         out["execution_number"] = data["executionNumber"]
-    if "retryAttempt" in data:
+    if data.get("retryAttempt") is not None:
         out["retry_attempt"] = data["retryAttempt"]
     return out

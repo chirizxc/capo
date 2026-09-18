@@ -40,12 +40,12 @@ def deserialize_aws_json_1_1(
     data: dict,
 ) -> PullRequestSourceReferenceUpdatedEventMetadata:
     out: PullRequestSourceReferenceUpdatedEventMetadata = {}  # type: ignore[typeddict-item]
-    if "repositoryName" in data:
+    if data.get("repositoryName") is not None:
         out["repository_name"] = data["repositoryName"]
-    if "beforeCommitId" in data:
+    if data.get("beforeCommitId") is not None:
         out["before_commit_id"] = data["beforeCommitId"]
-    if "afterCommitId" in data:
+    if data.get("afterCommitId") is not None:
         out["after_commit_id"] = data["afterCommitId"]
-    if "mergeBase" in data:
+    if data.get("mergeBase") is not None:
         out["merge_base"] = data["mergeBase"]
     return out

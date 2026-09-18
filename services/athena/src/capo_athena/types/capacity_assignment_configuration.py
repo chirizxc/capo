@@ -38,9 +38,9 @@ def serialize_aws_json_1_1(value: CapacityAssignmentConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CapacityAssignmentConfiguration:
     out: CapacityAssignmentConfiguration = {}  # type: ignore[typeddict-item]
-    if "CapacityReservationName" in data:
+    if data.get("CapacityReservationName") is not None:
         out["capacity_reservation_name"] = data["CapacityReservationName"]
-    if "CapacityAssignments" in data:
+    if data.get("CapacityAssignments") is not None:
         import capo_athena.types.capacity_assignments_list
 
         out["capacity_assignments"] = (

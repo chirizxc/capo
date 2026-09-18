@@ -58,9 +58,9 @@ def serialize_json(value: VideoAttribute) -> dict:
 
 def deserialize_json(data: dict) -> VideoAttribute:
     out: VideoAttribute = {}  # type: ignore[typeddict-item]
-    if "CornerRadius" in data:
+    if data.get("CornerRadius") is not None:
         out["corner_radius"] = data["CornerRadius"]
-    if "BorderColor" in data:
+    if data.get("BorderColor") is not None:
         import capo_chime_sdk_media_pipelines.types.border_color
 
         out["border_color"] = (
@@ -68,7 +68,7 @@ def deserialize_json(data: dict) -> VideoAttribute:
                 data["BorderColor"]
             )
         )
-    if "HighlightColor" in data:
+    if data.get("HighlightColor") is not None:
         import capo_chime_sdk_media_pipelines.types.highlight_color
 
         out["highlight_color"] = (
@@ -76,6 +76,6 @@ def deserialize_json(data: dict) -> VideoAttribute:
                 data["HighlightColor"]
             )
         )
-    if "BorderThickness" in data:
+    if data.get("BorderThickness") is not None:
         out["border_thickness"] = data["BorderThickness"]
     return out

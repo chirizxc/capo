@@ -28,11 +28,11 @@ def serialize_aws_json_1_1(value: IdentityCenterConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> IdentityCenterConfiguration:
     out: IdentityCenterConfiguration = {}  # type: ignore[typeddict-item]
-    if "InstanceArn" in data:
+    if data.get("InstanceArn") is not None:
         out["instance_arn"] = data["InstanceArn"]
     else:
         raise DeserializationError("IdentityCenterConfiguration.instance_arn required")
-    if "ApplicationArn" in data:
+    if data.get("ApplicationArn") is not None:
         out["application_arn"] = data["ApplicationArn"]
     else:
         raise DeserializationError(

@@ -36,14 +36,14 @@ def serialize_json(value: InsightResourceDetail) -> dict:
 
 def deserialize_json(data: dict) -> InsightResourceDetail:
     out: InsightResourceDetail = {}  # type: ignore[typeddict-item]
-    if "insightStatus" in data:
+    if data.get("insightStatus") is not None:
         import capo_eks.types.insight_status
 
         out["insight_status"] = capo_eks.types.insight_status.deserialize_json(
             data["insightStatus"]
         )
-    if "kubernetesResourceUri" in data:
+    if data.get("kubernetesResourceUri") is not None:
         out["kubernetes_resource_uri"] = data["kubernetesResourceUri"]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     return out

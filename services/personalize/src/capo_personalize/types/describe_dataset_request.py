@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: DescribeDatasetRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeDatasetRequest:
     out: DescribeDatasetRequest = {}  # type: ignore[typeddict-item]
-    if "datasetArn" in data:
+    if data.get("datasetArn") is not None:
         out["dataset_arn"] = data["datasetArn"]
     else:
         raise DeserializationError("DescribeDatasetRequest.dataset_arn required")

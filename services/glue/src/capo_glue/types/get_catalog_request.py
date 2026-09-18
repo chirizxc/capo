@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: GetCatalogRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetCatalogRequest:
     out: GetCatalogRequest = {}  # type: ignore[typeddict-item]
-    if "CatalogId" in data:
+    if data.get("CatalogId") is not None:
         out["catalog_id"] = data["CatalogId"]
     else:
         raise DeserializationError("GetCatalogRequest.catalog_id required")

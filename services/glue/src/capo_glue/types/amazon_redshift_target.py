@@ -43,9 +43,9 @@ def serialize_aws_json_1_1(value: AmazonRedshiftTarget) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AmazonRedshiftTarget:
     out: AmazonRedshiftTarget = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Data" in data:
+    if data.get("Data") is not None:
         import capo_glue.types.amazon_redshift_node_data
 
         out["data"] = (
@@ -53,7 +53,7 @@ def deserialize_aws_json_1_1(data: dict) -> AmazonRedshiftTarget:
                 data["Data"]
             )
         )
-    if "Inputs" in data:
+    if data.get("Inputs") is not None:
         import capo_glue.types.one_input
 
         out["inputs"] = capo_glue.types.one_input.deserialize_aws_json_1_1(

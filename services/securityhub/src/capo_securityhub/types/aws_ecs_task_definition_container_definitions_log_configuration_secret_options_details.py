@@ -33,8 +33,8 @@ def deserialize_json(
     data: dict,
 ) -> AwsEcsTaskDefinitionContainerDefinitionsLogConfigurationSecretOptionsDetails:
     out: AwsEcsTaskDefinitionContainerDefinitionsLogConfigurationSecretOptionsDetails = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "ValueFrom" in data:
+    if data.get("ValueFrom") is not None:
         out["value_from"] = data["ValueFrom"]
     return out

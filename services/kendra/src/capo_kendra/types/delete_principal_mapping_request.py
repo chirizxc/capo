@@ -40,16 +40,16 @@ def serialize_aws_json_1_1(value: DeletePrincipalMappingRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeletePrincipalMappingRequest:
     out: DeletePrincipalMappingRequest = {}  # type: ignore[typeddict-item]
-    if "IndexId" in data:
+    if data.get("IndexId") is not None:
         out["index_id"] = data["IndexId"]
     else:
         raise DeserializationError("DeletePrincipalMappingRequest.index_id required")
-    if "DataSourceId" in data:
+    if data.get("DataSourceId") is not None:
         out["data_source_id"] = data["DataSourceId"]
-    if "GroupId" in data:
+    if data.get("GroupId") is not None:
         out["group_id"] = data["GroupId"]
     else:
         raise DeserializationError("DeletePrincipalMappingRequest.group_id required")
-    if "OrderingId" in data:
+    if data.get("OrderingId") is not None:
         out["ordering_id"] = data["OrderingId"]
     return out

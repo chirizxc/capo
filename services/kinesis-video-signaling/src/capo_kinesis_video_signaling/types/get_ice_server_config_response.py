@@ -31,7 +31,7 @@ def serialize_json(value: GetIceServerConfigResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetIceServerConfigResponse:
     out: GetIceServerConfigResponse = {}  # type: ignore[typeddict-item]
-    if "IceServerList" in data:
+    if data.get("IceServerList") is not None:
         import capo_kinesis_video_signaling.types.ice_server_list
 
         out["ice_server_list"] = (

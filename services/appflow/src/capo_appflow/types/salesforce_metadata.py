@@ -53,13 +53,13 @@ def serialize_json(value: SalesforceMetadata) -> dict:
 
 def deserialize_json(data: dict) -> SalesforceMetadata:
     out: SalesforceMetadata = {}  # type: ignore[typeddict-item]
-    if "oAuthScopes" in data:
+    if data.get("oAuthScopes") is not None:
         import capo_appflow.types.o_auth_scope_list
 
         out["o_auth_scopes"] = capo_appflow.types.o_auth_scope_list.deserialize_json(
             data["oAuthScopes"]
         )
-    if "dataTransferApis" in data:
+    if data.get("dataTransferApis") is not None:
         import capo_appflow.types.salesforce_data_transfer_api_list
 
         out["data_transfer_apis"] = (
@@ -67,7 +67,7 @@ def deserialize_json(data: dict) -> SalesforceMetadata:
                 data["dataTransferApis"]
             )
         )
-    if "oauth2GrantTypesSupported" in data:
+    if data.get("oauth2GrantTypesSupported") is not None:
         import capo_appflow.types.o_auth2_grant_type_supported_list
 
         out["oauth2_grant_types_supported"] = (

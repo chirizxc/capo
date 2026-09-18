@@ -43,7 +43,7 @@ def serialize_aws_json_1_1(value: CreateAnomalyMonitorRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateAnomalyMonitorRequest:
     out: CreateAnomalyMonitorRequest = {}  # type: ignore[typeddict-item]
-    if "AnomalyMonitor" in data:
+    if data.get("AnomalyMonitor") is not None:
         import capo_cost_explorer.types.anomaly_monitor
 
         out["anomaly_monitor"] = (
@@ -55,7 +55,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateAnomalyMonitorRequest:
         raise DeserializationError(
             "CreateAnomalyMonitorRequest.anomaly_monitor required"
         )
-    if "ResourceTags" in data:
+    if data.get("ResourceTags") is not None:
         import capo_cost_explorer.types.resource_tag_list
 
         out["resource_tags"] = (

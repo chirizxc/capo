@@ -42,16 +42,16 @@ def serialize_json(value: DefaultPushNotificationTemplate) -> dict:
 
 def deserialize_json(data: dict) -> DefaultPushNotificationTemplate:
     out: DefaultPushNotificationTemplate = {}  # type: ignore[typeddict-item]
-    if "Action" in data:
+    if data.get("Action") is not None:
         import capo_pinpoint.types.action
 
         out["action"] = capo_pinpoint.types.action.deserialize_json(data["Action"])
-    if "Body" in data:
+    if data.get("Body") is not None:
         out["body"] = data["Body"]
-    if "Sound" in data:
+    if data.get("Sound") is not None:
         out["sound"] = data["Sound"]
-    if "Title" in data:
+    if data.get("Title") is not None:
         out["title"] = data["Title"]
-    if "Url" in data:
+    if data.get("Url") is not None:
         out["url"] = data["Url"]
     return out

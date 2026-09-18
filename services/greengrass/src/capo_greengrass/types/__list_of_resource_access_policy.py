@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> __listOfResourceAccessPolicy:
 
     out: __listOfResourceAccessPolicy = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_greengrass.types.resource_access_policy.deserialize_json(item))
     return out

@@ -13,9 +13,9 @@ from capo_marketplace_agreement import AsyncMarketplaceAgreementClient
 
 
 async def main():
-    async with AsyncMarketplaceAgreementClient() as s3:
+    async with AsyncMarketplaceAgreementClient() as marketplace_agreement:
         # Example: call the accept_agreement_cancellation_request operation
-        response = await s3.accept_agreement_cancellation_request()
+        response = await marketplace_agreement.accept_agreement_cancellation_request()
         print(response["agreement_id"])
 ```
 
@@ -28,9 +28,9 @@ from capo_marketplace_agreement import AsyncMarketplaceAgreementClient
 
 
 async def main():
-    async with AsyncMarketplaceAgreementClient() as s3:
+    async with AsyncMarketplaceAgreementClient() as marketplace_agreement:
         # Example: paginate over get_agreement_entitlements
-        async for item in s3.iter_get_agreement_entitlements():
+        async for item in marketplace_agreement.iter_get_agreement_entitlements():
             print(item)
 ```
 
@@ -44,9 +44,9 @@ from capo_marketplace_agreement.error import AccessDeniedException
 
 
 async def main():
-    async with AsyncMarketplaceAgreementClient() as s3:
+    async with AsyncMarketplaceAgreementClient() as marketplace_agreement:
         try:
-            await s3.accept_agreement_cancellation_request()
+            await marketplace_agreement.accept_agreement_cancellation_request()
         except AccessDeniedException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -63,13 +63,13 @@ from capo_marketplace_agreement import AsyncMarketplaceAgreementClient
 
 
 async def main():
-    async with AsyncMarketplaceAgreementClient() as s3:
+    async with AsyncMarketplaceAgreementClient() as marketplace_agreement:
         # Default: 3 attempts for every operation
-        response = await s3.accept_agreement_cancellation_request()
+        response = await marketplace_agreement.accept_agreement_cancellation_request()
 
         # Override per operation
-        response = await s3.accept_agreement_cancellation_request(config_overrides={"retry_max_attempts": 5})
+        response = await marketplace_agreement.accept_agreement_cancellation_request(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.accept_agreement_cancellation_request(config_overrides={"retry_max_attempts": 1})
+        response = await marketplace_agreement.accept_agreement_cancellation_request(config_overrides={"retry_max_attempts": 1})
 ```

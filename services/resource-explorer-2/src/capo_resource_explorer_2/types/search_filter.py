@@ -19,7 +19,7 @@ def serialize_json(value: SearchFilter) -> dict:
 
 def deserialize_json(data: dict) -> SearchFilter:
     out: SearchFilter = {}  # type: ignore[typeddict-item]
-    if "FilterString" in data:
+    if data.get("FilterString") is not None:
         out["filter_string"] = data["FilterString"]
     else:
         raise DeserializationError("SearchFilter.filter_string required")

@@ -36,12 +36,12 @@ def serialize_json(value: AwsCloudFrontDistributionLogging) -> dict:
 
 def deserialize_json(data: dict) -> AwsCloudFrontDistributionLogging:
     out: AwsCloudFrontDistributionLogging = {}  # type: ignore[typeddict-item]
-    if "Bucket" in data:
+    if data.get("Bucket") is not None:
         out["bucket"] = data["Bucket"]
-    if "Enabled" in data:
+    if data.get("Enabled") is not None:
         out["enabled"] = data["Enabled"]
-    if "IncludeCookies" in data:
+    if data.get("IncludeCookies") is not None:
         out["include_cookies"] = data["IncludeCookies"]
-    if "Prefix" in data:
+    if data.get("Prefix") is not None:
         out["prefix"] = data["Prefix"]
     return out

@@ -58,9 +58,9 @@ def serialize_json(value: LinkedWhatsAppBusinessAccountIdMetaData) -> dict:
 
 def deserialize_json(data: dict) -> LinkedWhatsAppBusinessAccountIdMetaData:
     out: LinkedWhatsAppBusinessAccountIdMetaData = {}  # type: ignore[typeddict-item]
-    if "accountName" in data:
+    if data.get("accountName") is not None:
         out["account_name"] = data["accountName"]
-    if "registrationStatus" in data:
+    if data.get("registrationStatus") is not None:
         import capo_socialmessaging.types.registration_status
 
         out["registration_status"] = (
@@ -68,7 +68,7 @@ def deserialize_json(data: dict) -> LinkedWhatsAppBusinessAccountIdMetaData:
                 data["registrationStatus"]
             )
         )
-    if "unregisteredWhatsAppPhoneNumbers" in data:
+    if data.get("unregisteredWhatsAppPhoneNumbers") is not None:
         import capo_socialmessaging.types.whats_app_phone_number_detail_list
 
         out["unregistered_whats_app_phone_numbers"] = (
@@ -76,6 +76,6 @@ def deserialize_json(data: dict) -> LinkedWhatsAppBusinessAccountIdMetaData:
                 data["unregisteredWhatsAppPhoneNumbers"]
             )
         )
-    if "wabaId" in data:
+    if data.get("wabaId") is not None:
         out["waba_id"] = data["wabaId"]
     return out

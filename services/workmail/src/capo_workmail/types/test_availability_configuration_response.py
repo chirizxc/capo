@@ -27,10 +27,10 @@ def serialize_aws_json_1_1(value: TestAvailabilityConfigurationResponse) -> dict
 
 def deserialize_aws_json_1_1(data: dict) -> TestAvailabilityConfigurationResponse:
     out: TestAvailabilityConfigurationResponse = {}  # type: ignore[typeddict-item]
-    if "TestPassed" in data:
+    if data.get("TestPassed") is not None:
         out["test_passed"] = data["TestPassed"]
     else:
         out["test_passed"] = False
-    if "FailureReason" in data:
+    if data.get("FailureReason") is not None:
         out["failure_reason"] = data["FailureReason"]
     return out

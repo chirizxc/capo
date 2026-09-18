@@ -32,7 +32,7 @@ def serialize_aws_json_1_0(value: GetVerificationRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> GetVerificationRequest:
     out: GetVerificationRequest = {}  # type: ignore[typeddict-item]
-    if "VerificationType" in data:
+    if data.get("VerificationType") is not None:
         import capo_partnercentral_account.types.verification_type
 
         out["verification_type"] = (

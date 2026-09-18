@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: SearchSampleQueriesResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SearchSampleQueriesResponse:
     out: SearchSampleQueriesResponse = {}  # type: ignore[typeddict-item]
-    if "SearchResults" in data:
+    if data.get("SearchResults") is not None:
         import capo_cloudtrail.types.search_sample_queries_search_results
 
         out["search_results"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_1(data: dict) -> SearchSampleQueriesResponse:
                 data["SearchResults"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

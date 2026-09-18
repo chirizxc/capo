@@ -26,7 +26,7 @@ def serialize_aws_json_1_1(value: ApplicationSnapshotConfigurationUpdate) -> dic
 
 def deserialize_aws_json_1_1(data: dict) -> ApplicationSnapshotConfigurationUpdate:
     out: ApplicationSnapshotConfigurationUpdate = {}  # type: ignore[typeddict-item]
-    if "SnapshotsEnabledUpdate" in data:
+    if data.get("SnapshotsEnabledUpdate") is not None:
         out["snapshots_enabled_update"] = data["SnapshotsEnabledUpdate"]
     else:
         raise DeserializationError(

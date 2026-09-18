@@ -45,7 +45,7 @@ def serialize_json(value: ListEventsRequest) -> dict:
 
 def deserialize_json(data: dict) -> ListEventsRequest:
     out: ListEventsRequest = {}  # type: ignore[typeddict-item]
-    if "Filters" in data:
+    if data.get("Filters") is not None:
         import capo_devops_guru.types.list_events_filters
 
         out["filters"] = capo_devops_guru.types.list_events_filters.deserialize_json(
@@ -53,10 +53,10 @@ def deserialize_json(data: dict) -> ListEventsRequest:
         )
     else:
         raise DeserializationError("ListEventsRequest.filters required")
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "AccountId" in data:
+    if data.get("AccountId") is not None:
         out["account_id"] = data["AccountId"]
     return out

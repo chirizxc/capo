@@ -25,6 +25,8 @@ def deserialize_aws_json_1_1(data: list) -> NetworkProfiles:
 
     out: NetworkProfiles = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_device_farm.types.network_profile.deserialize_aws_json_1_1(item)
         )

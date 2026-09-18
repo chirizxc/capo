@@ -116,7 +116,7 @@ def serialize_json(value: Transport) -> dict:
 
 def deserialize_json(data: dict) -> Transport:
     out: Transport = {}  # type: ignore[typeddict-item]
-    if "cidrAllowList" in data:
+    if data.get("cidrAllowList") is not None:
         import capo_mediaconnect.types.__list_of_string
 
         out["cidr_allow_list"] = (
@@ -124,39 +124,39 @@ def deserialize_json(data: dict) -> Transport:
                 data["cidrAllowList"]
             )
         )
-    if "maxBitrate" in data:
+    if data.get("maxBitrate") is not None:
         out["max_bitrate"] = data["maxBitrate"]
-    if "maxLatency" in data:
+    if data.get("maxLatency") is not None:
         out["max_latency"] = data["maxLatency"]
-    if "maxSyncBuffer" in data:
+    if data.get("maxSyncBuffer") is not None:
         out["max_sync_buffer"] = data["maxSyncBuffer"]
-    if "minLatency" in data:
+    if data.get("minLatency") is not None:
         out["min_latency"] = data["minLatency"]
-    if "protocol" in data:
+    if data.get("protocol") is not None:
         import capo_mediaconnect.types.protocol
 
         out["protocol"] = capo_mediaconnect.types.protocol.deserialize_json(
             data["protocol"]
         )
-    if "remoteId" in data:
+    if data.get("remoteId") is not None:
         out["remote_id"] = data["remoteId"]
-    if "senderControlPort" in data:
+    if data.get("senderControlPort") is not None:
         out["sender_control_port"] = data["senderControlPort"]
-    if "senderIpAddress" in data:
+    if data.get("senderIpAddress") is not None:
         out["sender_ip_address"] = data["senderIpAddress"]
-    if "smoothingLatency" in data:
+    if data.get("smoothingLatency") is not None:
         out["smoothing_latency"] = data["smoothingLatency"]
-    if "sourceListenerAddress" in data:
+    if data.get("sourceListenerAddress") is not None:
         out["source_listener_address"] = data["sourceListenerAddress"]
-    if "sourceListenerPort" in data:
+    if data.get("sourceListenerPort") is not None:
         out["source_listener_port"] = data["sourceListenerPort"]
-    if "streamId" in data:
+    if data.get("streamId") is not None:
         out["stream_id"] = data["streamId"]
-    if "ndiSpeedHqQuality" in data:
+    if data.get("ndiSpeedHqQuality") is not None:
         out["ndi_speed_hq_quality"] = data["ndiSpeedHqQuality"]
-    if "ndiProgramName" in data:
+    if data.get("ndiProgramName") is not None:
         out["ndi_program_name"] = data["ndiProgramName"]
-    if "ndiSourceSettings" in data:
+    if data.get("ndiSourceSettings") is not None:
         import capo_mediaconnect.types.ndi_source_settings
 
         out["ndi_source_settings"] = (
@@ -164,7 +164,7 @@ def deserialize_json(data: dict) -> Transport:
                 data["ndiSourceSettings"]
             )
         )
-    if "ndiOutputTimecodeSource" in data:
+    if data.get("ndiOutputTimecodeSource") is not None:
         import capo_mediaconnect.types.ndi_output_timecode_source
 
         out["ndi_output_timecode_source"] = (

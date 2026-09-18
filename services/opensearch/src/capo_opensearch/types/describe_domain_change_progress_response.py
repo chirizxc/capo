@@ -31,7 +31,7 @@ def serialize_json(value: DescribeDomainChangeProgressResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribeDomainChangeProgressResponse:
     out: DescribeDomainChangeProgressResponse = {}  # type: ignore[typeddict-item]
-    if "ChangeProgressStatus" in data:
+    if data.get("ChangeProgressStatus") is not None:
         import capo_opensearch.types.change_progress_status_details
 
         out["change_progress_status"] = (

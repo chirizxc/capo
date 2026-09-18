@@ -40,7 +40,7 @@ def serialize_aws_json_1_1(value: TrustedTokenIssuerUpdateConfiguration) -> dict
 
 
 def deserialize_aws_json_1_1(data: dict) -> TrustedTokenIssuerUpdateConfiguration:
-    if "OidcJwtConfiguration" in data:
+    if data.get("OidcJwtConfiguration") is not None:
         import capo_sso_admin.types.oidc_jwt_update_configuration
 
         return {

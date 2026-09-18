@@ -75,11 +75,11 @@ def serialize_json(value: GetMetricDataV2Request) -> dict:
 
 def deserialize_json(data: dict) -> GetMetricDataV2Request:
     out: GetMetricDataV2Request = {}  # type: ignore[typeddict-item]
-    if "ResourceArn" in data:
+    if data.get("ResourceArn") is not None:
         out["resource_arn"] = data["ResourceArn"]
     else:
         raise DeserializationError("GetMetricDataV2Request.resource_arn required")
-    if "StartTime" in data:
+    if data.get("StartTime") is not None:
         import capo_connect.types.timestamp
 
         out["start_time"] = capo_connect.types.timestamp.deserialize_json(
@@ -87,19 +87,19 @@ def deserialize_json(data: dict) -> GetMetricDataV2Request:
         )
     else:
         raise DeserializationError("GetMetricDataV2Request.start_time required")
-    if "EndTime" in data:
+    if data.get("EndTime") is not None:
         import capo_connect.types.timestamp
 
         out["end_time"] = capo_connect.types.timestamp.deserialize_json(data["EndTime"])
     else:
         raise DeserializationError("GetMetricDataV2Request.end_time required")
-    if "Interval" in data:
+    if data.get("Interval") is not None:
         import capo_connect.types.interval_details
 
         out["interval"] = capo_connect.types.interval_details.deserialize_json(
             data["Interval"]
         )
-    if "Filters" in data:
+    if data.get("Filters") is not None:
         import capo_connect.types.filters_v2_list
 
         out["filters"] = capo_connect.types.filters_v2_list.deserialize_json(
@@ -107,20 +107,20 @@ def deserialize_json(data: dict) -> GetMetricDataV2Request:
         )
     else:
         raise DeserializationError("GetMetricDataV2Request.filters required")
-    if "Groupings" in data:
+    if data.get("Groupings") is not None:
         import capo_connect.types.groupings_v2
 
         out["groupings"] = capo_connect.types.groupings_v2.deserialize_json(
             data["Groupings"]
         )
-    if "Metrics" in data:
+    if data.get("Metrics") is not None:
         import capo_connect.types.metrics_v2
 
         out["metrics"] = capo_connect.types.metrics_v2.deserialize_json(data["Metrics"])
     else:
         raise DeserializationError("GetMetricDataV2Request.metrics required")
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
     return out

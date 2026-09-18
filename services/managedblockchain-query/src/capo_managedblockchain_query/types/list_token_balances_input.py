@@ -50,7 +50,7 @@ def serialize_json(value: ListTokenBalancesInput) -> dict:
 
 def deserialize_json(data: dict) -> ListTokenBalancesInput:
     out: ListTokenBalancesInput = {}  # type: ignore[typeddict-item]
-    if "ownerFilter" in data:
+    if data.get("ownerFilter") is not None:
         import capo_managedblockchain_query.types.owner_filter
 
         out["owner_filter"] = (
@@ -58,7 +58,7 @@ def deserialize_json(data: dict) -> ListTokenBalancesInput:
                 data["ownerFilter"]
             )
         )
-    if "tokenFilter" in data:
+    if data.get("tokenFilter") is not None:
         import capo_managedblockchain_query.types.token_filter
 
         out["token_filter"] = (
@@ -68,8 +68,8 @@ def deserialize_json(data: dict) -> ListTokenBalancesInput:
         )
     else:
         raise DeserializationError("ListTokenBalancesInput.token_filter required")
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
     return out

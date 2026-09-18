@@ -70,11 +70,11 @@ def serialize_json(value: GetMLModelTrainingJobOutput) -> dict:
 
 def deserialize_json(data: dict) -> GetMLModelTrainingJobOutput:
     out: GetMLModelTrainingJobOutput = {}  # type: ignore[typeddict-item]
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "processingJob" in data:
+    if data.get("processingJob") is not None:
         import capo_neptunedata.types.ml_resource_definition
 
         out["processing_job"] = (
@@ -82,13 +82,13 @@ def deserialize_json(data: dict) -> GetMLModelTrainingJobOutput:
                 data["processingJob"]
             )
         )
-    if "hpoJob" in data:
+    if data.get("hpoJob") is not None:
         import capo_neptunedata.types.ml_resource_definition
 
         out["hpo_job"] = capo_neptunedata.types.ml_resource_definition.deserialize_json(
             data["hpoJob"]
         )
-    if "modelTransformJob" in data:
+    if data.get("modelTransformJob") is not None:
         import capo_neptunedata.types.ml_resource_definition
 
         out["model_transform_job"] = (
@@ -96,7 +96,7 @@ def deserialize_json(data: dict) -> GetMLModelTrainingJobOutput:
                 data["modelTransformJob"]
             )
         )
-    if "mlModels" in data:
+    if data.get("mlModels") is not None:
         import capo_neptunedata.types.ml_models
 
         out["ml_models"] = capo_neptunedata.types.ml_models.deserialize_json(

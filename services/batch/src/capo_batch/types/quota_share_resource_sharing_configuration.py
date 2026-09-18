@@ -36,7 +36,7 @@ def serialize_json(value: QuotaShareResourceSharingConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> QuotaShareResourceSharingConfiguration:
     out: QuotaShareResourceSharingConfiguration = {}  # type: ignore[typeddict-item]
-    if "strategy" in data:
+    if data.get("strategy") is not None:
         import capo_batch.types.quota_share_resource_sharing_strategy
 
         out["strategy"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> QuotaShareResourceSharingConfiguration:
                 data["strategy"]
             )
         )
-    if "borrowLimit" in data:
+    if data.get("borrowLimit") is not None:
         out["borrow_limit"] = data["borrowLimit"]
     return out

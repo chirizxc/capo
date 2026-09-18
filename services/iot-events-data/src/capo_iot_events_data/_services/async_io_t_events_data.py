@@ -195,14 +195,16 @@ class AsyncIoTEventsDataClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot_events_data.types.batch_acknowledge_alarm_request.BatchAcknowledgeAlarmRequest = {}  # type: ignore[typeddict-item]
-        input_["acknowledge_action_requests"] = acknowledge_action_requests
+        input_: capo_iot_events_data.types.batch_acknowledge_alarm_request.BatchAcknowledgeAlarmRequest = {
+            "acknowledge_action_requests": acknowledge_action_requests
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def batch_delete_detector(
@@ -240,14 +242,16 @@ class AsyncIoTEventsDataClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot_events_data.types.batch_delete_detector_request.BatchDeleteDetectorRequest = {}  # type: ignore[typeddict-item]
-        input_["detectors"] = detectors
+        input_: capo_iot_events_data.types.batch_delete_detector_request.BatchDeleteDetectorRequest = {
+            "detectors": detectors
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def batch_disable_alarm(
@@ -285,14 +289,16 @@ class AsyncIoTEventsDataClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot_events_data.types.batch_disable_alarm_request.BatchDisableAlarmRequest = {}  # type: ignore[typeddict-item]
-        input_["disable_action_requests"] = disable_action_requests
+        input_: capo_iot_events_data.types.batch_disable_alarm_request.BatchDisableAlarmRequest = {
+            "disable_action_requests": disable_action_requests
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def batch_enable_alarm(
@@ -330,14 +336,16 @@ class AsyncIoTEventsDataClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot_events_data.types.batch_enable_alarm_request.BatchEnableAlarmRequest = {}  # type: ignore[typeddict-item]
-        input_["enable_action_requests"] = enable_action_requests
+        input_: capo_iot_events_data.types.batch_enable_alarm_request.BatchEnableAlarmRequest = {
+            "enable_action_requests": enable_action_requests
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def batch_put_message(
@@ -377,14 +385,16 @@ class AsyncIoTEventsDataClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot_events_data.types.batch_put_message_request.BatchPutMessageRequest = {}  # type: ignore[typeddict-item]
-        input_["messages"] = messages
+        input_: capo_iot_events_data.types.batch_put_message_request.BatchPutMessageRequest = {
+            "messages": messages
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def batch_reset_alarm(
@@ -424,14 +434,16 @@ class AsyncIoTEventsDataClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot_events_data.types.batch_reset_alarm_request.BatchResetAlarmRequest = {}  # type: ignore[typeddict-item]
-        input_["reset_action_requests"] = reset_action_requests
+        input_: capo_iot_events_data.types.batch_reset_alarm_request.BatchResetAlarmRequest = {
+            "reset_action_requests": reset_action_requests
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def batch_snooze_alarm(
@@ -469,14 +481,16 @@ class AsyncIoTEventsDataClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot_events_data.types.batch_snooze_alarm_request.BatchSnoozeAlarmRequest = {}  # type: ignore[typeddict-item]
-        input_["snooze_action_requests"] = snooze_action_requests
+        input_: capo_iot_events_data.types.batch_snooze_alarm_request.BatchSnoozeAlarmRequest = {
+            "snooze_action_requests": snooze_action_requests
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def batch_update_detector(
@@ -514,14 +528,16 @@ class AsyncIoTEventsDataClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot_events_data.types.batch_update_detector_request.BatchUpdateDetectorRequest = {}  # type: ignore[typeddict-item]
-        input_["detectors"] = detectors
+        input_: capo_iot_events_data.types.batch_update_detector_request.BatchUpdateDetectorRequest = {
+            "detectors": detectors
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_alarm(
@@ -562,8 +578,9 @@ class AsyncIoTEventsDataClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot_events_data.types.describe_alarm_request.DescribeAlarmRequest = {}  # type: ignore[typeddict-item]
-        input_["alarm_model_name"] = alarm_model_name
+        input_: capo_iot_events_data.types.describe_alarm_request.DescribeAlarmRequest = {
+            "alarm_model_name": alarm_model_name
+        }
         if key_value is not None:
             input_["key_value"] = key_value
 
@@ -572,6 +589,7 @@ class AsyncIoTEventsDataClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_detector(
@@ -614,8 +632,9 @@ class AsyncIoTEventsDataClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot_events_data.types.describe_detector_request.DescribeDetectorRequest = {}  # type: ignore[typeddict-item]
-        input_["detector_model_name"] = detector_model_name
+        input_: capo_iot_events_data.types.describe_detector_request.DescribeDetectorRequest = {
+            "detector_model_name": detector_model_name
+        }
         if key_value is not None:
             input_["key_value"] = key_value
 
@@ -624,6 +643,7 @@ class AsyncIoTEventsDataClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_alarms(
@@ -668,8 +688,9 @@ class AsyncIoTEventsDataClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot_events_data.types.list_alarms_request.ListAlarmsRequest = {}  # type: ignore[typeddict-item]
-        input_["alarm_model_name"] = alarm_model_name
+        input_: capo_iot_events_data.types.list_alarms_request.ListAlarmsRequest = {
+            "alarm_model_name": alarm_model_name
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -680,6 +701,7 @@ class AsyncIoTEventsDataClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_detectors(
@@ -726,8 +748,9 @@ class AsyncIoTEventsDataClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iot_events_data.types.list_detectors_request.ListDetectorsRequest = {}  # type: ignore[typeddict-item]
-        input_["detector_model_name"] = detector_model_name
+        input_: capo_iot_events_data.types.list_detectors_request.ListDetectorsRequest = {
+            "detector_model_name": detector_model_name
+        }
         if state_name is not None:
             input_["state_name"] = state_name
         if next_token is not None:
@@ -740,6 +763,7 @@ class AsyncIoTEventsDataClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def __aenter__(self) -> Self:

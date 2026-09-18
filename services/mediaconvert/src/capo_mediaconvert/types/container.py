@@ -26,7 +26,15 @@ class Container(TypedDict, closed=True):
 def serialize_json(value: Container) -> dict:
     out: dict = {}
     if "duration" in value:
-        out["duration"] = value["duration"]
+        out["duration"] = (
+            "NaN"
+            if value["duration"] != value["duration"]
+            else "Infinity"
+            if value["duration"] == float("inf")
+            else "-Infinity"
+            if value["duration"] == float("-inf")
+            else value["duration"]
+        )
     if "format" in value:
         import capo_mediaconvert.types.format
 
@@ -44,15 +52,15 @@ def serialize_json(value: Container) -> dict:
 
 def deserialize_json(data: dict) -> Container:
     out: Container = {}  # type: ignore[typeddict-item]
-    if "duration" in data:
-        out["duration"] = data["duration"]
-    if "format" in data:
+    if data.get("duration") is not None:
+        out["duration"] = float(data["duration"])
+    if data.get("format") is not None:
         import capo_mediaconvert.types.format
 
         out["format"] = capo_mediaconvert.types.format.deserialize_json(data["format"])
-    if "startTimecode" in data:
+    if data.get("startTimecode") is not None:
         out["start_timecode"] = data["startTimecode"]
-    if "tracks" in data:
+    if data.get("tracks") is not None:
         import capo_mediaconvert.types.__list_of_track
 
         out["tracks"] = capo_mediaconvert.types.__list_of_track.deserialize_json(

@@ -32,11 +32,11 @@ def serialize_json(value: SearchTermFilterExpression) -> dict:
 
 def deserialize_json(data: dict) -> SearchTermFilterExpression:
     out: SearchTermFilterExpression = {}  # type: ignore[typeddict-item]
-    if "searchTerm" in data:
+    if data.get("searchTerm") is not None:
         out["search_term"] = data["searchTerm"]
     else:
         raise DeserializationError("SearchTermFilterExpression.search_term required")
-    if "matchType" in data:
+    if data.get("matchType") is not None:
         import capo_deadline.types.search_term_matching_type
 
         out["match_type"] = (

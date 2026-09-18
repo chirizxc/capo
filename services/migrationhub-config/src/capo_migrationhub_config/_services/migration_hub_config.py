@@ -1,6 +1,7 @@
 """Generated from Smithy shape ``com.amazonaws.migrationhubconfig#AWSMigrationHubMultiAccountService``."""
 
 import warnings
+from collections.abc import Iterator
 from typing import TYPE_CHECKING, Any, Iterable, Optional
 
 from typing_extensions import Self, TypedDict
@@ -16,6 +17,7 @@ from capo_migrationhub_config._auth._providers import (
     default_aws_credentials_chain,
 )
 from capo_migrationhub_config._auth._zapros_handler import AuthMiddleware
+from capo_migrationhub_config._pagination import resolve_path as _resolve_path
 from capo_migrationhub_config._services._aws_config import aws_config
 from capo_migrationhub_config._services._pipeline import (
     Interceptor,
@@ -176,9 +178,10 @@ class MigrationHubConfigClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_migrationhub_config.types.create_home_region_control_request.CreateHomeRegionControlRequest = {}  # type: ignore[typeddict-item]
-        input_["home_region"] = home_region
-        input_["target"] = target
+        input_: capo_migrationhub_config.types.create_home_region_control_request.CreateHomeRegionControlRequest = {
+            "home_region": home_region,
+            "target": target,
+        }
         if dry_run is not None:
             input_["dry_run"] = dry_run
 
@@ -187,6 +190,7 @@ class MigrationHubConfigClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_home_region_control(
@@ -224,14 +228,16 @@ class MigrationHubConfigClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_migrationhub_config.types.delete_home_region_control_request.DeleteHomeRegionControlRequest = {}  # type: ignore[typeddict-item]
-        input_["control_id"] = control_id
+        input_: capo_migrationhub_config.types.delete_home_region_control_request.DeleteHomeRegionControlRequest = {
+            "control_id": control_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_home_region_controls(
@@ -283,7 +289,7 @@ class MigrationHubConfigClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_migrationhub_config.types.describe_home_region_controls_request.DescribeHomeRegionControlsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_migrationhub_config.types.describe_home_region_controls_request.DescribeHomeRegionControlsRequest = {}
         if control_id is not None:
             input_["control_id"] = control_id
         if home_region is not None:
@@ -300,7 +306,39 @@ class MigrationHubConfigClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_describe_home_region_controls(
+        self,
+        *,
+        config_overrides: Optional[MigrationHubConfigClientConfig] = None,
+        control_id: Optional[
+            "capo_migrationhub_config.types.control_id.ControlId"
+        ] = None,
+        home_region: Optional[
+            "capo_migrationhub_config.types.home_region.HomeRegion"
+        ] = None,
+        target: Optional["capo_migrationhub_config.types.target.Target"] = None,
+        max_results: Optional[
+            "capo_migrationhub_config.types.describe_home_region_controls_max_results.DescribeHomeRegionControlsMaxResults"
+        ] = None,
+        next_token: Optional["capo_migrationhub_config.types.token.Token"] = None,
+    ) -> "Iterator[capo_migrationhub_config.types.describe_home_region_controls_result.DescribeHomeRegionControlsResult]":
+        _token = next_token
+        while True:
+            _response = self.describe_home_region_controls(
+                config_overrides=config_overrides,
+                control_id=control_id,
+                home_region=home_region,
+                target=target,
+                max_results=max_results,
+                next_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def get_home_region(
         self, *, config_overrides: Optional[MigrationHubConfigClientConfig] = None
@@ -331,13 +369,14 @@ class MigrationHubConfigClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_migrationhub_config.types.get_home_region_request.GetHomeRegionRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_migrationhub_config.types.get_home_region_request.GetHomeRegionRequest = {}
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def __enter__(self) -> Self:

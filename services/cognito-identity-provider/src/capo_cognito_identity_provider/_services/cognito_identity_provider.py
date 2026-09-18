@@ -546,15 +546,17 @@ class CognitoIdentityProviderClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cognito_identity_provider.types.add_custom_attributes_request.AddCustomAttributesRequest = {}  # type: ignore[typeddict-item]
-        input_["user_pool_id"] = user_pool_id
-        input_["custom_attributes"] = custom_attributes
+        input_: capo_cognito_identity_provider.types.add_custom_attributes_request.AddCustomAttributesRequest = {
+            "user_pool_id": user_pool_id,
+            "custom_attributes": custom_attributes,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def add_user_pool_client_secret(
@@ -599,9 +601,10 @@ class CognitoIdentityProviderClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cognito_identity_provider.types.add_user_pool_client_secret_request.AddUserPoolClientSecretRequest = {}  # type: ignore[typeddict-item]
-        input_["user_pool_id"] = user_pool_id
-        input_["client_id"] = client_id
+        input_: capo_cognito_identity_provider.types.add_user_pool_client_secret_request.AddUserPoolClientSecretRequest = {
+            "user_pool_id": user_pool_id,
+            "client_id": client_id,
+        }
         if client_secret is not None:
             input_["client_secret"] = client_secret
 
@@ -610,6 +613,7 @@ class CognitoIdentityProviderClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def admin_add_user_to_group(
@@ -651,16 +655,18 @@ class CognitoIdentityProviderClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cognito_identity_provider.types.admin_add_user_to_group_request.AdminAddUserToGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["user_pool_id"] = user_pool_id
-        input_["username"] = username
-        input_["group_name"] = group_name
+        input_: capo_cognito_identity_provider.types.admin_add_user_to_group_request.AdminAddUserToGroupRequest = {
+            "user_pool_id": user_pool_id,
+            "username": username,
+            "group_name": group_name,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def admin_confirm_sign_up(
@@ -711,9 +717,10 @@ class CognitoIdentityProviderClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cognito_identity_provider.types.admin_confirm_sign_up_request.AdminConfirmSignUpRequest = {}  # type: ignore[typeddict-item]
-        input_["user_pool_id"] = user_pool_id
-        input_["username"] = username
+        input_: capo_cognito_identity_provider.types.admin_confirm_sign_up_request.AdminConfirmSignUpRequest = {
+            "user_pool_id": user_pool_id,
+            "username": username,
+        }
         if client_metadata is not None:
             input_["client_metadata"] = client_metadata
 
@@ -722,6 +729,7 @@ class CognitoIdentityProviderClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def admin_create_user(
@@ -807,9 +815,10 @@ class CognitoIdentityProviderClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cognito_identity_provider.types.admin_create_user_request.AdminCreateUserRequest = {}  # type: ignore[typeddict-item]
-        input_["user_pool_id"] = user_pool_id
-        input_["username"] = username
+        input_: capo_cognito_identity_provider.types.admin_create_user_request.AdminCreateUserRequest = {
+            "user_pool_id": user_pool_id,
+            "username": username,
+        }
         if user_attributes is not None:
             input_["user_attributes"] = user_attributes
         if validation_data is not None:
@@ -830,6 +839,7 @@ class CognitoIdentityProviderClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def admin_delete_user(
@@ -869,15 +879,17 @@ class CognitoIdentityProviderClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cognito_identity_provider.types.admin_delete_user_request.AdminDeleteUserRequest = {}  # type: ignore[typeddict-item]
-        input_["user_pool_id"] = user_pool_id
-        input_["username"] = username
+        input_: capo_cognito_identity_provider.types.admin_delete_user_request.AdminDeleteUserRequest = {
+            "user_pool_id": user_pool_id,
+            "username": username,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def admin_delete_user_attributes(
@@ -921,16 +933,18 @@ class CognitoIdentityProviderClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cognito_identity_provider.types.admin_delete_user_attributes_request.AdminDeleteUserAttributesRequest = {}  # type: ignore[typeddict-item]
-        input_["user_pool_id"] = user_pool_id
-        input_["username"] = username
-        input_["user_attribute_names"] = user_attribute_names
+        input_: capo_cognito_identity_provider.types.admin_delete_user_attributes_request.AdminDeleteUserAttributesRequest = {
+            "user_pool_id": user_pool_id,
+            "username": username,
+            "user_attribute_names": user_attribute_names,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def admin_disable_provider_for_user(
@@ -973,15 +987,17 @@ class CognitoIdentityProviderClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cognito_identity_provider.types.admin_disable_provider_for_user_request.AdminDisableProviderForUserRequest = {}  # type: ignore[typeddict-item]
-        input_["user_pool_id"] = user_pool_id
-        input_["user"] = user
+        input_: capo_cognito_identity_provider.types.admin_disable_provider_for_user_request.AdminDisableProviderForUserRequest = {
+            "user_pool_id": user_pool_id,
+            "user": user,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def admin_disable_user(
@@ -1023,15 +1039,17 @@ class CognitoIdentityProviderClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cognito_identity_provider.types.admin_disable_user_request.AdminDisableUserRequest = {}  # type: ignore[typeddict-item]
-        input_["user_pool_id"] = user_pool_id
-        input_["username"] = username
+        input_: capo_cognito_identity_provider.types.admin_disable_user_request.AdminDisableUserRequest = {
+            "user_pool_id": user_pool_id,
+            "username": username,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def admin_enable_user(
@@ -1073,15 +1091,17 @@ class CognitoIdentityProviderClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cognito_identity_provider.types.admin_enable_user_request.AdminEnableUserRequest = {}  # type: ignore[typeddict-item]
-        input_["user_pool_id"] = user_pool_id
-        input_["username"] = username
+        input_: capo_cognito_identity_provider.types.admin_enable_user_request.AdminEnableUserRequest = {
+            "user_pool_id": user_pool_id,
+            "username": username,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def admin_forget_device(
@@ -1124,16 +1144,18 @@ class CognitoIdentityProviderClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cognito_identity_provider.types.admin_forget_device_request.AdminForgetDeviceRequest = {}  # type: ignore[typeddict-item]
-        input_["user_pool_id"] = user_pool_id
-        input_["username"] = username
-        input_["device_key"] = device_key
+        input_: capo_cognito_identity_provider.types.admin_forget_device_request.AdminForgetDeviceRequest = {
+            "user_pool_id": user_pool_id,
+            "username": username,
+            "device_key": device_key,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def admin_get_device(
@@ -1177,16 +1199,18 @@ class CognitoIdentityProviderClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cognito_identity_provider.types.admin_get_device_request.AdminGetDeviceRequest = {}  # type: ignore[typeddict-item]
-        input_["device_key"] = device_key
-        input_["user_pool_id"] = user_pool_id
-        input_["username"] = username
+        input_: capo_cognito_identity_provider.types.admin_get_device_request.AdminGetDeviceRequest = {
+            "device_key": device_key,
+            "user_pool_id": user_pool_id,
+            "username": username,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def admin_get_user(
@@ -1228,15 +1252,17 @@ class CognitoIdentityProviderClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cognito_identity_provider.types.admin_get_user_request.AdminGetUserRequest = {}  # type: ignore[typeddict-item]
-        input_["user_pool_id"] = user_pool_id
-        input_["username"] = username
+        input_: capo_cognito_identity_provider.types.admin_get_user_request.AdminGetUserRequest = {
+            "user_pool_id": user_pool_id,
+            "username": username,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def admin_initiate_auth(
@@ -1311,10 +1337,11 @@ class CognitoIdentityProviderClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cognito_identity_provider.types.admin_initiate_auth_request.AdminInitiateAuthRequest = {}  # type: ignore[typeddict-item]
-        input_["user_pool_id"] = user_pool_id
-        input_["client_id"] = client_id
-        input_["auth_flow"] = auth_flow
+        input_: capo_cognito_identity_provider.types.admin_initiate_auth_request.AdminInitiateAuthRequest = {
+            "user_pool_id": user_pool_id,
+            "client_id": client_id,
+            "auth_flow": auth_flow,
+        }
         if auth_parameters is not None:
             input_["auth_parameters"] = auth_parameters
         if client_metadata is not None:
@@ -1331,6 +1358,7 @@ class CognitoIdentityProviderClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def admin_link_provider_for_user(
@@ -1376,16 +1404,18 @@ class CognitoIdentityProviderClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cognito_identity_provider.types.admin_link_provider_for_user_request.AdminLinkProviderForUserRequest = {}  # type: ignore[typeddict-item]
-        input_["user_pool_id"] = user_pool_id
-        input_["destination_user"] = destination_user
-        input_["source_user"] = source_user
+        input_: capo_cognito_identity_provider.types.admin_link_provider_for_user_request.AdminLinkProviderForUserRequest = {
+            "user_pool_id": user_pool_id,
+            "destination_user": destination_user,
+            "source_user": source_user,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def admin_list_devices(
@@ -1435,9 +1465,10 @@ class CognitoIdentityProviderClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cognito_identity_provider.types.admin_list_devices_request.AdminListDevicesRequest = {}  # type: ignore[typeddict-item]
-        input_["user_pool_id"] = user_pool_id
-        input_["username"] = username
+        input_: capo_cognito_identity_provider.types.admin_list_devices_request.AdminListDevicesRequest = {
+            "user_pool_id": user_pool_id,
+            "username": username,
+        }
         if limit is not None:
             input_["limit"] = limit
         if pagination_token is not None:
@@ -1448,6 +1479,7 @@ class CognitoIdentityProviderClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def admin_list_groups_for_user(
@@ -1497,9 +1529,10 @@ class CognitoIdentityProviderClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cognito_identity_provider.types.admin_list_groups_for_user_request.AdminListGroupsForUserRequest = {}  # type: ignore[typeddict-item]
-        input_["username"] = username
-        input_["user_pool_id"] = user_pool_id
+        input_: capo_cognito_identity_provider.types.admin_list_groups_for_user_request.AdminListGroupsForUserRequest = {
+            "username": username,
+            "user_pool_id": user_pool_id,
+        }
         if limit is not None:
             input_["limit"] = limit
         if next_token is not None:
@@ -1510,6 +1543,7 @@ class CognitoIdentityProviderClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_admin_list_groups_for_user(
@@ -1589,9 +1623,10 @@ class CognitoIdentityProviderClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cognito_identity_provider.types.admin_list_user_auth_events_request.AdminListUserAuthEventsRequest = {}  # type: ignore[typeddict-item]
-        input_["user_pool_id"] = user_pool_id
-        input_["username"] = username
+        input_: capo_cognito_identity_provider.types.admin_list_user_auth_events_request.AdminListUserAuthEventsRequest = {
+            "user_pool_id": user_pool_id,
+            "username": username,
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -1602,6 +1637,7 @@ class CognitoIdentityProviderClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_admin_list_user_auth_events(
@@ -1672,16 +1708,18 @@ class CognitoIdentityProviderClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cognito_identity_provider.types.admin_remove_user_from_group_request.AdminRemoveUserFromGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["user_pool_id"] = user_pool_id
-        input_["username"] = username
-        input_["group_name"] = group_name
+        input_: capo_cognito_identity_provider.types.admin_remove_user_from_group_request.AdminRemoveUserFromGroupRequest = {
+            "user_pool_id": user_pool_id,
+            "username": username,
+            "group_name": group_name,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def admin_reset_user_password(
@@ -1734,9 +1772,10 @@ class CognitoIdentityProviderClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cognito_identity_provider.types.admin_reset_user_password_request.AdminResetUserPasswordRequest = {}  # type: ignore[typeddict-item]
-        input_["user_pool_id"] = user_pool_id
-        input_["username"] = username
+        input_: capo_cognito_identity_provider.types.admin_reset_user_password_request.AdminResetUserPasswordRequest = {
+            "user_pool_id": user_pool_id,
+            "username": username,
+        }
         if client_metadata is not None:
             input_["client_metadata"] = client_metadata
 
@@ -1745,6 +1784,7 @@ class CognitoIdentityProviderClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def admin_respond_to_auth_challenge(
@@ -1824,10 +1864,11 @@ class CognitoIdentityProviderClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cognito_identity_provider.types.admin_respond_to_auth_challenge_request.AdminRespondToAuthChallengeRequest = {}  # type: ignore[typeddict-item]
-        input_["user_pool_id"] = user_pool_id
-        input_["client_id"] = client_id
-        input_["challenge_name"] = challenge_name
+        input_: capo_cognito_identity_provider.types.admin_respond_to_auth_challenge_request.AdminRespondToAuthChallengeRequest = {
+            "user_pool_id": user_pool_id,
+            "client_id": client_id,
+            "challenge_name": challenge_name,
+        }
         if challenge_responses is not None:
             input_["challenge_responses"] = challenge_responses
         if session is not None:
@@ -1844,6 +1885,7 @@ class CognitoIdentityProviderClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def admin_set_user_mfa_preference(
@@ -1902,7 +1944,10 @@ class CognitoIdentityProviderClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cognito_identity_provider.types.admin_set_user_mfa_preference_request.AdminSetUserMFAPreferenceRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_cognito_identity_provider.types.admin_set_user_mfa_preference_request.AdminSetUserMFAPreferenceRequest = {
+            "username": username,
+            "user_pool_id": user_pool_id,
+        }
         if sms_mfa_settings is not None:
             input_["sms_mfa_settings"] = sms_mfa_settings
         if software_token_mfa_settings is not None:
@@ -1911,14 +1956,13 @@ class CognitoIdentityProviderClient:
             input_["email_mfa_settings"] = email_mfa_settings
         if web_authn_mfa_settings is not None:
             input_["web_authn_mfa_settings"] = web_authn_mfa_settings
-        input_["username"] = username
-        input_["user_pool_id"] = user_pool_id
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def admin_set_user_password(
@@ -1968,10 +2012,11 @@ class CognitoIdentityProviderClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cognito_identity_provider.types.admin_set_user_password_request.AdminSetUserPasswordRequest = {}  # type: ignore[typeddict-item]
-        input_["user_pool_id"] = user_pool_id
-        input_["username"] = username
-        input_["password"] = password
+        input_: capo_cognito_identity_provider.types.admin_set_user_password_request.AdminSetUserPasswordRequest = {
+            "user_pool_id": user_pool_id,
+            "username": username,
+            "password": password,
+        }
         if permanent is not None:
             input_["permanent"] = permanent
 
@@ -1980,6 +2025,7 @@ class CognitoIdentityProviderClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def admin_set_user_settings(
@@ -2022,16 +2068,18 @@ class CognitoIdentityProviderClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cognito_identity_provider.types.admin_set_user_settings_request.AdminSetUserSettingsRequest = {}  # type: ignore[typeddict-item]
-        input_["user_pool_id"] = user_pool_id
-        input_["username"] = username
-        input_["mfa_options"] = mfa_options
+        input_: capo_cognito_identity_provider.types.admin_set_user_settings_request.AdminSetUserSettingsRequest = {
+            "user_pool_id": user_pool_id,
+            "username": username,
+            "mfa_options": mfa_options,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def admin_update_auth_event_feedback(
@@ -2078,17 +2126,19 @@ class CognitoIdentityProviderClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cognito_identity_provider.types.admin_update_auth_event_feedback_request.AdminUpdateAuthEventFeedbackRequest = {}  # type: ignore[typeddict-item]
-        input_["user_pool_id"] = user_pool_id
-        input_["username"] = username
-        input_["event_id"] = event_id
-        input_["feedback_value"] = feedback_value
+        input_: capo_cognito_identity_provider.types.admin_update_auth_event_feedback_request.AdminUpdateAuthEventFeedbackRequest = {
+            "user_pool_id": user_pool_id,
+            "username": username,
+            "event_id": event_id,
+            "feedback_value": feedback_value,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def admin_update_device_status(
@@ -2137,10 +2187,11 @@ class CognitoIdentityProviderClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cognito_identity_provider.types.admin_update_device_status_request.AdminUpdateDeviceStatusRequest = {}  # type: ignore[typeddict-item]
-        input_["user_pool_id"] = user_pool_id
-        input_["username"] = username
-        input_["device_key"] = device_key
+        input_: capo_cognito_identity_provider.types.admin_update_device_status_request.AdminUpdateDeviceStatusRequest = {
+            "user_pool_id": user_pool_id,
+            "username": username,
+            "device_key": device_key,
+        }
         if device_remembered_status is not None:
             input_["device_remembered_status"] = device_remembered_status
 
@@ -2149,6 +2200,7 @@ class CognitoIdentityProviderClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def admin_update_user_attributes(
@@ -2203,10 +2255,11 @@ class CognitoIdentityProviderClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cognito_identity_provider.types.admin_update_user_attributes_request.AdminUpdateUserAttributesRequest = {}  # type: ignore[typeddict-item]
-        input_["user_pool_id"] = user_pool_id
-        input_["username"] = username
-        input_["user_attributes"] = user_attributes
+        input_: capo_cognito_identity_provider.types.admin_update_user_attributes_request.AdminUpdateUserAttributesRequest = {
+            "user_pool_id": user_pool_id,
+            "username": username,
+            "user_attributes": user_attributes,
+        }
         if client_metadata is not None:
             input_["client_metadata"] = client_metadata
 
@@ -2215,6 +2268,7 @@ class CognitoIdentityProviderClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def admin_user_global_sign_out(
@@ -2256,15 +2310,17 @@ class CognitoIdentityProviderClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cognito_identity_provider.types.admin_user_global_sign_out_request.AdminUserGlobalSignOutRequest = {}  # type: ignore[typeddict-item]
-        input_["user_pool_id"] = user_pool_id
-        input_["username"] = username
+        input_: capo_cognito_identity_provider.types.admin_user_global_sign_out_request.AdminUserGlobalSignOutRequest = {
+            "user_pool_id": user_pool_id,
+            "username": username,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def associate_software_token(
@@ -2311,7 +2367,7 @@ class CognitoIdentityProviderClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cognito_identity_provider.types.associate_software_token_request.AssociateSoftwareTokenRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_cognito_identity_provider.types.associate_software_token_request.AssociateSoftwareTokenRequest = {}
         if access_token is not None:
             input_["access_token"] = access_token
         if session is not None:
@@ -2322,6 +2378,7 @@ class CognitoIdentityProviderClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def change_password(
@@ -2373,17 +2430,19 @@ class CognitoIdentityProviderClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cognito_identity_provider.types.change_password_request.ChangePasswordRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_cognito_identity_provider.types.change_password_request.ChangePasswordRequest = {
+            "proposed_password": proposed_password,
+            "access_token": access_token,
+        }
         if previous_password is not None:
             input_["previous_password"] = previous_password
-        input_["proposed_password"] = proposed_password
-        input_["access_token"] = access_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def complete_web_authn_registration(
@@ -2432,15 +2491,17 @@ class CognitoIdentityProviderClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cognito_identity_provider.types.complete_web_authn_registration_request.CompleteWebAuthnRegistrationRequest = {}  # type: ignore[typeddict-item]
-        input_["access_token"] = access_token
-        input_["credential"] = credential
+        input_: capo_cognito_identity_provider.types.complete_web_authn_registration_request.CompleteWebAuthnRegistrationRequest = {
+            "access_token": access_token,
+            "credential": credential,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def confirm_device(
@@ -2498,9 +2559,10 @@ class CognitoIdentityProviderClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cognito_identity_provider.types.confirm_device_request.ConfirmDeviceRequest = {}  # type: ignore[typeddict-item]
-        input_["access_token"] = access_token
-        input_["device_key"] = device_key
+        input_: capo_cognito_identity_provider.types.confirm_device_request.ConfirmDeviceRequest = {
+            "access_token": access_token,
+            "device_key": device_key,
+        }
         if device_secret_verifier_config is not None:
             input_["device_secret_verifier_config"] = device_secret_verifier_config
         if device_name is not None:
@@ -2511,6 +2573,7 @@ class CognitoIdentityProviderClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def confirm_forgot_password(
@@ -2583,13 +2646,14 @@ class CognitoIdentityProviderClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cognito_identity_provider.types.confirm_forgot_password_request.ConfirmForgotPasswordRequest = {}  # type: ignore[typeddict-item]
-        input_["client_id"] = client_id
+        input_: capo_cognito_identity_provider.types.confirm_forgot_password_request.ConfirmForgotPasswordRequest = {
+            "client_id": client_id,
+            "username": username,
+            "confirmation_code": confirmation_code,
+            "password": password,
+        }
         if secret_hash is not None:
             input_["secret_hash"] = secret_hash
-        input_["username"] = username
-        input_["confirmation_code"] = confirmation_code
-        input_["password"] = password
         if analytics_metadata is not None:
             input_["analytics_metadata"] = analytics_metadata
         if user_context_data is not None:
@@ -2602,6 +2666,7 @@ class CognitoIdentityProviderClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def confirm_sign_up(
@@ -2678,12 +2743,13 @@ class CognitoIdentityProviderClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cognito_identity_provider.types.confirm_sign_up_request.ConfirmSignUpRequest = {}  # type: ignore[typeddict-item]
-        input_["client_id"] = client_id
+        input_: capo_cognito_identity_provider.types.confirm_sign_up_request.ConfirmSignUpRequest = {
+            "client_id": client_id,
+            "username": username,
+            "confirmation_code": confirmation_code,
+        }
         if secret_hash is not None:
             input_["secret_hash"] = secret_hash
-        input_["username"] = username
-        input_["confirmation_code"] = confirmation_code
         if force_alias_creation is not None:
             input_["force_alias_creation"] = force_alias_creation
         if analytics_metadata is not None:
@@ -2700,6 +2766,7 @@ class CognitoIdentityProviderClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_group(
@@ -2756,9 +2823,10 @@ class CognitoIdentityProviderClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cognito_identity_provider.types.create_group_request.CreateGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["group_name"] = group_name
-        input_["user_pool_id"] = user_pool_id
+        input_: capo_cognito_identity_provider.types.create_group_request.CreateGroupRequest = {
+            "group_name": group_name,
+            "user_pool_id": user_pool_id,
+        }
         if description is not None:
             input_["description"] = description
         if role_arn is not None:
@@ -2771,6 +2839,7 @@ class CognitoIdentityProviderClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_identity_provider(
@@ -2824,11 +2893,12 @@ class CognitoIdentityProviderClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cognito_identity_provider.types.create_identity_provider_request.CreateIdentityProviderRequest = {}  # type: ignore[typeddict-item]
-        input_["user_pool_id"] = user_pool_id
-        input_["provider_name"] = provider_name
-        input_["provider_type"] = provider_type
-        input_["provider_details"] = provider_details
+        input_: capo_cognito_identity_provider.types.create_identity_provider_request.CreateIdentityProviderRequest = {
+            "user_pool_id": user_pool_id,
+            "provider_name": provider_name,
+            "provider_type": provider_type,
+            "provider_details": provider_details,
+        }
         if attribute_mapping is not None:
             input_["attribute_mapping"] = attribute_mapping
         if idp_identifiers is not None:
@@ -2839,6 +2909,7 @@ class CognitoIdentityProviderClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_managed_login_branding(
@@ -2894,9 +2965,10 @@ class CognitoIdentityProviderClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cognito_identity_provider.types.create_managed_login_branding_request.CreateManagedLoginBrandingRequest = {}  # type: ignore[typeddict-item]
-        input_["user_pool_id"] = user_pool_id
-        input_["client_id"] = client_id
+        input_: capo_cognito_identity_provider.types.create_managed_login_branding_request.CreateManagedLoginBrandingRequest = {
+            "user_pool_id": user_pool_id,
+            "client_id": client_id,
+        }
         if use_cognito_provided_values is not None:
             input_["use_cognito_provided_values"] = use_cognito_provided_values
         if settings is not None:
@@ -2909,6 +2981,7 @@ class CognitoIdentityProviderClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_resource_server(
@@ -2956,10 +3029,11 @@ class CognitoIdentityProviderClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cognito_identity_provider.types.create_resource_server_request.CreateResourceServerRequest = {}  # type: ignore[typeddict-item]
-        input_["user_pool_id"] = user_pool_id
-        input_["identifier"] = identifier
-        input_["name"] = name
+        input_: capo_cognito_identity_provider.types.create_resource_server_request.CreateResourceServerRequest = {
+            "user_pool_id": user_pool_id,
+            "identifier": identifier,
+            "name": name,
+        }
         if scopes is not None:
             input_["scopes"] = scopes
 
@@ -2968,6 +3042,7 @@ class CognitoIdentityProviderClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_terms(
@@ -3023,12 +3098,13 @@ class CognitoIdentityProviderClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cognito_identity_provider.types.create_terms_request.CreateTermsRequest = {}  # type: ignore[typeddict-item]
-        input_["user_pool_id"] = user_pool_id
-        input_["client_id"] = client_id
-        input_["terms_name"] = terms_name
-        input_["terms_source"] = terms_source
-        input_["enforcement"] = enforcement
+        input_: capo_cognito_identity_provider.types.create_terms_request.CreateTermsRequest = {
+            "user_pool_id": user_pool_id,
+            "client_id": client_id,
+            "terms_name": terms_name,
+            "terms_source": terms_source,
+            "enforcement": enforcement,
+        }
         if links is not None:
             input_["links"] = links
 
@@ -3037,6 +3113,7 @@ class CognitoIdentityProviderClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_user_import_job(
@@ -3081,16 +3158,18 @@ class CognitoIdentityProviderClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cognito_identity_provider.types.create_user_import_job_request.CreateUserImportJobRequest = {}  # type: ignore[typeddict-item]
-        input_["job_name"] = job_name
-        input_["user_pool_id"] = user_pool_id
-        input_["cloud_watch_logs_role_arn"] = cloud_watch_logs_role_arn
+        input_: capo_cognito_identity_provider.types.create_user_import_job_request.CreateUserImportJobRequest = {
+            "job_name": job_name,
+            "user_pool_id": user_pool_id,
+            "cloud_watch_logs_role_arn": cloud_watch_logs_role_arn,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_user_pool(
@@ -3240,8 +3319,9 @@ class CognitoIdentityProviderClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cognito_identity_provider.types.create_user_pool_request.CreateUserPoolRequest = {}  # type: ignore[typeddict-item]
-        input_["pool_name"] = pool_name
+        input_: capo_cognito_identity_provider.types.create_user_pool_request.CreateUserPoolRequest = {
+            "pool_name": pool_name
+        }
         if policies is not None:
             input_["policies"] = policies
         if deletion_protection is not None:
@@ -3298,6 +3378,7 @@ class CognitoIdentityProviderClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_user_pool_client(
@@ -3436,9 +3517,10 @@ class CognitoIdentityProviderClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cognito_identity_provider.types.create_user_pool_client_request.CreateUserPoolClientRequest = {}  # type: ignore[typeddict-item]
-        input_["user_pool_id"] = user_pool_id
-        input_["client_name"] = client_name
+        input_: capo_cognito_identity_provider.types.create_user_pool_client_request.CreateUserPoolClientRequest = {
+            "user_pool_id": user_pool_id,
+            "client_name": client_name,
+        }
         if generate_secret is not None:
             input_["generate_secret"] = generate_secret
         if client_secret is not None:
@@ -3493,6 +3575,7 @@ class CognitoIdentityProviderClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_user_pool_domain(
@@ -3547,9 +3630,10 @@ class CognitoIdentityProviderClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cognito_identity_provider.types.create_user_pool_domain_request.CreateUserPoolDomainRequest = {}  # type: ignore[typeddict-item]
-        input_["domain"] = domain
-        input_["user_pool_id"] = user_pool_id
+        input_: capo_cognito_identity_provider.types.create_user_pool_domain_request.CreateUserPoolDomainRequest = {
+            "domain": domain,
+            "user_pool_id": user_pool_id,
+        }
         if managed_login_version is not None:
             input_["managed_login_version"] = managed_login_version
         if custom_domain_config is not None:
@@ -3562,6 +3646,7 @@ class CognitoIdentityProviderClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_user_pool_replica(
@@ -3615,9 +3700,10 @@ class CognitoIdentityProviderClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cognito_identity_provider.types.create_user_pool_replica_request.CreateUserPoolReplicaRequest = {}  # type: ignore[typeddict-item]
-        input_["user_pool_id"] = user_pool_id
-        input_["region_name"] = region_name
+        input_: capo_cognito_identity_provider.types.create_user_pool_replica_request.CreateUserPoolReplicaRequest = {
+            "user_pool_id": user_pool_id,
+            "region_name": region_name,
+        }
         if user_pool_tags is not None:
             input_["user_pool_tags"] = user_pool_tags
 
@@ -3626,6 +3712,7 @@ class CognitoIdentityProviderClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_group(
@@ -3664,15 +3751,17 @@ class CognitoIdentityProviderClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cognito_identity_provider.types.delete_group_request.DeleteGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["group_name"] = group_name
-        input_["user_pool_id"] = user_pool_id
+        input_: capo_cognito_identity_provider.types.delete_group_request.DeleteGroupRequest = {
+            "group_name": group_name,
+            "user_pool_id": user_pool_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_identity_provider(
@@ -3712,15 +3801,17 @@ class CognitoIdentityProviderClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cognito_identity_provider.types.delete_identity_provider_request.DeleteIdentityProviderRequest = {}  # type: ignore[typeddict-item]
-        input_["user_pool_id"] = user_pool_id
-        input_["provider_name"] = provider_name
+        input_: capo_cognito_identity_provider.types.delete_identity_provider_request.DeleteIdentityProviderRequest = {
+            "user_pool_id": user_pool_id,
+            "provider_name": provider_name,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_managed_login_branding(
@@ -3760,15 +3851,17 @@ class CognitoIdentityProviderClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cognito_identity_provider.types.delete_managed_login_branding_request.DeleteManagedLoginBrandingRequest = {}  # type: ignore[typeddict-item]
-        input_["managed_login_branding_id"] = managed_login_branding_id
-        input_["user_pool_id"] = user_pool_id
+        input_: capo_cognito_identity_provider.types.delete_managed_login_branding_request.DeleteManagedLoginBrandingRequest = {
+            "managed_login_branding_id": managed_login_branding_id,
+            "user_pool_id": user_pool_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_resource_server(
@@ -3807,15 +3900,17 @@ class CognitoIdentityProviderClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cognito_identity_provider.types.delete_resource_server_request.DeleteResourceServerRequest = {}  # type: ignore[typeddict-item]
-        input_["user_pool_id"] = user_pool_id
-        input_["identifier"] = identifier
+        input_: capo_cognito_identity_provider.types.delete_resource_server_request.DeleteResourceServerRequest = {
+            "user_pool_id": user_pool_id,
+            "identifier": identifier,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_terms(
@@ -3855,15 +3950,17 @@ class CognitoIdentityProviderClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cognito_identity_provider.types.delete_terms_request.DeleteTermsRequest = {}  # type: ignore[typeddict-item]
-        input_["terms_id"] = terms_id
-        input_["user_pool_id"] = user_pool_id
+        input_: capo_cognito_identity_provider.types.delete_terms_request.DeleteTermsRequest = {
+            "terms_id": terms_id,
+            "user_pool_id": user_pool_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_user(
@@ -3904,14 +4001,16 @@ class CognitoIdentityProviderClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cognito_identity_provider.types.delete_user_request.DeleteUserRequest = {}  # type: ignore[typeddict-item]
-        input_["access_token"] = access_token
+        input_: capo_cognito_identity_provider.types.delete_user_request.DeleteUserRequest = {
+            "access_token": access_token
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_user_attributes(
@@ -3956,15 +4055,17 @@ class CognitoIdentityProviderClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cognito_identity_provider.types.delete_user_attributes_request.DeleteUserAttributesRequest = {}  # type: ignore[typeddict-item]
-        input_["user_attribute_names"] = user_attribute_names
-        input_["access_token"] = access_token
+        input_: capo_cognito_identity_provider.types.delete_user_attributes_request.DeleteUserAttributesRequest = {
+            "user_attribute_names": user_attribute_names,
+            "access_token": access_token,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_user_pool(
@@ -4002,14 +4103,16 @@ class CognitoIdentityProviderClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cognito_identity_provider.types.delete_user_pool_request.DeleteUserPoolRequest = {}  # type: ignore[typeddict-item]
-        input_["user_pool_id"] = user_pool_id
+        input_: capo_cognito_identity_provider.types.delete_user_pool_request.DeleteUserPoolRequest = {
+            "user_pool_id": user_pool_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_user_pool_client(
@@ -4049,15 +4152,17 @@ class CognitoIdentityProviderClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cognito_identity_provider.types.delete_user_pool_client_request.DeleteUserPoolClientRequest = {}  # type: ignore[typeddict-item]
-        input_["user_pool_id"] = user_pool_id
-        input_["client_id"] = client_id
+        input_: capo_cognito_identity_provider.types.delete_user_pool_client_request.DeleteUserPoolClientRequest = {
+            "user_pool_id": user_pool_id,
+            "client_id": client_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_user_pool_client_secret(
@@ -4099,16 +4204,18 @@ class CognitoIdentityProviderClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cognito_identity_provider.types.delete_user_pool_client_secret_request.DeleteUserPoolClientSecretRequest = {}  # type: ignore[typeddict-item]
-        input_["user_pool_id"] = user_pool_id
-        input_["client_id"] = client_id
-        input_["client_secret_id"] = client_secret_id
+        input_: capo_cognito_identity_provider.types.delete_user_pool_client_secret_request.DeleteUserPoolClientSecretRequest = {
+            "user_pool_id": user_pool_id,
+            "client_id": client_id,
+            "client_secret_id": client_secret_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_user_pool_domain(
@@ -4149,15 +4256,17 @@ class CognitoIdentityProviderClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cognito_identity_provider.types.delete_user_pool_domain_request.DeleteUserPoolDomainRequest = {}  # type: ignore[typeddict-item]
-        input_["domain"] = domain
-        input_["user_pool_id"] = user_pool_id
+        input_: capo_cognito_identity_provider.types.delete_user_pool_domain_request.DeleteUserPoolDomainRequest = {
+            "domain": domain,
+            "user_pool_id": user_pool_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_user_pool_replica(
@@ -4204,15 +4313,17 @@ class CognitoIdentityProviderClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cognito_identity_provider.types.delete_user_pool_replica_request.DeleteUserPoolReplicaRequest = {}  # type: ignore[typeddict-item]
-        input_["user_pool_id"] = user_pool_id
-        input_["region_name"] = region_name
+        input_: capo_cognito_identity_provider.types.delete_user_pool_replica_request.DeleteUserPoolReplicaRequest = {
+            "user_pool_id": user_pool_id,
+            "region_name": region_name,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_web_authn_credential(
@@ -4256,15 +4367,17 @@ class CognitoIdentityProviderClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cognito_identity_provider.types.delete_web_authn_credential_request.DeleteWebAuthnCredentialRequest = {}  # type: ignore[typeddict-item]
-        input_["access_token"] = access_token
-        input_["credential_id"] = credential_id
+        input_: capo_cognito_identity_provider.types.delete_web_authn_credential_request.DeleteWebAuthnCredentialRequest = {
+            "access_token": access_token,
+            "credential_id": credential_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_identity_provider(
@@ -4304,15 +4417,17 @@ class CognitoIdentityProviderClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cognito_identity_provider.types.describe_identity_provider_request.DescribeIdentityProviderRequest = {}  # type: ignore[typeddict-item]
-        input_["user_pool_id"] = user_pool_id
-        input_["provider_name"] = provider_name
+        input_: capo_cognito_identity_provider.types.describe_identity_provider_request.DescribeIdentityProviderRequest = {
+            "user_pool_id": user_pool_id,
+            "provider_name": provider_name,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_managed_login_branding(
@@ -4357,9 +4472,10 @@ class CognitoIdentityProviderClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cognito_identity_provider.types.describe_managed_login_branding_request.DescribeManagedLoginBrandingRequest = {}  # type: ignore[typeddict-item]
-        input_["user_pool_id"] = user_pool_id
-        input_["managed_login_branding_id"] = managed_login_branding_id
+        input_: capo_cognito_identity_provider.types.describe_managed_login_branding_request.DescribeManagedLoginBrandingRequest = {
+            "user_pool_id": user_pool_id,
+            "managed_login_branding_id": managed_login_branding_id,
+        }
         if return_merged_resources is not None:
             input_["return_merged_resources"] = return_merged_resources
 
@@ -4368,6 +4484,7 @@ class CognitoIdentityProviderClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_managed_login_branding_by_client(
@@ -4412,9 +4529,10 @@ class CognitoIdentityProviderClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cognito_identity_provider.types.describe_managed_login_branding_by_client_request.DescribeManagedLoginBrandingByClientRequest = {}  # type: ignore[typeddict-item]
-        input_["user_pool_id"] = user_pool_id
-        input_["client_id"] = client_id
+        input_: capo_cognito_identity_provider.types.describe_managed_login_branding_by_client_request.DescribeManagedLoginBrandingByClientRequest = {
+            "user_pool_id": user_pool_id,
+            "client_id": client_id,
+        }
         if return_merged_resources is not None:
             input_["return_merged_resources"] = return_merged_resources
 
@@ -4423,6 +4541,7 @@ class CognitoIdentityProviderClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_resource_server(
@@ -4463,15 +4582,17 @@ class CognitoIdentityProviderClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cognito_identity_provider.types.describe_resource_server_request.DescribeResourceServerRequest = {}  # type: ignore[typeddict-item]
-        input_["user_pool_id"] = user_pool_id
-        input_["identifier"] = identifier
+        input_: capo_cognito_identity_provider.types.describe_resource_server_request.DescribeResourceServerRequest = {
+            "user_pool_id": user_pool_id,
+            "identifier": identifier,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_risk_configuration(
@@ -4515,8 +4636,9 @@ class CognitoIdentityProviderClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cognito_identity_provider.types.describe_risk_configuration_request.DescribeRiskConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["user_pool_id"] = user_pool_id
+        input_: capo_cognito_identity_provider.types.describe_risk_configuration_request.DescribeRiskConfigurationRequest = {
+            "user_pool_id": user_pool_id
+        }
         if client_id is not None:
             input_["client_id"] = client_id
 
@@ -4525,6 +4647,7 @@ class CognitoIdentityProviderClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_terms(
@@ -4565,15 +4688,17 @@ class CognitoIdentityProviderClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cognito_identity_provider.types.describe_terms_request.DescribeTermsRequest = {}  # type: ignore[typeddict-item]
-        input_["terms_id"] = terms_id
-        input_["user_pool_id"] = user_pool_id
+        input_: capo_cognito_identity_provider.types.describe_terms_request.DescribeTermsRequest = {
+            "terms_id": terms_id,
+            "user_pool_id": user_pool_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_user_import_job(
@@ -4614,15 +4739,17 @@ class CognitoIdentityProviderClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cognito_identity_provider.types.describe_user_import_job_request.DescribeUserImportJobRequest = {}  # type: ignore[typeddict-item]
-        input_["user_pool_id"] = user_pool_id
-        input_["job_id"] = job_id
+        input_: capo_cognito_identity_provider.types.describe_user_import_job_request.DescribeUserImportJobRequest = {
+            "user_pool_id": user_pool_id,
+            "job_id": job_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_user_pool(
@@ -4662,14 +4789,16 @@ class CognitoIdentityProviderClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cognito_identity_provider.types.describe_user_pool_request.DescribeUserPoolRequest = {}  # type: ignore[typeddict-item]
-        input_["user_pool_id"] = user_pool_id
+        input_: capo_cognito_identity_provider.types.describe_user_pool_request.DescribeUserPoolRequest = {
+            "user_pool_id": user_pool_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_user_pool_client(
@@ -4710,15 +4839,17 @@ class CognitoIdentityProviderClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cognito_identity_provider.types.describe_user_pool_client_request.DescribeUserPoolClientRequest = {}  # type: ignore[typeddict-item]
-        input_["user_pool_id"] = user_pool_id
-        input_["client_id"] = client_id
+        input_: capo_cognito_identity_provider.types.describe_user_pool_client_request.DescribeUserPoolClientRequest = {
+            "user_pool_id": user_pool_id,
+            "client_id": client_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_user_pool_domain(
@@ -4756,14 +4887,16 @@ class CognitoIdentityProviderClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cognito_identity_provider.types.describe_user_pool_domain_request.DescribeUserPoolDomainRequest = {}  # type: ignore[typeddict-item]
-        input_["domain"] = domain
+        input_: capo_cognito_identity_provider.types.describe_user_pool_domain_request.DescribeUserPoolDomainRequest = {
+            "domain": domain
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def forget_device(
@@ -4809,16 +4942,18 @@ class CognitoIdentityProviderClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cognito_identity_provider.types.forget_device_request.ForgetDeviceRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_cognito_identity_provider.types.forget_device_request.ForgetDeviceRequest = {
+            "device_key": device_key
+        }
         if access_token is not None:
             input_["access_token"] = access_token
-        input_["device_key"] = device_key
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def forgot_password(
@@ -4885,13 +5020,14 @@ class CognitoIdentityProviderClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cognito_identity_provider.types.forgot_password_request.ForgotPasswordRequest = {}  # type: ignore[typeddict-item]
-        input_["client_id"] = client_id
+        input_: capo_cognito_identity_provider.types.forgot_password_request.ForgotPasswordRequest = {
+            "client_id": client_id,
+            "username": username,
+        }
         if secret_hash is not None:
             input_["secret_hash"] = secret_hash
         if user_context_data is not None:
             input_["user_context_data"] = user_context_data
-        input_["username"] = username
         if analytics_metadata is not None:
             input_["analytics_metadata"] = analytics_metadata
         if client_metadata is not None:
@@ -4902,6 +5038,7 @@ class CognitoIdentityProviderClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_csv_header(
@@ -4940,14 +5077,16 @@ class CognitoIdentityProviderClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cognito_identity_provider.types.get_csv_header_request.GetCSVHeaderRequest = {}  # type: ignore[typeddict-item]
-        input_["user_pool_id"] = user_pool_id
+        input_: capo_cognito_identity_provider.types.get_csv_header_request.GetCSVHeaderRequest = {
+            "user_pool_id": user_pool_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_device(
@@ -4995,8 +5134,9 @@ class CognitoIdentityProviderClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cognito_identity_provider.types.get_device_request.GetDeviceRequest = {}  # type: ignore[typeddict-item]
-        input_["device_key"] = device_key
+        input_: capo_cognito_identity_provider.types.get_device_request.GetDeviceRequest = {
+            "device_key": device_key
+        }
         if access_token is not None:
             input_["access_token"] = access_token
 
@@ -5005,6 +5145,7 @@ class CognitoIdentityProviderClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_group(
@@ -5045,15 +5186,17 @@ class CognitoIdentityProviderClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cognito_identity_provider.types.get_group_request.GetGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["group_name"] = group_name
-        input_["user_pool_id"] = user_pool_id
+        input_: capo_cognito_identity_provider.types.get_group_request.GetGroupRequest = {
+            "group_name": group_name,
+            "user_pool_id": user_pool_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_identity_provider_by_identifier(
@@ -5093,15 +5236,17 @@ class CognitoIdentityProviderClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cognito_identity_provider.types.get_identity_provider_by_identifier_request.GetIdentityProviderByIdentifierRequest = {}  # type: ignore[typeddict-item]
-        input_["user_pool_id"] = user_pool_id
-        input_["idp_identifier"] = idp_identifier
+        input_: capo_cognito_identity_provider.types.get_identity_provider_by_identifier_request.GetIdentityProviderByIdentifierRequest = {
+            "user_pool_id": user_pool_id,
+            "idp_identifier": idp_identifier,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_log_delivery_configuration(
@@ -5139,14 +5284,16 @@ class CognitoIdentityProviderClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cognito_identity_provider.types.get_log_delivery_configuration_request.GetLogDeliveryConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["user_pool_id"] = user_pool_id
+        input_: capo_cognito_identity_provider.types.get_log_delivery_configuration_request.GetLogDeliveryConfigurationRequest = {
+            "user_pool_id": user_pool_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_signing_certificate(
@@ -5183,14 +5330,16 @@ class CognitoIdentityProviderClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cognito_identity_provider.types.get_signing_certificate_request.GetSigningCertificateRequest = {}  # type: ignore[typeddict-item]
-        input_["user_pool_id"] = user_pool_id
+        input_: capo_cognito_identity_provider.types.get_signing_certificate_request.GetSigningCertificateRequest = {
+            "user_pool_id": user_pool_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_tokens_from_refresh_token(
@@ -5249,9 +5398,10 @@ class CognitoIdentityProviderClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cognito_identity_provider.types.get_tokens_from_refresh_token_request.GetTokensFromRefreshTokenRequest = {}  # type: ignore[typeddict-item]
-        input_["refresh_token"] = refresh_token
-        input_["client_id"] = client_id
+        input_: capo_cognito_identity_provider.types.get_tokens_from_refresh_token_request.GetTokensFromRefreshTokenRequest = {
+            "refresh_token": refresh_token,
+            "client_id": client_id,
+        }
         if client_secret is not None:
             input_["client_secret"] = client_secret
         if device_key is not None:
@@ -5264,6 +5414,7 @@ class CognitoIdentityProviderClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_ui_customization(
@@ -5306,8 +5457,9 @@ class CognitoIdentityProviderClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cognito_identity_provider.types.get_ui_customization_request.GetUICustomizationRequest = {}  # type: ignore[typeddict-item]
-        input_["user_pool_id"] = user_pool_id
+        input_: capo_cognito_identity_provider.types.get_ui_customization_request.GetUICustomizationRequest = {
+            "user_pool_id": user_pool_id
+        }
         if client_id is not None:
             input_["client_id"] = client_id
 
@@ -5316,6 +5468,7 @@ class CognitoIdentityProviderClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_user(
@@ -5358,14 +5511,16 @@ class CognitoIdentityProviderClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cognito_identity_provider.types.get_user_request.GetUserRequest = {}  # type: ignore[typeddict-item]
-        input_["access_token"] = access_token
+        input_: capo_cognito_identity_provider.types.get_user_request.GetUserRequest = {
+            "access_token": access_token
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_user_attribute_verification_code(
@@ -5422,9 +5577,10 @@ class CognitoIdentityProviderClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cognito_identity_provider.types.get_user_attribute_verification_code_request.GetUserAttributeVerificationCodeRequest = {}  # type: ignore[typeddict-item]
-        input_["access_token"] = access_token
-        input_["attribute_name"] = attribute_name
+        input_: capo_cognito_identity_provider.types.get_user_attribute_verification_code_request.GetUserAttributeVerificationCodeRequest = {
+            "access_token": access_token,
+            "attribute_name": attribute_name,
+        }
         if client_metadata is not None:
             input_["client_metadata"] = client_metadata
 
@@ -5433,6 +5589,7 @@ class CognitoIdentityProviderClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_user_auth_factors(
@@ -5475,14 +5632,16 @@ class CognitoIdentityProviderClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cognito_identity_provider.types.get_user_auth_factors_request.GetUserAuthFactorsRequest = {}  # type: ignore[typeddict-item]
-        input_["access_token"] = access_token
+        input_: capo_cognito_identity_provider.types.get_user_auth_factors_request.GetUserAuthFactorsRequest = {
+            "access_token": access_token
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_user_pool_mfa_config(
@@ -5520,14 +5679,16 @@ class CognitoIdentityProviderClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cognito_identity_provider.types.get_user_pool_mfa_config_request.GetUserPoolMfaConfigRequest = {}  # type: ignore[typeddict-item]
-        input_["user_pool_id"] = user_pool_id
+        input_: capo_cognito_identity_provider.types.get_user_pool_mfa_config_request.GetUserPoolMfaConfigRequest = {
+            "user_pool_id": user_pool_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def global_sign_out(
@@ -5569,14 +5730,16 @@ class CognitoIdentityProviderClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cognito_identity_provider.types.global_sign_out_request.GlobalSignOutRequest = {}  # type: ignore[typeddict-item]
-        input_["access_token"] = access_token
+        input_: capo_cognito_identity_provider.types.global_sign_out_request.GlobalSignOutRequest = {
+            "access_token": access_token
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def initiate_auth(
@@ -5655,13 +5818,14 @@ class CognitoIdentityProviderClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cognito_identity_provider.types.initiate_auth_request.InitiateAuthRequest = {}  # type: ignore[typeddict-item]
-        input_["auth_flow"] = auth_flow
+        input_: capo_cognito_identity_provider.types.initiate_auth_request.InitiateAuthRequest = {
+            "auth_flow": auth_flow,
+            "client_id": client_id,
+        }
         if auth_parameters is not None:
             input_["auth_parameters"] = auth_parameters
         if client_metadata is not None:
             input_["client_metadata"] = client_metadata
-        input_["client_id"] = client_id
         if analytics_metadata is not None:
             input_["analytics_metadata"] = analytics_metadata
         if user_context_data is not None:
@@ -5674,6 +5838,7 @@ class CognitoIdentityProviderClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_devices(
@@ -5727,8 +5892,9 @@ class CognitoIdentityProviderClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cognito_identity_provider.types.list_devices_request.ListDevicesRequest = {}  # type: ignore[typeddict-item]
-        input_["access_token"] = access_token
+        input_: capo_cognito_identity_provider.types.list_devices_request.ListDevicesRequest = {
+            "access_token": access_token
+        }
         if limit is not None:
             input_["limit"] = limit
         if pagination_token is not None:
@@ -5739,6 +5905,7 @@ class CognitoIdentityProviderClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_groups(
@@ -5785,8 +5952,9 @@ class CognitoIdentityProviderClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cognito_identity_provider.types.list_groups_request.ListGroupsRequest = {}  # type: ignore[typeddict-item]
-        input_["user_pool_id"] = user_pool_id
+        input_: capo_cognito_identity_provider.types.list_groups_request.ListGroupsRequest = {
+            "user_pool_id": user_pool_id
+        }
         if limit is not None:
             input_["limit"] = limit
         if next_token is not None:
@@ -5797,6 +5965,7 @@ class CognitoIdentityProviderClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_groups(
@@ -5869,8 +6038,9 @@ class CognitoIdentityProviderClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cognito_identity_provider.types.list_identity_providers_request.ListIdentityProvidersRequest = {}  # type: ignore[typeddict-item]
-        input_["user_pool_id"] = user_pool_id
+        input_: capo_cognito_identity_provider.types.list_identity_providers_request.ListIdentityProvidersRequest = {
+            "user_pool_id": user_pool_id
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -5881,6 +6051,7 @@ class CognitoIdentityProviderClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_identity_providers(
@@ -5954,8 +6125,9 @@ class CognitoIdentityProviderClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cognito_identity_provider.types.list_resource_servers_request.ListResourceServersRequest = {}  # type: ignore[typeddict-item]
-        input_["user_pool_id"] = user_pool_id
+        input_: capo_cognito_identity_provider.types.list_resource_servers_request.ListResourceServersRequest = {
+            "user_pool_id": user_pool_id
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -5966,6 +6138,7 @@ class CognitoIdentityProviderClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_resource_servers(
@@ -6031,14 +6204,16 @@ class CognitoIdentityProviderClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cognito_identity_provider.types.list_tags_for_resource_request.ListTagsForResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_cognito_identity_provider.types.list_tags_for_resource_request.ListTagsForResourceRequest = {
+            "resource_arn": resource_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_terms(
@@ -6085,8 +6260,9 @@ class CognitoIdentityProviderClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cognito_identity_provider.types.list_terms_request.ListTermsRequest = {}  # type: ignore[typeddict-item]
-        input_["user_pool_id"] = user_pool_id
+        input_: capo_cognito_identity_provider.types.list_terms_request.ListTermsRequest = {
+            "user_pool_id": user_pool_id
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -6097,6 +6273,7 @@ class CognitoIdentityProviderClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_user_import_jobs(
@@ -6141,9 +6318,10 @@ class CognitoIdentityProviderClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cognito_identity_provider.types.list_user_import_jobs_request.ListUserImportJobsRequest = {}  # type: ignore[typeddict-item]
-        input_["user_pool_id"] = user_pool_id
-        input_["max_results"] = max_results
+        input_: capo_cognito_identity_provider.types.list_user_import_jobs_request.ListUserImportJobsRequest = {
+            "user_pool_id": user_pool_id,
+            "max_results": max_results,
+        }
         if pagination_token is not None:
             input_["pagination_token"] = pagination_token
 
@@ -6152,6 +6330,7 @@ class CognitoIdentityProviderClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_user_pool_clients(
@@ -6198,8 +6377,9 @@ class CognitoIdentityProviderClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cognito_identity_provider.types.list_user_pool_clients_request.ListUserPoolClientsRequest = {}  # type: ignore[typeddict-item]
-        input_["user_pool_id"] = user_pool_id
+        input_: capo_cognito_identity_provider.types.list_user_pool_clients_request.ListUserPoolClientsRequest = {
+            "user_pool_id": user_pool_id
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -6210,6 +6390,7 @@ class CognitoIdentityProviderClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_user_pool_clients(
@@ -6280,9 +6461,10 @@ class CognitoIdentityProviderClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cognito_identity_provider.types.list_user_pool_client_secrets_request.ListUserPoolClientSecretsRequest = {}  # type: ignore[typeddict-item]
-        input_["user_pool_id"] = user_pool_id
-        input_["client_id"] = client_id
+        input_: capo_cognito_identity_provider.types.list_user_pool_client_secrets_request.ListUserPoolClientSecretsRequest = {
+            "user_pool_id": user_pool_id,
+            "client_id": client_id,
+        }
         if next_token is not None:
             input_["next_token"] = next_token
 
@@ -6291,6 +6473,7 @@ class CognitoIdentityProviderClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_user_pool_replicas(
@@ -6339,8 +6522,9 @@ class CognitoIdentityProviderClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cognito_identity_provider.types.list_user_pool_replicas_request.ListUserPoolReplicasRequest = {}  # type: ignore[typeddict-item]
-        input_["user_pool_id"] = user_pool_id
+        input_: capo_cognito_identity_provider.types.list_user_pool_replicas_request.ListUserPoolReplicasRequest = {
+            "user_pool_id": user_pool_id
+        }
         if next_token is not None:
             input_["next_token"] = next_token
 
@@ -6349,6 +6533,7 @@ class CognitoIdentityProviderClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_user_pools(
@@ -6389,16 +6574,18 @@ class CognitoIdentityProviderClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cognito_identity_provider.types.list_user_pools_request.ListUserPoolsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_cognito_identity_provider.types.list_user_pools_request.ListUserPoolsRequest = {
+            "max_results": max_results
+        }
         if next_token is not None:
             input_["next_token"] = next_token
-        input_["max_results"] = max_results
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_user_pools(
@@ -6482,8 +6669,9 @@ class CognitoIdentityProviderClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cognito_identity_provider.types.list_users_request.ListUsersRequest = {}  # type: ignore[typeddict-item]
-        input_["user_pool_id"] = user_pool_id
+        input_: capo_cognito_identity_provider.types.list_users_request.ListUsersRequest = {
+            "user_pool_id": user_pool_id
+        }
         if attributes_to_get is not None:
             input_["attributes_to_get"] = attributes_to_get
         if limit is not None:
@@ -6498,6 +6686,7 @@ class CognitoIdentityProviderClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_users(
@@ -6581,9 +6770,10 @@ class CognitoIdentityProviderClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cognito_identity_provider.types.list_users_in_group_request.ListUsersInGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["user_pool_id"] = user_pool_id
-        input_["group_name"] = group_name
+        input_: capo_cognito_identity_provider.types.list_users_in_group_request.ListUsersInGroupRequest = {
+            "user_pool_id": user_pool_id,
+            "group_name": group_name,
+        }
         if limit is not None:
             input_["limit"] = limit
         if next_token is not None:
@@ -6594,6 +6784,7 @@ class CognitoIdentityProviderClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_users_in_group(
@@ -6671,8 +6862,9 @@ class CognitoIdentityProviderClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cognito_identity_provider.types.list_web_authn_credentials_request.ListWebAuthnCredentialsRequest = {}  # type: ignore[typeddict-item]
-        input_["access_token"] = access_token
+        input_: capo_cognito_identity_provider.types.list_web_authn_credentials_request.ListWebAuthnCredentialsRequest = {
+            "access_token": access_token
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -6683,6 +6875,7 @@ class CognitoIdentityProviderClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def resend_confirmation_code(
@@ -6749,13 +6942,14 @@ class CognitoIdentityProviderClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cognito_identity_provider.types.resend_confirmation_code_request.ResendConfirmationCodeRequest = {}  # type: ignore[typeddict-item]
-        input_["client_id"] = client_id
+        input_: capo_cognito_identity_provider.types.resend_confirmation_code_request.ResendConfirmationCodeRequest = {
+            "client_id": client_id,
+            "username": username,
+        }
         if secret_hash is not None:
             input_["secret_hash"] = secret_hash
         if user_context_data is not None:
             input_["user_context_data"] = user_context_data
-        input_["username"] = username
         if analytics_metadata is not None:
             input_["analytics_metadata"] = analytics_metadata
         if client_metadata is not None:
@@ -6766,6 +6960,7 @@ class CognitoIdentityProviderClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def respond_to_auth_challenge(
@@ -6844,9 +7039,10 @@ class CognitoIdentityProviderClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cognito_identity_provider.types.respond_to_auth_challenge_request.RespondToAuthChallengeRequest = {}  # type: ignore[typeddict-item]
-        input_["client_id"] = client_id
-        input_["challenge_name"] = challenge_name
+        input_: capo_cognito_identity_provider.types.respond_to_auth_challenge_request.RespondToAuthChallengeRequest = {
+            "client_id": client_id,
+            "challenge_name": challenge_name,
+        }
         if session is not None:
             input_["session"] = session
         if challenge_responses is not None:
@@ -6863,6 +7059,7 @@ class CognitoIdentityProviderClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def revoke_token(
@@ -6911,9 +7108,10 @@ class CognitoIdentityProviderClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cognito_identity_provider.types.revoke_token_request.RevokeTokenRequest = {}  # type: ignore[typeddict-item]
-        input_["token"] = token
-        input_["client_id"] = client_id
+        input_: capo_cognito_identity_provider.types.revoke_token_request.RevokeTokenRequest = {
+            "token": token,
+            "client_id": client_id,
+        }
         if client_secret is not None:
             input_["client_secret"] = client_secret
 
@@ -6922,6 +7120,7 @@ class CognitoIdentityProviderClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def set_log_delivery_configuration(
@@ -6962,15 +7161,17 @@ class CognitoIdentityProviderClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cognito_identity_provider.types.set_log_delivery_configuration_request.SetLogDeliveryConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["user_pool_id"] = user_pool_id
-        input_["log_configurations"] = log_configurations
+        input_: capo_cognito_identity_provider.types.set_log_delivery_configuration_request.SetLogDeliveryConfigurationRequest = {
+            "user_pool_id": user_pool_id,
+            "log_configurations": log_configurations,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def set_risk_configuration(
@@ -7028,8 +7229,9 @@ class CognitoIdentityProviderClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cognito_identity_provider.types.set_risk_configuration_request.SetRiskConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["user_pool_id"] = user_pool_id
+        input_: capo_cognito_identity_provider.types.set_risk_configuration_request.SetRiskConfigurationRequest = {
+            "user_pool_id": user_pool_id
+        }
         if client_id is not None:
             input_["client_id"] = client_id
         if compromised_credentials_risk_configuration is not None:
@@ -7048,6 +7250,7 @@ class CognitoIdentityProviderClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def set_ui_customization(
@@ -7096,8 +7299,9 @@ class CognitoIdentityProviderClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cognito_identity_provider.types.set_ui_customization_request.SetUICustomizationRequest = {}  # type: ignore[typeddict-item]
-        input_["user_pool_id"] = user_pool_id
+        input_: capo_cognito_identity_provider.types.set_ui_customization_request.SetUICustomizationRequest = {
+            "user_pool_id": user_pool_id
+        }
         if client_id is not None:
             input_["client_id"] = client_id
         if css is not None:
@@ -7110,6 +7314,7 @@ class CognitoIdentityProviderClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def set_user_mfa_preference(
@@ -7167,7 +7372,9 @@ class CognitoIdentityProviderClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cognito_identity_provider.types.set_user_mfa_preference_request.SetUserMFAPreferenceRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_cognito_identity_provider.types.set_user_mfa_preference_request.SetUserMFAPreferenceRequest = {
+            "access_token": access_token
+        }
         if sms_mfa_settings is not None:
             input_["sms_mfa_settings"] = sms_mfa_settings
         if software_token_mfa_settings is not None:
@@ -7176,13 +7383,13 @@ class CognitoIdentityProviderClient:
             input_["email_mfa_settings"] = email_mfa_settings
         if web_authn_mfa_settings is not None:
             input_["web_authn_mfa_settings"] = web_authn_mfa_settings
-        input_["access_token"] = access_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def set_user_pool_mfa_config(
@@ -7245,8 +7452,9 @@ class CognitoIdentityProviderClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cognito_identity_provider.types.set_user_pool_mfa_config_request.SetUserPoolMfaConfigRequest = {}  # type: ignore[typeddict-item]
-        input_["user_pool_id"] = user_pool_id
+        input_: capo_cognito_identity_provider.types.set_user_pool_mfa_config_request.SetUserPoolMfaConfigRequest = {
+            "user_pool_id": user_pool_id
+        }
         if sms_mfa_configuration is not None:
             input_["sms_mfa_configuration"] = sms_mfa_configuration
         if software_token_mfa_configuration is not None:
@@ -7265,6 +7473,7 @@ class CognitoIdentityProviderClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def set_user_settings(
@@ -7308,15 +7517,17 @@ class CognitoIdentityProviderClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cognito_identity_provider.types.set_user_settings_request.SetUserSettingsRequest = {}  # type: ignore[typeddict-item]
-        input_["access_token"] = access_token
-        input_["mfa_options"] = mfa_options
+        input_: capo_cognito_identity_provider.types.set_user_settings_request.SetUserSettingsRequest = {
+            "access_token": access_token,
+            "mfa_options": mfa_options,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def sign_up(
@@ -7396,11 +7607,12 @@ class CognitoIdentityProviderClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cognito_identity_provider.types.sign_up_request.SignUpRequest = {}  # type: ignore[typeddict-item]
-        input_["client_id"] = client_id
+        input_: capo_cognito_identity_provider.types.sign_up_request.SignUpRequest = {
+            "client_id": client_id,
+            "username": username,
+        }
         if secret_hash is not None:
             input_["secret_hash"] = secret_hash
-        input_["username"] = username
         if password is not None:
             input_["password"] = password
         if user_attributes is not None:
@@ -7419,6 +7631,7 @@ class CognitoIdentityProviderClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def start_user_import_job(
@@ -7460,15 +7673,17 @@ class CognitoIdentityProviderClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cognito_identity_provider.types.start_user_import_job_request.StartUserImportJobRequest = {}  # type: ignore[typeddict-item]
-        input_["user_pool_id"] = user_pool_id
-        input_["job_id"] = job_id
+        input_: capo_cognito_identity_provider.types.start_user_import_job_request.StartUserImportJobRequest = {
+            "user_pool_id": user_pool_id,
+            "job_id": job_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def start_web_authn_registration(
@@ -7511,14 +7726,16 @@ class CognitoIdentityProviderClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cognito_identity_provider.types.start_web_authn_registration_request.StartWebAuthnRegistrationRequest = {}  # type: ignore[typeddict-item]
-        input_["access_token"] = access_token
+        input_: capo_cognito_identity_provider.types.start_web_authn_registration_request.StartWebAuthnRegistrationRequest = {
+            "access_token": access_token
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def stop_user_import_job(
@@ -7560,15 +7777,17 @@ class CognitoIdentityProviderClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cognito_identity_provider.types.stop_user_import_job_request.StopUserImportJobRequest = {}  # type: ignore[typeddict-item]
-        input_["user_pool_id"] = user_pool_id
-        input_["job_id"] = job_id
+        input_: capo_cognito_identity_provider.types.stop_user_import_job_request.StopUserImportJobRequest = {
+            "user_pool_id": user_pool_id,
+            "job_id": job_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def tag_resource(
@@ -7611,15 +7830,17 @@ class CognitoIdentityProviderClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cognito_identity_provider.types.tag_resource_request.TagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tags"] = tags
+        input_: capo_cognito_identity_provider.types.tag_resource_request.TagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tags": tags,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def untag_resource(
@@ -7660,15 +7881,17 @@ class CognitoIdentityProviderClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cognito_identity_provider.types.untag_resource_request.UntagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tag_keys"] = tag_keys
+        input_: capo_cognito_identity_provider.types.untag_resource_request.UntagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tag_keys": tag_keys,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_auth_event_feedback(
@@ -7717,18 +7940,20 @@ class CognitoIdentityProviderClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cognito_identity_provider.types.update_auth_event_feedback_request.UpdateAuthEventFeedbackRequest = {}  # type: ignore[typeddict-item]
-        input_["user_pool_id"] = user_pool_id
-        input_["username"] = username
-        input_["event_id"] = event_id
-        input_["feedback_token"] = feedback_token
-        input_["feedback_value"] = feedback_value
+        input_: capo_cognito_identity_provider.types.update_auth_event_feedback_request.UpdateAuthEventFeedbackRequest = {
+            "user_pool_id": user_pool_id,
+            "username": username,
+            "event_id": event_id,
+            "feedback_token": feedback_token,
+            "feedback_value": feedback_value,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_device_status(
@@ -7778,9 +8003,10 @@ class CognitoIdentityProviderClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cognito_identity_provider.types.update_device_status_request.UpdateDeviceStatusRequest = {}  # type: ignore[typeddict-item]
-        input_["access_token"] = access_token
-        input_["device_key"] = device_key
+        input_: capo_cognito_identity_provider.types.update_device_status_request.UpdateDeviceStatusRequest = {
+            "access_token": access_token,
+            "device_key": device_key,
+        }
         if device_remembered_status is not None:
             input_["device_remembered_status"] = device_remembered_status
 
@@ -7789,6 +8015,7 @@ class CognitoIdentityProviderClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_group(
@@ -7843,9 +8070,10 @@ class CognitoIdentityProviderClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cognito_identity_provider.types.update_group_request.UpdateGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["group_name"] = group_name
-        input_["user_pool_id"] = user_pool_id
+        input_: capo_cognito_identity_provider.types.update_group_request.UpdateGroupRequest = {
+            "group_name": group_name,
+            "user_pool_id": user_pool_id,
+        }
         if description is not None:
             input_["description"] = description
         if role_arn is not None:
@@ -7858,6 +8086,7 @@ class CognitoIdentityProviderClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_identity_provider(
@@ -7911,9 +8140,10 @@ class CognitoIdentityProviderClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cognito_identity_provider.types.update_identity_provider_request.UpdateIdentityProviderRequest = {}  # type: ignore[typeddict-item]
-        input_["user_pool_id"] = user_pool_id
-        input_["provider_name"] = provider_name
+        input_: capo_cognito_identity_provider.types.update_identity_provider_request.UpdateIdentityProviderRequest = {
+            "user_pool_id": user_pool_id,
+            "provider_name": provider_name,
+        }
         if provider_details is not None:
             input_["provider_details"] = provider_details
         if attribute_mapping is not None:
@@ -7926,6 +8156,7 @@ class CognitoIdentityProviderClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_managed_login_branding(
@@ -7983,7 +8214,7 @@ class CognitoIdentityProviderClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cognito_identity_provider.types.update_managed_login_branding_request.UpdateManagedLoginBrandingRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_cognito_identity_provider.types.update_managed_login_branding_request.UpdateManagedLoginBrandingRequest = {}
         if user_pool_id is not None:
             input_["user_pool_id"] = user_pool_id
         if managed_login_branding_id is not None:
@@ -8000,6 +8231,7 @@ class CognitoIdentityProviderClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_resource_server(
@@ -8046,10 +8278,11 @@ class CognitoIdentityProviderClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cognito_identity_provider.types.update_resource_server_request.UpdateResourceServerRequest = {}  # type: ignore[typeddict-item]
-        input_["user_pool_id"] = user_pool_id
-        input_["identifier"] = identifier
-        input_["name"] = name
+        input_: capo_cognito_identity_provider.types.update_resource_server_request.UpdateResourceServerRequest = {
+            "user_pool_id": user_pool_id,
+            "identifier": identifier,
+            "name": name,
+        }
         if scopes is not None:
             input_["scopes"] = scopes
 
@@ -8058,6 +8291,7 @@ class CognitoIdentityProviderClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_terms(
@@ -8118,9 +8352,10 @@ class CognitoIdentityProviderClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cognito_identity_provider.types.update_terms_request.UpdateTermsRequest = {}  # type: ignore[typeddict-item]
-        input_["terms_id"] = terms_id
-        input_["user_pool_id"] = user_pool_id
+        input_: capo_cognito_identity_provider.types.update_terms_request.UpdateTermsRequest = {
+            "terms_id": terms_id,
+            "user_pool_id": user_pool_id,
+        }
         if terms_name is not None:
             input_["terms_name"] = terms_name
         if terms_source is not None:
@@ -8135,6 +8370,7 @@ class CognitoIdentityProviderClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_user_attributes(
@@ -8193,9 +8429,10 @@ class CognitoIdentityProviderClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cognito_identity_provider.types.update_user_attributes_request.UpdateUserAttributesRequest = {}  # type: ignore[typeddict-item]
-        input_["user_attributes"] = user_attributes
-        input_["access_token"] = access_token
+        input_: capo_cognito_identity_provider.types.update_user_attributes_request.UpdateUserAttributesRequest = {
+            "user_attributes": user_attributes,
+            "access_token": access_token,
+        }
         if client_metadata is not None:
             input_["client_metadata"] = client_metadata
 
@@ -8204,6 +8441,7 @@ class CognitoIdentityProviderClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_user_pool(
@@ -8338,8 +8576,9 @@ class CognitoIdentityProviderClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cognito_identity_provider.types.update_user_pool_request.UpdateUserPoolRequest = {}  # type: ignore[typeddict-item]
-        input_["user_pool_id"] = user_pool_id
+        input_: capo_cognito_identity_provider.types.update_user_pool_request.UpdateUserPoolRequest = {
+            "user_pool_id": user_pool_id
+        }
         if policies is not None:
             input_["policies"] = policies
         if deletion_protection is not None:
@@ -8390,6 +8629,7 @@ class CognitoIdentityProviderClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_user_pool_client(
@@ -8518,9 +8758,10 @@ class CognitoIdentityProviderClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cognito_identity_provider.types.update_user_pool_client_request.UpdateUserPoolClientRequest = {}  # type: ignore[typeddict-item]
-        input_["user_pool_id"] = user_pool_id
-        input_["client_id"] = client_id
+        input_: capo_cognito_identity_provider.types.update_user_pool_client_request.UpdateUserPoolClientRequest = {
+            "user_pool_id": user_pool_id,
+            "client_id": client_id,
+        }
         if client_name is not None:
             input_["client_name"] = client_name
         if refresh_token_validity is not None:
@@ -8573,6 +8814,7 @@ class CognitoIdentityProviderClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_user_pool_domain(
@@ -8627,9 +8869,10 @@ class CognitoIdentityProviderClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cognito_identity_provider.types.update_user_pool_domain_request.UpdateUserPoolDomainRequest = {}  # type: ignore[typeddict-item]
-        input_["domain"] = domain
-        input_["user_pool_id"] = user_pool_id
+        input_: capo_cognito_identity_provider.types.update_user_pool_domain_request.UpdateUserPoolDomainRequest = {
+            "domain": domain,
+            "user_pool_id": user_pool_id,
+        }
         if managed_login_version is not None:
             input_["managed_login_version"] = managed_login_version
         if custom_domain_config is not None:
@@ -8642,6 +8885,7 @@ class CognitoIdentityProviderClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_user_pool_replica(
@@ -8690,16 +8934,18 @@ class CognitoIdentityProviderClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cognito_identity_provider.types.update_user_pool_replica_request.UpdateUserPoolReplicaRequest = {}  # type: ignore[typeddict-item]
-        input_["user_pool_id"] = user_pool_id
-        input_["region_name"] = region_name
-        input_["status"] = status
+        input_: capo_cognito_identity_provider.types.update_user_pool_replica_request.UpdateUserPoolReplicaRequest = {
+            "user_pool_id": user_pool_id,
+            "region_name": region_name,
+            "status": status,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def verify_software_token(
@@ -8758,12 +9004,13 @@ class CognitoIdentityProviderClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cognito_identity_provider.types.verify_software_token_request.VerifySoftwareTokenRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_cognito_identity_provider.types.verify_software_token_request.VerifySoftwareTokenRequest = {
+            "user_code": user_code
+        }
         if access_token is not None:
             input_["access_token"] = access_token
         if session is not None:
             input_["session"] = session
-        input_["user_code"] = user_code
         if friendly_device_name is not None:
             input_["friendly_device_name"] = friendly_device_name
 
@@ -8772,6 +9019,7 @@ class CognitoIdentityProviderClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def verify_user_attribute(
@@ -8822,16 +9070,18 @@ class CognitoIdentityProviderClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cognito_identity_provider.types.verify_user_attribute_request.VerifyUserAttributeRequest = {}  # type: ignore[typeddict-item]
-        input_["access_token"] = access_token
-        input_["attribute_name"] = attribute_name
-        input_["code"] = code
+        input_: capo_cognito_identity_provider.types.verify_user_attribute_request.VerifyUserAttributeRequest = {
+            "access_token": access_token,
+            "attribute_name": attribute_name,
+            "code": code,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def __enter__(self) -> Self:

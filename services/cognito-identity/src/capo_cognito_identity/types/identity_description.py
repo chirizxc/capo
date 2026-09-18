@@ -53,9 +53,9 @@ def serialize_aws_json_1_1(value: IdentityDescription) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> IdentityDescription:
     out: IdentityDescription = {}  # type: ignore[typeddict-item]
-    if "IdentityId" in data:
+    if data.get("IdentityId") is not None:
         out["identity_id"] = data["IdentityId"]
-    if "Logins" in data:
+    if data.get("Logins") is not None:
         import capo_cognito_identity.types.logins_list
 
         out["logins"] = (
@@ -63,7 +63,7 @@ def deserialize_aws_json_1_1(data: dict) -> IdentityDescription:
                 data["Logins"]
             )
         )
-    if "CreationDate" in data:
+    if data.get("CreationDate") is not None:
         import capo_cognito_identity.types.date_type
 
         out["creation_date"] = (
@@ -71,7 +71,7 @@ def deserialize_aws_json_1_1(data: dict) -> IdentityDescription:
                 data["CreationDate"]
             )
         )
-    if "LastModifiedDate" in data:
+    if data.get("LastModifiedDate") is not None:
         import capo_cognito_identity.types.date_type
 
         out["last_modified_date"] = (

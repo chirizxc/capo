@@ -27,7 +27,7 @@ def serialize_json(value: ProfileTime) -> dict:
 
 def deserialize_json(data: dict) -> ProfileTime:
     out: ProfileTime = {}  # type: ignore[typeddict-item]
-    if "start" in data:
+    if data.get("start") is not None:
         import capo_codeguruprofiler.types.timestamp
 
         out["start"] = capo_codeguruprofiler.types.timestamp.deserialize_json(

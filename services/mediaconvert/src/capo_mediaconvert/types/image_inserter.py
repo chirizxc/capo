@@ -38,7 +38,7 @@ def serialize_json(value: ImageInserter) -> dict:
 
 def deserialize_json(data: dict) -> ImageInserter:
     out: ImageInserter = {}  # type: ignore[typeddict-item]
-    if "insertableImages" in data:
+    if data.get("insertableImages") is not None:
         import capo_mediaconvert.types.__list_of_insertable_image
 
         out["insertable_images"] = (
@@ -46,6 +46,6 @@ def deserialize_json(data: dict) -> ImageInserter:
                 data["insertableImages"]
             )
         )
-    if "sdrReferenceWhiteLevel" in data:
+    if data.get("sdrReferenceWhiteLevel") is not None:
         out["sdr_reference_white_level"] = data["sdrReferenceWhiteLevel"]
     return out

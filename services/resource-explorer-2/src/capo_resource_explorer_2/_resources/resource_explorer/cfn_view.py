@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import uuid
 from typing import TYPE_CHECKING, Optional
 
 import capo_resource_explorer_2._auth._signers
@@ -93,10 +94,12 @@ class CfnView:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_resource_explorer_2.types.create_view_input.CreateViewInput = {}  # type: ignore[typeddict-item]
-        if client_token is not None:
-            input_["client_token"] = client_token
-        input_["view_name"] = view_name
+        input_: capo_resource_explorer_2.types.create_view_input.CreateViewInput = {
+            "view_name": view_name
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if included_properties is not None:
             input_["included_properties"] = included_properties
         if scope is not None:
@@ -111,6 +114,7 @@ class CfnView:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -149,14 +153,16 @@ class CfnView:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_resource_explorer_2.types.get_view_input.GetViewInput = {}  # type: ignore[typeddict-item]
-        input_["view_arn"] = view_arn
+        input_: capo_resource_explorer_2.types.get_view_input.GetViewInput = {
+            "view_arn": view_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update(
@@ -203,8 +209,9 @@ class CfnView:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_resource_explorer_2.types.update_view_input.UpdateViewInput = {}  # type: ignore[typeddict-item]
-        input_["view_arn"] = view_arn
+        input_: capo_resource_explorer_2.types.update_view_input.UpdateViewInput = {
+            "view_arn": view_arn
+        }
         if included_properties is not None:
             input_["included_properties"] = included_properties
         if filters is not None:
@@ -215,6 +222,7 @@ class CfnView:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -253,14 +261,16 @@ class CfnView:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_resource_explorer_2.types.delete_view_input.DeleteViewInput = {}  # type: ignore[typeddict-item]
-        input_["view_arn"] = view_arn
+        input_: capo_resource_explorer_2.types.delete_view_input.DeleteViewInput = {
+            "view_arn": view_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -299,7 +309,7 @@ class CfnView:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_resource_explorer_2.types.list_views_input.ListViewsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_resource_explorer_2.types.list_views_input.ListViewsInput = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -310,6 +320,7 @@ class CfnView:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -369,10 +380,12 @@ class AsyncCfnView:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_resource_explorer_2.types.create_view_input.CreateViewInput = {}  # type: ignore[typeddict-item]
-        if client_token is not None:
-            input_["client_token"] = client_token
-        input_["view_name"] = view_name
+        input_: capo_resource_explorer_2.types.create_view_input.CreateViewInput = {
+            "view_name": view_name
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if included_properties is not None:
             input_["included_properties"] = included_properties
         if scope is not None:
@@ -387,6 +400,7 @@ class AsyncCfnView:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -426,14 +440,16 @@ class AsyncCfnView:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_resource_explorer_2.types.get_view_input.GetViewInput = {}  # type: ignore[typeddict-item]
-        input_["view_arn"] = view_arn
+        input_: capo_resource_explorer_2.types.get_view_input.GetViewInput = {
+            "view_arn": view_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update(
@@ -481,8 +497,9 @@ class AsyncCfnView:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_resource_explorer_2.types.update_view_input.UpdateViewInput = {}  # type: ignore[typeddict-item]
-        input_["view_arn"] = view_arn
+        input_: capo_resource_explorer_2.types.update_view_input.UpdateViewInput = {
+            "view_arn": view_arn
+        }
         if included_properties is not None:
             input_["included_properties"] = included_properties
         if filters is not None:
@@ -493,6 +510,7 @@ class AsyncCfnView:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -532,14 +550,16 @@ class AsyncCfnView:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_resource_explorer_2.types.delete_view_input.DeleteViewInput = {}  # type: ignore[typeddict-item]
-        input_["view_arn"] = view_arn
+        input_: capo_resource_explorer_2.types.delete_view_input.DeleteViewInput = {
+            "view_arn": view_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -579,7 +599,7 @@ class AsyncCfnView:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_resource_explorer_2.types.list_views_input.ListViewsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_resource_explorer_2.types.list_views_input.ListViewsInput = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -590,4 +610,5 @@ class AsyncCfnView:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

@@ -74,9 +74,9 @@ def serialize_json(value: InAppMessageContent) -> dict:
 
 def deserialize_json(data: dict) -> InAppMessageContent:
     out: InAppMessageContent = {}  # type: ignore[typeddict-item]
-    if "BackgroundColor" in data:
+    if data.get("BackgroundColor") is not None:
         out["background_color"] = data["BackgroundColor"]
-    if "BodyConfig" in data:
+    if data.get("BodyConfig") is not None:
         import capo_pinpoint.types.in_app_message_body_config
 
         out["body_config"] = (
@@ -84,7 +84,7 @@ def deserialize_json(data: dict) -> InAppMessageContent:
                 data["BodyConfig"]
             )
         )
-    if "HeaderConfig" in data:
+    if data.get("HeaderConfig") is not None:
         import capo_pinpoint.types.in_app_message_header_config
 
         out["header_config"] = (
@@ -92,15 +92,15 @@ def deserialize_json(data: dict) -> InAppMessageContent:
                 data["HeaderConfig"]
             )
         )
-    if "ImageUrl" in data:
+    if data.get("ImageUrl") is not None:
         out["image_url"] = data["ImageUrl"]
-    if "PrimaryBtn" in data:
+    if data.get("PrimaryBtn") is not None:
         import capo_pinpoint.types.in_app_message_button
 
         out["primary_btn"] = capo_pinpoint.types.in_app_message_button.deserialize_json(
             data["PrimaryBtn"]
         )
-    if "SecondaryBtn" in data:
+    if data.get("SecondaryBtn") is not None:
         import capo_pinpoint.types.in_app_message_button
 
         out["secondary_btn"] = (

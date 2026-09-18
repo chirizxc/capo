@@ -28,7 +28,7 @@ def serialize_json(value: GetIncidentRecordOutput) -> dict:
 
 def deserialize_json(data: dict) -> GetIncidentRecordOutput:
     out: GetIncidentRecordOutput = {}  # type: ignore[typeddict-item]
-    if "incidentRecord" in data:
+    if data.get("incidentRecord") is not None:
         import capo_ssm_incidents.types.incident_record
 
         out["incident_record"] = (

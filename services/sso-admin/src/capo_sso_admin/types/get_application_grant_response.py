@@ -26,7 +26,7 @@ def serialize_aws_json_1_1(value: GetApplicationGrantResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetApplicationGrantResponse:
     out: GetApplicationGrantResponse = {}  # type: ignore[typeddict-item]
-    if "Grant" in data:
+    if data.get("Grant") is not None:
         import capo_sso_admin.types.grant
 
         out["grant"] = capo_sso_admin.types.grant.deserialize_aws_json_1_1(

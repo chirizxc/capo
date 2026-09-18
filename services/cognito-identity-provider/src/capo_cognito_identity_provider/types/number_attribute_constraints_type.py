@@ -31,8 +31,8 @@ def serialize_aws_json_1_1(value: NumberAttributeConstraintsType) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> NumberAttributeConstraintsType:
     out: NumberAttributeConstraintsType = {}  # type: ignore[typeddict-item]
-    if "MinValue" in data:
+    if data.get("MinValue") is not None:
         out["min_value"] = data["MinValue"]
-    if "MaxValue" in data:
+    if data.get("MaxValue") is not None:
         out["max_value"] = data["MaxValue"]
     return out

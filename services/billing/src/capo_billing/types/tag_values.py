@@ -30,11 +30,11 @@ def serialize_aws_json_1_0(value: TagValues) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> TagValues:
     out: TagValues = {}  # type: ignore[typeddict-item]
-    if "key" in data:
+    if data.get("key") is not None:
         out["key"] = data["key"]
     else:
         raise DeserializationError("TagValues.key required")
-    if "values" in data:
+    if data.get("values") is not None:
         import capo_billing.types.values
 
         out["values"] = capo_billing.types.values.deserialize_aws_json_1_0(

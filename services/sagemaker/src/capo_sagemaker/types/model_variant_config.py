@@ -43,11 +43,11 @@ def serialize_aws_json_1_1(value: ModelVariantConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ModelVariantConfig:
     out: ModelVariantConfig = {}  # type: ignore[typeddict-item]
-    if "ModelName" in data:
+    if data.get("ModelName") is not None:
         out["model_name"] = data["ModelName"]
-    if "VariantName" in data:
+    if data.get("VariantName") is not None:
         out["variant_name"] = data["VariantName"]
-    if "InfrastructureConfig" in data:
+    if data.get("InfrastructureConfig") is not None:
         import capo_sagemaker.types.model_infrastructure_config
 
         out["infrastructure_config"] = (

@@ -89,37 +89,45 @@ def serialize_json(value: FindingDetail) -> dict:
 
         out["cwes"] = capo_inspector2.types.cwes.serialize_json(value["cwes"])
     if "epss_score" in value:
-        out["epssScore"] = value["epss_score"]
+        out["epssScore"] = (
+            "NaN"
+            if value["epss_score"] != value["epss_score"]
+            else "Infinity"
+            if value["epss_score"] == float("inf")
+            else "-Infinity"
+            if value["epss_score"] == float("-inf")
+            else value["epss_score"]
+        )
     return out
 
 
 def deserialize_json(data: dict) -> FindingDetail:
     out: FindingDetail = {}  # type: ignore[typeddict-item]
-    if "findingArn" in data:
+    if data.get("findingArn") is not None:
         out["finding_arn"] = data["findingArn"]
-    if "cisaData" in data:
+    if data.get("cisaData") is not None:
         import capo_inspector2.types.cisa_data
 
         out["cisa_data"] = capo_inspector2.types.cisa_data.deserialize_json(
             data["cisaData"]
         )
-    if "riskScore" in data:
+    if data.get("riskScore") is not None:
         out["risk_score"] = data["riskScore"]
-    if "evidences" in data:
+    if data.get("evidences") is not None:
         import capo_inspector2.types.evidence_list
 
         out["evidences"] = capo_inspector2.types.evidence_list.deserialize_json(
             data["evidences"]
         )
-    if "ttps" in data:
+    if data.get("ttps") is not None:
         import capo_inspector2.types.ttps
 
         out["ttps"] = capo_inspector2.types.ttps.deserialize_json(data["ttps"])
-    if "tools" in data:
+    if data.get("tools") is not None:
         import capo_inspector2.types.tools
 
         out["tools"] = capo_inspector2.types.tools.deserialize_json(data["tools"])
-    if "exploitObserved" in data:
+    if data.get("exploitObserved") is not None:
         import capo_inspector2.types.exploit_observed
 
         out["exploit_observed"] = (
@@ -127,7 +135,7 @@ def deserialize_json(data: dict) -> FindingDetail:
                 data["exploitObserved"]
             )
         )
-    if "referenceUrls" in data:
+    if data.get("referenceUrls") is not None:
         import capo_inspector2.types.vulnerability_reference_urls
 
         out["reference_urls"] = (
@@ -135,10 +143,10 @@ def deserialize_json(data: dict) -> FindingDetail:
                 data["referenceUrls"]
             )
         )
-    if "cwes" in data:
+    if data.get("cwes") is not None:
         import capo_inspector2.types.cwes
 
         out["cwes"] = capo_inspector2.types.cwes.deserialize_json(data["cwes"])
-    if "epssScore" in data:
-        out["epss_score"] = data["epssScore"]
+    if data.get("epssScore") is not None:
+        out["epss_score"] = float(data["epssScore"])
     return out

@@ -34,12 +34,12 @@ def serialize_aws_json_1_1(value: ListClusterJobsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListClusterJobsRequest:
     out: ListClusterJobsRequest = {}  # type: ignore[typeddict-item]
-    if "ClusterId" in data:
+    if data.get("ClusterId") is not None:
         out["cluster_id"] = data["ClusterId"]
     else:
         raise DeserializationError("ListClusterJobsRequest.cluster_id required")
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

@@ -32,9 +32,9 @@ def serialize_json(value: TraceUser) -> dict:
 
 def deserialize_json(data: dict) -> TraceUser:
     out: TraceUser = {}  # type: ignore[typeddict-item]
-    if "UserName" in data:
+    if data.get("UserName") is not None:
         out["user_name"] = data["UserName"]
-    if "ServiceIds" in data:
+    if data.get("ServiceIds") is not None:
         import capo_xray.types.service_ids
 
         out["service_ids"] = capo_xray.types.service_ids.deserialize_json(

@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> ActSummaries:
 
     out: ActSummaries = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_nova_act.types.act_summary.deserialize_json(item))
     return out

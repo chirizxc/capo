@@ -39,17 +39,17 @@ def serialize_aws_json_1_1(value: UpdateNamedQueryInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateNamedQueryInput:
     out: UpdateNamedQueryInput = {}  # type: ignore[typeddict-item]
-    if "NamedQueryId" in data:
+    if data.get("NamedQueryId") is not None:
         out["named_query_id"] = data["NamedQueryId"]
     else:
         raise DeserializationError("UpdateNamedQueryInput.named_query_id required")
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("UpdateNamedQueryInput.name required")
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "QueryString" in data:
+    if data.get("QueryString") is not None:
         out["query_string"] = data["QueryString"]
     else:
         raise DeserializationError("UpdateNamedQueryInput.query_string required")

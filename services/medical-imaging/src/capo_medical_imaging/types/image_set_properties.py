@@ -92,15 +92,15 @@ def serialize_json(value: ImageSetProperties) -> dict:
 
 def deserialize_json(data: dict) -> ImageSetProperties:
     out: ImageSetProperties = {}  # type: ignore[typeddict-item]
-    if "imageSetId" in data:
+    if data.get("imageSetId") is not None:
         out["image_set_id"] = data["imageSetId"]
     else:
         raise DeserializationError("ImageSetProperties.image_set_id required")
-    if "versionId" in data:
+    if data.get("versionId") is not None:
         out["version_id"] = data["versionId"]
     else:
         raise DeserializationError("ImageSetProperties.version_id required")
-    if "imageSetState" in data:
+    if data.get("imageSetState") is not None:
         import capo_medical_imaging.types.image_set_state
 
         out["image_set_state"] = (
@@ -110,7 +110,7 @@ def deserialize_json(data: dict) -> ImageSetProperties:
         )
     else:
         raise DeserializationError("ImageSetProperties.image_set_state required")
-    if "ImageSetWorkflowStatus" in data:
+    if data.get("ImageSetWorkflowStatus") is not None:
         import capo_medical_imaging.types.image_set_workflow_status
 
         out["image_set_workflow_status"] = (
@@ -118,32 +118,32 @@ def deserialize_json(data: dict) -> ImageSetProperties:
                 data["ImageSetWorkflowStatus"]
             )
         )
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_medical_imaging.types.date
 
         out["created_at"] = capo_medical_imaging.types.date.deserialize_json(
             data["createdAt"]
         )
-    if "updatedAt" in data:
+    if data.get("updatedAt") is not None:
         import capo_medical_imaging.types.date
 
         out["updated_at"] = capo_medical_imaging.types.date.deserialize_json(
             data["updatedAt"]
         )
-    if "deletedAt" in data:
+    if data.get("deletedAt") is not None:
         import capo_medical_imaging.types.date
 
         out["deleted_at"] = capo_medical_imaging.types.date.deserialize_json(
             data["deletedAt"]
         )
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
-    if "overrides" in data:
+    if data.get("overrides") is not None:
         import capo_medical_imaging.types.overrides
 
         out["overrides"] = capo_medical_imaging.types.overrides.deserialize_json(
             data["overrides"]
         )
-    if "isPrimary" in data:
+    if data.get("isPrimary") is not None:
         out["is_primary"] = data["isPrimary"]
     return out

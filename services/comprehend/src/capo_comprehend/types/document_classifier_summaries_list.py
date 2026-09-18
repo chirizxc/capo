@@ -29,6 +29,8 @@ def deserialize_aws_json_1_1(data: list) -> DocumentClassifierSummariesList:
 
     out: DocumentClassifierSummariesList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_comprehend.types.document_classifier_summary.deserialize_aws_json_1_1(
                 item

@@ -32,7 +32,7 @@ def serialize_aws_json_1_1(value: TargetAction) -> dict:
 
 
 def deserialize_aws_json_1_1(data: dict) -> TargetAction:
-    if "createSnapshot" in data:
+    if data.get("createSnapshot") is not None:
         import capo_redshift_serverless.types.create_snapshot_schedule_action_parameters
 
         return {

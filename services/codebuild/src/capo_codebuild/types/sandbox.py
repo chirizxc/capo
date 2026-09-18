@@ -170,41 +170,41 @@ def serialize_aws_json_1_1(value: Sandbox) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Sandbox:
     out: Sandbox = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "projectName" in data:
+    if data.get("projectName") is not None:
         out["project_name"] = data["projectName"]
-    if "requestTime" in data:
+    if data.get("requestTime") is not None:
         import capo_codebuild.types.timestamp
 
         out["request_time"] = capo_codebuild.types.timestamp.deserialize_aws_json_1_1(
             data["requestTime"]
         )
-    if "startTime" in data:
+    if data.get("startTime") is not None:
         import capo_codebuild.types.timestamp
 
         out["start_time"] = capo_codebuild.types.timestamp.deserialize_aws_json_1_1(
             data["startTime"]
         )
-    if "endTime" in data:
+    if data.get("endTime") is not None:
         import capo_codebuild.types.timestamp
 
         out["end_time"] = capo_codebuild.types.timestamp.deserialize_aws_json_1_1(
             data["endTime"]
         )
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
-    if "source" in data:
+    if data.get("source") is not None:
         import capo_codebuild.types.project_source
 
         out["source"] = capo_codebuild.types.project_source.deserialize_aws_json_1_1(
             data["source"]
         )
-    if "sourceVersion" in data:
+    if data.get("sourceVersion") is not None:
         out["source_version"] = data["sourceVersion"]
-    if "secondarySources" in data:
+    if data.get("secondarySources") is not None:
         import capo_codebuild.types.project_sources
 
         out["secondary_sources"] = (
@@ -212,7 +212,7 @@ def deserialize_aws_json_1_1(data: dict) -> Sandbox:
                 data["secondarySources"]
             )
         )
-    if "secondarySourceVersions" in data:
+    if data.get("secondarySourceVersions") is not None:
         import capo_codebuild.types.project_secondary_source_versions
 
         out["secondary_source_versions"] = (
@@ -220,7 +220,7 @@ def deserialize_aws_json_1_1(data: dict) -> Sandbox:
                 data["secondarySourceVersions"]
             )
         )
-    if "environment" in data:
+    if data.get("environment") is not None:
         import capo_codebuild.types.project_environment
 
         out["environment"] = (
@@ -228,7 +228,7 @@ def deserialize_aws_json_1_1(data: dict) -> Sandbox:
                 data["environment"]
             )
         )
-    if "fileSystemLocations" in data:
+    if data.get("fileSystemLocations") is not None:
         import capo_codebuild.types.project_file_system_locations
 
         out["file_system_locations"] = (
@@ -236,27 +236,27 @@ def deserialize_aws_json_1_1(data: dict) -> Sandbox:
                 data["fileSystemLocations"]
             )
         )
-    if "timeoutInMinutes" in data:
+    if data.get("timeoutInMinutes") is not None:
         out["timeout_in_minutes"] = data["timeoutInMinutes"]
-    if "queuedTimeoutInMinutes" in data:
+    if data.get("queuedTimeoutInMinutes") is not None:
         out["queued_timeout_in_minutes"] = data["queuedTimeoutInMinutes"]
-    if "vpcConfig" in data:
+    if data.get("vpcConfig") is not None:
         import capo_codebuild.types.vpc_config
 
         out["vpc_config"] = capo_codebuild.types.vpc_config.deserialize_aws_json_1_1(
             data["vpcConfig"]
         )
-    if "logConfig" in data:
+    if data.get("logConfig") is not None:
         import capo_codebuild.types.logs_config
 
         out["log_config"] = capo_codebuild.types.logs_config.deserialize_aws_json_1_1(
             data["logConfig"]
         )
-    if "encryptionKey" in data:
+    if data.get("encryptionKey") is not None:
         out["encryption_key"] = data["encryptionKey"]
-    if "serviceRole" in data:
+    if data.get("serviceRole") is not None:
         out["service_role"] = data["serviceRole"]
-    if "currentSession" in data:
+    if data.get("currentSession") is not None:
         import capo_codebuild.types.sandbox_session
 
         out["current_session"] = (

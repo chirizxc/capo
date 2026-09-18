@@ -60,11 +60,11 @@ def serialize_aws_json_1_1(value: InstanceGroupMetadata) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> InstanceGroupMetadata:
     out: InstanceGroupMetadata = {}  # type: ignore[typeddict-item]
-    if "FailureMessage" in data:
+    if data.get("FailureMessage") is not None:
         out["failure_message"] = data["FailureMessage"]
-    if "AvailabilityZoneId" in data:
+    if data.get("AvailabilityZoneId") is not None:
         out["availability_zone_id"] = data["AvailabilityZoneId"]
-    if "CapacityReservation" in data:
+    if data.get("CapacityReservation") is not None:
         import capo_sagemaker.types.capacity_reservation
 
         out["capacity_reservation"] = (
@@ -72,9 +72,9 @@ def deserialize_aws_json_1_1(data: dict) -> InstanceGroupMetadata:
                 data["CapacityReservation"]
             )
         )
-    if "SubnetId" in data:
+    if data.get("SubnetId") is not None:
         out["subnet_id"] = data["SubnetId"]
-    if "SecurityGroupIds" in data:
+    if data.get("SecurityGroupIds") is not None:
         import capo_sagemaker.types.security_group_ids
 
         out["security_group_ids"] = (
@@ -82,6 +82,6 @@ def deserialize_aws_json_1_1(data: dict) -> InstanceGroupMetadata:
                 data["SecurityGroupIds"]
             )
         )
-    if "AmiOverride" in data:
+    if data.get("AmiOverride") is not None:
         out["ami_override"] = data["AmiOverride"]
     return out

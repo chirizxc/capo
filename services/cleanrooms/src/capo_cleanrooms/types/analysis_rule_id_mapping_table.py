@@ -52,7 +52,7 @@ def serialize_json(value: AnalysisRuleIdMappingTable) -> dict:
 
 def deserialize_json(data: dict) -> AnalysisRuleIdMappingTable:
     out: AnalysisRuleIdMappingTable = {}  # type: ignore[typeddict-item]
-    if "joinColumns" in data:
+    if data.get("joinColumns") is not None:
         import capo_cleanrooms.types.analysis_rule_column_list
 
         out["join_columns"] = (
@@ -62,7 +62,7 @@ def deserialize_json(data: dict) -> AnalysisRuleIdMappingTable:
         )
     else:
         raise DeserializationError("AnalysisRuleIdMappingTable.join_columns required")
-    if "queryConstraints" in data:
+    if data.get("queryConstraints") is not None:
         import capo_cleanrooms.types.query_constraint_list
 
         out["query_constraints"] = (
@@ -74,7 +74,7 @@ def deserialize_json(data: dict) -> AnalysisRuleIdMappingTable:
         raise DeserializationError(
             "AnalysisRuleIdMappingTable.query_constraints required"
         )
-    if "dimensionColumns" in data:
+    if data.get("dimensionColumns") is not None:
         import capo_cleanrooms.types.analysis_rule_column_list
 
         out["dimension_columns"] = (

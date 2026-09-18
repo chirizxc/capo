@@ -66,13 +66,13 @@ def serialize_json(value: HttpRouteMatch) -> dict:
 
 def deserialize_json(data: dict) -> HttpRouteMatch:
     out: HttpRouteMatch = {}  # type: ignore[typeddict-item]
-    if "prefix" in data:
+    if data.get("prefix") is not None:
         out["prefix"] = data["prefix"]
-    if "path" in data:
+    if data.get("path") is not None:
         import capo_app_mesh.types.http_path_match
 
         out["path"] = capo_app_mesh.types.http_path_match.deserialize_json(data["path"])
-    if "queryParameters" in data:
+    if data.get("queryParameters") is not None:
         import capo_app_mesh.types.http_query_parameters
 
         out["query_parameters"] = (
@@ -80,16 +80,16 @@ def deserialize_json(data: dict) -> HttpRouteMatch:
                 data["queryParameters"]
             )
         )
-    if "method" in data:
+    if data.get("method") is not None:
         out["method"] = data["method"]
-    if "scheme" in data:
+    if data.get("scheme") is not None:
         out["scheme"] = data["scheme"]
-    if "headers" in data:
+    if data.get("headers") is not None:
         import capo_app_mesh.types.http_route_headers
 
         out["headers"] = capo_app_mesh.types.http_route_headers.deserialize_json(
             data["headers"]
         )
-    if "port" in data:
+    if data.get("port") is not None:
         out["port"] = data["port"]
     return out

@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: DeleteACLRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteACLRequest:
     out: DeleteACLRequest = {}  # type: ignore[typeddict-item]
-    if "ACLName" in data:
+    if data.get("ACLName") is not None:
         out["acl_name"] = data["ACLName"]
     else:
         raise DeserializationError("DeleteACLRequest.acl_name required")

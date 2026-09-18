@@ -13,9 +13,9 @@ from capo_redshift import AsyncRedshiftClient
 
 
 async def main():
-    async with AsyncRedshiftClient() as s3:
+    async with AsyncRedshiftClient() as redshift:
         # Example: call the accept_reserved_node_exchange operation
-        response = await s3.accept_reserved_node_exchange()
+        response = await redshift.accept_reserved_node_exchange()
         print(response["exchanged_reserved_node"])
 ```
 
@@ -28,9 +28,9 @@ from capo_redshift import AsyncRedshiftClient
 
 
 async def main():
-    async with AsyncRedshiftClient() as s3:
+    async with AsyncRedshiftClient() as redshift:
         # Example: paginate over describe_cluster_db_revisions
-        async for item in s3.iter_describe_cluster_db_revisions():
+        async for item in redshift.iter_describe_cluster_db_revisions():
             print(item)
 ```
 
@@ -44,9 +44,9 @@ from capo_redshift.error import DependentServiceUnavailableFault
 
 
 async def main():
-    async with AsyncRedshiftClient() as s3:
+    async with AsyncRedshiftClient() as redshift:
         try:
-            await s3.accept_reserved_node_exchange()
+            await redshift.accept_reserved_node_exchange()
         except DependentServiceUnavailableFault as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -63,13 +63,13 @@ from capo_redshift import AsyncRedshiftClient
 
 
 async def main():
-    async with AsyncRedshiftClient() as s3:
+    async with AsyncRedshiftClient() as redshift:
         # Default: 3 attempts for every operation
-        response = await s3.accept_reserved_node_exchange()
+        response = await redshift.accept_reserved_node_exchange()
 
         # Override per operation
-        response = await s3.accept_reserved_node_exchange(config_overrides={"retry_max_attempts": 5})
+        response = await redshift.accept_reserved_node_exchange(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.accept_reserved_node_exchange(config_overrides={"retry_max_attempts": 1})
+        response = await redshift.accept_reserved_node_exchange(config_overrides={"retry_max_attempts": 1})
 ```

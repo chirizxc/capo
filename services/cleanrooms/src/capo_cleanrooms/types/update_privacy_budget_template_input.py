@@ -49,7 +49,7 @@ def serialize_json(value: UpdatePrivacyBudgetTemplateInput) -> dict:
 
 def deserialize_json(data: dict) -> UpdatePrivacyBudgetTemplateInput:
     out: UpdatePrivacyBudgetTemplateInput = {}  # type: ignore[typeddict-item]
-    if "privacyBudgetType" in data:
+    if data.get("privacyBudgetType") is not None:
         import capo_cleanrooms.types.privacy_budget_type
 
         out["privacy_budget_type"] = (
@@ -61,7 +61,7 @@ def deserialize_json(data: dict) -> UpdatePrivacyBudgetTemplateInput:
         raise DeserializationError(
             "UpdatePrivacyBudgetTemplateInput.privacy_budget_type required"
         )
-    if "parameters" in data:
+    if data.get("parameters") is not None:
         import capo_cleanrooms.types.privacy_budget_template_update_parameters
 
         out["parameters"] = (

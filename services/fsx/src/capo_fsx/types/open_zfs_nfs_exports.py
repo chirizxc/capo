@@ -25,5 +25,7 @@ def deserialize_aws_json_1_1(data: list) -> OpenZFSNfsExports:
 
     out: OpenZFSNfsExports = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_fsx.types.open_zfs_nfs_export.deserialize_aws_json_1_1(item))
     return out

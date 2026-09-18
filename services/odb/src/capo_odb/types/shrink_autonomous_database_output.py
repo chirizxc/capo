@@ -44,15 +44,15 @@ def serialize_aws_json_1_0(value: ShrinkAutonomousDatabaseOutput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ShrinkAutonomousDatabaseOutput:
     out: ShrinkAutonomousDatabaseOutput = {}  # type: ignore[typeddict-item]
-    if "autonomousDatabaseId" in data:
+    if data.get("autonomousDatabaseId") is not None:
         out["autonomous_database_id"] = data["autonomousDatabaseId"]
     else:
         raise DeserializationError(
             "ShrinkAutonomousDatabaseOutput.autonomous_database_id required"
         )
-    if "displayName" in data:
+    if data.get("displayName") is not None:
         out["display_name"] = data["displayName"]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_odb.types.autonomous_database_resource_status
 
         out["status"] = (
@@ -60,6 +60,6 @@ def deserialize_aws_json_1_0(data: dict) -> ShrinkAutonomousDatabaseOutput:
                 data["status"]
             )
         )
-    if "statusReason" in data:
+    if data.get("statusReason") is not None:
         out["status_reason"] = data["statusReason"]
     return out

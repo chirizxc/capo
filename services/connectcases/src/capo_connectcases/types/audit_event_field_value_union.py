@@ -44,7 +44,17 @@ def serialize_json(value: AuditEventFieldValueUnion) -> dict:
     if "stringValue" in value:
         return {"stringValue": value["stringValue"]}
     elif "doubleValue" in value:
-        return {"doubleValue": value["doubleValue"]}
+        return {
+            "doubleValue": (
+                "NaN"
+                if value["doubleValue"] != value["doubleValue"]
+                else "Infinity"
+                if value["doubleValue"] == float("inf")
+                else "-Infinity"
+                if value["doubleValue"] == float("-inf")
+                else value["doubleValue"]
+            )
+        }
     elif "booleanValue" in value:
         return {"booleanValue": value["booleanValue"]}
     elif "emptyValue" in value:
@@ -62,13 +72,13 @@ def serialize_json(value: AuditEventFieldValueUnion) -> dict:
 
 
 def deserialize_json(data: dict) -> AuditEventFieldValueUnion:
-    if "stringValue" in data:
+    if data.get("stringValue") is not None:
         return {"stringValue": data["stringValue"]}
-    elif "doubleValue" in data:
-        return {"doubleValue": data["doubleValue"]}
-    elif "booleanValue" in data:
+    elif data.get("doubleValue") is not None:
+        return {"doubleValue": float(data["doubleValue"])}
+    elif data.get("booleanValue") is not None:
         return {"booleanValue": data["booleanValue"]}
-    elif "emptyValue" in data:
+    elif data.get("emptyValue") is not None:
         import capo_connectcases.types.empty_field_value
 
         return {
@@ -76,7 +86,7 @@ def deserialize_json(data: dict) -> AuditEventFieldValueUnion:
                 data["emptyValue"]
             )
         }
-    elif "userArnValue" in data:
+    elif data.get("userArnValue") is not None:
         return {"userArnValue": data["userArnValue"]}
     else:
         raise DeserializationError(

@@ -60,17 +60,22 @@ class CustomVerificationEmailTemplateAlreadyExistsException(ServiceError):
 
     code: str | None = "CustomVerificationEmailTemplateAlreadyExistsException"
 
-    def __init__(self, data: CustomVerificationEmailTemplateAlreadyExistsException_):
+    def __init__(
+        self,
+        data: CustomVerificationEmailTemplateAlreadyExistsException_,
+        message: str | None = None,
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="CustomVerificationEmailTemplateAlreadyExistsException",
+            message=message,
         )
         self.data = data
 
     @classmethod
     def from_query(
-        cls, el: Element
+        cls, el: Element, message: str | None = None
     ) -> "CustomVerificationEmailTemplateAlreadyExistsException":
-        return cls(deserialize_query(el))
+        return cls(deserialize_query(el), message)

@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: DeleteDataProviderResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteDataProviderResponse:
     out: DeleteDataProviderResponse = {}  # type: ignore[typeddict-item]
-    if "DataProvider" in data:
+    if data.get("DataProvider") is not None:
         import capo_database_migration_service.types.data_provider
 
         out["data_provider"] = (

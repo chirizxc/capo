@@ -26,7 +26,7 @@ def serialize_json(value: ModelInferenceDataSource) -> dict:
 
 def deserialize_json(data: dict) -> ModelInferenceDataSource:
     out: ModelInferenceDataSource = {}  # type: ignore[typeddict-item]
-    if "mlInputChannelArn" in data:
+    if data.get("mlInputChannelArn") is not None:
         out["ml_input_channel_arn"] = data["mlInputChannelArn"]
     else:
         raise DeserializationError(

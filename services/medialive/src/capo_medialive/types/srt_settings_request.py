@@ -42,7 +42,7 @@ def serialize_json(value: SrtSettingsRequest) -> dict:
 
 def deserialize_json(data: dict) -> SrtSettingsRequest:
     out: SrtSettingsRequest = {}  # type: ignore[typeddict-item]
-    if "srtCallerSources" in data:
+    if data.get("srtCallerSources") is not None:
         import capo_medialive.types.__list_of_srt_caller_source_request
 
         out["srt_caller_sources"] = (
@@ -50,7 +50,7 @@ def deserialize_json(data: dict) -> SrtSettingsRequest:
                 data["srtCallerSources"]
             )
         )
-    if "srtListenerSettings" in data:
+    if data.get("srtListenerSettings") is not None:
         import capo_medialive.types.srt_listener_settings_request
 
         out["srt_listener_settings"] = (

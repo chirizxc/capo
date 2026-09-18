@@ -34,13 +34,13 @@ def serialize_json(value: EventsBatch) -> dict:
 
 def deserialize_json(data: dict) -> EventsBatch:
     out: EventsBatch = {}  # type: ignore[typeddict-item]
-    if "Endpoint" in data:
+    if data.get("Endpoint") is not None:
         import capo_pinpoint.types.public_endpoint
 
         out["endpoint"] = capo_pinpoint.types.public_endpoint.deserialize_json(
             data["Endpoint"]
         )
-    if "Events" in data:
+    if data.get("Events") is not None:
         import capo_pinpoint.types.map_of_event
 
         out["events"] = capo_pinpoint.types.map_of_event.deserialize_json(

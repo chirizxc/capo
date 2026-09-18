@@ -32,7 +32,7 @@ def serialize_json(value: VideoExtractionConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> VideoExtractionConfiguration:
     out: VideoExtractionConfiguration = {}  # type: ignore[typeddict-item]
-    if "videoExtractionStatus" in data:
+    if data.get("videoExtractionStatus") is not None:
         import capo_qbusiness.types.video_extraction_status
 
         out["video_extraction_status"] = (

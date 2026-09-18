@@ -29,6 +29,8 @@ def deserialize_aws_json_1_1(data: list) -> AppBlockBuilderAttributes:
 
     out: AppBlockBuilderAttributes = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_appstream.types.app_block_builder_attribute.deserialize_aws_json_1_1(
                 item

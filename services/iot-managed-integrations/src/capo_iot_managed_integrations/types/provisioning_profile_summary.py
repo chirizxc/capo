@@ -65,13 +65,13 @@ def serialize_json(value: ProvisioningProfileSummary) -> dict:
 
 def deserialize_json(data: dict) -> ProvisioningProfileSummary:
     out: ProvisioningProfileSummary = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "ProvisioningType" in data:
+    if data.get("ProvisioningType") is not None:
         import capo_iot_managed_integrations.types.provisioning_type
 
         out["provisioning_type"] = (
@@ -79,7 +79,7 @@ def deserialize_json(data: dict) -> ProvisioningProfileSummary:
                 data["ProvisioningType"]
             )
         )
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_iot_managed_integrations.types.provisioning_profile_status
 
         out["status"] = (

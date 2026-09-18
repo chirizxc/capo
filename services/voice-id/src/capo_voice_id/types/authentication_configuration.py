@@ -24,7 +24,7 @@ def serialize_aws_json_1_0(value: AuthenticationConfiguration) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> AuthenticationConfiguration:
     out: AuthenticationConfiguration = {}  # type: ignore[typeddict-item]
-    if "AcceptanceThreshold" in data:
+    if data.get("AcceptanceThreshold") is not None:
         out["acceptance_threshold"] = data["AcceptanceThreshold"]
     else:
         raise DeserializationError(

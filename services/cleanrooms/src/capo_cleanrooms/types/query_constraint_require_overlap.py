@@ -29,7 +29,7 @@ def serialize_json(value: QueryConstraintRequireOverlap) -> dict:
 
 def deserialize_json(data: dict) -> QueryConstraintRequireOverlap:
     out: QueryConstraintRequireOverlap = {}  # type: ignore[typeddict-item]
-    if "columns" in data:
+    if data.get("columns") is not None:
         import capo_cleanrooms.types.analysis_rule_column_list
 
         out["columns"] = (

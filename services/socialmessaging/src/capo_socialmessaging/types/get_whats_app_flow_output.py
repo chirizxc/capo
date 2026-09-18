@@ -131,19 +131,19 @@ def serialize_json(value: GetWhatsAppFlowOutput) -> dict:
 
 def deserialize_json(data: dict) -> GetWhatsAppFlowOutput:
     out: GetWhatsAppFlowOutput = {}  # type: ignore[typeddict-item]
-    if "flowId" in data:
+    if data.get("flowId") is not None:
         out["flow_id"] = data["flowId"]
     else:
         raise DeserializationError("GetWhatsAppFlowOutput.flow_id required")
-    if "flowName" in data:
+    if data.get("flowName") is not None:
         out["flow_name"] = data["flowName"]
     else:
         raise DeserializationError("GetWhatsAppFlowOutput.flow_name required")
-    if "flowStatus" in data:
+    if data.get("flowStatus") is not None:
         out["flow_status"] = data["flowStatus"]
     else:
         raise DeserializationError("GetWhatsAppFlowOutput.flow_status required")
-    if "categories" in data:
+    if data.get("categories") is not None:
         import capo_socialmessaging.types.meta_flow_category_list
 
         out["categories"] = (
@@ -151,7 +151,7 @@ def deserialize_json(data: dict) -> GetWhatsAppFlowOutput:
                 data["categories"]
             )
         )
-    if "validationErrors" in data:
+    if data.get("validationErrors") is not None:
         import capo_socialmessaging.types.validation_error_list
 
         out["validation_errors"] = (
@@ -159,13 +159,13 @@ def deserialize_json(data: dict) -> GetWhatsAppFlowOutput:
                 data["validationErrors"]
             )
         )
-    if "jsonVersion" in data:
+    if data.get("jsonVersion") is not None:
         out["json_version"] = data["jsonVersion"]
-    if "dataApiVersion" in data:
+    if data.get("dataApiVersion") is not None:
         out["data_api_version"] = data["dataApiVersion"]
-    if "endpointUri" in data:
+    if data.get("endpointUri") is not None:
         out["endpoint_uri"] = data["endpointUri"]
-    if "preview" in data:
+    if data.get("preview") is not None:
         import capo_socialmessaging.types.meta_flow_preview_info
 
         out["preview"] = (
@@ -173,7 +173,7 @@ def deserialize_json(data: dict) -> GetWhatsAppFlowOutput:
                 data["preview"]
             )
         )
-    if "whatsAppBusinessAccount" in data:
+    if data.get("whatsAppBusinessAccount") is not None:
         import capo_socialmessaging.types.meta_flow_whats_app_business_account_info
 
         out["whats_app_business_account"] = (
@@ -181,7 +181,7 @@ def deserialize_json(data: dict) -> GetWhatsAppFlowOutput:
                 data["whatsAppBusinessAccount"]
             )
         )
-    if "application" in data:
+    if data.get("application") is not None:
         import capo_socialmessaging.types.meta_flow_application_info
 
         out["application"] = (
@@ -189,7 +189,7 @@ def deserialize_json(data: dict) -> GetWhatsAppFlowOutput:
                 data["application"]
             )
         )
-    if "healthStatus" in data:
+    if data.get("healthStatus") is not None:
         import capo_socialmessaging.types.meta_flow_health_status
 
         out["health_status"] = (

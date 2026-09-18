@@ -63,19 +63,19 @@ def serialize_json(value: ProtectedQuerySummary) -> dict:
 
 def deserialize_json(data: dict) -> ProtectedQuerySummary:
     out: ProtectedQuerySummary = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("ProtectedQuerySummary.id required")
-    if "membershipId" in data:
+    if data.get("membershipId") is not None:
         out["membership_id"] = data["membershipId"]
     else:
         raise DeserializationError("ProtectedQuerySummary.membership_id required")
-    if "membershipArn" in data:
+    if data.get("membershipArn") is not None:
         out["membership_arn"] = data["membershipArn"]
     else:
         raise DeserializationError("ProtectedQuerySummary.membership_arn required")
-    if "createTime" in data:
+    if data.get("createTime") is not None:
         import capo_cleanrooms.types._prelude.timestamp
 
         out["create_time"] = capo_cleanrooms.types._prelude.timestamp.deserialize_json(
@@ -83,11 +83,11 @@ def deserialize_json(data: dict) -> ProtectedQuerySummary:
         )
     else:
         raise DeserializationError("ProtectedQuerySummary.create_time required")
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
     else:
         raise DeserializationError("ProtectedQuerySummary.status required")
-    if "receiverConfigurations" in data:
+    if data.get("receiverConfigurations") is not None:
         import capo_cleanrooms.types.receiver_configurations_list
 
         out["receiver_configurations"] = (
@@ -97,6 +97,6 @@ def deserialize_json(data: dict) -> ProtectedQuerySummary:
         )
     else:
         out["receiver_configurations"] = []
-    if "queryComputePayerAccountId" in data:
+    if data.get("queryComputePayerAccountId") is not None:
         out["query_compute_payer_account_id"] = data["queryComputePayerAccountId"]
     return out

@@ -43,17 +43,17 @@ def serialize_aws_json_1_1(value: HadoopStepConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> HadoopStepConfig:
     out: HadoopStepConfig = {}  # type: ignore[typeddict-item]
-    if "Jar" in data:
+    if data.get("Jar") is not None:
         out["jar"] = data["Jar"]
-    if "Properties" in data:
+    if data.get("Properties") is not None:
         import capo_emr.types.string_map
 
         out["properties"] = capo_emr.types.string_map.deserialize_aws_json_1_1(
             data["Properties"]
         )
-    if "MainClass" in data:
+    if data.get("MainClass") is not None:
         out["main_class"] = data["MainClass"]
-    if "Args" in data:
+    if data.get("Args") is not None:
         import capo_emr.types.string_list
 
         out["args"] = capo_emr.types.string_list.deserialize_aws_json_1_1(data["Args"])

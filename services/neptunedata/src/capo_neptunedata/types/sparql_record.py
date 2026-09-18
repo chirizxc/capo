@@ -44,11 +44,11 @@ def serialize_json(value: SparqlRecord) -> dict:
 
 def deserialize_json(data: dict) -> SparqlRecord:
     out: SparqlRecord = {}  # type: ignore[typeddict-item]
-    if "commitTimestamp" in data:
+    if data.get("commitTimestamp") is not None:
         out["commit_timestamp_in_millis"] = data["commitTimestamp"]
     else:
         raise DeserializationError("SparqlRecord.commit_timestamp_in_millis required")
-    if "eventId" in data:
+    if data.get("eventId") is not None:
         import capo_neptunedata.types.string_valued_map
 
         out["event_id"] = capo_neptunedata.types.string_valued_map.deserialize_json(
@@ -56,16 +56,16 @@ def deserialize_json(data: dict) -> SparqlRecord:
         )
     else:
         raise DeserializationError("SparqlRecord.event_id required")
-    if "data" in data:
+    if data.get("data") is not None:
         import capo_neptunedata.types.sparql_data
 
         out["data"] = capo_neptunedata.types.sparql_data.deserialize_json(data["data"])
     else:
         raise DeserializationError("SparqlRecord.data required")
-    if "op" in data:
+    if data.get("op") is not None:
         out["op"] = data["op"]
     else:
         raise DeserializationError("SparqlRecord.op required")
-    if "isLastOp" in data:
+    if data.get("isLastOp") is not None:
         out["is_last_op"] = data["isLastOp"]
     return out

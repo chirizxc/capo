@@ -29,6 +29,8 @@ def deserialize_aws_json_1_0(data: list) -> ObservabilityConfigurationSummaryLis
 
     out: ObservabilityConfigurationSummaryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_apprunner.types.observability_configuration_summary.deserialize_aws_json_1_0(
                 item

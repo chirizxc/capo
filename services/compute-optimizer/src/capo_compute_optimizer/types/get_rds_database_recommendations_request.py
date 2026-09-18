@@ -77,7 +77,7 @@ def serialize_aws_json_1_0(value: GetRDSDatabaseRecommendationsRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> GetRDSDatabaseRecommendationsRequest:
     out: GetRDSDatabaseRecommendationsRequest = {}  # type: ignore[typeddict-item]
-    if "resourceArns" in data:
+    if data.get("resourceArns") is not None:
         import capo_compute_optimizer.types.resource_arns
 
         out["resource_arns"] = (
@@ -85,11 +85,11 @@ def deserialize_aws_json_1_0(data: dict) -> GetRDSDatabaseRecommendationsRequest
                 data["resourceArns"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
-    if "filters" in data:
+    if data.get("filters") is not None:
         import capo_compute_optimizer.types.rdsdb_recommendation_filters
 
         out["filters"] = (
@@ -97,7 +97,7 @@ def deserialize_aws_json_1_0(data: dict) -> GetRDSDatabaseRecommendationsRequest
                 data["filters"]
             )
         )
-    if "accountIds" in data:
+    if data.get("accountIds") is not None:
         import capo_compute_optimizer.types.account_ids
 
         out["account_ids"] = (
@@ -105,7 +105,7 @@ def deserialize_aws_json_1_0(data: dict) -> GetRDSDatabaseRecommendationsRequest
                 data["accountIds"]
             )
         )
-    if "recommendationPreferences" in data:
+    if data.get("recommendationPreferences") is not None:
         import capo_compute_optimizer.types.recommendation_preferences
 
         out["recommendation_preferences"] = (

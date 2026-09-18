@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> BatchPutMetricsErrorList:
 
     out: BatchPutMetricsErrorList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_sagemaker_metrics.types.batch_put_metrics_error.deserialize_json(item)
         )

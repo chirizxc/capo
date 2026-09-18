@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> DimensionEntryList:
 
     out: DimensionEntryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_sustainability.types.dimension_entry.deserialize_json(item))
     return out

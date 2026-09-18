@@ -31,8 +31,8 @@ def deserialize_json(
     data: dict,
 ) -> AwsEc2ClientVpnEndpointClientConnectOptionsStatusDetails:
     out: AwsEc2ClientVpnEndpointClientConnectOptionsStatusDetails = {}  # type: ignore[typeddict-item]
-    if "Code" in data:
+    if data.get("Code") is not None:
         out["code"] = data["Code"]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     return out

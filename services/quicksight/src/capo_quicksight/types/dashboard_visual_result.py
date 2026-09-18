@@ -62,20 +62,20 @@ def serialize_json(value: DashboardVisualResult) -> dict:
 
 def deserialize_json(data: dict) -> DashboardVisualResult:
     out: DashboardVisualResult = {}  # type: ignore[typeddict-item]
-    if "DashboardId" in data:
+    if data.get("DashboardId") is not None:
         out["dashboard_id"] = data["DashboardId"]
-    if "DashboardName" in data:
+    if data.get("DashboardName") is not None:
         out["dashboard_name"] = data["DashboardName"]
-    if "SheetId" in data:
+    if data.get("SheetId") is not None:
         out["sheet_id"] = data["SheetId"]
-    if "SheetName" in data:
+    if data.get("SheetName") is not None:
         out["sheet_name"] = data["SheetName"]
-    if "VisualId" in data:
+    if data.get("VisualId") is not None:
         out["visual_id"] = data["VisualId"]
-    if "VisualTitle" in data:
+    if data.get("VisualTitle") is not None:
         out["visual_title"] = data["VisualTitle"]
-    if "VisualSubtitle" in data:
+    if data.get("VisualSubtitle") is not None:
         out["visual_subtitle"] = data["VisualSubtitle"]
-    if "DashboardUrl" in data:
+    if data.get("DashboardUrl") is not None:
         out["dashboard_url"] = data["DashboardUrl"]
     return out

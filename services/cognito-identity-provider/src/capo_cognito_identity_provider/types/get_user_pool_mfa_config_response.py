@@ -83,7 +83,7 @@ def serialize_aws_json_1_1(value: GetUserPoolMfaConfigResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetUserPoolMfaConfigResponse:
     out: GetUserPoolMfaConfigResponse = {}  # type: ignore[typeddict-item]
-    if "SmsMfaConfiguration" in data:
+    if data.get("SmsMfaConfiguration") is not None:
         import capo_cognito_identity_provider.types.sms_mfa_config_type
 
         out["sms_mfa_configuration"] = (
@@ -91,7 +91,7 @@ def deserialize_aws_json_1_1(data: dict) -> GetUserPoolMfaConfigResponse:
                 data["SmsMfaConfiguration"]
             )
         )
-    if "SoftwareTokenMfaConfiguration" in data:
+    if data.get("SoftwareTokenMfaConfiguration") is not None:
         import capo_cognito_identity_provider.types.software_token_mfa_config_type
 
         out["software_token_mfa_configuration"] = (
@@ -99,7 +99,7 @@ def deserialize_aws_json_1_1(data: dict) -> GetUserPoolMfaConfigResponse:
                 data["SoftwareTokenMfaConfiguration"]
             )
         )
-    if "EmailMfaConfiguration" in data:
+    if data.get("EmailMfaConfiguration") is not None:
         import capo_cognito_identity_provider.types.email_mfa_config_type
 
         out["email_mfa_configuration"] = (
@@ -107,7 +107,7 @@ def deserialize_aws_json_1_1(data: dict) -> GetUserPoolMfaConfigResponse:
                 data["EmailMfaConfiguration"]
             )
         )
-    if "MfaConfiguration" in data:
+    if data.get("MfaConfiguration") is not None:
         import capo_cognito_identity_provider.types.user_pool_mfa_type
 
         out["mfa_configuration"] = (
@@ -115,7 +115,7 @@ def deserialize_aws_json_1_1(data: dict) -> GetUserPoolMfaConfigResponse:
                 data["MfaConfiguration"]
             )
         )
-    if "WebAuthnConfiguration" in data:
+    if data.get("WebAuthnConfiguration") is not None:
         import capo_cognito_identity_provider.types.web_authn_configuration_type
 
         out["web_authn_configuration"] = (

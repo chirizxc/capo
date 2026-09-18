@@ -39,15 +39,20 @@ class ReservedCacheNodeAlreadyExistsFault(ServiceError):
 
     code: str | None = "ReservedCacheNodeAlreadyExistsFault"
 
-    def __init__(self, data: ReservedCacheNodeAlreadyExistsFault_):
+    def __init__(
+        self, data: ReservedCacheNodeAlreadyExistsFault_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="ReservedCacheNodeAlreadyExistsFault",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_query(cls, el: Element) -> "ReservedCacheNodeAlreadyExistsFault":
-        return cls(deserialize_query(el))
+    def from_query(
+        cls, el: Element, message: str | None = None
+    ) -> "ReservedCacheNodeAlreadyExistsFault":
+        return cls(deserialize_query(el), message)

@@ -34,12 +34,12 @@ def serialize_aws_json_1_1(value: ApproveAssignmentRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ApproveAssignmentRequest:
     out: ApproveAssignmentRequest = {}  # type: ignore[typeddict-item]
-    if "AssignmentId" in data:
+    if data.get("AssignmentId") is not None:
         out["assignment_id"] = data["AssignmentId"]
     else:
         raise DeserializationError("ApproveAssignmentRequest.assignment_id required")
-    if "RequesterFeedback" in data:
+    if data.get("RequesterFeedback") is not None:
         out["requester_feedback"] = data["RequesterFeedback"]
-    if "OverrideRejection" in data:
+    if data.get("OverrideRejection") is not None:
         out["override_rejection"] = data["OverrideRejection"]
     return out

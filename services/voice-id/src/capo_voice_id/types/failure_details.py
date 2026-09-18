@@ -28,8 +28,8 @@ def serialize_aws_json_1_0(value: FailureDetails) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> FailureDetails:
     out: FailureDetails = {}  # type: ignore[typeddict-item]
-    if "StatusCode" in data:
+    if data.get("StatusCode") is not None:
         out["status_code"] = data["StatusCode"]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     return out

@@ -37,19 +37,19 @@ def serialize_aws_json_1_0(value: ServiceLimitExceededException_) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ServiceLimitExceededException_:
     out: ServiceLimitExceededException_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     else:
         raise DeserializationError("ServiceLimitExceededException_.message required")
-    if "resourceId" in data:
+    if data.get("resourceId") is not None:
         out["resource_id"] = data["resourceId"]
-    if "resourceType" in data:
+    if data.get("resourceType") is not None:
         out["resource_type"] = data["resourceType"]
-    if "limitCode" in data:
+    if data.get("limitCode") is not None:
         out["limit_code"] = data["limitCode"]
     else:
         raise DeserializationError("ServiceLimitExceededException_.limit_code required")
-    if "serviceCode" in data:
+    if data.get("serviceCode") is not None:
         out["service_code"] = data["serviceCode"]
     else:
         raise DeserializationError(
@@ -63,15 +63,20 @@ class ServiceLimitExceededException(ServiceError):
 
     code: str | None = "ServiceLimitExceededException"
 
-    def __init__(self, data: ServiceLimitExceededException_):
+    def __init__(
+        self, data: ServiceLimitExceededException_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="ServiceLimitExceededException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_0(cls, data: dict) -> "ServiceLimitExceededException":
-        return cls(deserialize_aws_json_1_0(data))
+    def from_aws_json_1_0(
+        cls, data: dict, message: str | None = None
+    ) -> "ServiceLimitExceededException":
+        return cls(deserialize_aws_json_1_0(data), message)

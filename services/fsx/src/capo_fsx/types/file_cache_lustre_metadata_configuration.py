@@ -25,6 +25,6 @@ def serialize_aws_json_1_1(value: FileCacheLustreMetadataConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> FileCacheLustreMetadataConfiguration:
     out: FileCacheLustreMetadataConfiguration = {}  # type: ignore[typeddict-item]
-    if "StorageCapacity" in data:
+    if data.get("StorageCapacity") is not None:
         out["storage_capacity"] = data["StorageCapacity"]
     return out

@@ -32,15 +32,15 @@ def serialize_json(value: StartSessionResponse) -> dict:
 
 def deserialize_json(data: dict) -> StartSessionResponse:
     out: StartSessionResponse = {}  # type: ignore[typeddict-item]
-    if "applicationId" in data:
+    if data.get("applicationId") is not None:
         out["application_id"] = data["applicationId"]
     else:
         raise DeserializationError("StartSessionResponse.application_id required")
-    if "sessionId" in data:
+    if data.get("sessionId") is not None:
         out["session_id"] = data["sessionId"]
     else:
         raise DeserializationError("StartSessionResponse.session_id required")
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("StartSessionResponse.arn required")

@@ -76,15 +76,15 @@ def serialize_json(value: GetConfigurationResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetConfigurationResponse:
     out: GetConfigurationResponse = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "uuid" in data:
+    if data.get("uuid") is not None:
         out["uuid"] = data["uuid"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "runConfigurations" in data:
+    if data.get("runConfigurations") is not None:
         import capo_omics.types.run_configurations_response
 
         out["run_configurations"] = (
@@ -92,9 +92,9 @@ def deserialize_json(data: dict) -> GetConfigurationResponse:
                 data["runConfigurations"]
             )
         )
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
-    if "creationTime" in data:
+    if data.get("creationTime") is not None:
         import capo_omics.types.configuration_timestamp
 
         out["creation_time"] = (
@@ -102,7 +102,7 @@ def deserialize_json(data: dict) -> GetConfigurationResponse:
                 data["creationTime"]
             )
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_omics.types.tag_map
 
         out["tags"] = capo_omics.types.tag_map.deserialize_json(data["tags"])

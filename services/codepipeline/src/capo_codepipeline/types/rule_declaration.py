@@ -82,11 +82,11 @@ def serialize_aws_json_1_1(value: RuleDeclaration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RuleDeclaration:
     out: RuleDeclaration = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("RuleDeclaration.name required")
-    if "ruleTypeId" in data:
+    if data.get("ruleTypeId") is not None:
         import capo_codepipeline.types.rule_type_id
 
         out["rule_type_id"] = (
@@ -96,7 +96,7 @@ def deserialize_aws_json_1_1(data: dict) -> RuleDeclaration:
         )
     else:
         raise DeserializationError("RuleDeclaration.rule_type_id required")
-    if "configuration" in data:
+    if data.get("configuration") is not None:
         import capo_codepipeline.types.rule_configuration_map
 
         out["configuration"] = (
@@ -104,13 +104,13 @@ def deserialize_aws_json_1_1(data: dict) -> RuleDeclaration:
                 data["configuration"]
             )
         )
-    if "commands" in data:
+    if data.get("commands") is not None:
         import capo_codepipeline.types.command_list
 
         out["commands"] = capo_codepipeline.types.command_list.deserialize_aws_json_1_1(
             data["commands"]
         )
-    if "inputArtifacts" in data:
+    if data.get("inputArtifacts") is not None:
         import capo_codepipeline.types.input_artifact_list
 
         out["input_artifacts"] = (
@@ -118,10 +118,10 @@ def deserialize_aws_json_1_1(data: dict) -> RuleDeclaration:
                 data["inputArtifacts"]
             )
         )
-    if "roleArn" in data:
+    if data.get("roleArn") is not None:
         out["role_arn"] = data["roleArn"]
-    if "region" in data:
+    if data.get("region") is not None:
         out["region"] = data["region"]
-    if "timeoutInMinutes" in data:
+    if data.get("timeoutInMinutes") is not None:
         out["timeout_in_minutes"] = data["timeoutInMinutes"]
     return out

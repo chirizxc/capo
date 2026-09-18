@@ -85,25 +85,25 @@ def serialize_aws_json_1_1(value: CreateHITWithHITTypeRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateHITWithHITTypeRequest:
     out: CreateHITWithHITTypeRequest = {}  # type: ignore[typeddict-item]
-    if "HITTypeId" in data:
+    if data.get("HITTypeId") is not None:
         out["hit_type_id"] = data["HITTypeId"]
     else:
         raise DeserializationError("CreateHITWithHITTypeRequest.hit_type_id required")
-    if "MaxAssignments" in data:
+    if data.get("MaxAssignments") is not None:
         out["max_assignments"] = data["MaxAssignments"]
-    if "LifetimeInSeconds" in data:
+    if data.get("LifetimeInSeconds") is not None:
         out["lifetime_in_seconds"] = data["LifetimeInSeconds"]
     else:
         raise DeserializationError(
             "CreateHITWithHITTypeRequest.lifetime_in_seconds required"
         )
-    if "Question" in data:
+    if data.get("Question") is not None:
         out["question"] = data["Question"]
-    if "RequesterAnnotation" in data:
+    if data.get("RequesterAnnotation") is not None:
         out["requester_annotation"] = data["RequesterAnnotation"]
-    if "UniqueRequestToken" in data:
+    if data.get("UniqueRequestToken") is not None:
         out["unique_request_token"] = data["UniqueRequestToken"]
-    if "AssignmentReviewPolicy" in data:
+    if data.get("AssignmentReviewPolicy") is not None:
         import capo_mturk.types.review_policy
 
         out["assignment_review_policy"] = (
@@ -111,7 +111,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateHITWithHITTypeRequest:
                 data["AssignmentReviewPolicy"]
             )
         )
-    if "HITReviewPolicy" in data:
+    if data.get("HITReviewPolicy") is not None:
         import capo_mturk.types.review_policy
 
         out["hit_review_policy"] = (
@@ -119,9 +119,9 @@ def deserialize_aws_json_1_1(data: dict) -> CreateHITWithHITTypeRequest:
                 data["HITReviewPolicy"]
             )
         )
-    if "HITLayoutId" in data:
+    if data.get("HITLayoutId") is not None:
         out["hit_layout_id"] = data["HITLayoutId"]
-    if "HITLayoutParameters" in data:
+    if data.get("HITLayoutParameters") is not None:
         import capo_mturk.types.hit_layout_parameter_list
 
         out["hit_layout_parameters"] = (

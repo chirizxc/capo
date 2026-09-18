@@ -28,8 +28,8 @@ def serialize_json(value: AwsIamAccessKeySessionContextAttributes) -> dict:
 
 def deserialize_json(data: dict) -> AwsIamAccessKeySessionContextAttributes:
     out: AwsIamAccessKeySessionContextAttributes = {}  # type: ignore[typeddict-item]
-    if "MfaAuthenticated" in data:
+    if data.get("MfaAuthenticated") is not None:
         out["mfa_authenticated"] = data["MfaAuthenticated"]
-    if "CreationDate" in data:
+    if data.get("CreationDate") is not None:
         out["creation_date"] = data["CreationDate"]
     return out

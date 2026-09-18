@@ -29,9 +29,9 @@ def serialize_json(value: Image) -> dict:
 
 def deserialize_json(data: dict) -> Image:
     out: Image = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "file" in data:
+    if data.get("file") is not None:
         import capo_iotsitewise.types.image_file
 
         out["file"] = capo_iotsitewise.types.image_file.deserialize_json(data["file"])

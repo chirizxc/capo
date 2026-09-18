@@ -44,7 +44,7 @@ def serialize_aws_json_1_1(value: DataValidationMetrics) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DataValidationMetrics:
     out: DataValidationMetrics = {}  # type: ignore[typeddict-item]
-    if "fileLevelMessages" in data:
+    if data.get("fileLevelMessages") is not None:
         import capo_frauddetector.types.file_validation_message_list
 
         out["file_level_messages"] = (
@@ -52,7 +52,7 @@ def deserialize_aws_json_1_1(data: dict) -> DataValidationMetrics:
                 data["fileLevelMessages"]
             )
         )
-    if "fieldLevelMessages" in data:
+    if data.get("fieldLevelMessages") is not None:
         import capo_frauddetector.types.field_validation_message_list
 
         out["field_level_messages"] = (

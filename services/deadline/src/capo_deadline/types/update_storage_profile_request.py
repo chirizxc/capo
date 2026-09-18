@@ -70,9 +70,9 @@ def serialize_json(value: UpdateStorageProfileRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateStorageProfileRequest:
     out: UpdateStorageProfileRequest = {}  # type: ignore[typeddict-item]
-    if "displayName" in data:
+    if data.get("displayName") is not None:
         out["display_name"] = data["displayName"]
-    if "osFamily" in data:
+    if data.get("osFamily") is not None:
         import capo_deadline.types.storage_profile_operating_system_family
 
         out["os_family"] = (
@@ -80,7 +80,7 @@ def deserialize_json(data: dict) -> UpdateStorageProfileRequest:
                 data["osFamily"]
             )
         )
-    if "fileSystemLocationsToAdd" in data:
+    if data.get("fileSystemLocationsToAdd") is not None:
         import capo_deadline.types.file_system_locations_list
 
         out["file_system_locations_to_add"] = (
@@ -88,7 +88,7 @@ def deserialize_json(data: dict) -> UpdateStorageProfileRequest:
                 data["fileSystemLocationsToAdd"]
             )
         )
-    if "fileSystemLocationsToRemove" in data:
+    if data.get("fileSystemLocationsToRemove") is not None:
         import capo_deadline.types.file_system_locations_list
 
         out["file_system_locations_to_remove"] = (

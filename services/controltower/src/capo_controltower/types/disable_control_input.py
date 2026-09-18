@@ -37,10 +37,10 @@ def serialize_json(value: DisableControlInput) -> dict:
 
 def deserialize_json(data: dict) -> DisableControlInput:
     out: DisableControlInput = {}  # type: ignore[typeddict-item]
-    if "controlIdentifier" in data:
+    if data.get("controlIdentifier") is not None:
         out["control_identifier"] = data["controlIdentifier"]
-    if "targetIdentifier" in data:
+    if data.get("targetIdentifier") is not None:
         out["target_identifier"] = data["targetIdentifier"]
-    if "enabledControlIdentifier" in data:
+    if data.get("enabledControlIdentifier") is not None:
         out["enabled_control_identifier"] = data["enabledControlIdentifier"]
     return out

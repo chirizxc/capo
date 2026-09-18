@@ -52,23 +52,23 @@ def serialize_json(value: SearchResponse) -> dict:
 
 def deserialize_json(data: dict) -> SearchResponse:
     out: SearchResponse = {}  # type: ignore[typeddict-item]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_cloudsearch_domain.types.search_status
 
         out["status"] = capo_cloudsearch_domain.types.search_status.deserialize_json(
             data["status"]
         )
-    if "hits" in data:
+    if data.get("hits") is not None:
         import capo_cloudsearch_domain.types.hits
 
         out["hits"] = capo_cloudsearch_domain.types.hits.deserialize_json(data["hits"])
-    if "facets" in data:
+    if data.get("facets") is not None:
         import capo_cloudsearch_domain.types.facets
 
         out["facets"] = capo_cloudsearch_domain.types.facets.deserialize_json(
             data["facets"]
         )
-    if "stats" in data:
+    if data.get("stats") is not None:
         import capo_cloudsearch_domain.types.stats
 
         out["stats"] = capo_cloudsearch_domain.types.stats.deserialize_json(

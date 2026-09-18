@@ -19,7 +19,7 @@ def serialize_aws_json_1_0(value: AcceptMarketplaceRegistrationInput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> AcceptMarketplaceRegistrationInput:
     out: AcceptMarketplaceRegistrationInput = {}  # type: ignore[typeddict-item]
-    if "marketplaceRegistrationToken" in data:
+    if data.get("marketplaceRegistrationToken") is not None:
         out["marketplace_registration_token"] = data["marketplaceRegistrationToken"]
     else:
         raise DeserializationError(

@@ -54,9 +54,9 @@ def serialize_aws_json_1_1(value: GetPersistentAppUIPresignedURLInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetPersistentAppUIPresignedURLInput:
     out: GetPersistentAppUIPresignedURLInput = {}  # type: ignore[typeddict-item]
-    if "PersistentAppUIId" in data:
+    if data.get("PersistentAppUIId") is not None:
         out["persistent_app_ui_id"] = data["PersistentAppUIId"]
-    if "PersistentAppUIType" in data:
+    if data.get("PersistentAppUIType") is not None:
         import capo_emr.types.persistent_app_ui_type
 
         out["persistent_app_ui_type"] = (
@@ -64,10 +64,10 @@ def deserialize_aws_json_1_1(data: dict) -> GetPersistentAppUIPresignedURLInput:
                 data["PersistentAppUIType"]
             )
         )
-    if "ApplicationId" in data:
+    if data.get("ApplicationId") is not None:
         out["application_id"] = data["ApplicationId"]
-    if "AuthProxyCall" in data:
+    if data.get("AuthProxyCall") is not None:
         out["auth_proxy_call"] = data["AuthProxyCall"]
-    if "ExecutionRoleArn" in data:
+    if data.get("ExecutionRoleArn") is not None:
         out["execution_role_arn"] = data["ExecutionRoleArn"]
     return out

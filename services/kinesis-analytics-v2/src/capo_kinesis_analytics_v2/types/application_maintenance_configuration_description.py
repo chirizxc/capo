@@ -36,7 +36,7 @@ def deserialize_aws_json_1_1(
     data: dict,
 ) -> ApplicationMaintenanceConfigurationDescription:
     out: ApplicationMaintenanceConfigurationDescription = {}  # type: ignore[typeddict-item]
-    if "ApplicationMaintenanceWindowStartTime" in data:
+    if data.get("ApplicationMaintenanceWindowStartTime") is not None:
         out["application_maintenance_window_start_time"] = data[
             "ApplicationMaintenanceWindowStartTime"
         ]
@@ -44,7 +44,7 @@ def deserialize_aws_json_1_1(
         raise DeserializationError(
             "ApplicationMaintenanceConfigurationDescription.application_maintenance_window_start_time required"
         )
-    if "ApplicationMaintenanceWindowEndTime" in data:
+    if data.get("ApplicationMaintenanceWindowEndTime") is not None:
         out["application_maintenance_window_end_time"] = data[
             "ApplicationMaintenanceWindowEndTime"
         ]

@@ -44,7 +44,7 @@ def serialize_aws_json_1_1(value: AndRuleStatement) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AndRuleStatement:
     out: AndRuleStatement = {}  # type: ignore[typeddict-item]
-    if "MatchingRuleStatements" in data:
+    if data.get("MatchingRuleStatements") is not None:
         import capo_license_manager.types.matching_rule_statement_list
 
         out["matching_rule_statements"] = (
@@ -52,7 +52,7 @@ def deserialize_aws_json_1_1(data: dict) -> AndRuleStatement:
                 data["MatchingRuleStatements"]
             )
         )
-    if "ScriptRuleStatements" in data:
+    if data.get("ScriptRuleStatements") is not None:
         import capo_license_manager.types.script_rule_statement_list
 
         out["script_rule_statements"] = (

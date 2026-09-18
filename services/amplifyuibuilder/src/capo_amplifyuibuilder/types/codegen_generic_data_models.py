@@ -26,6 +26,8 @@ def serialize_json(input_to_serialize: CodegenGenericDataModels) -> dict:
 def deserialize_json(data: dict) -> CodegenGenericDataModels:
     out: CodegenGenericDataModels = {}
     for key, value in data.items():
+        if value is None:
+            continue
         import capo_amplifyuibuilder.types.codegen_generic_data_model
 
         out[key] = (

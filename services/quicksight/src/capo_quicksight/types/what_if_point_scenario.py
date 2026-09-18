@@ -24,20 +24,28 @@ def serialize_json(value: WhatIfPointScenario) -> dict:
     import capo_quicksight.types.timestamp
 
     out["Date"] = capo_quicksight.types.timestamp.serialize_json(value["date"])
-    out["Value"] = value.get("value", 0)
+    out["Value"] = (
+        "NaN"
+        if value.get("value", 0) != value.get("value", 0)
+        else "Infinity"
+        if value.get("value", 0) == float("inf")
+        else "-Infinity"
+        if value.get("value", 0) == float("-inf")
+        else value.get("value", 0)
+    )
     return out
 
 
 def deserialize_json(data: dict) -> WhatIfPointScenario:
     out: WhatIfPointScenario = {}  # type: ignore[typeddict-item]
-    if "Date" in data:
+    if data.get("Date") is not None:
         import capo_quicksight.types.timestamp
 
         out["date"] = capo_quicksight.types.timestamp.deserialize_json(data["Date"])
     else:
         raise DeserializationError("WhatIfPointScenario.date required")
-    if "Value" in data:
-        out["value"] = data["Value"]
+    if data.get("Value") is not None:
+        out["value"] = float(data["Value"])
     else:
         out["value"] = 0
     return out

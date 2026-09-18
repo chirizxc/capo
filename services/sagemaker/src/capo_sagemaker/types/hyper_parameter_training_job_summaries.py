@@ -29,6 +29,8 @@ def deserialize_aws_json_1_1(data: list) -> HyperParameterTrainingJobSummaries:
 
     out: HyperParameterTrainingJobSummaries = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_sagemaker.types.hyper_parameter_training_job_summary.deserialize_aws_json_1_1(
                 item

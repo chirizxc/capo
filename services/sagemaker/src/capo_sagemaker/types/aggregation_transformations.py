@@ -29,6 +29,8 @@ def serialize_aws_json_1_1(input_to_serialize: AggregationTransformations) -> di
 def deserialize_aws_json_1_1(data: dict) -> AggregationTransformations:
     out: AggregationTransformations = {}
     for key, value in data.items():
+        if value is None:
+            continue
         import capo_sagemaker.types.aggregation_transformation_value
 
         out[key] = (

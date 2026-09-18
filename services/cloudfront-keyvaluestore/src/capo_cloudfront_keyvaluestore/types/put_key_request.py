@@ -33,7 +33,7 @@ def serialize_json(value: PutKeyRequest) -> dict:
 
 def deserialize_json(data: dict) -> PutKeyRequest:
     out: PutKeyRequest = {}  # type: ignore[typeddict-item]
-    if "Value" in data:
+    if data.get("Value") is not None:
         out["value"] = data["Value"]
     else:
         raise DeserializationError("PutKeyRequest.value required")

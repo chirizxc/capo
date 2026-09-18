@@ -137,23 +137,23 @@ def serialize_json(value: GetWorkflowStepExecutionResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetWorkflowStepExecutionResponse:
     out: GetWorkflowStepExecutionResponse = {}  # type: ignore[typeddict-item]
-    if "requestId" in data:
+    if data.get("requestId") is not None:
         out["request_id"] = data["requestId"]
-    if "stepExecutionId" in data:
+    if data.get("stepExecutionId") is not None:
         out["step_execution_id"] = data["stepExecutionId"]
-    if "workflowBuildVersionArn" in data:
+    if data.get("workflowBuildVersionArn") is not None:
         out["workflow_build_version_arn"] = data["workflowBuildVersionArn"]
-    if "workflowExecutionId" in data:
+    if data.get("workflowExecutionId") is not None:
         out["workflow_execution_id"] = data["workflowExecutionId"]
-    if "imageBuildVersionArn" in data:
+    if data.get("imageBuildVersionArn") is not None:
         out["image_build_version_arn"] = data["imageBuildVersionArn"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "action" in data:
+    if data.get("action") is not None:
         out["action"] = data["action"]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_imagebuilder.types.workflow_step_execution_status
 
         out["status"] = (
@@ -161,7 +161,7 @@ def deserialize_json(data: dict) -> GetWorkflowStepExecutionResponse:
                 data["status"]
             )
         )
-    if "rollbackStatus" in data:
+    if data.get("rollbackStatus") is not None:
         import capo_imagebuilder.types.workflow_step_execution_rollback_status
 
         out["rollback_status"] = (
@@ -169,18 +169,18 @@ def deserialize_json(data: dict) -> GetWorkflowStepExecutionResponse:
                 data["rollbackStatus"]
             )
         )
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
-    if "inputs" in data:
+    if data.get("inputs") is not None:
         out["inputs"] = data["inputs"]
-    if "outputs" in data:
+    if data.get("outputs") is not None:
         out["outputs"] = data["outputs"]
-    if "startTime" in data:
+    if data.get("startTime") is not None:
         out["start_time"] = data["startTime"]
-    if "endTime" in data:
+    if data.get("endTime") is not None:
         out["end_time"] = data["endTime"]
-    if "onFailure" in data:
+    if data.get("onFailure") is not None:
         out["on_failure"] = data["onFailure"]
-    if "timeoutSeconds" in data:
+    if data.get("timeoutSeconds") is not None:
         out["timeout_seconds"] = data["timeoutSeconds"]
     return out

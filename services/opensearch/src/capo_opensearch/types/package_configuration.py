@@ -55,7 +55,7 @@ def serialize_json(value: PackageConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> PackageConfiguration:
     out: PackageConfiguration = {}  # type: ignore[typeddict-item]
-    if "LicenseRequirement" in data:
+    if data.get("LicenseRequirement") is not None:
         import capo_opensearch.types.requirement_level
 
         out["license_requirement"] = (
@@ -65,9 +65,9 @@ def deserialize_json(data: dict) -> PackageConfiguration:
         )
     else:
         raise DeserializationError("PackageConfiguration.license_requirement required")
-    if "LicenseFilepath" in data:
+    if data.get("LicenseFilepath") is not None:
         out["license_filepath"] = data["LicenseFilepath"]
-    if "ConfigurationRequirement" in data:
+    if data.get("ConfigurationRequirement") is not None:
         import capo_opensearch.types.requirement_level
 
         out["configuration_requirement"] = (
@@ -79,7 +79,7 @@ def deserialize_json(data: dict) -> PackageConfiguration:
         raise DeserializationError(
             "PackageConfiguration.configuration_requirement required"
         )
-    if "RequiresRestartForConfigurationUpdate" in data:
+    if data.get("RequiresRestartForConfigurationUpdate") is not None:
         out["requires_restart_for_configuration_update"] = data[
             "RequiresRestartForConfigurationUpdate"
         ]

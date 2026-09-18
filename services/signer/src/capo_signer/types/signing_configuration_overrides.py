@@ -40,7 +40,7 @@ def serialize_json(value: SigningConfigurationOverrides) -> dict:
 
 def deserialize_json(data: dict) -> SigningConfigurationOverrides:
     out: SigningConfigurationOverrides = {}  # type: ignore[typeddict-item]
-    if "encryptionAlgorithm" in data:
+    if data.get("encryptionAlgorithm") is not None:
         import capo_signer.types.encryption_algorithm
 
         out["encryption_algorithm"] = (
@@ -48,7 +48,7 @@ def deserialize_json(data: dict) -> SigningConfigurationOverrides:
                 data["encryptionAlgorithm"]
             )
         )
-    if "hashAlgorithm" in data:
+    if data.get("hashAlgorithm") is not None:
         import capo_signer.types.hash_algorithm
 
         out["hash_algorithm"] = capo_signer.types.hash_algorithm.deserialize_json(

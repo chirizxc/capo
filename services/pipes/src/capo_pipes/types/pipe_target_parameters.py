@@ -179,9 +179,9 @@ def serialize_json(value: PipeTargetParameters) -> dict:
 
 def deserialize_json(data: dict) -> PipeTargetParameters:
     out: PipeTargetParameters = {}  # type: ignore[typeddict-item]
-    if "InputTemplate" in data:
+    if data.get("InputTemplate") is not None:
         out["input_template"] = data["InputTemplate"]
-    if "LambdaFunctionParameters" in data:
+    if data.get("LambdaFunctionParameters") is not None:
         import capo_pipes.types.pipe_target_lambda_function_parameters
 
         out["lambda_function_parameters"] = (
@@ -189,7 +189,7 @@ def deserialize_json(data: dict) -> PipeTargetParameters:
                 data["LambdaFunctionParameters"]
             )
         )
-    if "StepFunctionStateMachineParameters" in data:
+    if data.get("StepFunctionStateMachineParameters") is not None:
         import capo_pipes.types.pipe_target_state_machine_parameters
 
         out["step_function_state_machine_parameters"] = (
@@ -197,7 +197,7 @@ def deserialize_json(data: dict) -> PipeTargetParameters:
                 data["StepFunctionStateMachineParameters"]
             )
         )
-    if "KinesisStreamParameters" in data:
+    if data.get("KinesisStreamParameters") is not None:
         import capo_pipes.types.pipe_target_kinesis_stream_parameters
 
         out["kinesis_stream_parameters"] = (
@@ -205,7 +205,7 @@ def deserialize_json(data: dict) -> PipeTargetParameters:
                 data["KinesisStreamParameters"]
             )
         )
-    if "EcsTaskParameters" in data:
+    if data.get("EcsTaskParameters") is not None:
         import capo_pipes.types.pipe_target_ecs_task_parameters
 
         out["ecs_task_parameters"] = (
@@ -213,7 +213,7 @@ def deserialize_json(data: dict) -> PipeTargetParameters:
                 data["EcsTaskParameters"]
             )
         )
-    if "BatchJobParameters" in data:
+    if data.get("BatchJobParameters") is not None:
         import capo_pipes.types.pipe_target_batch_job_parameters
 
         out["batch_job_parameters"] = (
@@ -221,7 +221,7 @@ def deserialize_json(data: dict) -> PipeTargetParameters:
                 data["BatchJobParameters"]
             )
         )
-    if "SqsQueueParameters" in data:
+    if data.get("SqsQueueParameters") is not None:
         import capo_pipes.types.pipe_target_sqs_queue_parameters
 
         out["sqs_queue_parameters"] = (
@@ -229,7 +229,7 @@ def deserialize_json(data: dict) -> PipeTargetParameters:
                 data["SqsQueueParameters"]
             )
         )
-    if "HttpParameters" in data:
+    if data.get("HttpParameters") is not None:
         import capo_pipes.types.pipe_target_http_parameters
 
         out["http_parameters"] = (
@@ -237,7 +237,7 @@ def deserialize_json(data: dict) -> PipeTargetParameters:
                 data["HttpParameters"]
             )
         )
-    if "RedshiftDataParameters" in data:
+    if data.get("RedshiftDataParameters") is not None:
         import capo_pipes.types.pipe_target_redshift_data_parameters
 
         out["redshift_data_parameters"] = (
@@ -245,7 +245,7 @@ def deserialize_json(data: dict) -> PipeTargetParameters:
                 data["RedshiftDataParameters"]
             )
         )
-    if "SageMakerPipelineParameters" in data:
+    if data.get("SageMakerPipelineParameters") is not None:
         import capo_pipes.types.pipe_target_sage_maker_pipeline_parameters
 
         out["sage_maker_pipeline_parameters"] = (
@@ -253,7 +253,7 @@ def deserialize_json(data: dict) -> PipeTargetParameters:
                 data["SageMakerPipelineParameters"]
             )
         )
-    if "EventBridgeEventBusParameters" in data:
+    if data.get("EventBridgeEventBusParameters") is not None:
         import capo_pipes.types.pipe_target_event_bridge_event_bus_parameters
 
         out["event_bridge_event_bus_parameters"] = (
@@ -261,7 +261,7 @@ def deserialize_json(data: dict) -> PipeTargetParameters:
                 data["EventBridgeEventBusParameters"]
             )
         )
-    if "CloudWatchLogsParameters" in data:
+    if data.get("CloudWatchLogsParameters") is not None:
         import capo_pipes.types.pipe_target_cloud_watch_logs_parameters
 
         out["cloud_watch_logs_parameters"] = (
@@ -269,7 +269,7 @@ def deserialize_json(data: dict) -> PipeTargetParameters:
                 data["CloudWatchLogsParameters"]
             )
         )
-    if "TimestreamParameters" in data:
+    if data.get("TimestreamParameters") is not None:
         import capo_pipes.types.pipe_target_timestream_parameters
 
         out["timestream_parameters"] = (

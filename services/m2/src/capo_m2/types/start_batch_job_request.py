@@ -49,7 +49,7 @@ def serialize_json(value: StartBatchJobRequest) -> dict:
 
 def deserialize_json(data: dict) -> StartBatchJobRequest:
     out: StartBatchJobRequest = {}  # type: ignore[typeddict-item]
-    if "batchJobIdentifier" in data:
+    if data.get("batchJobIdentifier") is not None:
         import capo_m2.types.batch_job_identifier
 
         out["batch_job_identifier"] = (
@@ -59,12 +59,12 @@ def deserialize_json(data: dict) -> StartBatchJobRequest:
         )
     else:
         raise DeserializationError("StartBatchJobRequest.batch_job_identifier required")
-    if "jobParams" in data:
+    if data.get("jobParams") is not None:
         import capo_m2.types.batch_job_parameters_map
 
         out["job_params"] = capo_m2.types.batch_job_parameters_map.deserialize_json(
             data["jobParams"]
         )
-    if "authSecretsManagerArn" in data:
+    if data.get("authSecretsManagerArn") is not None:
         out["auth_secrets_manager_arn"] = data["authSecretsManagerArn"]
     return out

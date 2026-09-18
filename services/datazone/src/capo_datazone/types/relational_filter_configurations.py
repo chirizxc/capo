@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> RelationalFilterConfigurations:
 
     out: RelationalFilterConfigurations = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_datazone.types.relational_filter_configuration.deserialize_json(item)
         )

@@ -42,15 +42,15 @@ def serialize_json(value: RuleScope) -> dict:
 
 def deserialize_json(data: dict) -> RuleScope:
     out: RuleScope = {}  # type: ignore[typeddict-item]
-    if "assetType" in data:
+    if data.get("assetType") is not None:
         import capo_datazone.types.asset_types_for_rule
 
         out["asset_type"] = capo_datazone.types.asset_types_for_rule.deserialize_json(
             data["assetType"]
         )
-    if "dataProduct" in data:
+    if data.get("dataProduct") is not None:
         out["data_product"] = data["dataProduct"]
-    if "project" in data:
+    if data.get("project") is not None:
         import capo_datazone.types.projects_for_rule
 
         out["project"] = capo_datazone.types.projects_for_rule.deserialize_json(

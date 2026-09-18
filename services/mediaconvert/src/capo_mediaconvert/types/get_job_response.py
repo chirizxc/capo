@@ -25,7 +25,7 @@ def serialize_json(value: GetJobResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetJobResponse:
     out: GetJobResponse = {}  # type: ignore[typeddict-item]
-    if "job" in data:
+    if data.get("job") is not None:
         import capo_mediaconvert.types.job
 
         out["job"] = capo_mediaconvert.types.job.deserialize_json(data["job"])

@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: DescribeLocationHdfsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeLocationHdfsRequest:
     out: DescribeLocationHdfsRequest = {}  # type: ignore[typeddict-item]
-    if "LocationArn" in data:
+    if data.get("LocationArn") is not None:
         out["location_arn"] = data["LocationArn"]
     else:
         raise DeserializationError("DescribeLocationHdfsRequest.location_arn required")

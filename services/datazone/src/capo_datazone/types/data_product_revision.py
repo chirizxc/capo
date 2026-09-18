@@ -47,18 +47,18 @@ def serialize_json(value: DataProductRevision) -> dict:
 
 def deserialize_json(data: dict) -> DataProductRevision:
     out: DataProductRevision = {}  # type: ignore[typeddict-item]
-    if "domainId" in data:
+    if data.get("domainId") is not None:
         out["domain_id"] = data["domainId"]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "revision" in data:
+    if data.get("revision") is not None:
         out["revision"] = data["revision"]
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_datazone.types.created_at
 
         out["created_at"] = capo_datazone.types.created_at.deserialize_json(
             data["createdAt"]
         )
-    if "createdBy" in data:
+    if data.get("createdBy") is not None:
         out["created_by"] = data["createdBy"]
     return out

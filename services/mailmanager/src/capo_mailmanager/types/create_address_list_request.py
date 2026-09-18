@@ -40,15 +40,15 @@ def serialize_aws_json_1_0(value: CreateAddressListRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CreateAddressListRequest:
     out: CreateAddressListRequest = {}  # type: ignore[typeddict-item]
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
-    if "AddressListName" in data:
+    if data.get("AddressListName") is not None:
         out["address_list_name"] = data["AddressListName"]
     else:
         raise DeserializationError(
             "CreateAddressListRequest.address_list_name required"
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_mailmanager.types.tag_list
 
         out["tags"] = capo_mailmanager.types.tag_list.deserialize_aws_json_1_0(

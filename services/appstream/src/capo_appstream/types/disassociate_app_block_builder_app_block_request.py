@@ -28,8 +28,8 @@ def serialize_aws_json_1_1(value: DisassociateAppBlockBuilderAppBlockRequest) ->
 
 def deserialize_aws_json_1_1(data: dict) -> DisassociateAppBlockBuilderAppBlockRequest:
     out: DisassociateAppBlockBuilderAppBlockRequest = {}  # type: ignore[typeddict-item]
-    if "AppBlockArn" in data:
+    if data.get("AppBlockArn") is not None:
         out["app_block_arn"] = data["AppBlockArn"]
-    if "AppBlockBuilderName" in data:
+    if data.get("AppBlockBuilderName") is not None:
         out["app_block_builder_name"] = data["AppBlockBuilderName"]
     return out

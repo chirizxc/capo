@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: DeleteScheduledActionResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteScheduledActionResponse:
     out: DeleteScheduledActionResponse = {}  # type: ignore[typeddict-item]
-    if "scheduledAction" in data:
+    if data.get("scheduledAction") is not None:
         import capo_redshift_serverless.types.scheduled_action_response
 
         out["scheduled_action"] = (

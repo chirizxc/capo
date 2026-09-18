@@ -74,7 +74,7 @@ def serialize_json(value: RecommenderConfig) -> dict:
 
 def deserialize_json(data: dict) -> RecommenderConfig:
     out: RecommenderConfig = {}  # type: ignore[typeddict-item]
-    if "EventsConfig" in data:
+    if data.get("EventsConfig") is not None:
         import capo_customer_profiles.types.events_config
 
         out["events_config"] = (
@@ -82,9 +82,9 @@ def deserialize_json(data: dict) -> RecommenderConfig:
                 data["EventsConfig"]
             )
         )
-    if "TrainingFrequency" in data:
+    if data.get("TrainingFrequency") is not None:
         out["training_frequency"] = data["TrainingFrequency"]
-    if "InferenceConfig" in data:
+    if data.get("InferenceConfig") is not None:
         import capo_customer_profiles.types.inference_config
 
         out["inference_config"] = (
@@ -92,7 +92,7 @@ def deserialize_json(data: dict) -> RecommenderConfig:
                 data["InferenceConfig"]
             )
         )
-    if "IncludedColumns" in data:
+    if data.get("IncludedColumns") is not None:
         import capo_customer_profiles.types.included_columns
 
         out["included_columns"] = (
@@ -100,7 +100,7 @@ def deserialize_json(data: dict) -> RecommenderConfig:
                 data["IncludedColumns"]
             )
         )
-    if "ExcludedColumns" in data:
+    if data.get("ExcludedColumns") is not None:
         import capo_customer_profiles.types.included_columns
 
         out["excluded_columns"] = (

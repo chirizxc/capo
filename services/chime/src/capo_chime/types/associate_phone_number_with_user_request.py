@@ -29,7 +29,7 @@ def serialize_json(value: AssociatePhoneNumberWithUserRequest) -> dict:
 
 def deserialize_json(data: dict) -> AssociatePhoneNumberWithUserRequest:
     out: AssociatePhoneNumberWithUserRequest = {}  # type: ignore[typeddict-item]
-    if "E164PhoneNumber" in data:
+    if data.get("E164PhoneNumber") is not None:
         out["e164_phone_number"] = data["E164PhoneNumber"]
     else:
         raise DeserializationError(

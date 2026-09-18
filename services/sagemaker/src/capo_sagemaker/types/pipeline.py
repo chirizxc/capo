@@ -121,17 +121,17 @@ def serialize_aws_json_1_1(value: Pipeline) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Pipeline:
     out: Pipeline = {}  # type: ignore[typeddict-item]
-    if "PipelineArn" in data:
+    if data.get("PipelineArn") is not None:
         out["pipeline_arn"] = data["PipelineArn"]
-    if "PipelineName" in data:
+    if data.get("PipelineName") is not None:
         out["pipeline_name"] = data["PipelineName"]
-    if "PipelineDisplayName" in data:
+    if data.get("PipelineDisplayName") is not None:
         out["pipeline_display_name"] = data["PipelineDisplayName"]
-    if "PipelineDescription" in data:
+    if data.get("PipelineDescription") is not None:
         out["pipeline_description"] = data["PipelineDescription"]
-    if "RoleArn" in data:
+    if data.get("RoleArn") is not None:
         out["role_arn"] = data["RoleArn"]
-    if "PipelineStatus" in data:
+    if data.get("PipelineStatus") is not None:
         import capo_sagemaker.types.pipeline_status
 
         out["pipeline_status"] = (
@@ -139,13 +139,13 @@ def deserialize_aws_json_1_1(data: dict) -> Pipeline:
                 data["PipelineStatus"]
             )
         )
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_sagemaker.types.timestamp
 
         out["creation_time"] = capo_sagemaker.types.timestamp.deserialize_aws_json_1_1(
             data["CreationTime"]
         )
-    if "LastModifiedTime" in data:
+    if data.get("LastModifiedTime") is not None:
         import capo_sagemaker.types.timestamp
 
         out["last_modified_time"] = (
@@ -153,19 +153,19 @@ def deserialize_aws_json_1_1(data: dict) -> Pipeline:
                 data["LastModifiedTime"]
             )
         )
-    if "LastRunTime" in data:
+    if data.get("LastRunTime") is not None:
         import capo_sagemaker.types.timestamp
 
         out["last_run_time"] = capo_sagemaker.types.timestamp.deserialize_aws_json_1_1(
             data["LastRunTime"]
         )
-    if "CreatedBy" in data:
+    if data.get("CreatedBy") is not None:
         import capo_sagemaker.types.user_context
 
         out["created_by"] = capo_sagemaker.types.user_context.deserialize_aws_json_1_1(
             data["CreatedBy"]
         )
-    if "LastModifiedBy" in data:
+    if data.get("LastModifiedBy") is not None:
         import capo_sagemaker.types.user_context
 
         out["last_modified_by"] = (
@@ -173,7 +173,7 @@ def deserialize_aws_json_1_1(data: dict) -> Pipeline:
                 data["LastModifiedBy"]
             )
         )
-    if "ParallelismConfiguration" in data:
+    if data.get("ParallelismConfiguration") is not None:
         import capo_sagemaker.types.parallelism_configuration
 
         out["parallelism_configuration"] = (
@@ -181,7 +181,7 @@ def deserialize_aws_json_1_1(data: dict) -> Pipeline:
                 data["ParallelismConfiguration"]
             )
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_sagemaker.types.tag_list
 
         out["tags"] = capo_sagemaker.types.tag_list.deserialize_aws_json_1_1(

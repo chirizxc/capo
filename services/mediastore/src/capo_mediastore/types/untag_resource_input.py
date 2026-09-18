@@ -32,11 +32,11 @@ def serialize_aws_json_1_1(value: UntagResourceInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UntagResourceInput:
     out: UntagResourceInput = {}  # type: ignore[typeddict-item]
-    if "Resource" in data:
+    if data.get("Resource") is not None:
         out["resource"] = data["Resource"]
     else:
         raise DeserializationError("UntagResourceInput.resource required")
-    if "TagKeys" in data:
+    if data.get("TagKeys") is not None:
         import capo_mediastore.types.tag_key_list
 
         out["tag_keys"] = capo_mediastore.types.tag_key_list.deserialize_aws_json_1_1(

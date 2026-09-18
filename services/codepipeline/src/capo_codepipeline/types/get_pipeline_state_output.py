@@ -58,11 +58,11 @@ def serialize_aws_json_1_1(value: GetPipelineStateOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetPipelineStateOutput:
     out: GetPipelineStateOutput = {}  # type: ignore[typeddict-item]
-    if "pipelineName" in data:
+    if data.get("pipelineName") is not None:
         out["pipeline_name"] = data["pipelineName"]
-    if "pipelineVersion" in data:
+    if data.get("pipelineVersion") is not None:
         out["pipeline_version"] = data["pipelineVersion"]
-    if "stageStates" in data:
+    if data.get("stageStates") is not None:
         import capo_codepipeline.types.stage_state_list
 
         out["stage_states"] = (
@@ -70,13 +70,13 @@ def deserialize_aws_json_1_1(data: dict) -> GetPipelineStateOutput:
                 data["stageStates"]
             )
         )
-    if "created" in data:
+    if data.get("created") is not None:
         import capo_codepipeline.types.timestamp
 
         out["created"] = capo_codepipeline.types.timestamp.deserialize_aws_json_1_1(
             data["created"]
         )
-    if "updated" in data:
+    if data.get("updated") is not None:
         import capo_codepipeline.types.timestamp
 
         out["updated"] = capo_codepipeline.types.timestamp.deserialize_aws_json_1_1(

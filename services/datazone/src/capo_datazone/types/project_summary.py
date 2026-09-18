@@ -66,15 +66,15 @@ def serialize_json(value: ProjectSummary) -> dict:
         )
     out["createdBy"] = value["created_by"]
     if "created_at" in value:
-        import capo_datazone.types._prelude.timestamp
+        import capo_datazone._protocol.serialize
 
-        out["createdAt"] = capo_datazone.types._prelude.timestamp.serialize_json(
+        out["createdAt"] = capo_datazone._protocol.serialize.fmt_date_time(
             value["created_at"]
         )
     if "updated_at" in value:
-        import capo_datazone.types._prelude.timestamp
+        import capo_datazone._protocol.serialize
 
-        out["updatedAt"] = capo_datazone.types._prelude.timestamp.serialize_json(
+        out["updatedAt"] = capo_datazone._protocol.serialize.fmt_date_time(
             value["updated_at"]
         )
     if "domain_unit_id" in value:
@@ -86,50 +86,50 @@ def serialize_json(value: ProjectSummary) -> dict:
 
 def deserialize_json(data: dict) -> ProjectSummary:
     out: ProjectSummary = {}  # type: ignore[typeddict-item]
-    if "domainId" in data:
+    if data.get("domainId") is not None:
         out["domain_id"] = data["domainId"]
     else:
         raise DeserializationError("ProjectSummary.domain_id required")
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("ProjectSummary.id required")
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("ProjectSummary.name required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "projectStatus" in data:
+    if data.get("projectStatus") is not None:
         import capo_datazone.types.project_status
 
         out["project_status"] = capo_datazone.types.project_status.deserialize_json(
             data["projectStatus"]
         )
-    if "failureReasons" in data:
+    if data.get("failureReasons") is not None:
         import capo_datazone.types.failure_reasons
 
         out["failure_reasons"] = capo_datazone.types.failure_reasons.deserialize_json(
             data["failureReasons"]
         )
-    if "createdBy" in data:
+    if data.get("createdBy") is not None:
         out["created_by"] = data["createdBy"]
     else:
         raise DeserializationError("ProjectSummary.created_by required")
-    if "createdAt" in data:
-        import capo_datazone.types._prelude.timestamp
+    if data.get("createdAt") is not None:
+        import datetime
 
-        out["created_at"] = capo_datazone.types._prelude.timestamp.deserialize_json(
-            data["createdAt"]
+        out["created_at"] = datetime.datetime.fromisoformat(
+            data["createdAt"].replace("Z", "+00:00")
         )
-    if "updatedAt" in data:
-        import capo_datazone.types._prelude.timestamp
+    if data.get("updatedAt") is not None:
+        import datetime
 
-        out["updated_at"] = capo_datazone.types._prelude.timestamp.deserialize_json(
-            data["updatedAt"]
+        out["updated_at"] = datetime.datetime.fromisoformat(
+            data["updatedAt"].replace("Z", "+00:00")
         )
-    if "domainUnitId" in data:
+    if data.get("domainUnitId") is not None:
         out["domain_unit_id"] = data["domainUnitId"]
-    if "projectCategory" in data:
+    if data.get("projectCategory") is not None:
         out["project_category"] = data["projectCategory"]
     return out

@@ -39,15 +39,15 @@ def serialize_aws_json_1_1(value: Subscription) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Subscription:
     out: Subscription = {}  # type: ignore[typeddict-item]
-    if "resourceArn" in data:
+    if data.get("resourceArn") is not None:
         out["resource_arn"] = data["resourceArn"]
     else:
         raise DeserializationError("Subscription.resource_arn required")
-    if "topicArn" in data:
+    if data.get("topicArn") is not None:
         out["topic_arn"] = data["topicArn"]
     else:
         raise DeserializationError("Subscription.topic_arn required")
-    if "eventSubscriptions" in data:
+    if data.get("eventSubscriptions") is not None:
         import capo_inspector.types.event_subscription_list
 
         out["event_subscriptions"] = (

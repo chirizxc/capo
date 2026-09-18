@@ -57,7 +57,7 @@ def serialize_aws_json_1_1(value: ActionExecutionOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ActionExecutionOutput:
     out: ActionExecutionOutput = {}  # type: ignore[typeddict-item]
-    if "outputArtifacts" in data:
+    if data.get("outputArtifacts") is not None:
         import capo_codepipeline.types.artifact_detail_list
 
         out["output_artifacts"] = (
@@ -65,7 +65,7 @@ def deserialize_aws_json_1_1(data: dict) -> ActionExecutionOutput:
                 data["outputArtifacts"]
             )
         )
-    if "executionResult" in data:
+    if data.get("executionResult") is not None:
         import capo_codepipeline.types.action_execution_result
 
         out["execution_result"] = (
@@ -73,7 +73,7 @@ def deserialize_aws_json_1_1(data: dict) -> ActionExecutionOutput:
                 data["executionResult"]
             )
         )
-    if "outputVariables" in data:
+    if data.get("outputVariables") is not None:
         import capo_codepipeline.types.output_variables_map
 
         out["output_variables"] = (

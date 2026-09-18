@@ -82,15 +82,15 @@ def serialize_aws_json_1_1(value: CreateGameSessionInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateGameSessionInput:
     out: CreateGameSessionInput = {}  # type: ignore[typeddict-item]
-    if "FleetId" in data:
+    if data.get("FleetId") is not None:
         out["fleet_id"] = data["FleetId"]
-    if "AliasId" in data:
+    if data.get("AliasId") is not None:
         out["alias_id"] = data["AliasId"]
-    if "MaximumPlayerSessionCount" in data:
+    if data.get("MaximumPlayerSessionCount") is not None:
         out["maximum_player_session_count"] = data["MaximumPlayerSessionCount"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "GameProperties" in data:
+    if data.get("GameProperties") is not None:
         import capo_gamelift.types.game_property_list
 
         out["game_properties"] = (
@@ -98,14 +98,14 @@ def deserialize_aws_json_1_1(data: dict) -> CreateGameSessionInput:
                 data["GameProperties"]
             )
         )
-    if "CreatorId" in data:
+    if data.get("CreatorId") is not None:
         out["creator_id"] = data["CreatorId"]
-    if "GameSessionId" in data:
+    if data.get("GameSessionId") is not None:
         out["game_session_id"] = data["GameSessionId"]
-    if "IdempotencyToken" in data:
+    if data.get("IdempotencyToken") is not None:
         out["idempotency_token"] = data["IdempotencyToken"]
-    if "GameSessionData" in data:
+    if data.get("GameSessionData") is not None:
         out["game_session_data"] = data["GameSessionData"]
-    if "Location" in data:
+    if data.get("Location") is not None:
         out["location"] = data["Location"]
     return out

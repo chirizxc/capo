@@ -57,7 +57,7 @@ def serialize_aws_json_1_0(value: ProjectSummary) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ProjectSummary:
     out: ProjectSummary = {}  # type: ignore[typeddict-item]
-    if "DeliveryModels" in data:
+    if data.get("DeliveryModels") is not None:
         import capo_partnercentral_selling.types.delivery_models
 
         out["delivery_models"] = (
@@ -65,7 +65,7 @@ def deserialize_aws_json_1_0(data: dict) -> ProjectSummary:
                 data["DeliveryModels"]
             )
         )
-    if "ExpectedCustomerSpend" in data:
+    if data.get("ExpectedCustomerSpend") is not None:
         import capo_partnercentral_selling.types.expected_customer_spend_list
 
         out["expected_customer_spend"] = (
@@ -73,7 +73,7 @@ def deserialize_aws_json_1_0(data: dict) -> ProjectSummary:
                 data["ExpectedCustomerSpend"]
             )
         )
-    if "ExpectedContractDuration" in data:
+    if data.get("ExpectedContractDuration") is not None:
         import capo_partnercentral_selling.types.expected_contract_duration
 
         out["expected_contract_duration"] = (

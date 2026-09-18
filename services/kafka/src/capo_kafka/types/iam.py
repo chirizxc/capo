@@ -23,6 +23,6 @@ def serialize_json(value: Iam) -> dict:
 
 def deserialize_json(data: dict) -> Iam:
     out: Iam = {}  # type: ignore[typeddict-item]
-    if "enabled" in data:
+    if data.get("enabled") is not None:
         out["enabled"] = data["enabled"]
     return out

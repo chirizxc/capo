@@ -28,11 +28,11 @@ def serialize_aws_json_1_1(value: UpdateVTLDeviceTypeInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateVTLDeviceTypeInput:
     out: UpdateVTLDeviceTypeInput = {}  # type: ignore[typeddict-item]
-    if "VTLDeviceARN" in data:
+    if data.get("VTLDeviceARN") is not None:
         out["vtl_device_arn"] = data["VTLDeviceARN"]
     else:
         raise DeserializationError("UpdateVTLDeviceTypeInput.vtl_device_arn required")
-    if "DeviceType" in data:
+    if data.get("DeviceType") is not None:
         out["device_type"] = data["DeviceType"]
     else:
         raise DeserializationError("UpdateVTLDeviceTypeInput.device_type required")

@@ -27,6 +27,8 @@ def deserialize_aws_json_1_1(data: list) -> CacheBehaviorList:
 
     out: CacheBehaviorList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_lightsail.types.cache_behavior_per_path.deserialize_aws_json_1_1(item)
         )

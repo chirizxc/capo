@@ -32,11 +32,11 @@ def serialize_aws_json_1_1(value: RuleActionOverride) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RuleActionOverride:
     out: RuleActionOverride = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("RuleActionOverride.name required")
-    if "ActionToUse" in data:
+    if data.get("ActionToUse") is not None:
         import capo_wafv2.types.rule_action
 
         out["action_to_use"] = capo_wafv2.types.rule_action.deserialize_aws_json_1_1(

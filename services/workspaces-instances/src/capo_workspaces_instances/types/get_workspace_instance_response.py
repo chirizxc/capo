@@ -90,7 +90,7 @@ def serialize_aws_json_1_0(value: GetWorkspaceInstanceResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> GetWorkspaceInstanceResponse:
     out: GetWorkspaceInstanceResponse = {}  # type: ignore[typeddict-item]
-    if "WorkspaceInstanceErrors" in data:
+    if data.get("WorkspaceInstanceErrors") is not None:
         import capo_workspaces_instances.types.workspace_instance_errors
 
         out["workspace_instance_errors"] = (
@@ -98,7 +98,7 @@ def deserialize_aws_json_1_0(data: dict) -> GetWorkspaceInstanceResponse:
                 data["WorkspaceInstanceErrors"]
             )
         )
-    if "EC2InstanceErrors" in data:
+    if data.get("EC2InstanceErrors") is not None:
         import capo_workspaces_instances.types.ec2_instance_errors
 
         out["ec2_instance_errors"] = (
@@ -106,7 +106,7 @@ def deserialize_aws_json_1_0(data: dict) -> GetWorkspaceInstanceResponse:
                 data["EC2InstanceErrors"]
             )
         )
-    if "ProvisionState" in data:
+    if data.get("ProvisionState") is not None:
         import capo_workspaces_instances.types.provision_state_enum
 
         out["provision_state"] = (
@@ -114,9 +114,9 @@ def deserialize_aws_json_1_0(data: dict) -> GetWorkspaceInstanceResponse:
                 data["ProvisionState"]
             )
         )
-    if "WorkspaceInstanceId" in data:
+    if data.get("WorkspaceInstanceId") is not None:
         out["workspace_instance_id"] = data["WorkspaceInstanceId"]
-    if "EC2ManagedInstance" in data:
+    if data.get("EC2ManagedInstance") is not None:
         import capo_workspaces_instances.types.ec2_managed_instance
 
         out["ec2_managed_instance"] = (
@@ -124,7 +124,7 @@ def deserialize_aws_json_1_0(data: dict) -> GetWorkspaceInstanceResponse:
                 data["EC2ManagedInstance"]
             )
         )
-    if "BillingConfiguration" in data:
+    if data.get("BillingConfiguration") is not None:
         import capo_workspaces_instances.types.billing_configuration
 
         out["billing_configuration"] = (

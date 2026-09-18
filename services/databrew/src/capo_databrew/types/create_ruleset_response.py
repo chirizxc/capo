@@ -24,7 +24,7 @@ def serialize_json(value: CreateRulesetResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateRulesetResponse:
     out: CreateRulesetResponse = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("CreateRulesetResponse.name required")

@@ -32,10 +32,10 @@ def serialize_json(value: ResourceProfileArtifact) -> dict:
 
 def deserialize_json(data: dict) -> ResourceProfileArtifact:
     out: ResourceProfileArtifact = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "classificationResultStatus" in data:
+    if data.get("classificationResultStatus") is not None:
         out["classification_result_status"] = data["classificationResultStatus"]
-    if "sensitive" in data:
+    if data.get("sensitive") is not None:
         out["sensitive"] = data["sensitive"]
     return out

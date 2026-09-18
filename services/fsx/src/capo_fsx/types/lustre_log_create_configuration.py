@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: LustreLogCreateConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> LustreLogCreateConfiguration:
     out: LustreLogCreateConfiguration = {}  # type: ignore[typeddict-item]
-    if "Level" in data:
+    if data.get("Level") is not None:
         import capo_fsx.types.lustre_access_audit_log_level
 
         out["level"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_1(data: dict) -> LustreLogCreateConfiguration:
                 data["Level"]
             )
         )
-    if "Destination" in data:
+    if data.get("Destination") is not None:
         out["destination"] = data["Destination"]
     return out

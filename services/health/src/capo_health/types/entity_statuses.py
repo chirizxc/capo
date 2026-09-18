@@ -27,5 +27,7 @@ def deserialize_aws_json_1_1(data: dict) -> entityStatuses:
     for key, value in data.items():
         import capo_health.types.entity_status_code
 
+        if value is None:
+            continue
         out[capo_health.types.entity_status_code.deserialize_aws_json_1_1(key)] = value
     return out

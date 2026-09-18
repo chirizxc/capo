@@ -33,7 +33,7 @@ def serialize_json(value: GetSegmentMembershipRequest) -> dict:
 
 def deserialize_json(data: dict) -> GetSegmentMembershipRequest:
     out: GetSegmentMembershipRequest = {}  # type: ignore[typeddict-item]
-    if "ProfileIds" in data:
+    if data.get("ProfileIds") is not None:
         import capo_customer_profiles.types.profile_ids
 
         out["profile_ids"] = capo_customer_profiles.types.profile_ids.deserialize_json(

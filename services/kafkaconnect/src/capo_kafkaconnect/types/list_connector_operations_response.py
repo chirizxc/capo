@@ -36,7 +36,7 @@ def serialize_json(value: ListConnectorOperationsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListConnectorOperationsResponse:
     out: ListConnectorOperationsResponse = {}  # type: ignore[typeddict-item]
-    if "connectorOperations" in data:
+    if data.get("connectorOperations") is not None:
         import capo_kafkaconnect.types.__list_of_connector_operation_summary
 
         out["connector_operations"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> ListConnectorOperationsResponse:
                 data["connectorOperations"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

@@ -63,7 +63,7 @@ def serialize_json(value: WebCrawlerParameters) -> dict:
 
 def deserialize_json(data: dict) -> WebCrawlerParameters:
     out: WebCrawlerParameters = {}  # type: ignore[typeddict-item]
-    if "WebCrawlerAuthType" in data:
+    if data.get("WebCrawlerAuthType") is not None:
         import capo_quicksight.types.web_crawler_auth_type
 
         out["web_crawler_auth_type"] = (
@@ -75,19 +75,19 @@ def deserialize_json(data: dict) -> WebCrawlerParameters:
         raise DeserializationError(
             "WebCrawlerParameters.web_crawler_auth_type required"
         )
-    if "UsernameFieldXpath" in data:
+    if data.get("UsernameFieldXpath") is not None:
         out["username_field_xpath"] = data["UsernameFieldXpath"]
-    if "PasswordFieldXpath" in data:
+    if data.get("PasswordFieldXpath") is not None:
         out["password_field_xpath"] = data["PasswordFieldXpath"]
-    if "UsernameButtonXpath" in data:
+    if data.get("UsernameButtonXpath") is not None:
         out["username_button_xpath"] = data["UsernameButtonXpath"]
-    if "PasswordButtonXpath" in data:
+    if data.get("PasswordButtonXpath") is not None:
         out["password_button_xpath"] = data["PasswordButtonXpath"]
-    if "LoginPageUrl" in data:
+    if data.get("LoginPageUrl") is not None:
         out["login_page_url"] = data["LoginPageUrl"]
-    if "WebProxyHostName" in data:
+    if data.get("WebProxyHostName") is not None:
         out["web_proxy_host_name"] = data["WebProxyHostName"]
-    if "WebProxyPortNumber" in data:
+    if data.get("WebProxyPortNumber") is not None:
         out["web_proxy_port_number"] = data["WebProxyPortNumber"]
     else:
         out["web_proxy_port_number"] = 0

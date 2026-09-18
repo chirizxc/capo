@@ -24,6 +24,8 @@ def serialize_aws_json_1_1(input_to_serialize: FieldStatistics) -> dict:
 def deserialize_aws_json_1_1(data: dict) -> FieldStatistics:
     out: FieldStatistics = {}
     for key, value in data.items():
+        if value is None:
+            continue
         import capo_forecast.types.statistics
 
         out[key] = capo_forecast.types.statistics.deserialize_aws_json_1_1(value)

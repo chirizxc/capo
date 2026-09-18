@@ -27,11 +27,11 @@ def serialize_json(value: DevEnvironmentAccessDetails) -> dict:
 
 def deserialize_json(data: dict) -> DevEnvironmentAccessDetails:
     out: DevEnvironmentAccessDetails = {}  # type: ignore[typeddict-item]
-    if "streamUrl" in data:
+    if data.get("streamUrl") is not None:
         out["stream_url"] = data["streamUrl"]
     else:
         raise DeserializationError("DevEnvironmentAccessDetails.stream_url required")
-    if "tokenValue" in data:
+    if data.get("tokenValue") is not None:
         out["token_value"] = data["tokenValue"]
     else:
         raise DeserializationError("DevEnvironmentAccessDetails.token_value required")

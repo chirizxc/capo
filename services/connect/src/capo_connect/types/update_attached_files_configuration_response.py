@@ -61,13 +61,13 @@ def serialize_json(value: UpdateAttachedFilesConfigurationResponse) -> dict:
 
 def deserialize_json(data: dict) -> UpdateAttachedFilesConfigurationResponse:
     out: UpdateAttachedFilesConfigurationResponse = {}  # type: ignore[typeddict-item]
-    if "InstanceId" in data:
+    if data.get("InstanceId") is not None:
         out["instance_id"] = data["InstanceId"]
     else:
         raise DeserializationError(
             "UpdateAttachedFilesConfigurationResponse.instance_id required"
         )
-    if "AttachmentScope" in data:
+    if data.get("AttachmentScope") is not None:
         import capo_connect.types.attachment_scope
 
         out["attachment_scope"] = capo_connect.types.attachment_scope.deserialize_json(
@@ -77,9 +77,9 @@ def deserialize_json(data: dict) -> UpdateAttachedFilesConfigurationResponse:
         raise DeserializationError(
             "UpdateAttachedFilesConfigurationResponse.attachment_scope required"
         )
-    if "MaximumSizeLimitInBytes" in data:
+    if data.get("MaximumSizeLimitInBytes") is not None:
         out["maximum_size_limit_in_bytes"] = data["MaximumSizeLimitInBytes"]
-    if "ExtensionConfiguration" in data:
+    if data.get("ExtensionConfiguration") is not None:
         import capo_connect.types.extension_configuration
 
         out["extension_configuration"] = (
@@ -87,7 +87,7 @@ def deserialize_json(data: dict) -> UpdateAttachedFilesConfigurationResponse:
                 data["ExtensionConfiguration"]
             )
         )
-    if "LastModifiedTime" in data:
+    if data.get("LastModifiedTime") is not None:
         import capo_connect.types.timestamp
 
         out["last_modified_time"] = capo_connect.types.timestamp.deserialize_json(

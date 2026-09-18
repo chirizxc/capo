@@ -35,7 +35,7 @@ def serialize_json(value: ListIntegratedResourcesOutput) -> dict:
 
 def deserialize_json(data: dict) -> ListIntegratedResourcesOutput:
     out: ListIntegratedResourcesOutput = {}  # type: ignore[typeddict-item]
-    if "integratedResourceSummaries" in data:
+    if data.get("integratedResourceSummaries") is not None:
         import capo_securityagent.types.integrated_resource_summary_list
 
         out["integrated_resource_summaries"] = (
@@ -47,6 +47,6 @@ def deserialize_json(data: dict) -> ListIntegratedResourcesOutput:
         raise DeserializationError(
             "ListIntegratedResourcesOutput.integrated_resource_summaries required"
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

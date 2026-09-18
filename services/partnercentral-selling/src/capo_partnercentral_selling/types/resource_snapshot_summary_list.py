@@ -29,6 +29,8 @@ def deserialize_aws_json_1_0(data: list) -> ResourceSnapshotSummaryList:
 
     out: ResourceSnapshotSummaryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_partnercentral_selling.types.resource_snapshot_summary.deserialize_aws_json_1_0(
                 item

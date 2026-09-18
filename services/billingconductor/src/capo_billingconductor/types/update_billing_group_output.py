@@ -86,25 +86,25 @@ def serialize_json(value: UpdateBillingGroupOutput) -> dict:
 
 def deserialize_json(data: dict) -> UpdateBillingGroupOutput:
     out: UpdateBillingGroupOutput = {}  # type: ignore[typeddict-item]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "PrimaryAccountId" in data:
+    if data.get("PrimaryAccountId") is not None:
         out["primary_account_id"] = data["PrimaryAccountId"]
-    if "PricingPlanArn" in data:
+    if data.get("PricingPlanArn") is not None:
         out["pricing_plan_arn"] = data["PricingPlanArn"]
-    if "Size" in data:
+    if data.get("Size") is not None:
         out["size"] = data["Size"]
     else:
         out["size"] = 0
-    if "LastModifiedTime" in data:
+    if data.get("LastModifiedTime") is not None:
         out["last_modified_time"] = data["LastModifiedTime"]
     else:
         out["last_modified_time"] = 0
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_billingconductor.types.billing_group_status
 
         out["status"] = (
@@ -112,9 +112,9 @@ def deserialize_json(data: dict) -> UpdateBillingGroupOutput:
                 data["Status"]
             )
         )
-    if "StatusReason" in data:
+    if data.get("StatusReason") is not None:
         out["status_reason"] = data["StatusReason"]
-    if "AccountGrouping" in data:
+    if data.get("AccountGrouping") is not None:
         import capo_billingconductor.types.update_billing_group_account_grouping
 
         out["account_grouping"] = (

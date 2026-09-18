@@ -61,7 +61,7 @@ def serialize_json(value: WebCrawlerConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> WebCrawlerConfiguration:
     out: WebCrawlerConfiguration = {}  # type: ignore[typeddict-item]
-    if "urlConfiguration" in data:
+    if data.get("urlConfiguration") is not None:
         import capo_qconnect.types.url_configuration
 
         out["url_configuration"] = (
@@ -71,24 +71,24 @@ def deserialize_json(data: dict) -> WebCrawlerConfiguration:
         )
     else:
         raise DeserializationError("WebCrawlerConfiguration.url_configuration required")
-    if "crawlerLimits" in data:
+    if data.get("crawlerLimits") is not None:
         import capo_qconnect.types.web_crawler_limits
 
         out["crawler_limits"] = capo_qconnect.types.web_crawler_limits.deserialize_json(
             data["crawlerLimits"]
         )
-    if "inclusionFilters" in data:
+    if data.get("inclusionFilters") is not None:
         import capo_qconnect.types.url_filter_list
 
         out["inclusion_filters"] = capo_qconnect.types.url_filter_list.deserialize_json(
             data["inclusionFilters"]
         )
-    if "exclusionFilters" in data:
+    if data.get("exclusionFilters") is not None:
         import capo_qconnect.types.url_filter_list
 
         out["exclusion_filters"] = capo_qconnect.types.url_filter_list.deserialize_json(
             data["exclusionFilters"]
         )
-    if "scope" in data:
+    if data.get("scope") is not None:
         out["scope"] = data["scope"]
     return out

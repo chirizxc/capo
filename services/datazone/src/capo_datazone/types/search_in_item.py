@@ -24,7 +24,7 @@ def serialize_json(value: SearchInItem) -> dict:
 
 def deserialize_json(data: dict) -> SearchInItem:
     out: SearchInItem = {}  # type: ignore[typeddict-item]
-    if "attribute" in data:
+    if data.get("attribute") is not None:
         out["attribute"] = data["attribute"]
     else:
         raise DeserializationError("SearchInItem.attribute required")

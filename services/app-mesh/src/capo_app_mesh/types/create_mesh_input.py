@@ -42,18 +42,18 @@ def serialize_json(value: CreateMeshInput) -> dict:
 
 def deserialize_json(data: dict) -> CreateMeshInput:
     out: CreateMeshInput = {}  # type: ignore[typeddict-item]
-    if "meshName" in data:
+    if data.get("meshName") is not None:
         out["mesh_name"] = data["meshName"]
     else:
         raise DeserializationError("CreateMeshInput.mesh_name required")
-    if "spec" in data:
+    if data.get("spec") is not None:
         import capo_app_mesh.types.mesh_spec
 
         out["spec"] = capo_app_mesh.types.mesh_spec.deserialize_json(data["spec"])
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_app_mesh.types.tag_list
 
         out["tags"] = capo_app_mesh.types.tag_list.deserialize_json(data["tags"])
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     return out

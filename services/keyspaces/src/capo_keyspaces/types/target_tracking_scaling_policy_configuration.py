@@ -27,26 +27,34 @@ def serialize_aws_json_1_0(value: TargetTrackingScalingPolicyConfiguration) -> d
     out["disableScaleIn"] = value.get("disable_scale_in", False)
     out["scaleInCooldown"] = value.get("scale_in_cooldown", 0)
     out["scaleOutCooldown"] = value.get("scale_out_cooldown", 0)
-    out["targetValue"] = value.get("target_value", 0)
+    out["targetValue"] = (
+        "NaN"
+        if value.get("target_value", 0) != value.get("target_value", 0)
+        else "Infinity"
+        if value.get("target_value", 0) == float("inf")
+        else "-Infinity"
+        if value.get("target_value", 0) == float("-inf")
+        else value.get("target_value", 0)
+    )
     return out
 
 
 def deserialize_aws_json_1_0(data: dict) -> TargetTrackingScalingPolicyConfiguration:
     out: TargetTrackingScalingPolicyConfiguration = {}  # type: ignore[typeddict-item]
-    if "disableScaleIn" in data:
+    if data.get("disableScaleIn") is not None:
         out["disable_scale_in"] = data["disableScaleIn"]
     else:
         out["disable_scale_in"] = False
-    if "scaleInCooldown" in data:
+    if data.get("scaleInCooldown") is not None:
         out["scale_in_cooldown"] = data["scaleInCooldown"]
     else:
         out["scale_in_cooldown"] = 0
-    if "scaleOutCooldown" in data:
+    if data.get("scaleOutCooldown") is not None:
         out["scale_out_cooldown"] = data["scaleOutCooldown"]
     else:
         out["scale_out_cooldown"] = 0
-    if "targetValue" in data:
-        out["target_value"] = data["targetValue"]
+    if data.get("targetValue") is not None:
+        out["target_value"] = float(data["targetValue"])
     else:
         out["target_value"] = 0
     return out

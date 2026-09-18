@@ -43,11 +43,11 @@ def serialize_json(value: SearchListingsOutput) -> dict:
 
 def deserialize_json(data: dict) -> SearchListingsOutput:
     out: SearchListingsOutput = {}  # type: ignore[typeddict-item]
-    if "totalResults" in data:
+    if data.get("totalResults") is not None:
         out["total_results"] = data["totalResults"]
     else:
         raise DeserializationError("SearchListingsOutput.total_results required")
-    if "listingSummaries" in data:
+    if data.get("listingSummaries") is not None:
         import capo_marketplace_discovery.types.listing_summary_list
 
         out["listing_summaries"] = (
@@ -57,6 +57,6 @@ def deserialize_json(data: dict) -> SearchListingsOutput:
         )
     else:
         raise DeserializationError("SearchListingsOutput.listing_summaries required")
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

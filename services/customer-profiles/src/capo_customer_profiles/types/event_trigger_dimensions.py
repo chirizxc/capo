@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> EventTriggerDimensions:
 
     out: EventTriggerDimensions = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_customer_profiles.types.event_trigger_dimension.deserialize_json(item)
         )

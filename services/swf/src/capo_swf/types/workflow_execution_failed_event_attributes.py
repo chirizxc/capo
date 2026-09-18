@@ -34,11 +34,11 @@ def serialize_aws_json_1_0(value: WorkflowExecutionFailedEventAttributes) -> dic
 
 def deserialize_aws_json_1_0(data: dict) -> WorkflowExecutionFailedEventAttributes:
     out: WorkflowExecutionFailedEventAttributes = {}  # type: ignore[typeddict-item]
-    if "reason" in data:
+    if data.get("reason") is not None:
         out["reason"] = data["reason"]
-    if "details" in data:
+    if data.get("details") is not None:
         out["details"] = data["details"]
-    if "decisionTaskCompletedEventId" in data:
+    if data.get("decisionTaskCompletedEventId") is not None:
         out["decision_task_completed_event_id"] = data["decisionTaskCompletedEventId"]
     else:
         out["decision_task_completed_event_id"] = 0

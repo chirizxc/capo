@@ -29,7 +29,7 @@ def serialize_json(value: DescribeClusterResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribeClusterResponse:
     out: DescribeClusterResponse = {}  # type: ignore[typeddict-item]
-    if "Cluster" in data:
+    if data.get("Cluster") is not None:
         import capo_route53_recovery_control_config.types.cluster
 
         out["cluster"] = (

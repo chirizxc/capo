@@ -27,8 +27,8 @@ def serialize_json(value: AssociatedApplication) -> dict:
 
 def deserialize_json(data: dict) -> AssociatedApplication:
     out: AssociatedApplication = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     return out

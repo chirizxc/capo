@@ -31,11 +31,11 @@ def serialize_json(value: LambdaAction) -> dict:
 
 def deserialize_json(data: dict) -> LambdaAction:
     out: LambdaAction = {}  # type: ignore[typeddict-item]
-    if "functionArn" in data:
+    if data.get("functionArn") is not None:
         out["function_arn"] = data["functionArn"]
     else:
         raise DeserializationError("LambdaAction.function_arn required")
-    if "payload" in data:
+    if data.get("payload") is not None:
         import capo_iot_events.types.payload
 
         out["payload"] = capo_iot_events.types.payload.deserialize_json(data["payload"])

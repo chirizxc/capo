@@ -145,15 +145,15 @@ def serialize_aws_json_1_1(value: ProvisionedProductAttribute) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ProvisionedProductAttribute:
     out: ProvisionedProductAttribute = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "Type" in data:
+    if data.get("Type") is not None:
         out["type"] = data["Type"]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_service_catalog.types.provisioned_product_status
 
         out["status"] = (
@@ -161,9 +161,9 @@ def deserialize_aws_json_1_1(data: dict) -> ProvisionedProductAttribute:
                 data["Status"]
             )
         )
-    if "StatusMessage" in data:
+    if data.get("StatusMessage") is not None:
         out["status_message"] = data["StatusMessage"]
-    if "CreatedTime" in data:
+    if data.get("CreatedTime") is not None:
         import capo_service_catalog.types.created_time
 
         out["created_time"] = (
@@ -171,34 +171,34 @@ def deserialize_aws_json_1_1(data: dict) -> ProvisionedProductAttribute:
                 data["CreatedTime"]
             )
         )
-    if "IdempotencyToken" in data:
+    if data.get("IdempotencyToken") is not None:
         out["idempotency_token"] = data["IdempotencyToken"]
-    if "LastRecordId" in data:
+    if data.get("LastRecordId") is not None:
         out["last_record_id"] = data["LastRecordId"]
-    if "LastProvisioningRecordId" in data:
+    if data.get("LastProvisioningRecordId") is not None:
         out["last_provisioning_record_id"] = data["LastProvisioningRecordId"]
-    if "LastSuccessfulProvisioningRecordId" in data:
+    if data.get("LastSuccessfulProvisioningRecordId") is not None:
         out["last_successful_provisioning_record_id"] = data[
             "LastSuccessfulProvisioningRecordId"
         ]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_service_catalog.types.tags
 
         out["tags"] = capo_service_catalog.types.tags.deserialize_aws_json_1_1(
             data["Tags"]
         )
-    if "PhysicalId" in data:
+    if data.get("PhysicalId") is not None:
         out["physical_id"] = data["PhysicalId"]
-    if "ProductId" in data:
+    if data.get("ProductId") is not None:
         out["product_id"] = data["ProductId"]
-    if "ProductName" in data:
+    if data.get("ProductName") is not None:
         out["product_name"] = data["ProductName"]
-    if "ProvisioningArtifactId" in data:
+    if data.get("ProvisioningArtifactId") is not None:
         out["provisioning_artifact_id"] = data["ProvisioningArtifactId"]
-    if "ProvisioningArtifactName" in data:
+    if data.get("ProvisioningArtifactName") is not None:
         out["provisioning_artifact_name"] = data["ProvisioningArtifactName"]
-    if "UserArn" in data:
+    if data.get("UserArn") is not None:
         out["user_arn"] = data["UserArn"]
-    if "UserArnSession" in data:
+    if data.get("UserArnSession") is not None:
         out["user_arn_session"] = data["UserArnSession"]
     return out

@@ -18,6 +18,9 @@ def serialize_query(
 ) -> None:
     import capo_redshift.types.delete_cluster_snapshot_message
 
+    if not value:
+        pairs.append((prefix, ""))
+        return
     for n, item in enumerate(value, 1):
         capo_redshift.types.delete_cluster_snapshot_message.serialize_query(
             item, pairs, f"{prefix}.DeleteClusterSnapshotMessage.{n}"
@@ -40,6 +43,9 @@ def serialize_query_flat(
 ) -> None:
     import capo_redshift.types.delete_cluster_snapshot_message
 
+    if not value:
+        pairs.append((prefix, ""))
+        return
     for n, item in enumerate(value, 1):
         capo_redshift.types.delete_cluster_snapshot_message.serialize_query(
             item, pairs, f"{prefix}.{n}"

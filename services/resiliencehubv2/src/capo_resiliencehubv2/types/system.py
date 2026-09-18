@@ -79,33 +79,33 @@ def serialize_json(value: System) -> dict:
 
 def deserialize_json(data: dict) -> System:
     out: System = {}  # type: ignore[typeddict-item]
-    if "systemArn" in data:
+    if data.get("systemArn") is not None:
         out["system_arn"] = data["systemArn"]
     else:
         raise DeserializationError("System.system_arn required")
-    if "systemId" in data:
+    if data.get("systemId") is not None:
         out["system_id"] = data["systemId"]
     else:
         raise DeserializationError("System.system_id required")
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("System.name required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "sharingEnabled" in data:
+    if data.get("sharingEnabled") is not None:
         out["sharing_enabled"] = data["sharingEnabled"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_resiliencehubv2.types.tag_map
 
         out["tags"] = capo_resiliencehubv2.types.tag_map.deserialize_json(data["tags"])
-    if "kmsKeyId" in data:
+    if data.get("kmsKeyId") is not None:
         out["kms_key_id"] = data["kmsKeyId"]
-    if "organizationId" in data:
+    if data.get("organizationId") is not None:
         out["organization_id"] = data["organizationId"]
-    if "ouId" in data:
+    if data.get("ouId") is not None:
         out["ou_id"] = data["ouId"]
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_resiliencehubv2.types._prelude.timestamp
 
         out["created_at"] = (
@@ -113,7 +113,7 @@ def deserialize_json(data: dict) -> System:
                 data["createdAt"]
             )
         )
-    if "updatedAt" in data:
+    if data.get("updatedAt") is not None:
         import capo_resiliencehubv2.types._prelude.timestamp
 
         out["updated_at"] = (

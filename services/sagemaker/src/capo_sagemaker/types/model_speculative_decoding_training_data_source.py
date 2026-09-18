@@ -36,9 +36,9 @@ def serialize_aws_json_1_1(value: ModelSpeculativeDecodingTrainingDataSource) ->
 
 def deserialize_aws_json_1_1(data: dict) -> ModelSpeculativeDecodingTrainingDataSource:
     out: ModelSpeculativeDecodingTrainingDataSource = {}  # type: ignore[typeddict-item]
-    if "S3Uri" in data:
+    if data.get("S3Uri") is not None:
         out["s3_uri"] = data["S3Uri"]
-    if "S3DataType" in data:
+    if data.get("S3DataType") is not None:
         import capo_sagemaker.types.model_speculative_decoding_s3_data_type
 
         out["s3_data_type"] = (

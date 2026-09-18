@@ -60,13 +60,13 @@ def serialize_aws_json_1_0(value: MixedMeasureMapping) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> MixedMeasureMapping:
     out: MixedMeasureMapping = {}  # type: ignore[typeddict-item]
-    if "MeasureName" in data:
+    if data.get("MeasureName") is not None:
         out["measure_name"] = data["MeasureName"]
-    if "SourceColumn" in data:
+    if data.get("SourceColumn") is not None:
         out["source_column"] = data["SourceColumn"]
-    if "TargetMeasureName" in data:
+    if data.get("TargetMeasureName") is not None:
         out["target_measure_name"] = data["TargetMeasureName"]
-    if "MeasureValueType" in data:
+    if data.get("MeasureValueType") is not None:
         import capo_timestream_query.types.measure_value_type
 
         out["measure_value_type"] = (
@@ -76,7 +76,7 @@ def deserialize_aws_json_1_0(data: dict) -> MixedMeasureMapping:
         )
     else:
         raise DeserializationError("MixedMeasureMapping.measure_value_type required")
-    if "MultiMeasureAttributeMappings" in data:
+    if data.get("MultiMeasureAttributeMappings") is not None:
         import capo_timestream_query.types.multi_measure_attribute_mapping_list
 
         out["multi_measure_attribute_mappings"] = (

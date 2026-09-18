@@ -76,19 +76,19 @@ def serialize_aws_json_1_1(value: ServiceUpdate) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ServiceUpdate:
     out: ServiceUpdate = {}  # type: ignore[typeddict-item]
-    if "ClusterName" in data:
+    if data.get("ClusterName") is not None:
         out["cluster_name"] = data["ClusterName"]
-    if "ServiceUpdateName" in data:
+    if data.get("ServiceUpdateName") is not None:
         out["service_update_name"] = data["ServiceUpdateName"]
-    if "ReleaseDate" in data:
+    if data.get("ReleaseDate") is not None:
         import capo_memorydb.types.t_stamp
 
         out["release_date"] = capo_memorydb.types.t_stamp.deserialize_aws_json_1_1(
             data["ReleaseDate"]
         )
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_memorydb.types.service_update_status
 
         out["status"] = (
@@ -96,17 +96,17 @@ def deserialize_aws_json_1_1(data: dict) -> ServiceUpdate:
                 data["Status"]
             )
         )
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_memorydb.types.service_update_type
 
         out["type"] = capo_memorydb.types.service_update_type.deserialize_aws_json_1_1(
             data["Type"]
         )
-    if "Engine" in data:
+    if data.get("Engine") is not None:
         out["engine"] = data["Engine"]
-    if "NodesUpdated" in data:
+    if data.get("NodesUpdated") is not None:
         out["nodes_updated"] = data["NodesUpdated"]
-    if "AutoUpdateStartDate" in data:
+    if data.get("AutoUpdateStartDate") is not None:
         import capo_memorydb.types.t_stamp
 
         out["auto_update_start_date"] = (

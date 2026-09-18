@@ -74,7 +74,7 @@ def serialize_aws_json_1_1(value: SentimentFilter) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SentimentFilter:
     out: SentimentFilter = {}  # type: ignore[typeddict-item]
-    if "Sentiments" in data:
+    if data.get("Sentiments") is not None:
         import capo_transcribe.types.sentiment_value_list
 
         out["sentiments"] = (
@@ -84,7 +84,7 @@ def deserialize_aws_json_1_1(data: dict) -> SentimentFilter:
         )
     else:
         raise DeserializationError("SentimentFilter.sentiments required")
-    if "AbsoluteTimeRange" in data:
+    if data.get("AbsoluteTimeRange") is not None:
         import capo_transcribe.types.absolute_time_range
 
         out["absolute_time_range"] = (
@@ -92,7 +92,7 @@ def deserialize_aws_json_1_1(data: dict) -> SentimentFilter:
                 data["AbsoluteTimeRange"]
             )
         )
-    if "RelativeTimeRange" in data:
+    if data.get("RelativeTimeRange") is not None:
         import capo_transcribe.types.relative_time_range
 
         out["relative_time_range"] = (
@@ -100,7 +100,7 @@ def deserialize_aws_json_1_1(data: dict) -> SentimentFilter:
                 data["RelativeTimeRange"]
             )
         )
-    if "ParticipantRole" in data:
+    if data.get("ParticipantRole") is not None:
         import capo_transcribe.types.participant_role
 
         out["participant_role"] = (
@@ -108,6 +108,6 @@ def deserialize_aws_json_1_1(data: dict) -> SentimentFilter:
                 data["ParticipantRole"]
             )
         )
-    if "Negate" in data:
+    if data.get("Negate") is not None:
         out["negate"] = data["Negate"]
     return out

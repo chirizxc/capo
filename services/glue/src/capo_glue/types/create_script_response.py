@@ -28,8 +28,8 @@ def serialize_aws_json_1_1(value: CreateScriptResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateScriptResponse:
     out: CreateScriptResponse = {}  # type: ignore[typeddict-item]
-    if "PythonScript" in data:
+    if data.get("PythonScript") is not None:
         out["python_script"] = data["PythonScript"]
-    if "ScalaCode" in data:
+    if data.get("ScalaCode") is not None:
         out["scala_code"] = data["ScalaCode"]
     return out

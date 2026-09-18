@@ -37,10 +37,10 @@ def serialize_json(value: ComponentVersionListItem) -> dict:
 
 def deserialize_json(data: dict) -> ComponentVersionListItem:
     out: ComponentVersionListItem = {}  # type: ignore[typeddict-item]
-    if "componentName" in data:
+    if data.get("componentName") is not None:
         out["component_name"] = data["componentName"]
-    if "componentVersion" in data:
+    if data.get("componentVersion") is not None:
         out["component_version"] = data["componentVersion"]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     return out

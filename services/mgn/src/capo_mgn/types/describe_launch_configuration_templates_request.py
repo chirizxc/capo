@@ -41,7 +41,7 @@ def serialize_json(value: DescribeLaunchConfigurationTemplatesRequest) -> dict:
 
 def deserialize_json(data: dict) -> DescribeLaunchConfigurationTemplatesRequest:
     out: DescribeLaunchConfigurationTemplatesRequest = {}  # type: ignore[typeddict-item]
-    if "launchConfigurationTemplateIDs" in data:
+    if data.get("launchConfigurationTemplateIDs") is not None:
         import capo_mgn.types.launch_configuration_template_i_ds
 
         out["launch_configuration_template_i_ds"] = (
@@ -49,8 +49,8 @@ def deserialize_json(data: dict) -> DescribeLaunchConfigurationTemplatesRequest:
                 data["launchConfigurationTemplateIDs"]
             )
         )
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

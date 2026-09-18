@@ -42,21 +42,21 @@ def serialize_json(value: UpdateClusterOutput) -> dict:
 
 def deserialize_json(data: dict) -> UpdateClusterOutput:
     out: UpdateClusterOutput = {}  # type: ignore[typeddict-item]
-    if "identifier" in data:
+    if data.get("identifier") is not None:
         out["identifier"] = data["identifier"]
     else:
         raise DeserializationError("UpdateClusterOutput.identifier required")
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("UpdateClusterOutput.arn required")
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_dsql.types.cluster_status
 
         out["status"] = capo_dsql.types.cluster_status.deserialize_json(data["status"])
     else:
         raise DeserializationError("UpdateClusterOutput.status required")
-    if "creationTime" in data:
+    if data.get("creationTime") is not None:
         import capo_dsql.types.cluster_creation_time
 
         out["creation_time"] = capo_dsql.types.cluster_creation_time.deserialize_json(

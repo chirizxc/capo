@@ -19,7 +19,7 @@ def serialize_json(value: StartQueryOutput) -> dict:
 
 def deserialize_json(data: dict) -> StartQueryOutput:
     out: StartQueryOutput = {}  # type: ignore[typeddict-item]
-    if "QueryId" in data:
+    if data.get("QueryId") is not None:
         out["query_id"] = data["QueryId"]
     else:
         raise DeserializationError("StartQueryOutput.query_id required")

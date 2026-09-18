@@ -1,6 +1,7 @@
 """Generated from Smithy shape ``com.amazonaws.iotsitewise#AWSIoTSiteWise``."""
 
 import time
+import uuid
 import warnings
 from collections.abc import Generator, Iterator
 from contextlib import contextmanager
@@ -509,18 +510,21 @@ class IoTSiteWiseClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iotsitewise.types.associate_assets_request.AssociateAssetsRequest = {}  # type: ignore[typeddict-item]
-        input_["asset_id"] = asset_id
-        input_["hierarchy_id"] = hierarchy_id
-        input_["child_asset_id"] = child_asset_id
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_iotsitewise.types.associate_assets_request.AssociateAssetsRequest = {
+            "asset_id": asset_id,
+            "hierarchy_id": hierarchy_id,
+            "child_asset_id": child_asset_id,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def associate_time_series_to_asset_property(
@@ -564,18 +568,21 @@ class IoTSiteWiseClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iotsitewise.types.associate_time_series_to_asset_property_request.AssociateTimeSeriesToAssetPropertyRequest = {}  # type: ignore[typeddict-item]
-        input_["alias"] = alias
-        input_["asset_id"] = asset_id
-        input_["property_id"] = property_id
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_iotsitewise.types.associate_time_series_to_asset_property_request.AssociateTimeSeriesToAssetPropertyRequest = {
+            "alias": alias,
+            "asset_id": asset_id,
+            "property_id": property_id,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def batch_associate_project_assets(
@@ -619,17 +626,20 @@ class IoTSiteWiseClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iotsitewise.types.batch_associate_project_assets_request.BatchAssociateProjectAssetsRequest = {}  # type: ignore[typeddict-item]
-        input_["project_id"] = project_id
-        input_["asset_ids"] = asset_ids
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_iotsitewise.types.batch_associate_project_assets_request.BatchAssociateProjectAssetsRequest = {
+            "project_id": project_id,
+            "asset_ids": asset_ids,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def batch_disassociate_project_assets(
@@ -672,17 +682,20 @@ class IoTSiteWiseClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iotsitewise.types.batch_disassociate_project_assets_request.BatchDisassociateProjectAssetsRequest = {}  # type: ignore[typeddict-item]
-        input_["project_id"] = project_id
-        input_["asset_ids"] = asset_ids
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_iotsitewise.types.batch_disassociate_project_assets_request.BatchDisassociateProjectAssetsRequest = {
+            "project_id": project_id,
+            "asset_ids": asset_ids,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def batch_get_asset_property_aggregates(
@@ -725,8 +738,9 @@ class IoTSiteWiseClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iotsitewise.types.batch_get_asset_property_aggregates_request.BatchGetAssetPropertyAggregatesRequest = {}  # type: ignore[typeddict-item]
-        input_["entries"] = entries
+        input_: capo_iotsitewise.types.batch_get_asset_property_aggregates_request.BatchGetAssetPropertyAggregatesRequest = {
+            "entries": entries
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -737,7 +751,31 @@ class IoTSiteWiseClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_batch_get_asset_property_aggregates(
+        self,
+        entries: "capo_iotsitewise.types.batch_get_asset_property_aggregates_entries.BatchGetAssetPropertyAggregatesEntries",
+        *,
+        config_overrides: Optional[IoTSiteWiseClientConfig] = None,
+        next_token: Optional["capo_iotsitewise.types.next_token.NextToken"] = None,
+        max_results: Optional[
+            "capo_iotsitewise.types.batch_get_asset_property_aggregates_max_results.BatchGetAssetPropertyAggregatesMaxResults"
+        ] = None,
+    ) -> "Iterator[capo_iotsitewise.types.batch_get_asset_property_aggregates_response.BatchGetAssetPropertyAggregatesResponse]":
+        _token = next_token
+        while True:
+            _response = self.batch_get_asset_property_aggregates(
+                entries,
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def batch_get_asset_property_value(
         self,
@@ -775,8 +813,9 @@ class IoTSiteWiseClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iotsitewise.types.batch_get_asset_property_value_request.BatchGetAssetPropertyValueRequest = {}  # type: ignore[typeddict-item]
-        input_["entries"] = entries
+        input_: capo_iotsitewise.types.batch_get_asset_property_value_request.BatchGetAssetPropertyValueRequest = {
+            "entries": entries
+        }
         if next_token is not None:
             input_["next_token"] = next_token
 
@@ -785,7 +824,27 @@ class IoTSiteWiseClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_batch_get_asset_property_value(
+        self,
+        entries: "capo_iotsitewise.types.batch_get_asset_property_value_entries.BatchGetAssetPropertyValueEntries",
+        *,
+        config_overrides: Optional[IoTSiteWiseClientConfig] = None,
+        next_token: Optional["capo_iotsitewise.types.next_token.NextToken"] = None,
+    ) -> "Iterator[capo_iotsitewise.types.batch_get_asset_property_value_response.BatchGetAssetPropertyValueResponse]":
+        _token = next_token
+        while True:
+            _response = self.batch_get_asset_property_value(
+                entries,
+                config_overrides=config_overrides,
+                next_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def batch_get_asset_property_value_history(
         self,
@@ -827,8 +886,9 @@ class IoTSiteWiseClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iotsitewise.types.batch_get_asset_property_value_history_request.BatchGetAssetPropertyValueHistoryRequest = {}  # type: ignore[typeddict-item]
-        input_["entries"] = entries
+        input_: capo_iotsitewise.types.batch_get_asset_property_value_history_request.BatchGetAssetPropertyValueHistoryRequest = {
+            "entries": entries
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -839,7 +899,31 @@ class IoTSiteWiseClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_batch_get_asset_property_value_history(
+        self,
+        entries: "capo_iotsitewise.types.batch_get_asset_property_value_history_entries.BatchGetAssetPropertyValueHistoryEntries",
+        *,
+        config_overrides: Optional[IoTSiteWiseClientConfig] = None,
+        next_token: Optional["capo_iotsitewise.types.next_token.NextToken"] = None,
+        max_results: Optional[
+            "capo_iotsitewise.types.batch_get_asset_property_value_history_max_results.BatchGetAssetPropertyValueHistoryMaxResults"
+        ] = None,
+    ) -> "Iterator[capo_iotsitewise.types.batch_get_asset_property_value_history_response.BatchGetAssetPropertyValueHistoryResponse]":
+        _token = next_token
+        while True:
+            _response = self.batch_get_asset_property_value_history(
+                entries,
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def batch_put_asset_property_value(
         self,
@@ -882,16 +966,18 @@ class IoTSiteWiseClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iotsitewise.types.batch_put_asset_property_value_request.BatchPutAssetPropertyValueRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_iotsitewise.types.batch_put_asset_property_value_request.BatchPutAssetPropertyValueRequest = {
+            "entries": entries
+        }
         if enable_partial_entry_processing is not None:
             input_["enable_partial_entry_processing"] = enable_partial_entry_processing
-        input_["entries"] = entries
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_access_policy(
@@ -939,12 +1025,14 @@ class IoTSiteWiseClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iotsitewise.types.create_access_policy_request.CreateAccessPolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["access_policy_identity"] = access_policy_identity
-        input_["access_policy_resource"] = access_policy_resource
-        input_["access_policy_permission"] = access_policy_permission
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_iotsitewise.types.create_access_policy_request.CreateAccessPolicyRequest = {
+            "access_policy_identity": access_policy_identity,
+            "access_policy_resource": access_policy_resource,
+            "access_policy_permission": access_policy_permission,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if tags is not None:
             input_["tags"] = tags
 
@@ -953,6 +1041,7 @@ class IoTSiteWiseClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_asset(
@@ -1010,15 +1099,17 @@ class IoTSiteWiseClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iotsitewise.types.create_asset_request.CreateAssetRequest = {}  # type: ignore[typeddict-item]
-        input_["asset_name"] = asset_name
-        input_["asset_model_id"] = asset_model_id
+        input_: capo_iotsitewise.types.create_asset_request.CreateAssetRequest = {
+            "asset_name": asset_name,
+            "asset_model_id": asset_model_id,
+        }
         if asset_id is not None:
             input_["asset_id"] = asset_id
         if asset_external_id is not None:
             input_["asset_external_id"] = asset_external_id
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if tags is not None:
             input_["tags"] = tags
         if asset_description is not None:
@@ -1029,6 +1120,7 @@ class IoTSiteWiseClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_asset_model(
@@ -1100,8 +1192,9 @@ class IoTSiteWiseClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iotsitewise.types.create_asset_model_request.CreateAssetModelRequest = {}  # type: ignore[typeddict-item]
-        input_["asset_model_name"] = asset_model_name
+        input_: capo_iotsitewise.types.create_asset_model_request.CreateAssetModelRequest = {
+            "asset_model_name": asset_model_name
+        }
         if asset_model_type is not None:
             input_["asset_model_type"] = asset_model_type
         if asset_model_id is not None:
@@ -1116,8 +1209,9 @@ class IoTSiteWiseClient:
             input_["asset_model_hierarchies"] = asset_model_hierarchies
         if asset_model_composite_models is not None:
             input_["asset_model_composite_models"] = asset_model_composite_models
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if tags is not None:
             input_["tags"] = tags
 
@@ -1126,6 +1220,7 @@ class IoTSiteWiseClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_asset_model_composite_model(
@@ -1204,8 +1299,11 @@ class IoTSiteWiseClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iotsitewise.types.create_asset_model_composite_model_request.CreateAssetModelCompositeModelRequest = {}  # type: ignore[typeddict-item]
-        input_["asset_model_id"] = asset_model_id
+        input_: capo_iotsitewise.types.create_asset_model_composite_model_request.CreateAssetModelCompositeModelRequest = {
+            "asset_model_id": asset_model_id,
+            "asset_model_composite_model_name": asset_model_composite_model_name,
+            "asset_model_composite_model_type": asset_model_composite_model_type,
+        }
         if asset_model_composite_model_external_id is not None:
             input_["asset_model_composite_model_external_id"] = (
                 asset_model_composite_model_external_id
@@ -1220,10 +1318,9 @@ class IoTSiteWiseClient:
             input_["asset_model_composite_model_description"] = (
                 asset_model_composite_model_description
             )
-        input_["asset_model_composite_model_name"] = asset_model_composite_model_name
-        input_["asset_model_composite_model_type"] = asset_model_composite_model_type
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if composed_asset_model_id is not None:
             input_["composed_asset_model_id"] = composed_asset_model_id
         if asset_model_composite_model_properties is not None:
@@ -1242,6 +1339,7 @@ class IoTSiteWiseClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_bulk_import_job(
@@ -1297,12 +1395,13 @@ class IoTSiteWiseClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iotsitewise.types.create_bulk_import_job_request.CreateBulkImportJobRequest = {}  # type: ignore[typeddict-item]
-        input_["job_name"] = job_name
-        input_["job_role_arn"] = job_role_arn
-        input_["files"] = files
-        input_["error_report_location"] = error_report_location
-        input_["job_configuration"] = job_configuration
+        input_: capo_iotsitewise.types.create_bulk_import_job_request.CreateBulkImportJobRequest = {
+            "job_name": job_name,
+            "job_role_arn": job_role_arn,
+            "files": files,
+            "error_report_location": error_report_location,
+            "job_configuration": job_configuration,
+        }
         if adaptive_ingestion is not None:
             input_["adaptive_ingestion"] = adaptive_ingestion
         if delete_files_after_import is not None:
@@ -1313,6 +1412,7 @@ class IoTSiteWiseClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_computation_model(
@@ -1366,14 +1466,16 @@ class IoTSiteWiseClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iotsitewise.types.create_computation_model_request.CreateComputationModelRequest = {}  # type: ignore[typeddict-item]
-        input_["computation_model_name"] = computation_model_name
+        input_: capo_iotsitewise.types.create_computation_model_request.CreateComputationModelRequest = {
+            "computation_model_name": computation_model_name,
+            "computation_model_configuration": computation_model_configuration,
+            "computation_model_data_binding": computation_model_data_binding,
+        }
         if computation_model_description is not None:
             input_["computation_model_description"] = computation_model_description
-        input_["computation_model_configuration"] = computation_model_configuration
-        input_["computation_model_data_binding"] = computation_model_data_binding
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if tags is not None:
             input_["tags"] = tags
 
@@ -1382,6 +1484,7 @@ class IoTSiteWiseClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_dashboard(
@@ -1433,14 +1536,16 @@ class IoTSiteWiseClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iotsitewise.types.create_dashboard_request.CreateDashboardRequest = {}  # type: ignore[typeddict-item]
-        input_["project_id"] = project_id
-        input_["dashboard_name"] = dashboard_name
+        input_: capo_iotsitewise.types.create_dashboard_request.CreateDashboardRequest = {
+            "project_id": project_id,
+            "dashboard_name": dashboard_name,
+            "dashboard_definition": dashboard_definition,
+        }
         if dashboard_description is not None:
             input_["dashboard_description"] = dashboard_description
-        input_["dashboard_definition"] = dashboard_definition
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if tags is not None:
             input_["tags"] = tags
 
@@ -1449,6 +1554,7 @@ class IoTSiteWiseClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_dataset(
@@ -1502,15 +1608,17 @@ class IoTSiteWiseClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iotsitewise.types.create_dataset_request.CreateDatasetRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_iotsitewise.types.create_dataset_request.CreateDatasetRequest = {
+            "dataset_name": dataset_name,
+            "dataset_source": dataset_source,
+        }
         if dataset_id is not None:
             input_["dataset_id"] = dataset_id
-        input_["dataset_name"] = dataset_name
         if dataset_description is not None:
             input_["dataset_description"] = dataset_description
-        input_["dataset_source"] = dataset_source
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if tags is not None:
             input_["tags"] = tags
 
@@ -1519,6 +1627,7 @@ class IoTSiteWiseClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_gateway(
@@ -1564,9 +1673,10 @@ class IoTSiteWiseClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iotsitewise.types.create_gateway_request.CreateGatewayRequest = {}  # type: ignore[typeddict-item]
-        input_["gateway_name"] = gateway_name
-        input_["gateway_platform"] = gateway_platform
+        input_: capo_iotsitewise.types.create_gateway_request.CreateGatewayRequest = {
+            "gateway_name": gateway_name,
+            "gateway_platform": gateway_platform,
+        }
         if gateway_version is not None:
             input_["gateway_version"] = gateway_version
         if tags is not None:
@@ -1577,6 +1687,7 @@ class IoTSiteWiseClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_portal(
@@ -1646,16 +1757,18 @@ class IoTSiteWiseClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iotsitewise.types.create_portal_request.CreatePortalRequest = {}  # type: ignore[typeddict-item]
-        input_["portal_name"] = portal_name
+        input_: capo_iotsitewise.types.create_portal_request.CreatePortalRequest = {
+            "portal_name": portal_name,
+            "portal_contact_email": portal_contact_email,
+            "role_arn": role_arn,
+        }
         if portal_description is not None:
             input_["portal_description"] = portal_description
-        input_["portal_contact_email"] = portal_contact_email
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if portal_logo_image_file is not None:
             input_["portal_logo_image_file"] = portal_logo_image_file
-        input_["role_arn"] = role_arn
         if tags is not None:
             input_["tags"] = tags
         if portal_auth_mode is not None:
@@ -1674,6 +1787,7 @@ class IoTSiteWiseClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_project(
@@ -1723,13 +1837,15 @@ class IoTSiteWiseClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iotsitewise.types.create_project_request.CreateProjectRequest = {}  # type: ignore[typeddict-item]
-        input_["portal_id"] = portal_id
-        input_["project_name"] = project_name
+        input_: capo_iotsitewise.types.create_project_request.CreateProjectRequest = {
+            "portal_id": portal_id,
+            "project_name": project_name,
+        }
         if project_description is not None:
             input_["project_description"] = project_description
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if tags is not None:
             input_["tags"] = tags
 
@@ -1738,6 +1854,7 @@ class IoTSiteWiseClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_access_policy(
@@ -1778,16 +1895,19 @@ class IoTSiteWiseClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iotsitewise.types.delete_access_policy_request.DeleteAccessPolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["access_policy_id"] = access_policy_id
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_iotsitewise.types.delete_access_policy_request.DeleteAccessPolicyRequest = {
+            "access_policy_id": access_policy_id
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_asset(
@@ -1829,16 +1949,19 @@ class IoTSiteWiseClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iotsitewise.types.delete_asset_request.DeleteAssetRequest = {}  # type: ignore[typeddict-item]
-        input_["asset_id"] = asset_id
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_iotsitewise.types.delete_asset_request.DeleteAssetRequest = {
+            "asset_id": asset_id
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_asset_model(
@@ -1889,10 +2012,12 @@ class IoTSiteWiseClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iotsitewise.types.delete_asset_model_request.DeleteAssetModelRequest = {}  # type: ignore[typeddict-item]
-        input_["asset_model_id"] = asset_model_id
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_iotsitewise.types.delete_asset_model_request.DeleteAssetModelRequest = {
+            "asset_model_id": asset_model_id
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if if_match is not None:
             input_["if_match"] = if_match
         if if_none_match is not None:
@@ -1905,6 +2030,7 @@ class IoTSiteWiseClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_asset_model_composite_model(
@@ -1957,11 +2083,13 @@ class IoTSiteWiseClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iotsitewise.types.delete_asset_model_composite_model_request.DeleteAssetModelCompositeModelRequest = {}  # type: ignore[typeddict-item]
-        input_["asset_model_id"] = asset_model_id
-        input_["asset_model_composite_model_id"] = asset_model_composite_model_id
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_iotsitewise.types.delete_asset_model_composite_model_request.DeleteAssetModelCompositeModelRequest = {
+            "asset_model_id": asset_model_id,
+            "asset_model_composite_model_id": asset_model_composite_model_id,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if if_match is not None:
             input_["if_match"] = if_match
         if if_none_match is not None:
@@ -1974,6 +2102,7 @@ class IoTSiteWiseClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_asset_model_interface_relationship(
@@ -2017,17 +2146,20 @@ class IoTSiteWiseClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iotsitewise.types.delete_asset_model_interface_relationship_request.DeleteAssetModelInterfaceRelationshipRequest = {}  # type: ignore[typeddict-item]
-        input_["asset_model_id"] = asset_model_id
-        input_["interface_asset_model_id"] = interface_asset_model_id
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_iotsitewise.types.delete_asset_model_interface_relationship_request.DeleteAssetModelInterfaceRelationshipRequest = {
+            "asset_model_id": asset_model_id,
+            "interface_asset_model_id": interface_asset_model_id,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_computation_model(
@@ -2069,16 +2201,19 @@ class IoTSiteWiseClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iotsitewise.types.delete_computation_model_request.DeleteComputationModelRequest = {}  # type: ignore[typeddict-item]
-        input_["computation_model_id"] = computation_model_id
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_iotsitewise.types.delete_computation_model_request.DeleteComputationModelRequest = {
+            "computation_model_id": computation_model_id
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_dashboard(
@@ -2119,16 +2254,19 @@ class IoTSiteWiseClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iotsitewise.types.delete_dashboard_request.DeleteDashboardRequest = {}  # type: ignore[typeddict-item]
-        input_["dashboard_id"] = dashboard_id
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_iotsitewise.types.delete_dashboard_request.DeleteDashboardRequest = {
+            "dashboard_id": dashboard_id
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_dataset(
@@ -2170,16 +2308,19 @@ class IoTSiteWiseClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iotsitewise.types.delete_dataset_request.DeleteDatasetRequest = {}  # type: ignore[typeddict-item]
-        input_["dataset_id"] = dataset_id
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_iotsitewise.types.delete_dataset_request.DeleteDatasetRequest = {
+            "dataset_id": dataset_id
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_gateway(
@@ -2215,14 +2356,16 @@ class IoTSiteWiseClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iotsitewise.types.delete_gateway_request.DeleteGatewayRequest = {}  # type: ignore[typeddict-item]
-        input_["gateway_id"] = gateway_id
+        input_: capo_iotsitewise.types.delete_gateway_request.DeleteGatewayRequest = {
+            "gateway_id": gateway_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_portal(
@@ -2264,16 +2407,19 @@ class IoTSiteWiseClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iotsitewise.types.delete_portal_request.DeletePortalRequest = {}  # type: ignore[typeddict-item]
-        input_["portal_id"] = portal_id
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_iotsitewise.types.delete_portal_request.DeletePortalRequest = {
+            "portal_id": portal_id
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_project(
@@ -2314,16 +2460,19 @@ class IoTSiteWiseClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iotsitewise.types.delete_project_request.DeleteProjectRequest = {}  # type: ignore[typeddict-item]
-        input_["project_id"] = project_id
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_iotsitewise.types.delete_project_request.DeleteProjectRequest = {
+            "project_id": project_id
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_time_series(
@@ -2367,21 +2516,23 @@ class IoTSiteWiseClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iotsitewise.types.delete_time_series_request.DeleteTimeSeriesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_iotsitewise.types.delete_time_series_request.DeleteTimeSeriesRequest = {}
         if alias is not None:
             input_["alias"] = alias
         if asset_id is not None:
             input_["asset_id"] = asset_id
         if property_id is not None:
             input_["property_id"] = property_id
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_access_policy(
@@ -2418,14 +2569,16 @@ class IoTSiteWiseClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iotsitewise.types.describe_access_policy_request.DescribeAccessPolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["access_policy_id"] = access_policy_id
+        input_: capo_iotsitewise.types.describe_access_policy_request.DescribeAccessPolicyRequest = {
+            "access_policy_id": access_policy_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_action(
@@ -2462,14 +2615,16 @@ class IoTSiteWiseClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iotsitewise.types.describe_action_request.DescribeActionRequest = {}  # type: ignore[typeddict-item]
-        input_["action_id"] = action_id
+        input_: capo_iotsitewise.types.describe_action_request.DescribeActionRequest = {
+            "action_id": action_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_asset(
@@ -2510,8 +2665,9 @@ class IoTSiteWiseClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iotsitewise.types.describe_asset_request.DescribeAssetRequest = {}  # type: ignore[typeddict-item]
-        input_["asset_id"] = asset_id
+        input_: capo_iotsitewise.types.describe_asset_request.DescribeAssetRequest = {
+            "asset_id": asset_id
+        }
         if exclude_properties is not None:
             input_["exclude_properties"] = exclude_properties
 
@@ -2520,6 +2676,7 @@ class IoTSiteWiseClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def wait_until_asset_not_exists(
@@ -2604,15 +2761,17 @@ class IoTSiteWiseClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iotsitewise.types.describe_asset_composite_model_request.DescribeAssetCompositeModelRequest = {}  # type: ignore[typeddict-item]
-        input_["asset_id"] = asset_id
-        input_["asset_composite_model_id"] = asset_composite_model_id
+        input_: capo_iotsitewise.types.describe_asset_composite_model_request.DescribeAssetCompositeModelRequest = {
+            "asset_id": asset_id,
+            "asset_composite_model_id": asset_composite_model_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_asset_model(
@@ -2657,8 +2816,9 @@ class IoTSiteWiseClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iotsitewise.types.describe_asset_model_request.DescribeAssetModelRequest = {}  # type: ignore[typeddict-item]
-        input_["asset_model_id"] = asset_model_id
+        input_: capo_iotsitewise.types.describe_asset_model_request.DescribeAssetModelRequest = {
+            "asset_model_id": asset_model_id
+        }
         if exclude_properties is not None:
             input_["exclude_properties"] = exclude_properties
         if asset_model_version is not None:
@@ -2669,6 +2829,7 @@ class IoTSiteWiseClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def wait_until_asset_model_not_exists(
@@ -2762,9 +2923,10 @@ class IoTSiteWiseClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iotsitewise.types.describe_asset_model_composite_model_request.DescribeAssetModelCompositeModelRequest = {}  # type: ignore[typeddict-item]
-        input_["asset_model_id"] = asset_model_id
-        input_["asset_model_composite_model_id"] = asset_model_composite_model_id
+        input_: capo_iotsitewise.types.describe_asset_model_composite_model_request.DescribeAssetModelCompositeModelRequest = {
+            "asset_model_id": asset_model_id,
+            "asset_model_composite_model_id": asset_model_composite_model_id,
+        }
         if asset_model_version is not None:
             input_["asset_model_version"] = asset_model_version
 
@@ -2773,6 +2935,7 @@ class IoTSiteWiseClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_asset_model_interface_relationship(
@@ -2811,15 +2974,17 @@ class IoTSiteWiseClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iotsitewise.types.describe_asset_model_interface_relationship_request.DescribeAssetModelInterfaceRelationshipRequest = {}  # type: ignore[typeddict-item]
-        input_["asset_model_id"] = asset_model_id
-        input_["interface_asset_model_id"] = interface_asset_model_id
+        input_: capo_iotsitewise.types.describe_asset_model_interface_relationship_request.DescribeAssetModelInterfaceRelationshipRequest = {
+            "asset_model_id": asset_model_id,
+            "interface_asset_model_id": interface_asset_model_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_asset_property(
@@ -2858,15 +3023,17 @@ class IoTSiteWiseClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iotsitewise.types.describe_asset_property_request.DescribeAssetPropertyRequest = {}  # type: ignore[typeddict-item]
-        input_["asset_id"] = asset_id
-        input_["property_id"] = property_id
+        input_: capo_iotsitewise.types.describe_asset_property_request.DescribeAssetPropertyRequest = {
+            "asset_id": asset_id,
+            "property_id": property_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_bulk_import_job(
@@ -2903,14 +3070,16 @@ class IoTSiteWiseClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iotsitewise.types.describe_bulk_import_job_request.DescribeBulkImportJobRequest = {}  # type: ignore[typeddict-item]
-        input_["job_id"] = job_id
+        input_: capo_iotsitewise.types.describe_bulk_import_job_request.DescribeBulkImportJobRequest = {
+            "job_id": job_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_computation_model(
@@ -2951,8 +3120,9 @@ class IoTSiteWiseClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iotsitewise.types.describe_computation_model_request.DescribeComputationModelRequest = {}  # type: ignore[typeddict-item]
-        input_["computation_model_id"] = computation_model_id
+        input_: capo_iotsitewise.types.describe_computation_model_request.DescribeComputationModelRequest = {
+            "computation_model_id": computation_model_id
+        }
         if computation_model_version is not None:
             input_["computation_model_version"] = computation_model_version
 
@@ -2961,6 +3131,7 @@ class IoTSiteWiseClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_computation_model_execution_summary(
@@ -3003,8 +3174,9 @@ class IoTSiteWiseClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iotsitewise.types.describe_computation_model_execution_summary_request.DescribeComputationModelExecutionSummaryRequest = {}  # type: ignore[typeddict-item]
-        input_["computation_model_id"] = computation_model_id
+        input_: capo_iotsitewise.types.describe_computation_model_execution_summary_request.DescribeComputationModelExecutionSummaryRequest = {
+            "computation_model_id": computation_model_id
+        }
         if resolve_to_resource_type is not None:
             input_["resolve_to_resource_type"] = resolve_to_resource_type
         if resolve_to_resource_id is not None:
@@ -3015,6 +3187,7 @@ class IoTSiteWiseClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_dashboard(
@@ -3051,14 +3224,16 @@ class IoTSiteWiseClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iotsitewise.types.describe_dashboard_request.DescribeDashboardRequest = {}  # type: ignore[typeddict-item]
-        input_["dashboard_id"] = dashboard_id
+        input_: capo_iotsitewise.types.describe_dashboard_request.DescribeDashboardRequest = {
+            "dashboard_id": dashboard_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_dataset(
@@ -3095,14 +3270,16 @@ class IoTSiteWiseClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iotsitewise.types.describe_dataset_request.DescribeDatasetRequest = {}  # type: ignore[typeddict-item]
-        input_["dataset_id"] = dataset_id
+        input_: capo_iotsitewise.types.describe_dataset_request.DescribeDatasetRequest = {
+            "dataset_id": dataset_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_default_encryption_configuration(
@@ -3132,13 +3309,14 @@ class IoTSiteWiseClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iotsitewise.types.describe_default_encryption_configuration_request.DescribeDefaultEncryptionConfigurationRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_iotsitewise.types.describe_default_encryption_configuration_request.DescribeDefaultEncryptionConfigurationRequest = {}
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_execution(
@@ -3175,14 +3353,16 @@ class IoTSiteWiseClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iotsitewise.types.describe_execution_request.DescribeExecutionRequest = {}  # type: ignore[typeddict-item]
-        input_["execution_id"] = execution_id
+        input_: capo_iotsitewise.types.describe_execution_request.DescribeExecutionRequest = {
+            "execution_id": execution_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_gateway(
@@ -3219,14 +3399,16 @@ class IoTSiteWiseClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iotsitewise.types.describe_gateway_request.DescribeGatewayRequest = {}  # type: ignore[typeddict-item]
-        input_["gateway_id"] = gateway_id
+        input_: capo_iotsitewise.types.describe_gateway_request.DescribeGatewayRequest = {
+            "gateway_id": gateway_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_gateway_capability_configuration(
@@ -3265,15 +3447,17 @@ class IoTSiteWiseClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iotsitewise.types.describe_gateway_capability_configuration_request.DescribeGatewayCapabilityConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["gateway_id"] = gateway_id
-        input_["capability_namespace"] = capability_namespace
+        input_: capo_iotsitewise.types.describe_gateway_capability_configuration_request.DescribeGatewayCapabilityConfigurationRequest = {
+            "gateway_id": gateway_id,
+            "capability_namespace": capability_namespace,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_logging_options(
@@ -3304,13 +3488,14 @@ class IoTSiteWiseClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iotsitewise.types.describe_logging_options_request.DescribeLoggingOptionsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_iotsitewise.types.describe_logging_options_request.DescribeLoggingOptionsRequest = {}
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_portal(
@@ -3347,14 +3532,16 @@ class IoTSiteWiseClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iotsitewise.types.describe_portal_request.DescribePortalRequest = {}  # type: ignore[typeddict-item]
-        input_["portal_id"] = portal_id
+        input_: capo_iotsitewise.types.describe_portal_request.DescribePortalRequest = {
+            "portal_id": portal_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def wait_until_portal_not_exists(
@@ -3431,14 +3618,16 @@ class IoTSiteWiseClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iotsitewise.types.describe_project_request.DescribeProjectRequest = {}  # type: ignore[typeddict-item]
-        input_["project_id"] = project_id
+        input_: capo_iotsitewise.types.describe_project_request.DescribeProjectRequest = {
+            "project_id": project_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_storage_configuration(
@@ -3471,13 +3660,14 @@ class IoTSiteWiseClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iotsitewise.types.describe_storage_configuration_request.DescribeStorageConfigurationRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_iotsitewise.types.describe_storage_configuration_request.DescribeStorageConfigurationRequest = {}
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_time_series(
@@ -3518,7 +3708,7 @@ class IoTSiteWiseClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iotsitewise.types.describe_time_series_request.DescribeTimeSeriesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_iotsitewise.types.describe_time_series_request.DescribeTimeSeriesRequest = {}
         if alias is not None:
             input_["alias"] = alias
         if asset_id is not None:
@@ -3531,6 +3721,7 @@ class IoTSiteWiseClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def disassociate_assets(
@@ -3574,18 +3765,21 @@ class IoTSiteWiseClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iotsitewise.types.disassociate_assets_request.DisassociateAssetsRequest = {}  # type: ignore[typeddict-item]
-        input_["asset_id"] = asset_id
-        input_["hierarchy_id"] = hierarchy_id
-        input_["child_asset_id"] = child_asset_id
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_iotsitewise.types.disassociate_assets_request.DisassociateAssetsRequest = {
+            "asset_id": asset_id,
+            "hierarchy_id": hierarchy_id,
+            "child_asset_id": child_asset_id,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def disassociate_time_series_from_asset_property(
@@ -3629,18 +3823,21 @@ class IoTSiteWiseClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iotsitewise.types.disassociate_time_series_from_asset_property_request.DisassociateTimeSeriesFromAssetPropertyRequest = {}  # type: ignore[typeddict-item]
-        input_["alias"] = alias
-        input_["asset_id"] = asset_id
-        input_["property_id"] = property_id
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_iotsitewise.types.disassociate_time_series_from_asset_property_request.DisassociateTimeSeriesFromAssetPropertyRequest = {
+            "alias": alias,
+            "asset_id": asset_id,
+            "property_id": property_id,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def execute_action(
@@ -3689,10 +3886,11 @@ class IoTSiteWiseClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iotsitewise.types.execute_action_request.ExecuteActionRequest = {}  # type: ignore[typeddict-item]
-        input_["target_resource"] = target_resource
-        input_["action_definition_id"] = action_definition_id
-        input_["action_payload"] = action_payload
+        input_: capo_iotsitewise.types.execute_action_request.ExecuteActionRequest = {
+            "target_resource": target_resource,
+            "action_definition_id": action_definition_id,
+            "action_payload": action_payload,
+        }
         if client_token is not None:
             input_["client_token"] = client_token
         if resolve_to is not None:
@@ -3703,6 +3901,7 @@ class IoTSiteWiseClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def execute_query(
@@ -3754,20 +3953,23 @@ class IoTSiteWiseClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iotsitewise.types.execute_query_request.ExecuteQueryRequest = {}  # type: ignore[typeddict-item]
-        input_["query_statement"] = query_statement
+        input_: capo_iotsitewise.types.execute_query_request.ExecuteQueryRequest = {
+            "query_statement": query_statement
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
             input_["max_results"] = max_results
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_execute_query(
@@ -3862,19 +4064,20 @@ class IoTSiteWiseClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iotsitewise.types.get_asset_property_aggregates_request.GetAssetPropertyAggregatesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_iotsitewise.types.get_asset_property_aggregates_request.GetAssetPropertyAggregatesRequest = {
+            "aggregate_types": aggregate_types,
+            "resolution": resolution,
+            "start_date": start_date,
+            "end_date": end_date,
+        }
         if asset_id is not None:
             input_["asset_id"] = asset_id
         if property_id is not None:
             input_["property_id"] = property_id
         if property_alias is not None:
             input_["property_alias"] = property_alias
-        input_["aggregate_types"] = aggregate_types
-        input_["resolution"] = resolution
         if qualities is not None:
             input_["qualities"] = qualities
-        input_["start_date"] = start_date
-        input_["end_date"] = end_date
         if time_ordering is not None:
             input_["time_ordering"] = time_ordering
         if next_token is not None:
@@ -3887,6 +4090,7 @@ class IoTSiteWiseClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_get_asset_property_aggregates(
@@ -3975,7 +4179,7 @@ class IoTSiteWiseClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iotsitewise.types.get_asset_property_value_request.GetAssetPropertyValueRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_iotsitewise.types.get_asset_property_value_request.GetAssetPropertyValueRequest = {}
         if asset_id is not None:
             input_["asset_id"] = asset_id
         if property_id is not None:
@@ -3988,6 +4192,7 @@ class IoTSiteWiseClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_asset_property_value_history(
@@ -4047,7 +4252,7 @@ class IoTSiteWiseClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iotsitewise.types.get_asset_property_value_history_request.GetAssetPropertyValueHistoryRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_iotsitewise.types.get_asset_property_value_history_request.GetAssetPropertyValueHistoryRequest = {}
         if asset_id is not None:
             input_["asset_id"] = asset_id
         if property_id is not None:
@@ -4072,6 +4277,7 @@ class IoTSiteWiseClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_get_asset_property_value_history(
@@ -4184,26 +4390,27 @@ class IoTSiteWiseClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iotsitewise.types.get_interpolated_asset_property_values_request.GetInterpolatedAssetPropertyValuesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_iotsitewise.types.get_interpolated_asset_property_values_request.GetInterpolatedAssetPropertyValuesRequest = {
+            "start_time_in_seconds": start_time_in_seconds,
+            "end_time_in_seconds": end_time_in_seconds,
+            "quality": quality,
+            "interval_in_seconds": interval_in_seconds,
+            "type": type,
+        }
         if asset_id is not None:
             input_["asset_id"] = asset_id
         if property_id is not None:
             input_["property_id"] = property_id
         if property_alias is not None:
             input_["property_alias"] = property_alias
-        input_["start_time_in_seconds"] = start_time_in_seconds
         if start_time_offset_in_nanos is not None:
             input_["start_time_offset_in_nanos"] = start_time_offset_in_nanos
-        input_["end_time_in_seconds"] = end_time_in_seconds
         if end_time_offset_in_nanos is not None:
             input_["end_time_offset_in_nanos"] = end_time_offset_in_nanos
-        input_["quality"] = quality
-        input_["interval_in_seconds"] = interval_in_seconds
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
             input_["max_results"] = max_results
-        input_["type"] = type
         if interval_window_in_seconds is not None:
             input_["interval_window_in_seconds"] = interval_window_in_seconds
 
@@ -4212,6 +4419,7 @@ class IoTSiteWiseClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_get_interpolated_asset_property_values(
@@ -4311,10 +4519,11 @@ class IoTSiteWiseClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iotsitewise.types.invoke_assistant_request.InvokeAssistantRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_iotsitewise.types.invoke_assistant_request.InvokeAssistantRequest = {
+            "message": message
+        }
         if conversation_id is not None:
             input_["conversation_id"] = conversation_id
-        input_["message"] = message
         if enable_trace is not None:
             input_["enable_trace"] = enable_trace
 
@@ -4323,7 +4532,10 @@ class IoTSiteWiseClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
-        yield response.output
+        try:
+            yield response.output
+        finally:
+            response.response.close()
 
     def list_access_policies(
         self,
@@ -4374,7 +4586,7 @@ class IoTSiteWiseClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iotsitewise.types.list_access_policies_request.ListAccessPoliciesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_iotsitewise.types.list_access_policies_request.ListAccessPoliciesRequest = {}
         if identity_type is not None:
             input_["identity_type"] = identity_type
         if identity_id is not None:
@@ -4395,6 +4607,7 @@ class IoTSiteWiseClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_access_policies(
@@ -4478,9 +4691,10 @@ class IoTSiteWiseClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iotsitewise.types.list_actions_request.ListActionsRequest = {}  # type: ignore[typeddict-item]
-        input_["target_resource_type"] = target_resource_type
-        input_["target_resource_id"] = target_resource_id
+        input_: capo_iotsitewise.types.list_actions_request.ListActionsRequest = {
+            "target_resource_type": target_resource_type,
+            "target_resource_id": target_resource_id,
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -4495,6 +4709,7 @@ class IoTSiteWiseClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_actions(
@@ -4570,8 +4785,9 @@ class IoTSiteWiseClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iotsitewise.types.list_asset_model_composite_models_request.ListAssetModelCompositeModelsRequest = {}  # type: ignore[typeddict-item]
-        input_["asset_model_id"] = asset_model_id
+        input_: capo_iotsitewise.types.list_asset_model_composite_models_request.ListAssetModelCompositeModelsRequest = {
+            "asset_model_id": asset_model_id
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -4584,6 +4800,7 @@ class IoTSiteWiseClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_asset_model_composite_models(
@@ -4659,8 +4876,9 @@ class IoTSiteWiseClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iotsitewise.types.list_asset_model_properties_request.ListAssetModelPropertiesRequest = {}  # type: ignore[typeddict-item]
-        input_["asset_model_id"] = asset_model_id
+        input_: capo_iotsitewise.types.list_asset_model_properties_request.ListAssetModelPropertiesRequest = {
+            "asset_model_id": asset_model_id
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -4675,6 +4893,7 @@ class IoTSiteWiseClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_asset_model_properties(
@@ -4751,7 +4970,7 @@ class IoTSiteWiseClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iotsitewise.types.list_asset_models_request.ListAssetModelsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_iotsitewise.types.list_asset_models_request.ListAssetModelsRequest = {}
         if asset_model_types is not None:
             input_["asset_model_types"] = asset_model_types
         if next_token is not None:
@@ -4766,6 +4985,7 @@ class IoTSiteWiseClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_asset_models(
@@ -4839,8 +5059,9 @@ class IoTSiteWiseClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iotsitewise.types.list_asset_properties_request.ListAssetPropertiesRequest = {}  # type: ignore[typeddict-item]
-        input_["asset_id"] = asset_id
+        input_: capo_iotsitewise.types.list_asset_properties_request.ListAssetPropertiesRequest = {
+            "asset_id": asset_id
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -4853,6 +5074,7 @@ class IoTSiteWiseClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_asset_properties(
@@ -4922,9 +5144,10 @@ class IoTSiteWiseClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iotsitewise.types.list_asset_relationships_request.ListAssetRelationshipsRequest = {}  # type: ignore[typeddict-item]
-        input_["asset_id"] = asset_id
-        input_["traversal_type"] = traversal_type
+        input_: capo_iotsitewise.types.list_asset_relationships_request.ListAssetRelationshipsRequest = {
+            "asset_id": asset_id,
+            "traversal_type": traversal_type,
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -4935,6 +5158,7 @@ class IoTSiteWiseClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_asset_relationships(
@@ -5004,7 +5228,7 @@ class IoTSiteWiseClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iotsitewise.types.list_assets_request.ListAssetsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_iotsitewise.types.list_assets_request.ListAssetsRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -5019,6 +5243,7 @@ class IoTSiteWiseClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_assets(
@@ -5092,8 +5317,9 @@ class IoTSiteWiseClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iotsitewise.types.list_associated_assets_request.ListAssociatedAssetsRequest = {}  # type: ignore[typeddict-item]
-        input_["asset_id"] = asset_id
+        input_: capo_iotsitewise.types.list_associated_assets_request.ListAssociatedAssetsRequest = {
+            "asset_id": asset_id
+        }
         if hierarchy_id is not None:
             input_["hierarchy_id"] = hierarchy_id
         if traversal_direction is not None:
@@ -5108,6 +5334,7 @@ class IoTSiteWiseClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_associated_assets(
@@ -5179,7 +5406,7 @@ class IoTSiteWiseClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iotsitewise.types.list_bulk_import_jobs_request.ListBulkImportJobsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_iotsitewise.types.list_bulk_import_jobs_request.ListBulkImportJobsRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -5192,6 +5419,7 @@ class IoTSiteWiseClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_bulk_import_jobs(
@@ -5257,8 +5485,9 @@ class IoTSiteWiseClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iotsitewise.types.list_composition_relationships_request.ListCompositionRelationshipsRequest = {}  # type: ignore[typeddict-item]
-        input_["asset_model_id"] = asset_model_id
+        input_: capo_iotsitewise.types.list_composition_relationships_request.ListCompositionRelationshipsRequest = {
+            "asset_model_id": asset_model_id
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -5269,6 +5498,7 @@ class IoTSiteWiseClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_composition_relationships(
@@ -5331,8 +5561,9 @@ class IoTSiteWiseClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iotsitewise.types.list_computation_model_data_binding_usages_request.ListComputationModelDataBindingUsagesRequest = {}  # type: ignore[typeddict-item]
-        input_["data_binding_value_filter"] = data_binding_value_filter
+        input_: capo_iotsitewise.types.list_computation_model_data_binding_usages_request.ListComputationModelDataBindingUsagesRequest = {
+            "data_binding_value_filter": data_binding_value_filter
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -5343,6 +5574,7 @@ class IoTSiteWiseClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_computation_model_data_binding_usages(
@@ -5406,8 +5638,9 @@ class IoTSiteWiseClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iotsitewise.types.list_computation_model_resolve_to_resources_request.ListComputationModelResolveToResourcesRequest = {}  # type: ignore[typeddict-item]
-        input_["computation_model_id"] = computation_model_id
+        input_: capo_iotsitewise.types.list_computation_model_resolve_to_resources_request.ListComputationModelResolveToResourcesRequest = {
+            "computation_model_id": computation_model_id
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -5418,6 +5651,7 @@ class IoTSiteWiseClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_computation_model_resolve_to_resources(
@@ -5484,7 +5718,7 @@ class IoTSiteWiseClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iotsitewise.types.list_computation_models_request.ListComputationModelsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_iotsitewise.types.list_computation_models_request.ListComputationModelsRequest = {}
         if computation_model_type is not None:
             input_["computation_model_type"] = computation_model_type
         if next_token is not None:
@@ -5497,6 +5731,7 @@ class IoTSiteWiseClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_computation_models(
@@ -5561,8 +5796,9 @@ class IoTSiteWiseClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iotsitewise.types.list_dashboards_request.ListDashboardsRequest = {}  # type: ignore[typeddict-item]
-        input_["project_id"] = project_id
+        input_: capo_iotsitewise.types.list_dashboards_request.ListDashboardsRequest = {
+            "project_id": project_id
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -5573,6 +5809,7 @@ class IoTSiteWiseClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_dashboards(
@@ -5635,8 +5872,9 @@ class IoTSiteWiseClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iotsitewise.types.list_datasets_request.ListDatasetsRequest = {}  # type: ignore[typeddict-item]
-        input_["source_type"] = source_type
+        input_: capo_iotsitewise.types.list_datasets_request.ListDatasetsRequest = {
+            "source_type": source_type
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -5647,6 +5885,7 @@ class IoTSiteWiseClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_datasets(
@@ -5720,9 +5959,10 @@ class IoTSiteWiseClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iotsitewise.types.list_executions_request.ListExecutionsRequest = {}  # type: ignore[typeddict-item]
-        input_["target_resource_type"] = target_resource_type
-        input_["target_resource_id"] = target_resource_id
+        input_: capo_iotsitewise.types.list_executions_request.ListExecutionsRequest = {
+            "target_resource_type": target_resource_type,
+            "target_resource_id": target_resource_id,
+        }
         if resolve_to_resource_type is not None:
             input_["resolve_to_resource_type"] = resolve_to_resource_type
         if resolve_to_resource_id is not None:
@@ -5739,6 +5979,7 @@ class IoTSiteWiseClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_executions(
@@ -5809,7 +6050,7 @@ class IoTSiteWiseClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iotsitewise.types.list_gateways_request.ListGatewaysRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_iotsitewise.types.list_gateways_request.ListGatewaysRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -5820,6 +6061,7 @@ class IoTSiteWiseClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_gateways(
@@ -5881,8 +6123,9 @@ class IoTSiteWiseClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iotsitewise.types.list_interface_relationships_request.ListInterfaceRelationshipsRequest = {}  # type: ignore[typeddict-item]
-        input_["interface_asset_model_id"] = interface_asset_model_id
+        input_: capo_iotsitewise.types.list_interface_relationships_request.ListInterfaceRelationshipsRequest = {
+            "interface_asset_model_id": interface_asset_model_id
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -5893,6 +6136,7 @@ class IoTSiteWiseClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_interface_relationships(
@@ -5953,7 +6197,7 @@ class IoTSiteWiseClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iotsitewise.types.list_portals_request.ListPortalsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_iotsitewise.types.list_portals_request.ListPortalsRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -5964,6 +6208,7 @@ class IoTSiteWiseClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_portals(
@@ -6026,8 +6271,9 @@ class IoTSiteWiseClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iotsitewise.types.list_project_assets_request.ListProjectAssetsRequest = {}  # type: ignore[typeddict-item]
-        input_["project_id"] = project_id
+        input_: capo_iotsitewise.types.list_project_assets_request.ListProjectAssetsRequest = {
+            "project_id": project_id
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -6038,6 +6284,7 @@ class IoTSiteWiseClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_project_assets(
@@ -6100,8 +6347,9 @@ class IoTSiteWiseClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iotsitewise.types.list_projects_request.ListProjectsRequest = {}  # type: ignore[typeddict-item]
-        input_["portal_id"] = portal_id
+        input_: capo_iotsitewise.types.list_projects_request.ListProjectsRequest = {
+            "portal_id": portal_id
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -6112,6 +6360,7 @@ class IoTSiteWiseClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_projects(
@@ -6174,14 +6423,16 @@ class IoTSiteWiseClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iotsitewise.types.list_tags_for_resource_request.ListTagsForResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_iotsitewise.types.list_tags_for_resource_request.ListTagsForResourceRequest = {
+            "resource_arn": resource_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_time_series(
@@ -6230,7 +6481,7 @@ class IoTSiteWiseClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iotsitewise.types.list_time_series_request.ListTimeSeriesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_iotsitewise.types.list_time_series_request.ListTimeSeriesRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -6247,6 +6498,7 @@ class IoTSiteWiseClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_time_series(
@@ -6324,18 +6576,21 @@ class IoTSiteWiseClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iotsitewise.types.put_asset_model_interface_relationship_request.PutAssetModelInterfaceRelationshipRequest = {}  # type: ignore[typeddict-item]
-        input_["asset_model_id"] = asset_model_id
-        input_["interface_asset_model_id"] = interface_asset_model_id
-        input_["property_mapping_configuration"] = property_mapping_configuration
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_iotsitewise.types.put_asset_model_interface_relationship_request.PutAssetModelInterfaceRelationshipRequest = {
+            "asset_model_id": asset_model_id,
+            "interface_asset_model_id": interface_asset_model_id,
+            "property_mapping_configuration": property_mapping_configuration,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def put_default_encryption_configuration(
@@ -6375,8 +6630,9 @@ class IoTSiteWiseClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iotsitewise.types.put_default_encryption_configuration_request.PutDefaultEncryptionConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["encryption_type"] = encryption_type
+        input_: capo_iotsitewise.types.put_default_encryption_configuration_request.PutDefaultEncryptionConfigurationRequest = {
+            "encryption_type": encryption_type
+        }
         if kms_key_id is not None:
             input_["kms_key_id"] = kms_key_id
 
@@ -6385,6 +6641,7 @@ class IoTSiteWiseClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def put_logging_options(
@@ -6424,14 +6681,16 @@ class IoTSiteWiseClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iotsitewise.types.put_logging_options_request.PutLoggingOptionsRequest = {}  # type: ignore[typeddict-item]
-        input_["logging_options"] = logging_options
+        input_: capo_iotsitewise.types.put_logging_options_request.PutLoggingOptionsRequest = {
+            "logging_options": logging_options
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def put_storage_configuration(
@@ -6494,8 +6753,9 @@ class IoTSiteWiseClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iotsitewise.types.put_storage_configuration_request.PutStorageConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["storage_type"] = storage_type
+        input_: capo_iotsitewise.types.put_storage_configuration_request.PutStorageConfigurationRequest = {
+            "storage_type": storage_type
+        }
         if multi_layer_storage is not None:
             input_["multi_layer_storage"] = multi_layer_storage
         if disassociated_data_storage is not None:
@@ -6514,6 +6774,7 @@ class IoTSiteWiseClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def tag_resource(
@@ -6556,15 +6817,17 @@ class IoTSiteWiseClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iotsitewise.types.tag_resource_request.TagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tags"] = tags
+        input_: capo_iotsitewise.types.tag_resource_request.TagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tags": tags,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def untag_resource(
@@ -6606,15 +6869,17 @@ class IoTSiteWiseClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iotsitewise.types.untag_resource_request.UntagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tag_keys"] = tag_keys
+        input_: capo_iotsitewise.types.untag_resource_request.UntagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tag_keys": tag_keys,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_access_policy(
@@ -6661,19 +6926,22 @@ class IoTSiteWiseClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iotsitewise.types.update_access_policy_request.UpdateAccessPolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["access_policy_id"] = access_policy_id
-        input_["access_policy_identity"] = access_policy_identity
-        input_["access_policy_resource"] = access_policy_resource
-        input_["access_policy_permission"] = access_policy_permission
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_iotsitewise.types.update_access_policy_request.UpdateAccessPolicyRequest = {
+            "access_policy_id": access_policy_id,
+            "access_policy_identity": access_policy_identity,
+            "access_policy_resource": access_policy_resource,
+            "access_policy_permission": access_policy_permission,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_asset(
@@ -6726,13 +6994,15 @@ class IoTSiteWiseClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iotsitewise.types.update_asset_request.UpdateAssetRequest = {}  # type: ignore[typeddict-item]
-        input_["asset_id"] = asset_id
+        input_: capo_iotsitewise.types.update_asset_request.UpdateAssetRequest = {
+            "asset_id": asset_id,
+            "asset_name": asset_name,
+        }
         if asset_external_id is not None:
             input_["asset_external_id"] = asset_external_id
-        input_["asset_name"] = asset_name
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if asset_description is not None:
             input_["asset_description"] = asset_description
 
@@ -6741,6 +7011,7 @@ class IoTSiteWiseClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_asset_model(
@@ -6815,11 +7086,12 @@ class IoTSiteWiseClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iotsitewise.types.update_asset_model_request.UpdateAssetModelRequest = {}  # type: ignore[typeddict-item]
-        input_["asset_model_id"] = asset_model_id
+        input_: capo_iotsitewise.types.update_asset_model_request.UpdateAssetModelRequest = {
+            "asset_model_id": asset_model_id,
+            "asset_model_name": asset_model_name,
+        }
         if asset_model_external_id is not None:
             input_["asset_model_external_id"] = asset_model_external_id
-        input_["asset_model_name"] = asset_model_name
         if asset_model_description is not None:
             input_["asset_model_description"] = asset_model_description
         if asset_model_properties is not None:
@@ -6828,8 +7100,9 @@ class IoTSiteWiseClient:
             input_["asset_model_hierarchies"] = asset_model_hierarchies
         if asset_model_composite_models is not None:
             input_["asset_model_composite_models"] = asset_model_composite_models
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if if_match is not None:
             input_["if_match"] = if_match
         if if_none_match is not None:
@@ -6842,6 +7115,7 @@ class IoTSiteWiseClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_asset_model_composite_model(
@@ -6910,9 +7184,11 @@ class IoTSiteWiseClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iotsitewise.types.update_asset_model_composite_model_request.UpdateAssetModelCompositeModelRequest = {}  # type: ignore[typeddict-item]
-        input_["asset_model_id"] = asset_model_id
-        input_["asset_model_composite_model_id"] = asset_model_composite_model_id
+        input_: capo_iotsitewise.types.update_asset_model_composite_model_request.UpdateAssetModelCompositeModelRequest = {
+            "asset_model_id": asset_model_id,
+            "asset_model_composite_model_id": asset_model_composite_model_id,
+            "asset_model_composite_model_name": asset_model_composite_model_name,
+        }
         if asset_model_composite_model_external_id is not None:
             input_["asset_model_composite_model_external_id"] = (
                 asset_model_composite_model_external_id
@@ -6921,9 +7197,9 @@ class IoTSiteWiseClient:
             input_["asset_model_composite_model_description"] = (
                 asset_model_composite_model_description
             )
-        input_["asset_model_composite_model_name"] = asset_model_composite_model_name
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if asset_model_composite_model_properties is not None:
             input_["asset_model_composite_model_properties"] = (
                 asset_model_composite_model_properties
@@ -6940,6 +7216,7 @@ class IoTSiteWiseClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_asset_property(
@@ -6993,15 +7270,17 @@ class IoTSiteWiseClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iotsitewise.types.update_asset_property_request.UpdateAssetPropertyRequest = {}  # type: ignore[typeddict-item]
-        input_["asset_id"] = asset_id
-        input_["property_id"] = property_id
+        input_: capo_iotsitewise.types.update_asset_property_request.UpdateAssetPropertyRequest = {
+            "asset_id": asset_id,
+            "property_id": property_id,
+        }
         if property_alias is not None:
             input_["property_alias"] = property_alias
         if property_notification_state is not None:
             input_["property_notification_state"] = property_notification_state
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if property_unit is not None:
             input_["property_unit"] = property_unit
 
@@ -7010,6 +7289,7 @@ class IoTSiteWiseClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_computation_model(
@@ -7063,21 +7343,24 @@ class IoTSiteWiseClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iotsitewise.types.update_computation_model_request.UpdateComputationModelRequest = {}  # type: ignore[typeddict-item]
-        input_["computation_model_id"] = computation_model_id
-        input_["computation_model_name"] = computation_model_name
+        input_: capo_iotsitewise.types.update_computation_model_request.UpdateComputationModelRequest = {
+            "computation_model_id": computation_model_id,
+            "computation_model_name": computation_model_name,
+            "computation_model_configuration": computation_model_configuration,
+            "computation_model_data_binding": computation_model_data_binding,
+        }
         if computation_model_description is not None:
             input_["computation_model_description"] = computation_model_description
-        input_["computation_model_configuration"] = computation_model_configuration
-        input_["computation_model_data_binding"] = computation_model_data_binding
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_dashboard(
@@ -7126,20 +7409,23 @@ class IoTSiteWiseClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iotsitewise.types.update_dashboard_request.UpdateDashboardRequest = {}  # type: ignore[typeddict-item]
-        input_["dashboard_id"] = dashboard_id
-        input_["dashboard_name"] = dashboard_name
+        input_: capo_iotsitewise.types.update_dashboard_request.UpdateDashboardRequest = {
+            "dashboard_id": dashboard_id,
+            "dashboard_name": dashboard_name,
+            "dashboard_definition": dashboard_definition,
+        }
         if dashboard_description is not None:
             input_["dashboard_description"] = dashboard_description
-        input_["dashboard_definition"] = dashboard_definition
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_dataset(
@@ -7190,20 +7476,23 @@ class IoTSiteWiseClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iotsitewise.types.update_dataset_request.UpdateDatasetRequest = {}  # type: ignore[typeddict-item]
-        input_["dataset_id"] = dataset_id
-        input_["dataset_name"] = dataset_name
+        input_: capo_iotsitewise.types.update_dataset_request.UpdateDatasetRequest = {
+            "dataset_id": dataset_id,
+            "dataset_name": dataset_name,
+            "dataset_source": dataset_source,
+        }
         if dataset_description is not None:
             input_["dataset_description"] = dataset_description
-        input_["dataset_source"] = dataset_source
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_gateway(
@@ -7241,15 +7530,17 @@ class IoTSiteWiseClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iotsitewise.types.update_gateway_request.UpdateGatewayRequest = {}  # type: ignore[typeddict-item]
-        input_["gateway_id"] = gateway_id
-        input_["gateway_name"] = gateway_name
+        input_: capo_iotsitewise.types.update_gateway_request.UpdateGatewayRequest = {
+            "gateway_id": gateway_id,
+            "gateway_name": gateway_name,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_gateway_capability_configuration(
@@ -7292,16 +7583,18 @@ class IoTSiteWiseClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iotsitewise.types.update_gateway_capability_configuration_request.UpdateGatewayCapabilityConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["gateway_id"] = gateway_id
-        input_["capability_namespace"] = capability_namespace
-        input_["capability_configuration"] = capability_configuration
+        input_: capo_iotsitewise.types.update_gateway_capability_configuration_request.UpdateGatewayCapabilityConfigurationRequest = {
+            "gateway_id": gateway_id,
+            "capability_namespace": capability_namespace,
+            "capability_configuration": capability_configuration,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_portal(
@@ -7366,17 +7659,19 @@ class IoTSiteWiseClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iotsitewise.types.update_portal_request.UpdatePortalRequest = {}  # type: ignore[typeddict-item]
-        input_["portal_id"] = portal_id
-        input_["portal_name"] = portal_name
+        input_: capo_iotsitewise.types.update_portal_request.UpdatePortalRequest = {
+            "portal_id": portal_id,
+            "portal_name": portal_name,
+            "portal_contact_email": portal_contact_email,
+            "role_arn": role_arn,
+        }
         if portal_description is not None:
             input_["portal_description"] = portal_description
-        input_["portal_contact_email"] = portal_contact_email
         if portal_logo_image is not None:
             input_["portal_logo_image"] = portal_logo_image
-        input_["role_arn"] = role_arn
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if notification_sender_email is not None:
             input_["notification_sender_email"] = notification_sender_email
         if alarms is not None:
@@ -7391,6 +7686,7 @@ class IoTSiteWiseClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_project(
@@ -7437,19 +7733,22 @@ class IoTSiteWiseClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iotsitewise.types.update_project_request.UpdateProjectRequest = {}  # type: ignore[typeddict-item]
-        input_["project_id"] = project_id
-        input_["project_name"] = project_name
+        input_: capo_iotsitewise.types.update_project_request.UpdateProjectRequest = {
+            "project_id": project_id,
+            "project_name": project_name,
+        }
         if project_description is not None:
             input_["project_description"] = project_description
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def __enter__(self) -> Self:

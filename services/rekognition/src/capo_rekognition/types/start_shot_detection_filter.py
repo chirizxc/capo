@@ -19,12 +19,20 @@ class StartShotDetectionFilter(TypedDict, closed=True):
 def serialize_aws_json_1_1(value: StartShotDetectionFilter) -> dict:
     out: dict = {}
     if "min_segment_confidence" in value:
-        out["MinSegmentConfidence"] = value["min_segment_confidence"]
+        out["MinSegmentConfidence"] = (
+            "NaN"
+            if value["min_segment_confidence"] != value["min_segment_confidence"]
+            else "Infinity"
+            if value["min_segment_confidence"] == float("inf")
+            else "-Infinity"
+            if value["min_segment_confidence"] == float("-inf")
+            else value["min_segment_confidence"]
+        )
     return out
 
 
 def deserialize_aws_json_1_1(data: dict) -> StartShotDetectionFilter:
     out: StartShotDetectionFilter = {}  # type: ignore[typeddict-item]
-    if "MinSegmentConfidence" in data:
-        out["min_segment_confidence"] = data["MinSegmentConfidence"]
+    if data.get("MinSegmentConfidence") is not None:
+        out["min_segment_confidence"] = float(data["MinSegmentConfidence"])
     return out

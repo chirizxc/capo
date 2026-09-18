@@ -115,21 +115,21 @@ def serialize_json(value: GetCommandResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetCommandResponse:
     out: GetCommandResponse = {}  # type: ignore[typeddict-item]
-    if "commandId" in data:
+    if data.get("commandId") is not None:
         out["command_id"] = data["commandId"]
-    if "commandArn" in data:
+    if data.get("commandArn") is not None:
         out["command_arn"] = data["commandArn"]
-    if "namespace" in data:
+    if data.get("namespace") is not None:
         import capo_iot.types.command_namespace
 
         out["namespace"] = capo_iot.types.command_namespace.deserialize_json(
             data["namespace"]
         )
-    if "displayName" in data:
+    if data.get("displayName") is not None:
         out["display_name"] = data["displayName"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "mandatoryParameters" in data:
+    if data.get("mandatoryParameters") is not None:
         import capo_iot.types.command_parameter_list
 
         out["mandatory_parameters"] = (
@@ -137,34 +137,34 @@ def deserialize_json(data: dict) -> GetCommandResponse:
                 data["mandatoryParameters"]
             )
         )
-    if "payload" in data:
+    if data.get("payload") is not None:
         import capo_iot.types.command_payload
 
         out["payload"] = capo_iot.types.command_payload.deserialize_json(
             data["payload"]
         )
-    if "payloadTemplate" in data:
+    if data.get("payloadTemplate") is not None:
         out["payload_template"] = data["payloadTemplate"]
-    if "preprocessor" in data:
+    if data.get("preprocessor") is not None:
         import capo_iot.types.command_preprocessor
 
         out["preprocessor"] = capo_iot.types.command_preprocessor.deserialize_json(
             data["preprocessor"]
         )
-    if "roleArn" in data:
+    if data.get("roleArn") is not None:
         out["role_arn"] = data["roleArn"]
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_iot.types.date_type
 
         out["created_at"] = capo_iot.types.date_type.deserialize_json(data["createdAt"])
-    if "lastUpdatedAt" in data:
+    if data.get("lastUpdatedAt") is not None:
         import capo_iot.types.date_type
 
         out["last_updated_at"] = capo_iot.types.date_type.deserialize_json(
             data["lastUpdatedAt"]
         )
-    if "deprecated" in data:
+    if data.get("deprecated") is not None:
         out["deprecated"] = data["deprecated"]
-    if "pendingDeletion" in data:
+    if data.get("pendingDeletion") is not None:
         out["pending_deletion"] = data["pendingDeletion"]
     return out

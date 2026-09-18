@@ -29,6 +29,8 @@ def deserialize_aws_json_1_1(data: list) -> ResourceServerScopeListType:
 
     out: ResourceServerScopeListType = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_cognito_identity_provider.types.resource_server_scope_type.deserialize_aws_json_1_1(
                 item

@@ -34,15 +34,15 @@ def serialize_json(value: RequestValidator) -> dict:
 
 def deserialize_json(data: dict) -> RequestValidator:
     out: RequestValidator = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "validateRequestBody" in data:
+    if data.get("validateRequestBody") is not None:
         out["validate_request_body"] = data["validateRequestBody"]
     else:
         out["validate_request_body"] = False
-    if "validateRequestParameters" in data:
+    if data.get("validateRequestParameters") is not None:
         out["validate_request_parameters"] = data["validateRequestParameters"]
     else:
         out["validate_request_parameters"] = False

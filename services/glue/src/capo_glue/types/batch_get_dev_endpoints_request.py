@@ -28,7 +28,7 @@ def serialize_aws_json_1_1(value: BatchGetDevEndpointsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> BatchGetDevEndpointsRequest:
     out: BatchGetDevEndpointsRequest = {}  # type: ignore[typeddict-item]
-    if "DevEndpointNames" in data:
+    if data.get("DevEndpointNames") is not None:
         import capo_glue.types.dev_endpoint_names
 
         out["dev_endpoint_names"] = (

@@ -23,6 +23,6 @@ def serialize_json(value: PivotTableFieldSubtotalOptions) -> dict:
 
 def deserialize_json(data: dict) -> PivotTableFieldSubtotalOptions:
     out: PivotTableFieldSubtotalOptions = {}  # type: ignore[typeddict-item]
-    if "FieldId" in data:
+    if data.get("FieldId") is not None:
         out["field_id"] = data["FieldId"]
     return out

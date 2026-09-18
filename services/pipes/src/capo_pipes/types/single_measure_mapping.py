@@ -32,15 +32,15 @@ def serialize_json(value: SingleMeasureMapping) -> dict:
 
 def deserialize_json(data: dict) -> SingleMeasureMapping:
     out: SingleMeasureMapping = {}  # type: ignore[typeddict-item]
-    if "MeasureValue" in data:
+    if data.get("MeasureValue") is not None:
         out["measure_value"] = data["MeasureValue"]
     else:
         raise DeserializationError("SingleMeasureMapping.measure_value required")
-    if "MeasureValueType" in data:
+    if data.get("MeasureValueType") is not None:
         out["measure_value_type"] = data["MeasureValueType"]
     else:
         raise DeserializationError("SingleMeasureMapping.measure_value_type required")
-    if "MeasureName" in data:
+    if data.get("MeasureName") is not None:
         out["measure_name"] = data["MeasureName"]
     else:
         raise DeserializationError("SingleMeasureMapping.measure_name required")

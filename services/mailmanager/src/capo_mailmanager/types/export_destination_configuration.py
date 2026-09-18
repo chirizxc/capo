@@ -32,7 +32,7 @@ def serialize_aws_json_1_0(value: ExportDestinationConfiguration) -> dict:
 
 
 def deserialize_aws_json_1_0(data: dict) -> ExportDestinationConfiguration:
-    if "S3" in data:
+    if data.get("S3") is not None:
         import capo_mailmanager.types.s3_export_destination_configuration
 
         return {

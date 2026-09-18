@@ -46,13 +46,13 @@ def serialize_aws_json_1_1(value: MatchmakingRuleSet) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> MatchmakingRuleSet:
     out: MatchmakingRuleSet = {}  # type: ignore[typeddict-item]
-    if "RuleSetName" in data:
+    if data.get("RuleSetName") is not None:
         out["rule_set_name"] = data["RuleSetName"]
-    if "RuleSetArn" in data:
+    if data.get("RuleSetArn") is not None:
         out["rule_set_arn"] = data["RuleSetArn"]
-    if "RuleSetBody" in data:
+    if data.get("RuleSetBody") is not None:
         out["rule_set_body"] = data["RuleSetBody"]
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_gamelift.types.timestamp
 
         out["creation_time"] = capo_gamelift.types.timestamp.deserialize_aws_json_1_1(

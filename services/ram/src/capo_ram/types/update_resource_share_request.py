@@ -37,16 +37,16 @@ def serialize_json(value: UpdateResourceShareRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateResourceShareRequest:
     out: UpdateResourceShareRequest = {}  # type: ignore[typeddict-item]
-    if "resourceShareArn" in data:
+    if data.get("resourceShareArn") is not None:
         out["resource_share_arn"] = data["resourceShareArn"]
     else:
         raise DeserializationError(
             "UpdateResourceShareRequest.resource_share_arn required"
         )
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "allowExternalPrincipals" in data:
+    if data.get("allowExternalPrincipals") is not None:
         out["allow_external_principals"] = data["allowExternalPrincipals"]
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     return out

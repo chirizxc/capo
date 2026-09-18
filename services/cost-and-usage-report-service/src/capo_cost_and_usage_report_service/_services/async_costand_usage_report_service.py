@@ -1,6 +1,7 @@
 """Generated from Smithy shape ``com.amazonaws.costandusagereportservice#AWSOrigamiServiceGatewayService``."""
 
 import warnings
+from collections.abc import AsyncIterator
 from typing import TYPE_CHECKING, Any, Iterable, Optional
 
 from typing_extensions import Self, TypedDict
@@ -16,6 +17,7 @@ from capo_cost_and_usage_report_service._auth._providers import (
     default_aws_credentials_chain,
 )
 from capo_cost_and_usage_report_service._auth._zapros_handler import AuthMiddleware
+from capo_cost_and_usage_report_service._pagination import resolve_path as _resolve_path
 from capo_cost_and_usage_report_service._services._aws_config import aaws_config
 from capo_cost_and_usage_report_service._services._pipeline import (
     AsyncInterceptor,
@@ -182,14 +184,16 @@ class AsyncCostandUsageReportServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cost_and_usage_report_service.types.delete_report_definition_request.DeleteReportDefinitionRequest = {}  # type: ignore[typeddict-item]
-        input_["report_name"] = report_name
+        input_: capo_cost_and_usage_report_service.types.delete_report_definition_request.DeleteReportDefinitionRequest = {
+            "report_name": report_name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_report_definitions(
@@ -232,7 +236,7 @@ class AsyncCostandUsageReportServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cost_and_usage_report_service.types.describe_report_definitions_request.DescribeReportDefinitionsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_cost_and_usage_report_service.types.describe_report_definitions_request.DescribeReportDefinitionsRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -243,7 +247,31 @@ class AsyncCostandUsageReportServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_describe_report_definitions(
+        self,
+        *,
+        config_overrides: Optional[AsyncCostandUsageReportServiceClientConfig] = None,
+        max_results: Optional[
+            "capo_cost_and_usage_report_service.types.max_results.MaxResults"
+        ] = None,
+        next_token: Optional[
+            "capo_cost_and_usage_report_service.types.generic_string.GenericString"
+        ] = None,
+    ) -> "AsyncIterator[capo_cost_and_usage_report_service.types.describe_report_definitions_response.DescribeReportDefinitionsResponse]":
+        _token = next_token
+        while True:
+            _response = await self.describe_report_definitions(
+                config_overrides=config_overrides,
+                max_results=max_results,
+                next_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_tags_for_resource(
         self,
@@ -279,14 +307,16 @@ class AsyncCostandUsageReportServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cost_and_usage_report_service.types.list_tags_for_resource_request.ListTagsForResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["report_name"] = report_name
+        input_: capo_cost_and_usage_report_service.types.list_tags_for_resource_request.ListTagsForResourceRequest = {
+            "report_name": report_name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def modify_report_definition(
@@ -320,15 +350,17 @@ class AsyncCostandUsageReportServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cost_and_usage_report_service.types.modify_report_definition_request.ModifyReportDefinitionRequest = {}  # type: ignore[typeddict-item]
-        input_["report_name"] = report_name
-        input_["report_definition"] = report_definition
+        input_: capo_cost_and_usage_report_service.types.modify_report_definition_request.ModifyReportDefinitionRequest = {
+            "report_name": report_name,
+            "report_definition": report_definition,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def put_report_definition(
@@ -377,8 +409,9 @@ class AsyncCostandUsageReportServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cost_and_usage_report_service.types.put_report_definition_request.PutReportDefinitionRequest = {}  # type: ignore[typeddict-item]
-        input_["report_definition"] = report_definition
+        input_: capo_cost_and_usage_report_service.types.put_report_definition_request.PutReportDefinitionRequest = {
+            "report_definition": report_definition
+        }
         if tags is not None:
             input_["tags"] = tags
 
@@ -387,6 +420,7 @@ class AsyncCostandUsageReportServiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def tag_resource(
@@ -425,15 +459,17 @@ class AsyncCostandUsageReportServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cost_and_usage_report_service.types.tag_resource_request.TagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["report_name"] = report_name
-        input_["tags"] = tags
+        input_: capo_cost_and_usage_report_service.types.tag_resource_request.TagResourceRequest = {
+            "report_name": report_name,
+            "tags": tags,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def untag_resource(
@@ -472,15 +508,17 @@ class AsyncCostandUsageReportServiceClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cost_and_usage_report_service.types.untag_resource_request.UntagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["report_name"] = report_name
-        input_["tag_keys"] = tag_keys
+        input_: capo_cost_and_usage_report_service.types.untag_resource_request.UntagResourceRequest = {
+            "report_name": report_name,
+            "tag_keys": tag_keys,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def __aenter__(self) -> Self:

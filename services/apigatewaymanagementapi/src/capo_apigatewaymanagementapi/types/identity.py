@@ -27,8 +27,8 @@ def serialize_json(value: Identity) -> dict:
 
 def deserialize_json(data: dict) -> Identity:
     out: Identity = {}  # type: ignore[typeddict-item]
-    if "sourceIp" in data:
+    if data.get("sourceIp") is not None:
         out["source_ip"] = data["sourceIp"]
-    if "userAgent" in data:
+    if data.get("userAgent") is not None:
         out["user_agent"] = data["userAgent"]
     return out

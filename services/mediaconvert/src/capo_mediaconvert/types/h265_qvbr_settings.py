@@ -33,16 +33,25 @@ def serialize_json(value: H265QvbrSettings) -> dict:
     if "qvbr_quality_level" in value:
         out["qvbrQualityLevel"] = value["qvbr_quality_level"]
     if "qvbr_quality_level_fine_tune" in value:
-        out["qvbrQualityLevelFineTune"] = value["qvbr_quality_level_fine_tune"]
+        out["qvbrQualityLevelFineTune"] = (
+            "NaN"
+            if value["qvbr_quality_level_fine_tune"]
+            != value["qvbr_quality_level_fine_tune"]
+            else "Infinity"
+            if value["qvbr_quality_level_fine_tune"] == float("inf")
+            else "-Infinity"
+            if value["qvbr_quality_level_fine_tune"] == float("-inf")
+            else value["qvbr_quality_level_fine_tune"]
+        )
     return out
 
 
 def deserialize_json(data: dict) -> H265QvbrSettings:
     out: H265QvbrSettings = {}  # type: ignore[typeddict-item]
-    if "maxAverageBitrate" in data:
+    if data.get("maxAverageBitrate") is not None:
         out["max_average_bitrate"] = data["maxAverageBitrate"]
-    if "qvbrQualityLevel" in data:
+    if data.get("qvbrQualityLevel") is not None:
         out["qvbr_quality_level"] = data["qvbrQualityLevel"]
-    if "qvbrQualityLevelFineTune" in data:
-        out["qvbr_quality_level_fine_tune"] = data["qvbrQualityLevelFineTune"]
+    if data.get("qvbrQualityLevelFineTune") is not None:
+        out["qvbr_quality_level_fine_tune"] = float(data["qvbrQualityLevelFineTune"])
     return out

@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> SupplementalTaxRegistrationList:
 
     out: SupplementalTaxRegistrationList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_taxsettings.types.supplemental_tax_registration.deserialize_json(item)
         )

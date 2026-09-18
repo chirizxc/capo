@@ -1,5 +1,6 @@
 """Generated from Smithy shape ``com.amazonaws.workspacesweb#AWSErmineControlPlaneService``."""
 
+import uuid
 import warnings
 from collections.abc import AsyncIterator
 from typing import TYPE_CHECKING, Any, Iterable, Optional
@@ -232,15 +233,17 @@ class AsyncWorkSpacesWebClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workspaces_web.types.expire_session_request.ExpireSessionRequest = {}  # type: ignore[typeddict-item]
-        input_["portal_id"] = portal_id
-        input_["session_id"] = session_id
+        input_: capo_workspaces_web.types.expire_session_request.ExpireSessionRequest = {
+            "portal_id": portal_id,
+            "session_id": session_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_session(
@@ -281,15 +284,17 @@ class AsyncWorkSpacesWebClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workspaces_web.types.get_session_request.GetSessionRequest = {}  # type: ignore[typeddict-item]
-        input_["portal_id"] = portal_id
-        input_["session_id"] = session_id
+        input_: capo_workspaces_web.types.get_session_request.GetSessionRequest = {
+            "portal_id": portal_id,
+            "session_id": session_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_sessions(
@@ -348,8 +353,9 @@ class AsyncWorkSpacesWebClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workspaces_web.types.list_sessions_request.ListSessionsRequest = {}  # type: ignore[typeddict-item]
-        input_["portal_id"] = portal_id
+        input_: capo_workspaces_web.types.list_sessions_request.ListSessionsRequest = {
+            "portal_id": portal_id
+        }
         if username is not None:
             input_["username"] = username
         if session_id is not None:
@@ -368,6 +374,7 @@ class AsyncWorkSpacesWebClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_sessions(
@@ -445,14 +452,16 @@ class AsyncWorkSpacesWebClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workspaces_web.types.list_tags_for_resource_request.ListTagsForResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_workspaces_web.types.list_tags_for_resource_request.ListTagsForResourceRequest = {
+            "resource_arn": resource_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def tag_resource(
@@ -498,17 +507,20 @@ class AsyncWorkSpacesWebClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workspaces_web.types.tag_resource_request.TagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tags"] = tags
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_workspaces_web.types.tag_resource_request.TagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tags": tags,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def untag_resource(
@@ -549,15 +561,17 @@ class AsyncWorkSpacesWebClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workspaces_web.types.untag_resource_request.UntagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tag_keys"] = tag_keys
+        input_: capo_workspaces_web.types.untag_resource_request.UntagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tag_keys": tag_keys,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def __aenter__(self) -> Self:

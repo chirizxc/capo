@@ -46,18 +46,18 @@ def serialize_json(value: CampaignEmailMessage) -> dict:
 
 def deserialize_json(data: dict) -> CampaignEmailMessage:
     out: CampaignEmailMessage = {}  # type: ignore[typeddict-item]
-    if "Body" in data:
+    if data.get("Body") is not None:
         out["body"] = data["Body"]
-    if "FromAddress" in data:
+    if data.get("FromAddress") is not None:
         out["from_address"] = data["FromAddress"]
-    if "Headers" in data:
+    if data.get("Headers") is not None:
         import capo_pinpoint.types.list_of_message_header
 
         out["headers"] = capo_pinpoint.types.list_of_message_header.deserialize_json(
             data["Headers"]
         )
-    if "HtmlBody" in data:
+    if data.get("HtmlBody") is not None:
         out["html_body"] = data["HtmlBody"]
-    if "Title" in data:
+    if data.get("Title") is not None:
         out["title"] = data["Title"]
     return out

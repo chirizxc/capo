@@ -25,6 +25,6 @@ def serialize_aws_json_1_1(value: ReloadTablesResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ReloadTablesResponse:
     out: ReloadTablesResponse = {}  # type: ignore[typeddict-item]
-    if "ReplicationTaskArn" in data:
+    if data.get("ReplicationTaskArn") is not None:
         out["replication_task_arn"] = data["ReplicationTaskArn"]
     return out

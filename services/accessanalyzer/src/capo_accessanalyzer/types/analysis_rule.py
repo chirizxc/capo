@@ -31,7 +31,7 @@ def serialize_json(value: AnalysisRule) -> dict:
 
 def deserialize_json(data: dict) -> AnalysisRule:
     out: AnalysisRule = {}  # type: ignore[typeddict-item]
-    if "exclusions" in data:
+    if data.get("exclusions") is not None:
         import capo_accessanalyzer.types.analysis_rule_criteria_list
 
         out["exclusions"] = (

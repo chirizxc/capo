@@ -36,7 +36,7 @@ def serialize_json(value: ListSecurityConfigurationsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListSecurityConfigurationsResponse:
     out: ListSecurityConfigurationsResponse = {}  # type: ignore[typeddict-item]
-    if "securityConfigurations" in data:
+    if data.get("securityConfigurations") is not None:
         import capo_emr_containers.types.security_configurations
 
         out["security_configurations"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> ListSecurityConfigurationsResponse:
                 data["securityConfigurations"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

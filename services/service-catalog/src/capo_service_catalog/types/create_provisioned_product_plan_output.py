@@ -45,14 +45,14 @@ def serialize_aws_json_1_1(value: CreateProvisionedProductPlanOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateProvisionedProductPlanOutput:
     out: CreateProvisionedProductPlanOutput = {}  # type: ignore[typeddict-item]
-    if "PlanName" in data:
+    if data.get("PlanName") is not None:
         out["plan_name"] = data["PlanName"]
-    if "PlanId" in data:
+    if data.get("PlanId") is not None:
         out["plan_id"] = data["PlanId"]
-    if "ProvisionProductId" in data:
+    if data.get("ProvisionProductId") is not None:
         out["provision_product_id"] = data["ProvisionProductId"]
-    if "ProvisionedProductName" in data:
+    if data.get("ProvisionedProductName") is not None:
         out["provisioned_product_name"] = data["ProvisionedProductName"]
-    if "ProvisioningArtifactId" in data:
+    if data.get("ProvisioningArtifactId") is not None:
         out["provisioning_artifact_id"] = data["ProvisioningArtifactId"]
     return out

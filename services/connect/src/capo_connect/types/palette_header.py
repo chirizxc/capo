@@ -35,13 +35,13 @@ def serialize_json(value: PaletteHeader) -> dict:
 
 def deserialize_json(data: dict) -> PaletteHeader:
     out: PaletteHeader = {}  # type: ignore[typeddict-item]
-    if "Background" in data:
+    if data.get("Background") is not None:
         out["background"] = data["Background"]
-    if "Text" in data:
+    if data.get("Text") is not None:
         out["text"] = data["Text"]
-    if "TextHover" in data:
+    if data.get("TextHover") is not None:
         out["text_hover"] = data["TextHover"]
-    if "InvertActionsColors" in data:
+    if data.get("InvertActionsColors") is not None:
         out["invert_actions_colors"] = data["InvertActionsColors"]
     else:
         out["invert_actions_colors"] = False

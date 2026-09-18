@@ -39,14 +39,14 @@ def serialize_json(value: AwsIamAccessKeySessionContextSessionIssuer) -> dict:
 
 def deserialize_json(data: dict) -> AwsIamAccessKeySessionContextSessionIssuer:
     out: AwsIamAccessKeySessionContextSessionIssuer = {}  # type: ignore[typeddict-item]
-    if "Type" in data:
+    if data.get("Type") is not None:
         out["type"] = data["Type"]
-    if "PrincipalId" in data:
+    if data.get("PrincipalId") is not None:
         out["principal_id"] = data["PrincipalId"]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "AccountId" in data:
+    if data.get("AccountId") is not None:
         out["account_id"] = data["AccountId"]
-    if "UserName" in data:
+    if data.get("UserName") is not None:
         out["user_name"] = data["UserName"]
     return out

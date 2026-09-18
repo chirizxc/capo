@@ -49,7 +49,7 @@ def serialize_json(value: InvokeEndpointOutput) -> dict:
 
 def deserialize_json(data: dict) -> InvokeEndpointOutput:
     out: InvokeEndpointOutput = {}  # type: ignore[typeddict-item]
-    if "Body" in data:
+    if data.get("Body") is not None:
         import capo_sagemaker_runtime.types.body_blob
 
         out["body"] = capo_sagemaker_runtime.types.body_blob.deserialize_json(

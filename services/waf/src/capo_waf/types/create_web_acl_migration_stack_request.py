@@ -34,19 +34,19 @@ def serialize_aws_json_1_1(value: CreateWebACLMigrationStackRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateWebACLMigrationStackRequest:
     out: CreateWebACLMigrationStackRequest = {}  # type: ignore[typeddict-item]
-    if "WebACLId" in data:
+    if data.get("WebACLId") is not None:
         out["web_acl_id"] = data["WebACLId"]
     else:
         raise DeserializationError(
             "CreateWebACLMigrationStackRequest.web_acl_id required"
         )
-    if "S3BucketName" in data:
+    if data.get("S3BucketName") is not None:
         out["s3_bucket_name"] = data["S3BucketName"]
     else:
         raise DeserializationError(
             "CreateWebACLMigrationStackRequest.s3_bucket_name required"
         )
-    if "IgnoreUnsupportedType" in data:
+    if data.get("IgnoreUnsupportedType") is not None:
         out["ignore_unsupported_type"] = data["IgnoreUnsupportedType"]
     else:
         raise DeserializationError(

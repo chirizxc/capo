@@ -32,10 +32,10 @@ def serialize_aws_json_1_1(value: ChildBlock) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ChildBlock:
     out: ChildBlock = {}  # type: ignore[typeddict-item]
-    if "ChildBlockId" in data:
+    if data.get("ChildBlockId") is not None:
         out["child_block_id"] = data["ChildBlockId"]
-    if "BeginOffset" in data:
+    if data.get("BeginOffset") is not None:
         out["begin_offset"] = data["BeginOffset"]
-    if "EndOffset" in data:
+    if data.get("EndOffset") is not None:
         out["end_offset"] = data["EndOffset"]
     return out

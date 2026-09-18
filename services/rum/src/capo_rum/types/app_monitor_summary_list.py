@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> AppMonitorSummaryList:
 
     out: AppMonitorSummaryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_rum.types.app_monitor_summary.deserialize_json(item))
     return out

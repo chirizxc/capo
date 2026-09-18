@@ -135,11 +135,11 @@ def serialize_json(value: UserSettings) -> dict:
 
 def deserialize_json(data: dict) -> UserSettings:
     out: UserSettings = {}  # type: ignore[typeddict-item]
-    if "userSettingsArn" in data:
+    if data.get("userSettingsArn") is not None:
         out["user_settings_arn"] = data["userSettingsArn"]
     else:
         raise DeserializationError("UserSettings.user_settings_arn required")
-    if "associatedPortalArns" in data:
+    if data.get("associatedPortalArns") is not None:
         import capo_workspaces_web.types.arn_list
 
         out["associated_portal_arns"] = (
@@ -147,23 +147,23 @@ def deserialize_json(data: dict) -> UserSettings:
                 data["associatedPortalArns"]
             )
         )
-    if "copyAllowed" in data:
+    if data.get("copyAllowed") is not None:
         out["copy_allowed"] = data["copyAllowed"]
-    if "pasteAllowed" in data:
+    if data.get("pasteAllowed") is not None:
         out["paste_allowed"] = data["pasteAllowed"]
-    if "downloadAllowed" in data:
+    if data.get("downloadAllowed") is not None:
         out["download_allowed"] = data["downloadAllowed"]
-    if "uploadAllowed" in data:
+    if data.get("uploadAllowed") is not None:
         out["upload_allowed"] = data["uploadAllowed"]
-    if "printAllowed" in data:
+    if data.get("printAllowed") is not None:
         out["print_allowed"] = data["printAllowed"]
-    if "disconnectTimeoutInMinutes" in data:
+    if data.get("disconnectTimeoutInMinutes") is not None:
         out["disconnect_timeout_in_minutes"] = data["disconnectTimeoutInMinutes"]
-    if "idleDisconnectTimeoutInMinutes" in data:
+    if data.get("idleDisconnectTimeoutInMinutes") is not None:
         out["idle_disconnect_timeout_in_minutes"] = data[
             "idleDisconnectTimeoutInMinutes"
         ]
-    if "cookieSynchronizationConfiguration" in data:
+    if data.get("cookieSynchronizationConfiguration") is not None:
         import capo_workspaces_web.types.cookie_synchronization_configuration
 
         out["cookie_synchronization_configuration"] = (
@@ -171,9 +171,9 @@ def deserialize_json(data: dict) -> UserSettings:
                 data["cookieSynchronizationConfiguration"]
             )
         )
-    if "customerManagedKey" in data:
+    if data.get("customerManagedKey") is not None:
         out["customer_managed_key"] = data["customerManagedKey"]
-    if "additionalEncryptionContext" in data:
+    if data.get("additionalEncryptionContext") is not None:
         import capo_workspaces_web.types.encryption_context_map
 
         out["additional_encryption_context"] = (
@@ -181,9 +181,9 @@ def deserialize_json(data: dict) -> UserSettings:
                 data["additionalEncryptionContext"]
             )
         )
-    if "deepLinkAllowed" in data:
+    if data.get("deepLinkAllowed") is not None:
         out["deep_link_allowed"] = data["deepLinkAllowed"]
-    if "toolbarConfiguration" in data:
+    if data.get("toolbarConfiguration") is not None:
         import capo_workspaces_web.types.toolbar_configuration
 
         out["toolbar_configuration"] = (
@@ -191,7 +191,7 @@ def deserialize_json(data: dict) -> UserSettings:
                 data["toolbarConfiguration"]
             )
         )
-    if "brandingConfiguration" in data:
+    if data.get("brandingConfiguration") is not None:
         import capo_workspaces_web.types.branding_configuration
 
         out["branding_configuration"] = (
@@ -199,6 +199,6 @@ def deserialize_json(data: dict) -> UserSettings:
                 data["brandingConfiguration"]
             )
         )
-    if "webAuthnAllowed" in data:
+    if data.get("webAuthnAllowed") is not None:
         out["web_authn_allowed"] = data["webAuthnAllowed"]
     return out

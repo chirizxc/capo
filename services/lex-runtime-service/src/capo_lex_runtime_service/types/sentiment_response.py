@@ -32,8 +32,8 @@ def serialize_json(value: SentimentResponse) -> dict:
 
 def deserialize_json(data: dict) -> SentimentResponse:
     out: SentimentResponse = {}  # type: ignore[typeddict-item]
-    if "sentimentLabel" in data:
+    if data.get("sentimentLabel") is not None:
         out["sentiment_label"] = data["sentimentLabel"]
-    if "sentimentScore" in data:
+    if data.get("sentimentScore") is not None:
         out["sentiment_score"] = data["sentimentScore"]
     return out

@@ -89,23 +89,23 @@ def serialize_aws_json_1_0(value: GetProfileUpdateTaskResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> GetProfileUpdateTaskResponse:
     out: GetProfileUpdateTaskResponse = {}  # type: ignore[typeddict-item]
-    if "Catalog" in data:
+    if data.get("Catalog") is not None:
         out["catalog"] = data["Catalog"]
     else:
         raise DeserializationError("GetProfileUpdateTaskResponse.catalog required")
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
     else:
         raise DeserializationError("GetProfileUpdateTaskResponse.arn required")
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
     else:
         raise DeserializationError("GetProfileUpdateTaskResponse.id required")
-    if "TaskId" in data:
+    if data.get("TaskId") is not None:
         out["task_id"] = data["TaskId"]
     else:
         raise DeserializationError("GetProfileUpdateTaskResponse.task_id required")
-    if "TaskDetails" in data:
+    if data.get("TaskDetails") is not None:
         import capo_partnercentral_account.types.task_details
 
         out["task_details"] = (
@@ -115,7 +115,7 @@ def deserialize_aws_json_1_0(data: dict) -> GetProfileUpdateTaskResponse:
         )
     else:
         raise DeserializationError("GetProfileUpdateTaskResponse.task_details required")
-    if "StartedAt" in data:
+    if data.get("StartedAt") is not None:
         import capo_partnercentral_account.types.date_time
 
         out["started_at"] = (
@@ -125,7 +125,7 @@ def deserialize_aws_json_1_0(data: dict) -> GetProfileUpdateTaskResponse:
         )
     else:
         raise DeserializationError("GetProfileUpdateTaskResponse.started_at required")
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_partnercentral_account.types.profile_task_status
 
         out["status"] = (
@@ -135,7 +135,7 @@ def deserialize_aws_json_1_0(data: dict) -> GetProfileUpdateTaskResponse:
         )
     else:
         raise DeserializationError("GetProfileUpdateTaskResponse.status required")
-    if "EndedAt" in data:
+    if data.get("EndedAt") is not None:
         import capo_partnercentral_account.types.date_time
 
         out["ended_at"] = (
@@ -143,7 +143,7 @@ def deserialize_aws_json_1_0(data: dict) -> GetProfileUpdateTaskResponse:
                 data["EndedAt"]
             )
         )
-    if "ErrorDetailList" in data:
+    if data.get("ErrorDetailList") is not None:
         import capo_partnercentral_account.types.error_detail_list
 
         out["error_detail_list"] = (

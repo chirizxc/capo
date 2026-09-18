@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> DefaultVocabularyList:
 
     out: DefaultVocabularyList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_connect.types.default_vocabulary.deserialize_json(item))
     return out

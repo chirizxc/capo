@@ -39,10 +39,10 @@ def serialize_aws_json_1_1(value: StoppingCondition) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> StoppingCondition:
     out: StoppingCondition = {}  # type: ignore[typeddict-item]
-    if "MaxRuntimeInSeconds" in data:
+    if data.get("MaxRuntimeInSeconds") is not None:
         out["max_runtime_in_seconds"] = data["MaxRuntimeInSeconds"]
-    if "MaxWaitTimeInSeconds" in data:
+    if data.get("MaxWaitTimeInSeconds") is not None:
         out["max_wait_time_in_seconds"] = data["MaxWaitTimeInSeconds"]
-    if "MaxPendingTimeInSeconds" in data:
+    if data.get("MaxPendingTimeInSeconds") is not None:
         out["max_pending_time_in_seconds"] = data["MaxPendingTimeInSeconds"]
     return out

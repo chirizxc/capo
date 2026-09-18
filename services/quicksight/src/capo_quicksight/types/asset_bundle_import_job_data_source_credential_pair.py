@@ -28,13 +28,13 @@ def serialize_json(value: AssetBundleImportJobDataSourceCredentialPair) -> dict:
 
 def deserialize_json(data: dict) -> AssetBundleImportJobDataSourceCredentialPair:
     out: AssetBundleImportJobDataSourceCredentialPair = {}  # type: ignore[typeddict-item]
-    if "Username" in data:
+    if data.get("Username") is not None:
         out["username"] = data["Username"]
     else:
         raise DeserializationError(
             "AssetBundleImportJobDataSourceCredentialPair.username required"
         )
-    if "Password" in data:
+    if data.get("Password") is not None:
         out["password"] = data["Password"]
     else:
         raise DeserializationError(

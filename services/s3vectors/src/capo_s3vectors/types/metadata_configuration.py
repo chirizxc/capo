@@ -32,7 +32,7 @@ def serialize_json(value: MetadataConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> MetadataConfiguration:
     out: MetadataConfiguration = {}  # type: ignore[typeddict-item]
-    if "nonFilterableMetadataKeys" in data:
+    if data.get("nonFilterableMetadataKeys") is not None:
         import capo_s3vectors.types.non_filterable_metadata_keys
 
         out["non_filterable_metadata_keys"] = (

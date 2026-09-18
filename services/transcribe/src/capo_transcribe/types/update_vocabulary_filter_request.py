@@ -4,6 +4,8 @@ from typing import TYPE_CHECKING
 
 from typing_extensions import NotRequired, TypedDict
 
+from capo_transcribe.errors import DeserializationError
+
 if TYPE_CHECKING:
     import capo_transcribe.types.data_access_role_arn
     import capo_transcribe.types.uri
@@ -29,6 +31,7 @@ class UpdateVocabularyFilterRequest(TypedDict, closed=True):
 # --- awsJson1_1 ser/de ---
 def serialize_aws_json_1_1(value: UpdateVocabularyFilterRequest) -> dict:
     out: dict = {}
+    out["VocabularyFilterName"] = value["vocabulary_filter_name"]
     if "words" in value:
         import capo_transcribe.types.words
 
@@ -44,14 +47,20 @@ def serialize_aws_json_1_1(value: UpdateVocabularyFilterRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateVocabularyFilterRequest:
     out: UpdateVocabularyFilterRequest = {}  # type: ignore[typeddict-item]
-    if "Words" in data:
+    if data.get("VocabularyFilterName") is not None:
+        out["vocabulary_filter_name"] = data["VocabularyFilterName"]
+    else:
+        raise DeserializationError(
+            "UpdateVocabularyFilterRequest.vocabulary_filter_name required"
+        )
+    if data.get("Words") is not None:
         import capo_transcribe.types.words
 
         out["words"] = capo_transcribe.types.words.deserialize_aws_json_1_1(
             data["Words"]
         )
-    if "VocabularyFilterFileUri" in data:
+    if data.get("VocabularyFilterFileUri") is not None:
         out["vocabulary_filter_file_uri"] = data["VocabularyFilterFileUri"]
-    if "DataAccessRoleArn" in data:
+    if data.get("DataAccessRoleArn") is not None:
         out["data_access_role_arn"] = data["DataAccessRoleArn"]
     return out

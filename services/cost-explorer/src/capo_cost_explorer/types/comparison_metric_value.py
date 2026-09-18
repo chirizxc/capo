@@ -39,12 +39,12 @@ def serialize_aws_json_1_1(value: ComparisonMetricValue) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ComparisonMetricValue:
     out: ComparisonMetricValue = {}  # type: ignore[typeddict-item]
-    if "BaselineTimePeriodAmount" in data:
+    if data.get("BaselineTimePeriodAmount") is not None:
         out["baseline_time_period_amount"] = data["BaselineTimePeriodAmount"]
-    if "ComparisonTimePeriodAmount" in data:
+    if data.get("ComparisonTimePeriodAmount") is not None:
         out["comparison_time_period_amount"] = data["ComparisonTimePeriodAmount"]
-    if "Difference" in data:
+    if data.get("Difference") is not None:
         out["difference"] = data["Difference"]
-    if "Unit" in data:
+    if data.get("Unit") is not None:
         out["unit"] = data["Unit"]
     return out

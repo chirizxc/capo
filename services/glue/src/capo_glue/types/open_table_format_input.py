@@ -27,7 +27,7 @@ def serialize_aws_json_1_1(value: OpenTableFormatInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> OpenTableFormatInput:
     out: OpenTableFormatInput = {}  # type: ignore[typeddict-item]
-    if "IcebergInput" in data:
+    if data.get("IcebergInput") is not None:
         import capo_glue.types.iceberg_input
 
         out["iceberg_input"] = capo_glue.types.iceberg_input.deserialize_aws_json_1_1(

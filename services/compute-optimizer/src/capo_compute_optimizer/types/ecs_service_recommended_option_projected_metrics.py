@@ -29,6 +29,8 @@ def deserialize_aws_json_1_0(data: list) -> ECSServiceRecommendedOptionProjected
 
     out: ECSServiceRecommendedOptionProjectedMetrics = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_compute_optimizer.types.ecs_service_recommended_option_projected_metric.deserialize_aws_json_1_0(
                 item

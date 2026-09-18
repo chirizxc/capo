@@ -60,15 +60,15 @@ def serialize_json(value: TopicReplicationUpdate) -> dict:
 
 def deserialize_json(data: dict) -> TopicReplicationUpdate:
     out: TopicReplicationUpdate = {}  # type: ignore[typeddict-item]
-    if "copyAccessControlListsForTopics" in data:
+    if data.get("copyAccessControlListsForTopics") is not None:
         out["copy_access_control_lists_for_topics"] = data[
             "copyAccessControlListsForTopics"
         ]
-    if "copyTopicConfigurations" in data:
+    if data.get("copyTopicConfigurations") is not None:
         out["copy_topic_configurations"] = data["copyTopicConfigurations"]
-    if "detectAndCopyNewTopics" in data:
+    if data.get("detectAndCopyNewTopics") is not None:
         out["detect_and_copy_new_topics"] = data["detectAndCopyNewTopics"]
-    if "topicsToExclude" in data:
+    if data.get("topicsToExclude") is not None:
         import capo_kafka.types.__list_of__string_max249
 
         out["topics_to_exclude"] = (
@@ -76,7 +76,7 @@ def deserialize_json(data: dict) -> TopicReplicationUpdate:
                 data["topicsToExclude"]
             )
         )
-    if "topicsToReplicate" in data:
+    if data.get("topicsToReplicate") is not None:
         import capo_kafka.types.__list_of__string_max249
 
         out["topics_to_replicate"] = (

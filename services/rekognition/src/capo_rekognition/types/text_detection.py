@@ -43,7 +43,15 @@ def serialize_aws_json_1_1(value: TextDetection) -> dict:
     if "parent_id" in value:
         out["ParentId"] = value["parent_id"]
     if "confidence" in value:
-        out["Confidence"] = value["confidence"]
+        out["Confidence"] = (
+            "NaN"
+            if value["confidence"] != value["confidence"]
+            else "Infinity"
+            if value["confidence"] == float("inf")
+            else "-Infinity"
+            if value["confidence"] == float("-inf")
+            else value["confidence"]
+        )
     if "geometry" in value:
         import capo_rekognition.types.geometry
 
@@ -55,21 +63,21 @@ def serialize_aws_json_1_1(value: TextDetection) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> TextDetection:
     out: TextDetection = {}  # type: ignore[typeddict-item]
-    if "DetectedText" in data:
+    if data.get("DetectedText") is not None:
         out["detected_text"] = data["DetectedText"]
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_rekognition.types.text_types
 
         out["type"] = capo_rekognition.types.text_types.deserialize_aws_json_1_1(
             data["Type"]
         )
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "ParentId" in data:
+    if data.get("ParentId") is not None:
         out["parent_id"] = data["ParentId"]
-    if "Confidence" in data:
-        out["confidence"] = data["Confidence"]
-    if "Geometry" in data:
+    if data.get("Confidence") is not None:
+        out["confidence"] = float(data["Confidence"])
+    if data.get("Geometry") is not None:
         import capo_rekognition.types.geometry
 
         out["geometry"] = capo_rekognition.types.geometry.deserialize_aws_json_1_1(

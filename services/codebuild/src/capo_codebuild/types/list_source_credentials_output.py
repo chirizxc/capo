@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: ListSourceCredentialsOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListSourceCredentialsOutput:
     out: ListSourceCredentialsOutput = {}  # type: ignore[typeddict-item]
-    if "sourceCredentialsInfos" in data:
+    if data.get("sourceCredentialsInfos") is not None:
         import capo_codebuild.types.source_credentials_infos
 
         out["source_credentials_infos"] = (

@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: StartServerRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> StartServerRequest:
     out: StartServerRequest = {}  # type: ignore[typeddict-item]
-    if "ServerId" in data:
+    if data.get("ServerId") is not None:
         out["server_id"] = data["ServerId"]
     else:
         raise DeserializationError("StartServerRequest.server_id required")

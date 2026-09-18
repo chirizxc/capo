@@ -51,7 +51,7 @@ def serialize_json(value: VerificationDetails) -> dict:
 
 def deserialize_json(data: dict) -> VerificationDetails:
     out: VerificationDetails = {}  # type: ignore[typeddict-item]
-    if "method" in data:
+    if data.get("method") is not None:
         import capo_securityagent.types.domain_verification_method
 
         out["method"] = (
@@ -59,13 +59,13 @@ def deserialize_json(data: dict) -> VerificationDetails:
                 data["method"]
             )
         )
-    if "dnsTxt" in data:
+    if data.get("dnsTxt") is not None:
         import capo_securityagent.types.dns_verification
 
         out["dns_txt"] = capo_securityagent.types.dns_verification.deserialize_json(
             data["dnsTxt"]
         )
-    if "httpRoute" in data:
+    if data.get("httpRoute") is not None:
         import capo_securityagent.types.http_verification
 
         out["http_route"] = capo_securityagent.types.http_verification.deserialize_json(

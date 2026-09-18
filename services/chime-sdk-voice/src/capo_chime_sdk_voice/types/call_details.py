@@ -37,10 +37,10 @@ def serialize_json(value: CallDetails) -> dict:
 
 def deserialize_json(data: dict) -> CallDetails:
     out: CallDetails = {}  # type: ignore[typeddict-item]
-    if "VoiceConnectorId" in data:
+    if data.get("VoiceConnectorId") is not None:
         out["voice_connector_id"] = data["VoiceConnectorId"]
-    if "TransactionId" in data:
+    if data.get("TransactionId") is not None:
         out["transaction_id"] = data["TransactionId"]
-    if "IsCaller" in data:
+    if data.get("IsCaller") is not None:
         out["is_caller"] = data["IsCaller"]
     return out

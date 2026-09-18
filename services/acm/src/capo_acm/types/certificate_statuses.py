@@ -25,5 +25,7 @@ def deserialize_aws_json_1_1(data: list) -> CertificateStatuses:
 
     out: CertificateStatuses = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_acm.types.certificate_status.deserialize_aws_json_1_1(item))
     return out

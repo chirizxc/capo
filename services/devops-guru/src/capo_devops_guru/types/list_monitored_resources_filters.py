@@ -42,7 +42,7 @@ def serialize_json(value: ListMonitoredResourcesFilters) -> dict:
 
 def deserialize_json(data: dict) -> ListMonitoredResourcesFilters:
     out: ListMonitoredResourcesFilters = {}  # type: ignore[typeddict-item]
-    if "ResourcePermission" in data:
+    if data.get("ResourcePermission") is not None:
         import capo_devops_guru.types.resource_permission
 
         out["resource_permission"] = (
@@ -54,7 +54,7 @@ def deserialize_json(data: dict) -> ListMonitoredResourcesFilters:
         raise DeserializationError(
             "ListMonitoredResourcesFilters.resource_permission required"
         )
-    if "ResourceTypeFilters" in data:
+    if data.get("ResourceTypeFilters") is not None:
         import capo_devops_guru.types.resource_type_filters
 
         out["resource_type_filters"] = (

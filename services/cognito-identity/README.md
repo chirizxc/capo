@@ -13,9 +13,9 @@ from capo_cognito_identity import AsyncCognitoIdentityClient
 
 
 async def main():
-    async with AsyncCognitoIdentityClient() as s3:
+    async with AsyncCognitoIdentityClient() as cognito_identity:
         # Example: call the create_identity_pool operation
-        response = await s3.create_identity_pool()
+        response = await cognito_identity.create_identity_pool()
         print(response["identity_pool_id"])
 ```
 
@@ -28,9 +28,9 @@ from capo_cognito_identity import AsyncCognitoIdentityClient
 
 
 async def main():
-    async with AsyncCognitoIdentityClient() as s3:
+    async with AsyncCognitoIdentityClient() as cognito_identity:
         # Example: paginate over list_identity_pools
-        async for item in s3.iter_list_identity_pools():
+        async for item in cognito_identity.iter_list_identity_pools():
             print(item)
 ```
 
@@ -44,9 +44,9 @@ from capo_cognito_identity.error import InternalErrorException
 
 
 async def main():
-    async with AsyncCognitoIdentityClient() as s3:
+    async with AsyncCognitoIdentityClient() as cognito_identity:
         try:
-            await s3.create_identity_pool()
+            await cognito_identity.create_identity_pool()
         except InternalErrorException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -63,13 +63,13 @@ from capo_cognito_identity import AsyncCognitoIdentityClient
 
 
 async def main():
-    async with AsyncCognitoIdentityClient() as s3:
+    async with AsyncCognitoIdentityClient() as cognito_identity:
         # Default: 3 attempts for every operation
-        response = await s3.create_identity_pool()
+        response = await cognito_identity.create_identity_pool()
 
         # Override per operation
-        response = await s3.create_identity_pool(config_overrides={"retry_max_attempts": 5})
+        response = await cognito_identity.create_identity_pool(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.create_identity_pool(config_overrides={"retry_max_attempts": 1})
+        response = await cognito_identity.create_identity_pool(config_overrides={"retry_max_attempts": 1})
 ```

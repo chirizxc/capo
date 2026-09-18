@@ -90,11 +90,11 @@ def serialize_json(value: UpdateQuoteInput) -> dict:
 
 def deserialize_json(data: dict) -> UpdateQuoteInput:
     out: UpdateQuoteInput = {}  # type: ignore[typeddict-item]
-    if "OutpostIdentifier" in data:
+    if data.get("OutpostIdentifier") is not None:
         out["outpost_identifier"] = data["OutpostIdentifier"]
-    if "CountryCode" in data:
+    if data.get("CountryCode") is not None:
         out["country_code"] = data["CountryCode"]
-    if "RequestedCapacities" in data:
+    if data.get("RequestedCapacities") is not None:
         import capo_outposts.types.quote_capacity_list
 
         out["requested_capacities"] = (
@@ -102,7 +102,7 @@ def deserialize_json(data: dict) -> UpdateQuoteInput:
                 data["RequestedCapacities"]
             )
         )
-    if "RequestedConstraints" in data:
+    if data.get("RequestedConstraints") is not None:
         import capo_outposts.types.quote_constraint_list
 
         out["requested_constraints"] = (
@@ -110,7 +110,7 @@ def deserialize_json(data: dict) -> UpdateQuoteInput:
                 data["RequestedConstraints"]
             )
         )
-    if "RequestedPaymentOptions" in data:
+    if data.get("RequestedPaymentOptions") is not None:
         import capo_outposts.types.payment_option_list
 
         out["requested_payment_options"] = (
@@ -118,7 +118,7 @@ def deserialize_json(data: dict) -> UpdateQuoteInput:
                 data["RequestedPaymentOptions"]
             )
         )
-    if "RequestedPaymentTerms" in data:
+    if data.get("RequestedPaymentTerms") is not None:
         import capo_outposts.types.payment_term_list
 
         out["requested_payment_terms"] = (
@@ -126,6 +126,6 @@ def deserialize_json(data: dict) -> UpdateQuoteInput:
                 data["RequestedPaymentTerms"]
             )
         )
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
     return out

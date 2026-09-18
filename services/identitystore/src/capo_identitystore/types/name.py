@@ -55,16 +55,16 @@ def serialize_aws_json_1_1(value: Name) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Name:
     out: Name = {}  # type: ignore[typeddict-item]
-    if "Formatted" in data:
+    if data.get("Formatted") is not None:
         out["formatted"] = data["Formatted"]
-    if "FamilyName" in data:
+    if data.get("FamilyName") is not None:
         out["family_name"] = data["FamilyName"]
-    if "GivenName" in data:
+    if data.get("GivenName") is not None:
         out["given_name"] = data["GivenName"]
-    if "MiddleName" in data:
+    if data.get("MiddleName") is not None:
         out["middle_name"] = data["MiddleName"]
-    if "HonorificPrefix" in data:
+    if data.get("HonorificPrefix") is not None:
         out["honorific_prefix"] = data["HonorificPrefix"]
-    if "HonorificSuffix" in data:
+    if data.get("HonorificSuffix") is not None:
         out["honorific_suffix"] = data["HonorificSuffix"]
     return out

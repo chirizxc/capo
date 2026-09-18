@@ -37,11 +37,11 @@ def serialize_aws_json_1_1(value: GetTableRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetTableRequest:
     out: GetTableRequest = {}  # type: ignore[typeddict-item]
-    if "TableName" in data:
+    if data.get("TableName") is not None:
         out["table_name"] = data["TableName"]
     else:
         raise DeserializationError("GetTableRequest.table_name required")
-    if "TableProperties" in data:
+    if data.get("TableProperties") is not None:
         import capo_bcm_data_exports.types.table_properties
 
         out["table_properties"] = (

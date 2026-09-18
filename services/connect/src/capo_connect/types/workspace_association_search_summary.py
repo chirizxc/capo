@@ -53,16 +53,16 @@ def serialize_json(value: WorkspaceAssociationSearchSummary) -> dict:
 
 def deserialize_json(data: dict) -> WorkspaceAssociationSearchSummary:
     out: WorkspaceAssociationSearchSummary = {}  # type: ignore[typeddict-item]
-    if "WorkspaceId" in data:
+    if data.get("WorkspaceId") is not None:
         out["workspace_id"] = data["WorkspaceId"]
-    if "WorkspaceArn" in data:
+    if data.get("WorkspaceArn") is not None:
         out["workspace_arn"] = data["WorkspaceArn"]
-    if "ResourceId" in data:
+    if data.get("ResourceId") is not None:
         out["resource_id"] = data["ResourceId"]
-    if "ResourceArn" in data:
+    if data.get("ResourceArn") is not None:
         out["resource_arn"] = data["ResourceArn"]
-    if "ResourceType" in data:
+    if data.get("ResourceType") is not None:
         out["resource_type"] = data["ResourceType"]
-    if "ResourceName" in data:
+    if data.get("ResourceName") is not None:
         out["resource_name"] = data["ResourceName"]
     return out

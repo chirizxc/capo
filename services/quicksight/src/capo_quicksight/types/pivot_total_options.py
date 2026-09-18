@@ -102,13 +102,13 @@ def serialize_json(value: PivotTotalOptions) -> dict:
 
 def deserialize_json(data: dict) -> PivotTotalOptions:
     out: PivotTotalOptions = {}  # type: ignore[typeddict-item]
-    if "TotalsVisibility" in data:
+    if data.get("TotalsVisibility") is not None:
         import capo_quicksight.types.visibility
 
         out["totals_visibility"] = capo_quicksight.types.visibility.deserialize_json(
             data["TotalsVisibility"]
         )
-    if "Placement" in data:
+    if data.get("Placement") is not None:
         import capo_quicksight.types.table_totals_placement
 
         out["placement"] = (
@@ -116,7 +116,7 @@ def deserialize_json(data: dict) -> PivotTotalOptions:
                 data["Placement"]
             )
         )
-    if "ScrollStatus" in data:
+    if data.get("ScrollStatus") is not None:
         import capo_quicksight.types.table_totals_scroll_status
 
         out["scroll_status"] = (
@@ -124,9 +124,9 @@ def deserialize_json(data: dict) -> PivotTotalOptions:
                 data["ScrollStatus"]
             )
         )
-    if "CustomLabel" in data:
+    if data.get("CustomLabel") is not None:
         out["custom_label"] = data["CustomLabel"]
-    if "TotalCellStyle" in data:
+    if data.get("TotalCellStyle") is not None:
         import capo_quicksight.types.table_cell_style
 
         out["total_cell_style"] = (
@@ -134,7 +134,7 @@ def deserialize_json(data: dict) -> PivotTotalOptions:
                 data["TotalCellStyle"]
             )
         )
-    if "ValueCellStyle" in data:
+    if data.get("ValueCellStyle") is not None:
         import capo_quicksight.types.table_cell_style
 
         out["value_cell_style"] = (
@@ -142,7 +142,7 @@ def deserialize_json(data: dict) -> PivotTotalOptions:
                 data["ValueCellStyle"]
             )
         )
-    if "MetricHeaderCellStyle" in data:
+    if data.get("MetricHeaderCellStyle") is not None:
         import capo_quicksight.types.table_cell_style
 
         out["metric_header_cell_style"] = (
@@ -150,7 +150,7 @@ def deserialize_json(data: dict) -> PivotTotalOptions:
                 data["MetricHeaderCellStyle"]
             )
         )
-    if "TotalAggregationOptions" in data:
+    if data.get("TotalAggregationOptions") is not None:
         import capo_quicksight.types.total_aggregation_option_list
 
         out["total_aggregation_options"] = (

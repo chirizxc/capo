@@ -30,12 +30,12 @@ def serialize_json(value: ScheduleConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> ScheduleConfiguration:
     out: ScheduleConfiguration = {}  # type: ignore[typeddict-item]
-    if "timezone" in data:
+    if data.get("timezone") is not None:
         import capo_datazone.types.timezone
 
         out["timezone"] = capo_datazone.types.timezone.deserialize_json(
             data["timezone"]
         )
-    if "schedule" in data:
+    if data.get("schedule") is not None:
         out["schedule"] = data["schedule"]
     return out

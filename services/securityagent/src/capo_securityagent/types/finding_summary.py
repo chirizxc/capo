@@ -79,15 +79,15 @@ def serialize_json(value: FindingSummary) -> dict:
             value["confidence"]
         )
     if "created_at" in value:
-        import capo_securityagent.types._prelude.timestamp
+        import capo_securityagent._protocol.serialize
 
-        out["createdAt"] = capo_securityagent.types._prelude.timestamp.serialize_json(
+        out["createdAt"] = capo_securityagent._protocol.serialize.fmt_date_time(
             value["created_at"]
         )
     if "updated_at" in value:
-        import capo_securityagent.types._prelude.timestamp
+        import capo_securityagent._protocol.serialize
 
-        out["updatedAt"] = capo_securityagent.types._prelude.timestamp.serialize_json(
+        out["updatedAt"] = capo_securityagent._protocol.serialize.fmt_date_time(
             value["updated_at"]
         )
     return out
@@ -95,58 +95,54 @@ def serialize_json(value: FindingSummary) -> dict:
 
 def deserialize_json(data: dict) -> FindingSummary:
     out: FindingSummary = {}  # type: ignore[typeddict-item]
-    if "findingId" in data:
+    if data.get("findingId") is not None:
         out["finding_id"] = data["findingId"]
     else:
         raise DeserializationError("FindingSummary.finding_id required")
-    if "agentSpaceId" in data:
+    if data.get("agentSpaceId") is not None:
         out["agent_space_id"] = data["agentSpaceId"]
     else:
         raise DeserializationError("FindingSummary.agent_space_id required")
-    if "pentestId" in data:
+    if data.get("pentestId") is not None:
         out["pentest_id"] = data["pentestId"]
-    if "pentestJobId" in data:
+    if data.get("pentestJobId") is not None:
         out["pentest_job_id"] = data["pentestJobId"]
-    if "codeReviewId" in data:
+    if data.get("codeReviewId") is not None:
         out["code_review_id"] = data["codeReviewId"]
-    if "codeReviewJobId" in data:
+    if data.get("codeReviewJobId") is not None:
         out["code_review_job_id"] = data["codeReviewJobId"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_securityagent.types.finding_status
 
         out["status"] = capo_securityagent.types.finding_status.deserialize_json(
             data["status"]
         )
-    if "riskType" in data:
+    if data.get("riskType") is not None:
         out["risk_type"] = data["riskType"]
-    if "riskLevel" in data:
+    if data.get("riskLevel") is not None:
         import capo_securityagent.types.risk_level
 
         out["risk_level"] = capo_securityagent.types.risk_level.deserialize_json(
             data["riskLevel"]
         )
-    if "confidence" in data:
+    if data.get("confidence") is not None:
         import capo_securityagent.types.confidence_level
 
         out["confidence"] = capo_securityagent.types.confidence_level.deserialize_json(
             data["confidence"]
         )
-    if "createdAt" in data:
-        import capo_securityagent.types._prelude.timestamp
+    if data.get("createdAt") is not None:
+        import datetime
 
-        out["created_at"] = (
-            capo_securityagent.types._prelude.timestamp.deserialize_json(
-                data["createdAt"]
-            )
+        out["created_at"] = datetime.datetime.fromisoformat(
+            data["createdAt"].replace("Z", "+00:00")
         )
-    if "updatedAt" in data:
-        import capo_securityagent.types._prelude.timestamp
+    if data.get("updatedAt") is not None:
+        import datetime
 
-        out["updated_at"] = (
-            capo_securityagent.types._prelude.timestamp.deserialize_json(
-                data["updatedAt"]
-            )
+        out["updated_at"] = datetime.datetime.fromisoformat(
+            data["updatedAt"].replace("Z", "+00:00")
         )
     return out

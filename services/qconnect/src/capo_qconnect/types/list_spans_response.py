@@ -31,12 +31,12 @@ def serialize_json(value: ListSpansResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListSpansResponse:
     out: ListSpansResponse = {}  # type: ignore[typeddict-item]
-    if "spans" in data:
+    if data.get("spans") is not None:
         import capo_qconnect.types.span_list
 
         out["spans"] = capo_qconnect.types.span_list.deserialize_json(data["spans"])
     else:
         raise DeserializationError("ListSpansResponse.spans required")
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

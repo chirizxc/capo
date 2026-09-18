@@ -36,19 +36,19 @@ def serialize_json(value: BatchStartViewerSessionRevocationViewerSession) -> dic
 
 def deserialize_json(data: dict) -> BatchStartViewerSessionRevocationViewerSession:
     out: BatchStartViewerSessionRevocationViewerSession = {}  # type: ignore[typeddict-item]
-    if "channelArn" in data:
+    if data.get("channelArn") is not None:
         out["channel_arn"] = data["channelArn"]
     else:
         raise DeserializationError(
             "BatchStartViewerSessionRevocationViewerSession.channel_arn required"
         )
-    if "viewerId" in data:
+    if data.get("viewerId") is not None:
         out["viewer_id"] = data["viewerId"]
     else:
         raise DeserializationError(
             "BatchStartViewerSessionRevocationViewerSession.viewer_id required"
         )
-    if "viewerSessionVersionsLessThanOrEqualTo" in data:
+    if data.get("viewerSessionVersionsLessThanOrEqualTo") is not None:
         out["viewer_session_versions_less_than_or_equal_to"] = data[
             "viewerSessionVersionsLessThanOrEqualTo"
         ]

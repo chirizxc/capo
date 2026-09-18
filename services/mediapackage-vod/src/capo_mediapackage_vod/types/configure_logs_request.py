@@ -33,7 +33,7 @@ def serialize_json(value: ConfigureLogsRequest) -> dict:
 
 def deserialize_json(data: dict) -> ConfigureLogsRequest:
     out: ConfigureLogsRequest = {}  # type: ignore[typeddict-item]
-    if "egressAccessLogs" in data:
+    if data.get("egressAccessLogs") is not None:
         import capo_mediapackage_vod.types.egress_access_logs
 
         out["egress_access_logs"] = (

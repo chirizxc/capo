@@ -56,13 +56,13 @@ def serialize_json(value: AgentTurnResult) -> dict:
 
 def deserialize_json(data: dict) -> AgentTurnResult:
     out: AgentTurnResult = {}  # type: ignore[typeddict-item]
-    if "expectedAgentPrompt" in data:
+    if data.get("expectedAgentPrompt") is not None:
         out["expected_agent_prompt"] = data["expectedAgentPrompt"]
     else:
         raise DeserializationError("AgentTurnResult.expected_agent_prompt required")
-    if "actualAgentPrompt" in data:
+    if data.get("actualAgentPrompt") is not None:
         out["actual_agent_prompt"] = data["actualAgentPrompt"]
-    if "errorDetails" in data:
+    if data.get("errorDetails") is not None:
         import capo_lex_models_v2.types.execution_error_details
 
         out["error_details"] = (
@@ -70,8 +70,8 @@ def deserialize_json(data: dict) -> AgentTurnResult:
                 data["errorDetails"]
             )
         )
-    if "actualElicitedSlot" in data:
+    if data.get("actualElicitedSlot") is not None:
         out["actual_elicited_slot"] = data["actualElicitedSlot"]
-    if "actualIntent" in data:
+    if data.get("actualIntent") is not None:
         out["actual_intent"] = data["actualIntent"]
     return out

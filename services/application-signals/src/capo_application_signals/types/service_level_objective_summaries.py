@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> ServiceLevelObjectiveSummaries:
 
     out: ServiceLevelObjectiveSummaries = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_application_signals.types.service_level_objective_summary.deserialize_json(
                 item

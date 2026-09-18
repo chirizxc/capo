@@ -20,7 +20,15 @@ class EvaluationResult(TypedDict, closed=True):
 def serialize_aws_json_1_1(value: EvaluationResult) -> dict:
     out: dict = {}
     if "f1_score" in value:
-        out["F1Score"] = value["f1_score"]
+        out["F1Score"] = (
+            "NaN"
+            if value["f1_score"] != value["f1_score"]
+            else "Infinity"
+            if value["f1_score"] == float("inf")
+            else "-Infinity"
+            if value["f1_score"] == float("-inf")
+            else value["f1_score"]
+        )
     if "summary" in value:
         import capo_rekognition.types.summary
 
@@ -32,9 +40,9 @@ def serialize_aws_json_1_1(value: EvaluationResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> EvaluationResult:
     out: EvaluationResult = {}  # type: ignore[typeddict-item]
-    if "F1Score" in data:
-        out["f1_score"] = data["F1Score"]
-    if "Summary" in data:
+    if data.get("F1Score") is not None:
+        out["f1_score"] = float(data["F1Score"])
+    if data.get("Summary") is not None:
         import capo_rekognition.types.summary
 
         out["summary"] = capo_rekognition.types.summary.deserialize_aws_json_1_1(

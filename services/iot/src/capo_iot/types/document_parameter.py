@@ -42,15 +42,15 @@ def serialize_json(value: DocumentParameter) -> dict:
 
 def deserialize_json(data: dict) -> DocumentParameter:
     out: DocumentParameter = {}  # type: ignore[typeddict-item]
-    if "key" in data:
+    if data.get("key") is not None:
         out["key"] = data["key"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "regex" in data:
+    if data.get("regex") is not None:
         out["regex"] = data["regex"]
-    if "example" in data:
+    if data.get("example") is not None:
         out["example"] = data["example"]
-    if "optional" in data:
+    if data.get("optional") is not None:
         out["optional"] = data["optional"]
     else:
         out["optional"] = False

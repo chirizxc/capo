@@ -29,6 +29,8 @@ def deserialize_aws_json_1_0(data: list) -> BlockDeviceMappings:
 
     out: BlockDeviceMappings = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_workspaces_instances.types.block_device_mapping_request.deserialize_aws_json_1_0(
                 item

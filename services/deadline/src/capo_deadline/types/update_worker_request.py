@@ -60,19 +60,19 @@ def serialize_json(value: UpdateWorkerRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateWorkerRequest:
     out: UpdateWorkerRequest = {}  # type: ignore[typeddict-item]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_deadline.types.updated_worker_status
 
         out["status"] = capo_deadline.types.updated_worker_status.deserialize_json(
             data["status"]
         )
-    if "capabilities" in data:
+    if data.get("capabilities") is not None:
         import capo_deadline.types.worker_capabilities
 
         out["capabilities"] = capo_deadline.types.worker_capabilities.deserialize_json(
             data["capabilities"]
         )
-    if "hostProperties" in data:
+    if data.get("hostProperties") is not None:
         import capo_deadline.types.host_properties_request
 
         out["host_properties"] = (

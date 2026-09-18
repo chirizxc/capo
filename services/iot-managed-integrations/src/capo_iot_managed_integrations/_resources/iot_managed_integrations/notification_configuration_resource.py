@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import uuid
 from typing import TYPE_CHECKING, Optional
 
 import capo_iot_managed_integrations._auth._signers
@@ -86,11 +87,13 @@ class NotificationConfigurationResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_iot_managed_integrations.types.create_notification_configuration_request.CreateNotificationConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["event_type"] = event_type
-        input_["destination_name"] = destination_name
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_iot_managed_integrations.types.create_notification_configuration_request.CreateNotificationConfigurationRequest = {
+            "event_type": event_type,
+            "destination_name": destination_name,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if tags is not None:
             input_["tags"] = tags
 
@@ -99,6 +102,7 @@ class NotificationConfigurationResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_notification_configuration(
@@ -134,14 +138,16 @@ class NotificationConfigurationResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_iot_managed_integrations.types.delete_notification_configuration_request.DeleteNotificationConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["event_type"] = event_type
+        input_: capo_iot_managed_integrations.types.delete_notification_configuration_request.DeleteNotificationConfigurationRequest = {
+            "event_type": event_type
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_notification_configuration(
@@ -179,14 +185,16 @@ class NotificationConfigurationResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_iot_managed_integrations.types.get_notification_configuration_request.GetNotificationConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["event_type"] = event_type
+        input_: capo_iot_managed_integrations.types.get_notification_configuration_request.GetNotificationConfigurationRequest = {
+            "event_type": event_type
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_notification_configurations(
@@ -229,7 +237,7 @@ class NotificationConfigurationResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_iot_managed_integrations.types.list_notification_configurations_request.ListNotificationConfigurationsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_iot_managed_integrations.types.list_notification_configurations_request.ListNotificationConfigurationsRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -240,6 +248,7 @@ class NotificationConfigurationResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_notification_configuration(
@@ -277,15 +286,17 @@ class NotificationConfigurationResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_iot_managed_integrations.types.update_notification_configuration_request.UpdateNotificationConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["event_type"] = event_type
-        input_["destination_name"] = destination_name
+        input_: capo_iot_managed_integrations.types.update_notification_configuration_request.UpdateNotificationConfigurationRequest = {
+            "event_type": event_type,
+            "destination_name": destination_name,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -337,11 +348,13 @@ class AsyncNotificationConfigurationResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_iot_managed_integrations.types.create_notification_configuration_request.CreateNotificationConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["event_type"] = event_type
-        input_["destination_name"] = destination_name
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_iot_managed_integrations.types.create_notification_configuration_request.CreateNotificationConfigurationRequest = {
+            "event_type": event_type,
+            "destination_name": destination_name,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if tags is not None:
             input_["tags"] = tags
 
@@ -350,6 +363,7 @@ class AsyncNotificationConfigurationResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_notification_configuration(
@@ -386,14 +400,16 @@ class AsyncNotificationConfigurationResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_iot_managed_integrations.types.delete_notification_configuration_request.DeleteNotificationConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["event_type"] = event_type
+        input_: capo_iot_managed_integrations.types.delete_notification_configuration_request.DeleteNotificationConfigurationRequest = {
+            "event_type": event_type
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_notification_configuration(
@@ -432,14 +448,16 @@ class AsyncNotificationConfigurationResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_iot_managed_integrations.types.get_notification_configuration_request.GetNotificationConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["event_type"] = event_type
+        input_: capo_iot_managed_integrations.types.get_notification_configuration_request.GetNotificationConfigurationRequest = {
+            "event_type": event_type
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_notification_configurations(
@@ -483,7 +501,7 @@ class AsyncNotificationConfigurationResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_iot_managed_integrations.types.list_notification_configurations_request.ListNotificationConfigurationsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_iot_managed_integrations.types.list_notification_configurations_request.ListNotificationConfigurationsRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -494,6 +512,7 @@ class AsyncNotificationConfigurationResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_notification_configuration(
@@ -532,13 +551,15 @@ class AsyncNotificationConfigurationResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_iot_managed_integrations.types.update_notification_configuration_request.UpdateNotificationConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["event_type"] = event_type
-        input_["destination_name"] = destination_name
+        input_: capo_iot_managed_integrations.types.update_notification_configuration_request.UpdateNotificationConfigurationRequest = {
+            "event_type": event_type,
+            "destination_name": destination_name,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

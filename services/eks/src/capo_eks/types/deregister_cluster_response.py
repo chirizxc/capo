@@ -24,7 +24,7 @@ def serialize_json(value: DeregisterClusterResponse) -> dict:
 
 def deserialize_json(data: dict) -> DeregisterClusterResponse:
     out: DeregisterClusterResponse = {}  # type: ignore[typeddict-item]
-    if "cluster" in data:
+    if data.get("cluster") is not None:
         import capo_eks.types.cluster
 
         out["cluster"] = capo_eks.types.cluster.deserialize_json(data["cluster"])

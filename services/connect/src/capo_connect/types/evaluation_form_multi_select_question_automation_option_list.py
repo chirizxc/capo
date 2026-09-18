@@ -33,6 +33,8 @@ def deserialize_json(
 
     out: EvaluationFormMultiSelectQuestionAutomationOptionList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_connect.types.evaluation_form_multi_select_question_automation_option.deserialize_json(
                 item

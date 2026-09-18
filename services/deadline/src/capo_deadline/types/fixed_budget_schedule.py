@@ -32,7 +32,7 @@ def serialize_json(value: FixedBudgetSchedule) -> dict:
 
 def deserialize_json(data: dict) -> FixedBudgetSchedule:
     out: FixedBudgetSchedule = {}  # type: ignore[typeddict-item]
-    if "startTime" in data:
+    if data.get("startTime") is not None:
         import capo_deadline.types.starts_at
 
         out["start_time"] = capo_deadline.types.starts_at.deserialize_json(
@@ -40,7 +40,7 @@ def deserialize_json(data: dict) -> FixedBudgetSchedule:
         )
     else:
         raise DeserializationError("FixedBudgetSchedule.start_time required")
-    if "endTime" in data:
+    if data.get("endTime") is not None:
         import capo_deadline.types.ends_at
 
         out["end_time"] = capo_deadline.types.ends_at.deserialize_json(data["endTime"])

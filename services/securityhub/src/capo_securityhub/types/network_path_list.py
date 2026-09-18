@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> NetworkPathList:
 
     out: NetworkPathList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_securityhub.types.network_path_component.deserialize_json(item))
     return out

@@ -32,7 +32,7 @@ def serialize_json(value: ContainerInfo) -> dict:
 
 
 def deserialize_json(data: dict) -> ContainerInfo:
-    if "eksInfo" in data:
+    if data.get("eksInfo") is not None:
         import capo_emr_containers.types.eks_info
 
         return {

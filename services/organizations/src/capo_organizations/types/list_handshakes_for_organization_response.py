@@ -32,7 +32,7 @@ def serialize_aws_json_1_1(value: ListHandshakesForOrganizationResponse) -> dict
 
 def deserialize_aws_json_1_1(data: dict) -> ListHandshakesForOrganizationResponse:
     out: ListHandshakesForOrganizationResponse = {}  # type: ignore[typeddict-item]
-    if "Handshakes" in data:
+    if data.get("Handshakes") is not None:
         import capo_organizations.types.handshakes
 
         out["handshakes"] = (
@@ -40,6 +40,6 @@ def deserialize_aws_json_1_1(data: dict) -> ListHandshakesForOrganizationRespons
                 data["Handshakes"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

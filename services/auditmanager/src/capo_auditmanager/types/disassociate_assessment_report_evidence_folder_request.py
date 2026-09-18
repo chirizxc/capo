@@ -26,7 +26,7 @@ def serialize_json(value: DisassociateAssessmentReportEvidenceFolderRequest) -> 
 
 def deserialize_json(data: dict) -> DisassociateAssessmentReportEvidenceFolderRequest:
     out: DisassociateAssessmentReportEvidenceFolderRequest = {}  # type: ignore[typeddict-item]
-    if "evidenceFolderId" in data:
+    if data.get("evidenceFolderId") is not None:
         out["evidence_folder_id"] = data["evidenceFolderId"]
     else:
         raise DeserializationError(

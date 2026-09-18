@@ -27,7 +27,7 @@ def serialize_aws_json_1_1(value: CrawlerNodeDetails) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CrawlerNodeDetails:
     out: CrawlerNodeDetails = {}  # type: ignore[typeddict-item]
-    if "Crawls" in data:
+    if data.get("Crawls") is not None:
         import capo_glue.types.crawl_list
 
         out["crawls"] = capo_glue.types.crawl_list.deserialize_aws_json_1_1(

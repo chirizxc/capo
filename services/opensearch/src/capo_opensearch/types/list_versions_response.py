@@ -32,12 +32,12 @@ def serialize_json(value: ListVersionsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListVersionsResponse:
     out: ListVersionsResponse = {}  # type: ignore[typeddict-item]
-    if "Versions" in data:
+    if data.get("Versions") is not None:
         import capo_opensearch.types.version_list
 
         out["versions"] = capo_opensearch.types.version_list.deserialize_json(
             data["Versions"]
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

@@ -31,9 +31,9 @@ def serialize_json(value: OrchestratorConfigurationEntry) -> dict:
 
 def deserialize_json(data: dict) -> OrchestratorConfigurationEntry:
     out: OrchestratorConfigurationEntry = {}  # type: ignore[typeddict-item]
-    if "aiAgentId" in data:
+    if data.get("aiAgentId") is not None:
         out["ai_agent_id"] = data["aiAgentId"]
-    if "orchestratorUseCase" in data:
+    if data.get("orchestratorUseCase") is not None:
         out["orchestrator_use_case"] = data["orchestratorUseCase"]
     else:
         raise DeserializationError(

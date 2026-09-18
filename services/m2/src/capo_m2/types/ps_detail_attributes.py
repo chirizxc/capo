@@ -22,11 +22,11 @@ def serialize_json(value: PsDetailAttributes) -> dict:
 
 def deserialize_json(data: dict) -> PsDetailAttributes:
     out: PsDetailAttributes = {}  # type: ignore[typeddict-item]
-    if "format" in data:
+    if data.get("format") is not None:
         out["format"] = data["format"]
     else:
         raise DeserializationError("PsDetailAttributes.format required")
-    if "encoding" in data:
+    if data.get("encoding") is not None:
         out["encoding"] = data["encoding"]
     else:
         raise DeserializationError("PsDetailAttributes.encoding required")

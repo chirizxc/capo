@@ -30,7 +30,7 @@ def serialize_json(value: DefaultSectionBasedLayoutConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> DefaultSectionBasedLayoutConfiguration:
     out: DefaultSectionBasedLayoutConfiguration = {}  # type: ignore[typeddict-item]
-    if "CanvasSizeOptions" in data:
+    if data.get("CanvasSizeOptions") is not None:
         import capo_quicksight.types.section_based_layout_canvas_size_options
 
         out["canvas_size_options"] = (

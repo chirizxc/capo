@@ -192,17 +192,19 @@ class LexRuntimeV2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lex_runtime_v2.types.delete_session_request.DeleteSessionRequest = {}  # type: ignore[typeddict-item]
-        input_["bot_id"] = bot_id
-        input_["bot_alias_id"] = bot_alias_id
-        input_["locale_id"] = locale_id
-        input_["session_id"] = session_id
+        input_: capo_lex_runtime_v2.types.delete_session_request.DeleteSessionRequest = {
+            "bot_id": bot_id,
+            "bot_alias_id": bot_alias_id,
+            "locale_id": locale_id,
+            "session_id": session_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_session(
@@ -246,17 +248,19 @@ class LexRuntimeV2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lex_runtime_v2.types.get_session_request.GetSessionRequest = {}  # type: ignore[typeddict-item]
-        input_["bot_id"] = bot_id
-        input_["bot_alias_id"] = bot_alias_id
-        input_["locale_id"] = locale_id
-        input_["session_id"] = session_id
+        input_: capo_lex_runtime_v2.types.get_session_request.GetSessionRequest = {
+            "bot_id": bot_id,
+            "bot_alias_id": bot_alias_id,
+            "locale_id": locale_id,
+            "session_id": session_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     @contextmanager
@@ -316,14 +320,15 @@ class LexRuntimeV2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lex_runtime_v2.types.put_session_request.PutSessionRequest = {}  # type: ignore[typeddict-item]
-        input_["bot_id"] = bot_id
-        input_["bot_alias_id"] = bot_alias_id
-        input_["locale_id"] = locale_id
-        input_["session_id"] = session_id
+        input_: capo_lex_runtime_v2.types.put_session_request.PutSessionRequest = {
+            "bot_id": bot_id,
+            "bot_alias_id": bot_alias_id,
+            "locale_id": locale_id,
+            "session_id": session_id,
+            "session_state": session_state,
+        }
         if messages is not None:
             input_["messages"] = messages
-        input_["session_state"] = session_state
         if request_attributes is not None:
             input_["request_attributes"] = request_attributes
         if response_content_type is not None:
@@ -334,7 +339,10 @@ class LexRuntimeV2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
-        yield response.output
+        try:
+            yield response.output
+        finally:
+            response.response.close()
 
     def recognize_text(
         self,
@@ -390,12 +398,13 @@ class LexRuntimeV2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lex_runtime_v2.types.recognize_text_request.RecognizeTextRequest = {}  # type: ignore[typeddict-item]
-        input_["bot_id"] = bot_id
-        input_["bot_alias_id"] = bot_alias_id
-        input_["locale_id"] = locale_id
-        input_["session_id"] = session_id
-        input_["text"] = text
+        input_: capo_lex_runtime_v2.types.recognize_text_request.RecognizeTextRequest = {
+            "bot_id": bot_id,
+            "bot_alias_id": bot_alias_id,
+            "locale_id": locale_id,
+            "session_id": session_id,
+            "text": text,
+        }
         if session_state is not None:
             input_["session_state"] = session_state
         if request_attributes is not None:
@@ -406,6 +415,7 @@ class LexRuntimeV2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     @contextmanager
@@ -469,16 +479,17 @@ class LexRuntimeV2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lex_runtime_v2.types.recognize_utterance_request.RecognizeUtteranceRequest = {}  # type: ignore[typeddict-item]
-        input_["bot_id"] = bot_id
-        input_["bot_alias_id"] = bot_alias_id
-        input_["locale_id"] = locale_id
-        input_["session_id"] = session_id
+        input_: capo_lex_runtime_v2.types.recognize_utterance_request.RecognizeUtteranceRequest = {
+            "bot_id": bot_id,
+            "bot_alias_id": bot_alias_id,
+            "locale_id": locale_id,
+            "session_id": session_id,
+            "request_content_type": request_content_type,
+        }
         if session_state is not None:
             input_["session_state"] = session_state
         if request_attributes is not None:
             input_["request_attributes"] = request_attributes
-        input_["request_content_type"] = request_content_type
         if response_content_type is not None:
             input_["response_content_type"] = response_content_type
         if input_stream is not None:
@@ -489,7 +500,10 @@ class LexRuntimeV2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
-        yield response.output
+        try:
+            yield response.output
+        finally:
+            response.response.close()
 
     @contextmanager
     def start_conversation(
@@ -538,21 +552,25 @@ class LexRuntimeV2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lex_runtime_v2.types.start_conversation_request.StartConversationRequest = {}  # type: ignore[typeddict-item]
-        input_["bot_id"] = bot_id
-        input_["bot_alias_id"] = bot_alias_id
-        input_["locale_id"] = locale_id
-        input_["session_id"] = session_id
+        input_: capo_lex_runtime_v2.types.start_conversation_request.StartConversationRequest = {
+            "bot_id": bot_id,
+            "bot_alias_id": bot_alias_id,
+            "locale_id": locale_id,
+            "session_id": session_id,
+            "request_event_stream": ensure_sync_iterator(request_event_stream),
+        }
         if conversation_mode is not None:
             input_["conversation_mode"] = conversation_mode
-        input_["request_event_stream"] = ensure_sync_iterator(request_event_stream)
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
-        yield response.output
+        try:
+            yield response.output
+        finally:
+            response.response.close()
 
     def __enter__(self) -> Self:
         return self

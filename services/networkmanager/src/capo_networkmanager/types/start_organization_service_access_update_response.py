@@ -31,7 +31,7 @@ def serialize_json(value: StartOrganizationServiceAccessUpdateResponse) -> dict:
 
 def deserialize_json(data: dict) -> StartOrganizationServiceAccessUpdateResponse:
     out: StartOrganizationServiceAccessUpdateResponse = {}  # type: ignore[typeddict-item]
-    if "OrganizationStatus" in data:
+    if data.get("OrganizationStatus") is not None:
         import capo_networkmanager.types.organization_status
 
         out["organization_status"] = (

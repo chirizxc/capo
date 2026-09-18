@@ -78,11 +78,11 @@ def serialize_json(value: JobDetailsEntity) -> dict:
 
 def deserialize_json(data: dict) -> JobDetailsEntity:
     out: JobDetailsEntity = {}  # type: ignore[typeddict-item]
-    if "jobId" in data:
+    if data.get("jobId") is not None:
         out["job_id"] = data["jobId"]
     else:
         raise DeserializationError("JobDetailsEntity.job_id required")
-    if "jobAttachmentSettings" in data:
+    if data.get("jobAttachmentSettings") is not None:
         import capo_deadline.types.job_attachment_settings
 
         out["job_attachment_settings"] = (
@@ -90,29 +90,29 @@ def deserialize_json(data: dict) -> JobDetailsEntity:
                 data["jobAttachmentSettings"]
             )
         )
-    if "jobRunAsUser" in data:
+    if data.get("jobRunAsUser") is not None:
         import capo_deadline.types.job_run_as_user
 
         out["job_run_as_user"] = capo_deadline.types.job_run_as_user.deserialize_json(
             data["jobRunAsUser"]
         )
-    if "logGroupName" in data:
+    if data.get("logGroupName") is not None:
         out["log_group_name"] = data["logGroupName"]
     else:
         raise DeserializationError("JobDetailsEntity.log_group_name required")
-    if "queueRoleArn" in data:
+    if data.get("queueRoleArn") is not None:
         out["queue_role_arn"] = data["queueRoleArn"]
-    if "parameters" in data:
+    if data.get("parameters") is not None:
         import capo_deadline.types.job_parameters
 
         out["parameters"] = capo_deadline.types.job_parameters.deserialize_json(
             data["parameters"]
         )
-    if "schemaVersion" in data:
+    if data.get("schemaVersion") is not None:
         out["schema_version"] = data["schemaVersion"]
     else:
         raise DeserializationError("JobDetailsEntity.schema_version required")
-    if "pathMappingRules" in data:
+    if data.get("pathMappingRules") is not None:
         import capo_deadline.types.path_mapping_rules
 
         out["path_mapping_rules"] = (

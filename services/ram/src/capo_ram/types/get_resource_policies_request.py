@@ -42,7 +42,7 @@ def serialize_json(value: GetResourcePoliciesRequest) -> dict:
 
 def deserialize_json(data: dict) -> GetResourcePoliciesRequest:
     out: GetResourcePoliciesRequest = {}  # type: ignore[typeddict-item]
-    if "resourceArns" in data:
+    if data.get("resourceArns") is not None:
         import capo_ram.types.resource_arn_list
 
         out["resource_arns"] = capo_ram.types.resource_arn_list.deserialize_json(
@@ -50,10 +50,10 @@ def deserialize_json(data: dict) -> GetResourcePoliciesRequest:
         )
     else:
         raise DeserializationError("GetResourcePoliciesRequest.resource_arns required")
-    if "principal" in data:
+    if data.get("principal") is not None:
         out["principal"] = data["principal"]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
     return out

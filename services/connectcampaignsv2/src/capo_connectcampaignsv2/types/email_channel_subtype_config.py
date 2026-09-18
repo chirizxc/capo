@@ -24,7 +24,15 @@ class EmailChannelSubtypeConfig(TypedDict, closed=True):
 def serialize_json(value: EmailChannelSubtypeConfig) -> dict:
     out: dict = {}
     if "capacity" in value:
-        out["capacity"] = value["capacity"]
+        out["capacity"] = (
+            "NaN"
+            if value["capacity"] != value["capacity"]
+            else "Infinity"
+            if value["capacity"] == float("inf")
+            else "-Infinity"
+            if value["capacity"] == float("-inf")
+            else value["capacity"]
+        )
     import capo_connectcampaignsv2.types.email_outbound_mode
 
     out["outboundMode"] = (
@@ -44,9 +52,9 @@ def serialize_json(value: EmailChannelSubtypeConfig) -> dict:
 
 def deserialize_json(data: dict) -> EmailChannelSubtypeConfig:
     out: EmailChannelSubtypeConfig = {}  # type: ignore[typeddict-item]
-    if "capacity" in data:
-        out["capacity"] = data["capacity"]
-    if "outboundMode" in data:
+    if data.get("capacity") is not None:
+        out["capacity"] = float(data["capacity"])
+    if data.get("outboundMode") is not None:
         import capo_connectcampaignsv2.types.email_outbound_mode
 
         out["outbound_mode"] = (
@@ -56,7 +64,7 @@ def deserialize_json(data: dict) -> EmailChannelSubtypeConfig:
         )
     else:
         raise DeserializationError("EmailChannelSubtypeConfig.outbound_mode required")
-    if "defaultOutboundConfig" in data:
+    if data.get("defaultOutboundConfig") is not None:
         import capo_connectcampaignsv2.types.email_outbound_config
 
         out["default_outbound_config"] = (

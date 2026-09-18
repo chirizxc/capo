@@ -34,13 +34,13 @@ def serialize_aws_json_1_1(value: AdminDisableProviderForUserRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AdminDisableProviderForUserRequest:
     out: AdminDisableProviderForUserRequest = {}  # type: ignore[typeddict-item]
-    if "UserPoolId" in data:
+    if data.get("UserPoolId") is not None:
         out["user_pool_id"] = data["UserPoolId"]
     else:
         raise DeserializationError(
             "AdminDisableProviderForUserRequest.user_pool_id required"
         )
-    if "User" in data:
+    if data.get("User") is not None:
         import capo_cognito_identity_provider.types.provider_user_identifier_type
 
         out["user"] = (

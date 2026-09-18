@@ -27,7 +27,7 @@ def serialize_json(value: BatchGetViewInput) -> dict:
 
 def deserialize_json(data: dict) -> BatchGetViewInput:
     out: BatchGetViewInput = {}  # type: ignore[typeddict-item]
-    if "ViewArns" in data:
+    if data.get("ViewArns") is not None:
         import capo_resource_explorer_2.types.view_arn_list
 
         out["view_arns"] = (

@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> ElasticsearchInstanceTypeList:
 
     out: ElasticsearchInstanceTypeList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_elasticsearch_service.types.es_partition_instance_type.deserialize_json(
                 item

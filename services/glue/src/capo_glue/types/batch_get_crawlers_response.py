@@ -38,13 +38,13 @@ def serialize_aws_json_1_1(value: BatchGetCrawlersResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> BatchGetCrawlersResponse:
     out: BatchGetCrawlersResponse = {}  # type: ignore[typeddict-item]
-    if "Crawlers" in data:
+    if data.get("Crawlers") is not None:
         import capo_glue.types.crawler_list
 
         out["crawlers"] = capo_glue.types.crawler_list.deserialize_aws_json_1_1(
             data["Crawlers"]
         )
-    if "CrawlersNotFound" in data:
+    if data.get("CrawlersNotFound") is not None:
         import capo_glue.types.crawler_name_list
 
         out["crawlers_not_found"] = (

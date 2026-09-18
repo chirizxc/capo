@@ -4,6 +4,8 @@ from typing import TYPE_CHECKING
 
 from typing_extensions import TypedDict
 
+from capo_transcribe.errors import DeserializationError
+
 if TYPE_CHECKING:
     import capo_transcribe.types.tag_key_list
     import capo_transcribe.types.transcribe_arn
@@ -19,9 +21,27 @@ class UntagResourceRequest(TypedDict, closed=True):
 # --- awsJson1_1 ser/de ---
 def serialize_aws_json_1_1(value: UntagResourceRequest) -> dict:
     out: dict = {}
+    out["ResourceArn"] = value["resource_arn"]
+    import capo_transcribe.types.tag_key_list
+
+    out["TagKeys"] = capo_transcribe.types.tag_key_list.serialize_aws_json_1_1(
+        value["tag_keys"]
+    )
     return out
 
 
 def deserialize_aws_json_1_1(data: dict) -> UntagResourceRequest:
     out: UntagResourceRequest = {}  # type: ignore[typeddict-item]
+    if data.get("ResourceArn") is not None:
+        out["resource_arn"] = data["ResourceArn"]
+    else:
+        raise DeserializationError("UntagResourceRequest.resource_arn required")
+    if data.get("TagKeys") is not None:
+        import capo_transcribe.types.tag_key_list
+
+        out["tag_keys"] = capo_transcribe.types.tag_key_list.deserialize_aws_json_1_1(
+            data["TagKeys"]
+        )
+    else:
+        raise DeserializationError("UntagResourceRequest.tag_keys required")
     return out

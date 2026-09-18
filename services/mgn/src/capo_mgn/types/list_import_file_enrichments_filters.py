@@ -31,7 +31,7 @@ def serialize_json(value: ListImportFileEnrichmentsFilters) -> dict:
 
 def deserialize_json(data: dict) -> ListImportFileEnrichmentsFilters:
     out: ListImportFileEnrichmentsFilters = {}  # type: ignore[typeddict-item]
-    if "jobIDs" in data:
+    if data.get("jobIDs") is not None:
         import capo_mgn.types.import_file_enrichments_i_ds_filter
 
         out["job_i_ds"] = (

@@ -36,15 +36,15 @@ def serialize_json(value: StartCopyJobOutput) -> dict:
 
 def deserialize_json(data: dict) -> StartCopyJobOutput:
     out: StartCopyJobOutput = {}  # type: ignore[typeddict-item]
-    if "CopyJobId" in data:
+    if data.get("CopyJobId") is not None:
         out["copy_job_id"] = data["CopyJobId"]
-    if "CreationDate" in data:
+    if data.get("CreationDate") is not None:
         import capo_backup.types.timestamp
 
         out["creation_date"] = capo_backup.types.timestamp.deserialize_json(
             data["CreationDate"]
         )
-    if "IsParent" in data:
+    if data.get("IsParent") is not None:
         out["is_parent"] = data["IsParent"]
     else:
         out["is_parent"] = False

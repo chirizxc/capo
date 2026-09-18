@@ -123,13 +123,13 @@ def serialize_json(value: UpdateLaunchConfigurationTemplateRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateLaunchConfigurationTemplateRequest:
     out: UpdateLaunchConfigurationTemplateRequest = {}  # type: ignore[typeddict-item]
-    if "launchConfigurationTemplateID" in data:
+    if data.get("launchConfigurationTemplateID") is not None:
         out["launch_configuration_template_id"] = data["launchConfigurationTemplateID"]
     else:
         raise DeserializationError(
             "UpdateLaunchConfigurationTemplateRequest.launch_configuration_template_id required"
         )
-    if "postLaunchActions" in data:
+    if data.get("postLaunchActions") is not None:
         import capo_mgn.types.post_launch_actions
 
         out["post_launch_actions"] = (
@@ -137,33 +137,33 @@ def deserialize_json(data: dict) -> UpdateLaunchConfigurationTemplateRequest:
                 data["postLaunchActions"]
             )
         )
-    if "enableMapAutoTagging" in data:
+    if data.get("enableMapAutoTagging") is not None:
         out["enable_map_auto_tagging"] = data["enableMapAutoTagging"]
-    if "mapAutoTaggingMpeID" in data:
+    if data.get("mapAutoTaggingMpeID") is not None:
         out["map_auto_tagging_mpe_id"] = data["mapAutoTaggingMpeID"]
-    if "launchDisposition" in data:
+    if data.get("launchDisposition") is not None:
         out["launch_disposition"] = data["launchDisposition"]
-    if "targetInstanceTypeRightSizingMethod" in data:
+    if data.get("targetInstanceTypeRightSizingMethod") is not None:
         out["target_instance_type_right_sizing_method"] = data[
             "targetInstanceTypeRightSizingMethod"
         ]
-    if "copyPrivateIp" in data:
+    if data.get("copyPrivateIp") is not None:
         out["copy_private_ip"] = data["copyPrivateIp"]
-    if "associatePublicIpAddress" in data:
+    if data.get("associatePublicIpAddress") is not None:
         out["associate_public_ip_address"] = data["associatePublicIpAddress"]
-    if "copyTags" in data:
+    if data.get("copyTags") is not None:
         out["copy_tags"] = data["copyTags"]
-    if "licensing" in data:
+    if data.get("licensing") is not None:
         import capo_mgn.types.licensing
 
         out["licensing"] = capo_mgn.types.licensing.deserialize_json(data["licensing"])
-    if "bootMode" in data:
+    if data.get("bootMode") is not None:
         out["boot_mode"] = data["bootMode"]
-    if "smallVolumeMaxSize" in data:
+    if data.get("smallVolumeMaxSize") is not None:
         out["small_volume_max_size"] = data["smallVolumeMaxSize"]
     else:
         out["small_volume_max_size"] = 0
-    if "smallVolumeConf" in data:
+    if data.get("smallVolumeConf") is not None:
         import capo_mgn.types.launch_template_disk_conf
 
         out["small_volume_conf"] = (
@@ -171,7 +171,7 @@ def deserialize_json(data: dict) -> UpdateLaunchConfigurationTemplateRequest:
                 data["smallVolumeConf"]
             )
         )
-    if "largeVolumeConf" in data:
+    if data.get("largeVolumeConf") is not None:
         import capo_mgn.types.launch_template_disk_conf
 
         out["large_volume_conf"] = (
@@ -179,8 +179,8 @@ def deserialize_json(data: dict) -> UpdateLaunchConfigurationTemplateRequest:
                 data["largeVolumeConf"]
             )
         )
-    if "enableParametersEncryption" in data:
+    if data.get("enableParametersEncryption") is not None:
         out["enable_parameters_encryption"] = data["enableParametersEncryption"]
-    if "parametersEncryptionKey" in data:
+    if data.get("parametersEncryptionKey") is not None:
         out["parameters_encryption_key"] = data["parametersEncryptionKey"]
     return out

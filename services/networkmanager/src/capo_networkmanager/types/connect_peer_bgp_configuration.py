@@ -36,12 +36,12 @@ def serialize_json(value: ConnectPeerBgpConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> ConnectPeerBgpConfiguration:
     out: ConnectPeerBgpConfiguration = {}  # type: ignore[typeddict-item]
-    if "CoreNetworkAsn" in data:
+    if data.get("CoreNetworkAsn") is not None:
         out["core_network_asn"] = data["CoreNetworkAsn"]
-    if "PeerAsn" in data:
+    if data.get("PeerAsn") is not None:
         out["peer_asn"] = data["PeerAsn"]
-    if "CoreNetworkAddress" in data:
+    if data.get("CoreNetworkAddress") is not None:
         out["core_network_address"] = data["CoreNetworkAddress"]
-    if "PeerAddress" in data:
+    if data.get("PeerAddress") is not None:
         out["peer_address"] = data["PeerAddress"]
     return out

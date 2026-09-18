@@ -31,7 +31,7 @@ def serialize_json(value: BatchDeleteDevicePositionHistoryRequest) -> dict:
 
 def deserialize_json(data: dict) -> BatchDeleteDevicePositionHistoryRequest:
     out: BatchDeleteDevicePositionHistoryRequest = {}  # type: ignore[typeddict-item]
-    if "DeviceIds" in data:
+    if data.get("DeviceIds") is not None:
         import capo_location.types.device_ids_list
 
         out["device_ids"] = capo_location.types.device_ids_list.deserialize_json(

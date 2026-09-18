@@ -45,13 +45,13 @@ def serialize_json(value: ResourceFindingsSummary) -> dict:
 
 def deserialize_json(data: dict) -> ResourceFindingsSummary:
     out: ResourceFindingsSummary = {}  # type: ignore[typeddict-item]
-    if "FindingType" in data:
+    if data.get("FindingType") is not None:
         out["finding_type"] = data["FindingType"]
-    if "ProductName" in data:
+    if data.get("ProductName") is not None:
         out["product_name"] = data["ProductName"]
-    if "TotalFindings" in data:
+    if data.get("TotalFindings") is not None:
         out["total_findings"] = data["TotalFindings"]
-    if "Severities" in data:
+    if data.get("Severities") is not None:
         import capo_securityhub.types.resource_severity_breakdown
 
         out["severities"] = (

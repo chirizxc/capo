@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> DetectorSummaries:
 
     out: DetectorSummaries = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_iot_events_data.types.detector_summary.deserialize_json(item))
     return out

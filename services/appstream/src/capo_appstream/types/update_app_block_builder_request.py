@@ -98,31 +98,31 @@ def serialize_aws_json_1_1(value: UpdateAppBlockBuilderRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateAppBlockBuilderRequest:
     out: UpdateAppBlockBuilderRequest = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "DisplayName" in data:
+    if data.get("DisplayName") is not None:
         out["display_name"] = data["DisplayName"]
-    if "Platform" in data:
+    if data.get("Platform") is not None:
         import capo_appstream.types.platform_type
 
         out["platform"] = capo_appstream.types.platform_type.deserialize_aws_json_1_1(
             data["Platform"]
         )
-    if "InstanceType" in data:
+    if data.get("InstanceType") is not None:
         out["instance_type"] = data["InstanceType"]
-    if "VpcConfig" in data:
+    if data.get("VpcConfig") is not None:
         import capo_appstream.types.vpc_config
 
         out["vpc_config"] = capo_appstream.types.vpc_config.deserialize_aws_json_1_1(
             data["VpcConfig"]
         )
-    if "EnableDefaultInternetAccess" in data:
+    if data.get("EnableDefaultInternetAccess") is not None:
         out["enable_default_internet_access"] = data["EnableDefaultInternetAccess"]
-    if "IamRoleArn" in data:
+    if data.get("IamRoleArn") is not None:
         out["iam_role_arn"] = data["IamRoleArn"]
-    if "AccessEndpoints" in data:
+    if data.get("AccessEndpoints") is not None:
         import capo_appstream.types.access_endpoint_list
 
         out["access_endpoints"] = (
@@ -130,7 +130,7 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateAppBlockBuilderRequest:
                 data["AccessEndpoints"]
             )
         )
-    if "AttributesToDelete" in data:
+    if data.get("AttributesToDelete") is not None:
         import capo_appstream.types.app_block_builder_attributes
 
         out["attributes_to_delete"] = (
@@ -138,6 +138,6 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateAppBlockBuilderRequest:
                 data["AttributesToDelete"]
             )
         )
-    if "DisableIMDSV1" in data:
+    if data.get("DisableIMDSV1") is not None:
         out["disable_imdsv1"] = data["DisableIMDSV1"]
     return out

@@ -34,12 +34,12 @@ def serialize_json(value: ListPermissionAssociationsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListPermissionAssociationsResponse:
     out: ListPermissionAssociationsResponse = {}  # type: ignore[typeddict-item]
-    if "permissions" in data:
+    if data.get("permissions") is not None:
         import capo_ram.types.associated_permission_list
 
         out["permissions"] = capo_ram.types.associated_permission_list.deserialize_json(
             data["permissions"]
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

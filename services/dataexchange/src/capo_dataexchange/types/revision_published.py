@@ -24,7 +24,7 @@ def serialize_json(value: RevisionPublished) -> dict:
 
 def deserialize_json(data: dict) -> RevisionPublished:
     out: RevisionPublished = {}  # type: ignore[typeddict-item]
-    if "DataSetId" in data:
+    if data.get("DataSetId") is not None:
         out["data_set_id"] = data["DataSetId"]
     else:
         raise DeserializationError("RevisionPublished.data_set_id required")

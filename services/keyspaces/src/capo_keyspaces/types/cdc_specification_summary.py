@@ -29,10 +29,10 @@ def serialize_aws_json_1_0(value: CdcSpecificationSummary) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CdcSpecificationSummary:
     out: CdcSpecificationSummary = {}  # type: ignore[typeddict-item]
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
     else:
         raise DeserializationError("CdcSpecificationSummary.status required")
-    if "viewType" in data:
+    if data.get("viewType") is not None:
         out["view_type"] = data["viewType"]
     return out

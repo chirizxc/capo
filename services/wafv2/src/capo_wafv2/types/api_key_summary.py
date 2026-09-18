@@ -45,21 +45,21 @@ def serialize_aws_json_1_1(value: APIKeySummary) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> APIKeySummary:
     out: APIKeySummary = {}  # type: ignore[typeddict-item]
-    if "TokenDomains" in data:
+    if data.get("TokenDomains") is not None:
         import capo_wafv2.types.token_domains
 
         out["token_domains"] = capo_wafv2.types.token_domains.deserialize_aws_json_1_1(
             data["TokenDomains"]
         )
-    if "APIKey" in data:
+    if data.get("APIKey") is not None:
         out["api_key"] = data["APIKey"]
-    if "CreationTimestamp" in data:
+    if data.get("CreationTimestamp") is not None:
         import capo_wafv2.types.timestamp
 
         out["creation_timestamp"] = capo_wafv2.types.timestamp.deserialize_aws_json_1_1(
             data["CreationTimestamp"]
         )
-    if "Version" in data:
+    if data.get("Version") is not None:
         out["version"] = data["Version"]
     else:
         out["version"] = 0

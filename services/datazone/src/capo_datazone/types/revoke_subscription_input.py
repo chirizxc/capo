@@ -28,6 +28,6 @@ def serialize_json(value: RevokeSubscriptionInput) -> dict:
 
 def deserialize_json(data: dict) -> RevokeSubscriptionInput:
     out: RevokeSubscriptionInput = {}  # type: ignore[typeddict-item]
-    if "retainPermissions" in data:
+    if data.get("retainPermissions") is not None:
         out["retain_permissions"] = data["retainPermissions"]
     return out

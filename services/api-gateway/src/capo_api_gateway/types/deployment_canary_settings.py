@@ -24,7 +24,15 @@ class DeploymentCanarySettings(TypedDict, closed=True):
 # --- restJson1 ser/de ---
 def serialize_json(value: DeploymentCanarySettings) -> dict:
     out: dict = {}
-    out["percentTraffic"] = value.get("percent_traffic", 0)
+    out["percentTraffic"] = (
+        "NaN"
+        if value.get("percent_traffic", 0) != value.get("percent_traffic", 0)
+        else "Infinity"
+        if value.get("percent_traffic", 0) == float("inf")
+        else "-Infinity"
+        if value.get("percent_traffic", 0) == float("-inf")
+        else value.get("percent_traffic", 0)
+    )
     if "stage_variable_overrides" in value:
         import capo_api_gateway.types.map_of_string_to_string
 
@@ -39,11 +47,11 @@ def serialize_json(value: DeploymentCanarySettings) -> dict:
 
 def deserialize_json(data: dict) -> DeploymentCanarySettings:
     out: DeploymentCanarySettings = {}  # type: ignore[typeddict-item]
-    if "percentTraffic" in data:
-        out["percent_traffic"] = data["percentTraffic"]
+    if data.get("percentTraffic") is not None:
+        out["percent_traffic"] = float(data["percentTraffic"])
     else:
         out["percent_traffic"] = 0
-    if "stageVariableOverrides" in data:
+    if data.get("stageVariableOverrides") is not None:
         import capo_api_gateway.types.map_of_string_to_string
 
         out["stage_variable_overrides"] = (
@@ -51,7 +59,7 @@ def deserialize_json(data: dict) -> DeploymentCanarySettings:
                 data["stageVariableOverrides"]
             )
         )
-    if "useStageCache" in data:
+    if data.get("useStageCache") is not None:
         out["use_stage_cache"] = data["useStageCache"]
     else:
         out["use_stage_cache"] = False

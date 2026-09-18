@@ -25,17 +25,17 @@ def serialize_json(value: AzureDevOpsConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> AzureDevOpsConfiguration:
     out: AzureDevOpsConfiguration = {}  # type: ignore[typeddict-item]
-    if "organizationName" in data:
+    if data.get("organizationName") is not None:
         out["organization_name"] = data["organizationName"]
     else:
         raise DeserializationError(
             "AzureDevOpsConfiguration.organization_name required"
         )
-    if "projectId" in data:
+    if data.get("projectId") is not None:
         out["project_id"] = data["projectId"]
     else:
         raise DeserializationError("AzureDevOpsConfiguration.project_id required")
-    if "projectName" in data:
+    if data.get("projectName") is not None:
         out["project_name"] = data["projectName"]
     else:
         raise DeserializationError("AzureDevOpsConfiguration.project_name required")

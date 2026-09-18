@@ -88,8 +88,9 @@ class VariantStore:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_omics.types.create_variant_store_request.CreateVariantStoreRequest = {}  # type: ignore[typeddict-item]
-        input_["reference"] = reference
+        input_: capo_omics.types.create_variant_store_request.CreateVariantStoreRequest = {
+            "reference": reference
+        }
         if name is not None:
             input_["name"] = name
         if description is not None:
@@ -104,6 +105,7 @@ class VariantStore:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -138,14 +140,16 @@ class VariantStore:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_omics.types.get_variant_store_request.GetVariantStoreRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_omics.types.get_variant_store_request.GetVariantStoreRequest = {
+            "name": name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update(
@@ -185,8 +189,9 @@ class VariantStore:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_omics.types.update_variant_store_request.UpdateVariantStoreRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_omics.types.update_variant_store_request.UpdateVariantStoreRequest = {
+            "name": name
+        }
         if description is not None:
             input_["description"] = description
 
@@ -195,6 +200,7 @@ class VariantStore:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -235,8 +241,9 @@ class VariantStore:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_omics.types.delete_variant_store_request.DeleteVariantStoreRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_omics.types.delete_variant_store_request.DeleteVariantStoreRequest = {
+            "name": name
+        }
         if force is not None:
             input_["force"] = force
 
@@ -245,6 +252,7 @@ class VariantStore:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -290,7 +298,7 @@ class VariantStore:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_omics.types.list_variant_stores_request.ListVariantStoresRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_omics.types.list_variant_stores_request.ListVariantStoresRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if ids is not None:
@@ -305,6 +313,7 @@ class VariantStore:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -358,8 +367,9 @@ class AsyncVariantStore:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_omics.types.create_variant_store_request.CreateVariantStoreRequest = {}  # type: ignore[typeddict-item]
-        input_["reference"] = reference
+        input_: capo_omics.types.create_variant_store_request.CreateVariantStoreRequest = {
+            "reference": reference
+        }
         if name is not None:
             input_["name"] = name
         if description is not None:
@@ -374,6 +384,7 @@ class AsyncVariantStore:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -409,14 +420,16 @@ class AsyncVariantStore:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_omics.types.get_variant_store_request.GetVariantStoreRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_omics.types.get_variant_store_request.GetVariantStoreRequest = {
+            "name": name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update(
@@ -457,8 +470,9 @@ class AsyncVariantStore:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_omics.types.update_variant_store_request.UpdateVariantStoreRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_omics.types.update_variant_store_request.UpdateVariantStoreRequest = {
+            "name": name
+        }
         if description is not None:
             input_["description"] = description
 
@@ -467,6 +481,7 @@ class AsyncVariantStore:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -508,8 +523,9 @@ class AsyncVariantStore:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_omics.types.delete_variant_store_request.DeleteVariantStoreRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_omics.types.delete_variant_store_request.DeleteVariantStoreRequest = {
+            "name": name
+        }
         if force is not None:
             input_["force"] = force
 
@@ -518,6 +534,7 @@ class AsyncVariantStore:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -564,7 +581,7 @@ class AsyncVariantStore:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_omics.types.list_variant_stores_request.ListVariantStoresRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_omics.types.list_variant_stores_request.ListVariantStoresRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if ids is not None:
@@ -579,4 +596,5 @@ class AsyncVariantStore:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

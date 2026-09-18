@@ -36,7 +36,7 @@ def serialize_json(value: ListRetainedMessagesResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListRetainedMessagesResponse:
     out: ListRetainedMessagesResponse = {}  # type: ignore[typeddict-item]
-    if "retainedTopics" in data:
+    if data.get("retainedTopics") is not None:
         import capo_iot_data_plane.types.retained_message_list
 
         out["retained_topics"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> ListRetainedMessagesResponse:
                 data["retainedTopics"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

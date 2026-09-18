@@ -36,7 +36,7 @@ def serialize_json(value: ListS3TableIntegrationsOutput) -> dict:
 
 def deserialize_json(data: dict) -> ListS3TableIntegrationsOutput:
     out: ListS3TableIntegrationsOutput = {}  # type: ignore[typeddict-item]
-    if "IntegrationSummaries" in data:
+    if data.get("IntegrationSummaries") is not None:
         import capo_observabilityadmin.types.integration_summaries
 
         out["integration_summaries"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> ListS3TableIntegrationsOutput:
                 data["IntegrationSummaries"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

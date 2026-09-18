@@ -34,13 +34,13 @@ def serialize_json(value: AssetBundleExportJobDataSourceOverrideProperties) -> d
 
 def deserialize_json(data: dict) -> AssetBundleExportJobDataSourceOverrideProperties:
     out: AssetBundleExportJobDataSourceOverrideProperties = {}  # type: ignore[typeddict-item]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
     else:
         raise DeserializationError(
             "AssetBundleExportJobDataSourceOverrideProperties.arn required"
         )
-    if "Properties" in data:
+    if data.get("Properties") is not None:
         import capo_quicksight.types.asset_bundle_export_job_data_source_property_to_override_list
 
         out["properties"] = (

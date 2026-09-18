@@ -13,10 +13,25 @@ from capo_chime_sdk_meetings import AsyncChimeSDKMeetingsClient
 
 
 async def main():
-    async with AsyncChimeSDKMeetingsClient() as s3:
+    async with AsyncChimeSDKMeetingsClient() as chime_sdk_meetings:
         # Example: call the batch_create_attendee operation
-        response = await s3.batch_create_attendee()
+        response = await chime_sdk_meetings.batch_create_attendee()
         print(response["attendees"])
+```
+
+## Pagination
+
+Some operations in this SDK support pagination. If the operation supports pagination it will have an `iter_` prefixed method that returns an async iterator.
+
+```python
+from capo_chime_sdk_meetings import AsyncChimeSDKMeetingsClient
+
+
+async def main():
+    async with AsyncChimeSDKMeetingsClient() as chime_sdk_meetings:
+        # Example: paginate over list_attendees
+        async for item in chime_sdk_meetings.iter_list_attendees():
+            print(item)
 ```
 
 ## Error Handling
@@ -29,9 +44,9 @@ from capo_chime_sdk_meetings.error import BadRequestException
 
 
 async def main():
-    async with AsyncChimeSDKMeetingsClient() as s3:
+    async with AsyncChimeSDKMeetingsClient() as chime_sdk_meetings:
         try:
-            await s3.batch_create_attendee()
+            await chime_sdk_meetings.batch_create_attendee()
         except BadRequestException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -48,13 +63,13 @@ from capo_chime_sdk_meetings import AsyncChimeSDKMeetingsClient
 
 
 async def main():
-    async with AsyncChimeSDKMeetingsClient() as s3:
+    async with AsyncChimeSDKMeetingsClient() as chime_sdk_meetings:
         # Default: 3 attempts for every operation
-        response = await s3.batch_create_attendee()
+        response = await chime_sdk_meetings.batch_create_attendee()
 
         # Override per operation
-        response = await s3.batch_create_attendee(config_overrides={"retry_max_attempts": 5})
+        response = await chime_sdk_meetings.batch_create_attendee(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.batch_create_attendee(config_overrides={"retry_max_attempts": 1})
+        response = await chime_sdk_meetings.batch_create_attendee(config_overrides={"retry_max_attempts": 1})
 ```

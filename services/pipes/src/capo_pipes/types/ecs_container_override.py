@@ -81,13 +81,13 @@ def serialize_json(value: EcsContainerOverride) -> dict:
 
 def deserialize_json(data: dict) -> EcsContainerOverride:
     out: EcsContainerOverride = {}  # type: ignore[typeddict-item]
-    if "Command" in data:
+    if data.get("Command") is not None:
         import capo_pipes.types.string_list
 
         out["command"] = capo_pipes.types.string_list.deserialize_json(data["Command"])
-    if "Cpu" in data:
+    if data.get("Cpu") is not None:
         out["cpu"] = data["Cpu"]
-    if "Environment" in data:
+    if data.get("Environment") is not None:
         import capo_pipes.types.ecs_environment_variable_list
 
         out["environment"] = (
@@ -95,7 +95,7 @@ def deserialize_json(data: dict) -> EcsContainerOverride:
                 data["Environment"]
             )
         )
-    if "EnvironmentFiles" in data:
+    if data.get("EnvironmentFiles") is not None:
         import capo_pipes.types.ecs_environment_file_list
 
         out["environment_files"] = (
@@ -103,13 +103,13 @@ def deserialize_json(data: dict) -> EcsContainerOverride:
                 data["EnvironmentFiles"]
             )
         )
-    if "Memory" in data:
+    if data.get("Memory") is not None:
         out["memory"] = data["Memory"]
-    if "MemoryReservation" in data:
+    if data.get("MemoryReservation") is not None:
         out["memory_reservation"] = data["MemoryReservation"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "ResourceRequirements" in data:
+    if data.get("ResourceRequirements") is not None:
         import capo_pipes.types.ecs_resource_requirements_list
 
         out["resource_requirements"] = (

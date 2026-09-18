@@ -70,7 +70,7 @@ def serialize_aws_json_1_1(value: InclusionProtectionGroupFilters) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> InclusionProtectionGroupFilters:
     out: InclusionProtectionGroupFilters = {}  # type: ignore[typeddict-item]
-    if "ProtectionGroupIds" in data:
+    if data.get("ProtectionGroupIds") is not None:
         import capo_shield.types.protection_group_id_filters
 
         out["protection_group_ids"] = (
@@ -78,7 +78,7 @@ def deserialize_aws_json_1_1(data: dict) -> InclusionProtectionGroupFilters:
                 data["ProtectionGroupIds"]
             )
         )
-    if "Patterns" in data:
+    if data.get("Patterns") is not None:
         import capo_shield.types.protection_group_pattern_filters
 
         out["patterns"] = (
@@ -86,7 +86,7 @@ def deserialize_aws_json_1_1(data: dict) -> InclusionProtectionGroupFilters:
                 data["Patterns"]
             )
         )
-    if "ResourceTypes" in data:
+    if data.get("ResourceTypes") is not None:
         import capo_shield.types.protected_resource_type_filters
 
         out["resource_types"] = (
@@ -94,7 +94,7 @@ def deserialize_aws_json_1_1(data: dict) -> InclusionProtectionGroupFilters:
                 data["ResourceTypes"]
             )
         )
-    if "Aggregations" in data:
+    if data.get("Aggregations") is not None:
         import capo_shield.types.protection_group_aggregation_filters
 
         out["aggregations"] = (

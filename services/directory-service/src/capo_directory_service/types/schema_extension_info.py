@@ -79,13 +79,13 @@ def serialize_aws_json_1_1(value: SchemaExtensionInfo) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SchemaExtensionInfo:
     out: SchemaExtensionInfo = {}  # type: ignore[typeddict-item]
-    if "DirectoryId" in data:
+    if data.get("DirectoryId") is not None:
         out["directory_id"] = data["DirectoryId"]
-    if "SchemaExtensionId" in data:
+    if data.get("SchemaExtensionId") is not None:
         out["schema_extension_id"] = data["SchemaExtensionId"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "SchemaExtensionStatus" in data:
+    if data.get("SchemaExtensionStatus") is not None:
         import capo_directory_service.types.schema_extension_status
 
         out["schema_extension_status"] = (
@@ -93,9 +93,9 @@ def deserialize_aws_json_1_1(data: dict) -> SchemaExtensionInfo:
                 data["SchemaExtensionStatus"]
             )
         )
-    if "SchemaExtensionStatusReason" in data:
+    if data.get("SchemaExtensionStatusReason") is not None:
         out["schema_extension_status_reason"] = data["SchemaExtensionStatusReason"]
-    if "StartDateTime" in data:
+    if data.get("StartDateTime") is not None:
         import capo_directory_service.types.start_date_time
 
         out["start_date_time"] = (
@@ -103,7 +103,7 @@ def deserialize_aws_json_1_1(data: dict) -> SchemaExtensionInfo:
                 data["StartDateTime"]
             )
         )
-    if "EndDateTime" in data:
+    if data.get("EndDateTime") is not None:
         import capo_directory_service.types.end_date_time
 
         out["end_date_time"] = (

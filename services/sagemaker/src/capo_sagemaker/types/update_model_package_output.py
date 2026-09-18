@@ -25,6 +25,6 @@ def serialize_aws_json_1_1(value: UpdateModelPackageOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateModelPackageOutput:
     out: UpdateModelPackageOutput = {}  # type: ignore[typeddict-item]
-    if "ModelPackageArn" in data:
+    if data.get("ModelPackageArn") is not None:
         out["model_package_arn"] = data["ModelPackageArn"]
     return out

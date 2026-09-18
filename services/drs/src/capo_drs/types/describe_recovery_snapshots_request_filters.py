@@ -31,8 +31,8 @@ def serialize_json(value: DescribeRecoverySnapshotsRequestFilters) -> dict:
 
 def deserialize_json(data: dict) -> DescribeRecoverySnapshotsRequestFilters:
     out: DescribeRecoverySnapshotsRequestFilters = {}  # type: ignore[typeddict-item]
-    if "fromDateTime" in data:
+    if data.get("fromDateTime") is not None:
         out["from_date_time"] = data["fromDateTime"]
-    if "toDateTime" in data:
+    if data.get("toDateTime") is not None:
         out["to_date_time"] = data["toDateTime"]
     return out

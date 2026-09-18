@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: SshPublicKey) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SshPublicKey:
     out: SshPublicKey = {}  # type: ignore[typeddict-item]
-    if "DateImported" in data:
+    if data.get("DateImported") is not None:
         import capo_transfer.types.date_imported
 
         out["date_imported"] = (
@@ -46,11 +46,11 @@ def deserialize_aws_json_1_1(data: dict) -> SshPublicKey:
         )
     else:
         raise DeserializationError("SshPublicKey.date_imported required")
-    if "SshPublicKeyBody" in data:
+    if data.get("SshPublicKeyBody") is not None:
         out["ssh_public_key_body"] = data["SshPublicKeyBody"]
     else:
         raise DeserializationError("SshPublicKey.ssh_public_key_body required")
-    if "SshPublicKeyId" in data:
+    if data.get("SshPublicKeyId") is not None:
         out["ssh_public_key_id"] = data["SshPublicKeyId"]
     else:
         raise DeserializationError("SshPublicKey.ssh_public_key_id required")

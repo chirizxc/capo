@@ -26,7 +26,7 @@ def serialize_aws_json_1_1(value: MemberId) -> dict:
 
 
 def deserialize_aws_json_1_1(data: dict) -> MemberId:
-    if "UserId" in data:
+    if data.get("UserId") is not None:
         return {"UserId": data["UserId"]}
     else:
         raise DeserializationError("MemberId: no recognized variant key")

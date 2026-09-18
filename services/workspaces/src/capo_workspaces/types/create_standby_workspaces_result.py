@@ -44,7 +44,7 @@ def serialize_aws_json_1_1(value: CreateStandbyWorkspacesResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateStandbyWorkspacesResult:
     out: CreateStandbyWorkspacesResult = {}  # type: ignore[typeddict-item]
-    if "FailedStandbyRequests" in data:
+    if data.get("FailedStandbyRequests") is not None:
         import capo_workspaces.types.failed_create_standby_workspaces_request_list
 
         out["failed_standby_requests"] = (
@@ -52,7 +52,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateStandbyWorkspacesResult:
                 data["FailedStandbyRequests"]
             )
         )
-    if "PendingStandbyRequests" in data:
+    if data.get("PendingStandbyRequests") is not None:
         import capo_workspaces.types.pending_create_standby_workspaces_request_list
 
         out["pending_standby_requests"] = (

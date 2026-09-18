@@ -30,7 +30,7 @@ def serialize_json(value: AnalyticsUtteranceAttribute) -> dict:
 
 def deserialize_json(data: dict) -> AnalyticsUtteranceAttribute:
     out: AnalyticsUtteranceAttribute = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         import capo_lex_models_v2.types.analytics_utterance_attribute_name
 
         out["name"] = (

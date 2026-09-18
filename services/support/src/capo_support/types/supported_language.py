@@ -33,10 +33,10 @@ def serialize_aws_json_1_1(value: SupportedLanguage) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SupportedLanguage:
     out: SupportedLanguage = {}  # type: ignore[typeddict-item]
-    if "code" in data:
+    if data.get("code") is not None:
         out["code"] = data["code"]
-    if "language" in data:
+    if data.get("language") is not None:
         out["language"] = data["language"]
-    if "display" in data:
+    if data.get("display") is not None:
         out["display"] = data["display"]
     return out

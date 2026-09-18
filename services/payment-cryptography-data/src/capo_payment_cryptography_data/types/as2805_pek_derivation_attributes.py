@@ -28,13 +28,13 @@ def serialize_json(value: As2805PekDerivationAttributes) -> dict:
 
 def deserialize_json(data: dict) -> As2805PekDerivationAttributes:
     out: As2805PekDerivationAttributes = {}  # type: ignore[typeddict-item]
-    if "SystemTraceAuditNumber" in data:
+    if data.get("SystemTraceAuditNumber") is not None:
         out["system_trace_audit_number"] = data["SystemTraceAuditNumber"]
     else:
         raise DeserializationError(
             "As2805PekDerivationAttributes.system_trace_audit_number required"
         )
-    if "TransactionAmount" in data:
+    if data.get("TransactionAmount") is not None:
         out["transaction_amount"] = data["TransactionAmount"]
     else:
         raise DeserializationError(

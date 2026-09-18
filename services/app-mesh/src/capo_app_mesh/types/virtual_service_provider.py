@@ -49,7 +49,7 @@ def serialize_json(value: VirtualServiceProvider) -> dict:
 
 
 def deserialize_json(data: dict) -> VirtualServiceProvider:
-    if "virtualNode" in data:
+    if data.get("virtualNode") is not None:
         import capo_app_mesh.types.virtual_node_service_provider
 
         return {
@@ -57,7 +57,7 @@ def deserialize_json(data: dict) -> VirtualServiceProvider:
                 data["virtualNode"]
             )
         }
-    elif "virtualRouter" in data:
+    elif data.get("virtualRouter") is not None:
         import capo_app_mesh.types.virtual_router_service_provider
 
         return {

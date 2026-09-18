@@ -53,11 +53,11 @@ def serialize_json(value: FulfillmentCodeHookSettings) -> dict:
 
 def deserialize_json(data: dict) -> FulfillmentCodeHookSettings:
     out: FulfillmentCodeHookSettings = {}  # type: ignore[typeddict-item]
-    if "enabled" in data:
+    if data.get("enabled") is not None:
         out["enabled"] = data["enabled"]
     else:
         out["enabled"] = False
-    if "postFulfillmentStatusSpecification" in data:
+    if data.get("postFulfillmentStatusSpecification") is not None:
         import capo_lex_models_v2.types.post_fulfillment_status_specification
 
         out["post_fulfillment_status_specification"] = (
@@ -65,7 +65,7 @@ def deserialize_json(data: dict) -> FulfillmentCodeHookSettings:
                 data["postFulfillmentStatusSpecification"]
             )
         )
-    if "fulfillmentUpdatesSpecification" in data:
+    if data.get("fulfillmentUpdatesSpecification") is not None:
         import capo_lex_models_v2.types.fulfillment_updates_specification
 
         out["fulfillment_updates_specification"] = (
@@ -73,6 +73,6 @@ def deserialize_json(data: dict) -> FulfillmentCodeHookSettings:
                 data["fulfillmentUpdatesSpecification"]
             )
         )
-    if "active" in data:
+    if data.get("active") is not None:
         out["active"] = data["active"]
     return out

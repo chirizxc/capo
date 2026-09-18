@@ -42,17 +42,17 @@ def serialize_aws_json_1_1(value: PersonMatch) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PersonMatch:
     out: PersonMatch = {}  # type: ignore[typeddict-item]
-    if "Timestamp" in data:
+    if data.get("Timestamp") is not None:
         out["timestamp"] = data["Timestamp"]
     else:
         out["timestamp"] = 0
-    if "Person" in data:
+    if data.get("Person") is not None:
         import capo_rekognition.types.person_detail
 
         out["person"] = capo_rekognition.types.person_detail.deserialize_aws_json_1_1(
             data["Person"]
         )
-    if "FaceMatches" in data:
+    if data.get("FaceMatches") is not None:
         import capo_rekognition.types.face_match_list
 
         out["face_matches"] = (

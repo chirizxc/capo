@@ -26,7 +26,7 @@ def serialize_aws_json_1_1(value: KMSThrottlingException_) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> KMSThrottlingException_:
     out: KMSThrottlingException_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     return out
 
@@ -36,18 +36,21 @@ class KMSThrottlingException(ServiceError):
 
     code: str | None = "KMSThrottlingException"
 
-    def __init__(self, data: KMSThrottlingException_):
+    def __init__(self, data: KMSThrottlingException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="KMSThrottlingException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "KMSThrottlingException":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "KMSThrottlingException":
+        return cls(deserialize_aws_json_1_1(data), message)
 
 
 def serialize_event_aws_json_1_1(value: KMSThrottlingException_) -> bytes:

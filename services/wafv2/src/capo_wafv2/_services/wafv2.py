@@ -315,15 +315,17 @@ class WAFV2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_wafv2.types.associate_web_acl_request.AssociateWebACLRequest = {}  # type: ignore[typeddict-item]
-        input_["web_acl_arn"] = web_acl_arn
-        input_["resource_arn"] = resource_arn
+        input_: capo_wafv2.types.associate_web_acl_request.AssociateWebACLRequest = {
+            "web_acl_arn": web_acl_arn,
+            "resource_arn": resource_arn,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def check_capacity(
@@ -367,15 +369,17 @@ class WAFV2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_wafv2.types.check_capacity_request.CheckCapacityRequest = {}  # type: ignore[typeddict-item]
-        input_["scope"] = scope
-        input_["rules"] = rules
+        input_: capo_wafv2.types.check_capacity_request.CheckCapacityRequest = {
+            "scope": scope,
+            "rules": rules,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_api_key(
@@ -414,15 +418,17 @@ class WAFV2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_wafv2.types.create_api_key_request.CreateAPIKeyRequest = {}  # type: ignore[typeddict-item]
-        input_["scope"] = scope
-        input_["token_domains"] = token_domains
+        input_: capo_wafv2.types.create_api_key_request.CreateAPIKeyRequest = {
+            "scope": scope,
+            "token_domains": token_domains,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_ip_set(
@@ -475,13 +481,14 @@ class WAFV2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_wafv2.types.create_ip_set_request.CreateIPSetRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        input_["scope"] = scope
+        input_: capo_wafv2.types.create_ip_set_request.CreateIPSetRequest = {
+            "name": name,
+            "scope": scope,
+            "ip_address_version": ip_address_version,
+            "addresses": addresses,
+        }
         if description is not None:
             input_["description"] = description
-        input_["ip_address_version"] = ip_address_version
-        input_["addresses"] = addresses
         if tags is not None:
             input_["tags"] = tags
 
@@ -490,6 +497,7 @@ class WAFV2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_regex_pattern_set(
@@ -540,12 +548,13 @@ class WAFV2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_wafv2.types.create_regex_pattern_set_request.CreateRegexPatternSetRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        input_["scope"] = scope
+        input_: capo_wafv2.types.create_regex_pattern_set_request.CreateRegexPatternSetRequest = {
+            "name": name,
+            "scope": scope,
+            "regular_expression_list": regular_expression_list,
+        }
         if description is not None:
             input_["description"] = description
-        input_["regular_expression_list"] = regular_expression_list
         if tags is not None:
             input_["tags"] = tags
 
@@ -554,6 +563,7 @@ class WAFV2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_rule_group(
@@ -615,15 +625,16 @@ class WAFV2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_wafv2.types.create_rule_group_request.CreateRuleGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        input_["scope"] = scope
-        input_["capacity"] = capacity
+        input_: capo_wafv2.types.create_rule_group_request.CreateRuleGroupRequest = {
+            "name": name,
+            "scope": scope,
+            "capacity": capacity,
+            "visibility_config": visibility_config,
+        }
         if description is not None:
             input_["description"] = description
         if rules is not None:
             input_["rules"] = rules
-        input_["visibility_config"] = visibility_config
         if tags is not None:
             input_["tags"] = tags
         if custom_response_bodies is not None:
@@ -634,6 +645,7 @@ class WAFV2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_web_acl(
@@ -724,15 +736,16 @@ class WAFV2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_wafv2.types.create_web_acl_request.CreateWebACLRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        input_["scope"] = scope
-        input_["default_action"] = default_action
+        input_: capo_wafv2.types.create_web_acl_request.CreateWebACLRequest = {
+            "name": name,
+            "scope": scope,
+            "default_action": default_action,
+            "visibility_config": visibility_config,
+        }
         if description is not None:
             input_["description"] = description
         if rules is not None:
             input_["rules"] = rules
-        input_["visibility_config"] = visibility_config
         if data_protection_config is not None:
             input_["data_protection_config"] = data_protection_config
         if tags is not None:
@@ -759,6 +772,7 @@ class WAFV2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_api_key(
@@ -798,15 +812,17 @@ class WAFV2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_wafv2.types.delete_api_key_request.DeleteAPIKeyRequest = {}  # type: ignore[typeddict-item]
-        input_["scope"] = scope
-        input_["api_key"] = api_key
+        input_: capo_wafv2.types.delete_api_key_request.DeleteAPIKeyRequest = {
+            "scope": scope,
+            "api_key": api_key,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_firewall_manager_rule_groups(
@@ -846,15 +862,17 @@ class WAFV2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_wafv2.types.delete_firewall_manager_rule_groups_request.DeleteFirewallManagerRuleGroupsRequest = {}  # type: ignore[typeddict-item]
-        input_["web_acl_arn"] = web_acl_arn
-        input_["web_acl_lock_token"] = web_acl_lock_token
+        input_: capo_wafv2.types.delete_firewall_manager_rule_groups_request.DeleteFirewallManagerRuleGroupsRequest = {
+            "web_acl_arn": web_acl_arn,
+            "web_acl_lock_token": web_acl_lock_token,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_ip_set(
@@ -901,17 +919,19 @@ class WAFV2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_wafv2.types.delete_ip_set_request.DeleteIPSetRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        input_["scope"] = scope
-        input_["id"] = id
-        input_["lock_token"] = lock_token
+        input_: capo_wafv2.types.delete_ip_set_request.DeleteIPSetRequest = {
+            "name": name,
+            "scope": scope,
+            "id": id,
+            "lock_token": lock_token,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_logging_configuration(
@@ -953,8 +973,9 @@ class WAFV2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_wafv2.types.delete_logging_configuration_request.DeleteLoggingConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_wafv2.types.delete_logging_configuration_request.DeleteLoggingConfigurationRequest = {
+            "resource_arn": resource_arn
+        }
         if log_type is not None:
             input_["log_type"] = log_type
         if log_scope is not None:
@@ -965,6 +986,7 @@ class WAFV2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_permission_policy(
@@ -1000,14 +1022,16 @@ class WAFV2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_wafv2.types.delete_permission_policy_request.DeletePermissionPolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_wafv2.types.delete_permission_policy_request.DeletePermissionPolicyRequest = {
+            "resource_arn": resource_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_regex_pattern_set(
@@ -1054,17 +1078,19 @@ class WAFV2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_wafv2.types.delete_regex_pattern_set_request.DeleteRegexPatternSetRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        input_["scope"] = scope
-        input_["id"] = id
-        input_["lock_token"] = lock_token
+        input_: capo_wafv2.types.delete_regex_pattern_set_request.DeleteRegexPatternSetRequest = {
+            "name": name,
+            "scope": scope,
+            "id": id,
+            "lock_token": lock_token,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_rule_group(
@@ -1111,17 +1137,19 @@ class WAFV2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_wafv2.types.delete_rule_group_request.DeleteRuleGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        input_["scope"] = scope
-        input_["id"] = id
-        input_["lock_token"] = lock_token
+        input_: capo_wafv2.types.delete_rule_group_request.DeleteRuleGroupRequest = {
+            "name": name,
+            "scope": scope,
+            "id": id,
+            "lock_token": lock_token,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_web_acl(
@@ -1168,17 +1196,19 @@ class WAFV2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_wafv2.types.delete_web_acl_request.DeleteWebACLRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        input_["scope"] = scope
-        input_["id"] = id
-        input_["lock_token"] = lock_token
+        input_: capo_wafv2.types.delete_web_acl_request.DeleteWebACLRequest = {
+            "name": name,
+            "scope": scope,
+            "id": id,
+            "lock_token": lock_token,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_all_managed_products(
@@ -1214,14 +1244,16 @@ class WAFV2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_wafv2.types.describe_all_managed_products_request.DescribeAllManagedProductsRequest = {}  # type: ignore[typeddict-item]
-        input_["scope"] = scope
+        input_: capo_wafv2.types.describe_all_managed_products_request.DescribeAllManagedProductsRequest = {
+            "scope": scope
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_managed_products_by_vendor(
@@ -1259,15 +1291,17 @@ class WAFV2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_wafv2.types.describe_managed_products_by_vendor_request.DescribeManagedProductsByVendorRequest = {}  # type: ignore[typeddict-item]
-        input_["vendor_name"] = vendor_name
-        input_["scope"] = scope
+        input_: capo_wafv2.types.describe_managed_products_by_vendor_request.DescribeManagedProductsByVendorRequest = {
+            "vendor_name": vendor_name,
+            "scope": scope,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_managed_rule_group(
@@ -1314,10 +1348,11 @@ class WAFV2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_wafv2.types.describe_managed_rule_group_request.DescribeManagedRuleGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["vendor_name"] = vendor_name
-        input_["name"] = name
-        input_["scope"] = scope
+        input_: capo_wafv2.types.describe_managed_rule_group_request.DescribeManagedRuleGroupRequest = {
+            "vendor_name": vendor_name,
+            "name": name,
+            "scope": scope,
+        }
         if version_name is not None:
             input_["version_name"] = version_name
 
@@ -1326,6 +1361,7 @@ class WAFV2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def disassociate_web_acl(
@@ -1362,14 +1398,16 @@ class WAFV2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_wafv2.types.disassociate_web_acl_request.DisassociateWebACLRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_wafv2.types.disassociate_web_acl_request.DisassociateWebACLRequest = {
+            "resource_arn": resource_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def generate_mobile_sdk_release_url(
@@ -1408,15 +1446,17 @@ class WAFV2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_wafv2.types.generate_mobile_sdk_release_url_request.GenerateMobileSdkReleaseUrlRequest = {}  # type: ignore[typeddict-item]
-        input_["platform"] = platform
-        input_["release_version"] = release_version
+        input_: capo_wafv2.types.generate_mobile_sdk_release_url_request.GenerateMobileSdkReleaseUrlRequest = {
+            "platform": platform,
+            "release_version": release_version,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_decrypted_api_key(
@@ -1456,15 +1496,17 @@ class WAFV2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_wafv2.types.get_decrypted_api_key_request.GetDecryptedAPIKeyRequest = {}  # type: ignore[typeddict-item]
-        input_["scope"] = scope
-        input_["api_key"] = api_key
+        input_: capo_wafv2.types.get_decrypted_api_key_request.GetDecryptedAPIKeyRequest = {
+            "scope": scope,
+            "api_key": api_key,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_ip_set(
@@ -1503,16 +1545,18 @@ class WAFV2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_wafv2.types.get_ip_set_request.GetIPSetRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        input_["scope"] = scope
-        input_["id"] = id
+        input_: capo_wafv2.types.get_ip_set_request.GetIPSetRequest = {
+            "name": name,
+            "scope": scope,
+            "id": id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_logging_configuration(
@@ -1553,8 +1597,9 @@ class WAFV2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_wafv2.types.get_logging_configuration_request.GetLoggingConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_wafv2.types.get_logging_configuration_request.GetLoggingConfigurationRequest = {
+            "resource_arn": resource_arn
+        }
         if log_type is not None:
             input_["log_type"] = log_type
         if log_scope is not None:
@@ -1565,6 +1610,7 @@ class WAFV2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_managed_rule_set(
@@ -1605,16 +1651,18 @@ class WAFV2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_wafv2.types.get_managed_rule_set_request.GetManagedRuleSetRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        input_["scope"] = scope
-        input_["id"] = id
+        input_: capo_wafv2.types.get_managed_rule_set_request.GetManagedRuleSetRequest = {
+            "name": name,
+            "scope": scope,
+            "id": id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_mobile_sdk_release(
@@ -1653,15 +1701,17 @@ class WAFV2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_wafv2.types.get_mobile_sdk_release_request.GetMobileSdkReleaseRequest = {}  # type: ignore[typeddict-item]
-        input_["platform"] = platform
-        input_["release_version"] = release_version
+        input_: capo_wafv2.types.get_mobile_sdk_release_request.GetMobileSdkReleaseRequest = {
+            "platform": platform,
+            "release_version": release_version,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_permission_policy(
@@ -1697,14 +1747,16 @@ class WAFV2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_wafv2.types.get_permission_policy_request.GetPermissionPolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_wafv2.types.get_permission_policy_request.GetPermissionPolicyRequest = {
+            "resource_arn": resource_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_rate_based_statement_managed_keys(
@@ -1752,19 +1804,21 @@ class WAFV2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_wafv2.types.get_rate_based_statement_managed_keys_request.GetRateBasedStatementManagedKeysRequest = {}  # type: ignore[typeddict-item]
-        input_["scope"] = scope
-        input_["web_acl_name"] = web_acl_name
-        input_["web_acl_id"] = web_acl_id
+        input_: capo_wafv2.types.get_rate_based_statement_managed_keys_request.GetRateBasedStatementManagedKeysRequest = {
+            "scope": scope,
+            "web_acl_name": web_acl_name,
+            "web_acl_id": web_acl_id,
+            "rule_name": rule_name,
+        }
         if rule_group_rule_name is not None:
             input_["rule_group_rule_name"] = rule_group_rule_name
-        input_["rule_name"] = rule_name
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_regex_pattern_set(
@@ -1805,16 +1859,18 @@ class WAFV2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_wafv2.types.get_regex_pattern_set_request.GetRegexPatternSetRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        input_["scope"] = scope
-        input_["id"] = id
+        input_: capo_wafv2.types.get_regex_pattern_set_request.GetRegexPatternSetRequest = {
+            "name": name,
+            "scope": scope,
+            "id": id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_rule_group(
@@ -1857,7 +1913,7 @@ class WAFV2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_wafv2.types.get_rule_group_request.GetRuleGroupRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_wafv2.types.get_rule_group_request.GetRuleGroupRequest = {}
         if name is not None:
             input_["name"] = name
         if scope is not None:
@@ -1872,6 +1928,7 @@ class WAFV2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_sampled_requests(
@@ -1915,18 +1972,20 @@ class WAFV2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_wafv2.types.get_sampled_requests_request.GetSampledRequestsRequest = {}  # type: ignore[typeddict-item]
-        input_["web_acl_arn"] = web_acl_arn
-        input_["rule_metric_name"] = rule_metric_name
-        input_["scope"] = scope
-        input_["time_window"] = time_window
-        input_["max_items"] = max_items
+        input_: capo_wafv2.types.get_sampled_requests_request.GetSampledRequestsRequest = {
+            "web_acl_arn": web_acl_arn,
+            "rule_metric_name": rule_metric_name,
+            "scope": scope,
+            "time_window": time_window,
+            "max_items": max_items,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_top_path_statistics_by_traffic(
@@ -1986,22 +2045,21 @@ class WAFV2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_wafv2.types.get_top_path_statistics_by_traffic_request.GetTopPathStatisticsByTrafficRequest = {}  # type: ignore[typeddict-item]
-        input_["web_acl_arn"] = web_acl_arn
-        input_["scope"] = scope
+        input_: capo_wafv2.types.get_top_path_statistics_by_traffic_request.GetTopPathStatisticsByTrafficRequest = {
+            "web_acl_arn": web_acl_arn,
+            "scope": scope,
+            "time_window": time_window,
+            "limit": limit,
+            "number_of_top_traffic_bots_per_path": number_of_top_traffic_bots_per_path,
+        }
         if uri_path_prefix is not None:
             input_["uri_path_prefix"] = uri_path_prefix
-        input_["time_window"] = time_window
         if bot_category is not None:
             input_["bot_category"] = bot_category
         if bot_organization is not None:
             input_["bot_organization"] = bot_organization
         if bot_name is not None:
             input_["bot_name"] = bot_name
-        input_["limit"] = limit
-        input_["number_of_top_traffic_bots_per_path"] = (
-            number_of_top_traffic_bots_per_path
-        )
         if next_marker is not None:
             input_["next_marker"] = next_marker
 
@@ -2010,6 +2068,7 @@ class WAFV2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_web_acl(
@@ -2052,7 +2111,7 @@ class WAFV2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_wafv2.types.get_web_acl_request.GetWebACLRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_wafv2.types.get_web_acl_request.GetWebACLRequest = {}
         if name is not None:
             input_["name"] = name
         if scope is not None:
@@ -2067,6 +2126,7 @@ class WAFV2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_web_acl_for_resource(
@@ -2104,14 +2164,16 @@ class WAFV2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_wafv2.types.get_web_acl_for_resource_request.GetWebACLForResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_wafv2.types.get_web_acl_for_resource_request.GetWebACLForResourceRequest = {
+            "resource_arn": resource_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_api_keys(
@@ -2152,8 +2214,9 @@ class WAFV2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_wafv2.types.list_api_keys_request.ListAPIKeysRequest = {}  # type: ignore[typeddict-item]
-        input_["scope"] = scope
+        input_: capo_wafv2.types.list_api_keys_request.ListAPIKeysRequest = {
+            "scope": scope
+        }
         if next_marker is not None:
             input_["next_marker"] = next_marker
         if limit is not None:
@@ -2164,6 +2227,7 @@ class WAFV2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_available_managed_rule_groups(
@@ -2203,8 +2267,9 @@ class WAFV2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_wafv2.types.list_available_managed_rule_groups_request.ListAvailableManagedRuleGroupsRequest = {}  # type: ignore[typeddict-item]
-        input_["scope"] = scope
+        input_: capo_wafv2.types.list_available_managed_rule_groups_request.ListAvailableManagedRuleGroupsRequest = {
+            "scope": scope
+        }
         if next_marker is not None:
             input_["next_marker"] = next_marker
         if limit is not None:
@@ -2215,6 +2280,7 @@ class WAFV2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_available_managed_rule_group_versions(
@@ -2259,10 +2325,11 @@ class WAFV2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_wafv2.types.list_available_managed_rule_group_versions_request.ListAvailableManagedRuleGroupVersionsRequest = {}  # type: ignore[typeddict-item]
-        input_["vendor_name"] = vendor_name
-        input_["name"] = name
-        input_["scope"] = scope
+        input_: capo_wafv2.types.list_available_managed_rule_group_versions_request.ListAvailableManagedRuleGroupVersionsRequest = {
+            "vendor_name": vendor_name,
+            "name": name,
+            "scope": scope,
+        }
         if next_marker is not None:
             input_["next_marker"] = next_marker
         if limit is not None:
@@ -2273,6 +2340,7 @@ class WAFV2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_ip_sets(
@@ -2312,8 +2380,9 @@ class WAFV2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_wafv2.types.list_ip_sets_request.ListIPSetsRequest = {}  # type: ignore[typeddict-item]
-        input_["scope"] = scope
+        input_: capo_wafv2.types.list_ip_sets_request.ListIPSetsRequest = {
+            "scope": scope
+        }
         if next_marker is not None:
             input_["next_marker"] = next_marker
         if limit is not None:
@@ -2324,6 +2393,7 @@ class WAFV2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_logging_configurations(
@@ -2365,8 +2435,9 @@ class WAFV2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_wafv2.types.list_logging_configurations_request.ListLoggingConfigurationsRequest = {}  # type: ignore[typeddict-item]
-        input_["scope"] = scope
+        input_: capo_wafv2.types.list_logging_configurations_request.ListLoggingConfigurationsRequest = {
+            "scope": scope
+        }
         if next_marker is not None:
             input_["next_marker"] = next_marker
         if limit is not None:
@@ -2379,6 +2450,7 @@ class WAFV2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_managed_rule_sets(
@@ -2418,8 +2490,9 @@ class WAFV2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_wafv2.types.list_managed_rule_sets_request.ListManagedRuleSetsRequest = {}  # type: ignore[typeddict-item]
-        input_["scope"] = scope
+        input_: capo_wafv2.types.list_managed_rule_sets_request.ListManagedRuleSetsRequest = {
+            "scope": scope
+        }
         if next_marker is not None:
             input_["next_marker"] = next_marker
         if limit is not None:
@@ -2430,6 +2503,7 @@ class WAFV2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_mobile_sdk_releases(
@@ -2469,8 +2543,9 @@ class WAFV2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_wafv2.types.list_mobile_sdk_releases_request.ListMobileSdkReleasesRequest = {}  # type: ignore[typeddict-item]
-        input_["platform"] = platform
+        input_: capo_wafv2.types.list_mobile_sdk_releases_request.ListMobileSdkReleasesRequest = {
+            "platform": platform
+        }
         if next_marker is not None:
             input_["next_marker"] = next_marker
         if limit is not None:
@@ -2481,6 +2556,7 @@ class WAFV2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_regex_pattern_sets(
@@ -2522,8 +2598,9 @@ class WAFV2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_wafv2.types.list_regex_pattern_sets_request.ListRegexPatternSetsRequest = {}  # type: ignore[typeddict-item]
-        input_["scope"] = scope
+        input_: capo_wafv2.types.list_regex_pattern_sets_request.ListRegexPatternSetsRequest = {
+            "scope": scope
+        }
         if next_marker is not None:
             input_["next_marker"] = next_marker
         if limit is not None:
@@ -2534,6 +2611,7 @@ class WAFV2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_resources_for_web_acl(
@@ -2572,8 +2650,9 @@ class WAFV2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_wafv2.types.list_resources_for_web_acl_request.ListResourcesForWebACLRequest = {}  # type: ignore[typeddict-item]
-        input_["web_acl_arn"] = web_acl_arn
+        input_: capo_wafv2.types.list_resources_for_web_acl_request.ListResourcesForWebACLRequest = {
+            "web_acl_arn": web_acl_arn
+        }
         if resource_type is not None:
             input_["resource_type"] = resource_type
 
@@ -2582,6 +2661,7 @@ class WAFV2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_rule_groups(
@@ -2621,8 +2701,9 @@ class WAFV2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_wafv2.types.list_rule_groups_request.ListRuleGroupsRequest = {}  # type: ignore[typeddict-item]
-        input_["scope"] = scope
+        input_: capo_wafv2.types.list_rule_groups_request.ListRuleGroupsRequest = {
+            "scope": scope
+        }
         if next_marker is not None:
             input_["next_marker"] = next_marker
         if limit is not None:
@@ -2633,6 +2714,7 @@ class WAFV2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_tags_for_resource(
@@ -2675,18 +2757,20 @@ class WAFV2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_wafv2.types.list_tags_for_resource_request.ListTagsForResourceRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_wafv2.types.list_tags_for_resource_request.ListTagsForResourceRequest = {
+            "resource_arn": resource_arn
+        }
         if next_marker is not None:
             input_["next_marker"] = next_marker
         if limit is not None:
             input_["limit"] = limit
-        input_["resource_arn"] = resource_arn
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_web_ac_ls(
@@ -2726,8 +2810,9 @@ class WAFV2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_wafv2.types.list_web_ac_ls_request.ListWebACLsRequest = {}  # type: ignore[typeddict-item]
-        input_["scope"] = scope
+        input_: capo_wafv2.types.list_web_ac_ls_request.ListWebACLsRequest = {
+            "scope": scope
+        }
         if next_marker is not None:
             input_["next_marker"] = next_marker
         if limit is not None:
@@ -2738,6 +2823,7 @@ class WAFV2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def put_logging_configuration(
@@ -2779,14 +2865,16 @@ class WAFV2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_wafv2.types.put_logging_configuration_request.PutLoggingConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["logging_configuration"] = logging_configuration
+        input_: capo_wafv2.types.put_logging_configuration_request.PutLoggingConfigurationRequest = {
+            "logging_configuration": logging_configuration
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def put_managed_rule_set_versions(
@@ -2838,11 +2926,12 @@ class WAFV2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_wafv2.types.put_managed_rule_set_versions_request.PutManagedRuleSetVersionsRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        input_["scope"] = scope
-        input_["id"] = id
-        input_["lock_token"] = lock_token
+        input_: capo_wafv2.types.put_managed_rule_set_versions_request.PutManagedRuleSetVersionsRequest = {
+            "name": name,
+            "scope": scope,
+            "id": id,
+            "lock_token": lock_token,
+        }
         if recommended_version is not None:
             input_["recommended_version"] = recommended_version
         if versions_to_publish is not None:
@@ -2853,6 +2942,7 @@ class WAFV2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def put_permission_policy(
@@ -2891,15 +2981,17 @@ class WAFV2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_wafv2.types.put_permission_policy_request.PutPermissionPolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["policy"] = policy
+        input_: capo_wafv2.types.put_permission_policy_request.PutPermissionPolicyRequest = {
+            "resource_arn": resource_arn,
+            "policy": policy,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def tag_resource(
@@ -2941,15 +3033,17 @@ class WAFV2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_wafv2.types.tag_resource_request.TagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tags"] = tags
+        input_: capo_wafv2.types.tag_resource_request.TagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tags": tags,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def untag_resource(
@@ -2990,15 +3084,17 @@ class WAFV2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_wafv2.types.untag_resource_request.UntagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tag_keys"] = tag_keys
+        input_: capo_wafv2.types.untag_resource_request.UntagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tag_keys": tag_keys,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_ip_set(
@@ -3050,20 +3146,22 @@ class WAFV2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_wafv2.types.update_ip_set_request.UpdateIPSetRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        input_["scope"] = scope
-        input_["id"] = id
+        input_: capo_wafv2.types.update_ip_set_request.UpdateIPSetRequest = {
+            "name": name,
+            "scope": scope,
+            "id": id,
+            "addresses": addresses,
+            "lock_token": lock_token,
+        }
         if description is not None:
             input_["description"] = description
-        input_["addresses"] = addresses
-        input_["lock_token"] = lock_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_managed_rule_set_version_expiry_date(
@@ -3111,19 +3209,21 @@ class WAFV2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_wafv2.types.update_managed_rule_set_version_expiry_date_request.UpdateManagedRuleSetVersionExpiryDateRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        input_["scope"] = scope
-        input_["id"] = id
-        input_["lock_token"] = lock_token
-        input_["version_to_expire"] = version_to_expire
-        input_["expiry_timestamp"] = expiry_timestamp
+        input_: capo_wafv2.types.update_managed_rule_set_version_expiry_date_request.UpdateManagedRuleSetVersionExpiryDateRequest = {
+            "name": name,
+            "scope": scope,
+            "id": id,
+            "lock_token": lock_token,
+            "version_to_expire": version_to_expire,
+            "expiry_timestamp": expiry_timestamp,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_regex_pattern_set(
@@ -3175,20 +3275,22 @@ class WAFV2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_wafv2.types.update_regex_pattern_set_request.UpdateRegexPatternSetRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        input_["scope"] = scope
-        input_["id"] = id
+        input_: capo_wafv2.types.update_regex_pattern_set_request.UpdateRegexPatternSetRequest = {
+            "name": name,
+            "scope": scope,
+            "id": id,
+            "regular_expression_list": regular_expression_list,
+            "lock_token": lock_token,
+        }
         if description is not None:
             input_["description"] = description
-        input_["regular_expression_list"] = regular_expression_list
-        input_["lock_token"] = lock_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_rule_group(
@@ -3249,16 +3351,17 @@ class WAFV2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_wafv2.types.update_rule_group_request.UpdateRuleGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        input_["scope"] = scope
-        input_["id"] = id
+        input_: capo_wafv2.types.update_rule_group_request.UpdateRuleGroupRequest = {
+            "name": name,
+            "scope": scope,
+            "id": id,
+            "visibility_config": visibility_config,
+            "lock_token": lock_token,
+        }
         if description is not None:
             input_["description"] = description
         if rules is not None:
             input_["rules"] = rules
-        input_["visibility_config"] = visibility_config
-        input_["lock_token"] = lock_token
         if custom_response_bodies is not None:
             input_["custom_response_bodies"] = custom_response_bodies
 
@@ -3267,6 +3370,7 @@ class WAFV2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_web_acl(
@@ -3358,19 +3462,20 @@ class WAFV2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_wafv2.types.update_web_acl_request.UpdateWebACLRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        input_["scope"] = scope
-        input_["id"] = id
-        input_["default_action"] = default_action
+        input_: capo_wafv2.types.update_web_acl_request.UpdateWebACLRequest = {
+            "name": name,
+            "scope": scope,
+            "id": id,
+            "default_action": default_action,
+            "visibility_config": visibility_config,
+            "lock_token": lock_token,
+        }
         if description is not None:
             input_["description"] = description
         if rules is not None:
             input_["rules"] = rules
-        input_["visibility_config"] = visibility_config
         if data_protection_config is not None:
             input_["data_protection_config"] = data_protection_config
-        input_["lock_token"] = lock_token
         if custom_response_bodies is not None:
             input_["custom_response_bodies"] = custom_response_bodies
         if captcha_config is not None:
@@ -3393,6 +3498,7 @@ class WAFV2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def __enter__(self) -> Self:

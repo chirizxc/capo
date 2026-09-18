@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> FrameworkMetadataList:
 
     out: FrameworkMetadataList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_auditmanager.types.assessment_framework_metadata.deserialize_json(item)
         )

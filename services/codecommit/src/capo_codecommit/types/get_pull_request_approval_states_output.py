@@ -27,7 +27,7 @@ def serialize_aws_json_1_1(value: GetPullRequestApprovalStatesOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetPullRequestApprovalStatesOutput:
     out: GetPullRequestApprovalStatesOutput = {}  # type: ignore[typeddict-item]
-    if "approvals" in data:
+    if data.get("approvals") is not None:
         import capo_codecommit.types.approval_list
 
         out["approvals"] = capo_codecommit.types.approval_list.deserialize_aws_json_1_1(

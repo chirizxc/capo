@@ -37,10 +37,10 @@ def serialize_json(value: MatterCapabilityReportAttribute) -> dict:
 
 def deserialize_json(data: dict) -> MatterCapabilityReportAttribute:
     out: MatterCapabilityReportAttribute = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "value" in data:
+    if data.get("value") is not None:
         out["value"] = data["value"]
     return out

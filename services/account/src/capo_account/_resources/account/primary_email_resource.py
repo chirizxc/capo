@@ -74,16 +74,18 @@ class PrimaryEmailResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_account.types.accept_primary_email_update_request.AcceptPrimaryEmailUpdateRequest = {}  # type: ignore[typeddict-item]
-        input_["account_id"] = account_id
-        input_["primary_email"] = primary_email
-        input_["otp"] = otp
+        input_: capo_account.types.accept_primary_email_update_request.AcceptPrimaryEmailUpdateRequest = {
+            "account_id": account_id,
+            "primary_email": primary_email,
+            "otp": otp,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_primary_email(
@@ -121,14 +123,16 @@ class PrimaryEmailResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_account.types.get_primary_email_request.GetPrimaryEmailRequest = {}  # type: ignore[typeddict-item]
-        input_["account_id"] = account_id
+        input_: capo_account.types.get_primary_email_request.GetPrimaryEmailRequest = {
+            "account_id": account_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def start_primary_email_update(
@@ -169,15 +173,17 @@ class PrimaryEmailResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_account.types.start_primary_email_update_request.StartPrimaryEmailUpdateRequest = {}  # type: ignore[typeddict-item]
-        input_["account_id"] = account_id
-        input_["primary_email"] = primary_email
+        input_: capo_account.types.start_primary_email_update_request.StartPrimaryEmailUpdateRequest = {
+            "account_id": account_id,
+            "primary_email": primary_email,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -226,16 +232,18 @@ class AsyncPrimaryEmailResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_account.types.accept_primary_email_update_request.AcceptPrimaryEmailUpdateRequest = {}  # type: ignore[typeddict-item]
-        input_["account_id"] = account_id
-        input_["primary_email"] = primary_email
-        input_["otp"] = otp
+        input_: capo_account.types.accept_primary_email_update_request.AcceptPrimaryEmailUpdateRequest = {
+            "account_id": account_id,
+            "primary_email": primary_email,
+            "otp": otp,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_primary_email(
@@ -274,14 +282,16 @@ class AsyncPrimaryEmailResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_account.types.get_primary_email_request.GetPrimaryEmailRequest = {}  # type: ignore[typeddict-item]
-        input_["account_id"] = account_id
+        input_: capo_account.types.get_primary_email_request.GetPrimaryEmailRequest = {
+            "account_id": account_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def start_primary_email_update(
@@ -323,13 +333,15 @@ class AsyncPrimaryEmailResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_account.types.start_primary_email_update_request.StartPrimaryEmailUpdateRequest = {}  # type: ignore[typeddict-item]
-        input_["account_id"] = account_id
-        input_["primary_email"] = primary_email
+        input_: capo_account.types.start_primary_email_update_request.StartPrimaryEmailUpdateRequest = {
+            "account_id": account_id,
+            "primary_email": primary_email,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

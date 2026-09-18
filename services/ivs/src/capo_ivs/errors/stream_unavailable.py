@@ -42,7 +42,7 @@ def serialize_json(value: StreamUnavailable_) -> dict:
 
 def deserialize_json(data: dict) -> StreamUnavailable_:
     out: StreamUnavailable_ = {}  # type: ignore[typeddict-item]
-    if "exceptionMessage" in data:
+    if data.get("exceptionMessage") is not None:
         out["exception_message"] = data["exceptionMessage"]
     return out
 
@@ -52,15 +52,16 @@ class StreamUnavailable(ServiceError):
 
     code: str | None = "StreamUnavailable"
 
-    def __init__(self, data: StreamUnavailable_):
+    def __init__(self, data: StreamUnavailable_, message: str | None = None):
         super().__init__(
             "server",
             is_throttling_error=False,
             is_retryable=False,
             code="StreamUnavailable",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "StreamUnavailable":
-        return cls(deserialize_json(data))
+    def from_json(cls, data: dict, message: str | None = None) -> "StreamUnavailable":
+        return cls(deserialize_json(data), message)

@@ -363,8 +363,9 @@ class AsyncforecastClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_forecast.types.create_auto_predictor_request.CreateAutoPredictorRequest = {}  # type: ignore[typeddict-item]
-        input_["predictor_name"] = predictor_name
+        input_: capo_forecast.types.create_auto_predictor_request.CreateAutoPredictorRequest = {
+            "predictor_name": predictor_name
+        }
         if forecast_horizon is not None:
             input_["forecast_horizon"] = forecast_horizon
         if forecast_types is not None:
@@ -395,6 +396,7 @@ class AsyncforecastClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_dataset(
@@ -445,13 +447,14 @@ class AsyncforecastClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_forecast.types.create_dataset_request.CreateDatasetRequest = {}  # type: ignore[typeddict-item]
-        input_["dataset_name"] = dataset_name
-        input_["domain"] = domain
-        input_["dataset_type"] = dataset_type
+        input_: capo_forecast.types.create_dataset_request.CreateDatasetRequest = {
+            "dataset_name": dataset_name,
+            "domain": domain,
+            "dataset_type": dataset_type,
+            "schema": schema,
+        }
         if data_frequency is not None:
             input_["data_frequency"] = data_frequency
-        input_["schema"] = schema
         if encryption_config is not None:
             input_["encryption_config"] = encryption_config
         if tags is not None:
@@ -462,6 +465,7 @@ class AsyncforecastClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_dataset_group(
@@ -506,9 +510,10 @@ class AsyncforecastClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_forecast.types.create_dataset_group_request.CreateDatasetGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["dataset_group_name"] = dataset_group_name
-        input_["domain"] = domain
+        input_: capo_forecast.types.create_dataset_group_request.CreateDatasetGroupRequest = {
+            "dataset_group_name": dataset_group_name,
+            "domain": domain,
+        }
         if dataset_arns is not None:
             input_["dataset_arns"] = dataset_arns
         if tags is not None:
@@ -519,6 +524,7 @@ class AsyncforecastClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_dataset_import_job(
@@ -581,10 +587,11 @@ class AsyncforecastClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_forecast.types.create_dataset_import_job_request.CreateDatasetImportJobRequest = {}  # type: ignore[typeddict-item]
-        input_["dataset_import_job_name"] = dataset_import_job_name
-        input_["dataset_arn"] = dataset_arn
-        input_["data_source"] = data_source
+        input_: capo_forecast.types.create_dataset_import_job_request.CreateDatasetImportJobRequest = {
+            "dataset_import_job_name": dataset_import_job_name,
+            "dataset_arn": dataset_arn,
+            "data_source": data_source,
+        }
         if timestamp_format is not None:
             input_["timestamp_format"] = timestamp_format
         if time_zone is not None:
@@ -605,6 +612,7 @@ class AsyncforecastClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_explainability(
@@ -661,10 +669,11 @@ class AsyncforecastClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_forecast.types.create_explainability_request.CreateExplainabilityRequest = {}  # type: ignore[typeddict-item]
-        input_["explainability_name"] = explainability_name
-        input_["resource_arn"] = resource_arn
-        input_["explainability_config"] = explainability_config
+        input_: capo_forecast.types.create_explainability_request.CreateExplainabilityRequest = {
+            "explainability_name": explainability_name,
+            "resource_arn": resource_arn,
+            "explainability_config": explainability_config,
+        }
         if data_source is not None:
             input_["data_source"] = data_source
         if schema is not None:
@@ -683,6 +692,7 @@ class AsyncforecastClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_explainability_export(
@@ -728,10 +738,11 @@ class AsyncforecastClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_forecast.types.create_explainability_export_request.CreateExplainabilityExportRequest = {}  # type: ignore[typeddict-item]
-        input_["explainability_export_name"] = explainability_export_name
-        input_["explainability_arn"] = explainability_arn
-        input_["destination"] = destination
+        input_: capo_forecast.types.create_explainability_export_request.CreateExplainabilityExportRequest = {
+            "explainability_export_name": explainability_export_name,
+            "explainability_arn": explainability_arn,
+            "destination": destination,
+        }
         if tags is not None:
             input_["tags"] = tags
         if format is not None:
@@ -742,6 +753,7 @@ class AsyncforecastClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_forecast(
@@ -792,9 +804,10 @@ class AsyncforecastClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_forecast.types.create_forecast_request.CreateForecastRequest = {}  # type: ignore[typeddict-item]
-        input_["forecast_name"] = forecast_name
-        input_["predictor_arn"] = predictor_arn
+        input_: capo_forecast.types.create_forecast_request.CreateForecastRequest = {
+            "forecast_name": forecast_name,
+            "predictor_arn": predictor_arn,
+        }
         if forecast_types is not None:
             input_["forecast_types"] = forecast_types
         if tags is not None:
@@ -807,6 +820,7 @@ class AsyncforecastClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_forecast_export_job(
@@ -853,10 +867,11 @@ class AsyncforecastClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_forecast.types.create_forecast_export_job_request.CreateForecastExportJobRequest = {}  # type: ignore[typeddict-item]
-        input_["forecast_export_job_name"] = forecast_export_job_name
-        input_["forecast_arn"] = forecast_arn
-        input_["destination"] = destination
+        input_: capo_forecast.types.create_forecast_export_job_request.CreateForecastExportJobRequest = {
+            "forecast_export_job_name": forecast_export_job_name,
+            "forecast_arn": forecast_arn,
+            "destination": destination,
+        }
         if tags is not None:
             input_["tags"] = tags
         if format is not None:
@@ -867,6 +882,7 @@ class AsyncforecastClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_monitor(
@@ -909,9 +925,10 @@ class AsyncforecastClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_forecast.types.create_monitor_request.CreateMonitorRequest = {}  # type: ignore[typeddict-item]
-        input_["monitor_name"] = monitor_name
-        input_["resource_arn"] = resource_arn
+        input_: capo_forecast.types.create_monitor_request.CreateMonitorRequest = {
+            "monitor_name": monitor_name,
+            "resource_arn": resource_arn,
+        }
         if tags is not None:
             input_["tags"] = tags
 
@@ -920,6 +937,7 @@ class AsyncforecastClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_predictor(
@@ -1000,11 +1018,14 @@ class AsyncforecastClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_forecast.types.create_predictor_request.CreatePredictorRequest = {}  # type: ignore[typeddict-item]
-        input_["predictor_name"] = predictor_name
+        input_: capo_forecast.types.create_predictor_request.CreatePredictorRequest = {
+            "predictor_name": predictor_name,
+            "forecast_horizon": forecast_horizon,
+            "input_data_config": input_data_config,
+            "featurization_config": featurization_config,
+        }
         if algorithm_arn is not None:
             input_["algorithm_arn"] = algorithm_arn
-        input_["forecast_horizon"] = forecast_horizon
         if forecast_types is not None:
             input_["forecast_types"] = forecast_types
         if perform_auto_ml is not None:
@@ -1019,8 +1040,6 @@ class AsyncforecastClient:
             input_["evaluation_parameters"] = evaluation_parameters
         if hpo_config is not None:
             input_["hpo_config"] = hpo_config
-        input_["input_data_config"] = input_data_config
-        input_["featurization_config"] = featurization_config
         if encryption_config is not None:
             input_["encryption_config"] = encryption_config
         if tags is not None:
@@ -1033,6 +1052,7 @@ class AsyncforecastClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_predictor_backtest_export_job(
@@ -1078,12 +1098,11 @@ class AsyncforecastClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_forecast.types.create_predictor_backtest_export_job_request.CreatePredictorBacktestExportJobRequest = {}  # type: ignore[typeddict-item]
-        input_["predictor_backtest_export_job_name"] = (
-            predictor_backtest_export_job_name
-        )
-        input_["predictor_arn"] = predictor_arn
-        input_["destination"] = destination
+        input_: capo_forecast.types.create_predictor_backtest_export_job_request.CreatePredictorBacktestExportJobRequest = {
+            "predictor_backtest_export_job_name": predictor_backtest_export_job_name,
+            "predictor_arn": predictor_arn,
+            "destination": destination,
+        }
         if tags is not None:
             input_["tags"] = tags
         if format is not None:
@@ -1094,6 +1113,7 @@ class AsyncforecastClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_what_if_analysis(
@@ -1140,9 +1160,10 @@ class AsyncforecastClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_forecast.types.create_what_if_analysis_request.CreateWhatIfAnalysisRequest = {}  # type: ignore[typeddict-item]
-        input_["what_if_analysis_name"] = what_if_analysis_name
-        input_["forecast_arn"] = forecast_arn
+        input_: capo_forecast.types.create_what_if_analysis_request.CreateWhatIfAnalysisRequest = {
+            "what_if_analysis_name": what_if_analysis_name,
+            "forecast_arn": forecast_arn,
+        }
         if time_series_selector is not None:
             input_["time_series_selector"] = time_series_selector
         if tags is not None:
@@ -1153,6 +1174,7 @@ class AsyncforecastClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_what_if_forecast(
@@ -1203,9 +1225,10 @@ class AsyncforecastClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_forecast.types.create_what_if_forecast_request.CreateWhatIfForecastRequest = {}  # type: ignore[typeddict-item]
-        input_["what_if_forecast_name"] = what_if_forecast_name
-        input_["what_if_analysis_arn"] = what_if_analysis_arn
+        input_: capo_forecast.types.create_what_if_forecast_request.CreateWhatIfForecastRequest = {
+            "what_if_forecast_name": what_if_forecast_name,
+            "what_if_analysis_arn": what_if_analysis_arn,
+        }
         if time_series_transformations is not None:
             input_["time_series_transformations"] = time_series_transformations
         if time_series_replacements_data_source is not None:
@@ -1220,6 +1243,7 @@ class AsyncforecastClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_what_if_forecast_export(
@@ -1266,10 +1290,11 @@ class AsyncforecastClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_forecast.types.create_what_if_forecast_export_request.CreateWhatIfForecastExportRequest = {}  # type: ignore[typeddict-item]
-        input_["what_if_forecast_export_name"] = what_if_forecast_export_name
-        input_["what_if_forecast_arns"] = what_if_forecast_arns
-        input_["destination"] = destination
+        input_: capo_forecast.types.create_what_if_forecast_export_request.CreateWhatIfForecastExportRequest = {
+            "what_if_forecast_export_name": what_if_forecast_export_name,
+            "what_if_forecast_arns": what_if_forecast_arns,
+            "destination": destination,
+        }
         if tags is not None:
             input_["tags"] = tags
         if format is not None:
@@ -1280,6 +1305,7 @@ class AsyncforecastClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_dataset(
@@ -1314,14 +1340,16 @@ class AsyncforecastClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_forecast.types.delete_dataset_request.DeleteDatasetRequest = {}  # type: ignore[typeddict-item]
-        input_["dataset_arn"] = dataset_arn
+        input_: capo_forecast.types.delete_dataset_request.DeleteDatasetRequest = {
+            "dataset_arn": dataset_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_dataset_group(
@@ -1356,14 +1384,16 @@ class AsyncforecastClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_forecast.types.delete_dataset_group_request.DeleteDatasetGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["dataset_group_arn"] = dataset_group_arn
+        input_: capo_forecast.types.delete_dataset_group_request.DeleteDatasetGroupRequest = {
+            "dataset_group_arn": dataset_group_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_dataset_import_job(
@@ -1398,14 +1428,16 @@ class AsyncforecastClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_forecast.types.delete_dataset_import_job_request.DeleteDatasetImportJobRequest = {}  # type: ignore[typeddict-item]
-        input_["dataset_import_job_arn"] = dataset_import_job_arn
+        input_: capo_forecast.types.delete_dataset_import_job_request.DeleteDatasetImportJobRequest = {
+            "dataset_import_job_arn": dataset_import_job_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_explainability(
@@ -1440,14 +1472,16 @@ class AsyncforecastClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_forecast.types.delete_explainability_request.DeleteExplainabilityRequest = {}  # type: ignore[typeddict-item]
-        input_["explainability_arn"] = explainability_arn
+        input_: capo_forecast.types.delete_explainability_request.DeleteExplainabilityRequest = {
+            "explainability_arn": explainability_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_explainability_export(
@@ -1482,14 +1516,16 @@ class AsyncforecastClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_forecast.types.delete_explainability_export_request.DeleteExplainabilityExportRequest = {}  # type: ignore[typeddict-item]
-        input_["explainability_export_arn"] = explainability_export_arn
+        input_: capo_forecast.types.delete_explainability_export_request.DeleteExplainabilityExportRequest = {
+            "explainability_export_arn": explainability_export_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_forecast(
@@ -1524,14 +1560,16 @@ class AsyncforecastClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_forecast.types.delete_forecast_request.DeleteForecastRequest = {}  # type: ignore[typeddict-item]
-        input_["forecast_arn"] = forecast_arn
+        input_: capo_forecast.types.delete_forecast_request.DeleteForecastRequest = {
+            "forecast_arn": forecast_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_forecast_export_job(
@@ -1566,14 +1604,16 @@ class AsyncforecastClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_forecast.types.delete_forecast_export_job_request.DeleteForecastExportJobRequest = {}  # type: ignore[typeddict-item]
-        input_["forecast_export_job_arn"] = forecast_export_job_arn
+        input_: capo_forecast.types.delete_forecast_export_job_request.DeleteForecastExportJobRequest = {
+            "forecast_export_job_arn": forecast_export_job_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_monitor(
@@ -1608,14 +1648,16 @@ class AsyncforecastClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_forecast.types.delete_monitor_request.DeleteMonitorRequest = {}  # type: ignore[typeddict-item]
-        input_["monitor_arn"] = monitor_arn
+        input_: capo_forecast.types.delete_monitor_request.DeleteMonitorRequest = {
+            "monitor_arn": monitor_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_predictor(
@@ -1650,14 +1692,16 @@ class AsyncforecastClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_forecast.types.delete_predictor_request.DeletePredictorRequest = {}  # type: ignore[typeddict-item]
-        input_["predictor_arn"] = predictor_arn
+        input_: capo_forecast.types.delete_predictor_request.DeletePredictorRequest = {
+            "predictor_arn": predictor_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_predictor_backtest_export_job(
@@ -1692,14 +1736,16 @@ class AsyncforecastClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_forecast.types.delete_predictor_backtest_export_job_request.DeletePredictorBacktestExportJobRequest = {}  # type: ignore[typeddict-item]
-        input_["predictor_backtest_export_job_arn"] = predictor_backtest_export_job_arn
+        input_: capo_forecast.types.delete_predictor_backtest_export_job_request.DeletePredictorBacktestExportJobRequest = {
+            "predictor_backtest_export_job_arn": predictor_backtest_export_job_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_resource_tree(
@@ -1734,14 +1780,16 @@ class AsyncforecastClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_forecast.types.delete_resource_tree_request.DeleteResourceTreeRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_forecast.types.delete_resource_tree_request.DeleteResourceTreeRequest = {
+            "resource_arn": resource_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_what_if_analysis(
@@ -1776,14 +1824,16 @@ class AsyncforecastClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_forecast.types.delete_what_if_analysis_request.DeleteWhatIfAnalysisRequest = {}  # type: ignore[typeddict-item]
-        input_["what_if_analysis_arn"] = what_if_analysis_arn
+        input_: capo_forecast.types.delete_what_if_analysis_request.DeleteWhatIfAnalysisRequest = {
+            "what_if_analysis_arn": what_if_analysis_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_what_if_forecast(
@@ -1818,14 +1868,16 @@ class AsyncforecastClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_forecast.types.delete_what_if_forecast_request.DeleteWhatIfForecastRequest = {}  # type: ignore[typeddict-item]
-        input_["what_if_forecast_arn"] = what_if_forecast_arn
+        input_: capo_forecast.types.delete_what_if_forecast_request.DeleteWhatIfForecastRequest = {
+            "what_if_forecast_arn": what_if_forecast_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_what_if_forecast_export(
@@ -1860,14 +1912,16 @@ class AsyncforecastClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_forecast.types.delete_what_if_forecast_export_request.DeleteWhatIfForecastExportRequest = {}  # type: ignore[typeddict-item]
-        input_["what_if_forecast_export_arn"] = what_if_forecast_export_arn
+        input_: capo_forecast.types.delete_what_if_forecast_export_request.DeleteWhatIfForecastExportRequest = {
+            "what_if_forecast_export_arn": what_if_forecast_export_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_auto_predictor(
@@ -1903,14 +1957,16 @@ class AsyncforecastClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_forecast.types.describe_auto_predictor_request.DescribeAutoPredictorRequest = {}  # type: ignore[typeddict-item]
-        input_["predictor_arn"] = predictor_arn
+        input_: capo_forecast.types.describe_auto_predictor_request.DescribeAutoPredictorRequest = {
+            "predictor_arn": predictor_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_dataset(
@@ -1946,14 +2002,16 @@ class AsyncforecastClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_forecast.types.describe_dataset_request.DescribeDatasetRequest = {}  # type: ignore[typeddict-item]
-        input_["dataset_arn"] = dataset_arn
+        input_: capo_forecast.types.describe_dataset_request.DescribeDatasetRequest = {
+            "dataset_arn": dataset_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_dataset_group(
@@ -1989,14 +2047,16 @@ class AsyncforecastClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_forecast.types.describe_dataset_group_request.DescribeDatasetGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["dataset_group_arn"] = dataset_group_arn
+        input_: capo_forecast.types.describe_dataset_group_request.DescribeDatasetGroupRequest = {
+            "dataset_group_arn": dataset_group_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_dataset_import_job(
@@ -2032,14 +2092,16 @@ class AsyncforecastClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_forecast.types.describe_dataset_import_job_request.DescribeDatasetImportJobRequest = {}  # type: ignore[typeddict-item]
-        input_["dataset_import_job_arn"] = dataset_import_job_arn
+        input_: capo_forecast.types.describe_dataset_import_job_request.DescribeDatasetImportJobRequest = {
+            "dataset_import_job_arn": dataset_import_job_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_explainability(
@@ -2075,14 +2137,16 @@ class AsyncforecastClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_forecast.types.describe_explainability_request.DescribeExplainabilityRequest = {}  # type: ignore[typeddict-item]
-        input_["explainability_arn"] = explainability_arn
+        input_: capo_forecast.types.describe_explainability_request.DescribeExplainabilityRequest = {
+            "explainability_arn": explainability_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_explainability_export(
@@ -2118,14 +2182,16 @@ class AsyncforecastClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_forecast.types.describe_explainability_export_request.DescribeExplainabilityExportRequest = {}  # type: ignore[typeddict-item]
-        input_["explainability_export_arn"] = explainability_export_arn
+        input_: capo_forecast.types.describe_explainability_export_request.DescribeExplainabilityExportRequest = {
+            "explainability_export_arn": explainability_export_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_forecast(
@@ -2161,14 +2227,16 @@ class AsyncforecastClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_forecast.types.describe_forecast_request.DescribeForecastRequest = {}  # type: ignore[typeddict-item]
-        input_["forecast_arn"] = forecast_arn
+        input_: capo_forecast.types.describe_forecast_request.DescribeForecastRequest = {
+            "forecast_arn": forecast_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_forecast_export_job(
@@ -2204,14 +2272,16 @@ class AsyncforecastClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_forecast.types.describe_forecast_export_job_request.DescribeForecastExportJobRequest = {}  # type: ignore[typeddict-item]
-        input_["forecast_export_job_arn"] = forecast_export_job_arn
+        input_: capo_forecast.types.describe_forecast_export_job_request.DescribeForecastExportJobRequest = {
+            "forecast_export_job_arn": forecast_export_job_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_monitor(
@@ -2247,14 +2317,16 @@ class AsyncforecastClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_forecast.types.describe_monitor_request.DescribeMonitorRequest = {}  # type: ignore[typeddict-item]
-        input_["monitor_arn"] = monitor_arn
+        input_: capo_forecast.types.describe_monitor_request.DescribeMonitorRequest = {
+            "monitor_arn": monitor_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_predictor(
@@ -2290,14 +2362,16 @@ class AsyncforecastClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_forecast.types.describe_predictor_request.DescribePredictorRequest = {}  # type: ignore[typeddict-item]
-        input_["predictor_arn"] = predictor_arn
+        input_: capo_forecast.types.describe_predictor_request.DescribePredictorRequest = {
+            "predictor_arn": predictor_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_predictor_backtest_export_job(
@@ -2333,14 +2407,16 @@ class AsyncforecastClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_forecast.types.describe_predictor_backtest_export_job_request.DescribePredictorBacktestExportJobRequest = {}  # type: ignore[typeddict-item]
-        input_["predictor_backtest_export_job_arn"] = predictor_backtest_export_job_arn
+        input_: capo_forecast.types.describe_predictor_backtest_export_job_request.DescribePredictorBacktestExportJobRequest = {
+            "predictor_backtest_export_job_arn": predictor_backtest_export_job_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_what_if_analysis(
@@ -2376,14 +2452,16 @@ class AsyncforecastClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_forecast.types.describe_what_if_analysis_request.DescribeWhatIfAnalysisRequest = {}  # type: ignore[typeddict-item]
-        input_["what_if_analysis_arn"] = what_if_analysis_arn
+        input_: capo_forecast.types.describe_what_if_analysis_request.DescribeWhatIfAnalysisRequest = {
+            "what_if_analysis_arn": what_if_analysis_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_what_if_forecast(
@@ -2419,14 +2497,16 @@ class AsyncforecastClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_forecast.types.describe_what_if_forecast_request.DescribeWhatIfForecastRequest = {}  # type: ignore[typeddict-item]
-        input_["what_if_forecast_arn"] = what_if_forecast_arn
+        input_: capo_forecast.types.describe_what_if_forecast_request.DescribeWhatIfForecastRequest = {
+            "what_if_forecast_arn": what_if_forecast_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_what_if_forecast_export(
@@ -2462,14 +2542,16 @@ class AsyncforecastClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_forecast.types.describe_what_if_forecast_export_request.DescribeWhatIfForecastExportRequest = {}  # type: ignore[typeddict-item]
-        input_["what_if_forecast_export_arn"] = what_if_forecast_export_arn
+        input_: capo_forecast.types.describe_what_if_forecast_export_request.DescribeWhatIfForecastExportRequest = {
+            "what_if_forecast_export_arn": what_if_forecast_export_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_accuracy_metrics(
@@ -2506,14 +2588,16 @@ class AsyncforecastClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_forecast.types.get_accuracy_metrics_request.GetAccuracyMetricsRequest = {}  # type: ignore[typeddict-item]
-        input_["predictor_arn"] = predictor_arn
+        input_: capo_forecast.types.get_accuracy_metrics_request.GetAccuracyMetricsRequest = {
+            "predictor_arn": predictor_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_dataset_groups(
@@ -2550,7 +2634,7 @@ class AsyncforecastClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_forecast.types.list_dataset_groups_request.ListDatasetGroupsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_forecast.types.list_dataset_groups_request.ListDatasetGroupsRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -2561,6 +2645,7 @@ class AsyncforecastClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_dataset_groups(
@@ -2621,7 +2706,7 @@ class AsyncforecastClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_forecast.types.list_dataset_import_jobs_request.ListDatasetImportJobsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_forecast.types.list_dataset_import_jobs_request.ListDatasetImportJobsRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -2634,6 +2719,7 @@ class AsyncforecastClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_dataset_import_jobs(
@@ -2693,7 +2779,7 @@ class AsyncforecastClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_forecast.types.list_datasets_request.ListDatasetsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_forecast.types.list_datasets_request.ListDatasetsRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -2704,6 +2790,7 @@ class AsyncforecastClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_datasets(
@@ -2764,7 +2851,7 @@ class AsyncforecastClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_forecast.types.list_explainabilities_request.ListExplainabilitiesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_forecast.types.list_explainabilities_request.ListExplainabilitiesRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -2777,6 +2864,7 @@ class AsyncforecastClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_explainabilities(
@@ -2839,7 +2927,7 @@ class AsyncforecastClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_forecast.types.list_explainability_exports_request.ListExplainabilityExportsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_forecast.types.list_explainability_exports_request.ListExplainabilityExportsRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -2852,6 +2940,7 @@ class AsyncforecastClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_explainability_exports(
@@ -2914,7 +3003,7 @@ class AsyncforecastClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_forecast.types.list_forecast_export_jobs_request.ListForecastExportJobsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_forecast.types.list_forecast_export_jobs_request.ListForecastExportJobsRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -2927,6 +3016,7 @@ class AsyncforecastClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_forecast_export_jobs(
@@ -2989,7 +3079,7 @@ class AsyncforecastClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_forecast.types.list_forecasts_request.ListForecastsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_forecast.types.list_forecasts_request.ListForecastsRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -3002,6 +3092,7 @@ class AsyncforecastClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_forecasts(
@@ -3067,12 +3158,13 @@ class AsyncforecastClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_forecast.types.list_monitor_evaluations_request.ListMonitorEvaluationsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_forecast.types.list_monitor_evaluations_request.ListMonitorEvaluationsRequest = {
+            "monitor_arn": monitor_arn
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
             input_["max_results"] = max_results
-        input_["monitor_arn"] = monitor_arn
         if filters is not None:
             input_["filters"] = filters
 
@@ -3081,6 +3173,7 @@ class AsyncforecastClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_monitor_evaluations(
@@ -3145,7 +3238,7 @@ class AsyncforecastClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_forecast.types.list_monitors_request.ListMonitorsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_forecast.types.list_monitors_request.ListMonitorsRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -3158,6 +3251,7 @@ class AsyncforecastClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_monitors(
@@ -3220,7 +3314,7 @@ class AsyncforecastClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_forecast.types.list_predictor_backtest_export_jobs_request.ListPredictorBacktestExportJobsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_forecast.types.list_predictor_backtest_export_jobs_request.ListPredictorBacktestExportJobsRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -3233,6 +3327,7 @@ class AsyncforecastClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_predictor_backtest_export_jobs(
@@ -3295,7 +3390,7 @@ class AsyncforecastClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_forecast.types.list_predictors_request.ListPredictorsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_forecast.types.list_predictors_request.ListPredictorsRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -3308,6 +3403,7 @@ class AsyncforecastClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_predictors(
@@ -3366,14 +3462,16 @@ class AsyncforecastClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_forecast.types.list_tags_for_resource_request.ListTagsForResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_forecast.types.list_tags_for_resource_request.ListTagsForResourceRequest = {
+            "resource_arn": resource_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_what_if_analyses(
@@ -3415,7 +3513,7 @@ class AsyncforecastClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_forecast.types.list_what_if_analyses_request.ListWhatIfAnalysesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_forecast.types.list_what_if_analyses_request.ListWhatIfAnalysesRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -3428,6 +3526,7 @@ class AsyncforecastClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_what_if_analyses(
@@ -3490,7 +3589,7 @@ class AsyncforecastClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_forecast.types.list_what_if_forecast_exports_request.ListWhatIfForecastExportsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_forecast.types.list_what_if_forecast_exports_request.ListWhatIfForecastExportsRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -3503,6 +3602,7 @@ class AsyncforecastClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_what_if_forecast_exports(
@@ -3565,7 +3665,7 @@ class AsyncforecastClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_forecast.types.list_what_if_forecasts_request.ListWhatIfForecastsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_forecast.types.list_what_if_forecasts_request.ListWhatIfForecastsRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -3578,6 +3678,7 @@ class AsyncforecastClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_what_if_forecasts(
@@ -3636,14 +3737,16 @@ class AsyncforecastClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_forecast.types.resume_resource_request.ResumeResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_forecast.types.resume_resource_request.ResumeResourceRequest = {
+            "resource_arn": resource_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def stop_resource(
@@ -3678,14 +3781,16 @@ class AsyncforecastClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_forecast.types.stop_resource_request.StopResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_forecast.types.stop_resource_request.StopResourceRequest = {
+            "resource_arn": resource_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def tag_resource(
@@ -3724,15 +3829,17 @@ class AsyncforecastClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_forecast.types.tag_resource_request.TagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tags"] = tags
+        input_: capo_forecast.types.tag_resource_request.TagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tags": tags,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def untag_resource(
@@ -3770,15 +3877,17 @@ class AsyncforecastClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_forecast.types.untag_resource_request.UntagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tag_keys"] = tag_keys
+        input_: capo_forecast.types.untag_resource_request.UntagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tag_keys": tag_keys,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_dataset_group(
@@ -3817,15 +3926,17 @@ class AsyncforecastClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_forecast.types.update_dataset_group_request.UpdateDatasetGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["dataset_group_arn"] = dataset_group_arn
-        input_["dataset_arns"] = dataset_arns
+        input_: capo_forecast.types.update_dataset_group_request.UpdateDatasetGroupRequest = {
+            "dataset_group_arn": dataset_group_arn,
+            "dataset_arns": dataset_arns,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def __aenter__(self) -> Self:

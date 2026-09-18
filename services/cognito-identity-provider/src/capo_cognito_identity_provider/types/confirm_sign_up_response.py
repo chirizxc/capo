@@ -25,6 +25,6 @@ def serialize_aws_json_1_1(value: ConfirmSignUpResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ConfirmSignUpResponse:
     out: ConfirmSignUpResponse = {}  # type: ignore[typeddict-item]
-    if "Session" in data:
+    if data.get("Session") is not None:
         out["session"] = data["Session"]
     return out

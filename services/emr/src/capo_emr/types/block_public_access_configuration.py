@@ -63,9 +63,9 @@ def serialize_aws_json_1_1(value: BlockPublicAccessConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> BlockPublicAccessConfiguration:
     out: BlockPublicAccessConfiguration = {}  # type: ignore[typeddict-item]
-    if "BlockPublicSecurityGroupRules" in data:
+    if data.get("BlockPublicSecurityGroupRules") is not None:
         out["block_public_security_group_rules"] = data["BlockPublicSecurityGroupRules"]
-    if "PermittedPublicSecurityGroupRuleRanges" in data:
+    if data.get("PermittedPublicSecurityGroupRuleRanges") is not None:
         import capo_emr.types.port_ranges
 
         out["permitted_public_security_group_rule_ranges"] = (
@@ -73,9 +73,9 @@ def deserialize_aws_json_1_1(data: dict) -> BlockPublicAccessConfiguration:
                 data["PermittedPublicSecurityGroupRuleRanges"]
             )
         )
-    if "Classification" in data:
+    if data.get("Classification") is not None:
         out["classification"] = data["Classification"]
-    if "Configurations" in data:
+    if data.get("Configurations") is not None:
         import capo_emr.types.configuration_list
 
         out["configurations"] = (
@@ -83,7 +83,7 @@ def deserialize_aws_json_1_1(data: dict) -> BlockPublicAccessConfiguration:
                 data["Configurations"]
             )
         )
-    if "Properties" in data:
+    if data.get("Properties") is not None:
         import capo_emr.types.string_map
 
         out["properties"] = capo_emr.types.string_map.deserialize_aws_json_1_1(

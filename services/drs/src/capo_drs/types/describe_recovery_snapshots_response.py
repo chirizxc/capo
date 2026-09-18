@@ -32,12 +32,12 @@ def serialize_json(value: DescribeRecoverySnapshotsResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribeRecoverySnapshotsResponse:
     out: DescribeRecoverySnapshotsResponse = {}  # type: ignore[typeddict-item]
-    if "items" in data:
+    if data.get("items") is not None:
         import capo_drs.types.recovery_snapshots_list
 
         out["items"] = capo_drs.types.recovery_snapshots_list.deserialize_json(
             data["items"]
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

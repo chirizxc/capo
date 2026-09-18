@@ -32,8 +32,8 @@ def serialize_aws_json_1_1(value: GetLineageGroupPolicyResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetLineageGroupPolicyResponse:
     out: GetLineageGroupPolicyResponse = {}  # type: ignore[typeddict-item]
-    if "LineageGroupArn" in data:
+    if data.get("LineageGroupArn") is not None:
         out["lineage_group_arn"] = data["LineageGroupArn"]
-    if "ResourcePolicy" in data:
+    if data.get("ResourcePolicy") is not None:
         out["resource_policy"] = data["ResourcePolicy"]
     return out

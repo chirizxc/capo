@@ -24,7 +24,7 @@ def serialize_json(value: DeleteEventTriggerResponse) -> dict:
 
 def deserialize_json(data: dict) -> DeleteEventTriggerResponse:
     out: DeleteEventTriggerResponse = {}  # type: ignore[typeddict-item]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     else:
         raise DeserializationError("DeleteEventTriggerResponse.message required")

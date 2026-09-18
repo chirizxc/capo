@@ -30,13 +30,13 @@ def serialize_json(value: DeltaSyncConfig) -> dict:
 
 def deserialize_json(data: dict) -> DeltaSyncConfig:
     out: DeltaSyncConfig = {}  # type: ignore[typeddict-item]
-    if "baseTableTTL" in data:
+    if data.get("baseTableTTL") is not None:
         out["base_table_ttl"] = data["baseTableTTL"]
     else:
         out["base_table_ttl"] = 0
-    if "deltaSyncTableName" in data:
+    if data.get("deltaSyncTableName") is not None:
         out["delta_sync_table_name"] = data["deltaSyncTableName"]
-    if "deltaSyncTableTTL" in data:
+    if data.get("deltaSyncTableTTL") is not None:
         out["delta_sync_table_ttl"] = data["deltaSyncTableTTL"]
     else:
         out["delta_sync_table_ttl"] = 0

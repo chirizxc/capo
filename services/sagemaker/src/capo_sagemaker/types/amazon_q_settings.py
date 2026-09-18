@@ -32,12 +32,12 @@ def serialize_aws_json_1_1(value: AmazonQSettings) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AmazonQSettings:
     out: AmazonQSettings = {}  # type: ignore[typeddict-item]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_sagemaker.types.feature_status
 
         out["status"] = capo_sagemaker.types.feature_status.deserialize_aws_json_1_1(
             data["Status"]
         )
-    if "QProfileArn" in data:
+    if data.get("QProfileArn") is not None:
         out["q_profile_arn"] = data["QProfileArn"]
     return out

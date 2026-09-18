@@ -39,13 +39,13 @@ def serialize_json(value: Value) -> dict:
 
 def deserialize_json(data: dict) -> Value:
     out: Value = {}  # type: ignore[typeddict-item]
-    if "originalValue" in data:
+    if data.get("originalValue") is not None:
         out["original_value"] = data["originalValue"]
-    if "interpretedValue" in data:
+    if data.get("interpretedValue") is not None:
         out["interpreted_value"] = data["interpretedValue"]
     else:
         raise DeserializationError("Value.interpreted_value required")
-    if "resolvedValues" in data:
+    if data.get("resolvedValues") is not None:
         import capo_lex_runtime_v2.types.string_list
 
         out["resolved_values"] = capo_lex_runtime_v2.types.string_list.deserialize_json(

@@ -13,9 +13,9 @@ from capo_emr_serverless import AsyncEMRServerlessClient
 
 
 async def main():
-    async with AsyncEMRServerlessClient() as s3:
+    async with AsyncEMRServerlessClient() as emr_serverless:
         # Example: call the list_tags_for_resource operation
-        response = await s3.list_tags_for_resource()
+        response = await emr_serverless.list_tags_for_resource()
         print(response["tags"])
 ```
 
@@ -29,9 +29,9 @@ from capo_emr_serverless.error import InternalServerException
 
 
 async def main():
-    async with AsyncEMRServerlessClient() as s3:
+    async with AsyncEMRServerlessClient() as emr_serverless:
         try:
-            await s3.list_tags_for_resource()
+            await emr_serverless.list_tags_for_resource()
         except InternalServerException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -48,13 +48,13 @@ from capo_emr_serverless import AsyncEMRServerlessClient
 
 
 async def main():
-    async with AsyncEMRServerlessClient() as s3:
+    async with AsyncEMRServerlessClient() as emr_serverless:
         # Default: 3 attempts for every operation
-        response = await s3.list_tags_for_resource()
+        response = await emr_serverless.list_tags_for_resource()
 
         # Override per operation
-        response = await s3.list_tags_for_resource(config_overrides={"retry_max_attempts": 5})
+        response = await emr_serverless.list_tags_for_resource(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.list_tags_for_resource(config_overrides={"retry_max_attempts": 1})
+        response = await emr_serverless.list_tags_for_resource(config_overrides={"retry_max_attempts": 1})
 ```

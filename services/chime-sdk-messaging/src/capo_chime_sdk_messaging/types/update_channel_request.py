@@ -44,14 +44,14 @@ def serialize_json(value: UpdateChannelRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateChannelRequest:
     out: UpdateChannelRequest = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Mode" in data:
+    if data.get("Mode") is not None:
         import capo_chime_sdk_messaging.types.channel_mode
 
         out["mode"] = capo_chime_sdk_messaging.types.channel_mode.deserialize_json(
             data["Mode"]
         )
-    if "Metadata" in data:
+    if data.get("Metadata") is not None:
         out["metadata"] = data["Metadata"]
     return out

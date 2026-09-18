@@ -37,7 +37,7 @@ def serialize_json(value: ResourcesDateFilter) -> dict:
 
 def deserialize_json(data: dict) -> ResourcesDateFilter:
     out: ResourcesDateFilter = {}  # type: ignore[typeddict-item]
-    if "FieldName" in data:
+    if data.get("FieldName") is not None:
         import capo_securityhub.types.resources_date_field
 
         out["field_name"] = (
@@ -45,7 +45,7 @@ def deserialize_json(data: dict) -> ResourcesDateFilter:
                 data["FieldName"]
             )
         )
-    if "Filter" in data:
+    if data.get("Filter") is not None:
         import capo_securityhub.types.date_filter
 
         out["filter"] = capo_securityhub.types.date_filter.deserialize_json(

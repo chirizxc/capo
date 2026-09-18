@@ -76,7 +76,7 @@ def serialize_json(value: SnapToRoadsRequest) -> dict:
 
 def deserialize_json(data: dict) -> SnapToRoadsRequest:
     out: SnapToRoadsRequest = {}  # type: ignore[typeddict-item]
-    if "SnappedGeometryFormat" in data:
+    if data.get("SnappedGeometryFormat") is not None:
         import capo_geo_routes.types.geometry_format
 
         out["snapped_geometry_format"] = (
@@ -84,11 +84,11 @@ def deserialize_json(data: dict) -> SnapToRoadsRequest:
                 data["SnappedGeometryFormat"]
             )
         )
-    if "SnapRadius" in data:
+    if data.get("SnapRadius") is not None:
         out["snap_radius"] = data["SnapRadius"]
     else:
         out["snap_radius"] = 0
-    if "TracePoints" in data:
+    if data.get("TracePoints") is not None:
         import capo_geo_routes.types.road_snap_trace_point_list
 
         out["trace_points"] = (
@@ -98,7 +98,7 @@ def deserialize_json(data: dict) -> SnapToRoadsRequest:
         )
     else:
         raise DeserializationError("SnapToRoadsRequest.trace_points required")
-    if "TravelMode" in data:
+    if data.get("TravelMode") is not None:
         import capo_geo_routes.types.road_snap_travel_mode
 
         out["travel_mode"] = (
@@ -106,7 +106,7 @@ def deserialize_json(data: dict) -> SnapToRoadsRequest:
                 data["TravelMode"]
             )
         )
-    if "TravelModeOptions" in data:
+    if data.get("TravelModeOptions") is not None:
         import capo_geo_routes.types.road_snap_travel_mode_options
 
         out["travel_mode_options"] = (

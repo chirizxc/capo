@@ -28,10 +28,10 @@ def serialize_json(value: OutputAttribute) -> dict:
 
 def deserialize_json(data: dict) -> OutputAttribute:
     out: OutputAttribute = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("OutputAttribute.name required")
-    if "hashed" in data:
+    if data.get("hashed") is not None:
         out["hashed"] = data["hashed"]
     return out

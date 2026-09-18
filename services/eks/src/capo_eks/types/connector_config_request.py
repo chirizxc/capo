@@ -32,11 +32,11 @@ def serialize_json(value: ConnectorConfigRequest) -> dict:
 
 def deserialize_json(data: dict) -> ConnectorConfigRequest:
     out: ConnectorConfigRequest = {}  # type: ignore[typeddict-item]
-    if "roleArn" in data:
+    if data.get("roleArn") is not None:
         out["role_arn"] = data["roleArn"]
     else:
         raise DeserializationError("ConnectorConfigRequest.role_arn required")
-    if "provider" in data:
+    if data.get("provider") is not None:
         import capo_eks.types.connector_config_provider
 
         out["provider"] = capo_eks.types.connector_config_provider.deserialize_json(

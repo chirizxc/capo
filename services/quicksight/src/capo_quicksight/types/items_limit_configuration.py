@@ -34,9 +34,9 @@ def serialize_json(value: ItemsLimitConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> ItemsLimitConfiguration:
     out: ItemsLimitConfiguration = {}  # type: ignore[typeddict-item]
-    if "ItemsLimit" in data:
+    if data.get("ItemsLimit") is not None:
         out["items_limit"] = data["ItemsLimit"]
-    if "OtherCategories" in data:
+    if data.get("OtherCategories") is not None:
         import capo_quicksight.types.other_categories
 
         out["other_categories"] = (

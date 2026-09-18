@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> TagList:
 
     out: TagList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_iot.types.tag.deserialize_json(item))
     return out

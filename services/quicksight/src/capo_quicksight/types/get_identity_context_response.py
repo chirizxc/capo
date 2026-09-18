@@ -30,10 +30,10 @@ def serialize_json(value: GetIdentityContextResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetIdentityContextResponse:
     out: GetIdentityContextResponse = {}  # type: ignore[typeddict-item]
-    if "RequestId" in data:
+    if data.get("RequestId") is not None:
         out["request_id"] = data["RequestId"]
     else:
         raise DeserializationError("GetIdentityContextResponse.request_id required")
-    if "Context" in data:
+    if data.get("Context") is not None:
         out["context"] = data["Context"]
     return out

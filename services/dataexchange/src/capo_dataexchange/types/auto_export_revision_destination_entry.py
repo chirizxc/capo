@@ -28,10 +28,10 @@ def serialize_json(value: AutoExportRevisionDestinationEntry) -> dict:
 
 def deserialize_json(data: dict) -> AutoExportRevisionDestinationEntry:
     out: AutoExportRevisionDestinationEntry = {}  # type: ignore[typeddict-item]
-    if "Bucket" in data:
+    if data.get("Bucket") is not None:
         out["bucket"] = data["Bucket"]
     else:
         raise DeserializationError("AutoExportRevisionDestinationEntry.bucket required")
-    if "KeyPattern" in data:
+    if data.get("KeyPattern") is not None:
         out["key_pattern"] = data["KeyPattern"]
     return out

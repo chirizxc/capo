@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> CertificateAssociationSummaryList:
 
     out: CertificateAssociationSummaryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_rtbfabric.types.certificate_association_summary.deserialize_json(item)
         )

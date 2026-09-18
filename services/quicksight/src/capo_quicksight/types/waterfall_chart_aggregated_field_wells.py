@@ -48,19 +48,19 @@ def serialize_json(value: WaterfallChartAggregatedFieldWells) -> dict:
 
 def deserialize_json(data: dict) -> WaterfallChartAggregatedFieldWells:
     out: WaterfallChartAggregatedFieldWells = {}  # type: ignore[typeddict-item]
-    if "Categories" in data:
+    if data.get("Categories") is not None:
         import capo_quicksight.types.dimension_field_list
 
         out["categories"] = capo_quicksight.types.dimension_field_list.deserialize_json(
             data["Categories"]
         )
-    if "Values" in data:
+    if data.get("Values") is not None:
         import capo_quicksight.types.measure_field_list
 
         out["values"] = capo_quicksight.types.measure_field_list.deserialize_json(
             data["Values"]
         )
-    if "Breakdowns" in data:
+    if data.get("Breakdowns") is not None:
         import capo_quicksight.types.dimension_field_list
 
         out["breakdowns"] = capo_quicksight.types.dimension_field_list.deserialize_json(

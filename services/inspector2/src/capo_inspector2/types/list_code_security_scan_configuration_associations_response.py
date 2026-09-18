@@ -40,7 +40,7 @@ def deserialize_json(
     data: dict,
 ) -> ListCodeSecurityScanConfigurationAssociationsResponse:
     out: ListCodeSecurityScanConfigurationAssociationsResponse = {}  # type: ignore[typeddict-item]
-    if "associations" in data:
+    if data.get("associations") is not None:
         import capo_inspector2.types.code_security_scan_configuration_association_summaries
 
         out["associations"] = (
@@ -48,6 +48,6 @@ def deserialize_json(
                 data["associations"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

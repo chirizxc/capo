@@ -27,7 +27,7 @@ def serialize_json(value: LogConfigurationForChannel) -> dict:
 
 def deserialize_json(data: dict) -> LogConfigurationForChannel:
     out: LogConfigurationForChannel = {}  # type: ignore[typeddict-item]
-    if "LogTypes" in data:
+    if data.get("LogTypes") is not None:
         import capo_mediatailor.types.log_types
 
         out["log_types"] = capo_mediatailor.types.log_types.deserialize_json(

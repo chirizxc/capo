@@ -27,6 +27,8 @@ def deserialize_aws_json_1_1(data: list) -> AllowDenyLists:
 
     out: AllowDenyLists = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_frauddetector.types.allow_deny_list.deserialize_aws_json_1_1(item)
         )

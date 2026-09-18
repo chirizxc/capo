@@ -60,13 +60,13 @@ def serialize_aws_json_1_0(value: DescribeRcsAgentCountryLaunchStatusRequest) ->
 
 def deserialize_aws_json_1_0(data: dict) -> DescribeRcsAgentCountryLaunchStatusRequest:
     out: DescribeRcsAgentCountryLaunchStatusRequest = {}  # type: ignore[typeddict-item]
-    if "RcsAgentId" in data:
+    if data.get("RcsAgentId") is not None:
         out["rcs_agent_id"] = data["RcsAgentId"]
     else:
         raise DeserializationError(
             "DescribeRcsAgentCountryLaunchStatusRequest.rcs_agent_id required"
         )
-    if "IsoCountryCodes" in data:
+    if data.get("IsoCountryCodes") is not None:
         import capo_pinpoint_sms_voice_v2.types.iso_country_code_list
 
         out["iso_country_codes"] = (
@@ -74,7 +74,7 @@ def deserialize_aws_json_1_0(data: dict) -> DescribeRcsAgentCountryLaunchStatusR
                 data["IsoCountryCodes"]
             )
         )
-    if "Filters" in data:
+    if data.get("Filters") is not None:
         import capo_pinpoint_sms_voice_v2.types.country_launch_status_filter_list
 
         out["filters"] = (
@@ -82,8 +82,8 @@ def deserialize_aws_json_1_0(data: dict) -> DescribeRcsAgentCountryLaunchStatusR
                 data["Filters"]
             )
         )
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

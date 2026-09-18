@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> SearchAllRelatedItemsSortList:
 
     out: SearchAllRelatedItemsSortList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_connectcases.types.search_all_related_items_sort.deserialize_json(item)
         )

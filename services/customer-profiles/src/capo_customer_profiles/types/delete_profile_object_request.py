@@ -35,17 +35,17 @@ def serialize_json(value: DeleteProfileObjectRequest) -> dict:
 
 def deserialize_json(data: dict) -> DeleteProfileObjectRequest:
     out: DeleteProfileObjectRequest = {}  # type: ignore[typeddict-item]
-    if "ProfileId" in data:
+    if data.get("ProfileId") is not None:
         out["profile_id"] = data["ProfileId"]
     else:
         raise DeserializationError("DeleteProfileObjectRequest.profile_id required")
-    if "ProfileObjectUniqueKey" in data:
+    if data.get("ProfileObjectUniqueKey") is not None:
         out["profile_object_unique_key"] = data["ProfileObjectUniqueKey"]
     else:
         raise DeserializationError(
             "DeleteProfileObjectRequest.profile_object_unique_key required"
         )
-    if "ObjectTypeName" in data:
+    if data.get("ObjectTypeName") is not None:
         out["object_type_name"] = data["ObjectTypeName"]
     else:
         raise DeserializationError(

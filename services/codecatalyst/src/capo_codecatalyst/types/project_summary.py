@@ -27,12 +27,12 @@ def serialize_json(value: ProjectSummary) -> dict:
 
 def deserialize_json(data: dict) -> ProjectSummary:
     out: ProjectSummary = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("ProjectSummary.name required")
-    if "displayName" in data:
+    if data.get("displayName") is not None:
         out["display_name"] = data["displayName"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
     return out

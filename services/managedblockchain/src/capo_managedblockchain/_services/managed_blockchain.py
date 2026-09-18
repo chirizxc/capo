@@ -254,9 +254,10 @@ class ManagedBlockchainClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_managedblockchain.types.create_accessor_input.CreateAccessorInput = {}  # type: ignore[typeddict-item]
-        input_["client_request_token"] = client_request_token
-        input_["accessor_type"] = accessor_type
+        input_: capo_managedblockchain.types.create_accessor_input.CreateAccessorInput = {
+            "client_request_token": client_request_token,
+            "accessor_type": accessor_type,
+        }
         if tags is not None:
             input_["tags"] = tags
         if network_type is not None:
@@ -267,6 +268,7 @@ class ManagedBlockchainClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_member(
@@ -314,17 +316,19 @@ class ManagedBlockchainClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_managedblockchain.types.create_member_input.CreateMemberInput = {}  # type: ignore[typeddict-item]
-        input_["client_request_token"] = client_request_token
-        input_["invitation_id"] = invitation_id
-        input_["network_id"] = network_id
-        input_["member_configuration"] = member_configuration
+        input_: capo_managedblockchain.types.create_member_input.CreateMemberInput = {
+            "client_request_token": client_request_token,
+            "invitation_id": invitation_id,
+            "network_id": network_id,
+            "member_configuration": member_configuration,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_network(
@@ -384,17 +388,18 @@ class ManagedBlockchainClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_managedblockchain.types.create_network_input.CreateNetworkInput = {}  # type: ignore[typeddict-item]
-        input_["client_request_token"] = client_request_token
-        input_["name"] = name
+        input_: capo_managedblockchain.types.create_network_input.CreateNetworkInput = {
+            "client_request_token": client_request_token,
+            "name": name,
+            "framework": framework,
+            "framework_version": framework_version,
+            "voting_policy": voting_policy,
+            "member_configuration": member_configuration,
+        }
         if description is not None:
             input_["description"] = description
-        input_["framework"] = framework
-        input_["framework_version"] = framework_version
         if framework_configuration is not None:
             input_["framework_configuration"] = framework_configuration
-        input_["voting_policy"] = voting_policy
-        input_["member_configuration"] = member_configuration
         if tags is not None:
             input_["tags"] = tags
 
@@ -403,6 +408,7 @@ class ManagedBlockchainClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_node(
@@ -454,12 +460,13 @@ class ManagedBlockchainClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_managedblockchain.types.create_node_input.CreateNodeInput = {}  # type: ignore[typeddict-item]
-        input_["client_request_token"] = client_request_token
-        input_["network_id"] = network_id
+        input_: capo_managedblockchain.types.create_node_input.CreateNodeInput = {
+            "client_request_token": client_request_token,
+            "network_id": network_id,
+            "node_configuration": node_configuration,
+        }
         if member_id is not None:
             input_["member_id"] = member_id
-        input_["node_configuration"] = node_configuration
         if tags is not None:
             input_["tags"] = tags
 
@@ -468,6 +475,7 @@ class ManagedBlockchainClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_proposal(
@@ -519,11 +527,12 @@ class ManagedBlockchainClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_managedblockchain.types.create_proposal_input.CreateProposalInput = {}  # type: ignore[typeddict-item]
-        input_["client_request_token"] = client_request_token
-        input_["network_id"] = network_id
-        input_["member_id"] = member_id
-        input_["actions"] = actions
+        input_: capo_managedblockchain.types.create_proposal_input.CreateProposalInput = {
+            "client_request_token": client_request_token,
+            "network_id": network_id,
+            "member_id": member_id,
+            "actions": actions,
+        }
         if description is not None:
             input_["description"] = description
         if tags is not None:
@@ -534,6 +543,7 @@ class ManagedBlockchainClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_accessor(
@@ -571,14 +581,16 @@ class ManagedBlockchainClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_managedblockchain.types.delete_accessor_input.DeleteAccessorInput = {}  # type: ignore[typeddict-item]
-        input_["accessor_id"] = accessor_id
+        input_: capo_managedblockchain.types.delete_accessor_input.DeleteAccessorInput = {
+            "accessor_id": accessor_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_member(
@@ -619,15 +631,17 @@ class ManagedBlockchainClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_managedblockchain.types.delete_member_input.DeleteMemberInput = {}  # type: ignore[typeddict-item]
-        input_["network_id"] = network_id
-        input_["member_id"] = member_id
+        input_: capo_managedblockchain.types.delete_member_input.DeleteMemberInput = {
+            "network_id": network_id,
+            "member_id": member_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_node(
@@ -672,17 +686,19 @@ class ManagedBlockchainClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_managedblockchain.types.delete_node_input.DeleteNodeInput = {}  # type: ignore[typeddict-item]
-        input_["network_id"] = network_id
+        input_: capo_managedblockchain.types.delete_node_input.DeleteNodeInput = {
+            "network_id": network_id,
+            "node_id": node_id,
+        }
         if member_id is not None:
             input_["member_id"] = member_id
-        input_["node_id"] = node_id
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_accessor(
@@ -720,14 +736,16 @@ class ManagedBlockchainClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_managedblockchain.types.get_accessor_input.GetAccessorInput = {}  # type: ignore[typeddict-item]
-        input_["accessor_id"] = accessor_id
+        input_: capo_managedblockchain.types.get_accessor_input.GetAccessorInput = {
+            "accessor_id": accessor_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_member(
@@ -767,15 +785,17 @@ class ManagedBlockchainClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_managedblockchain.types.get_member_input.GetMemberInput = {}  # type: ignore[typeddict-item]
-        input_["network_id"] = network_id
-        input_["member_id"] = member_id
+        input_: capo_managedblockchain.types.get_member_input.GetMemberInput = {
+            "network_id": network_id,
+            "member_id": member_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_network(
@@ -813,14 +833,16 @@ class ManagedBlockchainClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_managedblockchain.types.get_network_input.GetNetworkInput = {}  # type: ignore[typeddict-item]
-        input_["network_id"] = network_id
+        input_: capo_managedblockchain.types.get_network_input.GetNetworkInput = {
+            "network_id": network_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_node(
@@ -864,17 +886,19 @@ class ManagedBlockchainClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_managedblockchain.types.get_node_input.GetNodeInput = {}  # type: ignore[typeddict-item]
-        input_["network_id"] = network_id
+        input_: capo_managedblockchain.types.get_node_input.GetNodeInput = {
+            "network_id": network_id,
+            "node_id": node_id,
+        }
         if member_id is not None:
             input_["member_id"] = member_id
-        input_["node_id"] = node_id
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_proposal(
@@ -914,15 +938,17 @@ class ManagedBlockchainClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_managedblockchain.types.get_proposal_input.GetProposalInput = {}  # type: ignore[typeddict-item]
-        input_["network_id"] = network_id
-        input_["proposal_id"] = proposal_id
+        input_: capo_managedblockchain.types.get_proposal_input.GetProposalInput = {
+            "network_id": network_id,
+            "proposal_id": proposal_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_accessors(
@@ -969,7 +995,7 @@ class ManagedBlockchainClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_managedblockchain.types.list_accessors_input.ListAccessorsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_managedblockchain.types.list_accessors_input.ListAccessorsInput = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -982,6 +1008,7 @@ class ManagedBlockchainClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_accessors(
@@ -1055,7 +1082,7 @@ class ManagedBlockchainClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_managedblockchain.types.list_invitations_input.ListInvitationsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_managedblockchain.types.list_invitations_input.ListInvitationsInput = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -1066,7 +1093,31 @@ class ManagedBlockchainClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_invitations(
+        self,
+        *,
+        config_overrides: Optional[ManagedBlockchainClientConfig] = None,
+        max_results: Optional[
+            "capo_managedblockchain.types.proposal_list_max_results.ProposalListMaxResults"
+        ] = None,
+        next_token: Optional[
+            "capo_managedblockchain.types.pagination_token.PaginationToken"
+        ] = None,
+    ) -> "Iterator[capo_managedblockchain.types.list_invitations_output.ListInvitationsOutput]":
+        _token = next_token
+        while True:
+            _response = self.list_invitations(
+                config_overrides=config_overrides,
+                max_results=max_results,
+                next_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def list_members(
         self,
@@ -1118,8 +1169,9 @@ class ManagedBlockchainClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_managedblockchain.types.list_members_input.ListMembersInput = {}  # type: ignore[typeddict-item]
-        input_["network_id"] = network_id
+        input_: capo_managedblockchain.types.list_members_input.ListMembersInput = {
+            "network_id": network_id
+        }
         if name is not None:
             input_["name"] = name
         if status is not None:
@@ -1136,7 +1188,41 @@ class ManagedBlockchainClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_members(
+        self,
+        network_id: "capo_managedblockchain.types.resource_id_string.ResourceIdString",
+        *,
+        config_overrides: Optional[ManagedBlockchainClientConfig] = None,
+        name: Optional["capo_managedblockchain.types.string.String"] = None,
+        status: Optional[
+            "capo_managedblockchain.types.member_status.MemberStatus"
+        ] = None,
+        is_owned: Optional["capo_managedblockchain.types.is_owned.IsOwned"] = None,
+        max_results: Optional[
+            "capo_managedblockchain.types.member_list_max_results.MemberListMaxResults"
+        ] = None,
+        next_token: Optional[
+            "capo_managedblockchain.types.pagination_token.PaginationToken"
+        ] = None,
+    ) -> "Iterator[capo_managedblockchain.types.list_members_output.ListMembersOutput]":
+        _token = next_token
+        while True:
+            _response = self.list_members(
+                network_id,
+                config_overrides=config_overrides,
+                name=name,
+                status=status,
+                is_owned=is_owned,
+                max_results=max_results,
+                next_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def list_networks(
         self,
@@ -1186,7 +1272,7 @@ class ManagedBlockchainClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_managedblockchain.types.list_networks_input.ListNetworksInput = {}  # type: ignore[typeddict-item]
+        input_: capo_managedblockchain.types.list_networks_input.ListNetworksInput = {}
         if name is not None:
             input_["name"] = name
         if framework is not None:
@@ -1203,7 +1289,41 @@ class ManagedBlockchainClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_networks(
+        self,
+        *,
+        config_overrides: Optional[ManagedBlockchainClientConfig] = None,
+        name: Optional["capo_managedblockchain.types.string.String"] = None,
+        framework: Optional["capo_managedblockchain.types.framework.Framework"] = None,
+        status: Optional[
+            "capo_managedblockchain.types.network_status.NetworkStatus"
+        ] = None,
+        max_results: Optional[
+            "capo_managedblockchain.types.network_list_max_results.NetworkListMaxResults"
+        ] = None,
+        next_token: Optional[
+            "capo_managedblockchain.types.pagination_token.PaginationToken"
+        ] = None,
+    ) -> (
+        "Iterator[capo_managedblockchain.types.list_networks_output.ListNetworksOutput]"
+    ):
+        _token = next_token
+        while True:
+            _response = self.list_networks(
+                config_overrides=config_overrides,
+                name=name,
+                framework=framework,
+                status=status,
+                max_results=max_results,
+                next_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def list_nodes(
         self,
@@ -1253,8 +1373,9 @@ class ManagedBlockchainClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_managedblockchain.types.list_nodes_input.ListNodesInput = {}  # type: ignore[typeddict-item]
-        input_["network_id"] = network_id
+        input_: capo_managedblockchain.types.list_nodes_input.ListNodesInput = {
+            "network_id": network_id
+        }
         if member_id is not None:
             input_["member_id"] = member_id
         if status is not None:
@@ -1269,7 +1390,39 @@ class ManagedBlockchainClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_nodes(
+        self,
+        network_id: "capo_managedblockchain.types.resource_id_string.ResourceIdString",
+        *,
+        config_overrides: Optional[ManagedBlockchainClientConfig] = None,
+        member_id: Optional[
+            "capo_managedblockchain.types.resource_id_string.ResourceIdString"
+        ] = None,
+        status: Optional["capo_managedblockchain.types.node_status.NodeStatus"] = None,
+        max_results: Optional[
+            "capo_managedblockchain.types.node_list_max_results.NodeListMaxResults"
+        ] = None,
+        next_token: Optional[
+            "capo_managedblockchain.types.pagination_token.PaginationToken"
+        ] = None,
+    ) -> "Iterator[capo_managedblockchain.types.list_nodes_output.ListNodesOutput]":
+        _token = next_token
+        while True:
+            _response = self.list_nodes(
+                network_id,
+                config_overrides=config_overrides,
+                member_id=member_id,
+                status=status,
+                max_results=max_results,
+                next_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def list_proposals(
         self,
@@ -1314,8 +1467,9 @@ class ManagedBlockchainClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_managedblockchain.types.list_proposals_input.ListProposalsInput = {}  # type: ignore[typeddict-item]
-        input_["network_id"] = network_id
+        input_: capo_managedblockchain.types.list_proposals_input.ListProposalsInput = {
+            "network_id": network_id
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -1326,7 +1480,33 @@ class ManagedBlockchainClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_proposals(
+        self,
+        network_id: "capo_managedblockchain.types.resource_id_string.ResourceIdString",
+        *,
+        config_overrides: Optional[ManagedBlockchainClientConfig] = None,
+        max_results: Optional[
+            "capo_managedblockchain.types.proposal_list_max_results.ProposalListMaxResults"
+        ] = None,
+        next_token: Optional[
+            "capo_managedblockchain.types.pagination_token.PaginationToken"
+        ] = None,
+    ) -> "Iterator[capo_managedblockchain.types.list_proposals_output.ListProposalsOutput]":
+        _token = next_token
+        while True:
+            _response = self.list_proposals(
+                network_id,
+                config_overrides=config_overrides,
+                max_results=max_results,
+                next_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def list_proposal_votes(
         self,
@@ -1372,9 +1552,10 @@ class ManagedBlockchainClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_managedblockchain.types.list_proposal_votes_input.ListProposalVotesInput = {}  # type: ignore[typeddict-item]
-        input_["network_id"] = network_id
-        input_["proposal_id"] = proposal_id
+        input_: capo_managedblockchain.types.list_proposal_votes_input.ListProposalVotesInput = {
+            "network_id": network_id,
+            "proposal_id": proposal_id,
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -1385,7 +1566,35 @@ class ManagedBlockchainClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_proposal_votes(
+        self,
+        network_id: "capo_managedblockchain.types.resource_id_string.ResourceIdString",
+        proposal_id: "capo_managedblockchain.types.resource_id_string.ResourceIdString",
+        *,
+        config_overrides: Optional[ManagedBlockchainClientConfig] = None,
+        max_results: Optional[
+            "capo_managedblockchain.types.proposal_list_max_results.ProposalListMaxResults"
+        ] = None,
+        next_token: Optional[
+            "capo_managedblockchain.types.pagination_token.PaginationToken"
+        ] = None,
+    ) -> "Iterator[capo_managedblockchain.types.list_proposal_votes_output.ListProposalVotesOutput]":
+        _token = next_token
+        while True:
+            _response = self.list_proposal_votes(
+                network_id,
+                proposal_id,
+                config_overrides=config_overrides,
+                max_results=max_results,
+                next_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def list_tags_for_resource(
         self,
@@ -1421,14 +1630,16 @@ class ManagedBlockchainClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_managedblockchain.types.list_tags_for_resource_request.ListTagsForResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_managedblockchain.types.list_tags_for_resource_request.ListTagsForResourceRequest = {
+            "resource_arn": resource_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def reject_invitation(
@@ -1467,14 +1678,16 @@ class ManagedBlockchainClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_managedblockchain.types.reject_invitation_input.RejectInvitationInput = {}  # type: ignore[typeddict-item]
-        input_["invitation_id"] = invitation_id
+        input_: capo_managedblockchain.types.reject_invitation_input.RejectInvitationInput = {
+            "invitation_id": invitation_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def tag_resource(
@@ -1514,15 +1727,17 @@ class ManagedBlockchainClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_managedblockchain.types.tag_resource_request.TagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tags"] = tags
+        input_: capo_managedblockchain.types.tag_resource_request.TagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tags": tags,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def untag_resource(
@@ -1561,15 +1776,17 @@ class ManagedBlockchainClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_managedblockchain.types.untag_resource_request.UntagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tag_keys"] = tag_keys
+        input_: capo_managedblockchain.types.untag_resource_request.UntagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tag_keys": tag_keys,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_member(
@@ -1613,9 +1830,10 @@ class ManagedBlockchainClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_managedblockchain.types.update_member_input.UpdateMemberInput = {}  # type: ignore[typeddict-item]
-        input_["network_id"] = network_id
-        input_["member_id"] = member_id
+        input_: capo_managedblockchain.types.update_member_input.UpdateMemberInput = {
+            "network_id": network_id,
+            "member_id": member_id,
+        }
         if log_publishing_configuration is not None:
             input_["log_publishing_configuration"] = log_publishing_configuration
 
@@ -1624,6 +1842,7 @@ class ManagedBlockchainClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_node(
@@ -1671,11 +1890,12 @@ class ManagedBlockchainClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_managedblockchain.types.update_node_input.UpdateNodeInput = {}  # type: ignore[typeddict-item]
-        input_["network_id"] = network_id
+        input_: capo_managedblockchain.types.update_node_input.UpdateNodeInput = {
+            "network_id": network_id,
+            "node_id": node_id,
+        }
         if member_id is not None:
             input_["member_id"] = member_id
-        input_["node_id"] = node_id
         if log_publishing_configuration is not None:
             input_["log_publishing_configuration"] = log_publishing_configuration
 
@@ -1684,6 +1904,7 @@ class ManagedBlockchainClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def vote_on_proposal(
@@ -1728,17 +1949,19 @@ class ManagedBlockchainClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_managedblockchain.types.vote_on_proposal_input.VoteOnProposalInput = {}  # type: ignore[typeddict-item]
-        input_["network_id"] = network_id
-        input_["proposal_id"] = proposal_id
-        input_["voter_member_id"] = voter_member_id
-        input_["vote"] = vote
+        input_: capo_managedblockchain.types.vote_on_proposal_input.VoteOnProposalInput = {
+            "network_id": network_id,
+            "proposal_id": proposal_id,
+            "voter_member_id": voter_member_id,
+            "vote": vote,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def __enter__(self) -> Self:

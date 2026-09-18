@@ -83,19 +83,19 @@ def serialize_aws_json_1_1(value: AnomalyMonitor) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AnomalyMonitor:
     out: AnomalyMonitor = {}  # type: ignore[typeddict-item]
-    if "MonitorArn" in data:
+    if data.get("MonitorArn") is not None:
         out["monitor_arn"] = data["MonitorArn"]
-    if "MonitorName" in data:
+    if data.get("MonitorName") is not None:
         out["monitor_name"] = data["MonitorName"]
     else:
         raise DeserializationError("AnomalyMonitor.monitor_name required")
-    if "CreationDate" in data:
+    if data.get("CreationDate") is not None:
         out["creation_date"] = data["CreationDate"]
-    if "LastUpdatedDate" in data:
+    if data.get("LastUpdatedDate") is not None:
         out["last_updated_date"] = data["LastUpdatedDate"]
-    if "LastEvaluatedDate" in data:
+    if data.get("LastEvaluatedDate") is not None:
         out["last_evaluated_date"] = data["LastEvaluatedDate"]
-    if "MonitorType" in data:
+    if data.get("MonitorType") is not None:
         import capo_cost_explorer.types.monitor_type
 
         out["monitor_type"] = (
@@ -105,7 +105,7 @@ def deserialize_aws_json_1_1(data: dict) -> AnomalyMonitor:
         )
     else:
         raise DeserializationError("AnomalyMonitor.monitor_type required")
-    if "MonitorDimension" in data:
+    if data.get("MonitorDimension") is not None:
         import capo_cost_explorer.types.monitor_dimension
 
         out["monitor_dimension"] = (
@@ -113,7 +113,7 @@ def deserialize_aws_json_1_1(data: dict) -> AnomalyMonitor:
                 data["MonitorDimension"]
             )
         )
-    if "MonitorSpecification" in data:
+    if data.get("MonitorSpecification") is not None:
         import capo_cost_explorer.types.expression
 
         out["monitor_specification"] = (
@@ -121,7 +121,7 @@ def deserialize_aws_json_1_1(data: dict) -> AnomalyMonitor:
                 data["MonitorSpecification"]
             )
         )
-    if "DimensionalValueCount" in data:
+    if data.get("DimensionalValueCount") is not None:
         out["dimensional_value_count"] = data["DimensionalValueCount"]
     else:
         out["dimensional_value_count"] = 0

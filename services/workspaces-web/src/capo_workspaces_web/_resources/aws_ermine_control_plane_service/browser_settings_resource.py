@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import uuid
 from typing import TYPE_CHECKING, Optional
 
 import capo_workspaces_web._auth._signers
@@ -104,7 +105,7 @@ class BrowserSettingsResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_workspaces_web.types.create_browser_settings_request.CreateBrowserSettingsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_workspaces_web.types.create_browser_settings_request.CreateBrowserSettingsRequest = {}
         if tags is not None:
             input_["tags"] = tags
         if customer_managed_key is not None:
@@ -113,8 +114,9 @@ class BrowserSettingsResource:
             input_["additional_encryption_context"] = additional_encryption_context
         if browser_policy is not None:
             input_["browser_policy"] = browser_policy
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if web_content_filtering_policy is not None:
             input_["web_content_filtering_policy"] = web_content_filtering_policy
 
@@ -123,6 +125,7 @@ class BrowserSettingsResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -160,14 +163,16 @@ class BrowserSettingsResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_workspaces_web.types.get_browser_settings_request.GetBrowserSettingsRequest = {}  # type: ignore[typeddict-item]
-        input_["browser_settings_arn"] = browser_settings_arn
+        input_: capo_workspaces_web.types.get_browser_settings_request.GetBrowserSettingsRequest = {
+            "browser_settings_arn": browser_settings_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update(
@@ -217,12 +222,14 @@ class BrowserSettingsResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_workspaces_web.types.update_browser_settings_request.UpdateBrowserSettingsRequest = {}  # type: ignore[typeddict-item]
-        input_["browser_settings_arn"] = browser_settings_arn
+        input_: capo_workspaces_web.types.update_browser_settings_request.UpdateBrowserSettingsRequest = {
+            "browser_settings_arn": browser_settings_arn
+        }
         if browser_policy is not None:
             input_["browser_policy"] = browser_policy
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if web_content_filtering_policy is not None:
             input_["web_content_filtering_policy"] = web_content_filtering_policy
 
@@ -231,6 +238,7 @@ class BrowserSettingsResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -268,14 +276,16 @@ class BrowserSettingsResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_workspaces_web.types.delete_browser_settings_request.DeleteBrowserSettingsRequest = {}  # type: ignore[typeddict-item]
-        input_["browser_settings_arn"] = browser_settings_arn
+        input_: capo_workspaces_web.types.delete_browser_settings_request.DeleteBrowserSettingsRequest = {
+            "browser_settings_arn": browser_settings_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -318,7 +328,7 @@ class BrowserSettingsResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_workspaces_web.types.list_browser_settings_request.ListBrowserSettingsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_workspaces_web.types.list_browser_settings_request.ListBrowserSettingsRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -329,6 +339,7 @@ class BrowserSettingsResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -394,7 +405,7 @@ class AsyncBrowserSettingsResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_workspaces_web.types.create_browser_settings_request.CreateBrowserSettingsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_workspaces_web.types.create_browser_settings_request.CreateBrowserSettingsRequest = {}
         if tags is not None:
             input_["tags"] = tags
         if customer_managed_key is not None:
@@ -403,8 +414,9 @@ class AsyncBrowserSettingsResource:
             input_["additional_encryption_context"] = additional_encryption_context
         if browser_policy is not None:
             input_["browser_policy"] = browser_policy
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if web_content_filtering_policy is not None:
             input_["web_content_filtering_policy"] = web_content_filtering_policy
 
@@ -413,6 +425,7 @@ class AsyncBrowserSettingsResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -451,14 +464,16 @@ class AsyncBrowserSettingsResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_workspaces_web.types.get_browser_settings_request.GetBrowserSettingsRequest = {}  # type: ignore[typeddict-item]
-        input_["browser_settings_arn"] = browser_settings_arn
+        input_: capo_workspaces_web.types.get_browser_settings_request.GetBrowserSettingsRequest = {
+            "browser_settings_arn": browser_settings_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update(
@@ -509,12 +524,14 @@ class AsyncBrowserSettingsResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_workspaces_web.types.update_browser_settings_request.UpdateBrowserSettingsRequest = {}  # type: ignore[typeddict-item]
-        input_["browser_settings_arn"] = browser_settings_arn
+        input_: capo_workspaces_web.types.update_browser_settings_request.UpdateBrowserSettingsRequest = {
+            "browser_settings_arn": browser_settings_arn
+        }
         if browser_policy is not None:
             input_["browser_policy"] = browser_policy
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if web_content_filtering_policy is not None:
             input_["web_content_filtering_policy"] = web_content_filtering_policy
 
@@ -523,6 +540,7 @@ class AsyncBrowserSettingsResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -561,14 +579,16 @@ class AsyncBrowserSettingsResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_workspaces_web.types.delete_browser_settings_request.DeleteBrowserSettingsRequest = {}  # type: ignore[typeddict-item]
-        input_["browser_settings_arn"] = browser_settings_arn
+        input_: capo_workspaces_web.types.delete_browser_settings_request.DeleteBrowserSettingsRequest = {
+            "browser_settings_arn": browser_settings_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -612,7 +632,7 @@ class AsyncBrowserSettingsResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_workspaces_web.types.list_browser_settings_request.ListBrowserSettingsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_workspaces_web.types.list_browser_settings_request.ListBrowserSettingsRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -623,4 +643,5 @@ class AsyncBrowserSettingsResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

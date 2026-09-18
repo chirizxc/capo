@@ -39,12 +39,12 @@ def serialize_aws_json_1_1(value: DescribeMultiRegionClustersRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeMultiRegionClustersRequest:
     out: DescribeMultiRegionClustersRequest = {}  # type: ignore[typeddict-item]
-    if "MultiRegionClusterName" in data:
+    if data.get("MultiRegionClusterName") is not None:
         out["multi_region_cluster_name"] = data["MultiRegionClusterName"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "ShowClusterDetails" in data:
+    if data.get("ShowClusterDetails") is not None:
         out["show_cluster_details"] = data["ShowClusterDetails"]
     return out

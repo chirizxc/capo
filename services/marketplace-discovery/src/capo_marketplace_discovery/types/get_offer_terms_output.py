@@ -35,7 +35,7 @@ def serialize_json(value: GetOfferTermsOutput) -> dict:
 
 def deserialize_json(data: dict) -> GetOfferTermsOutput:
     out: GetOfferTermsOutput = {}  # type: ignore[typeddict-item]
-    if "offerTerms" in data:
+    if data.get("offerTerms") is not None:
         import capo_marketplace_discovery.types.offer_terms_list
 
         out["offer_terms"] = (
@@ -45,6 +45,6 @@ def deserialize_json(data: dict) -> GetOfferTermsOutput:
         )
     else:
         raise DeserializationError("GetOfferTermsOutput.offer_terms required")
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

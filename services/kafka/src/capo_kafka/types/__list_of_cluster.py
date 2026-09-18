@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> __listOfCluster:
 
     out: __listOfCluster = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_kafka.types.cluster.deserialize_json(item))
     return out

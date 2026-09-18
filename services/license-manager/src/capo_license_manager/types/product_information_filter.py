@@ -42,13 +42,13 @@ def serialize_aws_json_1_1(value: ProductInformationFilter) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ProductInformationFilter:
     out: ProductInformationFilter = {}  # type: ignore[typeddict-item]
-    if "ProductInformationFilterName" in data:
+    if data.get("ProductInformationFilterName") is not None:
         out["product_information_filter_name"] = data["ProductInformationFilterName"]
     else:
         raise DeserializationError(
             "ProductInformationFilter.product_information_filter_name required"
         )
-    if "ProductInformationFilterValue" in data:
+    if data.get("ProductInformationFilterValue") is not None:
         import capo_license_manager.types.string_list
 
         out["product_information_filter_value"] = (
@@ -56,7 +56,7 @@ def deserialize_aws_json_1_1(data: dict) -> ProductInformationFilter:
                 data["ProductInformationFilterValue"]
             )
         )
-    if "ProductInformationFilterComparator" in data:
+    if data.get("ProductInformationFilterComparator") is not None:
         out["product_information_filter_comparator"] = data[
             "ProductInformationFilterComparator"
         ]

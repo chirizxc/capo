@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> Calls:
 
     out: Calls = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_nova_act.types.call.deserialize_json(item))
     return out

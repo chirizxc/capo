@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: GetAttributeValuesResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetAttributeValuesResponse:
     out: GetAttributeValuesResponse = {}  # type: ignore[typeddict-item]
-    if "AttributeValues" in data:
+    if data.get("AttributeValues") is not None:
         import capo_pricing.types.attribute_value_list
 
         out["attribute_values"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_1(data: dict) -> GetAttributeValuesResponse:
                 data["AttributeValues"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

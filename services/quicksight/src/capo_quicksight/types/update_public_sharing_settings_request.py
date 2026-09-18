@@ -25,7 +25,7 @@ def serialize_json(value: UpdatePublicSharingSettingsRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdatePublicSharingSettingsRequest:
     out: UpdatePublicSharingSettingsRequest = {}  # type: ignore[typeddict-item]
-    if "PublicSharingEnabled" in data:
+    if data.get("PublicSharingEnabled") is not None:
         out["public_sharing_enabled"] = data["PublicSharingEnabled"]
     else:
         out["public_sharing_enabled"] = False

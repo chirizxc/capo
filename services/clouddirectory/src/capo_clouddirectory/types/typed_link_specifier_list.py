@@ -25,6 +25,8 @@ def deserialize_json(data: list) -> TypedLinkSpecifierList:
 
     out: TypedLinkSpecifierList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_clouddirectory.types.typed_link_specifier.deserialize_json(item)
         )

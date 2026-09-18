@@ -34,7 +34,7 @@ def serialize_json(value: SchedulingMinPriorityOverride) -> dict:
 
 
 def deserialize_json(data: dict) -> SchedulingMinPriorityOverride:
-    if "alwaysScheduleLast" in data:
+    if data.get("alwaysScheduleLast") is not None:
         import capo_deadline.types.scheduling_min_priority_override_always_schedule_last
 
         return {

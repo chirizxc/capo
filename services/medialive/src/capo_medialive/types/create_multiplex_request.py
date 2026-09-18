@@ -60,7 +60,7 @@ def serialize_json(value: CreateMultiplexRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateMultiplexRequest:
     out: CreateMultiplexRequest = {}  # type: ignore[typeddict-item]
-    if "availabilityZones" in data:
+    if data.get("availabilityZones") is not None:
         import capo_medialive.types.__list_of__string
 
         out["availability_zones"] = (
@@ -68,7 +68,7 @@ def deserialize_json(data: dict) -> CreateMultiplexRequest:
                 data["availabilityZones"]
             )
         )
-    if "multiplexSettings" in data:
+    if data.get("multiplexSettings") is not None:
         import capo_medialive.types.multiplex_settings
 
         out["multiplex_settings"] = (
@@ -76,11 +76,11 @@ def deserialize_json(data: dict) -> CreateMultiplexRequest:
                 data["multiplexSettings"]
             )
         )
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "requestId" in data:
+    if data.get("requestId") is not None:
         out["request_id"] = data["requestId"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_medialive.types.tags
 
         out["tags"] = capo_medialive.types.tags.deserialize_json(data["tags"])

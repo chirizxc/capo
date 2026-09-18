@@ -47,13 +47,13 @@ def serialize_json(value: StandardRouterInputConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> StandardRouterInputConfiguration:
     out: StandardRouterInputConfiguration = {}  # type: ignore[typeddict-item]
-    if "networkInterfaceArn" in data:
+    if data.get("networkInterfaceArn") is not None:
         out["network_interface_arn"] = data["networkInterfaceArn"]
     else:
         raise DeserializationError(
             "StandardRouterInputConfiguration.network_interface_arn required"
         )
-    if "protocolConfiguration" in data:
+    if data.get("protocolConfiguration") is not None:
         import capo_mediaconnect.types.router_input_protocol_configuration
 
         out["protocol_configuration"] = (
@@ -65,7 +65,7 @@ def deserialize_json(data: dict) -> StandardRouterInputConfiguration:
         raise DeserializationError(
             "StandardRouterInputConfiguration.protocol_configuration required"
         )
-    if "protocol" in data:
+    if data.get("protocol") is not None:
         import capo_mediaconnect.types.router_input_protocol
 
         out["protocol"] = (

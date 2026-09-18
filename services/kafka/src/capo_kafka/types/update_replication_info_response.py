@@ -32,9 +32,9 @@ def serialize_json(value: UpdateReplicationInfoResponse) -> dict:
 
 def deserialize_json(data: dict) -> UpdateReplicationInfoResponse:
     out: UpdateReplicationInfoResponse = {}  # type: ignore[typeddict-item]
-    if "replicatorArn" in data:
+    if data.get("replicatorArn") is not None:
         out["replicator_arn"] = data["replicatorArn"]
-    if "replicatorState" in data:
+    if data.get("replicatorState") is not None:
         import capo_kafka.types.replicator_state
 
         out["replicator_state"] = capo_kafka.types.replicator_state.deserialize_json(

@@ -34,9 +34,9 @@ def serialize_json(value: ListEmailContactsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListEmailContactsResponse:
     out: ListEmailContactsResponse = {}  # type: ignore[typeddict-item]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "emailContacts" in data:
+    if data.get("emailContacts") is not None:
         import capo_notificationscontacts.types.email_contacts
 
         out["email_contacts"] = (

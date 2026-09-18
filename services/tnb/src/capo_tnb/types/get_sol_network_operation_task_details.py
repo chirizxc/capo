@@ -51,15 +51,15 @@ def serialize_json(value: GetSolNetworkOperationTaskDetails) -> dict:
             value["task_status"]
         )
     if "task_start_time" in value:
-        import capo_tnb.types._prelude.timestamp
+        import capo_tnb._protocol.serialize
 
-        out["taskStartTime"] = capo_tnb.types._prelude.timestamp.serialize_json(
+        out["taskStartTime"] = capo_tnb._protocol.serialize.fmt_date_time(
             value["task_start_time"]
         )
     if "task_end_time" in value:
-        import capo_tnb.types._prelude.timestamp
+        import capo_tnb._protocol.serialize
 
-        out["taskEndTime"] = capo_tnb.types._prelude.timestamp.serialize_json(
+        out["taskEndTime"] = capo_tnb._protocol.serialize.fmt_date_time(
             value["task_end_time"]
         )
     return out
@@ -67,36 +67,36 @@ def serialize_json(value: GetSolNetworkOperationTaskDetails) -> dict:
 
 def deserialize_json(data: dict) -> GetSolNetworkOperationTaskDetails:
     out: GetSolNetworkOperationTaskDetails = {}  # type: ignore[typeddict-item]
-    if "taskName" in data:
+    if data.get("taskName") is not None:
         out["task_name"] = data["taskName"]
-    if "taskContext" in data:
+    if data.get("taskContext") is not None:
         import capo_tnb.types.string_map
 
         out["task_context"] = capo_tnb.types.string_map.deserialize_json(
             data["taskContext"]
         )
-    if "taskErrorDetails" in data:
+    if data.get("taskErrorDetails") is not None:
         import capo_tnb.types.error_info
 
         out["task_error_details"] = capo_tnb.types.error_info.deserialize_json(
             data["taskErrorDetails"]
         )
-    if "taskStatus" in data:
+    if data.get("taskStatus") is not None:
         import capo_tnb.types.task_status
 
         out["task_status"] = capo_tnb.types.task_status.deserialize_json(
             data["taskStatus"]
         )
-    if "taskStartTime" in data:
-        import capo_tnb.types._prelude.timestamp
+    if data.get("taskStartTime") is not None:
+        import datetime
 
-        out["task_start_time"] = capo_tnb.types._prelude.timestamp.deserialize_json(
-            data["taskStartTime"]
+        out["task_start_time"] = datetime.datetime.fromisoformat(
+            data["taskStartTime"].replace("Z", "+00:00")
         )
-    if "taskEndTime" in data:
-        import capo_tnb.types._prelude.timestamp
+    if data.get("taskEndTime") is not None:
+        import datetime
 
-        out["task_end_time"] = capo_tnb.types._prelude.timestamp.deserialize_json(
-            data["taskEndTime"]
+        out["task_end_time"] = datetime.datetime.fromisoformat(
+            data["taskEndTime"].replace("Z", "+00:00")
         )
     return out

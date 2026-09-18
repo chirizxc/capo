@@ -59,13 +59,13 @@ def serialize_json(value: UpdateDatasetRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateDatasetRequest:
     out: UpdateDatasetRequest = {}  # type: ignore[typeddict-item]
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
-    if "datasetTitle" in data:
+    if data.get("datasetTitle") is not None:
         out["dataset_title"] = data["datasetTitle"]
     else:
         raise DeserializationError("UpdateDatasetRequest.dataset_title required")
-    if "kind" in data:
+    if data.get("kind") is not None:
         import capo_finspace_data.types.dataset_kind
 
         out["kind"] = capo_finspace_data.types.dataset_kind.deserialize_json(
@@ -73,11 +73,11 @@ def deserialize_json(data: dict) -> UpdateDatasetRequest:
         )
     else:
         raise DeserializationError("UpdateDatasetRequest.kind required")
-    if "datasetDescription" in data:
+    if data.get("datasetDescription") is not None:
         out["dataset_description"] = data["datasetDescription"]
-    if "alias" in data:
+    if data.get("alias") is not None:
         out["alias"] = data["alias"]
-    if "schemaDefinition" in data:
+    if data.get("schemaDefinition") is not None:
         import capo_finspace_data.types.schema_union
 
         out["schema_definition"] = (

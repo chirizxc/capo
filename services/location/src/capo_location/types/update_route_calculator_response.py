@@ -36,19 +36,19 @@ def serialize_json(value: UpdateRouteCalculatorResponse) -> dict:
 
 def deserialize_json(data: dict) -> UpdateRouteCalculatorResponse:
     out: UpdateRouteCalculatorResponse = {}  # type: ignore[typeddict-item]
-    if "CalculatorName" in data:
+    if data.get("CalculatorName") is not None:
         out["calculator_name"] = data["CalculatorName"]
     else:
         raise DeserializationError(
             "UpdateRouteCalculatorResponse.calculator_name required"
         )
-    if "CalculatorArn" in data:
+    if data.get("CalculatorArn") is not None:
         out["calculator_arn"] = data["CalculatorArn"]
     else:
         raise DeserializationError(
             "UpdateRouteCalculatorResponse.calculator_arn required"
         )
-    if "UpdateTime" in data:
+    if data.get("UpdateTime") is not None:
         import capo_location.types.timestamp
 
         out["update_time"] = capo_location.types.timestamp.deserialize_json(

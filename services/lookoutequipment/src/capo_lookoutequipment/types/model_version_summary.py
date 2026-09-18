@@ -86,15 +86,15 @@ def serialize_aws_json_1_0(value: ModelVersionSummary) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ModelVersionSummary:
     out: ModelVersionSummary = {}  # type: ignore[typeddict-item]
-    if "ModelName" in data:
+    if data.get("ModelName") is not None:
         out["model_name"] = data["ModelName"]
-    if "ModelArn" in data:
+    if data.get("ModelArn") is not None:
         out["model_arn"] = data["ModelArn"]
-    if "ModelVersion" in data:
+    if data.get("ModelVersion") is not None:
         out["model_version"] = data["ModelVersion"]
-    if "ModelVersionArn" in data:
+    if data.get("ModelVersionArn") is not None:
         out["model_version_arn"] = data["ModelVersionArn"]
-    if "CreatedAt" in data:
+    if data.get("CreatedAt") is not None:
         import capo_lookoutequipment.types.timestamp
 
         out["created_at"] = (
@@ -102,7 +102,7 @@ def deserialize_aws_json_1_0(data: dict) -> ModelVersionSummary:
                 data["CreatedAt"]
             )
         )
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_lookoutequipment.types.model_version_status
 
         out["status"] = (
@@ -110,7 +110,7 @@ def deserialize_aws_json_1_0(data: dict) -> ModelVersionSummary:
                 data["Status"]
             )
         )
-    if "SourceType" in data:
+    if data.get("SourceType") is not None:
         import capo_lookoutequipment.types.model_version_source_type
 
         out["source_type"] = (
@@ -118,7 +118,7 @@ def deserialize_aws_json_1_0(data: dict) -> ModelVersionSummary:
                 data["SourceType"]
             )
         )
-    if "ModelQuality" in data:
+    if data.get("ModelQuality") is not None:
         import capo_lookoutequipment.types.model_quality
 
         out["model_quality"] = (

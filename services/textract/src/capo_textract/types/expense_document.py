@@ -58,9 +58,9 @@ def serialize_aws_json_1_1(value: ExpenseDocument) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ExpenseDocument:
     out: ExpenseDocument = {}  # type: ignore[typeddict-item]
-    if "ExpenseIndex" in data:
+    if data.get("ExpenseIndex") is not None:
         out["expense_index"] = data["ExpenseIndex"]
-    if "SummaryFields" in data:
+    if data.get("SummaryFields") is not None:
         import capo_textract.types.expense_field_list
 
         out["summary_fields"] = (
@@ -68,7 +68,7 @@ def deserialize_aws_json_1_1(data: dict) -> ExpenseDocument:
                 data["SummaryFields"]
             )
         )
-    if "LineItemGroups" in data:
+    if data.get("LineItemGroups") is not None:
         import capo_textract.types.line_item_group_list
 
         out["line_item_groups"] = (
@@ -76,7 +76,7 @@ def deserialize_aws_json_1_1(data: dict) -> ExpenseDocument:
                 data["LineItemGroups"]
             )
         )
-    if "Blocks" in data:
+    if data.get("Blocks") is not None:
         import capo_textract.types.block_list
 
         out["blocks"] = capo_textract.types.block_list.deserialize_aws_json_1_1(

@@ -69,15 +69,15 @@ def serialize_json(value: UpdateResiliencyPolicyRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateResiliencyPolicyRequest:
     out: UpdateResiliencyPolicyRequest = {}  # type: ignore[typeddict-item]
-    if "policyArn" in data:
+    if data.get("policyArn") is not None:
         out["policy_arn"] = data["policyArn"]
     else:
         raise DeserializationError("UpdateResiliencyPolicyRequest.policy_arn required")
-    if "policyName" in data:
+    if data.get("policyName") is not None:
         out["policy_name"] = data["policyName"]
-    if "policyDescription" in data:
+    if data.get("policyDescription") is not None:
         out["policy_description"] = data["policyDescription"]
-    if "dataLocationConstraint" in data:
+    if data.get("dataLocationConstraint") is not None:
         import capo_resiliencehub.types.data_location_constraint
 
         out["data_location_constraint"] = (
@@ -85,13 +85,13 @@ def deserialize_json(data: dict) -> UpdateResiliencyPolicyRequest:
                 data["dataLocationConstraint"]
             )
         )
-    if "tier" in data:
+    if data.get("tier") is not None:
         import capo_resiliencehub.types.resiliency_policy_tier
 
         out["tier"] = capo_resiliencehub.types.resiliency_policy_tier.deserialize_json(
             data["tier"]
         )
-    if "policy" in data:
+    if data.get("policy") is not None:
         import capo_resiliencehub.types.disruption_policy
 
         out["policy"] = capo_resiliencehub.types.disruption_policy.deserialize_json(

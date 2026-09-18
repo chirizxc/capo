@@ -125,31 +125,31 @@ def serialize_json(value: BatchGetSessionItem) -> dict:
 
 def deserialize_json(data: dict) -> BatchGetSessionItem:
     out: BatchGetSessionItem = {}  # type: ignore[typeddict-item]
-    if "farmId" in data:
+    if data.get("farmId") is not None:
         out["farm_id"] = data["farmId"]
     else:
         raise DeserializationError("BatchGetSessionItem.farm_id required")
-    if "queueId" in data:
+    if data.get("queueId") is not None:
         out["queue_id"] = data["queueId"]
     else:
         raise DeserializationError("BatchGetSessionItem.queue_id required")
-    if "jobId" in data:
+    if data.get("jobId") is not None:
         out["job_id"] = data["jobId"]
     else:
         raise DeserializationError("BatchGetSessionItem.job_id required")
-    if "sessionId" in data:
+    if data.get("sessionId") is not None:
         out["session_id"] = data["sessionId"]
     else:
         raise DeserializationError("BatchGetSessionItem.session_id required")
-    if "fleetId" in data:
+    if data.get("fleetId") is not None:
         out["fleet_id"] = data["fleetId"]
     else:
         raise DeserializationError("BatchGetSessionItem.fleet_id required")
-    if "workerId" in data:
+    if data.get("workerId") is not None:
         out["worker_id"] = data["workerId"]
     else:
         raise DeserializationError("BatchGetSessionItem.worker_id required")
-    if "startedAt" in data:
+    if data.get("startedAt") is not None:
         import capo_deadline.types.started_at
 
         out["started_at"] = capo_deadline.types.started_at.deserialize_json(
@@ -157,7 +157,7 @@ def deserialize_json(data: dict) -> BatchGetSessionItem:
         )
     else:
         raise DeserializationError("BatchGetSessionItem.started_at required")
-    if "lifecycleStatus" in data:
+    if data.get("lifecycleStatus") is not None:
         import capo_deadline.types.session_lifecycle_status
 
         out["lifecycle_status"] = (
@@ -167,11 +167,11 @@ def deserialize_json(data: dict) -> BatchGetSessionItem:
         )
     else:
         raise DeserializationError("BatchGetSessionItem.lifecycle_status required")
-    if "endedAt" in data:
+    if data.get("endedAt") is not None:
         import capo_deadline.types.ended_at
 
         out["ended_at"] = capo_deadline.types.ended_at.deserialize_json(data["endedAt"])
-    if "targetLifecycleStatus" in data:
+    if data.get("targetLifecycleStatus") is not None:
         import capo_deadline.types.session_lifecycle_target_status
 
         out["target_lifecycle_status"] = (
@@ -179,21 +179,21 @@ def deserialize_json(data: dict) -> BatchGetSessionItem:
                 data["targetLifecycleStatus"]
             )
         )
-    if "updatedAt" in data:
+    if data.get("updatedAt") is not None:
         import capo_deadline.types.updated_at
 
         out["updated_at"] = capo_deadline.types.updated_at.deserialize_json(
             data["updatedAt"]
         )
-    if "updatedBy" in data:
+    if data.get("updatedBy") is not None:
         out["updated_by"] = data["updatedBy"]
-    if "log" in data:
+    if data.get("log") is not None:
         import capo_deadline.types.log_configuration
 
         out["log"] = capo_deadline.types.log_configuration.deserialize_json(data["log"])
     else:
         raise DeserializationError("BatchGetSessionItem.log required")
-    if "hostProperties" in data:
+    if data.get("hostProperties") is not None:
         import capo_deadline.types.host_properties_response
 
         out["host_properties"] = (
@@ -201,7 +201,7 @@ def deserialize_json(data: dict) -> BatchGetSessionItem:
                 data["hostProperties"]
             )
         )
-    if "workerLog" in data:
+    if data.get("workerLog") is not None:
         import capo_deadline.types.log_configuration
 
         out["worker_log"] = capo_deadline.types.log_configuration.deserialize_json(

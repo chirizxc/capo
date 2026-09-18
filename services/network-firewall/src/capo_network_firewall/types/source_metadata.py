@@ -30,8 +30,8 @@ def serialize_aws_json_1_0(value: SourceMetadata) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> SourceMetadata:
     out: SourceMetadata = {}  # type: ignore[typeddict-item]
-    if "SourceArn" in data:
+    if data.get("SourceArn") is not None:
         out["source_arn"] = data["SourceArn"]
-    if "SourceUpdateToken" in data:
+    if data.get("SourceUpdateToken") is not None:
         out["source_update_token"] = data["SourceUpdateToken"]
     return out

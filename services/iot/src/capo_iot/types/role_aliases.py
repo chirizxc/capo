@@ -14,4 +14,4 @@ def serialize_json(value: RoleAliases) -> list:
 
 
 def deserialize_json(data: list) -> RoleAliases:
-    return list(data)
+    return [item for item in data if item is not None]

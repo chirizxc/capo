@@ -42,7 +42,7 @@ def serialize_aws_json_1_1(value: RemediationParameterValue) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RemediationParameterValue:
     out: RemediationParameterValue = {}  # type: ignore[typeddict-item]
-    if "ResourceValue" in data:
+    if data.get("ResourceValue") is not None:
         import capo_config_service.types.resource_value
 
         out["resource_value"] = (
@@ -50,7 +50,7 @@ def deserialize_aws_json_1_1(data: dict) -> RemediationParameterValue:
                 data["ResourceValue"]
             )
         )
-    if "StaticValue" in data:
+    if data.get("StaticValue") is not None:
         import capo_config_service.types.static_value
 
         out["static_value"] = (

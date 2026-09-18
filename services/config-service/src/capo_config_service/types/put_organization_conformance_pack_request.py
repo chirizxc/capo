@@ -76,7 +76,7 @@ def serialize_aws_json_1_1(value: PutOrganizationConformancePackRequest) -> dict
 
 def deserialize_aws_json_1_1(data: dict) -> PutOrganizationConformancePackRequest:
     out: PutOrganizationConformancePackRequest = {}  # type: ignore[typeddict-item]
-    if "OrganizationConformancePackName" in data:
+    if data.get("OrganizationConformancePackName") is not None:
         out["organization_conformance_pack_name"] = data[
             "OrganizationConformancePackName"
         ]
@@ -84,15 +84,15 @@ def deserialize_aws_json_1_1(data: dict) -> PutOrganizationConformancePackReques
         raise DeserializationError(
             "PutOrganizationConformancePackRequest.organization_conformance_pack_name required"
         )
-    if "TemplateS3Uri" in data:
+    if data.get("TemplateS3Uri") is not None:
         out["template_s3_uri"] = data["TemplateS3Uri"]
-    if "TemplateBody" in data:
+    if data.get("TemplateBody") is not None:
         out["template_body"] = data["TemplateBody"]
-    if "DeliveryS3Bucket" in data:
+    if data.get("DeliveryS3Bucket") is not None:
         out["delivery_s3_bucket"] = data["DeliveryS3Bucket"]
-    if "DeliveryS3KeyPrefix" in data:
+    if data.get("DeliveryS3KeyPrefix") is not None:
         out["delivery_s3_key_prefix"] = data["DeliveryS3KeyPrefix"]
-    if "ConformancePackInputParameters" in data:
+    if data.get("ConformancePackInputParameters") is not None:
         import capo_config_service.types.conformance_pack_input_parameters
 
         out["conformance_pack_input_parameters"] = (
@@ -100,7 +100,7 @@ def deserialize_aws_json_1_1(data: dict) -> PutOrganizationConformancePackReques
                 data["ConformancePackInputParameters"]
             )
         )
-    if "ExcludedAccounts" in data:
+    if data.get("ExcludedAccounts") is not None:
         import capo_config_service.types.excluded_accounts
 
         out["excluded_accounts"] = (

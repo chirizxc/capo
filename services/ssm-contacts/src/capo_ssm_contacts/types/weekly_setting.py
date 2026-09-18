@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: WeeklySetting) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> WeeklySetting:
     out: WeeklySetting = {}  # type: ignore[typeddict-item]
-    if "DayOfWeek" in data:
+    if data.get("DayOfWeek") is not None:
         import capo_ssm_contacts.types.day_of_week
 
         out["day_of_week"] = (
@@ -46,7 +46,7 @@ def deserialize_aws_json_1_1(data: dict) -> WeeklySetting:
         )
     else:
         raise DeserializationError("WeeklySetting.day_of_week required")
-    if "HandOffTime" in data:
+    if data.get("HandOffTime") is not None:
         import capo_ssm_contacts.types.hand_off_time
 
         out["hand_off_time"] = (

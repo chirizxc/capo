@@ -40,11 +40,11 @@ def serialize_json(value: AwsRoute53HostedZoneObjectDetails) -> dict:
 
 def deserialize_json(data: dict) -> AwsRoute53HostedZoneObjectDetails:
     out: AwsRoute53HostedZoneObjectDetails = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Config" in data:
+    if data.get("Config") is not None:
         import capo_securityhub.types.aws_route53_hosted_zone_config_details
 
         out["config"] = (

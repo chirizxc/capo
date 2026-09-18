@@ -23,6 +23,6 @@ def serialize_json(value: MessagingSessionEndpoint) -> dict:
 
 def deserialize_json(data: dict) -> MessagingSessionEndpoint:
     out: MessagingSessionEndpoint = {}  # type: ignore[typeddict-item]
-    if "Url" in data:
+    if data.get("Url") is not None:
         out["url"] = data["Url"]
     return out

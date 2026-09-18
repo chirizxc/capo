@@ -41,7 +41,7 @@ def serialize_json(value: PropertyLatestValue) -> dict:
 
 def deserialize_json(data: dict) -> PropertyLatestValue:
     out: PropertyLatestValue = {}  # type: ignore[typeddict-item]
-    if "propertyReference" in data:
+    if data.get("propertyReference") is not None:
         import capo_iottwinmaker.types.entity_property_reference
 
         out["property_reference"] = (
@@ -51,7 +51,7 @@ def deserialize_json(data: dict) -> PropertyLatestValue:
         )
     else:
         raise DeserializationError("PropertyLatestValue.property_reference required")
-    if "propertyValue" in data:
+    if data.get("propertyValue") is not None:
         import capo_iottwinmaker.types.data_value
 
         out["property_value"] = capo_iottwinmaker.types.data_value.deserialize_json(

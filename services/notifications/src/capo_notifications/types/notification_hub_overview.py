@@ -55,13 +55,13 @@ def serialize_json(value: NotificationHubOverview) -> dict:
 
 def deserialize_json(data: dict) -> NotificationHubOverview:
     out: NotificationHubOverview = {}  # type: ignore[typeddict-item]
-    if "notificationHubRegion" in data:
+    if data.get("notificationHubRegion") is not None:
         out["notification_hub_region"] = data["notificationHubRegion"]
     else:
         raise DeserializationError(
             "NotificationHubOverview.notification_hub_region required"
         )
-    if "statusSummary" in data:
+    if data.get("statusSummary") is not None:
         import capo_notifications.types.notification_hub_status_summary
 
         out["status_summary"] = (
@@ -71,7 +71,7 @@ def deserialize_json(data: dict) -> NotificationHubOverview:
         )
     else:
         raise DeserializationError("NotificationHubOverview.status_summary required")
-    if "creationTime" in data:
+    if data.get("creationTime") is not None:
         import capo_notifications.types.creation_time
 
         out["creation_time"] = capo_notifications.types.creation_time.deserialize_json(
@@ -79,7 +79,7 @@ def deserialize_json(data: dict) -> NotificationHubOverview:
         )
     else:
         raise DeserializationError("NotificationHubOverview.creation_time required")
-    if "lastActivationTime" in data:
+    if data.get("lastActivationTime") is not None:
         import capo_notifications.types.last_activation_time
 
         out["last_activation_time"] = (

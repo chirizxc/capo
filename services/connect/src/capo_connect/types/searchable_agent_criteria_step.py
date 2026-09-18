@@ -40,13 +40,13 @@ def serialize_json(value: SearchableAgentCriteriaStep) -> dict:
 
 def deserialize_json(data: dict) -> SearchableAgentCriteriaStep:
     out: SearchableAgentCriteriaStep = {}  # type: ignore[typeddict-item]
-    if "AgentIds" in data:
+    if data.get("AgentIds") is not None:
         import capo_connect.types.agent_resource_id_list
 
         out["agent_ids"] = capo_connect.types.agent_resource_id_list.deserialize_json(
             data["AgentIds"]
         )
-    if "MatchType" in data:
+    if data.get("MatchType") is not None:
         import capo_connect.types.search_contacts_match_type
 
         out["match_type"] = (

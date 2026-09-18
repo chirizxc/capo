@@ -59,7 +59,7 @@ def serialize_json(value: StorageOptimizer) -> dict:
 
 def deserialize_json(data: dict) -> StorageOptimizer:
     out: StorageOptimizer = {}  # type: ignore[typeddict-item]
-    if "StorageOptimizerType" in data:
+    if data.get("StorageOptimizerType") is not None:
         import capo_lakeformation.types.optimizer_type
 
         out["storage_optimizer_type"] = (
@@ -67,7 +67,7 @@ def deserialize_json(data: dict) -> StorageOptimizer:
                 data["StorageOptimizerType"]
             )
         )
-    if "Config" in data:
+    if data.get("Config") is not None:
         import capo_lakeformation.types.storage_optimizer_config
 
         out["config"] = (
@@ -75,10 +75,10 @@ def deserialize_json(data: dict) -> StorageOptimizer:
                 data["Config"]
             )
         )
-    if "ErrorMessage" in data:
+    if data.get("ErrorMessage") is not None:
         out["error_message"] = data["ErrorMessage"]
-    if "Warnings" in data:
+    if data.get("Warnings") is not None:
         out["warnings"] = data["Warnings"]
-    if "LastRunDetails" in data:
+    if data.get("LastRunDetails") is not None:
         out["last_run_details"] = data["LastRunDetails"]
     return out

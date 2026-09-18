@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> AwsRdsDbDomainMemberships:
 
     out: AwsRdsDbDomainMemberships = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_securityhub.types.aws_rds_db_domain_membership.deserialize_json(item)
         )

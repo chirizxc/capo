@@ -26,10 +26,10 @@ def serialize_json(value: GremlinQueryStatusAttributes) -> dict:
 
 def deserialize_json(data: dict) -> GremlinQueryStatusAttributes:
     out: GremlinQueryStatusAttributes = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
-    if "code" in data:
+    if data.get("code") is not None:
         out["code"] = data["code"]
-    if "attributes" in data:
+    if data.get("attributes") is not None:
         out["attributes"] = data["attributes"]
     return out

@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: DeleteAccountAssignmentResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteAccountAssignmentResponse:
     out: DeleteAccountAssignmentResponse = {}  # type: ignore[typeddict-item]
-    if "AccountAssignmentDeletionStatus" in data:
+    if data.get("AccountAssignmentDeletionStatus") is not None:
         import capo_sso_admin.types.account_assignment_operation_status
 
         out["account_assignment_deletion_status"] = (

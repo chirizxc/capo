@@ -113,21 +113,21 @@ def serialize_json(value: UpdateTaskTemplateResponse) -> dict:
 
 def deserialize_json(data: dict) -> UpdateTaskTemplateResponse:
     out: UpdateTaskTemplateResponse = {}  # type: ignore[typeddict-item]
-    if "InstanceId" in data:
+    if data.get("InstanceId") is not None:
         out["instance_id"] = data["InstanceId"]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "ContactFlowId" in data:
+    if data.get("ContactFlowId") is not None:
         out["contact_flow_id"] = data["ContactFlowId"]
-    if "SelfAssignFlowId" in data:
+    if data.get("SelfAssignFlowId") is not None:
         out["self_assign_flow_id"] = data["SelfAssignFlowId"]
-    if "Constraints" in data:
+    if data.get("Constraints") is not None:
         import capo_connect.types.task_template_constraints
 
         out["constraints"] = (
@@ -135,31 +135,31 @@ def deserialize_json(data: dict) -> UpdateTaskTemplateResponse:
                 data["Constraints"]
             )
         )
-    if "Defaults" in data:
+    if data.get("Defaults") is not None:
         import capo_connect.types.task_template_defaults
 
         out["defaults"] = capo_connect.types.task_template_defaults.deserialize_json(
             data["Defaults"]
         )
-    if "Fields" in data:
+    if data.get("Fields") is not None:
         import capo_connect.types.task_template_fields
 
         out["fields"] = capo_connect.types.task_template_fields.deserialize_json(
             data["Fields"]
         )
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_connect.types.task_template_status
 
         out["status"] = capo_connect.types.task_template_status.deserialize_json(
             data["Status"]
         )
-    if "LastModifiedTime" in data:
+    if data.get("LastModifiedTime") is not None:
         import capo_connect.types.timestamp
 
         out["last_modified_time"] = capo_connect.types.timestamp.deserialize_json(
             data["LastModifiedTime"]
         )
-    if "CreatedTime" in data:
+    if data.get("CreatedTime") is not None:
         import capo_connect.types.timestamp
 
         out["created_time"] = capo_connect.types.timestamp.deserialize_json(

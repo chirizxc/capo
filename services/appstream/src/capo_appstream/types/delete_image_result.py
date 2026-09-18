@@ -25,7 +25,7 @@ def serialize_aws_json_1_1(value: DeleteImageResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteImageResult:
     out: DeleteImageResult = {}  # type: ignore[typeddict-item]
-    if "Image" in data:
+    if data.get("Image") is not None:
         import capo_appstream.types.image
 
         out["image"] = capo_appstream.types.image.deserialize_aws_json_1_1(

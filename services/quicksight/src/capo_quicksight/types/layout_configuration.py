@@ -57,7 +57,7 @@ def serialize_json(value: LayoutConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> LayoutConfiguration:
     out: LayoutConfiguration = {}  # type: ignore[typeddict-item]
-    if "GridLayout" in data:
+    if data.get("GridLayout") is not None:
         import capo_quicksight.types.grid_layout_configuration
 
         out["grid_layout"] = (
@@ -65,7 +65,7 @@ def deserialize_json(data: dict) -> LayoutConfiguration:
                 data["GridLayout"]
             )
         )
-    if "FreeFormLayout" in data:
+    if data.get("FreeFormLayout") is not None:
         import capo_quicksight.types.free_form_layout_configuration
 
         out["free_form_layout"] = (
@@ -73,7 +73,7 @@ def deserialize_json(data: dict) -> LayoutConfiguration:
                 data["FreeFormLayout"]
             )
         )
-    if "SectionBasedLayout" in data:
+    if data.get("SectionBasedLayout") is not None:
         import capo_quicksight.types.section_based_layout_configuration
 
         out["section_based_layout"] = (

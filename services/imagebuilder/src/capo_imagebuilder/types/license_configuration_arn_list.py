@@ -16,4 +16,4 @@ def serialize_json(value: LicenseConfigurationArnList) -> list:
 
 
 def deserialize_json(data: list) -> LicenseConfigurationArnList:
-    return list(data)
+    return [item for item in data if item is not None]

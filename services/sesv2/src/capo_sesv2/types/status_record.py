@@ -39,13 +39,13 @@ def serialize_json(value: StatusRecord) -> dict:
 
 def deserialize_json(data: dict) -> StatusRecord:
     out: StatusRecord = {}  # type: ignore[typeddict-item]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_sesv2.types.sending_status
 
         out["status"] = capo_sesv2.types.sending_status.deserialize_json(data["Status"])
-    if "Cause" in data:
+    if data.get("Cause") is not None:
         out["cause"] = data["Cause"]
-    if "LastUpdatedTimestamp" in data:
+    if data.get("LastUpdatedTimestamp") is not None:
         import capo_sesv2.types.timestamp
 
         out["last_updated_timestamp"] = capo_sesv2.types.timestamp.deserialize_json(

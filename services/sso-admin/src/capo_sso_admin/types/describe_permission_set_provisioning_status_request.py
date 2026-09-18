@@ -34,13 +34,13 @@ def deserialize_aws_json_1_1(
     data: dict,
 ) -> DescribePermissionSetProvisioningStatusRequest:
     out: DescribePermissionSetProvisioningStatusRequest = {}  # type: ignore[typeddict-item]
-    if "InstanceArn" in data:
+    if data.get("InstanceArn") is not None:
         out["instance_arn"] = data["InstanceArn"]
     else:
         raise DeserializationError(
             "DescribePermissionSetProvisioningStatusRequest.instance_arn required"
         )
-    if "ProvisionPermissionSetRequestId" in data:
+    if data.get("ProvisionPermissionSetRequestId") is not None:
         out["provision_permission_set_request_id"] = data[
             "ProvisionPermissionSetRequestId"
         ]

@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> UnprocessedStandardsControlAssociations:
 
     out: UnprocessedStandardsControlAssociations = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_securityhub.types.unprocessed_standards_control_association.deserialize_json(
                 item

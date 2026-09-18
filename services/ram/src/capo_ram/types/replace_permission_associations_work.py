@@ -73,17 +73,17 @@ def serialize_json(value: ReplacePermissionAssociationsWork) -> dict:
 
 def deserialize_json(data: dict) -> ReplacePermissionAssociationsWork:
     out: ReplacePermissionAssociationsWork = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "fromPermissionArn" in data:
+    if data.get("fromPermissionArn") is not None:
         out["from_permission_arn"] = data["fromPermissionArn"]
-    if "fromPermissionVersion" in data:
+    if data.get("fromPermissionVersion") is not None:
         out["from_permission_version"] = data["fromPermissionVersion"]
-    if "toPermissionArn" in data:
+    if data.get("toPermissionArn") is not None:
         out["to_permission_arn"] = data["toPermissionArn"]
-    if "toPermissionVersion" in data:
+    if data.get("toPermissionVersion") is not None:
         out["to_permission_version"] = data["toPermissionVersion"]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_ram.types.replace_permission_associations_work_status
 
         out["status"] = (
@@ -91,15 +91,15 @@ def deserialize_json(data: dict) -> ReplacePermissionAssociationsWork:
                 data["status"]
             )
         )
-    if "statusMessage" in data:
+    if data.get("statusMessage") is not None:
         out["status_message"] = data["statusMessage"]
-    if "creationTime" in data:
+    if data.get("creationTime") is not None:
         import capo_ram.types.date_time
 
         out["creation_time"] = capo_ram.types.date_time.deserialize_json(
             data["creationTime"]
         )
-    if "lastUpdatedTime" in data:
+    if data.get("lastUpdatedTime") is not None:
         import capo_ram.types.date_time
 
         out["last_updated_time"] = capo_ram.types.date_time.deserialize_json(

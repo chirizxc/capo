@@ -39,12 +39,12 @@ def serialize_json(value: CreateAIGuardrailVersionRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateAIGuardrailVersionRequest:
     out: CreateAIGuardrailVersionRequest = {}  # type: ignore[typeddict-item]
-    if "modifiedTime" in data:
+    if data.get("modifiedTime") is not None:
         import capo_qconnect.types._prelude.timestamp
 
         out["modified_time"] = capo_qconnect.types._prelude.timestamp.deserialize_json(
             data["modifiedTime"]
         )
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     return out

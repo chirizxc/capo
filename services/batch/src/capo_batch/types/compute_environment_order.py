@@ -28,8 +28,8 @@ def serialize_json(value: ComputeEnvironmentOrder) -> dict:
 
 def deserialize_json(data: dict) -> ComputeEnvironmentOrder:
     out: ComputeEnvironmentOrder = {}  # type: ignore[typeddict-item]
-    if "order" in data:
+    if data.get("order") is not None:
         out["order"] = data["order"]
-    if "computeEnvironment" in data:
+    if data.get("computeEnvironment") is not None:
         out["compute_environment"] = data["computeEnvironment"]
     return out

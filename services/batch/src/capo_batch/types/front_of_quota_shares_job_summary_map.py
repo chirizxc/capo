@@ -27,6 +27,8 @@ def serialize_json(input_to_serialize: FrontOfQuotaSharesJobSummaryMap) -> dict:
 def deserialize_json(data: dict) -> FrontOfQuotaSharesJobSummaryMap:
     out: FrontOfQuotaSharesJobSummaryMap = {}
     for key, value in data.items():
+        if value is None:
+            continue
         import capo_batch.types.front_of_quota_share_job_summary_list
 
         out[key] = (

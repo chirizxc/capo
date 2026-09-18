@@ -88,37 +88,37 @@ def serialize_json(value: TestCaseRun) -> dict:
 
 def deserialize_json(data: dict) -> TestCaseRun:
     out: TestCaseRun = {}  # type: ignore[typeddict-item]
-    if "testCaseRunId" in data:
+    if data.get("testCaseRunId") is not None:
         out["test_case_run_id"] = data["testCaseRunId"]
-    if "testCaseDefinitionId" in data:
+    if data.get("testCaseDefinitionId") is not None:
         out["test_case_definition_id"] = data["testCaseDefinitionId"]
-    if "testCaseDefinitionName" in data:
+    if data.get("testCaseDefinitionName") is not None:
         out["test_case_definition_name"] = data["testCaseDefinitionName"]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_iotdeviceadvisor.types.status
 
         out["status"] = capo_iotdeviceadvisor.types.status.deserialize_json(
             data["status"]
         )
-    if "startTime" in data:
+    if data.get("startTime") is not None:
         import capo_iotdeviceadvisor.types.timestamp
 
         out["start_time"] = capo_iotdeviceadvisor.types.timestamp.deserialize_json(
             data["startTime"]
         )
-    if "endTime" in data:
+    if data.get("endTime") is not None:
         import capo_iotdeviceadvisor.types.timestamp
 
         out["end_time"] = capo_iotdeviceadvisor.types.timestamp.deserialize_json(
             data["endTime"]
         )
-    if "logUrl" in data:
+    if data.get("logUrl") is not None:
         out["log_url"] = data["logUrl"]
-    if "warnings" in data:
+    if data.get("warnings") is not None:
         out["warnings"] = data["warnings"]
-    if "failure" in data:
+    if data.get("failure") is not None:
         out["failure"] = data["failure"]
-    if "testScenarios" in data:
+    if data.get("testScenarios") is not None:
         import capo_iotdeviceadvisor.types.test_case_scenarios_list
 
         out["test_scenarios"] = (

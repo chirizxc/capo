@@ -34,7 +34,7 @@ def serialize_json(value: UpdatePackageConfigurationRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdatePackageConfigurationRequest:
     out: UpdatePackageConfigurationRequest = {}  # type: ignore[typeddict-item]
-    if "versionUpdateByJobsConfig" in data:
+    if data.get("versionUpdateByJobsConfig") is not None:
         import capo_iot.types.version_update_by_jobs_config
 
         out["version_update_by_jobs_config"] = (

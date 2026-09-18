@@ -23,6 +23,6 @@ def serialize_json(value: MonthlySchedule) -> dict:
 
 def deserialize_json(data: dict) -> MonthlySchedule:
     out: MonthlySchedule = {}  # type: ignore[typeddict-item]
-    if "dayOfMonth" in data:
+    if data.get("dayOfMonth") is not None:
         out["day_of_month"] = data["dayOfMonth"]
     return out

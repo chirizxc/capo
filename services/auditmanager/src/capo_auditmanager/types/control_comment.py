@@ -39,11 +39,11 @@ def serialize_json(value: ControlComment) -> dict:
 
 def deserialize_json(data: dict) -> ControlComment:
     out: ControlComment = {}  # type: ignore[typeddict-item]
-    if "authorName" in data:
+    if data.get("authorName") is not None:
         out["author_name"] = data["authorName"]
-    if "commentBody" in data:
+    if data.get("commentBody") is not None:
         out["comment_body"] = data["commentBody"]
-    if "postedDate" in data:
+    if data.get("postedDate") is not None:
         import capo_auditmanager.types.timestamp
 
         out["posted_date"] = capo_auditmanager.types.timestamp.deserialize_json(

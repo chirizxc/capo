@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: ExportNotebookOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ExportNotebookOutput:
     out: ExportNotebookOutput = {}  # type: ignore[typeddict-item]
-    if "NotebookMetadata" in data:
+    if data.get("NotebookMetadata") is not None:
         import capo_athena.types.notebook_metadata
 
         out["notebook_metadata"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_1(data: dict) -> ExportNotebookOutput:
                 data["NotebookMetadata"]
             )
         )
-    if "Payload" in data:
+    if data.get("Payload") is not None:
         out["payload"] = data["Payload"]
     return out

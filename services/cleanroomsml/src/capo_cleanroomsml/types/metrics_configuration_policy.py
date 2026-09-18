@@ -28,7 +28,7 @@ def serialize_json(value: MetricsConfigurationPolicy) -> dict:
 
 def deserialize_json(data: dict) -> MetricsConfigurationPolicy:
     out: MetricsConfigurationPolicy = {}  # type: ignore[typeddict-item]
-    if "noiseLevel" in data:
+    if data.get("noiseLevel") is not None:
         import capo_cleanroomsml.types.noise_level_type
 
         out["noise_level"] = capo_cleanroomsml.types.noise_level_type.deserialize_json(

@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: EndpointNetworkConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> EndpointNetworkConfiguration:
     out: EndpointNetworkConfiguration = {}  # type: ignore[typeddict-item]
-    if "IpAddresses" in data:
+    if data.get("IpAddresses") is not None:
         import capo_storage_gateway.types.ip_address_list
 
         out["ip_addresses"] = (

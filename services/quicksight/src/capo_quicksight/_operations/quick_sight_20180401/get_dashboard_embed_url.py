@@ -11,6 +11,7 @@ from typing_extensions import Never
 
 import capo_quicksight._auth._signers
 import capo_quicksight._auth._sigv4
+import capo_quicksight._protocol.eventstream
 import capo_quicksight.errors.access_denied_exception
 import capo_quicksight.errors.domain_not_whitelisted_exception
 import capo_quicksight.errors.identity_type_not_supported_exception
@@ -39,51 +40,51 @@ def handle_error(response: zapros.Response) -> Never:
     match code:
         case "AccessDeniedException":
             raise capo_quicksight.errors.access_denied_exception.AccessDeniedException.from_json(
-                data
+                data, message
             )
         case "DomainNotWhitelistedException":
             raise capo_quicksight.errors.domain_not_whitelisted_exception.DomainNotWhitelistedException.from_json(
-                data
+                data, message
             )
         case "IdentityTypeNotSupportedException":
             raise capo_quicksight.errors.identity_type_not_supported_exception.IdentityTypeNotSupportedException.from_json(
-                data
+                data, message
             )
         case "InternalFailureException":
             raise capo_quicksight.errors.internal_failure_exception.InternalFailureException.from_json(
-                data
+                data, message
             )
         case "InvalidParameterValueException":
             raise capo_quicksight.errors.invalid_parameter_value_exception.InvalidParameterValueException.from_json(
-                data
+                data, message
             )
         case "QuickSightUserNotFoundException":
             raise capo_quicksight.errors.quick_sight_user_not_found_exception.QuickSightUserNotFoundException.from_json(
-                data
+                data, message
             )
         case "ResourceExistsException":
             raise capo_quicksight.errors.resource_exists_exception.ResourceExistsException.from_json(
-                data
+                data, message
             )
         case "ResourceNotFoundException":
             raise capo_quicksight.errors.resource_not_found_exception.ResourceNotFoundException.from_json(
-                data
+                data, message
             )
         case "SessionLifetimeInMinutesInvalidException":
             raise capo_quicksight.errors.session_lifetime_in_minutes_invalid_exception.SessionLifetimeInMinutesInvalidException.from_json(
-                data
+                data, message
             )
         case "ThrottlingException":
             raise capo_quicksight.errors.throttling_exception.ThrottlingException.from_json(
-                data
+                data, message
             )
         case "UnsupportedPricingPlanException":
             raise capo_quicksight.errors.unsupported_pricing_plan_exception.UnsupportedPricingPlanException.from_json(
-                data
+                data, message
             )
         case "UnsupportedUserEditionException":
             raise capo_quicksight.errors.unsupported_user_edition_exception.UnsupportedUserEditionException.from_json(
-                data
+                data, message
             )
         case _:
             raise UnknownServiceError(code=code, message=message, response=response)
@@ -118,19 +119,26 @@ def get_signer(
     auth_schemes: list[dict[str, Any]] | None = None,
 ) -> capo_quicksight._auth._signers.Signer | None:
     name_to_schema = {s["name"]: s for s in (auth_schemes or [])}  # noqa: F841
-    if options.credentials_provider is not None:
-        sigv4_config = (
-            name_to_schema.get("sigv4")
-            or name_to_schema.get("sigv4a")
-            or name_to_schema.get("sigv4-s3express")
-            or capo_quicksight._auth._sigv4.build_sigv4_auth_scheme(
-                "quicksight", options.region
-            )
+    if (
+        options.credentials_provider is not None
+        and name_to_schema
+        and not name_to_schema.keys() & {"sigv4", "sigv4-s3express"}
+    ):
+        raise RuntimeError(
+            "Endpoint requires an unsupported auth scheme: " + ", ".join(name_to_schema)
         )
-        if sigv4_config is not None:
-            return capo_quicksight._auth._signers.SigV4Signer(
-                options.credentials_provider, auth_scheme=sigv4_config
+    if options.credentials_provider is not None:
+        endpoint_scheme = name_to_schema.get("sigv4") or name_to_schema.get(
+            "sigv4-s3express"
+        )
+        if endpoint_scheme is not None or not name_to_schema:
+            sigv4_config = capo_quicksight._auth._sigv4.build_sigv4_auth_scheme(
+                "quicksight", options.region, endpoint_scheme
             )
+            if sigv4_config is not None:
+                return capo_quicksight._auth._signers.SigV4Signer(
+                    options.credentials_provider, auth_scheme=sigv4_config
+                )
     raise RuntimeError("Auth was not resolved")
 
 
@@ -146,33 +154,54 @@ def build_request(
             Endpoint=options.endpoint,
         )
     )  # noqa: F841
+    import capo_quicksight.types.embedding_identity_type
+
     url = (
         endpoint.url.rstrip("/")
         + "/accounts/{AwsAccountId}/dashboards/{DashboardId}/embed-url"
     )
-    url = url.replace("{AwsAccountId}", quote(str(input_["aws_account_id"]), safe=""))
-    url = url.replace("{DashboardId}", quote(str(input_["dashboard_id"]), safe=""))
-    params: dict[str, str] = {}
+    url = url.replace("{AwsAccountId}", quote(input_["aws_account_id"], safe=""))
+    url = url.replace("{DashboardId}", quote(input_["dashboard_id"], safe=""))
+    params: list[tuple[str, str]] = []
     if "identity_type" in input_:
-        params["creds-type"] = str(input_["identity_type"])
+        params.append(
+            (
+                "creds-type",
+                capo_quicksight.types.embedding_identity_type.serialize_json(
+                    input_["identity_type"]
+                ),
+            )
+        )
     if "session_lifetime_in_minutes" in input_:
-        params["session-lifetime"] = str(input_["session_lifetime_in_minutes"])
-    params["undo-redo-disabled"] = str(input_.get("undo_redo_disabled", False))
-    params["reset-disabled"] = str(input_.get("reset_disabled", False))
-    params["state-persistence-enabled"] = str(
-        input_.get("state_persistence_enabled", False)
+        params.append(("session-lifetime", str(input_["session_lifetime_in_minutes"])))
+    params.append(
+        (
+            "undo-redo-disabled",
+            "true" if input_.get("undo_redo_disabled", False) else "false",
+        )
+    )
+    params.append(
+        ("reset-disabled", "true" if input_.get("reset_disabled", False) else "false")
+    )
+    params.append(
+        (
+            "state-persistence-enabled",
+            "true" if input_.get("state_persistence_enabled", False) else "false",
+        )
     )
     if "user_arn" in input_:
-        params["user-arn"] = str(input_["user_arn"])
+        params.append(("user-arn", input_["user_arn"]))
     if "namespace" in input_:
-        params["namespace"] = str(input_["namespace"])
+        params.append(("namespace", input_["namespace"]))
     if "additional_dashboard_ids" in input_:
-        params["additional-dashboard-ids"] = str(input_["additional_dashboard_ids"])
+        for item in input_["additional_dashboard_ids"]:
+            params.append(("additional-dashboard-ids", item))
     headers: dict[str, str] = {k: ", ".join(v) for k, v in endpoint.headers.items()}
     body: bytes | None = b""
     signer = get_signer(options, auth_schemes=endpoint.properties.get("authSchemes"))
     normalized_url = zapros.URL(url)
-    normalized_url.search_params.update(params)
+    for k, v in params:
+        normalized_url.search_params.append(k, v)
     return zapros.Request(
         normalized_url, "GET", headers=headers, body=body, context={"signer": signer}
     )
@@ -187,7 +216,7 @@ def get_dashboard_embed_url(
 ]:
     response = options.client.handler.handle(build_request(options, input_))
     try:
-        if response.status >= 400:
+        if response.status >= 300:
             response.read()
             handle_error(response)
         return handle_response(response), response
@@ -205,7 +234,7 @@ async def async_get_dashboard_embed_url(
 ]:
     response = await options.client.handler.ahandle(build_request(options, input_))
     try:
-        if response.status >= 400:
+        if response.status >= 300:
             await response.aread()
             handle_error(response)
         return await async_handle_response(response), response

@@ -112,27 +112,27 @@ def serialize_aws_json_1_1(value: CreateProductInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateProductInput:
     out: CreateProductInput = {}  # type: ignore[typeddict-item]
-    if "AcceptLanguage" in data:
+    if data.get("AcceptLanguage") is not None:
         out["accept_language"] = data["AcceptLanguage"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("CreateProductInput.name required")
-    if "Owner" in data:
+    if data.get("Owner") is not None:
         out["owner"] = data["Owner"]
     else:
         raise DeserializationError("CreateProductInput.owner required")
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Distributor" in data:
+    if data.get("Distributor") is not None:
         out["distributor"] = data["Distributor"]
-    if "SupportDescription" in data:
+    if data.get("SupportDescription") is not None:
         out["support_description"] = data["SupportDescription"]
-    if "SupportEmail" in data:
+    if data.get("SupportEmail") is not None:
         out["support_email"] = data["SupportEmail"]
-    if "SupportUrl" in data:
+    if data.get("SupportUrl") is not None:
         out["support_url"] = data["SupportUrl"]
-    if "ProductType" in data:
+    if data.get("ProductType") is not None:
         import capo_service_catalog.types.product_type
 
         out["product_type"] = (
@@ -142,13 +142,13 @@ def deserialize_aws_json_1_1(data: dict) -> CreateProductInput:
         )
     else:
         raise DeserializationError("CreateProductInput.product_type required")
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_service_catalog.types.add_tags
 
         out["tags"] = capo_service_catalog.types.add_tags.deserialize_aws_json_1_1(
             data["Tags"]
         )
-    if "ProvisioningArtifactParameters" in data:
+    if data.get("ProvisioningArtifactParameters") is not None:
         import capo_service_catalog.types.provisioning_artifact_properties
 
         out["provisioning_artifact_parameters"] = (
@@ -156,11 +156,11 @@ def deserialize_aws_json_1_1(data: dict) -> CreateProductInput:
                 data["ProvisioningArtifactParameters"]
             )
         )
-    if "IdempotencyToken" in data:
+    if data.get("IdempotencyToken") is not None:
         out["idempotency_token"] = data["IdempotencyToken"]
     else:
         raise DeserializationError("CreateProductInput.idempotency_token required")
-    if "SourceConnection" in data:
+    if data.get("SourceConnection") is not None:
         import capo_service_catalog.types.source_connection
 
         out["source_connection"] = (

@@ -43,9 +43,9 @@ def serialize_json(value: UpdateCertificateProviderRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateCertificateProviderRequest:
     out: UpdateCertificateProviderRequest = {}  # type: ignore[typeddict-item]
-    if "lambdaFunctionArn" in data:
+    if data.get("lambdaFunctionArn") is not None:
         out["lambda_function_arn"] = data["lambdaFunctionArn"]
-    if "accountDefaultForOperations" in data:
+    if data.get("accountDefaultForOperations") is not None:
         import capo_iot.types.certificate_provider_account_default_for_operations
 
         out["account_default_for_operations"] = (

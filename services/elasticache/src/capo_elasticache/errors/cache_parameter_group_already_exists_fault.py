@@ -39,15 +39,20 @@ class CacheParameterGroupAlreadyExistsFault(ServiceError):
 
     code: str | None = "CacheParameterGroupAlreadyExistsFault"
 
-    def __init__(self, data: CacheParameterGroupAlreadyExistsFault_):
+    def __init__(
+        self, data: CacheParameterGroupAlreadyExistsFault_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="CacheParameterGroupAlreadyExistsFault",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_query(cls, el: Element) -> "CacheParameterGroupAlreadyExistsFault":
-        return cls(deserialize_query(el))
+    def from_query(
+        cls, el: Element, message: str | None = None
+    ) -> "CacheParameterGroupAlreadyExistsFault":
+        return cls(deserialize_query(el), message)

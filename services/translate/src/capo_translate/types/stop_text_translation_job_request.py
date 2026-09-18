@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: StopTextTranslationJobRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> StopTextTranslationJobRequest:
     out: StopTextTranslationJobRequest = {}  # type: ignore[typeddict-item]
-    if "JobId" in data:
+    if data.get("JobId") is not None:
         out["job_id"] = data["JobId"]
     else:
         raise DeserializationError("StopTextTranslationJobRequest.job_id required")

@@ -70,23 +70,23 @@ def serialize_json(value: NodeRepairConfig) -> dict:
 
 def deserialize_json(data: dict) -> NodeRepairConfig:
     out: NodeRepairConfig = {}  # type: ignore[typeddict-item]
-    if "enabled" in data:
+    if data.get("enabled") is not None:
         out["enabled"] = data["enabled"]
-    if "maxUnhealthyNodeThresholdCount" in data:
+    if data.get("maxUnhealthyNodeThresholdCount") is not None:
         out["max_unhealthy_node_threshold_count"] = data[
             "maxUnhealthyNodeThresholdCount"
         ]
-    if "maxUnhealthyNodeThresholdPercentage" in data:
+    if data.get("maxUnhealthyNodeThresholdPercentage") is not None:
         out["max_unhealthy_node_threshold_percentage"] = data[
             "maxUnhealthyNodeThresholdPercentage"
         ]
-    if "maxParallelNodesRepairedCount" in data:
+    if data.get("maxParallelNodesRepairedCount") is not None:
         out["max_parallel_nodes_repaired_count"] = data["maxParallelNodesRepairedCount"]
-    if "maxParallelNodesRepairedPercentage" in data:
+    if data.get("maxParallelNodesRepairedPercentage") is not None:
         out["max_parallel_nodes_repaired_percentage"] = data[
             "maxParallelNodesRepairedPercentage"
         ]
-    if "nodeRepairConfigOverrides" in data:
+    if data.get("nodeRepairConfigOverrides") is not None:
         import capo_eks.types.node_repair_config_overrides_list
 
         out["node_repair_config_overrides"] = (

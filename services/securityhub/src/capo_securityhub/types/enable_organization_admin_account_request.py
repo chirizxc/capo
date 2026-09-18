@@ -36,9 +36,9 @@ def serialize_json(value: EnableOrganizationAdminAccountRequest) -> dict:
 
 def deserialize_json(data: dict) -> EnableOrganizationAdminAccountRequest:
     out: EnableOrganizationAdminAccountRequest = {}  # type: ignore[typeddict-item]
-    if "AdminAccountId" in data:
+    if data.get("AdminAccountId") is not None:
         out["admin_account_id"] = data["AdminAccountId"]
-    if "Feature" in data:
+    if data.get("Feature") is not None:
         import capo_securityhub.types.security_hub_feature
 
         out["feature"] = capo_securityhub.types.security_hub_feature.deserialize_json(

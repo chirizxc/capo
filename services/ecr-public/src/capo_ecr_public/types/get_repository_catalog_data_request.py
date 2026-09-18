@@ -29,9 +29,9 @@ def serialize_aws_json_1_1(value: GetRepositoryCatalogDataRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetRepositoryCatalogDataRequest:
     out: GetRepositoryCatalogDataRequest = {}  # type: ignore[typeddict-item]
-    if "registryId" in data:
+    if data.get("registryId") is not None:
         out["registry_id"] = data["registryId"]
-    if "repositoryName" in data:
+    if data.get("repositoryName") is not None:
         out["repository_name"] = data["repositoryName"]
     else:
         raise DeserializationError(

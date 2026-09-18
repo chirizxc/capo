@@ -37,7 +37,7 @@ def serialize_aws_json_1_0(value: ListFHIRDatastoresResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ListFHIRDatastoresResponse:
     out: ListFHIRDatastoresResponse = {}  # type: ignore[typeddict-item]
-    if "DatastorePropertiesList" in data:
+    if data.get("DatastorePropertiesList") is not None:
         import capo_healthlake.types.datastore_properties_list
 
         out["datastore_properties_list"] = (
@@ -49,6 +49,6 @@ def deserialize_aws_json_1_0(data: dict) -> ListFHIRDatastoresResponse:
         raise DeserializationError(
             "ListFHIRDatastoresResponse.datastore_properties_list required"
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

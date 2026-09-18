@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> PackageDetailsForAssociationList:
 
     out: PackageDetailsForAssociationList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_opensearch.types.package_details_for_association.deserialize_json(item)
         )

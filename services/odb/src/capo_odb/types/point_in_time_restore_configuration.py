@@ -37,9 +37,9 @@ def serialize_aws_json_1_0(value: PointInTimeRestoreConfiguration) -> dict:
         value["clone_type"]
     )
     if "timestamp" in value:
-        import capo_odb.types._prelude.timestamp
+        import capo_odb._protocol.serialize
 
-        out["timestamp"] = capo_odb.types._prelude.timestamp.serialize_aws_json_1_0(
+        out["timestamp"] = capo_odb._protocol.serialize.fmt_date_time(
             value["timestamp"]
         )
     if "use_latest_available_backup_timestamp" in value:
@@ -57,13 +57,13 @@ def serialize_aws_json_1_0(value: PointInTimeRestoreConfiguration) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> PointInTimeRestoreConfiguration:
     out: PointInTimeRestoreConfiguration = {}  # type: ignore[typeddict-item]
-    if "sourceAutonomousDatabaseId" in data:
+    if data.get("sourceAutonomousDatabaseId") is not None:
         out["source_autonomous_database_id"] = data["sourceAutonomousDatabaseId"]
     else:
         raise DeserializationError(
             "PointInTimeRestoreConfiguration.source_autonomous_database_id required"
         )
-    if "cloneType" in data:
+    if data.get("cloneType") is not None:
         import capo_odb.types.clone_type
 
         out["clone_type"] = capo_odb.types.clone_type.deserialize_aws_json_1_0(
@@ -73,17 +73,17 @@ def deserialize_aws_json_1_0(data: dict) -> PointInTimeRestoreConfiguration:
         raise DeserializationError(
             "PointInTimeRestoreConfiguration.clone_type required"
         )
-    if "timestamp" in data:
-        import capo_odb.types._prelude.timestamp
+    if data.get("timestamp") is not None:
+        import datetime
 
-        out["timestamp"] = capo_odb.types._prelude.timestamp.deserialize_aws_json_1_0(
-            data["timestamp"]
+        out["timestamp"] = datetime.datetime.fromisoformat(
+            data["timestamp"].replace("Z", "+00:00")
         )
-    if "useLatestAvailableBackupTimestamp" in data:
+    if data.get("useLatestAvailableBackupTimestamp") is not None:
         out["use_latest_available_backup_timestamp"] = data[
             "useLatestAvailableBackupTimestamp"
         ]
-    if "cloneTableSpaceList" in data:
+    if data.get("cloneTableSpaceList") is not None:
         import capo_odb.types.integer_list
 
         out["clone_table_space_list"] = (

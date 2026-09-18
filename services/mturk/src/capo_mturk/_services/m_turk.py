@@ -1,6 +1,7 @@
 """Generated from Smithy shape ``com.amazonaws.mturk#MTurkRequesterServiceV20170117``."""
 
 import warnings
+from collections.abc import Iterator
 from typing import TYPE_CHECKING, Any, Iterable, Optional
 
 from typing_extensions import Self, TypedDict
@@ -16,6 +17,7 @@ from capo_mturk._auth._providers import (
     default_aws_credentials_chain,
 )
 from capo_mturk._auth._zapros_handler import AuthMiddleware
+from capo_mturk._pagination import resolve_path as _resolve_path
 from capo_mturk._services._aws_config import aws_config
 from capo_mturk._services._pipeline import (
     Interceptor,
@@ -256,8 +258,9 @@ class MTurkClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mturk.types.accept_qualification_request_request.AcceptQualificationRequestRequest = {}  # type: ignore[typeddict-item]
-        input_["qualification_request_id"] = qualification_request_id
+        input_: capo_mturk.types.accept_qualification_request_request.AcceptQualificationRequestRequest = {
+            "qualification_request_id": qualification_request_id
+        }
         if integer_value is not None:
             input_["integer_value"] = integer_value
 
@@ -266,6 +269,7 @@ class MTurkClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def approve_assignment(
@@ -304,8 +308,9 @@ class MTurkClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mturk.types.approve_assignment_request.ApproveAssignmentRequest = {}  # type: ignore[typeddict-item]
-        input_["assignment_id"] = assignment_id
+        input_: capo_mturk.types.approve_assignment_request.ApproveAssignmentRequest = {
+            "assignment_id": assignment_id
+        }
         if requester_feedback is not None:
             input_["requester_feedback"] = requester_feedback
         if override_rejection is not None:
@@ -316,6 +321,7 @@ class MTurkClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def associate_qualification_with_worker(
@@ -356,9 +362,10 @@ class MTurkClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mturk.types.associate_qualification_with_worker_request.AssociateQualificationWithWorkerRequest = {}  # type: ignore[typeddict-item]
-        input_["qualification_type_id"] = qualification_type_id
-        input_["worker_id"] = worker_id
+        input_: capo_mturk.types.associate_qualification_with_worker_request.AssociateQualificationWithWorkerRequest = {
+            "qualification_type_id": qualification_type_id,
+            "worker_id": worker_id,
+        }
         if integer_value is not None:
             input_["integer_value"] = integer_value
         if send_notification is not None:
@@ -369,6 +376,7 @@ class MTurkClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_additional_assignments_for_hit(
@@ -409,9 +417,10 @@ class MTurkClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mturk.types.create_additional_assignments_for_hit_request.CreateAdditionalAssignmentsForHITRequest = {}  # type: ignore[typeddict-item]
-        input_["hit_id"] = hit_id
-        input_["number_of_additional_assignments"] = number_of_additional_assignments
+        input_: capo_mturk.types.create_additional_assignments_for_hit_request.CreateAdditionalAssignmentsForHITRequest = {
+            "hit_id": hit_id,
+            "number_of_additional_assignments": number_of_additional_assignments,
+        }
         if unique_request_token is not None:
             input_["unique_request_token"] = unique_request_token
 
@@ -420,6 +429,7 @@ class MTurkClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_hit(
@@ -494,18 +504,19 @@ class MTurkClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mturk.types.create_hit_request.CreateHITRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_mturk.types.create_hit_request.CreateHITRequest = {
+            "lifetime_in_seconds": lifetime_in_seconds,
+            "assignment_duration_in_seconds": assignment_duration_in_seconds,
+            "reward": reward,
+            "title": title,
+            "description": description,
+        }
         if max_assignments is not None:
             input_["max_assignments"] = max_assignments
         if auto_approval_delay_in_seconds is not None:
             input_["auto_approval_delay_in_seconds"] = auto_approval_delay_in_seconds
-        input_["lifetime_in_seconds"] = lifetime_in_seconds
-        input_["assignment_duration_in_seconds"] = assignment_duration_in_seconds
-        input_["reward"] = reward
-        input_["title"] = title
         if keywords is not None:
             input_["keywords"] = keywords
-        input_["description"] = description
         if question is not None:
             input_["question"] = question
         if requester_annotation is not None:
@@ -528,6 +539,7 @@ class MTurkClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_hit_type(
@@ -576,15 +588,16 @@ class MTurkClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mturk.types.create_hit_type_request.CreateHITTypeRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_mturk.types.create_hit_type_request.CreateHITTypeRequest = {
+            "assignment_duration_in_seconds": assignment_duration_in_seconds,
+            "reward": reward,
+            "title": title,
+            "description": description,
+        }
         if auto_approval_delay_in_seconds is not None:
             input_["auto_approval_delay_in_seconds"] = auto_approval_delay_in_seconds
-        input_["assignment_duration_in_seconds"] = assignment_duration_in_seconds
-        input_["reward"] = reward
-        input_["title"] = title
         if keywords is not None:
             input_["keywords"] = keywords
-        input_["description"] = description
         if qualification_requirements is not None:
             input_["qualification_requirements"] = qualification_requirements
 
@@ -593,6 +606,7 @@ class MTurkClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_hit_with_hit_type(
@@ -653,11 +667,12 @@ class MTurkClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mturk.types.create_hit_with_hit_type_request.CreateHITWithHITTypeRequest = {}  # type: ignore[typeddict-item]
-        input_["hit_type_id"] = hit_type_id
+        input_: capo_mturk.types.create_hit_with_hit_type_request.CreateHITWithHITTypeRequest = {
+            "hit_type_id": hit_type_id,
+            "lifetime_in_seconds": lifetime_in_seconds,
+        }
         if max_assignments is not None:
             input_["max_assignments"] = max_assignments
-        input_["lifetime_in_seconds"] = lifetime_in_seconds
         if question is not None:
             input_["question"] = question
         if requester_annotation is not None:
@@ -678,6 +693,7 @@ class MTurkClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_qualification_type(
@@ -730,12 +746,13 @@ class MTurkClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mturk.types.create_qualification_type_request.CreateQualificationTypeRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_mturk.types.create_qualification_type_request.CreateQualificationTypeRequest = {
+            "name": name,
+            "description": description,
+            "qualification_type_status": qualification_type_status,
+        }
         if keywords is not None:
             input_["keywords"] = keywords
-        input_["description"] = description
-        input_["qualification_type_status"] = qualification_type_status
         if retry_delay_in_seconds is not None:
             input_["retry_delay_in_seconds"] = retry_delay_in_seconds
         if test is not None:
@@ -754,6 +771,7 @@ class MTurkClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_worker_block(
@@ -790,15 +808,17 @@ class MTurkClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mturk.types.create_worker_block_request.CreateWorkerBlockRequest = {}  # type: ignore[typeddict-item]
-        input_["worker_id"] = worker_id
-        input_["reason"] = reason
+        input_: capo_mturk.types.create_worker_block_request.CreateWorkerBlockRequest = {
+            "worker_id": worker_id,
+            "reason": reason,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_hit(
@@ -833,14 +853,16 @@ class MTurkClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mturk.types.delete_hit_request.DeleteHITRequest = {}  # type: ignore[typeddict-item]
-        input_["hit_id"] = hit_id
+        input_: capo_mturk.types.delete_hit_request.DeleteHITRequest = {
+            "hit_id": hit_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_qualification_type(
@@ -875,14 +897,16 @@ class MTurkClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mturk.types.delete_qualification_type_request.DeleteQualificationTypeRequest = {}  # type: ignore[typeddict-item]
-        input_["qualification_type_id"] = qualification_type_id
+        input_: capo_mturk.types.delete_qualification_type_request.DeleteQualificationTypeRequest = {
+            "qualification_type_id": qualification_type_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_worker_block(
@@ -919,8 +943,9 @@ class MTurkClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mturk.types.delete_worker_block_request.DeleteWorkerBlockRequest = {}  # type: ignore[typeddict-item]
-        input_["worker_id"] = worker_id
+        input_: capo_mturk.types.delete_worker_block_request.DeleteWorkerBlockRequest = {
+            "worker_id": worker_id
+        }
         if reason is not None:
             input_["reason"] = reason
 
@@ -929,6 +954,7 @@ class MTurkClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def disassociate_qualification_from_worker(
@@ -967,9 +993,10 @@ class MTurkClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mturk.types.disassociate_qualification_from_worker_request.DisassociateQualificationFromWorkerRequest = {}  # type: ignore[typeddict-item]
-        input_["worker_id"] = worker_id
-        input_["qualification_type_id"] = qualification_type_id
+        input_: capo_mturk.types.disassociate_qualification_from_worker_request.DisassociateQualificationFromWorkerRequest = {
+            "worker_id": worker_id,
+            "qualification_type_id": qualification_type_id,
+        }
         if reason is not None:
             input_["reason"] = reason
 
@@ -978,6 +1005,7 @@ class MTurkClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_account_balance(
@@ -1006,13 +1034,14 @@ class MTurkClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mturk.types.get_account_balance_request.GetAccountBalanceRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_mturk.types.get_account_balance_request.GetAccountBalanceRequest = {}
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_assignment(
@@ -1047,14 +1076,16 @@ class MTurkClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mturk.types.get_assignment_request.GetAssignmentRequest = {}  # type: ignore[typeddict-item]
-        input_["assignment_id"] = assignment_id
+        input_: capo_mturk.types.get_assignment_request.GetAssignmentRequest = {
+            "assignment_id": assignment_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_file_upload_url(
@@ -1091,15 +1122,17 @@ class MTurkClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mturk.types.get_file_upload_url_request.GetFileUploadURLRequest = {}  # type: ignore[typeddict-item]
-        input_["assignment_id"] = assignment_id
-        input_["question_identifier"] = question_identifier
+        input_: capo_mturk.types.get_file_upload_url_request.GetFileUploadURLRequest = {
+            "assignment_id": assignment_id,
+            "question_identifier": question_identifier,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_hit(
@@ -1132,14 +1165,14 @@ class MTurkClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mturk.types.get_hit_request.GetHITRequest = {}  # type: ignore[typeddict-item]
-        input_["hit_id"] = hit_id
+        input_: capo_mturk.types.get_hit_request.GetHITRequest = {"hit_id": hit_id}
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_qualification_score(
@@ -1176,15 +1209,17 @@ class MTurkClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mturk.types.get_qualification_score_request.GetQualificationScoreRequest = {}  # type: ignore[typeddict-item]
-        input_["qualification_type_id"] = qualification_type_id
-        input_["worker_id"] = worker_id
+        input_: capo_mturk.types.get_qualification_score_request.GetQualificationScoreRequest = {
+            "qualification_type_id": qualification_type_id,
+            "worker_id": worker_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_qualification_type(
@@ -1221,14 +1256,16 @@ class MTurkClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mturk.types.get_qualification_type_request.GetQualificationTypeRequest = {}  # type: ignore[typeddict-item]
-        input_["qualification_type_id"] = qualification_type_id
+        input_: capo_mturk.types.get_qualification_type_request.GetQualificationTypeRequest = {
+            "qualification_type_id": qualification_type_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_assignments_for_hit(
@@ -1272,8 +1309,9 @@ class MTurkClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mturk.types.list_assignments_for_hit_request.ListAssignmentsForHITRequest = {}  # type: ignore[typeddict-item]
-        input_["hit_id"] = hit_id
+        input_: capo_mturk.types.list_assignments_for_hit_request.ListAssignmentsForHITRequest = {
+            "hit_id": hit_id
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -1286,7 +1324,35 @@ class MTurkClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_assignments_for_hit(
+        self,
+        hit_id: "capo_mturk.types.entity_id.EntityId",
+        *,
+        config_overrides: Optional[MTurkClientConfig] = None,
+        next_token: Optional[
+            "capo_mturk.types.pagination_token.PaginationToken"
+        ] = None,
+        max_results: Optional["capo_mturk.types.result_size.ResultSize"] = None,
+        assignment_statuses: Optional[
+            "capo_mturk.types.assignment_status_list.AssignmentStatusList"
+        ] = None,
+    ) -> "Iterator[capo_mturk.types.list_assignments_for_hit_response.ListAssignmentsForHITResponse]":
+        _token = next_token
+        while True:
+            _response = self.list_assignments_for_hit(
+                hit_id,
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+                assignment_statuses=assignment_statuses,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def list_bonus_payments(
         self,
@@ -1327,7 +1393,7 @@ class MTurkClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mturk.types.list_bonus_payments_request.ListBonusPaymentsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_mturk.types.list_bonus_payments_request.ListBonusPaymentsRequest = {}
         if hit_id is not None:
             input_["hit_id"] = hit_id
         if assignment_id is not None:
@@ -1342,7 +1408,33 @@ class MTurkClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_bonus_payments(
+        self,
+        *,
+        config_overrides: Optional[MTurkClientConfig] = None,
+        hit_id: Optional["capo_mturk.types.entity_id.EntityId"] = None,
+        assignment_id: Optional["capo_mturk.types.entity_id.EntityId"] = None,
+        next_token: Optional[
+            "capo_mturk.types.pagination_token.PaginationToken"
+        ] = None,
+        max_results: Optional["capo_mturk.types.result_size.ResultSize"] = None,
+    ) -> "Iterator[capo_mturk.types.list_bonus_payments_response.ListBonusPaymentsResponse]":
+        _token = next_token
+        while True:
+            _response = self.list_bonus_payments(
+                config_overrides=config_overrides,
+                hit_id=hit_id,
+                assignment_id=assignment_id,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def list_hi_ts(
         self,
@@ -1377,7 +1469,7 @@ class MTurkClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mturk.types.list_hi_ts_request.ListHITsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_mturk.types.list_hi_ts_request.ListHITsRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -1388,7 +1480,29 @@ class MTurkClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_hi_ts(
+        self,
+        *,
+        config_overrides: Optional[MTurkClientConfig] = None,
+        next_token: Optional[
+            "capo_mturk.types.pagination_token.PaginationToken"
+        ] = None,
+        max_results: Optional["capo_mturk.types.result_size.ResultSize"] = None,
+    ) -> "Iterator[capo_mturk.types.list_hi_ts_response.ListHITsResponse]":
+        _token = next_token
+        while True:
+            _response = self.list_hi_ts(
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def list_hi_ts_for_qualification_type(
         self,
@@ -1428,8 +1542,9 @@ class MTurkClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mturk.types.list_hi_ts_for_qualification_type_request.ListHITsForQualificationTypeRequest = {}  # type: ignore[typeddict-item]
-        input_["qualification_type_id"] = qualification_type_id
+        input_: capo_mturk.types.list_hi_ts_for_qualification_type_request.ListHITsForQualificationTypeRequest = {
+            "qualification_type_id": qualification_type_id
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -1440,7 +1555,31 @@ class MTurkClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_hi_ts_for_qualification_type(
+        self,
+        qualification_type_id: "capo_mturk.types.entity_id.EntityId",
+        *,
+        config_overrides: Optional[MTurkClientConfig] = None,
+        next_token: Optional[
+            "capo_mturk.types.pagination_token.PaginationToken"
+        ] = None,
+        max_results: Optional["capo_mturk.types.result_size.ResultSize"] = None,
+    ) -> "Iterator[capo_mturk.types.list_hi_ts_for_qualification_type_response.ListHITsForQualificationTypeResponse]":
+        _token = next_token
+        while True:
+            _response = self.list_hi_ts_for_qualification_type(
+                qualification_type_id,
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def list_qualification_requests(
         self,
@@ -1479,7 +1618,7 @@ class MTurkClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mturk.types.list_qualification_requests_request.ListQualificationRequestsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_mturk.types.list_qualification_requests_request.ListQualificationRequestsRequest = {}
         if qualification_type_id is not None:
             input_["qualification_type_id"] = qualification_type_id
         if next_token is not None:
@@ -1492,7 +1631,31 @@ class MTurkClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_qualification_requests(
+        self,
+        *,
+        config_overrides: Optional[MTurkClientConfig] = None,
+        qualification_type_id: Optional["capo_mturk.types.entity_id.EntityId"] = None,
+        next_token: Optional[
+            "capo_mturk.types.pagination_token.PaginationToken"
+        ] = None,
+        max_results: Optional["capo_mturk.types.result_size.ResultSize"] = None,
+    ) -> "Iterator[capo_mturk.types.list_qualification_requests_response.ListQualificationRequestsResponse]":
+        _token = next_token
+        while True:
+            _response = self.list_qualification_requests(
+                config_overrides=config_overrides,
+                qualification_type_id=qualification_type_id,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def list_qualification_types(
         self,
@@ -1535,10 +1698,11 @@ class MTurkClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mturk.types.list_qualification_types_request.ListQualificationTypesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_mturk.types.list_qualification_types_request.ListQualificationTypesRequest = {
+            "must_be_requestable": must_be_requestable
+        }
         if query is not None:
             input_["query"] = query
-        input_["must_be_requestable"] = must_be_requestable
         if must_be_owned_by_caller is not None:
             input_["must_be_owned_by_caller"] = must_be_owned_by_caller
         if next_token is not None:
@@ -1551,7 +1715,35 @@ class MTurkClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_qualification_types(
+        self,
+        must_be_requestable: "capo_mturk.types.boolean.Boolean",
+        *,
+        config_overrides: Optional[MTurkClientConfig] = None,
+        query: Optional["capo_mturk.types.string.String"] = None,
+        must_be_owned_by_caller: Optional["capo_mturk.types.boolean.Boolean"] = None,
+        next_token: Optional[
+            "capo_mturk.types.pagination_token.PaginationToken"
+        ] = None,
+        max_results: Optional["capo_mturk.types.result_size.ResultSize"] = None,
+    ) -> "Iterator[capo_mturk.types.list_qualification_types_response.ListQualificationTypesResponse]":
+        _token = next_token
+        while True:
+            _response = self.list_qualification_types(
+                must_be_requestable,
+                config_overrides=config_overrides,
+                query=query,
+                must_be_owned_by_caller=must_be_owned_by_caller,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def list_reviewable_hi_ts(
         self,
@@ -1595,7 +1787,7 @@ class MTurkClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mturk.types.list_reviewable_hi_ts_request.ListReviewableHITsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_mturk.types.list_reviewable_hi_ts_request.ListReviewableHITsRequest = {}
         if hit_type_id is not None:
             input_["hit_type_id"] = hit_type_id
         if status is not None:
@@ -1610,7 +1802,35 @@ class MTurkClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_reviewable_hi_ts(
+        self,
+        *,
+        config_overrides: Optional[MTurkClientConfig] = None,
+        hit_type_id: Optional["capo_mturk.types.entity_id.EntityId"] = None,
+        status: Optional[
+            "capo_mturk.types.reviewable_hit_status.ReviewableHITStatus"
+        ] = None,
+        next_token: Optional[
+            "capo_mturk.types.pagination_token.PaginationToken"
+        ] = None,
+        max_results: Optional["capo_mturk.types.result_size.ResultSize"] = None,
+    ) -> "Iterator[capo_mturk.types.list_reviewable_hi_ts_response.ListReviewableHITsResponse]":
+        _token = next_token
+        while True:
+            _response = self.list_reviewable_hi_ts(
+                config_overrides=config_overrides,
+                hit_type_id=hit_type_id,
+                status=status,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def list_review_policy_results_for_hit(
         self,
@@ -1658,8 +1878,9 @@ class MTurkClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mturk.types.list_review_policy_results_for_hit_request.ListReviewPolicyResultsForHITRequest = {}  # type: ignore[typeddict-item]
-        input_["hit_id"] = hit_id
+        input_: capo_mturk.types.list_review_policy_results_for_hit_request.ListReviewPolicyResultsForHITRequest = {
+            "hit_id": hit_id
+        }
         if policy_levels is not None:
             input_["policy_levels"] = policy_levels
         if retrieve_actions is not None:
@@ -1676,7 +1897,39 @@ class MTurkClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_review_policy_results_for_hit(
+        self,
+        hit_id: "capo_mturk.types.entity_id.EntityId",
+        *,
+        config_overrides: Optional[MTurkClientConfig] = None,
+        policy_levels: Optional[
+            "capo_mturk.types.review_policy_level_list.ReviewPolicyLevelList"
+        ] = None,
+        retrieve_actions: Optional["capo_mturk.types.boolean.Boolean"] = None,
+        retrieve_results: Optional["capo_mturk.types.boolean.Boolean"] = None,
+        next_token: Optional[
+            "capo_mturk.types.pagination_token.PaginationToken"
+        ] = None,
+        max_results: Optional["capo_mturk.types.result_size.ResultSize"] = None,
+    ) -> "Iterator[capo_mturk.types.list_review_policy_results_for_hit_response.ListReviewPolicyResultsForHITResponse]":
+        _token = next_token
+        while True:
+            _response = self.list_review_policy_results_for_hit(
+                hit_id,
+                config_overrides=config_overrides,
+                policy_levels=policy_levels,
+                retrieve_actions=retrieve_actions,
+                retrieve_results=retrieve_results,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def list_worker_blocks(
         self,
@@ -1713,7 +1966,7 @@ class MTurkClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mturk.types.list_worker_blocks_request.ListWorkerBlocksRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_mturk.types.list_worker_blocks_request.ListWorkerBlocksRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -1724,7 +1977,29 @@ class MTurkClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_worker_blocks(
+        self,
+        *,
+        config_overrides: Optional[MTurkClientConfig] = None,
+        next_token: Optional[
+            "capo_mturk.types.pagination_token.PaginationToken"
+        ] = None,
+        max_results: Optional["capo_mturk.types.result_size.ResultSize"] = None,
+    ) -> "Iterator[capo_mturk.types.list_worker_blocks_response.ListWorkerBlocksResponse]":
+        _token = next_token
+        while True:
+            _response = self.list_worker_blocks(
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def list_workers_with_qualification_type(
         self,
@@ -1768,8 +2043,9 @@ class MTurkClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mturk.types.list_workers_with_qualification_type_request.ListWorkersWithQualificationTypeRequest = {}  # type: ignore[typeddict-item]
-        input_["qualification_type_id"] = qualification_type_id
+        input_: capo_mturk.types.list_workers_with_qualification_type_request.ListWorkersWithQualificationTypeRequest = {
+            "qualification_type_id": qualification_type_id
+        }
         if status is not None:
             input_["status"] = status
         if next_token is not None:
@@ -1782,7 +2058,35 @@ class MTurkClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_workers_with_qualification_type(
+        self,
+        qualification_type_id: "capo_mturk.types.entity_id.EntityId",
+        *,
+        config_overrides: Optional[MTurkClientConfig] = None,
+        status: Optional[
+            "capo_mturk.types.qualification_status.QualificationStatus"
+        ] = None,
+        next_token: Optional[
+            "capo_mturk.types.pagination_token.PaginationToken"
+        ] = None,
+        max_results: Optional["capo_mturk.types.result_size.ResultSize"] = None,
+    ) -> "Iterator[capo_mturk.types.list_workers_with_qualification_type_response.ListWorkersWithQualificationTypeResponse]":
+        _token = next_token
+        while True:
+            _response = self.list_workers_with_qualification_type(
+                qualification_type_id,
+                config_overrides=config_overrides,
+                status=status,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def notify_workers(
         self,
@@ -1820,16 +2124,18 @@ class MTurkClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mturk.types.notify_workers_request.NotifyWorkersRequest = {}  # type: ignore[typeddict-item]
-        input_["subject"] = subject
-        input_["message_text"] = message_text
-        input_["worker_ids"] = worker_ids
+        input_: capo_mturk.types.notify_workers_request.NotifyWorkersRequest = {
+            "subject": subject,
+            "message_text": message_text,
+            "worker_ids": worker_ids,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def reject_assignment(
@@ -1866,15 +2172,17 @@ class MTurkClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mturk.types.reject_assignment_request.RejectAssignmentRequest = {}  # type: ignore[typeddict-item]
-        input_["assignment_id"] = assignment_id
-        input_["requester_feedback"] = requester_feedback
+        input_: capo_mturk.types.reject_assignment_request.RejectAssignmentRequest = {
+            "assignment_id": assignment_id,
+            "requester_feedback": requester_feedback,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def reject_qualification_request(
@@ -1911,8 +2219,9 @@ class MTurkClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mturk.types.reject_qualification_request_request.RejectQualificationRequestRequest = {}  # type: ignore[typeddict-item]
-        input_["qualification_request_id"] = qualification_request_id
+        input_: capo_mturk.types.reject_qualification_request_request.RejectQualificationRequestRequest = {
+            "qualification_request_id": qualification_request_id
+        }
         if reason is not None:
             input_["reason"] = reason
 
@@ -1921,6 +2230,7 @@ class MTurkClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def send_bonus(
@@ -1965,11 +2275,12 @@ class MTurkClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mturk.types.send_bonus_request.SendBonusRequest = {}  # type: ignore[typeddict-item]
-        input_["worker_id"] = worker_id
-        input_["bonus_amount"] = bonus_amount
-        input_["assignment_id"] = assignment_id
-        input_["reason"] = reason
+        input_: capo_mturk.types.send_bonus_request.SendBonusRequest = {
+            "worker_id": worker_id,
+            "bonus_amount": bonus_amount,
+            "assignment_id": assignment_id,
+            "reason": reason,
+        }
         if unique_request_token is not None:
             input_["unique_request_token"] = unique_request_token
 
@@ -1978,6 +2289,7 @@ class MTurkClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def send_test_event_notification(
@@ -2014,15 +2326,17 @@ class MTurkClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mturk.types.send_test_event_notification_request.SendTestEventNotificationRequest = {}  # type: ignore[typeddict-item]
-        input_["notification"] = notification
-        input_["test_event_type"] = test_event_type
+        input_: capo_mturk.types.send_test_event_notification_request.SendTestEventNotificationRequest = {
+            "notification": notification,
+            "test_event_type": test_event_type,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_expiration_for_hit(
@@ -2059,15 +2373,17 @@ class MTurkClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mturk.types.update_expiration_for_hit_request.UpdateExpirationForHITRequest = {}  # type: ignore[typeddict-item]
-        input_["hit_id"] = hit_id
-        input_["expire_at"] = expire_at
+        input_: capo_mturk.types.update_expiration_for_hit_request.UpdateExpirationForHITRequest = {
+            "hit_id": hit_id,
+            "expire_at": expire_at,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_hit_review_status(
@@ -2104,8 +2420,9 @@ class MTurkClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mturk.types.update_hit_review_status_request.UpdateHITReviewStatusRequest = {}  # type: ignore[typeddict-item]
-        input_["hit_id"] = hit_id
+        input_: capo_mturk.types.update_hit_review_status_request.UpdateHITReviewStatusRequest = {
+            "hit_id": hit_id
+        }
         if revert is not None:
             input_["revert"] = revert
 
@@ -2114,6 +2431,7 @@ class MTurkClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_hit_type_of_hit(
@@ -2150,15 +2468,17 @@ class MTurkClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mturk.types.update_hit_type_of_hit_request.UpdateHITTypeOfHITRequest = {}  # type: ignore[typeddict-item]
-        input_["hit_id"] = hit_id
-        input_["hit_type_id"] = hit_type_id
+        input_: capo_mturk.types.update_hit_type_of_hit_request.UpdateHITTypeOfHITRequest = {
+            "hit_id": hit_id,
+            "hit_type_id": hit_type_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_notification_settings(
@@ -2199,8 +2519,9 @@ class MTurkClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mturk.types.update_notification_settings_request.UpdateNotificationSettingsRequest = {}  # type: ignore[typeddict-item]
-        input_["hit_type_id"] = hit_type_id
+        input_: capo_mturk.types.update_notification_settings_request.UpdateNotificationSettingsRequest = {
+            "hit_type_id": hit_type_id
+        }
         if notification is not None:
             input_["notification"] = notification
         if active is not None:
@@ -2211,6 +2532,7 @@ class MTurkClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_qualification_type(
@@ -2263,8 +2585,9 @@ class MTurkClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mturk.types.update_qualification_type_request.UpdateQualificationTypeRequest = {}  # type: ignore[typeddict-item]
-        input_["qualification_type_id"] = qualification_type_id
+        input_: capo_mturk.types.update_qualification_type_request.UpdateQualificationTypeRequest = {
+            "qualification_type_id": qualification_type_id
+        }
         if description is not None:
             input_["description"] = description
         if qualification_type_status is not None:
@@ -2287,6 +2610,7 @@ class MTurkClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def __enter__(self) -> Self:

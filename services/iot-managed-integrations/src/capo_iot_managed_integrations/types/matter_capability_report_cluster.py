@@ -115,21 +115,21 @@ def serialize_json(value: MatterCapabilityReportCluster) -> dict:
 
 def deserialize_json(data: dict) -> MatterCapabilityReportCluster:
     out: MatterCapabilityReportCluster = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("MatterCapabilityReportCluster.id required")
-    if "revision" in data:
+    if data.get("revision") is not None:
         out["revision"] = data["revision"]
     else:
         raise DeserializationError("MatterCapabilityReportCluster.revision required")
-    if "publicId" in data:
+    if data.get("publicId") is not None:
         out["public_id"] = data["publicId"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "specVersion" in data:
+    if data.get("specVersion") is not None:
         out["spec_version"] = data["specVersion"]
-    if "attributes" in data:
+    if data.get("attributes") is not None:
         import capo_iot_managed_integrations.types.matter_capability_report_attributes
 
         out["attributes"] = (
@@ -137,7 +137,7 @@ def deserialize_json(data: dict) -> MatterCapabilityReportCluster:
                 data["attributes"]
             )
         )
-    if "commands" in data:
+    if data.get("commands") is not None:
         import capo_iot_managed_integrations.types.matter_capability_report_commands
 
         out["commands"] = (
@@ -145,7 +145,7 @@ def deserialize_json(data: dict) -> MatterCapabilityReportCluster:
                 data["commands"]
             )
         )
-    if "events" in data:
+    if data.get("events") is not None:
         import capo_iot_managed_integrations.types.matter_capability_report_events
 
         out["events"] = (
@@ -153,9 +153,9 @@ def deserialize_json(data: dict) -> MatterCapabilityReportCluster:
                 data["events"]
             )
         )
-    if "featureMap" in data:
+    if data.get("featureMap") is not None:
         out["feature_map"] = data["featureMap"]
-    if "generatedCommands" in data:
+    if data.get("generatedCommands") is not None:
         import capo_iot_managed_integrations.types.matter_capability_report_generated_commands
 
         out["generated_commands"] = (
@@ -163,6 +163,6 @@ def deserialize_json(data: dict) -> MatterCapabilityReportCluster:
                 data["generatedCommands"]
             )
         )
-    if "fabricIndex" in data:
+    if data.get("fabricIndex") is not None:
         out["fabric_index"] = data["fabricIndex"]
     return out

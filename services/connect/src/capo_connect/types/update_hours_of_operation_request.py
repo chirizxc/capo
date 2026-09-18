@@ -54,13 +54,13 @@ def serialize_json(value: UpdateHoursOfOperationRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateHoursOfOperationRequest:
     out: UpdateHoursOfOperationRequest = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "TimeZone" in data:
+    if data.get("TimeZone") is not None:
         out["time_zone"] = data["TimeZone"]
-    if "Config" in data:
+    if data.get("Config") is not None:
         import capo_connect.types.hours_of_operation_config_list
 
         out["config"] = (

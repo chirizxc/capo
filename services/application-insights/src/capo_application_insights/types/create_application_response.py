@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: CreateApplicationResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateApplicationResponse:
     out: CreateApplicationResponse = {}  # type: ignore[typeddict-item]
-    if "ApplicationInfo" in data:
+    if data.get("ApplicationInfo") is not None:
         import capo_application_insights.types.application_info
 
         out["application_info"] = (

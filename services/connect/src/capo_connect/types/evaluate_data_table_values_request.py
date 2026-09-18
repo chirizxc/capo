@@ -47,7 +47,7 @@ def serialize_json(value: EvaluateDataTableValuesRequest) -> dict:
 
 def deserialize_json(data: dict) -> EvaluateDataTableValuesRequest:
     out: EvaluateDataTableValuesRequest = {}  # type: ignore[typeddict-item]
-    if "Values" in data:
+    if data.get("Values") is not None:
         import capo_connect.types.data_table_value_evaluation_set_list
 
         out["values"] = (
@@ -57,6 +57,6 @@ def deserialize_json(data: dict) -> EvaluateDataTableValuesRequest:
         )
     else:
         raise DeserializationError("EvaluateDataTableValuesRequest.values required")
-    if "TimeZone" in data:
+    if data.get("TimeZone") is not None:
         out["time_zone"] = data["TimeZone"]
     return out

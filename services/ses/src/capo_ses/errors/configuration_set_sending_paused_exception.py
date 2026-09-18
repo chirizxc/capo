@@ -51,15 +51,20 @@ class ConfigurationSetSendingPausedException(ServiceError):
 
     code: str | None = "ConfigurationSetSendingPausedException"
 
-    def __init__(self, data: ConfigurationSetSendingPausedException_):
+    def __init__(
+        self, data: ConfigurationSetSendingPausedException_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="ConfigurationSetSendingPausedException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_query(cls, el: Element) -> "ConfigurationSetSendingPausedException":
-        return cls(deserialize_query(el))
+    def from_query(
+        cls, el: Element, message: str | None = None
+    ) -> "ConfigurationSetSendingPausedException":
+        return cls(deserialize_query(el), message)

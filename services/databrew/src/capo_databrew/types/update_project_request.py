@@ -33,11 +33,11 @@ def serialize_json(value: UpdateProjectRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateProjectRequest:
     out: UpdateProjectRequest = {}  # type: ignore[typeddict-item]
-    if "Sample" in data:
+    if data.get("Sample") is not None:
         import capo_databrew.types.sample
 
         out["sample"] = capo_databrew.types.sample.deserialize_json(data["Sample"])
-    if "RoleArn" in data:
+    if data.get("RoleArn") is not None:
         out["role_arn"] = data["RoleArn"]
     else:
         raise DeserializationError("UpdateProjectRequest.role_arn required")

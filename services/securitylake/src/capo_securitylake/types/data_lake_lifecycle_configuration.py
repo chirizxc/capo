@@ -44,7 +44,7 @@ def serialize_json(value: DataLakeLifecycleConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> DataLakeLifecycleConfiguration:
     out: DataLakeLifecycleConfiguration = {}  # type: ignore[typeddict-item]
-    if "expiration" in data:
+    if data.get("expiration") is not None:
         import capo_securitylake.types.data_lake_lifecycle_expiration
 
         out["expiration"] = (
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> DataLakeLifecycleConfiguration:
                 data["expiration"]
             )
         )
-    if "transitions" in data:
+    if data.get("transitions") is not None:
         import capo_securitylake.types.data_lake_lifecycle_transition_list
 
         out["transitions"] = (

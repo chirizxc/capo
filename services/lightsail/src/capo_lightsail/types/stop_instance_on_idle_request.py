@@ -27,8 +27,8 @@ def serialize_aws_json_1_1(value: StopInstanceOnIdleRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> StopInstanceOnIdleRequest:
     out: StopInstanceOnIdleRequest = {}  # type: ignore[typeddict-item]
-    if "threshold" in data:
+    if data.get("threshold") is not None:
         out["threshold"] = data["threshold"]
-    if "duration" in data:
+    if data.get("duration") is not None:
         out["duration"] = data["duration"]
     return out

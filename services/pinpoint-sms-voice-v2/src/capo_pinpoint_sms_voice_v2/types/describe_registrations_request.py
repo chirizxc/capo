@@ -54,7 +54,7 @@ def serialize_aws_json_1_0(value: DescribeRegistrationsRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> DescribeRegistrationsRequest:
     out: DescribeRegistrationsRequest = {}  # type: ignore[typeddict-item]
-    if "RegistrationIds" in data:
+    if data.get("RegistrationIds") is not None:
         import capo_pinpoint_sms_voice_v2.types.registration_id_list
 
         out["registration_ids"] = (
@@ -62,7 +62,7 @@ def deserialize_aws_json_1_0(data: dict) -> DescribeRegistrationsRequest:
                 data["RegistrationIds"]
             )
         )
-    if "Filters" in data:
+    if data.get("Filters") is not None:
         import capo_pinpoint_sms_voice_v2.types.registration_filter_list
 
         out["filters"] = (
@@ -70,8 +70,8 @@ def deserialize_aws_json_1_0(data: dict) -> DescribeRegistrationsRequest:
                 data["Filters"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
     return out

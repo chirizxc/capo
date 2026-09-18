@@ -45,19 +45,19 @@ def serialize_json(value: RouteFerryTravelStep) -> dict:
 
 def deserialize_json(data: dict) -> RouteFerryTravelStep:
     out: RouteFerryTravelStep = {}  # type: ignore[typeddict-item]
-    if "Distance" in data:
+    if data.get("Distance") is not None:
         out["distance"] = data["Distance"]
     else:
         out["distance"] = 0
-    if "Duration" in data:
+    if data.get("Duration") is not None:
         out["duration"] = data["Duration"]
     else:
         out["duration"] = 0
-    if "GeometryOffset" in data:
+    if data.get("GeometryOffset") is not None:
         out["geometry_offset"] = data["GeometryOffset"]
-    if "Instruction" in data:
+    if data.get("Instruction") is not None:
         out["instruction"] = data["Instruction"]
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_geo_routes.types.route_ferry_travel_step_type
 
         out["type"] = (

@@ -49,7 +49,7 @@ def serialize_json(value: FindingDetails) -> dict:
 
 
 def deserialize_json(data: dict) -> FindingDetails:
-    if "codeDeployDeployment" in data:
+    if data.get("codeDeployDeployment") is not None:
         import capo_ssm_incidents.types.code_deploy_deployment
 
         return {
@@ -57,7 +57,7 @@ def deserialize_json(data: dict) -> FindingDetails:
                 data["codeDeployDeployment"]
             )
         }
-    elif "cloudFormationStackUpdate" in data:
+    elif data.get("cloudFormationStackUpdate") is not None:
         import capo_ssm_incidents.types.cloud_formation_stack_update
 
         return {

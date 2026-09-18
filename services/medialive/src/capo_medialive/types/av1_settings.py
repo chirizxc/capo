@@ -139,7 +139,15 @@ def serialize_json(value: Av1Settings) -> dict:
     if "framerate_numerator" in value:
         out["framerateNumerator"] = value["framerate_numerator"]
     if "gop_size" in value:
-        out["gopSize"] = value["gop_size"]
+        out["gopSize"] = (
+            "NaN"
+            if value["gop_size"] != value["gop_size"]
+            else "Infinity"
+            if value["gop_size"] == float("inf")
+            else "-Infinity"
+            if value["gop_size"] == float("-inf")
+            else value["gop_size"]
+        )
     if "gop_size_units" in value:
         import capo_medialive.types.av1_gop_size_units
 
@@ -227,15 +235,15 @@ def serialize_json(value: Av1Settings) -> dict:
 
 def deserialize_json(data: dict) -> Av1Settings:
     out: Av1Settings = {}  # type: ignore[typeddict-item]
-    if "afdSignaling" in data:
+    if data.get("afdSignaling") is not None:
         import capo_medialive.types.afd_signaling
 
         out["afd_signaling"] = capo_medialive.types.afd_signaling.deserialize_json(
             data["afdSignaling"]
         )
-    if "bufSize" in data:
+    if data.get("bufSize") is not None:
         out["buf_size"] = data["bufSize"]
-    if "colorSpaceSettings" in data:
+    if data.get("colorSpaceSettings") is not None:
         import capo_medialive.types.av1_color_space_settings
 
         out["color_space_settings"] = (
@@ -243,19 +251,19 @@ def deserialize_json(data: dict) -> Av1Settings:
                 data["colorSpaceSettings"]
             )
         )
-    if "fixedAfd" in data:
+    if data.get("fixedAfd") is not None:
         import capo_medialive.types.fixed_afd
 
         out["fixed_afd"] = capo_medialive.types.fixed_afd.deserialize_json(
             data["fixedAfd"]
         )
-    if "framerateDenominator" in data:
+    if data.get("framerateDenominator") is not None:
         out["framerate_denominator"] = data["framerateDenominator"]
-    if "framerateNumerator" in data:
+    if data.get("framerateNumerator") is not None:
         out["framerate_numerator"] = data["framerateNumerator"]
-    if "gopSize" in data:
-        out["gop_size"] = data["gopSize"]
-    if "gopSizeUnits" in data:
+    if data.get("gopSize") is not None:
+        out["gop_size"] = float(data["gopSize"])
+    if data.get("gopSizeUnits") is not None:
         import capo_medialive.types.av1_gop_size_units
 
         out["gop_size_units"] = (
@@ -263,11 +271,11 @@ def deserialize_json(data: dict) -> Av1Settings:
                 data["gopSizeUnits"]
             )
         )
-    if "level" in data:
+    if data.get("level") is not None:
         import capo_medialive.types.av1_level
 
         out["level"] = capo_medialive.types.av1_level.deserialize_json(data["level"])
-    if "lookAheadRateControl" in data:
+    if data.get("lookAheadRateControl") is not None:
         import capo_medialive.types.av1_look_ahead_rate_control
 
         out["look_ahead_rate_control"] = (
@@ -275,17 +283,17 @@ def deserialize_json(data: dict) -> Av1Settings:
                 data["lookAheadRateControl"]
             )
         )
-    if "maxBitrate" in data:
+    if data.get("maxBitrate") is not None:
         out["max_bitrate"] = data["maxBitrate"]
-    if "minIInterval" in data:
+    if data.get("minIInterval") is not None:
         out["min_i_interval"] = data["minIInterval"]
-    if "parDenominator" in data:
+    if data.get("parDenominator") is not None:
         out["par_denominator"] = data["parDenominator"]
-    if "parNumerator" in data:
+    if data.get("parNumerator") is not None:
         out["par_numerator"] = data["parNumerator"]
-    if "qvbrQualityLevel" in data:
+    if data.get("qvbrQualityLevel") is not None:
         out["qvbr_quality_level"] = data["qvbrQualityLevel"]
-    if "sceneChangeDetect" in data:
+    if data.get("sceneChangeDetect") is not None:
         import capo_medialive.types.av1_scene_change_detect
 
         out["scene_change_detect"] = (
@@ -293,7 +301,7 @@ def deserialize_json(data: dict) -> Av1Settings:
                 data["sceneChangeDetect"]
             )
         )
-    if "timecodeBurninSettings" in data:
+    if data.get("timecodeBurninSettings") is not None:
         import capo_medialive.types.timecode_burnin_settings
 
         out["timecode_burnin_settings"] = (
@@ -301,9 +309,9 @@ def deserialize_json(data: dict) -> Av1Settings:
                 data["timecodeBurninSettings"]
             )
         )
-    if "bitrate" in data:
+    if data.get("bitrate") is not None:
         out["bitrate"] = data["bitrate"]
-    if "rateControlMode" in data:
+    if data.get("rateControlMode") is not None:
         import capo_medialive.types.av1_rate_control_mode
 
         out["rate_control_mode"] = (
@@ -311,21 +319,21 @@ def deserialize_json(data: dict) -> Av1Settings:
                 data["rateControlMode"]
             )
         )
-    if "minBitrate" in data:
+    if data.get("minBitrate") is not None:
         out["min_bitrate"] = data["minBitrate"]
-    if "spatialAq" in data:
+    if data.get("spatialAq") is not None:
         import capo_medialive.types.av1_spatial_aq
 
         out["spatial_aq"] = capo_medialive.types.av1_spatial_aq.deserialize_json(
             data["spatialAq"]
         )
-    if "temporalAq" in data:
+    if data.get("temporalAq") is not None:
         import capo_medialive.types.av1_temporal_aq
 
         out["temporal_aq"] = capo_medialive.types.av1_temporal_aq.deserialize_json(
             data["temporalAq"]
         )
-    if "timecodeInsertion" in data:
+    if data.get("timecodeInsertion") is not None:
         import capo_medialive.types.av1_timecode_insertion_behavior
 
         out["timecode_insertion"] = (
@@ -333,7 +341,7 @@ def deserialize_json(data: dict) -> Av1Settings:
                 data["timecodeInsertion"]
             )
         )
-    if "bitDepth" in data:
+    if data.get("bitDepth") is not None:
         import capo_medialive.types.av1_bit_depth
 
         out["bit_depth"] = capo_medialive.types.av1_bit_depth.deserialize_json(

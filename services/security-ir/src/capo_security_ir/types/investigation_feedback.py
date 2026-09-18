@@ -42,15 +42,15 @@ def serialize_json(value: InvestigationFeedback) -> dict:
 
 def deserialize_json(data: dict) -> InvestigationFeedback:
     out: InvestigationFeedback = {}  # type: ignore[typeddict-item]
-    if "usefulness" in data:
+    if data.get("usefulness") is not None:
         import capo_security_ir.types.usefulness_rating
 
         out["usefulness"] = capo_security_ir.types.usefulness_rating.deserialize_json(
             data["usefulness"]
         )
-    if "comment" in data:
+    if data.get("comment") is not None:
         out["comment"] = data["comment"]
-    if "submittedAt" in data:
+    if data.get("submittedAt") is not None:
         import capo_security_ir.types._prelude.timestamp
 
         out["submitted_at"] = (

@@ -44,7 +44,7 @@ def serialize_aws_json_1_0(value: CustomizableMetricParameters) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CustomizableMetricParameters:
     out: CustomizableMetricParameters = {}  # type: ignore[typeddict-item]
-    if "threshold" in data:
+    if data.get("threshold") is not None:
         import capo_compute_optimizer.types.customizable_metric_threshold
 
         out["threshold"] = (
@@ -52,7 +52,7 @@ def deserialize_aws_json_1_0(data: dict) -> CustomizableMetricParameters:
                 data["threshold"]
             )
         )
-    if "headroom" in data:
+    if data.get("headroom") is not None:
         import capo_compute_optimizer.types.customizable_metric_headroom
 
         out["headroom"] = (

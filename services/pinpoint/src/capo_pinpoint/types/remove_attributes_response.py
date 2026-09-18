@@ -30,7 +30,7 @@ def serialize_json(value: RemoveAttributesResponse) -> dict:
 
 def deserialize_json(data: dict) -> RemoveAttributesResponse:
     out: RemoveAttributesResponse = {}  # type: ignore[typeddict-item]
-    if "AttributesResource" in data:
+    if data.get("AttributesResource") is not None:
         import capo_pinpoint.types.attributes_resource
 
         out["attributes_resource"] = (

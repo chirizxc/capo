@@ -27,7 +27,7 @@ def serialize_aws_json_1_1(value: DescribeCampaignResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeCampaignResponse:
     out: DescribeCampaignResponse = {}  # type: ignore[typeddict-item]
-    if "campaign" in data:
+    if data.get("campaign") is not None:
         import capo_personalize.types.campaign
 
         out["campaign"] = capo_personalize.types.campaign.deserialize_aws_json_1_1(

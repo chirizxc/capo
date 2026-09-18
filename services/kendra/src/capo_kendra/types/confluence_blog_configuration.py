@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: ConfluenceBlogConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ConfluenceBlogConfiguration:
     out: ConfluenceBlogConfiguration = {}  # type: ignore[typeddict-item]
-    if "BlogFieldMappings" in data:
+    if data.get("BlogFieldMappings") is not None:
         import capo_kendra.types.confluence_blog_field_mappings_list
 
         out["blog_field_mappings"] = (

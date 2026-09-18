@@ -23,6 +23,8 @@ def deserialize_aws_json_1_1(data: list) -> Datapoints:
 
     out: Datapoints = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_auto_scaling_plans.types.datapoint.deserialize_aws_json_1_1(item)
         )

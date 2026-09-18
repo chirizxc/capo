@@ -82,9 +82,9 @@ def serialize_aws_json_1_1(value: FsxProtocolSmb) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> FsxProtocolSmb:
     out: FsxProtocolSmb = {}  # type: ignore[typeddict-item]
-    if "Domain" in data:
+    if data.get("Domain") is not None:
         out["domain"] = data["Domain"]
-    if "MountOptions" in data:
+    if data.get("MountOptions") is not None:
         import capo_datasync.types.smb_mount_options
 
         out["mount_options"] = (
@@ -92,15 +92,15 @@ def deserialize_aws_json_1_1(data: dict) -> FsxProtocolSmb:
                 data["MountOptions"]
             )
         )
-    if "Password" in data:
+    if data.get("Password") is not None:
         out["password"] = data["Password"]
     else:
         out["password"] = ""
-    if "User" in data:
+    if data.get("User") is not None:
         out["user"] = data["User"]
     else:
         raise DeserializationError("FsxProtocolSmb.user required")
-    if "ManagedSecretConfig" in data:
+    if data.get("ManagedSecretConfig") is not None:
         import capo_datasync.types.managed_secret_config
 
         out["managed_secret_config"] = (
@@ -108,7 +108,7 @@ def deserialize_aws_json_1_1(data: dict) -> FsxProtocolSmb:
                 data["ManagedSecretConfig"]
             )
         )
-    if "CmkSecretConfig" in data:
+    if data.get("CmkSecretConfig") is not None:
         import capo_datasync.types.cmk_secret_config
 
         out["cmk_secret_config"] = (
@@ -116,7 +116,7 @@ def deserialize_aws_json_1_1(data: dict) -> FsxProtocolSmb:
                 data["CmkSecretConfig"]
             )
         )
-    if "CustomSecretConfig" in data:
+    if data.get("CustomSecretConfig") is not None:
         import capo_datasync.types.custom_secret_config
 
         out["custom_secret_config"] = (

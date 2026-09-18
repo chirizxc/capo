@@ -47,7 +47,7 @@ def serialize_json(value: WirelessDeviceLogOption) -> dict:
 
 def deserialize_json(data: dict) -> WirelessDeviceLogOption:
     out: WirelessDeviceLogOption = {}  # type: ignore[typeddict-item]
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_iot_wireless.types.wireless_device_type
 
         out["type"] = capo_iot_wireless.types.wireless_device_type.deserialize_json(
@@ -55,7 +55,7 @@ def deserialize_json(data: dict) -> WirelessDeviceLogOption:
         )
     else:
         raise DeserializationError("WirelessDeviceLogOption.type required")
-    if "LogLevel" in data:
+    if data.get("LogLevel") is not None:
         import capo_iot_wireless.types.log_level
 
         out["log_level"] = capo_iot_wireless.types.log_level.deserialize_json(
@@ -63,7 +63,7 @@ def deserialize_json(data: dict) -> WirelessDeviceLogOption:
         )
     else:
         raise DeserializationError("WirelessDeviceLogOption.log_level required")
-    if "Events" in data:
+    if data.get("Events") is not None:
         import capo_iot_wireless.types.wireless_device_event_log_option_list
 
         out["events"] = (

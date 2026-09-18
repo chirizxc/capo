@@ -36,7 +36,7 @@ def serialize_json(value: SubDomain) -> dict:
 
 def deserialize_json(data: dict) -> SubDomain:
     out: SubDomain = {}  # type: ignore[typeddict-item]
-    if "subDomainSetting" in data:
+    if data.get("subDomainSetting") is not None:
         import capo_amplify.types.sub_domain_setting
 
         out["sub_domain_setting"] = (
@@ -46,11 +46,11 @@ def deserialize_json(data: dict) -> SubDomain:
         )
     else:
         raise DeserializationError("SubDomain.sub_domain_setting required")
-    if "verified" in data:
+    if data.get("verified") is not None:
         out["verified"] = data["verified"]
     else:
         raise DeserializationError("SubDomain.verified required")
-    if "dnsRecord" in data:
+    if data.get("dnsRecord") is not None:
         out["dns_record"] = data["dnsRecord"]
     else:
         raise DeserializationError("SubDomain.dns_record required")

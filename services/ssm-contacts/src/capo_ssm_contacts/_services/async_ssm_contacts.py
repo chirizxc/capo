@@ -1,5 +1,6 @@
 """Generated from Smithy shape ``com.amazonaws.ssmcontacts#SSMContacts``."""
 
+import uuid
 import warnings
 from collections.abc import AsyncIterator
 from typing import TYPE_CHECKING, Any, Iterable, Optional
@@ -299,14 +300,15 @@ class AsyncSSMContactsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ssm_contacts.types.accept_page_request.AcceptPageRequest = {}  # type: ignore[typeddict-item]
-        input_["page_id"] = page_id
+        input_: capo_ssm_contacts.types.accept_page_request.AcceptPageRequest = {
+            "page_id": page_id,
+            "accept_type": accept_type,
+            "accept_code": accept_code,
+        }
         if contact_channel_id is not None:
             input_["contact_channel_id"] = contact_channel_id
-        input_["accept_type"] = accept_type
         if note is not None:
             input_["note"] = note
-        input_["accept_code"] = accept_code
         if accept_code_validation is not None:
             input_["accept_code_validation"] = accept_code_validation
 
@@ -315,6 +317,7 @@ class AsyncSSMContactsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def activate_contact_channel(
@@ -355,15 +358,17 @@ class AsyncSSMContactsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ssm_contacts.types.activate_contact_channel_request.ActivateContactChannelRequest = {}  # type: ignore[typeddict-item]
-        input_["contact_channel_id"] = contact_channel_id
-        input_["activation_code"] = activation_code
+        input_: capo_ssm_contacts.types.activate_contact_channel_request.ActivateContactChannelRequest = {
+            "contact_channel_id": contact_channel_id,
+            "activation_code": activation_code,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_contact(
@@ -418,22 +423,25 @@ class AsyncSSMContactsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ssm_contacts.types.create_contact_request.CreateContactRequest = {}  # type: ignore[typeddict-item]
-        input_["alias"] = alias
+        input_: capo_ssm_contacts.types.create_contact_request.CreateContactRequest = {
+            "alias": alias,
+            "type": type,
+            "plan": plan,
+        }
         if display_name is not None:
             input_["display_name"] = display_name
-        input_["type"] = type
-        input_["plan"] = plan
         if tags is not None:
             input_["tags"] = tags
-        if idempotency_token is not None:
-            input_["idempotency_token"] = idempotency_token
+        if idempotency_token is None:
+            idempotency_token = str(uuid.uuid4())
+        input_["idempotency_token"] = idempotency_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_contact_channel(
@@ -487,21 +495,24 @@ class AsyncSSMContactsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ssm_contacts.types.create_contact_channel_request.CreateContactChannelRequest = {}  # type: ignore[typeddict-item]
-        input_["contact_id"] = contact_id
-        input_["name"] = name
-        input_["type"] = type
-        input_["delivery_address"] = delivery_address
+        input_: capo_ssm_contacts.types.create_contact_channel_request.CreateContactChannelRequest = {
+            "contact_id": contact_id,
+            "name": name,
+            "type": type,
+            "delivery_address": delivery_address,
+        }
         if defer_activation is not None:
             input_["defer_activation"] = defer_activation
-        if idempotency_token is not None:
-            input_["idempotency_token"] = idempotency_token
+        if idempotency_token is None:
+            idempotency_token = str(uuid.uuid4())
+        input_["idempotency_token"] = idempotency_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_rotation(
@@ -555,13 +566,14 @@ class AsyncSSMContactsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ssm_contacts.types.create_rotation_request.CreateRotationRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        input_["contact_ids"] = contact_ids
+        input_: capo_ssm_contacts.types.create_rotation_request.CreateRotationRequest = {
+            "name": name,
+            "contact_ids": contact_ids,
+            "time_zone_id": time_zone_id,
+            "recurrence": recurrence,
+        }
         if start_time is not None:
             input_["start_time"] = start_time
-        input_["time_zone_id"] = time_zone_id
-        input_["recurrence"] = recurrence
         if tags is not None:
             input_["tags"] = tags
         if idempotency_token is not None:
@@ -572,6 +584,7 @@ class AsyncSSMContactsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_rotation_override(
@@ -621,11 +634,12 @@ class AsyncSSMContactsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ssm_contacts.types.create_rotation_override_request.CreateRotationOverrideRequest = {}  # type: ignore[typeddict-item]
-        input_["rotation_id"] = rotation_id
-        input_["new_contact_ids"] = new_contact_ids
-        input_["start_time"] = start_time
-        input_["end_time"] = end_time
+        input_: capo_ssm_contacts.types.create_rotation_override_request.CreateRotationOverrideRequest = {
+            "rotation_id": rotation_id,
+            "new_contact_ids": new_contact_ids,
+            "start_time": start_time,
+            "end_time": end_time,
+        }
         if idempotency_token is not None:
             input_["idempotency_token"] = idempotency_token
 
@@ -634,6 +648,7 @@ class AsyncSSMContactsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def deactivate_contact_channel(
@@ -672,14 +687,16 @@ class AsyncSSMContactsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ssm_contacts.types.deactivate_contact_channel_request.DeactivateContactChannelRequest = {}  # type: ignore[typeddict-item]
-        input_["contact_channel_id"] = contact_channel_id
+        input_: capo_ssm_contacts.types.deactivate_contact_channel_request.DeactivateContactChannelRequest = {
+            "contact_channel_id": contact_channel_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_contact(
@@ -719,14 +736,16 @@ class AsyncSSMContactsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ssm_contacts.types.delete_contact_request.DeleteContactRequest = {}  # type: ignore[typeddict-item]
-        input_["contact_id"] = contact_id
+        input_: capo_ssm_contacts.types.delete_contact_request.DeleteContactRequest = {
+            "contact_id": contact_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_contact_channel(
@@ -765,14 +784,16 @@ class AsyncSSMContactsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ssm_contacts.types.delete_contact_channel_request.DeleteContactChannelRequest = {}  # type: ignore[typeddict-item]
-        input_["contact_channel_id"] = contact_channel_id
+        input_: capo_ssm_contacts.types.delete_contact_channel_request.DeleteContactChannelRequest = {
+            "contact_channel_id": contact_channel_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_rotation(
@@ -812,14 +833,16 @@ class AsyncSSMContactsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ssm_contacts.types.delete_rotation_request.DeleteRotationRequest = {}  # type: ignore[typeddict-item]
-        input_["rotation_id"] = rotation_id
+        input_: capo_ssm_contacts.types.delete_rotation_request.DeleteRotationRequest = {
+            "rotation_id": rotation_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_rotation_override(
@@ -860,15 +883,17 @@ class AsyncSSMContactsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ssm_contacts.types.delete_rotation_override_request.DeleteRotationOverrideRequest = {}  # type: ignore[typeddict-item]
-        input_["rotation_id"] = rotation_id
-        input_["rotation_override_id"] = rotation_override_id
+        input_: capo_ssm_contacts.types.delete_rotation_override_request.DeleteRotationOverrideRequest = {
+            "rotation_id": rotation_id,
+            "rotation_override_id": rotation_override_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_engagement(
@@ -908,14 +933,16 @@ class AsyncSSMContactsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ssm_contacts.types.describe_engagement_request.DescribeEngagementRequest = {}  # type: ignore[typeddict-item]
-        input_["engagement_id"] = engagement_id
+        input_: capo_ssm_contacts.types.describe_engagement_request.DescribeEngagementRequest = {
+            "engagement_id": engagement_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_page(
@@ -955,14 +982,16 @@ class AsyncSSMContactsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ssm_contacts.types.describe_page_request.DescribePageRequest = {}  # type: ignore[typeddict-item]
-        input_["page_id"] = page_id
+        input_: capo_ssm_contacts.types.describe_page_request.DescribePageRequest = {
+            "page_id": page_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_contact(
@@ -1002,14 +1031,16 @@ class AsyncSSMContactsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ssm_contacts.types.get_contact_request.GetContactRequest = {}  # type: ignore[typeddict-item]
-        input_["contact_id"] = contact_id
+        input_: capo_ssm_contacts.types.get_contact_request.GetContactRequest = {
+            "contact_id": contact_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_contact_channel(
@@ -1049,14 +1080,16 @@ class AsyncSSMContactsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ssm_contacts.types.get_contact_channel_request.GetContactChannelRequest = {}  # type: ignore[typeddict-item]
-        input_["contact_channel_id"] = contact_channel_id
+        input_: capo_ssm_contacts.types.get_contact_channel_request.GetContactChannelRequest = {
+            "contact_channel_id": contact_channel_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_contact_policy(
@@ -1095,14 +1128,16 @@ class AsyncSSMContactsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ssm_contacts.types.get_contact_policy_request.GetContactPolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["contact_arn"] = contact_arn
+        input_: capo_ssm_contacts.types.get_contact_policy_request.GetContactPolicyRequest = {
+            "contact_arn": contact_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_rotation(
@@ -1141,14 +1176,16 @@ class AsyncSSMContactsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ssm_contacts.types.get_rotation_request.GetRotationRequest = {}  # type: ignore[typeddict-item]
-        input_["rotation_id"] = rotation_id
+        input_: capo_ssm_contacts.types.get_rotation_request.GetRotationRequest = {
+            "rotation_id": rotation_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_rotation_override(
@@ -1191,15 +1228,17 @@ class AsyncSSMContactsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ssm_contacts.types.get_rotation_override_request.GetRotationOverrideRequest = {}  # type: ignore[typeddict-item]
-        input_["rotation_id"] = rotation_id
-        input_["rotation_override_id"] = rotation_override_id
+        input_: capo_ssm_contacts.types.get_rotation_override_request.GetRotationOverrideRequest = {
+            "rotation_id": rotation_id,
+            "rotation_override_id": rotation_override_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_contact_channels(
@@ -1247,8 +1286,9 @@ class AsyncSSMContactsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ssm_contacts.types.list_contact_channels_request.ListContactChannelsRequest = {}  # type: ignore[typeddict-item]
-        input_["contact_id"] = contact_id
+        input_: capo_ssm_contacts.types.list_contact_channels_request.ListContactChannelsRequest = {
+            "contact_id": contact_id
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -1259,6 +1299,7 @@ class AsyncSSMContactsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_contact_channels(
@@ -1331,7 +1372,7 @@ class AsyncSSMContactsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ssm_contacts.types.list_contacts_request.ListContactsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_ssm_contacts.types.list_contacts_request.ListContactsRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -1346,6 +1387,7 @@ class AsyncSSMContactsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_contacts(
@@ -1422,7 +1464,7 @@ class AsyncSSMContactsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ssm_contacts.types.list_engagements_request.ListEngagementsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_ssm_contacts.types.list_engagements_request.ListEngagementsRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -1437,6 +1479,7 @@ class AsyncSSMContactsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_engagements(
@@ -1510,8 +1553,9 @@ class AsyncSSMContactsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ssm_contacts.types.list_page_receipts_request.ListPageReceiptsRequest = {}  # type: ignore[typeddict-item]
-        input_["page_id"] = page_id
+        input_: capo_ssm_contacts.types.list_page_receipts_request.ListPageReceiptsRequest = {
+            "page_id": page_id
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -1522,6 +1566,7 @@ class AsyncSSMContactsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_page_receipts(
@@ -1591,16 +1636,18 @@ class AsyncSSMContactsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ssm_contacts.types.list_page_resolutions_request.ListPageResolutionsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_ssm_contacts.types.list_page_resolutions_request.ListPageResolutionsRequest = {
+            "page_id": page_id
+        }
         if next_token is not None:
             input_["next_token"] = next_token
-        input_["page_id"] = page_id
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_page_resolutions(
@@ -1670,8 +1717,9 @@ class AsyncSSMContactsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ssm_contacts.types.list_pages_by_contact_request.ListPagesByContactRequest = {}  # type: ignore[typeddict-item]
-        input_["contact_id"] = contact_id
+        input_: capo_ssm_contacts.types.list_pages_by_contact_request.ListPagesByContactRequest = {
+            "contact_id": contact_id
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -1682,6 +1730,7 @@ class AsyncSSMContactsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_pages_by_contact(
@@ -1751,8 +1800,9 @@ class AsyncSSMContactsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ssm_contacts.types.list_pages_by_engagement_request.ListPagesByEngagementRequest = {}  # type: ignore[typeddict-item]
-        input_["engagement_id"] = engagement_id
+        input_: capo_ssm_contacts.types.list_pages_by_engagement_request.ListPagesByEngagementRequest = {
+            "engagement_id": engagement_id
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -1763,6 +1813,7 @@ class AsyncSSMContactsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_pages_by_engagement(
@@ -1847,15 +1898,16 @@ class AsyncSSMContactsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ssm_contacts.types.list_preview_rotation_shifts_request.ListPreviewRotationShiftsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_ssm_contacts.types.list_preview_rotation_shifts_request.ListPreviewRotationShiftsRequest = {
+            "end_time": end_time,
+            "members": members,
+            "time_zone_id": time_zone_id,
+            "recurrence": recurrence,
+        }
         if rotation_start_time is not None:
             input_["rotation_start_time"] = rotation_start_time
         if start_time is not None:
             input_["start_time"] = start_time
-        input_["end_time"] = end_time
-        input_["members"] = members
-        input_["time_zone_id"] = time_zone_id
-        input_["recurrence"] = recurrence
         if overrides is not None:
             input_["overrides"] = overrides
         if next_token is not None:
@@ -1868,6 +1920,7 @@ class AsyncSSMContactsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_preview_rotation_shifts(
@@ -1957,10 +2010,11 @@ class AsyncSSMContactsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ssm_contacts.types.list_rotation_overrides_request.ListRotationOverridesRequest = {}  # type: ignore[typeddict-item]
-        input_["rotation_id"] = rotation_id
-        input_["start_time"] = start_time
-        input_["end_time"] = end_time
+        input_: capo_ssm_contacts.types.list_rotation_overrides_request.ListRotationOverridesRequest = {
+            "rotation_id": rotation_id,
+            "start_time": start_time,
+            "end_time": end_time,
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -1971,6 +2025,7 @@ class AsyncSSMContactsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_rotation_overrides(
@@ -2046,7 +2101,7 @@ class AsyncSSMContactsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ssm_contacts.types.list_rotations_request.ListRotationsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_ssm_contacts.types.list_rotations_request.ListRotationsRequest = {}
         if rotation_name_prefix is not None:
             input_["rotation_name_prefix"] = rotation_name_prefix
         if next_token is not None:
@@ -2059,6 +2114,7 @@ class AsyncSSMContactsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_rotations(
@@ -2135,11 +2191,12 @@ class AsyncSSMContactsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ssm_contacts.types.list_rotation_shifts_request.ListRotationShiftsRequest = {}  # type: ignore[typeddict-item]
-        input_["rotation_id"] = rotation_id
+        input_: capo_ssm_contacts.types.list_rotation_shifts_request.ListRotationShiftsRequest = {
+            "rotation_id": rotation_id,
+            "end_time": end_time,
+        }
         if start_time is not None:
             input_["start_time"] = start_time
-        input_["end_time"] = end_time
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -2150,6 +2207,7 @@ class AsyncSSMContactsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_rotation_shifts(
@@ -2217,14 +2275,16 @@ class AsyncSSMContactsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ssm_contacts.types.list_tags_for_resource_request.ListTagsForResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_ssm_contacts.types.list_tags_for_resource_request.ListTagsForResourceRequest = {
+            "resource_arn": resource_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def put_contact_policy(
@@ -2266,15 +2326,17 @@ class AsyncSSMContactsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ssm_contacts.types.put_contact_policy_request.PutContactPolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["contact_arn"] = contact_arn
-        input_["policy"] = policy
+        input_: capo_ssm_contacts.types.put_contact_policy_request.PutContactPolicyRequest = {
+            "contact_arn": contact_arn,
+            "policy": policy,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def send_activation_code(
@@ -2315,14 +2377,16 @@ class AsyncSSMContactsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ssm_contacts.types.send_activation_code_request.SendActivationCodeRequest = {}  # type: ignore[typeddict-item]
-        input_["contact_channel_id"] = contact_channel_id
+        input_: capo_ssm_contacts.types.send_activation_code_request.SendActivationCodeRequest = {
+            "contact_channel_id": contact_channel_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def start_engagement(
@@ -2382,25 +2446,28 @@ class AsyncSSMContactsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ssm_contacts.types.start_engagement_request.StartEngagementRequest = {}  # type: ignore[typeddict-item]
-        input_["contact_id"] = contact_id
-        input_["sender"] = sender
-        input_["subject"] = subject
-        input_["content"] = content
+        input_: capo_ssm_contacts.types.start_engagement_request.StartEngagementRequest = {
+            "contact_id": contact_id,
+            "sender": sender,
+            "subject": subject,
+            "content": content,
+        }
         if public_subject is not None:
             input_["public_subject"] = public_subject
         if public_content is not None:
             input_["public_content"] = public_content
         if incident_id is not None:
             input_["incident_id"] = incident_id
-        if idempotency_token is not None:
-            input_["idempotency_token"] = idempotency_token
+        if idempotency_token is None:
+            idempotency_token = str(uuid.uuid4())
+        input_["idempotency_token"] = idempotency_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def stop_engagement(
@@ -2441,8 +2508,9 @@ class AsyncSSMContactsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ssm_contacts.types.stop_engagement_request.StopEngagementRequest = {}  # type: ignore[typeddict-item]
-        input_["engagement_id"] = engagement_id
+        input_: capo_ssm_contacts.types.stop_engagement_request.StopEngagementRequest = {
+            "engagement_id": engagement_id
+        }
         if reason is not None:
             input_["reason"] = reason
 
@@ -2451,6 +2519,7 @@ class AsyncSSMContactsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def tag_resource(
@@ -2492,15 +2561,17 @@ class AsyncSSMContactsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ssm_contacts.types.tag_resource_request.TagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tags"] = tags
+        input_: capo_ssm_contacts.types.tag_resource_request.TagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tags": tags,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def untag_resource(
@@ -2541,15 +2612,17 @@ class AsyncSSMContactsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ssm_contacts.types.untag_resource_request.UntagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tag_keys"] = tag_keys
+        input_: capo_ssm_contacts.types.untag_resource_request.UntagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tag_keys": tag_keys,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_contact(
@@ -2596,8 +2669,9 @@ class AsyncSSMContactsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ssm_contacts.types.update_contact_request.UpdateContactRequest = {}  # type: ignore[typeddict-item]
-        input_["contact_id"] = contact_id
+        input_: capo_ssm_contacts.types.update_contact_request.UpdateContactRequest = {
+            "contact_id": contact_id
+        }
         if display_name is not None:
             input_["display_name"] = display_name
         if plan is not None:
@@ -2608,6 +2682,7 @@ class AsyncSSMContactsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_contact_channel(
@@ -2654,8 +2729,9 @@ class AsyncSSMContactsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ssm_contacts.types.update_contact_channel_request.UpdateContactChannelRequest = {}  # type: ignore[typeddict-item]
-        input_["contact_channel_id"] = contact_channel_id
+        input_: capo_ssm_contacts.types.update_contact_channel_request.UpdateContactChannelRequest = {
+            "contact_channel_id": contact_channel_id
+        }
         if name is not None:
             input_["name"] = name
         if delivery_address is not None:
@@ -2666,6 +2742,7 @@ class AsyncSSMContactsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_rotation(
@@ -2717,21 +2794,23 @@ class AsyncSSMContactsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ssm_contacts.types.update_rotation_request.UpdateRotationRequest = {}  # type: ignore[typeddict-item]
-        input_["rotation_id"] = rotation_id
+        input_: capo_ssm_contacts.types.update_rotation_request.UpdateRotationRequest = {
+            "rotation_id": rotation_id,
+            "recurrence": recurrence,
+        }
         if contact_ids is not None:
             input_["contact_ids"] = contact_ids
         if start_time is not None:
             input_["start_time"] = start_time
         if time_zone_id is not None:
             input_["time_zone_id"] = time_zone_id
-        input_["recurrence"] = recurrence
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def __aenter__(self) -> Self:

@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> JobsList:
 
     out: JobsList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_mgn.types.job.deserialize_json(item))
     return out

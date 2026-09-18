@@ -63,7 +63,7 @@ def serialize_aws_json_1_1(value: EndpointInputConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> EndpointInputConfiguration:
     out: EndpointInputConfiguration = {}  # type: ignore[typeddict-item]
-    if "InstanceType" in data:
+    if data.get("InstanceType") is not None:
         import capo_sagemaker.types.production_variant_instance_type
 
         out["instance_type"] = (
@@ -71,7 +71,7 @@ def deserialize_aws_json_1_1(data: dict) -> EndpointInputConfiguration:
                 data["InstanceType"]
             )
         )
-    if "ServerlessConfig" in data:
+    if data.get("ServerlessConfig") is not None:
         import capo_sagemaker.types.production_variant_serverless_config
 
         out["serverless_config"] = (
@@ -79,9 +79,9 @@ def deserialize_aws_json_1_1(data: dict) -> EndpointInputConfiguration:
                 data["ServerlessConfig"]
             )
         )
-    if "InferenceSpecificationName" in data:
+    if data.get("InferenceSpecificationName") is not None:
         out["inference_specification_name"] = data["InferenceSpecificationName"]
-    if "EnvironmentParameterRanges" in data:
+    if data.get("EnvironmentParameterRanges") is not None:
         import capo_sagemaker.types.environment_parameter_ranges
 
         out["environment_parameter_ranges"] = (

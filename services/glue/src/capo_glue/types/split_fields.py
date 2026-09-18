@@ -38,11 +38,11 @@ def serialize_aws_json_1_1(value: SplitFields) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SplitFields:
     out: SplitFields = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("SplitFields.name required")
-    if "Inputs" in data:
+    if data.get("Inputs") is not None:
         import capo_glue.types.one_input
 
         out["inputs"] = capo_glue.types.one_input.deserialize_aws_json_1_1(
@@ -50,7 +50,7 @@ def deserialize_aws_json_1_1(data: dict) -> SplitFields:
         )
     else:
         raise DeserializationError("SplitFields.inputs required")
-    if "Paths" in data:
+    if data.get("Paths") is not None:
         import capo_glue.types.glue_studio_path_list
 
         out["paths"] = capo_glue.types.glue_studio_path_list.deserialize_aws_json_1_1(

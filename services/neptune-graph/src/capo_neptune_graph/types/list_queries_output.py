@@ -28,7 +28,7 @@ def serialize_json(value: ListQueriesOutput) -> dict:
 
 def deserialize_json(data: dict) -> ListQueriesOutput:
     out: ListQueriesOutput = {}  # type: ignore[typeddict-item]
-    if "queries" in data:
+    if data.get("queries") is not None:
         import capo_neptune_graph.types.query_summary_list
 
         out["queries"] = capo_neptune_graph.types.query_summary_list.deserialize_json(

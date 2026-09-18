@@ -28,11 +28,11 @@ def serialize_aws_json_1_1(value: DeleteBucketAccessKeyRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteBucketAccessKeyRequest:
     out: DeleteBucketAccessKeyRequest = {}  # type: ignore[typeddict-item]
-    if "bucketName" in data:
+    if data.get("bucketName") is not None:
         out["bucket_name"] = data["bucketName"]
     else:
         raise DeserializationError("DeleteBucketAccessKeyRequest.bucket_name required")
-    if "accessKeyId" in data:
+    if data.get("accessKeyId") is not None:
         out["access_key_id"] = data["accessKeyId"]
     else:
         raise DeserializationError(

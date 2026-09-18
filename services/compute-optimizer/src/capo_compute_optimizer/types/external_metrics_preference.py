@@ -31,7 +31,7 @@ def serialize_aws_json_1_0(value: ExternalMetricsPreference) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ExternalMetricsPreference:
     out: ExternalMetricsPreference = {}  # type: ignore[typeddict-item]
-    if "source" in data:
+    if data.get("source") is not None:
         import capo_compute_optimizer.types.external_metrics_source
 
         out["source"] = (

@@ -49,22 +49,22 @@ def serialize_json(value: TestCustomDataIdentifierRequest) -> dict:
 
 def deserialize_json(data: dict) -> TestCustomDataIdentifierRequest:
     out: TestCustomDataIdentifierRequest = {}  # type: ignore[typeddict-item]
-    if "ignoreWords" in data:
+    if data.get("ignoreWords") is not None:
         import capo_macie2.types.__list_of__string
 
         out["ignore_words"] = capo_macie2.types.__list_of__string.deserialize_json(
             data["ignoreWords"]
         )
-    if "keywords" in data:
+    if data.get("keywords") is not None:
         import capo_macie2.types.__list_of__string
 
         out["keywords"] = capo_macie2.types.__list_of__string.deserialize_json(
             data["keywords"]
         )
-    if "maximumMatchDistance" in data:
+    if data.get("maximumMatchDistance") is not None:
         out["maximum_match_distance"] = data["maximumMatchDistance"]
-    if "regex" in data:
+    if data.get("regex") is not None:
         out["regex"] = data["regex"]
-    if "sampleText" in data:
+    if data.get("sampleText") is not None:
         out["sample_text"] = data["sampleText"]
     return out

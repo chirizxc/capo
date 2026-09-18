@@ -34,7 +34,7 @@ def serialize_aws_json_1_0(value: ListWorkflowsResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ListWorkflowsResponse:
     out: ListWorkflowsResponse = {}  # type: ignore[typeddict-item]
-    if "Workflows" in data:
+    if data.get("Workflows") is not None:
         import capo_mwaa_serverless.types.workflow_summaries
 
         out["workflows"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_0(data: dict) -> ListWorkflowsResponse:
         )
     else:
         raise DeserializationError("ListWorkflowsResponse.workflows required")
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

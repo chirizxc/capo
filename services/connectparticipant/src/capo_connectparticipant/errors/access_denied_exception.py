@@ -23,7 +23,7 @@ def serialize_json(value: AccessDeniedException_) -> dict:
 
 def deserialize_json(data: dict) -> AccessDeniedException_:
     out: AccessDeniedException_ = {}  # type: ignore[typeddict-item]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     else:
         raise DeserializationError("AccessDeniedException_.message required")
@@ -35,15 +35,18 @@ class AccessDeniedException(ServiceError):
 
     code: str | None = "AccessDeniedException"
 
-    def __init__(self, data: AccessDeniedException_):
+    def __init__(self, data: AccessDeniedException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="AccessDeniedException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "AccessDeniedException":
-        return cls(deserialize_json(data))
+    def from_json(
+        cls, data: dict, message: str | None = None
+    ) -> "AccessDeniedException":
+        return cls(deserialize_json(data), message)

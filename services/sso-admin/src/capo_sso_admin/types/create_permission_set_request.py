@@ -54,21 +54,21 @@ def serialize_aws_json_1_1(value: CreatePermissionSetRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreatePermissionSetRequest:
     out: CreatePermissionSetRequest = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("CreatePermissionSetRequest.name required")
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "InstanceArn" in data:
+    if data.get("InstanceArn") is not None:
         out["instance_arn"] = data["InstanceArn"]
     else:
         raise DeserializationError("CreatePermissionSetRequest.instance_arn required")
-    if "SessionDuration" in data:
+    if data.get("SessionDuration") is not None:
         out["session_duration"] = data["SessionDuration"]
-    if "RelayState" in data:
+    if data.get("RelayState") is not None:
         out["relay_state"] = data["RelayState"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_sso_admin.types.tag_list
 
         out["tags"] = capo_sso_admin.types.tag_list.deserialize_aws_json_1_1(

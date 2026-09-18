@@ -79,9 +79,9 @@ def serialize_json(value: SecurityGroupSettingsRequest) -> dict:
 
 def deserialize_json(data: dict) -> SecurityGroupSettingsRequest:
     out: SecurityGroupSettingsRequest = {}  # type: ignore[typeddict-item]
-    if "lockoutThreshold" in data:
+    if data.get("lockoutThreshold") is not None:
         out["lockout_threshold"] = data["lockoutThreshold"]
-    if "permittedNetworks" in data:
+    if data.get("permittedNetworks") is not None:
         import capo_wickr.types.permitted_networks_list
 
         out["permitted_networks"] = (
@@ -89,17 +89,17 @@ def deserialize_json(data: dict) -> SecurityGroupSettingsRequest:
                 data["permittedNetworks"]
             )
         )
-    if "enableGuestFederation" in data:
+    if data.get("enableGuestFederation") is not None:
         out["enable_guest_federation"] = data["enableGuestFederation"]
-    if "globalFederation" in data:
+    if data.get("globalFederation") is not None:
         out["global_federation"] = data["globalFederation"]
-    if "federationMode" in data:
+    if data.get("federationMode") is not None:
         out["federation_mode"] = data["federationMode"]
-    if "enableRestrictedGlobalFederation" in data:
+    if data.get("enableRestrictedGlobalFederation") is not None:
         out["enable_restricted_global_federation"] = data[
             "enableRestrictedGlobalFederation"
         ]
-    if "permittedWickrAwsNetworks" in data:
+    if data.get("permittedWickrAwsNetworks") is not None:
         import capo_wickr.types.wickr_aws_networks_list
 
         out["permitted_wickr_aws_networks"] = (
@@ -107,7 +107,7 @@ def deserialize_json(data: dict) -> SecurityGroupSettingsRequest:
                 data["permittedWickrAwsNetworks"]
             )
         )
-    if "permittedWickrEnterpriseNetworks" in data:
+    if data.get("permittedWickrEnterpriseNetworks") is not None:
         import capo_wickr.types.permitted_wickr_enterprise_networks_list
 
         out["permitted_wickr_enterprise_networks"] = (

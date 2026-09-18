@@ -38,7 +38,7 @@ def serialize_json(value: SearchAgentsRequest) -> dict:
 
 def deserialize_json(data: dict) -> SearchAgentsRequest:
     out: SearchAgentsRequest = {}  # type: ignore[typeddict-item]
-    if "Filters" in data:
+    if data.get("Filters") is not None:
         import capo_quicksight.types.agent_search_filter_list
 
         out["filters"] = (

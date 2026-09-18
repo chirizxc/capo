@@ -37,7 +37,7 @@ def serialize_json(value: GatewayRouteTarget) -> dict:
 
 def deserialize_json(data: dict) -> GatewayRouteTarget:
     out: GatewayRouteTarget = {}  # type: ignore[typeddict-item]
-    if "virtualService" in data:
+    if data.get("virtualService") is not None:
         import capo_app_mesh.types.gateway_route_virtual_service
 
         out["virtual_service"] = (
@@ -47,6 +47,6 @@ def deserialize_json(data: dict) -> GatewayRouteTarget:
         )
     else:
         raise DeserializationError("GatewayRouteTarget.virtual_service required")
-    if "port" in data:
+    if data.get("port") is not None:
         out["port"] = data["port"]
     return out

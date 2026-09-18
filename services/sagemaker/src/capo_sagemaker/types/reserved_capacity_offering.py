@@ -121,7 +121,7 @@ def serialize_aws_json_1_1(value: ReservedCapacityOffering) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ReservedCapacityOffering:
     out: ReservedCapacityOffering = {}  # type: ignore[typeddict-item]
-    if "ReservedCapacityType" in data:
+    if data.get("ReservedCapacityType") is not None:
         import capo_sagemaker.types.reserved_capacity_type
 
         out["reserved_capacity_type"] = (
@@ -129,11 +129,11 @@ def deserialize_aws_json_1_1(data: dict) -> ReservedCapacityOffering:
                 data["ReservedCapacityType"]
             )
         )
-    if "UltraServerType" in data:
+    if data.get("UltraServerType") is not None:
         out["ultra_server_type"] = data["UltraServerType"]
-    if "UltraServerCount" in data:
+    if data.get("UltraServerCount") is not None:
         out["ultra_server_count"] = data["UltraServerCount"]
-    if "InstanceType" in data:
+    if data.get("InstanceType") is not None:
         import capo_sagemaker.types.reserved_capacity_instance_type
 
         out["instance_type"] = (
@@ -141,27 +141,27 @@ def deserialize_aws_json_1_1(data: dict) -> ReservedCapacityOffering:
                 data["InstanceType"]
             )
         )
-    if "InstanceCount" in data:
+    if data.get("InstanceCount") is not None:
         out["instance_count"] = data["InstanceCount"]
-    if "AvailabilityZone" in data:
+    if data.get("AvailabilityZone") is not None:
         out["availability_zone"] = data["AvailabilityZone"]
-    if "DurationHours" in data:
+    if data.get("DurationHours") is not None:
         out["duration_hours"] = data["DurationHours"]
-    if "DurationMinutes" in data:
+    if data.get("DurationMinutes") is not None:
         out["duration_minutes"] = data["DurationMinutes"]
-    if "StartTime" in data:
+    if data.get("StartTime") is not None:
         import capo_sagemaker.types.timestamp
 
         out["start_time"] = capo_sagemaker.types.timestamp.deserialize_aws_json_1_1(
             data["StartTime"]
         )
-    if "EndTime" in data:
+    if data.get("EndTime") is not None:
         import capo_sagemaker.types.timestamp
 
         out["end_time"] = capo_sagemaker.types.timestamp.deserialize_aws_json_1_1(
             data["EndTime"]
         )
-    if "ExtensionStartTime" in data:
+    if data.get("ExtensionStartTime") is not None:
         import capo_sagemaker.types.timestamp
 
         out["extension_start_time"] = (
@@ -169,7 +169,7 @@ def deserialize_aws_json_1_1(data: dict) -> ReservedCapacityOffering:
                 data["ExtensionStartTime"]
             )
         )
-    if "ExtensionEndTime" in data:
+    if data.get("ExtensionEndTime") is not None:
         import capo_sagemaker.types.timestamp
 
         out["extension_end_time"] = (

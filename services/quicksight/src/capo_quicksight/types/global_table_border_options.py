@@ -44,7 +44,7 @@ def serialize_json(value: GlobalTableBorderOptions) -> dict:
 
 def deserialize_json(data: dict) -> GlobalTableBorderOptions:
     out: GlobalTableBorderOptions = {}  # type: ignore[typeddict-item]
-    if "UniformBorder" in data:
+    if data.get("UniformBorder") is not None:
         import capo_quicksight.types.table_border_options
 
         out["uniform_border"] = (
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> GlobalTableBorderOptions:
                 data["UniformBorder"]
             )
         )
-    if "SideSpecificBorder" in data:
+    if data.get("SideSpecificBorder") is not None:
         import capo_quicksight.types.table_side_border_options
 
         out["side_specific_border"] = (

@@ -31,8 +31,8 @@ def serialize_json(value: UpdateIpRestrictionResponse) -> dict:
 
 def deserialize_json(data: dict) -> UpdateIpRestrictionResponse:
     out: UpdateIpRestrictionResponse = {}  # type: ignore[typeddict-item]
-    if "AwsAccountId" in data:
+    if data.get("AwsAccountId") is not None:
         out["aws_account_id"] = data["AwsAccountId"]
-    if "RequestId" in data:
+    if data.get("RequestId") is not None:
         out["request_id"] = data["RequestId"]
     return out

@@ -35,13 +35,13 @@ def serialize_json(value: OcsfStringFilter) -> dict:
 
 def deserialize_json(data: dict) -> OcsfStringFilter:
     out: OcsfStringFilter = {}  # type: ignore[typeddict-item]
-    if "FieldName" in data:
+    if data.get("FieldName") is not None:
         import capo_securityhub.types.ocsf_string_field
 
         out["field_name"] = capo_securityhub.types.ocsf_string_field.deserialize_json(
             data["FieldName"]
         )
-    if "Filter" in data:
+    if data.get("Filter") is not None:
         import capo_securityhub.types.string_filter
 
         out["filter"] = capo_securityhub.types.string_filter.deserialize_json(

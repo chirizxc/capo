@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: TrafficRoute) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> TrafficRoute:
     out: TrafficRoute = {}  # type: ignore[typeddict-item]
-    if "listenerArns" in data:
+    if data.get("listenerArns") is not None:
         import capo_codedeploy.types.listener_arn_list
 
         out["listener_arns"] = (

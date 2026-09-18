@@ -111,25 +111,25 @@ def serialize_aws_json_1_1(value: UpdateProvisionedProductInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateProvisionedProductInput:
     out: UpdateProvisionedProductInput = {}  # type: ignore[typeddict-item]
-    if "AcceptLanguage" in data:
+    if data.get("AcceptLanguage") is not None:
         out["accept_language"] = data["AcceptLanguage"]
-    if "ProvisionedProductName" in data:
+    if data.get("ProvisionedProductName") is not None:
         out["provisioned_product_name"] = data["ProvisionedProductName"]
-    if "ProvisionedProductId" in data:
+    if data.get("ProvisionedProductId") is not None:
         out["provisioned_product_id"] = data["ProvisionedProductId"]
-    if "ProductId" in data:
+    if data.get("ProductId") is not None:
         out["product_id"] = data["ProductId"]
-    if "ProductName" in data:
+    if data.get("ProductName") is not None:
         out["product_name"] = data["ProductName"]
-    if "ProvisioningArtifactId" in data:
+    if data.get("ProvisioningArtifactId") is not None:
         out["provisioning_artifact_id"] = data["ProvisioningArtifactId"]
-    if "ProvisioningArtifactName" in data:
+    if data.get("ProvisioningArtifactName") is not None:
         out["provisioning_artifact_name"] = data["ProvisioningArtifactName"]
-    if "PathId" in data:
+    if data.get("PathId") is not None:
         out["path_id"] = data["PathId"]
-    if "PathName" in data:
+    if data.get("PathName") is not None:
         out["path_name"] = data["PathName"]
-    if "ProvisioningParameters" in data:
+    if data.get("ProvisioningParameters") is not None:
         import capo_service_catalog.types.update_provisioning_parameters
 
         out["provisioning_parameters"] = (
@@ -137,7 +137,7 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateProvisionedProductInput:
                 data["ProvisioningParameters"]
             )
         )
-    if "ProvisioningPreferences" in data:
+    if data.get("ProvisioningPreferences") is not None:
         import capo_service_catalog.types.update_provisioning_preferences
 
         out["provisioning_preferences"] = (
@@ -145,13 +145,13 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateProvisionedProductInput:
                 data["ProvisioningPreferences"]
             )
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_service_catalog.types.tags
 
         out["tags"] = capo_service_catalog.types.tags.deserialize_aws_json_1_1(
             data["Tags"]
         )
-    if "UpdateToken" in data:
+    if data.get("UpdateToken") is not None:
         out["update_token"] = data["UpdateToken"]
     else:
         raise DeserializationError(

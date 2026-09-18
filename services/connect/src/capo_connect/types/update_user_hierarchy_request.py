@@ -31,6 +31,6 @@ def serialize_json(value: UpdateUserHierarchyRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateUserHierarchyRequest:
     out: UpdateUserHierarchyRequest = {}  # type: ignore[typeddict-item]
-    if "HierarchyGroupId" in data:
+    if data.get("HierarchyGroupId") is not None:
         out["hierarchy_group_id"] = data["HierarchyGroupId"]
     return out

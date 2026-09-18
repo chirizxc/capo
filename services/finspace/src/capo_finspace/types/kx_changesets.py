@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> KxChangesets:
 
     out: KxChangesets = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_finspace.types.kx_changeset_list_entry.deserialize_json(item))
     return out

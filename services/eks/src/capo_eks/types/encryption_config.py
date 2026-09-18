@@ -32,13 +32,13 @@ def serialize_json(value: EncryptionConfig) -> dict:
 
 def deserialize_json(data: dict) -> EncryptionConfig:
     out: EncryptionConfig = {}  # type: ignore[typeddict-item]
-    if "resources" in data:
+    if data.get("resources") is not None:
         import capo_eks.types.string_list
 
         out["resources"] = capo_eks.types.string_list.deserialize_json(
             data["resources"]
         )
-    if "provider" in data:
+    if data.get("provider") is not None:
         import capo_eks.types.provider
 
         out["provider"] = capo_eks.types.provider.deserialize_json(data["provider"])

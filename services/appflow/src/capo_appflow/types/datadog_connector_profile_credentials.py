@@ -28,13 +28,13 @@ def serialize_json(value: DatadogConnectorProfileCredentials) -> dict:
 
 def deserialize_json(data: dict) -> DatadogConnectorProfileCredentials:
     out: DatadogConnectorProfileCredentials = {}  # type: ignore[typeddict-item]
-    if "apiKey" in data:
+    if data.get("apiKey") is not None:
         out["api_key"] = data["apiKey"]
     else:
         raise DeserializationError(
             "DatadogConnectorProfileCredentials.api_key required"
         )
-    if "applicationKey" in data:
+    if data.get("applicationKey") is not None:
         out["application_key"] = data["applicationKey"]
     else:
         raise DeserializationError(

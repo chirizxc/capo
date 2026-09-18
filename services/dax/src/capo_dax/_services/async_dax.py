@@ -264,12 +264,14 @@ class AsyncDAXClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_dax.types.create_cluster_request.CreateClusterRequest = {}  # type: ignore[typeddict-item]
-        input_["cluster_name"] = cluster_name
-        input_["node_type"] = node_type
+        input_: capo_dax.types.create_cluster_request.CreateClusterRequest = {
+            "cluster_name": cluster_name,
+            "node_type": node_type,
+            "replication_factor": replication_factor,
+            "iam_role_arn": iam_role_arn,
+        }
         if description is not None:
             input_["description"] = description
-        input_["replication_factor"] = replication_factor
         if availability_zones is not None:
             input_["availability_zones"] = availability_zones
         if subnet_group_name is not None:
@@ -280,7 +282,6 @@ class AsyncDAXClient:
             input_["preferred_maintenance_window"] = preferred_maintenance_window
         if notification_topic_arn is not None:
             input_["notification_topic_arn"] = notification_topic_arn
-        input_["iam_role_arn"] = iam_role_arn
         if parameter_group_name is not None:
             input_["parameter_group_name"] = parameter_group_name
         if tags is not None:
@@ -299,6 +300,7 @@ class AsyncDAXClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_parameter_group(
@@ -340,8 +342,9 @@ class AsyncDAXClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_dax.types.create_parameter_group_request.CreateParameterGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["parameter_group_name"] = parameter_group_name
+        input_: capo_dax.types.create_parameter_group_request.CreateParameterGroupRequest = {
+            "parameter_group_name": parameter_group_name
+        }
         if description is not None:
             input_["description"] = description
 
@@ -350,6 +353,7 @@ class AsyncDAXClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_subnet_group(
@@ -393,17 +397,19 @@ class AsyncDAXClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_dax.types.create_subnet_group_request.CreateSubnetGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["subnet_group_name"] = subnet_group_name
+        input_: capo_dax.types.create_subnet_group_request.CreateSubnetGroupRequest = {
+            "subnet_group_name": subnet_group_name,
+            "subnet_ids": subnet_ids,
+        }
         if description is not None:
             input_["description"] = description
-        input_["subnet_ids"] = subnet_ids
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def decrease_replication_factor(
@@ -453,9 +459,10 @@ class AsyncDAXClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_dax.types.decrease_replication_factor_request.DecreaseReplicationFactorRequest = {}  # type: ignore[typeddict-item]
-        input_["cluster_name"] = cluster_name
-        input_["new_replication_factor"] = new_replication_factor
+        input_: capo_dax.types.decrease_replication_factor_request.DecreaseReplicationFactorRequest = {
+            "cluster_name": cluster_name,
+            "new_replication_factor": new_replication_factor,
+        }
         if availability_zones is not None:
             input_["availability_zones"] = availability_zones
         if node_ids_to_remove is not None:
@@ -466,6 +473,7 @@ class AsyncDAXClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_cluster(
@@ -504,14 +512,16 @@ class AsyncDAXClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_dax.types.delete_cluster_request.DeleteClusterRequest = {}  # type: ignore[typeddict-item]
-        input_["cluster_name"] = cluster_name
+        input_: capo_dax.types.delete_cluster_request.DeleteClusterRequest = {
+            "cluster_name": cluster_name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_parameter_group(
@@ -550,14 +560,16 @@ class AsyncDAXClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_dax.types.delete_parameter_group_request.DeleteParameterGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["parameter_group_name"] = parameter_group_name
+        input_: capo_dax.types.delete_parameter_group_request.DeleteParameterGroupRequest = {
+            "parameter_group_name": parameter_group_name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_subnet_group(
@@ -594,14 +606,16 @@ class AsyncDAXClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_dax.types.delete_subnet_group_request.DeleteSubnetGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["subnet_group_name"] = subnet_group_name
+        input_: capo_dax.types.delete_subnet_group_request.DeleteSubnetGroupRequest = {
+            "subnet_group_name": subnet_group_name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_clusters(
@@ -645,7 +659,7 @@ class AsyncDAXClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_dax.types.describe_clusters_request.DescribeClustersRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_dax.types.describe_clusters_request.DescribeClustersRequest = {}
         if cluster_names is not None:
             input_["cluster_names"] = cluster_names
         if max_results is not None:
@@ -658,6 +672,7 @@ class AsyncDAXClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_default_parameters(
@@ -696,7 +711,7 @@ class AsyncDAXClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_dax.types.describe_default_parameters_request.DescribeDefaultParametersRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_dax.types.describe_default_parameters_request.DescribeDefaultParametersRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -707,6 +722,7 @@ class AsyncDAXClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_events(
@@ -755,7 +771,7 @@ class AsyncDAXClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_dax.types.describe_events_request.DescribeEventsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_dax.types.describe_events_request.DescribeEventsRequest = {}
         if source_name is not None:
             input_["source_name"] = source_name
         if source_type is not None:
@@ -776,6 +792,7 @@ class AsyncDAXClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_parameter_groups(
@@ -819,7 +836,7 @@ class AsyncDAXClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_dax.types.describe_parameter_groups_request.DescribeParameterGroupsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_dax.types.describe_parameter_groups_request.DescribeParameterGroupsRequest = {}
         if parameter_group_names is not None:
             input_["parameter_group_names"] = parameter_group_names
         if max_results is not None:
@@ -832,6 +849,7 @@ class AsyncDAXClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_parameters(
@@ -875,8 +893,9 @@ class AsyncDAXClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_dax.types.describe_parameters_request.DescribeParametersRequest = {}  # type: ignore[typeddict-item]
-        input_["parameter_group_name"] = parameter_group_name
+        input_: capo_dax.types.describe_parameters_request.DescribeParametersRequest = {
+            "parameter_group_name": parameter_group_name
+        }
         if source is not None:
             input_["source"] = source
         if max_results is not None:
@@ -889,6 +908,7 @@ class AsyncDAXClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_subnet_groups(
@@ -930,7 +950,7 @@ class AsyncDAXClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_dax.types.describe_subnet_groups_request.DescribeSubnetGroupsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_dax.types.describe_subnet_groups_request.DescribeSubnetGroupsRequest = {}
         if subnet_group_names is not None:
             input_["subnet_group_names"] = subnet_group_names
         if max_results is not None:
@@ -943,6 +963,7 @@ class AsyncDAXClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def increase_replication_factor(
@@ -991,9 +1012,10 @@ class AsyncDAXClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_dax.types.increase_replication_factor_request.IncreaseReplicationFactorRequest = {}  # type: ignore[typeddict-item]
-        input_["cluster_name"] = cluster_name
-        input_["new_replication_factor"] = new_replication_factor
+        input_: capo_dax.types.increase_replication_factor_request.IncreaseReplicationFactorRequest = {
+            "cluster_name": cluster_name,
+            "new_replication_factor": new_replication_factor,
+        }
         if availability_zones is not None:
             input_["availability_zones"] = availability_zones
 
@@ -1002,6 +1024,7 @@ class AsyncDAXClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_tags(
@@ -1043,8 +1066,9 @@ class AsyncDAXClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_dax.types.list_tags_request.ListTagsRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_name"] = resource_name
+        input_: capo_dax.types.list_tags_request.ListTagsRequest = {
+            "resource_name": resource_name
+        }
         if next_token is not None:
             input_["next_token"] = next_token
 
@@ -1053,6 +1077,7 @@ class AsyncDAXClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def reboot_node(
@@ -1094,15 +1119,17 @@ class AsyncDAXClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_dax.types.reboot_node_request.RebootNodeRequest = {}  # type: ignore[typeddict-item]
-        input_["cluster_name"] = cluster_name
-        input_["node_id"] = node_id
+        input_: capo_dax.types.reboot_node_request.RebootNodeRequest = {
+            "cluster_name": cluster_name,
+            "node_id": node_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def tag_resource(
@@ -1145,15 +1172,17 @@ class AsyncDAXClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_dax.types.tag_resource_request.TagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_name"] = resource_name
-        input_["tags"] = tags
+        input_: capo_dax.types.tag_resource_request.TagResourceRequest = {
+            "resource_name": resource_name,
+            "tags": tags,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def untag_resource(
@@ -1196,15 +1225,17 @@ class AsyncDAXClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_dax.types.untag_resource_request.UntagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_name"] = resource_name
-        input_["tag_keys"] = tag_keys
+        input_: capo_dax.types.untag_resource_request.UntagResourceRequest = {
+            "resource_name": resource_name,
+            "tag_keys": tag_keys,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_cluster(
@@ -1259,8 +1290,9 @@ class AsyncDAXClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_dax.types.update_cluster_request.UpdateClusterRequest = {}  # type: ignore[typeddict-item]
-        input_["cluster_name"] = cluster_name
+        input_: capo_dax.types.update_cluster_request.UpdateClusterRequest = {
+            "cluster_name": cluster_name
+        }
         if description is not None:
             input_["description"] = description
         if preferred_maintenance_window is not None:
@@ -1279,6 +1311,7 @@ class AsyncDAXClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_parameter_group(
@@ -1319,15 +1352,17 @@ class AsyncDAXClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_dax.types.update_parameter_group_request.UpdateParameterGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["parameter_group_name"] = parameter_group_name
-        input_["parameter_name_values"] = parameter_name_values
+        input_: capo_dax.types.update_parameter_group_request.UpdateParameterGroupRequest = {
+            "parameter_group_name": parameter_group_name,
+            "parameter_name_values": parameter_name_values,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_subnet_group(
@@ -1373,8 +1408,9 @@ class AsyncDAXClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_dax.types.update_subnet_group_request.UpdateSubnetGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["subnet_group_name"] = subnet_group_name
+        input_: capo_dax.types.update_subnet_group_request.UpdateSubnetGroupRequest = {
+            "subnet_group_name": subnet_group_name
+        }
         if description is not None:
             input_["description"] = description
         if subnet_ids is not None:
@@ -1385,6 +1421,7 @@ class AsyncDAXClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def __aenter__(self) -> Self:

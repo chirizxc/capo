@@ -54,7 +54,7 @@ def serialize_aws_json_1_1(value: OfferingStatus) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> OfferingStatus:
     out: OfferingStatus = {}  # type: ignore[typeddict-item]
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_device_farm.types.offering_transaction_type
 
         out["type"] = (
@@ -62,15 +62,15 @@ def deserialize_aws_json_1_1(data: dict) -> OfferingStatus:
                 data["type"]
             )
         )
-    if "offering" in data:
+    if data.get("offering") is not None:
         import capo_device_farm.types.offering
 
         out["offering"] = capo_device_farm.types.offering.deserialize_aws_json_1_1(
             data["offering"]
         )
-    if "quantity" in data:
+    if data.get("quantity") is not None:
         out["quantity"] = data["quantity"]
-    if "effectiveOn" in data:
+    if data.get("effectiveOn") is not None:
         import capo_device_farm.types.date_time
 
         out["effective_on"] = capo_device_farm.types.date_time.deserialize_aws_json_1_1(

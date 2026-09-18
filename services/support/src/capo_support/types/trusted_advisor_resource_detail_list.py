@@ -29,6 +29,8 @@ def deserialize_aws_json_1_1(data: list) -> TrustedAdvisorResourceDetailList:
 
     out: TrustedAdvisorResourceDetailList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_support.types.trusted_advisor_resource_detail.deserialize_aws_json_1_1(
                 item

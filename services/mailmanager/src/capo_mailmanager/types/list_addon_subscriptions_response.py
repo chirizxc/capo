@@ -36,7 +36,7 @@ def serialize_aws_json_1_0(value: ListAddonSubscriptionsResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ListAddonSubscriptionsResponse:
     out: ListAddonSubscriptionsResponse = {}  # type: ignore[typeddict-item]
-    if "AddonSubscriptions" in data:
+    if data.get("AddonSubscriptions") is not None:
         import capo_mailmanager.types.addon_subscriptions
 
         out["addon_subscriptions"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_0(data: dict) -> ListAddonSubscriptionsResponse:
                 data["AddonSubscriptions"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

@@ -36,15 +36,15 @@ def serialize_json(value: CreateDirectoryRegistrationRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateDirectoryRegistrationRequest:
     out: CreateDirectoryRegistrationRequest = {}  # type: ignore[typeddict-item]
-    if "DirectoryId" in data:
+    if data.get("DirectoryId") is not None:
         out["directory_id"] = data["DirectoryId"]
     else:
         raise DeserializationError(
             "CreateDirectoryRegistrationRequest.directory_id required"
         )
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_pca_connector_ad.types.tags
 
         out["tags"] = capo_pca_connector_ad.types.tags.deserialize_json(data["Tags"])

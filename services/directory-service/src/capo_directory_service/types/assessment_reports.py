@@ -27,6 +27,8 @@ def deserialize_aws_json_1_1(data: list) -> AssessmentReports:
 
     out: AssessmentReports = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_directory_service.types.assessment_report.deserialize_aws_json_1_1(
                 item

@@ -66,7 +66,15 @@ def serialize_json(value: LteCellDetails) -> dict:
     if "rsrp" in value:
         out["Rsrp"] = value["rsrp"]
     if "rsrq" in value:
-        out["Rsrq"] = value["rsrq"]
+        out["Rsrq"] = (
+            "NaN"
+            if value["rsrq"] != value["rsrq"]
+            else "Infinity"
+            if value["rsrq"] == float("inf")
+            else "-Infinity"
+            if value["rsrq"] == float("-inf")
+            else value["rsrq"]
+        )
     if "tac" in value:
         out["Tac"] = value["tac"]
     return out
@@ -74,25 +82,25 @@ def serialize_json(value: LteCellDetails) -> dict:
 
 def deserialize_json(data: dict) -> LteCellDetails:
     out: LteCellDetails = {}  # type: ignore[typeddict-item]
-    if "CellId" in data:
+    if data.get("CellId") is not None:
         out["cell_id"] = data["CellId"]
     else:
         out["cell_id"] = 0
-    if "Mcc" in data:
+    if data.get("Mcc") is not None:
         out["mcc"] = data["Mcc"]
     else:
         raise DeserializationError("LteCellDetails.mcc required")
-    if "Mnc" in data:
+    if data.get("Mnc") is not None:
         out["mnc"] = data["Mnc"]
     else:
         raise DeserializationError("LteCellDetails.mnc required")
-    if "LocalId" in data:
+    if data.get("LocalId") is not None:
         import capo_location.types.lte_local_id
 
         out["local_id"] = capo_location.types.lte_local_id.deserialize_json(
             data["LocalId"]
         )
-    if "NetworkMeasurements" in data:
+    if data.get("NetworkMeasurements") is not None:
         import capo_location.types.lte_network_measurements_list
 
         out["network_measurements"] = (
@@ -100,14 +108,14 @@ def deserialize_json(data: dict) -> LteCellDetails:
                 data["NetworkMeasurements"]
             )
         )
-    if "TimingAdvance" in data:
+    if data.get("TimingAdvance") is not None:
         out["timing_advance"] = data["TimingAdvance"]
-    if "NrCapable" in data:
+    if data.get("NrCapable") is not None:
         out["nr_capable"] = data["NrCapable"]
-    if "Rsrp" in data:
+    if data.get("Rsrp") is not None:
         out["rsrp"] = data["Rsrp"]
-    if "Rsrq" in data:
-        out["rsrq"] = data["Rsrq"]
-    if "Tac" in data:
+    if data.get("Rsrq") is not None:
+        out["rsrq"] = float(data["Rsrq"])
+    if data.get("Tac") is not None:
         out["tac"] = data["Tac"]
     return out

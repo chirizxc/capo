@@ -37,7 +37,7 @@ def deserialize_json(
     data: dict,
 ) -> PutVoiceConnectorEmergencyCallingConfigurationRequest:
     out: PutVoiceConnectorEmergencyCallingConfigurationRequest = {}  # type: ignore[typeddict-item]
-    if "EmergencyCallingConfiguration" in data:
+    if data.get("EmergencyCallingConfiguration") is not None:
         import capo_chime_sdk_voice.types.emergency_calling_configuration
 
         out["emergency_calling_configuration"] = (

@@ -32,10 +32,10 @@ def serialize_json(value: ApplicationAssociationSummary) -> dict:
 
 def deserialize_json(data: dict) -> ApplicationAssociationSummary:
     out: ApplicationAssociationSummary = {}  # type: ignore[typeddict-item]
-    if "ApplicationAssociationArn" in data:
+    if data.get("ApplicationAssociationArn") is not None:
         out["application_association_arn"] = data["ApplicationAssociationArn"]
-    if "ApplicationArn" in data:
+    if data.get("ApplicationArn") is not None:
         out["application_arn"] = data["ApplicationArn"]
-    if "ClientId" in data:
+    if data.get("ClientId") is not None:
         out["client_id"] = data["ClientId"]
     return out

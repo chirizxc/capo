@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> IdentitySources:
 
     out: IdentitySources = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_mpa.types.identity_source_for_list.deserialize_json(item))
     return out

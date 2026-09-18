@@ -31,7 +31,7 @@ def serialize_aws_json_1_0(value: DataPreProcessingConfiguration) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> DataPreProcessingConfiguration:
     out: DataPreProcessingConfiguration = {}  # type: ignore[typeddict-item]
-    if "TargetSamplingRate" in data:
+    if data.get("TargetSamplingRate") is not None:
         import capo_lookoutequipment.types.target_sampling_rate
 
         out["target_sampling_rate"] = (

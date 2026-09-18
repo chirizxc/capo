@@ -25,6 +25,8 @@ def serialize_json(input_to_serialize: ObjectConfiguration) -> dict:
 def deserialize_json(data: dict) -> ObjectConfiguration:
     out: ObjectConfiguration = {}
     for key, value in data.items():
+        if value is None:
+            continue
         import capo_appintegrations.types.fields_map
 
         out[key] = capo_appintegrations.types.fields_map.deserialize_json(value)

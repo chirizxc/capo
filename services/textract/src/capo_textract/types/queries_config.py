@@ -28,7 +28,7 @@ def serialize_aws_json_1_1(value: QueriesConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> QueriesConfig:
     out: QueriesConfig = {}  # type: ignore[typeddict-item]
-    if "Queries" in data:
+    if data.get("Queries") is not None:
         import capo_textract.types.queries
 
         out["queries"] = capo_textract.types.queries.deserialize_aws_json_1_1(

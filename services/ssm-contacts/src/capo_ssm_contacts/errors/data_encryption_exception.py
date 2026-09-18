@@ -23,7 +23,7 @@ def serialize_aws_json_1_1(value: DataEncryptionException_) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DataEncryptionException_:
     out: DataEncryptionException_ = {}  # type: ignore[typeddict-item]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     else:
         raise DeserializationError("DataEncryptionException_.message required")
@@ -35,15 +35,18 @@ class DataEncryptionException(ServiceError):
 
     code: str | None = "DataEncryptionException"
 
-    def __init__(self, data: DataEncryptionException_):
+    def __init__(self, data: DataEncryptionException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="DataEncryptionException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "DataEncryptionException":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "DataEncryptionException":
+        return cls(deserialize_aws_json_1_1(data), message)

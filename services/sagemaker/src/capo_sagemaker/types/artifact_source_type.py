@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: ArtifactSourceType) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ArtifactSourceType:
     out: ArtifactSourceType = {}  # type: ignore[typeddict-item]
-    if "SourceIdType" in data:
+    if data.get("SourceIdType") is not None:
         import capo_sagemaker.types.artifact_source_id_type
 
         out["source_id_type"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_1(data: dict) -> ArtifactSourceType:
                 data["SourceIdType"]
             )
         )
-    if "Value" in data:
+    if data.get("Value") is not None:
         out["value"] = data["Value"]
     return out

@@ -104,35 +104,35 @@ def serialize_json(value: GetVolumeResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetVolumeResponse:
     out: GetVolumeResponse = {}  # type: ignore[typeddict-item]
-    if "volumeId" in data:
+    if data.get("volumeId") is not None:
         out["volume_id"] = data["volumeId"]
     else:
         raise DeserializationError("GetVolumeResponse.volume_id required")
-    if "farmId" in data:
+    if data.get("farmId") is not None:
         out["farm_id"] = data["farmId"]
     else:
         raise DeserializationError("GetVolumeResponse.farm_id required")
-    if "fleetId" in data:
+    if data.get("fleetId") is not None:
         out["fleet_id"] = data["fleetId"]
     else:
         raise DeserializationError("GetVolumeResponse.fleet_id required")
-    if "state" in data:
+    if data.get("state") is not None:
         import capo_deadline.types.volume_state
 
         out["state"] = capo_deadline.types.volume_state.deserialize_json(data["state"])
     else:
         raise DeserializationError("GetVolumeResponse.state required")
-    if "sizeGiB" in data:
+    if data.get("sizeGiB") is not None:
         out["size_gi_b"] = data["sizeGiB"]
     else:
         raise DeserializationError("GetVolumeResponse.size_gi_b required")
-    if "availabilityZoneId" in data:
+    if data.get("availabilityZoneId") is not None:
         out["availability_zone_id"] = data["availabilityZoneId"]
     else:
         raise DeserializationError("GetVolumeResponse.availability_zone_id required")
-    if "attachedWorkerId" in data:
+    if data.get("attachedWorkerId") is not None:
         out["attached_worker_id"] = data["attachedWorkerId"]
-    if "volumeType" in data:
+    if data.get("volumeType") is not None:
         import capo_deadline.types.ebs_volume_type
 
         out["volume_type"] = capo_deadline.types.ebs_volume_type.deserialize_json(
@@ -140,11 +140,11 @@ def deserialize_json(data: dict) -> GetVolumeResponse:
         )
     else:
         raise DeserializationError("GetVolumeResponse.volume_type required")
-    if "iops" in data:
+    if data.get("iops") is not None:
         out["iops"] = data["iops"]
-    if "throughputMiB" in data:
+    if data.get("throughputMiB") is not None:
         out["throughput_mi_b"] = data["throughputMiB"]
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_deadline.types.created_at
 
         out["created_at"] = capo_deadline.types.created_at.deserialize_json(
@@ -152,19 +152,19 @@ def deserialize_json(data: dict) -> GetVolumeResponse:
         )
     else:
         raise DeserializationError("GetVolumeResponse.created_at required")
-    if "lastAssignedAt" in data:
+    if data.get("lastAssignedAt") is not None:
         import capo_deadline.types.timestamp
 
         out["last_assigned_at"] = capo_deadline.types.timestamp.deserialize_json(
             data["lastAssignedAt"]
         )
-    if "lastReleasedAt" in data:
+    if data.get("lastReleasedAt") is not None:
         import capo_deadline.types.timestamp
 
         out["last_released_at"] = capo_deadline.types.timestamp.deserialize_json(
             data["lastReleasedAt"]
         )
-    if "expiresAt" in data:
+    if data.get("expiresAt") is not None:
         import capo_deadline.types.timestamp
 
         out["expires_at"] = capo_deadline.types.timestamp.deserialize_json(

@@ -13,9 +13,9 @@ from capo_appconfig import AsyncAppConfigClient
 
 
 async def main():
-    async with AsyncAppConfigClient() as s3:
+    async with AsyncAppConfigClient() as app_config:
         # Example: call the create_application operation
-        response = await s3.create_application()
+        response = await app_config.create_application()
         print(response["id"])
 ```
 
@@ -28,9 +28,9 @@ from capo_appconfig import AsyncAppConfigClient
 
 
 async def main():
-    async with AsyncAppConfigClient() as s3:
+    async with AsyncAppConfigClient() as app_config:
         # Example: paginate over list_applications
-        async for item in s3.iter_list_applications():
+        async for item in app_config.iter_list_applications():
             print(item)
 ```
 
@@ -44,9 +44,9 @@ from capo_appconfig.error import BadRequestException
 
 
 async def main():
-    async with AsyncAppConfigClient() as s3:
+    async with AsyncAppConfigClient() as app_config:
         try:
-            await s3.create_application()
+            await app_config.create_application()
         except BadRequestException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -63,13 +63,13 @@ from capo_appconfig import AsyncAppConfigClient
 
 
 async def main():
-    async with AsyncAppConfigClient() as s3:
+    async with AsyncAppConfigClient() as app_config:
         # Default: 3 attempts for every operation
-        response = await s3.create_application()
+        response = await app_config.create_application()
 
         # Override per operation
-        response = await s3.create_application(config_overrides={"retry_max_attempts": 5})
+        response = await app_config.create_application(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.create_application(config_overrides={"retry_max_attempts": 1})
+        response = await app_config.create_application(config_overrides={"retry_max_attempts": 1})
 ```

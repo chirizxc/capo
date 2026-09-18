@@ -48,7 +48,7 @@ def serialize_json(value: SrtCallerSourceRequest) -> dict:
 
 def deserialize_json(data: dict) -> SrtCallerSourceRequest:
     out: SrtCallerSourceRequest = {}  # type: ignore[typeddict-item]
-    if "decryption" in data:
+    if data.get("decryption") is not None:
         import capo_medialive.types.srt_caller_decryption_request
 
         out["decryption"] = (
@@ -56,12 +56,12 @@ def deserialize_json(data: dict) -> SrtCallerSourceRequest:
                 data["decryption"]
             )
         )
-    if "minimumLatency" in data:
+    if data.get("minimumLatency") is not None:
         out["minimum_latency"] = data["minimumLatency"]
-    if "srtListenerAddress" in data:
+    if data.get("srtListenerAddress") is not None:
         out["srt_listener_address"] = data["srtListenerAddress"]
-    if "srtListenerPort" in data:
+    if data.get("srtListenerPort") is not None:
         out["srt_listener_port"] = data["srtListenerPort"]
-    if "streamId" in data:
+    if data.get("streamId") is not None:
         out["stream_id"] = data["streamId"]
     return out

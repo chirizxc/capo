@@ -31,9 +31,9 @@ def serialize_json(value: UpdateApplicationSettingsOutput) -> dict:
 
 def deserialize_json(data: dict) -> UpdateApplicationSettingsOutput:
     out: UpdateApplicationSettingsOutput = {}  # type: ignore[typeddict-item]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
-    if "OperationIds" in data:
+    if data.get("OperationIds") is not None:
         import capo_ssm_sap.types.operation_id_list
 
         out["operation_ids"] = capo_ssm_sap.types.operation_id_list.deserialize_json(

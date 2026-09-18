@@ -28,11 +28,11 @@ def serialize_aws_json_1_0(value: DeleteIndexRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> DeleteIndexRequest:
     out: DeleteIndexRequest = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("DeleteIndexRequest.id required")
-    if "indexName" in data:
+    if data.get("indexName") is not None:
         out["index_name"] = data["indexName"]
     else:
         raise DeserializationError("DeleteIndexRequest.index_name required")

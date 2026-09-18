@@ -32,8 +32,8 @@ def serialize_json(value: Scte35SpliceInsertScheduleActionSettings) -> dict:
 
 def deserialize_json(data: dict) -> Scte35SpliceInsertScheduleActionSettings:
     out: Scte35SpliceInsertScheduleActionSettings = {}  # type: ignore[typeddict-item]
-    if "duration" in data:
+    if data.get("duration") is not None:
         out["duration"] = data["duration"]
-    if "spliceEventId" in data:
+    if data.get("spliceEventId") is not None:
         out["splice_event_id"] = data["spliceEventId"]
     return out

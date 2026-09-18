@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> ExperimentTemplateSummaryList:
 
     out: ExperimentTemplateSummaryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_fis.types.experiment_template_summary.deserialize_json(item))
     return out

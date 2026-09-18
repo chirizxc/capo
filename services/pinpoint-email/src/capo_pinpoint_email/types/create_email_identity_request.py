@@ -31,11 +31,11 @@ def serialize_json(value: CreateEmailIdentityRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateEmailIdentityRequest:
     out: CreateEmailIdentityRequest = {}  # type: ignore[typeddict-item]
-    if "EmailIdentity" in data:
+    if data.get("EmailIdentity") is not None:
         out["email_identity"] = data["EmailIdentity"]
     else:
         raise DeserializationError("CreateEmailIdentityRequest.email_identity required")
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_pinpoint_email.types.tag_list
 
         out["tags"] = capo_pinpoint_email.types.tag_list.deserialize_json(data["Tags"])

@@ -28,7 +28,7 @@ def serialize_json(value: SlaContent) -> dict:
 
 def deserialize_json(data: dict) -> SlaContent:
     out: SlaContent = {}  # type: ignore[typeddict-item]
-    if "slaConfiguration" in data:
+    if data.get("slaConfiguration") is not None:
         import capo_connectcases.types.sla_configuration
 
         out["sla_configuration"] = (

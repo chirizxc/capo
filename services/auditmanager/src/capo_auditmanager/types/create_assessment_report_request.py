@@ -41,12 +41,12 @@ def serialize_json(value: CreateAssessmentReportRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateAssessmentReportRequest:
     out: CreateAssessmentReportRequest = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("CreateAssessmentReportRequest.name required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "queryStatement" in data:
+    if data.get("queryStatement") is not None:
         out["query_statement"] = data["queryStatement"]
     return out

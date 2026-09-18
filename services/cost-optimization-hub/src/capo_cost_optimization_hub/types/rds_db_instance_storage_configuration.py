@@ -20,22 +20,46 @@ def serialize_aws_json_1_0(value: RdsDbInstanceStorageConfiguration) -> dict:
     if "storage_type" in value:
         out["storageType"] = value["storage_type"]
     if "allocated_storage_in_gb" in value:
-        out["allocatedStorageInGb"] = value["allocated_storage_in_gb"]
+        out["allocatedStorageInGb"] = (
+            "NaN"
+            if value["allocated_storage_in_gb"] != value["allocated_storage_in_gb"]
+            else "Infinity"
+            if value["allocated_storage_in_gb"] == float("inf")
+            else "-Infinity"
+            if value["allocated_storage_in_gb"] == float("-inf")
+            else value["allocated_storage_in_gb"]
+        )
     if "iops" in value:
-        out["iops"] = value["iops"]
+        out["iops"] = (
+            "NaN"
+            if value["iops"] != value["iops"]
+            else "Infinity"
+            if value["iops"] == float("inf")
+            else "-Infinity"
+            if value["iops"] == float("-inf")
+            else value["iops"]
+        )
     if "storage_throughput" in value:
-        out["storageThroughput"] = value["storage_throughput"]
+        out["storageThroughput"] = (
+            "NaN"
+            if value["storage_throughput"] != value["storage_throughput"]
+            else "Infinity"
+            if value["storage_throughput"] == float("inf")
+            else "-Infinity"
+            if value["storage_throughput"] == float("-inf")
+            else value["storage_throughput"]
+        )
     return out
 
 
 def deserialize_aws_json_1_0(data: dict) -> RdsDbInstanceStorageConfiguration:
     out: RdsDbInstanceStorageConfiguration = {}  # type: ignore[typeddict-item]
-    if "storageType" in data:
+    if data.get("storageType") is not None:
         out["storage_type"] = data["storageType"]
-    if "allocatedStorageInGb" in data:
-        out["allocated_storage_in_gb"] = data["allocatedStorageInGb"]
-    if "iops" in data:
-        out["iops"] = data["iops"]
-    if "storageThroughput" in data:
-        out["storage_throughput"] = data["storageThroughput"]
+    if data.get("allocatedStorageInGb") is not None:
+        out["allocated_storage_in_gb"] = float(data["allocatedStorageInGb"])
+    if data.get("iops") is not None:
+        out["iops"] = float(data["iops"])
+    if data.get("storageThroughput") is not None:
+        out["storage_throughput"] = float(data["storageThroughput"])
     return out

@@ -95,7 +95,7 @@ def serialize_json(value: UsageStatistics) -> dict:
 
 def deserialize_json(data: dict) -> UsageStatistics:
     out: UsageStatistics = {}  # type: ignore[typeddict-item]
-    if "sumByAccount" in data:
+    if data.get("sumByAccount") is not None:
         import capo_guardduty.types.usage_account_result_list
 
         out["sum_by_account"] = (
@@ -103,7 +103,7 @@ def deserialize_json(data: dict) -> UsageStatistics:
                 data["sumByAccount"]
             )
         )
-    if "topAccountsByFeature" in data:
+    if data.get("topAccountsByFeature") is not None:
         import capo_guardduty.types.usage_top_accounts_result_list
 
         out["top_accounts_by_feature"] = (
@@ -111,7 +111,7 @@ def deserialize_json(data: dict) -> UsageStatistics:
                 data["topAccountsByFeature"]
             )
         )
-    if "sumByDataSource" in data:
+    if data.get("sumByDataSource") is not None:
         import capo_guardduty.types.usage_data_source_result_list
 
         out["sum_by_data_source"] = (
@@ -119,7 +119,7 @@ def deserialize_json(data: dict) -> UsageStatistics:
                 data["sumByDataSource"]
             )
         )
-    if "sumByResource" in data:
+    if data.get("sumByResource") is not None:
         import capo_guardduty.types.usage_resource_result_list
 
         out["sum_by_resource"] = (
@@ -127,7 +127,7 @@ def deserialize_json(data: dict) -> UsageStatistics:
                 data["sumByResource"]
             )
         )
-    if "topResources" in data:
+    if data.get("topResources") is not None:
         import capo_guardduty.types.usage_resource_result_list
 
         out["top_resources"] = (
@@ -135,7 +135,7 @@ def deserialize_json(data: dict) -> UsageStatistics:
                 data["topResources"]
             )
         )
-    if "sumByFeature" in data:
+    if data.get("sumByFeature") is not None:
         import capo_guardduty.types.usage_feature_result_list
 
         out["sum_by_feature"] = (

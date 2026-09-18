@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> ThingGroupNameAndArnList:
 
     out: ThingGroupNameAndArnList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_iot.types.group_name_and_arn.deserialize_json(item))
     return out

@@ -37,10 +37,10 @@ def serialize_json(value: PutAttachmentRoutingPolicyLabelResponse) -> dict:
 
 def deserialize_json(data: dict) -> PutAttachmentRoutingPolicyLabelResponse:
     out: PutAttachmentRoutingPolicyLabelResponse = {}  # type: ignore[typeddict-item]
-    if "CoreNetworkId" in data:
+    if data.get("CoreNetworkId") is not None:
         out["core_network_id"] = data["CoreNetworkId"]
-    if "AttachmentId" in data:
+    if data.get("AttachmentId") is not None:
         out["attachment_id"] = data["AttachmentId"]
-    if "RoutingPolicyLabel" in data:
+    if data.get("RoutingPolicyLabel") is not None:
         out["routing_policy_label"] = data["RoutingPolicyLabel"]
     return out

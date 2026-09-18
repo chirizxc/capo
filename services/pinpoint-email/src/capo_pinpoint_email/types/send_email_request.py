@@ -80,9 +80,9 @@ def serialize_json(value: SendEmailRequest) -> dict:
 
 def deserialize_json(data: dict) -> SendEmailRequest:
     out: SendEmailRequest = {}  # type: ignore[typeddict-item]
-    if "FromEmailAddress" in data:
+    if data.get("FromEmailAddress") is not None:
         out["from_email_address"] = data["FromEmailAddress"]
-    if "Destination" in data:
+    if data.get("Destination") is not None:
         import capo_pinpoint_email.types.destination
 
         out["destination"] = capo_pinpoint_email.types.destination.deserialize_json(
@@ -90,7 +90,7 @@ def deserialize_json(data: dict) -> SendEmailRequest:
         )
     else:
         raise DeserializationError("SendEmailRequest.destination required")
-    if "ReplyToAddresses" in data:
+    if data.get("ReplyToAddresses") is not None:
         import capo_pinpoint_email.types.email_address_list
 
         out["reply_to_addresses"] = (
@@ -98,11 +98,11 @@ def deserialize_json(data: dict) -> SendEmailRequest:
                 data["ReplyToAddresses"]
             )
         )
-    if "FeedbackForwardingEmailAddress" in data:
+    if data.get("FeedbackForwardingEmailAddress") is not None:
         out["feedback_forwarding_email_address"] = data[
             "FeedbackForwardingEmailAddress"
         ]
-    if "Content" in data:
+    if data.get("Content") is not None:
         import capo_pinpoint_email.types.email_content
 
         out["content"] = capo_pinpoint_email.types.email_content.deserialize_json(
@@ -110,12 +110,12 @@ def deserialize_json(data: dict) -> SendEmailRequest:
         )
     else:
         raise DeserializationError("SendEmailRequest.content required")
-    if "EmailTags" in data:
+    if data.get("EmailTags") is not None:
         import capo_pinpoint_email.types.message_tag_list
 
         out["email_tags"] = capo_pinpoint_email.types.message_tag_list.deserialize_json(
             data["EmailTags"]
         )
-    if "ConfigurationSetName" in data:
+    if data.get("ConfigurationSetName") is not None:
         out["configuration_set_name"] = data["ConfigurationSetName"]
     return out

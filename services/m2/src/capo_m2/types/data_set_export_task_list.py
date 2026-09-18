@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> DataSetExportTaskList:
 
     out: DataSetExportTaskList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_m2.types.data_set_export_task.deserialize_json(item))
     return out

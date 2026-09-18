@@ -45,11 +45,11 @@ def serialize_json(value: SheetVisualScopingConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> SheetVisualScopingConfiguration:
     out: SheetVisualScopingConfiguration = {}  # type: ignore[typeddict-item]
-    if "SheetId" in data:
+    if data.get("SheetId") is not None:
         out["sheet_id"] = data["SheetId"]
     else:
         raise DeserializationError("SheetVisualScopingConfiguration.sheet_id required")
-    if "Scope" in data:
+    if data.get("Scope") is not None:
         import capo_quicksight.types.filter_visual_scope
 
         out["scope"] = capo_quicksight.types.filter_visual_scope.deserialize_json(
@@ -57,7 +57,7 @@ def deserialize_json(data: dict) -> SheetVisualScopingConfiguration:
         )
     else:
         raise DeserializationError("SheetVisualScopingConfiguration.scope required")
-    if "VisualIds" in data:
+    if data.get("VisualIds") is not None:
         import capo_quicksight.types.filtered_visuals_list
 
         out["visual_ids"] = (

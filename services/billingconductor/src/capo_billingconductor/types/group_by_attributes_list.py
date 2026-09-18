@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> GroupByAttributesList:
 
     out: GroupByAttributesList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_billingconductor.types.group_by_attribute_name.deserialize_json(item)
         )

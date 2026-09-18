@@ -41,18 +41,18 @@ def serialize_json(value: ChoiceUpdate) -> dict:
 
 def deserialize_json(data: dict) -> ChoiceUpdate:
     out: ChoiceUpdate = {}  # type: ignore[typeddict-item]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_wellarchitected.types.choice_status
 
         out["status"] = capo_wellarchitected.types.choice_status.deserialize_json(
             data["Status"]
         )
-    if "Reason" in data:
+    if data.get("Reason") is not None:
         import capo_wellarchitected.types.choice_reason
 
         out["reason"] = capo_wellarchitected.types.choice_reason.deserialize_json(
             data["Reason"]
         )
-    if "Notes" in data:
+    if data.get("Notes") is not None:
         out["notes"] = data["Notes"]
     return out

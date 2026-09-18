@@ -31,7 +31,7 @@ def serialize_json(value: PluginDescription) -> dict:
 
 def deserialize_json(data: dict) -> PluginDescription:
     out: PluginDescription = {}  # type: ignore[typeddict-item]
-    if "customPlugin" in data:
+    if data.get("customPlugin") is not None:
         import capo_kafkaconnect.types.custom_plugin_description
 
         out["custom_plugin"] = (

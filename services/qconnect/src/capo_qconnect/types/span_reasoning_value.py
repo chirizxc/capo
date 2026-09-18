@@ -24,7 +24,7 @@ def serialize_json(value: SpanReasoningValue) -> dict:
 
 def deserialize_json(data: dict) -> SpanReasoningValue:
     out: SpanReasoningValue = {}  # type: ignore[typeddict-item]
-    if "value" in data:
+    if data.get("value") is not None:
         out["value"] = data["value"]
     else:
         raise DeserializationError("SpanReasoningValue.value required")

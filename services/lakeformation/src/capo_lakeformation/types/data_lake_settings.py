@@ -130,7 +130,7 @@ def serialize_json(value: DataLakeSettings) -> dict:
 
 def deserialize_json(data: dict) -> DataLakeSettings:
     out: DataLakeSettings = {}  # type: ignore[typeddict-item]
-    if "DataLakeAdmins" in data:
+    if data.get("DataLakeAdmins") is not None:
         import capo_lakeformation.types.data_lake_principal_list
 
         out["data_lake_admins"] = (
@@ -138,7 +138,7 @@ def deserialize_json(data: dict) -> DataLakeSettings:
                 data["DataLakeAdmins"]
             )
         )
-    if "ReadOnlyAdmins" in data:
+    if data.get("ReadOnlyAdmins") is not None:
         import capo_lakeformation.types.data_lake_principal_list
 
         out["read_only_admins"] = (
@@ -146,7 +146,7 @@ def deserialize_json(data: dict) -> DataLakeSettings:
                 data["ReadOnlyAdmins"]
             )
         )
-    if "CreateDatabaseDefaultPermissions" in data:
+    if data.get("CreateDatabaseDefaultPermissions") is not None:
         import capo_lakeformation.types.principal_permissions_list
 
         out["create_database_default_permissions"] = (
@@ -154,7 +154,7 @@ def deserialize_json(data: dict) -> DataLakeSettings:
                 data["CreateDatabaseDefaultPermissions"]
             )
         )
-    if "CreateTableDefaultPermissions" in data:
+    if data.get("CreateTableDefaultPermissions") is not None:
         import capo_lakeformation.types.principal_permissions_list
 
         out["create_table_default_permissions"] = (
@@ -162,13 +162,13 @@ def deserialize_json(data: dict) -> DataLakeSettings:
                 data["CreateTableDefaultPermissions"]
             )
         )
-    if "Parameters" in data:
+    if data.get("Parameters") is not None:
         import capo_lakeformation.types.parameters_map
 
         out["parameters"] = capo_lakeformation.types.parameters_map.deserialize_json(
             data["Parameters"]
         )
-    if "TrustedResourceOwners" in data:
+    if data.get("TrustedResourceOwners") is not None:
         import capo_lakeformation.types.trusted_resource_owners
 
         out["trusted_resource_owners"] = (
@@ -176,13 +176,13 @@ def deserialize_json(data: dict) -> DataLakeSettings:
                 data["TrustedResourceOwners"]
             )
         )
-    if "AllowExternalDataFiltering" in data:
+    if data.get("AllowExternalDataFiltering") is not None:
         out["allow_external_data_filtering"] = data["AllowExternalDataFiltering"]
-    if "AllowFullTableExternalDataAccess" in data:
+    if data.get("AllowFullTableExternalDataAccess") is not None:
         out["allow_full_table_external_data_access"] = data[
             "AllowFullTableExternalDataAccess"
         ]
-    if "ExternalDataFilteringAllowList" in data:
+    if data.get("ExternalDataFilteringAllowList") is not None:
         import capo_lakeformation.types.data_lake_principal_list
 
         out["external_data_filtering_allow_list"] = (
@@ -190,7 +190,7 @@ def deserialize_json(data: dict) -> DataLakeSettings:
                 data["ExternalDataFilteringAllowList"]
             )
         )
-    if "AuthorizedSessionTagValueList" in data:
+    if data.get("AuthorizedSessionTagValueList") is not None:
         import capo_lakeformation.types.authorized_session_tag_value_list
 
         out["authorized_session_tag_value_list"] = (

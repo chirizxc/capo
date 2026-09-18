@@ -155,67 +155,67 @@ def serialize_json(value: Component) -> dict:
 
 def deserialize_json(data: dict) -> Component:
     out: Component = {}  # type: ignore[typeddict-item]
-    if "ComponentId" in data:
+    if data.get("ComponentId") is not None:
         out["component_id"] = data["ComponentId"]
-    if "Sid" in data:
+    if data.get("Sid") is not None:
         out["sid"] = data["Sid"]
-    if "SystemNumber" in data:
+    if data.get("SystemNumber") is not None:
         out["system_number"] = data["SystemNumber"]
-    if "ParentComponent" in data:
+    if data.get("ParentComponent") is not None:
         out["parent_component"] = data["ParentComponent"]
-    if "ChildComponents" in data:
+    if data.get("ChildComponents") is not None:
         import capo_ssm_sap.types.component_id_list
 
         out["child_components"] = capo_ssm_sap.types.component_id_list.deserialize_json(
             data["ChildComponents"]
         )
-    if "ApplicationId" in data:
+    if data.get("ApplicationId") is not None:
         out["application_id"] = data["ApplicationId"]
-    if "ComponentType" in data:
+    if data.get("ComponentType") is not None:
         import capo_ssm_sap.types.component_type
 
         out["component_type"] = capo_ssm_sap.types.component_type.deserialize_json(
             data["ComponentType"]
         )
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_ssm_sap.types.component_status
 
         out["status"] = capo_ssm_sap.types.component_status.deserialize_json(
             data["Status"]
         )
-    if "SapHostname" in data:
+    if data.get("SapHostname") is not None:
         out["sap_hostname"] = data["SapHostname"]
-    if "SapFeature" in data:
+    if data.get("SapFeature") is not None:
         out["sap_feature"] = data["SapFeature"]
-    if "SapKernelVersion" in data:
+    if data.get("SapKernelVersion") is not None:
         out["sap_kernel_version"] = data["SapKernelVersion"]
-    if "HdbVersion" in data:
+    if data.get("HdbVersion") is not None:
         out["hdb_version"] = data["HdbVersion"]
-    if "Resilience" in data:
+    if data.get("Resilience") is not None:
         import capo_ssm_sap.types.resilience
 
         out["resilience"] = capo_ssm_sap.types.resilience.deserialize_json(
             data["Resilience"]
         )
-    if "AssociatedHost" in data:
+    if data.get("AssociatedHost") is not None:
         import capo_ssm_sap.types.associated_host
 
         out["associated_host"] = capo_ssm_sap.types.associated_host.deserialize_json(
             data["AssociatedHost"]
         )
-    if "Databases" in data:
+    if data.get("Databases") is not None:
         import capo_ssm_sap.types.database_id_list
 
         out["databases"] = capo_ssm_sap.types.database_id_list.deserialize_json(
             data["Databases"]
         )
-    if "Hosts" in data:
+    if data.get("Hosts") is not None:
         import capo_ssm_sap.types.host_list
 
         out["hosts"] = capo_ssm_sap.types.host_list.deserialize_json(data["Hosts"])
-    if "PrimaryHost" in data:
+    if data.get("PrimaryHost") is not None:
         out["primary_host"] = data["PrimaryHost"]
-    if "DatabaseConnection" in data:
+    if data.get("DatabaseConnection") is not None:
         import capo_ssm_sap.types.database_connection
 
         out["database_connection"] = (
@@ -223,12 +223,12 @@ def deserialize_json(data: dict) -> Component:
                 data["DatabaseConnection"]
             )
         )
-    if "LastUpdated" in data:
+    if data.get("LastUpdated") is not None:
         import capo_ssm_sap.types._prelude.timestamp
 
         out["last_updated"] = capo_ssm_sap.types._prelude.timestamp.deserialize_json(
             data["LastUpdated"]
         )
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
     return out

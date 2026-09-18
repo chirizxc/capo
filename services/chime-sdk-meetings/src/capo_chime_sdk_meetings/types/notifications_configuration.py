@@ -31,10 +31,10 @@ def serialize_json(value: NotificationsConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> NotificationsConfiguration:
     out: NotificationsConfiguration = {}  # type: ignore[typeddict-item]
-    if "LambdaFunctionArn" in data:
+    if data.get("LambdaFunctionArn") is not None:
         out["lambda_function_arn"] = data["LambdaFunctionArn"]
-    if "SnsTopicArn" in data:
+    if data.get("SnsTopicArn") is not None:
         out["sns_topic_arn"] = data["SnsTopicArn"]
-    if "SqsQueueArn" in data:
+    if data.get("SqsQueueArn") is not None:
         out["sqs_queue_arn"] = data["SqsQueueArn"]
     return out

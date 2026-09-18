@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: StartReportCreationInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> StartReportCreationInput:
     out: StartReportCreationInput = {}  # type: ignore[typeddict-item]
-    if "S3Bucket" in data:
+    if data.get("S3Bucket") is not None:
         out["s3_bucket"] = data["S3Bucket"]
     else:
         raise DeserializationError("StartReportCreationInput.s3_bucket required")

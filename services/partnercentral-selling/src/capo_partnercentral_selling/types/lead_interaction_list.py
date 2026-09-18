@@ -29,6 +29,8 @@ def deserialize_aws_json_1_0(data: list) -> LeadInteractionList:
 
     out: LeadInteractionList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_partnercentral_selling.types.lead_interaction.deserialize_aws_json_1_0(
                 item

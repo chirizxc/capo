@@ -49,15 +49,15 @@ def serialize_json(value: ReadSetFilter) -> dict:
     if "reference_arn" in value:
         out["referenceArn"] = value["reference_arn"]
     if "created_after" in value:
-        import capo_omics.types._prelude.timestamp
+        import capo_omics._protocol.serialize
 
-        out["createdAfter"] = capo_omics.types._prelude.timestamp.serialize_json(
+        out["createdAfter"] = capo_omics._protocol.serialize.fmt_date_time(
             value["created_after"]
         )
     if "created_before" in value:
-        import capo_omics.types._prelude.timestamp
+        import capo_omics._protocol.serialize
 
-        out["createdBefore"] = capo_omics.types._prelude.timestamp.serialize_json(
+        out["createdBefore"] = capo_omics._protocol.serialize.fmt_date_time(
             value["created_before"]
         )
     if "sample_id" in value:
@@ -73,30 +73,30 @@ def serialize_json(value: ReadSetFilter) -> dict:
 
 def deserialize_json(data: dict) -> ReadSetFilter:
     out: ReadSetFilter = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
-    if "referenceArn" in data:
+    if data.get("referenceArn") is not None:
         out["reference_arn"] = data["referenceArn"]
-    if "createdAfter" in data:
-        import capo_omics.types._prelude.timestamp
+    if data.get("createdAfter") is not None:
+        import datetime
 
-        out["created_after"] = capo_omics.types._prelude.timestamp.deserialize_json(
-            data["createdAfter"]
+        out["created_after"] = datetime.datetime.fromisoformat(
+            data["createdAfter"].replace("Z", "+00:00")
         )
-    if "createdBefore" in data:
-        import capo_omics.types._prelude.timestamp
+    if data.get("createdBefore") is not None:
+        import datetime
 
-        out["created_before"] = capo_omics.types._prelude.timestamp.deserialize_json(
-            data["createdBefore"]
+        out["created_before"] = datetime.datetime.fromisoformat(
+            data["createdBefore"].replace("Z", "+00:00")
         )
-    if "sampleId" in data:
+    if data.get("sampleId") is not None:
         out["sample_id"] = data["sampleId"]
-    if "subjectId" in data:
+    if data.get("subjectId") is not None:
         out["subject_id"] = data["subjectId"]
-    if "generatedFrom" in data:
+    if data.get("generatedFrom") is not None:
         out["generated_from"] = data["generatedFrom"]
-    if "creationType" in data:
+    if data.get("creationType") is not None:
         out["creation_type"] = data["creationType"]
     return out

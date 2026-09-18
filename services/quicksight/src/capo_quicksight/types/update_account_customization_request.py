@@ -38,7 +38,7 @@ def serialize_json(value: UpdateAccountCustomizationRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateAccountCustomizationRequest:
     out: UpdateAccountCustomizationRequest = {}  # type: ignore[typeddict-item]
-    if "AccountCustomization" in data:
+    if data.get("AccountCustomization") is not None:
         import capo_quicksight.types.account_customization
 
         out["account_customization"] = (

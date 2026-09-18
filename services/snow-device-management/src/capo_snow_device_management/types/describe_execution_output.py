@@ -66,15 +66,15 @@ def serialize_json(value: DescribeExecutionOutput) -> dict:
 
 def deserialize_json(data: dict) -> DescribeExecutionOutput:
     out: DescribeExecutionOutput = {}  # type: ignore[typeddict-item]
-    if "taskId" in data:
+    if data.get("taskId") is not None:
         out["task_id"] = data["taskId"]
-    if "executionId" in data:
+    if data.get("executionId") is not None:
         out["execution_id"] = data["executionId"]
-    if "managedDeviceId" in data:
+    if data.get("managedDeviceId") is not None:
         out["managed_device_id"] = data["managedDeviceId"]
-    if "state" in data:
+    if data.get("state") is not None:
         out["state"] = data["state"]
-    if "startedAt" in data:
+    if data.get("startedAt") is not None:
         import capo_snow_device_management.types._prelude.timestamp
 
         out["started_at"] = (
@@ -82,7 +82,7 @@ def deserialize_json(data: dict) -> DescribeExecutionOutput:
                 data["startedAt"]
             )
         )
-    if "lastUpdatedAt" in data:
+    if data.get("lastUpdatedAt") is not None:
         import capo_snow_device_management.types._prelude.timestamp
 
         out["last_updated_at"] = (

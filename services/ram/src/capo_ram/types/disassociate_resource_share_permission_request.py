@@ -31,18 +31,18 @@ def serialize_json(value: DisassociateResourceSharePermissionRequest) -> dict:
 
 def deserialize_json(data: dict) -> DisassociateResourceSharePermissionRequest:
     out: DisassociateResourceSharePermissionRequest = {}  # type: ignore[typeddict-item]
-    if "resourceShareArn" in data:
+    if data.get("resourceShareArn") is not None:
         out["resource_share_arn"] = data["resourceShareArn"]
     else:
         raise DeserializationError(
             "DisassociateResourceSharePermissionRequest.resource_share_arn required"
         )
-    if "permissionArn" in data:
+    if data.get("permissionArn") is not None:
         out["permission_arn"] = data["permissionArn"]
     else:
         raise DeserializationError(
             "DisassociateResourceSharePermissionRequest.permission_arn required"
         )
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     return out

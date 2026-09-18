@@ -25,5 +25,7 @@ def deserialize_aws_json_1_1(data: list) -> TextTransformations:
 
     out: TextTransformations = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_wafv2.types.text_transformation.deserialize_aws_json_1_1(item))
     return out

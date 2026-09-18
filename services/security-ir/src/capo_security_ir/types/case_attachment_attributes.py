@@ -53,15 +53,15 @@ def serialize_json(value: CaseAttachmentAttributes) -> dict:
 
 def deserialize_json(data: dict) -> CaseAttachmentAttributes:
     out: CaseAttachmentAttributes = {}  # type: ignore[typeddict-item]
-    if "attachmentId" in data:
+    if data.get("attachmentId") is not None:
         out["attachment_id"] = data["attachmentId"]
     else:
         raise DeserializationError("CaseAttachmentAttributes.attachment_id required")
-    if "fileName" in data:
+    if data.get("fileName") is not None:
         out["file_name"] = data["fileName"]
     else:
         raise DeserializationError("CaseAttachmentAttributes.file_name required")
-    if "attachmentStatus" in data:
+    if data.get("attachmentStatus") is not None:
         import capo_security_ir.types.case_attachment_status
 
         out["attachment_status"] = (
@@ -73,11 +73,11 @@ def deserialize_json(data: dict) -> CaseAttachmentAttributes:
         raise DeserializationError(
             "CaseAttachmentAttributes.attachment_status required"
         )
-    if "creator" in data:
+    if data.get("creator") is not None:
         out["creator"] = data["creator"]
     else:
         raise DeserializationError("CaseAttachmentAttributes.creator required")
-    if "createdDate" in data:
+    if data.get("createdDate") is not None:
         import capo_security_ir.types._prelude.timestamp
 
         out["created_date"] = (

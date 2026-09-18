@@ -73,15 +73,15 @@ def serialize_json(value: UpdateAccountPoolOutput) -> dict:
     )
     out["createdBy"] = value["created_by"]
     if "created_at" in value:
-        import capo_datazone.types._prelude.timestamp
+        import capo_datazone._protocol.serialize
 
-        out["createdAt"] = capo_datazone.types._prelude.timestamp.serialize_json(
+        out["createdAt"] = capo_datazone._protocol.serialize.fmt_date_time(
             value["created_at"]
         )
     if "last_updated_at" in value:
-        import capo_datazone.types._prelude.timestamp
+        import capo_datazone._protocol.serialize
 
-        out["lastUpdatedAt"] = capo_datazone.types._prelude.timestamp.serialize_json(
+        out["lastUpdatedAt"] = capo_datazone._protocol.serialize.fmt_date_time(
             value["last_updated_at"]
         )
     if "updated_by" in value:
@@ -93,15 +93,15 @@ def serialize_json(value: UpdateAccountPoolOutput) -> dict:
 
 def deserialize_json(data: dict) -> UpdateAccountPoolOutput:
     out: UpdateAccountPoolOutput = {}  # type: ignore[typeddict-item]
-    if "domainId" in data:
+    if data.get("domainId") is not None:
         out["domain_id"] = data["domainId"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "resolutionStrategy" in data:
+    if data.get("resolutionStrategy") is not None:
         import capo_datazone.types.resolution_strategy
 
         out["resolution_strategy"] = (
@@ -109,7 +109,7 @@ def deserialize_json(data: dict) -> UpdateAccountPoolOutput:
                 data["resolutionStrategy"]
             )
         )
-    if "accountSource" in data:
+    if data.get("accountSource") is not None:
         import capo_datazone.types.account_source
 
         out["account_source"] = capo_datazone.types.account_source.deserialize_json(
@@ -117,26 +117,24 @@ def deserialize_json(data: dict) -> UpdateAccountPoolOutput:
         )
     else:
         raise DeserializationError("UpdateAccountPoolOutput.account_source required")
-    if "createdBy" in data:
+    if data.get("createdBy") is not None:
         out["created_by"] = data["createdBy"]
     else:
         raise DeserializationError("UpdateAccountPoolOutput.created_by required")
-    if "createdAt" in data:
-        import capo_datazone.types._prelude.timestamp
+    if data.get("createdAt") is not None:
+        import datetime
 
-        out["created_at"] = capo_datazone.types._prelude.timestamp.deserialize_json(
-            data["createdAt"]
+        out["created_at"] = datetime.datetime.fromisoformat(
+            data["createdAt"].replace("Z", "+00:00")
         )
-    if "lastUpdatedAt" in data:
-        import capo_datazone.types._prelude.timestamp
+    if data.get("lastUpdatedAt") is not None:
+        import datetime
 
-        out["last_updated_at"] = (
-            capo_datazone.types._prelude.timestamp.deserialize_json(
-                data["lastUpdatedAt"]
-            )
+        out["last_updated_at"] = datetime.datetime.fromisoformat(
+            data["lastUpdatedAt"].replace("Z", "+00:00")
         )
-    if "updatedBy" in data:
+    if data.get("updatedBy") is not None:
         out["updated_by"] = data["updatedBy"]
-    if "domainUnitId" in data:
+    if data.get("domainUnitId") is not None:
         out["domain_unit_id"] = data["domainUnitId"]
     return out

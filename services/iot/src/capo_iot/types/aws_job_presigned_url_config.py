@@ -23,6 +23,6 @@ def serialize_json(value: AwsJobPresignedUrlConfig) -> dict:
 
 def deserialize_json(data: dict) -> AwsJobPresignedUrlConfig:
     out: AwsJobPresignedUrlConfig = {}  # type: ignore[typeddict-item]
-    if "expiresInSec" in data:
+    if data.get("expiresInSec") is not None:
         out["expires_in_sec"] = data["expiresInSec"]
     return out

@@ -36,7 +36,7 @@ def serialize_aws_json_1_0(value: PrimitiveMessageDefinition) -> dict:
 
 
 def deserialize_aws_json_1_0(data: dict) -> PrimitiveMessageDefinition:
-    if "ros2PrimitiveMessageDefinition" in data:
+    if data.get("ros2PrimitiveMessageDefinition") is not None:
         import capo_iotfleetwise.types.ros2_primitive_message_definition
 
         return {

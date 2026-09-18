@@ -38,9 +38,9 @@ def serialize_aws_json_1_1(value: DefaultCategoricalHyperParameterRange) -> dict
 
 def deserialize_aws_json_1_1(data: dict) -> DefaultCategoricalHyperParameterRange:
     out: DefaultCategoricalHyperParameterRange = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "values" in data:
+    if data.get("values") is not None:
         import capo_personalize.types.categorical_values
 
         out["values"] = (
@@ -48,7 +48,7 @@ def deserialize_aws_json_1_1(data: dict) -> DefaultCategoricalHyperParameterRang
                 data["values"]
             )
         )
-    if "isTunable" in data:
+    if data.get("isTunable") is not None:
         out["is_tunable"] = data["isTunable"]
     else:
         out["is_tunable"] = False

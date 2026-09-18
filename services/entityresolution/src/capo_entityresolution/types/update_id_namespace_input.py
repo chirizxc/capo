@@ -57,9 +57,9 @@ def serialize_json(value: UpdateIdNamespaceInput) -> dict:
 
 def deserialize_json(data: dict) -> UpdateIdNamespaceInput:
     out: UpdateIdNamespaceInput = {}  # type: ignore[typeddict-item]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "inputSourceConfig" in data:
+    if data.get("inputSourceConfig") is not None:
         import capo_entityresolution.types.id_namespace_input_source_config
 
         out["input_source_config"] = (
@@ -67,7 +67,7 @@ def deserialize_json(data: dict) -> UpdateIdNamespaceInput:
                 data["inputSourceConfig"]
             )
         )
-    if "idMappingWorkflowProperties" in data:
+    if data.get("idMappingWorkflowProperties") is not None:
         import capo_entityresolution.types.id_namespace_id_mapping_workflow_properties_list
 
         out["id_mapping_workflow_properties"] = (
@@ -75,6 +75,6 @@ def deserialize_json(data: dict) -> UpdateIdNamespaceInput:
                 data["idMappingWorkflowProperties"]
             )
         )
-    if "roleArn" in data:
+    if data.get("roleArn") is not None:
         out["role_arn"] = data["roleArn"]
     return out

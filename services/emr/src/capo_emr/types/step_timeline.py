@@ -43,19 +43,19 @@ def serialize_aws_json_1_1(value: StepTimeline) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> StepTimeline:
     out: StepTimeline = {}  # type: ignore[typeddict-item]
-    if "CreationDateTime" in data:
+    if data.get("CreationDateTime") is not None:
         import capo_emr.types.date
 
         out["creation_date_time"] = capo_emr.types.date.deserialize_aws_json_1_1(
             data["CreationDateTime"]
         )
-    if "StartDateTime" in data:
+    if data.get("StartDateTime") is not None:
         import capo_emr.types.date
 
         out["start_date_time"] = capo_emr.types.date.deserialize_aws_json_1_1(
             data["StartDateTime"]
         )
-    if "EndDateTime" in data:
+    if data.get("EndDateTime") is not None:
         import capo_emr.types.date
 
         out["end_date_time"] = capo_emr.types.date.deserialize_aws_json_1_1(

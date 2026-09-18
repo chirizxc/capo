@@ -33,11 +33,11 @@ def serialize_aws_json_1_0(value: RuleOption) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> RuleOption:
     out: RuleOption = {}  # type: ignore[typeddict-item]
-    if "Keyword" in data:
+    if data.get("Keyword") is not None:
         out["keyword"] = data["Keyword"]
     else:
         raise DeserializationError("RuleOption.keyword required")
-    if "Settings" in data:
+    if data.get("Settings") is not None:
         import capo_network_firewall.types.settings
 
         out["settings"] = capo_network_firewall.types.settings.deserialize_aws_json_1_0(

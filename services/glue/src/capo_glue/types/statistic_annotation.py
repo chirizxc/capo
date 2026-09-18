@@ -49,11 +49,11 @@ def serialize_aws_json_1_1(value: StatisticAnnotation) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> StatisticAnnotation:
     out: StatisticAnnotation = {}  # type: ignore[typeddict-item]
-    if "ProfileId" in data:
+    if data.get("ProfileId") is not None:
         out["profile_id"] = data["ProfileId"]
-    if "StatisticId" in data:
+    if data.get("StatisticId") is not None:
         out["statistic_id"] = data["StatisticId"]
-    if "StatisticRecordedOn" in data:
+    if data.get("StatisticRecordedOn") is not None:
         import capo_glue.types.timestamp
 
         out["statistic_recorded_on"] = (
@@ -61,7 +61,7 @@ def deserialize_aws_json_1_1(data: dict) -> StatisticAnnotation:
                 data["StatisticRecordedOn"]
             )
         )
-    if "InclusionAnnotation" in data:
+    if data.get("InclusionAnnotation") is not None:
         import capo_glue.types.timestamped_inclusion_annotation
 
         out["inclusion_annotation"] = (

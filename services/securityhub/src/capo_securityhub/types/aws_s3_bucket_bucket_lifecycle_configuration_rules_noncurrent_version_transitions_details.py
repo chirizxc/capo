@@ -34,8 +34,8 @@ def deserialize_json(
     data: dict,
 ) -> AwsS3BucketBucketLifecycleConfigurationRulesNoncurrentVersionTransitionsDetails:
     out: AwsS3BucketBucketLifecycleConfigurationRulesNoncurrentVersionTransitionsDetails = {}  # type: ignore[typeddict-item]
-    if "Days" in data:
+    if data.get("Days") is not None:
         out["days"] = data["Days"]
-    if "StorageClass" in data:
+    if data.get("StorageClass") is not None:
         out["storage_class"] = data["StorageClass"]
     return out

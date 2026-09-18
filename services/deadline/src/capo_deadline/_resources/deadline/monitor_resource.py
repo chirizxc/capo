@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import uuid
 from typing import TYPE_CHECKING, Optional
 
 import capo_deadline._auth._signers
@@ -98,15 +99,17 @@ class MonitorResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_deadline.types.create_monitor_request.CreateMonitorRequest = {}  # type: ignore[typeddict-item]
-        if client_token is not None:
-            input_["client_token"] = client_token
-        input_["display_name"] = display_name
-        input_["identity_center_instance_arn"] = identity_center_instance_arn
+        input_: capo_deadline.types.create_monitor_request.CreateMonitorRequest = {
+            "display_name": display_name,
+            "identity_center_instance_arn": identity_center_instance_arn,
+            "subdomain": subdomain,
+            "role_arn": role_arn,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if identity_center_region is not None:
             input_["identity_center_region"] = identity_center_region
-        input_["subdomain"] = subdomain
-        input_["role_arn"] = role_arn
         if tags is not None:
             input_["tags"] = tags
 
@@ -115,6 +118,7 @@ class MonitorResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -152,14 +156,16 @@ class MonitorResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_deadline.types.get_monitor_request.GetMonitorRequest = {}  # type: ignore[typeddict-item]
-        input_["monitor_id"] = monitor_id
+        input_: capo_deadline.types.get_monitor_request.GetMonitorRequest = {
+            "monitor_id": monitor_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update(
@@ -203,8 +209,9 @@ class MonitorResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_deadline.types.update_monitor_request.UpdateMonitorRequest = {}  # type: ignore[typeddict-item]
-        input_["monitor_id"] = monitor_id
+        input_: capo_deadline.types.update_monitor_request.UpdateMonitorRequest = {
+            "monitor_id": monitor_id
+        }
         if subdomain is not None:
             input_["subdomain"] = subdomain
         if display_name is not None:
@@ -217,6 +224,7 @@ class MonitorResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -254,14 +262,16 @@ class MonitorResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_deadline.types.delete_monitor_request.DeleteMonitorRequest = {}  # type: ignore[typeddict-item]
-        input_["monitor_id"] = monitor_id
+        input_: capo_deadline.types.delete_monitor_request.DeleteMonitorRequest = {
+            "monitor_id": monitor_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -300,7 +310,7 @@ class MonitorResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_deadline.types.list_monitors_request.ListMonitorsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_deadline.types.list_monitors_request.ListMonitorsRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -311,6 +321,7 @@ class MonitorResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_monitor_settings(
@@ -353,14 +364,16 @@ class MonitorResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_deadline.types.get_monitor_settings_request.GetMonitorSettingsRequest = {}  # type: ignore[typeddict-item]
-        input_["monitor_id"] = monitor_id
+        input_: capo_deadline.types.get_monitor_settings_request.GetMonitorSettingsRequest = {
+            "monitor_id": monitor_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_monitor_settings(
@@ -405,15 +418,17 @@ class MonitorResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_deadline.types.update_monitor_settings_request.UpdateMonitorSettingsRequest = {}  # type: ignore[typeddict-item]
-        input_["monitor_id"] = monitor_id
-        input_["settings"] = settings
+        input_: capo_deadline.types.update_monitor_settings_request.UpdateMonitorSettingsRequest = {
+            "monitor_id": monitor_id,
+            "settings": settings,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -469,15 +484,17 @@ class AsyncMonitorResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_deadline.types.create_monitor_request.CreateMonitorRequest = {}  # type: ignore[typeddict-item]
-        if client_token is not None:
-            input_["client_token"] = client_token
-        input_["display_name"] = display_name
-        input_["identity_center_instance_arn"] = identity_center_instance_arn
+        input_: capo_deadline.types.create_monitor_request.CreateMonitorRequest = {
+            "display_name": display_name,
+            "identity_center_instance_arn": identity_center_instance_arn,
+            "subdomain": subdomain,
+            "role_arn": role_arn,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if identity_center_region is not None:
             input_["identity_center_region"] = identity_center_region
-        input_["subdomain"] = subdomain
-        input_["role_arn"] = role_arn
         if tags is not None:
             input_["tags"] = tags
 
@@ -486,6 +503,7 @@ class AsyncMonitorResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -524,14 +542,16 @@ class AsyncMonitorResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_deadline.types.get_monitor_request.GetMonitorRequest = {}  # type: ignore[typeddict-item]
-        input_["monitor_id"] = monitor_id
+        input_: capo_deadline.types.get_monitor_request.GetMonitorRequest = {
+            "monitor_id": monitor_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update(
@@ -576,8 +596,9 @@ class AsyncMonitorResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_deadline.types.update_monitor_request.UpdateMonitorRequest = {}  # type: ignore[typeddict-item]
-        input_["monitor_id"] = monitor_id
+        input_: capo_deadline.types.update_monitor_request.UpdateMonitorRequest = {
+            "monitor_id": monitor_id
+        }
         if subdomain is not None:
             input_["subdomain"] = subdomain
         if display_name is not None:
@@ -590,6 +611,7 @@ class AsyncMonitorResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -628,14 +650,16 @@ class AsyncMonitorResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_deadline.types.delete_monitor_request.DeleteMonitorRequest = {}  # type: ignore[typeddict-item]
-        input_["monitor_id"] = monitor_id
+        input_: capo_deadline.types.delete_monitor_request.DeleteMonitorRequest = {
+            "monitor_id": monitor_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -675,7 +699,7 @@ class AsyncMonitorResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_deadline.types.list_monitors_request.ListMonitorsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_deadline.types.list_monitors_request.ListMonitorsRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -686,6 +710,7 @@ class AsyncMonitorResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_monitor_settings(
@@ -729,14 +754,16 @@ class AsyncMonitorResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_deadline.types.get_monitor_settings_request.GetMonitorSettingsRequest = {}  # type: ignore[typeddict-item]
-        input_["monitor_id"] = monitor_id
+        input_: capo_deadline.types.get_monitor_settings_request.GetMonitorSettingsRequest = {
+            "monitor_id": monitor_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_monitor_settings(
@@ -782,13 +809,15 @@ class AsyncMonitorResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_deadline.types.update_monitor_settings_request.UpdateMonitorSettingsRequest = {}  # type: ignore[typeddict-item]
-        input_["monitor_id"] = monitor_id
-        input_["settings"] = settings
+        input_: capo_deadline.types.update_monitor_settings_request.UpdateMonitorSettingsRequest = {
+            "monitor_id": monitor_id,
+            "settings": settings,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

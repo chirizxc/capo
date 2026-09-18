@@ -44,15 +44,15 @@ def serialize_aws_json_1_1(value: DocumentAttributeTarget) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DocumentAttributeTarget:
     out: DocumentAttributeTarget = {}  # type: ignore[typeddict-item]
-    if "TargetDocumentAttributeKey" in data:
+    if data.get("TargetDocumentAttributeKey") is not None:
         out["target_document_attribute_key"] = data["TargetDocumentAttributeKey"]
-    if "TargetDocumentAttributeValueDeletion" in data:
+    if data.get("TargetDocumentAttributeValueDeletion") is not None:
         out["target_document_attribute_value_deletion"] = data[
             "TargetDocumentAttributeValueDeletion"
         ]
     else:
         out["target_document_attribute_value_deletion"] = False
-    if "TargetDocumentAttributeValue" in data:
+    if data.get("TargetDocumentAttributeValue") is not None:
         import capo_kendra.types.document_attribute_value
 
         out["target_document_attribute_value"] = (

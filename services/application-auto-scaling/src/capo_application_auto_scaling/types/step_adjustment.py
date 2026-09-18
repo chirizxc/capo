@@ -30,20 +30,38 @@ class StepAdjustment(TypedDict, closed=True):
 def serialize_aws_json_1_1(value: StepAdjustment) -> dict:
     out: dict = {}
     if "metric_interval_lower_bound" in value:
-        out["MetricIntervalLowerBound"] = value["metric_interval_lower_bound"]
+        out["MetricIntervalLowerBound"] = (
+            "NaN"
+            if value["metric_interval_lower_bound"]
+            != value["metric_interval_lower_bound"]
+            else "Infinity"
+            if value["metric_interval_lower_bound"] == float("inf")
+            else "-Infinity"
+            if value["metric_interval_lower_bound"] == float("-inf")
+            else value["metric_interval_lower_bound"]
+        )
     if "metric_interval_upper_bound" in value:
-        out["MetricIntervalUpperBound"] = value["metric_interval_upper_bound"]
+        out["MetricIntervalUpperBound"] = (
+            "NaN"
+            if value["metric_interval_upper_bound"]
+            != value["metric_interval_upper_bound"]
+            else "Infinity"
+            if value["metric_interval_upper_bound"] == float("inf")
+            else "-Infinity"
+            if value["metric_interval_upper_bound"] == float("-inf")
+            else value["metric_interval_upper_bound"]
+        )
     out["ScalingAdjustment"] = value["scaling_adjustment"]
     return out
 
 
 def deserialize_aws_json_1_1(data: dict) -> StepAdjustment:
     out: StepAdjustment = {}  # type: ignore[typeddict-item]
-    if "MetricIntervalLowerBound" in data:
-        out["metric_interval_lower_bound"] = data["MetricIntervalLowerBound"]
-    if "MetricIntervalUpperBound" in data:
-        out["metric_interval_upper_bound"] = data["MetricIntervalUpperBound"]
-    if "ScalingAdjustment" in data:
+    if data.get("MetricIntervalLowerBound") is not None:
+        out["metric_interval_lower_bound"] = float(data["MetricIntervalLowerBound"])
+    if data.get("MetricIntervalUpperBound") is not None:
+        out["metric_interval_upper_bound"] = float(data["MetricIntervalUpperBound"])
+    if data.get("ScalingAdjustment") is not None:
         out["scaling_adjustment"] = data["ScalingAdjustment"]
     else:
         raise DeserializationError("StepAdjustment.scaling_adjustment required")

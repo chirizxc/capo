@@ -147,7 +147,15 @@ def serialize_aws_json_1_1(value: FaceDetail) -> dict:
             value["quality"]
         )
     if "confidence" in value:
-        out["Confidence"] = value["confidence"]
+        out["Confidence"] = (
+            "NaN"
+            if value["confidence"] != value["confidence"]
+            else "Infinity"
+            if value["confidence"] == float("inf")
+            else "-Infinity"
+            if value["confidence"] == float("-inf")
+            else value["confidence"]
+        )
     if "face_occluded" in value:
         import capo_rekognition.types.face_occluded
 
@@ -169,7 +177,7 @@ def serialize_aws_json_1_1(value: FaceDetail) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> FaceDetail:
     out: FaceDetail = {}  # type: ignore[typeddict-item]
-    if "BoundingBox" in data:
+    if data.get("BoundingBox") is not None:
         import capo_rekognition.types.bounding_box
 
         out["bounding_box"] = (
@@ -177,85 +185,85 @@ def deserialize_aws_json_1_1(data: dict) -> FaceDetail:
                 data["BoundingBox"]
             )
         )
-    if "AgeRange" in data:
+    if data.get("AgeRange") is not None:
         import capo_rekognition.types.age_range
 
         out["age_range"] = capo_rekognition.types.age_range.deserialize_aws_json_1_1(
             data["AgeRange"]
         )
-    if "Smile" in data:
+    if data.get("Smile") is not None:
         import capo_rekognition.types.smile
 
         out["smile"] = capo_rekognition.types.smile.deserialize_aws_json_1_1(
             data["Smile"]
         )
-    if "Eyeglasses" in data:
+    if data.get("Eyeglasses") is not None:
         import capo_rekognition.types.eyeglasses
 
         out["eyeglasses"] = capo_rekognition.types.eyeglasses.deserialize_aws_json_1_1(
             data["Eyeglasses"]
         )
-    if "Sunglasses" in data:
+    if data.get("Sunglasses") is not None:
         import capo_rekognition.types.sunglasses
 
         out["sunglasses"] = capo_rekognition.types.sunglasses.deserialize_aws_json_1_1(
             data["Sunglasses"]
         )
-    if "Gender" in data:
+    if data.get("Gender") is not None:
         import capo_rekognition.types.gender
 
         out["gender"] = capo_rekognition.types.gender.deserialize_aws_json_1_1(
             data["Gender"]
         )
-    if "Beard" in data:
+    if data.get("Beard") is not None:
         import capo_rekognition.types.beard
 
         out["beard"] = capo_rekognition.types.beard.deserialize_aws_json_1_1(
             data["Beard"]
         )
-    if "Mustache" in data:
+    if data.get("Mustache") is not None:
         import capo_rekognition.types.mustache
 
         out["mustache"] = capo_rekognition.types.mustache.deserialize_aws_json_1_1(
             data["Mustache"]
         )
-    if "EyesOpen" in data:
+    if data.get("EyesOpen") is not None:
         import capo_rekognition.types.eye_open
 
         out["eyes_open"] = capo_rekognition.types.eye_open.deserialize_aws_json_1_1(
             data["EyesOpen"]
         )
-    if "MouthOpen" in data:
+    if data.get("MouthOpen") is not None:
         import capo_rekognition.types.mouth_open
 
         out["mouth_open"] = capo_rekognition.types.mouth_open.deserialize_aws_json_1_1(
             data["MouthOpen"]
         )
-    if "Emotions" in data:
+    if data.get("Emotions") is not None:
         import capo_rekognition.types.emotions
 
         out["emotions"] = capo_rekognition.types.emotions.deserialize_aws_json_1_1(
             data["Emotions"]
         )
-    if "Landmarks" in data:
+    if data.get("Landmarks") is not None:
         import capo_rekognition.types.landmarks
 
         out["landmarks"] = capo_rekognition.types.landmarks.deserialize_aws_json_1_1(
             data["Landmarks"]
         )
-    if "Pose" in data:
+    if data.get("Pose") is not None:
         import capo_rekognition.types.pose
 
         out["pose"] = capo_rekognition.types.pose.deserialize_aws_json_1_1(data["Pose"])
-    if "Quality" in data:
+    if data.get("Quality") is not None:
         import capo_rekognition.types.image_quality
 
         out["quality"] = capo_rekognition.types.image_quality.deserialize_aws_json_1_1(
             data["Quality"]
         )
-    if "Confidence" in data:
-        out["confidence"] = data["Confidence"]
-    if "FaceOccluded" in data:
+    if data.get("Confidence") is not None:
+        out["confidence"] = float(data["Confidence"])
+    if data.get("FaceOccluded") is not None:
         import capo_rekognition.types.face_occluded
 
         out["face_occluded"] = (
@@ -263,7 +271,7 @@ def deserialize_aws_json_1_1(data: dict) -> FaceDetail:
                 data["FaceOccluded"]
             )
         )
-    if "EyeDirection" in data:
+    if data.get("EyeDirection") is not None:
         import capo_rekognition.types.eye_direction
 
         out["eye_direction"] = (

@@ -34,7 +34,7 @@ def serialize_json(value: ContentAssociationContents) -> dict:
 
 
 def deserialize_json(data: dict) -> ContentAssociationContents:
-    if "amazonConnectGuideAssociation" in data:
+    if data.get("amazonConnectGuideAssociation") is not None:
         import capo_qconnect.types.amazon_connect_guide_association_data
 
         return {

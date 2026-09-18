@@ -30,8 +30,8 @@ def serialize_aws_json_1_0(value: Resource) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> Resource:
     out: Resource = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "type" in data:
+    if data.get("type") is not None:
         out["type"] = data["type"]
     return out

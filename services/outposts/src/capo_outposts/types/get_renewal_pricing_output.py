@@ -38,13 +38,13 @@ def serialize_json(value: GetRenewalPricingOutput) -> dict:
 
 def deserialize_json(data: dict) -> GetRenewalPricingOutput:
     out: GetRenewalPricingOutput = {}  # type: ignore[typeddict-item]
-    if "PricingResult" in data:
+    if data.get("PricingResult") is not None:
         import capo_outposts.types.pricing_result
 
         out["pricing_result"] = capo_outposts.types.pricing_result.deserialize_json(
             data["PricingResult"]
         )
-    if "PricingOptions" in data:
+    if data.get("PricingOptions") is not None:
         import capo_outposts.types.pricing_option_list
 
         out["pricing_options"] = (

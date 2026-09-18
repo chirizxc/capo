@@ -47,7 +47,7 @@ def serialize_json(value: UpdateFindingsRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateFindingsRequest:
     out: UpdateFindingsRequest = {}  # type: ignore[typeddict-item]
-    if "Filters" in data:
+    if data.get("Filters") is not None:
         import capo_securityhub.types.aws_security_finding_filters
 
         out["filters"] = (
@@ -55,11 +55,11 @@ def deserialize_json(data: dict) -> UpdateFindingsRequest:
                 data["Filters"]
             )
         )
-    if "Note" in data:
+    if data.get("Note") is not None:
         import capo_securityhub.types.note_update
 
         out["note"] = capo_securityhub.types.note_update.deserialize_json(data["Note"])
-    if "RecordState" in data:
+    if data.get("RecordState") is not None:
         import capo_securityhub.types.record_state
 
         out["record_state"] = capo_securityhub.types.record_state.deserialize_json(

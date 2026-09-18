@@ -28,7 +28,7 @@ def serialize_json(value: UpdateSolFunctionPackageOutput) -> dict:
 
 def deserialize_json(data: dict) -> UpdateSolFunctionPackageOutput:
     out: UpdateSolFunctionPackageOutput = {}  # type: ignore[typeddict-item]
-    if "operationalState" in data:
+    if data.get("operationalState") is not None:
         import capo_tnb.types.operational_state
 
         out["operational_state"] = capo_tnb.types.operational_state.deserialize_json(

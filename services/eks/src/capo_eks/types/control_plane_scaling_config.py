@@ -29,7 +29,7 @@ def serialize_json(value: ControlPlaneScalingConfig) -> dict:
 
 def deserialize_json(data: dict) -> ControlPlaneScalingConfig:
     out: ControlPlaneScalingConfig = {}  # type: ignore[typeddict-item]
-    if "tier" in data:
+    if data.get("tier") is not None:
         import capo_eks.types.provisioned_control_plane_tier
 
         out["tier"] = capo_eks.types.provisioned_control_plane_tier.deserialize_json(

@@ -33,7 +33,7 @@ def serialize_json(value: BatchGetFieldRequest) -> dict:
 
 def deserialize_json(data: dict) -> BatchGetFieldRequest:
     out: BatchGetFieldRequest = {}  # type: ignore[typeddict-item]
-    if "fields" in data:
+    if data.get("fields") is not None:
         import capo_connectcases.types.batch_get_field_identifier_list
 
         out["fields"] = (

@@ -52,7 +52,7 @@ def serialize_aws_json_1_0(value: AcceptConnectionProposalRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> AcceptConnectionProposalRequest:
     out: AcceptConnectionProposalRequest = {}  # type: ignore[typeddict-item]
-    if "attachPoint" in data:
+    if data.get("attachPoint") is not None:
         import capo_interconnect.types.attach_point
 
         out["attach_point"] = (
@@ -64,20 +64,20 @@ def deserialize_aws_json_1_0(data: dict) -> AcceptConnectionProposalRequest:
         raise DeserializationError(
             "AcceptConnectionProposalRequest.attach_point required"
         )
-    if "activationKey" in data:
+    if data.get("activationKey") is not None:
         out["activation_key"] = data["activationKey"]
     else:
         raise DeserializationError(
             "AcceptConnectionProposalRequest.activation_key required"
         )
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_interconnect.types.tag_map
 
         out["tags"] = capo_interconnect.types.tag_map.deserialize_aws_json_1_0(
             data["tags"]
         )
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     return out

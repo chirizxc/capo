@@ -53,9 +53,9 @@ def serialize_aws_json_1_0(value: SearchAgreementsInput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> SearchAgreementsInput:
     out: SearchAgreementsInput = {}  # type: ignore[typeddict-item]
-    if "catalog" in data:
+    if data.get("catalog") is not None:
         out["catalog"] = data["catalog"]
-    if "filters" in data:
+    if data.get("filters") is not None:
         import capo_marketplace_agreement.types.filter_list
 
         out["filters"] = (
@@ -63,14 +63,14 @@ def deserialize_aws_json_1_0(data: dict) -> SearchAgreementsInput:
                 data["filters"]
             )
         )
-    if "sort" in data:
+    if data.get("sort") is not None:
         import capo_marketplace_agreement.types.sort
 
         out["sort"] = capo_marketplace_agreement.types.sort.deserialize_aws_json_1_0(
             data["sort"]
         )
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

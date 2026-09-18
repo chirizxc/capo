@@ -28,8 +28,8 @@ def serialize_json(value: SuppressedDestinationAttributes) -> dict:
 
 def deserialize_json(data: dict) -> SuppressedDestinationAttributes:
     out: SuppressedDestinationAttributes = {}  # type: ignore[typeddict-item]
-    if "MessageId" in data:
+    if data.get("MessageId") is not None:
         out["message_id"] = data["MessageId"]
-    if "FeedbackId" in data:
+    if data.get("FeedbackId") is not None:
         out["feedback_id"] = data["FeedbackId"]
     return out

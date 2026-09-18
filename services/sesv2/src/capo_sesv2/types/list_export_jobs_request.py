@@ -48,11 +48,11 @@ def serialize_json(value: ListExportJobsRequest) -> dict:
 
 def deserialize_json(data: dict) -> ListExportJobsRequest:
     out: ListExportJobsRequest = {}  # type: ignore[typeddict-item]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "PageSize" in data:
+    if data.get("PageSize") is not None:
         out["page_size"] = data["PageSize"]
-    if "ExportSourceType" in data:
+    if data.get("ExportSourceType") is not None:
         import capo_sesv2.types.export_source_type
 
         out["export_source_type"] = (
@@ -60,7 +60,7 @@ def deserialize_json(data: dict) -> ListExportJobsRequest:
                 data["ExportSourceType"]
             )
         )
-    if "JobStatus" in data:
+    if data.get("JobStatus") is not None:
         import capo_sesv2.types.job_status
 
         out["job_status"] = capo_sesv2.types.job_status.deserialize_json(

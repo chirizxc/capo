@@ -27,6 +27,8 @@ def deserialize_aws_json_1_1(data: list) -> AutoMLAlgorithmsConfig:
 
     out: AutoMLAlgorithmsConfig = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_sagemaker.types.auto_ml_algorithm_config.deserialize_aws_json_1_1(item)
         )

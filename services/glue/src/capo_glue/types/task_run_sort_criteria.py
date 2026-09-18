@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: TaskRunSortCriteria) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> TaskRunSortCriteria:
     out: TaskRunSortCriteria = {}  # type: ignore[typeddict-item]
-    if "Column" in data:
+    if data.get("Column") is not None:
         import capo_glue.types.task_run_sort_column_type
 
         out["column"] = (
@@ -46,7 +46,7 @@ def deserialize_aws_json_1_1(data: dict) -> TaskRunSortCriteria:
         )
     else:
         raise DeserializationError("TaskRunSortCriteria.column required")
-    if "SortDirection" in data:
+    if data.get("SortDirection") is not None:
         import capo_glue.types.sort_direction_type
 
         out["sort_direction"] = (

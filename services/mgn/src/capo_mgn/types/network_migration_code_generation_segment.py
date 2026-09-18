@@ -94,21 +94,21 @@ def serialize_json(value: NetworkMigrationCodeGenerationSegment) -> dict:
 
 def deserialize_json(data: dict) -> NetworkMigrationCodeGenerationSegment:
     out: NetworkMigrationCodeGenerationSegment = {}  # type: ignore[typeddict-item]
-    if "jobID" in data:
+    if data.get("jobID") is not None:
         out["job_id"] = data["jobID"]
-    if "networkMigrationExecutionID" in data:
+    if data.get("networkMigrationExecutionID") is not None:
         out["network_migration_execution_id"] = data["networkMigrationExecutionID"]
-    if "networkMigrationDefinitionID" in data:
+    if data.get("networkMigrationDefinitionID") is not None:
         out["network_migration_definition_id"] = data["networkMigrationDefinitionID"]
-    if "segmentID" in data:
+    if data.get("segmentID") is not None:
         out["segment_id"] = data["segmentID"]
-    if "segmentType" in data:
+    if data.get("segmentType") is not None:
         out["segment_type"] = data["segmentType"]
-    if "logicalID" in data:
+    if data.get("logicalID") is not None:
         out["logical_id"] = data["logicalID"]
-    if "mapperSegmentID" in data:
+    if data.get("mapperSegmentID") is not None:
         out["mapper_segment_id"] = data["mapperSegmentID"]
-    if "artifacts" in data:
+    if data.get("artifacts") is not None:
         import capo_mgn.types.network_migration_code_generation_artifacts
 
         out["artifacts"] = (
@@ -116,7 +116,7 @@ def deserialize_json(data: dict) -> NetworkMigrationCodeGenerationSegment:
                 data["artifacts"]
             )
         )
-    if "referencedSegments" in data:
+    if data.get("referencedSegments") is not None:
         import capo_mgn.types.referenced_segments_list
 
         out["referenced_segments"] = (
@@ -124,7 +124,7 @@ def deserialize_json(data: dict) -> NetworkMigrationCodeGenerationSegment:
                 data["referencedSegments"]
             )
         )
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_mgn.types._prelude.timestamp
 
         out["created_at"] = capo_mgn.types._prelude.timestamp.deserialize_json(

@@ -41,11 +41,11 @@ def serialize_json(value: VpcPropertiesInput) -> dict:
 
 def deserialize_json(data: dict) -> VpcPropertiesInput:
     out: VpcPropertiesInput = {}  # type: ignore[typeddict-item]
-    if "vpcId" in data:
+    if data.get("vpcId") is not None:
         out["vpc_id"] = data["vpcId"]
     else:
         raise DeserializationError("VpcPropertiesInput.vpc_id required")
-    if "subnetIds" in data:
+    if data.get("subnetIds") is not None:
         import capo_datazone.types.vpc_connection_subnet_id_list
 
         out["subnet_ids"] = (
@@ -55,6 +55,6 @@ def deserialize_json(data: dict) -> VpcPropertiesInput:
         )
     else:
         raise DeserializationError("VpcPropertiesInput.subnet_ids required")
-    if "securityGroupId" in data:
+    if data.get("securityGroupId") is not None:
         out["security_group_id"] = data["securityGroupId"]
     return out

@@ -25,6 +25,6 @@ def serialize_json(value: EcrRepositoryConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> EcrRepositoryConfiguration:
     out: EcrRepositoryConfiguration = {}  # type: ignore[typeddict-item]
-    if "repositoryPolicy" in data:
+    if data.get("repositoryPolicy") is not None:
         out["repository_policy"] = data["repositoryPolicy"]
     return out

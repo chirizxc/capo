@@ -40,17 +40,17 @@ def serialize_json(value: FilesLimit) -> dict:
 
 def deserialize_json(data: dict) -> FilesLimit:
     out: FilesLimit = {}  # type: ignore[typeddict-item]
-    if "MaxFiles" in data:
+    if data.get("MaxFiles") is not None:
         out["max_files"] = data["MaxFiles"]
     else:
         raise DeserializationError("FilesLimit.max_files required")
-    if "OrderedBy" in data:
+    if data.get("OrderedBy") is not None:
         import capo_databrew.types.ordered_by
 
         out["ordered_by"] = capo_databrew.types.ordered_by.deserialize_json(
             data["OrderedBy"]
         )
-    if "Order" in data:
+    if data.get("Order") is not None:
         import capo_databrew.types.order
 
         out["order"] = capo_databrew.types.order.deserialize_json(data["Order"])

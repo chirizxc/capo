@@ -16,4 +16,4 @@ def serialize_aws_json_1_1(value: QueryExecutionIdList) -> list:
 
 
 def deserialize_aws_json_1_1(data: list) -> QueryExecutionIdList:
-    return list(data)
+    return [item for item in data if item is not None]

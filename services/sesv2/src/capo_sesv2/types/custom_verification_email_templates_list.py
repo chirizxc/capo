@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> CustomVerificationEmailTemplatesList:
 
     out: CustomVerificationEmailTemplatesList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_sesv2.types.custom_verification_email_template_metadata.deserialize_json(
                 item

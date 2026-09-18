@@ -128,11 +128,11 @@ def serialize_json(value: UpdateApplicationRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateApplicationRequest:
     out: UpdateApplicationRequest = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "ApplicationSourceConfig" in data:
+    if data.get("ApplicationSourceConfig") is not None:
         import capo_appintegrations.types.application_source_config
 
         out["application_source_config"] = (
@@ -140,7 +140,7 @@ def deserialize_json(data: dict) -> UpdateApplicationRequest:
                 data["ApplicationSourceConfig"]
             )
         )
-    if "Subscriptions" in data:
+    if data.get("Subscriptions") is not None:
         import capo_appintegrations.types.subscription_list
 
         out["subscriptions"] = (
@@ -148,7 +148,7 @@ def deserialize_json(data: dict) -> UpdateApplicationRequest:
                 data["Subscriptions"]
             )
         )
-    if "Publications" in data:
+    if data.get("Publications") is not None:
         import capo_appintegrations.types.publication_list
 
         out["publications"] = (
@@ -156,7 +156,7 @@ def deserialize_json(data: dict) -> UpdateApplicationRequest:
                 data["Publications"]
             )
         )
-    if "Permissions" in data:
+    if data.get("Permissions") is not None:
         import capo_appintegrations.types.permission_list
 
         out["permissions"] = (
@@ -164,11 +164,11 @@ def deserialize_json(data: dict) -> UpdateApplicationRequest:
                 data["Permissions"]
             )
         )
-    if "IsService" in data:
+    if data.get("IsService") is not None:
         out["is_service"] = data["IsService"]
-    if "InitializationTimeout" in data:
+    if data.get("InitializationTimeout") is not None:
         out["initialization_timeout"] = data["InitializationTimeout"]
-    if "ApplicationConfig" in data:
+    if data.get("ApplicationConfig") is not None:
         import capo_appintegrations.types.application_config
 
         out["application_config"] = (
@@ -176,7 +176,7 @@ def deserialize_json(data: dict) -> UpdateApplicationRequest:
                 data["ApplicationConfig"]
             )
         )
-    if "IframeConfig" in data:
+    if data.get("IframeConfig") is not None:
         import capo_appintegrations.types.iframe_config
 
         out["iframe_config"] = (
@@ -184,7 +184,7 @@ def deserialize_json(data: dict) -> UpdateApplicationRequest:
                 data["IframeConfig"]
             )
         )
-    if "ApplicationType" in data:
+    if data.get("ApplicationType") is not None:
         import capo_appintegrations.types.application_type
 
         out["application_type"] = (

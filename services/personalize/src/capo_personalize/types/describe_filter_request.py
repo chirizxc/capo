@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: DescribeFilterRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeFilterRequest:
     out: DescribeFilterRequest = {}  # type: ignore[typeddict-item]
-    if "filterArn" in data:
+    if data.get("filterArn") is not None:
         out["filter_arn"] = data["filterArn"]
     else:
         raise DeserializationError("DescribeFilterRequest.filter_arn required")

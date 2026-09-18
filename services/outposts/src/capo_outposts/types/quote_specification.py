@@ -69,7 +69,7 @@ def serialize_json(value: QuoteSpecification) -> dict:
 
 def deserialize_json(data: dict) -> QuoteSpecification:
     out: QuoteSpecification = {}  # type: ignore[typeddict-item]
-    if "QuoteSpecificationType" in data:
+    if data.get("QuoteSpecificationType") is not None:
         import capo_outposts.types.quote_specification_type
 
         out["quote_specification_type"] = (
@@ -77,7 +77,7 @@ def deserialize_json(data: dict) -> QuoteSpecification:
                 data["QuoteSpecificationType"]
             )
         )
-    if "ExistingRackSpecificationDetails" in data:
+    if data.get("ExistingRackSpecificationDetails") is not None:
         import capo_outposts.types.rack_specification_details
 
         out["existing_rack_specification_details"] = (
@@ -85,7 +85,7 @@ def deserialize_json(data: dict) -> QuoteSpecification:
                 data["ExistingRackSpecificationDetails"]
             )
         )
-    if "FinalRackSpecificationDetails" in data:
+    if data.get("FinalRackSpecificationDetails") is not None:
         import capo_outposts.types.rack_specification_details
 
         out["final_rack_specification_details"] = (
@@ -93,7 +93,7 @@ def deserialize_json(data: dict) -> QuoteSpecification:
                 data["FinalRackSpecificationDetails"]
             )
         )
-    if "ServerSpecificationDetails" in data:
+    if data.get("ServerSpecificationDetails") is not None:
         import capo_outposts.types.server_specification_details
 
         out["server_specification_details"] = (

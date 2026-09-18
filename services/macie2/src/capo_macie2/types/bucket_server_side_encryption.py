@@ -30,9 +30,9 @@ def serialize_json(value: BucketServerSideEncryption) -> dict:
 
 def deserialize_json(data: dict) -> BucketServerSideEncryption:
     out: BucketServerSideEncryption = {}  # type: ignore[typeddict-item]
-    if "kmsMasterKeyId" in data:
+    if data.get("kmsMasterKeyId") is not None:
         out["kms_master_key_id"] = data["kmsMasterKeyId"]
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_macie2.types.type
 
         out["type"] = capo_macie2.types.type.deserialize_json(data["type"])

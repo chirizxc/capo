@@ -25,7 +25,7 @@ def serialize_json(value: GetBranchResult) -> dict:
 
 def deserialize_json(data: dict) -> GetBranchResult:
     out: GetBranchResult = {}  # type: ignore[typeddict-item]
-    if "branch" in data:
+    if data.get("branch") is not None:
         import capo_amplify.types.branch
 
         out["branch"] = capo_amplify.types.branch.deserialize_json(data["branch"])

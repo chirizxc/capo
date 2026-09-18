@@ -23,5 +23,7 @@ def deserialize_aws_json_1_1(data: list) -> Models:
 
     out: Models = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_transcribe.types.language_model.deserialize_aws_json_1_1(item))
     return out

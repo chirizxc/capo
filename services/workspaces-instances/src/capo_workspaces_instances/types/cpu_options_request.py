@@ -44,7 +44,7 @@ def serialize_aws_json_1_0(value: CpuOptionsRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CpuOptionsRequest:
     out: CpuOptionsRequest = {}  # type: ignore[typeddict-item]
-    if "AmdSevSnp" in data:
+    if data.get("AmdSevSnp") is not None:
         import capo_workspaces_instances.types.amd_sev_snp_enum
 
         out["amd_sev_snp"] = (
@@ -52,8 +52,8 @@ def deserialize_aws_json_1_0(data: dict) -> CpuOptionsRequest:
                 data["AmdSevSnp"]
             )
         )
-    if "CoreCount" in data:
+    if data.get("CoreCount") is not None:
         out["core_count"] = data["CoreCount"]
-    if "ThreadsPerCore" in data:
+    if data.get("ThreadsPerCore") is not None:
         out["threads_per_core"] = data["ThreadsPerCore"]
     return out

@@ -34,9 +34,9 @@ def serialize_aws_json_1_0(value: FlowOperation) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> FlowOperation:
     out: FlowOperation = {}  # type: ignore[typeddict-item]
-    if "MinimumFlowAgeInSeconds" in data:
+    if data.get("MinimumFlowAgeInSeconds") is not None:
         out["minimum_flow_age_in_seconds"] = data["MinimumFlowAgeInSeconds"]
-    if "FlowFilters" in data:
+    if data.get("FlowFilters") is not None:
         import capo_network_firewall.types.flow_filters
 
         out["flow_filters"] = (

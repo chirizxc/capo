@@ -28,7 +28,7 @@ def serialize_aws_json_1_1(value: BatchGetDataQualityResultRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> BatchGetDataQualityResultRequest:
     out: BatchGetDataQualityResultRequest = {}  # type: ignore[typeddict-item]
-    if "ResultIds" in data:
+    if data.get("ResultIds") is not None:
         import capo_glue.types.data_quality_result_ids
 
         out["result_ids"] = (

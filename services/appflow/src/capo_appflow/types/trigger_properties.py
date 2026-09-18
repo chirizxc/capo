@@ -31,7 +31,7 @@ def serialize_json(value: TriggerProperties) -> dict:
 
 def deserialize_json(data: dict) -> TriggerProperties:
     out: TriggerProperties = {}  # type: ignore[typeddict-item]
-    if "Scheduled" in data:
+    if data.get("Scheduled") is not None:
         import capo_appflow.types.scheduled_trigger_properties
 
         out["scheduled"] = (

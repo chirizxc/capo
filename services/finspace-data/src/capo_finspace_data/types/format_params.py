@@ -23,5 +23,7 @@ def serialize_json(input_to_serialize: FormatParams) -> dict:
 def deserialize_json(data: dict) -> FormatParams:
     out: FormatParams = {}
     for key, value in data.items():
+        if value is None:
+            continue
         out[key] = value
     return out

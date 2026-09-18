@@ -45,14 +45,14 @@ def serialize_json(value: CapabilityAction) -> dict:
 
 def deserialize_json(data: dict) -> CapabilityAction:
     out: CapabilityAction = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("CapabilityAction.name required")
-    if "ref" in data:
+    if data.get("ref") is not None:
         out["ref"] = data["ref"]
-    if "actionTraceId" in data:
+    if data.get("actionTraceId") is not None:
         out["action_trace_id"] = data["actionTraceId"]
-    if "parameters" in data:
+    if data.get("parameters") is not None:
         out["parameters"] = data["parameters"]
     return out

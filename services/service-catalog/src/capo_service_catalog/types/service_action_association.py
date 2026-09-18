@@ -30,17 +30,17 @@ def serialize_aws_json_1_1(value: ServiceActionAssociation) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ServiceActionAssociation:
     out: ServiceActionAssociation = {}  # type: ignore[typeddict-item]
-    if "ServiceActionId" in data:
+    if data.get("ServiceActionId") is not None:
         out["service_action_id"] = data["ServiceActionId"]
     else:
         raise DeserializationError(
             "ServiceActionAssociation.service_action_id required"
         )
-    if "ProductId" in data:
+    if data.get("ProductId") is not None:
         out["product_id"] = data["ProductId"]
     else:
         raise DeserializationError("ServiceActionAssociation.product_id required")
-    if "ProvisioningArtifactId" in data:
+    if data.get("ProvisioningArtifactId") is not None:
         out["provisioning_artifact_id"] = data["ProvisioningArtifactId"]
     else:
         raise DeserializationError(

@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> AwsEc2LaunchTemplateDataLicenseSetList:
 
     out: AwsEc2LaunchTemplateDataLicenseSetList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_securityhub.types.aws_ec2_launch_template_data_license_set_details.deserialize_json(
                 item

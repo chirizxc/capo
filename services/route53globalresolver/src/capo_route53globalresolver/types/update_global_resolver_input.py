@@ -60,13 +60,13 @@ def serialize_json(value: UpdateGlobalResolverInput) -> dict:
 
 def deserialize_json(data: dict) -> UpdateGlobalResolverInput:
     out: UpdateGlobalResolverInput = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "observabilityRegion" in data:
+    if data.get("observabilityRegion") is not None:
         out["observability_region"] = data["observabilityRegion"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "ipAddressType" in data:
+    if data.get("ipAddressType") is not None:
         import capo_route53globalresolver.types.global_resolver_ip_address_type
 
         out["ip_address_type"] = (
@@ -74,7 +74,7 @@ def deserialize_json(data: dict) -> UpdateGlobalResolverInput:
                 data["ipAddressType"]
             )
         )
-    if "regions" in data:
+    if data.get("regions") is not None:
         import capo_route53globalresolver.types.regions
 
         out["regions"] = capo_route53globalresolver.types.regions.deserialize_json(

@@ -37,11 +37,11 @@ def serialize_aws_json_1_1(value: GetAccessTokenRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetAccessTokenRequest:
     out: GetAccessTokenRequest = {}  # type: ignore[typeddict-item]
-    if "Token" in data:
+    if data.get("Token") is not None:
         out["token"] = data["Token"]
     else:
         raise DeserializationError("GetAccessTokenRequest.token required")
-    if "TokenProperties" in data:
+    if data.get("TokenProperties") is not None:
         import capo_license_manager.types.max_size3_string_list
 
         out["token_properties"] = (

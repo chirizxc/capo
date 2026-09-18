@@ -25,15 +25,16 @@ class ForbiddenException(ServiceError):
 
     code: str | None = "ForbiddenException"
 
-    def __init__(self, data: ForbiddenException_):
+    def __init__(self, data: ForbiddenException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="ForbiddenException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "ForbiddenException":
-        return cls(deserialize_json(data))
+    def from_json(cls, data: dict, message: str | None = None) -> "ForbiddenException":
+        return cls(deserialize_json(data), message)

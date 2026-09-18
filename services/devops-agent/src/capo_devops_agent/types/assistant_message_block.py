@@ -31,9 +31,9 @@ def serialize_json(value: AssistantMessageBlock) -> dict:
 
 
 def deserialize_json(data: dict) -> AssistantMessageBlock:
-    if "text" in data:
+    if data.get("text") is not None:
         return {"text": data["text"]}
-    elif "toolUse" in data:
+    elif data.get("toolUse") is not None:
         return {"toolUse": data["toolUse"]}
     else:
         raise DeserializationError("AssistantMessageBlock: no recognized variant key")

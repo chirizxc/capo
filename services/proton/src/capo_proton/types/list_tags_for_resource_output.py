@@ -30,12 +30,12 @@ def serialize_aws_json_1_0(value: ListTagsForResourceOutput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ListTagsForResourceOutput:
     out: ListTagsForResourceOutput = {}  # type: ignore[typeddict-item]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_proton.types.tag_list
 
         out["tags"] = capo_proton.types.tag_list.deserialize_aws_json_1_0(data["tags"])
     else:
         raise DeserializationError("ListTagsForResourceOutput.tags required")
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

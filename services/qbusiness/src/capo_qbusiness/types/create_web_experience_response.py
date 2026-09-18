@@ -32,8 +32,8 @@ def serialize_json(value: CreateWebExperienceResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateWebExperienceResponse:
     out: CreateWebExperienceResponse = {}  # type: ignore[typeddict-item]
-    if "webExperienceId" in data:
+    if data.get("webExperienceId") is not None:
         out["web_experience_id"] = data["webExperienceId"]
-    if "webExperienceArn" in data:
+    if data.get("webExperienceArn") is not None:
         out["web_experience_arn"] = data["webExperienceArn"]
     return out

@@ -44,26 +44,26 @@ def serialize_aws_json_1_1(value: ActionTypeProperty) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ActionTypeProperty:
     out: ActionTypeProperty = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("ActionTypeProperty.name required")
-    if "optional" in data:
+    if data.get("optional") is not None:
         out["optional"] = data["optional"]
     else:
         out["optional"] = False
-    if "key" in data:
+    if data.get("key") is not None:
         out["key"] = data["key"]
     else:
         out["key"] = False
-    if "noEcho" in data:
+    if data.get("noEcho") is not None:
         out["no_echo"] = data["noEcho"]
     else:
         out["no_echo"] = False
-    if "queryable" in data:
+    if data.get("queryable") is not None:
         out["queryable"] = data["queryable"]
     else:
         out["queryable"] = False
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
     return out

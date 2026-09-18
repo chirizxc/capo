@@ -31,10 +31,10 @@ def serialize_json(value: AccessKey) -> dict:
 
 def deserialize_json(data: dict) -> AccessKey:
     out: AccessKey = {}  # type: ignore[typeddict-item]
-    if "principalId" in data:
+    if data.get("principalId") is not None:
         out["principal_id"] = data["principalId"]
-    if "userName" in data:
+    if data.get("userName") is not None:
         out["user_name"] = data["userName"]
-    if "userType" in data:
+    if data.get("userType") is not None:
         out["user_type"] = data["userType"]
     return out

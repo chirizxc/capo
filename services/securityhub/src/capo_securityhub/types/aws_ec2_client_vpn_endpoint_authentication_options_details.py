@@ -62,9 +62,9 @@ def serialize_json(value: AwsEc2ClientVpnEndpointAuthenticationOptionsDetails) -
 
 def deserialize_json(data: dict) -> AwsEc2ClientVpnEndpointAuthenticationOptionsDetails:
     out: AwsEc2ClientVpnEndpointAuthenticationOptionsDetails = {}  # type: ignore[typeddict-item]
-    if "Type" in data:
+    if data.get("Type") is not None:
         out["type"] = data["Type"]
-    if "ActiveDirectory" in data:
+    if data.get("ActiveDirectory") is not None:
         import capo_securityhub.types.aws_ec2_client_vpn_endpoint_authentication_options_active_directory_details
 
         out["active_directory"] = (
@@ -72,7 +72,7 @@ def deserialize_json(data: dict) -> AwsEc2ClientVpnEndpointAuthenticationOptions
                 data["ActiveDirectory"]
             )
         )
-    if "MutualAuthentication" in data:
+    if data.get("MutualAuthentication") is not None:
         import capo_securityhub.types.aws_ec2_client_vpn_endpoint_authentication_options_mutual_authentication_details
 
         out["mutual_authentication"] = (
@@ -80,7 +80,7 @@ def deserialize_json(data: dict) -> AwsEc2ClientVpnEndpointAuthenticationOptions
                 data["MutualAuthentication"]
             )
         )
-    if "FederatedAuthentication" in data:
+    if data.get("FederatedAuthentication") is not None:
         import capo_securityhub.types.aws_ec2_client_vpn_endpoint_authentication_options_federated_authentication_details
 
         out["federated_authentication"] = (

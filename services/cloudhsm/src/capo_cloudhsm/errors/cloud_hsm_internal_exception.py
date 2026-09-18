@@ -29,9 +29,9 @@ def serialize_aws_json_1_1(value: CloudHsmInternalException_) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CloudHsmInternalException_:
     out: CloudHsmInternalException_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
-    if "retryable" in data:
+    if data.get("retryable") is not None:
         out["retryable"] = data["retryable"]
     else:
         out["retryable"] = False
@@ -43,15 +43,18 @@ class CloudHsmInternalException(ServiceError):
 
     code: str | None = "CloudHsmInternalException"
 
-    def __init__(self, data: CloudHsmInternalException_):
+    def __init__(self, data: CloudHsmInternalException_, message: str | None = None):
         super().__init__(
             "server",
             is_throttling_error=False,
             is_retryable=False,
             code="CloudHsmInternalException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "CloudHsmInternalException":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "CloudHsmInternalException":
+        return cls(deserialize_aws_json_1_1(data), message)

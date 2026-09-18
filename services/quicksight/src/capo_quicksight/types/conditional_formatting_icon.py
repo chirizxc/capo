@@ -44,7 +44,7 @@ def serialize_json(value: ConditionalFormattingIcon) -> dict:
 
 def deserialize_json(data: dict) -> ConditionalFormattingIcon:
     out: ConditionalFormattingIcon = {}  # type: ignore[typeddict-item]
-    if "IconSet" in data:
+    if data.get("IconSet") is not None:
         import capo_quicksight.types.conditional_formatting_icon_set
 
         out["icon_set"] = (
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> ConditionalFormattingIcon:
                 data["IconSet"]
             )
         )
-    if "CustomCondition" in data:
+    if data.get("CustomCondition") is not None:
         import capo_quicksight.types.conditional_formatting_custom_icon_condition
 
         out["custom_condition"] = (

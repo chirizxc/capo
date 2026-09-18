@@ -23,5 +23,7 @@ def deserialize_aws_json_1_0(data: list) -> SavedAddresses:
 
     out: SavedAddresses = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_mailmanager.types.saved_address.deserialize_aws_json_1_0(item))
     return out

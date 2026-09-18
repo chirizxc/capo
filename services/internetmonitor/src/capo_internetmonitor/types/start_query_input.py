@@ -35,14 +35,14 @@ class StartQueryInput(TypedDict, closed=True):
 # --- restJson1 ser/de ---
 def serialize_json(value: StartQueryInput) -> dict:
     out: dict = {}
-    import capo_internetmonitor.types._prelude.timestamp
+    import capo_internetmonitor._protocol.serialize
 
-    out["StartTime"] = capo_internetmonitor.types._prelude.timestamp.serialize_json(
+    out["StartTime"] = capo_internetmonitor._protocol.serialize.fmt_date_time(
         value["start_time"]
     )
-    import capo_internetmonitor.types._prelude.timestamp
+    import capo_internetmonitor._protocol.serialize
 
-    out["EndTime"] = capo_internetmonitor.types._prelude.timestamp.serialize_json(
+    out["EndTime"] = capo_internetmonitor._protocol.serialize.fmt_date_time(
         value["end_time"]
     )
     out["QueryType"] = value["query_type"]
@@ -61,31 +61,27 @@ def serialize_json(value: StartQueryInput) -> dict:
 
 def deserialize_json(data: dict) -> StartQueryInput:
     out: StartQueryInput = {}  # type: ignore[typeddict-item]
-    if "StartTime" in data:
-        import capo_internetmonitor.types._prelude.timestamp
+    if data.get("StartTime") is not None:
+        import datetime
 
-        out["start_time"] = (
-            capo_internetmonitor.types._prelude.timestamp.deserialize_json(
-                data["StartTime"]
-            )
+        out["start_time"] = datetime.datetime.fromisoformat(
+            data["StartTime"].replace("Z", "+00:00")
         )
     else:
         raise DeserializationError("StartQueryInput.start_time required")
-    if "EndTime" in data:
-        import capo_internetmonitor.types._prelude.timestamp
+    if data.get("EndTime") is not None:
+        import datetime
 
-        out["end_time"] = (
-            capo_internetmonitor.types._prelude.timestamp.deserialize_json(
-                data["EndTime"]
-            )
+        out["end_time"] = datetime.datetime.fromisoformat(
+            data["EndTime"].replace("Z", "+00:00")
         )
     else:
         raise DeserializationError("StartQueryInput.end_time required")
-    if "QueryType" in data:
+    if data.get("QueryType") is not None:
         out["query_type"] = data["QueryType"]
     else:
         raise DeserializationError("StartQueryInput.query_type required")
-    if "FilterParameters" in data:
+    if data.get("FilterParameters") is not None:
         import capo_internetmonitor.types.filter_parameters
 
         out["filter_parameters"] = (
@@ -93,6 +89,6 @@ def deserialize_json(data: dict) -> StartQueryInput:
                 data["FilterParameters"]
             )
         )
-    if "LinkedAccountId" in data:
+    if data.get("LinkedAccountId") is not None:
         out["linked_account_id"] = data["LinkedAccountId"]
     return out

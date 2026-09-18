@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> Authorities:
 
     out: Authorities = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_taxsettings.types.authority.deserialize_json(item))
     return out

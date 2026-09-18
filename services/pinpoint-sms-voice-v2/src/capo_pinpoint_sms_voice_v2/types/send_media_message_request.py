@@ -94,21 +94,21 @@ def serialize_aws_json_1_0(value: SendMediaMessageRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> SendMediaMessageRequest:
     out: SendMediaMessageRequest = {}  # type: ignore[typeddict-item]
-    if "DestinationPhoneNumber" in data:
+    if data.get("DestinationPhoneNumber") is not None:
         out["destination_phone_number"] = data["DestinationPhoneNumber"]
     else:
         raise DeserializationError(
             "SendMediaMessageRequest.destination_phone_number required"
         )
-    if "OriginationIdentity" in data:
+    if data.get("OriginationIdentity") is not None:
         out["origination_identity"] = data["OriginationIdentity"]
     else:
         raise DeserializationError(
             "SendMediaMessageRequest.origination_identity required"
         )
-    if "MessageBody" in data:
+    if data.get("MessageBody") is not None:
         out["message_body"] = data["MessageBody"]
-    if "MediaUrls" in data:
+    if data.get("MediaUrls") is not None:
         import capo_pinpoint_sms_voice_v2.types.media_url_list
 
         out["media_urls"] = (
@@ -116,13 +116,13 @@ def deserialize_aws_json_1_0(data: dict) -> SendMediaMessageRequest:
                 data["MediaUrls"]
             )
         )
-    if "ConfigurationSetName" in data:
+    if data.get("ConfigurationSetName") is not None:
         out["configuration_set_name"] = data["ConfigurationSetName"]
-    if "MaxPrice" in data:
+    if data.get("MaxPrice") is not None:
         out["max_price"] = data["MaxPrice"]
-    if "TimeToLive" in data:
+    if data.get("TimeToLive") is not None:
         out["time_to_live"] = data["TimeToLive"]
-    if "Context" in data:
+    if data.get("Context") is not None:
         import capo_pinpoint_sms_voice_v2.types.context_map
 
         out["context"] = (
@@ -130,12 +130,12 @@ def deserialize_aws_json_1_0(data: dict) -> SendMediaMessageRequest:
                 data["Context"]
             )
         )
-    if "DryRun" in data:
+    if data.get("DryRun") is not None:
         out["dry_run"] = data["DryRun"]
     else:
         out["dry_run"] = False
-    if "ProtectConfigurationId" in data:
+    if data.get("ProtectConfigurationId") is not None:
         out["protect_configuration_id"] = data["ProtectConfigurationId"]
-    if "MessageFeedbackEnabled" in data:
+    if data.get("MessageFeedbackEnabled") is not None:
         out["message_feedback_enabled"] = data["MessageFeedbackEnabled"]
     return out

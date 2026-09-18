@@ -31,7 +31,7 @@ def serialize_json(value: AmazonQInQuickSightDashboardConfigurations) -> dict:
 
 def deserialize_json(data: dict) -> AmazonQInQuickSightDashboardConfigurations:
     out: AmazonQInQuickSightDashboardConfigurations = {}  # type: ignore[typeddict-item]
-    if "ExecutiveSummary" in data:
+    if data.get("ExecutiveSummary") is not None:
         import capo_quicksight.types.executive_summary_configurations
 
         out["executive_summary"] = (

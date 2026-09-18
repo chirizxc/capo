@@ -35,13 +35,13 @@ def serialize_json(value: S3DataAccessDetails) -> dict:
 
 def deserialize_json(data: dict) -> S3DataAccessDetails:
     out: S3DataAccessDetails = {}  # type: ignore[typeddict-item]
-    if "KeyPrefixes" in data:
+    if data.get("KeyPrefixes") is not None:
         import capo_dataexchange.types.list_of__string
 
         out["key_prefixes"] = capo_dataexchange.types.list_of__string.deserialize_json(
             data["KeyPrefixes"]
         )
-    if "Keys" in data:
+    if data.get("Keys") is not None:
         import capo_dataexchange.types.list_of__string
 
         out["keys"] = capo_dataexchange.types.list_of__string.deserialize_json(

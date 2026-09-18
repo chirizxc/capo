@@ -48,13 +48,13 @@ def serialize_aws_json_1_1(value: UpdateHubRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateHubRequest:
     out: UpdateHubRequest = {}  # type: ignore[typeddict-item]
-    if "HubName" in data:
+    if data.get("HubName") is not None:
         out["hub_name"] = data["HubName"]
-    if "HubDescription" in data:
+    if data.get("HubDescription") is not None:
         out["hub_description"] = data["HubDescription"]
-    if "HubDisplayName" in data:
+    if data.get("HubDisplayName") is not None:
         out["hub_display_name"] = data["HubDisplayName"]
-    if "HubSearchKeywords" in data:
+    if data.get("HubSearchKeywords") is not None:
         import capo_sagemaker.types.hub_search_keyword_list
 
         out["hub_search_keywords"] = (

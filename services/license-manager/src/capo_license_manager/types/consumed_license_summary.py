@@ -34,7 +34,7 @@ def serialize_aws_json_1_1(value: ConsumedLicenseSummary) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ConsumedLicenseSummary:
     out: ConsumedLicenseSummary = {}  # type: ignore[typeddict-item]
-    if "ResourceType" in data:
+    if data.get("ResourceType") is not None:
         import capo_license_manager.types.resource_type
 
         out["resource_type"] = (
@@ -42,6 +42,6 @@ def deserialize_aws_json_1_1(data: dict) -> ConsumedLicenseSummary:
                 data["ResourceType"]
             )
         )
-    if "ConsumedLicenses" in data:
+    if data.get("ConsumedLicenses") is not None:
         out["consumed_licenses"] = data["ConsumedLicenses"]
     return out

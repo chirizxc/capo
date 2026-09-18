@@ -32,7 +32,7 @@ def serialize_aws_json_1_0(value: StringSearch) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> StringSearch:
     out: StringSearch = {}  # type: ignore[typeddict-item]
-    if "searchOption" in data:
+    if data.get("searchOption") is not None:
         import capo_billing.types.search_option
 
         out["search_option"] = (
@@ -42,7 +42,7 @@ def deserialize_aws_json_1_0(data: dict) -> StringSearch:
         )
     else:
         raise DeserializationError("StringSearch.search_option required")
-    if "searchValue" in data:
+    if data.get("searchValue") is not None:
         out["search_value"] = data["searchValue"]
     else:
         raise DeserializationError("StringSearch.search_value required")

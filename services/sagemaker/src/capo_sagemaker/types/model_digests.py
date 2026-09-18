@@ -23,6 +23,6 @@ def serialize_aws_json_1_1(value: ModelDigests) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ModelDigests:
     out: ModelDigests = {}  # type: ignore[typeddict-item]
-    if "ArtifactDigest" in data:
+    if data.get("ArtifactDigest") is not None:
         out["artifact_digest"] = data["ArtifactDigest"]
     return out

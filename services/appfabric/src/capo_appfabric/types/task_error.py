@@ -22,8 +22,8 @@ def serialize_json(value: TaskError) -> dict:
 
 def deserialize_json(data: dict) -> TaskError:
     out: TaskError = {}  # type: ignore[typeddict-item]
-    if "errorCode" in data:
+    if data.get("errorCode") is not None:
         out["error_code"] = data["errorCode"]
-    if "errorMessage" in data:
+    if data.get("errorMessage") is not None:
         out["error_message"] = data["errorMessage"]
     return out

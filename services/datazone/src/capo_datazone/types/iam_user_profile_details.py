@@ -30,12 +30,12 @@ def serialize_json(value: IamUserProfileDetails) -> dict:
 
 def deserialize_json(data: dict) -> IamUserProfileDetails:
     out: IamUserProfileDetails = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "principalId" in data:
+    if data.get("principalId") is not None:
         out["principal_id"] = data["principalId"]
-    if "sessionName" in data:
+    if data.get("sessionName") is not None:
         out["session_name"] = data["sessionName"]
-    if "groupProfileId" in data:
+    if data.get("groupProfileId") is not None:
         out["group_profile_id"] = data["groupProfileId"]
     return out

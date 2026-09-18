@@ -31,7 +31,7 @@ def serialize_json(value: FilledMapFieldWells) -> dict:
 
 def deserialize_json(data: dict) -> FilledMapFieldWells:
     out: FilledMapFieldWells = {}  # type: ignore[typeddict-item]
-    if "FilledMapAggregatedFieldWells" in data:
+    if data.get("FilledMapAggregatedFieldWells") is not None:
         import capo_quicksight.types.filled_map_aggregated_field_wells
 
         out["filled_map_aggregated_field_wells"] = (

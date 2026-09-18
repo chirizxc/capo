@@ -107,8 +107,12 @@ class MissionProfile:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_groundstation.types.create_mission_profile_request.CreateMissionProfileRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_groundstation.types.create_mission_profile_request.CreateMissionProfileRequest = {
+            "name": name,
+            "minimum_viable_contact_duration_seconds": minimum_viable_contact_duration_seconds,
+            "dataflow_edges": dataflow_edges,
+            "tracking_config_arn": tracking_config_arn,
+        }
         if contact_pre_pass_duration_seconds is not None:
             input_["contact_pre_pass_duration_seconds"] = (
                 contact_pre_pass_duration_seconds
@@ -117,11 +121,6 @@ class MissionProfile:
             input_["contact_post_pass_duration_seconds"] = (
                 contact_post_pass_duration_seconds
             )
-        input_["minimum_viable_contact_duration_seconds"] = (
-            minimum_viable_contact_duration_seconds
-        )
-        input_["dataflow_edges"] = dataflow_edges
-        input_["tracking_config_arn"] = tracking_config_arn
         if telemetry_sink_config_arn is not None:
             input_["telemetry_sink_config_arn"] = telemetry_sink_config_arn
         if tags is not None:
@@ -136,6 +135,7 @@ class MissionProfile:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -171,14 +171,16 @@ class MissionProfile:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_groundstation.types.get_mission_profile_request.GetMissionProfileRequest = {}  # type: ignore[typeddict-item]
-        input_["mission_profile_id"] = mission_profile_id
+        input_: capo_groundstation.types.get_mission_profile_request.GetMissionProfileRequest = {
+            "mission_profile_id": mission_profile_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update(
@@ -246,8 +248,9 @@ class MissionProfile:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_groundstation.types.update_mission_profile_request.UpdateMissionProfileRequest = {}  # type: ignore[typeddict-item]
-        input_["mission_profile_id"] = mission_profile_id
+        input_: capo_groundstation.types.update_mission_profile_request.UpdateMissionProfileRequest = {
+            "mission_profile_id": mission_profile_id
+        }
         if name is not None:
             input_["name"] = name
         if contact_pre_pass_duration_seconds is not None:
@@ -278,6 +281,7 @@ class MissionProfile:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -315,14 +319,16 @@ class MissionProfile:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_groundstation.types.delete_mission_profile_request.DeleteMissionProfileRequest = {}  # type: ignore[typeddict-item]
-        input_["mission_profile_id"] = mission_profile_id
+        input_: capo_groundstation.types.delete_mission_profile_request.DeleteMissionProfileRequest = {
+            "mission_profile_id": mission_profile_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -364,7 +370,7 @@ class MissionProfile:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_groundstation.types.list_mission_profiles_request.ListMissionProfilesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_groundstation.types.list_mission_profiles_request.ListMissionProfilesRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -375,6 +381,7 @@ class MissionProfile:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -442,8 +449,12 @@ class AsyncMissionProfile:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_groundstation.types.create_mission_profile_request.CreateMissionProfileRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_groundstation.types.create_mission_profile_request.CreateMissionProfileRequest = {
+            "name": name,
+            "minimum_viable_contact_duration_seconds": minimum_viable_contact_duration_seconds,
+            "dataflow_edges": dataflow_edges,
+            "tracking_config_arn": tracking_config_arn,
+        }
         if contact_pre_pass_duration_seconds is not None:
             input_["contact_pre_pass_duration_seconds"] = (
                 contact_pre_pass_duration_seconds
@@ -452,11 +463,6 @@ class AsyncMissionProfile:
             input_["contact_post_pass_duration_seconds"] = (
                 contact_post_pass_duration_seconds
             )
-        input_["minimum_viable_contact_duration_seconds"] = (
-            minimum_viable_contact_duration_seconds
-        )
-        input_["dataflow_edges"] = dataflow_edges
-        input_["tracking_config_arn"] = tracking_config_arn
         if telemetry_sink_config_arn is not None:
             input_["telemetry_sink_config_arn"] = telemetry_sink_config_arn
         if tags is not None:
@@ -471,6 +477,7 @@ class AsyncMissionProfile:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -507,14 +514,16 @@ class AsyncMissionProfile:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_groundstation.types.get_mission_profile_request.GetMissionProfileRequest = {}  # type: ignore[typeddict-item]
-        input_["mission_profile_id"] = mission_profile_id
+        input_: capo_groundstation.types.get_mission_profile_request.GetMissionProfileRequest = {
+            "mission_profile_id": mission_profile_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update(
@@ -583,8 +592,9 @@ class AsyncMissionProfile:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_groundstation.types.update_mission_profile_request.UpdateMissionProfileRequest = {}  # type: ignore[typeddict-item]
-        input_["mission_profile_id"] = mission_profile_id
+        input_: capo_groundstation.types.update_mission_profile_request.UpdateMissionProfileRequest = {
+            "mission_profile_id": mission_profile_id
+        }
         if name is not None:
             input_["name"] = name
         if contact_pre_pass_duration_seconds is not None:
@@ -615,6 +625,7 @@ class AsyncMissionProfile:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -653,14 +664,16 @@ class AsyncMissionProfile:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_groundstation.types.delete_mission_profile_request.DeleteMissionProfileRequest = {}  # type: ignore[typeddict-item]
-        input_["mission_profile_id"] = mission_profile_id
+        input_: capo_groundstation.types.delete_mission_profile_request.DeleteMissionProfileRequest = {
+            "mission_profile_id": mission_profile_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -703,7 +716,7 @@ class AsyncMissionProfile:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_groundstation.types.list_mission_profiles_request.ListMissionProfilesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_groundstation.types.list_mission_profiles_request.ListMissionProfilesRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -714,4 +727,5 @@ class AsyncMissionProfile:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

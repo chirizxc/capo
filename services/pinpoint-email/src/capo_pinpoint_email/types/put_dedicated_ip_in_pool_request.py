@@ -27,7 +27,7 @@ def serialize_json(value: PutDedicatedIpInPoolRequest) -> dict:
 
 def deserialize_json(data: dict) -> PutDedicatedIpInPoolRequest:
     out: PutDedicatedIpInPoolRequest = {}  # type: ignore[typeddict-item]
-    if "DestinationPoolName" in data:
+    if data.get("DestinationPoolName") is not None:
         out["destination_pool_name"] = data["DestinationPoolName"]
     else:
         raise DeserializationError(

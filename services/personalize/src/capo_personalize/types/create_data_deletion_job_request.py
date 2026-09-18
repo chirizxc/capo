@@ -47,17 +47,17 @@ def serialize_aws_json_1_1(value: CreateDataDeletionJobRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateDataDeletionJobRequest:
     out: CreateDataDeletionJobRequest = {}  # type: ignore[typeddict-item]
-    if "jobName" in data:
+    if data.get("jobName") is not None:
         out["job_name"] = data["jobName"]
     else:
         raise DeserializationError("CreateDataDeletionJobRequest.job_name required")
-    if "datasetGroupArn" in data:
+    if data.get("datasetGroupArn") is not None:
         out["dataset_group_arn"] = data["datasetGroupArn"]
     else:
         raise DeserializationError(
             "CreateDataDeletionJobRequest.dataset_group_arn required"
         )
-    if "dataSource" in data:
+    if data.get("dataSource") is not None:
         import capo_personalize.types.data_source
 
         out["data_source"] = (
@@ -67,11 +67,11 @@ def deserialize_aws_json_1_1(data: dict) -> CreateDataDeletionJobRequest:
         )
     else:
         raise DeserializationError("CreateDataDeletionJobRequest.data_source required")
-    if "roleArn" in data:
+    if data.get("roleArn") is not None:
         out["role_arn"] = data["roleArn"]
     else:
         raise DeserializationError("CreateDataDeletionJobRequest.role_arn required")
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_personalize.types.tags
 
         out["tags"] = capo_personalize.types.tags.deserialize_aws_json_1_1(data["tags"])

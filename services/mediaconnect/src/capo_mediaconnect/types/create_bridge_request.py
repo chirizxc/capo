@@ -91,7 +91,7 @@ def serialize_json(value: CreateBridgeRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateBridgeRequest:
     out: CreateBridgeRequest = {}  # type: ignore[typeddict-item]
-    if "egressGatewayBridge" in data:
+    if data.get("egressGatewayBridge") is not None:
         import capo_mediaconnect.types.add_egress_gateway_bridge_request
 
         out["egress_gateway_bridge"] = (
@@ -99,7 +99,7 @@ def deserialize_json(data: dict) -> CreateBridgeRequest:
                 data["egressGatewayBridge"]
             )
         )
-    if "ingressGatewayBridge" in data:
+    if data.get("ingressGatewayBridge") is not None:
         import capo_mediaconnect.types.add_ingress_gateway_bridge_request
 
         out["ingress_gateway_bridge"] = (
@@ -107,9 +107,9 @@ def deserialize_json(data: dict) -> CreateBridgeRequest:
                 data["ingressGatewayBridge"]
             )
         )
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "outputs" in data:
+    if data.get("outputs") is not None:
         import capo_mediaconnect.types.__list_of_add_bridge_output_request
 
         out["outputs"] = (
@@ -117,9 +117,9 @@ def deserialize_json(data: dict) -> CreateBridgeRequest:
                 data["outputs"]
             )
         )
-    if "placementArn" in data:
+    if data.get("placementArn") is not None:
         out["placement_arn"] = data["placementArn"]
-    if "sourceFailoverConfig" in data:
+    if data.get("sourceFailoverConfig") is not None:
         import capo_mediaconnect.types.failover_config
 
         out["source_failover_config"] = (
@@ -127,7 +127,7 @@ def deserialize_json(data: dict) -> CreateBridgeRequest:
                 data["sourceFailoverConfig"]
             )
         )
-    if "sources" in data:
+    if data.get("sources") is not None:
         import capo_mediaconnect.types.__list_of_add_bridge_source_request
 
         out["sources"] = (

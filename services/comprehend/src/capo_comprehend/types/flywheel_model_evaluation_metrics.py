@@ -23,24 +23,56 @@ class FlywheelModelEvaluationMetrics(TypedDict, closed=True):
 def serialize_aws_json_1_1(value: FlywheelModelEvaluationMetrics) -> dict:
     out: dict = {}
     if "average_f1_score" in value:
-        out["AverageF1Score"] = value["average_f1_score"]
+        out["AverageF1Score"] = (
+            "NaN"
+            if value["average_f1_score"] != value["average_f1_score"]
+            else "Infinity"
+            if value["average_f1_score"] == float("inf")
+            else "-Infinity"
+            if value["average_f1_score"] == float("-inf")
+            else value["average_f1_score"]
+        )
     if "average_precision" in value:
-        out["AveragePrecision"] = value["average_precision"]
+        out["AveragePrecision"] = (
+            "NaN"
+            if value["average_precision"] != value["average_precision"]
+            else "Infinity"
+            if value["average_precision"] == float("inf")
+            else "-Infinity"
+            if value["average_precision"] == float("-inf")
+            else value["average_precision"]
+        )
     if "average_recall" in value:
-        out["AverageRecall"] = value["average_recall"]
+        out["AverageRecall"] = (
+            "NaN"
+            if value["average_recall"] != value["average_recall"]
+            else "Infinity"
+            if value["average_recall"] == float("inf")
+            else "-Infinity"
+            if value["average_recall"] == float("-inf")
+            else value["average_recall"]
+        )
     if "average_accuracy" in value:
-        out["AverageAccuracy"] = value["average_accuracy"]
+        out["AverageAccuracy"] = (
+            "NaN"
+            if value["average_accuracy"] != value["average_accuracy"]
+            else "Infinity"
+            if value["average_accuracy"] == float("inf")
+            else "-Infinity"
+            if value["average_accuracy"] == float("-inf")
+            else value["average_accuracy"]
+        )
     return out
 
 
 def deserialize_aws_json_1_1(data: dict) -> FlywheelModelEvaluationMetrics:
     out: FlywheelModelEvaluationMetrics = {}  # type: ignore[typeddict-item]
-    if "AverageF1Score" in data:
-        out["average_f1_score"] = data["AverageF1Score"]
-    if "AveragePrecision" in data:
-        out["average_precision"] = data["AveragePrecision"]
-    if "AverageRecall" in data:
-        out["average_recall"] = data["AverageRecall"]
-    if "AverageAccuracy" in data:
-        out["average_accuracy"] = data["AverageAccuracy"]
+    if data.get("AverageF1Score") is not None:
+        out["average_f1_score"] = float(data["AverageF1Score"])
+    if data.get("AveragePrecision") is not None:
+        out["average_precision"] = float(data["AveragePrecision"])
+    if data.get("AverageRecall") is not None:
+        out["average_recall"] = float(data["AverageRecall"])
+    if data.get("AverageAccuracy") is not None:
+        out["average_accuracy"] = float(data["AverageAccuracy"])
     return out

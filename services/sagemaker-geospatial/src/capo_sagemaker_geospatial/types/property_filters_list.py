@@ -25,6 +25,8 @@ def deserialize_json(data: list) -> PropertyFiltersList:
 
     out: PropertyFiltersList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_sagemaker_geospatial.types.property_filter.deserialize_json(item)
         )

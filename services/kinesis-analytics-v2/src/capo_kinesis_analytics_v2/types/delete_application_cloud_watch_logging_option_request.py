@@ -46,20 +46,20 @@ def deserialize_aws_json_1_1(
     data: dict,
 ) -> DeleteApplicationCloudWatchLoggingOptionRequest:
     out: DeleteApplicationCloudWatchLoggingOptionRequest = {}  # type: ignore[typeddict-item]
-    if "ApplicationName" in data:
+    if data.get("ApplicationName") is not None:
         out["application_name"] = data["ApplicationName"]
     else:
         raise DeserializationError(
             "DeleteApplicationCloudWatchLoggingOptionRequest.application_name required"
         )
-    if "CurrentApplicationVersionId" in data:
+    if data.get("CurrentApplicationVersionId") is not None:
         out["current_application_version_id"] = data["CurrentApplicationVersionId"]
-    if "CloudWatchLoggingOptionId" in data:
+    if data.get("CloudWatchLoggingOptionId") is not None:
         out["cloud_watch_logging_option_id"] = data["CloudWatchLoggingOptionId"]
     else:
         raise DeserializationError(
             "DeleteApplicationCloudWatchLoggingOptionRequest.cloud_watch_logging_option_id required"
         )
-    if "ConditionalToken" in data:
+    if data.get("ConditionalToken") is not None:
         out["conditional_token"] = data["ConditionalToken"]
     return out

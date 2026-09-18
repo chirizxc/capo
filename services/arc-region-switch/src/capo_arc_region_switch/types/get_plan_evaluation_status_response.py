@@ -74,11 +74,11 @@ def serialize_aws_json_1_0(value: GetPlanEvaluationStatusResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> GetPlanEvaluationStatusResponse:
     out: GetPlanEvaluationStatusResponse = {}  # type: ignore[typeddict-item]
-    if "planArn" in data:
+    if data.get("planArn") is not None:
         out["plan_arn"] = data["planArn"]
     else:
         raise DeserializationError("GetPlanEvaluationStatusResponse.plan_arn required")
-    if "lastEvaluationTime" in data:
+    if data.get("lastEvaluationTime") is not None:
         import capo_arc_region_switch.types._prelude.timestamp
 
         out["last_evaluation_time"] = (
@@ -86,11 +86,11 @@ def deserialize_aws_json_1_0(data: dict) -> GetPlanEvaluationStatusResponse:
                 data["lastEvaluationTime"]
             )
         )
-    if "lastEvaluatedVersion" in data:
+    if data.get("lastEvaluatedVersion") is not None:
         out["last_evaluated_version"] = data["lastEvaluatedVersion"]
-    if "region" in data:
+    if data.get("region") is not None:
         out["region"] = data["region"]
-    if "evaluationState" in data:
+    if data.get("evaluationState") is not None:
         import capo_arc_region_switch.types.evaluation_status
 
         out["evaluation_state"] = (
@@ -98,7 +98,7 @@ def deserialize_aws_json_1_0(data: dict) -> GetPlanEvaluationStatusResponse:
                 data["evaluationState"]
             )
         )
-    if "warnings" in data:
+    if data.get("warnings") is not None:
         import capo_arc_region_switch.types.plan_warnings
 
         out["warnings"] = (
@@ -106,6 +106,6 @@ def deserialize_aws_json_1_0(data: dict) -> GetPlanEvaluationStatusResponse:
                 data["warnings"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

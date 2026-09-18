@@ -18,6 +18,6 @@ def serialize_json(value: SecretsManagerCredentialsProvider) -> dict:
 
 def deserialize_json(data: dict) -> SecretsManagerCredentialsProvider:
     out: SecretsManagerCredentialsProvider = {}  # type: ignore[typeddict-item]
-    if "SecretId" in data:
+    if data.get("SecretId") is not None:
         out["secret_id"] = data["SecretId"]
     return out

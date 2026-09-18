@@ -44,7 +44,7 @@ def serialize_aws_json_1_0(value: PurchaseOrderDataSource) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> PurchaseOrderDataSource:
     out: PurchaseOrderDataSource = {}  # type: ignore[typeddict-item]
-    if "EinvoiceDeliveryDocumentType" in data:
+    if data.get("EinvoiceDeliveryDocumentType") is not None:
         import capo_invoicing.types.einvoice_delivery_document_type
 
         out["einvoice_delivery_document_type"] = (
@@ -52,7 +52,7 @@ def deserialize_aws_json_1_0(data: dict) -> PurchaseOrderDataSource:
                 data["EinvoiceDeliveryDocumentType"]
             )
         )
-    if "PurchaseOrderDataSourceType" in data:
+    if data.get("PurchaseOrderDataSourceType") is not None:
         import capo_invoicing.types.purchase_order_data_source_type
 
         out["purchase_order_data_source_type"] = (

@@ -67,7 +67,7 @@ def serialize_aws_json_1_1(value: InstanceMetadataOptions) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> InstanceMetadataOptions:
     out: InstanceMetadataOptions = {}  # type: ignore[typeddict-item]
-    if "state" in data:
+    if data.get("state") is not None:
         import capo_lightsail.types.instance_metadata_state
 
         out["state"] = (
@@ -75,13 +75,13 @@ def deserialize_aws_json_1_1(data: dict) -> InstanceMetadataOptions:
                 data["state"]
             )
         )
-    if "httpTokens" in data:
+    if data.get("httpTokens") is not None:
         import capo_lightsail.types.http_tokens
 
         out["http_tokens"] = capo_lightsail.types.http_tokens.deserialize_aws_json_1_1(
             data["httpTokens"]
         )
-    if "httpEndpoint" in data:
+    if data.get("httpEndpoint") is not None:
         import capo_lightsail.types.http_endpoint
 
         out["http_endpoint"] = (
@@ -89,9 +89,9 @@ def deserialize_aws_json_1_1(data: dict) -> InstanceMetadataOptions:
                 data["httpEndpoint"]
             )
         )
-    if "httpPutResponseHopLimit" in data:
+    if data.get("httpPutResponseHopLimit") is not None:
         out["http_put_response_hop_limit"] = data["httpPutResponseHopLimit"]
-    if "httpProtocolIpv6" in data:
+    if data.get("httpProtocolIpv6") is not None:
         import capo_lightsail.types.http_protocol_ipv6
 
         out["http_protocol_ipv6"] = (

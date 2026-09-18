@@ -21,7 +21,15 @@ class MonetaryAmount(TypedDict, closed=True):
 # --- awsJson1_0 ser/de ---
 def serialize_aws_json_1_0(value: MonetaryAmount) -> dict:
     out: dict = {}
-    out["amount"] = value.get("amount", 0)
+    out["amount"] = (
+        "NaN"
+        if value.get("amount", 0) != value.get("amount", 0)
+        else "Infinity"
+        if value.get("amount", 0) == float("inf")
+        else "-Infinity"
+        if value.get("amount", 0) == float("-inf")
+        else value.get("amount", 0)
+    )
     import capo_freetier.types.currency_code
 
     out["unit"] = capo_freetier.types.currency_code.serialize_aws_json_1_0(
@@ -32,11 +40,11 @@ def serialize_aws_json_1_0(value: MonetaryAmount) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> MonetaryAmount:
     out: MonetaryAmount = {}  # type: ignore[typeddict-item]
-    if "amount" in data:
-        out["amount"] = data["amount"]
+    if data.get("amount") is not None:
+        out["amount"] = float(data["amount"])
     else:
         out["amount"] = 0
-    if "unit" in data:
+    if data.get("unit") is not None:
         import capo_freetier.types.currency_code
 
         out["unit"] = capo_freetier.types.currency_code.deserialize_aws_json_1_0(

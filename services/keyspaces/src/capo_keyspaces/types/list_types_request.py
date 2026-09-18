@@ -34,11 +34,11 @@ def serialize_aws_json_1_0(value: ListTypesRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ListTypesRequest:
     out: ListTypesRequest = {}  # type: ignore[typeddict-item]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
-    if "keyspaceName" in data:
+    if data.get("keyspaceName") is not None:
         out["keyspace_name"] = data["keyspaceName"]
     else:
         raise DeserializationError("ListTypesRequest.keyspace_name required")

@@ -29,10 +29,10 @@ def serialize_json(value: IdNamespaceInputSource) -> dict:
 
 def deserialize_json(data: dict) -> IdNamespaceInputSource:
     out: IdNamespaceInputSource = {}  # type: ignore[typeddict-item]
-    if "inputSourceARN" in data:
+    if data.get("inputSourceARN") is not None:
         out["input_source_arn"] = data["inputSourceARN"]
     else:
         raise DeserializationError("IdNamespaceInputSource.input_source_arn required")
-    if "schemaName" in data:
+    if data.get("schemaName") is not None:
         out["schema_name"] = data["schemaName"]
     return out

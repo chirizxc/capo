@@ -57,21 +57,21 @@ def serialize_json(value: Room) -> dict:
 
 def deserialize_json(data: dict) -> Room:
     out: Room = {}  # type: ignore[typeddict-item]
-    if "RoomId" in data:
+    if data.get("RoomId") is not None:
         out["room_id"] = data["RoomId"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "AccountId" in data:
+    if data.get("AccountId") is not None:
         out["account_id"] = data["AccountId"]
-    if "CreatedBy" in data:
+    if data.get("CreatedBy") is not None:
         out["created_by"] = data["CreatedBy"]
-    if "CreatedTimestamp" in data:
+    if data.get("CreatedTimestamp") is not None:
         import capo_chime.types.iso8601_timestamp
 
         out["created_timestamp"] = capo_chime.types.iso8601_timestamp.deserialize_json(
             data["CreatedTimestamp"]
         )
-    if "UpdatedTimestamp" in data:
+    if data.get("UpdatedTimestamp") is not None:
         import capo_chime.types.iso8601_timestamp
 
         out["updated_timestamp"] = capo_chime.types.iso8601_timestamp.deserialize_json(

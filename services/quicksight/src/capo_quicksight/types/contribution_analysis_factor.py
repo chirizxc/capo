@@ -23,6 +23,6 @@ def serialize_json(value: ContributionAnalysisFactor) -> dict:
 
 def deserialize_json(data: dict) -> ContributionAnalysisFactor:
     out: ContributionAnalysisFactor = {}  # type: ignore[typeddict-item]
-    if "FieldName" in data:
+    if data.get("FieldName") is not None:
         out["field_name"] = data["FieldName"]
     return out

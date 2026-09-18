@@ -35,11 +35,11 @@ def serialize_json(value: UpdateFeedRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateFeedRequest:
     out: UpdateFeedRequest = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("UpdateFeedRequest.name required")
-    if "outputs" in data:
+    if data.get("outputs") is not None:
         import capo_elementalinference.types.update_output_list
 
         out["outputs"] = (

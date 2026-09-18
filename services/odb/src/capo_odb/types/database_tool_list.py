@@ -23,5 +23,7 @@ def deserialize_aws_json_1_0(data: list) -> DatabaseToolList:
 
     out: DatabaseToolList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_odb.types.database_tool.deserialize_aws_json_1_0(item))
     return out

@@ -27,7 +27,7 @@ def serialize_json(value: GetComponentResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetComponentResponse:
     out: GetComponentResponse = {}  # type: ignore[typeddict-item]
-    if "component" in data:
+    if data.get("component") is not None:
         import capo_amplifyuibuilder.types.component
 
         out["component"] = capo_amplifyuibuilder.types.component.deserialize_json(

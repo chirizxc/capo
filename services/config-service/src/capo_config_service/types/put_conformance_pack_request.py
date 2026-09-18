@@ -87,21 +87,21 @@ def serialize_aws_json_1_1(value: PutConformancePackRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PutConformancePackRequest:
     out: PutConformancePackRequest = {}  # type: ignore[typeddict-item]
-    if "ConformancePackName" in data:
+    if data.get("ConformancePackName") is not None:
         out["conformance_pack_name"] = data["ConformancePackName"]
     else:
         raise DeserializationError(
             "PutConformancePackRequest.conformance_pack_name required"
         )
-    if "TemplateS3Uri" in data:
+    if data.get("TemplateS3Uri") is not None:
         out["template_s3_uri"] = data["TemplateS3Uri"]
-    if "TemplateBody" in data:
+    if data.get("TemplateBody") is not None:
         out["template_body"] = data["TemplateBody"]
-    if "DeliveryS3Bucket" in data:
+    if data.get("DeliveryS3Bucket") is not None:
         out["delivery_s3_bucket"] = data["DeliveryS3Bucket"]
-    if "DeliveryS3KeyPrefix" in data:
+    if data.get("DeliveryS3KeyPrefix") is not None:
         out["delivery_s3_key_prefix"] = data["DeliveryS3KeyPrefix"]
-    if "ConformancePackInputParameters" in data:
+    if data.get("ConformancePackInputParameters") is not None:
         import capo_config_service.types.conformance_pack_input_parameters
 
         out["conformance_pack_input_parameters"] = (
@@ -109,7 +109,7 @@ def deserialize_aws_json_1_1(data: dict) -> PutConformancePackRequest:
                 data["ConformancePackInputParameters"]
             )
         )
-    if "TemplateSSMDocumentDetails" in data:
+    if data.get("TemplateSSMDocumentDetails") is not None:
         import capo_config_service.types.template_ssm_document_details
 
         out["template_ssm_document_details"] = (
@@ -117,7 +117,7 @@ def deserialize_aws_json_1_1(data: dict) -> PutConformancePackRequest:
                 data["TemplateSSMDocumentDetails"]
             )
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_config_service.types.tags_list
 
         out["tags"] = capo_config_service.types.tags_list.deserialize_aws_json_1_1(

@@ -40,13 +40,13 @@ def serialize_aws_json_1_1(value: TimeSeriesTransformation) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> TimeSeriesTransformation:
     out: TimeSeriesTransformation = {}  # type: ignore[typeddict-item]
-    if "Action" in data:
+    if data.get("Action") is not None:
         import capo_forecast.types.action
 
         out["action"] = capo_forecast.types.action.deserialize_aws_json_1_1(
             data["Action"]
         )
-    if "TimeSeriesConditions" in data:
+    if data.get("TimeSeriesConditions") is not None:
         import capo_forecast.types.time_series_conditions
 
         out["time_series_conditions"] = (

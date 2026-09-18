@@ -55,7 +55,7 @@ def serialize_aws_json_1_1(value: ListWorkforcesRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListWorkforcesRequest:
     out: ListWorkforcesRequest = {}  # type: ignore[typeddict-item]
-    if "SortBy" in data:
+    if data.get("SortBy") is not None:
         import capo_sagemaker.types.list_workforces_sort_by_options
 
         out["sort_by"] = (
@@ -63,16 +63,16 @@ def deserialize_aws_json_1_1(data: dict) -> ListWorkforcesRequest:
                 data["SortBy"]
             )
         )
-    if "SortOrder" in data:
+    if data.get("SortOrder") is not None:
         import capo_sagemaker.types.sort_order
 
         out["sort_order"] = capo_sagemaker.types.sort_order.deserialize_aws_json_1_1(
             data["SortOrder"]
         )
-    if "NameContains" in data:
+    if data.get("NameContains") is not None:
         out["name_contains"] = data["NameContains"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
     return out

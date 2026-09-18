@@ -99,9 +99,9 @@ def serialize_aws_json_1_1(value: BatchPrediction) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> BatchPrediction:
     out: BatchPrediction = {}  # type: ignore[typeddict-item]
-    if "jobId" in data:
+    if data.get("jobId") is not None:
         out["job_id"] = data["jobId"]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_frauddetector.types.async_job_status
 
         out["status"] = (
@@ -109,30 +109,30 @@ def deserialize_aws_json_1_1(data: dict) -> BatchPrediction:
                 data["status"]
             )
         )
-    if "failureReason" in data:
+    if data.get("failureReason") is not None:
         out["failure_reason"] = data["failureReason"]
-    if "startTime" in data:
+    if data.get("startTime") is not None:
         out["start_time"] = data["startTime"]
-    if "completionTime" in data:
+    if data.get("completionTime") is not None:
         out["completion_time"] = data["completionTime"]
-    if "lastHeartbeatTime" in data:
+    if data.get("lastHeartbeatTime") is not None:
         out["last_heartbeat_time"] = data["lastHeartbeatTime"]
-    if "inputPath" in data:
+    if data.get("inputPath") is not None:
         out["input_path"] = data["inputPath"]
-    if "outputPath" in data:
+    if data.get("outputPath") is not None:
         out["output_path"] = data["outputPath"]
-    if "eventTypeName" in data:
+    if data.get("eventTypeName") is not None:
         out["event_type_name"] = data["eventTypeName"]
-    if "detectorName" in data:
+    if data.get("detectorName") is not None:
         out["detector_name"] = data["detectorName"]
-    if "detectorVersion" in data:
+    if data.get("detectorVersion") is not None:
         out["detector_version"] = data["detectorVersion"]
-    if "iamRoleArn" in data:
+    if data.get("iamRoleArn") is not None:
         out["iam_role_arn"] = data["iamRoleArn"]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "processedRecordsCount" in data:
+    if data.get("processedRecordsCount") is not None:
         out["processed_records_count"] = data["processedRecordsCount"]
-    if "totalRecordsCount" in data:
+    if data.get("totalRecordsCount") is not None:
         out["total_records_count"] = data["totalRecordsCount"]
     return out

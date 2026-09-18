@@ -47,15 +47,15 @@ def serialize_aws_json_1_1(value: AnalyticsConfigurationType) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AnalyticsConfigurationType:
     out: AnalyticsConfigurationType = {}  # type: ignore[typeddict-item]
-    if "ApplicationId" in data:
+    if data.get("ApplicationId") is not None:
         out["application_id"] = data["ApplicationId"]
-    if "ApplicationArn" in data:
+    if data.get("ApplicationArn") is not None:
         out["application_arn"] = data["ApplicationArn"]
-    if "RoleArn" in data:
+    if data.get("RoleArn") is not None:
         out["role_arn"] = data["RoleArn"]
-    if "ExternalId" in data:
+    if data.get("ExternalId") is not None:
         out["external_id"] = data["ExternalId"]
-    if "UserDataShared" in data:
+    if data.get("UserDataShared") is not None:
         out["user_data_shared"] = data["UserDataShared"]
     else:
         out["user_data_shared"] = False

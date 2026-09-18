@@ -30,7 +30,7 @@ def serialize_json(value: DescribeElasticsearchInstanceTypeLimitsResponse) -> di
 
 def deserialize_json(data: dict) -> DescribeElasticsearchInstanceTypeLimitsResponse:
     out: DescribeElasticsearchInstanceTypeLimitsResponse = {}  # type: ignore[typeddict-item]
-    if "LimitsByRole" in data:
+    if data.get("LimitsByRole") is not None:
         import capo_elasticsearch_service.types.limits_by_role
 
         out["limits_by_role"] = (

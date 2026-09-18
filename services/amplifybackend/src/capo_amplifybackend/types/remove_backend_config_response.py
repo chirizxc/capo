@@ -23,6 +23,6 @@ def serialize_json(value: RemoveBackendConfigResponse) -> dict:
 
 def deserialize_json(data: dict) -> RemoveBackendConfigResponse:
     out: RemoveBackendConfigResponse = {}  # type: ignore[typeddict-item]
-    if "error" in data:
+    if data.get("error") is not None:
         out["error"] = data["error"]
     return out

@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> FailureReasons:
 
     out: FailureReasons = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_datazone.types.project_deletion_error.deserialize_json(item))
     return out

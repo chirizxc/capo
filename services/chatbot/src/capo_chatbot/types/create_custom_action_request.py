@@ -64,7 +64,7 @@ def serialize_json(value: CreateCustomActionRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateCustomActionRequest:
     out: CreateCustomActionRequest = {}  # type: ignore[typeddict-item]
-    if "Definition" in data:
+    if data.get("Definition") is not None:
         import capo_chatbot.types.custom_action_definition
 
         out["definition"] = (
@@ -74,9 +74,9 @@ def deserialize_json(data: dict) -> CreateCustomActionRequest:
         )
     else:
         raise DeserializationError("CreateCustomActionRequest.definition required")
-    if "AliasName" in data:
+    if data.get("AliasName") is not None:
         out["alias_name"] = data["AliasName"]
-    if "Attachments" in data:
+    if data.get("Attachments") is not None:
         import capo_chatbot.types.custom_action_attachment_list
 
         out["attachments"] = (
@@ -84,13 +84,13 @@ def deserialize_json(data: dict) -> CreateCustomActionRequest:
                 data["Attachments"]
             )
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_chatbot.types.tag_list
 
         out["tags"] = capo_chatbot.types.tag_list.deserialize_json(data["Tags"])
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
-    if "ActionName" in data:
+    if data.get("ActionName") is not None:
         out["action_name"] = data["ActionName"]
     else:
         raise DeserializationError("CreateCustomActionRequest.action_name required")

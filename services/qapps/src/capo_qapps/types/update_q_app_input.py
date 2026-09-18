@@ -48,15 +48,15 @@ def serialize_json(value: UpdateQAppInput) -> dict:
 
 def deserialize_json(data: dict) -> UpdateQAppInput:
     out: UpdateQAppInput = {}  # type: ignore[typeddict-item]
-    if "appId" in data:
+    if data.get("appId") is not None:
         out["app_id"] = data["appId"]
     else:
         raise DeserializationError("UpdateQAppInput.app_id required")
-    if "title" in data:
+    if data.get("title") is not None:
         out["title"] = data["title"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "appDefinition" in data:
+    if data.get("appDefinition") is not None:
         import capo_qapps.types.app_definition_input
 
         out["app_definition"] = capo_qapps.types.app_definition_input.deserialize_json(

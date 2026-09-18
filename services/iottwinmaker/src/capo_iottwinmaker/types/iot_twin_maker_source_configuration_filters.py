@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> IotTwinMakerSourceConfigurationFilters:
 
     out: IotTwinMakerSourceConfigurationFilters = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_iottwinmaker.types.iot_twin_maker_source_configuration_filter.deserialize_json(
                 item

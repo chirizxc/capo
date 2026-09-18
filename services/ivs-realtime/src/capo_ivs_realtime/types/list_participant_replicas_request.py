@@ -40,20 +40,20 @@ def serialize_json(value: ListParticipantReplicasRequest) -> dict:
 
 def deserialize_json(data: dict) -> ListParticipantReplicasRequest:
     out: ListParticipantReplicasRequest = {}  # type: ignore[typeddict-item]
-    if "sourceStageArn" in data:
+    if data.get("sourceStageArn") is not None:
         out["source_stage_arn"] = data["sourceStageArn"]
     else:
         raise DeserializationError(
             "ListParticipantReplicasRequest.source_stage_arn required"
         )
-    if "participantId" in data:
+    if data.get("participantId") is not None:
         out["participant_id"] = data["participantId"]
     else:
         raise DeserializationError(
             "ListParticipantReplicasRequest.participant_id required"
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
     return out

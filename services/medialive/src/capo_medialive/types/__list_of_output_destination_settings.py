@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> __listOfOutputDestinationSettings:
 
     out: __listOfOutputDestinationSettings = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_medialive.types.output_destination_settings.deserialize_json(item)
         )

@@ -38,12 +38,12 @@ def serialize_aws_json_1_1(value: CalculationResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CalculationResult:
     out: CalculationResult = {}  # type: ignore[typeddict-item]
-    if "StdOutS3Uri" in data:
+    if data.get("StdOutS3Uri") is not None:
         out["std_out_s3_uri"] = data["StdOutS3Uri"]
-    if "StdErrorS3Uri" in data:
+    if data.get("StdErrorS3Uri") is not None:
         out["std_error_s3_uri"] = data["StdErrorS3Uri"]
-    if "ResultS3Uri" in data:
+    if data.get("ResultS3Uri") is not None:
         out["result_s3_uri"] = data["ResultS3Uri"]
-    if "ResultType" in data:
+    if data.get("ResultType") is not None:
         out["result_type"] = data["ResultType"]
     return out

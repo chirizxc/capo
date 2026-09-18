@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: StartSandboxConnectionInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> StartSandboxConnectionInput:
     out: StartSandboxConnectionInput = {}  # type: ignore[typeddict-item]
-    if "sandboxId" in data:
+    if data.get("sandboxId") is not None:
         out["sandbox_id"] = data["sandboxId"]
     else:
         raise DeserializationError("StartSandboxConnectionInput.sandbox_id required")

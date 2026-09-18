@@ -22,14 +22,22 @@ def serialize_json(value: PredictedAction) -> dict:
     if "action_id" in value:
         out["actionId"] = value["action_id"]
     if "score" in value:
-        out["score"] = value["score"]
+        out["score"] = (
+            "NaN"
+            if value["score"] != value["score"]
+            else "Infinity"
+            if value["score"] == float("inf")
+            else "-Infinity"
+            if value["score"] == float("-inf")
+            else value["score"]
+        )
     return out
 
 
 def deserialize_json(data: dict) -> PredictedAction:
     out: PredictedAction = {}  # type: ignore[typeddict-item]
-    if "actionId" in data:
+    if data.get("actionId") is not None:
         out["action_id"] = data["actionId"]
-    if "score" in data:
-        out["score"] = data["score"]
+    if data.get("score") is not None:
+        out["score"] = float(data["score"])
     return out

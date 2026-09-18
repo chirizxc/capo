@@ -28,7 +28,7 @@ def serialize_json(value: QAppsConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> QAppsConfiguration:
     out: QAppsConfiguration = {}  # type: ignore[typeddict-item]
-    if "qAppsControlMode" in data:
+    if data.get("qAppsControlMode") is not None:
         import capo_qbusiness.types.q_apps_control_mode
 
         out["q_apps_control_mode"] = (

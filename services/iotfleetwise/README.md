@@ -13,9 +13,9 @@ from capo_iotfleetwise import AsyncIoTFleetWiseClient
 
 
 async def main():
-    async with AsyncIoTFleetWiseClient() as s3:
+    async with AsyncIoTFleetWiseClient() as io_t_fleet_wise:
         # Example: call the batch_create_vehicle operation
-        response = await s3.batch_create_vehicle()
+        response = await io_t_fleet_wise.batch_create_vehicle()
         print(response["vehicles"])
 ```
 
@@ -28,9 +28,9 @@ from capo_iotfleetwise import AsyncIoTFleetWiseClient
 
 
 async def main():
-    async with AsyncIoTFleetWiseClient() as s3:
+    async with AsyncIoTFleetWiseClient() as io_t_fleet_wise:
         # Example: paginate over get_vehicle_status
-        async for item in s3.iter_get_vehicle_status():
+        async for item in io_t_fleet_wise.iter_get_vehicle_status():
             print(item)
 ```
 
@@ -44,9 +44,9 @@ from capo_iotfleetwise.error import InternalServerException
 
 
 async def main():
-    async with AsyncIoTFleetWiseClient() as s3:
+    async with AsyncIoTFleetWiseClient() as io_t_fleet_wise:
         try:
-            await s3.batch_create_vehicle()
+            await io_t_fleet_wise.batch_create_vehicle()
         except InternalServerException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -63,13 +63,13 @@ from capo_iotfleetwise import AsyncIoTFleetWiseClient
 
 
 async def main():
-    async with AsyncIoTFleetWiseClient() as s3:
+    async with AsyncIoTFleetWiseClient() as io_t_fleet_wise:
         # Default: 3 attempts for every operation
-        response = await s3.batch_create_vehicle()
+        response = await io_t_fleet_wise.batch_create_vehicle()
 
         # Override per operation
-        response = await s3.batch_create_vehicle(config_overrides={"retry_max_attempts": 5})
+        response = await io_t_fleet_wise.batch_create_vehicle(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.batch_create_vehicle(config_overrides={"retry_max_attempts": 1})
+        response = await io_t_fleet_wise.batch_create_vehicle(config_overrides={"retry_max_attempts": 1})
 ```

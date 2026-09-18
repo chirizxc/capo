@@ -96,8 +96,9 @@ class PracticeRunConfigurationResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_arc_zonal_shift.types.update_practice_run_configuration_request.UpdatePracticeRunConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_identifier"] = resource_identifier
+        input_: capo_arc_zonal_shift.types.update_practice_run_configuration_request.UpdatePracticeRunConfigurationRequest = {
+            "resource_identifier": resource_identifier
+        }
         if blocked_windows is not None:
             input_["blocked_windows"] = blocked_windows
         if blocked_dates is not None:
@@ -114,6 +115,7 @@ class PracticeRunConfigurationResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -152,14 +154,16 @@ class PracticeRunConfigurationResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_arc_zonal_shift.types.delete_practice_run_configuration_request.DeletePracticeRunConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_identifier"] = resource_identifier
+        input_: capo_arc_zonal_shift.types.delete_practice_run_configuration_request.DeletePracticeRunConfigurationRequest = {
+            "resource_identifier": resource_identifier
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_practice_run_configuration(
@@ -216,8 +220,10 @@ class PracticeRunConfigurationResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_arc_zonal_shift.types.create_practice_run_configuration_request.CreatePracticeRunConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_identifier"] = resource_identifier
+        input_: capo_arc_zonal_shift.types.create_practice_run_configuration_request.CreatePracticeRunConfigurationRequest = {
+            "resource_identifier": resource_identifier,
+            "outcome_alarms": outcome_alarms,
+        }
         if blocked_windows is not None:
             input_["blocked_windows"] = blocked_windows
         if blocked_dates is not None:
@@ -226,13 +232,13 @@ class PracticeRunConfigurationResource:
             input_["blocking_alarms"] = blocking_alarms
         if allowed_windows is not None:
             input_["allowed_windows"] = allowed_windows
-        input_["outcome_alarms"] = outcome_alarms
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -297,8 +303,9 @@ class AsyncPracticeRunConfigurationResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_arc_zonal_shift.types.update_practice_run_configuration_request.UpdatePracticeRunConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_identifier"] = resource_identifier
+        input_: capo_arc_zonal_shift.types.update_practice_run_configuration_request.UpdatePracticeRunConfigurationRequest = {
+            "resource_identifier": resource_identifier
+        }
         if blocked_windows is not None:
             input_["blocked_windows"] = blocked_windows
         if blocked_dates is not None:
@@ -315,6 +322,7 @@ class AsyncPracticeRunConfigurationResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -354,14 +362,16 @@ class AsyncPracticeRunConfigurationResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_arc_zonal_shift.types.delete_practice_run_configuration_request.DeletePracticeRunConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_identifier"] = resource_identifier
+        input_: capo_arc_zonal_shift.types.delete_practice_run_configuration_request.DeletePracticeRunConfigurationRequest = {
+            "resource_identifier": resource_identifier
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_practice_run_configuration(
@@ -419,8 +429,10 @@ class AsyncPracticeRunConfigurationResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_arc_zonal_shift.types.create_practice_run_configuration_request.CreatePracticeRunConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_identifier"] = resource_identifier
+        input_: capo_arc_zonal_shift.types.create_practice_run_configuration_request.CreatePracticeRunConfigurationRequest = {
+            "resource_identifier": resource_identifier,
+            "outcome_alarms": outcome_alarms,
+        }
         if blocked_windows is not None:
             input_["blocked_windows"] = blocked_windows
         if blocked_dates is not None:
@@ -429,11 +441,11 @@ class AsyncPracticeRunConfigurationResource:
             input_["blocking_alarms"] = blocking_alarms
         if allowed_windows is not None:
             input_["allowed_windows"] = allowed_windows
-        input_["outcome_alarms"] = outcome_alarms
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

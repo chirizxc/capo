@@ -70,9 +70,9 @@ def serialize_aws_json_1_1(value: ListEffectivePolicyValidationErrorsResponse) -
 
 def deserialize_aws_json_1_1(data: dict) -> ListEffectivePolicyValidationErrorsResponse:
     out: ListEffectivePolicyValidationErrorsResponse = {}  # type: ignore[typeddict-item]
-    if "AccountId" in data:
+    if data.get("AccountId") is not None:
         out["account_id"] = data["AccountId"]
-    if "PolicyType" in data:
+    if data.get("PolicyType") is not None:
         import capo_organizations.types.effective_policy_type
 
         out["policy_type"] = (
@@ -80,9 +80,9 @@ def deserialize_aws_json_1_1(data: dict) -> ListEffectivePolicyValidationErrorsR
                 data["PolicyType"]
             )
         )
-    if "Path" in data:
+    if data.get("Path") is not None:
         out["path"] = data["Path"]
-    if "EvaluationTimestamp" in data:
+    if data.get("EvaluationTimestamp") is not None:
         import capo_organizations.types.timestamp
 
         out["evaluation_timestamp"] = (
@@ -90,9 +90,9 @@ def deserialize_aws_json_1_1(data: dict) -> ListEffectivePolicyValidationErrorsR
                 data["EvaluationTimestamp"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "EffectivePolicyValidationErrors" in data:
+    if data.get("EffectivePolicyValidationErrors") is not None:
         import capo_organizations.types.effective_policy_validation_errors
 
         out["effective_policy_validation_errors"] = (

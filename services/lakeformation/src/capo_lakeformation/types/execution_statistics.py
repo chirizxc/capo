@@ -32,15 +32,15 @@ def serialize_json(value: ExecutionStatistics) -> dict:
 
 def deserialize_json(data: dict) -> ExecutionStatistics:
     out: ExecutionStatistics = {}  # type: ignore[typeddict-item]
-    if "AverageExecutionTimeMillis" in data:
+    if data.get("AverageExecutionTimeMillis") is not None:
         out["average_execution_time_millis"] = data["AverageExecutionTimeMillis"]
     else:
         out["average_execution_time_millis"] = 0
-    if "DataScannedBytes" in data:
+    if data.get("DataScannedBytes") is not None:
         out["data_scanned_bytes"] = data["DataScannedBytes"]
     else:
         out["data_scanned_bytes"] = 0
-    if "WorkUnitsExecutedCount" in data:
+    if data.get("WorkUnitsExecutedCount") is not None:
         out["work_units_executed_count"] = data["WorkUnitsExecutedCount"]
     else:
         out["work_units_executed_count"] = 0

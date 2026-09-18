@@ -29,6 +29,8 @@ def deserialize_aws_json_1_0(data: list) -> AccessPolicySummaries:
 
     out: AccessPolicySummaries = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_opensearchserverless.types.access_policy_summary.deserialize_aws_json_1_0(
                 item

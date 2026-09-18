@@ -36,7 +36,7 @@ def serialize_aws_json_1_0(value: PolicyStatement) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> PolicyStatement:
     out: PolicyStatement = {}  # type: ignore[typeddict-item]
-    if "Conditions" in data:
+    if data.get("Conditions") is not None:
         import capo_mailmanager.types.policy_conditions
 
         out["conditions"] = (
@@ -46,7 +46,7 @@ def deserialize_aws_json_1_0(data: dict) -> PolicyStatement:
         )
     else:
         raise DeserializationError("PolicyStatement.conditions required")
-    if "Action" in data:
+    if data.get("Action") is not None:
         import capo_mailmanager.types.accept_action
 
         out["action"] = capo_mailmanager.types.accept_action.deserialize_aws_json_1_0(

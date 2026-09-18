@@ -29,6 +29,8 @@ def deserialize_aws_json_1_1(data: list) -> ReservationPurchaseRecommendationDet
 
     out: ReservationPurchaseRecommendationDetails = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_cost_explorer.types.reservation_purchase_recommendation_detail.deserialize_aws_json_1_1(
                 item

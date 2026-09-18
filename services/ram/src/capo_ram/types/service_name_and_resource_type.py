@@ -40,11 +40,11 @@ def serialize_json(value: ServiceNameAndResourceType) -> dict:
 
 def deserialize_json(data: dict) -> ServiceNameAndResourceType:
     out: ServiceNameAndResourceType = {}  # type: ignore[typeddict-item]
-    if "resourceType" in data:
+    if data.get("resourceType") is not None:
         out["resource_type"] = data["resourceType"]
-    if "serviceName" in data:
+    if data.get("serviceName") is not None:
         out["service_name"] = data["serviceName"]
-    if "resourceRegionScope" in data:
+    if data.get("resourceRegionScope") is not None:
         import capo_ram.types.resource_region_scope
 
         out["resource_region_scope"] = (

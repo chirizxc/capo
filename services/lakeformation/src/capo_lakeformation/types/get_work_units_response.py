@@ -39,13 +39,13 @@ def serialize_json(value: GetWorkUnitsResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetWorkUnitsResponse:
     out: GetWorkUnitsResponse = {}  # type: ignore[typeddict-item]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "QueryId" in data:
+    if data.get("QueryId") is not None:
         out["query_id"] = data["QueryId"]
     else:
         raise DeserializationError("GetWorkUnitsResponse.query_id required")
-    if "WorkUnitRanges" in data:
+    if data.get("WorkUnitRanges") is not None:
         import capo_lakeformation.types.work_unit_range_list
 
         out["work_unit_ranges"] = (

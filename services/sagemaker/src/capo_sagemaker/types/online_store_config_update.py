@@ -27,7 +27,7 @@ def serialize_aws_json_1_1(value: OnlineStoreConfigUpdate) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> OnlineStoreConfigUpdate:
     out: OnlineStoreConfigUpdate = {}  # type: ignore[typeddict-item]
-    if "TtlDuration" in data:
+    if data.get("TtlDuration") is not None:
         import capo_sagemaker.types.ttl_duration
 
         out["ttl_duration"] = (

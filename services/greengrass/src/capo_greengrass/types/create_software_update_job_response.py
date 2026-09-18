@@ -31,10 +31,10 @@ def serialize_json(value: CreateSoftwareUpdateJobResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateSoftwareUpdateJobResponse:
     out: CreateSoftwareUpdateJobResponse = {}  # type: ignore[typeddict-item]
-    if "IotJobArn" in data:
+    if data.get("IotJobArn") is not None:
         out["iot_job_arn"] = data["IotJobArn"]
-    if "IotJobId" in data:
+    if data.get("IotJobId") is not None:
         out["iot_job_id"] = data["IotJobId"]
-    if "PlatformSoftwareVersion" in data:
+    if data.get("PlatformSoftwareVersion") is not None:
         out["platform_software_version"] = data["PlatformSoftwareVersion"]
     return out

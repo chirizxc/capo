@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> AnomalousLogGroups:
 
     out: AnomalousLogGroups = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_devops_guru.types.anomalous_log_group.deserialize_json(item))
     return out

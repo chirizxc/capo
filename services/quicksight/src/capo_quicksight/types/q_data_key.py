@@ -32,9 +32,9 @@ def serialize_json(value: QDataKey) -> dict:
 
 def deserialize_json(data: dict) -> QDataKey:
     out: QDataKey = {}  # type: ignore[typeddict-item]
-    if "QDataKeyArn" in data:
+    if data.get("QDataKeyArn") is not None:
         out["q_data_key_arn"] = data["QDataKeyArn"]
-    if "QDataKeyType" in data:
+    if data.get("QDataKeyType") is not None:
         import capo_quicksight.types.q_data_key_type
 
         out["q_data_key_type"] = capo_quicksight.types.q_data_key_type.deserialize_json(

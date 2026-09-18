@@ -116,7 +116,7 @@ def serialize_json(value: ResourceFilterCriteria) -> dict:
 
 def deserialize_json(data: dict) -> ResourceFilterCriteria:
     out: ResourceFilterCriteria = {}  # type: ignore[typeddict-item]
-    if "accountId" in data:
+    if data.get("accountId") is not None:
         import capo_inspector2.types.resource_string_filter_list
 
         out["account_id"] = (
@@ -124,7 +124,7 @@ def deserialize_json(data: dict) -> ResourceFilterCriteria:
                 data["accountId"]
             )
         )
-    if "resourceId" in data:
+    if data.get("resourceId") is not None:
         import capo_inspector2.types.resource_string_filter_list
 
         out["resource_id"] = (
@@ -132,7 +132,7 @@ def deserialize_json(data: dict) -> ResourceFilterCriteria:
                 data["resourceId"]
             )
         )
-    if "resourceType" in data:
+    if data.get("resourceType") is not None:
         import capo_inspector2.types.resource_string_filter_list
 
         out["resource_type"] = (
@@ -140,7 +140,7 @@ def deserialize_json(data: dict) -> ResourceFilterCriteria:
                 data["resourceType"]
             )
         )
-    if "ecrRepositoryName" in data:
+    if data.get("ecrRepositoryName") is not None:
         import capo_inspector2.types.resource_string_filter_list
 
         out["ecr_repository_name"] = (
@@ -148,7 +148,7 @@ def deserialize_json(data: dict) -> ResourceFilterCriteria:
                 data["ecrRepositoryName"]
             )
         )
-    if "lambdaFunctionName" in data:
+    if data.get("lambdaFunctionName") is not None:
         import capo_inspector2.types.resource_string_filter_list
 
         out["lambda_function_name"] = (
@@ -156,7 +156,7 @@ def deserialize_json(data: dict) -> ResourceFilterCriteria:
                 data["lambdaFunctionName"]
             )
         )
-    if "ecrImageTags" in data:
+    if data.get("ecrImageTags") is not None:
         import capo_inspector2.types.resource_string_filter_list
 
         out["ecr_image_tags"] = (
@@ -164,7 +164,7 @@ def deserialize_json(data: dict) -> ResourceFilterCriteria:
                 data["ecrImageTags"]
             )
         )
-    if "ec2InstanceTags" in data:
+    if data.get("ec2InstanceTags") is not None:
         import capo_inspector2.types.resource_map_filter_list
 
         out["ec2_instance_tags"] = (
@@ -172,7 +172,7 @@ def deserialize_json(data: dict) -> ResourceFilterCriteria:
                 data["ec2InstanceTags"]
             )
         )
-    if "lambdaFunctionTags" in data:
+    if data.get("lambdaFunctionTags") is not None:
         import capo_inspector2.types.resource_map_filter_list
 
         out["lambda_function_tags"] = (

@@ -27,7 +27,7 @@ def serialize_json(value: UpdateGroupQueryOutput) -> dict:
 
 def deserialize_json(data: dict) -> UpdateGroupQueryOutput:
     out: UpdateGroupQueryOutput = {}  # type: ignore[typeddict-item]
-    if "GroupQuery" in data:
+    if data.get("GroupQuery") is not None:
         import capo_resource_groups.types.group_query
 
         out["group_query"] = capo_resource_groups.types.group_query.deserialize_json(

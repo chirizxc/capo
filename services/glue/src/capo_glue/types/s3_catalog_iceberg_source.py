@@ -53,19 +53,19 @@ def serialize_aws_json_1_1(value: S3CatalogIcebergSource) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> S3CatalogIcebergSource:
     out: S3CatalogIcebergSource = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("S3CatalogIcebergSource.name required")
-    if "Database" in data:
+    if data.get("Database") is not None:
         out["database"] = data["Database"]
     else:
         raise DeserializationError("S3CatalogIcebergSource.database required")
-    if "Table" in data:
+    if data.get("Table") is not None:
         out["table"] = data["Table"]
     else:
         raise DeserializationError("S3CatalogIcebergSource.table required")
-    if "AdditionalIcebergOptions" in data:
+    if data.get("AdditionalIcebergOptions") is not None:
         import capo_glue.types.additional_options
 
         out["additional_iceberg_options"] = (
@@ -73,7 +73,7 @@ def deserialize_aws_json_1_1(data: dict) -> S3CatalogIcebergSource:
                 data["AdditionalIcebergOptions"]
             )
         )
-    if "OutputSchemas" in data:
+    if data.get("OutputSchemas") is not None:
         import capo_glue.types.glue_schemas
 
         out["output_schemas"] = capo_glue.types.glue_schemas.deserialize_aws_json_1_1(

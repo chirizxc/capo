@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> AttachmentErrorList:
 
     out: AttachmentErrorList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_networkmanager.types.attachment_error.deserialize_json(item))
     return out

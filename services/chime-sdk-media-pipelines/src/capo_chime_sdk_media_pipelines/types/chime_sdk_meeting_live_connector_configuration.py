@@ -60,13 +60,13 @@ def serialize_json(value: ChimeSdkMeetingLiveConnectorConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> ChimeSdkMeetingLiveConnectorConfiguration:
     out: ChimeSdkMeetingLiveConnectorConfiguration = {}  # type: ignore[typeddict-item]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
     else:
         raise DeserializationError(
             "ChimeSdkMeetingLiveConnectorConfiguration.arn required"
         )
-    if "MuxType" in data:
+    if data.get("MuxType") is not None:
         import capo_chime_sdk_media_pipelines.types.live_connector_mux_type
 
         out["mux_type"] = (
@@ -78,7 +78,7 @@ def deserialize_json(data: dict) -> ChimeSdkMeetingLiveConnectorConfiguration:
         raise DeserializationError(
             "ChimeSdkMeetingLiveConnectorConfiguration.mux_type required"
         )
-    if "CompositedVideo" in data:
+    if data.get("CompositedVideo") is not None:
         import capo_chime_sdk_media_pipelines.types.composited_video_artifacts_configuration
 
         out["composited_video"] = (
@@ -86,7 +86,7 @@ def deserialize_json(data: dict) -> ChimeSdkMeetingLiveConnectorConfiguration:
                 data["CompositedVideo"]
             )
         )
-    if "SourceConfiguration" in data:
+    if data.get("SourceConfiguration") is not None:
         import capo_chime_sdk_media_pipelines.types.source_configuration
 
         out["source_configuration"] = (

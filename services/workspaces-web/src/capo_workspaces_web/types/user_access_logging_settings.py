@@ -40,13 +40,13 @@ def serialize_json(value: UserAccessLoggingSettings) -> dict:
 
 def deserialize_json(data: dict) -> UserAccessLoggingSettings:
     out: UserAccessLoggingSettings = {}  # type: ignore[typeddict-item]
-    if "userAccessLoggingSettingsArn" in data:
+    if data.get("userAccessLoggingSettingsArn") is not None:
         out["user_access_logging_settings_arn"] = data["userAccessLoggingSettingsArn"]
     else:
         raise DeserializationError(
             "UserAccessLoggingSettings.user_access_logging_settings_arn required"
         )
-    if "associatedPortalArns" in data:
+    if data.get("associatedPortalArns") is not None:
         import capo_workspaces_web.types.arn_list
 
         out["associated_portal_arns"] = (
@@ -54,6 +54,6 @@ def deserialize_json(data: dict) -> UserAccessLoggingSettings:
                 data["associatedPortalArns"]
             )
         )
-    if "kinesisStreamArn" in data:
+    if data.get("kinesisStreamArn") is not None:
         out["kinesis_stream_arn"] = data["kinesisStreamArn"]
     return out

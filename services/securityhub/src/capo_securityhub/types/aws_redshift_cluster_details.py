@@ -378,21 +378,21 @@ def serialize_json(value: AwsRedshiftClusterDetails) -> dict:
 
 def deserialize_json(data: dict) -> AwsRedshiftClusterDetails:
     out: AwsRedshiftClusterDetails = {}  # type: ignore[typeddict-item]
-    if "AllowVersionUpgrade" in data:
+    if data.get("AllowVersionUpgrade") is not None:
         out["allow_version_upgrade"] = data["AllowVersionUpgrade"]
-    if "AutomatedSnapshotRetentionPeriod" in data:
+    if data.get("AutomatedSnapshotRetentionPeriod") is not None:
         out["automated_snapshot_retention_period"] = data[
             "AutomatedSnapshotRetentionPeriod"
         ]
-    if "AvailabilityZone" in data:
+    if data.get("AvailabilityZone") is not None:
         out["availability_zone"] = data["AvailabilityZone"]
-    if "ClusterAvailabilityStatus" in data:
+    if data.get("ClusterAvailabilityStatus") is not None:
         out["cluster_availability_status"] = data["ClusterAvailabilityStatus"]
-    if "ClusterCreateTime" in data:
+    if data.get("ClusterCreateTime") is not None:
         out["cluster_create_time"] = data["ClusterCreateTime"]
-    if "ClusterIdentifier" in data:
+    if data.get("ClusterIdentifier") is not None:
         out["cluster_identifier"] = data["ClusterIdentifier"]
-    if "ClusterNodes" in data:
+    if data.get("ClusterNodes") is not None:
         import capo_securityhub.types.aws_redshift_cluster_cluster_nodes
 
         out["cluster_nodes"] = (
@@ -400,7 +400,7 @@ def deserialize_json(data: dict) -> AwsRedshiftClusterDetails:
                 data["ClusterNodes"]
             )
         )
-    if "ClusterParameterGroups" in data:
+    if data.get("ClusterParameterGroups") is not None:
         import capo_securityhub.types.aws_redshift_cluster_cluster_parameter_groups
 
         out["cluster_parameter_groups"] = (
@@ -408,11 +408,11 @@ def deserialize_json(data: dict) -> AwsRedshiftClusterDetails:
                 data["ClusterParameterGroups"]
             )
         )
-    if "ClusterPublicKey" in data:
+    if data.get("ClusterPublicKey") is not None:
         out["cluster_public_key"] = data["ClusterPublicKey"]
-    if "ClusterRevisionNumber" in data:
+    if data.get("ClusterRevisionNumber") is not None:
         out["cluster_revision_number"] = data["ClusterRevisionNumber"]
-    if "ClusterSecurityGroups" in data:
+    if data.get("ClusterSecurityGroups") is not None:
         import capo_securityhub.types.aws_redshift_cluster_cluster_security_groups
 
         out["cluster_security_groups"] = (
@@ -420,7 +420,7 @@ def deserialize_json(data: dict) -> AwsRedshiftClusterDetails:
                 data["ClusterSecurityGroups"]
             )
         )
-    if "ClusterSnapshotCopyStatus" in data:
+    if data.get("ClusterSnapshotCopyStatus") is not None:
         import capo_securityhub.types.aws_redshift_cluster_cluster_snapshot_copy_status
 
         out["cluster_snapshot_copy_status"] = (
@@ -428,15 +428,15 @@ def deserialize_json(data: dict) -> AwsRedshiftClusterDetails:
                 data["ClusterSnapshotCopyStatus"]
             )
         )
-    if "ClusterStatus" in data:
+    if data.get("ClusterStatus") is not None:
         out["cluster_status"] = data["ClusterStatus"]
-    if "ClusterSubnetGroupName" in data:
+    if data.get("ClusterSubnetGroupName") is not None:
         out["cluster_subnet_group_name"] = data["ClusterSubnetGroupName"]
-    if "ClusterVersion" in data:
+    if data.get("ClusterVersion") is not None:
         out["cluster_version"] = data["ClusterVersion"]
-    if "DBName" in data:
+    if data.get("DBName") is not None:
         out["db_name"] = data["DBName"]
-    if "DeferredMaintenanceWindows" in data:
+    if data.get("DeferredMaintenanceWindows") is not None:
         import capo_securityhub.types.aws_redshift_cluster_deferred_maintenance_windows
 
         out["deferred_maintenance_windows"] = (
@@ -444,7 +444,7 @@ def deserialize_json(data: dict) -> AwsRedshiftClusterDetails:
                 data["DeferredMaintenanceWindows"]
             )
         )
-    if "ElasticIpStatus" in data:
+    if data.get("ElasticIpStatus") is not None:
         import capo_securityhub.types.aws_redshift_cluster_elastic_ip_status
 
         out["elastic_ip_status"] = (
@@ -452,13 +452,13 @@ def deserialize_json(data: dict) -> AwsRedshiftClusterDetails:
                 data["ElasticIpStatus"]
             )
         )
-    if "ElasticResizeNumberOfNodeOptions" in data:
+    if data.get("ElasticResizeNumberOfNodeOptions") is not None:
         out["elastic_resize_number_of_node_options"] = data[
             "ElasticResizeNumberOfNodeOptions"
         ]
-    if "Encrypted" in data:
+    if data.get("Encrypted") is not None:
         out["encrypted"] = data["Encrypted"]
-    if "Endpoint" in data:
+    if data.get("Endpoint") is not None:
         import capo_securityhub.types.aws_redshift_cluster_endpoint
 
         out["endpoint"] = (
@@ -466,17 +466,17 @@ def deserialize_json(data: dict) -> AwsRedshiftClusterDetails:
                 data["Endpoint"]
             )
         )
-    if "EnhancedVpcRouting" in data:
+    if data.get("EnhancedVpcRouting") is not None:
         out["enhanced_vpc_routing"] = data["EnhancedVpcRouting"]
-    if "ExpectedNextSnapshotScheduleTime" in data:
+    if data.get("ExpectedNextSnapshotScheduleTime") is not None:
         out["expected_next_snapshot_schedule_time"] = data[
             "ExpectedNextSnapshotScheduleTime"
         ]
-    if "ExpectedNextSnapshotScheduleTimeStatus" in data:
+    if data.get("ExpectedNextSnapshotScheduleTimeStatus") is not None:
         out["expected_next_snapshot_schedule_time_status"] = data[
             "ExpectedNextSnapshotScheduleTimeStatus"
         ]
-    if "HsmStatus" in data:
+    if data.get("HsmStatus") is not None:
         import capo_securityhub.types.aws_redshift_cluster_hsm_status
 
         out["hsm_status"] = (
@@ -484,7 +484,7 @@ def deserialize_json(data: dict) -> AwsRedshiftClusterDetails:
                 data["HsmStatus"]
             )
         )
-    if "IamRoles" in data:
+    if data.get("IamRoles") is not None:
         import capo_securityhub.types.aws_redshift_cluster_iam_roles
 
         out["iam_roles"] = (
@@ -492,29 +492,29 @@ def deserialize_json(data: dict) -> AwsRedshiftClusterDetails:
                 data["IamRoles"]
             )
         )
-    if "KmsKeyId" in data:
+    if data.get("KmsKeyId") is not None:
         out["kms_key_id"] = data["KmsKeyId"]
-    if "MaintenanceTrackName" in data:
+    if data.get("MaintenanceTrackName") is not None:
         out["maintenance_track_name"] = data["MaintenanceTrackName"]
-    if "ManualSnapshotRetentionPeriod" in data:
+    if data.get("ManualSnapshotRetentionPeriod") is not None:
         out["manual_snapshot_retention_period"] = data["ManualSnapshotRetentionPeriod"]
-    if "MasterUsername" in data:
+    if data.get("MasterUsername") is not None:
         out["master_username"] = data["MasterUsername"]
-    if "NextMaintenanceWindowStartTime" in data:
+    if data.get("NextMaintenanceWindowStartTime") is not None:
         out["next_maintenance_window_start_time"] = data[
             "NextMaintenanceWindowStartTime"
         ]
-    if "NodeType" in data:
+    if data.get("NodeType") is not None:
         out["node_type"] = data["NodeType"]
-    if "NumberOfNodes" in data:
+    if data.get("NumberOfNodes") is not None:
         out["number_of_nodes"] = data["NumberOfNodes"]
-    if "PendingActions" in data:
+    if data.get("PendingActions") is not None:
         import capo_securityhub.types.string_list
 
         out["pending_actions"] = capo_securityhub.types.string_list.deserialize_json(
             data["PendingActions"]
         )
-    if "PendingModifiedValues" in data:
+    if data.get("PendingModifiedValues") is not None:
         import capo_securityhub.types.aws_redshift_cluster_pending_modified_values
 
         out["pending_modified_values"] = (
@@ -522,11 +522,11 @@ def deserialize_json(data: dict) -> AwsRedshiftClusterDetails:
                 data["PendingModifiedValues"]
             )
         )
-    if "PreferredMaintenanceWindow" in data:
+    if data.get("PreferredMaintenanceWindow") is not None:
         out["preferred_maintenance_window"] = data["PreferredMaintenanceWindow"]
-    if "PubliclyAccessible" in data:
+    if data.get("PubliclyAccessible") is not None:
         out["publicly_accessible"] = data["PubliclyAccessible"]
-    if "ResizeInfo" in data:
+    if data.get("ResizeInfo") is not None:
         import capo_securityhub.types.aws_redshift_cluster_resize_info
 
         out["resize_info"] = (
@@ -534,7 +534,7 @@ def deserialize_json(data: dict) -> AwsRedshiftClusterDetails:
                 data["ResizeInfo"]
             )
         )
-    if "RestoreStatus" in data:
+    if data.get("RestoreStatus") is not None:
         import capo_securityhub.types.aws_redshift_cluster_restore_status
 
         out["restore_status"] = (
@@ -542,13 +542,13 @@ def deserialize_json(data: dict) -> AwsRedshiftClusterDetails:
                 data["RestoreStatus"]
             )
         )
-    if "SnapshotScheduleIdentifier" in data:
+    if data.get("SnapshotScheduleIdentifier") is not None:
         out["snapshot_schedule_identifier"] = data["SnapshotScheduleIdentifier"]
-    if "SnapshotScheduleState" in data:
+    if data.get("SnapshotScheduleState") is not None:
         out["snapshot_schedule_state"] = data["SnapshotScheduleState"]
-    if "VpcId" in data:
+    if data.get("VpcId") is not None:
         out["vpc_id"] = data["VpcId"]
-    if "VpcSecurityGroups" in data:
+    if data.get("VpcSecurityGroups") is not None:
         import capo_securityhub.types.aws_redshift_cluster_vpc_security_groups
 
         out["vpc_security_groups"] = (
@@ -556,7 +556,7 @@ def deserialize_json(data: dict) -> AwsRedshiftClusterDetails:
                 data["VpcSecurityGroups"]
             )
         )
-    if "LoggingStatus" in data:
+    if data.get("LoggingStatus") is not None:
         import capo_securityhub.types.aws_redshift_cluster_logging_status
 
         out["logging_status"] = (

@@ -35,10 +35,10 @@ def serialize_json(value: RecipeVersionErrorDetail) -> dict:
 
 def deserialize_json(data: dict) -> RecipeVersionErrorDetail:
     out: RecipeVersionErrorDetail = {}  # type: ignore[typeddict-item]
-    if "ErrorCode" in data:
+    if data.get("ErrorCode") is not None:
         out["error_code"] = data["ErrorCode"]
-    if "ErrorMessage" in data:
+    if data.get("ErrorMessage") is not None:
         out["error_message"] = data["ErrorMessage"]
-    if "RecipeVersion" in data:
+    if data.get("RecipeVersion") is not None:
         out["recipe_version"] = data["RecipeVersion"]
     return out

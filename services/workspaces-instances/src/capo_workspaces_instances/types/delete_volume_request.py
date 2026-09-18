@@ -24,7 +24,7 @@ def serialize_aws_json_1_0(value: DeleteVolumeRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> DeleteVolumeRequest:
     out: DeleteVolumeRequest = {}  # type: ignore[typeddict-item]
-    if "VolumeId" in data:
+    if data.get("VolumeId") is not None:
         out["volume_id"] = data["VolumeId"]
     else:
         raise DeserializationError("DeleteVolumeRequest.volume_id required")

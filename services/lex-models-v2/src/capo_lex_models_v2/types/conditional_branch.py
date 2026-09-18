@@ -52,11 +52,11 @@ def serialize_json(value: ConditionalBranch) -> dict:
 
 def deserialize_json(data: dict) -> ConditionalBranch:
     out: ConditionalBranch = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("ConditionalBranch.name required")
-    if "condition" in data:
+    if data.get("condition") is not None:
         import capo_lex_models_v2.types.condition
 
         out["condition"] = capo_lex_models_v2.types.condition.deserialize_json(
@@ -64,7 +64,7 @@ def deserialize_json(data: dict) -> ConditionalBranch:
         )
     else:
         raise DeserializationError("ConditionalBranch.condition required")
-    if "nextStep" in data:
+    if data.get("nextStep") is not None:
         import capo_lex_models_v2.types.dialog_state
 
         out["next_step"] = capo_lex_models_v2.types.dialog_state.deserialize_json(
@@ -72,7 +72,7 @@ def deserialize_json(data: dict) -> ConditionalBranch:
         )
     else:
         raise DeserializationError("ConditionalBranch.next_step required")
-    if "response" in data:
+    if data.get("response") is not None:
         import capo_lex_models_v2.types.response_specification
 
         out["response"] = (

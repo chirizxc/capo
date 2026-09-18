@@ -37,12 +37,12 @@ def serialize_json(value: RegisterUserResponse) -> dict:
 
 def deserialize_json(data: dict) -> RegisterUserResponse:
     out: RegisterUserResponse = {}  # type: ignore[typeddict-item]
-    if "User" in data:
+    if data.get("User") is not None:
         import capo_quicksight.types.user
 
         out["user"] = capo_quicksight.types.user.deserialize_json(data["User"])
-    if "UserInvitationUrl" in data:
+    if data.get("UserInvitationUrl") is not None:
         out["user_invitation_url"] = data["UserInvitationUrl"]
-    if "RequestId" in data:
+    if data.get("RequestId") is not None:
         out["request_id"] = data["RequestId"]
     return out

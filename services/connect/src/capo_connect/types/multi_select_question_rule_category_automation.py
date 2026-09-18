@@ -42,13 +42,13 @@ def serialize_json(value: MultiSelectQuestionRuleCategoryAutomation) -> dict:
 
 def deserialize_json(data: dict) -> MultiSelectQuestionRuleCategoryAutomation:
     out: MultiSelectQuestionRuleCategoryAutomation = {}  # type: ignore[typeddict-item]
-    if "Category" in data:
+    if data.get("Category") is not None:
         out["category"] = data["Category"]
     else:
         raise DeserializationError(
             "MultiSelectQuestionRuleCategoryAutomation.category required"
         )
-    if "Condition" in data:
+    if data.get("Condition") is not None:
         import capo_connect.types.multi_select_question_rule_category_automation_condition
 
         out["condition"] = (
@@ -60,7 +60,7 @@ def deserialize_json(data: dict) -> MultiSelectQuestionRuleCategoryAutomation:
         raise DeserializationError(
             "MultiSelectQuestionRuleCategoryAutomation.condition required"
         )
-    if "OptionRefIds" in data:
+    if data.get("OptionRefIds") is not None:
         import capo_connect.types.reference_id_list
 
         out["option_ref_ids"] = capo_connect.types.reference_id_list.deserialize_json(

@@ -41,7 +41,7 @@ def serialize_json(value: StartSourceNetworkRecoveryRequest) -> dict:
 
 def deserialize_json(data: dict) -> StartSourceNetworkRecoveryRequest:
     out: StartSourceNetworkRecoveryRequest = {}  # type: ignore[typeddict-item]
-    if "sourceNetworks" in data:
+    if data.get("sourceNetworks") is not None:
         import capo_drs.types.start_source_network_recovery_request_network_entries
 
         out["source_networks"] = (
@@ -53,9 +53,9 @@ def deserialize_json(data: dict) -> StartSourceNetworkRecoveryRequest:
         raise DeserializationError(
             "StartSourceNetworkRecoveryRequest.source_networks required"
         )
-    if "deployAsNew" in data:
+    if data.get("deployAsNew") is not None:
         out["deploy_as_new"] = data["deployAsNew"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_drs.types.tags_map
 
         out["tags"] = capo_drs.types.tags_map.deserialize_json(data["tags"])

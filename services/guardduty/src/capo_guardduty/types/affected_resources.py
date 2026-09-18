@@ -21,5 +21,7 @@ def serialize_json(input_to_serialize: AffectedResources) -> dict:
 def deserialize_json(data: dict) -> AffectedResources:
     out: AffectedResources = {}
     for key, value in data.items():
+        if value is None:
+            continue
         out[key] = value
     return out

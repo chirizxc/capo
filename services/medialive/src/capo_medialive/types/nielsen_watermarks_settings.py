@@ -53,7 +53,7 @@ def serialize_json(value: NielsenWatermarksSettings) -> dict:
 
 def deserialize_json(data: dict) -> NielsenWatermarksSettings:
     out: NielsenWatermarksSettings = {}  # type: ignore[typeddict-item]
-    if "nielsenCbetSettings" in data:
+    if data.get("nielsenCbetSettings") is not None:
         import capo_medialive.types.nielsen_cbet
 
         out["nielsen_cbet_settings"] = (
@@ -61,7 +61,7 @@ def deserialize_json(data: dict) -> NielsenWatermarksSettings:
                 data["nielsenCbetSettings"]
             )
         )
-    if "nielsenDistributionType" in data:
+    if data.get("nielsenDistributionType") is not None:
         import capo_medialive.types.nielsen_watermarks_distribution_types
 
         out["nielsen_distribution_type"] = (
@@ -69,7 +69,7 @@ def deserialize_json(data: dict) -> NielsenWatermarksSettings:
                 data["nielsenDistributionType"]
             )
         )
-    if "nielsenNaesIiNwSettings" in data:
+    if data.get("nielsenNaesIiNwSettings") is not None:
         import capo_medialive.types.nielsen_naes_ii_nw
 
         out["nielsen_naes_ii_nw_settings"] = (

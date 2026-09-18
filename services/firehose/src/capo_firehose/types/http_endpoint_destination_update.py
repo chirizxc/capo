@@ -137,7 +137,7 @@ def serialize_aws_json_1_1(value: HttpEndpointDestinationUpdate) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> HttpEndpointDestinationUpdate:
     out: HttpEndpointDestinationUpdate = {}  # type: ignore[typeddict-item]
-    if "EndpointConfiguration" in data:
+    if data.get("EndpointConfiguration") is not None:
         import capo_firehose.types.http_endpoint_configuration
 
         out["endpoint_configuration"] = (
@@ -145,7 +145,7 @@ def deserialize_aws_json_1_1(data: dict) -> HttpEndpointDestinationUpdate:
                 data["EndpointConfiguration"]
             )
         )
-    if "BufferingHints" in data:
+    if data.get("BufferingHints") is not None:
         import capo_firehose.types.http_endpoint_buffering_hints
 
         out["buffering_hints"] = (
@@ -153,7 +153,7 @@ def deserialize_aws_json_1_1(data: dict) -> HttpEndpointDestinationUpdate:
                 data["BufferingHints"]
             )
         )
-    if "CloudWatchLoggingOptions" in data:
+    if data.get("CloudWatchLoggingOptions") is not None:
         import capo_firehose.types.cloud_watch_logging_options
 
         out["cloud_watch_logging_options"] = (
@@ -161,7 +161,7 @@ def deserialize_aws_json_1_1(data: dict) -> HttpEndpointDestinationUpdate:
                 data["CloudWatchLoggingOptions"]
             )
         )
-    if "RequestConfiguration" in data:
+    if data.get("RequestConfiguration") is not None:
         import capo_firehose.types.http_endpoint_request_configuration
 
         out["request_configuration"] = (
@@ -169,7 +169,7 @@ def deserialize_aws_json_1_1(data: dict) -> HttpEndpointDestinationUpdate:
                 data["RequestConfiguration"]
             )
         )
-    if "ProcessingConfiguration" in data:
+    if data.get("ProcessingConfiguration") is not None:
         import capo_firehose.types.processing_configuration
 
         out["processing_configuration"] = (
@@ -177,9 +177,9 @@ def deserialize_aws_json_1_1(data: dict) -> HttpEndpointDestinationUpdate:
                 data["ProcessingConfiguration"]
             )
         )
-    if "RoleARN" in data:
+    if data.get("RoleARN") is not None:
         out["role_arn"] = data["RoleARN"]
-    if "RetryOptions" in data:
+    if data.get("RetryOptions") is not None:
         import capo_firehose.types.http_endpoint_retry_options
 
         out["retry_options"] = (
@@ -187,7 +187,7 @@ def deserialize_aws_json_1_1(data: dict) -> HttpEndpointDestinationUpdate:
                 data["RetryOptions"]
             )
         )
-    if "S3BackupMode" in data:
+    if data.get("S3BackupMode") is not None:
         import capo_firehose.types.http_endpoint_s3_backup_mode
 
         out["s3_backup_mode"] = (
@@ -195,7 +195,7 @@ def deserialize_aws_json_1_1(data: dict) -> HttpEndpointDestinationUpdate:
                 data["S3BackupMode"]
             )
         )
-    if "S3Update" in data:
+    if data.get("S3Update") is not None:
         import capo_firehose.types.s3_destination_update
 
         out["s3_update"] = (
@@ -203,7 +203,7 @@ def deserialize_aws_json_1_1(data: dict) -> HttpEndpointDestinationUpdate:
                 data["S3Update"]
             )
         )
-    if "SecretsManagerConfiguration" in data:
+    if data.get("SecretsManagerConfiguration") is not None:
         import capo_firehose.types.secrets_manager_configuration
 
         out["secrets_manager_configuration"] = (

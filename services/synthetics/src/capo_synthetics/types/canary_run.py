@@ -82,29 +82,29 @@ def serialize_json(value: CanaryRun) -> dict:
 
 def deserialize_json(data: dict) -> CanaryRun:
     out: CanaryRun = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "ScheduledRunId" in data:
+    if data.get("ScheduledRunId") is not None:
         out["scheduled_run_id"] = data["ScheduledRunId"]
-    if "RetryAttempt" in data:
+    if data.get("RetryAttempt") is not None:
         out["retry_attempt"] = data["RetryAttempt"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_synthetics.types.canary_run_status
 
         out["status"] = capo_synthetics.types.canary_run_status.deserialize_json(
             data["Status"]
         )
-    if "Timeline" in data:
+    if data.get("Timeline") is not None:
         import capo_synthetics.types.canary_run_timeline
 
         out["timeline"] = capo_synthetics.types.canary_run_timeline.deserialize_json(
             data["Timeline"]
         )
-    if "ArtifactS3Location" in data:
+    if data.get("ArtifactS3Location") is not None:
         out["artifact_s3_location"] = data["ArtifactS3Location"]
-    if "DryRunConfig" in data:
+    if data.get("DryRunConfig") is not None:
         import capo_synthetics.types.canary_dry_run_config_output
 
         out["dry_run_config"] = (
@@ -112,7 +112,7 @@ def deserialize_json(data: dict) -> CanaryRun:
                 data["DryRunConfig"]
             )
         )
-    if "BrowserType" in data:
+    if data.get("BrowserType") is not None:
         import capo_synthetics.types.browser_type
 
         out["browser_type"] = capo_synthetics.types.browser_type.deserialize_json(

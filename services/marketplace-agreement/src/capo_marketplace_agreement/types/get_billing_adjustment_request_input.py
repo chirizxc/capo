@@ -28,13 +28,13 @@ def serialize_aws_json_1_0(value: GetBillingAdjustmentRequestInput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> GetBillingAdjustmentRequestInput:
     out: GetBillingAdjustmentRequestInput = {}  # type: ignore[typeddict-item]
-    if "agreementId" in data:
+    if data.get("agreementId") is not None:
         out["agreement_id"] = data["agreementId"]
     else:
         raise DeserializationError(
             "GetBillingAdjustmentRequestInput.agreement_id required"
         )
-    if "billingAdjustmentRequestId" in data:
+    if data.get("billingAdjustmentRequestId") is not None:
         out["billing_adjustment_request_id"] = data["billingAdjustmentRequestId"]
     else:
         raise DeserializationError(

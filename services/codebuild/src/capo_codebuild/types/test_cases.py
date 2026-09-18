@@ -23,5 +23,7 @@ def deserialize_aws_json_1_1(data: list) -> TestCases:
 
     out: TestCases = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_codebuild.types.test_case.deserialize_aws_json_1_1(item))
     return out

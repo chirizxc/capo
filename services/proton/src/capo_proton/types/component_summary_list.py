@@ -25,5 +25,7 @@ def deserialize_aws_json_1_0(data: list) -> ComponentSummaryList:
 
     out: ComponentSummaryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_proton.types.component_summary.deserialize_aws_json_1_0(item))
     return out

@@ -25,6 +25,6 @@ def serialize_json(value: PipeTargetLambdaFunctionParameters) -> dict:
 
 def deserialize_json(data: dict) -> PipeTargetLambdaFunctionParameters:
     out: PipeTargetLambdaFunctionParameters = {}  # type: ignore[typeddict-item]
-    if "InvocationType" in data:
+    if data.get("InvocationType") is not None:
         out["invocation_type"] = data["InvocationType"]
     return out

@@ -26,7 +26,15 @@ class AwsApiGatewayCanarySettings(TypedDict, closed=True):
 def serialize_json(value: AwsApiGatewayCanarySettings) -> dict:
     out: dict = {}
     if "percent_traffic" in value:
-        out["PercentTraffic"] = value["percent_traffic"]
+        out["PercentTraffic"] = (
+            "NaN"
+            if value["percent_traffic"] != value["percent_traffic"]
+            else "Infinity"
+            if value["percent_traffic"] == float("inf")
+            else "-Infinity"
+            if value["percent_traffic"] == float("-inf")
+            else value["percent_traffic"]
+        )
     if "deployment_id" in value:
         out["DeploymentId"] = value["deployment_id"]
     if "stage_variable_overrides" in value:
@@ -42,11 +50,11 @@ def serialize_json(value: AwsApiGatewayCanarySettings) -> dict:
 
 def deserialize_json(data: dict) -> AwsApiGatewayCanarySettings:
     out: AwsApiGatewayCanarySettings = {}  # type: ignore[typeddict-item]
-    if "PercentTraffic" in data:
-        out["percent_traffic"] = data["PercentTraffic"]
-    if "DeploymentId" in data:
+    if data.get("PercentTraffic") is not None:
+        out["percent_traffic"] = float(data["PercentTraffic"])
+    if data.get("DeploymentId") is not None:
         out["deployment_id"] = data["DeploymentId"]
-    if "StageVariableOverrides" in data:
+    if data.get("StageVariableOverrides") is not None:
         import capo_securityhub.types.field_map
 
         out["stage_variable_overrides"] = (
@@ -54,6 +62,6 @@ def deserialize_json(data: dict) -> AwsApiGatewayCanarySettings:
                 data["StageVariableOverrides"]
             )
         )
-    if "UseStageCache" in data:
+    if data.get("UseStageCache") is not None:
         out["use_stage_cache"] = data["UseStageCache"]
     return out

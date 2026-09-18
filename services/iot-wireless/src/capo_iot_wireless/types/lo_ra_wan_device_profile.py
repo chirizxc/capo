@@ -128,37 +128,37 @@ def serialize_json(value: LoRaWANDeviceProfile) -> dict:
 
 def deserialize_json(data: dict) -> LoRaWANDeviceProfile:
     out: LoRaWANDeviceProfile = {}  # type: ignore[typeddict-item]
-    if "SupportsClassB" in data:
+    if data.get("SupportsClassB") is not None:
         out["supports_class_b"] = data["SupportsClassB"]
     else:
         out["supports_class_b"] = False
-    if "ClassBTimeout" in data:
+    if data.get("ClassBTimeout") is not None:
         out["class_b_timeout"] = data["ClassBTimeout"]
-    if "PingSlotPeriod" in data:
+    if data.get("PingSlotPeriod") is not None:
         out["ping_slot_period"] = data["PingSlotPeriod"]
-    if "PingSlotDr" in data:
+    if data.get("PingSlotDr") is not None:
         out["ping_slot_dr"] = data["PingSlotDr"]
-    if "PingSlotFreq" in data:
+    if data.get("PingSlotFreq") is not None:
         out["ping_slot_freq"] = data["PingSlotFreq"]
-    if "SupportsClassC" in data:
+    if data.get("SupportsClassC") is not None:
         out["supports_class_c"] = data["SupportsClassC"]
     else:
         out["supports_class_c"] = False
-    if "ClassCTimeout" in data:
+    if data.get("ClassCTimeout") is not None:
         out["class_c_timeout"] = data["ClassCTimeout"]
-    if "MacVersion" in data:
+    if data.get("MacVersion") is not None:
         out["mac_version"] = data["MacVersion"]
-    if "RegParamsRevision" in data:
+    if data.get("RegParamsRevision") is not None:
         out["reg_params_revision"] = data["RegParamsRevision"]
-    if "RxDelay1" in data:
+    if data.get("RxDelay1") is not None:
         out["rx_delay1"] = data["RxDelay1"]
-    if "RxDrOffset1" in data:
+    if data.get("RxDrOffset1") is not None:
         out["rx_dr_offset1"] = data["RxDrOffset1"]
-    if "RxDataRate2" in data:
+    if data.get("RxDataRate2") is not None:
         out["rx_data_rate2"] = data["RxDataRate2"]
-    if "RxFreq2" in data:
+    if data.get("RxFreq2") is not None:
         out["rx_freq2"] = data["RxFreq2"]
-    if "FactoryPresetFreqsList" in data:
+    if data.get("FactoryPresetFreqsList") is not None:
         import capo_iot_wireless.types.factory_preset_freqs_list
 
         out["factory_preset_freqs_list"] = (
@@ -166,15 +166,15 @@ def deserialize_json(data: dict) -> LoRaWANDeviceProfile:
                 data["FactoryPresetFreqsList"]
             )
         )
-    if "MaxEirp" in data:
+    if data.get("MaxEirp") is not None:
         out["max_eirp"] = data["MaxEirp"]
-    if "MaxDutyCycle" in data:
+    if data.get("MaxDutyCycle") is not None:
         out["max_duty_cycle"] = data["MaxDutyCycle"]
-    if "RfRegion" in data:
+    if data.get("RfRegion") is not None:
         out["rf_region"] = data["RfRegion"]
-    if "SupportsJoin" in data:
+    if data.get("SupportsJoin") is not None:
         out["supports_join"] = data["SupportsJoin"]
-    if "Supports32BitFCnt" in data:
+    if data.get("Supports32BitFCnt") is not None:
         out["supports32_bit_f_cnt"] = data["Supports32BitFCnt"]
     else:
         out["supports32_bit_f_cnt"] = False

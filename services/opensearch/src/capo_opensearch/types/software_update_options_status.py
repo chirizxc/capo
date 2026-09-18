@@ -38,13 +38,13 @@ def serialize_json(value: SoftwareUpdateOptionsStatus) -> dict:
 
 def deserialize_json(data: dict) -> SoftwareUpdateOptionsStatus:
     out: SoftwareUpdateOptionsStatus = {}  # type: ignore[typeddict-item]
-    if "Options" in data:
+    if data.get("Options") is not None:
         import capo_opensearch.types.software_update_options
 
         out["options"] = capo_opensearch.types.software_update_options.deserialize_json(
             data["Options"]
         )
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_opensearch.types.option_status
 
         out["status"] = capo_opensearch.types.option_status.deserialize_json(

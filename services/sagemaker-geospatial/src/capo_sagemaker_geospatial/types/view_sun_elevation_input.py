@@ -15,19 +15,35 @@ class ViewSunElevationInput(TypedDict, closed=True):
 # --- restJson1 ser/de ---
 def serialize_json(value: ViewSunElevationInput) -> dict:
     out: dict = {}
-    out["LowerBound"] = value["lower_bound"]
-    out["UpperBound"] = value["upper_bound"]
+    out["LowerBound"] = (
+        "NaN"
+        if value["lower_bound"] != value["lower_bound"]
+        else "Infinity"
+        if value["lower_bound"] == float("inf")
+        else "-Infinity"
+        if value["lower_bound"] == float("-inf")
+        else value["lower_bound"]
+    )
+    out["UpperBound"] = (
+        "NaN"
+        if value["upper_bound"] != value["upper_bound"]
+        else "Infinity"
+        if value["upper_bound"] == float("inf")
+        else "-Infinity"
+        if value["upper_bound"] == float("-inf")
+        else value["upper_bound"]
+    )
     return out
 
 
 def deserialize_json(data: dict) -> ViewSunElevationInput:
     out: ViewSunElevationInput = {}  # type: ignore[typeddict-item]
-    if "LowerBound" in data:
-        out["lower_bound"] = data["LowerBound"]
+    if data.get("LowerBound") is not None:
+        out["lower_bound"] = float(data["LowerBound"])
     else:
         raise DeserializationError("ViewSunElevationInput.lower_bound required")
-    if "UpperBound" in data:
-        out["upper_bound"] = data["UpperBound"]
+    if data.get("UpperBound") is not None:
+        out["upper_bound"] = float(data["UpperBound"])
     else:
         raise DeserializationError("ViewSunElevationInput.upper_bound required")
     return out

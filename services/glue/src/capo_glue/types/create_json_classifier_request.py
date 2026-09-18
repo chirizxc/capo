@@ -28,11 +28,11 @@ def serialize_aws_json_1_1(value: CreateJsonClassifierRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateJsonClassifierRequest:
     out: CreateJsonClassifierRequest = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("CreateJsonClassifierRequest.name required")
-    if "JsonPath" in data:
+    if data.get("JsonPath") is not None:
         out["json_path"] = data["JsonPath"]
     else:
         raise DeserializationError("CreateJsonClassifierRequest.json_path required")

@@ -37,14 +37,14 @@ def serialize_json(value: ListStreamsRequest) -> dict:
 
 def deserialize_json(data: dict) -> ListStreamsRequest:
     out: ListStreamsRequest = {}  # type: ignore[typeddict-item]
-    if "filterBy" in data:
+    if data.get("filterBy") is not None:
         import capo_ivs.types.stream_filters
 
         out["filter_by"] = capo_ivs.types.stream_filters.deserialize_json(
             data["filterBy"]
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
     return out

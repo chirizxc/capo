@@ -93,11 +93,11 @@ def serialize_aws_json_1_1(value: AttackDetail) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AttackDetail:
     out: AttackDetail = {}  # type: ignore[typeddict-item]
-    if "AttackId" in data:
+    if data.get("AttackId") is not None:
         out["attack_id"] = data["AttackId"]
-    if "ResourceArn" in data:
+    if data.get("ResourceArn") is not None:
         out["resource_arn"] = data["ResourceArn"]
-    if "SubResources" in data:
+    if data.get("SubResources") is not None:
         import capo_shield.types.sub_resource_summary_list
 
         out["sub_resources"] = (
@@ -105,19 +105,19 @@ def deserialize_aws_json_1_1(data: dict) -> AttackDetail:
                 data["SubResources"]
             )
         )
-    if "StartTime" in data:
+    if data.get("StartTime") is not None:
         import capo_shield.types.attack_timestamp
 
         out["start_time"] = capo_shield.types.attack_timestamp.deserialize_aws_json_1_1(
             data["StartTime"]
         )
-    if "EndTime" in data:
+    if data.get("EndTime") is not None:
         import capo_shield.types.attack_timestamp
 
         out["end_time"] = capo_shield.types.attack_timestamp.deserialize_aws_json_1_1(
             data["EndTime"]
         )
-    if "AttackCounters" in data:
+    if data.get("AttackCounters") is not None:
         import capo_shield.types.summarized_counter_list
 
         out["attack_counters"] = (
@@ -125,7 +125,7 @@ def deserialize_aws_json_1_1(data: dict) -> AttackDetail:
                 data["AttackCounters"]
             )
         )
-    if "AttackProperties" in data:
+    if data.get("AttackProperties") is not None:
         import capo_shield.types.attack_properties
 
         out["attack_properties"] = (
@@ -133,7 +133,7 @@ def deserialize_aws_json_1_1(data: dict) -> AttackDetail:
                 data["AttackProperties"]
             )
         )
-    if "Mitigations" in data:
+    if data.get("Mitigations") is not None:
         import capo_shield.types.mitigation_list
 
         out["mitigations"] = capo_shield.types.mitigation_list.deserialize_aws_json_1_1(

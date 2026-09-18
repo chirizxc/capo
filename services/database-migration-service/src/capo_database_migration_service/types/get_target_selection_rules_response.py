@@ -25,6 +25,6 @@ def serialize_aws_json_1_1(value: GetTargetSelectionRulesResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetTargetSelectionRulesResponse:
     out: GetTargetSelectionRulesResponse = {}  # type: ignore[typeddict-item]
-    if "TargetSelectionRules" in data:
+    if data.get("TargetSelectionRules") is not None:
         out["target_selection_rules"] = data["TargetSelectionRules"]
     return out

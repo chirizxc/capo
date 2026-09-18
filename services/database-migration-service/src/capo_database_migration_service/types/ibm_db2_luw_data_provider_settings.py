@@ -73,13 +73,13 @@ def serialize_aws_json_1_1(value: IbmDb2LuwDataProviderSettings) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> IbmDb2LuwDataProviderSettings:
     out: IbmDb2LuwDataProviderSettings = {}  # type: ignore[typeddict-item]
-    if "ServerName" in data:
+    if data.get("ServerName") is not None:
         out["server_name"] = data["ServerName"]
-    if "Port" in data:
+    if data.get("Port") is not None:
         out["port"] = data["Port"]
-    if "DatabaseName" in data:
+    if data.get("DatabaseName") is not None:
         out["database_name"] = data["DatabaseName"]
-    if "SslMode" in data:
+    if data.get("SslMode") is not None:
         import capo_database_migration_service.types.dms_ssl_mode_value
 
         out["ssl_mode"] = (
@@ -87,14 +87,14 @@ def deserialize_aws_json_1_1(data: dict) -> IbmDb2LuwDataProviderSettings:
                 data["SslMode"]
             )
         )
-    if "CertificateArn" in data:
+    if data.get("CertificateArn") is not None:
         out["certificate_arn"] = data["CertificateArn"]
-    if "EncryptionAlgorithm" in data:
+    if data.get("EncryptionAlgorithm") is not None:
         out["encryption_algorithm"] = data["EncryptionAlgorithm"]
-    if "SecurityMechanism" in data:
+    if data.get("SecurityMechanism") is not None:
         out["security_mechanism"] = data["SecurityMechanism"]
-    if "S3Path" in data:
+    if data.get("S3Path") is not None:
         out["s3_path"] = data["S3Path"]
-    if "S3AccessRoleArn" in data:
+    if data.get("S3AccessRoleArn") is not None:
         out["s3_access_role_arn"] = data["S3AccessRoleArn"]
     return out

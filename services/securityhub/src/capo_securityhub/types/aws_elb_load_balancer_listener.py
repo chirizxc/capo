@@ -44,14 +44,14 @@ def serialize_json(value: AwsElbLoadBalancerListener) -> dict:
 
 def deserialize_json(data: dict) -> AwsElbLoadBalancerListener:
     out: AwsElbLoadBalancerListener = {}  # type: ignore[typeddict-item]
-    if "InstancePort" in data:
+    if data.get("InstancePort") is not None:
         out["instance_port"] = data["InstancePort"]
-    if "InstanceProtocol" in data:
+    if data.get("InstanceProtocol") is not None:
         out["instance_protocol"] = data["InstanceProtocol"]
-    if "LoadBalancerPort" in data:
+    if data.get("LoadBalancerPort") is not None:
         out["load_balancer_port"] = data["LoadBalancerPort"]
-    if "Protocol" in data:
+    if data.get("Protocol") is not None:
         out["protocol"] = data["Protocol"]
-    if "SslCertificateId" in data:
+    if data.get("SslCertificateId") is not None:
         out["ssl_certificate_id"] = data["SslCertificateId"]
     return out

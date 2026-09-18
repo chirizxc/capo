@@ -26,10 +26,10 @@ def serialize_json(value: ContractMetadata) -> dict:
 
 def deserialize_json(data: dict) -> ContractMetadata:
     out: ContractMetadata = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "symbol" in data:
+    if data.get("symbol") is not None:
         out["symbol"] = data["symbol"]
-    if "decimals" in data:
+    if data.get("decimals") is not None:
         out["decimals"] = data["decimals"]
     return out

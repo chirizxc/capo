@@ -45,16 +45,16 @@ def serialize_aws_json_1_1(value: MappingEntry) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> MappingEntry:
     out: MappingEntry = {}  # type: ignore[typeddict-item]
-    if "SourceTable" in data:
+    if data.get("SourceTable") is not None:
         out["source_table"] = data["SourceTable"]
-    if "SourcePath" in data:
+    if data.get("SourcePath") is not None:
         out["source_path"] = data["SourcePath"]
-    if "SourceType" in data:
+    if data.get("SourceType") is not None:
         out["source_type"] = data["SourceType"]
-    if "TargetTable" in data:
+    if data.get("TargetTable") is not None:
         out["target_table"] = data["TargetTable"]
-    if "TargetPath" in data:
+    if data.get("TargetPath") is not None:
         out["target_path"] = data["TargetPath"]
-    if "TargetType" in data:
+    if data.get("TargetType") is not None:
         out["target_type"] = data["TargetType"]
     return out

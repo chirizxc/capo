@@ -26,7 +26,7 @@ def serialize_json(value: DescribeScraperResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribeScraperResponse:
     out: DescribeScraperResponse = {}  # type: ignore[typeddict-item]
-    if "scraper" in data:
+    if data.get("scraper") is not None:
         import capo_amp.types.scraper_description
 
         out["scraper"] = capo_amp.types.scraper_description.deserialize_json(

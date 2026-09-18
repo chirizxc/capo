@@ -36,9 +36,9 @@ def serialize_json(value: QuotaShareCapacityUtilization) -> dict:
 
 def deserialize_json(data: dict) -> QuotaShareCapacityUtilization:
     out: QuotaShareCapacityUtilization = {}  # type: ignore[typeddict-item]
-    if "quotaShareName" in data:
+    if data.get("quotaShareName") is not None:
         out["quota_share_name"] = data["quotaShareName"]
-    if "capacityUsage" in data:
+    if data.get("capacityUsage") is not None:
         import capo_batch.types.quota_share_capacity_usage_list
 
         out["capacity_usage"] = (

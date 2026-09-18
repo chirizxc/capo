@@ -27,6 +27,6 @@ def serialize_json(value: CreateCloudFormationTemplateRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateCloudFormationTemplateRequest:
     out: CreateCloudFormationTemplateRequest = {}  # type: ignore[typeddict-item]
-    if "semanticVersion" in data:
+    if data.get("semanticVersion") is not None:
         out["semantic_version"] = data["semanticVersion"]
     return out

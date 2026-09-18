@@ -30,13 +30,13 @@ def serialize_json(value: UserProficiencyDisassociate) -> dict:
 
 def deserialize_json(data: dict) -> UserProficiencyDisassociate:
     out: UserProficiencyDisassociate = {}  # type: ignore[typeddict-item]
-    if "AttributeName" in data:
+    if data.get("AttributeName") is not None:
         out["attribute_name"] = data["AttributeName"]
     else:
         raise DeserializationError(
             "UserProficiencyDisassociate.attribute_name required"
         )
-    if "AttributeValue" in data:
+    if data.get("AttributeValue") is not None:
         out["attribute_value"] = data["AttributeValue"]
     else:
         raise DeserializationError(

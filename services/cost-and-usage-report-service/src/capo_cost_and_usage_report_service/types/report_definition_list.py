@@ -29,6 +29,8 @@ def deserialize_aws_json_1_1(data: list) -> ReportDefinitionList:
 
     out: ReportDefinitionList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_cost_and_usage_report_service.types.report_definition.deserialize_aws_json_1_1(
                 item

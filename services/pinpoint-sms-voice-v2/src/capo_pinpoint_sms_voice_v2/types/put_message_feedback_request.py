@@ -30,11 +30,11 @@ def serialize_aws_json_1_0(value: PutMessageFeedbackRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> PutMessageFeedbackRequest:
     out: PutMessageFeedbackRequest = {}  # type: ignore[typeddict-item]
-    if "MessageId" in data:
+    if data.get("MessageId") is not None:
         out["message_id"] = data["MessageId"]
     else:
         raise DeserializationError("PutMessageFeedbackRequest.message_id required")
-    if "MessageFeedbackStatus" in data:
+    if data.get("MessageFeedbackStatus") is not None:
         out["message_feedback_status"] = data["MessageFeedbackStatus"]
     else:
         raise DeserializationError(

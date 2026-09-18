@@ -25,6 +25,8 @@ def deserialize_json(data: list) -> PersistentConnectionConfigs:
 
     out: PersistentConnectionConfigs = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_connect.types.persistent_connection_config.deserialize_json(item)
         )

@@ -31,10 +31,10 @@ def serialize_json(value: InputSource) -> dict:
 
 def deserialize_json(data: dict) -> InputSource:
     out: InputSource = {}  # type: ignore[typeddict-item]
-    if "passwordParam" in data:
+    if data.get("passwordParam") is not None:
         out["password_param"] = data["passwordParam"]
-    if "url" in data:
+    if data.get("url") is not None:
         out["url"] = data["url"]
-    if "username" in data:
+    if data.get("username") is not None:
         out["username"] = data["username"]
     return out

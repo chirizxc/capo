@@ -36,13 +36,13 @@ def serialize_json(value: GetFindingsRequest) -> dict:
 
 def deserialize_json(data: dict) -> GetFindingsRequest:
     out: GetFindingsRequest = {}  # type: ignore[typeddict-item]
-    if "findingIds" in data:
+    if data.get("findingIds") is not None:
         import capo_macie2.types.__list_of__string
 
         out["finding_ids"] = capo_macie2.types.__list_of__string.deserialize_json(
             data["findingIds"]
         )
-    if "sortCriteria" in data:
+    if data.get("sortCriteria") is not None:
         import capo_macie2.types.sort_criteria
 
         out["sort_criteria"] = capo_macie2.types.sort_criteria.deserialize_json(

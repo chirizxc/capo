@@ -36,15 +36,15 @@ def serialize_json(value: DescribeVPCConnectionResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribeVPCConnectionResponse:
     out: DescribeVPCConnectionResponse = {}  # type: ignore[typeddict-item]
-    if "VPCConnection" in data:
+    if data.get("VPCConnection") is not None:
         import capo_quicksight.types.vpc_connection
 
         out["vpc_connection"] = capo_quicksight.types.vpc_connection.deserialize_json(
             data["VPCConnection"]
         )
-    if "RequestId" in data:
+    if data.get("RequestId") is not None:
         out["request_id"] = data["RequestId"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         out["status"] = data["Status"]
     else:
         out["status"] = 0

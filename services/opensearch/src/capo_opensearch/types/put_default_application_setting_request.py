@@ -27,13 +27,13 @@ def serialize_json(value: PutDefaultApplicationSettingRequest) -> dict:
 
 def deserialize_json(data: dict) -> PutDefaultApplicationSettingRequest:
     out: PutDefaultApplicationSettingRequest = {}  # type: ignore[typeddict-item]
-    if "applicationArn" in data:
+    if data.get("applicationArn") is not None:
         out["application_arn"] = data["applicationArn"]
     else:
         raise DeserializationError(
             "PutDefaultApplicationSettingRequest.application_arn required"
         )
-    if "setAsDefault" in data:
+    if data.get("setAsDefault") is not None:
         out["set_as_default"] = data["setAsDefault"]
     else:
         raise DeserializationError(

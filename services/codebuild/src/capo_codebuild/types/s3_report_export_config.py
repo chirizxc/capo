@@ -56,13 +56,13 @@ def serialize_aws_json_1_1(value: S3ReportExportConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> S3ReportExportConfig:
     out: S3ReportExportConfig = {}  # type: ignore[typeddict-item]
-    if "bucket" in data:
+    if data.get("bucket") is not None:
         out["bucket"] = data["bucket"]
-    if "bucketOwner" in data:
+    if data.get("bucketOwner") is not None:
         out["bucket_owner"] = data["bucketOwner"]
-    if "path" in data:
+    if data.get("path") is not None:
         out["path"] = data["path"]
-    if "packaging" in data:
+    if data.get("packaging") is not None:
         import capo_codebuild.types.report_packaging_type
 
         out["packaging"] = (
@@ -70,8 +70,8 @@ def deserialize_aws_json_1_1(data: dict) -> S3ReportExportConfig:
                 data["packaging"]
             )
         )
-    if "encryptionKey" in data:
+    if data.get("encryptionKey") is not None:
         out["encryption_key"] = data["encryptionKey"]
-    if "encryptionDisabled" in data:
+    if data.get("encryptionDisabled") is not None:
         out["encryption_disabled"] = data["encryptionDisabled"]
     return out

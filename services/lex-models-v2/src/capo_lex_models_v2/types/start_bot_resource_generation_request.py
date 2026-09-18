@@ -33,7 +33,7 @@ def serialize_json(value: StartBotResourceGenerationRequest) -> dict:
 
 def deserialize_json(data: dict) -> StartBotResourceGenerationRequest:
     out: StartBotResourceGenerationRequest = {}  # type: ignore[typeddict-item]
-    if "generationInputPrompt" in data:
+    if data.get("generationInputPrompt") is not None:
         out["generation_input_prompt"] = data["generationInputPrompt"]
     else:
         raise DeserializationError(

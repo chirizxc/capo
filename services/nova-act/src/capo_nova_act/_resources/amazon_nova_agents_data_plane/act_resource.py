@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import uuid
 from typing import TYPE_CHECKING, Optional
 
 import capo_nova_act._auth._signers
@@ -92,21 +93,24 @@ class ActResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_nova_act.types.create_act_request.CreateActRequest = {}  # type: ignore[typeddict-item]
-        input_["workflow_definition_name"] = workflow_definition_name
-        input_["workflow_run_id"] = workflow_run_id
-        input_["session_id"] = session_id
-        input_["task"] = task
+        input_: capo_nova_act.types.create_act_request.CreateActRequest = {
+            "workflow_definition_name": workflow_definition_name,
+            "workflow_run_id": workflow_run_id,
+            "session_id": session_id,
+            "task": task,
+        }
         if tool_specs is not None:
             input_["tool_specs"] = tool_specs
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -155,8 +159,9 @@ class ActResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_nova_act.types.list_acts_request.ListActsRequest = {}  # type: ignore[typeddict-item]
-        input_["workflow_definition_name"] = workflow_definition_name
+        input_: capo_nova_act.types.list_acts_request.ListActsRequest = {
+            "workflow_definition_name": workflow_definition_name
+        }
         if workflow_run_id is not None:
             input_["workflow_run_id"] = workflow_run_id
         if session_id is not None:
@@ -173,6 +178,7 @@ class ActResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def invoke_act_step(
@@ -222,12 +228,13 @@ class ActResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_nova_act.types.invoke_act_step_request.InvokeActStepRequest = {}  # type: ignore[typeddict-item]
-        input_["workflow_definition_name"] = workflow_definition_name
-        input_["workflow_run_id"] = workflow_run_id
-        input_["session_id"] = session_id
-        input_["act_id"] = act_id
-        input_["call_results"] = call_results
+        input_: capo_nova_act.types.invoke_act_step_request.InvokeActStepRequest = {
+            "workflow_definition_name": workflow_definition_name,
+            "workflow_run_id": workflow_run_id,
+            "session_id": session_id,
+            "act_id": act_id,
+            "call_results": call_results,
+        }
         if previous_step_id is not None:
             input_["previous_step_id"] = previous_step_id
 
@@ -236,6 +243,7 @@ class ActResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_act(
@@ -284,12 +292,13 @@ class ActResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_nova_act.types.update_act_request.UpdateActRequest = {}  # type: ignore[typeddict-item]
-        input_["workflow_definition_name"] = workflow_definition_name
-        input_["workflow_run_id"] = workflow_run_id
-        input_["session_id"] = session_id
-        input_["act_id"] = act_id
-        input_["status"] = status
+        input_: capo_nova_act.types.update_act_request.UpdateActRequest = {
+            "workflow_definition_name": workflow_definition_name,
+            "workflow_run_id": workflow_run_id,
+            "session_id": session_id,
+            "act_id": act_id,
+            "status": status,
+        }
         if error is not None:
             input_["error"] = error
 
@@ -298,6 +307,7 @@ class ActResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -353,21 +363,24 @@ class AsyncActResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_nova_act.types.create_act_request.CreateActRequest = {}  # type: ignore[typeddict-item]
-        input_["workflow_definition_name"] = workflow_definition_name
-        input_["workflow_run_id"] = workflow_run_id
-        input_["session_id"] = session_id
-        input_["task"] = task
+        input_: capo_nova_act.types.create_act_request.CreateActRequest = {
+            "workflow_definition_name": workflow_definition_name,
+            "workflow_run_id": workflow_run_id,
+            "session_id": session_id,
+            "task": task,
+        }
         if tool_specs is not None:
             input_["tool_specs"] = tool_specs
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -417,8 +430,9 @@ class AsyncActResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_nova_act.types.list_acts_request.ListActsRequest = {}  # type: ignore[typeddict-item]
-        input_["workflow_definition_name"] = workflow_definition_name
+        input_: capo_nova_act.types.list_acts_request.ListActsRequest = {
+            "workflow_definition_name": workflow_definition_name
+        }
         if workflow_run_id is not None:
             input_["workflow_run_id"] = workflow_run_id
         if session_id is not None:
@@ -435,6 +449,7 @@ class AsyncActResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def invoke_act_step(
@@ -485,12 +500,13 @@ class AsyncActResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_nova_act.types.invoke_act_step_request.InvokeActStepRequest = {}  # type: ignore[typeddict-item]
-        input_["workflow_definition_name"] = workflow_definition_name
-        input_["workflow_run_id"] = workflow_run_id
-        input_["session_id"] = session_id
-        input_["act_id"] = act_id
-        input_["call_results"] = call_results
+        input_: capo_nova_act.types.invoke_act_step_request.InvokeActStepRequest = {
+            "workflow_definition_name": workflow_definition_name,
+            "workflow_run_id": workflow_run_id,
+            "session_id": session_id,
+            "act_id": act_id,
+            "call_results": call_results,
+        }
         if previous_step_id is not None:
             input_["previous_step_id"] = previous_step_id
 
@@ -499,6 +515,7 @@ class AsyncActResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_act(
@@ -548,12 +565,13 @@ class AsyncActResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_nova_act.types.update_act_request.UpdateActRequest = {}  # type: ignore[typeddict-item]
-        input_["workflow_definition_name"] = workflow_definition_name
-        input_["workflow_run_id"] = workflow_run_id
-        input_["session_id"] = session_id
-        input_["act_id"] = act_id
-        input_["status"] = status
+        input_: capo_nova_act.types.update_act_request.UpdateActRequest = {
+            "workflow_definition_name": workflow_definition_name,
+            "workflow_run_id": workflow_run_id,
+            "session_id": session_id,
+            "act_id": act_id,
+            "status": status,
+        }
         if error is not None:
             input_["error"] = error
 
@@ -562,4 +580,5 @@ class AsyncActResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

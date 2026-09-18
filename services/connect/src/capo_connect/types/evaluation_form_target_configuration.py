@@ -32,7 +32,7 @@ def serialize_json(value: EvaluationFormTargetConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> EvaluationFormTargetConfiguration:
     out: EvaluationFormTargetConfiguration = {}  # type: ignore[typeddict-item]
-    if "ContactInteractionType" in data:
+    if data.get("ContactInteractionType") is not None:
         import capo_connect.types.contact_interaction_type
 
         out["contact_interaction_type"] = (

@@ -25,6 +25,8 @@ def deserialize_aws_json_1_1(data: list) -> DomainValidationOptionList:
 
     out: DomainValidationOptionList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_acm.types.domain_validation_option.deserialize_aws_json_1_1(item)
         )

@@ -51,23 +51,23 @@ def serialize_json(value: StartRestoreJobInput) -> dict:
 
 def deserialize_json(data: dict) -> StartRestoreJobInput:
     out: StartRestoreJobInput = {}  # type: ignore[typeddict-item]
-    if "RecoveryPointArn" in data:
+    if data.get("RecoveryPointArn") is not None:
         out["recovery_point_arn"] = data["RecoveryPointArn"]
     else:
         raise DeserializationError("StartRestoreJobInput.recovery_point_arn required")
-    if "Metadata" in data:
+    if data.get("Metadata") is not None:
         import capo_backup.types.metadata
 
         out["metadata"] = capo_backup.types.metadata.deserialize_json(data["Metadata"])
     else:
         raise DeserializationError("StartRestoreJobInput.metadata required")
-    if "IamRoleArn" in data:
+    if data.get("IamRoleArn") is not None:
         out["iam_role_arn"] = data["IamRoleArn"]
-    if "IdempotencyToken" in data:
+    if data.get("IdempotencyToken") is not None:
         out["idempotency_token"] = data["IdempotencyToken"]
-    if "ResourceType" in data:
+    if data.get("ResourceType") is not None:
         out["resource_type"] = data["ResourceType"]
-    if "CopySourceTagsToRestoredResource" in data:
+    if data.get("CopySourceTagsToRestoredResource") is not None:
         out["copy_source_tags_to_restored_resource"] = data[
             "CopySourceTagsToRestoredResource"
         ]

@@ -27,8 +27,8 @@ def serialize_json(value: AnywhereSettings) -> dict:
 
 def deserialize_json(data: dict) -> AnywhereSettings:
     out: AnywhereSettings = {}  # type: ignore[typeddict-item]
-    if "channelPlacementGroupId" in data:
+    if data.get("channelPlacementGroupId") is not None:
         out["channel_placement_group_id"] = data["channelPlacementGroupId"]
-    if "clusterId" in data:
+    if data.get("clusterId") is not None:
         out["cluster_id"] = data["clusterId"]
     return out

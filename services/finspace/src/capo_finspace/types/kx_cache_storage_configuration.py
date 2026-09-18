@@ -28,11 +28,11 @@ def serialize_json(value: KxCacheStorageConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> KxCacheStorageConfiguration:
     out: KxCacheStorageConfiguration = {}  # type: ignore[typeddict-item]
-    if "type" in data:
+    if data.get("type") is not None:
         out["type"] = data["type"]
     else:
         raise DeserializationError("KxCacheStorageConfiguration.type required")
-    if "size" in data:
+    if data.get("size") is not None:
         out["size"] = data["size"]
     else:
         raise DeserializationError("KxCacheStorageConfiguration.size required")

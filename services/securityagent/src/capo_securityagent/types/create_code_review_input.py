@@ -59,29 +59,29 @@ def serialize_json(value: CreateCodeReviewInput) -> dict:
 
 def deserialize_json(data: dict) -> CreateCodeReviewInput:
     out: CreateCodeReviewInput = {}  # type: ignore[typeddict-item]
-    if "title" in data:
+    if data.get("title") is not None:
         out["title"] = data["title"]
     else:
         raise DeserializationError("CreateCodeReviewInput.title required")
-    if "agentSpaceId" in data:
+    if data.get("agentSpaceId") is not None:
         out["agent_space_id"] = data["agentSpaceId"]
     else:
         raise DeserializationError("CreateCodeReviewInput.agent_space_id required")
-    if "assets" in data:
+    if data.get("assets") is not None:
         import capo_securityagent.types.assets
 
         out["assets"] = capo_securityagent.types.assets.deserialize_json(data["assets"])
     else:
         raise DeserializationError("CreateCodeReviewInput.assets required")
-    if "serviceRole" in data:
+    if data.get("serviceRole") is not None:
         out["service_role"] = data["serviceRole"]
-    if "logConfig" in data:
+    if data.get("logConfig") is not None:
         import capo_securityagent.types.cloud_watch_log
 
         out["log_config"] = capo_securityagent.types.cloud_watch_log.deserialize_json(
             data["logConfig"]
         )
-    if "codeRemediationStrategy" in data:
+    if data.get("codeRemediationStrategy") is not None:
         import capo_securityagent.types.code_remediation_strategy
 
         out["code_remediation_strategy"] = (

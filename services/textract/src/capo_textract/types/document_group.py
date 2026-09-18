@@ -62,9 +62,9 @@ def serialize_aws_json_1_1(value: DocumentGroup) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DocumentGroup:
     out: DocumentGroup = {}  # type: ignore[typeddict-item]
-    if "Type" in data:
+    if data.get("Type") is not None:
         out["type"] = data["Type"]
-    if "SplitDocuments" in data:
+    if data.get("SplitDocuments") is not None:
         import capo_textract.types.split_document_list
 
         out["split_documents"] = (
@@ -72,7 +72,7 @@ def deserialize_aws_json_1_1(data: dict) -> DocumentGroup:
                 data["SplitDocuments"]
             )
         )
-    if "DetectedSignatures" in data:
+    if data.get("DetectedSignatures") is not None:
         import capo_textract.types.detected_signature_list
 
         out["detected_signatures"] = (
@@ -80,7 +80,7 @@ def deserialize_aws_json_1_1(data: dict) -> DocumentGroup:
                 data["DetectedSignatures"]
             )
         )
-    if "UndetectedSignatures" in data:
+    if data.get("UndetectedSignatures") is not None:
         import capo_textract.types.undetected_signature_list
 
         out["undetected_signatures"] = (

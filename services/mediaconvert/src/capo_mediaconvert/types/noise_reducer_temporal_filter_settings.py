@@ -65,9 +65,9 @@ def serialize_json(value: NoiseReducerTemporalFilterSettings) -> dict:
 
 def deserialize_json(data: dict) -> NoiseReducerTemporalFilterSettings:
     out: NoiseReducerTemporalFilterSettings = {}  # type: ignore[typeddict-item]
-    if "aggressiveMode" in data:
+    if data.get("aggressiveMode") is not None:
         out["aggressive_mode"] = data["aggressiveMode"]
-    if "postTemporalSharpening" in data:
+    if data.get("postTemporalSharpening") is not None:
         import capo_mediaconvert.types.noise_filter_post_temporal_sharpening
 
         out["post_temporal_sharpening"] = (
@@ -75,7 +75,7 @@ def deserialize_json(data: dict) -> NoiseReducerTemporalFilterSettings:
                 data["postTemporalSharpening"]
             )
         )
-    if "postTemporalSharpeningStrength" in data:
+    if data.get("postTemporalSharpeningStrength") is not None:
         import capo_mediaconvert.types.noise_filter_post_temporal_sharpening_strength
 
         out["post_temporal_sharpening_strength"] = (
@@ -83,8 +83,8 @@ def deserialize_json(data: dict) -> NoiseReducerTemporalFilterSettings:
                 data["postTemporalSharpeningStrength"]
             )
         )
-    if "speed" in data:
+    if data.get("speed") is not None:
         out["speed"] = data["speed"]
-    if "strength" in data:
+    if data.get("strength") is not None:
         out["strength"] = data["strength"]
     return out

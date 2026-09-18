@@ -83,7 +83,7 @@ def serialize_json(value: AwsIamUserDetails) -> dict:
 
 def deserialize_json(data: dict) -> AwsIamUserDetails:
     out: AwsIamUserDetails = {}  # type: ignore[typeddict-item]
-    if "AttachedManagedPolicies" in data:
+    if data.get("AttachedManagedPolicies") is not None:
         import capo_securityhub.types.aws_iam_attached_managed_policy_list
 
         out["attached_managed_policies"] = (
@@ -91,17 +91,17 @@ def deserialize_json(data: dict) -> AwsIamUserDetails:
                 data["AttachedManagedPolicies"]
             )
         )
-    if "CreateDate" in data:
+    if data.get("CreateDate") is not None:
         out["create_date"] = data["CreateDate"]
-    if "GroupList" in data:
+    if data.get("GroupList") is not None:
         import capo_securityhub.types.string_list
 
         out["group_list"] = capo_securityhub.types.string_list.deserialize_json(
             data["GroupList"]
         )
-    if "Path" in data:
+    if data.get("Path") is not None:
         out["path"] = data["Path"]
-    if "PermissionsBoundary" in data:
+    if data.get("PermissionsBoundary") is not None:
         import capo_securityhub.types.aws_iam_permissions_boundary
 
         out["permissions_boundary"] = (
@@ -109,11 +109,11 @@ def deserialize_json(data: dict) -> AwsIamUserDetails:
                 data["PermissionsBoundary"]
             )
         )
-    if "UserId" in data:
+    if data.get("UserId") is not None:
         out["user_id"] = data["UserId"]
-    if "UserName" in data:
+    if data.get("UserName") is not None:
         out["user_name"] = data["UserName"]
-    if "UserPolicyList" in data:
+    if data.get("UserPolicyList") is not None:
         import capo_securityhub.types.aws_iam_user_policy_list
 
         out["user_policy_list"] = (

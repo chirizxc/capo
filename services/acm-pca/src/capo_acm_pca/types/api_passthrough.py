@@ -35,13 +35,13 @@ def serialize_aws_json_1_1(value: ApiPassthrough) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ApiPassthrough:
     out: ApiPassthrough = {}  # type: ignore[typeddict-item]
-    if "Extensions" in data:
+    if data.get("Extensions") is not None:
         import capo_acm_pca.types.extensions
 
         out["extensions"] = capo_acm_pca.types.extensions.deserialize_aws_json_1_1(
             data["Extensions"]
         )
-    if "Subject" in data:
+    if data.get("Subject") is not None:
         import capo_acm_pca.types.asn1_subject
 
         out["subject"] = capo_acm_pca.types.asn1_subject.deserialize_aws_json_1_1(

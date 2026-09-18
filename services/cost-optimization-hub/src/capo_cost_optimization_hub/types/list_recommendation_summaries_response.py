@@ -32,7 +32,16 @@ class ListRecommendationSummariesResponse(TypedDict, closed=True):
 def serialize_aws_json_1_0(value: ListRecommendationSummariesResponse) -> dict:
     out: dict = {}
     if "estimated_total_deduped_savings" in value:
-        out["estimatedTotalDedupedSavings"] = value["estimated_total_deduped_savings"]
+        out["estimatedTotalDedupedSavings"] = (
+            "NaN"
+            if value["estimated_total_deduped_savings"]
+            != value["estimated_total_deduped_savings"]
+            else "Infinity"
+            if value["estimated_total_deduped_savings"] == float("inf")
+            else "-Infinity"
+            if value["estimated_total_deduped_savings"] == float("-inf")
+            else value["estimated_total_deduped_savings"]
+        )
     if "items" in value:
         import capo_cost_optimization_hub.types.recommendation_summaries_list
 
@@ -60,9 +69,11 @@ def serialize_aws_json_1_0(value: ListRecommendationSummariesResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ListRecommendationSummariesResponse:
     out: ListRecommendationSummariesResponse = {}  # type: ignore[typeddict-item]
-    if "estimatedTotalDedupedSavings" in data:
-        out["estimated_total_deduped_savings"] = data["estimatedTotalDedupedSavings"]
-    if "items" in data:
+    if data.get("estimatedTotalDedupedSavings") is not None:
+        out["estimated_total_deduped_savings"] = float(
+            data["estimatedTotalDedupedSavings"]
+        )
+    if data.get("items") is not None:
         import capo_cost_optimization_hub.types.recommendation_summaries_list
 
         out["items"] = (
@@ -70,11 +81,11 @@ def deserialize_aws_json_1_0(data: dict) -> ListRecommendationSummariesResponse:
                 data["items"]
             )
         )
-    if "groupBy" in data:
+    if data.get("groupBy") is not None:
         out["group_by"] = data["groupBy"]
-    if "currencyCode" in data:
+    if data.get("currencyCode") is not None:
         out["currency_code"] = data["currencyCode"]
-    if "metrics" in data:
+    if data.get("metrics") is not None:
         import capo_cost_optimization_hub.types.summary_metrics_result
 
         out["metrics"] = (
@@ -82,6 +93,6 @@ def deserialize_aws_json_1_0(data: dict) -> ListRecommendationSummariesResponse:
                 data["metrics"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

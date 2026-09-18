@@ -37,17 +37,17 @@ def serialize_aws_json_1_1(value: Adapter) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Adapter:
     out: Adapter = {}  # type: ignore[typeddict-item]
-    if "AdapterId" in data:
+    if data.get("AdapterId") is not None:
         out["adapter_id"] = data["AdapterId"]
     else:
         raise DeserializationError("Adapter.adapter_id required")
-    if "Pages" in data:
+    if data.get("Pages") is not None:
         import capo_textract.types.adapter_pages
 
         out["pages"] = capo_textract.types.adapter_pages.deserialize_aws_json_1_1(
             data["Pages"]
         )
-    if "Version" in data:
+    if data.get("Version") is not None:
         out["version"] = data["Version"]
     else:
         raise DeserializationError("Adapter.version required")

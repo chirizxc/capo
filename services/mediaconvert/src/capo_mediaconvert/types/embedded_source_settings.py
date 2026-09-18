@@ -58,7 +58,7 @@ def serialize_json(value: EmbeddedSourceSettings) -> dict:
 
 def deserialize_json(data: dict) -> EmbeddedSourceSettings:
     out: EmbeddedSourceSettings = {}  # type: ignore[typeddict-item]
-    if "convert608To708" in data:
+    if data.get("convert608To708") is not None:
         import capo_mediaconvert.types.embedded_convert608_to708
 
         out["convert608_to708"] = (
@@ -66,11 +66,11 @@ def deserialize_json(data: dict) -> EmbeddedSourceSettings:
                 data["convert608To708"]
             )
         )
-    if "source608ChannelNumber" in data:
+    if data.get("source608ChannelNumber") is not None:
         out["source608_channel_number"] = data["source608ChannelNumber"]
-    if "source608TrackNumber" in data:
+    if data.get("source608TrackNumber") is not None:
         out["source608_track_number"] = data["source608TrackNumber"]
-    if "terminateCaptions" in data:
+    if data.get("terminateCaptions") is not None:
         import capo_mediaconvert.types.embedded_terminate_captions
 
         out["terminate_captions"] = (

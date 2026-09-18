@@ -41,17 +41,17 @@ def serialize_aws_json_1_1(value: EntitlementUsage) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> EntitlementUsage:
     out: EntitlementUsage = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("EntitlementUsage.name required")
-    if "ConsumedValue" in data:
+    if data.get("ConsumedValue") is not None:
         out["consumed_value"] = data["ConsumedValue"]
     else:
         raise DeserializationError("EntitlementUsage.consumed_value required")
-    if "MaxCount" in data:
+    if data.get("MaxCount") is not None:
         out["max_count"] = data["MaxCount"]
-    if "Unit" in data:
+    if data.get("Unit") is not None:
         import capo_license_manager.types.entitlement_data_unit
 
         out["unit"] = (

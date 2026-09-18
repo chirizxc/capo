@@ -46,18 +46,18 @@ def serialize_json(value: TestInvokeAuthorizerResponse) -> dict:
 
 def deserialize_json(data: dict) -> TestInvokeAuthorizerResponse:
     out: TestInvokeAuthorizerResponse = {}  # type: ignore[typeddict-item]
-    if "isAuthenticated" in data:
+    if data.get("isAuthenticated") is not None:
         out["is_authenticated"] = data["isAuthenticated"]
-    if "principalId" in data:
+    if data.get("principalId") is not None:
         out["principal_id"] = data["principalId"]
-    if "policyDocuments" in data:
+    if data.get("policyDocuments") is not None:
         import capo_iot.types.policy_documents
 
         out["policy_documents"] = capo_iot.types.policy_documents.deserialize_json(
             data["policyDocuments"]
         )
-    if "refreshAfterInSeconds" in data:
+    if data.get("refreshAfterInSeconds") is not None:
         out["refresh_after_in_seconds"] = data["refreshAfterInSeconds"]
-    if "disconnectAfterInSeconds" in data:
+    if data.get("disconnectAfterInSeconds") is not None:
         out["disconnect_after_in_seconds"] = data["disconnectAfterInSeconds"]
     return out

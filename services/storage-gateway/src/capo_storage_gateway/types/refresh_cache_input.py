@@ -40,11 +40,11 @@ def serialize_aws_json_1_1(value: RefreshCacheInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RefreshCacheInput:
     out: RefreshCacheInput = {}  # type: ignore[typeddict-item]
-    if "FileShareARN" in data:
+    if data.get("FileShareARN") is not None:
         out["file_share_arn"] = data["FileShareARN"]
     else:
         raise DeserializationError("RefreshCacheInput.file_share_arn required")
-    if "FolderList" in data:
+    if data.get("FolderList") is not None:
         import capo_storage_gateway.types.folder_list
 
         out["folder_list"] = (
@@ -52,6 +52,6 @@ def deserialize_aws_json_1_1(data: dict) -> RefreshCacheInput:
                 data["FolderList"]
             )
         )
-    if "Recursive" in data:
+    if data.get("Recursive") is not None:
         out["recursive"] = data["Recursive"]
     return out

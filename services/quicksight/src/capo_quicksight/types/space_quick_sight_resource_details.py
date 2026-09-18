@@ -26,7 +26,7 @@ def serialize_json(value: SpaceQuickSightResourceDetails) -> dict:
 
 
 def deserialize_json(data: dict) -> SpaceQuickSightResourceDetails:
-    if "resourceArn" in data:
+    if data.get("resourceArn") is not None:
         return {"resourceArn": data["resourceArn"]}
     else:
         raise DeserializationError(

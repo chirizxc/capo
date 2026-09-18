@@ -35,19 +35,19 @@ def serialize_json(value: SendCisSessionTelemetryRequest) -> dict:
 
 def deserialize_json(data: dict) -> SendCisSessionTelemetryRequest:
     out: SendCisSessionTelemetryRequest = {}  # type: ignore[typeddict-item]
-    if "scanJobId" in data:
+    if data.get("scanJobId") is not None:
         out["scan_job_id"] = data["scanJobId"]
     else:
         raise DeserializationError(
             "SendCisSessionTelemetryRequest.scan_job_id required"
         )
-    if "sessionToken" in data:
+    if data.get("sessionToken") is not None:
         out["session_token"] = data["sessionToken"]
     else:
         raise DeserializationError(
             "SendCisSessionTelemetryRequest.session_token required"
         )
-    if "messages" in data:
+    if data.get("messages") is not None:
         import capo_inspector2.types.cis_session_messages
 
         out["messages"] = capo_inspector2.types.cis_session_messages.deserialize_json(

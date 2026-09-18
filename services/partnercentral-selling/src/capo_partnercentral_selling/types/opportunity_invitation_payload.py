@@ -63,7 +63,7 @@ def serialize_aws_json_1_0(value: OpportunityInvitationPayload) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> OpportunityInvitationPayload:
     out: OpportunityInvitationPayload = {}  # type: ignore[typeddict-item]
-    if "SenderContacts" in data:
+    if data.get("SenderContacts") is not None:
         import capo_partnercentral_selling.types.sender_contact_list
 
         out["sender_contacts"] = (
@@ -71,7 +71,7 @@ def deserialize_aws_json_1_0(data: dict) -> OpportunityInvitationPayload:
                 data["SenderContacts"]
             )
         )
-    if "ReceiverResponsibilities" in data:
+    if data.get("ReceiverResponsibilities") is not None:
         import capo_partnercentral_selling.types.receiver_responsibility_list
 
         out["receiver_responsibilities"] = (
@@ -83,7 +83,7 @@ def deserialize_aws_json_1_0(data: dict) -> OpportunityInvitationPayload:
         raise DeserializationError(
             "OpportunityInvitationPayload.receiver_responsibilities required"
         )
-    if "Customer" in data:
+    if data.get("Customer") is not None:
         import capo_partnercentral_selling.types.engagement_customer
 
         out["customer"] = (
@@ -93,7 +93,7 @@ def deserialize_aws_json_1_0(data: dict) -> OpportunityInvitationPayload:
         )
     else:
         raise DeserializationError("OpportunityInvitationPayload.customer required")
-    if "Project" in data:
+    if data.get("Project") is not None:
         import capo_partnercentral_selling.types.project_details
 
         out["project"] = (

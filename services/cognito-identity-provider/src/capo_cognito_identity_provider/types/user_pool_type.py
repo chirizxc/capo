@@ -403,11 +403,11 @@ def serialize_aws_json_1_1(value: UserPoolType) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UserPoolType:
     out: UserPoolType = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Policies" in data:
+    if data.get("Policies") is not None:
         import capo_cognito_identity_provider.types.user_pool_policy_type
 
         out["policies"] = (
@@ -415,7 +415,7 @@ def deserialize_aws_json_1_1(data: dict) -> UserPoolType:
                 data["Policies"]
             )
         )
-    if "DeletionProtection" in data:
+    if data.get("DeletionProtection") is not None:
         import capo_cognito_identity_provider.types.deletion_protection_type
 
         out["deletion_protection"] = (
@@ -423,7 +423,7 @@ def deserialize_aws_json_1_1(data: dict) -> UserPoolType:
                 data["DeletionProtection"]
             )
         )
-    if "LambdaConfig" in data:
+    if data.get("LambdaConfig") is not None:
         import capo_cognito_identity_provider.types.lambda_config_type
 
         out["lambda_config"] = (
@@ -431,7 +431,7 @@ def deserialize_aws_json_1_1(data: dict) -> UserPoolType:
                 data["LambdaConfig"]
             )
         )
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_cognito_identity_provider.types.status_type
 
         out["status"] = (
@@ -439,7 +439,7 @@ def deserialize_aws_json_1_1(data: dict) -> UserPoolType:
                 data["Status"]
             )
         )
-    if "LastModifiedDate" in data:
+    if data.get("LastModifiedDate") is not None:
         import capo_cognito_identity_provider.types.date_type
 
         out["last_modified_date"] = (
@@ -447,7 +447,7 @@ def deserialize_aws_json_1_1(data: dict) -> UserPoolType:
                 data["LastModifiedDate"]
             )
         )
-    if "CreationDate" in data:
+    if data.get("CreationDate") is not None:
         import capo_cognito_identity_provider.types.date_type
 
         out["creation_date"] = (
@@ -455,7 +455,7 @@ def deserialize_aws_json_1_1(data: dict) -> UserPoolType:
                 data["CreationDate"]
             )
         )
-    if "SchemaAttributes" in data:
+    if data.get("SchemaAttributes") is not None:
         import capo_cognito_identity_provider.types.schema_attributes_list_type
 
         out["schema_attributes"] = (
@@ -463,7 +463,7 @@ def deserialize_aws_json_1_1(data: dict) -> UserPoolType:
                 data["SchemaAttributes"]
             )
         )
-    if "AutoVerifiedAttributes" in data:
+    if data.get("AutoVerifiedAttributes") is not None:
         import capo_cognito_identity_provider.types.verified_attributes_list_type
 
         out["auto_verified_attributes"] = (
@@ -471,7 +471,7 @@ def deserialize_aws_json_1_1(data: dict) -> UserPoolType:
                 data["AutoVerifiedAttributes"]
             )
         )
-    if "AliasAttributes" in data:
+    if data.get("AliasAttributes") is not None:
         import capo_cognito_identity_provider.types.alias_attributes_list_type
 
         out["alias_attributes"] = (
@@ -479,7 +479,7 @@ def deserialize_aws_json_1_1(data: dict) -> UserPoolType:
                 data["AliasAttributes"]
             )
         )
-    if "UsernameAttributes" in data:
+    if data.get("UsernameAttributes") is not None:
         import capo_cognito_identity_provider.types.username_attributes_list_type
 
         out["username_attributes"] = (
@@ -487,13 +487,13 @@ def deserialize_aws_json_1_1(data: dict) -> UserPoolType:
                 data["UsernameAttributes"]
             )
         )
-    if "SmsVerificationMessage" in data:
+    if data.get("SmsVerificationMessage") is not None:
         out["sms_verification_message"] = data["SmsVerificationMessage"]
-    if "EmailVerificationMessage" in data:
+    if data.get("EmailVerificationMessage") is not None:
         out["email_verification_message"] = data["EmailVerificationMessage"]
-    if "EmailVerificationSubject" in data:
+    if data.get("EmailVerificationSubject") is not None:
         out["email_verification_subject"] = data["EmailVerificationSubject"]
-    if "VerificationMessageTemplate" in data:
+    if data.get("VerificationMessageTemplate") is not None:
         import capo_cognito_identity_provider.types.verification_message_template_type
 
         out["verification_message_template"] = (
@@ -501,9 +501,9 @@ def deserialize_aws_json_1_1(data: dict) -> UserPoolType:
                 data["VerificationMessageTemplate"]
             )
         )
-    if "SmsAuthenticationMessage" in data:
+    if data.get("SmsAuthenticationMessage") is not None:
         out["sms_authentication_message"] = data["SmsAuthenticationMessage"]
-    if "UserAttributeUpdateSettings" in data:
+    if data.get("UserAttributeUpdateSettings") is not None:
         import capo_cognito_identity_provider.types.user_attribute_update_settings_type
 
         out["user_attribute_update_settings"] = (
@@ -511,7 +511,7 @@ def deserialize_aws_json_1_1(data: dict) -> UserPoolType:
                 data["UserAttributeUpdateSettings"]
             )
         )
-    if "MfaConfiguration" in data:
+    if data.get("MfaConfiguration") is not None:
         import capo_cognito_identity_provider.types.user_pool_mfa_type
 
         out["mfa_configuration"] = (
@@ -519,7 +519,7 @@ def deserialize_aws_json_1_1(data: dict) -> UserPoolType:
                 data["MfaConfiguration"]
             )
         )
-    if "DeviceConfiguration" in data:
+    if data.get("DeviceConfiguration") is not None:
         import capo_cognito_identity_provider.types.device_configuration_type
 
         out["device_configuration"] = (
@@ -527,11 +527,11 @@ def deserialize_aws_json_1_1(data: dict) -> UserPoolType:
                 data["DeviceConfiguration"]
             )
         )
-    if "EstimatedNumberOfUsers" in data:
+    if data.get("EstimatedNumberOfUsers") is not None:
         out["estimated_number_of_users"] = data["EstimatedNumberOfUsers"]
     else:
         out["estimated_number_of_users"] = 0
-    if "EmailConfiguration" in data:
+    if data.get("EmailConfiguration") is not None:
         import capo_cognito_identity_provider.types.email_configuration_type
 
         out["email_configuration"] = (
@@ -539,7 +539,7 @@ def deserialize_aws_json_1_1(data: dict) -> UserPoolType:
                 data["EmailConfiguration"]
             )
         )
-    if "SmsConfiguration" in data:
+    if data.get("SmsConfiguration") is not None:
         import capo_cognito_identity_provider.types.sms_configuration_type
 
         out["sms_configuration"] = (
@@ -547,7 +547,7 @@ def deserialize_aws_json_1_1(data: dict) -> UserPoolType:
                 data["SmsConfiguration"]
             )
         )
-    if "UserPoolTags" in data:
+    if data.get("UserPoolTags") is not None:
         import capo_cognito_identity_provider.types.user_pool_tags_type
 
         out["user_pool_tags"] = (
@@ -555,15 +555,15 @@ def deserialize_aws_json_1_1(data: dict) -> UserPoolType:
                 data["UserPoolTags"]
             )
         )
-    if "SmsConfigurationFailure" in data:
+    if data.get("SmsConfigurationFailure") is not None:
         out["sms_configuration_failure"] = data["SmsConfigurationFailure"]
-    if "EmailConfigurationFailure" in data:
+    if data.get("EmailConfigurationFailure") is not None:
         out["email_configuration_failure"] = data["EmailConfigurationFailure"]
-    if "Domain" in data:
+    if data.get("Domain") is not None:
         out["domain"] = data["Domain"]
-    if "CustomDomain" in data:
+    if data.get("CustomDomain") is not None:
         out["custom_domain"] = data["CustomDomain"]
-    if "AdminCreateUserConfig" in data:
+    if data.get("AdminCreateUserConfig") is not None:
         import capo_cognito_identity_provider.types.admin_create_user_config_type
 
         out["admin_create_user_config"] = (
@@ -571,7 +571,7 @@ def deserialize_aws_json_1_1(data: dict) -> UserPoolType:
                 data["AdminCreateUserConfig"]
             )
         )
-    if "UserPoolAddOns" in data:
+    if data.get("UserPoolAddOns") is not None:
         import capo_cognito_identity_provider.types.user_pool_add_ons_type
 
         out["user_pool_add_ons"] = (
@@ -579,7 +579,7 @@ def deserialize_aws_json_1_1(data: dict) -> UserPoolType:
                 data["UserPoolAddOns"]
             )
         )
-    if "UsernameConfiguration" in data:
+    if data.get("UsernameConfiguration") is not None:
         import capo_cognito_identity_provider.types.username_configuration_type
 
         out["username_configuration"] = (
@@ -587,9 +587,9 @@ def deserialize_aws_json_1_1(data: dict) -> UserPoolType:
                 data["UsernameConfiguration"]
             )
         )
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "AccountRecoverySetting" in data:
+    if data.get("AccountRecoverySetting") is not None:
         import capo_cognito_identity_provider.types.account_recovery_setting_type
 
         out["account_recovery_setting"] = (
@@ -597,7 +597,7 @@ def deserialize_aws_json_1_1(data: dict) -> UserPoolType:
                 data["AccountRecoverySetting"]
             )
         )
-    if "UserPoolTier" in data:
+    if data.get("UserPoolTier") is not None:
         import capo_cognito_identity_provider.types.user_pool_tier_type
 
         out["user_pool_tier"] = (
@@ -605,7 +605,7 @@ def deserialize_aws_json_1_1(data: dict) -> UserPoolType:
                 data["UserPoolTier"]
             )
         )
-    if "KeyConfiguration" in data:
+    if data.get("KeyConfiguration") is not None:
         import capo_cognito_identity_provider.types.key_configuration_type
 
         out["key_configuration"] = (
@@ -613,7 +613,7 @@ def deserialize_aws_json_1_1(data: dict) -> UserPoolType:
                 data["KeyConfiguration"]
             )
         )
-    if "IssuerConfiguration" in data:
+    if data.get("IssuerConfiguration") is not None:
         import capo_cognito_identity_provider.types.issuer_configuration_type
 
         out["issuer_configuration"] = (

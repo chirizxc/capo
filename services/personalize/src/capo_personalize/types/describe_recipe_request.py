@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: DescribeRecipeRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeRecipeRequest:
     out: DescribeRecipeRequest = {}  # type: ignore[typeddict-item]
-    if "recipeArn" in data:
+    if data.get("recipeArn") is not None:
         out["recipe_arn"] = data["recipeArn"]
     else:
         raise DeserializationError("DescribeRecipeRequest.recipe_arn required")

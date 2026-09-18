@@ -43,23 +43,23 @@ def serialize_json(value: ValidatePolicyFinding) -> dict:
 
 def deserialize_json(data: dict) -> ValidatePolicyFinding:
     out: ValidatePolicyFinding = {}  # type: ignore[typeddict-item]
-    if "findingDetails" in data:
+    if data.get("findingDetails") is not None:
         out["finding_details"] = data["findingDetails"]
     else:
         raise DeserializationError("ValidatePolicyFinding.finding_details required")
-    if "findingType" in data:
+    if data.get("findingType") is not None:
         out["finding_type"] = data["findingType"]
     else:
         raise DeserializationError("ValidatePolicyFinding.finding_type required")
-    if "issueCode" in data:
+    if data.get("issueCode") is not None:
         out["issue_code"] = data["issueCode"]
     else:
         raise DeserializationError("ValidatePolicyFinding.issue_code required")
-    if "learnMoreLink" in data:
+    if data.get("learnMoreLink") is not None:
         out["learn_more_link"] = data["learnMoreLink"]
     else:
         raise DeserializationError("ValidatePolicyFinding.learn_more_link required")
-    if "locations" in data:
+    if data.get("locations") is not None:
         import capo_accessanalyzer.types.location_list
 
         out["locations"] = capo_accessanalyzer.types.location_list.deserialize_json(

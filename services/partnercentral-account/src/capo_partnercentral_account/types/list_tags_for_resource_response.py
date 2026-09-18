@@ -35,11 +35,11 @@ def serialize_aws_json_1_0(value: ListTagsForResourceResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ListTagsForResourceResponse:
     out: ListTagsForResourceResponse = {}  # type: ignore[typeddict-item]
-    if "ResourceArn" in data:
+    if data.get("ResourceArn") is not None:
         out["resource_arn"] = data["ResourceArn"]
     else:
         raise DeserializationError("ListTagsForResourceResponse.resource_arn required")
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_partnercentral_account.types.tag_list
 
         out["tags"] = (

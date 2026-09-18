@@ -44,11 +44,11 @@ def serialize_json(value: PutOriginEndpointPolicyRequest) -> dict:
 
 def deserialize_json(data: dict) -> PutOriginEndpointPolicyRequest:
     out: PutOriginEndpointPolicyRequest = {}  # type: ignore[typeddict-item]
-    if "Policy" in data:
+    if data.get("Policy") is not None:
         out["policy"] = data["Policy"]
     else:
         raise DeserializationError("PutOriginEndpointPolicyRequest.policy required")
-    if "CdnAuthConfiguration" in data:
+    if data.get("CdnAuthConfiguration") is not None:
         import capo_mediapackagev2.types.cdn_auth_configuration
 
         out["cdn_auth_configuration"] = (

@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> GaugeChartConditionalFormattingOptionList:
 
     out: GaugeChartConditionalFormattingOptionList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_quicksight.types.gauge_chart_conditional_formatting_option.deserialize_json(
                 item

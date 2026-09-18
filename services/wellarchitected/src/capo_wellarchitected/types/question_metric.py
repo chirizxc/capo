@@ -39,13 +39,13 @@ def serialize_json(value: QuestionMetric) -> dict:
 
 def deserialize_json(data: dict) -> QuestionMetric:
     out: QuestionMetric = {}  # type: ignore[typeddict-item]
-    if "QuestionId" in data:
+    if data.get("QuestionId") is not None:
         out["question_id"] = data["QuestionId"]
-    if "Risk" in data:
+    if data.get("Risk") is not None:
         import capo_wellarchitected.types.risk
 
         out["risk"] = capo_wellarchitected.types.risk.deserialize_json(data["Risk"])
-    if "BestPractices" in data:
+    if data.get("BestPractices") is not None:
         import capo_wellarchitected.types.best_practices
 
         out["best_practices"] = (

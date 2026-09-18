@@ -30,7 +30,7 @@ def serialize_json(value: RebootBrokerRequest) -> dict:
 
 def deserialize_json(data: dict) -> RebootBrokerRequest:
     out: RebootBrokerRequest = {}  # type: ignore[typeddict-item]
-    if "brokerIds" in data:
+    if data.get("brokerIds") is not None:
         import capo_kafka.types.__list_of__string
 
         out["broker_ids"] = capo_kafka.types.__list_of__string.deserialize_json(

@@ -49,13 +49,13 @@ def serialize_json(value: CreateQuickConnectRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateQuickConnectRequest:
     out: CreateQuickConnectRequest = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("CreateQuickConnectRequest.name required")
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "QuickConnectConfig" in data:
+    if data.get("QuickConnectConfig") is not None:
         import capo_connect.types.quick_connect_config
 
         out["quick_connect_config"] = (
@@ -67,7 +67,7 @@ def deserialize_json(data: dict) -> CreateQuickConnectRequest:
         raise DeserializationError(
             "CreateQuickConnectRequest.quick_connect_config required"
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_connect.types.tag_map
 
         out["tags"] = capo_connect.types.tag_map.deserialize_json(data["Tags"])

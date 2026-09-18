@@ -32,9 +32,9 @@ def serialize_aws_json_1_1(value: TieringPolicy) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> TieringPolicy:
     out: TieringPolicy = {}  # type: ignore[typeddict-item]
-    if "CoolingPeriod" in data:
+    if data.get("CoolingPeriod") is not None:
         out["cooling_period"] = data["CoolingPeriod"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         import capo_fsx.types.tiering_policy_name
 
         out["name"] = capo_fsx.types.tiering_policy_name.deserialize_aws_json_1_1(

@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import datetime
+import uuid
 from typing import TYPE_CHECKING, Optional
 
 import capo_security_ir._auth._signers
@@ -156,16 +157,18 @@ class Case:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_security_ir.types.create_case_request.CreateCaseRequest = {}  # type: ignore[typeddict-item]
-        if client_token is not None:
-            input_["client_token"] = client_token
-        input_["resolver_type"] = resolver_type
-        input_["title"] = title
-        input_["description"] = description
-        input_["engagement_type"] = engagement_type
-        input_["reported_incident_start_date"] = reported_incident_start_date
-        input_["impacted_accounts"] = impacted_accounts
-        input_["watchers"] = watchers
+        input_: capo_security_ir.types.create_case_request.CreateCaseRequest = {
+            "resolver_type": resolver_type,
+            "title": title,
+            "description": description,
+            "engagement_type": engagement_type,
+            "reported_incident_start_date": reported_incident_start_date,
+            "impacted_accounts": impacted_accounts,
+            "watchers": watchers,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if threat_actor_ip_addresses is not None:
             input_["threat_actor_ip_addresses"] = threat_actor_ip_addresses
         if impacted_services is not None:
@@ -180,6 +183,7 @@ class Case:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -226,14 +230,16 @@ class Case:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_security_ir.types.get_case_request.GetCaseRequest = {}  # type: ignore[typeddict-item]
-        input_["case_id"] = case_id
+        input_: capo_security_ir.types.get_case_request.GetCaseRequest = {
+            "case_id": case_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update(
@@ -334,8 +340,9 @@ class Case:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_security_ir.types.update_case_request.UpdateCaseRequest = {}  # type: ignore[typeddict-item]
-        input_["case_id"] = case_id
+        input_: capo_security_ir.types.update_case_request.UpdateCaseRequest = {
+            "case_id": case_id
+        }
         if title is not None:
             input_["title"] = title
         if description is not None:
@@ -378,6 +385,7 @@ class Case:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -426,7 +434,7 @@ class Case:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_security_ir.types.list_cases_request.ListCasesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_security_ir.types.list_cases_request.ListCasesRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -437,6 +445,7 @@ class Case:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def close_case(
@@ -483,14 +492,16 @@ class Case:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_security_ir.types.close_case_request.CloseCaseRequest = {}  # type: ignore[typeddict-item]
-        input_["case_id"] = case_id
+        input_: capo_security_ir.types.close_case_request.CloseCaseRequest = {
+            "case_id": case_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_case_comment(
@@ -543,17 +554,20 @@ class Case:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_security_ir.types.create_case_comment_request.CreateCaseCommentRequest = {}  # type: ignore[typeddict-item]
-        input_["case_id"] = case_id
-        if client_token is not None:
-            input_["client_token"] = client_token
-        input_["body"] = body
+        input_: capo_security_ir.types.create_case_comment_request.CreateCaseCommentRequest = {
+            "case_id": case_id,
+            "body": body,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_case_attachment_download_url(
@@ -602,15 +616,17 @@ class Case:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_security_ir.types.get_case_attachment_download_url_request.GetCaseAttachmentDownloadUrlRequest = {}  # type: ignore[typeddict-item]
-        input_["case_id"] = case_id
-        input_["attachment_id"] = attachment_id
+        input_: capo_security_ir.types.get_case_attachment_download_url_request.GetCaseAttachmentDownloadUrlRequest = {
+            "case_id": case_id,
+            "attachment_id": attachment_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_case_attachment_upload_url(
@@ -663,18 +679,21 @@ class Case:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_security_ir.types.get_case_attachment_upload_url_request.GetCaseAttachmentUploadUrlRequest = {}  # type: ignore[typeddict-item]
-        input_["case_id"] = case_id
-        input_["file_name"] = file_name
-        input_["content_length"] = content_length
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_security_ir.types.get_case_attachment_upload_url_request.GetCaseAttachmentUploadUrlRequest = {
+            "case_id": case_id,
+            "file_name": file_name,
+            "content_length": content_length,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_case_edits(
@@ -725,18 +744,20 @@ class Case:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_security_ir.types.list_case_edits_request.ListCaseEditsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_security_ir.types.list_case_edits_request.ListCaseEditsRequest = {
+            "case_id": case_id
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
             input_["max_results"] = max_results
-        input_["case_id"] = case_id
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_comments(
@@ -787,18 +808,20 @@ class Case:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_security_ir.types.list_comments_request.ListCommentsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_security_ir.types.list_comments_request.ListCommentsRequest = {
+            "case_id": case_id
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
             input_["max_results"] = max_results
-        input_["case_id"] = case_id
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_investigations(
@@ -851,18 +874,20 @@ class Case:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_security_ir.types.list_investigations_request.ListInvestigationsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_security_ir.types.list_investigations_request.ListInvestigationsRequest = {
+            "case_id": case_id
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
             input_["max_results"] = max_results
-        input_["case_id"] = case_id
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def send_feedback(
@@ -920,10 +945,11 @@ class Case:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_security_ir.types.send_feedback_request.SendFeedbackRequest = {}  # type: ignore[typeddict-item]
-        input_["case_id"] = case_id
-        input_["result_id"] = result_id
-        input_["usefulness"] = usefulness
+        input_: capo_security_ir.types.send_feedback_request.SendFeedbackRequest = {
+            "case_id": case_id,
+            "result_id": result_id,
+            "usefulness": usefulness,
+        }
         if comment is not None:
             input_["comment"] = comment
 
@@ -932,6 +958,7 @@ class Case:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_case_comment(
@@ -984,16 +1011,18 @@ class Case:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_security_ir.types.update_case_comment_request.UpdateCaseCommentRequest = {}  # type: ignore[typeddict-item]
-        input_["case_id"] = case_id
-        input_["comment_id"] = comment_id
-        input_["body"] = body
+        input_: capo_security_ir.types.update_case_comment_request.UpdateCaseCommentRequest = {
+            "case_id": case_id,
+            "comment_id": comment_id,
+            "body": body,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_case_status(
@@ -1042,15 +1071,17 @@ class Case:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_security_ir.types.update_case_status_request.UpdateCaseStatusRequest = {}  # type: ignore[typeddict-item]
-        input_["case_id"] = case_id
-        input_["case_status"] = case_status
+        input_: capo_security_ir.types.update_case_status_request.UpdateCaseStatusRequest = {
+            "case_id": case_id,
+            "case_status": case_status,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_resolver_type(
@@ -1099,15 +1130,17 @@ class Case:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_security_ir.types.update_resolver_type_request.UpdateResolverTypeRequest = {}  # type: ignore[typeddict-item]
-        input_["case_id"] = case_id
-        input_["resolver_type"] = resolver_type
+        input_: capo_security_ir.types.update_resolver_type_request.UpdateResolverTypeRequest = {
+            "case_id": case_id,
+            "resolver_type": resolver_type,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -1188,16 +1221,18 @@ class AsyncCase:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_security_ir.types.create_case_request.CreateCaseRequest = {}  # type: ignore[typeddict-item]
-        if client_token is not None:
-            input_["client_token"] = client_token
-        input_["resolver_type"] = resolver_type
-        input_["title"] = title
-        input_["description"] = description
-        input_["engagement_type"] = engagement_type
-        input_["reported_incident_start_date"] = reported_incident_start_date
-        input_["impacted_accounts"] = impacted_accounts
-        input_["watchers"] = watchers
+        input_: capo_security_ir.types.create_case_request.CreateCaseRequest = {
+            "resolver_type": resolver_type,
+            "title": title,
+            "description": description,
+            "engagement_type": engagement_type,
+            "reported_incident_start_date": reported_incident_start_date,
+            "impacted_accounts": impacted_accounts,
+            "watchers": watchers,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if threat_actor_ip_addresses is not None:
             input_["threat_actor_ip_addresses"] = threat_actor_ip_addresses
         if impacted_services is not None:
@@ -1212,6 +1247,7 @@ class AsyncCase:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -1259,14 +1295,16 @@ class AsyncCase:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_security_ir.types.get_case_request.GetCaseRequest = {}  # type: ignore[typeddict-item]
-        input_["case_id"] = case_id
+        input_: capo_security_ir.types.get_case_request.GetCaseRequest = {
+            "case_id": case_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update(
@@ -1368,8 +1406,9 @@ class AsyncCase:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_security_ir.types.update_case_request.UpdateCaseRequest = {}  # type: ignore[typeddict-item]
-        input_["case_id"] = case_id
+        input_: capo_security_ir.types.update_case_request.UpdateCaseRequest = {
+            "case_id": case_id
+        }
         if title is not None:
             input_["title"] = title
         if description is not None:
@@ -1412,6 +1451,7 @@ class AsyncCase:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -1461,7 +1501,7 @@ class AsyncCase:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_security_ir.types.list_cases_request.ListCasesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_security_ir.types.list_cases_request.ListCasesRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -1472,6 +1512,7 @@ class AsyncCase:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def close_case(
@@ -1519,14 +1560,16 @@ class AsyncCase:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_security_ir.types.close_case_request.CloseCaseRequest = {}  # type: ignore[typeddict-item]
-        input_["case_id"] = case_id
+        input_: capo_security_ir.types.close_case_request.CloseCaseRequest = {
+            "case_id": case_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_case_comment(
@@ -1580,17 +1623,20 @@ class AsyncCase:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_security_ir.types.create_case_comment_request.CreateCaseCommentRequest = {}  # type: ignore[typeddict-item]
-        input_["case_id"] = case_id
-        if client_token is not None:
-            input_["client_token"] = client_token
-        input_["body"] = body
+        input_: capo_security_ir.types.create_case_comment_request.CreateCaseCommentRequest = {
+            "case_id": case_id,
+            "body": body,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_case_attachment_download_url(
@@ -1640,15 +1686,17 @@ class AsyncCase:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_security_ir.types.get_case_attachment_download_url_request.GetCaseAttachmentDownloadUrlRequest = {}  # type: ignore[typeddict-item]
-        input_["case_id"] = case_id
-        input_["attachment_id"] = attachment_id
+        input_: capo_security_ir.types.get_case_attachment_download_url_request.GetCaseAttachmentDownloadUrlRequest = {
+            "case_id": case_id,
+            "attachment_id": attachment_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_case_attachment_upload_url(
@@ -1702,18 +1750,21 @@ class AsyncCase:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_security_ir.types.get_case_attachment_upload_url_request.GetCaseAttachmentUploadUrlRequest = {}  # type: ignore[typeddict-item]
-        input_["case_id"] = case_id
-        input_["file_name"] = file_name
-        input_["content_length"] = content_length
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_security_ir.types.get_case_attachment_upload_url_request.GetCaseAttachmentUploadUrlRequest = {
+            "case_id": case_id,
+            "file_name": file_name,
+            "content_length": content_length,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_case_edits(
@@ -1765,18 +1816,20 @@ class AsyncCase:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_security_ir.types.list_case_edits_request.ListCaseEditsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_security_ir.types.list_case_edits_request.ListCaseEditsRequest = {
+            "case_id": case_id
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
             input_["max_results"] = max_results
-        input_["case_id"] = case_id
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_comments(
@@ -1828,18 +1881,20 @@ class AsyncCase:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_security_ir.types.list_comments_request.ListCommentsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_security_ir.types.list_comments_request.ListCommentsRequest = {
+            "case_id": case_id
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
             input_["max_results"] = max_results
-        input_["case_id"] = case_id
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_investigations(
@@ -1893,18 +1948,20 @@ class AsyncCase:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_security_ir.types.list_investigations_request.ListInvestigationsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_security_ir.types.list_investigations_request.ListInvestigationsRequest = {
+            "case_id": case_id
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
             input_["max_results"] = max_results
-        input_["case_id"] = case_id
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def send_feedback(
@@ -1963,10 +2020,11 @@ class AsyncCase:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_security_ir.types.send_feedback_request.SendFeedbackRequest = {}  # type: ignore[typeddict-item]
-        input_["case_id"] = case_id
-        input_["result_id"] = result_id
-        input_["usefulness"] = usefulness
+        input_: capo_security_ir.types.send_feedback_request.SendFeedbackRequest = {
+            "case_id": case_id,
+            "result_id": result_id,
+            "usefulness": usefulness,
+        }
         if comment is not None:
             input_["comment"] = comment
 
@@ -1975,6 +2033,7 @@ class AsyncCase:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_case_comment(
@@ -2028,16 +2087,18 @@ class AsyncCase:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_security_ir.types.update_case_comment_request.UpdateCaseCommentRequest = {}  # type: ignore[typeddict-item]
-        input_["case_id"] = case_id
-        input_["comment_id"] = comment_id
-        input_["body"] = body
+        input_: capo_security_ir.types.update_case_comment_request.UpdateCaseCommentRequest = {
+            "case_id": case_id,
+            "comment_id": comment_id,
+            "body": body,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_case_status(
@@ -2087,15 +2148,17 @@ class AsyncCase:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_security_ir.types.update_case_status_request.UpdateCaseStatusRequest = {}  # type: ignore[typeddict-item]
-        input_["case_id"] = case_id
-        input_["case_status"] = case_status
+        input_: capo_security_ir.types.update_case_status_request.UpdateCaseStatusRequest = {
+            "case_id": case_id,
+            "case_status": case_status,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_resolver_type(
@@ -2145,13 +2208,15 @@ class AsyncCase:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_security_ir.types.update_resolver_type_request.UpdateResolverTypeRequest = {}  # type: ignore[typeddict-item]
-        input_["case_id"] = case_id
-        input_["resolver_type"] = resolver_type
+        input_: capo_security_ir.types.update_resolver_type_request.UpdateResolverTypeRequest = {
+            "case_id": case_id,
+            "resolver_type": resolver_type,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

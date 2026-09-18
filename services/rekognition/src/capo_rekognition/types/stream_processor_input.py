@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: StreamProcessorInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> StreamProcessorInput:
     out: StreamProcessorInput = {}  # type: ignore[typeddict-item]
-    if "KinesisVideoStream" in data:
+    if data.get("KinesisVideoStream") is not None:
         import capo_rekognition.types.kinesis_video_stream
 
         out["kinesis_video_stream"] = (

@@ -30,11 +30,7 @@ def serialize_json(value: StartContentUploadResponse) -> dict:
     out: dict = {}
     out["uploadId"] = value["upload_id"]
     out["url"] = value["url"]
-    import capo_wisdom.types._prelude.timestamp
-
-    out["urlExpiry"] = capo_wisdom.types._prelude.timestamp.serialize_json(
-        value["url_expiry"]
-    )
+    out["urlExpiry"] = value["url_expiry"].timestamp()
     import capo_wisdom.types.headers
 
     out["headersToInclude"] = capo_wisdom.types.headers.serialize_json(
@@ -45,23 +41,23 @@ def serialize_json(value: StartContentUploadResponse) -> dict:
 
 def deserialize_json(data: dict) -> StartContentUploadResponse:
     out: StartContentUploadResponse = {}  # type: ignore[typeddict-item]
-    if "uploadId" in data:
+    if data.get("uploadId") is not None:
         out["upload_id"] = data["uploadId"]
     else:
         raise DeserializationError("StartContentUploadResponse.upload_id required")
-    if "url" in data:
+    if data.get("url") is not None:
         out["url"] = data["url"]
     else:
         raise DeserializationError("StartContentUploadResponse.url required")
-    if "urlExpiry" in data:
-        import capo_wisdom.types._prelude.timestamp
+    if data.get("urlExpiry") is not None:
+        import datetime
 
-        out["url_expiry"] = capo_wisdom.types._prelude.timestamp.deserialize_json(
-            data["urlExpiry"]
+        out["url_expiry"] = datetime.datetime.fromtimestamp(
+            float(data["urlExpiry"]), tz=datetime.timezone.utc
         )
     else:
         raise DeserializationError("StartContentUploadResponse.url_expiry required")
-    if "headersToInclude" in data:
+    if data.get("headersToInclude") is not None:
         import capo_wisdom.types.headers
 
         out["headers_to_include"] = capo_wisdom.types.headers.deserialize_json(

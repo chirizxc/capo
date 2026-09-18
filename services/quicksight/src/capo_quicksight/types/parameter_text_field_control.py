@@ -60,23 +60,23 @@ def serialize_json(value: ParameterTextFieldControl) -> dict:
 
 def deserialize_json(data: dict) -> ParameterTextFieldControl:
     out: ParameterTextFieldControl = {}  # type: ignore[typeddict-item]
-    if "ParameterControlId" in data:
+    if data.get("ParameterControlId") is not None:
         out["parameter_control_id"] = data["ParameterControlId"]
     else:
         raise DeserializationError(
             "ParameterTextFieldControl.parameter_control_id required"
         )
-    if "Title" in data:
+    if data.get("Title") is not None:
         out["title"] = data["Title"]
     else:
         out["title"] = ""
-    if "SourceParameterName" in data:
+    if data.get("SourceParameterName") is not None:
         out["source_parameter_name"] = data["SourceParameterName"]
     else:
         raise DeserializationError(
             "ParameterTextFieldControl.source_parameter_name required"
         )
-    if "DisplayOptions" in data:
+    if data.get("DisplayOptions") is not None:
         import capo_quicksight.types.text_field_control_display_options
 
         out["display_options"] = (
@@ -84,7 +84,7 @@ def deserialize_json(data: dict) -> ParameterTextFieldControl:
                 data["DisplayOptions"]
             )
         )
-    if "ControlTitleFormatText" in data:
+    if data.get("ControlTitleFormatText") is not None:
         import capo_quicksight.types.control_title_format_text
 
         out["control_title_format_text"] = (

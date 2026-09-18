@@ -32,7 +32,7 @@ def serialize_aws_json_1_1(value: StopWorkspacesRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> StopWorkspacesRequest:
     out: StopWorkspacesRequest = {}  # type: ignore[typeddict-item]
-    if "StopWorkspaceRequests" in data:
+    if data.get("StopWorkspaceRequests") is not None:
         import capo_workspaces.types.stop_workspace_requests
 
         out["stop_workspace_requests"] = (

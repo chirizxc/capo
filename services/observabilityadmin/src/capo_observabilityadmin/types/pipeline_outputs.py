@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> PipelineOutputs:
 
     out: PipelineOutputs = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_observabilityadmin.types.pipeline_output.deserialize_json(item))
     return out

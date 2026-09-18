@@ -47,15 +47,15 @@ def serialize_json(value: AssetRevision) -> dict:
 
 def deserialize_json(data: dict) -> AssetRevision:
     out: AssetRevision = {}  # type: ignore[typeddict-item]
-    if "domainId" in data:
+    if data.get("domainId") is not None:
         out["domain_id"] = data["domainId"]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "revision" in data:
+    if data.get("revision") is not None:
         out["revision"] = data["revision"]
-    if "createdBy" in data:
+    if data.get("createdBy") is not None:
         out["created_by"] = data["createdBy"]
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_datazone.types.created_at
 
         out["created_at"] = capo_datazone.types.created_at.deserialize_json(

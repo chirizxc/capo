@@ -100,7 +100,7 @@ def serialize_json(value: WorkspaceSummary) -> dict:
 
 def deserialize_json(data: dict) -> WorkspaceSummary:
     out: WorkspaceSummary = {}  # type: ignore[typeddict-item]
-    if "created" in data:
+    if data.get("created") is not None:
         import capo_grafana.types._prelude.timestamp
 
         out["created"] = capo_grafana.types._prelude.timestamp.deserialize_json(
@@ -108,21 +108,21 @@ def deserialize_json(data: dict) -> WorkspaceSummary:
         )
     else:
         raise DeserializationError("WorkspaceSummary.created required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "endpoint" in data:
+    if data.get("endpoint") is not None:
         out["endpoint"] = data["endpoint"]
     else:
         raise DeserializationError("WorkspaceSummary.endpoint required")
-    if "grafanaVersion" in data:
+    if data.get("grafanaVersion") is not None:
         out["grafana_version"] = data["grafanaVersion"]
     else:
         raise DeserializationError("WorkspaceSummary.grafana_version required")
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("WorkspaceSummary.id required")
-    if "modified" in data:
+    if data.get("modified") is not None:
         import capo_grafana.types._prelude.timestamp
 
         out["modified"] = capo_grafana.types._prelude.timestamp.deserialize_json(
@@ -130,9 +130,9 @@ def deserialize_json(data: dict) -> WorkspaceSummary:
         )
     else:
         raise DeserializationError("WorkspaceSummary.modified required")
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "notificationDestinations" in data:
+    if data.get("notificationDestinations") is not None:
         import capo_grafana.types.notification_destinations_list
 
         out["notification_destinations"] = (
@@ -140,11 +140,11 @@ def deserialize_json(data: dict) -> WorkspaceSummary:
                 data["notificationDestinations"]
             )
         )
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
     else:
         raise DeserializationError("WorkspaceSummary.status required")
-    if "authentication" in data:
+    if data.get("authentication") is not None:
         import capo_grafana.types.authentication_summary
 
         out["authentication"] = (
@@ -154,12 +154,12 @@ def deserialize_json(data: dict) -> WorkspaceSummary:
         )
     else:
         raise DeserializationError("WorkspaceSummary.authentication required")
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_grafana.types.tag_map
 
         out["tags"] = capo_grafana.types.tag_map.deserialize_json(data["tags"])
-    if "licenseType" in data:
+    if data.get("licenseType") is not None:
         out["license_type"] = data["licenseType"]
-    if "grafanaToken" in data:
+    if data.get("grafanaToken") is not None:
         out["grafana_token"] = data["grafanaToken"]
     return out

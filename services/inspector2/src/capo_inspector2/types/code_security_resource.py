@@ -26,7 +26,7 @@ def serialize_json(value: CodeSecurityResource) -> dict:
 
 
 def deserialize_json(data: dict) -> CodeSecurityResource:
-    if "projectId" in data:
+    if data.get("projectId") is not None:
         return {"projectId": data["projectId"]}
     else:
         raise DeserializationError("CodeSecurityResource: no recognized variant key")

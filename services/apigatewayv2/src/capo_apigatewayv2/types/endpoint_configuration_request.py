@@ -34,13 +34,13 @@ def serialize_json(value: EndpointConfigurationRequest) -> dict:
 
 def deserialize_json(data: dict) -> EndpointConfigurationRequest:
     out: EndpointConfigurationRequest = {}  # type: ignore[typeddict-item]
-    if "acmManaged" in data:
+    if data.get("acmManaged") is not None:
         import capo_apigatewayv2.types.acm_managed
 
         out["acm_managed"] = capo_apigatewayv2.types.acm_managed.deserialize_json(
             data["acmManaged"]
         )
-    if "none" in data:
+    if data.get("none") is not None:
         import capo_apigatewayv2.types.none
 
         out["none"] = capo_apigatewayv2.types.none.deserialize_json(data["none"])

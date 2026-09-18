@@ -84,15 +84,15 @@ def serialize_json(value: AssetModelPropertySummary) -> dict:
 
 def deserialize_json(data: dict) -> AssetModelPropertySummary:
     out: AssetModelPropertySummary = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "externalId" in data:
+    if data.get("externalId") is not None:
         out["external_id"] = data["externalId"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("AssetModelPropertySummary.name required")
-    if "dataType" in data:
+    if data.get("dataType") is not None:
         import capo_iotsitewise.types.property_data_type
 
         out["data_type"] = capo_iotsitewise.types.property_data_type.deserialize_json(
@@ -100,11 +100,11 @@ def deserialize_json(data: dict) -> AssetModelPropertySummary:
         )
     else:
         raise DeserializationError("AssetModelPropertySummary.data_type required")
-    if "dataTypeSpec" in data:
+    if data.get("dataTypeSpec") is not None:
         out["data_type_spec"] = data["dataTypeSpec"]
-    if "unit" in data:
+    if data.get("unit") is not None:
         out["unit"] = data["unit"]
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_iotsitewise.types.property_type
 
         out["type"] = capo_iotsitewise.types.property_type.deserialize_json(
@@ -112,15 +112,15 @@ def deserialize_json(data: dict) -> AssetModelPropertySummary:
         )
     else:
         raise DeserializationError("AssetModelPropertySummary.type required")
-    if "assetModelCompositeModelId" in data:
+    if data.get("assetModelCompositeModelId") is not None:
         out["asset_model_composite_model_id"] = data["assetModelCompositeModelId"]
-    if "path" in data:
+    if data.get("path") is not None:
         import capo_iotsitewise.types.asset_model_property_path
 
         out["path"] = capo_iotsitewise.types.asset_model_property_path.deserialize_json(
             data["path"]
         )
-    if "interfaceSummaries" in data:
+    if data.get("interfaceSummaries") is not None:
         import capo_iotsitewise.types.interface_summaries
 
         out["interface_summaries"] = (

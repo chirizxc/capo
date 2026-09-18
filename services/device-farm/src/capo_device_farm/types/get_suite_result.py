@@ -27,7 +27,7 @@ def serialize_aws_json_1_1(value: GetSuiteResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetSuiteResult:
     out: GetSuiteResult = {}  # type: ignore[typeddict-item]
-    if "suite" in data:
+    if data.get("suite") is not None:
         import capo_device_farm.types.suite
 
         out["suite"] = capo_device_farm.types.suite.deserialize_aws_json_1_1(

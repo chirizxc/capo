@@ -35,11 +35,11 @@ def serialize_aws_json_1_1(value: UpdateProfileRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateProfileRequest:
     out: UpdateProfileRequest = {}  # type: ignore[typeddict-item]
-    if "ProfileId" in data:
+    if data.get("ProfileId") is not None:
         out["profile_id"] = data["ProfileId"]
     else:
         raise DeserializationError("UpdateProfileRequest.profile_id required")
-    if "CertificateIds" in data:
+    if data.get("CertificateIds") is not None:
         import capo_transfer.types.certificate_ids
 
         out["certificate_ids"] = (

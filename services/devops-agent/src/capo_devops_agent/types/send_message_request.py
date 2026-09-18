@@ -56,23 +56,23 @@ def serialize_json(value: SendMessageRequest) -> dict:
 
 def deserialize_json(data: dict) -> SendMessageRequest:
     out: SendMessageRequest = {}  # type: ignore[typeddict-item]
-    if "executionId" in data:
+    if data.get("executionId") is not None:
         out["execution_id"] = data["executionId"]
     else:
         raise DeserializationError("SendMessageRequest.execution_id required")
-    if "content" in data:
+    if data.get("content") is not None:
         out["content"] = data["content"]
     else:
         raise DeserializationError("SendMessageRequest.content required")
-    if "context" in data:
+    if data.get("context") is not None:
         import capo_devops_agent.types.send_message_context
 
         out["context"] = capo_devops_agent.types.send_message_context.deserialize_json(
             data["context"]
         )
-    if "userId" in data:
+    if data.get("userId") is not None:
         out["user_id"] = data["userId"]
-    if "assetIds" in data:
+    if data.get("assetIds") is not None:
         import capo_devops_agent.types.asset_id_list
 
         out["asset_ids"] = capo_devops_agent.types.asset_id_list.deserialize_json(

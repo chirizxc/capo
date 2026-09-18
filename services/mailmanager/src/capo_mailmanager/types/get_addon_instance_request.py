@@ -24,7 +24,7 @@ def serialize_aws_json_1_0(value: GetAddonInstanceRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> GetAddonInstanceRequest:
     out: GetAddonInstanceRequest = {}  # type: ignore[typeddict-item]
-    if "AddonInstanceId" in data:
+    if data.get("AddonInstanceId") is not None:
         out["addon_instance_id"] = data["AddonInstanceId"]
     else:
         raise DeserializationError("GetAddonInstanceRequest.addon_instance_id required")

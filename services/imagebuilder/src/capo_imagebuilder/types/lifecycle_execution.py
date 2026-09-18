@@ -77,11 +77,11 @@ def serialize_json(value: LifecycleExecution) -> dict:
 
 def deserialize_json(data: dict) -> LifecycleExecution:
     out: LifecycleExecution = {}  # type: ignore[typeddict-item]
-    if "lifecycleExecutionId" in data:
+    if data.get("lifecycleExecutionId") is not None:
         out["lifecycle_execution_id"] = data["lifecycleExecutionId"]
-    if "lifecyclePolicyArn" in data:
+    if data.get("lifecyclePolicyArn") is not None:
         out["lifecycle_policy_arn"] = data["lifecyclePolicyArn"]
-    if "resourcesImpactedSummary" in data:
+    if data.get("resourcesImpactedSummary") is not None:
         import capo_imagebuilder.types.lifecycle_execution_resources_impacted_summary
 
         out["resources_impacted_summary"] = (
@@ -89,7 +89,7 @@ def deserialize_json(data: dict) -> LifecycleExecution:
                 data["resourcesImpactedSummary"]
             )
         )
-    if "state" in data:
+    if data.get("state") is not None:
         import capo_imagebuilder.types.lifecycle_execution_state
 
         out["state"] = (
@@ -97,7 +97,7 @@ def deserialize_json(data: dict) -> LifecycleExecution:
                 data["state"]
             )
         )
-    if "startTime" in data:
+    if data.get("startTime") is not None:
         import capo_imagebuilder.types.date_time_timestamp
 
         out["start_time"] = (
@@ -105,7 +105,7 @@ def deserialize_json(data: dict) -> LifecycleExecution:
                 data["startTime"]
             )
         )
-    if "endTime" in data:
+    if data.get("endTime") is not None:
         import capo_imagebuilder.types.date_time_timestamp
 
         out["end_time"] = capo_imagebuilder.types.date_time_timestamp.deserialize_json(

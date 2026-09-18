@@ -44,20 +44,20 @@ def serialize_aws_json_1_0(value: KmsAccess) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> KmsAccess:
     out: KmsAccess = {}  # type: ignore[typeddict-item]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_odb.types.managed_resource_status
 
         out["status"] = capo_odb.types.managed_resource_status.deserialize_aws_json_1_0(
             data["status"]
         )
-    if "ipv4Addresses" in data:
+    if data.get("ipv4Addresses") is not None:
         import capo_odb.types.string_list
 
         out["ipv4_addresses"] = capo_odb.types.string_list.deserialize_aws_json_1_0(
             data["ipv4Addresses"]
         )
-    if "domainName" in data:
+    if data.get("domainName") is not None:
         out["domain_name"] = data["domainName"]
-    if "kmsPolicyDocument" in data:
+    if data.get("kmsPolicyDocument") is not None:
         out["kms_policy_document"] = data["kmsPolicyDocument"]
     return out

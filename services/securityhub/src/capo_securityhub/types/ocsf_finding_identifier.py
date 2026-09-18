@@ -37,10 +37,10 @@ def serialize_json(value: OcsfFindingIdentifier) -> dict:
 
 def deserialize_json(data: dict) -> OcsfFindingIdentifier:
     out: OcsfFindingIdentifier = {}  # type: ignore[typeddict-item]
-    if "CloudAccountUid" in data:
+    if data.get("CloudAccountUid") is not None:
         out["cloud_account_uid"] = data["CloudAccountUid"]
-    if "FindingInfoUid" in data:
+    if data.get("FindingInfoUid") is not None:
         out["finding_info_uid"] = data["FindingInfoUid"]
-    if "MetadataProductUid" in data:
+    if data.get("MetadataProductUid") is not None:
         out["metadata_product_uid"] = data["MetadataProductUid"]
     return out

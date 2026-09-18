@@ -100,21 +100,21 @@ def serialize_json(value: ResaleAuthorizationSummary) -> dict:
 
 def deserialize_json(data: dict) -> ResaleAuthorizationSummary:
     out: ResaleAuthorizationSummary = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "ProductId" in data:
+    if data.get("ProductId") is not None:
         out["product_id"] = data["ProductId"]
-    if "ProductName" in data:
+    if data.get("ProductName") is not None:
         out["product_name"] = data["ProductName"]
-    if "ManufacturerAccountId" in data:
+    if data.get("ManufacturerAccountId") is not None:
         out["manufacturer_account_id"] = data["ManufacturerAccountId"]
-    if "ManufacturerLegalName" in data:
+    if data.get("ManufacturerLegalName") is not None:
         out["manufacturer_legal_name"] = data["ManufacturerLegalName"]
-    if "ResellerAccountID" in data:
+    if data.get("ResellerAccountID") is not None:
         out["reseller_account_id"] = data["ResellerAccountID"]
-    if "ResellerLegalName" in data:
+    if data.get("ResellerLegalName") is not None:
         out["reseller_legal_name"] = data["ResellerLegalName"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_marketplace_catalog.types.resale_authorization_status_string
 
         out["status"] = (
@@ -122,10 +122,10 @@ def deserialize_json(data: dict) -> ResaleAuthorizationSummary:
                 data["Status"]
             )
         )
-    if "OfferExtendedStatus" in data:
+    if data.get("OfferExtendedStatus") is not None:
         out["offer_extended_status"] = data["OfferExtendedStatus"]
-    if "CreatedDate" in data:
+    if data.get("CreatedDate") is not None:
         out["created_date"] = data["CreatedDate"]
-    if "AvailabilityEndDate" in data:
+    if data.get("AvailabilityEndDate") is not None:
         out["availability_end_date"] = data["AvailabilityEndDate"]
     return out

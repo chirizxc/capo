@@ -13,9 +13,9 @@ from capo_managedblockchain import AsyncManagedBlockchainClient
 
 
 async def main():
-    async with AsyncManagedBlockchainClient() as s3:
+    async with AsyncManagedBlockchainClient() as managed_blockchain:
         # Example: call the create_accessor operation
-        response = await s3.create_accessor()
+        response = await managed_blockchain.create_accessor()
         print(response["accessor_id"])
 ```
 
@@ -28,9 +28,9 @@ from capo_managedblockchain import AsyncManagedBlockchainClient
 
 
 async def main():
-    async with AsyncManagedBlockchainClient() as s3:
+    async with AsyncManagedBlockchainClient() as managed_blockchain:
         # Example: paginate over list_accessors
-        async for item in s3.iter_list_accessors():
+        async for item in managed_blockchain.iter_list_accessors():
             print(item)
 ```
 
@@ -44,9 +44,9 @@ from capo_managedblockchain.error import AccessDeniedException
 
 
 async def main():
-    async with AsyncManagedBlockchainClient() as s3:
+    async with AsyncManagedBlockchainClient() as managed_blockchain:
         try:
-            await s3.create_accessor()
+            await managed_blockchain.create_accessor()
         except AccessDeniedException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -63,13 +63,13 @@ from capo_managedblockchain import AsyncManagedBlockchainClient
 
 
 async def main():
-    async with AsyncManagedBlockchainClient() as s3:
+    async with AsyncManagedBlockchainClient() as managed_blockchain:
         # Default: 3 attempts for every operation
-        response = await s3.create_accessor()
+        response = await managed_blockchain.create_accessor()
 
         # Override per operation
-        response = await s3.create_accessor(config_overrides={"retry_max_attempts": 5})
+        response = await managed_blockchain.create_accessor(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.create_accessor(config_overrides={"retry_max_attempts": 1})
+        response = await managed_blockchain.create_accessor(config_overrides={"retry_max_attempts": 1})
 ```

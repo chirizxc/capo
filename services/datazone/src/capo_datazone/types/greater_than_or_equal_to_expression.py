@@ -22,13 +22,13 @@ def serialize_json(value: GreaterThanOrEqualToExpression) -> dict:
 
 def deserialize_json(data: dict) -> GreaterThanOrEqualToExpression:
     out: GreaterThanOrEqualToExpression = {}  # type: ignore[typeddict-item]
-    if "columnName" in data:
+    if data.get("columnName") is not None:
         out["column_name"] = data["columnName"]
     else:
         raise DeserializationError(
             "GreaterThanOrEqualToExpression.column_name required"
         )
-    if "value" in data:
+    if data.get("value") is not None:
         out["value"] = data["value"]
     else:
         raise DeserializationError("GreaterThanOrEqualToExpression.value required")

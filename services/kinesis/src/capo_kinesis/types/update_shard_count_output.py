@@ -41,12 +41,12 @@ def serialize_aws_json_1_1(value: UpdateShardCountOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateShardCountOutput:
     out: UpdateShardCountOutput = {}  # type: ignore[typeddict-item]
-    if "StreamName" in data:
+    if data.get("StreamName") is not None:
         out["stream_name"] = data["StreamName"]
-    if "CurrentShardCount" in data:
+    if data.get("CurrentShardCount") is not None:
         out["current_shard_count"] = data["CurrentShardCount"]
-    if "TargetShardCount" in data:
+    if data.get("TargetShardCount") is not None:
         out["target_shard_count"] = data["TargetShardCount"]
-    if "StreamARN" in data:
+    if data.get("StreamARN") is not None:
         out["stream_arn"] = data["StreamARN"]
     return out

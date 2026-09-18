@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> ResourceEndpointList:
 
     out: ResourceEndpointList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_kinesis_video.types.resource_endpoint_list_item.deserialize_json(item)
         )

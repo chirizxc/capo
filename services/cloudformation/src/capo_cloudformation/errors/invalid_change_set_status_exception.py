@@ -37,15 +37,20 @@ class InvalidChangeSetStatusException(ServiceError):
 
     code: str | None = "InvalidChangeSetStatusException"
 
-    def __init__(self, data: InvalidChangeSetStatusException_):
+    def __init__(
+        self, data: InvalidChangeSetStatusException_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="InvalidChangeSetStatusException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_query(cls, el: Element) -> "InvalidChangeSetStatusException":
-        return cls(deserialize_query(el))
+    def from_query(
+        cls, el: Element, message: str | None = None
+    ) -> "InvalidChangeSetStatusException":
+        return cls(deserialize_query(el), message)

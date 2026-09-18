@@ -31,7 +31,7 @@ def serialize_json(value: UpdateSafetyLeverStateRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateSafetyLeverStateRequest:
     out: UpdateSafetyLeverStateRequest = {}  # type: ignore[typeddict-item]
-    if "state" in data:
+    if data.get("state") is not None:
         import capo_fis.types.update_safety_lever_state_input
 
         out["state"] = capo_fis.types.update_safety_lever_state_input.deserialize_json(

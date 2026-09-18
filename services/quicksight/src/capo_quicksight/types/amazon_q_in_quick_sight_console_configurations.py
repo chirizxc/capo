@@ -68,7 +68,7 @@ def serialize_json(value: AmazonQInQuickSightConsoleConfigurations) -> dict:
 
 def deserialize_json(data: dict) -> AmazonQInQuickSightConsoleConfigurations:
     out: AmazonQInQuickSightConsoleConfigurations = {}  # type: ignore[typeddict-item]
-    if "DataQnA" in data:
+    if data.get("DataQnA") is not None:
         import capo_quicksight.types.data_qn_a_configurations
 
         out["data_qn_a"] = (
@@ -76,7 +76,7 @@ def deserialize_json(data: dict) -> AmazonQInQuickSightConsoleConfigurations:
                 data["DataQnA"]
             )
         )
-    if "GenerativeAuthoring" in data:
+    if data.get("GenerativeAuthoring") is not None:
         import capo_quicksight.types.generative_authoring_configurations
 
         out["generative_authoring"] = (
@@ -84,7 +84,7 @@ def deserialize_json(data: dict) -> AmazonQInQuickSightConsoleConfigurations:
                 data["GenerativeAuthoring"]
             )
         )
-    if "ExecutiveSummary" in data:
+    if data.get("ExecutiveSummary") is not None:
         import capo_quicksight.types.executive_summary_configurations
 
         out["executive_summary"] = (
@@ -92,7 +92,7 @@ def deserialize_json(data: dict) -> AmazonQInQuickSightConsoleConfigurations:
                 data["ExecutiveSummary"]
             )
         )
-    if "DataStories" in data:
+    if data.get("DataStories") is not None:
         import capo_quicksight.types.data_stories_configurations
 
         out["data_stories"] = (

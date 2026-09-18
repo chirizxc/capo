@@ -118,29 +118,29 @@ def serialize_json(value: UpdateAIGuardrailRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateAIGuardrailRequest:
     out: UpdateAIGuardrailRequest = {}  # type: ignore[typeddict-item]
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
-    if "visibilityStatus" in data:
+    if data.get("visibilityStatus") is not None:
         out["visibility_status"] = data["visibilityStatus"]
     else:
         raise DeserializationError(
             "UpdateAIGuardrailRequest.visibility_status required"
         )
-    if "blockedInputMessaging" in data:
+    if data.get("blockedInputMessaging") is not None:
         out["blocked_input_messaging"] = data["blockedInputMessaging"]
     else:
         raise DeserializationError(
             "UpdateAIGuardrailRequest.blocked_input_messaging required"
         )
-    if "blockedOutputsMessaging" in data:
+    if data.get("blockedOutputsMessaging") is not None:
         out["blocked_outputs_messaging"] = data["blockedOutputsMessaging"]
     else:
         raise DeserializationError(
             "UpdateAIGuardrailRequest.blocked_outputs_messaging required"
         )
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "topicPolicyConfig" in data:
+    if data.get("topicPolicyConfig") is not None:
         import capo_qconnect.types.ai_guardrail_topic_policy_config
 
         out["topic_policy_config"] = (
@@ -148,7 +148,7 @@ def deserialize_json(data: dict) -> UpdateAIGuardrailRequest:
                 data["topicPolicyConfig"]
             )
         )
-    if "contentPolicyConfig" in data:
+    if data.get("contentPolicyConfig") is not None:
         import capo_qconnect.types.ai_guardrail_content_policy_config
 
         out["content_policy_config"] = (
@@ -156,7 +156,7 @@ def deserialize_json(data: dict) -> UpdateAIGuardrailRequest:
                 data["contentPolicyConfig"]
             )
         )
-    if "wordPolicyConfig" in data:
+    if data.get("wordPolicyConfig") is not None:
         import capo_qconnect.types.ai_guardrail_word_policy_config
 
         out["word_policy_config"] = (
@@ -164,7 +164,7 @@ def deserialize_json(data: dict) -> UpdateAIGuardrailRequest:
                 data["wordPolicyConfig"]
             )
         )
-    if "sensitiveInformationPolicyConfig" in data:
+    if data.get("sensitiveInformationPolicyConfig") is not None:
         import capo_qconnect.types.ai_guardrail_sensitive_information_policy_config
 
         out["sensitive_information_policy_config"] = (
@@ -172,7 +172,7 @@ def deserialize_json(data: dict) -> UpdateAIGuardrailRequest:
                 data["sensitiveInformationPolicyConfig"]
             )
         )
-    if "contextualGroundingPolicyConfig" in data:
+    if data.get("contextualGroundingPolicyConfig") is not None:
         import capo_qconnect.types.ai_guardrail_contextual_grounding_policy_config
 
         out["contextual_grounding_policy_config"] = (

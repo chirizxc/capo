@@ -61,15 +61,15 @@ def serialize_json(value: RestoreTestingSelectionForUpdate) -> dict:
 
 def deserialize_json(data: dict) -> RestoreTestingSelectionForUpdate:
     out: RestoreTestingSelectionForUpdate = {}  # type: ignore[typeddict-item]
-    if "IamRoleArn" in data:
+    if data.get("IamRoleArn") is not None:
         out["iam_role_arn"] = data["IamRoleArn"]
-    if "ProtectedResourceArns" in data:
+    if data.get("ProtectedResourceArns") is not None:
         import capo_backup.types.string_list
 
         out["protected_resource_arns"] = capo_backup.types.string_list.deserialize_json(
             data["ProtectedResourceArns"]
         )
-    if "ProtectedResourceConditions" in data:
+    if data.get("ProtectedResourceConditions") is not None:
         import capo_backup.types.protected_resource_conditions
 
         out["protected_resource_conditions"] = (
@@ -77,7 +77,7 @@ def deserialize_json(data: dict) -> RestoreTestingSelectionForUpdate:
                 data["ProtectedResourceConditions"]
             )
         )
-    if "RestoreMetadataOverrides" in data:
+    if data.get("RestoreMetadataOverrides") is not None:
         import capo_backup.types.sensitive_string_map
 
         out["restore_metadata_overrides"] = (
@@ -85,7 +85,7 @@ def deserialize_json(data: dict) -> RestoreTestingSelectionForUpdate:
                 data["RestoreMetadataOverrides"]
             )
         )
-    if "ValidationWindowHours" in data:
+    if data.get("ValidationWindowHours") is not None:
         out["validation_window_hours"] = data["ValidationWindowHours"]
     else:
         out["validation_window_hours"] = 0

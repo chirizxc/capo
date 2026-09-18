@@ -32,9 +32,9 @@ def serialize_aws_json_1_1(value: NotebookSessionSummary) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> NotebookSessionSummary:
     out: NotebookSessionSummary = {}  # type: ignore[typeddict-item]
-    if "SessionId" in data:
+    if data.get("SessionId") is not None:
         out["session_id"] = data["SessionId"]
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_athena.types.date
 
         out["creation_time"] = capo_athena.types.date.deserialize_aws_json_1_1(

@@ -43,13 +43,13 @@ def serialize_aws_json_1_1(value: GetConnectionsFilter) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetConnectionsFilter:
     out: GetConnectionsFilter = {}  # type: ignore[typeddict-item]
-    if "MatchCriteria" in data:
+    if data.get("MatchCriteria") is not None:
         import capo_glue.types.match_criteria
 
         out["match_criteria"] = capo_glue.types.match_criteria.deserialize_aws_json_1_1(
             data["MatchCriteria"]
         )
-    if "ConnectionType" in data:
+    if data.get("ConnectionType") is not None:
         import capo_glue.types.connection_type
 
         out["connection_type"] = (
@@ -57,6 +57,6 @@ def deserialize_aws_json_1_1(data: dict) -> GetConnectionsFilter:
                 data["ConnectionType"]
             )
         )
-    if "ConnectionSchemaVersion" in data:
+    if data.get("ConnectionSchemaVersion") is not None:
         out["connection_schema_version"] = data["ConnectionSchemaVersion"]
     return out

@@ -56,20 +56,20 @@ def serialize_json(value: AwsEc2LaunchTemplateDataPlacementDetails) -> dict:
 
 def deserialize_json(data: dict) -> AwsEc2LaunchTemplateDataPlacementDetails:
     out: AwsEc2LaunchTemplateDataPlacementDetails = {}  # type: ignore[typeddict-item]
-    if "Affinity" in data:
+    if data.get("Affinity") is not None:
         out["affinity"] = data["Affinity"]
-    if "AvailabilityZone" in data:
+    if data.get("AvailabilityZone") is not None:
         out["availability_zone"] = data["AvailabilityZone"]
-    if "GroupName" in data:
+    if data.get("GroupName") is not None:
         out["group_name"] = data["GroupName"]
-    if "HostId" in data:
+    if data.get("HostId") is not None:
         out["host_id"] = data["HostId"]
-    if "HostResourceGroupArn" in data:
+    if data.get("HostResourceGroupArn") is not None:
         out["host_resource_group_arn"] = data["HostResourceGroupArn"]
-    if "PartitionNumber" in data:
+    if data.get("PartitionNumber") is not None:
         out["partition_number"] = data["PartitionNumber"]
-    if "SpreadDomain" in data:
+    if data.get("SpreadDomain") is not None:
         out["spread_domain"] = data["SpreadDomain"]
-    if "Tenancy" in data:
+    if data.get("Tenancy") is not None:
         out["tenancy"] = data["Tenancy"]
     return out

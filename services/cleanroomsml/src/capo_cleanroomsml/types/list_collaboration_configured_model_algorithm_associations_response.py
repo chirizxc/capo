@@ -41,9 +41,9 @@ def deserialize_json(
     data: dict,
 ) -> ListCollaborationConfiguredModelAlgorithmAssociationsResponse:
     out: ListCollaborationConfiguredModelAlgorithmAssociationsResponse = {}  # type: ignore[typeddict-item]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "collaborationConfiguredModelAlgorithmAssociations" in data:
+    if data.get("collaborationConfiguredModelAlgorithmAssociations") is not None:
         import capo_cleanroomsml.types.collaboration_configured_model_algorithm_association_list
 
         out["collaboration_configured_model_algorithm_associations"] = (

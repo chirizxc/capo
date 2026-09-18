@@ -69,7 +69,7 @@ def serialize_json(value: RealTimeAlertRule) -> dict:
 
 def deserialize_json(data: dict) -> RealTimeAlertRule:
     out: RealTimeAlertRule = {}  # type: ignore[typeddict-item]
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_chime_sdk_media_pipelines.types.real_time_alert_rule_type
 
         out["type"] = (
@@ -79,7 +79,7 @@ def deserialize_json(data: dict) -> RealTimeAlertRule:
         )
     else:
         raise DeserializationError("RealTimeAlertRule.type required")
-    if "KeywordMatchConfiguration" in data:
+    if data.get("KeywordMatchConfiguration") is not None:
         import capo_chime_sdk_media_pipelines.types.keyword_match_configuration
 
         out["keyword_match_configuration"] = (
@@ -87,7 +87,7 @@ def deserialize_json(data: dict) -> RealTimeAlertRule:
                 data["KeywordMatchConfiguration"]
             )
         )
-    if "SentimentConfiguration" in data:
+    if data.get("SentimentConfiguration") is not None:
         import capo_chime_sdk_media_pipelines.types.sentiment_configuration
 
         out["sentiment_configuration"] = (
@@ -95,7 +95,7 @@ def deserialize_json(data: dict) -> RealTimeAlertRule:
                 data["SentimentConfiguration"]
             )
         )
-    if "IssueDetectionConfiguration" in data:
+    if data.get("IssueDetectionConfiguration") is not None:
         import capo_chime_sdk_media_pipelines.types.issue_detection_configuration
 
         out["issue_detection_configuration"] = (

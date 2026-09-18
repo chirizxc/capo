@@ -29,7 +29,15 @@ def serialize_json(value: Cvss) -> dict:
     if "version" in value:
         out["Version"] = value["version"]
     if "base_score" in value:
-        out["BaseScore"] = value["base_score"]
+        out["BaseScore"] = (
+            "NaN"
+            if value["base_score"] != value["base_score"]
+            else "Infinity"
+            if value["base_score"] == float("inf")
+            else "-Infinity"
+            if value["base_score"] == float("-inf")
+            else value["base_score"]
+        )
     if "base_vector" in value:
         out["BaseVector"] = value["base_vector"]
     if "source" in value:
@@ -45,15 +53,15 @@ def serialize_json(value: Cvss) -> dict:
 
 def deserialize_json(data: dict) -> Cvss:
     out: Cvss = {}  # type: ignore[typeddict-item]
-    if "Version" in data:
+    if data.get("Version") is not None:
         out["version"] = data["Version"]
-    if "BaseScore" in data:
-        out["base_score"] = data["BaseScore"]
-    if "BaseVector" in data:
+    if data.get("BaseScore") is not None:
+        out["base_score"] = float(data["BaseScore"])
+    if data.get("BaseVector") is not None:
         out["base_vector"] = data["BaseVector"]
-    if "Source" in data:
+    if data.get("Source") is not None:
         out["source"] = data["Source"]
-    if "Adjustments" in data:
+    if data.get("Adjustments") is not None:
         import capo_securityhub.types.adjustment_list
 
         out["adjustments"] = capo_securityhub.types.adjustment_list.deserialize_json(

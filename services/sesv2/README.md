@@ -13,9 +13,9 @@ from capo_sesv2 import AsyncSESv2Client
 
 
 async def main():
-    async with AsyncSESv2Client() as s3:
+    async with AsyncSESv2Client() as se_sv2:
         # Example: call the batch_get_metric_data operation
-        response = await s3.batch_get_metric_data()
+        response = await se_sv2.batch_get_metric_data()
         print(response["results"])
 ```
 
@@ -28,9 +28,9 @@ from capo_sesv2 import AsyncSESv2Client
 
 
 async def main():
-    async with AsyncSESv2Client() as s3:
-        # Example: paginate over list_multi_region_endpoints
-        async for item in s3.iter_list_multi_region_endpoints():
+    async with AsyncSESv2Client() as se_sv2:
+        # Example: paginate over get_dedicated_ips
+        async for item in se_sv2.iter_get_dedicated_ips():
             print(item)
 ```
 
@@ -44,9 +44,9 @@ from capo_sesv2.error import BadRequestException
 
 
 async def main():
-    async with AsyncSESv2Client() as s3:
+    async with AsyncSESv2Client() as se_sv2:
         try:
-            await s3.batch_get_metric_data()
+            await se_sv2.batch_get_metric_data()
         except BadRequestException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -63,13 +63,13 @@ from capo_sesv2 import AsyncSESv2Client
 
 
 async def main():
-    async with AsyncSESv2Client() as s3:
+    async with AsyncSESv2Client() as se_sv2:
         # Default: 3 attempts for every operation
-        response = await s3.batch_get_metric_data()
+        response = await se_sv2.batch_get_metric_data()
 
         # Override per operation
-        response = await s3.batch_get_metric_data(config_overrides={"retry_max_attempts": 5})
+        response = await se_sv2.batch_get_metric_data(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.batch_get_metric_data(config_overrides={"retry_max_attempts": 1})
+        response = await se_sv2.batch_get_metric_data(config_overrides={"retry_max_attempts": 1})
 ```

@@ -43,7 +43,7 @@ def serialize_aws_json_1_1(value: Rule) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Rule:
     out: Rule = {}  # type: ignore[typeddict-item]
-    if "attribute" in data:
+    if data.get("attribute") is not None:
         import capo_device_farm.types.device_attribute
 
         out["attribute"] = (
@@ -51,12 +51,12 @@ def deserialize_aws_json_1_1(data: dict) -> Rule:
                 data["attribute"]
             )
         )
-    if "operator" in data:
+    if data.get("operator") is not None:
         import capo_device_farm.types.rule_operator
 
         out["operator"] = capo_device_farm.types.rule_operator.deserialize_aws_json_1_1(
             data["operator"]
         )
-    if "value" in data:
+    if data.get("value") is not None:
         out["value"] = data["value"]
     return out

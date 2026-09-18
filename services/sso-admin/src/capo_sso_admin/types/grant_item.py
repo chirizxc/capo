@@ -34,7 +34,7 @@ def serialize_aws_json_1_1(value: GrantItem) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GrantItem:
     out: GrantItem = {}  # type: ignore[typeddict-item]
-    if "GrantType" in data:
+    if data.get("GrantType") is not None:
         import capo_sso_admin.types.grant_type
 
         out["grant_type"] = capo_sso_admin.types.grant_type.deserialize_aws_json_1_1(
@@ -42,7 +42,7 @@ def deserialize_aws_json_1_1(data: dict) -> GrantItem:
         )
     else:
         raise DeserializationError("GrantItem.grant_type required")
-    if "Grant" in data:
+    if data.get("Grant") is not None:
         import capo_sso_admin.types.grant
 
         out["grant"] = capo_sso_admin.types.grant.deserialize_aws_json_1_1(

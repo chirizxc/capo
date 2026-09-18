@@ -23,5 +23,7 @@ def deserialize_aws_json_1_1(data: list) -> RegionList:
 
     out: RegionList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_lightsail.types.region.deserialize_aws_json_1_1(item))
     return out

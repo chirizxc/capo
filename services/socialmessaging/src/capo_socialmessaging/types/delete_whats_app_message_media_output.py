@@ -18,6 +18,6 @@ def serialize_json(value: DeleteWhatsAppMessageMediaOutput) -> dict:
 
 def deserialize_json(data: dict) -> DeleteWhatsAppMessageMediaOutput:
     out: DeleteWhatsAppMessageMediaOutput = {}  # type: ignore[typeddict-item]
-    if "success" in data:
+    if data.get("success") is not None:
         out["success"] = data["success"]
     return out

@@ -34,7 +34,7 @@ def serialize_aws_json_1_1(value: DeleteUserAttributesRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteUserAttributesRequest:
     out: DeleteUserAttributesRequest = {}  # type: ignore[typeddict-item]
-    if "UserAttributeNames" in data:
+    if data.get("UserAttributeNames") is not None:
         import capo_cognito_identity_provider.types.attribute_name_list_type
 
         out["user_attribute_names"] = (
@@ -46,7 +46,7 @@ def deserialize_aws_json_1_1(data: dict) -> DeleteUserAttributesRequest:
         raise DeserializationError(
             "DeleteUserAttributesRequest.user_attribute_names required"
         )
-    if "AccessToken" in data:
+    if data.get("AccessToken") is not None:
         out["access_token"] = data["AccessToken"]
     else:
         raise DeserializationError("DeleteUserAttributesRequest.access_token required")

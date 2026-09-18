@@ -81,13 +81,13 @@ def serialize_aws_json_1_0(value: UpdateFHIRDatastoreRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> UpdateFHIRDatastoreRequest:
     out: UpdateFHIRDatastoreRequest = {}  # type: ignore[typeddict-item]
-    if "DatastoreId" in data:
+    if data.get("DatastoreId") is not None:
         out["datastore_id"] = data["DatastoreId"]
     else:
         raise DeserializationError("UpdateFHIRDatastoreRequest.datastore_id required")
-    if "DatastoreName" in data:
+    if data.get("DatastoreName") is not None:
         out["datastore_name"] = data["DatastoreName"]
-    if "AnalyticsConfiguration" in data:
+    if data.get("AnalyticsConfiguration") is not None:
         import capo_healthlake.types.analytics_configuration
 
         out["analytics_configuration"] = (
@@ -95,7 +95,7 @@ def deserialize_aws_json_1_0(data: dict) -> UpdateFHIRDatastoreRequest:
                 data["AnalyticsConfiguration"]
             )
         )
-    if "NlpConfiguration" in data:
+    if data.get("NlpConfiguration") is not None:
         import capo_healthlake.types.nlp_configuration
 
         out["nlp_configuration"] = (
@@ -103,7 +103,7 @@ def deserialize_aws_json_1_0(data: dict) -> UpdateFHIRDatastoreRequest:
                 data["NlpConfiguration"]
             )
         )
-    if "ProfileConfiguration" in data:
+    if data.get("ProfileConfiguration") is not None:
         import capo_healthlake.types.profile_configuration
 
         out["profile_configuration"] = (
@@ -111,7 +111,7 @@ def deserialize_aws_json_1_0(data: dict) -> UpdateFHIRDatastoreRequest:
                 data["ProfileConfiguration"]
             )
         )
-    if "IdentityProviderConfiguration" in data:
+    if data.get("IdentityProviderConfiguration") is not None:
         import capo_healthlake.types.identity_provider_configuration
 
         out["identity_provider_configuration"] = (

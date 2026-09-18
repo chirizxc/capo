@@ -47,11 +47,11 @@ def serialize_json(value: ExplicitHierarchy) -> dict:
 
 def deserialize_json(data: dict) -> ExplicitHierarchy:
     out: ExplicitHierarchy = {}  # type: ignore[typeddict-item]
-    if "HierarchyId" in data:
+    if data.get("HierarchyId") is not None:
         out["hierarchy_id"] = data["HierarchyId"]
     else:
         raise DeserializationError("ExplicitHierarchy.hierarchy_id required")
-    if "Columns" in data:
+    if data.get("Columns") is not None:
         import capo_quicksight.types.explicit_hierarchy_column_list
 
         out["columns"] = (
@@ -61,7 +61,7 @@ def deserialize_json(data: dict) -> ExplicitHierarchy:
         )
     else:
         raise DeserializationError("ExplicitHierarchy.columns required")
-    if "DrillDownFilters" in data:
+    if data.get("DrillDownFilters") is not None:
         import capo_quicksight.types.drill_down_filter_list
 
         out["drill_down_filters"] = (

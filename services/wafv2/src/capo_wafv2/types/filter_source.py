@@ -31,10 +31,10 @@ def serialize_aws_json_1_1(value: FilterSource) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> FilterSource:
     out: FilterSource = {}  # type: ignore[typeddict-item]
-    if "BotCategory" in data:
+    if data.get("BotCategory") is not None:
         out["bot_category"] = data["BotCategory"]
-    if "BotOrganization" in data:
+    if data.get("BotOrganization") is not None:
         out["bot_organization"] = data["BotOrganization"]
-    if "BotName" in data:
+    if data.get("BotName") is not None:
         out["bot_name"] = data["BotName"]
     return out

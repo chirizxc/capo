@@ -44,7 +44,7 @@ def serialize_json(value: ConversationLogSettings) -> dict:
 
 def deserialize_json(data: dict) -> ConversationLogSettings:
     out: ConversationLogSettings = {}  # type: ignore[typeddict-item]
-    if "textLogSettings" in data:
+    if data.get("textLogSettings") is not None:
         import capo_lex_models_v2.types.text_log_settings_list
 
         out["text_log_settings"] = (
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> ConversationLogSettings:
                 data["textLogSettings"]
             )
         )
-    if "audioLogSettings" in data:
+    if data.get("audioLogSettings") is not None:
         import capo_lex_models_v2.types.audio_log_settings_list
 
         out["audio_log_settings"] = (

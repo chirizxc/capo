@@ -57,7 +57,7 @@ def serialize_json(value: LambdaLayerAggregation) -> dict:
 
 def deserialize_json(data: dict) -> LambdaLayerAggregation:
     out: LambdaLayerAggregation = {}  # type: ignore[typeddict-item]
-    if "functionNames" in data:
+    if data.get("functionNames") is not None:
         import capo_inspector2.types.string_filter_list
 
         out["function_names"] = (
@@ -65,20 +65,20 @@ def deserialize_json(data: dict) -> LambdaLayerAggregation:
                 data["functionNames"]
             )
         )
-    if "resourceIds" in data:
+    if data.get("resourceIds") is not None:
         import capo_inspector2.types.string_filter_list
 
         out["resource_ids"] = capo_inspector2.types.string_filter_list.deserialize_json(
             data["resourceIds"]
         )
-    if "layerArns" in data:
+    if data.get("layerArns") is not None:
         import capo_inspector2.types.string_filter_list
 
         out["layer_arns"] = capo_inspector2.types.string_filter_list.deserialize_json(
             data["layerArns"]
         )
-    if "sortOrder" in data:
+    if data.get("sortOrder") is not None:
         out["sort_order"] = data["sortOrder"]
-    if "sortBy" in data:
+    if data.get("sortBy") is not None:
         out["sort_by"] = data["sortBy"]
     return out

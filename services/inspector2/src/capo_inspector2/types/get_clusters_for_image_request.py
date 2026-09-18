@@ -41,7 +41,7 @@ def serialize_json(value: GetClustersForImageRequest) -> dict:
 
 def deserialize_json(data: dict) -> GetClustersForImageRequest:
     out: GetClustersForImageRequest = {}  # type: ignore[typeddict-item]
-    if "filter" in data:
+    if data.get("filter") is not None:
         import capo_inspector2.types.cluster_for_image_filter_criteria
 
         out["filter"] = (
@@ -51,8 +51,8 @@ def deserialize_json(data: dict) -> GetClustersForImageRequest:
         )
     else:
         raise DeserializationError("GetClustersForImageRequest.filter required")
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

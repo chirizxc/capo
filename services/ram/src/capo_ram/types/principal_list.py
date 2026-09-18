@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> PrincipalList:
 
     out: PrincipalList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_ram.types.principal.deserialize_json(item))
     return out

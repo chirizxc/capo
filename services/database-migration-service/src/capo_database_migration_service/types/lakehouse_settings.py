@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: LakehouseSettings) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> LakehouseSettings:
     out: LakehouseSettings = {}  # type: ignore[typeddict-item]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
     else:
         raise DeserializationError("LakehouseSettings.arn required")

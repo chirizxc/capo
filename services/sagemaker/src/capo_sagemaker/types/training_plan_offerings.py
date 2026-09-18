@@ -27,6 +27,8 @@ def deserialize_aws_json_1_1(data: list) -> TrainingPlanOfferings:
 
     out: TrainingPlanOfferings = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_sagemaker.types.training_plan_offering.deserialize_aws_json_1_1(item)
         )

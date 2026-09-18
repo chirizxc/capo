@@ -27,6 +27,6 @@ def serialize_json(value: InvokeEndpointAsyncOutput) -> dict:
 
 def deserialize_json(data: dict) -> InvokeEndpointAsyncOutput:
     out: InvokeEndpointAsyncOutput = {}  # type: ignore[typeddict-item]
-    if "InferenceId" in data:
+    if data.get("InferenceId") is not None:
         out["inference_id"] = data["InferenceId"]
     return out

@@ -173,7 +173,7 @@ def serialize_json(value: AddOutputRequest) -> dict:
 
 def deserialize_json(data: dict) -> AddOutputRequest:
     out: AddOutputRequest = {}  # type: ignore[typeddict-item]
-    if "cidrAllowList" in data:
+    if data.get("cidrAllowList") is not None:
         import capo_mediaconnect.types.__list_of_string
 
         out["cidr_allow_list"] = (
@@ -181,19 +181,19 @@ def deserialize_json(data: dict) -> AddOutputRequest:
                 data["cidrAllowList"]
             )
         )
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "destination" in data:
+    if data.get("destination") is not None:
         out["destination"] = data["destination"]
-    if "encryption" in data:
+    if data.get("encryption") is not None:
         import capo_mediaconnect.types.encryption
 
         out["encryption"] = capo_mediaconnect.types.encryption.deserialize_json(
             data["encryption"]
         )
-    if "maxLatency" in data:
+    if data.get("maxLatency") is not None:
         out["max_latency"] = data["maxLatency"]
-    if "mediaStreamOutputConfigurations" in data:
+    if data.get("mediaStreamOutputConfigurations") is not None:
         import capo_mediaconnect.types.__list_of_media_stream_output_configuration_request
 
         out["media_stream_output_configurations"] = (
@@ -201,27 +201,27 @@ def deserialize_json(data: dict) -> AddOutputRequest:
                 data["mediaStreamOutputConfigurations"]
             )
         )
-    if "minLatency" in data:
+    if data.get("minLatency") is not None:
         out["min_latency"] = data["minLatency"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "port" in data:
+    if data.get("port") is not None:
         out["port"] = data["port"]
-    if "protocol" in data:
+    if data.get("protocol") is not None:
         import capo_mediaconnect.types.protocol
 
         out["protocol"] = capo_mediaconnect.types.protocol.deserialize_json(
             data["protocol"]
         )
-    if "remoteId" in data:
+    if data.get("remoteId") is not None:
         out["remote_id"] = data["remoteId"]
-    if "senderControlPort" in data:
+    if data.get("senderControlPort") is not None:
         out["sender_control_port"] = data["senderControlPort"]
-    if "smoothingLatency" in data:
+    if data.get("smoothingLatency") is not None:
         out["smoothing_latency"] = data["smoothingLatency"]
-    if "streamId" in data:
+    if data.get("streamId") is not None:
         out["stream_id"] = data["streamId"]
-    if "vpcInterfaceAttachment" in data:
+    if data.get("vpcInterfaceAttachment") is not None:
         import capo_mediaconnect.types.vpc_interface_attachment
 
         out["vpc_interface_attachment"] = (
@@ -229,23 +229,23 @@ def deserialize_json(data: dict) -> AddOutputRequest:
                 data["vpcInterfaceAttachment"]
             )
         )
-    if "outputStatus" in data:
+    if data.get("outputStatus") is not None:
         import capo_mediaconnect.types.output_status
 
         out["output_status"] = capo_mediaconnect.types.output_status.deserialize_json(
             data["outputStatus"]
         )
-    if "ndiSpeedHqQuality" in data:
+    if data.get("ndiSpeedHqQuality") is not None:
         out["ndi_speed_hq_quality"] = data["ndiSpeedHqQuality"]
-    if "ndiProgramName" in data:
+    if data.get("ndiProgramName") is not None:
         out["ndi_program_name"] = data["ndiProgramName"]
-    if "outputTags" in data:
+    if data.get("outputTags") is not None:
         import capo_mediaconnect.types.__map_of_string
 
         out["output_tags"] = capo_mediaconnect.types.__map_of_string.deserialize_json(
             data["outputTags"]
         )
-    if "routerIntegrationState" in data:
+    if data.get("routerIntegrationState") is not None:
         import capo_mediaconnect.types.state
 
         out["router_integration_state"] = (
@@ -253,7 +253,7 @@ def deserialize_json(data: dict) -> AddOutputRequest:
                 data["routerIntegrationState"]
             )
         )
-    if "routerIntegrationTransitEncryption" in data:
+    if data.get("routerIntegrationTransitEncryption") is not None:
         import capo_mediaconnect.types.flow_transit_encryption
 
         out["router_integration_transit_encryption"] = (
@@ -261,7 +261,7 @@ def deserialize_json(data: dict) -> AddOutputRequest:
                 data["routerIntegrationTransitEncryption"]
             )
         )
-    if "ndiOutputTimecodeSource" in data:
+    if data.get("ndiOutputTimecodeSource") is not None:
         import capo_mediaconnect.types.ndi_output_timecode_source
 
         out["ndi_output_timecode_source"] = (

@@ -29,6 +29,8 @@ def deserialize_aws_json_1_1(data: list) -> ComplianceSummariesByResourceType:
 
     out: ComplianceSummariesByResourceType = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_config_service.types.compliance_summary_by_resource_type.deserialize_aws_json_1_1(
                 item

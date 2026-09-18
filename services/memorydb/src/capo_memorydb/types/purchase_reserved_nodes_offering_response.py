@@ -27,7 +27,7 @@ def serialize_aws_json_1_1(value: PurchaseReservedNodesOfferingResponse) -> dict
 
 def deserialize_aws_json_1_1(data: dict) -> PurchaseReservedNodesOfferingResponse:
     out: PurchaseReservedNodesOfferingResponse = {}  # type: ignore[typeddict-item]
-    if "ReservedNode" in data:
+    if data.get("ReservedNode") is not None:
         import capo_memorydb.types.reserved_node
 
         out["reserved_node"] = (

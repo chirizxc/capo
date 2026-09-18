@@ -45,11 +45,11 @@ def serialize_json(value: ChatExecution) -> dict:
 
 def deserialize_json(data: dict) -> ChatExecution:
     out: ChatExecution = {}  # type: ignore[typeddict-item]
-    if "executionId" in data:
+    if data.get("executionId") is not None:
         out["execution_id"] = data["executionId"]
     else:
         raise DeserializationError("ChatExecution.execution_id required")
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_devops_agent.types._prelude.timestamp
 
         out["created_at"] = capo_devops_agent.types._prelude.timestamp.deserialize_json(
@@ -57,12 +57,12 @@ def deserialize_json(data: dict) -> ChatExecution:
         )
     else:
         raise DeserializationError("ChatExecution.created_at required")
-    if "updatedAt" in data:
+    if data.get("updatedAt") is not None:
         import capo_devops_agent.types._prelude.timestamp
 
         out["updated_at"] = capo_devops_agent.types._prelude.timestamp.deserialize_json(
             data["updatedAt"]
         )
-    if "summary" in data:
+    if data.get("summary") is not None:
         out["summary"] = data["summary"]
     return out

@@ -50,7 +50,7 @@ def serialize_json(value: ReEncryptionAttributes) -> dict:
 
 
 def deserialize_json(data: dict) -> ReEncryptionAttributes:
-    if "Symmetric" in data:
+    if data.get("Symmetric") is not None:
         import capo_payment_cryptography_data.types.symmetric_encryption_attributes
 
         return {
@@ -58,7 +58,7 @@ def deserialize_json(data: dict) -> ReEncryptionAttributes:
                 data["Symmetric"]
             )
         }
-    elif "Dukpt" in data:
+    elif data.get("Dukpt") is not None:
         import capo_payment_cryptography_data.types.dukpt_encryption_attributes
 
         return {

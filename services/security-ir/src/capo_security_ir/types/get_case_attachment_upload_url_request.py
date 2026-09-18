@@ -35,18 +35,18 @@ def serialize_json(value: GetCaseAttachmentUploadUrlRequest) -> dict:
 
 def deserialize_json(data: dict) -> GetCaseAttachmentUploadUrlRequest:
     out: GetCaseAttachmentUploadUrlRequest = {}  # type: ignore[typeddict-item]
-    if "fileName" in data:
+    if data.get("fileName") is not None:
         out["file_name"] = data["fileName"]
     else:
         raise DeserializationError(
             "GetCaseAttachmentUploadUrlRequest.file_name required"
         )
-    if "contentLength" in data:
+    if data.get("contentLength") is not None:
         out["content_length"] = data["contentLength"]
     else:
         raise DeserializationError(
             "GetCaseAttachmentUploadUrlRequest.content_length required"
         )
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     return out

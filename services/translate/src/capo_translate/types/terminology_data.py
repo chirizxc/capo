@@ -47,7 +47,7 @@ def serialize_aws_json_1_1(value: TerminologyData) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> TerminologyData:
     out: TerminologyData = {}  # type: ignore[typeddict-item]
-    if "File" in data:
+    if data.get("File") is not None:
         import capo_translate.types.terminology_file
 
         out["file"] = capo_translate.types.terminology_file.deserialize_aws_json_1_1(
@@ -55,7 +55,7 @@ def deserialize_aws_json_1_1(data: dict) -> TerminologyData:
         )
     else:
         raise DeserializationError("TerminologyData.file required")
-    if "Format" in data:
+    if data.get("Format") is not None:
         import capo_translate.types.terminology_data_format
 
         out["format"] = (
@@ -65,7 +65,7 @@ def deserialize_aws_json_1_1(data: dict) -> TerminologyData:
         )
     else:
         raise DeserializationError("TerminologyData.format required")
-    if "Directionality" in data:
+    if data.get("Directionality") is not None:
         import capo_translate.types.directionality
 
         out["directionality"] = (

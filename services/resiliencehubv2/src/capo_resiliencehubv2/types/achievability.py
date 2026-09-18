@@ -55,7 +55,7 @@ def serialize_json(value: Achievability) -> dict:
 
 def deserialize_json(data: dict) -> Achievability:
     out: Achievability = {}  # type: ignore[typeddict-item]
-    if "availabilitySlo" in data:
+    if data.get("availabilitySlo") is not None:
         import capo_resiliencehubv2.types.achievability_status
 
         out["availability_slo"] = (
@@ -63,7 +63,7 @@ def deserialize_json(data: dict) -> Achievability:
                 data["availabilitySlo"]
             )
         )
-    if "multiAzRtoRpo" in data:
+    if data.get("multiAzRtoRpo") is not None:
         import capo_resiliencehubv2.types.achievability_status
 
         out["multi_az_rto_rpo"] = (
@@ -71,7 +71,7 @@ def deserialize_json(data: dict) -> Achievability:
                 data["multiAzRtoRpo"]
             )
         )
-    if "multiRegionRtoRpo" in data:
+    if data.get("multiRegionRtoRpo") is not None:
         import capo_resiliencehubv2.types.achievability_status
 
         out["multi_region_rto_rpo"] = (

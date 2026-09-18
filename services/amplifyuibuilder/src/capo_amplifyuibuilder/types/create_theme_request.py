@@ -34,7 +34,7 @@ def serialize_json(value: CreateThemeRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateThemeRequest:
     out: CreateThemeRequest = {}  # type: ignore[typeddict-item]
-    if "themeToCreate" in data:
+    if data.get("themeToCreate") is not None:
         import capo_amplifyuibuilder.types.create_theme_data
 
         out["theme_to_create"] = (

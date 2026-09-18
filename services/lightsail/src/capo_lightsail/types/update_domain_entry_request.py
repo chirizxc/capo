@@ -32,11 +32,11 @@ def serialize_aws_json_1_1(value: UpdateDomainEntryRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateDomainEntryRequest:
     out: UpdateDomainEntryRequest = {}  # type: ignore[typeddict-item]
-    if "domainName" in data:
+    if data.get("domainName") is not None:
         out["domain_name"] = data["domainName"]
     else:
         raise DeserializationError("UpdateDomainEntryRequest.domain_name required")
-    if "domainEntry" in data:
+    if data.get("domainEntry") is not None:
         import capo_lightsail.types.domain_entry
 
         out["domain_entry"] = (

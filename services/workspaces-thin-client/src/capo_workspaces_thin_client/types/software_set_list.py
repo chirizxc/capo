@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> SoftwareSetList:
 
     out: SoftwareSetList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_workspaces_thin_client.types.software_set_summary.deserialize_json(
                 item

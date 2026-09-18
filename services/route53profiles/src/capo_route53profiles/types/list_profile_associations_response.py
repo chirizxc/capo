@@ -36,7 +36,7 @@ def serialize_json(value: ListProfileAssociationsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListProfileAssociationsResponse:
     out: ListProfileAssociationsResponse = {}  # type: ignore[typeddict-item]
-    if "ProfileAssociations" in data:
+    if data.get("ProfileAssociations") is not None:
         import capo_route53profiles.types.profile_associations
 
         out["profile_associations"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> ListProfileAssociationsResponse:
                 data["ProfileAssociations"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

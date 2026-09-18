@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> AdvancedEventSelectors:
 
     out: AdvancedEventSelectors = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_observabilityadmin.types.advanced_event_selector.deserialize_json(item)
         )

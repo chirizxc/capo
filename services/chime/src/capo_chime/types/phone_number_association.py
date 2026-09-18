@@ -45,15 +45,15 @@ def serialize_json(value: PhoneNumberAssociation) -> dict:
 
 def deserialize_json(data: dict) -> PhoneNumberAssociation:
     out: PhoneNumberAssociation = {}  # type: ignore[typeddict-item]
-    if "Value" in data:
+    if data.get("Value") is not None:
         out["value"] = data["Value"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         import capo_chime.types.phone_number_association_name
 
         out["name"] = capo_chime.types.phone_number_association_name.deserialize_json(
             data["Name"]
         )
-    if "AssociatedTimestamp" in data:
+    if data.get("AssociatedTimestamp") is not None:
         import capo_chime.types.iso8601_timestamp
 
         out["associated_timestamp"] = (

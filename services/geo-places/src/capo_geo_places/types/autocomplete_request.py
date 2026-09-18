@@ -86,27 +86,27 @@ def serialize_json(value: AutocompleteRequest) -> dict:
 
 def deserialize_json(data: dict) -> AutocompleteRequest:
     out: AutocompleteRequest = {}  # type: ignore[typeddict-item]
-    if "QueryText" in data:
+    if data.get("QueryText") is not None:
         out["query_text"] = data["QueryText"]
     else:
         raise DeserializationError("AutocompleteRequest.query_text required")
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "BiasPosition" in data:
+    if data.get("BiasPosition") is not None:
         import capo_geo_places.types.position
 
         out["bias_position"] = capo_geo_places.types.position.deserialize_json(
             data["BiasPosition"]
         )
-    if "Filter" in data:
+    if data.get("Filter") is not None:
         import capo_geo_places.types.autocomplete_filter
 
         out["filter"] = capo_geo_places.types.autocomplete_filter.deserialize_json(
             data["Filter"]
         )
-    if "PostalCodeMode" in data:
+    if data.get("PostalCodeMode") is not None:
         out["postal_code_mode"] = data["PostalCodeMode"]
-    if "AdditionalFeatures" in data:
+    if data.get("AdditionalFeatures") is not None:
         import capo_geo_places.types.autocomplete_additional_feature_list
 
         out["additional_features"] = (
@@ -114,10 +114,10 @@ def deserialize_json(data: dict) -> AutocompleteRequest:
                 data["AdditionalFeatures"]
             )
         )
-    if "Language" in data:
+    if data.get("Language") is not None:
         out["language"] = data["Language"]
-    if "PoliticalView" in data:
+    if data.get("PoliticalView") is not None:
         out["political_view"] = data["PoliticalView"]
-    if "IntendedUse" in data:
+    if data.get("IntendedUse") is not None:
         out["intended_use"] = data["IntendedUse"]
     return out

@@ -67,17 +67,17 @@ def serialize_json(value: StartAnnotationImportRequest) -> dict:
 
 def deserialize_json(data: dict) -> StartAnnotationImportRequest:
     out: StartAnnotationImportRequest = {}  # type: ignore[typeddict-item]
-    if "destinationName" in data:
+    if data.get("destinationName") is not None:
         out["destination_name"] = data["destinationName"]
     else:
         raise DeserializationError(
             "StartAnnotationImportRequest.destination_name required"
         )
-    if "roleArn" in data:
+    if data.get("roleArn") is not None:
         out["role_arn"] = data["roleArn"]
     else:
         raise DeserializationError("StartAnnotationImportRequest.role_arn required")
-    if "items" in data:
+    if data.get("items") is not None:
         import capo_omics.types.annotation_import_item_sources
 
         out["items"] = capo_omics.types.annotation_import_item_sources.deserialize_json(
@@ -85,19 +85,19 @@ def deserialize_json(data: dict) -> StartAnnotationImportRequest:
         )
     else:
         raise DeserializationError("StartAnnotationImportRequest.items required")
-    if "versionName" in data:
+    if data.get("versionName") is not None:
         out["version_name"] = data["versionName"]
-    if "formatOptions" in data:
+    if data.get("formatOptions") is not None:
         import capo_omics.types.format_options
 
         out["format_options"] = capo_omics.types.format_options.deserialize_json(
             data["formatOptions"]
         )
-    if "runLeftNormalization" in data:
+    if data.get("runLeftNormalization") is not None:
         out["run_left_normalization"] = data["runLeftNormalization"]
     else:
         out["run_left_normalization"] = False
-    if "annotationFields" in data:
+    if data.get("annotationFields") is not None:
         import capo_omics.types.annotation_field_map
 
         out["annotation_fields"] = (

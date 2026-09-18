@@ -24,7 +24,7 @@ def serialize_json(value: StillContainsLinksException_) -> dict:
 
 def deserialize_json(data: dict) -> StillContainsLinksException_:
     out: StillContainsLinksException_ = {}  # type: ignore[typeddict-item]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     return out
 
@@ -34,15 +34,18 @@ class StillContainsLinksException(ServiceError):
 
     code: str | None = "StillContainsLinksException"
 
-    def __init__(self, data: StillContainsLinksException_):
+    def __init__(self, data: StillContainsLinksException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="StillContainsLinksException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "StillContainsLinksException":
-        return cls(deserialize_json(data))
+    def from_json(
+        cls, data: dict, message: str | None = None
+    ) -> "StillContainsLinksException":
+        return cls(deserialize_json(data), message)

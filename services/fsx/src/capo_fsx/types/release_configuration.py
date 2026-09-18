@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: ReleaseConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ReleaseConfiguration:
     out: ReleaseConfiguration = {}  # type: ignore[typeddict-item]
-    if "DurationSinceLastAccess" in data:
+    if data.get("DurationSinceLastAccess") is not None:
         import capo_fsx.types.duration_since_last_access
 
         out["duration_since_last_access"] = (

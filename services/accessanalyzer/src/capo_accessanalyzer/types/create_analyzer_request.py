@@ -65,15 +65,15 @@ def serialize_json(value: CreateAnalyzerRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateAnalyzerRequest:
     out: CreateAnalyzerRequest = {}  # type: ignore[typeddict-item]
-    if "analyzerName" in data:
+    if data.get("analyzerName") is not None:
         out["analyzer_name"] = data["analyzerName"]
     else:
         raise DeserializationError("CreateAnalyzerRequest.analyzer_name required")
-    if "type" in data:
+    if data.get("type") is not None:
         out["type"] = data["type"]
     else:
         raise DeserializationError("CreateAnalyzerRequest.type required")
-    if "archiveRules" in data:
+    if data.get("archiveRules") is not None:
         import capo_accessanalyzer.types.inline_archive_rules_list
 
         out["archive_rules"] = (
@@ -81,13 +81,13 @@ def deserialize_json(data: dict) -> CreateAnalyzerRequest:
                 data["archiveRules"]
             )
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_accessanalyzer.types.tags_map
 
         out["tags"] = capo_accessanalyzer.types.tags_map.deserialize_json(data["tags"])
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
-    if "configuration" in data:
+    if data.get("configuration") is not None:
         import capo_accessanalyzer.types.analyzer_configuration
 
         out["configuration"] = (

@@ -51,22 +51,22 @@ def serialize_aws_json_1_1(value: RestoreFromSnapshotRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RestoreFromSnapshotRequest:
     out: RestoreFromSnapshotRequest = {}  # type: ignore[typeddict-item]
-    if "namespaceName" in data:
+    if data.get("namespaceName") is not None:
         out["namespace_name"] = data["namespaceName"]
     else:
         raise DeserializationError("RestoreFromSnapshotRequest.namespace_name required")
-    if "workgroupName" in data:
+    if data.get("workgroupName") is not None:
         out["workgroup_name"] = data["workgroupName"]
     else:
         raise DeserializationError("RestoreFromSnapshotRequest.workgroup_name required")
-    if "snapshotName" in data:
+    if data.get("snapshotName") is not None:
         out["snapshot_name"] = data["snapshotName"]
-    if "snapshotArn" in data:
+    if data.get("snapshotArn") is not None:
         out["snapshot_arn"] = data["snapshotArn"]
-    if "ownerAccount" in data:
+    if data.get("ownerAccount") is not None:
         out["owner_account"] = data["ownerAccount"]
-    if "manageAdminPassword" in data:
+    if data.get("manageAdminPassword") is not None:
         out["manage_admin_password"] = data["manageAdminPassword"]
-    if "adminPasswordSecretKmsKeyId" in data:
+    if data.get("adminPasswordSecretKmsKeyId") is not None:
         out["admin_password_secret_kms_key_id"] = data["adminPasswordSecretKmsKeyId"]
     return out

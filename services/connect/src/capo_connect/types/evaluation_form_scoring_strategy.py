@@ -38,7 +38,7 @@ def serialize_json(value: EvaluationFormScoringStrategy) -> dict:
 
 def deserialize_json(data: dict) -> EvaluationFormScoringStrategy:
     out: EvaluationFormScoringStrategy = {}  # type: ignore[typeddict-item]
-    if "Mode" in data:
+    if data.get("Mode") is not None:
         import capo_connect.types.evaluation_form_scoring_mode
 
         out["mode"] = capo_connect.types.evaluation_form_scoring_mode.deserialize_json(
@@ -46,7 +46,7 @@ def deserialize_json(data: dict) -> EvaluationFormScoringStrategy:
         )
     else:
         raise DeserializationError("EvaluationFormScoringStrategy.mode required")
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_connect.types.evaluation_form_scoring_status
 
         out["status"] = (

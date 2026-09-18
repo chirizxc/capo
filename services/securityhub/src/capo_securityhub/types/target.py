@@ -38,11 +38,11 @@ def serialize_json(value: Target) -> dict:
 
 
 def deserialize_json(data: dict) -> Target:
-    if "AccountId" in data:
+    if data.get("AccountId") is not None:
         return {"AccountId": data["AccountId"]}
-    elif "OrganizationalUnitId" in data:
+    elif data.get("OrganizationalUnitId") is not None:
         return {"OrganizationalUnitId": data["OrganizationalUnitId"]}
-    elif "RootId" in data:
+    elif data.get("RootId") is not None:
         return {"RootId": data["RootId"]}
     else:
         raise DeserializationError("Target: no recognized variant key")

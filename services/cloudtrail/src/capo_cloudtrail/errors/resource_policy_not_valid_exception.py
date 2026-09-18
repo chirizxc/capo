@@ -25,7 +25,7 @@ def serialize_aws_json_1_1(value: ResourcePolicyNotValidException_) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ResourcePolicyNotValidException_:
     out: ResourcePolicyNotValidException_ = {}  # type: ignore[typeddict-item]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     return out
 
@@ -35,15 +35,20 @@ class ResourcePolicyNotValidException(ServiceError):
 
     code: str | None = "ResourcePolicyNotValidException"
 
-    def __init__(self, data: ResourcePolicyNotValidException_):
+    def __init__(
+        self, data: ResourcePolicyNotValidException_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="ResourcePolicyNotValidException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "ResourcePolicyNotValidException":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "ResourcePolicyNotValidException":
+        return cls(deserialize_aws_json_1_1(data), message)

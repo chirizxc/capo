@@ -38,9 +38,9 @@ def serialize_aws_json_1_1(value: ResumeGameServerGroupInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ResumeGameServerGroupInput:
     out: ResumeGameServerGroupInput = {}  # type: ignore[typeddict-item]
-    if "GameServerGroupName" in data:
+    if data.get("GameServerGroupName") is not None:
         out["game_server_group_name"] = data["GameServerGroupName"]
-    if "ResumeActions" in data:
+    if data.get("ResumeActions") is not None:
         import capo_gamelift.types.game_server_group_actions
 
         out["resume_actions"] = (

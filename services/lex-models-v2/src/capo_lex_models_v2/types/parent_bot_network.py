@@ -28,11 +28,11 @@ def serialize_json(value: ParentBotNetwork) -> dict:
 
 def deserialize_json(data: dict) -> ParentBotNetwork:
     out: ParentBotNetwork = {}  # type: ignore[typeddict-item]
-    if "botId" in data:
+    if data.get("botId") is not None:
         out["bot_id"] = data["botId"]
     else:
         raise DeserializationError("ParentBotNetwork.bot_id required")
-    if "botVersion" in data:
+    if data.get("botVersion") is not None:
         out["bot_version"] = data["botVersion"]
     else:
         raise DeserializationError("ParentBotNetwork.bot_version required")

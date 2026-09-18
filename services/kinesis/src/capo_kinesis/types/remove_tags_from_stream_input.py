@@ -43,9 +43,9 @@ def serialize_aws_json_1_1(value: RemoveTagsFromStreamInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RemoveTagsFromStreamInput:
     out: RemoveTagsFromStreamInput = {}  # type: ignore[typeddict-item]
-    if "StreamName" in data:
+    if data.get("StreamName") is not None:
         out["stream_name"] = data["StreamName"]
-    if "TagKeys" in data:
+    if data.get("TagKeys") is not None:
         import capo_kinesis.types.tag_key_list
 
         out["tag_keys"] = capo_kinesis.types.tag_key_list.deserialize_aws_json_1_1(
@@ -53,8 +53,8 @@ def deserialize_aws_json_1_1(data: dict) -> RemoveTagsFromStreamInput:
         )
     else:
         raise DeserializationError("RemoveTagsFromStreamInput.tag_keys required")
-    if "StreamARN" in data:
+    if data.get("StreamARN") is not None:
         out["stream_arn"] = data["StreamARN"]
-    if "StreamId" in data:
+    if data.get("StreamId") is not None:
         out["stream_id"] = data["StreamId"]
     return out

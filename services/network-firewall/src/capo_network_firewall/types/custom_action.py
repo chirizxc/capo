@@ -34,11 +34,11 @@ def serialize_aws_json_1_0(value: CustomAction) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CustomAction:
     out: CustomAction = {}  # type: ignore[typeddict-item]
-    if "ActionName" in data:
+    if data.get("ActionName") is not None:
         out["action_name"] = data["ActionName"]
     else:
         raise DeserializationError("CustomAction.action_name required")
-    if "ActionDefinition" in data:
+    if data.get("ActionDefinition") is not None:
         import capo_network_firewall.types.action_definition
 
         out["action_definition"] = (

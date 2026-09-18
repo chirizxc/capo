@@ -31,7 +31,7 @@ def serialize_json(value: PieChartFieldWells) -> dict:
 
 def deserialize_json(data: dict) -> PieChartFieldWells:
     out: PieChartFieldWells = {}  # type: ignore[typeddict-item]
-    if "PieChartAggregatedFieldWells" in data:
+    if data.get("PieChartAggregatedFieldWells") is not None:
         import capo_quicksight.types.pie_chart_aggregated_field_wells
 
         out["pie_chart_aggregated_field_wells"] = (

@@ -50,13 +50,13 @@ def serialize_aws_json_1_1(value: CostAllocationTagBackfillRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CostAllocationTagBackfillRequest:
     out: CostAllocationTagBackfillRequest = {}  # type: ignore[typeddict-item]
-    if "BackfillFrom" in data:
+    if data.get("BackfillFrom") is not None:
         out["backfill_from"] = data["BackfillFrom"]
-    if "RequestedAt" in data:
+    if data.get("RequestedAt") is not None:
         out["requested_at"] = data["RequestedAt"]
-    if "CompletedAt" in data:
+    if data.get("CompletedAt") is not None:
         out["completed_at"] = data["CompletedAt"]
-    if "BackfillStatus" in data:
+    if data.get("BackfillStatus") is not None:
         import capo_cost_explorer.types.cost_allocation_tag_backfill_status
 
         out["backfill_status"] = (
@@ -64,6 +64,6 @@ def deserialize_aws_json_1_1(data: dict) -> CostAllocationTagBackfillRequest:
                 data["BackfillStatus"]
             )
         )
-    if "LastUpdatedAt" in data:
+    if data.get("LastUpdatedAt") is not None:
         out["last_updated_at"] = data["LastUpdatedAt"]
     return out

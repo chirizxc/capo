@@ -118,19 +118,19 @@ def serialize_aws_json_1_0(value: CreateEnvironmentRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CreateEnvironmentRequest:
     out: CreateEnvironmentRequest = {}  # type: ignore[typeddict-item]
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
-    if "environmentName" in data:
+    if data.get("environmentName") is not None:
         out["environment_name"] = data["environmentName"]
-    if "kmsKeyId" in data:
+    if data.get("kmsKeyId") is not None:
         out["kms_key_id"] = data["kmsKeyId"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_evs.types.request_tag_map
 
         out["tags"] = capo_evs.types.request_tag_map.deserialize_aws_json_1_0(
             data["tags"]
         )
-    if "serviceAccessSecurityGroups" in data:
+    if data.get("serviceAccessSecurityGroups") is not None:
         import capo_evs.types.service_access_security_groups
 
         out["service_access_security_groups"] = (
@@ -138,17 +138,17 @@ def deserialize_aws_json_1_0(data: dict) -> CreateEnvironmentRequest:
                 data["serviceAccessSecurityGroups"]
             )
         )
-    if "vpcId" in data:
+    if data.get("vpcId") is not None:
         out["vpc_id"] = data["vpcId"]
     else:
         raise DeserializationError("CreateEnvironmentRequest.vpc_id required")
-    if "serviceAccessSubnetId" in data:
+    if data.get("serviceAccessSubnetId") is not None:
         out["service_access_subnet_id"] = data["serviceAccessSubnetId"]
     else:
         raise DeserializationError(
             "CreateEnvironmentRequest.service_access_subnet_id required"
         )
-    if "vcfVersion" in data:
+    if data.get("vcfVersion") is not None:
         import capo_evs.types.vcf_version
 
         out["vcf_version"] = capo_evs.types.vcf_version.deserialize_aws_json_1_0(
@@ -156,11 +156,11 @@ def deserialize_aws_json_1_0(data: dict) -> CreateEnvironmentRequest:
         )
     else:
         raise DeserializationError("CreateEnvironmentRequest.vcf_version required")
-    if "termsAccepted" in data:
+    if data.get("termsAccepted") is not None:
         out["terms_accepted"] = data["termsAccepted"]
     else:
         raise DeserializationError("CreateEnvironmentRequest.terms_accepted required")
-    if "licenseInfo" in data:
+    if data.get("licenseInfo") is not None:
         import capo_evs.types.license_info_list
 
         out["license_info"] = capo_evs.types.license_info_list.deserialize_aws_json_1_0(
@@ -168,7 +168,7 @@ def deserialize_aws_json_1_0(data: dict) -> CreateEnvironmentRequest:
         )
     else:
         raise DeserializationError("CreateEnvironmentRequest.license_info required")
-    if "initialVlans" in data:
+    if data.get("initialVlans") is not None:
         import capo_evs.types.initial_vlans
 
         out["initial_vlans"] = capo_evs.types.initial_vlans.deserialize_aws_json_1_0(
@@ -176,7 +176,7 @@ def deserialize_aws_json_1_0(data: dict) -> CreateEnvironmentRequest:
         )
     else:
         raise DeserializationError("CreateEnvironmentRequest.initial_vlans required")
-    if "hosts" in data:
+    if data.get("hosts") is not None:
         import capo_evs.types.host_info_for_create_list
 
         out["hosts"] = (
@@ -186,7 +186,7 @@ def deserialize_aws_json_1_0(data: dict) -> CreateEnvironmentRequest:
         )
     else:
         raise DeserializationError("CreateEnvironmentRequest.hosts required")
-    if "connectivityInfo" in data:
+    if data.get("connectivityInfo") is not None:
         import capo_evs.types.connectivity_info
 
         out["connectivity_info"] = (
@@ -198,7 +198,7 @@ def deserialize_aws_json_1_0(data: dict) -> CreateEnvironmentRequest:
         raise DeserializationError(
             "CreateEnvironmentRequest.connectivity_info required"
         )
-    if "vcfHostnames" in data:
+    if data.get("vcfHostnames") is not None:
         import capo_evs.types.vcf_hostnames
 
         out["vcf_hostnames"] = capo_evs.types.vcf_hostnames.deserialize_aws_json_1_0(
@@ -206,7 +206,7 @@ def deserialize_aws_json_1_0(data: dict) -> CreateEnvironmentRequest:
         )
     else:
         raise DeserializationError("CreateEnvironmentRequest.vcf_hostnames required")
-    if "siteId" in data:
+    if data.get("siteId") is not None:
         out["site_id"] = data["siteId"]
     else:
         raise DeserializationError("CreateEnvironmentRequest.site_id required")

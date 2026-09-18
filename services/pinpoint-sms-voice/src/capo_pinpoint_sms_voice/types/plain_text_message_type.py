@@ -32,10 +32,10 @@ def serialize_json(value: PlainTextMessageType) -> dict:
 
 def deserialize_json(data: dict) -> PlainTextMessageType:
     out: PlainTextMessageType = {}  # type: ignore[typeddict-item]
-    if "LanguageCode" in data:
+    if data.get("LanguageCode") is not None:
         out["language_code"] = data["LanguageCode"]
-    if "Text" in data:
+    if data.get("Text") is not None:
         out["text"] = data["Text"]
-    if "VoiceId" in data:
+    if data.get("VoiceId") is not None:
         out["voice_id"] = data["VoiceId"]
     return out

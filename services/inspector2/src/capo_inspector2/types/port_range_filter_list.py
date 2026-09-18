@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> PortRangeFilterList:
 
     out: PortRangeFilterList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_inspector2.types.port_range_filter.deserialize_json(item))
     return out

@@ -64,23 +64,23 @@ def serialize_json(value: Ingestion) -> dict:
 
 def deserialize_json(data: dict) -> Ingestion:
     out: Ingestion = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("Ingestion.arn required")
-    if "appBundleArn" in data:
+    if data.get("appBundleArn") is not None:
         out["app_bundle_arn"] = data["appBundleArn"]
     else:
         raise DeserializationError("Ingestion.app_bundle_arn required")
-    if "app" in data:
+    if data.get("app") is not None:
         out["app"] = data["app"]
     else:
         raise DeserializationError("Ingestion.app required")
-    if "tenantId" in data:
+    if data.get("tenantId") is not None:
         out["tenant_id"] = data["tenantId"]
     else:
         raise DeserializationError("Ingestion.tenant_id required")
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_appfabric.types.date_time
 
         out["created_at"] = capo_appfabric.types.date_time.deserialize_json(
@@ -88,7 +88,7 @@ def deserialize_json(data: dict) -> Ingestion:
         )
     else:
         raise DeserializationError("Ingestion.created_at required")
-    if "updatedAt" in data:
+    if data.get("updatedAt") is not None:
         import capo_appfabric.types.date_time
 
         out["updated_at"] = capo_appfabric.types.date_time.deserialize_json(
@@ -96,7 +96,7 @@ def deserialize_json(data: dict) -> Ingestion:
         )
     else:
         raise DeserializationError("Ingestion.updated_at required")
-    if "state" in data:
+    if data.get("state") is not None:
         import capo_appfabric.types.ingestion_state
 
         out["state"] = capo_appfabric.types.ingestion_state.deserialize_json(
@@ -104,7 +104,7 @@ def deserialize_json(data: dict) -> Ingestion:
         )
     else:
         raise DeserializationError("Ingestion.state required")
-    if "ingestionType" in data:
+    if data.get("ingestionType") is not None:
         import capo_appfabric.types.ingestion_type
 
         out["ingestion_type"] = capo_appfabric.types.ingestion_type.deserialize_json(

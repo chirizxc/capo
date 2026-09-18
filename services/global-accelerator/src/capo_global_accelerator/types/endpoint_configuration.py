@@ -43,12 +43,12 @@ def serialize_aws_json_1_1(value: EndpointConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> EndpointConfiguration:
     out: EndpointConfiguration = {}  # type: ignore[typeddict-item]
-    if "EndpointId" in data:
+    if data.get("EndpointId") is not None:
         out["endpoint_id"] = data["EndpointId"]
-    if "Weight" in data:
+    if data.get("Weight") is not None:
         out["weight"] = data["Weight"]
-    if "ClientIPPreservationEnabled" in data:
+    if data.get("ClientIPPreservationEnabled") is not None:
         out["client_ip_preservation_enabled"] = data["ClientIPPreservationEnabled"]
-    if "AttachmentArn" in data:
+    if data.get("AttachmentArn") is not None:
         out["attachment_arn"] = data["AttachmentArn"]
     return out

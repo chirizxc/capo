@@ -26,7 +26,7 @@ def serialize_json(value: OperandOne) -> dict:
 
 
 def deserialize_json(data: dict) -> OperandOne:
-    if "fieldId" in data:
+    if data.get("fieldId") is not None:
         return {"fieldId": data["fieldId"]}
     else:
         raise DeserializationError("OperandOne: no recognized variant key")

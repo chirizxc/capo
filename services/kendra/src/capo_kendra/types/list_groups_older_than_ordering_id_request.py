@@ -45,22 +45,22 @@ def serialize_aws_json_1_1(value: ListGroupsOlderThanOrderingIdRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListGroupsOlderThanOrderingIdRequest:
     out: ListGroupsOlderThanOrderingIdRequest = {}  # type: ignore[typeddict-item]
-    if "IndexId" in data:
+    if data.get("IndexId") is not None:
         out["index_id"] = data["IndexId"]
     else:
         raise DeserializationError(
             "ListGroupsOlderThanOrderingIdRequest.index_id required"
         )
-    if "DataSourceId" in data:
+    if data.get("DataSourceId") is not None:
         out["data_source_id"] = data["DataSourceId"]
-    if "OrderingId" in data:
+    if data.get("OrderingId") is not None:
         out["ordering_id"] = data["OrderingId"]
     else:
         raise DeserializationError(
             "ListGroupsOlderThanOrderingIdRequest.ordering_id required"
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
     return out

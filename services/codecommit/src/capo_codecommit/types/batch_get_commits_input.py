@@ -34,7 +34,7 @@ def serialize_aws_json_1_1(value: BatchGetCommitsInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> BatchGetCommitsInput:
     out: BatchGetCommitsInput = {}  # type: ignore[typeddict-item]
-    if "commitIds" in data:
+    if data.get("commitIds") is not None:
         import capo_codecommit.types.commit_ids_input_list
 
         out["commit_ids"] = (
@@ -44,7 +44,7 @@ def deserialize_aws_json_1_1(data: dict) -> BatchGetCommitsInput:
         )
     else:
         raise DeserializationError("BatchGetCommitsInput.commit_ids required")
-    if "repositoryName" in data:
+    if data.get("repositoryName") is not None:
         out["repository_name"] = data["repositoryName"]
     else:
         raise DeserializationError("BatchGetCommitsInput.repository_name required")

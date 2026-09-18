@@ -62,21 +62,21 @@ def serialize_aws_json_1_1(value: PipelineVersionSummary) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PipelineVersionSummary:
     out: PipelineVersionSummary = {}  # type: ignore[typeddict-item]
-    if "PipelineArn" in data:
+    if data.get("PipelineArn") is not None:
         out["pipeline_arn"] = data["PipelineArn"]
-    if "PipelineVersionId" in data:
+    if data.get("PipelineVersionId") is not None:
         out["pipeline_version_id"] = data["PipelineVersionId"]
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_sagemaker.types.timestamp
 
         out["creation_time"] = capo_sagemaker.types.timestamp.deserialize_aws_json_1_1(
             data["CreationTime"]
         )
-    if "PipelineVersionDescription" in data:
+    if data.get("PipelineVersionDescription") is not None:
         out["pipeline_version_description"] = data["PipelineVersionDescription"]
-    if "PipelineVersionDisplayName" in data:
+    if data.get("PipelineVersionDisplayName") is not None:
         out["pipeline_version_display_name"] = data["PipelineVersionDisplayName"]
-    if "LastExecutionPipelineExecutionArn" in data:
+    if data.get("LastExecutionPipelineExecutionArn") is not None:
         out["last_execution_pipeline_execution_arn"] = data[
             "LastExecutionPipelineExecutionArn"
         ]

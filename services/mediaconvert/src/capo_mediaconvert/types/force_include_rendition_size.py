@@ -31,8 +31,8 @@ def serialize_json(value: ForceIncludeRenditionSize) -> dict:
 
 def deserialize_json(data: dict) -> ForceIncludeRenditionSize:
     out: ForceIncludeRenditionSize = {}  # type: ignore[typeddict-item]
-    if "height" in data:
+    if data.get("height") is not None:
         out["height"] = data["height"]
-    if "width" in data:
+    if data.get("width") is not None:
         out["width"] = data["width"]
     return out

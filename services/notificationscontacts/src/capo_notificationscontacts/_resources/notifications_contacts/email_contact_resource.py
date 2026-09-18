@@ -86,9 +86,10 @@ class EmailContactResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_notificationscontacts.types.create_email_contact_request.CreateEmailContactRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        input_["email_address"] = email_address
+        input_: capo_notificationscontacts.types.create_email_contact_request.CreateEmailContactRequest = {
+            "name": name,
+            "email_address": email_address,
+        }
         if tags is not None:
             input_["tags"] = tags
 
@@ -97,6 +98,7 @@ class EmailContactResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -134,14 +136,16 @@ class EmailContactResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_notificationscontacts.types.get_email_contact_request.GetEmailContactRequest = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
+        input_: capo_notificationscontacts.types.get_email_contact_request.GetEmailContactRequest = {
+            "arn": arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -180,14 +184,16 @@ class EmailContactResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_notificationscontacts.types.delete_email_contact_request.DeleteEmailContactRequest = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
+        input_: capo_notificationscontacts.types.delete_email_contact_request.DeleteEmailContactRequest = {
+            "arn": arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -226,7 +232,7 @@ class EmailContactResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_notificationscontacts.types.list_email_contacts_request.ListEmailContactsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_notificationscontacts.types.list_email_contacts_request.ListEmailContactsRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -237,6 +243,7 @@ class EmailContactResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def activate_email_contact(
@@ -277,15 +284,17 @@ class EmailContactResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_notificationscontacts.types.activate_email_contact_request.ActivateEmailContactRequest = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
-        input_["code"] = code
+        input_: capo_notificationscontacts.types.activate_email_contact_request.ActivateEmailContactRequest = {
+            "arn": arn,
+            "code": code,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def send_activation_code(
@@ -324,14 +333,16 @@ class EmailContactResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_notificationscontacts.types.send_activation_code_request.SendActivationCodeRequest = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
+        input_: capo_notificationscontacts.types.send_activation_code_request.SendActivationCodeRequest = {
+            "arn": arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -380,9 +391,10 @@ class AsyncEmailContactResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_notificationscontacts.types.create_email_contact_request.CreateEmailContactRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        input_["email_address"] = email_address
+        input_: capo_notificationscontacts.types.create_email_contact_request.CreateEmailContactRequest = {
+            "name": name,
+            "email_address": email_address,
+        }
         if tags is not None:
             input_["tags"] = tags
 
@@ -391,6 +403,7 @@ class AsyncEmailContactResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -429,14 +442,16 @@ class AsyncEmailContactResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_notificationscontacts.types.get_email_contact_request.GetEmailContactRequest = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
+        input_: capo_notificationscontacts.types.get_email_contact_request.GetEmailContactRequest = {
+            "arn": arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -476,14 +491,16 @@ class AsyncEmailContactResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_notificationscontacts.types.delete_email_contact_request.DeleteEmailContactRequest = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
+        input_: capo_notificationscontacts.types.delete_email_contact_request.DeleteEmailContactRequest = {
+            "arn": arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -523,7 +540,7 @@ class AsyncEmailContactResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_notificationscontacts.types.list_email_contacts_request.ListEmailContactsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_notificationscontacts.types.list_email_contacts_request.ListEmailContactsRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -534,6 +551,7 @@ class AsyncEmailContactResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def activate_email_contact(
@@ -575,15 +593,17 @@ class AsyncEmailContactResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_notificationscontacts.types.activate_email_contact_request.ActivateEmailContactRequest = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
-        input_["code"] = code
+        input_: capo_notificationscontacts.types.activate_email_contact_request.ActivateEmailContactRequest = {
+            "arn": arn,
+            "code": code,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def send_activation_code(
@@ -623,12 +643,14 @@ class AsyncEmailContactResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_notificationscontacts.types.send_activation_code_request.SendActivationCodeRequest = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
+        input_: capo_notificationscontacts.types.send_activation_code_request.SendActivationCodeRequest = {
+            "arn": arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

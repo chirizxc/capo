@@ -70,13 +70,13 @@ def serialize_aws_json_1_1(value: CreateHubRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateHubRequest:
     out: CreateHubRequest = {}  # type: ignore[typeddict-item]
-    if "HubName" in data:
+    if data.get("HubName") is not None:
         out["hub_name"] = data["HubName"]
-    if "HubDescription" in data:
+    if data.get("HubDescription") is not None:
         out["hub_description"] = data["HubDescription"]
-    if "HubDisplayName" in data:
+    if data.get("HubDisplayName") is not None:
         out["hub_display_name"] = data["HubDisplayName"]
-    if "HubSearchKeywords" in data:
+    if data.get("HubSearchKeywords") is not None:
         import capo_sagemaker.types.hub_search_keyword_list
 
         out["hub_search_keywords"] = (
@@ -84,7 +84,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateHubRequest:
                 data["HubSearchKeywords"]
             )
         )
-    if "S3StorageConfig" in data:
+    if data.get("S3StorageConfig") is not None:
         import capo_sagemaker.types.hub_s3_storage_config
 
         out["s3_storage_config"] = (
@@ -92,7 +92,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateHubRequest:
                 data["S3StorageConfig"]
             )
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_sagemaker.types.tag_list
 
         out["tags"] = capo_sagemaker.types.tag_list.deserialize_aws_json_1_1(

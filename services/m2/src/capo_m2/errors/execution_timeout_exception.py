@@ -18,7 +18,7 @@ def serialize_json(value: ExecutionTimeoutException_) -> dict:
 
 def deserialize_json(data: dict) -> ExecutionTimeoutException_:
     out: ExecutionTimeoutException_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     else:
         raise DeserializationError("ExecutionTimeoutException_.message required")
@@ -30,15 +30,18 @@ class ExecutionTimeoutException(ServiceError):
 
     code: str | None = "ExecutionTimeoutException"
 
-    def __init__(self, data: ExecutionTimeoutException_):
+    def __init__(self, data: ExecutionTimeoutException_, message: str | None = None):
         super().__init__(
             "server",
             is_throttling_error=False,
             is_retryable=True,
             code="ExecutionTimeoutException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "ExecutionTimeoutException":
-        return cls(deserialize_json(data))
+    def from_json(
+        cls, data: dict, message: str | None = None
+    ) -> "ExecutionTimeoutException":
+        return cls(deserialize_json(data), message)

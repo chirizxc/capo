@@ -25,6 +25,6 @@ def serialize_json(value: EnableImportFindingsForProductResponse) -> dict:
 
 def deserialize_json(data: dict) -> EnableImportFindingsForProductResponse:
     out: EnableImportFindingsForProductResponse = {}  # type: ignore[typeddict-item]
-    if "ProductSubscriptionArn" in data:
+    if data.get("ProductSubscriptionArn") is not None:
         out["product_subscription_arn"] = data["ProductSubscriptionArn"]
     return out

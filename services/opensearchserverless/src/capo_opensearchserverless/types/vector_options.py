@@ -24,7 +24,7 @@ def serialize_aws_json_1_0(value: VectorOptions) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> VectorOptions:
     out: VectorOptions = {}  # type: ignore[typeddict-item]
-    if "ServerlessVectorAcceleration" in data:
+    if data.get("ServerlessVectorAcceleration") is not None:
         out["serverless_vector_acceleration"] = data["ServerlessVectorAcceleration"]
     else:
         raise DeserializationError(

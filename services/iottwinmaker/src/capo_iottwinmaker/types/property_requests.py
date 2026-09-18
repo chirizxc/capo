@@ -25,6 +25,8 @@ def serialize_json(input_to_serialize: PropertyRequests) -> dict:
 def deserialize_json(data: dict) -> PropertyRequests:
     out: PropertyRequests = {}
     for key, value in data.items():
+        if value is None:
+            continue
         import capo_iottwinmaker.types.property_request
 
         out[key] = capo_iottwinmaker.types.property_request.deserialize_json(value)

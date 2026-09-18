@@ -29,6 +29,8 @@ def deserialize_aws_json_1_0(data: list) -> ProxyConfigRuleGroupSet:
 
     out: ProxyConfigRuleGroupSet = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_network_firewall.types.proxy_config_rule_group.deserialize_aws_json_1_0(
                 item

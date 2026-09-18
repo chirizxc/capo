@@ -49,15 +49,15 @@ def serialize_json(value: VirtualNodeData) -> dict:
 
 def deserialize_json(data: dict) -> VirtualNodeData:
     out: VirtualNodeData = {}  # type: ignore[typeddict-item]
-    if "meshName" in data:
+    if data.get("meshName") is not None:
         out["mesh_name"] = data["meshName"]
     else:
         raise DeserializationError("VirtualNodeData.mesh_name required")
-    if "virtualNodeName" in data:
+    if data.get("virtualNodeName") is not None:
         out["virtual_node_name"] = data["virtualNodeName"]
     else:
         raise DeserializationError("VirtualNodeData.virtual_node_name required")
-    if "spec" in data:
+    if data.get("spec") is not None:
         import capo_app_mesh.types.virtual_node_spec
 
         out["spec"] = capo_app_mesh.types.virtual_node_spec.deserialize_json(
@@ -65,7 +65,7 @@ def deserialize_json(data: dict) -> VirtualNodeData:
         )
     else:
         raise DeserializationError("VirtualNodeData.spec required")
-    if "metadata" in data:
+    if data.get("metadata") is not None:
         import capo_app_mesh.types.resource_metadata
 
         out["metadata"] = capo_app_mesh.types.resource_metadata.deserialize_json(
@@ -73,7 +73,7 @@ def deserialize_json(data: dict) -> VirtualNodeData:
         )
     else:
         raise DeserializationError("VirtualNodeData.metadata required")
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_app_mesh.types.virtual_node_status
 
         out["status"] = capo_app_mesh.types.virtual_node_status.deserialize_json(

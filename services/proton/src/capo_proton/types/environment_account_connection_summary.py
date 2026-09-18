@@ -67,39 +67,39 @@ def serialize_aws_json_1_0(value: EnvironmentAccountConnectionSummary) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> EnvironmentAccountConnectionSummary:
     out: EnvironmentAccountConnectionSummary = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("EnvironmentAccountConnectionSummary.id required")
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("EnvironmentAccountConnectionSummary.arn required")
-    if "managementAccountId" in data:
+    if data.get("managementAccountId") is not None:
         out["management_account_id"] = data["managementAccountId"]
     else:
         raise DeserializationError(
             "EnvironmentAccountConnectionSummary.management_account_id required"
         )
-    if "environmentAccountId" in data:
+    if data.get("environmentAccountId") is not None:
         out["environment_account_id"] = data["environmentAccountId"]
     else:
         raise DeserializationError(
             "EnvironmentAccountConnectionSummary.environment_account_id required"
         )
-    if "roleArn" in data:
+    if data.get("roleArn") is not None:
         out["role_arn"] = data["roleArn"]
     else:
         raise DeserializationError(
             "EnvironmentAccountConnectionSummary.role_arn required"
         )
-    if "environmentName" in data:
+    if data.get("environmentName") is not None:
         out["environment_name"] = data["environmentName"]
     else:
         raise DeserializationError(
             "EnvironmentAccountConnectionSummary.environment_name required"
         )
-    if "requestedAt" in data:
+    if data.get("requestedAt") is not None:
         import capo_proton.types._prelude.timestamp
 
         out["requested_at"] = (
@@ -111,7 +111,7 @@ def deserialize_aws_json_1_0(data: dict) -> EnvironmentAccountConnectionSummary:
         raise DeserializationError(
             "EnvironmentAccountConnectionSummary.requested_at required"
         )
-    if "lastModifiedAt" in data:
+    if data.get("lastModifiedAt") is not None:
         import capo_proton.types._prelude.timestamp
 
         out["last_modified_at"] = (
@@ -123,12 +123,12 @@ def deserialize_aws_json_1_0(data: dict) -> EnvironmentAccountConnectionSummary:
         raise DeserializationError(
             "EnvironmentAccountConnectionSummary.last_modified_at required"
         )
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
     else:
         raise DeserializationError(
             "EnvironmentAccountConnectionSummary.status required"
         )
-    if "componentRoleArn" in data:
+    if data.get("componentRoleArn") is not None:
         out["component_role_arn"] = data["componentRoleArn"]
     return out

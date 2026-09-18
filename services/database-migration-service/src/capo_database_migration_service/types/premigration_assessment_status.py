@@ -100,15 +100,15 @@ def serialize_aws_json_1_1(value: PremigrationAssessmentStatus) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PremigrationAssessmentStatus:
     out: PremigrationAssessmentStatus = {}  # type: ignore[typeddict-item]
-    if "PremigrationAssessmentRunArn" in data:
+    if data.get("PremigrationAssessmentRunArn") is not None:
         out["premigration_assessment_run_arn"] = data["PremigrationAssessmentRunArn"]
-    if "FailOnAssessmentFailure" in data:
+    if data.get("FailOnAssessmentFailure") is not None:
         out["fail_on_assessment_failure"] = data["FailOnAssessmentFailure"]
     else:
         out["fail_on_assessment_failure"] = False
-    if "Status" in data:
+    if data.get("Status") is not None:
         out["status"] = data["Status"]
-    if "PremigrationAssessmentRunCreationDate" in data:
+    if data.get("PremigrationAssessmentRunCreationDate") is not None:
         import capo_database_migration_service.types.t_stamp
 
         out["premigration_assessment_run_creation_date"] = (
@@ -116,7 +116,7 @@ def deserialize_aws_json_1_1(data: dict) -> PremigrationAssessmentStatus:
                 data["PremigrationAssessmentRunCreationDate"]
             )
         )
-    if "AssessmentProgress" in data:
+    if data.get("AssessmentProgress") is not None:
         import capo_database_migration_service.types.replication_task_assessment_run_progress
 
         out["assessment_progress"] = (
@@ -124,17 +124,17 @@ def deserialize_aws_json_1_1(data: dict) -> PremigrationAssessmentStatus:
                 data["AssessmentProgress"]
             )
         )
-    if "LastFailureMessage" in data:
+    if data.get("LastFailureMessage") is not None:
         out["last_failure_message"] = data["LastFailureMessage"]
-    if "ResultLocationBucket" in data:
+    if data.get("ResultLocationBucket") is not None:
         out["result_location_bucket"] = data["ResultLocationBucket"]
-    if "ResultLocationFolder" in data:
+    if data.get("ResultLocationFolder") is not None:
         out["result_location_folder"] = data["ResultLocationFolder"]
-    if "ResultEncryptionMode" in data:
+    if data.get("ResultEncryptionMode") is not None:
         out["result_encryption_mode"] = data["ResultEncryptionMode"]
-    if "ResultKmsKeyArn" in data:
+    if data.get("ResultKmsKeyArn") is not None:
         out["result_kms_key_arn"] = data["ResultKmsKeyArn"]
-    if "ResultStatistic" in data:
+    if data.get("ResultStatistic") is not None:
         import capo_database_migration_service.types.replication_task_assessment_run_result_statistic
 
         out["result_statistic"] = (

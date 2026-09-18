@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> ListOfSdkConfigurationProperty:
 
     out: ListOfSdkConfigurationProperty = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_api_gateway.types.sdk_configuration_property.deserialize_json(item)
         )

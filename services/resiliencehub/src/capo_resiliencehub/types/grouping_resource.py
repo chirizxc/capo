@@ -61,15 +61,15 @@ def serialize_json(value: GroupingResource) -> dict:
 
 def deserialize_json(data: dict) -> GroupingResource:
     out: GroupingResource = {}  # type: ignore[typeddict-item]
-    if "resourceName" in data:
+    if data.get("resourceName") is not None:
         out["resource_name"] = data["resourceName"]
     else:
         raise DeserializationError("GroupingResource.resource_name required")
-    if "resourceType" in data:
+    if data.get("resourceType") is not None:
         out["resource_type"] = data["resourceType"]
     else:
         raise DeserializationError("GroupingResource.resource_type required")
-    if "physicalResourceId" in data:
+    if data.get("physicalResourceId") is not None:
         import capo_resiliencehub.types.physical_resource_id
 
         out["physical_resource_id"] = (
@@ -79,7 +79,7 @@ def deserialize_json(data: dict) -> GroupingResource:
         )
     else:
         raise DeserializationError("GroupingResource.physical_resource_id required")
-    if "logicalResourceId" in data:
+    if data.get("logicalResourceId") is not None:
         import capo_resiliencehub.types.logical_resource_id
 
         out["logical_resource_id"] = (
@@ -89,7 +89,7 @@ def deserialize_json(data: dict) -> GroupingResource:
         )
     else:
         raise DeserializationError("GroupingResource.logical_resource_id required")
-    if "sourceAppComponentIds" in data:
+    if data.get("sourceAppComponentIds") is not None:
         import capo_resiliencehub.types.string255_list
 
         out["source_app_component_ids"] = (

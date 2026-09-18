@@ -27,8 +27,8 @@ def serialize_aws_json_1_1(value: ExpandConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ExpandConfiguration:
     out: ExpandConfiguration = {}  # type: ignore[typeddict-item]
-    if "MaxResultItemsToExpand" in data:
+    if data.get("MaxResultItemsToExpand") is not None:
         out["max_result_items_to_expand"] = data["MaxResultItemsToExpand"]
-    if "MaxExpandedResultsPerItem" in data:
+    if data.get("MaxExpandedResultsPerItem") is not None:
         out["max_expanded_results_per_item"] = data["MaxExpandedResultsPerItem"]
     return out

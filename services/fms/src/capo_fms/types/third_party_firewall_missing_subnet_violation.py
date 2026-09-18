@@ -42,12 +42,12 @@ def serialize_aws_json_1_1(value: ThirdPartyFirewallMissingSubnetViolation) -> d
 
 def deserialize_aws_json_1_1(data: dict) -> ThirdPartyFirewallMissingSubnetViolation:
     out: ThirdPartyFirewallMissingSubnetViolation = {}  # type: ignore[typeddict-item]
-    if "ViolationTarget" in data:
+    if data.get("ViolationTarget") is not None:
         out["violation_target"] = data["ViolationTarget"]
-    if "VPC" in data:
+    if data.get("VPC") is not None:
         out["vpc"] = data["VPC"]
-    if "AvailabilityZone" in data:
+    if data.get("AvailabilityZone") is not None:
         out["availability_zone"] = data["AvailabilityZone"]
-    if "TargetViolationReason" in data:
+    if data.get("TargetViolationReason") is not None:
         out["target_violation_reason"] = data["TargetViolationReason"]
     return out

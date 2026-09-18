@@ -28,7 +28,7 @@ def serialize_aws_json_1_0(value: DiffieHellmanDerivationData) -> dict:
 
 
 def deserialize_aws_json_1_0(data: dict) -> DiffieHellmanDerivationData:
-    if "SharedInformation" in data:
+    if data.get("SharedInformation") is not None:
         return {"SharedInformation": data["SharedInformation"]}
     else:
         raise DeserializationError(

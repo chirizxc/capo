@@ -28,11 +28,11 @@ def serialize_aws_json_1_1(value: S3ArtifactLocation) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> S3ArtifactLocation:
     out: S3ArtifactLocation = {}  # type: ignore[typeddict-item]
-    if "bucketName" in data:
+    if data.get("bucketName") is not None:
         out["bucket_name"] = data["bucketName"]
     else:
         raise DeserializationError("S3ArtifactLocation.bucket_name required")
-    if "objectKey" in data:
+    if data.get("objectKey") is not None:
         out["object_key"] = data["objectKey"]
     else:
         raise DeserializationError("S3ArtifactLocation.object_key required")

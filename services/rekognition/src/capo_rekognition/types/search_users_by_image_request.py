@@ -34,7 +34,15 @@ def serialize_aws_json_1_1(value: SearchUsersByImageRequest) -> dict:
 
     out["Image"] = capo_rekognition.types.image.serialize_aws_json_1_1(value["image"])
     if "user_match_threshold" in value:
-        out["UserMatchThreshold"] = value["user_match_threshold"]
+        out["UserMatchThreshold"] = (
+            "NaN"
+            if value["user_match_threshold"] != value["user_match_threshold"]
+            else "Infinity"
+            if value["user_match_threshold"] == float("inf")
+            else "-Infinity"
+            if value["user_match_threshold"] == float("-inf")
+            else value["user_match_threshold"]
+        )
     if "max_users" in value:
         out["MaxUsers"] = value["max_users"]
     if "quality_filter" in value:
@@ -50,11 +58,11 @@ def serialize_aws_json_1_1(value: SearchUsersByImageRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SearchUsersByImageRequest:
     out: SearchUsersByImageRequest = {}  # type: ignore[typeddict-item]
-    if "CollectionId" in data:
+    if data.get("CollectionId") is not None:
         out["collection_id"] = data["CollectionId"]
     else:
         raise DeserializationError("SearchUsersByImageRequest.collection_id required")
-    if "Image" in data:
+    if data.get("Image") is not None:
         import capo_rekognition.types.image
 
         out["image"] = capo_rekognition.types.image.deserialize_aws_json_1_1(
@@ -62,11 +70,11 @@ def deserialize_aws_json_1_1(data: dict) -> SearchUsersByImageRequest:
         )
     else:
         raise DeserializationError("SearchUsersByImageRequest.image required")
-    if "UserMatchThreshold" in data:
-        out["user_match_threshold"] = data["UserMatchThreshold"]
-    if "MaxUsers" in data:
+    if data.get("UserMatchThreshold") is not None:
+        out["user_match_threshold"] = float(data["UserMatchThreshold"])
+    if data.get("MaxUsers") is not None:
         out["max_users"] = data["MaxUsers"]
-    if "QualityFilter" in data:
+    if data.get("QualityFilter") is not None:
         import capo_rekognition.types.quality_filter
 
         out["quality_filter"] = (

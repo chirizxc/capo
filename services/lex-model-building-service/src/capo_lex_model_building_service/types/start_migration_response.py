@@ -84,11 +84,11 @@ def serialize_json(value: StartMigrationResponse) -> dict:
 
 def deserialize_json(data: dict) -> StartMigrationResponse:
     out: StartMigrationResponse = {}  # type: ignore[typeddict-item]
-    if "v1BotName" in data:
+    if data.get("v1BotName") is not None:
         out["v1_bot_name"] = data["v1BotName"]
-    if "v1BotVersion" in data:
+    if data.get("v1BotVersion") is not None:
         out["v1_bot_version"] = data["v1BotVersion"]
-    if "v1BotLocale" in data:
+    if data.get("v1BotLocale") is not None:
         import capo_lex_model_building_service.types.locale
 
         out["v1_bot_locale"] = (
@@ -96,13 +96,13 @@ def deserialize_json(data: dict) -> StartMigrationResponse:
                 data["v1BotLocale"]
             )
         )
-    if "v2BotId" in data:
+    if data.get("v2BotId") is not None:
         out["v2_bot_id"] = data["v2BotId"]
-    if "v2BotRole" in data:
+    if data.get("v2BotRole") is not None:
         out["v2_bot_role"] = data["v2BotRole"]
-    if "migrationId" in data:
+    if data.get("migrationId") is not None:
         out["migration_id"] = data["migrationId"]
-    if "migrationStrategy" in data:
+    if data.get("migrationStrategy") is not None:
         import capo_lex_model_building_service.types.migration_strategy
 
         out["migration_strategy"] = (
@@ -110,7 +110,7 @@ def deserialize_json(data: dict) -> StartMigrationResponse:
                 data["migrationStrategy"]
             )
         )
-    if "migrationTimestamp" in data:
+    if data.get("migrationTimestamp") is not None:
         import capo_lex_model_building_service.types.timestamp
 
         out["migration_timestamp"] = (

@@ -38,9 +38,9 @@ def serialize_json(value: FileGroupSettings) -> dict:
 
 def deserialize_json(data: dict) -> FileGroupSettings:
     out: FileGroupSettings = {}  # type: ignore[typeddict-item]
-    if "destination" in data:
+    if data.get("destination") is not None:
         out["destination"] = data["destination"]
-    if "destinationSettings" in data:
+    if data.get("destinationSettings") is not None:
         import capo_mediaconvert.types.destination_settings
 
         out["destination_settings"] = (

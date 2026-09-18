@@ -30,11 +30,11 @@ def serialize_aws_json_1_0(value: SampleDocuments) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> SampleDocuments:
     out: SampleDocuments = {}  # type: ignore[typeddict-item]
-    if "bucketName" in data:
+    if data.get("bucketName") is not None:
         out["bucket_name"] = data["bucketName"]
     else:
         raise DeserializationError("SampleDocuments.bucket_name required")
-    if "keys" in data:
+    if data.get("keys") is not None:
         import capo_b2bi.types.key_list
 
         out["keys"] = capo_b2bi.types.key_list.deserialize_aws_json_1_0(data["keys"])

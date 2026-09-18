@@ -92,9 +92,9 @@ def serialize_aws_json_1_1(value: UpdatePartnerAppRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdatePartnerAppRequest:
     out: UpdatePartnerAppRequest = {}  # type: ignore[typeddict-item]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "MaintenanceConfig" in data:
+    if data.get("MaintenanceConfig") is not None:
         import capo_sagemaker.types.partner_app_maintenance_config
 
         out["maintenance_config"] = (
@@ -102,9 +102,9 @@ def deserialize_aws_json_1_1(data: dict) -> UpdatePartnerAppRequest:
                 data["MaintenanceConfig"]
             )
         )
-    if "Tier" in data:
+    if data.get("Tier") is not None:
         out["tier"] = data["Tier"]
-    if "ApplicationConfig" in data:
+    if data.get("ApplicationConfig") is not None:
         import capo_sagemaker.types.partner_app_config
 
         out["application_config"] = (
@@ -112,15 +112,15 @@ def deserialize_aws_json_1_1(data: dict) -> UpdatePartnerAppRequest:
                 data["ApplicationConfig"]
             )
         )
-    if "EnableIamSessionBasedIdentity" in data:
+    if data.get("EnableIamSessionBasedIdentity") is not None:
         out["enable_iam_session_based_identity"] = data["EnableIamSessionBasedIdentity"]
-    if "EnableAutoMinorVersionUpgrade" in data:
+    if data.get("EnableAutoMinorVersionUpgrade") is not None:
         out["enable_auto_minor_version_upgrade"] = data["EnableAutoMinorVersionUpgrade"]
-    if "AppVersion" in data:
+    if data.get("AppVersion") is not None:
         out["app_version"] = data["AppVersion"]
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_sagemaker.types.tag_list
 
         out["tags"] = capo_sagemaker.types.tag_list.deserialize_aws_json_1_1(

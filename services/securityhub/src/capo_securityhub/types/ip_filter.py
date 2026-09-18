@@ -23,6 +23,6 @@ def serialize_json(value: IpFilter) -> dict:
 
 def deserialize_json(data: dict) -> IpFilter:
     out: IpFilter = {}  # type: ignore[typeddict-item]
-    if "Cidr" in data:
+    if data.get("Cidr") is not None:
         out["cidr"] = data["Cidr"]
     return out

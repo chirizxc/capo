@@ -37,13 +37,13 @@ def serialize_json(value: InputFileConfig) -> dict:
 
 def deserialize_json(data: dict) -> InputFileConfig:
     out: InputFileConfig = {}  # type: ignore[typeddict-item]
-    if "channelName" in data:
+    if data.get("channelName") is not None:
         out["channel_name"] = data["channelName"]
     else:
         raise DeserializationError("InputFileConfig.channel_name required")
-    if "contentType" in data:
+    if data.get("contentType") is not None:
         out["content_type"] = data["contentType"]
-    if "dataSource" in data:
+    if data.get("dataSource") is not None:
         import capo_braket.types.data_source
 
         out["data_source"] = capo_braket.types.data_source.deserialize_json(

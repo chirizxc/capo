@@ -24,7 +24,7 @@ def serialize_json(value: ExecuteActionResponse) -> dict:
 
 def deserialize_json(data: dict) -> ExecuteActionResponse:
     out: ExecuteActionResponse = {}  # type: ignore[typeddict-item]
-    if "actionId" in data:
+    if data.get("actionId") is not None:
         out["action_id"] = data["actionId"]
     else:
         raise DeserializationError("ExecuteActionResponse.action_id required")

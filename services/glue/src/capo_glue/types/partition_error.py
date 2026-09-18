@@ -38,7 +38,7 @@ def serialize_aws_json_1_1(value: PartitionError) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PartitionError:
     out: PartitionError = {}  # type: ignore[typeddict-item]
-    if "PartitionValues" in data:
+    if data.get("PartitionValues") is not None:
         import capo_glue.types.value_string_list
 
         out["partition_values"] = (
@@ -46,7 +46,7 @@ def deserialize_aws_json_1_1(data: dict) -> PartitionError:
                 data["PartitionValues"]
             )
         )
-    if "ErrorDetail" in data:
+    if data.get("ErrorDetail") is not None:
         import capo_glue.types.error_detail
 
         out["error_detail"] = capo_glue.types.error_detail.deserialize_aws_json_1_1(

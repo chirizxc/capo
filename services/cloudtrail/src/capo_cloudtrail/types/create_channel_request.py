@@ -44,15 +44,15 @@ def serialize_aws_json_1_1(value: CreateChannelRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateChannelRequest:
     out: CreateChannelRequest = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("CreateChannelRequest.name required")
-    if "Source" in data:
+    if data.get("Source") is not None:
         out["source"] = data["Source"]
     else:
         raise DeserializationError("CreateChannelRequest.source required")
-    if "Destinations" in data:
+    if data.get("Destinations") is not None:
         import capo_cloudtrail.types.destinations
 
         out["destinations"] = (
@@ -62,7 +62,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateChannelRequest:
         )
     else:
         raise DeserializationError("CreateChannelRequest.destinations required")
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_cloudtrail.types.tags_list
 
         out["tags"] = capo_cloudtrail.types.tags_list.deserialize_aws_json_1_1(

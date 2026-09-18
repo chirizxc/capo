@@ -36,15 +36,15 @@ def serialize_aws_json_1_0(value: FieldValidationError) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> FieldValidationError:
     out: FieldValidationError = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("FieldValidationError.name required")
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     else:
         raise DeserializationError("FieldValidationError.message required")
-    if "Code" in data:
+    if data.get("Code") is not None:
         import capo_partnercentral_account.types.field_validation_code
 
         out["code"] = (

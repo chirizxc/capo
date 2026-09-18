@@ -28,8 +28,8 @@ def serialize_json(value: PutAuthPolicyResponse) -> dict:
 
 def deserialize_json(data: dict) -> PutAuthPolicyResponse:
     out: PutAuthPolicyResponse = {}  # type: ignore[typeddict-item]
-    if "policy" in data:
+    if data.get("policy") is not None:
         out["policy"] = data["policy"]
-    if "state" in data:
+    if data.get("state") is not None:
         out["state"] = data["state"]
     return out

@@ -29,9 +29,9 @@ def serialize_json(value: ImageConfigurationInput) -> dict:
 
 def deserialize_json(data: dict) -> ImageConfigurationInput:
     out: ImageConfigurationInput = {}  # type: ignore[typeddict-item]
-    if "imageUri" in data:
+    if data.get("imageUri") is not None:
         out["image_uri"] = data["imageUri"]
-    if "applicationLevelDigestResolution" in data:
+    if data.get("applicationLevelDigestResolution") is not None:
         out["application_level_digest_resolution"] = data[
             "applicationLevelDigestResolution"
         ]

@@ -41,11 +41,11 @@ def serialize_aws_json_1_1(value: AIWorkloadConfigSummary) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AIWorkloadConfigSummary:
     out: AIWorkloadConfigSummary = {}  # type: ignore[typeddict-item]
-    if "AIWorkloadConfigName" in data:
+    if data.get("AIWorkloadConfigName") is not None:
         out["ai_workload_config_name"] = data["AIWorkloadConfigName"]
-    if "AIWorkloadConfigArn" in data:
+    if data.get("AIWorkloadConfigArn") is not None:
         out["ai_workload_config_arn"] = data["AIWorkloadConfigArn"]
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_sagemaker.types.timestamp
 
         out["creation_time"] = capo_sagemaker.types.timestamp.deserialize_aws_json_1_1(

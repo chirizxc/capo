@@ -13,9 +13,9 @@ from capo_mgn import AsyncmgnClient
 
 
 async def main():
-    async with AsyncmgnClient() as s3:
+    async with AsyncmgnClient() as mgn:
         # Example: call the initialize_service operation
-        response = await s3.initialize_service()
+        response = await mgn.initialize_service()
         print(response)
 ```
 
@@ -28,9 +28,9 @@ from capo_mgn import AsyncmgnClient
 
 
 async def main():
-    async with AsyncmgnClient() as s3:
+    async with AsyncmgnClient() as mgn:
         # Example: paginate over list_import_file_enrichments
-        async for item in s3.iter_list_import_file_enrichments():
+        async for item in mgn.iter_list_import_file_enrichments():
             print(item)
 ```
 
@@ -44,9 +44,9 @@ from capo_mgn.error import AccessDeniedException
 
 
 async def main():
-    async with AsyncmgnClient() as s3:
+    async with AsyncmgnClient() as mgn:
         try:
-            await s3.initialize_service()
+            await mgn.initialize_service()
         except AccessDeniedException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -63,13 +63,13 @@ from capo_mgn import AsyncmgnClient
 
 
 async def main():
-    async with AsyncmgnClient() as s3:
+    async with AsyncmgnClient() as mgn:
         # Default: 3 attempts for every operation
-        response = await s3.initialize_service()
+        response = await mgn.initialize_service()
 
         # Override per operation
-        response = await s3.initialize_service(config_overrides={"retry_max_attempts": 5})
+        response = await mgn.initialize_service(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.initialize_service(config_overrides={"retry_max_attempts": 1})
+        response = await mgn.initialize_service(config_overrides={"retry_max_attempts": 1})
 ```

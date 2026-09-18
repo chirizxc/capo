@@ -90,15 +90,15 @@ def serialize_json(value: DatasetMetadata) -> dict:
 
 def deserialize_json(data: dict) -> DatasetMetadata:
     out: DatasetMetadata = {}  # type: ignore[typeddict-item]
-    if "DatasetArn" in data:
+    if data.get("DatasetArn") is not None:
         out["dataset_arn"] = data["DatasetArn"]
     else:
         raise DeserializationError("DatasetMetadata.dataset_arn required")
-    if "DatasetName" in data:
+    if data.get("DatasetName") is not None:
         out["dataset_name"] = data["DatasetName"]
-    if "DatasetDescription" in data:
+    if data.get("DatasetDescription") is not None:
         out["dataset_description"] = data["DatasetDescription"]
-    if "DataAggregation" in data:
+    if data.get("DataAggregation") is not None:
         import capo_quicksight.types.data_aggregation
 
         out["data_aggregation"] = (
@@ -106,19 +106,19 @@ def deserialize_json(data: dict) -> DatasetMetadata:
                 data["DataAggregation"]
             )
         )
-    if "Filters" in data:
+    if data.get("Filters") is not None:
         import capo_quicksight.types.topic_filters
 
         out["filters"] = capo_quicksight.types.topic_filters.deserialize_json(
             data["Filters"]
         )
-    if "Columns" in data:
+    if data.get("Columns") is not None:
         import capo_quicksight.types.topic_columns
 
         out["columns"] = capo_quicksight.types.topic_columns.deserialize_json(
             data["Columns"]
         )
-    if "CalculatedFields" in data:
+    if data.get("CalculatedFields") is not None:
         import capo_quicksight.types.topic_calculated_fields
 
         out["calculated_fields"] = (
@@ -126,7 +126,7 @@ def deserialize_json(data: dict) -> DatasetMetadata:
                 data["CalculatedFields"]
             )
         )
-    if "NamedEntities" in data:
+    if data.get("NamedEntities") is not None:
         import capo_quicksight.types.topic_named_entities
 
         out["named_entities"] = (

@@ -37,12 +37,12 @@ def serialize_aws_json_1_1(value: NotifyEmailType) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> NotifyEmailType:
     out: NotifyEmailType = {}  # type: ignore[typeddict-item]
-    if "Subject" in data:
+    if data.get("Subject") is not None:
         out["subject"] = data["Subject"]
     else:
         raise DeserializationError("NotifyEmailType.subject required")
-    if "HtmlBody" in data:
+    if data.get("HtmlBody") is not None:
         out["html_body"] = data["HtmlBody"]
-    if "TextBody" in data:
+    if data.get("TextBody") is not None:
         out["text_body"] = data["TextBody"]
     return out

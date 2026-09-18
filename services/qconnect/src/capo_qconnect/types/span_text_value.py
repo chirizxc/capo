@@ -46,17 +46,17 @@ def serialize_json(value: SpanTextValue) -> dict:
 
 def deserialize_json(data: dict) -> SpanTextValue:
     out: SpanTextValue = {}  # type: ignore[typeddict-item]
-    if "value" in data:
+    if data.get("value") is not None:
         out["value"] = data["value"]
     else:
         raise DeserializationError("SpanTextValue.value required")
-    if "citations" in data:
+    if data.get("citations") is not None:
         import capo_qconnect.types.span_citation_list
 
         out["citations"] = capo_qconnect.types.span_citation_list.deserialize_json(
             data["citations"]
         )
-    if "aiGuardrailAssessment" in data:
+    if data.get("aiGuardrailAssessment") is not None:
         import capo_qconnect.types.ai_guardrail_assessment
 
         out["ai_guardrail_assessment"] = (

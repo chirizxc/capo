@@ -43,7 +43,7 @@ def serialize_aws_json_1_0(value: AwsProductsSpendInsightsBySource) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> AwsProductsSpendInsightsBySource:
     out: AwsProductsSpendInsightsBySource = {}  # type: ignore[typeddict-item]
-    if "Partner" in data:
+    if data.get("Partner") is not None:
         import capo_partnercentral_selling.types.aws_product_insights
 
         out["partner"] = (
@@ -51,7 +51,7 @@ def deserialize_aws_json_1_0(data: dict) -> AwsProductsSpendInsightsBySource:
                 data["Partner"]
             )
         )
-    if "AWS" in data:
+    if data.get("AWS") is not None:
         import capo_partnercentral_selling.types.aws_product_insights
 
         out["aws"] = (

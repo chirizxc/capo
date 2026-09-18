@@ -30,7 +30,7 @@ def serialize_json(value: CreateAwsLogSourceRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateAwsLogSourceRequest:
     out: CreateAwsLogSourceRequest = {}  # type: ignore[typeddict-item]
-    if "sources" in data:
+    if data.get("sources") is not None:
         import capo_securitylake.types.aws_log_source_configuration_list
 
         out["sources"] = (

@@ -39,13 +39,13 @@ def serialize_aws_json_1_1(value: GeoMatchSet) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GeoMatchSet:
     out: GeoMatchSet = {}  # type: ignore[typeddict-item]
-    if "GeoMatchSetId" in data:
+    if data.get("GeoMatchSetId") is not None:
         out["geo_match_set_id"] = data["GeoMatchSetId"]
     else:
         raise DeserializationError("GeoMatchSet.geo_match_set_id required")
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "GeoMatchConstraints" in data:
+    if data.get("GeoMatchConstraints") is not None:
         import capo_waf.types.geo_match_constraints
 
         out["geo_match_constraints"] = (

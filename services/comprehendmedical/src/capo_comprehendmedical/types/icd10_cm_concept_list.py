@@ -27,6 +27,8 @@ def deserialize_aws_json_1_1(data: list) -> ICD10CMConceptList:
 
     out: ICD10CMConceptList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_comprehendmedical.types.icd10_cm_concept.deserialize_aws_json_1_1(item)
         )

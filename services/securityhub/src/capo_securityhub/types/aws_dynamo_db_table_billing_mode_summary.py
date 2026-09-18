@@ -31,9 +31,9 @@ def serialize_json(value: AwsDynamoDbTableBillingModeSummary) -> dict:
 
 def deserialize_json(data: dict) -> AwsDynamoDbTableBillingModeSummary:
     out: AwsDynamoDbTableBillingModeSummary = {}  # type: ignore[typeddict-item]
-    if "BillingMode" in data:
+    if data.get("BillingMode") is not None:
         out["billing_mode"] = data["BillingMode"]
-    if "LastUpdateToPayPerRequestDateTime" in data:
+    if data.get("LastUpdateToPayPerRequestDateTime") is not None:
         out["last_update_to_pay_per_request_date_time"] = data[
             "LastUpdateToPayPerRequestDateTime"
         ]

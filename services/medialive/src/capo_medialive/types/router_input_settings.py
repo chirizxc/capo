@@ -48,7 +48,7 @@ def serialize_json(value: RouterInputSettings) -> dict:
 
 def deserialize_json(data: dict) -> RouterInputSettings:
     out: RouterInputSettings = {}  # type: ignore[typeddict-item]
-    if "destinations" in data:
+    if data.get("destinations") is not None:
         import capo_medialive.types.__list_of_router_destination
 
         out["destinations"] = (
@@ -56,7 +56,7 @@ def deserialize_json(data: dict) -> RouterInputSettings:
                 data["destinations"]
             )
         )
-    if "encryptionType" in data:
+    if data.get("encryptionType") is not None:
         import capo_medialive.types.router_encryption_type
 
         out["encryption_type"] = (
@@ -64,6 +64,6 @@ def deserialize_json(data: dict) -> RouterInputSettings:
                 data["encryptionType"]
             )
         )
-    if "secretArn" in data:
+    if data.get("secretArn") is not None:
         out["secret_arn"] = data["secretArn"]
     return out

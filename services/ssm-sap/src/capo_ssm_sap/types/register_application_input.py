@@ -85,11 +85,11 @@ def serialize_json(value: RegisterApplicationInput) -> dict:
 
 def deserialize_json(data: dict) -> RegisterApplicationInput:
     out: RegisterApplicationInput = {}  # type: ignore[typeddict-item]
-    if "ApplicationId" in data:
+    if data.get("ApplicationId") is not None:
         out["application_id"] = data["ApplicationId"]
     else:
         raise DeserializationError("RegisterApplicationInput.application_id required")
-    if "ApplicationType" in data:
+    if data.get("ApplicationType") is not None:
         import capo_ssm_sap.types.application_type
 
         out["application_type"] = capo_ssm_sap.types.application_type.deserialize_json(
@@ -97,7 +97,7 @@ def deserialize_json(data: dict) -> RegisterApplicationInput:
         )
     else:
         raise DeserializationError("RegisterApplicationInput.application_type required")
-    if "Instances" in data:
+    if data.get("Instances") is not None:
         import capo_ssm_sap.types.instance_list
 
         out["instances"] = capo_ssm_sap.types.instance_list.deserialize_json(
@@ -105,15 +105,15 @@ def deserialize_json(data: dict) -> RegisterApplicationInput:
         )
     else:
         raise DeserializationError("RegisterApplicationInput.instances required")
-    if "SapInstanceNumber" in data:
+    if data.get("SapInstanceNumber") is not None:
         out["sap_instance_number"] = data["SapInstanceNumber"]
-    if "Sid" in data:
+    if data.get("Sid") is not None:
         out["sid"] = data["Sid"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_ssm_sap.types.tag_map
 
         out["tags"] = capo_ssm_sap.types.tag_map.deserialize_json(data["Tags"])
-    if "Credentials" in data:
+    if data.get("Credentials") is not None:
         import capo_ssm_sap.types.application_credential_list
 
         out["credentials"] = (
@@ -123,9 +123,9 @@ def deserialize_json(data: dict) -> RegisterApplicationInput:
         )
     else:
         out["credentials"] = []
-    if "DatabaseArn" in data:
+    if data.get("DatabaseArn") is not None:
         out["database_arn"] = data["DatabaseArn"]
-    if "ComponentsInfo" in data:
+    if data.get("ComponentsInfo") is not None:
         import capo_ssm_sap.types.component_info_list
 
         out["components_info"] = (

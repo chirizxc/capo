@@ -20,7 +20,15 @@ class NumericRangeFilterValue(TypedDict, closed=True):
 def serialize_json(value: NumericRangeFilterValue) -> dict:
     out: dict = {}
     if "static_value" in value:
-        out["StaticValue"] = value["static_value"]
+        out["StaticValue"] = (
+            "NaN"
+            if value["static_value"] != value["static_value"]
+            else "Infinity"
+            if value["static_value"] == float("inf")
+            else "-Infinity"
+            if value["static_value"] == float("-inf")
+            else value["static_value"]
+        )
     if "parameter" in value:
         out["Parameter"] = value["parameter"]
     return out
@@ -28,8 +36,8 @@ def serialize_json(value: NumericRangeFilterValue) -> dict:
 
 def deserialize_json(data: dict) -> NumericRangeFilterValue:
     out: NumericRangeFilterValue = {}  # type: ignore[typeddict-item]
-    if "StaticValue" in data:
-        out["static_value"] = data["StaticValue"]
-    if "Parameter" in data:
+    if data.get("StaticValue") is not None:
+        out["static_value"] = float(data["StaticValue"])
+    if data.get("Parameter") is not None:
         out["parameter"] = data["Parameter"]
     return out

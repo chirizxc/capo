@@ -163,15 +163,19 @@ class AsyncWorkMailMessageFlowClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workmailmessageflow.types.get_raw_message_content_request.GetRawMessageContentRequest = {}  # type: ignore[typeddict-item]
-        input_["message_id"] = message_id
+        input_: capo_workmailmessageflow.types.get_raw_message_content_request.GetRawMessageContentRequest = {
+            "message_id": message_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
-        yield response.output
+        try:
+            yield response.output
+        finally:
+            await response.response.aclose()
 
     async def put_raw_message_content(
         self,
@@ -210,15 +214,17 @@ class AsyncWorkMailMessageFlowClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workmailmessageflow.types.put_raw_message_content_request.PutRawMessageContentRequest = {}  # type: ignore[typeddict-item]
-        input_["message_id"] = message_id
-        input_["content"] = content
+        input_: capo_workmailmessageflow.types.put_raw_message_content_request.PutRawMessageContentRequest = {
+            "message_id": message_id,
+            "content": content,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def __aenter__(self) -> Self:

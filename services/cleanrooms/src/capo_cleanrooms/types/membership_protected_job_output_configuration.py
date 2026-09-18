@@ -36,7 +36,7 @@ def serialize_json(value: MembershipProtectedJobOutputConfiguration) -> dict:
 
 
 def deserialize_json(data: dict) -> MembershipProtectedJobOutputConfiguration:
-    if "s3" in data:
+    if data.get("s3") is not None:
         import capo_cleanrooms.types.protected_job_s3_output_configuration_input
 
         return {

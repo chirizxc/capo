@@ -50,7 +50,7 @@ def serialize_json(value: OptionStatus) -> dict:
 
 def deserialize_json(data: dict) -> OptionStatus:
     out: OptionStatus = {}  # type: ignore[typeddict-item]
-    if "CreationDate" in data:
+    if data.get("CreationDate") is not None:
         import capo_opensearch.types.update_timestamp
 
         out["creation_date"] = capo_opensearch.types.update_timestamp.deserialize_json(
@@ -58,7 +58,7 @@ def deserialize_json(data: dict) -> OptionStatus:
         )
     else:
         raise DeserializationError("OptionStatus.creation_date required")
-    if "UpdateDate" in data:
+    if data.get("UpdateDate") is not None:
         import capo_opensearch.types.update_timestamp
 
         out["update_date"] = capo_opensearch.types.update_timestamp.deserialize_json(
@@ -66,11 +66,11 @@ def deserialize_json(data: dict) -> OptionStatus:
         )
     else:
         raise DeserializationError("OptionStatus.update_date required")
-    if "UpdateVersion" in data:
+    if data.get("UpdateVersion") is not None:
         out["update_version"] = data["UpdateVersion"]
     else:
         out["update_version"] = 0
-    if "State" in data:
+    if data.get("State") is not None:
         import capo_opensearch.types.option_state
 
         out["state"] = capo_opensearch.types.option_state.deserialize_json(
@@ -78,6 +78,6 @@ def deserialize_json(data: dict) -> OptionStatus:
         )
     else:
         raise DeserializationError("OptionStatus.state required")
-    if "PendingDeletion" in data:
+    if data.get("PendingDeletion") is not None:
         out["pending_deletion"] = data["PendingDeletion"]
     return out

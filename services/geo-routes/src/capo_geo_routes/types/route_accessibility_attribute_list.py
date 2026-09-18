@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> RouteAccessibilityAttributeList:
 
     out: RouteAccessibilityAttributeList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_geo_routes.types.route_accessibility_attribute.deserialize_json(item)
         )

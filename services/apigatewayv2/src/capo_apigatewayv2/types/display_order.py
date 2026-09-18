@@ -47,15 +47,15 @@ def serialize_json(value: DisplayOrder) -> dict:
 
 def deserialize_json(data: dict) -> DisplayOrder:
     out: DisplayOrder = {}  # type: ignore[typeddict-item]
-    if "contents" in data:
+    if data.get("contents") is not None:
         import capo_apigatewayv2.types.__list_of_section
 
         out["contents"] = capo_apigatewayv2.types.__list_of_section.deserialize_json(
             data["contents"]
         )
-    if "overviewPageArn" in data:
+    if data.get("overviewPageArn") is not None:
         out["overview_page_arn"] = data["overviewPageArn"]
-    if "productPageArns" in data:
+    if data.get("productPageArns") is not None:
         import capo_apigatewayv2.types.__list_of__string_min20_max2048
 
         out["product_page_arns"] = (

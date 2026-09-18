@@ -33,7 +33,7 @@ def serialize_json(value: ListPublicKeysResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListPublicKeysResponse:
     out: ListPublicKeysResponse = {}  # type: ignore[typeddict-item]
-    if "publicKeys" in data:
+    if data.get("publicKeys") is not None:
         import capo_ivs_realtime.types.public_key_list
 
         out["public_keys"] = capo_ivs_realtime.types.public_key_list.deserialize_json(
@@ -41,6 +41,6 @@ def deserialize_json(data: dict) -> ListPublicKeysResponse:
         )
     else:
         raise DeserializationError("ListPublicKeysResponse.public_keys required")
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

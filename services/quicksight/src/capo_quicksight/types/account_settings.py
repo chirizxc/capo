@@ -48,21 +48,21 @@ def serialize_json(value: AccountSettings) -> dict:
 
 def deserialize_json(data: dict) -> AccountSettings:
     out: AccountSettings = {}  # type: ignore[typeddict-item]
-    if "AccountName" in data:
+    if data.get("AccountName") is not None:
         out["account_name"] = data["AccountName"]
-    if "Edition" in data:
+    if data.get("Edition") is not None:
         import capo_quicksight.types.edition
 
         out["edition"] = capo_quicksight.types.edition.deserialize_json(data["Edition"])
-    if "DefaultNamespace" in data:
+    if data.get("DefaultNamespace") is not None:
         out["default_namespace"] = data["DefaultNamespace"]
-    if "NotificationEmail" in data:
+    if data.get("NotificationEmail") is not None:
         out["notification_email"] = data["NotificationEmail"]
-    if "PublicSharingEnabled" in data:
+    if data.get("PublicSharingEnabled") is not None:
         out["public_sharing_enabled"] = data["PublicSharingEnabled"]
     else:
         out["public_sharing_enabled"] = False
-    if "TerminationProtectionEnabled" in data:
+    if data.get("TerminationProtectionEnabled") is not None:
         out["termination_protection_enabled"] = data["TerminationProtectionEnabled"]
     else:
         out["termination_protection_enabled"] = False

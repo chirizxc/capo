@@ -51,7 +51,7 @@ def serialize_json(value: ComparativeOrder) -> dict:
 
 def deserialize_json(data: dict) -> ComparativeOrder:
     out: ComparativeOrder = {}  # type: ignore[typeddict-item]
-    if "UseOrdering" in data:
+    if data.get("UseOrdering") is not None:
         import capo_quicksight.types.column_ordering_type
 
         out["use_ordering"] = (
@@ -59,13 +59,13 @@ def deserialize_json(data: dict) -> ComparativeOrder:
                 data["UseOrdering"]
             )
         )
-    if "SpecifedOrder" in data:
+    if data.get("SpecifedOrder") is not None:
         import capo_quicksight.types.string_list
 
         out["specifed_order"] = capo_quicksight.types.string_list.deserialize_json(
             data["SpecifedOrder"]
         )
-    if "TreatUndefinedSpecifiedValues" in data:
+    if data.get("TreatUndefinedSpecifiedValues") is not None:
         import capo_quicksight.types.undefined_specified_value_type
 
         out["treat_undefined_specified_values"] = (

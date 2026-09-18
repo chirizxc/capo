@@ -24,7 +24,7 @@ def serialize_json(value: CreateLimitResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateLimitResponse:
     out: CreateLimitResponse = {}  # type: ignore[typeddict-item]
-    if "limitId" in data:
+    if data.get("limitId") is not None:
         out["limit_id"] = data["limitId"]
     else:
         raise DeserializationError("CreateLimitResponse.limit_id required")

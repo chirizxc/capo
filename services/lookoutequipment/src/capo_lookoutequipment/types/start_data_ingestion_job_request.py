@@ -42,11 +42,11 @@ def serialize_aws_json_1_0(value: StartDataIngestionJobRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> StartDataIngestionJobRequest:
     out: StartDataIngestionJobRequest = {}  # type: ignore[typeddict-item]
-    if "DatasetName" in data:
+    if data.get("DatasetName") is not None:
         out["dataset_name"] = data["DatasetName"]
     else:
         raise DeserializationError("StartDataIngestionJobRequest.dataset_name required")
-    if "IngestionInputConfiguration" in data:
+    if data.get("IngestionInputConfiguration") is not None:
         import capo_lookoutequipment.types.ingestion_input_configuration
 
         out["ingestion_input_configuration"] = (
@@ -58,11 +58,11 @@ def deserialize_aws_json_1_0(data: dict) -> StartDataIngestionJobRequest:
         raise DeserializationError(
             "StartDataIngestionJobRequest.ingestion_input_configuration required"
         )
-    if "RoleArn" in data:
+    if data.get("RoleArn") is not None:
         out["role_arn"] = data["RoleArn"]
     else:
         raise DeserializationError("StartDataIngestionJobRequest.role_arn required")
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
     else:
         raise DeserializationError("StartDataIngestionJobRequest.client_token required")

@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> RouteDriverScheduleIntervalList:
 
     out: RouteDriverScheduleIntervalList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_geo_routes.types.route_driver_schedule_interval.deserialize_json(item)
         )

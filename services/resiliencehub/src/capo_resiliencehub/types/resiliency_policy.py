@@ -97,13 +97,13 @@ def serialize_json(value: ResiliencyPolicy) -> dict:
 
 def deserialize_json(data: dict) -> ResiliencyPolicy:
     out: ResiliencyPolicy = {}  # type: ignore[typeddict-item]
-    if "policyArn" in data:
+    if data.get("policyArn") is not None:
         out["policy_arn"] = data["policyArn"]
-    if "policyName" in data:
+    if data.get("policyName") is not None:
         out["policy_name"] = data["policyName"]
-    if "policyDescription" in data:
+    if data.get("policyDescription") is not None:
         out["policy_description"] = data["policyDescription"]
-    if "dataLocationConstraint" in data:
+    if data.get("dataLocationConstraint") is not None:
         import capo_resiliencehub.types.data_location_constraint
 
         out["data_location_constraint"] = (
@@ -111,13 +111,13 @@ def deserialize_json(data: dict) -> ResiliencyPolicy:
                 data["dataLocationConstraint"]
             )
         )
-    if "tier" in data:
+    if data.get("tier") is not None:
         import capo_resiliencehub.types.resiliency_policy_tier
 
         out["tier"] = capo_resiliencehub.types.resiliency_policy_tier.deserialize_json(
             data["tier"]
         )
-    if "estimatedCostTier" in data:
+    if data.get("estimatedCostTier") is not None:
         import capo_resiliencehub.types.estimated_cost_tier
 
         out["estimated_cost_tier"] = (
@@ -125,19 +125,19 @@ def deserialize_json(data: dict) -> ResiliencyPolicy:
                 data["estimatedCostTier"]
             )
         )
-    if "policy" in data:
+    if data.get("policy") is not None:
         import capo_resiliencehub.types.disruption_policy
 
         out["policy"] = capo_resiliencehub.types.disruption_policy.deserialize_json(
             data["policy"]
         )
-    if "creationTime" in data:
+    if data.get("creationTime") is not None:
         import capo_resiliencehub.types.time_stamp
 
         out["creation_time"] = capo_resiliencehub.types.time_stamp.deserialize_json(
             data["creationTime"]
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_resiliencehub.types.tag_map
 
         out["tags"] = capo_resiliencehub.types.tag_map.deserialize_json(data["tags"])

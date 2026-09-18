@@ -57,21 +57,21 @@ def serialize_aws_json_1_1(value: DataCatalogSummary) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DataCatalogSummary:
     out: DataCatalogSummary = {}  # type: ignore[typeddict-item]
-    if "CatalogName" in data:
+    if data.get("CatalogName") is not None:
         out["catalog_name"] = data["CatalogName"]
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_athena.types.data_catalog_type
 
         out["type"] = capo_athena.types.data_catalog_type.deserialize_aws_json_1_1(
             data["Type"]
         )
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_athena.types.data_catalog_status
 
         out["status"] = capo_athena.types.data_catalog_status.deserialize_aws_json_1_1(
             data["Status"]
         )
-    if "ConnectionType" in data:
+    if data.get("ConnectionType") is not None:
         import capo_athena.types.connection_type
 
         out["connection_type"] = (
@@ -79,6 +79,6 @@ def deserialize_aws_json_1_1(data: dict) -> DataCatalogSummary:
                 data["ConnectionType"]
             )
         )
-    if "Error" in data:
+    if data.get("Error") is not None:
         out["error"] = data["Error"]
     return out

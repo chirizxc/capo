@@ -45,9 +45,9 @@ def serialize_aws_json_1_1(value: ModelConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ModelConfiguration:
     out: ModelConfiguration = {}  # type: ignore[typeddict-item]
-    if "InferenceSpecificationName" in data:
+    if data.get("InferenceSpecificationName") is not None:
         out["inference_specification_name"] = data["InferenceSpecificationName"]
-    if "EnvironmentParameters" in data:
+    if data.get("EnvironmentParameters") is not None:
         import capo_sagemaker.types.environment_parameters
 
         out["environment_parameters"] = (
@@ -55,6 +55,6 @@ def deserialize_aws_json_1_1(data: dict) -> ModelConfiguration:
                 data["EnvironmentParameters"]
             )
         )
-    if "CompilationJobName" in data:
+    if data.get("CompilationJobName") is not None:
         out["compilation_job_name"] = data["CompilationJobName"]
     return out

@@ -13,9 +13,9 @@ from capo_lightsail import AsyncLightsailClient
 
 
 async def main():
-    async with AsyncLightsailClient() as s3:
+    async with AsyncLightsailClient() as lightsail:
         # Example: call the allocate_static_ip operation
-        response = await s3.allocate_static_ip()
+        response = await lightsail.allocate_static_ip()
         print(response["operations"])
 ```
 
@@ -29,9 +29,9 @@ from capo_lightsail.error import AccessDeniedException
 
 
 async def main():
-    async with AsyncLightsailClient() as s3:
+    async with AsyncLightsailClient() as lightsail:
         try:
-            await s3.allocate_static_ip()
+            await lightsail.allocate_static_ip()
         except AccessDeniedException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -48,13 +48,13 @@ from capo_lightsail import AsyncLightsailClient
 
 
 async def main():
-    async with AsyncLightsailClient() as s3:
+    async with AsyncLightsailClient() as lightsail:
         # Default: 3 attempts for every operation
-        response = await s3.allocate_static_ip()
+        response = await lightsail.allocate_static_ip()
 
         # Override per operation
-        response = await s3.allocate_static_ip(config_overrides={"retry_max_attempts": 5})
+        response = await lightsail.allocate_static_ip(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.allocate_static_ip(config_overrides={"retry_max_attempts": 1})
+        response = await lightsail.allocate_static_ip(config_overrides={"retry_max_attempts": 1})
 ```

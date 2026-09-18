@@ -23,7 +23,7 @@ def serialize_aws_json_1_0(value: FormattedVss) -> dict:
 
 
 def deserialize_aws_json_1_0(data: dict) -> FormattedVss:
-    if "vssJson" in data:
+    if data.get("vssJson") is not None:
         return {"vssJson": data["vssJson"]}
     else:
         raise DeserializationError("FormattedVss: no recognized variant key")

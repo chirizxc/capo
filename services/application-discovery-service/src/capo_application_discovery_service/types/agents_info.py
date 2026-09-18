@@ -29,6 +29,8 @@ def deserialize_aws_json_1_1(data: list) -> AgentsInfo:
 
     out: AgentsInfo = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_application_discovery_service.types.agent_info.deserialize_aws_json_1_1(
                 item

@@ -31,9 +31,9 @@ def serialize_aws_json_1_1(value: UnsupportedDisplayLanguageCodeException_) -> d
 
 def deserialize_aws_json_1_1(data: dict) -> UnsupportedDisplayLanguageCodeException_:
     out: UnsupportedDisplayLanguageCodeException_ = {}  # type: ignore[typeddict-item]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
-    if "DisplayLanguageCode" in data:
+    if data.get("DisplayLanguageCode") is not None:
         out["display_language_code"] = data["DisplayLanguageCode"]
     return out
 
@@ -43,15 +43,20 @@ class UnsupportedDisplayLanguageCodeException(ServiceError):
 
     code: str | None = "UnsupportedDisplayLanguageCodeException"
 
-    def __init__(self, data: UnsupportedDisplayLanguageCodeException_):
+    def __init__(
+        self, data: UnsupportedDisplayLanguageCodeException_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="UnsupportedDisplayLanguageCodeException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "UnsupportedDisplayLanguageCodeException":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "UnsupportedDisplayLanguageCodeException":
+        return cls(deserialize_aws_json_1_1(data), message)

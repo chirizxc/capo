@@ -32,7 +32,7 @@ def serialize_aws_json_1_0(value: DeleteServiceResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> DeleteServiceResponse:
     out: DeleteServiceResponse = {}  # type: ignore[typeddict-item]
-    if "Service" in data:
+    if data.get("Service") is not None:
         import capo_apprunner.types.service
 
         out["service"] = capo_apprunner.types.service.deserialize_aws_json_1_0(
@@ -40,7 +40,7 @@ def deserialize_aws_json_1_0(data: dict) -> DeleteServiceResponse:
         )
     else:
         raise DeserializationError("DeleteServiceResponse.service required")
-    if "OperationId" in data:
+    if data.get("OperationId") is not None:
         out["operation_id"] = data["OperationId"]
     else:
         raise DeserializationError("DeleteServiceResponse.operation_id required")

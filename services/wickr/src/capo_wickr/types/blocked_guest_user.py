@@ -33,19 +33,19 @@ def serialize_json(value: BlockedGuestUser) -> dict:
 
 def deserialize_json(data: dict) -> BlockedGuestUser:
     out: BlockedGuestUser = {}  # type: ignore[typeddict-item]
-    if "username" in data:
+    if data.get("username") is not None:
         out["username"] = data["username"]
     else:
         raise DeserializationError("BlockedGuestUser.username required")
-    if "admin" in data:
+    if data.get("admin") is not None:
         out["admin"] = data["admin"]
     else:
         raise DeserializationError("BlockedGuestUser.admin required")
-    if "modified" in data:
+    if data.get("modified") is not None:
         out["modified"] = data["modified"]
     else:
         raise DeserializationError("BlockedGuestUser.modified required")
-    if "usernameHash" in data:
+    if data.get("usernameHash") is not None:
         out["username_hash"] = data["usernameHash"]
     else:
         raise DeserializationError("BlockedGuestUser.username_hash required")

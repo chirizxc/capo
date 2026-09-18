@@ -30,17 +30,25 @@ def serialize_aws_json_1_1(value: Action) -> dict:
     out["Operation"] = capo_forecast.types.operation.serialize_aws_json_1_1(
         value["operation"]
     )
-    out["Value"] = value["value"]
+    out["Value"] = (
+        "NaN"
+        if value["value"] != value["value"]
+        else "Infinity"
+        if value["value"] == float("inf")
+        else "-Infinity"
+        if value["value"] == float("-inf")
+        else value["value"]
+    )
     return out
 
 
 def deserialize_aws_json_1_1(data: dict) -> Action:
     out: Action = {}  # type: ignore[typeddict-item]
-    if "AttributeName" in data:
+    if data.get("AttributeName") is not None:
         out["attribute_name"] = data["AttributeName"]
     else:
         raise DeserializationError("Action.attribute_name required")
-    if "Operation" in data:
+    if data.get("Operation") is not None:
         import capo_forecast.types.operation
 
         out["operation"] = capo_forecast.types.operation.deserialize_aws_json_1_1(
@@ -48,8 +56,8 @@ def deserialize_aws_json_1_1(data: dict) -> Action:
         )
     else:
         raise DeserializationError("Action.operation required")
-    if "Value" in data:
-        out["value"] = data["Value"]
+    if data.get("Value") is not None:
+        out["value"] = float(data["Value"])
     else:
         raise DeserializationError("Action.value required")
     return out

@@ -24,15 +24,15 @@ def serialize_json(value: ServiceQuotaExceededException_) -> dict:
 
 def deserialize_json(data: dict) -> ServiceQuotaExceededException_:
     out: ServiceQuotaExceededException_ = {}  # type: ignore[typeddict-item]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     else:
         raise DeserializationError("ServiceQuotaExceededException_.message required")
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("ServiceQuotaExceededException_.name required")
-    if "Value" in data:
+    if data.get("Value") is not None:
         out["value"] = data["Value"]
     else:
         raise DeserializationError("ServiceQuotaExceededException_.value required")
@@ -44,15 +44,20 @@ class ServiceQuotaExceededException(ServiceError):
 
     code: str | None = "ServiceQuotaExceededException"
 
-    def __init__(self, data: ServiceQuotaExceededException_):
+    def __init__(
+        self, data: ServiceQuotaExceededException_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="ServiceQuotaExceededException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "ServiceQuotaExceededException":
-        return cls(deserialize_json(data))
+    def from_json(
+        cls, data: dict, message: str | None = None
+    ) -> "ServiceQuotaExceededException":
+        return cls(deserialize_json(data), message)

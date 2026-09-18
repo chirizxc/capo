@@ -40,7 +40,7 @@ def serialize_json(value: ArchiveOutputSettings) -> dict:
 
 def deserialize_json(data: dict) -> ArchiveOutputSettings:
     out: ArchiveOutputSettings = {}  # type: ignore[typeddict-item]
-    if "containerSettings" in data:
+    if data.get("containerSettings") is not None:
         import capo_medialive.types.archive_container_settings
 
         out["container_settings"] = (
@@ -48,8 +48,8 @@ def deserialize_json(data: dict) -> ArchiveOutputSettings:
                 data["containerSettings"]
             )
         )
-    if "extension" in data:
+    if data.get("extension") is not None:
         out["extension"] = data["extension"]
-    if "nameModifier" in data:
+    if data.get("nameModifier") is not None:
         out["name_modifier"] = data["nameModifier"]
     return out

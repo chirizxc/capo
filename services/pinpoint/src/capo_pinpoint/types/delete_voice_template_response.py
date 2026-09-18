@@ -26,7 +26,7 @@ def serialize_json(value: DeleteVoiceTemplateResponse) -> dict:
 
 def deserialize_json(data: dict) -> DeleteVoiceTemplateResponse:
     out: DeleteVoiceTemplateResponse = {}  # type: ignore[typeddict-item]
-    if "MessageBody" in data:
+    if data.get("MessageBody") is not None:
         import capo_pinpoint.types.message_body
 
         out["message_body"] = capo_pinpoint.types.message_body.deserialize_json(

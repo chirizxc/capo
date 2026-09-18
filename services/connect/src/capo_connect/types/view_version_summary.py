@@ -55,22 +55,22 @@ def serialize_json(value: ViewVersionSummary) -> dict:
 
 def deserialize_json(data: dict) -> ViewVersionSummary:
     out: ViewVersionSummary = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_connect.types.view_type
 
         out["type"] = capo_connect.types.view_type.deserialize_json(data["Type"])
-    if "Version" in data:
+    if data.get("Version") is not None:
         out["version"] = data["Version"]
     else:
         out["version"] = 0
-    if "VersionDescription" in data:
+    if data.get("VersionDescription") is not None:
         out["version_description"] = data["VersionDescription"]
     return out

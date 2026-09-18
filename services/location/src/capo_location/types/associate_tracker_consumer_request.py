@@ -27,7 +27,7 @@ def serialize_json(value: AssociateTrackerConsumerRequest) -> dict:
 
 def deserialize_json(data: dict) -> AssociateTrackerConsumerRequest:
     out: AssociateTrackerConsumerRequest = {}  # type: ignore[typeddict-item]
-    if "ConsumerArn" in data:
+    if data.get("ConsumerArn") is not None:
         out["consumer_arn"] = data["ConsumerArn"]
     else:
         raise DeserializationError(

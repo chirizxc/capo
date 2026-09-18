@@ -31,7 +31,7 @@ def serialize_json(value: AccountSettings) -> dict:
 
 def deserialize_json(data: dict) -> AccountSettings:
     out: AccountSettings = {}  # type: ignore[typeddict-item]
-    if "DeletionProtection" in data:
+    if data.get("DeletionProtection") is not None:
         import capo_appconfig.types.deletion_protection_settings
 
         out["deletion_protection"] = (

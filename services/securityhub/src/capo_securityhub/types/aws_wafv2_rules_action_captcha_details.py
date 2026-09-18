@@ -31,7 +31,7 @@ def serialize_json(value: AwsWafv2RulesActionCaptchaDetails) -> dict:
 
 def deserialize_json(data: dict) -> AwsWafv2RulesActionCaptchaDetails:
     out: AwsWafv2RulesActionCaptchaDetails = {}  # type: ignore[typeddict-item]
-    if "CustomRequestHandling" in data:
+    if data.get("CustomRequestHandling") is not None:
         import capo_securityhub.types.aws_wafv2_custom_request_handling_details
 
         out["custom_request_handling"] = (

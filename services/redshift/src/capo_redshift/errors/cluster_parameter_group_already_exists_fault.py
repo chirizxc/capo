@@ -39,15 +39,20 @@ class ClusterParameterGroupAlreadyExistsFault(ServiceError):
 
     code: str | None = "ClusterParameterGroupAlreadyExistsFault"
 
-    def __init__(self, data: ClusterParameterGroupAlreadyExistsFault_):
+    def __init__(
+        self, data: ClusterParameterGroupAlreadyExistsFault_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="ClusterParameterGroupAlreadyExistsFault",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_query(cls, el: Element) -> "ClusterParameterGroupAlreadyExistsFault":
-        return cls(deserialize_query(el))
+    def from_query(
+        cls, el: Element, message: str | None = None
+    ) -> "ClusterParameterGroupAlreadyExistsFault":
+        return cls(deserialize_query(el), message)

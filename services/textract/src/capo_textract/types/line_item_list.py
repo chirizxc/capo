@@ -23,5 +23,7 @@ def deserialize_aws_json_1_1(data: list) -> LineItemList:
 
     out: LineItemList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_textract.types.line_item_fields.deserialize_aws_json_1_1(item))
     return out

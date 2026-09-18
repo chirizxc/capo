@@ -81,7 +81,7 @@ def serialize_json(value: JobProcessDetails) -> dict:
 
 def deserialize_json(data: dict) -> JobProcessDetails:
     out: JobProcessDetails = {}  # type: ignore[typeddict-item]
-    if "processingTargets" in data:
+    if data.get("processingTargets") is not None:
         import capo_iot.types.processing_target_name_list
 
         out["processing_targets"] = (
@@ -89,20 +89,20 @@ def deserialize_json(data: dict) -> JobProcessDetails:
                 data["processingTargets"]
             )
         )
-    if "numberOfCanceledThings" in data:
+    if data.get("numberOfCanceledThings") is not None:
         out["number_of_canceled_things"] = data["numberOfCanceledThings"]
-    if "numberOfSucceededThings" in data:
+    if data.get("numberOfSucceededThings") is not None:
         out["number_of_succeeded_things"] = data["numberOfSucceededThings"]
-    if "numberOfFailedThings" in data:
+    if data.get("numberOfFailedThings") is not None:
         out["number_of_failed_things"] = data["numberOfFailedThings"]
-    if "numberOfRejectedThings" in data:
+    if data.get("numberOfRejectedThings") is not None:
         out["number_of_rejected_things"] = data["numberOfRejectedThings"]
-    if "numberOfQueuedThings" in data:
+    if data.get("numberOfQueuedThings") is not None:
         out["number_of_queued_things"] = data["numberOfQueuedThings"]
-    if "numberOfInProgressThings" in data:
+    if data.get("numberOfInProgressThings") is not None:
         out["number_of_in_progress_things"] = data["numberOfInProgressThings"]
-    if "numberOfRemovedThings" in data:
+    if data.get("numberOfRemovedThings") is not None:
         out["number_of_removed_things"] = data["numberOfRemovedThings"]
-    if "numberOfTimedOutThings" in data:
+    if data.get("numberOfTimedOutThings") is not None:
         out["number_of_timed_out_things"] = data["numberOfTimedOutThings"]
     return out

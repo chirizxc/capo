@@ -25,6 +25,6 @@ def serialize_json(value: DataIntegrationFlowExecutionOutputMetadata) -> dict:
 
 def deserialize_json(data: dict) -> DataIntegrationFlowExecutionOutputMetadata:
     out: DataIntegrationFlowExecutionOutputMetadata = {}  # type: ignore[typeddict-item]
-    if "diagnosticReportsRootS3URI" in data:
+    if data.get("diagnosticReportsRootS3URI") is not None:
         out["diagnostic_reports_root_s3_uri"] = data["diagnosticReportsRootS3URI"]
     return out

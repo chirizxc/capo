@@ -44,7 +44,7 @@ def serialize_json(value: DataPrepAggregationFunction) -> dict:
 
 def deserialize_json(data: dict) -> DataPrepAggregationFunction:
     out: DataPrepAggregationFunction = {}  # type: ignore[typeddict-item]
-    if "SimpleAggregation" in data:
+    if data.get("SimpleAggregation") is not None:
         import capo_quicksight.types.data_prep_simple_aggregation_function
 
         out["simple_aggregation"] = (
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> DataPrepAggregationFunction:
                 data["SimpleAggregation"]
             )
         )
-    if "ListAggregation" in data:
+    if data.get("ListAggregation") is not None:
         import capo_quicksight.types.data_prep_list_aggregation_function
 
         out["list_aggregation"] = (

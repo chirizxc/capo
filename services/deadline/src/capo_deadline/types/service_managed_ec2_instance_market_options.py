@@ -26,7 +26,7 @@ def serialize_json(value: ServiceManagedEc2InstanceMarketOptions) -> dict:
 
 def deserialize_json(data: dict) -> ServiceManagedEc2InstanceMarketOptions:
     out: ServiceManagedEc2InstanceMarketOptions = {}  # type: ignore[typeddict-item]
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_deadline.types.ec2_market_type
 
         out["type"] = capo_deadline.types.ec2_market_type.deserialize_json(data["type"])

@@ -40,7 +40,7 @@ def serialize_json(value: DependencyDiscoveryConfig) -> dict:
 
 def deserialize_json(data: dict) -> DependencyDiscoveryConfig:
     out: DependencyDiscoveryConfig = {}  # type: ignore[typeddict-item]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_resiliencehubv2.types.dependency_discovery_status
 
         out["status"] = (
@@ -50,7 +50,7 @@ def deserialize_json(data: dict) -> DependencyDiscoveryConfig:
         )
     else:
         raise DeserializationError("DependencyDiscoveryConfig.status required")
-    if "updatedAt" in data:
+    if data.get("updatedAt") is not None:
         import capo_resiliencehubv2.types._prelude.timestamp
 
         out["updated_at"] = (

@@ -28,8 +28,8 @@ def serialize_json(value: CodeSigningCertificateChain) -> dict:
 
 def deserialize_json(data: dict) -> CodeSigningCertificateChain:
     out: CodeSigningCertificateChain = {}  # type: ignore[typeddict-item]
-    if "certificateName" in data:
+    if data.get("certificateName") is not None:
         out["certificate_name"] = data["certificateName"]
-    if "inlineDocument" in data:
+    if data.get("inlineDocument") is not None:
         out["inline_document"] = data["inlineDocument"]
     return out

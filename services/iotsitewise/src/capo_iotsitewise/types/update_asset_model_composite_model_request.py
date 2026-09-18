@@ -76,23 +76,23 @@ def serialize_json(value: UpdateAssetModelCompositeModelRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateAssetModelCompositeModelRequest:
     out: UpdateAssetModelCompositeModelRequest = {}  # type: ignore[typeddict-item]
-    if "assetModelCompositeModelExternalId" in data:
+    if data.get("assetModelCompositeModelExternalId") is not None:
         out["asset_model_composite_model_external_id"] = data[
             "assetModelCompositeModelExternalId"
         ]
-    if "assetModelCompositeModelDescription" in data:
+    if data.get("assetModelCompositeModelDescription") is not None:
         out["asset_model_composite_model_description"] = data[
             "assetModelCompositeModelDescription"
         ]
-    if "assetModelCompositeModelName" in data:
+    if data.get("assetModelCompositeModelName") is not None:
         out["asset_model_composite_model_name"] = data["assetModelCompositeModelName"]
     else:
         raise DeserializationError(
             "UpdateAssetModelCompositeModelRequest.asset_model_composite_model_name required"
         )
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
-    if "assetModelCompositeModelProperties" in data:
+    if data.get("assetModelCompositeModelProperties") is not None:
         import capo_iotsitewise.types.asset_model_properties
 
         out["asset_model_composite_model_properties"] = (

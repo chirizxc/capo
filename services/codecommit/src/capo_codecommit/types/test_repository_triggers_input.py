@@ -34,13 +34,13 @@ def serialize_aws_json_1_1(value: TestRepositoryTriggersInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> TestRepositoryTriggersInput:
     out: TestRepositoryTriggersInput = {}  # type: ignore[typeddict-item]
-    if "repositoryName" in data:
+    if data.get("repositoryName") is not None:
         out["repository_name"] = data["repositoryName"]
     else:
         raise DeserializationError(
             "TestRepositoryTriggersInput.repository_name required"
         )
-    if "triggers" in data:
+    if data.get("triggers") is not None:
         import capo_codecommit.types.repository_triggers_list
 
         out["triggers"] = (

@@ -1,5 +1,6 @@
 """Generated from Smithy shape ``com.amazonaws.inspector2#Inspector2``."""
 
+import uuid
 import warnings
 from collections.abc import Iterator
 from typing import TYPE_CHECKING, Any, Iterable, Optional
@@ -423,14 +424,16 @@ class Inspector2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_inspector2.types.associate_member_request.AssociateMemberRequest = {}  # type: ignore[typeddict-item]
-        input_["account_id"] = account_id
+        input_: capo_inspector2.types.associate_member_request.AssociateMemberRequest = {
+            "account_id": account_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def batch_associate_code_security_scan_configuration(
@@ -469,14 +472,16 @@ class Inspector2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_inspector2.types.batch_associate_code_security_scan_configuration_request.BatchAssociateCodeSecurityScanConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["associate_configuration_requests"] = associate_configuration_requests
+        input_: capo_inspector2.types.batch_associate_code_security_scan_configuration_request.BatchAssociateCodeSecurityScanConfigurationRequest = {
+            "associate_configuration_requests": associate_configuration_requests
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def batch_disassociate_code_security_scan_configuration(
@@ -515,16 +520,16 @@ class Inspector2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_inspector2.types.batch_disassociate_code_security_scan_configuration_request.BatchDisassociateCodeSecurityScanConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["disassociate_configuration_requests"] = (
-            disassociate_configuration_requests
-        )
+        input_: capo_inspector2.types.batch_disassociate_code_security_scan_configuration_request.BatchDisassociateCodeSecurityScanConfigurationRequest = {
+            "disassociate_configuration_requests": disassociate_configuration_requests
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def batch_get_account_status(
@@ -564,7 +569,7 @@ class Inspector2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_inspector2.types.batch_get_account_status_request.BatchGetAccountStatusRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_inspector2.types.batch_get_account_status_request.BatchGetAccountStatusRequest = {}
         if account_ids is not None:
             input_["account_ids"] = account_ids
 
@@ -573,6 +578,7 @@ class Inspector2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def batch_get_code_snippet(
@@ -609,14 +615,16 @@ class Inspector2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_inspector2.types.batch_get_code_snippet_request.BatchGetCodeSnippetRequest = {}  # type: ignore[typeddict-item]
-        input_["finding_arns"] = finding_arns
+        input_: capo_inspector2.types.batch_get_code_snippet_request.BatchGetCodeSnippetRequest = {
+            "finding_arns": finding_arns
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def batch_get_finding_details(
@@ -658,14 +666,16 @@ class Inspector2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_inspector2.types.batch_get_finding_details_request.BatchGetFindingDetailsRequest = {}  # type: ignore[typeddict-item]
-        input_["finding_arns"] = finding_arns
+        input_: capo_inspector2.types.batch_get_finding_details_request.BatchGetFindingDetailsRequest = {
+            "finding_arns": finding_arns
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def batch_get_free_trial_info(
@@ -702,14 +712,16 @@ class Inspector2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_inspector2.types.batch_get_free_trial_info_request.BatchGetFreeTrialInfoRequest = {}  # type: ignore[typeddict-item]
-        input_["account_ids"] = account_ids
+        input_: capo_inspector2.types.batch_get_free_trial_info_request.BatchGetFreeTrialInfoRequest = {
+            "account_ids": account_ids
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def batch_get_member_ec2_deep_inspection_status(
@@ -748,7 +760,7 @@ class Inspector2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_inspector2.types.batch_get_member_ec2_deep_inspection_status_request.BatchGetMemberEc2DeepInspectionStatusRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_inspector2.types.batch_get_member_ec2_deep_inspection_status_request.BatchGetMemberEc2DeepInspectionStatusRequest = {}
         if account_ids is not None:
             input_["account_ids"] = account_ids
 
@@ -757,6 +769,7 @@ class Inspector2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def batch_update_member_ec2_deep_inspection_status(
@@ -793,14 +806,16 @@ class Inspector2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_inspector2.types.batch_update_member_ec2_deep_inspection_status_request.BatchUpdateMemberEc2DeepInspectionStatusRequest = {}  # type: ignore[typeddict-item]
-        input_["account_ids"] = account_ids
+        input_: capo_inspector2.types.batch_update_member_ec2_deep_inspection_status_request.BatchUpdateMemberEc2DeepInspectionStatusRequest = {
+            "account_ids": account_ids
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def cancel_findings_report(
@@ -838,14 +853,16 @@ class Inspector2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_inspector2.types.cancel_findings_report_request.CancelFindingsReportRequest = {}  # type: ignore[typeddict-item]
-        input_["report_id"] = report_id
+        input_: capo_inspector2.types.cancel_findings_report_request.CancelFindingsReportRequest = {
+            "report_id": report_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def cancel_sbom_export(
@@ -883,14 +900,16 @@ class Inspector2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_inspector2.types.cancel_sbom_export_request.CancelSbomExportRequest = {}  # type: ignore[typeddict-item]
-        input_["report_id"] = report_id
+        input_: capo_inspector2.types.cancel_sbom_export_request.CancelSbomExportRequest = {
+            "report_id": report_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_cis_scan_configuration(
@@ -940,11 +959,12 @@ class Inspector2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_inspector2.types.create_cis_scan_configuration_request.CreateCisScanConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["scan_name"] = scan_name
-        input_["security_level"] = security_level
-        input_["schedule"] = schedule
-        input_["targets"] = targets
+        input_: capo_inspector2.types.create_cis_scan_configuration_request.CreateCisScanConfigurationRequest = {
+            "scan_name": scan_name,
+            "security_level": security_level,
+            "schedule": schedule,
+            "targets": targets,
+        }
         if tags is not None:
             input_["tags"] = tags
 
@@ -953,6 +973,7 @@ class Inspector2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_code_security_integration(
@@ -999,9 +1020,10 @@ class Inspector2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_inspector2.types.create_code_security_integration_request.CreateCodeSecurityIntegrationRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        input_["type"] = type
+        input_: capo_inspector2.types.create_code_security_integration_request.CreateCodeSecurityIntegrationRequest = {
+            "name": name,
+            "type": type,
+        }
         if details is not None:
             input_["details"] = details
         if tags is not None:
@@ -1012,6 +1034,7 @@ class Inspector2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_code_security_scan_configuration(
@@ -1060,10 +1083,11 @@ class Inspector2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_inspector2.types.create_code_security_scan_configuration_request.CreateCodeSecurityScanConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        input_["level"] = level
-        input_["configuration"] = configuration
+        input_: capo_inspector2.types.create_code_security_scan_configuration_request.CreateCodeSecurityScanConfigurationRequest = {
+            "name": name,
+            "level": level,
+            "configuration": configuration,
+        }
         if scope_settings is not None:
             input_["scope_settings"] = scope_settings
         if tags is not None:
@@ -1074,6 +1098,7 @@ class Inspector2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_filter(
@@ -1124,12 +1149,13 @@ class Inspector2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_inspector2.types.create_filter_request.CreateFilterRequest = {}  # type: ignore[typeddict-item]
-        input_["action"] = action
+        input_: capo_inspector2.types.create_filter_request.CreateFilterRequest = {
+            "action": action,
+            "filter_criteria": filter_criteria,
+            "name": name,
+        }
         if description is not None:
             input_["description"] = description
-        input_["filter_criteria"] = filter_criteria
-        input_["name"] = name
         if tags is not None:
             input_["tags"] = tags
         if reason is not None:
@@ -1140,6 +1166,7 @@ class Inspector2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_findings_report(
@@ -1183,17 +1210,19 @@ class Inspector2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_inspector2.types.create_findings_report_request.CreateFindingsReportRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_inspector2.types.create_findings_report_request.CreateFindingsReportRequest = {
+            "report_format": report_format,
+            "s3_destination": s3_destination,
+        }
         if filter_criteria is not None:
             input_["filter_criteria"] = filter_criteria
-        input_["report_format"] = report_format
-        input_["s3_destination"] = s3_destination
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_sbom_export(
@@ -1237,17 +1266,19 @@ class Inspector2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_inspector2.types.create_sbom_export_request.CreateSbomExportRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_inspector2.types.create_sbom_export_request.CreateSbomExportRequest = {
+            "report_format": report_format,
+            "s3_destination": s3_destination,
+        }
         if resource_filter_criteria is not None:
             input_["resource_filter_criteria"] = resource_filter_criteria
-        input_["report_format"] = report_format
-        input_["s3_destination"] = s3_destination
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_cis_scan_configuration(
@@ -1290,14 +1321,16 @@ class Inspector2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_inspector2.types.delete_cis_scan_configuration_request.DeleteCisScanConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["scan_configuration_arn"] = scan_configuration_arn
+        input_: capo_inspector2.types.delete_cis_scan_configuration_request.DeleteCisScanConfigurationRequest = {
+            "scan_configuration_arn": scan_configuration_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_code_security_integration(
@@ -1335,14 +1368,16 @@ class Inspector2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_inspector2.types.delete_code_security_integration_request.DeleteCodeSecurityIntegrationRequest = {}  # type: ignore[typeddict-item]
-        input_["integration_arn"] = integration_arn
+        input_: capo_inspector2.types.delete_code_security_integration_request.DeleteCodeSecurityIntegrationRequest = {
+            "integration_arn": integration_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_code_security_scan_configuration(
@@ -1380,14 +1415,16 @@ class Inspector2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_inspector2.types.delete_code_security_scan_configuration_request.DeleteCodeSecurityScanConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["scan_configuration_arn"] = scan_configuration_arn
+        input_: capo_inspector2.types.delete_code_security_scan_configuration_request.DeleteCodeSecurityScanConfigurationRequest = {
+            "scan_configuration_arn": scan_configuration_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_filter(
@@ -1425,14 +1462,16 @@ class Inspector2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_inspector2.types.delete_filter_request.DeleteFilterRequest = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
+        input_: capo_inspector2.types.delete_filter_request.DeleteFilterRequest = {
+            "arn": arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_organization_configuration(
@@ -1463,13 +1502,14 @@ class Inspector2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_inspector2.types.describe_organization_configuration_request.DescribeOrganizationConfigurationRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_inspector2.types.describe_organization_configuration_request.DescribeOrganizationConfigurationRequest = {}
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def disable(
@@ -1513,7 +1553,7 @@ class Inspector2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_inspector2.types.disable_request.DisableRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_inspector2.types.disable_request.DisableRequest = {}
         if account_ids is not None:
             input_["account_ids"] = account_ids
         if resource_types is not None:
@@ -1524,6 +1564,7 @@ class Inspector2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def disable_delegated_admin_account(
@@ -1562,14 +1603,16 @@ class Inspector2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_inspector2.types.disable_delegated_admin_account_request.DisableDelegatedAdminAccountRequest = {}  # type: ignore[typeddict-item]
-        input_["delegated_admin_account_id"] = delegated_admin_account_id
+        input_: capo_inspector2.types.disable_delegated_admin_account_request.DisableDelegatedAdminAccountRequest = {
+            "delegated_admin_account_id": delegated_admin_account_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def disassociate_member(
@@ -1608,14 +1651,16 @@ class Inspector2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_inspector2.types.disassociate_member_request.DisassociateMemberRequest = {}  # type: ignore[typeddict-item]
-        input_["account_id"] = account_id
+        input_: capo_inspector2.types.disassociate_member_request.DisassociateMemberRequest = {
+            "account_id": account_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def enable(
@@ -1657,18 +1702,21 @@ class Inspector2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_inspector2.types.enable_request.EnableRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_inspector2.types.enable_request.EnableRequest = {
+            "resource_types": resource_types
+        }
         if account_ids is not None:
             input_["account_ids"] = account_ids
-        input_["resource_types"] = resource_types
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def enable_delegated_admin_account(
@@ -1709,16 +1757,19 @@ class Inspector2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_inspector2.types.enable_delegated_admin_account_request.EnableDelegatedAdminAccountRequest = {}  # type: ignore[typeddict-item]
-        input_["delegated_admin_account_id"] = delegated_admin_account_id
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_inspector2.types.enable_delegated_admin_account_request.EnableDelegatedAdminAccountRequest = {
+            "delegated_admin_account_id": delegated_admin_account_id
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_cis_scan_report(
@@ -1769,8 +1820,9 @@ class Inspector2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_inspector2.types.get_cis_scan_report_request.GetCisScanReportRequest = {}  # type: ignore[typeddict-item]
-        input_["scan_arn"] = scan_arn
+        input_: capo_inspector2.types.get_cis_scan_report_request.GetCisScanReportRequest = {
+            "scan_arn": scan_arn
+        }
         if target_accounts is not None:
             input_["target_accounts"] = target_accounts
         if report_format is not None:
@@ -1781,6 +1833,7 @@ class Inspector2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_cis_scan_result_details(
@@ -1844,10 +1897,11 @@ class Inspector2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_inspector2.types.get_cis_scan_result_details_request.GetCisScanResultDetailsRequest = {}  # type: ignore[typeddict-item]
-        input_["scan_arn"] = scan_arn
-        input_["target_resource_id"] = target_resource_id
-        input_["account_id"] = account_id
+        input_: capo_inspector2.types.get_cis_scan_result_details_request.GetCisScanResultDetailsRequest = {
+            "scan_arn": scan_arn,
+            "target_resource_id": target_resource_id,
+            "account_id": account_id,
+        }
         if filter_criteria is not None:
             input_["filter_criteria"] = filter_criteria
         if sort_by is not None:
@@ -1864,6 +1918,7 @@ class Inspector2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_get_cis_scan_result_details(
@@ -1947,8 +2002,9 @@ class Inspector2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_inspector2.types.get_clusters_for_image_request.GetClustersForImageRequest = {}  # type: ignore[typeddict-item]
-        input_["filter"] = filter
+        input_: capo_inspector2.types.get_clusters_for_image_request.GetClustersForImageRequest = {
+            "filter": filter
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -1959,6 +2015,7 @@ class Inspector2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_get_clusters_for_image(
@@ -2023,8 +2080,9 @@ class Inspector2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_inspector2.types.get_code_security_integration_request.GetCodeSecurityIntegrationRequest = {}  # type: ignore[typeddict-item]
-        input_["integration_arn"] = integration_arn
+        input_: capo_inspector2.types.get_code_security_integration_request.GetCodeSecurityIntegrationRequest = {
+            "integration_arn": integration_arn
+        }
         if tags is not None:
             input_["tags"] = tags
 
@@ -2033,6 +2091,7 @@ class Inspector2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_code_security_scan(
@@ -2073,15 +2132,17 @@ class Inspector2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_inspector2.types.get_code_security_scan_request.GetCodeSecurityScanRequest = {}  # type: ignore[typeddict-item]
-        input_["resource"] = resource
-        input_["scan_id"] = scan_id
+        input_: capo_inspector2.types.get_code_security_scan_request.GetCodeSecurityScanRequest = {
+            "resource": resource,
+            "scan_id": scan_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_code_security_scan_configuration(
@@ -2119,14 +2180,16 @@ class Inspector2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_inspector2.types.get_code_security_scan_configuration_request.GetCodeSecurityScanConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["scan_configuration_arn"] = scan_configuration_arn
+        input_: capo_inspector2.types.get_code_security_scan_configuration_request.GetCodeSecurityScanConfigurationRequest = {
+            "scan_configuration_arn": scan_configuration_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_configuration(
@@ -2156,13 +2219,14 @@ class Inspector2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_inspector2.types.get_configuration_request.GetConfigurationRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_inspector2.types.get_configuration_request.GetConfigurationRequest = {}
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_delegated_admin_account(
@@ -2194,13 +2258,14 @@ class Inspector2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_inspector2.types.get_delegated_admin_account_request.GetDelegatedAdminAccountRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_inspector2.types.get_delegated_admin_account_request.GetDelegatedAdminAccountRequest = {}
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_ec2_deep_inspection_configuration(
@@ -2231,13 +2296,14 @@ class Inspector2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_inspector2.types.get_ec2_deep_inspection_configuration_request.GetEc2DeepInspectionConfigurationRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_inspector2.types.get_ec2_deep_inspection_configuration_request.GetEc2DeepInspectionConfigurationRequest = {}
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_encryption_key(
@@ -2277,15 +2343,17 @@ class Inspector2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_inspector2.types.get_encryption_key_request.GetEncryptionKeyRequest = {}  # type: ignore[typeddict-item]
-        input_["scan_type"] = scan_type
-        input_["resource_type"] = resource_type
+        input_: capo_inspector2.types.get_encryption_key_request.GetEncryptionKeyRequest = {
+            "scan_type": scan_type,
+            "resource_type": resource_type,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_findings_report_status(
@@ -2323,7 +2391,7 @@ class Inspector2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_inspector2.types.get_findings_report_status_request.GetFindingsReportStatusRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_inspector2.types.get_findings_report_status_request.GetFindingsReportStatusRequest = {}
         if report_id is not None:
             input_["report_id"] = report_id
 
@@ -2332,6 +2400,7 @@ class Inspector2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_member(
@@ -2369,14 +2438,16 @@ class Inspector2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_inspector2.types.get_member_request.GetMemberRequest = {}  # type: ignore[typeddict-item]
-        input_["account_id"] = account_id
+        input_: capo_inspector2.types.get_member_request.GetMemberRequest = {
+            "account_id": account_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_sbom_export(
@@ -2414,14 +2485,16 @@ class Inspector2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_inspector2.types.get_sbom_export_request.GetSbomExportRequest = {}  # type: ignore[typeddict-item]
-        input_["report_id"] = report_id
+        input_: capo_inspector2.types.get_sbom_export_request.GetSbomExportRequest = {
+            "report_id": report_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_account_permissions(
@@ -2464,7 +2537,7 @@ class Inspector2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_inspector2.types.list_account_permissions_request.ListAccountPermissionsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_inspector2.types.list_account_permissions_request.ListAccountPermissionsRequest = {}
         if service is not None:
             input_["service"] = service
         if max_results is not None:
@@ -2477,6 +2550,7 @@ class Inspector2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_account_permissions(
@@ -2559,7 +2633,7 @@ class Inspector2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_inspector2.types.list_cis_scan_configurations_request.ListCisScanConfigurationsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_inspector2.types.list_cis_scan_configurations_request.ListCisScanConfigurationsRequest = {}
         if filter_criteria is not None:
             input_["filter_criteria"] = filter_criteria
         if sort_by is not None:
@@ -2576,6 +2650,7 @@ class Inspector2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_cis_scan_configurations(
@@ -2670,8 +2745,9 @@ class Inspector2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_inspector2.types.list_cis_scan_results_aggregated_by_checks_request.ListCisScanResultsAggregatedByChecksRequest = {}  # type: ignore[typeddict-item]
-        input_["scan_arn"] = scan_arn
+        input_: capo_inspector2.types.list_cis_scan_results_aggregated_by_checks_request.ListCisScanResultsAggregatedByChecksRequest = {
+            "scan_arn": scan_arn
+        }
         if filter_criteria is not None:
             input_["filter_criteria"] = filter_criteria
         if sort_by is not None:
@@ -2688,6 +2764,7 @@ class Inspector2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_cis_scan_results_aggregated_by_checks(
@@ -2784,8 +2861,9 @@ class Inspector2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_inspector2.types.list_cis_scan_results_aggregated_by_target_resource_request.ListCisScanResultsAggregatedByTargetResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["scan_arn"] = scan_arn
+        input_: capo_inspector2.types.list_cis_scan_results_aggregated_by_target_resource_request.ListCisScanResultsAggregatedByTargetResourceRequest = {
+            "scan_arn": scan_arn
+        }
         if filter_criteria is not None:
             input_["filter_criteria"] = filter_criteria
         if sort_by is not None:
@@ -2802,6 +2880,7 @@ class Inspector2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_cis_scan_results_aggregated_by_target_resource(
@@ -2900,7 +2979,7 @@ class Inspector2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_inspector2.types.list_cis_scans_request.ListCisScansRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_inspector2.types.list_cis_scans_request.ListCisScansRequest = {}
         if filter_criteria is not None:
             input_["filter_criteria"] = filter_criteria
         if detail_level is not None:
@@ -2919,6 +2998,7 @@ class Inspector2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_cis_scans(
@@ -2996,7 +3076,7 @@ class Inspector2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_inspector2.types.list_code_security_integrations_request.ListCodeSecurityIntegrationsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_inspector2.types.list_code_security_integrations_request.ListCodeSecurityIntegrationsRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -3007,6 +3087,7 @@ class Inspector2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_code_security_scan_configuration_associations(
@@ -3048,8 +3129,9 @@ class Inspector2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_inspector2.types.list_code_security_scan_configuration_associations_request.ListCodeSecurityScanConfigurationAssociationsRequest = {}  # type: ignore[typeddict-item]
-        input_["scan_configuration_arn"] = scan_configuration_arn
+        input_: capo_inspector2.types.list_code_security_scan_configuration_associations_request.ListCodeSecurityScanConfigurationAssociationsRequest = {
+            "scan_configuration_arn": scan_configuration_arn
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -3060,6 +3142,7 @@ class Inspector2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_code_security_scan_configurations(
@@ -3099,7 +3182,7 @@ class Inspector2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_inspector2.types.list_code_security_scan_configurations_request.ListCodeSecurityScanConfigurationsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_inspector2.types.list_code_security_scan_configurations_request.ListCodeSecurityScanConfigurationsRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -3110,6 +3193,7 @@ class Inspector2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_coverage(
@@ -3153,7 +3237,7 @@ class Inspector2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_inspector2.types.list_coverage_request.ListCoverageRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_inspector2.types.list_coverage_request.ListCoverageRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -3166,6 +3250,7 @@ class Inspector2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_coverage(
@@ -3234,7 +3319,7 @@ class Inspector2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_inspector2.types.list_coverage_statistics_request.ListCoverageStatisticsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_inspector2.types.list_coverage_statistics_request.ListCoverageStatisticsRequest = {}
         if filter_criteria is not None:
             input_["filter_criteria"] = filter_criteria
         if group_by is not None:
@@ -3247,6 +3332,7 @@ class Inspector2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_coverage_statistics(
@@ -3312,7 +3398,7 @@ class Inspector2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_inspector2.types.list_delegated_admin_accounts_request.ListDelegatedAdminAccountsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_inspector2.types.list_delegated_admin_accounts_request.ListDelegatedAdminAccountsRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -3323,6 +3409,7 @@ class Inspector2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_delegated_admin_accounts(
@@ -3392,7 +3479,7 @@ class Inspector2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_inspector2.types.list_filters_request.ListFiltersRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_inspector2.types.list_filters_request.ListFiltersRequest = {}
         if arns is not None:
             input_["arns"] = arns
         if action is not None:
@@ -3407,6 +3494,7 @@ class Inspector2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_filters(
@@ -3483,8 +3571,9 @@ class Inspector2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_inspector2.types.list_finding_aggregations_request.ListFindingAggregationsRequest = {}  # type: ignore[typeddict-item]
-        input_["aggregation_type"] = aggregation_type
+        input_: capo_inspector2.types.list_finding_aggregations_request.ListFindingAggregationsRequest = {
+            "aggregation_type": aggregation_type
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -3499,6 +3588,7 @@ class Inspector2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_finding_aggregations(
@@ -3579,7 +3669,7 @@ class Inspector2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_inspector2.types.list_findings_request.ListFindingsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_inspector2.types.list_findings_request.ListFindingsRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -3594,6 +3684,7 @@ class Inspector2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_findings(
@@ -3667,7 +3758,7 @@ class Inspector2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_inspector2.types.list_members_request.ListMembersRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_inspector2.types.list_members_request.ListMembersRequest = {}
         if only_associated is not None:
             input_["only_associated"] = only_associated
         if max_results is not None:
@@ -3680,6 +3771,7 @@ class Inspector2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_members(
@@ -3741,14 +3833,16 @@ class Inspector2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_inspector2.types.list_tags_for_resource_request.ListTagsForResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_inspector2.types.list_tags_for_resource_request.ListTagsForResourceRequest = {
+            "resource_arn": resource_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_usage_totals(
@@ -3795,7 +3889,7 @@ class Inspector2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_inspector2.types.list_usage_totals_request.ListUsageTotalsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_inspector2.types.list_usage_totals_request.ListUsageTotalsRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -3808,6 +3902,7 @@ class Inspector2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_usage_totals(
@@ -3878,15 +3973,17 @@ class Inspector2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_inspector2.types.reset_encryption_key_request.ResetEncryptionKeyRequest = {}  # type: ignore[typeddict-item]
-        input_["scan_type"] = scan_type
-        input_["resource_type"] = resource_type
+        input_: capo_inspector2.types.reset_encryption_key_request.ResetEncryptionKeyRequest = {
+            "scan_type": scan_type,
+            "resource_type": resource_type,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def search_vulnerabilities(
@@ -3925,8 +4022,9 @@ class Inspector2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_inspector2.types.search_vulnerabilities_request.SearchVulnerabilitiesRequest = {}  # type: ignore[typeddict-item]
-        input_["filter_criteria"] = filter_criteria
+        input_: capo_inspector2.types.search_vulnerabilities_request.SearchVulnerabilitiesRequest = {
+            "filter_criteria": filter_criteria
+        }
         if next_token is not None:
             input_["next_token"] = next_token
 
@@ -3935,6 +4033,7 @@ class Inspector2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_search_vulnerabilities(
@@ -4000,15 +4099,17 @@ class Inspector2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_inspector2.types.send_cis_session_health_request.SendCisSessionHealthRequest = {}  # type: ignore[typeddict-item]
-        input_["scan_job_id"] = scan_job_id
-        input_["session_token"] = session_token
+        input_: capo_inspector2.types.send_cis_session_health_request.SendCisSessionHealthRequest = {
+            "scan_job_id": scan_job_id,
+            "session_token": session_token,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def send_cis_session_telemetry(
@@ -4055,16 +4156,18 @@ class Inspector2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_inspector2.types.send_cis_session_telemetry_request.SendCisSessionTelemetryRequest = {}  # type: ignore[typeddict-item]
-        input_["scan_job_id"] = scan_job_id
-        input_["session_token"] = session_token
-        input_["messages"] = messages
+        input_: capo_inspector2.types.send_cis_session_telemetry_request.SendCisSessionTelemetryRequest = {
+            "scan_job_id": scan_job_id,
+            "session_token": session_token,
+            "messages": messages,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def start_cis_session(
@@ -4109,15 +4212,17 @@ class Inspector2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_inspector2.types.start_cis_session_request.StartCisSessionRequest = {}  # type: ignore[typeddict-item]
-        input_["scan_job_id"] = scan_job_id
-        input_["message"] = message
+        input_: capo_inspector2.types.start_cis_session_request.StartCisSessionRequest = {
+            "scan_job_id": scan_job_id,
+            "message": message,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def start_code_security_scan(
@@ -4160,16 +4265,19 @@ class Inspector2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_inspector2.types.start_code_security_scan_request.StartCodeSecurityScanRequest = {}  # type: ignore[typeddict-item]
-        if client_token is not None:
-            input_["client_token"] = client_token
-        input_["resource"] = resource
+        input_: capo_inspector2.types.start_code_security_scan_request.StartCodeSecurityScanRequest = {
+            "resource": resource
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def stop_cis_session(
@@ -4216,16 +4324,18 @@ class Inspector2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_inspector2.types.stop_cis_session_request.StopCisSessionRequest = {}  # type: ignore[typeddict-item]
-        input_["scan_job_id"] = scan_job_id
-        input_["session_token"] = session_token
-        input_["message"] = message
+        input_: capo_inspector2.types.stop_cis_session_request.StopCisSessionRequest = {
+            "scan_job_id": scan_job_id,
+            "session_token": session_token,
+            "message": message,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def tag_resource(
@@ -4265,15 +4375,17 @@ class Inspector2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_inspector2.types.tag_resource_request.TagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tags"] = tags
+        input_: capo_inspector2.types.tag_resource_request.TagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tags": tags,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def untag_resource(
@@ -4312,15 +4424,17 @@ class Inspector2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_inspector2.types.untag_resource_request.UntagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tag_keys"] = tag_keys
+        input_: capo_inspector2.types.untag_resource_request.UntagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tag_keys": tag_keys,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_cis_scan_configuration(
@@ -4375,8 +4489,9 @@ class Inspector2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_inspector2.types.update_cis_scan_configuration_request.UpdateCisScanConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["scan_configuration_arn"] = scan_configuration_arn
+        input_: capo_inspector2.types.update_cis_scan_configuration_request.UpdateCisScanConfigurationRequest = {
+            "scan_configuration_arn": scan_configuration_arn
+        }
         if scan_name is not None:
             input_["scan_name"] = scan_name
         if security_level is not None:
@@ -4391,6 +4506,7 @@ class Inspector2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_code_security_integration(
@@ -4431,15 +4547,17 @@ class Inspector2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_inspector2.types.update_code_security_integration_request.UpdateCodeSecurityIntegrationRequest = {}  # type: ignore[typeddict-item]
-        input_["integration_arn"] = integration_arn
-        input_["details"] = details
+        input_: capo_inspector2.types.update_code_security_integration_request.UpdateCodeSecurityIntegrationRequest = {
+            "integration_arn": integration_arn,
+            "details": details,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_code_security_scan_configuration(
@@ -4480,15 +4598,17 @@ class Inspector2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_inspector2.types.update_code_security_scan_configuration_request.UpdateCodeSecurityScanConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["scan_configuration_arn"] = scan_configuration_arn
-        input_["configuration"] = configuration
+        input_: capo_inspector2.types.update_code_security_scan_configuration_request.UpdateCodeSecurityScanConfigurationRequest = {
+            "scan_configuration_arn": scan_configuration_arn,
+            "configuration": configuration,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_configuration(
@@ -4531,7 +4651,7 @@ class Inspector2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_inspector2.types.update_configuration_request.UpdateConfigurationRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_inspector2.types.update_configuration_request.UpdateConfigurationRequest = {}
         if ecr_configuration is not None:
             input_["ecr_configuration"] = ecr_configuration
         if ec2_configuration is not None:
@@ -4542,6 +4662,7 @@ class Inspector2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_ec2_deep_inspection_configuration(
@@ -4580,7 +4701,7 @@ class Inspector2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_inspector2.types.update_ec2_deep_inspection_configuration_request.UpdateEc2DeepInspectionConfigurationRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_inspector2.types.update_ec2_deep_inspection_configuration_request.UpdateEc2DeepInspectionConfigurationRequest = {}
         if activate_deep_inspection is not None:
             input_["activate_deep_inspection"] = activate_deep_inspection
         if package_paths is not None:
@@ -4591,6 +4712,7 @@ class Inspector2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_encryption_key(
@@ -4632,16 +4754,18 @@ class Inspector2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_inspector2.types.update_encryption_key_request.UpdateEncryptionKeyRequest = {}  # type: ignore[typeddict-item]
-        input_["kms_key_id"] = kms_key_id
-        input_["scan_type"] = scan_type
-        input_["resource_type"] = resource_type
+        input_: capo_inspector2.types.update_encryption_key_request.UpdateEncryptionKeyRequest = {
+            "kms_key_id": kms_key_id,
+            "scan_type": scan_type,
+            "resource_type": resource_type,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_filter(
@@ -4693,7 +4817,9 @@ class Inspector2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_inspector2.types.update_filter_request.UpdateFilterRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_inspector2.types.update_filter_request.UpdateFilterRequest = {
+            "filter_arn": filter_arn
+        }
         if action is not None:
             input_["action"] = action
         if description is not None:
@@ -4702,7 +4828,6 @@ class Inspector2Client:
             input_["filter_criteria"] = filter_criteria
         if name is not None:
             input_["name"] = name
-        input_["filter_arn"] = filter_arn
         if reason is not None:
             input_["reason"] = reason
 
@@ -4711,6 +4836,7 @@ class Inspector2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_organization_configuration(
@@ -4747,14 +4873,16 @@ class Inspector2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_inspector2.types.update_organization_configuration_request.UpdateOrganizationConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["auto_enable"] = auto_enable
+        input_: capo_inspector2.types.update_organization_configuration_request.UpdateOrganizationConfigurationRequest = {
+            "auto_enable": auto_enable
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_org_ec2_deep_inspection_configuration(
@@ -4791,14 +4919,16 @@ class Inspector2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_inspector2.types.update_org_ec2_deep_inspection_configuration_request.UpdateOrgEc2DeepInspectionConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["org_package_paths"] = org_package_paths
+        input_: capo_inspector2.types.update_org_ec2_deep_inspection_configuration_request.UpdateOrgEc2DeepInspectionConfigurationRequest = {
+            "org_package_paths": org_package_paths
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def __enter__(self) -> Self:

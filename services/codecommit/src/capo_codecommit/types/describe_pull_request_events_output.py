@@ -37,7 +37,7 @@ def serialize_aws_json_1_1(value: DescribePullRequestEventsOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribePullRequestEventsOutput:
     out: DescribePullRequestEventsOutput = {}  # type: ignore[typeddict-item]
-    if "pullRequestEvents" in data:
+    if data.get("pullRequestEvents") is not None:
         import capo_codecommit.types.pull_request_event_list
 
         out["pull_request_events"] = (
@@ -49,6 +49,6 @@ def deserialize_aws_json_1_1(data: dict) -> DescribePullRequestEventsOutput:
         raise DeserializationError(
             "DescribePullRequestEventsOutput.pull_request_events required"
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

@@ -24,7 +24,7 @@ def serialize_json(value: DeleteComponentTypeResponse) -> dict:
 
 def deserialize_json(data: dict) -> DeleteComponentTypeResponse:
     out: DeleteComponentTypeResponse = {}  # type: ignore[typeddict-item]
-    if "state" in data:
+    if data.get("state") is not None:
         out["state"] = data["state"]
     else:
         raise DeserializationError("DeleteComponentTypeResponse.state required")

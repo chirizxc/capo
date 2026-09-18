@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> JobRunStates:
 
     out: JobRunStates = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_emr_containers.types.job_run_state.deserialize_json(item))
     return out

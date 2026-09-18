@@ -30,13 +30,21 @@ def serialize_json(value: DecimalValueWhenUnsetConfiguration) -> dict:
             )
         )
     if "custom_value" in value:
-        out["CustomValue"] = value["custom_value"]
+        out["CustomValue"] = (
+            "NaN"
+            if value["custom_value"] != value["custom_value"]
+            else "Infinity"
+            if value["custom_value"] == float("inf")
+            else "-Infinity"
+            if value["custom_value"] == float("-inf")
+            else value["custom_value"]
+        )
     return out
 
 
 def deserialize_json(data: dict) -> DecimalValueWhenUnsetConfiguration:
     out: DecimalValueWhenUnsetConfiguration = {}  # type: ignore[typeddict-item]
-    if "ValueWhenUnsetOption" in data:
+    if data.get("ValueWhenUnsetOption") is not None:
         import capo_quicksight.types.value_when_unset_option
 
         out["value_when_unset_option"] = (
@@ -44,6 +52,6 @@ def deserialize_json(data: dict) -> DecimalValueWhenUnsetConfiguration:
                 data["ValueWhenUnsetOption"]
             )
         )
-    if "CustomValue" in data:
-        out["custom_value"] = data["CustomValue"]
+    if data.get("CustomValue") is not None:
+        out["custom_value"] = float(data["CustomValue"])
     return out

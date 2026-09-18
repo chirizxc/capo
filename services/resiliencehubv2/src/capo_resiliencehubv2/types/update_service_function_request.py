@@ -50,21 +50,21 @@ def serialize_json(value: UpdateServiceFunctionRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateServiceFunctionRequest:
     out: UpdateServiceFunctionRequest = {}  # type: ignore[typeddict-item]
-    if "serviceArn" in data:
+    if data.get("serviceArn") is not None:
         out["service_arn"] = data["serviceArn"]
     else:
         raise DeserializationError("UpdateServiceFunctionRequest.service_arn required")
-    if "serviceFunctionId" in data:
+    if data.get("serviceFunctionId") is not None:
         out["service_function_id"] = data["serviceFunctionId"]
     else:
         raise DeserializationError(
             "UpdateServiceFunctionRequest.service_function_id required"
         )
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "criticality" in data:
+    if data.get("criticality") is not None:
         import capo_resiliencehubv2.types.service_function_criticality
 
         out["criticality"] = (

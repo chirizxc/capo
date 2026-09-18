@@ -38,14 +38,14 @@ def serialize_aws_json_1_1(value: DescribeDeliveryStreamInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeDeliveryStreamInput:
     out: DescribeDeliveryStreamInput = {}  # type: ignore[typeddict-item]
-    if "DeliveryStreamName" in data:
+    if data.get("DeliveryStreamName") is not None:
         out["delivery_stream_name"] = data["DeliveryStreamName"]
     else:
         raise DeserializationError(
             "DescribeDeliveryStreamInput.delivery_stream_name required"
         )
-    if "Limit" in data:
+    if data.get("Limit") is not None:
         out["limit"] = data["Limit"]
-    if "ExclusiveStartDestinationId" in data:
+    if data.get("ExclusiveStartDestinationId") is not None:
         out["exclusive_start_destination_id"] = data["ExclusiveStartDestinationId"]
     return out

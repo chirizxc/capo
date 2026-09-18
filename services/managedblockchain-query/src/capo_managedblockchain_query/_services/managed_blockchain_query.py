@@ -203,7 +203,7 @@ class ManagedBlockchainQueryClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_managedblockchain_query.types.batch_get_token_balance_input.BatchGetTokenBalanceInput = {}  # type: ignore[typeddict-item]
+        input_: capo_managedblockchain_query.types.batch_get_token_balance_input.BatchGetTokenBalanceInput = {}
         if get_token_balance_inputs is not None:
             input_["get_token_balance_inputs"] = get_token_balance_inputs
 
@@ -212,6 +212,7 @@ class ManagedBlockchainQueryClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_asset_contract(
@@ -250,14 +251,16 @@ class ManagedBlockchainQueryClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_managedblockchain_query.types.get_asset_contract_input.GetAssetContractInput = {}  # type: ignore[typeddict-item]
-        input_["contract_identifier"] = contract_identifier
+        input_: capo_managedblockchain_query.types.get_asset_contract_input.GetAssetContractInput = {
+            "contract_identifier": contract_identifier
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_token_balance(
@@ -302,9 +305,10 @@ class ManagedBlockchainQueryClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_managedblockchain_query.types.get_token_balance_input.GetTokenBalanceInput = {}  # type: ignore[typeddict-item]
-        input_["token_identifier"] = token_identifier
-        input_["owner_identifier"] = owner_identifier
+        input_: capo_managedblockchain_query.types.get_token_balance_input.GetTokenBalanceInput = {
+            "token_identifier": token_identifier,
+            "owner_identifier": owner_identifier,
+        }
         if at_blockchain_instant is not None:
             input_["at_blockchain_instant"] = at_blockchain_instant
 
@@ -313,6 +317,7 @@ class ManagedBlockchainQueryClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_transaction(
@@ -361,18 +366,20 @@ class ManagedBlockchainQueryClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_managedblockchain_query.types.get_transaction_input.GetTransactionInput = {}  # type: ignore[typeddict-item]
+        input_: capo_managedblockchain_query.types.get_transaction_input.GetTransactionInput = {
+            "network": network
+        }
         if transaction_hash is not None:
             input_["transaction_hash"] = transaction_hash
         if transaction_id is not None:
             input_["transaction_id"] = transaction_id
-        input_["network"] = network
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_asset_contracts(
@@ -416,8 +423,9 @@ class ManagedBlockchainQueryClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_managedblockchain_query.types.list_asset_contracts_input.ListAssetContractsInput = {}  # type: ignore[typeddict-item]
-        input_["contract_filter"] = contract_filter
+        input_: capo_managedblockchain_query.types.list_asset_contracts_input.ListAssetContractsInput = {
+            "contract_filter": contract_filter
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -428,6 +436,7 @@ class ManagedBlockchainQueryClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_asset_contracts(
@@ -513,9 +522,10 @@ class ManagedBlockchainQueryClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_managedblockchain_query.types.list_filtered_transaction_events_input.ListFilteredTransactionEventsInput = {}  # type: ignore[typeddict-item]
-        input_["network"] = network
-        input_["address_identifier_filter"] = address_identifier_filter
+        input_: capo_managedblockchain_query.types.list_filtered_transaction_events_input.ListFilteredTransactionEventsInput = {
+            "network": network,
+            "address_identifier_filter": address_identifier_filter,
+        }
         if time_filter is not None:
             input_["time_filter"] = time_filter
         if vout_filter is not None:
@@ -534,6 +544,7 @@ class ManagedBlockchainQueryClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_filtered_transaction_events(
@@ -624,10 +635,11 @@ class ManagedBlockchainQueryClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_managedblockchain_query.types.list_token_balances_input.ListTokenBalancesInput = {}  # type: ignore[typeddict-item]
+        input_: capo_managedblockchain_query.types.list_token_balances_input.ListTokenBalancesInput = {
+            "token_filter": token_filter
+        }
         if owner_filter is not None:
             input_["owner_filter"] = owner_filter
-        input_["token_filter"] = token_filter
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -638,6 +650,7 @@ class ManagedBlockchainQueryClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_token_balances(
@@ -718,12 +731,13 @@ class ManagedBlockchainQueryClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_managedblockchain_query.types.list_transaction_events_input.ListTransactionEventsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_managedblockchain_query.types.list_transaction_events_input.ListTransactionEventsInput = {
+            "network": network
+        }
         if transaction_hash is not None:
             input_["transaction_hash"] = transaction_hash
         if transaction_id is not None:
             input_["transaction_id"] = transaction_id
-        input_["network"] = network
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -734,6 +748,7 @@ class ManagedBlockchainQueryClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_transaction_events(
@@ -826,9 +841,10 @@ class ManagedBlockchainQueryClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_managedblockchain_query.types.list_transactions_input.ListTransactionsInput = {}  # type: ignore[typeddict-item]
-        input_["address"] = address
-        input_["network"] = network
+        input_: capo_managedblockchain_query.types.list_transactions_input.ListTransactionsInput = {
+            "address": address,
+            "network": network,
+        }
         if from_blockchain_instant is not None:
             input_["from_blockchain_instant"] = from_blockchain_instant
         if to_blockchain_instant is not None:
@@ -847,6 +863,7 @@ class ManagedBlockchainQueryClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_transactions(

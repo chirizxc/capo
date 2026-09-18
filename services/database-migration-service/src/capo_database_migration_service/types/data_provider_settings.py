@@ -177,7 +177,7 @@ def serialize_aws_json_1_1(value: DataProviderSettings) -> dict:
 
 
 def deserialize_aws_json_1_1(data: dict) -> DataProviderSettings:
-    if "RedshiftSettings" in data:
+    if data.get("RedshiftSettings") is not None:
         import capo_database_migration_service.types.redshift_data_provider_settings
 
         return {
@@ -185,7 +185,7 @@ def deserialize_aws_json_1_1(data: dict) -> DataProviderSettings:
                 data["RedshiftSettings"]
             )
         }
-    elif "PostgreSqlSettings" in data:
+    elif data.get("PostgreSqlSettings") is not None:
         import capo_database_migration_service.types.postgre_sql_data_provider_settings
 
         return {
@@ -193,7 +193,7 @@ def deserialize_aws_json_1_1(data: dict) -> DataProviderSettings:
                 data["PostgreSqlSettings"]
             )
         }
-    elif "MySqlSettings" in data:
+    elif data.get("MySqlSettings") is not None:
         import capo_database_migration_service.types.my_sql_data_provider_settings
 
         return {
@@ -201,7 +201,7 @@ def deserialize_aws_json_1_1(data: dict) -> DataProviderSettings:
                 data["MySqlSettings"]
             )
         }
-    elif "OracleSettings" in data:
+    elif data.get("OracleSettings") is not None:
         import capo_database_migration_service.types.oracle_data_provider_settings
 
         return {
@@ -209,7 +209,7 @@ def deserialize_aws_json_1_1(data: dict) -> DataProviderSettings:
                 data["OracleSettings"]
             )
         }
-    elif "SybaseAseSettings" in data:
+    elif data.get("SybaseAseSettings") is not None:
         import capo_database_migration_service.types.sybase_ase_data_provider_settings
 
         return {
@@ -217,7 +217,7 @@ def deserialize_aws_json_1_1(data: dict) -> DataProviderSettings:
                 data["SybaseAseSettings"]
             )
         }
-    elif "MicrosoftSqlServerSettings" in data:
+    elif data.get("MicrosoftSqlServerSettings") is not None:
         import capo_database_migration_service.types.microsoft_sql_server_data_provider_settings
 
         return {
@@ -225,7 +225,7 @@ def deserialize_aws_json_1_1(data: dict) -> DataProviderSettings:
                 data["MicrosoftSqlServerSettings"]
             )
         }
-    elif "DocDbSettings" in data:
+    elif data.get("DocDbSettings") is not None:
         import capo_database_migration_service.types.doc_db_data_provider_settings
 
         return {
@@ -233,7 +233,7 @@ def deserialize_aws_json_1_1(data: dict) -> DataProviderSettings:
                 data["DocDbSettings"]
             )
         }
-    elif "MariaDbSettings" in data:
+    elif data.get("MariaDbSettings") is not None:
         import capo_database_migration_service.types.maria_db_data_provider_settings
 
         return {
@@ -241,7 +241,7 @@ def deserialize_aws_json_1_1(data: dict) -> DataProviderSettings:
                 data["MariaDbSettings"]
             )
         }
-    elif "IbmDb2LuwSettings" in data:
+    elif data.get("IbmDb2LuwSettings") is not None:
         import capo_database_migration_service.types.ibm_db2_luw_data_provider_settings
 
         return {
@@ -249,7 +249,7 @@ def deserialize_aws_json_1_1(data: dict) -> DataProviderSettings:
                 data["IbmDb2LuwSettings"]
             )
         }
-    elif "IbmDb2zOsSettings" in data:
+    elif data.get("IbmDb2zOsSettings") is not None:
         import capo_database_migration_service.types.ibm_db2z_os_data_provider_settings
 
         return {
@@ -257,7 +257,7 @@ def deserialize_aws_json_1_1(data: dict) -> DataProviderSettings:
                 data["IbmDb2zOsSettings"]
             )
         }
-    elif "MongoDbSettings" in data:
+    elif data.get("MongoDbSettings") is not None:
         import capo_database_migration_service.types.mongo_db_data_provider_settings
 
         return {

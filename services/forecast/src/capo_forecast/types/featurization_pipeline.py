@@ -27,6 +27,8 @@ def deserialize_aws_json_1_1(data: list) -> FeaturizationPipeline:
 
     out: FeaturizationPipeline = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_forecast.types.featurization_method.deserialize_aws_json_1_1(item)
         )

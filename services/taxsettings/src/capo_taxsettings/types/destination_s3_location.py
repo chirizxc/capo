@@ -29,10 +29,10 @@ def serialize_json(value: DestinationS3Location) -> dict:
 
 def deserialize_json(data: dict) -> DestinationS3Location:
     out: DestinationS3Location = {}  # type: ignore[typeddict-item]
-    if "bucket" in data:
+    if data.get("bucket") is not None:
         out["bucket"] = data["bucket"]
     else:
         raise DeserializationError("DestinationS3Location.bucket required")
-    if "prefix" in data:
+    if data.get("prefix") is not None:
         out["prefix"] = data["prefix"]
     return out

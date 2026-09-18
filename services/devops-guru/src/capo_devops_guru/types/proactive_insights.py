@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> ProactiveInsights:
 
     out: ProactiveInsights = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_devops_guru.types.proactive_insight_summary.deserialize_json(item)
         )

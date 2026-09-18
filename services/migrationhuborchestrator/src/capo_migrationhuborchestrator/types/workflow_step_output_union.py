@@ -54,11 +54,11 @@ def serialize_json(value: WorkflowStepOutputUnion) -> dict:
 
 
 def deserialize_json(data: dict) -> WorkflowStepOutputUnion:
-    if "integerValue" in data:
+    if data.get("integerValue") is not None:
         return {"integerValue": data["integerValue"]}
-    elif "stringValue" in data:
+    elif data.get("stringValue") is not None:
         return {"stringValue": data["stringValue"]}
-    elif "listOfStringValue" in data:
+    elif data.get("listOfStringValue") is not None:
         import capo_migrationhuborchestrator.types.max_string_list
 
         return {

@@ -47,15 +47,15 @@ def serialize_aws_json_1_1(value: EC2DeleteRouteAction) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> EC2DeleteRouteAction:
     out: EC2DeleteRouteAction = {}  # type: ignore[typeddict-item]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "DestinationCidrBlock" in data:
+    if data.get("DestinationCidrBlock") is not None:
         out["destination_cidr_block"] = data["DestinationCidrBlock"]
-    if "DestinationPrefixListId" in data:
+    if data.get("DestinationPrefixListId") is not None:
         out["destination_prefix_list_id"] = data["DestinationPrefixListId"]
-    if "DestinationIpv6CidrBlock" in data:
+    if data.get("DestinationIpv6CidrBlock") is not None:
         out["destination_ipv6_cidr_block"] = data["DestinationIpv6CidrBlock"]
-    if "RouteTableId" in data:
+    if data.get("RouteTableId") is not None:
         import capo_fms.types.action_target
 
         out["route_table_id"] = capo_fms.types.action_target.deserialize_aws_json_1_1(

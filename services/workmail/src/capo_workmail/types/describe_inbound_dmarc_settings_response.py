@@ -22,7 +22,7 @@ def serialize_aws_json_1_1(value: DescribeInboundDmarcSettingsResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeInboundDmarcSettingsResponse:
     out: DescribeInboundDmarcSettingsResponse = {}  # type: ignore[typeddict-item]
-    if "Enforced" in data:
+    if data.get("Enforced") is not None:
         out["enforced"] = data["Enforced"]
     else:
         out["enforced"] = False

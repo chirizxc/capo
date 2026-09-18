@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> AwsEcsTaskDefinitionVolumesList:
 
     out: AwsEcsTaskDefinitionVolumesList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_securityhub.types.aws_ecs_task_definition_volumes_details.deserialize_json(
                 item

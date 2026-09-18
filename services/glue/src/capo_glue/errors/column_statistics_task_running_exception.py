@@ -25,7 +25,7 @@ def serialize_aws_json_1_1(value: ColumnStatisticsTaskRunningException_) -> dict
 
 def deserialize_aws_json_1_1(data: dict) -> ColumnStatisticsTaskRunningException_:
     out: ColumnStatisticsTaskRunningException_ = {}  # type: ignore[typeddict-item]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     return out
 
@@ -35,15 +35,20 @@ class ColumnStatisticsTaskRunningException(ServiceError):
 
     code: str | None = "ColumnStatisticsTaskRunningException"
 
-    def __init__(self, data: ColumnStatisticsTaskRunningException_):
+    def __init__(
+        self, data: ColumnStatisticsTaskRunningException_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="ColumnStatisticsTaskRunningException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "ColumnStatisticsTaskRunningException":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "ColumnStatisticsTaskRunningException":
+        return cls(deserialize_aws_json_1_1(data), message)

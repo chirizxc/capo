@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: DescribeSMBFileSharesOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeSMBFileSharesOutput:
     out: DescribeSMBFileSharesOutput = {}  # type: ignore[typeddict-item]
-    if "SMBFileShareInfoList" in data:
+    if data.get("SMBFileShareInfoList") is not None:
         import capo_storage_gateway.types.smb_file_share_info_list
 
         out["smb_file_share_info_list"] = (

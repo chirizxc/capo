@@ -35,11 +35,11 @@ def serialize_aws_json_1_1(value: ScopeDetails) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ScopeDetails:
     out: ScopeDetails = {}  # type: ignore[typeddict-item]
-    if "Scope" in data:
+    if data.get("Scope") is not None:
         out["scope"] = data["Scope"]
     else:
         raise DeserializationError("ScopeDetails.scope required")
-    if "AuthorizedTargets" in data:
+    if data.get("AuthorizedTargets") is not None:
         import capo_sso_admin.types.scope_targets
 
         out["authorized_targets"] = (

@@ -63,19 +63,19 @@ def serialize_json(value: UpdateBackupPlanOutput) -> dict:
 
 def deserialize_json(data: dict) -> UpdateBackupPlanOutput:
     out: UpdateBackupPlanOutput = {}  # type: ignore[typeddict-item]
-    if "BackupPlanId" in data:
+    if data.get("BackupPlanId") is not None:
         out["backup_plan_id"] = data["BackupPlanId"]
-    if "BackupPlanArn" in data:
+    if data.get("BackupPlanArn") is not None:
         out["backup_plan_arn"] = data["BackupPlanArn"]
-    if "CreationDate" in data:
+    if data.get("CreationDate") is not None:
         import capo_backup.types.timestamp
 
         out["creation_date"] = capo_backup.types.timestamp.deserialize_json(
             data["CreationDate"]
         )
-    if "VersionId" in data:
+    if data.get("VersionId") is not None:
         out["version_id"] = data["VersionId"]
-    if "AdvancedBackupSettings" in data:
+    if data.get("AdvancedBackupSettings") is not None:
         import capo_backup.types.advanced_backup_settings
 
         out["advanced_backup_settings"] = (
@@ -83,7 +83,7 @@ def deserialize_json(data: dict) -> UpdateBackupPlanOutput:
                 data["AdvancedBackupSettings"]
             )
         )
-    if "ScanSettings" in data:
+    if data.get("ScanSettings") is not None:
         import capo_backup.types.scan_settings
 
         out["scan_settings"] = capo_backup.types.scan_settings.deserialize_json(

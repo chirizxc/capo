@@ -70,31 +70,31 @@ def serialize_aws_json_1_1(value: ActionSummary) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ActionSummary:
     out: ActionSummary = {}  # type: ignore[typeddict-item]
-    if "ActionArn" in data:
+    if data.get("ActionArn") is not None:
         out["action_arn"] = data["ActionArn"]
-    if "ActionName" in data:
+    if data.get("ActionName") is not None:
         out["action_name"] = data["ActionName"]
-    if "Source" in data:
+    if data.get("Source") is not None:
         import capo_sagemaker.types.action_source
 
         out["source"] = capo_sagemaker.types.action_source.deserialize_aws_json_1_1(
             data["Source"]
         )
-    if "ActionType" in data:
+    if data.get("ActionType") is not None:
         out["action_type"] = data["ActionType"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_sagemaker.types.action_status
 
         out["status"] = capo_sagemaker.types.action_status.deserialize_aws_json_1_1(
             data["Status"]
         )
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_sagemaker.types.timestamp
 
         out["creation_time"] = capo_sagemaker.types.timestamp.deserialize_aws_json_1_1(
             data["CreationTime"]
         )
-    if "LastModifiedTime" in data:
+    if data.get("LastModifiedTime") is not None:
         import capo_sagemaker.types.timestamp
 
         out["last_modified_time"] = (

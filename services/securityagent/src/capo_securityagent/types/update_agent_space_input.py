@@ -68,21 +68,21 @@ def serialize_json(value: UpdateAgentSpaceInput) -> dict:
 
 def deserialize_json(data: dict) -> UpdateAgentSpaceInput:
     out: UpdateAgentSpaceInput = {}  # type: ignore[typeddict-item]
-    if "agentSpaceId" in data:
+    if data.get("agentSpaceId") is not None:
         out["agent_space_id"] = data["agentSpaceId"]
     else:
         raise DeserializationError("UpdateAgentSpaceInput.agent_space_id required")
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "awsResources" in data:
+    if data.get("awsResources") is not None:
         import capo_securityagent.types.aws_resources
 
         out["aws_resources"] = capo_securityagent.types.aws_resources.deserialize_json(
             data["awsResources"]
         )
-    if "targetDomainIds" in data:
+    if data.get("targetDomainIds") is not None:
         import capo_securityagent.types.target_domain_id_list
 
         out["target_domain_ids"] = (
@@ -90,7 +90,7 @@ def deserialize_json(data: dict) -> UpdateAgentSpaceInput:
                 data["targetDomainIds"]
             )
         )
-    if "codeReviewSettings" in data:
+    if data.get("codeReviewSettings") is not None:
         import capo_securityagent.types.code_review_settings
 
         out["code_review_settings"] = (

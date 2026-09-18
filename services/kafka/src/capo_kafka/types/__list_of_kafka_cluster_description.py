@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> __listOfKafkaClusterDescription:
 
     out: __listOfKafkaClusterDescription = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_kafka.types.kafka_cluster_description.deserialize_json(item))
     return out

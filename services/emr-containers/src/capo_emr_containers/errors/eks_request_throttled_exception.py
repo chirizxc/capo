@@ -24,7 +24,7 @@ def serialize_json(value: EKSRequestThrottledException_) -> dict:
 
 def deserialize_json(data: dict) -> EKSRequestThrottledException_:
     out: EKSRequestThrottledException_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     return out
 
@@ -34,15 +34,18 @@ class EKSRequestThrottledException(ServiceError):
 
     code: str | None = "EKSRequestThrottledException"
 
-    def __init__(self, data: EKSRequestThrottledException_):
+    def __init__(self, data: EKSRequestThrottledException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="EKSRequestThrottledException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "EKSRequestThrottledException":
-        return cls(deserialize_json(data))
+    def from_json(
+        cls, data: dict, message: str | None = None
+    ) -> "EKSRequestThrottledException":
+        return cls(deserialize_json(data), message)

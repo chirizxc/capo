@@ -44,7 +44,7 @@ def serialize_json(value: AwsIamAccessKeySessionContext) -> dict:
 
 def deserialize_json(data: dict) -> AwsIamAccessKeySessionContext:
     out: AwsIamAccessKeySessionContext = {}  # type: ignore[typeddict-item]
-    if "Attributes" in data:
+    if data.get("Attributes") is not None:
         import capo_securityhub.types.aws_iam_access_key_session_context_attributes
 
         out["attributes"] = (
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> AwsIamAccessKeySessionContext:
                 data["Attributes"]
             )
         )
-    if "SessionIssuer" in data:
+    if data.get("SessionIssuer") is not None:
         import capo_securityhub.types.aws_iam_access_key_session_context_session_issuer
 
         out["session_issuer"] = (

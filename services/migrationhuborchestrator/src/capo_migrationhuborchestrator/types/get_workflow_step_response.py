@@ -164,21 +164,21 @@ def serialize_json(value: GetWorkflowStepResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetWorkflowStepResponse:
     out: GetWorkflowStepResponse = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "stepGroupId" in data:
+    if data.get("stepGroupId") is not None:
         out["step_group_id"] = data["stepGroupId"]
-    if "workflowId" in data:
+    if data.get("workflowId") is not None:
         out["workflow_id"] = data["workflowId"]
-    if "stepId" in data:
+    if data.get("stepId") is not None:
         out["step_id"] = data["stepId"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "stepActionType" in data:
+    if data.get("stepActionType") is not None:
         out["step_action_type"] = data["stepActionType"]
-    if "owner" in data:
+    if data.get("owner") is not None:
         out["owner"] = data["owner"]
-    if "workflowStepAutomationConfiguration" in data:
+    if data.get("workflowStepAutomationConfiguration") is not None:
         import capo_migrationhuborchestrator.types.workflow_step_automation_configuration
 
         out["workflow_step_automation_configuration"] = (
@@ -186,7 +186,7 @@ def deserialize_json(data: dict) -> GetWorkflowStepResponse:
                 data["workflowStepAutomationConfiguration"]
             )
         )
-    if "stepTarget" in data:
+    if data.get("stepTarget") is not None:
         import capo_migrationhuborchestrator.types.string_list
 
         out["step_target"] = (
@@ -194,7 +194,7 @@ def deserialize_json(data: dict) -> GetWorkflowStepResponse:
                 data["stepTarget"]
             )
         )
-    if "outputs" in data:
+    if data.get("outputs") is not None:
         import capo_migrationhuborchestrator.types.workflow_step_output_list
 
         out["outputs"] = (
@@ -202,7 +202,7 @@ def deserialize_json(data: dict) -> GetWorkflowStepResponse:
                 data["outputs"]
             )
         )
-    if "previous" in data:
+    if data.get("previous") is not None:
         import capo_migrationhuborchestrator.types.string_list
 
         out["previous"] = (
@@ -210,19 +210,19 @@ def deserialize_json(data: dict) -> GetWorkflowStepResponse:
                 data["previous"]
             )
         )
-    if "next" in data:
+    if data.get("next") is not None:
         import capo_migrationhuborchestrator.types.string_list
 
         out["next"] = capo_migrationhuborchestrator.types.string_list.deserialize_json(
             data["next"]
         )
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
-    if "statusMessage" in data:
+    if data.get("statusMessage") is not None:
         out["status_message"] = data["statusMessage"]
-    if "scriptOutputLocation" in data:
+    if data.get("scriptOutputLocation") is not None:
         out["script_output_location"] = data["scriptOutputLocation"]
-    if "creationTime" in data:
+    if data.get("creationTime") is not None:
         import capo_migrationhuborchestrator.types._prelude.timestamp
 
         out["creation_time"] = (
@@ -230,7 +230,7 @@ def deserialize_json(data: dict) -> GetWorkflowStepResponse:
                 data["creationTime"]
             )
         )
-    if "lastStartTime" in data:
+    if data.get("lastStartTime") is not None:
         import capo_migrationhuborchestrator.types._prelude.timestamp
 
         out["last_start_time"] = (
@@ -238,7 +238,7 @@ def deserialize_json(data: dict) -> GetWorkflowStepResponse:
                 data["lastStartTime"]
             )
         )
-    if "endTime" in data:
+    if data.get("endTime") is not None:
         import capo_migrationhuborchestrator.types._prelude.timestamp
 
         out["end_time"] = (
@@ -246,10 +246,10 @@ def deserialize_json(data: dict) -> GetWorkflowStepResponse:
                 data["endTime"]
             )
         )
-    if "noOfSrvCompleted" in data:
+    if data.get("noOfSrvCompleted") is not None:
         out["no_of_srv_completed"] = data["noOfSrvCompleted"]
-    if "noOfSrvFailed" in data:
+    if data.get("noOfSrvFailed") is not None:
         out["no_of_srv_failed"] = data["noOfSrvFailed"]
-    if "totalNoOfSrv" in data:
+    if data.get("totalNoOfSrv") is not None:
         out["total_no_of_srv"] = data["totalNoOfSrv"]
     return out

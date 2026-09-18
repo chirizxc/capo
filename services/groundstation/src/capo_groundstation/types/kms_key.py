@@ -40,11 +40,11 @@ def serialize_json(value: KmsKey) -> dict:
 
 
 def deserialize_json(data: dict) -> KmsKey:
-    if "kmsKeyArn" in data:
+    if data.get("kmsKeyArn") is not None:
         return {"kmsKeyArn": data["kmsKeyArn"]}
-    elif "kmsAliasArn" in data:
+    elif data.get("kmsAliasArn") is not None:
         return {"kmsAliasArn": data["kmsAliasArn"]}
-    elif "kmsAliasName" in data:
+    elif data.get("kmsAliasName") is not None:
         return {"kmsAliasName": data["kmsAliasName"]}
     else:
         raise DeserializationError("KmsKey: no recognized variant key")

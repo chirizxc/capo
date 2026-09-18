@@ -25,6 +25,6 @@ def serialize_aws_json_1_1(value: DeleteInferenceExperimentRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteInferenceExperimentRequest:
     out: DeleteInferenceExperimentRequest = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     return out

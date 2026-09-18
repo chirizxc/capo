@@ -109,13 +109,13 @@ def serialize_aws_json_1_1(value: CreateDistributionRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateDistributionRequest:
     out: CreateDistributionRequest = {}  # type: ignore[typeddict-item]
-    if "distributionName" in data:
+    if data.get("distributionName") is not None:
         out["distribution_name"] = data["distributionName"]
     else:
         raise DeserializationError(
             "CreateDistributionRequest.distribution_name required"
         )
-    if "origin" in data:
+    if data.get("origin") is not None:
         import capo_lightsail.types.input_origin
 
         out["origin"] = capo_lightsail.types.input_origin.deserialize_aws_json_1_1(
@@ -123,7 +123,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateDistributionRequest:
         )
     else:
         raise DeserializationError("CreateDistributionRequest.origin required")
-    if "defaultCacheBehavior" in data:
+    if data.get("defaultCacheBehavior") is not None:
         import capo_lightsail.types.cache_behavior
 
         out["default_cache_behavior"] = (
@@ -135,7 +135,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateDistributionRequest:
         raise DeserializationError(
             "CreateDistributionRequest.default_cache_behavior required"
         )
-    if "cacheBehaviorSettings" in data:
+    if data.get("cacheBehaviorSettings") is not None:
         import capo_lightsail.types.cache_settings
 
         out["cache_behavior_settings"] = (
@@ -143,7 +143,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateDistributionRequest:
                 data["cacheBehaviorSettings"]
             )
         )
-    if "cacheBehaviors" in data:
+    if data.get("cacheBehaviors") is not None:
         import capo_lightsail.types.cache_behavior_list
 
         out["cache_behaviors"] = (
@@ -151,11 +151,11 @@ def deserialize_aws_json_1_1(data: dict) -> CreateDistributionRequest:
                 data["cacheBehaviors"]
             )
         )
-    if "bundleId" in data:
+    if data.get("bundleId") is not None:
         out["bundle_id"] = data["bundleId"]
     else:
         raise DeserializationError("CreateDistributionRequest.bundle_id required")
-    if "ipAddressType" in data:
+    if data.get("ipAddressType") is not None:
         import capo_lightsail.types.ip_address_type
 
         out["ip_address_type"] = (
@@ -163,15 +163,15 @@ def deserialize_aws_json_1_1(data: dict) -> CreateDistributionRequest:
                 data["ipAddressType"]
             )
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_lightsail.types.tag_list
 
         out["tags"] = capo_lightsail.types.tag_list.deserialize_aws_json_1_1(
             data["tags"]
         )
-    if "certificateName" in data:
+    if data.get("certificateName") is not None:
         out["certificate_name"] = data["certificateName"]
-    if "viewerMinimumTlsProtocolVersion" in data:
+    if data.get("viewerMinimumTlsProtocolVersion") is not None:
         import capo_lightsail.types.viewer_minimum_tls_protocol_version_enum
 
         out["viewer_minimum_tls_protocol_version"] = (

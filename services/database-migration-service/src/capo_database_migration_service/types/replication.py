@@ -206,15 +206,15 @@ def serialize_aws_json_1_1(value: Replication) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Replication:
     out: Replication = {}  # type: ignore[typeddict-item]
-    if "ReplicationConfigIdentifier" in data:
+    if data.get("ReplicationConfigIdentifier") is not None:
         out["replication_config_identifier"] = data["ReplicationConfigIdentifier"]
-    if "ReplicationConfigArn" in data:
+    if data.get("ReplicationConfigArn") is not None:
         out["replication_config_arn"] = data["ReplicationConfigArn"]
-    if "SourceEndpointArn" in data:
+    if data.get("SourceEndpointArn") is not None:
         out["source_endpoint_arn"] = data["SourceEndpointArn"]
-    if "TargetEndpointArn" in data:
+    if data.get("TargetEndpointArn") is not None:
         out["target_endpoint_arn"] = data["TargetEndpointArn"]
-    if "ReplicationType" in data:
+    if data.get("ReplicationType") is not None:
         import capo_database_migration_service.types.migration_type_value
 
         out["replication_type"] = (
@@ -222,9 +222,9 @@ def deserialize_aws_json_1_1(data: dict) -> Replication:
                 data["ReplicationType"]
             )
         )
-    if "Status" in data:
+    if data.get("Status") is not None:
         out["status"] = data["Status"]
-    if "ProvisionData" in data:
+    if data.get("ProvisionData") is not None:
         import capo_database_migration_service.types.provision_data
 
         out["provision_data"] = (
@@ -232,7 +232,7 @@ def deserialize_aws_json_1_1(data: dict) -> Replication:
                 data["ProvisionData"]
             )
         )
-    if "PremigrationAssessmentStatuses" in data:
+    if data.get("PremigrationAssessmentStatuses") is not None:
         import capo_database_migration_service.types.premigration_assessment_status_list
 
         out["premigration_assessment_statuses"] = (
@@ -240,9 +240,9 @@ def deserialize_aws_json_1_1(data: dict) -> Replication:
                 data["PremigrationAssessmentStatuses"]
             )
         )
-    if "StopReason" in data:
+    if data.get("StopReason") is not None:
         out["stop_reason"] = data["StopReason"]
-    if "FailureMessages" in data:
+    if data.get("FailureMessages") is not None:
         import capo_database_migration_service.types.string_list
 
         out["failure_messages"] = (
@@ -250,7 +250,7 @@ def deserialize_aws_json_1_1(data: dict) -> Replication:
                 data["FailureMessages"]
             )
         )
-    if "ReplicationStats" in data:
+    if data.get("ReplicationStats") is not None:
         import capo_database_migration_service.types.replication_stats
 
         out["replication_stats"] = (
@@ -258,9 +258,9 @@ def deserialize_aws_json_1_1(data: dict) -> Replication:
                 data["ReplicationStats"]
             )
         )
-    if "StartReplicationType" in data:
+    if data.get("StartReplicationType") is not None:
         out["start_replication_type"] = data["StartReplicationType"]
-    if "CdcStartTime" in data:
+    if data.get("CdcStartTime") is not None:
         import capo_database_migration_service.types.t_stamp
 
         out["cdc_start_time"] = (
@@ -268,13 +268,13 @@ def deserialize_aws_json_1_1(data: dict) -> Replication:
                 data["CdcStartTime"]
             )
         )
-    if "CdcStartPosition" in data:
+    if data.get("CdcStartPosition") is not None:
         out["cdc_start_position"] = data["CdcStartPosition"]
-    if "CdcStopPosition" in data:
+    if data.get("CdcStopPosition") is not None:
         out["cdc_stop_position"] = data["CdcStopPosition"]
-    if "RecoveryCheckpoint" in data:
+    if data.get("RecoveryCheckpoint") is not None:
         out["recovery_checkpoint"] = data["RecoveryCheckpoint"]
-    if "ReplicationCreateTime" in data:
+    if data.get("ReplicationCreateTime") is not None:
         import capo_database_migration_service.types.t_stamp
 
         out["replication_create_time"] = (
@@ -282,7 +282,7 @@ def deserialize_aws_json_1_1(data: dict) -> Replication:
                 data["ReplicationCreateTime"]
             )
         )
-    if "ReplicationUpdateTime" in data:
+    if data.get("ReplicationUpdateTime") is not None:
         import capo_database_migration_service.types.t_stamp
 
         out["replication_update_time"] = (
@@ -290,7 +290,7 @@ def deserialize_aws_json_1_1(data: dict) -> Replication:
                 data["ReplicationUpdateTime"]
             )
         )
-    if "ReplicationLastStopTime" in data:
+    if data.get("ReplicationLastStopTime") is not None:
         import capo_database_migration_service.types.t_stamp
 
         out["replication_last_stop_time"] = (
@@ -298,7 +298,7 @@ def deserialize_aws_json_1_1(data: dict) -> Replication:
                 data["ReplicationLastStopTime"]
             )
         )
-    if "ReplicationDeprovisionTime" in data:
+    if data.get("ReplicationDeprovisionTime") is not None:
         import capo_database_migration_service.types.t_stamp
 
         out["replication_deprovision_time"] = (
@@ -306,6 +306,6 @@ def deserialize_aws_json_1_1(data: dict) -> Replication:
                 data["ReplicationDeprovisionTime"]
             )
         )
-    if "IsReadOnly" in data:
+    if data.get("IsReadOnly") is not None:
         out["is_read_only"] = data["IsReadOnly"]
     return out

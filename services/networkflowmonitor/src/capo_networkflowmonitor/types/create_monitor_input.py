@@ -67,11 +67,11 @@ def serialize_json(value: CreateMonitorInput) -> dict:
 
 def deserialize_json(data: dict) -> CreateMonitorInput:
     out: CreateMonitorInput = {}  # type: ignore[typeddict-item]
-    if "monitorName" in data:
+    if data.get("monitorName") is not None:
         out["monitor_name"] = data["monitorName"]
     else:
         raise DeserializationError("CreateMonitorInput.monitor_name required")
-    if "localResources" in data:
+    if data.get("localResources") is not None:
         import capo_networkflowmonitor.types.monitor_local_resources
 
         out["local_resources"] = (
@@ -81,7 +81,7 @@ def deserialize_json(data: dict) -> CreateMonitorInput:
         )
     else:
         raise DeserializationError("CreateMonitorInput.local_resources required")
-    if "remoteResources" in data:
+    if data.get("remoteResources") is not None:
         import capo_networkflowmonitor.types.monitor_remote_resources
 
         out["remote_resources"] = (
@@ -89,13 +89,13 @@ def deserialize_json(data: dict) -> CreateMonitorInput:
                 data["remoteResources"]
             )
         )
-    if "scopeArn" in data:
+    if data.get("scopeArn") is not None:
         out["scope_arn"] = data["scopeArn"]
     else:
         raise DeserializationError("CreateMonitorInput.scope_arn required")
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_networkflowmonitor.types.tag_map
 
         out["tags"] = capo_networkflowmonitor.types.tag_map.deserialize_json(

@@ -44,7 +44,7 @@ def serialize_aws_json_1_1(value: RequestInspection) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RequestInspection:
     out: RequestInspection = {}  # type: ignore[typeddict-item]
-    if "PayloadType" in data:
+    if data.get("PayloadType") is not None:
         import capo_wafv2.types.payload_type
 
         out["payload_type"] = capo_wafv2.types.payload_type.deserialize_aws_json_1_1(
@@ -52,7 +52,7 @@ def deserialize_aws_json_1_1(data: dict) -> RequestInspection:
         )
     else:
         raise DeserializationError("RequestInspection.payload_type required")
-    if "UsernameField" in data:
+    if data.get("UsernameField") is not None:
         import capo_wafv2.types.username_field
 
         out["username_field"] = (
@@ -62,7 +62,7 @@ def deserialize_aws_json_1_1(data: dict) -> RequestInspection:
         )
     else:
         raise DeserializationError("RequestInspection.username_field required")
-    if "PasswordField" in data:
+    if data.get("PasswordField") is not None:
         import capo_wafv2.types.password_field
 
         out["password_field"] = (

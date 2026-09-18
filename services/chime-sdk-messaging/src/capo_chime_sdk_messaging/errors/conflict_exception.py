@@ -32,13 +32,13 @@ def serialize_json(value: ConflictException_) -> dict:
 
 def deserialize_json(data: dict) -> ConflictException_:
     out: ConflictException_ = {}  # type: ignore[typeddict-item]
-    if "Code" in data:
+    if data.get("Code") is not None:
         import capo_chime_sdk_messaging.types.error_code
 
         out["code"] = capo_chime_sdk_messaging.types.error_code.deserialize_json(
             data["Code"]
         )
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     return out
 
@@ -48,15 +48,16 @@ class ConflictException(ServiceError):
 
     code: str | None = "ConflictException"
 
-    def __init__(self, data: ConflictException_):
+    def __init__(self, data: ConflictException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="ConflictException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "ConflictException":
-        return cls(deserialize_json(data))
+    def from_json(cls, data: dict, message: str | None = None) -> "ConflictException":
+        return cls(deserialize_json(data), message)

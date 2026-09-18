@@ -46,9 +46,9 @@ def serialize_aws_json_1_1(value: TapeRecoveryPointInfo) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> TapeRecoveryPointInfo:
     out: TapeRecoveryPointInfo = {}  # type: ignore[typeddict-item]
-    if "TapeARN" in data:
+    if data.get("TapeARN") is not None:
         out["tape_arn"] = data["TapeARN"]
-    if "TapeRecoveryPointTime" in data:
+    if data.get("TapeRecoveryPointTime") is not None:
         import capo_storage_gateway.types.time
 
         out["tape_recovery_point_time"] = (
@@ -56,8 +56,8 @@ def deserialize_aws_json_1_1(data: dict) -> TapeRecoveryPointInfo:
                 data["TapeRecoveryPointTime"]
             )
         )
-    if "TapeSizeInBytes" in data:
+    if data.get("TapeSizeInBytes") is not None:
         out["tape_size_in_bytes"] = data["TapeSizeInBytes"]
-    if "TapeStatus" in data:
+    if data.get("TapeStatus") is not None:
         out["tape_status"] = data["TapeStatus"]
     return out

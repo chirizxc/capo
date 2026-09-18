@@ -220,14 +220,16 @@ class ElasticTranscoderClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_elastic_transcoder.types.cancel_job_request.CancelJobRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_elastic_transcoder.types.cancel_job_request.CancelJobRequest = {
+            "id": id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_job(
@@ -288,8 +290,9 @@ class ElasticTranscoderClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_elastic_transcoder.types.create_job_request.CreateJobRequest = {}  # type: ignore[typeddict-item]
-        input_["pipeline_id"] = pipeline_id
+        input_: capo_elastic_transcoder.types.create_job_request.CreateJobRequest = {
+            "pipeline_id": pipeline_id
+        }
         if input is not None:
             input_["input"] = input
         if inputs is not None:
@@ -310,6 +313,7 @@ class ElasticTranscoderClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_pipeline(
@@ -374,12 +378,13 @@ class ElasticTranscoderClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_elastic_transcoder.types.create_pipeline_request.CreatePipelineRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        input_["input_bucket"] = input_bucket
+        input_: capo_elastic_transcoder.types.create_pipeline_request.CreatePipelineRequest = {
+            "name": name,
+            "input_bucket": input_bucket,
+            "role": role,
+        }
         if output_bucket is not None:
             input_["output_bucket"] = output_bucket
-        input_["role"] = role
         if aws_kms_key_arn is not None:
             input_["aws_kms_key_arn"] = aws_kms_key_arn
         if notifications is not None:
@@ -394,6 +399,7 @@ class ElasticTranscoderClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_preset(
@@ -449,11 +455,12 @@ class ElasticTranscoderClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_elastic_transcoder.types.create_preset_request.CreatePresetRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_elastic_transcoder.types.create_preset_request.CreatePresetRequest = {
+            "name": name,
+            "container": container,
+        }
         if description is not None:
             input_["description"] = description
-        input_["container"] = container
         if video is not None:
             input_["video"] = video
         if audio is not None:
@@ -466,6 +473,7 @@ class ElasticTranscoderClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_pipeline(
@@ -506,14 +514,16 @@ class ElasticTranscoderClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_elastic_transcoder.types.delete_pipeline_request.DeletePipelineRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_elastic_transcoder.types.delete_pipeline_request.DeletePipelineRequest = {
+            "id": id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_preset(
@@ -551,14 +561,16 @@ class ElasticTranscoderClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_elastic_transcoder.types.delete_preset_request.DeletePresetRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_elastic_transcoder.types.delete_preset_request.DeletePresetRequest = {
+            "id": id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_jobs_by_pipeline(
@@ -600,8 +612,9 @@ class ElasticTranscoderClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_elastic_transcoder.types.list_jobs_by_pipeline_request.ListJobsByPipelineRequest = {}  # type: ignore[typeddict-item]
-        input_["pipeline_id"] = pipeline_id
+        input_: capo_elastic_transcoder.types.list_jobs_by_pipeline_request.ListJobsByPipelineRequest = {
+            "pipeline_id": pipeline_id
+        }
         if ascending is not None:
             input_["ascending"] = ascending
         if page_token is not None:
@@ -612,6 +625,7 @@ class ElasticTranscoderClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_jobs_by_pipeline(
@@ -676,8 +690,9 @@ class ElasticTranscoderClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_elastic_transcoder.types.list_jobs_by_status_request.ListJobsByStatusRequest = {}  # type: ignore[typeddict-item]
-        input_["status"] = status
+        input_: capo_elastic_transcoder.types.list_jobs_by_status_request.ListJobsByStatusRequest = {
+            "status": status
+        }
         if ascending is not None:
             input_["ascending"] = ascending
         if page_token is not None:
@@ -688,6 +703,7 @@ class ElasticTranscoderClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_jobs_by_status(
@@ -749,7 +765,7 @@ class ElasticTranscoderClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_elastic_transcoder.types.list_pipelines_request.ListPipelinesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_elastic_transcoder.types.list_pipelines_request.ListPipelinesRequest = {}
         if ascending is not None:
             input_["ascending"] = ascending
         if page_token is not None:
@@ -760,6 +776,7 @@ class ElasticTranscoderClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_pipelines(
@@ -819,7 +836,7 @@ class ElasticTranscoderClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_elastic_transcoder.types.list_presets_request.ListPresetsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_elastic_transcoder.types.list_presets_request.ListPresetsRequest = {}
         if ascending is not None:
             input_["ascending"] = ascending
         if page_token is not None:
@@ -830,6 +847,7 @@ class ElasticTranscoderClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_presets(
@@ -888,14 +906,16 @@ class ElasticTranscoderClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_elastic_transcoder.types.read_job_request.ReadJobRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_elastic_transcoder.types.read_job_request.ReadJobRequest = {
+            "id": id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read_pipeline(
@@ -933,14 +953,16 @@ class ElasticTranscoderClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_elastic_transcoder.types.read_pipeline_request.ReadPipelineRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_elastic_transcoder.types.read_pipeline_request.ReadPipelineRequest = {
+            "id": id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read_preset(
@@ -978,14 +1000,16 @@ class ElasticTranscoderClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_elastic_transcoder.types.read_preset_request.ReadPresetRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_elastic_transcoder.types.read_preset_request.ReadPresetRequest = {
+            "id": id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def test_role(
@@ -1029,17 +1053,19 @@ class ElasticTranscoderClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_elastic_transcoder.types.test_role_request.TestRoleRequest = {}  # type: ignore[typeddict-item]
-        input_["role"] = role
-        input_["input_bucket"] = input_bucket
-        input_["output_bucket"] = output_bucket
-        input_["topics"] = topics
+        input_: capo_elastic_transcoder.types.test_role_request.TestRoleRequest = {
+            "role": role,
+            "input_bucket": input_bucket,
+            "output_bucket": output_bucket,
+            "topics": topics,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_pipeline(
@@ -1104,8 +1130,9 @@ class ElasticTranscoderClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_elastic_transcoder.types.update_pipeline_request.UpdatePipelineRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_elastic_transcoder.types.update_pipeline_request.UpdatePipelineRequest = {
+            "id": id
+        }
         if name is not None:
             input_["name"] = name
         if input_bucket is not None:
@@ -1126,6 +1153,7 @@ class ElasticTranscoderClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_pipeline_notifications(
@@ -1166,15 +1194,17 @@ class ElasticTranscoderClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_elastic_transcoder.types.update_pipeline_notifications_request.UpdatePipelineNotificationsRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
-        input_["notifications"] = notifications
+        input_: capo_elastic_transcoder.types.update_pipeline_notifications_request.UpdatePipelineNotificationsRequest = {
+            "id": id,
+            "notifications": notifications,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_pipeline_status(
@@ -1215,15 +1245,17 @@ class ElasticTranscoderClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_elastic_transcoder.types.update_pipeline_status_request.UpdatePipelineStatusRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
-        input_["status"] = status
+        input_: capo_elastic_transcoder.types.update_pipeline_status_request.UpdatePipelineStatusRequest = {
+            "id": id,
+            "status": status,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def __enter__(self) -> Self:

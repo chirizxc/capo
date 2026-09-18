@@ -45,11 +45,11 @@ def serialize_json(value: Transform) -> dict:
 
 def deserialize_json(data: dict) -> Transform:
     out: Transform = {}  # type: ignore[typeddict-item]
-    if "expression" in data:
+    if data.get("expression") is not None:
         out["expression"] = data["expression"]
     else:
         raise DeserializationError("Transform.expression required")
-    if "variables" in data:
+    if data.get("variables") is not None:
         import capo_iotsitewise.types.expression_variables
 
         out["variables"] = capo_iotsitewise.types.expression_variables.deserialize_json(
@@ -57,7 +57,7 @@ def deserialize_json(data: dict) -> Transform:
         )
     else:
         raise DeserializationError("Transform.variables required")
-    if "processingConfig" in data:
+    if data.get("processingConfig") is not None:
         import capo_iotsitewise.types.transform_processing_config
 
         out["processing_config"] = (

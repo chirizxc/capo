@@ -56,17 +56,17 @@ def serialize_aws_json_1_1(value: CreateExperienceRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateExperienceRequest:
     out: CreateExperienceRequest = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("CreateExperienceRequest.name required")
-    if "IndexId" in data:
+    if data.get("IndexId") is not None:
         out["index_id"] = data["IndexId"]
     else:
         raise DeserializationError("CreateExperienceRequest.index_id required")
-    if "RoleArn" in data:
+    if data.get("RoleArn") is not None:
         out["role_arn"] = data["RoleArn"]
-    if "Configuration" in data:
+    if data.get("Configuration") is not None:
         import capo_kendra.types.experience_configuration
 
         out["configuration"] = (
@@ -74,8 +74,8 @@ def deserialize_aws_json_1_1(data: dict) -> CreateExperienceRequest:
                 data["Configuration"]
             )
         )
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
     return out

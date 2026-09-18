@@ -102,33 +102,33 @@ def serialize_aws_json_1_1(value: UpdateProductInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateProductInput:
     out: UpdateProductInput = {}  # type: ignore[typeddict-item]
-    if "AcceptLanguage" in data:
+    if data.get("AcceptLanguage") is not None:
         out["accept_language"] = data["AcceptLanguage"]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
     else:
         raise DeserializationError("UpdateProductInput.id required")
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Owner" in data:
+    if data.get("Owner") is not None:
         out["owner"] = data["Owner"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Distributor" in data:
+    if data.get("Distributor") is not None:
         out["distributor"] = data["Distributor"]
-    if "SupportDescription" in data:
+    if data.get("SupportDescription") is not None:
         out["support_description"] = data["SupportDescription"]
-    if "SupportEmail" in data:
+    if data.get("SupportEmail") is not None:
         out["support_email"] = data["SupportEmail"]
-    if "SupportUrl" in data:
+    if data.get("SupportUrl") is not None:
         out["support_url"] = data["SupportUrl"]
-    if "AddTags" in data:
+    if data.get("AddTags") is not None:
         import capo_service_catalog.types.add_tags
 
         out["add_tags"] = capo_service_catalog.types.add_tags.deserialize_aws_json_1_1(
             data["AddTags"]
         )
-    if "RemoveTags" in data:
+    if data.get("RemoveTags") is not None:
         import capo_service_catalog.types.tag_keys
 
         out["remove_tags"] = (
@@ -136,7 +136,7 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateProductInput:
                 data["RemoveTags"]
             )
         )
-    if "SourceConnection" in data:
+    if data.get("SourceConnection") is not None:
         import capo_service_catalog.types.source_connection
 
         out["source_connection"] = (

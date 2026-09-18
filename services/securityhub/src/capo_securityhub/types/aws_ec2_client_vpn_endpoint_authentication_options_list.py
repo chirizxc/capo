@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> AwsEc2ClientVpnEndpointAuthenticationOptions
 
     out: AwsEc2ClientVpnEndpointAuthenticationOptionsList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_securityhub.types.aws_ec2_client_vpn_endpoint_authentication_options_details.deserialize_json(
                 item

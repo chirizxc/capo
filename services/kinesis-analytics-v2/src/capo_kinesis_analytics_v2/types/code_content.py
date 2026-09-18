@@ -51,9 +51,9 @@ def serialize_aws_json_1_1(value: CodeContent) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CodeContent:
     out: CodeContent = {}  # type: ignore[typeddict-item]
-    if "TextContent" in data:
+    if data.get("TextContent") is not None:
         out["text_content"] = data["TextContent"]
-    if "ZipFileContent" in data:
+    if data.get("ZipFileContent") is not None:
         import capo_kinesis_analytics_v2.types.zip_file_content
 
         out["zip_file_content"] = (
@@ -61,7 +61,7 @@ def deserialize_aws_json_1_1(data: dict) -> CodeContent:
                 data["ZipFileContent"]
             )
         )
-    if "S3ContentLocation" in data:
+    if data.get("S3ContentLocation") is not None:
         import capo_kinesis_analytics_v2.types.s3_content_location
 
         out["s3_content_location"] = (

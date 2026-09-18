@@ -36,9 +36,9 @@ def serialize_aws_json_1_1(value: DescribeMultiRegionParameterGroupsResponse) ->
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeMultiRegionParameterGroupsResponse:
     out: DescribeMultiRegionParameterGroupsResponse = {}  # type: ignore[typeddict-item]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "MultiRegionParameterGroups" in data:
+    if data.get("MultiRegionParameterGroups") is not None:
         import capo_memorydb.types.multi_region_parameter_group_list
 
         out["multi_region_parameter_groups"] = (

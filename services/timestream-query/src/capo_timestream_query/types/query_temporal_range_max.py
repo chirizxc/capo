@@ -29,10 +29,10 @@ def serialize_aws_json_1_0(value: QueryTemporalRangeMax) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> QueryTemporalRangeMax:
     out: QueryTemporalRangeMax = {}  # type: ignore[typeddict-item]
-    if "Value" in data:
+    if data.get("Value") is not None:
         out["value"] = data["Value"]
     else:
         out["value"] = 0
-    if "TableArn" in data:
+    if data.get("TableArn") is not None:
         out["table_arn"] = data["TableArn"]
     return out

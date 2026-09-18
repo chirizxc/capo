@@ -27,8 +27,8 @@ def serialize_json(value: UpgradeAppliedSchemaResponse) -> dict:
 
 def deserialize_json(data: dict) -> UpgradeAppliedSchemaResponse:
     out: UpgradeAppliedSchemaResponse = {}  # type: ignore[typeddict-item]
-    if "UpgradedSchemaArn" in data:
+    if data.get("UpgradedSchemaArn") is not None:
         out["upgraded_schema_arn"] = data["UpgradedSchemaArn"]
-    if "DirectoryArn" in data:
+    if data.get("DirectoryArn") is not None:
         out["directory_arn"] = data["DirectoryArn"]
     return out

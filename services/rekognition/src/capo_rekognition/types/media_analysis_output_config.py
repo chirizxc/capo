@@ -31,10 +31,10 @@ def serialize_aws_json_1_1(value: MediaAnalysisOutputConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> MediaAnalysisOutputConfig:
     out: MediaAnalysisOutputConfig = {}  # type: ignore[typeddict-item]
-    if "S3Bucket" in data:
+    if data.get("S3Bucket") is not None:
         out["s3_bucket"] = data["S3Bucket"]
     else:
         raise DeserializationError("MediaAnalysisOutputConfig.s3_bucket required")
-    if "S3KeyPrefix" in data:
+    if data.get("S3KeyPrefix") is not None:
         out["s3_key_prefix"] = data["S3KeyPrefix"]
     return out

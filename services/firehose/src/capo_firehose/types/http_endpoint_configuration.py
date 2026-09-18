@@ -36,12 +36,12 @@ def serialize_aws_json_1_1(value: HttpEndpointConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> HttpEndpointConfiguration:
     out: HttpEndpointConfiguration = {}  # type: ignore[typeddict-item]
-    if "Url" in data:
+    if data.get("Url") is not None:
         out["url"] = data["Url"]
     else:
         raise DeserializationError("HttpEndpointConfiguration.url required")
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "AccessKey" in data:
+    if data.get("AccessKey") is not None:
         out["access_key"] = data["AccessKey"]
     return out

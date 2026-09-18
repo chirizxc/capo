@@ -135,7 +135,7 @@ def serialize_json(value: ResponseDetails) -> dict:
 
 def deserialize_json(data: dict) -> ResponseDetails:
     out: ResponseDetails = {}  # type: ignore[typeddict-item]
-    if "ExportAssetToSignedUrl" in data:
+    if data.get("ExportAssetToSignedUrl") is not None:
         import capo_dataexchange.types.export_asset_to_signed_url_response_details
 
         out["export_asset_to_signed_url"] = (
@@ -143,7 +143,7 @@ def deserialize_json(data: dict) -> ResponseDetails:
                 data["ExportAssetToSignedUrl"]
             )
         )
-    if "ExportAssetsToS3" in data:
+    if data.get("ExportAssetsToS3") is not None:
         import capo_dataexchange.types.export_assets_to_s3_response_details
 
         out["export_assets_to_s3"] = (
@@ -151,7 +151,7 @@ def deserialize_json(data: dict) -> ResponseDetails:
                 data["ExportAssetsToS3"]
             )
         )
-    if "ExportRevisionsToS3" in data:
+    if data.get("ExportRevisionsToS3") is not None:
         import capo_dataexchange.types.export_revisions_to_s3_response_details
 
         out["export_revisions_to_s3"] = (
@@ -159,7 +159,7 @@ def deserialize_json(data: dict) -> ResponseDetails:
                 data["ExportRevisionsToS3"]
             )
         )
-    if "ImportAssetFromSignedUrl" in data:
+    if data.get("ImportAssetFromSignedUrl") is not None:
         import capo_dataexchange.types.import_asset_from_signed_url_response_details
 
         out["import_asset_from_signed_url"] = (
@@ -167,7 +167,7 @@ def deserialize_json(data: dict) -> ResponseDetails:
                 data["ImportAssetFromSignedUrl"]
             )
         )
-    if "ImportAssetsFromS3" in data:
+    if data.get("ImportAssetsFromS3") is not None:
         import capo_dataexchange.types.import_assets_from_s3_response_details
 
         out["import_assets_from_s3"] = (
@@ -175,7 +175,7 @@ def deserialize_json(data: dict) -> ResponseDetails:
                 data["ImportAssetsFromS3"]
             )
         )
-    if "ImportAssetsFromRedshiftDataShares" in data:
+    if data.get("ImportAssetsFromRedshiftDataShares") is not None:
         import capo_dataexchange.types.import_assets_from_redshift_data_shares_response_details
 
         out["import_assets_from_redshift_data_shares"] = (
@@ -183,7 +183,7 @@ def deserialize_json(data: dict) -> ResponseDetails:
                 data["ImportAssetsFromRedshiftDataShares"]
             )
         )
-    if "ImportAssetFromApiGatewayApi" in data:
+    if data.get("ImportAssetFromApiGatewayApi") is not None:
         import capo_dataexchange.types.import_asset_from_api_gateway_api_response_details
 
         out["import_asset_from_api_gateway_api"] = (
@@ -191,7 +191,7 @@ def deserialize_json(data: dict) -> ResponseDetails:
                 data["ImportAssetFromApiGatewayApi"]
             )
         )
-    if "CreateS3DataAccessFromS3Bucket" in data:
+    if data.get("CreateS3DataAccessFromS3Bucket") is not None:
         import capo_dataexchange.types.create_s3_data_access_from_s3_bucket_response_details
 
         out["create_s3_data_access_from_s3_bucket"] = (
@@ -199,7 +199,7 @@ def deserialize_json(data: dict) -> ResponseDetails:
                 data["CreateS3DataAccessFromS3Bucket"]
             )
         )
-    if "ImportAssetsFromLakeFormationTagPolicy" in data:
+    if data.get("ImportAssetsFromLakeFormationTagPolicy") is not None:
         import capo_dataexchange.types.import_assets_from_lake_formation_tag_policy_response_details
 
         out["import_assets_from_lake_formation_tag_policy"] = (

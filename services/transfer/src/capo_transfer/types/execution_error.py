@@ -32,7 +32,7 @@ def serialize_aws_json_1_1(value: ExecutionError) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ExecutionError:
     out: ExecutionError = {}  # type: ignore[typeddict-item]
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_transfer.types.execution_error_type
 
         out["type"] = capo_transfer.types.execution_error_type.deserialize_aws_json_1_1(
@@ -40,7 +40,7 @@ def deserialize_aws_json_1_1(data: dict) -> ExecutionError:
         )
     else:
         raise DeserializationError("ExecutionError.type required")
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     else:
         raise DeserializationError("ExecutionError.message required")

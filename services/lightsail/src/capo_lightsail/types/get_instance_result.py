@@ -27,7 +27,7 @@ def serialize_aws_json_1_1(value: GetInstanceResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetInstanceResult:
     out: GetInstanceResult = {}  # type: ignore[typeddict-item]
-    if "instance" in data:
+    if data.get("instance") is not None:
         import capo_lightsail.types.instance
 
         out["instance"] = capo_lightsail.types.instance.deserialize_aws_json_1_1(

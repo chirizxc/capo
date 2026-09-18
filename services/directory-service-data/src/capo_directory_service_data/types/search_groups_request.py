@@ -54,11 +54,11 @@ def serialize_json(value: SearchGroupsRequest) -> dict:
 
 def deserialize_json(data: dict) -> SearchGroupsRequest:
     out: SearchGroupsRequest = {}  # type: ignore[typeddict-item]
-    if "SearchString" in data:
+    if data.get("SearchString") is not None:
         out["search_string"] = data["SearchString"]
     else:
         raise DeserializationError("SearchGroupsRequest.search_string required")
-    if "SearchAttributes" in data:
+    if data.get("SearchAttributes") is not None:
         import capo_directory_service_data.types.ldap_display_name_list
 
         out["search_attributes"] = (
@@ -68,10 +68,10 @@ def deserialize_json(data: dict) -> SearchGroupsRequest:
         )
     else:
         raise DeserializationError("SearchGroupsRequest.search_attributes required")
-    if "Realm" in data:
+    if data.get("Realm") is not None:
         out["realm"] = data["Realm"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
     return out

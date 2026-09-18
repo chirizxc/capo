@@ -25,6 +25,8 @@ def deserialize_aws_json_1_1(data: list) -> ListedCertificates:
 
     out: ListedCertificates = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_transfer.types.listed_certificate.deserialize_aws_json_1_1(item)
         )

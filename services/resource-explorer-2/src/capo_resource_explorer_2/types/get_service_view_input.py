@@ -19,7 +19,7 @@ def serialize_json(value: GetServiceViewInput) -> dict:
 
 def deserialize_json(data: dict) -> GetServiceViewInput:
     out: GetServiceViewInput = {}  # type: ignore[typeddict-item]
-    if "ServiceViewArn" in data:
+    if data.get("ServiceViewArn") is not None:
         out["service_view_arn"] = data["ServiceViewArn"]
     else:
         raise DeserializationError("GetServiceViewInput.service_view_arn required")

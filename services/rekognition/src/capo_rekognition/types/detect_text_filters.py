@@ -41,7 +41,7 @@ def serialize_aws_json_1_1(value: DetectTextFilters) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DetectTextFilters:
     out: DetectTextFilters = {}  # type: ignore[typeddict-item]
-    if "WordFilter" in data:
+    if data.get("WordFilter") is not None:
         import capo_rekognition.types.detection_filter
 
         out["word_filter"] = (
@@ -49,7 +49,7 @@ def deserialize_aws_json_1_1(data: dict) -> DetectTextFilters:
                 data["WordFilter"]
             )
         )
-    if "RegionsOfInterest" in data:
+    if data.get("RegionsOfInterest") is not None:
         import capo_rekognition.types.regions_of_interest
 
         out["regions_of_interest"] = (

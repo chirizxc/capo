@@ -56,26 +56,26 @@ def serialize_json(value: AssociatedSource) -> dict:
 
 def deserialize_json(data: dict) -> AssociatedSource:
     out: AssociatedSource = {}  # type: ignore[typeddict-item]
-    if "resourceShareArn" in data:
+    if data.get("resourceShareArn") is not None:
         out["resource_share_arn"] = data["resourceShareArn"]
-    if "sourceId" in data:
+    if data.get("sourceId") is not None:
         out["source_id"] = data["sourceId"]
-    if "sourceType" in data:
+    if data.get("sourceType") is not None:
         out["source_type"] = data["sourceType"]
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
-    if "lastUpdatedTime" in data:
+    if data.get("lastUpdatedTime") is not None:
         import capo_ram.types.date_time
 
         out["last_updated_time"] = capo_ram.types.date_time.deserialize_json(
             data["lastUpdatedTime"]
         )
-    if "creationTime" in data:
+    if data.get("creationTime") is not None:
         import capo_ram.types.date_time
 
         out["creation_time"] = capo_ram.types.date_time.deserialize_json(
             data["creationTime"]
         )
-    if "statusMessage" in data:
+    if data.get("statusMessage") is not None:
         out["status_message"] = data["statusMessage"]
     return out

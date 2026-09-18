@@ -25,6 +25,6 @@ def serialize_json(value: ExportSourceNetworkCfnTemplateResponse) -> dict:
 
 def deserialize_json(data: dict) -> ExportSourceNetworkCfnTemplateResponse:
     out: ExportSourceNetworkCfnTemplateResponse = {}  # type: ignore[typeddict-item]
-    if "s3DestinationUrl" in data:
+    if data.get("s3DestinationUrl") is not None:
         out["s3_destination_url"] = data["s3DestinationUrl"]
     return out

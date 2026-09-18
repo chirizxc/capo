@@ -36,9 +36,9 @@ def serialize_json(value: DeleteAppInputSourceResponse) -> dict:
 
 def deserialize_json(data: dict) -> DeleteAppInputSourceResponse:
     out: DeleteAppInputSourceResponse = {}  # type: ignore[typeddict-item]
-    if "appArn" in data:
+    if data.get("appArn") is not None:
         out["app_arn"] = data["appArn"]
-    if "appInputSource" in data:
+    if data.get("appInputSource") is not None:
         import capo_resiliencehub.types.app_input_source
 
         out["app_input_source"] = (

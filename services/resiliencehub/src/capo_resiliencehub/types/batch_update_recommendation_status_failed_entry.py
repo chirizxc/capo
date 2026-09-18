@@ -28,13 +28,13 @@ def serialize_json(value: BatchUpdateRecommendationStatusFailedEntry) -> dict:
 
 def deserialize_json(data: dict) -> BatchUpdateRecommendationStatusFailedEntry:
     out: BatchUpdateRecommendationStatusFailedEntry = {}  # type: ignore[typeddict-item]
-    if "entryId" in data:
+    if data.get("entryId") is not None:
         out["entry_id"] = data["entryId"]
     else:
         raise DeserializationError(
             "BatchUpdateRecommendationStatusFailedEntry.entry_id required"
         )
-    if "errorMessage" in data:
+    if data.get("errorMessage") is not None:
         out["error_message"] = data["errorMessage"]
     else:
         raise DeserializationError(

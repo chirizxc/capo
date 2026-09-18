@@ -47,22 +47,22 @@ def serialize_json(value: ImportPhoneNumberRequest) -> dict:
 
 def deserialize_json(data: dict) -> ImportPhoneNumberRequest:
     out: ImportPhoneNumberRequest = {}  # type: ignore[typeddict-item]
-    if "InstanceId" in data:
+    if data.get("InstanceId") is not None:
         out["instance_id"] = data["InstanceId"]
     else:
         raise DeserializationError("ImportPhoneNumberRequest.instance_id required")
-    if "SourcePhoneNumberArn" in data:
+    if data.get("SourcePhoneNumberArn") is not None:
         out["source_phone_number_arn"] = data["SourcePhoneNumberArn"]
     else:
         raise DeserializationError(
             "ImportPhoneNumberRequest.source_phone_number_arn required"
         )
-    if "PhoneNumberDescription" in data:
+    if data.get("PhoneNumberDescription") is not None:
         out["phone_number_description"] = data["PhoneNumberDescription"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_connect.types.tag_map
 
         out["tags"] = capo_connect.types.tag_map.deserialize_json(data["Tags"])
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
     return out

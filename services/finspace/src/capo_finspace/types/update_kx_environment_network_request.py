@@ -52,7 +52,7 @@ def serialize_json(value: UpdateKxEnvironmentNetworkRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateKxEnvironmentNetworkRequest:
     out: UpdateKxEnvironmentNetworkRequest = {}  # type: ignore[typeddict-item]
-    if "transitGatewayConfiguration" in data:
+    if data.get("transitGatewayConfiguration") is not None:
         import capo_finspace.types.transit_gateway_configuration
 
         out["transit_gateway_configuration"] = (
@@ -60,7 +60,7 @@ def deserialize_json(data: dict) -> UpdateKxEnvironmentNetworkRequest:
                 data["transitGatewayConfiguration"]
             )
         )
-    if "customDNSConfiguration" in data:
+    if data.get("customDNSConfiguration") is not None:
         import capo_finspace.types.custom_dns_configuration
 
         out["custom_dns_configuration"] = (
@@ -68,6 +68,6 @@ def deserialize_json(data: dict) -> UpdateKxEnvironmentNetworkRequest:
                 data["customDNSConfiguration"]
             )
         )
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     return out

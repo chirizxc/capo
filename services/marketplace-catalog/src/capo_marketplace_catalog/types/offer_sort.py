@@ -36,13 +36,13 @@ def serialize_json(value: OfferSort) -> dict:
 
 def deserialize_json(data: dict) -> OfferSort:
     out: OfferSort = {}  # type: ignore[typeddict-item]
-    if "SortBy" in data:
+    if data.get("SortBy") is not None:
         import capo_marketplace_catalog.types.offer_sort_by
 
         out["sort_by"] = capo_marketplace_catalog.types.offer_sort_by.deserialize_json(
             data["SortBy"]
         )
-    if "SortOrder" in data:
+    if data.get("SortOrder") is not None:
         import capo_marketplace_catalog.types.sort_order
 
         out["sort_order"] = capo_marketplace_catalog.types.sort_order.deserialize_json(

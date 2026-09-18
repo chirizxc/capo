@@ -43,14 +43,14 @@ def serialize_aws_json_1_1(value: DescribeBudgetsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeBudgetsRequest:
     out: DescribeBudgetsRequest = {}  # type: ignore[typeddict-item]
-    if "AccountId" in data:
+    if data.get("AccountId") is not None:
         out["account_id"] = data["AccountId"]
     else:
         raise DeserializationError("DescribeBudgetsRequest.account_id required")
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "ShowFilterExpression" in data:
+    if data.get("ShowFilterExpression") is not None:
         out["show_filter_expression"] = data["ShowFilterExpression"]
     return out

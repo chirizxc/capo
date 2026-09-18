@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: ConfirmConnectionRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ConfirmConnectionRequest:
     out: ConfirmConnectionRequest = {}  # type: ignore[typeddict-item]
-    if "connectionId" in data:
+    if data.get("connectionId") is not None:
         out["connection_id"] = data["connectionId"]
     else:
         raise DeserializationError("ConfirmConnectionRequest.connection_id required")

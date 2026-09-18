@@ -43,21 +43,21 @@ def serialize_json(value: GitHubRepositoryMetadata) -> dict:
 
 def deserialize_json(data: dict) -> GitHubRepositoryMetadata:
     out: GitHubRepositoryMetadata = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("GitHubRepositoryMetadata.name required")
-    if "providerResourceId" in data:
+    if data.get("providerResourceId") is not None:
         out["provider_resource_id"] = data["providerResourceId"]
     else:
         raise DeserializationError(
             "GitHubRepositoryMetadata.provider_resource_id required"
         )
-    if "owner" in data:
+    if data.get("owner") is not None:
         out["owner"] = data["owner"]
     else:
         raise DeserializationError("GitHubRepositoryMetadata.owner required")
-    if "accessType" in data:
+    if data.get("accessType") is not None:
         import capo_securityagent.types.access_type
 
         out["access_type"] = capo_securityagent.types.access_type.deserialize_json(

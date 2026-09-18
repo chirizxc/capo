@@ -63,23 +63,23 @@ def serialize_aws_json_1_1(value: ApplicationInfo) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ApplicationInfo:
     out: ApplicationInfo = {}  # type: ignore[typeddict-item]
-    if "applicationId" in data:
+    if data.get("applicationId") is not None:
         out["application_id"] = data["applicationId"]
-    if "applicationName" in data:
+    if data.get("applicationName") is not None:
         out["application_name"] = data["applicationName"]
-    if "createTime" in data:
+    if data.get("createTime") is not None:
         import capo_codedeploy.types.timestamp
 
         out["create_time"] = capo_codedeploy.types.timestamp.deserialize_aws_json_1_1(
             data["createTime"]
         )
-    if "linkedToGitHub" in data:
+    if data.get("linkedToGitHub") is not None:
         out["linked_to_git_hub"] = data["linkedToGitHub"]
     else:
         out["linked_to_git_hub"] = False
-    if "gitHubAccountName" in data:
+    if data.get("gitHubAccountName") is not None:
         out["git_hub_account_name"] = data["gitHubAccountName"]
-    if "computePlatform" in data:
+    if data.get("computePlatform") is not None:
         import capo_codedeploy.types.compute_platform
 
         out["compute_platform"] = (

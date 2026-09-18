@@ -34,13 +34,13 @@ def serialize_aws_json_1_1(value: DescribeBundleAssociationsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeBundleAssociationsRequest:
     out: DescribeBundleAssociationsRequest = {}  # type: ignore[typeddict-item]
-    if "BundleId" in data:
+    if data.get("BundleId") is not None:
         out["bundle_id"] = data["BundleId"]
     else:
         raise DeserializationError(
             "DescribeBundleAssociationsRequest.bundle_id required"
         )
-    if "AssociatedResourceTypes" in data:
+    if data.get("AssociatedResourceTypes") is not None:
         import capo_workspaces.types.bundle_associated_resource_type_list
 
         out["associated_resource_types"] = (

@@ -77,7 +77,7 @@ def serialize_json(value: UpdateTemplateRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateTemplateRequest:
     out: UpdateTemplateRequest = {}  # type: ignore[typeddict-item]
-    if "SourceEntity" in data:
+    if data.get("SourceEntity") is not None:
         import capo_quicksight.types.template_source_entity
 
         out["source_entity"] = (
@@ -85,11 +85,11 @@ def deserialize_json(data: dict) -> UpdateTemplateRequest:
                 data["SourceEntity"]
             )
         )
-    if "VersionDescription" in data:
+    if data.get("VersionDescription") is not None:
         out["version_description"] = data["VersionDescription"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Definition" in data:
+    if data.get("Definition") is not None:
         import capo_quicksight.types.template_version_definition
 
         out["definition"] = (
@@ -97,7 +97,7 @@ def deserialize_json(data: dict) -> UpdateTemplateRequest:
                 data["Definition"]
             )
         )
-    if "ValidationStrategy" in data:
+    if data.get("ValidationStrategy") is not None:
         import capo_quicksight.types.validation_strategy
 
         out["validation_strategy"] = (

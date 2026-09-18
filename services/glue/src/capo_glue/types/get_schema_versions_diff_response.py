@@ -23,6 +23,6 @@ def serialize_aws_json_1_1(value: GetSchemaVersionsDiffResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetSchemaVersionsDiffResponse:
     out: GetSchemaVersionsDiffResponse = {}  # type: ignore[typeddict-item]
-    if "Diff" in data:
+    if data.get("Diff") is not None:
         out["diff"] = data["Diff"]
     return out

@@ -108,71 +108,71 @@ def serialize_json(value: AssessmentEvidenceFolder) -> dict:
 
 def deserialize_json(data: dict) -> AssessmentEvidenceFolder:
     out: AssessmentEvidenceFolder = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "date" in data:
+    if data.get("date") is not None:
         import capo_auditmanager.types.timestamp
 
         out["date"] = capo_auditmanager.types.timestamp.deserialize_json(data["date"])
-    if "assessmentId" in data:
+    if data.get("assessmentId") is not None:
         out["assessment_id"] = data["assessmentId"]
-    if "controlSetId" in data:
+    if data.get("controlSetId") is not None:
         out["control_set_id"] = data["controlSetId"]
-    if "controlId" in data:
+    if data.get("controlId") is not None:
         out["control_id"] = data["controlId"]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "dataSource" in data:
+    if data.get("dataSource") is not None:
         out["data_source"] = data["dataSource"]
-    if "author" in data:
+    if data.get("author") is not None:
         out["author"] = data["author"]
-    if "totalEvidence" in data:
+    if data.get("totalEvidence") is not None:
         out["total_evidence"] = data["totalEvidence"]
     else:
         out["total_evidence"] = 0
-    if "assessmentReportSelectionCount" in data:
+    if data.get("assessmentReportSelectionCount") is not None:
         out["assessment_report_selection_count"] = data[
             "assessmentReportSelectionCount"
         ]
     else:
         out["assessment_report_selection_count"] = 0
-    if "controlName" in data:
+    if data.get("controlName") is not None:
         out["control_name"] = data["controlName"]
-    if "evidenceResourcesIncludedCount" in data:
+    if data.get("evidenceResourcesIncludedCount") is not None:
         out["evidence_resources_included_count"] = data[
             "evidenceResourcesIncludedCount"
         ]
     else:
         out["evidence_resources_included_count"] = 0
-    if "evidenceByTypeConfigurationDataCount" in data:
+    if data.get("evidenceByTypeConfigurationDataCount") is not None:
         out["evidence_by_type_configuration_data_count"] = data[
             "evidenceByTypeConfigurationDataCount"
         ]
     else:
         out["evidence_by_type_configuration_data_count"] = 0
-    if "evidenceByTypeManualCount" in data:
+    if data.get("evidenceByTypeManualCount") is not None:
         out["evidence_by_type_manual_count"] = data["evidenceByTypeManualCount"]
     else:
         out["evidence_by_type_manual_count"] = 0
-    if "evidenceByTypeComplianceCheckCount" in data:
+    if data.get("evidenceByTypeComplianceCheckCount") is not None:
         out["evidence_by_type_compliance_check_count"] = data[
             "evidenceByTypeComplianceCheckCount"
         ]
     else:
         out["evidence_by_type_compliance_check_count"] = 0
-    if "evidenceByTypeComplianceCheckIssuesCount" in data:
+    if data.get("evidenceByTypeComplianceCheckIssuesCount") is not None:
         out["evidence_by_type_compliance_check_issues_count"] = data[
             "evidenceByTypeComplianceCheckIssuesCount"
         ]
     else:
         out["evidence_by_type_compliance_check_issues_count"] = 0
-    if "evidenceByTypeUserActivityCount" in data:
+    if data.get("evidenceByTypeUserActivityCount") is not None:
         out["evidence_by_type_user_activity_count"] = data[
             "evidenceByTypeUserActivityCount"
         ]
     else:
         out["evidence_by_type_user_activity_count"] = 0
-    if "evidenceAwsServiceSourceCount" in data:
+    if data.get("evidenceAwsServiceSourceCount") is not None:
         out["evidence_aws_service_source_count"] = data["evidenceAwsServiceSourceCount"]
     else:
         out["evidence_aws_service_source_count"] = 0

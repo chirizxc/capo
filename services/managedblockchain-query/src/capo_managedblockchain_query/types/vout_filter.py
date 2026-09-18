@@ -19,7 +19,7 @@ def serialize_json(value: VoutFilter) -> dict:
 
 def deserialize_json(data: dict) -> VoutFilter:
     out: VoutFilter = {}  # type: ignore[typeddict-item]
-    if "voutSpent" in data:
+    if data.get("voutSpent") is not None:
         out["vout_spent"] = data["voutSpent"]
     else:
         raise DeserializationError("VoutFilter.vout_spent required")

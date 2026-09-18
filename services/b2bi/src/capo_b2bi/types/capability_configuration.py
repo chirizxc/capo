@@ -32,7 +32,7 @@ def serialize_aws_json_1_0(value: CapabilityConfiguration) -> dict:
 
 
 def deserialize_aws_json_1_0(data: dict) -> CapabilityConfiguration:
-    if "edi" in data:
+    if data.get("edi") is not None:
         import capo_b2bi.types.edi_configuration
 
         return {

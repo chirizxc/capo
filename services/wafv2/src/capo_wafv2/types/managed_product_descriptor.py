@@ -62,25 +62,25 @@ def serialize_aws_json_1_1(value: ManagedProductDescriptor) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ManagedProductDescriptor:
     out: ManagedProductDescriptor = {}  # type: ignore[typeddict-item]
-    if "VendorName" in data:
+    if data.get("VendorName") is not None:
         out["vendor_name"] = data["VendorName"]
-    if "ManagedRuleSetName" in data:
+    if data.get("ManagedRuleSetName") is not None:
         out["managed_rule_set_name"] = data["ManagedRuleSetName"]
-    if "ProductId" in data:
+    if data.get("ProductId") is not None:
         out["product_id"] = data["ProductId"]
-    if "ProductLink" in data:
+    if data.get("ProductLink") is not None:
         out["product_link"] = data["ProductLink"]
-    if "ProductTitle" in data:
+    if data.get("ProductTitle") is not None:
         out["product_title"] = data["ProductTitle"]
-    if "ProductDescription" in data:
+    if data.get("ProductDescription") is not None:
         out["product_description"] = data["ProductDescription"]
-    if "SnsTopicArn" in data:
+    if data.get("SnsTopicArn") is not None:
         out["sns_topic_arn"] = data["SnsTopicArn"]
-    if "IsVersioningSupported" in data:
+    if data.get("IsVersioningSupported") is not None:
         out["is_versioning_supported"] = data["IsVersioningSupported"]
     else:
         out["is_versioning_supported"] = False
-    if "IsAdvancedManagedRuleSet" in data:
+    if data.get("IsAdvancedManagedRuleSet") is not None:
         out["is_advanced_managed_rule_set"] = data["IsAdvancedManagedRuleSet"]
     else:
         out["is_advanced_managed_rule_set"] = False

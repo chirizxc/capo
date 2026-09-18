@@ -20,14 +20,12 @@ class ListSolNetworkInstanceMetadata(TypedDict, closed=True):
 # --- restJson1 ser/de ---
 def serialize_json(value: ListSolNetworkInstanceMetadata) -> dict:
     out: dict = {}
-    import capo_tnb.types._prelude.timestamp
+    import capo_tnb._protocol.serialize
 
-    out["createdAt"] = capo_tnb.types._prelude.timestamp.serialize_json(
-        value["created_at"]
-    )
-    import capo_tnb.types._prelude.timestamp
+    out["createdAt"] = capo_tnb._protocol.serialize.fmt_date_time(value["created_at"])
+    import capo_tnb._protocol.serialize
 
-    out["lastModified"] = capo_tnb.types._prelude.timestamp.serialize_json(
+    out["lastModified"] = capo_tnb._protocol.serialize.fmt_date_time(
         value["last_modified"]
     )
     return out
@@ -35,19 +33,19 @@ def serialize_json(value: ListSolNetworkInstanceMetadata) -> dict:
 
 def deserialize_json(data: dict) -> ListSolNetworkInstanceMetadata:
     out: ListSolNetworkInstanceMetadata = {}  # type: ignore[typeddict-item]
-    if "createdAt" in data:
-        import capo_tnb.types._prelude.timestamp
+    if data.get("createdAt") is not None:
+        import datetime
 
-        out["created_at"] = capo_tnb.types._prelude.timestamp.deserialize_json(
-            data["createdAt"]
+        out["created_at"] = datetime.datetime.fromisoformat(
+            data["createdAt"].replace("Z", "+00:00")
         )
     else:
         raise DeserializationError("ListSolNetworkInstanceMetadata.created_at required")
-    if "lastModified" in data:
-        import capo_tnb.types._prelude.timestamp
+    if data.get("lastModified") is not None:
+        import datetime
 
-        out["last_modified"] = capo_tnb.types._prelude.timestamp.deserialize_json(
-            data["lastModified"]
+        out["last_modified"] = datetime.datetime.fromisoformat(
+            data["lastModified"].replace("Z", "+00:00")
         )
     else:
         raise DeserializationError(

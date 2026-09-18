@@ -28,8 +28,8 @@ def serialize_json(value: AwsElbLoadBalancerConnectionDraining) -> dict:
 
 def deserialize_json(data: dict) -> AwsElbLoadBalancerConnectionDraining:
     out: AwsElbLoadBalancerConnectionDraining = {}  # type: ignore[typeddict-item]
-    if "Enabled" in data:
+    if data.get("Enabled") is not None:
         out["enabled"] = data["Enabled"]
-    if "Timeout" in data:
+    if data.get("Timeout") is not None:
         out["timeout"] = data["Timeout"]
     return out

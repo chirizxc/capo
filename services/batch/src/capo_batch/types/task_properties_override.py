@@ -31,7 +31,7 @@ def serialize_json(value: TaskPropertiesOverride) -> dict:
 
 def deserialize_json(data: dict) -> TaskPropertiesOverride:
     out: TaskPropertiesOverride = {}  # type: ignore[typeddict-item]
-    if "containers" in data:
+    if data.get("containers") is not None:
         import capo_batch.types.list_task_container_overrides
 
         out["containers"] = (

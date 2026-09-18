@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> MessageTagList:
 
     out: MessageTagList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_pinpoint_email.types.message_tag.deserialize_json(item))
     return out

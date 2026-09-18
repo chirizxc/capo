@@ -24,7 +24,7 @@ def serialize_json(value: MetricsBackupConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> MetricsBackupConfiguration:
     out: MetricsBackupConfiguration = {}  # type: ignore[typeddict-item]
-    if "Region" in data:
+    if data.get("Region") is not None:
         out["region"] = data["Region"]
     else:
         raise DeserializationError("MetricsBackupConfiguration.region required")

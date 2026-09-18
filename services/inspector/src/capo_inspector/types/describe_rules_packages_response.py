@@ -38,7 +38,7 @@ def serialize_aws_json_1_1(value: DescribeRulesPackagesResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeRulesPackagesResponse:
     out: DescribeRulesPackagesResponse = {}  # type: ignore[typeddict-item]
-    if "rulesPackages" in data:
+    if data.get("rulesPackages") is not None:
         import capo_inspector.types.rules_package_list
 
         out["rules_packages"] = (
@@ -50,7 +50,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeRulesPackagesResponse:
         raise DeserializationError(
             "DescribeRulesPackagesResponse.rules_packages required"
         )
-    if "failedItems" in data:
+    if data.get("failedItems") is not None:
         import capo_inspector.types.failed_items
 
         out["failed_items"] = (

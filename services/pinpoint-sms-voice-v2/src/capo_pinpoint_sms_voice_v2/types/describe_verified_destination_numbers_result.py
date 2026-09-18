@@ -35,7 +35,7 @@ def serialize_aws_json_1_0(value: DescribeVerifiedDestinationNumbersResult) -> d
 
 def deserialize_aws_json_1_0(data: dict) -> DescribeVerifiedDestinationNumbersResult:
     out: DescribeVerifiedDestinationNumbersResult = {}  # type: ignore[typeddict-item]
-    if "VerifiedDestinationNumbers" in data:
+    if data.get("VerifiedDestinationNumbers") is not None:
         import capo_pinpoint_sms_voice_v2.types.verified_destination_number_information_list
 
         out["verified_destination_numbers"] = (
@@ -47,6 +47,6 @@ def deserialize_aws_json_1_0(data: dict) -> DescribeVerifiedDestinationNumbersRe
         raise DeserializationError(
             "DescribeVerifiedDestinationNumbersResult.verified_destination_numbers required"
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

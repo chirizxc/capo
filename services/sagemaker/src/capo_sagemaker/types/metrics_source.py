@@ -33,10 +33,10 @@ def serialize_aws_json_1_1(value: MetricsSource) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> MetricsSource:
     out: MetricsSource = {}  # type: ignore[typeddict-item]
-    if "ContentType" in data:
+    if data.get("ContentType") is not None:
         out["content_type"] = data["ContentType"]
-    if "ContentDigest" in data:
+    if data.get("ContentDigest") is not None:
         out["content_digest"] = data["ContentDigest"]
-    if "S3Uri" in data:
+    if data.get("S3Uri") is not None:
         out["s3_uri"] = data["S3Uri"]
     return out

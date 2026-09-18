@@ -40,13 +40,13 @@ def serialize_aws_json_1_1(value: ScalingAction) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ScalingAction:
     out: ScalingAction = {}  # type: ignore[typeddict-item]
-    if "Market" in data:
+    if data.get("Market") is not None:
         import capo_emr.types.market_type
 
         out["market"] = capo_emr.types.market_type.deserialize_aws_json_1_1(
             data["Market"]
         )
-    if "SimpleScalingPolicyConfiguration" in data:
+    if data.get("SimpleScalingPolicyConfiguration") is not None:
         import capo_emr.types.simple_scaling_policy_configuration
 
         out["simple_scaling_policy_configuration"] = (

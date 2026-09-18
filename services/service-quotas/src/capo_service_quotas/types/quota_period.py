@@ -34,9 +34,9 @@ def serialize_aws_json_1_1(value: QuotaPeriod) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> QuotaPeriod:
     out: QuotaPeriod = {}  # type: ignore[typeddict-item]
-    if "PeriodValue" in data:
+    if data.get("PeriodValue") is not None:
         out["period_value"] = data["PeriodValue"]
-    if "PeriodUnit" in data:
+    if data.get("PeriodUnit") is not None:
         import capo_service_quotas.types.period_unit
 
         out["period_unit"] = (

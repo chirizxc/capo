@@ -22,8 +22,8 @@ def serialize_json(value: DataLakeUpdateException) -> dict:
 
 def deserialize_json(data: dict) -> DataLakeUpdateException:
     out: DataLakeUpdateException = {}  # type: ignore[typeddict-item]
-    if "reason" in data:
+    if data.get("reason") is not None:
         out["reason"] = data["reason"]
-    if "code" in data:
+    if data.get("code") is not None:
         out["code"] = data["code"]
     return out

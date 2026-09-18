@@ -29,7 +29,7 @@ def serialize_json(value: ValidateTelemetryPipelineConfigurationOutput) -> dict:
 
 def deserialize_json(data: dict) -> ValidateTelemetryPipelineConfigurationOutput:
     out: ValidateTelemetryPipelineConfigurationOutput = {}  # type: ignore[typeddict-item]
-    if "Errors" in data:
+    if data.get("Errors") is not None:
         import capo_observabilityadmin.types.validation_errors
 
         out["errors"] = (

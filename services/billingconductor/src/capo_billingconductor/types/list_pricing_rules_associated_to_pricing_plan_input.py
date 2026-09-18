@@ -43,16 +43,16 @@ def serialize_json(value: ListPricingRulesAssociatedToPricingPlanInput) -> dict:
 
 def deserialize_json(data: dict) -> ListPricingRulesAssociatedToPricingPlanInput:
     out: ListPricingRulesAssociatedToPricingPlanInput = {}  # type: ignore[typeddict-item]
-    if "BillingPeriod" in data:
+    if data.get("BillingPeriod") is not None:
         out["billing_period"] = data["BillingPeriod"]
-    if "PricingPlanArn" in data:
+    if data.get("PricingPlanArn") is not None:
         out["pricing_plan_arn"] = data["PricingPlanArn"]
     else:
         raise DeserializationError(
             "ListPricingRulesAssociatedToPricingPlanInput.pricing_plan_arn required"
         )
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

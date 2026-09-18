@@ -29,6 +29,8 @@ def deserialize_aws_json_1_0(data: list) -> UpdateRoutingControlStateEntries:
 
     out: UpdateRoutingControlStateEntries = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_route53_recovery_cluster.types.update_routing_control_state_entry.deserialize_aws_json_1_0(
                 item

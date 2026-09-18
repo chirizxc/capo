@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> IngestConfigurationList:
 
     out: IngestConfigurationList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_ivs_realtime.types.ingest_configuration_summary.deserialize_json(item)
         )

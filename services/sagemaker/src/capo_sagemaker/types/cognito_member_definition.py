@@ -33,10 +33,10 @@ def serialize_aws_json_1_1(value: CognitoMemberDefinition) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CognitoMemberDefinition:
     out: CognitoMemberDefinition = {}  # type: ignore[typeddict-item]
-    if "UserPool" in data:
+    if data.get("UserPool") is not None:
         out["user_pool"] = data["UserPool"]
-    if "UserGroup" in data:
+    if data.get("UserGroup") is not None:
         out["user_group"] = data["UserGroup"]
-    if "ClientId" in data:
+    if data.get("ClientId") is not None:
         out["client_id"] = data["ClientId"]
     return out

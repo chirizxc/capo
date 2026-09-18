@@ -13,9 +13,9 @@ from capo_personalize_events import AsyncPersonalizeEventsClient
 
 
 async def main():
-    async with AsyncPersonalizeEventsClient() as s3:
+    async with AsyncPersonalizeEventsClient() as personalize_events:
         # Example: call the put_action_interactions operation
-        response = await s3.put_action_interactions()
+        response = await personalize_events.put_action_interactions()
         print(response)
 ```
 
@@ -29,9 +29,9 @@ from capo_personalize_events.error import InvalidInputException
 
 
 async def main():
-    async with AsyncPersonalizeEventsClient() as s3:
+    async with AsyncPersonalizeEventsClient() as personalize_events:
         try:
-            await s3.put_action_interactions()
+            await personalize_events.put_action_interactions()
         except InvalidInputException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -48,13 +48,13 @@ from capo_personalize_events import AsyncPersonalizeEventsClient
 
 
 async def main():
-    async with AsyncPersonalizeEventsClient() as s3:
+    async with AsyncPersonalizeEventsClient() as personalize_events:
         # Default: 3 attempts for every operation
-        response = await s3.put_action_interactions()
+        response = await personalize_events.put_action_interactions()
 
         # Override per operation
-        response = await s3.put_action_interactions(config_overrides={"retry_max_attempts": 5})
+        response = await personalize_events.put_action_interactions(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.put_action_interactions(config_overrides={"retry_max_attempts": 1})
+        response = await personalize_events.put_action_interactions(config_overrides={"retry_max_attempts": 1})
 ```

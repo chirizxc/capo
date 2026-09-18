@@ -25,6 +25,8 @@ def deserialize_json(data: list) -> ServerStrategies:
 
     out: ServerStrategies = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_migrationhubstrategy.types.server_strategy.deserialize_json(item)
         )

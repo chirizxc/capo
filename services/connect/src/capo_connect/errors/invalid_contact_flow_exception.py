@@ -27,7 +27,7 @@ def serialize_json(value: InvalidContactFlowException_) -> dict:
 
 def deserialize_json(data: dict) -> InvalidContactFlowException_:
     out: InvalidContactFlowException_ = {}  # type: ignore[typeddict-item]
-    if "problems" in data:
+    if data.get("problems") is not None:
         import capo_connect.types.problems
 
         out["problems"] = capo_connect.types.problems.deserialize_json(data["problems"])
@@ -39,15 +39,18 @@ class InvalidContactFlowException(ServiceError):
 
     code: str | None = "InvalidContactFlowException"
 
-    def __init__(self, data: InvalidContactFlowException_):
+    def __init__(self, data: InvalidContactFlowException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="InvalidContactFlowException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "InvalidContactFlowException":
-        return cls(deserialize_json(data))
+    def from_json(
+        cls, data: dict, message: str | None = None
+    ) -> "InvalidContactFlowException":
+        return cls(deserialize_json(data), message)

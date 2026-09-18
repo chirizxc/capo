@@ -13,10 +13,25 @@ from capo_servicediscovery import AsyncServiceDiscoveryClient
 
 
 async def main():
-    async with AsyncServiceDiscoveryClient() as s3:
+    async with AsyncServiceDiscoveryClient() as service_discovery:
         # Example: call the create_http_namespace operation
-        response = await s3.create_http_namespace()
+        response = await service_discovery.create_http_namespace()
         print(response["operation_id"])
+```
+
+## Pagination
+
+Some operations in this SDK support pagination. If the operation supports pagination it will have an `iter_` prefixed method that returns an async iterator.
+
+```python
+from capo_servicediscovery import AsyncServiceDiscoveryClient
+
+
+async def main():
+    async with AsyncServiceDiscoveryClient() as service_discovery:
+        # Example: paginate over get_instances_health_status
+        async for item in service_discovery.iter_get_instances_health_status():
+            print(item)
 ```
 
 ## Error Handling
@@ -29,9 +44,9 @@ from capo_servicediscovery.error import DuplicateRequest
 
 
 async def main():
-    async with AsyncServiceDiscoveryClient() as s3:
+    async with AsyncServiceDiscoveryClient() as service_discovery:
         try:
-            await s3.create_http_namespace()
+            await service_discovery.create_http_namespace()
         except DuplicateRequest as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -48,13 +63,13 @@ from capo_servicediscovery import AsyncServiceDiscoveryClient
 
 
 async def main():
-    async with AsyncServiceDiscoveryClient() as s3:
+    async with AsyncServiceDiscoveryClient() as service_discovery:
         # Default: 3 attempts for every operation
-        response = await s3.create_http_namespace()
+        response = await service_discovery.create_http_namespace()
 
         # Override per operation
-        response = await s3.create_http_namespace(config_overrides={"retry_max_attempts": 5})
+        response = await service_discovery.create_http_namespace(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.create_http_namespace(config_overrides={"retry_max_attempts": 1})
+        response = await service_discovery.create_http_namespace(config_overrides={"retry_max_attempts": 1})
 ```

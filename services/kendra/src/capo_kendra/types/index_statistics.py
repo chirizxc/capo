@@ -40,7 +40,7 @@ def serialize_aws_json_1_1(value: IndexStatistics) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> IndexStatistics:
     out: IndexStatistics = {}  # type: ignore[typeddict-item]
-    if "FaqStatistics" in data:
+    if data.get("FaqStatistics") is not None:
         import capo_kendra.types.faq_statistics
 
         out["faq_statistics"] = (
@@ -50,7 +50,7 @@ def deserialize_aws_json_1_1(data: dict) -> IndexStatistics:
         )
     else:
         raise DeserializationError("IndexStatistics.faq_statistics required")
-    if "TextDocumentStatistics" in data:
+    if data.get("TextDocumentStatistics") is not None:
         import capo_kendra.types.text_document_statistics
 
         out["text_document_statistics"] = (

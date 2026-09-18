@@ -128,64 +128,64 @@ def serialize_aws_json_1_0(value: DbSystemShapeSummary) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> DbSystemShapeSummary:
     out: DbSystemShapeSummary = {}  # type: ignore[typeddict-item]
-    if "availableCoreCount" in data:
+    if data.get("availableCoreCount") is not None:
         out["available_core_count"] = data["availableCoreCount"]
-    if "availableCoreCountPerNode" in data:
+    if data.get("availableCoreCountPerNode") is not None:
         out["available_core_count_per_node"] = data["availableCoreCountPerNode"]
-    if "availableDataStorageInTBs" in data:
+    if data.get("availableDataStorageInTBs") is not None:
         out["available_data_storage_in_t_bs"] = data["availableDataStorageInTBs"]
-    if "availableDataStoragePerServerInTBs" in data:
+    if data.get("availableDataStoragePerServerInTBs") is not None:
         out["available_data_storage_per_server_in_t_bs"] = data[
             "availableDataStoragePerServerInTBs"
         ]
-    if "availableDbNodePerNodeInGBs" in data:
+    if data.get("availableDbNodePerNodeInGBs") is not None:
         out["available_db_node_per_node_in_g_bs"] = data["availableDbNodePerNodeInGBs"]
-    if "availableDbNodeStorageInGBs" in data:
+    if data.get("availableDbNodeStorageInGBs") is not None:
         out["available_db_node_storage_in_g_bs"] = data["availableDbNodeStorageInGBs"]
-    if "availableMemoryInGBs" in data:
+    if data.get("availableMemoryInGBs") is not None:
         out["available_memory_in_g_bs"] = data["availableMemoryInGBs"]
-    if "availableMemoryPerNodeInGBs" in data:
+    if data.get("availableMemoryPerNodeInGBs") is not None:
         out["available_memory_per_node_in_g_bs"] = data["availableMemoryPerNodeInGBs"]
-    if "coreCountIncrement" in data:
+    if data.get("coreCountIncrement") is not None:
         out["core_count_increment"] = data["coreCountIncrement"]
-    if "maxStorageCount" in data:
+    if data.get("maxStorageCount") is not None:
         out["max_storage_count"] = data["maxStorageCount"]
-    if "maximumNodeCount" in data:
+    if data.get("maximumNodeCount") is not None:
         out["maximum_node_count"] = data["maximumNodeCount"]
-    if "minCoreCountPerNode" in data:
+    if data.get("minCoreCountPerNode") is not None:
         out["min_core_count_per_node"] = data["minCoreCountPerNode"]
-    if "minDataStorageInTBs" in data:
+    if data.get("minDataStorageInTBs") is not None:
         out["min_data_storage_in_t_bs"] = data["minDataStorageInTBs"]
-    if "minDbNodeStoragePerNodeInGBs" in data:
+    if data.get("minDbNodeStoragePerNodeInGBs") is not None:
         out["min_db_node_storage_per_node_in_g_bs"] = data[
             "minDbNodeStoragePerNodeInGBs"
         ]
-    if "minMemoryPerNodeInGBs" in data:
+    if data.get("minMemoryPerNodeInGBs") is not None:
         out["min_memory_per_node_in_g_bs"] = data["minMemoryPerNodeInGBs"]
-    if "minStorageCount" in data:
+    if data.get("minStorageCount") is not None:
         out["min_storage_count"] = data["minStorageCount"]
-    if "minimumCoreCount" in data:
+    if data.get("minimumCoreCount") is not None:
         out["minimum_core_count"] = data["minimumCoreCount"]
-    if "minimumNodeCount" in data:
+    if data.get("minimumNodeCount") is not None:
         out["minimum_node_count"] = data["minimumNodeCount"]
-    if "runtimeMinimumCoreCount" in data:
+    if data.get("runtimeMinimumCoreCount") is not None:
         out["runtime_minimum_core_count"] = data["runtimeMinimumCoreCount"]
-    if "shapeFamily" in data:
+    if data.get("shapeFamily") is not None:
         out["shape_family"] = data["shapeFamily"]
-    if "shapeType" in data:
+    if data.get("shapeType") is not None:
         import capo_odb.types.shape_type
 
         out["shape_type"] = capo_odb.types.shape_type.deserialize_aws_json_1_0(
             data["shapeType"]
         )
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "computeModel" in data:
+    if data.get("computeModel") is not None:
         import capo_odb.types.compute_model
 
         out["compute_model"] = capo_odb.types.compute_model.deserialize_aws_json_1_0(
             data["computeModel"]
         )
-    if "areServerTypesSupported" in data:
+    if data.get("areServerTypesSupported") is not None:
         out["are_server_types_supported"] = data["areServerTypesSupported"]
     return out

@@ -40,11 +40,11 @@ def serialize_aws_json_1_1(value: RelatedDeployments) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RelatedDeployments:
     out: RelatedDeployments = {}  # type: ignore[typeddict-item]
-    if "autoUpdateOutdatedInstancesRootDeploymentId" in data:
+    if data.get("autoUpdateOutdatedInstancesRootDeploymentId") is not None:
         out["auto_update_outdated_instances_root_deployment_id"] = data[
             "autoUpdateOutdatedInstancesRootDeploymentId"
         ]
-    if "autoUpdateOutdatedInstancesDeploymentIds" in data:
+    if data.get("autoUpdateOutdatedInstancesDeploymentIds") is not None:
         import capo_codedeploy.types.deployments_list
 
         out["auto_update_outdated_instances_deployment_ids"] = (

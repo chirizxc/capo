@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> ListOfClientCertificate:
 
     out: ListOfClientCertificate = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_api_gateway.types.client_certificate.deserialize_json(item))
     return out

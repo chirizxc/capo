@@ -24,7 +24,7 @@ def serialize_aws_json_1_0(value: DeleteConnectionInput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> DeleteConnectionInput:
     out: DeleteConnectionInput = {}  # type: ignore[typeddict-item]
-    if "ConnectionArn" in data:
+    if data.get("ConnectionArn") is not None:
         out["connection_arn"] = data["ConnectionArn"]
     else:
         raise DeserializationError("DeleteConnectionInput.connection_arn required")

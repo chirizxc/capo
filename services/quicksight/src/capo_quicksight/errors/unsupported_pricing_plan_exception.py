@@ -28,9 +28,9 @@ def serialize_json(value: UnsupportedPricingPlanException_) -> dict:
 
 def deserialize_json(data: dict) -> UnsupportedPricingPlanException_:
     out: UnsupportedPricingPlanException_ = {}  # type: ignore[typeddict-item]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
-    if "RequestId" in data:
+    if data.get("RequestId") is not None:
         out["request_id"] = data["RequestId"]
     return out
 
@@ -40,15 +40,20 @@ class UnsupportedPricingPlanException(ServiceError):
 
     code: str | None = "UnsupportedPricingPlanException"
 
-    def __init__(self, data: UnsupportedPricingPlanException_):
+    def __init__(
+        self, data: UnsupportedPricingPlanException_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="UnsupportedPricingPlanException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "UnsupportedPricingPlanException":
-        return cls(deserialize_json(data))
+    def from_json(
+        cls, data: dict, message: str | None = None
+    ) -> "UnsupportedPricingPlanException":
+        return cls(deserialize_json(data), message)

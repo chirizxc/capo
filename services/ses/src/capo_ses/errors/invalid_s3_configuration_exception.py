@@ -45,15 +45,20 @@ class InvalidS3ConfigurationException(ServiceError):
 
     code: str | None = "InvalidS3ConfigurationException"
 
-    def __init__(self, data: InvalidS3ConfigurationException_):
+    def __init__(
+        self, data: InvalidS3ConfigurationException_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="InvalidS3ConfigurationException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_query(cls, el: Element) -> "InvalidS3ConfigurationException":
-        return cls(deserialize_query(el))
+    def from_query(
+        cls, el: Element, message: str | None = None
+    ) -> "InvalidS3ConfigurationException":
+        return cls(deserialize_query(el), message)

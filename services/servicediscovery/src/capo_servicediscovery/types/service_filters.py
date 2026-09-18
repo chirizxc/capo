@@ -27,6 +27,8 @@ def deserialize_aws_json_1_1(data: list) -> ServiceFilters:
 
     out: ServiceFilters = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_servicediscovery.types.service_filter.deserialize_aws_json_1_1(item)
         )

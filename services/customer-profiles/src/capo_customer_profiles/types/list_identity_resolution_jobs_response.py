@@ -36,7 +36,7 @@ def serialize_json(value: ListIdentityResolutionJobsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListIdentityResolutionJobsResponse:
     out: ListIdentityResolutionJobsResponse = {}  # type: ignore[typeddict-item]
-    if "IdentityResolutionJobsList" in data:
+    if data.get("IdentityResolutionJobsList") is not None:
         import capo_customer_profiles.types.identity_resolution_jobs_list
 
         out["identity_resolution_jobs_list"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> ListIdentityResolutionJobsResponse:
                 data["IdentityResolutionJobsList"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

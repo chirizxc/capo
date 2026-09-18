@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> StreamingAccessDetailsList:
 
     out: StreamingAccessDetailsList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_resource_explorer_2.types.streaming_access_details.deserialize_json(
                 item

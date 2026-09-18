@@ -22,7 +22,18 @@ def serialize_query(
     key_prefix = f"{prefix}." if prefix else ""
     if "progress_percentage" in value:
         pairs.append(
-            (f"{key_prefix}ProgressPercentage", str(value["progress_percentage"]))
+            (
+                f"{key_prefix}ProgressPercentage",
+                (
+                    "NaN"
+                    if value["progress_percentage"] != value["progress_percentage"]
+                    else "Infinity"
+                    if value["progress_percentage"] == float("inf")
+                    else "-Infinity"
+                    if value["progress_percentage"] == float("-inf")
+                    else str(value["progress_percentage"])
+                ),
+            )
         )
 
 

@@ -30,8 +30,8 @@ def serialize_json(value: UpdateEmailAddressMetadataResponse) -> dict:
 
 def deserialize_json(data: dict) -> UpdateEmailAddressMetadataResponse:
     out: UpdateEmailAddressMetadataResponse = {}  # type: ignore[typeddict-item]
-    if "EmailAddressId" in data:
+    if data.get("EmailAddressId") is not None:
         out["email_address_id"] = data["EmailAddressId"]
-    if "EmailAddressArn" in data:
+    if data.get("EmailAddressArn") is not None:
         out["email_address_arn"] = data["EmailAddressArn"]
     return out

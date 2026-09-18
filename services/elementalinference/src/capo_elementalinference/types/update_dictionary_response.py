@@ -70,19 +70,19 @@ def serialize_json(value: UpdateDictionaryResponse) -> dict:
 
 def deserialize_json(data: dict) -> UpdateDictionaryResponse:
     out: UpdateDictionaryResponse = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("UpdateDictionaryResponse.name required")
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("UpdateDictionaryResponse.arn required")
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("UpdateDictionaryResponse.id required")
-    if "language" in data:
+    if data.get("language") is not None:
         import capo_elementalinference.types.dictionary_language
 
         out["language"] = (
@@ -92,7 +92,7 @@ def deserialize_json(data: dict) -> UpdateDictionaryResponse:
         )
     else:
         raise DeserializationError("UpdateDictionaryResponse.language required")
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_elementalinference.types.dictionary_status
 
         out["status"] = (
@@ -102,7 +102,7 @@ def deserialize_json(data: dict) -> UpdateDictionaryResponse:
         )
     else:
         raise DeserializationError("UpdateDictionaryResponse.status required")
-    if "references" in data:
+    if data.get("references") is not None:
         import capo_elementalinference.types.feed_references
 
         out["references"] = (
@@ -110,7 +110,7 @@ def deserialize_json(data: dict) -> UpdateDictionaryResponse:
                 data["references"]
             )
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_elementalinference.types.tag_map
 
         out["tags"] = capo_elementalinference.types.tag_map.deserialize_json(

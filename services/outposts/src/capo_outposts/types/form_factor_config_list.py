@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> FormFactorConfigList:
 
     out: FormFactorConfigList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_outposts.types.form_factor_config.deserialize_json(item))
     return out

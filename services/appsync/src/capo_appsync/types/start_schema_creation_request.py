@@ -29,7 +29,7 @@ def serialize_json(value: StartSchemaCreationRequest) -> dict:
 
 def deserialize_json(data: dict) -> StartSchemaCreationRequest:
     out: StartSchemaCreationRequest = {}  # type: ignore[typeddict-item]
-    if "definition" in data:
+    if data.get("definition") is not None:
         import capo_appsync.types.blob
 
         out["definition"] = capo_appsync.types.blob.deserialize_json(data["definition"])

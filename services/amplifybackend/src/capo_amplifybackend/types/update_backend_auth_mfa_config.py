@@ -36,13 +36,13 @@ def serialize_json(value: UpdateBackendAuthMFAConfig) -> dict:
 
 def deserialize_json(data: dict) -> UpdateBackendAuthMFAConfig:
     out: UpdateBackendAuthMFAConfig = {}  # type: ignore[typeddict-item]
-    if "MFAMode" in data:
+    if data.get("MFAMode") is not None:
         import capo_amplifybackend.types.mfa_mode
 
         out["mfa_mode"] = capo_amplifybackend.types.mfa_mode.deserialize_json(
             data["MFAMode"]
         )
-    if "settings" in data:
+    if data.get("settings") is not None:
         import capo_amplifybackend.types.settings
 
         out["settings"] = capo_amplifybackend.types.settings.deserialize_json(

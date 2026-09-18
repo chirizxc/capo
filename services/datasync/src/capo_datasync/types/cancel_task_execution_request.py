@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: CancelTaskExecutionRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CancelTaskExecutionRequest:
     out: CancelTaskExecutionRequest = {}  # type: ignore[typeddict-item]
-    if "TaskExecutionArn" in data:
+    if data.get("TaskExecutionArn") is not None:
         out["task_execution_arn"] = data["TaskExecutionArn"]
     else:
         raise DeserializationError(

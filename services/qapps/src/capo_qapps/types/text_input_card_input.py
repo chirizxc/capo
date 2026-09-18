@@ -46,22 +46,22 @@ def serialize_json(value: TextInputCardInput) -> dict:
 
 def deserialize_json(data: dict) -> TextInputCardInput:
     out: TextInputCardInput = {}  # type: ignore[typeddict-item]
-    if "title" in data:
+    if data.get("title") is not None:
         out["title"] = data["title"]
     else:
         raise DeserializationError("TextInputCardInput.title required")
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("TextInputCardInput.id required")
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_qapps.types.card_type
 
         out["type"] = capo_qapps.types.card_type.deserialize_json(data["type"])
     else:
         out["type"] = "text-input"
-    if "placeholder" in data:
+    if data.get("placeholder") is not None:
         out["placeholder"] = data["placeholder"]
-    if "defaultValue" in data:
+    if data.get("defaultValue") is not None:
         out["default_value"] = data["defaultValue"]
     return out

@@ -86,19 +86,19 @@ def serialize_json(value: GetApprovalTeamResponseApprover) -> dict:
 
 def deserialize_json(data: dict) -> GetApprovalTeamResponseApprover:
     out: GetApprovalTeamResponseApprover = {}  # type: ignore[typeddict-item]
-    if "ApproverId" in data:
+    if data.get("ApproverId") is not None:
         out["approver_id"] = data["ApproverId"]
-    if "ResponseTime" in data:
+    if data.get("ResponseTime") is not None:
         import capo_mpa.types.iso_timestamp
 
         out["response_time"] = capo_mpa.types.iso_timestamp.deserialize_json(
             data["ResponseTime"]
         )
-    if "PrimaryIdentityId" in data:
+    if data.get("PrimaryIdentityId") is not None:
         out["primary_identity_id"] = data["PrimaryIdentityId"]
-    if "PrimaryIdentitySourceArn" in data:
+    if data.get("PrimaryIdentitySourceArn") is not None:
         out["primary_identity_source_arn"] = data["PrimaryIdentitySourceArn"]
-    if "PrimaryIdentityStatus" in data:
+    if data.get("PrimaryIdentityStatus") is not None:
         import capo_mpa.types.identity_status
 
         out["primary_identity_status"] = (
@@ -106,21 +106,21 @@ def deserialize_json(data: dict) -> GetApprovalTeamResponseApprover:
                 data["PrimaryIdentityStatus"]
             )
         )
-    if "LastActivity" in data:
+    if data.get("LastActivity") is not None:
         import capo_mpa.types.approver_last_activity
 
         out["last_activity"] = capo_mpa.types.approver_last_activity.deserialize_json(
             data["LastActivity"]
         )
-    if "LastActivityTime" in data:
+    if data.get("LastActivityTime") is not None:
         import capo_mpa.types.iso_timestamp
 
         out["last_activity_time"] = capo_mpa.types.iso_timestamp.deserialize_json(
             data["LastActivityTime"]
         )
-    if "PendingBaselineSessionArn" in data:
+    if data.get("PendingBaselineSessionArn") is not None:
         out["pending_baseline_session_arn"] = data["PendingBaselineSessionArn"]
-    if "MfaMethods" in data:
+    if data.get("MfaMethods") is not None:
         import capo_mpa.types.mfa_methods
 
         out["mfa_methods"] = capo_mpa.types.mfa_methods.deserialize_json(

@@ -53,19 +53,19 @@ def serialize_json(value: FeedSummary) -> dict:
 
 def deserialize_json(data: dict) -> FeedSummary:
     out: FeedSummary = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("FeedSummary.arn required")
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("FeedSummary.id required")
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("FeedSummary.name required")
-    if "association" in data:
+    if data.get("association") is not None:
         import capo_elementalinference.types.feed_association
 
         out["association"] = (
@@ -73,7 +73,7 @@ def deserialize_json(data: dict) -> FeedSummary:
                 data["association"]
             )
         )
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_elementalinference.types.feed_status
 
         out["status"] = capo_elementalinference.types.feed_status.deserialize_json(

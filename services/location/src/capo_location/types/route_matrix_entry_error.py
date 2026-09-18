@@ -28,10 +28,10 @@ def serialize_json(value: RouteMatrixEntryError) -> dict:
 
 def deserialize_json(data: dict) -> RouteMatrixEntryError:
     out: RouteMatrixEntryError = {}  # type: ignore[typeddict-item]
-    if "Code" in data:
+    if data.get("Code") is not None:
         out["code"] = data["Code"]
     else:
         raise DeserializationError("RouteMatrixEntryError.code required")
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     return out

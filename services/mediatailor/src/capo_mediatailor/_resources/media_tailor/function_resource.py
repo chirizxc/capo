@@ -94,9 +94,10 @@ class FunctionResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mediatailor.types.put_function_request.PutFunctionRequest = {}  # type: ignore[typeddict-item]
-        input_["function_id"] = function_id
-        input_["function_type"] = function_type
+        input_: capo_mediatailor.types.put_function_request.PutFunctionRequest = {
+            "function_id": function_id,
+            "function_type": function_type,
+        }
         if description is not None:
             input_["description"] = description
         if http_request_configuration is not None:
@@ -115,6 +116,7 @@ class FunctionResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -147,14 +149,16 @@ class FunctionResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mediatailor.types.get_function_request.GetFunctionRequest = {}  # type: ignore[typeddict-item]
-        input_["function_id"] = function_id
+        input_: capo_mediatailor.types.get_function_request.GetFunctionRequest = {
+            "function_id": function_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -187,14 +191,16 @@ class FunctionResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mediatailor.types.delete_function_request.DeleteFunctionRequest = {}  # type: ignore[typeddict-item]
-        input_["function_id"] = function_id
+        input_: capo_mediatailor.types.delete_function_request.DeleteFunctionRequest = {
+            "function_id": function_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -229,7 +235,7 @@ class FunctionResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mediatailor.types.list_functions_request.ListFunctionsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_mediatailor.types.list_functions_request.ListFunctionsRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -240,6 +246,7 @@ class FunctionResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -298,9 +305,10 @@ class AsyncFunctionResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mediatailor.types.put_function_request.PutFunctionRequest = {}  # type: ignore[typeddict-item]
-        input_["function_id"] = function_id
-        input_["function_type"] = function_type
+        input_: capo_mediatailor.types.put_function_request.PutFunctionRequest = {
+            "function_id": function_id,
+            "function_type": function_type,
+        }
         if description is not None:
             input_["description"] = description
         if http_request_configuration is not None:
@@ -319,6 +327,7 @@ class AsyncFunctionResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -352,14 +361,16 @@ class AsyncFunctionResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mediatailor.types.get_function_request.GetFunctionRequest = {}  # type: ignore[typeddict-item]
-        input_["function_id"] = function_id
+        input_: capo_mediatailor.types.get_function_request.GetFunctionRequest = {
+            "function_id": function_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -393,14 +404,16 @@ class AsyncFunctionResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mediatailor.types.delete_function_request.DeleteFunctionRequest = {}  # type: ignore[typeddict-item]
-        input_["function_id"] = function_id
+        input_: capo_mediatailor.types.delete_function_request.DeleteFunctionRequest = {
+            "function_id": function_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -436,7 +449,7 @@ class AsyncFunctionResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mediatailor.types.list_functions_request.ListFunctionsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_mediatailor.types.list_functions_request.ListFunctionsRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -447,4 +460,5 @@ class AsyncFunctionResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

@@ -111,7 +111,7 @@ def serialize_json(value: NielsenNonLinearWatermarkSettings) -> dict:
 
 def deserialize_json(data: dict) -> NielsenNonLinearWatermarkSettings:
     out: NielsenNonLinearWatermarkSettings = {}  # type: ignore[typeddict-item]
-    if "activeWatermarkProcess" in data:
+    if data.get("activeWatermarkProcess") is not None:
         import capo_mediaconvert.types.nielsen_active_watermark_process_type
 
         out["active_watermark_process"] = (
@@ -119,21 +119,21 @@ def deserialize_json(data: dict) -> NielsenNonLinearWatermarkSettings:
                 data["activeWatermarkProcess"]
             )
         )
-    if "adiFilename" in data:
+    if data.get("adiFilename") is not None:
         out["adi_filename"] = data["adiFilename"]
-    if "assetId" in data:
+    if data.get("assetId") is not None:
         out["asset_id"] = data["assetId"]
-    if "assetName" in data:
+    if data.get("assetName") is not None:
         out["asset_name"] = data["assetName"]
-    if "cbetSourceId" in data:
+    if data.get("cbetSourceId") is not None:
         out["cbet_source_id"] = data["cbetSourceId"]
-    if "episodeId" in data:
+    if data.get("episodeId") is not None:
         out["episode_id"] = data["episodeId"]
-    if "metadataDestination" in data:
+    if data.get("metadataDestination") is not None:
         out["metadata_destination"] = data["metadataDestination"]
-    if "sourceId" in data:
+    if data.get("sourceId") is not None:
         out["source_id"] = data["sourceId"]
-    if "sourceWatermarkStatus" in data:
+    if data.get("sourceWatermarkStatus") is not None:
         import capo_mediaconvert.types.nielsen_source_watermark_status_type
 
         out["source_watermark_status"] = (
@@ -141,9 +141,9 @@ def deserialize_json(data: dict) -> NielsenNonLinearWatermarkSettings:
                 data["sourceWatermarkStatus"]
             )
         )
-    if "ticServerUrl" in data:
+    if data.get("ticServerUrl") is not None:
         out["tic_server_url"] = data["ticServerUrl"]
-    if "uniqueTicPerAudioTrack" in data:
+    if data.get("uniqueTicPerAudioTrack") is not None:
         import capo_mediaconvert.types.nielsen_unique_tic_per_audio_track_type
 
         out["unique_tic_per_audio_track"] = (

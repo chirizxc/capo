@@ -47,28 +47,28 @@ def serialize_json(value: ImportDocumentInput) -> dict:
 
 def deserialize_json(data: dict) -> ImportDocumentInput:
     out: ImportDocumentInput = {}  # type: ignore[typeddict-item]
-    if "cardId" in data:
+    if data.get("cardId") is not None:
         out["card_id"] = data["cardId"]
     else:
         raise DeserializationError("ImportDocumentInput.card_id required")
-    if "appId" in data:
+    if data.get("appId") is not None:
         out["app_id"] = data["appId"]
     else:
         raise DeserializationError("ImportDocumentInput.app_id required")
-    if "fileContentsBase64" in data:
+    if data.get("fileContentsBase64") is not None:
         out["file_contents_base64"] = data["fileContentsBase64"]
     else:
         raise DeserializationError("ImportDocumentInput.file_contents_base64 required")
-    if "fileName" in data:
+    if data.get("fileName") is not None:
         out["file_name"] = data["fileName"]
     else:
         raise DeserializationError("ImportDocumentInput.file_name required")
-    if "scope" in data:
+    if data.get("scope") is not None:
         import capo_qapps.types.document_scope
 
         out["scope"] = capo_qapps.types.document_scope.deserialize_json(data["scope"])
     else:
         raise DeserializationError("ImportDocumentInput.scope required")
-    if "sessionId" in data:
+    if data.get("sessionId") is not None:
         out["session_id"] = data["sessionId"]
     return out

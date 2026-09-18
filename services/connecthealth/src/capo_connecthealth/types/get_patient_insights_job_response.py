@@ -66,17 +66,15 @@ def serialize_json(value: GetPatientInsightsJobResponse) -> dict:
         value["job_status"]
     )
     if "creation_time" in value:
-        import capo_connecthealth.types._prelude.timestamp
+        import capo_connecthealth._protocol.serialize
 
-        out["creationTime"] = (
-            capo_connecthealth.types._prelude.timestamp.serialize_json(
-                value["creation_time"]
-            )
+        out["creationTime"] = capo_connecthealth._protocol.serialize.fmt_date_time(
+            value["creation_time"]
         )
     if "updated_time" in value:
-        import capo_connecthealth.types._prelude.timestamp
+        import capo_connecthealth._protocol.serialize
 
-        out["updatedTime"] = capo_connecthealth.types._prelude.timestamp.serialize_json(
+        out["updatedTime"] = capo_connecthealth._protocol.serialize.fmt_date_time(
             value["updated_time"]
         )
     if "insights_output" in value:
@@ -128,15 +126,15 @@ def serialize_json(value: GetPatientInsightsJobResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetPatientInsightsJobResponse:
     out: GetPatientInsightsJobResponse = {}  # type: ignore[typeddict-item]
-    if "jobId" in data:
+    if data.get("jobId") is not None:
         out["job_id"] = data["jobId"]
     else:
         raise DeserializationError("GetPatientInsightsJobResponse.job_id required")
-    if "jobArn" in data:
+    if data.get("jobArn") is not None:
         out["job_arn"] = data["jobArn"]
     else:
         raise DeserializationError("GetPatientInsightsJobResponse.job_arn required")
-    if "jobStatus" in data:
+    if data.get("jobStatus") is not None:
         import capo_connecthealth.types.job_status
 
         out["job_status"] = capo_connecthealth.types.job_status.deserialize_json(
@@ -144,23 +142,19 @@ def deserialize_json(data: dict) -> GetPatientInsightsJobResponse:
         )
     else:
         raise DeserializationError("GetPatientInsightsJobResponse.job_status required")
-    if "creationTime" in data:
-        import capo_connecthealth.types._prelude.timestamp
+    if data.get("creationTime") is not None:
+        import datetime
 
-        out["creation_time"] = (
-            capo_connecthealth.types._prelude.timestamp.deserialize_json(
-                data["creationTime"]
-            )
+        out["creation_time"] = datetime.datetime.fromisoformat(
+            data["creationTime"].replace("Z", "+00:00")
         )
-    if "updatedTime" in data:
-        import capo_connecthealth.types._prelude.timestamp
+    if data.get("updatedTime") is not None:
+        import datetime
 
-        out["updated_time"] = (
-            capo_connecthealth.types._prelude.timestamp.deserialize_json(
-                data["updatedTime"]
-            )
+        out["updated_time"] = datetime.datetime.fromisoformat(
+            data["updatedTime"].replace("Z", "+00:00")
         )
-    if "insightsOutput" in data:
+    if data.get("insightsOutput") is not None:
         import capo_connecthealth.types.insights_output
 
         out["insights_output"] = (
@@ -168,9 +162,9 @@ def deserialize_json(data: dict) -> GetPatientInsightsJobResponse:
                 data["insightsOutput"]
             )
         )
-    if "statusDetails" in data:
+    if data.get("statusDetails") is not None:
         out["status_details"] = data["statusDetails"]
-    if "patientContext" in data:
+    if data.get("patientContext") is not None:
         import capo_connecthealth.types.patient_insights_patient_context
 
         out["patient_context"] = (
@@ -182,7 +176,7 @@ def deserialize_json(data: dict) -> GetPatientInsightsJobResponse:
         raise DeserializationError(
             "GetPatientInsightsJobResponse.patient_context required"
         )
-    if "insightsContext" in data:
+    if data.get("insightsContext") is not None:
         import capo_connecthealth.types.insights_context
 
         out["insights_context"] = (
@@ -194,7 +188,7 @@ def deserialize_json(data: dict) -> GetPatientInsightsJobResponse:
         raise DeserializationError(
             "GetPatientInsightsJobResponse.insights_context required"
         )
-    if "encounterContext" in data:
+    if data.get("encounterContext") is not None:
         import capo_connecthealth.types.patient_insights_encounter_context
 
         out["encounter_context"] = (
@@ -206,7 +200,7 @@ def deserialize_json(data: dict) -> GetPatientInsightsJobResponse:
         raise DeserializationError(
             "GetPatientInsightsJobResponse.encounter_context required"
         )
-    if "userContext" in data:
+    if data.get("userContext") is not None:
         import capo_connecthealth.types.user_context
 
         out["user_context"] = capo_connecthealth.types.user_context.deserialize_json(
@@ -216,7 +210,7 @@ def deserialize_json(data: dict) -> GetPatientInsightsJobResponse:
         raise DeserializationError(
             "GetPatientInsightsJobResponse.user_context required"
         )
-    if "inputDataConfig" in data:
+    if data.get("inputDataConfig") is not None:
         import capo_connecthealth.types.input_data_config
 
         out["input_data_config"] = (
@@ -228,7 +222,7 @@ def deserialize_json(data: dict) -> GetPatientInsightsJobResponse:
         raise DeserializationError(
             "GetPatientInsightsJobResponse.input_data_config required"
         )
-    if "outputDataConfig" in data:
+    if data.get("outputDataConfig") is not None:
         import capo_connecthealth.types.output_data_config
 
         out["output_data_config"] = (

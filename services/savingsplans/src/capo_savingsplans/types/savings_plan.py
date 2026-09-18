@@ -151,29 +151,29 @@ def serialize_json(value: SavingsPlan) -> dict:
 
 def deserialize_json(data: dict) -> SavingsPlan:
     out: SavingsPlan = {}  # type: ignore[typeddict-item]
-    if "offeringId" in data:
+    if data.get("offeringId") is not None:
         out["offering_id"] = data["offeringId"]
-    if "savingsPlanId" in data:
+    if data.get("savingsPlanId") is not None:
         out["savings_plan_id"] = data["savingsPlanId"]
-    if "savingsPlanArn" in data:
+    if data.get("savingsPlanArn") is not None:
         out["savings_plan_arn"] = data["savingsPlanArn"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "start" in data:
+    if data.get("start") is not None:
         out["start"] = data["start"]
-    if "end" in data:
+    if data.get("end") is not None:
         out["end"] = data["end"]
-    if "state" in data:
+    if data.get("state") is not None:
         import capo_savingsplans.types.savings_plan_state
 
         out["state"] = capo_savingsplans.types.savings_plan_state.deserialize_json(
             data["state"]
         )
-    if "region" in data:
+    if data.get("region") is not None:
         out["region"] = data["region"]
-    if "ec2InstanceFamily" in data:
+    if data.get("ec2InstanceFamily") is not None:
         out["ec2_instance_family"] = data["ec2InstanceFamily"]
-    if "savingsPlanType" in data:
+    if data.get("savingsPlanType") is not None:
         import capo_savingsplans.types.savings_plan_type
 
         out["savings_plan_type"] = (
@@ -181,7 +181,7 @@ def deserialize_json(data: dict) -> SavingsPlan:
                 data["savingsPlanType"]
             )
         )
-    if "paymentOption" in data:
+    if data.get("paymentOption") is not None:
         import capo_savingsplans.types.savings_plan_payment_option
 
         out["payment_option"] = (
@@ -189,7 +189,7 @@ def deserialize_json(data: dict) -> SavingsPlan:
                 data["paymentOption"]
             )
         )
-    if "productTypes" in data:
+    if data.get("productTypes") is not None:
         import capo_savingsplans.types.savings_plan_product_type_list
 
         out["product_types"] = (
@@ -197,26 +197,26 @@ def deserialize_json(data: dict) -> SavingsPlan:
                 data["productTypes"]
             )
         )
-    if "currency" in data:
+    if data.get("currency") is not None:
         import capo_savingsplans.types.currency_code
 
         out["currency"] = capo_savingsplans.types.currency_code.deserialize_json(
             data["currency"]
         )
-    if "commitment" in data:
+    if data.get("commitment") is not None:
         out["commitment"] = data["commitment"]
-    if "upfrontPaymentAmount" in data:
+    if data.get("upfrontPaymentAmount") is not None:
         out["upfront_payment_amount"] = data["upfrontPaymentAmount"]
-    if "recurringPaymentAmount" in data:
+    if data.get("recurringPaymentAmount") is not None:
         out["recurring_payment_amount"] = data["recurringPaymentAmount"]
-    if "termDurationInSeconds" in data:
+    if data.get("termDurationInSeconds") is not None:
         out["term_duration_in_seconds"] = data["termDurationInSeconds"]
     else:
         out["term_duration_in_seconds"] = 0
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_savingsplans.types.tag_map
 
         out["tags"] = capo_savingsplans.types.tag_map.deserialize_json(data["tags"])
-    if "returnableUntil" in data:
+    if data.get("returnableUntil") is not None:
         out["returnable_until"] = data["returnableUntil"]
     return out

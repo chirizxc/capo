@@ -74,27 +74,27 @@ def serialize_json(value: ParticipantMetrics) -> dict:
 
 def deserialize_json(data: dict) -> ParticipantMetrics:
     out: ParticipantMetrics = {}  # type: ignore[typeddict-item]
-    if "ParticipantId" in data:
+    if data.get("ParticipantId") is not None:
         out["participant_id"] = data["ParticipantId"]
-    if "ParticipantType" in data:
+    if data.get("ParticipantType") is not None:
         import capo_connect.types.participant_type
 
         out["participant_type"] = capo_connect.types.participant_type.deserialize_json(
             data["ParticipantType"]
         )
-    if "ConversationAbandon" in data:
+    if data.get("ConversationAbandon") is not None:
         out["conversation_abandon"] = data["ConversationAbandon"]
-    if "MessagesSent" in data:
+    if data.get("MessagesSent") is not None:
         out["messages_sent"] = data["MessagesSent"]
-    if "NumResponses" in data:
+    if data.get("NumResponses") is not None:
         out["num_responses"] = data["NumResponses"]
-    if "MessageLengthInChars" in data:
+    if data.get("MessageLengthInChars") is not None:
         out["message_length_in_chars"] = data["MessageLengthInChars"]
-    if "TotalResponseTimeInMillis" in data:
+    if data.get("TotalResponseTimeInMillis") is not None:
         out["total_response_time_in_millis"] = data["TotalResponseTimeInMillis"]
-    if "MaxResponseTimeInMillis" in data:
+    if data.get("MaxResponseTimeInMillis") is not None:
         out["max_response_time_in_millis"] = data["MaxResponseTimeInMillis"]
-    if "LastMessageTimestamp" in data:
+    if data.get("LastMessageTimestamp") is not None:
         import capo_connect.types.timestamp
 
         out["last_message_timestamp"] = capo_connect.types.timestamp.deserialize_json(

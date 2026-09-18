@@ -27,8 +27,8 @@ def serialize_aws_json_1_1(value: Transcript) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Transcript:
     out: Transcript = {}  # type: ignore[typeddict-item]
-    if "TranscriptFileUri" in data:
+    if data.get("TranscriptFileUri") is not None:
         out["transcript_file_uri"] = data["TranscriptFileUri"]
-    if "RedactedTranscriptFileUri" in data:
+    if data.get("RedactedTranscriptFileUri") is not None:
         out["redacted_transcript_file_uri"] = data["RedactedTranscriptFileUri"]
     return out

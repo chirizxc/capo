@@ -32,11 +32,11 @@ def serialize_json(value: StringParameter) -> dict:
 
 def deserialize_json(data: dict) -> StringParameter:
     out: StringParameter = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("StringParameter.name required")
-    if "Values" in data:
+    if data.get("Values") is not None:
         import capo_quicksight.types.sensitive_string_list
 
         out["values"] = capo_quicksight.types.sensitive_string_list.deserialize_json(

@@ -41,11 +41,11 @@ def serialize_aws_json_1_0(value: ListEnvironmentsInput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ListEnvironmentsInput:
     out: ListEnvironmentsInput = {}  # type: ignore[typeddict-item]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
-    if "environmentTemplates" in data:
+    if data.get("environmentTemplates") is not None:
         import capo_proton.types.environment_template_filter_list
 
         out["environment_templates"] = (

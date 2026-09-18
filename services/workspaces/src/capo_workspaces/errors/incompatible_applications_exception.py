@@ -25,15 +25,20 @@ class IncompatibleApplicationsException(ServiceError):
 
     code: str | None = "IncompatibleApplicationsException"
 
-    def __init__(self, data: IncompatibleApplicationsException_):
+    def __init__(
+        self, data: IncompatibleApplicationsException_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="IncompatibleApplicationsException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "IncompatibleApplicationsException":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "IncompatibleApplicationsException":
+        return cls(deserialize_aws_json_1_1(data), message)

@@ -41,24 +41,24 @@ def serialize_aws_json_1_1(value: CreateVPCEConfigurationRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateVPCEConfigurationRequest:
     out: CreateVPCEConfigurationRequest = {}  # type: ignore[typeddict-item]
-    if "vpceConfigurationName" in data:
+    if data.get("vpceConfigurationName") is not None:
         out["vpce_configuration_name"] = data["vpceConfigurationName"]
     else:
         raise DeserializationError(
             "CreateVPCEConfigurationRequest.vpce_configuration_name required"
         )
-    if "vpceServiceName" in data:
+    if data.get("vpceServiceName") is not None:
         out["vpce_service_name"] = data["vpceServiceName"]
     else:
         raise DeserializationError(
             "CreateVPCEConfigurationRequest.vpce_service_name required"
         )
-    if "serviceDnsName" in data:
+    if data.get("serviceDnsName") is not None:
         out["service_dns_name"] = data["serviceDnsName"]
     else:
         raise DeserializationError(
             "CreateVPCEConfigurationRequest.service_dns_name required"
         )
-    if "vpceConfigurationDescription" in data:
+    if data.get("vpceConfigurationDescription") is not None:
         out["vpce_configuration_description"] = data["vpceConfigurationDescription"]
     return out

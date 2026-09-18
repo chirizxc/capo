@@ -46,13 +46,13 @@ def serialize_json(value: SheetTextBox) -> dict:
 
 def deserialize_json(data: dict) -> SheetTextBox:
     out: SheetTextBox = {}  # type: ignore[typeddict-item]
-    if "SheetTextBoxId" in data:
+    if data.get("SheetTextBoxId") is not None:
         out["sheet_text_box_id"] = data["SheetTextBoxId"]
     else:
         raise DeserializationError("SheetTextBox.sheet_text_box_id required")
-    if "Content" in data:
+    if data.get("Content") is not None:
         out["content"] = data["Content"]
-    if "Interactions" in data:
+    if data.get("Interactions") is not None:
         import capo_quicksight.types.text_box_interaction_options
 
         out["interactions"] = (

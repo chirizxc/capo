@@ -27,7 +27,7 @@ def serialize_json(value: BatchExecuteStatementResponse) -> dict:
 
 def deserialize_json(data: dict) -> BatchExecuteStatementResponse:
     out: BatchExecuteStatementResponse = {}  # type: ignore[typeddict-item]
-    if "updateResults" in data:
+    if data.get("updateResults") is not None:
         import capo_rds_data.types.update_results
 
         out["update_results"] = capo_rds_data.types.update_results.deserialize_json(

@@ -52,13 +52,13 @@ def serialize_aws_json_1_0(value: ResourceSnapshotJobSummary) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ResourceSnapshotJobSummary:
     out: ResourceSnapshotJobSummary = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "EngagementId" in data:
+    if data.get("EngagementId") is not None:
         out["engagement_id"] = data["EngagementId"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_partnercentral_selling.types.resource_snapshot_job_status
 
         out["status"] = (

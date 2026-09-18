@@ -36,11 +36,11 @@ def serialize_aws_json_1_1(value: DependentEntity) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DependentEntity:
     out: DependentEntity = {}  # type: ignore[typeddict-item]
-    if "RelationType" in data:
+    if data.get("RelationType") is not None:
         out["relation_type"] = data["RelationType"]
     else:
         raise DeserializationError("DependentEntity.relation_type required")
-    if "DependentResourceIds" in data:
+    if data.get("DependentResourceIds") is not None:
         import capo_ssm_contacts.types.ssm_contacts_arn_list
 
         out["dependent_resource_ids"] = (

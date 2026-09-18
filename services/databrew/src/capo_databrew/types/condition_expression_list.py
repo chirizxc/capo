@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> ConditionExpressionList:
 
     out: ConditionExpressionList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_databrew.types.condition_expression.deserialize_json(item))
     return out

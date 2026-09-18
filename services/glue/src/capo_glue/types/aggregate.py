@@ -46,11 +46,11 @@ def serialize_aws_json_1_1(value: Aggregate) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Aggregate:
     out: Aggregate = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("Aggregate.name required")
-    if "Inputs" in data:
+    if data.get("Inputs") is not None:
         import capo_glue.types.one_input
 
         out["inputs"] = capo_glue.types.one_input.deserialize_aws_json_1_1(
@@ -58,7 +58,7 @@ def deserialize_aws_json_1_1(data: dict) -> Aggregate:
         )
     else:
         raise DeserializationError("Aggregate.inputs required")
-    if "Groups" in data:
+    if data.get("Groups") is not None:
         import capo_glue.types.glue_studio_path_list
 
         out["groups"] = capo_glue.types.glue_studio_path_list.deserialize_aws_json_1_1(
@@ -66,7 +66,7 @@ def deserialize_aws_json_1_1(data: dict) -> Aggregate:
         )
     else:
         raise DeserializationError("Aggregate.groups required")
-    if "Aggs" in data:
+    if data.get("Aggs") is not None:
         import capo_glue.types.aggregate_operations
 
         out["aggs"] = capo_glue.types.aggregate_operations.deserialize_aws_json_1_1(

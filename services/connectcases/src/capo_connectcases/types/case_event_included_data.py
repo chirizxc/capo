@@ -28,7 +28,7 @@ def serialize_json(value: CaseEventIncludedData) -> dict:
 
 def deserialize_json(data: dict) -> CaseEventIncludedData:
     out: CaseEventIncludedData = {}  # type: ignore[typeddict-item]
-    if "fields" in data:
+    if data.get("fields") is not None:
         import capo_connectcases.types.field_identifier_list
 
         out["fields"] = capo_connectcases.types.field_identifier_list.deserialize_json(

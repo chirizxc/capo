@@ -33,10 +33,10 @@ def serialize_json(value: PrimaryValueResponse) -> dict:
 
 def deserialize_json(data: dict) -> PrimaryValueResponse:
     out: PrimaryValueResponse = {}  # type: ignore[typeddict-item]
-    if "AttributeName" in data:
+    if data.get("AttributeName") is not None:
         out["attribute_name"] = data["AttributeName"]
-    if "AttributeId" in data:
+    if data.get("AttributeId") is not None:
         out["attribute_id"] = data["AttributeId"]
-    if "Value" in data:
+    if data.get("Value") is not None:
         out["value"] = data["Value"]
     return out

@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: StartCostAllocationTagBackfillResponse) -> dic
 
 def deserialize_aws_json_1_1(data: dict) -> StartCostAllocationTagBackfillResponse:
     out: StartCostAllocationTagBackfillResponse = {}  # type: ignore[typeddict-item]
-    if "BackfillRequest" in data:
+    if data.get("BackfillRequest") is not None:
         import capo_cost_explorer.types.cost_allocation_tag_backfill_request
 
         out["backfill_request"] = (

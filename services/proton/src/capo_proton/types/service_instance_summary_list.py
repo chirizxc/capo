@@ -27,6 +27,8 @@ def deserialize_aws_json_1_0(data: list) -> ServiceInstanceSummaryList:
 
     out: ServiceInstanceSummaryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_proton.types.service_instance_summary.deserialize_aws_json_1_0(item)
         )

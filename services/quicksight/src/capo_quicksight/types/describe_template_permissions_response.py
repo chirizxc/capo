@@ -51,11 +51,11 @@ def serialize_json(value: DescribeTemplatePermissionsResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribeTemplatePermissionsResponse:
     out: DescribeTemplatePermissionsResponse = {}  # type: ignore[typeddict-item]
-    if "TemplateId" in data:
+    if data.get("TemplateId") is not None:
         out["template_id"] = data["TemplateId"]
-    if "TemplateArn" in data:
+    if data.get("TemplateArn") is not None:
         out["template_arn"] = data["TemplateArn"]
-    if "Permissions" in data:
+    if data.get("Permissions") is not None:
         import capo_quicksight.types.update_resource_permission_list
 
         out["permissions"] = (
@@ -63,6 +63,6 @@ def deserialize_json(data: dict) -> DescribeTemplatePermissionsResponse:
                 data["Permissions"]
             )
         )
-    if "RequestId" in data:
+    if data.get("RequestId") is not None:
         out["request_id"] = data["RequestId"]
     return out

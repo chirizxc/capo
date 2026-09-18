@@ -36,11 +36,11 @@ def serialize_aws_json_1_1(value: EnvironmentImage) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> EnvironmentImage:
     out: EnvironmentImage = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "versions" in data:
+    if data.get("versions") is not None:
         import capo_codebuild.types.image_versions
 
         out["versions"] = capo_codebuild.types.image_versions.deserialize_aws_json_1_1(

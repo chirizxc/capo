@@ -40,13 +40,13 @@ def serialize_json(value: ScrollBarOptions) -> dict:
 
 def deserialize_json(data: dict) -> ScrollBarOptions:
     out: ScrollBarOptions = {}  # type: ignore[typeddict-item]
-    if "Visibility" in data:
+    if data.get("Visibility") is not None:
         import capo_quicksight.types.visibility
 
         out["visibility"] = capo_quicksight.types.visibility.deserialize_json(
             data["Visibility"]
         )
-    if "VisibleRange" in data:
+    if data.get("VisibleRange") is not None:
         import capo_quicksight.types.visible_range_options
 
         out["visible_range"] = (

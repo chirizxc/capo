@@ -42,9 +42,9 @@ def serialize_json(value: PrincipalUser) -> dict:
 
 def deserialize_json(data: dict) -> PrincipalUser:
     out: PrincipalUser = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "access" in data:
+    if data.get("access") is not None:
         import capo_qbusiness.types.read_access_type
 
         out["access"] = capo_qbusiness.types.read_access_type.deserialize_json(
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> PrincipalUser:
         )
     else:
         raise DeserializationError("PrincipalUser.access required")
-    if "membershipType" in data:
+    if data.get("membershipType") is not None:
         import capo_qbusiness.types.membership_type
 
         out["membership_type"] = capo_qbusiness.types.membership_type.deserialize_json(

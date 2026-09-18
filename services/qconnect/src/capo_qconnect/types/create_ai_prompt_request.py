@@ -87,17 +87,17 @@ def serialize_json(value: CreateAIPromptRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateAIPromptRequest:
     out: CreateAIPromptRequest = {}  # type: ignore[typeddict-item]
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("CreateAIPromptRequest.name required")
-    if "type" in data:
+    if data.get("type") is not None:
         out["type"] = data["type"]
     else:
         raise DeserializationError("CreateAIPromptRequest.type required")
-    if "templateConfiguration" in data:
+    if data.get("templateConfiguration") is not None:
         import capo_qconnect.types.ai_prompt_template_configuration
 
         out["template_configuration"] = (
@@ -109,29 +109,29 @@ def deserialize_json(data: dict) -> CreateAIPromptRequest:
         raise DeserializationError(
             "CreateAIPromptRequest.template_configuration required"
         )
-    if "visibilityStatus" in data:
+    if data.get("visibilityStatus") is not None:
         out["visibility_status"] = data["visibilityStatus"]
     else:
         raise DeserializationError("CreateAIPromptRequest.visibility_status required")
-    if "templateType" in data:
+    if data.get("templateType") is not None:
         out["template_type"] = data["templateType"]
     else:
         raise DeserializationError("CreateAIPromptRequest.template_type required")
-    if "modelId" in data:
+    if data.get("modelId") is not None:
         out["model_id"] = data["modelId"]
     else:
         raise DeserializationError("CreateAIPromptRequest.model_id required")
-    if "apiFormat" in data:
+    if data.get("apiFormat") is not None:
         out["api_format"] = data["apiFormat"]
     else:
         raise DeserializationError("CreateAIPromptRequest.api_format required")
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_qconnect.types.tags
 
         out["tags"] = capo_qconnect.types.tags.deserialize_json(data["tags"])
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "inferenceConfiguration" in data:
+    if data.get("inferenceConfiguration") is not None:
         import capo_qconnect.types.ai_prompt_inference_configuration
 
         out["inference_configuration"] = (

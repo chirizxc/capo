@@ -32,11 +32,11 @@ def serialize_json(value: MetricDatum) -> dict:
 
 def deserialize_json(data: dict) -> MetricDatum:
     out: MetricDatum = {}  # type: ignore[typeddict-item]
-    if "timestamp" in data:
+    if data.get("timestamp") is not None:
         import capo_iot.types.timestamp
 
         out["timestamp"] = capo_iot.types.timestamp.deserialize_json(data["timestamp"])
-    if "value" in data:
+    if data.get("value") is not None:
         import capo_iot.types.metric_value
 
         out["value"] = capo_iot.types.metric_value.deserialize_json(data["value"])

@@ -32,7 +32,7 @@ def serialize_json(value: GetRestoreTestingPlanOutput) -> dict:
 
 def deserialize_json(data: dict) -> GetRestoreTestingPlanOutput:
     out: GetRestoreTestingPlanOutput = {}  # type: ignore[typeddict-item]
-    if "RestoreTestingPlan" in data:
+    if data.get("RestoreTestingPlan") is not None:
         import capo_backup.types.restore_testing_plan_for_get
 
         out["restore_testing_plan"] = (

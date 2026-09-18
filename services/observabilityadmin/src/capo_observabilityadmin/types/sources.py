@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> Sources:
 
     out: Sources = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_observabilityadmin.types.source.deserialize_json(item))
     return out

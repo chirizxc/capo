@@ -32,8 +32,8 @@ def serialize_json(value: CertificateProviderSummary) -> dict:
 
 def deserialize_json(data: dict) -> CertificateProviderSummary:
     out: CertificateProviderSummary = {}  # type: ignore[typeddict-item]
-    if "certificateProviderName" in data:
+    if data.get("certificateProviderName") is not None:
         out["certificate_provider_name"] = data["certificateProviderName"]
-    if "certificateProviderArn" in data:
+    if data.get("certificateProviderArn") is not None:
         out["certificate_provider_arn"] = data["certificateProviderArn"]
     return out

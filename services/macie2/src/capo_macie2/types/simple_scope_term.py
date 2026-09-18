@@ -43,17 +43,17 @@ def serialize_json(value: SimpleScopeTerm) -> dict:
 
 def deserialize_json(data: dict) -> SimpleScopeTerm:
     out: SimpleScopeTerm = {}  # type: ignore[typeddict-item]
-    if "comparator" in data:
+    if data.get("comparator") is not None:
         import capo_macie2.types.job_comparator
 
         out["comparator"] = capo_macie2.types.job_comparator.deserialize_json(
             data["comparator"]
         )
-    if "key" in data:
+    if data.get("key") is not None:
         import capo_macie2.types.scope_filter_key
 
         out["key"] = capo_macie2.types.scope_filter_key.deserialize_json(data["key"])
-    if "values" in data:
+    if data.get("values") is not None:
         import capo_macie2.types.__list_of__string
 
         out["values"] = capo_macie2.types.__list_of__string.deserialize_json(

@@ -47,9 +47,9 @@ def serialize_aws_json_1_1(value: AssessmentTemplateFilter) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AssessmentTemplateFilter:
     out: AssessmentTemplateFilter = {}  # type: ignore[typeddict-item]
-    if "namePattern" in data:
+    if data.get("namePattern") is not None:
         out["name_pattern"] = data["namePattern"]
-    if "durationRange" in data:
+    if data.get("durationRange") is not None:
         import capo_inspector.types.duration_range
 
         out["duration_range"] = (
@@ -57,7 +57,7 @@ def deserialize_aws_json_1_1(data: dict) -> AssessmentTemplateFilter:
                 data["durationRange"]
             )
         )
-    if "rulesPackageArns" in data:
+    if data.get("rulesPackageArns") is not None:
         import capo_inspector.types.filter_rules_package_arn_list
 
         out["rules_package_arns"] = (

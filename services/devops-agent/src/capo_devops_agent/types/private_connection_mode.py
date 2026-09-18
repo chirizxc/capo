@@ -47,7 +47,7 @@ def serialize_json(value: PrivateConnectionMode) -> dict:
 
 
 def deserialize_json(data: dict) -> PrivateConnectionMode:
-    if "serviceManaged" in data:
+    if data.get("serviceManaged") is not None:
         import capo_devops_agent.types.service_managed_input
 
         return {
@@ -55,7 +55,7 @@ def deserialize_json(data: dict) -> PrivateConnectionMode:
                 data["serviceManaged"]
             )
         }
-    elif "selfManaged" in data:
+    elif data.get("selfManaged") is not None:
         import capo_devops_agent.types.self_managed_input
 
         return {

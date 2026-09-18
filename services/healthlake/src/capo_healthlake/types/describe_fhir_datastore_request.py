@@ -24,7 +24,7 @@ def serialize_aws_json_1_0(value: DescribeFHIRDatastoreRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> DescribeFHIRDatastoreRequest:
     out: DescribeFHIRDatastoreRequest = {}  # type: ignore[typeddict-item]
-    if "DatastoreId" in data:
+    if data.get("DatastoreId") is not None:
         out["datastore_id"] = data["DatastoreId"]
     else:
         raise DeserializationError("DescribeFHIRDatastoreRequest.datastore_id required")

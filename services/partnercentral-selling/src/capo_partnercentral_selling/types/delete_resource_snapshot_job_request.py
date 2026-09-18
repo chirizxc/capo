@@ -28,11 +28,11 @@ def serialize_aws_json_1_0(value: DeleteResourceSnapshotJobRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> DeleteResourceSnapshotJobRequest:
     out: DeleteResourceSnapshotJobRequest = {}  # type: ignore[typeddict-item]
-    if "Catalog" in data:
+    if data.get("Catalog") is not None:
         out["catalog"] = data["Catalog"]
     else:
         raise DeserializationError("DeleteResourceSnapshotJobRequest.catalog required")
-    if "ResourceSnapshotJobIdentifier" in data:
+    if data.get("ResourceSnapshotJobIdentifier") is not None:
         out["resource_snapshot_job_identifier"] = data["ResourceSnapshotJobIdentifier"]
     else:
         raise DeserializationError(

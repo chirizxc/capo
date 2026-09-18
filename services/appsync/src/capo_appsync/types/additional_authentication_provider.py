@@ -70,7 +70,7 @@ def serialize_json(value: AdditionalAuthenticationProvider) -> dict:
 
 def deserialize_json(data: dict) -> AdditionalAuthenticationProvider:
     out: AdditionalAuthenticationProvider = {}  # type: ignore[typeddict-item]
-    if "authenticationType" in data:
+    if data.get("authenticationType") is not None:
         import capo_appsync.types.authentication_type
 
         out["authentication_type"] = (
@@ -78,7 +78,7 @@ def deserialize_json(data: dict) -> AdditionalAuthenticationProvider:
                 data["authenticationType"]
             )
         )
-    if "openIDConnectConfig" in data:
+    if data.get("openIDConnectConfig") is not None:
         import capo_appsync.types.open_id_connect_config
 
         out["open_id_connect_config"] = (
@@ -86,7 +86,7 @@ def deserialize_json(data: dict) -> AdditionalAuthenticationProvider:
                 data["openIDConnectConfig"]
             )
         )
-    if "userPoolConfig" in data:
+    if data.get("userPoolConfig") is not None:
         import capo_appsync.types.cognito_user_pool_config
 
         out["user_pool_config"] = (
@@ -94,7 +94,7 @@ def deserialize_json(data: dict) -> AdditionalAuthenticationProvider:
                 data["userPoolConfig"]
             )
         )
-    if "lambdaAuthorizerConfig" in data:
+    if data.get("lambdaAuthorizerConfig") is not None:
         import capo_appsync.types.lambda_authorizer_config
 
         out["lambda_authorizer_config"] = (

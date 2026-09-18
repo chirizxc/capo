@@ -34,17 +34,17 @@ def serialize_json(value: MutationActionSetStateParameter) -> dict:
 
 def deserialize_json(data: dict) -> MutationActionSetStateParameter:
     out: MutationActionSetStateParameter = {}  # type: ignore[typeddict-item]
-    if "componentName" in data:
+    if data.get("componentName") is not None:
         out["component_name"] = data["componentName"]
     else:
         raise DeserializationError(
             "MutationActionSetStateParameter.component_name required"
         )
-    if "property" in data:
+    if data.get("property") is not None:
         out["property"] = data["property"]
     else:
         raise DeserializationError("MutationActionSetStateParameter.property required")
-    if "set" in data:
+    if data.get("set") is not None:
         import capo_amplifyuibuilder.types.component_property
 
         out["set"] = capo_amplifyuibuilder.types.component_property.deserialize_json(

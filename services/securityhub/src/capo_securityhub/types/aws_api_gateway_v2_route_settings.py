@@ -36,20 +36,28 @@ def serialize_json(value: AwsApiGatewayV2RouteSettings) -> dict:
     if "throttling_burst_limit" in value:
         out["ThrottlingBurstLimit"] = value["throttling_burst_limit"]
     if "throttling_rate_limit" in value:
-        out["ThrottlingRateLimit"] = value["throttling_rate_limit"]
+        out["ThrottlingRateLimit"] = (
+            "NaN"
+            if value["throttling_rate_limit"] != value["throttling_rate_limit"]
+            else "Infinity"
+            if value["throttling_rate_limit"] == float("inf")
+            else "-Infinity"
+            if value["throttling_rate_limit"] == float("-inf")
+            else value["throttling_rate_limit"]
+        )
     return out
 
 
 def deserialize_json(data: dict) -> AwsApiGatewayV2RouteSettings:
     out: AwsApiGatewayV2RouteSettings = {}  # type: ignore[typeddict-item]
-    if "DetailedMetricsEnabled" in data:
+    if data.get("DetailedMetricsEnabled") is not None:
         out["detailed_metrics_enabled"] = data["DetailedMetricsEnabled"]
-    if "LoggingLevel" in data:
+    if data.get("LoggingLevel") is not None:
         out["logging_level"] = data["LoggingLevel"]
-    if "DataTraceEnabled" in data:
+    if data.get("DataTraceEnabled") is not None:
         out["data_trace_enabled"] = data["DataTraceEnabled"]
-    if "ThrottlingBurstLimit" in data:
+    if data.get("ThrottlingBurstLimit") is not None:
         out["throttling_burst_limit"] = data["ThrottlingBurstLimit"]
-    if "ThrottlingRateLimit" in data:
-        out["throttling_rate_limit"] = data["ThrottlingRateLimit"]
+    if data.get("ThrottlingRateLimit") is not None:
+        out["throttling_rate_limit"] = float(data["ThrottlingRateLimit"])
     return out

@@ -106,7 +106,7 @@ def serialize_json(value: BatchUpdateFindingsRequest) -> dict:
 
 def deserialize_json(data: dict) -> BatchUpdateFindingsRequest:
     out: BatchUpdateFindingsRequest = {}  # type: ignore[typeddict-item]
-    if "FindingIdentifiers" in data:
+    if data.get("FindingIdentifiers") is not None:
         import capo_securityhub.types.aws_security_finding_identifier_list
 
         out["finding_identifiers"] = (
@@ -114,17 +114,17 @@ def deserialize_json(data: dict) -> BatchUpdateFindingsRequest:
                 data["FindingIdentifiers"]
             )
         )
-    if "Note" in data:
+    if data.get("Note") is not None:
         import capo_securityhub.types.note_update
 
         out["note"] = capo_securityhub.types.note_update.deserialize_json(data["Note"])
-    if "Severity" in data:
+    if data.get("Severity") is not None:
         import capo_securityhub.types.severity_update
 
         out["severity"] = capo_securityhub.types.severity_update.deserialize_json(
             data["Severity"]
         )
-    if "VerificationState" in data:
+    if data.get("VerificationState") is not None:
         import capo_securityhub.types.verification_state
 
         out["verification_state"] = (
@@ -132,27 +132,27 @@ def deserialize_json(data: dict) -> BatchUpdateFindingsRequest:
                 data["VerificationState"]
             )
         )
-    if "Confidence" in data:
+    if data.get("Confidence") is not None:
         out["confidence"] = data["Confidence"]
-    if "Criticality" in data:
+    if data.get("Criticality") is not None:
         out["criticality"] = data["Criticality"]
-    if "Types" in data:
+    if data.get("Types") is not None:
         import capo_securityhub.types.type_list
 
         out["types"] = capo_securityhub.types.type_list.deserialize_json(data["Types"])
-    if "UserDefinedFields" in data:
+    if data.get("UserDefinedFields") is not None:
         import capo_securityhub.types.field_map
 
         out["user_defined_fields"] = capo_securityhub.types.field_map.deserialize_json(
             data["UserDefinedFields"]
         )
-    if "Workflow" in data:
+    if data.get("Workflow") is not None:
         import capo_securityhub.types.workflow_update
 
         out["workflow"] = capo_securityhub.types.workflow_update.deserialize_json(
             data["Workflow"]
         )
-    if "RelatedFindings" in data:
+    if data.get("RelatedFindings") is not None:
         import capo_securityhub.types.related_finding_list
 
         out["related_findings"] = (

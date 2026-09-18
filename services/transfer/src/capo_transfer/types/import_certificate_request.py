@@ -73,7 +73,7 @@ def serialize_aws_json_1_1(value: ImportCertificateRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ImportCertificateRequest:
     out: ImportCertificateRequest = {}  # type: ignore[typeddict-item]
-    if "Usage" in data:
+    if data.get("Usage") is not None:
         import capo_transfer.types.certificate_usage_type
 
         out["usage"] = (
@@ -83,29 +83,29 @@ def deserialize_aws_json_1_1(data: dict) -> ImportCertificateRequest:
         )
     else:
         raise DeserializationError("ImportCertificateRequest.usage required")
-    if "Certificate" in data:
+    if data.get("Certificate") is not None:
         out["certificate"] = data["Certificate"]
     else:
         raise DeserializationError("ImportCertificateRequest.certificate required")
-    if "CertificateChain" in data:
+    if data.get("CertificateChain") is not None:
         out["certificate_chain"] = data["CertificateChain"]
-    if "PrivateKey" in data:
+    if data.get("PrivateKey") is not None:
         out["private_key"] = data["PrivateKey"]
-    if "ActiveDate" in data:
+    if data.get("ActiveDate") is not None:
         import capo_transfer.types.cert_date
 
         out["active_date"] = capo_transfer.types.cert_date.deserialize_aws_json_1_1(
             data["ActiveDate"]
         )
-    if "InactiveDate" in data:
+    if data.get("InactiveDate") is not None:
         import capo_transfer.types.cert_date
 
         out["inactive_date"] = capo_transfer.types.cert_date.deserialize_aws_json_1_1(
             data["InactiveDate"]
         )
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_transfer.types.tags
 
         out["tags"] = capo_transfer.types.tags.deserialize_aws_json_1_1(data["Tags"])

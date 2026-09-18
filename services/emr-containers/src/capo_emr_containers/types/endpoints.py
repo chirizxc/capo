@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> Endpoints:
 
     out: Endpoints = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_emr_containers.types.endpoint.deserialize_json(item))
     return out

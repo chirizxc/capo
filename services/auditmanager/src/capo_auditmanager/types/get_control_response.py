@@ -27,7 +27,7 @@ def serialize_json(value: GetControlResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetControlResponse:
     out: GetControlResponse = {}  # type: ignore[typeddict-item]
-    if "control" in data:
+    if data.get("control") is not None:
         import capo_auditmanager.types.control
 
         out["control"] = capo_auditmanager.types.control.deserialize_json(

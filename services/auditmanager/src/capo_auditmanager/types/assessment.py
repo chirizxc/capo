@@ -61,21 +61,21 @@ def serialize_json(value: Assessment) -> dict:
 
 def deserialize_json(data: dict) -> Assessment:
     out: Assessment = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "awsAccount" in data:
+    if data.get("awsAccount") is not None:
         import capo_auditmanager.types.aws_account
 
         out["aws_account"] = capo_auditmanager.types.aws_account.deserialize_json(
             data["awsAccount"]
         )
-    if "metadata" in data:
+    if data.get("metadata") is not None:
         import capo_auditmanager.types.assessment_metadata
 
         out["metadata"] = capo_auditmanager.types.assessment_metadata.deserialize_json(
             data["metadata"]
         )
-    if "framework" in data:
+    if data.get("framework") is not None:
         import capo_auditmanager.types.assessment_framework
 
         out["framework"] = (
@@ -83,7 +83,7 @@ def deserialize_json(data: dict) -> Assessment:
                 data["framework"]
             )
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_auditmanager.types.tag_map
 
         out["tags"] = capo_auditmanager.types.tag_map.deserialize_json(data["tags"])

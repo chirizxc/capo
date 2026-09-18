@@ -37,11 +37,11 @@ def serialize_json(value: DataLakeDatasetSchemaField) -> dict:
 
 def deserialize_json(data: dict) -> DataLakeDatasetSchemaField:
     out: DataLakeDatasetSchemaField = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("DataLakeDatasetSchemaField.name required")
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_supplychain.types.data_lake_dataset_schema_field_type
 
         out["type"] = (
@@ -51,7 +51,7 @@ def deserialize_json(data: dict) -> DataLakeDatasetSchemaField:
         )
     else:
         raise DeserializationError("DataLakeDatasetSchemaField.type required")
-    if "isRequired" in data:
+    if data.get("isRequired") is not None:
         out["is_required"] = data["isRequired"]
     else:
         raise DeserializationError("DataLakeDatasetSchemaField.is_required required")

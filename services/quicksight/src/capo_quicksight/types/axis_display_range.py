@@ -42,7 +42,7 @@ def serialize_json(value: AxisDisplayRange) -> dict:
 
 def deserialize_json(data: dict) -> AxisDisplayRange:
     out: AxisDisplayRange = {}  # type: ignore[typeddict-item]
-    if "MinMax" in data:
+    if data.get("MinMax") is not None:
         import capo_quicksight.types.axis_display_min_max_range
 
         out["min_max"] = (
@@ -50,7 +50,7 @@ def deserialize_json(data: dict) -> AxisDisplayRange:
                 data["MinMax"]
             )
         )
-    if "DataDriven" in data:
+    if data.get("DataDriven") is not None:
         import capo_quicksight.types.axis_display_data_driven_range
 
         out["data_driven"] = (

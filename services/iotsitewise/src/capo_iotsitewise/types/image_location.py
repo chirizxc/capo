@@ -28,11 +28,11 @@ def serialize_json(value: ImageLocation) -> dict:
 
 def deserialize_json(data: dict) -> ImageLocation:
     out: ImageLocation = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("ImageLocation.id required")
-    if "url" in data:
+    if data.get("url") is not None:
         out["url"] = data["url"]
     else:
         raise DeserializationError("ImageLocation.url required")

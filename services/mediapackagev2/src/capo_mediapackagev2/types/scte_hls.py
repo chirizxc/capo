@@ -40,13 +40,13 @@ def serialize_json(value: ScteHls) -> dict:
 
 def deserialize_json(data: dict) -> ScteHls:
     out: ScteHls = {}  # type: ignore[typeddict-item]
-    if "AdMarkerHls" in data:
+    if data.get("AdMarkerHls") is not None:
         import capo_mediapackagev2.types.ad_marker_hls
 
         out["ad_marker_hls"] = capo_mediapackagev2.types.ad_marker_hls.deserialize_json(
             data["AdMarkerHls"]
         )
-    if "ScteInManifests" in data:
+    if data.get("ScteInManifests") is not None:
         import capo_mediapackagev2.types.scte_in_manifests
 
         out["scte_in_manifests"] = (

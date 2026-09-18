@@ -194,7 +194,7 @@ def serialize_aws_json_1_0(value: RuleAction) -> dict:
 
 
 def deserialize_aws_json_1_0(data: dict) -> RuleAction:
-    if "Drop" in data:
+    if data.get("Drop") is not None:
         import capo_mailmanager.types.drop_action
 
         return {
@@ -202,7 +202,7 @@ def deserialize_aws_json_1_0(data: dict) -> RuleAction:
                 data["Drop"]
             )
         }
-    elif "Relay" in data:
+    elif data.get("Relay") is not None:
         import capo_mailmanager.types.relay_action
 
         return {
@@ -210,7 +210,7 @@ def deserialize_aws_json_1_0(data: dict) -> RuleAction:
                 data["Relay"]
             )
         }
-    elif "Archive" in data:
+    elif data.get("Archive") is not None:
         import capo_mailmanager.types.archive_action
 
         return {
@@ -218,7 +218,7 @@ def deserialize_aws_json_1_0(data: dict) -> RuleAction:
                 data["Archive"]
             )
         }
-    elif "WriteToS3" in data:
+    elif data.get("WriteToS3") is not None:
         import capo_mailmanager.types.s3_action
 
         return {
@@ -226,7 +226,7 @@ def deserialize_aws_json_1_0(data: dict) -> RuleAction:
                 data["WriteToS3"]
             )
         }
-    elif "Send" in data:
+    elif data.get("Send") is not None:
         import capo_mailmanager.types.send_action
 
         return {
@@ -234,7 +234,7 @@ def deserialize_aws_json_1_0(data: dict) -> RuleAction:
                 data["Send"]
             )
         }
-    elif "AddHeader" in data:
+    elif data.get("AddHeader") is not None:
         import capo_mailmanager.types.add_header_action
 
         return {
@@ -242,7 +242,7 @@ def deserialize_aws_json_1_0(data: dict) -> RuleAction:
                 data["AddHeader"]
             )
         }
-    elif "ReplaceRecipient" in data:
+    elif data.get("ReplaceRecipient") is not None:
         import capo_mailmanager.types.replace_recipient_action
 
         return {
@@ -250,7 +250,7 @@ def deserialize_aws_json_1_0(data: dict) -> RuleAction:
                 data["ReplaceRecipient"]
             )
         }
-    elif "DeliverToMailbox" in data:
+    elif data.get("DeliverToMailbox") is not None:
         import capo_mailmanager.types.deliver_to_mailbox_action
 
         return {
@@ -258,7 +258,7 @@ def deserialize_aws_json_1_0(data: dict) -> RuleAction:
                 data["DeliverToMailbox"]
             )
         }
-    elif "DeliverToQBusiness" in data:
+    elif data.get("DeliverToQBusiness") is not None:
         import capo_mailmanager.types.deliver_to_q_business_action
 
         return {
@@ -266,7 +266,7 @@ def deserialize_aws_json_1_0(data: dict) -> RuleAction:
                 data["DeliverToQBusiness"]
             )
         }
-    elif "PublishToSns" in data:
+    elif data.get("PublishToSns") is not None:
         import capo_mailmanager.types.sns_action
 
         return {
@@ -274,7 +274,7 @@ def deserialize_aws_json_1_0(data: dict) -> RuleAction:
                 data["PublishToSns"]
             )
         }
-    elif "Bounce" in data:
+    elif data.get("Bounce") is not None:
         import capo_mailmanager.types.bounce_action
 
         return {
@@ -282,7 +282,7 @@ def deserialize_aws_json_1_0(data: dict) -> RuleAction:
                 data["Bounce"]
             )
         }
-    elif "InvokeLambda" in data:
+    elif data.get("InvokeLambda") is not None:
         import capo_mailmanager.types.invoke_lambda_action
 
         return {

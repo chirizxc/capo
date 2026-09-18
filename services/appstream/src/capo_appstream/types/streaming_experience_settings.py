@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: StreamingExperienceSettings) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> StreamingExperienceSettings:
     out: StreamingExperienceSettings = {}  # type: ignore[typeddict-item]
-    if "PreferredProtocol" in data:
+    if data.get("PreferredProtocol") is not None:
         import capo_appstream.types.preferred_protocol
 
         out["preferred_protocol"] = (

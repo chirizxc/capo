@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> EnvironmentConfigurationUserParametersList:
 
     out: EnvironmentConfigurationUserParametersList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_datazone.types.environment_configuration_user_parameter.deserialize_json(
                 item

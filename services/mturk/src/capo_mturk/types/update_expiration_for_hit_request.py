@@ -32,11 +32,11 @@ def serialize_aws_json_1_1(value: UpdateExpirationForHITRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateExpirationForHITRequest:
     out: UpdateExpirationForHITRequest = {}  # type: ignore[typeddict-item]
-    if "HITId" in data:
+    if data.get("HITId") is not None:
         out["hit_id"] = data["HITId"]
     else:
         raise DeserializationError("UpdateExpirationForHITRequest.hit_id required")
-    if "ExpireAt" in data:
+    if data.get("ExpireAt") is not None:
         import capo_mturk.types.timestamp
 
         out["expire_at"] = capo_mturk.types.timestamp.deserialize_aws_json_1_1(

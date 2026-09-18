@@ -23,6 +23,6 @@ def serialize_aws_json_1_1(value: GetJobManifestResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetJobManifestResult:
     out: GetJobManifestResult = {}  # type: ignore[typeddict-item]
-    if "ManifestURI" in data:
+    if data.get("ManifestURI") is not None:
         out["manifest_uri"] = data["ManifestURI"]
     return out

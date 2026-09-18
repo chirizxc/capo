@@ -39,11 +39,11 @@ def serialize_json(value: AssociateResourceResponse) -> dict:
 
 def deserialize_json(data: dict) -> AssociateResourceResponse:
     out: AssociateResourceResponse = {}  # type: ignore[typeddict-item]
-    if "applicationArn" in data:
+    if data.get("applicationArn") is not None:
         out["application_arn"] = data["applicationArn"]
-    if "resourceArn" in data:
+    if data.get("resourceArn") is not None:
         out["resource_arn"] = data["resourceArn"]
-    if "options" in data:
+    if data.get("options") is not None:
         import capo_service_catalog_appregistry.types.options
 
         out["options"] = (

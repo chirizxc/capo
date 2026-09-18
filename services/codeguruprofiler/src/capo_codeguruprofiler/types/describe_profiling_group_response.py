@@ -30,7 +30,7 @@ def serialize_json(value: DescribeProfilingGroupResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribeProfilingGroupResponse:
     out: DescribeProfilingGroupResponse = {}  # type: ignore[typeddict-item]
-    if "profilingGroup" in data:
+    if data.get("profilingGroup") is not None:
         import capo_codeguruprofiler.types.profiling_group_description
 
         out["profiling_group"] = (

@@ -31,7 +31,7 @@ def serialize_json(value: GetChallengeMetadataResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetChallengeMetadataResponse:
     out: GetChallengeMetadataResponse = {}  # type: ignore[typeddict-item]
-    if "ChallengeMetadata" in data:
+    if data.get("ChallengeMetadata") is not None:
         import capo_pca_connector_scep.types.challenge_metadata
 
         out["challenge_metadata"] = (

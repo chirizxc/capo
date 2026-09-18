@@ -13,10 +13,25 @@ from capo_amplifyuibuilder import AsyncAmplifyUIBuilderClient
 
 
 async def main():
-    async with AsyncAmplifyUIBuilderClient() as s3:
+    async with AsyncAmplifyUIBuilderClient() as amplify_ui_builder:
         # Example: call the exchange_code_for_token operation
-        response = await s3.exchange_code_for_token()
+        response = await amplify_ui_builder.exchange_code_for_token()
         print(response["access_token"])
+```
+
+## Pagination
+
+Some operations in this SDK support pagination. If the operation supports pagination it will have an `iter_` prefixed method that returns an async iterator.
+
+```python
+from capo_amplifyuibuilder import AsyncAmplifyUIBuilderClient
+
+
+async def main():
+    async with AsyncAmplifyUIBuilderClient() as amplify_ui_builder:
+        # Example: paginate over list_codegen_jobs
+        async for item in amplify_ui_builder.iter_list_codegen_jobs():
+            print(item)
 ```
 
 ## Error Handling
@@ -29,9 +44,9 @@ from capo_amplifyuibuilder.error import InvalidParameterException
 
 
 async def main():
-    async with AsyncAmplifyUIBuilderClient() as s3:
+    async with AsyncAmplifyUIBuilderClient() as amplify_ui_builder:
         try:
-            await s3.exchange_code_for_token()
+            await amplify_ui_builder.exchange_code_for_token()
         except InvalidParameterException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -48,13 +63,13 @@ from capo_amplifyuibuilder import AsyncAmplifyUIBuilderClient
 
 
 async def main():
-    async with AsyncAmplifyUIBuilderClient() as s3:
+    async with AsyncAmplifyUIBuilderClient() as amplify_ui_builder:
         # Default: 3 attempts for every operation
-        response = await s3.exchange_code_for_token()
+        response = await amplify_ui_builder.exchange_code_for_token()
 
         # Override per operation
-        response = await s3.exchange_code_for_token(config_overrides={"retry_max_attempts": 5})
+        response = await amplify_ui_builder.exchange_code_for_token(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.exchange_code_for_token(config_overrides={"retry_max_attempts": 1})
+        response = await amplify_ui_builder.exchange_code_for_token(config_overrides={"retry_max_attempts": 1})
 ```

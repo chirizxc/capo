@@ -67,11 +67,11 @@ def serialize_json(value: PivotOperation) -> dict:
 
 def deserialize_json(data: dict) -> PivotOperation:
     out: PivotOperation = {}  # type: ignore[typeddict-item]
-    if "Alias" in data:
+    if data.get("Alias") is not None:
         out["alias"] = data["Alias"]
     else:
         raise DeserializationError("PivotOperation.alias required")
-    if "Source" in data:
+    if data.get("Source") is not None:
         import capo_quicksight.types.transform_operation_source
 
         out["source"] = (
@@ -81,7 +81,7 @@ def deserialize_json(data: dict) -> PivotOperation:
         )
     else:
         raise DeserializationError("PivotOperation.source required")
-    if "GroupByColumnNames" in data:
+    if data.get("GroupByColumnNames") is not None:
         import capo_quicksight.types.pivot_group_by_column_name_list
 
         out["group_by_column_names"] = (
@@ -89,7 +89,7 @@ def deserialize_json(data: dict) -> PivotOperation:
                 data["GroupByColumnNames"]
             )
         )
-    if "ValueColumnConfiguration" in data:
+    if data.get("ValueColumnConfiguration") is not None:
         import capo_quicksight.types.value_column_configuration
 
         out["value_column_configuration"] = (
@@ -99,7 +99,7 @@ def deserialize_json(data: dict) -> PivotOperation:
         )
     else:
         raise DeserializationError("PivotOperation.value_column_configuration required")
-    if "PivotConfiguration" in data:
+    if data.get("PivotConfiguration") is not None:
         import capo_quicksight.types.pivot_configuration
 
         out["pivot_configuration"] = (

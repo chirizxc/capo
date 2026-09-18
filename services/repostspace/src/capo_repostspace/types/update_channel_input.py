@@ -37,10 +37,10 @@ def serialize_json(value: UpdateChannelInput) -> dict:
 
 def deserialize_json(data: dict) -> UpdateChannelInput:
     out: UpdateChannelInput = {}  # type: ignore[typeddict-item]
-    if "channelName" in data:
+    if data.get("channelName") is not None:
         out["channel_name"] = data["channelName"]
     else:
         raise DeserializationError("UpdateChannelInput.channel_name required")
-    if "channelDescription" in data:
+    if data.get("channelDescription") is not None:
         out["channel_description"] = data["channelDescription"]
     return out

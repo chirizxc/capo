@@ -212,11 +212,11 @@ def serialize_json(value: ApplicationComponentDetail) -> dict:
 
 def deserialize_json(data: dict) -> ApplicationComponentDetail:
     out: ApplicationComponentDetail = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "recommendationSet" in data:
+    if data.get("recommendationSet") is not None:
         import capo_migrationhubstrategy.types.recommendation_set
 
         out["recommendation_set"] = (
@@ -224,11 +224,11 @@ def deserialize_json(data: dict) -> ApplicationComponentDetail:
                 data["recommendationSet"]
             )
         )
-    if "analysisStatus" in data:
+    if data.get("analysisStatus") is not None:
         out["analysis_status"] = data["analysisStatus"]
-    if "statusMessage" in data:
+    if data.get("statusMessage") is not None:
         out["status_message"] = data["statusMessage"]
-    if "listAntipatternSeveritySummary" in data:
+    if data.get("listAntipatternSeveritySummary") is not None:
         import capo_migrationhubstrategy.types.list_antipattern_severity_summary
 
         out["list_antipattern_severity_summary"] = (
@@ -236,7 +236,7 @@ def deserialize_json(data: dict) -> ApplicationComponentDetail:
                 data["listAntipatternSeveritySummary"]
             )
         )
-    if "databaseConfigDetail" in data:
+    if data.get("databaseConfigDetail") is not None:
         import capo_migrationhubstrategy.types.database_config_detail
 
         out["database_config_detail"] = (
@@ -244,7 +244,7 @@ def deserialize_json(data: dict) -> ApplicationComponentDetail:
                 data["databaseConfigDetail"]
             )
         )
-    if "sourceCodeRepositories" in data:
+    if data.get("sourceCodeRepositories") is not None:
         import capo_migrationhubstrategy.types.source_code_repositories
 
         out["source_code_repositories"] = (
@@ -252,13 +252,13 @@ def deserialize_json(data: dict) -> ApplicationComponentDetail:
                 data["sourceCodeRepositories"]
             )
         )
-    if "appType" in data:
+    if data.get("appType") is not None:
         out["app_type"] = data["appType"]
-    if "resourceSubType" in data:
+    if data.get("resourceSubType") is not None:
         out["resource_sub_type"] = data["resourceSubType"]
-    if "inclusionStatus" in data:
+    if data.get("inclusionStatus") is not None:
         out["inclusion_status"] = data["inclusionStatus"]
-    if "antipatternReportS3Object" in data:
+    if data.get("antipatternReportS3Object") is not None:
         import capo_migrationhubstrategy.types.s3_object
 
         out["antipattern_report_s3_object"] = (
@@ -266,17 +266,17 @@ def deserialize_json(data: dict) -> ApplicationComponentDetail:
                 data["antipatternReportS3Object"]
             )
         )
-    if "antipatternReportStatus" in data:
+    if data.get("antipatternReportStatus") is not None:
         out["antipattern_report_status"] = data["antipatternReportStatus"]
-    if "antipatternReportStatusMessage" in data:
+    if data.get("antipatternReportStatusMessage") is not None:
         out["antipattern_report_status_message"] = data[
             "antipatternReportStatusMessage"
         ]
-    if "osVersion" in data:
+    if data.get("osVersion") is not None:
         out["os_version"] = data["osVersion"]
-    if "osDriver" in data:
+    if data.get("osDriver") is not None:
         out["os_driver"] = data["osDriver"]
-    if "lastAnalyzedTimestamp" in data:
+    if data.get("lastAnalyzedTimestamp") is not None:
         import capo_migrationhubstrategy.types.time_stamp
 
         out["last_analyzed_timestamp"] = (
@@ -284,15 +284,15 @@ def deserialize_json(data: dict) -> ApplicationComponentDetail:
                 data["lastAnalyzedTimestamp"]
             )
         )
-    if "associatedServerId" in data:
+    if data.get("associatedServerId") is not None:
         out["associated_server_id"] = data["associatedServerId"]
-    if "moreServerAssociationExists" in data:
+    if data.get("moreServerAssociationExists") is not None:
         out["more_server_association_exists"] = data["moreServerAssociationExists"]
-    if "runtimeStatus" in data:
+    if data.get("runtimeStatus") is not None:
         out["runtime_status"] = data["runtimeStatus"]
-    if "runtimeStatusMessage" in data:
+    if data.get("runtimeStatusMessage") is not None:
         out["runtime_status_message"] = data["runtimeStatusMessage"]
-    if "appUnitError" in data:
+    if data.get("appUnitError") is not None:
         import capo_migrationhubstrategy.types.app_unit_error
 
         out["app_unit_error"] = (
@@ -300,7 +300,7 @@ def deserialize_json(data: dict) -> ApplicationComponentDetail:
                 data["appUnitError"]
             )
         )
-    if "resultList" in data:
+    if data.get("resultList") is not None:
         import capo_migrationhubstrategy.types.result_list
 
         out["result_list"] = (

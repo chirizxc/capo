@@ -399,12 +399,13 @@ class Route53ResolverClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_route53resolver.types.associate_firewall_rule_group_request.AssociateFirewallRuleGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["creator_request_id"] = creator_request_id
-        input_["firewall_rule_group_id"] = firewall_rule_group_id
-        input_["vpc_id"] = vpc_id
-        input_["priority"] = priority
-        input_["name"] = name
+        input_: capo_route53resolver.types.associate_firewall_rule_group_request.AssociateFirewallRuleGroupRequest = {
+            "creator_request_id": creator_request_id,
+            "firewall_rule_group_id": firewall_rule_group_id,
+            "vpc_id": vpc_id,
+            "priority": priority,
+            "name": name,
+        }
         if mutation_protection is not None:
             input_["mutation_protection"] = mutation_protection
         if tags is not None:
@@ -415,6 +416,7 @@ class Route53ResolverClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def associate_resolver_endpoint_ip_address(
@@ -456,15 +458,17 @@ class Route53ResolverClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_route53resolver.types.associate_resolver_endpoint_ip_address_request.AssociateResolverEndpointIpAddressRequest = {}  # type: ignore[typeddict-item]
-        input_["resolver_endpoint_id"] = resolver_endpoint_id
-        input_["ip_address"] = ip_address
+        input_: capo_route53resolver.types.associate_resolver_endpoint_ip_address_request.AssociateResolverEndpointIpAddressRequest = {
+            "resolver_endpoint_id": resolver_endpoint_id,
+            "ip_address": ip_address,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def associate_resolver_query_log_config(
@@ -507,15 +511,17 @@ class Route53ResolverClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_route53resolver.types.associate_resolver_query_log_config_request.AssociateResolverQueryLogConfigRequest = {}  # type: ignore[typeddict-item]
-        input_["resolver_query_log_config_id"] = resolver_query_log_config_id
-        input_["resource_id"] = resource_id
+        input_: capo_route53resolver.types.associate_resolver_query_log_config_request.AssociateResolverQueryLogConfigRequest = {
+            "resolver_query_log_config_id": resolver_query_log_config_id,
+            "resource_id": resource_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def associate_resolver_rule(
@@ -560,17 +566,19 @@ class Route53ResolverClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_route53resolver.types.associate_resolver_rule_request.AssociateResolverRuleRequest = {}  # type: ignore[typeddict-item]
-        input_["resolver_rule_id"] = resolver_rule_id
+        input_: capo_route53resolver.types.associate_resolver_rule_request.AssociateResolverRuleRequest = {
+            "resolver_rule_id": resolver_rule_id,
+            "vpc_id": vpc_id,
+        }
         if name is not None:
             input_["name"] = name
-        input_["vpc_id"] = vpc_id
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def batch_create_firewall_rule(
@@ -608,14 +616,16 @@ class Route53ResolverClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_route53resolver.types.batch_create_firewall_rule_request.BatchCreateFirewallRuleRequest = {}  # type: ignore[typeddict-item]
-        input_["create_firewall_rule_entries"] = create_firewall_rule_entries
+        input_: capo_route53resolver.types.batch_create_firewall_rule_request.BatchCreateFirewallRuleRequest = {
+            "create_firewall_rule_entries": create_firewall_rule_entries
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def batch_delete_firewall_rule(
@@ -653,14 +663,16 @@ class Route53ResolverClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_route53resolver.types.batch_delete_firewall_rule_request.BatchDeleteFirewallRuleRequest = {}  # type: ignore[typeddict-item]
-        input_["delete_firewall_rule_entries"] = delete_firewall_rule_entries
+        input_: capo_route53resolver.types.batch_delete_firewall_rule_request.BatchDeleteFirewallRuleRequest = {
+            "delete_firewall_rule_entries": delete_firewall_rule_entries
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def batch_update_firewall_rule(
@@ -698,14 +710,16 @@ class Route53ResolverClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_route53resolver.types.batch_update_firewall_rule_request.BatchUpdateFirewallRuleRequest = {}  # type: ignore[typeddict-item]
-        input_["update_firewall_rule_entries"] = update_firewall_rule_entries
+        input_: capo_route53resolver.types.batch_update_firewall_rule_request.BatchUpdateFirewallRuleRequest = {
+            "update_firewall_rule_entries": update_firewall_rule_entries
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_firewall_domain_list(
@@ -747,9 +761,10 @@ class Route53ResolverClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_route53resolver.types.create_firewall_domain_list_request.CreateFirewallDomainListRequest = {}  # type: ignore[typeddict-item]
-        input_["creator_request_id"] = creator_request_id
-        input_["name"] = name
+        input_: capo_route53resolver.types.create_firewall_domain_list_request.CreateFirewallDomainListRequest = {
+            "creator_request_id": creator_request_id,
+            "name": name,
+        }
         if tags is not None:
             input_["tags"] = tags
 
@@ -758,6 +773,7 @@ class Route53ResolverClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_firewall_rule(
@@ -842,13 +858,15 @@ class Route53ResolverClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_route53resolver.types.create_firewall_rule_request.CreateFirewallRuleRequest = {}  # type: ignore[typeddict-item]
-        input_["creator_request_id"] = creator_request_id
-        input_["firewall_rule_group_id"] = firewall_rule_group_id
+        input_: capo_route53resolver.types.create_firewall_rule_request.CreateFirewallRuleRequest = {
+            "creator_request_id": creator_request_id,
+            "firewall_rule_group_id": firewall_rule_group_id,
+            "priority": priority,
+            "action": action,
+            "name": name,
+        }
         if firewall_domain_list_id is not None:
             input_["firewall_domain_list_id"] = firewall_domain_list_id
-        input_["priority"] = priority
-        input_["action"] = action
         if block_response is not None:
             input_["block_response"] = block_response
         if block_override_domain is not None:
@@ -857,7 +875,6 @@ class Route53ResolverClient:
             input_["block_override_dns_type"] = block_override_dns_type
         if block_override_ttl is not None:
             input_["block_override_ttl"] = block_override_ttl
-        input_["name"] = name
         if firewall_domain_redirection_action is not None:
             input_["firewall_domain_redirection_action"] = (
                 firewall_domain_redirection_action
@@ -876,6 +893,7 @@ class Route53ResolverClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_firewall_rule_group(
@@ -917,9 +935,10 @@ class Route53ResolverClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_route53resolver.types.create_firewall_rule_group_request.CreateFirewallRuleGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["creator_request_id"] = creator_request_id
-        input_["name"] = name
+        input_: capo_route53resolver.types.create_firewall_rule_group_request.CreateFirewallRuleGroupRequest = {
+            "creator_request_id": creator_request_id,
+            "name": name,
+        }
         if tags is not None:
             input_["tags"] = tags
 
@@ -928,6 +947,7 @@ class Route53ResolverClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_outpost_resolver(
@@ -978,13 +998,14 @@ class Route53ResolverClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_route53resolver.types.create_outpost_resolver_request.CreateOutpostResolverRequest = {}  # type: ignore[typeddict-item]
-        input_["creator_request_id"] = creator_request_id
-        input_["name"] = name
+        input_: capo_route53resolver.types.create_outpost_resolver_request.CreateOutpostResolverRequest = {
+            "creator_request_id": creator_request_id,
+            "name": name,
+            "preferred_instance_type": preferred_instance_type,
+            "outpost_arn": outpost_arn,
+        }
         if instance_count is not None:
             input_["instance_count"] = instance_count
-        input_["preferred_instance_type"] = preferred_instance_type
-        input_["outpost_arn"] = outpost_arn
         if tags is not None:
             input_["tags"] = tags
 
@@ -993,6 +1014,7 @@ class Route53ResolverClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_resolver_endpoint(
@@ -1075,13 +1097,14 @@ class Route53ResolverClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_route53resolver.types.create_resolver_endpoint_request.CreateResolverEndpointRequest = {}  # type: ignore[typeddict-item]
-        input_["creator_request_id"] = creator_request_id
+        input_: capo_route53resolver.types.create_resolver_endpoint_request.CreateResolverEndpointRequest = {
+            "creator_request_id": creator_request_id,
+            "security_group_ids": security_group_ids,
+            "direction": direction,
+            "ip_addresses": ip_addresses,
+        }
         if name is not None:
             input_["name"] = name
-        input_["security_group_ids"] = security_group_ids
-        input_["direction"] = direction
-        input_["ip_addresses"] = ip_addresses
         if outpost_arn is not None:
             input_["outpost_arn"] = outpost_arn
         if preferred_instance_type is not None:
@@ -1108,6 +1131,7 @@ class Route53ResolverClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_resolver_query_log_config(
@@ -1154,10 +1178,11 @@ class Route53ResolverClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_route53resolver.types.create_resolver_query_log_config_request.CreateResolverQueryLogConfigRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        input_["destination_arn"] = destination_arn
-        input_["creator_request_id"] = creator_request_id
+        input_: capo_route53resolver.types.create_resolver_query_log_config_request.CreateResolverQueryLogConfigRequest = {
+            "name": name,
+            "destination_arn": destination_arn,
+            "creator_request_id": creator_request_id,
+        }
         if tags is not None:
             input_["tags"] = tags
 
@@ -1166,6 +1191,7 @@ class Route53ResolverClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_resolver_rule(
@@ -1229,11 +1255,12 @@ class Route53ResolverClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_route53resolver.types.create_resolver_rule_request.CreateResolverRuleRequest = {}  # type: ignore[typeddict-item]
-        input_["creator_request_id"] = creator_request_id
+        input_: capo_route53resolver.types.create_resolver_rule_request.CreateResolverRuleRequest = {
+            "creator_request_id": creator_request_id,
+            "rule_type": rule_type,
+        }
         if name is not None:
             input_["name"] = name
-        input_["rule_type"] = rule_type
         if domain_name is not None:
             input_["domain_name"] = domain_name
         if target_ips is not None:
@@ -1250,6 +1277,7 @@ class Route53ResolverClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_firewall_domain_list(
@@ -1287,14 +1315,16 @@ class Route53ResolverClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_route53resolver.types.delete_firewall_domain_list_request.DeleteFirewallDomainListRequest = {}  # type: ignore[typeddict-item]
-        input_["firewall_domain_list_id"] = firewall_domain_list_id
+        input_: capo_route53resolver.types.delete_firewall_domain_list_request.DeleteFirewallDomainListRequest = {
+            "firewall_domain_list_id": firewall_domain_list_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_firewall_rule(
@@ -1342,8 +1372,9 @@ class Route53ResolverClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_route53resolver.types.delete_firewall_rule_request.DeleteFirewallRuleRequest = {}  # type: ignore[typeddict-item]
-        input_["firewall_rule_group_id"] = firewall_rule_group_id
+        input_: capo_route53resolver.types.delete_firewall_rule_request.DeleteFirewallRuleRequest = {
+            "firewall_rule_group_id": firewall_rule_group_id
+        }
         if firewall_domain_list_id is not None:
             input_["firewall_domain_list_id"] = firewall_domain_list_id
         if firewall_threat_protection_id is not None:
@@ -1356,6 +1387,7 @@ class Route53ResolverClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_firewall_rule_group(
@@ -1394,14 +1426,16 @@ class Route53ResolverClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_route53resolver.types.delete_firewall_rule_group_request.DeleteFirewallRuleGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["firewall_rule_group_id"] = firewall_rule_group_id
+        input_: capo_route53resolver.types.delete_firewall_rule_group_request.DeleteFirewallRuleGroupRequest = {
+            "firewall_rule_group_id": firewall_rule_group_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_outpost_resolver(
@@ -1440,14 +1474,16 @@ class Route53ResolverClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_route53resolver.types.delete_outpost_resolver_request.DeleteOutpostResolverRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_route53resolver.types.delete_outpost_resolver_request.DeleteOutpostResolverRequest = {
+            "id": id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_resolver_endpoint(
@@ -1485,14 +1521,16 @@ class Route53ResolverClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_route53resolver.types.delete_resolver_endpoint_request.DeleteResolverEndpointRequest = {}  # type: ignore[typeddict-item]
-        input_["resolver_endpoint_id"] = resolver_endpoint_id
+        input_: capo_route53resolver.types.delete_resolver_endpoint_request.DeleteResolverEndpointRequest = {
+            "resolver_endpoint_id": resolver_endpoint_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_resolver_query_log_config(
@@ -1531,14 +1569,16 @@ class Route53ResolverClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_route53resolver.types.delete_resolver_query_log_config_request.DeleteResolverQueryLogConfigRequest = {}  # type: ignore[typeddict-item]
-        input_["resolver_query_log_config_id"] = resolver_query_log_config_id
+        input_: capo_route53resolver.types.delete_resolver_query_log_config_request.DeleteResolverQueryLogConfigRequest = {
+            "resolver_query_log_config_id": resolver_query_log_config_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_resolver_rule(
@@ -1577,14 +1617,16 @@ class Route53ResolverClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_route53resolver.types.delete_resolver_rule_request.DeleteResolverRuleRequest = {}  # type: ignore[typeddict-item]
-        input_["resolver_rule_id"] = resolver_rule_id
+        input_: capo_route53resolver.types.delete_resolver_rule_request.DeleteResolverRuleRequest = {
+            "resolver_rule_id": resolver_rule_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def disassociate_firewall_rule_group(
@@ -1623,16 +1665,16 @@ class Route53ResolverClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_route53resolver.types.disassociate_firewall_rule_group_request.DisassociateFirewallRuleGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["firewall_rule_group_association_id"] = (
-            firewall_rule_group_association_id
-        )
+        input_: capo_route53resolver.types.disassociate_firewall_rule_group_request.DisassociateFirewallRuleGroupRequest = {
+            "firewall_rule_group_association_id": firewall_rule_group_association_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def disassociate_resolver_endpoint_ip_address(
@@ -1673,15 +1715,17 @@ class Route53ResolverClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_route53resolver.types.disassociate_resolver_endpoint_ip_address_request.DisassociateResolverEndpointIpAddressRequest = {}  # type: ignore[typeddict-item]
-        input_["resolver_endpoint_id"] = resolver_endpoint_id
-        input_["ip_address"] = ip_address
+        input_: capo_route53resolver.types.disassociate_resolver_endpoint_ip_address_request.DisassociateResolverEndpointIpAddressRequest = {
+            "resolver_endpoint_id": resolver_endpoint_id,
+            "ip_address": ip_address,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def disassociate_resolver_query_log_config(
@@ -1722,15 +1766,17 @@ class Route53ResolverClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_route53resolver.types.disassociate_resolver_query_log_config_request.DisassociateResolverQueryLogConfigRequest = {}  # type: ignore[typeddict-item]
-        input_["resolver_query_log_config_id"] = resolver_query_log_config_id
-        input_["resource_id"] = resource_id
+        input_: capo_route53resolver.types.disassociate_resolver_query_log_config_request.DisassociateResolverQueryLogConfigRequest = {
+            "resolver_query_log_config_id": resolver_query_log_config_id,
+            "resource_id": resource_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def disassociate_resolver_rule(
@@ -1770,15 +1816,17 @@ class Route53ResolverClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_route53resolver.types.disassociate_resolver_rule_request.DisassociateResolverRuleRequest = {}  # type: ignore[typeddict-item]
-        input_["vpc_id"] = vpc_id
-        input_["resolver_rule_id"] = resolver_rule_id
+        input_: capo_route53resolver.types.disassociate_resolver_rule_request.DisassociateResolverRuleRequest = {
+            "vpc_id": vpc_id,
+            "resolver_rule_id": resolver_rule_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_firewall_config(
@@ -1816,14 +1864,16 @@ class Route53ResolverClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_route53resolver.types.get_firewall_config_request.GetFirewallConfigRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_id"] = resource_id
+        input_: capo_route53resolver.types.get_firewall_config_request.GetFirewallConfigRequest = {
+            "resource_id": resource_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_firewall_domain_list(
@@ -1860,14 +1910,16 @@ class Route53ResolverClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_route53resolver.types.get_firewall_domain_list_request.GetFirewallDomainListRequest = {}  # type: ignore[typeddict-item]
-        input_["firewall_domain_list_id"] = firewall_domain_list_id
+        input_: capo_route53resolver.types.get_firewall_domain_list_request.GetFirewallDomainListRequest = {
+            "firewall_domain_list_id": firewall_domain_list_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_firewall_rule_group(
@@ -1904,14 +1956,16 @@ class Route53ResolverClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_route53resolver.types.get_firewall_rule_group_request.GetFirewallRuleGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["firewall_rule_group_id"] = firewall_rule_group_id
+        input_: capo_route53resolver.types.get_firewall_rule_group_request.GetFirewallRuleGroupRequest = {
+            "firewall_rule_group_id": firewall_rule_group_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_firewall_rule_group_association(
@@ -1948,16 +2002,16 @@ class Route53ResolverClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_route53resolver.types.get_firewall_rule_group_association_request.GetFirewallRuleGroupAssociationRequest = {}  # type: ignore[typeddict-item]
-        input_["firewall_rule_group_association_id"] = (
-            firewall_rule_group_association_id
-        )
+        input_: capo_route53resolver.types.get_firewall_rule_group_association_request.GetFirewallRuleGroupAssociationRequest = {
+            "firewall_rule_group_association_id": firewall_rule_group_association_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_firewall_rule_group_policy(
@@ -1995,14 +2049,16 @@ class Route53ResolverClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_route53resolver.types.get_firewall_rule_group_policy_request.GetFirewallRuleGroupPolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
+        input_: capo_route53resolver.types.get_firewall_rule_group_policy_request.GetFirewallRuleGroupPolicyRequest = {
+            "arn": arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_outpost_resolver(
@@ -2040,14 +2096,16 @@ class Route53ResolverClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_route53resolver.types.get_outpost_resolver_request.GetOutpostResolverRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_route53resolver.types.get_outpost_resolver_request.GetOutpostResolverRequest = {
+            "id": id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_resolver_config(
@@ -2086,14 +2144,16 @@ class Route53ResolverClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_route53resolver.types.get_resolver_config_request.GetResolverConfigRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_id"] = resource_id
+        input_: capo_route53resolver.types.get_resolver_config_request.GetResolverConfigRequest = {
+            "resource_id": resource_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_resolver_dnssec_config(
@@ -2132,14 +2192,16 @@ class Route53ResolverClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_route53resolver.types.get_resolver_dnssec_config_request.GetResolverDnssecConfigRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_id"] = resource_id
+        input_: capo_route53resolver.types.get_resolver_dnssec_config_request.GetResolverDnssecConfigRequest = {
+            "resource_id": resource_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_resolver_endpoint(
@@ -2176,14 +2238,16 @@ class Route53ResolverClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_route53resolver.types.get_resolver_endpoint_request.GetResolverEndpointRequest = {}  # type: ignore[typeddict-item]
-        input_["resolver_endpoint_id"] = resolver_endpoint_id
+        input_: capo_route53resolver.types.get_resolver_endpoint_request.GetResolverEndpointRequest = {
+            "resolver_endpoint_id": resolver_endpoint_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_resolver_query_log_config(
@@ -2222,14 +2286,16 @@ class Route53ResolverClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_route53resolver.types.get_resolver_query_log_config_request.GetResolverQueryLogConfigRequest = {}  # type: ignore[typeddict-item]
-        input_["resolver_query_log_config_id"] = resolver_query_log_config_id
+        input_: capo_route53resolver.types.get_resolver_query_log_config_request.GetResolverQueryLogConfigRequest = {
+            "resolver_query_log_config_id": resolver_query_log_config_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_resolver_query_log_config_association(
@@ -2268,16 +2334,16 @@ class Route53ResolverClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_route53resolver.types.get_resolver_query_log_config_association_request.GetResolverQueryLogConfigAssociationRequest = {}  # type: ignore[typeddict-item]
-        input_["resolver_query_log_config_association_id"] = (
-            resolver_query_log_config_association_id
-        )
+        input_: capo_route53resolver.types.get_resolver_query_log_config_association_request.GetResolverQueryLogConfigAssociationRequest = {
+            "resolver_query_log_config_association_id": resolver_query_log_config_association_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_resolver_query_log_config_policy(
@@ -2315,14 +2381,16 @@ class Route53ResolverClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_route53resolver.types.get_resolver_query_log_config_policy_request.GetResolverQueryLogConfigPolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
+        input_: capo_route53resolver.types.get_resolver_query_log_config_policy_request.GetResolverQueryLogConfigPolicyRequest = {
+            "arn": arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_resolver_rule(
@@ -2361,14 +2429,16 @@ class Route53ResolverClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_route53resolver.types.get_resolver_rule_request.GetResolverRuleRequest = {}  # type: ignore[typeddict-item]
-        input_["resolver_rule_id"] = resolver_rule_id
+        input_: capo_route53resolver.types.get_resolver_rule_request.GetResolverRuleRequest = {
+            "resolver_rule_id": resolver_rule_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_resolver_rule_association(
@@ -2405,14 +2475,16 @@ class Route53ResolverClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_route53resolver.types.get_resolver_rule_association_request.GetResolverRuleAssociationRequest = {}  # type: ignore[typeddict-item]
-        input_["resolver_rule_association_id"] = resolver_rule_association_id
+        input_: capo_route53resolver.types.get_resolver_rule_association_request.GetResolverRuleAssociationRequest = {
+            "resolver_rule_association_id": resolver_rule_association_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_resolver_rule_policy(
@@ -2449,14 +2521,16 @@ class Route53ResolverClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_route53resolver.types.get_resolver_rule_policy_request.GetResolverRulePolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
+        input_: capo_route53resolver.types.get_resolver_rule_policy_request.GetResolverRulePolicyRequest = {
+            "arn": arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def import_firewall_domains(
@@ -2500,16 +2574,18 @@ class Route53ResolverClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_route53resolver.types.import_firewall_domains_request.ImportFirewallDomainsRequest = {}  # type: ignore[typeddict-item]
-        input_["firewall_domain_list_id"] = firewall_domain_list_id
-        input_["operation"] = operation
-        input_["domain_file_url"] = domain_file_url
+        input_: capo_route53resolver.types.import_firewall_domains_request.ImportFirewallDomainsRequest = {
+            "firewall_domain_list_id": firewall_domain_list_id,
+            "operation": operation,
+            "domain_file_url": domain_file_url,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_firewall_configs(
@@ -2550,7 +2626,7 @@ class Route53ResolverClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_route53resolver.types.list_firewall_configs_request.ListFirewallConfigsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_route53resolver.types.list_firewall_configs_request.ListFirewallConfigsRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -2561,6 +2637,7 @@ class Route53ResolverClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_firewall_configs(
@@ -2624,7 +2701,7 @@ class Route53ResolverClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_route53resolver.types.list_firewall_domain_lists_request.ListFirewallDomainListsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_route53resolver.types.list_firewall_domain_lists_request.ListFirewallDomainListsRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -2635,6 +2712,7 @@ class Route53ResolverClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_firewall_domain_lists(
@@ -2701,8 +2779,9 @@ class Route53ResolverClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_route53resolver.types.list_firewall_domains_request.ListFirewallDomainsRequest = {}  # type: ignore[typeddict-item]
-        input_["firewall_domain_list_id"] = firewall_domain_list_id
+        input_: capo_route53resolver.types.list_firewall_domains_request.ListFirewallDomainsRequest = {
+            "firewall_domain_list_id": firewall_domain_list_id
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -2713,6 +2792,7 @@ class Route53ResolverClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_firewall_domains(
@@ -2790,7 +2870,7 @@ class Route53ResolverClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_route53resolver.types.list_firewall_rule_group_associations_request.ListFirewallRuleGroupAssociationsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_route53resolver.types.list_firewall_rule_group_associations_request.ListFirewallRuleGroupAssociationsRequest = {}
         if firewall_rule_group_id is not None:
             input_["firewall_rule_group_id"] = firewall_rule_group_id
         if vpc_id is not None:
@@ -2809,6 +2889,7 @@ class Route53ResolverClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_firewall_rule_group_associations(
@@ -2884,7 +2965,7 @@ class Route53ResolverClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_route53resolver.types.list_firewall_rule_groups_request.ListFirewallRuleGroupsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_route53resolver.types.list_firewall_rule_groups_request.ListFirewallRuleGroupsRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -2895,6 +2976,7 @@ class Route53ResolverClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_firewall_rule_groups(
@@ -2965,8 +3047,9 @@ class Route53ResolverClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_route53resolver.types.list_firewall_rules_request.ListFirewallRulesRequest = {}  # type: ignore[typeddict-item]
-        input_["firewall_rule_group_id"] = firewall_rule_group_id
+        input_: capo_route53resolver.types.list_firewall_rules_request.ListFirewallRulesRequest = {
+            "firewall_rule_group_id": firewall_rule_group_id
+        }
         if priority is not None:
             input_["priority"] = priority
         if action is not None:
@@ -2981,6 +3064,7 @@ class Route53ResolverClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_firewall_rules(
@@ -3054,7 +3138,7 @@ class Route53ResolverClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_route53resolver.types.list_firewall_rule_types_request.ListFirewallRuleTypesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_route53resolver.types.list_firewall_rule_types_request.ListFirewallRuleTypesRequest = {}
         if rule_type is not None:
             input_["rule_type"] = rule_type
         if max_results is not None:
@@ -3067,6 +3151,7 @@ class Route53ResolverClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_firewall_rule_types(
@@ -3139,7 +3224,7 @@ class Route53ResolverClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_route53resolver.types.list_outpost_resolvers_request.ListOutpostResolversRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_route53resolver.types.list_outpost_resolvers_request.ListOutpostResolversRequest = {}
         if outpost_arn is not None:
             input_["outpost_arn"] = outpost_arn
         if max_results is not None:
@@ -3152,6 +3237,7 @@ class Route53ResolverClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_outpost_resolvers(
@@ -3222,7 +3308,7 @@ class Route53ResolverClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_route53resolver.types.list_resolver_configs_request.ListResolverConfigsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_route53resolver.types.list_resolver_configs_request.ListResolverConfigsRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -3233,6 +3319,7 @@ class Route53ResolverClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_resolver_configs(
@@ -3300,7 +3387,7 @@ class Route53ResolverClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_route53resolver.types.list_resolver_dnssec_configs_request.ListResolverDnssecConfigsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_route53resolver.types.list_resolver_dnssec_configs_request.ListResolverDnssecConfigsRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -3313,6 +3400,7 @@ class Route53ResolverClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_resolver_dnssec_configs(
@@ -3381,8 +3469,9 @@ class Route53ResolverClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_route53resolver.types.list_resolver_endpoint_ip_addresses_request.ListResolverEndpointIpAddressesRequest = {}  # type: ignore[typeddict-item]
-        input_["resolver_endpoint_id"] = resolver_endpoint_id
+        input_: capo_route53resolver.types.list_resolver_endpoint_ip_addresses_request.ListResolverEndpointIpAddressesRequest = {
+            "resolver_endpoint_id": resolver_endpoint_id
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -3393,6 +3482,7 @@ class Route53ResolverClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_resolver_endpoint_ip_addresses(
@@ -3461,7 +3551,7 @@ class Route53ResolverClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_route53resolver.types.list_resolver_endpoints_request.ListResolverEndpointsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_route53resolver.types.list_resolver_endpoints_request.ListResolverEndpointsRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -3474,6 +3564,7 @@ class Route53ResolverClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_resolver_endpoints(
@@ -3547,7 +3638,7 @@ class Route53ResolverClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_route53resolver.types.list_resolver_query_log_config_associations_request.ListResolverQueryLogConfigAssociationsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_route53resolver.types.list_resolver_query_log_config_associations_request.ListResolverQueryLogConfigAssociationsRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -3564,6 +3655,7 @@ class Route53ResolverClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_resolver_query_log_config_associations(
@@ -3643,7 +3735,7 @@ class Route53ResolverClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_route53resolver.types.list_resolver_query_log_configs_request.ListResolverQueryLogConfigsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_route53resolver.types.list_resolver_query_log_configs_request.ListResolverQueryLogConfigsRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -3660,6 +3752,7 @@ class Route53ResolverClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_resolver_query_log_configs(
@@ -3732,7 +3825,7 @@ class Route53ResolverClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_route53resolver.types.list_resolver_rule_associations_request.ListResolverRuleAssociationsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_route53resolver.types.list_resolver_rule_associations_request.ListResolverRuleAssociationsRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -3745,6 +3838,7 @@ class Route53ResolverClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_resolver_rule_associations(
@@ -3813,7 +3907,7 @@ class Route53ResolverClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_route53resolver.types.list_resolver_rules_request.ListResolverRulesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_route53resolver.types.list_resolver_rules_request.ListResolverRulesRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -3826,6 +3920,7 @@ class Route53ResolverClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_resolver_rules(
@@ -3895,8 +3990,9 @@ class Route53ResolverClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_route53resolver.types.list_tags_for_resource_request.ListTagsForResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_route53resolver.types.list_tags_for_resource_request.ListTagsForResourceRequest = {
+            "resource_arn": resource_arn
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -3907,6 +4003,7 @@ class Route53ResolverClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_tags_for_resource(
@@ -3971,15 +4068,17 @@ class Route53ResolverClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_route53resolver.types.put_firewall_rule_group_policy_request.PutFirewallRuleGroupPolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
-        input_["firewall_rule_group_policy"] = firewall_rule_group_policy
+        input_: capo_route53resolver.types.put_firewall_rule_group_policy_request.PutFirewallRuleGroupPolicyRequest = {
+            "arn": arn,
+            "firewall_rule_group_policy": firewall_rule_group_policy,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def put_resolver_query_log_config_policy(
@@ -4020,15 +4119,17 @@ class Route53ResolverClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_route53resolver.types.put_resolver_query_log_config_policy_request.PutResolverQueryLogConfigPolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
-        input_["resolver_query_log_config_policy"] = resolver_query_log_config_policy
+        input_: capo_route53resolver.types.put_resolver_query_log_config_policy_request.PutResolverQueryLogConfigPolicyRequest = {
+            "arn": arn,
+            "resolver_query_log_config_policy": resolver_query_log_config_policy,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def put_resolver_rule_policy(
@@ -4068,15 +4169,17 @@ class Route53ResolverClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_route53resolver.types.put_resolver_rule_policy_request.PutResolverRulePolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
-        input_["resolver_rule_policy"] = resolver_rule_policy
+        input_: capo_route53resolver.types.put_resolver_rule_policy_request.PutResolverRulePolicyRequest = {
+            "arn": arn,
+            "resolver_rule_policy": resolver_rule_policy,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def tag_resource(
@@ -4118,15 +4221,17 @@ class Route53ResolverClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_route53resolver.types.tag_resource_request.TagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tags"] = tags
+        input_: capo_route53resolver.types.tag_resource_request.TagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tags": tags,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def untag_resource(
@@ -4166,15 +4271,17 @@ class Route53ResolverClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_route53resolver.types.untag_resource_request.UntagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tag_keys"] = tag_keys
+        input_: capo_route53resolver.types.untag_resource_request.UntagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tag_keys": tag_keys,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_firewall_config(
@@ -4214,15 +4321,17 @@ class Route53ResolverClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_route53resolver.types.update_firewall_config_request.UpdateFirewallConfigRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_id"] = resource_id
-        input_["firewall_fail_open"] = firewall_fail_open
+        input_: capo_route53resolver.types.update_firewall_config_request.UpdateFirewallConfigRequest = {
+            "resource_id": resource_id,
+            "firewall_fail_open": firewall_fail_open,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_firewall_domains(
@@ -4266,16 +4375,18 @@ class Route53ResolverClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_route53resolver.types.update_firewall_domains_request.UpdateFirewallDomainsRequest = {}  # type: ignore[typeddict-item]
-        input_["firewall_domain_list_id"] = firewall_domain_list_id
-        input_["operation"] = operation
-        input_["domains"] = domains
+        input_: capo_route53resolver.types.update_firewall_domains_request.UpdateFirewallDomainsRequest = {
+            "firewall_domain_list_id": firewall_domain_list_id,
+            "operation": operation,
+            "domains": domains,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_firewall_rule(
@@ -4362,8 +4473,9 @@ class Route53ResolverClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_route53resolver.types.update_firewall_rule_request.UpdateFirewallRuleRequest = {}  # type: ignore[typeddict-item]
-        input_["firewall_rule_group_id"] = firewall_rule_group_id
+        input_: capo_route53resolver.types.update_firewall_rule_request.UpdateFirewallRuleRequest = {
+            "firewall_rule_group_id": firewall_rule_group_id
+        }
         if firewall_domain_list_id is not None:
             input_["firewall_domain_list_id"] = firewall_domain_list_id
         if firewall_threat_protection_id is not None:
@@ -4400,6 +4512,7 @@ class Route53ResolverClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_firewall_rule_group_association(
@@ -4446,10 +4559,9 @@ class Route53ResolverClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_route53resolver.types.update_firewall_rule_group_association_request.UpdateFirewallRuleGroupAssociationRequest = {}  # type: ignore[typeddict-item]
-        input_["firewall_rule_group_association_id"] = (
-            firewall_rule_group_association_id
-        )
+        input_: capo_route53resolver.types.update_firewall_rule_group_association_request.UpdateFirewallRuleGroupAssociationRequest = {
+            "firewall_rule_group_association_id": firewall_rule_group_association_id
+        }
         if priority is not None:
             input_["priority"] = priority
         if mutation_protection is not None:
@@ -4462,6 +4574,7 @@ class Route53ResolverClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_outpost_resolver(
@@ -4513,8 +4626,9 @@ class Route53ResolverClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_route53resolver.types.update_outpost_resolver_request.UpdateOutpostResolverRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_route53resolver.types.update_outpost_resolver_request.UpdateOutpostResolverRequest = {
+            "id": id
+        }
         if name is not None:
             input_["name"] = name
         if instance_count is not None:
@@ -4527,6 +4641,7 @@ class Route53ResolverClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_resolver_config(
@@ -4570,15 +4685,17 @@ class Route53ResolverClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_route53resolver.types.update_resolver_config_request.UpdateResolverConfigRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_id"] = resource_id
-        input_["autodefined_reverse_flag"] = autodefined_reverse_flag
+        input_: capo_route53resolver.types.update_resolver_config_request.UpdateResolverConfigRequest = {
+            "resource_id": resource_id,
+            "autodefined_reverse_flag": autodefined_reverse_flag,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_resolver_dnssec_config(
@@ -4619,15 +4736,17 @@ class Route53ResolverClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_route53resolver.types.update_resolver_dnssec_config_request.UpdateResolverDnssecConfigRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_id"] = resource_id
-        input_["validation"] = validation
+        input_: capo_route53resolver.types.update_resolver_dnssec_config_request.UpdateResolverDnssecConfigRequest = {
+            "resource_id": resource_id,
+            "validation": validation,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_resolver_endpoint(
@@ -4696,8 +4815,9 @@ class Route53ResolverClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_route53resolver.types.update_resolver_endpoint_request.UpdateResolverEndpointRequest = {}  # type: ignore[typeddict-item]
-        input_["resolver_endpoint_id"] = resolver_endpoint_id
+        input_: capo_route53resolver.types.update_resolver_endpoint_request.UpdateResolverEndpointRequest = {
+            "resolver_endpoint_id": resolver_endpoint_id
+        }
         if name is not None:
             input_["name"] = name
         if resolver_endpoint_type is not None:
@@ -4722,6 +4842,7 @@ class Route53ResolverClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_resolver_rule(
@@ -4764,15 +4885,17 @@ class Route53ResolverClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_route53resolver.types.update_resolver_rule_request.UpdateResolverRuleRequest = {}  # type: ignore[typeddict-item]
-        input_["resolver_rule_id"] = resolver_rule_id
-        input_["config"] = config
+        input_: capo_route53resolver.types.update_resolver_rule_request.UpdateResolverRuleRequest = {
+            "resolver_rule_id": resolver_rule_id,
+            "config": config,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def __enter__(self) -> Self:

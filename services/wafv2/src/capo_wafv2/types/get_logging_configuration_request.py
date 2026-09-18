@@ -42,19 +42,19 @@ def serialize_aws_json_1_1(value: GetLoggingConfigurationRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetLoggingConfigurationRequest:
     out: GetLoggingConfigurationRequest = {}  # type: ignore[typeddict-item]
-    if "ResourceArn" in data:
+    if data.get("ResourceArn") is not None:
         out["resource_arn"] = data["ResourceArn"]
     else:
         raise DeserializationError(
             "GetLoggingConfigurationRequest.resource_arn required"
         )
-    if "LogType" in data:
+    if data.get("LogType") is not None:
         import capo_wafv2.types.log_type
 
         out["log_type"] = capo_wafv2.types.log_type.deserialize_aws_json_1_1(
             data["LogType"]
         )
-    if "LogScope" in data:
+    if data.get("LogScope") is not None:
         import capo_wafv2.types.log_scope
 
         out["log_scope"] = capo_wafv2.types.log_scope.deserialize_aws_json_1_1(

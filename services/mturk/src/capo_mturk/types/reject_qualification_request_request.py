@@ -28,12 +28,12 @@ def serialize_aws_json_1_1(value: RejectQualificationRequestRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RejectQualificationRequestRequest:
     out: RejectQualificationRequestRequest = {}  # type: ignore[typeddict-item]
-    if "QualificationRequestId" in data:
+    if data.get("QualificationRequestId") is not None:
         out["qualification_request_id"] = data["QualificationRequestId"]
     else:
         raise DeserializationError(
             "RejectQualificationRequestRequest.qualification_request_id required"
         )
-    if "Reason" in data:
+    if data.get("Reason") is not None:
         out["reason"] = data["Reason"]
     return out

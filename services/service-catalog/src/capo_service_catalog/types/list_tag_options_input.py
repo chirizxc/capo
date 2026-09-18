@@ -40,7 +40,7 @@ def serialize_aws_json_1_1(value: ListTagOptionsInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListTagOptionsInput:
     out: ListTagOptionsInput = {}  # type: ignore[typeddict-item]
-    if "Filters" in data:
+    if data.get("Filters") is not None:
         import capo_service_catalog.types.list_tag_options_filters
 
         out["filters"] = (
@@ -48,10 +48,10 @@ def deserialize_aws_json_1_1(data: dict) -> ListTagOptionsInput:
                 data["Filters"]
             )
         )
-    if "PageSize" in data:
+    if data.get("PageSize") is not None:
         out["page_size"] = data["PageSize"]
     else:
         out["page_size"] = 0
-    if "PageToken" in data:
+    if data.get("PageToken") is not None:
         out["page_token"] = data["PageToken"]
     return out

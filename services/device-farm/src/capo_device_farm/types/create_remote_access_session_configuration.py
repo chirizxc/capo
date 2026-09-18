@@ -64,7 +64,7 @@ def serialize_aws_json_1_1(value: CreateRemoteAccessSessionConfiguration) -> dic
 
 def deserialize_aws_json_1_1(data: dict) -> CreateRemoteAccessSessionConfiguration:
     out: CreateRemoteAccessSessionConfiguration = {}  # type: ignore[typeddict-item]
-    if "auxiliaryApps" in data:
+    if data.get("auxiliaryApps") is not None:
         import capo_device_farm.types.auxiliary_app_arn_list
 
         out["auxiliary_apps"] = (
@@ -72,7 +72,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateRemoteAccessSessionConfigurati
                 data["auxiliaryApps"]
             )
         )
-    if "billingMethod" in data:
+    if data.get("billingMethod") is not None:
         import capo_device_farm.types.billing_method
 
         out["billing_method"] = (
@@ -80,7 +80,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateRemoteAccessSessionConfigurati
                 data["billingMethod"]
             )
         )
-    if "vpceConfigurationArns" in data:
+    if data.get("vpceConfigurationArns") is not None:
         import capo_device_farm.types.amazon_resource_names
 
         out["vpce_configuration_arns"] = (
@@ -88,7 +88,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateRemoteAccessSessionConfigurati
                 data["vpceConfigurationArns"]
             )
         )
-    if "deviceProxy" in data:
+    if data.get("deviceProxy") is not None:
         import capo_device_farm.types.device_proxy
 
         out["device_proxy"] = (

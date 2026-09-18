@@ -113,19 +113,19 @@ def serialize_json(value: CreateExperimentTemplateRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateExperimentTemplateRequest:
     out: CreateExperimentTemplateRequest = {}  # type: ignore[typeddict-item]
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     else:
         raise DeserializationError(
             "CreateExperimentTemplateRequest.client_token required"
         )
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
     else:
         raise DeserializationError(
             "CreateExperimentTemplateRequest.description required"
         )
-    if "stopConditions" in data:
+    if data.get("stopConditions") is not None:
         import capo_fis.types.create_experiment_template_stop_condition_input_list
 
         out["stop_conditions"] = (
@@ -137,7 +137,7 @@ def deserialize_json(data: dict) -> CreateExperimentTemplateRequest:
         raise DeserializationError(
             "CreateExperimentTemplateRequest.stop_conditions required"
         )
-    if "targets" in data:
+    if data.get("targets") is not None:
         import capo_fis.types.create_experiment_template_target_input_map
 
         out["targets"] = (
@@ -145,7 +145,7 @@ def deserialize_json(data: dict) -> CreateExperimentTemplateRequest:
                 data["targets"]
             )
         )
-    if "actions" in data:
+    if data.get("actions") is not None:
         import capo_fis.types.create_experiment_template_action_input_map
 
         out["actions"] = (
@@ -155,15 +155,15 @@ def deserialize_json(data: dict) -> CreateExperimentTemplateRequest:
         )
     else:
         raise DeserializationError("CreateExperimentTemplateRequest.actions required")
-    if "roleArn" in data:
+    if data.get("roleArn") is not None:
         out["role_arn"] = data["roleArn"]
     else:
         raise DeserializationError("CreateExperimentTemplateRequest.role_arn required")
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_fis.types.tag_map
 
         out["tags"] = capo_fis.types.tag_map.deserialize_json(data["tags"])
-    if "logConfiguration" in data:
+    if data.get("logConfiguration") is not None:
         import capo_fis.types.create_experiment_template_log_configuration_input
 
         out["log_configuration"] = (
@@ -171,7 +171,7 @@ def deserialize_json(data: dict) -> CreateExperimentTemplateRequest:
                 data["logConfiguration"]
             )
         )
-    if "experimentOptions" in data:
+    if data.get("experimentOptions") is not None:
         import capo_fis.types.create_experiment_template_experiment_options_input
 
         out["experiment_options"] = (
@@ -179,7 +179,7 @@ def deserialize_json(data: dict) -> CreateExperimentTemplateRequest:
                 data["experimentOptions"]
             )
         )
-    if "experimentReportConfiguration" in data:
+    if data.get("experimentReportConfiguration") is not None:
         import capo_fis.types.create_experiment_template_report_configuration_input
 
         out["experiment_report_configuration"] = (

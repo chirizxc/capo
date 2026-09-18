@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> JobDefinitionList:
 
     out: JobDefinitionList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_batch.types.job_definition.deserialize_json(item))
     return out

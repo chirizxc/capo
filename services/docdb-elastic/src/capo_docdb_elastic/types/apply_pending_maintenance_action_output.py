@@ -30,7 +30,7 @@ def serialize_json(value: ApplyPendingMaintenanceActionOutput) -> dict:
 
 def deserialize_json(data: dict) -> ApplyPendingMaintenanceActionOutput:
     out: ApplyPendingMaintenanceActionOutput = {}  # type: ignore[typeddict-item]
-    if "resourcePendingMaintenanceAction" in data:
+    if data.get("resourcePendingMaintenanceAction") is not None:
         import capo_docdb_elastic.types.resource_pending_maintenance_action
 
         out["resource_pending_maintenance_action"] = (

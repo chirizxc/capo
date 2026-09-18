@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> __listOfApplicationDependencySummary:
 
     out: __listOfApplicationDependencySummary = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_serverlessapplicationrepository.types.application_dependency_summary.deserialize_json(
                 item

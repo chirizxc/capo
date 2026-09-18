@@ -28,8 +28,8 @@ def serialize_aws_json_1_1(value: MonitorInfo) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> MonitorInfo:
     out: MonitorInfo = {}  # type: ignore[typeddict-item]
-    if "MonitorArn" in data:
+    if data.get("MonitorArn") is not None:
         out["monitor_arn"] = data["MonitorArn"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         out["status"] = data["Status"]
     return out

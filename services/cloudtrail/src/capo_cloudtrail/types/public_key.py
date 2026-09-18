@@ -49,13 +49,13 @@ def serialize_aws_json_1_1(value: PublicKey) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PublicKey:
     out: PublicKey = {}  # type: ignore[typeddict-item]
-    if "Value" in data:
+    if data.get("Value") is not None:
         import capo_cloudtrail.types.byte_buffer
 
         out["value"] = capo_cloudtrail.types.byte_buffer.deserialize_aws_json_1_1(
             data["Value"]
         )
-    if "ValidityStartTime" in data:
+    if data.get("ValidityStartTime") is not None:
         import capo_cloudtrail.types.date
 
         out["validity_start_time"] = (
@@ -63,12 +63,12 @@ def deserialize_aws_json_1_1(data: dict) -> PublicKey:
                 data["ValidityStartTime"]
             )
         )
-    if "ValidityEndTime" in data:
+    if data.get("ValidityEndTime") is not None:
         import capo_cloudtrail.types.date
 
         out["validity_end_time"] = capo_cloudtrail.types.date.deserialize_aws_json_1_1(
             data["ValidityEndTime"]
         )
-    if "Fingerprint" in data:
+    if data.get("Fingerprint") is not None:
         out["fingerprint"] = data["Fingerprint"]
     return out

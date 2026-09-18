@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> SecurityControls:
 
     out: SecurityControls = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_securityhub.types.security_control.deserialize_json(item))
     return out

@@ -52,7 +52,7 @@ def serialize_json(value: ProtectedQueryDistributeOutputConfigurationLocation) -
 
 
 def deserialize_json(data: dict) -> ProtectedQueryDistributeOutputConfigurationLocation:
-    if "s3" in data:
+    if data.get("s3") is not None:
         import capo_cleanrooms.types.protected_query_s3_output_configuration
 
         return {
@@ -60,7 +60,7 @@ def deserialize_json(data: dict) -> ProtectedQueryDistributeOutputConfigurationL
                 data["s3"]
             )
         }
-    elif "member" in data:
+    elif data.get("member") is not None:
         import capo_cleanrooms.types.protected_query_member_output_configuration
 
         return {

@@ -65,7 +65,7 @@ def serialize_json(value: UpdatePackageGroupOriginConfigurationRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdatePackageGroupOriginConfigurationRequest:
     out: UpdatePackageGroupOriginConfigurationRequest = {}  # type: ignore[typeddict-item]
-    if "restrictions" in data:
+    if data.get("restrictions") is not None:
         import capo_codeartifact.types.origin_restrictions
 
         out["restrictions"] = (
@@ -73,7 +73,7 @@ def deserialize_json(data: dict) -> UpdatePackageGroupOriginConfigurationRequest
                 data["restrictions"]
             )
         )
-    if "addAllowedRepositories" in data:
+    if data.get("addAllowedRepositories") is not None:
         import capo_codeartifact.types.package_group_allowed_repository_list
 
         out["add_allowed_repositories"] = (
@@ -81,7 +81,7 @@ def deserialize_json(data: dict) -> UpdatePackageGroupOriginConfigurationRequest
                 data["addAllowedRepositories"]
             )
         )
-    if "removeAllowedRepositories" in data:
+    if data.get("removeAllowedRepositories") is not None:
         import capo_codeartifact.types.package_group_allowed_repository_list
 
         out["remove_allowed_repositories"] = (

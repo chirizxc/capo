@@ -32,12 +32,12 @@ def serialize_json(value: OverrideButtonConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> OverrideButtonConfiguration:
     out: OverrideButtonConfiguration = {}  # type: ignore[typeddict-item]
-    if "ButtonAction" in data:
+    if data.get("ButtonAction") is not None:
         import capo_pinpoint.types.button_action
 
         out["button_action"] = capo_pinpoint.types.button_action.deserialize_json(
             data["ButtonAction"]
         )
-    if "Link" in data:
+    if data.get("Link") is not None:
         out["link"] = data["Link"]
     return out

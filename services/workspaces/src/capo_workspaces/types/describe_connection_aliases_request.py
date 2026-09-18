@@ -46,7 +46,7 @@ def serialize_aws_json_1_1(value: DescribeConnectionAliasesRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeConnectionAliasesRequest:
     out: DescribeConnectionAliasesRequest = {}  # type: ignore[typeddict-item]
-    if "AliasIds" in data:
+    if data.get("AliasIds") is not None:
         import capo_workspaces.types.connection_alias_id_list
 
         out["alias_ids"] = (
@@ -54,10 +54,10 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeConnectionAliasesRequest:
                 data["AliasIds"]
             )
         )
-    if "ResourceId" in data:
+    if data.get("ResourceId") is not None:
         out["resource_id"] = data["ResourceId"]
-    if "Limit" in data:
+    if data.get("Limit") is not None:
         out["limit"] = data["Limit"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

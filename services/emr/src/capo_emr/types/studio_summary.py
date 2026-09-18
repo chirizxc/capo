@@ -57,23 +57,23 @@ def serialize_aws_json_1_1(value: StudioSummary) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> StudioSummary:
     out: StudioSummary = {}  # type: ignore[typeddict-item]
-    if "StudioId" in data:
+    if data.get("StudioId") is not None:
         out["studio_id"] = data["StudioId"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "VpcId" in data:
+    if data.get("VpcId") is not None:
         out["vpc_id"] = data["VpcId"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Url" in data:
+    if data.get("Url") is not None:
         out["url"] = data["Url"]
-    if "AuthMode" in data:
+    if data.get("AuthMode") is not None:
         import capo_emr.types.auth_mode
 
         out["auth_mode"] = capo_emr.types.auth_mode.deserialize_aws_json_1_1(
             data["AuthMode"]
         )
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_emr.types.date
 
         out["creation_time"] = capo_emr.types.date.deserialize_aws_json_1_1(

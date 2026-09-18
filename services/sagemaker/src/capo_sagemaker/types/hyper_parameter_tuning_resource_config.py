@@ -76,7 +76,7 @@ def serialize_aws_json_1_1(value: HyperParameterTuningResourceConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> HyperParameterTuningResourceConfig:
     out: HyperParameterTuningResourceConfig = {}  # type: ignore[typeddict-item]
-    if "InstanceType" in data:
+    if data.get("InstanceType") is not None:
         import capo_sagemaker.types.training_instance_type
 
         out["instance_type"] = (
@@ -84,13 +84,13 @@ def deserialize_aws_json_1_1(data: dict) -> HyperParameterTuningResourceConfig:
                 data["InstanceType"]
             )
         )
-    if "InstanceCount" in data:
+    if data.get("InstanceCount") is not None:
         out["instance_count"] = data["InstanceCount"]
-    if "VolumeSizeInGB" in data:
+    if data.get("VolumeSizeInGB") is not None:
         out["volume_size_in_gb"] = data["VolumeSizeInGB"]
-    if "VolumeKmsKeyId" in data:
+    if data.get("VolumeKmsKeyId") is not None:
         out["volume_kms_key_id"] = data["VolumeKmsKeyId"]
-    if "AllocationStrategy" in data:
+    if data.get("AllocationStrategy") is not None:
         import capo_sagemaker.types.hyper_parameter_tuning_allocation_strategy
 
         out["allocation_strategy"] = (
@@ -98,7 +98,7 @@ def deserialize_aws_json_1_1(data: dict) -> HyperParameterTuningResourceConfig:
                 data["AllocationStrategy"]
             )
         )
-    if "InstanceConfigs" in data:
+    if data.get("InstanceConfigs") is not None:
         import capo_sagemaker.types.hyper_parameter_tuning_instance_configs
 
         out["instance_configs"] = (

@@ -49,18 +49,18 @@ def serialize_aws_json_1_0(value: UpdateHypervisorInput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> UpdateHypervisorInput:
     out: UpdateHypervisorInput = {}  # type: ignore[typeddict-item]
-    if "HypervisorArn" in data:
+    if data.get("HypervisorArn") is not None:
         out["hypervisor_arn"] = data["HypervisorArn"]
     else:
         raise DeserializationError("UpdateHypervisorInput.hypervisor_arn required")
-    if "Host" in data:
+    if data.get("Host") is not None:
         out["host"] = data["Host"]
-    if "Username" in data:
+    if data.get("Username") is not None:
         out["username"] = data["Username"]
-    if "Password" in data:
+    if data.get("Password") is not None:
         out["password"] = data["Password"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "LogGroupArn" in data:
+    if data.get("LogGroupArn") is not None:
         out["log_group_arn"] = data["LogGroupArn"]
     return out

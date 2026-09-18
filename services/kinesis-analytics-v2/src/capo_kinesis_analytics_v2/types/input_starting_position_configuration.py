@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: InputStartingPositionConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> InputStartingPositionConfiguration:
     out: InputStartingPositionConfiguration = {}  # type: ignore[typeddict-item]
-    if "InputStartingPosition" in data:
+    if data.get("InputStartingPosition") is not None:
         import capo_kinesis_analytics_v2.types.input_starting_position
 
         out["input_starting_position"] = (

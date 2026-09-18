@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import uuid
 from typing import TYPE_CHECKING, Optional
 
 import capo_route53globalresolver._auth._signers
@@ -96,10 +97,12 @@ class AccessToken:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_route53globalresolver.types.create_access_token_input.CreateAccessTokenInput = {}  # type: ignore[typeddict-item]
-        if client_token is not None:
-            input_["client_token"] = client_token
-        input_["dns_view_id"] = dns_view_id
+        input_: capo_route53globalresolver.types.create_access_token_input.CreateAccessTokenInput = {
+            "dns_view_id": dns_view_id
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if expires_at is not None:
             input_["expires_at"] = expires_at
         if name is not None:
@@ -112,6 +115,7 @@ class AccessToken:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -151,14 +155,16 @@ class AccessToken:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_route53globalresolver.types.get_access_token_input.GetAccessTokenInput = {}  # type: ignore[typeddict-item]
-        input_["access_token_id"] = access_token_id
+        input_: capo_route53globalresolver.types.get_access_token_input.GetAccessTokenInput = {
+            "access_token_id": access_token_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update(
@@ -200,15 +206,17 @@ class AccessToken:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_route53globalresolver.types.update_access_token_input.UpdateAccessTokenInput = {}  # type: ignore[typeddict-item]
-        input_["access_token_id"] = access_token_id
-        input_["name"] = name
+        input_: capo_route53globalresolver.types.update_access_token_input.UpdateAccessTokenInput = {
+            "access_token_id": access_token_id,
+            "name": name,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -247,14 +255,16 @@ class AccessToken:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_route53globalresolver.types.delete_access_token_input.DeleteAccessTokenInput = {}  # type: ignore[typeddict-item]
-        input_["access_token_id"] = access_token_id
+        input_: capo_route53globalresolver.types.delete_access_token_input.DeleteAccessTokenInput = {
+            "access_token_id": access_token_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -298,12 +308,13 @@ class AccessToken:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_route53globalresolver.types.list_access_tokens_input.ListAccessTokensInput = {}  # type: ignore[typeddict-item]
+        input_: capo_route53globalresolver.types.list_access_tokens_input.ListAccessTokensInput = {
+            "dns_view_id": dns_view_id
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
             input_["next_token"] = next_token
-        input_["dns_view_id"] = dns_view_id
         if filters is not None:
             input_["filters"] = filters
 
@@ -312,6 +323,7 @@ class AccessToken:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -371,10 +383,12 @@ class AsyncAccessToken:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_route53globalresolver.types.create_access_token_input.CreateAccessTokenInput = {}  # type: ignore[typeddict-item]
-        if client_token is not None:
-            input_["client_token"] = client_token
-        input_["dns_view_id"] = dns_view_id
+        input_: capo_route53globalresolver.types.create_access_token_input.CreateAccessTokenInput = {
+            "dns_view_id": dns_view_id
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if expires_at is not None:
             input_["expires_at"] = expires_at
         if name is not None:
@@ -387,6 +401,7 @@ class AsyncAccessToken:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -427,14 +442,16 @@ class AsyncAccessToken:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_route53globalresolver.types.get_access_token_input.GetAccessTokenInput = {}  # type: ignore[typeddict-item]
-        input_["access_token_id"] = access_token_id
+        input_: capo_route53globalresolver.types.get_access_token_input.GetAccessTokenInput = {
+            "access_token_id": access_token_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update(
@@ -477,15 +494,17 @@ class AsyncAccessToken:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_route53globalresolver.types.update_access_token_input.UpdateAccessTokenInput = {}  # type: ignore[typeddict-item]
-        input_["access_token_id"] = access_token_id
-        input_["name"] = name
+        input_: capo_route53globalresolver.types.update_access_token_input.UpdateAccessTokenInput = {
+            "access_token_id": access_token_id,
+            "name": name,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -525,14 +544,16 @@ class AsyncAccessToken:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_route53globalresolver.types.delete_access_token_input.DeleteAccessTokenInput = {}  # type: ignore[typeddict-item]
-        input_["access_token_id"] = access_token_id
+        input_: capo_route53globalresolver.types.delete_access_token_input.DeleteAccessTokenInput = {
+            "access_token_id": access_token_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -577,12 +598,13 @@ class AsyncAccessToken:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_route53globalresolver.types.list_access_tokens_input.ListAccessTokensInput = {}  # type: ignore[typeddict-item]
+        input_: capo_route53globalresolver.types.list_access_tokens_input.ListAccessTokensInput = {
+            "dns_view_id": dns_view_id
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
             input_["next_token"] = next_token
-        input_["dns_view_id"] = dns_view_id
         if filters is not None:
             input_["filters"] = filters
 
@@ -591,4 +613,5 @@ class AsyncAccessToken:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

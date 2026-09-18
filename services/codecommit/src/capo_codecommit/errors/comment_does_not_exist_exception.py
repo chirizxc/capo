@@ -25,7 +25,7 @@ def serialize_aws_json_1_1(value: CommentDoesNotExistException_) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CommentDoesNotExistException_:
     out: CommentDoesNotExistException_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     return out
 
@@ -35,15 +35,18 @@ class CommentDoesNotExistException(ServiceError):
 
     code: str | None = "CommentDoesNotExistException"
 
-    def __init__(self, data: CommentDoesNotExistException_):
+    def __init__(self, data: CommentDoesNotExistException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="CommentDoesNotExistException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "CommentDoesNotExistException":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "CommentDoesNotExistException":
+        return cls(deserialize_aws_json_1_1(data), message)

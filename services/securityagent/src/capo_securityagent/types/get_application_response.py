@@ -57,17 +57,17 @@ def serialize_json(value: GetApplicationResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetApplicationResponse:
     out: GetApplicationResponse = {}  # type: ignore[typeddict-item]
-    if "applicationId" in data:
+    if data.get("applicationId") is not None:
         out["application_id"] = data["applicationId"]
     else:
         raise DeserializationError("GetApplicationResponse.application_id required")
-    if "domain" in data:
+    if data.get("domain") is not None:
         out["domain"] = data["domain"]
     else:
         raise DeserializationError("GetApplicationResponse.domain required")
-    if "applicationName" in data:
+    if data.get("applicationName") is not None:
         out["application_name"] = data["applicationName"]
-    if "idcConfiguration" in data:
+    if data.get("idcConfiguration") is not None:
         import capo_securityagent.types.id_c_configuration
 
         out["idc_configuration"] = (
@@ -75,8 +75,8 @@ def deserialize_json(data: dict) -> GetApplicationResponse:
                 data["idcConfiguration"]
             )
         )
-    if "roleArn" in data:
+    if data.get("roleArn") is not None:
         out["role_arn"] = data["roleArn"]
-    if "defaultKmsKeyId" in data:
+    if data.get("defaultKmsKeyId") is not None:
         out["default_kms_key_id"] = data["defaultKmsKeyId"]
     return out

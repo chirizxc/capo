@@ -51,11 +51,11 @@ def serialize_json(value: LoRaWANMulticastSession) -> dict:
 
 def deserialize_json(data: dict) -> LoRaWANMulticastSession:
     out: LoRaWANMulticastSession = {}  # type: ignore[typeddict-item]
-    if "DlDr" in data:
+    if data.get("DlDr") is not None:
         out["dl_dr"] = data["DlDr"]
-    if "DlFreq" in data:
+    if data.get("DlFreq") is not None:
         out["dl_freq"] = data["DlFreq"]
-    if "SessionStartTime" in data:
+    if data.get("SessionStartTime") is not None:
         import capo_iot_wireless.types.session_start_time_timestamp
 
         out["session_start_time"] = (
@@ -63,8 +63,8 @@ def deserialize_json(data: dict) -> LoRaWANMulticastSession:
                 data["SessionStartTime"]
             )
         )
-    if "SessionTimeout" in data:
+    if data.get("SessionTimeout") is not None:
         out["session_timeout"] = data["SessionTimeout"]
-    if "PingSlotPeriod" in data:
+    if data.get("PingSlotPeriod") is not None:
         out["ping_slot_period"] = data["PingSlotPeriod"]
     return out

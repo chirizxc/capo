@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> AssetModelHierarchyDefinitions:
 
     out: AssetModelHierarchyDefinitions = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_iotsitewise.types.asset_model_hierarchy_definition.deserialize_json(
                 item

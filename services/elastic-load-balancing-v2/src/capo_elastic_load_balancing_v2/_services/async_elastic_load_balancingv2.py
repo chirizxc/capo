@@ -352,7 +352,7 @@ class AsyncElasticLoadBalancingv2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_elastic_load_balancing_v2.types.add_listener_certificates_input.AddListenerCertificatesInput = {}  # type: ignore[typeddict-item]
+        input_: capo_elastic_load_balancing_v2.types.add_listener_certificates_input.AddListenerCertificatesInput = {}
         if listener_arn is not None:
             input_["listener_arn"] = listener_arn
         if certificates is not None:
@@ -363,6 +363,7 @@ class AsyncElasticLoadBalancingv2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def add_tags(
@@ -413,7 +414,7 @@ class AsyncElasticLoadBalancingv2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_elastic_load_balancing_v2.types.add_tags_input.AddTagsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_elastic_load_balancing_v2.types.add_tags_input.AddTagsInput = {}
         if resource_arns is not None:
             input_["resource_arns"] = resource_arns
         if tags is not None:
@@ -424,6 +425,7 @@ class AsyncElasticLoadBalancingv2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def add_trust_store_revocations(
@@ -467,7 +469,7 @@ class AsyncElasticLoadBalancingv2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_elastic_load_balancing_v2.types.add_trust_store_revocations_input.AddTrustStoreRevocationsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_elastic_load_balancing_v2.types.add_trust_store_revocations_input.AddTrustStoreRevocationsInput = {}
         if trust_store_arn is not None:
             input_["trust_store_arn"] = trust_store_arn
         if revocation_contents is not None:
@@ -478,6 +480,7 @@ class AsyncElasticLoadBalancingv2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_listener(
@@ -571,7 +574,7 @@ class AsyncElasticLoadBalancingv2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_elastic_load_balancing_v2.types.create_listener_input.CreateListenerInput = {}  # type: ignore[typeddict-item]
+        input_: capo_elastic_load_balancing_v2.types.create_listener_input.CreateListenerInput = {}
         if load_balancer_arn is not None:
             input_["load_balancer_arn"] = load_balancer_arn
         if protocol is not None:
@@ -596,6 +599,7 @@ class AsyncElasticLoadBalancingv2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_load_balancer(
@@ -692,7 +696,7 @@ class AsyncElasticLoadBalancingv2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_elastic_load_balancing_v2.types.create_load_balancer_input.CreateLoadBalancerInput = {}  # type: ignore[typeddict-item]
+        input_: capo_elastic_load_balancing_v2.types.create_load_balancer_input.CreateLoadBalancerInput = {}
         if name is not None:
             input_["name"] = name
         if subnets is not None:
@@ -723,6 +727,7 @@ class AsyncElasticLoadBalancingv2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_rule(
@@ -797,7 +802,7 @@ class AsyncElasticLoadBalancingv2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_elastic_load_balancing_v2.types.create_rule_input.CreateRuleInput = {}  # type: ignore[typeddict-item]
+        input_: capo_elastic_load_balancing_v2.types.create_rule_input.CreateRuleInput = {}
         if listener_arn is not None:
             input_["listener_arn"] = listener_arn
         if conditions is not None:
@@ -816,6 +821,7 @@ class AsyncElasticLoadBalancingv2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_target_group(
@@ -923,7 +929,7 @@ class AsyncElasticLoadBalancingv2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_elastic_load_balancing_v2.types.create_target_group_input.CreateTargetGroupInput = {}  # type: ignore[typeddict-item]
+        input_: capo_elastic_load_balancing_v2.types.create_target_group_input.CreateTargetGroupInput = {}
         if name is not None:
             input_["name"] = name
         if protocol is not None:
@@ -966,6 +972,7 @@ class AsyncElasticLoadBalancingv2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_trust_store(
@@ -1021,7 +1028,7 @@ class AsyncElasticLoadBalancingv2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_elastic_load_balancing_v2.types.create_trust_store_input.CreateTrustStoreInput = {}  # type: ignore[typeddict-item]
+        input_: capo_elastic_load_balancing_v2.types.create_trust_store_input.CreateTrustStoreInput = {}
         if name is not None:
             input_["name"] = name
         if ca_certificates_bundle_s3_bucket is not None:
@@ -1042,6 +1049,7 @@ class AsyncElasticLoadBalancingv2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_listener(
@@ -1085,7 +1093,7 @@ class AsyncElasticLoadBalancingv2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_elastic_load_balancing_v2.types.delete_listener_input.DeleteListenerInput = {}  # type: ignore[typeddict-item]
+        input_: capo_elastic_load_balancing_v2.types.delete_listener_input.DeleteListenerInput = {}
         if listener_arn is not None:
             input_["listener_arn"] = listener_arn
 
@@ -1094,6 +1102,7 @@ class AsyncElasticLoadBalancingv2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_load_balancer(
@@ -1138,7 +1147,7 @@ class AsyncElasticLoadBalancingv2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_elastic_load_balancing_v2.types.delete_load_balancer_input.DeleteLoadBalancerInput = {}  # type: ignore[typeddict-item]
+        input_: capo_elastic_load_balancing_v2.types.delete_load_balancer_input.DeleteLoadBalancerInput = {}
         if load_balancer_arn is not None:
             input_["load_balancer_arn"] = load_balancer_arn
 
@@ -1147,6 +1156,7 @@ class AsyncElasticLoadBalancingv2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_rule(
@@ -1190,7 +1200,7 @@ class AsyncElasticLoadBalancingv2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_elastic_load_balancing_v2.types.delete_rule_input.DeleteRuleInput = {}  # type: ignore[typeddict-item]
+        input_: capo_elastic_load_balancing_v2.types.delete_rule_input.DeleteRuleInput = {}
         if rule_arn is not None:
             input_["rule_arn"] = rule_arn
 
@@ -1199,6 +1209,7 @@ class AsyncElasticLoadBalancingv2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_shared_trust_store_association(
@@ -1247,7 +1258,7 @@ class AsyncElasticLoadBalancingv2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_elastic_load_balancing_v2.types.delete_shared_trust_store_association_input.DeleteSharedTrustStoreAssociationInput = {}  # type: ignore[typeddict-item]
+        input_: capo_elastic_load_balancing_v2.types.delete_shared_trust_store_association_input.DeleteSharedTrustStoreAssociationInput = {}
         if trust_store_arn is not None:
             input_["trust_store_arn"] = trust_store_arn
         if resource_arn is not None:
@@ -1258,6 +1269,7 @@ class AsyncElasticLoadBalancingv2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_target_group(
@@ -1300,7 +1312,7 @@ class AsyncElasticLoadBalancingv2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_elastic_load_balancing_v2.types.delete_target_group_input.DeleteTargetGroupInput = {}  # type: ignore[typeddict-item]
+        input_: capo_elastic_load_balancing_v2.types.delete_target_group_input.DeleteTargetGroupInput = {}
         if target_group_arn is not None:
             input_["target_group_arn"] = target_group_arn
 
@@ -1309,6 +1321,7 @@ class AsyncElasticLoadBalancingv2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_trust_store(
@@ -1346,7 +1359,7 @@ class AsyncElasticLoadBalancingv2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_elastic_load_balancing_v2.types.delete_trust_store_input.DeleteTrustStoreInput = {}  # type: ignore[typeddict-item]
+        input_: capo_elastic_load_balancing_v2.types.delete_trust_store_input.DeleteTrustStoreInput = {}
         if trust_store_arn is not None:
             input_["trust_store_arn"] = trust_store_arn
 
@@ -1355,6 +1368,7 @@ class AsyncElasticLoadBalancingv2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def deregister_targets(
@@ -1402,7 +1416,7 @@ class AsyncElasticLoadBalancingv2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_elastic_load_balancing_v2.types.deregister_targets_input.DeregisterTargetsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_elastic_load_balancing_v2.types.deregister_targets_input.DeregisterTargetsInput = {}
         if target_group_arn is not None:
             input_["target_group_arn"] = target_group_arn
         if targets is not None:
@@ -1413,6 +1427,7 @@ class AsyncElasticLoadBalancingv2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_account_limits(
@@ -1450,7 +1465,7 @@ class AsyncElasticLoadBalancingv2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_elastic_load_balancing_v2.types.describe_account_limits_input.DescribeAccountLimitsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_elastic_load_balancing_v2.types.describe_account_limits_input.DescribeAccountLimitsInput = {}
         if marker is not None:
             input_["marker"] = marker
         if page_size is not None:
@@ -1461,6 +1476,7 @@ class AsyncElasticLoadBalancingv2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_describe_account_limits(
@@ -1520,7 +1536,7 @@ class AsyncElasticLoadBalancingv2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_elastic_load_balancing_v2.types.describe_capacity_reservation_input.DescribeCapacityReservationInput = {}  # type: ignore[typeddict-item]
+        input_: capo_elastic_load_balancing_v2.types.describe_capacity_reservation_input.DescribeCapacityReservationInput = {}
         if load_balancer_arn is not None:
             input_["load_balancer_arn"] = load_balancer_arn
 
@@ -1529,6 +1545,7 @@ class AsyncElasticLoadBalancingv2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_listener_attributes(
@@ -1571,7 +1588,7 @@ class AsyncElasticLoadBalancingv2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_elastic_load_balancing_v2.types.describe_listener_attributes_input.DescribeListenerAttributesInput = {}  # type: ignore[typeddict-item]
+        input_: capo_elastic_load_balancing_v2.types.describe_listener_attributes_input.DescribeListenerAttributesInput = {}
         if listener_arn is not None:
             input_["listener_arn"] = listener_arn
 
@@ -1580,6 +1597,7 @@ class AsyncElasticLoadBalancingv2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_listener_certificates(
@@ -1622,7 +1640,7 @@ class AsyncElasticLoadBalancingv2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_elastic_load_balancing_v2.types.describe_listener_certificates_input.DescribeListenerCertificatesInput = {}  # type: ignore[typeddict-item]
+        input_: capo_elastic_load_balancing_v2.types.describe_listener_certificates_input.DescribeListenerCertificatesInput = {}
         if listener_arn is not None:
             input_["listener_arn"] = listener_arn
         if marker is not None:
@@ -1635,6 +1653,7 @@ class AsyncElasticLoadBalancingv2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_describe_listener_certificates(
@@ -1716,7 +1735,7 @@ class AsyncElasticLoadBalancingv2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_elastic_load_balancing_v2.types.describe_listeners_input.DescribeListenersInput = {}  # type: ignore[typeddict-item]
+        input_: capo_elastic_load_balancing_v2.types.describe_listeners_input.DescribeListenersInput = {}
         if load_balancer_arn is not None:
             input_["load_balancer_arn"] = load_balancer_arn
         if listener_arns is not None:
@@ -1731,6 +1750,7 @@ class AsyncElasticLoadBalancingv2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_describe_listeners(
@@ -1804,7 +1824,7 @@ class AsyncElasticLoadBalancingv2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_elastic_load_balancing_v2.types.describe_load_balancer_attributes_input.DescribeLoadBalancerAttributesInput = {}  # type: ignore[typeddict-item]
+        input_: capo_elastic_load_balancing_v2.types.describe_load_balancer_attributes_input.DescribeLoadBalancerAttributesInput = {}
         if load_balancer_arn is not None:
             input_["load_balancer_arn"] = load_balancer_arn
 
@@ -1813,6 +1833,7 @@ class AsyncElasticLoadBalancingv2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_load_balancers(
@@ -1865,7 +1886,7 @@ class AsyncElasticLoadBalancingv2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_elastic_load_balancing_v2.types.describe_load_balancers_input.DescribeLoadBalancersInput = {}  # type: ignore[typeddict-item]
+        input_: capo_elastic_load_balancing_v2.types.describe_load_balancers_input.DescribeLoadBalancersInput = {}
         if load_balancer_arns is not None:
             input_["load_balancer_arns"] = load_balancer_arns
         if names is not None:
@@ -1880,6 +1901,7 @@ class AsyncElasticLoadBalancingv2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_describe_load_balancers(
@@ -2027,7 +2049,7 @@ class AsyncElasticLoadBalancingv2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_elastic_load_balancing_v2.types.describe_rules_input.DescribeRulesInput = {}  # type: ignore[typeddict-item]
+        input_: capo_elastic_load_balancing_v2.types.describe_rules_input.DescribeRulesInput = {}
         if listener_arn is not None:
             input_["listener_arn"] = listener_arn
         if rule_arns is not None:
@@ -2042,6 +2064,7 @@ class AsyncElasticLoadBalancingv2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_describe_rules(
@@ -2125,7 +2148,7 @@ class AsyncElasticLoadBalancingv2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_elastic_load_balancing_v2.types.describe_ssl_policies_input.DescribeSSLPoliciesInput = {}  # type: ignore[typeddict-item]
+        input_: capo_elastic_load_balancing_v2.types.describe_ssl_policies_input.DescribeSSLPoliciesInput = {}
         if names is not None:
             input_["names"] = names
         if marker is not None:
@@ -2140,6 +2163,7 @@ class AsyncElasticLoadBalancingv2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_tags(
@@ -2186,7 +2210,7 @@ class AsyncElasticLoadBalancingv2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_elastic_load_balancing_v2.types.describe_tags_input.DescribeTagsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_elastic_load_balancing_v2.types.describe_tags_input.DescribeTagsInput = {}
         if resource_arns is not None:
             input_["resource_arns"] = resource_arns
 
@@ -2195,6 +2219,7 @@ class AsyncElasticLoadBalancingv2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_target_group_attributes(
@@ -2237,7 +2262,7 @@ class AsyncElasticLoadBalancingv2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_elastic_load_balancing_v2.types.describe_target_group_attributes_input.DescribeTargetGroupAttributesInput = {}  # type: ignore[typeddict-item]
+        input_: capo_elastic_load_balancing_v2.types.describe_target_group_attributes_input.DescribeTargetGroupAttributesInput = {}
         if target_group_arn is not None:
             input_["target_group_arn"] = target_group_arn
 
@@ -2246,6 +2271,7 @@ class AsyncElasticLoadBalancingv2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_target_groups(
@@ -2303,7 +2329,7 @@ class AsyncElasticLoadBalancingv2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_elastic_load_balancing_v2.types.describe_target_groups_input.DescribeTargetGroupsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_elastic_load_balancing_v2.types.describe_target_groups_input.DescribeTargetGroupsInput = {}
         if load_balancer_arn is not None:
             input_["load_balancer_arn"] = load_balancer_arn
         if target_group_arns is not None:
@@ -2320,6 +2346,7 @@ class AsyncElasticLoadBalancingv2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_describe_target_groups(
@@ -2411,7 +2438,7 @@ class AsyncElasticLoadBalancingv2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_elastic_load_balancing_v2.types.describe_target_health_input.DescribeTargetHealthInput = {}  # type: ignore[typeddict-item]
+        input_: capo_elastic_load_balancing_v2.types.describe_target_health_input.DescribeTargetHealthInput = {}
         if target_group_arn is not None:
             input_["target_group_arn"] = target_group_arn
         if targets is not None:
@@ -2424,6 +2451,7 @@ class AsyncElasticLoadBalancingv2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_trust_store_associations(
@@ -2466,7 +2494,7 @@ class AsyncElasticLoadBalancingv2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_elastic_load_balancing_v2.types.describe_trust_store_associations_input.DescribeTrustStoreAssociationsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_elastic_load_balancing_v2.types.describe_trust_store_associations_input.DescribeTrustStoreAssociationsInput = {}
         if trust_store_arn is not None:
             input_["trust_store_arn"] = trust_store_arn
         if marker is not None:
@@ -2479,6 +2507,7 @@ class AsyncElasticLoadBalancingv2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_describe_trust_store_associations(
@@ -2553,7 +2582,7 @@ class AsyncElasticLoadBalancingv2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_elastic_load_balancing_v2.types.describe_trust_store_revocations_input.DescribeTrustStoreRevocationsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_elastic_load_balancing_v2.types.describe_trust_store_revocations_input.DescribeTrustStoreRevocationsInput = {}
         if trust_store_arn is not None:
             input_["trust_store_arn"] = trust_store_arn
         if revocation_ids is not None:
@@ -2568,6 +2597,7 @@ class AsyncElasticLoadBalancingv2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_describe_trust_store_revocations(
@@ -2645,7 +2675,7 @@ class AsyncElasticLoadBalancingv2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_elastic_load_balancing_v2.types.describe_trust_stores_input.DescribeTrustStoresInput = {}  # type: ignore[typeddict-item]
+        input_: capo_elastic_load_balancing_v2.types.describe_trust_stores_input.DescribeTrustStoresInput = {}
         if trust_store_arns is not None:
             input_["trust_store_arns"] = trust_store_arns
         if names is not None:
@@ -2660,6 +2690,7 @@ class AsyncElasticLoadBalancingv2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_describe_trust_stores(
@@ -2733,7 +2764,7 @@ class AsyncElasticLoadBalancingv2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_elastic_load_balancing_v2.types.get_resource_policy_input.GetResourcePolicyInput = {}  # type: ignore[typeddict-item]
+        input_: capo_elastic_load_balancing_v2.types.get_resource_policy_input.GetResourcePolicyInput = {}
         if resource_arn is not None:
             input_["resource_arn"] = resource_arn
 
@@ -2742,6 +2773,7 @@ class AsyncElasticLoadBalancingv2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_trust_store_ca_certificates_bundle(
@@ -2778,7 +2810,7 @@ class AsyncElasticLoadBalancingv2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_elastic_load_balancing_v2.types.get_trust_store_ca_certificates_bundle_input.GetTrustStoreCaCertificatesBundleInput = {}  # type: ignore[typeddict-item]
+        input_: capo_elastic_load_balancing_v2.types.get_trust_store_ca_certificates_bundle_input.GetTrustStoreCaCertificatesBundleInput = {}
         if trust_store_arn is not None:
             input_["trust_store_arn"] = trust_store_arn
 
@@ -2787,6 +2819,7 @@ class AsyncElasticLoadBalancingv2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_trust_store_revocation_content(
@@ -2828,7 +2861,7 @@ class AsyncElasticLoadBalancingv2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_elastic_load_balancing_v2.types.get_trust_store_revocation_content_input.GetTrustStoreRevocationContentInput = {}  # type: ignore[typeddict-item]
+        input_: capo_elastic_load_balancing_v2.types.get_trust_store_revocation_content_input.GetTrustStoreRevocationContentInput = {}
         if trust_store_arn is not None:
             input_["trust_store_arn"] = trust_store_arn
         if revocation_id is not None:
@@ -2839,6 +2872,7 @@ class AsyncElasticLoadBalancingv2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def modify_capacity_reservation(
@@ -2890,7 +2924,7 @@ class AsyncElasticLoadBalancingv2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_elastic_load_balancing_v2.types.modify_capacity_reservation_input.ModifyCapacityReservationInput = {}  # type: ignore[typeddict-item]
+        input_: capo_elastic_load_balancing_v2.types.modify_capacity_reservation_input.ModifyCapacityReservationInput = {}
         if load_balancer_arn is not None:
             input_["load_balancer_arn"] = load_balancer_arn
         if minimum_load_balancer_capacity is not None:
@@ -2903,6 +2937,7 @@ class AsyncElasticLoadBalancingv2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def modify_ip_pools(
@@ -2947,7 +2982,7 @@ class AsyncElasticLoadBalancingv2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_elastic_load_balancing_v2.types.modify_ip_pools_input.ModifyIpPoolsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_elastic_load_balancing_v2.types.modify_ip_pools_input.ModifyIpPoolsInput = {}
         if load_balancer_arn is not None:
             input_["load_balancer_arn"] = load_balancer_arn
         if ipam_pools is not None:
@@ -2960,6 +2995,7 @@ class AsyncElasticLoadBalancingv2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def modify_listener(
@@ -3050,7 +3086,7 @@ class AsyncElasticLoadBalancingv2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_elastic_load_balancing_v2.types.modify_listener_input.ModifyListenerInput = {}  # type: ignore[typeddict-item]
+        input_: capo_elastic_load_balancing_v2.types.modify_listener_input.ModifyListenerInput = {}
         if listener_arn is not None:
             input_["listener_arn"] = listener_arn
         if port is not None:
@@ -3073,6 +3109,7 @@ class AsyncElasticLoadBalancingv2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def modify_listener_attributes(
@@ -3114,7 +3151,7 @@ class AsyncElasticLoadBalancingv2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_elastic_load_balancing_v2.types.modify_listener_attributes_input.ModifyListenerAttributesInput = {}  # type: ignore[typeddict-item]
+        input_: capo_elastic_load_balancing_v2.types.modify_listener_attributes_input.ModifyListenerAttributesInput = {}
         if listener_arn is not None:
             input_["listener_arn"] = listener_arn
         if attributes is not None:
@@ -3125,6 +3162,7 @@ class AsyncElasticLoadBalancingv2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def modify_load_balancer_attributes(
@@ -3180,7 +3218,7 @@ class AsyncElasticLoadBalancingv2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_elastic_load_balancing_v2.types.modify_load_balancer_attributes_input.ModifyLoadBalancerAttributesInput = {}  # type: ignore[typeddict-item]
+        input_: capo_elastic_load_balancing_v2.types.modify_load_balancer_attributes_input.ModifyLoadBalancerAttributesInput = {}
         if load_balancer_arn is not None:
             input_["load_balancer_arn"] = load_balancer_arn
         if attributes is not None:
@@ -3191,6 +3229,7 @@ class AsyncElasticLoadBalancingv2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def modify_rule(
@@ -3259,7 +3298,7 @@ class AsyncElasticLoadBalancingv2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_elastic_load_balancing_v2.types.modify_rule_input.ModifyRuleInput = {}  # type: ignore[typeddict-item]
+        input_: capo_elastic_load_balancing_v2.types.modify_rule_input.ModifyRuleInput = {}
         if rule_arn is not None:
             input_["rule_arn"] = rule_arn
         if conditions is not None:
@@ -3276,6 +3315,7 @@ class AsyncElasticLoadBalancingv2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def modify_target_group(
@@ -3355,7 +3395,7 @@ class AsyncElasticLoadBalancingv2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_elastic_load_balancing_v2.types.modify_target_group_input.ModifyTargetGroupInput = {}  # type: ignore[typeddict-item]
+        input_: capo_elastic_load_balancing_v2.types.modify_target_group_input.ModifyTargetGroupInput = {}
         if target_group_arn is not None:
             input_["target_group_arn"] = target_group_arn
         if health_check_protocol is not None:
@@ -3382,6 +3422,7 @@ class AsyncElasticLoadBalancingv2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def modify_target_group_attributes(
@@ -3429,7 +3470,7 @@ class AsyncElasticLoadBalancingv2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_elastic_load_balancing_v2.types.modify_target_group_attributes_input.ModifyTargetGroupAttributesInput = {}  # type: ignore[typeddict-item]
+        input_: capo_elastic_load_balancing_v2.types.modify_target_group_attributes_input.ModifyTargetGroupAttributesInput = {}
         if target_group_arn is not None:
             input_["target_group_arn"] = target_group_arn
         if attributes is not None:
@@ -3440,6 +3481,7 @@ class AsyncElasticLoadBalancingv2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def modify_trust_store(
@@ -3490,7 +3532,7 @@ class AsyncElasticLoadBalancingv2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_elastic_load_balancing_v2.types.modify_trust_store_input.ModifyTrustStoreInput = {}  # type: ignore[typeddict-item]
+        input_: capo_elastic_load_balancing_v2.types.modify_trust_store_input.ModifyTrustStoreInput = {}
         if trust_store_arn is not None:
             input_["trust_store_arn"] = trust_store_arn
         if ca_certificates_bundle_s3_bucket is not None:
@@ -3509,6 +3551,7 @@ class AsyncElasticLoadBalancingv2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def register_targets(
@@ -3562,7 +3605,7 @@ class AsyncElasticLoadBalancingv2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_elastic_load_balancing_v2.types.register_targets_input.RegisterTargetsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_elastic_load_balancing_v2.types.register_targets_input.RegisterTargetsInput = {}
         if target_group_arn is not None:
             input_["target_group_arn"] = target_group_arn
         if targets is not None:
@@ -3573,6 +3616,7 @@ class AsyncElasticLoadBalancingv2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def remove_listener_certificates(
@@ -3614,7 +3658,7 @@ class AsyncElasticLoadBalancingv2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_elastic_load_balancing_v2.types.remove_listener_certificates_input.RemoveListenerCertificatesInput = {}  # type: ignore[typeddict-item]
+        input_: capo_elastic_load_balancing_v2.types.remove_listener_certificates_input.RemoveListenerCertificatesInput = {}
         if listener_arn is not None:
             input_["listener_arn"] = listener_arn
         if certificates is not None:
@@ -3625,6 +3669,7 @@ class AsyncElasticLoadBalancingv2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def remove_tags(
@@ -3676,7 +3721,7 @@ class AsyncElasticLoadBalancingv2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_elastic_load_balancing_v2.types.remove_tags_input.RemoveTagsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_elastic_load_balancing_v2.types.remove_tags_input.RemoveTagsInput = {}
         if resource_arns is not None:
             input_["resource_arns"] = resource_arns
         if tag_keys is not None:
@@ -3687,6 +3732,7 @@ class AsyncElasticLoadBalancingv2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def remove_trust_store_revocations(
@@ -3728,7 +3774,7 @@ class AsyncElasticLoadBalancingv2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_elastic_load_balancing_v2.types.remove_trust_store_revocations_input.RemoveTrustStoreRevocationsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_elastic_load_balancing_v2.types.remove_trust_store_revocations_input.RemoveTrustStoreRevocationsInput = {}
         if trust_store_arn is not None:
             input_["trust_store_arn"] = trust_store_arn
         if revocation_ids is not None:
@@ -3739,6 +3785,7 @@ class AsyncElasticLoadBalancingv2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def set_ip_address_type(
@@ -3781,7 +3828,7 @@ class AsyncElasticLoadBalancingv2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_elastic_load_balancing_v2.types.set_ip_address_type_input.SetIpAddressTypeInput = {}  # type: ignore[typeddict-item]
+        input_: capo_elastic_load_balancing_v2.types.set_ip_address_type_input.SetIpAddressTypeInput = {}
         if load_balancer_arn is not None:
             input_["load_balancer_arn"] = load_balancer_arn
         if ip_address_type is not None:
@@ -3792,6 +3839,7 @@ class AsyncElasticLoadBalancingv2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def set_rule_priorities(
@@ -3836,7 +3884,7 @@ class AsyncElasticLoadBalancingv2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_elastic_load_balancing_v2.types.set_rule_priorities_input.SetRulePrioritiesInput = {}  # type: ignore[typeddict-item]
+        input_: capo_elastic_load_balancing_v2.types.set_rule_priorities_input.SetRulePrioritiesInput = {}
         if rule_priorities is not None:
             input_["rule_priorities"] = rule_priorities
 
@@ -3845,6 +3893,7 @@ class AsyncElasticLoadBalancingv2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def set_security_groups(
@@ -3897,7 +3946,7 @@ class AsyncElasticLoadBalancingv2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_elastic_load_balancing_v2.types.set_security_groups_input.SetSecurityGroupsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_elastic_load_balancing_v2.types.set_security_groups_input.SetSecurityGroupsInput = {}
         if load_balancer_arn is not None:
             input_["load_balancer_arn"] = load_balancer_arn
         if security_groups is not None:
@@ -3912,6 +3961,7 @@ class AsyncElasticLoadBalancingv2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def set_subnets(
@@ -3976,7 +4026,7 @@ class AsyncElasticLoadBalancingv2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_elastic_load_balancing_v2.types.set_subnets_input.SetSubnetsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_elastic_load_balancing_v2.types.set_subnets_input.SetSubnetsInput = {}
         if load_balancer_arn is not None:
             input_["load_balancer_arn"] = load_balancer_arn
         if subnets is not None:
@@ -3995,6 +4045,7 @@ class AsyncElasticLoadBalancingv2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def __aenter__(self) -> Self:

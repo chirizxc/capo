@@ -86,31 +86,31 @@ def serialize_json(value: AIAgentData) -> dict:
 
 def deserialize_json(data: dict) -> AIAgentData:
     out: AIAgentData = {}  # type: ignore[typeddict-item]
-    if "assistantId" in data:
+    if data.get("assistantId") is not None:
         out["assistant_id"] = data["assistantId"]
     else:
         raise DeserializationError("AIAgentData.assistant_id required")
-    if "assistantArn" in data:
+    if data.get("assistantArn") is not None:
         out["assistant_arn"] = data["assistantArn"]
     else:
         raise DeserializationError("AIAgentData.assistant_arn required")
-    if "aiAgentId" in data:
+    if data.get("aiAgentId") is not None:
         out["ai_agent_id"] = data["aiAgentId"]
     else:
         raise DeserializationError("AIAgentData.ai_agent_id required")
-    if "aiAgentArn" in data:
+    if data.get("aiAgentArn") is not None:
         out["ai_agent_arn"] = data["aiAgentArn"]
     else:
         raise DeserializationError("AIAgentData.ai_agent_arn required")
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("AIAgentData.name required")
-    if "type" in data:
+    if data.get("type") is not None:
         out["type"] = data["type"]
     else:
         raise DeserializationError("AIAgentData.type required")
-    if "configuration" in data:
+    if data.get("configuration") is not None:
         import capo_qconnect.types.ai_agent_configuration
 
         out["configuration"] = (
@@ -120,24 +120,24 @@ def deserialize_json(data: dict) -> AIAgentData:
         )
     else:
         raise DeserializationError("AIAgentData.configuration required")
-    if "modifiedTime" in data:
+    if data.get("modifiedTime") is not None:
         import capo_qconnect.types._prelude.timestamp
 
         out["modified_time"] = capo_qconnect.types._prelude.timestamp.deserialize_json(
             data["modifiedTime"]
         )
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "visibilityStatus" in data:
+    if data.get("visibilityStatus") is not None:
         out["visibility_status"] = data["visibilityStatus"]
     else:
         raise DeserializationError("AIAgentData.visibility_status required")
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_qconnect.types.tags
 
         out["tags"] = capo_qconnect.types.tags.deserialize_json(data["tags"])
-    if "origin" in data:
+    if data.get("origin") is not None:
         out["origin"] = data["origin"]
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
     return out

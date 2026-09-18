@@ -44,11 +44,11 @@ def serialize_json(value: GetBackendStorageResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetBackendStorageResponse:
     out: GetBackendStorageResponse = {}  # type: ignore[typeddict-item]
-    if "appId" in data:
+    if data.get("appId") is not None:
         out["app_id"] = data["appId"]
-    if "backendEnvironmentName" in data:
+    if data.get("backendEnvironmentName") is not None:
         out["backend_environment_name"] = data["backendEnvironmentName"]
-    if "resourceConfig" in data:
+    if data.get("resourceConfig") is not None:
         import capo_amplifybackend.types.get_backend_storage_resource_config
 
         out["resource_config"] = (
@@ -56,6 +56,6 @@ def deserialize_json(data: dict) -> GetBackendStorageResponse:
                 data["resourceConfig"]
             )
         )
-    if "resourceName" in data:
+    if data.get("resourceName") is not None:
         out["resource_name"] = data["resourceName"]
     return out

@@ -25,6 +25,6 @@ def serialize_json(value: UspsZip) -> dict:
 
 def deserialize_json(data: dict) -> UspsZip:
     out: UspsZip = {}  # type: ignore[typeddict-item]
-    if "ZipClassificationCode" in data:
+    if data.get("ZipClassificationCode") is not None:
         out["zip_classification_code"] = data["ZipClassificationCode"]
     return out

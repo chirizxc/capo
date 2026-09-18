@@ -23,5 +23,7 @@ def deserialize_aws_json_1_1(data: list) -> PutFileEntries:
 
     out: PutFileEntries = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_codecommit.types.put_file_entry.deserialize_aws_json_1_1(item))
     return out

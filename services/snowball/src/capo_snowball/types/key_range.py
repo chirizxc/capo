@@ -27,8 +27,8 @@ def serialize_aws_json_1_1(value: KeyRange) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> KeyRange:
     out: KeyRange = {}  # type: ignore[typeddict-item]
-    if "BeginMarker" in data:
+    if data.get("BeginMarker") is not None:
         out["begin_marker"] = data["BeginMarker"]
-    if "EndMarker" in data:
+    if data.get("EndMarker") is not None:
         out["end_marker"] = data["EndMarker"]
     return out

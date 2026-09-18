@@ -56,13 +56,13 @@ def serialize_json(value: LineChartLineStyleSettings) -> dict:
 
 def deserialize_json(data: dict) -> LineChartLineStyleSettings:
     out: LineChartLineStyleSettings = {}  # type: ignore[typeddict-item]
-    if "LineVisibility" in data:
+    if data.get("LineVisibility") is not None:
         import capo_quicksight.types.visibility
 
         out["line_visibility"] = capo_quicksight.types.visibility.deserialize_json(
             data["LineVisibility"]
         )
-    if "LineInterpolation" in data:
+    if data.get("LineInterpolation") is not None:
         import capo_quicksight.types.line_interpolation
 
         out["line_interpolation"] = (
@@ -70,7 +70,7 @@ def deserialize_json(data: dict) -> LineChartLineStyleSettings:
                 data["LineInterpolation"]
             )
         )
-    if "LineStyle" in data:
+    if data.get("LineStyle") is not None:
         import capo_quicksight.types.line_chart_line_style
 
         out["line_style"] = (
@@ -78,6 +78,6 @@ def deserialize_json(data: dict) -> LineChartLineStyleSettings:
                 data["LineStyle"]
             )
         )
-    if "LineWidth" in data:
+    if data.get("LineWidth") is not None:
         out["line_width"] = data["LineWidth"]
     return out

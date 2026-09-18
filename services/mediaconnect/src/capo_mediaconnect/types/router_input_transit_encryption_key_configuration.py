@@ -52,7 +52,7 @@ def serialize_json(value: RouterInputTransitEncryptionKeyConfiguration) -> dict:
 
 
 def deserialize_json(data: dict) -> RouterInputTransitEncryptionKeyConfiguration:
-    if "secretsManager" in data:
+    if data.get("secretsManager") is not None:
         import capo_mediaconnect.types.secrets_manager_encryption_key_configuration
 
         return {
@@ -60,7 +60,7 @@ def deserialize_json(data: dict) -> RouterInputTransitEncryptionKeyConfiguration
                 data["secretsManager"]
             )
         }
-    elif "automatic" in data:
+    elif data.get("automatic") is not None:
         import capo_mediaconnect.types.automatic_encryption_key_configuration
 
         return {

@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import uuid
 from typing import TYPE_CHECKING, Optional
 
 import capo_simspaceweaver._auth._signers
@@ -125,13 +126,15 @@ class Simulation:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_simspaceweaver.types.start_simulation_input.StartSimulationInput = {}  # type: ignore[typeddict-item]
-        if client_token is not None:
-            input_["client_token"] = client_token
-        input_["name"] = name
+        input_: capo_simspaceweaver.types.start_simulation_input.StartSimulationInput = {
+            "name": name,
+            "role_arn": role_arn,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if description is not None:
             input_["description"] = description
-        input_["role_arn"] = role_arn
         if schema_s3_location is not None:
             input_["schema_s3_location"] = schema_s3_location
         if maximum_duration is not None:
@@ -146,6 +149,7 @@ class Simulation:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -184,14 +188,16 @@ class Simulation:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_simspaceweaver.types.describe_simulation_input.DescribeSimulationInput = {}  # type: ignore[typeddict-item]
-        input_["simulation"] = simulation
+        input_: capo_simspaceweaver.types.describe_simulation_input.DescribeSimulationInput = {
+            "simulation": simulation
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update(
@@ -229,14 +235,16 @@ class Simulation:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_simspaceweaver.types.stop_simulation_input.StopSimulationInput = {}  # type: ignore[typeddict-item]
-        input_["simulation"] = simulation
+        input_: capo_simspaceweaver.types.stop_simulation_input.StopSimulationInput = {
+            "simulation": simulation
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -274,14 +282,16 @@ class Simulation:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_simspaceweaver.types.delete_simulation_input.DeleteSimulationInput = {}  # type: ignore[typeddict-item]
-        input_["simulation"] = simulation
+        input_: capo_simspaceweaver.types.delete_simulation_input.DeleteSimulationInput = {
+            "simulation": simulation
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -323,7 +333,7 @@ class Simulation:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_simspaceweaver.types.list_simulations_input.ListSimulationsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_simspaceweaver.types.list_simulations_input.ListSimulationsInput = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -334,6 +344,7 @@ class Simulation:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_snapshot(
@@ -373,15 +384,17 @@ class Simulation:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_simspaceweaver.types.create_snapshot_input.CreateSnapshotInput = {}  # type: ignore[typeddict-item]
-        input_["simulation"] = simulation
-        input_["destination"] = destination
+        input_: capo_simspaceweaver.types.create_snapshot_input.CreateSnapshotInput = {
+            "simulation": simulation,
+            "destination": destination,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_app(
@@ -423,16 +436,18 @@ class Simulation:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_simspaceweaver.types.delete_app_input.DeleteAppInput = {}  # type: ignore[typeddict-item]
-        input_["simulation"] = simulation
-        input_["domain"] = domain
-        input_["app"] = app
+        input_: capo_simspaceweaver.types.delete_app_input.DeleteAppInput = {
+            "simulation": simulation,
+            "domain": domain,
+            "app": app,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_app(
@@ -473,16 +488,18 @@ class Simulation:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_simspaceweaver.types.describe_app_input.DescribeAppInput = {}  # type: ignore[typeddict-item]
-        input_["simulation"] = simulation
-        input_["domain"] = domain
-        input_["app"] = app
+        input_: capo_simspaceweaver.types.describe_app_input.DescribeAppInput = {
+            "simulation": simulation,
+            "domain": domain,
+            "app": app,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_apps(
@@ -531,8 +548,9 @@ class Simulation:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_simspaceweaver.types.list_apps_input.ListAppsInput = {}  # type: ignore[typeddict-item]
-        input_["simulation"] = simulation
+        input_: capo_simspaceweaver.types.list_apps_input.ListAppsInput = {
+            "simulation": simulation
+        }
         if domain is not None:
             input_["domain"] = domain
         if max_results is not None:
@@ -545,6 +563,7 @@ class Simulation:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def start_app(
@@ -597,12 +616,14 @@ class Simulation:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_simspaceweaver.types.start_app_input.StartAppInput = {}  # type: ignore[typeddict-item]
-        if client_token is not None:
-            input_["client_token"] = client_token
-        input_["simulation"] = simulation
-        input_["domain"] = domain
-        input_["name"] = name
+        input_: capo_simspaceweaver.types.start_app_input.StartAppInput = {
+            "simulation": simulation,
+            "domain": domain,
+            "name": name,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if description is not None:
             input_["description"] = description
         if launch_overrides is not None:
@@ -613,6 +634,7 @@ class Simulation:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def start_clock(
@@ -650,14 +672,16 @@ class Simulation:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_simspaceweaver.types.start_clock_input.StartClockInput = {}  # type: ignore[typeddict-item]
-        input_["simulation"] = simulation
+        input_: capo_simspaceweaver.types.start_clock_input.StartClockInput = {
+            "simulation": simulation
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def stop_app(
@@ -699,16 +723,18 @@ class Simulation:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_simspaceweaver.types.stop_app_input.StopAppInput = {}  # type: ignore[typeddict-item]
-        input_["simulation"] = simulation
-        input_["domain"] = domain
-        input_["app"] = app
+        input_: capo_simspaceweaver.types.stop_app_input.StopAppInput = {
+            "simulation": simulation,
+            "domain": domain,
+            "app": app,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def stop_clock(
@@ -746,14 +772,16 @@ class Simulation:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_simspaceweaver.types.stop_clock_input.StopClockInput = {}  # type: ignore[typeddict-item]
-        input_["simulation"] = simulation
+        input_: capo_simspaceweaver.types.stop_clock_input.StopClockInput = {
+            "simulation": simulation
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -821,13 +849,15 @@ class AsyncSimulation:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_simspaceweaver.types.start_simulation_input.StartSimulationInput = {}  # type: ignore[typeddict-item]
-        if client_token is not None:
-            input_["client_token"] = client_token
-        input_["name"] = name
+        input_: capo_simspaceweaver.types.start_simulation_input.StartSimulationInput = {
+            "name": name,
+            "role_arn": role_arn,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if description is not None:
             input_["description"] = description
-        input_["role_arn"] = role_arn
         if schema_s3_location is not None:
             input_["schema_s3_location"] = schema_s3_location
         if maximum_duration is not None:
@@ -842,6 +872,7 @@ class AsyncSimulation:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -881,14 +912,16 @@ class AsyncSimulation:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_simspaceweaver.types.describe_simulation_input.DescribeSimulationInput = {}  # type: ignore[typeddict-item]
-        input_["simulation"] = simulation
+        input_: capo_simspaceweaver.types.describe_simulation_input.DescribeSimulationInput = {
+            "simulation": simulation
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update(
@@ -927,14 +960,16 @@ class AsyncSimulation:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_simspaceweaver.types.stop_simulation_input.StopSimulationInput = {}  # type: ignore[typeddict-item]
-        input_["simulation"] = simulation
+        input_: capo_simspaceweaver.types.stop_simulation_input.StopSimulationInput = {
+            "simulation": simulation
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -973,14 +1008,16 @@ class AsyncSimulation:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_simspaceweaver.types.delete_simulation_input.DeleteSimulationInput = {}  # type: ignore[typeddict-item]
-        input_["simulation"] = simulation
+        input_: capo_simspaceweaver.types.delete_simulation_input.DeleteSimulationInput = {
+            "simulation": simulation
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -1023,7 +1060,7 @@ class AsyncSimulation:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_simspaceweaver.types.list_simulations_input.ListSimulationsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_simspaceweaver.types.list_simulations_input.ListSimulationsInput = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -1034,6 +1071,7 @@ class AsyncSimulation:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_snapshot(
@@ -1074,15 +1112,17 @@ class AsyncSimulation:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_simspaceweaver.types.create_snapshot_input.CreateSnapshotInput = {}  # type: ignore[typeddict-item]
-        input_["simulation"] = simulation
-        input_["destination"] = destination
+        input_: capo_simspaceweaver.types.create_snapshot_input.CreateSnapshotInput = {
+            "simulation": simulation,
+            "destination": destination,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_app(
@@ -1125,16 +1165,18 @@ class AsyncSimulation:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_simspaceweaver.types.delete_app_input.DeleteAppInput = {}  # type: ignore[typeddict-item]
-        input_["simulation"] = simulation
-        input_["domain"] = domain
-        input_["app"] = app
+        input_: capo_simspaceweaver.types.delete_app_input.DeleteAppInput = {
+            "simulation": simulation,
+            "domain": domain,
+            "app": app,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_app(
@@ -1176,16 +1218,18 @@ class AsyncSimulation:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_simspaceweaver.types.describe_app_input.DescribeAppInput = {}  # type: ignore[typeddict-item]
-        input_["simulation"] = simulation
-        input_["domain"] = domain
-        input_["app"] = app
+        input_: capo_simspaceweaver.types.describe_app_input.DescribeAppInput = {
+            "simulation": simulation,
+            "domain": domain,
+            "app": app,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_apps(
@@ -1235,8 +1279,9 @@ class AsyncSimulation:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_simspaceweaver.types.list_apps_input.ListAppsInput = {}  # type: ignore[typeddict-item]
-        input_["simulation"] = simulation
+        input_: capo_simspaceweaver.types.list_apps_input.ListAppsInput = {
+            "simulation": simulation
+        }
         if domain is not None:
             input_["domain"] = domain
         if max_results is not None:
@@ -1249,6 +1294,7 @@ class AsyncSimulation:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def start_app(
@@ -1302,12 +1348,14 @@ class AsyncSimulation:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_simspaceweaver.types.start_app_input.StartAppInput = {}  # type: ignore[typeddict-item]
-        if client_token is not None:
-            input_["client_token"] = client_token
-        input_["simulation"] = simulation
-        input_["domain"] = domain
-        input_["name"] = name
+        input_: capo_simspaceweaver.types.start_app_input.StartAppInput = {
+            "simulation": simulation,
+            "domain": domain,
+            "name": name,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if description is not None:
             input_["description"] = description
         if launch_overrides is not None:
@@ -1318,6 +1366,7 @@ class AsyncSimulation:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def start_clock(
@@ -1356,14 +1405,16 @@ class AsyncSimulation:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_simspaceweaver.types.start_clock_input.StartClockInput = {}  # type: ignore[typeddict-item]
-        input_["simulation"] = simulation
+        input_: capo_simspaceweaver.types.start_clock_input.StartClockInput = {
+            "simulation": simulation
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def stop_app(
@@ -1406,16 +1457,18 @@ class AsyncSimulation:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_simspaceweaver.types.stop_app_input.StopAppInput = {}  # type: ignore[typeddict-item]
-        input_["simulation"] = simulation
-        input_["domain"] = domain
-        input_["app"] = app
+        input_: capo_simspaceweaver.types.stop_app_input.StopAppInput = {
+            "simulation": simulation,
+            "domain": domain,
+            "app": app,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def stop_clock(
@@ -1454,12 +1507,14 @@ class AsyncSimulation:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_simspaceweaver.types.stop_clock_input.StopClockInput = {}  # type: ignore[typeddict-item]
-        input_["simulation"] = simulation
+        input_: capo_simspaceweaver.types.stop_clock_input.StopClockInput = {
+            "simulation": simulation
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

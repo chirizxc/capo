@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: DescribeAppBlockBuildersResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeAppBlockBuildersResult:
     out: DescribeAppBlockBuildersResult = {}  # type: ignore[typeddict-item]
-    if "AppBlockBuilders" in data:
+    if data.get("AppBlockBuilders") is not None:
         import capo_appstream.types.app_block_builder_list
 
         out["app_block_builders"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeAppBlockBuildersResult:
                 data["AppBlockBuilders"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

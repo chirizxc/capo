@@ -52,7 +52,7 @@ def serialize_json(value: Mp2Settings) -> dict:
 
 def deserialize_json(data: dict) -> Mp2Settings:
     out: Mp2Settings = {}  # type: ignore[typeddict-item]
-    if "audioDescriptionMix" in data:
+    if data.get("audioDescriptionMix") is not None:
         import capo_mediaconvert.types.mp2_audio_description_mix
 
         out["audio_description_mix"] = (
@@ -60,10 +60,10 @@ def deserialize_json(data: dict) -> Mp2Settings:
                 data["audioDescriptionMix"]
             )
         )
-    if "bitrate" in data:
+    if data.get("bitrate") is not None:
         out["bitrate"] = data["bitrate"]
-    if "channels" in data:
+    if data.get("channels") is not None:
         out["channels"] = data["channels"]
-    if "sampleRate" in data:
+    if data.get("sampleRate") is not None:
         out["sample_rate"] = data["sampleRate"]
     return out

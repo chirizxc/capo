@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: GetUserDefinedFunctionResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetUserDefinedFunctionResponse:
     out: GetUserDefinedFunctionResponse = {}  # type: ignore[typeddict-item]
-    if "UserDefinedFunction" in data:
+    if data.get("UserDefinedFunction") is not None:
         import capo_glue.types.user_defined_function
 
         out["user_defined_function"] = (

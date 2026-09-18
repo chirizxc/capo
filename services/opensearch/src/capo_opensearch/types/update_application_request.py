@@ -39,13 +39,13 @@ def serialize_json(value: UpdateApplicationRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateApplicationRequest:
     out: UpdateApplicationRequest = {}  # type: ignore[typeddict-item]
-    if "dataSources" in data:
+    if data.get("dataSources") is not None:
         import capo_opensearch.types.data_sources
 
         out["data_sources"] = capo_opensearch.types.data_sources.deserialize_json(
             data["dataSources"]
         )
-    if "appConfigs" in data:
+    if data.get("appConfigs") is not None:
         import capo_opensearch.types.app_configs
 
         out["app_configs"] = capo_opensearch.types.app_configs.deserialize_json(

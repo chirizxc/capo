@@ -33,13 +33,13 @@ def serialize_json(value: MetadataFormSummary) -> dict:
 
 def deserialize_json(data: dict) -> MetadataFormSummary:
     out: MetadataFormSummary = {}  # type: ignore[typeddict-item]
-    if "formName" in data:
+    if data.get("formName") is not None:
         out["form_name"] = data["formName"]
-    if "typeName" in data:
+    if data.get("typeName") is not None:
         out["type_name"] = data["typeName"]
     else:
         raise DeserializationError("MetadataFormSummary.type_name required")
-    if "typeRevision" in data:
+    if data.get("typeRevision") is not None:
         out["type_revision"] = data["typeRevision"]
     else:
         raise DeserializationError("MetadataFormSummary.type_revision required")

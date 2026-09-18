@@ -57,11 +57,11 @@ def serialize_json(value: Termination) -> dict:
 
 def deserialize_json(data: dict) -> Termination:
     out: Termination = {}  # type: ignore[typeddict-item]
-    if "CpsLimit" in data:
+    if data.get("CpsLimit") is not None:
         out["cps_limit"] = data["CpsLimit"]
-    if "DefaultPhoneNumber" in data:
+    if data.get("DefaultPhoneNumber") is not None:
         out["default_phone_number"] = data["DefaultPhoneNumber"]
-    if "CallingRegions" in data:
+    if data.get("CallingRegions") is not None:
         import capo_chime_sdk_voice.types.calling_region_list
 
         out["calling_regions"] = (
@@ -69,7 +69,7 @@ def deserialize_json(data: dict) -> Termination:
                 data["CallingRegions"]
             )
         )
-    if "CidrAllowedList" in data:
+    if data.get("CidrAllowedList") is not None:
         import capo_chime_sdk_voice.types.string_list
 
         out["cidr_allowed_list"] = (
@@ -77,6 +77,6 @@ def deserialize_json(data: dict) -> Termination:
                 data["CidrAllowedList"]
             )
         )
-    if "Disabled" in data:
+    if data.get("Disabled") is not None:
         out["disabled"] = data["Disabled"]
     return out

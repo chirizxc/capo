@@ -54,24 +54,24 @@ def serialize_json(value: TeamsUserIdentity) -> dict:
 
 def deserialize_json(data: dict) -> TeamsUserIdentity:
     out: TeamsUserIdentity = {}  # type: ignore[typeddict-item]
-    if "IamRoleArn" in data:
+    if data.get("IamRoleArn") is not None:
         out["iam_role_arn"] = data["IamRoleArn"]
     else:
         raise DeserializationError("TeamsUserIdentity.iam_role_arn required")
-    if "ChatConfigurationArn" in data:
+    if data.get("ChatConfigurationArn") is not None:
         out["chat_configuration_arn"] = data["ChatConfigurationArn"]
     else:
         raise DeserializationError("TeamsUserIdentity.chat_configuration_arn required")
-    if "TeamId" in data:
+    if data.get("TeamId") is not None:
         out["team_id"] = data["TeamId"]
     else:
         raise DeserializationError("TeamsUserIdentity.team_id required")
-    if "UserId" in data:
+    if data.get("UserId") is not None:
         out["user_id"] = data["UserId"]
-    if "AwsUserIdentity" in data:
+    if data.get("AwsUserIdentity") is not None:
         out["aws_user_identity"] = data["AwsUserIdentity"]
-    if "TeamsChannelId" in data:
+    if data.get("TeamsChannelId") is not None:
         out["teams_channel_id"] = data["TeamsChannelId"]
-    if "TeamsTenantId" in data:
+    if data.get("TeamsTenantId") is not None:
         out["teams_tenant_id"] = data["TeamsTenantId"]
     return out

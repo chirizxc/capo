@@ -27,7 +27,7 @@ def serialize_aws_json_1_1(value: DescribeHandshakeResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeHandshakeResponse:
     out: DescribeHandshakeResponse = {}  # type: ignore[typeddict-item]
-    if "Handshake" in data:
+    if data.get("Handshake") is not None:
         import capo_organizations.types.handshake
 
         out["handshake"] = capo_organizations.types.handshake.deserialize_aws_json_1_1(

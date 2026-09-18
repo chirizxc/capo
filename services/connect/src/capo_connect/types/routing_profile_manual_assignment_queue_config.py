@@ -29,7 +29,7 @@ def serialize_json(value: RoutingProfileManualAssignmentQueueConfig) -> dict:
 
 def deserialize_json(data: dict) -> RoutingProfileManualAssignmentQueueConfig:
     out: RoutingProfileManualAssignmentQueueConfig = {}  # type: ignore[typeddict-item]
-    if "QueueReference" in data:
+    if data.get("QueueReference") is not None:
         import capo_connect.types.routing_profile_queue_reference
 
         out["queue_reference"] = (

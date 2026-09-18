@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> __listOfChannelPipelineIdToRestart:
 
     out: __listOfChannelPipelineIdToRestart = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_medialive.types.channel_pipeline_id_to_restart.deserialize_json(item)
         )

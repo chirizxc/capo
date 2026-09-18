@@ -70,13 +70,13 @@ def serialize_aws_json_1_1(value: UpdateProtectionGroupRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateProtectionGroupRequest:
     out: UpdateProtectionGroupRequest = {}  # type: ignore[typeddict-item]
-    if "ProtectionGroupId" in data:
+    if data.get("ProtectionGroupId") is not None:
         out["protection_group_id"] = data["ProtectionGroupId"]
     else:
         raise DeserializationError(
             "UpdateProtectionGroupRequest.protection_group_id required"
         )
-    if "Aggregation" in data:
+    if data.get("Aggregation") is not None:
         import capo_shield.types.protection_group_aggregation
 
         out["aggregation"] = (
@@ -86,7 +86,7 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateProtectionGroupRequest:
         )
     else:
         raise DeserializationError("UpdateProtectionGroupRequest.aggregation required")
-    if "Pattern" in data:
+    if data.get("Pattern") is not None:
         import capo_shield.types.protection_group_pattern
 
         out["pattern"] = (
@@ -96,7 +96,7 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateProtectionGroupRequest:
         )
     else:
         raise DeserializationError("UpdateProtectionGroupRequest.pattern required")
-    if "ResourceType" in data:
+    if data.get("ResourceType") is not None:
         import capo_shield.types.protected_resource_type
 
         out["resource_type"] = (
@@ -104,7 +104,7 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateProtectionGroupRequest:
                 data["ResourceType"]
             )
         )
-    if "Members" in data:
+    if data.get("Members") is not None:
         import capo_shield.types.protection_group_members
 
         out["members"] = (

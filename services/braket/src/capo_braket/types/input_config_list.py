@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> InputConfigList:
 
     out: InputConfigList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_braket.types.input_file_config.deserialize_json(item))
     return out

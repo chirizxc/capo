@@ -23,6 +23,6 @@ def serialize_aws_json_1_1(value: DeleteDistributionRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteDistributionRequest:
     out: DeleteDistributionRequest = {}  # type: ignore[typeddict-item]
-    if "distributionName" in data:
+    if data.get("distributionName") is not None:
         out["distribution_name"] = data["distributionName"]
     return out

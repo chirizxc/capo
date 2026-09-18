@@ -65,11 +65,11 @@ def serialize_json(value: UpdateEventTriggerRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateEventTriggerRequest:
     out: UpdateEventTriggerRequest = {}  # type: ignore[typeddict-item]
-    if "ObjectTypeName" in data:
+    if data.get("ObjectTypeName") is not None:
         out["object_type_name"] = data["ObjectTypeName"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "EventTriggerConditions" in data:
+    if data.get("EventTriggerConditions") is not None:
         import capo_customer_profiles.types.event_trigger_conditions
 
         out["event_trigger_conditions"] = (
@@ -77,9 +77,9 @@ def deserialize_json(data: dict) -> UpdateEventTriggerRequest:
                 data["EventTriggerConditions"]
             )
         )
-    if "SegmentFilter" in data:
+    if data.get("SegmentFilter") is not None:
         out["segment_filter"] = data["SegmentFilter"]
-    if "EventTriggerLimits" in data:
+    if data.get("EventTriggerLimits") is not None:
         import capo_customer_profiles.types.event_trigger_limits
 
         out["event_trigger_limits"] = (

@@ -9,6 +9,7 @@ from typing_extensions import Never
 
 import capo_s3_control._auth._signers
 import capo_s3_control._auth._sigv4
+import capo_s3_control._protocol.eventstream
 import capo_s3_control.types.delete_access_point_scope_request
 from capo_s3_control._protocol.errors import parse_error_metadata
 from capo_s3_control._protocol.xml import fromstring
@@ -19,7 +20,10 @@ from capo_s3_control.errors import UnknownServiceError
 
 
 def handle_error(response: zapros.Response) -> Never:
-    root = fromstring(response.read())
+    body = response.read()
+    if not body:
+        raise UnknownServiceError(code=None, message=None, response=response)
+    root = fromstring(body)
     code, message = parse_error_metadata(root)
     match code:
         case _:
@@ -31,19 +35,26 @@ def get_signer(
     auth_schemes: list[dict[str, Any]] | None = None,
 ) -> capo_s3_control._auth._signers.Signer | None:
     name_to_schema = {s["name"]: s for s in (auth_schemes or [])}  # noqa: F841
-    if options.credentials_provider is not None:
-        sigv4_config = (
-            name_to_schema.get("sigv4")
-            or name_to_schema.get("sigv4a")
-            or name_to_schema.get("sigv4-s3express")
-            or capo_s3_control._auth._sigv4.build_sigv4_auth_scheme(
-                "s3", options.region
-            )
+    if (
+        options.credentials_provider is not None
+        and name_to_schema
+        and not name_to_schema.keys() & {"sigv4", "sigv4-s3express"}
+    ):
+        raise RuntimeError(
+            "Endpoint requires an unsupported auth scheme: " + ", ".join(name_to_schema)
         )
-        if sigv4_config is not None:
-            return capo_s3_control._auth._signers.SigV4Signer(
-                options.credentials_provider, auth_scheme=sigv4_config
+    if options.credentials_provider is not None:
+        endpoint_scheme = name_to_schema.get("sigv4") or name_to_schema.get(
+            "sigv4-s3express"
+        )
+        if endpoint_scheme is not None or not name_to_schema:
+            sigv4_config = capo_s3_control._auth._sigv4.build_sigv4_auth_scheme(
+                "s3", options.region, endpoint_scheme
             )
+            if sigv4_config is not None:
+                return capo_s3_control._auth._signers.SigV4Signer(
+                    options.credentials_provider, auth_scheme=sigv4_config
+                )
     raise RuntimeError("Auth was not resolved")
 
 
@@ -68,15 +79,16 @@ def build_request(
         )
     )  # noqa: F841
     url = endpoint.url.rstrip("/") + "/v20180820/accesspoint/{Name}/scope"
-    url = apply_label(url, "{Name}", str(input_["name"]))
-    params: dict[str, str] = {}
+    url = apply_label(url, "{Name}", input_["name"])
+    params: list[tuple[str, str]] = []
     headers: dict[str, str] = {k: ", ".join(v) for k, v in endpoint.headers.items()}
     if "account_id" in input_:
-        headers["x-amz-account-id"] = str(input_["account_id"])
+        headers["x-amz-account-id"] = input_["account_id"]
     body: bytes | None = b""
     signer = get_signer(options, auth_schemes=endpoint.properties.get("authSchemes"))
     normalized_url = zapros.URL(url)
-    normalized_url.search_params.update(params)
+    for k, v in params:
+        normalized_url.search_params.append(k, v)
     return zapros.Request(
         normalized_url, "DELETE", headers=headers, body=body, context={"signer": signer}
     )
@@ -88,7 +100,7 @@ def delete_access_point_scope(
 ) -> tuple[None, zapros.Response]:
     response = options.client.handler.handle(build_request(options, input_))
     try:
-        if response.status >= 400:
+        if response.status >= 300:
             response.read()
             handle_error(response)
         return None, response
@@ -103,7 +115,7 @@ async def async_delete_access_point_scope(
 ) -> tuple[None, zapros.Response]:
     response = await options.client.handler.ahandle(build_request(options, input_))
     try:
-        if response.status >= 400:
+        if response.status >= 300:
             await response.aread()
             handle_error(response)
         return None, response

@@ -27,6 +27,8 @@ def deserialize_aws_json_1_1(data: list) -> AutoRollbackEventsList:
 
     out: AutoRollbackEventsList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_codedeploy.types.auto_rollback_event.deserialize_aws_json_1_1(item)
         )

@@ -24,13 +24,21 @@ def serialize_json(value: ForecastGeofenceEventsDeviceState) -> dict:
 
     out["Position"] = capo_location.types.position.serialize_json(value["position"])
     if "speed" in value:
-        out["Speed"] = value["speed"]
+        out["Speed"] = (
+            "NaN"
+            if value["speed"] != value["speed"]
+            else "Infinity"
+            if value["speed"] == float("inf")
+            else "-Infinity"
+            if value["speed"] == float("-inf")
+            else value["speed"]
+        )
     return out
 
 
 def deserialize_json(data: dict) -> ForecastGeofenceEventsDeviceState:
     out: ForecastGeofenceEventsDeviceState = {}  # type: ignore[typeddict-item]
-    if "Position" in data:
+    if data.get("Position") is not None:
         import capo_location.types.position
 
         out["position"] = capo_location.types.position.deserialize_json(
@@ -40,6 +48,6 @@ def deserialize_json(data: dict) -> ForecastGeofenceEventsDeviceState:
         raise DeserializationError(
             "ForecastGeofenceEventsDeviceState.position required"
         )
-    if "Speed" in data:
-        out["speed"] = data["Speed"]
+    if data.get("Speed") is not None:
+        out["speed"] = float(data["Speed"])
     return out

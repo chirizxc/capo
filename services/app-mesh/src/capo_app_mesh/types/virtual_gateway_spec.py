@@ -51,7 +51,7 @@ def serialize_json(value: VirtualGatewaySpec) -> dict:
 
 def deserialize_json(data: dict) -> VirtualGatewaySpec:
     out: VirtualGatewaySpec = {}  # type: ignore[typeddict-item]
-    if "backendDefaults" in data:
+    if data.get("backendDefaults") is not None:
         import capo_app_mesh.types.virtual_gateway_backend_defaults
 
         out["backend_defaults"] = (
@@ -59,7 +59,7 @@ def deserialize_json(data: dict) -> VirtualGatewaySpec:
                 data["backendDefaults"]
             )
         )
-    if "listeners" in data:
+    if data.get("listeners") is not None:
         import capo_app_mesh.types.virtual_gateway_listeners
 
         out["listeners"] = (
@@ -69,7 +69,7 @@ def deserialize_json(data: dict) -> VirtualGatewaySpec:
         )
     else:
         raise DeserializationError("VirtualGatewaySpec.listeners required")
-    if "logging" in data:
+    if data.get("logging") is not None:
         import capo_app_mesh.types.virtual_gateway_logging
 
         out["logging"] = capo_app_mesh.types.virtual_gateway_logging.deserialize_json(

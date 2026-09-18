@@ -36,7 +36,7 @@ def serialize_json(value: ListJobExecutionsForJobResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListJobExecutionsForJobResponse:
     out: ListJobExecutionsForJobResponse = {}  # type: ignore[typeddict-item]
-    if "executionSummaries" in data:
+    if data.get("executionSummaries") is not None:
         import capo_iot.types.job_execution_summary_for_job_list
 
         out["execution_summaries"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> ListJobExecutionsForJobResponse:
                 data["executionSummaries"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

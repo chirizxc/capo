@@ -68,17 +68,17 @@ def serialize_json(value: ChannelSummary) -> dict:
 
 def deserialize_json(data: dict) -> ChannelSummary:
     out: ChannelSummary = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "ChannelArn" in data:
+    if data.get("ChannelArn") is not None:
         out["channel_arn"] = data["ChannelArn"]
-    if "Mode" in data:
+    if data.get("Mode") is not None:
         import capo_chime_sdk_messaging.types.channel_mode
 
         out["mode"] = capo_chime_sdk_messaging.types.channel_mode.deserialize_json(
             data["Mode"]
         )
-    if "Privacy" in data:
+    if data.get("Privacy") is not None:
         import capo_chime_sdk_messaging.types.channel_privacy
 
         out["privacy"] = (
@@ -86,9 +86,9 @@ def deserialize_json(data: dict) -> ChannelSummary:
                 data["Privacy"]
             )
         )
-    if "Metadata" in data:
+    if data.get("Metadata") is not None:
         out["metadata"] = data["Metadata"]
-    if "LastMessageTimestamp" in data:
+    if data.get("LastMessageTimestamp") is not None:
         import capo_chime_sdk_messaging.types.timestamp
 
         out["last_message_timestamp"] = (

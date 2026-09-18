@@ -65,9 +65,25 @@ def serialize_json(value: ImpactedLocation) -> dict:
     if "city" in value:
         out["City"] = value["city"]
     if "latitude" in value:
-        out["Latitude"] = value["latitude"]
+        out["Latitude"] = (
+            "NaN"
+            if value["latitude"] != value["latitude"]
+            else "Infinity"
+            if value["latitude"] == float("inf")
+            else "-Infinity"
+            if value["latitude"] == float("-inf")
+            else value["latitude"]
+        )
     if "longitude" in value:
-        out["Longitude"] = value["longitude"]
+        out["Longitude"] = (
+            "NaN"
+            if value["longitude"] != value["longitude"]
+            else "Infinity"
+            if value["longitude"] == float("inf")
+            else "-Infinity"
+            if value["longitude"] == float("-inf")
+            else value["longitude"]
+        )
     if "country_code" in value:
         out["CountryCode"] = value["country_code"]
     if "subdivision_code" in value:
@@ -102,39 +118,39 @@ def serialize_json(value: ImpactedLocation) -> dict:
 
 def deserialize_json(data: dict) -> ImpactedLocation:
     out: ImpactedLocation = {}  # type: ignore[typeddict-item]
-    if "ASName" in data:
+    if data.get("ASName") is not None:
         out["as_name"] = data["ASName"]
     else:
         raise DeserializationError("ImpactedLocation.as_name required")
-    if "ASNumber" in data:
+    if data.get("ASNumber") is not None:
         out["as_number"] = data["ASNumber"]
     else:
         raise DeserializationError("ImpactedLocation.as_number required")
-    if "Country" in data:
+    if data.get("Country") is not None:
         out["country"] = data["Country"]
     else:
         raise DeserializationError("ImpactedLocation.country required")
-    if "Subdivision" in data:
+    if data.get("Subdivision") is not None:
         out["subdivision"] = data["Subdivision"]
-    if "Metro" in data:
+    if data.get("Metro") is not None:
         out["metro"] = data["Metro"]
-    if "City" in data:
+    if data.get("City") is not None:
         out["city"] = data["City"]
-    if "Latitude" in data:
-        out["latitude"] = data["Latitude"]
-    if "Longitude" in data:
-        out["longitude"] = data["Longitude"]
-    if "CountryCode" in data:
+    if data.get("Latitude") is not None:
+        out["latitude"] = float(data["Latitude"])
+    if data.get("Longitude") is not None:
+        out["longitude"] = float(data["Longitude"])
+    if data.get("CountryCode") is not None:
         out["country_code"] = data["CountryCode"]
-    if "SubdivisionCode" in data:
+    if data.get("SubdivisionCode") is not None:
         out["subdivision_code"] = data["SubdivisionCode"]
-    if "ServiceLocation" in data:
+    if data.get("ServiceLocation") is not None:
         out["service_location"] = data["ServiceLocation"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         out["status"] = data["Status"]
     else:
         raise DeserializationError("ImpactedLocation.status required")
-    if "CausedBy" in data:
+    if data.get("CausedBy") is not None:
         import capo_internetmonitor.types.network_impairment
 
         out["caused_by"] = (
@@ -142,7 +158,7 @@ def deserialize_json(data: dict) -> ImpactedLocation:
                 data["CausedBy"]
             )
         )
-    if "InternetHealth" in data:
+    if data.get("InternetHealth") is not None:
         import capo_internetmonitor.types.internet_health
 
         out["internet_health"] = (
@@ -150,7 +166,7 @@ def deserialize_json(data: dict) -> ImpactedLocation:
                 data["InternetHealth"]
             )
         )
-    if "Ipv4Prefixes" in data:
+    if data.get("Ipv4Prefixes") is not None:
         import capo_internetmonitor.types.ipv4_prefix_list
 
         out["ipv4_prefixes"] = (

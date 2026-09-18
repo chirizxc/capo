@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> VerificationScriptEnvVarList:
 
     out: VerificationScriptEnvVarList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_securityagent.types.verification_script_env_var.deserialize_json(item)
         )

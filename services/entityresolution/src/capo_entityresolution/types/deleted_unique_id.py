@@ -24,7 +24,7 @@ def serialize_json(value: DeletedUniqueId) -> dict:
 
 def deserialize_json(data: dict) -> DeletedUniqueId:
     out: DeletedUniqueId = {}  # type: ignore[typeddict-item]
-    if "uniqueId" in data:
+    if data.get("uniqueId") is not None:
         out["unique_id"] = data["uniqueId"]
     else:
         raise DeserializationError("DeletedUniqueId.unique_id required")

@@ -31,6 +31,6 @@ def serialize_json(value: CreateMessageTemplateVersionRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateMessageTemplateVersionRequest:
     out: CreateMessageTemplateVersionRequest = {}  # type: ignore[typeddict-item]
-    if "messageTemplateContentSha256" in data:
+    if data.get("messageTemplateContentSha256") is not None:
         out["message_template_content_sha256"] = data["messageTemplateContentSha256"]
     return out

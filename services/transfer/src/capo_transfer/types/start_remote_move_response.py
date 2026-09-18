@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: StartRemoteMoveResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> StartRemoteMoveResponse:
     out: StartRemoteMoveResponse = {}  # type: ignore[typeddict-item]
-    if "MoveId" in data:
+    if data.get("MoveId") is not None:
         out["move_id"] = data["MoveId"]
     else:
         raise DeserializationError("StartRemoteMoveResponse.move_id required")

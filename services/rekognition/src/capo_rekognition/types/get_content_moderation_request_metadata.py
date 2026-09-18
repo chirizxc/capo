@@ -44,7 +44,7 @@ def serialize_aws_json_1_1(value: GetContentModerationRequestMetadata) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetContentModerationRequestMetadata:
     out: GetContentModerationRequestMetadata = {}  # type: ignore[typeddict-item]
-    if "SortBy" in data:
+    if data.get("SortBy") is not None:
         import capo_rekognition.types.content_moderation_sort_by
 
         out["sort_by"] = (
@@ -52,7 +52,7 @@ def deserialize_aws_json_1_1(data: dict) -> GetContentModerationRequestMetadata:
                 data["SortBy"]
             )
         )
-    if "AggregateBy" in data:
+    if data.get("AggregateBy") is not None:
         import capo_rekognition.types.content_moderation_aggregate_by
 
         out["aggregate_by"] = (

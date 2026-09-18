@@ -39,15 +39,18 @@ class SSLPolicyNotFoundException(ServiceError):
 
     code: str | None = "SSLPolicyNotFoundException"
 
-    def __init__(self, data: SSLPolicyNotFoundException_):
+    def __init__(self, data: SSLPolicyNotFoundException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="SSLPolicyNotFoundException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_query(cls, el: Element) -> "SSLPolicyNotFoundException":
-        return cls(deserialize_query(el))
+    def from_query(
+        cls, el: Element, message: str | None = None
+    ) -> "SSLPolicyNotFoundException":
+        return cls(deserialize_query(el), message)

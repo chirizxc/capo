@@ -18,6 +18,6 @@ def serialize_aws_json_1_0(value: SubscriptionError) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> SubscriptionError:
     out: SubscriptionError = {}  # type: ignore[typeddict-item]
-    if "errorMessage" in data:
+    if data.get("errorMessage") is not None:
         out["error_message"] = data["errorMessage"]
     return out

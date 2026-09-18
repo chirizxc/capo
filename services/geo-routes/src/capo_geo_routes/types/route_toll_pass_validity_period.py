@@ -37,7 +37,7 @@ def serialize_json(value: RouteTollPassValidityPeriod) -> dict:
 
 def deserialize_json(data: dict) -> RouteTollPassValidityPeriod:
     out: RouteTollPassValidityPeriod = {}  # type: ignore[typeddict-item]
-    if "Period" in data:
+    if data.get("Period") is not None:
         import capo_geo_routes.types.route_toll_pass_validity_period_type
 
         out["period"] = (
@@ -47,6 +47,6 @@ def deserialize_json(data: dict) -> RouteTollPassValidityPeriod:
         )
     else:
         raise DeserializationError("RouteTollPassValidityPeriod.period required")
-    if "PeriodCount" in data:
+    if data.get("PeriodCount") is not None:
         out["period_count"] = data["PeriodCount"]
     return out

@@ -73,23 +73,23 @@ def serialize_aws_json_1_0(value: StartFraudsterRegistrationJobRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> StartFraudsterRegistrationJobRequest:
     out: StartFraudsterRegistrationJobRequest = {}  # type: ignore[typeddict-item]
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
-    if "JobName" in data:
+    if data.get("JobName") is not None:
         out["job_name"] = data["JobName"]
-    if "DomainId" in data:
+    if data.get("DomainId") is not None:
         out["domain_id"] = data["DomainId"]
     else:
         raise DeserializationError(
             "StartFraudsterRegistrationJobRequest.domain_id required"
         )
-    if "DataAccessRoleArn" in data:
+    if data.get("DataAccessRoleArn") is not None:
         out["data_access_role_arn"] = data["DataAccessRoleArn"]
     else:
         raise DeserializationError(
             "StartFraudsterRegistrationJobRequest.data_access_role_arn required"
         )
-    if "RegistrationConfig" in data:
+    if data.get("RegistrationConfig") is not None:
         import capo_voice_id.types.registration_config
 
         out["registration_config"] = (
@@ -97,7 +97,7 @@ def deserialize_aws_json_1_0(data: dict) -> StartFraudsterRegistrationJobRequest
                 data["RegistrationConfig"]
             )
         )
-    if "InputDataConfig" in data:
+    if data.get("InputDataConfig") is not None:
         import capo_voice_id.types.input_data_config
 
         out["input_data_config"] = (
@@ -109,7 +109,7 @@ def deserialize_aws_json_1_0(data: dict) -> StartFraudsterRegistrationJobRequest
         raise DeserializationError(
             "StartFraudsterRegistrationJobRequest.input_data_config required"
         )
-    if "OutputDataConfig" in data:
+    if data.get("OutputDataConfig") is not None:
         import capo_voice_id.types.output_data_config
 
         out["output_data_config"] = (

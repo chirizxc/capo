@@ -22,14 +22,22 @@ def serialize_json(value: MetricDimension) -> dict:
     if "comparison_operator" in value:
         out["ComparisonOperator"] = value["comparison_operator"]
     if "value" in value:
-        out["Value"] = value["value"]
+        out["Value"] = (
+            "NaN"
+            if value["value"] != value["value"]
+            else "Infinity"
+            if value["value"] == float("inf")
+            else "-Infinity"
+            if value["value"] == float("-inf")
+            else value["value"]
+        )
     return out
 
 
 def deserialize_json(data: dict) -> MetricDimension:
     out: MetricDimension = {}  # type: ignore[typeddict-item]
-    if "ComparisonOperator" in data:
+    if data.get("ComparisonOperator") is not None:
         out["comparison_operator"] = data["ComparisonOperator"]
-    if "Value" in data:
-        out["value"] = data["Value"]
+    if data.get("Value") is not None:
+        out["value"] = float(data["Value"])
     return out

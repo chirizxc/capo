@@ -32,12 +32,12 @@ def serialize_json(value: ListRoleAliasesResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListRoleAliasesResponse:
     out: ListRoleAliasesResponse = {}  # type: ignore[typeddict-item]
-    if "roleAliases" in data:
+    if data.get("roleAliases") is not None:
         import capo_iot.types.role_aliases
 
         out["role_aliases"] = capo_iot.types.role_aliases.deserialize_json(
             data["roleAliases"]
         )
-    if "nextMarker" in data:
+    if data.get("nextMarker") is not None:
         out["next_marker"] = data["nextMarker"]
     return out

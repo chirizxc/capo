@@ -27,8 +27,8 @@ def serialize_aws_json_1_1(value: ParameterNameValue) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ParameterNameValue:
     out: ParameterNameValue = {}  # type: ignore[typeddict-item]
-    if "ParameterName" in data:
+    if data.get("ParameterName") is not None:
         out["parameter_name"] = data["ParameterName"]
-    if "ParameterValue" in data:
+    if data.get("ParameterValue") is not None:
         out["parameter_value"] = data["ParameterValue"]
     return out

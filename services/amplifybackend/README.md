@@ -13,9 +13,9 @@ from capo_amplifybackend import AsyncAmplifyBackendClient
 
 
 async def main():
-    async with AsyncAmplifyBackendClient() as s3:
+    async with AsyncAmplifyBackendClient() as amplify_backend:
         # Example: call the clone_backend operation
-        response = await s3.clone_backend()
+        response = await amplify_backend.clone_backend()
         print(response["app_id"])
 ```
 
@@ -29,9 +29,9 @@ from capo_amplifybackend.error import BadRequestException
 
 
 async def main():
-    async with AsyncAmplifyBackendClient() as s3:
+    async with AsyncAmplifyBackendClient() as amplify_backend:
         try:
-            await s3.clone_backend()
+            await amplify_backend.clone_backend()
         except BadRequestException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -48,13 +48,13 @@ from capo_amplifybackend import AsyncAmplifyBackendClient
 
 
 async def main():
-    async with AsyncAmplifyBackendClient() as s3:
+    async with AsyncAmplifyBackendClient() as amplify_backend:
         # Default: 3 attempts for every operation
-        response = await s3.clone_backend()
+        response = await amplify_backend.clone_backend()
 
         # Override per operation
-        response = await s3.clone_backend(config_overrides={"retry_max_attempts": 5})
+        response = await amplify_backend.clone_backend(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.clone_backend(config_overrides={"retry_max_attempts": 1})
+        response = await amplify_backend.clone_backend(config_overrides={"retry_max_attempts": 1})
 ```

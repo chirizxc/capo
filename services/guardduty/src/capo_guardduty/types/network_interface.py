@@ -81,19 +81,19 @@ def serialize_json(value: NetworkInterface) -> dict:
 
 def deserialize_json(data: dict) -> NetworkInterface:
     out: NetworkInterface = {}  # type: ignore[typeddict-item]
-    if "ipv6Addresses" in data:
+    if data.get("ipv6Addresses") is not None:
         import capo_guardduty.types.ipv6_addresses
 
         out["ipv6_addresses"] = capo_guardduty.types.ipv6_addresses.deserialize_json(
             data["ipv6Addresses"]
         )
-    if "networkInterfaceId" in data:
+    if data.get("networkInterfaceId") is not None:
         out["network_interface_id"] = data["networkInterfaceId"]
-    if "privateDnsName" in data:
+    if data.get("privateDnsName") is not None:
         out["private_dns_name"] = data["privateDnsName"]
-    if "privateIpAddress" in data:
+    if data.get("privateIpAddress") is not None:
         out["private_ip_address"] = data["privateIpAddress"]
-    if "privateIpAddresses" in data:
+    if data.get("privateIpAddresses") is not None:
         import capo_guardduty.types.private_ip_addresses
 
         out["private_ip_addresses"] = (
@@ -101,18 +101,18 @@ def deserialize_json(data: dict) -> NetworkInterface:
                 data["privateIpAddresses"]
             )
         )
-    if "publicDnsName" in data:
+    if data.get("publicDnsName") is not None:
         out["public_dns_name"] = data["publicDnsName"]
-    if "publicIp" in data:
+    if data.get("publicIp") is not None:
         out["public_ip"] = data["publicIp"]
-    if "securityGroups" in data:
+    if data.get("securityGroups") is not None:
         import capo_guardduty.types.security_groups
 
         out["security_groups"] = capo_guardduty.types.security_groups.deserialize_json(
             data["securityGroups"]
         )
-    if "subnetId" in data:
+    if data.get("subnetId") is not None:
         out["subnet_id"] = data["subnetId"]
-    if "vpcId" in data:
+    if data.get("vpcId") is not None:
         out["vpc_id"] = data["vpcId"]
     return out

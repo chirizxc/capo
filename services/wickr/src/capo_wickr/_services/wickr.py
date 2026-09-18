@@ -1,6 +1,7 @@
 """Generated from Smithy shape ``com.amazonaws.wickr#WickrAdminApi``."""
 
 import datetime
+import uuid
 import warnings
 from collections.abc import Iterator
 from typing import TYPE_CHECKING, Any, Iterable, Optional
@@ -288,17 +289,20 @@ class WickrClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_wickr.types.batch_create_user_request.BatchCreateUserRequest = {}  # type: ignore[typeddict-item]
-        input_["network_id"] = network_id
-        input_["users"] = users
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_wickr.types.batch_create_user_request.BatchCreateUserRequest = {
+            "network_id": network_id,
+            "users": users,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def batch_delete_user(
@@ -350,17 +354,20 @@ class WickrClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_wickr.types.batch_delete_user_request.BatchDeleteUserRequest = {}  # type: ignore[typeddict-item]
-        input_["network_id"] = network_id
-        input_["user_ids"] = user_ids
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_wickr.types.batch_delete_user_request.BatchDeleteUserRequest = {
+            "network_id": network_id,
+            "user_ids": user_ids,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def batch_lookup_user_uname(
@@ -414,17 +421,20 @@ class WickrClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_wickr.types.batch_lookup_user_uname_request.BatchLookupUserUnameRequest = {}  # type: ignore[typeddict-item]
-        input_["network_id"] = network_id
-        input_["unames"] = unames
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_wickr.types.batch_lookup_user_uname_request.BatchLookupUserUnameRequest = {
+            "network_id": network_id,
+            "unames": unames,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def batch_reinvite_user(
@@ -479,17 +489,20 @@ class WickrClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_wickr.types.batch_reinvite_user_request.BatchReinviteUserRequest = {}  # type: ignore[typeddict-item]
-        input_["network_id"] = network_id
-        input_["user_ids"] = user_ids
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_wickr.types.batch_reinvite_user_request.BatchReinviteUserRequest = {
+            "network_id": network_id,
+            "user_ids": user_ids,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def batch_reset_devices_for_user(
@@ -546,18 +559,21 @@ class WickrClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_wickr.types.batch_reset_devices_for_user_request.BatchResetDevicesForUserRequest = {}  # type: ignore[typeddict-item]
-        input_["network_id"] = network_id
-        input_["user_id"] = user_id
-        input_["app_ids"] = app_ids
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_wickr.types.batch_reset_devices_for_user_request.BatchResetDevicesForUserRequest = {
+            "network_id": network_id,
+            "user_id": user_id,
+            "app_ids": app_ids,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def batch_toggle_user_suspend_status(
@@ -611,18 +627,21 @@ class WickrClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_wickr.types.batch_toggle_user_suspend_status_request.BatchToggleUserSuspendStatusRequest = {}  # type: ignore[typeddict-item]
-        input_["network_id"] = network_id
-        input_["suspend"] = suspend
-        input_["user_ids"] = user_ids
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_wickr.types.batch_toggle_user_suspend_status_request.BatchToggleUserSuspendStatusRequest = {
+            "network_id": network_id,
+            "suspend": suspend,
+            "user_ids": user_ids,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_bot(
@@ -681,19 +700,21 @@ class WickrClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_wickr.types.create_bot_request.CreateBotRequest = {}  # type: ignore[typeddict-item]
-        input_["network_id"] = network_id
-        input_["username"] = username
+        input_: capo_wickr.types.create_bot_request.CreateBotRequest = {
+            "network_id": network_id,
+            "username": username,
+            "group_id": group_id,
+            "challenge": challenge,
+        }
         if display_name is not None:
             input_["display_name"] = display_name
-        input_["group_id"] = group_id
-        input_["challenge"] = challenge
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_data_retention_bot(
@@ -741,14 +762,16 @@ class WickrClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_wickr.types.create_data_retention_bot_request.CreateDataRetentionBotRequest = {}  # type: ignore[typeddict-item]
-        input_["network_id"] = network_id
+        input_: capo_wickr.types.create_data_retention_bot_request.CreateDataRetentionBotRequest = {
+            "network_id": network_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_data_retention_bot_challenge(
@@ -793,14 +816,16 @@ class WickrClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_wickr.types.create_data_retention_bot_challenge_request.CreateDataRetentionBotChallengeRequest = {}  # type: ignore[typeddict-item]
-        input_["network_id"] = network_id
+        input_: capo_wickr.types.create_data_retention_bot_challenge_request.CreateDataRetentionBotChallengeRequest = {
+            "network_id": network_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_network(
@@ -859,9 +884,10 @@ class WickrClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_wickr.types.create_network_request.CreateNetworkRequest = {}  # type: ignore[typeddict-item]
-        input_["network_name"] = network_name
-        input_["access_level"] = access_level
+        input_: capo_wickr.types.create_network_request.CreateNetworkRequest = {
+            "network_name": network_name,
+            "access_level": access_level,
+        }
         if enable_premium_free_trial is not None:
             input_["enable_premium_free_trial"] = enable_premium_free_trial
         if encryption_key_arn is not None:
@@ -872,6 +898,7 @@ class WickrClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_security_group(
@@ -925,18 +952,21 @@ class WickrClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_wickr.types.create_security_group_request.CreateSecurityGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["network_id"] = network_id
-        input_["name"] = name
-        input_["security_group_settings"] = security_group_settings
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_wickr.types.create_security_group_request.CreateSecurityGroupRequest = {
+            "network_id": network_id,
+            "name": name,
+            "security_group_settings": security_group_settings,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_bot(
@@ -986,15 +1016,17 @@ class WickrClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_wickr.types.delete_bot_request.DeleteBotRequest = {}  # type: ignore[typeddict-item]
-        input_["network_id"] = network_id
-        input_["bot_id"] = bot_id
+        input_: capo_wickr.types.delete_bot_request.DeleteBotRequest = {
+            "network_id": network_id,
+            "bot_id": bot_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_data_retention_bot(
@@ -1039,14 +1071,16 @@ class WickrClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_wickr.types.delete_data_retention_bot_request.DeleteDataRetentionBotRequest = {}  # type: ignore[typeddict-item]
-        input_["network_id"] = network_id
+        input_: capo_wickr.types.delete_data_retention_bot_request.DeleteDataRetentionBotRequest = {
+            "network_id": network_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_network(
@@ -1096,16 +1130,19 @@ class WickrClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_wickr.types.delete_network_request.DeleteNetworkRequest = {}  # type: ignore[typeddict-item]
-        input_["network_id"] = network_id
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_wickr.types.delete_network_request.DeleteNetworkRequest = {
+            "network_id": network_id
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_security_group(
@@ -1155,15 +1192,17 @@ class WickrClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_wickr.types.delete_security_group_request.DeleteSecurityGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["network_id"] = network_id
-        input_["group_id"] = group_id
+        input_: capo_wickr.types.delete_security_group_request.DeleteSecurityGroupRequest = {
+            "network_id": network_id,
+            "group_id": group_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_bot(
@@ -1211,15 +1250,17 @@ class WickrClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_wickr.types.get_bot_request.GetBotRequest = {}  # type: ignore[typeddict-item]
-        input_["network_id"] = network_id
-        input_["bot_id"] = bot_id
+        input_: capo_wickr.types.get_bot_request.GetBotRequest = {
+            "network_id": network_id,
+            "bot_id": bot_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_bots_count(
@@ -1267,14 +1308,16 @@ class WickrClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_wickr.types.get_bots_count_request.GetBotsCountRequest = {}  # type: ignore[typeddict-item]
-        input_["network_id"] = network_id
+        input_: capo_wickr.types.get_bots_count_request.GetBotsCountRequest = {
+            "network_id": network_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_data_retention_bot(
@@ -1322,14 +1365,16 @@ class WickrClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_wickr.types.get_data_retention_bot_request.GetDataRetentionBotRequest = {}  # type: ignore[typeddict-item]
-        input_["network_id"] = network_id
+        input_: capo_wickr.types.get_data_retention_bot_request.GetDataRetentionBotRequest = {
+            "network_id": network_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_guest_user_history_count(
@@ -1377,14 +1422,16 @@ class WickrClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_wickr.types.get_guest_user_history_count_request.GetGuestUserHistoryCountRequest = {}  # type: ignore[typeddict-item]
-        input_["network_id"] = network_id
+        input_: capo_wickr.types.get_guest_user_history_count_request.GetGuestUserHistoryCountRequest = {
+            "network_id": network_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_network(
@@ -1432,14 +1479,16 @@ class WickrClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_wickr.types.get_network_request.GetNetworkRequest = {}  # type: ignore[typeddict-item]
-        input_["network_id"] = network_id
+        input_: capo_wickr.types.get_network_request.GetNetworkRequest = {
+            "network_id": network_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_network_settings(
@@ -1490,14 +1539,16 @@ class WickrClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_wickr.types.get_network_settings_request.GetNetworkSettingsRequest = {}  # type: ignore[typeddict-item]
-        input_["network_id"] = network_id
+        input_: capo_wickr.types.get_network_settings_request.GetNetworkSettingsRequest = {
+            "network_id": network_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_oidc_info(
@@ -1563,8 +1614,9 @@ class WickrClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_wickr.types.get_oidc_info_request.GetOidcInfoRequest = {}  # type: ignore[typeddict-item]
-        input_["network_id"] = network_id
+        input_: capo_wickr.types.get_oidc_info_request.GetOidcInfoRequest = {
+            "network_id": network_id
+        }
         if client_id is not None:
             input_["client_id"] = client_id
         if code is not None:
@@ -1587,6 +1639,7 @@ class WickrClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_opentdf_config(
@@ -1634,14 +1687,16 @@ class WickrClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_wickr.types.get_opentdf_config_request.GetOpentdfConfigRequest = {}  # type: ignore[typeddict-item]
-        input_["network_id"] = network_id
+        input_: capo_wickr.types.get_opentdf_config_request.GetOpentdfConfigRequest = {
+            "network_id": network_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_security_group(
@@ -1691,15 +1746,17 @@ class WickrClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_wickr.types.get_security_group_request.GetSecurityGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["network_id"] = network_id
-        input_["group_id"] = group_id
+        input_: capo_wickr.types.get_security_group_request.GetSecurityGroupRequest = {
+            "network_id": network_id,
+            "group_id": group_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_user(
@@ -1757,9 +1814,10 @@ class WickrClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_wickr.types.get_user_request.GetUserRequest = {}  # type: ignore[typeddict-item]
-        input_["network_id"] = network_id
-        input_["user_id"] = user_id
+        input_: capo_wickr.types.get_user_request.GetUserRequest = {
+            "network_id": network_id,
+            "user_id": user_id,
+        }
         if start_time is not None:
             input_["start_time"] = start_time
         if end_time is not None:
@@ -1770,6 +1828,7 @@ class WickrClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_users_count(
@@ -1817,14 +1876,16 @@ class WickrClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_wickr.types.get_users_count_request.GetUsersCountRequest = {}  # type: ignore[typeddict-item]
-        input_["network_id"] = network_id
+        input_: capo_wickr.types.get_users_count_request.GetUsersCountRequest = {
+            "network_id": network_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_blocked_guest_users(
@@ -1889,8 +1950,9 @@ class WickrClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_wickr.types.list_blocked_guest_users_request.ListBlockedGuestUsersRequest = {}  # type: ignore[typeddict-item]
-        input_["network_id"] = network_id
+        input_: capo_wickr.types.list_blocked_guest_users_request.ListBlockedGuestUsersRequest = {
+            "network_id": network_id
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if sort_direction is not None:
@@ -1909,6 +1971,7 @@ class WickrClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_blocked_guest_users(
@@ -2005,8 +2068,9 @@ class WickrClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_wickr.types.list_bots_request.ListBotsRequest = {}  # type: ignore[typeddict-item]
-        input_["network_id"] = network_id
+        input_: capo_wickr.types.list_bots_request.ListBotsRequest = {
+            "network_id": network_id
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -2029,6 +2093,7 @@ class WickrClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_bots(
@@ -2128,9 +2193,10 @@ class WickrClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_wickr.types.list_devices_for_user_request.ListDevicesForUserRequest = {}  # type: ignore[typeddict-item]
-        input_["network_id"] = network_id
-        input_["user_id"] = user_id
+        input_: capo_wickr.types.list_devices_for_user_request.ListDevicesForUserRequest = {
+            "network_id": network_id,
+            "user_id": user_id,
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -2145,6 +2211,7 @@ class WickrClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_devices_for_user(
@@ -2242,8 +2309,9 @@ class WickrClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_wickr.types.list_guest_users_request.ListGuestUsersRequest = {}  # type: ignore[typeddict-item]
-        input_["network_id"] = network_id
+        input_: capo_wickr.types.list_guest_users_request.ListGuestUsersRequest = {
+            "network_id": network_id
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if sort_direction is not None:
@@ -2262,6 +2330,7 @@ class WickrClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_guest_users(
@@ -2351,7 +2420,7 @@ class WickrClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_wickr.types.list_networks_request.ListNetworksRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_wickr.types.list_networks_request.ListNetworksRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if sort_fields is not None:
@@ -2366,6 +2435,7 @@ class WickrClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_networks(
@@ -2450,8 +2520,9 @@ class WickrClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_wickr.types.list_security_groups_request.ListSecurityGroupsRequest = {}  # type: ignore[typeddict-item]
-        input_["network_id"] = network_id
+        input_: capo_wickr.types.list_security_groups_request.ListSecurityGroupsRequest = {
+            "network_id": network_id
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -2466,6 +2537,7 @@ class WickrClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_security_groups(
@@ -2551,9 +2623,10 @@ class WickrClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_wickr.types.list_security_group_users_request.ListSecurityGroupUsersRequest = {}  # type: ignore[typeddict-item]
-        input_["network_id"] = network_id
-        input_["group_id"] = group_id
+        input_: capo_wickr.types.list_security_group_users_request.ListSecurityGroupUsersRequest = {
+            "network_id": network_id,
+            "group_id": group_id,
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -2568,6 +2641,7 @@ class WickrClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_security_group_users(
@@ -2671,8 +2745,9 @@ class WickrClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_wickr.types.list_users_request.ListUsersRequest = {}  # type: ignore[typeddict-item]
-        input_["network_id"] = network_id
+        input_: capo_wickr.types.list_users_request.ListUsersRequest = {
+            "network_id": network_id
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -2697,6 +2772,7 @@ class WickrClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_users(
@@ -2808,15 +2884,16 @@ class WickrClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_wickr.types.register_oidc_config_request.RegisterOidcConfigRequest = {}  # type: ignore[typeddict-item]
-        input_["network_id"] = network_id
-        input_["company_id"] = company_id
+        input_: capo_wickr.types.register_oidc_config_request.RegisterOidcConfigRequest = {
+            "network_id": network_id,
+            "company_id": company_id,
+            "issuer": issuer,
+            "scopes": scopes,
+        }
         if custom_username is not None:
             input_["custom_username"] = custom_username
         if extra_auth_params is not None:
             input_["extra_auth_params"] = extra_auth_params
-        input_["issuer"] = issuer
-        input_["scopes"] = scopes
         if secret is not None:
             input_["secret"] = secret
         if sso_token_buffer_minutes is not None:
@@ -2829,6 +2906,7 @@ class WickrClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def register_oidc_config_test(
@@ -2889,12 +2967,13 @@ class WickrClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_wickr.types.register_oidc_config_test_request.RegisterOidcConfigTestRequest = {}  # type: ignore[typeddict-item]
-        input_["network_id"] = network_id
+        input_: capo_wickr.types.register_oidc_config_test_request.RegisterOidcConfigTestRequest = {
+            "network_id": network_id,
+            "issuer": issuer,
+            "scopes": scopes,
+        }
         if extra_auth_params is not None:
             input_["extra_auth_params"] = extra_auth_params
-        input_["issuer"] = issuer
-        input_["scopes"] = scopes
         if certificate is not None:
             input_["certificate"] = certificate
 
@@ -2903,6 +2982,7 @@ class WickrClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def register_opentdf_config(
@@ -2969,12 +3049,13 @@ class WickrClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_wickr.types.register_opentdf_config_request.RegisterOpentdfConfigRequest = {}  # type: ignore[typeddict-item]
-        input_["network_id"] = network_id
-        input_["client_id"] = client_id
-        input_["client_secret"] = client_secret
-        input_["domain"] = domain
-        input_["provider"] = provider
+        input_: capo_wickr.types.register_opentdf_config_request.RegisterOpentdfConfigRequest = {
+            "network_id": network_id,
+            "client_id": client_id,
+            "client_secret": client_secret,
+            "domain": domain,
+            "provider": provider,
+        }
         if dry_run is not None:
             input_["dry_run"] = dry_run
 
@@ -2983,6 +3064,7 @@ class WickrClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_bot(
@@ -3040,9 +3122,10 @@ class WickrClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_wickr.types.update_bot_request.UpdateBotRequest = {}  # type: ignore[typeddict-item]
-        input_["network_id"] = network_id
-        input_["bot_id"] = bot_id
+        input_: capo_wickr.types.update_bot_request.UpdateBotRequest = {
+            "network_id": network_id,
+            "bot_id": bot_id,
+        }
         if display_name is not None:
             input_["display_name"] = display_name
         if group_id is not None:
@@ -3057,6 +3140,7 @@ class WickrClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_data_retention(
@@ -3109,15 +3193,17 @@ class WickrClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_wickr.types.update_data_retention_request.UpdateDataRetentionRequest = {}  # type: ignore[typeddict-item]
-        input_["network_id"] = network_id
-        input_["action_type"] = action_type
+        input_: capo_wickr.types.update_data_retention_request.UpdateDataRetentionRequest = {
+            "network_id": network_id,
+            "action_type": action_type,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_guest_user(
@@ -3172,16 +3258,18 @@ class WickrClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_wickr.types.update_guest_user_request.UpdateGuestUserRequest = {}  # type: ignore[typeddict-item]
-        input_["network_id"] = network_id
-        input_["username_hash"] = username_hash
-        input_["block"] = block
+        input_: capo_wickr.types.update_guest_user_request.UpdateGuestUserRequest = {
+            "network_id": network_id,
+            "username_hash": username_hash,
+            "block": block,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_network(
@@ -3240,11 +3328,13 @@ class WickrClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_wickr.types.update_network_request.UpdateNetworkRequest = {}  # type: ignore[typeddict-item]
-        input_["network_id"] = network_id
-        input_["network_name"] = network_name
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_wickr.types.update_network_request.UpdateNetworkRequest = {
+            "network_id": network_id,
+            "network_name": network_name,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if encryption_key_arn is not None:
             input_["encryption_key_arn"] = encryption_key_arn
 
@@ -3253,6 +3343,7 @@ class WickrClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_network_settings(
@@ -3314,15 +3405,17 @@ class WickrClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_wickr.types.update_network_settings_request.UpdateNetworkSettingsRequest = {}  # type: ignore[typeddict-item]
-        input_["network_id"] = network_id
-        input_["settings"] = settings
+        input_: capo_wickr.types.update_network_settings_request.UpdateNetworkSettingsRequest = {
+            "network_id": network_id,
+            "settings": settings,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_security_group(
@@ -3378,9 +3471,10 @@ class WickrClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_wickr.types.update_security_group_request.UpdateSecurityGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["network_id"] = network_id
-        input_["group_id"] = group_id
+        input_: capo_wickr.types.update_security_group_request.UpdateSecurityGroupRequest = {
+            "network_id": network_id,
+            "group_id": group_id,
+        }
         if name is not None:
             input_["name"] = name
         if security_group_settings is not None:
@@ -3391,6 +3485,7 @@ class WickrClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_user(
@@ -3450,9 +3545,10 @@ class WickrClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_wickr.types.update_user_request.UpdateUserRequest = {}  # type: ignore[typeddict-item]
-        input_["network_id"] = network_id
-        input_["user_id"] = user_id
+        input_: capo_wickr.types.update_user_request.UpdateUserRequest = {
+            "network_id": network_id,
+            "user_id": user_id,
+        }
         if user_details is not None:
             input_["user_details"] = user_details
 
@@ -3461,6 +3557,7 @@ class WickrClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def __enter__(self) -> Self:

@@ -33,7 +33,7 @@ def serialize_json(value: UpdateBaiduChannelRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateBaiduChannelRequest:
     out: UpdateBaiduChannelRequest = {}  # type: ignore[typeddict-item]
-    if "BaiduChannelRequest" in data:
+    if data.get("BaiduChannelRequest") is not None:
         import capo_pinpoint.types.baidu_channel_request
 
         out["baidu_channel_request"] = (

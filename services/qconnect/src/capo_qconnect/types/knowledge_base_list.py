@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> KnowledgeBaseList:
 
     out: KnowledgeBaseList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_qconnect.types.knowledge_base_summary.deserialize_json(item))
     return out

@@ -36,14 +36,14 @@ def serialize_json(value: ChatEvent) -> dict:
 
 def deserialize_json(data: dict) -> ChatEvent:
     out: ChatEvent = {}  # type: ignore[typeddict-item]
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_connect.types.chat_event_type
 
         out["type"] = capo_connect.types.chat_event_type.deserialize_json(data["Type"])
     else:
         raise DeserializationError("ChatEvent.type required")
-    if "ContentType" in data:
+    if data.get("ContentType") is not None:
         out["content_type"] = data["ContentType"]
-    if "Content" in data:
+    if data.get("Content") is not None:
         out["content"] = data["Content"]
     return out

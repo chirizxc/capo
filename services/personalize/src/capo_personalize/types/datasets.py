@@ -23,6 +23,8 @@ def deserialize_aws_json_1_1(data: list) -> Datasets:
 
     out: Datasets = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_personalize.types.dataset_summary.deserialize_aws_json_1_1(item)
         )

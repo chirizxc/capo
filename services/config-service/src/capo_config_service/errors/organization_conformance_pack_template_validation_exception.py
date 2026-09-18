@@ -29,7 +29,7 @@ def deserialize_aws_json_1_1(
     data: dict,
 ) -> OrganizationConformancePackTemplateValidationException_:
     out: OrganizationConformancePackTemplateValidationException_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     return out
 
@@ -39,17 +39,22 @@ class OrganizationConformancePackTemplateValidationException(ServiceError):
 
     code: str | None = "OrganizationConformancePackTemplateValidationException"
 
-    def __init__(self, data: OrganizationConformancePackTemplateValidationException_):
+    def __init__(
+        self,
+        data: OrganizationConformancePackTemplateValidationException_,
+        message: str | None = None,
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="OrganizationConformancePackTemplateValidationException",
+            message=message,
         )
         self.data = data
 
     @classmethod
     def from_aws_json_1_1(
-        cls, data: dict
+        cls, data: dict, message: str | None = None
     ) -> "OrganizationConformancePackTemplateValidationException":
-        return cls(deserialize_aws_json_1_1(data))
+        return cls(deserialize_aws_json_1_1(data), message)

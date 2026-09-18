@@ -63,17 +63,17 @@ def serialize_json(value: UpdateAssessmentRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateAssessmentRequest:
     out: UpdateAssessmentRequest = {}  # type: ignore[typeddict-item]
-    if "assessmentName" in data:
+    if data.get("assessmentName") is not None:
         out["assessment_name"] = data["assessmentName"]
-    if "assessmentDescription" in data:
+    if data.get("assessmentDescription") is not None:
         out["assessment_description"] = data["assessmentDescription"]
-    if "scope" in data:
+    if data.get("scope") is not None:
         import capo_auditmanager.types.scope
 
         out["scope"] = capo_auditmanager.types.scope.deserialize_json(data["scope"])
     else:
         raise DeserializationError("UpdateAssessmentRequest.scope required")
-    if "assessmentReportsDestination" in data:
+    if data.get("assessmentReportsDestination") is not None:
         import capo_auditmanager.types.assessment_reports_destination
 
         out["assessment_reports_destination"] = (
@@ -81,7 +81,7 @@ def deserialize_json(data: dict) -> UpdateAssessmentRequest:
                 data["assessmentReportsDestination"]
             )
         )
-    if "roles" in data:
+    if data.get("roles") is not None:
         import capo_auditmanager.types.roles
 
         out["roles"] = capo_auditmanager.types.roles.deserialize_json(data["roles"])

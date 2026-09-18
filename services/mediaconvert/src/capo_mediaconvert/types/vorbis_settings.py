@@ -39,10 +39,10 @@ def serialize_json(value: VorbisSettings) -> dict:
 
 def deserialize_json(data: dict) -> VorbisSettings:
     out: VorbisSettings = {}  # type: ignore[typeddict-item]
-    if "channels" in data:
+    if data.get("channels") is not None:
         out["channels"] = data["channels"]
-    if "sampleRate" in data:
+    if data.get("sampleRate") is not None:
         out["sample_rate"] = data["sampleRate"]
-    if "vbrQuality" in data:
+    if data.get("vbrQuality") is not None:
         out["vbr_quality"] = data["vbrQuality"]
     return out

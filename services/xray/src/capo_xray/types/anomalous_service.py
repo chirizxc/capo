@@ -26,7 +26,7 @@ def serialize_json(value: AnomalousService) -> dict:
 
 def deserialize_json(data: dict) -> AnomalousService:
     out: AnomalousService = {}  # type: ignore[typeddict-item]
-    if "ServiceId" in data:
+    if data.get("ServiceId") is not None:
         import capo_xray.types.service_id
 
         out["service_id"] = capo_xray.types.service_id.deserialize_json(

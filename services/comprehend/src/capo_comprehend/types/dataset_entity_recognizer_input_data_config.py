@@ -56,7 +56,7 @@ def serialize_aws_json_1_1(value: DatasetEntityRecognizerInputDataConfig) -> dic
 
 def deserialize_aws_json_1_1(data: dict) -> DatasetEntityRecognizerInputDataConfig:
     out: DatasetEntityRecognizerInputDataConfig = {}  # type: ignore[typeddict-item]
-    if "Annotations" in data:
+    if data.get("Annotations") is not None:
         import capo_comprehend.types.dataset_entity_recognizer_annotations
 
         out["annotations"] = (
@@ -64,7 +64,7 @@ def deserialize_aws_json_1_1(data: dict) -> DatasetEntityRecognizerInputDataConf
                 data["Annotations"]
             )
         )
-    if "Documents" in data:
+    if data.get("Documents") is not None:
         import capo_comprehend.types.dataset_entity_recognizer_documents
 
         out["documents"] = (
@@ -76,7 +76,7 @@ def deserialize_aws_json_1_1(data: dict) -> DatasetEntityRecognizerInputDataConf
         raise DeserializationError(
             "DatasetEntityRecognizerInputDataConfig.documents required"
         )
-    if "EntityList" in data:
+    if data.get("EntityList") is not None:
         import capo_comprehend.types.dataset_entity_recognizer_entity_list
 
         out["entity_list"] = (

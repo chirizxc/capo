@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: BatchGetPreparedStatementInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> BatchGetPreparedStatementInput:
     out: BatchGetPreparedStatementInput = {}  # type: ignore[typeddict-item]
-    if "PreparedStatementNames" in data:
+    if data.get("PreparedStatementNames") is not None:
         import capo_athena.types.prepared_statement_name_list
 
         out["prepared_statement_names"] = (
@@ -48,7 +48,7 @@ def deserialize_aws_json_1_1(data: dict) -> BatchGetPreparedStatementInput:
         raise DeserializationError(
             "BatchGetPreparedStatementInput.prepared_statement_names required"
         )
-    if "WorkGroup" in data:
+    if data.get("WorkGroup") is not None:
         out["work_group"] = data["WorkGroup"]
     else:
         raise DeserializationError("BatchGetPreparedStatementInput.work_group required")

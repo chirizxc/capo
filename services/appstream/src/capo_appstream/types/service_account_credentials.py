@@ -30,8 +30,8 @@ def serialize_aws_json_1_1(value: ServiceAccountCredentials) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ServiceAccountCredentials:
     out: ServiceAccountCredentials = {}  # type: ignore[typeddict-item]
-    if "AccountName" in data:
+    if data.get("AccountName") is not None:
         out["account_name"] = data["AccountName"]
-    if "AccountPassword" in data:
+    if data.get("AccountPassword") is not None:
         out["account_password"] = data["AccountPassword"]
     return out

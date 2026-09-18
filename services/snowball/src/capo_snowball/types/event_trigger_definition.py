@@ -23,6 +23,6 @@ def serialize_aws_json_1_1(value: EventTriggerDefinition) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> EventTriggerDefinition:
     out: EventTriggerDefinition = {}  # type: ignore[typeddict-item]
-    if "EventResourceARN" in data:
+    if data.get("EventResourceARN") is not None:
         out["event_resource_arn"] = data["EventResourceARN"]
     return out

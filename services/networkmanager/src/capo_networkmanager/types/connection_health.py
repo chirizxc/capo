@@ -45,19 +45,19 @@ def serialize_json(value: ConnectionHealth) -> dict:
 
 def deserialize_json(data: dict) -> ConnectionHealth:
     out: ConnectionHealth = {}  # type: ignore[typeddict-item]
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_networkmanager.types.connection_type
 
         out["type"] = capo_networkmanager.types.connection_type.deserialize_json(
             data["Type"]
         )
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_networkmanager.types.connection_status
 
         out["status"] = capo_networkmanager.types.connection_status.deserialize_json(
             data["Status"]
         )
-    if "Timestamp" in data:
+    if data.get("Timestamp") is not None:
         import capo_networkmanager.types.date_time
 
         out["timestamp"] = capo_networkmanager.types.date_time.deserialize_json(

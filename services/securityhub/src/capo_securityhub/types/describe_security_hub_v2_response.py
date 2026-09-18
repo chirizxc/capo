@@ -27,8 +27,8 @@ def serialize_json(value: DescribeSecurityHubV2Response) -> dict:
 
 def deserialize_json(data: dict) -> DescribeSecurityHubV2Response:
     out: DescribeSecurityHubV2Response = {}  # type: ignore[typeddict-item]
-    if "HubV2Arn" in data:
+    if data.get("HubV2Arn") is not None:
         out["hub_v2_arn"] = data["HubV2Arn"]
-    if "SubscribedAt" in data:
+    if data.get("SubscribedAt") is not None:
         out["subscribed_at"] = data["SubscribedAt"]
     return out

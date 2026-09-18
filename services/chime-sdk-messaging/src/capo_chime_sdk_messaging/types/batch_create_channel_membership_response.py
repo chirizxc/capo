@@ -44,7 +44,7 @@ def serialize_json(value: BatchCreateChannelMembershipResponse) -> dict:
 
 def deserialize_json(data: dict) -> BatchCreateChannelMembershipResponse:
     out: BatchCreateChannelMembershipResponse = {}  # type: ignore[typeddict-item]
-    if "BatchChannelMemberships" in data:
+    if data.get("BatchChannelMemberships") is not None:
         import capo_chime_sdk_messaging.types.batch_channel_memberships
 
         out["batch_channel_memberships"] = (
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> BatchCreateChannelMembershipResponse:
                 data["BatchChannelMemberships"]
             )
         )
-    if "Errors" in data:
+    if data.get("Errors") is not None:
         import capo_chime_sdk_messaging.types.batch_create_channel_membership_errors
 
         out["errors"] = (

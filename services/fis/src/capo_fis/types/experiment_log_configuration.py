@@ -51,7 +51,7 @@ def serialize_json(value: ExperimentLogConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> ExperimentLogConfiguration:
     out: ExperimentLogConfiguration = {}  # type: ignore[typeddict-item]
-    if "cloudWatchLogsConfiguration" in data:
+    if data.get("cloudWatchLogsConfiguration") is not None:
         import capo_fis.types.experiment_cloud_watch_logs_log_configuration
 
         out["cloud_watch_logs_configuration"] = (
@@ -59,7 +59,7 @@ def deserialize_json(data: dict) -> ExperimentLogConfiguration:
                 data["cloudWatchLogsConfiguration"]
             )
         )
-    if "s3Configuration" in data:
+    if data.get("s3Configuration") is not None:
         import capo_fis.types.experiment_s3_log_configuration
 
         out["s3_configuration"] = (
@@ -67,6 +67,6 @@ def deserialize_json(data: dict) -> ExperimentLogConfiguration:
                 data["s3Configuration"]
             )
         )
-    if "logSchemaVersion" in data:
+    if data.get("logSchemaVersion") is not None:
         out["log_schema_version"] = data["logSchemaVersion"]
     return out

@@ -39,13 +39,13 @@ def serialize_aws_json_1_1(value: NetworkConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> NetworkConfig:
     out: NetworkConfig = {}  # type: ignore[typeddict-item]
-    if "EnableInterContainerTrafficEncryption" in data:
+    if data.get("EnableInterContainerTrafficEncryption") is not None:
         out["enable_inter_container_traffic_encryption"] = data[
             "EnableInterContainerTrafficEncryption"
         ]
-    if "EnableNetworkIsolation" in data:
+    if data.get("EnableNetworkIsolation") is not None:
         out["enable_network_isolation"] = data["EnableNetworkIsolation"]
-    if "VpcConfig" in data:
+    if data.get("VpcConfig") is not None:
         import capo_sagemaker.types.vpc_config
 
         out["vpc_config"] = capo_sagemaker.types.vpc_config.deserialize_aws_json_1_1(

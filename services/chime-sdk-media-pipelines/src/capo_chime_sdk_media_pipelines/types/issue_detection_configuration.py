@@ -24,7 +24,7 @@ def serialize_json(value: IssueDetectionConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> IssueDetectionConfiguration:
     out: IssueDetectionConfiguration = {}  # type: ignore[typeddict-item]
-    if "RuleName" in data:
+    if data.get("RuleName") is not None:
         out["rule_name"] = data["RuleName"]
     else:
         raise DeserializationError("IssueDetectionConfiguration.rule_name required")

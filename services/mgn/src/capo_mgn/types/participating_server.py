@@ -49,15 +49,15 @@ def serialize_json(value: ParticipatingServer) -> dict:
 
 def deserialize_json(data: dict) -> ParticipatingServer:
     out: ParticipatingServer = {}  # type: ignore[typeddict-item]
-    if "sourceServerID" in data:
+    if data.get("sourceServerID") is not None:
         out["source_server_id"] = data["sourceServerID"]
     else:
         raise DeserializationError("ParticipatingServer.source_server_id required")
-    if "launchStatus" in data:
+    if data.get("launchStatus") is not None:
         out["launch_status"] = data["launchStatus"]
-    if "launchedEc2InstanceID" in data:
+    if data.get("launchedEc2InstanceID") is not None:
         out["launched_ec2_instance_id"] = data["launchedEc2InstanceID"]
-    if "postLaunchActionsStatus" in data:
+    if data.get("postLaunchActionsStatus") is not None:
         import capo_mgn.types.post_launch_actions_status
 
         out["post_launch_actions_status"] = (

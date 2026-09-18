@@ -28,12 +28,12 @@ def serialize_aws_json_1_1(value: CreateParameterGroupRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateParameterGroupRequest:
     out: CreateParameterGroupRequest = {}  # type: ignore[typeddict-item]
-    if "ParameterGroupName" in data:
+    if data.get("ParameterGroupName") is not None:
         out["parameter_group_name"] = data["ParameterGroupName"]
     else:
         raise DeserializationError(
             "CreateParameterGroupRequest.parameter_group_name required"
         )
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
     return out

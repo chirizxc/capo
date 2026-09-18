@@ -64,7 +64,7 @@ def serialize_json(value: CreateSafetyRuleRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateSafetyRuleRequest:
     out: CreateSafetyRuleRequest = {}  # type: ignore[typeddict-item]
-    if "AssertionRule" in data:
+    if data.get("AssertionRule") is not None:
         import capo_route53_recovery_control_config.types.new_assertion_rule
 
         out["assertion_rule"] = (
@@ -72,9 +72,9 @@ def deserialize_json(data: dict) -> CreateSafetyRuleRequest:
                 data["AssertionRule"]
             )
         )
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
-    if "GatingRule" in data:
+    if data.get("GatingRule") is not None:
         import capo_route53_recovery_control_config.types.new_gating_rule
 
         out["gating_rule"] = (
@@ -82,7 +82,7 @@ def deserialize_json(data: dict) -> CreateSafetyRuleRequest:
                 data["GatingRule"]
             )
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_route53_recovery_control_config.types.__map_of__string_min0_max256_pattern_s
 
         out["tags"] = (

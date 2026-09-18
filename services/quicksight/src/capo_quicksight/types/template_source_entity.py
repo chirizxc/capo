@@ -44,7 +44,7 @@ def serialize_json(value: TemplateSourceEntity) -> dict:
 
 def deserialize_json(data: dict) -> TemplateSourceEntity:
     out: TemplateSourceEntity = {}  # type: ignore[typeddict-item]
-    if "SourceAnalysis" in data:
+    if data.get("SourceAnalysis") is not None:
         import capo_quicksight.types.template_source_analysis
 
         out["source_analysis"] = (
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> TemplateSourceEntity:
                 data["SourceAnalysis"]
             )
         )
-    if "SourceTemplate" in data:
+    if data.get("SourceTemplate") is not None:
         import capo_quicksight.types.template_source_template
 
         out["source_template"] = (

@@ -49,7 +49,7 @@ def serialize_aws_json_1_0(value: CreateIdentitySourceOutput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CreateIdentitySourceOutput:
     out: CreateIdentitySourceOutput = {}  # type: ignore[typeddict-item]
-    if "createdDate" in data:
+    if data.get("createdDate") is not None:
         import capo_verifiedpermissions.types.timestamp_format
 
         out["created_date"] = (
@@ -59,13 +59,13 @@ def deserialize_aws_json_1_0(data: dict) -> CreateIdentitySourceOutput:
         )
     else:
         raise DeserializationError("CreateIdentitySourceOutput.created_date required")
-    if "identitySourceId" in data:
+    if data.get("identitySourceId") is not None:
         out["identity_source_id"] = data["identitySourceId"]
     else:
         raise DeserializationError(
             "CreateIdentitySourceOutput.identity_source_id required"
         )
-    if "lastUpdatedDate" in data:
+    if data.get("lastUpdatedDate") is not None:
         import capo_verifiedpermissions.types.timestamp_format
 
         out["last_updated_date"] = (
@@ -77,7 +77,7 @@ def deserialize_aws_json_1_0(data: dict) -> CreateIdentitySourceOutput:
         raise DeserializationError(
             "CreateIdentitySourceOutput.last_updated_date required"
         )
-    if "policyStoreId" in data:
+    if data.get("policyStoreId") is not None:
         out["policy_store_id"] = data["policyStoreId"]
     else:
         raise DeserializationError(

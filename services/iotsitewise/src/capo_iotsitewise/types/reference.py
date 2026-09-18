@@ -27,7 +27,7 @@ def serialize_json(value: Reference) -> dict:
 
 def deserialize_json(data: dict) -> Reference:
     out: Reference = {}  # type: ignore[typeddict-item]
-    if "dataset" in data:
+    if data.get("dataset") is not None:
         import capo_iotsitewise.types.data_set_reference
 
         out["dataset"] = capo_iotsitewise.types.data_set_reference.deserialize_json(

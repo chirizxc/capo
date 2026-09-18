@@ -39,7 +39,7 @@ def serialize_json(value: PackageAggregation) -> dict:
 
 def deserialize_json(data: dict) -> PackageAggregation:
     out: PackageAggregation = {}  # type: ignore[typeddict-item]
-    if "packageNames" in data:
+    if data.get("packageNames") is not None:
         import capo_inspector2.types.string_filter_list
 
         out["package_names"] = (
@@ -47,8 +47,8 @@ def deserialize_json(data: dict) -> PackageAggregation:
                 data["packageNames"]
             )
         )
-    if "sortOrder" in data:
+    if data.get("sortOrder") is not None:
         out["sort_order"] = data["sortOrder"]
-    if "sortBy" in data:
+    if data.get("sortBy") is not None:
         out["sort_by"] = data["sortBy"]
     return out

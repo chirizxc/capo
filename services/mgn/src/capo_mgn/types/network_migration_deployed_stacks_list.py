@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> NetworkMigrationDeployedStacksList:
 
     out: NetworkMigrationDeployedStacksList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_mgn.types.network_migration_deployed_stack_details.deserialize_json(
                 item

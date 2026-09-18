@@ -420,15 +420,17 @@ class AsyncimagebuilderClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_imagebuilder.types.cancel_image_creation_request.CancelImageCreationRequest = {}  # type: ignore[typeddict-item]
-        input_["image_build_version_arn"] = image_build_version_arn
-        input_["client_token"] = client_token
+        input_: capo_imagebuilder.types.cancel_image_creation_request.CancelImageCreationRequest = {
+            "image_build_version_arn": image_build_version_arn,
+            "client_token": client_token,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def cancel_lifecycle_execution(
@@ -472,15 +474,17 @@ class AsyncimagebuilderClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_imagebuilder.types.cancel_lifecycle_execution_request.CancelLifecycleExecutionRequest = {}  # type: ignore[typeddict-item]
-        input_["lifecycle_execution_id"] = lifecycle_execution_id
-        input_["client_token"] = client_token
+        input_: capo_imagebuilder.types.cancel_lifecycle_execution_request.CancelLifecycleExecutionRequest = {
+            "lifecycle_execution_id": lifecycle_execution_id,
+            "client_token": client_token,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_component(
@@ -558,14 +562,16 @@ class AsyncimagebuilderClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_imagebuilder.types.create_component_request.CreateComponentRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        input_["semantic_version"] = semantic_version
+        input_: capo_imagebuilder.types.create_component_request.CreateComponentRequest = {
+            "name": name,
+            "semantic_version": semantic_version,
+            "platform": platform,
+            "client_token": client_token,
+        }
         if description is not None:
             input_["description"] = description
         if change_description is not None:
             input_["change_description"] = change_description
-        input_["platform"] = platform
         if supported_os_versions is not None:
             input_["supported_os_versions"] = supported_os_versions
         if data is not None:
@@ -576,7 +582,6 @@ class AsyncimagebuilderClient:
             input_["kms_key_id"] = kms_key_id
         if tags is not None:
             input_["tags"] = tags
-        input_["client_token"] = client_token
         if dry_run is not None:
             input_["dry_run"] = dry_run
 
@@ -585,6 +590,7 @@ class AsyncimagebuilderClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_container_recipe(
@@ -673,12 +679,16 @@ class AsyncimagebuilderClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_imagebuilder.types.create_container_recipe_request.CreateContainerRecipeRequest = {}  # type: ignore[typeddict-item]
-        input_["container_type"] = container_type
-        input_["name"] = name
+        input_: capo_imagebuilder.types.create_container_recipe_request.CreateContainerRecipeRequest = {
+            "container_type": container_type,
+            "name": name,
+            "semantic_version": semantic_version,
+            "parent_image": parent_image,
+            "target_repository": target_repository,
+            "client_token": client_token,
+        }
         if description is not None:
             input_["description"] = description
-        input_["semantic_version"] = semantic_version
         if components is not None:
             input_["components"] = components
         if instance_configuration is not None:
@@ -691,21 +701,19 @@ class AsyncimagebuilderClient:
             input_["platform_override"] = platform_override
         if image_os_version_override is not None:
             input_["image_os_version_override"] = image_os_version_override
-        input_["parent_image"] = parent_image
         if tags is not None:
             input_["tags"] = tags
         if working_directory is not None:
             input_["working_directory"] = working_directory
-        input_["target_repository"] = target_repository
         if kms_key_id is not None:
             input_["kms_key_id"] = kms_key_id
-        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_distribution_configuration(
@@ -760,20 +768,22 @@ class AsyncimagebuilderClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_imagebuilder.types.create_distribution_configuration_request.CreateDistributionConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_imagebuilder.types.create_distribution_configuration_request.CreateDistributionConfigurationRequest = {
+            "name": name,
+            "distributions": distributions,
+            "client_token": client_token,
+        }
         if description is not None:
             input_["description"] = description
-        input_["distributions"] = distributions
         if tags is not None:
             input_["tags"] = tags
-        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_image(
@@ -856,21 +866,22 @@ class AsyncimagebuilderClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_imagebuilder.types.create_image_request.CreateImageRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_imagebuilder.types.create_image_request.CreateImageRequest = {
+            "infrastructure_configuration_arn": infrastructure_configuration_arn,
+            "client_token": client_token,
+        }
         if image_recipe_arn is not None:
             input_["image_recipe_arn"] = image_recipe_arn
         if container_recipe_arn is not None:
             input_["container_recipe_arn"] = container_recipe_arn
         if distribution_configuration_arn is not None:
             input_["distribution_configuration_arn"] = distribution_configuration_arn
-        input_["infrastructure_configuration_arn"] = infrastructure_configuration_arn
         if image_tests_configuration is not None:
             input_["image_tests_configuration"] = image_tests_configuration
         if enhanced_image_metadata_enabled is not None:
             input_["enhanced_image_metadata_enabled"] = enhanced_image_metadata_enabled
         if tags is not None:
             input_["tags"] = tags
-        input_["client_token"] = client_token
         if image_scanning_configuration is not None:
             input_["image_scanning_configuration"] = image_scanning_configuration
         if workflows is not None:
@@ -885,6 +896,7 @@ class AsyncimagebuilderClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_image_pipeline(
@@ -982,15 +994,17 @@ class AsyncimagebuilderClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_imagebuilder.types.create_image_pipeline_request.CreateImagePipelineRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_imagebuilder.types.create_image_pipeline_request.CreateImagePipelineRequest = {
+            "name": name,
+            "infrastructure_configuration_arn": infrastructure_configuration_arn,
+            "client_token": client_token,
+        }
         if description is not None:
             input_["description"] = description
         if image_recipe_arn is not None:
             input_["image_recipe_arn"] = image_recipe_arn
         if container_recipe_arn is not None:
             input_["container_recipe_arn"] = container_recipe_arn
-        input_["infrastructure_configuration_arn"] = infrastructure_configuration_arn
         if distribution_configuration_arn is not None:
             input_["distribution_configuration_arn"] = distribution_configuration_arn
         if image_tests_configuration is not None:
@@ -1005,7 +1019,6 @@ class AsyncimagebuilderClient:
             input_["tags"] = tags
         if image_tags is not None:
             input_["image_tags"] = image_tags
-        input_["client_token"] = client_token
         if image_scanning_configuration is not None:
             input_["image_scanning_configuration"] = image_scanning_configuration
         if workflows is not None:
@@ -1020,6 +1033,7 @@ class AsyncimagebuilderClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_image_recipe(
@@ -1096,14 +1110,16 @@ class AsyncimagebuilderClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_imagebuilder.types.create_image_recipe_request.CreateImageRecipeRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_imagebuilder.types.create_image_recipe_request.CreateImageRecipeRequest = {
+            "name": name,
+            "semantic_version": semantic_version,
+            "parent_image": parent_image,
+            "client_token": client_token,
+        }
         if description is not None:
             input_["description"] = description
-        input_["semantic_version"] = semantic_version
         if components is not None:
             input_["components"] = components
-        input_["parent_image"] = parent_image
         if block_device_mappings is not None:
             input_["block_device_mappings"] = block_device_mappings
         if tags is not None:
@@ -1116,13 +1132,13 @@ class AsyncimagebuilderClient:
             )
         if ami_tags is not None:
             input_["ami_tags"] = ami_tags
-        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_infrastructure_configuration(
@@ -1212,13 +1228,15 @@ class AsyncimagebuilderClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_imagebuilder.types.create_infrastructure_configuration_request.CreateInfrastructureConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_imagebuilder.types.create_infrastructure_configuration_request.CreateInfrastructureConfigurationRequest = {
+            "name": name,
+            "instance_profile_name": instance_profile_name,
+            "client_token": client_token,
+        }
         if description is not None:
             input_["description"] = description
         if instance_types is not None:
             input_["instance_types"] = instance_types
-        input_["instance_profile_name"] = instance_profile_name
         if security_group_ids is not None:
             input_["security_group_ids"] = security_group_ids
         if subnet_id is not None:
@@ -1239,13 +1257,13 @@ class AsyncimagebuilderClient:
             input_["tags"] = tags
         if placement is not None:
             input_["placement"] = placement
-        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_lifecycle_policy(
@@ -1309,25 +1327,27 @@ class AsyncimagebuilderClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_imagebuilder.types.create_lifecycle_policy_request.CreateLifecyclePolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_imagebuilder.types.create_lifecycle_policy_request.CreateLifecyclePolicyRequest = {
+            "name": name,
+            "execution_role": execution_role,
+            "resource_type": resource_type,
+            "policy_details": policy_details,
+            "resource_selection": resource_selection,
+            "client_token": client_token,
+        }
         if description is not None:
             input_["description"] = description
         if status is not None:
             input_["status"] = status
-        input_["execution_role"] = execution_role
-        input_["resource_type"] = resource_type
-        input_["policy_details"] = policy_details
-        input_["resource_selection"] = resource_selection
         if tags is not None:
             input_["tags"] = tags
-        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_workflow(
@@ -1401,9 +1421,12 @@ class AsyncimagebuilderClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_imagebuilder.types.create_workflow_request.CreateWorkflowRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        input_["semantic_version"] = semantic_version
+        input_: capo_imagebuilder.types.create_workflow_request.CreateWorkflowRequest = {
+            "name": name,
+            "semantic_version": semantic_version,
+            "client_token": client_token,
+            "type": type,
+        }
         if description is not None:
             input_["description"] = description
         if change_description is not None:
@@ -1416,8 +1439,6 @@ class AsyncimagebuilderClient:
             input_["kms_key_id"] = kms_key_id
         if tags is not None:
             input_["tags"] = tags
-        input_["client_token"] = client_token
-        input_["type"] = type
         if dry_run is not None:
             input_["dry_run"] = dry_run
 
@@ -1426,6 +1447,7 @@ class AsyncimagebuilderClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_component(
@@ -1466,14 +1488,16 @@ class AsyncimagebuilderClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_imagebuilder.types.delete_component_request.DeleteComponentRequest = {}  # type: ignore[typeddict-item]
-        input_["component_build_version_arn"] = component_build_version_arn
+        input_: capo_imagebuilder.types.delete_component_request.DeleteComponentRequest = {
+            "component_build_version_arn": component_build_version_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_container_recipe(
@@ -1514,14 +1538,16 @@ class AsyncimagebuilderClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_imagebuilder.types.delete_container_recipe_request.DeleteContainerRecipeRequest = {}  # type: ignore[typeddict-item]
-        input_["container_recipe_arn"] = container_recipe_arn
+        input_: capo_imagebuilder.types.delete_container_recipe_request.DeleteContainerRecipeRequest = {
+            "container_recipe_arn": container_recipe_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_distribution_configuration(
@@ -1562,14 +1588,16 @@ class AsyncimagebuilderClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_imagebuilder.types.delete_distribution_configuration_request.DeleteDistributionConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["distribution_configuration_arn"] = distribution_configuration_arn
+        input_: capo_imagebuilder.types.delete_distribution_configuration_request.DeleteDistributionConfigurationRequest = {
+            "distribution_configuration_arn": distribution_configuration_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_image(
@@ -1610,14 +1638,16 @@ class AsyncimagebuilderClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_imagebuilder.types.delete_image_request.DeleteImageRequest = {}  # type: ignore[typeddict-item]
-        input_["image_build_version_arn"] = image_build_version_arn
+        input_: capo_imagebuilder.types.delete_image_request.DeleteImageRequest = {
+            "image_build_version_arn": image_build_version_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_image_pipeline(
@@ -1658,14 +1688,16 @@ class AsyncimagebuilderClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_imagebuilder.types.delete_image_pipeline_request.DeleteImagePipelineRequest = {}  # type: ignore[typeddict-item]
-        input_["image_pipeline_arn"] = image_pipeline_arn
+        input_: capo_imagebuilder.types.delete_image_pipeline_request.DeleteImagePipelineRequest = {
+            "image_pipeline_arn": image_pipeline_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_image_recipe(
@@ -1708,14 +1740,16 @@ class AsyncimagebuilderClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_imagebuilder.types.delete_image_recipe_request.DeleteImageRecipeRequest = {}  # type: ignore[typeddict-item]
-        input_["image_recipe_arn"] = image_recipe_arn
+        input_: capo_imagebuilder.types.delete_image_recipe_request.DeleteImageRecipeRequest = {
+            "image_recipe_arn": image_recipe_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_infrastructure_configuration(
@@ -1756,14 +1790,16 @@ class AsyncimagebuilderClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_imagebuilder.types.delete_infrastructure_configuration_request.DeleteInfrastructureConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["infrastructure_configuration_arn"] = infrastructure_configuration_arn
+        input_: capo_imagebuilder.types.delete_infrastructure_configuration_request.DeleteInfrastructureConfigurationRequest = {
+            "infrastructure_configuration_arn": infrastructure_configuration_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_lifecycle_policy(
@@ -1804,14 +1840,16 @@ class AsyncimagebuilderClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_imagebuilder.types.delete_lifecycle_policy_request.DeleteLifecyclePolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["lifecycle_policy_arn"] = lifecycle_policy_arn
+        input_: capo_imagebuilder.types.delete_lifecycle_policy_request.DeleteLifecyclePolicyRequest = {
+            "lifecycle_policy_arn": lifecycle_policy_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_workflow(
@@ -1852,14 +1890,16 @@ class AsyncimagebuilderClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_imagebuilder.types.delete_workflow_request.DeleteWorkflowRequest = {}  # type: ignore[typeddict-item]
-        input_["workflow_build_version_arn"] = workflow_build_version_arn
+        input_: capo_imagebuilder.types.delete_workflow_request.DeleteWorkflowRequest = {
+            "workflow_build_version_arn": workflow_build_version_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def distribute_image(
@@ -1917,13 +1957,14 @@ class AsyncimagebuilderClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_imagebuilder.types.distribute_image_request.DistributeImageRequest = {}  # type: ignore[typeddict-item]
-        input_["source_image"] = source_image
-        input_["distribution_configuration_arn"] = distribution_configuration_arn
-        input_["execution_role"] = execution_role
+        input_: capo_imagebuilder.types.distribute_image_request.DistributeImageRequest = {
+            "source_image": source_image,
+            "distribution_configuration_arn": distribution_configuration_arn,
+            "execution_role": execution_role,
+            "client_token": client_token,
+        }
         if tags is not None:
             input_["tags"] = tags
-        input_["client_token"] = client_token
         if logging_configuration is not None:
             input_["logging_configuration"] = logging_configuration
 
@@ -1932,6 +1973,7 @@ class AsyncimagebuilderClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_component(
@@ -1971,14 +2013,16 @@ class AsyncimagebuilderClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_imagebuilder.types.get_component_request.GetComponentRequest = {}  # type: ignore[typeddict-item]
-        input_["component_build_version_arn"] = component_build_version_arn
+        input_: capo_imagebuilder.types.get_component_request.GetComponentRequest = {
+            "component_build_version_arn": component_build_version_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_component_policy(
@@ -2018,14 +2062,16 @@ class AsyncimagebuilderClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_imagebuilder.types.get_component_policy_request.GetComponentPolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["component_arn"] = component_arn
+        input_: capo_imagebuilder.types.get_component_policy_request.GetComponentPolicyRequest = {
+            "component_arn": component_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_container_recipe(
@@ -2065,14 +2111,16 @@ class AsyncimagebuilderClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_imagebuilder.types.get_container_recipe_request.GetContainerRecipeRequest = {}  # type: ignore[typeddict-item]
-        input_["container_recipe_arn"] = container_recipe_arn
+        input_: capo_imagebuilder.types.get_container_recipe_request.GetContainerRecipeRequest = {
+            "container_recipe_arn": container_recipe_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_container_recipe_policy(
@@ -2112,14 +2160,16 @@ class AsyncimagebuilderClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_imagebuilder.types.get_container_recipe_policy_request.GetContainerRecipePolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["container_recipe_arn"] = container_recipe_arn
+        input_: capo_imagebuilder.types.get_container_recipe_policy_request.GetContainerRecipePolicyRequest = {
+            "container_recipe_arn": container_recipe_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_distribution_configuration(
@@ -2159,14 +2209,16 @@ class AsyncimagebuilderClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_imagebuilder.types.get_distribution_configuration_request.GetDistributionConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["distribution_configuration_arn"] = distribution_configuration_arn
+        input_: capo_imagebuilder.types.get_distribution_configuration_request.GetDistributionConfigurationRequest = {
+            "distribution_configuration_arn": distribution_configuration_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_image(
@@ -2206,14 +2258,16 @@ class AsyncimagebuilderClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_imagebuilder.types.get_image_request.GetImageRequest = {}  # type: ignore[typeddict-item]
-        input_["image_build_version_arn"] = image_build_version_arn
+        input_: capo_imagebuilder.types.get_image_request.GetImageRequest = {
+            "image_build_version_arn": image_build_version_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_image_pipeline(
@@ -2253,14 +2307,16 @@ class AsyncimagebuilderClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_imagebuilder.types.get_image_pipeline_request.GetImagePipelineRequest = {}  # type: ignore[typeddict-item]
-        input_["image_pipeline_arn"] = image_pipeline_arn
+        input_: capo_imagebuilder.types.get_image_pipeline_request.GetImagePipelineRequest = {
+            "image_pipeline_arn": image_pipeline_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_image_policy(
@@ -2300,14 +2356,16 @@ class AsyncimagebuilderClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_imagebuilder.types.get_image_policy_request.GetImagePolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["image_arn"] = image_arn
+        input_: capo_imagebuilder.types.get_image_policy_request.GetImagePolicyRequest = {
+            "image_arn": image_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_image_recipe(
@@ -2347,14 +2405,16 @@ class AsyncimagebuilderClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_imagebuilder.types.get_image_recipe_request.GetImageRecipeRequest = {}  # type: ignore[typeddict-item]
-        input_["image_recipe_arn"] = image_recipe_arn
+        input_: capo_imagebuilder.types.get_image_recipe_request.GetImageRecipeRequest = {
+            "image_recipe_arn": image_recipe_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_image_recipe_policy(
@@ -2394,14 +2454,16 @@ class AsyncimagebuilderClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_imagebuilder.types.get_image_recipe_policy_request.GetImageRecipePolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["image_recipe_arn"] = image_recipe_arn
+        input_: capo_imagebuilder.types.get_image_recipe_policy_request.GetImageRecipePolicyRequest = {
+            "image_recipe_arn": image_recipe_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_infrastructure_configuration(
@@ -2441,14 +2503,16 @@ class AsyncimagebuilderClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_imagebuilder.types.get_infrastructure_configuration_request.GetInfrastructureConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["infrastructure_configuration_arn"] = infrastructure_configuration_arn
+        input_: capo_imagebuilder.types.get_infrastructure_configuration_request.GetInfrastructureConfigurationRequest = {
+            "infrastructure_configuration_arn": infrastructure_configuration_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_lifecycle_execution(
@@ -2488,14 +2552,16 @@ class AsyncimagebuilderClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_imagebuilder.types.get_lifecycle_execution_request.GetLifecycleExecutionRequest = {}  # type: ignore[typeddict-item]
-        input_["lifecycle_execution_id"] = lifecycle_execution_id
+        input_: capo_imagebuilder.types.get_lifecycle_execution_request.GetLifecycleExecutionRequest = {
+            "lifecycle_execution_id": lifecycle_execution_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_lifecycle_policy(
@@ -2535,14 +2601,16 @@ class AsyncimagebuilderClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_imagebuilder.types.get_lifecycle_policy_request.GetLifecyclePolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["lifecycle_policy_arn"] = lifecycle_policy_arn
+        input_: capo_imagebuilder.types.get_lifecycle_policy_request.GetLifecyclePolicyRequest = {
+            "lifecycle_policy_arn": lifecycle_policy_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_marketplace_resource(
@@ -2588,9 +2656,10 @@ class AsyncimagebuilderClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_imagebuilder.types.get_marketplace_resource_request.GetMarketplaceResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_type"] = resource_type
-        input_["resource_arn"] = resource_arn
+        input_: capo_imagebuilder.types.get_marketplace_resource_request.GetMarketplaceResourceRequest = {
+            "resource_type": resource_type,
+            "resource_arn": resource_arn,
+        }
         if resource_location is not None:
             input_["resource_location"] = resource_location
 
@@ -2599,6 +2668,7 @@ class AsyncimagebuilderClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_workflow(
@@ -2638,14 +2708,16 @@ class AsyncimagebuilderClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_imagebuilder.types.get_workflow_request.GetWorkflowRequest = {}  # type: ignore[typeddict-item]
-        input_["workflow_build_version_arn"] = workflow_build_version_arn
+        input_: capo_imagebuilder.types.get_workflow_request.GetWorkflowRequest = {
+            "workflow_build_version_arn": workflow_build_version_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_workflow_execution(
@@ -2685,14 +2757,16 @@ class AsyncimagebuilderClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_imagebuilder.types.get_workflow_execution_request.GetWorkflowExecutionRequest = {}  # type: ignore[typeddict-item]
-        input_["workflow_execution_id"] = workflow_execution_id
+        input_: capo_imagebuilder.types.get_workflow_execution_request.GetWorkflowExecutionRequest = {
+            "workflow_execution_id": workflow_execution_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_workflow_step_execution(
@@ -2732,14 +2806,16 @@ class AsyncimagebuilderClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_imagebuilder.types.get_workflow_step_execution_request.GetWorkflowStepExecutionRequest = {}  # type: ignore[typeddict-item]
-        input_["step_execution_id"] = step_execution_id
+        input_: capo_imagebuilder.types.get_workflow_step_execution_request.GetWorkflowStepExecutionRequest = {
+            "step_execution_id": step_execution_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def import_component(
@@ -2813,16 +2889,18 @@ class AsyncimagebuilderClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_imagebuilder.types.import_component_request.ImportComponentRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        input_["semantic_version"] = semantic_version
+        input_: capo_imagebuilder.types.import_component_request.ImportComponentRequest = {
+            "name": name,
+            "semantic_version": semantic_version,
+            "type": type,
+            "format": format,
+            "platform": platform,
+            "client_token": client_token,
+        }
         if description is not None:
             input_["description"] = description
         if change_description is not None:
             input_["change_description"] = change_description
-        input_["type"] = type
-        input_["format"] = format
-        input_["platform"] = platform
         if data is not None:
             input_["data"] = data
         if uri is not None:
@@ -2831,13 +2909,13 @@ class AsyncimagebuilderClient:
             input_["kms_key_id"] = kms_key_id
         if tags is not None:
             input_["tags"] = tags
-        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def import_disk_image(
@@ -2910,17 +2988,19 @@ class AsyncimagebuilderClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_imagebuilder.types.import_disk_image_request.ImportDiskImageRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        input_["semantic_version"] = semantic_version
+        input_: capo_imagebuilder.types.import_disk_image_request.ImportDiskImageRequest = {
+            "name": name,
+            "semantic_version": semantic_version,
+            "platform": platform,
+            "os_version": os_version,
+            "infrastructure_configuration_arn": infrastructure_configuration_arn,
+            "uri": uri,
+            "client_token": client_token,
+        }
         if description is not None:
             input_["description"] = description
-        input_["platform"] = platform
-        input_["os_version"] = os_version
         if execution_role is not None:
             input_["execution_role"] = execution_role
-        input_["infrastructure_configuration_arn"] = infrastructure_configuration_arn
-        input_["uri"] = uri
         if logging_configuration is not None:
             input_["logging_configuration"] = logging_configuration
         if tags is not None:
@@ -2929,13 +3009,13 @@ class AsyncimagebuilderClient:
             input_["register_image_options"] = register_image_options
         if windows_configuration is not None:
             input_["windows_configuration"] = windows_configuration
-        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def import_vm_image(
@@ -2992,26 +3072,28 @@ class AsyncimagebuilderClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_imagebuilder.types.import_vm_image_request.ImportVmImageRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        input_["semantic_version"] = semantic_version
+        input_: capo_imagebuilder.types.import_vm_image_request.ImportVmImageRequest = {
+            "name": name,
+            "semantic_version": semantic_version,
+            "platform": platform,
+            "vm_import_task_id": vm_import_task_id,
+            "client_token": client_token,
+        }
         if description is not None:
             input_["description"] = description
-        input_["platform"] = platform
         if os_version is not None:
             input_["os_version"] = os_version
-        input_["vm_import_task_id"] = vm_import_task_id
         if logging_configuration is not None:
             input_["logging_configuration"] = logging_configuration
         if tags is not None:
             input_["tags"] = tags
-        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_component_build_versions(
@@ -3062,7 +3144,7 @@ class AsyncimagebuilderClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_imagebuilder.types.list_component_build_versions_request.ListComponentBuildVersionsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_imagebuilder.types.list_component_build_versions_request.ListComponentBuildVersionsRequest = {}
         if component_version_arn is not None:
             input_["component_version_arn"] = component_version_arn
         if max_results is not None:
@@ -3075,6 +3157,7 @@ class AsyncimagebuilderClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_component_build_versions(
@@ -3156,7 +3239,7 @@ class AsyncimagebuilderClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_imagebuilder.types.list_components_request.ListComponentsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_imagebuilder.types.list_components_request.ListComponentsRequest = {}
         if owner is not None:
             input_["owner"] = owner
         if filters is not None:
@@ -3173,6 +3256,7 @@ class AsyncimagebuilderClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_components(
@@ -3254,7 +3338,7 @@ class AsyncimagebuilderClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_imagebuilder.types.list_container_recipes_request.ListContainerRecipesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_imagebuilder.types.list_container_recipes_request.ListContainerRecipesRequest = {}
         if owner is not None:
             input_["owner"] = owner
         if filters is not None:
@@ -3269,6 +3353,7 @@ class AsyncimagebuilderClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_container_recipes(
@@ -3346,7 +3431,7 @@ class AsyncimagebuilderClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_imagebuilder.types.list_distribution_configurations_request.ListDistributionConfigurationsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_imagebuilder.types.list_distribution_configurations_request.ListDistributionConfigurationsRequest = {}
         if filters is not None:
             input_["filters"] = filters
         if max_results is not None:
@@ -3359,6 +3444,7 @@ class AsyncimagebuilderClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_distribution_configurations(
@@ -3440,7 +3526,7 @@ class AsyncimagebuilderClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_imagebuilder.types.list_image_build_versions_request.ListImageBuildVersionsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_imagebuilder.types.list_image_build_versions_request.ListImageBuildVersionsRequest = {}
         if image_version_arn is not None:
             input_["image_version_arn"] = image_version_arn
         if filters is not None:
@@ -3455,6 +3541,7 @@ class AsyncimagebuilderClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_image_build_versions(
@@ -3537,8 +3624,9 @@ class AsyncimagebuilderClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_imagebuilder.types.list_image_packages_request.ListImagePackagesRequest = {}  # type: ignore[typeddict-item]
-        input_["image_build_version_arn"] = image_build_version_arn
+        input_: capo_imagebuilder.types.list_image_packages_request.ListImagePackagesRequest = {
+            "image_build_version_arn": image_build_version_arn
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -3549,6 +3637,7 @@ class AsyncimagebuilderClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_image_packages(
@@ -3627,8 +3716,9 @@ class AsyncimagebuilderClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_imagebuilder.types.list_image_pipeline_images_request.ListImagePipelineImagesRequest = {}  # type: ignore[typeddict-item]
-        input_["image_pipeline_arn"] = image_pipeline_arn
+        input_: capo_imagebuilder.types.list_image_pipeline_images_request.ListImagePipelineImagesRequest = {
+            "image_pipeline_arn": image_pipeline_arn
+        }
         if filters is not None:
             input_["filters"] = filters
         if max_results is not None:
@@ -3641,6 +3731,7 @@ class AsyncimagebuilderClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_image_pipeline_images(
@@ -3718,7 +3809,7 @@ class AsyncimagebuilderClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_imagebuilder.types.list_image_pipelines_request.ListImagePipelinesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_imagebuilder.types.list_image_pipelines_request.ListImagePipelinesRequest = {}
         if filters is not None:
             input_["filters"] = filters
         if max_results is not None:
@@ -3731,6 +3822,7 @@ class AsyncimagebuilderClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_image_pipelines(
@@ -3808,7 +3900,7 @@ class AsyncimagebuilderClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_imagebuilder.types.list_image_recipes_request.ListImageRecipesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_imagebuilder.types.list_image_recipes_request.ListImageRecipesRequest = {}
         if owner is not None:
             input_["owner"] = owner
         if filters is not None:
@@ -3823,6 +3915,7 @@ class AsyncimagebuilderClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_image_recipes(
@@ -3910,7 +4003,7 @@ class AsyncimagebuilderClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_imagebuilder.types.list_images_request.ListImagesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_imagebuilder.types.list_images_request.ListImagesRequest = {}
         if owner is not None:
             input_["owner"] = owner
         if filters is not None:
@@ -3929,6 +4022,7 @@ class AsyncimagebuilderClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_images(
@@ -4007,7 +4101,7 @@ class AsyncimagebuilderClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_imagebuilder.types.list_image_scan_finding_aggregations_request.ListImageScanFindingAggregationsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_imagebuilder.types.list_image_scan_finding_aggregations_request.ListImageScanFindingAggregationsRequest = {}
         if filter is not None:
             input_["filter"] = filter
         if next_token is not None:
@@ -4018,6 +4112,7 @@ class AsyncimagebuilderClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_image_scan_finding_aggregations(
@@ -4091,7 +4186,7 @@ class AsyncimagebuilderClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_imagebuilder.types.list_image_scan_findings_request.ListImageScanFindingsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_imagebuilder.types.list_image_scan_findings_request.ListImageScanFindingsRequest = {}
         if filters is not None:
             input_["filters"] = filters
         if max_results is not None:
@@ -4104,6 +4199,7 @@ class AsyncimagebuilderClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_image_scan_findings(
@@ -4181,7 +4277,7 @@ class AsyncimagebuilderClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_imagebuilder.types.list_infrastructure_configurations_request.ListInfrastructureConfigurationsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_imagebuilder.types.list_infrastructure_configurations_request.ListInfrastructureConfigurationsRequest = {}
         if filters is not None:
             input_["filters"] = filters
         if max_results is not None:
@@ -4194,6 +4290,7 @@ class AsyncimagebuilderClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_infrastructure_configurations(
@@ -4275,8 +4372,9 @@ class AsyncimagebuilderClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_imagebuilder.types.list_lifecycle_execution_resources_request.ListLifecycleExecutionResourcesRequest = {}  # type: ignore[typeddict-item]
-        input_["lifecycle_execution_id"] = lifecycle_execution_id
+        input_: capo_imagebuilder.types.list_lifecycle_execution_resources_request.ListLifecycleExecutionResourcesRequest = {
+            "lifecycle_execution_id": lifecycle_execution_id
+        }
         if parent_resource_id is not None:
             input_["parent_resource_id"] = parent_resource_id
         if max_results is not None:
@@ -4289,6 +4387,7 @@ class AsyncimagebuilderClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_lifecycle_execution_resources(
@@ -4368,18 +4467,20 @@ class AsyncimagebuilderClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_imagebuilder.types.list_lifecycle_executions_request.ListLifecycleExecutionsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_imagebuilder.types.list_lifecycle_executions_request.ListLifecycleExecutionsRequest = {
+            "resource_arn": resource_arn
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
             input_["next_token"] = next_token
-        input_["resource_arn"] = resource_arn
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_lifecycle_executions(
@@ -4457,7 +4558,7 @@ class AsyncimagebuilderClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_imagebuilder.types.list_lifecycle_policies_request.ListLifecyclePoliciesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_imagebuilder.types.list_lifecycle_policies_request.ListLifecyclePoliciesRequest = {}
         if filters is not None:
             input_["filters"] = filters
         if max_results is not None:
@@ -4470,6 +4571,7 @@ class AsyncimagebuilderClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_lifecycle_policies(
@@ -4533,14 +4635,16 @@ class AsyncimagebuilderClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_imagebuilder.types.list_tags_for_resource_request.ListTagsForResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_imagebuilder.types.list_tags_for_resource_request.ListTagsForResourceRequest = {
+            "resource_arn": resource_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_waiting_workflow_steps(
@@ -4587,7 +4691,7 @@ class AsyncimagebuilderClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_imagebuilder.types.list_waiting_workflow_steps_request.ListWaitingWorkflowStepsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_imagebuilder.types.list_waiting_workflow_steps_request.ListWaitingWorkflowStepsRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -4598,6 +4702,7 @@ class AsyncimagebuilderClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_waiting_workflow_steps(
@@ -4673,7 +4778,7 @@ class AsyncimagebuilderClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_imagebuilder.types.list_workflow_build_versions_request.ListWorkflowBuildVersionsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_imagebuilder.types.list_workflow_build_versions_request.ListWorkflowBuildVersionsRequest = {}
         if workflow_version_arn is not None:
             input_["workflow_version_arn"] = workflow_version_arn
         if max_results is not None:
@@ -4686,6 +4791,7 @@ class AsyncimagebuilderClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_workflow_build_versions(
@@ -4763,18 +4869,20 @@ class AsyncimagebuilderClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_imagebuilder.types.list_workflow_executions_request.ListWorkflowExecutionsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_imagebuilder.types.list_workflow_executions_request.ListWorkflowExecutionsRequest = {
+            "image_build_version_arn": image_build_version_arn
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
             input_["next_token"] = next_token
-        input_["image_build_version_arn"] = image_build_version_arn
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_workflow_executions(
@@ -4854,7 +4962,7 @@ class AsyncimagebuilderClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_imagebuilder.types.list_workflows_request.ListWorkflowsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_imagebuilder.types.list_workflows_request.ListWorkflowsRequest = {}
         if owner is not None:
             input_["owner"] = owner
         if filters is not None:
@@ -4871,6 +4979,7 @@ class AsyncimagebuilderClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_workflows(
@@ -4950,18 +5059,20 @@ class AsyncimagebuilderClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_imagebuilder.types.list_workflow_step_executions_request.ListWorkflowStepExecutionsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_imagebuilder.types.list_workflow_step_executions_request.ListWorkflowStepExecutionsRequest = {
+            "workflow_execution_id": workflow_execution_id
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
             input_["next_token"] = next_token
-        input_["workflow_execution_id"] = workflow_execution_id
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_workflow_step_executions(
@@ -5032,15 +5143,17 @@ class AsyncimagebuilderClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_imagebuilder.types.put_component_policy_request.PutComponentPolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["component_arn"] = component_arn
-        input_["policy"] = policy
+        input_: capo_imagebuilder.types.put_component_policy_request.PutComponentPolicyRequest = {
+            "component_arn": component_arn,
+            "policy": policy,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def put_container_recipe_policy(
@@ -5084,15 +5197,17 @@ class AsyncimagebuilderClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_imagebuilder.types.put_container_recipe_policy_request.PutContainerRecipePolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["container_recipe_arn"] = container_recipe_arn
-        input_["policy"] = policy
+        input_: capo_imagebuilder.types.put_container_recipe_policy_request.PutContainerRecipePolicyRequest = {
+            "container_recipe_arn": container_recipe_arn,
+            "policy": policy,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def put_image_policy(
@@ -5136,15 +5251,17 @@ class AsyncimagebuilderClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_imagebuilder.types.put_image_policy_request.PutImagePolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["image_arn"] = image_arn
-        input_["policy"] = policy
+        input_: capo_imagebuilder.types.put_image_policy_request.PutImagePolicyRequest = {
+            "image_arn": image_arn,
+            "policy": policy,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def put_image_recipe_policy(
@@ -5188,15 +5305,17 @@ class AsyncimagebuilderClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_imagebuilder.types.put_image_recipe_policy_request.PutImageRecipePolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["image_recipe_arn"] = image_recipe_arn
-        input_["policy"] = policy
+        input_: capo_imagebuilder.types.put_image_recipe_policy_request.PutImageRecipePolicyRequest = {
+            "image_recipe_arn": image_recipe_arn,
+            "policy": policy,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def retry_image(
@@ -5240,15 +5359,17 @@ class AsyncimagebuilderClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_imagebuilder.types.retry_image_request.RetryImageRequest = {}  # type: ignore[typeddict-item]
-        input_["image_build_version_arn"] = image_build_version_arn
-        input_["client_token"] = client_token
+        input_: capo_imagebuilder.types.retry_image_request.RetryImageRequest = {
+            "image_build_version_arn": image_build_version_arn,
+            "client_token": client_token,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def send_workflow_step_action(
@@ -5302,19 +5423,21 @@ class AsyncimagebuilderClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_imagebuilder.types.send_workflow_step_action_request.SendWorkflowStepActionRequest = {}  # type: ignore[typeddict-item]
-        input_["step_execution_id"] = step_execution_id
-        input_["image_build_version_arn"] = image_build_version_arn
-        input_["action"] = action
+        input_: capo_imagebuilder.types.send_workflow_step_action_request.SendWorkflowStepActionRequest = {
+            "step_execution_id": step_execution_id,
+            "image_build_version_arn": image_build_version_arn,
+            "action": action,
+            "client_token": client_token,
+        }
         if reason is not None:
             input_["reason"] = reason
-        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def start_image_pipeline_execution(
@@ -5361,9 +5484,10 @@ class AsyncimagebuilderClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_imagebuilder.types.start_image_pipeline_execution_request.StartImagePipelineExecutionRequest = {}  # type: ignore[typeddict-item]
-        input_["image_pipeline_arn"] = image_pipeline_arn
-        input_["client_token"] = client_token
+        input_: capo_imagebuilder.types.start_image_pipeline_execution_request.StartImagePipelineExecutionRequest = {
+            "image_pipeline_arn": image_pipeline_arn,
+            "client_token": client_token,
+        }
         if tags is not None:
             input_["tags"] = tags
 
@@ -5372,6 +5496,7 @@ class AsyncimagebuilderClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def start_resource_state_update(
@@ -5434,9 +5559,11 @@ class AsyncimagebuilderClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_imagebuilder.types.start_resource_state_update_request.StartResourceStateUpdateRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["state"] = state
+        input_: capo_imagebuilder.types.start_resource_state_update_request.StartResourceStateUpdateRequest = {
+            "resource_arn": resource_arn,
+            "state": state,
+            "client_token": client_token,
+        }
         if execution_role is not None:
             input_["execution_role"] = execution_role
         if include_resources is not None:
@@ -5445,13 +5572,13 @@ class AsyncimagebuilderClient:
             input_["exclusion_rules"] = exclusion_rules
         if update_at is not None:
             input_["update_at"] = update_at
-        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def tag_resource(
@@ -5490,15 +5617,17 @@ class AsyncimagebuilderClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_imagebuilder.types.tag_resource_request.TagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tags"] = tags
+        input_: capo_imagebuilder.types.tag_resource_request.TagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tags": tags,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def untag_resource(
@@ -5537,15 +5666,17 @@ class AsyncimagebuilderClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_imagebuilder.types.untag_resource_request.UntagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tag_keys"] = tag_keys
+        input_: capo_imagebuilder.types.untag_resource_request.UntagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tag_keys": tag_keys,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_distribution_configuration(
@@ -5596,18 +5727,20 @@ class AsyncimagebuilderClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_imagebuilder.types.update_distribution_configuration_request.UpdateDistributionConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["distribution_configuration_arn"] = distribution_configuration_arn
+        input_: capo_imagebuilder.types.update_distribution_configuration_request.UpdateDistributionConfigurationRequest = {
+            "distribution_configuration_arn": distribution_configuration_arn,
+            "distributions": distributions,
+            "client_token": client_token,
+        }
         if description is not None:
             input_["description"] = description
-        input_["distributions"] = distributions
-        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_image_pipeline(
@@ -5701,15 +5834,17 @@ class AsyncimagebuilderClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_imagebuilder.types.update_image_pipeline_request.UpdateImagePipelineRequest = {}  # type: ignore[typeddict-item]
-        input_["image_pipeline_arn"] = image_pipeline_arn
+        input_: capo_imagebuilder.types.update_image_pipeline_request.UpdateImagePipelineRequest = {
+            "image_pipeline_arn": image_pipeline_arn,
+            "infrastructure_configuration_arn": infrastructure_configuration_arn,
+            "client_token": client_token,
+        }
         if description is not None:
             input_["description"] = description
         if image_recipe_arn is not None:
             input_["image_recipe_arn"] = image_recipe_arn
         if container_recipe_arn is not None:
             input_["container_recipe_arn"] = container_recipe_arn
-        input_["infrastructure_configuration_arn"] = infrastructure_configuration_arn
         if distribution_configuration_arn is not None:
             input_["distribution_configuration_arn"] = distribution_configuration_arn
         if image_tests_configuration is not None:
@@ -5720,7 +5855,6 @@ class AsyncimagebuilderClient:
             input_["schedule"] = schedule
         if status is not None:
             input_["status"] = status
-        input_["client_token"] = client_token
         if image_scanning_configuration is not None:
             input_["image_scanning_configuration"] = image_scanning_configuration
         if workflows is not None:
@@ -5737,6 +5871,7 @@ class AsyncimagebuilderClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_infrastructure_configuration(
@@ -5822,13 +5957,15 @@ class AsyncimagebuilderClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_imagebuilder.types.update_infrastructure_configuration_request.UpdateInfrastructureConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["infrastructure_configuration_arn"] = infrastructure_configuration_arn
+        input_: capo_imagebuilder.types.update_infrastructure_configuration_request.UpdateInfrastructureConfigurationRequest = {
+            "infrastructure_configuration_arn": infrastructure_configuration_arn,
+            "instance_profile_name": instance_profile_name,
+            "client_token": client_token,
+        }
         if description is not None:
             input_["description"] = description
         if instance_types is not None:
             input_["instance_types"] = instance_types
-        input_["instance_profile_name"] = instance_profile_name
         if security_group_ids is not None:
             input_["security_group_ids"] = security_group_ids
         if subnet_id is not None:
@@ -5847,13 +5984,13 @@ class AsyncimagebuilderClient:
             input_["instance_metadata_options"] = instance_metadata_options
         if placement is not None:
             input_["placement"] = placement
-        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_lifecycle_policy(
@@ -5914,23 +6051,25 @@ class AsyncimagebuilderClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_imagebuilder.types.update_lifecycle_policy_request.UpdateLifecyclePolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["lifecycle_policy_arn"] = lifecycle_policy_arn
+        input_: capo_imagebuilder.types.update_lifecycle_policy_request.UpdateLifecyclePolicyRequest = {
+            "lifecycle_policy_arn": lifecycle_policy_arn,
+            "execution_role": execution_role,
+            "resource_type": resource_type,
+            "policy_details": policy_details,
+            "resource_selection": resource_selection,
+            "client_token": client_token,
+        }
         if description is not None:
             input_["description"] = description
         if status is not None:
             input_["status"] = status
-        input_["execution_role"] = execution_role
-        input_["resource_type"] = resource_type
-        input_["policy_details"] = policy_details
-        input_["resource_selection"] = resource_selection
-        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def __aenter__(self) -> Self:

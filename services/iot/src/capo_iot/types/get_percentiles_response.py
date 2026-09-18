@@ -27,7 +27,7 @@ def serialize_json(value: GetPercentilesResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetPercentilesResponse:
     out: GetPercentilesResponse = {}  # type: ignore[typeddict-item]
-    if "percentiles" in data:
+    if data.get("percentiles") is not None:
         import capo_iot.types.percentiles
 
         out["percentiles"] = capo_iot.types.percentiles.deserialize_json(

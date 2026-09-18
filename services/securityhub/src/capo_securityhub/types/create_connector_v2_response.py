@@ -42,13 +42,13 @@ def serialize_json(value: CreateConnectorV2Response) -> dict:
 
 def deserialize_json(data: dict) -> CreateConnectorV2Response:
     out: CreateConnectorV2Response = {}  # type: ignore[typeddict-item]
-    if "ConnectorArn" in data:
+    if data.get("ConnectorArn") is not None:
         out["connector_arn"] = data["ConnectorArn"]
-    if "ConnectorId" in data:
+    if data.get("ConnectorId") is not None:
         out["connector_id"] = data["ConnectorId"]
-    if "AuthUrl" in data:
+    if data.get("AuthUrl") is not None:
         out["auth_url"] = data["AuthUrl"]
-    if "ConnectorStatus" in data:
+    if data.get("ConnectorStatus") is not None:
         import capo_securityhub.types.connector_status
 
         out["connector_status"] = (

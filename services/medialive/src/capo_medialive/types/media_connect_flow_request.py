@@ -23,6 +23,6 @@ def serialize_json(value: MediaConnectFlowRequest) -> dict:
 
 def deserialize_json(data: dict) -> MediaConnectFlowRequest:
     out: MediaConnectFlowRequest = {}  # type: ignore[typeddict-item]
-    if "flowArn" in data:
+    if data.get("flowArn") is not None:
         out["flow_arn"] = data["flowArn"]
     return out

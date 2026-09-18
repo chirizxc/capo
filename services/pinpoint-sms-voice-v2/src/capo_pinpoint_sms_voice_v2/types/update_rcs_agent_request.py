@@ -57,20 +57,20 @@ def serialize_aws_json_1_0(value: UpdateRcsAgentRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> UpdateRcsAgentRequest:
     out: UpdateRcsAgentRequest = {}  # type: ignore[typeddict-item]
-    if "RcsAgentId" in data:
+    if data.get("RcsAgentId") is not None:
         out["rcs_agent_id"] = data["RcsAgentId"]
     else:
         raise DeserializationError("UpdateRcsAgentRequest.rcs_agent_id required")
-    if "DeletionProtectionEnabled" in data:
+    if data.get("DeletionProtectionEnabled") is not None:
         out["deletion_protection_enabled"] = data["DeletionProtectionEnabled"]
-    if "OptOutListName" in data:
+    if data.get("OptOutListName") is not None:
         out["opt_out_list_name"] = data["OptOutListName"]
-    if "SelfManagedOptOutsEnabled" in data:
+    if data.get("SelfManagedOptOutsEnabled") is not None:
         out["self_managed_opt_outs_enabled"] = data["SelfManagedOptOutsEnabled"]
-    if "TwoWayChannelArn" in data:
+    if data.get("TwoWayChannelArn") is not None:
         out["two_way_channel_arn"] = data["TwoWayChannelArn"]
-    if "TwoWayChannelRole" in data:
+    if data.get("TwoWayChannelRole") is not None:
         out["two_way_channel_role"] = data["TwoWayChannelRole"]
-    if "TwoWayEnabled" in data:
+    if data.get("TwoWayEnabled") is not None:
         out["two_way_enabled"] = data["TwoWayEnabled"]
     return out

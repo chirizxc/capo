@@ -44,7 +44,7 @@ def serialize_aws_json_1_1(value: AIRecommendationOptimizationDetail) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AIRecommendationOptimizationDetail:
     out: AIRecommendationOptimizationDetail = {}  # type: ignore[typeddict-item]
-    if "OptimizationType" in data:
+    if data.get("OptimizationType") is not None:
         import capo_sagemaker.types.ai_recommendation_optimization_type
 
         out["optimization_type"] = (
@@ -52,7 +52,7 @@ def deserialize_aws_json_1_1(data: dict) -> AIRecommendationOptimizationDetail:
                 data["OptimizationType"]
             )
         )
-    if "OptimizationConfig" in data:
+    if data.get("OptimizationConfig") is not None:
         import capo_sagemaker.types.ai_recommendation_optimization_config_map
 
         out["optimization_config"] = (

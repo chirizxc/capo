@@ -28,7 +28,7 @@ def serialize_aws_json_1_0(value: LambdaEventSourceMappingUngraceful) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> LambdaEventSourceMappingUngraceful:
     out: LambdaEventSourceMappingUngraceful = {}  # type: ignore[typeddict-item]
-    if "behavior" in data:
+    if data.get("behavior") is not None:
         import capo_arc_region_switch.types.lambda_event_source_mapping_ungraceful_behavior
 
         out["behavior"] = (

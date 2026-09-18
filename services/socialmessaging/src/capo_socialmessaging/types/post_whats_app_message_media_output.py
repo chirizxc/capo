@@ -25,6 +25,6 @@ def serialize_json(value: PostWhatsAppMessageMediaOutput) -> dict:
 
 def deserialize_json(data: dict) -> PostWhatsAppMessageMediaOutput:
     out: PostWhatsAppMessageMediaOutput = {}  # type: ignore[typeddict-item]
-    if "mediaId" in data:
+    if data.get("mediaId") is not None:
         out["media_id"] = data["mediaId"]
     return out

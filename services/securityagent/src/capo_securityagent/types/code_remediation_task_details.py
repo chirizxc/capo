@@ -26,10 +26,10 @@ def serialize_json(value: CodeRemediationTaskDetails) -> dict:
 
 def deserialize_json(data: dict) -> CodeRemediationTaskDetails:
     out: CodeRemediationTaskDetails = {}  # type: ignore[typeddict-item]
-    if "repoName" in data:
+    if data.get("repoName") is not None:
         out["repo_name"] = data["repoName"]
-    if "codeDiffLink" in data:
+    if data.get("codeDiffLink") is not None:
         out["code_diff_link"] = data["codeDiffLink"]
-    if "pullRequestLink" in data:
+    if data.get("pullRequestLink") is not None:
         out["pull_request_link"] = data["pullRequestLink"]
     return out

@@ -23,6 +23,6 @@ def serialize_aws_json_1_1(value: CreateAlgorithmOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateAlgorithmOutput:
     out: CreateAlgorithmOutput = {}  # type: ignore[typeddict-item]
-    if "AlgorithmArn" in data:
+    if data.get("AlgorithmArn") is not None:
         out["algorithm_arn"] = data["AlgorithmArn"]
     return out

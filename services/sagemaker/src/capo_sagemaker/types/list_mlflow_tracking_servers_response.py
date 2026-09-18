@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: ListMlflowTrackingServersResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListMlflowTrackingServersResponse:
     out: ListMlflowTrackingServersResponse = {}  # type: ignore[typeddict-item]
-    if "TrackingServerSummaries" in data:
+    if data.get("TrackingServerSummaries") is not None:
         import capo_sagemaker.types.tracking_server_summary_list
 
         out["tracking_server_summaries"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_1(data: dict) -> ListMlflowTrackingServersResponse:
                 data["TrackingServerSummaries"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

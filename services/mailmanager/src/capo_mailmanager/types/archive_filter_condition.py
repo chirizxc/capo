@@ -51,7 +51,7 @@ def serialize_aws_json_1_0(value: ArchiveFilterCondition) -> dict:
 
 
 def deserialize_aws_json_1_0(data: dict) -> ArchiveFilterCondition:
-    if "StringExpression" in data:
+    if data.get("StringExpression") is not None:
         import capo_mailmanager.types.archive_string_expression
 
         return {
@@ -59,7 +59,7 @@ def deserialize_aws_json_1_0(data: dict) -> ArchiveFilterCondition:
                 data["StringExpression"]
             )
         }
-    elif "BooleanExpression" in data:
+    elif data.get("BooleanExpression") is not None:
         import capo_mailmanager.types.archive_boolean_expression
 
         return {

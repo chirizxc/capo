@@ -44,15 +44,18 @@ class InvalidTypeException(ServiceError):
 
     code: str | None = "InvalidTypeException"
 
-    def __init__(self, data: InvalidTypeException_):
+    def __init__(self, data: InvalidTypeException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="InvalidTypeException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_query(cls, el: Element) -> "InvalidTypeException":
-        return cls(deserialize_query(el))
+    def from_query(
+        cls, el: Element, message: str | None = None
+    ) -> "InvalidTypeException":
+        return cls(deserialize_query(el), message)

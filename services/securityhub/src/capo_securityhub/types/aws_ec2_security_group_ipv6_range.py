@@ -23,6 +23,6 @@ def serialize_json(value: AwsEc2SecurityGroupIpv6Range) -> dict:
 
 def deserialize_json(data: dict) -> AwsEc2SecurityGroupIpv6Range:
     out: AwsEc2SecurityGroupIpv6Range = {}  # type: ignore[typeddict-item]
-    if "CidrIpv6" in data:
+    if data.get("CidrIpv6") is not None:
         out["cidr_ipv6"] = data["CidrIpv6"]
     return out

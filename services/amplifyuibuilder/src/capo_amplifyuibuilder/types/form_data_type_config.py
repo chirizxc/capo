@@ -29,11 +29,11 @@ def serialize_json(value: FormDataTypeConfig) -> dict:
 
 def deserialize_json(data: dict) -> FormDataTypeConfig:
     out: FormDataTypeConfig = {}  # type: ignore[typeddict-item]
-    if "dataSourceType" in data:
+    if data.get("dataSourceType") is not None:
         out["data_source_type"] = data["dataSourceType"]
     else:
         raise DeserializationError("FormDataTypeConfig.data_source_type required")
-    if "dataTypeName" in data:
+    if data.get("dataTypeName") is not None:
         out["data_type_name"] = data["dataTypeName"]
     else:
         raise DeserializationError("FormDataTypeConfig.data_type_name required")

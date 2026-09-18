@@ -84,9 +84,9 @@ def serialize_json(value: PutSlotTypeRequest) -> dict:
 
 def deserialize_json(data: dict) -> PutSlotTypeRequest:
     out: PutSlotTypeRequest = {}  # type: ignore[typeddict-item]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "enumerationValues" in data:
+    if data.get("enumerationValues") is not None:
         import capo_lex_model_building_service.types.enumeration_values
 
         out["enumeration_values"] = (
@@ -94,9 +94,9 @@ def deserialize_json(data: dict) -> PutSlotTypeRequest:
                 data["enumerationValues"]
             )
         )
-    if "checksum" in data:
+    if data.get("checksum") is not None:
         out["checksum"] = data["checksum"]
-    if "valueSelectionStrategy" in data:
+    if data.get("valueSelectionStrategy") is not None:
         import capo_lex_model_building_service.types.slot_value_selection_strategy
 
         out["value_selection_strategy"] = (
@@ -104,11 +104,11 @@ def deserialize_json(data: dict) -> PutSlotTypeRequest:
                 data["valueSelectionStrategy"]
             )
         )
-    if "createVersion" in data:
+    if data.get("createVersion") is not None:
         out["create_version"] = data["createVersion"]
-    if "parentSlotTypeSignature" in data:
+    if data.get("parentSlotTypeSignature") is not None:
         out["parent_slot_type_signature"] = data["parentSlotTypeSignature"]
-    if "slotTypeConfigurations" in data:
+    if data.get("slotTypeConfigurations") is not None:
         import capo_lex_model_building_service.types.slot_type_configurations
 
         out["slot_type_configurations"] = (

@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> __listOfMultiplexSummary:
 
     out: __listOfMultiplexSummary = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_medialive.types.multiplex_summary.deserialize_json(item))
     return out

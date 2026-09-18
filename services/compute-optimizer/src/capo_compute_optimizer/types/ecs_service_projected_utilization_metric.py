@@ -45,14 +45,30 @@ def serialize_aws_json_1_0(value: ECSServiceProjectedUtilizationMetric) -> dict:
                 value["statistic"]
             )
         )
-    out["lowerBoundValue"] = value.get("lower_bound_value", 0)
-    out["upperBoundValue"] = value.get("upper_bound_value", 0)
+    out["lowerBoundValue"] = (
+        "NaN"
+        if value.get("lower_bound_value", 0) != value.get("lower_bound_value", 0)
+        else "Infinity"
+        if value.get("lower_bound_value", 0) == float("inf")
+        else "-Infinity"
+        if value.get("lower_bound_value", 0) == float("-inf")
+        else value.get("lower_bound_value", 0)
+    )
+    out["upperBoundValue"] = (
+        "NaN"
+        if value.get("upper_bound_value", 0) != value.get("upper_bound_value", 0)
+        else "Infinity"
+        if value.get("upper_bound_value", 0) == float("inf")
+        else "-Infinity"
+        if value.get("upper_bound_value", 0) == float("-inf")
+        else value.get("upper_bound_value", 0)
+    )
     return out
 
 
 def deserialize_aws_json_1_0(data: dict) -> ECSServiceProjectedUtilizationMetric:
     out: ECSServiceProjectedUtilizationMetric = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         import capo_compute_optimizer.types.ecs_service_metric_name
 
         out["name"] = (
@@ -60,7 +76,7 @@ def deserialize_aws_json_1_0(data: dict) -> ECSServiceProjectedUtilizationMetric
                 data["name"]
             )
         )
-    if "statistic" in data:
+    if data.get("statistic") is not None:
         import capo_compute_optimizer.types.ecs_service_metric_statistic
 
         out["statistic"] = (
@@ -68,12 +84,12 @@ def deserialize_aws_json_1_0(data: dict) -> ECSServiceProjectedUtilizationMetric
                 data["statistic"]
             )
         )
-    if "lowerBoundValue" in data:
-        out["lower_bound_value"] = data["lowerBoundValue"]
+    if data.get("lowerBoundValue") is not None:
+        out["lower_bound_value"] = float(data["lowerBoundValue"])
     else:
         out["lower_bound_value"] = 0
-    if "upperBoundValue" in data:
-        out["upper_bound_value"] = data["upperBoundValue"]
+    if data.get("upperBoundValue") is not None:
+        out["upper_bound_value"] = float(data["upperBoundValue"])
     else:
         out["upper_bound_value"] = 0
     return out

@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> __listOfAutomatedAbrRule:
 
     out: __listOfAutomatedAbrRule = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_mediaconvert.types.automated_abr_rule.deserialize_json(item))
     return out

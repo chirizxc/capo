@@ -36,10 +36,10 @@ def serialize_json(value: UpdatePhoneNumberRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdatePhoneNumberRequest:
     out: UpdatePhoneNumberRequest = {}  # type: ignore[typeddict-item]
-    if "TargetArn" in data:
+    if data.get("TargetArn") is not None:
         out["target_arn"] = data["TargetArn"]
-    if "InstanceId" in data:
+    if data.get("InstanceId") is not None:
         out["instance_id"] = data["InstanceId"]
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
     return out

@@ -41,11 +41,11 @@ def serialize_json(value: Subscription) -> dict:
 
 def deserialize_json(data: dict) -> Subscription:
     out: Subscription = {}  # type: ignore[typeddict-item]
-    if "SubscriptionId" in data:
+    if data.get("SubscriptionId") is not None:
         out["subscription_id"] = data["SubscriptionId"]
-    if "EndPoint" in data:
+    if data.get("EndPoint") is not None:
         out["end_point"] = data["EndPoint"]
-    if "Protocol" in data:
+    if data.get("Protocol") is not None:
         import capo_workdocs.types.subscription_protocol_type
 
         out["protocol"] = (

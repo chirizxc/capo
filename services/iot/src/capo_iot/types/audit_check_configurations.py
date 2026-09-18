@@ -25,6 +25,8 @@ def serialize_json(input_to_serialize: AuditCheckConfigurations) -> dict:
 def deserialize_json(data: dict) -> AuditCheckConfigurations:
     out: AuditCheckConfigurations = {}
     for key, value in data.items():
+        if value is None:
+            continue
         import capo_iot.types.audit_check_configuration
 
         out[key] = capo_iot.types.audit_check_configuration.deserialize_json(value)

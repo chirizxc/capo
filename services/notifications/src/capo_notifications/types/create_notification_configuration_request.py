@@ -42,21 +42,21 @@ def serialize_json(value: CreateNotificationConfigurationRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateNotificationConfigurationRequest:
     out: CreateNotificationConfigurationRequest = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError(
             "CreateNotificationConfigurationRequest.name required"
         )
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
     else:
         raise DeserializationError(
             "CreateNotificationConfigurationRequest.description required"
         )
-    if "aggregationDuration" in data:
+    if data.get("aggregationDuration") is not None:
         out["aggregation_duration"] = data["aggregationDuration"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_notifications.types.tag_map
 
         out["tags"] = capo_notifications.types.tag_map.deserialize_json(data["tags"])

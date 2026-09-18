@@ -39,7 +39,7 @@ def serialize_json(value: NotificationChannelConfig) -> dict:
 
 def deserialize_json(data: dict) -> NotificationChannelConfig:
     out: NotificationChannelConfig = {}  # type: ignore[typeddict-item]
-    if "Sns" in data:
+    if data.get("Sns") is not None:
         import capo_devops_guru.types.sns_channel_config
 
         out["sns"] = capo_devops_guru.types.sns_channel_config.deserialize_json(
@@ -47,7 +47,7 @@ def deserialize_json(data: dict) -> NotificationChannelConfig:
         )
     else:
         raise DeserializationError("NotificationChannelConfig.sns required")
-    if "Filters" in data:
+    if data.get("Filters") is not None:
         import capo_devops_guru.types.notification_filter_config
 
         out["filters"] = (

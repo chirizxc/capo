@@ -41,9 +41,9 @@ def serialize_aws_json_1_1(value: LookupDeveloperIdentityResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> LookupDeveloperIdentityResponse:
     out: LookupDeveloperIdentityResponse = {}  # type: ignore[typeddict-item]
-    if "IdentityId" in data:
+    if data.get("IdentityId") is not None:
         out["identity_id"] = data["IdentityId"]
-    if "DeveloperUserIdentifierList" in data:
+    if data.get("DeveloperUserIdentifierList") is not None:
         import capo_cognito_identity.types.developer_user_identifier_list
 
         out["developer_user_identifier_list"] = (
@@ -51,6 +51,6 @@ def deserialize_aws_json_1_1(data: dict) -> LookupDeveloperIdentityResponse:
                 data["DeveloperUserIdentifierList"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> AttributeKeyAndValueList:
 
     out: AttributeKeyAndValueList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_clouddirectory.types.attribute_key_and_value.deserialize_json(item)
         )

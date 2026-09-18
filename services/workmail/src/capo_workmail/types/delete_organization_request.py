@@ -43,21 +43,21 @@ def serialize_aws_json_1_1(value: DeleteOrganizationRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteOrganizationRequest:
     out: DeleteOrganizationRequest = {}  # type: ignore[typeddict-item]
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
-    if "OrganizationId" in data:
+    if data.get("OrganizationId") is not None:
         out["organization_id"] = data["OrganizationId"]
     else:
         raise DeserializationError("DeleteOrganizationRequest.organization_id required")
-    if "DeleteDirectory" in data:
+    if data.get("DeleteDirectory") is not None:
         out["delete_directory"] = data["DeleteDirectory"]
     else:
         out["delete_directory"] = False
-    if "ForceDelete" in data:
+    if data.get("ForceDelete") is not None:
         out["force_delete"] = data["ForceDelete"]
     else:
         out["force_delete"] = False
-    if "DeleteIdentityCenterApplication" in data:
+    if data.get("DeleteIdentityCenterApplication") is not None:
         out["delete_identity_center_application"] = data[
             "DeleteIdentityCenterApplication"
         ]

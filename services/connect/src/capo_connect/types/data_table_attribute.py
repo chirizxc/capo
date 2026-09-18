@@ -100,13 +100,13 @@ def serialize_json(value: DataTableAttribute) -> dict:
 
 def deserialize_json(data: dict) -> DataTableAttribute:
     out: DataTableAttribute = {}  # type: ignore[typeddict-item]
-    if "AttributeId" in data:
+    if data.get("AttributeId") is not None:
         out["attribute_id"] = data["AttributeId"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("DataTableAttribute.name required")
-    if "ValueType" in data:
+    if data.get("ValueType") is not None:
         import capo_connect.types.data_table_attribute_value_type
 
         out["value_type"] = (
@@ -116,19 +116,19 @@ def deserialize_json(data: dict) -> DataTableAttribute:
         )
     else:
         raise DeserializationError("DataTableAttribute.value_type required")
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "DataTableId" in data:
+    if data.get("DataTableId") is not None:
         out["data_table_id"] = data["DataTableId"]
-    if "DataTableArn" in data:
+    if data.get("DataTableArn") is not None:
         out["data_table_arn"] = data["DataTableArn"]
-    if "Primary" in data:
+    if data.get("Primary") is not None:
         out["primary"] = data["Primary"]
     else:
         out["primary"] = False
-    if "Version" in data:
+    if data.get("Version") is not None:
         out["version"] = data["Version"]
-    if "LockVersion" in data:
+    if data.get("LockVersion") is not None:
         import capo_connect.types.data_table_lock_version
 
         out["lock_version"] = (
@@ -136,15 +136,15 @@ def deserialize_json(data: dict) -> DataTableAttribute:
                 data["LockVersion"]
             )
         )
-    if "LastModifiedTime" in data:
+    if data.get("LastModifiedTime") is not None:
         import capo_connect.types.timestamp
 
         out["last_modified_time"] = capo_connect.types.timestamp.deserialize_json(
             data["LastModifiedTime"]
         )
-    if "LastModifiedRegion" in data:
+    if data.get("LastModifiedRegion") is not None:
         out["last_modified_region"] = data["LastModifiedRegion"]
-    if "Validation" in data:
+    if data.get("Validation") is not None:
         import capo_connect.types.validation
 
         out["validation"] = capo_connect.types.validation.deserialize_json(

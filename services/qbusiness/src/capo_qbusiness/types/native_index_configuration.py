@@ -42,13 +42,13 @@ def serialize_json(value: NativeIndexConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> NativeIndexConfiguration:
     out: NativeIndexConfiguration = {}  # type: ignore[typeddict-item]
-    if "indexId" in data:
+    if data.get("indexId") is not None:
         out["index_id"] = data["indexId"]
     else:
         raise DeserializationError("NativeIndexConfiguration.index_id required")
-    if "version" in data:
+    if data.get("version") is not None:
         out["version"] = data["version"]
-    if "boostingOverride" in data:
+    if data.get("boostingOverride") is not None:
         import capo_qbusiness.types.document_attribute_boosting_override_map
 
         out["boosting_override"] = (

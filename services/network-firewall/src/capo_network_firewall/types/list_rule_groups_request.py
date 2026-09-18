@@ -82,11 +82,11 @@ def serialize_aws_json_1_0(value: ListRuleGroupsRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ListRuleGroupsRequest:
     out: ListRuleGroupsRequest = {}  # type: ignore[typeddict-item]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "Scope" in data:
+    if data.get("Scope") is not None:
         import capo_network_firewall.types.resource_managed_status
 
         out["scope"] = (
@@ -94,7 +94,7 @@ def deserialize_aws_json_1_0(data: dict) -> ListRuleGroupsRequest:
                 data["Scope"]
             )
         )
-    if "ManagedType" in data:
+    if data.get("ManagedType") is not None:
         import capo_network_firewall.types.resource_managed_type
 
         out["managed_type"] = (
@@ -102,7 +102,7 @@ def deserialize_aws_json_1_0(data: dict) -> ListRuleGroupsRequest:
                 data["ManagedType"]
             )
         )
-    if "SubscriptionStatus" in data:
+    if data.get("SubscriptionStatus") is not None:
         import capo_network_firewall.types.subscription_status
 
         out["subscription_status"] = (
@@ -110,7 +110,7 @@ def deserialize_aws_json_1_0(data: dict) -> ListRuleGroupsRequest:
                 data["SubscriptionStatus"]
             )
         )
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_network_firewall.types.rule_group_type
 
         out["type"] = (

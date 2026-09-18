@@ -40,7 +40,7 @@ def serialize_aws_json_1_0(value: LeadInvitationPayload) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> LeadInvitationPayload:
     out: LeadInvitationPayload = {}  # type: ignore[typeddict-item]
-    if "Customer" in data:
+    if data.get("Customer") is not None:
         import capo_partnercentral_selling.types.lead_invitation_customer
 
         out["customer"] = (
@@ -50,7 +50,7 @@ def deserialize_aws_json_1_0(data: dict) -> LeadInvitationPayload:
         )
     else:
         raise DeserializationError("LeadInvitationPayload.customer required")
-    if "Interaction" in data:
+    if data.get("Interaction") is not None:
         import capo_partnercentral_selling.types.lead_invitation_interaction
 
         out["interaction"] = (

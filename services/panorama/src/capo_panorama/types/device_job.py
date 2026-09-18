@@ -47,18 +47,18 @@ def serialize_json(value: DeviceJob) -> dict:
 
 def deserialize_json(data: dict) -> DeviceJob:
     out: DeviceJob = {}  # type: ignore[typeddict-item]
-    if "DeviceName" in data:
+    if data.get("DeviceName") is not None:
         out["device_name"] = data["DeviceName"]
-    if "DeviceId" in data:
+    if data.get("DeviceId") is not None:
         out["device_id"] = data["DeviceId"]
-    if "JobId" in data:
+    if data.get("JobId") is not None:
         out["job_id"] = data["JobId"]
-    if "CreatedTime" in data:
+    if data.get("CreatedTime") is not None:
         import capo_panorama.types.created_time
 
         out["created_time"] = capo_panorama.types.created_time.deserialize_json(
             data["CreatedTime"]
         )
-    if "JobType" in data:
+    if data.get("JobType") is not None:
         out["job_type"] = data["JobType"]
     return out

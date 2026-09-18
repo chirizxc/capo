@@ -28,7 +28,7 @@ def serialize_aws_json_1_1(value: ZeppelinMonitoringConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ZeppelinMonitoringConfiguration:
     out: ZeppelinMonitoringConfiguration = {}  # type: ignore[typeddict-item]
-    if "LogLevel" in data:
+    if data.get("LogLevel") is not None:
         import capo_kinesis_analytics_v2.types.log_level
 
         out["log_level"] = (

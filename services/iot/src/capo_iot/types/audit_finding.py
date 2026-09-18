@@ -100,31 +100,31 @@ def serialize_json(value: AuditFinding) -> dict:
 
 def deserialize_json(data: dict) -> AuditFinding:
     out: AuditFinding = {}  # type: ignore[typeddict-item]
-    if "findingId" in data:
+    if data.get("findingId") is not None:
         out["finding_id"] = data["findingId"]
-    if "taskId" in data:
+    if data.get("taskId") is not None:
         out["task_id"] = data["taskId"]
-    if "checkName" in data:
+    if data.get("checkName") is not None:
         out["check_name"] = data["checkName"]
-    if "taskStartTime" in data:
+    if data.get("taskStartTime") is not None:
         import capo_iot.types.timestamp
 
         out["task_start_time"] = capo_iot.types.timestamp.deserialize_json(
             data["taskStartTime"]
         )
-    if "findingTime" in data:
+    if data.get("findingTime") is not None:
         import capo_iot.types.timestamp
 
         out["finding_time"] = capo_iot.types.timestamp.deserialize_json(
             data["findingTime"]
         )
-    if "severity" in data:
+    if data.get("severity") is not None:
         import capo_iot.types.audit_finding_severity
 
         out["severity"] = capo_iot.types.audit_finding_severity.deserialize_json(
             data["severity"]
         )
-    if "nonCompliantResource" in data:
+    if data.get("nonCompliantResource") is not None:
         import capo_iot.types.non_compliant_resource
 
         out["non_compliant_resource"] = (
@@ -132,16 +132,16 @@ def deserialize_json(data: dict) -> AuditFinding:
                 data["nonCompliantResource"]
             )
         )
-    if "relatedResources" in data:
+    if data.get("relatedResources") is not None:
         import capo_iot.types.related_resources
 
         out["related_resources"] = capo_iot.types.related_resources.deserialize_json(
             data["relatedResources"]
         )
-    if "reasonForNonCompliance" in data:
+    if data.get("reasonForNonCompliance") is not None:
         out["reason_for_non_compliance"] = data["reasonForNonCompliance"]
-    if "reasonForNonComplianceCode" in data:
+    if data.get("reasonForNonComplianceCode") is not None:
         out["reason_for_non_compliance_code"] = data["reasonForNonComplianceCode"]
-    if "isSuppressed" in data:
+    if data.get("isSuppressed") is not None:
         out["is_suppressed"] = data["isSuppressed"]
     return out

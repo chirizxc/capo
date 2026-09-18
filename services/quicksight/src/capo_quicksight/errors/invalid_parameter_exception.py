@@ -28,9 +28,9 @@ def serialize_json(value: InvalidParameterException_) -> dict:
 
 def deserialize_json(data: dict) -> InvalidParameterException_:
     out: InvalidParameterException_ = {}  # type: ignore[typeddict-item]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
-    if "RequestId" in data:
+    if data.get("RequestId") is not None:
         out["request_id"] = data["RequestId"]
     return out
 
@@ -40,15 +40,18 @@ class InvalidParameterException(ServiceError):
 
     code: str | None = "InvalidParameterException"
 
-    def __init__(self, data: InvalidParameterException_):
+    def __init__(self, data: InvalidParameterException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="InvalidParameterException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "InvalidParameterException":
-        return cls(deserialize_json(data))
+    def from_json(
+        cls, data: dict, message: str | None = None
+    ) -> "InvalidParameterException":
+        return cls(deserialize_json(data), message)

@@ -78,11 +78,11 @@ def serialize_aws_json_1_0(value: ListOpenWorkflowExecutionsInput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ListOpenWorkflowExecutionsInput:
     out: ListOpenWorkflowExecutionsInput = {}  # type: ignore[typeddict-item]
-    if "domain" in data:
+    if data.get("domain") is not None:
         out["domain"] = data["domain"]
     else:
         raise DeserializationError("ListOpenWorkflowExecutionsInput.domain required")
-    if "startTimeFilter" in data:
+    if data.get("startTimeFilter") is not None:
         import capo_swf.types.execution_time_filter
 
         out["start_time_filter"] = (
@@ -94,7 +94,7 @@ def deserialize_aws_json_1_0(data: dict) -> ListOpenWorkflowExecutionsInput:
         raise DeserializationError(
             "ListOpenWorkflowExecutionsInput.start_time_filter required"
         )
-    if "typeFilter" in data:
+    if data.get("typeFilter") is not None:
         import capo_swf.types.workflow_type_filter
 
         out["type_filter"] = (
@@ -102,23 +102,23 @@ def deserialize_aws_json_1_0(data: dict) -> ListOpenWorkflowExecutionsInput:
                 data["typeFilter"]
             )
         )
-    if "tagFilter" in data:
+    if data.get("tagFilter") is not None:
         import capo_swf.types.tag_filter
 
         out["tag_filter"] = capo_swf.types.tag_filter.deserialize_aws_json_1_0(
             data["tagFilter"]
         )
-    if "nextPageToken" in data:
+    if data.get("nextPageToken") is not None:
         out["next_page_token"] = data["nextPageToken"]
-    if "maximumPageSize" in data:
+    if data.get("maximumPageSize") is not None:
         out["maximum_page_size"] = data["maximumPageSize"]
     else:
         out["maximum_page_size"] = 0
-    if "reverseOrder" in data:
+    if data.get("reverseOrder") is not None:
         out["reverse_order"] = data["reverseOrder"]
     else:
         out["reverse_order"] = False
-    if "executionFilter" in data:
+    if data.get("executionFilter") is not None:
         import capo_swf.types.workflow_execution_filter
 
         out["execution_filter"] = (

@@ -27,6 +27,8 @@ def deserialize_aws_json_1_1(data: list) -> ConfigParameterList:
 
     out: ConfigParameterList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_redshift_serverless.types.config_parameter.deserialize_aws_json_1_1(
                 item

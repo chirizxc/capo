@@ -35,9 +35,9 @@ def serialize_json(value: DataPrepSimpleAggregationFunction) -> dict:
 
 def deserialize_json(data: dict) -> DataPrepSimpleAggregationFunction:
     out: DataPrepSimpleAggregationFunction = {}  # type: ignore[typeddict-item]
-    if "InputColumnName" in data:
+    if data.get("InputColumnName") is not None:
         out["input_column_name"] = data["InputColumnName"]
-    if "FunctionType" in data:
+    if data.get("FunctionType") is not None:
         import capo_quicksight.types.data_prep_simple_aggregation_function_type
 
         out["function_type"] = (

@@ -36,13 +36,13 @@ def serialize_aws_json_1_0(value: RuleVariables) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> RuleVariables:
     out: RuleVariables = {}  # type: ignore[typeddict-item]
-    if "IPSets" in data:
+    if data.get("IPSets") is not None:
         import capo_network_firewall.types.ip_sets
 
         out["ip_sets"] = capo_network_firewall.types.ip_sets.deserialize_aws_json_1_0(
             data["IPSets"]
         )
-    if "PortSets" in data:
+    if data.get("PortSets") is not None:
         import capo_network_firewall.types.port_sets
 
         out["port_sets"] = (

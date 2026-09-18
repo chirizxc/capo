@@ -131,33 +131,33 @@ def serialize_json(value: Service) -> dict:
 
 def deserialize_json(data: dict) -> Service:
     out: Service = {}  # type: ignore[typeddict-item]
-    if "action" in data:
+    if data.get("action") is not None:
         import capo_guardduty.types.action
 
         out["action"] = capo_guardduty.types.action.deserialize_json(data["action"])
-    if "evidence" in data:
+    if data.get("evidence") is not None:
         import capo_guardduty.types.evidence
 
         out["evidence"] = capo_guardduty.types.evidence.deserialize_json(
             data["evidence"]
         )
-    if "archived" in data:
+    if data.get("archived") is not None:
         out["archived"] = data["archived"]
-    if "count" in data:
+    if data.get("count") is not None:
         out["count"] = data["count"]
-    if "detectorId" in data:
+    if data.get("detectorId") is not None:
         out["detector_id"] = data["detectorId"]
-    if "eventFirstSeen" in data:
+    if data.get("eventFirstSeen") is not None:
         out["event_first_seen"] = data["eventFirstSeen"]
-    if "eventLastSeen" in data:
+    if data.get("eventLastSeen") is not None:
         out["event_last_seen"] = data["eventLastSeen"]
-    if "resourceRole" in data:
+    if data.get("resourceRole") is not None:
         out["resource_role"] = data["resourceRole"]
-    if "serviceName" in data:
+    if data.get("serviceName") is not None:
         out["service_name"] = data["serviceName"]
-    if "userFeedback" in data:
+    if data.get("userFeedback") is not None:
         out["user_feedback"] = data["userFeedback"]
-    if "additionalInfo" in data:
+    if data.get("additionalInfo") is not None:
         import capo_guardduty.types.service_additional_info
 
         out["additional_info"] = (
@@ -165,9 +165,9 @@ def deserialize_json(data: dict) -> Service:
                 data["additionalInfo"]
             )
         )
-    if "featureName" in data:
+    if data.get("featureName") is not None:
         out["feature_name"] = data["featureName"]
-    if "ebsVolumeScanDetails" in data:
+    if data.get("ebsVolumeScanDetails") is not None:
         import capo_guardduty.types.ebs_volume_scan_details
 
         out["ebs_volume_scan_details"] = (
@@ -175,19 +175,19 @@ def deserialize_json(data: dict) -> Service:
                 data["ebsVolumeScanDetails"]
             )
         )
-    if "runtimeDetails" in data:
+    if data.get("runtimeDetails") is not None:
         import capo_guardduty.types.runtime_details
 
         out["runtime_details"] = capo_guardduty.types.runtime_details.deserialize_json(
             data["runtimeDetails"]
         )
-    if "detection" in data:
+    if data.get("detection") is not None:
         import capo_guardduty.types.detection
 
         out["detection"] = capo_guardduty.types.detection.deserialize_json(
             data["detection"]
         )
-    if "malwareScanDetails" in data:
+    if data.get("malwareScanDetails") is not None:
         import capo_guardduty.types.malware_scan_details
 
         out["malware_scan_details"] = (

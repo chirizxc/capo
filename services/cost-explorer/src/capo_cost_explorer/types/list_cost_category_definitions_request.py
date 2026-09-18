@@ -48,13 +48,13 @@ def serialize_aws_json_1_1(value: ListCostCategoryDefinitionsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListCostCategoryDefinitionsRequest:
     out: ListCostCategoryDefinitionsRequest = {}  # type: ignore[typeddict-item]
-    if "EffectiveOn" in data:
+    if data.get("EffectiveOn") is not None:
         out["effective_on"] = data["EffectiveOn"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "SupportedResourceTypes" in data:
+    if data.get("SupportedResourceTypes") is not None:
         import capo_cost_explorer.types.resource_types_filter_input
 
         out["supported_resource_types"] = (

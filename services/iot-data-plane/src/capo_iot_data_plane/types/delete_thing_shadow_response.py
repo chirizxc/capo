@@ -28,7 +28,7 @@ def serialize_json(value: DeleteThingShadowResponse) -> dict:
 
 def deserialize_json(data: dict) -> DeleteThingShadowResponse:
     out: DeleteThingShadowResponse = {}  # type: ignore[typeddict-item]
-    if "payload" in data:
+    if data.get("payload") is not None:
         import capo_iot_data_plane.types.json_document
 
         out["payload"] = capo_iot_data_plane.types.json_document.deserialize_json(

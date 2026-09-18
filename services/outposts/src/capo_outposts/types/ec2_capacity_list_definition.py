@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> EC2CapacityListDefinition:
 
     out: EC2CapacityListDefinition = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_outposts.types.ec2_capacity.deserialize_json(item))
     return out

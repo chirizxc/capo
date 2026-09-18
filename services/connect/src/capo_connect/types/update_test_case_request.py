@@ -74,21 +74,21 @@ def serialize_json(value: UpdateTestCaseRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateTestCaseRequest:
     out: UpdateTestCaseRequest = {}  # type: ignore[typeddict-item]
-    if "Content" in data:
+    if data.get("Content") is not None:
         out["content"] = data["Content"]
-    if "EntryPoint" in data:
+    if data.get("EntryPoint") is not None:
         import capo_connect.types.test_case_entry_point
 
         out["entry_point"] = capo_connect.types.test_case_entry_point.deserialize_json(
             data["EntryPoint"]
         )
-    if "InitializationData" in data:
+    if data.get("InitializationData") is not None:
         out["initialization_data"] = data["InitializationData"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_connect.types.test_case_status
 
         out["status"] = capo_connect.types.test_case_status.deserialize_json(

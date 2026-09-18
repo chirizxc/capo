@@ -39,15 +39,15 @@ def serialize_json(value: IndexingRule) -> dict:
 
 def deserialize_json(data: dict) -> IndexingRule:
     out: IndexingRule = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "ModifiedAt" in data:
+    if data.get("ModifiedAt") is not None:
         import capo_xray.types.timestamp
 
         out["modified_at"] = capo_xray.types.timestamp.deserialize_json(
             data["ModifiedAt"]
         )
-    if "Rule" in data:
+    if data.get("Rule") is not None:
         import capo_xray.types.indexing_rule_value
 
         out["rule"] = capo_xray.types.indexing_rule_value.deserialize_json(data["Rule"])

@@ -23,6 +23,6 @@ def serialize_json(value: EnableSecurityHubV2Response) -> dict:
 
 def deserialize_json(data: dict) -> EnableSecurityHubV2Response:
     out: EnableSecurityHubV2Response = {}  # type: ignore[typeddict-item]
-    if "HubV2Arn" in data:
+    if data.get("HubV2Arn") is not None:
         out["hub_v2_arn"] = data["HubV2Arn"]
     return out

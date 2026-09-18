@@ -57,11 +57,11 @@ def serialize_aws_json_1_0(value: CreateDatasetRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CreateDatasetRequest:
     out: CreateDatasetRequest = {}  # type: ignore[typeddict-item]
-    if "DatasetName" in data:
+    if data.get("DatasetName") is not None:
         out["dataset_name"] = data["DatasetName"]
     else:
         raise DeserializationError("CreateDatasetRequest.dataset_name required")
-    if "DatasetSchema" in data:
+    if data.get("DatasetSchema") is not None:
         import capo_lookoutequipment.types.dataset_schema
 
         out["dataset_schema"] = (
@@ -69,13 +69,13 @@ def deserialize_aws_json_1_0(data: dict) -> CreateDatasetRequest:
                 data["DatasetSchema"]
             )
         )
-    if "ServerSideKmsKeyId" in data:
+    if data.get("ServerSideKmsKeyId") is not None:
         out["server_side_kms_key_id"] = data["ServerSideKmsKeyId"]
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
     else:
         raise DeserializationError("CreateDatasetRequest.client_token required")
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_lookoutequipment.types.tag_list
 
         out["tags"] = capo_lookoutequipment.types.tag_list.deserialize_aws_json_1_0(

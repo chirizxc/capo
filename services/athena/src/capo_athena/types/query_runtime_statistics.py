@@ -51,7 +51,7 @@ def serialize_aws_json_1_1(value: QueryRuntimeStatistics) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> QueryRuntimeStatistics:
     out: QueryRuntimeStatistics = {}  # type: ignore[typeddict-item]
-    if "Timeline" in data:
+    if data.get("Timeline") is not None:
         import capo_athena.types.query_runtime_statistics_timeline
 
         out["timeline"] = (
@@ -59,7 +59,7 @@ def deserialize_aws_json_1_1(data: dict) -> QueryRuntimeStatistics:
                 data["Timeline"]
             )
         )
-    if "Rows" in data:
+    if data.get("Rows") is not None:
         import capo_athena.types.query_runtime_statistics_rows
 
         out["rows"] = (
@@ -67,7 +67,7 @@ def deserialize_aws_json_1_1(data: dict) -> QueryRuntimeStatistics:
                 data["Rows"]
             )
         )
-    if "OutputStage" in data:
+    if data.get("OutputStage") is not None:
         import capo_athena.types.query_stage
 
         out["output_stage"] = capo_athena.types.query_stage.deserialize_aws_json_1_1(

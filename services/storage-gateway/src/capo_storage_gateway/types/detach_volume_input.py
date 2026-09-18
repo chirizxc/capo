@@ -29,10 +29,10 @@ def serialize_aws_json_1_1(value: DetachVolumeInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DetachVolumeInput:
     out: DetachVolumeInput = {}  # type: ignore[typeddict-item]
-    if "VolumeARN" in data:
+    if data.get("VolumeARN") is not None:
         out["volume_arn"] = data["VolumeARN"]
     else:
         raise DeserializationError("DetachVolumeInput.volume_arn required")
-    if "ForceDetach" in data:
+    if data.get("ForceDetach") is not None:
         out["force_detach"] = data["ForceDetach"]
     return out

@@ -49,19 +49,19 @@ def serialize_json(value: StorageConfigurationSummary) -> dict:
 
 def deserialize_json(data: dict) -> StorageConfigurationSummary:
     out: StorageConfigurationSummary = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("StorageConfigurationSummary.arn required")
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "s3" in data:
+    if data.get("s3") is not None:
         import capo_ivs_realtime.types.s3_storage_configuration
 
         out["s3"] = capo_ivs_realtime.types.s3_storage_configuration.deserialize_json(
             data["s3"]
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_ivs_realtime.types.tags
 
         out["tags"] = capo_ivs_realtime.types.tags.deserialize_json(data["tags"])

@@ -25,6 +25,8 @@ def deserialize_aws_json_1_1(data: list) -> PersonDetections:
 
     out: PersonDetections = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_rekognition.types.person_detection.deserialize_aws_json_1_1(item)
         )

@@ -171,13 +171,13 @@ def serialize_json(value: VideoCodecSettings) -> dict:
 
 def deserialize_json(data: dict) -> VideoCodecSettings:
     out: VideoCodecSettings = {}  # type: ignore[typeddict-item]
-    if "av1Settings" in data:
+    if data.get("av1Settings") is not None:
         import capo_mediaconvert.types.av1_settings
 
         out["av1_settings"] = capo_mediaconvert.types.av1_settings.deserialize_json(
             data["av1Settings"]
         )
-    if "avcIntraSettings" in data:
+    if data.get("avcIntraSettings") is not None:
         import capo_mediaconvert.types.avc_intra_settings
 
         out["avc_intra_settings"] = (
@@ -185,13 +185,13 @@ def deserialize_json(data: dict) -> VideoCodecSettings:
                 data["avcIntraSettings"]
             )
         )
-    if "codec" in data:
+    if data.get("codec") is not None:
         import capo_mediaconvert.types.video_codec
 
         out["codec"] = capo_mediaconvert.types.video_codec.deserialize_json(
             data["codec"]
         )
-    if "frameCaptureSettings" in data:
+    if data.get("frameCaptureSettings") is not None:
         import capo_mediaconvert.types.frame_capture_settings
 
         out["frame_capture_settings"] = (
@@ -199,31 +199,31 @@ def deserialize_json(data: dict) -> VideoCodecSettings:
                 data["frameCaptureSettings"]
             )
         )
-    if "gifSettings" in data:
+    if data.get("gifSettings") is not None:
         import capo_mediaconvert.types.gif_settings
 
         out["gif_settings"] = capo_mediaconvert.types.gif_settings.deserialize_json(
             data["gifSettings"]
         )
-    if "h264Settings" in data:
+    if data.get("h264Settings") is not None:
         import capo_mediaconvert.types.h264_settings
 
         out["h264_settings"] = capo_mediaconvert.types.h264_settings.deserialize_json(
             data["h264Settings"]
         )
-    if "h265Settings" in data:
+    if data.get("h265Settings") is not None:
         import capo_mediaconvert.types.h265_settings
 
         out["h265_settings"] = capo_mediaconvert.types.h265_settings.deserialize_json(
             data["h265Settings"]
         )
-    if "mpeg2Settings" in data:
+    if data.get("mpeg2Settings") is not None:
         import capo_mediaconvert.types.mpeg2_settings
 
         out["mpeg2_settings"] = capo_mediaconvert.types.mpeg2_settings.deserialize_json(
             data["mpeg2Settings"]
         )
-    if "passthroughSettings" in data:
+    if data.get("passthroughSettings") is not None:
         import capo_mediaconvert.types.passthrough_settings
 
         out["passthrough_settings"] = (
@@ -231,7 +231,7 @@ def deserialize_json(data: dict) -> VideoCodecSettings:
                 data["passthroughSettings"]
             )
         )
-    if "proresSettings" in data:
+    if data.get("proresSettings") is not None:
         import capo_mediaconvert.types.prores_settings
 
         out["prores_settings"] = (
@@ -239,7 +239,7 @@ def deserialize_json(data: dict) -> VideoCodecSettings:
                 data["proresSettings"]
             )
         )
-    if "uncompressedSettings" in data:
+    if data.get("uncompressedSettings") is not None:
         import capo_mediaconvert.types.uncompressed_settings
 
         out["uncompressed_settings"] = (
@@ -247,25 +247,25 @@ def deserialize_json(data: dict) -> VideoCodecSettings:
                 data["uncompressedSettings"]
             )
         )
-    if "vc3Settings" in data:
+    if data.get("vc3Settings") is not None:
         import capo_mediaconvert.types.vc3_settings
 
         out["vc3_settings"] = capo_mediaconvert.types.vc3_settings.deserialize_json(
             data["vc3Settings"]
         )
-    if "vp8Settings" in data:
+    if data.get("vp8Settings") is not None:
         import capo_mediaconvert.types.vp8_settings
 
         out["vp8_settings"] = capo_mediaconvert.types.vp8_settings.deserialize_json(
             data["vp8Settings"]
         )
-    if "vp9Settings" in data:
+    if data.get("vp9Settings") is not None:
         import capo_mediaconvert.types.vp9_settings
 
         out["vp9_settings"] = capo_mediaconvert.types.vp9_settings.deserialize_json(
             data["vp9Settings"]
         )
-    if "xavcSettings" in data:
+    if data.get("xavcSettings") is not None:
         import capo_mediaconvert.types.xavc_settings
 
         out["xavc_settings"] = capo_mediaconvert.types.xavc_settings.deserialize_json(

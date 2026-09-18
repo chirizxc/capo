@@ -27,8 +27,8 @@ def serialize_aws_json_1_1(value: ConnectionPortRange) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ConnectionPortRange:
     out: ConnectionPortRange = {}  # type: ignore[typeddict-item]
-    if "FromPort" in data:
+    if data.get("FromPort") is not None:
         out["from_port"] = data["FromPort"]
-    if "ToPort" in data:
+    if data.get("ToPort") is not None:
         out["to_port"] = data["ToPort"]
     return out

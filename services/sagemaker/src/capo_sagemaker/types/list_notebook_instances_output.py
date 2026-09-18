@@ -36,9 +36,9 @@ def serialize_aws_json_1_1(value: ListNotebookInstancesOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListNotebookInstancesOutput:
     out: ListNotebookInstancesOutput = {}  # type: ignore[typeddict-item]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "NotebookInstances" in data:
+    if data.get("NotebookInstances") is not None:
         import capo_sagemaker.types.notebook_instance_summary_list
 
         out["notebook_instances"] = (

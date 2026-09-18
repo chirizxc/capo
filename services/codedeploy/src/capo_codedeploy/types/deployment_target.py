@@ -74,7 +74,7 @@ def serialize_aws_json_1_1(value: DeploymentTarget) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeploymentTarget:
     out: DeploymentTarget = {}  # type: ignore[typeddict-item]
-    if "deploymentTargetType" in data:
+    if data.get("deploymentTargetType") is not None:
         import capo_codedeploy.types.deployment_target_type
 
         out["deployment_target_type"] = (
@@ -82,7 +82,7 @@ def deserialize_aws_json_1_1(data: dict) -> DeploymentTarget:
                 data["deploymentTargetType"]
             )
         )
-    if "instanceTarget" in data:
+    if data.get("instanceTarget") is not None:
         import capo_codedeploy.types.instance_target
 
         out["instance_target"] = (
@@ -90,7 +90,7 @@ def deserialize_aws_json_1_1(data: dict) -> DeploymentTarget:
                 data["instanceTarget"]
             )
         )
-    if "lambdaTarget" in data:
+    if data.get("lambdaTarget") is not None:
         import capo_codedeploy.types.lambda_target
 
         out["lambda_target"] = (
@@ -98,13 +98,13 @@ def deserialize_aws_json_1_1(data: dict) -> DeploymentTarget:
                 data["lambdaTarget"]
             )
         )
-    if "ecsTarget" in data:
+    if data.get("ecsTarget") is not None:
         import capo_codedeploy.types.ecs_target
 
         out["ecs_target"] = capo_codedeploy.types.ecs_target.deserialize_aws_json_1_1(
             data["ecsTarget"]
         )
-    if "cloudFormationTarget" in data:
+    if data.get("cloudFormationTarget") is not None:
         import capo_codedeploy.types.cloud_formation_target
 
         out["cloud_formation_target"] = (

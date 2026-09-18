@@ -92,11 +92,11 @@ def deserialize_aws_json_1_0(
     data: dict,
 ) -> StartEngagementByAcceptingInvitationTaskResponse:
     out: StartEngagementByAcceptingInvitationTaskResponse = {}  # type: ignore[typeddict-item]
-    if "TaskId" in data:
+    if data.get("TaskId") is not None:
         out["task_id"] = data["TaskId"]
-    if "TaskArn" in data:
+    if data.get("TaskArn") is not None:
         out["task_arn"] = data["TaskArn"]
-    if "StartTime" in data:
+    if data.get("StartTime") is not None:
         import capo_partnercentral_selling.types.date_time
 
         out["start_time"] = (
@@ -104,7 +104,7 @@ def deserialize_aws_json_1_0(
                 data["StartTime"]
             )
         )
-    if "TaskStatus" in data:
+    if data.get("TaskStatus") is not None:
         import capo_partnercentral_selling.types.task_status
 
         out["task_status"] = (
@@ -112,9 +112,9 @@ def deserialize_aws_json_1_0(
                 data["TaskStatus"]
             )
         )
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
-    if "ReasonCode" in data:
+    if data.get("ReasonCode") is not None:
         import capo_partnercentral_selling.types.reason_code
 
         out["reason_code"] = (
@@ -122,10 +122,10 @@ def deserialize_aws_json_1_0(
                 data["ReasonCode"]
             )
         )
-    if "OpportunityId" in data:
+    if data.get("OpportunityId") is not None:
         out["opportunity_id"] = data["OpportunityId"]
-    if "ResourceSnapshotJobId" in data:
+    if data.get("ResourceSnapshotJobId") is not None:
         out["resource_snapshot_job_id"] = data["ResourceSnapshotJobId"]
-    if "EngagementInvitationId" in data:
+    if data.get("EngagementInvitationId") is not None:
         out["engagement_invitation_id"] = data["EngagementInvitationId"]
     return out

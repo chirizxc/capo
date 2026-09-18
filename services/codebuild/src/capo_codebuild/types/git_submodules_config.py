@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: GitSubmodulesConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GitSubmodulesConfig:
     out: GitSubmodulesConfig = {}  # type: ignore[typeddict-item]
-    if "fetchSubmodules" in data:
+    if data.get("fetchSubmodules") is not None:
         out["fetch_submodules"] = data["fetchSubmodules"]
     else:
         raise DeserializationError("GitSubmodulesConfig.fetch_submodules required")

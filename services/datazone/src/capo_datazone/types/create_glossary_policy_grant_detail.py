@@ -18,6 +18,6 @@ def serialize_json(value: CreateGlossaryPolicyGrantDetail) -> dict:
 
 def deserialize_json(data: dict) -> CreateGlossaryPolicyGrantDetail:
     out: CreateGlossaryPolicyGrantDetail = {}  # type: ignore[typeddict-item]
-    if "includeChildDomainUnits" in data:
+    if data.get("includeChildDomainUnits") is not None:
         out["include_child_domain_units"] = data["includeChildDomainUnits"]
     return out

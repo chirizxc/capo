@@ -34,12 +34,12 @@ def serialize_aws_json_1_1(value: ListServiceActionsInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListServiceActionsInput:
     out: ListServiceActionsInput = {}  # type: ignore[typeddict-item]
-    if "AcceptLanguage" in data:
+    if data.get("AcceptLanguage") is not None:
         out["accept_language"] = data["AcceptLanguage"]
-    if "PageSize" in data:
+    if data.get("PageSize") is not None:
         out["page_size"] = data["PageSize"]
     else:
         out["page_size"] = 0
-    if "PageToken" in data:
+    if data.get("PageToken") is not None:
         out["page_token"] = data["PageToken"]
     return out

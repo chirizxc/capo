@@ -46,7 +46,7 @@ def serialize_aws_json_1_1(value: SubscribeToShardEvent) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SubscribeToShardEvent:
     out: SubscribeToShardEvent = {}  # type: ignore[typeddict-item]
-    if "Records" in data:
+    if data.get("Records") is not None:
         import capo_kinesis.types.record_list
 
         out["records"] = capo_kinesis.types.record_list.deserialize_aws_json_1_1(
@@ -54,19 +54,19 @@ def deserialize_aws_json_1_1(data: dict) -> SubscribeToShardEvent:
         )
     else:
         raise DeserializationError("SubscribeToShardEvent.records required")
-    if "ContinuationSequenceNumber" in data:
+    if data.get("ContinuationSequenceNumber") is not None:
         out["continuation_sequence_number"] = data["ContinuationSequenceNumber"]
     else:
         raise DeserializationError(
             "SubscribeToShardEvent.continuation_sequence_number required"
         )
-    if "MillisBehindLatest" in data:
+    if data.get("MillisBehindLatest") is not None:
         out["millis_behind_latest"] = data["MillisBehindLatest"]
     else:
         raise DeserializationError(
             "SubscribeToShardEvent.millis_behind_latest required"
         )
-    if "ChildShards" in data:
+    if data.get("ChildShards") is not None:
         import capo_kinesis.types.child_shard_list
 
         out["child_shards"] = (

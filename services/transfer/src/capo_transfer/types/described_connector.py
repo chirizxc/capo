@@ -147,15 +147,15 @@ def serialize_aws_json_1_1(value: DescribedConnector) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribedConnector:
     out: DescribedConnector = {}  # type: ignore[typeddict-item]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
     else:
         raise DeserializationError("DescribedConnector.arn required")
-    if "ConnectorId" in data:
+    if data.get("ConnectorId") is not None:
         out["connector_id"] = data["ConnectorId"]
-    if "Url" in data:
+    if data.get("Url") is not None:
         out["url"] = data["Url"]
-    if "As2Config" in data:
+    if data.get("As2Config") is not None:
         import capo_transfer.types.as2_connector_config
 
         out["as2_config"] = (
@@ -163,15 +163,15 @@ def deserialize_aws_json_1_1(data: dict) -> DescribedConnector:
                 data["As2Config"]
             )
         )
-    if "AccessRole" in data:
+    if data.get("AccessRole") is not None:
         out["access_role"] = data["AccessRole"]
-    if "LoggingRole" in data:
+    if data.get("LoggingRole") is not None:
         out["logging_role"] = data["LoggingRole"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_transfer.types.tags
 
         out["tags"] = capo_transfer.types.tags.deserialize_aws_json_1_1(data["Tags"])
-    if "SftpConfig" in data:
+    if data.get("SftpConfig") is not None:
         import capo_transfer.types.sftp_connector_config
 
         out["sftp_config"] = (
@@ -179,7 +179,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribedConnector:
                 data["SftpConfig"]
             )
         )
-    if "ServiceManagedEgressIpAddresses" in data:
+    if data.get("ServiceManagedEgressIpAddresses") is not None:
         import capo_transfer.types.service_managed_egress_ip_addresses
 
         out["service_managed_egress_ip_addresses"] = (
@@ -187,9 +187,9 @@ def deserialize_aws_json_1_1(data: dict) -> DescribedConnector:
                 data["ServiceManagedEgressIpAddresses"]
             )
         )
-    if "SecurityPolicyName" in data:
+    if data.get("SecurityPolicyName") is not None:
         out["security_policy_name"] = data["SecurityPolicyName"]
-    if "EgressConfig" in data:
+    if data.get("EgressConfig") is not None:
         import capo_transfer.types.described_connector_egress_config
 
         out["egress_config"] = (
@@ -197,7 +197,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribedConnector:
                 data["EgressConfig"]
             )
         )
-    if "EgressType" in data:
+    if data.get("EgressType") is not None:
         import capo_transfer.types.connector_egress_type
 
         out["egress_type"] = (
@@ -207,9 +207,9 @@ def deserialize_aws_json_1_1(data: dict) -> DescribedConnector:
         )
     else:
         out["egress_type"] = "SERVICE_MANAGED"
-    if "ErrorMessage" in data:
+    if data.get("ErrorMessage") is not None:
         out["error_message"] = data["ErrorMessage"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_transfer.types.connector_status
 
         out["status"] = capo_transfer.types.connector_status.deserialize_aws_json_1_1(
@@ -217,7 +217,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribedConnector:
         )
     else:
         out["status"] = "ACTIVE"
-    if "IpAddressType" in data:
+    if data.get("IpAddressType") is not None:
         import capo_transfer.types.connectors_ip_address_type
 
         out["ip_address_type"] = (

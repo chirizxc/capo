@@ -30,7 +30,7 @@ def serialize_json(value: TrainedModelExportOutputConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> TrainedModelExportOutputConfiguration:
     out: TrainedModelExportOutputConfiguration = {}  # type: ignore[typeddict-item]
-    if "members" in data:
+    if data.get("members") is not None:
         import capo_cleanroomsml.types.trained_model_export_receiver_members
 
         out["members"] = (

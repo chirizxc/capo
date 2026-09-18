@@ -46,7 +46,15 @@ def serialize_aws_json_1_1(value: MetricDatum) -> dict:
             )
         )
     if "value" in value:
-        out["Value"] = value["value"]
+        out["Value"] = (
+            "NaN"
+            if value["value"] != value["value"]
+            else "Infinity"
+            if value["value"] == float("inf")
+            else "-Infinity"
+            if value["value"] == float("-inf")
+            else value["value"]
+        )
     if "set" in value:
         import capo_sagemaker.types.metric_set_source
 
@@ -58,7 +66,7 @@ def serialize_aws_json_1_1(value: MetricDatum) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> MetricDatum:
     out: MetricDatum = {}  # type: ignore[typeddict-item]
-    if "MetricName" in data:
+    if data.get("MetricName") is not None:
         import capo_sagemaker.types.auto_ml_metric_enum
 
         out["metric_name"] = (
@@ -66,7 +74,7 @@ def deserialize_aws_json_1_1(data: dict) -> MetricDatum:
                 data["MetricName"]
             )
         )
-    if "StandardMetricName" in data:
+    if data.get("StandardMetricName") is not None:
         import capo_sagemaker.types.auto_ml_metric_extended_enum
 
         out["standard_metric_name"] = (
@@ -74,9 +82,9 @@ def deserialize_aws_json_1_1(data: dict) -> MetricDatum:
                 data["StandardMetricName"]
             )
         )
-    if "Value" in data:
-        out["value"] = data["Value"]
-    if "Set" in data:
+    if data.get("Value") is not None:
+        out["value"] = float(data["Value"])
+    if data.get("Set") is not None:
         import capo_sagemaker.types.metric_set_source
 
         out["set"] = capo_sagemaker.types.metric_set_source.deserialize_aws_json_1_1(

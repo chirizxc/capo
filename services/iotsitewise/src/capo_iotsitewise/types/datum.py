@@ -44,18 +44,18 @@ def serialize_json(value: Datum) -> dict:
 
 def deserialize_json(data: dict) -> Datum:
     out: Datum = {}  # type: ignore[typeddict-item]
-    if "scalarValue" in data:
+    if data.get("scalarValue") is not None:
         out["scalar_value"] = data["scalarValue"]
-    if "arrayValue" in data:
+    if data.get("arrayValue") is not None:
         import capo_iotsitewise.types.datum_list
 
         out["array_value"] = capo_iotsitewise.types.datum_list.deserialize_json(
             data["arrayValue"]
         )
-    if "rowValue" in data:
+    if data.get("rowValue") is not None:
         import capo_iotsitewise.types.row
 
         out["row_value"] = capo_iotsitewise.types.row.deserialize_json(data["rowValue"])
-    if "nullValue" in data:
+    if data.get("nullValue") is not None:
         out["null_value"] = data["nullValue"]
     return out

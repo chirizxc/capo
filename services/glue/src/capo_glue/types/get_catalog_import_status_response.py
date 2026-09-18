@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: GetCatalogImportStatusResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetCatalogImportStatusResponse:
     out: GetCatalogImportStatusResponse = {}  # type: ignore[typeddict-item]
-    if "ImportStatus" in data:
+    if data.get("ImportStatus") is not None:
         import capo_glue.types.catalog_import_status
 
         out["import_status"] = (

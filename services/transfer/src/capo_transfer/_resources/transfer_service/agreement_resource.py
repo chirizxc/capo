@@ -112,15 +112,16 @@ class AgreementResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_transfer.types.create_agreement_request.CreateAgreementRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_transfer.types.create_agreement_request.CreateAgreementRequest = {
+            "server_id": server_id,
+            "local_profile_id": local_profile_id,
+            "partner_profile_id": partner_profile_id,
+            "access_role": access_role,
+        }
         if description is not None:
             input_["description"] = description
-        input_["server_id"] = server_id
-        input_["local_profile_id"] = local_profile_id
-        input_["partner_profile_id"] = partner_profile_id
         if base_directory is not None:
             input_["base_directory"] = base_directory
-        input_["access_role"] = access_role
         if status is not None:
             input_["status"] = status
         if tags is not None:
@@ -137,6 +138,7 @@ class AgreementResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -175,15 +177,17 @@ class AgreementResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_transfer.types.describe_agreement_request.DescribeAgreementRequest = {}  # type: ignore[typeddict-item]
-        input_["agreement_id"] = agreement_id
-        input_["server_id"] = server_id
+        input_: capo_transfer.types.describe_agreement_request.DescribeAgreementRequest = {
+            "agreement_id": agreement_id,
+            "server_id": server_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update(
@@ -252,9 +256,10 @@ class AgreementResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_transfer.types.update_agreement_request.UpdateAgreementRequest = {}  # type: ignore[typeddict-item]
-        input_["agreement_id"] = agreement_id
-        input_["server_id"] = server_id
+        input_: capo_transfer.types.update_agreement_request.UpdateAgreementRequest = {
+            "agreement_id": agreement_id,
+            "server_id": server_id,
+        }
         if description is not None:
             input_["description"] = description
         if status is not None:
@@ -279,6 +284,7 @@ class AgreementResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -315,15 +321,17 @@ class AgreementResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_transfer.types.delete_agreement_request.DeleteAgreementRequest = {}  # type: ignore[typeddict-item]
-        input_["agreement_id"] = agreement_id
-        input_["server_id"] = server_id
+        input_: capo_transfer.types.delete_agreement_request.DeleteAgreementRequest = {
+            "agreement_id": agreement_id,
+            "server_id": server_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -365,18 +373,20 @@ class AgreementResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_transfer.types.list_agreements_request.ListAgreementsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_transfer.types.list_agreements_request.ListAgreementsRequest = {
+            "server_id": server_id
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
             input_["next_token"] = next_token
-        input_["server_id"] = server_id
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -451,15 +461,16 @@ class AsyncAgreementResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_transfer.types.create_agreement_request.CreateAgreementRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_transfer.types.create_agreement_request.CreateAgreementRequest = {
+            "server_id": server_id,
+            "local_profile_id": local_profile_id,
+            "partner_profile_id": partner_profile_id,
+            "access_role": access_role,
+        }
         if description is not None:
             input_["description"] = description
-        input_["server_id"] = server_id
-        input_["local_profile_id"] = local_profile_id
-        input_["partner_profile_id"] = partner_profile_id
         if base_directory is not None:
             input_["base_directory"] = base_directory
-        input_["access_role"] = access_role
         if status is not None:
             input_["status"] = status
         if tags is not None:
@@ -476,6 +487,7 @@ class AsyncAgreementResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -515,15 +527,17 @@ class AsyncAgreementResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_transfer.types.describe_agreement_request.DescribeAgreementRequest = {}  # type: ignore[typeddict-item]
-        input_["agreement_id"] = agreement_id
-        input_["server_id"] = server_id
+        input_: capo_transfer.types.describe_agreement_request.DescribeAgreementRequest = {
+            "agreement_id": agreement_id,
+            "server_id": server_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update(
@@ -593,9 +607,10 @@ class AsyncAgreementResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_transfer.types.update_agreement_request.UpdateAgreementRequest = {}  # type: ignore[typeddict-item]
-        input_["agreement_id"] = agreement_id
-        input_["server_id"] = server_id
+        input_: capo_transfer.types.update_agreement_request.UpdateAgreementRequest = {
+            "agreement_id": agreement_id,
+            "server_id": server_id,
+        }
         if description is not None:
             input_["description"] = description
         if status is not None:
@@ -620,6 +635,7 @@ class AsyncAgreementResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -657,15 +673,17 @@ class AsyncAgreementResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_transfer.types.delete_agreement_request.DeleteAgreementRequest = {}  # type: ignore[typeddict-item]
-        input_["agreement_id"] = agreement_id
-        input_["server_id"] = server_id
+        input_: capo_transfer.types.delete_agreement_request.DeleteAgreementRequest = {
+            "agreement_id": agreement_id,
+            "server_id": server_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -708,16 +726,18 @@ class AsyncAgreementResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_transfer.types.list_agreements_request.ListAgreementsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_transfer.types.list_agreements_request.ListAgreementsRequest = {
+            "server_id": server_id
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
             input_["next_token"] = next_token
-        input_["server_id"] = server_id
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

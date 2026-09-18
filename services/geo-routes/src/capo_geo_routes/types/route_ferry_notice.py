@@ -37,7 +37,7 @@ def serialize_json(value: RouteFerryNotice) -> dict:
 
 def deserialize_json(data: dict) -> RouteFerryNotice:
     out: RouteFerryNotice = {}  # type: ignore[typeddict-item]
-    if "Code" in data:
+    if data.get("Code") is not None:
         import capo_geo_routes.types.route_ferry_notice_code
 
         out["code"] = capo_geo_routes.types.route_ferry_notice_code.deserialize_json(
@@ -45,7 +45,7 @@ def deserialize_json(data: dict) -> RouteFerryNotice:
         )
     else:
         raise DeserializationError("RouteFerryNotice.code required")
-    if "Impact" in data:
+    if data.get("Impact") is not None:
         import capo_geo_routes.types.route_notice_impact
 
         out["impact"] = capo_geo_routes.types.route_notice_impact.deserialize_json(

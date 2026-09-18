@@ -13,9 +13,9 @@ from capo_resource_groups import AsyncResourceGroupsClient
 
 
 async def main():
-    async with AsyncResourceGroupsClient() as s3:
+    async with AsyncResourceGroupsClient() as resource_groups:
         # Example: call the cancel_tag_sync_task operation
-        response = await s3.cancel_tag_sync_task()
+        response = await resource_groups.cancel_tag_sync_task()
         print(response)
 ```
 
@@ -28,9 +28,9 @@ from capo_resource_groups import AsyncResourceGroupsClient
 
 
 async def main():
-    async with AsyncResourceGroupsClient() as s3:
+    async with AsyncResourceGroupsClient() as resource_groups:
         # Example: paginate over list_grouping_statuses
-        async for item in s3.iter_list_grouping_statuses():
+        async for item in resource_groups.iter_list_grouping_statuses():
             print(item)
 ```
 
@@ -44,9 +44,9 @@ from capo_resource_groups.error import BadRequestException
 
 
 async def main():
-    async with AsyncResourceGroupsClient() as s3:
+    async with AsyncResourceGroupsClient() as resource_groups:
         try:
-            await s3.cancel_tag_sync_task()
+            await resource_groups.cancel_tag_sync_task()
         except BadRequestException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -63,13 +63,13 @@ from capo_resource_groups import AsyncResourceGroupsClient
 
 
 async def main():
-    async with AsyncResourceGroupsClient() as s3:
+    async with AsyncResourceGroupsClient() as resource_groups:
         # Default: 3 attempts for every operation
-        response = await s3.cancel_tag_sync_task()
+        response = await resource_groups.cancel_tag_sync_task()
 
         # Override per operation
-        response = await s3.cancel_tag_sync_task(config_overrides={"retry_max_attempts": 5})
+        response = await resource_groups.cancel_tag_sync_task(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.cancel_tag_sync_task(config_overrides={"retry_max_attempts": 1})
+        response = await resource_groups.cancel_tag_sync_task(config_overrides={"retry_max_attempts": 1})
 ```

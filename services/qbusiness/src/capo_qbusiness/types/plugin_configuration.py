@@ -24,7 +24,7 @@ def serialize_json(value: PluginConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> PluginConfiguration:
     out: PluginConfiguration = {}  # type: ignore[typeddict-item]
-    if "pluginId" in data:
+    if data.get("pluginId") is not None:
         out["plugin_id"] = data["pluginId"]
     else:
         raise DeserializationError("PluginConfiguration.plugin_id required")

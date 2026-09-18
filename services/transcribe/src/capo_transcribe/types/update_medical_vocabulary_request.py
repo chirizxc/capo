@@ -24,6 +24,7 @@ class UpdateMedicalVocabularyRequest(TypedDict, closed=True):
 # --- awsJson1_1 ser/de ---
 def serialize_aws_json_1_1(value: UpdateMedicalVocabularyRequest) -> dict:
     out: dict = {}
+    out["VocabularyName"] = value["vocabulary_name"]
     import capo_transcribe.types.language_code
 
     out["LanguageCode"] = capo_transcribe.types.language_code.serialize_aws_json_1_1(
@@ -35,7 +36,13 @@ def serialize_aws_json_1_1(value: UpdateMedicalVocabularyRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateMedicalVocabularyRequest:
     out: UpdateMedicalVocabularyRequest = {}  # type: ignore[typeddict-item]
-    if "LanguageCode" in data:
+    if data.get("VocabularyName") is not None:
+        out["vocabulary_name"] = data["VocabularyName"]
+    else:
+        raise DeserializationError(
+            "UpdateMedicalVocabularyRequest.vocabulary_name required"
+        )
+    if data.get("LanguageCode") is not None:
         import capo_transcribe.types.language_code
 
         out["language_code"] = (
@@ -47,7 +54,7 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateMedicalVocabularyRequest:
         raise DeserializationError(
             "UpdateMedicalVocabularyRequest.language_code required"
         )
-    if "VocabularyFileUri" in data:
+    if data.get("VocabularyFileUri") is not None:
         out["vocabulary_file_uri"] = data["VocabularyFileUri"]
     else:
         raise DeserializationError(

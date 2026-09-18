@@ -91,31 +91,31 @@ def serialize_aws_json_1_0(value: CreateSyncConfigurationInput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CreateSyncConfigurationInput:
     out: CreateSyncConfigurationInput = {}  # type: ignore[typeddict-item]
-    if "Branch" in data:
+    if data.get("Branch") is not None:
         out["branch"] = data["Branch"]
     else:
         raise DeserializationError("CreateSyncConfigurationInput.branch required")
-    if "ConfigFile" in data:
+    if data.get("ConfigFile") is not None:
         out["config_file"] = data["ConfigFile"]
     else:
         raise DeserializationError("CreateSyncConfigurationInput.config_file required")
-    if "RepositoryLinkId" in data:
+    if data.get("RepositoryLinkId") is not None:
         out["repository_link_id"] = data["RepositoryLinkId"]
     else:
         raise DeserializationError(
             "CreateSyncConfigurationInput.repository_link_id required"
         )
-    if "ResourceName" in data:
+    if data.get("ResourceName") is not None:
         out["resource_name"] = data["ResourceName"]
     else:
         raise DeserializationError(
             "CreateSyncConfigurationInput.resource_name required"
         )
-    if "RoleArn" in data:
+    if data.get("RoleArn") is not None:
         out["role_arn"] = data["RoleArn"]
     else:
         raise DeserializationError("CreateSyncConfigurationInput.role_arn required")
-    if "SyncType" in data:
+    if data.get("SyncType") is not None:
         import capo_codeconnections.types.sync_configuration_type
 
         out["sync_type"] = (
@@ -125,7 +125,7 @@ def deserialize_aws_json_1_0(data: dict) -> CreateSyncConfigurationInput:
         )
     else:
         raise DeserializationError("CreateSyncConfigurationInput.sync_type required")
-    if "PublishDeploymentStatus" in data:
+    if data.get("PublishDeploymentStatus") is not None:
         import capo_codeconnections.types.publish_deployment_status
 
         out["publish_deployment_status"] = (
@@ -133,7 +133,7 @@ def deserialize_aws_json_1_0(data: dict) -> CreateSyncConfigurationInput:
                 data["PublishDeploymentStatus"]
             )
         )
-    if "TriggerResourceUpdateOn" in data:
+    if data.get("TriggerResourceUpdateOn") is not None:
         import capo_codeconnections.types.trigger_resource_update_on
 
         out["trigger_resource_update_on"] = (
@@ -141,7 +141,7 @@ def deserialize_aws_json_1_0(data: dict) -> CreateSyncConfigurationInput:
                 data["TriggerResourceUpdateOn"]
             )
         )
-    if "PullRequestComment" in data:
+    if data.get("PullRequestComment") is not None:
         import capo_codeconnections.types.pull_request_comment
 
         out["pull_request_comment"] = (

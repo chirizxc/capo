@@ -113,13 +113,14 @@ class AnalysisTemplateResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanrooms.types.create_analysis_template_input.CreateAnalysisTemplateInput = {}  # type: ignore[typeddict-item]
+        input_: capo_cleanrooms.types.create_analysis_template_input.CreateAnalysisTemplateInput = {
+            "membership_identifier": membership_identifier,
+            "name": name,
+            "format": format,
+            "source": source,
+        }
         if description is not None:
             input_["description"] = description
-        input_["membership_identifier"] = membership_identifier
-        input_["name"] = name
-        input_["format"] = format
-        input_["source"] = source
         if tags is not None:
             input_["tags"] = tags
         if analysis_parameters is not None:
@@ -136,6 +137,7 @@ class AnalysisTemplateResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -175,15 +177,17 @@ class AnalysisTemplateResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanrooms.types.get_analysis_template_input.GetAnalysisTemplateInput = {}  # type: ignore[typeddict-item]
-        input_["membership_identifier"] = membership_identifier
-        input_["analysis_template_identifier"] = analysis_template_identifier
+        input_: capo_cleanrooms.types.get_analysis_template_input.GetAnalysisTemplateInput = {
+            "membership_identifier": membership_identifier,
+            "analysis_template_identifier": analysis_template_identifier,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update(
@@ -227,9 +231,10 @@ class AnalysisTemplateResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanrooms.types.update_analysis_template_input.UpdateAnalysisTemplateInput = {}  # type: ignore[typeddict-item]
-        input_["membership_identifier"] = membership_identifier
-        input_["analysis_template_identifier"] = analysis_template_identifier
+        input_: capo_cleanrooms.types.update_analysis_template_input.UpdateAnalysisTemplateInput = {
+            "membership_identifier": membership_identifier,
+            "analysis_template_identifier": analysis_template_identifier,
+        }
         if description is not None:
             input_["description"] = description
 
@@ -238,6 +243,7 @@ class AnalysisTemplateResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -277,15 +283,17 @@ class AnalysisTemplateResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanrooms.types.delete_analysis_template_input.DeleteAnalysisTemplateInput = {}  # type: ignore[typeddict-item]
-        input_["membership_identifier"] = membership_identifier
-        input_["analysis_template_identifier"] = analysis_template_identifier
+        input_: capo_cleanrooms.types.delete_analysis_template_input.DeleteAnalysisTemplateInput = {
+            "membership_identifier": membership_identifier,
+            "analysis_template_identifier": analysis_template_identifier,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -329,8 +337,9 @@ class AnalysisTemplateResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanrooms.types.list_analysis_templates_input.ListAnalysisTemplatesInput = {}  # type: ignore[typeddict-item]
-        input_["membership_identifier"] = membership_identifier
+        input_: capo_cleanrooms.types.list_analysis_templates_input.ListAnalysisTemplatesInput = {
+            "membership_identifier": membership_identifier
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -341,6 +350,7 @@ class AnalysisTemplateResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -411,13 +421,14 @@ class AsyncAnalysisTemplateResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanrooms.types.create_analysis_template_input.CreateAnalysisTemplateInput = {}  # type: ignore[typeddict-item]
+        input_: capo_cleanrooms.types.create_analysis_template_input.CreateAnalysisTemplateInput = {
+            "membership_identifier": membership_identifier,
+            "name": name,
+            "format": format,
+            "source": source,
+        }
         if description is not None:
             input_["description"] = description
-        input_["membership_identifier"] = membership_identifier
-        input_["name"] = name
-        input_["format"] = format
-        input_["source"] = source
         if tags is not None:
             input_["tags"] = tags
         if analysis_parameters is not None:
@@ -434,6 +445,7 @@ class AsyncAnalysisTemplateResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -474,15 +486,17 @@ class AsyncAnalysisTemplateResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanrooms.types.get_analysis_template_input.GetAnalysisTemplateInput = {}  # type: ignore[typeddict-item]
-        input_["membership_identifier"] = membership_identifier
-        input_["analysis_template_identifier"] = analysis_template_identifier
+        input_: capo_cleanrooms.types.get_analysis_template_input.GetAnalysisTemplateInput = {
+            "membership_identifier": membership_identifier,
+            "analysis_template_identifier": analysis_template_identifier,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update(
@@ -527,9 +541,10 @@ class AsyncAnalysisTemplateResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanrooms.types.update_analysis_template_input.UpdateAnalysisTemplateInput = {}  # type: ignore[typeddict-item]
-        input_["membership_identifier"] = membership_identifier
-        input_["analysis_template_identifier"] = analysis_template_identifier
+        input_: capo_cleanrooms.types.update_analysis_template_input.UpdateAnalysisTemplateInput = {
+            "membership_identifier": membership_identifier,
+            "analysis_template_identifier": analysis_template_identifier,
+        }
         if description is not None:
             input_["description"] = description
 
@@ -538,6 +553,7 @@ class AsyncAnalysisTemplateResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -578,15 +594,17 @@ class AsyncAnalysisTemplateResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanrooms.types.delete_analysis_template_input.DeleteAnalysisTemplateInput = {}  # type: ignore[typeddict-item]
-        input_["membership_identifier"] = membership_identifier
-        input_["analysis_template_identifier"] = analysis_template_identifier
+        input_: capo_cleanrooms.types.delete_analysis_template_input.DeleteAnalysisTemplateInput = {
+            "membership_identifier": membership_identifier,
+            "analysis_template_identifier": analysis_template_identifier,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -631,8 +649,9 @@ class AsyncAnalysisTemplateResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanrooms.types.list_analysis_templates_input.ListAnalysisTemplatesInput = {}  # type: ignore[typeddict-item]
-        input_["membership_identifier"] = membership_identifier
+        input_: capo_cleanrooms.types.list_analysis_templates_input.ListAnalysisTemplatesInput = {
+            "membership_identifier": membership_identifier
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -643,4 +662,5 @@ class AsyncAnalysisTemplateResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

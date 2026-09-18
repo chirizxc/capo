@@ -29,7 +29,7 @@ def serialize_aws_json_1_1(value: AutomatedDiscoveryInformation) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AutomatedDiscoveryInformation:
     out: AutomatedDiscoveryInformation = {}  # type: ignore[typeddict-item]
-    if "LastRunTime" in data:
+    if data.get("LastRunTime") is not None:
         import capo_license_manager.types.date_time
 
         out["last_run_time"] = (

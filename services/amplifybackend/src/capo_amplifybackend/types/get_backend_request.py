@@ -25,6 +25,6 @@ def serialize_json(value: GetBackendRequest) -> dict:
 
 def deserialize_json(data: dict) -> GetBackendRequest:
     out: GetBackendRequest = {}  # type: ignore[typeddict-item]
-    if "backendEnvironmentName" in data:
+    if data.get("backendEnvironmentName") is not None:
         out["backend_environment_name"] = data["backendEnvironmentName"]
     return out

@@ -156,11 +156,11 @@ def serialize_aws_json_1_1(value: BaseConfigurationItem) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> BaseConfigurationItem:
     out: BaseConfigurationItem = {}  # type: ignore[typeddict-item]
-    if "version" in data:
+    if data.get("version") is not None:
         out["version"] = data["version"]
-    if "accountId" in data:
+    if data.get("accountId") is not None:
         out["account_id"] = data["accountId"]
-    if "configurationItemCaptureTime" in data:
+    if data.get("configurationItemCaptureTime") is not None:
         import capo_config_service.types.configuration_item_capture_time
 
         out["configuration_item_capture_time"] = (
@@ -168,7 +168,7 @@ def deserialize_aws_json_1_1(data: dict) -> BaseConfigurationItem:
                 data["configurationItemCaptureTime"]
             )
         )
-    if "configurationItemStatus" in data:
+    if data.get("configurationItemStatus") is not None:
         import capo_config_service.types.configuration_item_status
 
         out["configuration_item_status"] = (
@@ -176,11 +176,11 @@ def deserialize_aws_json_1_1(data: dict) -> BaseConfigurationItem:
                 data["configurationItemStatus"]
             )
         )
-    if "configurationStateId" in data:
+    if data.get("configurationStateId") is not None:
         out["configuration_state_id"] = data["configurationStateId"]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "resourceType" in data:
+    if data.get("resourceType") is not None:
         import capo_config_service.types.resource_type
 
         out["resource_type"] = (
@@ -188,15 +188,15 @@ def deserialize_aws_json_1_1(data: dict) -> BaseConfigurationItem:
                 data["resourceType"]
             )
         )
-    if "resourceId" in data:
+    if data.get("resourceId") is not None:
         out["resource_id"] = data["resourceId"]
-    if "resourceName" in data:
+    if data.get("resourceName") is not None:
         out["resource_name"] = data["resourceName"]
-    if "awsRegion" in data:
+    if data.get("awsRegion") is not None:
         out["aws_region"] = data["awsRegion"]
-    if "availabilityZone" in data:
+    if data.get("availabilityZone") is not None:
         out["availability_zone"] = data["availabilityZone"]
-    if "resourceCreationTime" in data:
+    if data.get("resourceCreationTime") is not None:
         import capo_config_service.types.resource_creation_time
 
         out["resource_creation_time"] = (
@@ -204,9 +204,9 @@ def deserialize_aws_json_1_1(data: dict) -> BaseConfigurationItem:
                 data["resourceCreationTime"]
             )
         )
-    if "configuration" in data:
+    if data.get("configuration") is not None:
         out["configuration"] = data["configuration"]
-    if "supplementaryConfiguration" in data:
+    if data.get("supplementaryConfiguration") is not None:
         import capo_config_service.types.supplementary_configuration
 
         out["supplementary_configuration"] = (
@@ -214,7 +214,7 @@ def deserialize_aws_json_1_1(data: dict) -> BaseConfigurationItem:
                 data["supplementaryConfiguration"]
             )
         )
-    if "recordingFrequency" in data:
+    if data.get("recordingFrequency") is not None:
         import capo_config_service.types.recording_frequency
 
         out["recording_frequency"] = (
@@ -222,7 +222,7 @@ def deserialize_aws_json_1_1(data: dict) -> BaseConfigurationItem:
                 data["recordingFrequency"]
             )
         )
-    if "configurationItemDeliveryTime" in data:
+    if data.get("configurationItemDeliveryTime") is not None:
         import capo_config_service.types.configuration_item_delivery_time
 
         out["configuration_item_delivery_time"] = (

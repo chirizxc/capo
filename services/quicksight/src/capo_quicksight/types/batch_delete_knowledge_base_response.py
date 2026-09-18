@@ -48,7 +48,7 @@ def serialize_json(value: BatchDeleteKnowledgeBaseResponse) -> dict:
 
 def deserialize_json(data: dict) -> BatchDeleteKnowledgeBaseResponse:
     out: BatchDeleteKnowledgeBaseResponse = {}  # type: ignore[typeddict-item]
-    if "Deleted" in data:
+    if data.get("Deleted") is not None:
         import capo_quicksight.types.batch_delete_knowledge_base_success_list
 
         out["deleted"] = (
@@ -58,7 +58,7 @@ def deserialize_json(data: dict) -> BatchDeleteKnowledgeBaseResponse:
         )
     else:
         raise DeserializationError("BatchDeleteKnowledgeBaseResponse.deleted required")
-    if "Errors" in data:
+    if data.get("Errors") is not None:
         import capo_quicksight.types.batch_delete_knowledge_base_failure_list
 
         out["errors"] = (
@@ -68,6 +68,6 @@ def deserialize_json(data: dict) -> BatchDeleteKnowledgeBaseResponse:
         )
     else:
         raise DeserializationError("BatchDeleteKnowledgeBaseResponse.errors required")
-    if "RequestId" in data:
+    if data.get("RequestId") is not None:
         out["request_id"] = data["RequestId"]
     return out

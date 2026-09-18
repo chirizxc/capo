@@ -83,17 +83,17 @@ def serialize_json(value: GetTableResponse) -> dict:
     if "metadata_location" in value:
         out["metadataLocation"] = value["metadata_location"]
     out["warehouseLocation"] = value["warehouse_location"]
-    import capo_s3tables.types._prelude.timestamp
+    import capo_s3tables._protocol.serialize
 
-    out["createdAt"] = capo_s3tables.types._prelude.timestamp.serialize_json(
+    out["createdAt"] = capo_s3tables._protocol.serialize.fmt_date_time(
         value["created_at"]
     )
     out["createdBy"] = value["created_by"]
     if "managed_by_service" in value:
         out["managedByService"] = value["managed_by_service"]
-    import capo_s3tables.types._prelude.timestamp
+    import capo_s3tables._protocol.serialize
 
-    out["modifiedAt"] = capo_s3tables.types._prelude.timestamp.serialize_json(
+    out["modifiedAt"] = capo_s3tables._protocol.serialize.fmt_date_time(
         value["modified_at"]
     )
     out["modifiedBy"] = value["modified_by"]
@@ -118,21 +118,21 @@ def serialize_json(value: GetTableResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetTableResponse:
     out: GetTableResponse = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("GetTableResponse.name required")
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_s3tables.types.table_type
 
         out["type"] = capo_s3tables.types.table_type.deserialize_json(data["type"])
     else:
         raise DeserializationError("GetTableResponse.type required")
-    if "tableARN" in data:
+    if data.get("tableARN") is not None:
         out["table_arn"] = data["tableARN"]
     else:
         raise DeserializationError("GetTableResponse.table_arn required")
-    if "namespace" in data:
+    if data.get("namespace") is not None:
         import capo_s3tables.types.namespace_list
 
         out["namespace"] = capo_s3tables.types.namespace_list.deserialize_json(
@@ -140,49 +140,49 @@ def deserialize_json(data: dict) -> GetTableResponse:
         )
     else:
         raise DeserializationError("GetTableResponse.namespace required")
-    if "namespaceId" in data:
+    if data.get("namespaceId") is not None:
         out["namespace_id"] = data["namespaceId"]
-    if "versionToken" in data:
+    if data.get("versionToken") is not None:
         out["version_token"] = data["versionToken"]
     else:
         raise DeserializationError("GetTableResponse.version_token required")
-    if "metadataLocation" in data:
+    if data.get("metadataLocation") is not None:
         out["metadata_location"] = data["metadataLocation"]
-    if "warehouseLocation" in data:
+    if data.get("warehouseLocation") is not None:
         out["warehouse_location"] = data["warehouseLocation"]
     else:
         raise DeserializationError("GetTableResponse.warehouse_location required")
-    if "createdAt" in data:
-        import capo_s3tables.types._prelude.timestamp
+    if data.get("createdAt") is not None:
+        import datetime
 
-        out["created_at"] = capo_s3tables.types._prelude.timestamp.deserialize_json(
-            data["createdAt"]
+        out["created_at"] = datetime.datetime.fromisoformat(
+            data["createdAt"].replace("Z", "+00:00")
         )
     else:
         raise DeserializationError("GetTableResponse.created_at required")
-    if "createdBy" in data:
+    if data.get("createdBy") is not None:
         out["created_by"] = data["createdBy"]
     else:
         raise DeserializationError("GetTableResponse.created_by required")
-    if "managedByService" in data:
+    if data.get("managedByService") is not None:
         out["managed_by_service"] = data["managedByService"]
-    if "modifiedAt" in data:
-        import capo_s3tables.types._prelude.timestamp
+    if data.get("modifiedAt") is not None:
+        import datetime
 
-        out["modified_at"] = capo_s3tables.types._prelude.timestamp.deserialize_json(
-            data["modifiedAt"]
+        out["modified_at"] = datetime.datetime.fromisoformat(
+            data["modifiedAt"].replace("Z", "+00:00")
         )
     else:
         raise DeserializationError("GetTableResponse.modified_at required")
-    if "modifiedBy" in data:
+    if data.get("modifiedBy") is not None:
         out["modified_by"] = data["modifiedBy"]
     else:
         raise DeserializationError("GetTableResponse.modified_by required")
-    if "ownerAccountId" in data:
+    if data.get("ownerAccountId") is not None:
         out["owner_account_id"] = data["ownerAccountId"]
     else:
         raise DeserializationError("GetTableResponse.owner_account_id required")
-    if "format" in data:
+    if data.get("format") is not None:
         import capo_s3tables.types.open_table_format
 
         out["format"] = capo_s3tables.types.open_table_format.deserialize_json(
@@ -190,9 +190,9 @@ def deserialize_json(data: dict) -> GetTableResponse:
         )
     else:
         raise DeserializationError("GetTableResponse.format required")
-    if "tableBucketId" in data:
+    if data.get("tableBucketId") is not None:
         out["table_bucket_id"] = data["tableBucketId"]
-    if "managedTableInformation" in data:
+    if data.get("managedTableInformation") is not None:
         import capo_s3tables.types.managed_table_information
 
         out["managed_table_information"] = (

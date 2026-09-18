@@ -48,7 +48,7 @@ def serialize_json(value: GetResourceProfileResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetResourceProfileResponse:
     out: GetResourceProfileResponse = {}  # type: ignore[typeddict-item]
-    if "profileUpdatedAt" in data:
+    if data.get("profileUpdatedAt") is not None:
         import capo_macie2.types.__timestamp_iso8601
 
         out["profile_updated_at"] = (
@@ -56,11 +56,11 @@ def deserialize_json(data: dict) -> GetResourceProfileResponse:
                 data["profileUpdatedAt"]
             )
         )
-    if "sensitivityScore" in data:
+    if data.get("sensitivityScore") is not None:
         out["sensitivity_score"] = data["sensitivityScore"]
-    if "sensitivityScoreOverridden" in data:
+    if data.get("sensitivityScoreOverridden") is not None:
         out["sensitivity_score_overridden"] = data["sensitivityScoreOverridden"]
-    if "statistics" in data:
+    if data.get("statistics") is not None:
         import capo_macie2.types.resource_statistics
 
         out["statistics"] = capo_macie2.types.resource_statistics.deserialize_json(

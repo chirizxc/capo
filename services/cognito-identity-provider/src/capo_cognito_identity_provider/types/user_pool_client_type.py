@@ -282,15 +282,15 @@ def serialize_aws_json_1_1(value: UserPoolClientType) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UserPoolClientType:
     out: UserPoolClientType = {}  # type: ignore[typeddict-item]
-    if "UserPoolId" in data:
+    if data.get("UserPoolId") is not None:
         out["user_pool_id"] = data["UserPoolId"]
-    if "ClientName" in data:
+    if data.get("ClientName") is not None:
         out["client_name"] = data["ClientName"]
-    if "ClientId" in data:
+    if data.get("ClientId") is not None:
         out["client_id"] = data["ClientId"]
-    if "ClientSecret" in data:
+    if data.get("ClientSecret") is not None:
         out["client_secret"] = data["ClientSecret"]
-    if "LastModifiedDate" in data:
+    if data.get("LastModifiedDate") is not None:
         import capo_cognito_identity_provider.types.date_type
 
         out["last_modified_date"] = (
@@ -298,7 +298,7 @@ def deserialize_aws_json_1_1(data: dict) -> UserPoolClientType:
                 data["LastModifiedDate"]
             )
         )
-    if "CreationDate" in data:
+    if data.get("CreationDate") is not None:
         import capo_cognito_identity_provider.types.date_type
 
         out["creation_date"] = (
@@ -306,15 +306,15 @@ def deserialize_aws_json_1_1(data: dict) -> UserPoolClientType:
                 data["CreationDate"]
             )
         )
-    if "RefreshTokenValidity" in data:
+    if data.get("RefreshTokenValidity") is not None:
         out["refresh_token_validity"] = data["RefreshTokenValidity"]
     else:
         out["refresh_token_validity"] = 0
-    if "AccessTokenValidity" in data:
+    if data.get("AccessTokenValidity") is not None:
         out["access_token_validity"] = data["AccessTokenValidity"]
-    if "IdTokenValidity" in data:
+    if data.get("IdTokenValidity") is not None:
         out["id_token_validity"] = data["IdTokenValidity"]
-    if "TokenValidityUnits" in data:
+    if data.get("TokenValidityUnits") is not None:
         import capo_cognito_identity_provider.types.token_validity_units_type
 
         out["token_validity_units"] = (
@@ -322,7 +322,7 @@ def deserialize_aws_json_1_1(data: dict) -> UserPoolClientType:
                 data["TokenValidityUnits"]
             )
         )
-    if "ReadAttributes" in data:
+    if data.get("ReadAttributes") is not None:
         import capo_cognito_identity_provider.types.client_permission_list_type
 
         out["read_attributes"] = (
@@ -330,7 +330,7 @@ def deserialize_aws_json_1_1(data: dict) -> UserPoolClientType:
                 data["ReadAttributes"]
             )
         )
-    if "WriteAttributes" in data:
+    if data.get("WriteAttributes") is not None:
         import capo_cognito_identity_provider.types.client_permission_list_type
 
         out["write_attributes"] = (
@@ -338,7 +338,7 @@ def deserialize_aws_json_1_1(data: dict) -> UserPoolClientType:
                 data["WriteAttributes"]
             )
         )
-    if "ExplicitAuthFlows" in data:
+    if data.get("ExplicitAuthFlows") is not None:
         import capo_cognito_identity_provider.types.explicit_auth_flows_list_type
 
         out["explicit_auth_flows"] = (
@@ -346,7 +346,7 @@ def deserialize_aws_json_1_1(data: dict) -> UserPoolClientType:
                 data["ExplicitAuthFlows"]
             )
         )
-    if "SupportedIdentityProviders" in data:
+    if data.get("SupportedIdentityProviders") is not None:
         import capo_cognito_identity_provider.types.supported_identity_providers_list_type
 
         out["supported_identity_providers"] = (
@@ -354,7 +354,7 @@ def deserialize_aws_json_1_1(data: dict) -> UserPoolClientType:
                 data["SupportedIdentityProviders"]
             )
         )
-    if "CallbackURLs" in data:
+    if data.get("CallbackURLs") is not None:
         import capo_cognito_identity_provider.types.callback_ur_ls_list_type
 
         out["callback_ur_ls"] = (
@@ -362,7 +362,7 @@ def deserialize_aws_json_1_1(data: dict) -> UserPoolClientType:
                 data["CallbackURLs"]
             )
         )
-    if "LogoutURLs" in data:
+    if data.get("LogoutURLs") is not None:
         import capo_cognito_identity_provider.types.logout_ur_ls_list_type
 
         out["logout_ur_ls"] = (
@@ -370,9 +370,9 @@ def deserialize_aws_json_1_1(data: dict) -> UserPoolClientType:
                 data["LogoutURLs"]
             )
         )
-    if "DefaultRedirectURI" in data:
+    if data.get("DefaultRedirectURI") is not None:
         out["default_redirect_uri"] = data["DefaultRedirectURI"]
-    if "AllowedOAuthFlows" in data:
+    if data.get("AllowedOAuthFlows") is not None:
         import capo_cognito_identity_provider.types.o_auth_flows_type
 
         out["allowed_o_auth_flows"] = (
@@ -380,7 +380,7 @@ def deserialize_aws_json_1_1(data: dict) -> UserPoolClientType:
                 data["AllowedOAuthFlows"]
             )
         )
-    if "AllowedOAuthScopes" in data:
+    if data.get("AllowedOAuthScopes") is not None:
         import capo_cognito_identity_provider.types.scope_list_type
 
         out["allowed_o_auth_scopes"] = (
@@ -388,11 +388,11 @@ def deserialize_aws_json_1_1(data: dict) -> UserPoolClientType:
                 data["AllowedOAuthScopes"]
             )
         )
-    if "AllowedOAuthFlowsUserPoolClient" in data:
+    if data.get("AllowedOAuthFlowsUserPoolClient") is not None:
         out["allowed_o_auth_flows_user_pool_client"] = data[
             "AllowedOAuthFlowsUserPoolClient"
         ]
-    if "AnalyticsConfiguration" in data:
+    if data.get("AnalyticsConfiguration") is not None:
         import capo_cognito_identity_provider.types.analytics_configuration_type
 
         out["analytics_configuration"] = (
@@ -400,7 +400,7 @@ def deserialize_aws_json_1_1(data: dict) -> UserPoolClientType:
                 data["AnalyticsConfiguration"]
             )
         )
-    if "PreventUserExistenceErrors" in data:
+    if data.get("PreventUserExistenceErrors") is not None:
         import capo_cognito_identity_provider.types.prevent_user_existence_error_types
 
         out["prevent_user_existence_errors"] = (
@@ -408,15 +408,15 @@ def deserialize_aws_json_1_1(data: dict) -> UserPoolClientType:
                 data["PreventUserExistenceErrors"]
             )
         )
-    if "EnableTokenRevocation" in data:
+    if data.get("EnableTokenRevocation") is not None:
         out["enable_token_revocation"] = data["EnableTokenRevocation"]
-    if "EnablePropagateAdditionalUserContextData" in data:
+    if data.get("EnablePropagateAdditionalUserContextData") is not None:
         out["enable_propagate_additional_user_context_data"] = data[
             "EnablePropagateAdditionalUserContextData"
         ]
-    if "AuthSessionValidity" in data:
+    if data.get("AuthSessionValidity") is not None:
         out["auth_session_validity"] = data["AuthSessionValidity"]
-    if "RefreshTokenRotation" in data:
+    if data.get("RefreshTokenRotation") is not None:
         import capo_cognito_identity_provider.types.refresh_token_rotation_type
 
         out["refresh_token_rotation"] = (

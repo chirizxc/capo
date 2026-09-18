@@ -47,7 +47,7 @@ def serialize_json(value: CreateRenewalInput) -> dict:
 
 def deserialize_json(data: dict) -> CreateRenewalInput:
     out: CreateRenewalInput = {}  # type: ignore[typeddict-item]
-    if "PaymentOption" in data:
+    if data.get("PaymentOption") is not None:
         import capo_outposts.types.payment_option
 
         out["payment_option"] = capo_outposts.types.payment_option.deserialize_json(
@@ -55,7 +55,7 @@ def deserialize_json(data: dict) -> CreateRenewalInput:
         )
     else:
         raise DeserializationError("CreateRenewalInput.payment_option required")
-    if "PaymentTerm" in data:
+    if data.get("PaymentTerm") is not None:
         import capo_outposts.types.payment_term
 
         out["payment_term"] = capo_outposts.types.payment_term.deserialize_json(
@@ -63,10 +63,10 @@ def deserialize_json(data: dict) -> CreateRenewalInput:
         )
     else:
         raise DeserializationError("CreateRenewalInput.payment_term required")
-    if "OutpostIdentifier" in data:
+    if data.get("OutpostIdentifier") is not None:
         out["outpost_identifier"] = data["OutpostIdentifier"]
     else:
         raise DeserializationError("CreateRenewalInput.outpost_identifier required")
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
     return out

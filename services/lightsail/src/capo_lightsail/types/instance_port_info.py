@@ -94,15 +94,15 @@ def serialize_aws_json_1_1(value: InstancePortInfo) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> InstancePortInfo:
     out: InstancePortInfo = {}  # type: ignore[typeddict-item]
-    if "fromPort" in data:
+    if data.get("fromPort") is not None:
         out["from_port"] = data["fromPort"]
     else:
         out["from_port"] = 0
-    if "toPort" in data:
+    if data.get("toPort") is not None:
         out["to_port"] = data["toPort"]
     else:
         out["to_port"] = 0
-    if "protocol" in data:
+    if data.get("protocol") is not None:
         import capo_lightsail.types.network_protocol
 
         out["protocol"] = (
@@ -110,9 +110,9 @@ def deserialize_aws_json_1_1(data: dict) -> InstancePortInfo:
                 data["protocol"]
             )
         )
-    if "accessFrom" in data:
+    if data.get("accessFrom") is not None:
         out["access_from"] = data["accessFrom"]
-    if "accessType" in data:
+    if data.get("accessType") is not None:
         import capo_lightsail.types.port_access_type
 
         out["access_type"] = (
@@ -120,9 +120,9 @@ def deserialize_aws_json_1_1(data: dict) -> InstancePortInfo:
                 data["accessType"]
             )
         )
-    if "commonName" in data:
+    if data.get("commonName") is not None:
         out["common_name"] = data["commonName"]
-    if "accessDirection" in data:
+    if data.get("accessDirection") is not None:
         import capo_lightsail.types.access_direction
 
         out["access_direction"] = (
@@ -130,19 +130,19 @@ def deserialize_aws_json_1_1(data: dict) -> InstancePortInfo:
                 data["accessDirection"]
             )
         )
-    if "cidrs" in data:
+    if data.get("cidrs") is not None:
         import capo_lightsail.types.string_list
 
         out["cidrs"] = capo_lightsail.types.string_list.deserialize_aws_json_1_1(
             data["cidrs"]
         )
-    if "ipv6Cidrs" in data:
+    if data.get("ipv6Cidrs") is not None:
         import capo_lightsail.types.string_list
 
         out["ipv6_cidrs"] = capo_lightsail.types.string_list.deserialize_aws_json_1_1(
             data["ipv6Cidrs"]
         )
-    if "cidrListAliases" in data:
+    if data.get("cidrListAliases") is not None:
         import capo_lightsail.types.string_list
 
         out["cidr_list_aliases"] = (

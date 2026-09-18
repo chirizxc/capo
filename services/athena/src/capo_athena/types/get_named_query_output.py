@@ -27,7 +27,7 @@ def serialize_aws_json_1_1(value: GetNamedQueryOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetNamedQueryOutput:
     out: GetNamedQueryOutput = {}  # type: ignore[typeddict-item]
-    if "NamedQuery" in data:
+    if data.get("NamedQuery") is not None:
         import capo_athena.types.named_query
 
         out["named_query"] = capo_athena.types.named_query.deserialize_aws_json_1_1(

@@ -33,10 +33,10 @@ def serialize_aws_json_1_1(value: ListSolutionVersionsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListSolutionVersionsRequest:
     out: ListSolutionVersionsRequest = {}  # type: ignore[typeddict-item]
-    if "solutionArn" in data:
+    if data.get("solutionArn") is not None:
         out["solution_arn"] = data["solutionArn"]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
     return out

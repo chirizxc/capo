@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: GetCallAnalyticsJobResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetCallAnalyticsJobResponse:
     out: GetCallAnalyticsJobResponse = {}  # type: ignore[typeddict-item]
-    if "CallAnalyticsJob" in data:
+    if data.get("CallAnalyticsJob") is not None:
         import capo_transcribe.types.call_analytics_job
 
         out["call_analytics_job"] = (

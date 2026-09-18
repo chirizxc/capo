@@ -35,10 +35,10 @@ def serialize_json(value: CidrBlockAssociation) -> dict:
 
 def deserialize_json(data: dict) -> CidrBlockAssociation:
     out: CidrBlockAssociation = {}  # type: ignore[typeddict-item]
-    if "AssociationId" in data:
+    if data.get("AssociationId") is not None:
         out["association_id"] = data["AssociationId"]
-    if "CidrBlock" in data:
+    if data.get("CidrBlock") is not None:
         out["cidr_block"] = data["CidrBlock"]
-    if "CidrBlockState" in data:
+    if data.get("CidrBlockState") is not None:
         out["cidr_block_state"] = data["CidrBlockState"]
     return out

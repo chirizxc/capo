@@ -86,19 +86,19 @@ def serialize_json(value: CreateNetworkAnalyzerConfigurationRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateNetworkAnalyzerConfigurationRequest:
     out: CreateNetworkAnalyzerConfigurationRequest = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError(
             "CreateNetworkAnalyzerConfigurationRequest.name required"
         )
-    if "TraceContent" in data:
+    if data.get("TraceContent") is not None:
         import capo_iot_wireless.types.trace_content
 
         out["trace_content"] = capo_iot_wireless.types.trace_content.deserialize_json(
             data["TraceContent"]
         )
-    if "WirelessDevices" in data:
+    if data.get("WirelessDevices") is not None:
         import capo_iot_wireless.types.wireless_device_list
 
         out["wireless_devices"] = (
@@ -106,7 +106,7 @@ def deserialize_json(data: dict) -> CreateNetworkAnalyzerConfigurationRequest:
                 data["WirelessDevices"]
             )
         )
-    if "WirelessGateways" in data:
+    if data.get("WirelessGateways") is not None:
         import capo_iot_wireless.types.wireless_gateway_list
 
         out["wireless_gateways"] = (
@@ -114,15 +114,15 @@ def deserialize_json(data: dict) -> CreateNetworkAnalyzerConfigurationRequest:
                 data["WirelessGateways"]
             )
         )
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_iot_wireless.types.tag_list
 
         out["tags"] = capo_iot_wireless.types.tag_list.deserialize_json(data["Tags"])
-    if "ClientRequestToken" in data:
+    if data.get("ClientRequestToken") is not None:
         out["client_request_token"] = data["ClientRequestToken"]
-    if "MulticastGroups" in data:
+    if data.get("MulticastGroups") is not None:
         import capo_iot_wireless.types.network_analyzer_multicast_group_list
 
         out["multicast_groups"] = (

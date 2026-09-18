@@ -13,9 +13,9 @@ from capo_resiliencehub import AsyncresiliencehubClient
 
 
 async def main():
-    async with AsyncresiliencehubClient() as s3:
+    async with AsyncresiliencehubClient() as resiliencehub:
         # Example: call the accept_resource_grouping_recommendations operation
-        response = await s3.accept_resource_grouping_recommendations()
+        response = await resiliencehub.accept_resource_grouping_recommendations()
         print(response["app_arn"])
 ```
 
@@ -28,9 +28,9 @@ from capo_resiliencehub import AsyncresiliencehubClient
 
 
 async def main():
-    async with AsyncresiliencehubClient() as s3:
-        # Example: paginate over list_app_assessment_resource_drifts
-        async for item in s3.iter_list_app_assessment_resource_drifts():
+    async with AsyncresiliencehubClient() as resiliencehub:
+        # Example: paginate over list_alarm_recommendations
+        async for item in resiliencehub.iter_list_alarm_recommendations():
             print(item)
 ```
 
@@ -44,9 +44,9 @@ from capo_resiliencehub.error import AccessDeniedException
 
 
 async def main():
-    async with AsyncresiliencehubClient() as s3:
+    async with AsyncresiliencehubClient() as resiliencehub:
         try:
-            await s3.accept_resource_grouping_recommendations()
+            await resiliencehub.accept_resource_grouping_recommendations()
         except AccessDeniedException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -63,13 +63,13 @@ from capo_resiliencehub import AsyncresiliencehubClient
 
 
 async def main():
-    async with AsyncresiliencehubClient() as s3:
+    async with AsyncresiliencehubClient() as resiliencehub:
         # Default: 3 attempts for every operation
-        response = await s3.accept_resource_grouping_recommendations()
+        response = await resiliencehub.accept_resource_grouping_recommendations()
 
         # Override per operation
-        response = await s3.accept_resource_grouping_recommendations(config_overrides={"retry_max_attempts": 5})
+        response = await resiliencehub.accept_resource_grouping_recommendations(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.accept_resource_grouping_recommendations(config_overrides={"retry_max_attempts": 1})
+        response = await resiliencehub.accept_resource_grouping_recommendations(config_overrides={"retry_max_attempts": 1})
 ```

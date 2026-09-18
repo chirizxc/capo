@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> IncrementalTrainingDataChannels:
 
     out: IncrementalTrainingDataChannels = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_cleanroomsml.types.incremental_training_data_channel.deserialize_json(
                 item

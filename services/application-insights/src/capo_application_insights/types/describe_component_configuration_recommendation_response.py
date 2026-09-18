@@ -29,6 +29,6 @@ def deserialize_aws_json_1_1(
     data: dict,
 ) -> DescribeComponentConfigurationRecommendationResponse:
     out: DescribeComponentConfigurationRecommendationResponse = {}  # type: ignore[typeddict-item]
-    if "ComponentConfiguration" in data:
+    if data.get("ComponentConfiguration") is not None:
         out["component_configuration"] = data["ComponentConfiguration"]
     return out

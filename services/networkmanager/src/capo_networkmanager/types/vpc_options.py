@@ -33,19 +33,19 @@ def serialize_json(value: VpcOptions) -> dict:
 
 def deserialize_json(data: dict) -> VpcOptions:
     out: VpcOptions = {}  # type: ignore[typeddict-item]
-    if "Ipv6Support" in data:
+    if data.get("Ipv6Support") is not None:
         out["ipv6_support"] = data["Ipv6Support"]
     else:
         out["ipv6_support"] = False
-    if "ApplianceModeSupport" in data:
+    if data.get("ApplianceModeSupport") is not None:
         out["appliance_mode_support"] = data["ApplianceModeSupport"]
     else:
         out["appliance_mode_support"] = False
-    if "DnsSupport" in data:
+    if data.get("DnsSupport") is not None:
         out["dns_support"] = data["DnsSupport"]
     else:
         out["dns_support"] = False
-    if "SecurityGroupReferencingSupport" in data:
+    if data.get("SecurityGroupReferencingSupport") is not None:
         out["security_group_referencing_support"] = data[
             "SecurityGroupReferencingSupport"
         ]

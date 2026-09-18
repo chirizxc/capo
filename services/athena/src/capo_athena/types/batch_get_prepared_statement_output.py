@@ -44,7 +44,7 @@ def serialize_aws_json_1_1(value: BatchGetPreparedStatementOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> BatchGetPreparedStatementOutput:
     out: BatchGetPreparedStatementOutput = {}  # type: ignore[typeddict-item]
-    if "PreparedStatements" in data:
+    if data.get("PreparedStatements") is not None:
         import capo_athena.types.prepared_statement_details_list
 
         out["prepared_statements"] = (
@@ -52,7 +52,7 @@ def deserialize_aws_json_1_1(data: dict) -> BatchGetPreparedStatementOutput:
                 data["PreparedStatements"]
             )
         )
-    if "UnprocessedPreparedStatementNames" in data:
+    if data.get("UnprocessedPreparedStatementNames") is not None:
         import capo_athena.types.unprocessed_prepared_statement_name_list
 
         out["unprocessed_prepared_statement_names"] = (

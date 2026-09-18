@@ -70,7 +70,7 @@ def serialize_json(value: CustomParameterValues) -> dict:
 
 def deserialize_json(data: dict) -> CustomParameterValues:
     out: CustomParameterValues = {}  # type: ignore[typeddict-item]
-    if "StringValues" in data:
+    if data.get("StringValues") is not None:
         import capo_quicksight.types.string_default_value_list
 
         out["string_values"] = (
@@ -78,7 +78,7 @@ def deserialize_json(data: dict) -> CustomParameterValues:
                 data["StringValues"]
             )
         )
-    if "IntegerValues" in data:
+    if data.get("IntegerValues") is not None:
         import capo_quicksight.types.integer_default_value_list
 
         out["integer_values"] = (
@@ -86,7 +86,7 @@ def deserialize_json(data: dict) -> CustomParameterValues:
                 data["IntegerValues"]
             )
         )
-    if "DecimalValues" in data:
+    if data.get("DecimalValues") is not None:
         import capo_quicksight.types.decimal_default_value_list
 
         out["decimal_values"] = (
@@ -94,7 +94,7 @@ def deserialize_json(data: dict) -> CustomParameterValues:
                 data["DecimalValues"]
             )
         )
-    if "DateTimeValues" in data:
+    if data.get("DateTimeValues") is not None:
         import capo_quicksight.types.date_time_default_value_list
 
         out["date_time_values"] = (

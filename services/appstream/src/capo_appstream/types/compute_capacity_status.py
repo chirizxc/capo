@@ -63,26 +63,26 @@ def serialize_aws_json_1_1(value: ComputeCapacityStatus) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ComputeCapacityStatus:
     out: ComputeCapacityStatus = {}  # type: ignore[typeddict-item]
-    if "Desired" in data:
+    if data.get("Desired") is not None:
         out["desired"] = data["Desired"]
-    if "Running" in data:
+    if data.get("Running") is not None:
         out["running"] = data["Running"]
-    if "InUse" in data:
+    if data.get("InUse") is not None:
         out["in_use"] = data["InUse"]
-    if "Available" in data:
+    if data.get("Available") is not None:
         out["available"] = data["Available"]
-    if "DesiredUserSessions" in data:
+    if data.get("DesiredUserSessions") is not None:
         out["desired_user_sessions"] = data["DesiredUserSessions"]
-    if "AvailableUserSessions" in data:
+    if data.get("AvailableUserSessions") is not None:
         out["available_user_sessions"] = data["AvailableUserSessions"]
-    if "ActiveUserSessions" in data:
+    if data.get("ActiveUserSessions") is not None:
         out["active_user_sessions"] = data["ActiveUserSessions"]
-    if "ActualUserSessions" in data:
+    if data.get("ActualUserSessions") is not None:
         out["actual_user_sessions"] = data["ActualUserSessions"]
-    if "Draining" in data:
+    if data.get("Draining") is not None:
         out["draining"] = data["Draining"]
-    if "DrainModeActiveUserSessions" in data:
+    if data.get("DrainModeActiveUserSessions") is not None:
         out["drain_mode_active_user_sessions"] = data["DrainModeActiveUserSessions"]
-    if "DrainModeUnusedUserSessions" in data:
+    if data.get("DrainModeUnusedUserSessions") is not None:
         out["drain_mode_unused_user_sessions"] = data["DrainModeUnusedUserSessions"]
     return out

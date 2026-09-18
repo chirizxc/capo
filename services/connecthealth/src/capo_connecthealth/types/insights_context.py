@@ -28,7 +28,7 @@ def serialize_json(value: InsightsContext) -> dict:
 
 def deserialize_json(data: dict) -> InsightsContext:
     out: InsightsContext = {}  # type: ignore[typeddict-item]
-    if "insightsType" in data:
+    if data.get("insightsType") is not None:
         import capo_connecthealth.types.insights_type
 
         out["insights_type"] = capo_connecthealth.types.insights_type.deserialize_json(

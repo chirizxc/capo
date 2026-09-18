@@ -32,9 +32,9 @@ def serialize_aws_json_1_1(value: ApplicationAttribute) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ApplicationAttribute:
     out: ApplicationAttribute = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Values" in data:
+    if data.get("Values") is not None:
         import capo_wafv2.types.attribute_values
 
         out["values"] = capo_wafv2.types.attribute_values.deserialize_aws_json_1_1(

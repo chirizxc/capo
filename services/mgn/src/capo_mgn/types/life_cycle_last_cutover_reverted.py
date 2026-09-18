@@ -25,6 +25,6 @@ def serialize_json(value: LifeCycleLastCutoverReverted) -> dict:
 
 def deserialize_json(data: dict) -> LifeCycleLastCutoverReverted:
     out: LifeCycleLastCutoverReverted = {}  # type: ignore[typeddict-item]
-    if "apiCallDateTime" in data:
+    if data.get("apiCallDateTime") is not None:
         out["api_call_date_time"] = data["apiCallDateTime"]
     return out

@@ -53,10 +53,10 @@ def serialize_json(value: PutDeploymentParameterRequest) -> dict:
             value["tags"]
         )
     if "expiration_date" in value:
-        import capo_marketplace_deployment.types._prelude.timestamp
+        import capo_marketplace_deployment._protocol.serialize
 
         out["expirationDate"] = (
-            capo_marketplace_deployment.types._prelude.timestamp.serialize_json(
+            capo_marketplace_deployment._protocol.serialize.fmt_date_time(
                 value["expiration_date"]
             )
         )
@@ -67,13 +67,13 @@ def serialize_json(value: PutDeploymentParameterRequest) -> dict:
 
 def deserialize_json(data: dict) -> PutDeploymentParameterRequest:
     out: PutDeploymentParameterRequest = {}  # type: ignore[typeddict-item]
-    if "agreementId" in data:
+    if data.get("agreementId") is not None:
         out["agreement_id"] = data["agreementId"]
     else:
         raise DeserializationError(
             "PutDeploymentParameterRequest.agreement_id required"
         )
-    if "deploymentParameter" in data:
+    if data.get("deploymentParameter") is not None:
         import capo_marketplace_deployment.types.deployment_parameter_input
 
         out["deployment_parameter"] = (
@@ -85,20 +85,18 @@ def deserialize_json(data: dict) -> PutDeploymentParameterRequest:
         raise DeserializationError(
             "PutDeploymentParameterRequest.deployment_parameter required"
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_marketplace_deployment.types.tags_map
 
         out["tags"] = capo_marketplace_deployment.types.tags_map.deserialize_json(
             data["tags"]
         )
-    if "expirationDate" in data:
-        import capo_marketplace_deployment.types._prelude.timestamp
+    if data.get("expirationDate") is not None:
+        import datetime
 
-        out["expiration_date"] = (
-            capo_marketplace_deployment.types._prelude.timestamp.deserialize_json(
-                data["expirationDate"]
-            )
+        out["expiration_date"] = datetime.datetime.fromisoformat(
+            data["expirationDate"].replace("Z", "+00:00")
         )
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     return out

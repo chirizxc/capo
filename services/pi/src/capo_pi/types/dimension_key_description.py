@@ -34,7 +34,15 @@ def serialize_aws_json_1_1(value: DimensionKeyDescription) -> dict:
             value["dimensions"]
         )
     if "total" in value:
-        out["Total"] = value["total"]
+        out["Total"] = (
+            "NaN"
+            if value["total"] != value["total"]
+            else "Infinity"
+            if value["total"] == float("inf")
+            else "-Infinity"
+            if value["total"] == float("-inf")
+            else value["total"]
+        )
     if "additional_metrics" in value:
         import capo_pi.types.additional_metrics_map
 
@@ -54,15 +62,15 @@ def serialize_aws_json_1_1(value: DimensionKeyDescription) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DimensionKeyDescription:
     out: DimensionKeyDescription = {}  # type: ignore[typeddict-item]
-    if "Dimensions" in data:
+    if data.get("Dimensions") is not None:
         import capo_pi.types.dimension_map
 
         out["dimensions"] = capo_pi.types.dimension_map.deserialize_aws_json_1_1(
             data["Dimensions"]
         )
-    if "Total" in data:
-        out["total"] = data["Total"]
-    if "AdditionalMetrics" in data:
+    if data.get("Total") is not None:
+        out["total"] = float(data["Total"])
+    if data.get("AdditionalMetrics") is not None:
         import capo_pi.types.additional_metrics_map
 
         out["additional_metrics"] = (
@@ -70,7 +78,7 @@ def deserialize_aws_json_1_1(data: dict) -> DimensionKeyDescription:
                 data["AdditionalMetrics"]
             )
         )
-    if "Partitions" in data:
+    if data.get("Partitions") is not None:
         import capo_pi.types.metric_values_list
 
         out["partitions"] = capo_pi.types.metric_values_list.deserialize_aws_json_1_1(

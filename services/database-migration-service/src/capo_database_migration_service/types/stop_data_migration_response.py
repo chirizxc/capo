@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: StopDataMigrationResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> StopDataMigrationResponse:
     out: StopDataMigrationResponse = {}  # type: ignore[typeddict-item]
-    if "DataMigration" in data:
+    if data.get("DataMigration") is not None:
         import capo_database_migration_service.types.data_migration
 
         out["data_migration"] = (

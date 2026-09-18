@@ -39,21 +39,21 @@ def serialize_json(value: VeevaSourceProperties) -> dict:
 
 def deserialize_json(data: dict) -> VeevaSourceProperties:
     out: VeevaSourceProperties = {}  # type: ignore[typeddict-item]
-    if "object" in data:
+    if data.get("object") is not None:
         out["object"] = data["object"]
     else:
         raise DeserializationError("VeevaSourceProperties.object required")
-    if "documentType" in data:
+    if data.get("documentType") is not None:
         out["document_type"] = data["documentType"]
-    if "includeSourceFiles" in data:
+    if data.get("includeSourceFiles") is not None:
         out["include_source_files"] = data["includeSourceFiles"]
     else:
         out["include_source_files"] = False
-    if "includeRenditions" in data:
+    if data.get("includeRenditions") is not None:
         out["include_renditions"] = data["includeRenditions"]
     else:
         out["include_renditions"] = False
-    if "includeAllVersions" in data:
+    if data.get("includeAllVersions") is not None:
         out["include_all_versions"] = data["includeAllVersions"]
     else:
         out["include_all_versions"] = False

@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: CertificateConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CertificateConfiguration:
     out: CertificateConfiguration = {}  # type: ignore[typeddict-item]
-    if "CertificateType" in data:
+    if data.get("CertificateType") is not None:
         import capo_gamelift.types.certificate_type
 
         out["certificate_type"] = (

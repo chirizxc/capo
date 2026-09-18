@@ -68,27 +68,27 @@ def serialize_json(value: TopicRule) -> dict:
 
 def deserialize_json(data: dict) -> TopicRule:
     out: TopicRule = {}  # type: ignore[typeddict-item]
-    if "ruleName" in data:
+    if data.get("ruleName") is not None:
         out["rule_name"] = data["ruleName"]
-    if "sql" in data:
+    if data.get("sql") is not None:
         out["sql"] = data["sql"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_iot.types.created_at_date
 
         out["created_at"] = capo_iot.types.created_at_date.deserialize_json(
             data["createdAt"]
         )
-    if "actions" in data:
+    if data.get("actions") is not None:
         import capo_iot.types.action_list
 
         out["actions"] = capo_iot.types.action_list.deserialize_json(data["actions"])
-    if "ruleDisabled" in data:
+    if data.get("ruleDisabled") is not None:
         out["rule_disabled"] = data["ruleDisabled"]
-    if "awsIotSqlVersion" in data:
+    if data.get("awsIotSqlVersion") is not None:
         out["aws_iot_sql_version"] = data["awsIotSqlVersion"]
-    if "errorAction" in data:
+    if data.get("errorAction") is not None:
         import capo_iot.types.action
 
         out["error_action"] = capo_iot.types.action.deserialize_json(

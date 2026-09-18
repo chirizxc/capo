@@ -49,9 +49,9 @@ def serialize_aws_json_1_1(value: SourceDocument) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SourceDocument:
     out: SourceDocument = {}  # type: ignore[typeddict-item]
-    if "DocumentId" in data:
+    if data.get("DocumentId") is not None:
         out["document_id"] = data["DocumentId"]
-    if "SuggestionAttributes" in data:
+    if data.get("SuggestionAttributes") is not None:
         import capo_kendra.types.document_attribute_key_list
 
         out["suggestion_attributes"] = (
@@ -59,7 +59,7 @@ def deserialize_aws_json_1_1(data: dict) -> SourceDocument:
                 data["SuggestionAttributes"]
             )
         )
-    if "AdditionalAttributes" in data:
+    if data.get("AdditionalAttributes") is not None:
         import capo_kendra.types.document_attribute_list
 
         out["additional_attributes"] = (

@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> CurrencyList:
 
     out: CurrencyList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_savingsplans.types.currency_code.deserialize_json(item))
     return out

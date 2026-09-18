@@ -27,7 +27,7 @@ def serialize_json(value: BrandElementStyle) -> dict:
 
 def deserialize_json(data: dict) -> BrandElementStyle:
     out: BrandElementStyle = {}  # type: ignore[typeddict-item]
-    if "NavbarStyle" in data:
+    if data.get("NavbarStyle") is not None:
         import capo_quicksight.types.navbar_style
 
         out["navbar_style"] = capo_quicksight.types.navbar_style.deserialize_json(

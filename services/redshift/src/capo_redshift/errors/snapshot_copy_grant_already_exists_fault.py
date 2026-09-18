@@ -39,15 +39,20 @@ class SnapshotCopyGrantAlreadyExistsFault(ServiceError):
 
     code: str | None = "SnapshotCopyGrantAlreadyExistsFault"
 
-    def __init__(self, data: SnapshotCopyGrantAlreadyExistsFault_):
+    def __init__(
+        self, data: SnapshotCopyGrantAlreadyExistsFault_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="SnapshotCopyGrantAlreadyExistsFault",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_query(cls, el: Element) -> "SnapshotCopyGrantAlreadyExistsFault":
-        return cls(deserialize_query(el))
+    def from_query(
+        cls, el: Element, message: str | None = None
+    ) -> "SnapshotCopyGrantAlreadyExistsFault":
+        return cls(deserialize_query(el), message)

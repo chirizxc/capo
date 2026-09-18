@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> CustomizableProperties:
 
     out: CustomizableProperties = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_securityhub.types.security_control_property.deserialize_json(item)
         )

@@ -145,17 +145,17 @@ def serialize_json(value: RoutingProfile) -> dict:
 
 def deserialize_json(data: dict) -> RoutingProfile:
     out: RoutingProfile = {}  # type: ignore[typeddict-item]
-    if "InstanceId" in data:
+    if data.get("InstanceId") is not None:
         out["instance_id"] = data["InstanceId"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "RoutingProfileArn" in data:
+    if data.get("RoutingProfileArn") is not None:
         out["routing_profile_arn"] = data["RoutingProfileArn"]
-    if "RoutingProfileId" in data:
+    if data.get("RoutingProfileId") is not None:
         out["routing_profile_id"] = data["RoutingProfileId"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "MediaConcurrencies" in data:
+    if data.get("MediaConcurrencies") is not None:
         import capo_connect.types.media_concurrencies
 
         out["media_concurrencies"] = (
@@ -163,21 +163,21 @@ def deserialize_json(data: dict) -> RoutingProfile:
                 data["MediaConcurrencies"]
             )
         )
-    if "DefaultOutboundQueueId" in data:
+    if data.get("DefaultOutboundQueueId") is not None:
         out["default_outbound_queue_id"] = data["DefaultOutboundQueueId"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_connect.types.tag_map
 
         out["tags"] = capo_connect.types.tag_map.deserialize_json(data["Tags"])
-    if "NumberOfAssociatedQueues" in data:
+    if data.get("NumberOfAssociatedQueues") is not None:
         out["number_of_associated_queues"] = data["NumberOfAssociatedQueues"]
-    if "NumberOfAssociatedManualAssignmentQueues" in data:
+    if data.get("NumberOfAssociatedManualAssignmentQueues") is not None:
         out["number_of_associated_manual_assignment_queues"] = data[
             "NumberOfAssociatedManualAssignmentQueues"
         ]
-    if "NumberOfAssociatedUsers" in data:
+    if data.get("NumberOfAssociatedUsers") is not None:
         out["number_of_associated_users"] = data["NumberOfAssociatedUsers"]
-    if "AgentAvailabilityTimer" in data:
+    if data.get("AgentAvailabilityTimer") is not None:
         import capo_connect.types.agent_availability_timer
 
         out["agent_availability_timer"] = (
@@ -185,19 +185,19 @@ def deserialize_json(data: dict) -> RoutingProfile:
                 data["AgentAvailabilityTimer"]
             )
         )
-    if "LastModifiedTime" in data:
+    if data.get("LastModifiedTime") is not None:
         import capo_connect.types.timestamp
 
         out["last_modified_time"] = capo_connect.types.timestamp.deserialize_json(
             data["LastModifiedTime"]
         )
-    if "LastModifiedRegion" in data:
+    if data.get("LastModifiedRegion") is not None:
         out["last_modified_region"] = data["LastModifiedRegion"]
-    if "IsDefault" in data:
+    if data.get("IsDefault") is not None:
         out["is_default"] = data["IsDefault"]
     else:
         out["is_default"] = False
-    if "AssociatedQueueIds" in data:
+    if data.get("AssociatedQueueIds") is not None:
         import capo_connect.types.associated_queue_id_list
 
         out["associated_queue_ids"] = (
@@ -205,7 +205,7 @@ def deserialize_json(data: dict) -> RoutingProfile:
                 data["AssociatedQueueIds"]
             )
         )
-    if "AssociatedManualAssignmentQueueIds" in data:
+    if data.get("AssociatedManualAssignmentQueueIds") is not None:
         import capo_connect.types.associated_queue_id_list
 
         out["associated_manual_assignment_queue_ids"] = (

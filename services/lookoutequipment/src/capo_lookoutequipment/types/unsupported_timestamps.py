@@ -28,7 +28,7 @@ def serialize_aws_json_1_0(value: UnsupportedTimestamps) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> UnsupportedTimestamps:
     out: UnsupportedTimestamps = {}  # type: ignore[typeddict-item]
-    if "TotalNumberOfUnsupportedTimestamps" in data:
+    if data.get("TotalNumberOfUnsupportedTimestamps") is not None:
         out["total_number_of_unsupported_timestamps"] = data[
             "TotalNumberOfUnsupportedTimestamps"
         ]

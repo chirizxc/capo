@@ -30,9 +30,9 @@ def serialize_json(value: UsageResourceResult) -> dict:
 
 def deserialize_json(data: dict) -> UsageResourceResult:
     out: UsageResourceResult = {}  # type: ignore[typeddict-item]
-    if "resource" in data:
+    if data.get("resource") is not None:
         out["resource"] = data["resource"]
-    if "total" in data:
+    if data.get("total") is not None:
         import capo_guardduty.types.total
 
         out["total"] = capo_guardduty.types.total.deserialize_json(data["total"])

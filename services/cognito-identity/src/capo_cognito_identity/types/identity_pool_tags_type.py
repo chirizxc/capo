@@ -23,5 +23,7 @@ def serialize_aws_json_1_1(input_to_serialize: IdentityPoolTagsType) -> dict:
 def deserialize_aws_json_1_1(data: dict) -> IdentityPoolTagsType:
     out: IdentityPoolTagsType = {}
     for key, value in data.items():
+        if value is None:
+            continue
         out[key] = value
     return out

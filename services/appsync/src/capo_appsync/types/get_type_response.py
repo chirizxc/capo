@@ -25,7 +25,7 @@ def serialize_json(value: GetTypeResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetTypeResponse:
     out: GetTypeResponse = {}  # type: ignore[typeddict-item]
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_appsync.types.type
 
         out["type"] = capo_appsync.types.type.deserialize_json(data["type"])

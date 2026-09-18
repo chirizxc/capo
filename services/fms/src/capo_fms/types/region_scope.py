@@ -31,13 +31,13 @@ def serialize_aws_json_1_1(value: RegionScope) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RegionScope:
     out: RegionScope = {}  # type: ignore[typeddict-item]
-    if "Regions" in data:
+    if data.get("Regions") is not None:
         import capo_fms.types.aws_region_list
 
         out["regions"] = capo_fms.types.aws_region_list.deserialize_aws_json_1_1(
             data["Regions"]
         )
-    if "AllRegionsEnabled" in data:
+    if data.get("AllRegionsEnabled") is not None:
         out["all_regions_enabled"] = data["AllRegionsEnabled"]
     else:
         out["all_regions_enabled"] = False

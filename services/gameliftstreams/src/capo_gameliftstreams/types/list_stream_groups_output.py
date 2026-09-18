@@ -36,7 +36,7 @@ def serialize_json(value: ListStreamGroupsOutput) -> dict:
 
 def deserialize_json(data: dict) -> ListStreamGroupsOutput:
     out: ListStreamGroupsOutput = {}  # type: ignore[typeddict-item]
-    if "Items" in data:
+    if data.get("Items") is not None:
         import capo_gameliftstreams.types.stream_group_summary_list
 
         out["items"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> ListStreamGroupsOutput:
                 data["Items"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

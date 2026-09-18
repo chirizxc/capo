@@ -39,7 +39,7 @@ def serialize_json(value: StartNextPendingJobExecutionRequest) -> dict:
 
 def deserialize_json(data: dict) -> StartNextPendingJobExecutionRequest:
     out: StartNextPendingJobExecutionRequest = {}  # type: ignore[typeddict-item]
-    if "statusDetails" in data:
+    if data.get("statusDetails") is not None:
         import capo_iot_jobs_data_plane.types.details_map
 
         out["status_details"] = (
@@ -47,6 +47,6 @@ def deserialize_json(data: dict) -> StartNextPendingJobExecutionRequest:
                 data["statusDetails"]
             )
         )
-    if "stepTimeoutInMinutes" in data:
+    if data.get("stepTimeoutInMinutes") is not None:
         out["step_timeout_in_minutes"] = data["stepTimeoutInMinutes"]
     return out

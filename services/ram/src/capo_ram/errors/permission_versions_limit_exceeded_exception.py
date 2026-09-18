@@ -23,7 +23,7 @@ def serialize_json(value: PermissionVersionsLimitExceededException_) -> dict:
 
 def deserialize_json(data: dict) -> PermissionVersionsLimitExceededException_:
     out: PermissionVersionsLimitExceededException_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     else:
         raise DeserializationError(
@@ -37,15 +37,22 @@ class PermissionVersionsLimitExceededException(ServiceError):
 
     code: str | None = "PermissionVersionsLimitExceededException"
 
-    def __init__(self, data: PermissionVersionsLimitExceededException_):
+    def __init__(
+        self,
+        data: PermissionVersionsLimitExceededException_,
+        message: str | None = None,
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="PermissionVersionsLimitExceededException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "PermissionVersionsLimitExceededException":
-        return cls(deserialize_json(data))
+    def from_json(
+        cls, data: dict, message: str | None = None
+    ) -> "PermissionVersionsLimitExceededException":
+        return cls(deserialize_json(data), message)

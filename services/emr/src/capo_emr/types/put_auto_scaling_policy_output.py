@@ -46,11 +46,11 @@ def serialize_aws_json_1_1(value: PutAutoScalingPolicyOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PutAutoScalingPolicyOutput:
     out: PutAutoScalingPolicyOutput = {}  # type: ignore[typeddict-item]
-    if "ClusterId" in data:
+    if data.get("ClusterId") is not None:
         out["cluster_id"] = data["ClusterId"]
-    if "InstanceGroupId" in data:
+    if data.get("InstanceGroupId") is not None:
         out["instance_group_id"] = data["InstanceGroupId"]
-    if "AutoScalingPolicy" in data:
+    if data.get("AutoScalingPolicy") is not None:
         import capo_emr.types.auto_scaling_policy_description
 
         out["auto_scaling_policy"] = (
@@ -58,6 +58,6 @@ def deserialize_aws_json_1_1(data: dict) -> PutAutoScalingPolicyOutput:
                 data["AutoScalingPolicy"]
             )
         )
-    if "ClusterArn" in data:
+    if data.get("ClusterArn") is not None:
         out["cluster_arn"] = data["ClusterArn"]
     return out

@@ -100,21 +100,21 @@ def serialize_json(value: AwsEc2VpnConnectionDetails) -> dict:
 
 def deserialize_json(data: dict) -> AwsEc2VpnConnectionDetails:
     out: AwsEc2VpnConnectionDetails = {}  # type: ignore[typeddict-item]
-    if "VpnConnectionId" in data:
+    if data.get("VpnConnectionId") is not None:
         out["vpn_connection_id"] = data["VpnConnectionId"]
-    if "State" in data:
+    if data.get("State") is not None:
         out["state"] = data["State"]
-    if "CustomerGatewayId" in data:
+    if data.get("CustomerGatewayId") is not None:
         out["customer_gateway_id"] = data["CustomerGatewayId"]
-    if "CustomerGatewayConfiguration" in data:
+    if data.get("CustomerGatewayConfiguration") is not None:
         out["customer_gateway_configuration"] = data["CustomerGatewayConfiguration"]
-    if "Type" in data:
+    if data.get("Type") is not None:
         out["type"] = data["Type"]
-    if "VpnGatewayId" in data:
+    if data.get("VpnGatewayId") is not None:
         out["vpn_gateway_id"] = data["VpnGatewayId"]
-    if "Category" in data:
+    if data.get("Category") is not None:
         out["category"] = data["Category"]
-    if "VgwTelemetry" in data:
+    if data.get("VgwTelemetry") is not None:
         import capo_securityhub.types.aws_ec2_vpn_connection_vgw_telemetry_list
 
         out["vgw_telemetry"] = (
@@ -122,7 +122,7 @@ def deserialize_json(data: dict) -> AwsEc2VpnConnectionDetails:
                 data["VgwTelemetry"]
             )
         )
-    if "Options" in data:
+    if data.get("Options") is not None:
         import capo_securityhub.types.aws_ec2_vpn_connection_options_details
 
         out["options"] = (
@@ -130,7 +130,7 @@ def deserialize_json(data: dict) -> AwsEc2VpnConnectionDetails:
                 data["Options"]
             )
         )
-    if "Routes" in data:
+    if data.get("Routes") is not None:
         import capo_securityhub.types.aws_ec2_vpn_connection_routes_list
 
         out["routes"] = (
@@ -138,6 +138,6 @@ def deserialize_json(data: dict) -> AwsEc2VpnConnectionDetails:
                 data["Routes"]
             )
         )
-    if "TransitGatewayId" in data:
+    if data.get("TransitGatewayId") is not None:
         out["transit_gateway_id"] = data["TransitGatewayId"]
     return out

@@ -31,7 +31,7 @@ def serialize_json(value: GetCompatibleKafkaVersionsResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetCompatibleKafkaVersionsResponse:
     out: GetCompatibleKafkaVersionsResponse = {}  # type: ignore[typeddict-item]
-    if "compatibleKafkaVersions" in data:
+    if data.get("compatibleKafkaVersions") is not None:
         import capo_kafka.types.__list_of_compatible_kafka_version
 
         out["compatible_kafka_versions"] = (

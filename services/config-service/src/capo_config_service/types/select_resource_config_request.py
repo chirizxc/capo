@@ -33,14 +33,14 @@ def serialize_aws_json_1_1(value: SelectResourceConfigRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SelectResourceConfigRequest:
     out: SelectResourceConfigRequest = {}  # type: ignore[typeddict-item]
-    if "Expression" in data:
+    if data.get("Expression") is not None:
         out["expression"] = data["Expression"]
     else:
         raise DeserializationError("SelectResourceConfigRequest.expression required")
-    if "Limit" in data:
+    if data.get("Limit") is not None:
         out["limit"] = data["Limit"]
     else:
         out["limit"] = 0
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

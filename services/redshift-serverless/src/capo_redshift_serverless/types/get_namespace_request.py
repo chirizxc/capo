@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: GetNamespaceRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetNamespaceRequest:
     out: GetNamespaceRequest = {}  # type: ignore[typeddict-item]
-    if "namespaceName" in data:
+    if data.get("namespaceName") is not None:
         out["namespace_name"] = data["namespaceName"]
     else:
         raise DeserializationError("GetNamespaceRequest.namespace_name required")

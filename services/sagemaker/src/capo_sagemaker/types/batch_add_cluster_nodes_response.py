@@ -40,7 +40,7 @@ def serialize_aws_json_1_1(value: BatchAddClusterNodesResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> BatchAddClusterNodesResponse:
     out: BatchAddClusterNodesResponse = {}  # type: ignore[typeddict-item]
-    if "Successful" in data:
+    if data.get("Successful") is not None:
         import capo_sagemaker.types.node_addition_result_list
 
         out["successful"] = (
@@ -50,7 +50,7 @@ def deserialize_aws_json_1_1(data: dict) -> BatchAddClusterNodesResponse:
         )
     else:
         raise DeserializationError("BatchAddClusterNodesResponse.successful required")
-    if "Failed" in data:
+    if data.get("Failed") is not None:
         import capo_sagemaker.types.batch_add_cluster_nodes_error_list
 
         out["failed"] = (

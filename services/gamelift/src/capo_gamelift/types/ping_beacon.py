@@ -27,7 +27,7 @@ def serialize_aws_json_1_1(value: PingBeacon) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PingBeacon:
     out: PingBeacon = {}  # type: ignore[typeddict-item]
-    if "UDPEndpoint" in data:
+    if data.get("UDPEndpoint") is not None:
         import capo_gamelift.types.udp_endpoint
 
         out["udp_endpoint"] = capo_gamelift.types.udp_endpoint.deserialize_aws_json_1_1(

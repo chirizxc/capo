@@ -32,12 +32,12 @@ def serialize_aws_json_1_1(value: DescribeFileSystemsResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeFileSystemsResponse:
     out: DescribeFileSystemsResponse = {}  # type: ignore[typeddict-item]
-    if "FileSystems" in data:
+    if data.get("FileSystems") is not None:
         import capo_fsx.types.file_systems
 
         out["file_systems"] = capo_fsx.types.file_systems.deserialize_aws_json_1_1(
             data["FileSystems"]
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

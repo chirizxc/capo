@@ -40,15 +40,20 @@ class ResourceTypeNotSupportedException(ServiceError):
 
     code: str | None = "ResourceTypeNotSupportedException"
 
-    def __init__(self, data: ResourceTypeNotSupportedException_):
+    def __init__(
+        self, data: ResourceTypeNotSupportedException_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="ResourceTypeNotSupportedException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_query(cls, el: Element) -> "ResourceTypeNotSupportedException":
-        return cls(deserialize_query(el))
+    def from_query(
+        cls, el: Element, message: str | None = None
+    ) -> "ResourceTypeNotSupportedException":
+        return cls(deserialize_query(el), message)

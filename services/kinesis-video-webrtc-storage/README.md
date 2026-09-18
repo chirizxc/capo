@@ -13,9 +13,9 @@ from capo_kinesis_video_webrtc_storage import AsyncKinesisVideoWebRTCStorageClie
 
 
 async def main():
-    async with AsyncKinesisVideoWebRTCStorageClient() as s3:
+    async with AsyncKinesisVideoWebRTCStorageClient() as kinesis_video_web_rtc_storage:
         # Example: call the join_storage_session operation
-        response = await s3.join_storage_session()
+        response = await kinesis_video_web_rtc_storage.join_storage_session()
         print(response)
 ```
 
@@ -29,9 +29,9 @@ from capo_kinesis_video_webrtc_storage.error import AccessDeniedException
 
 
 async def main():
-    async with AsyncKinesisVideoWebRTCStorageClient() as s3:
+    async with AsyncKinesisVideoWebRTCStorageClient() as kinesis_video_web_rtc_storage:
         try:
-            await s3.join_storage_session()
+            await kinesis_video_web_rtc_storage.join_storage_session()
         except AccessDeniedException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -48,13 +48,13 @@ from capo_kinesis_video_webrtc_storage import AsyncKinesisVideoWebRTCStorageClie
 
 
 async def main():
-    async with AsyncKinesisVideoWebRTCStorageClient() as s3:
+    async with AsyncKinesisVideoWebRTCStorageClient() as kinesis_video_web_rtc_storage:
         # Default: 3 attempts for every operation
-        response = await s3.join_storage_session()
+        response = await kinesis_video_web_rtc_storage.join_storage_session()
 
         # Override per operation
-        response = await s3.join_storage_session(config_overrides={"retry_max_attempts": 5})
+        response = await kinesis_video_web_rtc_storage.join_storage_session(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.join_storage_session(config_overrides={"retry_max_attempts": 1})
+        response = await kinesis_video_web_rtc_storage.join_storage_session(config_overrides={"retry_max_attempts": 1})
 ```

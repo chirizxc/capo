@@ -40,18 +40,18 @@ def serialize_json(value: ColorCorrection) -> dict:
 
 def deserialize_json(data: dict) -> ColorCorrection:
     out: ColorCorrection = {}  # type: ignore[typeddict-item]
-    if "inputColorSpace" in data:
+    if data.get("inputColorSpace") is not None:
         import capo_medialive.types.color_space
 
         out["input_color_space"] = capo_medialive.types.color_space.deserialize_json(
             data["inputColorSpace"]
         )
-    if "outputColorSpace" in data:
+    if data.get("outputColorSpace") is not None:
         import capo_medialive.types.color_space
 
         out["output_color_space"] = capo_medialive.types.color_space.deserialize_json(
             data["outputColorSpace"]
         )
-    if "uri" in data:
+    if data.get("uri") is not None:
         out["uri"] = data["uri"]
     return out

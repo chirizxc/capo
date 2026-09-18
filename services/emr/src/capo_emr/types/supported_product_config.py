@@ -32,9 +32,9 @@ def serialize_aws_json_1_1(value: SupportedProductConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SupportedProductConfig:
     out: SupportedProductConfig = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Args" in data:
+    if data.get("Args") is not None:
         import capo_emr.types.xml_string_list
 
         out["args"] = capo_emr.types.xml_string_list.deserialize_aws_json_1_1(

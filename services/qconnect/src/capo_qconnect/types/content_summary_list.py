@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> ContentSummaryList:
 
     out: ContentSummaryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_qconnect.types.content_summary.deserialize_json(item))
     return out

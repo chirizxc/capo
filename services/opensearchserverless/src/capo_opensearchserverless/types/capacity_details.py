@@ -21,7 +21,15 @@ class CapacityDetails(TypedDict, closed=True):
 def serialize_aws_json_1_0(value: CapacityDetails) -> dict:
     out: dict = {}
     if "capacity_in_ocu" in value:
-        out["capacityInOcu"] = value["capacity_in_ocu"]
+        out["capacityInOcu"] = (
+            "NaN"
+            if value["capacity_in_ocu"] != value["capacity_in_ocu"]
+            else "Infinity"
+            if value["capacity_in_ocu"] == float("inf")
+            else "-Infinity"
+            if value["capacity_in_ocu"] == float("-inf")
+            else value["capacity_in_ocu"]
+        )
     if "autoscaling_status" in value:
         out["autoscalingStatus"] = value["autoscaling_status"]
     return out
@@ -29,8 +37,8 @@ def serialize_aws_json_1_0(value: CapacityDetails) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CapacityDetails:
     out: CapacityDetails = {}  # type: ignore[typeddict-item]
-    if "capacityInOcu" in data:
-        out["capacity_in_ocu"] = data["capacityInOcu"]
-    if "autoscalingStatus" in data:
+    if data.get("capacityInOcu") is not None:
+        out["capacity_in_ocu"] = float(data["capacityInOcu"])
+    if data.get("autoscalingStatus") is not None:
         out["autoscaling_status"] = data["autoscalingStatus"]
     return out

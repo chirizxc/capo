@@ -97,13 +97,13 @@ def serialize_json(value: IngestConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> IngestConfiguration:
     out: IngestConfiguration = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("IngestConfiguration.arn required")
-    if "ingestProtocol" in data:
+    if data.get("ingestProtocol") is not None:
         import capo_ivs_realtime.types.ingest_protocol
 
         out["ingest_protocol"] = (
@@ -113,29 +113,29 @@ def deserialize_json(data: dict) -> IngestConfiguration:
         )
     else:
         raise DeserializationError("IngestConfiguration.ingest_protocol required")
-    if "streamKey" in data:
+    if data.get("streamKey") is not None:
         out["stream_key"] = data["streamKey"]
     else:
         raise DeserializationError("IngestConfiguration.stream_key required")
-    if "stageArn" in data:
+    if data.get("stageArn") is not None:
         out["stage_arn"] = data["stageArn"]
     else:
         raise DeserializationError("IngestConfiguration.stage_arn required")
-    if "participantId" in data:
+    if data.get("participantId") is not None:
         out["participant_id"] = data["participantId"]
     else:
         raise DeserializationError("IngestConfiguration.participant_id required")
-    if "state" in data:
+    if data.get("state") is not None:
         out["state"] = data["state"]
     else:
         raise DeserializationError("IngestConfiguration.state required")
-    if "userId" in data:
+    if data.get("userId") is not None:
         out["user_id"] = data["userId"]
-    if "redundantIngest" in data:
+    if data.get("redundantIngest") is not None:
         out["redundant_ingest"] = data["redundantIngest"]
     else:
         out["redundant_ingest"] = False
-    if "redundantIngestCredentials" in data:
+    if data.get("redundantIngestCredentials") is not None:
         import capo_ivs_realtime.types.redundant_ingest_credentials
 
         out["redundant_ingest_credentials"] = (
@@ -143,7 +143,7 @@ def deserialize_json(data: dict) -> IngestConfiguration:
                 data["redundantIngestCredentials"]
             )
         )
-    if "attributes" in data:
+    if data.get("attributes") is not None:
         import capo_ivs_realtime.types.participant_attributes
 
         out["attributes"] = (
@@ -151,7 +151,7 @@ def deserialize_json(data: dict) -> IngestConfiguration:
                 data["attributes"]
             )
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_ivs_realtime.types.tags
 
         out["tags"] = capo_ivs_realtime.types.tags.deserialize_json(data["tags"])

@@ -45,17 +45,17 @@ def serialize_json(value: CanaryCodeOutput) -> dict:
 
 def deserialize_json(data: dict) -> CanaryCodeOutput:
     out: CanaryCodeOutput = {}  # type: ignore[typeddict-item]
-    if "SourceLocationArn" in data:
+    if data.get("SourceLocationArn") is not None:
         out["source_location_arn"] = data["SourceLocationArn"]
-    if "Handler" in data:
+    if data.get("Handler") is not None:
         out["handler"] = data["Handler"]
-    if "BlueprintTypes" in data:
+    if data.get("BlueprintTypes") is not None:
         import capo_synthetics.types.blueprint_types
 
         out["blueprint_types"] = capo_synthetics.types.blueprint_types.deserialize_json(
             data["BlueprintTypes"]
         )
-    if "Dependencies" in data:
+    if data.get("Dependencies") is not None:
         import capo_synthetics.types.dependencies
 
         out["dependencies"] = capo_synthetics.types.dependencies.deserialize_json(

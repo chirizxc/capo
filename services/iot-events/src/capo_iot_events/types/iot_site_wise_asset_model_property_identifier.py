@@ -28,13 +28,13 @@ def serialize_json(value: IotSiteWiseAssetModelPropertyIdentifier) -> dict:
 
 def deserialize_json(data: dict) -> IotSiteWiseAssetModelPropertyIdentifier:
     out: IotSiteWiseAssetModelPropertyIdentifier = {}  # type: ignore[typeddict-item]
-    if "assetModelId" in data:
+    if data.get("assetModelId") is not None:
         out["asset_model_id"] = data["assetModelId"]
     else:
         raise DeserializationError(
             "IotSiteWiseAssetModelPropertyIdentifier.asset_model_id required"
         )
-    if "propertyId" in data:
+    if data.get("propertyId") is not None:
         out["property_id"] = data["propertyId"]
     else:
         raise DeserializationError(

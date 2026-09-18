@@ -53,7 +53,7 @@ def serialize_json(value: GetIdentityContextRequest) -> dict:
 
 def deserialize_json(data: dict) -> GetIdentityContextRequest:
     out: GetIdentityContextRequest = {}  # type: ignore[typeddict-item]
-    if "UserIdentifier" in data:
+    if data.get("UserIdentifier") is not None:
         import capo_quicksight.types.user_identifier
 
         out["user_identifier"] = capo_quicksight.types.user_identifier.deserialize_json(
@@ -61,9 +61,9 @@ def deserialize_json(data: dict) -> GetIdentityContextRequest:
         )
     else:
         raise DeserializationError("GetIdentityContextRequest.user_identifier required")
-    if "Namespace" in data:
+    if data.get("Namespace") is not None:
         out["namespace"] = data["Namespace"]
-    if "SessionExpiresAt" in data:
+    if data.get("SessionExpiresAt") is not None:
         import capo_quicksight.types._prelude.timestamp
 
         out["session_expires_at"] = (
@@ -71,6 +71,6 @@ def deserialize_json(data: dict) -> GetIdentityContextRequest:
                 data["SessionExpiresAt"]
             )
         )
-    if "ContextRegion" in data:
+    if data.get("ContextRegion") is not None:
         out["context_region"] = data["ContextRegion"]
     return out

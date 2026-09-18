@@ -48,19 +48,19 @@ def serialize_json(value: EnableControlInput) -> dict:
 
 def deserialize_json(data: dict) -> EnableControlInput:
     out: EnableControlInput = {}  # type: ignore[typeddict-item]
-    if "controlIdentifier" in data:
+    if data.get("controlIdentifier") is not None:
         out["control_identifier"] = data["controlIdentifier"]
     else:
         raise DeserializationError("EnableControlInput.control_identifier required")
-    if "targetIdentifier" in data:
+    if data.get("targetIdentifier") is not None:
         out["target_identifier"] = data["targetIdentifier"]
     else:
         raise DeserializationError("EnableControlInput.target_identifier required")
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_controltower.types.tag_map
 
         out["tags"] = capo_controltower.types.tag_map.deserialize_json(data["tags"])
-    if "parameters" in data:
+    if data.get("parameters") is not None:
         import capo_controltower.types.enabled_control_parameters
 
         out["parameters"] = (

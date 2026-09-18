@@ -45,7 +45,7 @@ def serialize_aws_json_1_1(value: TrafficPattern) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> TrafficPattern:
     out: TrafficPattern = {}  # type: ignore[typeddict-item]
-    if "TrafficType" in data:
+    if data.get("TrafficType") is not None:
         import capo_sagemaker.types.traffic_type
 
         out["traffic_type"] = (
@@ -53,13 +53,13 @@ def deserialize_aws_json_1_1(data: dict) -> TrafficPattern:
                 data["TrafficType"]
             )
         )
-    if "Phases" in data:
+    if data.get("Phases") is not None:
         import capo_sagemaker.types.phases
 
         out["phases"] = capo_sagemaker.types.phases.deserialize_aws_json_1_1(
             data["Phases"]
         )
-    if "Stairs" in data:
+    if data.get("Stairs") is not None:
         import capo_sagemaker.types.stairs
 
         out["stairs"] = capo_sagemaker.types.stairs.deserialize_aws_json_1_1(

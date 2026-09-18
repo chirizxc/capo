@@ -59,22 +59,22 @@ def serialize_json(value: AwsNetworkFirewallRuleGroupDetails) -> dict:
 
 def deserialize_json(data: dict) -> AwsNetworkFirewallRuleGroupDetails:
     out: AwsNetworkFirewallRuleGroupDetails = {}  # type: ignore[typeddict-item]
-    if "Capacity" in data:
+    if data.get("Capacity") is not None:
         out["capacity"] = data["Capacity"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "RuleGroup" in data:
+    if data.get("RuleGroup") is not None:
         import capo_securityhub.types.rule_group_details
 
         out["rule_group"] = capo_securityhub.types.rule_group_details.deserialize_json(
             data["RuleGroup"]
         )
-    if "RuleGroupArn" in data:
+    if data.get("RuleGroupArn") is not None:
         out["rule_group_arn"] = data["RuleGroupArn"]
-    if "RuleGroupId" in data:
+    if data.get("RuleGroupId") is not None:
         out["rule_group_id"] = data["RuleGroupId"]
-    if "RuleGroupName" in data:
+    if data.get("RuleGroupName") is not None:
         out["rule_group_name"] = data["RuleGroupName"]
-    if "Type" in data:
+    if data.get("Type") is not None:
         out["type"] = data["Type"]
     return out

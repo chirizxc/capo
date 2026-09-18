@@ -27,7 +27,7 @@ def serialize_json(value: CreateSessionResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateSessionResponse:
     out: CreateSessionResponse = {}  # type: ignore[typeddict-item]
-    if "session" in data:
+    if data.get("session") is not None:
         import capo_qconnect.types.session_data
 
         out["session"] = capo_qconnect.types.session_data.deserialize_json(

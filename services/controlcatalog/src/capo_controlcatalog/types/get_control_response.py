@@ -140,25 +140,25 @@ def serialize_json(value: GetControlResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetControlResponse:
     out: GetControlResponse = {}  # type: ignore[typeddict-item]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
     else:
         raise DeserializationError("GetControlResponse.arn required")
-    if "Aliases" in data:
+    if data.get("Aliases") is not None:
         import capo_controlcatalog.types.control_aliases
 
         out["aliases"] = capo_controlcatalog.types.control_aliases.deserialize_json(
             data["Aliases"]
         )
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("GetControlResponse.name required")
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
     else:
         raise DeserializationError("GetControlResponse.description required")
-    if "Behavior" in data:
+    if data.get("Behavior") is not None:
         import capo_controlcatalog.types.control_behavior
 
         out["behavior"] = capo_controlcatalog.types.control_behavior.deserialize_json(
@@ -166,13 +166,13 @@ def deserialize_json(data: dict) -> GetControlResponse:
         )
     else:
         raise DeserializationError("GetControlResponse.behavior required")
-    if "Severity" in data:
+    if data.get("Severity") is not None:
         import capo_controlcatalog.types.control_severity
 
         out["severity"] = capo_controlcatalog.types.control_severity.deserialize_json(
             data["Severity"]
         )
-    if "RegionConfiguration" in data:
+    if data.get("RegionConfiguration") is not None:
         import capo_controlcatalog.types.region_configuration
 
         out["region_configuration"] = (
@@ -182,7 +182,7 @@ def deserialize_json(data: dict) -> GetControlResponse:
         )
     else:
         raise DeserializationError("GetControlResponse.region_configuration required")
-    if "Implementation" in data:
+    if data.get("Implementation") is not None:
         import capo_controlcatalog.types.implementation_details
 
         out["implementation"] = (
@@ -190,7 +190,7 @@ def deserialize_json(data: dict) -> GetControlResponse:
                 data["Implementation"]
             )
         )
-    if "ParameterRequirementSummary" in data:
+    if data.get("ParameterRequirementSummary") is not None:
         import capo_controlcatalog.types.parameter_requirement_summary
 
         out["parameter_requirement_summary"] = (
@@ -198,7 +198,7 @@ def deserialize_json(data: dict) -> GetControlResponse:
                 data["ParameterRequirementSummary"]
             )
         )
-    if "Parameters" in data:
+    if data.get("Parameters") is not None:
         import capo_controlcatalog.types.control_parameters
 
         out["parameters"] = (
@@ -206,7 +206,7 @@ def deserialize_json(data: dict) -> GetControlResponse:
                 data["Parameters"]
             )
         )
-    if "CreateTime" in data:
+    if data.get("CreateTime") is not None:
         import capo_controlcatalog.types._prelude.timestamp
 
         out["create_time"] = (
@@ -214,7 +214,7 @@ def deserialize_json(data: dict) -> GetControlResponse:
                 data["CreateTime"]
             )
         )
-    if "GovernedResources" in data:
+    if data.get("GovernedResources") is not None:
         import capo_controlcatalog.types.governed_resources
 
         out["governed_resources"] = (
@@ -222,7 +222,7 @@ def deserialize_json(data: dict) -> GetControlResponse:
                 data["GovernedResources"]
             )
         )
-    if "GovernedProviders" in data:
+    if data.get("GovernedProviders") is not None:
         import capo_controlcatalog.types.governed_providers
 
         out["governed_providers"] = (

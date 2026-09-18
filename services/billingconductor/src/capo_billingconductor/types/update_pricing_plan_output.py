@@ -43,17 +43,17 @@ def serialize_json(value: UpdatePricingPlanOutput) -> dict:
 
 def deserialize_json(data: dict) -> UpdatePricingPlanOutput:
     out: UpdatePricingPlanOutput = {}  # type: ignore[typeddict-item]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Size" in data:
+    if data.get("Size") is not None:
         out["size"] = data["Size"]
     else:
         out["size"] = 0
-    if "LastModifiedTime" in data:
+    if data.get("LastModifiedTime") is not None:
         out["last_modified_time"] = data["LastModifiedTime"]
     else:
         out["last_modified_time"] = 0

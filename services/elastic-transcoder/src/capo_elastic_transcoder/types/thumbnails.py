@@ -63,20 +63,20 @@ def serialize_json(value: Thumbnails) -> dict:
 
 def deserialize_json(data: dict) -> Thumbnails:
     out: Thumbnails = {}  # type: ignore[typeddict-item]
-    if "Format" in data:
+    if data.get("Format") is not None:
         out["format"] = data["Format"]
-    if "Interval" in data:
+    if data.get("Interval") is not None:
         out["interval"] = data["Interval"]
-    if "Resolution" in data:
+    if data.get("Resolution") is not None:
         out["resolution"] = data["Resolution"]
-    if "AspectRatio" in data:
+    if data.get("AspectRatio") is not None:
         out["aspect_ratio"] = data["AspectRatio"]
-    if "MaxWidth" in data:
+    if data.get("MaxWidth") is not None:
         out["max_width"] = data["MaxWidth"]
-    if "MaxHeight" in data:
+    if data.get("MaxHeight") is not None:
         out["max_height"] = data["MaxHeight"]
-    if "SizingPolicy" in data:
+    if data.get("SizingPolicy") is not None:
         out["sizing_policy"] = data["SizingPolicy"]
-    if "PaddingPolicy" in data:
+    if data.get("PaddingPolicy") is not None:
         out["padding_policy"] = data["PaddingPolicy"]
     return out

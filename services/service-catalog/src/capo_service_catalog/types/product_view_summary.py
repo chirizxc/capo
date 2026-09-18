@@ -81,32 +81,32 @@ def serialize_aws_json_1_1(value: ProductViewSummary) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ProductViewSummary:
     out: ProductViewSummary = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "ProductId" in data:
+    if data.get("ProductId") is not None:
         out["product_id"] = data["ProductId"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Owner" in data:
+    if data.get("Owner") is not None:
         out["owner"] = data["Owner"]
-    if "ShortDescription" in data:
+    if data.get("ShortDescription") is not None:
         out["short_description"] = data["ShortDescription"]
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_service_catalog.types.product_type
 
         out["type"] = capo_service_catalog.types.product_type.deserialize_aws_json_1_1(
             data["Type"]
         )
-    if "Distributor" in data:
+    if data.get("Distributor") is not None:
         out["distributor"] = data["Distributor"]
-    if "HasDefaultPath" in data:
+    if data.get("HasDefaultPath") is not None:
         out["has_default_path"] = data["HasDefaultPath"]
     else:
         out["has_default_path"] = False
-    if "SupportEmail" in data:
+    if data.get("SupportEmail") is not None:
         out["support_email"] = data["SupportEmail"]
-    if "SupportDescription" in data:
+    if data.get("SupportDescription") is not None:
         out["support_description"] = data["SupportDescription"]
-    if "SupportUrl" in data:
+    if data.get("SupportUrl") is not None:
         out["support_url"] = data["SupportUrl"]
     return out

@@ -32,15 +32,15 @@ def serialize_json(value: CreateWorkspaceApiKeyResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateWorkspaceApiKeyResponse:
     out: CreateWorkspaceApiKeyResponse = {}  # type: ignore[typeddict-item]
-    if "keyName" in data:
+    if data.get("keyName") is not None:
         out["key_name"] = data["keyName"]
     else:
         raise DeserializationError("CreateWorkspaceApiKeyResponse.key_name required")
-    if "key" in data:
+    if data.get("key") is not None:
         out["key"] = data["key"]
     else:
         raise DeserializationError("CreateWorkspaceApiKeyResponse.key required")
-    if "workspaceId" in data:
+    if data.get("workspaceId") is not None:
         out["workspace_id"] = data["workspaceId"]
     else:
         raise DeserializationError(

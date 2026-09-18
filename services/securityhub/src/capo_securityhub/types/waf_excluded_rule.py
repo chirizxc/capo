@@ -23,6 +23,6 @@ def serialize_json(value: WafExcludedRule) -> dict:
 
 def deserialize_json(data: dict) -> WafExcludedRule:
     out: WafExcludedRule = {}  # type: ignore[typeddict-item]
-    if "RuleId" in data:
+    if data.get("RuleId") is not None:
         out["rule_id"] = data["RuleId"]
     return out

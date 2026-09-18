@@ -78,25 +78,25 @@ def serialize_json(value: AwsIamPolicyDetails) -> dict:
 
 def deserialize_json(data: dict) -> AwsIamPolicyDetails:
     out: AwsIamPolicyDetails = {}  # type: ignore[typeddict-item]
-    if "AttachmentCount" in data:
+    if data.get("AttachmentCount") is not None:
         out["attachment_count"] = data["AttachmentCount"]
-    if "CreateDate" in data:
+    if data.get("CreateDate") is not None:
         out["create_date"] = data["CreateDate"]
-    if "DefaultVersionId" in data:
+    if data.get("DefaultVersionId") is not None:
         out["default_version_id"] = data["DefaultVersionId"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "IsAttachable" in data:
+    if data.get("IsAttachable") is not None:
         out["is_attachable"] = data["IsAttachable"]
-    if "Path" in data:
+    if data.get("Path") is not None:
         out["path"] = data["Path"]
-    if "PermissionsBoundaryUsageCount" in data:
+    if data.get("PermissionsBoundaryUsageCount") is not None:
         out["permissions_boundary_usage_count"] = data["PermissionsBoundaryUsageCount"]
-    if "PolicyId" in data:
+    if data.get("PolicyId") is not None:
         out["policy_id"] = data["PolicyId"]
-    if "PolicyName" in data:
+    if data.get("PolicyName") is not None:
         out["policy_name"] = data["PolicyName"]
-    if "PolicyVersionList" in data:
+    if data.get("PolicyVersionList") is not None:
         import capo_securityhub.types.aws_iam_policy_version_list
 
         out["policy_version_list"] = (
@@ -104,6 +104,6 @@ def deserialize_json(data: dict) -> AwsIamPolicyDetails:
                 data["PolicyVersionList"]
             )
         )
-    if "UpdateDate" in data:
+    if data.get("UpdateDate") is not None:
         out["update_date"] = data["UpdateDate"]
     return out

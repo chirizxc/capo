@@ -31,12 +31,12 @@ def serialize_json(value: AppDefinitionInput) -> dict:
 
 def deserialize_json(data: dict) -> AppDefinitionInput:
     out: AppDefinitionInput = {}  # type: ignore[typeddict-item]
-    if "cards" in data:
+    if data.get("cards") is not None:
         import capo_qapps.types.card_list
 
         out["cards"] = capo_qapps.types.card_list.deserialize_json(data["cards"])
     else:
         raise DeserializationError("AppDefinitionInput.cards required")
-    if "initialPrompt" in data:
+    if data.get("initialPrompt") is not None:
         out["initial_prompt"] = data["initialPrompt"]
     return out

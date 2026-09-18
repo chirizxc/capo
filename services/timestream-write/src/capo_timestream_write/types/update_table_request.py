@@ -62,15 +62,15 @@ def serialize_aws_json_1_0(value: UpdateTableRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> UpdateTableRequest:
     out: UpdateTableRequest = {}  # type: ignore[typeddict-item]
-    if "DatabaseName" in data:
+    if data.get("DatabaseName") is not None:
         out["database_name"] = data["DatabaseName"]
     else:
         raise DeserializationError("UpdateTableRequest.database_name required")
-    if "TableName" in data:
+    if data.get("TableName") is not None:
         out["table_name"] = data["TableName"]
     else:
         raise DeserializationError("UpdateTableRequest.table_name required")
-    if "RetentionProperties" in data:
+    if data.get("RetentionProperties") is not None:
         import capo_timestream_write.types.retention_properties
 
         out["retention_properties"] = (
@@ -78,7 +78,7 @@ def deserialize_aws_json_1_0(data: dict) -> UpdateTableRequest:
                 data["RetentionProperties"]
             )
         )
-    if "MagneticStoreWriteProperties" in data:
+    if data.get("MagneticStoreWriteProperties") is not None:
         import capo_timestream_write.types.magnetic_store_write_properties
 
         out["magnetic_store_write_properties"] = (
@@ -86,7 +86,7 @@ def deserialize_aws_json_1_0(data: dict) -> UpdateTableRequest:
                 data["MagneticStoreWriteProperties"]
             )
         )
-    if "Schema" in data:
+    if data.get("Schema") is not None:
         import capo_timestream_write.types.schema
 
         out["schema"] = capo_timestream_write.types.schema.deserialize_aws_json_1_0(

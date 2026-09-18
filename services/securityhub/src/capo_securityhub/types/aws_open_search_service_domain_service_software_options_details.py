@@ -60,20 +60,20 @@ def deserialize_json(
     data: dict,
 ) -> AwsOpenSearchServiceDomainServiceSoftwareOptionsDetails:
     out: AwsOpenSearchServiceDomainServiceSoftwareOptionsDetails = {}  # type: ignore[typeddict-item]
-    if "AutomatedUpdateDate" in data:
+    if data.get("AutomatedUpdateDate") is not None:
         out["automated_update_date"] = data["AutomatedUpdateDate"]
-    if "Cancellable" in data:
+    if data.get("Cancellable") is not None:
         out["cancellable"] = data["Cancellable"]
-    if "CurrentVersion" in data:
+    if data.get("CurrentVersion") is not None:
         out["current_version"] = data["CurrentVersion"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "NewVersion" in data:
+    if data.get("NewVersion") is not None:
         out["new_version"] = data["NewVersion"]
-    if "UpdateAvailable" in data:
+    if data.get("UpdateAvailable") is not None:
         out["update_available"] = data["UpdateAvailable"]
-    if "UpdateStatus" in data:
+    if data.get("UpdateStatus") is not None:
         out["update_status"] = data["UpdateStatus"]
-    if "OptionalDeployment" in data:
+    if data.get("OptionalDeployment") is not None:
         out["optional_deployment"] = data["OptionalDeployment"]
     return out

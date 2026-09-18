@@ -46,17 +46,17 @@ def serialize_json(value: RequestMetadata) -> dict:
 
 def deserialize_json(data: dict) -> RequestMetadata:
     out: RequestMetadata = {}  # type: ignore[typeddict-item]
-    if "RequestId" in data:
+    if data.get("RequestId") is not None:
         out["request_id"] = data["RequestId"]
-    if "Requester" in data:
+    if data.get("Requester") is not None:
         out["requester"] = data["Requester"]
-    if "EventInfo" in data:
+    if data.get("EventInfo") is not None:
         import capo_codeguru_reviewer.types.event_info
 
         out["event_info"] = capo_codeguru_reviewer.types.event_info.deserialize_json(
             data["EventInfo"]
         )
-    if "VendorName" in data:
+    if data.get("VendorName") is not None:
         import capo_codeguru_reviewer.types.vendor_name
 
         out["vendor_name"] = capo_codeguru_reviewer.types.vendor_name.deserialize_json(

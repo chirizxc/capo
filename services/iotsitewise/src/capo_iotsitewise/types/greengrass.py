@@ -24,7 +24,7 @@ def serialize_json(value: Greengrass) -> dict:
 
 def deserialize_json(data: dict) -> Greengrass:
     out: Greengrass = {}  # type: ignore[typeddict-item]
-    if "groupArn" in data:
+    if data.get("groupArn") is not None:
         out["group_arn"] = data["groupArn"]
     else:
         raise DeserializationError("Greengrass.group_arn required")

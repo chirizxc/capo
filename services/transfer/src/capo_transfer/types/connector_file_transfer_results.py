@@ -29,6 +29,8 @@ def deserialize_aws_json_1_1(data: list) -> ConnectorFileTransferResults:
 
     out: ConnectorFileTransferResults = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_transfer.types.connector_file_transfer_result.deserialize_aws_json_1_1(
                 item

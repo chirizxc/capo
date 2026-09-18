@@ -25,5 +25,7 @@ def deserialize_aws_json_1_1(data: list) -> ContainerFleetList:
 
     out: ContainerFleetList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_gamelift.types.container_fleet.deserialize_aws_json_1_1(item))
     return out

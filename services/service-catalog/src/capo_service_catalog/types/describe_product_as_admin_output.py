@@ -75,7 +75,7 @@ def serialize_aws_json_1_1(value: DescribeProductAsAdminOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeProductAsAdminOutput:
     out: DescribeProductAsAdminOutput = {}  # type: ignore[typeddict-item]
-    if "ProductViewDetail" in data:
+    if data.get("ProductViewDetail") is not None:
         import capo_service_catalog.types.product_view_detail
 
         out["product_view_detail"] = (
@@ -83,7 +83,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeProductAsAdminOutput:
                 data["ProductViewDetail"]
             )
         )
-    if "ProvisioningArtifactSummaries" in data:
+    if data.get("ProvisioningArtifactSummaries") is not None:
         import capo_service_catalog.types.provisioning_artifact_summaries
 
         out["provisioning_artifact_summaries"] = (
@@ -91,13 +91,13 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeProductAsAdminOutput:
                 data["ProvisioningArtifactSummaries"]
             )
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_service_catalog.types.tags
 
         out["tags"] = capo_service_catalog.types.tags.deserialize_aws_json_1_1(
             data["Tags"]
         )
-    if "TagOptions" in data:
+    if data.get("TagOptions") is not None:
         import capo_service_catalog.types.tag_option_details
 
         out["tag_options"] = (
@@ -105,7 +105,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeProductAsAdminOutput:
                 data["TagOptions"]
             )
         )
-    if "Budgets" in data:
+    if data.get("Budgets") is not None:
         import capo_service_catalog.types.budgets
 
         out["budgets"] = capo_service_catalog.types.budgets.deserialize_aws_json_1_1(

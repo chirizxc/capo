@@ -13,14 +13,22 @@ class BilledResourceUtilization(TypedDict, closed=True):
 # --- restJson1 ser/de ---
 def serialize_json(value: BilledResourceUtilization) -> dict:
     out: dict = {}
-    out["units"] = value["units"]
+    out["units"] = (
+        "NaN"
+        if value["units"] != value["units"]
+        else "Infinity"
+        if value["units"] == float("inf")
+        else "-Infinity"
+        if value["units"] == float("-inf")
+        else value["units"]
+    )
     return out
 
 
 def deserialize_json(data: dict) -> BilledResourceUtilization:
     out: BilledResourceUtilization = {}  # type: ignore[typeddict-item]
-    if "units" in data:
-        out["units"] = data["units"]
+    if data.get("units") is not None:
+        out["units"] = float(data["units"])
     else:
         raise DeserializationError("BilledResourceUtilization.units required")
     return out

@@ -26,7 +26,7 @@ def serialize_json(value: SheetImageStaticFileSource) -> dict:
 
 def deserialize_json(data: dict) -> SheetImageStaticFileSource:
     out: SheetImageStaticFileSource = {}  # type: ignore[typeddict-item]
-    if "StaticFileId" in data:
+    if data.get("StaticFileId") is not None:
         out["static_file_id"] = data["StaticFileId"]
     else:
         raise DeserializationError("SheetImageStaticFileSource.static_file_id required")

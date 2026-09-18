@@ -44,7 +44,7 @@ def serialize_aws_json_1_1(value: MappingParameters) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> MappingParameters:
     out: MappingParameters = {}  # type: ignore[typeddict-item]
-    if "JSONMappingParameters" in data:
+    if data.get("JSONMappingParameters") is not None:
         import capo_kinesis_analytics.types.json_mapping_parameters
 
         out["json_mapping_parameters"] = (
@@ -52,7 +52,7 @@ def deserialize_aws_json_1_1(data: dict) -> MappingParameters:
                 data["JSONMappingParameters"]
             )
         )
-    if "CSVMappingParameters" in data:
+    if data.get("CSVMappingParameters") is not None:
         import capo_kinesis_analytics.types.csv_mapping_parameters
 
         out["csv_mapping_parameters"] = (

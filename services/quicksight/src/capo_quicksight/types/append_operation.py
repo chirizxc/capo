@@ -57,11 +57,11 @@ def serialize_json(value: AppendOperation) -> dict:
 
 def deserialize_json(data: dict) -> AppendOperation:
     out: AppendOperation = {}  # type: ignore[typeddict-item]
-    if "Alias" in data:
+    if data.get("Alias") is not None:
         out["alias"] = data["Alias"]
     else:
         raise DeserializationError("AppendOperation.alias required")
-    if "FirstSource" in data:
+    if data.get("FirstSource") is not None:
         import capo_quicksight.types.transform_operation_source
 
         out["first_source"] = (
@@ -69,7 +69,7 @@ def deserialize_json(data: dict) -> AppendOperation:
                 data["FirstSource"]
             )
         )
-    if "SecondSource" in data:
+    if data.get("SecondSource") is not None:
         import capo_quicksight.types.transform_operation_source
 
         out["second_source"] = (
@@ -77,7 +77,7 @@ def deserialize_json(data: dict) -> AppendOperation:
                 data["SecondSource"]
             )
         )
-    if "AppendedColumns" in data:
+    if data.get("AppendedColumns") is not None:
         import capo_quicksight.types.appended_column_list
 
         out["appended_columns"] = (

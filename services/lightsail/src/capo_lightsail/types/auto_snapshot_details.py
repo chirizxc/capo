@@ -56,15 +56,15 @@ def serialize_aws_json_1_1(value: AutoSnapshotDetails) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AutoSnapshotDetails:
     out: AutoSnapshotDetails = {}  # type: ignore[typeddict-item]
-    if "date" in data:
+    if data.get("date") is not None:
         out["date"] = data["date"]
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_lightsail.types.iso_date
 
         out["created_at"] = capo_lightsail.types.iso_date.deserialize_aws_json_1_1(
             data["createdAt"]
         )
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_lightsail.types.auto_snapshot_status
 
         out["status"] = (
@@ -72,7 +72,7 @@ def deserialize_aws_json_1_1(data: dict) -> AutoSnapshotDetails:
                 data["status"]
             )
         )
-    if "fromAttachedDisks" in data:
+    if data.get("fromAttachedDisks") is not None:
         import capo_lightsail.types.attached_disk_list
 
         out["from_attached_disks"] = (

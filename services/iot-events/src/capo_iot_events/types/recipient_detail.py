@@ -27,7 +27,7 @@ def serialize_json(value: RecipientDetail) -> dict:
 
 def deserialize_json(data: dict) -> RecipientDetail:
     out: RecipientDetail = {}  # type: ignore[typeddict-item]
-    if "ssoIdentity" in data:
+    if data.get("ssoIdentity") is not None:
         import capo_iot_events.types.sso_identity
 
         out["sso_identity"] = capo_iot_events.types.sso_identity.deserialize_json(

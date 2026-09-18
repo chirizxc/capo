@@ -51,9 +51,9 @@ def serialize_json(value: RouteTableIdentifier) -> dict:
 
 def deserialize_json(data: dict) -> RouteTableIdentifier:
     out: RouteTableIdentifier = {}  # type: ignore[typeddict-item]
-    if "TransitGatewayRouteTableArn" in data:
+    if data.get("TransitGatewayRouteTableArn") is not None:
         out["transit_gateway_route_table_arn"] = data["TransitGatewayRouteTableArn"]
-    if "CoreNetworkSegmentEdge" in data:
+    if data.get("CoreNetworkSegmentEdge") is not None:
         import capo_networkmanager.types.core_network_segment_edge_identifier
 
         out["core_network_segment_edge"] = (
@@ -61,7 +61,7 @@ def deserialize_json(data: dict) -> RouteTableIdentifier:
                 data["CoreNetworkSegmentEdge"]
             )
         )
-    if "CoreNetworkNetworkFunctionGroup" in data:
+    if data.get("CoreNetworkNetworkFunctionGroup") is not None:
         import capo_networkmanager.types.core_network_network_function_group_identifier
 
         out["core_network_network_function_group"] = (

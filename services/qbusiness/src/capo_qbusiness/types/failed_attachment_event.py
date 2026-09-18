@@ -42,13 +42,13 @@ def serialize_json(value: FailedAttachmentEvent) -> dict:
 
 def deserialize_json(data: dict) -> FailedAttachmentEvent:
     out: FailedAttachmentEvent = {}  # type: ignore[typeddict-item]
-    if "conversationId" in data:
+    if data.get("conversationId") is not None:
         out["conversation_id"] = data["conversationId"]
-    if "userMessageId" in data:
+    if data.get("userMessageId") is not None:
         out["user_message_id"] = data["userMessageId"]
-    if "systemMessageId" in data:
+    if data.get("systemMessageId") is not None:
         out["system_message_id"] = data["systemMessageId"]
-    if "attachment" in data:
+    if data.get("attachment") is not None:
         import capo_qbusiness.types.attachment_output
 
         out["attachment"] = capo_qbusiness.types.attachment_output.deserialize_json(

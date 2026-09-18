@@ -37,14 +37,14 @@ def serialize_json(value: DescribeActionTargetsRequest) -> dict:
 
 def deserialize_json(data: dict) -> DescribeActionTargetsRequest:
     out: DescribeActionTargetsRequest = {}  # type: ignore[typeddict-item]
-    if "ActionTargetArns" in data:
+    if data.get("ActionTargetArns") is not None:
         import capo_securityhub.types.arn_list
 
         out["action_target_arns"] = capo_securityhub.types.arn_list.deserialize_json(
             data["ActionTargetArns"]
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
     return out

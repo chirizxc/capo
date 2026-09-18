@@ -58,13 +58,13 @@ def serialize_aws_json_1_1(value: ListedAgreement) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListedAgreement:
     out: ListedAgreement = {}  # type: ignore[typeddict-item]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "AgreementId" in data:
+    if data.get("AgreementId") is not None:
         out["agreement_id"] = data["AgreementId"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_transfer.types.agreement_status_type
 
         out["status"] = (
@@ -72,10 +72,10 @@ def deserialize_aws_json_1_1(data: dict) -> ListedAgreement:
                 data["Status"]
             )
         )
-    if "ServerId" in data:
+    if data.get("ServerId") is not None:
         out["server_id"] = data["ServerId"]
-    if "LocalProfileId" in data:
+    if data.get("LocalProfileId") is not None:
         out["local_profile_id"] = data["LocalProfileId"]
-    if "PartnerProfileId" in data:
+    if data.get("PartnerProfileId") is not None:
         out["partner_profile_id"] = data["PartnerProfileId"]
     return out

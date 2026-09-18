@@ -42,12 +42,12 @@ def serialize_json(value: ResourcesListItem) -> dict:
 
 def deserialize_json(data: dict) -> ResourcesListItem:
     out: ResourcesListItem = {}  # type: ignore[typeddict-item]
-    if "resourceArn" in data:
+    if data.get("resourceArn") is not None:
         out["resource_arn"] = data["resourceArn"]
-    if "errorMessage" in data:
+    if data.get("errorMessage") is not None:
         out["error_message"] = data["errorMessage"]
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
-    if "resourceType" in data:
+    if data.get("resourceType") is not None:
         out["resource_type"] = data["resourceType"]
     return out

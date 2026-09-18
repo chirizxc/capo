@@ -44,11 +44,11 @@ def serialize_json(value: UpdateWirelessGatewayTaskCreate) -> dict:
 
 def deserialize_json(data: dict) -> UpdateWirelessGatewayTaskCreate:
     out: UpdateWirelessGatewayTaskCreate = {}  # type: ignore[typeddict-item]
-    if "UpdateDataSource" in data:
+    if data.get("UpdateDataSource") is not None:
         out["update_data_source"] = data["UpdateDataSource"]
-    if "UpdateDataRole" in data:
+    if data.get("UpdateDataRole") is not None:
         out["update_data_role"] = data["UpdateDataRole"]
-    if "LoRaWAN" in data:
+    if data.get("LoRaWAN") is not None:
         import capo_iot_wireless.types.lo_ra_wan_update_gateway_task_create
 
         out["lo_ra_wan"] = (

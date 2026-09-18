@@ -95,7 +95,7 @@ def serialize_aws_json_1_1(value: GetComplianceSummaryInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetComplianceSummaryInput:
     out: GetComplianceSummaryInput = {}  # type: ignore[typeddict-item]
-    if "TargetIdFilters" in data:
+    if data.get("TargetIdFilters") is not None:
         import capo_resource_groups_tagging_api.types.target_id_filter_list
 
         out["target_id_filters"] = (
@@ -103,7 +103,7 @@ def deserialize_aws_json_1_1(data: dict) -> GetComplianceSummaryInput:
                 data["TargetIdFilters"]
             )
         )
-    if "RegionFilters" in data:
+    if data.get("RegionFilters") is not None:
         import capo_resource_groups_tagging_api.types.region_filter_list
 
         out["region_filters"] = (
@@ -111,7 +111,7 @@ def deserialize_aws_json_1_1(data: dict) -> GetComplianceSummaryInput:
                 data["RegionFilters"]
             )
         )
-    if "ResourceTypeFilters" in data:
+    if data.get("ResourceTypeFilters") is not None:
         import capo_resource_groups_tagging_api.types.resource_type_filter_list
 
         out["resource_type_filters"] = (
@@ -119,7 +119,7 @@ def deserialize_aws_json_1_1(data: dict) -> GetComplianceSummaryInput:
                 data["ResourceTypeFilters"]
             )
         )
-    if "TagKeyFilters" in data:
+    if data.get("TagKeyFilters") is not None:
         import capo_resource_groups_tagging_api.types.tag_key_filter_list
 
         out["tag_key_filters"] = (
@@ -127,7 +127,7 @@ def deserialize_aws_json_1_1(data: dict) -> GetComplianceSummaryInput:
                 data["TagKeyFilters"]
             )
         )
-    if "GroupBy" in data:
+    if data.get("GroupBy") is not None:
         import capo_resource_groups_tagging_api.types.group_by
 
         out["group_by"] = (
@@ -135,8 +135,8 @@ def deserialize_aws_json_1_1(data: dict) -> GetComplianceSummaryInput:
                 data["GroupBy"]
             )
         )
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "PaginationToken" in data:
+    if data.get("PaginationToken") is not None:
         out["pagination_token"] = data["PaginationToken"]
     return out

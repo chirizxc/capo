@@ -65,7 +65,7 @@ def serialize_json(value: ListFileSystemsDescription) -> dict:
 
 def deserialize_json(data: dict) -> ListFileSystemsDescription:
     out: ListFileSystemsDescription = {}  # type: ignore[typeddict-item]
-    if "creationTime" in data:
+    if data.get("creationTime") is not None:
         import capo_s3files.types._prelude.timestamp
 
         out["creation_time"] = capo_s3files.types._prelude.timestamp.deserialize_json(
@@ -73,23 +73,23 @@ def deserialize_json(data: dict) -> ListFileSystemsDescription:
         )
     else:
         raise DeserializationError("ListFileSystemsDescription.creation_time required")
-    if "fileSystemArn" in data:
+    if data.get("fileSystemArn") is not None:
         out["file_system_arn"] = data["fileSystemArn"]
     else:
         raise DeserializationError(
             "ListFileSystemsDescription.file_system_arn required"
         )
-    if "fileSystemId" in data:
+    if data.get("fileSystemId") is not None:
         out["file_system_id"] = data["fileSystemId"]
     else:
         raise DeserializationError("ListFileSystemsDescription.file_system_id required")
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "bucket" in data:
+    if data.get("bucket") is not None:
         out["bucket"] = data["bucket"]
     else:
         raise DeserializationError("ListFileSystemsDescription.bucket required")
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_s3files.types.life_cycle_state
 
         out["status"] = capo_s3files.types.life_cycle_state.deserialize_json(
@@ -97,13 +97,13 @@ def deserialize_json(data: dict) -> ListFileSystemsDescription:
         )
     else:
         raise DeserializationError("ListFileSystemsDescription.status required")
-    if "statusMessage" in data:
+    if data.get("statusMessage") is not None:
         out["status_message"] = data["statusMessage"]
-    if "roleArn" in data:
+    if data.get("roleArn") is not None:
         out["role_arn"] = data["roleArn"]
     else:
         raise DeserializationError("ListFileSystemsDescription.role_arn required")
-    if "ownerId" in data:
+    if data.get("ownerId") is not None:
         out["owner_id"] = data["ownerId"]
     else:
         raise DeserializationError("ListFileSystemsDescription.owner_id required")

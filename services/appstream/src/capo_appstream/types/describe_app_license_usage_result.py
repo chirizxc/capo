@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: DescribeAppLicenseUsageResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeAppLicenseUsageResult:
     out: DescribeAppLicenseUsageResult = {}  # type: ignore[typeddict-item]
-    if "AppLicenseUsages" in data:
+    if data.get("AppLicenseUsages") is not None:
         import capo_appstream.types.admin_app_license_usage_list
 
         out["app_license_usages"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeAppLicenseUsageResult:
                 data["AppLicenseUsages"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

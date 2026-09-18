@@ -187,7 +187,7 @@ def serialize_json(value: CmfcSettings) -> dict:
 
 def deserialize_json(data: dict) -> CmfcSettings:
     out: CmfcSettings = {}  # type: ignore[typeddict-item]
-    if "audioDuration" in data:
+    if data.get("audioDuration") is not None:
         import capo_mediaconvert.types.cmfc_audio_duration
 
         out["audio_duration"] = (
@@ -195,11 +195,11 @@ def deserialize_json(data: dict) -> CmfcSettings:
                 data["audioDuration"]
             )
         )
-    if "audioGroupId" in data:
+    if data.get("audioGroupId") is not None:
         out["audio_group_id"] = data["audioGroupId"]
-    if "audioRenditionSets" in data:
+    if data.get("audioRenditionSets") is not None:
         out["audio_rendition_sets"] = data["audioRenditionSets"]
-    if "audioTrackType" in data:
+    if data.get("audioTrackType") is not None:
         import capo_mediaconvert.types.cmfc_audio_track_type
 
         out["audio_track_type"] = (
@@ -207,7 +207,7 @@ def deserialize_json(data: dict) -> CmfcSettings:
                 data["audioTrackType"]
             )
         )
-    if "c2paManifest" in data:
+    if data.get("c2paManifest") is not None:
         import capo_mediaconvert.types.cmfc_c2pa_manifest
 
         out["c2pa_manifest"] = (
@@ -215,9 +215,9 @@ def deserialize_json(data: dict) -> CmfcSettings:
                 data["c2paManifest"]
             )
         )
-    if "certificateSecret" in data:
+    if data.get("certificateSecret") is not None:
         out["certificate_secret"] = data["certificateSecret"]
-    if "descriptiveVideoServiceFlag" in data:
+    if data.get("descriptiveVideoServiceFlag") is not None:
         import capo_mediaconvert.types.cmfc_descriptive_video_service_flag
 
         out["descriptive_video_service_flag"] = (
@@ -225,7 +225,7 @@ def deserialize_json(data: dict) -> CmfcSettings:
                 data["descriptiveVideoServiceFlag"]
             )
         )
-    if "iFrameOnlyManifest" in data:
+    if data.get("iFrameOnlyManifest") is not None:
         import capo_mediaconvert.types.cmfc_i_frame_only_manifest
 
         out["i_frame_only_manifest"] = (
@@ -233,7 +233,7 @@ def deserialize_json(data: dict) -> CmfcSettings:
                 data["iFrameOnlyManifest"]
             )
         )
-    if "klvMetadata" in data:
+    if data.get("klvMetadata") is not None:
         import capo_mediaconvert.types.cmfc_klv_metadata
 
         out["klv_metadata"] = (
@@ -241,7 +241,7 @@ def deserialize_json(data: dict) -> CmfcSettings:
                 data["klvMetadata"]
             )
         )
-    if "manifestMetadataSignaling" in data:
+    if data.get("manifestMetadataSignaling") is not None:
         import capo_mediaconvert.types.cmfc_manifest_metadata_signaling
 
         out["manifest_metadata_signaling"] = (
@@ -249,13 +249,13 @@ def deserialize_json(data: dict) -> CmfcSettings:
                 data["manifestMetadataSignaling"]
             )
         )
-    if "scte35Esam" in data:
+    if data.get("scte35Esam") is not None:
         import capo_mediaconvert.types.cmfc_scte35_esam
 
         out["scte35_esam"] = capo_mediaconvert.types.cmfc_scte35_esam.deserialize_json(
             data["scte35Esam"]
         )
-    if "scte35Source" in data:
+    if data.get("scte35Source") is not None:
         import capo_mediaconvert.types.cmfc_scte35_source
 
         out["scte35_source"] = (
@@ -263,9 +263,9 @@ def deserialize_json(data: dict) -> CmfcSettings:
                 data["scte35Source"]
             )
         )
-    if "signingKmsKey" in data:
+    if data.get("signingKmsKey") is not None:
         out["signing_kms_key"] = data["signingKmsKey"]
-    if "timedMetadata" in data:
+    if data.get("timedMetadata") is not None:
         import capo_mediaconvert.types.cmfc_timed_metadata
 
         out["timed_metadata"] = (
@@ -273,7 +273,7 @@ def deserialize_json(data: dict) -> CmfcSettings:
                 data["timedMetadata"]
             )
         )
-    if "timedMetadataBoxVersion" in data:
+    if data.get("timedMetadataBoxVersion") is not None:
         import capo_mediaconvert.types.cmfc_timed_metadata_box_version
 
         out["timed_metadata_box_version"] = (
@@ -281,8 +281,8 @@ def deserialize_json(data: dict) -> CmfcSettings:
                 data["timedMetadataBoxVersion"]
             )
         )
-    if "timedMetadataSchemeIdUri" in data:
+    if data.get("timedMetadataSchemeIdUri") is not None:
         out["timed_metadata_scheme_id_uri"] = data["timedMetadataSchemeIdUri"]
-    if "timedMetadataValue" in data:
+    if data.get("timedMetadataValue") is not None:
         out["timed_metadata_value"] = data["timedMetadataValue"]
     return out

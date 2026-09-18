@@ -37,15 +37,16 @@ class UserNotFoundFault(ServiceError):
 
     code: str | None = "UserNotFoundFault"
 
-    def __init__(self, data: UserNotFoundFault_):
+    def __init__(self, data: UserNotFoundFault_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="UserNotFoundFault",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_query(cls, el: Element) -> "UserNotFoundFault":
-        return cls(deserialize_query(el))
+    def from_query(cls, el: Element, message: str | None = None) -> "UserNotFoundFault":
+        return cls(deserialize_query(el), message)

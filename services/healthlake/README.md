@@ -13,10 +13,25 @@ from capo_healthlake import AsyncHealthLakeClient
 
 
 async def main():
-    async with AsyncHealthLakeClient() as s3:
+    async with AsyncHealthLakeClient() as health_lake:
         # Example: call the create_fhir_datastore operation
-        response = await s3.create_fhir_datastore()
+        response = await health_lake.create_fhir_datastore()
         print(response["datastore_id"])
+```
+
+## Pagination
+
+Some operations in this SDK support pagination. If the operation supports pagination it will have an `iter_` prefixed method that returns an async iterator.
+
+```python
+from capo_healthlake import AsyncHealthLakeClient
+
+
+async def main():
+    async with AsyncHealthLakeClient() as health_lake:
+        # Example: paginate over list_fhir_datastores
+        async for item in health_lake.iter_list_fhir_datastores():
+            print(item)
 ```
 
 ## Error Handling
@@ -29,9 +44,9 @@ from capo_healthlake.error import AccessDeniedException
 
 
 async def main():
-    async with AsyncHealthLakeClient() as s3:
+    async with AsyncHealthLakeClient() as health_lake:
         try:
-            await s3.create_fhir_datastore()
+            await health_lake.create_fhir_datastore()
         except AccessDeniedException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -48,13 +63,13 @@ from capo_healthlake import AsyncHealthLakeClient
 
 
 async def main():
-    async with AsyncHealthLakeClient() as s3:
+    async with AsyncHealthLakeClient() as health_lake:
         # Default: 3 attempts for every operation
-        response = await s3.create_fhir_datastore()
+        response = await health_lake.create_fhir_datastore()
 
         # Override per operation
-        response = await s3.create_fhir_datastore(config_overrides={"retry_max_attempts": 5})
+        response = await health_lake.create_fhir_datastore(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.create_fhir_datastore(config_overrides={"retry_max_attempts": 1})
+        response = await health_lake.create_fhir_datastore(config_overrides={"retry_max_attempts": 1})
 ```

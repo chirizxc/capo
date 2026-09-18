@@ -40,7 +40,7 @@ def serialize_json(value: ConcatenationSink) -> dict:
 
 def deserialize_json(data: dict) -> ConcatenationSink:
     out: ConcatenationSink = {}  # type: ignore[typeddict-item]
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_chime_sdk_media_pipelines.types.concatenation_sink_type
 
         out["type"] = (
@@ -50,7 +50,7 @@ def deserialize_json(data: dict) -> ConcatenationSink:
         )
     else:
         raise DeserializationError("ConcatenationSink.type required")
-    if "S3BucketSinkConfiguration" in data:
+    if data.get("S3BucketSinkConfiguration") is not None:
         import capo_chime_sdk_media_pipelines.types.s3_bucket_sink_configuration
 
         out["s3_bucket_sink_configuration"] = (

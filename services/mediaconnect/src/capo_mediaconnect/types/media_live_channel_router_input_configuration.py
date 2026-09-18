@@ -53,9 +53,9 @@ def serialize_json(value: MediaLiveChannelRouterInputConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> MediaLiveChannelRouterInputConfiguration:
     out: MediaLiveChannelRouterInputConfiguration = {}  # type: ignore[typeddict-item]
-    if "mediaLiveChannelArn" in data:
+    if data.get("mediaLiveChannelArn") is not None:
         out["media_live_channel_arn"] = data["mediaLiveChannelArn"]
-    if "mediaLivePipelineId" in data:
+    if data.get("mediaLivePipelineId") is not None:
         import capo_mediaconnect.types.media_live_channel_pipeline_id
 
         out["media_live_pipeline_id"] = (
@@ -63,9 +63,9 @@ def deserialize_json(data: dict) -> MediaLiveChannelRouterInputConfiguration:
                 data["mediaLivePipelineId"]
             )
         )
-    if "mediaLiveChannelOutputName" in data:
+    if data.get("mediaLiveChannelOutputName") is not None:
         out["media_live_channel_output_name"] = data["mediaLiveChannelOutputName"]
-    if "sourceTransitDecryption" in data:
+    if data.get("sourceTransitDecryption") is not None:
         import capo_mediaconnect.types.media_live_transit_encryption
 
         out["source_transit_decryption"] = (

@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> QAResults:
 
     out: QAResults = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_quicksight.types.qa_result.deserialize_json(item))
     return out

@@ -37,27 +37,27 @@ def serialize_aws_json_1_0(value: BatchLoadProgressReport) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> BatchLoadProgressReport:
     out: BatchLoadProgressReport = {}  # type: ignore[typeddict-item]
-    if "RecordsProcessed" in data:
+    if data.get("RecordsProcessed") is not None:
         out["records_processed"] = data["RecordsProcessed"]
     else:
         out["records_processed"] = 0
-    if "RecordsIngested" in data:
+    if data.get("RecordsIngested") is not None:
         out["records_ingested"] = data["RecordsIngested"]
     else:
         out["records_ingested"] = 0
-    if "ParseFailures" in data:
+    if data.get("ParseFailures") is not None:
         out["parse_failures"] = data["ParseFailures"]
     else:
         out["parse_failures"] = 0
-    if "RecordIngestionFailures" in data:
+    if data.get("RecordIngestionFailures") is not None:
         out["record_ingestion_failures"] = data["RecordIngestionFailures"]
     else:
         out["record_ingestion_failures"] = 0
-    if "FileFailures" in data:
+    if data.get("FileFailures") is not None:
         out["file_failures"] = data["FileFailures"]
     else:
         out["file_failures"] = 0
-    if "BytesMetered" in data:
+    if data.get("BytesMetered") is not None:
         out["bytes_metered"] = data["BytesMetered"]
     else:
         out["bytes_metered"] = 0

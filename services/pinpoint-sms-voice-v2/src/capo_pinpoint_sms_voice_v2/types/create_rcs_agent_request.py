@@ -45,11 +45,11 @@ def serialize_aws_json_1_0(value: CreateRcsAgentRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CreateRcsAgentRequest:
     out: CreateRcsAgentRequest = {}  # type: ignore[typeddict-item]
-    if "DeletionProtectionEnabled" in data:
+    if data.get("DeletionProtectionEnabled") is not None:
         out["deletion_protection_enabled"] = data["DeletionProtectionEnabled"]
-    if "OptOutListName" in data:
+    if data.get("OptOutListName") is not None:
         out["opt_out_list_name"] = data["OptOutListName"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_pinpoint_sms_voice_v2.types.tag_list
 
         out["tags"] = (
@@ -57,6 +57,6 @@ def deserialize_aws_json_1_0(data: dict) -> CreateRcsAgentRequest:
                 data["Tags"]
             )
         )
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
     return out

@@ -27,6 +27,8 @@ def deserialize_aws_json_1_1(data: dict) -> PurchasedDevicesMap:
     for key, value in data.items():
         import capo_device_farm.types.device_platform
 
+        if value is None:
+            continue
         out[capo_device_farm.types.device_platform.deserialize_aws_json_1_1(key)] = (
             value
         )

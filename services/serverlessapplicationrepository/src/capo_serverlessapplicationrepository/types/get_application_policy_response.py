@@ -31,7 +31,7 @@ def serialize_json(value: GetApplicationPolicyResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetApplicationPolicyResponse:
     out: GetApplicationPolicyResponse = {}  # type: ignore[typeddict-item]
-    if "statements" in data:
+    if data.get("statements") is not None:
         import capo_serverlessapplicationrepository.types.__list_of_application_policy_statement
 
         out["statements"] = (

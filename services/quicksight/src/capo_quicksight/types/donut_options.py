@@ -40,13 +40,13 @@ def serialize_json(value: DonutOptions) -> dict:
 
 def deserialize_json(data: dict) -> DonutOptions:
     out: DonutOptions = {}  # type: ignore[typeddict-item]
-    if "ArcOptions" in data:
+    if data.get("ArcOptions") is not None:
         import capo_quicksight.types.arc_options
 
         out["arc_options"] = capo_quicksight.types.arc_options.deserialize_json(
             data["ArcOptions"]
         )
-    if "DonutCenterOptions" in data:
+    if data.get("DonutCenterOptions") is not None:
         import capo_quicksight.types.donut_center_options
 
         out["donut_center_options"] = (

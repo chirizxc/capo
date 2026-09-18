@@ -102,7 +102,15 @@ def serialize_aws_json_1_1(value: DescribeDatasetImportJobResponse) -> dict:
             )
         )
     if "data_size" in value:
-        out["DataSize"] = value["data_size"]
+        out["DataSize"] = (
+            "NaN"
+            if value["data_size"] != value["data_size"]
+            else "Infinity"
+            if value["data_size"] == float("inf")
+            else "-Infinity"
+            if value["data_size"] == float("-inf")
+            else value["data_size"]
+        )
     if "status" in value:
         out["Status"] = value["status"]
     if "message" in value:
@@ -134,33 +142,33 @@ def serialize_aws_json_1_1(value: DescribeDatasetImportJobResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeDatasetImportJobResponse:
     out: DescribeDatasetImportJobResponse = {}  # type: ignore[typeddict-item]
-    if "DatasetImportJobName" in data:
+    if data.get("DatasetImportJobName") is not None:
         out["dataset_import_job_name"] = data["DatasetImportJobName"]
-    if "DatasetImportJobArn" in data:
+    if data.get("DatasetImportJobArn") is not None:
         out["dataset_import_job_arn"] = data["DatasetImportJobArn"]
-    if "DatasetArn" in data:
+    if data.get("DatasetArn") is not None:
         out["dataset_arn"] = data["DatasetArn"]
-    if "TimestampFormat" in data:
+    if data.get("TimestampFormat") is not None:
         out["timestamp_format"] = data["TimestampFormat"]
-    if "TimeZone" in data:
+    if data.get("TimeZone") is not None:
         out["time_zone"] = data["TimeZone"]
-    if "UseGeolocationForTimeZone" in data:
+    if data.get("UseGeolocationForTimeZone") is not None:
         out["use_geolocation_for_time_zone"] = data["UseGeolocationForTimeZone"]
     else:
         out["use_geolocation_for_time_zone"] = False
-    if "GeolocationFormat" in data:
+    if data.get("GeolocationFormat") is not None:
         out["geolocation_format"] = data["GeolocationFormat"]
-    if "DataSource" in data:
+    if data.get("DataSource") is not None:
         import capo_forecast.types.data_source
 
         out["data_source"] = capo_forecast.types.data_source.deserialize_aws_json_1_1(
             data["DataSource"]
         )
-    if "EstimatedTimeRemainingInMinutes" in data:
+    if data.get("EstimatedTimeRemainingInMinutes") is not None:
         out["estimated_time_remaining_in_minutes"] = data[
             "EstimatedTimeRemainingInMinutes"
         ]
-    if "FieldStatistics" in data:
+    if data.get("FieldStatistics") is not None:
         import capo_forecast.types.field_statistics
 
         out["field_statistics"] = (
@@ -168,19 +176,19 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeDatasetImportJobResponse:
                 data["FieldStatistics"]
             )
         )
-    if "DataSize" in data:
-        out["data_size"] = data["DataSize"]
-    if "Status" in data:
+    if data.get("DataSize") is not None:
+        out["data_size"] = float(data["DataSize"])
+    if data.get("Status") is not None:
         out["status"] = data["Status"]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_forecast.types.timestamp
 
         out["creation_time"] = capo_forecast.types.timestamp.deserialize_aws_json_1_1(
             data["CreationTime"]
         )
-    if "LastModificationTime" in data:
+    if data.get("LastModificationTime") is not None:
         import capo_forecast.types.timestamp
 
         out["last_modification_time"] = (
@@ -188,9 +196,9 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeDatasetImportJobResponse:
                 data["LastModificationTime"]
             )
         )
-    if "Format" in data:
+    if data.get("Format") is not None:
         out["format"] = data["Format"]
-    if "ImportMode" in data:
+    if data.get("ImportMode") is not None:
         import capo_forecast.types.import_mode
 
         out["import_mode"] = capo_forecast.types.import_mode.deserialize_aws_json_1_1(

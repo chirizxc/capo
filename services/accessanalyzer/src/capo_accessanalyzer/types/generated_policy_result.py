@@ -43,7 +43,7 @@ def serialize_json(value: GeneratedPolicyResult) -> dict:
 
 def deserialize_json(data: dict) -> GeneratedPolicyResult:
     out: GeneratedPolicyResult = {}  # type: ignore[typeddict-item]
-    if "properties" in data:
+    if data.get("properties") is not None:
         import capo_accessanalyzer.types.generated_policy_properties
 
         out["properties"] = (
@@ -53,7 +53,7 @@ def deserialize_json(data: dict) -> GeneratedPolicyResult:
         )
     else:
         raise DeserializationError("GeneratedPolicyResult.properties required")
-    if "generatedPolicies" in data:
+    if data.get("generatedPolicies") is not None:
         import capo_accessanalyzer.types.generated_policy_list
 
         out["generated_policies"] = (

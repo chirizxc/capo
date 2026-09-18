@@ -43,35 +43,35 @@ def serialize_json(value: StopCisMessageProgress) -> dict:
 
 def deserialize_json(data: dict) -> StopCisMessageProgress:
     out: StopCisMessageProgress = {}  # type: ignore[typeddict-item]
-    if "totalChecks" in data:
+    if data.get("totalChecks") is not None:
         out["total_checks"] = data["totalChecks"]
     else:
         out["total_checks"] = 0
-    if "successfulChecks" in data:
+    if data.get("successfulChecks") is not None:
         out["successful_checks"] = data["successfulChecks"]
     else:
         out["successful_checks"] = 0
-    if "failedChecks" in data:
+    if data.get("failedChecks") is not None:
         out["failed_checks"] = data["failedChecks"]
     else:
         out["failed_checks"] = 0
-    if "notEvaluatedChecks" in data:
+    if data.get("notEvaluatedChecks") is not None:
         out["not_evaluated_checks"] = data["notEvaluatedChecks"]
     else:
         out["not_evaluated_checks"] = 0
-    if "unknownChecks" in data:
+    if data.get("unknownChecks") is not None:
         out["unknown_checks"] = data["unknownChecks"]
     else:
         out["unknown_checks"] = 0
-    if "notApplicableChecks" in data:
+    if data.get("notApplicableChecks") is not None:
         out["not_applicable_checks"] = data["notApplicableChecks"]
     else:
         out["not_applicable_checks"] = 0
-    if "informationalChecks" in data:
+    if data.get("informationalChecks") is not None:
         out["informational_checks"] = data["informationalChecks"]
     else:
         out["informational_checks"] = 0
-    if "errorChecks" in data:
+    if data.get("errorChecks") is not None:
         out["error_checks"] = data["errorChecks"]
     else:
         out["error_checks"] = 0

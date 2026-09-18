@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> __listOfPackagingGroup:
 
     out: __listOfPackagingGroup = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_mediapackage_vod.types.packaging_group.deserialize_json(item))
     return out

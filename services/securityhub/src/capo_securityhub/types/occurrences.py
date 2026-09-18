@@ -56,29 +56,29 @@ def serialize_json(value: Occurrences) -> dict:
 
 def deserialize_json(data: dict) -> Occurrences:
     out: Occurrences = {}  # type: ignore[typeddict-item]
-    if "LineRanges" in data:
+    if data.get("LineRanges") is not None:
         import capo_securityhub.types.ranges
 
         out["line_ranges"] = capo_securityhub.types.ranges.deserialize_json(
             data["LineRanges"]
         )
-    if "OffsetRanges" in data:
+    if data.get("OffsetRanges") is not None:
         import capo_securityhub.types.ranges
 
         out["offset_ranges"] = capo_securityhub.types.ranges.deserialize_json(
             data["OffsetRanges"]
         )
-    if "Pages" in data:
+    if data.get("Pages") is not None:
         import capo_securityhub.types.pages
 
         out["pages"] = capo_securityhub.types.pages.deserialize_json(data["Pages"])
-    if "Records" in data:
+    if data.get("Records") is not None:
         import capo_securityhub.types.records
 
         out["records"] = capo_securityhub.types.records.deserialize_json(
             data["Records"]
         )
-    if "Cells" in data:
+    if data.get("Cells") is not None:
         import capo_securityhub.types.cells
 
         out["cells"] = capo_securityhub.types.cells.deserialize_json(data["Cells"])

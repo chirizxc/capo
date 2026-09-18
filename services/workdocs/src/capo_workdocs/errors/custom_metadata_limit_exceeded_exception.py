@@ -24,7 +24,7 @@ def serialize_json(value: CustomMetadataLimitExceededException_) -> dict:
 
 def deserialize_json(data: dict) -> CustomMetadataLimitExceededException_:
     out: CustomMetadataLimitExceededException_ = {}  # type: ignore[typeddict-item]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     return out
 
@@ -34,15 +34,20 @@ class CustomMetadataLimitExceededException(ServiceError):
 
     code: str | None = "CustomMetadataLimitExceededException"
 
-    def __init__(self, data: CustomMetadataLimitExceededException_):
+    def __init__(
+        self, data: CustomMetadataLimitExceededException_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="CustomMetadataLimitExceededException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "CustomMetadataLimitExceededException":
-        return cls(deserialize_json(data))
+    def from_json(
+        cls, data: dict, message: str | None = None
+    ) -> "CustomMetadataLimitExceededException":
+        return cls(deserialize_json(data), message)

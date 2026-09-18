@@ -24,7 +24,7 @@ def serialize_json(value: CreateUserSettingsResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateUserSettingsResponse:
     out: CreateUserSettingsResponse = {}  # type: ignore[typeddict-item]
-    if "userSettingsArn" in data:
+    if data.get("userSettingsArn") is not None:
         out["user_settings_arn"] = data["userSettingsArn"]
     else:
         raise DeserializationError(

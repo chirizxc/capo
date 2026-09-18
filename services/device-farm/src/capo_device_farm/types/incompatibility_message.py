@@ -32,9 +32,9 @@ def serialize_aws_json_1_1(value: IncompatibilityMessage) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> IncompatibilityMessage:
     out: IncompatibilityMessage = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_device_farm.types.device_attribute
 
         out["type"] = capo_device_farm.types.device_attribute.deserialize_aws_json_1_1(

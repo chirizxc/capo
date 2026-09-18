@@ -28,7 +28,7 @@ def serialize_json(value: PropertyFilter) -> dict:
 
 def deserialize_json(data: dict) -> PropertyFilter:
     out: PropertyFilter = {}  # type: ignore[typeddict-item]
-    if "Property" in data:
+    if data.get("Property") is not None:
         import capo_sagemaker_geospatial.types.property
 
         out["property"] = capo_sagemaker_geospatial.types.property.deserialize_json(

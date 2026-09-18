@@ -163,19 +163,19 @@ def serialize_json(value: PhoneNumber) -> dict:
 
 def deserialize_json(data: dict) -> PhoneNumber:
     out: PhoneNumber = {}  # type: ignore[typeddict-item]
-    if "PhoneNumberId" in data:
+    if data.get("PhoneNumberId") is not None:
         out["phone_number_id"] = data["PhoneNumberId"]
-    if "E164PhoneNumber" in data:
+    if data.get("E164PhoneNumber") is not None:
         out["e164_phone_number"] = data["E164PhoneNumber"]
-    if "Country" in data:
+    if data.get("Country") is not None:
         out["country"] = data["Country"]
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_chime_sdk_voice.types.phone_number_type
 
         out["type"] = capo_chime_sdk_voice.types.phone_number_type.deserialize_json(
             data["Type"]
         )
-    if "ProductType" in data:
+    if data.get("ProductType") is not None:
         import capo_chime_sdk_voice.types.phone_number_product_type
 
         out["product_type"] = (
@@ -183,13 +183,13 @@ def deserialize_json(data: dict) -> PhoneNumber:
                 data["ProductType"]
             )
         )
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_chime_sdk_voice.types.phone_number_status
 
         out["status"] = capo_chime_sdk_voice.types.phone_number_status.deserialize_json(
             data["Status"]
         )
-    if "Capabilities" in data:
+    if data.get("Capabilities") is not None:
         import capo_chime_sdk_voice.types.phone_number_capabilities
 
         out["capabilities"] = (
@@ -197,7 +197,7 @@ def deserialize_json(data: dict) -> PhoneNumber:
                 data["Capabilities"]
             )
         )
-    if "Associations" in data:
+    if data.get("Associations") is not None:
         import capo_chime_sdk_voice.types.phone_number_association_list
 
         out["associations"] = (
@@ -205,9 +205,9 @@ def deserialize_json(data: dict) -> PhoneNumber:
                 data["Associations"]
             )
         )
-    if "CallingName" in data:
+    if data.get("CallingName") is not None:
         out["calling_name"] = data["CallingName"]
-    if "CallingNameStatus" in data:
+    if data.get("CallingNameStatus") is not None:
         import capo_chime_sdk_voice.types.calling_name_status
 
         out["calling_name_status"] = (
@@ -215,7 +215,7 @@ def deserialize_json(data: dict) -> PhoneNumber:
                 data["CallingNameStatus"]
             )
         )
-    if "CreatedTimestamp" in data:
+    if data.get("CreatedTimestamp") is not None:
         import capo_chime_sdk_voice.types.iso8601_timestamp
 
         out["created_timestamp"] = (
@@ -223,7 +223,7 @@ def deserialize_json(data: dict) -> PhoneNumber:
                 data["CreatedTimestamp"]
             )
         )
-    if "UpdatedTimestamp" in data:
+    if data.get("UpdatedTimestamp") is not None:
         import capo_chime_sdk_voice.types.iso8601_timestamp
 
         out["updated_timestamp"] = (
@@ -231,7 +231,7 @@ def deserialize_json(data: dict) -> PhoneNumber:
                 data["UpdatedTimestamp"]
             )
         )
-    if "DeletionTimestamp" in data:
+    if data.get("DeletionTimestamp") is not None:
         import capo_chime_sdk_voice.types.iso8601_timestamp
 
         out["deletion_timestamp"] = (
@@ -239,8 +239,8 @@ def deserialize_json(data: dict) -> PhoneNumber:
                 data["DeletionTimestamp"]
             )
         )
-    if "OrderId" in data:
+    if data.get("OrderId") is not None:
         out["order_id"] = data["OrderId"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     return out

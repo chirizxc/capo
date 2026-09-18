@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import uuid
 from typing import TYPE_CHECKING, Optional
 
 from capo_mailmanager._services._pipeline import (
@@ -81,10 +82,12 @@ class AddonInstanceResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mailmanager.types.create_addon_instance_request.CreateAddonInstanceRequest = {}  # type: ignore[typeddict-item]
-        if client_token is not None:
-            input_["client_token"] = client_token
-        input_["addon_subscription_id"] = addon_subscription_id
+        input_: capo_mailmanager.types.create_addon_instance_request.CreateAddonInstanceRequest = {
+            "addon_subscription_id": addon_subscription_id
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if tags is not None:
             input_["tags"] = tags
 
@@ -93,6 +96,7 @@ class AddonInstanceResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -127,14 +131,16 @@ class AddonInstanceResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mailmanager.types.get_addon_instance_request.GetAddonInstanceRequest = {}  # type: ignore[typeddict-item]
-        input_["addon_instance_id"] = addon_instance_id
+        input_: capo_mailmanager.types.get_addon_instance_request.GetAddonInstanceRequest = {
+            "addon_instance_id": addon_instance_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -169,14 +175,16 @@ class AddonInstanceResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mailmanager.types.delete_addon_instance_request.DeleteAddonInstanceRequest = {}  # type: ignore[typeddict-item]
-        input_["addon_instance_id"] = addon_instance_id
+        input_: capo_mailmanager.types.delete_addon_instance_request.DeleteAddonInstanceRequest = {
+            "addon_instance_id": addon_instance_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -214,7 +222,7 @@ class AddonInstanceResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mailmanager.types.list_addon_instances_request.ListAddonInstancesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_mailmanager.types.list_addon_instances_request.ListAddonInstancesRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if page_size is not None:
@@ -225,6 +233,7 @@ class AddonInstanceResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -273,10 +282,12 @@ class AsyncAddonInstanceResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mailmanager.types.create_addon_instance_request.CreateAddonInstanceRequest = {}  # type: ignore[typeddict-item]
-        if client_token is not None:
-            input_["client_token"] = client_token
-        input_["addon_subscription_id"] = addon_subscription_id
+        input_: capo_mailmanager.types.create_addon_instance_request.CreateAddonInstanceRequest = {
+            "addon_subscription_id": addon_subscription_id
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if tags is not None:
             input_["tags"] = tags
 
@@ -285,6 +296,7 @@ class AsyncAddonInstanceResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -320,14 +332,16 @@ class AsyncAddonInstanceResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mailmanager.types.get_addon_instance_request.GetAddonInstanceRequest = {}  # type: ignore[typeddict-item]
-        input_["addon_instance_id"] = addon_instance_id
+        input_: capo_mailmanager.types.get_addon_instance_request.GetAddonInstanceRequest = {
+            "addon_instance_id": addon_instance_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -363,14 +377,16 @@ class AsyncAddonInstanceResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mailmanager.types.delete_addon_instance_request.DeleteAddonInstanceRequest = {}  # type: ignore[typeddict-item]
-        input_["addon_instance_id"] = addon_instance_id
+        input_: capo_mailmanager.types.delete_addon_instance_request.DeleteAddonInstanceRequest = {
+            "addon_instance_id": addon_instance_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -409,7 +425,7 @@ class AsyncAddonInstanceResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mailmanager.types.list_addon_instances_request.ListAddonInstancesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_mailmanager.types.list_addon_instances_request.ListAddonInstancesRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if page_size is not None:
@@ -420,4 +436,5 @@ class AsyncAddonInstanceResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

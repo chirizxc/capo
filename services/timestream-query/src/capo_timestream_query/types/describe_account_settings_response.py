@@ -51,9 +51,9 @@ def serialize_aws_json_1_0(value: DescribeAccountSettingsResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> DescribeAccountSettingsResponse:
     out: DescribeAccountSettingsResponse = {}  # type: ignore[typeddict-item]
-    if "MaxQueryTCU" in data:
+    if data.get("MaxQueryTCU") is not None:
         out["max_query_tcu"] = data["MaxQueryTCU"]
-    if "QueryPricingModel" in data:
+    if data.get("QueryPricingModel") is not None:
         import capo_timestream_query.types.query_pricing_model
 
         out["query_pricing_model"] = (
@@ -61,7 +61,7 @@ def deserialize_aws_json_1_0(data: dict) -> DescribeAccountSettingsResponse:
                 data["QueryPricingModel"]
             )
         )
-    if "QueryCompute" in data:
+    if data.get("QueryCompute") is not None:
         import capo_timestream_query.types.query_compute_response
 
         out["query_compute"] = (

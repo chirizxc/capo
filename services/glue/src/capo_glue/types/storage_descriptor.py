@@ -121,15 +121,15 @@ def serialize_aws_json_1_1(value: StorageDescriptor) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> StorageDescriptor:
     out: StorageDescriptor = {}  # type: ignore[typeddict-item]
-    if "Columns" in data:
+    if data.get("Columns") is not None:
         import capo_glue.types.column_list
 
         out["columns"] = capo_glue.types.column_list.deserialize_aws_json_1_1(
             data["Columns"]
         )
-    if "Location" in data:
+    if data.get("Location") is not None:
         out["location"] = data["Location"]
-    if "AdditionalLocations" in data:
+    if data.get("AdditionalLocations") is not None:
         import capo_glue.types.location_string_list
 
         out["additional_locations"] = (
@@ -137,25 +137,25 @@ def deserialize_aws_json_1_1(data: dict) -> StorageDescriptor:
                 data["AdditionalLocations"]
             )
         )
-    if "InputFormat" in data:
+    if data.get("InputFormat") is not None:
         out["input_format"] = data["InputFormat"]
-    if "OutputFormat" in data:
+    if data.get("OutputFormat") is not None:
         out["output_format"] = data["OutputFormat"]
-    if "Compressed" in data:
+    if data.get("Compressed") is not None:
         out["compressed"] = data["Compressed"]
     else:
         out["compressed"] = False
-    if "NumberOfBuckets" in data:
+    if data.get("NumberOfBuckets") is not None:
         out["number_of_buckets"] = data["NumberOfBuckets"]
     else:
         out["number_of_buckets"] = 0
-    if "SerdeInfo" in data:
+    if data.get("SerdeInfo") is not None:
         import capo_glue.types.ser_de_info
 
         out["serde_info"] = capo_glue.types.ser_de_info.deserialize_aws_json_1_1(
             data["SerdeInfo"]
         )
-    if "BucketColumns" in data:
+    if data.get("BucketColumns") is not None:
         import capo_glue.types.name_string_list
 
         out["bucket_columns"] = (
@@ -163,29 +163,29 @@ def deserialize_aws_json_1_1(data: dict) -> StorageDescriptor:
                 data["BucketColumns"]
             )
         )
-    if "SortColumns" in data:
+    if data.get("SortColumns") is not None:
         import capo_glue.types.order_list
 
         out["sort_columns"] = capo_glue.types.order_list.deserialize_aws_json_1_1(
             data["SortColumns"]
         )
-    if "Parameters" in data:
+    if data.get("Parameters") is not None:
         import capo_glue.types.parameters_map
 
         out["parameters"] = capo_glue.types.parameters_map.deserialize_aws_json_1_1(
             data["Parameters"]
         )
-    if "SkewedInfo" in data:
+    if data.get("SkewedInfo") is not None:
         import capo_glue.types.skewed_info
 
         out["skewed_info"] = capo_glue.types.skewed_info.deserialize_aws_json_1_1(
             data["SkewedInfo"]
         )
-    if "StoredAsSubDirectories" in data:
+    if data.get("StoredAsSubDirectories") is not None:
         out["stored_as_sub_directories"] = data["StoredAsSubDirectories"]
     else:
         out["stored_as_sub_directories"] = False
-    if "SchemaReference" in data:
+    if data.get("SchemaReference") is not None:
         import capo_glue.types.schema_reference
 
         out["schema_reference"] = (

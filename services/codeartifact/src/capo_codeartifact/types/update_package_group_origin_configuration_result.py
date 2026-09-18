@@ -44,7 +44,7 @@ def serialize_json(value: UpdatePackageGroupOriginConfigurationResult) -> dict:
 
 def deserialize_json(data: dict) -> UpdatePackageGroupOriginConfigurationResult:
     out: UpdatePackageGroupOriginConfigurationResult = {}  # type: ignore[typeddict-item]
-    if "packageGroup" in data:
+    if data.get("packageGroup") is not None:
         import capo_codeartifact.types.package_group_description
 
         out["package_group"] = (
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> UpdatePackageGroupOriginConfigurationResult:
                 data["packageGroup"]
             )
         )
-    if "allowedRepositoryUpdates" in data:
+    if data.get("allowedRepositoryUpdates") is not None:
         import capo_codeartifact.types.package_group_allowed_repository_updates
 
         out["allowed_repository_updates"] = (

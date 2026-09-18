@@ -23,6 +23,6 @@ def serialize_aws_json_1_1(value: DeleteResourcesByExternalIdInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteResourcesByExternalIdInput:
     out: DeleteResourcesByExternalIdInput = {}  # type: ignore[typeddict-item]
-    if "externalId" in data:
+    if data.get("externalId") is not None:
         out["external_id"] = data["externalId"]
     return out

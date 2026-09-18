@@ -38,16 +38,16 @@ def serialize_json(value: RegisterOidcConfigTestRequest) -> dict:
 
 def deserialize_json(data: dict) -> RegisterOidcConfigTestRequest:
     out: RegisterOidcConfigTestRequest = {}  # type: ignore[typeddict-item]
-    if "extraAuthParams" in data:
+    if data.get("extraAuthParams") is not None:
         out["extra_auth_params"] = data["extraAuthParams"]
-    if "issuer" in data:
+    if data.get("issuer") is not None:
         out["issuer"] = data["issuer"]
     else:
         raise DeserializationError("RegisterOidcConfigTestRequest.issuer required")
-    if "scopes" in data:
+    if data.get("scopes") is not None:
         out["scopes"] = data["scopes"]
     else:
         raise DeserializationError("RegisterOidcConfigTestRequest.scopes required")
-    if "certificate" in data:
+    if data.get("certificate") is not None:
         out["certificate"] = data["certificate"]
     return out

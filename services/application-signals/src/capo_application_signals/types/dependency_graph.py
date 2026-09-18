@@ -36,13 +36,13 @@ def serialize_json(value: DependencyGraph) -> dict:
 
 def deserialize_json(data: dict) -> DependencyGraph:
     out: DependencyGraph = {}  # type: ignore[typeddict-item]
-    if "Nodes" in data:
+    if data.get("Nodes") is not None:
         import capo_application_signals.types.nodes
 
         out["nodes"] = capo_application_signals.types.nodes.deserialize_json(
             data["Nodes"]
         )
-    if "Edges" in data:
+    if data.get("Edges") is not None:
         import capo_application_signals.types.edges
 
         out["edges"] = capo_application_signals.types.edges.deserialize_json(

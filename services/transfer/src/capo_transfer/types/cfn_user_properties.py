@@ -30,7 +30,7 @@ def serialize_aws_json_1_1(value: CfnUserProperties) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CfnUserProperties:
     out: CfnUserProperties = {}  # type: ignore[typeddict-item]
-    if "SshPublicKeys" in data:
+    if data.get("SshPublicKeys") is not None:
         import capo_transfer.types.cfn_ssh_public_keys
 
         out["ssh_public_keys"] = (

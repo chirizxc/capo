@@ -49,15 +49,15 @@ def serialize_aws_json_1_1(value: RecommendationDetailHourlyMetrics) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RecommendationDetailHourlyMetrics:
     out: RecommendationDetailHourlyMetrics = {}  # type: ignore[typeddict-item]
-    if "StartTime" in data:
+    if data.get("StartTime") is not None:
         out["start_time"] = data["StartTime"]
-    if "EstimatedOnDemandCost" in data:
+    if data.get("EstimatedOnDemandCost") is not None:
         out["estimated_on_demand_cost"] = data["EstimatedOnDemandCost"]
-    if "CurrentCoverage" in data:
+    if data.get("CurrentCoverage") is not None:
         out["current_coverage"] = data["CurrentCoverage"]
-    if "EstimatedCoverage" in data:
+    if data.get("EstimatedCoverage") is not None:
         out["estimated_coverage"] = data["EstimatedCoverage"]
-    if "EstimatedNewCommitmentUtilization" in data:
+    if data.get("EstimatedNewCommitmentUtilization") is not None:
         out["estimated_new_commitment_utilization"] = data[
             "EstimatedNewCommitmentUtilization"
         ]

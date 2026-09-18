@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> __listOfBatchGetCustomDataIdentifierSummary:
 
     out: __listOfBatchGetCustomDataIdentifierSummary = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_macie2.types.batch_get_custom_data_identifier_summary.deserialize_json(
                 item

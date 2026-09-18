@@ -26,7 +26,7 @@ def serialize_json(value: DescribeWorkspaceResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribeWorkspaceResponse:
     out: DescribeWorkspaceResponse = {}  # type: ignore[typeddict-item]
-    if "Workspace" in data:
+    if data.get("Workspace") is not None:
         import capo_connect.types.workspace
 
         out["workspace"] = capo_connect.types.workspace.deserialize_json(

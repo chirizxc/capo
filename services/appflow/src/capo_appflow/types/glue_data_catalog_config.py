@@ -36,15 +36,15 @@ def serialize_json(value: GlueDataCatalogConfig) -> dict:
 
 def deserialize_json(data: dict) -> GlueDataCatalogConfig:
     out: GlueDataCatalogConfig = {}  # type: ignore[typeddict-item]
-    if "roleArn" in data:
+    if data.get("roleArn") is not None:
         out["role_arn"] = data["roleArn"]
     else:
         raise DeserializationError("GlueDataCatalogConfig.role_arn required")
-    if "databaseName" in data:
+    if data.get("databaseName") is not None:
         out["database_name"] = data["databaseName"]
     else:
         raise DeserializationError("GlueDataCatalogConfig.database_name required")
-    if "tablePrefix" in data:
+    if data.get("tablePrefix") is not None:
         out["table_prefix"] = data["tablePrefix"]
     else:
         raise DeserializationError("GlueDataCatalogConfig.table_prefix required")

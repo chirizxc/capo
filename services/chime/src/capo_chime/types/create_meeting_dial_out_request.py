@@ -34,19 +34,19 @@ def serialize_json(value: CreateMeetingDialOutRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateMeetingDialOutRequest:
     out: CreateMeetingDialOutRequest = {}  # type: ignore[typeddict-item]
-    if "FromPhoneNumber" in data:
+    if data.get("FromPhoneNumber") is not None:
         out["from_phone_number"] = data["FromPhoneNumber"]
     else:
         raise DeserializationError(
             "CreateMeetingDialOutRequest.from_phone_number required"
         )
-    if "ToPhoneNumber" in data:
+    if data.get("ToPhoneNumber") is not None:
         out["to_phone_number"] = data["ToPhoneNumber"]
     else:
         raise DeserializationError(
             "CreateMeetingDialOutRequest.to_phone_number required"
         )
-    if "JoinToken" in data:
+    if data.get("JoinToken") is not None:
         out["join_token"] = data["JoinToken"]
     else:
         raise DeserializationError("CreateMeetingDialOutRequest.join_token required")

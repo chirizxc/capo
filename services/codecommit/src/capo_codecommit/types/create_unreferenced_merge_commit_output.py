@@ -27,8 +27,8 @@ def serialize_aws_json_1_1(value: CreateUnreferencedMergeCommitOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateUnreferencedMergeCommitOutput:
     out: CreateUnreferencedMergeCommitOutput = {}  # type: ignore[typeddict-item]
-    if "commitId" in data:
+    if data.get("commitId") is not None:
         out["commit_id"] = data["commitId"]
-    if "treeId" in data:
+    if data.get("treeId") is not None:
         out["tree_id"] = data["treeId"]
     return out

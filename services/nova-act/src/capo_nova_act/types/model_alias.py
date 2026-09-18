@@ -31,14 +31,14 @@ def serialize_json(value: ModelAlias) -> dict:
 
 def deserialize_json(data: dict) -> ModelAlias:
     out: ModelAlias = {}  # type: ignore[typeddict-item]
-    if "aliasName" in data:
+    if data.get("aliasName") is not None:
         out["alias_name"] = data["aliasName"]
     else:
         raise DeserializationError("ModelAlias.alias_name required")
-    if "latestModelId" in data:
+    if data.get("latestModelId") is not None:
         out["latest_model_id"] = data["latestModelId"]
     else:
         raise DeserializationError("ModelAlias.latest_model_id required")
-    if "resolvedModelId" in data:
+    if data.get("resolvedModelId") is not None:
         out["resolved_model_id"] = data["resolvedModelId"]
     return out

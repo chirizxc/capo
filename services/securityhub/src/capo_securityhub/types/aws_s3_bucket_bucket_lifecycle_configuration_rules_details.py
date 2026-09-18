@@ -107,7 +107,7 @@ def serialize_json(value: AwsS3BucketBucketLifecycleConfigurationRulesDetails) -
 
 def deserialize_json(data: dict) -> AwsS3BucketBucketLifecycleConfigurationRulesDetails:
     out: AwsS3BucketBucketLifecycleConfigurationRulesDetails = {}  # type: ignore[typeddict-item]
-    if "AbortIncompleteMultipartUpload" in data:
+    if data.get("AbortIncompleteMultipartUpload") is not None:
         import capo_securityhub.types.aws_s3_bucket_bucket_lifecycle_configuration_rules_abort_incomplete_multipart_upload_details
 
         out["abort_incomplete_multipart_upload"] = (
@@ -115,13 +115,13 @@ def deserialize_json(data: dict) -> AwsS3BucketBucketLifecycleConfigurationRules
                 data["AbortIncompleteMultipartUpload"]
             )
         )
-    if "ExpirationDate" in data:
+    if data.get("ExpirationDate") is not None:
         out["expiration_date"] = data["ExpirationDate"]
-    if "ExpirationInDays" in data:
+    if data.get("ExpirationInDays") is not None:
         out["expiration_in_days"] = data["ExpirationInDays"]
-    if "ExpiredObjectDeleteMarker" in data:
+    if data.get("ExpiredObjectDeleteMarker") is not None:
         out["expired_object_delete_marker"] = data["ExpiredObjectDeleteMarker"]
-    if "Filter" in data:
+    if data.get("Filter") is not None:
         import capo_securityhub.types.aws_s3_bucket_bucket_lifecycle_configuration_rules_filter_details
 
         out["filter"] = (
@@ -129,13 +129,13 @@ def deserialize_json(data: dict) -> AwsS3BucketBucketLifecycleConfigurationRules
                 data["Filter"]
             )
         )
-    if "ID" in data:
+    if data.get("ID") is not None:
         out["id"] = data["ID"]
-    if "NoncurrentVersionExpirationInDays" in data:
+    if data.get("NoncurrentVersionExpirationInDays") is not None:
         out["noncurrent_version_expiration_in_days"] = data[
             "NoncurrentVersionExpirationInDays"
         ]
-    if "NoncurrentVersionTransitions" in data:
+    if data.get("NoncurrentVersionTransitions") is not None:
         import capo_securityhub.types.aws_s3_bucket_bucket_lifecycle_configuration_rules_noncurrent_version_transitions_list
 
         out["noncurrent_version_transitions"] = (
@@ -143,11 +143,11 @@ def deserialize_json(data: dict) -> AwsS3BucketBucketLifecycleConfigurationRules
                 data["NoncurrentVersionTransitions"]
             )
         )
-    if "Prefix" in data:
+    if data.get("Prefix") is not None:
         out["prefix"] = data["Prefix"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         out["status"] = data["Status"]
-    if "Transitions" in data:
+    if data.get("Transitions") is not None:
         import capo_securityhub.types.aws_s3_bucket_bucket_lifecycle_configuration_rules_transitions_list
 
         out["transitions"] = (

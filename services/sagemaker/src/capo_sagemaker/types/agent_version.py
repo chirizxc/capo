@@ -28,8 +28,8 @@ def serialize_aws_json_1_1(value: AgentVersion) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AgentVersion:
     out: AgentVersion = {}  # type: ignore[typeddict-item]
-    if "Version" in data:
+    if data.get("Version") is not None:
         out["version"] = data["Version"]
-    if "AgentCount" in data:
+    if data.get("AgentCount") is not None:
         out["agent_count"] = data["AgentCount"]
     return out

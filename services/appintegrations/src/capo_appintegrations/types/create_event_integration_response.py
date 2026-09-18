@@ -23,6 +23,6 @@ def serialize_json(value: CreateEventIntegrationResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateEventIntegrationResponse:
     out: CreateEventIntegrationResponse = {}  # type: ignore[typeddict-item]
-    if "EventIntegrationArn" in data:
+    if data.get("EventIntegrationArn") is not None:
         out["event_integration_arn"] = data["EventIntegrationArn"]
     return out

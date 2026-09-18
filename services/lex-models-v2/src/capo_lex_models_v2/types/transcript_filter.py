@@ -31,7 +31,7 @@ def serialize_json(value: TranscriptFilter) -> dict:
 
 def deserialize_json(data: dict) -> TranscriptFilter:
     out: TranscriptFilter = {}  # type: ignore[typeddict-item]
-    if "lexTranscriptFilter" in data:
+    if data.get("lexTranscriptFilter") is not None:
         import capo_lex_models_v2.types.lex_transcript_filter
 
         out["lex_transcript_filter"] = (

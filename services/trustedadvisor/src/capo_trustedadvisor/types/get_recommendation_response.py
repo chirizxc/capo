@@ -29,7 +29,7 @@ def serialize_json(value: GetRecommendationResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetRecommendationResponse:
     out: GetRecommendationResponse = {}  # type: ignore[typeddict-item]
-    if "recommendation" in data:
+    if data.get("recommendation") is not None:
         import capo_trustedadvisor.types.recommendation
 
         out["recommendation"] = (

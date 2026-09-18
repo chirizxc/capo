@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: StopCalculationExecutionResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> StopCalculationExecutionResponse:
     out: StopCalculationExecutionResponse = {}  # type: ignore[typeddict-item]
-    if "State" in data:
+    if data.get("State") is not None:
         import capo_athena.types.calculation_execution_state
 
         out["state"] = (

@@ -39,14 +39,14 @@ def serialize_aws_json_1_1(value: UpdateUploadRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateUploadRequest:
     out: UpdateUploadRequest = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("UpdateUploadRequest.arn required")
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "contentType" in data:
+    if data.get("contentType") is not None:
         out["content_type"] = data["contentType"]
-    if "editContent" in data:
+    if data.get("editContent") is not None:
         out["edit_content"] = data["editContent"]
     return out

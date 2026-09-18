@@ -36,7 +36,7 @@ def serialize_json(value: ListIdNamespacesOutput) -> dict:
 
 def deserialize_json(data: dict) -> ListIdNamespacesOutput:
     out: ListIdNamespacesOutput = {}  # type: ignore[typeddict-item]
-    if "idNamespaceSummaries" in data:
+    if data.get("idNamespaceSummaries") is not None:
         import capo_entityresolution.types.id_namespace_list
 
         out["id_namespace_summaries"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> ListIdNamespacesOutput:
                 data["idNamespaceSummaries"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

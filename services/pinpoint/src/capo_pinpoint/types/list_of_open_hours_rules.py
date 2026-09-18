@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> ListOfOpenHoursRules:
 
     out: ListOfOpenHoursRules = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_pinpoint.types.open_hours_rule.deserialize_json(item))
     return out

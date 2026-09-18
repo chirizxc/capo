@@ -38,13 +38,13 @@ def serialize_json(value: TableAggregatedFieldWells) -> dict:
 
 def deserialize_json(data: dict) -> TableAggregatedFieldWells:
     out: TableAggregatedFieldWells = {}  # type: ignore[typeddict-item]
-    if "GroupBy" in data:
+    if data.get("GroupBy") is not None:
         import capo_quicksight.types.dimension_field_list
 
         out["group_by"] = capo_quicksight.types.dimension_field_list.deserialize_json(
             data["GroupBy"]
         )
-    if "Values" in data:
+    if data.get("Values") is not None:
         import capo_quicksight.types.measure_field_list
 
         out["values"] = capo_quicksight.types.measure_field_list.deserialize_json(

@@ -186,25 +186,25 @@ def serialize_json(value: ResourceData) -> dict:
 
 def deserialize_json(data: dict) -> ResourceData:
     out: ResourceData = {}  # type: ignore[typeddict-item]
-    if "s3Bucket" in data:
+    if data.get("s3Bucket") is not None:
         import capo_guardduty.types.s3_bucket
 
         out["s3_bucket"] = capo_guardduty.types.s3_bucket.deserialize_json(
             data["s3Bucket"]
         )
-    if "ec2Instance" in data:
+    if data.get("ec2Instance") is not None:
         import capo_guardduty.types.ec2_instance
 
         out["ec2_instance"] = capo_guardduty.types.ec2_instance.deserialize_json(
             data["ec2Instance"]
         )
-    if "accessKey" in data:
+    if data.get("accessKey") is not None:
         import capo_guardduty.types.access_key
 
         out["access_key"] = capo_guardduty.types.access_key.deserialize_json(
             data["accessKey"]
         )
-    if "ec2NetworkInterface" in data:
+    if data.get("ec2NetworkInterface") is not None:
         import capo_guardduty.types.ec2_network_interface
 
         out["ec2_network_interface"] = (
@@ -212,19 +212,19 @@ def deserialize_json(data: dict) -> ResourceData:
                 data["ec2NetworkInterface"]
             )
         )
-    if "s3Object" in data:
+    if data.get("s3Object") is not None:
         import capo_guardduty.types.s3_object
 
         out["s3_object"] = capo_guardduty.types.s3_object.deserialize_json(
             data["s3Object"]
         )
-    if "eksCluster" in data:
+    if data.get("eksCluster") is not None:
         import capo_guardduty.types.eks_cluster
 
         out["eks_cluster"] = capo_guardduty.types.eks_cluster.deserialize_json(
             data["eksCluster"]
         )
-    if "kubernetesWorkload" in data:
+    if data.get("kubernetesWorkload") is not None:
         import capo_guardduty.types.kubernetes_workload
 
         out["kubernetes_workload"] = (
@@ -232,7 +232,7 @@ def deserialize_json(data: dict) -> ResourceData:
                 data["kubernetesWorkload"]
             )
         )
-    if "container" in data:
+    if data.get("container") is not None:
         import capo_guardduty.types.container_finding_resource
 
         out["container"] = (
@@ -240,19 +240,19 @@ def deserialize_json(data: dict) -> ResourceData:
                 data["container"]
             )
         )
-    if "ecsCluster" in data:
+    if data.get("ecsCluster") is not None:
         import capo_guardduty.types.ecs_cluster
 
         out["ecs_cluster"] = capo_guardduty.types.ecs_cluster.deserialize_json(
             data["ecsCluster"]
         )
-    if "ecsTask" in data:
+    if data.get("ecsTask") is not None:
         import capo_guardduty.types.ecs_task
 
         out["ecs_task"] = capo_guardduty.types.ecs_task.deserialize_json(
             data["ecsTask"]
         )
-    if "iamInstanceProfile" in data:
+    if data.get("iamInstanceProfile") is not None:
         import capo_guardduty.types.iam_instance_profile_v2
 
         out["iam_instance_profile"] = (
@@ -260,7 +260,7 @@ def deserialize_json(data: dict) -> ResourceData:
                 data["iamInstanceProfile"]
             )
         )
-    if "autoscalingAutoScalingGroup" in data:
+    if data.get("autoscalingAutoScalingGroup") is not None:
         import capo_guardduty.types.autoscaling_auto_scaling_group
 
         out["autoscaling_auto_scaling_group"] = (
@@ -268,7 +268,7 @@ def deserialize_json(data: dict) -> ResourceData:
                 data["autoscalingAutoScalingGroup"]
             )
         )
-    if "ec2LaunchTemplate" in data:
+    if data.get("ec2LaunchTemplate") is not None:
         import capo_guardduty.types.ec2_launch_template
 
         out["ec2_launch_template"] = (
@@ -276,17 +276,17 @@ def deserialize_json(data: dict) -> ResourceData:
                 data["ec2LaunchTemplate"]
             )
         )
-    if "ec2Vpc" in data:
+    if data.get("ec2Vpc") is not None:
         import capo_guardduty.types.ec2_vpc
 
         out["ec2_vpc"] = capo_guardduty.types.ec2_vpc.deserialize_json(data["ec2Vpc"])
-    if "ec2Image" in data:
+    if data.get("ec2Image") is not None:
         import capo_guardduty.types.ec2_image
 
         out["ec2_image"] = capo_guardduty.types.ec2_image.deserialize_json(
             data["ec2Image"]
         )
-    if "cloudformationStack" in data:
+    if data.get("cloudformationStack") is not None:
         import capo_guardduty.types.cloudformation_stack
 
         out["cloudformation_stack"] = (

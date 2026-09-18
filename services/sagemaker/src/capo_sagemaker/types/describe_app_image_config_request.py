@@ -25,6 +25,6 @@ def serialize_aws_json_1_1(value: DescribeAppImageConfigRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeAppImageConfigRequest:
     out: DescribeAppImageConfigRequest = {}  # type: ignore[typeddict-item]
-    if "AppImageConfigName" in data:
+    if data.get("AppImageConfigName") is not None:
         out["app_image_config_name"] = data["AppImageConfigName"]
     return out

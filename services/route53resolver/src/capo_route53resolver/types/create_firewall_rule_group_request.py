@@ -37,17 +37,17 @@ def serialize_aws_json_1_1(value: CreateFirewallRuleGroupRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateFirewallRuleGroupRequest:
     out: CreateFirewallRuleGroupRequest = {}  # type: ignore[typeddict-item]
-    if "CreatorRequestId" in data:
+    if data.get("CreatorRequestId") is not None:
         out["creator_request_id"] = data["CreatorRequestId"]
     else:
         raise DeserializationError(
             "CreateFirewallRuleGroupRequest.creator_request_id required"
         )
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("CreateFirewallRuleGroupRequest.name required")
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_route53resolver.types.tag_list
 
         out["tags"] = capo_route53resolver.types.tag_list.deserialize_aws_json_1_1(

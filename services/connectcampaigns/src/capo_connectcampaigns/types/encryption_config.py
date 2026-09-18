@@ -31,12 +31,12 @@ def serialize_json(value: EncryptionConfig) -> dict:
 
 def deserialize_json(data: dict) -> EncryptionConfig:
     out: EncryptionConfig = {}  # type: ignore[typeddict-item]
-    if "enabled" in data:
+    if data.get("enabled") is not None:
         out["enabled"] = data["enabled"]
     else:
         out["enabled"] = False
-    if "encryptionType" in data:
+    if data.get("encryptionType") is not None:
         out["encryption_type"] = data["encryptionType"]
-    if "keyArn" in data:
+    if data.get("keyArn") is not None:
         out["key_arn"] = data["keyArn"]
     return out

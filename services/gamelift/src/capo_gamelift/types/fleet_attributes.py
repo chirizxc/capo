@@ -271,17 +271,17 @@ def serialize_aws_json_1_1(value: FleetAttributes) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> FleetAttributes:
     out: FleetAttributes = {}  # type: ignore[typeddict-item]
-    if "FleetId" in data:
+    if data.get("FleetId") is not None:
         out["fleet_id"] = data["FleetId"]
-    if "FleetArn" in data:
+    if data.get("FleetArn") is not None:
         out["fleet_arn"] = data["FleetArn"]
-    if "FleetType" in data:
+    if data.get("FleetType") is not None:
         import capo_gamelift.types.fleet_type
 
         out["fleet_type"] = capo_gamelift.types.fleet_type.deserialize_aws_json_1_1(
             data["FleetType"]
         )
-    if "InstanceType" in data:
+    if data.get("InstanceType") is not None:
         import capo_gamelift.types.ec2_instance_type
 
         out["instance_type"] = (
@@ -289,17 +289,17 @@ def deserialize_aws_json_1_1(data: dict) -> FleetAttributes:
                 data["InstanceType"]
             )
         )
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_gamelift.types.timestamp
 
         out["creation_time"] = capo_gamelift.types.timestamp.deserialize_aws_json_1_1(
             data["CreationTime"]
         )
-    if "TerminationTime" in data:
+    if data.get("TerminationTime") is not None:
         import capo_gamelift.types.timestamp
 
         out["termination_time"] = (
@@ -307,31 +307,31 @@ def deserialize_aws_json_1_1(data: dict) -> FleetAttributes:
                 data["TerminationTime"]
             )
         )
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_gamelift.types.fleet_status
 
         out["status"] = capo_gamelift.types.fleet_status.deserialize_aws_json_1_1(
             data["Status"]
         )
-    if "BuildId" in data:
+    if data.get("BuildId") is not None:
         out["build_id"] = data["BuildId"]
-    if "BuildArn" in data:
+    if data.get("BuildArn") is not None:
         out["build_arn"] = data["BuildArn"]
-    if "ScriptId" in data:
+    if data.get("ScriptId") is not None:
         out["script_id"] = data["ScriptId"]
-    if "ScriptArn" in data:
+    if data.get("ScriptArn") is not None:
         out["script_arn"] = data["ScriptArn"]
-    if "ServerLaunchPath" in data:
+    if data.get("ServerLaunchPath") is not None:
         out["server_launch_path"] = data["ServerLaunchPath"]
-    if "ServerLaunchParameters" in data:
+    if data.get("ServerLaunchParameters") is not None:
         out["server_launch_parameters"] = data["ServerLaunchParameters"]
-    if "LogPaths" in data:
+    if data.get("LogPaths") is not None:
         import capo_gamelift.types.string_list
 
         out["log_paths"] = capo_gamelift.types.string_list.deserialize_aws_json_1_1(
             data["LogPaths"]
         )
-    if "NewGameSessionProtectionPolicy" in data:
+    if data.get("NewGameSessionProtectionPolicy") is not None:
         import capo_gamelift.types.protection_policy
 
         out["new_game_session_protection_policy"] = (
@@ -339,7 +339,7 @@ def deserialize_aws_json_1_1(data: dict) -> FleetAttributes:
                 data["NewGameSessionProtectionPolicy"]
             )
         )
-    if "OperatingSystem" in data:
+    if data.get("OperatingSystem") is not None:
         import capo_gamelift.types.operating_system
 
         out["operating_system"] = (
@@ -347,7 +347,7 @@ def deserialize_aws_json_1_1(data: dict) -> FleetAttributes:
                 data["OperatingSystem"]
             )
         )
-    if "ResourceCreationLimitPolicy" in data:
+    if data.get("ResourceCreationLimitPolicy") is not None:
         import capo_gamelift.types.resource_creation_limit_policy
 
         out["resource_creation_limit_policy"] = (
@@ -355,7 +355,7 @@ def deserialize_aws_json_1_1(data: dict) -> FleetAttributes:
                 data["ResourceCreationLimitPolicy"]
             )
         )
-    if "MetricGroups" in data:
+    if data.get("MetricGroups") is not None:
         import capo_gamelift.types.metric_group_list
 
         out["metric_groups"] = (
@@ -363,7 +363,7 @@ def deserialize_aws_json_1_1(data: dict) -> FleetAttributes:
                 data["MetricGroups"]
             )
         )
-    if "StoppedActions" in data:
+    if data.get("StoppedActions") is not None:
         import capo_gamelift.types.fleet_action_list
 
         out["stopped_actions"] = (
@@ -371,9 +371,9 @@ def deserialize_aws_json_1_1(data: dict) -> FleetAttributes:
                 data["StoppedActions"]
             )
         )
-    if "InstanceRoleArn" in data:
+    if data.get("InstanceRoleArn") is not None:
         out["instance_role_arn"] = data["InstanceRoleArn"]
-    if "CertificateConfiguration" in data:
+    if data.get("CertificateConfiguration") is not None:
         import capo_gamelift.types.certificate_configuration
 
         out["certificate_configuration"] = (
@@ -381,13 +381,13 @@ def deserialize_aws_json_1_1(data: dict) -> FleetAttributes:
                 data["CertificateConfiguration"]
             )
         )
-    if "ComputeType" in data:
+    if data.get("ComputeType") is not None:
         import capo_gamelift.types.compute_type
 
         out["compute_type"] = capo_gamelift.types.compute_type.deserialize_aws_json_1_1(
             data["ComputeType"]
         )
-    if "AnywhereConfiguration" in data:
+    if data.get("AnywhereConfiguration") is not None:
         import capo_gamelift.types.anywhere_configuration
 
         out["anywhere_configuration"] = (
@@ -395,7 +395,7 @@ def deserialize_aws_json_1_1(data: dict) -> FleetAttributes:
                 data["AnywhereConfiguration"]
             )
         )
-    if "InstanceRoleCredentialsProvider" in data:
+    if data.get("InstanceRoleCredentialsProvider") is not None:
         import capo_gamelift.types.instance_role_credentials_provider
 
         out["instance_role_credentials_provider"] = (
@@ -403,7 +403,7 @@ def deserialize_aws_json_1_1(data: dict) -> FleetAttributes:
                 data["InstanceRoleCredentialsProvider"]
             )
         )
-    if "PlayerGatewayMode" in data:
+    if data.get("PlayerGatewayMode") is not None:
         import capo_gamelift.types.player_gateway_mode
 
         out["player_gateway_mode"] = (
@@ -411,7 +411,7 @@ def deserialize_aws_json_1_1(data: dict) -> FleetAttributes:
                 data["PlayerGatewayMode"]
             )
         )
-    if "PlayerGatewayConfiguration" in data:
+    if data.get("PlayerGatewayConfiguration") is not None:
         import capo_gamelift.types.player_gateway_configuration
 
         out["player_gateway_configuration"] = (

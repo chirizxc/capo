@@ -64,9 +64,9 @@ def serialize_aws_json_1_0(value: FlowOperationMetadata) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> FlowOperationMetadata:
     out: FlowOperationMetadata = {}  # type: ignore[typeddict-item]
-    if "FlowOperationId" in data:
+    if data.get("FlowOperationId") is not None:
         out["flow_operation_id"] = data["FlowOperationId"]
-    if "FlowOperationType" in data:
+    if data.get("FlowOperationType") is not None:
         import capo_network_firewall.types.flow_operation_type
 
         out["flow_operation_type"] = (
@@ -74,7 +74,7 @@ def deserialize_aws_json_1_0(data: dict) -> FlowOperationMetadata:
                 data["FlowOperationType"]
             )
         )
-    if "FlowRequestTimestamp" in data:
+    if data.get("FlowRequestTimestamp") is not None:
         import capo_network_firewall.types.flow_request_timestamp
 
         out["flow_request_timestamp"] = (
@@ -82,7 +82,7 @@ def deserialize_aws_json_1_0(data: dict) -> FlowOperationMetadata:
                 data["FlowRequestTimestamp"]
             )
         )
-    if "FlowOperationStatus" in data:
+    if data.get("FlowOperationStatus") is not None:
         import capo_network_firewall.types.flow_operation_status
 
         out["flow_operation_status"] = (

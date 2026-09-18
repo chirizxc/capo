@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: GeoMatchSetUpdate) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GeoMatchSetUpdate:
     out: GeoMatchSetUpdate = {}  # type: ignore[typeddict-item]
-    if "Action" in data:
+    if data.get("Action") is not None:
         import capo_waf.types.change_action
 
         out["action"] = capo_waf.types.change_action.deserialize_aws_json_1_1(
@@ -44,7 +44,7 @@ def deserialize_aws_json_1_1(data: dict) -> GeoMatchSetUpdate:
         )
     else:
         raise DeserializationError("GeoMatchSetUpdate.action required")
-    if "GeoMatchConstraint" in data:
+    if data.get("GeoMatchConstraint") is not None:
         import capo_waf.types.geo_match_constraint
 
         out["geo_match_constraint"] = (

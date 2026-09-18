@@ -32,11 +32,11 @@ def serialize_json(value: DeletePrivateConnectionOutput) -> dict:
 
 def deserialize_json(data: dict) -> DeletePrivateConnectionOutput:
     out: DeletePrivateConnectionOutput = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("DeletePrivateConnectionOutput.name required")
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_devops_agent.types.private_connection_status
 
         out["status"] = (

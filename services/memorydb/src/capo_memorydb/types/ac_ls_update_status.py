@@ -23,6 +23,6 @@ def serialize_aws_json_1_1(value: ACLsUpdateStatus) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ACLsUpdateStatus:
     out: ACLsUpdateStatus = {}  # type: ignore[typeddict-item]
-    if "ACLToApply" in data:
+    if data.get("ACLToApply") is not None:
         out["acl_to_apply"] = data["ACLToApply"]
     return out

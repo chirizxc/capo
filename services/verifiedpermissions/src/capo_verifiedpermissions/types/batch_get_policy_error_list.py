@@ -29,6 +29,8 @@ def deserialize_aws_json_1_0(data: list) -> BatchGetPolicyErrorList:
 
     out: BatchGetPolicyErrorList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_verifiedpermissions.types.batch_get_policy_error_item.deserialize_aws_json_1_0(
                 item

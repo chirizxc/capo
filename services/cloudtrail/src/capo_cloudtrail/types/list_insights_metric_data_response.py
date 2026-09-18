@@ -76,13 +76,13 @@ def serialize_aws_json_1_1(value: ListInsightsMetricDataResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListInsightsMetricDataResponse:
     out: ListInsightsMetricDataResponse = {}  # type: ignore[typeddict-item]
-    if "TrailARN" in data:
+    if data.get("TrailARN") is not None:
         out["trail_arn"] = data["TrailARN"]
-    if "EventSource" in data:
+    if data.get("EventSource") is not None:
         out["event_source"] = data["EventSource"]
-    if "EventName" in data:
+    if data.get("EventName") is not None:
         out["event_name"] = data["EventName"]
-    if "InsightType" in data:
+    if data.get("InsightType") is not None:
         import capo_cloudtrail.types.insight_type
 
         out["insight_type"] = (
@@ -90,15 +90,15 @@ def deserialize_aws_json_1_1(data: dict) -> ListInsightsMetricDataResponse:
                 data["InsightType"]
             )
         )
-    if "ErrorCode" in data:
+    if data.get("ErrorCode") is not None:
         out["error_code"] = data["ErrorCode"]
-    if "Timestamps" in data:
+    if data.get("Timestamps") is not None:
         import capo_cloudtrail.types.timestamps
 
         out["timestamps"] = capo_cloudtrail.types.timestamps.deserialize_aws_json_1_1(
             data["Timestamps"]
         )
-    if "Values" in data:
+    if data.get("Values") is not None:
         import capo_cloudtrail.types.insights_metric_values
 
         out["values"] = (
@@ -106,6 +106,6 @@ def deserialize_aws_json_1_1(data: dict) -> ListInsightsMetricDataResponse:
                 data["Values"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

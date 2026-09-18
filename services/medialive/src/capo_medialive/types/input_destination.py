@@ -56,21 +56,21 @@ def serialize_json(value: InputDestination) -> dict:
 
 def deserialize_json(data: dict) -> InputDestination:
     out: InputDestination = {}  # type: ignore[typeddict-item]
-    if "ip" in data:
+    if data.get("ip") is not None:
         out["ip"] = data["ip"]
-    if "port" in data:
+    if data.get("port") is not None:
         out["port"] = data["port"]
-    if "url" in data:
+    if data.get("url") is not None:
         out["url"] = data["url"]
-    if "vpc" in data:
+    if data.get("vpc") is not None:
         import capo_medialive.types.input_destination_vpc
 
         out["vpc"] = capo_medialive.types.input_destination_vpc.deserialize_json(
             data["vpc"]
         )
-    if "network" in data:
+    if data.get("network") is not None:
         out["network"] = data["network"]
-    if "networkRoutes" in data:
+    if data.get("networkRoutes") is not None:
         import capo_medialive.types.__list_of_input_destination_route
 
         out["network_routes"] = (

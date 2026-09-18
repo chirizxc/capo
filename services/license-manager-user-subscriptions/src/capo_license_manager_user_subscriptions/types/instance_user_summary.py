@@ -62,15 +62,15 @@ def serialize_json(value: InstanceUserSummary) -> dict:
 
 def deserialize_json(data: dict) -> InstanceUserSummary:
     out: InstanceUserSummary = {}  # type: ignore[typeddict-item]
-    if "Username" in data:
+    if data.get("Username") is not None:
         out["username"] = data["Username"]
     else:
         raise DeserializationError("InstanceUserSummary.username required")
-    if "InstanceId" in data:
+    if data.get("InstanceId") is not None:
         out["instance_id"] = data["InstanceId"]
     else:
         raise DeserializationError("InstanceUserSummary.instance_id required")
-    if "IdentityProvider" in data:
+    if data.get("IdentityProvider") is not None:
         import capo_license_manager_user_subscriptions.types.identity_provider
 
         out["identity_provider"] = (
@@ -80,18 +80,18 @@ def deserialize_json(data: dict) -> InstanceUserSummary:
         )
     else:
         raise DeserializationError("InstanceUserSummary.identity_provider required")
-    if "Status" in data:
+    if data.get("Status") is not None:
         out["status"] = data["Status"]
     else:
         raise DeserializationError("InstanceUserSummary.status required")
-    if "InstanceUserArn" in data:
+    if data.get("InstanceUserArn") is not None:
         out["instance_user_arn"] = data["InstanceUserArn"]
-    if "StatusMessage" in data:
+    if data.get("StatusMessage") is not None:
         out["status_message"] = data["StatusMessage"]
-    if "Domain" in data:
+    if data.get("Domain") is not None:
         out["domain"] = data["Domain"]
-    if "AssociationDate" in data:
+    if data.get("AssociationDate") is not None:
         out["association_date"] = data["AssociationDate"]
-    if "DisassociationDate" in data:
+    if data.get("DisassociationDate") is not None:
         out["disassociation_date"] = data["DisassociationDate"]
     return out

@@ -43,17 +43,17 @@ def serialize_json(value: CreatePromptRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreatePromptRequest:
     out: CreatePromptRequest = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("CreatePromptRequest.name required")
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "S3Uri" in data:
+    if data.get("S3Uri") is not None:
         out["s3_uri"] = data["S3Uri"]
     else:
         raise DeserializationError("CreatePromptRequest.s3_uri required")
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_connect.types.tag_map
 
         out["tags"] = capo_connect.types.tag_map.deserialize_json(data["Tags"])

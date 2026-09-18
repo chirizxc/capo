@@ -23,5 +23,7 @@ def deserialize_aws_json_1_1(data: list) -> SnapshotFilters:
 
     out: SnapshotFilters = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_fsx.types.snapshot_filter.deserialize_aws_json_1_1(item))
     return out

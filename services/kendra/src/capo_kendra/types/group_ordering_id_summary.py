@@ -60,7 +60,7 @@ def serialize_aws_json_1_1(value: GroupOrderingIdSummary) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GroupOrderingIdSummary:
     out: GroupOrderingIdSummary = {}  # type: ignore[typeddict-item]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_kendra.types.principal_mapping_status
 
         out["status"] = (
@@ -68,20 +68,20 @@ def deserialize_aws_json_1_1(data: dict) -> GroupOrderingIdSummary:
                 data["Status"]
             )
         )
-    if "LastUpdatedAt" in data:
+    if data.get("LastUpdatedAt") is not None:
         import capo_kendra.types.timestamp
 
         out["last_updated_at"] = capo_kendra.types.timestamp.deserialize_aws_json_1_1(
             data["LastUpdatedAt"]
         )
-    if "ReceivedAt" in data:
+    if data.get("ReceivedAt") is not None:
         import capo_kendra.types.timestamp
 
         out["received_at"] = capo_kendra.types.timestamp.deserialize_aws_json_1_1(
             data["ReceivedAt"]
         )
-    if "OrderingId" in data:
+    if data.get("OrderingId") is not None:
         out["ordering_id"] = data["OrderingId"]
-    if "FailureReason" in data:
+    if data.get("FailureReason") is not None:
         out["failure_reason"] = data["FailureReason"]
     return out

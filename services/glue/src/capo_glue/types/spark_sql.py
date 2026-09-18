@@ -51,11 +51,11 @@ def serialize_aws_json_1_1(value: SparkSQL) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SparkSQL:
     out: SparkSQL = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("SparkSQL.name required")
-    if "Inputs" in data:
+    if data.get("Inputs") is not None:
         import capo_glue.types.many_inputs
 
         out["inputs"] = capo_glue.types.many_inputs.deserialize_aws_json_1_1(
@@ -63,11 +63,11 @@ def deserialize_aws_json_1_1(data: dict) -> SparkSQL:
         )
     else:
         raise DeserializationError("SparkSQL.inputs required")
-    if "SqlQuery" in data:
+    if data.get("SqlQuery") is not None:
         out["sql_query"] = data["SqlQuery"]
     else:
         raise DeserializationError("SparkSQL.sql_query required")
-    if "SqlAliases" in data:
+    if data.get("SqlAliases") is not None:
         import capo_glue.types.sql_aliases
 
         out["sql_aliases"] = capo_glue.types.sql_aliases.deserialize_aws_json_1_1(
@@ -75,7 +75,7 @@ def deserialize_aws_json_1_1(data: dict) -> SparkSQL:
         )
     else:
         raise DeserializationError("SparkSQL.sql_aliases required")
-    if "OutputSchemas" in data:
+    if data.get("OutputSchemas") is not None:
         import capo_glue.types.glue_schemas
 
         out["output_schemas"] = capo_glue.types.glue_schemas.deserialize_aws_json_1_1(

@@ -39,15 +39,20 @@ class HsmClientCertificateAlreadyExistsFault(ServiceError):
 
     code: str | None = "HsmClientCertificateAlreadyExistsFault"
 
-    def __init__(self, data: HsmClientCertificateAlreadyExistsFault_):
+    def __init__(
+        self, data: HsmClientCertificateAlreadyExistsFault_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="HsmClientCertificateAlreadyExistsFault",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_query(cls, el: Element) -> "HsmClientCertificateAlreadyExistsFault":
-        return cls(deserialize_query(el))
+    def from_query(
+        cls, el: Element, message: str | None = None
+    ) -> "HsmClientCertificateAlreadyExistsFault":
+        return cls(deserialize_query(el), message)

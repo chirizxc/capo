@@ -28,6 +28,6 @@ def serialize_json(value: UpdateExportRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateExportRequest:
     out: UpdateExportRequest = {}  # type: ignore[typeddict-item]
-    if "filePassword" in data:
+    if data.get("filePassword") is not None:
         out["file_password"] = data["filePassword"]
     return out

@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> ImportedWirelessDeviceList:
 
     out: ImportedWirelessDeviceList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_iot_wireless.types.imported_wireless_device.deserialize_json(item)
         )

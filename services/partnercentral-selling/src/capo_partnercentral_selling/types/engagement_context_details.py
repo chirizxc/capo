@@ -50,9 +50,9 @@ def serialize_aws_json_1_0(value: EngagementContextDetails) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> EngagementContextDetails:
     out: EngagementContextDetails = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_partnercentral_selling.types.engagement_context_type
 
         out["type"] = (
@@ -62,7 +62,7 @@ def deserialize_aws_json_1_0(data: dict) -> EngagementContextDetails:
         )
     else:
         raise DeserializationError("EngagementContextDetails.type required")
-    if "Payload" in data:
+    if data.get("Payload") is not None:
         import capo_partnercentral_selling.types.engagement_context_payload
 
         out["payload"] = (

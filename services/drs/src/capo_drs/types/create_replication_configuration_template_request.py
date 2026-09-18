@@ -109,15 +109,15 @@ def serialize_json(value: CreateReplicationConfigurationTemplateRequest) -> dict
 
 def deserialize_json(data: dict) -> CreateReplicationConfigurationTemplateRequest:
     out: CreateReplicationConfigurationTemplateRequest = {}  # type: ignore[typeddict-item]
-    if "stagingAreaSubnetId" in data:
+    if data.get("stagingAreaSubnetId") is not None:
         out["staging_area_subnet_id"] = data["stagingAreaSubnetId"]
     else:
         raise DeserializationError(
             "CreateReplicationConfigurationTemplateRequest.staging_area_subnet_id required"
         )
-    if "associateDefaultSecurityGroup" in data:
+    if data.get("associateDefaultSecurityGroup") is not None:
         out["associate_default_security_group"] = data["associateDefaultSecurityGroup"]
-    if "replicationServersSecurityGroupsIDs" in data:
+    if data.get("replicationServersSecurityGroupsIDs") is not None:
         import capo_drs.types.replication_servers_security_groups_i_ds
 
         out["replication_servers_security_groups_i_ds"] = (
@@ -129,29 +129,29 @@ def deserialize_json(data: dict) -> CreateReplicationConfigurationTemplateReques
         raise DeserializationError(
             "CreateReplicationConfigurationTemplateRequest.replication_servers_security_groups_i_ds required"
         )
-    if "replicationServerInstanceType" in data:
+    if data.get("replicationServerInstanceType") is not None:
         out["replication_server_instance_type"] = data["replicationServerInstanceType"]
-    if "useDedicatedReplicationServer" in data:
+    if data.get("useDedicatedReplicationServer") is not None:
         out["use_dedicated_replication_server"] = data["useDedicatedReplicationServer"]
-    if "defaultLargeStagingDiskType" in data:
+    if data.get("defaultLargeStagingDiskType") is not None:
         out["default_large_staging_disk_type"] = data["defaultLargeStagingDiskType"]
-    if "ebsEncryption" in data:
+    if data.get("ebsEncryption") is not None:
         out["ebs_encryption"] = data["ebsEncryption"]
     else:
         raise DeserializationError(
             "CreateReplicationConfigurationTemplateRequest.ebs_encryption required"
         )
-    if "ebsEncryptionKeyArn" in data:
+    if data.get("ebsEncryptionKeyArn") is not None:
         out["ebs_encryption_key_arn"] = data["ebsEncryptionKeyArn"]
-    if "bandwidthThrottling" in data:
+    if data.get("bandwidthThrottling") is not None:
         out["bandwidth_throttling"] = data["bandwidthThrottling"]
     else:
         out["bandwidth_throttling"] = 0
-    if "dataPlaneRouting" in data:
+    if data.get("dataPlaneRouting") is not None:
         out["data_plane_routing"] = data["dataPlaneRouting"]
-    if "createPublicIP" in data:
+    if data.get("createPublicIP") is not None:
         out["create_public_ip"] = data["createPublicIP"]
-    if "stagingAreaTags" in data:
+    if data.get("stagingAreaTags") is not None:
         import capo_drs.types.tags_map
 
         out["staging_area_tags"] = capo_drs.types.tags_map.deserialize_json(
@@ -161,7 +161,7 @@ def deserialize_json(data: dict) -> CreateReplicationConfigurationTemplateReques
         raise DeserializationError(
             "CreateReplicationConfigurationTemplateRequest.staging_area_tags required"
         )
-    if "pitPolicy" in data:
+    if data.get("pitPolicy") is not None:
         import capo_drs.types.pit_policy
 
         out["pit_policy"] = capo_drs.types.pit_policy.deserialize_json(
@@ -171,12 +171,12 @@ def deserialize_json(data: dict) -> CreateReplicationConfigurationTemplateReques
         raise DeserializationError(
             "CreateReplicationConfigurationTemplateRequest.pit_policy required"
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_drs.types.tags_map
 
         out["tags"] = capo_drs.types.tags_map.deserialize_json(data["tags"])
-    if "autoReplicateNewDisks" in data:
+    if data.get("autoReplicateNewDisks") is not None:
         out["auto_replicate_new_disks"] = data["autoReplicateNewDisks"]
-    if "internetProtocol" in data:
+    if data.get("internetProtocol") is not None:
         out["internet_protocol"] = data["internetProtocol"]
     return out

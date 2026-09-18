@@ -42,17 +42,17 @@ def serialize_aws_json_1_1(value: ListGroupsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListGroupsRequest:
     out: ListGroupsRequest = {}  # type: ignore[typeddict-item]
-    if "IdentityStoreId" in data:
+    if data.get("IdentityStoreId") is not None:
         out["identity_store_id"] = data["IdentityStoreId"]
     else:
         raise DeserializationError("ListGroupsRequest.identity_store_id required")
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
     else:
         out["max_results"] = 100
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "Filters" in data:
+    if data.get("Filters") is not None:
         import capo_identitystore.types.filters
 
         out["filters"] = capo_identitystore.types.filters.deserialize_aws_json_1_1(

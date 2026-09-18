@@ -227,9 +227,9 @@ def serialize_json(value: SecurityGroupSettings) -> dict:
 
 def deserialize_json(data: dict) -> SecurityGroupSettings:
     out: SecurityGroupSettings = {}  # type: ignore[typeddict-item]
-    if "alwaysReauthenticate" in data:
+    if data.get("alwaysReauthenticate") is not None:
         out["always_reauthenticate"] = data["alwaysReauthenticate"]
-    if "atakPackageValues" in data:
+    if data.get("atakPackageValues") is not None:
         import capo_wickr.types.security_group_string_list
 
         out["atak_package_values"] = (
@@ -237,57 +237,57 @@ def deserialize_json(data: dict) -> SecurityGroupSettings:
                 data["atakPackageValues"]
             )
         )
-    if "calling" in data:
+    if data.get("calling") is not None:
         import capo_wickr.types.calling_settings
 
         out["calling"] = capo_wickr.types.calling_settings.deserialize_json(
             data["calling"]
         )
-    if "checkForUpdates" in data:
+    if data.get("checkForUpdates") is not None:
         out["check_for_updates"] = data["checkForUpdates"]
-    if "enableAtak" in data:
+    if data.get("enableAtak") is not None:
         out["enable_atak"] = data["enableAtak"]
-    if "enableCrashReports" in data:
+    if data.get("enableCrashReports") is not None:
         out["enable_crash_reports"] = data["enableCrashReports"]
-    if "enableFileDownload" in data:
+    if data.get("enableFileDownload") is not None:
         out["enable_file_download"] = data["enableFileDownload"]
-    if "enableGuestFederation" in data:
+    if data.get("enableGuestFederation") is not None:
         out["enable_guest_federation"] = data["enableGuestFederation"]
-    if "enableNotificationPreview" in data:
+    if data.get("enableNotificationPreview") is not None:
         out["enable_notification_preview"] = data["enableNotificationPreview"]
-    if "enableOpenAccessOption" in data:
+    if data.get("enableOpenAccessOption") is not None:
         out["enable_open_access_option"] = data["enableOpenAccessOption"]
-    if "enableRestrictedGlobalFederation" in data:
+    if data.get("enableRestrictedGlobalFederation") is not None:
         out["enable_restricted_global_federation"] = data[
             "enableRestrictedGlobalFederation"
         ]
-    if "filesEnabled" in data:
+    if data.get("filesEnabled") is not None:
         out["files_enabled"] = data["filesEnabled"]
-    if "forceDeviceLockout" in data:
+    if data.get("forceDeviceLockout") is not None:
         out["force_device_lockout"] = data["forceDeviceLockout"]
-    if "forceOpenAccess" in data:
+    if data.get("forceOpenAccess") is not None:
         out["force_open_access"] = data["forceOpenAccess"]
-    if "forceReadReceipts" in data:
+    if data.get("forceReadReceipts") is not None:
         out["force_read_receipts"] = data["forceReadReceipts"]
-    if "globalFederation" in data:
+    if data.get("globalFederation") is not None:
         out["global_federation"] = data["globalFederation"]
-    if "isAtoEnabled" in data:
+    if data.get("isAtoEnabled") is not None:
         out["is_ato_enabled"] = data["isAtoEnabled"]
-    if "isLinkPreviewEnabled" in data:
+    if data.get("isLinkPreviewEnabled") is not None:
         out["is_link_preview_enabled"] = data["isLinkPreviewEnabled"]
-    if "locationAllowMaps" in data:
+    if data.get("locationAllowMaps") is not None:
         out["location_allow_maps"] = data["locationAllowMaps"]
-    if "locationEnabled" in data:
+    if data.get("locationEnabled") is not None:
         out["location_enabled"] = data["locationEnabled"]
-    if "maxAutoDownloadSize" in data:
+    if data.get("maxAutoDownloadSize") is not None:
         out["max_auto_download_size"] = data["maxAutoDownloadSize"]
-    if "maxBor" in data:
+    if data.get("maxBor") is not None:
         out["max_bor"] = data["maxBor"]
-    if "maxTtl" in data:
+    if data.get("maxTtl") is not None:
         out["max_ttl"] = data["maxTtl"]
-    if "messageForwardingEnabled" in data:
+    if data.get("messageForwardingEnabled") is not None:
         out["message_forwarding_enabled"] = data["messageForwardingEnabled"]
-    if "passwordRequirements" in data:
+    if data.get("passwordRequirements") is not None:
         import capo_wickr.types.password_requirements
 
         out["password_requirements"] = (
@@ -295,9 +295,9 @@ def deserialize_json(data: dict) -> SecurityGroupSettings:
                 data["passwordRequirements"]
             )
         )
-    if "presenceEnabled" in data:
+    if data.get("presenceEnabled") is not None:
         out["presence_enabled"] = data["presenceEnabled"]
-    if "quickResponses" in data:
+    if data.get("quickResponses") is not None:
         import capo_wickr.types.security_group_string_list
 
         out["quick_responses"] = (
@@ -305,23 +305,23 @@ def deserialize_json(data: dict) -> SecurityGroupSettings:
                 data["quickResponses"]
             )
         )
-    if "showMasterRecoveryKey" in data:
+    if data.get("showMasterRecoveryKey") is not None:
         out["show_master_recovery_key"] = data["showMasterRecoveryKey"]
-    if "shredder" in data:
+    if data.get("shredder") is not None:
         import capo_wickr.types.shredder_settings
 
         out["shredder"] = capo_wickr.types.shredder_settings.deserialize_json(
             data["shredder"]
         )
-    if "ssoMaxIdleMinutes" in data:
+    if data.get("ssoMaxIdleMinutes") is not None:
         out["sso_max_idle_minutes"] = data["ssoMaxIdleMinutes"]
-    if "maxNonSsoSessionMinutes" in data:
+    if data.get("maxNonSsoSessionMinutes") is not None:
         out["max_non_sso_session_minutes"] = data["maxNonSsoSessionMinutes"]
-    if "federationMode" in data:
+    if data.get("federationMode") is not None:
         out["federation_mode"] = data["federationMode"]
-    if "lockoutThreshold" in data:
+    if data.get("lockoutThreshold") is not None:
         out["lockout_threshold"] = data["lockoutThreshold"]
-    if "permittedNetworks" in data:
+    if data.get("permittedNetworks") is not None:
         import capo_wickr.types.permitted_networks_list
 
         out["permitted_networks"] = (
@@ -329,7 +329,7 @@ def deserialize_json(data: dict) -> SecurityGroupSettings:
                 data["permittedNetworks"]
             )
         )
-    if "permittedWickrAwsNetworks" in data:
+    if data.get("permittedWickrAwsNetworks") is not None:
         import capo_wickr.types.wickr_aws_networks_list
 
         out["permitted_wickr_aws_networks"] = (
@@ -337,7 +337,7 @@ def deserialize_json(data: dict) -> SecurityGroupSettings:
                 data["permittedWickrAwsNetworks"]
             )
         )
-    if "permittedWickrEnterpriseNetworks" in data:
+    if data.get("permittedWickrEnterpriseNetworks") is not None:
         import capo_wickr.types.permitted_wickr_enterprise_networks_list
 
         out["permitted_wickr_enterprise_networks"] = (

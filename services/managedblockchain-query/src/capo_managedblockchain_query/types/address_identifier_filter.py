@@ -32,7 +32,7 @@ def serialize_json(value: AddressIdentifierFilter) -> dict:
 
 def deserialize_json(data: dict) -> AddressIdentifierFilter:
     out: AddressIdentifierFilter = {}  # type: ignore[typeddict-item]
-    if "transactionEventToAddress" in data:
+    if data.get("transactionEventToAddress") is not None:
         import capo_managedblockchain_query.types.chain_addresses
 
         out["transaction_event_to_address"] = (

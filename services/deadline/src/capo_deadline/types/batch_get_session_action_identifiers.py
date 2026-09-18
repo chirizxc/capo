@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> BatchGetSessionActionIdentifiers:
 
     out: BatchGetSessionActionIdentifiers = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_deadline.types.batch_get_session_action_identifier.deserialize_json(
                 item

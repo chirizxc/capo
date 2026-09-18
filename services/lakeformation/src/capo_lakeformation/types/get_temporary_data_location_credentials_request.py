@@ -57,15 +57,15 @@ def serialize_json(value: GetTemporaryDataLocationCredentialsRequest) -> dict:
 
 def deserialize_json(data: dict) -> GetTemporaryDataLocationCredentialsRequest:
     out: GetTemporaryDataLocationCredentialsRequest = {}  # type: ignore[typeddict-item]
-    if "DurationSeconds" in data:
+    if data.get("DurationSeconds") is not None:
         out["duration_seconds"] = data["DurationSeconds"]
-    if "AuditContext" in data:
+    if data.get("AuditContext") is not None:
         import capo_lakeformation.types.audit_context
 
         out["audit_context"] = capo_lakeformation.types.audit_context.deserialize_json(
             data["AuditContext"]
         )
-    if "DataLocations" in data:
+    if data.get("DataLocations") is not None:
         import capo_lakeformation.types.path_string_list
 
         out["data_locations"] = (
@@ -73,7 +73,7 @@ def deserialize_json(data: dict) -> GetTemporaryDataLocationCredentialsRequest:
                 data["DataLocations"]
             )
         )
-    if "CredentialsScope" in data:
+    if data.get("CredentialsScope") is not None:
         import capo_lakeformation.types.credentials_scope
 
         out["credentials_scope"] = (

@@ -25,6 +25,8 @@ def serialize_json(input_to_serialize: AuditCheckToReasonCodeFilter) -> dict:
 def deserialize_json(data: dict) -> AuditCheckToReasonCodeFilter:
     out: AuditCheckToReasonCodeFilter = {}
     for key, value in data.items():
+        if value is None:
+            continue
         import capo_iot.types.reason_for_non_compliance_codes
 
         out[key] = capo_iot.types.reason_for_non_compliance_codes.deserialize_json(

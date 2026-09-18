@@ -69,19 +69,19 @@ def serialize_json(value: TieringConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> TieringConfiguration:
     out: TieringConfiguration = {}  # type: ignore[typeddict-item]
-    if "TieringConfigurationName" in data:
+    if data.get("TieringConfigurationName") is not None:
         out["tiering_configuration_name"] = data["TieringConfigurationName"]
     else:
         raise DeserializationError(
             "TieringConfiguration.tiering_configuration_name required"
         )
-    if "TieringConfigurationArn" in data:
+    if data.get("TieringConfigurationArn") is not None:
         out["tiering_configuration_arn"] = data["TieringConfigurationArn"]
-    if "BackupVaultName" in data:
+    if data.get("BackupVaultName") is not None:
         out["backup_vault_name"] = data["BackupVaultName"]
     else:
         raise DeserializationError("TieringConfiguration.backup_vault_name required")
-    if "ResourceSelection" in data:
+    if data.get("ResourceSelection") is not None:
         import capo_backup.types.resource_selections
 
         out["resource_selection"] = (
@@ -91,15 +91,15 @@ def deserialize_json(data: dict) -> TieringConfiguration:
         )
     else:
         raise DeserializationError("TieringConfiguration.resource_selection required")
-    if "CreatorRequestId" in data:
+    if data.get("CreatorRequestId") is not None:
         out["creator_request_id"] = data["CreatorRequestId"]
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_backup.types.timestamp
 
         out["creation_time"] = capo_backup.types.timestamp.deserialize_json(
             data["CreationTime"]
         )
-    if "LastUpdatedTime" in data:
+    if data.get("LastUpdatedTime") is not None:
         import capo_backup.types.timestamp
 
         out["last_updated_time"] = capo_backup.types.timestamp.deserialize_json(

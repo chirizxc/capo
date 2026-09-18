@@ -47,16 +47,16 @@ def serialize_json(value: ListPropertiesRequest) -> dict:
 
 def deserialize_json(data: dict) -> ListPropertiesRequest:
     out: ListPropertiesRequest = {}  # type: ignore[typeddict-item]
-    if "componentName" in data:
+    if data.get("componentName") is not None:
         out["component_name"] = data["componentName"]
-    if "componentPath" in data:
+    if data.get("componentPath") is not None:
         out["component_path"] = data["componentPath"]
-    if "entityId" in data:
+    if data.get("entityId") is not None:
         out["entity_id"] = data["entityId"]
     else:
         raise DeserializationError("ListPropertiesRequest.entity_id required")
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

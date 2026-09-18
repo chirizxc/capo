@@ -28,11 +28,11 @@ def serialize_json(value: AssetInstanceTypeCapacity) -> dict:
 
 def deserialize_json(data: dict) -> AssetInstanceTypeCapacity:
     out: AssetInstanceTypeCapacity = {}  # type: ignore[typeddict-item]
-    if "InstanceType" in data:
+    if data.get("InstanceType") is not None:
         out["instance_type"] = data["InstanceType"]
     else:
         raise DeserializationError("AssetInstanceTypeCapacity.instance_type required")
-    if "Count" in data:
+    if data.get("Count") is not None:
         out["count"] = data["Count"]
     else:
         out["count"] = 0

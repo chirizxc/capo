@@ -1,5 +1,6 @@
 """Generated from Smithy shape ``com.amazonaws.devopsguru#CapstoneControlPlaneService``."""
 
+import uuid
 import warnings
 from collections.abc import AsyncIterator
 from typing import TYPE_CHECKING, Any, Iterable, Optional
@@ -265,14 +266,16 @@ class AsyncDevOpsGuruClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_devops_guru.types.add_notification_channel_request.AddNotificationChannelRequest = {}  # type: ignore[typeddict-item]
-        input_["config"] = config
+        input_: capo_devops_guru.types.add_notification_channel_request.AddNotificationChannelRequest = {
+            "config": config
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_insight(
@@ -312,14 +315,16 @@ class AsyncDevOpsGuruClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_devops_guru.types.delete_insight_request.DeleteInsightRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_devops_guru.types.delete_insight_request.DeleteInsightRequest = {
+            "id": id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_account_health(
@@ -351,13 +356,14 @@ class AsyncDevOpsGuruClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_devops_guru.types.describe_account_health_request.DescribeAccountHealthRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_devops_guru.types.describe_account_health_request.DescribeAccountHealthRequest = {}
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_account_overview(
@@ -397,8 +403,9 @@ class AsyncDevOpsGuruClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_devops_guru.types.describe_account_overview_request.DescribeAccountOverviewRequest = {}  # type: ignore[typeddict-item]
-        input_["from_time"] = from_time
+        input_: capo_devops_guru.types.describe_account_overview_request.DescribeAccountOverviewRequest = {
+            "from_time": from_time
+        }
         if to_time is not None:
             input_["to_time"] = to_time
 
@@ -407,6 +414,7 @@ class AsyncDevOpsGuruClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_anomaly(
@@ -449,8 +457,9 @@ class AsyncDevOpsGuruClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_devops_guru.types.describe_anomaly_request.DescribeAnomalyRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_devops_guru.types.describe_anomaly_request.DescribeAnomalyRequest = {
+            "id": id
+        }
         if account_id is not None:
             input_["account_id"] = account_id
 
@@ -459,6 +468,7 @@ class AsyncDevOpsGuruClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_event_sources_config(
@@ -490,13 +500,14 @@ class AsyncDevOpsGuruClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_devops_guru.types.describe_event_sources_config_request.DescribeEventSourcesConfigRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_devops_guru.types.describe_event_sources_config_request.DescribeEventSourcesConfigRequest = {}
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_feedback(
@@ -535,7 +546,7 @@ class AsyncDevOpsGuruClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_devops_guru.types.describe_feedback_request.DescribeFeedbackRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_devops_guru.types.describe_feedback_request.DescribeFeedbackRequest = {}
         if insight_id is not None:
             input_["insight_id"] = insight_id
 
@@ -544,6 +555,7 @@ class AsyncDevOpsGuruClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_insight(
@@ -586,8 +598,9 @@ class AsyncDevOpsGuruClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_devops_guru.types.describe_insight_request.DescribeInsightRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_devops_guru.types.describe_insight_request.DescribeInsightRequest = {
+            "id": id
+        }
         if account_id is not None:
             input_["account_id"] = account_id
 
@@ -596,6 +609,7 @@ class AsyncDevOpsGuruClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_organization_health(
@@ -639,7 +653,7 @@ class AsyncDevOpsGuruClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_devops_guru.types.describe_organization_health_request.DescribeOrganizationHealthRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_devops_guru.types.describe_organization_health_request.DescribeOrganizationHealthRequest = {}
         if account_ids is not None:
             input_["account_ids"] = account_ids
         if organizational_unit_ids is not None:
@@ -650,6 +664,7 @@ class AsyncDevOpsGuruClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_organization_overview(
@@ -697,8 +712,9 @@ class AsyncDevOpsGuruClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_devops_guru.types.describe_organization_overview_request.DescribeOrganizationOverviewRequest = {}  # type: ignore[typeddict-item]
-        input_["from_time"] = from_time
+        input_: capo_devops_guru.types.describe_organization_overview_request.DescribeOrganizationOverviewRequest = {
+            "from_time": from_time
+        }
         if to_time is not None:
             input_["to_time"] = to_time
         if account_ids is not None:
@@ -711,6 +727,7 @@ class AsyncDevOpsGuruClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_organization_resource_collection_health(
@@ -764,10 +781,9 @@ class AsyncDevOpsGuruClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_devops_guru.types.describe_organization_resource_collection_health_request.DescribeOrganizationResourceCollectionHealthRequest = {}  # type: ignore[typeddict-item]
-        input_["organization_resource_collection_type"] = (
-            organization_resource_collection_type
-        )
+        input_: capo_devops_guru.types.describe_organization_resource_collection_health_request.DescribeOrganizationResourceCollectionHealthRequest = {
+            "organization_resource_collection_type": organization_resource_collection_type
+        }
         if account_ids is not None:
             input_["account_ids"] = account_ids
         if organizational_unit_ids is not None:
@@ -782,7 +798,41 @@ class AsyncDevOpsGuruClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_describe_organization_resource_collection_health(
+        self,
+        organization_resource_collection_type: "capo_devops_guru.types.organization_resource_collection_type.OrganizationResourceCollectionType",
+        *,
+        config_overrides: Optional[AsyncDevOpsGuruClientConfig] = None,
+        account_ids: Optional[
+            "capo_devops_guru.types.account_id_list.AccountIdList"
+        ] = None,
+        organizational_unit_ids: Optional[
+            "capo_devops_guru.types.organizational_unit_id_list.OrganizationalUnitIdList"
+        ] = None,
+        next_token: Optional[
+            "capo_devops_guru.types.uuid_next_token.UuidNextToken"
+        ] = None,
+        max_results: Optional[
+            "capo_devops_guru.types.organization_resource_collection_max_results.OrganizationResourceCollectionMaxResults"
+        ] = None,
+    ) -> "AsyncIterator[capo_devops_guru.types.describe_organization_resource_collection_health_response.DescribeOrganizationResourceCollectionHealthResponse]":
+        _token = next_token
+        while True:
+            _response = await self.describe_organization_resource_collection_health(
+                organization_resource_collection_type,
+                config_overrides=config_overrides,
+                account_ids=account_ids,
+                organizational_unit_ids=organizational_unit_ids,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def describe_resource_collection_health(
         self,
@@ -823,8 +873,9 @@ class AsyncDevOpsGuruClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_devops_guru.types.describe_resource_collection_health_request.DescribeResourceCollectionHealthRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_collection_type"] = resource_collection_type
+        input_: capo_devops_guru.types.describe_resource_collection_health_request.DescribeResourceCollectionHealthRequest = {
+            "resource_collection_type": resource_collection_type
+        }
         if next_token is not None:
             input_["next_token"] = next_token
 
@@ -833,7 +884,29 @@ class AsyncDevOpsGuruClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_describe_resource_collection_health(
+        self,
+        resource_collection_type: "capo_devops_guru.types.resource_collection_type.ResourceCollectionType",
+        *,
+        config_overrides: Optional[AsyncDevOpsGuruClientConfig] = None,
+        next_token: Optional[
+            "capo_devops_guru.types.uuid_next_token.UuidNextToken"
+        ] = None,
+    ) -> "AsyncIterator[capo_devops_guru.types.describe_resource_collection_health_response.DescribeResourceCollectionHealthResponse]":
+        _token = next_token
+        while True:
+            _response = await self.describe_resource_collection_health(
+                resource_collection_type,
+                config_overrides=config_overrides,
+                next_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def describe_service_integration(
         self, *, config_overrides: Optional[AsyncDevOpsGuruClientConfig] = None
@@ -865,13 +938,14 @@ class AsyncDevOpsGuruClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_devops_guru.types.describe_service_integration_request.DescribeServiceIntegrationRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_devops_guru.types.describe_service_integration_request.DescribeServiceIntegrationRequest = {}
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_cost_estimation(
@@ -914,7 +988,7 @@ class AsyncDevOpsGuruClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_devops_guru.types.get_cost_estimation_request.GetCostEstimationRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_devops_guru.types.get_cost_estimation_request.GetCostEstimationRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
 
@@ -923,7 +997,27 @@ class AsyncDevOpsGuruClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_get_cost_estimation(
+        self,
+        *,
+        config_overrides: Optional[AsyncDevOpsGuruClientConfig] = None,
+        next_token: Optional[
+            "capo_devops_guru.types.uuid_next_token.UuidNextToken"
+        ] = None,
+    ) -> "AsyncIterator[capo_devops_guru.types.get_cost_estimation_response.GetCostEstimationResponse]":
+        _token = next_token
+        while True:
+            _response = await self.get_cost_estimation(
+                config_overrides=config_overrides,
+                next_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def get_resource_collection(
         self,
@@ -965,8 +1059,9 @@ class AsyncDevOpsGuruClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_devops_guru.types.get_resource_collection_request.GetResourceCollectionRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_collection_type"] = resource_collection_type
+        input_: capo_devops_guru.types.get_resource_collection_request.GetResourceCollectionRequest = {
+            "resource_collection_type": resource_collection_type
+        }
         if next_token is not None:
             input_["next_token"] = next_token
 
@@ -975,7 +1070,29 @@ class AsyncDevOpsGuruClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_get_resource_collection(
+        self,
+        resource_collection_type: "capo_devops_guru.types.resource_collection_type.ResourceCollectionType",
+        *,
+        config_overrides: Optional[AsyncDevOpsGuruClientConfig] = None,
+        next_token: Optional[
+            "capo_devops_guru.types.uuid_next_token.UuidNextToken"
+        ] = None,
+    ) -> "AsyncIterator[capo_devops_guru.types.get_resource_collection_response.GetResourceCollectionResponse]":
+        _token = next_token
+        while True:
+            _response = await self.get_resource_collection(
+                resource_collection_type,
+                config_overrides=config_overrides,
+                next_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_anomalies_for_insight(
         self,
@@ -1033,8 +1150,9 @@ class AsyncDevOpsGuruClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_devops_guru.types.list_anomalies_for_insight_request.ListAnomaliesForInsightRequest = {}  # type: ignore[typeddict-item]
-        input_["insight_id"] = insight_id
+        input_: capo_devops_guru.types.list_anomalies_for_insight_request.ListAnomaliesForInsightRequest = {
+            "insight_id": insight_id
+        }
         if start_time_range is not None:
             input_["start_time_range"] = start_time_range
         if max_results is not None:
@@ -1051,7 +1169,45 @@ class AsyncDevOpsGuruClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_anomalies_for_insight(
+        self,
+        insight_id: "capo_devops_guru.types.insight_id.InsightId",
+        *,
+        config_overrides: Optional[AsyncDevOpsGuruClientConfig] = None,
+        start_time_range: Optional[
+            "capo_devops_guru.types.start_time_range.StartTimeRange"
+        ] = None,
+        max_results: Optional[
+            "capo_devops_guru.types.list_anomalies_for_insight_max_results.ListAnomaliesForInsightMaxResults"
+        ] = None,
+        next_token: Optional[
+            "capo_devops_guru.types.uuid_next_token.UuidNextToken"
+        ] = None,
+        account_id: Optional[
+            "capo_devops_guru.types.aws_account_id.AwsAccountId"
+        ] = None,
+        filters: Optional[
+            "capo_devops_guru.types.list_anomalies_for_insight_filters.ListAnomaliesForInsightFilters"
+        ] = None,
+    ) -> "AsyncIterator[capo_devops_guru.types.list_anomalies_for_insight_response.ListAnomaliesForInsightResponse]":
+        _token = next_token
+        while True:
+            _response = await self.list_anomalies_for_insight(
+                insight_id,
+                config_overrides=config_overrides,
+                start_time_range=start_time_range,
+                max_results=max_results,
+                next_token=_token,
+                account_id=account_id,
+                filters=filters,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_anomalous_log_groups(
         self,
@@ -1097,8 +1253,9 @@ class AsyncDevOpsGuruClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_devops_guru.types.list_anomalous_log_groups_request.ListAnomalousLogGroupsRequest = {}  # type: ignore[typeddict-item]
-        input_["insight_id"] = insight_id
+        input_: capo_devops_guru.types.list_anomalous_log_groups_request.ListAnomalousLogGroupsRequest = {
+            "insight_id": insight_id
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -1109,7 +1266,33 @@ class AsyncDevOpsGuruClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_anomalous_log_groups(
+        self,
+        insight_id: "capo_devops_guru.types.insight_id.InsightId",
+        *,
+        config_overrides: Optional[AsyncDevOpsGuruClientConfig] = None,
+        max_results: Optional[
+            "capo_devops_guru.types.list_anomalous_log_groups_max_results.ListAnomalousLogGroupsMaxResults"
+        ] = None,
+        next_token: Optional[
+            "capo_devops_guru.types.uuid_next_token.UuidNextToken"
+        ] = None,
+    ) -> "AsyncIterator[capo_devops_guru.types.list_anomalous_log_groups_response.ListAnomalousLogGroupsResponse]":
+        _token = next_token
+        while True:
+            _response = await self.list_anomalous_log_groups(
+                insight_id,
+                config_overrides=config_overrides,
+                max_results=max_results,
+                next_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_events(
         self,
@@ -1159,8 +1342,9 @@ class AsyncDevOpsGuruClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_devops_guru.types.list_events_request.ListEventsRequest = {}  # type: ignore[typeddict-item]
-        input_["filters"] = filters
+        input_: capo_devops_guru.types.list_events_request.ListEventsRequest = {
+            "filters": filters
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -1173,6 +1357,7 @@ class AsyncDevOpsGuruClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_events(
@@ -1249,8 +1434,9 @@ class AsyncDevOpsGuruClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_devops_guru.types.list_insights_request.ListInsightsRequest = {}  # type: ignore[typeddict-item]
-        input_["status_filter"] = status_filter
+        input_: capo_devops_guru.types.list_insights_request.ListInsightsRequest = {
+            "status_filter": status_filter
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -1261,7 +1447,33 @@ class AsyncDevOpsGuruClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_insights(
+        self,
+        status_filter: "capo_devops_guru.types.list_insights_status_filter.ListInsightsStatusFilter",
+        *,
+        config_overrides: Optional[AsyncDevOpsGuruClientConfig] = None,
+        max_results: Optional[
+            "capo_devops_guru.types.list_insights_max_results.ListInsightsMaxResults"
+        ] = None,
+        next_token: Optional[
+            "capo_devops_guru.types.uuid_next_token.UuidNextToken"
+        ] = None,
+    ) -> "AsyncIterator[capo_devops_guru.types.list_insights_response.ListInsightsResponse]":
+        _token = next_token
+        while True:
+            _response = await self.list_insights(
+                status_filter,
+                config_overrides=config_overrides,
+                max_results=max_results,
+                next_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_monitored_resources(
         self,
@@ -1308,7 +1520,7 @@ class AsyncDevOpsGuruClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_devops_guru.types.list_monitored_resources_request.ListMonitoredResourcesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_devops_guru.types.list_monitored_resources_request.ListMonitoredResourcesRequest = {}
         if filters is not None:
             input_["filters"] = filters
         if max_results is not None:
@@ -1321,7 +1533,35 @@ class AsyncDevOpsGuruClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_monitored_resources(
+        self,
+        *,
+        config_overrides: Optional[AsyncDevOpsGuruClientConfig] = None,
+        filters: Optional[
+            "capo_devops_guru.types.list_monitored_resources_filters.ListMonitoredResourcesFilters"
+        ] = None,
+        max_results: Optional[
+            "capo_devops_guru.types.list_monitored_resources_max_results.ListMonitoredResourcesMaxResults"
+        ] = None,
+        next_token: Optional[
+            "capo_devops_guru.types.uuid_next_token.UuidNextToken"
+        ] = None,
+    ) -> "AsyncIterator[capo_devops_guru.types.list_monitored_resources_response.ListMonitoredResourcesResponse]":
+        _token = next_token
+        while True:
+            _response = await self.list_monitored_resources(
+                config_overrides=config_overrides,
+                filters=filters,
+                max_results=max_results,
+                next_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_notification_channels(
         self,
@@ -1360,7 +1600,7 @@ class AsyncDevOpsGuruClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_devops_guru.types.list_notification_channels_request.ListNotificationChannelsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_devops_guru.types.list_notification_channels_request.ListNotificationChannelsRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
 
@@ -1369,6 +1609,7 @@ class AsyncDevOpsGuruClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_notification_channels(
@@ -1444,8 +1685,9 @@ class AsyncDevOpsGuruClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_devops_guru.types.list_organization_insights_request.ListOrganizationInsightsRequest = {}  # type: ignore[typeddict-item]
-        input_["status_filter"] = status_filter
+        input_: capo_devops_guru.types.list_organization_insights_request.ListOrganizationInsightsRequest = {
+            "status_filter": status_filter
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if account_ids is not None:
@@ -1460,7 +1702,41 @@ class AsyncDevOpsGuruClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_organization_insights(
+        self,
+        status_filter: "capo_devops_guru.types.list_insights_status_filter.ListInsightsStatusFilter",
+        *,
+        config_overrides: Optional[AsyncDevOpsGuruClientConfig] = None,
+        max_results: Optional[
+            "capo_devops_guru.types.list_insights_max_results.ListInsightsMaxResults"
+        ] = None,
+        account_ids: Optional[
+            "capo_devops_guru.types.list_insights_account_id_list.ListInsightsAccountIdList"
+        ] = None,
+        organizational_unit_ids: Optional[
+            "capo_devops_guru.types.list_insights_organizational_unit_id_list.ListInsightsOrganizationalUnitIdList"
+        ] = None,
+        next_token: Optional[
+            "capo_devops_guru.types.uuid_next_token.UuidNextToken"
+        ] = None,
+    ) -> "AsyncIterator[capo_devops_guru.types.list_organization_insights_response.ListOrganizationInsightsResponse]":
+        _token = next_token
+        while True:
+            _response = await self.list_organization_insights(
+                status_filter,
+                config_overrides=config_overrides,
+                max_results=max_results,
+                account_ids=account_ids,
+                organizational_unit_ids=organizational_unit_ids,
+                next_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_recommendations(
         self,
@@ -1508,8 +1784,9 @@ class AsyncDevOpsGuruClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_devops_guru.types.list_recommendations_request.ListRecommendationsRequest = {}  # type: ignore[typeddict-item]
-        input_["insight_id"] = insight_id
+        input_: capo_devops_guru.types.list_recommendations_request.ListRecommendationsRequest = {
+            "insight_id": insight_id
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if locale is not None:
@@ -1522,6 +1799,7 @@ class AsyncDevOpsGuruClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_recommendations(
@@ -1592,7 +1870,7 @@ class AsyncDevOpsGuruClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_devops_guru.types.put_feedback_request.PutFeedbackRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_devops_guru.types.put_feedback_request.PutFeedbackRequest = {}
         if insight_feedback is not None:
             input_["insight_feedback"] = insight_feedback
 
@@ -1601,6 +1879,7 @@ class AsyncDevOpsGuruClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def remove_notification_channel(
@@ -1640,14 +1919,16 @@ class AsyncDevOpsGuruClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_devops_guru.types.remove_notification_channel_request.RemoveNotificationChannelRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_devops_guru.types.remove_notification_channel_request.RemoveNotificationChannelRequest = {
+            "id": id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def search_insights(
@@ -1699,22 +1980,55 @@ class AsyncDevOpsGuruClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_devops_guru.types.search_insights_request.SearchInsightsRequest = {}  # type: ignore[typeddict-item]
-        input_["start_time_range"] = start_time_range
+        input_: capo_devops_guru.types.search_insights_request.SearchInsightsRequest = {
+            "start_time_range": start_time_range,
+            "type": type,
+        }
         if filters is not None:
             input_["filters"] = filters
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
             input_["next_token"] = next_token
-        input_["type"] = type
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_search_insights(
+        self,
+        start_time_range: "capo_devops_guru.types.start_time_range.StartTimeRange",
+        type: "capo_devops_guru.types.insight_type.InsightType",
+        *,
+        config_overrides: Optional[AsyncDevOpsGuruClientConfig] = None,
+        filters: Optional[
+            "capo_devops_guru.types.search_insights_filters.SearchInsightsFilters"
+        ] = None,
+        max_results: Optional[
+            "capo_devops_guru.types.search_insights_max_results.SearchInsightsMaxResults"
+        ] = None,
+        next_token: Optional[
+            "capo_devops_guru.types.uuid_next_token.UuidNextToken"
+        ] = None,
+    ) -> "AsyncIterator[capo_devops_guru.types.search_insights_response.SearchInsightsResponse]":
+        _token = next_token
+        while True:
+            _response = await self.search_insights(
+                start_time_range,
+                type,
+                config_overrides=config_overrides,
+                filters=filters,
+                max_results=max_results,
+                next_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def search_organization_insights(
         self,
@@ -1766,23 +2080,58 @@ class AsyncDevOpsGuruClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_devops_guru.types.search_organization_insights_request.SearchOrganizationInsightsRequest = {}  # type: ignore[typeddict-item]
-        input_["account_ids"] = account_ids
-        input_["start_time_range"] = start_time_range
+        input_: capo_devops_guru.types.search_organization_insights_request.SearchOrganizationInsightsRequest = {
+            "account_ids": account_ids,
+            "start_time_range": start_time_range,
+            "type": type,
+        }
         if filters is not None:
             input_["filters"] = filters
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
             input_["next_token"] = next_token
-        input_["type"] = type
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_search_organization_insights(
+        self,
+        account_ids: "capo_devops_guru.types.search_insights_account_id_list.SearchInsightsAccountIdList",
+        start_time_range: "capo_devops_guru.types.start_time_range.StartTimeRange",
+        type: "capo_devops_guru.types.insight_type.InsightType",
+        *,
+        config_overrides: Optional[AsyncDevOpsGuruClientConfig] = None,
+        filters: Optional[
+            "capo_devops_guru.types.search_organization_insights_filters.SearchOrganizationInsightsFilters"
+        ] = None,
+        max_results: Optional[
+            "capo_devops_guru.types.search_organization_insights_max_results.SearchOrganizationInsightsMaxResults"
+        ] = None,
+        next_token: Optional[
+            "capo_devops_guru.types.uuid_next_token.UuidNextToken"
+        ] = None,
+    ) -> "AsyncIterator[capo_devops_guru.types.search_organization_insights_response.SearchOrganizationInsightsResponse]":
+        _token = next_token
+        while True:
+            _response = await self.search_organization_insights(
+                account_ids,
+                start_time_range,
+                type,
+                config_overrides=config_overrides,
+                filters=filters,
+                max_results=max_results,
+                next_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def start_cost_estimation(
         self,
@@ -1825,16 +2174,19 @@ class AsyncDevOpsGuruClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_devops_guru.types.start_cost_estimation_request.StartCostEstimationRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_collection"] = resource_collection
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_devops_guru.types.start_cost_estimation_request.StartCostEstimationRequest = {
+            "resource_collection": resource_collection
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_event_sources_config(
@@ -1874,7 +2226,7 @@ class AsyncDevOpsGuruClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_devops_guru.types.update_event_sources_config_request.UpdateEventSourcesConfigRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_devops_guru.types.update_event_sources_config_request.UpdateEventSourcesConfigRequest = {}
         if event_sources is not None:
             input_["event_sources"] = event_sources
 
@@ -1883,6 +2235,7 @@ class AsyncDevOpsGuruClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_resource_collection(
@@ -1922,15 +2275,17 @@ class AsyncDevOpsGuruClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_devops_guru.types.update_resource_collection_request.UpdateResourceCollectionRequest = {}  # type: ignore[typeddict-item]
-        input_["action"] = action
-        input_["resource_collection"] = resource_collection
+        input_: capo_devops_guru.types.update_resource_collection_request.UpdateResourceCollectionRequest = {
+            "action": action,
+            "resource_collection": resource_collection,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_service_integration(
@@ -1969,14 +2324,16 @@ class AsyncDevOpsGuruClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_devops_guru.types.update_service_integration_request.UpdateServiceIntegrationRequest = {}  # type: ignore[typeddict-item]
-        input_["service_integration"] = service_integration
+        input_: capo_devops_guru.types.update_service_integration_request.UpdateServiceIntegrationRequest = {
+            "service_integration": service_integration
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def __aenter__(self) -> Self:

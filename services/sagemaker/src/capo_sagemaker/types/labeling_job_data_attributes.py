@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: LabelingJobDataAttributes) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> LabelingJobDataAttributes:
     out: LabelingJobDataAttributes = {}  # type: ignore[typeddict-item]
-    if "ContentClassifiers" in data:
+    if data.get("ContentClassifiers") is not None:
         import capo_sagemaker.types.content_classifiers
 
         out["content_classifiers"] = (

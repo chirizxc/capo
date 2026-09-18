@@ -43,13 +43,13 @@ def serialize_json(value: VerificationScript) -> dict:
 
 def deserialize_json(data: dict) -> VerificationScript:
     out: VerificationScript = {}  # type: ignore[typeddict-item]
-    if "scriptType" in data:
+    if data.get("scriptType") is not None:
         out["script_type"] = data["scriptType"]
-    if "scriptUrl" in data:
+    if data.get("scriptUrl") is not None:
         out["script_url"] = data["scriptUrl"]
-    if "instructions" in data:
+    if data.get("instructions") is not None:
         out["instructions"] = data["instructions"]
-    if "envVars" in data:
+    if data.get("envVars") is not None:
         import capo_securityagent.types.verification_script_env_var_list
 
         out["env_vars"] = (

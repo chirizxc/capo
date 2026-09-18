@@ -25,6 +25,8 @@ def deserialize_json(data: list) -> DashboardVersionSummaryList:
 
     out: DashboardVersionSummaryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_quicksight.types.dashboard_version_summary.deserialize_json(item)
         )

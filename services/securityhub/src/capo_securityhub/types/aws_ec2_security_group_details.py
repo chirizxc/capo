@@ -60,15 +60,15 @@ def serialize_json(value: AwsEc2SecurityGroupDetails) -> dict:
 
 def deserialize_json(data: dict) -> AwsEc2SecurityGroupDetails:
     out: AwsEc2SecurityGroupDetails = {}  # type: ignore[typeddict-item]
-    if "GroupName" in data:
+    if data.get("GroupName") is not None:
         out["group_name"] = data["GroupName"]
-    if "GroupId" in data:
+    if data.get("GroupId") is not None:
         out["group_id"] = data["GroupId"]
-    if "OwnerId" in data:
+    if data.get("OwnerId") is not None:
         out["owner_id"] = data["OwnerId"]
-    if "VpcId" in data:
+    if data.get("VpcId") is not None:
         out["vpc_id"] = data["VpcId"]
-    if "IpPermissions" in data:
+    if data.get("IpPermissions") is not None:
         import capo_securityhub.types.aws_ec2_security_group_ip_permission_list
 
         out["ip_permissions"] = (
@@ -76,7 +76,7 @@ def deserialize_json(data: dict) -> AwsEc2SecurityGroupDetails:
                 data["IpPermissions"]
             )
         )
-    if "IpPermissionsEgress" in data:
+    if data.get("IpPermissionsEgress") is not None:
         import capo_securityhub.types.aws_ec2_security_group_ip_permission_list
 
         out["ip_permissions_egress"] = (

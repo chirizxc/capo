@@ -32,7 +32,7 @@ def serialize_aws_json_1_1(value: GetListsMetadataResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetListsMetadataResult:
     out: GetListsMetadataResult = {}  # type: ignore[typeddict-item]
-    if "lists" in data:
+    if data.get("lists") is not None:
         import capo_frauddetector.types.allow_deny_lists
 
         out["lists"] = (
@@ -40,6 +40,6 @@ def deserialize_aws_json_1_1(data: dict) -> GetListsMetadataResult:
                 data["lists"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

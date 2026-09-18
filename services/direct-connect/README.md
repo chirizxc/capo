@@ -13,9 +13,9 @@ from capo_direct_connect import AsyncDirectConnectClient
 
 
 async def main():
-    async with AsyncDirectConnectClient() as s3:
+    async with AsyncDirectConnectClient() as direct_connect:
         # Example: call the accept_direct_connect_gateway_association_proposal operation
-        response = await s3.accept_direct_connect_gateway_association_proposal()
+        response = await direct_connect.accept_direct_connect_gateway_association_proposal()
         print(response["direct_connect_gateway_association"])
 ```
 
@@ -29,9 +29,9 @@ from capo_direct_connect.error import DirectConnectClientException
 
 
 async def main():
-    async with AsyncDirectConnectClient() as s3:
+    async with AsyncDirectConnectClient() as direct_connect:
         try:
-            await s3.accept_direct_connect_gateway_association_proposal()
+            await direct_connect.accept_direct_connect_gateway_association_proposal()
         except DirectConnectClientException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -48,13 +48,13 @@ from capo_direct_connect import AsyncDirectConnectClient
 
 
 async def main():
-    async with AsyncDirectConnectClient() as s3:
+    async with AsyncDirectConnectClient() as direct_connect:
         # Default: 3 attempts for every operation
-        response = await s3.accept_direct_connect_gateway_association_proposal()
+        response = await direct_connect.accept_direct_connect_gateway_association_proposal()
 
         # Override per operation
-        response = await s3.accept_direct_connect_gateway_association_proposal(config_overrides={"retry_max_attempts": 5})
+        response = await direct_connect.accept_direct_connect_gateway_association_proposal(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.accept_direct_connect_gateway_association_proposal(config_overrides={"retry_max_attempts": 1})
+        response = await direct_connect.accept_direct_connect_gateway_association_proposal(config_overrides={"retry_max_attempts": 1})
 ```

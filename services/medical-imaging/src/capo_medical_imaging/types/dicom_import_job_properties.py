@@ -86,15 +86,15 @@ def serialize_json(value: DICOMImportJobProperties) -> dict:
 
 def deserialize_json(data: dict) -> DICOMImportJobProperties:
     out: DICOMImportJobProperties = {}  # type: ignore[typeddict-item]
-    if "jobId" in data:
+    if data.get("jobId") is not None:
         out["job_id"] = data["jobId"]
     else:
         raise DeserializationError("DICOMImportJobProperties.job_id required")
-    if "jobName" in data:
+    if data.get("jobName") is not None:
         out["job_name"] = data["jobName"]
     else:
         raise DeserializationError("DICOMImportJobProperties.job_name required")
-    if "jobStatus" in data:
+    if data.get("jobStatus") is not None:
         import capo_medical_imaging.types.job_status
 
         out["job_status"] = capo_medical_imaging.types.job_status.deserialize_json(
@@ -102,39 +102,39 @@ def deserialize_json(data: dict) -> DICOMImportJobProperties:
         )
     else:
         raise DeserializationError("DICOMImportJobProperties.job_status required")
-    if "datastoreId" in data:
+    if data.get("datastoreId") is not None:
         out["datastore_id"] = data["datastoreId"]
     else:
         raise DeserializationError("DICOMImportJobProperties.datastore_id required")
-    if "dataAccessRoleArn" in data:
+    if data.get("dataAccessRoleArn") is not None:
         out["data_access_role_arn"] = data["dataAccessRoleArn"]
     else:
         raise DeserializationError(
             "DICOMImportJobProperties.data_access_role_arn required"
         )
-    if "endedAt" in data:
+    if data.get("endedAt") is not None:
         import capo_medical_imaging.types.date
 
         out["ended_at"] = capo_medical_imaging.types.date.deserialize_json(
             data["endedAt"]
         )
-    if "submittedAt" in data:
+    if data.get("submittedAt") is not None:
         import capo_medical_imaging.types.date
 
         out["submitted_at"] = capo_medical_imaging.types.date.deserialize_json(
             data["submittedAt"]
         )
-    if "inputS3Uri" in data:
+    if data.get("inputS3Uri") is not None:
         out["input_s3_uri"] = data["inputS3Uri"]
     else:
         raise DeserializationError("DICOMImportJobProperties.input_s3_uri required")
-    if "outputS3Uri" in data:
+    if data.get("outputS3Uri") is not None:
         out["output_s3_uri"] = data["outputS3Uri"]
     else:
         raise DeserializationError("DICOMImportJobProperties.output_s3_uri required")
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
-    if "importConfiguration" in data:
+    if data.get("importConfiguration") is not None:
         import capo_medical_imaging.types.import_configuration
 
         out["import_configuration"] = (

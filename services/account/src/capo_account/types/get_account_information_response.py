@@ -46,11 +46,11 @@ def serialize_json(value: GetAccountInformationResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetAccountInformationResponse:
     out: GetAccountInformationResponse = {}  # type: ignore[typeddict-item]
-    if "AccountId" in data:
+    if data.get("AccountId") is not None:
         out["account_id"] = data["AccountId"]
-    if "AccountName" in data:
+    if data.get("AccountName") is not None:
         out["account_name"] = data["AccountName"]
-    if "AccountCreatedDate" in data:
+    if data.get("AccountCreatedDate") is not None:
         import capo_account.types.account_created_date
 
         out["account_created_date"] = (
@@ -58,6 +58,6 @@ def deserialize_json(data: dict) -> GetAccountInformationResponse:
                 data["AccountCreatedDate"]
             )
         )
-    if "AccountState" in data:
+    if data.get("AccountState") is not None:
         out["account_state"] = data["AccountState"]
     return out

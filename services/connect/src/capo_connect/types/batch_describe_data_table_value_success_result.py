@@ -70,19 +70,19 @@ def serialize_json(value: BatchDescribeDataTableValueSuccessResult) -> dict:
 
 def deserialize_json(data: dict) -> BatchDescribeDataTableValueSuccessResult:
     out: BatchDescribeDataTableValueSuccessResult = {}  # type: ignore[typeddict-item]
-    if "RecordId" in data:
+    if data.get("RecordId") is not None:
         out["record_id"] = data["RecordId"]
     else:
         raise DeserializationError(
             "BatchDescribeDataTableValueSuccessResult.record_id required"
         )
-    if "AttributeId" in data:
+    if data.get("AttributeId") is not None:
         out["attribute_id"] = data["AttributeId"]
     else:
         raise DeserializationError(
             "BatchDescribeDataTableValueSuccessResult.attribute_id required"
         )
-    if "PrimaryValues" in data:
+    if data.get("PrimaryValues") is not None:
         import capo_connect.types.primary_values_response_set
 
         out["primary_values"] = (
@@ -94,15 +94,15 @@ def deserialize_json(data: dict) -> BatchDescribeDataTableValueSuccessResult:
         raise DeserializationError(
             "BatchDescribeDataTableValueSuccessResult.primary_values required"
         )
-    if "AttributeName" in data:
+    if data.get("AttributeName") is not None:
         out["attribute_name"] = data["AttributeName"]
     else:
         raise DeserializationError(
             "BatchDescribeDataTableValueSuccessResult.attribute_name required"
         )
-    if "Value" in data:
+    if data.get("Value") is not None:
         out["value"] = data["Value"]
-    if "LockVersion" in data:
+    if data.get("LockVersion") is not None:
         import capo_connect.types.data_table_lock_version
 
         out["lock_version"] = (
@@ -114,12 +114,12 @@ def deserialize_json(data: dict) -> BatchDescribeDataTableValueSuccessResult:
         raise DeserializationError(
             "BatchDescribeDataTableValueSuccessResult.lock_version required"
         )
-    if "LastModifiedTime" in data:
+    if data.get("LastModifiedTime") is not None:
         import capo_connect.types.timestamp
 
         out["last_modified_time"] = capo_connect.types.timestamp.deserialize_json(
             data["LastModifiedTime"]
         )
-    if "LastModifiedRegion" in data:
+    if data.get("LastModifiedRegion") is not None:
         out["last_modified_region"] = data["LastModifiedRegion"]
     return out

@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> SourceApiAssociationSummaryList:
 
     out: SourceApiAssociationSummaryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_appsync.types.source_api_association_summary.deserialize_json(item)
         )

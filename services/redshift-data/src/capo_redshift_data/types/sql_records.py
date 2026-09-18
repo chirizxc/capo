@@ -23,5 +23,7 @@ def deserialize_aws_json_1_1(data: list) -> SqlRecords:
 
     out: SqlRecords = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_redshift_data.types.field_list.deserialize_aws_json_1_1(item))
     return out

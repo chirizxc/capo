@@ -47,11 +47,11 @@ def serialize_json(value: UpdateContactFlowMetadataRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateContactFlowMetadataRequest:
     out: UpdateContactFlowMetadataRequest = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "ContactFlowState" in data:
+    if data.get("ContactFlowState") is not None:
         import capo_connect.types.contact_flow_state
 
         out["contact_flow_state"] = (

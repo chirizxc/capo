@@ -28,8 +28,8 @@ def serialize_aws_json_1_1(value: WorkerBlock) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> WorkerBlock:
     out: WorkerBlock = {}  # type: ignore[typeddict-item]
-    if "WorkerId" in data:
+    if data.get("WorkerId") is not None:
         out["worker_id"] = data["WorkerId"]
-    if "Reason" in data:
+    if data.get("Reason") is not None:
         out["reason"] = data["Reason"]
     return out

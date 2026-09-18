@@ -25,6 +25,8 @@ def deserialize_aws_json_1_1(data: list) -> RecurringCharges:
 
     out: RecurringCharges = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_device_farm.types.recurring_charge.deserialize_aws_json_1_1(item)
         )

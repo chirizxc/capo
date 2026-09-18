@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> ResourceEndpointAssociationList:
 
     out: ResourceEndpointAssociationList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_vpc_lattice.types.resource_endpoint_association_summary.deserialize_json(
                 item

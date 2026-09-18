@@ -78,17 +78,17 @@ def serialize_json(value: WorkerSearchSummary) -> dict:
 
 def deserialize_json(data: dict) -> WorkerSearchSummary:
     out: WorkerSearchSummary = {}  # type: ignore[typeddict-item]
-    if "fleetId" in data:
+    if data.get("fleetId") is not None:
         out["fleet_id"] = data["fleetId"]
-    if "workerId" in data:
+    if data.get("workerId") is not None:
         out["worker_id"] = data["workerId"]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_deadline.types.worker_status
 
         out["status"] = capo_deadline.types.worker_status.deserialize_json(
             data["status"]
         )
-    if "hostProperties" in data:
+    if data.get("hostProperties") is not None:
         import capo_deadline.types.host_properties_response
 
         out["host_properties"] = (
@@ -96,17 +96,17 @@ def deserialize_json(data: dict) -> WorkerSearchSummary:
                 data["hostProperties"]
             )
         )
-    if "createdBy" in data:
+    if data.get("createdBy") is not None:
         out["created_by"] = data["createdBy"]
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_deadline.types.created_at
 
         out["created_at"] = capo_deadline.types.created_at.deserialize_json(
             data["createdAt"]
         )
-    if "updatedBy" in data:
+    if data.get("updatedBy") is not None:
         out["updated_by"] = data["updatedBy"]
-    if "updatedAt" in data:
+    if data.get("updatedAt") is not None:
         import capo_deadline.types.updated_at
 
         out["updated_at"] = capo_deadline.types.updated_at.deserialize_json(

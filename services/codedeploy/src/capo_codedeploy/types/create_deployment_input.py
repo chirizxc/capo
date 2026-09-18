@@ -117,13 +117,13 @@ def serialize_aws_json_1_1(value: CreateDeploymentInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateDeploymentInput:
     out: CreateDeploymentInput = {}  # type: ignore[typeddict-item]
-    if "applicationName" in data:
+    if data.get("applicationName") is not None:
         out["application_name"] = data["applicationName"]
     else:
         raise DeserializationError("CreateDeploymentInput.application_name required")
-    if "deploymentGroupName" in data:
+    if data.get("deploymentGroupName") is not None:
         out["deployment_group_name"] = data["deploymentGroupName"]
-    if "revision" in data:
+    if data.get("revision") is not None:
         import capo_codedeploy.types.revision_location
 
         out["revision"] = (
@@ -131,15 +131,15 @@ def deserialize_aws_json_1_1(data: dict) -> CreateDeploymentInput:
                 data["revision"]
             )
         )
-    if "deploymentConfigName" in data:
+    if data.get("deploymentConfigName") is not None:
         out["deployment_config_name"] = data["deploymentConfigName"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "ignoreApplicationStopFailures" in data:
+    if data.get("ignoreApplicationStopFailures") is not None:
         out["ignore_application_stop_failures"] = data["ignoreApplicationStopFailures"]
     else:
         out["ignore_application_stop_failures"] = False
-    if "targetInstances" in data:
+    if data.get("targetInstances") is not None:
         import capo_codedeploy.types.target_instances
 
         out["target_instances"] = (
@@ -147,7 +147,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateDeploymentInput:
                 data["targetInstances"]
             )
         )
-    if "autoRollbackConfiguration" in data:
+    if data.get("autoRollbackConfiguration") is not None:
         import capo_codedeploy.types.auto_rollback_configuration
 
         out["auto_rollback_configuration"] = (
@@ -155,11 +155,11 @@ def deserialize_aws_json_1_1(data: dict) -> CreateDeploymentInput:
                 data["autoRollbackConfiguration"]
             )
         )
-    if "updateOutdatedInstancesOnly" in data:
+    if data.get("updateOutdatedInstancesOnly") is not None:
         out["update_outdated_instances_only"] = data["updateOutdatedInstancesOnly"]
     else:
         out["update_outdated_instances_only"] = False
-    if "fileExistsBehavior" in data:
+    if data.get("fileExistsBehavior") is not None:
         import capo_codedeploy.types.file_exists_behavior
 
         out["file_exists_behavior"] = (
@@ -167,7 +167,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateDeploymentInput:
                 data["fileExistsBehavior"]
             )
         )
-    if "overrideAlarmConfiguration" in data:
+    if data.get("overrideAlarmConfiguration") is not None:
         import capo_codedeploy.types.alarm_configuration
 
         out["override_alarm_configuration"] = (

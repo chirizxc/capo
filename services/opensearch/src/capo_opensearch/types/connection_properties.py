@@ -36,9 +36,9 @@ def serialize_json(value: ConnectionProperties) -> dict:
 
 def deserialize_json(data: dict) -> ConnectionProperties:
     out: ConnectionProperties = {}  # type: ignore[typeddict-item]
-    if "Endpoint" in data:
+    if data.get("Endpoint") is not None:
         out["endpoint"] = data["Endpoint"]
-    if "CrossClusterSearch" in data:
+    if data.get("CrossClusterSearch") is not None:
         import capo_opensearch.types.cross_cluster_search_connection_properties
 
         out["cross_cluster_search"] = (

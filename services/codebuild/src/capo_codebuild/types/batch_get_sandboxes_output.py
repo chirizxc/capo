@@ -38,13 +38,13 @@ def serialize_aws_json_1_1(value: BatchGetSandboxesOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> BatchGetSandboxesOutput:
     out: BatchGetSandboxesOutput = {}  # type: ignore[typeddict-item]
-    if "sandboxes" in data:
+    if data.get("sandboxes") is not None:
         import capo_codebuild.types.sandboxes
 
         out["sandboxes"] = capo_codebuild.types.sandboxes.deserialize_aws_json_1_1(
             data["sandboxes"]
         )
-    if "sandboxesNotFound" in data:
+    if data.get("sandboxesNotFound") is not None:
         import capo_codebuild.types.sandbox_ids
 
         out["sandboxes_not_found"] = (

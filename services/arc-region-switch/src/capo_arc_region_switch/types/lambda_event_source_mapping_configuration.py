@@ -56,11 +56,11 @@ def serialize_aws_json_1_0(value: LambdaEventSourceMappingConfiguration) -> dict
 
 def deserialize_aws_json_1_0(data: dict) -> LambdaEventSourceMappingConfiguration:
     out: LambdaEventSourceMappingConfiguration = {}  # type: ignore[typeddict-item]
-    if "timeoutMinutes" in data:
+    if data.get("timeoutMinutes") is not None:
         out["timeout_minutes"] = data["timeoutMinutes"]
     else:
         out["timeout_minutes"] = 60
-    if "action" in data:
+    if data.get("action") is not None:
         import capo_arc_region_switch.types.event_source_mapping_action
 
         out["action"] = (
@@ -72,7 +72,7 @@ def deserialize_aws_json_1_0(data: dict) -> LambdaEventSourceMappingConfiguratio
         raise DeserializationError(
             "LambdaEventSourceMappingConfiguration.action required"
         )
-    if "regionEventSourceMappings" in data:
+    if data.get("regionEventSourceMappings") is not None:
         import capo_arc_region_switch.types.region_event_source_mapping_map
 
         out["region_event_source_mappings"] = (
@@ -84,7 +84,7 @@ def deserialize_aws_json_1_0(data: dict) -> LambdaEventSourceMappingConfiguratio
         raise DeserializationError(
             "LambdaEventSourceMappingConfiguration.region_event_source_mappings required"
         )
-    if "ungraceful" in data:
+    if data.get("ungraceful") is not None:
         import capo_arc_region_switch.types.lambda_event_source_mapping_ungraceful
 
         out["ungraceful"] = (

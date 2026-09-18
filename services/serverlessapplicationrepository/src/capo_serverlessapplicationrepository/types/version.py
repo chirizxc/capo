@@ -88,11 +88,11 @@ def serialize_json(value: Version) -> dict:
 
 def deserialize_json(data: dict) -> Version:
     out: Version = {}  # type: ignore[typeddict-item]
-    if "applicationId" in data:
+    if data.get("applicationId") is not None:
         out["application_id"] = data["applicationId"]
-    if "creationTime" in data:
+    if data.get("creationTime") is not None:
         out["creation_time"] = data["creationTime"]
-    if "parameterDefinitions" in data:
+    if data.get("parameterDefinitions") is not None:
         import capo_serverlessapplicationrepository.types.__list_of_parameter_definition
 
         out["parameter_definitions"] = (
@@ -100,7 +100,7 @@ def deserialize_json(data: dict) -> Version:
                 data["parameterDefinitions"]
             )
         )
-    if "requiredCapabilities" in data:
+    if data.get("requiredCapabilities") is not None:
         import capo_serverlessapplicationrepository.types.__list_of_capability
 
         out["required_capabilities"] = (
@@ -108,14 +108,14 @@ def deserialize_json(data: dict) -> Version:
                 data["requiredCapabilities"]
             )
         )
-    if "resourcesSupported" in data:
+    if data.get("resourcesSupported") is not None:
         out["resources_supported"] = data["resourcesSupported"]
-    if "semanticVersion" in data:
+    if data.get("semanticVersion") is not None:
         out["semantic_version"] = data["semanticVersion"]
-    if "sourceCodeArchiveUrl" in data:
+    if data.get("sourceCodeArchiveUrl") is not None:
         out["source_code_archive_url"] = data["sourceCodeArchiveUrl"]
-    if "sourceCodeUrl" in data:
+    if data.get("sourceCodeUrl") is not None:
         out["source_code_url"] = data["sourceCodeUrl"]
-    if "templateUrl" in data:
+    if data.get("templateUrl") is not None:
         out["template_url"] = data["templateUrl"]
     return out

@@ -270,7 +270,7 @@ def serialize_json(value: InputTemplate) -> dict:
 
 def deserialize_json(data: dict) -> InputTemplate:
     out: InputTemplate = {}  # type: ignore[typeddict-item]
-    if "advancedInputFilter" in data:
+    if data.get("advancedInputFilter") is not None:
         import capo_mediaconvert.types.advanced_input_filter
 
         out["advanced_input_filter"] = (
@@ -278,7 +278,7 @@ def deserialize_json(data: dict) -> InputTemplate:
                 data["advancedInputFilter"]
             )
         )
-    if "advancedInputFilterSettings" in data:
+    if data.get("advancedInputFilterSettings") is not None:
         import capo_mediaconvert.types.advanced_input_filter_settings
 
         out["advanced_input_filter_settings"] = (
@@ -286,7 +286,7 @@ def deserialize_json(data: dict) -> InputTemplate:
                 data["advancedInputFilterSettings"]
             )
         )
-    if "audioSelectorGroups" in data:
+    if data.get("audioSelectorGroups") is not None:
         import capo_mediaconvert.types.__map_of_audio_selector_group
 
         out["audio_selector_groups"] = (
@@ -294,7 +294,7 @@ def deserialize_json(data: dict) -> InputTemplate:
                 data["audioSelectorGroups"]
             )
         )
-    if "audioSelectors" in data:
+    if data.get("audioSelectors") is not None:
         import capo_mediaconvert.types.__map_of_audio_selector
 
         out["audio_selectors"] = (
@@ -302,7 +302,7 @@ def deserialize_json(data: dict) -> InputTemplate:
                 data["audioSelectors"]
             )
         )
-    if "captionSelectors" in data:
+    if data.get("captionSelectors") is not None:
         import capo_mediaconvert.types.__map_of_caption_selector
 
         out["caption_selectors"] = (
@@ -310,11 +310,11 @@ def deserialize_json(data: dict) -> InputTemplate:
                 data["captionSelectors"]
             )
         )
-    if "crop" in data:
+    if data.get("crop") is not None:
         import capo_mediaconvert.types.rectangle
 
         out["crop"] = capo_mediaconvert.types.rectangle.deserialize_json(data["crop"])
-    if "deblockFilter" in data:
+    if data.get("deblockFilter") is not None:
         import capo_mediaconvert.types.input_deblock_filter
 
         out["deblock_filter"] = (
@@ -322,7 +322,7 @@ def deserialize_json(data: dict) -> InputTemplate:
                 data["deblockFilter"]
             )
         )
-    if "denoiseFilter" in data:
+    if data.get("denoiseFilter") is not None:
         import capo_mediaconvert.types.input_denoise_filter
 
         out["denoise_filter"] = (
@@ -330,9 +330,9 @@ def deserialize_json(data: dict) -> InputTemplate:
                 data["denoiseFilter"]
             )
         )
-    if "dolbyVisionMetadataXml" in data:
+    if data.get("dolbyVisionMetadataXml") is not None:
         out["dolby_vision_metadata_xml"] = data["dolbyVisionMetadataXml"]
-    if "dynamicAudioSelectors" in data:
+    if data.get("dynamicAudioSelectors") is not None:
         import capo_mediaconvert.types.__map_of_dynamic_audio_selector
 
         out["dynamic_audio_selectors"] = (
@@ -340,7 +340,7 @@ def deserialize_json(data: dict) -> InputTemplate:
                 data["dynamicAudioSelectors"]
             )
         )
-    if "filterEnable" in data:
+    if data.get("filterEnable") is not None:
         import capo_mediaconvert.types.input_filter_enable
 
         out["filter_enable"] = (
@@ -348,15 +348,15 @@ def deserialize_json(data: dict) -> InputTemplate:
                 data["filterEnable"]
             )
         )
-    if "filterStrength" in data:
+    if data.get("filterStrength") is not None:
         out["filter_strength"] = data["filterStrength"]
-    if "imageInserter" in data:
+    if data.get("imageInserter") is not None:
         import capo_mediaconvert.types.image_inserter
 
         out["image_inserter"] = capo_mediaconvert.types.image_inserter.deserialize_json(
             data["imageInserter"]
         )
-    if "inputClippings" in data:
+    if data.get("inputClippings") is not None:
         import capo_mediaconvert.types.__list_of_input_clipping
 
         out["input_clippings"] = (
@@ -364,7 +364,7 @@ def deserialize_json(data: dict) -> InputTemplate:
                 data["inputClippings"]
             )
         )
-    if "inputScanType" in data:
+    if data.get("inputScanType") is not None:
         import capo_mediaconvert.types.input_scan_type
 
         out["input_scan_type"] = (
@@ -372,7 +372,7 @@ def deserialize_json(data: dict) -> InputTemplate:
                 data["inputScanType"]
             )
         )
-    if "multiViewSettings" in data:
+    if data.get("multiViewSettings") is not None:
         import capo_mediaconvert.types.__list_of_multi_view_settings
 
         out["multi_view_settings"] = (
@@ -380,21 +380,21 @@ def deserialize_json(data: dict) -> InputTemplate:
                 data["multiViewSettings"]
             )
         )
-    if "position" in data:
+    if data.get("position") is not None:
         import capo_mediaconvert.types.rectangle
 
         out["position"] = capo_mediaconvert.types.rectangle.deserialize_json(
             data["position"]
         )
-    if "programNumber" in data:
+    if data.get("programNumber") is not None:
         out["program_number"] = data["programNumber"]
-    if "psiControl" in data:
+    if data.get("psiControl") is not None:
         import capo_mediaconvert.types.input_psi_control
 
         out["psi_control"] = capo_mediaconvert.types.input_psi_control.deserialize_json(
             data["psiControl"]
         )
-    if "timecodeSource" in data:
+    if data.get("timecodeSource") is not None:
         import capo_mediaconvert.types.input_timecode_source
 
         out["timecode_source"] = (
@@ -402,9 +402,9 @@ def deserialize_json(data: dict) -> InputTemplate:
                 data["timecodeSource"]
             )
         )
-    if "timecodeStart" in data:
+    if data.get("timecodeStart") is not None:
         out["timecode_start"] = data["timecodeStart"]
-    if "videoOverlays" in data:
+    if data.get("videoOverlays") is not None:
         import capo_mediaconvert.types.__list_of_video_overlay
 
         out["video_overlays"] = (
@@ -412,7 +412,7 @@ def deserialize_json(data: dict) -> InputTemplate:
                 data["videoOverlays"]
             )
         )
-    if "videoSelector" in data:
+    if data.get("videoSelector") is not None:
         import capo_mediaconvert.types.video_selector
 
         out["video_selector"] = capo_mediaconvert.types.video_selector.deserialize_json(

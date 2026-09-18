@@ -44,7 +44,7 @@ def serialize_json(value: AwsMskClusterClusterInfoEncryptionInfoDetails) -> dict
 
 def deserialize_json(data: dict) -> AwsMskClusterClusterInfoEncryptionInfoDetails:
     out: AwsMskClusterClusterInfoEncryptionInfoDetails = {}  # type: ignore[typeddict-item]
-    if "EncryptionInTransit" in data:
+    if data.get("EncryptionInTransit") is not None:
         import capo_securityhub.types.aws_msk_cluster_cluster_info_encryption_info_encryption_in_transit_details
 
         out["encryption_in_transit"] = (
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> AwsMskClusterClusterInfoEncryptionInfoDetail
                 data["EncryptionInTransit"]
             )
         )
-    if "EncryptionAtRest" in data:
+    if data.get("EncryptionAtRest") is not None:
         import capo_securityhub.types.aws_msk_cluster_cluster_info_encryption_info_encryption_at_rest_details
 
         out["encryption_at_rest"] = (

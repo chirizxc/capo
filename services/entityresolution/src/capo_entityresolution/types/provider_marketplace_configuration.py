@@ -28,23 +28,23 @@ def serialize_json(value: ProviderMarketplaceConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> ProviderMarketplaceConfiguration:
     out: ProviderMarketplaceConfiguration = {}  # type: ignore[typeddict-item]
-    if "dataSetId" in data:
+    if data.get("dataSetId") is not None:
         out["data_set_id"] = data["dataSetId"]
     else:
         raise DeserializationError(
             "ProviderMarketplaceConfiguration.data_set_id required"
         )
-    if "revisionId" in data:
+    if data.get("revisionId") is not None:
         out["revision_id"] = data["revisionId"]
     else:
         raise DeserializationError(
             "ProviderMarketplaceConfiguration.revision_id required"
         )
-    if "assetId" in data:
+    if data.get("assetId") is not None:
         out["asset_id"] = data["assetId"]
     else:
         raise DeserializationError("ProviderMarketplaceConfiguration.asset_id required")
-    if "listingId" in data:
+    if data.get("listingId") is not None:
         out["listing_id"] = data["listingId"]
     else:
         raise DeserializationError(

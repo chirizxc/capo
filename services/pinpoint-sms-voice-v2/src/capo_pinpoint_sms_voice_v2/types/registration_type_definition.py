@@ -49,13 +49,13 @@ def serialize_aws_json_1_0(value: RegistrationTypeDefinition) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> RegistrationTypeDefinition:
     out: RegistrationTypeDefinition = {}  # type: ignore[typeddict-item]
-    if "RegistrationType" in data:
+    if data.get("RegistrationType") is not None:
         out["registration_type"] = data["RegistrationType"]
     else:
         raise DeserializationError(
             "RegistrationTypeDefinition.registration_type required"
         )
-    if "SupportedAssociations" in data:
+    if data.get("SupportedAssociations") is not None:
         import capo_pinpoint_sms_voice_v2.types.supported_association_list
 
         out["supported_associations"] = (
@@ -63,7 +63,7 @@ def deserialize_aws_json_1_0(data: dict) -> RegistrationTypeDefinition:
                 data["SupportedAssociations"]
             )
         )
-    if "DisplayHints" in data:
+    if data.get("DisplayHints") is not None:
         import capo_pinpoint_sms_voice_v2.types.registration_type_display_hints
 
         out["display_hints"] = (

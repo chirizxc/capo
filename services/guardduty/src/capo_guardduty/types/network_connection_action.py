@@ -84,11 +84,11 @@ def serialize_json(value: NetworkConnectionAction) -> dict:
 
 def deserialize_json(data: dict) -> NetworkConnectionAction:
     out: NetworkConnectionAction = {}  # type: ignore[typeddict-item]
-    if "blocked" in data:
+    if data.get("blocked") is not None:
         out["blocked"] = data["blocked"]
-    if "connectionDirection" in data:
+    if data.get("connectionDirection") is not None:
         out["connection_direction"] = data["connectionDirection"]
-    if "localPortDetails" in data:
+    if data.get("localPortDetails") is not None:
         import capo_guardduty.types.local_port_details
 
         out["local_port_details"] = (
@@ -96,9 +96,9 @@ def deserialize_json(data: dict) -> NetworkConnectionAction:
                 data["localPortDetails"]
             )
         )
-    if "protocol" in data:
+    if data.get("protocol") is not None:
         out["protocol"] = data["protocol"]
-    if "localIpDetails" in data:
+    if data.get("localIpDetails") is not None:
         import capo_guardduty.types.local_ip_details
 
         out["local_ip_details"] = (
@@ -106,9 +106,9 @@ def deserialize_json(data: dict) -> NetworkConnectionAction:
                 data["localIpDetails"]
             )
         )
-    if "localNetworkInterface" in data:
+    if data.get("localNetworkInterface") is not None:
         out["local_network_interface"] = data["localNetworkInterface"]
-    if "remoteIpDetails" in data:
+    if data.get("remoteIpDetails") is not None:
         import capo_guardduty.types.remote_ip_details
 
         out["remote_ip_details"] = (
@@ -116,7 +116,7 @@ def deserialize_json(data: dict) -> NetworkConnectionAction:
                 data["remoteIpDetails"]
             )
         )
-    if "remotePortDetails" in data:
+    if data.get("remotePortDetails") is not None:
         import capo_guardduty.types.remote_port_details
 
         out["remote_port_details"] = (

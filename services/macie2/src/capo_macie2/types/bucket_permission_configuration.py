@@ -44,7 +44,7 @@ def serialize_json(value: BucketPermissionConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> BucketPermissionConfiguration:
     out: BucketPermissionConfiguration = {}  # type: ignore[typeddict-item]
-    if "accountLevelPermissions" in data:
+    if data.get("accountLevelPermissions") is not None:
         import capo_macie2.types.account_level_permissions
 
         out["account_level_permissions"] = (
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> BucketPermissionConfiguration:
                 data["accountLevelPermissions"]
             )
         )
-    if "bucketLevelPermissions" in data:
+    if data.get("bucketLevelPermissions") is not None:
         import capo_macie2.types.bucket_level_permissions
 
         out["bucket_level_permissions"] = (

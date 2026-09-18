@@ -43,7 +43,7 @@ def serialize_aws_json_1_1(value: ClusterSlurmConfigDetails) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ClusterSlurmConfigDetails:
     out: ClusterSlurmConfigDetails = {}  # type: ignore[typeddict-item]
-    if "NodeType" in data:
+    if data.get("NodeType") is not None:
         import capo_sagemaker.types.cluster_slurm_node_type
 
         out["node_type"] = (
@@ -53,7 +53,7 @@ def deserialize_aws_json_1_1(data: dict) -> ClusterSlurmConfigDetails:
         )
     else:
         raise DeserializationError("ClusterSlurmConfigDetails.node_type required")
-    if "PartitionNames" in data:
+    if data.get("PartitionNames") is not None:
         import capo_sagemaker.types.cluster_partition_names
 
         out["partition_names"] = (

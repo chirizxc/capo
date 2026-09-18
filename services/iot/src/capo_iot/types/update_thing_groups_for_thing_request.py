@@ -48,15 +48,15 @@ def serialize_json(value: UpdateThingGroupsForThingRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateThingGroupsForThingRequest:
     out: UpdateThingGroupsForThingRequest = {}  # type: ignore[typeddict-item]
-    if "thingName" in data:
+    if data.get("thingName") is not None:
         out["thing_name"] = data["thingName"]
-    if "thingGroupsToAdd" in data:
+    if data.get("thingGroupsToAdd") is not None:
         import capo_iot.types.thing_group_list
 
         out["thing_groups_to_add"] = capo_iot.types.thing_group_list.deserialize_json(
             data["thingGroupsToAdd"]
         )
-    if "thingGroupsToRemove" in data:
+    if data.get("thingGroupsToRemove") is not None:
         import capo_iot.types.thing_group_list
 
         out["thing_groups_to_remove"] = (
@@ -64,7 +64,7 @@ def deserialize_json(data: dict) -> UpdateThingGroupsForThingRequest:
                 data["thingGroupsToRemove"]
             )
         )
-    if "overrideDynamicGroups" in data:
+    if data.get("overrideDynamicGroups") is not None:
         out["override_dynamic_groups"] = data["overrideDynamicGroups"]
     else:
         out["override_dynamic_groups"] = False

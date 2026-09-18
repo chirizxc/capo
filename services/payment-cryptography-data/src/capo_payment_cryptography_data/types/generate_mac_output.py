@@ -34,15 +34,15 @@ def serialize_json(value: GenerateMacOutput) -> dict:
 
 def deserialize_json(data: dict) -> GenerateMacOutput:
     out: GenerateMacOutput = {}  # type: ignore[typeddict-item]
-    if "KeyArn" in data:
+    if data.get("KeyArn") is not None:
         out["key_arn"] = data["KeyArn"]
     else:
         raise DeserializationError("GenerateMacOutput.key_arn required")
-    if "KeyCheckValue" in data:
+    if data.get("KeyCheckValue") is not None:
         out["key_check_value"] = data["KeyCheckValue"]
     else:
         raise DeserializationError("GenerateMacOutput.key_check_value required")
-    if "Mac" in data:
+    if data.get("Mac") is not None:
         out["mac"] = data["Mac"]
     else:
         raise DeserializationError("GenerateMacOutput.mac required")

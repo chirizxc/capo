@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> ContactDetailsList:
 
     out: ContactDetailsList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_geo_places.types.contact_details.deserialize_json(item))
     return out

@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> DisconnectOnCustomerExit:
 
     out: DisconnectOnCustomerExit = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_connect.types.disconnect_on_customer_exit_participant_type.deserialize_json(
                 item

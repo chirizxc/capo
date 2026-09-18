@@ -32,9 +32,9 @@ def serialize_json(value: AdditionalLimit) -> dict:
 
 def deserialize_json(data: dict) -> AdditionalLimit:
     out: AdditionalLimit = {}  # type: ignore[typeddict-item]
-    if "LimitName" in data:
+    if data.get("LimitName") is not None:
         out["limit_name"] = data["LimitName"]
-    if "LimitValues" in data:
+    if data.get("LimitValues") is not None:
         import capo_opensearch.types.limit_value_list
 
         out["limit_values"] = capo_opensearch.types.limit_value_list.deserialize_json(

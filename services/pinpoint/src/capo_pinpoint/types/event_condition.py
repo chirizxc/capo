@@ -32,12 +32,12 @@ def serialize_json(value: EventCondition) -> dict:
 
 def deserialize_json(data: dict) -> EventCondition:
     out: EventCondition = {}  # type: ignore[typeddict-item]
-    if "Dimensions" in data:
+    if data.get("Dimensions") is not None:
         import capo_pinpoint.types.event_dimensions
 
         out["dimensions"] = capo_pinpoint.types.event_dimensions.deserialize_json(
             data["Dimensions"]
         )
-    if "MessageActivity" in data:
+    if data.get("MessageActivity") is not None:
         out["message_activity"] = data["MessageActivity"]
     return out

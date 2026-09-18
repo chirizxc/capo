@@ -147,19 +147,19 @@ def serialize_json(value: VideoSelector) -> dict:
 
 def deserialize_json(data: dict) -> VideoSelector:
     out: VideoSelector = {}  # type: ignore[typeddict-item]
-    if "alphaBehavior" in data:
+    if data.get("alphaBehavior") is not None:
         import capo_mediaconvert.types.alpha_behavior
 
         out["alpha_behavior"] = capo_mediaconvert.types.alpha_behavior.deserialize_json(
             data["alphaBehavior"]
         )
-    if "colorSpace" in data:
+    if data.get("colorSpace") is not None:
         import capo_mediaconvert.types.color_space
 
         out["color_space"] = capo_mediaconvert.types.color_space.deserialize_json(
             data["colorSpace"]
         )
-    if "colorSpaceUsage" in data:
+    if data.get("colorSpaceUsage") is not None:
         import capo_mediaconvert.types.color_space_usage
 
         out["color_space_usage"] = (
@@ -167,7 +167,7 @@ def deserialize_json(data: dict) -> VideoSelector:
                 data["colorSpaceUsage"]
             )
         )
-    if "embeddedTimecodeOverride" in data:
+    if data.get("embeddedTimecodeOverride") is not None:
         import capo_mediaconvert.types.embedded_timecode_override
 
         out["embedded_timecode_override"] = (
@@ -175,31 +175,31 @@ def deserialize_json(data: dict) -> VideoSelector:
                 data["embeddedTimecodeOverride"]
             )
         )
-    if "hdr10Metadata" in data:
+    if data.get("hdr10Metadata") is not None:
         import capo_mediaconvert.types.hdr10_metadata
 
         out["hdr10_metadata"] = capo_mediaconvert.types.hdr10_metadata.deserialize_json(
             data["hdr10Metadata"]
         )
-    if "maxLuminance" in data:
+    if data.get("maxLuminance") is not None:
         out["max_luminance"] = data["maxLuminance"]
-    if "padVideo" in data:
+    if data.get("padVideo") is not None:
         import capo_mediaconvert.types.pad_video
 
         out["pad_video"] = capo_mediaconvert.types.pad_video.deserialize_json(
             data["padVideo"]
         )
-    if "pid" in data:
+    if data.get("pid") is not None:
         out["pid"] = data["pid"]
-    if "programNumber" in data:
+    if data.get("programNumber") is not None:
         out["program_number"] = data["programNumber"]
-    if "rotate" in data:
+    if data.get("rotate") is not None:
         import capo_mediaconvert.types.input_rotate
 
         out["rotate"] = capo_mediaconvert.types.input_rotate.deserialize_json(
             data["rotate"]
         )
-    if "sampleRange" in data:
+    if data.get("sampleRange") is not None:
         import capo_mediaconvert.types.input_sample_range
 
         out["sample_range"] = (
@@ -207,7 +207,7 @@ def deserialize_json(data: dict) -> VideoSelector:
                 data["sampleRange"]
             )
         )
-    if "selectorType" in data:
+    if data.get("selectorType") is not None:
         import capo_mediaconvert.types.video_selector_type
 
         out["selector_type"] = (
@@ -215,7 +215,7 @@ def deserialize_json(data: dict) -> VideoSelector:
                 data["selectorType"]
             )
         )
-    if "streams" in data:
+    if data.get("streams") is not None:
         import capo_mediaconvert.types.__list_of__integer_min1_max2147483647
 
         out["streams"] = (

@@ -52,15 +52,15 @@ def serialize_aws_json_1_1(value: Evaluation) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Evaluation:
     out: Evaluation = {}  # type: ignore[typeddict-item]
-    if "approved" in data:
+    if data.get("approved") is not None:
         out["approved"] = data["approved"]
     else:
         out["approved"] = False
-    if "overridden" in data:
+    if data.get("overridden") is not None:
         out["overridden"] = data["overridden"]
     else:
         out["overridden"] = False
-    if "approvalRulesSatisfied" in data:
+    if data.get("approvalRulesSatisfied") is not None:
         import capo_codecommit.types.approval_rules_satisfied_list
 
         out["approval_rules_satisfied"] = (
@@ -68,7 +68,7 @@ def deserialize_aws_json_1_1(data: dict) -> Evaluation:
                 data["approvalRulesSatisfied"]
             )
         )
-    if "approvalRulesNotSatisfied" in data:
+    if data.get("approvalRulesNotSatisfied") is not None:
         import capo_codecommit.types.approval_rules_not_satisfied_list
 
         out["approval_rules_not_satisfied"] = (

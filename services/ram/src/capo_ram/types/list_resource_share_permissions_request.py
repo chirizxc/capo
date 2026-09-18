@@ -33,14 +33,14 @@ def serialize_json(value: ListResourceSharePermissionsRequest) -> dict:
 
 def deserialize_json(data: dict) -> ListResourceSharePermissionsRequest:
     out: ListResourceSharePermissionsRequest = {}  # type: ignore[typeddict-item]
-    if "resourceShareArn" in data:
+    if data.get("resourceShareArn") is not None:
         out["resource_share_arn"] = data["resourceShareArn"]
     else:
         raise DeserializationError(
             "ListResourceSharePermissionsRequest.resource_share_arn required"
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
     return out

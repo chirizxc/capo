@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: DescribeEC2InstanceLimitsOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeEC2InstanceLimitsOutput:
     out: DescribeEC2InstanceLimitsOutput = {}  # type: ignore[typeddict-item]
-    if "EC2InstanceLimits" in data:
+    if data.get("EC2InstanceLimits") is not None:
         import capo_gamelift.types.ec2_instance_limit_list
 
         out["ec2_instance_limits"] = (

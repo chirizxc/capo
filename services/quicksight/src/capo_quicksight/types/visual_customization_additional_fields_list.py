@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> VisualCustomizationAdditionalFieldsList:
 
     out: VisualCustomizationAdditionalFieldsList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_quicksight.types.column_identifier.deserialize_json(item))
     return out

@@ -27,9 +27,9 @@ def serialize_json(value: CustomPluginFileDescription) -> dict:
 
 def deserialize_json(data: dict) -> CustomPluginFileDescription:
     out: CustomPluginFileDescription = {}  # type: ignore[typeddict-item]
-    if "fileMd5" in data:
+    if data.get("fileMd5") is not None:
         out["file_md5"] = data["fileMd5"]
-    if "fileSize" in data:
+    if data.get("fileSize") is not None:
         out["file_size"] = data["fileSize"]
     else:
         out["file_size"] = 0

@@ -34,10 +34,10 @@ def serialize_json(value: UpdateNetworkRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateNetworkRequest:
     out: UpdateNetworkRequest = {}  # type: ignore[typeddict-item]
-    if "networkName" in data:
+    if data.get("networkName") is not None:
         out["network_name"] = data["networkName"]
     else:
         raise DeserializationError("UpdateNetworkRequest.network_name required")
-    if "encryptionKeyArn" in data:
+    if data.get("encryptionKeyArn") is not None:
         out["encryption_key_arn"] = data["encryptionKeyArn"]
     return out

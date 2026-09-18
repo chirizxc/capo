@@ -30,7 +30,7 @@ def serialize_json(value: SuppressionConfidenceThreshold) -> dict:
 
 def deserialize_json(data: dict) -> SuppressionConfidenceThreshold:
     out: SuppressionConfidenceThreshold = {}  # type: ignore[typeddict-item]
-    if "ConfidenceVerdictThreshold" in data:
+    if data.get("ConfidenceVerdictThreshold") is not None:
         import capo_sesv2.types.suppression_confidence_verdict_threshold
 
         out["confidence_verdict_threshold"] = (

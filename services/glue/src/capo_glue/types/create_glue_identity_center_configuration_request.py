@@ -48,13 +48,13 @@ def deserialize_aws_json_1_1(
     data: dict,
 ) -> CreateGlueIdentityCenterConfigurationRequest:
     out: CreateGlueIdentityCenterConfigurationRequest = {}  # type: ignore[typeddict-item]
-    if "InstanceArn" in data:
+    if data.get("InstanceArn") is not None:
         out["instance_arn"] = data["InstanceArn"]
     else:
         raise DeserializationError(
             "CreateGlueIdentityCenterConfigurationRequest.instance_arn required"
         )
-    if "Scopes" in data:
+    if data.get("Scopes") is not None:
         import capo_glue.types.identity_center_scopes_list
 
         out["scopes"] = (
@@ -62,6 +62,6 @@ def deserialize_aws_json_1_1(
                 data["Scopes"]
             )
         )
-    if "UserBackgroundSessionsEnabled" in data:
+    if data.get("UserBackgroundSessionsEnabled") is not None:
         out["user_background_sessions_enabled"] = data["UserBackgroundSessionsEnabled"]
     return out

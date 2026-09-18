@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> CoreDevicesList:
 
     out: CoreDevicesList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_greengrassv2.types.core_device.deserialize_json(item))
     return out

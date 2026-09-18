@@ -126,10 +126,14 @@ class TrainedModelInferenceJob:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanroomsml.types.start_trained_model_inference_job_request.StartTrainedModelInferenceJobRequest = {}  # type: ignore[typeddict-item]
-        input_["membership_identifier"] = membership_identifier
-        input_["name"] = name
-        input_["trained_model_arn"] = trained_model_arn
+        input_: capo_cleanroomsml.types.start_trained_model_inference_job_request.StartTrainedModelInferenceJobRequest = {
+            "membership_identifier": membership_identifier,
+            "name": name,
+            "trained_model_arn": trained_model_arn,
+            "resource_config": resource_config,
+            "output_configuration": output_configuration,
+            "data_source": data_source,
+        }
         if trained_model_version_identifier is not None:
             input_["trained_model_version_identifier"] = (
                 trained_model_version_identifier
@@ -138,9 +142,6 @@ class TrainedModelInferenceJob:
             input_["configured_model_algorithm_association_arn"] = (
                 configured_model_algorithm_association_arn
             )
-        input_["resource_config"] = resource_config
-        input_["output_configuration"] = output_configuration
-        input_["data_source"] = data_source
         if description is not None:
             input_["description"] = description
         if container_execution_parameters is not None:
@@ -161,6 +162,7 @@ class TrainedModelInferenceJob:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -199,15 +201,17 @@ class TrainedModelInferenceJob:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanroomsml.types.get_trained_model_inference_job_request.GetTrainedModelInferenceJobRequest = {}  # type: ignore[typeddict-item]
-        input_["membership_identifier"] = membership_identifier
-        input_["trained_model_inference_job_arn"] = trained_model_inference_job_arn
+        input_: capo_cleanroomsml.types.get_trained_model_inference_job_request.GetTrainedModelInferenceJobRequest = {
+            "membership_identifier": membership_identifier,
+            "trained_model_inference_job_arn": trained_model_inference_job_arn,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -255,12 +259,13 @@ class TrainedModelInferenceJob:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanroomsml.types.list_trained_model_inference_jobs_request.ListTrainedModelInferenceJobsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_cleanroomsml.types.list_trained_model_inference_jobs_request.ListTrainedModelInferenceJobsRequest = {
+            "membership_identifier": membership_identifier
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
             input_["max_results"] = max_results
-        input_["membership_identifier"] = membership_identifier
         if trained_model_arn is not None:
             input_["trained_model_arn"] = trained_model_arn
         if trained_model_version_identifier is not None:
@@ -273,6 +278,7 @@ class TrainedModelInferenceJob:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def cancel_trained_model_inference_job(
@@ -310,15 +316,17 @@ class TrainedModelInferenceJob:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanroomsml.types.cancel_trained_model_inference_job_request.CancelTrainedModelInferenceJobRequest = {}  # type: ignore[typeddict-item]
-        input_["membership_identifier"] = membership_identifier
-        input_["trained_model_inference_job_arn"] = trained_model_inference_job_arn
+        input_: capo_cleanroomsml.types.cancel_trained_model_inference_job_request.CancelTrainedModelInferenceJobRequest = {
+            "membership_identifier": membership_identifier,
+            "trained_model_inference_job_arn": trained_model_inference_job_arn,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -401,10 +409,14 @@ class AsyncTrainedModelInferenceJob:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanroomsml.types.start_trained_model_inference_job_request.StartTrainedModelInferenceJobRequest = {}  # type: ignore[typeddict-item]
-        input_["membership_identifier"] = membership_identifier
-        input_["name"] = name
-        input_["trained_model_arn"] = trained_model_arn
+        input_: capo_cleanroomsml.types.start_trained_model_inference_job_request.StartTrainedModelInferenceJobRequest = {
+            "membership_identifier": membership_identifier,
+            "name": name,
+            "trained_model_arn": trained_model_arn,
+            "resource_config": resource_config,
+            "output_configuration": output_configuration,
+            "data_source": data_source,
+        }
         if trained_model_version_identifier is not None:
             input_["trained_model_version_identifier"] = (
                 trained_model_version_identifier
@@ -413,9 +425,6 @@ class AsyncTrainedModelInferenceJob:
             input_["configured_model_algorithm_association_arn"] = (
                 configured_model_algorithm_association_arn
             )
-        input_["resource_config"] = resource_config
-        input_["output_configuration"] = output_configuration
-        input_["data_source"] = data_source
         if description is not None:
             input_["description"] = description
         if container_execution_parameters is not None:
@@ -436,6 +445,7 @@ class AsyncTrainedModelInferenceJob:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -475,15 +485,17 @@ class AsyncTrainedModelInferenceJob:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanroomsml.types.get_trained_model_inference_job_request.GetTrainedModelInferenceJobRequest = {}  # type: ignore[typeddict-item]
-        input_["membership_identifier"] = membership_identifier
-        input_["trained_model_inference_job_arn"] = trained_model_inference_job_arn
+        input_: capo_cleanroomsml.types.get_trained_model_inference_job_request.GetTrainedModelInferenceJobRequest = {
+            "membership_identifier": membership_identifier,
+            "trained_model_inference_job_arn": trained_model_inference_job_arn,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -532,12 +544,13 @@ class AsyncTrainedModelInferenceJob:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanroomsml.types.list_trained_model_inference_jobs_request.ListTrainedModelInferenceJobsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_cleanroomsml.types.list_trained_model_inference_jobs_request.ListTrainedModelInferenceJobsRequest = {
+            "membership_identifier": membership_identifier
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
             input_["max_results"] = max_results
-        input_["membership_identifier"] = membership_identifier
         if trained_model_arn is not None:
             input_["trained_model_arn"] = trained_model_arn
         if trained_model_version_identifier is not None:
@@ -550,6 +563,7 @@ class AsyncTrainedModelInferenceJob:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def cancel_trained_model_inference_job(
@@ -588,13 +602,15 @@ class AsyncTrainedModelInferenceJob:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanroomsml.types.cancel_trained_model_inference_job_request.CancelTrainedModelInferenceJobRequest = {}  # type: ignore[typeddict-item]
-        input_["membership_identifier"] = membership_identifier
-        input_["trained_model_inference_job_arn"] = trained_model_inference_job_arn
+        input_: capo_cleanroomsml.types.cancel_trained_model_inference_job_request.CancelTrainedModelInferenceJobRequest = {
+            "membership_identifier": membership_identifier,
+            "trained_model_inference_job_arn": trained_model_inference_job_arn,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

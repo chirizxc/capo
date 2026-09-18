@@ -32,7 +32,7 @@ def serialize_json(value: CreatePrivacyBudgetTemplateOutput) -> dict:
 
 def deserialize_json(data: dict) -> CreatePrivacyBudgetTemplateOutput:
     out: CreatePrivacyBudgetTemplateOutput = {}  # type: ignore[typeddict-item]
-    if "privacyBudgetTemplate" in data:
+    if data.get("privacyBudgetTemplate") is not None:
         import capo_cleanrooms.types.privacy_budget_template
 
         out["privacy_budget_template"] = (

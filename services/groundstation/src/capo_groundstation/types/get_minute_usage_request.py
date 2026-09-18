@@ -28,11 +28,11 @@ def serialize_json(value: GetMinuteUsageRequest) -> dict:
 
 def deserialize_json(data: dict) -> GetMinuteUsageRequest:
     out: GetMinuteUsageRequest = {}  # type: ignore[typeddict-item]
-    if "month" in data:
+    if data.get("month") is not None:
         out["month"] = data["month"]
     else:
         raise DeserializationError("GetMinuteUsageRequest.month required")
-    if "year" in data:
+    if data.get("year") is not None:
         out["year"] = data["year"]
     else:
         raise DeserializationError("GetMinuteUsageRequest.year required")

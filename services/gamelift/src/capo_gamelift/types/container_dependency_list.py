@@ -27,6 +27,8 @@ def deserialize_aws_json_1_1(data: list) -> ContainerDependencyList:
 
     out: ContainerDependencyList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_gamelift.types.container_dependency.deserialize_aws_json_1_1(item)
         )

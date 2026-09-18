@@ -53,7 +53,7 @@ def serialize_json(value: ListIntentPathsRequest) -> dict:
 
 def deserialize_json(data: dict) -> ListIntentPathsRequest:
     out: ListIntentPathsRequest = {}  # type: ignore[typeddict-item]
-    if "startDateTime" in data:
+    if data.get("startDateTime") is not None:
         import capo_lex_models_v2.types.timestamp
 
         out["start_date_time"] = capo_lex_models_v2.types.timestamp.deserialize_json(
@@ -61,7 +61,7 @@ def deserialize_json(data: dict) -> ListIntentPathsRequest:
         )
     else:
         raise DeserializationError("ListIntentPathsRequest.start_date_time required")
-    if "endDateTime" in data:
+    if data.get("endDateTime") is not None:
         import capo_lex_models_v2.types.timestamp
 
         out["end_date_time"] = capo_lex_models_v2.types.timestamp.deserialize_json(
@@ -69,11 +69,11 @@ def deserialize_json(data: dict) -> ListIntentPathsRequest:
         )
     else:
         raise DeserializationError("ListIntentPathsRequest.end_date_time required")
-    if "intentPath" in data:
+    if data.get("intentPath") is not None:
         out["intent_path"] = data["intentPath"]
     else:
         raise DeserializationError("ListIntentPathsRequest.intent_path required")
-    if "filters" in data:
+    if data.get("filters") is not None:
         import capo_lex_models_v2.types.analytics_path_filters
 
         out["filters"] = (

@@ -37,15 +37,18 @@ class TableRestoreNotFoundFault(ServiceError):
 
     code: str | None = "TableRestoreNotFoundFault"
 
-    def __init__(self, data: TableRestoreNotFoundFault_):
+    def __init__(self, data: TableRestoreNotFoundFault_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="TableRestoreNotFoundFault",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_query(cls, el: Element) -> "TableRestoreNotFoundFault":
-        return cls(deserialize_query(el))
+    def from_query(
+        cls, el: Element, message: str | None = None
+    ) -> "TableRestoreNotFoundFault":
+        return cls(deserialize_query(el), message)

@@ -35,12 +35,12 @@ def serialize_json(value: BucketCountByEncryptionType) -> dict:
 
 def deserialize_json(data: dict) -> BucketCountByEncryptionType:
     out: BucketCountByEncryptionType = {}  # type: ignore[typeddict-item]
-    if "kmsManaged" in data:
+    if data.get("kmsManaged") is not None:
         out["kms_managed"] = data["kmsManaged"]
-    if "s3Managed" in data:
+    if data.get("s3Managed") is not None:
         out["s3_managed"] = data["s3Managed"]
-    if "unencrypted" in data:
+    if data.get("unencrypted") is not None:
         out["unencrypted"] = data["unencrypted"]
-    if "unknown" in data:
+    if data.get("unknown") is not None:
         out["unknown"] = data["unknown"]
     return out

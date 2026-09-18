@@ -24,7 +24,7 @@ def serialize_aws_json_1_0(value: CreateScheduledQueryResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CreateScheduledQueryResponse:
     out: CreateScheduledQueryResponse = {}  # type: ignore[typeddict-item]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
     else:
         raise DeserializationError("CreateScheduledQueryResponse.arn required")

@@ -37,11 +37,11 @@ def serialize_json(value: ListDirectoriesRequest) -> dict:
 
 def deserialize_json(data: dict) -> ListDirectoriesRequest:
     out: ListDirectoriesRequest = {}  # type: ignore[typeddict-item]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "state" in data:
+    if data.get("state") is not None:
         import capo_clouddirectory.types.directory_state
 
         out["state"] = capo_clouddirectory.types.directory_state.deserialize_json(

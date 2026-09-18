@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: StopApplicationRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> StopApplicationRequest:
     out: StopApplicationRequest = {}  # type: ignore[typeddict-item]
-    if "ApplicationName" in data:
+    if data.get("ApplicationName") is not None:
         out["application_name"] = data["ApplicationName"]
     else:
         raise DeserializationError("StopApplicationRequest.application_name required")

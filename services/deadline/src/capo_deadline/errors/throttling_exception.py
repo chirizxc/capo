@@ -43,15 +43,15 @@ def serialize_json(value: ThrottlingException_) -> dict:
 
 def deserialize_json(data: dict) -> ThrottlingException_:
     out: ThrottlingException_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     else:
         raise DeserializationError("ThrottlingException_.message required")
-    if "serviceCode" in data:
+    if data.get("serviceCode") is not None:
         out["service_code"] = data["serviceCode"]
-    if "quotaCode" in data:
+    if data.get("quotaCode") is not None:
         out["quota_code"] = data["quotaCode"]
-    if "context" in data:
+    if data.get("context") is not None:
         import capo_deadline.types.exception_context
 
         out["context"] = capo_deadline.types.exception_context.deserialize_json(
@@ -65,15 +65,16 @@ class ThrottlingException(ServiceError):
 
     code: str | None = "ThrottlingException"
 
-    def __init__(self, data: ThrottlingException_):
+    def __init__(self, data: ThrottlingException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=True,
             is_retryable=True,
             code="ThrottlingException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "ThrottlingException":
-        return cls(deserialize_json(data))
+    def from_json(cls, data: dict, message: str | None = None) -> "ThrottlingException":
+        return cls(deserialize_json(data), message)

@@ -120,7 +120,7 @@ def serialize_aws_json_1_1(value: CanvasAppSettings) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CanvasAppSettings:
     out: CanvasAppSettings = {}  # type: ignore[typeddict-item]
-    if "TimeSeriesForecastingSettings" in data:
+    if data.get("TimeSeriesForecastingSettings") is not None:
         import capo_sagemaker.types.time_series_forecasting_settings
 
         out["time_series_forecasting_settings"] = (
@@ -128,7 +128,7 @@ def deserialize_aws_json_1_1(data: dict) -> CanvasAppSettings:
                 data["TimeSeriesForecastingSettings"]
             )
         )
-    if "ModelRegisterSettings" in data:
+    if data.get("ModelRegisterSettings") is not None:
         import capo_sagemaker.types.model_register_settings
 
         out["model_register_settings"] = (
@@ -136,7 +136,7 @@ def deserialize_aws_json_1_1(data: dict) -> CanvasAppSettings:
                 data["ModelRegisterSettings"]
             )
         )
-    if "WorkspaceSettings" in data:
+    if data.get("WorkspaceSettings") is not None:
         import capo_sagemaker.types.workspace_settings
 
         out["workspace_settings"] = (
@@ -144,7 +144,7 @@ def deserialize_aws_json_1_1(data: dict) -> CanvasAppSettings:
                 data["WorkspaceSettings"]
             )
         )
-    if "IdentityProviderOAuthSettings" in data:
+    if data.get("IdentityProviderOAuthSettings") is not None:
         import capo_sagemaker.types.identity_provider_o_auth_settings
 
         out["identity_provider_o_auth_settings"] = (
@@ -152,7 +152,7 @@ def deserialize_aws_json_1_1(data: dict) -> CanvasAppSettings:
                 data["IdentityProviderOAuthSettings"]
             )
         )
-    if "DirectDeploySettings" in data:
+    if data.get("DirectDeploySettings") is not None:
         import capo_sagemaker.types.direct_deploy_settings
 
         out["direct_deploy_settings"] = (
@@ -160,7 +160,7 @@ def deserialize_aws_json_1_1(data: dict) -> CanvasAppSettings:
                 data["DirectDeploySettings"]
             )
         )
-    if "KendraSettings" in data:
+    if data.get("KendraSettings") is not None:
         import capo_sagemaker.types.kendra_settings
 
         out["kendra_settings"] = (
@@ -168,7 +168,7 @@ def deserialize_aws_json_1_1(data: dict) -> CanvasAppSettings:
                 data["KendraSettings"]
             )
         )
-    if "GenerativeAiSettings" in data:
+    if data.get("GenerativeAiSettings") is not None:
         import capo_sagemaker.types.generative_ai_settings
 
         out["generative_ai_settings"] = (
@@ -176,7 +176,7 @@ def deserialize_aws_json_1_1(data: dict) -> CanvasAppSettings:
                 data["GenerativeAiSettings"]
             )
         )
-    if "EmrServerlessSettings" in data:
+    if data.get("EmrServerlessSettings") is not None:
         import capo_sagemaker.types.emr_serverless_settings
 
         out["emr_serverless_settings"] = (

@@ -34,15 +34,15 @@ def serialize_json(value: CalculatedField) -> dict:
 
 def deserialize_json(data: dict) -> CalculatedField:
     out: CalculatedField = {}  # type: ignore[typeddict-item]
-    if "DataSetIdentifier" in data:
+    if data.get("DataSetIdentifier") is not None:
         out["data_set_identifier"] = data["DataSetIdentifier"]
     else:
         raise DeserializationError("CalculatedField.data_set_identifier required")
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("CalculatedField.name required")
-    if "Expression" in data:
+    if data.get("Expression") is not None:
         out["expression"] = data["Expression"]
     else:
         raise DeserializationError("CalculatedField.expression required")

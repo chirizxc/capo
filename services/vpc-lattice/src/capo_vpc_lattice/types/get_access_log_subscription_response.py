@@ -64,35 +64,35 @@ def serialize_json(value: GetAccessLogSubscriptionResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetAccessLogSubscriptionResponse:
     out: GetAccessLogSubscriptionResponse = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("GetAccessLogSubscriptionResponse.id required")
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("GetAccessLogSubscriptionResponse.arn required")
-    if "resourceId" in data:
+    if data.get("resourceId") is not None:
         out["resource_id"] = data["resourceId"]
     else:
         raise DeserializationError(
             "GetAccessLogSubscriptionResponse.resource_id required"
         )
-    if "resourceArn" in data:
+    if data.get("resourceArn") is not None:
         out["resource_arn"] = data["resourceArn"]
     else:
         raise DeserializationError(
             "GetAccessLogSubscriptionResponse.resource_arn required"
         )
-    if "destinationArn" in data:
+    if data.get("destinationArn") is not None:
         out["destination_arn"] = data["destinationArn"]
     else:
         raise DeserializationError(
             "GetAccessLogSubscriptionResponse.destination_arn required"
         )
-    if "serviceNetworkLogType" in data:
+    if data.get("serviceNetworkLogType") is not None:
         out["service_network_log_type"] = data["serviceNetworkLogType"]
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_vpc_lattice.types.timestamp
 
         out["created_at"] = capo_vpc_lattice.types.timestamp.deserialize_json(
@@ -102,7 +102,7 @@ def deserialize_json(data: dict) -> GetAccessLogSubscriptionResponse:
         raise DeserializationError(
             "GetAccessLogSubscriptionResponse.created_at required"
         )
-    if "lastUpdatedAt" in data:
+    if data.get("lastUpdatedAt") is not None:
         import capo_vpc_lattice.types.timestamp
 
         out["last_updated_at"] = capo_vpc_lattice.types.timestamp.deserialize_json(

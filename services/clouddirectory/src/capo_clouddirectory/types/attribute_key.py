@@ -32,15 +32,15 @@ def serialize_json(value: AttributeKey) -> dict:
 
 def deserialize_json(data: dict) -> AttributeKey:
     out: AttributeKey = {}  # type: ignore[typeddict-item]
-    if "SchemaArn" in data:
+    if data.get("SchemaArn") is not None:
         out["schema_arn"] = data["SchemaArn"]
     else:
         raise DeserializationError("AttributeKey.schema_arn required")
-    if "FacetName" in data:
+    if data.get("FacetName") is not None:
         out["facet_name"] = data["FacetName"]
     else:
         raise DeserializationError("AttributeKey.facet_name required")
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("AttributeKey.name required")

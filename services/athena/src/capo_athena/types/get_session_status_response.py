@@ -32,9 +32,9 @@ def serialize_aws_json_1_1(value: GetSessionStatusResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetSessionStatusResponse:
     out: GetSessionStatusResponse = {}  # type: ignore[typeddict-item]
-    if "SessionId" in data:
+    if data.get("SessionId") is not None:
         out["session_id"] = data["SessionId"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_athena.types.session_status
 
         out["status"] = capo_athena.types.session_status.deserialize_aws_json_1_1(

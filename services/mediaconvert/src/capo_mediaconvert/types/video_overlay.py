@@ -88,15 +88,15 @@ def serialize_json(value: VideoOverlay) -> dict:
 
 def deserialize_json(data: dict) -> VideoOverlay:
     out: VideoOverlay = {}  # type: ignore[typeddict-item]
-    if "crop" in data:
+    if data.get("crop") is not None:
         import capo_mediaconvert.types.video_overlay_crop
 
         out["crop"] = capo_mediaconvert.types.video_overlay_crop.deserialize_json(
             data["crop"]
         )
-    if "endTimecode" in data:
+    if data.get("endTimecode") is not None:
         out["end_timecode"] = data["endTimecode"]
-    if "initialPosition" in data:
+    if data.get("initialPosition") is not None:
         import capo_mediaconvert.types.video_overlay_position
 
         out["initial_position"] = (
@@ -104,13 +104,13 @@ def deserialize_json(data: dict) -> VideoOverlay:
                 data["initialPosition"]
             )
         )
-    if "input" in data:
+    if data.get("input") is not None:
         import capo_mediaconvert.types.video_overlay_input
 
         out["input"] = capo_mediaconvert.types.video_overlay_input.deserialize_json(
             data["input"]
         )
-    if "playback" in data:
+    if data.get("playback") is not None:
         import capo_mediaconvert.types.video_overlay_play_back_mode
 
         out["playback"] = (
@@ -118,9 +118,9 @@ def deserialize_json(data: dict) -> VideoOverlay:
                 data["playback"]
             )
         )
-    if "startTimecode" in data:
+    if data.get("startTimecode") is not None:
         out["start_timecode"] = data["startTimecode"]
-    if "transitions" in data:
+    if data.get("transitions") is not None:
         import capo_mediaconvert.types.__list_of_video_overlay_transition
 
         out["transitions"] = (

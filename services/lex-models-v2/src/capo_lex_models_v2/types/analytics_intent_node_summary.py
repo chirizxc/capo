@@ -53,15 +53,15 @@ def serialize_json(value: AnalyticsIntentNodeSummary) -> dict:
 
 def deserialize_json(data: dict) -> AnalyticsIntentNodeSummary:
     out: AnalyticsIntentNodeSummary = {}  # type: ignore[typeddict-item]
-    if "intentName" in data:
+    if data.get("intentName") is not None:
         out["intent_name"] = data["intentName"]
-    if "intentPath" in data:
+    if data.get("intentPath") is not None:
         out["intent_path"] = data["intentPath"]
-    if "intentCount" in data:
+    if data.get("intentCount") is not None:
         out["intent_count"] = data["intentCount"]
-    if "intentLevel" in data:
+    if data.get("intentLevel") is not None:
         out["intent_level"] = data["intentLevel"]
-    if "nodeType" in data:
+    if data.get("nodeType") is not None:
         import capo_lex_models_v2.types.analytics_node_type
 
         out["node_type"] = (

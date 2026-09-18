@@ -30,7 +30,7 @@ def serialize_json(value: CreatePolicyVersionRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreatePolicyVersionRequest:
     out: CreatePolicyVersionRequest = {}  # type: ignore[typeddict-item]
-    if "policyDocument" in data:
+    if data.get("policyDocument") is not None:
         out["policy_document"] = data["policyDocument"]
     else:
         raise DeserializationError(

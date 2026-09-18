@@ -51,7 +51,7 @@ def serialize_aws_json_1_1(value: InputSchemaUpdate) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> InputSchemaUpdate:
     out: InputSchemaUpdate = {}  # type: ignore[typeddict-item]
-    if "RecordFormatUpdate" in data:
+    if data.get("RecordFormatUpdate") is not None:
         import capo_kinesis_analytics_v2.types.record_format
 
         out["record_format_update"] = (
@@ -59,9 +59,9 @@ def deserialize_aws_json_1_1(data: dict) -> InputSchemaUpdate:
                 data["RecordFormatUpdate"]
             )
         )
-    if "RecordEncodingUpdate" in data:
+    if data.get("RecordEncodingUpdate") is not None:
         out["record_encoding_update"] = data["RecordEncodingUpdate"]
-    if "RecordColumnUpdates" in data:
+    if data.get("RecordColumnUpdates") is not None:
         import capo_kinesis_analytics_v2.types.record_columns
 
         out["record_column_updates"] = (

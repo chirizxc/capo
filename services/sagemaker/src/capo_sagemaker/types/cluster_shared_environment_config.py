@@ -44,7 +44,7 @@ def serialize_aws_json_1_1(value: ClusterSharedEnvironmentConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ClusterSharedEnvironmentConfig:
     out: ClusterSharedEnvironmentConfig = {}  # type: ignore[typeddict-item]
-    if "FSxLustreDeletionPolicy" in data:
+    if data.get("FSxLustreDeletionPolicy") is not None:
         import capo_sagemaker.types.cluster_f_sx_lustre_deletion_policy
 
         out["f_sx_lustre_deletion_policy"] = (
@@ -52,7 +52,7 @@ def deserialize_aws_json_1_1(data: dict) -> ClusterSharedEnvironmentConfig:
                 data["FSxLustreDeletionPolicy"]
             )
         )
-    if "FSxLustreConfig" in data:
+    if data.get("FSxLustreConfig") is not None:
         import capo_sagemaker.types.f_sx_lustre_config
 
         out["f_sx_lustre_config"] = (

@@ -35,14 +35,14 @@ def serialize_aws_json_1_1(value: DescribeReplicationInstanceTaskLogsMessage) ->
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeReplicationInstanceTaskLogsMessage:
     out: DescribeReplicationInstanceTaskLogsMessage = {}  # type: ignore[typeddict-item]
-    if "ReplicationInstanceArn" in data:
+    if data.get("ReplicationInstanceArn") is not None:
         out["replication_instance_arn"] = data["ReplicationInstanceArn"]
     else:
         raise DeserializationError(
             "DescribeReplicationInstanceTaskLogsMessage.replication_instance_arn required"
         )
-    if "MaxRecords" in data:
+    if data.get("MaxRecords") is not None:
         out["max_records"] = data["MaxRecords"]
-    if "Marker" in data:
+    if data.get("Marker") is not None:
         out["marker"] = data["Marker"]
     return out

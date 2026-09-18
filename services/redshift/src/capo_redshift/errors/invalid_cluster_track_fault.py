@@ -37,15 +37,18 @@ class InvalidClusterTrackFault(ServiceError):
 
     code: str | None = "InvalidClusterTrackFault"
 
-    def __init__(self, data: InvalidClusterTrackFault_):
+    def __init__(self, data: InvalidClusterTrackFault_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="InvalidClusterTrackFault",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_query(cls, el: Element) -> "InvalidClusterTrackFault":
-        return cls(deserialize_query(el))
+    def from_query(
+        cls, el: Element, message: str | None = None
+    ) -> "InvalidClusterTrackFault":
+        return cls(deserialize_query(el), message)

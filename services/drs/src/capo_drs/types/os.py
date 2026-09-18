@@ -23,6 +23,6 @@ def serialize_json(value: OS) -> dict:
 
 def deserialize_json(data: dict) -> OS:
     out: OS = {}  # type: ignore[typeddict-item]
-    if "fullString" in data:
+    if data.get("fullString") is not None:
         out["full_string"] = data["fullString"]
     return out

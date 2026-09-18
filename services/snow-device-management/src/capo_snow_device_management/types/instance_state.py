@@ -29,8 +29,8 @@ def serialize_json(value: InstanceState) -> dict:
 
 def deserialize_json(data: dict) -> InstanceState:
     out: InstanceState = {}  # type: ignore[typeddict-item]
-    if "code" in data:
+    if data.get("code") is not None:
         out["code"] = data["code"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     return out

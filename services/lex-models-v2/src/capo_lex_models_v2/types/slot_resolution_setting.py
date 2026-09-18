@@ -32,7 +32,7 @@ def serialize_json(value: SlotResolutionSetting) -> dict:
 
 def deserialize_json(data: dict) -> SlotResolutionSetting:
     out: SlotResolutionSetting = {}  # type: ignore[typeddict-item]
-    if "slotResolutionStrategy" in data:
+    if data.get("slotResolutionStrategy") is not None:
         import capo_lex_models_v2.types.slot_resolution_strategy
 
         out["slot_resolution_strategy"] = (

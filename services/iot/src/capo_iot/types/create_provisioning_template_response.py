@@ -35,10 +35,10 @@ def serialize_json(value: CreateProvisioningTemplateResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateProvisioningTemplateResponse:
     out: CreateProvisioningTemplateResponse = {}  # type: ignore[typeddict-item]
-    if "templateArn" in data:
+    if data.get("templateArn") is not None:
         out["template_arn"] = data["templateArn"]
-    if "templateName" in data:
+    if data.get("templateName") is not None:
         out["template_name"] = data["templateName"]
-    if "defaultVersionId" in data:
+    if data.get("defaultVersionId") is not None:
         out["default_version_id"] = data["defaultVersionId"]
     return out

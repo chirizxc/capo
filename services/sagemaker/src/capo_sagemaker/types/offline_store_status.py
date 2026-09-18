@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: OfflineStoreStatus) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> OfflineStoreStatus:
     out: OfflineStoreStatus = {}  # type: ignore[typeddict-item]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_sagemaker.types.offline_store_status_value
 
         out["status"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_1(data: dict) -> OfflineStoreStatus:
                 data["Status"]
             )
         )
-    if "BlockedReason" in data:
+    if data.get("BlockedReason") is not None:
         out["blocked_reason"] = data["BlockedReason"]
     return out

@@ -58,7 +58,7 @@ def serialize_aws_json_1_1(value: ModelMetrics) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ModelMetrics:
     out: ModelMetrics = {}  # type: ignore[typeddict-item]
-    if "ModelQuality" in data:
+    if data.get("ModelQuality") is not None:
         import capo_sagemaker.types.model_quality
 
         out["model_quality"] = (
@@ -66,7 +66,7 @@ def deserialize_aws_json_1_1(data: dict) -> ModelMetrics:
                 data["ModelQuality"]
             )
         )
-    if "ModelDataQuality" in data:
+    if data.get("ModelDataQuality") is not None:
         import capo_sagemaker.types.model_data_quality
 
         out["model_data_quality"] = (
@@ -74,11 +74,11 @@ def deserialize_aws_json_1_1(data: dict) -> ModelMetrics:
                 data["ModelDataQuality"]
             )
         )
-    if "Bias" in data:
+    if data.get("Bias") is not None:
         import capo_sagemaker.types.bias
 
         out["bias"] = capo_sagemaker.types.bias.deserialize_aws_json_1_1(data["Bias"])
-    if "Explainability" in data:
+    if data.get("Explainability") is not None:
         import capo_sagemaker.types.explainability
 
         out["explainability"] = (

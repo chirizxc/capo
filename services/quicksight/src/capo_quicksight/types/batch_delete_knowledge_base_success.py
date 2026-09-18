@@ -28,13 +28,13 @@ def serialize_json(value: BatchDeleteKnowledgeBaseSuccess) -> dict:
 
 def deserialize_json(data: dict) -> BatchDeleteKnowledgeBaseSuccess:
     out: BatchDeleteKnowledgeBaseSuccess = {}  # type: ignore[typeddict-item]
-    if "KnowledgeBaseId" in data:
+    if data.get("KnowledgeBaseId") is not None:
         out["knowledge_base_id"] = data["KnowledgeBaseId"]
     else:
         raise DeserializationError(
             "BatchDeleteKnowledgeBaseSuccess.knowledge_base_id required"
         )
-    if "KnowledgeBaseArn" in data:
+    if data.get("KnowledgeBaseArn") is not None:
         out["knowledge_base_arn"] = data["KnowledgeBaseArn"]
     else:
         raise DeserializationError(

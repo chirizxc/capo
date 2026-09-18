@@ -16,4 +16,4 @@ def serialize_json(value: OrganizationalUnitArnList) -> list:
 
 
 def deserialize_json(data: list) -> OrganizationalUnitArnList:
-    return list(data)
+    return [item for item in data if item is not None]

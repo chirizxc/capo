@@ -45,14 +45,14 @@ def serialize_json(value: CreateEventBridgeRuleTemplateGroupRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateEventBridgeRuleTemplateGroupRequest:
     out: CreateEventBridgeRuleTemplateGroupRequest = {}  # type: ignore[typeddict-item]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_medialive.types.tag_map
 
         out["tags"] = capo_medialive.types.tag_map.deserialize_json(data["tags"])
-    if "requestId" in data:
+    if data.get("requestId") is not None:
         out["request_id"] = data["requestId"]
     return out

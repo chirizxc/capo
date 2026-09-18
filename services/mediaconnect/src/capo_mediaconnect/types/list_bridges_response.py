@@ -33,7 +33,7 @@ def serialize_json(value: ListBridgesResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListBridgesResponse:
     out: ListBridgesResponse = {}  # type: ignore[typeddict-item]
-    if "bridges" in data:
+    if data.get("bridges") is not None:
         import capo_mediaconnect.types.__list_of_listed_bridge
 
         out["bridges"] = (
@@ -41,6 +41,6 @@ def deserialize_json(data: dict) -> ListBridgesResponse:
                 data["bridges"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

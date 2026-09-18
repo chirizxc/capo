@@ -32,9 +32,9 @@ def serialize_json(value: DataLakeException) -> dict:
     if "remediation" in value:
         out["remediation"] = value["remediation"]
     if "timestamp" in value:
-        import capo_securitylake.types._prelude.timestamp
+        import capo_securitylake._protocol.serialize
 
-        out["timestamp"] = capo_securitylake.types._prelude.timestamp.serialize_json(
+        out["timestamp"] = capo_securitylake._protocol.serialize.fmt_date_time(
             value["timestamp"]
         )
     return out
@@ -42,16 +42,16 @@ def serialize_json(value: DataLakeException) -> dict:
 
 def deserialize_json(data: dict) -> DataLakeException:
     out: DataLakeException = {}  # type: ignore[typeddict-item]
-    if "region" in data:
+    if data.get("region") is not None:
         out["region"] = data["region"]
-    if "exception" in data:
+    if data.get("exception") is not None:
         out["exception"] = data["exception"]
-    if "remediation" in data:
+    if data.get("remediation") is not None:
         out["remediation"] = data["remediation"]
-    if "timestamp" in data:
-        import capo_securitylake.types._prelude.timestamp
+    if data.get("timestamp") is not None:
+        import datetime
 
-        out["timestamp"] = capo_securitylake.types._prelude.timestamp.deserialize_json(
-            data["timestamp"]
+        out["timestamp"] = datetime.datetime.fromisoformat(
+            data["timestamp"].replace("Z", "+00:00")
         )
     return out

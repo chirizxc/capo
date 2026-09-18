@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> EdgeList:
 
     out: EdgeList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_xray.types.edge.deserialize_json(item))
     return out

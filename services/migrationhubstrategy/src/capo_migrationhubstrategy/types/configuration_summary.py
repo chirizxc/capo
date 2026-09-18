@@ -83,7 +83,7 @@ def serialize_json(value: ConfigurationSummary) -> dict:
 
 def deserialize_json(data: dict) -> ConfigurationSummary:
     out: ConfigurationSummary = {}  # type: ignore[typeddict-item]
-    if "vcenterBasedRemoteInfoList" in data:
+    if data.get("vcenterBasedRemoteInfoList") is not None:
         import capo_migrationhubstrategy.types.vcenter_based_remote_info_list
 
         out["vcenter_based_remote_info_list"] = (
@@ -91,7 +91,7 @@ def deserialize_json(data: dict) -> ConfigurationSummary:
                 data["vcenterBasedRemoteInfoList"]
             )
         )
-    if "ipAddressBasedRemoteInfoList" in data:
+    if data.get("ipAddressBasedRemoteInfoList") is not None:
         import capo_migrationhubstrategy.types.ip_address_based_remote_info_list
 
         out["ip_address_based_remote_info_list"] = (
@@ -99,7 +99,7 @@ def deserialize_json(data: dict) -> ConfigurationSummary:
                 data["ipAddressBasedRemoteInfoList"]
             )
         )
-    if "versionControlInfoList" in data:
+    if data.get("versionControlInfoList") is not None:
         import capo_migrationhubstrategy.types.version_control_info_list
 
         out["version_control_info_list"] = (
@@ -107,7 +107,7 @@ def deserialize_json(data: dict) -> ConfigurationSummary:
                 data["versionControlInfoList"]
             )
         )
-    if "pipelineInfoList" in data:
+    if data.get("pipelineInfoList") is not None:
         import capo_migrationhubstrategy.types.pipeline_info_list
 
         out["pipeline_info_list"] = (
@@ -115,7 +115,7 @@ def deserialize_json(data: dict) -> ConfigurationSummary:
                 data["pipelineInfoList"]
             )
         )
-    if "remoteSourceCodeAnalysisServerInfo" in data:
+    if data.get("remoteSourceCodeAnalysisServerInfo") is not None:
         import capo_migrationhubstrategy.types.remote_source_code_analysis_server_info
 
         out["remote_source_code_analysis_server_info"] = (

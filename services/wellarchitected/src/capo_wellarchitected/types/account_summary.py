@@ -27,5 +27,7 @@ def deserialize_json(data: dict) -> AccountSummary:
     for key, value in data.items():
         import capo_wellarchitected.types.check_status
 
+        if value is None:
+            continue
         out[capo_wellarchitected.types.check_status.deserialize_json(key)] = value
     return out

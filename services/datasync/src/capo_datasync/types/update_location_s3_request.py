@@ -48,13 +48,13 @@ def serialize_aws_json_1_1(value: UpdateLocationS3Request) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateLocationS3Request:
     out: UpdateLocationS3Request = {}  # type: ignore[typeddict-item]
-    if "LocationArn" in data:
+    if data.get("LocationArn") is not None:
         out["location_arn"] = data["LocationArn"]
     else:
         raise DeserializationError("UpdateLocationS3Request.location_arn required")
-    if "Subdirectory" in data:
+    if data.get("Subdirectory") is not None:
         out["subdirectory"] = data["Subdirectory"]
-    if "S3StorageClass" in data:
+    if data.get("S3StorageClass") is not None:
         import capo_datasync.types.s3_storage_class
 
         out["s3_storage_class"] = (
@@ -62,7 +62,7 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateLocationS3Request:
                 data["S3StorageClass"]
             )
         )
-    if "S3Config" in data:
+    if data.get("S3Config") is not None:
         import capo_datasync.types.s3_config
 
         out["s3_config"] = capo_datasync.types.s3_config.deserialize_aws_json_1_1(

@@ -56,29 +56,29 @@ def serialize_aws_json_1_1(value: CreateHITTypeRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateHITTypeRequest:
     out: CreateHITTypeRequest = {}  # type: ignore[typeddict-item]
-    if "AutoApprovalDelayInSeconds" in data:
+    if data.get("AutoApprovalDelayInSeconds") is not None:
         out["auto_approval_delay_in_seconds"] = data["AutoApprovalDelayInSeconds"]
-    if "AssignmentDurationInSeconds" in data:
+    if data.get("AssignmentDurationInSeconds") is not None:
         out["assignment_duration_in_seconds"] = data["AssignmentDurationInSeconds"]
     else:
         raise DeserializationError(
             "CreateHITTypeRequest.assignment_duration_in_seconds required"
         )
-    if "Reward" in data:
+    if data.get("Reward") is not None:
         out["reward"] = data["Reward"]
     else:
         raise DeserializationError("CreateHITTypeRequest.reward required")
-    if "Title" in data:
+    if data.get("Title") is not None:
         out["title"] = data["Title"]
     else:
         raise DeserializationError("CreateHITTypeRequest.title required")
-    if "Keywords" in data:
+    if data.get("Keywords") is not None:
         out["keywords"] = data["Keywords"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
     else:
         raise DeserializationError("CreateHITTypeRequest.description required")
-    if "QualificationRequirements" in data:
+    if data.get("QualificationRequirements") is not None:
         import capo_mturk.types.qualification_requirement_list
 
         out["qualification_requirements"] = (

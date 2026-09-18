@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> SeverityLevelList:
 
     out: SeverityLevelList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_macie2.types.severity_level.deserialize_json(item))
     return out

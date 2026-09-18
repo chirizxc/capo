@@ -23,6 +23,8 @@ def deserialize_aws_json_1_1(data: list) -> ActivatedRules:
 
     out: ActivatedRules = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_waf_regional.types.activated_rule.deserialize_aws_json_1_1(item)
         )

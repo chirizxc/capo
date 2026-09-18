@@ -32,18 +32,18 @@ def serialize_json(value: UpgradeElasticsearchDomainRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpgradeElasticsearchDomainRequest:
     out: UpgradeElasticsearchDomainRequest = {}  # type: ignore[typeddict-item]
-    if "DomainName" in data:
+    if data.get("DomainName") is not None:
         out["domain_name"] = data["DomainName"]
     else:
         raise DeserializationError(
             "UpgradeElasticsearchDomainRequest.domain_name required"
         )
-    if "TargetVersion" in data:
+    if data.get("TargetVersion") is not None:
         out["target_version"] = data["TargetVersion"]
     else:
         raise DeserializationError(
             "UpgradeElasticsearchDomainRequest.target_version required"
         )
-    if "PerformCheckOnly" in data:
+    if data.get("PerformCheckOnly") is not None:
         out["perform_check_only"] = data["PerformCheckOnly"]
     return out

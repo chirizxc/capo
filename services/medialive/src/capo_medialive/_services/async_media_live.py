@@ -1,5 +1,6 @@
 """Generated from Smithy shape ``com.amazonaws.medialive#MediaLive``."""
 
+import uuid
 import warnings
 from collections.abc import AsyncGenerator, AsyncIterator
 from contextlib import asynccontextmanager
@@ -504,14 +505,16 @@ class AsyncMediaLiveClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_medialive.types.accept_input_device_transfer_request.AcceptInputDeviceTransferRequest = {}  # type: ignore[typeddict-item]
-        input_["input_device_id"] = input_device_id
+        input_: capo_medialive.types.accept_input_device_transfer_request.AcceptInputDeviceTransferRequest = {
+            "input_device_id": input_device_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def batch_delete(
@@ -567,7 +570,7 @@ class AsyncMediaLiveClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_medialive.types.batch_delete_request.BatchDeleteRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_medialive.types.batch_delete_request.BatchDeleteRequest = {}
         if channel_ids is not None:
             input_["channel_ids"] = channel_ids
         if input_ids is not None:
@@ -582,6 +585,7 @@ class AsyncMediaLiveClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def batch_start(
@@ -629,7 +633,7 @@ class AsyncMediaLiveClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_medialive.types.batch_start_request.BatchStartRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_medialive.types.batch_start_request.BatchStartRequest = {}
         if channel_ids is not None:
             input_["channel_ids"] = channel_ids
         if multiplex_ids is not None:
@@ -640,6 +644,7 @@ class AsyncMediaLiveClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def batch_stop(
@@ -687,7 +692,7 @@ class AsyncMediaLiveClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_medialive.types.batch_stop_request.BatchStopRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_medialive.types.batch_stop_request.BatchStopRequest = {}
         if channel_ids is not None:
             input_["channel_ids"] = channel_ids
         if multiplex_ids is not None:
@@ -698,6 +703,7 @@ class AsyncMediaLiveClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def batch_update_schedule(
@@ -747,8 +753,9 @@ class AsyncMediaLiveClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_medialive.types.batch_update_schedule_request.BatchUpdateScheduleRequest = {}  # type: ignore[typeddict-item]
-        input_["channel_id"] = channel_id
+        input_: capo_medialive.types.batch_update_schedule_request.BatchUpdateScheduleRequest = {
+            "channel_id": channel_id
+        }
         if creates is not None:
             input_["creates"] = creates
         if deletes is not None:
@@ -759,6 +766,7 @@ class AsyncMediaLiveClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def cancel_input_device_transfer(
@@ -801,14 +809,16 @@ class AsyncMediaLiveClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_medialive.types.cancel_input_device_transfer_request.CancelInputDeviceTransferRequest = {}  # type: ignore[typeddict-item]
-        input_["input_device_id"] = input_device_id
+        input_: capo_medialive.types.cancel_input_device_transfer_request.CancelInputDeviceTransferRequest = {
+            "input_device_id": input_device_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def claim_device(
@@ -850,7 +860,7 @@ class AsyncMediaLiveClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_medialive.types.claim_device_request.ClaimDeviceRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_medialive.types.claim_device_request.ClaimDeviceRequest = {}
         if id is not None:
             input_["id"] = id
 
@@ -859,6 +869,7 @@ class AsyncMediaLiveClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_channel(
@@ -961,7 +972,7 @@ class AsyncMediaLiveClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_medialive.types.create_channel_request.CreateChannelRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_medialive.types.create_channel_request.CreateChannelRequest = {}
         if cdi_input_specification is not None:
             input_["cdi_input_specification"] = cdi_input_specification
         if channel_class is not None:
@@ -980,8 +991,9 @@ class AsyncMediaLiveClient:
             input_["maintenance"] = maintenance
         if name is not None:
             input_["name"] = name
-        if request_id is not None:
-            input_["request_id"] = request_id
+        if request_id is None:
+            request_id = str(uuid.uuid4())
+        input_["request_id"] = request_id
         if reserved is not None:
             input_["reserved"] = reserved
         if role_arn is not None:
@@ -1008,6 +1020,7 @@ class AsyncMediaLiveClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_channel_placement_group(
@@ -1058,14 +1071,16 @@ class AsyncMediaLiveClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_medialive.types.create_channel_placement_group_request.CreateChannelPlacementGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["cluster_id"] = cluster_id
+        input_: capo_medialive.types.create_channel_placement_group_request.CreateChannelPlacementGroupRequest = {
+            "cluster_id": cluster_id
+        }
         if name is not None:
             input_["name"] = name
         if nodes is not None:
             input_["nodes"] = nodes
-        if request_id is not None:
-            input_["request_id"] = request_id
+        if request_id is None:
+            request_id = str(uuid.uuid4())
+        input_["request_id"] = request_id
         if tags is not None:
             input_["tags"] = tags
 
@@ -1074,6 +1089,7 @@ class AsyncMediaLiveClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_cloud_watch_alarm_template(
@@ -1158,7 +1174,7 @@ class AsyncMediaLiveClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_medialive.types.create_cloud_watch_alarm_template_request.CreateCloudWatchAlarmTemplateRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_medialive.types.create_cloud_watch_alarm_template_request.CreateCloudWatchAlarmTemplateRequest = {}
         if comparison_operator is not None:
             input_["comparison_operator"] = comparison_operator
         if datapoints_to_alarm is not None:
@@ -1185,14 +1201,16 @@ class AsyncMediaLiveClient:
             input_["threshold"] = threshold
         if treat_missing_data is not None:
             input_["treat_missing_data"] = treat_missing_data
-        if request_id is not None:
-            input_["request_id"] = request_id
+        if request_id is None:
+            request_id = str(uuid.uuid4())
+        input_["request_id"] = request_id
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_cloud_watch_alarm_template_group(
@@ -1243,21 +1261,23 @@ class AsyncMediaLiveClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_medialive.types.create_cloud_watch_alarm_template_group_request.CreateCloudWatchAlarmTemplateGroupRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_medialive.types.create_cloud_watch_alarm_template_group_request.CreateCloudWatchAlarmTemplateGroupRequest = {}
         if description is not None:
             input_["description"] = description
         if name is not None:
             input_["name"] = name
         if tags is not None:
             input_["tags"] = tags
-        if request_id is not None:
-            input_["request_id"] = request_id
+        if request_id is None:
+            request_id = str(uuid.uuid4())
+        input_["request_id"] = request_id
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_cluster(
@@ -1310,7 +1330,7 @@ class AsyncMediaLiveClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_medialive.types.create_cluster_request.CreateClusterRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_medialive.types.create_cluster_request.CreateClusterRequest = {}
         if cluster_type is not None:
             input_["cluster_type"] = cluster_type
         if instance_role_arn is not None:
@@ -1319,8 +1339,9 @@ class AsyncMediaLiveClient:
             input_["name"] = name
         if network_settings is not None:
             input_["network_settings"] = network_settings
-        if request_id is not None:
-            input_["request_id"] = request_id
+        if request_id is None:
+            request_id = str(uuid.uuid4())
+        input_["request_id"] = request_id
         if tags is not None:
             input_["tags"] = tags
 
@@ -1329,6 +1350,7 @@ class AsyncMediaLiveClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_event_bridge_rule_template(
@@ -1389,7 +1411,7 @@ class AsyncMediaLiveClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_medialive.types.create_event_bridge_rule_template_request.CreateEventBridgeRuleTemplateRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_medialive.types.create_event_bridge_rule_template_request.CreateEventBridgeRuleTemplateRequest = {}
         if description is not None:
             input_["description"] = description
         if event_targets is not None:
@@ -1402,14 +1424,16 @@ class AsyncMediaLiveClient:
             input_["name"] = name
         if tags is not None:
             input_["tags"] = tags
-        if request_id is not None:
-            input_["request_id"] = request_id
+        if request_id is None:
+            request_id = str(uuid.uuid4())
+        input_["request_id"] = request_id
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_event_bridge_rule_template_group(
@@ -1460,21 +1484,23 @@ class AsyncMediaLiveClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_medialive.types.create_event_bridge_rule_template_group_request.CreateEventBridgeRuleTemplateGroupRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_medialive.types.create_event_bridge_rule_template_group_request.CreateEventBridgeRuleTemplateGroupRequest = {}
         if description is not None:
             input_["description"] = description
         if name is not None:
             input_["name"] = name
         if tags is not None:
             input_["tags"] = tags
-        if request_id is not None:
-            input_["request_id"] = request_id
+        if request_id is None:
+            request_id = str(uuid.uuid4())
+        input_["request_id"] = request_id
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_input(
@@ -1564,7 +1590,7 @@ class AsyncMediaLiveClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_medialive.types.create_input_request.CreateInputRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_medialive.types.create_input_request.CreateInputRequest = {}
         if destinations is not None:
             input_["destinations"] = destinations
         if input_devices is not None:
@@ -1575,8 +1601,9 @@ class AsyncMediaLiveClient:
             input_["media_connect_flows"] = media_connect_flows
         if name is not None:
             input_["name"] = name
-        if request_id is not None:
-            input_["request_id"] = request_id
+        if request_id is None:
+            request_id = str(uuid.uuid4())
+        input_["request_id"] = request_id
         if role_arn is not None:
             input_["role_arn"] = role_arn
         if sources is not None:
@@ -1607,6 +1634,7 @@ class AsyncMediaLiveClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_input_security_group(
@@ -1650,7 +1678,7 @@ class AsyncMediaLiveClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_medialive.types.create_input_security_group_request.CreateInputSecurityGroupRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_medialive.types.create_input_security_group_request.CreateInputSecurityGroupRequest = {}
         if tags is not None:
             input_["tags"] = tags
         if whitelist_rules is not None:
@@ -1661,6 +1689,7 @@ class AsyncMediaLiveClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_multiplex(
@@ -1714,15 +1743,16 @@ class AsyncMediaLiveClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_medialive.types.create_multiplex_request.CreateMultiplexRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_medialive.types.create_multiplex_request.CreateMultiplexRequest = {}
         if availability_zones is not None:
             input_["availability_zones"] = availability_zones
         if multiplex_settings is not None:
             input_["multiplex_settings"] = multiplex_settings
         if name is not None:
             input_["name"] = name
-        if request_id is not None:
-            input_["request_id"] = request_id
+        if request_id is None:
+            request_id = str(uuid.uuid4())
+        input_["request_id"] = request_id
         if tags is not None:
             input_["tags"] = tags
 
@@ -1731,6 +1761,7 @@ class AsyncMediaLiveClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_multiplex_program(
@@ -1780,20 +1811,23 @@ class AsyncMediaLiveClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_medialive.types.create_multiplex_program_request.CreateMultiplexProgramRequest = {}  # type: ignore[typeddict-item]
-        input_["multiplex_id"] = multiplex_id
+        input_: capo_medialive.types.create_multiplex_program_request.CreateMultiplexProgramRequest = {
+            "multiplex_id": multiplex_id
+        }
         if multiplex_program_settings is not None:
             input_["multiplex_program_settings"] = multiplex_program_settings
         if program_name is not None:
             input_["program_name"] = program_name
-        if request_id is not None:
-            input_["request_id"] = request_id
+        if request_id is None:
+            request_id = str(uuid.uuid4())
+        input_["request_id"] = request_id
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_network(
@@ -1846,13 +1880,14 @@ class AsyncMediaLiveClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_medialive.types.create_network_request.CreateNetworkRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_medialive.types.create_network_request.CreateNetworkRequest = {}
         if ip_pools is not None:
             input_["ip_pools"] = ip_pools
         if name is not None:
             input_["name"] = name
-        if request_id is not None:
-            input_["request_id"] = request_id
+        if request_id is None:
+            request_id = str(uuid.uuid4())
+        input_["request_id"] = request_id
         if routes is not None:
             input_["routes"] = routes
         if tags is not None:
@@ -1863,6 +1898,7 @@ class AsyncMediaLiveClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_node(
@@ -1915,14 +1951,16 @@ class AsyncMediaLiveClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_medialive.types.create_node_request.CreateNodeRequest = {}  # type: ignore[typeddict-item]
-        input_["cluster_id"] = cluster_id
+        input_: capo_medialive.types.create_node_request.CreateNodeRequest = {
+            "cluster_id": cluster_id
+        }
         if name is not None:
             input_["name"] = name
         if node_interface_mappings is not None:
             input_["node_interface_mappings"] = node_interface_mappings
-        if request_id is not None:
-            input_["request_id"] = request_id
+        if request_id is None:
+            request_id = str(uuid.uuid4())
+        input_["request_id"] = request_id
         if role is not None:
             input_["role"] = role
         if tags is not None:
@@ -1933,6 +1971,7 @@ class AsyncMediaLiveClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_node_registration_script(
@@ -1985,16 +2024,18 @@ class AsyncMediaLiveClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_medialive.types.create_node_registration_script_request.CreateNodeRegistrationScriptRequest = {}  # type: ignore[typeddict-item]
-        input_["cluster_id"] = cluster_id
+        input_: capo_medialive.types.create_node_registration_script_request.CreateNodeRegistrationScriptRequest = {
+            "cluster_id": cluster_id
+        }
         if id is not None:
             input_["id"] = id
         if name is not None:
             input_["name"] = name
         if node_interface_mappings is not None:
             input_["node_interface_mappings"] = node_interface_mappings
-        if request_id is not None:
-            input_["request_id"] = request_id
+        if request_id is None:
+            request_id = str(uuid.uuid4())
+        input_["request_id"] = request_id
         if role is not None:
             input_["role"] = role
 
@@ -2003,6 +2044,7 @@ class AsyncMediaLiveClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_partner_input(
@@ -2048,10 +2090,12 @@ class AsyncMediaLiveClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_medialive.types.create_partner_input_request.CreatePartnerInputRequest = {}  # type: ignore[typeddict-item]
-        input_["input_id"] = input_id
-        if request_id is not None:
-            input_["request_id"] = request_id
+        input_: capo_medialive.types.create_partner_input_request.CreatePartnerInputRequest = {
+            "input_id": input_id
+        }
+        if request_id is None:
+            request_id = str(uuid.uuid4())
+        input_["request_id"] = request_id
         if tags is not None:
             input_["tags"] = tags
 
@@ -2060,6 +2104,7 @@ class AsyncMediaLiveClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_sdi_source(
@@ -2108,13 +2153,14 @@ class AsyncMediaLiveClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_medialive.types.create_sdi_source_request.CreateSdiSourceRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_medialive.types.create_sdi_source_request.CreateSdiSourceRequest = {}
         if mode is not None:
             input_["mode"] = mode
         if name is not None:
             input_["name"] = name
-        if request_id is not None:
-            input_["request_id"] = request_id
+        if request_id is None:
+            request_id = str(uuid.uuid4())
+        input_["request_id"] = request_id
         if tags is not None:
             input_["tags"] = tags
         if type is not None:
@@ -2125,6 +2171,7 @@ class AsyncMediaLiveClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_signal_map(
@@ -2185,7 +2232,7 @@ class AsyncMediaLiveClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_medialive.types.create_signal_map_request.CreateSignalMapRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_medialive.types.create_signal_map_request.CreateSignalMapRequest = {}
         if cloud_watch_alarm_template_group_identifiers is not None:
             input_["cloud_watch_alarm_template_group_identifiers"] = (
                 cloud_watch_alarm_template_group_identifiers
@@ -2202,14 +2249,16 @@ class AsyncMediaLiveClient:
             input_["name"] = name
         if tags is not None:
             input_["tags"] = tags
-        if request_id is not None:
-            input_["request_id"] = request_id
+        if request_id is None:
+            request_id = str(uuid.uuid4())
+        input_["request_id"] = request_id
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_tags(
@@ -2243,8 +2292,9 @@ class AsyncMediaLiveClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_medialive.types.create_tags_request.CreateTagsRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_medialive.types.create_tags_request.CreateTagsRequest = {
+            "resource_arn": resource_arn
+        }
         if tags is not None:
             input_["tags"] = tags
 
@@ -2253,6 +2303,7 @@ class AsyncMediaLiveClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_channel(
@@ -2294,14 +2345,16 @@ class AsyncMediaLiveClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_medialive.types.delete_channel_request.DeleteChannelRequest = {}  # type: ignore[typeddict-item]
-        input_["channel_id"] = channel_id
+        input_: capo_medialive.types.delete_channel_request.DeleteChannelRequest = {
+            "channel_id": channel_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_channel_placement_group(
@@ -2345,15 +2398,17 @@ class AsyncMediaLiveClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_medialive.types.delete_channel_placement_group_request.DeleteChannelPlacementGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["channel_placement_group_id"] = channel_placement_group_id
-        input_["cluster_id"] = cluster_id
+        input_: capo_medialive.types.delete_channel_placement_group_request.DeleteChannelPlacementGroupRequest = {
+            "channel_placement_group_id": channel_placement_group_id,
+            "cluster_id": cluster_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_cloud_watch_alarm_template(
@@ -2391,14 +2446,16 @@ class AsyncMediaLiveClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_medialive.types.delete_cloud_watch_alarm_template_request.DeleteCloudWatchAlarmTemplateRequest = {}  # type: ignore[typeddict-item]
-        input_["identifier"] = identifier
+        input_: capo_medialive.types.delete_cloud_watch_alarm_template_request.DeleteCloudWatchAlarmTemplateRequest = {
+            "identifier": identifier
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_cloud_watch_alarm_template_group(
@@ -2436,14 +2493,16 @@ class AsyncMediaLiveClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_medialive.types.delete_cloud_watch_alarm_template_group_request.DeleteCloudWatchAlarmTemplateGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["identifier"] = identifier
+        input_: capo_medialive.types.delete_cloud_watch_alarm_template_group_request.DeleteCloudWatchAlarmTemplateGroupRequest = {
+            "identifier": identifier
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_cluster(
@@ -2485,14 +2544,16 @@ class AsyncMediaLiveClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_medialive.types.delete_cluster_request.DeleteClusterRequest = {}  # type: ignore[typeddict-item]
-        input_["cluster_id"] = cluster_id
+        input_: capo_medialive.types.delete_cluster_request.DeleteClusterRequest = {
+            "cluster_id": cluster_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_event_bridge_rule_template(
@@ -2530,14 +2591,16 @@ class AsyncMediaLiveClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_medialive.types.delete_event_bridge_rule_template_request.DeleteEventBridgeRuleTemplateRequest = {}  # type: ignore[typeddict-item]
-        input_["identifier"] = identifier
+        input_: capo_medialive.types.delete_event_bridge_rule_template_request.DeleteEventBridgeRuleTemplateRequest = {
+            "identifier": identifier
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_event_bridge_rule_template_group(
@@ -2575,14 +2638,16 @@ class AsyncMediaLiveClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_medialive.types.delete_event_bridge_rule_template_group_request.DeleteEventBridgeRuleTemplateGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["identifier"] = identifier
+        input_: capo_medialive.types.delete_event_bridge_rule_template_group_request.DeleteEventBridgeRuleTemplateGroupRequest = {
+            "identifier": identifier
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_input(
@@ -2624,14 +2689,16 @@ class AsyncMediaLiveClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_medialive.types.delete_input_request.DeleteInputRequest = {}  # type: ignore[typeddict-item]
-        input_["input_id"] = input_id
+        input_: capo_medialive.types.delete_input_request.DeleteInputRequest = {
+            "input_id": input_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_input_security_group(
@@ -2672,14 +2739,16 @@ class AsyncMediaLiveClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_medialive.types.delete_input_security_group_request.DeleteInputSecurityGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["input_security_group_id"] = input_security_group_id
+        input_: capo_medialive.types.delete_input_security_group_request.DeleteInputSecurityGroupRequest = {
+            "input_security_group_id": input_security_group_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_multiplex(
@@ -2721,14 +2790,16 @@ class AsyncMediaLiveClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_medialive.types.delete_multiplex_request.DeleteMultiplexRequest = {}  # type: ignore[typeddict-item]
-        input_["multiplex_id"] = multiplex_id
+        input_: capo_medialive.types.delete_multiplex_request.DeleteMultiplexRequest = {
+            "multiplex_id": multiplex_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_multiplex_program(
@@ -2772,15 +2843,17 @@ class AsyncMediaLiveClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_medialive.types.delete_multiplex_program_request.DeleteMultiplexProgramRequest = {}  # type: ignore[typeddict-item]
-        input_["multiplex_id"] = multiplex_id
-        input_["program_name"] = program_name
+        input_: capo_medialive.types.delete_multiplex_program_request.DeleteMultiplexProgramRequest = {
+            "multiplex_id": multiplex_id,
+            "program_name": program_name,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_network(
@@ -2822,14 +2895,16 @@ class AsyncMediaLiveClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_medialive.types.delete_network_request.DeleteNetworkRequest = {}  # type: ignore[typeddict-item]
-        input_["network_id"] = network_id
+        input_: capo_medialive.types.delete_network_request.DeleteNetworkRequest = {
+            "network_id": network_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_node(
@@ -2873,15 +2948,17 @@ class AsyncMediaLiveClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_medialive.types.delete_node_request.DeleteNodeRequest = {}  # type: ignore[typeddict-item]
-        input_["cluster_id"] = cluster_id
-        input_["node_id"] = node_id
+        input_: capo_medialive.types.delete_node_request.DeleteNodeRequest = {
+            "cluster_id": cluster_id,
+            "node_id": node_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_reservation(
@@ -2923,14 +3000,16 @@ class AsyncMediaLiveClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_medialive.types.delete_reservation_request.DeleteReservationRequest = {}  # type: ignore[typeddict-item]
-        input_["reservation_id"] = reservation_id
+        input_: capo_medialive.types.delete_reservation_request.DeleteReservationRequest = {
+            "reservation_id": reservation_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_schedule(
@@ -2971,14 +3050,16 @@ class AsyncMediaLiveClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_medialive.types.delete_schedule_request.DeleteScheduleRequest = {}  # type: ignore[typeddict-item]
-        input_["channel_id"] = channel_id
+        input_: capo_medialive.types.delete_schedule_request.DeleteScheduleRequest = {
+            "channel_id": channel_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_sdi_source(
@@ -3020,14 +3101,16 @@ class AsyncMediaLiveClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_medialive.types.delete_sdi_source_request.DeleteSdiSourceRequest = {}  # type: ignore[typeddict-item]
-        input_["sdi_source_id"] = sdi_source_id
+        input_: capo_medialive.types.delete_sdi_source_request.DeleteSdiSourceRequest = {
+            "sdi_source_id": sdi_source_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_signal_map(
@@ -3065,14 +3148,16 @@ class AsyncMediaLiveClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_medialive.types.delete_signal_map_request.DeleteSignalMapRequest = {}  # type: ignore[typeddict-item]
-        input_["identifier"] = identifier
+        input_: capo_medialive.types.delete_signal_map_request.DeleteSignalMapRequest = {
+            "identifier": identifier
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_tags(
@@ -3111,8 +3196,9 @@ class AsyncMediaLiveClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_medialive.types.delete_tags_request.DeleteTagsRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_medialive.types.delete_tags_request.DeleteTagsRequest = {
+            "resource_arn": resource_arn
+        }
         if tag_keys is not None:
             input_["tag_keys"] = tag_keys
 
@@ -3121,6 +3207,7 @@ class AsyncMediaLiveClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_account_configuration(
@@ -3154,13 +3241,14 @@ class AsyncMediaLiveClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_medialive.types.describe_account_configuration_request.DescribeAccountConfigurationRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_medialive.types.describe_account_configuration_request.DescribeAccountConfigurationRequest = {}
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_channel(
@@ -3201,14 +3289,16 @@ class AsyncMediaLiveClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_medialive.types.describe_channel_request.DescribeChannelRequest = {}  # type: ignore[typeddict-item]
-        input_["channel_id"] = channel_id
+        input_: capo_medialive.types.describe_channel_request.DescribeChannelRequest = {
+            "channel_id": channel_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_channel_placement_group(
@@ -3251,15 +3341,17 @@ class AsyncMediaLiveClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_medialive.types.describe_channel_placement_group_request.DescribeChannelPlacementGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["channel_placement_group_id"] = channel_placement_group_id
-        input_["cluster_id"] = cluster_id
+        input_: capo_medialive.types.describe_channel_placement_group_request.DescribeChannelPlacementGroupRequest = {
+            "channel_placement_group_id": channel_placement_group_id,
+            "cluster_id": cluster_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_cluster(
@@ -3300,14 +3392,16 @@ class AsyncMediaLiveClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_medialive.types.describe_cluster_request.DescribeClusterRequest = {}  # type: ignore[typeddict-item]
-        input_["cluster_id"] = cluster_id
+        input_: capo_medialive.types.describe_cluster_request.DescribeClusterRequest = {
+            "cluster_id": cluster_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_input(
@@ -3348,14 +3442,16 @@ class AsyncMediaLiveClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_medialive.types.describe_input_request.DescribeInputRequest = {}  # type: ignore[typeddict-item]
-        input_["input_id"] = input_id
+        input_: capo_medialive.types.describe_input_request.DescribeInputRequest = {
+            "input_id": input_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_input_device(
@@ -3396,14 +3492,16 @@ class AsyncMediaLiveClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_medialive.types.describe_input_device_request.DescribeInputDeviceRequest = {}  # type: ignore[typeddict-item]
-        input_["input_device_id"] = input_device_id
+        input_: capo_medialive.types.describe_input_device_request.DescribeInputDeviceRequest = {
+            "input_device_id": input_device_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     @asynccontextmanager
@@ -3447,8 +3545,9 @@ class AsyncMediaLiveClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_medialive.types.describe_input_device_thumbnail_request.DescribeInputDeviceThumbnailRequest = {}  # type: ignore[typeddict-item]
-        input_["input_device_id"] = input_device_id
+        input_: capo_medialive.types.describe_input_device_thumbnail_request.DescribeInputDeviceThumbnailRequest = {
+            "input_device_id": input_device_id
+        }
         if accept is not None:
             input_["accept"] = accept
 
@@ -3457,7 +3556,10 @@ class AsyncMediaLiveClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
-        yield response.output
+        try:
+            yield response.output
+        finally:
+            await response.response.aclose()
 
     async def describe_input_security_group(
         self,
@@ -3497,14 +3599,16 @@ class AsyncMediaLiveClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_medialive.types.describe_input_security_group_request.DescribeInputSecurityGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["input_security_group_id"] = input_security_group_id
+        input_: capo_medialive.types.describe_input_security_group_request.DescribeInputSecurityGroupRequest = {
+            "input_security_group_id": input_security_group_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_multiplex(
@@ -3545,14 +3649,16 @@ class AsyncMediaLiveClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_medialive.types.describe_multiplex_request.DescribeMultiplexRequest = {}  # type: ignore[typeddict-item]
-        input_["multiplex_id"] = multiplex_id
+        input_: capo_medialive.types.describe_multiplex_request.DescribeMultiplexRequest = {
+            "multiplex_id": multiplex_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_multiplex_program(
@@ -3595,15 +3701,17 @@ class AsyncMediaLiveClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_medialive.types.describe_multiplex_program_request.DescribeMultiplexProgramRequest = {}  # type: ignore[typeddict-item]
-        input_["multiplex_id"] = multiplex_id
-        input_["program_name"] = program_name
+        input_: capo_medialive.types.describe_multiplex_program_request.DescribeMultiplexProgramRequest = {
+            "multiplex_id": multiplex_id,
+            "program_name": program_name,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_network(
@@ -3644,14 +3752,16 @@ class AsyncMediaLiveClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_medialive.types.describe_network_request.DescribeNetworkRequest = {}  # type: ignore[typeddict-item]
-        input_["network_id"] = network_id
+        input_: capo_medialive.types.describe_network_request.DescribeNetworkRequest = {
+            "network_id": network_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_node(
@@ -3694,15 +3804,17 @@ class AsyncMediaLiveClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_medialive.types.describe_node_request.DescribeNodeRequest = {}  # type: ignore[typeddict-item]
-        input_["cluster_id"] = cluster_id
-        input_["node_id"] = node_id
+        input_: capo_medialive.types.describe_node_request.DescribeNodeRequest = {
+            "cluster_id": cluster_id,
+            "node_id": node_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_offering(
@@ -3743,14 +3855,16 @@ class AsyncMediaLiveClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_medialive.types.describe_offering_request.DescribeOfferingRequest = {}  # type: ignore[typeddict-item]
-        input_["offering_id"] = offering_id
+        input_: capo_medialive.types.describe_offering_request.DescribeOfferingRequest = {
+            "offering_id": offering_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_reservation(
@@ -3793,14 +3907,16 @@ class AsyncMediaLiveClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_medialive.types.describe_reservation_request.DescribeReservationRequest = {}  # type: ignore[typeddict-item]
-        input_["reservation_id"] = reservation_id
+        input_: capo_medialive.types.describe_reservation_request.DescribeReservationRequest = {
+            "reservation_id": reservation_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_schedule(
@@ -3843,8 +3959,9 @@ class AsyncMediaLiveClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_medialive.types.describe_schedule_request.DescribeScheduleRequest = {}  # type: ignore[typeddict-item]
-        input_["channel_id"] = channel_id
+        input_: capo_medialive.types.describe_schedule_request.DescribeScheduleRequest = {
+            "channel_id": channel_id
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -3855,6 +3972,7 @@ class AsyncMediaLiveClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_describe_schedule(
@@ -3918,14 +4036,16 @@ class AsyncMediaLiveClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_medialive.types.describe_sdi_source_request.DescribeSdiSourceRequest = {}  # type: ignore[typeddict-item]
-        input_["sdi_source_id"] = sdi_source_id
+        input_: capo_medialive.types.describe_sdi_source_request.DescribeSdiSourceRequest = {
+            "sdi_source_id": sdi_source_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_thumbnails(
@@ -3971,8 +4091,9 @@ class AsyncMediaLiveClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_medialive.types.describe_thumbnails_request.DescribeThumbnailsRequest = {}  # type: ignore[typeddict-item]
-        input_["channel_id"] = channel_id
+        input_: capo_medialive.types.describe_thumbnails_request.DescribeThumbnailsRequest = {
+            "channel_id": channel_id
+        }
         if pipeline_id is not None:
             input_["pipeline_id"] = pipeline_id
         if thumbnail_type is not None:
@@ -3983,6 +4104,7 @@ class AsyncMediaLiveClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_cloud_watch_alarm_template(
@@ -4021,14 +4143,16 @@ class AsyncMediaLiveClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_medialive.types.get_cloud_watch_alarm_template_request.GetCloudWatchAlarmTemplateRequest = {}  # type: ignore[typeddict-item]
-        input_["identifier"] = identifier
+        input_: capo_medialive.types.get_cloud_watch_alarm_template_request.GetCloudWatchAlarmTemplateRequest = {
+            "identifier": identifier
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_cloud_watch_alarm_template_group(
@@ -4067,14 +4191,16 @@ class AsyncMediaLiveClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_medialive.types.get_cloud_watch_alarm_template_group_request.GetCloudWatchAlarmTemplateGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["identifier"] = identifier
+        input_: capo_medialive.types.get_cloud_watch_alarm_template_group_request.GetCloudWatchAlarmTemplateGroupRequest = {
+            "identifier": identifier
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_event_bridge_rule_template(
@@ -4113,14 +4239,16 @@ class AsyncMediaLiveClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_medialive.types.get_event_bridge_rule_template_request.GetEventBridgeRuleTemplateRequest = {}  # type: ignore[typeddict-item]
-        input_["identifier"] = identifier
+        input_: capo_medialive.types.get_event_bridge_rule_template_request.GetEventBridgeRuleTemplateRequest = {
+            "identifier": identifier
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_event_bridge_rule_template_group(
@@ -4159,14 +4287,16 @@ class AsyncMediaLiveClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_medialive.types.get_event_bridge_rule_template_group_request.GetEventBridgeRuleTemplateGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["identifier"] = identifier
+        input_: capo_medialive.types.get_event_bridge_rule_template_group_request.GetEventBridgeRuleTemplateGroupRequest = {
+            "identifier": identifier
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_signal_map(
@@ -4205,14 +4335,16 @@ class AsyncMediaLiveClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_medialive.types.get_signal_map_request.GetSignalMapRequest = {}  # type: ignore[typeddict-item]
-        input_["identifier"] = identifier
+        input_: capo_medialive.types.get_signal_map_request.GetSignalMapRequest = {
+            "identifier": identifier
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_alerts(
@@ -4259,8 +4391,9 @@ class AsyncMediaLiveClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_medialive.types.list_alerts_request.ListAlertsRequest = {}  # type: ignore[typeddict-item]
-        input_["channel_id"] = channel_id
+        input_: capo_medialive.types.list_alerts_request.ListAlertsRequest = {
+            "channel_id": channel_id
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -4273,6 +4406,7 @@ class AsyncMediaLiveClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_alerts(
@@ -4341,8 +4475,9 @@ class AsyncMediaLiveClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_medialive.types.list_channel_placement_groups_request.ListChannelPlacementGroupsRequest = {}  # type: ignore[typeddict-item]
-        input_["cluster_id"] = cluster_id
+        input_: capo_medialive.types.list_channel_placement_groups_request.ListChannelPlacementGroupsRequest = {
+            "cluster_id": cluster_id
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -4353,6 +4488,7 @@ class AsyncMediaLiveClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_channel_placement_groups(
@@ -4413,7 +4549,7 @@ class AsyncMediaLiveClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_medialive.types.list_channels_request.ListChannelsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_medialive.types.list_channels_request.ListChannelsRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -4424,6 +4560,7 @@ class AsyncMediaLiveClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_channels(
@@ -4490,7 +4627,7 @@ class AsyncMediaLiveClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_medialive.types.list_cloud_watch_alarm_template_groups_request.ListCloudWatchAlarmTemplateGroupsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_medialive.types.list_cloud_watch_alarm_template_groups_request.ListCloudWatchAlarmTemplateGroupsRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -4505,6 +4642,7 @@ class AsyncMediaLiveClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_cloud_watch_alarm_template_groups(
@@ -4579,7 +4717,7 @@ class AsyncMediaLiveClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_medialive.types.list_cloud_watch_alarm_templates_request.ListCloudWatchAlarmTemplatesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_medialive.types.list_cloud_watch_alarm_templates_request.ListCloudWatchAlarmTemplatesRequest = {}
         if group_identifier is not None:
             input_["group_identifier"] = group_identifier
         if max_results is not None:
@@ -4596,6 +4734,7 @@ class AsyncMediaLiveClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_cloud_watch_alarm_templates(
@@ -4671,8 +4810,9 @@ class AsyncMediaLiveClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_medialive.types.list_cluster_alerts_request.ListClusterAlertsRequest = {}  # type: ignore[typeddict-item]
-        input_["cluster_id"] = cluster_id
+        input_: capo_medialive.types.list_cluster_alerts_request.ListClusterAlertsRequest = {
+            "cluster_id": cluster_id
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -4685,6 +4825,7 @@ class AsyncMediaLiveClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_cluster_alerts(
@@ -4751,7 +4892,7 @@ class AsyncMediaLiveClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_medialive.types.list_clusters_request.ListClustersRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_medialive.types.list_clusters_request.ListClustersRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -4762,6 +4903,7 @@ class AsyncMediaLiveClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_clusters(
@@ -4826,7 +4968,7 @@ class AsyncMediaLiveClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_medialive.types.list_event_bridge_rule_template_groups_request.ListEventBridgeRuleTemplateGroupsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_medialive.types.list_event_bridge_rule_template_groups_request.ListEventBridgeRuleTemplateGroupsRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -4839,6 +4981,7 @@ class AsyncMediaLiveClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_event_bridge_rule_template_groups(
@@ -4909,7 +5052,7 @@ class AsyncMediaLiveClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_medialive.types.list_event_bridge_rule_templates_request.ListEventBridgeRuleTemplatesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_medialive.types.list_event_bridge_rule_templates_request.ListEventBridgeRuleTemplatesRequest = {}
         if group_identifier is not None:
             input_["group_identifier"] = group_identifier
         if max_results is not None:
@@ -4924,6 +5067,7 @@ class AsyncMediaLiveClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_event_bridge_rule_templates(
@@ -4988,7 +5132,7 @@ class AsyncMediaLiveClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_medialive.types.list_input_devices_request.ListInputDevicesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_medialive.types.list_input_devices_request.ListInputDevicesRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -4999,6 +5143,7 @@ class AsyncMediaLiveClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_input_devices(
@@ -5059,7 +5204,7 @@ class AsyncMediaLiveClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_medialive.types.list_input_device_transfers_request.ListInputDeviceTransfersRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_medialive.types.list_input_device_transfers_request.ListInputDeviceTransfersRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -5072,6 +5217,7 @@ class AsyncMediaLiveClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_input_device_transfers(
@@ -5132,7 +5278,7 @@ class AsyncMediaLiveClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_medialive.types.list_inputs_request.ListInputsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_medialive.types.list_inputs_request.ListInputsRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -5143,6 +5289,7 @@ class AsyncMediaLiveClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_inputs(
@@ -5201,7 +5348,7 @@ class AsyncMediaLiveClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_medialive.types.list_input_security_groups_request.ListInputSecurityGroupsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_medialive.types.list_input_security_groups_request.ListInputSecurityGroupsRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -5212,6 +5359,7 @@ class AsyncMediaLiveClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_input_security_groups(
@@ -5279,10 +5427,11 @@ class AsyncMediaLiveClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_medialive.types.list_multiplex_alerts_request.ListMultiplexAlertsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_medialive.types.list_multiplex_alerts_request.ListMultiplexAlertsRequest = {
+            "multiplex_id": multiplex_id
+        }
         if max_results is not None:
             input_["max_results"] = max_results
-        input_["multiplex_id"] = multiplex_id
         if next_token is not None:
             input_["next_token"] = next_token
         if state_filter is not None:
@@ -5293,6 +5442,7 @@ class AsyncMediaLiveClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_multiplex_alerts(
@@ -5359,7 +5509,7 @@ class AsyncMediaLiveClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_medialive.types.list_multiplexes_request.ListMultiplexesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_medialive.types.list_multiplexes_request.ListMultiplexesRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -5370,6 +5520,7 @@ class AsyncMediaLiveClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_multiplexes(
@@ -5435,10 +5586,11 @@ class AsyncMediaLiveClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_medialive.types.list_multiplex_programs_request.ListMultiplexProgramsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_medialive.types.list_multiplex_programs_request.ListMultiplexProgramsRequest = {
+            "multiplex_id": multiplex_id
+        }
         if max_results is not None:
             input_["max_results"] = max_results
-        input_["multiplex_id"] = multiplex_id
         if next_token is not None:
             input_["next_token"] = next_token
 
@@ -5447,6 +5599,7 @@ class AsyncMediaLiveClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_multiplex_programs(
@@ -5511,7 +5664,7 @@ class AsyncMediaLiveClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_medialive.types.list_networks_request.ListNetworksRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_medialive.types.list_networks_request.ListNetworksRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -5522,6 +5675,7 @@ class AsyncMediaLiveClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_networks(
@@ -5586,8 +5740,9 @@ class AsyncMediaLiveClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_medialive.types.list_nodes_request.ListNodesRequest = {}  # type: ignore[typeddict-item]
-        input_["cluster_id"] = cluster_id
+        input_: capo_medialive.types.list_nodes_request.ListNodesRequest = {
+            "cluster_id": cluster_id
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -5598,6 +5753,7 @@ class AsyncMediaLiveClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_nodes(
@@ -5684,7 +5840,7 @@ class AsyncMediaLiveClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_medialive.types.list_offerings_request.ListOfferingsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_medialive.types.list_offerings_request.ListOfferingsRequest = {}
         if channel_class is not None:
             input_["channel_class"] = channel_class
         if channel_configuration is not None:
@@ -5715,6 +5871,7 @@ class AsyncMediaLiveClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_offerings(
@@ -5813,7 +5970,7 @@ class AsyncMediaLiveClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_medialive.types.list_reservations_request.ListReservationsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_medialive.types.list_reservations_request.ListReservationsRequest = {}
         if channel_class is not None:
             input_["channel_class"] = channel_class
         if codec is not None:
@@ -5840,6 +5997,7 @@ class AsyncMediaLiveClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_reservations(
@@ -5918,7 +6076,7 @@ class AsyncMediaLiveClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_medialive.types.list_sdi_sources_request.ListSdiSourcesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_medialive.types.list_sdi_sources_request.ListSdiSourcesRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -5929,6 +6087,7 @@ class AsyncMediaLiveClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_sdi_sources(
@@ -5997,7 +6156,7 @@ class AsyncMediaLiveClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_medialive.types.list_signal_maps_request.ListSignalMapsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_medialive.types.list_signal_maps_request.ListSignalMapsRequest = {}
         if cloud_watch_alarm_template_group_identifier is not None:
             input_["cloud_watch_alarm_template_group_identifier"] = (
                 cloud_watch_alarm_template_group_identifier
@@ -6016,6 +6175,7 @@ class AsyncMediaLiveClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_signal_maps(
@@ -6079,14 +6239,16 @@ class AsyncMediaLiveClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_medialive.types.list_tags_for_resource_request.ListTagsForResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_medialive.types.list_tags_for_resource_request.ListTagsForResourceRequest = {
+            "resource_arn": resource_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_versions(
@@ -6122,13 +6284,14 @@ class AsyncMediaLiveClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_medialive.types.list_versions_request.ListVersionsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_medialive.types.list_versions_request.ListVersionsRequest = {}
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def purchase_offering(
@@ -6184,16 +6347,18 @@ class AsyncMediaLiveClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_medialive.types.purchase_offering_request.PurchaseOfferingRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_medialive.types.purchase_offering_request.PurchaseOfferingRequest = {
+            "offering_id": offering_id
+        }
         if count is not None:
             input_["count"] = count
         if name is not None:
             input_["name"] = name
-        input_["offering_id"] = offering_id
         if renewal_settings is not None:
             input_["renewal_settings"] = renewal_settings
-        if request_id is not None:
-            input_["request_id"] = request_id
+        if request_id is None:
+            request_id = str(uuid.uuid4())
+        input_["request_id"] = request_id
         if start is not None:
             input_["start"] = start
         if tags is not None:
@@ -6204,6 +6369,7 @@ class AsyncMediaLiveClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def reboot_input_device(
@@ -6249,16 +6415,18 @@ class AsyncMediaLiveClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_medialive.types.reboot_input_device_request.RebootInputDeviceRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_medialive.types.reboot_input_device_request.RebootInputDeviceRequest = {
+            "input_device_id": input_device_id
+        }
         if force is not None:
             input_["force"] = force
-        input_["input_device_id"] = input_device_id
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def reject_input_device_transfer(
@@ -6301,14 +6469,16 @@ class AsyncMediaLiveClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_medialive.types.reject_input_device_transfer_request.RejectInputDeviceTransferRequest = {}  # type: ignore[typeddict-item]
-        input_["input_device_id"] = input_device_id
+        input_: capo_medialive.types.reject_input_device_transfer_request.RejectInputDeviceTransferRequest = {
+            "input_device_id": input_device_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def restart_channel_pipelines(
@@ -6354,8 +6524,9 @@ class AsyncMediaLiveClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_medialive.types.restart_channel_pipelines_request.RestartChannelPipelinesRequest = {}  # type: ignore[typeddict-item]
-        input_["channel_id"] = channel_id
+        input_: capo_medialive.types.restart_channel_pipelines_request.RestartChannelPipelinesRequest = {
+            "channel_id": channel_id
+        }
         if pipeline_ids is not None:
             input_["pipeline_ids"] = pipeline_ids
 
@@ -6364,6 +6535,7 @@ class AsyncMediaLiveClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def start_channel(
@@ -6405,14 +6577,16 @@ class AsyncMediaLiveClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_medialive.types.start_channel_request.StartChannelRequest = {}  # type: ignore[typeddict-item]
-        input_["channel_id"] = channel_id
+        input_: capo_medialive.types.start_channel_request.StartChannelRequest = {
+            "channel_id": channel_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def start_delete_monitor_deployment(
@@ -6452,14 +6626,16 @@ class AsyncMediaLiveClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_medialive.types.start_delete_monitor_deployment_request.StartDeleteMonitorDeploymentRequest = {}  # type: ignore[typeddict-item]
-        input_["identifier"] = identifier
+        input_: capo_medialive.types.start_delete_monitor_deployment_request.StartDeleteMonitorDeploymentRequest = {
+            "identifier": identifier
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def start_input_device(
@@ -6501,14 +6677,16 @@ class AsyncMediaLiveClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_medialive.types.start_input_device_request.StartInputDeviceRequest = {}  # type: ignore[typeddict-item]
-        input_["input_device_id"] = input_device_id
+        input_: capo_medialive.types.start_input_device_request.StartInputDeviceRequest = {
+            "input_device_id": input_device_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def start_input_device_maintenance_window(
@@ -6550,14 +6728,16 @@ class AsyncMediaLiveClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_medialive.types.start_input_device_maintenance_window_request.StartInputDeviceMaintenanceWindowRequest = {}  # type: ignore[typeddict-item]
-        input_["input_device_id"] = input_device_id
+        input_: capo_medialive.types.start_input_device_maintenance_window_request.StartInputDeviceMaintenanceWindowRequest = {
+            "input_device_id": input_device_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def start_monitor_deployment(
@@ -6598,16 +6778,18 @@ class AsyncMediaLiveClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_medialive.types.start_monitor_deployment_request.StartMonitorDeploymentRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_medialive.types.start_monitor_deployment_request.StartMonitorDeploymentRequest = {
+            "identifier": identifier
+        }
         if dry_run is not None:
             input_["dry_run"] = dry_run
-        input_["identifier"] = identifier
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def start_multiplex(
@@ -6649,14 +6831,16 @@ class AsyncMediaLiveClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_medialive.types.start_multiplex_request.StartMultiplexRequest = {}  # type: ignore[typeddict-item]
-        input_["multiplex_id"] = multiplex_id
+        input_: capo_medialive.types.start_multiplex_request.StartMultiplexRequest = {
+            "multiplex_id": multiplex_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def start_update_signal_map(
@@ -6716,7 +6900,9 @@ class AsyncMediaLiveClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_medialive.types.start_update_signal_map_request.StartUpdateSignalMapRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_medialive.types.start_update_signal_map_request.StartUpdateSignalMapRequest = {
+            "identifier": identifier
+        }
         if cloud_watch_alarm_template_group_identifiers is not None:
             input_["cloud_watch_alarm_template_group_identifiers"] = (
                 cloud_watch_alarm_template_group_identifiers
@@ -6731,7 +6917,6 @@ class AsyncMediaLiveClient:
             )
         if force_rediscovery is not None:
             input_["force_rediscovery"] = force_rediscovery
-        input_["identifier"] = identifier
         if name is not None:
             input_["name"] = name
 
@@ -6740,6 +6925,7 @@ class AsyncMediaLiveClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def stop_channel(
@@ -6781,14 +6967,16 @@ class AsyncMediaLiveClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_medialive.types.stop_channel_request.StopChannelRequest = {}  # type: ignore[typeddict-item]
-        input_["channel_id"] = channel_id
+        input_: capo_medialive.types.stop_channel_request.StopChannelRequest = {
+            "channel_id": channel_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def stop_input_device(
@@ -6830,14 +7018,16 @@ class AsyncMediaLiveClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_medialive.types.stop_input_device_request.StopInputDeviceRequest = {}  # type: ignore[typeddict-item]
-        input_["input_device_id"] = input_device_id
+        input_: capo_medialive.types.stop_input_device_request.StopInputDeviceRequest = {
+            "input_device_id": input_device_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def stop_multiplex(
@@ -6879,14 +7069,16 @@ class AsyncMediaLiveClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_medialive.types.stop_multiplex_request.StopMultiplexRequest = {}  # type: ignore[typeddict-item]
-        input_["multiplex_id"] = multiplex_id
+        input_: capo_medialive.types.stop_multiplex_request.StopMultiplexRequest = {
+            "multiplex_id": multiplex_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def transfer_input_device(
@@ -6935,8 +7127,9 @@ class AsyncMediaLiveClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_medialive.types.transfer_input_device_request.TransferInputDeviceRequest = {}  # type: ignore[typeddict-item]
-        input_["input_device_id"] = input_device_id
+        input_: capo_medialive.types.transfer_input_device_request.TransferInputDeviceRequest = {
+            "input_device_id": input_device_id
+        }
         if target_customer_id is not None:
             input_["target_customer_id"] = target_customer_id
         if target_region is not None:
@@ -6949,6 +7142,7 @@ class AsyncMediaLiveClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_account_configuration(
@@ -6988,7 +7182,7 @@ class AsyncMediaLiveClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_medialive.types.update_account_configuration_request.UpdateAccountConfigurationRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_medialive.types.update_account_configuration_request.UpdateAccountConfigurationRequest = {}
         if account_configuration is not None:
             input_["account_configuration"] = account_configuration
 
@@ -6997,6 +7191,7 @@ class AsyncMediaLiveClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_channel(
@@ -7091,10 +7286,11 @@ class AsyncMediaLiveClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_medialive.types.update_channel_request.UpdateChannelRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_medialive.types.update_channel_request.UpdateChannelRequest = {
+            "channel_id": channel_id
+        }
         if cdi_input_specification is not None:
             input_["cdi_input_specification"] = cdi_input_specification
-        input_["channel_id"] = channel_id
         if destinations is not None:
             input_["destinations"] = destinations
         if encoder_settings is not None:
@@ -7131,6 +7327,7 @@ class AsyncMediaLiveClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_channel_class(
@@ -7183,10 +7380,11 @@ class AsyncMediaLiveClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_medialive.types.update_channel_class_request.UpdateChannelClassRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_medialive.types.update_channel_class_request.UpdateChannelClassRequest = {
+            "channel_id": channel_id
+        }
         if channel_class is not None:
             input_["channel_class"] = channel_class
-        input_["channel_id"] = channel_id
         if destinations is not None:
             input_["destinations"] = destinations
 
@@ -7195,6 +7393,7 @@ class AsyncMediaLiveClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_channel_placement_group(
@@ -7244,9 +7443,10 @@ class AsyncMediaLiveClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_medialive.types.update_channel_placement_group_request.UpdateChannelPlacementGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["channel_placement_group_id"] = channel_placement_group_id
-        input_["cluster_id"] = cluster_id
+        input_: capo_medialive.types.update_channel_placement_group_request.UpdateChannelPlacementGroupRequest = {
+            "channel_placement_group_id": channel_placement_group_id,
+            "cluster_id": cluster_id,
+        }
         if name is not None:
             input_["name"] = name
         if nodes is not None:
@@ -7257,6 +7457,7 @@ class AsyncMediaLiveClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_cloud_watch_alarm_template(
@@ -7338,7 +7539,9 @@ class AsyncMediaLiveClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_medialive.types.update_cloud_watch_alarm_template_request.UpdateCloudWatchAlarmTemplateRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_medialive.types.update_cloud_watch_alarm_template_request.UpdateCloudWatchAlarmTemplateRequest = {
+            "identifier": identifier
+        }
         if comparison_operator is not None:
             input_["comparison_operator"] = comparison_operator
         if datapoints_to_alarm is not None:
@@ -7349,7 +7552,6 @@ class AsyncMediaLiveClient:
             input_["evaluation_periods"] = evaluation_periods
         if group_identifier is not None:
             input_["group_identifier"] = group_identifier
-        input_["identifier"] = identifier
         if metric_name is not None:
             input_["metric_name"] = metric_name
         if name is not None:
@@ -7370,6 +7572,7 @@ class AsyncMediaLiveClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_cloud_watch_alarm_template_group(
@@ -7413,16 +7616,18 @@ class AsyncMediaLiveClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_medialive.types.update_cloud_watch_alarm_template_group_request.UpdateCloudWatchAlarmTemplateGroupRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_medialive.types.update_cloud_watch_alarm_template_group_request.UpdateCloudWatchAlarmTemplateGroupRequest = {
+            "identifier": identifier
+        }
         if description is not None:
             input_["description"] = description
-        input_["identifier"] = identifier
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_cluster(
@@ -7469,8 +7674,9 @@ class AsyncMediaLiveClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_medialive.types.update_cluster_request.UpdateClusterRequest = {}  # type: ignore[typeddict-item]
-        input_["cluster_id"] = cluster_id
+        input_: capo_medialive.types.update_cluster_request.UpdateClusterRequest = {
+            "cluster_id": cluster_id
+        }
         if name is not None:
             input_["name"] = name
         if network_settings is not None:
@@ -7481,6 +7687,7 @@ class AsyncMediaLiveClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_event_bridge_rule_template(
@@ -7538,7 +7745,9 @@ class AsyncMediaLiveClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_medialive.types.update_event_bridge_rule_template_request.UpdateEventBridgeRuleTemplateRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_medialive.types.update_event_bridge_rule_template_request.UpdateEventBridgeRuleTemplateRequest = {
+            "identifier": identifier
+        }
         if description is not None:
             input_["description"] = description
         if event_targets is not None:
@@ -7547,7 +7756,6 @@ class AsyncMediaLiveClient:
             input_["event_type"] = event_type
         if group_identifier is not None:
             input_["group_identifier"] = group_identifier
-        input_["identifier"] = identifier
         if name is not None:
             input_["name"] = name
 
@@ -7556,6 +7764,7 @@ class AsyncMediaLiveClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_event_bridge_rule_template_group(
@@ -7599,16 +7808,18 @@ class AsyncMediaLiveClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_medialive.types.update_event_bridge_rule_template_group_request.UpdateEventBridgeRuleTemplateGroupRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_medialive.types.update_event_bridge_rule_template_group_request.UpdateEventBridgeRuleTemplateGroupRequest = {
+            "identifier": identifier
+        }
         if description is not None:
             input_["description"] = description
-        input_["identifier"] = identifier
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_input(
@@ -7692,12 +7903,13 @@ class AsyncMediaLiveClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_medialive.types.update_input_request.UpdateInputRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_medialive.types.update_input_request.UpdateInputRequest = {
+            "input_id": input_id
+        }
         if destinations is not None:
             input_["destinations"] = destinations
         if input_devices is not None:
             input_["input_devices"] = input_devices
-        input_["input_id"] = input_id
         if input_security_groups is not None:
             input_["input_security_groups"] = input_security_groups
         if media_connect_flows is not None:
@@ -7726,6 +7938,7 @@ class AsyncMediaLiveClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_input_device(
@@ -7779,10 +7992,11 @@ class AsyncMediaLiveClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_medialive.types.update_input_device_request.UpdateInputDeviceRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_medialive.types.update_input_device_request.UpdateInputDeviceRequest = {
+            "input_device_id": input_device_id
+        }
         if hd_device_settings is not None:
             input_["hd_device_settings"] = hd_device_settings
-        input_["input_device_id"] = input_device_id
         if name is not None:
             input_["name"] = name
         if uhd_device_settings is not None:
@@ -7795,6 +8009,7 @@ class AsyncMediaLiveClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_input_security_group(
@@ -7841,8 +8056,9 @@ class AsyncMediaLiveClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_medialive.types.update_input_security_group_request.UpdateInputSecurityGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["input_security_group_id"] = input_security_group_id
+        input_: capo_medialive.types.update_input_security_group_request.UpdateInputSecurityGroupRequest = {
+            "input_security_group_id": input_security_group_id
+        }
         if tags is not None:
             input_["tags"] = tags
         if whitelist_rules is not None:
@@ -7853,6 +8069,7 @@ class AsyncMediaLiveClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_multiplex(
@@ -7903,8 +8120,9 @@ class AsyncMediaLiveClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_medialive.types.update_multiplex_request.UpdateMultiplexRequest = {}  # type: ignore[typeddict-item]
-        input_["multiplex_id"] = multiplex_id
+        input_: capo_medialive.types.update_multiplex_request.UpdateMultiplexRequest = {
+            "multiplex_id": multiplex_id
+        }
         if multiplex_settings is not None:
             input_["multiplex_settings"] = multiplex_settings
         if name is not None:
@@ -7917,6 +8135,7 @@ class AsyncMediaLiveClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_multiplex_program(
@@ -7964,17 +8183,19 @@ class AsyncMediaLiveClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_medialive.types.update_multiplex_program_request.UpdateMultiplexProgramRequest = {}  # type: ignore[typeddict-item]
-        input_["multiplex_id"] = multiplex_id
+        input_: capo_medialive.types.update_multiplex_program_request.UpdateMultiplexProgramRequest = {
+            "multiplex_id": multiplex_id,
+            "program_name": program_name,
+        }
         if multiplex_program_settings is not None:
             input_["multiplex_program_settings"] = multiplex_program_settings
-        input_["program_name"] = program_name
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_network(
@@ -8025,12 +8246,13 @@ class AsyncMediaLiveClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_medialive.types.update_network_request.UpdateNetworkRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_medialive.types.update_network_request.UpdateNetworkRequest = {
+            "network_id": network_id
+        }
         if ip_pools is not None:
             input_["ip_pools"] = ip_pools
         if name is not None:
             input_["name"] = name
-        input_["network_id"] = network_id
         if routes is not None:
             input_["routes"] = routes
 
@@ -8039,6 +8261,7 @@ class AsyncMediaLiveClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_node(
@@ -8089,11 +8312,12 @@ class AsyncMediaLiveClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_medialive.types.update_node_request.UpdateNodeRequest = {}  # type: ignore[typeddict-item]
-        input_["cluster_id"] = cluster_id
+        input_: capo_medialive.types.update_node_request.UpdateNodeRequest = {
+            "cluster_id": cluster_id,
+            "node_id": node_id,
+        }
         if name is not None:
             input_["name"] = name
-        input_["node_id"] = node_id
         if role is not None:
             input_["role"] = role
         if sdi_source_mappings is not None:
@@ -8104,6 +8328,7 @@ class AsyncMediaLiveClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_node_state(
@@ -8151,9 +8376,10 @@ class AsyncMediaLiveClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_medialive.types.update_node_state_request.UpdateNodeStateRequest = {}  # type: ignore[typeddict-item]
-        input_["cluster_id"] = cluster_id
-        input_["node_id"] = node_id
+        input_: capo_medialive.types.update_node_state_request.UpdateNodeStateRequest = {
+            "cluster_id": cluster_id,
+            "node_id": node_id,
+        }
         if state is not None:
             input_["state"] = state
 
@@ -8162,6 +8388,7 @@ class AsyncMediaLiveClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_reservation(
@@ -8209,18 +8436,20 @@ class AsyncMediaLiveClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_medialive.types.update_reservation_request.UpdateReservationRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_medialive.types.update_reservation_request.UpdateReservationRequest = {
+            "reservation_id": reservation_id
+        }
         if name is not None:
             input_["name"] = name
         if renewal_settings is not None:
             input_["renewal_settings"] = renewal_settings
-        input_["reservation_id"] = reservation_id
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_sdi_source(
@@ -8267,12 +8496,13 @@ class AsyncMediaLiveClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_medialive.types.update_sdi_source_request.UpdateSdiSourceRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_medialive.types.update_sdi_source_request.UpdateSdiSourceRequest = {
+            "sdi_source_id": sdi_source_id
+        }
         if mode is not None:
             input_["mode"] = mode
         if name is not None:
             input_["name"] = name
-        input_["sdi_source_id"] = sdi_source_id
         if type is not None:
             input_["type"] = type
 
@@ -8281,6 +8511,7 @@ class AsyncMediaLiveClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def __aenter__(self) -> Self:

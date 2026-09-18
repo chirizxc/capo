@@ -39,7 +39,7 @@ def serialize_json(value: ResourcesTrendsStringFilter) -> dict:
 
 def deserialize_json(data: dict) -> ResourcesTrendsStringFilter:
     out: ResourcesTrendsStringFilter = {}  # type: ignore[typeddict-item]
-    if "FieldName" in data:
+    if data.get("FieldName") is not None:
         import capo_securityhub.types.resources_trends_string_field
 
         out["field_name"] = (
@@ -47,7 +47,7 @@ def deserialize_json(data: dict) -> ResourcesTrendsStringFilter:
                 data["FieldName"]
             )
         )
-    if "Filter" in data:
+    if data.get("Filter") is not None:
         import capo_securityhub.types.string_filter
 
         out["filter"] = capo_securityhub.types.string_filter.deserialize_json(

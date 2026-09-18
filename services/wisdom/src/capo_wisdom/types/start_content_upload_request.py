@@ -32,10 +32,10 @@ def serialize_json(value: StartContentUploadRequest) -> dict:
 
 def deserialize_json(data: dict) -> StartContentUploadRequest:
     out: StartContentUploadRequest = {}  # type: ignore[typeddict-item]
-    if "contentType" in data:
+    if data.get("contentType") is not None:
         out["content_type"] = data["contentType"]
     else:
         raise DeserializationError("StartContentUploadRequest.content_type required")
-    if "presignedUrlTimeToLive" in data:
+    if data.get("presignedUrlTimeToLive") is not None:
         out["presigned_url_time_to_live"] = data["presignedUrlTimeToLive"]
     return out

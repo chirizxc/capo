@@ -36,13 +36,13 @@ def serialize_aws_json_1_1(value: Predicate) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Predicate:
     out: Predicate = {}  # type: ignore[typeddict-item]
-    if "Logical" in data:
+    if data.get("Logical") is not None:
         import capo_glue.types.logical
 
         out["logical"] = capo_glue.types.logical.deserialize_aws_json_1_1(
             data["Logical"]
         )
-    if "Conditions" in data:
+    if data.get("Conditions") is not None:
         import capo_glue.types.condition_list
 
         out["conditions"] = capo_glue.types.condition_list.deserialize_aws_json_1_1(

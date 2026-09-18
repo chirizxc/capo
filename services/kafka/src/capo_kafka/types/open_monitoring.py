@@ -27,7 +27,7 @@ def serialize_json(value: OpenMonitoring) -> dict:
 
 def deserialize_json(data: dict) -> OpenMonitoring:
     out: OpenMonitoring = {}  # type: ignore[typeddict-item]
-    if "prometheus" in data:
+    if data.get("prometheus") is not None:
         import capo_kafka.types.prometheus
 
         out["prometheus"] = capo_kafka.types.prometheus.deserialize_json(

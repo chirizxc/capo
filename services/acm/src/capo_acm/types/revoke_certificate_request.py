@@ -32,11 +32,11 @@ def serialize_aws_json_1_1(value: RevokeCertificateRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RevokeCertificateRequest:
     out: RevokeCertificateRequest = {}  # type: ignore[typeddict-item]
-    if "CertificateArn" in data:
+    if data.get("CertificateArn") is not None:
         out["certificate_arn"] = data["CertificateArn"]
     else:
         raise DeserializationError("RevokeCertificateRequest.certificate_arn required")
-    if "RevocationReason" in data:
+    if data.get("RevocationReason") is not None:
         import capo_acm.types.revocation_reason
 
         out["revocation_reason"] = (

@@ -40,19 +40,19 @@ def serialize_aws_json_1_1(value: SendWorkflowStepStateRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SendWorkflowStepStateRequest:
     out: SendWorkflowStepStateRequest = {}  # type: ignore[typeddict-item]
-    if "WorkflowId" in data:
+    if data.get("WorkflowId") is not None:
         out["workflow_id"] = data["WorkflowId"]
     else:
         raise DeserializationError("SendWorkflowStepStateRequest.workflow_id required")
-    if "ExecutionId" in data:
+    if data.get("ExecutionId") is not None:
         out["execution_id"] = data["ExecutionId"]
     else:
         raise DeserializationError("SendWorkflowStepStateRequest.execution_id required")
-    if "Token" in data:
+    if data.get("Token") is not None:
         out["token"] = data["Token"]
     else:
         raise DeserializationError("SendWorkflowStepStateRequest.token required")
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_transfer.types.custom_step_status
 
         out["status"] = capo_transfer.types.custom_step_status.deserialize_aws_json_1_1(

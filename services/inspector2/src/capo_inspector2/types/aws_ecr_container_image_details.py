@@ -78,39 +78,39 @@ def serialize_json(value: AwsEcrContainerImageDetails) -> dict:
 
 def deserialize_json(data: dict) -> AwsEcrContainerImageDetails:
     out: AwsEcrContainerImageDetails = {}  # type: ignore[typeddict-item]
-    if "repositoryName" in data:
+    if data.get("repositoryName") is not None:
         out["repository_name"] = data["repositoryName"]
     else:
         raise DeserializationError(
             "AwsEcrContainerImageDetails.repository_name required"
         )
-    if "imageTags" in data:
+    if data.get("imageTags") is not None:
         import capo_inspector2.types.image_tag_list
 
         out["image_tags"] = capo_inspector2.types.image_tag_list.deserialize_json(
             data["imageTags"]
         )
-    if "pushedAt" in data:
+    if data.get("pushedAt") is not None:
         import capo_inspector2.types.date_time_timestamp
 
         out["pushed_at"] = capo_inspector2.types.date_time_timestamp.deserialize_json(
             data["pushedAt"]
         )
-    if "author" in data:
+    if data.get("author") is not None:
         out["author"] = data["author"]
-    if "architecture" in data:
+    if data.get("architecture") is not None:
         out["architecture"] = data["architecture"]
-    if "imageHash" in data:
+    if data.get("imageHash") is not None:
         out["image_hash"] = data["imageHash"]
     else:
         raise DeserializationError("AwsEcrContainerImageDetails.image_hash required")
-    if "registry" in data:
+    if data.get("registry") is not None:
         out["registry"] = data["registry"]
     else:
         raise DeserializationError("AwsEcrContainerImageDetails.registry required")
-    if "platform" in data:
+    if data.get("platform") is not None:
         out["platform"] = data["platform"]
-    if "lastInUseAt" in data:
+    if data.get("lastInUseAt") is not None:
         import capo_inspector2.types.date_time_timestamp
 
         out["last_in_use_at"] = (
@@ -118,6 +118,6 @@ def deserialize_json(data: dict) -> AwsEcrContainerImageDetails:
                 data["lastInUseAt"]
             )
         )
-    if "inUseCount" in data:
+    if data.get("inUseCount") is not None:
         out["in_use_count"] = data["inUseCount"]
     return out

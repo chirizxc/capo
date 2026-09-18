@@ -25,6 +25,6 @@ def serialize_json(value: CreateAppInstanceUserResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateAppInstanceUserResponse:
     out: CreateAppInstanceUserResponse = {}  # type: ignore[typeddict-item]
-    if "AppInstanceUserArn" in data:
+    if data.get("AppInstanceUserArn") is not None:
         out["app_instance_user_arn"] = data["AppInstanceUserArn"]
     return out

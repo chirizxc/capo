@@ -42,13 +42,13 @@ def serialize_aws_json_1_1(value: SystemTemplateSummary) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SystemTemplateSummary:
     out: SystemTemplateSummary = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "revisionNumber" in data:
+    if data.get("revisionNumber") is not None:
         out["revision_number"] = data["revisionNumber"]
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_iotthingsgraph.types.timestamp
 
         out["created_at"] = (

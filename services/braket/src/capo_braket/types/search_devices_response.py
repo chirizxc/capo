@@ -32,7 +32,7 @@ def serialize_json(value: SearchDevicesResponse) -> dict:
 
 def deserialize_json(data: dict) -> SearchDevicesResponse:
     out: SearchDevicesResponse = {}  # type: ignore[typeddict-item]
-    if "devices" in data:
+    if data.get("devices") is not None:
         import capo_braket.types.device_summary_list
 
         out["devices"] = capo_braket.types.device_summary_list.deserialize_json(
@@ -40,6 +40,6 @@ def deserialize_json(data: dict) -> SearchDevicesResponse:
         )
     else:
         raise DeserializationError("SearchDevicesResponse.devices required")
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

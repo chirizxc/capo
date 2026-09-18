@@ -92,31 +92,31 @@ def serialize_json(value: JobInput) -> dict:
 
 def deserialize_json(data: dict) -> JobInput:
     out: JobInput = {}  # type: ignore[typeddict-item]
-    if "Key" in data:
+    if data.get("Key") is not None:
         out["key"] = data["Key"]
-    if "FrameRate" in data:
+    if data.get("FrameRate") is not None:
         out["frame_rate"] = data["FrameRate"]
-    if "Resolution" in data:
+    if data.get("Resolution") is not None:
         out["resolution"] = data["Resolution"]
-    if "AspectRatio" in data:
+    if data.get("AspectRatio") is not None:
         out["aspect_ratio"] = data["AspectRatio"]
-    if "Interlaced" in data:
+    if data.get("Interlaced") is not None:
         out["interlaced"] = data["Interlaced"]
-    if "Container" in data:
+    if data.get("Container") is not None:
         out["container"] = data["Container"]
-    if "Encryption" in data:
+    if data.get("Encryption") is not None:
         import capo_elastic_transcoder.types.encryption
 
         out["encryption"] = capo_elastic_transcoder.types.encryption.deserialize_json(
             data["Encryption"]
         )
-    if "TimeSpan" in data:
+    if data.get("TimeSpan") is not None:
         import capo_elastic_transcoder.types.time_span
 
         out["time_span"] = capo_elastic_transcoder.types.time_span.deserialize_json(
             data["TimeSpan"]
         )
-    if "InputCaptions" in data:
+    if data.get("InputCaptions") is not None:
         import capo_elastic_transcoder.types.input_captions
 
         out["input_captions"] = (
@@ -124,7 +124,7 @@ def deserialize_json(data: dict) -> JobInput:
                 data["InputCaptions"]
             )
         )
-    if "DetectedProperties" in data:
+    if data.get("DetectedProperties") is not None:
         import capo_elastic_transcoder.types.detected_properties
 
         out["detected_properties"] = (

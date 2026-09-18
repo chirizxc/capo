@@ -40,7 +40,7 @@ def serialize_aws_json_1_1(value: GetColumnStatisticsForPartitionResponse) -> di
 
 def deserialize_aws_json_1_1(data: dict) -> GetColumnStatisticsForPartitionResponse:
     out: GetColumnStatisticsForPartitionResponse = {}  # type: ignore[typeddict-item]
-    if "ColumnStatisticsList" in data:
+    if data.get("ColumnStatisticsList") is not None:
         import capo_glue.types.column_statistics_list
 
         out["column_statistics_list"] = (
@@ -48,7 +48,7 @@ def deserialize_aws_json_1_1(data: dict) -> GetColumnStatisticsForPartitionRespo
                 data["ColumnStatisticsList"]
             )
         )
-    if "Errors" in data:
+    if data.get("Errors") is not None:
         import capo_glue.types.column_errors
 
         out["errors"] = capo_glue.types.column_errors.deserialize_aws_json_1_1(

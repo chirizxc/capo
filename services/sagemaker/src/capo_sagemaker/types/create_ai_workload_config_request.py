@@ -60,9 +60,9 @@ def serialize_aws_json_1_1(value: CreateAIWorkloadConfigRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateAIWorkloadConfigRequest:
     out: CreateAIWorkloadConfigRequest = {}  # type: ignore[typeddict-item]
-    if "AIWorkloadConfigName" in data:
+    if data.get("AIWorkloadConfigName") is not None:
         out["ai_workload_config_name"] = data["AIWorkloadConfigName"]
-    if "DatasetConfig" in data:
+    if data.get("DatasetConfig") is not None:
         import capo_sagemaker.types.ai_dataset_config
 
         out["dataset_config"] = (
@@ -70,7 +70,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateAIWorkloadConfigRequest:
                 data["DatasetConfig"]
             )
         )
-    if "AIWorkloadConfigs" in data:
+    if data.get("AIWorkloadConfigs") is not None:
         import capo_sagemaker.types.ai_workload_configs
 
         out["ai_workload_configs"] = (
@@ -78,7 +78,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateAIWorkloadConfigRequest:
                 data["AIWorkloadConfigs"]
             )
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_sagemaker.types.tag_list
 
         out["tags"] = capo_sagemaker.types.tag_list.deserialize_aws_json_1_1(

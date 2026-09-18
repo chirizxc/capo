@@ -56,13 +56,13 @@ def serialize_aws_json_1_1(value: UpdateEntitlementRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateEntitlementRequest:
     out: UpdateEntitlementRequest = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "StackName" in data:
+    if data.get("StackName") is not None:
         out["stack_name"] = data["StackName"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "AppVisibility" in data:
+    if data.get("AppVisibility") is not None:
         import capo_appstream.types.app_visibility
 
         out["app_visibility"] = (
@@ -70,7 +70,7 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateEntitlementRequest:
                 data["AppVisibility"]
             )
         )
-    if "Attributes" in data:
+    if data.get("Attributes") is not None:
         import capo_appstream.types.entitlement_attribute_list
 
         out["attributes"] = (

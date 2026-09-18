@@ -32,8 +32,8 @@ def serialize_json(value: GetDeviceRegistrationResult) -> dict:
 
 def deserialize_json(data: dict) -> GetDeviceRegistrationResult:
     out: GetDeviceRegistrationResult = {}  # type: ignore[typeddict-item]
-    if "DeviceRegistration" in data:
+    if data.get("DeviceRegistration") is not None:
         out["device_registration"] = data["DeviceRegistration"]
-    if "CacheTTL" in data:
+    if data.get("CacheTTL") is not None:
         out["cache_ttl"] = data["CacheTTL"]
     return out

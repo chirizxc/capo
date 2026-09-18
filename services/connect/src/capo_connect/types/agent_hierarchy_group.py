@@ -23,6 +23,6 @@ def serialize_json(value: AgentHierarchyGroup) -> dict:
 
 def deserialize_json(data: dict) -> AgentHierarchyGroup:
     out: AgentHierarchyGroup = {}  # type: ignore[typeddict-item]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
     return out

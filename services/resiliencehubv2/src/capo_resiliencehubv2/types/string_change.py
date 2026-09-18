@@ -22,8 +22,8 @@ def serialize_json(value: StringChange) -> dict:
 
 def deserialize_json(data: dict) -> StringChange:
     out: StringChange = {}  # type: ignore[typeddict-item]
-    if "oldValue" in data:
+    if data.get("oldValue") is not None:
         out["old_value"] = data["oldValue"]
-    if "newValue" in data:
+    if data.get("newValue") is not None:
         out["new_value"] = data["newValue"]
     return out

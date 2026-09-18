@@ -50,21 +50,46 @@ def serialize_json(value: AutoScalingConfiguration) -> dict:
             )
         )
     if "metric_target" in value:
-        out["metricTarget"] = value["metric_target"]
+        out["metricTarget"] = (
+            "NaN"
+            if value["metric_target"] != value["metric_target"]
+            else "Infinity"
+            if value["metric_target"] == float("inf")
+            else "-Infinity"
+            if value["metric_target"] == float("-inf")
+            else value["metric_target"]
+        )
     if "scale_in_cooldown_seconds" in value:
-        out["scaleInCooldownSeconds"] = value["scale_in_cooldown_seconds"]
+        out["scaleInCooldownSeconds"] = (
+            "NaN"
+            if value["scale_in_cooldown_seconds"] != value["scale_in_cooldown_seconds"]
+            else "Infinity"
+            if value["scale_in_cooldown_seconds"] == float("inf")
+            else "-Infinity"
+            if value["scale_in_cooldown_seconds"] == float("-inf")
+            else value["scale_in_cooldown_seconds"]
+        )
     if "scale_out_cooldown_seconds" in value:
-        out["scaleOutCooldownSeconds"] = value["scale_out_cooldown_seconds"]
+        out["scaleOutCooldownSeconds"] = (
+            "NaN"
+            if value["scale_out_cooldown_seconds"]
+            != value["scale_out_cooldown_seconds"]
+            else "Infinity"
+            if value["scale_out_cooldown_seconds"] == float("inf")
+            else "-Infinity"
+            if value["scale_out_cooldown_seconds"] == float("-inf")
+            else value["scale_out_cooldown_seconds"]
+        )
     return out
 
 
 def deserialize_json(data: dict) -> AutoScalingConfiguration:
     out: AutoScalingConfiguration = {}  # type: ignore[typeddict-item]
-    if "minNodeCount" in data:
+    if data.get("minNodeCount") is not None:
         out["min_node_count"] = data["minNodeCount"]
-    if "maxNodeCount" in data:
+    if data.get("maxNodeCount") is not None:
         out["max_node_count"] = data["maxNodeCount"]
-    if "autoScalingMetric" in data:
+    if data.get("autoScalingMetric") is not None:
         import capo_finspace.types.auto_scaling_metric
 
         out["auto_scaling_metric"] = (
@@ -72,10 +97,10 @@ def deserialize_json(data: dict) -> AutoScalingConfiguration:
                 data["autoScalingMetric"]
             )
         )
-    if "metricTarget" in data:
-        out["metric_target"] = data["metricTarget"]
-    if "scaleInCooldownSeconds" in data:
-        out["scale_in_cooldown_seconds"] = data["scaleInCooldownSeconds"]
-    if "scaleOutCooldownSeconds" in data:
-        out["scale_out_cooldown_seconds"] = data["scaleOutCooldownSeconds"]
+    if data.get("metricTarget") is not None:
+        out["metric_target"] = float(data["metricTarget"])
+    if data.get("scaleInCooldownSeconds") is not None:
+        out["scale_in_cooldown_seconds"] = float(data["scaleInCooldownSeconds"])
+    if data.get("scaleOutCooldownSeconds") is not None:
+        out["scale_out_cooldown_seconds"] = float(data["scaleOutCooldownSeconds"])
     return out

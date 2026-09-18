@@ -25,6 +25,8 @@ def deserialize_aws_json_1_1(data: list) -> StorageVirtualMachines:
 
     out: StorageVirtualMachines = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_fsx.types.storage_virtual_machine.deserialize_aws_json_1_1(item)
         )

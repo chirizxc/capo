@@ -1290,7 +1290,7 @@ def serialize_json(value: ResourceDetails) -> dict:
 
 def deserialize_json(data: dict) -> ResourceDetails:
     out: ResourceDetails = {}  # type: ignore[typeddict-item]
-    if "AwsAutoScalingAutoScalingGroup" in data:
+    if data.get("AwsAutoScalingAutoScalingGroup") is not None:
         import capo_securityhub.types.aws_auto_scaling_auto_scaling_group_details
 
         out["aws_auto_scaling_auto_scaling_group"] = (
@@ -1298,7 +1298,7 @@ def deserialize_json(data: dict) -> ResourceDetails:
                 data["AwsAutoScalingAutoScalingGroup"]
             )
         )
-    if "AwsCodeBuildProject" in data:
+    if data.get("AwsCodeBuildProject") is not None:
         import capo_securityhub.types.aws_code_build_project_details
 
         out["aws_code_build_project"] = (
@@ -1306,7 +1306,7 @@ def deserialize_json(data: dict) -> ResourceDetails:
                 data["AwsCodeBuildProject"]
             )
         )
-    if "AwsCloudFrontDistribution" in data:
+    if data.get("AwsCloudFrontDistribution") is not None:
         import capo_securityhub.types.aws_cloud_front_distribution_details
 
         out["aws_cloud_front_distribution"] = (
@@ -1314,7 +1314,7 @@ def deserialize_json(data: dict) -> ResourceDetails:
                 data["AwsCloudFrontDistribution"]
             )
         )
-    if "AwsEc2Instance" in data:
+    if data.get("AwsEc2Instance") is not None:
         import capo_securityhub.types.aws_ec2_instance_details
 
         out["aws_ec2_instance"] = (
@@ -1322,7 +1322,7 @@ def deserialize_json(data: dict) -> ResourceDetails:
                 data["AwsEc2Instance"]
             )
         )
-    if "AwsEc2NetworkInterface" in data:
+    if data.get("AwsEc2NetworkInterface") is not None:
         import capo_securityhub.types.aws_ec2_network_interface_details
 
         out["aws_ec2_network_interface"] = (
@@ -1330,7 +1330,7 @@ def deserialize_json(data: dict) -> ResourceDetails:
                 data["AwsEc2NetworkInterface"]
             )
         )
-    if "AwsEc2SecurityGroup" in data:
+    if data.get("AwsEc2SecurityGroup") is not None:
         import capo_securityhub.types.aws_ec2_security_group_details
 
         out["aws_ec2_security_group"] = (
@@ -1338,7 +1338,7 @@ def deserialize_json(data: dict) -> ResourceDetails:
                 data["AwsEc2SecurityGroup"]
             )
         )
-    if "AwsEc2Volume" in data:
+    if data.get("AwsEc2Volume") is not None:
         import capo_securityhub.types.aws_ec2_volume_details
 
         out["aws_ec2_volume"] = (
@@ -1346,7 +1346,7 @@ def deserialize_json(data: dict) -> ResourceDetails:
                 data["AwsEc2Volume"]
             )
         )
-    if "AwsEc2Vpc" in data:
+    if data.get("AwsEc2Vpc") is not None:
         import capo_securityhub.types.aws_ec2_vpc_details
 
         out["aws_ec2_vpc"] = (
@@ -1354,7 +1354,7 @@ def deserialize_json(data: dict) -> ResourceDetails:
                 data["AwsEc2Vpc"]
             )
         )
-    if "AwsEc2Eip" in data:
+    if data.get("AwsEc2Eip") is not None:
         import capo_securityhub.types.aws_ec2_eip_details
 
         out["aws_ec2_eip"] = (
@@ -1362,7 +1362,7 @@ def deserialize_json(data: dict) -> ResourceDetails:
                 data["AwsEc2Eip"]
             )
         )
-    if "AwsEc2Subnet" in data:
+    if data.get("AwsEc2Subnet") is not None:
         import capo_securityhub.types.aws_ec2_subnet_details
 
         out["aws_ec2_subnet"] = (
@@ -1370,7 +1370,7 @@ def deserialize_json(data: dict) -> ResourceDetails:
                 data["AwsEc2Subnet"]
             )
         )
-    if "AwsEc2NetworkAcl" in data:
+    if data.get("AwsEc2NetworkAcl") is not None:
         import capo_securityhub.types.aws_ec2_network_acl_details
 
         out["aws_ec2_network_acl"] = (
@@ -1378,7 +1378,7 @@ def deserialize_json(data: dict) -> ResourceDetails:
                 data["AwsEc2NetworkAcl"]
             )
         )
-    if "AwsElbv2LoadBalancer" in data:
+    if data.get("AwsElbv2LoadBalancer") is not None:
         import capo_securityhub.types.aws_elbv2_load_balancer_details
 
         out["aws_elbv2_load_balancer"] = (
@@ -1386,7 +1386,7 @@ def deserialize_json(data: dict) -> ResourceDetails:
                 data["AwsElbv2LoadBalancer"]
             )
         )
-    if "AwsElasticBeanstalkEnvironment" in data:
+    if data.get("AwsElasticBeanstalkEnvironment") is not None:
         import capo_securityhub.types.aws_elastic_beanstalk_environment_details
 
         out["aws_elastic_beanstalk_environment"] = (
@@ -1394,7 +1394,7 @@ def deserialize_json(data: dict) -> ResourceDetails:
                 data["AwsElasticBeanstalkEnvironment"]
             )
         )
-    if "AwsElasticsearchDomain" in data:
+    if data.get("AwsElasticsearchDomain") is not None:
         import capo_securityhub.types.aws_elasticsearch_domain_details
 
         out["aws_elasticsearch_domain"] = (
@@ -1402,7 +1402,7 @@ def deserialize_json(data: dict) -> ResourceDetails:
                 data["AwsElasticsearchDomain"]
             )
         )
-    if "AwsS3Bucket" in data:
+    if data.get("AwsS3Bucket") is not None:
         import capo_securityhub.types.aws_s3_bucket_details
 
         out["aws_s3_bucket"] = (
@@ -1410,7 +1410,7 @@ def deserialize_json(data: dict) -> ResourceDetails:
                 data["AwsS3Bucket"]
             )
         )
-    if "AwsS3AccountPublicAccessBlock" in data:
+    if data.get("AwsS3AccountPublicAccessBlock") is not None:
         import capo_securityhub.types.aws_s3_account_public_access_block_details
 
         out["aws_s3_account_public_access_block"] = (
@@ -1418,7 +1418,7 @@ def deserialize_json(data: dict) -> ResourceDetails:
                 data["AwsS3AccountPublicAccessBlock"]
             )
         )
-    if "AwsS3Object" in data:
+    if data.get("AwsS3Object") is not None:
         import capo_securityhub.types.aws_s3_object_details
 
         out["aws_s3_object"] = (
@@ -1426,7 +1426,7 @@ def deserialize_json(data: dict) -> ResourceDetails:
                 data["AwsS3Object"]
             )
         )
-    if "AwsSecretsManagerSecret" in data:
+    if data.get("AwsSecretsManagerSecret") is not None:
         import capo_securityhub.types.aws_secrets_manager_secret_details
 
         out["aws_secrets_manager_secret"] = (
@@ -1434,7 +1434,7 @@ def deserialize_json(data: dict) -> ResourceDetails:
                 data["AwsSecretsManagerSecret"]
             )
         )
-    if "AwsIamAccessKey" in data:
+    if data.get("AwsIamAccessKey") is not None:
         import capo_securityhub.types.aws_iam_access_key_details
 
         out["aws_iam_access_key"] = (
@@ -1442,7 +1442,7 @@ def deserialize_json(data: dict) -> ResourceDetails:
                 data["AwsIamAccessKey"]
             )
         )
-    if "AwsIamUser" in data:
+    if data.get("AwsIamUser") is not None:
         import capo_securityhub.types.aws_iam_user_details
 
         out["aws_iam_user"] = (
@@ -1450,7 +1450,7 @@ def deserialize_json(data: dict) -> ResourceDetails:
                 data["AwsIamUser"]
             )
         )
-    if "AwsIamPolicy" in data:
+    if data.get("AwsIamPolicy") is not None:
         import capo_securityhub.types.aws_iam_policy_details
 
         out["aws_iam_policy"] = (
@@ -1458,7 +1458,7 @@ def deserialize_json(data: dict) -> ResourceDetails:
                 data["AwsIamPolicy"]
             )
         )
-    if "AwsApiGatewayV2Stage" in data:
+    if data.get("AwsApiGatewayV2Stage") is not None:
         import capo_securityhub.types.aws_api_gateway_v2_stage_details
 
         out["aws_api_gateway_v2_stage"] = (
@@ -1466,7 +1466,7 @@ def deserialize_json(data: dict) -> ResourceDetails:
                 data["AwsApiGatewayV2Stage"]
             )
         )
-    if "AwsApiGatewayV2Api" in data:
+    if data.get("AwsApiGatewayV2Api") is not None:
         import capo_securityhub.types.aws_api_gateway_v2_api_details
 
         out["aws_api_gateway_v2_api"] = (
@@ -1474,7 +1474,7 @@ def deserialize_json(data: dict) -> ResourceDetails:
                 data["AwsApiGatewayV2Api"]
             )
         )
-    if "AwsDynamoDbTable" in data:
+    if data.get("AwsDynamoDbTable") is not None:
         import capo_securityhub.types.aws_dynamo_db_table_details
 
         out["aws_dynamo_db_table"] = (
@@ -1482,7 +1482,7 @@ def deserialize_json(data: dict) -> ResourceDetails:
                 data["AwsDynamoDbTable"]
             )
         )
-    if "AwsApiGatewayStage" in data:
+    if data.get("AwsApiGatewayStage") is not None:
         import capo_securityhub.types.aws_api_gateway_stage_details
 
         out["aws_api_gateway_stage"] = (
@@ -1490,7 +1490,7 @@ def deserialize_json(data: dict) -> ResourceDetails:
                 data["AwsApiGatewayStage"]
             )
         )
-    if "AwsApiGatewayRestApi" in data:
+    if data.get("AwsApiGatewayRestApi") is not None:
         import capo_securityhub.types.aws_api_gateway_rest_api_details
 
         out["aws_api_gateway_rest_api"] = (
@@ -1498,7 +1498,7 @@ def deserialize_json(data: dict) -> ResourceDetails:
                 data["AwsApiGatewayRestApi"]
             )
         )
-    if "AwsCloudTrailTrail" in data:
+    if data.get("AwsCloudTrailTrail") is not None:
         import capo_securityhub.types.aws_cloud_trail_trail_details
 
         out["aws_cloud_trail_trail"] = (
@@ -1506,7 +1506,7 @@ def deserialize_json(data: dict) -> ResourceDetails:
                 data["AwsCloudTrailTrail"]
             )
         )
-    if "AwsSsmPatchCompliance" in data:
+    if data.get("AwsSsmPatchCompliance") is not None:
         import capo_securityhub.types.aws_ssm_patch_compliance_details
 
         out["aws_ssm_patch_compliance"] = (
@@ -1514,7 +1514,7 @@ def deserialize_json(data: dict) -> ResourceDetails:
                 data["AwsSsmPatchCompliance"]
             )
         )
-    if "AwsCertificateManagerCertificate" in data:
+    if data.get("AwsCertificateManagerCertificate") is not None:
         import capo_securityhub.types.aws_certificate_manager_certificate_details
 
         out["aws_certificate_manager_certificate"] = (
@@ -1522,7 +1522,7 @@ def deserialize_json(data: dict) -> ResourceDetails:
                 data["AwsCertificateManagerCertificate"]
             )
         )
-    if "AwsRedshiftCluster" in data:
+    if data.get("AwsRedshiftCluster") is not None:
         import capo_securityhub.types.aws_redshift_cluster_details
 
         out["aws_redshift_cluster"] = (
@@ -1530,7 +1530,7 @@ def deserialize_json(data: dict) -> ResourceDetails:
                 data["AwsRedshiftCluster"]
             )
         )
-    if "AwsElbLoadBalancer" in data:
+    if data.get("AwsElbLoadBalancer") is not None:
         import capo_securityhub.types.aws_elb_load_balancer_details
 
         out["aws_elb_load_balancer"] = (
@@ -1538,7 +1538,7 @@ def deserialize_json(data: dict) -> ResourceDetails:
                 data["AwsElbLoadBalancer"]
             )
         )
-    if "AwsIamGroup" in data:
+    if data.get("AwsIamGroup") is not None:
         import capo_securityhub.types.aws_iam_group_details
 
         out["aws_iam_group"] = (
@@ -1546,7 +1546,7 @@ def deserialize_json(data: dict) -> ResourceDetails:
                 data["AwsIamGroup"]
             )
         )
-    if "AwsIamRole" in data:
+    if data.get("AwsIamRole") is not None:
         import capo_securityhub.types.aws_iam_role_details
 
         out["aws_iam_role"] = (
@@ -1554,7 +1554,7 @@ def deserialize_json(data: dict) -> ResourceDetails:
                 data["AwsIamRole"]
             )
         )
-    if "AwsKmsKey" in data:
+    if data.get("AwsKmsKey") is not None:
         import capo_securityhub.types.aws_kms_key_details
 
         out["aws_kms_key"] = (
@@ -1562,7 +1562,7 @@ def deserialize_json(data: dict) -> ResourceDetails:
                 data["AwsKmsKey"]
             )
         )
-    if "AwsLambdaFunction" in data:
+    if data.get("AwsLambdaFunction") is not None:
         import capo_securityhub.types.aws_lambda_function_details
 
         out["aws_lambda_function"] = (
@@ -1570,7 +1570,7 @@ def deserialize_json(data: dict) -> ResourceDetails:
                 data["AwsLambdaFunction"]
             )
         )
-    if "AwsLambdaLayerVersion" in data:
+    if data.get("AwsLambdaLayerVersion") is not None:
         import capo_securityhub.types.aws_lambda_layer_version_details
 
         out["aws_lambda_layer_version"] = (
@@ -1578,7 +1578,7 @@ def deserialize_json(data: dict) -> ResourceDetails:
                 data["AwsLambdaLayerVersion"]
             )
         )
-    if "AwsRdsDbInstance" in data:
+    if data.get("AwsRdsDbInstance") is not None:
         import capo_securityhub.types.aws_rds_db_instance_details
 
         out["aws_rds_db_instance"] = (
@@ -1586,7 +1586,7 @@ def deserialize_json(data: dict) -> ResourceDetails:
                 data["AwsRdsDbInstance"]
             )
         )
-    if "AwsSnsTopic" in data:
+    if data.get("AwsSnsTopic") is not None:
         import capo_securityhub.types.aws_sns_topic_details
 
         out["aws_sns_topic"] = (
@@ -1594,7 +1594,7 @@ def deserialize_json(data: dict) -> ResourceDetails:
                 data["AwsSnsTopic"]
             )
         )
-    if "AwsSqsQueue" in data:
+    if data.get("AwsSqsQueue") is not None:
         import capo_securityhub.types.aws_sqs_queue_details
 
         out["aws_sqs_queue"] = (
@@ -1602,7 +1602,7 @@ def deserialize_json(data: dict) -> ResourceDetails:
                 data["AwsSqsQueue"]
             )
         )
-    if "AwsWafWebAcl" in data:
+    if data.get("AwsWafWebAcl") is not None:
         import capo_securityhub.types.aws_waf_web_acl_details
 
         out["aws_waf_web_acl"] = (
@@ -1610,7 +1610,7 @@ def deserialize_json(data: dict) -> ResourceDetails:
                 data["AwsWafWebAcl"]
             )
         )
-    if "AwsRdsDbSnapshot" in data:
+    if data.get("AwsRdsDbSnapshot") is not None:
         import capo_securityhub.types.aws_rds_db_snapshot_details
 
         out["aws_rds_db_snapshot"] = (
@@ -1618,7 +1618,7 @@ def deserialize_json(data: dict) -> ResourceDetails:
                 data["AwsRdsDbSnapshot"]
             )
         )
-    if "AwsRdsDbClusterSnapshot" in data:
+    if data.get("AwsRdsDbClusterSnapshot") is not None:
         import capo_securityhub.types.aws_rds_db_cluster_snapshot_details
 
         out["aws_rds_db_cluster_snapshot"] = (
@@ -1626,7 +1626,7 @@ def deserialize_json(data: dict) -> ResourceDetails:
                 data["AwsRdsDbClusterSnapshot"]
             )
         )
-    if "AwsRdsDbCluster" in data:
+    if data.get("AwsRdsDbCluster") is not None:
         import capo_securityhub.types.aws_rds_db_cluster_details
 
         out["aws_rds_db_cluster"] = (
@@ -1634,7 +1634,7 @@ def deserialize_json(data: dict) -> ResourceDetails:
                 data["AwsRdsDbCluster"]
             )
         )
-    if "AwsEcsCluster" in data:
+    if data.get("AwsEcsCluster") is not None:
         import capo_securityhub.types.aws_ecs_cluster_details
 
         out["aws_ecs_cluster"] = (
@@ -1642,7 +1642,7 @@ def deserialize_json(data: dict) -> ResourceDetails:
                 data["AwsEcsCluster"]
             )
         )
-    if "AwsEcsContainer" in data:
+    if data.get("AwsEcsContainer") is not None:
         import capo_securityhub.types.aws_ecs_container_details
 
         out["aws_ecs_container"] = (
@@ -1650,7 +1650,7 @@ def deserialize_json(data: dict) -> ResourceDetails:
                 data["AwsEcsContainer"]
             )
         )
-    if "AwsEcsTaskDefinition" in data:
+    if data.get("AwsEcsTaskDefinition") is not None:
         import capo_securityhub.types.aws_ecs_task_definition_details
 
         out["aws_ecs_task_definition"] = (
@@ -1658,17 +1658,17 @@ def deserialize_json(data: dict) -> ResourceDetails:
                 data["AwsEcsTaskDefinition"]
             )
         )
-    if "Container" in data:
+    if data.get("Container") is not None:
         import capo_securityhub.types.container_details
 
         out["container"] = capo_securityhub.types.container_details.deserialize_json(
             data["Container"]
         )
-    if "Other" in data:
+    if data.get("Other") is not None:
         import capo_securityhub.types.field_map
 
         out["other"] = capo_securityhub.types.field_map.deserialize_json(data["Other"])
-    if "AwsRdsEventSubscription" in data:
+    if data.get("AwsRdsEventSubscription") is not None:
         import capo_securityhub.types.aws_rds_event_subscription_details
 
         out["aws_rds_event_subscription"] = (
@@ -1676,7 +1676,7 @@ def deserialize_json(data: dict) -> ResourceDetails:
                 data["AwsRdsEventSubscription"]
             )
         )
-    if "AwsEcsService" in data:
+    if data.get("AwsEcsService") is not None:
         import capo_securityhub.types.aws_ecs_service_details
 
         out["aws_ecs_service"] = (
@@ -1684,7 +1684,7 @@ def deserialize_json(data: dict) -> ResourceDetails:
                 data["AwsEcsService"]
             )
         )
-    if "AwsAutoScalingLaunchConfiguration" in data:
+    if data.get("AwsAutoScalingLaunchConfiguration") is not None:
         import capo_securityhub.types.aws_auto_scaling_launch_configuration_details
 
         out["aws_auto_scaling_launch_configuration"] = (
@@ -1692,7 +1692,7 @@ def deserialize_json(data: dict) -> ResourceDetails:
                 data["AwsAutoScalingLaunchConfiguration"]
             )
         )
-    if "AwsEc2VpnConnection" in data:
+    if data.get("AwsEc2VpnConnection") is not None:
         import capo_securityhub.types.aws_ec2_vpn_connection_details
 
         out["aws_ec2_vpn_connection"] = (
@@ -1700,7 +1700,7 @@ def deserialize_json(data: dict) -> ResourceDetails:
                 data["AwsEc2VpnConnection"]
             )
         )
-    if "AwsEcrContainerImage" in data:
+    if data.get("AwsEcrContainerImage") is not None:
         import capo_securityhub.types.aws_ecr_container_image_details
 
         out["aws_ecr_container_image"] = (
@@ -1708,7 +1708,7 @@ def deserialize_json(data: dict) -> ResourceDetails:
                 data["AwsEcrContainerImage"]
             )
         )
-    if "AwsOpenSearchServiceDomain" in data:
+    if data.get("AwsOpenSearchServiceDomain") is not None:
         import capo_securityhub.types.aws_open_search_service_domain_details
 
         out["aws_open_search_service_domain"] = (
@@ -1716,7 +1716,7 @@ def deserialize_json(data: dict) -> ResourceDetails:
                 data["AwsOpenSearchServiceDomain"]
             )
         )
-    if "AwsEc2VpcEndpointService" in data:
+    if data.get("AwsEc2VpcEndpointService") is not None:
         import capo_securityhub.types.aws_ec2_vpc_endpoint_service_details
 
         out["aws_ec2_vpc_endpoint_service"] = (
@@ -1724,7 +1724,7 @@ def deserialize_json(data: dict) -> ResourceDetails:
                 data["AwsEc2VpcEndpointService"]
             )
         )
-    if "AwsXrayEncryptionConfig" in data:
+    if data.get("AwsXrayEncryptionConfig") is not None:
         import capo_securityhub.types.aws_xray_encryption_config_details
 
         out["aws_xray_encryption_config"] = (
@@ -1732,7 +1732,7 @@ def deserialize_json(data: dict) -> ResourceDetails:
                 data["AwsXrayEncryptionConfig"]
             )
         )
-    if "AwsWafRateBasedRule" in data:
+    if data.get("AwsWafRateBasedRule") is not None:
         import capo_securityhub.types.aws_waf_rate_based_rule_details
 
         out["aws_waf_rate_based_rule"] = (
@@ -1740,7 +1740,7 @@ def deserialize_json(data: dict) -> ResourceDetails:
                 data["AwsWafRateBasedRule"]
             )
         )
-    if "AwsWafRegionalRateBasedRule" in data:
+    if data.get("AwsWafRegionalRateBasedRule") is not None:
         import capo_securityhub.types.aws_waf_regional_rate_based_rule_details
 
         out["aws_waf_regional_rate_based_rule"] = (
@@ -1748,7 +1748,7 @@ def deserialize_json(data: dict) -> ResourceDetails:
                 data["AwsWafRegionalRateBasedRule"]
             )
         )
-    if "AwsEcrRepository" in data:
+    if data.get("AwsEcrRepository") is not None:
         import capo_securityhub.types.aws_ecr_repository_details
 
         out["aws_ecr_repository"] = (
@@ -1756,7 +1756,7 @@ def deserialize_json(data: dict) -> ResourceDetails:
                 data["AwsEcrRepository"]
             )
         )
-    if "AwsEksCluster" in data:
+    if data.get("AwsEksCluster") is not None:
         import capo_securityhub.types.aws_eks_cluster_details
 
         out["aws_eks_cluster"] = (
@@ -1764,7 +1764,7 @@ def deserialize_json(data: dict) -> ResourceDetails:
                 data["AwsEksCluster"]
             )
         )
-    if "AwsNetworkFirewallFirewallPolicy" in data:
+    if data.get("AwsNetworkFirewallFirewallPolicy") is not None:
         import capo_securityhub.types.aws_network_firewall_firewall_policy_details
 
         out["aws_network_firewall_firewall_policy"] = (
@@ -1772,7 +1772,7 @@ def deserialize_json(data: dict) -> ResourceDetails:
                 data["AwsNetworkFirewallFirewallPolicy"]
             )
         )
-    if "AwsNetworkFirewallFirewall" in data:
+    if data.get("AwsNetworkFirewallFirewall") is not None:
         import capo_securityhub.types.aws_network_firewall_firewall_details
 
         out["aws_network_firewall_firewall"] = (
@@ -1780,7 +1780,7 @@ def deserialize_json(data: dict) -> ResourceDetails:
                 data["AwsNetworkFirewallFirewall"]
             )
         )
-    if "AwsNetworkFirewallRuleGroup" in data:
+    if data.get("AwsNetworkFirewallRuleGroup") is not None:
         import capo_securityhub.types.aws_network_firewall_rule_group_details
 
         out["aws_network_firewall_rule_group"] = (
@@ -1788,7 +1788,7 @@ def deserialize_json(data: dict) -> ResourceDetails:
                 data["AwsNetworkFirewallRuleGroup"]
             )
         )
-    if "AwsRdsDbSecurityGroup" in data:
+    if data.get("AwsRdsDbSecurityGroup") is not None:
         import capo_securityhub.types.aws_rds_db_security_group_details
 
         out["aws_rds_db_security_group"] = (
@@ -1796,7 +1796,7 @@ def deserialize_json(data: dict) -> ResourceDetails:
                 data["AwsRdsDbSecurityGroup"]
             )
         )
-    if "AwsKinesisStream" in data:
+    if data.get("AwsKinesisStream") is not None:
         import capo_securityhub.types.aws_kinesis_stream_details
 
         out["aws_kinesis_stream"] = (
@@ -1804,7 +1804,7 @@ def deserialize_json(data: dict) -> ResourceDetails:
                 data["AwsKinesisStream"]
             )
         )
-    if "AwsEc2TransitGateway" in data:
+    if data.get("AwsEc2TransitGateway") is not None:
         import capo_securityhub.types.aws_ec2_transit_gateway_details
 
         out["aws_ec2_transit_gateway"] = (
@@ -1812,7 +1812,7 @@ def deserialize_json(data: dict) -> ResourceDetails:
                 data["AwsEc2TransitGateway"]
             )
         )
-    if "AwsEfsAccessPoint" in data:
+    if data.get("AwsEfsAccessPoint") is not None:
         import capo_securityhub.types.aws_efs_access_point_details
 
         out["aws_efs_access_point"] = (
@@ -1820,7 +1820,7 @@ def deserialize_json(data: dict) -> ResourceDetails:
                 data["AwsEfsAccessPoint"]
             )
         )
-    if "AwsCloudFormationStack" in data:
+    if data.get("AwsCloudFormationStack") is not None:
         import capo_securityhub.types.aws_cloud_formation_stack_details
 
         out["aws_cloud_formation_stack"] = (
@@ -1828,7 +1828,7 @@ def deserialize_json(data: dict) -> ResourceDetails:
                 data["AwsCloudFormationStack"]
             )
         )
-    if "AwsCloudWatchAlarm" in data:
+    if data.get("AwsCloudWatchAlarm") is not None:
         import capo_securityhub.types.aws_cloud_watch_alarm_details
 
         out["aws_cloud_watch_alarm"] = (
@@ -1836,7 +1836,7 @@ def deserialize_json(data: dict) -> ResourceDetails:
                 data["AwsCloudWatchAlarm"]
             )
         )
-    if "AwsEc2VpcPeeringConnection" in data:
+    if data.get("AwsEc2VpcPeeringConnection") is not None:
         import capo_securityhub.types.aws_ec2_vpc_peering_connection_details
 
         out["aws_ec2_vpc_peering_connection"] = (
@@ -1844,7 +1844,7 @@ def deserialize_json(data: dict) -> ResourceDetails:
                 data["AwsEc2VpcPeeringConnection"]
             )
         )
-    if "AwsWafRegionalRuleGroup" in data:
+    if data.get("AwsWafRegionalRuleGroup") is not None:
         import capo_securityhub.types.aws_waf_regional_rule_group_details
 
         out["aws_waf_regional_rule_group"] = (
@@ -1852,7 +1852,7 @@ def deserialize_json(data: dict) -> ResourceDetails:
                 data["AwsWafRegionalRuleGroup"]
             )
         )
-    if "AwsWafRegionalRule" in data:
+    if data.get("AwsWafRegionalRule") is not None:
         import capo_securityhub.types.aws_waf_regional_rule_details
 
         out["aws_waf_regional_rule"] = (
@@ -1860,7 +1860,7 @@ def deserialize_json(data: dict) -> ResourceDetails:
                 data["AwsWafRegionalRule"]
             )
         )
-    if "AwsWafRegionalWebAcl" in data:
+    if data.get("AwsWafRegionalWebAcl") is not None:
         import capo_securityhub.types.aws_waf_regional_web_acl_details
 
         out["aws_waf_regional_web_acl"] = (
@@ -1868,7 +1868,7 @@ def deserialize_json(data: dict) -> ResourceDetails:
                 data["AwsWafRegionalWebAcl"]
             )
         )
-    if "AwsWafRule" in data:
+    if data.get("AwsWafRule") is not None:
         import capo_securityhub.types.aws_waf_rule_details
 
         out["aws_waf_rule"] = (
@@ -1876,7 +1876,7 @@ def deserialize_json(data: dict) -> ResourceDetails:
                 data["AwsWafRule"]
             )
         )
-    if "AwsWafRuleGroup" in data:
+    if data.get("AwsWafRuleGroup") is not None:
         import capo_securityhub.types.aws_waf_rule_group_details
 
         out["aws_waf_rule_group"] = (
@@ -1884,7 +1884,7 @@ def deserialize_json(data: dict) -> ResourceDetails:
                 data["AwsWafRuleGroup"]
             )
         )
-    if "AwsEcsTask" in data:
+    if data.get("AwsEcsTask") is not None:
         import capo_securityhub.types.aws_ecs_task_details
 
         out["aws_ecs_task"] = (
@@ -1892,7 +1892,7 @@ def deserialize_json(data: dict) -> ResourceDetails:
                 data["AwsEcsTask"]
             )
         )
-    if "AwsBackupBackupVault" in data:
+    if data.get("AwsBackupBackupVault") is not None:
         import capo_securityhub.types.aws_backup_backup_vault_details
 
         out["aws_backup_backup_vault"] = (
@@ -1900,7 +1900,7 @@ def deserialize_json(data: dict) -> ResourceDetails:
                 data["AwsBackupBackupVault"]
             )
         )
-    if "AwsBackupBackupPlan" in data:
+    if data.get("AwsBackupBackupPlan") is not None:
         import capo_securityhub.types.aws_backup_backup_plan_details
 
         out["aws_backup_backup_plan"] = (
@@ -1908,7 +1908,7 @@ def deserialize_json(data: dict) -> ResourceDetails:
                 data["AwsBackupBackupPlan"]
             )
         )
-    if "AwsBackupRecoveryPoint" in data:
+    if data.get("AwsBackupRecoveryPoint") is not None:
         import capo_securityhub.types.aws_backup_recovery_point_details
 
         out["aws_backup_recovery_point"] = (
@@ -1916,7 +1916,7 @@ def deserialize_json(data: dict) -> ResourceDetails:
                 data["AwsBackupRecoveryPoint"]
             )
         )
-    if "AwsEc2LaunchTemplate" in data:
+    if data.get("AwsEc2LaunchTemplate") is not None:
         import capo_securityhub.types.aws_ec2_launch_template_details
 
         out["aws_ec2_launch_template"] = (
@@ -1924,7 +1924,7 @@ def deserialize_json(data: dict) -> ResourceDetails:
                 data["AwsEc2LaunchTemplate"]
             )
         )
-    if "AwsSageMakerNotebookInstance" in data:
+    if data.get("AwsSageMakerNotebookInstance") is not None:
         import capo_securityhub.types.aws_sage_maker_notebook_instance_details
 
         out["aws_sage_maker_notebook_instance"] = (
@@ -1932,7 +1932,7 @@ def deserialize_json(data: dict) -> ResourceDetails:
                 data["AwsSageMakerNotebookInstance"]
             )
         )
-    if "AwsWafv2WebAcl" in data:
+    if data.get("AwsWafv2WebAcl") is not None:
         import capo_securityhub.types.aws_wafv2_web_acl_details
 
         out["aws_wafv2_web_acl"] = (
@@ -1940,7 +1940,7 @@ def deserialize_json(data: dict) -> ResourceDetails:
                 data["AwsWafv2WebAcl"]
             )
         )
-    if "AwsWafv2RuleGroup" in data:
+    if data.get("AwsWafv2RuleGroup") is not None:
         import capo_securityhub.types.aws_wafv2_rule_group_details
 
         out["aws_wafv2_rule_group"] = (
@@ -1948,7 +1948,7 @@ def deserialize_json(data: dict) -> ResourceDetails:
                 data["AwsWafv2RuleGroup"]
             )
         )
-    if "AwsEc2RouteTable" in data:
+    if data.get("AwsEc2RouteTable") is not None:
         import capo_securityhub.types.aws_ec2_route_table_details
 
         out["aws_ec2_route_table"] = (
@@ -1956,7 +1956,7 @@ def deserialize_json(data: dict) -> ResourceDetails:
                 data["AwsEc2RouteTable"]
             )
         )
-    if "AwsAmazonMqBroker" in data:
+    if data.get("AwsAmazonMqBroker") is not None:
         import capo_securityhub.types.aws_amazon_mq_broker_details
 
         out["aws_amazon_mq_broker"] = (
@@ -1964,7 +1964,7 @@ def deserialize_json(data: dict) -> ResourceDetails:
                 data["AwsAmazonMqBroker"]
             )
         )
-    if "AwsAppSyncGraphQlApi" in data:
+    if data.get("AwsAppSyncGraphQlApi") is not None:
         import capo_securityhub.types.aws_app_sync_graph_ql_api_details
 
         out["aws_app_sync_graph_ql_api"] = (
@@ -1972,7 +1972,7 @@ def deserialize_json(data: dict) -> ResourceDetails:
                 data["AwsAppSyncGraphQlApi"]
             )
         )
-    if "AwsEventSchemasRegistry" in data:
+    if data.get("AwsEventSchemasRegistry") is not None:
         import capo_securityhub.types.aws_event_schemas_registry_details
 
         out["aws_event_schemas_registry"] = (
@@ -1980,7 +1980,7 @@ def deserialize_json(data: dict) -> ResourceDetails:
                 data["AwsEventSchemasRegistry"]
             )
         )
-    if "AwsGuardDutyDetector" in data:
+    if data.get("AwsGuardDutyDetector") is not None:
         import capo_securityhub.types.aws_guard_duty_detector_details
 
         out["aws_guard_duty_detector"] = (
@@ -1988,7 +1988,7 @@ def deserialize_json(data: dict) -> ResourceDetails:
                 data["AwsGuardDutyDetector"]
             )
         )
-    if "AwsStepFunctionStateMachine" in data:
+    if data.get("AwsStepFunctionStateMachine") is not None:
         import capo_securityhub.types.aws_step_function_state_machine_details
 
         out["aws_step_function_state_machine"] = (
@@ -1996,7 +1996,7 @@ def deserialize_json(data: dict) -> ResourceDetails:
                 data["AwsStepFunctionStateMachine"]
             )
         )
-    if "AwsAthenaWorkGroup" in data:
+    if data.get("AwsAthenaWorkGroup") is not None:
         import capo_securityhub.types.aws_athena_work_group_details
 
         out["aws_athena_work_group"] = (
@@ -2004,7 +2004,7 @@ def deserialize_json(data: dict) -> ResourceDetails:
                 data["AwsAthenaWorkGroup"]
             )
         )
-    if "AwsEventsEventbus" in data:
+    if data.get("AwsEventsEventbus") is not None:
         import capo_securityhub.types.aws_events_eventbus_details
 
         out["aws_events_eventbus"] = (
@@ -2012,7 +2012,7 @@ def deserialize_json(data: dict) -> ResourceDetails:
                 data["AwsEventsEventbus"]
             )
         )
-    if "AwsDmsEndpoint" in data:
+    if data.get("AwsDmsEndpoint") is not None:
         import capo_securityhub.types.aws_dms_endpoint_details
 
         out["aws_dms_endpoint"] = (
@@ -2020,7 +2020,7 @@ def deserialize_json(data: dict) -> ResourceDetails:
                 data["AwsDmsEndpoint"]
             )
         )
-    if "AwsEventsEndpoint" in data:
+    if data.get("AwsEventsEndpoint") is not None:
         import capo_securityhub.types.aws_events_endpoint_details
 
         out["aws_events_endpoint"] = (
@@ -2028,7 +2028,7 @@ def deserialize_json(data: dict) -> ResourceDetails:
                 data["AwsEventsEndpoint"]
             )
         )
-    if "AwsDmsReplicationTask" in data:
+    if data.get("AwsDmsReplicationTask") is not None:
         import capo_securityhub.types.aws_dms_replication_task_details
 
         out["aws_dms_replication_task"] = (
@@ -2036,7 +2036,7 @@ def deserialize_json(data: dict) -> ResourceDetails:
                 data["AwsDmsReplicationTask"]
             )
         )
-    if "AwsDmsReplicationInstance" in data:
+    if data.get("AwsDmsReplicationInstance") is not None:
         import capo_securityhub.types.aws_dms_replication_instance_details
 
         out["aws_dms_replication_instance"] = (
@@ -2044,7 +2044,7 @@ def deserialize_json(data: dict) -> ResourceDetails:
                 data["AwsDmsReplicationInstance"]
             )
         )
-    if "AwsRoute53HostedZone" in data:
+    if data.get("AwsRoute53HostedZone") is not None:
         import capo_securityhub.types.aws_route53_hosted_zone_details
 
         out["aws_route53_hosted_zone"] = (
@@ -2052,7 +2052,7 @@ def deserialize_json(data: dict) -> ResourceDetails:
                 data["AwsRoute53HostedZone"]
             )
         )
-    if "AwsMskCluster" in data:
+    if data.get("AwsMskCluster") is not None:
         import capo_securityhub.types.aws_msk_cluster_details
 
         out["aws_msk_cluster"] = (
@@ -2060,7 +2060,7 @@ def deserialize_json(data: dict) -> ResourceDetails:
                 data["AwsMskCluster"]
             )
         )
-    if "AwsS3AccessPoint" in data:
+    if data.get("AwsS3AccessPoint") is not None:
         import capo_securityhub.types.aws_s3_access_point_details
 
         out["aws_s3_access_point"] = (
@@ -2068,7 +2068,7 @@ def deserialize_json(data: dict) -> ResourceDetails:
                 data["AwsS3AccessPoint"]
             )
         )
-    if "AwsEc2ClientVpnEndpoint" in data:
+    if data.get("AwsEc2ClientVpnEndpoint") is not None:
         import capo_securityhub.types.aws_ec2_client_vpn_endpoint_details
 
         out["aws_ec2_client_vpn_endpoint"] = (
@@ -2076,7 +2076,7 @@ def deserialize_json(data: dict) -> ResourceDetails:
                 data["AwsEc2ClientVpnEndpoint"]
             )
         )
-    if "CodeRepository" in data:
+    if data.get("CodeRepository") is not None:
         import capo_securityhub.types.code_repository_details
 
         out["code_repository"] = (

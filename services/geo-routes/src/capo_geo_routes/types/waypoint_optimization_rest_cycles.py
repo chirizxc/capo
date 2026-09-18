@@ -39,7 +39,7 @@ def serialize_json(value: WaypointOptimizationRestCycles) -> dict:
 
 def deserialize_json(data: dict) -> WaypointOptimizationRestCycles:
     out: WaypointOptimizationRestCycles = {}  # type: ignore[typeddict-item]
-    if "LongCycle" in data:
+    if data.get("LongCycle") is not None:
         import capo_geo_routes.types.waypoint_optimization_rest_cycle_durations
 
         out["long_cycle"] = (
@@ -49,7 +49,7 @@ def deserialize_json(data: dict) -> WaypointOptimizationRestCycles:
         )
     else:
         raise DeserializationError("WaypointOptimizationRestCycles.long_cycle required")
-    if "ShortCycle" in data:
+    if data.get("ShortCycle") is not None:
         import capo_geo_routes.types.waypoint_optimization_rest_cycle_durations
 
         out["short_cycle"] = (

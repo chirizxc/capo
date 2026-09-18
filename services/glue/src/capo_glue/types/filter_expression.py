@@ -41,7 +41,7 @@ def serialize_aws_json_1_1(value: FilterExpression) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> FilterExpression:
     out: FilterExpression = {}  # type: ignore[typeddict-item]
-    if "Operation" in data:
+    if data.get("Operation") is not None:
         import capo_glue.types.filter_operation
 
         out["operation"] = capo_glue.types.filter_operation.deserialize_aws_json_1_1(
@@ -49,9 +49,9 @@ def deserialize_aws_json_1_1(data: dict) -> FilterExpression:
         )
     else:
         raise DeserializationError("FilterExpression.operation required")
-    if "Negated" in data:
+    if data.get("Negated") is not None:
         out["negated"] = data["Negated"]
-    if "Values" in data:
+    if data.get("Values") is not None:
         import capo_glue.types.filter_values
 
         out["values"] = capo_glue.types.filter_values.deserialize_aws_json_1_1(

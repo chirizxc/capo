@@ -45,18 +45,18 @@ def serialize_json(value: Member) -> dict:
 
 def deserialize_json(data: dict) -> Member:
     out: Member = {}  # type: ignore[typeddict-item]
-    if "MemberId" in data:
+    if data.get("MemberId") is not None:
         out["member_id"] = data["MemberId"]
-    if "MemberType" in data:
+    if data.get("MemberType") is not None:
         import capo_chime.types.member_type
 
         out["member_type"] = capo_chime.types.member_type.deserialize_json(
             data["MemberType"]
         )
-    if "Email" in data:
+    if data.get("Email") is not None:
         out["email"] = data["Email"]
-    if "FullName" in data:
+    if data.get("FullName") is not None:
         out["full_name"] = data["FullName"]
-    if "AccountId" in data:
+    if data.get("AccountId") is not None:
         out["account_id"] = data["AccountId"]
     return out

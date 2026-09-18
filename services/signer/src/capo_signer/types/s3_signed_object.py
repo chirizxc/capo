@@ -28,8 +28,8 @@ def serialize_json(value: S3SignedObject) -> dict:
 
 def deserialize_json(data: dict) -> S3SignedObject:
     out: S3SignedObject = {}  # type: ignore[typeddict-item]
-    if "bucketName" in data:
+    if data.get("bucketName") is not None:
         out["bucket_name"] = data["bucketName"]
-    if "key" in data:
+    if data.get("key") is not None:
         out["key"] = data["key"]
     return out

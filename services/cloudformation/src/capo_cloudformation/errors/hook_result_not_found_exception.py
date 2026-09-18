@@ -37,15 +37,18 @@ class HookResultNotFoundException(ServiceError):
 
     code: str | None = "HookResultNotFoundException"
 
-    def __init__(self, data: HookResultNotFoundException_):
+    def __init__(self, data: HookResultNotFoundException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="HookResultNotFoundException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_query(cls, el: Element) -> "HookResultNotFoundException":
-        return cls(deserialize_query(el))
+    def from_query(
+        cls, el: Element, message: str | None = None
+    ) -> "HookResultNotFoundException":
+        return cls(deserialize_query(el), message)

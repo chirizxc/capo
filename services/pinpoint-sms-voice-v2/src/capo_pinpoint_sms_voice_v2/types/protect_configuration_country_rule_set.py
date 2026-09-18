@@ -31,6 +31,8 @@ def serialize_aws_json_1_0(
 def deserialize_aws_json_1_0(data: dict) -> ProtectConfigurationCountryRuleSet:
     out: ProtectConfigurationCountryRuleSet = {}
     for key, value in data.items():
+        if value is None:
+            continue
         import capo_pinpoint_sms_voice_v2.types.protect_configuration_country_rule_set_information
 
         out[key] = (

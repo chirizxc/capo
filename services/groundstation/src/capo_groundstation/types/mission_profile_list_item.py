@@ -40,12 +40,12 @@ def serialize_json(value: MissionProfileListItem) -> dict:
 
 def deserialize_json(data: dict) -> MissionProfileListItem:
     out: MissionProfileListItem = {}  # type: ignore[typeddict-item]
-    if "missionProfileId" in data:
+    if data.get("missionProfileId") is not None:
         out["mission_profile_id"] = data["missionProfileId"]
-    if "missionProfileArn" in data:
+    if data.get("missionProfileArn") is not None:
         out["mission_profile_arn"] = data["missionProfileArn"]
-    if "region" in data:
+    if data.get("region") is not None:
         out["region"] = data["region"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     return out

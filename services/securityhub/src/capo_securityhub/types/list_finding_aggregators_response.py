@@ -36,7 +36,7 @@ def serialize_json(value: ListFindingAggregatorsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListFindingAggregatorsResponse:
     out: ListFindingAggregatorsResponse = {}  # type: ignore[typeddict-item]
-    if "FindingAggregators" in data:
+    if data.get("FindingAggregators") is not None:
         import capo_securityhub.types.finding_aggregator_list
 
         out["finding_aggregators"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> ListFindingAggregatorsResponse:
                 data["FindingAggregators"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

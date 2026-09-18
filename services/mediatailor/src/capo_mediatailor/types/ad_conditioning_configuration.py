@@ -30,7 +30,7 @@ def serialize_json(value: AdConditioningConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> AdConditioningConfiguration:
     out: AdConditioningConfiguration = {}  # type: ignore[typeddict-item]
-    if "StreamingMediaFileConditioning" in data:
+    if data.get("StreamingMediaFileConditioning") is not None:
         import capo_mediatailor.types.streaming_media_file_conditioning
 
         out["streaming_media_file_conditioning"] = (

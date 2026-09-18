@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> ServiceSummaries:
 
     out: ServiceSummaries = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_migration_hub_refactor_spaces.types.service_summary.deserialize_json(
                 item

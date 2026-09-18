@@ -18,6 +18,6 @@ def serialize_json(value: Endpoint) -> dict:
 
 def deserialize_json(data: dict) -> Endpoint:
     out: Endpoint = {}  # type: ignore[typeddict-item]
-    if "uri" in data:
+    if data.get("uri") is not None:
         out["uri"] = data["uri"]
     return out

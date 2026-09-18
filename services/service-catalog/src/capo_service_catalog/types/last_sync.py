@@ -73,7 +73,7 @@ def serialize_aws_json_1_1(value: LastSync) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> LastSync:
     out: LastSync = {}  # type: ignore[typeddict-item]
-    if "LastSyncTime" in data:
+    if data.get("LastSyncTime") is not None:
         import capo_service_catalog.types.last_sync_time
 
         out["last_sync_time"] = (
@@ -81,7 +81,7 @@ def deserialize_aws_json_1_1(data: dict) -> LastSync:
                 data["LastSyncTime"]
             )
         )
-    if "LastSyncStatus" in data:
+    if data.get("LastSyncStatus") is not None:
         import capo_service_catalog.types.last_sync_status
 
         out["last_sync_status"] = (
@@ -89,9 +89,9 @@ def deserialize_aws_json_1_1(data: dict) -> LastSync:
                 data["LastSyncStatus"]
             )
         )
-    if "LastSyncStatusMessage" in data:
+    if data.get("LastSyncStatusMessage") is not None:
         out["last_sync_status_message"] = data["LastSyncStatusMessage"]
-    if "LastSuccessfulSyncTime" in data:
+    if data.get("LastSuccessfulSyncTime") is not None:
         import capo_service_catalog.types.last_successful_sync_time
 
         out["last_successful_sync_time"] = (
@@ -99,7 +99,7 @@ def deserialize_aws_json_1_1(data: dict) -> LastSync:
                 data["LastSuccessfulSyncTime"]
             )
         )
-    if "LastSuccessfulSyncProvisioningArtifactId" in data:
+    if data.get("LastSuccessfulSyncProvisioningArtifactId") is not None:
         out["last_successful_sync_provisioning_artifact_id"] = data[
             "LastSuccessfulSyncProvisioningArtifactId"
         ]

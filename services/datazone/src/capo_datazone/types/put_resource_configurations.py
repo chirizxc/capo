@@ -25,6 +25,8 @@ def deserialize_json(data: list) -> PutResourceConfigurations:
 
     out: PutResourceConfigurations = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_datazone.types.put_resource_configuration.deserialize_json(item)
         )

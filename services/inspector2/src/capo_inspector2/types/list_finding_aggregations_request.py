@@ -60,23 +60,23 @@ def serialize_json(value: ListFindingAggregationsRequest) -> dict:
 
 def deserialize_json(data: dict) -> ListFindingAggregationsRequest:
     out: ListFindingAggregationsRequest = {}  # type: ignore[typeddict-item]
-    if "aggregationType" in data:
+    if data.get("aggregationType") is not None:
         out["aggregation_type"] = data["aggregationType"]
     else:
         raise DeserializationError(
             "ListFindingAggregationsRequest.aggregation_type required"
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
-    if "accountIds" in data:
+    if data.get("accountIds") is not None:
         import capo_inspector2.types.string_filter_list
 
         out["account_ids"] = capo_inspector2.types.string_filter_list.deserialize_json(
             data["accountIds"]
         )
-    if "aggregationRequest" in data:
+    if data.get("aggregationRequest") is not None:
         import capo_inspector2.types.aggregation_request
 
         out["aggregation_request"] = (

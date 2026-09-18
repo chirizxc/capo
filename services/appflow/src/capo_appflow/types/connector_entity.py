@@ -33,13 +33,13 @@ def serialize_json(value: ConnectorEntity) -> dict:
 
 def deserialize_json(data: dict) -> ConnectorEntity:
     out: ConnectorEntity = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("ConnectorEntity.name required")
-    if "label" in data:
+    if data.get("label") is not None:
         out["label"] = data["label"]
-    if "hasNestedEntities" in data:
+    if data.get("hasNestedEntities") is not None:
         out["has_nested_entities"] = data["hasNestedEntities"]
     else:
         out["has_nested_entities"] = False

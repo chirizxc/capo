@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: DeleteCustomActionTypeInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteCustomActionTypeInput:
     out: DeleteCustomActionTypeInput = {}  # type: ignore[typeddict-item]
-    if "category" in data:
+    if data.get("category") is not None:
         import capo_codepipeline.types.action_category
 
         out["category"] = (
@@ -46,11 +46,11 @@ def deserialize_aws_json_1_1(data: dict) -> DeleteCustomActionTypeInput:
         )
     else:
         raise DeserializationError("DeleteCustomActionTypeInput.category required")
-    if "provider" in data:
+    if data.get("provider") is not None:
         out["provider"] = data["provider"]
     else:
         raise DeserializationError("DeleteCustomActionTypeInput.provider required")
-    if "version" in data:
+    if data.get("version") is not None:
         out["version"] = data["version"]
     else:
         raise DeserializationError("DeleteCustomActionTypeInput.version required")

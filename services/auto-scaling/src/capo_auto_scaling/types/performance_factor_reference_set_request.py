@@ -20,6 +20,9 @@ def serialize_query(
 ) -> None:
     import capo_auto_scaling.types.performance_factor_reference_request
 
+    if not value:
+        pairs.append((prefix, ""))
+        return
     for n, item in enumerate(value, 1):
         capo_auto_scaling.types.performance_factor_reference_request.serialize_query(
             item, pairs, f"{prefix}.item.{n}"
@@ -46,6 +49,9 @@ def serialize_query_flat(
 ) -> None:
     import capo_auto_scaling.types.performance_factor_reference_request
 
+    if not value:
+        pairs.append((prefix, ""))
+        return
     for n, item in enumerate(value, 1):
         capo_auto_scaling.types.performance_factor_reference_request.serialize_query(
             item, pairs, f"{prefix}.{n}"

@@ -19,7 +19,7 @@ def serialize_aws_json_1_0(value: CreateStarterMappingTemplateResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CreateStarterMappingTemplateResponse:
     out: CreateStarterMappingTemplateResponse = {}  # type: ignore[typeddict-item]
-    if "mappingTemplate" in data:
+    if data.get("mappingTemplate") is not None:
         out["mapping_template"] = data["mappingTemplate"]
     else:
         raise DeserializationError(

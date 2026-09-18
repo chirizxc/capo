@@ -35,7 +35,7 @@ def serialize_json(value: UpdateUserHierarchyStructureRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateUserHierarchyStructureRequest:
     out: UpdateUserHierarchyStructureRequest = {}  # type: ignore[typeddict-item]
-    if "HierarchyStructure" in data:
+    if data.get("HierarchyStructure") is not None:
         import capo_connect.types.hierarchy_structure_update
 
         out["hierarchy_structure"] = (

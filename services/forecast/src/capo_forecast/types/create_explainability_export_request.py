@@ -47,19 +47,19 @@ def serialize_aws_json_1_1(value: CreateExplainabilityExportRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateExplainabilityExportRequest:
     out: CreateExplainabilityExportRequest = {}  # type: ignore[typeddict-item]
-    if "ExplainabilityExportName" in data:
+    if data.get("ExplainabilityExportName") is not None:
         out["explainability_export_name"] = data["ExplainabilityExportName"]
     else:
         raise DeserializationError(
             "CreateExplainabilityExportRequest.explainability_export_name required"
         )
-    if "ExplainabilityArn" in data:
+    if data.get("ExplainabilityArn") is not None:
         out["explainability_arn"] = data["ExplainabilityArn"]
     else:
         raise DeserializationError(
             "CreateExplainabilityExportRequest.explainability_arn required"
         )
-    if "Destination" in data:
+    if data.get("Destination") is not None:
         import capo_forecast.types.data_destination
 
         out["destination"] = (
@@ -71,10 +71,10 @@ def deserialize_aws_json_1_1(data: dict) -> CreateExplainabilityExportRequest:
         raise DeserializationError(
             "CreateExplainabilityExportRequest.destination required"
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_forecast.types.tags
 
         out["tags"] = capo_forecast.types.tags.deserialize_aws_json_1_1(data["Tags"])
-    if "Format" in data:
+    if data.get("Format") is not None:
         out["format"] = data["Format"]
     return out

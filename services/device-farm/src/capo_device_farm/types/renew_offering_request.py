@@ -28,11 +28,11 @@ def serialize_aws_json_1_1(value: RenewOfferingRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RenewOfferingRequest:
     out: RenewOfferingRequest = {}  # type: ignore[typeddict-item]
-    if "offeringId" in data:
+    if data.get("offeringId") is not None:
         out["offering_id"] = data["offeringId"]
     else:
         raise DeserializationError("RenewOfferingRequest.offering_id required")
-    if "quantity" in data:
+    if data.get("quantity") is not None:
         out["quantity"] = data["quantity"]
     else:
         raise DeserializationError("RenewOfferingRequest.quantity required")

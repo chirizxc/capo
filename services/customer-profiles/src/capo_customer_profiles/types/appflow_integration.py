@@ -36,7 +36,7 @@ def serialize_json(value: AppflowIntegration) -> dict:
 
 def deserialize_json(data: dict) -> AppflowIntegration:
     out: AppflowIntegration = {}  # type: ignore[typeddict-item]
-    if "FlowDefinition" in data:
+    if data.get("FlowDefinition") is not None:
         import capo_customer_profiles.types.flow_definition
 
         out["flow_definition"] = (
@@ -46,7 +46,7 @@ def deserialize_json(data: dict) -> AppflowIntegration:
         )
     else:
         raise DeserializationError("AppflowIntegration.flow_definition required")
-    if "Batches" in data:
+    if data.get("Batches") is not None:
         import capo_customer_profiles.types.batches
 
         out["batches"] = capo_customer_profiles.types.batches.deserialize_json(

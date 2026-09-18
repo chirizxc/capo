@@ -67,25 +67,25 @@ def serialize_json(value: CodeRepositoryMetadata) -> dict:
 
 def deserialize_json(data: dict) -> CodeRepositoryMetadata:
     out: CodeRepositoryMetadata = {}  # type: ignore[typeddict-item]
-    if "projectName" in data:
+    if data.get("projectName") is not None:
         out["project_name"] = data["projectName"]
     else:
         raise DeserializationError("CodeRepositoryMetadata.project_name required")
-    if "integrationArn" in data:
+    if data.get("integrationArn") is not None:
         out["integration_arn"] = data["integrationArn"]
-    if "providerType" in data:
+    if data.get("providerType") is not None:
         out["provider_type"] = data["providerType"]
     else:
         raise DeserializationError("CodeRepositoryMetadata.provider_type required")
-    if "providerTypeVisibility" in data:
+    if data.get("providerTypeVisibility") is not None:
         out["provider_type_visibility"] = data["providerTypeVisibility"]
     else:
         raise DeserializationError(
             "CodeRepositoryMetadata.provider_type_visibility required"
         )
-    if "lastScannedCommitId" in data:
+    if data.get("lastScannedCommitId") is not None:
         out["last_scanned_commit_id"] = data["lastScannedCommitId"]
-    if "scanConfiguration" in data:
+    if data.get("scanConfiguration") is not None:
         import capo_inspector2.types.project_code_security_scan_configuration
 
         out["scan_configuration"] = (
@@ -93,7 +93,7 @@ def deserialize_json(data: dict) -> CodeRepositoryMetadata:
                 data["scanConfiguration"]
             )
         )
-    if "onDemandScan" in data:
+    if data.get("onDemandScan") is not None:
         import capo_inspector2.types.code_repository_on_demand_scan
 
         out["on_demand_scan"] = (

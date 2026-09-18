@@ -27,7 +27,7 @@ def serialize_json(value: StateChangeConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> StateChangeConfiguration:
     out: StateChangeConfiguration = {}  # type: ignore[typeddict-item]
-    if "triggerType" in data:
+    if data.get("triggerType") is not None:
         import capo_iot_events_data.types.trigger_type
 
         out["trigger_type"] = capo_iot_events_data.types.trigger_type.deserialize_json(

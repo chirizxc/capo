@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: QueryTimeoutException_) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> QueryTimeoutException_:
     out: QueryTimeoutException_ = {}  # type: ignore[typeddict-item]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     return out
 
@@ -34,15 +34,18 @@ class QueryTimeoutException(ServiceError):
 
     code: str | None = "QueryTimeoutException"
 
-    def __init__(self, data: QueryTimeoutException_):
+    def __init__(self, data: QueryTimeoutException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="QueryTimeoutException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "QueryTimeoutException":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "QueryTimeoutException":
+        return cls(deserialize_aws_json_1_1(data), message)

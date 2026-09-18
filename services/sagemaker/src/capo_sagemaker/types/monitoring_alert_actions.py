@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: MonitoringAlertActions) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> MonitoringAlertActions:
     out: MonitoringAlertActions = {}  # type: ignore[typeddict-item]
-    if "ModelDashboardIndicator" in data:
+    if data.get("ModelDashboardIndicator") is not None:
         import capo_sagemaker.types.model_dashboard_indicator_action
 
         out["model_dashboard_indicator"] = (

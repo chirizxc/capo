@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> AccountInfoList:
 
     out: AccountInfoList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_datazone.types.account_info.deserialize_json(item))
     return out

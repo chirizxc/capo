@@ -33,10 +33,10 @@ def serialize_json(value: ImportVmImageResponse) -> dict:
 
 def deserialize_json(data: dict) -> ImportVmImageResponse:
     out: ImportVmImageResponse = {}  # type: ignore[typeddict-item]
-    if "requestId" in data:
+    if data.get("requestId") is not None:
         out["request_id"] = data["requestId"]
-    if "imageArn" in data:
+    if data.get("imageArn") is not None:
         out["image_arn"] = data["imageArn"]
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     return out

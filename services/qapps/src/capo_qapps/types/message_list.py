@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> MessageList:
 
     out: MessageList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_qapps.types.conversation_message.deserialize_json(item))
     return out

@@ -31,7 +31,7 @@ def serialize_json(value: AwsMskClusterDetails) -> dict:
 
 def deserialize_json(data: dict) -> AwsMskClusterDetails:
     out: AwsMskClusterDetails = {}  # type: ignore[typeddict-item]
-    if "ClusterInfo" in data:
+    if data.get("ClusterInfo") is not None:
         import capo_securityhub.types.aws_msk_cluster_cluster_info_details
 
         out["cluster_info"] = (

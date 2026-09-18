@@ -43,15 +43,15 @@ def serialize_json(value: UpdatePipeSourceManagedStreamingKafkaParameters) -> di
 
 def deserialize_json(data: dict) -> UpdatePipeSourceManagedStreamingKafkaParameters:
     out: UpdatePipeSourceManagedStreamingKafkaParameters = {}  # type: ignore[typeddict-item]
-    if "BatchSize" in data:
+    if data.get("BatchSize") is not None:
         out["batch_size"] = data["BatchSize"]
-    if "Credentials" in data:
+    if data.get("Credentials") is not None:
         import capo_pipes.types.msk_access_credentials
 
         out["credentials"] = capo_pipes.types.msk_access_credentials.deserialize_json(
             data["Credentials"]
         )
-    if "MaximumBatchingWindowInSeconds" in data:
+    if data.get("MaximumBatchingWindowInSeconds") is not None:
         out["maximum_batching_window_in_seconds"] = data[
             "MaximumBatchingWindowInSeconds"
         ]

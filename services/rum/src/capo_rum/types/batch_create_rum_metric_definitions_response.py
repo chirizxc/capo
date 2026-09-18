@@ -41,7 +41,7 @@ def serialize_json(value: BatchCreateRumMetricDefinitionsResponse) -> dict:
 
 def deserialize_json(data: dict) -> BatchCreateRumMetricDefinitionsResponse:
     out: BatchCreateRumMetricDefinitionsResponse = {}  # type: ignore[typeddict-item]
-    if "Errors" in data:
+    if data.get("Errors") is not None:
         import capo_rum.types.batch_create_rum_metric_definitions_errors
 
         out["errors"] = (
@@ -53,7 +53,7 @@ def deserialize_json(data: dict) -> BatchCreateRumMetricDefinitionsResponse:
         raise DeserializationError(
             "BatchCreateRumMetricDefinitionsResponse.errors required"
         )
-    if "MetricDefinitions" in data:
+    if data.get("MetricDefinitions") is not None:
         import capo_rum.types.metric_definitions
 
         out["metric_definitions"] = capo_rum.types.metric_definitions.deserialize_json(

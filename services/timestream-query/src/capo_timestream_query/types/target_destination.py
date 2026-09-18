@@ -31,7 +31,7 @@ def serialize_aws_json_1_0(value: TargetDestination) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> TargetDestination:
     out: TargetDestination = {}  # type: ignore[typeddict-item]
-    if "TimestreamDestination" in data:
+    if data.get("TimestreamDestination") is not None:
         import capo_timestream_query.types.timestream_destination
 
         out["timestream_destination"] = (

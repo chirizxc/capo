@@ -36,11 +36,11 @@ def serialize_json(value: EventBridgeConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> EventBridgeConfiguration:
     out: EventBridgeConfiguration = {}  # type: ignore[typeddict-item]
-    if "enabled" in data:
+    if data.get("enabled") is not None:
         out["enabled"] = data["enabled"]
     else:
         raise DeserializationError("EventBridgeConfiguration.enabled required")
-    if "includedData" in data:
+    if data.get("includedData") is not None:
         import capo_connectcases.types.event_included_data
 
         out["included_data"] = (

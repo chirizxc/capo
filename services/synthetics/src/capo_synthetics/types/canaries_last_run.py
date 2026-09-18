@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> CanariesLastRun:
 
     out: CanariesLastRun = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_synthetics.types.canary_last_run.deserialize_json(item))
     return out

@@ -30,13 +30,13 @@ def serialize_json(value: DeleteConnectorProfileRequest) -> dict:
 
 def deserialize_json(data: dict) -> DeleteConnectorProfileRequest:
     out: DeleteConnectorProfileRequest = {}  # type: ignore[typeddict-item]
-    if "connectorProfileName" in data:
+    if data.get("connectorProfileName") is not None:
         out["connector_profile_name"] = data["connectorProfileName"]
     else:
         raise DeserializationError(
             "DeleteConnectorProfileRequest.connector_profile_name required"
         )
-    if "forceDelete" in data:
+    if data.get("forceDelete") is not None:
         out["force_delete"] = data["forceDelete"]
     else:
         out["force_delete"] = False

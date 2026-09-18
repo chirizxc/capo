@@ -25,7 +25,7 @@ def serialize_aws_json_1_1(value: DeploymentGroupNameRequiredException_) -> dict
 
 def deserialize_aws_json_1_1(data: dict) -> DeploymentGroupNameRequiredException_:
     out: DeploymentGroupNameRequiredException_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     return out
 
@@ -35,15 +35,20 @@ class DeploymentGroupNameRequiredException(ServiceError):
 
     code: str | None = "DeploymentGroupNameRequiredException"
 
-    def __init__(self, data: DeploymentGroupNameRequiredException_):
+    def __init__(
+        self, data: DeploymentGroupNameRequiredException_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="DeploymentGroupNameRequiredException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "DeploymentGroupNameRequiredException":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "DeploymentGroupNameRequiredException":
+        return cls(deserialize_aws_json_1_1(data), message)

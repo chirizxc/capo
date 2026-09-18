@@ -24,7 +24,7 @@ def serialize_json(value: QueryTimeoutException_) -> dict:
 
 def deserialize_json(data: dict) -> QueryTimeoutException_:
     out: QueryTimeoutException_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     return out
 
@@ -34,15 +34,18 @@ class QueryTimeoutException(ServiceError):
 
     code: str | None = "QueryTimeoutException"
 
-    def __init__(self, data: QueryTimeoutException_):
+    def __init__(self, data: QueryTimeoutException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="QueryTimeoutException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "QueryTimeoutException":
-        return cls(deserialize_json(data))
+    def from_json(
+        cls, data: dict, message: str | None = None
+    ) -> "QueryTimeoutException":
+        return cls(deserialize_json(data), message)

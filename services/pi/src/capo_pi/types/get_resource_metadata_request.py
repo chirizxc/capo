@@ -32,7 +32,7 @@ def serialize_aws_json_1_1(value: GetResourceMetadataRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetResourceMetadataRequest:
     out: GetResourceMetadataRequest = {}  # type: ignore[typeddict-item]
-    if "ServiceType" in data:
+    if data.get("ServiceType") is not None:
         import capo_pi.types.service_type
 
         out["service_type"] = capo_pi.types.service_type.deserialize_aws_json_1_1(
@@ -40,7 +40,7 @@ def deserialize_aws_json_1_1(data: dict) -> GetResourceMetadataRequest:
         )
     else:
         raise DeserializationError("GetResourceMetadataRequest.service_type required")
-    if "Identifier" in data:
+    if data.get("Identifier") is not None:
         out["identifier"] = data["Identifier"]
     else:
         raise DeserializationError("GetResourceMetadataRequest.identifier required")

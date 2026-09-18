@@ -24,7 +24,7 @@ def serialize_json(value: KinesisStreamConfig) -> dict:
 
 def deserialize_json(data: dict) -> KinesisStreamConfig:
     out: KinesisStreamConfig = {}  # type: ignore[typeddict-item]
-    if "StreamArn" in data:
+    if data.get("StreamArn") is not None:
         out["stream_arn"] = data["StreamArn"]
     else:
         raise DeserializationError("KinesisStreamConfig.stream_arn required")

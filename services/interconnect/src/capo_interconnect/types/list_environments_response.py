@@ -34,7 +34,7 @@ def serialize_aws_json_1_0(value: ListEnvironmentsResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ListEnvironmentsResponse:
     out: ListEnvironmentsResponse = {}  # type: ignore[typeddict-item]
-    if "environments" in data:
+    if data.get("environments") is not None:
         import capo_interconnect.types.environment_list
 
         out["environments"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_0(data: dict) -> ListEnvironmentsResponse:
         )
     else:
         raise DeserializationError("ListEnvironmentsResponse.environments required")
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

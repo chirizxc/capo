@@ -160,11 +160,11 @@ def serialize_aws_json_1_0(value: Key) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> Key:
     out: Key = {}  # type: ignore[typeddict-item]
-    if "KeyArn" in data:
+    if data.get("KeyArn") is not None:
         out["key_arn"] = data["KeyArn"]
     else:
         raise DeserializationError("Key.key_arn required")
-    if "KeyAttributes" in data:
+    if data.get("KeyAttributes") is not None:
         import capo_payment_cryptography.types.key_attributes
 
         out["key_attributes"] = (
@@ -174,31 +174,31 @@ def deserialize_aws_json_1_0(data: dict) -> Key:
         )
     else:
         raise DeserializationError("Key.key_attributes required")
-    if "KeyCheckValue" in data:
+    if data.get("KeyCheckValue") is not None:
         out["key_check_value"] = data["KeyCheckValue"]
     else:
         raise DeserializationError("Key.key_check_value required")
-    if "KeyCheckValueAlgorithm" in data:
+    if data.get("KeyCheckValueAlgorithm") is not None:
         out["key_check_value_algorithm"] = data["KeyCheckValueAlgorithm"]
     else:
         raise DeserializationError("Key.key_check_value_algorithm required")
-    if "Enabled" in data:
+    if data.get("Enabled") is not None:
         out["enabled"] = data["Enabled"]
     else:
         raise DeserializationError("Key.enabled required")
-    if "Exportable" in data:
+    if data.get("Exportable") is not None:
         out["exportable"] = data["Exportable"]
     else:
         raise DeserializationError("Key.exportable required")
-    if "KeyState" in data:
+    if data.get("KeyState") is not None:
         out["key_state"] = data["KeyState"]
     else:
         raise DeserializationError("Key.key_state required")
-    if "KeyOrigin" in data:
+    if data.get("KeyOrigin") is not None:
         out["key_origin"] = data["KeyOrigin"]
     else:
         raise DeserializationError("Key.key_origin required")
-    if "CreateTimestamp" in data:
+    if data.get("CreateTimestamp") is not None:
         import capo_payment_cryptography.types.timestamp
 
         out["create_timestamp"] = (
@@ -208,7 +208,7 @@ def deserialize_aws_json_1_0(data: dict) -> Key:
         )
     else:
         raise DeserializationError("Key.create_timestamp required")
-    if "UsageStartTimestamp" in data:
+    if data.get("UsageStartTimestamp") is not None:
         import capo_payment_cryptography.types.timestamp
 
         out["usage_start_timestamp"] = (
@@ -216,7 +216,7 @@ def deserialize_aws_json_1_0(data: dict) -> Key:
                 data["UsageStartTimestamp"]
             )
         )
-    if "UsageStopTimestamp" in data:
+    if data.get("UsageStopTimestamp") is not None:
         import capo_payment_cryptography.types.timestamp
 
         out["usage_stop_timestamp"] = (
@@ -224,7 +224,7 @@ def deserialize_aws_json_1_0(data: dict) -> Key:
                 data["UsageStopTimestamp"]
             )
         )
-    if "DeletePendingTimestamp" in data:
+    if data.get("DeletePendingTimestamp") is not None:
         import capo_payment_cryptography.types.timestamp
 
         out["delete_pending_timestamp"] = (
@@ -232,7 +232,7 @@ def deserialize_aws_json_1_0(data: dict) -> Key:
                 data["DeletePendingTimestamp"]
             )
         )
-    if "DeleteTimestamp" in data:
+    if data.get("DeleteTimestamp") is not None:
         import capo_payment_cryptography.types.timestamp
 
         out["delete_timestamp"] = (
@@ -240,13 +240,13 @@ def deserialize_aws_json_1_0(data: dict) -> Key:
                 data["DeleteTimestamp"]
             )
         )
-    if "DeriveKeyUsage" in data:
+    if data.get("DeriveKeyUsage") is not None:
         out["derive_key_usage"] = data["DeriveKeyUsage"]
-    if "MultiRegionKeyType" in data:
+    if data.get("MultiRegionKeyType") is not None:
         out["multi_region_key_type"] = data["MultiRegionKeyType"]
-    if "PrimaryRegion" in data:
+    if data.get("PrimaryRegion") is not None:
         out["primary_region"] = data["PrimaryRegion"]
-    if "ReplicationStatus" in data:
+    if data.get("ReplicationStatus") is not None:
         import capo_payment_cryptography.types.replication_status
 
         out["replication_status"] = (
@@ -254,11 +254,11 @@ def deserialize_aws_json_1_0(data: dict) -> Key:
                 data["ReplicationStatus"]
             )
         )
-    if "UsingDefaultReplicationRegions" in data:
+    if data.get("UsingDefaultReplicationRegions") is not None:
         out["using_default_replication_regions"] = data[
             "UsingDefaultReplicationRegions"
         ]
-    if "MpaStatus" in data:
+    if data.get("MpaStatus") is not None:
         import capo_payment_cryptography.types.mpa_status
 
         out["mpa_status"] = (

@@ -42,15 +42,15 @@ def serialize_aws_json_1_1(value: DescribeTestCasesInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeTestCasesInput:
     out: DescribeTestCasesInput = {}  # type: ignore[typeddict-item]
-    if "reportArn" in data:
+    if data.get("reportArn") is not None:
         out["report_arn"] = data["reportArn"]
     else:
         raise DeserializationError("DescribeTestCasesInput.report_arn required")
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
-    if "filter" in data:
+    if data.get("filter") is not None:
         import capo_codebuild.types.test_case_filter
 
         out["filter"] = capo_codebuild.types.test_case_filter.deserialize_aws_json_1_1(

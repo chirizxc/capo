@@ -103,7 +103,7 @@ def serialize_aws_json_1_0(value: CountsSummary) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CountsSummary:
     out: CountsSummary = {}  # type: ignore[typeddict-item]
-    if "components" in data:
+    if data.get("components") is not None:
         import capo_proton.types.resource_counts_summary
 
         out["components"] = (
@@ -111,7 +111,7 @@ def deserialize_aws_json_1_0(data: dict) -> CountsSummary:
                 data["components"]
             )
         )
-    if "environments" in data:
+    if data.get("environments") is not None:
         import capo_proton.types.resource_counts_summary
 
         out["environments"] = (
@@ -119,7 +119,7 @@ def deserialize_aws_json_1_0(data: dict) -> CountsSummary:
                 data["environments"]
             )
         )
-    if "environmentTemplates" in data:
+    if data.get("environmentTemplates") is not None:
         import capo_proton.types.resource_counts_summary
 
         out["environment_templates"] = (
@@ -127,7 +127,7 @@ def deserialize_aws_json_1_0(data: dict) -> CountsSummary:
                 data["environmentTemplates"]
             )
         )
-    if "serviceInstances" in data:
+    if data.get("serviceInstances") is not None:
         import capo_proton.types.resource_counts_summary
 
         out["service_instances"] = (
@@ -135,7 +135,7 @@ def deserialize_aws_json_1_0(data: dict) -> CountsSummary:
                 data["serviceInstances"]
             )
         )
-    if "services" in data:
+    if data.get("services") is not None:
         import capo_proton.types.resource_counts_summary
 
         out["services"] = (
@@ -143,7 +143,7 @@ def deserialize_aws_json_1_0(data: dict) -> CountsSummary:
                 data["services"]
             )
         )
-    if "serviceTemplates" in data:
+    if data.get("serviceTemplates") is not None:
         import capo_proton.types.resource_counts_summary
 
         out["service_templates"] = (
@@ -151,7 +151,7 @@ def deserialize_aws_json_1_0(data: dict) -> CountsSummary:
                 data["serviceTemplates"]
             )
         )
-    if "pipelines" in data:
+    if data.get("pipelines") is not None:
         import capo_proton.types.resource_counts_summary
 
         out["pipelines"] = (

@@ -49,13 +49,13 @@ def serialize_json(value: CreateAssistantAssociationRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateAssistantAssociationRequest:
     out: CreateAssistantAssociationRequest = {}  # type: ignore[typeddict-item]
-    if "associationType" in data:
+    if data.get("associationType") is not None:
         out["association_type"] = data["associationType"]
     else:
         raise DeserializationError(
             "CreateAssistantAssociationRequest.association_type required"
         )
-    if "association" in data:
+    if data.get("association") is not None:
         import capo_wisdom.types.assistant_association_input_data
 
         out["association"] = (
@@ -67,9 +67,9 @@ def deserialize_json(data: dict) -> CreateAssistantAssociationRequest:
         raise DeserializationError(
             "CreateAssistantAssociationRequest.association required"
         )
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_wisdom.types.tags
 
         out["tags"] = capo_wisdom.types.tags.deserialize_json(data["tags"])

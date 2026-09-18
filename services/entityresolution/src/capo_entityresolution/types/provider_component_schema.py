@@ -40,13 +40,13 @@ def serialize_json(value: ProviderComponentSchema) -> dict:
 
 def deserialize_json(data: dict) -> ProviderComponentSchema:
     out: ProviderComponentSchema = {}  # type: ignore[typeddict-item]
-    if "schemas" in data:
+    if data.get("schemas") is not None:
         import capo_entityresolution.types.schemas
 
         out["schemas"] = capo_entityresolution.types.schemas.deserialize_json(
             data["schemas"]
         )
-    if "providerSchemaAttributes" in data:
+    if data.get("providerSchemaAttributes") is not None:
         import capo_entityresolution.types.provider_schema_attributes
 
         out["provider_schema_attributes"] = (

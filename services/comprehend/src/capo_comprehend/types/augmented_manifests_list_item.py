@@ -64,17 +64,17 @@ def serialize_aws_json_1_1(value: AugmentedManifestsListItem) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AugmentedManifestsListItem:
     out: AugmentedManifestsListItem = {}  # type: ignore[typeddict-item]
-    if "S3Uri" in data:
+    if data.get("S3Uri") is not None:
         out["s3_uri"] = data["S3Uri"]
     else:
         raise DeserializationError("AugmentedManifestsListItem.s3_uri required")
-    if "Split" in data:
+    if data.get("Split") is not None:
         import capo_comprehend.types.split
 
         out["split"] = capo_comprehend.types.split.deserialize_aws_json_1_1(
             data["Split"]
         )
-    if "AttributeNames" in data:
+    if data.get("AttributeNames") is not None:
         import capo_comprehend.types.attribute_names_list
 
         out["attribute_names"] = (
@@ -86,11 +86,11 @@ def deserialize_aws_json_1_1(data: dict) -> AugmentedManifestsListItem:
         raise DeserializationError(
             "AugmentedManifestsListItem.attribute_names required"
         )
-    if "AnnotationDataS3Uri" in data:
+    if data.get("AnnotationDataS3Uri") is not None:
         out["annotation_data_s3_uri"] = data["AnnotationDataS3Uri"]
-    if "SourceDocumentsS3Uri" in data:
+    if data.get("SourceDocumentsS3Uri") is not None:
         out["source_documents_s3_uri"] = data["SourceDocumentsS3Uri"]
-    if "DocumentType" in data:
+    if data.get("DocumentType") is not None:
         import capo_comprehend.types.augmented_manifests_document_type_format
 
         out["document_type"] = (

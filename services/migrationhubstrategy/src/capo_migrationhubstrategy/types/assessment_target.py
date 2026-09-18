@@ -38,15 +38,15 @@ def serialize_json(value: AssessmentTarget) -> dict:
 
 def deserialize_json(data: dict) -> AssessmentTarget:
     out: AssessmentTarget = {}  # type: ignore[typeddict-item]
-    if "condition" in data:
+    if data.get("condition") is not None:
         out["condition"] = data["condition"]
     else:
         raise DeserializationError("AssessmentTarget.condition required")
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("AssessmentTarget.name required")
-    if "values" in data:
+    if data.get("values") is not None:
         import capo_migrationhubstrategy.types.assessment_target_values
 
         out["values"] = (

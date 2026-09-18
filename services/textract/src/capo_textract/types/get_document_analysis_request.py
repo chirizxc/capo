@@ -34,12 +34,12 @@ def serialize_aws_json_1_1(value: GetDocumentAnalysisRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetDocumentAnalysisRequest:
     out: GetDocumentAnalysisRequest = {}  # type: ignore[typeddict-item]
-    if "JobId" in data:
+    if data.get("JobId") is not None:
         out["job_id"] = data["JobId"]
     else:
         raise DeserializationError("GetDocumentAnalysisRequest.job_id required")
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

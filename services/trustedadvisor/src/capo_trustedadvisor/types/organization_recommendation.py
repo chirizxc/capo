@@ -140,18 +140,16 @@ def serialize_json(value: OrganizationRecommendation) -> dict:
             )
         )
     if "created_at" in value:
-        import capo_trustedadvisor.types._prelude.timestamp
+        import capo_trustedadvisor._protocol.serialize
 
-        out["createdAt"] = capo_trustedadvisor.types._prelude.timestamp.serialize_json(
+        out["createdAt"] = capo_trustedadvisor._protocol.serialize.fmt_date_time(
             value["created_at"]
         )
     if "last_updated_at" in value:
-        import capo_trustedadvisor.types._prelude.timestamp
+        import capo_trustedadvisor._protocol.serialize
 
-        out["lastUpdatedAt"] = (
-            capo_trustedadvisor.types._prelude.timestamp.serialize_json(
-                value["last_updated_at"]
-            )
+        out["lastUpdatedAt"] = capo_trustedadvisor._protocol.serialize.fmt_date_time(
+            value["last_updated_at"]
         )
     out["arn"] = value["arn"]
     out["description"] = value["description"]
@@ -172,9 +170,9 @@ def serialize_json(value: OrganizationRecommendation) -> dict:
             )
         )
     if "resolved_at" in value:
-        import capo_trustedadvisor.types._prelude.timestamp
+        import capo_trustedadvisor._protocol.serialize
 
-        out["resolvedAt"] = capo_trustedadvisor.types._prelude.timestamp.serialize_json(
+        out["resolvedAt"] = capo_trustedadvisor._protocol.serialize.fmt_date_time(
             value["resolved_at"]
         )
     return out
@@ -182,11 +180,11 @@ def serialize_json(value: OrganizationRecommendation) -> dict:
 
 def deserialize_json(data: dict) -> OrganizationRecommendation:
     out: OrganizationRecommendation = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("OrganizationRecommendation.id required")
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_trustedadvisor.types.recommendation_type
 
         out["type"] = capo_trustedadvisor.types.recommendation_type.deserialize_json(
@@ -194,9 +192,9 @@ def deserialize_json(data: dict) -> OrganizationRecommendation:
         )
     else:
         raise DeserializationError("OrganizationRecommendation.type required")
-    if "checkArn" in data:
+    if data.get("checkArn") is not None:
         out["check_arn"] = data["checkArn"]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_trustedadvisor.types.recommendation_status
 
         out["status"] = (
@@ -206,7 +204,7 @@ def deserialize_json(data: dict) -> OrganizationRecommendation:
         )
     else:
         raise DeserializationError("OrganizationRecommendation.status required")
-    if "lifecycleStage" in data:
+    if data.get("lifecycleStage") is not None:
         import capo_trustedadvisor.types.recommendation_lifecycle_stage
 
         out["lifecycle_stage"] = (
@@ -214,7 +212,7 @@ def deserialize_json(data: dict) -> OrganizationRecommendation:
                 data["lifecycleStage"]
             )
         )
-    if "pillars" in data:
+    if data.get("pillars") is not None:
         import capo_trustedadvisor.types.recommendation_pillar_list
 
         out["pillars"] = (
@@ -224,7 +222,7 @@ def deserialize_json(data: dict) -> OrganizationRecommendation:
         )
     else:
         raise DeserializationError("OrganizationRecommendation.pillars required")
-    if "source" in data:
+    if data.get("source") is not None:
         import capo_trustedadvisor.types.recommendation_source
 
         out["source"] = (
@@ -234,7 +232,7 @@ def deserialize_json(data: dict) -> OrganizationRecommendation:
         )
     else:
         raise DeserializationError("OrganizationRecommendation.source required")
-    if "awsServices" in data:
+    if data.get("awsServices") is not None:
         import capo_trustedadvisor.types.recommendation_aws_service_list
 
         out["aws_services"] = (
@@ -242,11 +240,11 @@ def deserialize_json(data: dict) -> OrganizationRecommendation:
                 data["awsServices"]
             )
         )
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("OrganizationRecommendation.name required")
-    if "resourcesAggregates" in data:
+    if data.get("resourcesAggregates") is not None:
         import capo_trustedadvisor.types.recommendation_resources_aggregates
 
         out["resources_aggregates"] = (
@@ -258,7 +256,7 @@ def deserialize_json(data: dict) -> OrganizationRecommendation:
         raise DeserializationError(
             "OrganizationRecommendation.resources_aggregates required"
         )
-    if "pillarSpecificAggregates" in data:
+    if data.get("pillarSpecificAggregates") is not None:
         import capo_trustedadvisor.types.recommendation_pillar_specific_aggregates
 
         out["pillar_specific_aggregates"] = (
@@ -266,39 +264,35 @@ def deserialize_json(data: dict) -> OrganizationRecommendation:
                 data["pillarSpecificAggregates"]
             )
         )
-    if "createdAt" in data:
-        import capo_trustedadvisor.types._prelude.timestamp
+    if data.get("createdAt") is not None:
+        import datetime
 
-        out["created_at"] = (
-            capo_trustedadvisor.types._prelude.timestamp.deserialize_json(
-                data["createdAt"]
-            )
+        out["created_at"] = datetime.datetime.fromisoformat(
+            data["createdAt"].replace("Z", "+00:00")
         )
-    if "lastUpdatedAt" in data:
-        import capo_trustedadvisor.types._prelude.timestamp
+    if data.get("lastUpdatedAt") is not None:
+        import datetime
 
-        out["last_updated_at"] = (
-            capo_trustedadvisor.types._prelude.timestamp.deserialize_json(
-                data["lastUpdatedAt"]
-            )
+        out["last_updated_at"] = datetime.datetime.fromisoformat(
+            data["lastUpdatedAt"].replace("Z", "+00:00")
         )
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("OrganizationRecommendation.arn required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
     else:
         raise DeserializationError("OrganizationRecommendation.description required")
-    if "createdBy" in data:
+    if data.get("createdBy") is not None:
         out["created_by"] = data["createdBy"]
-    if "updatedOnBehalfOf" in data:
+    if data.get("updatedOnBehalfOf") is not None:
         out["updated_on_behalf_of"] = data["updatedOnBehalfOf"]
-    if "updatedOnBehalfOfJobTitle" in data:
+    if data.get("updatedOnBehalfOfJobTitle") is not None:
         out["updated_on_behalf_of_job_title"] = data["updatedOnBehalfOfJobTitle"]
-    if "updateReason" in data:
+    if data.get("updateReason") is not None:
         out["update_reason"] = data["updateReason"]
-    if "updateReasonCode" in data:
+    if data.get("updateReasonCode") is not None:
         import capo_trustedadvisor.types.update_recommendation_lifecycle_stage_reason_code
 
         out["update_reason_code"] = (
@@ -306,12 +300,10 @@ def deserialize_json(data: dict) -> OrganizationRecommendation:
                 data["updateReasonCode"]
             )
         )
-    if "resolvedAt" in data:
-        import capo_trustedadvisor.types._prelude.timestamp
+    if data.get("resolvedAt") is not None:
+        import datetime
 
-        out["resolved_at"] = (
-            capo_trustedadvisor.types._prelude.timestamp.deserialize_json(
-                data["resolvedAt"]
-            )
+        out["resolved_at"] = datetime.datetime.fromisoformat(
+            data["resolvedAt"].replace("Z", "+00:00")
         )
     return out

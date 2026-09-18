@@ -32,7 +32,7 @@ def serialize_json(value: ImportApplicationUsageRequest) -> dict:
 
 def deserialize_json(data: dict) -> ImportApplicationUsageRequest:
     out: ImportApplicationUsageRequest = {}  # type: ignore[typeddict-item]
-    if "sourceS3Location" in data:
+    if data.get("sourceS3Location") is not None:
         import capo_applicationcostprofiler.types.source_s3_location
 
         out["source_s3_location"] = (

@@ -35,10 +35,10 @@ def serialize_aws_json_1_1(value: PutRecordBatchResponseEntry) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PutRecordBatchResponseEntry:
     out: PutRecordBatchResponseEntry = {}  # type: ignore[typeddict-item]
-    if "RecordId" in data:
+    if data.get("RecordId") is not None:
         out["record_id"] = data["RecordId"]
-    if "ErrorCode" in data:
+    if data.get("ErrorCode") is not None:
         out["error_code"] = data["ErrorCode"]
-    if "ErrorMessage" in data:
+    if data.get("ErrorMessage") is not None:
         out["error_message"] = data["ErrorMessage"]
     return out

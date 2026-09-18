@@ -27,7 +27,7 @@ def serialize_json(value: WorkspaceThemeTypography) -> dict:
 
 def deserialize_json(data: dict) -> WorkspaceThemeTypography:
     out: WorkspaceThemeTypography = {}  # type: ignore[typeddict-item]
-    if "FontFamily" in data:
+    if data.get("FontFamily") is not None:
         import capo_connect.types.font_family
 
         out["font_family"] = capo_connect.types.font_family.deserialize_json(

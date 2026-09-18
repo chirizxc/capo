@@ -52,23 +52,23 @@ def serialize_json(value: Resource) -> dict:
 
 def deserialize_json(data: dict) -> Resource:
     out: Resource = {}  # type: ignore[typeddict-item]
-    if "type" in data:
+    if data.get("type") is not None:
         out["type"] = data["type"]
     else:
         raise DeserializationError("Resource.type required")
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("Resource.id required")
-    if "partition" in data:
+    if data.get("partition") is not None:
         out["partition"] = data["partition"]
-    if "region" in data:
+    if data.get("region") is not None:
         out["region"] = data["region"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_inspector2.types.tag_map
 
         out["tags"] = capo_inspector2.types.tag_map.deserialize_json(data["tags"])
-    if "details" in data:
+    if data.get("details") is not None:
         import capo_inspector2.types.resource_details
 
         out["details"] = capo_inspector2.types.resource_details.deserialize_json(

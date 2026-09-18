@@ -25,7 +25,7 @@ def serialize_aws_json_1_1(value: StopJobResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> StopJobResult:
     out: StopJobResult = {}  # type: ignore[typeddict-item]
-    if "job" in data:
+    if data.get("job") is not None:
         import capo_device_farm.types.job
 
         out["job"] = capo_device_farm.types.job.deserialize_aws_json_1_1(data["job"])

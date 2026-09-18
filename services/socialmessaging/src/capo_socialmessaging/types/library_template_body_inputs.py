@@ -53,14 +53,14 @@ def serialize_json(value: LibraryTemplateBodyInputs) -> dict:
 
 def deserialize_json(data: dict) -> LibraryTemplateBodyInputs:
     out: LibraryTemplateBodyInputs = {}  # type: ignore[typeddict-item]
-    if "addContactNumber" in data:
+    if data.get("addContactNumber") is not None:
         out["add_contact_number"] = data["addContactNumber"]
-    if "addLearnMoreLink" in data:
+    if data.get("addLearnMoreLink") is not None:
         out["add_learn_more_link"] = data["addLearnMoreLink"]
-    if "addSecurityRecommendation" in data:
+    if data.get("addSecurityRecommendation") is not None:
         out["add_security_recommendation"] = data["addSecurityRecommendation"]
-    if "addTrackPackageLink" in data:
+    if data.get("addTrackPackageLink") is not None:
         out["add_track_package_link"] = data["addTrackPackageLink"]
-    if "codeExpirationMinutes" in data:
+    if data.get("codeExpirationMinutes") is not None:
         out["code_expiration_minutes"] = data["codeExpirationMinutes"]
     return out

@@ -75,19 +75,19 @@ def serialize_aws_json_1_0(value: GetArchiveResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> GetArchiveResponse:
     out: GetArchiveResponse = {}  # type: ignore[typeddict-item]
-    if "ArchiveId" in data:
+    if data.get("ArchiveId") is not None:
         out["archive_id"] = data["ArchiveId"]
     else:
         raise DeserializationError("GetArchiveResponse.archive_id required")
-    if "ArchiveName" in data:
+    if data.get("ArchiveName") is not None:
         out["archive_name"] = data["ArchiveName"]
     else:
         raise DeserializationError("GetArchiveResponse.archive_name required")
-    if "ArchiveArn" in data:
+    if data.get("ArchiveArn") is not None:
         out["archive_arn"] = data["ArchiveArn"]
     else:
         raise DeserializationError("GetArchiveResponse.archive_arn required")
-    if "ArchiveState" in data:
+    if data.get("ArchiveState") is not None:
         import capo_mailmanager.types.archive_state
 
         out["archive_state"] = (
@@ -97,7 +97,7 @@ def deserialize_aws_json_1_0(data: dict) -> GetArchiveResponse:
         )
     else:
         raise DeserializationError("GetArchiveResponse.archive_state required")
-    if "Retention" in data:
+    if data.get("Retention") is not None:
         import capo_mailmanager.types.archive_retention
 
         out["retention"] = (
@@ -107,7 +107,7 @@ def deserialize_aws_json_1_0(data: dict) -> GetArchiveResponse:
         )
     else:
         raise DeserializationError("GetArchiveResponse.retention required")
-    if "CreatedTimestamp" in data:
+    if data.get("CreatedTimestamp") is not None:
         import capo_mailmanager.types._prelude.timestamp
 
         out["created_timestamp"] = (
@@ -115,7 +115,7 @@ def deserialize_aws_json_1_0(data: dict) -> GetArchiveResponse:
                 data["CreatedTimestamp"]
             )
         )
-    if "LastUpdatedTimestamp" in data:
+    if data.get("LastUpdatedTimestamp") is not None:
         import capo_mailmanager.types._prelude.timestamp
 
         out["last_updated_timestamp"] = (
@@ -123,6 +123,6 @@ def deserialize_aws_json_1_0(data: dict) -> GetArchiveResponse:
                 data["LastUpdatedTimestamp"]
             )
         )
-    if "KmsKeyArn" in data:
+    if data.get("KmsKeyArn") is not None:
         out["kms_key_arn"] = data["KmsKeyArn"]
     return out

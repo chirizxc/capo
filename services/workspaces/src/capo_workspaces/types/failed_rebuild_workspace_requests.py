@@ -29,6 +29,8 @@ def deserialize_aws_json_1_1(data: list) -> FailedRebuildWorkspaceRequests:
 
     out: FailedRebuildWorkspaceRequests = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_workspaces.types.failed_workspace_change_request.deserialize_aws_json_1_1(
                 item

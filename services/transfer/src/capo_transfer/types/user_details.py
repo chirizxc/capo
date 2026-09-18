@@ -33,14 +33,14 @@ def serialize_aws_json_1_1(value: UserDetails) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UserDetails:
     out: UserDetails = {}  # type: ignore[typeddict-item]
-    if "UserName" in data:
+    if data.get("UserName") is not None:
         out["user_name"] = data["UserName"]
     else:
         raise DeserializationError("UserDetails.user_name required")
-    if "ServerId" in data:
+    if data.get("ServerId") is not None:
         out["server_id"] = data["ServerId"]
     else:
         raise DeserializationError("UserDetails.server_id required")
-    if "SessionId" in data:
+    if data.get("SessionId") is not None:
         out["session_id"] = data["SessionId"]
     return out

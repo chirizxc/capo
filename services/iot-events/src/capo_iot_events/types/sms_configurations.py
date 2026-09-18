@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> SMSConfigurations:
 
     out: SMSConfigurations = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_iot_events.types.sms_configuration.deserialize_json(item))
     return out

@@ -31,7 +31,7 @@ def serialize_json(value: GrpcGatewayRouteRewrite) -> dict:
 
 def deserialize_json(data: dict) -> GrpcGatewayRouteRewrite:
     out: GrpcGatewayRouteRewrite = {}  # type: ignore[typeddict-item]
-    if "hostname" in data:
+    if data.get("hostname") is not None:
         import capo_app_mesh.types.gateway_route_hostname_rewrite
 
         out["hostname"] = (

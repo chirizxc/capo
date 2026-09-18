@@ -24,7 +24,7 @@ def serialize_json(value: InputContext) -> dict:
 
 def deserialize_json(data: dict) -> InputContext:
     out: InputContext = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("InputContext.name required")

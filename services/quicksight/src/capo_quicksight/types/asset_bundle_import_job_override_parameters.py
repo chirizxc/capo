@@ -135,7 +135,7 @@ def serialize_json(value: AssetBundleImportJobOverrideParameters) -> dict:
 
 def deserialize_json(data: dict) -> AssetBundleImportJobOverrideParameters:
     out: AssetBundleImportJobOverrideParameters = {}  # type: ignore[typeddict-item]
-    if "ResourceIdOverrideConfiguration" in data:
+    if data.get("ResourceIdOverrideConfiguration") is not None:
         import capo_quicksight.types.asset_bundle_import_job_resource_id_override_configuration
 
         out["resource_id_override_configuration"] = (
@@ -143,7 +143,7 @@ def deserialize_json(data: dict) -> AssetBundleImportJobOverrideParameters:
                 data["ResourceIdOverrideConfiguration"]
             )
         )
-    if "VPCConnections" in data:
+    if data.get("VPCConnections") is not None:
         import capo_quicksight.types.asset_bundle_import_job_vpc_connection_override_parameters_list
 
         out["vpc_connections"] = (
@@ -151,7 +151,7 @@ def deserialize_json(data: dict) -> AssetBundleImportJobOverrideParameters:
                 data["VPCConnections"]
             )
         )
-    if "RefreshSchedules" in data:
+    if data.get("RefreshSchedules") is not None:
         import capo_quicksight.types.asset_bundle_import_job_refresh_schedule_override_parameters_list
 
         out["refresh_schedules"] = (
@@ -159,7 +159,7 @@ def deserialize_json(data: dict) -> AssetBundleImportJobOverrideParameters:
                 data["RefreshSchedules"]
             )
         )
-    if "DataSources" in data:
+    if data.get("DataSources") is not None:
         import capo_quicksight.types.asset_bundle_import_job_data_source_override_parameters_list
 
         out["data_sources"] = (
@@ -167,7 +167,7 @@ def deserialize_json(data: dict) -> AssetBundleImportJobOverrideParameters:
                 data["DataSources"]
             )
         )
-    if "DataSets" in data:
+    if data.get("DataSets") is not None:
         import capo_quicksight.types.asset_bundle_import_job_data_set_override_parameters_list
 
         out["data_sets"] = (
@@ -175,7 +175,7 @@ def deserialize_json(data: dict) -> AssetBundleImportJobOverrideParameters:
                 data["DataSets"]
             )
         )
-    if "Themes" in data:
+    if data.get("Themes") is not None:
         import capo_quicksight.types.asset_bundle_import_job_theme_override_parameters_list
 
         out["themes"] = (
@@ -183,7 +183,7 @@ def deserialize_json(data: dict) -> AssetBundleImportJobOverrideParameters:
                 data["Themes"]
             )
         )
-    if "Analyses" in data:
+    if data.get("Analyses") is not None:
         import capo_quicksight.types.asset_bundle_import_job_analysis_override_parameters_list
 
         out["analyses"] = (
@@ -191,7 +191,7 @@ def deserialize_json(data: dict) -> AssetBundleImportJobOverrideParameters:
                 data["Analyses"]
             )
         )
-    if "Dashboards" in data:
+    if data.get("Dashboards") is not None:
         import capo_quicksight.types.asset_bundle_import_job_dashboard_override_parameters_list
 
         out["dashboards"] = (
@@ -199,7 +199,7 @@ def deserialize_json(data: dict) -> AssetBundleImportJobOverrideParameters:
                 data["Dashboards"]
             )
         )
-    if "Folders" in data:
+    if data.get("Folders") is not None:
         import capo_quicksight.types.asset_bundle_import_job_folder_override_parameters_list
 
         out["folders"] = (

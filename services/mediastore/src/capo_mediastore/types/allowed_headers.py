@@ -14,4 +14,4 @@ def serialize_aws_json_1_1(value: AllowedHeaders) -> list:
 
 
 def deserialize_aws_json_1_1(data: list) -> AllowedHeaders:
-    return list(data)
+    return [item for item in data if item is not None]

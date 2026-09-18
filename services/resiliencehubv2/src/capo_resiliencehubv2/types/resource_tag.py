@@ -31,11 +31,11 @@ def serialize_json(value: ResourceTag) -> dict:
 
 def deserialize_json(data: dict) -> ResourceTag:
     out: ResourceTag = {}  # type: ignore[typeddict-item]
-    if "key" in data:
+    if data.get("key") is not None:
         out["key"] = data["key"]
     else:
         raise DeserializationError("ResourceTag.key required")
-    if "values" in data:
+    if data.get("values") is not None:
         import capo_resiliencehubv2.types.tag_value_list
 
         out["values"] = capo_resiliencehubv2.types.tag_value_list.deserialize_json(

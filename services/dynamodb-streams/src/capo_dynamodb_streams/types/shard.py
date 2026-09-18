@@ -40,9 +40,9 @@ def serialize_aws_json_1_0(value: Shard) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> Shard:
     out: Shard = {}  # type: ignore[typeddict-item]
-    if "ShardId" in data:
+    if data.get("ShardId") is not None:
         out["shard_id"] = data["ShardId"]
-    if "SequenceNumberRange" in data:
+    if data.get("SequenceNumberRange") is not None:
         import capo_dynamodb_streams.types.sequence_number_range
 
         out["sequence_number_range"] = (
@@ -50,6 +50,6 @@ def deserialize_aws_json_1_0(data: dict) -> Shard:
                 data["SequenceNumberRange"]
             )
         )
-    if "ParentShardId" in data:
+    if data.get("ParentShardId") is not None:
         out["parent_shard_id"] = data["ParentShardId"]
     return out

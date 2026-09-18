@@ -88,11 +88,11 @@ def serialize_json(value: OAuthClientApplicationSummary) -> dict:
 
 def deserialize_json(data: dict) -> OAuthClientApplicationSummary:
     out: OAuthClientApplicationSummary = {}  # type: ignore[typeddict-item]
-    if "OAuthClientApplicationId" in data:
+    if data.get("OAuthClientApplicationId") is not None:
         out["o_auth_client_application_id"] = data["OAuthClientApplicationId"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "OAuthClientAuthenticationType" in data:
+    if data.get("OAuthClientAuthenticationType") is not None:
         import capo_quicksight.types.o_auth_client_authentication_type
 
         out["o_auth_client_authentication_type"] = (
@@ -100,7 +100,7 @@ def deserialize_json(data: dict) -> OAuthClientApplicationSummary:
                 data["OAuthClientAuthenticationType"]
             )
         )
-    if "DataSourceType" in data:
+    if data.get("DataSourceType") is not None:
         import capo_quicksight.types.data_source_type
 
         out["data_source_type"] = (
@@ -108,7 +108,7 @@ def deserialize_json(data: dict) -> OAuthClientApplicationSummary:
                 data["DataSourceType"]
             )
         )
-    if "IdentityProviderVpcConnectionProperties" in data:
+    if data.get("IdentityProviderVpcConnectionProperties") is not None:
         import capo_quicksight.types.vpc_connection_properties
 
         out["identity_provider_vpc_connection_properties"] = (
@@ -116,18 +116,18 @@ def deserialize_json(data: dict) -> OAuthClientApplicationSummary:
                 data["IdentityProviderVpcConnectionProperties"]
             )
         )
-    if "CreatedTime" in data:
+    if data.get("CreatedTime") is not None:
         import capo_quicksight.types.timestamp
 
         out["created_time"] = capo_quicksight.types.timestamp.deserialize_json(
             data["CreatedTime"]
         )
-    if "LastUpdatedTime" in data:
+    if data.get("LastUpdatedTime") is not None:
         import capo_quicksight.types.timestamp
 
         out["last_updated_time"] = capo_quicksight.types.timestamp.deserialize_json(
             data["LastUpdatedTime"]
         )
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
     return out

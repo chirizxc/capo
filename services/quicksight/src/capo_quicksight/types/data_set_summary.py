@@ -109,25 +109,25 @@ def serialize_json(value: DataSetSummary) -> dict:
 
 def deserialize_json(data: dict) -> DataSetSummary:
     out: DataSetSummary = {}  # type: ignore[typeddict-item]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "DataSetId" in data:
+    if data.get("DataSetId") is not None:
         out["data_set_id"] = data["DataSetId"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "CreatedTime" in data:
+    if data.get("CreatedTime") is not None:
         import capo_quicksight.types.timestamp
 
         out["created_time"] = capo_quicksight.types.timestamp.deserialize_json(
             data["CreatedTime"]
         )
-    if "LastUpdatedTime" in data:
+    if data.get("LastUpdatedTime") is not None:
         import capo_quicksight.types.timestamp
 
         out["last_updated_time"] = capo_quicksight.types.timestamp.deserialize_json(
             data["LastUpdatedTime"]
         )
-    if "ImportMode" in data:
+    if data.get("ImportMode") is not None:
         import capo_quicksight.types.data_set_import_mode
 
         out["import_mode"] = (
@@ -135,7 +135,7 @@ def deserialize_json(data: dict) -> DataSetSummary:
                 data["ImportMode"]
             )
         )
-    if "RowLevelPermissionDataSet" in data:
+    if data.get("RowLevelPermissionDataSet") is not None:
         import capo_quicksight.types.row_level_permission_data_set
 
         out["row_level_permission_data_set"] = (
@@ -143,7 +143,7 @@ def deserialize_json(data: dict) -> DataSetSummary:
                 data["RowLevelPermissionDataSet"]
             )
         )
-    if "RowLevelPermissionDataSetMap" in data:
+    if data.get("RowLevelPermissionDataSetMap") is not None:
         import capo_quicksight.types.row_level_permission_data_set_map
 
         out["row_level_permission_data_set_map"] = (
@@ -151,19 +151,19 @@ def deserialize_json(data: dict) -> DataSetSummary:
                 data["RowLevelPermissionDataSetMap"]
             )
         )
-    if "RowLevelPermissionTagConfigurationApplied" in data:
+    if data.get("RowLevelPermissionTagConfigurationApplied") is not None:
         out["row_level_permission_tag_configuration_applied"] = data[
             "RowLevelPermissionTagConfigurationApplied"
         ]
     else:
         out["row_level_permission_tag_configuration_applied"] = False
-    if "ColumnLevelPermissionRulesApplied" in data:
+    if data.get("ColumnLevelPermissionRulesApplied") is not None:
         out["column_level_permission_rules_applied"] = data[
             "ColumnLevelPermissionRulesApplied"
         ]
     else:
         out["column_level_permission_rules_applied"] = False
-    if "UseAs" in data:
+    if data.get("UseAs") is not None:
         import capo_quicksight.types.data_set_use_as
 
         out["use_as"] = capo_quicksight.types.data_set_use_as.deserialize_json(

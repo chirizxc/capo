@@ -38,15 +38,15 @@ def serialize_aws_json_1_1(value: DeviceiSCSIAttributes) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeviceiSCSIAttributes:
     out: DeviceiSCSIAttributes = {}  # type: ignore[typeddict-item]
-    if "TargetARN" in data:
+    if data.get("TargetARN") is not None:
         out["target_arn"] = data["TargetARN"]
-    if "NetworkInterfaceId" in data:
+    if data.get("NetworkInterfaceId") is not None:
         out["network_interface_id"] = data["NetworkInterfaceId"]
-    if "NetworkInterfacePort" in data:
+    if data.get("NetworkInterfacePort") is not None:
         out["network_interface_port"] = data["NetworkInterfacePort"]
     else:
         out["network_interface_port"] = 0
-    if "ChapEnabled" in data:
+    if data.get("ChapEnabled") is not None:
         out["chap_enabled"] = data["ChapEnabled"]
     else:
         out["chap_enabled"] = False

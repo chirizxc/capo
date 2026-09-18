@@ -69,13 +69,13 @@ def serialize_aws_json_1_0(value: CreateConnectionRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CreateConnectionRequest:
     out: CreateConnectionRequest = {}  # type: ignore[typeddict-item]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "bandwidth" in data:
+    if data.get("bandwidth") is not None:
         out["bandwidth"] = data["bandwidth"]
     else:
         raise DeserializationError("CreateConnectionRequest.bandwidth required")
-    if "attachPoint" in data:
+    if data.get("attachPoint") is not None:
         import capo_interconnect.types.attach_point
 
         out["attach_point"] = (
@@ -85,11 +85,11 @@ def deserialize_aws_json_1_0(data: dict) -> CreateConnectionRequest:
         )
     else:
         raise DeserializationError("CreateConnectionRequest.attach_point required")
-    if "environmentId" in data:
+    if data.get("environmentId") is not None:
         out["environment_id"] = data["environmentId"]
     else:
         raise DeserializationError("CreateConnectionRequest.environment_id required")
-    if "remoteAccount" in data:
+    if data.get("remoteAccount") is not None:
         import capo_interconnect.types.remote_account_identifier
 
         out["remote_account"] = (
@@ -97,12 +97,12 @@ def deserialize_aws_json_1_0(data: dict) -> CreateConnectionRequest:
                 data["remoteAccount"]
             )
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_interconnect.types.tag_map
 
         out["tags"] = capo_interconnect.types.tag_map.deserialize_aws_json_1_0(
             data["tags"]
         )
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     return out

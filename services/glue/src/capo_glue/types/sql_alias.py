@@ -30,11 +30,11 @@ def serialize_aws_json_1_1(value: SqlAlias) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SqlAlias:
     out: SqlAlias = {}  # type: ignore[typeddict-item]
-    if "From" in data:
+    if data.get("From") is not None:
         out["from"] = data["From"]
     else:
         raise DeserializationError("SqlAlias.from required")
-    if "Alias" in data:
+    if data.get("Alias") is not None:
         out["alias"] = data["Alias"]
     else:
         raise DeserializationError("SqlAlias.alias required")

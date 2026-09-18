@@ -42,15 +42,15 @@ def serialize_json(value: SelfServiceConversationHistory) -> dict:
 
 def deserialize_json(data: dict) -> SelfServiceConversationHistory:
     out: SelfServiceConversationHistory = {}  # type: ignore[typeddict-item]
-    if "turnNumber" in data:
+    if data.get("turnNumber") is not None:
         out["turn_number"] = data["turnNumber"]
     else:
         out["turn_number"] = 0
-    if "inputTranscript" in data:
+    if data.get("inputTranscript") is not None:
         out["input_transcript"] = data["inputTranscript"]
-    if "botResponse" in data:
+    if data.get("botResponse") is not None:
         out["bot_response"] = data["botResponse"]
-    if "timestamp" in data:
+    if data.get("timestamp") is not None:
         import capo_qconnect.types._prelude.timestamp
 
         out["timestamp"] = capo_qconnect.types._prelude.timestamp.deserialize_json(

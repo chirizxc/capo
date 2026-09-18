@@ -29,10 +29,10 @@ def serialize_aws_json_1_1(value: DeleteBucketRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteBucketRequest:
     out: DeleteBucketRequest = {}  # type: ignore[typeddict-item]
-    if "bucketName" in data:
+    if data.get("bucketName") is not None:
         out["bucket_name"] = data["bucketName"]
     else:
         raise DeserializationError("DeleteBucketRequest.bucket_name required")
-    if "forceDelete" in data:
+    if data.get("forceDelete") is not None:
         out["force_delete"] = data["forceDelete"]
     return out

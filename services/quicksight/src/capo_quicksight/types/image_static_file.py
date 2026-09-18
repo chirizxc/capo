@@ -35,11 +35,11 @@ def serialize_json(value: ImageStaticFile) -> dict:
 
 def deserialize_json(data: dict) -> ImageStaticFile:
     out: ImageStaticFile = {}  # type: ignore[typeddict-item]
-    if "StaticFileId" in data:
+    if data.get("StaticFileId") is not None:
         out["static_file_id"] = data["StaticFileId"]
     else:
         raise DeserializationError("ImageStaticFile.static_file_id required")
-    if "Source" in data:
+    if data.get("Source") is not None:
         import capo_quicksight.types.static_file_source
 
         out["source"] = capo_quicksight.types.static_file_source.deserialize_json(

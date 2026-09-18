@@ -147,23 +147,23 @@ def serialize_json(value: CreateApplicationRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateApplicationRequest:
     out: CreateApplicationRequest = {}  # type: ignore[typeddict-item]
-    if "displayName" in data:
+    if data.get("displayName") is not None:
         out["display_name"] = data["displayName"]
     else:
         raise DeserializationError("CreateApplicationRequest.display_name required")
-    if "roleArn" in data:
+    if data.get("roleArn") is not None:
         out["role_arn"] = data["roleArn"]
-    if "identityType" in data:
+    if data.get("identityType") is not None:
         import capo_qbusiness.types.identity_type
 
         out["identity_type"] = capo_qbusiness.types.identity_type.deserialize_json(
             data["identityType"]
         )
-    if "iamIdentityProviderArn" in data:
+    if data.get("iamIdentityProviderArn") is not None:
         out["iam_identity_provider_arn"] = data["iamIdentityProviderArn"]
-    if "identityCenterInstanceArn" in data:
+    if data.get("identityCenterInstanceArn") is not None:
         out["identity_center_instance_arn"] = data["identityCenterInstanceArn"]
-    if "clientIdsForOIDC" in data:
+    if data.get("clientIdsForOIDC") is not None:
         import capo_qbusiness.types.client_ids_for_oidc
 
         out["client_ids_for_oidc"] = (
@@ -171,9 +171,9 @@ def deserialize_json(data: dict) -> CreateApplicationRequest:
                 data["clientIdsForOIDC"]
             )
         )
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "encryptionConfiguration" in data:
+    if data.get("encryptionConfiguration") is not None:
         import capo_qbusiness.types.encryption_configuration
 
         out["encryption_configuration"] = (
@@ -181,13 +181,13 @@ def deserialize_json(data: dict) -> CreateApplicationRequest:
                 data["encryptionConfiguration"]
             )
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_qbusiness.types.tags
 
         out["tags"] = capo_qbusiness.types.tags.deserialize_json(data["tags"])
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
-    if "attachmentsConfiguration" in data:
+    if data.get("attachmentsConfiguration") is not None:
         import capo_qbusiness.types.attachments_configuration
 
         out["attachments_configuration"] = (
@@ -195,7 +195,7 @@ def deserialize_json(data: dict) -> CreateApplicationRequest:
                 data["attachmentsConfiguration"]
             )
         )
-    if "qAppsConfiguration" in data:
+    if data.get("qAppsConfiguration") is not None:
         import capo_qbusiness.types.q_apps_configuration
 
         out["q_apps_configuration"] = (
@@ -203,7 +203,7 @@ def deserialize_json(data: dict) -> CreateApplicationRequest:
                 data["qAppsConfiguration"]
             )
         )
-    if "personalizationConfiguration" in data:
+    if data.get("personalizationConfiguration") is not None:
         import capo_qbusiness.types.personalization_configuration
 
         out["personalization_configuration"] = (
@@ -211,7 +211,7 @@ def deserialize_json(data: dict) -> CreateApplicationRequest:
                 data["personalizationConfiguration"]
             )
         )
-    if "quickSightConfiguration" in data:
+    if data.get("quickSightConfiguration") is not None:
         import capo_qbusiness.types.quick_sight_configuration
 
         out["quick_sight_configuration"] = (

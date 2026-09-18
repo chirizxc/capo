@@ -27,6 +27,8 @@ def deserialize_aws_json_1_1(data: list) -> ApplicationAssignmentsList:
 
     out: ApplicationAssignmentsList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_sso_admin.types.application_assignment.deserialize_aws_json_1_1(item)
         )

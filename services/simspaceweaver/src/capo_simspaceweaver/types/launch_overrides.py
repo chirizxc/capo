@@ -31,7 +31,7 @@ def serialize_json(value: LaunchOverrides) -> dict:
 
 def deserialize_json(data: dict) -> LaunchOverrides:
     out: LaunchOverrides = {}  # type: ignore[typeddict-item]
-    if "LaunchCommands" in data:
+    if data.get("LaunchCommands") is not None:
         import capo_simspaceweaver.types.launch_command_list
 
         out["launch_commands"] = (

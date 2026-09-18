@@ -33,14 +33,14 @@ def serialize_json(value: ListAssociationsRequest) -> dict:
 
 def deserialize_json(data: dict) -> ListAssociationsRequest:
     out: ListAssociationsRequest = {}  # type: ignore[typeddict-item]
-    if "ChatConfiguration" in data:
+    if data.get("ChatConfiguration") is not None:
         out["chat_configuration"] = data["ChatConfiguration"]
     else:
         raise DeserializationError(
             "ListAssociationsRequest.chat_configuration required"
         )
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

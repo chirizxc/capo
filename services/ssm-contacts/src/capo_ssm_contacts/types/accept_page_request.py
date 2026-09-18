@@ -60,13 +60,13 @@ def serialize_aws_json_1_1(value: AcceptPageRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AcceptPageRequest:
     out: AcceptPageRequest = {}  # type: ignore[typeddict-item]
-    if "PageId" in data:
+    if data.get("PageId") is not None:
         out["page_id"] = data["PageId"]
     else:
         raise DeserializationError("AcceptPageRequest.page_id required")
-    if "ContactChannelId" in data:
+    if data.get("ContactChannelId") is not None:
         out["contact_channel_id"] = data["ContactChannelId"]
-    if "AcceptType" in data:
+    if data.get("AcceptType") is not None:
         import capo_ssm_contacts.types.accept_type
 
         out["accept_type"] = (
@@ -76,13 +76,13 @@ def deserialize_aws_json_1_1(data: dict) -> AcceptPageRequest:
         )
     else:
         raise DeserializationError("AcceptPageRequest.accept_type required")
-    if "Note" in data:
+    if data.get("Note") is not None:
         out["note"] = data["Note"]
-    if "AcceptCode" in data:
+    if data.get("AcceptCode") is not None:
         out["accept_code"] = data["AcceptCode"]
     else:
         raise DeserializationError("AcceptPageRequest.accept_code required")
-    if "AcceptCodeValidation" in data:
+    if data.get("AcceptCodeValidation") is not None:
         import capo_ssm_contacts.types.accept_code_validation
 
         out["accept_code_validation"] = (

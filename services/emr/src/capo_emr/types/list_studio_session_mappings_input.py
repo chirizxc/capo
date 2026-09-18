@@ -37,14 +37,14 @@ def serialize_aws_json_1_1(value: ListStudioSessionMappingsInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListStudioSessionMappingsInput:
     out: ListStudioSessionMappingsInput = {}  # type: ignore[typeddict-item]
-    if "StudioId" in data:
+    if data.get("StudioId") is not None:
         out["studio_id"] = data["StudioId"]
-    if "IdentityType" in data:
+    if data.get("IdentityType") is not None:
         import capo_emr.types.identity_type
 
         out["identity_type"] = capo_emr.types.identity_type.deserialize_aws_json_1_1(
             data["IdentityType"]
         )
-    if "Marker" in data:
+    if data.get("Marker") is not None:
         out["marker"] = data["Marker"]
     return out

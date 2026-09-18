@@ -51,29 +51,29 @@ def serialize_aws_json_1_0(value: GetParametersForImportOutput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> GetParametersForImportOutput:
     out: GetParametersForImportOutput = {}  # type: ignore[typeddict-item]
-    if "WrappingKeyCertificate" in data:
+    if data.get("WrappingKeyCertificate") is not None:
         out["wrapping_key_certificate"] = data["WrappingKeyCertificate"]
     else:
         raise DeserializationError(
             "GetParametersForImportOutput.wrapping_key_certificate required"
         )
-    if "WrappingKeyCertificateChain" in data:
+    if data.get("WrappingKeyCertificateChain") is not None:
         out["wrapping_key_certificate_chain"] = data["WrappingKeyCertificateChain"]
     else:
         raise DeserializationError(
             "GetParametersForImportOutput.wrapping_key_certificate_chain required"
         )
-    if "WrappingKeyAlgorithm" in data:
+    if data.get("WrappingKeyAlgorithm") is not None:
         out["wrapping_key_algorithm"] = data["WrappingKeyAlgorithm"]
     else:
         raise DeserializationError(
             "GetParametersForImportOutput.wrapping_key_algorithm required"
         )
-    if "ImportToken" in data:
+    if data.get("ImportToken") is not None:
         out["import_token"] = data["ImportToken"]
     else:
         raise DeserializationError("GetParametersForImportOutput.import_token required")
-    if "ParametersValidUntilTimestamp" in data:
+    if data.get("ParametersValidUntilTimestamp") is not None:
         import capo_payment_cryptography.types.timestamp
 
         out["parameters_valid_until_timestamp"] = (

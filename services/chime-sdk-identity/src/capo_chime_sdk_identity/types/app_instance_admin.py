@@ -43,15 +43,15 @@ def serialize_json(value: AppInstanceAdmin) -> dict:
 
 def deserialize_json(data: dict) -> AppInstanceAdmin:
     out: AppInstanceAdmin = {}  # type: ignore[typeddict-item]
-    if "Admin" in data:
+    if data.get("Admin") is not None:
         import capo_chime_sdk_identity.types.identity
 
         out["admin"] = capo_chime_sdk_identity.types.identity.deserialize_json(
             data["Admin"]
         )
-    if "AppInstanceArn" in data:
+    if data.get("AppInstanceArn") is not None:
         out["app_instance_arn"] = data["AppInstanceArn"]
-    if "CreatedTimestamp" in data:
+    if data.get("CreatedTimestamp") is not None:
         import capo_chime_sdk_identity.types.timestamp
 
         out["created_timestamp"] = (

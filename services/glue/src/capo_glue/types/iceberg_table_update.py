@@ -92,7 +92,7 @@ def serialize_aws_json_1_1(value: IcebergTableUpdate) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> IcebergTableUpdate:
     out: IcebergTableUpdate = {}  # type: ignore[typeddict-item]
-    if "Schema" in data:
+    if data.get("Schema") is not None:
         import capo_glue.types.iceberg_schema
 
         out["schema"] = capo_glue.types.iceberg_schema.deserialize_aws_json_1_1(
@@ -100,7 +100,7 @@ def deserialize_aws_json_1_1(data: dict) -> IcebergTableUpdate:
         )
     else:
         raise DeserializationError("IcebergTableUpdate.schema required")
-    if "PartitionSpec" in data:
+    if data.get("PartitionSpec") is not None:
         import capo_glue.types.iceberg_partition_spec
 
         out["partition_spec"] = (
@@ -108,17 +108,17 @@ def deserialize_aws_json_1_1(data: dict) -> IcebergTableUpdate:
                 data["PartitionSpec"]
             )
         )
-    if "SortOrder" in data:
+    if data.get("SortOrder") is not None:
         import capo_glue.types.iceberg_sort_order
 
         out["sort_order"] = capo_glue.types.iceberg_sort_order.deserialize_aws_json_1_1(
             data["SortOrder"]
         )
-    if "Location" in data:
+    if data.get("Location") is not None:
         out["location"] = data["Location"]
     else:
         raise DeserializationError("IcebergTableUpdate.location required")
-    if "Properties" in data:
+    if data.get("Properties") is not None:
         import capo_glue.types.string_to_string_map
 
         out["properties"] = (
@@ -126,13 +126,13 @@ def deserialize_aws_json_1_1(data: dict) -> IcebergTableUpdate:
                 data["Properties"]
             )
         )
-    if "Action" in data:
+    if data.get("Action") is not None:
         import capo_glue.types.iceberg_update_action
 
         out["action"] = capo_glue.types.iceberg_update_action.deserialize_aws_json_1_1(
             data["Action"]
         )
-    if "EncryptionKey" in data:
+    if data.get("EncryptionKey") is not None:
         import capo_glue.types.iceberg_encrypted_key
 
         out["encryption_key"] = (
@@ -140,6 +140,6 @@ def deserialize_aws_json_1_1(data: dict) -> IcebergTableUpdate:
                 data["EncryptionKey"]
             )
         )
-    if "KeyId" in data:
+    if data.get("KeyId") is not None:
         out["key_id"] = data["KeyId"]
     return out

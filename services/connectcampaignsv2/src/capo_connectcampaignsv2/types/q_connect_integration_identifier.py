@@ -23,7 +23,7 @@ def serialize_json(value: QConnectIntegrationIdentifier) -> dict:
 
 def deserialize_json(data: dict) -> QConnectIntegrationIdentifier:
     out: QConnectIntegrationIdentifier = {}  # type: ignore[typeddict-item]
-    if "knowledgeBaseArn" in data:
+    if data.get("knowledgeBaseArn") is not None:
         out["knowledge_base_arn"] = data["knowledgeBaseArn"]
     else:
         raise DeserializationError(

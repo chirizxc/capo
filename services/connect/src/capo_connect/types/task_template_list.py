@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> TaskTemplateList:
 
     out: TaskTemplateList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_connect.types.task_template_metadata.deserialize_json(item))
     return out

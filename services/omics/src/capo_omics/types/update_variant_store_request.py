@@ -25,6 +25,6 @@ def serialize_json(value: UpdateVariantStoreRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateVariantStoreRequest:
     out: UpdateVariantStoreRequest = {}  # type: ignore[typeddict-item]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
     return out

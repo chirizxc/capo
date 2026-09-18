@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import uuid
 from typing import TYPE_CHECKING, Optional
 
 import capo_mgn._auth._signers
@@ -78,10 +79,12 @@ class ImportResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mgn.types.start_import_request.StartImportRequest = {}  # type: ignore[typeddict-item]
-        if client_token is not None:
-            input_["client_token"] = client_token
-        input_["s3_bucket_source"] = s3_bucket_source
+        input_: capo_mgn.types.start_import_request.StartImportRequest = {
+            "s3_bucket_source": s3_bucket_source
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if tags is not None:
             input_["tags"] = tags
 
@@ -90,6 +93,7 @@ class ImportResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -130,7 +134,7 @@ class ImportResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mgn.types.list_imports_request.ListImportsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_mgn.types.list_imports_request.ListImportsRequest = {}
         if filters is not None:
             input_["filters"] = filters
         if max_results is not None:
@@ -143,6 +147,7 @@ class ImportResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_import_errors(
@@ -181,8 +186,9 @@ class ImportResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mgn.types.list_import_errors_request.ListImportErrorsRequest = {}  # type: ignore[typeddict-item]
-        input_["import_id"] = import_id
+        input_: capo_mgn.types.list_import_errors_request.ListImportErrorsRequest = {
+            "import_id": import_id
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -193,6 +199,7 @@ class ImportResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -242,10 +249,12 @@ class AsyncImportResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mgn.types.start_import_request.StartImportRequest = {}  # type: ignore[typeddict-item]
-        if client_token is not None:
-            input_["client_token"] = client_token
-        input_["s3_bucket_source"] = s3_bucket_source
+        input_: capo_mgn.types.start_import_request.StartImportRequest = {
+            "s3_bucket_source": s3_bucket_source
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if tags is not None:
             input_["tags"] = tags
 
@@ -254,6 +263,7 @@ class AsyncImportResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -295,7 +305,7 @@ class AsyncImportResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mgn.types.list_imports_request.ListImportsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_mgn.types.list_imports_request.ListImportsRequest = {}
         if filters is not None:
             input_["filters"] = filters
         if max_results is not None:
@@ -308,6 +318,7 @@ class AsyncImportResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_import_errors(
@@ -347,8 +358,9 @@ class AsyncImportResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mgn.types.list_import_errors_request.ListImportErrorsRequest = {}  # type: ignore[typeddict-item]
-        input_["import_id"] = import_id
+        input_: capo_mgn.types.list_import_errors_request.ListImportErrorsRequest = {
+            "import_id": import_id
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -359,4 +371,5 @@ class AsyncImportResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

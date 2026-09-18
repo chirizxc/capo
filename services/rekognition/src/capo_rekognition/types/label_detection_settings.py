@@ -30,7 +30,7 @@ def serialize_aws_json_1_1(value: LabelDetectionSettings) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> LabelDetectionSettings:
     out: LabelDetectionSettings = {}  # type: ignore[typeddict-item]
-    if "GeneralLabels" in data:
+    if data.get("GeneralLabels") is not None:
         import capo_rekognition.types.general_labels_settings
 
         out["general_labels"] = (

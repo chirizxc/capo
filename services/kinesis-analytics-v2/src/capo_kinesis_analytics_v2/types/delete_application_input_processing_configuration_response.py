@@ -36,8 +36,8 @@ def deserialize_aws_json_1_1(
     data: dict,
 ) -> DeleteApplicationInputProcessingConfigurationResponse:
     out: DeleteApplicationInputProcessingConfigurationResponse = {}  # type: ignore[typeddict-item]
-    if "ApplicationARN" in data:
+    if data.get("ApplicationARN") is not None:
         out["application_arn"] = data["ApplicationARN"]
-    if "ApplicationVersionId" in data:
+    if data.get("ApplicationVersionId") is not None:
         out["application_version_id"] = data["ApplicationVersionId"]
     return out

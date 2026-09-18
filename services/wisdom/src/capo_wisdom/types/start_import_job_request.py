@@ -58,23 +58,23 @@ def serialize_json(value: StartImportJobRequest) -> dict:
 
 def deserialize_json(data: dict) -> StartImportJobRequest:
     out: StartImportJobRequest = {}  # type: ignore[typeddict-item]
-    if "importJobType" in data:
+    if data.get("importJobType") is not None:
         out["import_job_type"] = data["importJobType"]
     else:
         raise DeserializationError("StartImportJobRequest.import_job_type required")
-    if "uploadId" in data:
+    if data.get("uploadId") is not None:
         out["upload_id"] = data["uploadId"]
     else:
         raise DeserializationError("StartImportJobRequest.upload_id required")
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
-    if "metadata" in data:
+    if data.get("metadata") is not None:
         import capo_wisdom.types.content_metadata
 
         out["metadata"] = capo_wisdom.types.content_metadata.deserialize_json(
             data["metadata"]
         )
-    if "externalSourceConfiguration" in data:
+    if data.get("externalSourceConfiguration") is not None:
         import capo_wisdom.types.external_source_configuration
 
         out["external_source_configuration"] = (

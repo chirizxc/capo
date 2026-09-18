@@ -18,6 +18,6 @@ def serialize_aws_json_1_0(value: S3ReportOutput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> S3ReportOutput:
     out: S3ReportOutput = {}  # type: ignore[typeddict-item]
-    if "s3ObjectKey" in data:
+    if data.get("s3ObjectKey") is not None:
         out["s3_object_key"] = data["s3ObjectKey"]
     return out

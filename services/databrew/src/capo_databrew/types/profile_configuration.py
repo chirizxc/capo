@@ -68,7 +68,7 @@ def serialize_json(value: ProfileConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> ProfileConfiguration:
     out: ProfileConfiguration = {}  # type: ignore[typeddict-item]
-    if "DatasetStatisticsConfiguration" in data:
+    if data.get("DatasetStatisticsConfiguration") is not None:
         import capo_databrew.types.statistics_configuration
 
         out["dataset_statistics_configuration"] = (
@@ -76,7 +76,7 @@ def deserialize_json(data: dict) -> ProfileConfiguration:
                 data["DatasetStatisticsConfiguration"]
             )
         )
-    if "ProfileColumns" in data:
+    if data.get("ProfileColumns") is not None:
         import capo_databrew.types.column_selector_list
 
         out["profile_columns"] = (
@@ -84,7 +84,7 @@ def deserialize_json(data: dict) -> ProfileConfiguration:
                 data["ProfileColumns"]
             )
         )
-    if "ColumnStatisticsConfigurations" in data:
+    if data.get("ColumnStatisticsConfigurations") is not None:
         import capo_databrew.types.column_statistics_configuration_list
 
         out["column_statistics_configurations"] = (
@@ -92,7 +92,7 @@ def deserialize_json(data: dict) -> ProfileConfiguration:
                 data["ColumnStatisticsConfigurations"]
             )
         )
-    if "EntityDetectorConfiguration" in data:
+    if data.get("EntityDetectorConfiguration") is not None:
         import capo_databrew.types.entity_detector_configuration
 
         out["entity_detector_configuration"] = (

@@ -102,14 +102,15 @@ class MigrationWorkflow:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_migrationhuborchestrator.types.create_migration_workflow_request.CreateMigrationWorkflowRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_migrationhuborchestrator.types.create_migration_workflow_request.CreateMigrationWorkflowRequest = {
+            "name": name,
+            "template_id": template_id,
+            "input_parameters": input_parameters,
+        }
         if description is not None:
             input_["description"] = description
-        input_["template_id"] = template_id
         if application_configuration_id is not None:
             input_["application_configuration_id"] = application_configuration_id
-        input_["input_parameters"] = input_parameters
         if step_targets is not None:
             input_["step_targets"] = step_targets
         if tags is not None:
@@ -120,6 +121,7 @@ class MigrationWorkflow:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -157,14 +159,16 @@ class MigrationWorkflow:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_migrationhuborchestrator.types.get_migration_workflow_request.GetMigrationWorkflowRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_migrationhuborchestrator.types.get_migration_workflow_request.GetMigrationWorkflowRequest = {
+            "id": id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update(
@@ -214,8 +218,9 @@ class MigrationWorkflow:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_migrationhuborchestrator.types.update_migration_workflow_request.UpdateMigrationWorkflowRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_migrationhuborchestrator.types.update_migration_workflow_request.UpdateMigrationWorkflowRequest = {
+            "id": id
+        }
         if name is not None:
             input_["name"] = name
         if description is not None:
@@ -230,6 +235,7 @@ class MigrationWorkflow:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -267,14 +273,16 @@ class MigrationWorkflow:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_migrationhuborchestrator.types.delete_migration_workflow_request.DeleteMigrationWorkflowRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_migrationhuborchestrator.types.delete_migration_workflow_request.DeleteMigrationWorkflowRequest = {
+            "id": id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -332,7 +340,7 @@ class MigrationWorkflow:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_migrationhuborchestrator.types.list_migration_workflows_request.ListMigrationWorkflowsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_migrationhuborchestrator.types.list_migration_workflows_request.ListMigrationWorkflowsRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -353,6 +361,7 @@ class MigrationWorkflow:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def start_workflow(
@@ -390,14 +399,16 @@ class MigrationWorkflow:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_migrationhuborchestrator.types.start_migration_workflow_request.StartMigrationWorkflowRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_migrationhuborchestrator.types.start_migration_workflow_request.StartMigrationWorkflowRequest = {
+            "id": id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def stop_workflow(
@@ -435,14 +446,16 @@ class MigrationWorkflow:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_migrationhuborchestrator.types.stop_migration_workflow_request.StopMigrationWorkflowRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_migrationhuborchestrator.types.stop_migration_workflow_request.StopMigrationWorkflowRequest = {
+            "id": id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -501,14 +514,15 @@ class AsyncMigrationWorkflow:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_migrationhuborchestrator.types.create_migration_workflow_request.CreateMigrationWorkflowRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_migrationhuborchestrator.types.create_migration_workflow_request.CreateMigrationWorkflowRequest = {
+            "name": name,
+            "template_id": template_id,
+            "input_parameters": input_parameters,
+        }
         if description is not None:
             input_["description"] = description
-        input_["template_id"] = template_id
         if application_configuration_id is not None:
             input_["application_configuration_id"] = application_configuration_id
-        input_["input_parameters"] = input_parameters
         if step_targets is not None:
             input_["step_targets"] = step_targets
         if tags is not None:
@@ -519,6 +533,7 @@ class AsyncMigrationWorkflow:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -557,14 +572,16 @@ class AsyncMigrationWorkflow:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_migrationhuborchestrator.types.get_migration_workflow_request.GetMigrationWorkflowRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_migrationhuborchestrator.types.get_migration_workflow_request.GetMigrationWorkflowRequest = {
+            "id": id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update(
@@ -615,8 +632,9 @@ class AsyncMigrationWorkflow:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_migrationhuborchestrator.types.update_migration_workflow_request.UpdateMigrationWorkflowRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_migrationhuborchestrator.types.update_migration_workflow_request.UpdateMigrationWorkflowRequest = {
+            "id": id
+        }
         if name is not None:
             input_["name"] = name
         if description is not None:
@@ -631,6 +649,7 @@ class AsyncMigrationWorkflow:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -669,14 +688,16 @@ class AsyncMigrationWorkflow:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_migrationhuborchestrator.types.delete_migration_workflow_request.DeleteMigrationWorkflowRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_migrationhuborchestrator.types.delete_migration_workflow_request.DeleteMigrationWorkflowRequest = {
+            "id": id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -735,7 +756,7 @@ class AsyncMigrationWorkflow:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_migrationhuborchestrator.types.list_migration_workflows_request.ListMigrationWorkflowsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_migrationhuborchestrator.types.list_migration_workflows_request.ListMigrationWorkflowsRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -756,6 +777,7 @@ class AsyncMigrationWorkflow:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def start_workflow(
@@ -794,14 +816,16 @@ class AsyncMigrationWorkflow:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_migrationhuborchestrator.types.start_migration_workflow_request.StartMigrationWorkflowRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_migrationhuborchestrator.types.start_migration_workflow_request.StartMigrationWorkflowRequest = {
+            "id": id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def stop_workflow(
@@ -840,12 +864,14 @@ class AsyncMigrationWorkflow:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_migrationhuborchestrator.types.stop_migration_workflow_request.StopMigrationWorkflowRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_migrationhuborchestrator.types.stop_migration_workflow_request.StopMigrationWorkflowRequest = {
+            "id": id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

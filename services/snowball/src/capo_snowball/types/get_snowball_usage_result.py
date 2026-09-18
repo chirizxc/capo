@@ -27,8 +27,8 @@ def serialize_aws_json_1_1(value: GetSnowballUsageResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetSnowballUsageResult:
     out: GetSnowballUsageResult = {}  # type: ignore[typeddict-item]
-    if "SnowballLimit" in data:
+    if data.get("SnowballLimit") is not None:
         out["snowball_limit"] = data["SnowballLimit"]
-    if "SnowballsInUse" in data:
+    if data.get("SnowballsInUse") is not None:
         out["snowballs_in_use"] = data["SnowballsInUse"]
     return out

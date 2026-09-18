@@ -25,6 +25,6 @@ def serialize_json(value: KafkaClusterClientAuthenticationDescription) -> dict:
 
 def deserialize_json(data: dict) -> KafkaClusterClientAuthenticationDescription:
     out: KafkaClusterClientAuthenticationDescription = {}  # type: ignore[typeddict-item]
-    if "authenticationType" in data:
+    if data.get("authenticationType") is not None:
         out["authentication_type"] = data["authenticationType"]
     return out

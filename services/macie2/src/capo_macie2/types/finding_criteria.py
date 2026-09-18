@@ -27,7 +27,7 @@ def serialize_json(value: FindingCriteria) -> dict:
 
 def deserialize_json(data: dict) -> FindingCriteria:
     out: FindingCriteria = {}  # type: ignore[typeddict-item]
-    if "criterion" in data:
+    if data.get("criterion") is not None:
         import capo_macie2.types.criterion
 
         out["criterion"] = capo_macie2.types.criterion.deserialize_json(

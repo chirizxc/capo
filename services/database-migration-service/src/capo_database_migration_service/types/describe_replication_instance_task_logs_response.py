@@ -42,9 +42,9 @@ def serialize_aws_json_1_1(value: DescribeReplicationInstanceTaskLogsResponse) -
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeReplicationInstanceTaskLogsResponse:
     out: DescribeReplicationInstanceTaskLogsResponse = {}  # type: ignore[typeddict-item]
-    if "ReplicationInstanceArn" in data:
+    if data.get("ReplicationInstanceArn") is not None:
         out["replication_instance_arn"] = data["ReplicationInstanceArn"]
-    if "ReplicationInstanceTaskLogs" in data:
+    if data.get("ReplicationInstanceTaskLogs") is not None:
         import capo_database_migration_service.types.replication_instance_task_logs_list
 
         out["replication_instance_task_logs"] = (
@@ -52,6 +52,6 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeReplicationInstanceTaskLogsR
                 data["ReplicationInstanceTaskLogs"]
             )
         )
-    if "Marker" in data:
+    if data.get("Marker") is not None:
         out["marker"] = data["Marker"]
     return out

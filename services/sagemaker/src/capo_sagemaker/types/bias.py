@@ -51,13 +51,13 @@ def serialize_aws_json_1_1(value: Bias) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Bias:
     out: Bias = {}  # type: ignore[typeddict-item]
-    if "Report" in data:
+    if data.get("Report") is not None:
         import capo_sagemaker.types.metrics_source
 
         out["report"] = capo_sagemaker.types.metrics_source.deserialize_aws_json_1_1(
             data["Report"]
         )
-    if "PreTrainingReport" in data:
+    if data.get("PreTrainingReport") is not None:
         import capo_sagemaker.types.metrics_source
 
         out["pre_training_report"] = (
@@ -65,7 +65,7 @@ def deserialize_aws_json_1_1(data: dict) -> Bias:
                 data["PreTrainingReport"]
             )
         )
-    if "PostTrainingReport" in data:
+    if data.get("PostTrainingReport") is not None:
         import capo_sagemaker.types.metrics_source
 
         out["post_training_report"] = (

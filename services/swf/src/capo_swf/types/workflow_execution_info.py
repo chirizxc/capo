@@ -90,7 +90,7 @@ def serialize_aws_json_1_0(value: WorkflowExecutionInfo) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> WorkflowExecutionInfo:
     out: WorkflowExecutionInfo = {}  # type: ignore[typeddict-item]
-    if "execution" in data:
+    if data.get("execution") is not None:
         import capo_swf.types.workflow_execution
 
         out["execution"] = capo_swf.types.workflow_execution.deserialize_aws_json_1_0(
@@ -98,7 +98,7 @@ def deserialize_aws_json_1_0(data: dict) -> WorkflowExecutionInfo:
         )
     else:
         raise DeserializationError("WorkflowExecutionInfo.execution required")
-    if "workflowType" in data:
+    if data.get("workflowType") is not None:
         import capo_swf.types.workflow_type
 
         out["workflow_type"] = capo_swf.types.workflow_type.deserialize_aws_json_1_0(
@@ -106,7 +106,7 @@ def deserialize_aws_json_1_0(data: dict) -> WorkflowExecutionInfo:
         )
     else:
         raise DeserializationError("WorkflowExecutionInfo.workflow_type required")
-    if "startTimestamp" in data:
+    if data.get("startTimestamp") is not None:
         import capo_swf.types.timestamp
 
         out["start_timestamp"] = capo_swf.types.timestamp.deserialize_aws_json_1_0(
@@ -114,13 +114,13 @@ def deserialize_aws_json_1_0(data: dict) -> WorkflowExecutionInfo:
         )
     else:
         raise DeserializationError("WorkflowExecutionInfo.start_timestamp required")
-    if "closeTimestamp" in data:
+    if data.get("closeTimestamp") is not None:
         import capo_swf.types.timestamp
 
         out["close_timestamp"] = capo_swf.types.timestamp.deserialize_aws_json_1_0(
             data["closeTimestamp"]
         )
-    if "executionStatus" in data:
+    if data.get("executionStatus") is not None:
         import capo_swf.types.execution_status
 
         out["execution_status"] = (
@@ -130,25 +130,25 @@ def deserialize_aws_json_1_0(data: dict) -> WorkflowExecutionInfo:
         )
     else:
         raise DeserializationError("WorkflowExecutionInfo.execution_status required")
-    if "closeStatus" in data:
+    if data.get("closeStatus") is not None:
         import capo_swf.types.close_status
 
         out["close_status"] = capo_swf.types.close_status.deserialize_aws_json_1_0(
             data["closeStatus"]
         )
-    if "parent" in data:
+    if data.get("parent") is not None:
         import capo_swf.types.workflow_execution
 
         out["parent"] = capo_swf.types.workflow_execution.deserialize_aws_json_1_0(
             data["parent"]
         )
-    if "tagList" in data:
+    if data.get("tagList") is not None:
         import capo_swf.types.tag_list
 
         out["tag_list"] = capo_swf.types.tag_list.deserialize_aws_json_1_0(
             data["tagList"]
         )
-    if "cancelRequested" in data:
+    if data.get("cancelRequested") is not None:
         out["cancel_requested"] = data["cancelRequested"]
     else:
         out["cancel_requested"] = False

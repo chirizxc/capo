@@ -35,11 +35,11 @@ def serialize_json(value: CreateRunGroupResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateRunGroupResponse:
     out: CreateRunGroupResponse = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_omics.types.tag_map
 
         out["tags"] = capo_omics.types.tag_map.deserialize_json(data["tags"])

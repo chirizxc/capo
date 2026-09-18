@@ -41,16 +41,16 @@ def serialize_json(value: DisassociateBotRequest) -> dict:
 
 def deserialize_json(data: dict) -> DisassociateBotRequest:
     out: DisassociateBotRequest = {}  # type: ignore[typeddict-item]
-    if "LexBot" in data:
+    if data.get("LexBot") is not None:
         import capo_connect.types.lex_bot
 
         out["lex_bot"] = capo_connect.types.lex_bot.deserialize_json(data["LexBot"])
-    if "LexV2Bot" in data:
+    if data.get("LexV2Bot") is not None:
         import capo_connect.types.lex_v2_bot
 
         out["lex_v2_bot"] = capo_connect.types.lex_v2_bot.deserialize_json(
             data["LexV2Bot"]
         )
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
     return out

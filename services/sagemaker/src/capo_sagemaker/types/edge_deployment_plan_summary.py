@@ -66,25 +66,25 @@ def serialize_aws_json_1_1(value: EdgeDeploymentPlanSummary) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> EdgeDeploymentPlanSummary:
     out: EdgeDeploymentPlanSummary = {}  # type: ignore[typeddict-item]
-    if "EdgeDeploymentPlanArn" in data:
+    if data.get("EdgeDeploymentPlanArn") is not None:
         out["edge_deployment_plan_arn"] = data["EdgeDeploymentPlanArn"]
-    if "EdgeDeploymentPlanName" in data:
+    if data.get("EdgeDeploymentPlanName") is not None:
         out["edge_deployment_plan_name"] = data["EdgeDeploymentPlanName"]
-    if "DeviceFleetName" in data:
+    if data.get("DeviceFleetName") is not None:
         out["device_fleet_name"] = data["DeviceFleetName"]
-    if "EdgeDeploymentSuccess" in data:
+    if data.get("EdgeDeploymentSuccess") is not None:
         out["edge_deployment_success"] = data["EdgeDeploymentSuccess"]
-    if "EdgeDeploymentPending" in data:
+    if data.get("EdgeDeploymentPending") is not None:
         out["edge_deployment_pending"] = data["EdgeDeploymentPending"]
-    if "EdgeDeploymentFailed" in data:
+    if data.get("EdgeDeploymentFailed") is not None:
         out["edge_deployment_failed"] = data["EdgeDeploymentFailed"]
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_sagemaker.types.timestamp
 
         out["creation_time"] = capo_sagemaker.types.timestamp.deserialize_aws_json_1_1(
             data["CreationTime"]
         )
-    if "LastModifiedTime" in data:
+    if data.get("LastModifiedTime") is not None:
         import capo_sagemaker.types.timestamp
 
         out["last_modified_time"] = (

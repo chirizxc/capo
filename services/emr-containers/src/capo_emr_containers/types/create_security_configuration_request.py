@@ -58,17 +58,17 @@ def serialize_json(value: CreateSecurityConfigurationRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateSecurityConfigurationRequest:
     out: CreateSecurityConfigurationRequest = {}  # type: ignore[typeddict-item]
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     else:
         raise DeserializationError(
             "CreateSecurityConfigurationRequest.client_token required"
         )
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("CreateSecurityConfigurationRequest.name required")
-    if "containerProvider" in data:
+    if data.get("containerProvider") is not None:
         import capo_emr_containers.types.container_provider
 
         out["container_provider"] = (
@@ -76,7 +76,7 @@ def deserialize_json(data: dict) -> CreateSecurityConfigurationRequest:
                 data["containerProvider"]
             )
         )
-    if "securityConfigurationData" in data:
+    if data.get("securityConfigurationData") is not None:
         import capo_emr_containers.types.security_configuration_data
 
         out["security_configuration_data"] = (
@@ -88,7 +88,7 @@ def deserialize_json(data: dict) -> CreateSecurityConfigurationRequest:
         raise DeserializationError(
             "CreateSecurityConfigurationRequest.security_configuration_data required"
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_emr_containers.types.tag_map
 
         out["tags"] = capo_emr_containers.types.tag_map.deserialize_json(data["tags"])

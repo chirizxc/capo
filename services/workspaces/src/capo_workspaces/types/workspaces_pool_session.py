@@ -95,7 +95,7 @@ def serialize_aws_json_1_1(value: WorkspacesPoolSession) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> WorkspacesPoolSession:
     out: WorkspacesPoolSession = {}  # type: ignore[typeddict-item]
-    if "AuthenticationType" in data:
+    if data.get("AuthenticationType") is not None:
         import capo_workspaces.types.authentication_type
 
         out["authentication_type"] = (
@@ -103,7 +103,7 @@ def deserialize_aws_json_1_1(data: dict) -> WorkspacesPoolSession:
                 data["AuthenticationType"]
             )
         )
-    if "ConnectionState" in data:
+    if data.get("ConnectionState") is not None:
         import capo_workspaces.types.session_connection_state
 
         out["connection_state"] = (
@@ -111,17 +111,17 @@ def deserialize_aws_json_1_1(data: dict) -> WorkspacesPoolSession:
                 data["ConnectionState"]
             )
         )
-    if "SessionId" in data:
+    if data.get("SessionId") is not None:
         out["session_id"] = data["SessionId"]
     else:
         raise DeserializationError("WorkspacesPoolSession.session_id required")
-    if "InstanceId" in data:
+    if data.get("InstanceId") is not None:
         out["instance_id"] = data["InstanceId"]
-    if "PoolId" in data:
+    if data.get("PoolId") is not None:
         out["pool_id"] = data["PoolId"]
     else:
         raise DeserializationError("WorkspacesPoolSession.pool_id required")
-    if "ExpirationTime" in data:
+    if data.get("ExpirationTime") is not None:
         import capo_workspaces.types.timestamp
 
         out["expiration_time"] = (
@@ -129,7 +129,7 @@ def deserialize_aws_json_1_1(data: dict) -> WorkspacesPoolSession:
                 data["ExpirationTime"]
             )
         )
-    if "NetworkAccessConfiguration" in data:
+    if data.get("NetworkAccessConfiguration") is not None:
         import capo_workspaces.types.network_access_configuration
 
         out["network_access_configuration"] = (
@@ -137,13 +137,13 @@ def deserialize_aws_json_1_1(data: dict) -> WorkspacesPoolSession:
                 data["NetworkAccessConfiguration"]
             )
         )
-    if "StartTime" in data:
+    if data.get("StartTime") is not None:
         import capo_workspaces.types.timestamp
 
         out["start_time"] = capo_workspaces.types.timestamp.deserialize_aws_json_1_1(
             data["StartTime"]
         )
-    if "UserId" in data:
+    if data.get("UserId") is not None:
         out["user_id"] = data["UserId"]
     else:
         raise DeserializationError("WorkspacesPoolSession.user_id required")

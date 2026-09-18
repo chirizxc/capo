@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> OverrideList:
 
     out: OverrideList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_tnb.types.tosca_override.deserialize_json(item))
     return out

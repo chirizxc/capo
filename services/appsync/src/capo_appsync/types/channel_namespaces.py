@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> ChannelNamespaces:
 
     out: ChannelNamespaces = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_appsync.types.channel_namespace.deserialize_json(item))
     return out

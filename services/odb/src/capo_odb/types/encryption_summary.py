@@ -44,7 +44,7 @@ def serialize_aws_json_1_0(value: EncryptionSummary) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> EncryptionSummary:
     out: EncryptionSummary = {}  # type: ignore[typeddict-item]
-    if "encryptionKeyProvider" in data:
+    if data.get("encryptionKeyProvider") is not None:
         import capo_odb.types.encryption_key_provider
 
         out["encryption_key_provider"] = (
@@ -52,7 +52,7 @@ def deserialize_aws_json_1_0(data: dict) -> EncryptionSummary:
                 data["encryptionKeyProvider"]
             )
         )
-    if "encryptionKeyConfiguration" in data:
+    if data.get("encryptionKeyConfiguration") is not None:
         import capo_odb.types.encryption_key_configuration
 
         out["encryption_key_configuration"] = (

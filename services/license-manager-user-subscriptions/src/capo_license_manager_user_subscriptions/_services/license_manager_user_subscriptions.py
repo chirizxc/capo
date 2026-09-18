@@ -224,10 +224,11 @@ class LicenseManagerUserSubscriptionsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_license_manager_user_subscriptions.types.associate_user_request.AssociateUserRequest = {}  # type: ignore[typeddict-item]
-        input_["username"] = username
-        input_["instance_id"] = instance_id
-        input_["identity_provider"] = identity_provider
+        input_: capo_license_manager_user_subscriptions.types.associate_user_request.AssociateUserRequest = {
+            "username": username,
+            "instance_id": instance_id,
+            "identity_provider": identity_provider,
+        }
         if domain is not None:
             input_["domain"] = domain
         if tags is not None:
@@ -238,6 +239,7 @@ class LicenseManagerUserSubscriptionsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_license_server_endpoint(
@@ -283,9 +285,10 @@ class LicenseManagerUserSubscriptionsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_license_manager_user_subscriptions.types.create_license_server_endpoint_request.CreateLicenseServerEndpointRequest = {}  # type: ignore[typeddict-item]
-        input_["identity_provider_arn"] = identity_provider_arn
-        input_["license_server_settings"] = license_server_settings
+        input_: capo_license_manager_user_subscriptions.types.create_license_server_endpoint_request.CreateLicenseServerEndpointRequest = {
+            "identity_provider_arn": identity_provider_arn,
+            "license_server_settings": license_server_settings,
+        }
         if tags is not None:
             input_["tags"] = tags
 
@@ -294,6 +297,7 @@ class LicenseManagerUserSubscriptionsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_license_server_endpoint(
@@ -335,15 +339,17 @@ class LicenseManagerUserSubscriptionsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_license_manager_user_subscriptions.types.delete_license_server_endpoint_request.DeleteLicenseServerEndpointRequest = {}  # type: ignore[typeddict-item]
-        input_["license_server_endpoint_arn"] = license_server_endpoint_arn
-        input_["server_type"] = server_type
+        input_: capo_license_manager_user_subscriptions.types.delete_license_server_endpoint_request.DeleteLicenseServerEndpointRequest = {
+            "license_server_endpoint_arn": license_server_endpoint_arn,
+            "server_type": server_type,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def deregister_identity_provider(
@@ -391,7 +397,7 @@ class LicenseManagerUserSubscriptionsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_license_manager_user_subscriptions.types.deregister_identity_provider_request.DeregisterIdentityProviderRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_license_manager_user_subscriptions.types.deregister_identity_provider_request.DeregisterIdentityProviderRequest = {}
         if identity_provider is not None:
             input_["identity_provider"] = identity_provider
         if product is not None:
@@ -404,6 +410,7 @@ class LicenseManagerUserSubscriptionsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def disassociate_user(
@@ -455,7 +462,7 @@ class LicenseManagerUserSubscriptionsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_license_manager_user_subscriptions.types.disassociate_user_request.DisassociateUserRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_license_manager_user_subscriptions.types.disassociate_user_request.DisassociateUserRequest = {}
         if username is not None:
             input_["username"] = username
         if instance_id is not None:
@@ -472,6 +479,7 @@ class LicenseManagerUserSubscriptionsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_identity_providers(
@@ -519,7 +527,7 @@ class LicenseManagerUserSubscriptionsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_license_manager_user_subscriptions.types.list_identity_providers_request.ListIdentityProvidersRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_license_manager_user_subscriptions.types.list_identity_providers_request.ListIdentityProvidersRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if filters is not None:
@@ -532,6 +540,7 @@ class LicenseManagerUserSubscriptionsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_identity_providers(
@@ -606,7 +615,7 @@ class LicenseManagerUserSubscriptionsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_license_manager_user_subscriptions.types.list_instances_request.ListInstancesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_license_manager_user_subscriptions.types.list_instances_request.ListInstancesRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -619,6 +628,7 @@ class LicenseManagerUserSubscriptionsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_instances(
@@ -692,7 +702,7 @@ class LicenseManagerUserSubscriptionsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_license_manager_user_subscriptions.types.list_license_server_endpoints_request.ListLicenseServerEndpointsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_license_manager_user_subscriptions.types.list_license_server_endpoints_request.ListLicenseServerEndpointsRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if filters is not None:
@@ -705,6 +715,7 @@ class LicenseManagerUserSubscriptionsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_license_server_endpoints(
@@ -783,10 +794,11 @@ class LicenseManagerUserSubscriptionsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_license_manager_user_subscriptions.types.list_product_subscriptions_request.ListProductSubscriptionsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_license_manager_user_subscriptions.types.list_product_subscriptions_request.ListProductSubscriptionsRequest = {
+            "identity_provider": identity_provider
+        }
         if product is not None:
             input_["product"] = product
-        input_["identity_provider"] = identity_provider
         if max_results is not None:
             input_["max_results"] = max_results
         if filters is not None:
@@ -799,6 +811,7 @@ class LicenseManagerUserSubscriptionsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_product_subscriptions(
@@ -865,14 +878,16 @@ class LicenseManagerUserSubscriptionsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_license_manager_user_subscriptions.types.list_tags_for_resource_request.ListTagsForResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_license_manager_user_subscriptions.types.list_tags_for_resource_request.ListTagsForResourceRequest = {
+            "resource_arn": resource_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_user_associations(
@@ -924,9 +939,10 @@ class LicenseManagerUserSubscriptionsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_license_manager_user_subscriptions.types.list_user_associations_request.ListUserAssociationsRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["identity_provider"] = identity_provider
+        input_: capo_license_manager_user_subscriptions.types.list_user_associations_request.ListUserAssociationsRequest = {
+            "instance_id": instance_id,
+            "identity_provider": identity_provider,
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if filters is not None:
@@ -939,6 +955,7 @@ class LicenseManagerUserSubscriptionsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_user_associations(
@@ -1019,9 +1036,10 @@ class LicenseManagerUserSubscriptionsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_license_manager_user_subscriptions.types.register_identity_provider_request.RegisterIdentityProviderRequest = {}  # type: ignore[typeddict-item]
-        input_["identity_provider"] = identity_provider
-        input_["product"] = product
+        input_: capo_license_manager_user_subscriptions.types.register_identity_provider_request.RegisterIdentityProviderRequest = {
+            "identity_provider": identity_provider,
+            "product": product,
+        }
         if settings is not None:
             input_["settings"] = settings
         if tags is not None:
@@ -1032,6 +1050,7 @@ class LicenseManagerUserSubscriptionsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def start_product_subscription(
@@ -1081,10 +1100,11 @@ class LicenseManagerUserSubscriptionsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_license_manager_user_subscriptions.types.start_product_subscription_request.StartProductSubscriptionRequest = {}  # type: ignore[typeddict-item]
-        input_["username"] = username
-        input_["identity_provider"] = identity_provider
-        input_["product"] = product
+        input_: capo_license_manager_user_subscriptions.types.start_product_subscription_request.StartProductSubscriptionRequest = {
+            "username": username,
+            "identity_provider": identity_provider,
+            "product": product,
+        }
         if domain is not None:
             input_["domain"] = domain
         if tags is not None:
@@ -1095,6 +1115,7 @@ class LicenseManagerUserSubscriptionsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def stop_product_subscription(
@@ -1146,7 +1167,7 @@ class LicenseManagerUserSubscriptionsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_license_manager_user_subscriptions.types.stop_product_subscription_request.StopProductSubscriptionRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_license_manager_user_subscriptions.types.stop_product_subscription_request.StopProductSubscriptionRequest = {}
         if username is not None:
             input_["username"] = username
         if identity_provider is not None:
@@ -1163,6 +1184,7 @@ class LicenseManagerUserSubscriptionsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def tag_resource(
@@ -1200,15 +1222,17 @@ class LicenseManagerUserSubscriptionsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_license_manager_user_subscriptions.types.tag_resource_request.TagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tags"] = tags
+        input_: capo_license_manager_user_subscriptions.types.tag_resource_request.TagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tags": tags,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def untag_resource(
@@ -1245,15 +1269,17 @@ class LicenseManagerUserSubscriptionsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_license_manager_user_subscriptions.types.untag_resource_request.UntagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tag_keys"] = tag_keys
+        input_: capo_license_manager_user_subscriptions.types.untag_resource_request.UntagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tag_keys": tag_keys,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_identity_provider_settings(
@@ -1299,20 +1325,22 @@ class LicenseManagerUserSubscriptionsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_license_manager_user_subscriptions.types.update_identity_provider_settings_request.UpdateIdentityProviderSettingsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_license_manager_user_subscriptions.types.update_identity_provider_settings_request.UpdateIdentityProviderSettingsRequest = {
+            "update_settings": update_settings
+        }
         if identity_provider is not None:
             input_["identity_provider"] = identity_provider
         if product is not None:
             input_["product"] = product
         if identity_provider_arn is not None:
             input_["identity_provider_arn"] = identity_provider_arn
-        input_["update_settings"] = update_settings
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def __enter__(self) -> Self:

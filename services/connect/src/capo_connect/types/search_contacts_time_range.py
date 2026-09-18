@@ -41,7 +41,7 @@ def serialize_json(value: SearchContactsTimeRange) -> dict:
 
 def deserialize_json(data: dict) -> SearchContactsTimeRange:
     out: SearchContactsTimeRange = {}  # type: ignore[typeddict-item]
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_connect.types.search_contacts_time_range_type
 
         out["type"] = (
@@ -51,7 +51,7 @@ def deserialize_json(data: dict) -> SearchContactsTimeRange:
         )
     else:
         raise DeserializationError("SearchContactsTimeRange.type required")
-    if "StartTime" in data:
+    if data.get("StartTime") is not None:
         import capo_connect.types.timestamp
 
         out["start_time"] = capo_connect.types.timestamp.deserialize_json(
@@ -59,7 +59,7 @@ def deserialize_json(data: dict) -> SearchContactsTimeRange:
         )
     else:
         raise DeserializationError("SearchContactsTimeRange.start_time required")
-    if "EndTime" in data:
+    if data.get("EndTime") is not None:
         import capo_connect.types.timestamp
 
         out["end_time"] = capo_connect.types.timestamp.deserialize_json(data["EndTime"])

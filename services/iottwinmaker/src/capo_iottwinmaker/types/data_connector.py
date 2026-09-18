@@ -34,12 +34,12 @@ def serialize_json(value: DataConnector) -> dict:
 
 def deserialize_json(data: dict) -> DataConnector:
     out: DataConnector = {}  # type: ignore[typeddict-item]
-    if "lambda" in data:
+    if data.get("lambda") is not None:
         import capo_iottwinmaker.types.lambda_function
 
         out["lambda"] = capo_iottwinmaker.types.lambda_function.deserialize_json(
             data["lambda"]
         )
-    if "isNative" in data:
+    if data.get("isNative") is not None:
         out["is_native"] = data["isNative"]
     return out

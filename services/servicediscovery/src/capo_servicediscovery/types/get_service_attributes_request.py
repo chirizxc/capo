@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: GetServiceAttributesRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetServiceAttributesRequest:
     out: GetServiceAttributesRequest = {}  # type: ignore[typeddict-item]
-    if "ServiceId" in data:
+    if data.get("ServiceId") is not None:
         out["service_id"] = data["ServiceId"]
     else:
         raise DeserializationError("GetServiceAttributesRequest.service_id required")

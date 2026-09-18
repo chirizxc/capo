@@ -30,19 +30,19 @@ def serialize_json(value: DeleteWorkspaceServiceAccountTokenResponse) -> dict:
 
 def deserialize_json(data: dict) -> DeleteWorkspaceServiceAccountTokenResponse:
     out: DeleteWorkspaceServiceAccountTokenResponse = {}  # type: ignore[typeddict-item]
-    if "tokenId" in data:
+    if data.get("tokenId") is not None:
         out["token_id"] = data["tokenId"]
     else:
         raise DeserializationError(
             "DeleteWorkspaceServiceAccountTokenResponse.token_id required"
         )
-    if "serviceAccountId" in data:
+    if data.get("serviceAccountId") is not None:
         out["service_account_id"] = data["serviceAccountId"]
     else:
         raise DeserializationError(
             "DeleteWorkspaceServiceAccountTokenResponse.service_account_id required"
         )
-    if "workspaceId" in data:
+    if data.get("workspaceId") is not None:
         out["workspace_id"] = data["workspaceId"]
     else:
         raise DeserializationError(

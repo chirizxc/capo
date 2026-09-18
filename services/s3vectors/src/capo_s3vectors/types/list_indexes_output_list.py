@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> ListIndexesOutputList:
 
     out: ListIndexesOutputList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_s3vectors.types.index_summary.deserialize_json(item))
     return out

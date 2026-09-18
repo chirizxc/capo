@@ -50,11 +50,11 @@ def serialize_aws_json_1_1(value: ListLogPatternSetsResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListLogPatternSetsResponse:
     out: ListLogPatternSetsResponse = {}  # type: ignore[typeddict-item]
-    if "ResourceGroupName" in data:
+    if data.get("ResourceGroupName") is not None:
         out["resource_group_name"] = data["ResourceGroupName"]
-    if "AccountId" in data:
+    if data.get("AccountId") is not None:
         out["account_id"] = data["AccountId"]
-    if "LogPatternSets" in data:
+    if data.get("LogPatternSets") is not None:
         import capo_application_insights.types.log_pattern_set_list
 
         out["log_pattern_sets"] = (
@@ -62,6 +62,6 @@ def deserialize_aws_json_1_1(data: dict) -> ListLogPatternSetsResponse:
                 data["LogPatternSets"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

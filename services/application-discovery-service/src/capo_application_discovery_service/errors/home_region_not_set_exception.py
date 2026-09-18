@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: HomeRegionNotSetException_) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> HomeRegionNotSetException_:
     out: HomeRegionNotSetException_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     return out
 
@@ -34,15 +34,18 @@ class HomeRegionNotSetException(ServiceError):
 
     code: str | None = "HomeRegionNotSetException"
 
-    def __init__(self, data: HomeRegionNotSetException_):
+    def __init__(self, data: HomeRegionNotSetException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="HomeRegionNotSetException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "HomeRegionNotSetException":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "HomeRegionNotSetException":
+        return cls(deserialize_aws_json_1_1(data), message)

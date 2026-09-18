@@ -41,25 +41,25 @@ def serialize_aws_json_1_1(value: TrustedAdvisorCheckDescription) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> TrustedAdvisorCheckDescription:
     out: TrustedAdvisorCheckDescription = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("TrustedAdvisorCheckDescription.id required")
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("TrustedAdvisorCheckDescription.name required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
     else:
         raise DeserializationError(
             "TrustedAdvisorCheckDescription.description required"
         )
-    if "category" in data:
+    if data.get("category") is not None:
         out["category"] = data["category"]
     else:
         raise DeserializationError("TrustedAdvisorCheckDescription.category required")
-    if "metadata" in data:
+    if data.get("metadata") is not None:
         import capo_support.types.string_list
 
         out["metadata"] = capo_support.types.string_list.deserialize_aws_json_1_1(

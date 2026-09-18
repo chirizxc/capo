@@ -104,13 +104,13 @@ def serialize_aws_json_1_1(value: MatchmakingTicket) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> MatchmakingTicket:
     out: MatchmakingTicket = {}  # type: ignore[typeddict-item]
-    if "TicketId" in data:
+    if data.get("TicketId") is not None:
         out["ticket_id"] = data["TicketId"]
-    if "ConfigurationName" in data:
+    if data.get("ConfigurationName") is not None:
         out["configuration_name"] = data["ConfigurationName"]
-    if "ConfigurationArn" in data:
+    if data.get("ConfigurationArn") is not None:
         out["configuration_arn"] = data["ConfigurationArn"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_gamelift.types.matchmaking_configuration_status
 
         out["status"] = (
@@ -118,29 +118,29 @@ def deserialize_aws_json_1_1(data: dict) -> MatchmakingTicket:
                 data["Status"]
             )
         )
-    if "StatusReason" in data:
+    if data.get("StatusReason") is not None:
         out["status_reason"] = data["StatusReason"]
-    if "StatusMessage" in data:
+    if data.get("StatusMessage") is not None:
         out["status_message"] = data["StatusMessage"]
-    if "StartTime" in data:
+    if data.get("StartTime") is not None:
         import capo_gamelift.types.timestamp
 
         out["start_time"] = capo_gamelift.types.timestamp.deserialize_aws_json_1_1(
             data["StartTime"]
         )
-    if "EndTime" in data:
+    if data.get("EndTime") is not None:
         import capo_gamelift.types.timestamp
 
         out["end_time"] = capo_gamelift.types.timestamp.deserialize_aws_json_1_1(
             data["EndTime"]
         )
-    if "Players" in data:
+    if data.get("Players") is not None:
         import capo_gamelift.types.player_list
 
         out["players"] = capo_gamelift.types.player_list.deserialize_aws_json_1_1(
             data["Players"]
         )
-    if "GameSessionConnectionInfo" in data:
+    if data.get("GameSessionConnectionInfo") is not None:
         import capo_gamelift.types.game_session_connection_info
 
         out["game_session_connection_info"] = (
@@ -148,6 +148,6 @@ def deserialize_aws_json_1_1(data: dict) -> MatchmakingTicket:
                 data["GameSessionConnectionInfo"]
             )
         )
-    if "EstimatedWaitTime" in data:
+    if data.get("EstimatedWaitTime") is not None:
         out["estimated_wait_time"] = data["EstimatedWaitTime"]
     return out

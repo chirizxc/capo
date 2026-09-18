@@ -31,7 +31,7 @@ def serialize_json(value: BatchUpdatePhoneNumberResponse) -> dict:
 
 def deserialize_json(data: dict) -> BatchUpdatePhoneNumberResponse:
     out: BatchUpdatePhoneNumberResponse = {}  # type: ignore[typeddict-item]
-    if "PhoneNumberErrors" in data:
+    if data.get("PhoneNumberErrors") is not None:
         import capo_chime.types.phone_number_error_list
 
         out["phone_number_errors"] = (

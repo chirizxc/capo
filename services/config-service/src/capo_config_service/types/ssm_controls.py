@@ -31,10 +31,10 @@ def serialize_aws_json_1_1(value: SsmControls) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SsmControls:
     out: SsmControls = {}  # type: ignore[typeddict-item]
-    if "ConcurrentExecutionRatePercentage" in data:
+    if data.get("ConcurrentExecutionRatePercentage") is not None:
         out["concurrent_execution_rate_percentage"] = data[
             "ConcurrentExecutionRatePercentage"
         ]
-    if "ErrorPercentage" in data:
+    if data.get("ErrorPercentage") is not None:
         out["error_percentage"] = data["ErrorPercentage"]
     return out

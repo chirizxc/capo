@@ -45,20 +45,20 @@ def serialize_json(value: CreateKxEnvironmentRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateKxEnvironmentRequest:
     out: CreateKxEnvironmentRequest = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("CreateKxEnvironmentRequest.name required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "kmsKeyId" in data:
+    if data.get("kmsKeyId") is not None:
         out["kms_key_id"] = data["kmsKeyId"]
     else:
         raise DeserializationError("CreateKxEnvironmentRequest.kms_key_id required")
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_finspace.types.tag_map
 
         out["tags"] = capo_finspace.types.tag_map.deserialize_json(data["tags"])
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     return out

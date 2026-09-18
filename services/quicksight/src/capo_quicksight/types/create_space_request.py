@@ -36,14 +36,14 @@ def serialize_json(value: CreateSpaceRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateSpaceRequest:
     out: CreateSpaceRequest = {}  # type: ignore[typeddict-item]
-    if "SpaceId" in data:
+    if data.get("SpaceId") is not None:
         out["space_id"] = data["SpaceId"]
     else:
         raise DeserializationError("CreateSpaceRequest.space_id required")
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("CreateSpaceRequest.name required")
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
     return out

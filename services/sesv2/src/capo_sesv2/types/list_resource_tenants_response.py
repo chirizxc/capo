@@ -36,7 +36,7 @@ def serialize_json(value: ListResourceTenantsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListResourceTenantsResponse:
     out: ListResourceTenantsResponse = {}  # type: ignore[typeddict-item]
-    if "ResourceTenants" in data:
+    if data.get("ResourceTenants") is not None:
         import capo_sesv2.types.resource_tenant_metadata_list
 
         out["resource_tenants"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> ListResourceTenantsResponse:
                 data["ResourceTenants"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

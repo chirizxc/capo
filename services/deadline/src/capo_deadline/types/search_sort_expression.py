@@ -64,7 +64,7 @@ def serialize_json(value: SearchSortExpression) -> dict:
 
 
 def deserialize_json(data: dict) -> SearchSortExpression:
-    if "userJobsFirst" in data:
+    if data.get("userJobsFirst") is not None:
         import capo_deadline.types.user_jobs_first
 
         return {
@@ -72,7 +72,7 @@ def deserialize_json(data: dict) -> SearchSortExpression:
                 data["userJobsFirst"]
             )
         }
-    elif "fieldSort" in data:
+    elif data.get("fieldSort") is not None:
         import capo_deadline.types.field_sort_expression
 
         return {
@@ -80,7 +80,7 @@ def deserialize_json(data: dict) -> SearchSortExpression:
                 data["fieldSort"]
             )
         }
-    elif "parameterSort" in data:
+    elif data.get("parameterSort") is not None:
         import capo_deadline.types.parameter_sort_expression
 
         return {

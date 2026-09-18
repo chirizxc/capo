@@ -34,12 +34,12 @@ def serialize_aws_json_1_1(value: SupportedDialect) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SupportedDialect:
     out: SupportedDialect = {}  # type: ignore[typeddict-item]
-    if "Dialect" in data:
+    if data.get("Dialect") is not None:
         import capo_glue.types.view_dialect
 
         out["dialect"] = capo_glue.types.view_dialect.deserialize_aws_json_1_1(
             data["Dialect"]
         )
-    if "DialectVersion" in data:
+    if data.get("DialectVersion") is not None:
         out["dialect_version"] = data["DialectVersion"]
     return out

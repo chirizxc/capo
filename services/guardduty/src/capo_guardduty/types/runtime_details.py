@@ -36,13 +36,13 @@ def serialize_json(value: RuntimeDetails) -> dict:
 
 def deserialize_json(data: dict) -> RuntimeDetails:
     out: RuntimeDetails = {}  # type: ignore[typeddict-item]
-    if "process" in data:
+    if data.get("process") is not None:
         import capo_guardduty.types.process_details
 
         out["process"] = capo_guardduty.types.process_details.deserialize_json(
             data["process"]
         )
-    if "context" in data:
+    if data.get("context") is not None:
         import capo_guardduty.types.runtime_context
 
         out["context"] = capo_guardduty.types.runtime_context.deserialize_json(

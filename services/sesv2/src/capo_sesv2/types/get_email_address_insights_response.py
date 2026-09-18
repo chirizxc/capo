@@ -29,7 +29,7 @@ def serialize_json(value: GetEmailAddressInsightsResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetEmailAddressInsightsResponse:
     out: GetEmailAddressInsightsResponse = {}  # type: ignore[typeddict-item]
-    if "MailboxValidation" in data:
+    if data.get("MailboxValidation") is not None:
         import capo_sesv2.types.mailbox_validation
 
         out["mailbox_validation"] = (

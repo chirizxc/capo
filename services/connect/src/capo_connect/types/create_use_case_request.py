@@ -43,7 +43,7 @@ def serialize_json(value: CreateUseCaseRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateUseCaseRequest:
     out: CreateUseCaseRequest = {}  # type: ignore[typeddict-item]
-    if "UseCaseType" in data:
+    if data.get("UseCaseType") is not None:
         import capo_connect.types.use_case_type
 
         out["use_case_type"] = capo_connect.types.use_case_type.deserialize_json(
@@ -51,7 +51,7 @@ def deserialize_json(data: dict) -> CreateUseCaseRequest:
         )
     else:
         raise DeserializationError("CreateUseCaseRequest.use_case_type required")
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_connect.types.tag_map
 
         out["tags"] = capo_connect.types.tag_map.deserialize_json(data["Tags"])

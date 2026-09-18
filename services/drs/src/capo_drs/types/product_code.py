@@ -28,8 +28,8 @@ def serialize_json(value: ProductCode) -> dict:
 
 def deserialize_json(data: dict) -> ProductCode:
     out: ProductCode = {}  # type: ignore[typeddict-item]
-    if "productCodeId" in data:
+    if data.get("productCodeId") is not None:
         out["product_code_id"] = data["productCodeId"]
-    if "productCodeMode" in data:
+    if data.get("productCodeMode") is not None:
         out["product_code_mode"] = data["productCodeMode"]
     return out

@@ -22,8 +22,8 @@ def serialize_json(value: CategoryWithFindingNum) -> dict:
 
 def deserialize_json(data: dict) -> CategoryWithFindingNum:
     out: CategoryWithFindingNum = {}  # type: ignore[typeddict-item]
-    if "categoryName" in data:
+    if data.get("categoryName") is not None:
         out["category_name"] = data["categoryName"]
-    if "findingNumber" in data:
+    if data.get("findingNumber") is not None:
         out["finding_number"] = data["findingNumber"]
     return out

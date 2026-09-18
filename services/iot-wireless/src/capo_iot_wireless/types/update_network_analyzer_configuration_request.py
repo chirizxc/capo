@@ -107,13 +107,13 @@ def serialize_json(value: UpdateNetworkAnalyzerConfigurationRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateNetworkAnalyzerConfigurationRequest:
     out: UpdateNetworkAnalyzerConfigurationRequest = {}  # type: ignore[typeddict-item]
-    if "TraceContent" in data:
+    if data.get("TraceContent") is not None:
         import capo_iot_wireless.types.trace_content
 
         out["trace_content"] = capo_iot_wireless.types.trace_content.deserialize_json(
             data["TraceContent"]
         )
-    if "WirelessDevicesToAdd" in data:
+    if data.get("WirelessDevicesToAdd") is not None:
         import capo_iot_wireless.types.wireless_device_list
 
         out["wireless_devices_to_add"] = (
@@ -121,7 +121,7 @@ def deserialize_json(data: dict) -> UpdateNetworkAnalyzerConfigurationRequest:
                 data["WirelessDevicesToAdd"]
             )
         )
-    if "WirelessDevicesToRemove" in data:
+    if data.get("WirelessDevicesToRemove") is not None:
         import capo_iot_wireless.types.wireless_device_list
 
         out["wireless_devices_to_remove"] = (
@@ -129,7 +129,7 @@ def deserialize_json(data: dict) -> UpdateNetworkAnalyzerConfigurationRequest:
                 data["WirelessDevicesToRemove"]
             )
         )
-    if "WirelessGatewaysToAdd" in data:
+    if data.get("WirelessGatewaysToAdd") is not None:
         import capo_iot_wireless.types.wireless_gateway_list
 
         out["wireless_gateways_to_add"] = (
@@ -137,7 +137,7 @@ def deserialize_json(data: dict) -> UpdateNetworkAnalyzerConfigurationRequest:
                 data["WirelessGatewaysToAdd"]
             )
         )
-    if "WirelessGatewaysToRemove" in data:
+    if data.get("WirelessGatewaysToRemove") is not None:
         import capo_iot_wireless.types.wireless_gateway_list
 
         out["wireless_gateways_to_remove"] = (
@@ -145,9 +145,9 @@ def deserialize_json(data: dict) -> UpdateNetworkAnalyzerConfigurationRequest:
                 data["WirelessGatewaysToRemove"]
             )
         )
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "MulticastGroupsToAdd" in data:
+    if data.get("MulticastGroupsToAdd") is not None:
         import capo_iot_wireless.types.network_analyzer_multicast_group_list
 
         out["multicast_groups_to_add"] = (
@@ -155,7 +155,7 @@ def deserialize_json(data: dict) -> UpdateNetworkAnalyzerConfigurationRequest:
                 data["MulticastGroupsToAdd"]
             )
         )
-    if "MulticastGroupsToRemove" in data:
+    if data.get("MulticastGroupsToRemove") is not None:
         import capo_iot_wireless.types.network_analyzer_multicast_group_list
 
         out["multicast_groups_to_remove"] = (

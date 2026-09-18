@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> ExportFilters:
 
     out: ExportFilters = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_lex_models_v2.types.export_filter.deserialize_json(item))
     return out

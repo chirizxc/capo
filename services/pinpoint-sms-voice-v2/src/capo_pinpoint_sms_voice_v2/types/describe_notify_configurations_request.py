@@ -54,7 +54,7 @@ def serialize_aws_json_1_0(value: DescribeNotifyConfigurationsRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> DescribeNotifyConfigurationsRequest:
     out: DescribeNotifyConfigurationsRequest = {}  # type: ignore[typeddict-item]
-    if "NotifyConfigurationIds" in data:
+    if data.get("NotifyConfigurationIds") is not None:
         import capo_pinpoint_sms_voice_v2.types.notify_configuration_id_list
 
         out["notify_configuration_ids"] = (
@@ -62,7 +62,7 @@ def deserialize_aws_json_1_0(data: dict) -> DescribeNotifyConfigurationsRequest:
                 data["NotifyConfigurationIds"]
             )
         )
-    if "Filters" in data:
+    if data.get("Filters") is not None:
         import capo_pinpoint_sms_voice_v2.types.notify_configuration_filter_list
 
         out["filters"] = (
@@ -70,8 +70,8 @@ def deserialize_aws_json_1_0(data: dict) -> DescribeNotifyConfigurationsRequest:
                 data["Filters"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
     return out

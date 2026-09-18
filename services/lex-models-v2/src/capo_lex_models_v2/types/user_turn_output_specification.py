@@ -48,7 +48,7 @@ def serialize_json(value: UserTurnOutputSpecification) -> dict:
 
 def deserialize_json(data: dict) -> UserTurnOutputSpecification:
     out: UserTurnOutputSpecification = {}  # type: ignore[typeddict-item]
-    if "intent" in data:
+    if data.get("intent") is not None:
         import capo_lex_models_v2.types.user_turn_intent_output
 
         out["intent"] = (
@@ -58,7 +58,7 @@ def deserialize_json(data: dict) -> UserTurnOutputSpecification:
         )
     else:
         raise DeserializationError("UserTurnOutputSpecification.intent required")
-    if "activeContexts" in data:
+    if data.get("activeContexts") is not None:
         import capo_lex_models_v2.types.active_context_list
 
         out["active_contexts"] = (
@@ -66,6 +66,6 @@ def deserialize_json(data: dict) -> UserTurnOutputSpecification:
                 data["activeContexts"]
             )
         )
-    if "transcript" in data:
+    if data.get("transcript") is not None:
         out["transcript"] = data["transcript"]
     return out

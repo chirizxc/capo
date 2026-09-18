@@ -23,6 +23,6 @@ def serialize_json(value: FargatePlatformConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> FargatePlatformConfiguration:
     out: FargatePlatformConfiguration = {}  # type: ignore[typeddict-item]
-    if "platformVersion" in data:
+    if data.get("platformVersion") is not None:
         out["platform_version"] = data["platformVersion"]
     return out

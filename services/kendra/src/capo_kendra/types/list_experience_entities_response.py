@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: ListExperienceEntitiesResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListExperienceEntitiesResponse:
     out: ListExperienceEntitiesResponse = {}  # type: ignore[typeddict-item]
-    if "SummaryItems" in data:
+    if data.get("SummaryItems") is not None:
         import capo_kendra.types.experience_entities_summary_list
 
         out["summary_items"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_1(data: dict) -> ListExperienceEntitiesResponse:
                 data["SummaryItems"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

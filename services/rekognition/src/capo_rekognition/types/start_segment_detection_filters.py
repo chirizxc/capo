@@ -44,7 +44,7 @@ def serialize_aws_json_1_1(value: StartSegmentDetectionFilters) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> StartSegmentDetectionFilters:
     out: StartSegmentDetectionFilters = {}  # type: ignore[typeddict-item]
-    if "TechnicalCueFilter" in data:
+    if data.get("TechnicalCueFilter") is not None:
         import capo_rekognition.types.start_technical_cue_detection_filter
 
         out["technical_cue_filter"] = (
@@ -52,7 +52,7 @@ def deserialize_aws_json_1_1(data: dict) -> StartSegmentDetectionFilters:
                 data["TechnicalCueFilter"]
             )
         )
-    if "ShotFilter" in data:
+    if data.get("ShotFilter") is not None:
         import capo_rekognition.types.start_shot_detection_filter
 
         out["shot_filter"] = (

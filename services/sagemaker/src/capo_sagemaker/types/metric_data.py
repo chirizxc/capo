@@ -25,7 +25,15 @@ def serialize_aws_json_1_1(value: MetricData) -> dict:
     if "metric_name" in value:
         out["MetricName"] = value["metric_name"]
     if "value" in value:
-        out["Value"] = value["value"]
+        out["Value"] = (
+            "NaN"
+            if value["value"] != value["value"]
+            else "Infinity"
+            if value["value"] == float("inf")
+            else "-Infinity"
+            if value["value"] == float("-inf")
+            else value["value"]
+        )
     if "timestamp" in value:
         import capo_sagemaker.types.timestamp
 
@@ -37,11 +45,11 @@ def serialize_aws_json_1_1(value: MetricData) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> MetricData:
     out: MetricData = {}  # type: ignore[typeddict-item]
-    if "MetricName" in data:
+    if data.get("MetricName") is not None:
         out["metric_name"] = data["MetricName"]
-    if "Value" in data:
-        out["value"] = data["Value"]
-    if "Timestamp" in data:
+    if data.get("Value") is not None:
+        out["value"] = float(data["Value"])
+    if data.get("Timestamp") is not None:
         import capo_sagemaker.types.timestamp
 
         out["timestamp"] = capo_sagemaker.types.timestamp.deserialize_aws_json_1_1(

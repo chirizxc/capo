@@ -51,21 +51,21 @@ def serialize_aws_json_1_1(value: CreateRecommenderRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateRecommenderRequest:
     out: CreateRecommenderRequest = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("CreateRecommenderRequest.name required")
-    if "datasetGroupArn" in data:
+    if data.get("datasetGroupArn") is not None:
         out["dataset_group_arn"] = data["datasetGroupArn"]
     else:
         raise DeserializationError(
             "CreateRecommenderRequest.dataset_group_arn required"
         )
-    if "recipeArn" in data:
+    if data.get("recipeArn") is not None:
         out["recipe_arn"] = data["recipeArn"]
     else:
         raise DeserializationError("CreateRecommenderRequest.recipe_arn required")
-    if "recommenderConfig" in data:
+    if data.get("recommenderConfig") is not None:
         import capo_personalize.types.recommender_config
 
         out["recommender_config"] = (
@@ -73,7 +73,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateRecommenderRequest:
                 data["recommenderConfig"]
             )
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_personalize.types.tags
 
         out["tags"] = capo_personalize.types.tags.deserialize_aws_json_1_1(data["tags"])

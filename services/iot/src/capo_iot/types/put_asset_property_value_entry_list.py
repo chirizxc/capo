@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> PutAssetPropertyValueEntryList:
 
     out: PutAssetPropertyValueEntryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_iot.types.put_asset_property_value_entry.deserialize_json(item))
     return out

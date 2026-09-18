@@ -38,7 +38,7 @@ def serialize_aws_json_1_0(value: ListProxyConfigurationsResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ListProxyConfigurationsResponse:
     out: ListProxyConfigurationsResponse = {}  # type: ignore[typeddict-item]
-    if "ProxyConfigurations" in data:
+    if data.get("ProxyConfigurations") is not None:
         import capo_network_firewall.types.proxy_configurations
 
         out["proxy_configurations"] = (
@@ -46,6 +46,6 @@ def deserialize_aws_json_1_0(data: dict) -> ListProxyConfigurationsResponse:
                 data["ProxyConfigurations"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

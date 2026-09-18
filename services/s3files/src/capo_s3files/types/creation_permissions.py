@@ -32,15 +32,15 @@ def serialize_json(value: CreationPermissions) -> dict:
 
 def deserialize_json(data: dict) -> CreationPermissions:
     out: CreationPermissions = {}  # type: ignore[typeddict-item]
-    if "ownerUid" in data:
+    if data.get("ownerUid") is not None:
         out["owner_uid"] = data["ownerUid"]
     else:
         raise DeserializationError("CreationPermissions.owner_uid required")
-    if "ownerGid" in data:
+    if data.get("ownerGid") is not None:
         out["owner_gid"] = data["ownerGid"]
     else:
         raise DeserializationError("CreationPermissions.owner_gid required")
-    if "permissions" in data:
+    if data.get("permissions") is not None:
         out["permissions"] = data["permissions"]
     else:
         raise DeserializationError("CreationPermissions.permissions required")

@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: PrivateRegistryAccess) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PrivateRegistryAccess:
     out: PrivateRegistryAccess = {}  # type: ignore[typeddict-item]
-    if "ecrImagePullerRole" in data:
+    if data.get("ecrImagePullerRole") is not None:
         import capo_lightsail.types.container_service_ecr_image_puller_role
 
         out["ecr_image_puller_role"] = (

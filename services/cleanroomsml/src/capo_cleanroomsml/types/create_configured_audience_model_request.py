@@ -92,17 +92,17 @@ def serialize_json(value: CreateConfiguredAudienceModelRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateConfiguredAudienceModelRequest:
     out: CreateConfiguredAudienceModelRequest = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("CreateConfiguredAudienceModelRequest.name required")
-    if "audienceModelArn" in data:
+    if data.get("audienceModelArn") is not None:
         out["audience_model_arn"] = data["audienceModelArn"]
     else:
         raise DeserializationError(
             "CreateConfiguredAudienceModelRequest.audience_model_arn required"
         )
-    if "outputConfig" in data:
+    if data.get("outputConfig") is not None:
         import capo_cleanroomsml.types.configured_audience_model_output_config
 
         out["output_config"] = (
@@ -114,9 +114,9 @@ def deserialize_json(data: dict) -> CreateConfiguredAudienceModelRequest:
         raise DeserializationError(
             "CreateConfiguredAudienceModelRequest.output_config required"
         )
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "sharedAudienceMetrics" in data:
+    if data.get("sharedAudienceMetrics") is not None:
         import capo_cleanroomsml.types.metrics_list
 
         out["shared_audience_metrics"] = (
@@ -128,11 +128,11 @@ def deserialize_json(data: dict) -> CreateConfiguredAudienceModelRequest:
         raise DeserializationError(
             "CreateConfiguredAudienceModelRequest.shared_audience_metrics required"
         )
-    if "minMatchingSeedSize" in data:
+    if data.get("minMatchingSeedSize") is not None:
         out["min_matching_seed_size"] = data["minMatchingSeedSize"]
     else:
         out["min_matching_seed_size"] = 500
-    if "audienceSizeConfig" in data:
+    if data.get("audienceSizeConfig") is not None:
         import capo_cleanroomsml.types.audience_size_config
 
         out["audience_size_config"] = (
@@ -140,11 +140,11 @@ def deserialize_json(data: dict) -> CreateConfiguredAudienceModelRequest:
                 data["audienceSizeConfig"]
             )
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_cleanroomsml.types.tag_map
 
         out["tags"] = capo_cleanroomsml.types.tag_map.deserialize_json(data["tags"])
-    if "childResourceTagOnCreatePolicy" in data:
+    if data.get("childResourceTagOnCreatePolicy") is not None:
         import capo_cleanroomsml.types.tag_on_create_policy
 
         out["child_resource_tag_on_create_policy"] = (

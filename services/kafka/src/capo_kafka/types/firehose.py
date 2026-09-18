@@ -26,8 +26,8 @@ def serialize_json(value: Firehose) -> dict:
 
 def deserialize_json(data: dict) -> Firehose:
     out: Firehose = {}  # type: ignore[typeddict-item]
-    if "deliveryStream" in data:
+    if data.get("deliveryStream") is not None:
         out["delivery_stream"] = data["deliveryStream"]
-    if "enabled" in data:
+    if data.get("enabled") is not None:
         out["enabled"] = data["enabled"]
     return out

@@ -24,7 +24,7 @@ def serialize_json(value: FirehoseStream) -> dict:
 
 def deserialize_json(data: dict) -> FirehoseStream:
     out: FirehoseStream = {}  # type: ignore[typeddict-item]
-    if "streamName" in data:
+    if data.get("streamName") is not None:
         out["stream_name"] = data["streamName"]
     else:
         raise DeserializationError("FirehoseStream.stream_name required")

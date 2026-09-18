@@ -22,7 +22,7 @@ def serialize_aws_json_1_1(value: PutFirewallRuleGroupPolicyResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PutFirewallRuleGroupPolicyResponse:
     out: PutFirewallRuleGroupPolicyResponse = {}  # type: ignore[typeddict-item]
-    if "ReturnValue" in data:
+    if data.get("ReturnValue") is not None:
         out["return_value"] = data["ReturnValue"]
     else:
         out["return_value"] = False

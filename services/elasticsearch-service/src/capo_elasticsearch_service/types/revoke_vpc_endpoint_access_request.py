@@ -27,7 +27,7 @@ def serialize_json(value: RevokeVpcEndpointAccessRequest) -> dict:
 
 def deserialize_json(data: dict) -> RevokeVpcEndpointAccessRequest:
     out: RevokeVpcEndpointAccessRequest = {}  # type: ignore[typeddict-item]
-    if "Account" in data:
+    if data.get("Account") is not None:
         out["account"] = data["Account"]
     else:
         raise DeserializationError("RevokeVpcEndpointAccessRequest.account required")

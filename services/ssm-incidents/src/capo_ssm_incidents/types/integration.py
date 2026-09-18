@@ -34,7 +34,7 @@ def serialize_json(value: Integration) -> dict:
 
 
 def deserialize_json(data: dict) -> Integration:
-    if "pagerDutyConfiguration" in data:
+    if data.get("pagerDutyConfiguration") is not None:
         import capo_ssm_incidents.types.pager_duty_configuration
 
         return {

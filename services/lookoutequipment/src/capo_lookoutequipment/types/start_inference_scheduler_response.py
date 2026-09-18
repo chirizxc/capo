@@ -55,15 +55,15 @@ def serialize_aws_json_1_0(value: StartInferenceSchedulerResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> StartInferenceSchedulerResponse:
     out: StartInferenceSchedulerResponse = {}  # type: ignore[typeddict-item]
-    if "ModelArn" in data:
+    if data.get("ModelArn") is not None:
         out["model_arn"] = data["ModelArn"]
-    if "ModelName" in data:
+    if data.get("ModelName") is not None:
         out["model_name"] = data["ModelName"]
-    if "InferenceSchedulerName" in data:
+    if data.get("InferenceSchedulerName") is not None:
         out["inference_scheduler_name"] = data["InferenceSchedulerName"]
-    if "InferenceSchedulerArn" in data:
+    if data.get("InferenceSchedulerArn") is not None:
         out["inference_scheduler_arn"] = data["InferenceSchedulerArn"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_lookoutequipment.types.inference_scheduler_status
 
         out["status"] = (

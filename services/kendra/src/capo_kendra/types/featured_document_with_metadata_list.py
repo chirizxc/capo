@@ -29,6 +29,8 @@ def deserialize_aws_json_1_1(data: list) -> FeaturedDocumentWithMetadataList:
 
     out: FeaturedDocumentWithMetadataList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_kendra.types.featured_document_with_metadata.deserialize_aws_json_1_1(
                 item

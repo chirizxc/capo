@@ -90,27 +90,27 @@ def serialize_json(value: DescribeUserResult) -> dict:
 
 def deserialize_json(data: dict) -> DescribeUserResult:
     out: DescribeUserResult = {}  # type: ignore[typeddict-item]
-    if "DirectoryId" in data:
+    if data.get("DirectoryId") is not None:
         out["directory_id"] = data["DirectoryId"]
-    if "Realm" in data:
+    if data.get("Realm") is not None:
         out["realm"] = data["Realm"]
-    if "SID" in data:
+    if data.get("SID") is not None:
         out["sid"] = data["SID"]
-    if "SAMAccountName" in data:
+    if data.get("SAMAccountName") is not None:
         out["sam_account_name"] = data["SAMAccountName"]
-    if "DistinguishedName" in data:
+    if data.get("DistinguishedName") is not None:
         out["distinguished_name"] = data["DistinguishedName"]
-    if "UserPrincipalName" in data:
+    if data.get("UserPrincipalName") is not None:
         out["user_principal_name"] = data["UserPrincipalName"]
-    if "EmailAddress" in data:
+    if data.get("EmailAddress") is not None:
         out["email_address"] = data["EmailAddress"]
-    if "GivenName" in data:
+    if data.get("GivenName") is not None:
         out["given_name"] = data["GivenName"]
-    if "Surname" in data:
+    if data.get("Surname") is not None:
         out["surname"] = data["Surname"]
-    if "Enabled" in data:
+    if data.get("Enabled") is not None:
         out["enabled"] = data["Enabled"]
-    if "OtherAttributes" in data:
+    if data.get("OtherAttributes") is not None:
         import capo_directory_service_data.types.attributes
 
         out["other_attributes"] = (

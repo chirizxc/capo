@@ -25,6 +25,8 @@ def deserialize_json(data: list) -> ActionConnectorSummaryList:
 
     out: ActionConnectorSummaryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_quicksight.types.action_connector_summary.deserialize_json(item)
         )

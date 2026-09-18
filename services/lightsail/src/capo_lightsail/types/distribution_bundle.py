@@ -32,7 +32,15 @@ def serialize_aws_json_1_1(value: DistributionBundle) -> dict:
     if "name" in value:
         out["name"] = value["name"]
     if "price" in value:
-        out["price"] = value["price"]
+        out["price"] = (
+            "NaN"
+            if value["price"] != value["price"]
+            else "Infinity"
+            if value["price"] == float("inf")
+            else "-Infinity"
+            if value["price"] == float("-inf")
+            else value["price"]
+        )
     if "transfer_per_month_in_gb" in value:
         out["transferPerMonthInGb"] = value["transfer_per_month_in_gb"]
     if "is_active" in value:
@@ -42,14 +50,14 @@ def serialize_aws_json_1_1(value: DistributionBundle) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DistributionBundle:
     out: DistributionBundle = {}  # type: ignore[typeddict-item]
-    if "bundleId" in data:
+    if data.get("bundleId") is not None:
         out["bundle_id"] = data["bundleId"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "price" in data:
-        out["price"] = data["price"]
-    if "transferPerMonthInGb" in data:
+    if data.get("price") is not None:
+        out["price"] = float(data["price"])
+    if data.get("transferPerMonthInGb") is not None:
         out["transfer_per_month_in_gb"] = data["transferPerMonthInGb"]
-    if "isActive" in data:
+    if data.get("isActive") is not None:
         out["is_active"] = data["isActive"]
     return out

@@ -32,15 +32,15 @@ def serialize_aws_json_1_1(value: UpdateHostKeyRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateHostKeyRequest:
     out: UpdateHostKeyRequest = {}  # type: ignore[typeddict-item]
-    if "ServerId" in data:
+    if data.get("ServerId") is not None:
         out["server_id"] = data["ServerId"]
     else:
         raise DeserializationError("UpdateHostKeyRequest.server_id required")
-    if "HostKeyId" in data:
+    if data.get("HostKeyId") is not None:
         out["host_key_id"] = data["HostKeyId"]
     else:
         raise DeserializationError("UpdateHostKeyRequest.host_key_id required")
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
     else:
         raise DeserializationError("UpdateHostKeyRequest.description required")

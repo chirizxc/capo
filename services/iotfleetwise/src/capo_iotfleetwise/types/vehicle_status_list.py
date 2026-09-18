@@ -25,6 +25,8 @@ def deserialize_aws_json_1_0(data: list) -> VehicleStatusList:
 
     out: VehicleStatusList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_iotfleetwise.types.vehicle_status.deserialize_aws_json_1_0(item)
         )

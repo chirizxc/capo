@@ -25,6 +25,8 @@ def serialize_json(input_to_serialize: StepInputParameters) -> dict:
 def deserialize_json(data: dict) -> StepInputParameters:
     out: StepInputParameters = {}
     for key, value in data.items():
+        if value is None:
+            continue
         import capo_migrationhuborchestrator.types.step_input
 
         out[key] = capo_migrationhuborchestrator.types.step_input.deserialize_json(

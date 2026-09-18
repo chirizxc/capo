@@ -79,7 +79,7 @@ def serialize_json(value: Listener) -> dict:
 
 def deserialize_json(data: dict) -> Listener:
     out: Listener = {}  # type: ignore[typeddict-item]
-    if "portMapping" in data:
+    if data.get("portMapping") is not None:
         import capo_app_mesh.types.port_mapping
 
         out["port_mapping"] = capo_app_mesh.types.port_mapping.deserialize_json(
@@ -87,23 +87,23 @@ def deserialize_json(data: dict) -> Listener:
         )
     else:
         raise DeserializationError("Listener.port_mapping required")
-    if "tls" in data:
+    if data.get("tls") is not None:
         import capo_app_mesh.types.listener_tls
 
         out["tls"] = capo_app_mesh.types.listener_tls.deserialize_json(data["tls"])
-    if "healthCheck" in data:
+    if data.get("healthCheck") is not None:
         import capo_app_mesh.types.health_check_policy
 
         out["health_check"] = capo_app_mesh.types.health_check_policy.deserialize_json(
             data["healthCheck"]
         )
-    if "timeout" in data:
+    if data.get("timeout") is not None:
         import capo_app_mesh.types.listener_timeout
 
         out["timeout"] = capo_app_mesh.types.listener_timeout.deserialize_json(
             data["timeout"]
         )
-    if "outlierDetection" in data:
+    if data.get("outlierDetection") is not None:
         import capo_app_mesh.types.outlier_detection
 
         out["outlier_detection"] = (
@@ -111,7 +111,7 @@ def deserialize_json(data: dict) -> Listener:
                 data["outlierDetection"]
             )
         )
-    if "connectionPool" in data:
+    if data.get("connectionPool") is not None:
         import capo_app_mesh.types.virtual_node_connection_pool
 
         out["connection_pool"] = (

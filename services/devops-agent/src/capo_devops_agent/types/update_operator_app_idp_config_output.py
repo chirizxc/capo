@@ -31,13 +31,13 @@ def serialize_json(value: UpdateOperatorAppIdpConfigOutput) -> dict:
 
 def deserialize_json(data: dict) -> UpdateOperatorAppIdpConfigOutput:
     out: UpdateOperatorAppIdpConfigOutput = {}  # type: ignore[typeddict-item]
-    if "agentSpaceId" in data:
+    if data.get("agentSpaceId") is not None:
         out["agent_space_id"] = data["agentSpaceId"]
     else:
         raise DeserializationError(
             "UpdateOperatorAppIdpConfigOutput.agent_space_id required"
         )
-    if "idp" in data:
+    if data.get("idp") is not None:
         import capo_devops_agent.types.idp_auth_configuration
 
         out["idp"] = capo_devops_agent.types.idp_auth_configuration.deserialize_json(

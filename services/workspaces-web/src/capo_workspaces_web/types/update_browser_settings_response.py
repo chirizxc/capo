@@ -28,7 +28,7 @@ def serialize_json(value: UpdateBrowserSettingsResponse) -> dict:
 
 def deserialize_json(data: dict) -> UpdateBrowserSettingsResponse:
     out: UpdateBrowserSettingsResponse = {}  # type: ignore[typeddict-item]
-    if "browserSettings" in data:
+    if data.get("browserSettings") is not None:
         import capo_workspaces_web.types.browser_settings
 
         out["browser_settings"] = (

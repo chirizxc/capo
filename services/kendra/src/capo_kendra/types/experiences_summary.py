@@ -57,23 +57,23 @@ def serialize_aws_json_1_1(value: ExperiencesSummary) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ExperiencesSummary:
     out: ExperiencesSummary = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "CreatedAt" in data:
+    if data.get("CreatedAt") is not None:
         import capo_kendra.types.timestamp
 
         out["created_at"] = capo_kendra.types.timestamp.deserialize_aws_json_1_1(
             data["CreatedAt"]
         )
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_kendra.types.experience_status
 
         out["status"] = capo_kendra.types.experience_status.deserialize_aws_json_1_1(
             data["Status"]
         )
-    if "Endpoints" in data:
+    if data.get("Endpoints") is not None:
         import capo_kendra.types.experience_endpoints
 
         out["endpoints"] = (

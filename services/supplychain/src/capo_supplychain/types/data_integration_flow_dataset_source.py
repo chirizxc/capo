@@ -26,7 +26,7 @@ def serialize_json(value: DataIntegrationFlowDatasetSource) -> dict:
 
 def deserialize_json(data: dict) -> DataIntegrationFlowDatasetSource:
     out: DataIntegrationFlowDatasetSource = {}  # type: ignore[typeddict-item]
-    if "datasetIdentifier" in data:
+    if data.get("datasetIdentifier") is not None:
         out["dataset_identifier"] = data["datasetIdentifier"]
     else:
         raise DeserializationError(

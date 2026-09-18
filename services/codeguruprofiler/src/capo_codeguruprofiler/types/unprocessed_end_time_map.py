@@ -23,6 +23,8 @@ def serialize_json(input_to_serialize: UnprocessedEndTimeMap) -> dict:
 def deserialize_json(data: dict) -> UnprocessedEndTimeMap:
     out: UnprocessedEndTimeMap = {}
     for key, value in data.items():
+        if value is None:
+            continue
         import capo_codeguruprofiler.types.list_of_timestamps
 
         out[key] = capo_codeguruprofiler.types.list_of_timestamps.deserialize_json(

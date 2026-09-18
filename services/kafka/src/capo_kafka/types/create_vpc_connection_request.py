@@ -55,25 +55,25 @@ def serialize_json(value: CreateVpcConnectionRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateVpcConnectionRequest:
     out: CreateVpcConnectionRequest = {}  # type: ignore[typeddict-item]
-    if "targetClusterArn" in data:
+    if data.get("targetClusterArn") is not None:
         out["target_cluster_arn"] = data["targetClusterArn"]
-    if "authentication" in data:
+    if data.get("authentication") is not None:
         out["authentication"] = data["authentication"]
-    if "vpcId" in data:
+    if data.get("vpcId") is not None:
         out["vpc_id"] = data["vpcId"]
-    if "clientSubnets" in data:
+    if data.get("clientSubnets") is not None:
         import capo_kafka.types.__list_of__string
 
         out["client_subnets"] = capo_kafka.types.__list_of__string.deserialize_json(
             data["clientSubnets"]
         )
-    if "securityGroups" in data:
+    if data.get("securityGroups") is not None:
         import capo_kafka.types.__list_of__string
 
         out["security_groups"] = capo_kafka.types.__list_of__string.deserialize_json(
             data["securityGroups"]
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_kafka.types.__map_of__string
 
         out["tags"] = capo_kafka.types.__map_of__string.deserialize_json(data["tags"])

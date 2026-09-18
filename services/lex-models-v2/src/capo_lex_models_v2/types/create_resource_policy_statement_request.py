@@ -61,13 +61,13 @@ def serialize_json(value: CreateResourcePolicyStatementRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateResourcePolicyStatementRequest:
     out: CreateResourcePolicyStatementRequest = {}  # type: ignore[typeddict-item]
-    if "statementId" in data:
+    if data.get("statementId") is not None:
         out["statement_id"] = data["statementId"]
     else:
         raise DeserializationError(
             "CreateResourcePolicyStatementRequest.statement_id required"
         )
-    if "effect" in data:
+    if data.get("effect") is not None:
         import capo_lex_models_v2.types.effect
 
         out["effect"] = capo_lex_models_v2.types.effect.deserialize_json(data["effect"])
@@ -75,7 +75,7 @@ def deserialize_json(data: dict) -> CreateResourcePolicyStatementRequest:
         raise DeserializationError(
             "CreateResourcePolicyStatementRequest.effect required"
         )
-    if "principal" in data:
+    if data.get("principal") is not None:
         import capo_lex_models_v2.types.principal_list
 
         out["principal"] = capo_lex_models_v2.types.principal_list.deserialize_json(
@@ -85,7 +85,7 @@ def deserialize_json(data: dict) -> CreateResourcePolicyStatementRequest:
         raise DeserializationError(
             "CreateResourcePolicyStatementRequest.principal required"
         )
-    if "action" in data:
+    if data.get("action") is not None:
         import capo_lex_models_v2.types.operation_list
 
         out["action"] = capo_lex_models_v2.types.operation_list.deserialize_json(
@@ -95,7 +95,7 @@ def deserialize_json(data: dict) -> CreateResourcePolicyStatementRequest:
         raise DeserializationError(
             "CreateResourcePolicyStatementRequest.action required"
         )
-    if "condition" in data:
+    if data.get("condition") is not None:
         import capo_lex_models_v2.types.condition_map
 
         out["condition"] = capo_lex_models_v2.types.condition_map.deserialize_json(

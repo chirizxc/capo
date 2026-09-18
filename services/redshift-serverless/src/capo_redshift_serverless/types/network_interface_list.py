@@ -29,6 +29,8 @@ def deserialize_aws_json_1_1(data: list) -> NetworkInterfaceList:
 
     out: NetworkInterfaceList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_redshift_serverless.types.network_interface.deserialize_aws_json_1_1(
                 item

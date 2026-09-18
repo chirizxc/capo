@@ -28,11 +28,11 @@ def serialize_json(value: PortMapping) -> dict:
 
 def deserialize_json(data: dict) -> PortMapping:
     out: PortMapping = {}  # type: ignore[typeddict-item]
-    if "port" in data:
+    if data.get("port") is not None:
         out["port"] = data["port"]
     else:
         raise DeserializationError("PortMapping.port required")
-    if "protocol" in data:
+    if data.get("protocol") is not None:
         out["protocol"] = data["protocol"]
     else:
         raise DeserializationError("PortMapping.protocol required")

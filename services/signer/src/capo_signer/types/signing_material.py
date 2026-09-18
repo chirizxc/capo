@@ -24,7 +24,7 @@ def serialize_json(value: SigningMaterial) -> dict:
 
 def deserialize_json(data: dict) -> SigningMaterial:
     out: SigningMaterial = {}  # type: ignore[typeddict-item]
-    if "certificateArn" in data:
+    if data.get("certificateArn") is not None:
         out["certificate_arn"] = data["certificateArn"]
     else:
         raise DeserializationError("SigningMaterial.certificate_arn required")

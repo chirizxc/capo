@@ -31,10 +31,10 @@ def serialize_aws_json_1_1(value: EndpointIdentifier) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> EndpointIdentifier:
     out: EndpointIdentifier = {}  # type: ignore[typeddict-item]
-    if "EndpointId" in data:
+    if data.get("EndpointId") is not None:
         out["endpoint_id"] = data["EndpointId"]
     else:
         raise DeserializationError("EndpointIdentifier.endpoint_id required")
-    if "ClientIPPreservationEnabled" in data:
+    if data.get("ClientIPPreservationEnabled") is not None:
         out["client_ip_preservation_enabled"] = data["ClientIPPreservationEnabled"]
     return out

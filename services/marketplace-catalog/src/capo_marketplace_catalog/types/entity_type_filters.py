@@ -138,7 +138,7 @@ def serialize_json(value: EntityTypeFilters) -> dict:
 
 
 def deserialize_json(data: dict) -> EntityTypeFilters:
-    if "DataProductFilters" in data:
+    if data.get("DataProductFilters") is not None:
         import capo_marketplace_catalog.types.data_product_filters
 
         return {
@@ -146,7 +146,7 @@ def deserialize_json(data: dict) -> EntityTypeFilters:
                 data["DataProductFilters"]
             )
         }
-    elif "SaaSProductFilters" in data:
+    elif data.get("SaaSProductFilters") is not None:
         import capo_marketplace_catalog.types.saa_s_product_filters
 
         return {
@@ -154,7 +154,7 @@ def deserialize_json(data: dict) -> EntityTypeFilters:
                 data["SaaSProductFilters"]
             )
         }
-    elif "AmiProductFilters" in data:
+    elif data.get("AmiProductFilters") is not None:
         import capo_marketplace_catalog.types.ami_product_filters
 
         return {
@@ -162,7 +162,7 @@ def deserialize_json(data: dict) -> EntityTypeFilters:
                 data["AmiProductFilters"]
             )
         }
-    elif "OfferFilters" in data:
+    elif data.get("OfferFilters") is not None:
         import capo_marketplace_catalog.types.offer_filters
 
         return {
@@ -170,7 +170,7 @@ def deserialize_json(data: dict) -> EntityTypeFilters:
                 data["OfferFilters"]
             )
         }
-    elif "ContainerProductFilters" in data:
+    elif data.get("ContainerProductFilters") is not None:
         import capo_marketplace_catalog.types.container_product_filters
 
         return {
@@ -178,7 +178,7 @@ def deserialize_json(data: dict) -> EntityTypeFilters:
                 data["ContainerProductFilters"]
             )
         }
-    elif "ResaleAuthorizationFilters" in data:
+    elif data.get("ResaleAuthorizationFilters") is not None:
         import capo_marketplace_catalog.types.resale_authorization_filters
 
         return {
@@ -186,7 +186,7 @@ def deserialize_json(data: dict) -> EntityTypeFilters:
                 data["ResaleAuthorizationFilters"]
             )
         }
-    elif "MachineLearningProductFilters" in data:
+    elif data.get("MachineLearningProductFilters") is not None:
         import capo_marketplace_catalog.types.machine_learning_product_filters
 
         return {
@@ -194,7 +194,7 @@ def deserialize_json(data: dict) -> EntityTypeFilters:
                 data["MachineLearningProductFilters"]
             )
         }
-    elif "OfferSetFilters" in data:
+    elif data.get("OfferSetFilters") is not None:
         import capo_marketplace_catalog.types.offer_set_filters
 
         return {

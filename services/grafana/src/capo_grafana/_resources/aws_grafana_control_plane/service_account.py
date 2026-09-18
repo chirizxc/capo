@@ -77,16 +77,18 @@ class ServiceAccount:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_grafana.types.create_workspace_service_account_request.CreateWorkspaceServiceAccountRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        input_["grafana_role"] = grafana_role
-        input_["workspace_id"] = workspace_id
+        input_: capo_grafana.types.create_workspace_service_account_request.CreateWorkspaceServiceAccountRequest = {
+            "name": name,
+            "grafana_role": grafana_role,
+            "workspace_id": workspace_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_workspace_service_account(
@@ -127,15 +129,17 @@ class ServiceAccount:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_grafana.types.delete_workspace_service_account_request.DeleteWorkspaceServiceAccountRequest = {}  # type: ignore[typeddict-item]
-        input_["service_account_id"] = service_account_id
-        input_["workspace_id"] = workspace_id
+        input_: capo_grafana.types.delete_workspace_service_account_request.DeleteWorkspaceServiceAccountRequest = {
+            "service_account_id": service_account_id,
+            "workspace_id": workspace_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_workspace_service_accounts(
@@ -180,18 +184,20 @@ class ServiceAccount:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_grafana.types.list_workspace_service_accounts_request.ListWorkspaceServiceAccountsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_grafana.types.list_workspace_service_accounts_request.ListWorkspaceServiceAccountsRequest = {
+            "workspace_id": workspace_id
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
             input_["next_token"] = next_token
-        input_["workspace_id"] = workspace_id
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -241,16 +247,18 @@ class AsyncServiceAccount:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_grafana.types.create_workspace_service_account_request.CreateWorkspaceServiceAccountRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        input_["grafana_role"] = grafana_role
-        input_["workspace_id"] = workspace_id
+        input_: capo_grafana.types.create_workspace_service_account_request.CreateWorkspaceServiceAccountRequest = {
+            "name": name,
+            "grafana_role": grafana_role,
+            "workspace_id": workspace_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_workspace_service_account(
@@ -292,15 +300,17 @@ class AsyncServiceAccount:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_grafana.types.delete_workspace_service_account_request.DeleteWorkspaceServiceAccountRequest = {}  # type: ignore[typeddict-item]
-        input_["service_account_id"] = service_account_id
-        input_["workspace_id"] = workspace_id
+        input_: capo_grafana.types.delete_workspace_service_account_request.DeleteWorkspaceServiceAccountRequest = {
+            "service_account_id": service_account_id,
+            "workspace_id": workspace_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_workspace_service_accounts(
@@ -346,16 +356,18 @@ class AsyncServiceAccount:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_grafana.types.list_workspace_service_accounts_request.ListWorkspaceServiceAccountsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_grafana.types.list_workspace_service_accounts_request.ListWorkspaceServiceAccountsRequest = {
+            "workspace_id": workspace_id
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
             input_["next_token"] = next_token
-        input_["workspace_id"] = workspace_id
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

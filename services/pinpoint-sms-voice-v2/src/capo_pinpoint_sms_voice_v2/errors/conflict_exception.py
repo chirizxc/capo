@@ -41,13 +41,13 @@ def serialize_aws_json_1_0(value: ConflictException_) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ConflictException_:
     out: ConflictException_ = {}  # type: ignore[typeddict-item]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
-    if "Reason" in data:
+    if data.get("Reason") is not None:
         out["reason"] = data["Reason"]
-    if "ResourceType" in data:
+    if data.get("ResourceType") is not None:
         out["resource_type"] = data["ResourceType"]
-    if "ResourceId" in data:
+    if data.get("ResourceId") is not None:
         out["resource_id"] = data["ResourceId"]
     return out
 
@@ -57,15 +57,18 @@ class ConflictException(ServiceError):
 
     code: str | None = "ConflictException"
 
-    def __init__(self, data: ConflictException_):
+    def __init__(self, data: ConflictException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="ConflictException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_0(cls, data: dict) -> "ConflictException":
-        return cls(deserialize_aws_json_1_0(data))
+    def from_aws_json_1_0(
+        cls, data: dict, message: str | None = None
+    ) -> "ConflictException":
+        return cls(deserialize_aws_json_1_0(data), message)

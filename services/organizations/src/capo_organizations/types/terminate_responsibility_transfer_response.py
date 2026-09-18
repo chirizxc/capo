@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: TerminateResponsibilityTransferResponse) -> di
 
 def deserialize_aws_json_1_1(data: dict) -> TerminateResponsibilityTransferResponse:
     out: TerminateResponsibilityTransferResponse = {}  # type: ignore[typeddict-item]
-    if "ResponsibilityTransfer" in data:
+    if data.get("ResponsibilityTransfer") is not None:
         import capo_organizations.types.responsibility_transfer
 
         out["responsibility_transfer"] = (

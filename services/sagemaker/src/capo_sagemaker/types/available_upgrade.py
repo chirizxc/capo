@@ -36,9 +36,9 @@ def serialize_aws_json_1_1(value: AvailableUpgrade) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AvailableUpgrade:
     out: AvailableUpgrade = {}  # type: ignore[typeddict-item]
-    if "Version" in data:
+    if data.get("Version") is not None:
         out["version"] = data["Version"]
-    if "ReleaseNotes" in data:
+    if data.get("ReleaseNotes") is not None:
         import capo_sagemaker.types.release_notes_list
 
         out["release_notes"] = (

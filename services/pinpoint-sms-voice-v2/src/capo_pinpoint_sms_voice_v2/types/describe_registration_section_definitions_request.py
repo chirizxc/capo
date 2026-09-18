@@ -53,13 +53,13 @@ def deserialize_aws_json_1_0(
     data: dict,
 ) -> DescribeRegistrationSectionDefinitionsRequest:
     out: DescribeRegistrationSectionDefinitionsRequest = {}  # type: ignore[typeddict-item]
-    if "RegistrationType" in data:
+    if data.get("RegistrationType") is not None:
         out["registration_type"] = data["RegistrationType"]
     else:
         raise DeserializationError(
             "DescribeRegistrationSectionDefinitionsRequest.registration_type required"
         )
-    if "SectionPaths" in data:
+    if data.get("SectionPaths") is not None:
         import capo_pinpoint_sms_voice_v2.types.section_path_list
 
         out["section_paths"] = (
@@ -67,8 +67,8 @@ def deserialize_aws_json_1_0(
                 data["SectionPaths"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
     return out

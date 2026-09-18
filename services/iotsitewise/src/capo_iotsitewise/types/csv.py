@@ -28,7 +28,7 @@ def serialize_json(value: Csv) -> dict:
 
 def deserialize_json(data: dict) -> Csv:
     out: Csv = {}  # type: ignore[typeddict-item]
-    if "columnNames" in data:
+    if data.get("columnNames") is not None:
         import capo_iotsitewise.types.column_names
 
         out["column_names"] = capo_iotsitewise.types.column_names.deserialize_json(

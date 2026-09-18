@@ -28,19 +28,19 @@ def serialize_json(value: ConflictException_) -> dict:
 
 def deserialize_json(data: dict) -> ConflictException_:
     out: ConflictException_ = {}  # type: ignore[typeddict-item]
-    if "errorCode" in data:
+    if data.get("errorCode") is not None:
         out["error_code"] = data["errorCode"]
     else:
         raise DeserializationError("ConflictException_.error_code required")
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     else:
         raise DeserializationError("ConflictException_.message required")
-    if "resourceId" in data:
+    if data.get("resourceId") is not None:
         out["resource_id"] = data["resourceId"]
     else:
         raise DeserializationError("ConflictException_.resource_id required")
-    if "resourceType" in data:
+    if data.get("resourceType") is not None:
         out["resource_type"] = data["resourceType"]
     else:
         raise DeserializationError("ConflictException_.resource_type required")
@@ -52,15 +52,16 @@ class ConflictException(ServiceError):
 
     code: str | None = "ConflictException"
 
-    def __init__(self, data: ConflictException_):
+    def __init__(self, data: ConflictException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="ConflictException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "ConflictException":
-        return cls(deserialize_json(data))
+    def from_json(cls, data: dict, message: str | None = None) -> "ConflictException":
+        return cls(deserialize_json(data), message)

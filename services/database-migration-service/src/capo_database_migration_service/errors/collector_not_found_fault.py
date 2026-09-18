@@ -26,7 +26,7 @@ def serialize_aws_json_1_1(value: CollectorNotFoundFault_) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CollectorNotFoundFault_:
     out: CollectorNotFoundFault_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     return out
 
@@ -36,15 +36,18 @@ class CollectorNotFoundFault(ServiceError):
 
     code: str | None = "CollectorNotFoundFault"
 
-    def __init__(self, data: CollectorNotFoundFault_):
+    def __init__(self, data: CollectorNotFoundFault_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="CollectorNotFoundFault",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "CollectorNotFoundFault":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "CollectorNotFoundFault":
+        return cls(deserialize_aws_json_1_1(data), message)

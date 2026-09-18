@@ -71,7 +71,7 @@ def serialize_aws_json_1_1(value: TaskReportConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> TaskReportConfig:
     out: TaskReportConfig = {}  # type: ignore[typeddict-item]
-    if "Destination" in data:
+    if data.get("Destination") is not None:
         import capo_datasync.types.report_destination
 
         out["destination"] = (
@@ -79,7 +79,7 @@ def deserialize_aws_json_1_1(data: dict) -> TaskReportConfig:
                 data["Destination"]
             )
         )
-    if "OutputType" in data:
+    if data.get("OutputType") is not None:
         import capo_datasync.types.report_output_type
 
         out["output_type"] = (
@@ -87,13 +87,13 @@ def deserialize_aws_json_1_1(data: dict) -> TaskReportConfig:
                 data["OutputType"]
             )
         )
-    if "ReportLevel" in data:
+    if data.get("ReportLevel") is not None:
         import capo_datasync.types.report_level
 
         out["report_level"] = capo_datasync.types.report_level.deserialize_aws_json_1_1(
             data["ReportLevel"]
         )
-    if "ObjectVersionIds" in data:
+    if data.get("ObjectVersionIds") is not None:
         import capo_datasync.types.object_version_ids
 
         out["object_version_ids"] = (
@@ -101,7 +101,7 @@ def deserialize_aws_json_1_1(data: dict) -> TaskReportConfig:
                 data["ObjectVersionIds"]
             )
         )
-    if "Overrides" in data:
+    if data.get("Overrides") is not None:
         import capo_datasync.types.report_overrides
 
         out["overrides"] = (

@@ -25,6 +25,6 @@ def serialize_json(value: GetChallengePasswordResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetChallengePasswordResponse:
     out: GetChallengePasswordResponse = {}  # type: ignore[typeddict-item]
-    if "Password" in data:
+    if data.get("Password") is not None:
         out["password"] = data["Password"]
     return out

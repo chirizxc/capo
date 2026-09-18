@@ -106,13 +106,14 @@ class ConfiguredTableAssociationResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanrooms.types.create_configured_table_association_input.CreateConfiguredTableAssociationInput = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_cleanrooms.types.create_configured_table_association_input.CreateConfiguredTableAssociationInput = {
+            "name": name,
+            "membership_identifier": membership_identifier,
+            "configured_table_identifier": configured_table_identifier,
+            "role_arn": role_arn,
+        }
         if description is not None:
             input_["description"] = description
-        input_["membership_identifier"] = membership_identifier
-        input_["configured_table_identifier"] = configured_table_identifier
-        input_["role_arn"] = role_arn
         if tags is not None:
             input_["tags"] = tags
 
@@ -121,6 +122,7 @@ class ConfiguredTableAssociationResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -160,17 +162,17 @@ class ConfiguredTableAssociationResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanrooms.types.get_configured_table_association_input.GetConfiguredTableAssociationInput = {}  # type: ignore[typeddict-item]
-        input_["configured_table_association_identifier"] = (
-            configured_table_association_identifier
-        )
-        input_["membership_identifier"] = membership_identifier
+        input_: capo_cleanrooms.types.get_configured_table_association_input.GetConfiguredTableAssociationInput = {
+            "configured_table_association_identifier": configured_table_association_identifier,
+            "membership_identifier": membership_identifier,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update(
@@ -217,11 +219,10 @@ class ConfiguredTableAssociationResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanrooms.types.update_configured_table_association_input.UpdateConfiguredTableAssociationInput = {}  # type: ignore[typeddict-item]
-        input_["configured_table_association_identifier"] = (
-            configured_table_association_identifier
-        )
-        input_["membership_identifier"] = membership_identifier
+        input_: capo_cleanrooms.types.update_configured_table_association_input.UpdateConfiguredTableAssociationInput = {
+            "configured_table_association_identifier": configured_table_association_identifier,
+            "membership_identifier": membership_identifier,
+        }
         if description is not None:
             input_["description"] = description
         if role_arn is not None:
@@ -232,6 +233,7 @@ class ConfiguredTableAssociationResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -272,17 +274,17 @@ class ConfiguredTableAssociationResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanrooms.types.delete_configured_table_association_input.DeleteConfiguredTableAssociationInput = {}  # type: ignore[typeddict-item]
-        input_["configured_table_association_identifier"] = (
-            configured_table_association_identifier
-        )
-        input_["membership_identifier"] = membership_identifier
+        input_: capo_cleanrooms.types.delete_configured_table_association_input.DeleteConfiguredTableAssociationInput = {
+            "configured_table_association_identifier": configured_table_association_identifier,
+            "membership_identifier": membership_identifier,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -326,8 +328,9 @@ class ConfiguredTableAssociationResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanrooms.types.list_configured_table_associations_input.ListConfiguredTableAssociationsInput = {}  # type: ignore[typeddict-item]
-        input_["membership_identifier"] = membership_identifier
+        input_: capo_cleanrooms.types.list_configured_table_associations_input.ListConfiguredTableAssociationsInput = {
+            "membership_identifier": membership_identifier
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -338,6 +341,7 @@ class ConfiguredTableAssociationResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_configured_table_association_analysis_rule(
@@ -382,19 +386,19 @@ class ConfiguredTableAssociationResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanrooms.types.create_configured_table_association_analysis_rule_input.CreateConfiguredTableAssociationAnalysisRuleInput = {}  # type: ignore[typeddict-item]
-        input_["membership_identifier"] = membership_identifier
-        input_["configured_table_association_identifier"] = (
-            configured_table_association_identifier
-        )
-        input_["analysis_rule_type"] = analysis_rule_type
-        input_["analysis_rule_policy"] = analysis_rule_policy
+        input_: capo_cleanrooms.types.create_configured_table_association_analysis_rule_input.CreateConfiguredTableAssociationAnalysisRuleInput = {
+            "membership_identifier": membership_identifier,
+            "configured_table_association_identifier": configured_table_association_identifier,
+            "analysis_rule_type": analysis_rule_type,
+            "analysis_rule_policy": analysis_rule_policy,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_configured_table_association_analysis_rule(
@@ -437,18 +441,18 @@ class ConfiguredTableAssociationResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanrooms.types.delete_configured_table_association_analysis_rule_input.DeleteConfiguredTableAssociationAnalysisRuleInput = {}  # type: ignore[typeddict-item]
-        input_["membership_identifier"] = membership_identifier
-        input_["configured_table_association_identifier"] = (
-            configured_table_association_identifier
-        )
-        input_["analysis_rule_type"] = analysis_rule_type
+        input_: capo_cleanrooms.types.delete_configured_table_association_analysis_rule_input.DeleteConfiguredTableAssociationAnalysisRuleInput = {
+            "membership_identifier": membership_identifier,
+            "configured_table_association_identifier": configured_table_association_identifier,
+            "analysis_rule_type": analysis_rule_type,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_configured_table_association_analysis_rule(
@@ -490,18 +494,18 @@ class ConfiguredTableAssociationResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanrooms.types.get_configured_table_association_analysis_rule_input.GetConfiguredTableAssociationAnalysisRuleInput = {}  # type: ignore[typeddict-item]
-        input_["membership_identifier"] = membership_identifier
-        input_["configured_table_association_identifier"] = (
-            configured_table_association_identifier
-        )
-        input_["analysis_rule_type"] = analysis_rule_type
+        input_: capo_cleanrooms.types.get_configured_table_association_analysis_rule_input.GetConfiguredTableAssociationAnalysisRuleInput = {
+            "membership_identifier": membership_identifier,
+            "configured_table_association_identifier": configured_table_association_identifier,
+            "analysis_rule_type": analysis_rule_type,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_configured_table_association_analysis_rule(
@@ -546,19 +550,19 @@ class ConfiguredTableAssociationResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanrooms.types.update_configured_table_association_analysis_rule_input.UpdateConfiguredTableAssociationAnalysisRuleInput = {}  # type: ignore[typeddict-item]
-        input_["membership_identifier"] = membership_identifier
-        input_["configured_table_association_identifier"] = (
-            configured_table_association_identifier
-        )
-        input_["analysis_rule_type"] = analysis_rule_type
-        input_["analysis_rule_policy"] = analysis_rule_policy
+        input_: capo_cleanrooms.types.update_configured_table_association_analysis_rule_input.UpdateConfiguredTableAssociationAnalysisRuleInput = {
+            "membership_identifier": membership_identifier,
+            "configured_table_association_identifier": configured_table_association_identifier,
+            "analysis_rule_type": analysis_rule_type,
+            "analysis_rule_policy": analysis_rule_policy,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -616,13 +620,14 @@ class AsyncConfiguredTableAssociationResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanrooms.types.create_configured_table_association_input.CreateConfiguredTableAssociationInput = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_cleanrooms.types.create_configured_table_association_input.CreateConfiguredTableAssociationInput = {
+            "name": name,
+            "membership_identifier": membership_identifier,
+            "configured_table_identifier": configured_table_identifier,
+            "role_arn": role_arn,
+        }
         if description is not None:
             input_["description"] = description
-        input_["membership_identifier"] = membership_identifier
-        input_["configured_table_identifier"] = configured_table_identifier
-        input_["role_arn"] = role_arn
         if tags is not None:
             input_["tags"] = tags
 
@@ -631,6 +636,7 @@ class AsyncConfiguredTableAssociationResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -671,17 +677,17 @@ class AsyncConfiguredTableAssociationResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanrooms.types.get_configured_table_association_input.GetConfiguredTableAssociationInput = {}  # type: ignore[typeddict-item]
-        input_["configured_table_association_identifier"] = (
-            configured_table_association_identifier
-        )
-        input_["membership_identifier"] = membership_identifier
+        input_: capo_cleanrooms.types.get_configured_table_association_input.GetConfiguredTableAssociationInput = {
+            "configured_table_association_identifier": configured_table_association_identifier,
+            "membership_identifier": membership_identifier,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update(
@@ -729,11 +735,10 @@ class AsyncConfiguredTableAssociationResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanrooms.types.update_configured_table_association_input.UpdateConfiguredTableAssociationInput = {}  # type: ignore[typeddict-item]
-        input_["configured_table_association_identifier"] = (
-            configured_table_association_identifier
-        )
-        input_["membership_identifier"] = membership_identifier
+        input_: capo_cleanrooms.types.update_configured_table_association_input.UpdateConfiguredTableAssociationInput = {
+            "configured_table_association_identifier": configured_table_association_identifier,
+            "membership_identifier": membership_identifier,
+        }
         if description is not None:
             input_["description"] = description
         if role_arn is not None:
@@ -744,6 +749,7 @@ class AsyncConfiguredTableAssociationResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -785,17 +791,17 @@ class AsyncConfiguredTableAssociationResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanrooms.types.delete_configured_table_association_input.DeleteConfiguredTableAssociationInput = {}  # type: ignore[typeddict-item]
-        input_["configured_table_association_identifier"] = (
-            configured_table_association_identifier
-        )
-        input_["membership_identifier"] = membership_identifier
+        input_: capo_cleanrooms.types.delete_configured_table_association_input.DeleteConfiguredTableAssociationInput = {
+            "configured_table_association_identifier": configured_table_association_identifier,
+            "membership_identifier": membership_identifier,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -840,8 +846,9 @@ class AsyncConfiguredTableAssociationResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanrooms.types.list_configured_table_associations_input.ListConfiguredTableAssociationsInput = {}  # type: ignore[typeddict-item]
-        input_["membership_identifier"] = membership_identifier
+        input_: capo_cleanrooms.types.list_configured_table_associations_input.ListConfiguredTableAssociationsInput = {
+            "membership_identifier": membership_identifier
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -852,6 +859,7 @@ class AsyncConfiguredTableAssociationResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_configured_table_association_analysis_rule(
@@ -897,19 +905,19 @@ class AsyncConfiguredTableAssociationResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanrooms.types.create_configured_table_association_analysis_rule_input.CreateConfiguredTableAssociationAnalysisRuleInput = {}  # type: ignore[typeddict-item]
-        input_["membership_identifier"] = membership_identifier
-        input_["configured_table_association_identifier"] = (
-            configured_table_association_identifier
-        )
-        input_["analysis_rule_type"] = analysis_rule_type
-        input_["analysis_rule_policy"] = analysis_rule_policy
+        input_: capo_cleanrooms.types.create_configured_table_association_analysis_rule_input.CreateConfiguredTableAssociationAnalysisRuleInput = {
+            "membership_identifier": membership_identifier,
+            "configured_table_association_identifier": configured_table_association_identifier,
+            "analysis_rule_type": analysis_rule_type,
+            "analysis_rule_policy": analysis_rule_policy,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_configured_table_association_analysis_rule(
@@ -953,18 +961,18 @@ class AsyncConfiguredTableAssociationResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanrooms.types.delete_configured_table_association_analysis_rule_input.DeleteConfiguredTableAssociationAnalysisRuleInput = {}  # type: ignore[typeddict-item]
-        input_["membership_identifier"] = membership_identifier
-        input_["configured_table_association_identifier"] = (
-            configured_table_association_identifier
-        )
-        input_["analysis_rule_type"] = analysis_rule_type
+        input_: capo_cleanrooms.types.delete_configured_table_association_analysis_rule_input.DeleteConfiguredTableAssociationAnalysisRuleInput = {
+            "membership_identifier": membership_identifier,
+            "configured_table_association_identifier": configured_table_association_identifier,
+            "analysis_rule_type": analysis_rule_type,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_configured_table_association_analysis_rule(
@@ -1007,18 +1015,18 @@ class AsyncConfiguredTableAssociationResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanrooms.types.get_configured_table_association_analysis_rule_input.GetConfiguredTableAssociationAnalysisRuleInput = {}  # type: ignore[typeddict-item]
-        input_["membership_identifier"] = membership_identifier
-        input_["configured_table_association_identifier"] = (
-            configured_table_association_identifier
-        )
-        input_["analysis_rule_type"] = analysis_rule_type
+        input_: capo_cleanrooms.types.get_configured_table_association_analysis_rule_input.GetConfiguredTableAssociationAnalysisRuleInput = {
+            "membership_identifier": membership_identifier,
+            "configured_table_association_identifier": configured_table_association_identifier,
+            "analysis_rule_type": analysis_rule_type,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_configured_table_association_analysis_rule(
@@ -1064,17 +1072,17 @@ class AsyncConfiguredTableAssociationResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanrooms.types.update_configured_table_association_analysis_rule_input.UpdateConfiguredTableAssociationAnalysisRuleInput = {}  # type: ignore[typeddict-item]
-        input_["membership_identifier"] = membership_identifier
-        input_["configured_table_association_identifier"] = (
-            configured_table_association_identifier
-        )
-        input_["analysis_rule_type"] = analysis_rule_type
-        input_["analysis_rule_policy"] = analysis_rule_policy
+        input_: capo_cleanrooms.types.update_configured_table_association_analysis_rule_input.UpdateConfiguredTableAssociationAnalysisRuleInput = {
+            "membership_identifier": membership_identifier,
+            "configured_table_association_identifier": configured_table_association_identifier,
+            "analysis_rule_type": analysis_rule_type,
+            "analysis_rule_policy": analysis_rule_policy,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

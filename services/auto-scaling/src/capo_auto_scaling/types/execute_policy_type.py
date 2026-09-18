@@ -47,9 +47,35 @@ def serialize_query(
             )
         )
     if "metric_value" in value:
-        pairs.append((f"{key_prefix}MetricValue", str(value["metric_value"])))
+        pairs.append(
+            (
+                f"{key_prefix}MetricValue",
+                (
+                    "NaN"
+                    if value["metric_value"] != value["metric_value"]
+                    else "Infinity"
+                    if value["metric_value"] == float("inf")
+                    else "-Infinity"
+                    if value["metric_value"] == float("-inf")
+                    else str(value["metric_value"])
+                ),
+            )
+        )
     if "breach_threshold" in value:
-        pairs.append((f"{key_prefix}BreachThreshold", str(value["breach_threshold"])))
+        pairs.append(
+            (
+                f"{key_prefix}BreachThreshold",
+                (
+                    "NaN"
+                    if value["breach_threshold"] != value["breach_threshold"]
+                    else "Infinity"
+                    if value["breach_threshold"] == float("inf")
+                    else "-Infinity"
+                    if value["breach_threshold"] == float("-inf")
+                    else str(value["breach_threshold"])
+                ),
+            )
+        )
 
 
 def deserialize_query(el: Element) -> ExecutePolicyType:

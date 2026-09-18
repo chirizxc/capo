@@ -73,9 +73,9 @@ def serialize_aws_json_1_1(value: RepositoryCatalogData) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RepositoryCatalogData:
     out: RepositoryCatalogData = {}  # type: ignore[typeddict-item]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "architectures" in data:
+    if data.get("architectures") is not None:
         import capo_ecr_public.types.architecture_list
 
         out["architectures"] = (
@@ -83,7 +83,7 @@ def deserialize_aws_json_1_1(data: dict) -> RepositoryCatalogData:
                 data["architectures"]
             )
         )
-    if "operatingSystems" in data:
+    if data.get("operatingSystems") is not None:
         import capo_ecr_public.types.operating_system_list
 
         out["operating_systems"] = (
@@ -91,12 +91,12 @@ def deserialize_aws_json_1_1(data: dict) -> RepositoryCatalogData:
                 data["operatingSystems"]
             )
         )
-    if "logoUrl" in data:
+    if data.get("logoUrl") is not None:
         out["logo_url"] = data["logoUrl"]
-    if "aboutText" in data:
+    if data.get("aboutText") is not None:
         out["about_text"] = data["aboutText"]
-    if "usageText" in data:
+    if data.get("usageText") is not None:
         out["usage_text"] = data["usageText"]
-    if "marketplaceCertified" in data:
+    if data.get("marketplaceCertified") is not None:
         out["marketplace_certified"] = data["marketplaceCertified"]
     return out

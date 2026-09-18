@@ -18,6 +18,6 @@ def serialize_aws_json_1_0(value: AutonomousDatabaseCharacterSetSummary) -> dict
 
 def deserialize_aws_json_1_0(data: dict) -> AutonomousDatabaseCharacterSetSummary:
     out: AutonomousDatabaseCharacterSetSummary = {}  # type: ignore[typeddict-item]
-    if "characterSet" in data:
+    if data.get("characterSet") is not None:
         out["character_set"] = data["characterSet"]
     return out

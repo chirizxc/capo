@@ -32,11 +32,11 @@ def serialize_json(value: FileFormat) -> dict:
 
 def deserialize_json(data: dict) -> FileFormat:
     out: FileFormat = {}  # type: ignore[typeddict-item]
-    if "csv" in data:
+    if data.get("csv") is not None:
         import capo_iotsitewise.types.csv
 
         out["csv"] = capo_iotsitewise.types.csv.deserialize_json(data["csv"])
-    if "parquet" in data:
+    if data.get("parquet") is not None:
         import capo_iotsitewise.types.parquet
 
         out["parquet"] = capo_iotsitewise.types.parquet.deserialize_json(

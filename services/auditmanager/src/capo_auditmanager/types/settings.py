@@ -94,11 +94,11 @@ def serialize_json(value: Settings) -> dict:
 
 def deserialize_json(data: dict) -> Settings:
     out: Settings = {}  # type: ignore[typeddict-item]
-    if "isAwsOrgEnabled" in data:
+    if data.get("isAwsOrgEnabled") is not None:
         out["is_aws_org_enabled"] = data["isAwsOrgEnabled"]
-    if "snsTopic" in data:
+    if data.get("snsTopic") is not None:
         out["sns_topic"] = data["snsTopic"]
-    if "defaultAssessmentReportsDestination" in data:
+    if data.get("defaultAssessmentReportsDestination") is not None:
         import capo_auditmanager.types.assessment_reports_destination
 
         out["default_assessment_reports_destination"] = (
@@ -106,15 +106,15 @@ def deserialize_json(data: dict) -> Settings:
                 data["defaultAssessmentReportsDestination"]
             )
         )
-    if "defaultProcessOwners" in data:
+    if data.get("defaultProcessOwners") is not None:
         import capo_auditmanager.types.roles
 
         out["default_process_owners"] = capo_auditmanager.types.roles.deserialize_json(
             data["defaultProcessOwners"]
         )
-    if "kmsKey" in data:
+    if data.get("kmsKey") is not None:
         out["kms_key"] = data["kmsKey"]
-    if "evidenceFinderEnablement" in data:
+    if data.get("evidenceFinderEnablement") is not None:
         import capo_auditmanager.types.evidence_finder_enablement
 
         out["evidence_finder_enablement"] = (
@@ -122,7 +122,7 @@ def deserialize_json(data: dict) -> Settings:
                 data["evidenceFinderEnablement"]
             )
         )
-    if "deregistrationPolicy" in data:
+    if data.get("deregistrationPolicy") is not None:
         import capo_auditmanager.types.deregistration_policy
 
         out["deregistration_policy"] = (
@@ -130,7 +130,7 @@ def deserialize_json(data: dict) -> Settings:
                 data["deregistrationPolicy"]
             )
         )
-    if "defaultExportDestination" in data:
+    if data.get("defaultExportDestination") is not None:
         import capo_auditmanager.types.default_export_destination
 
         out["default_export_destination"] = (

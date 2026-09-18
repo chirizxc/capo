@@ -63,13 +63,13 @@ def serialize_json(value: CreateAssessmentRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateAssessmentRequest:
     out: CreateAssessmentRequest = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("CreateAssessmentRequest.name required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "assessmentReportsDestination" in data:
+    if data.get("assessmentReportsDestination") is not None:
         import capo_auditmanager.types.assessment_reports_destination
 
         out["assessment_reports_destination"] = (
@@ -81,23 +81,23 @@ def deserialize_json(data: dict) -> CreateAssessmentRequest:
         raise DeserializationError(
             "CreateAssessmentRequest.assessment_reports_destination required"
         )
-    if "scope" in data:
+    if data.get("scope") is not None:
         import capo_auditmanager.types.scope
 
         out["scope"] = capo_auditmanager.types.scope.deserialize_json(data["scope"])
     else:
         raise DeserializationError("CreateAssessmentRequest.scope required")
-    if "roles" in data:
+    if data.get("roles") is not None:
         import capo_auditmanager.types.roles
 
         out["roles"] = capo_auditmanager.types.roles.deserialize_json(data["roles"])
     else:
         raise DeserializationError("CreateAssessmentRequest.roles required")
-    if "frameworkId" in data:
+    if data.get("frameworkId") is not None:
         out["framework_id"] = data["frameworkId"]
     else:
         raise DeserializationError("CreateAssessmentRequest.framework_id required")
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_auditmanager.types.tag_map
 
         out["tags"] = capo_auditmanager.types.tag_map.deserialize_json(data["tags"])

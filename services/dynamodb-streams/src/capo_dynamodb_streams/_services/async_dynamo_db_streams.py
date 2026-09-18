@@ -183,8 +183,9 @@ class AsyncDynamoDBStreamsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_dynamodb_streams.types.describe_stream_input.DescribeStreamInput = {}  # type: ignore[typeddict-item]
-        input_["stream_arn"] = stream_arn
+        input_: capo_dynamodb_streams.types.describe_stream_input.DescribeStreamInput = {
+            "stream_arn": stream_arn
+        }
         if limit is not None:
             input_["limit"] = limit
         if exclusive_start_shard_id is not None:
@@ -197,6 +198,7 @@ class AsyncDynamoDBStreamsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_records(
@@ -239,8 +241,9 @@ class AsyncDynamoDBStreamsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_dynamodb_streams.types.get_records_input.GetRecordsInput = {}  # type: ignore[typeddict-item]
-        input_["shard_iterator"] = shard_iterator
+        input_: capo_dynamodb_streams.types.get_records_input.GetRecordsInput = {
+            "shard_iterator": shard_iterator
+        }
         if limit is not None:
             input_["limit"] = limit
 
@@ -249,6 +252,7 @@ class AsyncDynamoDBStreamsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_shard_iterator(
@@ -299,10 +303,11 @@ class AsyncDynamoDBStreamsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_dynamodb_streams.types.get_shard_iterator_input.GetShardIteratorInput = {}  # type: ignore[typeddict-item]
-        input_["stream_arn"] = stream_arn
-        input_["shard_id"] = shard_id
-        input_["shard_iterator_type"] = shard_iterator_type
+        input_: capo_dynamodb_streams.types.get_shard_iterator_input.GetShardIteratorInput = {
+            "stream_arn": stream_arn,
+            "shard_id": shard_id,
+            "shard_iterator_type": shard_iterator_type,
+        }
         if sequence_number is not None:
             input_["sequence_number"] = sequence_number
 
@@ -311,6 +316,7 @@ class AsyncDynamoDBStreamsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_streams(
@@ -360,7 +366,7 @@ class AsyncDynamoDBStreamsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_dynamodb_streams.types.list_streams_input.ListStreamsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_dynamodb_streams.types.list_streams_input.ListStreamsInput = {}
         if table_name is not None:
             input_["table_name"] = table_name
         if limit is not None:
@@ -373,6 +379,7 @@ class AsyncDynamoDBStreamsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def __aenter__(self) -> Self:

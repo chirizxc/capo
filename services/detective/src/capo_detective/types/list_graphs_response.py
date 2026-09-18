@@ -32,12 +32,12 @@ def serialize_json(value: ListGraphsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListGraphsResponse:
     out: ListGraphsResponse = {}  # type: ignore[typeddict-item]
-    if "GraphList" in data:
+    if data.get("GraphList") is not None:
         import capo_detective.types.graph_list
 
         out["graph_list"] = capo_detective.types.graph_list.deserialize_json(
             data["GraphList"]
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

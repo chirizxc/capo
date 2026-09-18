@@ -35,8 +35,8 @@ def serialize_json(value: CreateDeploymentRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateDeploymentRequest:
     out: CreateDeploymentRequest = {}  # type: ignore[typeddict-item]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "stageName" in data:
+    if data.get("stageName") is not None:
         out["stage_name"] = data["stageName"]
     return out

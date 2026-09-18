@@ -25,6 +25,6 @@ def serialize_json(value: Recommendation) -> dict:
 
 def deserialize_json(data: dict) -> Recommendation:
     out: Recommendation = {}  # type: ignore[typeddict-item]
-    if "recommendationText" in data:
+    if data.get("recommendationText") is not None:
         out["recommendation_text"] = data["recommendationText"]
     return out

@@ -76,7 +76,7 @@ def serialize_aws_json_1_1(value: Rule) -> dict:
 
 
 def deserialize_aws_json_1_1(data: dict) -> Rule:
-    if "NonTalkTimeFilter" in data:
+    if data.get("NonTalkTimeFilter") is not None:
         import capo_transcribe.types.non_talk_time_filter
 
         return {
@@ -84,7 +84,7 @@ def deserialize_aws_json_1_1(data: dict) -> Rule:
                 data["NonTalkTimeFilter"]
             )
         }
-    elif "InterruptionFilter" in data:
+    elif data.get("InterruptionFilter") is not None:
         import capo_transcribe.types.interruption_filter
 
         return {
@@ -92,7 +92,7 @@ def deserialize_aws_json_1_1(data: dict) -> Rule:
                 data["InterruptionFilter"]
             )
         }
-    elif "TranscriptFilter" in data:
+    elif data.get("TranscriptFilter") is not None:
         import capo_transcribe.types.transcript_filter
 
         return {
@@ -100,7 +100,7 @@ def deserialize_aws_json_1_1(data: dict) -> Rule:
                 data["TranscriptFilter"]
             )
         }
-    elif "SentimentFilter" in data:
+    elif data.get("SentimentFilter") is not None:
         import capo_transcribe.types.sentiment_filter
 
         return {

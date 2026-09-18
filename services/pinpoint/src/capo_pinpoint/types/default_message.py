@@ -36,9 +36,9 @@ def serialize_json(value: DefaultMessage) -> dict:
 
 def deserialize_json(data: dict) -> DefaultMessage:
     out: DefaultMessage = {}  # type: ignore[typeddict-item]
-    if "Body" in data:
+    if data.get("Body") is not None:
         out["body"] = data["Body"]
-    if "Substitutions" in data:
+    if data.get("Substitutions") is not None:
         import capo_pinpoint.types.map_of_list_of__string
 
         out["substitutions"] = (

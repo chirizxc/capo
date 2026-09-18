@@ -33,8 +33,8 @@ def serialize_json(value: Relationship) -> dict:
 
 def deserialize_json(data: dict) -> Relationship:
     out: Relationship = {}  # type: ignore[typeddict-item]
-    if "From" in data:
+    if data.get("From") is not None:
         out["from"] = data["From"]
-    if "To" in data:
+    if data.get("To") is not None:
         out["to"] = data["To"]
     return out

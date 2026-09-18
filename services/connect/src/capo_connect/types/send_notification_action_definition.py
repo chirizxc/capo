@@ -71,7 +71,7 @@ def serialize_json(value: SendNotificationActionDefinition) -> dict:
 
 def deserialize_json(data: dict) -> SendNotificationActionDefinition:
     out: SendNotificationActionDefinition = {}  # type: ignore[typeddict-item]
-    if "DeliveryMethod" in data:
+    if data.get("DeliveryMethod") is not None:
         import capo_connect.types.notification_delivery_type
 
         out["delivery_method"] = (
@@ -83,13 +83,13 @@ def deserialize_json(data: dict) -> SendNotificationActionDefinition:
         raise DeserializationError(
             "SendNotificationActionDefinition.delivery_method required"
         )
-    if "Subject" in data:
+    if data.get("Subject") is not None:
         out["subject"] = data["Subject"]
-    if "Content" in data:
+    if data.get("Content") is not None:
         out["content"] = data["Content"]
     else:
         raise DeserializationError("SendNotificationActionDefinition.content required")
-    if "ContentType" in data:
+    if data.get("ContentType") is not None:
         import capo_connect.types.notification_content_type
 
         out["content_type"] = (
@@ -101,7 +101,7 @@ def deserialize_json(data: dict) -> SendNotificationActionDefinition:
         raise DeserializationError(
             "SendNotificationActionDefinition.content_type required"
         )
-    if "Recipient" in data:
+    if data.get("Recipient") is not None:
         import capo_connect.types.notification_recipient_type
 
         out["recipient"] = (
@@ -113,7 +113,7 @@ def deserialize_json(data: dict) -> SendNotificationActionDefinition:
         raise DeserializationError(
             "SendNotificationActionDefinition.recipient required"
         )
-    if "Exclusion" in data:
+    if data.get("Exclusion") is not None:
         import capo_connect.types.notification_recipient_type
 
         out["exclusion"] = (

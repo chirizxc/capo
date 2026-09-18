@@ -32,11 +32,11 @@ def serialize_json(value: StartPosition) -> dict:
 
 def deserialize_json(data: dict) -> StartPosition:
     out: StartPosition = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "AbsoluteTime" in data:
+    if data.get("AbsoluteTime") is not None:
         out["absolute_time"] = data["AbsoluteTime"]
-    if "MostRecent" in data:
+    if data.get("MostRecent") is not None:
         out["most_recent"] = data["MostRecent"]
     else:
         out["most_recent"] = 0

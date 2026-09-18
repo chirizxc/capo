@@ -44,7 +44,7 @@ def serialize_aws_json_1_1(value: QopConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> QopConfiguration:
     out: QopConfiguration = {}  # type: ignore[typeddict-item]
-    if "RpcProtection" in data:
+    if data.get("RpcProtection") is not None:
         import capo_datasync.types.hdfs_rpc_protection
 
         out["rpc_protection"] = (
@@ -52,7 +52,7 @@ def deserialize_aws_json_1_1(data: dict) -> QopConfiguration:
                 data["RpcProtection"]
             )
         )
-    if "DataTransferProtection" in data:
+    if data.get("DataTransferProtection") is not None:
         import capo_datasync.types.hdfs_data_transfer_protection
 
         out["data_transfer_protection"] = (

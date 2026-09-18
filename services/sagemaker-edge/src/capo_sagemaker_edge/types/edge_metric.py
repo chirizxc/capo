@@ -30,7 +30,15 @@ def serialize_json(value: EdgeMetric) -> dict:
     if "metric_name" in value:
         out["MetricName"] = value["metric_name"]
     if "value" in value:
-        out["Value"] = value["value"]
+        out["Value"] = (
+            "NaN"
+            if value["value"] != value["value"]
+            else "Infinity"
+            if value["value"] == float("inf")
+            else "-Infinity"
+            if value["value"] == float("-inf")
+            else value["value"]
+        )
     if "timestamp" in value:
         import capo_sagemaker_edge.types.timestamp
 
@@ -42,13 +50,13 @@ def serialize_json(value: EdgeMetric) -> dict:
 
 def deserialize_json(data: dict) -> EdgeMetric:
     out: EdgeMetric = {}  # type: ignore[typeddict-item]
-    if "Dimension" in data:
+    if data.get("Dimension") is not None:
         out["dimension"] = data["Dimension"]
-    if "MetricName" in data:
+    if data.get("MetricName") is not None:
         out["metric_name"] = data["MetricName"]
-    if "Value" in data:
-        out["value"] = data["Value"]
-    if "Timestamp" in data:
+    if data.get("Value") is not None:
+        out["value"] = float(data["Value"])
+    if data.get("Timestamp") is not None:
         import capo_sagemaker_edge.types.timestamp
 
         out["timestamp"] = capo_sagemaker_edge.types.timestamp.deserialize_json(

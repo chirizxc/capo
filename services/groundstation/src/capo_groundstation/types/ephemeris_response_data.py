@@ -33,9 +33,9 @@ def serialize_json(value: EphemerisResponseData) -> dict:
 
 def deserialize_json(data: dict) -> EphemerisResponseData:
     out: EphemerisResponseData = {}  # type: ignore[typeddict-item]
-    if "ephemerisId" in data:
+    if data.get("ephemerisId") is not None:
         out["ephemeris_id"] = data["ephemerisId"]
-    if "ephemerisType" in data:
+    if data.get("ephemerisType") is not None:
         import capo_groundstation.types.ephemeris_type
 
         out["ephemeris_type"] = (

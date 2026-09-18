@@ -38,7 +38,7 @@ def serialize_aws_json_1_1(value: DetectToxicContentRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DetectToxicContentRequest:
     out: DetectToxicContentRequest = {}  # type: ignore[typeddict-item]
-    if "TextSegments" in data:
+    if data.get("TextSegments") is not None:
         import capo_comprehend.types.list_of_text_segments
 
         out["text_segments"] = (
@@ -48,7 +48,7 @@ def deserialize_aws_json_1_1(data: dict) -> DetectToxicContentRequest:
         )
     else:
         raise DeserializationError("DetectToxicContentRequest.text_segments required")
-    if "LanguageCode" in data:
+    if data.get("LanguageCode") is not None:
         import capo_comprehend.types.language_code
 
         out["language_code"] = (

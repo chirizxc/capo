@@ -43,11 +43,11 @@ def serialize_aws_json_1_1(value: RemoveIpRoutesRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RemoveIpRoutesRequest:
     out: RemoveIpRoutesRequest = {}  # type: ignore[typeddict-item]
-    if "DirectoryId" in data:
+    if data.get("DirectoryId") is not None:
         out["directory_id"] = data["DirectoryId"]
     else:
         raise DeserializationError("RemoveIpRoutesRequest.directory_id required")
-    if "CidrIps" in data:
+    if data.get("CidrIps") is not None:
         import capo_directory_service.types.cidr_ips
 
         out["cidr_ips"] = (
@@ -57,7 +57,7 @@ def deserialize_aws_json_1_1(data: dict) -> RemoveIpRoutesRequest:
         )
     else:
         out["cidr_ips"] = []
-    if "CidrIpv6s" in data:
+    if data.get("CidrIpv6s") is not None:
         import capo_directory_service.types.cidr_ipv6s
 
         out["cidr_ipv6s"] = (

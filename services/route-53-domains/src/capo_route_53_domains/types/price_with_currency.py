@@ -21,18 +21,26 @@ class PriceWithCurrency(TypedDict, closed=True):
 # --- awsJson1_1 ser/de ---
 def serialize_aws_json_1_1(value: PriceWithCurrency) -> dict:
     out: dict = {}
-    out["Price"] = value.get("price", 0)
+    out["Price"] = (
+        "NaN"
+        if value.get("price", 0) != value.get("price", 0)
+        else "Infinity"
+        if value.get("price", 0) == float("inf")
+        else "-Infinity"
+        if value.get("price", 0) == float("-inf")
+        else value.get("price", 0)
+    )
     out["Currency"] = value["currency"]
     return out
 
 
 def deserialize_aws_json_1_1(data: dict) -> PriceWithCurrency:
     out: PriceWithCurrency = {}  # type: ignore[typeddict-item]
-    if "Price" in data:
-        out["price"] = data["Price"]
+    if data.get("Price") is not None:
+        out["price"] = float(data["Price"])
     else:
         out["price"] = 0
-    if "Currency" in data:
+    if data.get("Currency") is not None:
         out["currency"] = data["Currency"]
     else:
         raise DeserializationError("PriceWithCurrency.currency required")

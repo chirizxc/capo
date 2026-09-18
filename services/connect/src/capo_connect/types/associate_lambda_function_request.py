@@ -32,12 +32,12 @@ def serialize_json(value: AssociateLambdaFunctionRequest) -> dict:
 
 def deserialize_json(data: dict) -> AssociateLambdaFunctionRequest:
     out: AssociateLambdaFunctionRequest = {}  # type: ignore[typeddict-item]
-    if "FunctionArn" in data:
+    if data.get("FunctionArn") is not None:
         out["function_arn"] = data["FunctionArn"]
     else:
         raise DeserializationError(
             "AssociateLambdaFunctionRequest.function_arn required"
         )
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
     return out

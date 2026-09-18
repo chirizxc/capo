@@ -29,8 +29,8 @@ def serialize_json(value: AwsRdsDbOptionGroupMembership) -> dict:
 
 def deserialize_json(data: dict) -> AwsRdsDbOptionGroupMembership:
     out: AwsRdsDbOptionGroupMembership = {}  # type: ignore[typeddict-item]
-    if "OptionGroupName" in data:
+    if data.get("OptionGroupName") is not None:
         out["option_group_name"] = data["OptionGroupName"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         out["status"] = data["Status"]
     return out

@@ -37,11 +37,11 @@ def serialize_aws_json_1_0(value: KmsEncryptionSettings) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> KmsEncryptionSettings:
     out: KmsEncryptionSettings = {}  # type: ignore[typeddict-item]
-    if "key" in data:
+    if data.get("key") is not None:
         out["key"] = data["key"]
     else:
         raise DeserializationError("KmsEncryptionSettings.key required")
-    if "encryptionContext" in data:
+    if data.get("encryptionContext") is not None:
         import capo_verifiedpermissions.types.encryption_context
 
         out["encryption_context"] = (

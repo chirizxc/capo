@@ -24,7 +24,7 @@ def serialize_aws_json_1_0(value: SensorsWithShortDateRange) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> SensorsWithShortDateRange:
     out: SensorsWithShortDateRange = {}  # type: ignore[typeddict-item]
-    if "AffectedSensorCount" in data:
+    if data.get("AffectedSensorCount") is not None:
         out["affected_sensor_count"] = data["AffectedSensorCount"]
     else:
         raise DeserializationError(

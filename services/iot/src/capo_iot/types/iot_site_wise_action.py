@@ -34,7 +34,7 @@ def serialize_json(value: IotSiteWiseAction) -> dict:
 
 def deserialize_json(data: dict) -> IotSiteWiseAction:
     out: IotSiteWiseAction = {}  # type: ignore[typeddict-item]
-    if "putAssetPropertyValueEntries" in data:
+    if data.get("putAssetPropertyValueEntries") is not None:
         import capo_iot.types.put_asset_property_value_entry_list
 
         out["put_asset_property_value_entries"] = (
@@ -46,7 +46,7 @@ def deserialize_json(data: dict) -> IotSiteWiseAction:
         raise DeserializationError(
             "IotSiteWiseAction.put_asset_property_value_entries required"
         )
-    if "roleArn" in data:
+    if data.get("roleArn") is not None:
         out["role_arn"] = data["roleArn"]
     else:
         raise DeserializationError("IotSiteWiseAction.role_arn required")

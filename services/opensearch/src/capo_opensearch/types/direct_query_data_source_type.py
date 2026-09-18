@@ -62,7 +62,7 @@ def serialize_json(value: DirectQueryDataSourceType) -> dict:
 
 
 def deserialize_json(data: dict) -> DirectQueryDataSourceType:
-    if "CloudWatchLog" in data:
+    if data.get("CloudWatchLog") is not None:
         import capo_opensearch.types.cloud_watch_direct_query_data_source
 
         return {
@@ -70,7 +70,7 @@ def deserialize_json(data: dict) -> DirectQueryDataSourceType:
                 data["CloudWatchLog"]
             )
         }
-    elif "SecurityLake" in data:
+    elif data.get("SecurityLake") is not None:
         import capo_opensearch.types.security_lake_direct_query_data_source
 
         return {
@@ -78,7 +78,7 @@ def deserialize_json(data: dict) -> DirectQueryDataSourceType:
                 data["SecurityLake"]
             )
         }
-    elif "Prometheus" in data:
+    elif data.get("Prometheus") is not None:
         import capo_opensearch.types.prometheus_direct_query_data_source
 
         return {

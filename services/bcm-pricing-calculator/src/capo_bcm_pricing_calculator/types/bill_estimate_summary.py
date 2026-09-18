@@ -79,13 +79,13 @@ def serialize_aws_json_1_0(value: BillEstimateSummary) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> BillEstimateSummary:
     out: BillEstimateSummary = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("BillEstimateSummary.id required")
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_bcm_pricing_calculator.types.bill_estimate_status
 
         out["status"] = (
@@ -93,7 +93,7 @@ def deserialize_aws_json_1_0(data: dict) -> BillEstimateSummary:
                 data["status"]
             )
         )
-    if "billInterval" in data:
+    if data.get("billInterval") is not None:
         import capo_bcm_pricing_calculator.types.bill_interval
 
         out["bill_interval"] = (
@@ -101,7 +101,7 @@ def deserialize_aws_json_1_0(data: dict) -> BillEstimateSummary:
                 data["billInterval"]
             )
         )
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_bcm_pricing_calculator.types._prelude.timestamp
 
         out["created_at"] = (
@@ -109,7 +109,7 @@ def deserialize_aws_json_1_0(data: dict) -> BillEstimateSummary:
                 data["createdAt"]
             )
         )
-    if "expiresAt" in data:
+    if data.get("expiresAt") is not None:
         import capo_bcm_pricing_calculator.types._prelude.timestamp
 
         out["expires_at"] = (

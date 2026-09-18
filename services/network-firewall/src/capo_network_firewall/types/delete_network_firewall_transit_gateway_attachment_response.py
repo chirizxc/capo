@@ -38,13 +38,13 @@ def deserialize_aws_json_1_0(
     data: dict,
 ) -> DeleteNetworkFirewallTransitGatewayAttachmentResponse:
     out: DeleteNetworkFirewallTransitGatewayAttachmentResponse = {}  # type: ignore[typeddict-item]
-    if "TransitGatewayAttachmentId" in data:
+    if data.get("TransitGatewayAttachmentId") is not None:
         out["transit_gateway_attachment_id"] = data["TransitGatewayAttachmentId"]
     else:
         raise DeserializationError(
             "DeleteNetworkFirewallTransitGatewayAttachmentResponse.transit_gateway_attachment_id required"
         )
-    if "TransitGatewayAttachmentStatus" in data:
+    if data.get("TransitGatewayAttachmentStatus") is not None:
         import capo_network_firewall.types.transit_gateway_attachment_status
 
         out["transit_gateway_attachment_status"] = (

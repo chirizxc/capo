@@ -49,20 +49,20 @@ def serialize_aws_json_1_1(value: UpdateStudioInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateStudioInput:
     out: UpdateStudioInput = {}  # type: ignore[typeddict-item]
-    if "StudioId" in data:
+    if data.get("StudioId") is not None:
         out["studio_id"] = data["StudioId"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "SubnetIds" in data:
+    if data.get("SubnetIds") is not None:
         import capo_emr.types.subnet_id_list
 
         out["subnet_ids"] = capo_emr.types.subnet_id_list.deserialize_aws_json_1_1(
             data["SubnetIds"]
         )
-    if "DefaultS3Location" in data:
+    if data.get("DefaultS3Location") is not None:
         out["default_s3_location"] = data["DefaultS3Location"]
-    if "EncryptionKeyArn" in data:
+    if data.get("EncryptionKeyArn") is not None:
         out["encryption_key_arn"] = data["EncryptionKeyArn"]
     return out

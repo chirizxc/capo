@@ -34,12 +34,12 @@ def serialize_aws_json_1_0(value: UpdateServiceTemplateInput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> UpdateServiceTemplateInput:
     out: UpdateServiceTemplateInput = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("UpdateServiceTemplateInput.name required")
-    if "displayName" in data:
+    if data.get("displayName") is not None:
         out["display_name"] = data["displayName"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
     return out

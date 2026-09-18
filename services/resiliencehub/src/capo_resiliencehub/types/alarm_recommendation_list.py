@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> AlarmRecommendationList:
 
     out: AlarmRecommendationList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_resiliencehub.types.alarm_recommendation.deserialize_json(item))
     return out

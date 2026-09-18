@@ -40,9 +40,9 @@ def deserialize_json(
     data: dict,
 ) -> RegisteredUserQuickSightConsoleEmbeddingConfiguration:
     out: RegisteredUserQuickSightConsoleEmbeddingConfiguration = {}  # type: ignore[typeddict-item]
-    if "InitialPath" in data:
+    if data.get("InitialPath") is not None:
         out["initial_path"] = data["InitialPath"]
-    if "FeatureConfigurations" in data:
+    if data.get("FeatureConfigurations") is not None:
         import capo_quicksight.types.registered_user_console_feature_configurations
 
         out["feature_configurations"] = (

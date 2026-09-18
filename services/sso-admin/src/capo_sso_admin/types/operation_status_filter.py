@@ -27,7 +27,7 @@ def serialize_aws_json_1_1(value: OperationStatusFilter) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> OperationStatusFilter:
     out: OperationStatusFilter = {}  # type: ignore[typeddict-item]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_sso_admin.types.status_values
 
         out["status"] = capo_sso_admin.types.status_values.deserialize_aws_json_1_1(

@@ -48,14 +48,14 @@ def serialize_aws_json_1_1(value: ReplicationPendingModifiedValues) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ReplicationPendingModifiedValues:
     out: ReplicationPendingModifiedValues = {}  # type: ignore[typeddict-item]
-    if "ReplicationInstanceClass" in data:
+    if data.get("ReplicationInstanceClass") is not None:
         out["replication_instance_class"] = data["ReplicationInstanceClass"]
-    if "AllocatedStorage" in data:
+    if data.get("AllocatedStorage") is not None:
         out["allocated_storage"] = data["AllocatedStorage"]
-    if "MultiAZ" in data:
+    if data.get("MultiAZ") is not None:
         out["multi_az"] = data["MultiAZ"]
-    if "EngineVersion" in data:
+    if data.get("EngineVersion") is not None:
         out["engine_version"] = data["EngineVersion"]
-    if "NetworkType" in data:
+    if data.get("NetworkType") is not None:
         out["network_type"] = data["NetworkType"]
     return out

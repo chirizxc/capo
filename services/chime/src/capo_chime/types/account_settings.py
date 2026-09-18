@@ -27,8 +27,8 @@ def serialize_json(value: AccountSettings) -> dict:
 
 def deserialize_json(data: dict) -> AccountSettings:
     out: AccountSettings = {}  # type: ignore[typeddict-item]
-    if "DisableRemoteControl" in data:
+    if data.get("DisableRemoteControl") is not None:
         out["disable_remote_control"] = data["DisableRemoteControl"]
-    if "EnableDialOut" in data:
+    if data.get("EnableDialOut") is not None:
         out["enable_dial_out"] = data["EnableDialOut"]
     return out

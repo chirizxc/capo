@@ -30,13 +30,13 @@ def serialize_aws_json_1_1(value: GetDecryptedAPIKeyRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetDecryptedAPIKeyRequest:
     out: GetDecryptedAPIKeyRequest = {}  # type: ignore[typeddict-item]
-    if "Scope" in data:
+    if data.get("Scope") is not None:
         import capo_wafv2.types.scope
 
         out["scope"] = capo_wafv2.types.scope.deserialize_aws_json_1_1(data["Scope"])
     else:
         raise DeserializationError("GetDecryptedAPIKeyRequest.scope required")
-    if "APIKey" in data:
+    if data.get("APIKey") is not None:
         out["api_key"] = data["APIKey"]
     else:
         raise DeserializationError("GetDecryptedAPIKeyRequest.api_key required")

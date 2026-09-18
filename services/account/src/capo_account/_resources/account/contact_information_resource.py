@@ -64,8 +64,9 @@ class ContactInformationResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_account.types.put_contact_information_request.PutContactInformationRequest = {}  # type: ignore[typeddict-item]
-        input_["contact_information"] = contact_information
+        input_: capo_account.types.put_contact_information_request.PutContactInformationRequest = {
+            "contact_information": contact_information
+        }
         if account_id is not None:
             input_["account_id"] = account_id
 
@@ -74,6 +75,7 @@ class ContactInformationResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -111,7 +113,7 @@ class ContactInformationResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_account.types.get_contact_information_request.GetContactInformationRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_account.types.get_contact_information_request.GetContactInformationRequest = {}
         if account_id is not None:
             input_["account_id"] = account_id
 
@@ -120,6 +122,7 @@ class ContactInformationResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -162,8 +165,9 @@ class AsyncContactInformationResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_account.types.put_contact_information_request.PutContactInformationRequest = {}  # type: ignore[typeddict-item]
-        input_["contact_information"] = contact_information
+        input_: capo_account.types.put_contact_information_request.PutContactInformationRequest = {
+            "contact_information": contact_information
+        }
         if account_id is not None:
             input_["account_id"] = account_id
 
@@ -172,6 +176,7 @@ class AsyncContactInformationResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -210,7 +215,7 @@ class AsyncContactInformationResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_account.types.get_contact_information_request.GetContactInformationRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_account.types.get_contact_information_request.GetContactInformationRequest = {}
         if account_id is not None:
             input_["account_id"] = account_id
 
@@ -219,4 +224,5 @@ class AsyncContactInformationResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

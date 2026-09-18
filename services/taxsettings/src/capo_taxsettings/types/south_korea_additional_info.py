@@ -34,17 +34,17 @@ def serialize_json(value: SouthKoreaAdditionalInfo) -> dict:
 
 def deserialize_json(data: dict) -> SouthKoreaAdditionalInfo:
     out: SouthKoreaAdditionalInfo = {}  # type: ignore[typeddict-item]
-    if "businessRepresentativeName" in data:
+    if data.get("businessRepresentativeName") is not None:
         out["business_representative_name"] = data["businessRepresentativeName"]
     else:
         raise DeserializationError(
             "SouthKoreaAdditionalInfo.business_representative_name required"
         )
-    if "lineOfBusiness" in data:
+    if data.get("lineOfBusiness") is not None:
         out["line_of_business"] = data["lineOfBusiness"]
     else:
         raise DeserializationError("SouthKoreaAdditionalInfo.line_of_business required")
-    if "itemOfBusiness" in data:
+    if data.get("itemOfBusiness") is not None:
         out["item_of_business"] = data["itemOfBusiness"]
     else:
         raise DeserializationError("SouthKoreaAdditionalInfo.item_of_business required")

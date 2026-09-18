@@ -28,11 +28,11 @@ def serialize_aws_json_1_0(value: DescribeFHIRExportJobRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> DescribeFHIRExportJobRequest:
     out: DescribeFHIRExportJobRequest = {}  # type: ignore[typeddict-item]
-    if "DatastoreId" in data:
+    if data.get("DatastoreId") is not None:
         out["datastore_id"] = data["DatastoreId"]
     else:
         raise DeserializationError("DescribeFHIRExportJobRequest.datastore_id required")
-    if "JobId" in data:
+    if data.get("JobId") is not None:
         out["job_id"] = data["JobId"]
     else:
         raise DeserializationError("DescribeFHIRExportJobRequest.job_id required")

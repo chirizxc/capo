@@ -30,9 +30,9 @@ def serialize_json(value: ListTagsOutput) -> dict:
 
 def deserialize_json(data: dict) -> ListTagsOutput:
     out: ListTagsOutput = {}  # type: ignore[typeddict-item]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_backup.types.tags
 
         out["tags"] = capo_backup.types.tags.deserialize_json(data["Tags"])

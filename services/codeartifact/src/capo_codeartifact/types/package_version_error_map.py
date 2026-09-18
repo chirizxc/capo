@@ -25,6 +25,8 @@ def serialize_json(input_to_serialize: PackageVersionErrorMap) -> dict:
 def deserialize_json(data: dict) -> PackageVersionErrorMap:
     out: PackageVersionErrorMap = {}
     for key, value in data.items():
+        if value is None:
+            continue
         import capo_codeartifact.types.package_version_error
 
         out[key] = capo_codeartifact.types.package_version_error.deserialize_json(value)

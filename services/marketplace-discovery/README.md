@@ -13,9 +13,9 @@ from capo_marketplace_discovery import AsyncMarketplaceDiscoveryClient
 
 
 async def main():
-    async with AsyncMarketplaceDiscoveryClient() as s3:
+    async with AsyncMarketplaceDiscoveryClient() as marketplace_discovery:
         # Example: call the get_listing operation
-        response = await s3.get_listing()
+        response = await marketplace_discovery.get_listing()
         print(response["associated_entities"])
 ```
 
@@ -28,9 +28,9 @@ from capo_marketplace_discovery import AsyncMarketplaceDiscoveryClient
 
 
 async def main():
-    async with AsyncMarketplaceDiscoveryClient() as s3:
+    async with AsyncMarketplaceDiscoveryClient() as marketplace_discovery:
         # Example: paginate over get_offer_terms
-        async for item in s3.iter_get_offer_terms():
+        async for item in marketplace_discovery.iter_get_offer_terms():
             print(item)
 ```
 
@@ -44,9 +44,9 @@ from capo_marketplace_discovery.error import AccessDeniedException
 
 
 async def main():
-    async with AsyncMarketplaceDiscoveryClient() as s3:
+    async with AsyncMarketplaceDiscoveryClient() as marketplace_discovery:
         try:
-            await s3.get_listing()
+            await marketplace_discovery.get_listing()
         except AccessDeniedException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -63,13 +63,13 @@ from capo_marketplace_discovery import AsyncMarketplaceDiscoveryClient
 
 
 async def main():
-    async with AsyncMarketplaceDiscoveryClient() as s3:
+    async with AsyncMarketplaceDiscoveryClient() as marketplace_discovery:
         # Default: 3 attempts for every operation
-        response = await s3.get_listing()
+        response = await marketplace_discovery.get_listing()
 
         # Override per operation
-        response = await s3.get_listing(config_overrides={"retry_max_attempts": 5})
+        response = await marketplace_discovery.get_listing(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.get_listing(config_overrides={"retry_max_attempts": 1})
+        response = await marketplace_discovery.get_listing(config_overrides={"retry_max_attempts": 1})
 ```

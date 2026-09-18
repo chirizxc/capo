@@ -28,11 +28,11 @@ def serialize_json(value: GatewayListItem) -> dict:
 
 def deserialize_json(data: dict) -> GatewayListItem:
     out: GatewayListItem = {}  # type: ignore[typeddict-item]
-    if "GatewayId" in data:
+    if data.get("GatewayId") is not None:
         out["gateway_id"] = data["GatewayId"]
     else:
         raise DeserializationError("GatewayListItem.gateway_id required")
-    if "DownlinkFrequency" in data:
+    if data.get("DownlinkFrequency") is not None:
         out["downlink_frequency"] = data["DownlinkFrequency"]
     else:
         raise DeserializationError("GatewayListItem.downlink_frequency required")

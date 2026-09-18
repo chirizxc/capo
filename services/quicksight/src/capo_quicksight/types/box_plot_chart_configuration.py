@@ -153,7 +153,7 @@ def serialize_json(value: BoxPlotChartConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> BoxPlotChartConfiguration:
     out: BoxPlotChartConfiguration = {}  # type: ignore[typeddict-item]
-    if "FieldWells" in data:
+    if data.get("FieldWells") is not None:
         import capo_quicksight.types.box_plot_field_wells
 
         out["field_wells"] = (
@@ -161,7 +161,7 @@ def deserialize_json(data: dict) -> BoxPlotChartConfiguration:
                 data["FieldWells"]
             )
         )
-    if "SortConfiguration" in data:
+    if data.get("SortConfiguration") is not None:
         import capo_quicksight.types.box_plot_sort_configuration
 
         out["sort_configuration"] = (
@@ -169,7 +169,7 @@ def deserialize_json(data: dict) -> BoxPlotChartConfiguration:
                 data["SortConfiguration"]
             )
         )
-    if "BoxPlotOptions" in data:
+    if data.get("BoxPlotOptions") is not None:
         import capo_quicksight.types.box_plot_options
 
         out["box_plot_options"] = (
@@ -177,7 +177,7 @@ def deserialize_json(data: dict) -> BoxPlotChartConfiguration:
                 data["BoxPlotOptions"]
             )
         )
-    if "CategoryAxis" in data:
+    if data.get("CategoryAxis") is not None:
         import capo_quicksight.types.axis_display_options
 
         out["category_axis"] = (
@@ -185,7 +185,7 @@ def deserialize_json(data: dict) -> BoxPlotChartConfiguration:
                 data["CategoryAxis"]
             )
         )
-    if "CategoryLabelOptions" in data:
+    if data.get("CategoryLabelOptions") is not None:
         import capo_quicksight.types.chart_axis_label_options
 
         out["category_label_options"] = (
@@ -193,7 +193,7 @@ def deserialize_json(data: dict) -> BoxPlotChartConfiguration:
                 data["CategoryLabelOptions"]
             )
         )
-    if "PrimaryYAxisDisplayOptions" in data:
+    if data.get("PrimaryYAxisDisplayOptions") is not None:
         import capo_quicksight.types.axis_display_options
 
         out["primary_y_axis_display_options"] = (
@@ -201,7 +201,7 @@ def deserialize_json(data: dict) -> BoxPlotChartConfiguration:
                 data["PrimaryYAxisDisplayOptions"]
             )
         )
-    if "PrimaryYAxisLabelOptions" in data:
+    if data.get("PrimaryYAxisLabelOptions") is not None:
         import capo_quicksight.types.chart_axis_label_options
 
         out["primary_y_axis_label_options"] = (
@@ -209,19 +209,19 @@ def deserialize_json(data: dict) -> BoxPlotChartConfiguration:
                 data["PrimaryYAxisLabelOptions"]
             )
         )
-    if "Legend" in data:
+    if data.get("Legend") is not None:
         import capo_quicksight.types.legend_options
 
         out["legend"] = capo_quicksight.types.legend_options.deserialize_json(
             data["Legend"]
         )
-    if "Tooltip" in data:
+    if data.get("Tooltip") is not None:
         import capo_quicksight.types.tooltip_options
 
         out["tooltip"] = capo_quicksight.types.tooltip_options.deserialize_json(
             data["Tooltip"]
         )
-    if "ReferenceLines" in data:
+    if data.get("ReferenceLines") is not None:
         import capo_quicksight.types.reference_line_list
 
         out["reference_lines"] = (
@@ -229,13 +229,13 @@ def deserialize_json(data: dict) -> BoxPlotChartConfiguration:
                 data["ReferenceLines"]
             )
         )
-    if "VisualPalette" in data:
+    if data.get("VisualPalette") is not None:
         import capo_quicksight.types.visual_palette
 
         out["visual_palette"] = capo_quicksight.types.visual_palette.deserialize_json(
             data["VisualPalette"]
         )
-    if "Interactions" in data:
+    if data.get("Interactions") is not None:
         import capo_quicksight.types.visual_interaction_options
 
         out["interactions"] = (

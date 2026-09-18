@@ -48,9 +48,9 @@ def serialize_aws_json_1_0(value: AwsOpportunityInsights) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> AwsOpportunityInsights:
     out: AwsOpportunityInsights = {}  # type: ignore[typeddict-item]
-    if "NextBestActions" in data:
+    if data.get("NextBestActions") is not None:
         out["next_best_actions"] = data["NextBestActions"]
-    if "EngagementScore" in data:
+    if data.get("EngagementScore") is not None:
         import capo_partnercentral_selling.types.engagement_score
 
         out["engagement_score"] = (
@@ -58,7 +58,7 @@ def deserialize_aws_json_1_0(data: dict) -> AwsOpportunityInsights:
                 data["EngagementScore"]
             )
         )
-    if "AwsProductsSpendInsightsBySource" in data:
+    if data.get("AwsProductsSpendInsightsBySource") is not None:
         import capo_partnercentral_selling.types.aws_products_spend_insights_by_source
 
         out["aws_products_spend_insights_by_source"] = (

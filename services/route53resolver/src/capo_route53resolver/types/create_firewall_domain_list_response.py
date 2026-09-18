@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: CreateFirewallDomainListResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateFirewallDomainListResponse:
     out: CreateFirewallDomainListResponse = {}  # type: ignore[typeddict-item]
-    if "FirewallDomainList" in data:
+    if data.get("FirewallDomainList") is not None:
         import capo_route53resolver.types.firewall_domain_list
 
         out["firewall_domain_list"] = (

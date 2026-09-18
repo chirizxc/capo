@@ -254,7 +254,7 @@ def serialize_json(value: BurninDestinationSettings) -> dict:
 
 def deserialize_json(data: dict) -> BurninDestinationSettings:
     out: BurninDestinationSettings = {}  # type: ignore[typeddict-item]
-    if "alignment" in data:
+    if data.get("alignment") is not None:
         import capo_mediaconvert.types.burnin_subtitle_alignment
 
         out["alignment"] = (
@@ -262,7 +262,7 @@ def deserialize_json(data: dict) -> BurninDestinationSettings:
                 data["alignment"]
             )
         )
-    if "applyFontColor" in data:
+    if data.get("applyFontColor") is not None:
         import capo_mediaconvert.types.burnin_subtitle_apply_font_color
 
         out["apply_font_color"] = (
@@ -270,7 +270,7 @@ def deserialize_json(data: dict) -> BurninDestinationSettings:
                 data["applyFontColor"]
             )
         )
-    if "backgroundColor" in data:
+    if data.get("backgroundColor") is not None:
         import capo_mediaconvert.types.burnin_subtitle_background_color
 
         out["background_color"] = (
@@ -278,9 +278,9 @@ def deserialize_json(data: dict) -> BurninDestinationSettings:
                 data["backgroundColor"]
             )
         )
-    if "backgroundOpacity" in data:
+    if data.get("backgroundOpacity") is not None:
         out["background_opacity"] = data["backgroundOpacity"]
-    if "fallbackFont" in data:
+    if data.get("fallbackFont") is not None:
         import capo_mediaconvert.types.burnin_subtitle_fallback_font
 
         out["fallback_font"] = (
@@ -288,7 +288,7 @@ def deserialize_json(data: dict) -> BurninDestinationSettings:
                 data["fallbackFont"]
             )
         )
-    if "fontColor" in data:
+    if data.get("fontColor") is not None:
         import capo_mediaconvert.types.burnin_subtitle_font_color
 
         out["font_color"] = (
@@ -296,29 +296,29 @@ def deserialize_json(data: dict) -> BurninDestinationSettings:
                 data["fontColor"]
             )
         )
-    if "fontFileBold" in data:
+    if data.get("fontFileBold") is not None:
         out["font_file_bold"] = data["fontFileBold"]
-    if "fontFileBoldItalic" in data:
+    if data.get("fontFileBoldItalic") is not None:
         out["font_file_bold_italic"] = data["fontFileBoldItalic"]
-    if "fontFileItalic" in data:
+    if data.get("fontFileItalic") is not None:
         out["font_file_italic"] = data["fontFileItalic"]
-    if "fontFileRegular" in data:
+    if data.get("fontFileRegular") is not None:
         out["font_file_regular"] = data["fontFileRegular"]
-    if "fontOpacity" in data:
+    if data.get("fontOpacity") is not None:
         out["font_opacity"] = data["fontOpacity"]
-    if "fontResolution" in data:
+    if data.get("fontResolution") is not None:
         out["font_resolution"] = data["fontResolution"]
-    if "fontScript" in data:
+    if data.get("fontScript") is not None:
         import capo_mediaconvert.types.font_script
 
         out["font_script"] = capo_mediaconvert.types.font_script.deserialize_json(
             data["fontScript"]
         )
-    if "fontSize" in data:
+    if data.get("fontSize") is not None:
         out["font_size"] = data["fontSize"]
-    if "hexFontColor" in data:
+    if data.get("hexFontColor") is not None:
         out["hex_font_color"] = data["hexFontColor"]
-    if "outlineColor" in data:
+    if data.get("outlineColor") is not None:
         import capo_mediaconvert.types.burnin_subtitle_outline_color
 
         out["outline_color"] = (
@@ -326,9 +326,9 @@ def deserialize_json(data: dict) -> BurninDestinationSettings:
                 data["outlineColor"]
             )
         )
-    if "outlineSize" in data:
+    if data.get("outlineSize") is not None:
         out["outline_size"] = data["outlineSize"]
-    if "removeRubyReserveAttributes" in data:
+    if data.get("removeRubyReserveAttributes") is not None:
         import capo_mediaconvert.types.remove_ruby_reserve_attributes
 
         out["remove_ruby_reserve_attributes"] = (
@@ -336,7 +336,7 @@ def deserialize_json(data: dict) -> BurninDestinationSettings:
                 data["removeRubyReserveAttributes"]
             )
         )
-    if "shadowColor" in data:
+    if data.get("shadowColor") is not None:
         import capo_mediaconvert.types.burnin_subtitle_shadow_color
 
         out["shadow_color"] = (
@@ -344,13 +344,13 @@ def deserialize_json(data: dict) -> BurninDestinationSettings:
                 data["shadowColor"]
             )
         )
-    if "shadowOpacity" in data:
+    if data.get("shadowOpacity") is not None:
         out["shadow_opacity"] = data["shadowOpacity"]
-    if "shadowXOffset" in data:
+    if data.get("shadowXOffset") is not None:
         out["shadow_x_offset"] = data["shadowXOffset"]
-    if "shadowYOffset" in data:
+    if data.get("shadowYOffset") is not None:
         out["shadow_y_offset"] = data["shadowYOffset"]
-    if "stylePassthrough" in data:
+    if data.get("stylePassthrough") is not None:
         import capo_mediaconvert.types.burn_in_subtitle_style_passthrough
 
         out["style_passthrough"] = (
@@ -358,7 +358,7 @@ def deserialize_json(data: dict) -> BurninDestinationSettings:
                 data["stylePassthrough"]
             )
         )
-    if "teletextSpacing" in data:
+    if data.get("teletextSpacing") is not None:
         import capo_mediaconvert.types.burnin_subtitle_teletext_spacing
 
         out["teletext_spacing"] = (
@@ -366,8 +366,8 @@ def deserialize_json(data: dict) -> BurninDestinationSettings:
                 data["teletextSpacing"]
             )
         )
-    if "xPosition" in data:
+    if data.get("xPosition") is not None:
         out["x_position"] = data["xPosition"]
-    if "yPosition" in data:
+    if data.get("yPosition") is not None:
         out["y_position"] = data["yPosition"]
     return out

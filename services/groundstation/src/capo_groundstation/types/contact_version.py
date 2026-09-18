@@ -83,21 +83,21 @@ def serialize_json(value: ContactVersion) -> dict:
 
 def deserialize_json(data: dict) -> ContactVersion:
     out: ContactVersion = {}  # type: ignore[typeddict-item]
-    if "versionId" in data:
+    if data.get("versionId") is not None:
         out["version_id"] = data["versionId"]
-    if "created" in data:
+    if data.get("created") is not None:
         import capo_groundstation.types._prelude.timestamp
 
         out["created"] = capo_groundstation.types._prelude.timestamp.deserialize_json(
             data["created"]
         )
-    if "activated" in data:
+    if data.get("activated") is not None:
         import capo_groundstation.types._prelude.timestamp
 
         out["activated"] = capo_groundstation.types._prelude.timestamp.deserialize_json(
             data["activated"]
         )
-    if "superseded" in data:
+    if data.get("superseded") is not None:
         import capo_groundstation.types._prelude.timestamp
 
         out["superseded"] = (
@@ -105,7 +105,7 @@ def deserialize_json(data: dict) -> ContactVersion:
                 data["superseded"]
             )
         )
-    if "lastUpdated" in data:
+    if data.get("lastUpdated") is not None:
         import capo_groundstation.types._prelude.timestamp
 
         out["last_updated"] = (
@@ -113,13 +113,13 @@ def deserialize_json(data: dict) -> ContactVersion:
                 data["lastUpdated"]
             )
         )
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_groundstation.types.version_status
 
         out["status"] = capo_groundstation.types.version_status.deserialize_json(
             data["status"]
         )
-    if "failureCodes" in data:
+    if data.get("failureCodes") is not None:
         import capo_groundstation.types.version_failure_reason_codes
 
         out["failure_codes"] = (
@@ -127,6 +127,6 @@ def deserialize_json(data: dict) -> ContactVersion:
                 data["failureCodes"]
             )
         )
-    if "failureMessage" in data:
+    if data.get("failureMessage") is not None:
         out["failure_message"] = data["failureMessage"]
     return out

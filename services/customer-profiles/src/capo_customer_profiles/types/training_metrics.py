@@ -36,13 +36,13 @@ def serialize_json(value: TrainingMetrics) -> dict:
 
 def deserialize_json(data: dict) -> TrainingMetrics:
     out: TrainingMetrics = {}  # type: ignore[typeddict-item]
-    if "Time" in data:
+    if data.get("Time") is not None:
         import capo_customer_profiles.types.timestamp
 
         out["time"] = capo_customer_profiles.types.timestamp.deserialize_json(
             data["Time"]
         )
-    if "Metrics" in data:
+    if data.get("Metrics") is not None:
         import capo_customer_profiles.types.metrics
 
         out["metrics"] = capo_customer_profiles.types.metrics.deserialize_json(

@@ -67,17 +67,17 @@ def serialize_aws_json_1_1(value: MigrationTask) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> MigrationTask:
     out: MigrationTask = {}  # type: ignore[typeddict-item]
-    if "ProgressUpdateStream" in data:
+    if data.get("ProgressUpdateStream") is not None:
         out["progress_update_stream"] = data["ProgressUpdateStream"]
-    if "MigrationTaskName" in data:
+    if data.get("MigrationTaskName") is not None:
         out["migration_task_name"] = data["MigrationTaskName"]
-    if "Task" in data:
+    if data.get("Task") is not None:
         import capo_migration_hub.types.task
 
         out["task"] = capo_migration_hub.types.task.deserialize_aws_json_1_1(
             data["Task"]
         )
-    if "UpdateDateTime" in data:
+    if data.get("UpdateDateTime") is not None:
         import capo_migration_hub.types.update_date_time
 
         out["update_date_time"] = (
@@ -85,7 +85,7 @@ def deserialize_aws_json_1_1(data: dict) -> MigrationTask:
                 data["UpdateDateTime"]
             )
         )
-    if "ResourceAttributeList" in data:
+    if data.get("ResourceAttributeList") is not None:
         import capo_migration_hub.types.latest_resource_attribute_list
 
         out["resource_attribute_list"] = (

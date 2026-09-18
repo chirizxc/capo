@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> RegisteredSubscriptionProviderList:
 
     out: RegisteredSubscriptionProviderList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_license_manager_linux_subscriptions.types.registered_subscription_provider.deserialize_json(
                 item

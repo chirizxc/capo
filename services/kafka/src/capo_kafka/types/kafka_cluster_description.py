@@ -86,7 +86,7 @@ def serialize_json(value: KafkaClusterDescription) -> dict:
 
 def deserialize_json(data: dict) -> KafkaClusterDescription:
     out: KafkaClusterDescription = {}  # type: ignore[typeddict-item]
-    if "amazonMskCluster" in data:
+    if data.get("amazonMskCluster") is not None:
         import capo_kafka.types.amazon_msk_cluster
 
         out["amazon_msk_cluster"] = (
@@ -94,7 +94,7 @@ def deserialize_json(data: dict) -> KafkaClusterDescription:
                 data["amazonMskCluster"]
             )
         )
-    if "apacheKafkaCluster" in data:
+    if data.get("apacheKafkaCluster") is not None:
         import capo_kafka.types.apache_kafka_cluster
 
         out["apache_kafka_cluster"] = (
@@ -102,9 +102,9 @@ def deserialize_json(data: dict) -> KafkaClusterDescription:
                 data["apacheKafkaCluster"]
             )
         )
-    if "kafkaClusterAlias" in data:
+    if data.get("kafkaClusterAlias") is not None:
         out["kafka_cluster_alias"] = data["kafkaClusterAlias"]
-    if "vpcConfig" in data:
+    if data.get("vpcConfig") is not None:
         import capo_kafka.types.kafka_cluster_client_vpc_config
 
         out["vpc_config"] = (
@@ -112,7 +112,7 @@ def deserialize_json(data: dict) -> KafkaClusterDescription:
                 data["vpcConfig"]
             )
         )
-    if "clientAuthentication" in data:
+    if data.get("clientAuthentication") is not None:
         import capo_kafka.types.kafka_cluster_client_authentication
 
         out["client_authentication"] = (
@@ -120,7 +120,7 @@ def deserialize_json(data: dict) -> KafkaClusterDescription:
                 data["clientAuthentication"]
             )
         )
-    if "encryptionInTransit" in data:
+    if data.get("encryptionInTransit") is not None:
         import capo_kafka.types.kafka_cluster_encryption_in_transit
 
         out["encryption_in_transit"] = (

@@ -13,10 +13,25 @@ from capo_chime_sdk_messaging import AsyncChimeSDKMessagingClient
 
 
 async def main():
-    async with AsyncChimeSDKMessagingClient() as s3:
+    async with AsyncChimeSDKMessagingClient() as chime_sdk_messaging:
         # Example: call the associate_channel_flow operation
-        response = await s3.associate_channel_flow()
+        response = await chime_sdk_messaging.associate_channel_flow()
         print(response)
+```
+
+## Pagination
+
+Some operations in this SDK support pagination. If the operation supports pagination it will have an `iter_` prefixed method that returns an async iterator.
+
+```python
+from capo_chime_sdk_messaging import AsyncChimeSDKMessagingClient
+
+
+async def main():
+    async with AsyncChimeSDKMessagingClient() as chime_sdk_messaging:
+        # Example: paginate over list_channel_bans
+        async for item in chime_sdk_messaging.iter_list_channel_bans():
+            print(item)
 ```
 
 ## Error Handling
@@ -29,9 +44,9 @@ from capo_chime_sdk_messaging.error import BadRequestException
 
 
 async def main():
-    async with AsyncChimeSDKMessagingClient() as s3:
+    async with AsyncChimeSDKMessagingClient() as chime_sdk_messaging:
         try:
-            await s3.associate_channel_flow()
+            await chime_sdk_messaging.associate_channel_flow()
         except BadRequestException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -48,13 +63,13 @@ from capo_chime_sdk_messaging import AsyncChimeSDKMessagingClient
 
 
 async def main():
-    async with AsyncChimeSDKMessagingClient() as s3:
+    async with AsyncChimeSDKMessagingClient() as chime_sdk_messaging:
         # Default: 3 attempts for every operation
-        response = await s3.associate_channel_flow()
+        response = await chime_sdk_messaging.associate_channel_flow()
 
         # Override per operation
-        response = await s3.associate_channel_flow(config_overrides={"retry_max_attempts": 5})
+        response = await chime_sdk_messaging.associate_channel_flow(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.associate_channel_flow(config_overrides={"retry_max_attempts": 1})
+        response = await chime_sdk_messaging.associate_channel_flow(config_overrides={"retry_max_attempts": 1})
 ```

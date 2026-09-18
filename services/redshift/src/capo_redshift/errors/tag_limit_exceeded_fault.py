@@ -37,15 +37,18 @@ class TagLimitExceededFault(ServiceError):
 
     code: str | None = "TagLimitExceededFault"
 
-    def __init__(self, data: TagLimitExceededFault_):
+    def __init__(self, data: TagLimitExceededFault_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="TagLimitExceededFault",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_query(cls, el: Element) -> "TagLimitExceededFault":
-        return cls(deserialize_query(el))
+    def from_query(
+        cls, el: Element, message: str | None = None
+    ) -> "TagLimitExceededFault":
+        return cls(deserialize_query(el), message)

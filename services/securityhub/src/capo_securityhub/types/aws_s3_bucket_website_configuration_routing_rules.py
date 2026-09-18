@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> AwsS3BucketWebsiteConfigurationRoutingRules:
 
     out: AwsS3BucketWebsiteConfigurationRoutingRules = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_securityhub.types.aws_s3_bucket_website_configuration_routing_rule.deserialize_json(
                 item

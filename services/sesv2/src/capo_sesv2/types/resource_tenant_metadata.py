@@ -44,13 +44,13 @@ def serialize_json(value: ResourceTenantMetadata) -> dict:
 
 def deserialize_json(data: dict) -> ResourceTenantMetadata:
     out: ResourceTenantMetadata = {}  # type: ignore[typeddict-item]
-    if "TenantName" in data:
+    if data.get("TenantName") is not None:
         out["tenant_name"] = data["TenantName"]
-    if "TenantId" in data:
+    if data.get("TenantId") is not None:
         out["tenant_id"] = data["TenantId"]
-    if "ResourceArn" in data:
+    if data.get("ResourceArn") is not None:
         out["resource_arn"] = data["ResourceArn"]
-    if "AssociatedTimestamp" in data:
+    if data.get("AssociatedTimestamp") is not None:
         import capo_sesv2.types.timestamp
 
         out["associated_timestamp"] = capo_sesv2.types.timestamp.deserialize_json(

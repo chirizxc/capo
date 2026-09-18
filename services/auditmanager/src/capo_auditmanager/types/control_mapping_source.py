@@ -85,13 +85,13 @@ def serialize_json(value: ControlMappingSource) -> dict:
 
 def deserialize_json(data: dict) -> ControlMappingSource:
     out: ControlMappingSource = {}  # type: ignore[typeddict-item]
-    if "sourceId" in data:
+    if data.get("sourceId") is not None:
         out["source_id"] = data["sourceId"]
-    if "sourceName" in data:
+    if data.get("sourceName") is not None:
         out["source_name"] = data["sourceName"]
-    if "sourceDescription" in data:
+    if data.get("sourceDescription") is not None:
         out["source_description"] = data["sourceDescription"]
-    if "sourceSetUpOption" in data:
+    if data.get("sourceSetUpOption") is not None:
         import capo_auditmanager.types.source_set_up_option
 
         out["source_set_up_option"] = (
@@ -99,19 +99,19 @@ def deserialize_json(data: dict) -> ControlMappingSource:
                 data["sourceSetUpOption"]
             )
         )
-    if "sourceType" in data:
+    if data.get("sourceType") is not None:
         import capo_auditmanager.types.source_type
 
         out["source_type"] = capo_auditmanager.types.source_type.deserialize_json(
             data["sourceType"]
         )
-    if "sourceKeyword" in data:
+    if data.get("sourceKeyword") is not None:
         import capo_auditmanager.types.source_keyword
 
         out["source_keyword"] = capo_auditmanager.types.source_keyword.deserialize_json(
             data["sourceKeyword"]
         )
-    if "sourceFrequency" in data:
+    if data.get("sourceFrequency") is not None:
         import capo_auditmanager.types.source_frequency
 
         out["source_frequency"] = (
@@ -119,6 +119,6 @@ def deserialize_json(data: dict) -> ControlMappingSource:
                 data["sourceFrequency"]
             )
         )
-    if "troubleshootingText" in data:
+    if data.get("troubleshootingText") is not None:
         out["troubleshooting_text"] = data["troubleshootingText"]
     return out

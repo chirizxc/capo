@@ -43,19 +43,19 @@ def serialize_aws_json_1_1(value: CreateCustomRoutingEndpointGroupRequest) -> di
 
 def deserialize_aws_json_1_1(data: dict) -> CreateCustomRoutingEndpointGroupRequest:
     out: CreateCustomRoutingEndpointGroupRequest = {}  # type: ignore[typeddict-item]
-    if "ListenerArn" in data:
+    if data.get("ListenerArn") is not None:
         out["listener_arn"] = data["ListenerArn"]
     else:
         raise DeserializationError(
             "CreateCustomRoutingEndpointGroupRequest.listener_arn required"
         )
-    if "EndpointGroupRegion" in data:
+    if data.get("EndpointGroupRegion") is not None:
         out["endpoint_group_region"] = data["EndpointGroupRegion"]
     else:
         raise DeserializationError(
             "CreateCustomRoutingEndpointGroupRequest.endpoint_group_region required"
         )
-    if "DestinationConfigurations" in data:
+    if data.get("DestinationConfigurations") is not None:
         import capo_global_accelerator.types.custom_routing_destination_configurations
 
         out["destination_configurations"] = (
@@ -67,7 +67,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateCustomRoutingEndpointGroupRequ
         raise DeserializationError(
             "CreateCustomRoutingEndpointGroupRequest.destination_configurations required"
         )
-    if "IdempotencyToken" in data:
+    if data.get("IdempotencyToken") is not None:
         out["idempotency_token"] = data["IdempotencyToken"]
     else:
         raise DeserializationError(

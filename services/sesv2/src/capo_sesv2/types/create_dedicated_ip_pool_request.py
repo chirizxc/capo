@@ -40,15 +40,15 @@ def serialize_json(value: CreateDedicatedIpPoolRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateDedicatedIpPoolRequest:
     out: CreateDedicatedIpPoolRequest = {}  # type: ignore[typeddict-item]
-    if "PoolName" in data:
+    if data.get("PoolName") is not None:
         out["pool_name"] = data["PoolName"]
     else:
         raise DeserializationError("CreateDedicatedIpPoolRequest.pool_name required")
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_sesv2.types.tag_list
 
         out["tags"] = capo_sesv2.types.tag_list.deserialize_json(data["Tags"])
-    if "ScalingMode" in data:
+    if data.get("ScalingMode") is not None:
         import capo_sesv2.types.scaling_mode
 
         out["scaling_mode"] = capo_sesv2.types.scaling_mode.deserialize_json(

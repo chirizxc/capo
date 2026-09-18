@@ -28,8 +28,8 @@ def serialize_json(value: UpdatePromptResponse) -> dict:
 
 def deserialize_json(data: dict) -> UpdatePromptResponse:
     out: UpdatePromptResponse = {}  # type: ignore[typeddict-item]
-    if "PromptARN" in data:
+    if data.get("PromptARN") is not None:
         out["prompt_arn"] = data["PromptARN"]
-    if "PromptId" in data:
+    if data.get("PromptId") is not None:
         out["prompt_id"] = data["PromptId"]
     return out

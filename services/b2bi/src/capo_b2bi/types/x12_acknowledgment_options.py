@@ -44,7 +44,7 @@ def serialize_aws_json_1_0(value: X12AcknowledgmentOptions) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> X12AcknowledgmentOptions:
     out: X12AcknowledgmentOptions = {}  # type: ignore[typeddict-item]
-    if "functionalAcknowledgment" in data:
+    if data.get("functionalAcknowledgment") is not None:
         import capo_b2bi.types.x12_functional_acknowledgment
 
         out["functional_acknowledgment"] = (
@@ -56,7 +56,7 @@ def deserialize_aws_json_1_0(data: dict) -> X12AcknowledgmentOptions:
         raise DeserializationError(
             "X12AcknowledgmentOptions.functional_acknowledgment required"
         )
-    if "technicalAcknowledgment" in data:
+    if data.get("technicalAcknowledgment") is not None:
         import capo_b2bi.types.x12_technical_acknowledgment
 
         out["technical_acknowledgment"] = (

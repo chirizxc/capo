@@ -25,6 +25,6 @@ def serialize_aws_json_1_1(value: OptimizationOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> OptimizationOutput:
     out: OptimizationOutput = {}  # type: ignore[typeddict-item]
-    if "RecommendedInferenceImage" in data:
+    if data.get("RecommendedInferenceImage") is not None:
         out["recommended_inference_image"] = data["RecommendedInferenceImage"]
     return out

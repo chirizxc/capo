@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> InferenceReceiverMembers:
 
     out: InferenceReceiverMembers = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_cleanroomsml.types.inference_receiver_member.deserialize_json(item)
         )

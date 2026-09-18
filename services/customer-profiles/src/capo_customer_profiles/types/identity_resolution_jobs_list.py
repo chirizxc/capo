@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> IdentityResolutionJobsList:
 
     out: IdentityResolutionJobsList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_customer_profiles.types.identity_resolution_job.deserialize_json(item)
         )

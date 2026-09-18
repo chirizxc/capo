@@ -34,7 +34,7 @@ def serialize_json(value: JobSchedule) -> dict:
 
 def deserialize_json(data: dict) -> JobSchedule:
     out: JobSchedule = {}  # type: ignore[typeddict-item]
-    if "DayOfTheWeek" in data:
+    if data.get("DayOfTheWeek") is not None:
         import capo_customer_profiles.types.job_schedule_day_of_the_week
 
         out["day_of_the_week"] = (
@@ -44,7 +44,7 @@ def deserialize_json(data: dict) -> JobSchedule:
         )
     else:
         raise DeserializationError("JobSchedule.day_of_the_week required")
-    if "Time" in data:
+    if data.get("Time") is not None:
         out["time"] = data["Time"]
     else:
         raise DeserializationError("JobSchedule.time required")

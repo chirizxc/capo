@@ -23,6 +23,6 @@ def serialize_aws_json_1_1(value: AutoSnapshotAddOnRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AutoSnapshotAddOnRequest:
     out: AutoSnapshotAddOnRequest = {}  # type: ignore[typeddict-item]
-    if "snapshotTimeOfDay" in data:
+    if data.get("snapshotTimeOfDay") is not None:
         out["snapshot_time_of_day"] = data["snapshotTimeOfDay"]
     return out

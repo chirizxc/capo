@@ -34,7 +34,7 @@ def serialize_json(value: ProvisioningProperties) -> dict:
 
 
 def deserialize_json(data: dict) -> ProvisioningProperties:
-    if "cloudFormation" in data:
+    if data.get("cloudFormation") is not None:
         import capo_datazone.types.cloud_formation_properties
 
         return {

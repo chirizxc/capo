@@ -35,7 +35,7 @@ def deserialize_aws_json_1_1(
     data: dict,
 ) -> DescribeCustomRoutingAcceleratorAttributesResponse:
     out: DescribeCustomRoutingAcceleratorAttributesResponse = {}  # type: ignore[typeddict-item]
-    if "AcceleratorAttributes" in data:
+    if data.get("AcceleratorAttributes") is not None:
         import capo_global_accelerator.types.custom_routing_accelerator_attributes
 
         out["accelerator_attributes"] = (

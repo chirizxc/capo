@@ -51,7 +51,7 @@ def serialize_aws_json_1_1(value: OperationFilter) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> OperationFilter:
     out: OperationFilter = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         import capo_servicediscovery.types.operation_filter_name
 
         out["name"] = (
@@ -61,7 +61,7 @@ def deserialize_aws_json_1_1(data: dict) -> OperationFilter:
         )
     else:
         raise DeserializationError("OperationFilter.name required")
-    if "Values" in data:
+    if data.get("Values") is not None:
         import capo_servicediscovery.types.filter_values
 
         out["values"] = (
@@ -71,7 +71,7 @@ def deserialize_aws_json_1_1(data: dict) -> OperationFilter:
         )
     else:
         raise DeserializationError("OperationFilter.values required")
-    if "Condition" in data:
+    if data.get("Condition") is not None:
         import capo_servicediscovery.types.filter_condition
 
         out["condition"] = (

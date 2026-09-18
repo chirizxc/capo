@@ -95,13 +95,13 @@ def serialize_json(value: UpdateBotRecommendationResponse) -> dict:
 
 def deserialize_json(data: dict) -> UpdateBotRecommendationResponse:
     out: UpdateBotRecommendationResponse = {}  # type: ignore[typeddict-item]
-    if "botId" in data:
+    if data.get("botId") is not None:
         out["bot_id"] = data["botId"]
-    if "botVersion" in data:
+    if data.get("botVersion") is not None:
         out["bot_version"] = data["botVersion"]
-    if "localeId" in data:
+    if data.get("localeId") is not None:
         out["locale_id"] = data["localeId"]
-    if "botRecommendationStatus" in data:
+    if data.get("botRecommendationStatus") is not None:
         import capo_lex_models_v2.types.bot_recommendation_status
 
         out["bot_recommendation_status"] = (
@@ -109,15 +109,15 @@ def deserialize_json(data: dict) -> UpdateBotRecommendationResponse:
                 data["botRecommendationStatus"]
             )
         )
-    if "botRecommendationId" in data:
+    if data.get("botRecommendationId") is not None:
         out["bot_recommendation_id"] = data["botRecommendationId"]
-    if "creationDateTime" in data:
+    if data.get("creationDateTime") is not None:
         import capo_lex_models_v2.types.timestamp
 
         out["creation_date_time"] = capo_lex_models_v2.types.timestamp.deserialize_json(
             data["creationDateTime"]
         )
-    if "lastUpdatedDateTime" in data:
+    if data.get("lastUpdatedDateTime") is not None:
         import capo_lex_models_v2.types.timestamp
 
         out["last_updated_date_time"] = (
@@ -125,7 +125,7 @@ def deserialize_json(data: dict) -> UpdateBotRecommendationResponse:
                 data["lastUpdatedDateTime"]
             )
         )
-    if "transcriptSourceSetting" in data:
+    if data.get("transcriptSourceSetting") is not None:
         import capo_lex_models_v2.types.transcript_source_setting
 
         out["transcript_source_setting"] = (
@@ -133,7 +133,7 @@ def deserialize_json(data: dict) -> UpdateBotRecommendationResponse:
                 data["transcriptSourceSetting"]
             )
         )
-    if "encryptionSetting" in data:
+    if data.get("encryptionSetting") is not None:
         import capo_lex_models_v2.types.encryption_setting
 
         out["encryption_setting"] = (

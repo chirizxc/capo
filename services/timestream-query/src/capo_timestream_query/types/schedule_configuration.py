@@ -26,7 +26,7 @@ def serialize_aws_json_1_0(value: ScheduleConfiguration) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ScheduleConfiguration:
     out: ScheduleConfiguration = {}  # type: ignore[typeddict-item]
-    if "ScheduleExpression" in data:
+    if data.get("ScheduleExpression") is not None:
         out["schedule_expression"] = data["ScheduleExpression"]
     else:
         raise DeserializationError("ScheduleConfiguration.schedule_expression required")

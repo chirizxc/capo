@@ -73,7 +73,7 @@ def serialize_json(value: EksAttemptDetail) -> dict:
 
 def deserialize_json(data: dict) -> EksAttemptDetail:
     out: EksAttemptDetail = {}  # type: ignore[typeddict-item]
-    if "containers" in data:
+    if data.get("containers") is not None:
         import capo_batch.types.eks_attempt_container_details
 
         out["containers"] = (
@@ -81,7 +81,7 @@ def deserialize_json(data: dict) -> EksAttemptDetail:
                 data["containers"]
             )
         )
-    if "initContainers" in data:
+    if data.get("initContainers") is not None:
         import capo_batch.types.eks_attempt_container_details
 
         out["init_containers"] = (
@@ -89,18 +89,18 @@ def deserialize_json(data: dict) -> EksAttemptDetail:
                 data["initContainers"]
             )
         )
-    if "eksClusterArn" in data:
+    if data.get("eksClusterArn") is not None:
         out["eks_cluster_arn"] = data["eksClusterArn"]
-    if "podName" in data:
+    if data.get("podName") is not None:
         out["pod_name"] = data["podName"]
-    if "podNamespace" in data:
+    if data.get("podNamespace") is not None:
         out["pod_namespace"] = data["podNamespace"]
-    if "nodeName" in data:
+    if data.get("nodeName") is not None:
         out["node_name"] = data["nodeName"]
-    if "startedAt" in data:
+    if data.get("startedAt") is not None:
         out["started_at"] = data["startedAt"]
-    if "stoppedAt" in data:
+    if data.get("stoppedAt") is not None:
         out["stopped_at"] = data["stoppedAt"]
-    if "statusReason" in data:
+    if data.get("statusReason") is not None:
         out["status_reason"] = data["statusReason"]
     return out

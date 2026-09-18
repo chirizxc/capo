@@ -41,25 +41,25 @@ def serialize_aws_json_1_1(value: MergeDeveloperIdentitiesInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> MergeDeveloperIdentitiesInput:
     out: MergeDeveloperIdentitiesInput = {}  # type: ignore[typeddict-item]
-    if "SourceUserIdentifier" in data:
+    if data.get("SourceUserIdentifier") is not None:
         out["source_user_identifier"] = data["SourceUserIdentifier"]
     else:
         raise DeserializationError(
             "MergeDeveloperIdentitiesInput.source_user_identifier required"
         )
-    if "DestinationUserIdentifier" in data:
+    if data.get("DestinationUserIdentifier") is not None:
         out["destination_user_identifier"] = data["DestinationUserIdentifier"]
     else:
         raise DeserializationError(
             "MergeDeveloperIdentitiesInput.destination_user_identifier required"
         )
-    if "DeveloperProviderName" in data:
+    if data.get("DeveloperProviderName") is not None:
         out["developer_provider_name"] = data["DeveloperProviderName"]
     else:
         raise DeserializationError(
             "MergeDeveloperIdentitiesInput.developer_provider_name required"
         )
-    if "IdentityPoolId" in data:
+    if data.get("IdentityPoolId") is not None:
         out["identity_pool_id"] = data["IdentityPoolId"]
     else:
         raise DeserializationError(

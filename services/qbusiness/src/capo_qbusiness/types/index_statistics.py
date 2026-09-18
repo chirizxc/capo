@@ -31,7 +31,7 @@ def serialize_json(value: IndexStatistics) -> dict:
 
 def deserialize_json(data: dict) -> IndexStatistics:
     out: IndexStatistics = {}  # type: ignore[typeddict-item]
-    if "textDocumentStatistics" in data:
+    if data.get("textDocumentStatistics") is not None:
         import capo_qbusiness.types.text_document_statistics
 
         out["text_document_statistics"] = (

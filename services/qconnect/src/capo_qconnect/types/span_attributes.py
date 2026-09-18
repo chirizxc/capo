@@ -141,9 +141,25 @@ def serialize_json(value: SpanAttributes) -> dict:
     if "request_max_tokens" in value:
         out["requestMaxTokens"] = value["request_max_tokens"]
     if "temperature" in value:
-        out["temperature"] = value["temperature"]
+        out["temperature"] = (
+            "NaN"
+            if value["temperature"] != value["temperature"]
+            else "Infinity"
+            if value["temperature"] == float("inf")
+            else "-Infinity"
+            if value["temperature"] == float("-inf")
+            else value["temperature"]
+        )
     if "top_p" in value:
-        out["topP"] = value["top_p"]
+        out["topP"] = (
+            "NaN"
+            if value["top_p"] != value["top_p"]
+            else "Infinity"
+            if value["top_p"] == float("inf")
+            else "-Infinity"
+            if value["top_p"] == float("-inf")
+            else value["top_p"]
+        )
     if "response_model" in value:
         out["responseModel"] = value["response_model"]
     if "response_finish_reasons" in value:
@@ -209,47 +225,47 @@ def serialize_json(value: SpanAttributes) -> dict:
 
 def deserialize_json(data: dict) -> SpanAttributes:
     out: SpanAttributes = {}  # type: ignore[typeddict-item]
-    if "operationName" in data:
+    if data.get("operationName") is not None:
         out["operation_name"] = data["operationName"]
-    if "providerName" in data:
+    if data.get("providerName") is not None:
         out["provider_name"] = data["providerName"]
-    if "errorType" in data:
+    if data.get("errorType") is not None:
         out["error_type"] = data["errorType"]
-    if "agentId" in data:
+    if data.get("agentId") is not None:
         out["agent_id"] = data["agentId"]
-    if "instanceArn" in data:
+    if data.get("instanceArn") is not None:
         out["instance_arn"] = data["instanceArn"]
-    if "contactId" in data:
+    if data.get("contactId") is not None:
         out["contact_id"] = data["contactId"]
-    if "initialContactId" in data:
+    if data.get("initialContactId") is not None:
         out["initial_contact_id"] = data["initialContactId"]
-    if "sessionName" in data:
+    if data.get("sessionName") is not None:
         out["session_name"] = data["sessionName"]
-    if "aiAgentArn" in data:
+    if data.get("aiAgentArn") is not None:
         out["ai_agent_arn"] = data["aiAgentArn"]
-    if "aiAgentType" in data:
+    if data.get("aiAgentType") is not None:
         out["ai_agent_type"] = data["aiAgentType"]
-    if "aiAgentName" in data:
+    if data.get("aiAgentName") is not None:
         out["ai_agent_name"] = data["aiAgentName"]
-    if "aiAgentId" in data:
+    if data.get("aiAgentId") is not None:
         out["ai_agent_id"] = data["aiAgentId"]
-    if "aiAgentVersion" in data:
+    if data.get("aiAgentVersion") is not None:
         out["ai_agent_version"] = data["aiAgentVersion"]
-    if "aiAgentInvoker" in data:
+    if data.get("aiAgentInvoker") is not None:
         out["ai_agent_invoker"] = data["aiAgentInvoker"]
-    if "aiAgentOrchestratorUseCase" in data:
+    if data.get("aiAgentOrchestratorUseCase") is not None:
         out["ai_agent_orchestrator_use_case"] = data["aiAgentOrchestratorUseCase"]
-    if "requestModel" in data:
+    if data.get("requestModel") is not None:
         out["request_model"] = data["requestModel"]
-    if "requestMaxTokens" in data:
+    if data.get("requestMaxTokens") is not None:
         out["request_max_tokens"] = data["requestMaxTokens"]
-    if "temperature" in data:
-        out["temperature"] = data["temperature"]
-    if "topP" in data:
-        out["top_p"] = data["topP"]
-    if "responseModel" in data:
+    if data.get("temperature") is not None:
+        out["temperature"] = float(data["temperature"])
+    if data.get("topP") is not None:
+        out["top_p"] = float(data["topP"])
+    if data.get("responseModel") is not None:
         out["response_model"] = data["responseModel"]
-    if "responseFinishReasons" in data:
+    if data.get("responseFinishReasons") is not None:
         import capo_qconnect.types.span_finish_reason_list
 
         out["response_finish_reasons"] = (
@@ -257,29 +273,29 @@ def deserialize_json(data: dict) -> SpanAttributes:
                 data["responseFinishReasons"]
             )
         )
-    if "usageInputTokens" in data:
+    if data.get("usageInputTokens") is not None:
         out["usage_input_tokens"] = data["usageInputTokens"]
-    if "usageOutputTokens" in data:
+    if data.get("usageOutputTokens") is not None:
         out["usage_output_tokens"] = data["usageOutputTokens"]
-    if "usageTotalTokens" in data:
+    if data.get("usageTotalTokens") is not None:
         out["usage_total_tokens"] = data["usageTotalTokens"]
-    if "cacheReadInputTokens" in data:
+    if data.get("cacheReadInputTokens") is not None:
         out["cache_read_input_tokens"] = data["cacheReadInputTokens"]
-    if "cacheWriteInputTokens" in data:
+    if data.get("cacheWriteInputTokens") is not None:
         out["cache_write_input_tokens"] = data["cacheWriteInputTokens"]
-    if "inputMessages" in data:
+    if data.get("inputMessages") is not None:
         import capo_qconnect.types.span_message_list
 
         out["input_messages"] = capo_qconnect.types.span_message_list.deserialize_json(
             data["inputMessages"]
         )
-    if "outputMessages" in data:
+    if data.get("outputMessages") is not None:
         import capo_qconnect.types.span_message_list
 
         out["output_messages"] = capo_qconnect.types.span_message_list.deserialize_json(
             data["outputMessages"]
         )
-    if "systemInstructions" in data:
+    if data.get("systemInstructions") is not None:
         import capo_qconnect.types.span_message_value_list
 
         out["system_instructions"] = (
@@ -287,19 +303,19 @@ def deserialize_json(data: dict) -> SpanAttributes:
                 data["systemInstructions"]
             )
         )
-    if "promptArn" in data:
+    if data.get("promptArn") is not None:
         out["prompt_arn"] = data["promptArn"]
-    if "promptId" in data:
+    if data.get("promptId") is not None:
         out["prompt_id"] = data["promptId"]
-    if "promptType" in data:
+    if data.get("promptType") is not None:
         out["prompt_type"] = data["promptType"]
-    if "promptName" in data:
+    if data.get("promptName") is not None:
         out["prompt_name"] = data["promptName"]
-    if "promptVersion" in data:
+    if data.get("promptVersion") is not None:
         out["prompt_version"] = data["promptVersion"]
-    if "timeToFirstTokenMs" in data:
+    if data.get("timeToFirstTokenMs") is not None:
         out["time_to_first_token_ms"] = data["timeToFirstTokenMs"]
-    if "guardrailAssessments" in data:
+    if data.get("guardrailAssessments") is not None:
         import capo_qconnect.types.span_guardrail_assessment_list
 
         out["guardrail_assessments"] = (

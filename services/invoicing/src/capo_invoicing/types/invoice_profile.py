@@ -62,11 +62,11 @@ def serialize_aws_json_1_0(value: InvoiceProfile) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> InvoiceProfile:
     out: InvoiceProfile = {}  # type: ignore[typeddict-item]
-    if "AccountId" in data:
+    if data.get("AccountId") is not None:
         out["account_id"] = data["AccountId"]
-    if "ReceiverName" in data:
+    if data.get("ReceiverName") is not None:
         out["receiver_name"] = data["ReceiverName"]
-    if "ReceiverAddress" in data:
+    if data.get("ReceiverAddress") is not None:
         import capo_invoicing.types.receiver_address
 
         out["receiver_address"] = (
@@ -74,10 +74,10 @@ def deserialize_aws_json_1_0(data: dict) -> InvoiceProfile:
                 data["ReceiverAddress"]
             )
         )
-    if "ReceiverEmail" in data:
+    if data.get("ReceiverEmail") is not None:
         out["receiver_email"] = data["ReceiverEmail"]
-    if "Issuer" in data:
+    if data.get("Issuer") is not None:
         out["issuer"] = data["Issuer"]
-    if "TaxRegistrationNumber" in data:
+    if data.get("TaxRegistrationNumber") is not None:
         out["tax_registration_number"] = data["TaxRegistrationNumber"]
     return out

@@ -22,7 +22,15 @@ class WavSettings(TypedDict, closed=True):
 def serialize_json(value: WavSettings) -> dict:
     out: dict = {}
     if "bit_depth" in value:
-        out["bitDepth"] = value["bit_depth"]
+        out["bitDepth"] = (
+            "NaN"
+            if value["bit_depth"] != value["bit_depth"]
+            else "Infinity"
+            if value["bit_depth"] == float("inf")
+            else "-Infinity"
+            if value["bit_depth"] == float("-inf")
+            else value["bit_depth"]
+        )
     if "coding_mode" in value:
         import capo_medialive.types.wav_coding_mode
 
@@ -30,20 +38,28 @@ def serialize_json(value: WavSettings) -> dict:
             value["coding_mode"]
         )
     if "sample_rate" in value:
-        out["sampleRate"] = value["sample_rate"]
+        out["sampleRate"] = (
+            "NaN"
+            if value["sample_rate"] != value["sample_rate"]
+            else "Infinity"
+            if value["sample_rate"] == float("inf")
+            else "-Infinity"
+            if value["sample_rate"] == float("-inf")
+            else value["sample_rate"]
+        )
     return out
 
 
 def deserialize_json(data: dict) -> WavSettings:
     out: WavSettings = {}  # type: ignore[typeddict-item]
-    if "bitDepth" in data:
-        out["bit_depth"] = data["bitDepth"]
-    if "codingMode" in data:
+    if data.get("bitDepth") is not None:
+        out["bit_depth"] = float(data["bitDepth"])
+    if data.get("codingMode") is not None:
         import capo_medialive.types.wav_coding_mode
 
         out["coding_mode"] = capo_medialive.types.wav_coding_mode.deserialize_json(
             data["codingMode"]
         )
-    if "sampleRate" in data:
-        out["sample_rate"] = data["sampleRate"]
+    if data.get("sampleRate") is not None:
+        out["sample_rate"] = float(data["sampleRate"])
     return out

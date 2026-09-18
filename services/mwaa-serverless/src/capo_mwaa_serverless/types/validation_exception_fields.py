@@ -29,6 +29,8 @@ def deserialize_aws_json_1_0(data: list) -> ValidationExceptionFields:
 
     out: ValidationExceptionFields = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_mwaa_serverless.types.validation_exception_field.deserialize_aws_json_1_0(
                 item

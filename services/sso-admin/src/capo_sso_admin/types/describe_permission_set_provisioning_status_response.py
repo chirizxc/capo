@@ -35,7 +35,7 @@ def deserialize_aws_json_1_1(
     data: dict,
 ) -> DescribePermissionSetProvisioningStatusResponse:
     out: DescribePermissionSetProvisioningStatusResponse = {}  # type: ignore[typeddict-item]
-    if "PermissionSetProvisioningStatus" in data:
+    if data.get("PermissionSetProvisioningStatus") is not None:
         import capo_sso_admin.types.permission_set_provisioning_status
 
         out["permission_set_provisioning_status"] = (

@@ -44,12 +44,12 @@ def serialize_json(value: Rectangle) -> dict:
 
 def deserialize_json(data: dict) -> Rectangle:
     out: Rectangle = {}  # type: ignore[typeddict-item]
-    if "height" in data:
+    if data.get("height") is not None:
         out["height"] = data["height"]
-    if "width" in data:
+    if data.get("width") is not None:
         out["width"] = data["width"]
-    if "x" in data:
+    if data.get("x") is not None:
         out["x"] = data["x"]
-    if "y" in data:
+    if data.get("y") is not None:
         out["y"] = data["y"]
     return out

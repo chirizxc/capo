@@ -23,5 +23,7 @@ def deserialize_aws_json_1_1(data: list) -> MetricResults:
 
     out: MetricResults = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_forecast.types.metric_result.deserialize_aws_json_1_1(item))
     return out

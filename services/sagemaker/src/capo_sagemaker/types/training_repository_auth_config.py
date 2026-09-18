@@ -27,7 +27,7 @@ def serialize_aws_json_1_1(value: TrainingRepositoryAuthConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> TrainingRepositoryAuthConfig:
     out: TrainingRepositoryAuthConfig = {}  # type: ignore[typeddict-item]
-    if "TrainingRepositoryCredentialsProviderArn" in data:
+    if data.get("TrainingRepositoryCredentialsProviderArn") is not None:
         out["training_repository_credentials_provider_arn"] = data[
             "TrainingRepositoryCredentialsProviderArn"
         ]

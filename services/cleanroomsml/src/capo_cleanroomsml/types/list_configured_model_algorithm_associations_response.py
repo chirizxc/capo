@@ -35,9 +35,9 @@ def serialize_json(value: ListConfiguredModelAlgorithmAssociationsResponse) -> d
 
 def deserialize_json(data: dict) -> ListConfiguredModelAlgorithmAssociationsResponse:
     out: ListConfiguredModelAlgorithmAssociationsResponse = {}  # type: ignore[typeddict-item]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "configuredModelAlgorithmAssociations" in data:
+    if data.get("configuredModelAlgorithmAssociations") is not None:
         import capo_cleanroomsml.types.configured_model_algorithm_association_list
 
         out["configured_model_algorithm_associations"] = (

@@ -38,15 +38,15 @@ def serialize_aws_json_1_1(value: SessionEndpoint) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SessionEndpoint:
     out: SessionEndpoint = {}  # type: ignore[typeddict-item]
-    if "Url" in data:
+    if data.get("Url") is not None:
         out["url"] = data["Url"]
     else:
         raise DeserializationError("SessionEndpoint.url required")
-    if "AuthToken" in data:
+    if data.get("AuthToken") is not None:
         out["auth_token"] = data["AuthToken"]
     else:
         raise DeserializationError("SessionEndpoint.auth_token required")
-    if "AuthTokenExpirationTime" in data:
+    if data.get("AuthTokenExpirationTime") is not None:
         import capo_glue.types.timestamp_value
 
         out["auth_token_expiration_time"] = (

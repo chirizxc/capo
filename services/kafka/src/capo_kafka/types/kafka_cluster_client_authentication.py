@@ -31,7 +31,7 @@ def serialize_json(value: KafkaClusterClientAuthentication) -> dict:
 
 def deserialize_json(data: dict) -> KafkaClusterClientAuthentication:
     out: KafkaClusterClientAuthentication = {}  # type: ignore[typeddict-item]
-    if "saslScram" in data:
+    if data.get("saslScram") is not None:
         import capo_kafka.types.kafka_cluster_sasl_scram_authentication
 
         out["sasl_scram"] = (

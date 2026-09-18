@@ -29,9 +29,9 @@ def serialize_json(value: SourceData) -> dict:
 
 
 def deserialize_json(data: dict) -> SourceData:
-    if "x509CertificateData" in data:
+    if data.get("x509CertificateData") is not None:
         return {"x509CertificateData": data["x509CertificateData"]}
-    elif "acmPcaArn" in data:
+    elif data.get("acmPcaArn") is not None:
         return {"acmPcaArn": data["acmPcaArn"]}
     else:
         raise DeserializationError("SourceData: no recognized variant key")

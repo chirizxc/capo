@@ -25,6 +25,8 @@ def deserialize_json(data: list) -> ReactiveAnomalies:
 
     out: ReactiveAnomalies = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_devops_guru.types.reactive_anomaly_summary.deserialize_json(item)
         )

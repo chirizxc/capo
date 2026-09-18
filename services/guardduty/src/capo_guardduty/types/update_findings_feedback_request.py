@@ -44,18 +44,18 @@ def serialize_json(value: UpdateFindingsFeedbackRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateFindingsFeedbackRequest:
     out: UpdateFindingsFeedbackRequest = {}  # type: ignore[typeddict-item]
-    if "findingIds" in data:
+    if data.get("findingIds") is not None:
         import capo_guardduty.types.finding_ids
 
         out["finding_ids"] = capo_guardduty.types.finding_ids.deserialize_json(
             data["findingIds"]
         )
-    if "feedback" in data:
+    if data.get("feedback") is not None:
         import capo_guardduty.types.feedback
 
         out["feedback"] = capo_guardduty.types.feedback.deserialize_json(
             data["feedback"]
         )
-    if "comments" in data:
+    if data.get("comments") is not None:
         out["comments"] = data["comments"]
     return out

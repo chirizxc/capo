@@ -76,31 +76,31 @@ def serialize_json(value: UpdateTeamsChannelConfigurationRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateTeamsChannelConfigurationRequest:
     out: UpdateTeamsChannelConfigurationRequest = {}  # type: ignore[typeddict-item]
-    if "ChatConfigurationArn" in data:
+    if data.get("ChatConfigurationArn") is not None:
         out["chat_configuration_arn"] = data["ChatConfigurationArn"]
     else:
         raise DeserializationError(
             "UpdateTeamsChannelConfigurationRequest.chat_configuration_arn required"
         )
-    if "ChannelId" in data:
+    if data.get("ChannelId") is not None:
         out["channel_id"] = data["ChannelId"]
     else:
         raise DeserializationError(
             "UpdateTeamsChannelConfigurationRequest.channel_id required"
         )
-    if "ChannelName" in data:
+    if data.get("ChannelName") is not None:
         out["channel_name"] = data["ChannelName"]
-    if "SnsTopicArns" in data:
+    if data.get("SnsTopicArns") is not None:
         import capo_chatbot.types.sns_topic_arn_list
 
         out["sns_topic_arns"] = capo_chatbot.types.sns_topic_arn_list.deserialize_json(
             data["SnsTopicArns"]
         )
-    if "IamRoleArn" in data:
+    if data.get("IamRoleArn") is not None:
         out["iam_role_arn"] = data["IamRoleArn"]
-    if "LoggingLevel" in data:
+    if data.get("LoggingLevel") is not None:
         out["logging_level"] = data["LoggingLevel"]
-    if "GuardrailPolicyArns" in data:
+    if data.get("GuardrailPolicyArns") is not None:
         import capo_chatbot.types.guardrail_policy_arn_list
 
         out["guardrail_policy_arns"] = (
@@ -108,6 +108,6 @@ def deserialize_json(data: dict) -> UpdateTeamsChannelConfigurationRequest:
                 data["GuardrailPolicyArns"]
             )
         )
-    if "UserAuthorizationRequired" in data:
+    if data.get("UserAuthorizationRequired") is not None:
         out["user_authorization_required"] = data["UserAuthorizationRequired"]
     return out

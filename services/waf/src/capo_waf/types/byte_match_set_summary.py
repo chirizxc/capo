@@ -28,11 +28,11 @@ def serialize_aws_json_1_1(value: ByteMatchSetSummary) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ByteMatchSetSummary:
     out: ByteMatchSetSummary = {}  # type: ignore[typeddict-item]
-    if "ByteMatchSetId" in data:
+    if data.get("ByteMatchSetId") is not None:
         out["byte_match_set_id"] = data["ByteMatchSetId"]
     else:
         raise DeserializationError("ByteMatchSetSummary.byte_match_set_id required")
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("ByteMatchSetSummary.name required")

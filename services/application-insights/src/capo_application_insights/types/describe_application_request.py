@@ -31,12 +31,12 @@ def serialize_aws_json_1_1(value: DescribeApplicationRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeApplicationRequest:
     out: DescribeApplicationRequest = {}  # type: ignore[typeddict-item]
-    if "ResourceGroupName" in data:
+    if data.get("ResourceGroupName") is not None:
         out["resource_group_name"] = data["ResourceGroupName"]
     else:
         raise DeserializationError(
             "DescribeApplicationRequest.resource_group_name required"
         )
-    if "AccountId" in data:
+    if data.get("AccountId") is not None:
         out["account_id"] = data["AccountId"]
     return out

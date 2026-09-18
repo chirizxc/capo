@@ -32,10 +32,10 @@ def serialize_json(value: ResourceError) -> dict:
 
 def deserialize_json(data: dict) -> ResourceError:
     out: ResourceError = {}  # type: ignore[typeddict-item]
-    if "logicalResourceId" in data:
+    if data.get("logicalResourceId") is not None:
         out["logical_resource_id"] = data["logicalResourceId"]
-    if "physicalResourceId" in data:
+    if data.get("physicalResourceId") is not None:
         out["physical_resource_id"] = data["physicalResourceId"]
-    if "reason" in data:
+    if data.get("reason") is not None:
         out["reason"] = data["reason"]
     return out

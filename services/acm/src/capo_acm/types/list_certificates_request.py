@@ -66,7 +66,7 @@ def serialize_aws_json_1_1(value: ListCertificatesRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListCertificatesRequest:
     out: ListCertificatesRequest = {}  # type: ignore[typeddict-item]
-    if "CertificateStatuses" in data:
+    if data.get("CertificateStatuses") is not None:
         import capo_acm.types.certificate_statuses
 
         out["certificate_statuses"] = (
@@ -74,21 +74,21 @@ def deserialize_aws_json_1_1(data: dict) -> ListCertificatesRequest:
                 data["CertificateStatuses"]
             )
         )
-    if "Includes" in data:
+    if data.get("Includes") is not None:
         import capo_acm.types.filters
 
         out["includes"] = capo_acm.types.filters.deserialize_aws_json_1_1(
             data["Includes"]
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "MaxItems" in data:
+    if data.get("MaxItems") is not None:
         out["max_items"] = data["MaxItems"]
-    if "SortBy" in data:
+    if data.get("SortBy") is not None:
         import capo_acm.types.sort_by
 
         out["sort_by"] = capo_acm.types.sort_by.deserialize_aws_json_1_1(data["SortBy"])
-    if "SortOrder" in data:
+    if data.get("SortOrder") is not None:
         import capo_acm.types.sort_order
 
         out["sort_order"] = capo_acm.types.sort_order.deserialize_aws_json_1_1(

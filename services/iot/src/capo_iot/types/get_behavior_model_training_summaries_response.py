@@ -36,7 +36,7 @@ def serialize_json(value: GetBehaviorModelTrainingSummariesResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetBehaviorModelTrainingSummariesResponse:
     out: GetBehaviorModelTrainingSummariesResponse = {}  # type: ignore[typeddict-item]
-    if "summaries" in data:
+    if data.get("summaries") is not None:
         import capo_iot.types.behavior_model_training_summaries
 
         out["summaries"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> GetBehaviorModelTrainingSummariesResponse:
                 data["summaries"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

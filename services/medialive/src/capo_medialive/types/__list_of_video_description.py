@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> __listOfVideoDescription:
 
     out: __listOfVideoDescription = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_medialive.types.video_description.deserialize_json(item))
     return out

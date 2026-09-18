@@ -30,8 +30,8 @@ def serialize_json(value: DelegatedAdminAccount) -> dict:
 
 def deserialize_json(data: dict) -> DelegatedAdminAccount:
     out: DelegatedAdminAccount = {}  # type: ignore[typeddict-item]
-    if "accountId" in data:
+    if data.get("accountId") is not None:
         out["account_id"] = data["accountId"]
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
     return out

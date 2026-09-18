@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> StreetComponentsList:
 
     out: StreetComponentsList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_geo_places.types.street_components.deserialize_json(item))
     return out

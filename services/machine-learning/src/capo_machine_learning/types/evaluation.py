@@ -122,17 +122,17 @@ def serialize_aws_json_1_1(value: Evaluation) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Evaluation:
     out: Evaluation = {}  # type: ignore[typeddict-item]
-    if "EvaluationId" in data:
+    if data.get("EvaluationId") is not None:
         out["evaluation_id"] = data["EvaluationId"]
-    if "MLModelId" in data:
+    if data.get("MLModelId") is not None:
         out["ml_model_id"] = data["MLModelId"]
-    if "EvaluationDataSourceId" in data:
+    if data.get("EvaluationDataSourceId") is not None:
         out["evaluation_data_source_id"] = data["EvaluationDataSourceId"]
-    if "InputDataLocationS3" in data:
+    if data.get("InputDataLocationS3") is not None:
         out["input_data_location_s3"] = data["InputDataLocationS3"]
-    if "CreatedByIamUser" in data:
+    if data.get("CreatedByIamUser") is not None:
         out["created_by_iam_user"] = data["CreatedByIamUser"]
-    if "CreatedAt" in data:
+    if data.get("CreatedAt") is not None:
         import capo_machine_learning.types.epoch_time
 
         out["created_at"] = (
@@ -140,7 +140,7 @@ def deserialize_aws_json_1_1(data: dict) -> Evaluation:
                 data["CreatedAt"]
             )
         )
-    if "LastUpdatedAt" in data:
+    if data.get("LastUpdatedAt") is not None:
         import capo_machine_learning.types.epoch_time
 
         out["last_updated_at"] = (
@@ -148,9 +148,9 @@ def deserialize_aws_json_1_1(data: dict) -> Evaluation:
                 data["LastUpdatedAt"]
             )
         )
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_machine_learning.types.entity_status
 
         out["status"] = (
@@ -158,7 +158,7 @@ def deserialize_aws_json_1_1(data: dict) -> Evaluation:
                 data["Status"]
             )
         )
-    if "PerformanceMetrics" in data:
+    if data.get("PerformanceMetrics") is not None:
         import capo_machine_learning.types.performance_metrics
 
         out["performance_metrics"] = (
@@ -166,11 +166,11 @@ def deserialize_aws_json_1_1(data: dict) -> Evaluation:
                 data["PerformanceMetrics"]
             )
         )
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
-    if "ComputeTime" in data:
+    if data.get("ComputeTime") is not None:
         out["compute_time"] = data["ComputeTime"]
-    if "FinishedAt" in data:
+    if data.get("FinishedAt") is not None:
         import capo_machine_learning.types.epoch_time
 
         out["finished_at"] = (
@@ -178,7 +178,7 @@ def deserialize_aws_json_1_1(data: dict) -> Evaluation:
                 data["FinishedAt"]
             )
         )
-    if "StartedAt" in data:
+    if data.get("StartedAt") is not None:
         import capo_machine_learning.types.epoch_time
 
         out["started_at"] = (

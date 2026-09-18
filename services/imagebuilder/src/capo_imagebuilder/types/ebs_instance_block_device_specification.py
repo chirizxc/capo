@@ -66,24 +66,24 @@ def serialize_json(value: EbsInstanceBlockDeviceSpecification) -> dict:
 
 def deserialize_json(data: dict) -> EbsInstanceBlockDeviceSpecification:
     out: EbsInstanceBlockDeviceSpecification = {}  # type: ignore[typeddict-item]
-    if "encrypted" in data:
+    if data.get("encrypted") is not None:
         out["encrypted"] = data["encrypted"]
-    if "deleteOnTermination" in data:
+    if data.get("deleteOnTermination") is not None:
         out["delete_on_termination"] = data["deleteOnTermination"]
-    if "iops" in data:
+    if data.get("iops") is not None:
         out["iops"] = data["iops"]
-    if "kmsKeyId" in data:
+    if data.get("kmsKeyId") is not None:
         out["kms_key_id"] = data["kmsKeyId"]
-    if "snapshotId" in data:
+    if data.get("snapshotId") is not None:
         out["snapshot_id"] = data["snapshotId"]
-    if "volumeSize" in data:
+    if data.get("volumeSize") is not None:
         out["volume_size"] = data["volumeSize"]
-    if "volumeType" in data:
+    if data.get("volumeType") is not None:
         import capo_imagebuilder.types.ebs_volume_type
 
         out["volume_type"] = capo_imagebuilder.types.ebs_volume_type.deserialize_json(
             data["volumeType"]
         )
-    if "throughput" in data:
+    if data.get("throughput") is not None:
         out["throughput"] = data["throughput"]
     return out

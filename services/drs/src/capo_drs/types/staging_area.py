@@ -38,12 +38,12 @@ def serialize_json(value: StagingArea) -> dict:
 
 def deserialize_json(data: dict) -> StagingArea:
     out: StagingArea = {}  # type: ignore[typeddict-item]
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
-    if "stagingAccountID" in data:
+    if data.get("stagingAccountID") is not None:
         out["staging_account_id"] = data["stagingAccountID"]
-    if "stagingSourceServerArn" in data:
+    if data.get("stagingSourceServerArn") is not None:
         out["staging_source_server_arn"] = data["stagingSourceServerArn"]
-    if "errorMessage" in data:
+    if data.get("errorMessage") is not None:
         out["error_message"] = data["errorMessage"]
     return out

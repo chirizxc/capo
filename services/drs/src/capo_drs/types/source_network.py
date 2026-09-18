@@ -82,32 +82,32 @@ def serialize_json(value: SourceNetwork) -> dict:
 
 def deserialize_json(data: dict) -> SourceNetwork:
     out: SourceNetwork = {}  # type: ignore[typeddict-item]
-    if "sourceNetworkID" in data:
+    if data.get("sourceNetworkID") is not None:
         out["source_network_id"] = data["sourceNetworkID"]
-    if "sourceVpcID" in data:
+    if data.get("sourceVpcID") is not None:
         out["source_vpc_id"] = data["sourceVpcID"]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_drs.types.tags_map
 
         out["tags"] = capo_drs.types.tags_map.deserialize_json(data["tags"])
-    if "replicationStatus" in data:
+    if data.get("replicationStatus") is not None:
         out["replication_status"] = data["replicationStatus"]
-    if "replicationStatusDetails" in data:
+    if data.get("replicationStatusDetails") is not None:
         out["replication_status_details"] = data["replicationStatusDetails"]
-    if "cfnStackName" in data:
+    if data.get("cfnStackName") is not None:
         out["cfn_stack_name"] = data["cfnStackName"]
-    if "sourceRegion" in data:
+    if data.get("sourceRegion") is not None:
         out["source_region"] = data["sourceRegion"]
-    if "sourceAccountID" in data:
+    if data.get("sourceAccountID") is not None:
         out["source_account_id"] = data["sourceAccountID"]
-    if "lastRecovery" in data:
+    if data.get("lastRecovery") is not None:
         import capo_drs.types.recovery_life_cycle
 
         out["last_recovery"] = capo_drs.types.recovery_life_cycle.deserialize_json(
             data["lastRecovery"]
         )
-    if "launchedVpcID" in data:
+    if data.get("launchedVpcID") is not None:
         out["launched_vpc_id"] = data["launchedVpcID"]
     return out

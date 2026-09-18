@@ -106,13 +106,13 @@ def serialize_json(value: CreateAnalysisTemplateInput) -> dict:
 
 def deserialize_json(data: dict) -> CreateAnalysisTemplateInput:
     out: CreateAnalysisTemplateInput = {}  # type: ignore[typeddict-item]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("CreateAnalysisTemplateInput.name required")
-    if "format" in data:
+    if data.get("format") is not None:
         import capo_cleanrooms.types.analysis_format
 
         out["format"] = capo_cleanrooms.types.analysis_format.deserialize_json(
@@ -120,7 +120,7 @@ def deserialize_json(data: dict) -> CreateAnalysisTemplateInput:
         )
     else:
         raise DeserializationError("CreateAnalysisTemplateInput.format required")
-    if "source" in data:
+    if data.get("source") is not None:
         import capo_cleanrooms.types.analysis_source
 
         out["source"] = capo_cleanrooms.types.analysis_source.deserialize_json(
@@ -128,11 +128,11 @@ def deserialize_json(data: dict) -> CreateAnalysisTemplateInput:
         )
     else:
         raise DeserializationError("CreateAnalysisTemplateInput.source required")
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_cleanrooms.types.tag_map
 
         out["tags"] = capo_cleanrooms.types.tag_map.deserialize_json(data["tags"])
-    if "analysisParameters" in data:
+    if data.get("analysisParameters") is not None:
         import capo_cleanrooms.types.analysis_parameter_list
 
         out["analysis_parameters"] = (
@@ -140,13 +140,13 @@ def deserialize_json(data: dict) -> CreateAnalysisTemplateInput:
                 data["analysisParameters"]
             )
         )
-    if "schema" in data:
+    if data.get("schema") is not None:
         import capo_cleanrooms.types.analysis_schema
 
         out["schema"] = capo_cleanrooms.types.analysis_schema.deserialize_json(
             data["schema"]
         )
-    if "errorMessageConfiguration" in data:
+    if data.get("errorMessageConfiguration") is not None:
         import capo_cleanrooms.types.error_message_configuration
 
         out["error_message_configuration"] = (
@@ -154,7 +154,7 @@ def deserialize_json(data: dict) -> CreateAnalysisTemplateInput:
                 data["errorMessageConfiguration"]
             )
         )
-    if "syntheticDataParameters" in data:
+    if data.get("syntheticDataParameters") is not None:
         import capo_cleanrooms.types.synthetic_data_parameters
 
         out["synthetic_data_parameters"] = (

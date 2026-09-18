@@ -52,22 +52,22 @@ def serialize_json(value: WorkloadData) -> dict:
 
 def deserialize_json(data: dict) -> WorkloadData:
     out: WorkloadData = {}  # type: ignore[typeddict-item]
-    if "workloadName" in data:
+    if data.get("workloadName") is not None:
         out["workload_name"] = data["workloadName"]
-    if "displayName" in data:
+    if data.get("displayName") is not None:
         out["display_name"] = data["displayName"]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_launch_wizard.types.workload_status
 
         out["status"] = capo_launch_wizard.types.workload_status.deserialize_json(
             data["status"]
         )
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "documentationUrl" in data:
+    if data.get("documentationUrl") is not None:
         out["documentation_url"] = data["documentationUrl"]
-    if "iconUrl" in data:
+    if data.get("iconUrl") is not None:
         out["icon_url"] = data["iconUrl"]
-    if "statusMessage" in data:
+    if data.get("statusMessage") is not None:
         out["status_message"] = data["statusMessage"]
     return out

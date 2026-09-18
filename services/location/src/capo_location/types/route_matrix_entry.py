@@ -26,9 +26,25 @@ class RouteMatrixEntry(TypedDict, closed=True):
 def serialize_json(value: RouteMatrixEntry) -> dict:
     out: dict = {}
     if "distance" in value:
-        out["Distance"] = value["distance"]
+        out["Distance"] = (
+            "NaN"
+            if value["distance"] != value["distance"]
+            else "Infinity"
+            if value["distance"] == float("inf")
+            else "-Infinity"
+            if value["distance"] == float("-inf")
+            else value["distance"]
+        )
     if "duration_seconds" in value:
-        out["DurationSeconds"] = value["duration_seconds"]
+        out["DurationSeconds"] = (
+            "NaN"
+            if value["duration_seconds"] != value["duration_seconds"]
+            else "Infinity"
+            if value["duration_seconds"] == float("inf")
+            else "-Infinity"
+            if value["duration_seconds"] == float("-inf")
+            else value["duration_seconds"]
+        )
     if "error" in value:
         import capo_location.types.route_matrix_entry_error
 
@@ -40,11 +56,11 @@ def serialize_json(value: RouteMatrixEntry) -> dict:
 
 def deserialize_json(data: dict) -> RouteMatrixEntry:
     out: RouteMatrixEntry = {}  # type: ignore[typeddict-item]
-    if "Distance" in data:
-        out["distance"] = data["Distance"]
-    if "DurationSeconds" in data:
-        out["duration_seconds"] = data["DurationSeconds"]
-    if "Error" in data:
+    if data.get("Distance") is not None:
+        out["distance"] = float(data["Distance"])
+    if data.get("DurationSeconds") is not None:
+        out["duration_seconds"] = float(data["DurationSeconds"])
+    if data.get("Error") is not None:
         import capo_location.types.route_matrix_entry_error
 
         out["error"] = capo_location.types.route_matrix_entry_error.deserialize_json(

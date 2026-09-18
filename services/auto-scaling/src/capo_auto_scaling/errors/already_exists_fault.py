@@ -40,15 +40,18 @@ class AlreadyExistsFault(ServiceError):
 
     code: str | None = "AlreadyExistsFault"
 
-    def __init__(self, data: AlreadyExistsFault_):
+    def __init__(self, data: AlreadyExistsFault_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="AlreadyExistsFault",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_query(cls, el: Element) -> "AlreadyExistsFault":
-        return cls(deserialize_query(el))
+    def from_query(
+        cls, el: Element, message: str | None = None
+    ) -> "AlreadyExistsFault":
+        return cls(deserialize_query(el), message)

@@ -45,7 +45,7 @@ def serialize_json(value: MetricStat) -> dict:
 
 def deserialize_json(data: dict) -> MetricStat:
     out: MetricStat = {}  # type: ignore[typeddict-item]
-    if "Metric" in data:
+    if data.get("Metric") is not None:
         import capo_application_signals.types.metric
 
         out["metric"] = capo_application_signals.types.metric.deserialize_json(
@@ -53,15 +53,15 @@ def deserialize_json(data: dict) -> MetricStat:
         )
     else:
         raise DeserializationError("MetricStat.metric required")
-    if "Period" in data:
+    if data.get("Period") is not None:
         out["period"] = data["Period"]
     else:
         raise DeserializationError("MetricStat.period required")
-    if "Stat" in data:
+    if data.get("Stat") is not None:
         out["stat"] = data["Stat"]
     else:
         raise DeserializationError("MetricStat.stat required")
-    if "Unit" in data:
+    if data.get("Unit") is not None:
         import capo_application_signals.types.standard_unit
 
         out["unit"] = capo_application_signals.types.standard_unit.deserialize_json(

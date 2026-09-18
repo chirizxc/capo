@@ -38,9 +38,9 @@ def serialize_json(value: Filter) -> dict:
 
 def deserialize_json(data: dict) -> Filter:
     out: Filter = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Values" in data:
+    if data.get("Values") is not None:
         import capo_elasticsearch_service.types.value_string_list
 
         out["values"] = (

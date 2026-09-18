@@ -27,7 +27,7 @@ def serialize_aws_json_1_1(value: DeleteProjectResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteProjectResponse:
     out: DeleteProjectResponse = {}  # type: ignore[typeddict-item]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_rekognition.types.project_status
 
         out["status"] = capo_rekognition.types.project_status.deserialize_aws_json_1_1(

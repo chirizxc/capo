@@ -44,7 +44,7 @@ def serialize_aws_json_1_1(value: OpenZFSFileSystemIdentity) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> OpenZFSFileSystemIdentity:
     out: OpenZFSFileSystemIdentity = {}  # type: ignore[typeddict-item]
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_fsx.types.open_zfs_file_system_user_type
 
         out["type"] = (
@@ -52,7 +52,7 @@ def deserialize_aws_json_1_1(data: dict) -> OpenZFSFileSystemIdentity:
                 data["Type"]
             )
         )
-    if "PosixUser" in data:
+    if data.get("PosixUser") is not None:
         import capo_fsx.types.open_zfs_posix_file_system_user
 
         out["posix_user"] = (

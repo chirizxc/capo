@@ -49,7 +49,7 @@ def serialize_aws_json_1_1(value: ResourceChangeDetail) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ResourceChangeDetail:
     out: ResourceChangeDetail = {}  # type: ignore[typeddict-item]
-    if "Target" in data:
+    if data.get("Target") is not None:
         import capo_service_catalog.types.resource_target_definition
 
         out["target"] = (
@@ -57,7 +57,7 @@ def deserialize_aws_json_1_1(data: dict) -> ResourceChangeDetail:
                 data["Target"]
             )
         )
-    if "Evaluation" in data:
+    if data.get("Evaluation") is not None:
         import capo_service_catalog.types.evaluation_type
 
         out["evaluation"] = (
@@ -65,6 +65,6 @@ def deserialize_aws_json_1_1(data: dict) -> ResourceChangeDetail:
                 data["Evaluation"]
             )
         )
-    if "CausingEntity" in data:
+    if data.get("CausingEntity") is not None:
         out["causing_entity"] = data["CausingEntity"]
     return out

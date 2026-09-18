@@ -38,9 +38,9 @@ def serialize_json(value: AwsBackupBackupPlanRuleCopyActionsDetails) -> dict:
 
 def deserialize_json(data: dict) -> AwsBackupBackupPlanRuleCopyActionsDetails:
     out: AwsBackupBackupPlanRuleCopyActionsDetails = {}  # type: ignore[typeddict-item]
-    if "DestinationBackupVaultArn" in data:
+    if data.get("DestinationBackupVaultArn") is not None:
         out["destination_backup_vault_arn"] = data["DestinationBackupVaultArn"]
-    if "Lifecycle" in data:
+    if data.get("Lifecycle") is not None:
         import capo_securityhub.types.aws_backup_backup_plan_lifecycle_details
 
         out["lifecycle"] = (

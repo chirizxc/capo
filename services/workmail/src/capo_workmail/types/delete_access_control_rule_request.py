@@ -28,13 +28,13 @@ def serialize_aws_json_1_1(value: DeleteAccessControlRuleRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteAccessControlRuleRequest:
     out: DeleteAccessControlRuleRequest = {}  # type: ignore[typeddict-item]
-    if "OrganizationId" in data:
+    if data.get("OrganizationId") is not None:
         out["organization_id"] = data["OrganizationId"]
     else:
         raise DeserializationError(
             "DeleteAccessControlRuleRequest.organization_id required"
         )
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("DeleteAccessControlRuleRequest.name required")

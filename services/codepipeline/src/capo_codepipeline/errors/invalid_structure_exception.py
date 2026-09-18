@@ -25,7 +25,7 @@ def serialize_aws_json_1_1(value: InvalidStructureException_) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> InvalidStructureException_:
     out: InvalidStructureException_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     return out
 
@@ -35,15 +35,18 @@ class InvalidStructureException(ServiceError):
 
     code: str | None = "InvalidStructureException"
 
-    def __init__(self, data: InvalidStructureException_):
+    def __init__(self, data: InvalidStructureException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="InvalidStructureException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "InvalidStructureException":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "InvalidStructureException":
+        return cls(deserialize_aws_json_1_1(data), message)

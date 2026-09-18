@@ -89,7 +89,7 @@ def serialize_aws_json_1_0(value: ExecutionEvent) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ExecutionEvent:
     out: ExecutionEvent = {}  # type: ignore[typeddict-item]
-    if "timestamp" in data:
+    if data.get("timestamp") is not None:
         import capo_arc_region_switch.types._prelude.timestamp
 
         out["timestamp"] = (
@@ -97,7 +97,7 @@ def deserialize_aws_json_1_0(data: dict) -> ExecutionEvent:
                 data["timestamp"]
             )
         )
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_arc_region_switch.types.execution_event_type
 
         out["type"] = (
@@ -105,9 +105,9 @@ def deserialize_aws_json_1_0(data: dict) -> ExecutionEvent:
                 data["type"]
             )
         )
-    if "stepName" in data:
+    if data.get("stepName") is not None:
         out["step_name"] = data["stepName"]
-    if "executionBlockType" in data:
+    if data.get("executionBlockType") is not None:
         import capo_arc_region_switch.types.execution_block_type
 
         out["execution_block_type"] = (
@@ -115,7 +115,7 @@ def deserialize_aws_json_1_0(data: dict) -> ExecutionEvent:
                 data["executionBlockType"]
             )
         )
-    if "resources" in data:
+    if data.get("resources") is not None:
         import capo_arc_region_switch.types.resources
 
         out["resources"] = (
@@ -123,14 +123,14 @@ def deserialize_aws_json_1_0(data: dict) -> ExecutionEvent:
                 data["resources"]
             )
         )
-    if "error" in data:
+    if data.get("error") is not None:
         out["error"] = data["error"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "eventId" in data:
+    if data.get("eventId") is not None:
         out["event_id"] = data["eventId"]
     else:
         raise DeserializationError("ExecutionEvent.event_id required")
-    if "previousEventId" in data:
+    if data.get("previousEventId") is not None:
         out["previous_event_id"] = data["previousEventId"]
     return out

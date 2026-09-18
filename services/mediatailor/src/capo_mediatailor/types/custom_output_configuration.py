@@ -37,7 +37,7 @@ def serialize_json(value: CustomOutputConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> CustomOutputConfiguration:
     out: CustomOutputConfiguration = {}  # type: ignore[typeddict-item]
-    if "Runtime" in data:
+    if data.get("Runtime") is not None:
         import capo_mediatailor.types.runtime_type
 
         out["runtime"] = capo_mediatailor.types.runtime_type.deserialize_json(
@@ -45,7 +45,7 @@ def deserialize_json(data: dict) -> CustomOutputConfiguration:
         )
     else:
         raise DeserializationError("CustomOutputConfiguration.runtime required")
-    if "Output" in data:
+    if data.get("Output") is not None:
         import capo_mediatailor.types.__map_of__string
 
         out["output"] = capo_mediatailor.types.__map_of__string.deserialize_json(

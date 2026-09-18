@@ -32,15 +32,15 @@ def serialize_json(value: SpanToolUseValue) -> dict:
 
 def deserialize_json(data: dict) -> SpanToolUseValue:
     out: SpanToolUseValue = {}  # type: ignore[typeddict-item]
-    if "toolUseId" in data:
+    if data.get("toolUseId") is not None:
         out["tool_use_id"] = data["toolUseId"]
     else:
         raise DeserializationError("SpanToolUseValue.tool_use_id required")
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("SpanToolUseValue.name required")
-    if "arguments" in data:
+    if data.get("arguments") is not None:
         out["arguments"] = data["arguments"]
     else:
         raise DeserializationError("SpanToolUseValue.arguments required")

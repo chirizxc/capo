@@ -31,7 +31,7 @@ def serialize_json(value: AwsEcsServiceNetworkConfigurationDetails) -> dict:
 
 def deserialize_json(data: dict) -> AwsEcsServiceNetworkConfigurationDetails:
     out: AwsEcsServiceNetworkConfigurationDetails = {}  # type: ignore[typeddict-item]
-    if "AwsVpcConfiguration" in data:
+    if data.get("AwsVpcConfiguration") is not None:
         import capo_securityhub.types.aws_ecs_service_network_configuration_aws_vpc_configuration_details
 
         out["aws_vpc_configuration"] = (

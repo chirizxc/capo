@@ -31,9 +31,9 @@ def serialize_json(value: StandardHlsSettings) -> dict:
 
 def deserialize_json(data: dict) -> StandardHlsSettings:
     out: StandardHlsSettings = {}  # type: ignore[typeddict-item]
-    if "audioRenditionSets" in data:
+    if data.get("audioRenditionSets") is not None:
         out["audio_rendition_sets"] = data["audioRenditionSets"]
-    if "m3u8Settings" in data:
+    if data.get("m3u8Settings") is not None:
         import capo_medialive.types.m3u8_settings
 
         out["m3u8_settings"] = capo_medialive.types.m3u8_settings.deserialize_json(

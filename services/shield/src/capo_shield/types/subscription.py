@@ -87,35 +87,35 @@ def serialize_aws_json_1_1(value: Subscription) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Subscription:
     out: Subscription = {}  # type: ignore[typeddict-item]
-    if "StartTime" in data:
+    if data.get("StartTime") is not None:
         import capo_shield.types.timestamp
 
         out["start_time"] = capo_shield.types.timestamp.deserialize_aws_json_1_1(
             data["StartTime"]
         )
-    if "EndTime" in data:
+    if data.get("EndTime") is not None:
         import capo_shield.types.timestamp
 
         out["end_time"] = capo_shield.types.timestamp.deserialize_aws_json_1_1(
             data["EndTime"]
         )
-    if "TimeCommitmentInSeconds" in data:
+    if data.get("TimeCommitmentInSeconds") is not None:
         out["time_commitment_in_seconds"] = data["TimeCommitmentInSeconds"]
     else:
         out["time_commitment_in_seconds"] = 0
-    if "AutoRenew" in data:
+    if data.get("AutoRenew") is not None:
         import capo_shield.types.auto_renew
 
         out["auto_renew"] = capo_shield.types.auto_renew.deserialize_aws_json_1_1(
             data["AutoRenew"]
         )
-    if "Limits" in data:
+    if data.get("Limits") is not None:
         import capo_shield.types.limits
 
         out["limits"] = capo_shield.types.limits.deserialize_aws_json_1_1(
             data["Limits"]
         )
-    if "ProactiveEngagementStatus" in data:
+    if data.get("ProactiveEngagementStatus") is not None:
         import capo_shield.types.proactive_engagement_status
 
         out["proactive_engagement_status"] = (
@@ -123,7 +123,7 @@ def deserialize_aws_json_1_1(data: dict) -> Subscription:
                 data["ProactiveEngagementStatus"]
             )
         )
-    if "SubscriptionLimits" in data:
+    if data.get("SubscriptionLimits") is not None:
         import capo_shield.types.subscription_limits
 
         out["subscription_limits"] = (
@@ -133,6 +133,6 @@ def deserialize_aws_json_1_1(data: dict) -> Subscription:
         )
     else:
         raise DeserializationError("Subscription.subscription_limits required")
-    if "SubscriptionArn" in data:
+    if data.get("SubscriptionArn") is not None:
         out["subscription_arn"] = data["SubscriptionArn"]
     return out

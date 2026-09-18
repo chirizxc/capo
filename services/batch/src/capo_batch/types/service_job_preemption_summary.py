@@ -36,9 +36,9 @@ def serialize_json(value: ServiceJobPreemptionSummary) -> dict:
 
 def deserialize_json(data: dict) -> ServiceJobPreemptionSummary:
     out: ServiceJobPreemptionSummary = {}  # type: ignore[typeddict-item]
-    if "preemptedAttemptCount" in data:
+    if data.get("preemptedAttemptCount") is not None:
         out["preempted_attempt_count"] = data["preemptedAttemptCount"]
-    if "recentPreemptedAttempts" in data:
+    if data.get("recentPreemptedAttempts") is not None:
         import capo_batch.types.service_job_recent_preempted_attempt_list
 
         out["recent_preempted_attempts"] = (

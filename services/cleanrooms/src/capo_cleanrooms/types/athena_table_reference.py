@@ -55,26 +55,26 @@ def serialize_json(value: AthenaTableReference) -> dict:
 
 def deserialize_json(data: dict) -> AthenaTableReference:
     out: AthenaTableReference = {}  # type: ignore[typeddict-item]
-    if "region" in data:
+    if data.get("region") is not None:
         import capo_cleanrooms.types.commercial_region
 
         out["region"] = capo_cleanrooms.types.commercial_region.deserialize_json(
             data["region"]
         )
-    if "workGroup" in data:
+    if data.get("workGroup") is not None:
         out["work_group"] = data["workGroup"]
     else:
         raise DeserializationError("AthenaTableReference.work_group required")
-    if "outputLocation" in data:
+    if data.get("outputLocation") is not None:
         out["output_location"] = data["outputLocation"]
-    if "databaseName" in data:
+    if data.get("databaseName") is not None:
         out["database_name"] = data["databaseName"]
     else:
         raise DeserializationError("AthenaTableReference.database_name required")
-    if "tableName" in data:
+    if data.get("tableName") is not None:
         out["table_name"] = data["tableName"]
     else:
         raise DeserializationError("AthenaTableReference.table_name required")
-    if "catalogName" in data:
+    if data.get("catalogName") is not None:
         out["catalog_name"] = data["catalogName"]
     return out

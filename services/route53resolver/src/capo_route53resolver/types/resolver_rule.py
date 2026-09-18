@@ -129,15 +129,15 @@ def serialize_aws_json_1_1(value: ResolverRule) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ResolverRule:
     out: ResolverRule = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "CreatorRequestId" in data:
+    if data.get("CreatorRequestId") is not None:
         out["creator_request_id"] = data["CreatorRequestId"]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "DomainName" in data:
+    if data.get("DomainName") is not None:
         out["domain_name"] = data["DomainName"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_route53resolver.types.resolver_rule_status
 
         out["status"] = (
@@ -145,9 +145,9 @@ def deserialize_aws_json_1_1(data: dict) -> ResolverRule:
                 data["Status"]
             )
         )
-    if "StatusMessage" in data:
+    if data.get("StatusMessage") is not None:
         out["status_message"] = data["StatusMessage"]
-    if "RuleType" in data:
+    if data.get("RuleType") is not None:
         import capo_route53resolver.types.rule_type_option
 
         out["rule_type"] = (
@@ -155,9 +155,9 @@ def deserialize_aws_json_1_1(data: dict) -> ResolverRule:
                 data["RuleType"]
             )
         )
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "TargetIps" in data:
+    if data.get("TargetIps") is not None:
         import capo_route53resolver.types.target_list
 
         out["target_ips"] = (
@@ -165,11 +165,11 @@ def deserialize_aws_json_1_1(data: dict) -> ResolverRule:
                 data["TargetIps"]
             )
         )
-    if "ResolverEndpointId" in data:
+    if data.get("ResolverEndpointId") is not None:
         out["resolver_endpoint_id"] = data["ResolverEndpointId"]
-    if "OwnerId" in data:
+    if data.get("OwnerId") is not None:
         out["owner_id"] = data["OwnerId"]
-    if "ShareStatus" in data:
+    if data.get("ShareStatus") is not None:
         import capo_route53resolver.types.share_status
 
         out["share_status"] = (
@@ -177,10 +177,10 @@ def deserialize_aws_json_1_1(data: dict) -> ResolverRule:
                 data["ShareStatus"]
             )
         )
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         out["creation_time"] = data["CreationTime"]
-    if "ModificationTime" in data:
+    if data.get("ModificationTime") is not None:
         out["modification_time"] = data["ModificationTime"]
-    if "DelegationRecord" in data:
+    if data.get("DelegationRecord") is not None:
         out["delegation_record"] = data["DelegationRecord"]
     return out

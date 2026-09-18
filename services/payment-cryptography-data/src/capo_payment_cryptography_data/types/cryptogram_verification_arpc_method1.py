@@ -26,7 +26,7 @@ def serialize_json(value: CryptogramVerificationArpcMethod1) -> dict:
 
 def deserialize_json(data: dict) -> CryptogramVerificationArpcMethod1:
     out: CryptogramVerificationArpcMethod1 = {}  # type: ignore[typeddict-item]
-    if "AuthResponseCode" in data:
+    if data.get("AuthResponseCode") is not None:
         out["auth_response_code"] = data["AuthResponseCode"]
     else:
         raise DeserializationError(

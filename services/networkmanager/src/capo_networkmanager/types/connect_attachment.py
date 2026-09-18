@@ -47,15 +47,15 @@ def serialize_json(value: ConnectAttachment) -> dict:
 
 def deserialize_json(data: dict) -> ConnectAttachment:
     out: ConnectAttachment = {}  # type: ignore[typeddict-item]
-    if "Attachment" in data:
+    if data.get("Attachment") is not None:
         import capo_networkmanager.types.attachment
 
         out["attachment"] = capo_networkmanager.types.attachment.deserialize_json(
             data["Attachment"]
         )
-    if "TransportAttachmentId" in data:
+    if data.get("TransportAttachmentId") is not None:
         out["transport_attachment_id"] = data["TransportAttachmentId"]
-    if "Options" in data:
+    if data.get("Options") is not None:
         import capo_networkmanager.types.connect_attachment_options
 
         out["options"] = (

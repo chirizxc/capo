@@ -31,7 +31,7 @@ def serialize_json(value: ExportFilterElement) -> dict:
 
 def deserialize_json(data: dict) -> ExportFilterElement:
     out: ExportFilterElement = {}  # type: ignore[typeddict-item]
-    if "properties" in data:
+    if data.get("properties") is not None:
         import capo_neptune_graph.types.export_filter_property_map
 
         out["properties"] = (

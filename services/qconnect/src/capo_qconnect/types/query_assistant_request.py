@@ -71,15 +71,15 @@ def serialize_json(value: QueryAssistantRequest) -> dict:
 
 def deserialize_json(data: dict) -> QueryAssistantRequest:
     out: QueryAssistantRequest = {}  # type: ignore[typeddict-item]
-    if "queryText" in data:
+    if data.get("queryText") is not None:
         out["query_text"] = data["queryText"]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
-    if "sessionId" in data:
+    if data.get("sessionId") is not None:
         out["session_id"] = data["sessionId"]
-    if "queryCondition" in data:
+    if data.get("queryCondition") is not None:
         import capo_qconnect.types.query_condition_expression
 
         out["query_condition"] = (
@@ -87,13 +87,13 @@ def deserialize_json(data: dict) -> QueryAssistantRequest:
                 data["queryCondition"]
             )
         )
-    if "queryInputData" in data:
+    if data.get("queryInputData") is not None:
         import capo_qconnect.types.query_input_data
 
         out["query_input_data"] = capo_qconnect.types.query_input_data.deserialize_json(
             data["queryInputData"]
         )
-    if "overrideKnowledgeBaseSearchType" in data:
+    if data.get("overrideKnowledgeBaseSearchType") is not None:
         out["override_knowledge_base_search_type"] = data[
             "overrideKnowledgeBaseSearchType"
         ]

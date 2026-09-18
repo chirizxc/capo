@@ -29,12 +29,12 @@ def serialize_aws_json_1_0(value: SwitchoverAutonomousDatabaseInput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> SwitchoverAutonomousDatabaseInput:
     out: SwitchoverAutonomousDatabaseInput = {}  # type: ignore[typeddict-item]
-    if "autonomousDatabaseId" in data:
+    if data.get("autonomousDatabaseId") is not None:
         out["autonomous_database_id"] = data["autonomousDatabaseId"]
     else:
         raise DeserializationError(
             "SwitchoverAutonomousDatabaseInput.autonomous_database_id required"
         )
-    if "peerDbArn" in data:
+    if data.get("peerDbArn") is not None:
         out["peer_db_arn"] = data["peerDbArn"]
     return out

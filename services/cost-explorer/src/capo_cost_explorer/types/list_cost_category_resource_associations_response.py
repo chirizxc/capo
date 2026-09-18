@@ -38,7 +38,7 @@ def deserialize_aws_json_1_1(
     data: dict,
 ) -> ListCostCategoryResourceAssociationsResponse:
     out: ListCostCategoryResourceAssociationsResponse = {}  # type: ignore[typeddict-item]
-    if "CostCategoryResourceAssociations" in data:
+    if data.get("CostCategoryResourceAssociations") is not None:
         import capo_cost_explorer.types.cost_category_resource_associations
 
         out["cost_category_resource_associations"] = (
@@ -46,6 +46,6 @@ def deserialize_aws_json_1_1(
                 data["CostCategoryResourceAssociations"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

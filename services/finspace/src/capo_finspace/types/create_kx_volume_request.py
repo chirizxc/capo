@@ -83,9 +83,9 @@ def serialize_json(value: CreateKxVolumeRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateKxVolumeRequest:
     out: CreateKxVolumeRequest = {}  # type: ignore[typeddict-item]
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
-    if "volumeType" in data:
+    if data.get("volumeType") is not None:
         import capo_finspace.types.kx_volume_type
 
         out["volume_type"] = capo_finspace.types.kx_volume_type.deserialize_json(
@@ -93,13 +93,13 @@ def deserialize_json(data: dict) -> CreateKxVolumeRequest:
         )
     else:
         raise DeserializationError("CreateKxVolumeRequest.volume_type required")
-    if "volumeName" in data:
+    if data.get("volumeName") is not None:
         out["volume_name"] = data["volumeName"]
     else:
         raise DeserializationError("CreateKxVolumeRequest.volume_name required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "nas1Configuration" in data:
+    if data.get("nas1Configuration") is not None:
         import capo_finspace.types.kx_nas1_configuration
 
         out["nas1_configuration"] = (
@@ -107,13 +107,13 @@ def deserialize_json(data: dict) -> CreateKxVolumeRequest:
                 data["nas1Configuration"]
             )
         )
-    if "azMode" in data:
+    if data.get("azMode") is not None:
         import capo_finspace.types.kx_az_mode
 
         out["az_mode"] = capo_finspace.types.kx_az_mode.deserialize_json(data["azMode"])
     else:
         raise DeserializationError("CreateKxVolumeRequest.az_mode required")
-    if "availabilityZoneIds" in data:
+    if data.get("availabilityZoneIds") is not None:
         import capo_finspace.types.availability_zone_ids
 
         out["availability_zone_ids"] = (
@@ -125,7 +125,7 @@ def deserialize_json(data: dict) -> CreateKxVolumeRequest:
         raise DeserializationError(
             "CreateKxVolumeRequest.availability_zone_ids required"
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_finspace.types.tag_map
 
         out["tags"] = capo_finspace.types.tag_map.deserialize_json(data["tags"])

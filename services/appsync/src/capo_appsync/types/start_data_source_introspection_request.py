@@ -29,7 +29,7 @@ def serialize_json(value: StartDataSourceIntrospectionRequest) -> dict:
 
 def deserialize_json(data: dict) -> StartDataSourceIntrospectionRequest:
     out: StartDataSourceIntrospectionRequest = {}  # type: ignore[typeddict-item]
-    if "rdsDataApiConfig" in data:
+    if data.get("rdsDataApiConfig") is not None:
         import capo_appsync.types.rds_data_api_config
 
         out["rds_data_api_config"] = (

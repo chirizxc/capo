@@ -25,6 +25,6 @@ def serialize_json(value: SidewalkUpdateImportInfo) -> dict:
 
 def deserialize_json(data: dict) -> SidewalkUpdateImportInfo:
     out: SidewalkUpdateImportInfo = {}  # type: ignore[typeddict-item]
-    if "DeviceCreationFile" in data:
+    if data.get("DeviceCreationFile") is not None:
         out["device_creation_file"] = data["DeviceCreationFile"]
     return out

@@ -27,11 +27,11 @@ def serialize_json(value: KendraSourceDetail) -> dict:
 
 def deserialize_json(data: dict) -> KendraSourceDetail:
     out: KendraSourceDetail = {}  # type: ignore[typeddict-item]
-    if "knowledgeBaseArn" in data:
+    if data.get("knowledgeBaseArn") is not None:
         out["knowledge_base_arn"] = data["knowledgeBaseArn"]
     else:
         raise DeserializationError("KendraSourceDetail.knowledge_base_arn required")
-    if "roleArn" in data:
+    if data.get("roleArn") is not None:
         out["role_arn"] = data["roleArn"]
     else:
         raise DeserializationError("KendraSourceDetail.role_arn required")

@@ -38,15 +38,15 @@ def serialize_aws_json_1_0(value: TestMappingRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> TestMappingRequest:
     out: TestMappingRequest = {}  # type: ignore[typeddict-item]
-    if "inputFileContent" in data:
+    if data.get("inputFileContent") is not None:
         out["input_file_content"] = data["inputFileContent"]
     else:
         raise DeserializationError("TestMappingRequest.input_file_content required")
-    if "mappingTemplate" in data:
+    if data.get("mappingTemplate") is not None:
         out["mapping_template"] = data["mappingTemplate"]
     else:
         raise DeserializationError("TestMappingRequest.mapping_template required")
-    if "fileFormat" in data:
+    if data.get("fileFormat") is not None:
         import capo_b2bi.types.file_format
 
         out["file_format"] = capo_b2bi.types.file_format.deserialize_aws_json_1_0(

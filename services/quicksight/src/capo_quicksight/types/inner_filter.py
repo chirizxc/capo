@@ -31,7 +31,7 @@ def serialize_json(value: InnerFilter) -> dict:
 
 def deserialize_json(data: dict) -> InnerFilter:
     out: InnerFilter = {}  # type: ignore[typeddict-item]
-    if "CategoryInnerFilter" in data:
+    if data.get("CategoryInnerFilter") is not None:
         import capo_quicksight.types.category_inner_filter
 
         out["category_inner_filter"] = (

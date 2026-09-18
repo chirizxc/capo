@@ -27,7 +27,7 @@ def serialize_json(value: GetArchiveRuleResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetArchiveRuleResponse:
     out: GetArchiveRuleResponse = {}  # type: ignore[typeddict-item]
-    if "archiveRule" in data:
+    if data.get("archiveRule") is not None:
         import capo_accessanalyzer.types.archive_rule_summary
 
         out["archive_rule"] = (

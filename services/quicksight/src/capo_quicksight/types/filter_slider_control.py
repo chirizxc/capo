@@ -66,9 +66,33 @@ def serialize_json(value: FilterSliderControl) -> dict:
         out["Type"] = capo_quicksight.types.sheet_control_slider_type.serialize_json(
             value["type"]
         )
-    out["MaximumValue"] = value.get("maximum_value", 0)
-    out["MinimumValue"] = value.get("minimum_value", 0)
-    out["StepSize"] = value.get("step_size", 0)
+    out["MaximumValue"] = (
+        "NaN"
+        if value.get("maximum_value", 0) != value.get("maximum_value", 0)
+        else "Infinity"
+        if value.get("maximum_value", 0) == float("inf")
+        else "-Infinity"
+        if value.get("maximum_value", 0) == float("-inf")
+        else value.get("maximum_value", 0)
+    )
+    out["MinimumValue"] = (
+        "NaN"
+        if value.get("minimum_value", 0) != value.get("minimum_value", 0)
+        else "Infinity"
+        if value.get("minimum_value", 0) == float("inf")
+        else "-Infinity"
+        if value.get("minimum_value", 0) == float("-inf")
+        else value.get("minimum_value", 0)
+    )
+    out["StepSize"] = (
+        "NaN"
+        if value.get("step_size", 0) != value.get("step_size", 0)
+        else "Infinity"
+        if value.get("step_size", 0) == float("inf")
+        else "-Infinity"
+        if value.get("step_size", 0) == float("-inf")
+        else value.get("step_size", 0)
+    )
     if "control_title_format_text" in value:
         import capo_quicksight.types.control_title_format_text
 
@@ -82,19 +106,19 @@ def serialize_json(value: FilterSliderControl) -> dict:
 
 def deserialize_json(data: dict) -> FilterSliderControl:
     out: FilterSliderControl = {}  # type: ignore[typeddict-item]
-    if "FilterControlId" in data:
+    if data.get("FilterControlId") is not None:
         out["filter_control_id"] = data["FilterControlId"]
     else:
         raise DeserializationError("FilterSliderControl.filter_control_id required")
-    if "Title" in data:
+    if data.get("Title") is not None:
         out["title"] = data["Title"]
     else:
         out["title"] = ""
-    if "SourceFilterId" in data:
+    if data.get("SourceFilterId") is not None:
         out["source_filter_id"] = data["SourceFilterId"]
     else:
         raise DeserializationError("FilterSliderControl.source_filter_id required")
-    if "DisplayOptions" in data:
+    if data.get("DisplayOptions") is not None:
         import capo_quicksight.types.slider_control_display_options
 
         out["display_options"] = (
@@ -102,25 +126,25 @@ def deserialize_json(data: dict) -> FilterSliderControl:
                 data["DisplayOptions"]
             )
         )
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_quicksight.types.sheet_control_slider_type
 
         out["type"] = capo_quicksight.types.sheet_control_slider_type.deserialize_json(
             data["Type"]
         )
-    if "MaximumValue" in data:
-        out["maximum_value"] = data["MaximumValue"]
+    if data.get("MaximumValue") is not None:
+        out["maximum_value"] = float(data["MaximumValue"])
     else:
         out["maximum_value"] = 0
-    if "MinimumValue" in data:
-        out["minimum_value"] = data["MinimumValue"]
+    if data.get("MinimumValue") is not None:
+        out["minimum_value"] = float(data["MinimumValue"])
     else:
         out["minimum_value"] = 0
-    if "StepSize" in data:
-        out["step_size"] = data["StepSize"]
+    if data.get("StepSize") is not None:
+        out["step_size"] = float(data["StepSize"])
     else:
         out["step_size"] = 0
-    if "ControlTitleFormatText" in data:
+    if data.get("ControlTitleFormatText") is not None:
         import capo_quicksight.types.control_title_format_text
 
         out["control_title_format_text"] = (

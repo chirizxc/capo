@@ -46,12 +46,12 @@ def serialize_json(value: BatchGetRecordError) -> dict:
 
 def deserialize_json(data: dict) -> BatchGetRecordError:
     out: BatchGetRecordError = {}  # type: ignore[typeddict-item]
-    if "FeatureGroupName" in data:
+    if data.get("FeatureGroupName") is not None:
         out["feature_group_name"] = data["FeatureGroupName"]
-    if "RecordIdentifierValueAsString" in data:
+    if data.get("RecordIdentifierValueAsString") is not None:
         out["record_identifier_value_as_string"] = data["RecordIdentifierValueAsString"]
-    if "ErrorCode" in data:
+    if data.get("ErrorCode") is not None:
         out["error_code"] = data["ErrorCode"]
-    if "ErrorMessage" in data:
+    if data.get("ErrorMessage") is not None:
         out["error_message"] = data["ErrorMessage"]
     return out

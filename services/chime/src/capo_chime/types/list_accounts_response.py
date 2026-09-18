@@ -32,12 +32,12 @@ def serialize_json(value: ListAccountsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListAccountsResponse:
     out: ListAccountsResponse = {}  # type: ignore[typeddict-item]
-    if "Accounts" in data:
+    if data.get("Accounts") is not None:
         import capo_chime.types.account_list
 
         out["accounts"] = capo_chime.types.account_list.deserialize_json(
             data["Accounts"]
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

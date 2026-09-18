@@ -36,9 +36,9 @@ def serialize_aws_json_1_1(value: ListCreatedArtifactsResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListCreatedArtifactsResult:
     out: ListCreatedArtifactsResult = {}  # type: ignore[typeddict-item]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "CreatedArtifactList" in data:
+    if data.get("CreatedArtifactList") is not None:
         import capo_migration_hub.types.created_artifact_list
 
         out["created_artifact_list"] = (

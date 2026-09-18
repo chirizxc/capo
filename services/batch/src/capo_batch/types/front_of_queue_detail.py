@@ -34,12 +34,12 @@ def serialize_json(value: FrontOfQueueDetail) -> dict:
 
 def deserialize_json(data: dict) -> FrontOfQueueDetail:
     out: FrontOfQueueDetail = {}  # type: ignore[typeddict-item]
-    if "jobs" in data:
+    if data.get("jobs") is not None:
         import capo_batch.types.front_of_queue_job_summary_list
 
         out["jobs"] = capo_batch.types.front_of_queue_job_summary_list.deserialize_json(
             data["jobs"]
         )
-    if "lastUpdatedAt" in data:
+    if data.get("lastUpdatedAt") is not None:
         out["last_updated_at"] = data["lastUpdatedAt"]
     return out

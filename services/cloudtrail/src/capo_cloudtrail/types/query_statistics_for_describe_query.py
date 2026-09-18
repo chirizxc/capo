@@ -45,15 +45,15 @@ def serialize_aws_json_1_1(value: QueryStatisticsForDescribeQuery) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> QueryStatisticsForDescribeQuery:
     out: QueryStatisticsForDescribeQuery = {}  # type: ignore[typeddict-item]
-    if "EventsMatched" in data:
+    if data.get("EventsMatched") is not None:
         out["events_matched"] = data["EventsMatched"]
-    if "EventsScanned" in data:
+    if data.get("EventsScanned") is not None:
         out["events_scanned"] = data["EventsScanned"]
-    if "BytesScanned" in data:
+    if data.get("BytesScanned") is not None:
         out["bytes_scanned"] = data["BytesScanned"]
-    if "ExecutionTimeInMillis" in data:
+    if data.get("ExecutionTimeInMillis") is not None:
         out["execution_time_in_millis"] = data["ExecutionTimeInMillis"]
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_cloudtrail.types.date
 
         out["creation_time"] = capo_cloudtrail.types.date.deserialize_aws_json_1_1(

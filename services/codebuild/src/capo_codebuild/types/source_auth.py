@@ -33,7 +33,7 @@ def serialize_aws_json_1_1(value: SourceAuth) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SourceAuth:
     out: SourceAuth = {}  # type: ignore[typeddict-item]
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_codebuild.types.source_auth_type
 
         out["type"] = capo_codebuild.types.source_auth_type.deserialize_aws_json_1_1(
@@ -41,6 +41,6 @@ def deserialize_aws_json_1_1(data: dict) -> SourceAuth:
         )
     else:
         raise DeserializationError("SourceAuth.type required")
-    if "resource" in data:
+    if data.get("resource") is not None:
         out["resource"] = data["resource"]
     return out

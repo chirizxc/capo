@@ -44,7 +44,7 @@ def serialize_json(value: JobDriver) -> dict:
 
 def deserialize_json(data: dict) -> JobDriver:
     out: JobDriver = {}  # type: ignore[typeddict-item]
-    if "sparkSubmitJobDriver" in data:
+    if data.get("sparkSubmitJobDriver") is not None:
         import capo_emr_containers.types.spark_submit_job_driver
 
         out["spark_submit_job_driver"] = (
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> JobDriver:
                 data["sparkSubmitJobDriver"]
             )
         )
-    if "sparkSqlJobDriver" in data:
+    if data.get("sparkSqlJobDriver") is not None:
         import capo_emr_containers.types.spark_sql_job_driver
 
         out["spark_sql_job_driver"] = (

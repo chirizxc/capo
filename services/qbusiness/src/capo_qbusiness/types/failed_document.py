@@ -35,12 +35,12 @@ def serialize_json(value: FailedDocument) -> dict:
 
 def deserialize_json(data: dict) -> FailedDocument:
     out: FailedDocument = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "error" in data:
+    if data.get("error") is not None:
         import capo_qbusiness.types.error_detail
 
         out["error"] = capo_qbusiness.types.error_detail.deserialize_json(data["error"])
-    if "dataSourceId" in data:
+    if data.get("dataSourceId") is not None:
         out["data_source_id"] = data["dataSourceId"]
     return out

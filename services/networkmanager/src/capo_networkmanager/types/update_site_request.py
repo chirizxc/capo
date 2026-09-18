@@ -40,9 +40,9 @@ def serialize_json(value: UpdateSiteRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateSiteRequest:
     out: UpdateSiteRequest = {}  # type: ignore[typeddict-item]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Location" in data:
+    if data.get("Location") is not None:
         import capo_networkmanager.types.location
 
         out["location"] = capo_networkmanager.types.location.deserialize_json(

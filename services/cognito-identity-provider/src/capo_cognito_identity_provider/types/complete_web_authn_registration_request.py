@@ -28,13 +28,13 @@ def serialize_aws_json_1_1(value: CompleteWebAuthnRegistrationRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CompleteWebAuthnRegistrationRequest:
     out: CompleteWebAuthnRegistrationRequest = {}  # type: ignore[typeddict-item]
-    if "AccessToken" in data:
+    if data.get("AccessToken") is not None:
         out["access_token"] = data["AccessToken"]
     else:
         raise DeserializationError(
             "CompleteWebAuthnRegistrationRequest.access_token required"
         )
-    if "Credential" in data:
+    if data.get("Credential") is not None:
         out["credential"] = data["Credential"]
     else:
         raise DeserializationError(

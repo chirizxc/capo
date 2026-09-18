@@ -16,4 +16,4 @@ def serialize_aws_json_1_1(value: ServicePrincipalValueList) -> list:
 
 
 def deserialize_aws_json_1_1(data: list) -> ServicePrincipalValueList:
-    return list(data)
+    return [item for item in data if item is not None]

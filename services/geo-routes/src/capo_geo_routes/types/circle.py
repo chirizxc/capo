@@ -24,20 +24,28 @@ def serialize_json(value: Circle) -> dict:
     import capo_geo_routes.types.position
 
     out["Center"] = capo_geo_routes.types.position.serialize_json(value["center"])
-    out["Radius"] = value["radius"]
+    out["Radius"] = (
+        "NaN"
+        if value["radius"] != value["radius"]
+        else "Infinity"
+        if value["radius"] == float("inf")
+        else "-Infinity"
+        if value["radius"] == float("-inf")
+        else value["radius"]
+    )
     return out
 
 
 def deserialize_json(data: dict) -> Circle:
     out: Circle = {}  # type: ignore[typeddict-item]
-    if "Center" in data:
+    if data.get("Center") is not None:
         import capo_geo_routes.types.position
 
         out["center"] = capo_geo_routes.types.position.deserialize_json(data["Center"])
     else:
         raise DeserializationError("Circle.center required")
-    if "Radius" in data:
-        out["radius"] = data["Radius"]
+    if data.get("Radius") is not None:
+        out["radius"] = float(data["Radius"])
     else:
         raise DeserializationError("Circle.radius required")
     return out

@@ -32,8 +32,8 @@ def serialize_json(value: DeleteInfrastructureConfigurationResponse) -> dict:
 
 def deserialize_json(data: dict) -> DeleteInfrastructureConfigurationResponse:
     out: DeleteInfrastructureConfigurationResponse = {}  # type: ignore[typeddict-item]
-    if "requestId" in data:
+    if data.get("requestId") is not None:
         out["request_id"] = data["requestId"]
-    if "infrastructureConfigurationArn" in data:
+    if data.get("infrastructureConfigurationArn") is not None:
         out["infrastructure_configuration_arn"] = data["infrastructureConfigurationArn"]
     return out

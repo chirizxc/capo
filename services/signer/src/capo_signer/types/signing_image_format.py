@@ -36,7 +36,7 @@ def serialize_json(value: SigningImageFormat) -> dict:
 
 def deserialize_json(data: dict) -> SigningImageFormat:
     out: SigningImageFormat = {}  # type: ignore[typeddict-item]
-    if "supportedFormats" in data:
+    if data.get("supportedFormats") is not None:
         import capo_signer.types.image_formats
 
         out["supported_formats"] = capo_signer.types.image_formats.deserialize_json(
@@ -44,7 +44,7 @@ def deserialize_json(data: dict) -> SigningImageFormat:
         )
     else:
         raise DeserializationError("SigningImageFormat.supported_formats required")
-    if "defaultFormat" in data:
+    if data.get("defaultFormat") is not None:
         import capo_signer.types.image_format
 
         out["default_format"] = capo_signer.types.image_format.deserialize_json(

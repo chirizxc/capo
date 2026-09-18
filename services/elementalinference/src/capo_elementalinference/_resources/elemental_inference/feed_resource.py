@@ -89,9 +89,10 @@ class FeedResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_elementalinference.types.create_feed_request.CreateFeedRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        input_["outputs"] = outputs
+        input_: capo_elementalinference.types.create_feed_request.CreateFeedRequest = {
+            "name": name,
+            "outputs": outputs,
+        }
         if tags is not None:
             input_["tags"] = tags
 
@@ -100,6 +101,7 @@ class FeedResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -136,14 +138,16 @@ class FeedResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_elementalinference.types.get_feed_request.GetFeedRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_elementalinference.types.get_feed_request.GetFeedRequest = {
+            "id": id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update(
@@ -187,16 +191,18 @@ class FeedResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_elementalinference.types.update_feed_request.UpdateFeedRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        input_["id"] = id
-        input_["outputs"] = outputs
+        input_: capo_elementalinference.types.update_feed_request.UpdateFeedRequest = {
+            "name": name,
+            "id": id,
+            "outputs": outputs,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -235,14 +241,16 @@ class FeedResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_elementalinference.types.delete_feed_request.DeleteFeedRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_elementalinference.types.delete_feed_request.DeleteFeedRequest = {
+            "id": id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -282,7 +290,7 @@ class FeedResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_elementalinference.types.list_feeds_request.ListFeedsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_elementalinference.types.list_feeds_request.ListFeedsRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -293,6 +301,7 @@ class FeedResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def associate_feed(
@@ -338,10 +347,11 @@ class FeedResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_elementalinference.types.associate_feed_request.AssociateFeedRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
-        input_["associated_resource_name"] = associated_resource_name
-        input_["outputs"] = outputs
+        input_: capo_elementalinference.types.associate_feed_request.AssociateFeedRequest = {
+            "id": id,
+            "associated_resource_name": associated_resource_name,
+            "outputs": outputs,
+        }
         if dry_run is not None:
             input_["dry_run"] = dry_run
 
@@ -350,6 +360,7 @@ class FeedResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def disassociate_feed(
@@ -392,9 +403,10 @@ class FeedResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_elementalinference.types.disassociate_feed_request.DisassociateFeedRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
-        input_["associated_resource_name"] = associated_resource_name
+        input_: capo_elementalinference.types.disassociate_feed_request.DisassociateFeedRequest = {
+            "id": id,
+            "associated_resource_name": associated_resource_name,
+        }
         if dry_run is not None:
             input_["dry_run"] = dry_run
 
@@ -403,6 +415,7 @@ class FeedResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -451,9 +464,10 @@ class AsyncFeedResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_elementalinference.types.create_feed_request.CreateFeedRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        input_["outputs"] = outputs
+        input_: capo_elementalinference.types.create_feed_request.CreateFeedRequest = {
+            "name": name,
+            "outputs": outputs,
+        }
         if tags is not None:
             input_["tags"] = tags
 
@@ -462,6 +476,7 @@ class AsyncFeedResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -499,14 +514,16 @@ class AsyncFeedResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_elementalinference.types.get_feed_request.GetFeedRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_elementalinference.types.get_feed_request.GetFeedRequest = {
+            "id": id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update(
@@ -551,16 +568,18 @@ class AsyncFeedResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_elementalinference.types.update_feed_request.UpdateFeedRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        input_["id"] = id
-        input_["outputs"] = outputs
+        input_: capo_elementalinference.types.update_feed_request.UpdateFeedRequest = {
+            "name": name,
+            "id": id,
+            "outputs": outputs,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -600,14 +619,16 @@ class AsyncFeedResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_elementalinference.types.delete_feed_request.DeleteFeedRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_elementalinference.types.delete_feed_request.DeleteFeedRequest = {
+            "id": id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -648,7 +669,7 @@ class AsyncFeedResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_elementalinference.types.list_feeds_request.ListFeedsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_elementalinference.types.list_feeds_request.ListFeedsRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -659,6 +680,7 @@ class AsyncFeedResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def associate_feed(
@@ -705,10 +727,11 @@ class AsyncFeedResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_elementalinference.types.associate_feed_request.AssociateFeedRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
-        input_["associated_resource_name"] = associated_resource_name
-        input_["outputs"] = outputs
+        input_: capo_elementalinference.types.associate_feed_request.AssociateFeedRequest = {
+            "id": id,
+            "associated_resource_name": associated_resource_name,
+            "outputs": outputs,
+        }
         if dry_run is not None:
             input_["dry_run"] = dry_run
 
@@ -717,6 +740,7 @@ class AsyncFeedResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def disassociate_feed(
@@ -760,9 +784,10 @@ class AsyncFeedResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_elementalinference.types.disassociate_feed_request.DisassociateFeedRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
-        input_["associated_resource_name"] = associated_resource_name
+        input_: capo_elementalinference.types.disassociate_feed_request.DisassociateFeedRequest = {
+            "id": id,
+            "associated_resource_name": associated_resource_name,
+        }
         if dry_run is not None:
             input_["dry_run"] = dry_run
 
@@ -771,4 +796,5 @@ class AsyncFeedResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

@@ -28,7 +28,7 @@ def serialize_aws_json_1_1(value: BatchGetVariableRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> BatchGetVariableRequest:
     out: BatchGetVariableRequest = {}  # type: ignore[typeddict-item]
-    if "names" in data:
+    if data.get("names") is not None:
         import capo_frauddetector.types.name_list
 
         out["names"] = capo_frauddetector.types.name_list.deserialize_aws_json_1_1(

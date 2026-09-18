@@ -34,7 +34,7 @@ def serialize_json(value: KnowledgeSource) -> dict:
 
 
 def deserialize_json(data: dict) -> KnowledgeSource:
-    if "assistantAssociationIds" in data:
+    if data.get("assistantAssociationIds") is not None:
         import capo_qconnect.types.assistant_association_id_list
 
         return {

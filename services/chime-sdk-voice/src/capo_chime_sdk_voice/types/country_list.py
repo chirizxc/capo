@@ -14,4 +14,4 @@ def serialize_json(value: CountryList) -> list:
 
 
 def deserialize_json(data: list) -> CountryList:
-    return list(data)
+    return [item for item in data if item is not None]

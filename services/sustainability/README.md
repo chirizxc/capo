@@ -13,9 +13,9 @@ from capo_sustainability import AsyncSustainabilityClient
 
 
 async def main():
-    async with AsyncSustainabilityClient() as s3:
+    async with AsyncSustainabilityClient() as sustainability:
         # Example: call the get_estimated_carbon_emissions operation
-        response = await s3.get_estimated_carbon_emissions()
+        response = await sustainability.get_estimated_carbon_emissions()
         print(response["results"])
 ```
 
@@ -28,9 +28,9 @@ from capo_sustainability import AsyncSustainabilityClient
 
 
 async def main():
-    async with AsyncSustainabilityClient() as s3:
+    async with AsyncSustainabilityClient() as sustainability:
         # Example: paginate over get_estimated_carbon_emissions
-        async for item in s3.iter_get_estimated_carbon_emissions():
+        async for item in sustainability.iter_get_estimated_carbon_emissions():
             print(item)
 ```
 
@@ -44,9 +44,9 @@ from capo_sustainability.error import AccessDeniedException
 
 
 async def main():
-    async with AsyncSustainabilityClient() as s3:
+    async with AsyncSustainabilityClient() as sustainability:
         try:
-            await s3.get_estimated_carbon_emissions()
+            await sustainability.get_estimated_carbon_emissions()
         except AccessDeniedException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -63,13 +63,13 @@ from capo_sustainability import AsyncSustainabilityClient
 
 
 async def main():
-    async with AsyncSustainabilityClient() as s3:
+    async with AsyncSustainabilityClient() as sustainability:
         # Default: 3 attempts for every operation
-        response = await s3.get_estimated_carbon_emissions()
+        response = await sustainability.get_estimated_carbon_emissions()
 
         # Override per operation
-        response = await s3.get_estimated_carbon_emissions(config_overrides={"retry_max_attempts": 5})
+        response = await sustainability.get_estimated_carbon_emissions(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.get_estimated_carbon_emissions(config_overrides={"retry_max_attempts": 1})
+        response = await sustainability.get_estimated_carbon_emissions(config_overrides={"retry_max_attempts": 1})
 ```

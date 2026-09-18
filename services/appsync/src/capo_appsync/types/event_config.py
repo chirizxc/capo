@@ -59,7 +59,7 @@ def serialize_json(value: EventConfig) -> dict:
 
 def deserialize_json(data: dict) -> EventConfig:
     out: EventConfig = {}  # type: ignore[typeddict-item]
-    if "authProviders" in data:
+    if data.get("authProviders") is not None:
         import capo_appsync.types.auth_providers
 
         out["auth_providers"] = capo_appsync.types.auth_providers.deserialize_json(
@@ -67,7 +67,7 @@ def deserialize_json(data: dict) -> EventConfig:
         )
     else:
         raise DeserializationError("EventConfig.auth_providers required")
-    if "connectionAuthModes" in data:
+    if data.get("connectionAuthModes") is not None:
         import capo_appsync.types.auth_modes
 
         out["connection_auth_modes"] = capo_appsync.types.auth_modes.deserialize_json(
@@ -75,7 +75,7 @@ def deserialize_json(data: dict) -> EventConfig:
         )
     else:
         raise DeserializationError("EventConfig.connection_auth_modes required")
-    if "defaultPublishAuthModes" in data:
+    if data.get("defaultPublishAuthModes") is not None:
         import capo_appsync.types.auth_modes
 
         out["default_publish_auth_modes"] = (
@@ -85,7 +85,7 @@ def deserialize_json(data: dict) -> EventConfig:
         )
     else:
         raise DeserializationError("EventConfig.default_publish_auth_modes required")
-    if "defaultSubscribeAuthModes" in data:
+    if data.get("defaultSubscribeAuthModes") is not None:
         import capo_appsync.types.auth_modes
 
         out["default_subscribe_auth_modes"] = (
@@ -95,7 +95,7 @@ def deserialize_json(data: dict) -> EventConfig:
         )
     else:
         raise DeserializationError("EventConfig.default_subscribe_auth_modes required")
-    if "logConfig" in data:
+    if data.get("logConfig") is not None:
         import capo_appsync.types.event_log_config
 
         out["log_config"] = capo_appsync.types.event_log_config.deserialize_json(

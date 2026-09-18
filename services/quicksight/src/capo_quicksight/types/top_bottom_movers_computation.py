@@ -83,33 +83,33 @@ def serialize_json(value: TopBottomMoversComputation) -> dict:
 
 def deserialize_json(data: dict) -> TopBottomMoversComputation:
     out: TopBottomMoversComputation = {}  # type: ignore[typeddict-item]
-    if "ComputationId" in data:
+    if data.get("ComputationId") is not None:
         out["computation_id"] = data["ComputationId"]
     else:
         raise DeserializationError("TopBottomMoversComputation.computation_id required")
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Time" in data:
+    if data.get("Time") is not None:
         import capo_quicksight.types.dimension_field
 
         out["time"] = capo_quicksight.types.dimension_field.deserialize_json(
             data["Time"]
         )
-    if "Category" in data:
+    if data.get("Category") is not None:
         import capo_quicksight.types.dimension_field
 
         out["category"] = capo_quicksight.types.dimension_field.deserialize_json(
             data["Category"]
         )
-    if "Value" in data:
+    if data.get("Value") is not None:
         import capo_quicksight.types.measure_field
 
         out["value"] = capo_quicksight.types.measure_field.deserialize_json(
             data["Value"]
         )
-    if "MoverSize" in data:
+    if data.get("MoverSize") is not None:
         out["mover_size"] = data["MoverSize"]
-    if "SortOrder" in data:
+    if data.get("SortOrder") is not None:
         import capo_quicksight.types.top_bottom_sort_order
 
         out["sort_order"] = (
@@ -117,7 +117,7 @@ def deserialize_json(data: dict) -> TopBottomMoversComputation:
                 data["SortOrder"]
             )
         )
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_quicksight.types.top_bottom_computation_type
 
         out["type"] = (

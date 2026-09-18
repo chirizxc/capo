@@ -22,11 +22,11 @@ def serialize_json(value: StartCodeReviewJobInput) -> dict:
 
 def deserialize_json(data: dict) -> StartCodeReviewJobInput:
     out: StartCodeReviewJobInput = {}  # type: ignore[typeddict-item]
-    if "agentSpaceId" in data:
+    if data.get("agentSpaceId") is not None:
         out["agent_space_id"] = data["agentSpaceId"]
     else:
         raise DeserializationError("StartCodeReviewJobInput.agent_space_id required")
-    if "codeReviewId" in data:
+    if data.get("codeReviewId") is not None:
         out["code_review_id"] = data["codeReviewId"]
     else:
         raise DeserializationError("StartCodeReviewJobInput.code_review_id required")

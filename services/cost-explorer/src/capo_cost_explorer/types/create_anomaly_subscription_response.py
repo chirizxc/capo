@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: CreateAnomalySubscriptionResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateAnomalySubscriptionResponse:
     out: CreateAnomalySubscriptionResponse = {}  # type: ignore[typeddict-item]
-    if "SubscriptionArn" in data:
+    if data.get("SubscriptionArn") is not None:
         out["subscription_arn"] = data["SubscriptionArn"]
     else:
         raise DeserializationError(

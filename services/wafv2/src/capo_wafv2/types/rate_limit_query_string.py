@@ -30,7 +30,7 @@ def serialize_aws_json_1_1(value: RateLimitQueryString) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RateLimitQueryString:
     out: RateLimitQueryString = {}  # type: ignore[typeddict-item]
-    if "TextTransformations" in data:
+    if data.get("TextTransformations") is not None:
         import capo_wafv2.types.text_transformations
 
         out["text_transformations"] = (

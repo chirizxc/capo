@@ -43,14 +43,14 @@ def deserialize_aws_json_1_1(
     data: dict,
 ) -> UpdateManagedRuleSetVersionExpiryDateResponse:
     out: UpdateManagedRuleSetVersionExpiryDateResponse = {}  # type: ignore[typeddict-item]
-    if "ExpiringVersion" in data:
+    if data.get("ExpiringVersion") is not None:
         out["expiring_version"] = data["ExpiringVersion"]
-    if "ExpiryTimestamp" in data:
+    if data.get("ExpiryTimestamp") is not None:
         import capo_wafv2.types.timestamp
 
         out["expiry_timestamp"] = capo_wafv2.types.timestamp.deserialize_aws_json_1_1(
             data["ExpiryTimestamp"]
         )
-    if "NextLockToken" in data:
+    if data.get("NextLockToken") is not None:
         out["next_lock_token"] = data["NextLockToken"]
     return out

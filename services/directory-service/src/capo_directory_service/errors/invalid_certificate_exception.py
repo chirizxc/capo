@@ -30,9 +30,9 @@ def serialize_aws_json_1_1(value: InvalidCertificateException_) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> InvalidCertificateException_:
     out: InvalidCertificateException_ = {}  # type: ignore[typeddict-item]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
-    if "RequestId" in data:
+    if data.get("RequestId") is not None:
         out["request_id"] = data["RequestId"]
     return out
 
@@ -42,15 +42,18 @@ class InvalidCertificateException(ServiceError):
 
     code: str | None = "InvalidCertificateException"
 
-    def __init__(self, data: InvalidCertificateException_):
+    def __init__(self, data: InvalidCertificateException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="InvalidCertificateException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "InvalidCertificateException":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "InvalidCertificateException":
+        return cls(deserialize_aws_json_1_1(data), message)

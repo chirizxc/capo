@@ -23,6 +23,6 @@ def serialize_aws_json_1_1(value: GetCatalogImportStatusRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetCatalogImportStatusRequest:
     out: GetCatalogImportStatusRequest = {}  # type: ignore[typeddict-item]
-    if "CatalogId" in data:
+    if data.get("CatalogId") is not None:
         out["catalog_id"] = data["CatalogId"]
     return out

@@ -27,7 +27,7 @@ def serialize_json(value: LogDeliveryParameters) -> dict:
 
 def deserialize_json(data: dict) -> LogDeliveryParameters:
     out: LogDeliveryParameters = {}  # type: ignore[typeddict-item]
-    if "LogTypes" in data:
+    if data.get("LogTypes") is not None:
         import capo_observabilityadmin.types.log_types
 
         out["log_types"] = capo_observabilityadmin.types.log_types.deserialize_json(

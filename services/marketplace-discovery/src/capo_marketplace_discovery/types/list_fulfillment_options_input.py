@@ -32,14 +32,14 @@ def serialize_json(value: ListFulfillmentOptionsInput) -> dict:
 
 def deserialize_json(data: dict) -> ListFulfillmentOptionsInput:
     out: ListFulfillmentOptionsInput = {}  # type: ignore[typeddict-item]
-    if "productId" in data:
+    if data.get("productId") is not None:
         out["product_id"] = data["productId"]
     else:
         raise DeserializationError("ListFulfillmentOptionsInput.product_id required")
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
     else:
         out["max_results"] = 25
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

@@ -13,9 +13,9 @@ from capo_fms import AsyncFMSClient
 
 
 async def main():
-    async with AsyncFMSClient() as s3:
+    async with AsyncFMSClient() as fms:
         # Example: call the associate_admin_account operation
-        response = await s3.associate_admin_account()
+        response = await fms.associate_admin_account()
         print(response)
 ```
 
@@ -28,9 +28,9 @@ from capo_fms import AsyncFMSClient
 
 
 async def main():
-    async with AsyncFMSClient() as s3:
+    async with AsyncFMSClient() as fms:
         # Example: paginate over list_admin_accounts_for_organization
-        async for item in s3.iter_list_admin_accounts_for_organization():
+        async for item in fms.iter_list_admin_accounts_for_organization():
             print(item)
 ```
 
@@ -44,9 +44,9 @@ from capo_fms.error import InternalErrorException
 
 
 async def main():
-    async with AsyncFMSClient() as s3:
+    async with AsyncFMSClient() as fms:
         try:
-            await s3.associate_admin_account()
+            await fms.associate_admin_account()
         except InternalErrorException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -63,13 +63,13 @@ from capo_fms import AsyncFMSClient
 
 
 async def main():
-    async with AsyncFMSClient() as s3:
+    async with AsyncFMSClient() as fms:
         # Default: 3 attempts for every operation
-        response = await s3.associate_admin_account()
+        response = await fms.associate_admin_account()
 
         # Override per operation
-        response = await s3.associate_admin_account(config_overrides={"retry_max_attempts": 5})
+        response = await fms.associate_admin_account(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.associate_admin_account(config_overrides={"retry_max_attempts": 1})
+        response = await fms.associate_admin_account(config_overrides={"retry_max_attempts": 1})
 ```

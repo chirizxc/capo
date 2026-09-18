@@ -85,37 +85,37 @@ def serialize_json(value: PanelConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> PanelConfiguration:
     out: PanelConfiguration = {}  # type: ignore[typeddict-item]
-    if "Title" in data:
+    if data.get("Title") is not None:
         import capo_quicksight.types.panel_title_options
 
         out["title"] = capo_quicksight.types.panel_title_options.deserialize_json(
             data["Title"]
         )
-    if "BorderVisibility" in data:
+    if data.get("BorderVisibility") is not None:
         import capo_quicksight.types.visibility
 
         out["border_visibility"] = capo_quicksight.types.visibility.deserialize_json(
             data["BorderVisibility"]
         )
-    if "BorderThickness" in data:
+    if data.get("BorderThickness") is not None:
         out["border_thickness"] = data["BorderThickness"]
-    if "BorderStyle" in data:
+    if data.get("BorderStyle") is not None:
         import capo_quicksight.types.panel_border_style
 
         out["border_style"] = capo_quicksight.types.panel_border_style.deserialize_json(
             data["BorderStyle"]
         )
-    if "BorderColor" in data:
+    if data.get("BorderColor") is not None:
         out["border_color"] = data["BorderColor"]
-    if "GutterVisibility" in data:
+    if data.get("GutterVisibility") is not None:
         import capo_quicksight.types.visibility
 
         out["gutter_visibility"] = capo_quicksight.types.visibility.deserialize_json(
             data["GutterVisibility"]
         )
-    if "GutterSpacing" in data:
+    if data.get("GutterSpacing") is not None:
         out["gutter_spacing"] = data["GutterSpacing"]
-    if "BackgroundVisibility" in data:
+    if data.get("BackgroundVisibility") is not None:
         import capo_quicksight.types.visibility
 
         out["background_visibility"] = (
@@ -123,6 +123,6 @@ def deserialize_json(data: dict) -> PanelConfiguration:
                 data["BackgroundVisibility"]
             )
         )
-    if "BackgroundColor" in data:
+    if data.get("BackgroundColor") is not None:
         out["background_color"] = data["BackgroundColor"]
     return out

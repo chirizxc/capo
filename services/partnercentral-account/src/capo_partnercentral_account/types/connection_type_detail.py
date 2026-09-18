@@ -77,7 +77,7 @@ def serialize_aws_json_1_0(value: ConnectionTypeDetail) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ConnectionTypeDetail:
     out: ConnectionTypeDetail = {}  # type: ignore[typeddict-item]
-    if "CreatedAt" in data:
+    if data.get("CreatedAt") is not None:
         import capo_partnercentral_account.types.date_time
 
         out["created_at"] = (
@@ -87,15 +87,15 @@ def deserialize_aws_json_1_0(data: dict) -> ConnectionTypeDetail:
         )
     else:
         raise DeserializationError("ConnectionTypeDetail.created_at required")
-    if "InviterEmail" in data:
+    if data.get("InviterEmail") is not None:
         out["inviter_email"] = data["InviterEmail"]
     else:
         raise DeserializationError("ConnectionTypeDetail.inviter_email required")
-    if "InviterName" in data:
+    if data.get("InviterName") is not None:
         out["inviter_name"] = data["InviterName"]
     else:
         raise DeserializationError("ConnectionTypeDetail.inviter_name required")
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_partnercentral_account.types.connection_type_status
 
         out["status"] = (
@@ -105,7 +105,7 @@ def deserialize_aws_json_1_0(data: dict) -> ConnectionTypeDetail:
         )
     else:
         raise DeserializationError("ConnectionTypeDetail.status required")
-    if "CanceledAt" in data:
+    if data.get("CanceledAt") is not None:
         import capo_partnercentral_account.types.date_time
 
         out["canceled_at"] = (
@@ -113,9 +113,9 @@ def deserialize_aws_json_1_0(data: dict) -> ConnectionTypeDetail:
                 data["CanceledAt"]
             )
         )
-    if "CanceledBy" in data:
+    if data.get("CanceledBy") is not None:
         out["canceled_by"] = data["CanceledBy"]
-    if "OtherParticipant" in data:
+    if data.get("OtherParticipant") is not None:
         import capo_partnercentral_account.types.participant
 
         out["other_participant"] = (

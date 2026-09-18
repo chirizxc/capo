@@ -39,10 +39,10 @@ def serialize_json(value: FlacSettings) -> dict:
 
 def deserialize_json(data: dict) -> FlacSettings:
     out: FlacSettings = {}  # type: ignore[typeddict-item]
-    if "bitDepth" in data:
+    if data.get("bitDepth") is not None:
         out["bit_depth"] = data["bitDepth"]
-    if "channels" in data:
+    if data.get("channels") is not None:
         out["channels"] = data["channels"]
-    if "sampleRate" in data:
+    if data.get("sampleRate") is not None:
         out["sample_rate"] = data["sampleRate"]
     return out

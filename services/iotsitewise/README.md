@@ -13,9 +13,9 @@ from capo_iotsitewise import AsyncIoTSiteWiseClient
 
 
 async def main():
-    async with AsyncIoTSiteWiseClient() as s3:
+    async with AsyncIoTSiteWiseClient() as io_t_site_wise:
         # Example: call the associate_assets operation
-        response = await s3.associate_assets()
+        response = await io_t_site_wise.associate_assets()
         print(response)
 ```
 
@@ -28,9 +28,9 @@ from capo_iotsitewise import AsyncIoTSiteWiseClient
 
 
 async def main():
-    async with AsyncIoTSiteWiseClient() as s3:
-        # Example: paginate over execute_query
-        async for item in s3.iter_execute_query():
+    async with AsyncIoTSiteWiseClient() as io_t_site_wise:
+        # Example: paginate over batch_get_asset_property_aggregates
+        async for item in io_t_site_wise.iter_batch_get_asset_property_aggregates():
             print(item)
 ```
 
@@ -43,9 +43,9 @@ from capo_iotsitewise import AsyncIoTSiteWiseClient
 
 
 async def main():
-    async with AsyncIoTSiteWiseClient() as s3:
+    async with AsyncIoTSiteWiseClient() as io_t_site_wise:
         # Example: wait for asset_not_exists
-        await s3.wait_until_asset_not_exists(max_wait_time=300)
+        await io_t_site_wise.wait_until_asset_not_exists(max_wait_time=300)
 ```
 
 ## Error Handling
@@ -58,9 +58,9 @@ from capo_iotsitewise.error import ConflictingOperationException
 
 
 async def main():
-    async with AsyncIoTSiteWiseClient() as s3:
+    async with AsyncIoTSiteWiseClient() as io_t_site_wise:
         try:
-            await s3.associate_assets()
+            await io_t_site_wise.associate_assets()
         except ConflictingOperationException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -77,13 +77,13 @@ from capo_iotsitewise import AsyncIoTSiteWiseClient
 
 
 async def main():
-    async with AsyncIoTSiteWiseClient() as s3:
+    async with AsyncIoTSiteWiseClient() as io_t_site_wise:
         # Default: 3 attempts for every operation
-        response = await s3.associate_assets()
+        response = await io_t_site_wise.associate_assets()
 
         # Override per operation
-        response = await s3.associate_assets(config_overrides={"retry_max_attempts": 5})
+        response = await io_t_site_wise.associate_assets(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.associate_assets(config_overrides={"retry_max_attempts": 1})
+        response = await io_t_site_wise.associate_assets(config_overrides={"retry_max_attempts": 1})
 ```

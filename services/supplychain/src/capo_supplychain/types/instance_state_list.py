@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> InstanceStateList:
 
     out: InstanceStateList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_supplychain.types.instance_state.deserialize_json(item))
     return out

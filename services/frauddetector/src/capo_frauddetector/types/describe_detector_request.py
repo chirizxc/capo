@@ -36,12 +36,12 @@ def serialize_aws_json_1_1(value: DescribeDetectorRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeDetectorRequest:
     out: DescribeDetectorRequest = {}  # type: ignore[typeddict-item]
-    if "detectorId" in data:
+    if data.get("detectorId") is not None:
         out["detector_id"] = data["detectorId"]
     else:
         raise DeserializationError("DescribeDetectorRequest.detector_id required")
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
     return out

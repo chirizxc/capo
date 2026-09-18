@@ -18,6 +18,6 @@ def serialize_aws_json_1_0(value: AuroraDbClusterStorageConfiguration) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> AuroraDbClusterStorageConfiguration:
     out: AuroraDbClusterStorageConfiguration = {}  # type: ignore[typeddict-item]
-    if "storageType" in data:
+    if data.get("storageType") is not None:
         out["storage_type"] = data["storageType"]
     return out

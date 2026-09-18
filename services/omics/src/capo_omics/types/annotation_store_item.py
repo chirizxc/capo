@@ -80,11 +80,11 @@ def serialize_json(value: AnnotationStoreItem) -> dict:
 
 def deserialize_json(data: dict) -> AnnotationStoreItem:
     out: AnnotationStoreItem = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("AnnotationStoreItem.id required")
-    if "reference" in data:
+    if data.get("reference") is not None:
         import capo_omics.types.reference_item
 
         out["reference"] = capo_omics.types.reference_item.deserialize_json(
@@ -92,27 +92,27 @@ def deserialize_json(data: dict) -> AnnotationStoreItem:
         )
     else:
         raise DeserializationError("AnnotationStoreItem.reference required")
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
     else:
         raise DeserializationError("AnnotationStoreItem.status required")
-    if "storeArn" in data:
+    if data.get("storeArn") is not None:
         out["store_arn"] = data["storeArn"]
     else:
         raise DeserializationError("AnnotationStoreItem.store_arn required")
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("AnnotationStoreItem.name required")
-    if "storeFormat" in data:
+    if data.get("storeFormat") is not None:
         out["store_format"] = data["storeFormat"]
     else:
         raise DeserializationError("AnnotationStoreItem.store_format required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
     else:
         raise DeserializationError("AnnotationStoreItem.description required")
-    if "sseConfig" in data:
+    if data.get("sseConfig") is not None:
         import capo_omics.types.sse_config
 
         out["sse_config"] = capo_omics.types.sse_config.deserialize_json(
@@ -120,7 +120,7 @@ def deserialize_json(data: dict) -> AnnotationStoreItem:
         )
     else:
         raise DeserializationError("AnnotationStoreItem.sse_config required")
-    if "creationTime" in data:
+    if data.get("creationTime") is not None:
         import capo_omics.types.creation_time
 
         out["creation_time"] = capo_omics.types.creation_time.deserialize_json(
@@ -128,7 +128,7 @@ def deserialize_json(data: dict) -> AnnotationStoreItem:
         )
     else:
         raise DeserializationError("AnnotationStoreItem.creation_time required")
-    if "updateTime" in data:
+    if data.get("updateTime") is not None:
         import capo_omics.types.update_time
 
         out["update_time"] = capo_omics.types.update_time.deserialize_json(
@@ -136,11 +136,11 @@ def deserialize_json(data: dict) -> AnnotationStoreItem:
         )
     else:
         raise DeserializationError("AnnotationStoreItem.update_time required")
-    if "statusMessage" in data:
+    if data.get("statusMessage") is not None:
         out["status_message"] = data["statusMessage"]
     else:
         raise DeserializationError("AnnotationStoreItem.status_message required")
-    if "storeSizeBytes" in data:
+    if data.get("storeSizeBytes") is not None:
         out["store_size_bytes"] = data["storeSizeBytes"]
     else:
         raise DeserializationError("AnnotationStoreItem.store_size_bytes required")

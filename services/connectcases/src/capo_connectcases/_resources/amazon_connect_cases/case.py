@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import uuid
 from typing import TYPE_CHECKING, Optional
 
 import capo_connectcases._auth._signers
@@ -99,12 +100,14 @@ class Case:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_connectcases.types.create_case_request.CreateCaseRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_id"] = domain_id
-        input_["template_id"] = template_id
-        input_["fields"] = fields
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_connectcases.types.create_case_request.CreateCaseRequest = {
+            "domain_id": domain_id,
+            "template_id": template_id,
+            "fields": fields,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if performed_by is not None:
             input_["performed_by"] = performed_by
         if tags is not None:
@@ -115,6 +118,7 @@ class Case:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -158,10 +162,11 @@ class Case:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_connectcases.types.get_case_request.GetCaseRequest = {}  # type: ignore[typeddict-item]
-        input_["case_id"] = case_id
-        input_["domain_id"] = domain_id
-        input_["fields"] = fields
+        input_: capo_connectcases.types.get_case_request.GetCaseRequest = {
+            "case_id": case_id,
+            "domain_id": domain_id,
+            "fields": fields,
+        }
         if next_token is not None:
             input_["next_token"] = next_token
 
@@ -170,6 +175,7 @@ class Case:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update(
@@ -212,10 +218,11 @@ class Case:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_connectcases.types.update_case_request.UpdateCaseRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_id"] = domain_id
-        input_["case_id"] = case_id
-        input_["fields"] = fields
+        input_: capo_connectcases.types.update_case_request.UpdateCaseRequest = {
+            "domain_id": domain_id,
+            "case_id": case_id,
+            "fields": fields,
+        }
         if performed_by is not None:
             input_["performed_by"] = performed_by
 
@@ -224,6 +231,7 @@ class Case:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -263,15 +271,17 @@ class Case:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_connectcases.types.delete_case_request.DeleteCaseRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_id"] = domain_id
-        input_["case_id"] = case_id
+        input_: capo_connectcases.types.delete_case_request.DeleteCaseRequest = {
+            "domain_id": domain_id,
+            "case_id": case_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_case_audit_events(
@@ -315,9 +325,10 @@ class Case:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_connectcases.types.get_case_audit_events_request.GetCaseAuditEventsRequest = {}  # type: ignore[typeddict-item]
-        input_["case_id"] = case_id
-        input_["domain_id"] = domain_id
+        input_: capo_connectcases.types.get_case_audit_events_request.GetCaseAuditEventsRequest = {
+            "case_id": case_id,
+            "domain_id": domain_id,
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -328,6 +339,7 @@ class Case:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_cases_for_contact(
@@ -371,9 +383,10 @@ class Case:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_connectcases.types.list_cases_for_contact_request.ListCasesForContactRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_id"] = domain_id
-        input_["contact_arn"] = contact_arn
+        input_: capo_connectcases.types.list_cases_for_contact_request.ListCasesForContactRequest = {
+            "domain_id": domain_id,
+            "contact_arn": contact_arn,
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -384,6 +397,7 @@ class Case:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def search_cases(
@@ -435,8 +449,9 @@ class Case:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_connectcases.types.search_cases_request.SearchCasesRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_id"] = domain_id
+        input_: capo_connectcases.types.search_cases_request.SearchCasesRequest = {
+            "domain_id": domain_id
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -455,6 +470,7 @@ class Case:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -508,12 +524,14 @@ class AsyncCase:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_connectcases.types.create_case_request.CreateCaseRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_id"] = domain_id
-        input_["template_id"] = template_id
-        input_["fields"] = fields
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_connectcases.types.create_case_request.CreateCaseRequest = {
+            "domain_id": domain_id,
+            "template_id": template_id,
+            "fields": fields,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if performed_by is not None:
             input_["performed_by"] = performed_by
         if tags is not None:
@@ -524,6 +542,7 @@ class AsyncCase:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -568,10 +587,11 @@ class AsyncCase:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_connectcases.types.get_case_request.GetCaseRequest = {}  # type: ignore[typeddict-item]
-        input_["case_id"] = case_id
-        input_["domain_id"] = domain_id
-        input_["fields"] = fields
+        input_: capo_connectcases.types.get_case_request.GetCaseRequest = {
+            "case_id": case_id,
+            "domain_id": domain_id,
+            "fields": fields,
+        }
         if next_token is not None:
             input_["next_token"] = next_token
 
@@ -580,6 +600,7 @@ class AsyncCase:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update(
@@ -623,10 +644,11 @@ class AsyncCase:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_connectcases.types.update_case_request.UpdateCaseRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_id"] = domain_id
-        input_["case_id"] = case_id
-        input_["fields"] = fields
+        input_: capo_connectcases.types.update_case_request.UpdateCaseRequest = {
+            "domain_id": domain_id,
+            "case_id": case_id,
+            "fields": fields,
+        }
         if performed_by is not None:
             input_["performed_by"] = performed_by
 
@@ -635,6 +657,7 @@ class AsyncCase:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -675,15 +698,17 @@ class AsyncCase:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_connectcases.types.delete_case_request.DeleteCaseRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_id"] = domain_id
-        input_["case_id"] = case_id
+        input_: capo_connectcases.types.delete_case_request.DeleteCaseRequest = {
+            "domain_id": domain_id,
+            "case_id": case_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_case_audit_events(
@@ -728,9 +753,10 @@ class AsyncCase:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_connectcases.types.get_case_audit_events_request.GetCaseAuditEventsRequest = {}  # type: ignore[typeddict-item]
-        input_["case_id"] = case_id
-        input_["domain_id"] = domain_id
+        input_: capo_connectcases.types.get_case_audit_events_request.GetCaseAuditEventsRequest = {
+            "case_id": case_id,
+            "domain_id": domain_id,
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -741,6 +767,7 @@ class AsyncCase:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_cases_for_contact(
@@ -785,9 +812,10 @@ class AsyncCase:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_connectcases.types.list_cases_for_contact_request.ListCasesForContactRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_id"] = domain_id
-        input_["contact_arn"] = contact_arn
+        input_: capo_connectcases.types.list_cases_for_contact_request.ListCasesForContactRequest = {
+            "domain_id": domain_id,
+            "contact_arn": contact_arn,
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -798,6 +826,7 @@ class AsyncCase:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def search_cases(
@@ -850,8 +879,9 @@ class AsyncCase:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_connectcases.types.search_cases_request.SearchCasesRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_id"] = domain_id
+        input_: capo_connectcases.types.search_cases_request.SearchCasesRequest = {
+            "domain_id": domain_id
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -870,4 +900,5 @@ class AsyncCase:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

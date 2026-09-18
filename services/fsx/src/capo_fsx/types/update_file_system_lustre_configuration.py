@@ -130,13 +130,13 @@ def serialize_aws_json_1_1(value: UpdateFileSystemLustreConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateFileSystemLustreConfiguration:
     out: UpdateFileSystemLustreConfiguration = {}  # type: ignore[typeddict-item]
-    if "WeeklyMaintenanceStartTime" in data:
+    if data.get("WeeklyMaintenanceStartTime") is not None:
         out["weekly_maintenance_start_time"] = data["WeeklyMaintenanceStartTime"]
-    if "DailyAutomaticBackupStartTime" in data:
+    if data.get("DailyAutomaticBackupStartTime") is not None:
         out["daily_automatic_backup_start_time"] = data["DailyAutomaticBackupStartTime"]
-    if "AutomaticBackupRetentionDays" in data:
+    if data.get("AutomaticBackupRetentionDays") is not None:
         out["automatic_backup_retention_days"] = data["AutomaticBackupRetentionDays"]
-    if "AutoImportPolicy" in data:
+    if data.get("AutoImportPolicy") is not None:
         import capo_fsx.types.auto_import_policy_type
 
         out["auto_import_policy"] = (
@@ -144,7 +144,7 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateFileSystemLustreConfiguration:
                 data["AutoImportPolicy"]
             )
         )
-    if "DataCompressionType" in data:
+    if data.get("DataCompressionType") is not None:
         import capo_fsx.types.data_compression_type
 
         out["data_compression_type"] = (
@@ -152,7 +152,7 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateFileSystemLustreConfiguration:
                 data["DataCompressionType"]
             )
         )
-    if "LogConfiguration" in data:
+    if data.get("LogConfiguration") is not None:
         import capo_fsx.types.lustre_log_create_configuration
 
         out["log_configuration"] = (
@@ -160,7 +160,7 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateFileSystemLustreConfiguration:
                 data["LogConfiguration"]
             )
         )
-    if "RootSquashConfiguration" in data:
+    if data.get("RootSquashConfiguration") is not None:
         import capo_fsx.types.lustre_root_squash_configuration
 
         out["root_squash_configuration"] = (
@@ -168,9 +168,9 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateFileSystemLustreConfiguration:
                 data["RootSquashConfiguration"]
             )
         )
-    if "PerUnitStorageThroughput" in data:
+    if data.get("PerUnitStorageThroughput") is not None:
         out["per_unit_storage_throughput"] = data["PerUnitStorageThroughput"]
-    if "MetadataConfiguration" in data:
+    if data.get("MetadataConfiguration") is not None:
         import capo_fsx.types.update_file_system_lustre_metadata_configuration
 
         out["metadata_configuration"] = (
@@ -178,9 +178,9 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateFileSystemLustreConfiguration:
                 data["MetadataConfiguration"]
             )
         )
-    if "ThroughputCapacity" in data:
+    if data.get("ThroughputCapacity") is not None:
         out["throughput_capacity"] = data["ThroughputCapacity"]
-    if "DataReadCacheConfiguration" in data:
+    if data.get("DataReadCacheConfiguration") is not None:
         import capo_fsx.types.lustre_read_cache_configuration
 
         out["data_read_cache_configuration"] = (

@@ -43,11 +43,11 @@ def serialize_json(value: ListStreamsInput) -> dict:
 
 def deserialize_json(data: dict) -> ListStreamsInput:
     out: ListStreamsInput = {}  # type: ignore[typeddict-item]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "StreamNameCondition" in data:
+    if data.get("StreamNameCondition") is not None:
         import capo_kinesis_video.types.stream_name_condition
 
         out["stream_name_condition"] = (

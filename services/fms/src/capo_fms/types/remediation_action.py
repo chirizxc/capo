@@ -179,9 +179,9 @@ def serialize_aws_json_1_1(value: RemediationAction) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RemediationAction:
     out: RemediationAction = {}  # type: ignore[typeddict-item]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "EC2CreateRouteAction" in data:
+    if data.get("EC2CreateRouteAction") is not None:
         import capo_fms.types.ec2_create_route_action
 
         out["ec2_create_route_action"] = (
@@ -189,7 +189,7 @@ def deserialize_aws_json_1_1(data: dict) -> RemediationAction:
                 data["EC2CreateRouteAction"]
             )
         )
-    if "EC2ReplaceRouteAction" in data:
+    if data.get("EC2ReplaceRouteAction") is not None:
         import capo_fms.types.ec2_replace_route_action
 
         out["ec2_replace_route_action"] = (
@@ -197,7 +197,7 @@ def deserialize_aws_json_1_1(data: dict) -> RemediationAction:
                 data["EC2ReplaceRouteAction"]
             )
         )
-    if "EC2DeleteRouteAction" in data:
+    if data.get("EC2DeleteRouteAction") is not None:
         import capo_fms.types.ec2_delete_route_action
 
         out["ec2_delete_route_action"] = (
@@ -205,7 +205,7 @@ def deserialize_aws_json_1_1(data: dict) -> RemediationAction:
                 data["EC2DeleteRouteAction"]
             )
         )
-    if "EC2CopyRouteTableAction" in data:
+    if data.get("EC2CopyRouteTableAction") is not None:
         import capo_fms.types.ec2_copy_route_table_action
 
         out["ec2_copy_route_table_action"] = (
@@ -213,7 +213,7 @@ def deserialize_aws_json_1_1(data: dict) -> RemediationAction:
                 data["EC2CopyRouteTableAction"]
             )
         )
-    if "EC2ReplaceRouteTableAssociationAction" in data:
+    if data.get("EC2ReplaceRouteTableAssociationAction") is not None:
         import capo_fms.types.ec2_replace_route_table_association_action
 
         out["ec2_replace_route_table_association_action"] = (
@@ -221,7 +221,7 @@ def deserialize_aws_json_1_1(data: dict) -> RemediationAction:
                 data["EC2ReplaceRouteTableAssociationAction"]
             )
         )
-    if "EC2AssociateRouteTableAction" in data:
+    if data.get("EC2AssociateRouteTableAction") is not None:
         import capo_fms.types.ec2_associate_route_table_action
 
         out["ec2_associate_route_table_action"] = (
@@ -229,7 +229,7 @@ def deserialize_aws_json_1_1(data: dict) -> RemediationAction:
                 data["EC2AssociateRouteTableAction"]
             )
         )
-    if "EC2CreateRouteTableAction" in data:
+    if data.get("EC2CreateRouteTableAction") is not None:
         import capo_fms.types.ec2_create_route_table_action
 
         out["ec2_create_route_table_action"] = (
@@ -237,7 +237,7 @@ def deserialize_aws_json_1_1(data: dict) -> RemediationAction:
                 data["EC2CreateRouteTableAction"]
             )
         )
-    if "FMSPolicyUpdateFirewallCreationConfigAction" in data:
+    if data.get("FMSPolicyUpdateFirewallCreationConfigAction") is not None:
         import capo_fms.types.fms_policy_update_firewall_creation_config_action
 
         out["fms_policy_update_firewall_creation_config_action"] = (
@@ -245,7 +245,7 @@ def deserialize_aws_json_1_1(data: dict) -> RemediationAction:
                 data["FMSPolicyUpdateFirewallCreationConfigAction"]
             )
         )
-    if "CreateNetworkAclAction" in data:
+    if data.get("CreateNetworkAclAction") is not None:
         import capo_fms.types.create_network_acl_action
 
         out["create_network_acl_action"] = (
@@ -253,7 +253,7 @@ def deserialize_aws_json_1_1(data: dict) -> RemediationAction:
                 data["CreateNetworkAclAction"]
             )
         )
-    if "ReplaceNetworkAclAssociationAction" in data:
+    if data.get("ReplaceNetworkAclAssociationAction") is not None:
         import capo_fms.types.replace_network_acl_association_action
 
         out["replace_network_acl_association_action"] = (
@@ -261,7 +261,7 @@ def deserialize_aws_json_1_1(data: dict) -> RemediationAction:
                 data["ReplaceNetworkAclAssociationAction"]
             )
         )
-    if "CreateNetworkAclEntriesAction" in data:
+    if data.get("CreateNetworkAclEntriesAction") is not None:
         import capo_fms.types.create_network_acl_entries_action
 
         out["create_network_acl_entries_action"] = (
@@ -269,7 +269,7 @@ def deserialize_aws_json_1_1(data: dict) -> RemediationAction:
                 data["CreateNetworkAclEntriesAction"]
             )
         )
-    if "DeleteNetworkAclEntriesAction" in data:
+    if data.get("DeleteNetworkAclEntriesAction") is not None:
         import capo_fms.types.delete_network_acl_entries_action
 
         out["delete_network_acl_entries_action"] = (

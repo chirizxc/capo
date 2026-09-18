@@ -36,7 +36,7 @@ def serialize_json(value: ListReceivedDataGrantsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListReceivedDataGrantsResponse:
     out: ListReceivedDataGrantsResponse = {}  # type: ignore[typeddict-item]
-    if "DataGrantSummaries" in data:
+    if data.get("DataGrantSummaries") is not None:
         import capo_dataexchange.types.list_of_received_data_grant_summaries_entry
 
         out["data_grant_summaries"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> ListReceivedDataGrantsResponse:
                 data["DataGrantSummaries"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

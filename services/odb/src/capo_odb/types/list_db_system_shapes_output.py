@@ -32,9 +32,9 @@ def serialize_aws_json_1_0(value: ListDbSystemShapesOutput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ListDbSystemShapesOutput:
     out: ListDbSystemShapesOutput = {}  # type: ignore[typeddict-item]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "dbSystemShapes" in data:
+    if data.get("dbSystemShapes") is not None:
         import capo_odb.types.db_system_shape_list
 
         out["db_system_shapes"] = (

@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> ListOfClosedDaysRules:
 
     out: ListOfClosedDaysRules = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_pinpoint.types.closed_days_rule.deserialize_json(item))
     return out

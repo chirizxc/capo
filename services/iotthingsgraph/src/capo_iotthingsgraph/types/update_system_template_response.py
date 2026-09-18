@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: UpdateSystemTemplateResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateSystemTemplateResponse:
     out: UpdateSystemTemplateResponse = {}  # type: ignore[typeddict-item]
-    if "summary" in data:
+    if data.get("summary") is not None:
         import capo_iotthingsgraph.types.system_template_summary
 
         out["summary"] = (

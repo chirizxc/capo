@@ -40,11 +40,11 @@ def serialize_aws_json_1_1(value: GetConfigRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetConfigRequest:
     out: GetConfigRequest = {}  # type: ignore[typeddict-item]
-    if "ClientArn" in data:
+    if data.get("ClientArn") is not None:
         out["client_arn"] = data["ClientArn"]
     else:
         raise DeserializationError("GetConfigRequest.client_arn required")
-    if "ClientVersion" in data:
+    if data.get("ClientVersion") is not None:
         import capo_cloudhsm.types.client_version
 
         out["client_version"] = (
@@ -54,7 +54,7 @@ def deserialize_aws_json_1_1(data: dict) -> GetConfigRequest:
         )
     else:
         raise DeserializationError("GetConfigRequest.client_version required")
-    if "HapgList" in data:
+    if data.get("HapgList") is not None:
         import capo_cloudhsm.types.hapg_list
 
         out["hapg_list"] = capo_cloudhsm.types.hapg_list.deserialize_aws_json_1_1(

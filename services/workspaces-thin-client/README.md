@@ -13,9 +13,9 @@ from capo_workspaces_thin_client import AsyncWorkSpacesThinClientClient
 
 
 async def main():
-    async with AsyncWorkSpacesThinClientClient() as s3:
+    async with AsyncWorkSpacesThinClientClient() as work_spaces_thin_client:
         # Example: call the create_environment operation
-        response = await s3.create_environment()
+        response = await work_spaces_thin_client.create_environment()
         print(response["environment"])
 ```
 
@@ -28,9 +28,9 @@ from capo_workspaces_thin_client import AsyncWorkSpacesThinClientClient
 
 
 async def main():
-    async with AsyncWorkSpacesThinClientClient() as s3:
+    async with AsyncWorkSpacesThinClientClient() as work_spaces_thin_client:
         # Example: paginate over list_devices
-        async for item in s3.iter_list_devices():
+        async for item in work_spaces_thin_client.iter_list_devices():
             print(item)
 ```
 
@@ -44,9 +44,9 @@ from capo_workspaces_thin_client.error import AccessDeniedException
 
 
 async def main():
-    async with AsyncWorkSpacesThinClientClient() as s3:
+    async with AsyncWorkSpacesThinClientClient() as work_spaces_thin_client:
         try:
-            await s3.create_environment()
+            await work_spaces_thin_client.create_environment()
         except AccessDeniedException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -63,13 +63,13 @@ from capo_workspaces_thin_client import AsyncWorkSpacesThinClientClient
 
 
 async def main():
-    async with AsyncWorkSpacesThinClientClient() as s3:
+    async with AsyncWorkSpacesThinClientClient() as work_spaces_thin_client:
         # Default: 3 attempts for every operation
-        response = await s3.create_environment()
+        response = await work_spaces_thin_client.create_environment()
 
         # Override per operation
-        response = await s3.create_environment(config_overrides={"retry_max_attempts": 5})
+        response = await work_spaces_thin_client.create_environment(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.create_environment(config_overrides={"retry_max_attempts": 1})
+        response = await work_spaces_thin_client.create_environment(config_overrides={"retry_max_attempts": 1})
 ```

@@ -24,7 +24,7 @@ def serialize_json(value: EnableDelegatedAdminAccountResponse) -> dict:
 
 def deserialize_json(data: dict) -> EnableDelegatedAdminAccountResponse:
     out: EnableDelegatedAdminAccountResponse = {}  # type: ignore[typeddict-item]
-    if "delegatedAdminAccountId" in data:
+    if data.get("delegatedAdminAccountId") is not None:
         out["delegated_admin_account_id"] = data["delegatedAdminAccountId"]
     else:
         raise DeserializationError(

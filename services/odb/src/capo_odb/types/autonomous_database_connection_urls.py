@@ -52,24 +52,24 @@ def serialize_aws_json_1_0(value: AutonomousDatabaseConnectionUrls) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> AutonomousDatabaseConnectionUrls:
     out: AutonomousDatabaseConnectionUrls = {}  # type: ignore[typeddict-item]
-    if "apexUrl" in data:
+    if data.get("apexUrl") is not None:
         out["apex_url"] = data["apexUrl"]
-    if "databaseTransformsUrl" in data:
+    if data.get("databaseTransformsUrl") is not None:
         out["database_transforms_url"] = data["databaseTransformsUrl"]
-    if "graphStudioUrl" in data:
+    if data.get("graphStudioUrl") is not None:
         out["graph_studio_url"] = data["graphStudioUrl"]
-    if "machineLearningNotebookUrl" in data:
+    if data.get("machineLearningNotebookUrl") is not None:
         out["machine_learning_notebook_url"] = data["machineLearningNotebookUrl"]
-    if "machineLearningUserManagementUrl" in data:
+    if data.get("machineLearningUserManagementUrl") is not None:
         out["machine_learning_user_management_url"] = data[
             "machineLearningUserManagementUrl"
         ]
-    if "mongoDbUrl" in data:
+    if data.get("mongoDbUrl") is not None:
         out["mongo_db_url"] = data["mongoDbUrl"]
-    if "ordsUrl" in data:
+    if data.get("ordsUrl") is not None:
         out["ords_url"] = data["ordsUrl"]
-    if "spatialStudioUrl" in data:
+    if data.get("spatialStudioUrl") is not None:
         out["spatial_studio_url"] = data["spatialStudioUrl"]
-    if "sqlDevWebUrl" in data:
+    if data.get("sqlDevWebUrl") is not None:
         out["sql_dev_web_url"] = data["sqlDevWebUrl"]
     return out

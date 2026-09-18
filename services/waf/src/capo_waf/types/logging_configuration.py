@@ -45,11 +45,11 @@ def serialize_aws_json_1_1(value: LoggingConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> LoggingConfiguration:
     out: LoggingConfiguration = {}  # type: ignore[typeddict-item]
-    if "ResourceArn" in data:
+    if data.get("ResourceArn") is not None:
         out["resource_arn"] = data["ResourceArn"]
     else:
         raise DeserializationError("LoggingConfiguration.resource_arn required")
-    if "LogDestinationConfigs" in data:
+    if data.get("LogDestinationConfigs") is not None:
         import capo_waf.types.log_destination_configs
 
         out["log_destination_configs"] = (
@@ -61,7 +61,7 @@ def deserialize_aws_json_1_1(data: dict) -> LoggingConfiguration:
         raise DeserializationError(
             "LoggingConfiguration.log_destination_configs required"
         )
-    if "RedactedFields" in data:
+    if data.get("RedactedFields") is not None:
         import capo_waf.types.redacted_fields
 
         out["redacted_fields"] = (

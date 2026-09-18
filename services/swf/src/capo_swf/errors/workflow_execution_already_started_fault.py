@@ -25,7 +25,7 @@ def serialize_aws_json_1_0(value: WorkflowExecutionAlreadyStartedFault_) -> dict
 
 def deserialize_aws_json_1_0(data: dict) -> WorkflowExecutionAlreadyStartedFault_:
     out: WorkflowExecutionAlreadyStartedFault_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     return out
 
@@ -35,15 +35,20 @@ class WorkflowExecutionAlreadyStartedFault(ServiceError):
 
     code: str | None = "WorkflowExecutionAlreadyStartedFault"
 
-    def __init__(self, data: WorkflowExecutionAlreadyStartedFault_):
+    def __init__(
+        self, data: WorkflowExecutionAlreadyStartedFault_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="WorkflowExecutionAlreadyStartedFault",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_0(cls, data: dict) -> "WorkflowExecutionAlreadyStartedFault":
-        return cls(deserialize_aws_json_1_0(data))
+    def from_aws_json_1_0(
+        cls, data: dict, message: str | None = None
+    ) -> "WorkflowExecutionAlreadyStartedFault":
+        return cls(deserialize_aws_json_1_0(data), message)

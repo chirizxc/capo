@@ -47,7 +47,7 @@ def serialize_json(value: GeocodePreferenceValue) -> dict:
 
 
 def deserialize_json(data: dict) -> GeocodePreferenceValue:
-    if "GeocoderHierarchy" in data:
+    if data.get("GeocoderHierarchy") is not None:
         import capo_quicksight.types.geocoder_hierarchy
 
         return {
@@ -55,7 +55,7 @@ def deserialize_json(data: dict) -> GeocodePreferenceValue:
                 data["GeocoderHierarchy"]
             )
         }
-    elif "Coordinate" in data:
+    elif data.get("Coordinate") is not None:
         import capo_quicksight.types.coordinate
 
         return {

@@ -93,35 +93,35 @@ def deserialize_aws_json_1_0(
     data: dict,
 ) -> BatchCreateBillScenarioUsageModificationItem:
     out: BatchCreateBillScenarioUsageModificationItem = {}  # type: ignore[typeddict-item]
-    if "serviceCode" in data:
+    if data.get("serviceCode") is not None:
         out["service_code"] = data["serviceCode"]
     else:
         raise DeserializationError(
             "BatchCreateBillScenarioUsageModificationItem.service_code required"
         )
-    if "usageType" in data:
+    if data.get("usageType") is not None:
         out["usage_type"] = data["usageType"]
     else:
         raise DeserializationError(
             "BatchCreateBillScenarioUsageModificationItem.usage_type required"
         )
-    if "operation" in data:
+    if data.get("operation") is not None:
         out["operation"] = data["operation"]
     else:
         raise DeserializationError(
             "BatchCreateBillScenarioUsageModificationItem.operation required"
         )
-    if "location" in data:
+    if data.get("location") is not None:
         out["location"] = data["location"]
-    if "availabilityZone" in data:
+    if data.get("availabilityZone") is not None:
         out["availability_zone"] = data["availabilityZone"]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "group" in data:
+    if data.get("group") is not None:
         out["group"] = data["group"]
-    if "usageAccountId" in data:
+    if data.get("usageAccountId") is not None:
         out["usage_account_id"] = data["usageAccountId"]
-    if "quantities" in data:
+    if data.get("quantities") is not None:
         import capo_bcm_pricing_calculator.types.usage_quantities
 
         out["quantities"] = (
@@ -129,7 +129,7 @@ def deserialize_aws_json_1_0(
                 data["quantities"]
             )
         )
-    if "historicalUsage" in data:
+    if data.get("historicalUsage") is not None:
         import capo_bcm_pricing_calculator.types.historical_usage_entity
 
         out["historical_usage"] = (
@@ -137,6 +137,6 @@ def deserialize_aws_json_1_0(
                 data["historicalUsage"]
             )
         )
-    if "key" in data:
+    if data.get("key") is not None:
         out["key"] = data["key"]
     return out

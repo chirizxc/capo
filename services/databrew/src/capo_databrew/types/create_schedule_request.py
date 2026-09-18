@@ -44,21 +44,21 @@ def serialize_json(value: CreateScheduleRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateScheduleRequest:
     out: CreateScheduleRequest = {}  # type: ignore[typeddict-item]
-    if "JobNames" in data:
+    if data.get("JobNames") is not None:
         import capo_databrew.types.job_name_list
 
         out["job_names"] = capo_databrew.types.job_name_list.deserialize_json(
             data["JobNames"]
         )
-    if "CronExpression" in data:
+    if data.get("CronExpression") is not None:
         out["cron_expression"] = data["CronExpression"]
     else:
         raise DeserializationError("CreateScheduleRequest.cron_expression required")
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_databrew.types.tag_map
 
         out["tags"] = capo_databrew.types.tag_map.deserialize_json(data["Tags"])
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("CreateScheduleRequest.name required")

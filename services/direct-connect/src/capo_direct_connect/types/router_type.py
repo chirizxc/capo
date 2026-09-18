@@ -54,16 +54,16 @@ def serialize_aws_json_1_1(value: RouterType) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RouterType:
     out: RouterType = {}  # type: ignore[typeddict-item]
-    if "vendor" in data:
+    if data.get("vendor") is not None:
         out["vendor"] = data["vendor"]
-    if "platform" in data:
+    if data.get("platform") is not None:
         out["platform"] = data["platform"]
-    if "software" in data:
+    if data.get("software") is not None:
         out["software"] = data["software"]
-    if "xsltTemplateName" in data:
+    if data.get("xsltTemplateName") is not None:
         out["xslt_template_name"] = data["xsltTemplateName"]
-    if "xsltTemplateNameForMacSec" in data:
+    if data.get("xsltTemplateNameForMacSec") is not None:
         out["xslt_template_name_for_mac_sec"] = data["xsltTemplateNameForMacSec"]
-    if "routerTypeIdentifier" in data:
+    if data.get("routerTypeIdentifier") is not None:
         out["router_type_identifier"] = data["routerTypeIdentifier"]
     return out

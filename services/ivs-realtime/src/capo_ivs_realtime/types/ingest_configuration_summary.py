@@ -60,13 +60,13 @@ def serialize_json(value: IngestConfigurationSummary) -> dict:
 
 def deserialize_json(data: dict) -> IngestConfigurationSummary:
     out: IngestConfigurationSummary = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("IngestConfigurationSummary.arn required")
-    if "ingestProtocol" in data:
+    if data.get("ingestProtocol") is not None:
         import capo_ivs_realtime.types.ingest_protocol
 
         out["ingest_protocol"] = (
@@ -78,21 +78,21 @@ def deserialize_json(data: dict) -> IngestConfigurationSummary:
         raise DeserializationError(
             "IngestConfigurationSummary.ingest_protocol required"
         )
-    if "stageArn" in data:
+    if data.get("stageArn") is not None:
         out["stage_arn"] = data["stageArn"]
     else:
         raise DeserializationError("IngestConfigurationSummary.stage_arn required")
-    if "participantId" in data:
+    if data.get("participantId") is not None:
         out["participant_id"] = data["participantId"]
     else:
         raise DeserializationError("IngestConfigurationSummary.participant_id required")
-    if "state" in data:
+    if data.get("state") is not None:
         out["state"] = data["state"]
     else:
         raise DeserializationError("IngestConfigurationSummary.state required")
-    if "userId" in data:
+    if data.get("userId") is not None:
         out["user_id"] = data["userId"]
-    if "redundantIngest" in data:
+    if data.get("redundantIngest") is not None:
         out["redundant_ingest"] = data["redundantIngest"]
     else:
         out["redundant_ingest"] = False

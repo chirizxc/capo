@@ -33,7 +33,7 @@ def serialize_json(value: ListDataSetsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListDataSetsResponse:
     out: ListDataSetsResponse = {}  # type: ignore[typeddict-item]
-    if "dataSets" in data:
+    if data.get("dataSets") is not None:
         import capo_m2.types.data_sets_summary_list
 
         out["data_sets"] = capo_m2.types.data_sets_summary_list.deserialize_json(
@@ -41,6 +41,6 @@ def deserialize_json(data: dict) -> ListDataSetsResponse:
         )
     else:
         raise DeserializationError("ListDataSetsResponse.data_sets required")
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

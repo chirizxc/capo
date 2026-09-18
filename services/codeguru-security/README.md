@@ -13,9 +13,9 @@ from capo_codeguru_security import AsyncCodeGuruSecurityClient
 
 
 async def main():
-    async with AsyncCodeGuruSecurityClient() as s3:
+    async with AsyncCodeGuruSecurityClient() as code_guru_security:
         # Example: call the batch_get_findings operation
-        response = await s3.batch_get_findings()
+        response = await code_guru_security.batch_get_findings()
         print(response["findings"])
 ```
 
@@ -28,9 +28,9 @@ from capo_codeguru_security import AsyncCodeGuruSecurityClient
 
 
 async def main():
-    async with AsyncCodeGuruSecurityClient() as s3:
+    async with AsyncCodeGuruSecurityClient() as code_guru_security:
         # Example: paginate over get_findings
-        async for item in s3.iter_get_findings():
+        async for item in code_guru_security.iter_get_findings():
             print(item)
 ```
 
@@ -44,9 +44,9 @@ from capo_codeguru_security.error import AccessDeniedException
 
 
 async def main():
-    async with AsyncCodeGuruSecurityClient() as s3:
+    async with AsyncCodeGuruSecurityClient() as code_guru_security:
         try:
-            await s3.batch_get_findings()
+            await code_guru_security.batch_get_findings()
         except AccessDeniedException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -63,13 +63,13 @@ from capo_codeguru_security import AsyncCodeGuruSecurityClient
 
 
 async def main():
-    async with AsyncCodeGuruSecurityClient() as s3:
+    async with AsyncCodeGuruSecurityClient() as code_guru_security:
         # Default: 3 attempts for every operation
-        response = await s3.batch_get_findings()
+        response = await code_guru_security.batch_get_findings()
 
         # Override per operation
-        response = await s3.batch_get_findings(config_overrides={"retry_max_attempts": 5})
+        response = await code_guru_security.batch_get_findings(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.batch_get_findings(config_overrides={"retry_max_attempts": 1})
+        response = await code_guru_security.batch_get_findings(config_overrides={"retry_max_attempts": 1})
 ```

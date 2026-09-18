@@ -70,7 +70,7 @@ def serialize_json(value: BackendAPIResourceConfig) -> dict:
 
 def deserialize_json(data: dict) -> BackendAPIResourceConfig:
     out: BackendAPIResourceConfig = {}  # type: ignore[typeddict-item]
-    if "additionalAuthTypes" in data:
+    if data.get("additionalAuthTypes") is not None:
         import capo_amplifybackend.types.list_of_backend_api_auth_type
 
         out["additional_auth_types"] = (
@@ -78,9 +78,9 @@ def deserialize_json(data: dict) -> BackendAPIResourceConfig:
                 data["additionalAuthTypes"]
             )
         )
-    if "apiName" in data:
+    if data.get("apiName") is not None:
         out["api_name"] = data["apiName"]
-    if "conflictResolution" in data:
+    if data.get("conflictResolution") is not None:
         import capo_amplifybackend.types.backend_api_conflict_resolution
 
         out["conflict_resolution"] = (
@@ -88,7 +88,7 @@ def deserialize_json(data: dict) -> BackendAPIResourceConfig:
                 data["conflictResolution"]
             )
         )
-    if "defaultAuthType" in data:
+    if data.get("defaultAuthType") is not None:
         import capo_amplifybackend.types.backend_api_auth_type
 
         out["default_auth_type"] = (
@@ -96,8 +96,8 @@ def deserialize_json(data: dict) -> BackendAPIResourceConfig:
                 data["defaultAuthType"]
             )
         )
-    if "service" in data:
+    if data.get("service") is not None:
         out["service"] = data["service"]
-    if "transformSchema" in data:
+    if data.get("transformSchema") is not None:
         out["transform_schema"] = data["transformSchema"]
     return out

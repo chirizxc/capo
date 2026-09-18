@@ -70,15 +70,15 @@ def serialize_aws_json_1_1(value: ListShardsInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListShardsInput:
     out: ListShardsInput = {}  # type: ignore[typeddict-item]
-    if "StreamName" in data:
+    if data.get("StreamName") is not None:
         out["stream_name"] = data["StreamName"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "ExclusiveStartShardId" in data:
+    if data.get("ExclusiveStartShardId") is not None:
         out["exclusive_start_shard_id"] = data["ExclusiveStartShardId"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "StreamCreationTimestamp" in data:
+    if data.get("StreamCreationTimestamp") is not None:
         import capo_kinesis.types.timestamp
 
         out["stream_creation_timestamp"] = (
@@ -86,14 +86,14 @@ def deserialize_aws_json_1_1(data: dict) -> ListShardsInput:
                 data["StreamCreationTimestamp"]
             )
         )
-    if "ShardFilter" in data:
+    if data.get("ShardFilter") is not None:
         import capo_kinesis.types.shard_filter
 
         out["shard_filter"] = capo_kinesis.types.shard_filter.deserialize_aws_json_1_1(
             data["ShardFilter"]
         )
-    if "StreamARN" in data:
+    if data.get("StreamARN") is not None:
         out["stream_arn"] = data["StreamARN"]
-    if "StreamId" in data:
+    if data.get("StreamId") is not None:
         out["stream_id"] = data["StreamId"]
     return out

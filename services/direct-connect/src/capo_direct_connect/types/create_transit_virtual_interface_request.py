@@ -34,13 +34,13 @@ def serialize_aws_json_1_1(value: CreateTransitVirtualInterfaceRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateTransitVirtualInterfaceRequest:
     out: CreateTransitVirtualInterfaceRequest = {}  # type: ignore[typeddict-item]
-    if "connectionId" in data:
+    if data.get("connectionId") is not None:
         out["connection_id"] = data["connectionId"]
     else:
         raise DeserializationError(
             "CreateTransitVirtualInterfaceRequest.connection_id required"
         )
-    if "newTransitVirtualInterface" in data:
+    if data.get("newTransitVirtualInterface") is not None:
         import capo_direct_connect.types.new_transit_virtual_interface
 
         out["new_transit_virtual_interface"] = (

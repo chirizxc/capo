@@ -92,25 +92,25 @@ def serialize_json(value: GetImportFileTaskResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetImportFileTaskResponse:
     out: GetImportFileTaskResponse = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
-    if "startTime" in data:
+    if data.get("startTime") is not None:
         import capo_migrationhubstrategy.types.time_stamp
 
         out["start_time"] = capo_migrationhubstrategy.types.time_stamp.deserialize_json(
             data["startTime"]
         )
-    if "inputS3Bucket" in data:
+    if data.get("inputS3Bucket") is not None:
         out["input_s3_bucket"] = data["inputS3Bucket"]
-    if "inputS3Key" in data:
+    if data.get("inputS3Key") is not None:
         out["input_s3_key"] = data["inputS3Key"]
-    if "statusReportS3Bucket" in data:
+    if data.get("statusReportS3Bucket") is not None:
         out["status_report_s3_bucket"] = data["statusReportS3Bucket"]
-    if "statusReportS3Key" in data:
+    if data.get("statusReportS3Key") is not None:
         out["status_report_s3_key"] = data["statusReportS3Key"]
-    if "completionTime" in data:
+    if data.get("completionTime") is not None:
         import capo_migrationhubstrategy.types.time_stamp
 
         out["completion_time"] = (
@@ -118,10 +118,10 @@ def deserialize_json(data: dict) -> GetImportFileTaskResponse:
                 data["completionTime"]
             )
         )
-    if "numberOfRecordsSuccess" in data:
+    if data.get("numberOfRecordsSuccess") is not None:
         out["number_of_records_success"] = data["numberOfRecordsSuccess"]
-    if "numberOfRecordsFailed" in data:
+    if data.get("numberOfRecordsFailed") is not None:
         out["number_of_records_failed"] = data["numberOfRecordsFailed"]
-    if "importName" in data:
+    if data.get("importName") is not None:
         out["import_name"] = data["importName"]
     return out

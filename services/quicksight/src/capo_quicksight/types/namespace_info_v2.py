@@ -74,13 +74,13 @@ def serialize_json(value: NamespaceInfoV2) -> dict:
 
 def deserialize_json(data: dict) -> NamespaceInfoV2:
     out: NamespaceInfoV2 = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "CapacityRegion" in data:
+    if data.get("CapacityRegion") is not None:
         out["capacity_region"] = data["CapacityRegion"]
-    if "CreationStatus" in data:
+    if data.get("CreationStatus") is not None:
         import capo_quicksight.types.namespace_status
 
         out["creation_status"] = (
@@ -88,22 +88,22 @@ def deserialize_json(data: dict) -> NamespaceInfoV2:
                 data["CreationStatus"]
             )
         )
-    if "IdentityStore" in data:
+    if data.get("IdentityStore") is not None:
         import capo_quicksight.types.identity_store
 
         out["identity_store"] = capo_quicksight.types.identity_store.deserialize_json(
             data["IdentityStore"]
         )
-    if "NamespaceError" in data:
+    if data.get("NamespaceError") is not None:
         import capo_quicksight.types.namespace_error
 
         out["namespace_error"] = capo_quicksight.types.namespace_error.deserialize_json(
             data["NamespaceError"]
         )
-    if "IamIdentityCenterApplicationArn" in data:
+    if data.get("IamIdentityCenterApplicationArn") is not None:
         out["iam_identity_center_application_arn"] = data[
             "IamIdentityCenterApplicationArn"
         ]
-    if "IamIdentityCenterInstanceArn" in data:
+    if data.get("IamIdentityCenterInstanceArn") is not None:
         out["iam_identity_center_instance_arn"] = data["IamIdentityCenterInstanceArn"]
     return out

@@ -36,19 +36,19 @@ def serialize_json(value: NetworkInfo) -> dict:
 
 def deserialize_json(data: dict) -> NetworkInfo:
     out: NetworkInfo = {}  # type: ignore[typeddict-item]
-    if "interfaceName" in data:
+    if data.get("interfaceName") is not None:
         out["interface_name"] = data["interfaceName"]
     else:
         raise DeserializationError("NetworkInfo.interface_name required")
-    if "ipAddress" in data:
+    if data.get("ipAddress") is not None:
         out["ip_address"] = data["ipAddress"]
     else:
         raise DeserializationError("NetworkInfo.ip_address required")
-    if "macAddress" in data:
+    if data.get("macAddress") is not None:
         out["mac_address"] = data["macAddress"]
     else:
         raise DeserializationError("NetworkInfo.mac_address required")
-    if "netMask" in data:
+    if data.get("netMask") is not None:
         out["net_mask"] = data["netMask"]
     else:
         raise DeserializationError("NetworkInfo.net_mask required")

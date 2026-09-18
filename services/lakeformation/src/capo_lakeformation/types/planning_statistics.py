@@ -39,19 +39,19 @@ def serialize_json(value: PlanningStatistics) -> dict:
 
 def deserialize_json(data: dict) -> PlanningStatistics:
     out: PlanningStatistics = {}  # type: ignore[typeddict-item]
-    if "EstimatedDataToScanBytes" in data:
+    if data.get("EstimatedDataToScanBytes") is not None:
         out["estimated_data_to_scan_bytes"] = data["EstimatedDataToScanBytes"]
     else:
         out["estimated_data_to_scan_bytes"] = 0
-    if "PlanningTimeMillis" in data:
+    if data.get("PlanningTimeMillis") is not None:
         out["planning_time_millis"] = data["PlanningTimeMillis"]
     else:
         out["planning_time_millis"] = 0
-    if "QueueTimeMillis" in data:
+    if data.get("QueueTimeMillis") is not None:
         out["queue_time_millis"] = data["QueueTimeMillis"]
     else:
         out["queue_time_millis"] = 0
-    if "WorkUnitsGeneratedCount" in data:
+    if data.get("WorkUnitsGeneratedCount") is not None:
         out["work_units_generated_count"] = data["WorkUnitsGeneratedCount"]
     else:
         out["work_units_generated_count"] = 0

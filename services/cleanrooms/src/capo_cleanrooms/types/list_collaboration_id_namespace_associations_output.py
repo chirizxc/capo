@@ -35,9 +35,9 @@ def serialize_json(value: ListCollaborationIdNamespaceAssociationsOutput) -> dic
 
 def deserialize_json(data: dict) -> ListCollaborationIdNamespaceAssociationsOutput:
     out: ListCollaborationIdNamespaceAssociationsOutput = {}  # type: ignore[typeddict-item]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "collaborationIdNamespaceAssociationSummaries" in data:
+    if data.get("collaborationIdNamespaceAssociationSummaries") is not None:
         import capo_cleanrooms.types.collaboration_id_namespace_association_summary_list
 
         out["collaboration_id_namespace_association_summaries"] = (

@@ -46,23 +46,23 @@ def serialize_json(value: FailedAccount) -> dict:
 
 def deserialize_json(data: dict) -> FailedAccount:
     out: FailedAccount = {}  # type: ignore[typeddict-item]
-    if "accountId" in data:
+    if data.get("accountId") is not None:
         out["account_id"] = data["accountId"]
     else:
         raise DeserializationError("FailedAccount.account_id required")
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
-    if "resourceStatus" in data:
+    if data.get("resourceStatus") is not None:
         import capo_inspector2.types.resource_status
 
         out["resource_status"] = capo_inspector2.types.resource_status.deserialize_json(
             data["resourceStatus"]
         )
-    if "errorCode" in data:
+    if data.get("errorCode") is not None:
         out["error_code"] = data["errorCode"]
     else:
         raise DeserializationError("FailedAccount.error_code required")
-    if "errorMessage" in data:
+    if data.get("errorMessage") is not None:
         out["error_message"] = data["errorMessage"]
     else:
         raise DeserializationError("FailedAccount.error_message required")

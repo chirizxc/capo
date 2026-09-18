@@ -94,17 +94,17 @@ def serialize_json(value: SecurityControl) -> dict:
 
 def deserialize_json(data: dict) -> SecurityControl:
     out: SecurityControl = {}  # type: ignore[typeddict-item]
-    if "SecurityControlId" in data:
+    if data.get("SecurityControlId") is not None:
         out["security_control_id"] = data["SecurityControlId"]
-    if "SecurityControlArn" in data:
+    if data.get("SecurityControlArn") is not None:
         out["security_control_arn"] = data["SecurityControlArn"]
-    if "Title" in data:
+    if data.get("Title") is not None:
         out["title"] = data["Title"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "RemediationUrl" in data:
+    if data.get("RemediationUrl") is not None:
         out["remediation_url"] = data["RemediationUrl"]
-    if "SeverityRating" in data:
+    if data.get("SeverityRating") is not None:
         import capo_securityhub.types.severity_rating
 
         out["severity_rating"] = (
@@ -112,7 +112,7 @@ def deserialize_json(data: dict) -> SecurityControl:
                 data["SeverityRating"]
             )
         )
-    if "SecurityControlStatus" in data:
+    if data.get("SecurityControlStatus") is not None:
         import capo_securityhub.types.control_status
 
         out["security_control_status"] = (
@@ -120,18 +120,18 @@ def deserialize_json(data: dict) -> SecurityControl:
                 data["SecurityControlStatus"]
             )
         )
-    if "UpdateStatus" in data:
+    if data.get("UpdateStatus") is not None:
         import capo_securityhub.types.update_status
 
         out["update_status"] = capo_securityhub.types.update_status.deserialize_json(
             data["UpdateStatus"]
         )
-    if "Parameters" in data:
+    if data.get("Parameters") is not None:
         import capo_securityhub.types.parameters
 
         out["parameters"] = capo_securityhub.types.parameters.deserialize_json(
             data["Parameters"]
         )
-    if "LastUpdateReason" in data:
+    if data.get("LastUpdateReason") is not None:
         out["last_update_reason"] = data["LastUpdateReason"]
     return out

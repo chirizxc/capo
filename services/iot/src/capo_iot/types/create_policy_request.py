@@ -34,11 +34,11 @@ def serialize_json(value: CreatePolicyRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreatePolicyRequest:
     out: CreatePolicyRequest = {}  # type: ignore[typeddict-item]
-    if "policyDocument" in data:
+    if data.get("policyDocument") is not None:
         out["policy_document"] = data["policyDocument"]
     else:
         raise DeserializationError("CreatePolicyRequest.policy_document required")
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_iot.types.tag_list
 
         out["tags"] = capo_iot.types.tag_list.deserialize_json(data["tags"])

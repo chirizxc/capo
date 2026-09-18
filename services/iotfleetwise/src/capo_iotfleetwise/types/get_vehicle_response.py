@@ -79,15 +79,15 @@ def serialize_aws_json_1_0(value: GetVehicleResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> GetVehicleResponse:
     out: GetVehicleResponse = {}  # type: ignore[typeddict-item]
-    if "vehicleName" in data:
+    if data.get("vehicleName") is not None:
         out["vehicle_name"] = data["vehicleName"]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "modelManifestArn" in data:
+    if data.get("modelManifestArn") is not None:
         out["model_manifest_arn"] = data["modelManifestArn"]
-    if "decoderManifestArn" in data:
+    if data.get("decoderManifestArn") is not None:
         out["decoder_manifest_arn"] = data["decoderManifestArn"]
-    if "attributes" in data:
+    if data.get("attributes") is not None:
         import capo_iotfleetwise.types.attributes_map
 
         out["attributes"] = (
@@ -95,7 +95,7 @@ def deserialize_aws_json_1_0(data: dict) -> GetVehicleResponse:
                 data["attributes"]
             )
         )
-    if "stateTemplates" in data:
+    if data.get("stateTemplates") is not None:
         import capo_iotfleetwise.types.state_template_associations
 
         out["state_templates"] = (
@@ -103,7 +103,7 @@ def deserialize_aws_json_1_0(data: dict) -> GetVehicleResponse:
                 data["stateTemplates"]
             )
         )
-    if "creationTime" in data:
+    if data.get("creationTime") is not None:
         import capo_iotfleetwise.types.timestamp
 
         out["creation_time"] = (
@@ -111,7 +111,7 @@ def deserialize_aws_json_1_0(data: dict) -> GetVehicleResponse:
                 data["creationTime"]
             )
         )
-    if "lastModificationTime" in data:
+    if data.get("lastModificationTime") is not None:
         import capo_iotfleetwise.types.timestamp
 
         out["last_modification_time"] = (

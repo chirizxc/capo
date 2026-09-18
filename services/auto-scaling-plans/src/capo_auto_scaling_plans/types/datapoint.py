@@ -28,13 +28,21 @@ def serialize_aws_json_1_1(value: Datapoint) -> dict:
             )
         )
     if "value" in value:
-        out["Value"] = value["value"]
+        out["Value"] = (
+            "NaN"
+            if value["value"] != value["value"]
+            else "Infinity"
+            if value["value"] == float("inf")
+            else "-Infinity"
+            if value["value"] == float("-inf")
+            else value["value"]
+        )
     return out
 
 
 def deserialize_aws_json_1_1(data: dict) -> Datapoint:
     out: Datapoint = {}  # type: ignore[typeddict-item]
-    if "Timestamp" in data:
+    if data.get("Timestamp") is not None:
         import capo_auto_scaling_plans.types.timestamp_type
 
         out["timestamp"] = (
@@ -42,6 +50,6 @@ def deserialize_aws_json_1_1(data: dict) -> Datapoint:
                 data["Timestamp"]
             )
         )
-    if "Value" in data:
-        out["value"] = data["Value"]
+    if data.get("Value") is not None:
+        out["value"] = float(data["Value"])
     return out

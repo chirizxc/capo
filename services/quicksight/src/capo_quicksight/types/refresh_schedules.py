@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> RefreshSchedules:
 
     out: RefreshSchedules = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_quicksight.types.refresh_schedule.deserialize_json(item))
     return out

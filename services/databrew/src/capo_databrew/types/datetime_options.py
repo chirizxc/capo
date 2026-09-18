@@ -34,12 +34,12 @@ def serialize_json(value: DatetimeOptions) -> dict:
 
 def deserialize_json(data: dict) -> DatetimeOptions:
     out: DatetimeOptions = {}  # type: ignore[typeddict-item]
-    if "Format" in data:
+    if data.get("Format") is not None:
         out["format"] = data["Format"]
     else:
         raise DeserializationError("DatetimeOptions.format required")
-    if "TimezoneOffset" in data:
+    if data.get("TimezoneOffset") is not None:
         out["timezone_offset"] = data["TimezoneOffset"]
-    if "LocaleCode" in data:
+    if data.get("LocaleCode") is not None:
         out["locale_code"] = data["LocaleCode"]
     return out

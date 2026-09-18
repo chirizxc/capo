@@ -66,14 +66,14 @@ class GetAudienceGenerationJobResponse(TypedDict, closed=True):
 # --- restJson1 ser/de ---
 def serialize_json(value: GetAudienceGenerationJobResponse) -> dict:
     out: dict = {}
-    import capo_cleanroomsml.types._prelude.timestamp
+    import capo_cleanroomsml._protocol.serialize
 
-    out["createTime"] = capo_cleanroomsml.types._prelude.timestamp.serialize_json(
+    out["createTime"] = capo_cleanroomsml._protocol.serialize.fmt_date_time(
         value["create_time"]
     )
-    import capo_cleanroomsml.types._prelude.timestamp
+    import capo_cleanroomsml._protocol.serialize
 
-    out["updateTime"] = capo_cleanroomsml.types._prelude.timestamp.serialize_json(
+    out["updateTime"] = capo_cleanroomsml._protocol.serialize.fmt_date_time(
         value["update_time"]
     )
     out["audienceGenerationJobArn"] = value["audience_generation_job_arn"]
@@ -127,43 +127,39 @@ def serialize_json(value: GetAudienceGenerationJobResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetAudienceGenerationJobResponse:
     out: GetAudienceGenerationJobResponse = {}  # type: ignore[typeddict-item]
-    if "createTime" in data:
-        import capo_cleanroomsml.types._prelude.timestamp
+    if data.get("createTime") is not None:
+        import datetime
 
-        out["create_time"] = (
-            capo_cleanroomsml.types._prelude.timestamp.deserialize_json(
-                data["createTime"]
-            )
+        out["create_time"] = datetime.datetime.fromisoformat(
+            data["createTime"].replace("Z", "+00:00")
         )
     else:
         raise DeserializationError(
             "GetAudienceGenerationJobResponse.create_time required"
         )
-    if "updateTime" in data:
-        import capo_cleanroomsml.types._prelude.timestamp
+    if data.get("updateTime") is not None:
+        import datetime
 
-        out["update_time"] = (
-            capo_cleanroomsml.types._prelude.timestamp.deserialize_json(
-                data["updateTime"]
-            )
+        out["update_time"] = datetime.datetime.fromisoformat(
+            data["updateTime"].replace("Z", "+00:00")
         )
     else:
         raise DeserializationError(
             "GetAudienceGenerationJobResponse.update_time required"
         )
-    if "audienceGenerationJobArn" in data:
+    if data.get("audienceGenerationJobArn") is not None:
         out["audience_generation_job_arn"] = data["audienceGenerationJobArn"]
     else:
         raise DeserializationError(
             "GetAudienceGenerationJobResponse.audience_generation_job_arn required"
         )
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("GetAudienceGenerationJobResponse.name required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_cleanroomsml.types.audience_generation_job_status
 
         out["status"] = (
@@ -173,19 +169,19 @@ def deserialize_json(data: dict) -> GetAudienceGenerationJobResponse:
         )
     else:
         raise DeserializationError("GetAudienceGenerationJobResponse.status required")
-    if "statusDetails" in data:
+    if data.get("statusDetails") is not None:
         import capo_cleanroomsml.types.status_details
 
         out["status_details"] = capo_cleanroomsml.types.status_details.deserialize_json(
             data["statusDetails"]
         )
-    if "configuredAudienceModelArn" in data:
+    if data.get("configuredAudienceModelArn") is not None:
         out["configured_audience_model_arn"] = data["configuredAudienceModelArn"]
     else:
         raise DeserializationError(
             "GetAudienceGenerationJobResponse.configured_audience_model_arn required"
         )
-    if "seedAudience" in data:
+    if data.get("seedAudience") is not None:
         import capo_cleanroomsml.types.audience_generation_job_data_source
 
         out["seed_audience"] = (
@@ -193,11 +189,11 @@ def deserialize_json(data: dict) -> GetAudienceGenerationJobResponse:
                 data["seedAudience"]
             )
         )
-    if "includeSeedInOutput" in data:
+    if data.get("includeSeedInOutput") is not None:
         out["include_seed_in_output"] = data["includeSeedInOutput"]
-    if "collaborationId" in data:
+    if data.get("collaborationId") is not None:
         out["collaboration_id"] = data["collaborationId"]
-    if "metrics" in data:
+    if data.get("metrics") is not None:
         import capo_cleanroomsml.types.audience_quality_metrics
 
         out["metrics"] = (
@@ -205,12 +201,12 @@ def deserialize_json(data: dict) -> GetAudienceGenerationJobResponse:
                 data["metrics"]
             )
         )
-    if "startedBy" in data:
+    if data.get("startedBy") is not None:
         out["started_by"] = data["startedBy"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_cleanroomsml.types.tag_map
 
         out["tags"] = capo_cleanroomsml.types.tag_map.deserialize_json(data["tags"])
-    if "protectedQueryIdentifier" in data:
+    if data.get("protectedQueryIdentifier") is not None:
         out["protected_query_identifier"] = data["protectedQueryIdentifier"]
     return out

@@ -13,9 +13,9 @@ from capo_application_signals import AsyncApplicationSignalsClient
 
 
 async def main():
-    async with AsyncApplicationSignalsClient() as s3:
+    async with AsyncApplicationSignalsClient() as application_signals:
         # Example: call the batch_get_service_level_objective_budget_report operation
-        response = await s3.batch_get_service_level_objective_budget_report()
+        response = await application_signals.batch_get_service_level_objective_budget_report()
         print(response["timestamp"])
 ```
 
@@ -28,9 +28,9 @@ from capo_application_signals import AsyncApplicationSignalsClient
 
 
 async def main():
-    async with AsyncApplicationSignalsClient() as s3:
+    async with AsyncApplicationSignalsClient() as application_signals:
         # Example: paginate over list_entity_events
-        async for item in s3.iter_list_entity_events():
+        async for item in application_signals.iter_list_entity_events():
             print(item)
 ```
 
@@ -44,9 +44,9 @@ from capo_application_signals.error import ThrottlingException
 
 
 async def main():
-    async with AsyncApplicationSignalsClient() as s3:
+    async with AsyncApplicationSignalsClient() as application_signals:
         try:
-            await s3.batch_get_service_level_objective_budget_report()
+            await application_signals.batch_get_service_level_objective_budget_report()
         except ThrottlingException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -63,13 +63,13 @@ from capo_application_signals import AsyncApplicationSignalsClient
 
 
 async def main():
-    async with AsyncApplicationSignalsClient() as s3:
+    async with AsyncApplicationSignalsClient() as application_signals:
         # Default: 3 attempts for every operation
-        response = await s3.batch_get_service_level_objective_budget_report()
+        response = await application_signals.batch_get_service_level_objective_budget_report()
 
         # Override per operation
-        response = await s3.batch_get_service_level_objective_budget_report(config_overrides={"retry_max_attempts": 5})
+        response = await application_signals.batch_get_service_level_objective_budget_report(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.batch_get_service_level_objective_budget_report(config_overrides={"retry_max_attempts": 1})
+        response = await application_signals.batch_get_service_level_objective_budget_report(config_overrides={"retry_max_attempts": 1})
 ```

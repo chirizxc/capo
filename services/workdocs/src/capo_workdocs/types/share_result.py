@@ -53,22 +53,22 @@ def serialize_json(value: ShareResult) -> dict:
 
 def deserialize_json(data: dict) -> ShareResult:
     out: ShareResult = {}  # type: ignore[typeddict-item]
-    if "PrincipalId" in data:
+    if data.get("PrincipalId") is not None:
         out["principal_id"] = data["PrincipalId"]
-    if "InviteePrincipalId" in data:
+    if data.get("InviteePrincipalId") is not None:
         out["invitee_principal_id"] = data["InviteePrincipalId"]
-    if "Role" in data:
+    if data.get("Role") is not None:
         import capo_workdocs.types.role_type
 
         out["role"] = capo_workdocs.types.role_type.deserialize_json(data["Role"])
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_workdocs.types.share_status_type
 
         out["status"] = capo_workdocs.types.share_status_type.deserialize_json(
             data["Status"]
         )
-    if "ShareId" in data:
+    if data.get("ShareId") is not None:
         out["share_id"] = data["ShareId"]
-    if "StatusMessage" in data:
+    if data.get("StatusMessage") is not None:
         out["status_message"] = data["StatusMessage"]
     return out

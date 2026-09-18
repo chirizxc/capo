@@ -32,7 +32,7 @@ def serialize_json(value: BatchGetWorkerRequest) -> dict:
 
 def deserialize_json(data: dict) -> BatchGetWorkerRequest:
     out: BatchGetWorkerRequest = {}  # type: ignore[typeddict-item]
-    if "identifiers" in data:
+    if data.get("identifiers") is not None:
         import capo_deadline.types.batch_get_worker_identifiers
 
         out["identifiers"] = (

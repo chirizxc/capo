@@ -36,14 +36,14 @@ def serialize_aws_json_1_1(value: ListFirewallDomainsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListFirewallDomainsRequest:
     out: ListFirewallDomainsRequest = {}  # type: ignore[typeddict-item]
-    if "FirewallDomainListId" in data:
+    if data.get("FirewallDomainListId") is not None:
         out["firewall_domain_list_id"] = data["FirewallDomainListId"]
     else:
         raise DeserializationError(
             "ListFirewallDomainsRequest.firewall_domain_list_id required"
         )
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

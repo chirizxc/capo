@@ -23,7 +23,7 @@ def serialize_json(value: CaseCreationLimitExceededException_) -> dict:
 
 def deserialize_json(data: dict) -> CaseCreationLimitExceededException_:
     out: CaseCreationLimitExceededException_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     else:
         raise DeserializationError(
@@ -37,15 +37,20 @@ class CaseCreationLimitExceededException(ServiceError):
 
     code: str | None = "CaseCreationLimitExceededException"
 
-    def __init__(self, data: CaseCreationLimitExceededException_):
+    def __init__(
+        self, data: CaseCreationLimitExceededException_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="CaseCreationLimitExceededException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "CaseCreationLimitExceededException":
-        return cls(deserialize_json(data))
+    def from_json(
+        cls, data: dict, message: str | None = None
+    ) -> "CaseCreationLimitExceededException":
+        return cls(deserialize_json(data), message)

@@ -45,17 +45,17 @@ def serialize_json(value: RuleUpdate) -> dict:
 
 def deserialize_json(data: dict) -> RuleUpdate:
     out: RuleUpdate = {}  # type: ignore[typeddict-item]
-    if "ruleIdentifier" in data:
+    if data.get("ruleIdentifier") is not None:
         out["rule_identifier"] = data["ruleIdentifier"]
     else:
         raise DeserializationError("RuleUpdate.rule_identifier required")
-    if "match" in data:
+    if data.get("match") is not None:
         import capo_vpc_lattice.types.rule_match
 
         out["match"] = capo_vpc_lattice.types.rule_match.deserialize_json(data["match"])
-    if "priority" in data:
+    if data.get("priority") is not None:
         out["priority"] = data["priority"]
-    if "action" in data:
+    if data.get("action") is not None:
         import capo_vpc_lattice.types.rule_action
 
         out["action"] = capo_vpc_lattice.types.rule_action.deserialize_json(

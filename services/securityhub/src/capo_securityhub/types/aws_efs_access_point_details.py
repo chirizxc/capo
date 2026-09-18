@@ -65,15 +65,15 @@ def serialize_json(value: AwsEfsAccessPointDetails) -> dict:
 
 def deserialize_json(data: dict) -> AwsEfsAccessPointDetails:
     out: AwsEfsAccessPointDetails = {}  # type: ignore[typeddict-item]
-    if "AccessPointId" in data:
+    if data.get("AccessPointId") is not None:
         out["access_point_id"] = data["AccessPointId"]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
-    if "FileSystemId" in data:
+    if data.get("FileSystemId") is not None:
         out["file_system_id"] = data["FileSystemId"]
-    if "PosixUser" in data:
+    if data.get("PosixUser") is not None:
         import capo_securityhub.types.aws_efs_access_point_posix_user_details
 
         out["posix_user"] = (
@@ -81,7 +81,7 @@ def deserialize_json(data: dict) -> AwsEfsAccessPointDetails:
                 data["PosixUser"]
             )
         )
-    if "RootDirectory" in data:
+    if data.get("RootDirectory") is not None:
         import capo_securityhub.types.aws_efs_access_point_root_directory_details
 
         out["root_directory"] = (

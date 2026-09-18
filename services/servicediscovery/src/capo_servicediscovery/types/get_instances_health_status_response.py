@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: GetInstancesHealthStatusResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetInstancesHealthStatusResponse:
     out: GetInstancesHealthStatusResponse = {}  # type: ignore[typeddict-item]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_servicediscovery.types.instance_health_status_map
 
         out["status"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_1(data: dict) -> GetInstancesHealthStatusResponse:
                 data["Status"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

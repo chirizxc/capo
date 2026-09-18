@@ -77,21 +77,21 @@ def serialize_json(value: RecommenderFilterSummary) -> dict:
 
 def deserialize_json(data: dict) -> RecommenderFilterSummary:
     out: RecommenderFilterSummary = {}  # type: ignore[typeddict-item]
-    if "RecommenderFilterName" in data:
+    if data.get("RecommenderFilterName") is not None:
         out["recommender_filter_name"] = data["RecommenderFilterName"]
-    if "RecommenderSchemaName" in data:
+    if data.get("RecommenderSchemaName") is not None:
         out["recommender_schema_name"] = data["RecommenderSchemaName"]
-    if "RecommenderFilterExpression" in data:
+    if data.get("RecommenderFilterExpression") is not None:
         out["recommender_filter_expression"] = data["RecommenderFilterExpression"]
-    if "CreatedAt" in data:
+    if data.get("CreatedAt") is not None:
         import capo_customer_profiles.types.timestamp
 
         out["created_at"] = capo_customer_profiles.types.timestamp.deserialize_json(
             data["CreatedAt"]
         )
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_customer_profiles.types.recommender_filter_status
 
         out["status"] = (
@@ -99,9 +99,9 @@ def deserialize_json(data: dict) -> RecommenderFilterSummary:
                 data["Status"]
             )
         )
-    if "FailureReason" in data:
+    if data.get("FailureReason") is not None:
         out["failure_reason"] = data["FailureReason"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_customer_profiles.types.tag_map
 
         out["tags"] = capo_customer_profiles.types.tag_map.deserialize_json(

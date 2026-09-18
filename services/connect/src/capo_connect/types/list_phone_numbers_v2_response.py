@@ -36,9 +36,9 @@ def serialize_json(value: ListPhoneNumbersV2Response) -> dict:
 
 def deserialize_json(data: dict) -> ListPhoneNumbersV2Response:
     out: ListPhoneNumbersV2Response = {}  # type: ignore[typeddict-item]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "ListPhoneNumbersSummaryList" in data:
+    if data.get("ListPhoneNumbersSummaryList") is not None:
         import capo_connect.types.list_phone_numbers_summary_list
 
         out["list_phone_numbers_summary_list"] = (

@@ -36,11 +36,11 @@ def serialize_json(value: ListAttachedLinksInput) -> dict:
 
 def deserialize_json(data: dict) -> ListAttachedLinksInput:
     out: ListAttachedLinksInput = {}  # type: ignore[typeddict-item]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "SinkIdentifier" in data:
+    if data.get("SinkIdentifier") is not None:
         out["sink_identifier"] = data["SinkIdentifier"]
     else:
         raise DeserializationError("ListAttachedLinksInput.sink_identifier required")

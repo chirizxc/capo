@@ -40,9 +40,9 @@ def deserialize_aws_json_1_1(
     data: dict,
 ) -> ListRequestedServiceQuotaChangeHistoryResponse:
     out: ListRequestedServiceQuotaChangeHistoryResponse = {}  # type: ignore[typeddict-item]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "RequestedQuotas" in data:
+    if data.get("RequestedQuotas") is not None:
         import capo_service_quotas.types.requested_service_quota_change_history_list_definition
 
         out["requested_quotas"] = (

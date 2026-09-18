@@ -29,8 +29,8 @@ def serialize_aws_json_1_1(value: CollectorShortInfoResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CollectorShortInfoResponse:
     out: CollectorShortInfoResponse = {}  # type: ignore[typeddict-item]
-    if "CollectorReferencedId" in data:
+    if data.get("CollectorReferencedId") is not None:
         out["collector_referenced_id"] = data["CollectorReferencedId"]
-    if "CollectorName" in data:
+    if data.get("CollectorName") is not None:
         out["collector_name"] = data["CollectorName"]
     return out

@@ -23,6 +23,6 @@ def serialize_json(value: DeleteServiceFunctionResponse) -> dict:
 
 def deserialize_json(data: dict) -> DeleteServiceFunctionResponse:
     out: DeleteServiceFunctionResponse = {}  # type: ignore[typeddict-item]
-    if "serviceFunctionId" in data:
+    if data.get("serviceFunctionId") is not None:
         out["service_function_id"] = data["serviceFunctionId"]
     return out

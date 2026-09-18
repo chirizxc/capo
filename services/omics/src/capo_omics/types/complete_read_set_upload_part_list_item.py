@@ -30,19 +30,19 @@ def serialize_json(value: CompleteReadSetUploadPartListItem) -> dict:
 
 def deserialize_json(data: dict) -> CompleteReadSetUploadPartListItem:
     out: CompleteReadSetUploadPartListItem = {}  # type: ignore[typeddict-item]
-    if "partNumber" in data:
+    if data.get("partNumber") is not None:
         out["part_number"] = data["partNumber"]
     else:
         raise DeserializationError(
             "CompleteReadSetUploadPartListItem.part_number required"
         )
-    if "partSource" in data:
+    if data.get("partSource") is not None:
         out["part_source"] = data["partSource"]
     else:
         raise DeserializationError(
             "CompleteReadSetUploadPartListItem.part_source required"
         )
-    if "checksum" in data:
+    if data.get("checksum") is not None:
         out["checksum"] = data["checksum"]
     else:
         raise DeserializationError(

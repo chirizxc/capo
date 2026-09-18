@@ -53,15 +53,15 @@ def serialize_aws_json_1_0(value: SubmitOpportunityRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> SubmitOpportunityRequest:
     out: SubmitOpportunityRequest = {}  # type: ignore[typeddict-item]
-    if "Catalog" in data:
+    if data.get("Catalog") is not None:
         out["catalog"] = data["Catalog"]
     else:
         raise DeserializationError("SubmitOpportunityRequest.catalog required")
-    if "Identifier" in data:
+    if data.get("Identifier") is not None:
         out["identifier"] = data["Identifier"]
     else:
         raise DeserializationError("SubmitOpportunityRequest.identifier required")
-    if "InvolvementType" in data:
+    if data.get("InvolvementType") is not None:
         import capo_partnercentral_selling.types.sales_involvement_type
 
         out["involvement_type"] = (
@@ -71,7 +71,7 @@ def deserialize_aws_json_1_0(data: dict) -> SubmitOpportunityRequest:
         )
     else:
         raise DeserializationError("SubmitOpportunityRequest.involvement_type required")
-    if "Visibility" in data:
+    if data.get("Visibility") is not None:
         import capo_partnercentral_selling.types.visibility
 
         out["visibility"] = (

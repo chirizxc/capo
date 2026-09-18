@@ -24,7 +24,7 @@ def serialize_json(value: SendingPausedException_) -> dict:
 
 def deserialize_json(data: dict) -> SendingPausedException_:
     out: SendingPausedException_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     return out
 
@@ -34,15 +34,18 @@ class SendingPausedException(ServiceError):
 
     code: str | None = "SendingPausedException"
 
-    def __init__(self, data: SendingPausedException_):
+    def __init__(self, data: SendingPausedException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="SendingPausedException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "SendingPausedException":
-        return cls(deserialize_json(data))
+    def from_json(
+        cls, data: dict, message: str | None = None
+    ) -> "SendingPausedException":
+        return cls(deserialize_json(data), message)

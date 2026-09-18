@@ -258,19 +258,19 @@ def serialize_json(value: UpdateDomainConfigRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateDomainConfigRequest:
     out: UpdateDomainConfigRequest = {}  # type: ignore[typeddict-item]
-    if "ClusterConfig" in data:
+    if data.get("ClusterConfig") is not None:
         import capo_opensearch.types.cluster_config
 
         out["cluster_config"] = capo_opensearch.types.cluster_config.deserialize_json(
             data["ClusterConfig"]
         )
-    if "EBSOptions" in data:
+    if data.get("EBSOptions") is not None:
         import capo_opensearch.types.ebs_options
 
         out["ebs_options"] = capo_opensearch.types.ebs_options.deserialize_json(
             data["EBSOptions"]
         )
-    if "SnapshotOptions" in data:
+    if data.get("SnapshotOptions") is not None:
         import capo_opensearch.types.snapshot_options
 
         out["snapshot_options"] = (
@@ -278,19 +278,19 @@ def deserialize_json(data: dict) -> UpdateDomainConfigRequest:
                 data["SnapshotOptions"]
             )
         )
-    if "VPCOptions" in data:
+    if data.get("VPCOptions") is not None:
         import capo_opensearch.types.vpc_options
 
         out["vpc_options"] = capo_opensearch.types.vpc_options.deserialize_json(
             data["VPCOptions"]
         )
-    if "CognitoOptions" in data:
+    if data.get("CognitoOptions") is not None:
         import capo_opensearch.types.cognito_options
 
         out["cognito_options"] = capo_opensearch.types.cognito_options.deserialize_json(
             data["CognitoOptions"]
         )
-    if "AdvancedOptions" in data:
+    if data.get("AdvancedOptions") is not None:
         import capo_opensearch.types.advanced_options
 
         out["advanced_options"] = (
@@ -298,15 +298,15 @@ def deserialize_json(data: dict) -> UpdateDomainConfigRequest:
                 data["AdvancedOptions"]
             )
         )
-    if "AccessPolicies" in data:
+    if data.get("AccessPolicies") is not None:
         out["access_policies"] = data["AccessPolicies"]
-    if "IPAddressType" in data:
+    if data.get("IPAddressType") is not None:
         import capo_opensearch.types.ip_address_type
 
         out["ip_address_type"] = capo_opensearch.types.ip_address_type.deserialize_json(
             data["IPAddressType"]
         )
-    if "LogPublishingOptions" in data:
+    if data.get("LogPublishingOptions") is not None:
         import capo_opensearch.types.log_publishing_options
 
         out["log_publishing_options"] = (
@@ -314,7 +314,7 @@ def deserialize_json(data: dict) -> UpdateDomainConfigRequest:
                 data["LogPublishingOptions"]
             )
         )
-    if "EncryptionAtRestOptions" in data:
+    if data.get("EncryptionAtRestOptions") is not None:
         import capo_opensearch.types.encryption_at_rest_options
 
         out["encryption_at_rest_options"] = (
@@ -322,7 +322,7 @@ def deserialize_json(data: dict) -> UpdateDomainConfigRequest:
                 data["EncryptionAtRestOptions"]
             )
         )
-    if "DomainEndpointOptions" in data:
+    if data.get("DomainEndpointOptions") is not None:
         import capo_opensearch.types.domain_endpoint_options
 
         out["domain_endpoint_options"] = (
@@ -330,7 +330,7 @@ def deserialize_json(data: dict) -> UpdateDomainConfigRequest:
                 data["DomainEndpointOptions"]
             )
         )
-    if "NodeToNodeEncryptionOptions" in data:
+    if data.get("NodeToNodeEncryptionOptions") is not None:
         import capo_opensearch.types.node_to_node_encryption_options
 
         out["node_to_node_encryption_options"] = (
@@ -338,7 +338,7 @@ def deserialize_json(data: dict) -> UpdateDomainConfigRequest:
                 data["NodeToNodeEncryptionOptions"]
             )
         )
-    if "AdvancedSecurityOptions" in data:
+    if data.get("AdvancedSecurityOptions") is not None:
         import capo_opensearch.types.advanced_security_options_input
 
         out["advanced_security_options"] = (
@@ -346,7 +346,7 @@ def deserialize_json(data: dict) -> UpdateDomainConfigRequest:
                 data["AdvancedSecurityOptions"]
             )
         )
-    if "IdentityCenterOptions" in data:
+    if data.get("IdentityCenterOptions") is not None:
         import capo_opensearch.types.identity_center_options_input
 
         out["identity_center_options"] = (
@@ -354,7 +354,7 @@ def deserialize_json(data: dict) -> UpdateDomainConfigRequest:
                 data["IdentityCenterOptions"]
             )
         )
-    if "AutoTuneOptions" in data:
+    if data.get("AutoTuneOptions") is not None:
         import capo_opensearch.types.auto_tune_options
 
         out["auto_tune_options"] = (
@@ -362,15 +362,15 @@ def deserialize_json(data: dict) -> UpdateDomainConfigRequest:
                 data["AutoTuneOptions"]
             )
         )
-    if "DryRun" in data:
+    if data.get("DryRun") is not None:
         out["dry_run"] = data["DryRun"]
-    if "DryRunMode" in data:
+    if data.get("DryRunMode") is not None:
         import capo_opensearch.types.dry_run_mode
 
         out["dry_run_mode"] = capo_opensearch.types.dry_run_mode.deserialize_json(
             data["DryRunMode"]
         )
-    if "OffPeakWindowOptions" in data:
+    if data.get("OffPeakWindowOptions") is not None:
         import capo_opensearch.types.off_peak_window_options
 
         out["off_peak_window_options"] = (
@@ -378,7 +378,7 @@ def deserialize_json(data: dict) -> UpdateDomainConfigRequest:
                 data["OffPeakWindowOptions"]
             )
         )
-    if "SoftwareUpdateOptions" in data:
+    if data.get("SoftwareUpdateOptions") is not None:
         import capo_opensearch.types.software_update_options
 
         out["software_update_options"] = (
@@ -386,13 +386,13 @@ def deserialize_json(data: dict) -> UpdateDomainConfigRequest:
                 data["SoftwareUpdateOptions"]
             )
         )
-    if "AIMLOptions" in data:
+    if data.get("AIMLOptions") is not None:
         import capo_opensearch.types.aiml_options_input
 
         out["aiml_options"] = capo_opensearch.types.aiml_options_input.deserialize_json(
             data["AIMLOptions"]
         )
-    if "DeploymentStrategyOptions" in data:
+    if data.get("DeploymentStrategyOptions") is not None:
         import capo_opensearch.types.deployment_strategy_options
 
         out["deployment_strategy_options"] = (
@@ -400,7 +400,7 @@ def deserialize_json(data: dict) -> UpdateDomainConfigRequest:
                 data["DeploymentStrategyOptions"]
             )
         )
-    if "AutomatedSnapshotPauseOptions" in data:
+    if data.get("AutomatedSnapshotPauseOptions") is not None:
         import capo_opensearch.types.automated_snapshot_pause_request_options
 
         out["automated_snapshot_pause_options"] = (

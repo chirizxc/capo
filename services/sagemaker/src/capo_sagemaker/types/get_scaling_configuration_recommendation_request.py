@@ -59,17 +59,17 @@ def deserialize_aws_json_1_1(
     data: dict,
 ) -> GetScalingConfigurationRecommendationRequest:
     out: GetScalingConfigurationRecommendationRequest = {}  # type: ignore[typeddict-item]
-    if "InferenceRecommendationsJobName" in data:
+    if data.get("InferenceRecommendationsJobName") is not None:
         out["inference_recommendations_job_name"] = data[
             "InferenceRecommendationsJobName"
         ]
-    if "RecommendationId" in data:
+    if data.get("RecommendationId") is not None:
         out["recommendation_id"] = data["RecommendationId"]
-    if "EndpointName" in data:
+    if data.get("EndpointName") is not None:
         out["endpoint_name"] = data["EndpointName"]
-    if "TargetCpuUtilizationPerCore" in data:
+    if data.get("TargetCpuUtilizationPerCore") is not None:
         out["target_cpu_utilization_per_core"] = data["TargetCpuUtilizationPerCore"]
-    if "ScalingPolicyObjective" in data:
+    if data.get("ScalingPolicyObjective") is not None:
         import capo_sagemaker.types.scaling_policy_objective
 
         out["scaling_policy_objective"] = (

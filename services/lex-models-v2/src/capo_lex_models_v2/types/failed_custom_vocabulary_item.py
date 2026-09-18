@@ -37,11 +37,11 @@ def serialize_json(value: FailedCustomVocabularyItem) -> dict:
 
 def deserialize_json(data: dict) -> FailedCustomVocabularyItem:
     out: FailedCustomVocabularyItem = {}  # type: ignore[typeddict-item]
-    if "itemId" in data:
+    if data.get("itemId") is not None:
         out["item_id"] = data["itemId"]
-    if "errorMessage" in data:
+    if data.get("errorMessage") is not None:
         out["error_message"] = data["errorMessage"]
-    if "errorCode" in data:
+    if data.get("errorCode") is not None:
         import capo_lex_models_v2.types.error_code
 
         out["error_code"] = capo_lex_models_v2.types.error_code.deserialize_json(

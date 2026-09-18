@@ -30,11 +30,11 @@ def serialize_json(value: SsoIdentity) -> dict:
 
 def deserialize_json(data: dict) -> SsoIdentity:
     out: SsoIdentity = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("SsoIdentity.id required")
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_eks.types.sso_identity_type
 
         out["type"] = capo_eks.types.sso_identity_type.deserialize_json(data["type"])

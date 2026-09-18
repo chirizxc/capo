@@ -25,5 +25,7 @@ def deserialize_aws_json_1_0(data: list) -> SystemVersionList:
 
     out: SystemVersionList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_odb.types.system_version_summary.deserialize_aws_json_1_0(item))
     return out

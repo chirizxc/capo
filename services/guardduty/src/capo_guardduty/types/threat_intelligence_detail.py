@@ -36,14 +36,14 @@ def serialize_json(value: ThreatIntelligenceDetail) -> dict:
 
 def deserialize_json(data: dict) -> ThreatIntelligenceDetail:
     out: ThreatIntelligenceDetail = {}  # type: ignore[typeddict-item]
-    if "threatListName" in data:
+    if data.get("threatListName") is not None:
         out["threat_list_name"] = data["threatListName"]
-    if "threatNames" in data:
+    if data.get("threatNames") is not None:
         import capo_guardduty.types.threat_names
 
         out["threat_names"] = capo_guardduty.types.threat_names.deserialize_json(
             data["threatNames"]
         )
-    if "threatFileSha256" in data:
+    if data.get("threatFileSha256") is not None:
         out["threat_file_sha256"] = data["threatFileSha256"]
     return out

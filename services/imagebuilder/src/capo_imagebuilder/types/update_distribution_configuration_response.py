@@ -35,10 +35,10 @@ def serialize_json(value: UpdateDistributionConfigurationResponse) -> dict:
 
 def deserialize_json(data: dict) -> UpdateDistributionConfigurationResponse:
     out: UpdateDistributionConfigurationResponse = {}  # type: ignore[typeddict-item]
-    if "requestId" in data:
+    if data.get("requestId") is not None:
         out["request_id"] = data["requestId"]
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
-    if "distributionConfigurationArn" in data:
+    if data.get("distributionConfigurationArn") is not None:
         out["distribution_configuration_arn"] = data["distributionConfigurationArn"]
     return out

@@ -13,9 +13,9 @@ from capo_ssm_incidents import AsyncSSMIncidentsClient
 
 
 async def main():
-    async with AsyncSSMIncidentsClient() as s3:
+    async with AsyncSSMIncidentsClient() as ssm_incidents:
         # Example: call the batch_get_incident_findings operation
-        response = await s3.batch_get_incident_findings()
+        response = await ssm_incidents.batch_get_incident_findings()
         print(response["findings"])
 ```
 
@@ -28,9 +28,9 @@ from capo_ssm_incidents import AsyncSSMIncidentsClient
 
 
 async def main():
-    async with AsyncSSMIncidentsClient() as s3:
+    async with AsyncSSMIncidentsClient() as ssm_incidents:
         # Example: paginate over get_resource_policies
-        async for item in s3.iter_get_resource_policies():
+        async for item in ssm_incidents.iter_get_resource_policies():
             print(item)
 ```
 
@@ -44,9 +44,9 @@ from capo_ssm_incidents.error import AccessDeniedException
 
 
 async def main():
-    async with AsyncSSMIncidentsClient() as s3:
+    async with AsyncSSMIncidentsClient() as ssm_incidents:
         try:
-            await s3.batch_get_incident_findings()
+            await ssm_incidents.batch_get_incident_findings()
         except AccessDeniedException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -63,13 +63,13 @@ from capo_ssm_incidents import AsyncSSMIncidentsClient
 
 
 async def main():
-    async with AsyncSSMIncidentsClient() as s3:
+    async with AsyncSSMIncidentsClient() as ssm_incidents:
         # Default: 3 attempts for every operation
-        response = await s3.batch_get_incident_findings()
+        response = await ssm_incidents.batch_get_incident_findings()
 
         # Override per operation
-        response = await s3.batch_get_incident_findings(config_overrides={"retry_max_attempts": 5})
+        response = await ssm_incidents.batch_get_incident_findings(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.batch_get_incident_findings(config_overrides={"retry_max_attempts": 1})
+        response = await ssm_incidents.batch_get_incident_findings(config_overrides={"retry_max_attempts": 1})
 ```

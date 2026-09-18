@@ -26,7 +26,7 @@ def serialize_json(value: TimestampStructure) -> dict:
 
 def deserialize_json(data: dict) -> TimestampStructure:
     out: TimestampStructure = {}  # type: ignore[typeddict-item]
-    if "value" in data:
+    if data.get("value") is not None:
         import capo_codeguruprofiler.types.timestamp
 
         out["value"] = capo_codeguruprofiler.types.timestamp.deserialize_json(

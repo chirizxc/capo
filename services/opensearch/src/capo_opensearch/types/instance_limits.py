@@ -31,7 +31,7 @@ def serialize_json(value: InstanceLimits) -> dict:
 
 def deserialize_json(data: dict) -> InstanceLimits:
     out: InstanceLimits = {}  # type: ignore[typeddict-item]
-    if "InstanceCountLimits" in data:
+    if data.get("InstanceCountLimits") is not None:
         import capo_opensearch.types.instance_count_limits
 
         out["instance_count_limits"] = (

@@ -32,8 +32,8 @@ def serialize_json(value: EksInfo) -> dict:
 
 def deserialize_json(data: dict) -> EksInfo:
     out: EksInfo = {}  # type: ignore[typeddict-item]
-    if "namespace" in data:
+    if data.get("namespace") is not None:
         out["namespace"] = data["namespace"]
-    if "nodeLabel" in data:
+    if data.get("nodeLabel") is not None:
         out["node_label"] = data["nodeLabel"]
     return out

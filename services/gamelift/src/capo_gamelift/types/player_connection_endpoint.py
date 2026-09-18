@@ -28,8 +28,8 @@ def serialize_aws_json_1_1(value: PlayerConnectionEndpoint) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PlayerConnectionEndpoint:
     out: PlayerConnectionEndpoint = {}  # type: ignore[typeddict-item]
-    if "IpAddress" in data:
+    if data.get("IpAddress") is not None:
         out["ip_address"] = data["IpAddress"]
-    if "Port" in data:
+    if data.get("Port") is not None:
         out["port"] = data["Port"]
     return out

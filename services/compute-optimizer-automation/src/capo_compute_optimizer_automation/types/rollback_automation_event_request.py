@@ -31,10 +31,10 @@ def serialize_aws_json_1_0(value: RollbackAutomationEventRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> RollbackAutomationEventRequest:
     out: RollbackAutomationEventRequest = {}  # type: ignore[typeddict-item]
-    if "eventId" in data:
+    if data.get("eventId") is not None:
         out["event_id"] = data["eventId"]
     else:
         raise DeserializationError("RollbackAutomationEventRequest.event_id required")
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     return out

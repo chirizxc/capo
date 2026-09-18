@@ -38,13 +38,13 @@ def serialize_json(value: GeospatialLineSymbolStyle) -> dict:
 
 def deserialize_json(data: dict) -> GeospatialLineSymbolStyle:
     out: GeospatialLineSymbolStyle = {}  # type: ignore[typeddict-item]
-    if "FillColor" in data:
+    if data.get("FillColor") is not None:
         import capo_quicksight.types.geospatial_color
 
         out["fill_color"] = capo_quicksight.types.geospatial_color.deserialize_json(
             data["FillColor"]
         )
-    if "LineWidth" in data:
+    if data.get("LineWidth") is not None:
         import capo_quicksight.types.geospatial_line_width
 
         out["line_width"] = (

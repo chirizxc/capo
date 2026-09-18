@@ -50,11 +50,11 @@ def serialize_aws_json_1_1(value: GetTableResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetTableResponse:
     out: GetTableResponse = {}  # type: ignore[typeddict-item]
-    if "TableName" in data:
+    if data.get("TableName") is not None:
         out["table_name"] = data["TableName"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "TableProperties" in data:
+    if data.get("TableProperties") is not None:
         import capo_bcm_data_exports.types.table_properties
 
         out["table_properties"] = (
@@ -62,7 +62,7 @@ def deserialize_aws_json_1_1(data: dict) -> GetTableResponse:
                 data["TableProperties"]
             )
         )
-    if "Schema" in data:
+    if data.get("Schema") is not None:
         import capo_bcm_data_exports.types.column_list
 
         out["schema"] = (

@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: DescribeAddressRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeAddressRequest:
     out: DescribeAddressRequest = {}  # type: ignore[typeddict-item]
-    if "AddressId" in data:
+    if data.get("AddressId") is not None:
         out["address_id"] = data["AddressId"]
     else:
         raise DeserializationError("DescribeAddressRequest.address_id required")

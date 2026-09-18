@@ -30,7 +30,7 @@ def serialize_aws_json_1_0(value: GetScheduledReportResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> GetScheduledReportResponse:
     out: GetScheduledReportResponse = {}  # type: ignore[typeddict-item]
-    if "scheduledReport" in data:
+    if data.get("scheduledReport") is not None:
         import capo_bcm_dashboards.types.scheduled_report
 
         out["scheduled_report"] = (

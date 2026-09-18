@@ -29,6 +29,8 @@ def deserialize_aws_json_1_1(data: list) -> PipelineTriggerDeclarationList:
 
     out: PipelineTriggerDeclarationList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_codepipeline.types.pipeline_trigger_declaration.deserialize_aws_json_1_1(
                 item

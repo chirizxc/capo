@@ -13,9 +13,9 @@ from capo_ssm_contacts import AsyncSSMContactsClient
 
 
 async def main():
-    async with AsyncSSMContactsClient() as s3:
+    async with AsyncSSMContactsClient() as ssm_contacts:
         # Example: call the accept_page operation
-        response = await s3.accept_page()
+        response = await ssm_contacts.accept_page()
         print(response)
 ```
 
@@ -28,9 +28,9 @@ from capo_ssm_contacts import AsyncSSMContactsClient
 
 
 async def main():
-    async with AsyncSSMContactsClient() as s3:
+    async with AsyncSSMContactsClient() as ssm_contacts:
         # Example: paginate over list_contact_channels
-        async for item in s3.iter_list_contact_channels():
+        async for item in ssm_contacts.iter_list_contact_channels():
             print(item)
 ```
 
@@ -44,9 +44,9 @@ from capo_ssm_contacts.error import AccessDeniedException
 
 
 async def main():
-    async with AsyncSSMContactsClient() as s3:
+    async with AsyncSSMContactsClient() as ssm_contacts:
         try:
-            await s3.accept_page()
+            await ssm_contacts.accept_page()
         except AccessDeniedException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -63,13 +63,13 @@ from capo_ssm_contacts import AsyncSSMContactsClient
 
 
 async def main():
-    async with AsyncSSMContactsClient() as s3:
+    async with AsyncSSMContactsClient() as ssm_contacts:
         # Default: 3 attempts for every operation
-        response = await s3.accept_page()
+        response = await ssm_contacts.accept_page()
 
         # Override per operation
-        response = await s3.accept_page(config_overrides={"retry_max_attempts": 5})
+        response = await ssm_contacts.accept_page(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.accept_page(config_overrides={"retry_max_attempts": 1})
+        response = await ssm_contacts.accept_page(config_overrides={"retry_max_attempts": 1})
 ```

@@ -19,7 +19,7 @@ def serialize_json(value: DeleteRecommenderFilterResponse) -> dict:
 
 def deserialize_json(data: dict) -> DeleteRecommenderFilterResponse:
     out: DeleteRecommenderFilterResponse = {}  # type: ignore[typeddict-item]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     else:
         raise DeserializationError("DeleteRecommenderFilterResponse.message required")

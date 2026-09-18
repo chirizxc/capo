@@ -60,27 +60,27 @@ def serialize_json(value: CreateRule) -> dict:
 
 def deserialize_json(data: dict) -> CreateRule:
     out: CreateRule = {}  # type: ignore[typeddict-item]
-    if "Location" in data:
+    if data.get("Location") is not None:
         import capo_dlm.types.location_values
 
         out["location"] = capo_dlm.types.location_values.deserialize_json(
             data["Location"]
         )
-    if "Interval" in data:
+    if data.get("Interval") is not None:
         out["interval"] = data["Interval"]
-    if "IntervalUnit" in data:
+    if data.get("IntervalUnit") is not None:
         import capo_dlm.types.interval_unit_values
 
         out["interval_unit"] = capo_dlm.types.interval_unit_values.deserialize_json(
             data["IntervalUnit"]
         )
-    if "Times" in data:
+    if data.get("Times") is not None:
         import capo_dlm.types.times_list
 
         out["times"] = capo_dlm.types.times_list.deserialize_json(data["Times"])
-    if "CronExpression" in data:
+    if data.get("CronExpression") is not None:
         out["cron_expression"] = data["CronExpression"]
-    if "Scripts" in data:
+    if data.get("Scripts") is not None:
         import capo_dlm.types.scripts_list
 
         out["scripts"] = capo_dlm.types.scripts_list.deserialize_json(data["Scripts"])

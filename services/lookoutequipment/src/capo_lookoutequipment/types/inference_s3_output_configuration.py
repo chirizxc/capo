@@ -29,10 +29,10 @@ def serialize_aws_json_1_0(value: InferenceS3OutputConfiguration) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> InferenceS3OutputConfiguration:
     out: InferenceS3OutputConfiguration = {}  # type: ignore[typeddict-item]
-    if "Bucket" in data:
+    if data.get("Bucket") is not None:
         out["bucket"] = data["Bucket"]
     else:
         raise DeserializationError("InferenceS3OutputConfiguration.bucket required")
-    if "Prefix" in data:
+    if data.get("Prefix") is not None:
         out["prefix"] = data["Prefix"]
     return out

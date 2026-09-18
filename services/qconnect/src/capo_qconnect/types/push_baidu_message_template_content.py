@@ -85,9 +85,9 @@ def serialize_json(value: PushBaiduMessageTemplateContent) -> dict:
 
 def deserialize_json(data: dict) -> PushBaiduMessageTemplateContent:
     out: PushBaiduMessageTemplateContent = {}  # type: ignore[typeddict-item]
-    if "title" in data:
+    if data.get("title") is not None:
         out["title"] = data["title"]
-    if "body" in data:
+    if data.get("body") is not None:
         import capo_qconnect.types.message_template_body_content_provider
 
         out["body"] = (
@@ -95,19 +95,19 @@ def deserialize_json(data: dict) -> PushBaiduMessageTemplateContent:
                 data["body"]
             )
         )
-    if "action" in data:
+    if data.get("action") is not None:
         out["action"] = data["action"]
-    if "sound" in data:
+    if data.get("sound") is not None:
         out["sound"] = data["sound"]
-    if "url" in data:
+    if data.get("url") is not None:
         out["url"] = data["url"]
-    if "imageUrl" in data:
+    if data.get("imageUrl") is not None:
         out["image_url"] = data["imageUrl"]
-    if "imageIconUrl" in data:
+    if data.get("imageIconUrl") is not None:
         out["image_icon_url"] = data["imageIconUrl"]
-    if "smallImageIconUrl" in data:
+    if data.get("smallImageIconUrl") is not None:
         out["small_image_icon_url"] = data["smallImageIconUrl"]
-    if "rawContent" in data:
+    if data.get("rawContent") is not None:
         import capo_qconnect.types.message_template_body_content_provider
 
         out["raw_content"] = (

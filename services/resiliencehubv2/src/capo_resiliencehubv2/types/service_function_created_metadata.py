@@ -22,8 +22,8 @@ def serialize_json(value: ServiceFunctionCreatedMetadata) -> dict:
 
 def deserialize_json(data: dict) -> ServiceFunctionCreatedMetadata:
     out: ServiceFunctionCreatedMetadata = {}  # type: ignore[typeddict-item]
-    if "serviceFunctionId" in data:
+    if data.get("serviceFunctionId") is not None:
         out["service_function_id"] = data["serviceFunctionId"]
-    if "serviceFunctionName" in data:
+    if data.get("serviceFunctionName") is not None:
         out["service_function_name"] = data["serviceFunctionName"]
     return out

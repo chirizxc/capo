@@ -78,11 +78,11 @@ def serialize_json(value: ServicePrincipalName) -> dict:
 
 def deserialize_json(data: dict) -> ServicePrincipalName:
     out: ServicePrincipalName = {}  # type: ignore[typeddict-item]
-    if "DirectoryRegistrationArn" in data:
+    if data.get("DirectoryRegistrationArn") is not None:
         out["directory_registration_arn"] = data["DirectoryRegistrationArn"]
-    if "ConnectorArn" in data:
+    if data.get("ConnectorArn") is not None:
         out["connector_arn"] = data["ConnectorArn"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_pca_connector_ad.types.service_principal_name_status
 
         out["status"] = (
@@ -90,7 +90,7 @@ def deserialize_json(data: dict) -> ServicePrincipalName:
                 data["Status"]
             )
         )
-    if "StatusReason" in data:
+    if data.get("StatusReason") is not None:
         import capo_pca_connector_ad.types.service_principal_name_status_reason
 
         out["status_reason"] = (
@@ -98,7 +98,7 @@ def deserialize_json(data: dict) -> ServicePrincipalName:
                 data["StatusReason"]
             )
         )
-    if "CreatedAt" in data:
+    if data.get("CreatedAt") is not None:
         import capo_pca_connector_ad.types._prelude.timestamp
 
         out["created_at"] = (
@@ -106,7 +106,7 @@ def deserialize_json(data: dict) -> ServicePrincipalName:
                 data["CreatedAt"]
             )
         )
-    if "UpdatedAt" in data:
+    if data.get("UpdatedAt") is not None:
         import capo_pca_connector_ad.types._prelude.timestamp
 
         out["updated_at"] = (

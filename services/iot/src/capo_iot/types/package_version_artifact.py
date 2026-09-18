@@ -26,7 +26,7 @@ def serialize_json(value: PackageVersionArtifact) -> dict:
 
 def deserialize_json(data: dict) -> PackageVersionArtifact:
     out: PackageVersionArtifact = {}  # type: ignore[typeddict-item]
-    if "s3Location" in data:
+    if data.get("s3Location") is not None:
         import capo_iot.types.s3_location
 
         out["s3_location"] = capo_iot.types.s3_location.deserialize_json(

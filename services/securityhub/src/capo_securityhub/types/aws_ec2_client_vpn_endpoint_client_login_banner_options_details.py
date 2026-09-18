@@ -32,8 +32,8 @@ def deserialize_json(
     data: dict,
 ) -> AwsEc2ClientVpnEndpointClientLoginBannerOptionsDetails:
     out: AwsEc2ClientVpnEndpointClientLoginBannerOptionsDetails = {}  # type: ignore[typeddict-item]
-    if "Enabled" in data:
+    if data.get("Enabled") is not None:
         out["enabled"] = data["Enabled"]
-    if "BannerText" in data:
+    if data.get("BannerText") is not None:
         out["banner_text"] = data["BannerText"]
     return out

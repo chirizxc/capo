@@ -31,8 +31,8 @@ def serialize_json(value: CreateNetworkOutput) -> dict:
 
 def deserialize_json(data: dict) -> CreateNetworkOutput:
     out: CreateNetworkOutput = {}  # type: ignore[typeddict-item]
-    if "NetworkId" in data:
+    if data.get("NetworkId") is not None:
         out["network_id"] = data["NetworkId"]
-    if "MemberId" in data:
+    if data.get("MemberId") is not None:
         out["member_id"] = data["MemberId"]
     return out

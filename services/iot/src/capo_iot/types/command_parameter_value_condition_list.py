@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> CommandParameterValueConditionList:
 
     out: CommandParameterValueConditionList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_iot.types.command_parameter_value_condition.deserialize_json(item)
         )

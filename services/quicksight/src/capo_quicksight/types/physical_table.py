@@ -76,7 +76,7 @@ def serialize_json(value: PhysicalTable) -> dict:
 
 
 def deserialize_json(data: dict) -> PhysicalTable:
-    if "RelationalTable" in data:
+    if data.get("RelationalTable") is not None:
         import capo_quicksight.types.relational_table
 
         return {
@@ -84,7 +84,7 @@ def deserialize_json(data: dict) -> PhysicalTable:
                 data["RelationalTable"]
             )
         }
-    elif "CustomSql" in data:
+    elif data.get("CustomSql") is not None:
         import capo_quicksight.types.custom_sql
 
         return {
@@ -92,7 +92,7 @@ def deserialize_json(data: dict) -> PhysicalTable:
                 data["CustomSql"]
             )
         }
-    elif "S3Source" in data:
+    elif data.get("S3Source") is not None:
         import capo_quicksight.types.s3_source
 
         return {
@@ -100,7 +100,7 @@ def deserialize_json(data: dict) -> PhysicalTable:
                 data["S3Source"]
             )
         }
-    elif "SaaSTable" in data:
+    elif data.get("SaaSTable") is not None:
         import capo_quicksight.types.saa_s_table
 
         return {

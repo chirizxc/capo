@@ -30,7 +30,7 @@ def serialize_aws_json_1_1(value: BatchGetApplicationsInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> BatchGetApplicationsInput:
     out: BatchGetApplicationsInput = {}  # type: ignore[typeddict-item]
-    if "applicationNames" in data:
+    if data.get("applicationNames") is not None:
         import capo_codedeploy.types.applications_list
 
         out["application_names"] = (

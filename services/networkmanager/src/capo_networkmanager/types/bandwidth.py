@@ -27,8 +27,8 @@ def serialize_json(value: Bandwidth) -> dict:
 
 def deserialize_json(data: dict) -> Bandwidth:
     out: Bandwidth = {}  # type: ignore[typeddict-item]
-    if "UploadSpeed" in data:
+    if data.get("UploadSpeed") is not None:
         out["upload_speed"] = data["UploadSpeed"]
-    if "DownloadSpeed" in data:
+    if data.get("DownloadSpeed") is not None:
         out["download_speed"] = data["DownloadSpeed"]
     return out

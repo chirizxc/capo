@@ -57,11 +57,11 @@ def serialize_aws_json_1_1(value: MySqlDataProviderSettings) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> MySqlDataProviderSettings:
     out: MySqlDataProviderSettings = {}  # type: ignore[typeddict-item]
-    if "ServerName" in data:
+    if data.get("ServerName") is not None:
         out["server_name"] = data["ServerName"]
-    if "Port" in data:
+    if data.get("Port") is not None:
         out["port"] = data["Port"]
-    if "SslMode" in data:
+    if data.get("SslMode") is not None:
         import capo_database_migration_service.types.dms_ssl_mode_value
 
         out["ssl_mode"] = (
@@ -69,10 +69,10 @@ def deserialize_aws_json_1_1(data: dict) -> MySqlDataProviderSettings:
                 data["SslMode"]
             )
         )
-    if "CertificateArn" in data:
+    if data.get("CertificateArn") is not None:
         out["certificate_arn"] = data["CertificateArn"]
-    if "S3Path" in data:
+    if data.get("S3Path") is not None:
         out["s3_path"] = data["S3Path"]
-    if "S3AccessRoleArn" in data:
+    if data.get("S3AccessRoleArn") is not None:
         out["s3_access_role_arn"] = data["S3AccessRoleArn"]
     return out

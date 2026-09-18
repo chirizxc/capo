@@ -50,9 +50,9 @@ def serialize_aws_json_1_1(value: ComplianceViolator) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ComplianceViolator:
     out: ComplianceViolator = {}  # type: ignore[typeddict-item]
-    if "ResourceId" in data:
+    if data.get("ResourceId") is not None:
         out["resource_id"] = data["ResourceId"]
-    if "ViolationReason" in data:
+    if data.get("ViolationReason") is not None:
         import capo_fms.types.violation_reason
 
         out["violation_reason"] = (
@@ -60,9 +60,9 @@ def deserialize_aws_json_1_1(data: dict) -> ComplianceViolator:
                 data["ViolationReason"]
             )
         )
-    if "ResourceType" in data:
+    if data.get("ResourceType") is not None:
         out["resource_type"] = data["ResourceType"]
-    if "Metadata" in data:
+    if data.get("Metadata") is not None:
         import capo_fms.types.compliance_violator_metadata
 
         out["metadata"] = (

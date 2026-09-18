@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: DeletePerformanceAnalysisReportRequest) -> dic
 
 def deserialize_aws_json_1_1(data: dict) -> DeletePerformanceAnalysisReportRequest:
     out: DeletePerformanceAnalysisReportRequest = {}  # type: ignore[typeddict-item]
-    if "ServiceType" in data:
+    if data.get("ServiceType") is not None:
         import capo_pi.types.service_type
 
         out["service_type"] = capo_pi.types.service_type.deserialize_aws_json_1_1(
@@ -46,13 +46,13 @@ def deserialize_aws_json_1_1(data: dict) -> DeletePerformanceAnalysisReportReque
         raise DeserializationError(
             "DeletePerformanceAnalysisReportRequest.service_type required"
         )
-    if "Identifier" in data:
+    if data.get("Identifier") is not None:
         out["identifier"] = data["Identifier"]
     else:
         raise DeserializationError(
             "DeletePerformanceAnalysisReportRequest.identifier required"
         )
-    if "AnalysisReportId" in data:
+    if data.get("AnalysisReportId") is not None:
         out["analysis_report_id"] = data["AnalysisReportId"]
     else:
         raise DeserializationError(

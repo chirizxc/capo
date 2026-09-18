@@ -39,15 +39,15 @@ def serialize_json(value: SearchRasterDataCollectionOutput) -> dict:
 
 def deserialize_json(data: dict) -> SearchRasterDataCollectionOutput:
     out: SearchRasterDataCollectionOutput = {}  # type: ignore[typeddict-item]
-    if "ApproximateResultCount" in data:
+    if data.get("ApproximateResultCount") is not None:
         out["approximate_result_count"] = data["ApproximateResultCount"]
     else:
         raise DeserializationError(
             "SearchRasterDataCollectionOutput.approximate_result_count required"
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "Items" in data:
+    if data.get("Items") is not None:
         import capo_sagemaker_geospatial.types.item_source_list
 
         out["items"] = (

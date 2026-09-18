@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> AnalyticsIntentNodeSummaries:
 
     out: AnalyticsIntentNodeSummaries = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_lex_models_v2.types.analytics_intent_node_summary.deserialize_json(
                 item

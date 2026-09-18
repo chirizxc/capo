@@ -37,15 +37,16 @@ class InvalidTagFault(ServiceError):
 
     code: str | None = "InvalidTagFault"
 
-    def __init__(self, data: InvalidTagFault_):
+    def __init__(self, data: InvalidTagFault_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="InvalidTagFault",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_query(cls, el: Element) -> "InvalidTagFault":
-        return cls(deserialize_query(el))
+    def from_query(cls, el: Element, message: str | None = None) -> "InvalidTagFault":
+        return cls(deserialize_query(el), message)

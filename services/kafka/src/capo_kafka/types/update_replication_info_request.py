@@ -76,7 +76,7 @@ def serialize_json(value: UpdateReplicationInfoRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateReplicationInfoRequest:
     out: UpdateReplicationInfoRequest = {}  # type: ignore[typeddict-item]
-    if "consumerGroupReplication" in data:
+    if data.get("consumerGroupReplication") is not None:
         import capo_kafka.types.consumer_group_replication_update
 
         out["consumer_group_replication"] = (
@@ -84,17 +84,17 @@ def deserialize_json(data: dict) -> UpdateReplicationInfoRequest:
                 data["consumerGroupReplication"]
             )
         )
-    if "currentVersion" in data:
+    if data.get("currentVersion") is not None:
         out["current_version"] = data["currentVersion"]
-    if "sourceKafkaClusterArn" in data:
+    if data.get("sourceKafkaClusterArn") is not None:
         out["source_kafka_cluster_arn"] = data["sourceKafkaClusterArn"]
-    if "sourceKafkaClusterId" in data:
+    if data.get("sourceKafkaClusterId") is not None:
         out["source_kafka_cluster_id"] = data["sourceKafkaClusterId"]
-    if "targetKafkaClusterArn" in data:
+    if data.get("targetKafkaClusterArn") is not None:
         out["target_kafka_cluster_arn"] = data["targetKafkaClusterArn"]
-    if "targetKafkaClusterId" in data:
+    if data.get("targetKafkaClusterId") is not None:
         out["target_kafka_cluster_id"] = data["targetKafkaClusterId"]
-    if "topicReplication" in data:
+    if data.get("topicReplication") is not None:
         import capo_kafka.types.topic_replication_update
 
         out["topic_replication"] = (
@@ -102,7 +102,7 @@ def deserialize_json(data: dict) -> UpdateReplicationInfoRequest:
                 data["topicReplication"]
             )
         )
-    if "logDelivery" in data:
+    if data.get("logDelivery") is not None:
         import capo_kafka.types.log_delivery
 
         out["log_delivery"] = capo_kafka.types.log_delivery.deserialize_json(

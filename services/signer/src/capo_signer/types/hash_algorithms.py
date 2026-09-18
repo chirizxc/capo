@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> HashAlgorithms:
 
     out: HashAlgorithms = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_signer.types.hash_algorithm.deserialize_json(item))
     return out

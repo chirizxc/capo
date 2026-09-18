@@ -18,19 +18,35 @@ class Point(TypedDict, closed=True):
 # --- awsJson1_1 ser/de ---
 def serialize_aws_json_1_1(value: Point) -> dict:
     out: dict = {}
-    out["X"] = value.get("x", 0)
-    out["Y"] = value.get("y", 0)
+    out["X"] = (
+        "NaN"
+        if value.get("x", 0) != value.get("x", 0)
+        else "Infinity"
+        if value.get("x", 0) == float("inf")
+        else "-Infinity"
+        if value.get("x", 0) == float("-inf")
+        else value.get("x", 0)
+    )
+    out["Y"] = (
+        "NaN"
+        if value.get("y", 0) != value.get("y", 0)
+        else "Infinity"
+        if value.get("y", 0) == float("inf")
+        else "-Infinity"
+        if value.get("y", 0) == float("-inf")
+        else value.get("y", 0)
+    )
     return out
 
 
 def deserialize_aws_json_1_1(data: dict) -> Point:
     out: Point = {}  # type: ignore[typeddict-item]
-    if "X" in data:
-        out["x"] = data["X"]
+    if data.get("X") is not None:
+        out["x"] = float(data["X"])
     else:
         out["x"] = 0
-    if "Y" in data:
-        out["y"] = data["Y"]
+    if data.get("Y") is not None:
+        out["y"] = float(data["Y"])
     else:
         out["y"] = 0
     return out

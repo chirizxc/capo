@@ -34,9 +34,9 @@ def serialize_json(value: InvocationOutput) -> dict:
 
 def deserialize_json(data: dict) -> InvocationOutput:
     out: InvocationOutput = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
-    if "citations" in data:
+    if data.get("citations") is not None:
         import capo_iotsitewise.types.citations
 
         out["citations"] = capo_iotsitewise.types.citations.deserialize_json(

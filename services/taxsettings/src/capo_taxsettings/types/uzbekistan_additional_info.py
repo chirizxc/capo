@@ -38,7 +38,7 @@ def serialize_json(value: UzbekistanAdditionalInfo) -> dict:
 
 def deserialize_json(data: dict) -> UzbekistanAdditionalInfo:
     out: UzbekistanAdditionalInfo = {}  # type: ignore[typeddict-item]
-    if "taxRegistrationNumberType" in data:
+    if data.get("taxRegistrationNumberType") is not None:
         import capo_taxsettings.types.uzbekistan_tax_registration_number_type
 
         out["tax_registration_number_type"] = (
@@ -46,6 +46,6 @@ def deserialize_json(data: dict) -> UzbekistanAdditionalInfo:
                 data["taxRegistrationNumberType"]
             )
         )
-    if "vatRegistrationNumber" in data:
+    if data.get("vatRegistrationNumber") is not None:
         out["vat_registration_number"] = data["vatRegistrationNumber"]
     return out

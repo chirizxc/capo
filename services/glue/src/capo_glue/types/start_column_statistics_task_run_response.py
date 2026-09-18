@@ -23,6 +23,6 @@ def serialize_aws_json_1_1(value: StartColumnStatisticsTaskRunResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> StartColumnStatisticsTaskRunResponse:
     out: StartColumnStatisticsTaskRunResponse = {}  # type: ignore[typeddict-item]
-    if "ColumnStatisticsTaskRunId" in data:
+    if data.get("ColumnStatisticsTaskRunId") is not None:
         out["column_statistics_task_run_id"] = data["ColumnStatisticsTaskRunId"]
     return out

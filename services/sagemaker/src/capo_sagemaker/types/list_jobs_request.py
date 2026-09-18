@@ -110,7 +110,7 @@ def serialize_aws_json_1_1(value: ListJobsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListJobsRequest:
     out: ListJobsRequest = {}  # type: ignore[typeddict-item]
-    if "JobCategory" in data:
+    if data.get("JobCategory") is not None:
         import capo_sagemaker.types.job_category
 
         out["job_category"] = (
@@ -118,11 +118,11 @@ def deserialize_aws_json_1_1(data: dict) -> ListJobsRequest:
                 data["JobCategory"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "CreationTimeAfter" in data:
+    if data.get("CreationTimeAfter") is not None:
         import capo_sagemaker.types.timestamp
 
         out["creation_time_after"] = (
@@ -130,7 +130,7 @@ def deserialize_aws_json_1_1(data: dict) -> ListJobsRequest:
                 data["CreationTimeAfter"]
             )
         )
-    if "CreationTimeBefore" in data:
+    if data.get("CreationTimeBefore") is not None:
         import capo_sagemaker.types.timestamp
 
         out["creation_time_before"] = (
@@ -138,7 +138,7 @@ def deserialize_aws_json_1_1(data: dict) -> ListJobsRequest:
                 data["CreationTimeBefore"]
             )
         )
-    if "LastModifiedTimeAfter" in data:
+    if data.get("LastModifiedTimeAfter") is not None:
         import capo_sagemaker.types.timestamp
 
         out["last_modified_time_after"] = (
@@ -146,7 +146,7 @@ def deserialize_aws_json_1_1(data: dict) -> ListJobsRequest:
                 data["LastModifiedTimeAfter"]
             )
         )
-    if "LastModifiedTimeBefore" in data:
+    if data.get("LastModifiedTimeBefore") is not None:
         import capo_sagemaker.types.timestamp
 
         out["last_modified_time_before"] = (
@@ -154,21 +154,21 @@ def deserialize_aws_json_1_1(data: dict) -> ListJobsRequest:
                 data["LastModifiedTimeBefore"]
             )
         )
-    if "NameContains" in data:
+    if data.get("NameContains") is not None:
         out["name_contains"] = data["NameContains"]
-    if "SortBy" in data:
+    if data.get("SortBy") is not None:
         import capo_sagemaker.types.sort_by
 
         out["sort_by"] = capo_sagemaker.types.sort_by.deserialize_aws_json_1_1(
             data["SortBy"]
         )
-    if "SortOrder" in data:
+    if data.get("SortOrder") is not None:
         import capo_sagemaker.types.sort_order
 
         out["sort_order"] = capo_sagemaker.types.sort_order.deserialize_aws_json_1_1(
             data["SortOrder"]
         )
-    if "StatusEquals" in data:
+    if data.get("StatusEquals") is not None:
         import capo_sagemaker.types.job_status
 
         out["status_equals"] = capo_sagemaker.types.job_status.deserialize_aws_json_1_1(

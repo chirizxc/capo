@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> MappingTypeFilterList:
 
     out: MappingTypeFilterList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_controlcatalog.types.mapping_type.deserialize_json(item))
     return out

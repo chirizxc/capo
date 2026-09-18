@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: GetNetworkProfileResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetNetworkProfileResult:
     out: GetNetworkProfileResult = {}  # type: ignore[typeddict-item]
-    if "networkProfile" in data:
+    if data.get("networkProfile") is not None:
         import capo_device_farm.types.network_profile
 
         out["network_profile"] = (

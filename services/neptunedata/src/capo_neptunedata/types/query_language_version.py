@@ -19,7 +19,7 @@ def serialize_json(value: QueryLanguageVersion) -> dict:
 
 def deserialize_json(data: dict) -> QueryLanguageVersion:
     out: QueryLanguageVersion = {}  # type: ignore[typeddict-item]
-    if "version" in data:
+    if data.get("version") is not None:
         out["version"] = data["version"]
     else:
         raise DeserializationError("QueryLanguageVersion.version required")

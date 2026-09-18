@@ -40,7 +40,7 @@ def serialize_aws_json_1_1(value: ApplicationSettingsResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ApplicationSettingsResponse:
     out: ApplicationSettingsResponse = {}  # type: ignore[typeddict-item]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_workspaces.types.application_settings_status_enum
 
         out["status"] = (
@@ -50,8 +50,8 @@ def deserialize_aws_json_1_1(data: dict) -> ApplicationSettingsResponse:
         )
     else:
         raise DeserializationError("ApplicationSettingsResponse.status required")
-    if "SettingsGroup" in data:
+    if data.get("SettingsGroup") is not None:
         out["settings_group"] = data["SettingsGroup"]
-    if "S3BucketName" in data:
+    if data.get("S3BucketName") is not None:
         out["s3_bucket_name"] = data["S3BucketName"]
     return out

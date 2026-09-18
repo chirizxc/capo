@@ -27,5 +27,7 @@ def deserialize_aws_json_1_1(data: dict) -> FillingTransformationMap:
     for key, value in data.items():
         import capo_sagemaker.types.filling_type
 
+        if value is None:
+            continue
         out[capo_sagemaker.types.filling_type.deserialize_aws_json_1_1(key)] = value
     return out

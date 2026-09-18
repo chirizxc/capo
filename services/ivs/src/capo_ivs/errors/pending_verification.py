@@ -42,7 +42,7 @@ def serialize_json(value: PendingVerification_) -> dict:
 
 def deserialize_json(data: dict) -> PendingVerification_:
     out: PendingVerification_ = {}  # type: ignore[typeddict-item]
-    if "exceptionMessage" in data:
+    if data.get("exceptionMessage") is not None:
         out["exception_message"] = data["exceptionMessage"]
     return out
 
@@ -52,15 +52,16 @@ class PendingVerification(ServiceError):
 
     code: str | None = "PendingVerification"
 
-    def __init__(self, data: PendingVerification_):
+    def __init__(self, data: PendingVerification_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="PendingVerification",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "PendingVerification":
-        return cls(deserialize_json(data))
+    def from_json(cls, data: dict, message: str | None = None) -> "PendingVerification":
+        return cls(deserialize_json(data), message)

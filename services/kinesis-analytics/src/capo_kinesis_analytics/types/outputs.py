@@ -23,5 +23,7 @@ def deserialize_aws_json_1_1(data: list) -> Outputs:
 
     out: Outputs = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_kinesis_analytics.types.output.deserialize_aws_json_1_1(item))
     return out

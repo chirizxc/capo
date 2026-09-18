@@ -64,21 +64,21 @@ def serialize_json(value: ConnectorRuntimeSetting) -> dict:
 
 def deserialize_json(data: dict) -> ConnectorRuntimeSetting:
     out: ConnectorRuntimeSetting = {}  # type: ignore[typeddict-item]
-    if "key" in data:
+    if data.get("key") is not None:
         out["key"] = data["key"]
-    if "dataType" in data:
+    if data.get("dataType") is not None:
         out["data_type"] = data["dataType"]
-    if "isRequired" in data:
+    if data.get("isRequired") is not None:
         out["is_required"] = data["isRequired"]
     else:
         out["is_required"] = False
-    if "label" in data:
+    if data.get("label") is not None:
         out["label"] = data["label"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "scope" in data:
+    if data.get("scope") is not None:
         out["scope"] = data["scope"]
-    if "connectorSuppliedValueOptions" in data:
+    if data.get("connectorSuppliedValueOptions") is not None:
         import capo_appflow.types.connector_supplied_value_option_list
 
         out["connector_supplied_value_options"] = (

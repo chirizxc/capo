@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> PropagatingVgwSetList:
 
     out: PropagatingVgwSetList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_securityhub.types.propagating_vgw_set_details.deserialize_json(item)
         )

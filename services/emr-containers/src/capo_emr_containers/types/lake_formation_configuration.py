@@ -45,9 +45,9 @@ def serialize_json(value: LakeFormationConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> LakeFormationConfiguration:
     out: LakeFormationConfiguration = {}  # type: ignore[typeddict-item]
-    if "authorizedSessionTagValue" in data:
+    if data.get("authorizedSessionTagValue") is not None:
         out["authorized_session_tag_value"] = data["authorizedSessionTagValue"]
-    if "secureNamespaceInfo" in data:
+    if data.get("secureNamespaceInfo") is not None:
         import capo_emr_containers.types.secure_namespace_info
 
         out["secure_namespace_info"] = (
@@ -55,6 +55,6 @@ def deserialize_json(data: dict) -> LakeFormationConfiguration:
                 data["secureNamespaceInfo"]
             )
         )
-    if "queryEngineRoleArn" in data:
+    if data.get("queryEngineRoleArn") is not None:
         out["query_engine_role_arn"] = data["queryEngineRoleArn"]
     return out

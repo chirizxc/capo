@@ -34,13 +34,13 @@ def serialize_json(value: ContinuousScanDetails) -> dict:
 
 def deserialize_json(data: dict) -> ContinuousScanDetails:
     out: ContinuousScanDetails = {}  # type: ignore[typeddict-item]
-    if "startTime" in data:
+    if data.get("startTime") is not None:
         import capo_guardduty.types.timestamp
 
         out["start_time"] = capo_guardduty.types.timestamp.deserialize_json(
             data["startTime"]
         )
-    if "endTime" in data:
+    if data.get("endTime") is not None:
         import capo_guardduty.types.timestamp
 
         out["end_time"] = capo_guardduty.types.timestamp.deserialize_json(

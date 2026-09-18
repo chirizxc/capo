@@ -75,11 +75,11 @@ def serialize_json(value: AggregationSummary) -> dict:
 
 def deserialize_json(data: dict) -> AggregationSummary:
     out: AggregationSummary = {}  # type: ignore[typeddict-item]
-    if "eventCount" in data:
+    if data.get("eventCount") is not None:
         out["event_count"] = data["eventCount"]
     else:
         raise DeserializationError("AggregationSummary.event_count required")
-    if "aggregatedBy" in data:
+    if data.get("aggregatedBy") is not None:
         import capo_notifications.types.aggregation_keys
 
         out["aggregated_by"] = (
@@ -89,7 +89,7 @@ def deserialize_json(data: dict) -> AggregationSummary:
         )
     else:
         raise DeserializationError("AggregationSummary.aggregated_by required")
-    if "aggregatedAccounts" in data:
+    if data.get("aggregatedAccounts") is not None:
         import capo_notifications.types.summarization_dimension_overview
 
         out["aggregated_accounts"] = (
@@ -99,7 +99,7 @@ def deserialize_json(data: dict) -> AggregationSummary:
         )
     else:
         raise DeserializationError("AggregationSummary.aggregated_accounts required")
-    if "aggregatedRegions" in data:
+    if data.get("aggregatedRegions") is not None:
         import capo_notifications.types.summarization_dimension_overview
 
         out["aggregated_regions"] = (
@@ -109,7 +109,7 @@ def deserialize_json(data: dict) -> AggregationSummary:
         )
     else:
         raise DeserializationError("AggregationSummary.aggregated_regions required")
-    if "aggregatedOrganizationalUnits" in data:
+    if data.get("aggregatedOrganizationalUnits") is not None:
         import capo_notifications.types.summarization_dimension_overview
 
         out["aggregated_organizational_units"] = (
@@ -117,7 +117,7 @@ def deserialize_json(data: dict) -> AggregationSummary:
                 data["aggregatedOrganizationalUnits"]
             )
         )
-    if "additionalSummarizationDimensions" in data:
+    if data.get("additionalSummarizationDimensions") is not None:
         import capo_notifications.types.summarization_dimension_overviews
 
         out["additional_summarization_dimensions"] = (

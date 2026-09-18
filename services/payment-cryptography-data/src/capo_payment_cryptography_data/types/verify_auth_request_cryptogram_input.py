@@ -67,25 +67,25 @@ def serialize_json(value: VerifyAuthRequestCryptogramInput) -> dict:
 
 def deserialize_json(data: dict) -> VerifyAuthRequestCryptogramInput:
     out: VerifyAuthRequestCryptogramInput = {}  # type: ignore[typeddict-item]
-    if "KeyIdentifier" in data:
+    if data.get("KeyIdentifier") is not None:
         out["key_identifier"] = data["KeyIdentifier"]
     else:
         raise DeserializationError(
             "VerifyAuthRequestCryptogramInput.key_identifier required"
         )
-    if "TransactionData" in data:
+    if data.get("TransactionData") is not None:
         out["transaction_data"] = data["TransactionData"]
     else:
         raise DeserializationError(
             "VerifyAuthRequestCryptogramInput.transaction_data required"
         )
-    if "AuthRequestCryptogram" in data:
+    if data.get("AuthRequestCryptogram") is not None:
         out["auth_request_cryptogram"] = data["AuthRequestCryptogram"]
     else:
         raise DeserializationError(
             "VerifyAuthRequestCryptogramInput.auth_request_cryptogram required"
         )
-    if "MajorKeyDerivationMode" in data:
+    if data.get("MajorKeyDerivationMode") is not None:
         import capo_payment_cryptography_data.types.major_key_derivation_mode
 
         out["major_key_derivation_mode"] = (
@@ -97,7 +97,7 @@ def deserialize_json(data: dict) -> VerifyAuthRequestCryptogramInput:
         raise DeserializationError(
             "VerifyAuthRequestCryptogramInput.major_key_derivation_mode required"
         )
-    if "SessionKeyDerivationAttributes" in data:
+    if data.get("SessionKeyDerivationAttributes") is not None:
         import capo_payment_cryptography_data.types.session_key_derivation
 
         out["session_key_derivation_attributes"] = (
@@ -109,7 +109,7 @@ def deserialize_json(data: dict) -> VerifyAuthRequestCryptogramInput:
         raise DeserializationError(
             "VerifyAuthRequestCryptogramInput.session_key_derivation_attributes required"
         )
-    if "AuthResponseAttributes" in data:
+    if data.get("AuthResponseAttributes") is not None:
         import capo_payment_cryptography_data.types.cryptogram_auth_response
 
         out["auth_response_attributes"] = (

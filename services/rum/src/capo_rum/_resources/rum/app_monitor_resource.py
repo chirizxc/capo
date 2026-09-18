@@ -114,14 +114,16 @@ class AppMonitorResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_rum.types.get_app_monitor_request.GetAppMonitorRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_rum.types.get_app_monitor_request.GetAppMonitorRequest = {
+            "name": name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update(
@@ -178,8 +180,9 @@ class AppMonitorResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_rum.types.update_app_monitor_request.UpdateAppMonitorRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_rum.types.update_app_monitor_request.UpdateAppMonitorRequest = {
+            "name": name
+        }
         if domain is not None:
             input_["domain"] = domain
         if domain_list is not None:
@@ -198,6 +201,7 @@ class AppMonitorResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -236,14 +240,16 @@ class AppMonitorResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_rum.types.delete_app_monitor_request.DeleteAppMonitorRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_rum.types.delete_app_monitor_request.DeleteAppMonitorRequest = {
+            "name": name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -284,7 +290,7 @@ class AppMonitorResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_rum.types.list_app_monitors_request.ListAppMonitorsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_rum.types.list_app_monitors_request.ListAppMonitorsRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -295,6 +301,7 @@ class AppMonitorResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def batch_create_rum_metric_definitions(
@@ -342,18 +349,20 @@ class AppMonitorResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_rum.types.batch_create_rum_metric_definitions_request.BatchCreateRumMetricDefinitionsRequest = {}  # type: ignore[typeddict-item]
-        input_["app_monitor_name"] = app_monitor_name
-        input_["destination"] = destination
+        input_: capo_rum.types.batch_create_rum_metric_definitions_request.BatchCreateRumMetricDefinitionsRequest = {
+            "app_monitor_name": app_monitor_name,
+            "destination": destination,
+            "metric_definitions": metric_definitions,
+        }
         if destination_arn is not None:
             input_["destination_arn"] = destination_arn
-        input_["metric_definitions"] = metric_definitions
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def batch_delete_rum_metric_definitions(
@@ -400,18 +409,20 @@ class AppMonitorResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_rum.types.batch_delete_rum_metric_definitions_request.BatchDeleteRumMetricDefinitionsRequest = {}  # type: ignore[typeddict-item]
-        input_["app_monitor_name"] = app_monitor_name
-        input_["destination"] = destination
+        input_: capo_rum.types.batch_delete_rum_metric_definitions_request.BatchDeleteRumMetricDefinitionsRequest = {
+            "app_monitor_name": app_monitor_name,
+            "destination": destination,
+            "metric_definition_ids": metric_definition_ids,
+        }
         if destination_arn is not None:
             input_["destination_arn"] = destination_arn
-        input_["metric_definition_ids"] = metric_definition_ids
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def batch_get_rum_metric_definitions(
@@ -460,9 +471,10 @@ class AppMonitorResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_rum.types.batch_get_rum_metric_definitions_request.BatchGetRumMetricDefinitionsRequest = {}  # type: ignore[typeddict-item]
-        input_["app_monitor_name"] = app_monitor_name
-        input_["destination"] = destination
+        input_: capo_rum.types.batch_get_rum_metric_definitions_request.BatchGetRumMetricDefinitionsRequest = {
+            "app_monitor_name": app_monitor_name,
+            "destination": destination,
+        }
         if destination_arn is not None:
             input_["destination_arn"] = destination_arn
         if max_results is not None:
@@ -475,6 +487,7 @@ class AppMonitorResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_app_monitor(
@@ -538,8 +551,9 @@ class AppMonitorResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_rum.types.create_app_monitor_request.CreateAppMonitorRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_rum.types.create_app_monitor_request.CreateAppMonitorRequest = {
+            "name": name
+        }
         if domain is not None:
             input_["domain"] = domain
         if domain_list is not None:
@@ -562,6 +576,7 @@ class AppMonitorResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_resource_policy(
@@ -606,8 +621,9 @@ class AppMonitorResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_rum.types.delete_resource_policy_request.DeleteResourcePolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_rum.types.delete_resource_policy_request.DeleteResourcePolicyRequest = {
+            "name": name
+        }
         if policy_revision_id is not None:
             input_["policy_revision_id"] = policy_revision_id
 
@@ -616,6 +632,7 @@ class AppMonitorResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_rum_metrics_destination(
@@ -660,9 +677,10 @@ class AppMonitorResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_rum.types.delete_rum_metrics_destination_request.DeleteRumMetricsDestinationRequest = {}  # type: ignore[typeddict-item]
-        input_["app_monitor_name"] = app_monitor_name
-        input_["destination"] = destination
+        input_: capo_rum.types.delete_rum_metrics_destination_request.DeleteRumMetricsDestinationRequest = {
+            "app_monitor_name": app_monitor_name,
+            "destination": destination,
+        }
         if destination_arn is not None:
             input_["destination_arn"] = destination_arn
 
@@ -671,6 +689,7 @@ class AppMonitorResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_app_monitor_data(
@@ -718,9 +737,10 @@ class AppMonitorResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_rum.types.get_app_monitor_data_request.GetAppMonitorDataRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        input_["time_range"] = time_range
+        input_: capo_rum.types.get_app_monitor_data_request.GetAppMonitorDataRequest = {
+            "name": name,
+            "time_range": time_range,
+        }
         if filters is not None:
             input_["filters"] = filters
         if max_results is not None:
@@ -733,6 +753,7 @@ class AppMonitorResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_resource_policy(
@@ -772,14 +793,16 @@ class AppMonitorResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_rum.types.get_resource_policy_request.GetResourcePolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_rum.types.get_resource_policy_request.GetResourcePolicyRequest = {
+            "name": name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_rum_metrics_destinations(
@@ -822,8 +845,9 @@ class AppMonitorResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_rum.types.list_rum_metrics_destinations_request.ListRumMetricsDestinationsRequest = {}  # type: ignore[typeddict-item]
-        input_["app_monitor_name"] = app_monitor_name
+        input_: capo_rum.types.list_rum_metrics_destinations_request.ListRumMetricsDestinationsRequest = {
+            "app_monitor_name": app_monitor_name
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -834,6 +858,7 @@ class AppMonitorResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def put_resource_policy(
@@ -881,9 +906,10 @@ class AppMonitorResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_rum.types.put_resource_policy_request.PutResourcePolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        input_["policy_document"] = policy_document
+        input_: capo_rum.types.put_resource_policy_request.PutResourcePolicyRequest = {
+            "name": name,
+            "policy_document": policy_document,
+        }
         if policy_revision_id is not None:
             input_["policy_revision_id"] = policy_revision_id
 
@@ -892,6 +918,7 @@ class AppMonitorResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def put_rum_metrics_destination(
@@ -938,9 +965,10 @@ class AppMonitorResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_rum.types.put_rum_metrics_destination_request.PutRumMetricsDestinationRequest = {}  # type: ignore[typeddict-item]
-        input_["app_monitor_name"] = app_monitor_name
-        input_["destination"] = destination
+        input_: capo_rum.types.put_rum_metrics_destination_request.PutRumMetricsDestinationRequest = {
+            "app_monitor_name": app_monitor_name,
+            "destination": destination,
+        }
         if destination_arn is not None:
             input_["destination_arn"] = destination_arn
         if iam_role_arn is not None:
@@ -951,6 +979,7 @@ class AppMonitorResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_rum_metric_definition(
@@ -1000,19 +1029,21 @@ class AppMonitorResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_rum.types.update_rum_metric_definition_request.UpdateRumMetricDefinitionRequest = {}  # type: ignore[typeddict-item]
-        input_["app_monitor_name"] = app_monitor_name
-        input_["destination"] = destination
+        input_: capo_rum.types.update_rum_metric_definition_request.UpdateRumMetricDefinitionRequest = {
+            "app_monitor_name": app_monitor_name,
+            "destination": destination,
+            "metric_definition": metric_definition,
+            "metric_definition_id": metric_definition_id,
+        }
         if destination_arn is not None:
             input_["destination_arn"] = destination_arn
-        input_["metric_definition"] = metric_definition
-        input_["metric_definition_id"] = metric_definition_id
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -1056,14 +1087,16 @@ class AsyncAppMonitorResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_rum.types.get_app_monitor_request.GetAppMonitorRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_rum.types.get_app_monitor_request.GetAppMonitorRequest = {
+            "name": name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update(
@@ -1121,8 +1154,9 @@ class AsyncAppMonitorResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_rum.types.update_app_monitor_request.UpdateAppMonitorRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_rum.types.update_app_monitor_request.UpdateAppMonitorRequest = {
+            "name": name
+        }
         if domain is not None:
             input_["domain"] = domain
         if domain_list is not None:
@@ -1141,6 +1175,7 @@ class AsyncAppMonitorResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -1180,14 +1215,16 @@ class AsyncAppMonitorResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_rum.types.delete_app_monitor_request.DeleteAppMonitorRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_rum.types.delete_app_monitor_request.DeleteAppMonitorRequest = {
+            "name": name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -1229,7 +1266,7 @@ class AsyncAppMonitorResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_rum.types.list_app_monitors_request.ListAppMonitorsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_rum.types.list_app_monitors_request.ListAppMonitorsRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -1240,6 +1277,7 @@ class AsyncAppMonitorResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def batch_create_rum_metric_definitions(
@@ -1288,18 +1326,20 @@ class AsyncAppMonitorResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_rum.types.batch_create_rum_metric_definitions_request.BatchCreateRumMetricDefinitionsRequest = {}  # type: ignore[typeddict-item]
-        input_["app_monitor_name"] = app_monitor_name
-        input_["destination"] = destination
+        input_: capo_rum.types.batch_create_rum_metric_definitions_request.BatchCreateRumMetricDefinitionsRequest = {
+            "app_monitor_name": app_monitor_name,
+            "destination": destination,
+            "metric_definitions": metric_definitions,
+        }
         if destination_arn is not None:
             input_["destination_arn"] = destination_arn
-        input_["metric_definitions"] = metric_definitions
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def batch_delete_rum_metric_definitions(
@@ -1347,18 +1387,20 @@ class AsyncAppMonitorResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_rum.types.batch_delete_rum_metric_definitions_request.BatchDeleteRumMetricDefinitionsRequest = {}  # type: ignore[typeddict-item]
-        input_["app_monitor_name"] = app_monitor_name
-        input_["destination"] = destination
+        input_: capo_rum.types.batch_delete_rum_metric_definitions_request.BatchDeleteRumMetricDefinitionsRequest = {
+            "app_monitor_name": app_monitor_name,
+            "destination": destination,
+            "metric_definition_ids": metric_definition_ids,
+        }
         if destination_arn is not None:
             input_["destination_arn"] = destination_arn
-        input_["metric_definition_ids"] = metric_definition_ids
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def batch_get_rum_metric_definitions(
@@ -1408,9 +1450,10 @@ class AsyncAppMonitorResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_rum.types.batch_get_rum_metric_definitions_request.BatchGetRumMetricDefinitionsRequest = {}  # type: ignore[typeddict-item]
-        input_["app_monitor_name"] = app_monitor_name
-        input_["destination"] = destination
+        input_: capo_rum.types.batch_get_rum_metric_definitions_request.BatchGetRumMetricDefinitionsRequest = {
+            "app_monitor_name": app_monitor_name,
+            "destination": destination,
+        }
         if destination_arn is not None:
             input_["destination_arn"] = destination_arn
         if max_results is not None:
@@ -1423,6 +1466,7 @@ class AsyncAppMonitorResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_app_monitor(
@@ -1487,8 +1531,9 @@ class AsyncAppMonitorResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_rum.types.create_app_monitor_request.CreateAppMonitorRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_rum.types.create_app_monitor_request.CreateAppMonitorRequest = {
+            "name": name
+        }
         if domain is not None:
             input_["domain"] = domain
         if domain_list is not None:
@@ -1511,6 +1556,7 @@ class AsyncAppMonitorResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_resource_policy(
@@ -1556,8 +1602,9 @@ class AsyncAppMonitorResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_rum.types.delete_resource_policy_request.DeleteResourcePolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_rum.types.delete_resource_policy_request.DeleteResourcePolicyRequest = {
+            "name": name
+        }
         if policy_revision_id is not None:
             input_["policy_revision_id"] = policy_revision_id
 
@@ -1566,6 +1613,7 @@ class AsyncAppMonitorResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_rum_metrics_destination(
@@ -1611,9 +1659,10 @@ class AsyncAppMonitorResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_rum.types.delete_rum_metrics_destination_request.DeleteRumMetricsDestinationRequest = {}  # type: ignore[typeddict-item]
-        input_["app_monitor_name"] = app_monitor_name
-        input_["destination"] = destination
+        input_: capo_rum.types.delete_rum_metrics_destination_request.DeleteRumMetricsDestinationRequest = {
+            "app_monitor_name": app_monitor_name,
+            "destination": destination,
+        }
         if destination_arn is not None:
             input_["destination_arn"] = destination_arn
 
@@ -1622,6 +1671,7 @@ class AsyncAppMonitorResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_app_monitor_data(
@@ -1670,9 +1720,10 @@ class AsyncAppMonitorResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_rum.types.get_app_monitor_data_request.GetAppMonitorDataRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        input_["time_range"] = time_range
+        input_: capo_rum.types.get_app_monitor_data_request.GetAppMonitorDataRequest = {
+            "name": name,
+            "time_range": time_range,
+        }
         if filters is not None:
             input_["filters"] = filters
         if max_results is not None:
@@ -1685,6 +1736,7 @@ class AsyncAppMonitorResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_resource_policy(
@@ -1725,14 +1777,16 @@ class AsyncAppMonitorResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_rum.types.get_resource_policy_request.GetResourcePolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_rum.types.get_resource_policy_request.GetResourcePolicyRequest = {
+            "name": name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_rum_metrics_destinations(
@@ -1776,8 +1830,9 @@ class AsyncAppMonitorResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_rum.types.list_rum_metrics_destinations_request.ListRumMetricsDestinationsRequest = {}  # type: ignore[typeddict-item]
-        input_["app_monitor_name"] = app_monitor_name
+        input_: capo_rum.types.list_rum_metrics_destinations_request.ListRumMetricsDestinationsRequest = {
+            "app_monitor_name": app_monitor_name
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -1788,6 +1843,7 @@ class AsyncAppMonitorResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def put_resource_policy(
@@ -1836,9 +1892,10 @@ class AsyncAppMonitorResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_rum.types.put_resource_policy_request.PutResourcePolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        input_["policy_document"] = policy_document
+        input_: capo_rum.types.put_resource_policy_request.PutResourcePolicyRequest = {
+            "name": name,
+            "policy_document": policy_document,
+        }
         if policy_revision_id is not None:
             input_["policy_revision_id"] = policy_revision_id
 
@@ -1847,6 +1904,7 @@ class AsyncAppMonitorResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def put_rum_metrics_destination(
@@ -1894,9 +1952,10 @@ class AsyncAppMonitorResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_rum.types.put_rum_metrics_destination_request.PutRumMetricsDestinationRequest = {}  # type: ignore[typeddict-item]
-        input_["app_monitor_name"] = app_monitor_name
-        input_["destination"] = destination
+        input_: capo_rum.types.put_rum_metrics_destination_request.PutRumMetricsDestinationRequest = {
+            "app_monitor_name": app_monitor_name,
+            "destination": destination,
+        }
         if destination_arn is not None:
             input_["destination_arn"] = destination_arn
         if iam_role_arn is not None:
@@ -1907,6 +1966,7 @@ class AsyncAppMonitorResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_rum_metric_definition(
@@ -1957,17 +2017,19 @@ class AsyncAppMonitorResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_rum.types.update_rum_metric_definition_request.UpdateRumMetricDefinitionRequest = {}  # type: ignore[typeddict-item]
-        input_["app_monitor_name"] = app_monitor_name
-        input_["destination"] = destination
+        input_: capo_rum.types.update_rum_metric_definition_request.UpdateRumMetricDefinitionRequest = {
+            "app_monitor_name": app_monitor_name,
+            "destination": destination,
+            "metric_definition": metric_definition,
+            "metric_definition_id": metric_definition_id,
+        }
         if destination_arn is not None:
             input_["destination_arn"] = destination_arn
-        input_["metric_definition"] = metric_definition
-        input_["metric_definition_id"] = metric_definition_id
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

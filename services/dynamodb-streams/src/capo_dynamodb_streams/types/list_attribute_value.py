@@ -27,6 +27,8 @@ def deserialize_aws_json_1_0(data: list) -> ListAttributeValue:
 
     out: ListAttributeValue = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_dynamodb_streams.types.attribute_value.deserialize_aws_json_1_0(item)
         )

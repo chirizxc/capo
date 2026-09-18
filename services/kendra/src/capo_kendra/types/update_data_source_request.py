@@ -92,17 +92,17 @@ def serialize_aws_json_1_1(value: UpdateDataSourceRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateDataSourceRequest:
     out: UpdateDataSourceRequest = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
     else:
         raise DeserializationError("UpdateDataSourceRequest.id required")
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "IndexId" in data:
+    if data.get("IndexId") is not None:
         out["index_id"] = data["IndexId"]
     else:
         raise DeserializationError("UpdateDataSourceRequest.index_id required")
-    if "Configuration" in data:
+    if data.get("Configuration") is not None:
         import capo_kendra.types.data_source_configuration
 
         out["configuration"] = (
@@ -110,7 +110,7 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateDataSourceRequest:
                 data["Configuration"]
             )
         )
-    if "VpcConfiguration" in data:
+    if data.get("VpcConfiguration") is not None:
         import capo_kendra.types.data_source_vpc_configuration
 
         out["vpc_configuration"] = (
@@ -118,15 +118,15 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateDataSourceRequest:
                 data["VpcConfiguration"]
             )
         )
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Schedule" in data:
+    if data.get("Schedule") is not None:
         out["schedule"] = data["Schedule"]
-    if "RoleArn" in data:
+    if data.get("RoleArn") is not None:
         out["role_arn"] = data["RoleArn"]
-    if "LanguageCode" in data:
+    if data.get("LanguageCode") is not None:
         out["language_code"] = data["LanguageCode"]
-    if "CustomDocumentEnrichmentConfiguration" in data:
+    if data.get("CustomDocumentEnrichmentConfiguration") is not None:
         import capo_kendra.types.custom_document_enrichment_configuration
 
         out["custom_document_enrichment_configuration"] = (

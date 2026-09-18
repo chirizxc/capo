@@ -167,7 +167,7 @@ def serialize_aws_json_1_1(value: Cluster) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Cluster:
     out: Cluster = {}  # type: ignore[typeddict-item]
-    if "BackupPolicy" in data:
+    if data.get("BackupPolicy") is not None:
         import capo_cloudhsm_v2.types.backup_policy
 
         out["backup_policy"] = (
@@ -175,7 +175,7 @@ def deserialize_aws_json_1_1(data: dict) -> Cluster:
                 data["BackupPolicy"]
             )
         )
-    if "BackupRetentionPolicy" in data:
+    if data.get("BackupRetentionPolicy") is not None:
         import capo_cloudhsm_v2.types.backup_retention_policy
 
         out["backup_retention_policy"] = (
@@ -183,9 +183,9 @@ def deserialize_aws_json_1_1(data: dict) -> Cluster:
                 data["BackupRetentionPolicy"]
             )
         )
-    if "ClusterId" in data:
+    if data.get("ClusterId") is not None:
         out["cluster_id"] = data["ClusterId"]
-    if "CreateTimestamp" in data:
+    if data.get("CreateTimestamp") is not None:
         import capo_cloudhsm_v2.types.timestamp
 
         out["create_timestamp"] = (
@@ -193,13 +193,13 @@ def deserialize_aws_json_1_1(data: dict) -> Cluster:
                 data["CreateTimestamp"]
             )
         )
-    if "Hsms" in data:
+    if data.get("Hsms") is not None:
         import capo_cloudhsm_v2.types.hsms
 
         out["hsms"] = capo_cloudhsm_v2.types.hsms.deserialize_aws_json_1_1(data["Hsms"])
-    if "HsmType" in data:
+    if data.get("HsmType") is not None:
         out["hsm_type"] = data["HsmType"]
-    if "HsmTypeRollbackExpiration" in data:
+    if data.get("HsmTypeRollbackExpiration") is not None:
         import capo_cloudhsm_v2.types.timestamp
 
         out["hsm_type_rollback_expiration"] = (
@@ -207,21 +207,21 @@ def deserialize_aws_json_1_1(data: dict) -> Cluster:
                 data["HsmTypeRollbackExpiration"]
             )
         )
-    if "PreCoPassword" in data:
+    if data.get("PreCoPassword") is not None:
         out["pre_co_password"] = data["PreCoPassword"]
-    if "SecurityGroup" in data:
+    if data.get("SecurityGroup") is not None:
         out["security_group"] = data["SecurityGroup"]
-    if "SourceBackupId" in data:
+    if data.get("SourceBackupId") is not None:
         out["source_backup_id"] = data["SourceBackupId"]
-    if "State" in data:
+    if data.get("State") is not None:
         import capo_cloudhsm_v2.types.cluster_state
 
         out["state"] = capo_cloudhsm_v2.types.cluster_state.deserialize_aws_json_1_1(
             data["State"]
         )
-    if "StateMessage" in data:
+    if data.get("StateMessage") is not None:
         out["state_message"] = data["StateMessage"]
-    if "SubnetMapping" in data:
+    if data.get("SubnetMapping") is not None:
         import capo_cloudhsm_v2.types.external_subnet_mapping
 
         out["subnet_mapping"] = (
@@ -229,9 +229,9 @@ def deserialize_aws_json_1_1(data: dict) -> Cluster:
                 data["SubnetMapping"]
             )
         )
-    if "VpcId" in data:
+    if data.get("VpcId") is not None:
         out["vpc_id"] = data["VpcId"]
-    if "NetworkType" in data:
+    if data.get("NetworkType") is not None:
         import capo_cloudhsm_v2.types.network_type
 
         out["network_type"] = (
@@ -239,7 +239,7 @@ def deserialize_aws_json_1_1(data: dict) -> Cluster:
                 data["NetworkType"]
             )
         )
-    if "Certificates" in data:
+    if data.get("Certificates") is not None:
         import capo_cloudhsm_v2.types.certificates
 
         out["certificates"] = (
@@ -247,13 +247,13 @@ def deserialize_aws_json_1_1(data: dict) -> Cluster:
                 data["Certificates"]
             )
         )
-    if "TagList" in data:
+    if data.get("TagList") is not None:
         import capo_cloudhsm_v2.types.tag_list
 
         out["tag_list"] = capo_cloudhsm_v2.types.tag_list.deserialize_aws_json_1_1(
             data["TagList"]
         )
-    if "Mode" in data:
+    if data.get("Mode") is not None:
         import capo_cloudhsm_v2.types.cluster_mode
 
         out["mode"] = capo_cloudhsm_v2.types.cluster_mode.deserialize_aws_json_1_1(

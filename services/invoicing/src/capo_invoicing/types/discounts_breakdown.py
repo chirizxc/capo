@@ -36,7 +36,7 @@ def serialize_aws_json_1_0(value: DiscountsBreakdown) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> DiscountsBreakdown:
     out: DiscountsBreakdown = {}  # type: ignore[typeddict-item]
-    if "Breakdown" in data:
+    if data.get("Breakdown") is not None:
         import capo_invoicing.types.discounts_breakdown_amount_list
 
         out["breakdown"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_0(data: dict) -> DiscountsBreakdown:
                 data["Breakdown"]
             )
         )
-    if "TotalAmount" in data:
+    if data.get("TotalAmount") is not None:
         out["total_amount"] = data["TotalAmount"]
     return out

@@ -31,7 +31,7 @@ def serialize_json(value: TrackingOverrides) -> dict:
 
 def deserialize_json(data: dict) -> TrackingOverrides:
     out: TrackingOverrides = {}  # type: ignore[typeddict-item]
-    if "programTrackSettings" in data:
+    if data.get("programTrackSettings") is not None:
         import capo_groundstation.types.program_track_settings
 
         out["program_track_settings"] = (

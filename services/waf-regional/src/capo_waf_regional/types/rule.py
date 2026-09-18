@@ -42,15 +42,15 @@ def serialize_aws_json_1_1(value: Rule) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Rule:
     out: Rule = {}  # type: ignore[typeddict-item]
-    if "RuleId" in data:
+    if data.get("RuleId") is not None:
         out["rule_id"] = data["RuleId"]
     else:
         raise DeserializationError("Rule.rule_id required")
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "MetricName" in data:
+    if data.get("MetricName") is not None:
         out["metric_name"] = data["MetricName"]
-    if "Predicates" in data:
+    if data.get("Predicates") is not None:
         import capo_waf_regional.types.predicates
 
         out["predicates"] = capo_waf_regional.types.predicates.deserialize_aws_json_1_1(

@@ -77,7 +77,7 @@ def serialize_json(value: ResourceScanMetadata) -> dict:
 
 def deserialize_json(data: dict) -> ResourceScanMetadata:
     out: ResourceScanMetadata = {}  # type: ignore[typeddict-item]
-    if "ecrRepository" in data:
+    if data.get("ecrRepository") is not None:
         import capo_inspector2.types.ecr_repository_metadata
 
         out["ecr_repository"] = (
@@ -85,7 +85,7 @@ def deserialize_json(data: dict) -> ResourceScanMetadata:
                 data["ecrRepository"]
             )
         )
-    if "ecrImage" in data:
+    if data.get("ecrImage") is not None:
         import capo_inspector2.types.ecr_container_image_metadata
 
         out["ecr_image"] = (
@@ -93,11 +93,11 @@ def deserialize_json(data: dict) -> ResourceScanMetadata:
                 data["ecrImage"]
             )
         )
-    if "ec2" in data:
+    if data.get("ec2") is not None:
         import capo_inspector2.types.ec2_metadata
 
         out["ec2"] = capo_inspector2.types.ec2_metadata.deserialize_json(data["ec2"])
-    if "lambdaFunction" in data:
+    if data.get("lambdaFunction") is not None:
         import capo_inspector2.types.lambda_function_metadata
 
         out["lambda_function"] = (
@@ -105,7 +105,7 @@ def deserialize_json(data: dict) -> ResourceScanMetadata:
                 data["lambdaFunction"]
             )
         )
-    if "codeRepository" in data:
+    if data.get("codeRepository") is not None:
         import capo_inspector2.types.code_repository_metadata
 
         out["code_repository"] = (

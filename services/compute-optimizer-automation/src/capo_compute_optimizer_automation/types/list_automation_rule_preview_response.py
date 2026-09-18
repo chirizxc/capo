@@ -38,7 +38,7 @@ def serialize_aws_json_1_0(value: ListAutomationRulePreviewResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ListAutomationRulePreviewResponse:
     out: ListAutomationRulePreviewResponse = {}  # type: ignore[typeddict-item]
-    if "previewResults" in data:
+    if data.get("previewResults") is not None:
         import capo_compute_optimizer_automation.types.preview_results
 
         out["preview_results"] = (
@@ -46,6 +46,6 @@ def deserialize_aws_json_1_0(data: dict) -> ListAutomationRulePreviewResponse:
                 data["previewResults"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

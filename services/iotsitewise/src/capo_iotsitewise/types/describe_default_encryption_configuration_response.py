@@ -45,7 +45,7 @@ def serialize_json(value: DescribeDefaultEncryptionConfigurationResponse) -> dic
 
 def deserialize_json(data: dict) -> DescribeDefaultEncryptionConfigurationResponse:
     out: DescribeDefaultEncryptionConfigurationResponse = {}  # type: ignore[typeddict-item]
-    if "encryptionType" in data:
+    if data.get("encryptionType") is not None:
         import capo_iotsitewise.types.encryption_type
 
         out["encryption_type"] = (
@@ -57,9 +57,9 @@ def deserialize_json(data: dict) -> DescribeDefaultEncryptionConfigurationRespon
         raise DeserializationError(
             "DescribeDefaultEncryptionConfigurationResponse.encryption_type required"
         )
-    if "kmsKeyArn" in data:
+    if data.get("kmsKeyArn") is not None:
         out["kms_key_arn"] = data["kmsKeyArn"]
-    if "configurationStatus" in data:
+    if data.get("configurationStatus") is not None:
         import capo_iotsitewise.types.configuration_status
 
         out["configuration_status"] = (

@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: CloudHsmResourceLimitExceededException_) -> di
 
 def deserialize_aws_json_1_1(data: dict) -> CloudHsmResourceLimitExceededException_:
     out: CloudHsmResourceLimitExceededException_ = {}  # type: ignore[typeddict-item]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     return out
 
@@ -34,15 +34,20 @@ class CloudHsmResourceLimitExceededException(ServiceError):
 
     code: str | None = "CloudHsmResourceLimitExceededException"
 
-    def __init__(self, data: CloudHsmResourceLimitExceededException_):
+    def __init__(
+        self, data: CloudHsmResourceLimitExceededException_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="CloudHsmResourceLimitExceededException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "CloudHsmResourceLimitExceededException":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "CloudHsmResourceLimitExceededException":
+        return cls(deserialize_aws_json_1_1(data), message)

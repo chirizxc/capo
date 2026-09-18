@@ -30,9 +30,9 @@ def serialize_aws_json_1_1(value: SortCriterion) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SortCriterion:
     out: SortCriterion = {}  # type: ignore[typeddict-item]
-    if "FieldName" in data:
+    if data.get("FieldName") is not None:
         out["field_name"] = data["FieldName"]
-    if "Sort" in data:
+    if data.get("Sort") is not None:
         import capo_glue.types.sort
 
         out["sort"] = capo_glue.types.sort.deserialize_aws_json_1_1(data["Sort"])

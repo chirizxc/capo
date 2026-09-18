@@ -45,13 +45,13 @@ def serialize_json(value: TimeRangeFilterValue) -> dict:
 
 def deserialize_json(data: dict) -> TimeRangeFilterValue:
     out: TimeRangeFilterValue = {}  # type: ignore[typeddict-item]
-    if "StaticValue" in data:
+    if data.get("StaticValue") is not None:
         import capo_quicksight.types.timestamp
 
         out["static_value"] = capo_quicksight.types.timestamp.deserialize_json(
             data["StaticValue"]
         )
-    if "RollingDate" in data:
+    if data.get("RollingDate") is not None:
         import capo_quicksight.types.rolling_date_configuration
 
         out["rolling_date"] = (
@@ -59,6 +59,6 @@ def deserialize_json(data: dict) -> TimeRangeFilterValue:
                 data["RollingDate"]
             )
         )
-    if "Parameter" in data:
+    if data.get("Parameter") is not None:
         out["parameter"] = data["Parameter"]
     return out

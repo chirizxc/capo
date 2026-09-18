@@ -36,9 +36,9 @@ def serialize_aws_json_1_1(value: AlgorithmValidationSpecification) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AlgorithmValidationSpecification:
     out: AlgorithmValidationSpecification = {}  # type: ignore[typeddict-item]
-    if "ValidationRole" in data:
+    if data.get("ValidationRole") is not None:
         out["validation_role"] = data["ValidationRole"]
-    if "ValidationProfiles" in data:
+    if data.get("ValidationProfiles") is not None:
         import capo_sagemaker.types.algorithm_validation_profiles
 
         out["validation_profiles"] = (

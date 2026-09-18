@@ -56,26 +56,26 @@ def serialize_json(value: ComponentConditionProperty) -> dict:
 
 def deserialize_json(data: dict) -> ComponentConditionProperty:
     out: ComponentConditionProperty = {}  # type: ignore[typeddict-item]
-    if "property" in data:
+    if data.get("property") is not None:
         out["property"] = data["property"]
-    if "field" in data:
+    if data.get("field") is not None:
         out["field"] = data["field"]
-    if "operator" in data:
+    if data.get("operator") is not None:
         out["operator"] = data["operator"]
-    if "operand" in data:
+    if data.get("operand") is not None:
         out["operand"] = data["operand"]
-    if "then" in data:
+    if data.get("then") is not None:
         import capo_amplifyuibuilder.types.component_property
 
         out["then"] = capo_amplifyuibuilder.types.component_property.deserialize_json(
             data["then"]
         )
-    if "else" in data:
+    if data.get("else") is not None:
         import capo_amplifyuibuilder.types.component_property
 
         out["else"] = capo_amplifyuibuilder.types.component_property.deserialize_json(
             data["else"]
         )
-    if "operandType" in data:
+    if data.get("operandType") is not None:
         out["operand_type"] = data["operandType"]
     return out

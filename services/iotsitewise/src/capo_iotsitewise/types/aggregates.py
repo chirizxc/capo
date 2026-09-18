@@ -39,32 +39,80 @@ class Aggregates(TypedDict, closed=True):
 def serialize_json(value: Aggregates) -> dict:
     out: dict = {}
     if "average" in value:
-        out["average"] = value["average"]
+        out["average"] = (
+            "NaN"
+            if value["average"] != value["average"]
+            else "Infinity"
+            if value["average"] == float("inf")
+            else "-Infinity"
+            if value["average"] == float("-inf")
+            else value["average"]
+        )
     if "count" in value:
-        out["count"] = value["count"]
+        out["count"] = (
+            "NaN"
+            if value["count"] != value["count"]
+            else "Infinity"
+            if value["count"] == float("inf")
+            else "-Infinity"
+            if value["count"] == float("-inf")
+            else value["count"]
+        )
     if "maximum" in value:
-        out["maximum"] = value["maximum"]
+        out["maximum"] = (
+            "NaN"
+            if value["maximum"] != value["maximum"]
+            else "Infinity"
+            if value["maximum"] == float("inf")
+            else "-Infinity"
+            if value["maximum"] == float("-inf")
+            else value["maximum"]
+        )
     if "minimum" in value:
-        out["minimum"] = value["minimum"]
+        out["minimum"] = (
+            "NaN"
+            if value["minimum"] != value["minimum"]
+            else "Infinity"
+            if value["minimum"] == float("inf")
+            else "-Infinity"
+            if value["minimum"] == float("-inf")
+            else value["minimum"]
+        )
     if "sum" in value:
-        out["sum"] = value["sum"]
+        out["sum"] = (
+            "NaN"
+            if value["sum"] != value["sum"]
+            else "Infinity"
+            if value["sum"] == float("inf")
+            else "-Infinity"
+            if value["sum"] == float("-inf")
+            else value["sum"]
+        )
     if "standard_deviation" in value:
-        out["standardDeviation"] = value["standard_deviation"]
+        out["standardDeviation"] = (
+            "NaN"
+            if value["standard_deviation"] != value["standard_deviation"]
+            else "Infinity"
+            if value["standard_deviation"] == float("inf")
+            else "-Infinity"
+            if value["standard_deviation"] == float("-inf")
+            else value["standard_deviation"]
+        )
     return out
 
 
 def deserialize_json(data: dict) -> Aggregates:
     out: Aggregates = {}  # type: ignore[typeddict-item]
-    if "average" in data:
-        out["average"] = data["average"]
-    if "count" in data:
-        out["count"] = data["count"]
-    if "maximum" in data:
-        out["maximum"] = data["maximum"]
-    if "minimum" in data:
-        out["minimum"] = data["minimum"]
-    if "sum" in data:
-        out["sum"] = data["sum"]
-    if "standardDeviation" in data:
-        out["standard_deviation"] = data["standardDeviation"]
+    if data.get("average") is not None:
+        out["average"] = float(data["average"])
+    if data.get("count") is not None:
+        out["count"] = float(data["count"])
+    if data.get("maximum") is not None:
+        out["maximum"] = float(data["maximum"])
+    if data.get("minimum") is not None:
+        out["minimum"] = float(data["minimum"])
+    if data.get("sum") is not None:
+        out["sum"] = float(data["sum"])
+    if data.get("standardDeviation") is not None:
+        out["standard_deviation"] = float(data["standardDeviation"])
     return out

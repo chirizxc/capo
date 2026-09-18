@@ -38,10 +38,10 @@ def serialize_json(value: GetWorkingLocationResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetWorkingLocationResponse:
     out: GetWorkingLocationResponse = {}  # type: ignore[typeddict-item]
-    if "s3Uri" in data:
+    if data.get("s3Uri") is not None:
         out["s3_uri"] = data["s3Uri"]
-    if "s3Path" in data:
+    if data.get("s3Path") is not None:
         out["s3_path"] = data["s3Path"]
-    if "s3Bucket" in data:
+    if data.get("s3Bucket") is not None:
         out["s3_bucket"] = data["s3Bucket"]
     return out

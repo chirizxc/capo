@@ -1,6 +1,7 @@
 """Generated from Smithy shape ``com.amazonaws.mediastore#MediaStore_20170901``."""
 
 import warnings
+from collections.abc import AsyncIterator
 from typing import TYPE_CHECKING, Any, Iterable, Optional
 
 from typing_extensions import Self, TypedDict
@@ -16,6 +17,7 @@ from capo_mediastore._auth._providers import (
     default_aws_credentials_chain,
 )
 from capo_mediastore._auth._zapros_handler import AuthMiddleware
+from capo_mediastore._pagination import resolve_path as _resolve_path
 from capo_mediastore._services._aws_config import aaws_config
 from capo_mediastore._services._pipeline import (
     AsyncInterceptor,
@@ -210,8 +212,9 @@ class AsyncMediaStoreClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mediastore.types.create_container_input.CreateContainerInput = {}  # type: ignore[typeddict-item]
-        input_["container_name"] = container_name
+        input_: capo_mediastore.types.create_container_input.CreateContainerInput = {
+            "container_name": container_name
+        }
         if tags is not None:
             input_["tags"] = tags
 
@@ -220,6 +223,7 @@ class AsyncMediaStoreClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_container(
@@ -256,14 +260,16 @@ class AsyncMediaStoreClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mediastore.types.delete_container_input.DeleteContainerInput = {}  # type: ignore[typeddict-item]
-        input_["container_name"] = container_name
+        input_: capo_mediastore.types.delete_container_input.DeleteContainerInput = {
+            "container_name": container_name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_container_policy(
@@ -301,14 +307,16 @@ class AsyncMediaStoreClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mediastore.types.delete_container_policy_input.DeleteContainerPolicyInput = {}  # type: ignore[typeddict-item]
-        input_["container_name"] = container_name
+        input_: capo_mediastore.types.delete_container_policy_input.DeleteContainerPolicyInput = {
+            "container_name": container_name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_cors_policy(
@@ -346,14 +354,16 @@ class AsyncMediaStoreClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mediastore.types.delete_cors_policy_input.DeleteCorsPolicyInput = {}  # type: ignore[typeddict-item]
-        input_["container_name"] = container_name
+        input_: capo_mediastore.types.delete_cors_policy_input.DeleteCorsPolicyInput = {
+            "container_name": container_name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_lifecycle_policy(
@@ -391,14 +401,16 @@ class AsyncMediaStoreClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mediastore.types.delete_lifecycle_policy_input.DeleteLifecyclePolicyInput = {}  # type: ignore[typeddict-item]
-        input_["container_name"] = container_name
+        input_: capo_mediastore.types.delete_lifecycle_policy_input.DeleteLifecyclePolicyInput = {
+            "container_name": container_name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_metric_policy(
@@ -436,14 +448,16 @@ class AsyncMediaStoreClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mediastore.types.delete_metric_policy_input.DeleteMetricPolicyInput = {}  # type: ignore[typeddict-item]
-        input_["container_name"] = container_name
+        input_: capo_mediastore.types.delete_metric_policy_input.DeleteMetricPolicyInput = {
+            "container_name": container_name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_container(
@@ -481,7 +495,7 @@ class AsyncMediaStoreClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mediastore.types.describe_container_input.DescribeContainerInput = {}  # type: ignore[typeddict-item]
+        input_: capo_mediastore.types.describe_container_input.DescribeContainerInput = {}
         if container_name is not None:
             input_["container_name"] = container_name
 
@@ -490,6 +504,7 @@ class AsyncMediaStoreClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_container_policy(
@@ -527,14 +542,16 @@ class AsyncMediaStoreClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mediastore.types.get_container_policy_input.GetContainerPolicyInput = {}  # type: ignore[typeddict-item]
-        input_["container_name"] = container_name
+        input_: capo_mediastore.types.get_container_policy_input.GetContainerPolicyInput = {
+            "container_name": container_name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_cors_policy(
@@ -572,14 +589,16 @@ class AsyncMediaStoreClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mediastore.types.get_cors_policy_input.GetCorsPolicyInput = {}  # type: ignore[typeddict-item]
-        input_["container_name"] = container_name
+        input_: capo_mediastore.types.get_cors_policy_input.GetCorsPolicyInput = {
+            "container_name": container_name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_lifecycle_policy(
@@ -617,14 +636,16 @@ class AsyncMediaStoreClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mediastore.types.get_lifecycle_policy_input.GetLifecyclePolicyInput = {}  # type: ignore[typeddict-item]
-        input_["container_name"] = container_name
+        input_: capo_mediastore.types.get_lifecycle_policy_input.GetLifecyclePolicyInput = {
+            "container_name": container_name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_metric_policy(
@@ -662,14 +683,16 @@ class AsyncMediaStoreClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mediastore.types.get_metric_policy_input.GetMetricPolicyInput = {}  # type: ignore[typeddict-item]
-        input_["container_name"] = container_name
+        input_: capo_mediastore.types.get_metric_policy_input.GetMetricPolicyInput = {
+            "container_name": container_name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_containers(
@@ -710,7 +733,7 @@ class AsyncMediaStoreClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mediastore.types.list_containers_input.ListContainersInput = {}  # type: ignore[typeddict-item]
+        input_: capo_mediastore.types.list_containers_input.ListContainersInput = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -721,7 +744,31 @@ class AsyncMediaStoreClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_containers(
+        self,
+        *,
+        config_overrides: Optional[AsyncMediaStoreClientConfig] = None,
+        next_token: Optional[
+            "capo_mediastore.types.pagination_token.PaginationToken"
+        ] = None,
+        max_results: Optional[
+            "capo_mediastore.types.container_list_limit.ContainerListLimit"
+        ] = None,
+    ) -> "AsyncIterator[capo_mediastore.types.list_containers_output.ListContainersOutput]":
+        _token = next_token
+        while True:
+            _response = await self.list_containers(
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_tags_for_resource(
         self,
@@ -759,14 +806,16 @@ class AsyncMediaStoreClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mediastore.types.list_tags_for_resource_input.ListTagsForResourceInput = {}  # type: ignore[typeddict-item]
-        input_["resource"] = resource
+        input_: capo_mediastore.types.list_tags_for_resource_input.ListTagsForResourceInput = {
+            "resource": resource
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def put_container_policy(
@@ -805,15 +854,17 @@ class AsyncMediaStoreClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mediastore.types.put_container_policy_input.PutContainerPolicyInput = {}  # type: ignore[typeddict-item]
-        input_["container_name"] = container_name
-        input_["policy"] = policy
+        input_: capo_mediastore.types.put_container_policy_input.PutContainerPolicyInput = {
+            "container_name": container_name,
+            "policy": policy,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def put_cors_policy(
@@ -852,15 +903,17 @@ class AsyncMediaStoreClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mediastore.types.put_cors_policy_input.PutCorsPolicyInput = {}  # type: ignore[typeddict-item]
-        input_["container_name"] = container_name
-        input_["cors_policy"] = cors_policy
+        input_: capo_mediastore.types.put_cors_policy_input.PutCorsPolicyInput = {
+            "container_name": container_name,
+            "cors_policy": cors_policy,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def put_lifecycle_policy(
@@ -899,15 +952,17 @@ class AsyncMediaStoreClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mediastore.types.put_lifecycle_policy_input.PutLifecyclePolicyInput = {}  # type: ignore[typeddict-item]
-        input_["container_name"] = container_name
-        input_["lifecycle_policy"] = lifecycle_policy
+        input_: capo_mediastore.types.put_lifecycle_policy_input.PutLifecyclePolicyInput = {
+            "container_name": container_name,
+            "lifecycle_policy": lifecycle_policy,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def put_metric_policy(
@@ -946,15 +1001,17 @@ class AsyncMediaStoreClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mediastore.types.put_metric_policy_input.PutMetricPolicyInput = {}  # type: ignore[typeddict-item]
-        input_["container_name"] = container_name
-        input_["metric_policy"] = metric_policy
+        input_: capo_mediastore.types.put_metric_policy_input.PutMetricPolicyInput = {
+            "container_name": container_name,
+            "metric_policy": metric_policy,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def start_access_logging(
@@ -991,14 +1048,16 @@ class AsyncMediaStoreClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mediastore.types.start_access_logging_input.StartAccessLoggingInput = {}  # type: ignore[typeddict-item]
-        input_["container_name"] = container_name
+        input_: capo_mediastore.types.start_access_logging_input.StartAccessLoggingInput = {
+            "container_name": container_name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def stop_access_logging(
@@ -1035,14 +1094,16 @@ class AsyncMediaStoreClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mediastore.types.stop_access_logging_input.StopAccessLoggingInput = {}  # type: ignore[typeddict-item]
-        input_["container_name"] = container_name
+        input_: capo_mediastore.types.stop_access_logging_input.StopAccessLoggingInput = {
+            "container_name": container_name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def tag_resource(
@@ -1081,15 +1142,17 @@ class AsyncMediaStoreClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mediastore.types.tag_resource_input.TagResourceInput = {}  # type: ignore[typeddict-item]
-        input_["resource"] = resource
-        input_["tags"] = tags
+        input_: capo_mediastore.types.tag_resource_input.TagResourceInput = {
+            "resource": resource,
+            "tags": tags,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def untag_resource(
@@ -1128,15 +1191,17 @@ class AsyncMediaStoreClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mediastore.types.untag_resource_input.UntagResourceInput = {}  # type: ignore[typeddict-item]
-        input_["resource"] = resource
-        input_["tag_keys"] = tag_keys
+        input_: capo_mediastore.types.untag_resource_input.UntagResourceInput = {
+            "resource": resource,
+            "tag_keys": tag_keys,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def __aenter__(self) -> Self:

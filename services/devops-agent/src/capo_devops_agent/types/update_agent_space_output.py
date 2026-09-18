@@ -27,7 +27,7 @@ def serialize_json(value: UpdateAgentSpaceOutput) -> dict:
 
 def deserialize_json(data: dict) -> UpdateAgentSpaceOutput:
     out: UpdateAgentSpaceOutput = {}  # type: ignore[typeddict-item]
-    if "agentSpace" in data:
+    if data.get("agentSpace") is not None:
         import capo_devops_agent.types.agent_space
 
         out["agent_space"] = capo_devops_agent.types.agent_space.deserialize_json(

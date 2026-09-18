@@ -55,9 +55,9 @@ def serialize_aws_json_1_1(value: ComprehendMedicalAsyncJobFilter) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ComprehendMedicalAsyncJobFilter:
     out: ComprehendMedicalAsyncJobFilter = {}  # type: ignore[typeddict-item]
-    if "JobName" in data:
+    if data.get("JobName") is not None:
         out["job_name"] = data["JobName"]
-    if "JobStatus" in data:
+    if data.get("JobStatus") is not None:
         import capo_comprehendmedical.types.job_status
 
         out["job_status"] = (
@@ -65,7 +65,7 @@ def deserialize_aws_json_1_1(data: dict) -> ComprehendMedicalAsyncJobFilter:
                 data["JobStatus"]
             )
         )
-    if "SubmitTimeBefore" in data:
+    if data.get("SubmitTimeBefore") is not None:
         import capo_comprehendmedical.types.timestamp
 
         out["submit_time_before"] = (
@@ -73,7 +73,7 @@ def deserialize_aws_json_1_1(data: dict) -> ComprehendMedicalAsyncJobFilter:
                 data["SubmitTimeBefore"]
             )
         )
-    if "SubmitTimeAfter" in data:
+    if data.get("SubmitTimeAfter") is not None:
         import capo_comprehendmedical.types.timestamp
 
         out["submit_time_after"] = (

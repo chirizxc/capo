@@ -33,7 +33,7 @@ def serialize_aws_json_1_0(value: ListBillingViewsResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ListBillingViewsResponse:
     out: ListBillingViewsResponse = {}  # type: ignore[typeddict-item]
-    if "billingViews" in data:
+    if data.get("billingViews") is not None:
         import capo_billing.types.billing_view_list
 
         out["billing_views"] = (
@@ -43,6 +43,6 @@ def deserialize_aws_json_1_0(data: dict) -> ListBillingViewsResponse:
         )
     else:
         raise DeserializationError("ListBillingViewsResponse.billing_views required")
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

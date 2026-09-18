@@ -76,7 +76,7 @@ def serialize_json(value: AssignedSessionActionDefinition) -> dict:
 
 
 def deserialize_json(data: dict) -> AssignedSessionActionDefinition:
-    if "envEnter" in data:
+    if data.get("envEnter") is not None:
         import capo_deadline.types.assigned_environment_enter_session_action_definition
 
         return {
@@ -84,7 +84,7 @@ def deserialize_json(data: dict) -> AssignedSessionActionDefinition:
                 data["envEnter"]
             )
         }
-    elif "envExit" in data:
+    elif data.get("envExit") is not None:
         import capo_deadline.types.assigned_environment_exit_session_action_definition
 
         return {
@@ -92,7 +92,7 @@ def deserialize_json(data: dict) -> AssignedSessionActionDefinition:
                 data["envExit"]
             )
         }
-    elif "taskRun" in data:
+    elif data.get("taskRun") is not None:
         import capo_deadline.types.assigned_task_run_session_action_definition
 
         return {
@@ -100,7 +100,7 @@ def deserialize_json(data: dict) -> AssignedSessionActionDefinition:
                 data["taskRun"]
             )
         }
-    elif "syncInputJobAttachments" in data:
+    elif data.get("syncInputJobAttachments") is not None:
         import capo_deadline.types.assigned_sync_input_job_attachments_session_action_definition
 
         return {

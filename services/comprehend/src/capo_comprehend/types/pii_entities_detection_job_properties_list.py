@@ -29,6 +29,8 @@ def deserialize_aws_json_1_1(data: list) -> PiiEntitiesDetectionJobPropertiesLis
 
     out: PiiEntitiesDetectionJobPropertiesList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_comprehend.types.pii_entities_detection_job_properties.deserialize_aws_json_1_1(
                 item

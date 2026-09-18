@@ -27,11 +27,11 @@ def serialize_json(value: QueueInfo) -> dict:
 
 def deserialize_json(data: dict) -> QueueInfo:
     out: QueueInfo = {}  # type: ignore[typeddict-item]
-    if "WaitingOnIngestion" in data:
+    if data.get("WaitingOnIngestion") is not None:
         out["waiting_on_ingestion"] = data["WaitingOnIngestion"]
     else:
         raise DeserializationError("QueueInfo.waiting_on_ingestion required")
-    if "QueuedIngestion" in data:
+    if data.get("QueuedIngestion") is not None:
         out["queued_ingestion"] = data["QueuedIngestion"]
     else:
         raise DeserializationError("QueueInfo.queued_ingestion required")

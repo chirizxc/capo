@@ -42,7 +42,7 @@ def serialize_json(value: RowLevelPermissionConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> RowLevelPermissionConfiguration:
     out: RowLevelPermissionConfiguration = {}  # type: ignore[typeddict-item]
-    if "TagConfiguration" in data:
+    if data.get("TagConfiguration") is not None:
         import capo_quicksight.types.row_level_permission_tag_configuration
 
         out["tag_configuration"] = (
@@ -50,7 +50,7 @@ def deserialize_json(data: dict) -> RowLevelPermissionConfiguration:
                 data["TagConfiguration"]
             )
         )
-    if "RowLevelPermissionDataSet" in data:
+    if data.get("RowLevelPermissionDataSet") is not None:
         import capo_quicksight.types.row_level_permission_data_set
 
         out["row_level_permission_data_set"] = (

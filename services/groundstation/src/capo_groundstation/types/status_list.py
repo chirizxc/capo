@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> StatusList:
 
     out: StatusList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_groundstation.types.contact_status.deserialize_json(item))
     return out

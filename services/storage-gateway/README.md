@@ -13,9 +13,9 @@ from capo_storage_gateway import AsyncStorageGatewayClient
 
 
 async def main():
-    async with AsyncStorageGatewayClient() as s3:
+    async with AsyncStorageGatewayClient() as storage_gateway:
         # Example: call the activate_gateway operation
-        response = await s3.activate_gateway()
+        response = await storage_gateway.activate_gateway()
         print(response["gateway_arn"])
 ```
 
@@ -28,9 +28,9 @@ from capo_storage_gateway import AsyncStorageGatewayClient
 
 
 async def main():
-    async with AsyncStorageGatewayClient() as s3:
+    async with AsyncStorageGatewayClient() as storage_gateway:
         # Example: paginate over describe_tape_archives
-        async for item in s3.iter_describe_tape_archives():
+        async for item in storage_gateway.iter_describe_tape_archives():
             print(item)
 ```
 
@@ -44,9 +44,9 @@ from capo_storage_gateway.error import InternalServerError
 
 
 async def main():
-    async with AsyncStorageGatewayClient() as s3:
+    async with AsyncStorageGatewayClient() as storage_gateway:
         try:
-            await s3.activate_gateway()
+            await storage_gateway.activate_gateway()
         except InternalServerError as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -63,13 +63,13 @@ from capo_storage_gateway import AsyncStorageGatewayClient
 
 
 async def main():
-    async with AsyncStorageGatewayClient() as s3:
+    async with AsyncStorageGatewayClient() as storage_gateway:
         # Default: 3 attempts for every operation
-        response = await s3.activate_gateway()
+        response = await storage_gateway.activate_gateway()
 
         # Override per operation
-        response = await s3.activate_gateway(config_overrides={"retry_max_attempts": 5})
+        response = await storage_gateway.activate_gateway(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.activate_gateway(config_overrides={"retry_max_attempts": 1})
+        response = await storage_gateway.activate_gateway(config_overrides={"retry_max_attempts": 1})
 ```

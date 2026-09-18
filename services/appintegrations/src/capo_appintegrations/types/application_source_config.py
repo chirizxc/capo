@@ -31,7 +31,7 @@ def serialize_json(value: ApplicationSourceConfig) -> dict:
 
 def deserialize_json(data: dict) -> ApplicationSourceConfig:
     out: ApplicationSourceConfig = {}  # type: ignore[typeddict-item]
-    if "ExternalUrlConfig" in data:
+    if data.get("ExternalUrlConfig") is not None:
         import capo_appintegrations.types.external_url_config
 
         out["external_url_config"] = (

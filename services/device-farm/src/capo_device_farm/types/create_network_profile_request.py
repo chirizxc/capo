@@ -76,17 +76,17 @@ def serialize_aws_json_1_1(value: CreateNetworkProfileRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateNetworkProfileRequest:
     out: CreateNetworkProfileRequest = {}  # type: ignore[typeddict-item]
-    if "projectArn" in data:
+    if data.get("projectArn") is not None:
         out["project_arn"] = data["projectArn"]
     else:
         raise DeserializationError("CreateNetworkProfileRequest.project_arn required")
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("CreateNetworkProfileRequest.name required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_device_farm.types.network_profile_type
 
         out["type"] = (
@@ -94,23 +94,23 @@ def deserialize_aws_json_1_1(data: dict) -> CreateNetworkProfileRequest:
                 data["type"]
             )
         )
-    if "uplinkBandwidthBits" in data:
+    if data.get("uplinkBandwidthBits") is not None:
         out["uplink_bandwidth_bits"] = data["uplinkBandwidthBits"]
-    if "downlinkBandwidthBits" in data:
+    if data.get("downlinkBandwidthBits") is not None:
         out["downlink_bandwidth_bits"] = data["downlinkBandwidthBits"]
-    if "uplinkDelayMs" in data:
+    if data.get("uplinkDelayMs") is not None:
         out["uplink_delay_ms"] = data["uplinkDelayMs"]
-    if "downlinkDelayMs" in data:
+    if data.get("downlinkDelayMs") is not None:
         out["downlink_delay_ms"] = data["downlinkDelayMs"]
-    if "uplinkJitterMs" in data:
+    if data.get("uplinkJitterMs") is not None:
         out["uplink_jitter_ms"] = data["uplinkJitterMs"]
-    if "downlinkJitterMs" in data:
+    if data.get("downlinkJitterMs") is not None:
         out["downlink_jitter_ms"] = data["downlinkJitterMs"]
-    if "uplinkLossPercent" in data:
+    if data.get("uplinkLossPercent") is not None:
         out["uplink_loss_percent"] = data["uplinkLossPercent"]
     else:
         out["uplink_loss_percent"] = 0
-    if "downlinkLossPercent" in data:
+    if data.get("downlinkLossPercent") is not None:
         out["downlink_loss_percent"] = data["downlinkLossPercent"]
     else:
         out["downlink_loss_percent"] = 0

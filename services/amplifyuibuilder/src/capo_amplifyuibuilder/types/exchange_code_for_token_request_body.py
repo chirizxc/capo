@@ -33,16 +33,16 @@ def serialize_json(value: ExchangeCodeForTokenRequestBody) -> dict:
 
 def deserialize_json(data: dict) -> ExchangeCodeForTokenRequestBody:
     out: ExchangeCodeForTokenRequestBody = {}  # type: ignore[typeddict-item]
-    if "code" in data:
+    if data.get("code") is not None:
         out["code"] = data["code"]
     else:
         raise DeserializationError("ExchangeCodeForTokenRequestBody.code required")
-    if "redirectUri" in data:
+    if data.get("redirectUri") is not None:
         out["redirect_uri"] = data["redirectUri"]
     else:
         raise DeserializationError(
             "ExchangeCodeForTokenRequestBody.redirect_uri required"
         )
-    if "clientId" in data:
+    if data.get("clientId") is not None:
         out["client_id"] = data["clientId"]
     return out

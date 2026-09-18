@@ -32,10 +32,10 @@ def serialize_json(value: NodegroupScalingConfig) -> dict:
 
 def deserialize_json(data: dict) -> NodegroupScalingConfig:
     out: NodegroupScalingConfig = {}  # type: ignore[typeddict-item]
-    if "minSize" in data:
+    if data.get("minSize") is not None:
         out["min_size"] = data["minSize"]
-    if "maxSize" in data:
+    if data.get("maxSize") is not None:
         out["max_size"] = data["maxSize"]
-    if "desiredSize" in data:
+    if data.get("desiredSize") is not None:
         out["desired_size"] = data["desiredSize"]
     return out

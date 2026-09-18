@@ -44,7 +44,7 @@ def serialize_aws_json_1_1(value: ServiceStatus) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ServiceStatus:
     out: ServiceStatus = {}  # type: ignore[typeddict-item]
-    if "CrossAccountDiscovery" in data:
+    if data.get("CrossAccountDiscovery") is not None:
         import capo_license_manager.types.cross_account_discovery_service_status
 
         out["cross_account_discovery"] = (
@@ -52,7 +52,7 @@ def deserialize_aws_json_1_1(data: dict) -> ServiceStatus:
                 data["CrossAccountDiscovery"]
             )
         )
-    if "CrossRegionDiscovery" in data:
+    if data.get("CrossRegionDiscovery") is not None:
         import capo_license_manager.types.cross_region_discovery_status
 
         out["cross_region_discovery"] = (

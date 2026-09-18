@@ -34,7 +34,7 @@ def serialize_json(value: UpdateReputationEntityPolicyRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateReputationEntityPolicyRequest:
     out: UpdateReputationEntityPolicyRequest = {}  # type: ignore[typeddict-item]
-    if "ReputationEntityPolicy" in data:
+    if data.get("ReputationEntityPolicy") is not None:
         out["reputation_entity_policy"] = data["ReputationEntityPolicy"]
     else:
         raise DeserializationError(

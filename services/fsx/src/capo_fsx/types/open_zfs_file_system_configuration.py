@@ -132,15 +132,15 @@ def serialize_aws_json_1_1(value: OpenZFSFileSystemConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> OpenZFSFileSystemConfiguration:
     out: OpenZFSFileSystemConfiguration = {}  # type: ignore[typeddict-item]
-    if "AutomaticBackupRetentionDays" in data:
+    if data.get("AutomaticBackupRetentionDays") is not None:
         out["automatic_backup_retention_days"] = data["AutomaticBackupRetentionDays"]
-    if "CopyTagsToBackups" in data:
+    if data.get("CopyTagsToBackups") is not None:
         out["copy_tags_to_backups"] = data["CopyTagsToBackups"]
-    if "CopyTagsToVolumes" in data:
+    if data.get("CopyTagsToVolumes") is not None:
         out["copy_tags_to_volumes"] = data["CopyTagsToVolumes"]
-    if "DailyAutomaticBackupStartTime" in data:
+    if data.get("DailyAutomaticBackupStartTime") is not None:
         out["daily_automatic_backup_start_time"] = data["DailyAutomaticBackupStartTime"]
-    if "DeploymentType" in data:
+    if data.get("DeploymentType") is not None:
         import capo_fsx.types.open_zfs_deployment_type
 
         out["deployment_type"] = (
@@ -148,11 +148,11 @@ def deserialize_aws_json_1_1(data: dict) -> OpenZFSFileSystemConfiguration:
                 data["DeploymentType"]
             )
         )
-    if "ThroughputCapacity" in data:
+    if data.get("ThroughputCapacity") is not None:
         out["throughput_capacity"] = data["ThroughputCapacity"]
-    if "WeeklyMaintenanceStartTime" in data:
+    if data.get("WeeklyMaintenanceStartTime") is not None:
         out["weekly_maintenance_start_time"] = data["WeeklyMaintenanceStartTime"]
-    if "DiskIopsConfiguration" in data:
+    if data.get("DiskIopsConfiguration") is not None:
         import capo_fsx.types.disk_iops_configuration
 
         out["disk_iops_configuration"] = (
@@ -160,15 +160,15 @@ def deserialize_aws_json_1_1(data: dict) -> OpenZFSFileSystemConfiguration:
                 data["DiskIopsConfiguration"]
             )
         )
-    if "RootVolumeId" in data:
+    if data.get("RootVolumeId") is not None:
         out["root_volume_id"] = data["RootVolumeId"]
-    if "PreferredSubnetId" in data:
+    if data.get("PreferredSubnetId") is not None:
         out["preferred_subnet_id"] = data["PreferredSubnetId"]
-    if "EndpointIpAddressRange" in data:
+    if data.get("EndpointIpAddressRange") is not None:
         out["endpoint_ip_address_range"] = data["EndpointIpAddressRange"]
-    if "EndpointIpv6AddressRange" in data:
+    if data.get("EndpointIpv6AddressRange") is not None:
         out["endpoint_ipv6_address_range"] = data["EndpointIpv6AddressRange"]
-    if "RouteTableIds" in data:
+    if data.get("RouteTableIds") is not None:
         import capo_fsx.types.route_table_ids
 
         out["route_table_ids"] = (
@@ -176,11 +176,11 @@ def deserialize_aws_json_1_1(data: dict) -> OpenZFSFileSystemConfiguration:
                 data["RouteTableIds"]
             )
         )
-    if "EndpointIpAddress" in data:
+    if data.get("EndpointIpAddress") is not None:
         out["endpoint_ip_address"] = data["EndpointIpAddress"]
-    if "EndpointIpv6Address" in data:
+    if data.get("EndpointIpv6Address") is not None:
         out["endpoint_ipv6_address"] = data["EndpointIpv6Address"]
-    if "ReadCacheConfiguration" in data:
+    if data.get("ReadCacheConfiguration") is not None:
         import capo_fsx.types.open_zfs_read_cache_configuration
 
         out["read_cache_configuration"] = (

@@ -134,23 +134,23 @@ def serialize_aws_json_1_1(value: GetEventPredictionMetadataResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetEventPredictionMetadataResult:
     out: GetEventPredictionMetadataResult = {}  # type: ignore[typeddict-item]
-    if "eventId" in data:
+    if data.get("eventId") is not None:
         out["event_id"] = data["eventId"]
-    if "eventTypeName" in data:
+    if data.get("eventTypeName") is not None:
         out["event_type_name"] = data["eventTypeName"]
-    if "entityId" in data:
+    if data.get("entityId") is not None:
         out["entity_id"] = data["entityId"]
-    if "entityType" in data:
+    if data.get("entityType") is not None:
         out["entity_type"] = data["entityType"]
-    if "eventTimestamp" in data:
+    if data.get("eventTimestamp") is not None:
         out["event_timestamp"] = data["eventTimestamp"]
-    if "detectorId" in data:
+    if data.get("detectorId") is not None:
         out["detector_id"] = data["detectorId"]
-    if "detectorVersionId" in data:
+    if data.get("detectorVersionId") is not None:
         out["detector_version_id"] = data["detectorVersionId"]
-    if "detectorVersionStatus" in data:
+    if data.get("detectorVersionStatus") is not None:
         out["detector_version_status"] = data["detectorVersionStatus"]
-    if "eventVariables" in data:
+    if data.get("eventVariables") is not None:
         import capo_frauddetector.types.list_of_event_variable_summaries
 
         out["event_variables"] = (
@@ -158,7 +158,7 @@ def deserialize_aws_json_1_1(data: dict) -> GetEventPredictionMetadataResult:
                 data["eventVariables"]
             )
         )
-    if "rules" in data:
+    if data.get("rules") is not None:
         import capo_frauddetector.types.evaluated_rule_list
 
         out["rules"] = (
@@ -166,7 +166,7 @@ def deserialize_aws_json_1_1(data: dict) -> GetEventPredictionMetadataResult:
                 data["rules"]
             )
         )
-    if "ruleExecutionMode" in data:
+    if data.get("ruleExecutionMode") is not None:
         import capo_frauddetector.types.rule_execution_mode
 
         out["rule_execution_mode"] = (
@@ -174,7 +174,7 @@ def deserialize_aws_json_1_1(data: dict) -> GetEventPredictionMetadataResult:
                 data["ruleExecutionMode"]
             )
         )
-    if "outcomes" in data:
+    if data.get("outcomes") is not None:
         import capo_frauddetector.types.list_of_strings
 
         out["outcomes"] = (
@@ -182,7 +182,7 @@ def deserialize_aws_json_1_1(data: dict) -> GetEventPredictionMetadataResult:
                 data["outcomes"]
             )
         )
-    if "evaluatedModelVersions" in data:
+    if data.get("evaluatedModelVersions") is not None:
         import capo_frauddetector.types.list_of_evaluated_model_versions
 
         out["evaluated_model_versions"] = (
@@ -190,7 +190,7 @@ def deserialize_aws_json_1_1(data: dict) -> GetEventPredictionMetadataResult:
                 data["evaluatedModelVersions"]
             )
         )
-    if "evaluatedExternalModels" in data:
+    if data.get("evaluatedExternalModels") is not None:
         import capo_frauddetector.types.list_of_evaluated_external_models
 
         out["evaluated_external_models"] = (
@@ -198,6 +198,6 @@ def deserialize_aws_json_1_1(data: dict) -> GetEventPredictionMetadataResult:
                 data["evaluatedExternalModels"]
             )
         )
-    if "predictionTimestamp" in data:
+    if data.get("predictionTimestamp") is not None:
         out["prediction_timestamp"] = data["predictionTimestamp"]
     return out

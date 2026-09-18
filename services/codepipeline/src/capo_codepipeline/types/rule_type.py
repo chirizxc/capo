@@ -59,7 +59,7 @@ def serialize_aws_json_1_1(value: RuleType) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RuleType:
     out: RuleType = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         import capo_codepipeline.types.rule_type_id
 
         out["id"] = capo_codepipeline.types.rule_type_id.deserialize_aws_json_1_1(
@@ -67,7 +67,7 @@ def deserialize_aws_json_1_1(data: dict) -> RuleType:
         )
     else:
         raise DeserializationError("RuleType.id required")
-    if "settings" in data:
+    if data.get("settings") is not None:
         import capo_codepipeline.types.rule_type_settings
 
         out["settings"] = (
@@ -75,7 +75,7 @@ def deserialize_aws_json_1_1(data: dict) -> RuleType:
                 data["settings"]
             )
         )
-    if "ruleConfigurationProperties" in data:
+    if data.get("ruleConfigurationProperties") is not None:
         import capo_codepipeline.types.rule_configuration_property_list
 
         out["rule_configuration_properties"] = (
@@ -83,7 +83,7 @@ def deserialize_aws_json_1_1(data: dict) -> RuleType:
                 data["ruleConfigurationProperties"]
             )
         )
-    if "inputArtifactDetails" in data:
+    if data.get("inputArtifactDetails") is not None:
         import capo_codepipeline.types.artifact_details
 
         out["input_artifact_details"] = (

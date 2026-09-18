@@ -42,14 +42,14 @@ def serialize_aws_json_1_1(value: OAuth2Credentials) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> OAuth2Credentials:
     out: OAuth2Credentials = {}  # type: ignore[typeddict-item]
-    if "UserManagedClientApplicationClientSecret" in data:
+    if data.get("UserManagedClientApplicationClientSecret") is not None:
         out["user_managed_client_application_client_secret"] = data[
             "UserManagedClientApplicationClientSecret"
         ]
-    if "AccessToken" in data:
+    if data.get("AccessToken") is not None:
         out["access_token"] = data["AccessToken"]
-    if "RefreshToken" in data:
+    if data.get("RefreshToken") is not None:
         out["refresh_token"] = data["RefreshToken"]
-    if "JwtToken" in data:
+    if data.get("JwtToken") is not None:
         out["jwt_token"] = data["JwtToken"]
     return out

@@ -37,9 +37,9 @@ def serialize_aws_json_1_1(value: RuleExecutionFilter) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RuleExecutionFilter:
     out: RuleExecutionFilter = {}  # type: ignore[typeddict-item]
-    if "pipelineExecutionId" in data:
+    if data.get("pipelineExecutionId") is not None:
         out["pipeline_execution_id"] = data["pipelineExecutionId"]
-    if "latestInPipelineExecution" in data:
+    if data.get("latestInPipelineExecution") is not None:
         import capo_codepipeline.types.latest_in_pipeline_execution_filter
 
         out["latest_in_pipeline_execution"] = (

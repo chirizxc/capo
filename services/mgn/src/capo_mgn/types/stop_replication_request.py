@@ -29,10 +29,10 @@ def serialize_json(value: StopReplicationRequest) -> dict:
 
 def deserialize_json(data: dict) -> StopReplicationRequest:
     out: StopReplicationRequest = {}  # type: ignore[typeddict-item]
-    if "sourceServerID" in data:
+    if data.get("sourceServerID") is not None:
         out["source_server_id"] = data["sourceServerID"]
     else:
         raise DeserializationError("StopReplicationRequest.source_server_id required")
-    if "accountID" in data:
+    if data.get("accountID") is not None:
         out["account_id"] = data["accountID"]
     return out

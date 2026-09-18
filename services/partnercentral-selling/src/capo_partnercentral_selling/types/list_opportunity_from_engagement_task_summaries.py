@@ -29,6 +29,8 @@ def deserialize_aws_json_1_0(data: list) -> ListOpportunityFromEngagementTaskSum
 
     out: ListOpportunityFromEngagementTaskSummaries = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_partnercentral_selling.types.list_opportunity_from_engagement_task_summary.deserialize_aws_json_1_0(
                 item

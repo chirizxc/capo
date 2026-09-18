@@ -14,4 +14,4 @@ def serialize_aws_json_1_0(value: SensitiveStringList) -> list:
 
 
 def deserialize_aws_json_1_0(data: list) -> SensitiveStringList:
-    return list(data)
+    return [item for item in data if item is not None]

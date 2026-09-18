@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> LongValuedMapList:
 
     out: LongValuedMapList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_neptunedata.types.long_valued_map.deserialize_json(item))
     return out

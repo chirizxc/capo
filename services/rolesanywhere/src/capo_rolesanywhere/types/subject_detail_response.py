@@ -27,7 +27,7 @@ def serialize_json(value: SubjectDetailResponse) -> dict:
 
 def deserialize_json(data: dict) -> SubjectDetailResponse:
     out: SubjectDetailResponse = {}  # type: ignore[typeddict-item]
-    if "subject" in data:
+    if data.get("subject") is not None:
         import capo_rolesanywhere.types.subject_detail
 
         out["subject"] = capo_rolesanywhere.types.subject_detail.deserialize_json(

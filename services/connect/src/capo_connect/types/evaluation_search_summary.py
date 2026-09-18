@@ -88,25 +88,25 @@ def serialize_json(value: EvaluationSearchSummary) -> dict:
 
 def deserialize_json(data: dict) -> EvaluationSearchSummary:
     out: EvaluationSearchSummary = {}  # type: ignore[typeddict-item]
-    if "EvaluationId" in data:
+    if data.get("EvaluationId") is not None:
         out["evaluation_id"] = data["EvaluationId"]
     else:
         raise DeserializationError("EvaluationSearchSummary.evaluation_id required")
-    if "EvaluationArn" in data:
+    if data.get("EvaluationArn") is not None:
         out["evaluation_arn"] = data["EvaluationArn"]
     else:
         raise DeserializationError("EvaluationSearchSummary.evaluation_arn required")
-    if "EvaluationFormId" in data:
+    if data.get("EvaluationFormId") is not None:
         out["evaluation_form_id"] = data["EvaluationFormId"]
-    if "EvaluationFormVersion" in data:
+    if data.get("EvaluationFormVersion") is not None:
         out["evaluation_form_version"] = data["EvaluationFormVersion"]
     else:
         raise DeserializationError(
             "EvaluationSearchSummary.evaluation_form_version required"
         )
-    if "EvaluationFormTitle" in data:
+    if data.get("EvaluationFormTitle") is not None:
         out["evaluation_form_title"] = data["EvaluationFormTitle"]
-    if "Metadata" in data:
+    if data.get("Metadata") is not None:
         import capo_connect.types.evaluation_search_metadata
 
         out["metadata"] = (
@@ -116,7 +116,7 @@ def deserialize_json(data: dict) -> EvaluationSearchSummary:
         )
     else:
         raise DeserializationError("EvaluationSearchSummary.metadata required")
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_connect.types.evaluation_status
 
         out["status"] = capo_connect.types.evaluation_status.deserialize_json(
@@ -124,13 +124,13 @@ def deserialize_json(data: dict) -> EvaluationSearchSummary:
         )
     else:
         raise DeserializationError("EvaluationSearchSummary.status required")
-    if "EvaluationType" in data:
+    if data.get("EvaluationType") is not None:
         import capo_connect.types.evaluation_type
 
         out["evaluation_type"] = capo_connect.types.evaluation_type.deserialize_json(
             data["EvaluationType"]
         )
-    if "CreatedTime" in data:
+    if data.get("CreatedTime") is not None:
         import capo_connect.types.timestamp
 
         out["created_time"] = capo_connect.types.timestamp.deserialize_json(
@@ -138,7 +138,7 @@ def deserialize_json(data: dict) -> EvaluationSearchSummary:
         )
     else:
         raise DeserializationError("EvaluationSearchSummary.created_time required")
-    if "LastModifiedTime" in data:
+    if data.get("LastModifiedTime") is not None:
         import capo_connect.types.timestamp
 
         out["last_modified_time"] = capo_connect.types.timestamp.deserialize_json(
@@ -148,7 +148,7 @@ def deserialize_json(data: dict) -> EvaluationSearchSummary:
         raise DeserializationError(
             "EvaluationSearchSummary.last_modified_time required"
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_connect.types.tag_map
 
         out["tags"] = capo_connect.types.tag_map.deserialize_json(data["Tags"])

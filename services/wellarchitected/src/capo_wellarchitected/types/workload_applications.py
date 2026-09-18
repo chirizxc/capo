@@ -16,4 +16,4 @@ def serialize_json(value: WorkloadApplications) -> list:
 
 
 def deserialize_json(data: list) -> WorkloadApplications:
-    return list(data)
+    return [item for item in data if item is not None]

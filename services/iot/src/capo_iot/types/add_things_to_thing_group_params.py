@@ -35,7 +35,7 @@ def serialize_json(value: AddThingsToThingGroupParams) -> dict:
 
 def deserialize_json(data: dict) -> AddThingsToThingGroupParams:
     out: AddThingsToThingGroupParams = {}  # type: ignore[typeddict-item]
-    if "thingGroupNames" in data:
+    if data.get("thingGroupNames") is not None:
         import capo_iot.types.thing_group_names
 
         out["thing_group_names"] = capo_iot.types.thing_group_names.deserialize_json(
@@ -45,6 +45,6 @@ def deserialize_json(data: dict) -> AddThingsToThingGroupParams:
         raise DeserializationError(
             "AddThingsToThingGroupParams.thing_group_names required"
         )
-    if "overrideDynamicGroups" in data:
+    if data.get("overrideDynamicGroups") is not None:
         out["override_dynamic_groups"] = data["overrideDynamicGroups"]
     return out

@@ -38,7 +38,7 @@ def serialize_json(value: ListWorkflowRunsRequest) -> dict:
 
 def deserialize_json(data: dict) -> ListWorkflowRunsRequest:
     out: ListWorkflowRunsRequest = {}  # type: ignore[typeddict-item]
-    if "sortOrder" in data:
+    if data.get("sortOrder") is not None:
         import capo_nova_act.types.sort_order
 
         out["sort_order"] = capo_nova_act.types.sort_order.deserialize_json(

@@ -57,13 +57,13 @@ def serialize_json(value: CanaryRunConfigInput) -> dict:
 
 def deserialize_json(data: dict) -> CanaryRunConfigInput:
     out: CanaryRunConfigInput = {}  # type: ignore[typeddict-item]
-    if "TimeoutInSeconds" in data:
+    if data.get("TimeoutInSeconds") is not None:
         out["timeout_in_seconds"] = data["TimeoutInSeconds"]
-    if "MemoryInMB" in data:
+    if data.get("MemoryInMB") is not None:
         out["memory_in_mb"] = data["MemoryInMB"]
-    if "ActiveTracing" in data:
+    if data.get("ActiveTracing") is not None:
         out["active_tracing"] = data["ActiveTracing"]
-    if "EnvironmentVariables" in data:
+    if data.get("EnvironmentVariables") is not None:
         import capo_synthetics.types.environment_variables_map
 
         out["environment_variables"] = (
@@ -71,6 +71,6 @@ def deserialize_json(data: dict) -> CanaryRunConfigInput:
                 data["EnvironmentVariables"]
             )
         )
-    if "EphemeralStorage" in data:
+    if data.get("EphemeralStorage") is not None:
         out["ephemeral_storage"] = data["EphemeralStorage"]
     return out

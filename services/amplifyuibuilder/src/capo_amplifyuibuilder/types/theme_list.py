@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> ThemeList:
 
     out: ThemeList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_amplifyuibuilder.types.theme.deserialize_json(item))
     return out

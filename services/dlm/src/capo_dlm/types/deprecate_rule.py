@@ -41,11 +41,11 @@ def serialize_json(value: DeprecateRule) -> dict:
 
 def deserialize_json(data: dict) -> DeprecateRule:
     out: DeprecateRule = {}  # type: ignore[typeddict-item]
-    if "Count" in data:
+    if data.get("Count") is not None:
         out["count"] = data["Count"]
-    if "Interval" in data:
+    if data.get("Interval") is not None:
         out["interval"] = data["Interval"]
-    if "IntervalUnit" in data:
+    if data.get("IntervalUnit") is not None:
         import capo_dlm.types.retention_interval_unit_values
 
         out["interval_unit"] = (

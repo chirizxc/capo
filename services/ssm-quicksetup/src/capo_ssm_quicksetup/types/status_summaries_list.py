@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> StatusSummariesList:
 
     out: StatusSummariesList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_ssm_quicksetup.types.status_summary.deserialize_json(item))
     return out

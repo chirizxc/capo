@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> __listOfAudioMonitoringSetting:
 
     out: __listOfAudioMonitoringSetting = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_mediaconnect.types.audio_monitoring_setting.deserialize_json(item)
         )

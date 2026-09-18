@@ -171,25 +171,25 @@ def serialize_json(value: RouteSummary) -> dict:
 
 def deserialize_json(data: dict) -> RouteSummary:
     out: RouteSummary = {}  # type: ignore[typeddict-item]
-    if "RouteId" in data:
+    if data.get("RouteId") is not None:
         out["route_id"] = data["RouteId"]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "OwnerAccountId" in data:
+    if data.get("OwnerAccountId") is not None:
         out["owner_account_id"] = data["OwnerAccountId"]
-    if "CreatedByAccountId" in data:
+    if data.get("CreatedByAccountId") is not None:
         out["created_by_account_id"] = data["CreatedByAccountId"]
-    if "RouteType" in data:
+    if data.get("RouteType") is not None:
         out["route_type"] = data["RouteType"]
-    if "ServiceId" in data:
+    if data.get("ServiceId") is not None:
         out["service_id"] = data["ServiceId"]
-    if "ApplicationId" in data:
+    if data.get("ApplicationId") is not None:
         out["application_id"] = data["ApplicationId"]
-    if "EnvironmentId" in data:
+    if data.get("EnvironmentId") is not None:
         out["environment_id"] = data["EnvironmentId"]
-    if "SourcePath" in data:
+    if data.get("SourcePath") is not None:
         out["source_path"] = data["SourcePath"]
-    if "Methods" in data:
+    if data.get("Methods") is not None:
         import capo_migration_hub_refactor_spaces.types.http_methods
 
         out["methods"] = (
@@ -197,9 +197,9 @@ def deserialize_json(data: dict) -> RouteSummary:
                 data["Methods"]
             )
         )
-    if "IncludeChildPaths" in data:
+    if data.get("IncludeChildPaths") is not None:
         out["include_child_paths"] = data["IncludeChildPaths"]
-    if "PathResourceToId" in data:
+    if data.get("PathResourceToId") is not None:
         import capo_migration_hub_refactor_spaces.types.path_resource_to_id
 
         out["path_resource_to_id"] = (
@@ -207,15 +207,15 @@ def deserialize_json(data: dict) -> RouteSummary:
                 data["PathResourceToId"]
             )
         )
-    if "State" in data:
+    if data.get("State") is not None:
         out["state"] = data["State"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_migration_hub_refactor_spaces.types.tag_map
 
         out["tags"] = capo_migration_hub_refactor_spaces.types.tag_map.deserialize_json(
             data["Tags"]
         )
-    if "Error" in data:
+    if data.get("Error") is not None:
         import capo_migration_hub_refactor_spaces.types.error_response
 
         out["error"] = (
@@ -223,7 +223,7 @@ def deserialize_json(data: dict) -> RouteSummary:
                 data["Error"]
             )
         )
-    if "LastUpdatedTime" in data:
+    if data.get("LastUpdatedTime") is not None:
         import capo_migration_hub_refactor_spaces.types.timestamp
 
         out["last_updated_time"] = (
@@ -231,7 +231,7 @@ def deserialize_json(data: dict) -> RouteSummary:
                 data["LastUpdatedTime"]
             )
         )
-    if "CreatedTime" in data:
+    if data.get("CreatedTime") is not None:
         import capo_migration_hub_refactor_spaces.types.timestamp
 
         out["created_time"] = (
@@ -239,6 +239,6 @@ def deserialize_json(data: dict) -> RouteSummary:
                 data["CreatedTime"]
             )
         )
-    if "AppendSourcePath" in data:
+    if data.get("AppendSourcePath") is not None:
         out["append_source_path"] = data["AppendSourcePath"]
     return out

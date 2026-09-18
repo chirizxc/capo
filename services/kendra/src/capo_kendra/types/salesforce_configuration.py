@@ -109,15 +109,15 @@ def serialize_aws_json_1_1(value: SalesforceConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SalesforceConfiguration:
     out: SalesforceConfiguration = {}  # type: ignore[typeddict-item]
-    if "ServerUrl" in data:
+    if data.get("ServerUrl") is not None:
         out["server_url"] = data["ServerUrl"]
     else:
         raise DeserializationError("SalesforceConfiguration.server_url required")
-    if "SecretArn" in data:
+    if data.get("SecretArn") is not None:
         out["secret_arn"] = data["SecretArn"]
     else:
         raise DeserializationError("SalesforceConfiguration.secret_arn required")
-    if "StandardObjectConfigurations" in data:
+    if data.get("StandardObjectConfigurations") is not None:
         import capo_kendra.types.salesforce_standard_object_configuration_list
 
         out["standard_object_configurations"] = (
@@ -125,7 +125,7 @@ def deserialize_aws_json_1_1(data: dict) -> SalesforceConfiguration:
                 data["StandardObjectConfigurations"]
             )
         )
-    if "KnowledgeArticleConfiguration" in data:
+    if data.get("KnowledgeArticleConfiguration") is not None:
         import capo_kendra.types.salesforce_knowledge_article_configuration
 
         out["knowledge_article_configuration"] = (
@@ -133,7 +133,7 @@ def deserialize_aws_json_1_1(data: dict) -> SalesforceConfiguration:
                 data["KnowledgeArticleConfiguration"]
             )
         )
-    if "ChatterFeedConfiguration" in data:
+    if data.get("ChatterFeedConfiguration") is not None:
         import capo_kendra.types.salesforce_chatter_feed_configuration
 
         out["chatter_feed_configuration"] = (
@@ -141,11 +141,11 @@ def deserialize_aws_json_1_1(data: dict) -> SalesforceConfiguration:
                 data["ChatterFeedConfiguration"]
             )
         )
-    if "CrawlAttachments" in data:
+    if data.get("CrawlAttachments") is not None:
         out["crawl_attachments"] = data["CrawlAttachments"]
     else:
         out["crawl_attachments"] = False
-    if "StandardObjectAttachmentConfiguration" in data:
+    if data.get("StandardObjectAttachmentConfiguration") is not None:
         import capo_kendra.types.salesforce_standard_object_attachment_configuration
 
         out["standard_object_attachment_configuration"] = (
@@ -153,7 +153,7 @@ def deserialize_aws_json_1_1(data: dict) -> SalesforceConfiguration:
                 data["StandardObjectAttachmentConfiguration"]
             )
         )
-    if "IncludeAttachmentFilePatterns" in data:
+    if data.get("IncludeAttachmentFilePatterns") is not None:
         import capo_kendra.types.data_source_inclusions_exclusions_strings
 
         out["include_attachment_file_patterns"] = (
@@ -161,7 +161,7 @@ def deserialize_aws_json_1_1(data: dict) -> SalesforceConfiguration:
                 data["IncludeAttachmentFilePatterns"]
             )
         )
-    if "ExcludeAttachmentFilePatterns" in data:
+    if data.get("ExcludeAttachmentFilePatterns") is not None:
         import capo_kendra.types.data_source_inclusions_exclusions_strings
 
         out["exclude_attachment_file_patterns"] = (

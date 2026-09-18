@@ -22,11 +22,11 @@ def serialize_aws_json_1_0(value: GetDepotUrlResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> GetDepotUrlResponse:
     out: GetDepotUrlResponse = {}  # type: ignore[typeddict-item]
-    if "depotUrl" in data:
+    if data.get("depotUrl") is not None:
         out["depot_url"] = data["depotUrl"]
     else:
         raise DeserializationError("GetDepotUrlResponse.depot_url required")
-    if "token" in data:
+    if data.get("token") is not None:
         out["token"] = data["token"]
     else:
         raise DeserializationError("GetDepotUrlResponse.token required")

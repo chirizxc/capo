@@ -28,7 +28,7 @@ def serialize_json(value: BatchDeleteGeofenceResponse) -> dict:
 
 def deserialize_json(data: dict) -> BatchDeleteGeofenceResponse:
     out: BatchDeleteGeofenceResponse = {}  # type: ignore[typeddict-item]
-    if "Errors" in data:
+    if data.get("Errors") is not None:
         import capo_location.types.batch_delete_geofence_error_list
 
         out["errors"] = (

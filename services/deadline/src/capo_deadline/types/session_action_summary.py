@@ -66,7 +66,15 @@ def serialize_json(value: SessionActionSummary) -> dict:
             value["worker_updated_at"]
         )
     if "progress_percent" in value:
-        out["progressPercent"] = value["progress_percent"]
+        out["progressPercent"] = (
+            "NaN"
+            if value["progress_percent"] != value["progress_percent"]
+            else "Infinity"
+            if value["progress_percent"] == float("inf")
+            else "-Infinity"
+            if value["progress_percent"] == float("-inf")
+            else value["progress_percent"]
+        )
     if "manifests" in value:
         import capo_deadline.types.task_run_manifest_properties_list_response
 
@@ -87,11 +95,11 @@ def serialize_json(value: SessionActionSummary) -> dict:
 
 def deserialize_json(data: dict) -> SessionActionSummary:
     out: SessionActionSummary = {}  # type: ignore[typeddict-item]
-    if "sessionActionId" in data:
+    if data.get("sessionActionId") is not None:
         out["session_action_id"] = data["sessionActionId"]
     else:
         raise DeserializationError("SessionActionSummary.session_action_id required")
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_deadline.types.session_action_status
 
         out["status"] = capo_deadline.types.session_action_status.deserialize_json(
@@ -99,25 +107,25 @@ def deserialize_json(data: dict) -> SessionActionSummary:
         )
     else:
         raise DeserializationError("SessionActionSummary.status required")
-    if "startedAt" in data:
+    if data.get("startedAt") is not None:
         import capo_deadline.types.started_at
 
         out["started_at"] = capo_deadline.types.started_at.deserialize_json(
             data["startedAt"]
         )
-    if "endedAt" in data:
+    if data.get("endedAt") is not None:
         import capo_deadline.types.ended_at
 
         out["ended_at"] = capo_deadline.types.ended_at.deserialize_json(data["endedAt"])
-    if "workerUpdatedAt" in data:
+    if data.get("workerUpdatedAt") is not None:
         import capo_deadline.types.timestamp
 
         out["worker_updated_at"] = capo_deadline.types.timestamp.deserialize_json(
             data["workerUpdatedAt"]
         )
-    if "progressPercent" in data:
-        out["progress_percent"] = data["progressPercent"]
-    if "manifests" in data:
+    if data.get("progressPercent") is not None:
+        out["progress_percent"] = float(data["progressPercent"])
+    if data.get("manifests") is not None:
         import capo_deadline.types.task_run_manifest_properties_list_response
 
         out["manifests"] = (
@@ -125,7 +133,7 @@ def deserialize_json(data: dict) -> SessionActionSummary:
                 data["manifests"]
             )
         )
-    if "definition" in data:
+    if data.get("definition") is not None:
         import capo_deadline.types.session_action_definition_summary
 
         out["definition"] = (

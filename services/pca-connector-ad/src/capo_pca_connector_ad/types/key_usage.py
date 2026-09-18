@@ -32,9 +32,9 @@ def serialize_json(value: KeyUsage) -> dict:
 
 def deserialize_json(data: dict) -> KeyUsage:
     out: KeyUsage = {}  # type: ignore[typeddict-item]
-    if "Critical" in data:
+    if data.get("Critical") is not None:
         out["critical"] = data["Critical"]
-    if "UsageFlags" in data:
+    if data.get("UsageFlags") is not None:
         import capo_pca_connector_ad.types.key_usage_flags
 
         out["usage_flags"] = (

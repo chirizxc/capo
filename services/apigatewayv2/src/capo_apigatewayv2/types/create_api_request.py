@@ -118,23 +118,23 @@ def serialize_json(value: CreateApiRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateApiRequest:
     out: CreateApiRequest = {}  # type: ignore[typeddict-item]
-    if "apiKeySelectionExpression" in data:
+    if data.get("apiKeySelectionExpression") is not None:
         out["api_key_selection_expression"] = data["apiKeySelectionExpression"]
-    if "corsConfiguration" in data:
+    if data.get("corsConfiguration") is not None:
         import capo_apigatewayv2.types.cors
 
         out["cors_configuration"] = capo_apigatewayv2.types.cors.deserialize_json(
             data["corsConfiguration"]
         )
-    if "credentialsArn" in data:
+    if data.get("credentialsArn") is not None:
         out["credentials_arn"] = data["credentialsArn"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "disableSchemaValidation" in data:
+    if data.get("disableSchemaValidation") is not None:
         out["disable_schema_validation"] = data["disableSchemaValidation"]
-    if "disableExecuteApiEndpoint" in data:
+    if data.get("disableExecuteApiEndpoint") is not None:
         out["disable_execute_api_endpoint"] = data["disableExecuteApiEndpoint"]
-    if "ipAddressType" in data:
+    if data.get("ipAddressType") is not None:
         import capo_apigatewayv2.types.ip_address_type
 
         out["ip_address_type"] = (
@@ -142,24 +142,24 @@ def deserialize_json(data: dict) -> CreateApiRequest:
                 data["ipAddressType"]
             )
         )
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "protocolType" in data:
+    if data.get("protocolType") is not None:
         import capo_apigatewayv2.types.protocol_type
 
         out["protocol_type"] = capo_apigatewayv2.types.protocol_type.deserialize_json(
             data["protocolType"]
         )
-    if "routeKey" in data:
+    if data.get("routeKey") is not None:
         out["route_key"] = data["routeKey"]
-    if "routeSelectionExpression" in data:
+    if data.get("routeSelectionExpression") is not None:
         out["route_selection_expression"] = data["routeSelectionExpression"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_apigatewayv2.types.tags
 
         out["tags"] = capo_apigatewayv2.types.tags.deserialize_json(data["tags"])
-    if "target" in data:
+    if data.get("target") is not None:
         out["target"] = data["target"]
-    if "version" in data:
+    if data.get("version") is not None:
         out["version"] = data["version"]
     return out

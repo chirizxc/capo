@@ -83,7 +83,7 @@ def serialize_aws_json_1_1(value: StudioWebPortalSettings) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> StudioWebPortalSettings:
     out: StudioWebPortalSettings = {}  # type: ignore[typeddict-item]
-    if "HiddenMlTools" in data:
+    if data.get("HiddenMlTools") is not None:
         import capo_sagemaker.types.hidden_ml_tools_list
 
         out["hidden_ml_tools"] = (
@@ -91,7 +91,7 @@ def deserialize_aws_json_1_1(data: dict) -> StudioWebPortalSettings:
                 data["HiddenMlTools"]
             )
         )
-    if "HiddenAppTypes" in data:
+    if data.get("HiddenAppTypes") is not None:
         import capo_sagemaker.types.hidden_app_types_list
 
         out["hidden_app_types"] = (
@@ -99,7 +99,7 @@ def deserialize_aws_json_1_1(data: dict) -> StudioWebPortalSettings:
                 data["HiddenAppTypes"]
             )
         )
-    if "HiddenInstanceTypes" in data:
+    if data.get("HiddenInstanceTypes") is not None:
         import capo_sagemaker.types.hidden_instance_types_list
 
         out["hidden_instance_types"] = (
@@ -107,7 +107,7 @@ def deserialize_aws_json_1_1(data: dict) -> StudioWebPortalSettings:
                 data["HiddenInstanceTypes"]
             )
         )
-    if "HiddenSageMakerImageVersionAliases" in data:
+    if data.get("HiddenSageMakerImageVersionAliases") is not None:
         import capo_sagemaker.types.hidden_sage_maker_image_version_aliases_list
 
         out["hidden_sage_maker_image_version_aliases"] = (
@@ -115,7 +115,7 @@ def deserialize_aws_json_1_1(data: dict) -> StudioWebPortalSettings:
                 data["HiddenSageMakerImageVersionAliases"]
             )
         )
-    if "ExecutionRoleSessionNameMode" in data:
+    if data.get("ExecutionRoleSessionNameMode") is not None:
         import capo_sagemaker.types.execution_role_session_name_mode
 
         out["execution_role_session_name_mode"] = (

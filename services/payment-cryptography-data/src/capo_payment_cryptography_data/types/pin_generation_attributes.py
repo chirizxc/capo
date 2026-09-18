@@ -113,7 +113,7 @@ def serialize_json(value: PinGenerationAttributes) -> dict:
 
 
 def deserialize_json(data: dict) -> PinGenerationAttributes:
-    if "VisaPin" in data:
+    if data.get("VisaPin") is not None:
         import capo_payment_cryptography_data.types.visa_pin
 
         return {
@@ -121,7 +121,7 @@ def deserialize_json(data: dict) -> PinGenerationAttributes:
                 data["VisaPin"]
             )
         }
-    elif "VisaPinVerificationValue" in data:
+    elif data.get("VisaPinVerificationValue") is not None:
         import capo_payment_cryptography_data.types.visa_pin_verification_value
 
         return {
@@ -129,7 +129,7 @@ def deserialize_json(data: dict) -> PinGenerationAttributes:
                 data["VisaPinVerificationValue"]
             )
         }
-    elif "Ibm3624PinOffset" in data:
+    elif data.get("Ibm3624PinOffset") is not None:
         import capo_payment_cryptography_data.types.ibm3624_pin_offset
 
         return {
@@ -137,7 +137,7 @@ def deserialize_json(data: dict) -> PinGenerationAttributes:
                 data["Ibm3624PinOffset"]
             )
         }
-    elif "Ibm3624NaturalPin" in data:
+    elif data.get("Ibm3624NaturalPin") is not None:
         import capo_payment_cryptography_data.types.ibm3624_natural_pin
 
         return {
@@ -145,7 +145,7 @@ def deserialize_json(data: dict) -> PinGenerationAttributes:
                 data["Ibm3624NaturalPin"]
             )
         }
-    elif "Ibm3624RandomPin" in data:
+    elif data.get("Ibm3624RandomPin") is not None:
         import capo_payment_cryptography_data.types.ibm3624_random_pin
 
         return {
@@ -153,7 +153,7 @@ def deserialize_json(data: dict) -> PinGenerationAttributes:
                 data["Ibm3624RandomPin"]
             )
         }
-    elif "Ibm3624PinFromOffset" in data:
+    elif data.get("Ibm3624PinFromOffset") is not None:
         import capo_payment_cryptography_data.types.ibm3624_pin_from_offset
 
         return {

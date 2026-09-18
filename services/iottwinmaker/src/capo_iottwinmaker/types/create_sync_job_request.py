@@ -37,11 +37,11 @@ def serialize_json(value: CreateSyncJobRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateSyncJobRequest:
     out: CreateSyncJobRequest = {}  # type: ignore[typeddict-item]
-    if "syncRole" in data:
+    if data.get("syncRole") is not None:
         out["sync_role"] = data["syncRole"]
     else:
         raise DeserializationError("CreateSyncJobRequest.sync_role required")
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_iottwinmaker.types.tag_map
 
         out["tags"] = capo_iottwinmaker.types.tag_map.deserialize_json(data["tags"])

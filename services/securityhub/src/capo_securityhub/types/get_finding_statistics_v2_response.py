@@ -29,7 +29,7 @@ def serialize_json(value: GetFindingStatisticsV2Response) -> dict:
 
 def deserialize_json(data: dict) -> GetFindingStatisticsV2Response:
     out: GetFindingStatisticsV2Response = {}  # type: ignore[typeddict-item]
-    if "GroupByResults" in data:
+    if data.get("GroupByResults") is not None:
         import capo_securityhub.types.group_by_results
 
         out["group_by_results"] = (

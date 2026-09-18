@@ -63,30 +63,30 @@ def serialize_json(value: CisCheckAggregation) -> dict:
 
 def deserialize_json(data: dict) -> CisCheckAggregation:
     out: CisCheckAggregation = {}  # type: ignore[typeddict-item]
-    if "scanArn" in data:
+    if data.get("scanArn") is not None:
         out["scan_arn"] = data["scanArn"]
     else:
         raise DeserializationError("CisCheckAggregation.scan_arn required")
-    if "checkId" in data:
+    if data.get("checkId") is not None:
         out["check_id"] = data["checkId"]
-    if "title" in data:
+    if data.get("title") is not None:
         out["title"] = data["title"]
-    if "checkDescription" in data:
+    if data.get("checkDescription") is not None:
         out["check_description"] = data["checkDescription"]
-    if "level" in data:
+    if data.get("level") is not None:
         import capo_inspector2.types.cis_security_level
 
         out["level"] = capo_inspector2.types.cis_security_level.deserialize_json(
             data["level"]
         )
-    if "accountId" in data:
+    if data.get("accountId") is not None:
         out["account_id"] = data["accountId"]
-    if "statusCounts" in data:
+    if data.get("statusCounts") is not None:
         import capo_inspector2.types.status_counts
 
         out["status_counts"] = capo_inspector2.types.status_counts.deserialize_json(
             data["statusCounts"]
         )
-    if "platform" in data:
+    if data.get("platform") is not None:
         out["platform"] = data["platform"]
     return out

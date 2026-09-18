@@ -19,11 +19,15 @@ class ThrottlingException_(TypedDict, closed=True):
 # --- awsJson1_1 ser/de ---
 def serialize_aws_json_1_1(value: ThrottlingException_) -> dict:
     out: dict = {}
+    if "retry_after_seconds" in value:
+        out["RetryAfterSeconds"] = value["retry_after_seconds"]
     return out
 
 
 def deserialize_aws_json_1_1(data: dict) -> ThrottlingException_:
     out: ThrottlingException_ = {}  # type: ignore[typeddict-item]
+    if data.get("RetryAfterSeconds") is not None:
+        out["retry_after_seconds"] = data["RetryAfterSeconds"]
     return out
 
 
@@ -32,15 +36,18 @@ class ThrottlingException(ServiceError):
 
     code: str | None = "ThrottlingException"
 
-    def __init__(self, data: ThrottlingException_):
+    def __init__(self, data: ThrottlingException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="ThrottlingException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "ThrottlingException":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "ThrottlingException":
+        return cls(deserialize_aws_json_1_1(data), message)

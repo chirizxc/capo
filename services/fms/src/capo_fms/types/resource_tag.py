@@ -29,10 +29,10 @@ def serialize_aws_json_1_1(value: ResourceTag) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ResourceTag:
     out: ResourceTag = {}  # type: ignore[typeddict-item]
-    if "Key" in data:
+    if data.get("Key") is not None:
         out["key"] = data["Key"]
     else:
         raise DeserializationError("ResourceTag.key required")
-    if "Value" in data:
+    if data.get("Value") is not None:
         out["value"] = data["Value"]
     return out

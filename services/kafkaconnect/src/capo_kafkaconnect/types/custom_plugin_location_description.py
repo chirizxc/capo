@@ -31,7 +31,7 @@ def serialize_json(value: CustomPluginLocationDescription) -> dict:
 
 def deserialize_json(data: dict) -> CustomPluginLocationDescription:
     out: CustomPluginLocationDescription = {}  # type: ignore[typeddict-item]
-    if "s3Location" in data:
+    if data.get("s3Location") is not None:
         import capo_kafkaconnect.types.s3_location_description
 
         out["s3_location"] = (

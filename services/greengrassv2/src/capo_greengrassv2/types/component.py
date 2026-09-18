@@ -43,11 +43,11 @@ def serialize_json(value: Component) -> dict:
 
 def deserialize_json(data: dict) -> Component:
     out: Component = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "componentName" in data:
+    if data.get("componentName") is not None:
         out["component_name"] = data["componentName"]
-    if "latestVersion" in data:
+    if data.get("latestVersion") is not None:
         import capo_greengrassv2.types.component_latest_version
 
         out["latest_version"] = (

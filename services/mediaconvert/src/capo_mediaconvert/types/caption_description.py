@@ -59,11 +59,11 @@ def serialize_json(value: CaptionDescription) -> dict:
 
 def deserialize_json(data: dict) -> CaptionDescription:
     out: CaptionDescription = {}  # type: ignore[typeddict-item]
-    if "captionSelectorName" in data:
+    if data.get("captionSelectorName") is not None:
         out["caption_selector_name"] = data["captionSelectorName"]
-    if "customLanguageCode" in data:
+    if data.get("customLanguageCode") is not None:
         out["custom_language_code"] = data["customLanguageCode"]
-    if "destinationSettings" in data:
+    if data.get("destinationSettings") is not None:
         import capo_mediaconvert.types.caption_destination_settings
 
         out["destination_settings"] = (
@@ -71,12 +71,12 @@ def deserialize_json(data: dict) -> CaptionDescription:
                 data["destinationSettings"]
             )
         )
-    if "languageCode" in data:
+    if data.get("languageCode") is not None:
         import capo_mediaconvert.types.language_code
 
         out["language_code"] = capo_mediaconvert.types.language_code.deserialize_json(
             data["languageCode"]
         )
-    if "languageDescription" in data:
+    if data.get("languageDescription") is not None:
         out["language_description"] = data["languageDescription"]
     return out

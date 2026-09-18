@@ -27,7 +27,7 @@ def serialize_json(value: GetSupportedResourceTypesOutput) -> dict:
 
 def deserialize_json(data: dict) -> GetSupportedResourceTypesOutput:
     out: GetSupportedResourceTypesOutput = {}  # type: ignore[typeddict-item]
-    if "ResourceTypes" in data:
+    if data.get("ResourceTypes") is not None:
         import capo_backup.types.resource_types
 
         out["resource_types"] = capo_backup.types.resource_types.deserialize_json(

@@ -30,7 +30,7 @@ def serialize_json(value: GetApnsVoipSandboxChannelResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetApnsVoipSandboxChannelResponse:
     out: GetApnsVoipSandboxChannelResponse = {}  # type: ignore[typeddict-item]
-    if "APNSVoipSandboxChannelResponse" in data:
+    if data.get("APNSVoipSandboxChannelResponse") is not None:
         import capo_pinpoint.types.apns_voip_sandbox_channel_response
 
         out["apns_voip_sandbox_channel_response"] = (

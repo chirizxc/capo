@@ -24,7 +24,7 @@ def serialize_json(value: BurnRateConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> BurnRateConfiguration:
     out: BurnRateConfiguration = {}  # type: ignore[typeddict-item]
-    if "LookBackWindowMinutes" in data:
+    if data.get("LookBackWindowMinutes") is not None:
         out["look_back_window_minutes"] = data["LookBackWindowMinutes"]
     else:
         raise DeserializationError(

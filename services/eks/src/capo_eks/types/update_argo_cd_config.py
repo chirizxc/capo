@@ -42,7 +42,7 @@ def serialize_json(value: UpdateArgoCdConfig) -> dict:
 
 def deserialize_json(data: dict) -> UpdateArgoCdConfig:
     out: UpdateArgoCdConfig = {}  # type: ignore[typeddict-item]
-    if "rbacRoleMappings" in data:
+    if data.get("rbacRoleMappings") is not None:
         import capo_eks.types.update_role_mappings
 
         out["rbac_role_mappings"] = (
@@ -50,7 +50,7 @@ def deserialize_json(data: dict) -> UpdateArgoCdConfig:
                 data["rbacRoleMappings"]
             )
         )
-    if "networkAccess" in data:
+    if data.get("networkAccess") is not None:
         import capo_eks.types.argo_cd_network_access_config_request
 
         out["network_access"] = (

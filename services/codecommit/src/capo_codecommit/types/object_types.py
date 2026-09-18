@@ -45,13 +45,13 @@ def serialize_aws_json_1_1(value: ObjectTypes) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ObjectTypes:
     out: ObjectTypes = {}  # type: ignore[typeddict-item]
-    if "source" in data:
+    if data.get("source") is not None:
         import capo_codecommit.types.object_type_enum
 
         out["source"] = capo_codecommit.types.object_type_enum.deserialize_aws_json_1_1(
             data["source"]
         )
-    if "destination" in data:
+    if data.get("destination") is not None:
         import capo_codecommit.types.object_type_enum
 
         out["destination"] = (
@@ -59,7 +59,7 @@ def deserialize_aws_json_1_1(data: dict) -> ObjectTypes:
                 data["destination"]
             )
         )
-    if "base" in data:
+    if data.get("base") is not None:
         import capo_codecommit.types.object_type_enum
 
         out["base"] = capo_codecommit.types.object_type_enum.deserialize_aws_json_1_1(

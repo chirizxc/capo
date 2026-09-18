@@ -103,15 +103,15 @@ def serialize_json(value: GetDeviceDiscoveryResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetDeviceDiscoveryResponse:
     out: GetDeviceDiscoveryResponse = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
     else:
         raise DeserializationError("GetDeviceDiscoveryResponse.id required")
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
     else:
         raise DeserializationError("GetDeviceDiscoveryResponse.arn required")
-    if "DiscoveryType" in data:
+    if data.get("DiscoveryType") is not None:
         import capo_iot_managed_integrations.types.discovery_type
 
         out["discovery_type"] = (
@@ -121,7 +121,7 @@ def deserialize_json(data: dict) -> GetDeviceDiscoveryResponse:
         )
     else:
         raise DeserializationError("GetDeviceDiscoveryResponse.discovery_type required")
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_iot_managed_integrations.types.device_discovery_status
 
         out["status"] = (
@@ -131,7 +131,7 @@ def deserialize_json(data: dict) -> GetDeviceDiscoveryResponse:
         )
     else:
         raise DeserializationError("GetDeviceDiscoveryResponse.status required")
-    if "StartedAt" in data:
+    if data.get("StartedAt") is not None:
         import capo_iot_managed_integrations.types.discovery_started_at
 
         out["started_at"] = (
@@ -141,13 +141,13 @@ def deserialize_json(data: dict) -> GetDeviceDiscoveryResponse:
         )
     else:
         raise DeserializationError("GetDeviceDiscoveryResponse.started_at required")
-    if "ControllerId" in data:
+    if data.get("ControllerId") is not None:
         out["controller_id"] = data["ControllerId"]
-    if "ConnectorAssociationId" in data:
+    if data.get("ConnectorAssociationId") is not None:
         out["connector_association_id"] = data["ConnectorAssociationId"]
-    if "AccountAssociationId" in data:
+    if data.get("AccountAssociationId") is not None:
         out["account_association_id"] = data["AccountAssociationId"]
-    if "FinishedAt" in data:
+    if data.get("FinishedAt") is not None:
         import capo_iot_managed_integrations.types.discovery_finished_at
 
         out["finished_at"] = (
@@ -155,7 +155,7 @@ def deserialize_json(data: dict) -> GetDeviceDiscoveryResponse:
                 data["FinishedAt"]
             )
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_iot_managed_integrations.types.tags_map
 
         out["tags"] = capo_iot_managed_integrations.types.tags_map.deserialize_json(

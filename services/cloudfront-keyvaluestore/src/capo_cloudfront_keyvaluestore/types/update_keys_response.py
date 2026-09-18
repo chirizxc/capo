@@ -29,11 +29,11 @@ def serialize_json(value: UpdateKeysResponse) -> dict:
 
 def deserialize_json(data: dict) -> UpdateKeysResponse:
     out: UpdateKeysResponse = {}  # type: ignore[typeddict-item]
-    if "ItemCount" in data:
+    if data.get("ItemCount") is not None:
         out["item_count"] = data["ItemCount"]
     else:
         raise DeserializationError("UpdateKeysResponse.item_count required")
-    if "TotalSizeInBytes" in data:
+    if data.get("TotalSizeInBytes") is not None:
         out["total_size_in_bytes"] = data["TotalSizeInBytes"]
     else:
         raise DeserializationError("UpdateKeysResponse.total_size_in_bytes required")

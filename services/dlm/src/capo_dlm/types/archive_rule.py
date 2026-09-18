@@ -27,7 +27,7 @@ def serialize_json(value: ArchiveRule) -> dict:
 
 def deserialize_json(data: dict) -> ArchiveRule:
     out: ArchiveRule = {}  # type: ignore[typeddict-item]
-    if "RetainRule" in data:
+    if data.get("RetainRule") is not None:
         import capo_dlm.types.archive_retain_rule
 
         out["retain_rule"] = capo_dlm.types.archive_retain_rule.deserialize_json(

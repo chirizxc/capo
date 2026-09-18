@@ -78,7 +78,7 @@ def serialize_json(value: BrokerInstanceOption) -> dict:
 
 def deserialize_json(data: dict) -> BrokerInstanceOption:
     out: BrokerInstanceOption = {}  # type: ignore[typeddict-item]
-    if "availabilityZones" in data:
+    if data.get("availabilityZones") is not None:
         import capo_mq.types.__list_of_availability_zone
 
         out["availability_zones"] = (
@@ -86,21 +86,21 @@ def deserialize_json(data: dict) -> BrokerInstanceOption:
                 data["availabilityZones"]
             )
         )
-    if "engineType" in data:
+    if data.get("engineType") is not None:
         import capo_mq.types.engine_type
 
         out["engine_type"] = capo_mq.types.engine_type.deserialize_json(
             data["engineType"]
         )
-    if "hostInstanceType" in data:
+    if data.get("hostInstanceType") is not None:
         out["host_instance_type"] = data["hostInstanceType"]
-    if "storageType" in data:
+    if data.get("storageType") is not None:
         import capo_mq.types.broker_storage_type
 
         out["storage_type"] = capo_mq.types.broker_storage_type.deserialize_json(
             data["storageType"]
         )
-    if "supportedDeploymentModes" in data:
+    if data.get("supportedDeploymentModes") is not None:
         import capo_mq.types.__list_of_deployment_mode
 
         out["supported_deployment_modes"] = (
@@ -108,7 +108,7 @@ def deserialize_json(data: dict) -> BrokerInstanceOption:
                 data["supportedDeploymentModes"]
             )
         )
-    if "supportedEngineVersions" in data:
+    if data.get("supportedEngineVersions") is not None:
         import capo_mq.types.__list_of__string
 
         out["supported_engine_versions"] = (

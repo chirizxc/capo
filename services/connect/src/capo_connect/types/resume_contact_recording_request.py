@@ -44,21 +44,21 @@ def serialize_json(value: ResumeContactRecordingRequest) -> dict:
 
 def deserialize_json(data: dict) -> ResumeContactRecordingRequest:
     out: ResumeContactRecordingRequest = {}  # type: ignore[typeddict-item]
-    if "InstanceId" in data:
+    if data.get("InstanceId") is not None:
         out["instance_id"] = data["InstanceId"]
     else:
         raise DeserializationError("ResumeContactRecordingRequest.instance_id required")
-    if "ContactId" in data:
+    if data.get("ContactId") is not None:
         out["contact_id"] = data["ContactId"]
     else:
         raise DeserializationError("ResumeContactRecordingRequest.contact_id required")
-    if "InitialContactId" in data:
+    if data.get("InitialContactId") is not None:
         out["initial_contact_id"] = data["InitialContactId"]
     else:
         raise DeserializationError(
             "ResumeContactRecordingRequest.initial_contact_id required"
         )
-    if "ContactRecordingType" in data:
+    if data.get("ContactRecordingType") is not None:
         import capo_connect.types.contact_recording_type
 
         out["contact_recording_type"] = (

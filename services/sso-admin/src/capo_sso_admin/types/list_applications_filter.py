@@ -30,8 +30,8 @@ def serialize_aws_json_1_1(value: ListApplicationsFilter) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListApplicationsFilter:
     out: ListApplicationsFilter = {}  # type: ignore[typeddict-item]
-    if "ApplicationAccount" in data:
+    if data.get("ApplicationAccount") is not None:
         out["application_account"] = data["ApplicationAccount"]
-    if "ApplicationProvider" in data:
+    if data.get("ApplicationProvider") is not None:
         out["application_provider"] = data["ApplicationProvider"]
     return out

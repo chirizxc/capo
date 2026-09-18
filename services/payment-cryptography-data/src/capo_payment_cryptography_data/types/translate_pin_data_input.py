@@ -113,19 +113,19 @@ def serialize_json(value: TranslatePinDataInput) -> dict:
 
 def deserialize_json(data: dict) -> TranslatePinDataInput:
     out: TranslatePinDataInput = {}  # type: ignore[typeddict-item]
-    if "IncomingKeyIdentifier" in data:
+    if data.get("IncomingKeyIdentifier") is not None:
         out["incoming_key_identifier"] = data["IncomingKeyIdentifier"]
     else:
         raise DeserializationError(
             "TranslatePinDataInput.incoming_key_identifier required"
         )
-    if "OutgoingKeyIdentifier" in data:
+    if data.get("OutgoingKeyIdentifier") is not None:
         out["outgoing_key_identifier"] = data["OutgoingKeyIdentifier"]
     else:
         raise DeserializationError(
             "TranslatePinDataInput.outgoing_key_identifier required"
         )
-    if "IncomingTranslationAttributes" in data:
+    if data.get("IncomingTranslationAttributes") is not None:
         import capo_payment_cryptography_data.types.translation_iso_formats
 
         out["incoming_translation_attributes"] = (
@@ -137,7 +137,7 @@ def deserialize_json(data: dict) -> TranslatePinDataInput:
         raise DeserializationError(
             "TranslatePinDataInput.incoming_translation_attributes required"
         )
-    if "OutgoingTranslationAttributes" in data:
+    if data.get("OutgoingTranslationAttributes") is not None:
         import capo_payment_cryptography_data.types.translation_iso_formats
 
         out["outgoing_translation_attributes"] = (
@@ -149,11 +149,11 @@ def deserialize_json(data: dict) -> TranslatePinDataInput:
         raise DeserializationError(
             "TranslatePinDataInput.outgoing_translation_attributes required"
         )
-    if "EncryptedPinBlock" in data:
+    if data.get("EncryptedPinBlock") is not None:
         out["encrypted_pin_block"] = data["EncryptedPinBlock"]
     else:
         raise DeserializationError("TranslatePinDataInput.encrypted_pin_block required")
-    if "IncomingDukptAttributes" in data:
+    if data.get("IncomingDukptAttributes") is not None:
         import capo_payment_cryptography_data.types.dukpt_derivation_attributes
 
         out["incoming_dukpt_attributes"] = (
@@ -161,7 +161,7 @@ def deserialize_json(data: dict) -> TranslatePinDataInput:
                 data["IncomingDukptAttributes"]
             )
         )
-    if "OutgoingDukptAttributes" in data:
+    if data.get("OutgoingDukptAttributes") is not None:
         import capo_payment_cryptography_data.types.dukpt_derivation_attributes
 
         out["outgoing_dukpt_attributes"] = (
@@ -169,7 +169,7 @@ def deserialize_json(data: dict) -> TranslatePinDataInput:
                 data["OutgoingDukptAttributes"]
             )
         )
-    if "IncomingWrappedKey" in data:
+    if data.get("IncomingWrappedKey") is not None:
         import capo_payment_cryptography_data.types.wrapped_key
 
         out["incoming_wrapped_key"] = (
@@ -177,7 +177,7 @@ def deserialize_json(data: dict) -> TranslatePinDataInput:
                 data["IncomingWrappedKey"]
             )
         )
-    if "OutgoingWrappedKey" in data:
+    if data.get("OutgoingWrappedKey") is not None:
         import capo_payment_cryptography_data.types.wrapped_key
 
         out["outgoing_wrapped_key"] = (
@@ -185,7 +185,7 @@ def deserialize_json(data: dict) -> TranslatePinDataInput:
                 data["OutgoingWrappedKey"]
             )
         )
-    if "IncomingAs2805Attributes" in data:
+    if data.get("IncomingAs2805Attributes") is not None:
         import capo_payment_cryptography_data.types.as2805_pek_derivation_attributes
 
         out["incoming_as2805_attributes"] = (

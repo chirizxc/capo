@@ -30,9 +30,9 @@ def serialize_json(value: UnusedAccessConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> UnusedAccessConfiguration:
     out: UnusedAccessConfiguration = {}  # type: ignore[typeddict-item]
-    if "unusedAccessAge" in data:
+    if data.get("unusedAccessAge") is not None:
         out["unused_access_age"] = data["unusedAccessAge"]
-    if "analysisRule" in data:
+    if data.get("analysisRule") is not None:
         import capo_accessanalyzer.types.analysis_rule
 
         out["analysis_rule"] = capo_accessanalyzer.types.analysis_rule.deserialize_json(

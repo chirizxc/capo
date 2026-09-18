@@ -47,7 +47,7 @@ def serialize_json(value: ListGroupingAttributeDefinitionsOutput) -> dict:
 
 def deserialize_json(data: dict) -> ListGroupingAttributeDefinitionsOutput:
     out: ListGroupingAttributeDefinitionsOutput = {}  # type: ignore[typeddict-item]
-    if "GroupingAttributeDefinitions" in data:
+    if data.get("GroupingAttributeDefinitions") is not None:
         import capo_application_signals.types.grouping_attribute_definitions
 
         out["grouping_attribute_definitions"] = (
@@ -59,7 +59,7 @@ def deserialize_json(data: dict) -> ListGroupingAttributeDefinitionsOutput:
         raise DeserializationError(
             "ListGroupingAttributeDefinitionsOutput.grouping_attribute_definitions required"
         )
-    if "UpdatedAt" in data:
+    if data.get("UpdatedAt") is not None:
         import capo_application_signals.types._prelude.timestamp
 
         out["updated_at"] = (
@@ -67,6 +67,6 @@ def deserialize_json(data: dict) -> ListGroupingAttributeDefinitionsOutput:
                 data["UpdatedAt"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

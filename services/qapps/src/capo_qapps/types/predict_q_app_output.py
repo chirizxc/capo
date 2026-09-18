@@ -29,7 +29,7 @@ def serialize_json(value: PredictQAppOutput) -> dict:
 
 def deserialize_json(data: dict) -> PredictQAppOutput:
     out: PredictQAppOutput = {}  # type: ignore[typeddict-item]
-    if "app" in data:
+    if data.get("app") is not None:
         import capo_qapps.types.predict_app_definition
 
         out["app"] = capo_qapps.types.predict_app_definition.deserialize_json(
@@ -37,7 +37,7 @@ def deserialize_json(data: dict) -> PredictQAppOutput:
         )
     else:
         raise DeserializationError("PredictQAppOutput.app required")
-    if "problemStatement" in data:
+    if data.get("problemStatement") is not None:
         out["problem_statement"] = data["problemStatement"]
     else:
         raise DeserializationError("PredictQAppOutput.problem_statement required")

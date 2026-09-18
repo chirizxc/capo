@@ -38,7 +38,7 @@ def serialize_aws_json_1_1(value: MetricKeyDataPoints) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> MetricKeyDataPoints:
     out: MetricKeyDataPoints = {}  # type: ignore[typeddict-item]
-    if "Key" in data:
+    if data.get("Key") is not None:
         import capo_pi.types.response_resource_metric_key
 
         out["key"] = (
@@ -46,7 +46,7 @@ def deserialize_aws_json_1_1(data: dict) -> MetricKeyDataPoints:
                 data["Key"]
             )
         )
-    if "DataPoints" in data:
+    if data.get("DataPoints") is not None:
         import capo_pi.types.data_points_list
 
         out["data_points"] = capo_pi.types.data_points_list.deserialize_aws_json_1_1(

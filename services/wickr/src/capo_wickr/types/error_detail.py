@@ -27,8 +27,8 @@ def serialize_json(value: ErrorDetail) -> dict:
 
 def deserialize_json(data: dict) -> ErrorDetail:
     out: ErrorDetail = {}  # type: ignore[typeddict-item]
-    if "field" in data:
+    if data.get("field") is not None:
         out["field"] = data["field"]
-    if "reason" in data:
+    if data.get("reason") is not None:
         out["reason"] = data["reason"]
     return out

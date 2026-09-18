@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: VirtualGateways) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> VirtualGateways:
     out: VirtualGateways = {}  # type: ignore[typeddict-item]
-    if "virtualGateways" in data:
+    if data.get("virtualGateways") is not None:
         import capo_direct_connect.types.virtual_gateway_list
 
         out["virtual_gateways"] = (

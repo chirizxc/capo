@@ -33,10 +33,10 @@ def serialize_json(value: EnvironmentConfigurationParameter) -> dict:
 
 def deserialize_json(data: dict) -> EnvironmentConfigurationParameter:
     out: EnvironmentConfigurationParameter = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "value" in data:
+    if data.get("value") is not None:
         out["value"] = data["value"]
-    if "isEditable" in data:
+    if data.get("isEditable") is not None:
         out["is_editable"] = data["isEditable"]
     return out

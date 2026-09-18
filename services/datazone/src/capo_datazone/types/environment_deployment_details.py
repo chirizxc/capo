@@ -44,7 +44,7 @@ def serialize_json(value: EnvironmentDeploymentDetails) -> dict:
 
 def deserialize_json(data: dict) -> EnvironmentDeploymentDetails:
     out: EnvironmentDeploymentDetails = {}  # type: ignore[typeddict-item]
-    if "overallDeploymentStatus" in data:
+    if data.get("overallDeploymentStatus") is not None:
         import capo_datazone.types.overall_deployment_status
 
         out["overall_deployment_status"] = (
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> EnvironmentDeploymentDetails:
                 data["overallDeploymentStatus"]
             )
         )
-    if "environmentFailureReasons" in data:
+    if data.get("environmentFailureReasons") is not None:
         import capo_datazone.types.environment_failure_reasons
 
         out["environment_failure_reasons"] = (

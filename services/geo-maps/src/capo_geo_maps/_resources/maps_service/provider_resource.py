@@ -92,15 +92,17 @@ class ProviderResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_geo_maps.types.get_glyphs_request.GetGlyphsRequest = {}  # type: ignore[typeddict-item]
-        input_["font_stack"] = font_stack
-        input_["font_unicode_range"] = font_unicode_range
+        input_: capo_geo_maps.types.get_glyphs_request.GetGlyphsRequest = {
+            "font_stack": font_stack,
+            "font_unicode_range": font_unicode_range,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_sprites(
@@ -139,17 +141,19 @@ class ProviderResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_geo_maps.types.get_sprites_request.GetSpritesRequest = {}  # type: ignore[typeddict-item]
-        input_["file_name"] = file_name
-        input_["style"] = style
-        input_["color_scheme"] = color_scheme
-        input_["variant"] = variant
+        input_: capo_geo_maps.types.get_sprites_request.GetSpritesRequest = {
+            "file_name": file_name,
+            "style": style,
+            "color_scheme": color_scheme,
+            "variant": variant,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_static_map(
@@ -238,7 +242,11 @@ class ProviderResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_geo_maps.types.get_static_map_request.GetStaticMapRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_geo_maps.types.get_static_map_request.GetStaticMapRequest = {
+            "height": height,
+            "file_name": file_name,
+            "width": width,
+        }
         if bounding_box is not None:
             input_["bounding_box"] = bounding_box
         if bounded_positions is not None:
@@ -253,7 +261,6 @@ class ProviderResource:
             input_["crop_labels"] = crop_labels
         if geo_json_overlay is not None:
             input_["geo_json_overlay"] = geo_json_overlay
-        input_["height"] = height
         if key is not None:
             input_["key"] = key
         if label_size is not None:
@@ -268,12 +275,10 @@ class ProviderResource:
             input_["points_of_interests"] = points_of_interests
         if radius is not None:
             input_["radius"] = radius
-        input_["file_name"] = file_name
         if scale_bar_unit is not None:
             input_["scale_bar_unit"] = scale_bar_unit
         if style is not None:
             input_["style"] = style
-        input_["width"] = width
         if zoom is not None:
             input_["zoom"] = zoom
 
@@ -282,6 +287,7 @@ class ProviderResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_style_descriptor(
@@ -334,8 +340,9 @@ class ProviderResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_geo_maps.types.get_style_descriptor_request.GetStyleDescriptorRequest = {}  # type: ignore[typeddict-item]
-        input_["style"] = style
+        input_: capo_geo_maps.types.get_style_descriptor_request.GetStyleDescriptorRequest = {
+            "style": style
+        }
         if color_scheme is not None:
             input_["color_scheme"] = color_scheme
         if political_view is not None:
@@ -358,6 +365,7 @@ class ProviderResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_tile(
@@ -405,13 +413,14 @@ class ProviderResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_geo_maps.types.get_tile_request.GetTileRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_geo_maps.types.get_tile_request.GetTileRequest = {
+            "tileset": tileset,
+            "z": z,
+            "x": x,
+            "y": y,
+        }
         if additional_features is not None:
             input_["additional_features"] = additional_features
-        input_["tileset"] = tileset
-        input_["z"] = z
-        input_["x"] = x
-        input_["y"] = y
         if key is not None:
             input_["key"] = key
 
@@ -420,6 +429,7 @@ class ProviderResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -460,15 +470,17 @@ class AsyncProviderResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_geo_maps.types.get_glyphs_request.GetGlyphsRequest = {}  # type: ignore[typeddict-item]
-        input_["font_stack"] = font_stack
-        input_["font_unicode_range"] = font_unicode_range
+        input_: capo_geo_maps.types.get_glyphs_request.GetGlyphsRequest = {
+            "font_stack": font_stack,
+            "font_unicode_range": font_unicode_range,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_sprites(
@@ -508,17 +520,19 @@ class AsyncProviderResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_geo_maps.types.get_sprites_request.GetSpritesRequest = {}  # type: ignore[typeddict-item]
-        input_["file_name"] = file_name
-        input_["style"] = style
-        input_["color_scheme"] = color_scheme
-        input_["variant"] = variant
+        input_: capo_geo_maps.types.get_sprites_request.GetSpritesRequest = {
+            "file_name": file_name,
+            "style": style,
+            "color_scheme": color_scheme,
+            "variant": variant,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_static_map(
@@ -608,7 +622,11 @@ class AsyncProviderResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_geo_maps.types.get_static_map_request.GetStaticMapRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_geo_maps.types.get_static_map_request.GetStaticMapRequest = {
+            "height": height,
+            "file_name": file_name,
+            "width": width,
+        }
         if bounding_box is not None:
             input_["bounding_box"] = bounding_box
         if bounded_positions is not None:
@@ -623,7 +641,6 @@ class AsyncProviderResource:
             input_["crop_labels"] = crop_labels
         if geo_json_overlay is not None:
             input_["geo_json_overlay"] = geo_json_overlay
-        input_["height"] = height
         if key is not None:
             input_["key"] = key
         if label_size is not None:
@@ -638,12 +655,10 @@ class AsyncProviderResource:
             input_["points_of_interests"] = points_of_interests
         if radius is not None:
             input_["radius"] = radius
-        input_["file_name"] = file_name
         if scale_bar_unit is not None:
             input_["scale_bar_unit"] = scale_bar_unit
         if style is not None:
             input_["style"] = style
-        input_["width"] = width
         if zoom is not None:
             input_["zoom"] = zoom
 
@@ -652,6 +667,7 @@ class AsyncProviderResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_style_descriptor(
@@ -705,8 +721,9 @@ class AsyncProviderResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_geo_maps.types.get_style_descriptor_request.GetStyleDescriptorRequest = {}  # type: ignore[typeddict-item]
-        input_["style"] = style
+        input_: capo_geo_maps.types.get_style_descriptor_request.GetStyleDescriptorRequest = {
+            "style": style
+        }
         if color_scheme is not None:
             input_["color_scheme"] = color_scheme
         if political_view is not None:
@@ -729,6 +746,7 @@ class AsyncProviderResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_tile(
@@ -779,13 +797,14 @@ class AsyncProviderResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_geo_maps.types.get_tile_request.GetTileRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_geo_maps.types.get_tile_request.GetTileRequest = {
+            "tileset": tileset,
+            "z": z,
+            "x": x,
+            "y": y,
+        }
         if additional_features is not None:
             input_["additional_features"] = additional_features
-        input_["tileset"] = tileset
-        input_["z"] = z
-        input_["x"] = x
-        input_["y"] = y
         if key is not None:
             input_["key"] = key
 
@@ -794,4 +813,5 @@ class AsyncProviderResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

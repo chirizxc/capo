@@ -61,9 +61,9 @@ def serialize_aws_json_1_1(value: ImportCertificateRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ImportCertificateRequest:
     out: ImportCertificateRequest = {}  # type: ignore[typeddict-item]
-    if "CertificateArn" in data:
+    if data.get("CertificateArn") is not None:
         out["certificate_arn"] = data["CertificateArn"]
-    if "Certificate" in data:
+    if data.get("Certificate") is not None:
         import capo_acm.types.certificate_body_blob
 
         out["certificate"] = (
@@ -73,7 +73,7 @@ def deserialize_aws_json_1_1(data: dict) -> ImportCertificateRequest:
         )
     else:
         raise DeserializationError("ImportCertificateRequest.certificate required")
-    if "PrivateKey" in data:
+    if data.get("PrivateKey") is not None:
         import capo_acm.types.private_key_blob
 
         out["private_key"] = capo_acm.types.private_key_blob.deserialize_aws_json_1_1(
@@ -81,7 +81,7 @@ def deserialize_aws_json_1_1(data: dict) -> ImportCertificateRequest:
         )
     else:
         raise DeserializationError("ImportCertificateRequest.private_key required")
-    if "CertificateChain" in data:
+    if data.get("CertificateChain") is not None:
         import capo_acm.types.certificate_chain_blob
 
         out["certificate_chain"] = (
@@ -89,7 +89,7 @@ def deserialize_aws_json_1_1(data: dict) -> ImportCertificateRequest:
                 data["CertificateChain"]
             )
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_acm.types.tag_list
 
         out["tags"] = capo_acm.types.tag_list.deserialize_aws_json_1_1(data["Tags"])

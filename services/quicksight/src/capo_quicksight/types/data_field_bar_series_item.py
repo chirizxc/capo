@@ -42,13 +42,13 @@ def serialize_json(value: DataFieldBarSeriesItem) -> dict:
 
 def deserialize_json(data: dict) -> DataFieldBarSeriesItem:
     out: DataFieldBarSeriesItem = {}  # type: ignore[typeddict-item]
-    if "FieldId" in data:
+    if data.get("FieldId") is not None:
         out["field_id"] = data["FieldId"]
     else:
         raise DeserializationError("DataFieldBarSeriesItem.field_id required")
-    if "FieldValue" in data:
+    if data.get("FieldValue") is not None:
         out["field_value"] = data["FieldValue"]
-    if "Settings" in data:
+    if data.get("Settings") is not None:
         import capo_quicksight.types.bar_chart_series_settings
 
         out["settings"] = (

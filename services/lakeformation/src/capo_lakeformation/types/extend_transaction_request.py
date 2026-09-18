@@ -25,6 +25,6 @@ def serialize_json(value: ExtendTransactionRequest) -> dict:
 
 def deserialize_json(data: dict) -> ExtendTransactionRequest:
     out: ExtendTransactionRequest = {}  # type: ignore[typeddict-item]
-    if "TransactionId" in data:
+    if data.get("TransactionId") is not None:
         out["transaction_id"] = data["TransactionId"]
     return out

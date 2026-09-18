@@ -30,11 +30,11 @@ def serialize_aws_json_1_0(value: GetAwsOpportunitySummaryRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> GetAwsOpportunitySummaryRequest:
     out: GetAwsOpportunitySummaryRequest = {}  # type: ignore[typeddict-item]
-    if "Catalog" in data:
+    if data.get("Catalog") is not None:
         out["catalog"] = data["Catalog"]
     else:
         raise DeserializationError("GetAwsOpportunitySummaryRequest.catalog required")
-    if "RelatedOpportunityIdentifier" in data:
+    if data.get("RelatedOpportunityIdentifier") is not None:
         out["related_opportunity_identifier"] = data["RelatedOpportunityIdentifier"]
     else:
         raise DeserializationError(

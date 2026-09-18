@@ -46,7 +46,7 @@ def serialize_json(value: AwsEksClusterResourcesVpcConfigDetails) -> dict:
 
 def deserialize_json(data: dict) -> AwsEksClusterResourcesVpcConfigDetails:
     out: AwsEksClusterResourcesVpcConfigDetails = {}  # type: ignore[typeddict-item]
-    if "SecurityGroupIds" in data:
+    if data.get("SecurityGroupIds") is not None:
         import capo_securityhub.types.non_empty_string_list
 
         out["security_group_ids"] = (
@@ -54,7 +54,7 @@ def deserialize_json(data: dict) -> AwsEksClusterResourcesVpcConfigDetails:
                 data["SecurityGroupIds"]
             )
         )
-    if "SubnetIds" in data:
+    if data.get("SubnetIds") is not None:
         import capo_securityhub.types.non_empty_string_list
 
         out["subnet_ids"] = (
@@ -62,6 +62,6 @@ def deserialize_json(data: dict) -> AwsEksClusterResourcesVpcConfigDetails:
                 data["SubnetIds"]
             )
         )
-    if "EndpointPublicAccess" in data:
+    if data.get("EndpointPublicAccess") is not None:
         out["endpoint_public_access"] = data["EndpointPublicAccess"]
     return out

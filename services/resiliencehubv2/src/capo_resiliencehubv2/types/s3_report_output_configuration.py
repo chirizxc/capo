@@ -28,11 +28,11 @@ def serialize_json(value: S3ReportOutputConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> S3ReportOutputConfiguration:
     out: S3ReportOutputConfiguration = {}  # type: ignore[typeddict-item]
-    if "bucketPath" in data:
+    if data.get("bucketPath") is not None:
         out["bucket_path"] = data["bucketPath"]
     else:
         raise DeserializationError("S3ReportOutputConfiguration.bucket_path required")
-    if "bucketOwner" in data:
+    if data.get("bucketOwner") is not None:
         out["bucket_owner"] = data["bucketOwner"]
     else:
         raise DeserializationError("S3ReportOutputConfiguration.bucket_owner required")

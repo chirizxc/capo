@@ -121,7 +121,7 @@ def serialize_aws_json_1_1(value: ListInferenceComponentsInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListInferenceComponentsInput:
     out: ListInferenceComponentsInput = {}  # type: ignore[typeddict-item]
-    if "SortBy" in data:
+    if data.get("SortBy") is not None:
         import capo_sagemaker.types.inference_component_sort_key
 
         out["sort_by"] = (
@@ -129,19 +129,19 @@ def deserialize_aws_json_1_1(data: dict) -> ListInferenceComponentsInput:
                 data["SortBy"]
             )
         )
-    if "SortOrder" in data:
+    if data.get("SortOrder") is not None:
         import capo_sagemaker.types.order_key
 
         out["sort_order"] = capo_sagemaker.types.order_key.deserialize_aws_json_1_1(
             data["SortOrder"]
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "NameContains" in data:
+    if data.get("NameContains") is not None:
         out["name_contains"] = data["NameContains"]
-    if "CreationTimeBefore" in data:
+    if data.get("CreationTimeBefore") is not None:
         import capo_sagemaker.types.timestamp
 
         out["creation_time_before"] = (
@@ -149,7 +149,7 @@ def deserialize_aws_json_1_1(data: dict) -> ListInferenceComponentsInput:
                 data["CreationTimeBefore"]
             )
         )
-    if "CreationTimeAfter" in data:
+    if data.get("CreationTimeAfter") is not None:
         import capo_sagemaker.types.timestamp
 
         out["creation_time_after"] = (
@@ -157,7 +157,7 @@ def deserialize_aws_json_1_1(data: dict) -> ListInferenceComponentsInput:
                 data["CreationTimeAfter"]
             )
         )
-    if "LastModifiedTimeBefore" in data:
+    if data.get("LastModifiedTimeBefore") is not None:
         import capo_sagemaker.types.timestamp
 
         out["last_modified_time_before"] = (
@@ -165,7 +165,7 @@ def deserialize_aws_json_1_1(data: dict) -> ListInferenceComponentsInput:
                 data["LastModifiedTimeBefore"]
             )
         )
-    if "LastModifiedTimeAfter" in data:
+    if data.get("LastModifiedTimeAfter") is not None:
         import capo_sagemaker.types.timestamp
 
         out["last_modified_time_after"] = (
@@ -173,7 +173,7 @@ def deserialize_aws_json_1_1(data: dict) -> ListInferenceComponentsInput:
                 data["LastModifiedTimeAfter"]
             )
         )
-    if "StatusEquals" in data:
+    if data.get("StatusEquals") is not None:
         import capo_sagemaker.types.inference_component_status
 
         out["status_equals"] = (
@@ -181,8 +181,8 @@ def deserialize_aws_json_1_1(data: dict) -> ListInferenceComponentsInput:
                 data["StatusEquals"]
             )
         )
-    if "EndpointNameEquals" in data:
+    if data.get("EndpointNameEquals") is not None:
         out["endpoint_name_equals"] = data["EndpointNameEquals"]
-    if "VariantNameEquals" in data:
+    if data.get("VariantNameEquals") is not None:
         out["variant_name_equals"] = data["VariantNameEquals"]
     return out

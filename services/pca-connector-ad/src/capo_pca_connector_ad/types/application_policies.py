@@ -36,9 +36,9 @@ def serialize_json(value: ApplicationPolicies) -> dict:
 
 def deserialize_json(data: dict) -> ApplicationPolicies:
     out: ApplicationPolicies = {}  # type: ignore[typeddict-item]
-    if "Critical" in data:
+    if data.get("Critical") is not None:
         out["critical"] = data["Critical"]
-    if "Policies" in data:
+    if data.get("Policies") is not None:
         import capo_pca_connector_ad.types.application_policy_list
 
         out["policies"] = (

@@ -32,13 +32,13 @@ def serialize_json(value: AmexCardSecurityCodeVersion2) -> dict:
 
 def deserialize_json(data: dict) -> AmexCardSecurityCodeVersion2:
     out: AmexCardSecurityCodeVersion2 = {}  # type: ignore[typeddict-item]
-    if "CardExpiryDate" in data:
+    if data.get("CardExpiryDate") is not None:
         out["card_expiry_date"] = data["CardExpiryDate"]
     else:
         raise DeserializationError(
             "AmexCardSecurityCodeVersion2.card_expiry_date required"
         )
-    if "ServiceCode" in data:
+    if data.get("ServiceCode") is not None:
         out["service_code"] = data["ServiceCode"]
     else:
         raise DeserializationError("AmexCardSecurityCodeVersion2.service_code required")

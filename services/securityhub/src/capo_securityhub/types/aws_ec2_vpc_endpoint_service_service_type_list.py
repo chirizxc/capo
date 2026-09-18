@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> AwsEc2VpcEndpointServiceServiceTypeList:
 
     out: AwsEc2VpcEndpointServiceServiceTypeList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_securityhub.types.aws_ec2_vpc_endpoint_service_service_type_details.deserialize_json(
                 item

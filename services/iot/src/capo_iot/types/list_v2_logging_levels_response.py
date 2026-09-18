@@ -36,7 +36,7 @@ def serialize_json(value: ListV2LoggingLevelsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListV2LoggingLevelsResponse:
     out: ListV2LoggingLevelsResponse = {}  # type: ignore[typeddict-item]
-    if "logTargetConfigurations" in data:
+    if data.get("logTargetConfigurations") is not None:
         import capo_iot.types.log_target_configurations
 
         out["log_target_configurations"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> ListV2LoggingLevelsResponse:
                 data["logTargetConfigurations"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

@@ -51,9 +51,9 @@ def serialize_aws_json_1_1(value: ServiceChange) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ServiceChange:
     out: ServiceChange = {}  # type: ignore[typeddict-item]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "DnsConfig" in data:
+    if data.get("DnsConfig") is not None:
         import capo_servicediscovery.types.dns_config_change
 
         out["dns_config"] = (
@@ -61,7 +61,7 @@ def deserialize_aws_json_1_1(data: dict) -> ServiceChange:
                 data["DnsConfig"]
             )
         )
-    if "HealthCheckConfig" in data:
+    if data.get("HealthCheckConfig") is not None:
         import capo_servicediscovery.types.health_check_config
 
         out["health_check_config"] = (

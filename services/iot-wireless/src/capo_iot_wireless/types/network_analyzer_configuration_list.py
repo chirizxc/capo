@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> NetworkAnalyzerConfigurationList:
 
     out: NetworkAnalyzerConfigurationList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_iot_wireless.types.network_analyzer_configurations.deserialize_json(
                 item

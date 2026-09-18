@@ -64,15 +64,15 @@ def serialize_json(value: CreateParticipantTokenRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateParticipantTokenRequest:
     out: CreateParticipantTokenRequest = {}  # type: ignore[typeddict-item]
-    if "stageArn" in data:
+    if data.get("stageArn") is not None:
         out["stage_arn"] = data["stageArn"]
     else:
         raise DeserializationError("CreateParticipantTokenRequest.stage_arn required")
-    if "duration" in data:
+    if data.get("duration") is not None:
         out["duration"] = data["duration"]
-    if "userId" in data:
+    if data.get("userId") is not None:
         out["user_id"] = data["userId"]
-    if "attributes" in data:
+    if data.get("attributes") is not None:
         import capo_ivs_realtime.types.participant_token_attributes
 
         out["attributes"] = (
@@ -80,7 +80,7 @@ def deserialize_json(data: dict) -> CreateParticipantTokenRequest:
                 data["attributes"]
             )
         )
-    if "capabilities" in data:
+    if data.get("capabilities") is not None:
         import capo_ivs_realtime.types.participant_token_capabilities
 
         out["capabilities"] = (

@@ -37,9 +37,9 @@ def serialize_aws_json_1_1(value: AdditionalModelDataSource) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AdditionalModelDataSource:
     out: AdditionalModelDataSource = {}  # type: ignore[typeddict-item]
-    if "ChannelName" in data:
+    if data.get("ChannelName") is not None:
         out["channel_name"] = data["ChannelName"]
-    if "S3DataSource" in data:
+    if data.get("S3DataSource") is not None:
         import capo_sagemaker.types.s3_model_data_source
 
         out["s3_data_source"] = (

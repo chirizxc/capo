@@ -25,6 +25,8 @@ def deserialize_json(data: list) -> WorkflowStepExecutionsList:
 
     out: WorkflowStepExecutionsList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_imagebuilder.types.workflow_step_metadata.deserialize_json(item)
         )

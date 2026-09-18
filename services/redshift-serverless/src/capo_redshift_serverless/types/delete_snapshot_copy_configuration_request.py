@@ -19,7 +19,7 @@ def serialize_aws_json_1_1(value: DeleteSnapshotCopyConfigurationRequest) -> dic
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteSnapshotCopyConfigurationRequest:
     out: DeleteSnapshotCopyConfigurationRequest = {}  # type: ignore[typeddict-item]
-    if "snapshotCopyConfigurationId" in data:
+    if data.get("snapshotCopyConfigurationId") is not None:
         out["snapshot_copy_configuration_id"] = data["snapshotCopyConfigurationId"]
     else:
         raise DeserializationError(

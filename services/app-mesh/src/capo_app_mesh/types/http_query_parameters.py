@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> HttpQueryParameters:
 
     out: HttpQueryParameters = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_app_mesh.types.http_query_parameter.deserialize_json(item))
     return out

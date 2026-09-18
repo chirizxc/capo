@@ -23,7 +23,7 @@ def serialize_json(value: KmsInvalidStateException_) -> dict:
 
 def deserialize_json(data: dict) -> KmsInvalidStateException_:
     out: KmsInvalidStateException_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     else:
         raise DeserializationError("KmsInvalidStateException_.message required")
@@ -35,15 +35,18 @@ class KmsInvalidStateException(ServiceError):
 
     code: str | None = "KmsInvalidStateException"
 
-    def __init__(self, data: KmsInvalidStateException_):
+    def __init__(self, data: KmsInvalidStateException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="KmsInvalidStateException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "KmsInvalidStateException":
-        return cls(deserialize_json(data))
+    def from_json(
+        cls, data: dict, message: str | None = None
+    ) -> "KmsInvalidStateException":
+        return cls(deserialize_json(data), message)

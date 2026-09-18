@@ -57,7 +57,7 @@ def serialize_json(value: MediaStreamOutputConfigurationRequest) -> dict:
 
 def deserialize_json(data: dict) -> MediaStreamOutputConfigurationRequest:
     out: MediaStreamOutputConfigurationRequest = {}  # type: ignore[typeddict-item]
-    if "destinationConfigurations" in data:
+    if data.get("destinationConfigurations") is not None:
         import capo_mediaconnect.types.__list_of_destination_configuration_request
 
         out["destination_configurations"] = (
@@ -65,13 +65,13 @@ def deserialize_json(data: dict) -> MediaStreamOutputConfigurationRequest:
                 data["destinationConfigurations"]
             )
         )
-    if "encodingName" in data:
+    if data.get("encodingName") is not None:
         import capo_mediaconnect.types.encoding_name
 
         out["encoding_name"] = capo_mediaconnect.types.encoding_name.deserialize_json(
             data["encodingName"]
         )
-    if "encodingParameters" in data:
+    if data.get("encodingParameters") is not None:
         import capo_mediaconnect.types.encoding_parameters_request
 
         out["encoding_parameters"] = (
@@ -79,6 +79,6 @@ def deserialize_json(data: dict) -> MediaStreamOutputConfigurationRequest:
                 data["encodingParameters"]
             )
         )
-    if "mediaStreamName" in data:
+    if data.get("mediaStreamName") is not None:
         out["media_stream_name"] = data["mediaStreamName"]
     return out

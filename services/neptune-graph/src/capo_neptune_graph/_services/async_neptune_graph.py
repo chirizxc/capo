@@ -203,15 +203,17 @@ class AsyncNeptuneGraphClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_neptune_graph.types.cancel_query_input.CancelQueryInput = {}  # type: ignore[typeddict-item]
-        input_["graph_identifier"] = graph_identifier
-        input_["query_id"] = query_id
+        input_: capo_neptune_graph.types.cancel_query_input.CancelQueryInput = {
+            "graph_identifier": graph_identifier,
+            "query_id": query_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     @asynccontextmanager
@@ -270,10 +272,11 @@ class AsyncNeptuneGraphClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_neptune_graph.types.execute_query_input.ExecuteQueryInput = {}  # type: ignore[typeddict-item]
-        input_["graph_identifier"] = graph_identifier
-        input_["query_string"] = query_string
-        input_["language"] = language
+        input_: capo_neptune_graph.types.execute_query_input.ExecuteQueryInput = {
+            "graph_identifier": graph_identifier,
+            "query_string": query_string,
+            "language": language,
+        }
         if parameters is not None:
             input_["parameters"] = parameters
         if plan_cache is not None:
@@ -288,7 +291,10 @@ class AsyncNeptuneGraphClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
-        yield response.output
+        try:
+            yield response.output
+        finally:
+            await response.response.aclose()
 
     async def get_graph_summary(
         self,
@@ -330,8 +336,9 @@ class AsyncNeptuneGraphClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_neptune_graph.types.get_graph_summary_input.GetGraphSummaryInput = {}  # type: ignore[typeddict-item]
-        input_["graph_identifier"] = graph_identifier
+        input_: capo_neptune_graph.types.get_graph_summary_input.GetGraphSummaryInput = {
+            "graph_identifier": graph_identifier
+        }
         if mode is not None:
             input_["mode"] = mode
 
@@ -340,6 +347,7 @@ class AsyncNeptuneGraphClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_query(
@@ -380,15 +388,17 @@ class AsyncNeptuneGraphClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_neptune_graph.types.get_query_input.GetQueryInput = {}  # type: ignore[typeddict-item]
-        input_["graph_identifier"] = graph_identifier
-        input_["query_id"] = query_id
+        input_: capo_neptune_graph.types.get_query_input.GetQueryInput = {
+            "graph_identifier": graph_identifier,
+            "query_id": query_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_queries(
@@ -432,9 +442,10 @@ class AsyncNeptuneGraphClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_neptune_graph.types.list_queries_input.ListQueriesInput = {}  # type: ignore[typeddict-item]
-        input_["graph_identifier"] = graph_identifier
-        input_["max_results"] = max_results
+        input_: capo_neptune_graph.types.list_queries_input.ListQueriesInput = {
+            "graph_identifier": graph_identifier,
+            "max_results": max_results,
+        }
         if state is not None:
             input_["state"] = state
 
@@ -443,6 +454,7 @@ class AsyncNeptuneGraphClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_tags_for_resource(
@@ -480,14 +492,16 @@ class AsyncNeptuneGraphClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_neptune_graph.types.list_tags_for_resource_input.ListTagsForResourceInput = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_neptune_graph.types.list_tags_for_resource_input.ListTagsForResourceInput = {
+            "resource_arn": resource_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def tag_resource(
@@ -527,15 +541,17 @@ class AsyncNeptuneGraphClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_neptune_graph.types.tag_resource_input.TagResourceInput = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tags"] = tags
+        input_: capo_neptune_graph.types.tag_resource_input.TagResourceInput = {
+            "resource_arn": resource_arn,
+            "tags": tags,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def untag_resource(
@@ -575,15 +591,17 @@ class AsyncNeptuneGraphClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_neptune_graph.types.untag_resource_input.UntagResourceInput = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tag_keys"] = tag_keys
+        input_: capo_neptune_graph.types.untag_resource_input.UntagResourceInput = {
+            "resource_arn": resource_arn,
+            "tag_keys": tag_keys,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def __aenter__(self) -> Self:

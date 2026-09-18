@@ -53,15 +53,15 @@ def serialize_aws_json_1_1(value: EntityRecognizerFilter) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> EntityRecognizerFilter:
     out: EntityRecognizerFilter = {}  # type: ignore[typeddict-item]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_comprehend.types.model_status
 
         out["status"] = capo_comprehend.types.model_status.deserialize_aws_json_1_1(
             data["Status"]
         )
-    if "RecognizerName" in data:
+    if data.get("RecognizerName") is not None:
         out["recognizer_name"] = data["RecognizerName"]
-    if "SubmitTimeBefore" in data:
+    if data.get("SubmitTimeBefore") is not None:
         import capo_comprehend.types.timestamp
 
         out["submit_time_before"] = (
@@ -69,7 +69,7 @@ def deserialize_aws_json_1_1(data: dict) -> EntityRecognizerFilter:
                 data["SubmitTimeBefore"]
             )
         )
-    if "SubmitTimeAfter" in data:
+    if data.get("SubmitTimeAfter") is not None:
         import capo_comprehend.types.timestamp
 
         out["submit_time_after"] = (

@@ -24,7 +24,7 @@ def serialize_json(value: RollbackServiceSoftwareUpdateRequest) -> dict:
 
 def deserialize_json(data: dict) -> RollbackServiceSoftwareUpdateRequest:
     out: RollbackServiceSoftwareUpdateRequest = {}  # type: ignore[typeddict-item]
-    if "DomainName" in data:
+    if data.get("DomainName") is not None:
         out["domain_name"] = data["DomainName"]
     else:
         raise DeserializationError(

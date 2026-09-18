@@ -45,7 +45,7 @@ def serialize_json(value: VpcInformation) -> dict:
 
 def deserialize_json(data: dict) -> VpcInformation:
     out: VpcInformation = {}  # type: ignore[typeddict-item]
-    if "IpAddressType" in data:
+    if data.get("IpAddressType") is not None:
         import capo_pca_connector_ad.types.ip_address_type
 
         out["ip_address_type"] = (
@@ -53,7 +53,7 @@ def deserialize_json(data: dict) -> VpcInformation:
                 data["IpAddressType"]
             )
         )
-    if "SecurityGroupIds" in data:
+    if data.get("SecurityGroupIds") is not None:
         import capo_pca_connector_ad.types.security_group_id_list
 
         out["security_group_ids"] = (

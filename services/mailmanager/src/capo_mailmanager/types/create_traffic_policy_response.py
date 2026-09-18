@@ -24,7 +24,7 @@ def serialize_aws_json_1_0(value: CreateTrafficPolicyResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CreateTrafficPolicyResponse:
     out: CreateTrafficPolicyResponse = {}  # type: ignore[typeddict-item]
-    if "TrafficPolicyId" in data:
+    if data.get("TrafficPolicyId") is not None:
         out["traffic_policy_id"] = data["TrafficPolicyId"]
     else:
         raise DeserializationError(

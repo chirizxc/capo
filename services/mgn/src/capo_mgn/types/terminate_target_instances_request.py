@@ -42,7 +42,7 @@ def serialize_json(value: TerminateTargetInstancesRequest) -> dict:
 
 def deserialize_json(data: dict) -> TerminateTargetInstancesRequest:
     out: TerminateTargetInstancesRequest = {}  # type: ignore[typeddict-item]
-    if "sourceServerIDs" in data:
+    if data.get("sourceServerIDs") is not None:
         import capo_mgn.types.terminate_target_instances_request_source_server_i_ds
 
         out["source_server_i_ds"] = (
@@ -54,10 +54,10 @@ def deserialize_json(data: dict) -> TerminateTargetInstancesRequest:
         raise DeserializationError(
             "TerminateTargetInstancesRequest.source_server_i_ds required"
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_mgn.types.tags_map
 
         out["tags"] = capo_mgn.types.tags_map.deserialize_json(data["tags"])
-    if "accountID" in data:
+    if data.get("accountID") is not None:
         out["account_id"] = data["accountID"]
     return out

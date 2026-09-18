@@ -40,13 +40,13 @@ def serialize_aws_json_1_1(value: ServiceAlreadyExists_) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ServiceAlreadyExists_:
     out: ServiceAlreadyExists_ = {}  # type: ignore[typeddict-item]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
-    if "CreatorRequestId" in data:
+    if data.get("CreatorRequestId") is not None:
         out["creator_request_id"] = data["CreatorRequestId"]
-    if "ServiceId" in data:
+    if data.get("ServiceId") is not None:
         out["service_id"] = data["ServiceId"]
-    if "ServiceArn" in data:
+    if data.get("ServiceArn") is not None:
         out["service_arn"] = data["ServiceArn"]
     return out
 
@@ -56,15 +56,18 @@ class ServiceAlreadyExists(ServiceError):
 
     code: str | None = "ServiceAlreadyExists"
 
-    def __init__(self, data: ServiceAlreadyExists_):
+    def __init__(self, data: ServiceAlreadyExists_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="ServiceAlreadyExists",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "ServiceAlreadyExists":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "ServiceAlreadyExists":
+        return cls(deserialize_aws_json_1_1(data), message)

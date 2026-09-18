@@ -31,10 +31,10 @@ def serialize_json(value: IamIdentityCenterForList) -> dict:
 
 def deserialize_json(data: dict) -> IamIdentityCenterForList:
     out: IamIdentityCenterForList = {}  # type: ignore[typeddict-item]
-    if "InstanceArn" in data:
+    if data.get("InstanceArn") is not None:
         out["instance_arn"] = data["InstanceArn"]
-    if "ApprovalPortalUrl" in data:
+    if data.get("ApprovalPortalUrl") is not None:
         out["approval_portal_url"] = data["ApprovalPortalUrl"]
-    if "Region" in data:
+    if data.get("Region") is not None:
         out["region"] = data["Region"]
     return out

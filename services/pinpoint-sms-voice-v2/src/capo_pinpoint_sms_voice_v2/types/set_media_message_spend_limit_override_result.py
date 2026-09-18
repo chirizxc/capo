@@ -25,6 +25,6 @@ def serialize_aws_json_1_0(value: SetMediaMessageSpendLimitOverrideResult) -> di
 
 def deserialize_aws_json_1_0(data: dict) -> SetMediaMessageSpendLimitOverrideResult:
     out: SetMediaMessageSpendLimitOverrideResult = {}  # type: ignore[typeddict-item]
-    if "MonthlyLimit" in data:
+    if data.get("MonthlyLimit") is not None:
         out["monthly_limit"] = data["MonthlyLimit"]
     return out

@@ -12,12 +12,20 @@ class RateLimiterModuleParameters(TypedDict, closed=True):
 def serialize_json(value: RateLimiterModuleParameters) -> dict:
     out: dict = {}
     if "tps" in value:
-        out["tps"] = value["tps"]
+        out["tps"] = (
+            "NaN"
+            if value["tps"] != value["tps"]
+            else "Infinity"
+            if value["tps"] == float("inf")
+            else "-Infinity"
+            if value["tps"] == float("-inf")
+            else value["tps"]
+        )
     return out
 
 
 def deserialize_json(data: dict) -> RateLimiterModuleParameters:
     out: RateLimiterModuleParameters = {}  # type: ignore[typeddict-item]
-    if "tps" in data:
-        out["tps"] = data["tps"]
+    if data.get("tps") is not None:
+        out["tps"] = float(data["tps"])
     return out

@@ -40,7 +40,7 @@ def serialize_json(value: PredictQAppInputOptions) -> dict:
 
 
 def deserialize_json(data: dict) -> PredictQAppInputOptions:
-    if "conversation" in data:
+    if data.get("conversation") is not None:
         import capo_qapps.types.message_list
 
         return {
@@ -48,7 +48,7 @@ def deserialize_json(data: dict) -> PredictQAppInputOptions:
                 data["conversation"]
             )
         }
-    elif "problemStatement" in data:
+    elif data.get("problemStatement") is not None:
         return {"problemStatement": data["problemStatement"]}
     else:
         raise DeserializationError("PredictQAppInputOptions: no recognized variant key")

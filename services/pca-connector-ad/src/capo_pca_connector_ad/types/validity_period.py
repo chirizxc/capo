@@ -31,7 +31,7 @@ def serialize_json(value: ValidityPeriod) -> dict:
 
 def deserialize_json(data: dict) -> ValidityPeriod:
     out: ValidityPeriod = {}  # type: ignore[typeddict-item]
-    if "PeriodType" in data:
+    if data.get("PeriodType") is not None:
         import capo_pca_connector_ad.types.validity_period_type
 
         out["period_type"] = (
@@ -41,7 +41,7 @@ def deserialize_json(data: dict) -> ValidityPeriod:
         )
     else:
         raise DeserializationError("ValidityPeriod.period_type required")
-    if "Period" in data:
+    if data.get("Period") is not None:
         out["period"] = data["Period"]
     else:
         raise DeserializationError("ValidityPeriod.period required")

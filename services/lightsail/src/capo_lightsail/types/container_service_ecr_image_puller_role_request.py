@@ -23,6 +23,6 @@ def serialize_aws_json_1_1(value: ContainerServiceECRImagePullerRoleRequest) -> 
 
 def deserialize_aws_json_1_1(data: dict) -> ContainerServiceECRImagePullerRoleRequest:
     out: ContainerServiceECRImagePullerRoleRequest = {}  # type: ignore[typeddict-item]
-    if "isActive" in data:
+    if data.get("isActive") is not None:
         out["is_active"] = data["isActive"]
     return out

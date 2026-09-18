@@ -55,40 +55,40 @@ def serialize_aws_json_1_1(value: PostCommentForPullRequestInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PostCommentForPullRequestInput:
     out: PostCommentForPullRequestInput = {}  # type: ignore[typeddict-item]
-    if "pullRequestId" in data:
+    if data.get("pullRequestId") is not None:
         out["pull_request_id"] = data["pullRequestId"]
     else:
         raise DeserializationError(
             "PostCommentForPullRequestInput.pull_request_id required"
         )
-    if "repositoryName" in data:
+    if data.get("repositoryName") is not None:
         out["repository_name"] = data["repositoryName"]
     else:
         raise DeserializationError(
             "PostCommentForPullRequestInput.repository_name required"
         )
-    if "beforeCommitId" in data:
+    if data.get("beforeCommitId") is not None:
         out["before_commit_id"] = data["beforeCommitId"]
     else:
         raise DeserializationError(
             "PostCommentForPullRequestInput.before_commit_id required"
         )
-    if "afterCommitId" in data:
+    if data.get("afterCommitId") is not None:
         out["after_commit_id"] = data["afterCommitId"]
     else:
         raise DeserializationError(
             "PostCommentForPullRequestInput.after_commit_id required"
         )
-    if "location" in data:
+    if data.get("location") is not None:
         import capo_codecommit.types.location
 
         out["location"] = capo_codecommit.types.location.deserialize_aws_json_1_1(
             data["location"]
         )
-    if "content" in data:
+    if data.get("content") is not None:
         out["content"] = data["content"]
     else:
         raise DeserializationError("PostCommentForPullRequestInput.content required")
-    if "clientRequestToken" in data:
+    if data.get("clientRequestToken") is not None:
         out["client_request_token"] = data["clientRequestToken"]
     return out

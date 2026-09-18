@@ -31,7 +31,7 @@ def serialize_aws_json_1_0(value: GetHypervisorOutput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> GetHypervisorOutput:
     out: GetHypervisorOutput = {}  # type: ignore[typeddict-item]
-    if "Hypervisor" in data:
+    if data.get("Hypervisor") is not None:
         import capo_backup_gateway.types.hypervisor_details
 
         out["hypervisor"] = (

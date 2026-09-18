@@ -57,7 +57,7 @@ def serialize_json(value: DefaultNewSheetConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> DefaultNewSheetConfiguration:
     out: DefaultNewSheetConfiguration = {}  # type: ignore[typeddict-item]
-    if "InteractiveLayoutConfiguration" in data:
+    if data.get("InteractiveLayoutConfiguration") is not None:
         import capo_quicksight.types.default_interactive_layout_configuration
 
         out["interactive_layout_configuration"] = (
@@ -65,7 +65,7 @@ def deserialize_json(data: dict) -> DefaultNewSheetConfiguration:
                 data["InteractiveLayoutConfiguration"]
             )
         )
-    if "PaginatedLayoutConfiguration" in data:
+    if data.get("PaginatedLayoutConfiguration") is not None:
         import capo_quicksight.types.default_paginated_layout_configuration
 
         out["paginated_layout_configuration"] = (
@@ -73,7 +73,7 @@ def deserialize_json(data: dict) -> DefaultNewSheetConfiguration:
                 data["PaginatedLayoutConfiguration"]
             )
         )
-    if "SheetContentType" in data:
+    if data.get("SheetContentType") is not None:
         import capo_quicksight.types.sheet_content_type
 
         out["sheet_content_type"] = (

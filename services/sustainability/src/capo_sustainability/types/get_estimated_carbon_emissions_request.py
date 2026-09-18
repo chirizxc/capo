@@ -91,7 +91,7 @@ def serialize_json(value: GetEstimatedCarbonEmissionsRequest) -> dict:
 
 def deserialize_json(data: dict) -> GetEstimatedCarbonEmissionsRequest:
     out: GetEstimatedCarbonEmissionsRequest = {}  # type: ignore[typeddict-item]
-    if "TimePeriod" in data:
+    if data.get("TimePeriod") is not None:
         import capo_sustainability.types.time_period
 
         out["time_period"] = capo_sustainability.types.time_period.deserialize_json(
@@ -101,19 +101,19 @@ def deserialize_json(data: dict) -> GetEstimatedCarbonEmissionsRequest:
         raise DeserializationError(
             "GetEstimatedCarbonEmissionsRequest.time_period required"
         )
-    if "GroupBy" in data:
+    if data.get("GroupBy") is not None:
         import capo_sustainability.types.dimension_list
 
         out["group_by"] = capo_sustainability.types.dimension_list.deserialize_json(
             data["GroupBy"]
         )
-    if "FilterBy" in data:
+    if data.get("FilterBy") is not None:
         import capo_sustainability.types.filter_expression
 
         out["filter_by"] = capo_sustainability.types.filter_expression.deserialize_json(
             data["FilterBy"]
         )
-    if "EmissionsTypes" in data:
+    if data.get("EmissionsTypes") is not None:
         import capo_sustainability.types.emissions_type_list
 
         out["emissions_types"] = (
@@ -121,7 +121,7 @@ def deserialize_json(data: dict) -> GetEstimatedCarbonEmissionsRequest:
                 data["EmissionsTypes"]
             )
         )
-    if "Granularity" in data:
+    if data.get("Granularity") is not None:
         import capo_sustainability.types.time_granularity
 
         out["granularity"] = (
@@ -131,7 +131,7 @@ def deserialize_json(data: dict) -> GetEstimatedCarbonEmissionsRequest:
         )
     else:
         out["granularity"] = "MONTHLY"
-    if "GranularityConfiguration" in data:
+    if data.get("GranularityConfiguration") is not None:
         import capo_sustainability.types.granularity_configuration
 
         out["granularity_configuration"] = (
@@ -139,10 +139,10 @@ def deserialize_json(data: dict) -> GetEstimatedCarbonEmissionsRequest:
                 data["GranularityConfiguration"]
             )
         )
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
     else:
         out["max_results"] = 1000
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

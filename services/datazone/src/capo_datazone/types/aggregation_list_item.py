@@ -31,10 +31,10 @@ def serialize_json(value: AggregationListItem) -> dict:
 
 def deserialize_json(data: dict) -> AggregationListItem:
     out: AggregationListItem = {}  # type: ignore[typeddict-item]
-    if "attribute" in data:
+    if data.get("attribute") is not None:
         out["attribute"] = data["attribute"]
     else:
         raise DeserializationError("AggregationListItem.attribute required")
-    if "displayValue" in data:
+    if data.get("displayValue") is not None:
         out["display_value"] = data["displayValue"]
     return out

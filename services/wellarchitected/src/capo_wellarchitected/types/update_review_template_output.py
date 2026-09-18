@@ -31,7 +31,7 @@ def serialize_json(value: UpdateReviewTemplateOutput) -> dict:
 
 def deserialize_json(data: dict) -> UpdateReviewTemplateOutput:
     out: UpdateReviewTemplateOutput = {}  # type: ignore[typeddict-item]
-    if "ReviewTemplate" in data:
+    if data.get("ReviewTemplate") is not None:
         import capo_wellarchitected.types.review_template
 
         out["review_template"] = (

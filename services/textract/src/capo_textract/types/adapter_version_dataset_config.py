@@ -26,7 +26,7 @@ def serialize_aws_json_1_1(value: AdapterVersionDatasetConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AdapterVersionDatasetConfig:
     out: AdapterVersionDatasetConfig = {}  # type: ignore[typeddict-item]
-    if "ManifestS3Object" in data:
+    if data.get("ManifestS3Object") is not None:
         import capo_textract.types.s3_object
 
         out["manifest_s3_object"] = (

@@ -104,11 +104,11 @@ def serialize_json(value: Database) -> dict:
 
 def deserialize_json(data: dict) -> Database:
     out: Database = {}  # type: ignore[typeddict-item]
-    if "ApplicationId" in data:
+    if data.get("ApplicationId") is not None:
         out["application_id"] = data["ApplicationId"]
-    if "ComponentId" in data:
+    if data.get("ComponentId") is not None:
         out["component_id"] = data["ComponentId"]
-    if "Credentials" in data:
+    if data.get("Credentials") is not None:
         import capo_ssm_sap.types.application_credential_list
 
         out["credentials"] = (
@@ -116,35 +116,35 @@ def deserialize_json(data: dict) -> Database:
                 data["Credentials"]
             )
         )
-    if "DatabaseId" in data:
+    if data.get("DatabaseId") is not None:
         out["database_id"] = data["DatabaseId"]
-    if "DatabaseName" in data:
+    if data.get("DatabaseName") is not None:
         out["database_name"] = data["DatabaseName"]
-    if "DatabaseType" in data:
+    if data.get("DatabaseType") is not None:
         import capo_ssm_sap.types.database_type
 
         out["database_type"] = capo_ssm_sap.types.database_type.deserialize_json(
             data["DatabaseType"]
         )
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_ssm_sap.types.database_status
 
         out["status"] = capo_ssm_sap.types.database_status.deserialize_json(
             data["Status"]
         )
-    if "PrimaryHost" in data:
+    if data.get("PrimaryHost") is not None:
         out["primary_host"] = data["PrimaryHost"]
-    if "SQLPort" in data:
+    if data.get("SQLPort") is not None:
         out["sql_port"] = data["SQLPort"]
-    if "LastUpdated" in data:
+    if data.get("LastUpdated") is not None:
         import capo_ssm_sap.types._prelude.timestamp
 
         out["last_updated"] = capo_ssm_sap.types._prelude.timestamp.deserialize_json(
             data["LastUpdated"]
         )
-    if "ConnectedComponentArns" in data:
+    if data.get("ConnectedComponentArns") is not None:
         import capo_ssm_sap.types.component_arn_list
 
         out["connected_component_arns"] = (

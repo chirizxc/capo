@@ -117,7 +117,7 @@ def serialize_json(value: XavcHdProfileSettings) -> dict:
 
 def deserialize_json(data: dict) -> XavcHdProfileSettings:
     out: XavcHdProfileSettings = {}  # type: ignore[typeddict-item]
-    if "bitrateClass" in data:
+    if data.get("bitrateClass") is not None:
         import capo_mediaconvert.types.xavc_hd_profile_bitrate_class
 
         out["bitrate_class"] = (
@@ -125,7 +125,7 @@ def deserialize_json(data: dict) -> XavcHdProfileSettings:
                 data["bitrateClass"]
             )
         )
-    if "flickerAdaptiveQuantization" in data:
+    if data.get("flickerAdaptiveQuantization") is not None:
         import capo_mediaconvert.types.xavc_flicker_adaptive_quantization
 
         out["flicker_adaptive_quantization"] = (
@@ -133,7 +133,7 @@ def deserialize_json(data: dict) -> XavcHdProfileSettings:
                 data["flickerAdaptiveQuantization"]
             )
         )
-    if "gopBReference" in data:
+    if data.get("gopBReference") is not None:
         import capo_mediaconvert.types.xavc_gop_b_reference
 
         out["gop_b_reference"] = (
@@ -141,11 +141,11 @@ def deserialize_json(data: dict) -> XavcHdProfileSettings:
                 data["gopBReference"]
             )
         )
-    if "gopClosedCadence" in data:
+    if data.get("gopClosedCadence") is not None:
         out["gop_closed_cadence"] = data["gopClosedCadence"]
-    if "hrdBufferSize" in data:
+    if data.get("hrdBufferSize") is not None:
         out["hrd_buffer_size"] = data["hrdBufferSize"]
-    if "interlaceMode" in data:
+    if data.get("interlaceMode") is not None:
         import capo_mediaconvert.types.xavc_interlace_mode
 
         out["interlace_mode"] = (
@@ -153,7 +153,7 @@ def deserialize_json(data: dict) -> XavcHdProfileSettings:
                 data["interlaceMode"]
             )
         )
-    if "qualityTuningLevel" in data:
+    if data.get("qualityTuningLevel") is not None:
         import capo_mediaconvert.types.xavc_hd_profile_quality_tuning_level
 
         out["quality_tuning_level"] = (
@@ -161,9 +161,9 @@ def deserialize_json(data: dict) -> XavcHdProfileSettings:
                 data["qualityTuningLevel"]
             )
         )
-    if "slices" in data:
+    if data.get("slices") is not None:
         out["slices"] = data["slices"]
-    if "telecine" in data:
+    if data.get("telecine") is not None:
         import capo_mediaconvert.types.xavc_hd_profile_telecine
 
         out["telecine"] = (

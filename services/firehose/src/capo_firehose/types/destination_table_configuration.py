@@ -58,19 +58,19 @@ def serialize_aws_json_1_1(value: DestinationTableConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DestinationTableConfiguration:
     out: DestinationTableConfiguration = {}  # type: ignore[typeddict-item]
-    if "DestinationTableName" in data:
+    if data.get("DestinationTableName") is not None:
         out["destination_table_name"] = data["DestinationTableName"]
     else:
         raise DeserializationError(
             "DestinationTableConfiguration.destination_table_name required"
         )
-    if "DestinationDatabaseName" in data:
+    if data.get("DestinationDatabaseName") is not None:
         out["destination_database_name"] = data["DestinationDatabaseName"]
     else:
         raise DeserializationError(
             "DestinationTableConfiguration.destination_database_name required"
         )
-    if "UniqueKeys" in data:
+    if data.get("UniqueKeys") is not None:
         import capo_firehose.types.list_of_non_empty_strings_without_whitespace
 
         out["unique_keys"] = (
@@ -78,7 +78,7 @@ def deserialize_aws_json_1_1(data: dict) -> DestinationTableConfiguration:
                 data["UniqueKeys"]
             )
         )
-    if "PartitionSpec" in data:
+    if data.get("PartitionSpec") is not None:
         import capo_firehose.types.partition_spec
 
         out["partition_spec"] = (
@@ -86,6 +86,6 @@ def deserialize_aws_json_1_1(data: dict) -> DestinationTableConfiguration:
                 data["PartitionSpec"]
             )
         )
-    if "S3ErrorOutputPrefix" in data:
+    if data.get("S3ErrorOutputPrefix") is not None:
         out["s3_error_output_prefix"] = data["S3ErrorOutputPrefix"]
     return out

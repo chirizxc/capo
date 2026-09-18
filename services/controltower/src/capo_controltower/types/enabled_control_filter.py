@@ -88,7 +88,7 @@ def serialize_json(value: EnabledControlFilter) -> dict:
 
 def deserialize_json(data: dict) -> EnabledControlFilter:
     out: EnabledControlFilter = {}  # type: ignore[typeddict-item]
-    if "controlIdentifiers" in data:
+    if data.get("controlIdentifiers") is not None:
         import capo_controltower.types.control_identifiers
 
         out["control_identifiers"] = (
@@ -96,19 +96,19 @@ def deserialize_json(data: dict) -> EnabledControlFilter:
                 data["controlIdentifiers"]
             )
         )
-    if "statuses" in data:
+    if data.get("statuses") is not None:
         import capo_controltower.types.enablement_statuses
 
         out["statuses"] = capo_controltower.types.enablement_statuses.deserialize_json(
             data["statuses"]
         )
-    if "driftStatuses" in data:
+    if data.get("driftStatuses") is not None:
         import capo_controltower.types.drift_statuses
 
         out["drift_statuses"] = capo_controltower.types.drift_statuses.deserialize_json(
             data["driftStatuses"]
         )
-    if "parentIdentifiers" in data:
+    if data.get("parentIdentifiers") is not None:
         import capo_controltower.types.parent_identifiers
 
         out["parent_identifiers"] = (
@@ -116,7 +116,7 @@ def deserialize_json(data: dict) -> EnabledControlFilter:
                 data["parentIdentifiers"]
             )
         )
-    if "inheritanceDriftStatuses" in data:
+    if data.get("inheritanceDriftStatuses") is not None:
         import capo_controltower.types.drift_statuses
 
         out["inheritance_drift_statuses"] = (
@@ -124,7 +124,7 @@ def deserialize_json(data: dict) -> EnabledControlFilter:
                 data["inheritanceDriftStatuses"]
             )
         )
-    if "resourceDriftStatuses" in data:
+    if data.get("resourceDriftStatuses") is not None:
         import capo_controltower.types.drift_statuses
 
         out["resource_drift_statuses"] = (

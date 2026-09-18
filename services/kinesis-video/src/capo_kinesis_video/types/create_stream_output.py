@@ -23,6 +23,6 @@ def serialize_json(value: CreateStreamOutput) -> dict:
 
 def deserialize_json(data: dict) -> CreateStreamOutput:
     out: CreateStreamOutput = {}  # type: ignore[typeddict-item]
-    if "StreamARN" in data:
+    if data.get("StreamARN") is not None:
         out["stream_arn"] = data["StreamARN"]
     return out

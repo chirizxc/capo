@@ -47,7 +47,7 @@ def serialize_json(value: IcebergSchemaV2) -> dict:
 
 def deserialize_json(data: dict) -> IcebergSchemaV2:
     out: IcebergSchemaV2 = {}  # type: ignore[typeddict-item]
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_s3tables.types.schema_v2_field_type
 
         out["type"] = capo_s3tables.types.schema_v2_field_type.deserialize_json(
@@ -55,7 +55,7 @@ def deserialize_json(data: dict) -> IcebergSchemaV2:
         )
     else:
         raise DeserializationError("IcebergSchemaV2.type required")
-    if "fields" in data:
+    if data.get("fields") is not None:
         import capo_s3tables.types.schema_v2_field_list
 
         out["fields"] = capo_s3tables.types.schema_v2_field_list.deserialize_json(
@@ -63,9 +63,9 @@ def deserialize_json(data: dict) -> IcebergSchemaV2:
         )
     else:
         raise DeserializationError("IcebergSchemaV2.fields required")
-    if "schema-id" in data:
+    if data.get("schema-id") is not None:
         out["schema_id"] = data["schema-id"]
-    if "identifier-field-ids" in data:
+    if data.get("identifier-field-ids") is not None:
         import capo_s3tables.types.integer_list
 
         out["identifier_field_ids"] = capo_s3tables.types.integer_list.deserialize_json(

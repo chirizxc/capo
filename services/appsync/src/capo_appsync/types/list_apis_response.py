@@ -30,10 +30,10 @@ def serialize_json(value: ListApisResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListApisResponse:
     out: ListApisResponse = {}  # type: ignore[typeddict-item]
-    if "apis" in data:
+    if data.get("apis") is not None:
         import capo_appsync.types.apis
 
         out["apis"] = capo_appsync.types.apis.deserialize_json(data["apis"])
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

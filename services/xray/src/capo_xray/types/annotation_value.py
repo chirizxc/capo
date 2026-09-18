@@ -34,7 +34,17 @@ AnnotationValue: TypeAlias = (
 # --- restJson1 ser/de ---
 def serialize_json(value: AnnotationValue) -> dict:
     if "NumberValue" in value:
-        return {"NumberValue": value["NumberValue"]}
+        return {
+            "NumberValue": (
+                "NaN"
+                if value["NumberValue"] != value["NumberValue"]
+                else "Infinity"
+                if value["NumberValue"] == float("inf")
+                else "-Infinity"
+                if value["NumberValue"] == float("-inf")
+                else value["NumberValue"]
+            )
+        }
     elif "BooleanValue" in value:
         return {"BooleanValue": value["BooleanValue"]}
     elif "StringValue" in value:
@@ -44,11 +54,11 @@ def serialize_json(value: AnnotationValue) -> dict:
 
 
 def deserialize_json(data: dict) -> AnnotationValue:
-    if "NumberValue" in data:
-        return {"NumberValue": data["NumberValue"]}
-    elif "BooleanValue" in data:
+    if data.get("NumberValue") is not None:
+        return {"NumberValue": float(data["NumberValue"])}
+    elif data.get("BooleanValue") is not None:
         return {"BooleanValue": data["BooleanValue"]}
-    elif "StringValue" in data:
+    elif data.get("StringValue") is not None:
         return {"StringValue": data["StringValue"]}
     else:
         raise DeserializationError("AnnotationValue: no recognized variant key")

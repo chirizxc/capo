@@ -248,9 +248,16 @@ def serialize_aws_json_1_0(value: InfluxDBv3EnterpriseParameters) -> dict:
             )
         )
     if "parquet_mem_cache_prune_percentage" in value:
-        out["parquetMemCachePrunePercentage"] = value[
-            "parquet_mem_cache_prune_percentage"
-        ]
+        out["parquetMemCachePrunePercentage"] = (
+            "NaN"
+            if value["parquet_mem_cache_prune_percentage"]
+            != value["parquet_mem_cache_prune_percentage"]
+            else "Infinity"
+            if value["parquet_mem_cache_prune_percentage"] == float("inf")
+            else "-Infinity"
+            if value["parquet_mem_cache_prune_percentage"] == float("-inf")
+            else value["parquet_mem_cache_prune_percentage"]
+        )
     if "parquet_mem_cache_prune_interval" in value:
         import capo_timestream_influxdb.types.duration
 
@@ -413,13 +420,13 @@ def serialize_aws_json_1_0(value: InfluxDBv3EnterpriseParameters) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> InfluxDBv3EnterpriseParameters:
     out: InfluxDBv3EnterpriseParameters = {}  # type: ignore[typeddict-item]
-    if "queryFileLimit" in data:
+    if data.get("queryFileLimit") is not None:
         out["query_file_limit"] = data["queryFileLimit"]
-    if "queryLogSize" in data:
+    if data.get("queryLogSize") is not None:
         out["query_log_size"] = data["queryLogSize"]
-    if "logFilter" in data:
+    if data.get("logFilter") is not None:
         out["log_filter"] = data["logFilter"]
-    if "logFormat" in data:
+    if data.get("logFormat") is not None:
         import capo_timestream_influxdb.types.log_formats
 
         out["log_format"] = (
@@ -427,9 +434,9 @@ def deserialize_aws_json_1_0(data: dict) -> InfluxDBv3EnterpriseParameters:
                 data["logFormat"]
             )
         )
-    if "dataFusionNumThreads" in data:
+    if data.get("dataFusionNumThreads") is not None:
         out["data_fusion_num_threads"] = data["dataFusionNumThreads"]
-    if "dataFusionRuntimeType" in data:
+    if data.get("dataFusionRuntimeType") is not None:
         import capo_timestream_influxdb.types.data_fusion_runtime_type
 
         out["data_fusion_runtime_type"] = (
@@ -437,27 +444,27 @@ def deserialize_aws_json_1_0(data: dict) -> InfluxDBv3EnterpriseParameters:
                 data["dataFusionRuntimeType"]
             )
         )
-    if "dataFusionRuntimeDisableLifoSlot" in data:
+    if data.get("dataFusionRuntimeDisableLifoSlot") is not None:
         out["data_fusion_runtime_disable_lifo_slot"] = data[
             "dataFusionRuntimeDisableLifoSlot"
         ]
-    if "dataFusionRuntimeEventInterval" in data:
+    if data.get("dataFusionRuntimeEventInterval") is not None:
         out["data_fusion_runtime_event_interval"] = data[
             "dataFusionRuntimeEventInterval"
         ]
-    if "dataFusionRuntimeGlobalQueueInterval" in data:
+    if data.get("dataFusionRuntimeGlobalQueueInterval") is not None:
         out["data_fusion_runtime_global_queue_interval"] = data[
             "dataFusionRuntimeGlobalQueueInterval"
         ]
-    if "dataFusionRuntimeMaxBlockingThreads" in data:
+    if data.get("dataFusionRuntimeMaxBlockingThreads") is not None:
         out["data_fusion_runtime_max_blocking_threads"] = data[
             "dataFusionRuntimeMaxBlockingThreads"
         ]
-    if "dataFusionRuntimeMaxIoEventsPerTick" in data:
+    if data.get("dataFusionRuntimeMaxIoEventsPerTick") is not None:
         out["data_fusion_runtime_max_io_events_per_tick"] = data[
             "dataFusionRuntimeMaxIoEventsPerTick"
         ]
-    if "dataFusionRuntimeThreadKeepAlive" in data:
+    if data.get("dataFusionRuntimeThreadKeepAlive") is not None:
         import capo_timestream_influxdb.types.duration
 
         out["data_fusion_runtime_thread_keep_alive"] = (
@@ -465,21 +472,21 @@ def deserialize_aws_json_1_0(data: dict) -> InfluxDBv3EnterpriseParameters:
                 data["dataFusionRuntimeThreadKeepAlive"]
             )
         )
-    if "dataFusionRuntimeThreadPriority" in data:
+    if data.get("dataFusionRuntimeThreadPriority") is not None:
         out["data_fusion_runtime_thread_priority"] = data[
             "dataFusionRuntimeThreadPriority"
         ]
-    if "dataFusionMaxParquetFanout" in data:
+    if data.get("dataFusionMaxParquetFanout") is not None:
         out["data_fusion_max_parquet_fanout"] = data["dataFusionMaxParquetFanout"]
-    if "dataFusionUseCachedParquetLoader" in data:
+    if data.get("dataFusionUseCachedParquetLoader") is not None:
         out["data_fusion_use_cached_parquet_loader"] = data[
             "dataFusionUseCachedParquetLoader"
         ]
-    if "dataFusionConfig" in data:
+    if data.get("dataFusionConfig") is not None:
         out["data_fusion_config"] = data["dataFusionConfig"]
-    if "maxHttpRequestSize" in data:
+    if data.get("maxHttpRequestSize") is not None:
         out["max_http_request_size"] = data["maxHttpRequestSize"]
-    if "forceSnapshotMemThreshold" in data:
+    if data.get("forceSnapshotMemThreshold") is not None:
         import capo_timestream_influxdb.types.percent_or_absolute_long
 
         out["force_snapshot_mem_threshold"] = (
@@ -487,13 +494,13 @@ def deserialize_aws_json_1_0(data: dict) -> InfluxDBv3EnterpriseParameters:
                 data["forceSnapshotMemThreshold"]
             )
         )
-    if "walSnapshotSize" in data:
+    if data.get("walSnapshotSize") is not None:
         out["wal_snapshot_size"] = data["walSnapshotSize"]
-    if "walMaxWriteBufferSize" in data:
+    if data.get("walMaxWriteBufferSize") is not None:
         out["wal_max_write_buffer_size"] = data["walMaxWriteBufferSize"]
-    if "snapshottedWalFilesToKeep" in data:
+    if data.get("snapshottedWalFilesToKeep") is not None:
         out["snapshotted_wal_files_to_keep"] = data["snapshottedWalFilesToKeep"]
-    if "preemptiveCacheAge" in data:
+    if data.get("preemptiveCacheAge") is not None:
         import capo_timestream_influxdb.types.duration
 
         out["preemptive_cache_age"] = (
@@ -501,11 +508,11 @@ def deserialize_aws_json_1_0(data: dict) -> InfluxDBv3EnterpriseParameters:
                 data["preemptiveCacheAge"]
             )
         )
-    if "parquetMemCachePrunePercentage" in data:
-        out["parquet_mem_cache_prune_percentage"] = data[
-            "parquetMemCachePrunePercentage"
-        ]
-    if "parquetMemCachePruneInterval" in data:
+    if data.get("parquetMemCachePrunePercentage") is not None:
+        out["parquet_mem_cache_prune_percentage"] = float(
+            data["parquetMemCachePrunePercentage"]
+        )
+    if data.get("parquetMemCachePruneInterval") is not None:
         import capo_timestream_influxdb.types.duration
 
         out["parquet_mem_cache_prune_interval"] = (
@@ -513,9 +520,9 @@ def deserialize_aws_json_1_0(data: dict) -> InfluxDBv3EnterpriseParameters:
                 data["parquetMemCachePruneInterval"]
             )
         )
-    if "disableParquetMemCache" in data:
+    if data.get("disableParquetMemCache") is not None:
         out["disable_parquet_mem_cache"] = data["disableParquetMemCache"]
-    if "parquetMemCacheQueryPathDuration" in data:
+    if data.get("parquetMemCacheQueryPathDuration") is not None:
         import capo_timestream_influxdb.types.duration
 
         out["parquet_mem_cache_query_path_duration"] = (
@@ -523,7 +530,7 @@ def deserialize_aws_json_1_0(data: dict) -> InfluxDBv3EnterpriseParameters:
                 data["parquetMemCacheQueryPathDuration"]
             )
         )
-    if "lastCacheEvictionInterval" in data:
+    if data.get("lastCacheEvictionInterval") is not None:
         import capo_timestream_influxdb.types.duration
 
         out["last_cache_eviction_interval"] = (
@@ -531,7 +538,7 @@ def deserialize_aws_json_1_0(data: dict) -> InfluxDBv3EnterpriseParameters:
                 data["lastCacheEvictionInterval"]
             )
         )
-    if "distinctCacheEvictionInterval" in data:
+    if data.get("distinctCacheEvictionInterval") is not None:
         import capo_timestream_influxdb.types.duration
 
         out["distinct_cache_eviction_interval"] = (
@@ -539,7 +546,7 @@ def deserialize_aws_json_1_0(data: dict) -> InfluxDBv3EnterpriseParameters:
                 data["distinctCacheEvictionInterval"]
             )
         )
-    if "gen1Duration" in data:
+    if data.get("gen1Duration") is not None:
         import capo_timestream_influxdb.types.duration
 
         out["gen1_duration"] = (
@@ -547,7 +554,7 @@ def deserialize_aws_json_1_0(data: dict) -> InfluxDBv3EnterpriseParameters:
                 data["gen1Duration"]
             )
         )
-    if "execMemPoolBytes" in data:
+    if data.get("execMemPoolBytes") is not None:
         import capo_timestream_influxdb.types.percent_or_absolute_long
 
         out["exec_mem_pool_bytes"] = (
@@ -555,7 +562,7 @@ def deserialize_aws_json_1_0(data: dict) -> InfluxDBv3EnterpriseParameters:
                 data["execMemPoolBytes"]
             )
         )
-    if "parquetMemCacheSize" in data:
+    if data.get("parquetMemCacheSize") is not None:
         import capo_timestream_influxdb.types.percent_or_absolute_long
 
         out["parquet_mem_cache_size"] = (
@@ -563,17 +570,17 @@ def deserialize_aws_json_1_0(data: dict) -> InfluxDBv3EnterpriseParameters:
                 data["parquetMemCacheSize"]
             )
         )
-    if "walReplayFailOnError" in data:
+    if data.get("walReplayFailOnError") is not None:
         out["wal_replay_fail_on_error"] = data["walReplayFailOnError"]
-    if "walReplayConcurrencyLimit" in data:
+    if data.get("walReplayConcurrencyLimit") is not None:
         out["wal_replay_concurrency_limit"] = data["walReplayConcurrencyLimit"]
-    if "tableIndexCacheMaxEntries" in data:
+    if data.get("tableIndexCacheMaxEntries") is not None:
         out["table_index_cache_max_entries"] = data["tableIndexCacheMaxEntries"]
-    if "tableIndexCacheConcurrencyLimit" in data:
+    if data.get("tableIndexCacheConcurrencyLimit") is not None:
         out["table_index_cache_concurrency_limit"] = data[
             "tableIndexCacheConcurrencyLimit"
         ]
-    if "gen1LookbackDuration" in data:
+    if data.get("gen1LookbackDuration") is not None:
         import capo_timestream_influxdb.types.duration
 
         out["gen1_lookback_duration"] = (
@@ -581,7 +588,7 @@ def deserialize_aws_json_1_0(data: dict) -> InfluxDBv3EnterpriseParameters:
                 data["gen1LookbackDuration"]
             )
         )
-    if "retentionCheckInterval" in data:
+    if data.get("retentionCheckInterval") is not None:
         import capo_timestream_influxdb.types.duration
 
         out["retention_check_interval"] = (
@@ -589,7 +596,7 @@ def deserialize_aws_json_1_0(data: dict) -> InfluxDBv3EnterpriseParameters:
                 data["retentionCheckInterval"]
             )
         )
-    if "deleteGracePeriod" in data:
+    if data.get("deleteGracePeriod") is not None:
         import capo_timestream_influxdb.types.duration
 
         out["delete_grace_period"] = (
@@ -597,7 +604,7 @@ def deserialize_aws_json_1_0(data: dict) -> InfluxDBv3EnterpriseParameters:
                 data["deleteGracePeriod"]
             )
         )
-    if "hardDeleteDefaultDuration" in data:
+    if data.get("hardDeleteDefaultDuration") is not None:
         import capo_timestream_influxdb.types.duration
 
         out["hard_delete_default_duration"] = (
@@ -605,29 +612,29 @@ def deserialize_aws_json_1_0(data: dict) -> InfluxDBv3EnterpriseParameters:
                 data["hardDeleteDefaultDuration"]
             )
         )
-    if "ingestQueryInstances" in data:
+    if data.get("ingestQueryInstances") is not None:
         out["ingest_query_instances"] = data["ingestQueryInstances"]
     else:
         raise DeserializationError(
             "InfluxDBv3EnterpriseParameters.ingest_query_instances required"
         )
-    if "queryOnlyInstances" in data:
+    if data.get("queryOnlyInstances") is not None:
         out["query_only_instances"] = data["queryOnlyInstances"]
     else:
         raise DeserializationError(
             "InfluxDBv3EnterpriseParameters.query_only_instances required"
         )
-    if "dedicatedCompactor" in data:
+    if data.get("dedicatedCompactor") is not None:
         out["dedicated_compactor"] = data["dedicatedCompactor"]
     else:
         raise DeserializationError(
             "InfluxDBv3EnterpriseParameters.dedicated_compactor required"
         )
-    if "compactionRowLimit" in data:
+    if data.get("compactionRowLimit") is not None:
         out["compaction_row_limit"] = data["compactionRowLimit"]
-    if "compactionMaxNumFilesPerPlan" in data:
+    if data.get("compactionMaxNumFilesPerPlan") is not None:
         out["compaction_max_num_files_per_plan"] = data["compactionMaxNumFilesPerPlan"]
-    if "compactionGen2Duration" in data:
+    if data.get("compactionGen2Duration") is not None:
         import capo_timestream_influxdb.types.duration
 
         out["compaction_gen2_duration"] = (
@@ -635,9 +642,9 @@ def deserialize_aws_json_1_0(data: dict) -> InfluxDBv3EnterpriseParameters:
                 data["compactionGen2Duration"]
             )
         )
-    if "compactionMultipliers" in data:
+    if data.get("compactionMultipliers") is not None:
         out["compaction_multipliers"] = data["compactionMultipliers"]
-    if "compactionCleanupWait" in data:
+    if data.get("compactionCleanupWait") is not None:
         import capo_timestream_influxdb.types.duration
 
         out["compaction_cleanup_wait"] = (
@@ -645,7 +652,7 @@ def deserialize_aws_json_1_0(data: dict) -> InfluxDBv3EnterpriseParameters:
                 data["compactionCleanupWait"]
             )
         )
-    if "compactionCheckInterval" in data:
+    if data.get("compactionCheckInterval") is not None:
         import capo_timestream_influxdb.types.duration
 
         out["compaction_check_interval"] = (
@@ -653,15 +660,15 @@ def deserialize_aws_json_1_0(data: dict) -> InfluxDBv3EnterpriseParameters:
                 data["compactionCheckInterval"]
             )
         )
-    if "lastValueCacheDisableFromHistory" in data:
+    if data.get("lastValueCacheDisableFromHistory") is not None:
         out["last_value_cache_disable_from_history"] = data[
             "lastValueCacheDisableFromHistory"
         ]
-    if "distinctValueCacheDisableFromHistory" in data:
+    if data.get("distinctValueCacheDisableFromHistory") is not None:
         out["distinct_value_cache_disable_from_history"] = data[
             "distinctValueCacheDisableFromHistory"
         ]
-    if "replicationInterval" in data:
+    if data.get("replicationInterval") is not None:
         import capo_timestream_influxdb.types.duration
 
         out["replication_interval"] = (
@@ -669,7 +676,7 @@ def deserialize_aws_json_1_0(data: dict) -> InfluxDBv3EnterpriseParameters:
                 data["replicationInterval"]
             )
         )
-    if "catalogSyncInterval" in data:
+    if data.get("catalogSyncInterval") is not None:
         import capo_timestream_influxdb.types.duration
 
         out["catalog_sync_interval"] = (

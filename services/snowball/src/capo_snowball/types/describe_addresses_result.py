@@ -32,12 +32,12 @@ def serialize_aws_json_1_1(value: DescribeAddressesResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeAddressesResult:
     out: DescribeAddressesResult = {}  # type: ignore[typeddict-item]
-    if "Addresses" in data:
+    if data.get("Addresses") is not None:
         import capo_snowball.types.address_list
 
         out["addresses"] = capo_snowball.types.address_list.deserialize_aws_json_1_1(
             data["Addresses"]
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

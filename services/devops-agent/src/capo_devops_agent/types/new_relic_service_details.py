@@ -30,7 +30,7 @@ def serialize_json(value: NewRelicServiceDetails) -> dict:
 
 def deserialize_json(data: dict) -> NewRelicServiceDetails:
     out: NewRelicServiceDetails = {}  # type: ignore[typeddict-item]
-    if "authorizationConfig" in data:
+    if data.get("authorizationConfig") is not None:
         import capo_devops_agent.types.new_relic_service_authorization_config
 
         out["authorization_config"] = (

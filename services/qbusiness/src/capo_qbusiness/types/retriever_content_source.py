@@ -24,7 +24,7 @@ def serialize_json(value: RetrieverContentSource) -> dict:
 
 def deserialize_json(data: dict) -> RetrieverContentSource:
     out: RetrieverContentSource = {}  # type: ignore[typeddict-item]
-    if "retrieverId" in data:
+    if data.get("retrieverId") is not None:
         out["retriever_id"] = data["retrieverId"]
     else:
         raise DeserializationError("RetrieverContentSource.retriever_id required")

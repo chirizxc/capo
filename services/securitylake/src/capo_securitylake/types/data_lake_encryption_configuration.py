@@ -18,6 +18,6 @@ def serialize_json(value: DataLakeEncryptionConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> DataLakeEncryptionConfiguration:
     out: DataLakeEncryptionConfiguration = {}  # type: ignore[typeddict-item]
-    if "kmsKeyId" in data:
+    if data.get("kmsKeyId") is not None:
         out["kms_key_id"] = data["kmsKeyId"]
     return out

@@ -39,7 +39,7 @@ def serialize_aws_json_1_0(value: ActiveTimeRange) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ActiveTimeRange:
     out: ActiveTimeRange = {}  # type: ignore[typeddict-item]
-    if "activeAfterInclusive" in data:
+    if data.get("activeAfterInclusive") is not None:
         import capo_billing.types._prelude.timestamp
 
         out["active_after_inclusive"] = (
@@ -49,7 +49,7 @@ def deserialize_aws_json_1_0(data: dict) -> ActiveTimeRange:
         )
     else:
         raise DeserializationError("ActiveTimeRange.active_after_inclusive required")
-    if "activeBeforeInclusive" in data:
+    if data.get("activeBeforeInclusive") is not None:
         import capo_billing.types._prelude.timestamp
 
         out["active_before_inclusive"] = (

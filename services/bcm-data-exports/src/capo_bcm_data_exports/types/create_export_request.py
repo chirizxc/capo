@@ -41,7 +41,7 @@ def serialize_aws_json_1_1(value: CreateExportRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateExportRequest:
     out: CreateExportRequest = {}  # type: ignore[typeddict-item]
-    if "Export" in data:
+    if data.get("Export") is not None:
         import capo_bcm_data_exports.types.export
 
         out["export"] = capo_bcm_data_exports.types.export.deserialize_aws_json_1_1(
@@ -49,7 +49,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateExportRequest:
         )
     else:
         raise DeserializationError("CreateExportRequest.export required")
-    if "ResourceTags" in data:
+    if data.get("ResourceTags") is not None:
         import capo_bcm_data_exports.types.resource_tag_list
 
         out["resource_tags"] = (

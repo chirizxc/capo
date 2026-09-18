@@ -28,7 +28,7 @@ def serialize_json(value: KenyaAdditionalInfo) -> dict:
 
 def deserialize_json(data: dict) -> KenyaAdditionalInfo:
     out: KenyaAdditionalInfo = {}  # type: ignore[typeddict-item]
-    if "personType" in data:
+    if data.get("personType") is not None:
         import capo_taxsettings.types.person_type
 
         out["person_type"] = capo_taxsettings.types.person_type.deserialize_json(

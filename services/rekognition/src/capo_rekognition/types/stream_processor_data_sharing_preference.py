@@ -22,7 +22,7 @@ def serialize_aws_json_1_1(value: StreamProcessorDataSharingPreference) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> StreamProcessorDataSharingPreference:
     out: StreamProcessorDataSharingPreference = {}  # type: ignore[typeddict-item]
-    if "OptIn" in data:
+    if data.get("OptIn") is not None:
         out["opt_in"] = data["OptIn"]
     else:
         out["opt_in"] = False

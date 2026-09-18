@@ -34,9 +34,9 @@ def serialize_json(value: UpdateConfigurationResponse) -> dict:
 
 def deserialize_json(data: dict) -> UpdateConfigurationResponse:
     out: UpdateConfigurationResponse = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "latestRevision" in data:
+    if data.get("latestRevision") is not None:
         import capo_kafka.types.configuration_revision
 
         out["latest_revision"] = (

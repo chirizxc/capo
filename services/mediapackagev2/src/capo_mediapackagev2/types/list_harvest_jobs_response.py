@@ -31,12 +31,12 @@ def serialize_json(value: ListHarvestJobsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListHarvestJobsResponse:
     out: ListHarvestJobsResponse = {}  # type: ignore[typeddict-item]
-    if "Items" in data:
+    if data.get("Items") is not None:
         import capo_mediapackagev2.types.harvest_jobs_list
 
         out["items"] = capo_mediapackagev2.types.harvest_jobs_list.deserialize_json(
             data["Items"]
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

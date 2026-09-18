@@ -35,7 +35,7 @@ def serialize_json(value: DescribeDeviceEc2Input) -> dict:
 
 def deserialize_json(data: dict) -> DescribeDeviceEc2Input:
     out: DescribeDeviceEc2Input = {}  # type: ignore[typeddict-item]
-    if "instanceIds" in data:
+    if data.get("instanceIds") is not None:
         import capo_snow_device_management.types.instance_ids_list
 
         out["instance_ids"] = (

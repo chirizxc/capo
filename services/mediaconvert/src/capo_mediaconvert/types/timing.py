@@ -43,19 +43,19 @@ def serialize_json(value: Timing) -> dict:
 
 def deserialize_json(data: dict) -> Timing:
     out: Timing = {}  # type: ignore[typeddict-item]
-    if "finishTime" in data:
+    if data.get("finishTime") is not None:
         import capo_mediaconvert.types.__timestamp_unix
 
         out["finish_time"] = capo_mediaconvert.types.__timestamp_unix.deserialize_json(
             data["finishTime"]
         )
-    if "startTime" in data:
+    if data.get("startTime") is not None:
         import capo_mediaconvert.types.__timestamp_unix
 
         out["start_time"] = capo_mediaconvert.types.__timestamp_unix.deserialize_json(
             data["startTime"]
         )
-    if "submitTime" in data:
+    if data.get("submitTime") is not None:
         import capo_mediaconvert.types.__timestamp_unix
 
         out["submit_time"] = capo_mediaconvert.types.__timestamp_unix.deserialize_json(

@@ -30,12 +30,12 @@ def serialize_json(value: TemplateSummary) -> dict:
 
 def deserialize_json(data: dict) -> TemplateSummary:
     out: TemplateSummary = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
     return out

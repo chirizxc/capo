@@ -161,21 +161,21 @@ def serialize_aws_json_1_1(value: Cluster) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Cluster:
     out: Cluster = {}  # type: ignore[typeddict-item]
-    if "ClusterName" in data:
+    if data.get("ClusterName") is not None:
         out["cluster_name"] = data["ClusterName"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "ClusterArn" in data:
+    if data.get("ClusterArn") is not None:
         out["cluster_arn"] = data["ClusterArn"]
-    if "TotalNodes" in data:
+    if data.get("TotalNodes") is not None:
         out["total_nodes"] = data["TotalNodes"]
-    if "ActiveNodes" in data:
+    if data.get("ActiveNodes") is not None:
         out["active_nodes"] = data["ActiveNodes"]
-    if "NodeType" in data:
+    if data.get("NodeType") is not None:
         out["node_type"] = data["NodeType"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         out["status"] = data["Status"]
-    if "ClusterDiscoveryEndpoint" in data:
+    if data.get("ClusterDiscoveryEndpoint") is not None:
         import capo_dax.types.endpoint
 
         out["cluster_discovery_endpoint"] = (
@@ -183,7 +183,7 @@ def deserialize_aws_json_1_1(data: dict) -> Cluster:
                 data["ClusterDiscoveryEndpoint"]
             )
         )
-    if "NodeIdsToRemove" in data:
+    if data.get("NodeIdsToRemove") is not None:
         import capo_dax.types.node_identifier_list
 
         out["node_ids_to_remove"] = (
@@ -191,13 +191,13 @@ def deserialize_aws_json_1_1(data: dict) -> Cluster:
                 data["NodeIdsToRemove"]
             )
         )
-    if "Nodes" in data:
+    if data.get("Nodes") is not None:
         import capo_dax.types.node_list
 
         out["nodes"] = capo_dax.types.node_list.deserialize_aws_json_1_1(data["Nodes"])
-    if "PreferredMaintenanceWindow" in data:
+    if data.get("PreferredMaintenanceWindow") is not None:
         out["preferred_maintenance_window"] = data["PreferredMaintenanceWindow"]
-    if "NotificationConfiguration" in data:
+    if data.get("NotificationConfiguration") is not None:
         import capo_dax.types.notification_configuration
 
         out["notification_configuration"] = (
@@ -205,9 +205,9 @@ def deserialize_aws_json_1_1(data: dict) -> Cluster:
                 data["NotificationConfiguration"]
             )
         )
-    if "SubnetGroup" in data:
+    if data.get("SubnetGroup") is not None:
         out["subnet_group"] = data["SubnetGroup"]
-    if "SecurityGroups" in data:
+    if data.get("SecurityGroups") is not None:
         import capo_dax.types.security_group_membership_list
 
         out["security_groups"] = (
@@ -215,9 +215,9 @@ def deserialize_aws_json_1_1(data: dict) -> Cluster:
                 data["SecurityGroups"]
             )
         )
-    if "IamRoleArn" in data:
+    if data.get("IamRoleArn") is not None:
         out["iam_role_arn"] = data["IamRoleArn"]
-    if "ParameterGroup" in data:
+    if data.get("ParameterGroup") is not None:
         import capo_dax.types.parameter_group_status
 
         out["parameter_group"] = (
@@ -225,7 +225,7 @@ def deserialize_aws_json_1_1(data: dict) -> Cluster:
                 data["ParameterGroup"]
             )
         )
-    if "SSEDescription" in data:
+    if data.get("SSEDescription") is not None:
         import capo_dax.types.sse_description
 
         out["sse_description"] = (
@@ -233,7 +233,7 @@ def deserialize_aws_json_1_1(data: dict) -> Cluster:
                 data["SSEDescription"]
             )
         )
-    if "ClusterEndpointEncryptionType" in data:
+    if data.get("ClusterEndpointEncryptionType") is not None:
         import capo_dax.types.cluster_endpoint_encryption_type
 
         out["cluster_endpoint_encryption_type"] = (
@@ -241,7 +241,7 @@ def deserialize_aws_json_1_1(data: dict) -> Cluster:
                 data["ClusterEndpointEncryptionType"]
             )
         )
-    if "NetworkType" in data:
+    if data.get("NetworkType") is not None:
         import capo_dax.types.network_type
 
         out["network_type"] = capo_dax.types.network_type.deserialize_aws_json_1_1(

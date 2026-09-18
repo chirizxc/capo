@@ -50,13 +50,13 @@ def serialize_aws_json_1_1(value: PutRemediationExceptionsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PutRemediationExceptionsRequest:
     out: PutRemediationExceptionsRequest = {}  # type: ignore[typeddict-item]
-    if "ConfigRuleName" in data:
+    if data.get("ConfigRuleName") is not None:
         out["config_rule_name"] = data["ConfigRuleName"]
     else:
         raise DeserializationError(
             "PutRemediationExceptionsRequest.config_rule_name required"
         )
-    if "ResourceKeys" in data:
+    if data.get("ResourceKeys") is not None:
         import capo_config_service.types.remediation_exception_resource_keys
 
         out["resource_keys"] = (
@@ -68,9 +68,9 @@ def deserialize_aws_json_1_1(data: dict) -> PutRemediationExceptionsRequest:
         raise DeserializationError(
             "PutRemediationExceptionsRequest.resource_keys required"
         )
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
-    if "ExpirationTime" in data:
+    if data.get("ExpirationTime") is not None:
         import capo_config_service.types.date
 
         out["expiration_time"] = (

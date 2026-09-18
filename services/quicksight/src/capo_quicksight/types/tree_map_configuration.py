@@ -130,7 +130,7 @@ def serialize_json(value: TreeMapConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> TreeMapConfiguration:
     out: TreeMapConfiguration = {}  # type: ignore[typeddict-item]
-    if "FieldWells" in data:
+    if data.get("FieldWells") is not None:
         import capo_quicksight.types.tree_map_field_wells
 
         out["field_wells"] = (
@@ -138,7 +138,7 @@ def deserialize_json(data: dict) -> TreeMapConfiguration:
                 data["FieldWells"]
             )
         )
-    if "SortConfiguration" in data:
+    if data.get("SortConfiguration") is not None:
         import capo_quicksight.types.tree_map_sort_configuration
 
         out["sort_configuration"] = (
@@ -146,7 +146,7 @@ def deserialize_json(data: dict) -> TreeMapConfiguration:
                 data["SortConfiguration"]
             )
         )
-    if "GroupLabelOptions" in data:
+    if data.get("GroupLabelOptions") is not None:
         import capo_quicksight.types.chart_axis_label_options
 
         out["group_label_options"] = (
@@ -154,7 +154,7 @@ def deserialize_json(data: dict) -> TreeMapConfiguration:
                 data["GroupLabelOptions"]
             )
         )
-    if "SizeLabelOptions" in data:
+    if data.get("SizeLabelOptions") is not None:
         import capo_quicksight.types.chart_axis_label_options
 
         out["size_label_options"] = (
@@ -162,7 +162,7 @@ def deserialize_json(data: dict) -> TreeMapConfiguration:
                 data["SizeLabelOptions"]
             )
         )
-    if "ColorLabelOptions" in data:
+    if data.get("ColorLabelOptions") is not None:
         import capo_quicksight.types.chart_axis_label_options
 
         out["color_label_options"] = (
@@ -170,31 +170,31 @@ def deserialize_json(data: dict) -> TreeMapConfiguration:
                 data["ColorLabelOptions"]
             )
         )
-    if "ColorScale" in data:
+    if data.get("ColorScale") is not None:
         import capo_quicksight.types.color_scale
 
         out["color_scale"] = capo_quicksight.types.color_scale.deserialize_json(
             data["ColorScale"]
         )
-    if "Legend" in data:
+    if data.get("Legend") is not None:
         import capo_quicksight.types.legend_options
 
         out["legend"] = capo_quicksight.types.legend_options.deserialize_json(
             data["Legend"]
         )
-    if "DataLabels" in data:
+    if data.get("DataLabels") is not None:
         import capo_quicksight.types.data_label_options
 
         out["data_labels"] = capo_quicksight.types.data_label_options.deserialize_json(
             data["DataLabels"]
         )
-    if "Tooltip" in data:
+    if data.get("Tooltip") is not None:
         import capo_quicksight.types.tooltip_options
 
         out["tooltip"] = capo_quicksight.types.tooltip_options.deserialize_json(
             data["Tooltip"]
         )
-    if "Interactions" in data:
+    if data.get("Interactions") is not None:
         import capo_quicksight.types.visual_interaction_options
 
         out["interactions"] = (

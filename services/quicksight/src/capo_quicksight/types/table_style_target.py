@@ -28,7 +28,7 @@ def serialize_json(value: TableStyleTarget) -> dict:
 
 def deserialize_json(data: dict) -> TableStyleTarget:
     out: TableStyleTarget = {}  # type: ignore[typeddict-item]
-    if "CellType" in data:
+    if data.get("CellType") is not None:
         import capo_quicksight.types.styled_cell_type
 
         out["cell_type"] = capo_quicksight.types.styled_cell_type.deserialize_json(

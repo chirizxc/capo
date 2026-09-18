@@ -26,7 +26,7 @@ def serialize_json(value: LogGroupNameConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> LogGroupNameConfiguration:
     out: LogGroupNameConfiguration = {}  # type: ignore[typeddict-item]
-    if "LogGroupNamePattern" in data:
+    if data.get("LogGroupNamePattern") is not None:
         out["log_group_name_pattern"] = data["LogGroupNamePattern"]
     else:
         raise DeserializationError(

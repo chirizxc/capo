@@ -24,7 +24,7 @@ def serialize_json(value: Ip) -> dict:
 
 def deserialize_json(data: dict) -> Ip:
     out: Ip = {}  # type: ignore[typeddict-item]
-    if "IpAddress" in data:
+    if data.get("IpAddress") is not None:
         out["ip_address"] = data["IpAddress"]
     else:
         raise DeserializationError("Ip.ip_address required")

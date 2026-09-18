@@ -35,14 +35,14 @@ def serialize_aws_json_1_1(value: CreateUserRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateUserRequest:
     out: CreateUserRequest = {}  # type: ignore[typeddict-item]
-    if "CollectionId" in data:
+    if data.get("CollectionId") is not None:
         out["collection_id"] = data["CollectionId"]
     else:
         raise DeserializationError("CreateUserRequest.collection_id required")
-    if "UserId" in data:
+    if data.get("UserId") is not None:
         out["user_id"] = data["UserId"]
     else:
         raise DeserializationError("CreateUserRequest.user_id required")
-    if "ClientRequestToken" in data:
+    if data.get("ClientRequestToken") is not None:
         out["client_request_token"] = data["ClientRequestToken"]
     return out

@@ -32,12 +32,12 @@ def serialize_json(value: DescribeRootFoldersResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribeRootFoldersResponse:
     out: DescribeRootFoldersResponse = {}  # type: ignore[typeddict-item]
-    if "Folders" in data:
+    if data.get("Folders") is not None:
         import capo_workdocs.types.folder_metadata_list
 
         out["folders"] = capo_workdocs.types.folder_metadata_list.deserialize_json(
             data["Folders"]
         )
-    if "Marker" in data:
+    if data.get("Marker") is not None:
         out["marker"] = data["Marker"]
     return out

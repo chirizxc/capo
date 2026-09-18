@@ -23,6 +23,6 @@ def serialize_json(value: S3LogsConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> S3LogsConfiguration:
     out: S3LogsConfiguration = {}  # type: ignore[typeddict-item]
-    if "enable" in data:
+    if data.get("enable") is not None:
         out["enable"] = data["enable"]
     return out

@@ -27,6 +27,8 @@ def deserialize_aws_json_1_1(data: list) -> BatchPredictionList:
 
     out: BatchPredictionList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_frauddetector.types.batch_prediction.deserialize_aws_json_1_1(item)
         )

@@ -29,6 +29,8 @@ def serialize_aws_json_1_0(input_to_serialize: ReplicationStatus) -> dict:
 def deserialize_aws_json_1_0(data: dict) -> ReplicationStatus:
     out: ReplicationStatus = {}
     for key, value in data.items():
+        if value is None:
+            continue
         import capo_payment_cryptography.types.replication_status_type
 
         out[key] = (

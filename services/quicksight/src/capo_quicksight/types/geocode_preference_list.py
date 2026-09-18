@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> GeocodePreferenceList:
 
     out: GeocodePreferenceList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_quicksight.types.geocode_preference.deserialize_json(item))
     return out

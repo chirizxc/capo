@@ -17,7 +17,7 @@ def serialize_json(value: StoppingCondition) -> dict:
 
 def deserialize_json(data: dict) -> StoppingCondition:
     out: StoppingCondition = {}  # type: ignore[typeddict-item]
-    if "maxRuntimeInSeconds" in data:
+    if data.get("maxRuntimeInSeconds") is not None:
         out["max_runtime_in_seconds"] = data["maxRuntimeInSeconds"]
     else:
         out["max_runtime_in_seconds"] = 86400

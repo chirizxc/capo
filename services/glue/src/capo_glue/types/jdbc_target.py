@@ -50,17 +50,17 @@ def serialize_aws_json_1_1(value: JdbcTarget) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> JdbcTarget:
     out: JdbcTarget = {}  # type: ignore[typeddict-item]
-    if "ConnectionName" in data:
+    if data.get("ConnectionName") is not None:
         out["connection_name"] = data["ConnectionName"]
-    if "Path" in data:
+    if data.get("Path") is not None:
         out["path"] = data["Path"]
-    if "Exclusions" in data:
+    if data.get("Exclusions") is not None:
         import capo_glue.types.path_list
 
         out["exclusions"] = capo_glue.types.path_list.deserialize_aws_json_1_1(
             data["Exclusions"]
         )
-    if "EnableAdditionalMetadata" in data:
+    if data.get("EnableAdditionalMetadata") is not None:
         import capo_glue.types.enable_additional_metadata
 
         out["enable_additional_metadata"] = (

@@ -63,13 +63,13 @@ def serialize_json(value: LakeFormationOptInsInfo) -> dict:
 
 def deserialize_json(data: dict) -> LakeFormationOptInsInfo:
     out: LakeFormationOptInsInfo = {}  # type: ignore[typeddict-item]
-    if "Resource" in data:
+    if data.get("Resource") is not None:
         import capo_lakeformation.types.resource
 
         out["resource"] = capo_lakeformation.types.resource.deserialize_json(
             data["Resource"]
         )
-    if "Principal" in data:
+    if data.get("Principal") is not None:
         import capo_lakeformation.types.data_lake_principal
 
         out["principal"] = (
@@ -77,13 +77,13 @@ def deserialize_json(data: dict) -> LakeFormationOptInsInfo:
                 data["Principal"]
             )
         )
-    if "Condition" in data:
+    if data.get("Condition") is not None:
         import capo_lakeformation.types.condition
 
         out["condition"] = capo_lakeformation.types.condition.deserialize_json(
             data["Condition"]
         )
-    if "LastModified" in data:
+    if data.get("LastModified") is not None:
         import capo_lakeformation.types.last_modified_timestamp
 
         out["last_modified"] = (
@@ -91,6 +91,6 @@ def deserialize_json(data: dict) -> LakeFormationOptInsInfo:
                 data["LastModified"]
             )
         )
-    if "LastUpdatedBy" in data:
+    if data.get("LastUpdatedBy") is not None:
         out["last_updated_by"] = data["LastUpdatedBy"]
     return out

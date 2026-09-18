@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> LibraryItemList:
 
     out: LibraryItemList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_qapps.types.library_item_member.deserialize_json(item))
     return out

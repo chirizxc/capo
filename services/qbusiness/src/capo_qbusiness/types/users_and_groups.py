@@ -34,13 +34,13 @@ def serialize_json(value: UsersAndGroups) -> dict:
 
 def deserialize_json(data: dict) -> UsersAndGroups:
     out: UsersAndGroups = {}  # type: ignore[typeddict-item]
-    if "userIds" in data:
+    if data.get("userIds") is not None:
         import capo_qbusiness.types.user_ids
 
         out["user_ids"] = capo_qbusiness.types.user_ids.deserialize_json(
             data["userIds"]
         )
-    if "userGroups" in data:
+    if data.get("userGroups") is not None:
         import capo_qbusiness.types.user_groups
 
         out["user_groups"] = capo_qbusiness.types.user_groups.deserialize_json(

@@ -107,19 +107,19 @@ def serialize_json(value: Method) -> dict:
 
 def deserialize_json(data: dict) -> Method:
     out: Method = {}  # type: ignore[typeddict-item]
-    if "httpMethod" in data:
+    if data.get("httpMethod") is not None:
         out["http_method"] = data["httpMethod"]
-    if "authorizationType" in data:
+    if data.get("authorizationType") is not None:
         out["authorization_type"] = data["authorizationType"]
-    if "authorizerId" in data:
+    if data.get("authorizerId") is not None:
         out["authorizer_id"] = data["authorizerId"]
-    if "apiKeyRequired" in data:
+    if data.get("apiKeyRequired") is not None:
         out["api_key_required"] = data["apiKeyRequired"]
-    if "requestValidatorId" in data:
+    if data.get("requestValidatorId") is not None:
         out["request_validator_id"] = data["requestValidatorId"]
-    if "operationName" in data:
+    if data.get("operationName") is not None:
         out["operation_name"] = data["operationName"]
-    if "requestParameters" in data:
+    if data.get("requestParameters") is not None:
         import capo_api_gateway.types.map_of_string_to_boolean
 
         out["request_parameters"] = (
@@ -127,7 +127,7 @@ def deserialize_json(data: dict) -> Method:
                 data["requestParameters"]
             )
         )
-    if "requestModels" in data:
+    if data.get("requestModels") is not None:
         import capo_api_gateway.types.map_of_string_to_string
 
         out["request_models"] = (
@@ -135,7 +135,7 @@ def deserialize_json(data: dict) -> Method:
                 data["requestModels"]
             )
         )
-    if "methodResponses" in data:
+    if data.get("methodResponses") is not None:
         import capo_api_gateway.types.map_of_method_response
 
         out["method_responses"] = (
@@ -143,13 +143,13 @@ def deserialize_json(data: dict) -> Method:
                 data["methodResponses"]
             )
         )
-    if "methodIntegration" in data:
+    if data.get("methodIntegration") is not None:
         import capo_api_gateway.types.integration
 
         out["method_integration"] = capo_api_gateway.types.integration.deserialize_json(
             data["methodIntegration"]
         )
-    if "authorizationScopes" in data:
+    if data.get("authorizationScopes") is not None:
         import capo_api_gateway.types.list_of_string
 
         out["authorization_scopes"] = (

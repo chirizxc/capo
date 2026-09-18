@@ -30,9 +30,9 @@ def serialize_json(value: GetRestoreJobMetadataOutput) -> dict:
 
 def deserialize_json(data: dict) -> GetRestoreJobMetadataOutput:
     out: GetRestoreJobMetadataOutput = {}  # type: ignore[typeddict-item]
-    if "RestoreJobId" in data:
+    if data.get("RestoreJobId") is not None:
         out["restore_job_id"] = data["RestoreJobId"]
-    if "Metadata" in data:
+    if data.get("Metadata") is not None:
         import capo_backup.types.metadata
 
         out["metadata"] = capo_backup.types.metadata.deserialize_json(data["Metadata"])

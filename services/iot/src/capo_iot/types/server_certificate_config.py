@@ -35,10 +35,10 @@ def serialize_json(value: ServerCertificateConfig) -> dict:
 
 def deserialize_json(data: dict) -> ServerCertificateConfig:
     out: ServerCertificateConfig = {}  # type: ignore[typeddict-item]
-    if "enableOCSPCheck" in data:
+    if data.get("enableOCSPCheck") is not None:
         out["enable_ocsp_check"] = data["enableOCSPCheck"]
-    if "ocspLambdaArn" in data:
+    if data.get("ocspLambdaArn") is not None:
         out["ocsp_lambda_arn"] = data["ocspLambdaArn"]
-    if "ocspAuthorizedResponderArn" in data:
+    if data.get("ocspAuthorizedResponderArn") is not None:
         out["ocsp_authorized_responder_arn"] = data["ocspAuthorizedResponderArn"]
     return out

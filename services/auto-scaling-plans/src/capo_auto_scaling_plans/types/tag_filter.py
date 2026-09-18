@@ -34,9 +34,9 @@ def serialize_aws_json_1_1(value: TagFilter) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> TagFilter:
     out: TagFilter = {}  # type: ignore[typeddict-item]
-    if "Key" in data:
+    if data.get("Key") is not None:
         out["key"] = data["Key"]
-    if "Values" in data:
+    if data.get("Values") is not None:
         import capo_auto_scaling_plans.types.tag_values
 
         out["values"] = (

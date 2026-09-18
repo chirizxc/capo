@@ -38,11 +38,11 @@ def serialize_aws_json_1_1(value: ListBonusPaymentsResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListBonusPaymentsResponse:
     out: ListBonusPaymentsResponse = {}  # type: ignore[typeddict-item]
-    if "NumResults" in data:
+    if data.get("NumResults") is not None:
         out["num_results"] = data["NumResults"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "BonusPayments" in data:
+    if data.get("BonusPayments") is not None:
         import capo_mturk.types.bonus_payment_list
 
         out["bonus_payments"] = (

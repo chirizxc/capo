@@ -78,7 +78,7 @@ def serialize_json(value: AnalysisRulePolicyV1) -> dict:
 
 
 def deserialize_json(data: dict) -> AnalysisRulePolicyV1:
-    if "list" in data:
+    if data.get("list") is not None:
         import capo_cleanrooms.types.analysis_rule_list
 
         return {
@@ -86,7 +86,7 @@ def deserialize_json(data: dict) -> AnalysisRulePolicyV1:
                 data["list"]
             )
         }
-    elif "aggregation" in data:
+    elif data.get("aggregation") is not None:
         import capo_cleanrooms.types.analysis_rule_aggregation
 
         return {
@@ -94,7 +94,7 @@ def deserialize_json(data: dict) -> AnalysisRulePolicyV1:
                 data["aggregation"]
             )
         }
-    elif "custom" in data:
+    elif data.get("custom") is not None:
         import capo_cleanrooms.types.analysis_rule_custom
 
         return {
@@ -102,7 +102,7 @@ def deserialize_json(data: dict) -> AnalysisRulePolicyV1:
                 data["custom"]
             )
         }
-    elif "idMappingTable" in data:
+    elif data.get("idMappingTable") is not None:
         import capo_cleanrooms.types.analysis_rule_id_mapping_table
 
         return {

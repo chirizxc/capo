@@ -78,10 +78,11 @@ class AudienceExportJob:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanroomsml.types.start_audience_export_job_request.StartAudienceExportJobRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        input_["audience_generation_job_arn"] = audience_generation_job_arn
-        input_["audience_size"] = audience_size
+        input_: capo_cleanroomsml.types.start_audience_export_job_request.StartAudienceExportJobRequest = {
+            "name": name,
+            "audience_generation_job_arn": audience_generation_job_arn,
+            "audience_size": audience_size,
+        }
         if description is not None:
             input_["description"] = description
 
@@ -90,6 +91,7 @@ class AudienceExportJob:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -130,7 +132,7 @@ class AudienceExportJob:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanroomsml.types.list_audience_export_jobs_request.ListAudienceExportJobsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_cleanroomsml.types.list_audience_export_jobs_request.ListAudienceExportJobsRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -143,6 +145,7 @@ class AudienceExportJob:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -191,10 +194,11 @@ class AsyncAudienceExportJob:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanroomsml.types.start_audience_export_job_request.StartAudienceExportJobRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        input_["audience_generation_job_arn"] = audience_generation_job_arn
-        input_["audience_size"] = audience_size
+        input_: capo_cleanroomsml.types.start_audience_export_job_request.StartAudienceExportJobRequest = {
+            "name": name,
+            "audience_generation_job_arn": audience_generation_job_arn,
+            "audience_size": audience_size,
+        }
         if description is not None:
             input_["description"] = description
 
@@ -203,6 +207,7 @@ class AsyncAudienceExportJob:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -244,7 +249,7 @@ class AsyncAudienceExportJob:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanroomsml.types.list_audience_export_jobs_request.ListAudienceExportJobsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_cleanroomsml.types.list_audience_export_jobs_request.ListAudienceExportJobsRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -257,4 +262,5 @@ class AsyncAudienceExportJob:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

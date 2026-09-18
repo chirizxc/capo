@@ -56,7 +56,7 @@ def serialize_json(value: EvaluationFormMultiSelectQuestionProperties) -> dict:
 
 def deserialize_json(data: dict) -> EvaluationFormMultiSelectQuestionProperties:
     out: EvaluationFormMultiSelectQuestionProperties = {}  # type: ignore[typeddict-item]
-    if "Options" in data:
+    if data.get("Options") is not None:
         import capo_connect.types.evaluation_form_multi_select_question_option_list
 
         out["options"] = (
@@ -68,7 +68,7 @@ def deserialize_json(data: dict) -> EvaluationFormMultiSelectQuestionProperties:
         raise DeserializationError(
             "EvaluationFormMultiSelectQuestionProperties.options required"
         )
-    if "DisplayAs" in data:
+    if data.get("DisplayAs") is not None:
         import capo_connect.types.evaluation_form_multi_select_question_display_mode
 
         out["display_as"] = (
@@ -76,7 +76,7 @@ def deserialize_json(data: dict) -> EvaluationFormMultiSelectQuestionProperties:
                 data["DisplayAs"]
             )
         )
-    if "Automation" in data:
+    if data.get("Automation") is not None:
         import capo_connect.types.evaluation_form_multi_select_question_automation
 
         out["automation"] = (

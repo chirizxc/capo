@@ -66,15 +66,15 @@ def serialize_json(value: GetDataExportConfigurationOutput) -> dict:
 
 def deserialize_json(data: dict) -> GetDataExportConfigurationOutput:
     out: GetDataExportConfigurationOutput = {}  # type: ignore[typeddict-item]
-    if "isExportEnabled" in data:
+    if data.get("isExportEnabled") is not None:
         out["is_export_enabled"] = data["isExportEnabled"]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_datazone.types.configuration_status
 
         out["status"] = capo_datazone.types.configuration_status.deserialize_json(
             data["status"]
         )
-    if "encryptionConfiguration" in data:
+    if data.get("encryptionConfiguration") is not None:
         import capo_datazone.types.encryption_configuration
 
         out["encryption_configuration"] = (
@@ -82,15 +82,15 @@ def deserialize_json(data: dict) -> GetDataExportConfigurationOutput:
                 data["encryptionConfiguration"]
             )
         )
-    if "s3TableBucketArn" in data:
+    if data.get("s3TableBucketArn") is not None:
         out["s3_table_bucket_arn"] = data["s3TableBucketArn"]
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_datazone.types.created_at
 
         out["created_at"] = capo_datazone.types.created_at.deserialize_json(
             data["createdAt"]
         )
-    if "updatedAt" in data:
+    if data.get("updatedAt") is not None:
         import capo_datazone.types.updated_at
 
         out["updated_at"] = capo_datazone.types.updated_at.deserialize_json(

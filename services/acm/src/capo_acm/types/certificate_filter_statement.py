@@ -75,7 +75,7 @@ def serialize_aws_json_1_1(value: CertificateFilterStatement) -> dict:
 
 
 def deserialize_aws_json_1_1(data: dict) -> CertificateFilterStatement:
-    if "And" in data:
+    if data.get("And") is not None:
         import capo_acm.types.certificate_filter_statement_list
 
         return {
@@ -83,7 +83,7 @@ def deserialize_aws_json_1_1(data: dict) -> CertificateFilterStatement:
                 data["And"]
             )
         }
-    elif "Or" in data:
+    elif data.get("Or") is not None:
         import capo_acm.types.certificate_filter_statement_list
 
         return {
@@ -91,7 +91,7 @@ def deserialize_aws_json_1_1(data: dict) -> CertificateFilterStatement:
                 data["Or"]
             )
         }
-    elif "Not" in data:
+    elif data.get("Not") is not None:
         import capo_acm.types.certificate_filter_statement
 
         return {
@@ -99,7 +99,7 @@ def deserialize_aws_json_1_1(data: dict) -> CertificateFilterStatement:
                 data["Not"]
             )
         }
-    elif "Filter" in data:
+    elif data.get("Filter") is not None:
         import capo_acm.types.certificate_filter
 
         return {

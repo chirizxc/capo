@@ -36,13 +36,13 @@ def serialize_json(value: ReplicateInstanceRequest) -> dict:
 
 def deserialize_json(data: dict) -> ReplicateInstanceRequest:
     out: ReplicateInstanceRequest = {}  # type: ignore[typeddict-item]
-    if "ReplicaRegion" in data:
+    if data.get("ReplicaRegion") is not None:
         out["replica_region"] = data["ReplicaRegion"]
     else:
         raise DeserializationError("ReplicateInstanceRequest.replica_region required")
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
-    if "ReplicaAlias" in data:
+    if data.get("ReplicaAlias") is not None:
         out["replica_alias"] = data["ReplicaAlias"]
     else:
         raise DeserializationError("ReplicateInstanceRequest.replica_alias required")

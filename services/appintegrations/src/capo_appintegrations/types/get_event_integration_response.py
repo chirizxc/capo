@@ -56,21 +56,21 @@ def serialize_json(value: GetEventIntegrationResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetEventIntegrationResponse:
     out: GetEventIntegrationResponse = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "EventIntegrationArn" in data:
+    if data.get("EventIntegrationArn") is not None:
         out["event_integration_arn"] = data["EventIntegrationArn"]
-    if "EventBridgeBus" in data:
+    if data.get("EventBridgeBus") is not None:
         out["event_bridge_bus"] = data["EventBridgeBus"]
-    if "EventFilter" in data:
+    if data.get("EventFilter") is not None:
         import capo_appintegrations.types.event_filter
 
         out["event_filter"] = capo_appintegrations.types.event_filter.deserialize_json(
             data["EventFilter"]
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_appintegrations.types.tag_map
 
         out["tags"] = capo_appintegrations.types.tag_map.deserialize_json(data["Tags"])

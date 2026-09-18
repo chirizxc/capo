@@ -23,7 +23,7 @@ def serialize_json(value: IdempotentParameterMismatchException_) -> dict:
 
 def deserialize_json(data: dict) -> IdempotentParameterMismatchException_:
     out: IdempotentParameterMismatchException_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     else:
         raise DeserializationError(
@@ -37,15 +37,20 @@ class IdempotentParameterMismatchException(ServiceError):
 
     code: str | None = "IdempotentParameterMismatchException"
 
-    def __init__(self, data: IdempotentParameterMismatchException_):
+    def __init__(
+        self, data: IdempotentParameterMismatchException_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="IdempotentParameterMismatchException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "IdempotentParameterMismatchException":
-        return cls(deserialize_json(data))
+    def from_json(
+        cls, data: dict, message: str | None = None
+    ) -> "IdempotentParameterMismatchException":
+        return cls(deserialize_json(data), message)

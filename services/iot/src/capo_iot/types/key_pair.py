@@ -28,8 +28,8 @@ def serialize_json(value: KeyPair) -> dict:
 
 def deserialize_json(data: dict) -> KeyPair:
     out: KeyPair = {}  # type: ignore[typeddict-item]
-    if "PublicKey" in data:
+    if data.get("PublicKey") is not None:
         out["public_key"] = data["PublicKey"]
-    if "PrivateKey" in data:
+    if data.get("PrivateKey") is not None:
         out["private_key"] = data["PrivateKey"]
     return out

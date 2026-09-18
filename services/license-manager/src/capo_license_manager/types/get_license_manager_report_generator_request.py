@@ -26,7 +26,7 @@ def serialize_aws_json_1_1(value: GetLicenseManagerReportGeneratorRequest) -> di
 
 def deserialize_aws_json_1_1(data: dict) -> GetLicenseManagerReportGeneratorRequest:
     out: GetLicenseManagerReportGeneratorRequest = {}  # type: ignore[typeddict-item]
-    if "LicenseManagerReportGeneratorArn" in data:
+    if data.get("LicenseManagerReportGeneratorArn") is not None:
         out["license_manager_report_generator_arn"] = data[
             "LicenseManagerReportGeneratorArn"
         ]

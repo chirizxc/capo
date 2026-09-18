@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> NetworkMigrationFailedResourcesList:
 
     out: NetworkMigrationFailedResourcesList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_mgn.types.network_migration_failed_resource_details.deserialize_json(
                 item

@@ -78,7 +78,7 @@ def serialize_json(value: SearchScope) -> dict:
 
 def deserialize_json(data: dict) -> SearchScope:
     out: SearchScope = {}  # type: ignore[typeddict-item]
-    if "BackupResourceTypes" in data:
+    if data.get("BackupResourceTypes") is not None:
         import capo_backupsearch.types.resource_type_list
 
         out["backup_resource_types"] = (
@@ -88,7 +88,7 @@ def deserialize_json(data: dict) -> SearchScope:
         )
     else:
         raise DeserializationError("SearchScope.backup_resource_types required")
-    if "BackupResourceCreationTime" in data:
+    if data.get("BackupResourceCreationTime") is not None:
         import capo_backupsearch.types.backup_creation_time_filter
 
         out["backup_resource_creation_time"] = (
@@ -96,7 +96,7 @@ def deserialize_json(data: dict) -> SearchScope:
                 data["BackupResourceCreationTime"]
             )
         )
-    if "SourceResourceArns" in data:
+    if data.get("SourceResourceArns") is not None:
         import capo_backupsearch.types.resource_arn_list
 
         out["source_resource_arns"] = (
@@ -104,7 +104,7 @@ def deserialize_json(data: dict) -> SearchScope:
                 data["SourceResourceArns"]
             )
         )
-    if "BackupResourceArns" in data:
+    if data.get("BackupResourceArns") is not None:
         import capo_backupsearch.types.recovery_point_arn_list
 
         out["backup_resource_arns"] = (
@@ -112,7 +112,7 @@ def deserialize_json(data: dict) -> SearchScope:
                 data["BackupResourceArns"]
             )
         )
-    if "BackupResourceTags" in data:
+    if data.get("BackupResourceTags") is not None:
         import capo_backupsearch.types.tag_map
 
         out["backup_resource_tags"] = capo_backupsearch.types.tag_map.deserialize_json(

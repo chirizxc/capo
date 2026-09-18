@@ -39,15 +39,15 @@ def serialize_json(value: StartCodeRemediationInput) -> dict:
 
 def deserialize_json(data: dict) -> StartCodeRemediationInput:
     out: StartCodeRemediationInput = {}  # type: ignore[typeddict-item]
-    if "agentSpaceId" in data:
+    if data.get("agentSpaceId") is not None:
         out["agent_space_id"] = data["agentSpaceId"]
     else:
         raise DeserializationError("StartCodeRemediationInput.agent_space_id required")
-    if "pentestJobId" in data:
+    if data.get("pentestJobId") is not None:
         out["pentest_job_id"] = data["pentestJobId"]
-    if "codeReviewJobId" in data:
+    if data.get("codeReviewJobId") is not None:
         out["code_review_job_id"] = data["codeReviewJobId"]
-    if "findingIds" in data:
+    if data.get("findingIds") is not None:
         import capo_securityagent.types.finding_id_list
 
         out["finding_ids"] = capo_securityagent.types.finding_id_list.deserialize_json(

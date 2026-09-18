@@ -55,17 +55,17 @@ def serialize_aws_json_1_1(value: CreateAccountRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateAccountRequest:
     out: CreateAccountRequest = {}  # type: ignore[typeddict-item]
-    if "Email" in data:
+    if data.get("Email") is not None:
         out["email"] = data["Email"]
     else:
         raise DeserializationError("CreateAccountRequest.email required")
-    if "AccountName" in data:
+    if data.get("AccountName") is not None:
         out["account_name"] = data["AccountName"]
     else:
         raise DeserializationError("CreateAccountRequest.account_name required")
-    if "RoleName" in data:
+    if data.get("RoleName") is not None:
         out["role_name"] = data["RoleName"]
-    if "IamUserAccessToBilling" in data:
+    if data.get("IamUserAccessToBilling") is not None:
         import capo_organizations.types.iam_user_access_to_billing
 
         out["iam_user_access_to_billing"] = (
@@ -73,7 +73,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateAccountRequest:
                 data["IamUserAccessToBilling"]
             )
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_organizations.types.tags
 
         out["tags"] = capo_organizations.types.tags.deserialize_aws_json_1_1(

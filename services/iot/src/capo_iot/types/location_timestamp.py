@@ -28,10 +28,10 @@ def serialize_json(value: LocationTimestamp) -> dict:
 
 def deserialize_json(data: dict) -> LocationTimestamp:
     out: LocationTimestamp = {}  # type: ignore[typeddict-item]
-    if "value" in data:
+    if data.get("value") is not None:
         out["value"] = data["value"]
     else:
         raise DeserializationError("LocationTimestamp.value required")
-    if "unit" in data:
+    if data.get("unit") is not None:
         out["unit"] = data["unit"]
     return out

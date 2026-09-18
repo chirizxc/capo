@@ -32,7 +32,7 @@ def serialize_aws_json_1_1(value: Credentials) -> dict:
 
 
 def deserialize_aws_json_1_1(data: dict) -> Credentials:
-    if "UsernamePassword" in data:
+    if data.get("UsernamePassword") is not None:
         import capo_emr.types.username_password
 
         return {

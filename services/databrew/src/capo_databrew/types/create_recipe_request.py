@@ -42,13 +42,13 @@ def serialize_json(value: CreateRecipeRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateRecipeRequest:
     out: CreateRecipeRequest = {}  # type: ignore[typeddict-item]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("CreateRecipeRequest.name required")
-    if "Steps" in data:
+    if data.get("Steps") is not None:
         import capo_databrew.types.recipe_step_list
 
         out["steps"] = capo_databrew.types.recipe_step_list.deserialize_json(
@@ -56,7 +56,7 @@ def deserialize_json(data: dict) -> CreateRecipeRequest:
         )
     else:
         raise DeserializationError("CreateRecipeRequest.steps required")
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_databrew.types.tag_map
 
         out["tags"] = capo_databrew.types.tag_map.deserialize_json(data["Tags"])

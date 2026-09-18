@@ -35,16 +35,16 @@ def serialize_aws_json_1_1(value: VolumeRecoveryPointInfo) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> VolumeRecoveryPointInfo:
     out: VolumeRecoveryPointInfo = {}  # type: ignore[typeddict-item]
-    if "VolumeARN" in data:
+    if data.get("VolumeARN") is not None:
         out["volume_arn"] = data["VolumeARN"]
-    if "VolumeSizeInBytes" in data:
+    if data.get("VolumeSizeInBytes") is not None:
         out["volume_size_in_bytes"] = data["VolumeSizeInBytes"]
     else:
         out["volume_size_in_bytes"] = 0
-    if "VolumeUsageInBytes" in data:
+    if data.get("VolumeUsageInBytes") is not None:
         out["volume_usage_in_bytes"] = data["VolumeUsageInBytes"]
     else:
         out["volume_usage_in_bytes"] = 0
-    if "VolumeRecoveryPointTime" in data:
+    if data.get("VolumeRecoveryPointTime") is not None:
         out["volume_recovery_point_time"] = data["VolumeRecoveryPointTime"]
     return out

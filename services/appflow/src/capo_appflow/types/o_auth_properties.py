@@ -36,15 +36,15 @@ def serialize_json(value: OAuthProperties) -> dict:
 
 def deserialize_json(data: dict) -> OAuthProperties:
     out: OAuthProperties = {}  # type: ignore[typeddict-item]
-    if "tokenUrl" in data:
+    if data.get("tokenUrl") is not None:
         out["token_url"] = data["tokenUrl"]
     else:
         raise DeserializationError("OAuthProperties.token_url required")
-    if "authCodeUrl" in data:
+    if data.get("authCodeUrl") is not None:
         out["auth_code_url"] = data["authCodeUrl"]
     else:
         raise DeserializationError("OAuthProperties.auth_code_url required")
-    if "oAuthScopes" in data:
+    if data.get("oAuthScopes") is not None:
         import capo_appflow.types.o_auth_scope_list
 
         out["o_auth_scopes"] = capo_appflow.types.o_auth_scope_list.deserialize_json(

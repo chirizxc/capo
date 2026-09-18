@@ -174,15 +174,15 @@ def serialize_json(value: JobSettings) -> dict:
 
 def deserialize_json(data: dict) -> JobSettings:
     out: JobSettings = {}  # type: ignore[typeddict-item]
-    if "adAvailOffset" in data:
+    if data.get("adAvailOffset") is not None:
         out["ad_avail_offset"] = data["adAvailOffset"]
-    if "availBlanking" in data:
+    if data.get("availBlanking") is not None:
         import capo_mediaconvert.types.avail_blanking
 
         out["avail_blanking"] = capo_mediaconvert.types.avail_blanking.deserialize_json(
             data["availBlanking"]
         )
-    if "colorConversion3DLUTSettings" in data:
+    if data.get("colorConversion3DLUTSettings") is not None:
         import capo_mediaconvert.types.__list_of_color_conversion3_dlut_setting
 
         out["color_conversion3_dlut_settings"] = (
@@ -190,13 +190,13 @@ def deserialize_json(data: dict) -> JobSettings:
                 data["colorConversion3DLUTSettings"]
             )
         )
-    if "esam" in data:
+    if data.get("esam") is not None:
         import capo_mediaconvert.types.esam_settings
 
         out["esam"] = capo_mediaconvert.types.esam_settings.deserialize_json(
             data["esam"]
         )
-    if "extendedDataServices" in data:
+    if data.get("extendedDataServices") is not None:
         import capo_mediaconvert.types.extended_data_services
 
         out["extended_data_services"] = (
@@ -204,15 +204,15 @@ def deserialize_json(data: dict) -> JobSettings:
                 data["extendedDataServices"]
             )
         )
-    if "followSource" in data:
+    if data.get("followSource") is not None:
         out["follow_source"] = data["followSource"]
-    if "inputs" in data:
+    if data.get("inputs") is not None:
         import capo_mediaconvert.types.__list_of_input
 
         out["inputs"] = capo_mediaconvert.types.__list_of_input.deserialize_json(
             data["inputs"]
         )
-    if "kantarWatermark" in data:
+    if data.get("kantarWatermark") is not None:
         import capo_mediaconvert.types.kantar_watermark_settings
 
         out["kantar_watermark"] = (
@@ -220,7 +220,7 @@ def deserialize_json(data: dict) -> JobSettings:
                 data["kantarWatermark"]
             )
         )
-    if "motionImageInserter" in data:
+    if data.get("motionImageInserter") is not None:
         import capo_mediaconvert.types.motion_image_inserter
 
         out["motion_image_inserter"] = (
@@ -228,7 +228,7 @@ def deserialize_json(data: dict) -> JobSettings:
                 data["motionImageInserter"]
             )
         )
-    if "nielsenConfiguration" in data:
+    if data.get("nielsenConfiguration") is not None:
         import capo_mediaconvert.types.nielsen_configuration
 
         out["nielsen_configuration"] = (
@@ -236,7 +236,7 @@ def deserialize_json(data: dict) -> JobSettings:
                 data["nielsenConfiguration"]
             )
         )
-    if "nielsenNonLinearWatermark" in data:
+    if data.get("nielsenNonLinearWatermark") is not None:
         import capo_mediaconvert.types.nielsen_non_linear_watermark_settings
 
         out["nielsen_non_linear_watermark"] = (
@@ -244,7 +244,7 @@ def deserialize_json(data: dict) -> JobSettings:
                 data["nielsenNonLinearWatermark"]
             )
         )
-    if "outputGroups" in data:
+    if data.get("outputGroups") is not None:
         import capo_mediaconvert.types.__list_of_output_group
 
         out["output_groups"] = (
@@ -252,7 +252,7 @@ def deserialize_json(data: dict) -> JobSettings:
                 data["outputGroups"]
             )
         )
-    if "timecodeConfig" in data:
+    if data.get("timecodeConfig") is not None:
         import capo_mediaconvert.types.timecode_config
 
         out["timecode_config"] = (
@@ -260,7 +260,7 @@ def deserialize_json(data: dict) -> JobSettings:
                 data["timecodeConfig"]
             )
         )
-    if "timedMetadataInsertion" in data:
+    if data.get("timedMetadataInsertion") is not None:
         import capo_mediaconvert.types.timed_metadata_insertion
 
         out["timed_metadata_insertion"] = (

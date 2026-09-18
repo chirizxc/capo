@@ -58,19 +58,19 @@ def serialize_json(value: Connector) -> dict:
 
 def deserialize_json(data: dict) -> Connector:
     out: Connector = {}  # type: ignore[typeddict-item]
-    if "connectorID" in data:
+    if data.get("connectorID") is not None:
         out["connector_id"] = data["connectorID"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "ssmInstanceID" in data:
+    if data.get("ssmInstanceID") is not None:
         out["ssm_instance_id"] = data["ssmInstanceID"]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_mgn.types.tags_map
 
         out["tags"] = capo_mgn.types.tags_map.deserialize_json(data["tags"])
-    if "ssmCommandConfig" in data:
+    if data.get("ssmCommandConfig") is not None:
         import capo_mgn.types.connector_ssm_command_config
 
         out["ssm_command_config"] = (

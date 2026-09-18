@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> AwsRdsDbClusterMembers:
 
     out: AwsRdsDbClusterMembers = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_securityhub.types.aws_rds_db_cluster_member.deserialize_json(item)
         )

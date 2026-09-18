@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> GsmNmrList:
 
     out: GsmNmrList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_iot_wireless.types.gsm_nmr_obj.deserialize_json(item))
     return out

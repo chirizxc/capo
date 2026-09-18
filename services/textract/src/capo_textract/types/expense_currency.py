@@ -22,14 +22,22 @@ def serialize_aws_json_1_1(value: ExpenseCurrency) -> dict:
     if "code" in value:
         out["Code"] = value["code"]
     if "confidence" in value:
-        out["Confidence"] = value["confidence"]
+        out["Confidence"] = (
+            "NaN"
+            if value["confidence"] != value["confidence"]
+            else "Infinity"
+            if value["confidence"] == float("inf")
+            else "-Infinity"
+            if value["confidence"] == float("-inf")
+            else value["confidence"]
+        )
     return out
 
 
 def deserialize_aws_json_1_1(data: dict) -> ExpenseCurrency:
     out: ExpenseCurrency = {}  # type: ignore[typeddict-item]
-    if "Code" in data:
+    if data.get("Code") is not None:
         out["code"] = data["Code"]
-    if "Confidence" in data:
-        out["confidence"] = data["Confidence"]
+    if data.get("Confidence") is not None:
+        out["confidence"] = float(data["Confidence"])
     return out

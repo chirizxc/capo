@@ -56,7 +56,7 @@ def serialize_json(value: CreateConfigurationRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateConfigurationRequest:
     out: CreateConfigurationRequest = {}  # type: ignore[typeddict-item]
-    if "authenticationStrategy" in data:
+    if data.get("authenticationStrategy") is not None:
         import capo_mq.types.authentication_strategy
 
         out["authentication_strategy"] = (
@@ -64,17 +64,17 @@ def deserialize_json(data: dict) -> CreateConfigurationRequest:
                 data["authenticationStrategy"]
             )
         )
-    if "engineType" in data:
+    if data.get("engineType") is not None:
         import capo_mq.types.engine_type
 
         out["engine_type"] = capo_mq.types.engine_type.deserialize_json(
             data["engineType"]
         )
-    if "engineVersion" in data:
+    if data.get("engineVersion") is not None:
         out["engine_version"] = data["engineVersion"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_mq.types.__map_of__string
 
         out["tags"] = capo_mq.types.__map_of__string.deserialize_json(data["tags"])

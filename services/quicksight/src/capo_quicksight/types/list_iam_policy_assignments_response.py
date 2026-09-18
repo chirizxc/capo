@@ -43,7 +43,7 @@ def serialize_json(value: ListIAMPolicyAssignmentsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListIAMPolicyAssignmentsResponse:
     out: ListIAMPolicyAssignmentsResponse = {}  # type: ignore[typeddict-item]
-    if "IAMPolicyAssignments" in data:
+    if data.get("IAMPolicyAssignments") is not None:
         import capo_quicksight.types.iam_policy_assignment_summary_list
 
         out["iam_policy_assignments"] = (
@@ -51,8 +51,8 @@ def deserialize_json(data: dict) -> ListIAMPolicyAssignmentsResponse:
                 data["IAMPolicyAssignments"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "RequestId" in data:
+    if data.get("RequestId") is not None:
         out["request_id"] = data["RequestId"]
     return out

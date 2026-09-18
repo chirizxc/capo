@@ -25,7 +25,7 @@ def serialize_json(value: MeetingFeaturesConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> MeetingFeaturesConfiguration:
     out: MeetingFeaturesConfiguration = {}  # type: ignore[typeddict-item]
-    if "Audio" in data:
+    if data.get("Audio") is not None:
         import capo_connect.types.audio_features
 
         out["audio"] = capo_connect.types.audio_features.deserialize_json(data["Audio"])

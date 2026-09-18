@@ -23,6 +23,6 @@ def serialize_json(value: MultiplexMediaConnectOutputDestinationSettings) -> dic
 
 def deserialize_json(data: dict) -> MultiplexMediaConnectOutputDestinationSettings:
     out: MultiplexMediaConnectOutputDestinationSettings = {}  # type: ignore[typeddict-item]
-    if "entitlementArn" in data:
+    if data.get("entitlementArn") is not None:
         out["entitlement_arn"] = data["entitlementArn"]
     return out

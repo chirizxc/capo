@@ -70,19 +70,19 @@ def serialize_json(value: ClassificationResult) -> dict:
 
 def deserialize_json(data: dict) -> ClassificationResult:
     out: ClassificationResult = {}  # type: ignore[typeddict-item]
-    if "MimeType" in data:
+    if data.get("MimeType") is not None:
         out["mime_type"] = data["MimeType"]
-    if "SizeClassified" in data:
+    if data.get("SizeClassified") is not None:
         out["size_classified"] = data["SizeClassified"]
-    if "AdditionalOccurrences" in data:
+    if data.get("AdditionalOccurrences") is not None:
         out["additional_occurrences"] = data["AdditionalOccurrences"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_securityhub.types.classification_status
 
         out["status"] = capo_securityhub.types.classification_status.deserialize_json(
             data["Status"]
         )
-    if "SensitiveData" in data:
+    if data.get("SensitiveData") is not None:
         import capo_securityhub.types.sensitive_data_result_list
 
         out["sensitive_data"] = (
@@ -90,7 +90,7 @@ def deserialize_json(data: dict) -> ClassificationResult:
                 data["SensitiveData"]
             )
         )
-    if "CustomDataIdentifiers" in data:
+    if data.get("CustomDataIdentifiers") is not None:
         import capo_securityhub.types.custom_data_identifiers_result
 
         out["custom_data_identifiers"] = (

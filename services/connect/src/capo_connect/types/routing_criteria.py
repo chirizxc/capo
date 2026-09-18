@@ -39,16 +39,16 @@ def serialize_json(value: RoutingCriteria) -> dict:
 
 def deserialize_json(data: dict) -> RoutingCriteria:
     out: RoutingCriteria = {}  # type: ignore[typeddict-item]
-    if "Steps" in data:
+    if data.get("Steps") is not None:
         import capo_connect.types.steps
 
         out["steps"] = capo_connect.types.steps.deserialize_json(data["Steps"])
-    if "ActivationTimestamp" in data:
+    if data.get("ActivationTimestamp") is not None:
         import capo_connect.types.timestamp
 
         out["activation_timestamp"] = capo_connect.types.timestamp.deserialize_json(
             data["ActivationTimestamp"]
         )
-    if "Index" in data:
+    if data.get("Index") is not None:
         out["index"] = data["Index"]
     return out

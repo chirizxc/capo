@@ -50,7 +50,7 @@ def serialize_aws_json_1_0(value: LogDestinationConfig) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> LogDestinationConfig:
     out: LogDestinationConfig = {}  # type: ignore[typeddict-item]
-    if "LogType" in data:
+    if data.get("LogType") is not None:
         import capo_network_firewall.types.log_type
 
         out["log_type"] = capo_network_firewall.types.log_type.deserialize_aws_json_1_0(
@@ -58,7 +58,7 @@ def deserialize_aws_json_1_0(data: dict) -> LogDestinationConfig:
         )
     else:
         raise DeserializationError("LogDestinationConfig.log_type required")
-    if "LogDestinationType" in data:
+    if data.get("LogDestinationType") is not None:
         import capo_network_firewall.types.log_destination_type
 
         out["log_destination_type"] = (
@@ -68,7 +68,7 @@ def deserialize_aws_json_1_0(data: dict) -> LogDestinationConfig:
         )
     else:
         raise DeserializationError("LogDestinationConfig.log_destination_type required")
-    if "LogDestination" in data:
+    if data.get("LogDestination") is not None:
         import capo_network_firewall.types.log_destination_map
 
         out["log_destination"] = (

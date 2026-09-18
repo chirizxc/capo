@@ -31,7 +31,7 @@ def serialize_json(value: ActiveSpeakerOnlyConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> ActiveSpeakerOnlyConfiguration:
     out: ActiveSpeakerOnlyConfiguration = {}  # type: ignore[typeddict-item]
-    if "ActiveSpeakerPosition" in data:
+    if data.get("ActiveSpeakerPosition") is not None:
         import capo_chime_sdk_media_pipelines.types.active_speaker_position
 
         out["active_speaker_position"] = (

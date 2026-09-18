@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> CredentialLockerListDefinition:
 
     out: CredentialLockerListDefinition = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_iot_managed_integrations.types.credential_locker_summary.deserialize_json(
                 item

@@ -73,11 +73,11 @@ def serialize_json(value: DateTimeParameterDeclaration) -> dict:
 
 def deserialize_json(data: dict) -> DateTimeParameterDeclaration:
     out: DateTimeParameterDeclaration = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("DateTimeParameterDeclaration.name required")
-    if "DefaultValues" in data:
+    if data.get("DefaultValues") is not None:
         import capo_quicksight.types.date_time_default_values
 
         out["default_values"] = (
@@ -85,7 +85,7 @@ def deserialize_json(data: dict) -> DateTimeParameterDeclaration:
                 data["DefaultValues"]
             )
         )
-    if "TimeGranularity" in data:
+    if data.get("TimeGranularity") is not None:
         import capo_quicksight.types.time_granularity
 
         out["time_granularity"] = (
@@ -93,7 +93,7 @@ def deserialize_json(data: dict) -> DateTimeParameterDeclaration:
                 data["TimeGranularity"]
             )
         )
-    if "ValueWhenUnset" in data:
+    if data.get("ValueWhenUnset") is not None:
         import capo_quicksight.types.date_time_value_when_unset_configuration
 
         out["value_when_unset"] = (
@@ -101,7 +101,7 @@ def deserialize_json(data: dict) -> DateTimeParameterDeclaration:
                 data["ValueWhenUnset"]
             )
         )
-    if "MappedDataSetParameters" in data:
+    if data.get("MappedDataSetParameters") is not None:
         import capo_quicksight.types.mapped_data_set_parameters
 
         out["mapped_data_set_parameters"] = (

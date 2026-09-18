@@ -43,19 +43,19 @@ def serialize_json(value: InboundRawMessage) -> dict:
 
 def deserialize_json(data: dict) -> InboundRawMessage:
     out: InboundRawMessage = {}  # type: ignore[typeddict-item]
-    if "Subject" in data:
+    if data.get("Subject") is not None:
         out["subject"] = data["Subject"]
     else:
         raise DeserializationError("InboundRawMessage.subject required")
-    if "Body" in data:
+    if data.get("Body") is not None:
         out["body"] = data["Body"]
     else:
         raise DeserializationError("InboundRawMessage.body required")
-    if "ContentType" in data:
+    if data.get("ContentType") is not None:
         out["content_type"] = data["ContentType"]
     else:
         raise DeserializationError("InboundRawMessage.content_type required")
-    if "Headers" in data:
+    if data.get("Headers") is not None:
         import capo_connect.types.email_headers
 
         out["headers"] = capo_connect.types.email_headers.deserialize_json(

@@ -44,7 +44,7 @@ def serialize_json(value: BatchCreateDataTableValueSuccessResult) -> dict:
 
 def deserialize_json(data: dict) -> BatchCreateDataTableValueSuccessResult:
     out: BatchCreateDataTableValueSuccessResult = {}  # type: ignore[typeddict-item]
-    if "PrimaryValues" in data:
+    if data.get("PrimaryValues") is not None:
         import capo_connect.types.primary_values_set
 
         out["primary_values"] = capo_connect.types.primary_values_set.deserialize_json(
@@ -54,19 +54,19 @@ def deserialize_json(data: dict) -> BatchCreateDataTableValueSuccessResult:
         raise DeserializationError(
             "BatchCreateDataTableValueSuccessResult.primary_values required"
         )
-    if "AttributeName" in data:
+    if data.get("AttributeName") is not None:
         out["attribute_name"] = data["AttributeName"]
     else:
         raise DeserializationError(
             "BatchCreateDataTableValueSuccessResult.attribute_name required"
         )
-    if "RecordId" in data:
+    if data.get("RecordId") is not None:
         out["record_id"] = data["RecordId"]
     else:
         raise DeserializationError(
             "BatchCreateDataTableValueSuccessResult.record_id required"
         )
-    if "LockVersion" in data:
+    if data.get("LockVersion") is not None:
         import capo_connect.types.data_table_lock_version
 
         out["lock_version"] = (

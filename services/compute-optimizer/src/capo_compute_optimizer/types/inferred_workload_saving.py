@@ -44,7 +44,7 @@ def serialize_aws_json_1_0(value: InferredWorkloadSaving) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> InferredWorkloadSaving:
     out: InferredWorkloadSaving = {}  # type: ignore[typeddict-item]
-    if "inferredWorkloadTypes" in data:
+    if data.get("inferredWorkloadTypes") is not None:
         import capo_compute_optimizer.types.inferred_workload_types
 
         out["inferred_workload_types"] = (
@@ -52,7 +52,7 @@ def deserialize_aws_json_1_0(data: dict) -> InferredWorkloadSaving:
                 data["inferredWorkloadTypes"]
             )
         )
-    if "estimatedMonthlySavings" in data:
+    if data.get("estimatedMonthlySavings") is not None:
         import capo_compute_optimizer.types.estimated_monthly_savings
 
         out["estimated_monthly_savings"] = (

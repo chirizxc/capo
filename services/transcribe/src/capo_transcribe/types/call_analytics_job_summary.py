@@ -92,21 +92,21 @@ def serialize_aws_json_1_1(value: CallAnalyticsJobSummary) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CallAnalyticsJobSummary:
     out: CallAnalyticsJobSummary = {}  # type: ignore[typeddict-item]
-    if "CallAnalyticsJobName" in data:
+    if data.get("CallAnalyticsJobName") is not None:
         out["call_analytics_job_name"] = data["CallAnalyticsJobName"]
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_transcribe.types.date_time
 
         out["creation_time"] = capo_transcribe.types.date_time.deserialize_aws_json_1_1(
             data["CreationTime"]
         )
-    if "StartTime" in data:
+    if data.get("StartTime") is not None:
         import capo_transcribe.types.date_time
 
         out["start_time"] = capo_transcribe.types.date_time.deserialize_aws_json_1_1(
             data["StartTime"]
         )
-    if "CompletionTime" in data:
+    if data.get("CompletionTime") is not None:
         import capo_transcribe.types.date_time
 
         out["completion_time"] = (
@@ -114,7 +114,7 @@ def deserialize_aws_json_1_1(data: dict) -> CallAnalyticsJobSummary:
                 data["CompletionTime"]
             )
         )
-    if "LanguageCode" in data:
+    if data.get("LanguageCode") is not None:
         import capo_transcribe.types.language_code
 
         out["language_code"] = (
@@ -122,7 +122,7 @@ def deserialize_aws_json_1_1(data: dict) -> CallAnalyticsJobSummary:
                 data["LanguageCode"]
             )
         )
-    if "CallAnalyticsJobStatus" in data:
+    if data.get("CallAnalyticsJobStatus") is not None:
         import capo_transcribe.types.call_analytics_job_status
 
         out["call_analytics_job_status"] = (
@@ -130,7 +130,7 @@ def deserialize_aws_json_1_1(data: dict) -> CallAnalyticsJobSummary:
                 data["CallAnalyticsJobStatus"]
             )
         )
-    if "CallAnalyticsJobDetails" in data:
+    if data.get("CallAnalyticsJobDetails") is not None:
         import capo_transcribe.types.call_analytics_job_details
 
         out["call_analytics_job_details"] = (
@@ -138,6 +138,6 @@ def deserialize_aws_json_1_1(data: dict) -> CallAnalyticsJobSummary:
                 data["CallAnalyticsJobDetails"]
             )
         )
-    if "FailureReason" in data:
+    if data.get("FailureReason") is not None:
         out["failure_reason"] = data["FailureReason"]
     return out

@@ -23,5 +23,7 @@ def deserialize_aws_json_1_1(data: list) -> CommunicationList:
 
     out: CommunicationList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_support.types.communication.deserialize_aws_json_1_1(item))
     return out

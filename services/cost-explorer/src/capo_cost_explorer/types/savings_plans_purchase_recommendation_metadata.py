@@ -37,10 +37,10 @@ def serialize_aws_json_1_1(value: SavingsPlansPurchaseRecommendationMetadata) ->
 
 def deserialize_aws_json_1_1(data: dict) -> SavingsPlansPurchaseRecommendationMetadata:
     out: SavingsPlansPurchaseRecommendationMetadata = {}  # type: ignore[typeddict-item]
-    if "RecommendationId" in data:
+    if data.get("RecommendationId") is not None:
         out["recommendation_id"] = data["RecommendationId"]
-    if "GenerationTimestamp" in data:
+    if data.get("GenerationTimestamp") is not None:
         out["generation_timestamp"] = data["GenerationTimestamp"]
-    if "AdditionalMetadata" in data:
+    if data.get("AdditionalMetadata") is not None:
         out["additional_metadata"] = data["AdditionalMetadata"]
     return out

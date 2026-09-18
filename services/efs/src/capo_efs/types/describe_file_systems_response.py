@@ -38,14 +38,14 @@ def serialize_json(value: DescribeFileSystemsResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribeFileSystemsResponse:
     out: DescribeFileSystemsResponse = {}  # type: ignore[typeddict-item]
-    if "Marker" in data:
+    if data.get("Marker") is not None:
         out["marker"] = data["Marker"]
-    if "FileSystems" in data:
+    if data.get("FileSystems") is not None:
         import capo_efs.types.file_system_descriptions
 
         out["file_systems"] = capo_efs.types.file_system_descriptions.deserialize_json(
             data["FileSystems"]
         )
-    if "NextMarker" in data:
+    if data.get("NextMarker") is not None:
         out["next_marker"] = data["NextMarker"]
     return out

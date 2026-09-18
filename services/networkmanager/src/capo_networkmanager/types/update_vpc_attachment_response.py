@@ -29,7 +29,7 @@ def serialize_json(value: UpdateVpcAttachmentResponse) -> dict:
 
 def deserialize_json(data: dict) -> UpdateVpcAttachmentResponse:
     out: UpdateVpcAttachmentResponse = {}  # type: ignore[typeddict-item]
-    if "VpcAttachment" in data:
+    if data.get("VpcAttachment") is not None:
         import capo_networkmanager.types.vpc_attachment
 
         out["vpc_attachment"] = (

@@ -50,7 +50,7 @@ def serialize_aws_json_1_1(value: ListRecipesRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListRecipesRequest:
     out: ListRecipesRequest = {}  # type: ignore[typeddict-item]
-    if "recipeProvider" in data:
+    if data.get("recipeProvider") is not None:
         import capo_personalize.types.recipe_provider
 
         out["recipe_provider"] = (
@@ -58,11 +58,11 @@ def deserialize_aws_json_1_1(data: dict) -> ListRecipesRequest:
                 data["recipeProvider"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
-    if "domain" in data:
+    if data.get("domain") is not None:
         import capo_personalize.types.domain
 
         out["domain"] = capo_personalize.types.domain.deserialize_aws_json_1_1(

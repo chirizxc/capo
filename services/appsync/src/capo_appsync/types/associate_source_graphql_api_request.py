@@ -43,15 +43,15 @@ def serialize_json(value: AssociateSourceGraphqlApiRequest) -> dict:
 
 def deserialize_json(data: dict) -> AssociateSourceGraphqlApiRequest:
     out: AssociateSourceGraphqlApiRequest = {}  # type: ignore[typeddict-item]
-    if "sourceApiIdentifier" in data:
+    if data.get("sourceApiIdentifier") is not None:
         out["source_api_identifier"] = data["sourceApiIdentifier"]
     else:
         raise DeserializationError(
             "AssociateSourceGraphqlApiRequest.source_api_identifier required"
         )
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "sourceApiAssociationConfig" in data:
+    if data.get("sourceApiAssociationConfig") is not None:
         import capo_appsync.types.source_api_association_config
 
         out["source_api_association_config"] = (

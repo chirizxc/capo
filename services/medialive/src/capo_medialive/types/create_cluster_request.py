@@ -60,17 +60,17 @@ def serialize_json(value: CreateClusterRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateClusterRequest:
     out: CreateClusterRequest = {}  # type: ignore[typeddict-item]
-    if "clusterType" in data:
+    if data.get("clusterType") is not None:
         import capo_medialive.types.cluster_type
 
         out["cluster_type"] = capo_medialive.types.cluster_type.deserialize_json(
             data["clusterType"]
         )
-    if "instanceRoleArn" in data:
+    if data.get("instanceRoleArn") is not None:
         out["instance_role_arn"] = data["instanceRoleArn"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "networkSettings" in data:
+    if data.get("networkSettings") is not None:
         import capo_medialive.types.cluster_network_settings_create_request
 
         out["network_settings"] = (
@@ -78,9 +78,9 @@ def deserialize_json(data: dict) -> CreateClusterRequest:
                 data["networkSettings"]
             )
         )
-    if "requestId" in data:
+    if data.get("requestId") is not None:
         out["request_id"] = data["requestId"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_medialive.types.tags
 
         out["tags"] = capo_medialive.types.tags.deserialize_json(data["tags"])

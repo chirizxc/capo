@@ -47,9 +47,9 @@ def serialize_aws_json_1_1(value: GetEventSelectorsResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetEventSelectorsResponse:
     out: GetEventSelectorsResponse = {}  # type: ignore[typeddict-item]
-    if "TrailARN" in data:
+    if data.get("TrailARN") is not None:
         out["trail_arn"] = data["TrailARN"]
-    if "EventSelectors" in data:
+    if data.get("EventSelectors") is not None:
         import capo_cloudtrail.types.event_selectors
 
         out["event_selectors"] = (
@@ -57,7 +57,7 @@ def deserialize_aws_json_1_1(data: dict) -> GetEventSelectorsResponse:
                 data["EventSelectors"]
             )
         )
-    if "AdvancedEventSelectors" in data:
+    if data.get("AdvancedEventSelectors") is not None:
         import capo_cloudtrail.types.advanced_event_selectors
 
         out["advanced_event_selectors"] = (

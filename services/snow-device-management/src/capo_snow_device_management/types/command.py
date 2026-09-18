@@ -45,7 +45,7 @@ def serialize_json(value: Command) -> dict:
 
 
 def deserialize_json(data: dict) -> Command:
-    if "unlock" in data:
+    if data.get("unlock") is not None:
         import capo_snow_device_management.types.unlock
 
         return {
@@ -53,7 +53,7 @@ def deserialize_json(data: dict) -> Command:
                 data["unlock"]
             )
         }
-    elif "reboot" in data:
+    elif data.get("reboot") is not None:
         import capo_snow_device_management.types.reboot
 
         return {

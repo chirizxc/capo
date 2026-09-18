@@ -30,8 +30,8 @@ def serialize_json(value: EmailOverviewAIAgentConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> EmailOverviewAIAgentConfiguration:
     out: EmailOverviewAIAgentConfiguration = {}  # type: ignore[typeddict-item]
-    if "emailOverviewAIPromptId" in data:
+    if data.get("emailOverviewAIPromptId") is not None:
         out["email_overview_ai_prompt_id"] = data["emailOverviewAIPromptId"]
-    if "locale" in data:
+    if data.get("locale") is not None:
         out["locale"] = data["locale"]
     return out

@@ -89,7 +89,7 @@ class RecoveryInstanceResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_drs.types.describe_recovery_instances_request.DescribeRecoveryInstancesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_drs.types.describe_recovery_instances_request.DescribeRecoveryInstancesRequest = {}
         if filters is not None:
             input_["filters"] = filters
         if max_results is not None:
@@ -102,6 +102,7 @@ class RecoveryInstanceResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_recovery_instance(
@@ -137,14 +138,16 @@ class RecoveryInstanceResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_drs.types.delete_recovery_instance_request.DeleteRecoveryInstanceRequest = {}  # type: ignore[typeddict-item]
-        input_["recovery_instance_id"] = recovery_instance_id
+        input_: capo_drs.types.delete_recovery_instance_request.DeleteRecoveryInstanceRequest = {
+            "recovery_instance_id": recovery_instance_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def disconnect_recovery_instance(
@@ -181,14 +184,16 @@ class RecoveryInstanceResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_drs.types.disconnect_recovery_instance_request.DisconnectRecoveryInstanceRequest = {}  # type: ignore[typeddict-item]
-        input_["recovery_instance_id"] = recovery_instance_id
+        input_: capo_drs.types.disconnect_recovery_instance_request.DisconnectRecoveryInstanceRequest = {
+            "recovery_instance_id": recovery_instance_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_failback_replication_configuration(
@@ -225,14 +230,16 @@ class RecoveryInstanceResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_drs.types.get_failback_replication_configuration_request.GetFailbackReplicationConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["recovery_instance_id"] = recovery_instance_id
+        input_: capo_drs.types.get_failback_replication_configuration_request.GetFailbackReplicationConfigurationRequest = {
+            "recovery_instance_id": recovery_instance_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def reverse_replication(
@@ -272,14 +279,16 @@ class RecoveryInstanceResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_drs.types.reverse_replication_request.ReverseReplicationRequest = {}  # type: ignore[typeddict-item]
-        input_["recovery_instance_id"] = recovery_instance_id
+        input_: capo_drs.types.reverse_replication_request.ReverseReplicationRequest = {
+            "recovery_instance_id": recovery_instance_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def stop_failback(
@@ -314,14 +323,16 @@ class RecoveryInstanceResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_drs.types.stop_failback_request.StopFailbackRequest = {}  # type: ignore[typeddict-item]
-        input_["recovery_instance_id"] = recovery_instance_id
+        input_: capo_drs.types.stop_failback_request.StopFailbackRequest = {
+            "recovery_instance_id": recovery_instance_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_failback_replication_configuration(
@@ -369,8 +380,9 @@ class RecoveryInstanceResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_drs.types.update_failback_replication_configuration_request.UpdateFailbackReplicationConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["recovery_instance_id"] = recovery_instance_id
+        input_: capo_drs.types.update_failback_replication_configuration_request.UpdateFailbackReplicationConfigurationRequest = {
+            "recovery_instance_id": recovery_instance_id
+        }
         if name is not None:
             input_["name"] = name
         if bandwidth_throttling is not None:
@@ -385,6 +397,7 @@ class RecoveryInstanceResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def start_failback_launch(
@@ -425,8 +438,9 @@ class RecoveryInstanceResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_drs.types.start_failback_launch_request.StartFailbackLaunchRequest = {}  # type: ignore[typeddict-item]
-        input_["recovery_instance_i_ds"] = recovery_instance_i_ds
+        input_: capo_drs.types.start_failback_launch_request.StartFailbackLaunchRequest = {
+            "recovery_instance_i_ds": recovery_instance_i_ds
+        }
         if tags is not None:
             input_["tags"] = tags
 
@@ -435,6 +449,7 @@ class RecoveryInstanceResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def terminate_recovery_instances(
@@ -472,14 +487,16 @@ class RecoveryInstanceResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_drs.types.terminate_recovery_instances_request.TerminateRecoveryInstancesRequest = {}  # type: ignore[typeddict-item]
-        input_["recovery_instance_i_ds"] = recovery_instance_i_ds
+        input_: capo_drs.types.terminate_recovery_instances_request.TerminateRecoveryInstancesRequest = {
+            "recovery_instance_i_ds": recovery_instance_i_ds
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -530,7 +547,7 @@ class AsyncRecoveryInstanceResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_drs.types.describe_recovery_instances_request.DescribeRecoveryInstancesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_drs.types.describe_recovery_instances_request.DescribeRecoveryInstancesRequest = {}
         if filters is not None:
             input_["filters"] = filters
         if max_results is not None:
@@ -543,6 +560,7 @@ class AsyncRecoveryInstanceResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_recovery_instance(
@@ -579,14 +597,16 @@ class AsyncRecoveryInstanceResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_drs.types.delete_recovery_instance_request.DeleteRecoveryInstanceRequest = {}  # type: ignore[typeddict-item]
-        input_["recovery_instance_id"] = recovery_instance_id
+        input_: capo_drs.types.delete_recovery_instance_request.DeleteRecoveryInstanceRequest = {
+            "recovery_instance_id": recovery_instance_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def disconnect_recovery_instance(
@@ -624,14 +644,16 @@ class AsyncRecoveryInstanceResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_drs.types.disconnect_recovery_instance_request.DisconnectRecoveryInstanceRequest = {}  # type: ignore[typeddict-item]
-        input_["recovery_instance_id"] = recovery_instance_id
+        input_: capo_drs.types.disconnect_recovery_instance_request.DisconnectRecoveryInstanceRequest = {
+            "recovery_instance_id": recovery_instance_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_failback_replication_configuration(
@@ -669,14 +691,16 @@ class AsyncRecoveryInstanceResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_drs.types.get_failback_replication_configuration_request.GetFailbackReplicationConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["recovery_instance_id"] = recovery_instance_id
+        input_: capo_drs.types.get_failback_replication_configuration_request.GetFailbackReplicationConfigurationRequest = {
+            "recovery_instance_id": recovery_instance_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def reverse_replication(
@@ -717,14 +741,16 @@ class AsyncRecoveryInstanceResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_drs.types.reverse_replication_request.ReverseReplicationRequest = {}  # type: ignore[typeddict-item]
-        input_["recovery_instance_id"] = recovery_instance_id
+        input_: capo_drs.types.reverse_replication_request.ReverseReplicationRequest = {
+            "recovery_instance_id": recovery_instance_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def stop_failback(
@@ -760,14 +786,16 @@ class AsyncRecoveryInstanceResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_drs.types.stop_failback_request.StopFailbackRequest = {}  # type: ignore[typeddict-item]
-        input_["recovery_instance_id"] = recovery_instance_id
+        input_: capo_drs.types.stop_failback_request.StopFailbackRequest = {
+            "recovery_instance_id": recovery_instance_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_failback_replication_configuration(
@@ -816,8 +844,9 @@ class AsyncRecoveryInstanceResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_drs.types.update_failback_replication_configuration_request.UpdateFailbackReplicationConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["recovery_instance_id"] = recovery_instance_id
+        input_: capo_drs.types.update_failback_replication_configuration_request.UpdateFailbackReplicationConfigurationRequest = {
+            "recovery_instance_id": recovery_instance_id
+        }
         if name is not None:
             input_["name"] = name
         if bandwidth_throttling is not None:
@@ -832,6 +861,7 @@ class AsyncRecoveryInstanceResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def start_failback_launch(
@@ -873,8 +903,9 @@ class AsyncRecoveryInstanceResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_drs.types.start_failback_launch_request.StartFailbackLaunchRequest = {}  # type: ignore[typeddict-item]
-        input_["recovery_instance_i_ds"] = recovery_instance_i_ds
+        input_: capo_drs.types.start_failback_launch_request.StartFailbackLaunchRequest = {
+            "recovery_instance_i_ds": recovery_instance_i_ds
+        }
         if tags is not None:
             input_["tags"] = tags
 
@@ -883,6 +914,7 @@ class AsyncRecoveryInstanceResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def terminate_recovery_instances(
@@ -921,12 +953,14 @@ class AsyncRecoveryInstanceResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_drs.types.terminate_recovery_instances_request.TerminateRecoveryInstancesRequest = {}  # type: ignore[typeddict-item]
-        input_["recovery_instance_i_ds"] = recovery_instance_i_ds
+        input_: capo_drs.types.terminate_recovery_instances_request.TerminateRecoveryInstancesRequest = {
+            "recovery_instance_i_ds": recovery_instance_i_ds
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

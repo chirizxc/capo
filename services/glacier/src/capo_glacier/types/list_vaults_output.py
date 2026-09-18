@@ -32,12 +32,12 @@ def serialize_json(value: ListVaultsOutput) -> dict:
 
 def deserialize_json(data: dict) -> ListVaultsOutput:
     out: ListVaultsOutput = {}  # type: ignore[typeddict-item]
-    if "VaultList" in data:
+    if data.get("VaultList") is not None:
         import capo_glacier.types.vault_list
 
         out["vault_list"] = capo_glacier.types.vault_list.deserialize_json(
             data["VaultList"]
         )
-    if "Marker" in data:
+    if data.get("Marker") is not None:
         out["marker"] = data["Marker"]
     return out

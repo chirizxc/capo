@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> Expressions:
 
     out: Expressions = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_connect.types.expression.deserialize_json(item))
     return out

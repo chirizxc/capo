@@ -127,7 +127,7 @@ def serialize_aws_json_1_1(value: X509AttributeFilter) -> dict:
 
 
 def deserialize_aws_json_1_1(data: dict) -> X509AttributeFilter:
-    if "Subject" in data:
+    if data.get("Subject") is not None:
         import capo_acm.types.subject_filter
 
         return {
@@ -135,7 +135,7 @@ def deserialize_aws_json_1_1(data: dict) -> X509AttributeFilter:
                 data["Subject"]
             )
         }
-    elif "SubjectAlternativeName" in data:
+    elif data.get("SubjectAlternativeName") is not None:
         import capo_acm.types.subject_alternative_name_filter
 
         return {
@@ -143,7 +143,7 @@ def deserialize_aws_json_1_1(data: dict) -> X509AttributeFilter:
                 data["SubjectAlternativeName"]
             )
         }
-    elif "ExtendedKeyUsage" in data:
+    elif data.get("ExtendedKeyUsage") is not None:
         import capo_acm.types.extended_key_usage_name
 
         return {
@@ -151,7 +151,7 @@ def deserialize_aws_json_1_1(data: dict) -> X509AttributeFilter:
                 data["ExtendedKeyUsage"]
             )
         }
-    elif "KeyUsage" in data:
+    elif data.get("KeyUsage") is not None:
         import capo_acm.types.key_usage_name
 
         return {
@@ -159,7 +159,7 @@ def deserialize_aws_json_1_1(data: dict) -> X509AttributeFilter:
                 data["KeyUsage"]
             )
         }
-    elif "KeyAlgorithm" in data:
+    elif data.get("KeyAlgorithm") is not None:
         import capo_acm.types.key_algorithm
 
         return {
@@ -167,9 +167,9 @@ def deserialize_aws_json_1_1(data: dict) -> X509AttributeFilter:
                 data["KeyAlgorithm"]
             )
         }
-    elif "SerialNumber" in data:
+    elif data.get("SerialNumber") is not None:
         return {"SerialNumber": data["SerialNumber"]}
-    elif "NotAfter" in data:
+    elif data.get("NotAfter") is not None:
         import capo_acm.types.timestamp_range
 
         return {
@@ -177,7 +177,7 @@ def deserialize_aws_json_1_1(data: dict) -> X509AttributeFilter:
                 data["NotAfter"]
             )
         }
-    elif "NotBefore" in data:
+    elif data.get("NotBefore") is not None:
         import capo_acm.types.timestamp_range
 
         return {

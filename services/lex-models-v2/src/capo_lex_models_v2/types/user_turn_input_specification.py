@@ -52,7 +52,7 @@ def serialize_json(value: UserTurnInputSpecification) -> dict:
 
 def deserialize_json(data: dict) -> UserTurnInputSpecification:
     out: UserTurnInputSpecification = {}  # type: ignore[typeddict-item]
-    if "utteranceInput" in data:
+    if data.get("utteranceInput") is not None:
         import capo_lex_models_v2.types.utterance_input_specification
 
         out["utterance_input"] = (
@@ -64,7 +64,7 @@ def deserialize_json(data: dict) -> UserTurnInputSpecification:
         raise DeserializationError(
             "UserTurnInputSpecification.utterance_input required"
         )
-    if "requestAttributes" in data:
+    if data.get("requestAttributes") is not None:
         import capo_lex_models_v2.types.string_map
 
         out["request_attributes"] = (
@@ -72,7 +72,7 @@ def deserialize_json(data: dict) -> UserTurnInputSpecification:
                 data["requestAttributes"]
             )
         )
-    if "sessionState" in data:
+    if data.get("sessionState") is not None:
         import capo_lex_models_v2.types.input_session_state_specification
 
         out["session_state"] = (

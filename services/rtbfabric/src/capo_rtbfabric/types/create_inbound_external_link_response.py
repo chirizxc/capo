@@ -38,17 +38,17 @@ def serialize_json(value: CreateInboundExternalLinkResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateInboundExternalLinkResponse:
     out: CreateInboundExternalLinkResponse = {}  # type: ignore[typeddict-item]
-    if "gatewayId" in data:
+    if data.get("gatewayId") is not None:
         out["gateway_id"] = data["gatewayId"]
     else:
         raise DeserializationError(
             "CreateInboundExternalLinkResponse.gateway_id required"
         )
-    if "linkId" in data:
+    if data.get("linkId") is not None:
         out["link_id"] = data["linkId"]
     else:
         raise DeserializationError("CreateInboundExternalLinkResponse.link_id required")
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_rtbfabric.types.link_status
 
         out["status"] = capo_rtbfabric.types.link_status.deserialize_json(
@@ -56,7 +56,7 @@ def deserialize_json(data: dict) -> CreateInboundExternalLinkResponse:
         )
     else:
         raise DeserializationError("CreateInboundExternalLinkResponse.status required")
-    if "domainName" in data:
+    if data.get("domainName") is not None:
         out["domain_name"] = data["domainName"]
     else:
         raise DeserializationError(

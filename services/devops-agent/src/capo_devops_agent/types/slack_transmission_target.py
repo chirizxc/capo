@@ -36,7 +36,7 @@ def serialize_json(value: SlackTransmissionTarget) -> dict:
 
 def deserialize_json(data: dict) -> SlackTransmissionTarget:
     out: SlackTransmissionTarget = {}  # type: ignore[typeddict-item]
-    if "opsOncallTarget" in data:
+    if data.get("opsOncallTarget") is not None:
         import capo_devops_agent.types.slack_channel
 
         out["ops_oncall_target"] = (
@@ -46,7 +46,7 @@ def deserialize_json(data: dict) -> SlackTransmissionTarget:
         )
     else:
         raise DeserializationError("SlackTransmissionTarget.ops_oncall_target required")
-    if "opsSRETarget" in data:
+    if data.get("opsSRETarget") is not None:
         import capo_devops_agent.types.slack_channel
 
         out["ops_sre_target"] = capo_devops_agent.types.slack_channel.deserialize_json(

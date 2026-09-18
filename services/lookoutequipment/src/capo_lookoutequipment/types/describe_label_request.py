@@ -28,11 +28,11 @@ def serialize_aws_json_1_0(value: DescribeLabelRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> DescribeLabelRequest:
     out: DescribeLabelRequest = {}  # type: ignore[typeddict-item]
-    if "LabelGroupName" in data:
+    if data.get("LabelGroupName") is not None:
         out["label_group_name"] = data["LabelGroupName"]
     else:
         raise DeserializationError("DescribeLabelRequest.label_group_name required")
-    if "LabelId" in data:
+    if data.get("LabelId") is not None:
         out["label_id"] = data["LabelId"]
     else:
         raise DeserializationError("DescribeLabelRequest.label_id required")

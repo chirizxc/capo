@@ -54,9 +54,9 @@ def serialize_json(value: Encryption) -> dict:
 
 def deserialize_json(data: dict) -> Encryption:
     out: Encryption = {}  # type: ignore[typeddict-item]
-    if "ConstantInitializationVector" in data:
+    if data.get("ConstantInitializationVector") is not None:
         out["constant_initialization_vector"] = data["ConstantInitializationVector"]
-    if "EncryptionMethod" in data:
+    if data.get("EncryptionMethod") is not None:
         import capo_mediapackagev2.types.encryption_method
 
         out["encryption_method"] = (
@@ -66,11 +66,11 @@ def deserialize_json(data: dict) -> Encryption:
         )
     else:
         raise DeserializationError("Encryption.encryption_method required")
-    if "KeyRotationIntervalSeconds" in data:
+    if data.get("KeyRotationIntervalSeconds") is not None:
         out["key_rotation_interval_seconds"] = data["KeyRotationIntervalSeconds"]
-    if "CmafExcludeSegmentDrmMetadata" in data:
+    if data.get("CmafExcludeSegmentDrmMetadata") is not None:
         out["cmaf_exclude_segment_drm_metadata"] = data["CmafExcludeSegmentDrmMetadata"]
-    if "SpekeKeyProvider" in data:
+    if data.get("SpekeKeyProvider") is not None:
         import capo_mediapackagev2.types.speke_key_provider
 
         out["speke_key_provider"] = (

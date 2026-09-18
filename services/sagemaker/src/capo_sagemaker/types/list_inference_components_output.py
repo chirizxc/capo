@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: ListInferenceComponentsOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListInferenceComponentsOutput:
     out: ListInferenceComponentsOutput = {}  # type: ignore[typeddict-item]
-    if "InferenceComponents" in data:
+    if data.get("InferenceComponents") is not None:
         import capo_sagemaker.types.inference_component_summary_list
 
         out["inference_components"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_1(data: dict) -> ListInferenceComponentsOutput:
                 data["InferenceComponents"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

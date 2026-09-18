@@ -47,7 +47,7 @@ def serialize_json(value: UnprocessedStandardsControlAssociationUpdate) -> dict:
 
 def deserialize_json(data: dict) -> UnprocessedStandardsControlAssociationUpdate:
     out: UnprocessedStandardsControlAssociationUpdate = {}  # type: ignore[typeddict-item]
-    if "StandardsControlAssociationUpdate" in data:
+    if data.get("StandardsControlAssociationUpdate") is not None:
         import capo_securityhub.types.standards_control_association_update
 
         out["standards_control_association_update"] = (
@@ -55,7 +55,7 @@ def deserialize_json(data: dict) -> UnprocessedStandardsControlAssociationUpdate
                 data["StandardsControlAssociationUpdate"]
             )
         )
-    if "ErrorCode" in data:
+    if data.get("ErrorCode") is not None:
         import capo_securityhub.types.unprocessed_error_code
 
         out["error_code"] = (
@@ -63,6 +63,6 @@ def deserialize_json(data: dict) -> UnprocessedStandardsControlAssociationUpdate
                 data["ErrorCode"]
             )
         )
-    if "ErrorReason" in data:
+    if data.get("ErrorReason") is not None:
         out["error_reason"] = data["ErrorReason"]
     return out

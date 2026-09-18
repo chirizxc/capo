@@ -34,7 +34,7 @@ def serialize_json(value: GetRecordResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetRecordResponse:
     out: GetRecordResponse = {}  # type: ignore[typeddict-item]
-    if "Record" in data:
+    if data.get("Record") is not None:
         import capo_sagemaker_featurestore_runtime.types.record
 
         out["record"] = (
@@ -42,6 +42,6 @@ def deserialize_json(data: dict) -> GetRecordResponse:
                 data["Record"]
             )
         )
-    if "ExpiresAt" in data:
+    if data.get("ExpiresAt") is not None:
         out["expires_at"] = data["ExpiresAt"]
     return out

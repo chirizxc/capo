@@ -51,13 +51,13 @@ def serialize_json(value: SyncResourceFilter) -> dict:
 
 
 def deserialize_json(data: dict) -> SyncResourceFilter:
-    if "state" in data:
+    if data.get("state") is not None:
         return {"state": data["state"]}
-    elif "resourceType" in data:
+    elif data.get("resourceType") is not None:
         return {"resourceType": data["resourceType"]}
-    elif "resourceId" in data:
+    elif data.get("resourceId") is not None:
         return {"resourceId": data["resourceId"]}
-    elif "externalId" in data:
+    elif data.get("externalId") is not None:
         return {"externalId": data["externalId"]}
     else:
         raise DeserializationError("SyncResourceFilter: no recognized variant key")

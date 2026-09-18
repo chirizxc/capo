@@ -32,15 +32,15 @@ def serialize_aws_json_1_1(value: BasicAuthenticationConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> BasicAuthenticationConfiguration:
     out: BasicAuthenticationConfiguration = {}  # type: ignore[typeddict-item]
-    if "Host" in data:
+    if data.get("Host") is not None:
         out["host"] = data["Host"]
     else:
         raise DeserializationError("BasicAuthenticationConfiguration.host required")
-    if "Port" in data:
+    if data.get("Port") is not None:
         out["port"] = data["Port"]
     else:
         raise DeserializationError("BasicAuthenticationConfiguration.port required")
-    if "Credentials" in data:
+    if data.get("Credentials") is not None:
         out["credentials"] = data["Credentials"]
     else:
         raise DeserializationError(

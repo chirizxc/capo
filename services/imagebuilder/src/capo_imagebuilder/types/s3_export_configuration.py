@@ -39,11 +39,11 @@ def serialize_json(value: S3ExportConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> S3ExportConfiguration:
     out: S3ExportConfiguration = {}  # type: ignore[typeddict-item]
-    if "roleName" in data:
+    if data.get("roleName") is not None:
         out["role_name"] = data["roleName"]
     else:
         raise DeserializationError("S3ExportConfiguration.role_name required")
-    if "diskImageFormat" in data:
+    if data.get("diskImageFormat") is not None:
         import capo_imagebuilder.types.disk_image_format
 
         out["disk_image_format"] = (
@@ -53,10 +53,10 @@ def deserialize_json(data: dict) -> S3ExportConfiguration:
         )
     else:
         raise DeserializationError("S3ExportConfiguration.disk_image_format required")
-    if "s3Bucket" in data:
+    if data.get("s3Bucket") is not None:
         out["s3_bucket"] = data["s3Bucket"]
     else:
         raise DeserializationError("S3ExportConfiguration.s3_bucket required")
-    if "s3Prefix" in data:
+    if data.get("s3Prefix") is not None:
         out["s3_prefix"] = data["s3Prefix"]
     return out

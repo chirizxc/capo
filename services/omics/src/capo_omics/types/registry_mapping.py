@@ -42,12 +42,12 @@ def serialize_json(value: RegistryMapping) -> dict:
 
 def deserialize_json(data: dict) -> RegistryMapping:
     out: RegistryMapping = {}  # type: ignore[typeddict-item]
-    if "upstreamRegistryUrl" in data:
+    if data.get("upstreamRegistryUrl") is not None:
         out["upstream_registry_url"] = data["upstreamRegistryUrl"]
-    if "ecrRepositoryPrefix" in data:
+    if data.get("ecrRepositoryPrefix") is not None:
         out["ecr_repository_prefix"] = data["ecrRepositoryPrefix"]
-    if "upstreamRepositoryPrefix" in data:
+    if data.get("upstreamRepositoryPrefix") is not None:
         out["upstream_repository_prefix"] = data["upstreamRepositoryPrefix"]
-    if "ecrAccountId" in data:
+    if data.get("ecrAccountId") is not None:
         out["ecr_account_id"] = data["ecrAccountId"]
     return out

@@ -49,17 +49,17 @@ def serialize_aws_json_1_0(value: IamRole) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> IamRole:
     out: IamRole = {}  # type: ignore[typeddict-item]
-    if "iamRoleArn" in data:
+    if data.get("iamRoleArn") is not None:
         out["iam_role_arn"] = data["iamRoleArn"]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_odb.types.iam_role_status
 
         out["status"] = capo_odb.types.iam_role_status.deserialize_aws_json_1_0(
             data["status"]
         )
-    if "statusReason" in data:
+    if data.get("statusReason") is not None:
         out["status_reason"] = data["statusReason"]
-    if "awsIntegration" in data:
+    if data.get("awsIntegration") is not None:
         import capo_odb.types.supported_aws_integration
 
         out["aws_integration"] = (

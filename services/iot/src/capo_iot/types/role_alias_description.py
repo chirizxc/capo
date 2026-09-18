@@ -62,23 +62,23 @@ def serialize_json(value: RoleAliasDescription) -> dict:
 
 def deserialize_json(data: dict) -> RoleAliasDescription:
     out: RoleAliasDescription = {}  # type: ignore[typeddict-item]
-    if "roleAlias" in data:
+    if data.get("roleAlias") is not None:
         out["role_alias"] = data["roleAlias"]
-    if "roleAliasArn" in data:
+    if data.get("roleAliasArn") is not None:
         out["role_alias_arn"] = data["roleAliasArn"]
-    if "roleArn" in data:
+    if data.get("roleArn") is not None:
         out["role_arn"] = data["roleArn"]
-    if "owner" in data:
+    if data.get("owner") is not None:
         out["owner"] = data["owner"]
-    if "credentialDurationSeconds" in data:
+    if data.get("credentialDurationSeconds") is not None:
         out["credential_duration_seconds"] = data["credentialDurationSeconds"]
-    if "creationDate" in data:
+    if data.get("creationDate") is not None:
         import capo_iot.types.date_type
 
         out["creation_date"] = capo_iot.types.date_type.deserialize_json(
             data["creationDate"]
         )
-    if "lastModifiedDate" in data:
+    if data.get("lastModifiedDate") is not None:
         import capo_iot.types.date_type
 
         out["last_modified_date"] = capo_iot.types.date_type.deserialize_json(

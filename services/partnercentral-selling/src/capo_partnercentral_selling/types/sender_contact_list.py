@@ -29,6 +29,8 @@ def deserialize_aws_json_1_0(data: list) -> SenderContactList:
 
     out: SenderContactList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_partnercentral_selling.types.sender_contact.deserialize_aws_json_1_0(
                 item

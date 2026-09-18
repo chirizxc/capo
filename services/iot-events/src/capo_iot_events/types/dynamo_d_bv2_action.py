@@ -30,11 +30,11 @@ def serialize_json(value: DynamoDBv2Action) -> dict:
 
 def deserialize_json(data: dict) -> DynamoDBv2Action:
     out: DynamoDBv2Action = {}  # type: ignore[typeddict-item]
-    if "tableName" in data:
+    if data.get("tableName") is not None:
         out["table_name"] = data["tableName"]
     else:
         raise DeserializationError("DynamoDBv2Action.table_name required")
-    if "payload" in data:
+    if data.get("payload") is not None:
         import capo_iot_events.types.payload
 
         out["payload"] = capo_iot_events.types.payload.deserialize_json(data["payload"])

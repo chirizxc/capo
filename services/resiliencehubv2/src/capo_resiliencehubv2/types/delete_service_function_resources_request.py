@@ -35,19 +35,19 @@ def serialize_json(value: DeleteServiceFunctionResourcesRequest) -> dict:
 
 def deserialize_json(data: dict) -> DeleteServiceFunctionResourcesRequest:
     out: DeleteServiceFunctionResourcesRequest = {}  # type: ignore[typeddict-item]
-    if "serviceArn" in data:
+    if data.get("serviceArn") is not None:
         out["service_arn"] = data["serviceArn"]
     else:
         raise DeserializationError(
             "DeleteServiceFunctionResourcesRequest.service_arn required"
         )
-    if "serviceFunctionId" in data:
+    if data.get("serviceFunctionId") is not None:
         out["service_function_id"] = data["serviceFunctionId"]
     else:
         raise DeserializationError(
             "DeleteServiceFunctionResourcesRequest.service_function_id required"
         )
-    if "resources" in data:
+    if data.get("resources") is not None:
         import capo_resiliencehubv2.types.resource_list
 
         out["resources"] = capo_resiliencehubv2.types.resource_list.deserialize_json(

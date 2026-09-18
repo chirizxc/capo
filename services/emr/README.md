@@ -13,9 +13,9 @@ from capo_emr import AsyncEMRClient
 
 
 async def main():
-    async with AsyncEMRClient() as s3:
+    async with AsyncEMRClient() as emr:
         # Example: call the add_instance_fleet operation
-        response = await s3.add_instance_fleet()
+        response = await emr.add_instance_fleet()
         print(response["cluster_id"])
 ```
 
@@ -28,9 +28,9 @@ from capo_emr import AsyncEMRClient
 
 
 async def main():
-    async with AsyncEMRClient() as s3:
+    async with AsyncEMRClient() as emr:
         # Example: paginate over list_bootstrap_actions
-        async for item in s3.iter_list_bootstrap_actions():
+        async for item in emr.iter_list_bootstrap_actions():
             print(item)
 ```
 
@@ -44,9 +44,9 @@ from capo_emr.error import InternalServerException
 
 
 async def main():
-    async with AsyncEMRClient() as s3:
+    async with AsyncEMRClient() as emr:
         try:
-            await s3.add_instance_fleet()
+            await emr.add_instance_fleet()
         except InternalServerException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -63,13 +63,13 @@ from capo_emr import AsyncEMRClient
 
 
 async def main():
-    async with AsyncEMRClient() as s3:
+    async with AsyncEMRClient() as emr:
         # Default: 3 attempts for every operation
-        response = await s3.add_instance_fleet()
+        response = await emr.add_instance_fleet()
 
         # Override per operation
-        response = await s3.add_instance_fleet(config_overrides={"retry_max_attempts": 5})
+        response = await emr.add_instance_fleet(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.add_instance_fleet(config_overrides={"retry_max_attempts": 1})
+        response = await emr.add_instance_fleet(config_overrides={"retry_max_attempts": 1})
 ```

@@ -130,23 +130,23 @@ def serialize_aws_json_1_1(value: Job) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Job:
     out: Job = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_device_farm.types.test_type
 
         out["type"] = capo_device_farm.types.test_type.deserialize_aws_json_1_1(
             data["type"]
         )
-    if "created" in data:
+    if data.get("created") is not None:
         import capo_device_farm.types.date_time
 
         out["created"] = capo_device_farm.types.date_time.deserialize_aws_json_1_1(
             data["created"]
         )
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_device_farm.types.execution_status
 
         out["status"] = (
@@ -154,7 +154,7 @@ def deserialize_aws_json_1_1(data: dict) -> Job:
                 data["status"]
             )
         )
-    if "result" in data:
+    if data.get("result") is not None:
         import capo_device_farm.types.execution_result
 
         out["result"] = (
@@ -162,35 +162,35 @@ def deserialize_aws_json_1_1(data: dict) -> Job:
                 data["result"]
             )
         )
-    if "started" in data:
+    if data.get("started") is not None:
         import capo_device_farm.types.date_time
 
         out["started"] = capo_device_farm.types.date_time.deserialize_aws_json_1_1(
             data["started"]
         )
-    if "stopped" in data:
+    if data.get("stopped") is not None:
         import capo_device_farm.types.date_time
 
         out["stopped"] = capo_device_farm.types.date_time.deserialize_aws_json_1_1(
             data["stopped"]
         )
-    if "counters" in data:
+    if data.get("counters") is not None:
         import capo_device_farm.types.counters
 
         out["counters"] = capo_device_farm.types.counters.deserialize_aws_json_1_1(
             data["counters"]
         )
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
-    if "device" in data:
+    if data.get("device") is not None:
         import capo_device_farm.types.device
 
         out["device"] = capo_device_farm.types.device.deserialize_aws_json_1_1(
             data["device"]
         )
-    if "instanceArn" in data:
+    if data.get("instanceArn") is not None:
         out["instance_arn"] = data["instanceArn"]
-    if "deviceMinutes" in data:
+    if data.get("deviceMinutes") is not None:
         import capo_device_farm.types.device_minutes
 
         out["device_minutes"] = (
@@ -198,8 +198,8 @@ def deserialize_aws_json_1_1(data: dict) -> Job:
                 data["deviceMinutes"]
             )
         )
-    if "videoEndpoint" in data:
+    if data.get("videoEndpoint") is not None:
         out["video_endpoint"] = data["videoEndpoint"]
-    if "videoCapture" in data:
+    if data.get("videoCapture") is not None:
         out["video_capture"] = data["videoCapture"]
     return out

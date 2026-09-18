@@ -29,8 +29,8 @@ def serialize_json(value: VectorEnrichmentJobErrorDetails) -> dict:
 
 def deserialize_json(data: dict) -> VectorEnrichmentJobErrorDetails:
     out: VectorEnrichmentJobErrorDetails = {}  # type: ignore[typeddict-item]
-    if "ErrorType" in data:
+    if data.get("ErrorType") is not None:
         out["error_type"] = data["ErrorType"]
-    if "ErrorMessage" in data:
+    if data.get("ErrorMessage") is not None:
         out["error_message"] = data["ErrorMessage"]
     return out

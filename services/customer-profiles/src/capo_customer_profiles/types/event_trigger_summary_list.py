@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> EventTriggerSummaryList:
 
     out: EventTriggerSummaryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_customer_profiles.types.event_trigger_summary_item.deserialize_json(
                 item

@@ -27,7 +27,7 @@ def serialize_json(value: CreateChallengeResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateChallengeResponse:
     out: CreateChallengeResponse = {}  # type: ignore[typeddict-item]
-    if "Challenge" in data:
+    if data.get("Challenge") is not None:
         import capo_pca_connector_scep.types.challenge
 
         out["challenge"] = capo_pca_connector_scep.types.challenge.deserialize_json(

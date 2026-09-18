@@ -40,7 +40,7 @@ def serialize_json(value: ListServiceDependenciesInput) -> dict:
 
 def deserialize_json(data: dict) -> ListServiceDependenciesInput:
     out: ListServiceDependenciesInput = {}  # type: ignore[typeddict-item]
-    if "KeyAttributes" in data:
+    if data.get("KeyAttributes") is not None:
         import capo_application_signals.types.attributes
 
         out["key_attributes"] = (

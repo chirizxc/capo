@@ -37,15 +37,20 @@ class CacheSubnetQuotaExceededFault(ServiceError):
 
     code: str | None = "CacheSubnetQuotaExceededFault"
 
-    def __init__(self, data: CacheSubnetQuotaExceededFault_):
+    def __init__(
+        self, data: CacheSubnetQuotaExceededFault_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="CacheSubnetQuotaExceededFault",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_query(cls, el: Element) -> "CacheSubnetQuotaExceededFault":
-        return cls(deserialize_query(el))
+    def from_query(
+        cls, el: Element, message: str | None = None
+    ) -> "CacheSubnetQuotaExceededFault":
+        return cls(deserialize_query(el), message)

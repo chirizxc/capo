@@ -25,6 +25,8 @@ def deserialize_json(data: list) -> ArtifactMetadataList:
 
     out: ArtifactMetadataList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_securityagent.types.artifact_metadata_item.deserialize_json(item)
         )

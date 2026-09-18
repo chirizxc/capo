@@ -62,21 +62,21 @@ def serialize_json(value: CreateGraphSnapshotOutput) -> dict:
 
 def deserialize_json(data: dict) -> CreateGraphSnapshotOutput:
     out: CreateGraphSnapshotOutput = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("CreateGraphSnapshotOutput.id required")
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("CreateGraphSnapshotOutput.name required")
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("CreateGraphSnapshotOutput.arn required")
-    if "sourceGraphId" in data:
+    if data.get("sourceGraphId") is not None:
         out["source_graph_id"] = data["sourceGraphId"]
-    if "snapshotCreateTime" in data:
+    if data.get("snapshotCreateTime") is not None:
         import capo_neptune_graph.types._prelude.timestamp
 
         out["snapshot_create_time"] = (
@@ -84,12 +84,12 @@ def deserialize_json(data: dict) -> CreateGraphSnapshotOutput:
                 data["snapshotCreateTime"]
             )
         )
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_neptune_graph.types.snapshot_status
 
         out["status"] = capo_neptune_graph.types.snapshot_status.deserialize_json(
             data["status"]
         )
-    if "kmsKeyIdentifier" in data:
+    if data.get("kmsKeyIdentifier") is not None:
         out["kms_key_identifier"] = data["kmsKeyIdentifier"]
     return out

@@ -39,15 +39,20 @@ class InvalidClusterSecurityGroupStateFault(ServiceError):
 
     code: str | None = "InvalidClusterSecurityGroupStateFault"
 
-    def __init__(self, data: InvalidClusterSecurityGroupStateFault_):
+    def __init__(
+        self, data: InvalidClusterSecurityGroupStateFault_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="InvalidClusterSecurityGroupStateFault",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_query(cls, el: Element) -> "InvalidClusterSecurityGroupStateFault":
-        return cls(deserialize_query(el))
+    def from_query(
+        cls, el: Element, message: str | None = None
+    ) -> "InvalidClusterSecurityGroupStateFault":
+        return cls(deserialize_query(el), message)

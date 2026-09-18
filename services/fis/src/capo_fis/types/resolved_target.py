@@ -41,11 +41,11 @@ def serialize_json(value: ResolvedTarget) -> dict:
 
 def deserialize_json(data: dict) -> ResolvedTarget:
     out: ResolvedTarget = {}  # type: ignore[typeddict-item]
-    if "resourceType" in data:
+    if data.get("resourceType") is not None:
         out["resource_type"] = data["resourceType"]
-    if "targetName" in data:
+    if data.get("targetName") is not None:
         out["target_name"] = data["targetName"]
-    if "targetInformation" in data:
+    if data.get("targetInformation") is not None:
         import capo_fis.types.target_information_map
 
         out["target_information"] = (

@@ -175,17 +175,17 @@ def serialize_aws_json_1_1(value: DescribePartnerAppResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribePartnerAppResponse:
     out: DescribePartnerAppResponse = {}  # type: ignore[typeddict-item]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_sagemaker.types.partner_app_type
 
         out["type"] = capo_sagemaker.types.partner_app_type.deserialize_aws_json_1_1(
             data["Type"]
         )
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_sagemaker.types.partner_app_status
 
         out["status"] = (
@@ -193,13 +193,13 @@ def deserialize_aws_json_1_1(data: dict) -> DescribePartnerAppResponse:
                 data["Status"]
             )
         )
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_sagemaker.types.timestamp
 
         out["creation_time"] = capo_sagemaker.types.timestamp.deserialize_aws_json_1_1(
             data["CreationTime"]
         )
-    if "LastModifiedTime" in data:
+    if data.get("LastModifiedTime") is not None:
         import capo_sagemaker.types.timestamp
 
         out["last_modified_time"] = (
@@ -207,13 +207,13 @@ def deserialize_aws_json_1_1(data: dict) -> DescribePartnerAppResponse:
                 data["LastModifiedTime"]
             )
         )
-    if "ExecutionRoleArn" in data:
+    if data.get("ExecutionRoleArn") is not None:
         out["execution_role_arn"] = data["ExecutionRoleArn"]
-    if "KmsKeyId" in data:
+    if data.get("KmsKeyId") is not None:
         out["kms_key_id"] = data["KmsKeyId"]
-    if "BaseUrl" in data:
+    if data.get("BaseUrl") is not None:
         out["base_url"] = data["BaseUrl"]
-    if "MaintenanceConfig" in data:
+    if data.get("MaintenanceConfig") is not None:
         import capo_sagemaker.types.partner_app_maintenance_config
 
         out["maintenance_config"] = (
@@ -221,11 +221,11 @@ def deserialize_aws_json_1_1(data: dict) -> DescribePartnerAppResponse:
                 data["MaintenanceConfig"]
             )
         )
-    if "Tier" in data:
+    if data.get("Tier") is not None:
         out["tier"] = data["Tier"]
-    if "Version" in data:
+    if data.get("Version") is not None:
         out["version"] = data["Version"]
-    if "ApplicationConfig" in data:
+    if data.get("ApplicationConfig") is not None:
         import capo_sagemaker.types.partner_app_config
 
         out["application_config"] = (
@@ -233,7 +233,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribePartnerAppResponse:
                 data["ApplicationConfig"]
             )
         )
-    if "AuthType" in data:
+    if data.get("AuthType") is not None:
         import capo_sagemaker.types.partner_app_auth_type
 
         out["auth_type"] = (
@@ -241,17 +241,17 @@ def deserialize_aws_json_1_1(data: dict) -> DescribePartnerAppResponse:
                 data["AuthType"]
             )
         )
-    if "EnableIamSessionBasedIdentity" in data:
+    if data.get("EnableIamSessionBasedIdentity") is not None:
         out["enable_iam_session_based_identity"] = data["EnableIamSessionBasedIdentity"]
-    if "Error" in data:
+    if data.get("Error") is not None:
         import capo_sagemaker.types.error_info
 
         out["error"] = capo_sagemaker.types.error_info.deserialize_aws_json_1_1(
             data["Error"]
         )
-    if "EnableAutoMinorVersionUpgrade" in data:
+    if data.get("EnableAutoMinorVersionUpgrade") is not None:
         out["enable_auto_minor_version_upgrade"] = data["EnableAutoMinorVersionUpgrade"]
-    if "CurrentVersionEolDate" in data:
+    if data.get("CurrentVersionEolDate") is not None:
         import capo_sagemaker.types.timestamp
 
         out["current_version_eol_date"] = (
@@ -259,7 +259,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribePartnerAppResponse:
                 data["CurrentVersionEolDate"]
             )
         )
-    if "AvailableUpgrade" in data:
+    if data.get("AvailableUpgrade") is not None:
         import capo_sagemaker.types.available_upgrade
 
         out["available_upgrade"] = (

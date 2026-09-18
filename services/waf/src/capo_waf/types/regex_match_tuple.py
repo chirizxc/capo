@@ -42,7 +42,7 @@ def serialize_aws_json_1_1(value: RegexMatchTuple) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RegexMatchTuple:
     out: RegexMatchTuple = {}  # type: ignore[typeddict-item]
-    if "FieldToMatch" in data:
+    if data.get("FieldToMatch") is not None:
         import capo_waf.types.field_to_match
 
         out["field_to_match"] = capo_waf.types.field_to_match.deserialize_aws_json_1_1(
@@ -50,7 +50,7 @@ def deserialize_aws_json_1_1(data: dict) -> RegexMatchTuple:
         )
     else:
         raise DeserializationError("RegexMatchTuple.field_to_match required")
-    if "TextTransformation" in data:
+    if data.get("TextTransformation") is not None:
         import capo_waf.types.text_transformation
 
         out["text_transformation"] = (
@@ -60,7 +60,7 @@ def deserialize_aws_json_1_1(data: dict) -> RegexMatchTuple:
         )
     else:
         raise DeserializationError("RegexMatchTuple.text_transformation required")
-    if "RegexPatternSetId" in data:
+    if data.get("RegexPatternSetId") is not None:
         out["regex_pattern_set_id"] = data["RegexPatternSetId"]
     else:
         raise DeserializationError("RegexMatchTuple.regex_pattern_set_id required")

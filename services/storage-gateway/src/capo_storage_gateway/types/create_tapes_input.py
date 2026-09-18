@@ -72,37 +72,37 @@ def serialize_aws_json_1_1(value: CreateTapesInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateTapesInput:
     out: CreateTapesInput = {}  # type: ignore[typeddict-item]
-    if "GatewayARN" in data:
+    if data.get("GatewayARN") is not None:
         out["gateway_arn"] = data["GatewayARN"]
     else:
         raise DeserializationError("CreateTapesInput.gateway_arn required")
-    if "TapeSizeInBytes" in data:
+    if data.get("TapeSizeInBytes") is not None:
         out["tape_size_in_bytes"] = data["TapeSizeInBytes"]
     else:
         raise DeserializationError("CreateTapesInput.tape_size_in_bytes required")
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
     else:
         raise DeserializationError("CreateTapesInput.client_token required")
-    if "NumTapesToCreate" in data:
+    if data.get("NumTapesToCreate") is not None:
         out["num_tapes_to_create"] = data["NumTapesToCreate"]
     else:
         raise DeserializationError("CreateTapesInput.num_tapes_to_create required")
-    if "TapeBarcodePrefix" in data:
+    if data.get("TapeBarcodePrefix") is not None:
         out["tape_barcode_prefix"] = data["TapeBarcodePrefix"]
     else:
         raise DeserializationError("CreateTapesInput.tape_barcode_prefix required")
-    if "KMSEncrypted" in data:
+    if data.get("KMSEncrypted") is not None:
         out["kms_encrypted"] = data["KMSEncrypted"]
-    if "KMSKey" in data:
+    if data.get("KMSKey") is not None:
         out["kms_key"] = data["KMSKey"]
-    if "PoolId" in data:
+    if data.get("PoolId") is not None:
         out["pool_id"] = data["PoolId"]
-    if "Worm" in data:
+    if data.get("Worm") is not None:
         out["worm"] = data["Worm"]
     else:
         out["worm"] = False
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_storage_gateway.types.tags
 
         out["tags"] = capo_storage_gateway.types.tags.deserialize_aws_json_1_1(

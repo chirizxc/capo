@@ -44,7 +44,7 @@ def serialize_json(value: ComparisonFormatConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> ComparisonFormatConfiguration:
     out: ComparisonFormatConfiguration = {}  # type: ignore[typeddict-item]
-    if "NumberDisplayFormatConfiguration" in data:
+    if data.get("NumberDisplayFormatConfiguration") is not None:
         import capo_quicksight.types.number_display_format_configuration
 
         out["number_display_format_configuration"] = (
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> ComparisonFormatConfiguration:
                 data["NumberDisplayFormatConfiguration"]
             )
         )
-    if "PercentageDisplayFormatConfiguration" in data:
+    if data.get("PercentageDisplayFormatConfiguration") is not None:
         import capo_quicksight.types.percentage_display_format_configuration
 
         out["percentage_display_format_configuration"] = (

@@ -62,7 +62,7 @@ def serialize_aws_json_1_0(value: DataDestinationConfig) -> dict:
 
 
 def deserialize_aws_json_1_0(data: dict) -> DataDestinationConfig:
-    if "s3Config" in data:
+    if data.get("s3Config") is not None:
         import capo_iotfleetwise.types.s3_config
 
         return {
@@ -70,7 +70,7 @@ def deserialize_aws_json_1_0(data: dict) -> DataDestinationConfig:
                 data["s3Config"]
             )
         }
-    elif "timestreamConfig" in data:
+    elif data.get("timestreamConfig") is not None:
         import capo_iotfleetwise.types.timestream_config
 
         return {
@@ -78,7 +78,7 @@ def deserialize_aws_json_1_0(data: dict) -> DataDestinationConfig:
                 data["timestreamConfig"]
             )
         }
-    elif "mqttTopicConfig" in data:
+    elif data.get("mqttTopicConfig") is not None:
         import capo_iotfleetwise.types.mqtt_topic_config
 
         return {

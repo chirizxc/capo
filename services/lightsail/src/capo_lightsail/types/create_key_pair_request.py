@@ -33,11 +33,11 @@ def serialize_aws_json_1_1(value: CreateKeyPairRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateKeyPairRequest:
     out: CreateKeyPairRequest = {}  # type: ignore[typeddict-item]
-    if "keyPairName" in data:
+    if data.get("keyPairName") is not None:
         out["key_pair_name"] = data["keyPairName"]
     else:
         raise DeserializationError("CreateKeyPairRequest.key_pair_name required")
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_lightsail.types.tag_list
 
         out["tags"] = capo_lightsail.types.tag_list.deserialize_aws_json_1_1(

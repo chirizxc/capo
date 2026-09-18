@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: StopBgpFailoverTestResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> StopBgpFailoverTestResponse:
     out: StopBgpFailoverTestResponse = {}  # type: ignore[typeddict-item]
-    if "virtualInterfaceTest" in data:
+    if data.get("virtualInterfaceTest") is not None:
         import capo_direct_connect.types.virtual_interface_test_history
 
         out["virtual_interface_test"] = (

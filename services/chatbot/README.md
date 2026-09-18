@@ -13,9 +13,9 @@ from capo_chatbot import AsyncchatbotClient
 
 
 async def main():
-    async with AsyncchatbotClient() as s3:
+    async with AsyncchatbotClient() as chatbot:
         # Example: call the associate_to_configuration operation
-        response = await s3.associate_to_configuration()
+        response = await chatbot.associate_to_configuration()
         print(response)
 ```
 
@@ -28,9 +28,9 @@ from capo_chatbot import AsyncchatbotClient
 
 
 async def main():
-    async with AsyncchatbotClient() as s3:
+    async with AsyncchatbotClient() as chatbot:
         # Example: paginate over describe_chime_webhook_configurations
-        async for item in s3.iter_describe_chime_webhook_configurations():
+        async for item in chatbot.iter_describe_chime_webhook_configurations():
             print(item)
 ```
 
@@ -44,9 +44,9 @@ from capo_chatbot.error import InternalServiceError
 
 
 async def main():
-    async with AsyncchatbotClient() as s3:
+    async with AsyncchatbotClient() as chatbot:
         try:
-            await s3.associate_to_configuration()
+            await chatbot.associate_to_configuration()
         except InternalServiceError as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -63,13 +63,13 @@ from capo_chatbot import AsyncchatbotClient
 
 
 async def main():
-    async with AsyncchatbotClient() as s3:
+    async with AsyncchatbotClient() as chatbot:
         # Default: 3 attempts for every operation
-        response = await s3.associate_to_configuration()
+        response = await chatbot.associate_to_configuration()
 
         # Override per operation
-        response = await s3.associate_to_configuration(config_overrides={"retry_max_attempts": 5})
+        response = await chatbot.associate_to_configuration(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.associate_to_configuration(config_overrides={"retry_max_attempts": 1})
+        response = await chatbot.associate_to_configuration(config_overrides={"retry_max_attempts": 1})
 ```

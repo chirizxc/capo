@@ -13,10 +13,25 @@ from capo_translate import AsyncTranslateClient
 
 
 async def main():
-    async with AsyncTranslateClient() as s3:
+    async with AsyncTranslateClient() as translate:
         # Example: call the create_parallel_data operation
-        response = await s3.create_parallel_data()
+        response = await translate.create_parallel_data()
         print(response["name"])
+```
+
+## Pagination
+
+Some operations in this SDK support pagination. If the operation supports pagination it will have an `iter_` prefixed method that returns an async iterator.
+
+```python
+from capo_translate import AsyncTranslateClient
+
+
+async def main():
+    async with AsyncTranslateClient() as translate:
+        # Example: paginate over list_languages
+        async for item in translate.iter_list_languages():
+            print(item)
 ```
 
 ## Error Handling
@@ -29,9 +44,9 @@ from capo_translate.error import ConcurrentModificationException
 
 
 async def main():
-    async with AsyncTranslateClient() as s3:
+    async with AsyncTranslateClient() as translate:
         try:
-            await s3.create_parallel_data()
+            await translate.create_parallel_data()
         except ConcurrentModificationException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -48,13 +63,13 @@ from capo_translate import AsyncTranslateClient
 
 
 async def main():
-    async with AsyncTranslateClient() as s3:
+    async with AsyncTranslateClient() as translate:
         # Default: 3 attempts for every operation
-        response = await s3.create_parallel_data()
+        response = await translate.create_parallel_data()
 
         # Override per operation
-        response = await s3.create_parallel_data(config_overrides={"retry_max_attempts": 5})
+        response = await translate.create_parallel_data(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.create_parallel_data(config_overrides={"retry_max_attempts": 1})
+        response = await translate.create_parallel_data(config_overrides={"retry_max_attempts": 1})
 ```

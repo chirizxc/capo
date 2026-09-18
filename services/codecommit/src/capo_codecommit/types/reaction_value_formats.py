@@ -35,10 +35,10 @@ def serialize_aws_json_1_1(value: ReactionValueFormats) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ReactionValueFormats:
     out: ReactionValueFormats = {}  # type: ignore[typeddict-item]
-    if "emoji" in data:
+    if data.get("emoji") is not None:
         out["emoji"] = data["emoji"]
-    if "shortCode" in data:
+    if data.get("shortCode") is not None:
         out["short_code"] = data["shortCode"]
-    if "unicode" in data:
+    if data.get("unicode") is not None:
         out["unicode"] = data["unicode"]
     return out

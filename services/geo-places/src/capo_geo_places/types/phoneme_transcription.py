@@ -33,10 +33,10 @@ def serialize_json(value: PhonemeTranscription) -> dict:
 
 def deserialize_json(data: dict) -> PhonemeTranscription:
     out: PhonemeTranscription = {}  # type: ignore[typeddict-item]
-    if "Value" in data:
+    if data.get("Value") is not None:
         out["value"] = data["Value"]
-    if "Language" in data:
+    if data.get("Language") is not None:
         out["language"] = data["Language"]
-    if "Preferred" in data:
+    if data.get("Preferred") is not None:
         out["preferred"] = data["Preferred"]
     return out

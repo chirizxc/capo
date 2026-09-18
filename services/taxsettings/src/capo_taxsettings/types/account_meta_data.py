@@ -56,23 +56,23 @@ def serialize_json(value: AccountMetaData) -> dict:
 
 def deserialize_json(data: dict) -> AccountMetaData:
     out: AccountMetaData = {}  # type: ignore[typeddict-item]
-    if "accountName" in data:
+    if data.get("accountName") is not None:
         out["account_name"] = data["accountName"]
-    if "seller" in data:
+    if data.get("seller") is not None:
         out["seller"] = data["seller"]
-    if "address" in data:
+    if data.get("address") is not None:
         import capo_taxsettings.types.address
 
         out["address"] = capo_taxsettings.types.address.deserialize_json(
             data["address"]
         )
-    if "addressType" in data:
+    if data.get("addressType") is not None:
         import capo_taxsettings.types.address_role_type
 
         out["address_type"] = capo_taxsettings.types.address_role_type.deserialize_json(
             data["addressType"]
         )
-    if "addressRoleMap" in data:
+    if data.get("addressRoleMap") is not None:
         import capo_taxsettings.types.address_role_map
 
         out["address_role_map"] = (

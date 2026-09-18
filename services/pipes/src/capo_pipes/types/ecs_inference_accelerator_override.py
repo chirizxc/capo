@@ -27,8 +27,8 @@ def serialize_json(value: EcsInferenceAcceleratorOverride) -> dict:
 
 def deserialize_json(data: dict) -> EcsInferenceAcceleratorOverride:
     out: EcsInferenceAcceleratorOverride = {}  # type: ignore[typeddict-item]
-    if "deviceName" in data:
+    if data.get("deviceName") is not None:
         out["device_name"] = data["deviceName"]
-    if "deviceType" in data:
+    if data.get("deviceType") is not None:
         out["device_type"] = data["deviceType"]
     return out

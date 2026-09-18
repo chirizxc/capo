@@ -37,7 +37,7 @@ def serialize_json(value: ListCompositionsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListCompositionsResponse:
     out: ListCompositionsResponse = {}  # type: ignore[typeddict-item]
-    if "compositions" in data:
+    if data.get("compositions") is not None:
         import capo_ivs_realtime.types.composition_summary_list
 
         out["compositions"] = (
@@ -47,6 +47,6 @@ def deserialize_json(data: dict) -> ListCompositionsResponse:
         )
     else:
         raise DeserializationError("ListCompositionsResponse.compositions required")
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

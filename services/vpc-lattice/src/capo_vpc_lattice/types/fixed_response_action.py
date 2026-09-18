@@ -24,7 +24,7 @@ def serialize_json(value: FixedResponseAction) -> dict:
 
 def deserialize_json(data: dict) -> FixedResponseAction:
     out: FixedResponseAction = {}  # type: ignore[typeddict-item]
-    if "statusCode" in data:
+    if data.get("statusCode") is not None:
         out["status_code"] = data["statusCode"]
     else:
         raise DeserializationError("FixedResponseAction.status_code required")

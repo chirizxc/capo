@@ -35,7 +35,7 @@ def deserialize_aws_json_1_0(
     data: dict,
 ) -> GetCloudExadataInfrastructureUnallocatedResourcesOutput:
     out: GetCloudExadataInfrastructureUnallocatedResourcesOutput = {}  # type: ignore[typeddict-item]
-    if "cloudExadataInfrastructureUnallocatedResources" in data:
+    if data.get("cloudExadataInfrastructureUnallocatedResources") is not None:
         import capo_odb.types.cloud_exadata_infrastructure_unallocated_resources
 
         out["cloud_exadata_infrastructure_unallocated_resources"] = (

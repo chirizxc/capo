@@ -30,10 +30,10 @@ def serialize_json(value: ListExportErrorsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListExportErrorsResponse:
     out: ListExportErrorsResponse = {}  # type: ignore[typeddict-item]
-    if "items" in data:
+    if data.get("items") is not None:
         import capo_mgn.types.export_errors
 
         out["items"] = capo_mgn.types.export_errors.deserialize_json(data["items"])
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

@@ -76,33 +76,33 @@ def serialize_json(value: Resource) -> dict:
 
 def deserialize_json(data: dict) -> Resource:
     out: Resource = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "type" in data:
+    if data.get("type") is not None:
         out["type"] = data["type"]
-    if "resourceShareArn" in data:
+    if data.get("resourceShareArn") is not None:
         out["resource_share_arn"] = data["resourceShareArn"]
-    if "resourceGroupArn" in data:
+    if data.get("resourceGroupArn") is not None:
         out["resource_group_arn"] = data["resourceGroupArn"]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_ram.types.resource_status
 
         out["status"] = capo_ram.types.resource_status.deserialize_json(data["status"])
-    if "statusMessage" in data:
+    if data.get("statusMessage") is not None:
         out["status_message"] = data["statusMessage"]
-    if "creationTime" in data:
+    if data.get("creationTime") is not None:
         import capo_ram.types.date_time
 
         out["creation_time"] = capo_ram.types.date_time.deserialize_json(
             data["creationTime"]
         )
-    if "lastUpdatedTime" in data:
+    if data.get("lastUpdatedTime") is not None:
         import capo_ram.types.date_time
 
         out["last_updated_time"] = capo_ram.types.date_time.deserialize_json(
             data["lastUpdatedTime"]
         )
-    if "resourceRegionScope" in data:
+    if data.get("resourceRegionScope") is not None:
         import capo_ram.types.resource_region_scope
 
         out["resource_region_scope"] = (

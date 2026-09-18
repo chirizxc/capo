@@ -77,29 +77,29 @@ def serialize_json(value: ImportFileEnrichment) -> dict:
 
 def deserialize_json(data: dict) -> ImportFileEnrichment:
     out: ImportFileEnrichment = {}  # type: ignore[typeddict-item]
-    if "jobID" in data:
+    if data.get("jobID") is not None:
         out["job_id"] = data["jobID"]
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_mgn.types._prelude.timestamp
 
         out["created_at"] = capo_mgn.types._prelude.timestamp.deserialize_json(
             data["createdAt"]
         )
-    if "endedAt" in data:
+    if data.get("endedAt") is not None:
         import capo_mgn.types._prelude.timestamp
 
         out["ended_at"] = capo_mgn.types._prelude.timestamp.deserialize_json(
             data["endedAt"]
         )
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
-    if "statusDetails" in data:
+    if data.get("statusDetails") is not None:
         out["status_details"] = data["statusDetails"]
-    if "checksum" in data:
+    if data.get("checksum") is not None:
         import capo_mgn.types.checksum
 
         out["checksum"] = capo_mgn.types.checksum.deserialize_json(data["checksum"])
-    if "s3BucketTarget" in data:
+    if data.get("s3BucketTarget") is not None:
         import capo_mgn.types.enrichment_target_s3_configuration
 
         out["s3_bucket_target"] = (

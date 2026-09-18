@@ -28,8 +28,8 @@ def serialize_json(value: EventItemResponse) -> dict:
 
 def deserialize_json(data: dict) -> EventItemResponse:
     out: EventItemResponse = {}  # type: ignore[typeddict-item]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
-    if "StatusCode" in data:
+    if data.get("StatusCode") is not None:
         out["status_code"] = data["StatusCode"]
     return out

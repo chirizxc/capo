@@ -27,7 +27,7 @@ def serialize_aws_json_1_0(value: DayOfWeek) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> DayOfWeek:
     out: DayOfWeek = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         import capo_odb.types.day_of_week_name
 
         out["name"] = capo_odb.types.day_of_week_name.deserialize_aws_json_1_0(

@@ -32,7 +32,7 @@ def serialize_aws_json_1_1(value: GetTelemetryMetadataResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetTelemetryMetadataResponse:
     out: GetTelemetryMetadataResponse = {}  # type: ignore[typeddict-item]
-    if "telemetryMetadata" in data:
+    if data.get("telemetryMetadata") is not None:
         import capo_inspector.types.telemetry_metadata_list
 
         out["telemetry_metadata"] = (

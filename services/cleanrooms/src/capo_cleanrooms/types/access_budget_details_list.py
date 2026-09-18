@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> AccessBudgetDetailsList:
 
     out: AccessBudgetDetailsList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_cleanrooms.types.access_budget_details.deserialize_json(item))
     return out

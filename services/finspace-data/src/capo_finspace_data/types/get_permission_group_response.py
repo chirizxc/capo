@@ -30,7 +30,7 @@ def serialize_json(value: GetPermissionGroupResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetPermissionGroupResponse:
     out: GetPermissionGroupResponse = {}  # type: ignore[typeddict-item]
-    if "permissionGroup" in data:
+    if data.get("permissionGroup") is not None:
         import capo_finspace_data.types.permission_group
 
         out["permission_group"] = (

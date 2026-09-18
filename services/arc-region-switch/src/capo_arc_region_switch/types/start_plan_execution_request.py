@@ -63,15 +63,15 @@ def serialize_aws_json_1_0(value: StartPlanExecutionRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> StartPlanExecutionRequest:
     out: StartPlanExecutionRequest = {}  # type: ignore[typeddict-item]
-    if "planArn" in data:
+    if data.get("planArn") is not None:
         out["plan_arn"] = data["planArn"]
     else:
         raise DeserializationError("StartPlanExecutionRequest.plan_arn required")
-    if "targetRegion" in data:
+    if data.get("targetRegion") is not None:
         out["target_region"] = data["targetRegion"]
     else:
         raise DeserializationError("StartPlanExecutionRequest.target_region required")
-    if "action" in data:
+    if data.get("action") is not None:
         import capo_arc_region_switch.types.execution_action
 
         out["action"] = (
@@ -81,7 +81,7 @@ def deserialize_aws_json_1_0(data: dict) -> StartPlanExecutionRequest:
         )
     else:
         raise DeserializationError("StartPlanExecutionRequest.action required")
-    if "mode" in data:
+    if data.get("mode") is not None:
         import capo_arc_region_switch.types.execution_mode
 
         out["mode"] = (
@@ -91,10 +91,10 @@ def deserialize_aws_json_1_0(data: dict) -> StartPlanExecutionRequest:
         )
     else:
         out["mode"] = "graceful"
-    if "comment" in data:
+    if data.get("comment") is not None:
         out["comment"] = data["comment"]
-    if "latestVersion" in data:
+    if data.get("latestVersion") is not None:
         out["latest_version"] = data["latestVersion"]
-    if "recoveryExecutionId" in data:
+    if data.get("recoveryExecutionId") is not None:
         out["recovery_execution_id"] = data["recoveryExecutionId"]
     return out

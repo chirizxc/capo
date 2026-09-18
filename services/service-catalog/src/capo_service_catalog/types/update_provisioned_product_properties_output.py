@@ -49,9 +49,9 @@ def serialize_aws_json_1_1(value: UpdateProvisionedProductPropertiesOutput) -> d
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateProvisionedProductPropertiesOutput:
     out: UpdateProvisionedProductPropertiesOutput = {}  # type: ignore[typeddict-item]
-    if "ProvisionedProductId" in data:
+    if data.get("ProvisionedProductId") is not None:
         out["provisioned_product_id"] = data["ProvisionedProductId"]
-    if "ProvisionedProductProperties" in data:
+    if data.get("ProvisionedProductProperties") is not None:
         import capo_service_catalog.types.provisioned_product_properties
 
         out["provisioned_product_properties"] = (
@@ -59,9 +59,9 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateProvisionedProductPropertiesOu
                 data["ProvisionedProductProperties"]
             )
         )
-    if "RecordId" in data:
+    if data.get("RecordId") is not None:
         out["record_id"] = data["RecordId"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_service_catalog.types.record_status
 
         out["status"] = (

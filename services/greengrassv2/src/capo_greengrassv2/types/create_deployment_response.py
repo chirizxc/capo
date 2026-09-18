@@ -34,10 +34,10 @@ def serialize_json(value: CreateDeploymentResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateDeploymentResponse:
     out: CreateDeploymentResponse = {}  # type: ignore[typeddict-item]
-    if "deploymentId" in data:
+    if data.get("deploymentId") is not None:
         out["deployment_id"] = data["deploymentId"]
-    if "iotJobId" in data:
+    if data.get("iotJobId") is not None:
         out["iot_job_id"] = data["iotJobId"]
-    if "iotJobArn" in data:
+    if data.get("iotJobArn") is not None:
         out["iot_job_arn"] = data["iotJobArn"]
     return out

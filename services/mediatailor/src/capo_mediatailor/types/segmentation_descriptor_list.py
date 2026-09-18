@@ -25,6 +25,8 @@ def deserialize_json(data: list) -> SegmentationDescriptorList:
 
     out: SegmentationDescriptorList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_mediatailor.types.segmentation_descriptor.deserialize_json(item)
         )

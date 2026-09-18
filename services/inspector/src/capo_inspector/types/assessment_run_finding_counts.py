@@ -27,5 +27,7 @@ def deserialize_aws_json_1_1(data: dict) -> AssessmentRunFindingCounts:
     for key, value in data.items():
         import capo_inspector.types.severity
 
+        if value is None:
+            continue
         out[capo_inspector.types.severity.deserialize_aws_json_1_1(key)] = value
     return out

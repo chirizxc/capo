@@ -55,17 +55,17 @@ def serialize_aws_json_1_1(value: AdminUpdateUserAttributesRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AdminUpdateUserAttributesRequest:
     out: AdminUpdateUserAttributesRequest = {}  # type: ignore[typeddict-item]
-    if "UserPoolId" in data:
+    if data.get("UserPoolId") is not None:
         out["user_pool_id"] = data["UserPoolId"]
     else:
         raise DeserializationError(
             "AdminUpdateUserAttributesRequest.user_pool_id required"
         )
-    if "Username" in data:
+    if data.get("Username") is not None:
         out["username"] = data["Username"]
     else:
         raise DeserializationError("AdminUpdateUserAttributesRequest.username required")
-    if "UserAttributes" in data:
+    if data.get("UserAttributes") is not None:
         import capo_cognito_identity_provider.types.attribute_list_type
 
         out["user_attributes"] = (
@@ -77,7 +77,7 @@ def deserialize_aws_json_1_1(data: dict) -> AdminUpdateUserAttributesRequest:
         raise DeserializationError(
             "AdminUpdateUserAttributesRequest.user_attributes required"
         )
-    if "ClientMetadata" in data:
+    if data.get("ClientMetadata") is not None:
         import capo_cognito_identity_provider.types.client_metadata_type
 
         out["client_metadata"] = (

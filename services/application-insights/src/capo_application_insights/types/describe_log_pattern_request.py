@@ -41,22 +41,22 @@ def serialize_aws_json_1_1(value: DescribeLogPatternRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeLogPatternRequest:
     out: DescribeLogPatternRequest = {}  # type: ignore[typeddict-item]
-    if "ResourceGroupName" in data:
+    if data.get("ResourceGroupName") is not None:
         out["resource_group_name"] = data["ResourceGroupName"]
     else:
         raise DeserializationError(
             "DescribeLogPatternRequest.resource_group_name required"
         )
-    if "PatternSetName" in data:
+    if data.get("PatternSetName") is not None:
         out["pattern_set_name"] = data["PatternSetName"]
     else:
         raise DeserializationError(
             "DescribeLogPatternRequest.pattern_set_name required"
         )
-    if "PatternName" in data:
+    if data.get("PatternName") is not None:
         out["pattern_name"] = data["PatternName"]
     else:
         raise DeserializationError("DescribeLogPatternRequest.pattern_name required")
-    if "AccountId" in data:
+    if data.get("AccountId") is not None:
         out["account_id"] = data["AccountId"]
     return out

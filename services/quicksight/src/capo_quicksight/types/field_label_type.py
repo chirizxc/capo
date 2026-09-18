@@ -32,9 +32,9 @@ def serialize_json(value: FieldLabelType) -> dict:
 
 def deserialize_json(data: dict) -> FieldLabelType:
     out: FieldLabelType = {}  # type: ignore[typeddict-item]
-    if "FieldId" in data:
+    if data.get("FieldId") is not None:
         out["field_id"] = data["FieldId"]
-    if "Visibility" in data:
+    if data.get("Visibility") is not None:
         import capo_quicksight.types.visibility
 
         out["visibility"] = capo_quicksight.types.visibility.deserialize_json(

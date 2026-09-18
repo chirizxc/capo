@@ -146,15 +146,15 @@ def serialize_aws_json_1_1(value: DataSource) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DataSource:
     out: DataSource = {}  # type: ignore[typeddict-item]
-    if "DataSourceId" in data:
+    if data.get("DataSourceId") is not None:
         out["data_source_id"] = data["DataSourceId"]
-    if "DataLocationS3" in data:
+    if data.get("DataLocationS3") is not None:
         out["data_location_s3"] = data["DataLocationS3"]
-    if "DataRearrangement" in data:
+    if data.get("DataRearrangement") is not None:
         out["data_rearrangement"] = data["DataRearrangement"]
-    if "CreatedByIamUser" in data:
+    if data.get("CreatedByIamUser") is not None:
         out["created_by_iam_user"] = data["CreatedByIamUser"]
-    if "CreatedAt" in data:
+    if data.get("CreatedAt") is not None:
         import capo_machine_learning.types.epoch_time
 
         out["created_at"] = (
@@ -162,7 +162,7 @@ def deserialize_aws_json_1_1(data: dict) -> DataSource:
                 data["CreatedAt"]
             )
         )
-    if "LastUpdatedAt" in data:
+    if data.get("LastUpdatedAt") is not None:
         import capo_machine_learning.types.epoch_time
 
         out["last_updated_at"] = (
@@ -170,13 +170,13 @@ def deserialize_aws_json_1_1(data: dict) -> DataSource:
                 data["LastUpdatedAt"]
             )
         )
-    if "DataSizeInBytes" in data:
+    if data.get("DataSizeInBytes") is not None:
         out["data_size_in_bytes"] = data["DataSizeInBytes"]
-    if "NumberOfFiles" in data:
+    if data.get("NumberOfFiles") is not None:
         out["number_of_files"] = data["NumberOfFiles"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_machine_learning.types.entity_status
 
         out["status"] = (
@@ -184,9 +184,9 @@ def deserialize_aws_json_1_1(data: dict) -> DataSource:
                 data["Status"]
             )
         )
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
-    if "RedshiftMetadata" in data:
+    if data.get("RedshiftMetadata") is not None:
         import capo_machine_learning.types.redshift_metadata
 
         out["redshift_metadata"] = (
@@ -194,7 +194,7 @@ def deserialize_aws_json_1_1(data: dict) -> DataSource:
                 data["RedshiftMetadata"]
             )
         )
-    if "RDSMetadata" in data:
+    if data.get("RDSMetadata") is not None:
         import capo_machine_learning.types.rds_metadata
 
         out["rds_metadata"] = (
@@ -202,15 +202,15 @@ def deserialize_aws_json_1_1(data: dict) -> DataSource:
                 data["RDSMetadata"]
             )
         )
-    if "RoleARN" in data:
+    if data.get("RoleARN") is not None:
         out["role_arn"] = data["RoleARN"]
-    if "ComputeStatistics" in data:
+    if data.get("ComputeStatistics") is not None:
         out["compute_statistics"] = data["ComputeStatistics"]
     else:
         out["compute_statistics"] = False
-    if "ComputeTime" in data:
+    if data.get("ComputeTime") is not None:
         out["compute_time"] = data["ComputeTime"]
-    if "FinishedAt" in data:
+    if data.get("FinishedAt") is not None:
         import capo_machine_learning.types.epoch_time
 
         out["finished_at"] = (
@@ -218,7 +218,7 @@ def deserialize_aws_json_1_1(data: dict) -> DataSource:
                 data["FinishedAt"]
             )
         )
-    if "StartedAt" in data:
+    if data.get("StartedAt") is not None:
         import capo_machine_learning.types.epoch_time
 
         out["started_at"] = (

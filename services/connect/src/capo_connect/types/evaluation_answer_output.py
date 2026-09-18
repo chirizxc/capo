@@ -52,13 +52,13 @@ def serialize_json(value: EvaluationAnswerOutput) -> dict:
 
 def deserialize_json(data: dict) -> EvaluationAnswerOutput:
     out: EvaluationAnswerOutput = {}  # type: ignore[typeddict-item]
-    if "Value" in data:
+    if data.get("Value") is not None:
         import capo_connect.types.evaluation_answer_data
 
         out["value"] = capo_connect.types.evaluation_answer_data.deserialize_json(
             data["Value"]
         )
-    if "SystemSuggestedValue" in data:
+    if data.get("SystemSuggestedValue") is not None:
         import capo_connect.types.evaluation_answer_data
 
         out["system_suggested_value"] = (
@@ -66,7 +66,7 @@ def deserialize_json(data: dict) -> EvaluationAnswerOutput:
                 data["SystemSuggestedValue"]
             )
         )
-    if "SuggestedAnswers" in data:
+    if data.get("SuggestedAnswers") is not None:
         import capo_connect.types.evaluation_suggested_answers_list
 
         out["suggested_answers"] = (
